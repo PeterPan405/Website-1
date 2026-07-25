@@ -3,6 +3,7 @@ import type { MetadataRoute } from 'next'
 import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
 
 import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
+import { getEditionDates } from '@/lib/editions'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
 import { absoluteUrl } from '@/lib/site'
@@ -20,13 +21,14 @@ import { absoluteUrl } from '@/lib/site'
 const buildDate = new Date()
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [newsArticles, latestNewsDate, symbols, topicSlugs, levelParams] =
+  const [newsArticles, latestNewsDate, symbols, topicSlugs, levelParams, editionDates] =
     await Promise.all([
       getNewsArticles(),
       getLatestNewsDate(),
       getInstrumentSymbols(),
       getLearnTopicSlugs(),
       getLearnLevelParams(),
+      getEditionDates(),
     ])
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -37,6 +39,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: absoluteUrl('/news'),
       lastModified: new Date(latestNewsDate),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      // Das Archiv wächst mit jeder Ausgabe – der jüngste Tag ist der Änderungsstand.
+      url: absoluteUrl('/news/tag'),
+      lastModified: editionDates[0] ? new Date(editionDates[0]) : buildDate,
       changeFrequency: 'daily',
       priority: 0.8,
     },
@@ -66,6 +75,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: absoluteUrl(`/news/${article.slug}`),
     lastModified: new Date(article.updatedAt ?? article.publishedAt),
     changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  const editionPages: MetadataRoute.Sitemap = editionDates.map((date) => ({
+    url: absoluteUrl(`/news/tag/${date}`),
+    lastModified: new Date(date),
+    // Eine erschienene Ausgabe wird nicht mehr geändert.
+    changeFrequency: 'never',
     priority: 0.6,
   }))
 
@@ -106,5 +123,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...calculatorPages,
     ...marketPages,
     ...newsPages,
+    ...editionPages,
   ].map((entry) => ({ lastModified: buildDate, ...entry }))
 }

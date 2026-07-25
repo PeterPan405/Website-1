@@ -1,0 +1,19 @@
+import { edition as edition20260725 } from './2026-07-25'
+import type { DailyEdition } from './types'
+
+export type { DailyEdition, EditionItem } from './types'
+
+/**
+ * Alle veröffentlichten Tagesausgaben.
+ *
+ * Bewusst eine ausgeschriebene Liste mit statischen Importen und kein Einlesen
+ * des Ordners zur Laufzeit: Nur so kennt der Compiler jede Ausgabe, kann sie
+ * prüfen und der Build sie vorrendern. Ein `readdir` würde beides verhindern und
+ * beim statischen Export gar nicht funktionieren.
+ *
+ * Eine neue Ausgabe erfordert damit zwei Schritte – die Datei anlegen und sie
+ * hier eintragen. Der Test unter `tests/editions.test.ts` prüft, dass keine
+ * Ausgabe im Ordner liegt, die hier fehlt; ein vergessener Eintrag fällt also
+ * auf, statt still zu verschwinden.
+ */
+export const editions: DailyEdition[] = [edition20260725]
