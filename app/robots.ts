@@ -9,7 +9,12 @@ import { absoluteUrl, siteUrl } from '@/lib/site'
  * Anmeldebereiche oder Vorschaupfade, die ausgeschlossen werden müssten.
  * Ausgenommen sind lediglich Next.js-interne Pfade, die für Suchmaschinen
  * keinen Inhalt liefern.
+ *
+ * Die Datei entsteht beim Build und wird als statische Datei ausgeliefert, nicht
+ * pro Anfrage erzeugt – Voraussetzung für den statischen Export.
  */
+export const dynamic = 'force-static'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

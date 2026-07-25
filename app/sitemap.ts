@@ -15,7 +15,11 @@ import { absoluteUrl } from '@/lib/site'
  * Marktseiten, Lernthemen und jede der drei Lernstufen pro Thema. Die Liste
  * wird aus derselben Service-Schicht gespeist wie die Seiten selbst – dadurch
  * kann keine neue Seite versehentlich in der Sitemap fehlen.
+ *
+ * Die Datei entsteht beim Build und wird als statische Datei ausgeliefert, nicht
+ * pro Anfrage erzeugt – Voraussetzung für den statischen Export.
  */
+export const dynamic = 'force-static'
 
 /** Bezugszeitpunkt für Seiten ohne eigenes Änderungsdatum. */
 const buildDate = new Date()

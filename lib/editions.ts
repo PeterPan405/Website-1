@@ -2,6 +2,7 @@ import { editions } from '@/data/editions'
 import type { DailyEdition, EditionItem } from '@/data/editions'
 
 import { formatMonthKey } from '@/lib/edition-date'
+import { assertEditionsValid } from '@/lib/editions-validate'
 
 export type { DailyEdition, EditionItem }
 
@@ -12,6 +13,15 @@ export type { DailyEdition, EditionItem }
  * die Daten zu. Zieht die Redaktion später in ein CMS um, ändert sich nur diese
  * Datei – die Signaturen sind schon asynchron.
  */
+
+/*
+  Prüfung beim Laden des Moduls und damit bei jedem Build.
+
+  Die Ausgaben schreibt eine Routine automatisch, ohne dass jemand darüberliest.
+  Ein Fehler darin soll den Build abbrechen, statt still auf die Website zu
+  gelangen – eine fehlende Ausgabe fällt auf, eine kaputte nicht.
+*/
+assertEditionsValid(editions)
 
 /** Neueste Ausgabe zuerst. */
 function sortedEditions(): DailyEdition[] {

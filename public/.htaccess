@@ -1,0 +1,56 @@
+# Serverkonfiguration für Apache und LiteSpeed – also für die üblichen
+# Webhosting-Tarife, unter anderem Hostinger.
+#
+# Die Datei liegt in public/ und landet dadurch beim Build automatisch in out/.
+# Auf einem Node-Server wird sie schlicht ignoriert, sie schadet dort also nicht.
+
+# ---------------------------------------------------------------------------
+# Fehlerseite
+# Ohne diese Zeile zeigt der Server bei einer unbekannten Adresse seine eigene,
+# nackte 404-Seite statt der gestalteten Seite der Website.
+# ---------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ---------------------------------------------------------------------------
+# Vorschaubild für soziale Netzwerke
+# Next.js legt es ohne Dateiendung als "opengraph-image" ab. Ohne Endung rät der
+# Server den Typ und liefert meist application/octet-stream – Facebook, LinkedIn
+# und X lehnen das Bild dann ab und die Vorschau bleibt leer.
+# ---------------------------------------------------------------------------
+<Files "opengraph-image">
+  ForceType image/png
+</Files>
+
+<IfModule mod_headers.c>
+  # -------------------------------------------------------------------------
+  # Zwischenspeicherung
+  #
+  # Zwei Klassen mit gegensätzlichem Bedarf:
+  #
+  # 1. Dateien unter /_next/static tragen einen Inhalts-Hash im Namen. Ändert
+  #    sich der Inhalt, ändert sich der Name. Sie dürfen deshalb sehr lange
+  #    gespeichert werden – das ist der größte Hebel für schnelle Ladezeiten
+  #    bei wiederkehrenden Besuchern.
+  #
+  # 2. HTML-Seiten behalten ihren Namen und ändern nur den Inhalt. Würden sie
+  #    lange gespeichert, bekämen wiederkehrende Besucher den Tagesüberblick
+  #    von gestern zu sehen, obwohl morgens eine neue Ausgabe hochgeladen wurde.
+  #    Deshalb: jedes Mal beim Server rückfragen.
+  # -------------------------------------------------------------------------
+  <FilesMatch "\.(js|css|woff2|svg|png|jpg|jpeg|webp|avif|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Verhindert, dass die Seite in einem fremden Rahmen eingebettet wird.
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>

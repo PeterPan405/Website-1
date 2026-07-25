@@ -15,6 +15,13 @@ import { siteConfig } from '@/lib/site'
  * ergibt dieselben vier Viertelbögen in den Logofarben.
  */
 
+/*
+  Das Bild wird beim Build einmal erzeugt und als Datei abgelegt, nicht pro
+  Anfrage. Nötig für den statischen Export – ohne diese Zeile bricht `next
+  build` mit "export const dynamic not configured" ab.
+*/
+export const dynamic = 'force-static'
+
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 export const alt = `${siteConfig.name} – ${siteConfig.slogan}`

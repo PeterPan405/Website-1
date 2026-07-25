@@ -155,8 +155,22 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   },
 }
 
-/** Baut aus einem Pfad eine absolute URL auf Basis von {@link siteUrl}. */
+/**
+ * Baut aus einem Pfad eine absolute URL auf Basis von {@link siteUrl}.
+ *
+ * Der abschließende Schrägstrich ist Absicht und muss bleiben: Das Projekt wird
+ * mit `trailingSlash: true` exportiert, weshalb die kanonische Adresse jeder
+ * Seite auf „/“ endet. Ohne den Schrägstrich würden Sitemap und strukturierte
+ * Daten eine zweite Schreibweise derselben Seite nennen – Suchmaschinen sehen
+ * darin eine Weiterleitung und einen Widerspruch zum Canonical der Seite.
+ *
+ * Dateien bleiben unangetastet: `/logo.svg` bekommt keinen Schrägstrich.
+ */
 export function absoluteUrl(path = '/'): string {
   if (path.startsWith('http')) return path
-  return `${siteUrl}${path.startsWith('/') ? path : `/${path}`}`
+  const withLeadingSlash = path.startsWith('/') ? path : `/${path}`
+  const isFile = /\.[a-z0-9]+$/i.test(withLeadingSlash)
+  const normalized =
+    isFile || withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`
+  return `${siteUrl}${normalized}`
 }
