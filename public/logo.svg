@@ -1,75 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="IM Invests">
   <title>IM Invests</title>
   <!--
-    Vier Puzzle-Figuren im Kreis, dazu der Wortbestandteil IMI in der Mitte.
+    Vier Figuren im Ring, dazu der Wortbestandteil IMI in der Mitte.
 
-    Nachbau des Logos als Vektor. Jede Figur besteht aus einem dick gezeichneten
-    Bogen mit runden Enden (der Körper), einer Kreisnase am Bogenende und einem
-    Kopfkreis. Die weißen Kreise darüber bilden die Puzzle-Kerben, in die die
-    Nase der Nachbarfigur greift.
+    Je Figur ein Kopfkreis und ein dicker Bogen als Körper, der im Uhrzeigersinn
+    bis zum Kopf der nächsten Figur läuft – dadurch schließt sich der Ring.
 
-    Liegt die Originaldatei vor, kann sie diese Datei ersetzen – im Quellcode
-    hängt nichts an den konkreten Pfaden. Die Farben stehen zusätzlich als
-    Design-Tokens in app/globals.css.
+    Nachbau des Logos als Vektor, bewusst reduziert: Die Puzzle-Verzahnung des
+    Originals ergibt in dieser Größe kein erkennbares Motiv. Liegt die
+    Originaldatei vor, kann sie diese Datei ersetzen – im Quellcode hängt nichts
+    an den konkreten Pfaden. Die Farben stehen zusätzlich als Design-Tokens in
+    app/globals.css.
   -->
   <g fill="#17296F">
     <path
-      d="M 49.09 49.09 A 72 72 0 0 1 121.05 31.15"
+      d="M 100 44 A 56 56 0 0 1 152.62 80.85"
       fill="none"
       stroke="#17296F"
-      stroke-width="42"
+      stroke-width="24"
       stroke-linecap="round"
     />
-    <circle cx="131.56" cy="35.29" r="10" />
-    <circle cx="49.09" cy="49.09" r="22" />
+    <circle cx="100" cy="23" r="20" />
   </g>
   <g fill="#6E6E6E">
     <path
-      d="M 150.91 49.09 A 72 72 0 0 1 168.85 121.05"
+      d="M 156 100 A 56 56 0 0 1 119.15 152.62"
       fill="none"
       stroke="#6E6E6E"
-      stroke-width="42"
+      stroke-width="24"
       stroke-linecap="round"
     />
-    <circle cx="164.71" cy="131.56" r="10" />
-    <circle cx="150.91" cy="49.09" r="22" />
+    <circle cx="177" cy="100" r="20" />
   </g>
   <g fill="#8B2225">
     <path
-      d="M 150.91 150.91 A 72 72 0 0 1 78.95 168.85"
+      d="M 100 156 A 56 56 0 0 1 47.38 119.15"
       fill="none"
       stroke="#8B2225"
-      stroke-width="42"
+      stroke-width="24"
       stroke-linecap="round"
     />
-    <circle cx="68.44" cy="164.71" r="10" />
-    <circle cx="150.91" cy="150.91" r="22" />
+    <circle cx="100" cy="177" r="20" />
   </g>
   <g fill="#205437">
     <path
-      d="M 49.09 150.91 A 72 72 0 0 1 31.15 78.95"
+      d="M 44 100 A 56 56 0 0 1 80.85 47.38"
       fill="none"
       stroke="#205437"
-      stroke-width="42"
+      stroke-width="24"
       stroke-linecap="round"
     />
-    <circle cx="35.29" cy="68.44" r="10" />
-    <circle cx="49.09" cy="150.91" r="22" />
+    <circle cx="23" cy="100" r="20" />
   </g>
-  <g fill="#ffffff">
-    <circle cx="38.94" cy="61.85" r="12" />
-    <circle cx="138.15" cy="38.94" r="12" />
-    <circle cx="161.06" cy="138.15" r="12" />
-    <circle cx="61.85" cy="161.06" r="12" />
-  </g>
+  <!-- Innendurchmesser des Rings: 88 Einheiten. Der Schriftzug bleibt darunter. -->
   <text
     x="100"
-    y="113"
+    y="112"
     text-anchor="middle"
     font-family="Arial, Helvetica, sans-serif"
-    font-size="40"
+    font-size="34"
     font-weight="700"
-    letter-spacing="2"
+    letter-spacing="1"
     fill="#6E6E6E"
   >
     IMI
