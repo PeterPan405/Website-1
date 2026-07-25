@@ -1,0 +1,315 @@
+import type { ContentBlock } from '@/data/content'
+
+/**
+ * Metadaten und Methodik-Texte der fünf Rechner.
+ *
+ * Die Rechenlogik selbst liegt in `lib/finance.ts`. Hier steht ausschließlich,
+ * was auf der Seite erklärt wird – jeder Rechner legt seine Formel und seine
+ * Annahmen offen, damit ein Ergebnis eingeordnet werden kann.
+ */
+
+export interface CalculatorDefinition {
+  slug: string
+  /** Kurzname für Navigation und Kacheln. */
+  title: string
+  /** <h1> der Rechnerseite. */
+  headline: string
+  metaTitle: string
+  metaDescription: string
+  lead: string
+  /** Ein Satz für Übersichtskacheln. */
+  summary: string
+  /** Für die WebApplication-Auszeichnung. */
+  featureList: string[]
+  /** Erklärung der Methodik unter dem Rechner. */
+  methodology: ContentBlock[]
+  /** Slugs passender Lernthemen. */
+  relatedTopics: string[]
+}
+
+export const calculators: CalculatorDefinition[] = [
+  {
+    slug: 'zinsrechner',
+    title: 'Zinsrechner',
+    headline: 'Zinsrechner mit Zinseszins und Sparplan',
+    metaTitle: 'Zinsrechner: Zinseszins mit Sparplan berechnen',
+    metaDescription:
+      'Berechne Endkapital, Einzahlungen und Zinsertrag für Startkapital plus Sparrate – mit Jahresverlauf und Angabe, wie viel vom Ergebnis aus Zinsen stammt.',
+    lead: 'Startkapital, Sparrate, Zinssatz und Laufzeit eingeben – der Rechner zeigt, welcher Teil des Endkapitals aus deinen Einzahlungen kommt und welcher aus Erträgen.',
+    summary:
+      'Zinseszins mit Sparplan – inklusive Aufteilung in Einzahlungen und Erträge.',
+    featureList: [
+      'Zinseszinsberechnung mit Startkapital',
+      'Sparplan mit monatlichem, vierteljährlichem oder jährlichem Intervall',
+      'Jahresverlauf als Tabelle und Diagramm',
+      'Verdopplungszeit nach der 72er-Regel',
+    ],
+    relatedTopics: ['zinseszins', 'cost-average-sparplan', 'etf', 'tagesgeld'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Der Rechner arbeitet **monatsweise**. Der eingegebene Jahreszins wird durch zwölf geteilt und jeden Monat auf den aktuellen Kapitalstand angewendet. Einzahlungen fließen in den Monaten, die zum gewählten Intervall passen.',
+      },
+      {
+        type: 'formula',
+        expression: 'Kapitalₘ₊₁ = (Kapitalₘ + Rate) × (1 + Jahreszins / 12)',
+        description:
+          'Bei nachschüssiger Zahlweise kommt die Rate erst nach der Zinsgutschrift hinzu – dann verzinst sie sich einen Monat später. Der Unterschied zur vorschüssigen Variante liegt unter einem Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für eine Einmalanlage ohne Sparrate entspricht das der klassischen Zinseszinsformel Endkapital = Startkapital × (1 + Zinssatz)^Jahre.',
+      },
+      { type: 'heading', level: 2, text: 'Welche Annahmen dahinterstehen' },
+      {
+        type: 'list',
+        items: [
+          '**Konstanter Zinssatz** über die gesamte Laufzeit. Das ist bei Tagesgeld und Anleihen für einen bestimmten Zeitraum realistisch, bei Aktien und Fonds nicht – dort schwankt die Rendite jedes Jahr.',
+          '**Keine Steuern.** Abgeltungssteuer, Solidaritätszuschlag und die Vorabpauschale bei Fonds sind nicht berücksichtigt.',
+          '**Keine Kosten.** Fondskosten, Ausführungsgebühren und Ausgabeaufschläge fehlen ebenfalls. Ein Prozentpunkt Kosten pro Jahr kostet über 30 Jahre rund ein Viertel des Endvermögens.',
+          '**Keine Inflation.** Das Ergebnis ist ein nominaler Betrag. Um in heutiger Kaufkraft zu rechnen, setze den Realzins ein – der Inflationsrechner nennt ihn.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was dieser Rechner nicht ist',
+        items: [
+          'Eine Modellrechnung, keine Prognose. Die Rendite gibst du selbst vor – das Ergebnis ist genau so verlässlich wie diese Annahme.',
+          'Für Aktienanlagen liefert eine konstante Rendite systematisch zu glatte Ergebnisse. Schwankungen kosten zusätzlich Rendite (Volatilitätsbremse).',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'inflationsrechner',
+    title: 'Inflationsrechner',
+    headline: 'Inflationsrechner: Kaufkraft über die Jahre',
+    metaTitle: 'Inflationsrechner: Kaufkraftverlust berechnen',
+    metaDescription:
+      'Berechne, was von einem Betrag nach Jahren real übrig bleibt, welche Summe du für gleiche Kaufkraft brauchst und wann sich die Kaufkraft halbiert.',
+    lead: 'Wie viel ist dein Geld in zehn, zwanzig oder dreißig Jahren noch wert? Der Rechner zeigt beide Richtungen: den Kaufkraftverlust und den Betrag, der später für dieselbe Kaufkraft nötig ist.',
+    summary: 'Kaufkraftverlust und benötigter Betrag über beliebige Zeiträume.',
+    featureList: [
+      'Kaufkraft eines Betrags nach n Jahren',
+      'Benötigter Betrag für gleiche Kaufkraft',
+      'Halbierungszeit der Kaufkraft',
+      'Realzins aus Nominalzins und Inflationsrate',
+    ],
+    relatedTopics: ['zinseszins', 'tagesgeld', 'staatsanleihe', 'immobilien'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Inflation wirkt genau wie Zinseszins, nur in die andere Richtung: Jedes Jahr verliert der Betrag auf den bereits verringerten Wert weiter an Kaufkraft.',
+      },
+      {
+        type: 'formula',
+        expression: 'Kaufkraft = Betrag / (1 + Inflationsrate)^Jahre',
+        description:
+          'Umgekehrt gilt für den später nötigen Betrag: Benötigt = Betrag × (1 + Inflationsrate)^Jahre. Beide Angaben zeigt der Rechner gleichzeitig.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Halbierungszeit folgt derselben Logik wie die 72er-Regel beim Sparen: Bei 3 Prozent Inflation halbiert sich die Kaufkraft in etwa 24 Jahren.',
+      },
+      { type: 'heading', level: 2, text: 'Realzins statt Differenz' },
+      {
+        type: 'paragraph',
+        text: 'Die verbreitete Näherung „Realzins = Nominalzins − Inflation“ ist für kleine Werte brauchbar, aber nicht exakt. Korrekt ist der Quotient, weil beide Effekte multiplikativ wirken.',
+      },
+      {
+        type: 'formula',
+        expression: 'Realzins = (1 + Nominalzins) / (1 + Inflationsrate) − 1',
+        description:
+          'Bei 6 Prozent Rendite und 2,5 Prozent Inflation ergibt das 3,41 Prozent statt der genäherten 3,5 Prozent. Über 30 Jahre macht dieser Unterschied rund 8 Prozent Endvermögen aus.',
+      },
+      { type: 'heading', level: 2, text: 'Annahmen und Grenzen' },
+      {
+        type: 'list',
+        items: [
+          '**Konstante Inflationsrate.** Tatsächlich schwankt sie erheblich – in einzelnen Jahren zweistellig, in anderen nahe null.',
+          '**Ein Durchschnittswarenkorb.** Deine persönliche Inflationsrate weicht ab, weil du anders konsumierst als der statistische Durchschnitt. Wer viel Miete zahlt oder viel heizt, erlebt in manchen Jahren deutlich höhere Teuerung.',
+          '**Keine Qualitätsänderungen.** Statistikämter rechnen Produktverbesserungen heraus. Ob das die gefühlte Teuerung korrekt abbildet, ist umstritten.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'rentenrechner',
+    title: 'Rentenrechner',
+    headline: 'Rentenrechner: Alterseinkommen grob schätzen',
+    metaTitle: 'Rentenrechner: gesetzliche Rente grob schätzen',
+    metaDescription:
+      'Schätze deine gesetzliche Rente über Rentenpunkte und sieh, was nach Kranken-, Pflegeversicherung und Steuern voraussichtlich netto übrig bleibt.',
+    lead: 'Der Rechner schätzt über Rentenpunkte, welche Bruttorente sich ergibt – und was davon nach Kranken- und Pflegeversicherung sowie Steuern übrig bleibt.',
+    summary: 'Rentenpunkte, Bruttorente und geschätzte Nettorente auf einen Blick.',
+    featureList: [
+      'Rentenpunkte aus Einkommen und Beitragsjahren',
+      'Bruttorente über den aktuellen Rentenwert',
+      'Abzüge für Kranken- und Pflegeversicherung',
+      'Geschätzte Steuerlast und Nettorente',
+      'Berücksichtigung betrieblicher und privater Zusatzrenten',
+    ],
+    relatedTopics: ['rente', 'zinseszins', 'cost-average-sparplan'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Die gesetzliche Rente beruht auf Rentenpunkten. Wer genau das Durchschnittsentgelt aller Versicherten verdient, erhält für dieses Jahr einen Punkt. Wer doppelt so viel verdient, zwei – begrenzt durch die Beitragsbemessungsgrenze.',
+      },
+      {
+        type: 'formula',
+        expression: 'Punkte pro Jahr = Bruttojahreseinkommen / Durchschnittsentgelt',
+        description:
+          'Einkommen oberhalb der Beitragsbemessungsgrenze erhöht die Punktzahl nicht mehr, weil darauf keine Beiträge erhoben werden.',
+      },
+      {
+        type: 'formula',
+        expression: 'Bruttorente pro Monat = Summe der Punkte × aktueller Rentenwert',
+        description:
+          'Der Rentenwert ist der Euro-Betrag, den ein Punkt monatlich wert ist. Er wird jährlich angepasst; im Rechner ist er als Eingabefeld hinterlegt.',
+      },
+      { type: 'heading', level: 2, text: 'Von brutto zu netto' },
+      {
+        type: 'list',
+        items: [
+          '**Kranken- und Pflegeversicherung** werden von der Bruttorente abgezogen.',
+          '**Steuern:** Renten sind nachgelagert zu einem Anteil steuerpflichtig, der vom Jahr des Rentenbeginns abhängt. Der Rechner arbeitet mit einem einstellbaren steuerpflichtigen Anteil und einem einstellbaren persönlichen Steuersatz.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Bewusst stark vereinfacht',
+        items: [
+          'Angenommen wird ein **konstantes Einkommen** über alle Beitragsjahre und ein konstanter Rentenwert. Beides trifft in der Realität nicht zu.',
+          'Nicht berücksichtigt: Kindererziehungs- und Pflegezeiten, Ausbildungszeiten, Abschläge bei früherem Rentenbeginn, Zuschläge bei Aufschub, Erwerbsminderung, Zeiten im Ausland und künftige Rentenanpassungen.',
+          'Verbindliche Auskunft erteilt ausschließlich die Deutsche Rentenversicherung. Dieser Rechner liefert eine **Größenordnung**, keine Zusage – und keine Steuerberatung.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'rentenluecke',
+    title: 'Rentenlücke',
+    headline: 'Rentenlücken-Rechner: Bedarf gegen Erwartung',
+    metaTitle: 'Rentenlücke berechnen: Bedarf, Kapital, Sparrate',
+    metaDescription:
+      'Ermittle deine monatliche Rentenlücke, das dafür nötige Kapital und die monatliche Sparrate – durchgehend in heutiger Kaufkraft gerechnet.',
+    lead: 'Wie groß ist der Abstand zwischen gewünschtem Alterseinkommen und erwarteter Rente – und welche Sparrate schließt ihn? Gerechnet wird in heutiger Kaufkraft.',
+    summary: 'Monatliche Lücke, nötiges Kapital und die dafür erforderliche Sparrate.',
+    featureList: [
+      'Monatliche Rentenlücke aus Bedarf und erwarteten Einkünften',
+      'Benötigtes Kapital zum Rentenbeginn',
+      'Erforderliche monatliche Sparrate',
+      'Rechnung in heutiger Kaufkraft über den Realzins',
+      'Berücksichtigung vorhandenen Vorsorgevermögens',
+    ],
+    relatedTopics: ['rente', 'zinseszins', 'cost-average-sparplan', 'etf'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'Alles in heutiger Kaufkraft' },
+      {
+        type: 'paragraph',
+        text: 'Der Rechner arbeitet durchgehend mit dem **Realzins** und gibt alle Ergebnisse in heutigen Euro aus. Das vermeidet die häufigste Schwäche solcher Rechnungen: eine große nominale Endsumme, deren tatsächlichen Wert in 30 Jahren niemand einschätzen kann. Die nominale Zielsumme wird zusätzlich ausgewiesen.',
+      },
+      {
+        type: 'formula',
+        expression: 'Realzins = (1 + Rendite) / (1 + Inflation) − 1',
+        description:
+          'Mit diesem Satz werden sowohl der Kapitalaufbau als auch die Entnahmephase gerechnet. Die eingegebene Sparrate ist damit ebenfalls in heutiger Kaufkraft zu verstehen.',
+      },
+      { type: 'heading', level: 2, text: 'Die drei Rechenschritte' },
+      {
+        type: 'list',
+        ordered: true,
+        items: [
+          '**Monatliche Lücke:** gewünschtes Netto minus erwartete gesetzliche Rente minus sonstige gesicherte Einkünfte.',
+          '**Benötigtes Kapital:** der Barwert dieser monatlichen Zahlung über die erwartete Dauer des Ruhestands, abgezinst mit dem Realzins.',
+          '**Sparrate:** die umgestellte Sparplanformel für den Betrag, den vorhandenes Vermögen nicht abdeckt.',
+        ],
+      },
+      {
+        type: 'formula',
+        expression: 'Kapitalbedarf = Lücke × (1 − (1 + i)^−n) / i',
+        description:
+          'i ist der reale Monatszins, n die Anzahl der Monate im Ruhestand. Diese Formel unterstellt, dass das Kapital am Ende des Zeitraums vollständig verbraucht ist.',
+      },
+      { type: 'heading', level: 2, text: 'Annahmen und Grenzen' },
+      {
+        type: 'list',
+        items: [
+          '**Konstante Rendite und Inflation** über Jahrzehnte. Beides schwankt in der Realität erheblich.',
+          '**Kapitalverzehr:** Das Kapital ist am Ende der eingegebenen Ruhestandsdauer aufgebraucht. Wer länger lebt, braucht mehr – das Langlebigkeitsrisiko ist nicht abgesichert.',
+          '**Kein Sequenzrisiko:** Schwache Renditejahre unmittelbar nach Rentenbeginn treffen Entnahmen besonders hart. Eine Rechnung mit konstanter Rendite kann diesen Effekt nicht abbilden.',
+          '**Keine Steuern in der Entnahmephase** und keine Produktkosten.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Wie du das Ergebnis nutzt',
+        items: [
+          'Rechne mehrere Szenarien: eine Rendite ein Prozentpunkt niedriger, eine Inflationsrate ein Prozentpunkt höher, eine Ruhestandsdauer fünf Jahre länger. Die Spannweite dieser Ergebnisse ist aussagekräftiger als jede einzelne Zahl.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'haushaltsrechner',
+    title: 'Haushaltsrechner',
+    headline: 'Haushaltsrechner: Budget und Sparquote',
+    metaTitle: 'Haushaltsrechner: Budget und Sparquote berechnen',
+    metaDescription:
+      'Stelle Einnahmen und Ausgaben gegenüber, ermittle deine Sparquote und sieh, wie lange der Aufbau eines Notgroschens dauert.',
+    lead: 'Einnahmen und Ausgaben gegenüberstellen, Sparquote ermitteln und sehen, wie schnell der Notgroschen zusammenkommt. Alle Angaben pro Monat.',
+    summary: 'Einnahmen, Ausgaben, Sparquote und Notgroschen-Ziel.',
+    featureList: [
+      'Einnahmen und Ausgaben mit eigenen Kategorien',
+      'Monatlicher Überschuss und Sparquote',
+      'Verteilung der Ausgaben als Diagramm',
+      'Empfohlener Notgroschen und Dauer des Aufbaus',
+    ],
+    relatedTopics: ['worauf-achten-einsteiger', 'tagesgeld', 'cost-average-sparplan'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'formula',
+        expression: 'Sparquote = (Einnahmen − Ausgaben) / Einnahmen × 100',
+        description:
+          'Der Überschuss ist das, was am Monatsende übrig bleibt. Die Sparquote setzt ihn ins Verhältnis zu den Einnahmen – dadurch bleiben unterschiedliche Einkommenshöhen vergleichbar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der empfohlene Notgroschen orientiert sich an den **Ausgaben**, nicht am Einkommen: drei bis sechs Monatsausgaben. Entscheidend ist, wie lange du ohne Einkommen durchkommst.',
+      },
+      { type: 'heading', level: 2, text: 'Was leicht vergessen wird' },
+      {
+        type: 'paragraph',
+        text: 'Die häufigste Fehlerquelle sind Posten, die nicht monatlich anfallen: Versicherungsbeiträge, Kfz-Steuer, Werkstatt, Urlaub, Weihnachten, Rundfunkbeitrag, Zahnersatz. Wer sie weglässt, überschätzt seine Sparquote regelmäßig um mehrere Prozentpunkte.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der Trick mit dem Zwölftel',
+        items: [
+          'Rechne jährliche Posten auf den Monat um: Ein Jahresbeitrag von 480 Euro sind 40 Euro monatlich. Diese Beträge gehören in ein separates Rücklagenkonto, damit sie nicht als frei verfügbar gelten.',
+          'Die zweite Prüfung ist einfacher als jedes Haushaltsbuch: Vergleiche den berechneten Überschuss mit dem tatsächlichen Kontostandzuwachs der letzten drei Monate. Weichen sie ab, fehlen Positionen.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Deine Daten bleiben bei dir',
+        items: [
+          'Die Eingaben werden ausschließlich im Browser verarbeitet. Es findet keine Übertragung an einen Server und keine Speicherung statt – nach dem Neuladen der Seite sind die Werte wieder auf die Vorbelegung zurückgesetzt.',
+        ],
+      },
+    ],
+  },
+]
+
+export function getCalculatorDefinition(slug: string): CalculatorDefinition | undefined {
+  return calculators.find((calculator) => calculator.slug === slug)
+}

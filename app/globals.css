@@ -1,0 +1,333 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Dark Mode
+   Der Modus hängt am data-theme-Attribut des <html>-Elements. Ein Inline-Script
+   im <head> (siehe app/layout.tsx) setzt das Attribut noch während des
+   HTML-Parsings, damit beim Laden kein Hell-Blitz sichtbar wird.
+--------------------------------------------------------------------------- */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------------------------------------------------------------------------
+   Design-Tokens (Rohwerte)
+   Alle Farben sind semantisch benannt, nicht nach ihrem Farbton. So kann die
+   Palette an einer Stelle getauscht werden, ohne Komponenten anzufassen.
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* Flächen */
+  --c-canvas: #f6f8fc;
+  --c-surface: #ffffff;
+  --c-surface-muted: #f1f4fa;
+  --c-border: #e3e8f1;
+  --c-border-strong: #c8d1e0;
+
+  /* Text */
+  --c-fg: #0f172a;
+  --c-fg-muted: #525e77;
+  --c-fg-subtle: #78839a;
+
+  /* Primärfarbe */
+  --c-brand: #4f46e5;
+  --c-brand-strong: #4338ca;
+  --c-brand-contrast: #ffffff;
+  --c-brand-soft: #edefff;
+
+  /* Akzent */
+  --c-accent: #0e7490;
+  --c-accent-soft: #e3f5f9;
+
+  /* Status */
+  --c-success: #15803d;
+  --c-success-soft: #e6f6ec;
+  --c-warning: #b45309;
+  --c-warning-soft: #fdf3e2;
+  --c-danger: #be123c;
+  --c-danger-soft: #fdeaef;
+
+  /* Bereichsfarben – geben jedem Hauptbereich eine eigene Identität */
+  --c-news: #1d4ed8;
+  --c-news-soft: #e8eeff;
+  --c-markets: #047857;
+  --c-markets-soft: #e3f6ee;
+  --c-tools: #6d28d9;
+  --c-tools-soft: #f0e9ff;
+  --c-learn: #c2410c;
+  --c-learn-soft: #fdeee4;
+  --c-debt: #be123c;
+  --c-debt-soft: #fdeaef;
+
+  /* Fokus */
+  --c-ring: #6366f1;
+
+  /* Schatten – im Hellmodus weich, im Dunkelmodus fast unsichtbar */
+  --fk-shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.12);
+  --fk-shadow-lift:
+    0 2px 4px rgb(15 23 42 / 0.06), 0 18px 40px -16px rgb(15 23 42 / 0.22);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --c-canvas: #060911;
+  --c-surface: #0f1523;
+  --c-surface-muted: #161e2f;
+  --c-border: #232d43;
+  --c-border-strong: #35415d;
+
+  --c-fg: #e9edf7;
+  --c-fg-muted: #9ba6be;
+  --c-fg-subtle: #79839a;
+
+  --c-brand: #8b93ff;
+  --c-brand-strong: #a7adff;
+  --c-brand-contrast: #0a0f1f;
+  --c-brand-soft: #1b2140;
+
+  --c-accent: #22d3ee;
+  --c-accent-soft: #0c2a33;
+
+  --c-success: #4ade80;
+  --c-success-soft: #0f2a1c;
+  --c-warning: #fbbf24;
+  --c-warning-soft: #2b2009;
+  --c-danger: #fb7185;
+  --c-danger-soft: #2d1019;
+
+  --c-news: #60a5fa;
+  --c-news-soft: #10203c;
+  --c-markets: #34d399;
+  --c-markets-soft: #0c2b22;
+  --c-tools: #a78bfa;
+  --c-tools-soft: #1e1738;
+  --c-learn: #fb923c;
+  --c-learn-soft: #2e1a0c;
+  --c-debt: #fb7185;
+  --c-debt-soft: #2d1019;
+
+  --c-ring: #8b93ff;
+
+  --fk-shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --fk-shadow-lift: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -16px rgb(0 0 0 / 0.75);
+}
+
+/* ---------------------------------------------------------------------------
+   Tokens an Tailwind übergeben
+   `inline` sorgt dafür, dass die Utilities direkt auf die var()-Referenz
+   zeigen – dadurch wirkt der Theme-Wechsel ohne Neu-Rendern.
+--------------------------------------------------------------------------- */
+@theme inline {
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-surface-muted: var(--c-surface-muted);
+  --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
+
+  --color-fg: var(--c-fg);
+  --color-fg-muted: var(--c-fg-muted);
+  --color-fg-subtle: var(--c-fg-subtle);
+
+  --color-brand: var(--c-brand);
+  --color-brand-strong: var(--c-brand-strong);
+  --color-brand-contrast: var(--c-brand-contrast);
+  --color-brand-soft: var(--c-brand-soft);
+
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+
+  --color-success: var(--c-success);
+  --color-success-soft: var(--c-success-soft);
+  --color-warning: var(--c-warning);
+  --color-warning-soft: var(--c-warning-soft);
+  --color-danger: var(--c-danger);
+  --color-danger-soft: var(--c-danger-soft);
+
+  --color-news: var(--c-news);
+  --color-news-soft: var(--c-news-soft);
+  --color-markets: var(--c-markets);
+  --color-markets-soft: var(--c-markets-soft);
+  --color-tools: var(--c-tools);
+  --color-tools-soft: var(--c-tools-soft);
+  --color-learn: var(--c-learn);
+  --color-learn-soft: var(--c-learn-soft);
+  --color-debt: var(--c-debt);
+  --color-debt-soft: var(--c-debt-soft);
+
+  --color-ring: var(--c-ring);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1rem;
+
+  --shadow-card: var(--fk-shadow-card);
+  --shadow-lift: var(--fk-shadow-lift);
+
+  --animate-fade-up: fk-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fk-fade-in 0.4s ease-out both;
+  --animate-pop: fk-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-shimmer: fk-shimmer 1.6s linear infinite;
+}
+
+@keyframes fk-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fk-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fk-pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fk-shimmer {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 250% 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Basis-Layer
+--------------------------------------------------------------------------- */
+@layer base {
+  /* Tailwind v4 setzt Rahmenfarben auf currentColor – wir wollen den Token. */
+  *,
+  ::before,
+  ::after {
+    border-color: var(--c-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Verhindert, dass Sprungziele unter der Sticky-Navigation landen. */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--c-canvas);
+    color: var(--c-fg);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04';
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), var(--font-sans), ui-sans-serif, sans-serif;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Sichtbarer Fokus für Tastaturbedienung – nie entfernen. */
+  :focus-visible {
+    outline: 2px solid var(--c-ring);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  ::selection {
+    background-color: var(--c-brand);
+    color: var(--c-brand-contrast);
+  }
+
+  /* Nutzer mit reduzierter Bewegungspräferenz bekommen keine Animationen. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Wiederverwendbare Komponenten-Klassen
+   Nur für Muster, die auf sehr vielen Seiten identisch auftreten.
+
+   Als `@utility` und nicht als `@layer components` definiert: In Tailwind v4
+   lassen sich ausschließlich Utilities per `@apply` weiterverwenden. So kann
+   `fk-btn-primary` auf `fk-btn` aufbauen, statt dessen Regeln zu duplizieren.
+--------------------------------------------------------------------------- */
+@utility fk-container {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility fk-card {
+  @apply rounded-card border-border bg-surface shadow-card border;
+}
+
+/* Karte, die als Ganzes ein Link ist: hebt sich beim Hover leicht an. */
+@utility fk-card-interactive {
+  @apply fk-card relative transition duration-200 ease-out;
+  @apply hover:border-border-strong hover:shadow-lift hover:-translate-y-0.5;
+}
+
+@utility fk-btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5;
+  @apply text-sm font-semibold whitespace-nowrap transition duration-150 ease-out;
+  @apply active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
+}
+
+@utility fk-btn-primary {
+  @apply fk-btn bg-brand text-brand-contrast hover:bg-brand-strong;
+}
+
+@utility fk-btn-secondary {
+  @apply fk-btn border-border-strong bg-surface text-fg border;
+  @apply hover:border-brand hover:text-brand;
+}
+
+@utility fk-btn-ghost {
+  @apply fk-btn text-fg-muted hover:bg-surface-muted hover:text-fg;
+}
+
+@utility fk-input {
+  @apply border-border bg-surface w-full rounded-xl border px-3 py-2.5 text-sm;
+  @apply text-fg placeholder:text-fg-subtle transition;
+  @apply focus:border-brand focus:outline-none;
+}
+
+@utility fk-chip {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1;
+  @apply text-xs font-semibold tracking-wide uppercase;
+}
