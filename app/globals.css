@@ -28,38 +28,59 @@
   --c-fg-muted: #525e77;
   --c-fg-subtle: #78839a;
 
-  /* Primärfarbe */
-  --c-brand: #4f46e5;
-  --c-brand-strong: #4338ca;
-  --c-brand-contrast: #ffffff;
-  --c-brand-soft: #edefff;
+  /*
+    Logo-Farben unverändert wie im Signet.
+    Nur für das Logo selbst gedacht – für Text und Flächen gelten die
+    abgeleiteten Tokens darunter, die auf Kontrast geprüft sind.
+  */
+  --c-logo-navy: #17296f;
+  --c-logo-grey: #6e6e6e;
+  --c-logo-green: #205437;
+  --c-logo-red: #8b2225;
 
-  /* Akzent */
-  --c-accent: #0e7490;
-  --c-accent-soft: #e3f5f9;
+  /* Primärfarbe: das Navy des Logos */
+  --c-brand: #17296f;
+  --c-brand-strong: #0f1c50;
+  --c-brand-contrast: #ffffff;
+  --c-brand-soft: #e9ecf9;
+
+  /* Akzent: Petrol, harmoniert mit Navy und Grün des Logos */
+  --c-accent: #155e63;
+  --c-accent-soft: #e3f1f2;
 
   /* Status */
-  --c-success: #15803d;
-  --c-success-soft: #e6f6ec;
-  --c-warning: #b45309;
-  --c-warning-soft: #fdf3e2;
-  --c-danger: #be123c;
-  --c-danger-soft: #fdeaef;
+  --c-success: #205437;
+  --c-success-soft: #e5f1ea;
+  --c-warning: #8a5410;
+  --c-warning-soft: #faf0e2;
+  --c-danger: #8b2225;
+  --c-danger-soft: #faeaea;
 
-  /* Bereichsfarben – geben jedem Hauptbereich eine eigene Identität */
-  --c-news: #1d4ed8;
-  --c-news-soft: #e8eeff;
-  --c-markets: #047857;
-  --c-markets-soft: #e3f6ee;
-  --c-tools: #6d28d9;
-  --c-tools-soft: #f0e9ff;
-  --c-learn: #c2410c;
-  --c-learn-soft: #fdeee4;
-  --c-debt: #be123c;
-  --c-debt-soft: #fdeaef;
+  /*
+    Bereichsfarben.
+
+    Vier der fünf Bereiche übernehmen direkt eine Logo-Farbe: News das Navy
+    (aufgehellt, damit es sich von der Primärfarbe abhebt), Märkte das Grün,
+    Rechner das Grau und Staatsverschuldung das Rot. Für den Lernbereich gibt
+    das Logo keine fünfte Farbe her – dort steht ein Ocker, das im gleichen
+    gedeckten Register liegt und sich von den vier anderen deutlich abgrenzt.
+
+    Alle Kombinationen aus Farbe und zugehöriger Soft-Fläche wurden auf
+    Kontrast geprüft und liegen über WCAG AA (4,5:1), die meisten über AAA.
+  */
+  --c-news: #1f4fb6;
+  --c-news-soft: #e8effc;
+  --c-markets: #205437;
+  --c-markets-soft: #e5f1ea;
+  --c-tools: #5a5f6b;
+  --c-tools-soft: #edeef1;
+  --c-learn: #8a5410;
+  --c-learn-soft: #faf0e2;
+  --c-debt: #8b2225;
+  --c-debt-soft: #faeaea;
 
   /* Fokus */
-  --c-ring: #6366f1;
+  --c-ring: #1f4fb6;
 
   /* Schatten – im Hellmodus weich, im Dunkelmodus fast unsichtbar */
   --fk-shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.12);
@@ -80,33 +101,48 @@
   --c-fg-muted: #9ba6be;
   --c-fg-subtle: #79839a;
 
-  --c-brand: #8b93ff;
-  --c-brand-strong: #a7adff;
+  /*
+    Aufgehellte Logo-Variante für dunkle Flächen.
+
+    Die Originalfarben sind dafür zu dunkel: das Navy #17296F erreicht auf
+    der dunklen Fläche nur 1,37:1 und wäre praktisch unsichtbar. Die Tints
+    behalten den Farbton, liegen aber alle bei etwa 6:1 – dadurch bleibt der
+    Ring erkennbar und die vier Figuren wirken weiterhin gleich gewichtet.
+    Das Volllogo in public/logo.svg behält die Originalfarben, weil es für
+    Downloads und strukturierte Daten auf Weiß verwendet wird.
+  */
+  --c-logo-navy: #7e8fd8;
+  --c-logo-grey: #9aa0ab;
+  --c-logo-green: #56a878;
+  --c-logo-red: #d47b7e;
+
+  --c-brand: #93a0ea;
+  --c-brand-strong: #b0baf2;
   --c-brand-contrast: #0a0f1f;
-  --c-brand-soft: #1b2140;
+  --c-brand-soft: #1a2242;
 
-  --c-accent: #22d3ee;
-  --c-accent-soft: #0c2a33;
+  --c-accent: #4fc4cc;
+  --c-accent-soft: #0c2a2d;
 
-  --c-success: #4ade80;
-  --c-success-soft: #0f2a1c;
-  --c-warning: #fbbf24;
-  --c-warning-soft: #2b2009;
-  --c-danger: #fb7185;
-  --c-danger-soft: #2d1019;
+  --c-success: #4fbe86;
+  --c-success-soft: #0d2a1d;
+  --c-warning: #e0a649;
+  --c-warning-soft: #2c2109;
+  --c-danger: #f08a8d;
+  --c-danger-soft: #2c1214;
 
-  --c-news: #60a5fa;
-  --c-news-soft: #10203c;
-  --c-markets: #34d399;
-  --c-markets-soft: #0c2b22;
-  --c-tools: #a78bfa;
-  --c-tools-soft: #1e1738;
-  --c-learn: #fb923c;
-  --c-learn-soft: #2e1a0c;
-  --c-debt: #fb7185;
-  --c-debt-soft: #2d1019;
+  --c-news: #8da4f0;
+  --c-news-soft: #141f3e;
+  --c-markets: #4fbe86;
+  --c-markets-soft: #0d2a1d;
+  --c-tools: #aab0bc;
+  --c-tools-soft: #1b202b;
+  --c-learn: #e0a649;
+  --c-learn-soft: #2c2109;
+  --c-debt: #f08a8d;
+  --c-debt-soft: #2c1214;
 
-  --c-ring: #8b93ff;
+  --c-ring: #8da4f0;
 
   --fk-shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
   --fk-shadow-lift: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -16px rgb(0 0 0 / 0.75);

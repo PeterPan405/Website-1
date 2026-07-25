@@ -9,8 +9,10 @@ import { siteConfig } from '@/lib/site'
  * Bild definieren. Next.js hängt es automatisch als absolute URL in die
  * og:image- und twitter:image-Metadaten ein.
  *
- * Bewusst rein typografisch aufgebaut: keine externen Bilder oder Schriften,
- * damit die Erzeugung ohne Netzwerkzugriff funktioniert.
+ * Bewusst ohne externe Bilder und Schriften aufgebaut, damit die Erzeugung
+ * ohne Netzwerkzugriff funktioniert. Das Signet ist deshalb kein eingebettetes
+ * SVG, sondern ein Kreis mit vier unterschiedlich gefärbten Rahmenseiten – das
+ * ergibt dieselben vier Viertelbögen in den Logofarben.
  */
 
 export const size = { width: 1200, height: 630 }
@@ -27,28 +29,26 @@ export default function OpengraphImage() {
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: '72px 80px',
-        background: 'linear-gradient(135deg, #101a3d 0%, #1d2a63 55%, #4f46e5 100%)',
+        background: 'linear-gradient(135deg, #0b1330 0%, #17296f 60%, #235088 100%)',
         color: '#ffffff',
         fontFamily: 'sans-serif',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
         <div
           style={{
-            width: 56,
-            height: 56,
+            width: 64,
+            height: 64,
             borderRadius: 999,
-            background: '#ffffff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#4f46e5',
-            fontSize: 34,
-            fontWeight: 700,
+            borderStyle: 'solid',
+            borderWidth: 15,
+            /* Reihenfolge wie im Logo: Navy, Grau, Rot, Grün im Uhrzeigersinn. */
+            borderTopColor: '#8b9ce4',
+            borderRightColor: '#a8aeb9',
+            borderBottomColor: '#d47b7e',
+            borderLeftColor: '#56a878',
           }}
-        >
-          ✳
-        </div>
+        />
         <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.5 }}>
           {siteConfig.name}
         </div>
@@ -66,12 +66,12 @@ export default function OpengraphImage() {
         >
           {siteConfig.slogan}
         </div>
-        <div style={{ fontSize: 30, color: '#c7cbf5', maxWidth: 880, lineHeight: 1.4 }}>
+        <div style={{ fontSize: 30, color: '#c6d0f2', maxWidth: 880, lineHeight: 1.4 }}>
           Finanzwissen in drei Stufen – mit Rechnern, Marktdaten und Grundlagen.
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: 14, fontSize: 22, color: '#aab0ee' }}>
+      <div style={{ display: 'flex', gap: 14, fontSize: 22, color: '#a3b1de' }}>
         <span>Lernen</span>
         <span>·</span>
         <span>Märkte</span>
