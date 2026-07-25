@@ -16,8 +16,8 @@ export function Logo({ className }: { className?: string }) {
     <span className={className}>
       <span className="flex items-center gap-2.5">
         {/*
-          40 Pixel und nicht kleiner: Darunter fallen die Köpfe der vier Figuren
-          zu Punkten zusammen und die Lücken zwischen ihnen schließen sich.
+          40 Pixel und nicht kleiner: Darunter verschwinden die Lücken zwischen
+          den vier Figuren und der Ring wirkt wieder wie eine geschlossene Form.
         */}
         <IMISignet className="size-10 shrink-0" />
         <span className="font-display text-lg font-semibold tracking-tight">
@@ -31,61 +31,69 @@ export function Logo({ className }: { className?: string }) {
 /**
  * Vier Figuren im Ring – das Signet ohne Schriftzug.
  *
- * Aufbau je Figur: ein Kopfkreis und ein dicker Bogen als Körper, der im
- * Uhrzeigersinn bis zum Kopf der nächsten Figur läuft. Dadurch entsteht der
- * geschlossene Ring, ohne dass Puzzle-Kerben nötig wären – die waren in der
- * ersten Fassung der Grund, warum das Zeichen unleserlich war: als 2 Pixel
- * große weiße Punkte ergaben sie kein Motiv, sondern nur Unruhe.
+ * Aufbau je Figur: ein Viertelbogen als Körper und ein Kopfkreis, der **mittig
+ * über dem eigenen Körper** auf der Diagonale sitzt und in ihn hineinreicht.
+ * Weil beide dieselbe Farbe haben und sich überlappen, verschmelzen sie zu einer
+ * Form – Kopf und Körper gehören sichtbar zusammen, statt wie ein Knauf am
+ * Bogenende zu wirken.
  *
- * Die Maße sind auf Erkennbarkeit hin gewählt und hängen voneinander ab:
- * Der Kopf (r 20) ist deutlich größer als das Band dick ist (24), damit er
- * heraussticht statt mit ihm zu verschmelzen. Der Kopfmittelpunkt liegt auf
- * Radius 77, die Außenkante damit bei 97 – knapp innerhalb der Zeichenfläche,
- * sonst würden die Köpfe abgeflacht. Die 20 Grad Lücke zwischen den Körpern
- * (90 Grad Raster minus 70 Grad Bogen) grenzt die Figuren voneinander ab.
+ * Die Aufteilung folgt dem Original: Jede Figur füllt einen Quadranten, die
+ * Verbindungen zwischen ihnen liegen bei 12, 3, 6 und 9 Uhr, die Köpfe auf den
+ * Diagonalen dazwischen. Reihenfolge wie im Logo – oben links Navy, oben rechts
+ * Grau, unten rechts Rot, unten links Grün.
+ *
+ * Die Maße hängen voneinander ab und sind auf Erkennbarkeit hin gewählt:
+ * Der Körper ist 32 Einheiten dick und liegt zwischen Radius 44 und 76. Der Kopf
+ * (r 19) sitzt auf Radius 80, reicht damit von 61 bis 99 – er überlappt den
+ * Körper um 15 Einheiten und bleibt knapp innerhalb der Zeichenfläche, sonst
+ * würde er abgeflacht. Die 14 Grad Lücke grenzt die Figuren voneinander ab.
+ *
+ * Die Puzzle-Verzahnung des Originals ist bewusst nicht nachgebaut: Bei den
+ * Größen, in denen das Zeichen auf der Website erscheint, ergäbe sie kein
+ * erkennbares Motiv, sondern nur Unruhe.
  */
 export function IMISignet({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true" focusable="false">
       <g fill="var(--c-logo-navy)">
         <path
-          d="M 100 44 A 56 56 0 0 1 152.62 80.85"
+          d="M 40.45 92.69 A 60 60 0 0 1 92.69 40.45"
           fill="none"
           stroke="var(--c-logo-navy)"
-          strokeWidth={24}
+          strokeWidth={32}
           strokeLinecap="round"
         />
-        <circle cx="100" cy="23" r="20" />
+        <circle cx="43.43" cy="43.43" r="19" />
       </g>
       <g fill="var(--c-logo-grey)">
         <path
-          d="M 156 100 A 56 56 0 0 1 119.15 152.62"
+          d="M 107.31 40.45 A 60 60 0 0 1 159.55 92.69"
           fill="none"
           stroke="var(--c-logo-grey)"
-          strokeWidth={24}
+          strokeWidth={32}
           strokeLinecap="round"
         />
-        <circle cx="177" cy="100" r="20" />
+        <circle cx="156.57" cy="43.43" r="19" />
       </g>
       <g fill="var(--c-logo-red)">
         <path
-          d="M 100 156 A 56 56 0 0 1 47.38 119.15"
+          d="M 159.55 107.31 A 60 60 0 0 1 107.31 159.55"
           fill="none"
           stroke="var(--c-logo-red)"
-          strokeWidth={24}
+          strokeWidth={32}
           strokeLinecap="round"
         />
-        <circle cx="100" cy="177" r="20" />
+        <circle cx="156.57" cy="156.57" r="19" />
       </g>
       <g fill="var(--c-logo-green)">
         <path
-          d="M 44 100 A 56 56 0 0 1 80.85 47.38"
+          d="M 92.69 159.55 A 60 60 0 0 1 40.45 107.31"
           fill="none"
           stroke="var(--c-logo-green)"
-          strokeWidth={24}
+          strokeWidth={32}
           strokeLinecap="round"
         />
-        <circle cx="23" cy="100" r="20" />
+        <circle cx="43.43" cy="156.57" r="19" />
       </g>
     </svg>
   )

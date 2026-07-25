@@ -3,54 +3,59 @@
   <!--
     Vier Figuren im Ring, dazu der Wortbestandteil IMI in der Mitte.
 
-    Je Figur ein Kopfkreis und ein dicker Bogen als Körper, der im Uhrzeigersinn
-    bis zum Kopf der nächsten Figur läuft – dadurch schließt sich der Ring.
+    Je Figur ein Viertelbogen als Körper und ein Kopfkreis, der mittig über dem
+    eigenen Körper auf der Diagonale sitzt und in ihn hineinreicht. Gleiche Farbe
+    und Überlappung lassen beide zu einer Form verschmelzen.
 
-    Nachbau des Logos als Vektor, bewusst reduziert: Die Puzzle-Verzahnung des
-    Originals ergibt in dieser Größe kein erkennbares Motiv. Liegt die
-    Originaldatei vor, kann sie diese Datei ersetzen – im Quellcode hängt nichts
+    Aufteilung wie im Original: Jede Figur füllt einen Quadranten, die
+    Verbindungen liegen bei 12, 3, 6 und 9 Uhr, die Köpfe auf den Diagonalen.
+    Oben links Navy, oben rechts Grau, unten rechts Rot, unten links Grün.
+
+    Nachbau als Vektor, bewusst ohne die Puzzle-Verzahnung des Originals – die
+    ergibt in den hier verwendeten Größen kein erkennbares Motiv. Liegt die
+    Originaldatei vor, kann sie diese Datei ersetzen: Im Quellcode hängt nichts
     an den konkreten Pfaden. Die Farben stehen zusätzlich als Design-Tokens in
     app/globals.css.
   -->
   <g fill="#17296F">
     <path
-      d="M 100 44 A 56 56 0 0 1 152.62 80.85"
+      d="M 40.45 92.69 A 60 60 0 0 1 92.69 40.45"
       fill="none"
       stroke="#17296F"
-      stroke-width="24"
+      stroke-width="32"
       stroke-linecap="round"
     />
-    <circle cx="100" cy="23" r="20" />
+    <circle cx="43.43" cy="43.43" r="19" />
   </g>
   <g fill="#6E6E6E">
     <path
-      d="M 156 100 A 56 56 0 0 1 119.15 152.62"
+      d="M 107.31 40.45 A 60 60 0 0 1 159.55 92.69"
       fill="none"
       stroke="#6E6E6E"
-      stroke-width="24"
+      stroke-width="32"
       stroke-linecap="round"
     />
-    <circle cx="177" cy="100" r="20" />
+    <circle cx="156.57" cy="43.43" r="19" />
   </g>
   <g fill="#8B2225">
     <path
-      d="M 100 156 A 56 56 0 0 1 47.38 119.15"
+      d="M 159.55 107.31 A 60 60 0 0 1 107.31 159.55"
       fill="none"
       stroke="#8B2225"
-      stroke-width="24"
+      stroke-width="32"
       stroke-linecap="round"
     />
-    <circle cx="100" cy="177" r="20" />
+    <circle cx="156.57" cy="156.57" r="19" />
   </g>
   <g fill="#205437">
     <path
-      d="M 44 100 A 56 56 0 0 1 80.85 47.38"
+      d="M 92.69 159.55 A 60 60 0 0 1 40.45 107.31"
       fill="none"
       stroke="#205437"
-      stroke-width="24"
+      stroke-width="32"
       stroke-linecap="round"
     />
-    <circle cx="23" cy="100" r="20" />
+    <circle cx="43.43" cy="156.57" r="19" />
   </g>
   <!-- Innendurchmesser des Rings: 88 Einheiten. Der Schriftzug bleibt darunter. -->
   <text
