@@ -140,6 +140,11 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # Verschlüsselte Übertragung. Einfaches `ftp` würde Benutzername und
+          # Passwort im Klartext übers Netz schicken; Hostinger unterstützt FTPS.
+          # Nur auf 'ftp' zurückstellen, wenn der Anbieter kein FTPS kann – dann
+          # aber wissen, dass die Zugangsdaten mitlesbar sind.
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
           # Bei Hostinger ist das Web-Verzeichnis üblicherweise public_html.
           server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
           local-dir: ./out/
