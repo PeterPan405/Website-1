@@ -5,18 +5,21 @@
  * steht hier – damit es genau eine Quelle der Wahrheit gibt.
  */
 
+import { resolveSiteUrl } from '@/lib/resolve-site-url'
+
 /**
  * Basis-URL der Website.
  *
  * Wird für canonical-URLs, Open Graph, sitemap.xml und robots.txt benötigt.
  * In Produktion über die Umgebungsvariable NEXT_PUBLIC_SITE_URL setzen
- * (siehe .env.example). Der Fallback nutzt bewusst die reservierte
- * .example-TLD, damit niemals versehentlich eine fremde Domain als canonical
- * ausgegeben wird.
+ * (siehe .env.example). Ist sie nicht gesetzt oder leer, greift der Fallback
+ * mit der reservierten .example-TLD – damit niemals versehentlich eine fremde
+ * Domain als canonical ausgegeben wird.
+ *
+ * Die Regeln stehen in `lib/resolve-site-url.ts`, weil sie dort ohne die
+ * Datenschicht prüfbar sind.
  */
-export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.im-invests.example'
-).replace(/\/+$/, '')
+export const siteUrl = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL)
 
 export const siteConfig = {
   /**

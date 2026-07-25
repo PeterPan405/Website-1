@@ -115,6 +115,24 @@ jobs:
             echo "vorhanden=true" >> "$GITHUB_OUTPUT"
           fi
 
+      # Läuft erst, wenn tatsächlich hochgeladen würde – vorher wäre ein
+      # Abbruch hier unsinnig, weil ohne Zugangsdaten ohnehin nichts passiert.
+      #
+      # Ohne gesetzte Domain trägt jede Seite die Platzhalter-Adresse
+      # www.im-invests.example als canonical-URL. Auf einem echten Server wäre
+      # das ein schwerer SEO-Fehler: Suchmaschinen würden die gesamte Website
+      # einer Domain zuordnen, die es nicht gibt. Lieber gar nicht
+      # veröffentlichen als so.
+      - name: Domain im Ergebnis prüfen
+        if: steps.check.outputs.vorhanden == 'true'
+        run: |
+          if grep -q "im-invests.example" out/sitemap.xml; then
+            echo "Die Sitemap enthält noch die Platzhalter-Domain."
+            echo "Setze die Repository-Variable NEXT_PUBLIC_SITE_URL auf die echte Domain:"
+            echo "Settings > Secrets and variables > Actions > Variables."
+            exit 1
+          fi
+
       - name: Per FTP übertragen
         if: steps.check.outputs.vorhanden == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
