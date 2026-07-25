@@ -21,8 +21,9 @@ import {
   wieFunktioniertDerMarkt,
   woraufAchtenEinsteiger,
 } from '@/data/learn/topics/outlines'
+import { getQuizFor } from '@/data/learn/quizzes'
 import { zinseszins } from '@/data/learn/topics/zinseszins'
-import type { LearnTopic } from '@/data/learn/types'
+import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
 
 /**
  * Alle Lernthemen in redaktioneller Reihenfolge.
@@ -31,7 +32,28 @@ import type { LearnTopic } from '@/data/learn/types'
  * `aktie` und `zinseszins` sind vollständig ausformuliert, die übrigen Themen
  * liegen als Gliederung vor (Status `outline` je Stufe).
  */
-export const learnTopics: LearnTopic[] = [
+/**
+ * Hängt die Quizfragen an die passenden Stufen.
+ *
+ * Die Fragen liegen in `quizzes.ts` und werden hier zusammengeführt, damit die
+ * Inhaltsdateien ausschließlich Fließtext enthalten. Stufen ohne Fragen bleiben
+ * unverändert – `quiz` ist optional.
+ */
+function attachQuizzes(topic: LearnTopic): LearnTopic {
+  const levels = { ...topic.levels }
+  let changed = false
+
+  for (const levelId of learnLevelIds) {
+    const quiz = getQuizFor(topic.slug, levelId)
+    if (!quiz) continue
+    levels[levelId] = { ...levels[levelId], quiz }
+    changed = true
+  }
+
+  return changed ? { ...topic, levels } : topic
+}
+
+const topicsInOrder: LearnTopic[] = [
   aktie,
   fonds,
   rente,
@@ -55,3 +77,5 @@ export const learnTopics: LearnTopic[] = [
   einlagensicherung,
   sparerpauschbetrag,
 ]
+
+export const learnTopics: LearnTopic[] = topicsInOrder.map(attachQuizzes)

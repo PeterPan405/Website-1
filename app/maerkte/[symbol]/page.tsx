@@ -28,7 +28,7 @@ import {
   getQuote,
   getQuotes,
 } from '@/lib/markets'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 type MarketPageProps = { params: Promise<{ symbol: string }> }
 
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: MarketPageProps): Promise<Met
 
   if (!instrument) {
     return buildMetadata({
-      title: 'Kurs nicht gefunden | Finanzkompass',
+      title: withBrand('Kurs nicht gefunden'),
       description: 'Der gesuchte Kurs ist auf dieser Plattform nicht verfügbar.',
       path: `/maerkte/${symbol}`,
       noIndex: true,

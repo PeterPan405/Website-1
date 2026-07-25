@@ -102,6 +102,10 @@ export interface LearnStats {
   completeLevelCount: number
   /** Summierte Lesedauer aller Stufen in Minuten. */
   totalReadingMinutes: number
+  /** Anzahl Stufen mit Wissenscheck. */
+  levelsWithQuizCount: number
+  /** Gesamtzahl der Quizfragen über alle Stufen. */
+  quizQuestionCount: number
 }
 
 export async function getLearnStats(): Promise<LearnStats> {
@@ -114,6 +118,8 @@ export async function getLearnStats(): Promise<LearnStats> {
     levelCount: levels.length,
     completeLevelCount: levels.filter((level) => level.status === 'complete').length,
     totalReadingMinutes: levels.reduce((sum, level) => sum + level.readingMinutes, 0),
+    levelsWithQuizCount: levels.filter((level) => (level.quiz?.length ?? 0) > 0).length,
+    quizQuestionCount: levels.reduce((sum, level) => sum + (level.quiz?.length ?? 0), 0),
   }
 }
 

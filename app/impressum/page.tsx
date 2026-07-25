@@ -3,10 +3,10 @@ import type { Metadata } from 'next'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Impressum und Anbieterkennzeichnung | Finanzkompass',
+  title: withBrand('Impressum und Anbieterkennzeichnung'),
   description:
     'Anbieterkennzeichnung nach § 5 Digitale-Dienste-Gesetz sowie Angaben zur inhaltlichen Verantwortung und Haftung für Inhalte und Links.',
   path: '/impressum',

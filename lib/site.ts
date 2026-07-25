@@ -15,22 +15,29 @@
  * ausgegeben wird.
  */
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.finanzkompass.example'
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.im-invests.example'
 ).replace(/\/+$/, '')
 
 export const siteConfig = {
-  name: 'Finanzkompass',
+  /**
+   * Name des Unternehmens.
+   *
+   * Wird an jeder Stelle der Website aus dieser Konstante gelesen – auch in den
+   * Meta-Titeln über `withBrand()` in `lib/seo.ts`. Eine Umbenennung betrifft
+   * daher nur diese Zeile.
+   */
+  name: 'IM Invests',
   /** Kurzform für Titel-Suffixe. */
-  shortName: 'Finanzkompass',
+  shortName: 'IM Invests',
   locale: 'de-DE',
   language: 'de',
   slogan: 'Geld verstehen, statt raten.',
   description:
-    'Finanzkompass erklärt Geldanlage, Börse und Vorsorge in drei Lernstufen – mit Rechnern, Marktdaten und verständlichen Grundlagen.',
+    'IM Invests erklärt Geldanlage, Börse und Vorsorge in drei Lernstufen – mit Rechnern, Marktdaten und verständlichen Grundlagen.',
   /** Platzhalter – vor dem Live-Gang durch echte Angaben ersetzen. */
-  contactEmail: 'redaktion@finanzkompass.example',
+  contactEmail: 'redaktion@im-invests.example',
   /** Platzhalter-Handle für Twitter-Cards. */
-  twitterHandle: '@finanzkompass',
+  twitterHandle: '@iminvests',
   url: siteUrl,
 } as const
 

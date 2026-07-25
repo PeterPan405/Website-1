@@ -5,15 +5,15 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Über uns: Wofür Finanzkompass steht | Finanzkompass',
+  title: withBrand(`Über uns: Wofür ${siteConfig.name} steht`),
   description:
     'Warum diese Plattform Mechanismen erklärt statt Produkte zu empfehlen, wie Inhalte entstehen und wie wir mit Annahmen, Risiken und Unsicherheit umgehen.',
   path: '/ueber-uns',
-  ogTitle: 'Wofür Finanzkompass steht',
+  ogTitle: `Wofür ${siteConfig.name} steht`,
 })
 
 const principles: { icon: IconName; title: string; text: string }[] = [
@@ -139,7 +139,11 @@ export default function AboutPage() {
               <Icon name="mail" className="size-4" />
               Kontakt aufnehmen
             </Link>
-            <Link href="/lernen" className="fk-btn-secondary">
+            <Link href="/unternehmensphilosophie" className="fk-btn-secondary">
+              Unternehmensphilosophie
+              <Icon name="arrow-right" className="size-4" />
+            </Link>
+            <Link href="/lernen" className="fk-btn-ghost">
               Zum Lernbereich
               <Icon name="arrow-right" className="size-4" />
             </Link>

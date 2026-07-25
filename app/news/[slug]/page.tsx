@@ -15,7 +15,7 @@ import { newsArticleSchema } from '@/lib/jsonld'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { getQuotes } from '@/lib/markets'
 import { getNewsArticle, getNewsSlugs, getRelatedArticles } from '@/lib/news'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 type NewsPageProps = { params: Promise<{ slug: string }> }
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: NewsPageProps): Promise<Metad
 
   if (!article) {
     return buildMetadata({
-      title: 'Artikel nicht gefunden | Finanzkompass',
+      title: withBrand('Artikel nicht gefunden'),
       description: 'Der gesuchte Artikel existiert nicht oder wurde entfernt.',
       path: `/news/${slug}`,
       noIndex: true,

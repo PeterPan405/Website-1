@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Datenschutzerklärung | Finanzkompass',
+  title: withBrand('Datenschutzerklärung'),
   description:
     'Welche Daten beim Besuch dieser Website verarbeitet werden, warum es keine Cookies und kein Tracking gibt und welche Rechte Betroffene haben.',
   path: '/datenschutz',

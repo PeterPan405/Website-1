@@ -10,7 +10,7 @@ import { Icon } from '@/components/ui/Icon'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/lib/cn'
 import { mainNav, type NavItem } from '@/lib/navigation'
-import { areaStyles } from '@/lib/site'
+import { areaStyles, siteConfig } from '@/lib/site'
 
 /**
  * Sticky Kopfzeile mit Mega-Menü (Desktop) und Panel-Navigation (Mobil).
@@ -94,7 +94,7 @@ export function Header() {
         <Link
           href="/"
           className="text-fg hover:text-brand rounded-lg transition"
-          aria-label={`Zur Startseite von Finanzkompass`}
+          aria-label={`Zur Startseite von ${siteConfig.name}`}
         >
           <Logo />
         </Link>
