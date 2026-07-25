@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next'
 
+import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
+
 import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
@@ -44,6 +46,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     { url: absoluteUrl('/ueber-uns'), changeFrequency: 'yearly', priority: 0.4 },
+    // Die Philosophie-Seite erscheint erst in der Sitemap, wenn ihr Text steht –
+    // sonst würde eine noindex-Seite zur Indexierung angemeldet.
+    ...(PHILOSOPHY_PUBLISHED
+      ? ([
+          {
+            url: absoluteUrl('/unternehmensphilosophie'),
+            changeFrequency: 'yearly' as const,
+            priority: 0.5,
+          },
+        ] satisfies MetadataRoute.Sitemap)
+      : []),
     { url: absoluteUrl('/kontakt'), changeFrequency: 'yearly', priority: 0.4 },
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },

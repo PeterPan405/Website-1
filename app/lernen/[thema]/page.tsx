@@ -15,7 +15,7 @@ import { learnLevelIds } from '@/data/learn/types'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getLearnTopic, getLearnTopicSlugs, getRelatedTopics } from '@/lib/learn'
 import { getQuotes } from '@/lib/markets'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 type TopicPageProps = { params: Promise<{ thema: string }> }
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: TopicPageProps): Promise<Meta
 
   if (!topic) {
     return buildMetadata({
-      title: 'Thema nicht gefunden | Finanzkompass',
+      title: withBrand('Thema nicht gefunden'),
       description: 'Das gesuchte Lernthema existiert nicht.',
       path: `/lernen/${thema}`,
       noIndex: true,
@@ -61,6 +61,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
     title: topic.levels[levelId].title,
     readingMinutes: topic.levels[levelId].readingMinutes,
     status: topic.levels[levelId].status,
+    hasQuiz: (topic.levels[levelId].quiz?.length ?? 0) > 0,
   }))
 
   const totalMinutes = levelEntries.reduce((sum, entry) => sum + entry.readingMinutes, 0)

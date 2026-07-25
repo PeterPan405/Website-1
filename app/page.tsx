@@ -12,14 +12,14 @@ import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { getMarketOverview } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
 import { buildMetadata } from '@/lib/seo'
-import { areas, areaStyles, type AreaId } from '@/lib/site'
+import { areas, areaStyles, siteConfig, type AreaId } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Finanzkompass – Geld verstehen, statt raten',
+  title: `${siteConfig.name} – Geld verstehen, statt raten`,
   description:
     'Finanzwissen in drei Lernstufen: 22 Themen von Aktie bis Zinseszins, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.',
   path: '/',
-  ogTitle: 'Finanzkompass – Geld verstehen, statt raten',
+  ogTitle: `${siteConfig.name} – Geld verstehen, statt raten`,
 })
 
 /** Kacheln für den Schnellzugriff auf die Hauptbereiche. */

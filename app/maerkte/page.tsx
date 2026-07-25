@@ -9,10 +9,10 @@ import { Reveal } from '@/components/ui/Reveal'
 import { formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getQuotes, getSparkline } from '@/lib/markets'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Märkte: Wechselkurse und Indizes | Finanzkompass',
+  title: withBrand('Märkte: Wechselkurse und Indizes'),
   description:
     'Wechselkurse und Aktienindizes mit Verlaufscharts und einer Erklärung, was jeder Kurs tatsächlich abbildet – vom DAX bis EUR/USD.',
   path: '/maerkte',

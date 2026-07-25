@@ -5,13 +5,13 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Kontakt zur Redaktion | Finanzkompass',
+  title: withBrand('Kontakt zur Redaktion'),
   description:
-    'Fachliche Korrekturen, Themenwünsche und Fragen zur Plattform: So erreichst du die Redaktion von Finanzkompass.',
+    'Fachliche Korrekturen, Themenwünsche und Fragen zur Plattform: So erreichst du die Redaktion von IM Invests – und was uns dabei hilft.',
   path: '/kontakt',
   ogTitle: 'Kontakt zur Redaktion',
 })

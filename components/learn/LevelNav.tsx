@@ -13,6 +13,8 @@ export interface LevelNavEntry {
   title: string
   readingMinutes: number
   status: LearnContentStatus
+  /** Ob die Stufe einen Wissenscheck enthält. */
+  hasQuiz: boolean
 }
 
 /**
@@ -78,7 +80,18 @@ export function LevelNav({
                 </p>
 
                 <span className="mt-4 flex items-center justify-between gap-2 text-sm">
-                  <span className="text-fg-subtle">{entry.readingMinutes} Min.</span>
+                  <span className="text-fg-subtle flex items-center gap-1.5">
+                    {entry.readingMinutes} Min.
+                    {entry.hasQuiz && (
+                      <>
+                        <span aria-hidden="true">·</span>
+                        <span className="text-learn flex items-center gap-1 font-medium">
+                          <Icon name="target" className="size-3.5" />
+                          Quiz
+                        </span>
+                      </>
+                    )}
+                  </span>
                   <span className="text-learn flex items-center gap-1 font-semibold">
                     {done ? 'Nochmal ansehen' : 'Stufe öffnen'}
                     <Icon

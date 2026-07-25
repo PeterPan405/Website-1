@@ -1,8 +1,8 @@
 {
-  "name": "finanzkompass",
+  "name": "im-invests",
   "version": "0.1.0",
   "private": true,
-  "description": "Finanzkompass – deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
+  "description": "IM Invests – deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

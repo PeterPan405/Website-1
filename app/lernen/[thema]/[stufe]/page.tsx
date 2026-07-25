@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { ContentBlocks } from '@/components/content/ContentBlocks'
 import { LevelComplete } from '@/components/learn/LevelComplete'
 import { LevelNav, type LevelNavEntry } from '@/components/learn/LevelNav'
+import { Quiz } from '@/components/learn/Quiz'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { TopicProgress } from '@/components/learn/TopicProgress'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -15,7 +16,7 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
 import { learningResourceSchema } from '@/lib/jsonld'
 import { getLearnLevel, getLearnLevelParams, getRelatedTopics } from '@/lib/learn'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 type LevelPageProps = { params: Promise<{ thema: string; stufe: string }> }
 
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: LevelPageProps): Promise<Meta
 
   if (!result) {
     return buildMetadata({
-      title: 'Lernstufe nicht gefunden | Finanzkompass',
+      title: withBrand('Lernstufe nicht gefunden'),
       description: 'Die gesuchte Lernstufe existiert nicht.',
       path: `/lernen/${thema}/${stufe}`,
       noIndex: true,
@@ -66,6 +67,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
     title: topic.levels[id].title,
     readingMinutes: topic.levels[id].readingMinutes,
     status: topic.levels[id].status,
+    hasQuiz: (topic.levels[id].quiz?.length ?? 0) > 0,
   }))
 
   const isOutline = level.status === 'outline'
@@ -94,6 +96,15 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             <span>{level.readingMinutes} Min. Lesezeit</span>
             <span aria-hidden="true">·</span>
             <span>{isOutline ? 'Gliederung' : 'Ausgearbeiteter Text'}</span>
+            {level.quiz && level.quiz.length > 0 && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span className="text-learn flex items-center gap-1 font-medium">
+                  <Icon name="target" className="size-3.5" />
+                  {level.quiz.length} Quizfragen
+                </span>
+              </>
+            )}
           </>
         }
       />
@@ -135,8 +146,45 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
               <ContentBlocks blocks={level.blocks} />
             </div>
 
-            {/* --------------------------------------- Abschluss und Weiter */}
+            {/* ------------------------------------------------ Wissenscheck */}
             <div className="mt-14">
+              {level.quiz && level.quiz.length > 0 ? (
+                <Quiz
+                  topicSlug={topic.slug}
+                  levelId={levelId}
+                  levelLabel={learnLevelMeta[levelId].label}
+                  questions={level.quiz}
+                />
+              ) : (
+                <Callout variant="info" title="Wissenscheck folgt">
+                  <p>
+                    Zu dieser Stufe gibt es noch keine Quizfragen – sie entstehen zusammen
+                    mit dem ausformulierten Text, weil sich Fragen zu einer Gliederung
+                    nicht sinnvoll beantworten lassen.
+                  </p>
+                  <p>
+                    Ausprobieren kannst du den Wissenscheck bereits bei{' '}
+                    <Link
+                      href="/lernen/aktie/beginner"
+                      className="text-brand font-semibold underline"
+                    >
+                      Aktie
+                    </Link>{' '}
+                    und{' '}
+                    <Link
+                      href="/lernen/zinseszins/beginner"
+                      className="text-brand font-semibold underline"
+                    >
+                      Zinseszins
+                    </Link>
+                    .
+                  </p>
+                </Callout>
+              )}
+            </div>
+
+            {/* --------------------------------------- Abschluss und Weiter */}
+            <div className="mt-8">
               <LevelComplete
                 topicSlug={topic.slug}
                 topicTitle={topic.title}

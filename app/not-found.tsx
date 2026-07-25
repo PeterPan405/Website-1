@@ -3,11 +3,11 @@ import Link from 'next/link'
 
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { areas, areaStyles, type AreaId } from '@/lib/site'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 import { cn } from '@/lib/cn'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Seite nicht gefunden | Finanzkompass',
+  title: withBrand('Seite nicht gefunden'),
   description:
     'Diese Adresse führt zu keiner Seite. Hier geht es weiter zum Lernbereich, zu den Rechnern, den Marktdaten und den News.',
   path: '/404',

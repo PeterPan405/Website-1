@@ -9,10 +9,10 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { calculators } from '@/data/calculators'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Finanzrechner: Zinsen, Inflation, Rente | Finanzkompass',
+  title: withBrand('Finanzrechner: Zinsen, Inflation, Rente'),
   description:
     'Fünf Rechner für Zinseszins, Kaufkraftverlust, Rente, Rentenlücke und Haushaltsbudget – jeweils mit offengelegter Formel und benannten Annahmen.',
   path: '/rechner',

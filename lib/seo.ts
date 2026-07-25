@@ -20,6 +20,18 @@ import { absoluteUrl, siteConfig } from '@/lib/site'
 export const SEO_TITLE_RANGE = { min: 30, max: 62 } as const
 export const SEO_DESCRIPTION_RANGE = { min: 110, max: 165 } as const
 
+/**
+ * Hängt den Unternehmensnamen an einen Seitentitel.
+ *
+ * Der Markenname steht dadurch nirgends fest im Quellcode einer Seite – eine
+ * Umbenennung des Unternehmens betrifft nur `siteConfig.name`. Nicht überall
+ * sinnvoll: Bei langen, sprechenden Titeln (etwa Artikelüberschriften) würde das
+ * Suffix die Anzeigelänge sprengen, dort bleibt der Titel ohne Marke.
+ */
+export function withBrand(title: string): string {
+  return `${title} | ${siteConfig.name}`
+}
+
 export interface SeoInput {
   /**
    * Der vollständige Inhalt des <title>-Tags, inklusive eventueller Marke.

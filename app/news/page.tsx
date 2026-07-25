@@ -8,10 +8,10 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getNewsArticles, getNewsCategories } from '@/lib/news'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Finanz-News: Meldungen mit Einordnung | Finanzkompass',
+  title: withBrand('Finanz-News: Meldungen mit Einordnung'),
   description:
     'Nachrichten zu Geldpolitik, Märkten, Vorsorge und Steuern – jeweils mit Erklärung, was die Meldung für Privatanleger konkret bedeutet.',
   path: '/news',

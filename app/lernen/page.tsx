@@ -11,10 +11,10 @@ import { Reveal } from '@/components/ui/Reveal'
 import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getCompleteTopics, getLearnStats, getLearnTopics } from '@/lib/learn'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Lernbereich: 22 Finanzthemen in drei Stufen | Finanzkompass',
+  title: withBrand('Lernbereich: 22 Finanzthemen in drei Stufen'),
   description:
     'Von Aktie bis Zinseszins: 22 Themen, jeweils als Beginner, Fortgeschritten und Profi. Mit Fortschrittsanzeige und ohne Produktempfehlungen.',
   path: '/lernen',
@@ -47,6 +47,8 @@ export default async function LearnOverviewPage() {
             <span>{stats.levelCount} Lernstufen</span>
             <span aria-hidden="true">·</span>
             <span>rund {readingHours} Stunden Lesestoff</span>
+            <span aria-hidden="true">·</span>
+            <span>{stats.quizQuestionCount} Quizfragen</span>
           </>
         }
       />
@@ -111,6 +113,17 @@ export default async function LearnOverviewPage() {
               </li>
             ))}
           </ul>
+
+          <p className="text-fg-muted mt-6 flex items-start gap-2.5 text-sm leading-relaxed">
+            <Icon name="target" className="text-learn mt-0.5 size-4 shrink-0" />
+            <span>
+              Diese Stufen enthalten am Ende einen{' '}
+              <strong className="text-fg font-semibold">Wissenscheck</strong>:{' '}
+              {stats.quizQuestionCount} Fragen in {stats.levelsWithQuizCount} Stufen,
+              jeweils mit Begründung zu jeder Antwort. Die übrigen Stufen bekommen ihr
+              Quiz zusammen mit dem Fließtext.
+            </span>
+          </p>
         </section>
 
         {/* -------------------------------------------------- Themen-Grid */}

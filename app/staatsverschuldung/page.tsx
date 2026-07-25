@@ -12,10 +12,10 @@ import { formatCurrencyRounded, formatPercent } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
 import { getCountryDebts, getDebtRegions, getDebtSummary } from '@/lib/debt'
 import { getTopicsBySlugs } from '@/lib/learn'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Staatsverschuldung im Ländervergleich | Finanzkompass',
+  title: withBrand('Staatsverschuldung im Ländervergleich'),
   description:
     'Schulden absolut, pro Kopf und in Prozent des BIP – sortierbar und filterbar für 18 Länder, mit Erklärung, warum die Quote allein wenig aussagt.',
   path: '/staatsverschuldung',
