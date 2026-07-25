@@ -99,6 +99,76 @@ Solange die Seite nicht veröffentlicht ist, wird sie mit `noindex` ausgeliefert
 in die Sitemap aufgenommen; eine fast leere Seite im Index würde die Sichtbarkeit der
 gesamten Domain belasten. Über die Fußzeile bleibt sie zum Korrekturlesen erreichbar.
 
+## Tagesüberblick
+
+Jeden Morgen erscheint unter `/news/tag/JJJJ-MM-TT` eine Ausgabe mit fünf
+Meldungen, davon drei Top-Themen. Alle bisherigen Ausgaben stehen unter
+`/news/tag` in einer nach Monaten gruppierten Bibliothek.
+
+Die Zusammenfassungen sind selbst geschrieben und verlinken auf ihre Quellen.
+Das ist nicht nur redaktionell besser, sondern rechtlich notwendig: Fremde
+Artikel dürfen weder im Volltext noch in längeren Auszügen gespiegelt werden.
+
+Eine Ausgabe anlegen heißt: Datei unter `data/editions/` erstellen **und** in
+`data/editions/index.ts` eintragen. Die Liste dort ist absichtlich
+ausgeschrieben, damit der Compiler jede Ausgabe kennt und vorrendern kann.
+
+Die Aufteilung in drei plus zwei Meldungen erzwingt der Typ (`top` und `further`
+sind Tupel). Alles Weitere prüft `lib/editions-validate.ts` **beim Bauen**:
+Länge der Einleitung, Pflichtfeld `whyItMatters`, mindestens eine Quelle je
+Meldung, https-Links, und ob die verwiesenen Lernthemen und Kurse überhaupt
+existieren. Stimmt etwas nicht, bricht der Build ab, statt eine fehlerhafte
+Ausgabe zu veröffentlichen – die Ausgaben entstehen automatisch, also darf ein
+Fehler darin nicht still durchgehen.
+
+## Veröffentlichen
+
+Die Website wird als **statischer Export** gebaut: `npm run build` legt sie als
+HTML, CSS und JavaScript in `out/` ab. Sie braucht keinen Node-Server und läuft
+auf jedem Webspace, der Dateien ausliefern kann.
+
+Möglich ist das, weil das Projekt keine Server-Funktionen verwendet: keine Route
+Handler, keine Middleware, keine Server Actions, kein `next/image`. Alle Seiten
+werden ohnehin beim Build vorgerendert.
+
+Zwei Einstellungen in `next.config.ts` sind dafür nötig und sollten so bleiben:
+
+- `output: 'export'` erzeugt den Ordner `out/`.
+- `trailingSlash: true` legt jede Seite als `news/index.html` statt als
+  `news.html` ab. Ohne das findet Apache bei `/news` einen Ordner ohne
+  `index.html` und liefert einen Fehler statt der Seite. Aus demselben Grund
+  hängt `absoluteUrl()` einen Schrägstrich an – sonst nennt die Sitemap eine
+  andere Schreibweise als der Canonical der Seite.
+
+`public/.htaccess` wird mitkopiert und regelt auf Apache und LiteSpeed die
+Fehlerseite, den Dateityp des Vorschaubilds (es hat keine Dateiendung und würde
+sonst als Download ausgeliefert) sowie die Zwischenspeicherung.
+
+### Automatisch veröffentlichen
+
+`.github/workflows/deploy.yml` baut nach jedem Push auf `main` sowie täglich um
+04:15 UTC und überträgt das Ergebnis per FTP. Vorher laufen ESLint, TypeScript,
+Tests, Formatprüfung und eine Kontrolle des Exports – schlägt eine davon fehl,
+wird nichts hochgeladen.
+
+Dafür sind unter _Settings → Secrets and variables → Actions_ zu hinterlegen:
+
+| Name                   | Art      | Inhalt                                              |
+| ---------------------- | -------- | --------------------------------------------------- |
+| `FTP_SERVER`           | Secret   | FTP-Host aus dem Hostinger-Panel                    |
+| `FTP_USERNAME`         | Secret   | FTP-Benutzername                                    |
+| `FTP_PASSWORD`         | Secret   | FTP-Passwort                                        |
+| `FTP_SERVER_DIR`       | Variable | Zielordner, meist `public_html/`                    |
+| `NEXT_PUBLIC_SITE_URL` | Variable | die echte Domain, z. B. `https://www.im-invests.de` |
+
+Ohne `FTP_SERVER` überspringt der Workflow den Upload und legt die fertige
+Website als Artefakt zum Herunterladen ab. So lässt sich der Ablauf testen,
+bevor Zugangsdaten hinterlegt sind.
+
+**Wichtig:** Ohne Deployment ändert sich auf dem Webspace nichts. Was dort liegt,
+ist ein Bauergebnis – ein Commit im Repository erreicht die Besucher erst, wenn
+neu gebaut und übertragen wurde.
+
 ## SEO
 
 - **Eigene Seite je Inhalt**, keine Anker auf einer Monolith-Seite: 121 indexierbare

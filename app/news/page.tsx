@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 import { ArticleCard } from '@/components/news/ArticleCard'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -7,6 +8,7 @@ import { DemoNotice } from '@/components/ui/DemoNotice'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { collectionPageSchema } from '@/lib/jsonld'
+import { formatEditionDate, getEditions, getLatestEdition } from '@/lib/editions'
 import { getNewsArticles, getNewsCategories } from '@/lib/news'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
@@ -19,9 +21,11 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default async function NewsOverviewPage() {
-  const [articles, categories] = await Promise.all([
+  const [articles, categories, latestEdition, editions] = await Promise.all([
     getNewsArticles(),
     getNewsCategories(),
+    getLatestEdition(),
+    getEditions(),
   ])
 
   const [featured, ...rest] = articles
@@ -53,6 +57,45 @@ export default async function NewsOverviewPage() {
             sie berichten nicht über tatsächliche Ereignisse.
           </p>
         </DemoNotice>
+
+        {/* Tagesüberblick zuerst: die einzige Rubrik, die sich täglich ändert. */}
+        {latestEdition && (
+          <section aria-labelledby="tagesueberblick" className="mt-10">
+            <div className="fk-card border-news/30 p-6 sm:p-8">
+              <p className="fk-chip bg-news-soft text-news">Jeden Morgen neu</p>
+              <h2 id="tagesueberblick" className="mt-3 text-xl font-semibold sm:text-2xl">
+                Tagesüberblick vom {formatEditionDate(latestEdition.date, false)}
+              </h2>
+              <p className="text-fg-muted mt-2 text-sm sm:text-base">
+                {latestEdition.intro}
+              </p>
+
+              <ol className="mt-5 space-y-2">
+                {latestEdition.top.map((item, index) => (
+                  <li key={item.headline} className="flex gap-3 text-sm sm:text-base">
+                    <span
+                      className="text-news font-semibold tabular-nums"
+                      aria-hidden="true"
+                    >
+                      {index + 1}
+                    </span>
+                    <span>{item.headline}</span>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href={`/news/tag/${latestEdition.date}`} className="fk-btn-primary">
+                  Ausgabe lesen
+                </Link>
+                <Link href="/news/tag" className="fk-btn-secondary">
+                  Archiv ({editions.length}{' '}
+                  {editions.length === 1 ? 'Ausgabe' : 'Ausgaben'})
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Rubriken als Orientierung; eine echte Filterung folgt mit dem CMS. */}
         <section aria-labelledby="rubriken" className="mt-10">

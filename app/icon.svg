@@ -1,26 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <!--
-    Favicon: nur der Ring aus vier Puzzle-Figuren, ohne den Schriftzug IMI.
-    Bei 16 bis 32 Pixel wäre Text nicht mehr lesbar und würde den Ring
-    unscharf wirken lassen. Der Ring ist etwas kräftiger und größer als im
-    Volllogo, damit die Form auch in der Browserleiste erkennbar bleibt.
+    Favicon: der Ring in vier Farben, ohne Köpfe und ohne Schriftzug.
+
+    Bewusst stärker reduziert als das Signet auf der Website. Bei 16 bis 32 Pixel
+    fallen die Köpfe der vier Figuren zu Punkten zusammen und machen die Form
+    unruhig, statt sie zu erklären. Übrig bleibt, was in dieser Größe überhaupt
+    erkennbar ist: ein Ring aus vier deutlich getrennten Farbbögen.
+
+    Der Ring ist dafür dicker als im Volllogo (38 statt 24) und füllt die
+    Zeichenfläche zu 85 Prozent statt zu 77 – ohne die Köpfe braucht es außen
+    keinen Platz mehr, und in der Browserleiste zählt jeder Pixel. Die Lücken
+    sind mit 10 Grad kleiner gehalten, damit sie den Ring bei 16 Pixel nicht
+    auftrennen.
   -->
-  <g fill="none" stroke-width="46" stroke-linecap="round">
-    <path d="M 47 47 A 75 75 0 0 1 122 28" stroke="#17296F" />
-    <path d="M 153 47 A 75 75 0 0 1 172 122" stroke="#6E6E6E" />
-    <path d="M 153 153 A 75 75 0 0 1 78 172" stroke="#8B2225" />
-    <path d="M 47 153 A 75 75 0 0 1 28 78" stroke="#205437" />
-  </g>
-  <g>
-    <circle cx="47" cy="47" r="24" fill="#17296F" />
-    <circle cx="153" cy="47" r="24" fill="#6E6E6E" />
-    <circle cx="153" cy="153" r="24" fill="#8B2225" />
-    <circle cx="47" cy="153" r="24" fill="#205437" />
-  </g>
-  <g fill="#ffffff">
-    <circle cx="36" cy="61" r="13" />
-    <circle cx="139" cy="36" r="13" />
-    <circle cx="164" cy="139" r="13" />
-    <circle cx="61" cy="164" r="13" />
+  <g fill="none" stroke-width="38" stroke-linecap="round">
+    <path d="M 100 34 A 66 66 0 0 1 165 88.54" stroke="#17296F" />
+    <path d="M 166 100 A 66 66 0 0 1 111.46 165" stroke="#6E6E6E" />
+    <path d="M 100 166 A 66 66 0 0 1 35 111.46" stroke="#8B2225" />
+    <path d="M 34 100 A 66 66 0 0 1 88.54 35" stroke="#205437" />
   </g>
 </svg>

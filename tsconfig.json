@@ -6,6 +6,9 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    // Die Prüfungen unter tests/ laufen direkt über Node, das die Dateiendung
+    // im Import braucht. Zulässig, weil hier ohnehin nichts erzeugt wird.
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
