@@ -37,8 +37,16 @@ export const siteConfig = {
   slogan: 'Geld verstehen, statt raten.',
   description:
     'IM Invests erklärt Geldanlage, Börse und Vorsorge in drei Lernstufen – mit Rechnern, Marktdaten und verständlichen Grundlagen.',
-  /** Platzhalter – vor dem Live-Gang durch echte Angaben ersetzen. */
-  contactEmail: 'redaktion@im-invests.example',
+  contactEmail: 'info@iminvests.de',
+  /**
+   * Telefonnummer in lesbarer Schreibweise.
+   *
+   * Für `tel:`-Verweise nicht diese Fassung verwenden, sondern
+   * {@link siteConfig.contactPhoneLink} – Leerzeichen gehören dort nicht hinein.
+   */
+  contactPhone: '+49 1523 3570545',
+  /** Dieselbe Nummer nach E.164, für `tel:`-Verweise. */
+  contactPhoneLink: '+4915233570545',
   /** Platzhalter-Handle für Twitter-Cards. */
   twitterHandle: '@iminvests',
   url: siteUrl,

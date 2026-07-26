@@ -28,3 +28,27 @@
 # Ohne diese Zeile zeigt der Server bei einer unbekannten Adresse seine eigene,
 # nackte Fehlerseite statt der gestalteten Seite der Website.
 ErrorDocument 404 /404.html
+
+# HTML nicht zwischenspeichern.
+#
+# Aus einem konkreten Ausfall entstanden: Nach einer Neuveröffentlichung lieferte
+# der Server weiter das alte HTML aus dem Zwischenspeicher aus, während unter
+# _next/static längst die neuen Dateien lagen. Deren Namen enthalten eine
+# Prüfsumme und ändern sich mit jedem Build – das alte HTML verwies also auf ein
+# Stylesheet, das es nicht mehr gab. Die Seite kam ohne jede Formatierung heraus,
+# und im Browser sah es aus, als sei die Veröffentlichung fehlgeschlagen.
+#
+# `no-cache` heißt nicht „nicht speichern“, sondern „vor der Wiederverwendung
+# rückfragen“. Der Server antwortet dann mit 304, solange sich nichts geändert
+# hat; es geht also kaum Geschwindigkeit verloren.
+#
+# Die Dateien unter _next/static bleiben ausdrücklich unangetastet: Sie tragen
+# ihre Prüfsumme im Namen und dürfen beliebig lange zwischengespeichert werden.
+#
+# In IfModule gekapselt, damit die Datei auf einem Server ohne mod_headers keinen
+# Fehler 500 auslöst – lieber ohne diese Regel als mit einer toten Website.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
