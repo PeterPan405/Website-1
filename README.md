@@ -54,7 +54,8 @@ components/
   content/              Renderer für das Inhalts-Blockmodell
   debt/                 Ländervergleich (sortier- und filterbar)
   home/                 Rotierende News-Säule
-  layout/               Header mit Mega-Menü, Footer, Theme-Umschalter
+  layout/               Header mit Mega-Menü und Suche, Footer, Theme-Umschalter,
+                        gleitendes Scrollen
   learn/                Fortschrittslogik, Stufen-Navigation, Themen-Kacheln
   markets/              Kurskacheln
   seo/                  JSON-LD-Ausgabe
@@ -128,6 +129,37 @@ existieren. Stimmt etwas nicht, bricht der Build ab, statt eine fehlerhafte
 Ausgabe zu veröffentlichen – die Ausgaben entstehen automatisch, also darf ein
 Fehler darin nicht still durchgehen.
 
+## Suche
+
+Die Lupe in der Kopfzeile öffnet eine Suche über alle Inhalte – Bereichsseiten,
+22 Lernthemen mit ihren 66 Stufen, fünf Rechner, alle Kurse, Nachrichten,
+Tagesausgaben und die festen Seiten. Tastenkürzel: `Strg`/`Cmd` + `K`.
+
+Sie läuft vollständig im Browser, weil die Website statisch ausgeliefert wird
+und es keinen Server gibt, der eine Anfrage beantworten könnte. Aufgeteilt in
+drei Teile:
+
+| Datei                                | Aufgabe                                                       |
+| ------------------------------------ | ------------------------------------------------------------- |
+| `lib/search.ts`                      | baut den Index beim Bauen aus der Service-Schicht             |
+| `lib/search-match.ts`                | die Suchregeln, ohne Importe und daher unter `tests/` prüfbar |
+| `components/layout/SearchDialog.tsx` | die Oberfläche                                                |
+
+Drei Regeln bestimmen die Treffer:
+
+- **Umlaute werden ausgeschrieben**, nicht zerlegt. Wer `maerkte` tippt, meint
+  „Märkte"; eine reine Diakritika-Entfernung machte daraus `markte` und träfe
+  die Eingabe nicht.
+- **Jeder Suchbegriff muss vorkommen.** Zwei Begriffe schränken ein, statt die
+  Treffermenge zu erweitern.
+- **Ein Treffer am Titelanfang wiegt am schwersten**, dann weiter hinten im
+  Titel, dann in den Schlagwörtern. Bei Gleichstand entscheidet die Reihenfolge
+  im Index, und die ist in `lib/search.ts` bewusst gesetzt.
+
+Neue Inhalte landen automatisch im Index, solange sie über die Service-Schicht
+erreichbar sind. Eine neue Seite ohne Datenquelle – etwa eine weitere feste
+Seite – muss dort von Hand ergänzt werden.
+
 ## Veröffentlichen
 
 Die Website wird als **statischer Export** gebaut: `npm run build` legt sie als
@@ -154,46 +186,47 @@ Formatierung aus. Weitere Anweisungen kommen nur einzeln und geprüft zurück.
 
 ### Veröffentlichen
 
-Der Workflow `paket-bauen.yml` baut die Website bei jedem Push auf `main` sowie
-täglich um 04:15 UTC und legt sie als Paket unter _Actions → Artifacts → website_
-zum Herunterladen ab. Hochgeladen wird über den Dateimanager des Hosters:
+**Push auf `main` genügt.** Der Hoster ist über seine GitHub-Anbindung mit dem
+Repository verbunden, baut die Website in einem eigenen Container mit
+`npm run build` und stellt das Ergebnis bereit. Es wird nichts hochgeladen,
+weder von Hand noch aus einem Workflow.
 
-1. Paket herunterladen (eine ZIP-Datei)
-2. Den Dateimanager über _Websites → iminvests.de → Dateimanager_ öffnen, **nicht**
-   über den allgemeinen Dateimanager im Hauptmenü. Nur der erste Weg führt sicher
-   in das Verzeichnis dieser Domain; der zweite öffnet `/public_html`, was bei
-   einer Zusatzdomain der Ordner einer anderen Website ist.
-3. Verzeichnis leeren – `.well-known` stehen lassen, darüber erneuert der Hoster
-   das SSL-Zertifikat. Versteckte Dateien dafür einblenden.
-4. ZIP hochladen und dort entpacken, „vorhandene Dateien überschreiben" anhaken
-5. Prüfen, dass `index.html` direkt im Verzeichnis liegt und nicht in einem
-   Unterordner – sonst liefert die Domain weiterhin nichts aus
-6. ZIP löschen
-7. Cache leeren (_Erweitert → Cache-Manager_) und `/version.txt` aufrufen: Stimmt
-   der dort genannte Commit mit dem erwarteten überein, ist der Upload angekommen
+Nach ein bis zwei Minuten steht der neue Stand. Zur Kontrolle
+`iminvests.de/version.txt` aufrufen: Nennt die Datei den erwarteten Commit, ist
+er live.
 
-**Warum von Hand:** Der Hoster hat den FTP-Zugang gesperrt. Nach drei
-vollständigen Uploads mit zusammen rund 4.500 Zugriffen kommt die Verbindung zum
-Port 21 nicht mehr zustande – belegt durch sieben Abfragen mit identischem
-Ergebnis. Für 1.230 Einzeldateien ist FTP das falsche Werkzeug; der Upload einer
-einzelnen Datei über den Browser funktioniert dagegen zuverlässig.
+Wichtig für die Build-Einstellungen beim Hoster: Ausgabeverzeichnis `out`,
+Node 22, Build-Befehl `npm run build`. `NEXT_PUBLIC_SITE_URL` ist dort **nicht**
+nötig – die echte Domain steht in `lib/resolve-site-url.ts`. Die Variable ist
+bei einer Neuanlage der Website schon zweimal verlorengegangen, deshalb hängt
+nichts mehr daran.
 
-Der Workflow prüft vor dem Ablegen ausdrücklich, dass ein Stylesheet im Paket
-liegt, dass mindestens 100 Seiten entstanden sind, dass `.htaccess` und
-`version.txt` vorhanden sind und dass die echte Domain in der Sitemap steht.
-Grund: Ein früherer Stand wurde ohne Stylesheet ausgeliefert, und niemand hat es
-vor dem Hochladen bemerkt.
+#### Der Notweg
 
-`version.txt` nennt Commit, Bauzeitpunkt und Laufnummer und ist nach dem Upload
-unter `/version.txt` abrufbar. Die Datei ist aus einem konkreten Vorfall
-entstanden: Über Tage lag ein Stand auf dem Server, der aus den ersten
-25 Minuten des Projekts stammte – erkennbar allein daran, dass die Seite noch den
-alten Markennamen trug. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit
-sein.
+Derselbe Stand liegt zusätzlich als ZIP unter _Actions → Artifacts → website_.
+Gebraucht wird er nur, wenn die Anbindung ausfällt: herunterladen, im
+Dateimanager des Hosters das Verzeichnis leeren (`.well-known` stehen lassen,
+darüber läuft die Erneuerung des SSL-Zertifikats), ZIP hochladen, entpacken,
+ZIP löschen, Cache leeren.
 
-**Automatisch wird es wieder,** sobald ein Übertragungsweg ohne 1.230
-Einzelverbindungen zur Verfügung steht – eine Git-Anbindung oder SSH beim Hoster.
-Beides setzt einen Tarif voraus, der das anbietet.
+#### Warum der Workflow trotzdem läuft
+
+`paket-bauen.yml` baut bei jedem Push auf `main` und täglich um 04:15 UTC. Er
+liefert nicht aus, sondern prüft – und zwar das Ergebnis, nicht die Absicht:
+mindestens ein Stylesheet, mindestens 100 Seiten, `.htaccess` und `version.txt`
+vorhanden, keine Platzhalter-Domain in der Sitemap.
+
+Jede dieser Prüfungen steht für einen Vorfall. Ein früherer Stand wurde ohne
+Stylesheet ausgeliefert und fiel erst im Browser auf. Ein Deploy-Workflow
+übersprang den Upload stillschweigend, wenn ein Secret fehlte, und meldete
+trotzdem Erfolg – tagelang stand eine veraltete Fassung online, ohne dass ein
+einziger Lauf rot wurde.
+
+`version.txt` entsteht als `prebuild` und liegt deshalb in jedem Build, auch in
+dem des Hosters. Sie nennt Commit und Bauzeitpunkt und ist unter `/version.txt`
+abrufbar. Anlass: Über Tage lag ein Stand auf dem Server, der aus den ersten
+25 Minuten des Projekts stammte – erkennbar allein am alten Markennamen im
+Seitenkopf. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit sein.
 
 ## SEO
 
@@ -244,9 +277,13 @@ JS-Fehler bei 360/768/1440 px).
    `zinseszins` (je drei Stufen). Die übrigen Themen haben funktionsfähige Seiten mit
    Meta-Daten, Permalink und inhaltlicher Gliederung; der Status `outline` wird auf der
    Seite ausgewiesen.
-3. **Impressum und Datenschutzerklärung** enthalten Platzhalter (`[BITTE ERSETZEN]`).
-   Vor der Veröffentlichung durch echte Angaben ersetzen und rechtlich prüfen lassen –
-   bei Finanzinhalten sind zusätzliche Anforderungen möglich.
+3. **Rechtliche Prüfung von Impressum und Datenschutzerklärung.** Beide Seiten sind
+   ausgefüllt – Anbieter, Anschrift und Kontakt stehen in `lib/provider.ts`, die
+   Erklärung beschreibt, was die Website tatsächlich tut. Zwei Angaben fehlen noch:
+   Firmierung und Anschrift des Hosters sowie dessen Speicherdauer für
+   Protokolldateien. Sie stehen in dessen eigener Datenschutzerklärung und sind dort
+   nachzutragen, statt sie zu schätzen. Eine anwaltliche Prüfung vor dem endgültigen
+   Live-Gang bleibt zu empfehlen, bei Finanzinhalten erst recht.
 4. **Quizfragen für die übrigen 20 Themen.** Sie entstehen jeweils zusammen mit dem
    Fließtext der Stufe – Struktur und Komponente stehen bereits.
 5. **Text der Unternehmensphilosophie** (siehe Abschnitt oben).
