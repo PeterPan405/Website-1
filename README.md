@@ -144,31 +144,31 @@ Zwei Einstellungen in `next.config.ts` sind dafür nötig und sollten so bleiben
 Fehlerseite, den Dateityp des Vorschaubilds (es hat keine Dateiendung und würde
 sonst als Download ausgeliefert) sowie die Zwischenspeicherung.
 
-### Veröffentlicht über Cloudflare Pages
+### Veröffentlichen
 
-Cloudflare Pages ist mit dem Repository verbunden und baut selbst: Bei jedem Push
-auf `main` läuft `npm run build`, das Ergebnis aus `out/` wird ausgeliefert. Es
-wird nichts übertragen und nichts hochgeladen.
+Der Workflow `paket-bauen.yml` baut die Website bei jedem Push auf `main` sowie
+täglich um 04:15 UTC und legt sie als Paket unter _Actions → Artifacts → website_
+zum Herunterladen ab. Hochgeladen wird über den Dateimanager des Hosters:
 
-Einzustellen sind dort nur drei Dinge:
+1. Paket herunterladen (eine ZIP-Datei)
+2. Im Dateimanager `public_html` leeren
+3. ZIP hochladen und dort entpacken, „vorhandene Dateien überschreiben" anhaken
+4. ZIP löschen
 
-| Feld                   | Wert                                            |
-| ---------------------- | ----------------------------------------------- |
-| Build command          | `npm run build`                                 |
-| Build output directory | `out`                                           |
-| Umgebungsvariable      | `NEXT_PUBLIC_SITE_URL` = `https://iminvests.de` |
+**Warum von Hand:** Der Hoster hat den FTP-Zugang gesperrt. Nach drei
+vollständigen Uploads mit zusammen rund 4.500 Zugriffen kommt die Verbindung zum
+Port 21 nicht mehr zustande – belegt durch sieben Abfragen mit identischem
+Ergebnis. Für 1.230 Einzeldateien ist FTP das falsche Werkzeug; der Upload einer
+einzelnen Datei über den Browser funktioniert dagegen zuverlässig.
 
-Ohne die Umgebungsvariable trägt jede Seite die Platzhalter-Domain
-`www.im-invests.example` als canonical-URL – Suchmaschinen würden die Website
-damit einer Domain zuordnen, die es nicht gibt.
+Der Workflow prüft vor dem Ablegen ausdrücklich, dass ein Stylesheet im Paket
+liegt, dass mindestens 100 Seiten entstanden sind und dass die echte Domain in
+der Sitemap steht. Grund: Ein früherer Stand wurde ohne Stylesheet ausgeliefert,
+und niemand hat es vor dem Hochladen bemerkt.
 
-**Zur Vorgeschichte:** Zunächst lief die Veröffentlichung per FTP zu einem
-Webhosting-Tarif. Der statische Export besteht aus rund 1.500 Einzeldateien;
-nach drei vollständigen Uploads hat der Hoster den FTP-Zugang gesperrt – die
-Verbindung zum Port 21 kam nicht mehr zustande. FTP ist für diese Dateizahl das
-falsche Werkzeug. Ein Node-Server hätte das vermieden, ist beim Hoster aber nur
-mit einem eigenen VPS zu haben. Cloudflare Pages löst es an der Wurzel: Der Build
-läuft dort, wo die Dateien schon liegen.
+**Automatisch wird es wieder,** sobald ein Übertragungsweg ohne 1.230
+Einzelverbindungen zur Verfügung steht – eine Git-Anbindung oder SSH beim Hoster.
+Beides setzt einen Tarif voraus, der das anbietet.
 
 ## SEO
 
