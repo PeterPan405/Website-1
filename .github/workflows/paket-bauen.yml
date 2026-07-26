@@ -1,0 +1,117 @@
+name: Paket bauen
+
+# Baut die Website und legt sie als fertiges Paket zum Herunterladen ab.
+#
+# Warum nicht direkt hochladen: Der Hoster hat den FTP-Zugang gesperrt. Nach drei
+# vollständigen Uploads mit zusammen rund 4.500 Zugriffen kommt die Verbindung
+# zum Port 21 nicht mehr zustande – belegt durch sieben Abfragen mit demselben
+# Ergebnis ("Failed to connect ... Timeout was reached"). FTP ist für 1.230
+# Einzeldateien das falsche Werkzeug.
+#
+# Der Upload einer einzelnen Datei über den Dateimanager im Browser funktioniert
+# dagegen. Deshalb entsteht hier ein Paket, das genau dafür gedacht ist: einmal
+# herunterladen, einmal hochladen, entpacken.
+#
+# Sobald ein Weg ohne 1.230 Einzelverbindungen zur Verfügung steht – Git-Anbindung
+# oder SSH beim Hoster –, kann die Übertragung wieder automatisch laufen.
+
+on:
+  # Nach jedem Push auf main, damit immer ein aktuelles Paket bereitliegt.
+  push:
+    branches: [main]
+
+  # Täglich um 04:15 UTC, kurz nach der Routine für den Tagesüberblick.
+  # Cron rechnet in UTC: 04:15 UTC sind in der Sommerzeit 06:15 Uhr deutscher
+  # Zeit, in der Winterzeit 05:15 Uhr.
+  schedule:
+    - cron: '15 4 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  bauen:
+    name: Bauen und prüfen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # `npm ci` statt `npm install`: installiert exakt die Versionen aus der
+      # package-lock.json. Ein Build, der sich je nach Tagesform andere Pakete
+      # zieht, ist kein reproduzierbarer Build.
+      - run: npm ci
+
+      # Die Prüfungen laufen vor dem Build. Fällt eine durch, entsteht kein
+      # Paket – dann kann auch niemand versehentlich einen kaputten Stand
+      # hochladen.
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript
+        run: npm run typecheck
+
+      - name: Tests
+        run: npm test
+
+      - name: Formatierung
+        run: npm run format:check
+
+      - name: Bauen
+        run: npm run build
+        env:
+          # Ohne diese Variable trägt jede Seite die Platzhalter-Domain als
+          # canonical-URL. Als Repository-Variable hinterlegt unter
+          # Settings > Secrets and variables > Actions > Variables.
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+
+      # Prüft das Ergebnis, nicht die Absicht.
+      #
+      # Der Abschnitt ist aus Erfahrung entstanden: Ein früherer Lauf hat eine
+      # Website ohne Stylesheet ausgeliefert, und niemand hat es vor dem
+      # Hochladen bemerkt. Deshalb wird hier ausdrücklich nachgesehen, dass die
+      # Formatierung im Paket liegt.
+      - name: Paket prüfen
+        run: |
+          test -f out/index.html || { echo "out/index.html fehlt"; exit 1; }
+          test -f out/404.html || { echo "out/404.html fehlt"; exit 1; }
+          test -f out/sitemap.xml || { echo "out/sitemap.xml fehlt"; exit 1; }
+          test -f out/robots.txt || { echo "out/robots.txt fehlt"; exit 1; }
+
+          css=$(find out/_next -name '*.css' | wc -l)
+          if [ "$css" -lt 1 ]; then
+            echo "Kein Stylesheet im Paket – die Seite käme ohne Formatierung heraus."
+            exit 1
+          fi
+
+          seiten=$(find out -name index.html | wc -l)
+          if [ "$seiten" -lt 100 ]; then
+            echo "Nur $seiten Seiten im Paket – der Export ist unvollständig."
+            exit 1
+          fi
+
+          # Die Domain muss im Ergebnis stehen, nicht der Platzhalter. Sonst
+          # zeigt jede Seite auf eine Adresse, die es nicht gibt.
+          if grep -q "im-invests.example" out/sitemap.xml; then
+            echo "Die Sitemap enthält noch die Platzhalter-Domain."
+            echo "Repository-Variable NEXT_PUBLIC_SITE_URL setzen."
+            exit 1
+          fi
+
+          echo "Seiten:      $seiten"
+          echo "Stylesheets: $css"
+          echo "Dateien:     $(find out -type f | wc -l)"
+          echo "Größe:       $(du -sh out | cut -f1)"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: website
+          path: out
+          # Versteckte Dateien werden seit v4.4 standardmäßig ausgeschlossen.
+          # Ohne diese Zeile fehlten sie im Paket, obwohl die Prüfung oben
+          # durchlief – die misst den Ordner, nicht das Artefakt.
+          include-hidden-files: true
+          retention-days: 30
