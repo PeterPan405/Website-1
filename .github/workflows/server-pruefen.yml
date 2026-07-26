@@ -1,0 +1,60 @@
+name: Server prüfen
+
+# Diagnose-Werkzeug, kein Teil der Veröffentlichung.
+#
+# Hintergrund: Aus der Entwicklungsumgebung ist der Webspace nicht erreichbar –
+# ausgehende Verbindungen sind dort gesperrt, und Hostinger blockt fremde
+# Zugriffe zusätzlich. Jede Frage nach dem Zustand des Servers musste deshalb
+# per Screenshot beantwortet werden, was die Fehlersuche zäh gemacht hat.
+#
+# Der GitHub-Runner erreicht Hostinger dagegen ohne Weiteres. Dieser Workflow
+# nutzt das: Er verbindet sich, listet die Verzeichnisse auf und schreibt das
+# Ergebnis ins Log. Er verändert nichts.
+#
+# Läuft ausschließlich auf Knopfdruck, nie automatisch.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pruefen:
+    name: Verzeichnisse auflisten
+    runs-on: ubuntu-latest
+    steps:
+      - name: Zustand des Webspace ermitteln
+        env:
+          # Über die Umgebung übergeben, nicht in die Befehlszeile geschrieben:
+          # So landen die Zugangsdaten nicht im Klartext im Log.
+          H: ${{ secrets.FTP_SERVER }}
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          # Ohne -x, damit keine Zugangsdaten protokolliert werden.
+          set +x
+
+          liste() {
+            echo ""
+            echo "=============================================="
+            echo "  $1"
+            echo "=============================================="
+            # --ssl-reqd erzwingt FTPS. || true, damit ein leeres oder nicht
+            # vorhandenes Verzeichnis den Lauf nicht abbricht – „existiert
+            # nicht" ist hier ein Ergebnis, kein Fehler.
+            curl -sS --ssl-reqd --connect-timeout 30 --max-time 60 \
+              --user "$U:$P" "ftp://$H$1" || echo "(nicht abrufbar oder leer)"
+          }
+
+          liste "/"
+          liste "/public_html/"
+          liste "/public_html/_next/"
+          liste "/public_html/_next/static/"
+          liste "/public_html/news/"
+          liste "/public_html/lernen/aktie/beginner/"
+
+          echo ""
+          echo "=============================================="
+          echo "  Anzahl Dateien in _next/static/chunks"
+          echo "=============================================="
+          curl -sS --ssl-reqd --connect-timeout 30 --max-time 120 \
+            --user "$U:$P" "ftp://$H/public_html/_next/static/chunks/" \
+            | wc -l || echo "(nicht abrufbar)"
