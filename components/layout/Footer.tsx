@@ -11,7 +11,12 @@ export function Footer() {
   return (
     <footer className="border-border bg-surface mt-24 border-t">
       <div className="fk-container py-14">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+        {/*
+          Vier Spalten: zwei für die Logo-Spalte, je eine für die beiden
+          Link-Gruppen. Bei fünf Spalten – dem Stand mit drei Gruppen – bliebe
+          rechts eine leere Spalte stehen.
+        */}
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             {/*
               In der Fußzeile größer als in der Kopfzeile: Hier ist Platz, und
