@@ -2,22 +2,20 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /*
-    Eigenständiger Node-Server statt statischem Export.
+    Statischer Export: `next build` legt die fertige Website als HTML, CSS und
+    JavaScript in `out/` ab.
 
-    `next build` legt unter `.next/standalone` einen lauffähigen Server ab, der
-    nur die tatsächlich benötigten Abhängigkeiten mitbringt – kein `npm install`
-    auf dem Webspace nötig, wo Speicher und Laufzeit knapp bemessen sind.
+    Möglich, weil das Projekt keine Server-Funktionen verwendet – keine Route
+    Handler, keine Middleware, keine Server Actions, kein `next/image`. Alle
+    Seiten werden ohnehin beim Build vorgerendert.
 
-    Warum nicht mehr `output: 'export'`: Der statische Export erzeugt rund 1.500
-    Einzeldateien. Deren Übertragung per FTP hat Hostinger nach drei Läufen
-    gesperrt – die Verbindung zum Port 21 kommt seither nicht mehr zustande.
-    Ein Standalone-Paket ist eine Handvoll Dateien und lässt sich als ZIP über
-    den Dateimanager hochladen, den Weg also, der nachweislich funktioniert.
-
-    Nebeneffekt: Mit einem laufenden Server sind Daten zur Laufzeit möglich –
-    Kurse und Ausgaben können sich erneuern, ohne dass jemand neu hochlädt.
+    Zur Vorgeschichte: Zwischendurch stand hier `output: 'standalone'`, weil ein
+    Node-Server den Upload von 1.500 Einzeldateien vermieden hätte. Node.js gibt
+    es beim Hoster aber nur mit einem eigenen VPS. Der Export ist ohnehin die
+    passendere Form – Cloudflare Pages baut das Repository selbst und liefert das
+    Ergebnis aus, es wird also überhaupt nichts mehr übertragen.
   */
-  output: 'standalone',
+  output: 'export',
 
   /*
     Erzeugt `news/index.html` statt `news.html`.
