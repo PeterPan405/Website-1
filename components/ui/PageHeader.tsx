@@ -25,9 +25,10 @@ export function PageHeader({
   /**
    * Kurzer Bereichs- oder Kategorie-Hinweis über der Überschrift.
    *
-   * Optional: Auf Seiten, die zu keinem der fünf Bereiche gehören – etwa
-   * Impressum und Datenschutz – trüge er nur eine Einordnung nach, die die
-   * Überschrift ohnehin liefert.
+   * Optional: Auf Seiten, die zu keinem inhaltlichen Bereich gehören – etwa
+   * Impressum, Datenschutz, Kontakt und Über uns – trüge er nur eine Einordnung
+   * nach, die die Überschrift ohnehin liefert. Er nähme dort zudem die Farbe
+   * eines fremden Bereichs an, weil `area` ein Pflichtfeld ist.
    */
   eyebrow?: string
   eyebrowIcon?: IconName

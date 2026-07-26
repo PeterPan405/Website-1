@@ -22,13 +22,18 @@ export const metadata: Metadata = buildMetadata({
   ogTitle: `${siteConfig.name} – Finanzen verstehen, statt raten`,
 })
 
-/** Kacheln für den Schnellzugriff auf die Hauptbereiche. */
+/**
+ * Kacheln für den Schnellzugriff auf die Hauptbereiche.
+ *
+ * Ohne Staatsverschuldung: Der Bereich bleibt über die Kopf- und Fußzeile
+ * erreichbar, ist auf der Startseite aber kein gleichrangiger Einstieg neben
+ * Lernen, Rechnern, Märkten und News.
+ */
 const areaTiles: { area: AreaId; icon: IconName }[] = [
   { area: 'learn', icon: 'book' },
   { area: 'tools', icon: 'calculator' },
   { area: 'markets', icon: 'chart' },
   { area: 'news', icon: 'newspaper' },
-  { area: 'debt', icon: 'scale' },
 ]
 
 const calculatorTiles = [
@@ -145,7 +150,7 @@ export default async function HomePage() {
         <SectionHeading
           id="bereiche"
           eyebrow="Überblick"
-          title="Fünf Bereiche, ein Ziel"
+          title="Vier Bereiche, ein Ziel"
           lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
         />
 

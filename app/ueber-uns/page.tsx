@@ -54,8 +54,6 @@ export default function AboutPage() {
     <>
       <PageHeader
         area="learn"
-        eyebrow="Über uns"
-        eyebrowIcon="compass"
         title="Finanzwissen ohne Verkaufsabsicht"
         lead={`${siteConfig.name} erklärt, wie Geldanlage, Börse und Vorsorge funktionieren – in drei Stufen, mit offengelegten Rechenwegen und ohne Produktempfehlungen.`}
         breadcrumbs={<Breadcrumbs items={[{ name: 'Über uns' }]} />}
