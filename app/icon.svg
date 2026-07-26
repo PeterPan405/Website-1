@@ -1,22 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <!--
-    Favicon: der Ring in vier Farben, ohne Köpfe und ohne Schriftzug.
+    Favicon: dasselbe Zeichen wie das Signet auf der Website, nur ohne den
+    Schriftzug „IMI“ – der ist bei 16 bis 32 Pixel nicht lesbar.
 
-    Bewusst stärker reduziert als das Signet auf der Website. Bei 16 bis 32 Pixel
-    fallen die Köpfe der vier Figuren zu Punkten zusammen und machen die Form
-    unruhig, statt sie zu erklären. Übrig bleibt, was in dieser Größe überhaupt
-    erkennbar ist: ein Ring aus vier deutlich getrennten Farbbögen.
+    Die frühere Fassung war ein eigenständig gezeichneter Ring aus vier Bögen
+    ohne Köpfe. Sie war gegenüber dem Logo um 45 Grad gedreht, wodurch die Farben
+    in anderen Quadranten lagen: Navy saß oben rechts statt oben links, Grün oben
+    links statt unten links. Ohne die Köpfe blieb zudem nur ein Ring übrig, in dem
+    die Marke nicht wiederzuerkennen war.
 
-    Der Ring ist dafür dicker als im Volllogo (38 statt 24) und füllt die
-    Zeichenfläche zu 85 Prozent statt zu 77 – ohne die Köpfe braucht es außen
-    keinen Platz mehr, und in der Browserleiste zählt jeder Pixel. Die Lücken
-    sind mit 10 Grad kleiner gehalten, damit sie den Ring bei 16 Pixel nicht
-    auftrennen.
+    Deshalb jetzt dieselbe Geometrie wie public/logo.svg und
+    components/ui/Logo.tsx: Vier Figuren im Ring, jede füllt einen Quadranten,
+    die Verbindungen liegen bei 12, 3, 6 und 9 Uhr, die Köpfe auf den Diagonalen
+    dazwischen. Oben links Navy, oben rechts Grau, unten rechts Rot, unten links
+    Grün.
+
+    Die Köpfe reichen bis Radius 99 und füllen die Zeichenfläche damit fast
+    vollständig – in der Browserleiste zählt jeder Pixel. Ändert sich das Logo,
+    müssen diese Pfade mitgeführt werden.
   -->
-  <g fill="none" stroke-width="38" stroke-linecap="round">
-    <path d="M 100 34 A 66 66 0 0 1 165 88.54" stroke="#17296F" />
-    <path d="M 166 100 A 66 66 0 0 1 111.46 165" stroke="#6E6E6E" />
-    <path d="M 100 166 A 66 66 0 0 1 35 111.46" stroke="#8B2225" />
-    <path d="M 34 100 A 66 66 0 0 1 88.54 35" stroke="#205437" />
+  <g fill="#17296F">
+    <path
+      d="M 40.45 92.69 A 60 60 0 0 1 92.69 40.45"
+      fill="none"
+      stroke="#17296F"
+      stroke-width="32"
+      stroke-linecap="round"
+    />
+    <circle cx="43.43" cy="43.43" r="19" />
+  </g>
+  <g fill="#6E6E6E">
+    <path
+      d="M 107.31 40.45 A 60 60 0 0 1 159.55 92.69"
+      fill="none"
+      stroke="#6E6E6E"
+      stroke-width="32"
+      stroke-linecap="round"
+    />
+    <circle cx="156.57" cy="43.43" r="19" />
+  </g>
+  <g fill="#8B2225">
+    <path
+      d="M 159.55 107.31 A 60 60 0 0 1 107.31 159.55"
+      fill="none"
+      stroke="#8B2225"
+      stroke-width="32"
+      stroke-linecap="round"
+    />
+    <circle cx="156.57" cy="156.57" r="19" />
+  </g>
+  <g fill="#205437">
+    <path
+      d="M 92.69 159.55 A 60 60 0 0 1 40.45 107.31"
+      fill="none"
+      stroke="#205437"
+      stroke-width="32"
+      stroke-linecap="round"
+    />
+    <circle cx="43.43" cy="156.57" r="19" />
   </g>
 </svg>
