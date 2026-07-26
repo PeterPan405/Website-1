@@ -26,36 +26,7 @@ export interface NavItem {
 }
 
 export const mainNav: NavItem[] = [
-  {
-    label: 'Lernen',
-    href: '/lernen',
-    area: 'learn',
-    children: [
-      {
-        label: 'Aktie',
-        href: '/lernen/aktie',
-        hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
-      },
-      {
-        label: 'Zinseszins',
-        href: '/lernen/zinseszins',
-        hint: 'Das 8. Weltwunder – vollständig ausgearbeitet',
-      },
-      { label: 'ETF', href: '/lernen/etf', hint: 'Indexfonds als Basisbaustein' },
-      { label: 'Börse', href: '/lernen/boerse', hint: 'Wo Kurse entstehen' },
-      {
-        label: 'Cost-Average & Sparplan',
-        href: '/lernen/cost-average-sparplan',
-        hint: 'Regelmäßig investieren',
-      },
-      {
-        label: 'Einlagensicherung',
-        href: '/lernen/einlagensicherung',
-        hint: 'Was beim Bankguthaben geschützt ist',
-      },
-    ],
-    footerLink: { label: 'Alle 22 Themen ansehen', href: '/lernen' },
-  },
+  { label: 'News', href: '/news', area: 'news' },
   {
     label: 'Märkte',
     href: '/maerkte',
@@ -107,7 +78,36 @@ export const mainNav: NavItem[] = [
     ],
     footerLink: { label: 'Alle Rechner im Überblick', href: '/rechner' },
   },
-  { label: 'News', href: '/news', area: 'news' },
+  {
+    label: 'Lernen',
+    href: '/lernen',
+    area: 'learn',
+    children: [
+      {
+        label: 'Aktie',
+        href: '/lernen/aktie',
+        hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
+      },
+      {
+        label: 'Zinseszins',
+        href: '/lernen/zinseszins',
+        hint: 'Das 8. Weltwunder – vollständig ausgearbeitet',
+      },
+      { label: 'ETF', href: '/lernen/etf', hint: 'Indexfonds als Basisbaustein' },
+      { label: 'Börse', href: '/lernen/boerse', hint: 'Wo Kurse entstehen' },
+      {
+        label: 'Cost-Average & Sparplan',
+        href: '/lernen/cost-average-sparplan',
+        hint: 'Regelmäßig investieren',
+      },
+      {
+        label: 'Einlagensicherung',
+        href: '/lernen/einlagensicherung',
+        hint: 'Was beim Bankguthaben geschützt ist',
+      },
+    ],
+    footerLink: { label: 'Alle 22 Themen ansehen', href: '/lernen' },
+  },
   { label: 'Staatsverschuldung', href: '/staatsverschuldung', area: 'debt' },
 ]
 
