@@ -42,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Wird bei jedem Build erzeugt (scripts/version.mjs), gehoert nicht ins Repository.
+/public/version.txt
