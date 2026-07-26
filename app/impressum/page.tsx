@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { provider } from '@/lib/provider'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
 
@@ -13,21 +14,6 @@ export const metadata: Metadata = buildMetadata({
   // Rechtliche Pflichtseiten brauchen keine Social-Vorschau.
   ogTitle: 'Impressum',
 })
-
-/**
- * Anbieterdaten für die Kennzeichnung nach § 5 DDG.
- *
- * Bewusst hier und nicht in `siteConfig`: Es ist eine Privatanschrift. Sie muss
- * im Impressum öffentlich stehen, hat aber in den strukturierten Daten nichts zu
- * suchen – dort würde sie zusätzlich maschinenlesbar an Suchmaschinen und
- * Adresshändler gehen. Steht sie nur an dieser Stelle, kann sie auch nicht
- * versehentlich anderswo eingebunden werden.
- */
-const provider = {
-  name: 'Igor Maier',
-  street: 'Neuffenstraße 38',
-  city: '71696 Möglingen',
-} as const
 
 export default function ImprintPage() {
   return (
