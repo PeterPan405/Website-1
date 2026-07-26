@@ -47,6 +47,31 @@ export const siteConfig = {
   contactPhone: '+49 1523 3570545',
   /** Dieselbe Nummer nach E.164, für `tel:`-Verweise. */
   contactPhoneLink: '+4915233570545',
+  /**
+   * Profile der Marke auf anderen Plattformen.
+   *
+   * Werden in der Fußzeile verlinkt und zusätzlich als `sameAs` in die
+   * strukturierten Daten geschrieben. Letzteres ist der eigentliche Zweck der
+   * Zweitverwendung: Über `sameAs` erkennen Suchmaschinen, dass Website und
+   * Profile zum selben Anbieter gehören.
+   *
+   * Die Adressen stehen bewusst ohne Parameter da. Geteilte Links tragen oft
+   * Anhängsel wie `igsh=…` oder `utm_source=qr`, die aus einem QR-Code oder der
+   * App stammen und eine einzelne Weitergabe nachverfolgen. In einer dauerhaften
+   * Verlinkung haben sie nichts zu suchen.
+   */
+  socialLinks: [
+    {
+      label: 'YouTube',
+      href: 'https://www.youtube.com/@IMInvests',
+      icon: 'youtube',
+    },
+    {
+      label: 'Instagram',
+      href: 'https://www.instagram.com/im_invests',
+      icon: 'instagram',
+    },
+  ],
   /** Platzhalter-Handle für Twitter-Cards. */
   twitterHandle: '@iminvests',
   url: siteUrl,
