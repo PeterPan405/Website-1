@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     Name unter dem Symbol, wenn die Seite auf den Homescreen gelegt wird.
 
     Ohne diese Angabe nimmt Safari den Seitentitel – auf dem Homescreen stand
-    dadurch „IM Invests – Geld verstehen, statt raten“, abgeschnitten nach
+    dadurch „IM Invests – Finanzen verstehen, statt raten“, abgeschnitten nach
     wenigen Zeichen. Unter einem Symbol ist Platz für zwei Wörter, nicht für
     einen Titel.
 

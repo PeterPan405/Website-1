@@ -15,11 +15,11 @@ import { buildMetadata } from '@/lib/seo'
 import { areas, areaStyles, siteConfig, type AreaId } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: `${siteConfig.name} – Geld verstehen, statt raten`,
+  title: `${siteConfig.name} – Finanzen verstehen, statt raten`,
   description:
     'Finanzwissen in drei Lernstufen: 22 Themen von Aktie bis Zinseszins, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.',
   path: '/',
-  ogTitle: `${siteConfig.name} – Geld verstehen, statt raten`,
+  ogTitle: `${siteConfig.name} – Finanzen verstehen, statt raten`,
 })
 
 /** Kacheln für den Schnellzugriff auf die Hauptbereiche. */
@@ -85,7 +85,7 @@ export default async function HomePage() {
             </p>
 
             <h1 className="text-fg mt-5 text-4xl font-bold sm:text-5xl lg:text-6xl">
-              Geld verstehen,{' '}
+              Finanzen verstehen,{' '}
               <span className="from-brand to-accent bg-gradient-to-r bg-clip-text text-transparent">
                 statt raten
               </span>
