@@ -42,6 +42,8 @@ export const mainNav: NavItem[] = [
         href: '/maerkte/msci-world',
         hint: 'Industrieländer weltweit',
       },
+      { label: 'Gold', href: '/maerkte/gold', hint: 'Feinunze in US-Dollar' },
+      { label: 'Silber', href: '/maerkte/silber', hint: 'Feinunze in US-Dollar' },
     ],
     footerLink: { label: 'Alle Kurse und Indizes', href: '/maerkte' },
   },
@@ -93,6 +95,11 @@ export const mainNav: NavItem[] = [
         href: '/lernen/zinseszins',
         hint: 'Das 8. Weltwunder – vollständig ausgearbeitet',
       },
+      {
+        label: 'Rohstoffe',
+        href: '/lernen/rohstoffe',
+        hint: 'Gold und Silber – vollständig ausgearbeitet',
+      },
       { label: 'ETF', href: '/lernen/etf', hint: 'Indexfonds als Basisbaustein' },
       { label: 'Börse', href: '/lernen/boerse', hint: 'Wo Kurse entstehen' },
       {
@@ -106,7 +113,7 @@ export const mainNav: NavItem[] = [
         hint: 'Was beim Bankguthaben geschützt ist',
       },
     ],
-    footerLink: { label: 'Alle 22 Themen ansehen', href: '/lernen' },
+    footerLink: { label: 'Alle 23 Themen ansehen', href: '/lernen' },
   },
   { label: 'Staatsverschuldung', href: '/staatsverschuldung', area: 'debt' },
 ]

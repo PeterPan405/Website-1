@@ -17,7 +17,7 @@ import { areas, areaStyles, siteConfig, type AreaId } from '@/lib/site'
 export const metadata: Metadata = buildMetadata({
   title: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
   description:
-    'Finanzwissen in drei Lernstufen: 22 Themen von Aktie bis Zinseszins, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.',
+    'Finanzwissen in drei Lernstufen: 23 Themen von Aktie bis Zinseszins, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.',
   path: '/',
   ogTitle: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
 })
