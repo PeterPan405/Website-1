@@ -2,16 +2,22 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /*
-    Statischer Export: `next build` legt die fertige Website als HTML, CSS und
-    JavaScript in `out/` ab. Das Projekt muss dafür auf nichts verzichten – es
-    verwendet keine Server-Funktionen (keine Route Handler, keine Middleware,
-    keine Server Actions, kein `next/image`), und alle Seiten werden ohnehin
-    schon beim Build vorgerendert.
+    Eigenständiger Node-Server statt statischem Export.
 
-    Der Vorteil: Der Inhalt von `out/` läuft auf jedem Webspace, der Dateien
-    ausliefern kann – also auch auf einem einfachen Tarif ohne Node.js.
+    `next build` legt unter `.next/standalone` einen lauffähigen Server ab, der
+    nur die tatsächlich benötigten Abhängigkeiten mitbringt – kein `npm install`
+    auf dem Webspace nötig, wo Speicher und Laufzeit knapp bemessen sind.
+
+    Warum nicht mehr `output: 'export'`: Der statische Export erzeugt rund 1.500
+    Einzeldateien. Deren Übertragung per FTP hat Hostinger nach drei Läufen
+    gesperrt – die Verbindung zum Port 21 kommt seither nicht mehr zustande.
+    Ein Standalone-Paket ist eine Handvoll Dateien und lässt sich als ZIP über
+    den Dateimanager hochladen, den Weg also, der nachweislich funktioniert.
+
+    Nebeneffekt: Mit einem laufenden Server sind Daten zur Laufzeit möglich –
+    Kurse und Ausgaben können sich erneuern, ohne dass jemand neu hochlädt.
   */
-  output: 'export',
+  output: 'standalone',
 
   /*
     Erzeugt `news/index.html` statt `news.html`.
