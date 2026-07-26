@@ -3,13 +3,17 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   /*
     Statischer Export: `next build` legt die fertige Website als HTML, CSS und
-    JavaScript in `out/` ab. Das Projekt muss dafür auf nichts verzichten – es
-    verwendet keine Server-Funktionen (keine Route Handler, keine Middleware,
-    keine Server Actions, kein `next/image`), und alle Seiten werden ohnehin
-    schon beim Build vorgerendert.
+    JavaScript in `out/` ab.
 
-    Der Vorteil: Der Inhalt von `out/` läuft auf jedem Webspace, der Dateien
-    ausliefern kann – also auch auf einem einfachen Tarif ohne Node.js.
+    Möglich, weil das Projekt keine Server-Funktionen verwendet – keine Route
+    Handler, keine Middleware, keine Server Actions, kein `next/image`. Alle
+    Seiten werden ohnehin beim Build vorgerendert.
+
+    Zur Vorgeschichte: Zwischendurch stand hier `output: 'standalone'`, weil ein
+    Node-Server den Upload von 1.500 Einzeldateien vermieden hätte. Node.js gibt
+    es beim Hoster aber nur mit einem eigenen VPS. Der Export ist ohnehin die
+    passendere Form – Cloudflare Pages baut das Repository selbst und liefert das
+    Ergebnis aus, es wird also überhaupt nichts mehr übertragen.
   */
   output: 'export',
 

@@ -144,30 +144,31 @@ Zwei Einstellungen in `next.config.ts` sind dafür nötig und sollten so bleiben
 Fehlerseite, den Dateityp des Vorschaubilds (es hat keine Dateiendung und würde
 sonst als Download ausgeliefert) sowie die Zwischenspeicherung.
 
-### Automatisch veröffentlichen
+### Veröffentlicht über Cloudflare Pages
 
-`.github/workflows/deploy.yml` baut nach jedem Push auf `main` sowie täglich um
-04:15 UTC und überträgt das Ergebnis per FTP. Vorher laufen ESLint, TypeScript,
-Tests, Formatprüfung und eine Kontrolle des Exports – schlägt eine davon fehl,
-wird nichts hochgeladen.
+Cloudflare Pages ist mit dem Repository verbunden und baut selbst: Bei jedem Push
+auf `main` läuft `npm run build`, das Ergebnis aus `out/` wird ausgeliefert. Es
+wird nichts übertragen und nichts hochgeladen.
 
-Dafür sind unter _Settings → Secrets and variables → Actions_ zu hinterlegen:
+Einzustellen sind dort nur drei Dinge:
 
-| Name                   | Art      | Inhalt                                              |
-| ---------------------- | -------- | --------------------------------------------------- |
-| `FTP_SERVER`           | Secret   | FTP-Host aus dem Hostinger-Panel                    |
-| `FTP_USERNAME`         | Secret   | FTP-Benutzername                                    |
-| `FTP_PASSWORD`         | Secret   | FTP-Passwort                                        |
-| `FTP_SERVER_DIR`       | Variable | Zielordner, meist `public_html/`                    |
-| `NEXT_PUBLIC_SITE_URL` | Variable | die echte Domain, z. B. `https://www.im-invests.de` |
+| Feld                   | Wert                                            |
+| ---------------------- | ----------------------------------------------- |
+| Build command          | `npm run build`                                 |
+| Build output directory | `out`                                           |
+| Umgebungsvariable      | `NEXT_PUBLIC_SITE_URL` = `https://iminvests.de` |
 
-Ohne `FTP_SERVER` überspringt der Workflow den Upload und legt die fertige
-Website als Artefakt zum Herunterladen ab. So lässt sich der Ablauf testen,
-bevor Zugangsdaten hinterlegt sind.
+Ohne die Umgebungsvariable trägt jede Seite die Platzhalter-Domain
+`www.im-invests.example` als canonical-URL – Suchmaschinen würden die Website
+damit einer Domain zuordnen, die es nicht gibt.
 
-**Wichtig:** Ohne Deployment ändert sich auf dem Webspace nichts. Was dort liegt,
-ist ein Bauergebnis – ein Commit im Repository erreicht die Besucher erst, wenn
-neu gebaut und übertragen wurde.
+**Zur Vorgeschichte:** Zunächst lief die Veröffentlichung per FTP zu einem
+Webhosting-Tarif. Der statische Export besteht aus rund 1.500 Einzeldateien;
+nach drei vollständigen Uploads hat der Hoster den FTP-Zugang gesperrt – die
+Verbindung zum Port 21 kam nicht mehr zustande. FTP ist für diese Dateizahl das
+falsche Werkzeug. Ein Node-Server hätte das vermieden, ist beim Hoster aber nur
+mit einem eigenen VPS zu haben. Cloudflare Pages löst es an der Wurzel: Der Build
+läuft dort, wo die Dateien schon liegen.
 
 ## SEO
 
