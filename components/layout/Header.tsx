@@ -15,6 +15,10 @@ import { areaStyles, siteConfig } from '@/lib/site'
 /**
  * Sticky Kopfzeile mit Mega-Menü (Desktop) und Panel-Navigation (Mobil).
  *
+ * Einträge mit Untermenü bestehen aus zwei Bedienelementen: Der Name ist ein
+ * Verweis auf die Bereichsseite, der Pfeil daneben klappt das Menü auf. Mit der
+ * Maus genügt weiterhin das Darüberfahren.
+ *
  * Bedienung per Tastatur ist vollständig abgedeckt: Die Menü-Auslöser sind
  * echte Buttons mit `aria-expanded`, Escape schließt das offene Menü, und ein
  * Fokuswechsel nach außen schließt es ebenfalls.
@@ -273,28 +277,56 @@ function NavEntry({
         }
       }}
     >
-      <button
-        type="button"
-        aria-expanded={isOpen}
-        aria-controls={panelId}
-        // Öffnen nur bewusst per Klick, Enter oder Leertaste. Ein Öffnen schon
-        // beim Fokussieren würde beim Durchtabben jedes Menü aufklappen – und
-        // ein anschließendes Enter hätte es sofort wieder geschlossen.
-        onClick={onToggle}
+      {/*
+        Zwei Bedienelemente in einer Pille: Der Name führt auf die
+        Bereichsseite, der Pfeil klappt das Menü auf.
+
+        Vorher war das Ganze ein Button, der ausschließlich auf- und zuklappte –
+        ein Klick auf „Märkte“ führte nirgendwohin, obwohl es die Seite gibt.
+        Ein Element kann aber nicht beides sein: Ein Verweis, der beim Klick
+        stattdessen ein Menü öffnet, führt in die Irre, und ein Button, der
+        navigiert, lässt sich weder im neuen Tab öffnen noch als Ziel kopieren.
+
+        Beim Zeigen mit der Maus öffnet weiterhin die ganze Gruppe – das
+        übernimmt das umschließende <li>. Der Pfeil ist für alle da, die keine
+        Maus benutzen: Mit Tastatur oder auf einem Touchgerät gibt es kein
+        Darüberfahren.
+      */}
+      <div
         className={cn(
-          'flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition',
+          'flex items-center rounded-full text-sm font-medium transition',
           active || isOpen
             ? 'bg-surface text-fg shadow-card'
             : 'text-fg-muted hover:text-fg'
         )}
       >
-        <span className={cn('size-1.5 rounded-full', style.dot)} aria-hidden="true" />
-        {item.label}
-        <Icon
-          name="chevron-down"
-          className={cn('size-4 transition-transform', isOpen && 'rotate-180')}
-        />
-      </button>
+        <Link
+          href={item.href}
+          aria-current={active ? 'page' : undefined}
+          className="flex items-center gap-2 rounded-l-full py-2 pr-1 pl-3.5"
+        >
+          <span className={cn('size-1.5 rounded-full', style.dot)} aria-hidden="true" />
+          {item.label}
+        </Link>
+        <button
+          type="button"
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+          // Öffnen nur bewusst per Klick, Enter oder Leertaste. Ein Öffnen schon
+          // beim Fokussieren würde beim Durchtabben jedes Menü aufklappen – und
+          // ein anschließendes Enter hätte es sofort wieder geschlossen.
+          onClick={onToggle}
+          className="rounded-r-full py-2 pr-3 pl-0.5"
+        >
+          <Icon
+            name="chevron-down"
+            className={cn('size-4 transition-transform', isOpen && 'rotate-180')}
+          />
+          <span className="sr-only">
+            Untermenü {item.label} {isOpen ? 'schließen' : 'öffnen'}
+          </span>
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (

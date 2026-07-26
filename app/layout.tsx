@@ -5,6 +5,7 @@ import './globals.css'
 
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
+import { SmoothScroll } from '@/components/layout/SmoothScroll'
 import { THEME_STORAGE_KEY } from '@/components/layout/ThemeToggle'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
@@ -104,6 +105,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-full flex-col">
+        {/* Rendert nichts, richtet nur das gleitende Scrollen ein. */}
+        <SmoothScroll />
+
         {/* Erster fokussierbarer Inhalt: Sprungmarke für Tastaturnutzer. */}
         <a
           href="#inhalt"
