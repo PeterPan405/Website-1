@@ -34,8 +34,6 @@ export default function ImprintPage() {
     <>
       <PageHeader
         area="learn"
-        eyebrow="Rechtliches"
-        eyebrowIcon="info"
         title="Impressum"
         lead="Anbieterkennzeichnung und Angaben zur inhaltlichen Verantwortung."
         breadcrumbs={<Breadcrumbs items={[{ name: 'Impressum' }]} />}

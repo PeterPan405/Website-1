@@ -22,8 +22,14 @@ export function PageHeader({
   breadcrumbs,
 }: {
   area: AreaId
-  /** Kurzer Bereichs- oder Kategorie-Hinweis über der Überschrift. */
-  eyebrow: string
+  /**
+   * Kurzer Bereichs- oder Kategorie-Hinweis über der Überschrift.
+   *
+   * Optional: Auf Seiten, die zu keinem der fünf Bereiche gehören – etwa
+   * Impressum und Datenschutz – trüge er nur eine Einordnung nach, die die
+   * Überschrift ohnehin liefert.
+   */
+  eyebrow?: string
   eyebrowIcon?: IconName
   title: string
   lead?: string
@@ -47,12 +53,23 @@ export function PageHeader({
       <div className="fk-container relative py-10 sm:py-14">
         {breadcrumbs && <div className="mb-6">{breadcrumbs}</div>}
 
-        <p className={cn('fk-chip', style.soft)}>
-          {eyebrowIcon && <Icon name={eyebrowIcon} className="size-3.5" />}
-          {eyebrow}
-        </p>
+        {eyebrow && (
+          <p className={cn('fk-chip', style.soft)}>
+            {eyebrowIcon && <Icon name={eyebrowIcon} className="size-3.5" />}
+            {eyebrow}
+          </p>
+        )}
 
-        <h1 className="text-fg mt-4 max-w-3xl text-3xl font-bold sm:text-4xl lg:text-5xl">
+        {/*
+          Ohne Eyebrow entfällt auch dessen Abstand nach oben – sonst klaffte
+          über der Überschrift eine Lücke, wo nichts steht.
+        */}
+        <h1
+          className={cn(
+            'text-fg max-w-3xl text-3xl font-bold sm:text-4xl lg:text-5xl',
+            eyebrow && 'mt-4'
+          )}
+        >
           {title}
         </h1>
 
