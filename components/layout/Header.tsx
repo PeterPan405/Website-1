@@ -5,11 +5,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
 
+import { SearchDialog } from '@/components/layout/SearchDialog'
 import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import { Icon } from '@/components/ui/Icon'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/lib/cn'
 import { mainNav, type NavItem } from '@/lib/navigation'
+import type { SearchEntry } from '@/lib/search-match'
 import { areaStyles, siteConfig } from '@/lib/site'
 
 /**
@@ -23,10 +25,11 @@ import { areaStyles, siteConfig } from '@/lib/site'
  * echte Buttons mit `aria-expanded`, Escape schließt das offene Menü, und ein
  * Fokuswechsel nach außen schließt es ebenfalls.
  */
-export function Header() {
+export function Header({ searchIndex }: { searchIndex: SearchEntry[] }) {
   const pathname = usePathname()
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [lastPathname, setLastPathname] = useState(pathname)
@@ -38,6 +41,7 @@ export function Header() {
     setLastPathname(pathname)
     setOpenMenu(null)
     setMobileOpen(false)
+    setSearchOpen(false)
   }
 
   // Dezenter Schatten, sobald die Seite gescrollt ist.
@@ -62,6 +66,15 @@ export function Header() {
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
+      // Strg+K beziehungsweise Cmd+K oeffnet die Suche. Der Browser belegt die
+      // Kombination selbst (Fokus in die Adresszeile), deshalb preventDefault.
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
+        setOpenMenu(null)
+        setMobileOpen(false)
+        setSearchOpen(true)
+        return
+      }
       if (event.key !== 'Escape') return
       setOpenMenu(null)
       setMobileOpen(false)
@@ -123,6 +136,14 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="fk-btn-ghost size-10 rounded-full p-0"
+          >
+            <Icon name="search" className="size-5" />
+            <span className="sr-only">Suche öffnen</span>
+          </button>
           <ThemeToggle />
           <Link href="/lernen" className="fk-btn-primary hidden lg:inline-flex">
             Jetzt lernen
@@ -218,6 +239,12 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <SearchDialog
+        index={searchIndex}
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
     </header>
   )
 }

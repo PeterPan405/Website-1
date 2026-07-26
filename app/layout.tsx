@@ -9,6 +9,7 @@ import { SmoothScroll } from '@/components/layout/SmoothScroll'
 import { THEME_STORAGE_KEY } from '@/components/layout/ThemeToggle'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
+import { buildSearchIndex } from '@/lib/search'
 import { siteConfig, siteUrl } from '@/lib/site'
 
 const inter = Inter({
@@ -92,7 +93,15 @@ const themeScript = `(function(){try{var s=localStorage.getItem(${JSON.stringify
   THEME_STORAGE_KEY
 )});var dark=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=dark?'dark':'light'}catch(e){}})()`
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+/*
+  Async, weil der Suchindex aus der Datenschicht kommt. Er entsteht beim Bauen
+  und wird an die Kopfzeile durchgereicht: Die Website wird statisch
+  ausgeliefert, es gibt also keinen Server, der eine Suchanfrage beantworten
+  koennte.
+*/
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const searchIndex = await buildSearchIndex()
+
   return (
     <html
       lang="de"
@@ -116,7 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Direkt zum Inhalt springen
         </a>
 
-        <Header />
+        <Header searchIndex={searchIndex} />
 
         <main id="inhalt" className="flex-1">
           {children}
