@@ -76,7 +76,7 @@ export default function ContactPage() {
               */}
               <p className="mt-5">
                 <a href={`tel:${siteConfig.contactPhoneLink}`} className="fk-btn-primary">
-                  <Icon name="mail" className="size-4" />
+                  <Icon name="phone" className="size-4" />
                   Anrufen
                 </a>
               </p>
