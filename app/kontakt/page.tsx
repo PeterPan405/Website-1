@@ -21,8 +21,6 @@ export default function ContactPage() {
     <>
       <PageHeader
         area="learn"
-        eyebrow="Kontakt"
-        eyebrowIcon="mail"
         title="Schreib uns"
         lead="Fachliche Korrekturen, Themenwünsche, Hinweise auf Fehler – alles willkommen. Besonders bei Steuer- und Rechtsthemen, wo sich Regeln regelmäßig ändern."
         breadcrumbs={<Breadcrumbs items={[{ name: 'Kontakt' }]} />}

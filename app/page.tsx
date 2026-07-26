@@ -15,20 +15,25 @@ import { buildMetadata } from '@/lib/seo'
 import { areas, areaStyles, siteConfig, type AreaId } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: `${siteConfig.name} – Finanzen verstehen, statt raten`,
+  title: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
   description:
     'Finanzwissen in drei Lernstufen: 22 Themen von Aktie bis Zinseszins, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.',
   path: '/',
-  ogTitle: `${siteConfig.name} – Finanzen verstehen, statt raten`,
+  ogTitle: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
 })
 
-/** Kacheln für den Schnellzugriff auf die Hauptbereiche. */
+/**
+ * Kacheln für den Schnellzugriff auf die Hauptbereiche.
+ *
+ * Ohne Staatsverschuldung: Der Bereich bleibt über die Kopf- und Fußzeile
+ * erreichbar, ist auf der Startseite aber kein gleichrangiger Einstieg neben
+ * Lernen, Rechnern, Märkten und News.
+ */
 const areaTiles: { area: AreaId; icon: IconName }[] = [
   { area: 'learn', icon: 'book' },
   { area: 'tools', icon: 'calculator' },
   { area: 'markets', icon: 'chart' },
   { area: 'news', icon: 'newspaper' },
-  { area: 'debt', icon: 'scale' },
 ]
 
 const calculatorTiles = [
@@ -84,10 +89,16 @@ export default async function HomePage() {
               Finanzbildung in drei Stufen
             </p>
 
+            {/*
+              Zwei Zeilen, erzwungen über `block` statt über einen Umbruch nach
+              Platz. Der Gleichklang lebt davon, dass „Finanzen“ und „Fehler“
+              untereinander stehen und die Anfangsbuchstaben eine Achse bilden –
+              bei automatischem Umbruch wäre das von der Fensterbreite abhängig.
+            */}
             <h1 className="text-fg mt-5 text-4xl font-bold sm:text-5xl lg:text-6xl">
-              Finanzen verstehen,{' '}
-              <span className="from-brand to-accent bg-gradient-to-r bg-clip-text text-transparent">
-                statt raten
+              <span className="block">Finanzen verstehen,</span>
+              <span className="from-brand to-accent block bg-gradient-to-r bg-clip-text text-transparent">
+                Fehler vermeiden
               </span>
             </h1>
 
@@ -145,7 +156,7 @@ export default async function HomePage() {
         <SectionHeading
           id="bereiche"
           eyebrow="Überblick"
-          title="Fünf Bereiche, ein Ziel"
+          title="Vier Bereiche, ein Ziel"
           lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
         />
 

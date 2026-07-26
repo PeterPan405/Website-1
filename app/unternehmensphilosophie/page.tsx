@@ -35,8 +35,6 @@ export default function PhilosophyPage() {
     <>
       <PageHeader
         area="learn"
-        eyebrow="Unternehmen"
-        eyebrowIcon="compass"
         title="Unternehmensphilosophie"
         lead={`Wofür ${siteConfig.name} steht – und wofür ausdrücklich nicht.`}
         breadcrumbs={<Breadcrumbs items={[{ name: 'Unternehmensphilosophie' }]} />}

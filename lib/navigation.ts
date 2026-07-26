@@ -131,11 +131,11 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Kontakt', href: '/kontakt' },
     ],
   },
-  {
-    title: 'Rechtliches',
-    links: [
-      { label: 'Impressum', href: '/impressum' },
-      { label: 'Datenschutz', href: '/datenschutz' },
-    ],
-  },
+  /*
+    Ohne eine Spalte „Rechtliches“: Impressum und Datenschutz stehen bereits in
+    der Zeile unter der Fußzeile, direkt neben dem Urheberrechtsvermerk. Dort
+    sucht man sie, und dort ist auch die vorgeschriebene leichte Erreichbarkeit
+    gegeben. Beide Verweise ein zweites Mal darüber zu wiederholen, hätte die
+    Fußzeile nur verlängert.
+  */
 ]
