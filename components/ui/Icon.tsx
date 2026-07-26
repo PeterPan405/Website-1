@@ -38,6 +38,8 @@ export type IconName =
   | 'mail'
   | 'clock'
   | 'layers'
+  | 'youtube'
+  | 'instagram'
 
 const paths: Record<IconName, ReactNode> = {
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
@@ -145,6 +147,31 @@ const paths: Record<IconName, ReactNode> = {
     </>
   ),
   layers: <path d="m12 3 9 5-9 5-9-5 9-5Zm9 9-9 5-9-5m18 4-9 5-9-5" />,
+  /*
+    Die beiden folgenden Zeichen sind nicht die offiziellen Markenlogos, sondern
+    Umrisse im Stil der übrigen Icons. Das ist Absicht: Sie fügen sich in die
+    Fußzeile ein und übernehmen deren Farbe. Die echten Logos unterliegen
+    Gestaltungsvorgaben der Plattformen und dürften nicht eingefärbt werden.
+  */
+  youtube: (
+    <>
+      <path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.5 49.5 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.5 49.5 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+      <path d="m10 15 5-3-5-3Z" />
+    </>
+  ),
+  instagram: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="3.75" />
+      {/*
+        Der Punkt oben rechts entsteht aus einem Pfad ohne Länge: Mit
+        strokeLinecap="round" zeichnet er einen Kreis in Strichstärke. Ein
+        <circle> wäre hier ein Ring, weil das SVG grundsätzlich ohne Füllung
+        arbeitet.
+      */}
+      <path d="M16.9 7.1h.01" />
+    </>
+  ),
 }
 
 export interface IconProps {

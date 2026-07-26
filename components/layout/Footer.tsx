@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { Icon } from '@/components/ui/Icon'
 import { Logo } from '@/components/ui/Logo'
 import { footerNav } from '@/lib/navigation'
 import { siteConfig } from '@/lib/site'
@@ -16,6 +17,35 @@ export function Footer() {
             <p className="text-fg-muted mt-4 max-w-sm text-sm leading-relaxed">
               {siteConfig.description}
             </p>
+
+            {/*
+              Die Profile öffnen fremde Seiten, deshalb in einem neuen Tab. Dazu
+              gehört `rel="noreferrer"`: Ohne das erfährt die Zielseite über den
+              Referrer, von welcher Unterseite aus jemand geklickt hat.
+
+              Das Icon allein ist keine Beschriftung – der Name steht deshalb als
+              `sr-only` daneben und wird von Screenreadern vorgelesen.
+            */}
+            <nav aria-labelledby="footer-social" className="mt-6">
+              <h2 id="footer-social" className="sr-only">
+                IM Invests auf anderen Plattformen
+              </h2>
+              <ul className="flex items-center gap-3">
+                {siteConfig.socialLinks.map((profil) => (
+                  <li key={profil.href}>
+                    <a
+                      href={profil.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="border-border text-fg-muted hover:border-brand hover:text-brand inline-flex size-10 items-center justify-center rounded-full border transition"
+                    >
+                      <Icon name={profil.icon} className="size-5" />
+                      <span className="sr-only">{profil.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
 
           {footerNav.map((group) => (

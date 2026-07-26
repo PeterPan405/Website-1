@@ -35,6 +35,13 @@ export function organizationSchema(): JsonLdObject {
       telephone: siteConfig.contactPhoneLink,
       availableLanguage: ['de'],
     },
+    /*
+      Verknüpft die Website mit den Profilen derselben Marke. Suchmaschinen
+      erkennen daran, dass YouTube-Kanal, Instagram-Konto und diese Domain zum
+      selben Anbieter gehören – ohne diese Angabe bleiben es drei unverbundene
+      Auftritte.
+    */
+    sameAs: siteConfig.socialLinks.map((profil) => profil.href),
   }
 }
 
