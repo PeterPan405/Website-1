@@ -1,0 +1,66 @@
+name: Website prüfen
+
+# Ruft die veröffentlichte Website von außen ab und schreibt das Ergebnis ins Log.
+#
+# Warum über GitHub: Aus der Entwicklungsumgebung ist die Seite nicht erreichbar,
+# und der Hoster weist Abrufe von dort mit 403 ab. Der GitHub-Runner kommt über
+# HTTPS problemlos hin – gesperrt war nur der FTP-Port 21.
+#
+# Der Workflow verändert nichts und braucht keine Zugangsdaten.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pruefen:
+    name: Seite abrufen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Startseite und Stylesheet prüfen
+        run: |
+          URL="${{ vars.NEXT_PUBLIC_SITE_URL }}"
+          if [ -z "$URL" ]; then URL="https://iminvests.de"; fi
+          echo "Geprüfte Adresse: $URL"
+
+          # Mit Browser-Kennung, weil viele Hoster unbekannte Abrufer abweisen.
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+
+          echo ""
+          echo "=== Startseite ==="
+          curl -sS -A "$UA" -o seite.html -D kopf.txt -w \
+            'Status: %{http_code}\nTyp:    %{content_type}\nGröße:  %{size_download} Bytes\n' \
+            "$URL/" || echo "(Abruf fehlgeschlagen)"
+
+          echo ""
+          echo "=== Antwort-Kopfzeilen ==="
+          grep -iE '^(HTTP/|server|content-type|x-|location)' kopf.txt || true
+
+          echo ""
+          echo "=== Was steht in der Seite? ==="
+          if [ -f seite.html ]; then
+            echo "Titel:  $(grep -o '<title>[^<]*' seite.html | head -1 | sed 's/<title>//')"
+            echo "Marke:  $(grep -c 'IM Invests' seite.html) Treffer 'IM Invests'"
+            echo "Alt:    $(grep -c 'Finanzkompass' seite.html) Treffer 'Finanzkompass'"
+            echo "Erste 300 Zeichen:"
+            head -c 300 seite.html
+            echo ""
+          fi
+
+          echo ""
+          echo "=== Stylesheet ==="
+          CSS=$(grep -o '/_next/static/[^"]*\.css' seite.html 2>/dev/null | head -1)
+          if [ -z "$CSS" ]; then
+            echo "In der Seite ist kein Stylesheet verlinkt – dann ist das HTML selbst veraltet."
+          else
+            echo "Verlinkt: $CSS"
+            curl -sS -A "$UA" -o /dev/null -w \
+              'Status: %{http_code}\nTyp:    %{content_type}\nGröße:  %{size_download} Bytes\n' \
+              "$URL$CSS" || echo "(Abruf fehlgeschlagen)"
+          fi
+
+          echo ""
+          echo "=== Weitere Seiten ==="
+          for p in /news/ /news/tag/ /news/tag/2026-07-25/ /lernen/aktie/beginner/ /sitemap.xml; do
+            printf '%-32s ' "$p"
+            curl -sS -A "$UA" -o /dev/null -w '%{http_code}\n' "$URL$p" || echo "Fehler"
+          done
