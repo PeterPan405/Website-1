@@ -34,7 +34,7 @@ export const siteConfig = {
   shortName: 'IM Invests',
   locale: 'de-DE',
   language: 'de',
-  slogan: 'Finanzen verstehen, statt raten.',
+  slogan: 'Finanzen verstehen, Fehler vermeiden.',
   description:
     'IM Invests erklärt Geldanlage, Börse und Vorsorge in drei Lernstufen – mit Rechnern, Marktdaten und verständlichen Grundlagen.',
   contactEmail: 'info@iminvests.de',
