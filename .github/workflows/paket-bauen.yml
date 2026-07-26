@@ -80,6 +80,13 @@ jobs:
           test -f out/404.html || { echo "out/404.html fehlt"; exit 1; }
           test -f out/sitemap.xml || { echo "out/sitemap.xml fehlt"; exit 1; }
           test -f out/robots.txt || { echo "out/robots.txt fehlt"; exit 1; }
+          test -f out/version.txt || { echo "out/version.txt fehlt"; exit 1; }
+
+          # Versteckte Datei, deshalb ausdrücklich geprüft: Sie ist schon einmal
+          # unbemerkt aus dem Artefakt gefallen, weil upload-artifact versteckte
+          # Dateien standardmäßig überspringt. Ohne sie liefert der Server bei
+          # unbekannten Adressen seine eigene Fehlerseite statt der gestalteten.
+          test -f out/.htaccess || { echo "out/.htaccess fehlt"; exit 1; }
 
           css=$(find out/_next -name '*.css' | wc -l)
           if [ "$css" -lt 1 ]; then
