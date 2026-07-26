@@ -136,12 +136,15 @@ Die Lupe in der Kopfzeile öffnet eine Suche über alle Inhalte – Bereichsseit
 Tagesausgaben und die festen Seiten. Tastenkürzel: `Strg`/`Cmd` + `K`.
 
 Sie läuft vollständig im Browser, weil die Website statisch ausgeliefert wird
-und es keinen Server gibt, der eine Anfrage beantworten könnte. Aufgeteilt in
-drei Teile:
+und es keinen Server gibt, der eine Anfrage beantworten könnte. Der Index wird
+erst geladen, wenn jemand die Lupe anklickt – vorher steckte er in den Daten
+jeder Seite und kostete dort rund 32 KB pro Aufruf. Aufgeteilt in
+vier Teile:
 
 | Datei                                | Aufgabe                                                       |
 | ------------------------------------ | ------------------------------------------------------------- |
 | `lib/search.ts`                      | baut den Index beim Bauen aus der Service-Schicht             |
+| `app/suchindex.json/route.ts`        | legt ihn als eigene Datei unter `/suchindex.json` ab          |
 | `lib/search-match.ts`                | die Suchregeln, ohne Importe und daher unter `tests/` prüfbar |
 | `components/layout/SearchDialog.tsx` | die Oberfläche                                                |
 
