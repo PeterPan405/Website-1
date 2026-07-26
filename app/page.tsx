@@ -222,7 +222,7 @@ export default async function HomePage() {
           </ul>
 
           {asOf && (
-            <p className="border-warning/30 bg-warning-soft text-fg-muted mt-6 rounded-xl border px-4 py-3 text-sm">
+            <p className="border-brand/25 bg-brand-soft text-fg-muted mt-6 rounded-xl border px-4 py-3 text-sm">
               <strong className="text-fg font-semibold">Hinweis:</strong> Diese Version
               zeigt <strong className="text-fg font-semibold">Demo-Kurse</strong>, keine
               echten Marktdaten. Datenstand des Beispieldatensatzes:{' '}

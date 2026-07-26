@@ -260,7 +260,7 @@ export function RetirementGapCalculator() {
           </p>
         </Callout>
 
-        <Callout variant="warning" title="Was die Rechnung nicht abbildet">
+        <Callout variant="info" title="Was die Rechnung nicht abbildet">
           <p>
             Nicht enthalten sind Steuern in der Entnahmephase, Produktkosten und das
             Sequenzrisiko: Schwache Renditejahre unmittelbar nach Rentenbeginn wirken

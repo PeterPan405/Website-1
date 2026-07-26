@@ -121,7 +121,7 @@ export default function ContactPage() {
             </section>
 
             <div className="mt-8">
-              <Callout variant="warning" title="Keine Einzelfallberatung">
+              <Callout variant="info" title="Keine Einzelfallberatung">
                 <p>
                   Wir können und dürfen keine Anlage-, Steuer- oder Rechtsberatung im
                   Einzelfall geben – dafür braucht es eine Zulassung und die Kenntnis

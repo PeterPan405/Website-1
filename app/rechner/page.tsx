@@ -89,7 +89,7 @@ export default function CalculatorsOverviewPage() {
         </ul>
 
         <div className="mt-10 max-w-3xl">
-          <Callout variant="warning" title="Modellrechnungen, keine Prognosen">
+          <Callout variant="info" title="Modellrechnungen, keine Prognosen">
             <p>
               Alle Rechner arbeiten mit Annahmen, die du selbst vorgibst – vor allem
               Rendite und Inflationsrate. Das Ergebnis ist genau so verlässlich wie diese

@@ -110,7 +110,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
             {isOutline && (
               <div className="mt-8">
-                <Callout variant="warning" title="Fließtext folgt noch">
+                <Callout variant="info" title="Fließtext folgt noch">
                   <p>
                     Die drei Stufen dieses Themas liegen bislang als{' '}
                     <strong className="text-fg font-semibold">Gliederung</strong> vor: Die

@@ -113,7 +113,7 @@ export default function AboutPage() {
           </p>
 
           <div className="mt-8">
-            <Callout variant="warning" title="Keine Anlageberatung">
+            <Callout variant="info" title="Keine Anlageberatung">
               <p>
                 Die Inhalte dieser Website dienen der allgemeinen Information und Bildung.
                 Sie sind keine Anlage-, Rechts- oder Steuerberatung und berücksichtigen
