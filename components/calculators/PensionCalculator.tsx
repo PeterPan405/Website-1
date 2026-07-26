@@ -265,7 +265,7 @@ export function PensionCalculator() {
           </Callout>
         )}
 
-        <Callout variant="warning" title="Was diese Zahl nicht ist">
+        <Callout variant="info" title="Was diese Zahl nicht ist">
           <p>
             Eine Größenordnung, keine Zusage. Nicht berücksichtigt sind unter anderem
             Einkommensveränderungen, Kindererziehungs- und Pflegezeiten,

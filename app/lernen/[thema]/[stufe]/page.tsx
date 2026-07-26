@@ -114,7 +114,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
           {/* ------------------------------------------------------ Inhalt */}
           <article className="min-w-0">
             {isOutline && (
-              <Callout variant="warning" title="Diese Stufe ist noch eine Gliederung">
+              <Callout variant="info" title="Diese Stufe ist noch eine Gliederung">
                 <p>
                   Der ausformulierte Text zu dieser Stufe wird noch ergänzt. Die Punkte
                   unten zeigen, was er behandeln wird – inhaltlich bereits auf diese Stufe
