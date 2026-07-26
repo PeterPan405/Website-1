@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
@@ -14,15 +13,6 @@ export const metadata: Metadata = buildMetadata({
   // Rechtliche Pflichtseiten brauchen keine Social-Vorschau.
   ogTitle: 'Impressum',
 })
-
-/**
- * Platzhalter-Impressum.
- *
- * Die Struktur folgt den üblichen Pflichtangaben für deutsche Websites. Alle
- * konkreten Angaben sind bewusst als Platzhalter markiert – sie müssen vor der
- * Veröffentlichung durch echte Daten ersetzt und geprüft werden.
- */
-const PLACEHOLDER = '[BITTE ERSETZEN]'
 
 /**
  * Anbieterdaten für die Kennzeichnung nach § 5 DDG.
@@ -53,40 +43,25 @@ export default function ImprintPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <Callout variant="warning" title="Noch unvollständig">
-            <p>
-              Anbieter, Anschrift und Kontaktdaten sind{' '}
-              <strong className="text-fg font-semibold">echt</strong>. Alle übrigen mit{' '}
-              <code className="font-mono text-xs">{PLACEHOLDER}</code> gekennzeichneten
-              Felder fehlen noch und müssen ergänzt werden, soweit sie einschlägig sind.
-            </p>
-            <p>
-              Ein fehlendes oder unvollständiges Impressum ist abmahnfähig. Bei
-              Finanzinhalten kommen je nach Ausgestaltung zusätzliche Anforderungen in
-              Betracht – etwa aus dem Wertpapierhandelsrecht, wenn Inhalte als
-              Anlageempfehlung gelten könnten. Eine anwaltliche Prüfung vor dem Live-Gang
-              ist dringend zu empfehlen.
-            </p>
-          </Callout>
-
-          <section aria-labelledby="anbieter" className="mt-12">
+          <section aria-labelledby="anbieter">
             <h2 id="anbieter" className="text-fg text-2xl font-bold">
               Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)
             </h2>
             <dl className="mt-5 space-y-4">
               {[
+                /*
+                  Nur ausgefüllte Felder. Rechtsform und Vertretung fehlen
+                  bewusst: Beide betreffen Gesellschaften. Für eine natürliche
+                  Person verlangt § 5 DDG Name, Anschrift und schnelle
+                  elektronische Kontaktmöglichkeit – und die stehen hier.
+
+                  Eine leere Zeile mit Platzhalter wäre schlechter als keine
+                  Zeile: Sie sieht aus wie eine vergessene Pflichtangabe.
+                */
                 { label: 'Anbieter', value: provider.name },
-                {
-                  label: 'Rechtsform',
-                  value: `${PLACEHOLDER} (z. B. Einzelunternehmen, GmbH, UG)`,
-                },
                 { label: 'Straße und Hausnummer', value: provider.street },
                 { label: 'Postleitzahl und Ort', value: provider.city },
                 { label: 'Land', value: 'Deutschland' },
-                {
-                  label: 'Vertreten durch',
-                  value: `${PLACEHOLDER} (bei Gesellschaften: vertretungsberechtigte Person)`,
-                },
               ].map((row) => (
                 <div
                   key={row.label}
@@ -105,10 +80,8 @@ export default function ImprintPage() {
             </h2>
             <dl className="mt-5 space-y-4">
               {[
-                // Diese beiden Angaben sind echt und stammen aus siteConfig –
-                // dieselbe Quelle wie die Kontaktseite und die strukturierten
-                // Daten. Die übrigen Felder oben und unten sind weiterhin
-                // Platzhalter.
+                // Aus siteConfig – dieselbe Quelle wie die Kontaktseite und die
+                // strukturierten Daten. Eine Änderung dort wirkt hier mit.
                 { label: 'Telefon', value: siteConfig.contactPhone },
                 { label: 'E-Mail', value: siteConfig.contactEmail },
               ].map((row) => (
@@ -123,59 +96,47 @@ export default function ImprintPage() {
             </dl>
           </section>
 
-          <section aria-labelledby="register" className="mt-12">
-            <h2 id="register" className="text-fg text-2xl font-bold">
-              Register und Steuern
-            </h2>
-            <p className="text-fg-muted mt-3 text-sm leading-relaxed">
-              Nur anzugeben, soweit vorhanden beziehungsweise einschlägig.
-            </p>
-            <dl className="mt-5 space-y-4">
-              {[
-                { label: 'Registergericht', value: PLACEHOLDER },
-                { label: 'Registernummer', value: PLACEHOLDER },
-                {
-                  label: 'Umsatzsteuer-Identifikationsnummer',
-                  value: `${PLACEHOLDER} (gemäß § 27 a UStG)`,
-                },
-                {
-                  label: 'Aufsichtsbehörde',
-                  value: `${PLACEHOLDER} (nur bei erlaubnispflichtiger Tätigkeit)`,
-                },
-              ].map((row) => (
-                <div
-                  key={row.label}
-                  className="border-border grid gap-1 border-b pb-4 sm:grid-cols-[14rem_minmax(0,1fr)]"
-                >
-                  <dt className="text-fg text-sm font-semibold">{row.label}</dt>
-                  <dd className="text-fg-muted text-sm">{row.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+          {/*
+            Der Abschnitt „Register und Steuern“ ist entfallen. Registergericht
+            und Registernummer betreffen eingetragene Gesellschaften, eine
+            Aufsichtsbehörde nur erlaubnispflichtige Tätigkeiten. Die
+            Umsatzsteuer-Identifikationsnummer ist nur anzugeben, wenn eine
+            vorhanden ist. Der Abschnitt kommt zurück, sobald eine dieser
+            Angaben tatsächlich zutrifft.
+          */}
 
           <section aria-labelledby="verantwortlich" className="mt-12">
             <h2 id="verantwortlich" className="text-fg text-2xl font-bold">
               Redaktionell verantwortlich
             </h2>
+            {/*
+              Die Anschrift steht hier ein zweites Mal, obwohl sie mit der des
+              Anbieters übereinstimmt. § 18 Abs. 2 Medienstaatsvertrag verlangt
+              die vollständige Angabe an dieser Stelle – ein Verweis nach oben
+              genügt nicht.
+            */}
             <p className="text-fg-muted mt-4 leading-relaxed">
               Verantwortlich für journalistisch-redaktionelle Inhalte im Sinne von § 18
-              Abs. 2 Medienstaatsvertrag: {PLACEHOLDER} (Name und vollständige Anschrift,
-              auch wenn sie mit den Anbieterangaben übereinstimmt).
+              Abs. 2 Medienstaatsvertrag:
             </p>
+            <address className="text-fg-muted mt-3 leading-relaxed not-italic">
+              {provider.name}
+              <br />
+              {provider.street}
+              <br />
+              {provider.city}
+            </address>
           </section>
 
-          <section aria-labelledby="streitschlichtung" className="mt-12">
-            <h2 id="streitschlichtung" className="text-fg text-2xl font-bold">
-              Streitschlichtung
-            </h2>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              {PLACEHOLDER} – hier ist anzugeben, ob eine Teilnahme an einem
-              Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle besteht.
-              Falls nicht: eine entsprechende Erklärung, dass keine Teilnahmebereitschaft
-              besteht.
-            </p>
-          </section>
+          {/*
+            Der Abschnitt „Streitschlichtung“ ist entfallen. Hier gehört eine
+            Erklärung hin, ob eine Teilnahme an einem Streitbeilegungsverfahren
+            vor einer Verbraucherschlichtungsstelle besteht. Das ist eine
+            rechtliche Aussage über die Bereitschaft des Anbieters – die kann
+            nur dieser selbst treffen, sie lässt sich nicht sinnvoll vorformulieren.
+            Nach § 36 VSBG trifft die Hinweispflicht ohnehin erst Unternehmen mit
+            mehr als zehn Beschäftigten.
+          */}
 
           <section aria-labelledby="haftung" className="mt-12">
             <h2 id="haftung" className="text-fg text-2xl font-bold">
