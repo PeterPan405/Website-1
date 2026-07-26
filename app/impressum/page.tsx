@@ -24,6 +24,21 @@ export const metadata: Metadata = buildMetadata({
  */
 const PLACEHOLDER = '[BITTE ERSETZEN]'
 
+/**
+ * Anbieterdaten für die Kennzeichnung nach § 5 DDG.
+ *
+ * Bewusst hier und nicht in `siteConfig`: Es ist eine Privatanschrift. Sie muss
+ * im Impressum öffentlich stehen, hat aber in den strukturierten Daten nichts zu
+ * suchen – dort würde sie zusätzlich maschinenlesbar an Suchmaschinen und
+ * Adresshändler gehen. Steht sie nur an dieser Stelle, kann sie auch nicht
+ * versehentlich anderswo eingebunden werden.
+ */
+const provider = {
+  name: 'Igor Maier',
+  street: 'Neuffenstraße 38',
+  city: '71696 Möglingen',
+} as const
+
 export default function ImprintPage() {
   return (
     <>
@@ -38,16 +53,12 @@ export default function ImprintPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <Callout
-            variant="warning"
-            title="Platzhaltertext – vor Veröffentlichung ersetzen"
-          >
+          <Callout variant="warning" title="Noch unvollständig">
             <p>
-              Diese Seite enthält{' '}
-              <strong className="text-fg font-semibold">keine echten Angaben</strong>.
-              Alle mit <code className="font-mono text-xs">{PLACEHOLDER}</code>{' '}
-              gekennzeichneten Felder müssen durch die tatsächlichen Daten des Anbieters
-              ersetzt werden.
+              Anbieter, Anschrift und Kontaktdaten sind{' '}
+              <strong className="text-fg font-semibold">echt</strong>. Alle übrigen mit{' '}
+              <code className="font-mono text-xs">{PLACEHOLDER}</code> gekennzeichneten
+              Felder fehlen noch und müssen ergänzt werden, soweit sie einschlägig sind.
             </p>
             <p>
               Ein fehlendes oder unvollständiges Impressum ist abmahnfähig. Bei
@@ -64,13 +75,13 @@ export default function ImprintPage() {
             </h2>
             <dl className="mt-5 space-y-4">
               {[
-                { label: 'Anbieter', value: `${PLACEHOLDER} (Name oder Firma)` },
+                { label: 'Anbieter', value: provider.name },
                 {
                   label: 'Rechtsform',
                   value: `${PLACEHOLDER} (z. B. Einzelunternehmen, GmbH, UG)`,
                 },
-                { label: 'Straße und Hausnummer', value: PLACEHOLDER },
-                { label: 'Postleitzahl und Ort', value: PLACEHOLDER },
+                { label: 'Straße und Hausnummer', value: provider.street },
+                { label: 'Postleitzahl und Ort', value: provider.city },
                 { label: 'Land', value: 'Deutschland' },
                 {
                   label: 'Vertreten durch',
