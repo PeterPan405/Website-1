@@ -59,9 +59,34 @@ export default function ContactPage() {
                   {siteConfig.contactEmail}
                 </a>
               </p>
-              <p className="text-fg-subtle mt-4 text-xs">
-                Platzhalter-Adresse – vor der Veröffentlichung durch eine echte,
-                erreichbare Adresse ersetzen.
+            </section>
+
+            <section aria-labelledby="per-telefon" className="fk-card mt-8 p-6 sm:p-8">
+              <h2 id="per-telefon" className="text-fg text-xl font-semibold">
+                Per Telefon
+              </h2>
+              <p className="text-fg-muted mt-3 leading-relaxed">
+                Für kurze Rückfragen. Fachliche Korrekturen kommen schriftlich besser an –
+                dort lässt sich die betroffene Textstelle mitschicken.
+              </p>
+              {/*
+                Wie bei der E-Mail-Adresse: kurzer Button, Nummer separat. Der
+                tel:-Verweis nutzt die Fassung ohne Leerzeichen, angezeigt wird
+                die lesbare – Telefonprogramme scheitern sonst an der Trennung.
+              */}
+              <p className="mt-5">
+                <a href={`tel:${siteConfig.contactPhoneLink}`} className="fk-btn-primary">
+                  <Icon name="mail" className="size-4" />
+                  Anrufen
+                </a>
+              </p>
+              <p className="text-fg-muted mt-3 text-sm">
+                <a
+                  href={`tel:${siteConfig.contactPhoneLink}`}
+                  className="hover:text-brand font-medium underline transition"
+                >
+                  {siteConfig.contactPhone}
+                </a>
               </p>
             </section>
 

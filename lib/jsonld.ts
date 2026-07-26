@@ -30,6 +30,9 @@ export function organizationSchema(): JsonLdObject {
       '@type': 'ContactPoint',
       contactType: 'Redaktion',
       email: siteConfig.contactEmail,
+      // E.164 ohne Leerzeichen: schema.org erwartet die maschinenlesbare
+      // Fassung, nicht die für Menschen gesetzte Schreibweise.
+      telephone: siteConfig.contactPhoneLink,
       availableLanguage: ['de'],
     },
   }

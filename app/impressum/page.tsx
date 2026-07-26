@@ -4,6 +4,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Impressum und Anbieterkennzeichnung'),
@@ -93,11 +94,12 @@ export default function ImprintPage() {
             </h2>
             <dl className="mt-5 space-y-4">
               {[
-                { label: 'Telefon', value: `${PLACEHOLDER} (optional, aber empfohlen)` },
-                {
-                  label: 'E-Mail',
-                  value: `${PLACEHOLDER} (erreichbare Adresse, Pflichtangabe)`,
-                },
+                // Diese beiden Angaben sind echt und stammen aus siteConfig –
+                // dieselbe Quelle wie die Kontaktseite und die strukturierten
+                // Daten. Die übrigen Felder oben und unten sind weiterhin
+                // Platzhalter.
+                { label: 'Telefon', value: siteConfig.contactPhone },
+                { label: 'E-Mail', value: siteConfig.contactEmail },
               ].map((row) => (
                 <div
                   key={row.label}
