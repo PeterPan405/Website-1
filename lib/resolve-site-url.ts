@@ -12,13 +12,32 @@
  */
 
 /**
- * Fallback für lokale Entwicklung und Vorschauen.
+ * Basis-URL, wenn keine Umgebungsvariable gesetzt ist.
  *
- * Bewusst die reservierte `.example`-TLD: So kann selbst bei einem Fehler
- * niemals versehentlich eine fremde, echte Domain als canonical-URL im HTML
- * landen.
+ * Das ist die echte Domain der Website und nicht mehr ein Platzhalter mit
+ * reservierter `.example`-TLD. Die Umstellung hat einen konkreten Grund:
+ *
+ * Der Platzhalter sollte verhindern, dass versehentlich eine *fremde* Domain
+ * als canonical-URL ausgeliefert wird. Für die eigene Domain leistet er das
+ * nicht – er sorgte im Gegenteil dafür, dass die Website live mit Adressen
+ * unter `im-invests.example` ausgeliefert wurde, sobald die Variable in der
+ * Build-Umgebung fehlte. Das ist zweimal an einem Tag passiert: einmal, weil
+ * sie nie gesetzt war, und einmal, weil sie beim Neuanlegen der Website beim
+ * Hoster verlorenging.
+ *
+ * Der Fehler ist besonders tückisch, weil er im Browser unsichtbar ist. Die
+ * Seite sieht fehlerfrei aus, während jedes canonical-Tag, die Sitemap,
+ * robots.txt und alle Open-Graph-Angaben auf eine Domain zeigen, die es nicht
+ * gibt.
+ *
+ * Ein Projekt mit genau einer Domain gewinnt durch diese Indirektion nichts.
+ * Steht der richtige Wert hier, ist er immer richtig – auch in einer
+ * Build-Umgebung, die niemand konfiguriert hat.
+ *
+ * `NEXT_PUBLIC_SITE_URL` überschreibt ihn weiterhin, etwa für eine
+ * Vorschau-Umgebung unter anderer Adresse.
  */
-export const FALLBACK_SITE_URL = 'https://www.im-invests.example'
+export const FALLBACK_SITE_URL = 'https://iminvests.de'
 
 export function resolveSiteUrl(raw: string | undefined): string {
   const candidate = raw?.trim()

@@ -100,11 +100,17 @@ jobs:
             exit 1
           fi
 
-          # Die Domain muss im Ergebnis stehen, nicht der Platzhalter. Sonst
-          # zeigt jede Seite auf eine Adresse, die es nicht gibt.
-          if grep -q "im-invests.example" out/sitemap.xml; then
-            echo "Die Sitemap enthält noch die Platzhalter-Domain."
-            echo "Repository-Variable NEXT_PUBLIC_SITE_URL setzen."
+          # Eine echte Domain muss im Ergebnis stehen, kein Platzhalter. Sonst
+          # zeigt jede Seite auf eine Adresse, die es nicht gibt – im Browser
+          # unsichtbar, für Suchmaschinen fatal.
+          #
+          # Seit die Basis-URL in lib/resolve-site-url.ts auf die echte Domain
+          # zeigt, kann das eigentlich nicht mehr passieren. Die Prüfung bleibt
+          # trotzdem: Sie hat den Fehler zweimal gefunden, und die reservierte
+          # .example-TLD gehört unter keinen Umständen in eine Sitemap.
+          if grep -q "\.example/" out/sitemap.xml; then
+            echo "Die Sitemap enthält eine Platzhalter-Domain (.example)."
+            echo "NEXT_PUBLIC_SITE_URL prüfen oder lib/resolve-site-url.ts."
             exit 1
           fi
 
