@@ -10,7 +10,24 @@
  * werden – die Signaturen dort sind bereits asynchron.
  */
 
-export type MarketKind = 'fx' | 'index'
+export type MarketKind = 'fx' | 'index' | 'commodity'
+
+/**
+ * Bezeichnungen je Gattung.
+ *
+ * Ein Mapping statt verstreuter Abfragen: Bei zwei Gattungen genügte ein
+ * Fragezeichen-Operator, bei drei wird daraus an jeder Stelle eine
+ * verschachtelte Bedingung. Kommt eine vierte hinzu, meldet TypeScript hier
+ * die Lücke – statt sie stillschweigend als „Index“ auszugeben.
+ */
+export const marketKindMeta: Record<
+  MarketKind,
+  { short: string; long: string; plural: string }
+> = {
+  fx: { short: 'Wechselkurs', long: 'Währungspaar', plural: 'Wechselkurse' },
+  index: { short: 'Index', long: 'Aktienindex', plural: 'Indizes' },
+  commodity: { short: 'Rohstoff', long: 'Rohstoff', plural: 'Rohstoffe' },
+}
 
 /** Auswählbare Zeiträume auf den Detailseiten. */
 export type MarketRange = '1T' | '1W' | '1M' | '1J' | '5J'
@@ -278,7 +295,49 @@ export const marketDefinitions: MarketDefinition[] = [
     relatedTopics: ['aktien-laender-branchen', 'groesste-crashes', 'etf'],
     seed: { startValue: 14980, annualDrift: 0.121, annualVolatility: 0.235, seed: 10110 },
   },
+  {
+    symbol: 'gold',
+    ticker: 'Gold',
+    name: 'Gold (Feinunze)',
+    kind: 'commodity',
+    unit: 'USD',
+    decimals: 2,
+    summary:
+      'Der Preis einer Feinunze Gold in US-Dollar – seit Jahrtausenden Wertaufbewahrung, ohne laufenden Ertrag.',
+    metaDescription:
+      'Der Goldpreis je Feinunze in US-Dollar. Mit Chart von 1 Tag bis 5 Jahren und Erklärung, warum Gold keine Zinsen zahlt und trotzdem gefragt ist.',
+    description: [
+      'Gold wird international je **Feinunze** gehandelt – 31,1035 Gramm – und fast immer in US-Dollar notiert. Für den Preis in Euro sind deshalb zwei Bewegungen maßgeblich: die des Goldpreises selbst und die des Wechselkurses EUR/USD. Steigt der Dollar, steigt der Goldpreis in Euro auch dann, wenn sich in Dollar gerechnet nichts getan hat.',
+      'Der entscheidende Unterschied zu Aktien und Anleihen: Gold zahlt weder Zinsen noch Dividenden. Der gesamte Ertrag muss aus dem Preis kommen. Daraus folgt eine bemerkenswerte Regelmäßigkeit – je höher die realen Zinsen, also der Zins abzüglich Inflation, desto teurer wird das Halten von Gold, weil man auf sicheren Zinsertrag verzichtet. Fallen die realen Zinsen, entfällt dieser Nachteil und Gold wird attraktiver.',
+      'Die Nachfrage teilt sich grob in Schmuck, Notenbankkäufe, industrielle Verwendung und Anlage. Der Angebotsseite steht eine Besonderheit gegenüber: Praktisch alles jemals geförderte Gold existiert noch. Die jährliche Minenförderung erhöht den vorhandenen Bestand nur um ein bis zwei Prozent, weshalb der Preis fast ausschließlich von der Nachfrage bestimmt wird – anders als bei Rohstoffen, die verbraucht werden.',
+    ],
+    relatedTopics: [
+      'rohstoffe',
+      'wie-funktioniert-der-markt',
+      'worauf-achten-einsteiger',
+    ],
+    seed: { startValue: 2210, annualDrift: 0.086, annualVolatility: 0.145, seed: 11211 },
+  },
+  {
+    symbol: 'silber',
+    ticker: 'Silber',
+    name: 'Silber (Feinunze)',
+    kind: 'commodity',
+    unit: 'USD',
+    decimals: 2,
+    summary:
+      'Der Preis einer Feinunze Silber in US-Dollar – halb Edelmetall, halb Industrierohstoff und deutlich schwankungsfreudiger als Gold.',
+    metaDescription:
+      'Der Silberpreis je Feinunze in US-Dollar. Mit Chart von 1 Tag bis 5 Jahren und Erklärung, warum Silber stärker schwankt als Gold.',
+    description: [
+      'Silber wird wie Gold je Feinunze in US-Dollar notiert, ist aber ein anderes Gut. Rund die Hälfte der Nachfrage stammt aus der Industrie: Photovoltaik, Elektronik, Löttechnik und Medizin. Damit hängt der Preis nicht nur an der Anlagenachfrage, sondern auch an der Konjunktur – ein Abschwung trifft Silber doppelt.',
+      'Silber schwankt deutlich stärker als Gold. Der Markt ist um ein Vielfaches kleiner, gemessen am gehandelten Wert, weshalb dieselbe Geldsumme den Preis stärker bewegt. Wer Gold und Silber vergleicht, sieht dieselbe Richtung bei größerem Ausschlag – in beide Richtungen.',
+      'Eine gängige Kennzahl ist die **Gold-Silber-Ratio**: wie viele Unzen Silber eine Unze Gold kosten. Sie schwankt historisch etwa zwischen 40 und 100. Als Handelssignal taugt sie wenig, als Einordnung schon: Ein hoher Wert zeigt, dass Silber gegenüber Gold billig ist – was einen Grund haben kann und nicht automatisch eine Gelegenheit ist.',
+    ],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt', 'aktien-laender-branchen'],
+    seed: { startValue: 25.4, annualDrift: 0.079, annualVolatility: 0.265, seed: 12312 },
+  },
 ]
 
-/** Reihenfolge für Übersichten: Kurse zuerst, dann Indizes. */
-export const featuredSymbols = ['eur-usd', 'eur-cny', 'dax', 'sp500'] as const
+/** Reihenfolge für Übersichten: Kurse, Indizes, Rohstoffe. */
+export const featuredSymbols = ['eur-usd', 'dax', 'sp500', 'gold'] as const

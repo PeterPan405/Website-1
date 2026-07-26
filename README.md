@@ -1,6 +1,6 @@
 # IM Invests
 
-Deutschsprachige Finanzbildungs-Plattform: 22 Themen in je drei Lernstufen, fünf
+Deutschsprachige Finanzbildungs-Plattform: 23 Themen in je drei Lernstufen, fünf
 Rechner mit offengelegter Methodik, Marktdaten mit Erklärung, eingeordnete News und
 ein interaktiver Staatsverschuldungs-Vergleich.
 
@@ -132,7 +132,7 @@ Fehler darin nicht still durchgehen.
 ## Suche
 
 Die Lupe in der Kopfzeile öffnet eine Suche über alle Inhalte – Bereichsseiten,
-22 Lernthemen mit ihren 66 Stufen, fünf Rechner, alle Kurse, Nachrichten,
+23 Lernthemen mit ihren 69 Stufen, fünf Rechner, alle Kurse, Nachrichten,
 Tagesausgaben und die festen Seiten. Tastenkürzel: `Strg`/`Cmd` + `K`.
 
 Sie läuft vollständig im Browser, weil die Website statisch ausgeliefert wird
@@ -231,7 +231,7 @@ Seitenkopf. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit sein.
 ## SEO
 
 - **Eigene Seite je Inhalt**, keine Anker auf einer Monolith-Seite: 121 indexierbare
-  URLs, davon 66 Lernstufen-Seiten (22 Themen × 3 Stufen).
+  URLs, davon 69 Lernstufen-Seiten (23 Themen × 3 Stufen).
 - **`lib/seo.ts`** erzeugt Title, Description, canonical, Open Graph und Twitter-Card
   zentral. Im Entwicklungsmodus warnt es, wenn Title (30–62 Zeichen) oder Description
   (110–165 Zeichen) aus dem Zielkorridor fallen.

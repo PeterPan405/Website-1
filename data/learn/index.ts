@@ -22,6 +22,7 @@ import {
   woraufAchtenEinsteiger,
 } from '@/data/learn/topics/outlines'
 import { getQuizFor } from '@/data/learn/quizzes'
+import { rohstoffe } from '@/data/learn/topics/rohstoffe'
 import { zinseszins } from '@/data/learn/topics/zinseszins'
 import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
 
@@ -29,8 +30,8 @@ import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
  * Alle Lernthemen in redaktioneller Reihenfolge.
  *
  * Die Reihenfolge bestimmt die Darstellung im Kachel-Grid und in der Sitemap.
- * `aktie` und `zinseszins` sind vollständig ausformuliert, die übrigen Themen
- * liegen als Gliederung vor (Status `outline` je Stufe).
+ * `aktie`, `zinseszins` und `rohstoffe` sind vollständig ausformuliert, die
+ * übrigen Themen liegen als Gliederung vor (Status `outline` je Stufe).
  */
 /**
  * Hängt die Quizfragen an die passenden Stufen.
@@ -65,6 +66,7 @@ const topicsInOrder: LearnTopic[] = [
   derivat,
   option,
   bitcoinKrypto,
+  rohstoffe,
   tagesgeld,
   wieFunktioniertDerMarkt,
   blockchain,

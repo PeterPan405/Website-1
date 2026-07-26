@@ -94,7 +94,7 @@ export const areas: Record<AreaId, Area> = {
     label: 'Lernen',
     href: '/lernen',
     description:
-      '22 Finanzthemen in drei Stufen – von der ersten Definition bis zu Steuern, Kennzahlen und Sonderfällen.',
+      '23 Finanzthemen in drei Stufen – von der ersten Definition bis zu Steuern, Kennzahlen und Sonderfällen.',
   },
   markets: {
     id: 'markets',

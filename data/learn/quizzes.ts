@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – aktuell
- *    verteilen sich die 24 Fragen gleichmäßig auf die vier Positionen. Bei neuen
+ *    verteilen sich die 36 Fragen gleichmäßig auf die vier Positionen. Bei neuen
  *    Fragen bitte darauf achten.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -337,6 +337,161 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 2,
       explanation:
         'Der Vorteil ist ein Zinsvorteil, kein Steuervorteil: Der Betrag bleibt bis zum Verkauf im Vermögen und erwirtschaftet mit. In Deutschland begrenzt die Vorabpauschale diesen Effekt, hebt ihn aber nicht auf – sie liegt in der Regel unter dem tatsächlichen Wertzuwachs und wird beim Verkauf angerechnet.',
+    },
+  ],
+  // -------------------------------------------------------------- Rohstoffe
+  'rohstoffe:beginner': [
+    {
+      question: 'Worin unterscheidet sich Gold grundsätzlich von einer Aktie?',
+      options: [
+        'Gold lässt sich nur an bestimmten Wochentagen handeln',
+        'Gold erwirtschaftet keinen laufenden Ertrag – der gesamte Gewinn muss aus dem Preis kommen',
+        'Gold unterliegt keinen Kursschwankungen',
+        'Gold wird von Notenbanken garantiert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Eine Aktie beteiligt am Gewinn eines Unternehmens, eine Anleihe zahlt Zinsen, eine Immobilie bringt Miete. Ein Goldbarren liegt einfach da. Daraus folgt fast alles Weitere – auch, dass sich für Gold kein „fairer Wert“ aus Erträgen berechnen lässt.',
+    },
+    {
+      question:
+        'Der Goldpreis in US-Dollar bleibt unverändert, der Euro fällt gegenüber dem Dollar. Was passiert mit dem Goldpreis in Euro?',
+      options: [
+        'Er bleibt ebenfalls unverändert',
+        'Er fällt',
+        'Das hängt vom Silberpreis ab',
+        'Er steigt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Gold wird in Dollar notiert. Wird der Euro schwächer, braucht man mehr Euro für dieselbe Menge Dollar – und damit für dieselbe Unze Gold. Als Anleger im Euroraum trägst du deshalb immer zwei Risiken: das des Metallpreises und das des Wechselkurses.',
+    },
+    {
+      question: 'Warum schwankt Silber stärker als Gold?',
+      options: [
+        'Der Markt ist kleiner und rund die Hälfte der Nachfrage kommt aus der Industrie',
+        'Silber wird nicht an Börsen gehandelt',
+        'Silber ist seltener als Gold',
+        'Notenbanken verkaufen regelmäßig Silber',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Beides zusammen: Im kleineren Markt bewegt dieselbe Geldsumme den Preis stärker, und die industrielle Nachfrage koppelt Silber zusätzlich an die Konjunktur. Ein Abschwung trifft Silber deshalb doppelt – über die Anlage- und über die Industrienachfrage.',
+    },
+    {
+      question: 'Was gilt in Deutschland beim physischen Kauf von Anlagegold und Silber?',
+      options: [
+        'Auf beides fällt Umsatzsteuer an',
+        'Auf beides fällt keine Umsatzsteuer an',
+        'Anlagegold ist umsatzsteuerbefreit, auf Silber fällt Umsatzsteuer an',
+        'Silber ist befreit, auf Gold fällt Umsatzsteuer an',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Anlagegold ist in der EU von der Umsatzsteuer befreit, Silber nicht. Für Silber bedeutet das einen Startnachteil: Der Preis muss erst um diesen Betrag steigen, bevor überhaupt ein Gewinn beginnt. Bei kleinen Beträgen fällt das spürbar ins Gewicht.',
+    },
+  ],
+  'rohstoffe:fortgeschritten': [
+    {
+      question: 'Warum sind Gold-Produkte in Europa fast immer ETCs und keine ETFs?',
+      options: [
+        'ETFs dürfen keine Edelmetalle halten',
+        'ETCs sind grundsätzlich günstiger',
+        'Ein ETF ist rechtlich ein Fonds und muss streuen – ein einzelner Rohstoff erfüllt das nicht',
+        'Die Bezeichnung ist frei wählbar und bedeutet dasselbe',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Unterschied ist nicht kosmetisch. Ein Fonds ist Sondervermögen und bleibt bei einer Insolvenz der Gesellschaft den Anlegern erhalten. Ein ETC ist eine Schuldverschreibung – du bist Gläubiger des Emittenten. Seriöse Produkte mildern das durch physische Hinterlegung.',
+    },
+    {
+      question: 'Was bedeutet Contango für ein Rohstoffprodukt auf Terminkontrakten?',
+      options: [
+        'Jeder Rollvorgang kostet Geld, weil der spätere Kontrakt teurer ist',
+        'Der Rohstoff ist knapp und sofort verfügbar teurer',
+        'Das Produkt zahlt eine Dividende',
+        'Der Emittent übernimmt die Lagerkosten',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei lagerfähigen Rohstoffen ist Contango der Normalfall, weil Lagerung und Zinsen im Terminpreis stecken. Über Jahre kann das so viel kosten, dass der Rohstoffpreis steigt und das Produkt darauf trotzdem verliert – ein Ergebnis, das ohne Kenntnis der Mechanik unerklärlich wirkt.',
+    },
+    {
+      question: 'Welche Größe erklärt Goldbewegungen erfahrungsgemäß am besten?',
+      options: [
+        'Die Zahl der Krisenmeldungen',
+        'Die jährliche Minenförderung',
+        'Der Silberpreis',
+        'Der Realzins – also der Zins abzüglich erwarteter Inflation',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Gold zahlt nichts. Wer es hält, verzichtet auf sicheren Zinsertrag – und dieser Verzicht bemisst sich am Realzins. Steigt er, wird Halten teuer; ist er negativ, verliert auch das Tagesgeld an Kaufkraft und Gold büßt seinen Nachteil ein.',
+    },
+    {
+      question:
+        'Ein ETC wird in Euro an einer deutschen Börse gehandelt. Was folgt daraus für das Währungsrisiko?',
+      options: [
+        'Es entfällt, weil in Euro gehandelt wird',
+        'Es bleibt bestehen, solange das Produkt nicht ausdrücklich währungsgesichert ist',
+        'Es verdoppelt sich',
+        'Es hängt allein von der Kostenquote ab',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Handelswährung sagt nichts über das zugrunde liegende Risiko. Das Metall wird in Dollar bewertet; der Euro-Kurs des Produkts rechnet das nur um. Ohne ausdrückliche Währungssicherung trägst du die Dollarbewegung mit – Sicherung wiederum kostet laufend.',
+    },
+  ],
+  'rohstoffe:profi': [
+    {
+      question:
+        'Du verkaufst physisches Gold 14 Monate nach dem Kauf mit Gewinn. Wie wird das in Deutschland grundsätzlich behandelt?',
+      options: [
+        'Abgeltungsteuer auf den Gewinn',
+        'Persönlicher Steuersatz auf den Gewinn',
+        'Umsatzsteuer auf den Verkaufserlös',
+        'Der Gewinn ist steuerfrei, weil die Jahresfrist überschritten ist',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Physische Edelmetalle gelten als anderes Wirtschaftsgut nach § 23 EStG. Innerhalb eines Jahres ist der Gewinn mit dem persönlichen Steuersatz zu versteuern, danach steuerfrei – ein Unterschied zu Aktien, bei denen die Haltedauer keine Rolle spielt.',
+    },
+    {
+      question: 'Warum sind Goldminenaktien kein sauberer Ersatz für Gold?',
+      options: [
+        'Sie folgen dem Goldpreis exakt, kosten aber mehr',
+        'Sie bringen alle Unternehmensrisiken mit – Verschuldung, Führung, politische Lage der Förderländer',
+        'Sie dürfen in Deutschland nicht gehandelt werden',
+        'Ihr Kurs hängt nur an der Fördermenge',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Hebel wirkt in beide Richtungen und wird von Faktoren überlagert, die mit dem Metall nichts zu tun haben. Über lange Zeiträume bilden Minenaktien den Goldpreis deshalb nicht sauber ab – sie gehören in die Aktienquote, nicht in die Rohstoffquote.',
+    },
+    {
+      question: 'Was lässt sich empirisch über Gold als Inflationsschutz sagen?',
+      options: [
+        'Es gleicht Inflation zuverlässig Jahr für Jahr aus',
+        'Es hat mit Inflation nachweislich nichts zu tun',
+        'Über sehr lange Zeiträume erhält es die Kaufkraft ungefähr, über zehn bis zwanzig Jahre kann es deutlich zurückbleiben',
+        'Es steigt immer dann, wenn Aktien fallen',
+      ],
+      correctIndex: 2,
+      explanation:
+        '2022 zeigte das deutlich: hohe Inflation, und Gold trat auf der Stelle – weil die Realzinsen stiegen. Die ehrlichere Beschreibung ist Schutz gegen Vertrauensverlust statt gegen Inflation. Solche Ereignisse sind selten, und eine Versicherung, die selten zahlt, kostet dazwischen Rendite.',
+    },
+    {
+      question:
+        'Welche Eigenschaft eines ETC entscheidet darüber, ob er steuerlich wie physisches Gold behandelt werden kann?',
+      options: [
+        'Ob er einen Anspruch auf Lieferung des hinterlegten Metalls verbrieft',
+        'Ob er an einer deutschen Börse notiert ist',
+        'Ob seine Kostenquote unter 0,3 Prozent liegt',
+        'Ob er thesaurierend oder ausschüttend ist',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein ETC ist grundsätzlich eine Schuldverschreibung und damit abgeltungsteuerpflichtig. Für Produkte mit verbrieftem Lieferanspruch hat die Rechtsprechung eine Behandlung wie physisches Gold anerkannt. Ob ein konkretes Produkt darunterfällt, hängt an seinen Bedingungen – das gehört vor den Kauf geprüft.',
     },
   ],
 }

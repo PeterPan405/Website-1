@@ -14,11 +14,11 @@ import { getCompleteTopics, getLearnStats, getLearnTopics } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: withBrand('Lernbereich: 22 Finanzthemen in drei Stufen'),
+  title: withBrand('Lernbereich: 23 Finanzthemen in drei Stufen'),
   description:
-    'Von Aktie bis Zinseszins: 22 Themen, jeweils als Beginner, Fortgeschritten und Profi. Mit Fortschrittsanzeige und ohne Produktempfehlungen.',
+    'Von Aktie bis Zinseszins: 23 Themen, jeweils als Beginner, Fortgeschritten und Profi. Mit Fortschrittsanzeige und ohne Produktempfehlungen.',
   path: '/lernen',
-  ogTitle: '22 Finanzthemen in drei Lernstufen',
+  ogTitle: '23 Finanzthemen in drei Lernstufen',
 })
 
 export default async function LearnOverviewPage() {
@@ -151,7 +151,7 @@ export default async function LearnOverviewPage() {
         data={collectionPageSchema({
           name: 'Lernbereich – Finanzwissen in drei Stufen',
           description:
-            '22 Finanzthemen, jeweils in den Lernstufen Beginner, Fortgeschritten und Profi.',
+            '23 Finanzthemen, jeweils in den Lernstufen Beginner, Fortgeschritten und Profi.',
           path: '/lernen',
           items: topics.map((topic) => ({
             name: topic.title,

@@ -1,3 +1,4 @@
+import { marketKindMeta } from '@/data/markets'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: MarketPageProps): Promise<Met
     })
   }
 
-  const kindLabel = instrument.kind === 'fx' ? 'Wechselkurs' : 'Index'
+  const kindLabel = marketKindMeta[instrument.kind].short
 
   return buildMetadata({
     // Der Zusatz „aktuell … über 5 Jahre“ hebt kurze Ticker wie „DAX“ auf eine
@@ -81,7 +82,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
 
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
-  const kindLabel = instrument.kind === 'fx' ? 'Währungspaar' : 'Aktienindex'
+  const kindLabel = marketKindMeta[instrument.kind].long
 
   return (
     <>
