@@ -269,6 +269,29 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /*
+    Solange das gleitende Scrollen aktiv ist (components/layout/SmoothScroll.tsx),
+    muss das browsereigene weiche Scrollen aus. Beide gleichzeitig ergäben zwei
+    Bewegungen auf dasselbe Ziel, die sich gegenseitig ausbremsen.
+
+    Die Klassen setzt die Bibliothek selbst am <html>-Element. Fällt das
+    JavaScript aus oder ist reduzierte Bewegung eingestellt, greifen sie nicht –
+    dann gilt weiterhin die Regel darüber.
+  */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  /* Während eines programmatischen Sprungs keine Scroll-Verkettung. */
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
   body {
     background-color: var(--c-canvas);
     color: var(--c-fg);
