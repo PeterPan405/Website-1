@@ -27,15 +27,22 @@ Weitere Skripte:
 ### Umgebungsvariable
 
 `NEXT_PUBLIC_SITE_URL` bestimmt die Basis-URL für canonical-Tags, Open-Graph-Bilder,
-`sitemap.xml` und `robots.txt`. Ohne sie greift die Platzhalter-Domain
-`https://www.im-invests.example`.
+`sitemap.xml` und `robots.txt`. **Sie ist optional:** Ohne sie greift die echte Domain
+aus `lib/resolve-site-url.ts`. Gesetzt wird sie nur, wenn eine andere Adresse gelten
+soll – etwa für eine Vorschau unter eigener Domain.
 
 ```bash
-cp .env.example .env.local   # und die echte Domain eintragen
+cp .env.example .env.local   # nur bei abweichender Adresse nötig
 ```
 
-> **Vor dem Live-Gang zwingend setzen.** Andernfalls zeigen alle canonical-URLs und
-> die komplette Sitemap auf die Platzhalter-Domain.
+> Dort stand früher eine Platzhalter-Domain mit reservierter `.example`-TLD, die
+> greifen sollte, solange nichts gesetzt ist. Die Idee war, niemals versehentlich eine
+> fremde Domain als canonical-URL auszuliefern – für die eigene Domain leistet ein
+> Platzhalter das aber nicht. Zweimal an einem Tag ging die Website live und meldete
+> Suchmaschinen Adressen unter `im-invests.example`: einmal, weil die Variable nie
+> gesetzt war, einmal, weil sie beim Neuanlegen der Website beim Hoster verlorenging.
+> Im Browser ist davon nichts zu sehen. Steht der richtige Wert im Code, ist er auch
+> in einer Build-Umgebung richtig, die niemand konfiguriert hat.
 
 ## Projektstruktur
 
