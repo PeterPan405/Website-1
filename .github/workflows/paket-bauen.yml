@@ -68,22 +68,6 @@ jobs:
           # Settings > Secrets and variables > Actions > Variables.
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
 
-      # Legt eine Kennung ins Paket, die im Browser abrufbar ist.
-      #
-      # Grund: Es war zuletzt nicht feststellbar, welcher Stand auf dem Server
-      # liegt. Erkannt wurde es am Markennamen im Seitenkopf – die Seite trug
-      # noch den alten Namen und stammte damit aus den ersten 25 Minuten des
-      # Projekts, obwohl seither mehrfach hochgeladen wurde. Mit dieser Datei
-      # beantwortet ein Aufruf von /version.txt dieselbe Frage in einer Sekunde.
-      - name: Kennung ins Paket legen
-        run: |
-          {
-            echo "commit:  ${{ github.sha }}"
-            echo "gebaut:  $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            echo "lauf:    ${{ github.run_number }}"
-          } > out/version.txt
-          cat out/version.txt
-
       # Prüft das Ergebnis, nicht die Absicht.
       #
       # Der Abschnitt ist aus Erfahrung entstanden: Ein früherer Lauf hat eine
