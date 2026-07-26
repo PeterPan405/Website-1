@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "node --experimental-strip-types tests/ecb.test.ts && node --experimental-strip-types tests/resolve-site-url.test.ts"
+    "test": "node --experimental-strip-types tests/ecb.test.ts && node --experimental-strip-types tests/resolve-site-url.test.ts && node --experimental-strip-types tests/search-match.test.ts"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
