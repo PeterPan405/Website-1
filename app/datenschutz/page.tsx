@@ -21,8 +21,6 @@ export default function PrivacyPage() {
     <>
       <PageHeader
         area="learn"
-        eyebrow="Rechtliches"
-        eyebrowIcon="shield"
         title="Datenschutzerklärung"
         lead="Welche Daten beim Besuch dieser Website anfallen, wo sie verarbeitet werden und welche Rechte du hast."
         breadcrumbs={<Breadcrumbs items={[{ name: 'Datenschutz' }]} />}
@@ -30,10 +28,7 @@ export default function PrivacyPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <Callout
-            variant="warning"
-            title="Platzhaltertext – vor Veröffentlichung ersetzen"
-          >
+          <Callout variant="info" title="Platzhaltertext – vor Veröffentlichung ersetzen">
             <p>
               Diese Erklärung ist ein{' '}
               <strong className="text-fg font-semibold">Entwurf</strong>. Die technischen
