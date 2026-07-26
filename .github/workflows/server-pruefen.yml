@@ -32,6 +32,23 @@ jobs:
           # Ohne -x, damit keine Zugangsdaten protokolliert werden.
           set +x
 
+          # Erst prüfen, ob überhaupt Zugangsdaten ankommen. Ausgegeben wird nur
+          # die Zeichenlänge – die verrät den Wert nicht, zeigt aber eindeutig,
+          # ob das Secret gesetzt ist. GitHub maskiert Secret-Werte im Log, was
+          # „leer" und „vorhanden" ohne diese Prüfung nicht unterscheidbar macht.
+          echo "Länge FTP_SERVER:   ${#H}"
+          echo "Länge FTP_USERNAME: ${#U}"
+          echo "Länge FTP_PASSWORD: ${#P}"
+
+          if [ -z "$H" ] || [ -z "$U" ] || [ -z "$P" ]; then
+            echo ""
+            echo "FEHLER: Mindestens ein Secret ist leer oder nicht gesetzt."
+            echo "Prüfen unter Settings > Secrets and variables > Actions > Secrets."
+            echo "Erwartet werden genau diese Namen:"
+            echo "  FTP_SERVER, FTP_USERNAME, FTP_PASSWORD"
+            exit 1
+          fi
+
           liste() {
             echo ""
             echo "=============================================="
