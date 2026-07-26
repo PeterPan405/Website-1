@@ -140,9 +140,10 @@ Zwei Einstellungen in `next.config.ts` sind dafür nötig und sollten so bleiben
   hängt `absoluteUrl()` einen Schrägstrich an – sonst nennt die Sitemap eine
   andere Schreibweise als der Canonical der Seite.
 
-`public/.htaccess` wird mitkopiert und regelt auf Apache und LiteSpeed die
-Fehlerseite, den Dateityp des Vorschaubilds (es hat keine Dateiendung und würde
-sonst als Download ausgeliefert) sowie die Zwischenspeicherung.
+`public/.htaccess` wird mitkopiert und setzt auf Apache und LiteSpeed die
+Fehlerseite. Mehr steht bewusst nicht darin: Eine frühere Fassung mit erzwungenen
+Dateitypen, Sicherheits-Headern und Cache-Regeln lieferte die Website ohne jede
+Formatierung aus. Weitere Anweisungen kommen nur einzeln und geprüft zurück.
 
 ### Veröffentlichen
 
@@ -151,9 +152,18 @@ täglich um 04:15 UTC und legt sie als Paket unter _Actions → Artifacts → we
 zum Herunterladen ab. Hochgeladen wird über den Dateimanager des Hosters:
 
 1. Paket herunterladen (eine ZIP-Datei)
-2. Im Dateimanager `public_html` leeren
-3. ZIP hochladen und dort entpacken, „vorhandene Dateien überschreiben" anhaken
-4. ZIP löschen
+2. Den Dateimanager über _Websites → iminvests.de → Dateimanager_ öffnen, **nicht**
+   über den allgemeinen Dateimanager im Hauptmenü. Nur der erste Weg führt sicher
+   in das Verzeichnis dieser Domain; der zweite öffnet `/public_html`, was bei
+   einer Zusatzdomain der Ordner einer anderen Website ist.
+3. Verzeichnis leeren – `.well-known` stehen lassen, darüber erneuert der Hoster
+   das SSL-Zertifikat. Versteckte Dateien dafür einblenden.
+4. ZIP hochladen und dort entpacken, „vorhandene Dateien überschreiben" anhaken
+5. Prüfen, dass `index.html` direkt im Verzeichnis liegt und nicht in einem
+   Unterordner – sonst liefert die Domain weiterhin nichts aus
+6. ZIP löschen
+7. Cache leeren (_Erweitert → Cache-Manager_) und `/version.txt` aufrufen: Stimmt
+   der dort genannte Commit mit dem erwarteten überein, ist der Upload angekommen
 
 **Warum von Hand:** Der Hoster hat den FTP-Zugang gesperrt. Nach drei
 vollständigen Uploads mit zusammen rund 4.500 Zugriffen kommt die Verbindung zum
@@ -162,9 +172,17 @@ Ergebnis. Für 1.230 Einzeldateien ist FTP das falsche Werkzeug; der Upload eine
 einzelnen Datei über den Browser funktioniert dagegen zuverlässig.
 
 Der Workflow prüft vor dem Ablegen ausdrücklich, dass ein Stylesheet im Paket
-liegt, dass mindestens 100 Seiten entstanden sind und dass die echte Domain in
-der Sitemap steht. Grund: Ein früherer Stand wurde ohne Stylesheet ausgeliefert,
-und niemand hat es vor dem Hochladen bemerkt.
+liegt, dass mindestens 100 Seiten entstanden sind, dass `.htaccess` und
+`version.txt` vorhanden sind und dass die echte Domain in der Sitemap steht.
+Grund: Ein früherer Stand wurde ohne Stylesheet ausgeliefert, und niemand hat es
+vor dem Hochladen bemerkt.
+
+`version.txt` nennt Commit, Bauzeitpunkt und Laufnummer und ist nach dem Upload
+unter `/version.txt` abrufbar. Die Datei ist aus einem konkreten Vorfall
+entstanden: Über Tage lag ein Stand auf dem Server, der aus den ersten
+25 Minuten des Projekts stammte – erkennbar allein daran, dass die Seite noch den
+alten Markennamen trug. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit
+sein.
 
 **Automatisch wird es wieder,** sobald ein Übertragungsweg ohne 1.230
 Einzelverbindungen zur Verfügung steht – eine Git-Anbindung oder SSH beim Hoster.
