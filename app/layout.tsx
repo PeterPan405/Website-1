@@ -56,6 +56,20 @@ export const metadata: Metadata = {
   },
   // Deutsche Telefonnummern und Datumsangaben nicht automatisch verlinken.
   formatDetection: { telephone: false, address: false, date: false },
+
+  /*
+    Name unter dem Symbol, wenn die Seite auf den Homescreen gelegt wird.
+
+    Ohne diese Angabe nimmt Safari den Seitentitel – auf dem Homescreen stand
+    dadurch „IM Invests – Geld verstehen, statt raten“, abgeschnitten nach
+    wenigen Zeichen. Unter einem Symbol ist Platz für zwei Wörter, nicht für
+    einen Titel.
+
+    Bewusst ohne `capable: true`: Das würde die Seite ohne Safari-Oberfläche
+    starten, also ohne Zurück-Knopf und Adresszeile. Für eine Website mit über
+    hundert Unterseiten wäre das ein Rückschritt.
+  */
+  appleWebApp: { title: siteConfig.name },
 }
 
 export const viewport: Viewport = {
