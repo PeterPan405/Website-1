@@ -11,16 +11,40 @@ import { siteConfig } from '@/lib/site'
  * Das Signet ist dekorativ (aria-hidden); der Name steht als echter Text daneben
  * und bleibt damit für Suchmaschinen und Screenreader lesbar.
  */
-export function Logo({ className }: { className?: string }) {
+export function Logo({
+  className,
+  size = 'default',
+}: {
+  className?: string
+  /**
+   * `default` für Kopfzeile und Fließtext, `large` für die Fußzeile.
+   *
+   * Der Unterschied ist nicht nur die Größe: Erst ab etwa 64 Pixeln ist der
+   * Schriftzug „IMI“ im Ring lesbar, deshalb erscheint er nur in `large`. In
+   * der Kopfzeile bliebe er ein grauer Fleck.
+   */
+  size?: 'default' | 'large'
+}) {
+  const large = size === 'large'
+
   return (
     <span className={className}>
-      <span className="flex items-center gap-2.5">
+      <span className={large ? 'flex items-center gap-4' : 'flex items-center gap-2.5'}>
         {/*
           40 Pixel und nicht kleiner: Darunter verschwinden die Lücken zwischen
           den vier Figuren und der Ring wirkt wieder wie eine geschlossene Form.
         */}
-        <IMISignet className="size-10 shrink-0" />
-        <span className="font-display text-lg font-semibold tracking-tight">
+        <IMISignet
+          className={large ? 'size-16 shrink-0' : 'size-10 shrink-0'}
+          withLettering={large}
+        />
+        <span
+          className={
+            large
+              ? 'font-display text-2xl font-semibold tracking-tight'
+              : 'font-display text-lg font-semibold tracking-tight'
+          }
+        >
           {siteConfig.name}
         </span>
       </span>
@@ -52,7 +76,18 @@ export function Logo({ className }: { className?: string }) {
  * Größen, in denen das Zeichen auf der Website erscheint, ergäbe sie kein
  * erkennbares Motiv, sondern nur Unruhe.
  */
-export function IMISignet({ className }: { className?: string }) {
+export function IMISignet({
+  className,
+  withLettering = false,
+}: {
+  className?: string
+  /**
+   * Blendet den Schriftzug „IMI“ in der Ringmitte ein – wie im Volllogo unter
+   * `public/logo.svg`. Nur bei größerer Darstellung sinnvoll; darunter ist er
+   * nicht lesbar und stört die Form.
+   */
+  withLettering?: boolean
+}) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true" focusable="false">
       <g fill="var(--c-logo-navy)">
@@ -95,6 +130,25 @@ export function IMISignet({ className }: { className?: string }) {
         />
         <circle cx="43.43" cy="156.57" r="19" />
       </g>
+      {/*
+        Maße wie in public/logo.svg, damit beide Fassungen deckungsgleich sind.
+        Der Innendurchmesser des Rings beträgt 88 Einheiten; Grundlinie bei 112
+        setzt den Schriftzug optisch mittig.
+      */}
+      {withLettering && (
+        <text
+          x="100"
+          y="112"
+          textAnchor="middle"
+          fontFamily="Arial, Helvetica, sans-serif"
+          fontSize="34"
+          fontWeight="700"
+          letterSpacing="1"
+          fill="var(--c-logo-grey)"
+        >
+          IMI
+        </text>
+      )}
     </svg>
   )
 }

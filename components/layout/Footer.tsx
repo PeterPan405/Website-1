@@ -13,7 +13,13 @@ export function Footer() {
       <div className="fk-container py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Logo />
+            {/*
+              In der Fußzeile größer als in der Kopfzeile: Hier ist Platz, und
+              erst in dieser Größe sind die vier Figuren und der Schriftzug im
+              Ring wirklich zu erkennen. Bei 40 Pixeln verschwimmt das Zeichen
+              zu einem Ring.
+            */}
+            <Logo size="large" />
             <p className="text-fg-muted mt-4 max-w-sm text-sm leading-relaxed">
               {siteConfig.description}
             </p>
