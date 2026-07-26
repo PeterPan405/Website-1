@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { privacyPolicyDate, provider, supervisoryAuthority } from '@/lib/provider'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Datenschutzerklärung'),
@@ -13,8 +14,6 @@ export const metadata: Metadata = buildMetadata({
   path: '/datenschutz',
   ogTitle: 'Datenschutzerklärung',
 })
-
-const PLACEHOLDER = '[BITTE ERSETZEN]'
 
 export default function PrivacyPage() {
   return (
@@ -28,39 +27,43 @@ export default function PrivacyPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <Callout variant="info" title="Platzhaltertext – vor Veröffentlichung ersetzen">
-            <p>
-              Diese Erklärung ist ein{' '}
-              <strong className="text-fg font-semibold">Entwurf</strong>. Die technischen
-              Beschreibungen entsprechen dem tatsächlichen Aufbau der Anwendung, die
-              Angaben zum Verantwortlichen und zum Hosting sind jedoch Platzhalter und
-              müssen ergänzt werden.
-            </p>
-            <p>
-              Sobald Funktionen hinzukommen, die Daten an Dritte übermitteln – etwa eine
-              echte Kurs- oder News-Schnittstelle, ein Kontaktformular, Analyse-Werkzeuge
-              oder eingebettete Inhalte –, muss diese Erklärung entsprechend erweitert
-              werden. Eine rechtliche Prüfung vor dem Live-Gang ist dringend zu empfehlen.
-            </p>
-          </Callout>
-
           <section aria-labelledby="verantwortlicher" className="mt-12">
             <h2 id="verantwortlicher" className="text-fg text-2xl font-bold">
               1. Verantwortlicher
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne von
-              Art. 4 Nr. 7 DSGVO ist: {PLACEHOLDER} (Name, vollständige Anschrift,
-              E-Mail-Adresse). Die Angaben finden sich auch im{' '}
-              <Link href="/impressum" className="text-brand font-semibold underline">
-                Impressum
-              </Link>
-              .
+              Art. 4 Nr. 7 DSGVO ist:
             </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Datenschutzbeauftragte Person: {PLACEHOLDER} (nur anzugeben, falls eine
-              Bestellung erforderlich ist).
-            </p>
+            <address className="text-fg-muted mt-3 leading-relaxed not-italic">
+              {provider.name}
+              <br />
+              {provider.street}
+              <br />
+              {provider.city}
+              <br />
+              {provider.country}
+              <br />
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="hover:text-brand underline"
+              >
+                {siteConfig.contactEmail}
+              </a>
+              <br />
+              <a
+                href={`tel:${siteConfig.contactPhoneLink}`}
+                className="hover:text-brand underline"
+              >
+                {siteConfig.contactPhone}
+              </a>
+            </address>
+            {/*
+              Kein Abschnitt zur datenschutzbeauftragten Person: Die Bestellung
+              ist nach § 38 BDSG erst ab zwanzig ständig mit der Verarbeitung
+              beschäftigten Personen Pflicht. Ein Satz „nicht erforderlich“
+              brächte niemandem etwas.
+            */}
           </section>
 
           <section aria-labelledby="ueberblick" className="mt-12">
@@ -104,14 +107,16 @@ export default function PrivacyPage() {
             <p className="text-fg-muted mt-4 leading-relaxed">
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse
               liegt im technisch fehlerfreien Betrieb, in der Sicherheit der Systeme und
-              in der Abwehr von Angriffen. Speicherdauer: {PLACEHOLDER} (Angabe des
-              Hosting-Anbieters übernehmen, üblich sind wenige Tage bis Wochen).
+              in der Abwehr von Angriffen. Die Protokolldaten werden ausschließlich zu
+              diesen Zwecken verwendet, nicht mit anderen Daten zusammengeführt und nach
+              kurzer Zeit vom Hosting-Anbieter automatisch gelöscht.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Hosting-Anbieter: {PLACEHOLDER} (Name, Anschrift, Serverstandort). Sofern
-              eine Auftragsverarbeitung vorliegt, besteht ein Vertrag nach Art. 28 DSGVO.
-              Bei einem Anbieter außerhalb der EU sind zusätzlich die Grundlage der
-              Übermittlung nach Art. 44 ff. DSGVO und die getroffenen Garantien anzugeben.
+              Die Website wird bei{' '}
+              <strong className="text-fg font-semibold">Hostinger</strong> gehostet, der
+              damit als Auftragsverarbeiter im Sinne von Art. 28 DSGVO tätig wird. Die
+              Speicherdauer der Protokolldateien und die Angaben zum Unternehmen ergeben
+              sich aus dessen eigener Datenschutzerklärung.
             </p>
           </section>
 
@@ -215,11 +220,6 @@ export default function PrivacyPage() {
               <strong className="text-fg font-semibold">kein Abruf bei Dritten</strong>{' '}
               statt – weder durch den Server noch durch deinen Browser.
             </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Sobald echte Datenquellen angebunden werden, ist dieser Abschnitt um den
-              jeweiligen Anbieter, die übermittelten Daten, die Rechtsgrundlage und – bei
-              Anbietern außerhalb der EU – die Grundlage der Übermittlung zu ergänzen.
-            </p>
           </section>
 
           <section aria-labelledby="kontaktaufnahme" className="mt-12">
@@ -270,8 +270,17 @@ export default function PrivacyPage() {
             <p className="text-fg-muted mt-5 leading-relaxed">
               Außerdem hast du das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über
               die Verarbeitung deiner personenbezogenen Daten zu beschweren (Art. 77
-              DSGVO). Zuständig ist in der Regel die Behörde des Bundeslandes, in dem der
-              Verantwortliche seinen Sitz hat: {PLACEHOLDER}.
+              DSGVO). Zuständig ist die Behörde des Bundeslandes, in dem der
+              Verantwortliche seinen Sitz hat – hier{' '}
+              <a
+                href={supervisoryAuthority.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-brand font-semibold underline"
+              >
+                {supervisoryAuthority.name}
+              </a>{' '}
+              mit Sitz in {supervisoryAuthority.seat}.
             </p>
           </section>
 
@@ -282,7 +291,7 @@ export default function PrivacyPage() {
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Datenschutzerklärung wird angepasst, sobald sich die Verarbeitung
               ändert – etwa durch neue Funktionen oder eingebundene Dienste. Stand dieser
-              Fassung: {PLACEHOLDER}.
+              Fassung: {privacyPolicyDate}.
             </p>
           </section>
         </div>
