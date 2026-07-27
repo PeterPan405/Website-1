@@ -156,8 +156,16 @@ export function GlobusAnsicht({
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
-      <div>
+    /*
+      `minmax(0,1fr)` auch in der einspaltigen Ansicht.
+
+      Ohne die Angabe bekommt die einzige Rasterspalte die Breite `auto`, und
+      das heißt: so breit wie ihr Inhalt. Die Zeichenfläche des Globus trägt
+      ihre Breite als Pixelwert – auf dem Handy hat sie die Spalte damit über
+      die Fensterbreite hinausgezogen, und zu sehen war nur die linke Hälfte.
+    */
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
+      <div className="min-w-0">
         {/* --------------------------------------------------- Kennzahlwahl */}
         <fieldset>
           <legend className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">

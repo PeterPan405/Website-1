@@ -133,18 +133,23 @@ export const mainNav: NavItem[] = [
     href: '/globus',
     area: 'globe',
     /*
-      Bewusst zwischen „Lernen“ und „Staatsverschuldung“.
+      Die Staatsverschuldung steht hier drin und nicht mehr daneben.
 
-      Der Globus beantwortet die Frage, die zwischen beiden steht: Wo auf der
-      Welt findet das eigentlich statt, worüber die Lernthemen sprechen – und
-      wie groß ist es dort. Die Staatsverschuldung ist danach der Sonderfall
-      einer einzelnen Kennzahl im Detail.
+      Sie ist eine von mehreren Länderkennzahlen, und der Globus zeigt sie
+      bereits – als eigener Hauptpunkt daneben wirkte sie wie ein eigenes
+      Themengebiet. Die ausführliche Vergleichsseite bleibt vollständig
+      erhalten und ist von hier aus erreichbar.
     */
     children: [
       {
         label: 'Wirtschaftsleistung',
         href: '/globus',
         hint: 'BIP, Einwohner und BIP pro Kopf für über 180 Länder',
+      },
+      {
+        label: 'Staatsverschuldung',
+        href: '/staatsverschuldung',
+        hint: 'Schulden absolut, pro Kopf und in Prozent des BIP',
       },
       {
         label: 'Kurse nach Herkunft',
@@ -159,7 +164,6 @@ export const mainNav: NavItem[] = [
     ],
     footerLink: { label: 'Globus öffnen', href: '/globus' },
   },
-  { label: 'Staatsverschuldung', href: '/staatsverschuldung', area: 'debt' },
 ]
 
 /** Rechtliche und redaktionelle Seiten für die Fußzeile. */
