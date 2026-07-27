@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-27T23:32:01.966Z",
+  "abgerufenAm": "2026-07-27T23:38:13.229Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -190,7 +190,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 311764,
+        "wert": 344155,
         "jahr": 2020
       }
     },
@@ -211,7 +211,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 157130,
+        "wert": 144734,
         "jahr": 2021
       }
     },
@@ -310,7 +310,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 271348,
+        "wert": 297482,
         "jahr": 2020
       }
     },
@@ -549,7 +549,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 315423,
+        "wert": 323229,
         "jahr": 2023
       }
     },
@@ -733,7 +733,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 72883,
+        "wert": 79903,
         "jahr": 2020
       }
     },
@@ -783,7 +783,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 117379,
+        "wert": 113700,
         "jahr": 2021
       }
     },
@@ -825,7 +825,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 68242,
+        "wert": 64116,
         "jahr": 2022
       }
     },
@@ -949,7 +949,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 81452,
+        "wert": 75027,
         "jahr": 2021
       }
     },
@@ -1024,7 +1024,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 118529,
+        "wert": 116834,
         "jahr": 2019
       }
     },
@@ -1045,7 +1045,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 140666,
+        "wert": 154213,
         "jahr": 2020
       }
     },
@@ -1127,7 +1127,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 131140,
+        "wert": 120795,
         "jahr": 2021
       }
     },
@@ -1169,7 +1169,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 104041,
+        "wert": 95833,
         "jahr": 2021
       }
     },
@@ -1325,7 +1325,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 66319,
+        "wert": 65931,
         "jahr": 2020
       }
     },
@@ -1415,7 +1415,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 216841,
+        "wert": 237725,
         "jahr": 2020
       }
     },
@@ -1461,7 +1461,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 177969,
+        "wert": 195109,
         "jahr": 2020
       }
     },
@@ -1508,7 +1508,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 134970,
+        "wert": 135593,
         "jahr": 2019
       }
     },
@@ -1627,7 +1627,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 35014,
+        "wert": 38386,
         "jahr": 2020
       }
     },
@@ -1707,7 +1707,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 65977,
+        "wert": 60772,
         "jahr": 2021
       }
     },
@@ -1728,7 +1728,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 882435,
+        "wert": 812822,
         "jahr": 2021
       }
     },
@@ -2029,7 +2029,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 142404,
+        "wert": 147297,
         "jahr": 2023
       }
     },
@@ -2058,7 +2058,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 241940,
+        "wert": 228248,
         "jahr": 2018
       }
     },
@@ -2153,7 +2153,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 206414,
+        "wert": 184438,
         "jahr": 2022
       }
     },
@@ -2285,7 +2285,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 66965,
+        "wert": 63085,
         "jahr": 2016
       }
     },
@@ -2306,7 +2306,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 111523,
+        "wert": 122264,
         "jahr": 2020
       }
     },
@@ -2352,7 +2352,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 188121,
+        "wert": 184287,
         "jahr": 2023
       }
     },
@@ -2625,7 +2625,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 119221,
+        "wert": 109816,
         "jahr": 2021
       }
     },
@@ -2646,7 +2646,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 146088,
+        "wert": 134563,
         "jahr": 2021
       }
     },
@@ -2721,7 +2721,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 156992,
+        "wert": 144607,
         "jahr": 2021
       }
     },
@@ -3042,7 +3042,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 224320,
+        "wert": 246692,
         "jahr": 2017
       }
     },
