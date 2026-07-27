@@ -328,14 +328,10 @@ function Legende({
         </div>
       </div>
 
+      {/* Knapp gehalten: Die ausführliche Erklärung steht einmal unter der
+          Karte und muss nicht bei jeder Kennzahl wiederholt werden. */}
       <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
-        Angaben in {einheit}. Die Klassen enthalten jeweils gleich viele Länder, nicht
-        gleich große Wertebereiche – sonst läge bei diesen Größenordnungen fast alles in
-        der untersten Klasse. Die Farbe zeigt also den Rang, nicht den Abstand.{' '}
-        <strong className="text-fg-muted font-semibold">
-          {abgedeckt} von {gesamt} Ländern
-        </strong>{' '}
-        haben für diese Kennzahl einen hinterlegten Wert.
+        Angaben in {einheit} · {abgedeckt} von {gesamt} Ländern mit Wert
       </p>
     </div>
   )

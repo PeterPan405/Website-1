@@ -178,8 +178,10 @@ type Momentaufnahme = {
       waehrung: string
       bipUsd?: number
       einwohner?: number
+      schuldenquote?: { wert: number; jahr: number }
     }
   >
+  schuldenQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -187,6 +189,15 @@ const daten = momentaufnahme as Momentaufnahme
 /** Bezugsjahr der Weltbank-Reihen – gehört sichtbar auf die Seite. */
 export const WELTBANK_JAHR = daten.bezugsjahr
 export const WELTBANK_QUELLE = daten.quelle
+
+/**
+ * Die Quelle der abgerufenen Schuldenquoten.
+ *
+ * Steht in der Momentaufnahme und nicht im Code, weil sie zum Datenstand
+ * gehört: Wer den Abruf auf eine andere Reihe umstellt, ändert damit auch die
+ * Angabe auf der Seite.
+ */
+export const SCHULDEN_QUELLE = daten.schuldenQuelle ?? null
 
 function kursZu(symbol: string): Landeskurs | null {
   const definition = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)
@@ -254,7 +265,27 @@ function baueLaender(): Land[] {
         abweichen, ohne dass es jemandem auffiele.
       */
       ...(bipUsd && einwohner ? { bipProKopfUsd: (bipUsd * 1_000_000) / einwohner } : {}),
-      ...(schuldenquote[id] ? { schuldenquote: schuldenquote[id] } : {}),
+      /*
+        Abgerufene Schuldenquote vor der von Hand gepflegten.
+
+        Der Abruf über den IWF deckt alle Länder nach derselben Abgrenzung ab;
+        die Handpflege war nur der Notbehelf, solange es keinen Abruf gab. Wo
+        beides vorliegt, gewinnt die maschinelle Reihe – sie ist einheitlich
+        und altert nicht unbemerkt.
+      */
+      ...(() => {
+        const abgerufen = basis?.schuldenquote
+        if (abgerufen) {
+          return {
+            schuldenquote: {
+              wert: abgerufen.wert,
+              zeitraum: String(abgerufen.jahr),
+              quelle: 'imf-datamapper',
+            },
+          }
+        }
+        return schuldenquote[id] ? { schuldenquote: schuldenquote[id] } : {}
+      })(),
       ...(durchschnittsgehalt[id]
         ? { durchschnittsgehalt: durchschnittsgehalt[id] }
         : {}),
@@ -287,6 +318,8 @@ assertLaenderValid({
   kennzahlen: { schuldenquote, durchschnittsgehalt, medianvermoegen },
   quellen: kennzahlenQuellen,
   ersatzschluessel,
+  // Wird nicht in `kennzahlen` gesetzt, sondern aus der Momentaufnahme.
+  dynamischeQuellen: ['imf-datamapper'],
 })
 
 /** Alle Länder der Karte, alphabetisch. */

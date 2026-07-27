@@ -3,11 +3,15 @@
  *
  * ## Warum es diese Datei überhaupt gibt
  *
- * Bruttoinlandsprodukt und Einwohnerzahl holt `scripts/laender-abrufen.ts`
- * automatisch aus den Weltbank-Reihen – 184 Länder, ein Bezugsjahr, keine
- * Handarbeit. Für Staatsverschuldung, Durchschnittsgehalt und Vermögen gibt es
- * keine vergleichbar offene Datei: IWF, Eurostat, OECD und UBS veröffentlichen
- * sie in PDF-Berichten und hinter Abfragemasken.
+ * Bruttoinlandsprodukt, Einwohnerzahl und Schuldenquote holt
+ * `scripts/laender-abrufen.ts` automatisch – die ersten beiden aus den
+ * Weltbank-Reihen, die Schuldenquote aus der Datamapper-Schnittstelle des IWF.
+ * Wo der Abruf einen Wert liefert, hat er Vorrang vor allem, was hier steht.
+ *
+ * Die Schuldenquoten unten sind deshalb nur noch der Rückfall für den Fall,
+ * dass der Abruf nicht durchkommt. Für Durchschnittsgehalt und Vermögen gibt
+ * es dagegen keine offene Schnittstelle: OECD und UBS veröffentlichen sie in
+ * Berichten und hinter Abfragemasken.
  *
  * Diese Werte stehen deshalb hier, und zwar **einzeln mit Quelle und Zeitraum**.
  * Das ist kein Schmuck: Die Zahlen stammen aus verschiedenen Erhebungen mit
@@ -59,11 +63,17 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
     abgrenzung:
       'Bruttoschuld des Gesamtstaats in Prozent des BIP nach Abgrenzung des IWF.',
   },
+  'imf-datamapper': {
+    label: 'IWF, World Economic Outlook',
+    url: 'https://www.imf.org/external/datamapper/GGXWDG_NGDP@WEO',
+    abgrenzung:
+      'Bruttoschuld des Gesamtstaats in Prozent des BIP, für alle Länder nach derselben Abgrenzung. Wird von scripts/laender-abrufen.ts geholt.',
+  },
   'eurostat-2025': {
     label: 'Eurostat, öffentlicher Schuldenstand',
-    url: 'https://ec.europa.eu/eurostat/de/web/products-euro-indicators/w/2-22012026-ap',
+    url: 'https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-22042026-bp',
     abgrenzung:
-      'Schuldenstand nach Maastricht-Abgrenzung in Prozent des BIP. Nicht deckungsgleich mit der IWF-Abgrenzung.',
+      'Schuldenstand nach Maastricht-Abgrenzung in Prozent des BIP, Stand Ende 2025. Nicht deckungsgleich mit der IWF-Abgrenzung.',
   },
   'oecd-loehne-2024': {
     label: 'OECD, Durchschnittslöhne (Aufbereitung bei Visual Capitalist)',
@@ -95,13 +105,21 @@ export const schuldenquote: Record<string, Kennwert> = {
   '156': { wert: 84.0, zeitraum: '2025', quelle: 'imf-weo-2025' },
   '356': { wert: 81.0, zeitraum: '2025', quelle: 'imf-weo-2025' },
 
-  '300': { wert: 149.7, zeitraum: '3. Quartal 2025', quelle: 'eurostat-2025' },
-  '380': { wert: 137.8, zeitraum: '3. Quartal 2025', quelle: 'eurostat-2025' },
-  '250': { wert: 117.7, zeitraum: '3. Quartal 2025', quelle: 'eurostat-2025' },
-  '056': { wert: 107.1, zeitraum: '3. Quartal 2025', quelle: 'eurostat-2025' },
-  '724': { wert: 103.2, zeitraum: '3. Quartal 2025', quelle: 'eurostat-2025' },
-  '276': { wert: 62.3, zeitraum: '1. Quartal 2025', quelle: 'eurostat-2025' },
-  '208': { wert: 29.7, zeitraum: '2. Quartal 2025', quelle: 'eurostat-2025' },
+  /*
+    Alle aus derselben Veröffentlichung: Eurostat, Stand Ende 2025.
+
+    Vorher standen hier Werte aus dem ersten, zweiten und dritten Quartal
+    nebeneinander. Über die Quartale eines Jahres verschiebt sich eine
+    Schuldenquote um mehrere Prozentpunkte – die Länder waren damit nicht
+    vergleichbar, obwohl sie in einer Spalte standen.
+  */
+  '300': { wert: 146.1, zeitraum: 'Ende 2025', quelle: 'eurostat-2025' },
+  '250': { wert: 115.6, zeitraum: 'Ende 2025', quelle: 'eurostat-2025' },
+  '056': { wert: 107.9, zeitraum: 'Ende 2025', quelle: 'eurostat-2025' },
+  '724': { wert: 100.7, zeitraum: 'Ende 2025', quelle: 'eurostat-2025' },
+  '752': { wert: 35.1, zeitraum: 'Ende 2025', quelle: 'eurostat-2025' },
+  '372': { wert: 32.9, zeitraum: 'Ende 2025', quelle: 'eurostat-2025' },
+  '208': { wert: 27.9, zeitraum: 'Ende 2025', quelle: 'eurostat-2025' },
 }
 
 /** Durchschnittlicher Jahreslohn, kaufkraftbereinigt in US-Dollar. */

@@ -1,0 +1,70 @@
+name: Länderdaten aktualisieren
+
+# Holt Bruttoinlandsprodukt, Einwohnerzahl und Schuldenquote für den Globus.
+#
+# Warum als eigener Workflow und nicht im Kursabruf: Diese Reihen ändern sich
+# einmal im Jahr, Kurse jede Stunde. Sie im selben Lauf zu holen hieße,
+# zehnmal am Tag drei große Dateien herunterzuladen, in denen sich nichts
+# geändert hat.
+#
+# Zeitplan: am ersten jeden Monats. Die Weltbank aktualisiert ihre Reihen
+# unregelmäßig über das Jahr, der IWF zweimal jährlich mit dem World Economic
+# Outlook (April und Oktober). Monatlich reicht dafür mit Abstand und fängt
+# beide Termine sicher ein.
+#
+# Zum Hintergrund der Schuldenquote: Sie kommt von imf.org. In manchen
+# Umgebungen ist dieser Host nicht erreichbar – dann meldet das Skript eine
+# Warnung, behält den vorherigen Stand und aktualisiert den Rest. Hier auf
+# einem GitHub-Läufer gibt es diese Einschränkung nicht; genau deshalb läuft
+# der Abruf an dieser Stelle.
+
+on:
+  schedule:
+    - cron: '0 5 1 * *'
+  # Von Hand auslösbar – zum Prüfen und für den ersten Lauf nach einer Änderung.
+  workflow_dispatch:
+
+concurrency:
+  group: laender
+  cancel-in-progress: false
+
+jobs:
+  abrufen:
+    runs-on: ubuntu-latest
+    permissions:
+      # Zum Committen der Momentaufnahme.
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Wie beim Kursabruf ohne `npm ci`: Das Skript braucht nur Node.
+      - name: Länderdaten abrufen
+        run: npm run laender
+
+      - name: Momentaufnahme committen
+        run: |
+          if git diff --quiet -- data/snapshots/laender.json; then
+            echo "Keine Änderung – kein Commit, keine Bereitstellung."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/snapshots/laender.json
+          git commit -m "Länderdaten: Stand $(date -u +%Y-%m-%d)"
+
+          # Zwischen Prüfung und Push kann jemand anders gepusht haben.
+          for versuch in 1 2 3; do
+            git pull --rebase origin main && git push origin main && exit 0
+            echo "Push fehlgeschlagen, Versuch $versuch – neuer Anlauf in $((versuch * 5))s"
+            sleep $((versuch * 5))
+          done
+          echo "Push nach drei Versuchen fehlgeschlagen."
+          exit 1

@@ -20,6 +20,14 @@ interface Eingang {
   kennzahlen: Record<string, Record<string, Kennwert>>
   quellen: Record<string, Quellenangabe>
   ersatzschluessel: Record<string, string>
+  /**
+   * Quellen, die nicht in `kennzahlen` stehen, sondern erst beim Zusammenbauen
+   * gesetzt werden – etwa die abgerufene Schuldenreihe aus der Momentaufnahme.
+   *
+   * Ohne diese Liste meldete die Prüfung sie als „von keinem Wert verwendet“,
+   * obwohl sie auf jeder zweiten Detailtafel steht.
+   */
+  dynamischeQuellen?: string[]
 }
 
 /** Kursarten, die von einem einzelnen Land kommen und deshalb zugeordnet sein müssen. */
@@ -128,11 +136,12 @@ export function validateLaender(eingang: Eingang): string[] {
     }
   }
 
-  const benutzt = new Set(
-    Object.values(eingang.kennzahlen).flatMap((werte) =>
+  const benutzt = new Set([
+    ...Object.values(eingang.kennzahlen).flatMap((werte) =>
       Object.values(werte).map((kennwert) => kennwert.quelle)
-    )
-  )
+    ),
+    ...(eingang.dynamischeQuellen ?? []),
+  ])
   for (const schluessel of Object.keys(eingang.quellen)) {
     if (!benutzt.has(schluessel)) {
       probleme.push(`Quelle „${schluessel}“ wird von keinem Wert verwendet.`)
