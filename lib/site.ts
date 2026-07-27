@@ -88,13 +88,25 @@ export interface Area {
   description: string
 }
 
+/**
+ * Anzahl der Lernthemen.
+ *
+ * Steht hier als Zahl und wird nicht aus `data/learn` abgeleitet: Die Kopfzeile
+ * ist eine Client-Komponente und zieht `lib/site.ts` und `lib/navigation.ts`
+ * mit ins Browser-Bundle. Ein Import der Lerndaten brächte den kompletten
+ * Datensatz mit – für eine einzige Zahl.
+ *
+ * Damit die Zahl nicht still falsch wird, prüft `lib/learn.ts` beim Bauen, ob
+ * sie zur tatsächlichen Themenzahl passt, und bricht sonst ab.
+ */
+export const LEARN_TOPIC_COUNT = 33
+
 export const areas: Record<AreaId, Area> = {
   learn: {
     id: 'learn',
     label: 'Lernen',
     href: '/lernen',
-    description:
-      '23 Finanzthemen in drei Stufen – von der ersten Definition bis zu Steuern, Kennzahlen und Sonderfällen.',
+    description: `${LEARN_TOPIC_COUNT} Finanzthemen in drei Stufen – von der ersten Definition bis zu Steuern, Kennzahlen und Sonderfällen.`,
   },
   markets: {
     id: 'markets',

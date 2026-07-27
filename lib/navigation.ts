@@ -1,4 +1,4 @@
-import type { AreaId } from '@/lib/site'
+import { LEARN_TOPIC_COUNT, type AreaId } from '@/lib/site'
 
 /**
  * Navigationsbaum für Kopf- und Fußzeile.
@@ -113,7 +113,7 @@ export const mainNav: NavItem[] = [
         hint: 'Was beim Bankguthaben geschützt ist',
       },
     ],
-    footerLink: { label: 'Alle 23 Themen ansehen', href: '/lernen' },
+    footerLink: { label: `Alle ${LEARN_TOPIC_COUNT} Themen ansehen`, href: '/lernen' },
   },
   { label: 'Staatsverschuldung', href: '/staatsverschuldung', area: 'debt' },
 ]

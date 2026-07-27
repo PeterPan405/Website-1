@@ -10,20 +10,26 @@ import { PageHeader, SectionHeading } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { getCompleteTopics, getLearnStats, getLearnTopics } from '@/lib/learn'
+import {
+  getCompleteTopics,
+  getLearnSections,
+  getLearnStats,
+  getLearnTopics,
+} from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { LEARN_TOPIC_COUNT } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: withBrand('Lernbereich: 23 Finanzthemen in drei Stufen'),
-  description:
-    'Von Aktie bis Zinseszins: 23 Themen, jeweils als Beginner, Fortgeschritten und Profi. Mit Fortschrittsanzeige und ohne Produktempfehlungen.',
+  title: withBrand(`Lernbereich: ${LEARN_TOPIC_COUNT} Finanzthemen in drei Stufen`),
+  description: `Von den Grundlagen bis zur Vorsorge: ${LEARN_TOPIC_COUNT} Themen in einer Reihenfolge, die aufeinander aufbaut – jeweils als Beginner, Fortgeschritten und Profi.`,
   path: '/lernen',
-  ogTitle: '23 Finanzthemen in drei Lernstufen',
+  ogTitle: `${LEARN_TOPIC_COUNT} Finanzthemen in drei Lernstufen`,
 })
 
 export default async function LearnOverviewPage() {
-  const [topics, stats, completeTopics] = await Promise.all([
+  const [topics, sections, stats, completeTopics] = await Promise.all([
     getLearnTopics(),
+    getLearnSections(),
     getLearnStats(),
     getCompleteTopics(),
   ])
@@ -131,27 +137,50 @@ export default async function LearnOverviewPage() {
           <SectionHeading
             id="alle-themen"
             eyebrow="Alle Themen"
-            title={`${stats.topicCount} Themen von Aktie bis Sparerpauschbetrag`}
-            lead="Die Reihenfolge ist ein Vorschlag, keine Vorgabe – jedes Thema ist für sich verständlich."
+            title={`${stats.topicCount} Themen in ${sections.length} Abschnitten`}
+            lead="Die Reihenfolge baut aufeinander auf: erst die Größen, die über alles andere entscheiden, dann der sichere Sockel, dann die Anlageklassen. Ein Vorschlag, keine Vorgabe – jedes Thema ist auch für sich verständlich."
           />
 
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {topics.map((topic, index) => (
-              <li key={topic.slug} className="relative">
-                <Reveal delay={Math.min(index, 8) * 0.03} className="h-full">
-                  <TopicCard topic={topic} index={index} />
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          {/*
+            Die Abschnitte kommen aus `data/learn`, nicht aus dieser Datei.
+            Wer dort ein Thema verschiebt, verschiebt es damit auch hier.
+          */}
+          {sections.map((section) => (
+            <div key={section.id} className="mt-12 first:mt-8">
+              <h3
+                id={`abschnitt-${section.id}`}
+                className="text-fg flex items-baseline gap-3 text-xl font-semibold"
+              >
+                <span className="text-learn tabular-nums">
+                  {section.offset + 1}–{section.offset + section.topics.length}
+                </span>
+                {section.label}
+              </h3>
+              <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">
+                {section.description}
+              </p>
+
+              <ul
+                aria-labelledby={`abschnitt-${section.id}`}
+                className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              >
+                {section.topics.map((topic, index) => (
+                  <li key={topic.slug} className="relative">
+                    <Reveal delay={Math.min(index, 8) * 0.03} className="h-full">
+                      <TopicCard topic={topic} index={section.offset + index} />
+                    </Reveal>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </section>
       </div>
 
       <JsonLd
         data={collectionPageSchema({
           name: 'Lernbereich – Finanzwissen in drei Stufen',
-          description:
-            '23 Finanzthemen, jeweils in den Lernstufen Beginner, Fortgeschritten und Profi.',
+          description: `${LEARN_TOPIC_COUNT} Finanzthemen, jeweils in den Lernstufen Beginner, Fortgeschritten und Profi.`,
           path: '/lernen',
           items: topics.map((topic) => ({
             name: topic.title,

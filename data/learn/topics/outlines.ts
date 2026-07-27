@@ -2632,3 +2632,1418 @@ export const sparerpauschbetrag = outlineTopic({
     },
   },
 })
+
+/* -------------------------------------------------------------------------
+   Ergänzende Themen
+
+   Die folgenden zehn Themen schließen Lücken, die beim Aufbau der
+   Reihenfolge sichtbar wurden: Zwischen „Notgroschen anlegen“ und „Aktie
+   kaufen“ fehlten das Haushaltsbudget, das Risikoverständnis und das Depot;
+   zwischen Nachrichtenlage und Anlageklasse fehlten Inflation, Notenbanken
+   und Wechselkurse.
+   ------------------------------------------------------------------------- */
+
+export const budgetUndSparquote = outlineTopic({
+  slug: 'budget-und-sparquote',
+  title: 'Budget & Sparquote',
+  headline: 'Budget und Sparquote: der Betrag, der alles andere bestimmt',
+  metaTitle: 'Budget und Sparquote: Haushaltsplan richtig aufstellen',
+  metaDescription:
+    'Wie du deine tatsächlichen Ausgaben ermittelst, eine belastbare Sparquote berechnest und warum dieser Betrag über den Anlageerfolg mehr entscheidet als die Rendite.',
+  lead: 'Bevor die Frage „worin anlegen“ überhaupt sinnvoll ist, steht die Frage „wie viel“ – und die beantwortet nur ein Haushaltsplan.',
+  overview: [
+    'Die Sparquote ist der Anteil des Einkommens, der nach allen Ausgaben übrig bleibt und angelegt werden kann. Sie ist die einzige Größe der Geldanlage, die vollständig in der eigenen Hand liegt.',
+    'Über kurze Zeiträume schlägt sie die Rendite deutlich: Wer 300 statt 150 Euro im Monat spart, hat nach zehn Jahren mehr erreicht als jemand, der bei 150 Euro zwei Prozentpunkte mehr Rendite erzielt. Erst über Jahrzehnte dreht sich dieses Verhältnis.',
+    'Die Stufen führen von der ehrlichen Bestandsaufnahme über feste Budgetregeln und den Umgang mit unregelmäßigen Ausgaben bis zur Frage, wie sich eine Sparquote durch Lebensphasen mit schwankendem Einkommen trägt.',
+  ],
+  keywords: [
+    'Sparquote',
+    'Haushaltsbuch',
+    'Budget',
+    'Fixkosten',
+    'Notgroschen',
+    'Ausgaben',
+  ],
+  related: ['worauf-achten-einsteiger', 'tagesgeld', 'zinseszins', 'schulden-und-kredit'],
+  calculators: ['/rechner/haushaltsrechner', '/rechner/zinsrechner'],
+  levels: {
+    beginner: {
+      metaTitle: 'Sparquote berechnen – Grundlagen für Einsteiger',
+      metaDescription:
+        'Was eine Sparquote ist, wie du deine echten Ausgaben ermittelst und warum Schätzungen dabei fast immer zu niedrig ausfallen.',
+      title: 'Budget und Sparquote einfach erklärt',
+      lead: 'Wie du herausfindest, wie viel Geld tatsächlich übrig bleibt – und warum die geschätzte Zahl selten stimmt.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Was die Sparquote ist',
+          points: [
+            'Sparquote = übrig bleibender Betrag geteilt durch Nettoeinkommen, in Prozent.',
+            'Gemeint ist der Betrag nach allen Ausgaben, nicht der Betrag nach den Fixkosten.',
+            'Abgrenzung: Sparen heißt zurücklegen, Anlegen heißt investieren – erst das eine, dann das andere.',
+            'Warum die Quote und nicht der absolute Betrag: Sie bleibt vergleichbar, wenn das Einkommen sich ändert.',
+          ],
+        },
+        {
+          heading: 'Die eigenen Ausgaben ehrlich erfassen',
+          points: [
+            'Drei Monate Kontoauszüge auswerten statt schätzen – die Schätzung liegt fast immer zu niedrig.',
+            'Fixkosten, variable Kosten und unregelmäßige Jahreskosten getrennt notieren.',
+            'Typische Blindstellen: Abonnements, Versicherungen mit Jahresbeitrag, Autoreparaturen, Geschenke.',
+            'Bargeldabhebungen sind keine Kategorie – sie verstecken die eigentliche Ausgabe.',
+          ],
+        },
+        {
+          heading: 'Der erste Plan',
+          points: [
+            'Die 50/30/20-Regel als grober Startpunkt: Notwendiges, Wünsche, Sparen.',
+            'Warum die Regel nur ein Startpunkt ist: In Städten mit hoher Miete stimmt sie nicht.',
+            'Dauerauftrag am Tag des Geldeingangs – gespart wird zuerst, nicht was übrig bleibt.',
+            'Notgroschen zuerst aufbauen, erst danach anlegen.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Budget steuern: Methoden und unregelmäßige Ausgaben',
+      metaDescription:
+        'Kontenmodelle, Umgang mit Jahreskosten, realistische Zielquoten und wie du ein Budget durch Gehaltssprünge und Einkommensausfälle trägst.',
+      title: 'Ein Budget, das im Alltag hält',
+      lead: 'Welche Methoden funktionieren, wie unregelmäßige Ausgaben eingeplant werden und woran Budgets in der Praxis scheitern.',
+      readingMinutes: 10,
+      sections: [
+        {
+          heading: 'Methoden im Vergleich',
+          points: [
+            'Drei-Konten-Modell: Gehaltskonto, Ausgabenkonto, Rücklagenkonto und ihre Aufgabenteilung.',
+            'Umschlagmethode und ihre digitale Entsprechung über Unterkonten.',
+            'Zero-Based-Budget: Jeder Euro bekommt eine Aufgabe – Aufwand gegen Genauigkeit.',
+            'Automatisierung schlägt Disziplin: Was per Dauerauftrag läuft, muss nicht entschieden werden.',
+          ],
+        },
+        {
+          heading: 'Unregelmäßige Ausgaben planbar machen',
+          points: [
+            'Jahreskosten durch zwölf teilen und monatlich auf ein Rücklagenkonto legen.',
+            'Typische Posten: Versicherungen, Kfz-Steuer, Urlaub, Weihnachten, Rundfunkbeitrag.',
+            'Abgrenzung Rücklage gegen Notgroschen: geplante gegen ungeplante Ausgaben.',
+            'Warum ein gemeinsamer Topf beides gefährdet.',
+          ],
+        },
+        {
+          heading: 'Die Quote über die Zeit',
+          points: [
+            'Lifestyle-Inflation: Warum Gehaltserhöhungen die Sparquote oft senken statt heben.',
+            'Die halbe Erhöhung sparen – eine Regel, die ohne Verzicht auskommt.',
+            'Sparquote in Phasen mit schwankendem Einkommen: Untergrenze statt Fixbetrag.',
+            'Wann eine Sparquote bewusst gesenkt werden sollte, statt Schulden aufzunehmen.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Sparquote und Vermögensaufbau: Wirkung über Jahrzehnte',
+      metaDescription:
+        'Wie sich Sparquote und Rendite über verschiedene Zeiträume gegeneinander verhalten, wie Inflation die Quote entwertet und was eine Sparquote finanziell wirklich bewirkt.',
+      title: 'Sparquote, Rendite und Zeit',
+      lead: 'Wann der gesparte Betrag wichtiger ist als die Rendite – und ab wann sich das Verhältnis umkehrt.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Sparquote gegen Rendite',
+          points: [
+            'Rechenbeispiel über 10, 20 und 30 Jahre: ab wann die Rendite die Quote überholt.',
+            'Der Grund: Die Quote wirkt linear, die Rendite exponentiell – aber erst mit Vorlauf.',
+            'Praktische Folge: In den ersten zehn Jahren lohnt sich Sparen mehr als Optimieren.',
+            'Selbst nachrechnen mit dem Zinsrechner statt Faustregeln zu übernehmen.',
+          ],
+        },
+        {
+          heading: 'Reale Betrachtung',
+          points: [
+            'Nominale Sparquote gegen reale Sparquote bei steigenden Lebenshaltungskosten.',
+            'Dynamisierung der Sparrate: Anpassung an die Inflation statt fester Euro-Betrag.',
+            'Wirkung einer um zwei Prozentpunkte steigenden Miete auf die verfügbare Quote.',
+            'Warum eine Sparquote ohne Inflationsbezug über Jahrzehnte schrumpft.',
+          ],
+        },
+        {
+          heading: 'Grenzen des Sparens',
+          points: [
+            'Einkommensseite gegen Ausgabenseite: Wann Optimierung am Ende ist.',
+            'Fixkostenblöcke Wohnen und Mobilität – die einzigen Hebel mit echter Größe.',
+            'Sparquote und Lebensqualität: Der Punkt, an dem eine Quote nicht mehr durchhaltbar ist.',
+            'Die durchhaltbare Quote schlägt die maximale – ein abgebrochener Plan hat keine Rendite.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const inflation = outlineTopic({
+  slug: 'inflation',
+  title: 'Inflation',
+  headline: 'Inflation: warum Geld ohne Zutun weniger wert wird',
+  metaTitle: 'Inflation erklärt: Ursachen, Messung und Schutz',
+  metaDescription:
+    'Wie die Inflationsrate gemessen wird, warum eine sinkende Rate keine sinkenden Preise bedeutet und welche Anlagen tatsächlich vor Kaufkraftverlust schützen.',
+  lead: 'Inflation ist der stille Posten in jeder Geldanlage: Sie steht auf keinem Kontoauszug und wirkt trotzdem jedes Jahr.',
+  overview: [
+    'Inflation bezeichnet den Anstieg des allgemeinen Preisniveaus. Für die Geldanlage ist sie die Messlatte: Erst was über der Inflationsrate liegt, ist ein echter Zuwachs.',
+    'Der häufigste Denkfehler betrifft die Richtung: Eine fallende Inflationsrate bedeutet nicht, dass Dinge billiger werden, sondern nur, dass sie langsamer teurer werden. Der Preissprung vergangener Jahre bleibt im System.',
+    'Die Stufen führen von Messung und Warenkorb über Ursachen, Erwartungen und die Rolle der Notenbanken bis zu der Frage, welche Anlagen historisch tatsächlich Kaufkraft erhalten haben – und welche nur als Inflationsschutz gelten.',
+  ],
+  keywords: [
+    'Inflation',
+    'Inflationsrate',
+    'Kaufkraft',
+    'Verbraucherpreisindex',
+    'Realzins',
+    'Deflation',
+    'Warenkorb',
+    'Teuerung',
+  ],
+  related: ['zinseszins', 'tagesgeld', 'notenbanken-geldpolitik', 'rohstoffe'],
+  calculators: ['/rechner/inflationsrechner', '/rechner/zinsrechner'],
+  levels: {
+    beginner: {
+      metaTitle: 'Inflation einfach erklärt – Grundlagen für Einsteiger',
+      metaDescription:
+        'Was Inflation bedeutet, wie sie gemessen wird, warum eine sinkende Rate keine sinkenden Preise sind und was Kaufkraftverlust konkret heißt.',
+      title: 'Inflation einfach erklärt',
+      lead: 'Was hinter der Inflationsrate steckt, wie sie entsteht und was sie mit deinem Ersparten macht.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Was gemessen wird',
+          points: [
+            'Der Warenkorb: rund 650 Güter und Dienstleistungen, gewichtet nach durchschnittlichem Konsum.',
+            'Verbraucherpreisindex und harmonisierter Index im Vergleich – warum es zwei Zahlen gibt.',
+            'Die Rate ist ein Vorjahresvergleich, kein Vergleich zum Vormonat.',
+            'Warum die persönliche Inflationsrate abweicht: Miete, Auto und Heizung wiegen individuell anders.',
+          ],
+        },
+        {
+          heading: 'Der wichtigste Denkfehler',
+          points: [
+            'Sinkende Inflationsrate heißt: Preise steigen langsamer weiter, nicht sie fallen.',
+            'Der Preissprung vergangener Jahre bleibt bestehen und wird nicht zurückgenommen.',
+            'Deflation als Gegenteil – und warum sie als gefährlicher gilt als moderate Inflation.',
+            'Disinflation, Inflation und Deflation sauber auseinanderhalten.',
+          ],
+        },
+        {
+          heading: 'Was das für dein Geld bedeutet',
+          points: [
+            'Kaufkraftverlust: Was aus 10.000 Euro nach 10, 20 und 30 Jahren wird.',
+            'Realzins als Differenz zwischen Nominalzins und Inflationsrate.',
+            'Warum Bargeld und Girokonto die verlässlichsten Verlierer sind.',
+            'Selbst nachrechnen mit dem Inflationsrechner statt mit Faustregeln.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Inflation: Ursachen, Kerninflation und Erwartungen',
+      metaDescription:
+        'Nachfrage- und Angebotsinflation, Zweitrundeneffekte, Kerninflation und warum Inflationserwartungen für Notenbanken wichtiger sind als die aktuelle Rate.',
+      title: 'Woher Inflation kommt',
+      lead: 'Welche Ursachen unterschieden werden, was Kerninflation aussagt und warum Erwartungen die Rate selbst beeinflussen.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Ursachen unterscheiden',
+          points: [
+            'Nachfrageinflation: mehr Geld trifft auf gleiches Angebot.',
+            'Angebotsinflation: Energie, Rohstoffe, Lieferketten verteuern die Produktion.',
+            'Lohn-Preis-Spirale und Zweitrundeneffekte – wie ein Schock dauerhaft wird.',
+            'Warum die Unterscheidung zählt: Notenbanken können nur auf die Nachfrageseite wirken.',
+          ],
+        },
+        {
+          heading: 'Kennzahlen für Fortgeschrittene',
+          points: [
+            'Kerninflation ohne Energie und Nahrungsmittel – Zweck und Kritik.',
+            'Basiseffekte: Warum eine Rate fallen kann, ohne dass sich etwas ändert.',
+            'Erzeugerpreise als Frühindikator für die Verbraucherpreise.',
+            'Break-even-Inflationsrate aus inflationsindexierten Anleihen als Markterwartung.',
+          ],
+        },
+        {
+          heading: 'Erwartungen als eigene Kraft',
+          points: [
+            'Inflationserwartungen beeinflussen Löhne, Preise und damit die tatsächliche Inflation.',
+            'Warum Notenbanken von „Verankerung der Erwartungen“ sprechen.',
+            'Umfragen, Marktpreise und Prognosen als Messgrößen für Erwartungen.',
+            'Glaubwürdigkeit als geldpolitisches Instrument ohne Zinsschritt.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Inflationsschutz: Was historisch funktioniert hat',
+      metaDescription:
+        'Sachwerte, inflationsindexierte Anleihen, Aktien und Gold im Vergleich – und warum viele als Inflationsschutz beworbene Anlagen keiner sind.',
+      title: 'Inflationsschutz auf dem Prüfstand',
+      lead: 'Welche Anlagen Kaufkraft historisch erhalten haben, über welche Zeiträume das galt und wo der Schutz nur behauptet wird.',
+      readingMinutes: 12,
+      sections: [
+        {
+          heading: 'Anlagen im Vergleich',
+          points: [
+            'Aktien als Sachwert: Unternehmen können Preise weitergeben – aber nicht sofort.',
+            'Inflationsindexierte Anleihen: Funktionsweise, Break-even und wann sie sich lohnen.',
+            'Immobilien: Mietanpassung, Kreditentwertung und die Gegenkraft steigender Zinsen.',
+            'Gold: langfristig Kaufkrafterhalt, kurzfristig kein verlässlicher Zusammenhang.',
+          ],
+        },
+        {
+          heading: 'Wo der Schutz nur behauptet wird',
+          points: [
+            'Kurzfristig korrelieren Aktien und Inflation oft negativ, nicht positiv.',
+            'Rohstoffe über Terminkontrakte: Rollverluste können den Schutz aufzehren.',
+            'Nominal verzinste Anlagen bieten grundsätzlich keinen Schutz, auch bei hohem Zins.',
+            'Der Zeitraum entscheidet: Was über 30 Jahre gilt, gilt über drei Jahre nicht.',
+          ],
+        },
+        {
+          heading: 'Inflation und Steuern',
+          points: [
+            'Kalte Progression: Warum Lohnerhöhungen im Ausgleich der Inflation trotzdem Steuern kosten.',
+            'Scheingewinnbesteuerung: Kapitalerträge werden nominal besteuert, nicht real.',
+            'Rechenbeispiel: realer Verlust trotz nominalem Gewinn nach Abgeltungssteuer.',
+            'Folgerung für die Anlagedauer und die Wahl zwischen Thesaurierung und Ausschüttung.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const risikoUndRendite = outlineTopic({
+  slug: 'risiko-und-rendite',
+  title: 'Risiko & Rendite',
+  headline: 'Risiko und Rendite: die Regel hinter allen Anlageentscheidungen',
+  metaTitle: 'Risiko und Rendite: Volatilität, Drawdown und Horizont',
+  metaDescription:
+    'Warum Rendite ohne Risiko nicht zu haben ist, wie Schwankung gemessen wird, was ein maximaler Drawdown aussagt und welche Rolle der Anlagehorizont spielt.',
+  lead: 'Jede Anlageentscheidung ist eine Entscheidung über Risiko – die Rendite ist nur der Preis, den der Markt dafür zahlt.',
+  overview: [
+    'Rendite ist die Entschädigung für übernommenes Risiko. Eine Anlage, die höhere Erträge verspricht als andere, tut das nie ohne Gegenleistung – die Frage ist immer, worin diese Gegenleistung besteht.',
+    'Risiko ist dabei nicht ein einziger Begriff: Kursschwankung, dauerhafter Kapitalverlust, Ausfall eines Schuldners und die Gefahr, zum falschen Zeitpunkt verkaufen zu müssen, sind vier verschiedene Dinge.',
+    'Die Stufen führen von der Grundbeziehung über Kennzahlen wie Volatilität, maximalen Drawdown und Sharpe-Ratio bis zur Frage, wie sich eine persönliche Risikotragfähigkeit von der Risikobereitschaft unterscheidet.',
+  ],
+  keywords: [
+    'Risiko',
+    'Rendite',
+    'Volatilität',
+    'Drawdown',
+    'Schwankung',
+    'Anlagehorizont',
+    'Risikotragfähigkeit',
+    'Sharpe-Ratio',
+  ],
+  related: ['aktien-laender-branchen', 'portfolio-aufbau', 'groesste-crashes', 'aktie'],
+  calculators: ['/rechner/zinsrechner'],
+  symbols: ['msci-world', 'dax'],
+  levels: {
+    beginner: {
+      metaTitle: 'Risiko und Rendite einfach erklärt',
+      metaDescription:
+        'Warum es keine hohe Rendite ohne Risiko gibt, welche Risikoarten es gibt und was Schwankung im Depot praktisch bedeutet.',
+      title: 'Risiko und Rendite einfach erklärt',
+      lead: 'Warum beide immer zusammengehören und welche Arten von Risiko es überhaupt gibt.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Die Grundbeziehung',
+          points: [
+            'Rendite ist die Entschädigung für übernommenes Risiko, nicht eine Belohnung für Klugheit.',
+            'Warum ein risikoloser hoher Zins nicht existieren kann – jemand müsste ihn bezahlen.',
+            'Der risikolose Zins als Ausgangspunkt, Risikoprämie als Aufschlag darauf.',
+            'Prüffrage bei jedem Angebot: Wofür genau werde ich hier bezahlt?',
+          ],
+        },
+        {
+          heading: 'Vier verschiedene Risiken',
+          points: [
+            'Kursrisiko: Der Wert schwankt, ohne dass etwas verloren ist.',
+            'Ausfallrisiko: Der Schuldner zahlt nicht zurück – der Verlust ist endgültig.',
+            'Liquiditätsrisiko: Verkaufen ist nur mit Abschlag oder gar nicht möglich.',
+            'Zeitpunktrisiko: Man muss verkaufen, wenn die Kurse gerade unten sind.',
+          ],
+        },
+        {
+          heading: 'Was Schwankung im Alltag heißt',
+          points: [
+            'Ein Minus von 30 Prozent braucht ein Plus von rund 43 Prozent zum Ausgleich.',
+            'Buchverlust gegen realisierten Verlust – der Unterschied liegt in der Entscheidung.',
+            'Warum der Anlagehorizont die wichtigste Angabe vor jedem Kauf ist.',
+            'Geld, das in weniger als fünf Jahren gebraucht wird, gehört nicht in den Aktienmarkt.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Volatilität, Drawdown und Kennzahlen für Fortgeschrittene',
+      metaDescription:
+        'Wie Volatilität berechnet wird, was der maximale Drawdown aussagt, wie Korrelation Risiko senkt und warum Standardabweichung nicht alles erfasst.',
+      title: 'Risiko messen',
+      lead: 'Welche Kennzahlen es gibt, was sie leisten und wo sie in die Irre führen.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Die gängigen Kennzahlen',
+          points: [
+            'Volatilität als Standardabweichung der Renditen – Berechnung und Aussage.',
+            'Maximaler Drawdown: der größte Rückgang vom Hoch zum Tief und die Erholungsdauer.',
+            'Sharpe-Ratio: Überrendite je Einheit Schwankung, und ihre Grenzen.',
+            'Beta als Maß für die Bewegung relativ zum Gesamtmarkt.',
+          ],
+        },
+        {
+          heading: 'Wo die Kennzahlen versagen',
+          points: [
+            'Standardabweichung behandelt Aufwärts- und Abwärtsbewegung gleich.',
+            'Normalverteilung als Annahme: Extremereignisse treten häufiger auf als das Modell erlaubt.',
+            'Historische Werte sind Vergangenheit, keine Prognose – besonders nach ruhigen Phasen.',
+            'Warum eine niedrige Volatilität kein Beleg für ein niedriges Risiko ist.',
+          ],
+        },
+        {
+          heading: 'Risiko senken, ohne Rendite zu opfern',
+          points: [
+            'Korrelation: Wie unterschiedlich laufende Anlagen die Gesamtschwankung dämpfen.',
+            'Warum Streuung als einziger Effekt gilt, der ohne Renditeverzicht auskommt.',
+            'Die Grenze: In schweren Krisen steigen Korrelationen sprunghaft an.',
+            'Zeit als Risikofaktor – längerer Horizont verringert die Streuung der Ergebnisse.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Risikotragfähigkeit und Sequenzrisiko im Detail',
+      metaDescription:
+        'Der Unterschied zwischen Risikobereitschaft und Risikotragfähigkeit, das Sequenzrisiko in der Entnahmephase und warum Modelle Extremrisiken unterschätzen.',
+      title: 'Risikotragfähigkeit und Sonderfälle',
+      lead: 'Was persönliche Umstände zum Risiko beitragen und welche Risiken in keiner Kennzahl auftauchen.',
+      readingMinutes: 12,
+      sections: [
+        {
+          heading: 'Bereitschaft gegen Tragfähigkeit',
+          points: [
+            'Risikobereitschaft ist eine Frage der Person, Risikotragfähigkeit eine der Bilanz.',
+            'Einkommensstabilität, Beruf und Humankapital als Teil der eigenen Vermögensaufstellung.',
+            'Warum eine sichere Anstellung eine höhere Aktienquote rechtfertigen kann.',
+            'Die maßgebliche Größe ist die kleinere von beiden.',
+          ],
+        },
+        {
+          heading: 'Sequenzrisiko',
+          points: [
+            'Warum die Reihenfolge der Renditen in der Ansparphase egal, in der Entnahmephase entscheidend ist.',
+            'Beispielrechnung: identische Durchschnittsrendite, unterschiedliche Reihenfolge, verschiedene Ergebnisse.',
+            'Gegenmaßnahmen: Liquiditätspuffer, flexible Entnahme, sinkende Aktienquote vor Beginn.',
+            'Bezug zur Rentenplanung und zur Rentenlücke.',
+          ],
+        },
+        {
+          heading: 'Was Modelle nicht erfassen',
+          points: [
+            'Fat Tails: Extremereignisse in realen Marktdaten gegen die Modellannahme.',
+            'Modellrisiko: Wenn die Risikomessung selbst das Risiko erzeugt.',
+            'Währungs-, Länder- und regulatorische Risiken jenseits der Kursschwankung.',
+            'Der Umgang mit Unsicherheit, die sich nicht in eine Zahl fassen lässt.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const anlegerpsychologie = outlineTopic({
+  slug: 'anlegerpsychologie',
+  title: 'Anlegerpsychologie',
+  headline: 'Anlegerpsychologie: die Fehler, die nicht am Wissen liegen',
+  metaTitle: 'Anlegerpsychologie: typische Denkfehler bei der Geldanlage',
+  metaDescription:
+    'Verlustaversion, Herdentrieb, Selbstüberschätzung und Dispositionseffekt – welche Denkmuster Anlageergebnisse verschlechtern und was dagegen tatsächlich hilft.',
+  lead: 'Die meisten Anlagefehler entstehen nicht aus fehlendem Wissen, sondern aus vorhersehbaren Reaktionen auf Kursbewegungen.',
+  overview: [
+    'Studien zur Rendite von Privatanlegern zeigen regelmäßig eine Lücke zwischen der Wertentwicklung eines Fonds und dem, was seine Anleger tatsächlich erzielt haben. Der Unterschied entsteht durch das Verhalten: Kaufen nach Anstiegen, Verkaufen nach Rückgängen.',
+    'Diese Muster sind nicht Ausdruck von Dummheit, sondern systematisch und bei allen Menschen vorhanden. Sie lassen sich nicht wegdenken – aber durch Regeln umgehen, die vor der Situation festgelegt werden.',
+    'Die Stufen führen von den bekanntesten Denkfehlern über ihre Wirkung im Depot bis zu den Gegenmitteln, die empirisch etwas bringen: schriftliche Anlageregeln, Automatisierung und die bewusste Reduktion von Entscheidungsanlässen.',
+  ],
+  keywords: [
+    'Anlegerpsychologie',
+    'Behavioral Finance',
+    'Verlustaversion',
+    'Herdentrieb',
+    'Dispositionseffekt',
+    'Selbstüberschätzung',
+    'Anlagefehler',
+  ],
+  related: [
+    'wann-kaufen-verkaufen',
+    'groesste-crashes',
+    'cost-average-sparplan',
+    'worauf-achten-einsteiger',
+  ],
+  levels: {
+    beginner: {
+      metaTitle: 'Denkfehler bei der Geldanlage – Grundlagen',
+      metaDescription:
+        'Die häufigsten psychologischen Fallen bei Anlageentscheidungen, warum sie jeden betreffen und wie sie sich im Depot bemerkbar machen.',
+      title: 'Die häufigsten Denkfehler',
+      lead: 'Welche Muster bei fast allen auftreten und wie sie konkret Geld kosten.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Die vier wichtigsten Muster',
+          points: [
+            'Verlustaversion: Ein Verlust wiegt psychologisch etwa doppelt so schwer wie ein gleich großer Gewinn.',
+            'Herdentrieb: Was viele tun, wirkt sicher – gerade dann, wenn es teuer geworden ist.',
+            'Selbstüberschätzung: Die meisten halten sich für überdurchschnittlich gut informiert.',
+            'Bestätigungsfehler: Man liest bevorzugt, was die eigene Meinung stützt.',
+          ],
+        },
+        {
+          heading: 'Wie sich das im Depot zeigt',
+          points: [
+            'Dispositionseffekt: Gewinner werden zu früh verkauft, Verlierer zu lange gehalten.',
+            'Kaufen nach Anstiegen, Verkaufen nach Rückgängen – das genaue Gegenteil des Ziels.',
+            'Der Einstandskurs als Bezugspunkt, obwohl er für die Zukunft bedeutungslos ist.',
+            'Die Renditelücke zwischen Fondsergebnis und Anlegerergebnis.',
+          ],
+        },
+        {
+          heading: 'Warum Wissen allein nicht hilft',
+          points: [
+            'Die Muster verschwinden nicht, wenn man sie kennt – sie werden nur erkennbar.',
+            'Unter Stress und Zeitdruck greifen sie zuverlässig.',
+            'Deshalb Regeln vorher festlegen, nicht Entscheidungen im Moment verbessern.',
+            'Der Sparplan als praktischer Ausweg: Er nimmt die Entscheidung heraus.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Behavioral Finance: Mechanismen und Gegenmittel',
+      metaDescription:
+        'Ankereffekt, Recency Bias, Verfügbarkeitsheuristik und mentale Buchführung – wie sie entstehen und welche Gegenmaßnahmen belegt wirksam sind.',
+      title: 'Mechanismen und Gegenmittel',
+      lead: 'Die Denkfehler im Einzelnen, ihre Ursachen und was empirisch dagegen hilft.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Weitere Muster',
+          points: [
+            'Ankereffekt: Die erste gesehene Zahl bestimmt die spätere Einschätzung.',
+            'Recency Bias: Die jüngste Entwicklung wird in die Zukunft verlängert.',
+            'Verfügbarkeitsheuristik: Was medial präsent ist, wird für wahrscheinlich gehalten.',
+            'Mentale Buchführung: Geld wird je nach Herkunft unterschiedlich behandelt.',
+          ],
+        },
+        {
+          heading: 'Home Bias und Vertrautheit',
+          points: [
+            'Übergewichtung heimischer Aktien, weil sie vertraut wirken.',
+            'Vertrautheit wird mit Sicherheit verwechselt – ohne jeden Zusammenhang.',
+            'Mitarbeiteraktien: Klumpenrisiko aus Arbeitsplatz und Depot in derselben Firma.',
+            'Gegenmaßnahme über breite Streuung, nicht über bessere Auswahl.',
+          ],
+        },
+        {
+          heading: 'Was tatsächlich hilft',
+          points: [
+            'Schriftliche Anlageregeln vor dem ersten Kauf – als Vertrag mit sich selbst.',
+            'Automatisierung: Sparplan, feste Termine, festgelegte Rebalancing-Regeln.',
+            'Depot seltener ansehen: Häufiges Prüfen erhöht nachweislich die Handelsaktivität.',
+            'Entscheidungen mit Datum und Begründung protokollieren, um sich später zu prüfen.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Marktphänomene und die Grenzen der Rationalität',
+      metaDescription:
+        'Von Blasenbildung über Momentum bis zur Frage, ob sich Verhaltensmuster systematisch ausnutzen lassen – und warum das schwerer ist, als es klingt.',
+      title: 'Psychologie auf Marktebene',
+      lead: 'Wo individuelle Muster zu Marktphänomenen werden und was sich daraus praktisch ableiten lässt.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Vom Einzelnen zum Markt',
+          points: [
+            'Blasenbildung: Selbstverstärkung aus Herdentrieb, Kredit und Erzählung.',
+            'Panikverkäufe und Liquiditätsspiralen in Abwärtsphasen.',
+            'Narrative Economics: Wie Erzählungen Kurse bewegen, unabhängig von Zahlen.',
+            'Historische Beispiele und ihre wiederkehrende Struktur.',
+          ],
+        },
+        {
+          heading: 'Anomalien und ihre Ausnutzung',
+          points: [
+            'Momentum- und Value-Effekt als mögliche Folgen von Verhaltensmustern.',
+            'Warum bekannte Anomalien nach Veröffentlichung häufig schwächer werden.',
+            'Transaktionskosten und Steuern als Grund, warum Strategien in der Praxis scheitern.',
+            'Effizienzmarkthypothese und ihre verhaltensökonomische Kritik.',
+          ],
+        },
+        {
+          heading: 'Selbsteinschätzung ehrlich betreiben',
+          points: [
+            'Rückschaufehler: Nach dem Ereignis wirkt alles vorhersehbar gewesen zu sein.',
+            'Führen eines Anlagetagebuchs als Korrektiv gegen Rückschaufehler.',
+            'Realistische Beurteilung der eigenen Ergebnisse gegen einen passenden Vergleichsindex.',
+            'Die nüchterne Schlussfolgerung: Die meisten schlagen den Markt nicht – und das ist kein Problem.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const schuldenUndKredit = outlineTopic({
+  slug: 'schulden-und-kredit',
+  title: 'Schulden & Kredit',
+  headline: 'Schulden und Kredit: der Zinseszins in die andere Richtung',
+  metaTitle: 'Kredit und Schulden: Effektivzins, Tilgung und Reihenfolge',
+  metaDescription:
+    'Wie Kredite wirklich rechnen, was der Effektivzins enthält, warum Dispo und Ratenkredit so teuer sind und in welcher Reihenfolge Schulden getilgt werden sollten.',
+  lead: 'Ein Kredit ist Zinseszins mit umgekehrtem Vorzeichen – und meist zu einem Satz, den keine Geldanlage erreicht.',
+  overview: [
+    'Vor jeder Anlageentscheidung steht die Frage nach bestehenden Schulden. Ein Dispositionskredit zu zweistelligem Zins schlägt jede realistisch erwartbare Anlagerendite – die Tilgung ist dann die beste verfügbare Geldanlage.',
+    'Der entscheidende Vergleichswert ist der Effektivzins: Er enthält neben dem Nominalzins auch Gebühren und den Zahlungsrhythmus und macht Angebote überhaupt erst vergleichbar.',
+    'Die Stufen führen von den Kreditarten und ihren Kosten über Tilgungsrechnung, Sondertilgung und Umschuldung bis zu Restschuldversicherungen, Vorfälligkeitsentschädigung und dem Verhältnis von Tilgung zu Geldanlage.',
+  ],
+  keywords: [
+    'Kredit',
+    'Schulden',
+    'Effektivzins',
+    'Tilgung',
+    'Dispokredit',
+    'Ratenkredit',
+    'Umschuldung',
+    'Sondertilgung',
+  ],
+  related: ['zinseszins', 'immobilien', 'budget-und-sparquote', 'tagesgeld'],
+  calculators: ['/rechner/haushaltsrechner', '/rechner/zinsrechner'],
+  levels: {
+    beginner: {
+      metaTitle: 'Kredite einfach erklärt – Zinsen, Raten, Kosten',
+      metaDescription:
+        'Welche Kreditarten es gibt, was der Effektivzins bedeutet, warum der Dispo so teuer ist und wie eine Rate sich aus Zins und Tilgung zusammensetzt.',
+      title: 'Kredite einfach erklärt',
+      lead: 'Wie ein Kredit rechnet, welche Arten es gibt und woran sich die tatsächlichen Kosten ablesen lassen.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Die Kreditarten',
+          points: [
+            'Dispositionskredit: teuerste Alltagsform, oft im zweistelligen Zinsbereich.',
+            'Ratenkredit: feste Laufzeit, feste Rate, planbar – aber selten günstig.',
+            'Null-Prozent-Finanzierung: Wo die Kosten stattdessen versteckt sind.',
+            'Immobilienkredit als eigener Fall mit Grundschuld als Sicherheit.',
+          ],
+        },
+        {
+          heading: 'Was eine Rate enthält',
+          points: [
+            'Jede Rate besteht aus Zinsanteil und Tilgungsanteil.',
+            'Am Anfang überwiegt der Zins, mit sinkender Restschuld dreht sich das Verhältnis.',
+            'Warum eine niedrige Rate die Gesamtkosten erhöht, nicht senkt.',
+            'Laufzeit ist der Hebel mit der größten Wirkung auf die Gesamtkosten.',
+          ],
+        },
+        {
+          heading: 'Der einzige vergleichbare Wert',
+          points: [
+            'Effektivzins enthält Nominalzins, Gebühren und Zahlungsrhythmus.',
+            'Warum der Nominalzins in der Werbung wenig aussagt.',
+            'Bonitätsabhängige Zinsen: Was „ab 2,9 Prozent“ tatsächlich bedeutet.',
+            'Vorsicht bei Kreditvergleichen, die die Schufa-Anfrage als Kreditanfrage stellen.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Tilgung, Umschuldung und Sondertilgung in der Praxis',
+      metaDescription:
+        'Wie Tilgungspläne funktionieren, wann sich eine Umschuldung rechnet, was Sondertilgungen bringen und in welcher Reihenfolge mehrere Kredite abzulösen sind.',
+      title: 'Schulden gezielt abbauen',
+      lead: 'Wie ein Tilgungsplan aufgebaut ist, welche Reihenfolge sinnvoll ist und wann sich eine Umschuldung lohnt.',
+      readingMinutes: 10,
+      sections: [
+        {
+          heading: 'Tilgungsplan lesen',
+          points: [
+            'Annuitätendarlehen: gleichbleibende Rate bei wechselnder Zusammensetzung.',
+            'Restschuld am Ende der Zinsbindung und das Anschlussfinanzierungsrisiko.',
+            'Wirkung eines um einen Prozentpunkt höheren Tilgungssatzes auf die Laufzeit.',
+            'Sondertilgungsrechte: Umfang, Fristen und ihr tatsächlicher Wert.',
+          ],
+        },
+        {
+          heading: 'Reihenfolge bei mehreren Schulden',
+          points: [
+            'Lawinenmethode: höchster Zins zuerst – rechnerisch immer die günstigste Variante.',
+            'Schneeballmethode: kleinster Betrag zuerst – psychologisch oft durchhaltbarer.',
+            'Dispo immer zuerst, unabhängig von der Methode.',
+            'Warum parallel angelegtes Geld bei hohem Kreditzins ein Verlustgeschäft ist.',
+          ],
+        },
+        {
+          heading: 'Umschulden',
+          points: [
+            'Ablösung teurer Kredite durch einen günstigeren – Rechnung mit allen Kosten.',
+            'Vorfälligkeitsentschädigung: wann sie anfällt und wie sie berechnet wird.',
+            'Widerrufsjoker und gesetzliche Kündigungsrechte nach zehn Jahren.',
+            'Restschuldversicherung: Kosten, Nutzen und die Frage der Freiwilligkeit.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Tilgen oder anlegen? Die Entscheidung im Detail',
+      metaDescription:
+        'Steuerliche Behandlung von Kreditzinsen, Leverage-Effekt, Risikobetrachtung und die Frage, ab welchem Zinsniveau Tilgen der Geldanlage vorzuziehen ist.',
+      title: 'Tilgen oder anlegen',
+      lead: 'Wie sich Tilgung und Anlage sauber vergleichen lassen – und warum die Antwort selten am reinen Zinsvergleich hängt.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Der korrekte Vergleich',
+          points: [
+            'Tilgung bringt eine risikolose Rendite in Höhe des Kreditzinses.',
+            'Anlagerendite ist unsicher – der Vergleich muss risikoadjustiert erfolgen.',
+            'Nach Steuern rechnen: Kapitalerträge werden besteuert, ersparte Zinsen nicht.',
+            'Daumenregel und ihre Grenzen: Ab welchem Zinssatz die Tilgung praktisch immer gewinnt.',
+          ],
+        },
+        {
+          heading: 'Steuer und Sonderfälle',
+          points: [
+            'Absetzbarkeit von Schuldzinsen bei vermieteten Immobilien.',
+            'Warum bei selbstgenutzten Immobilien keine Absetzbarkeit besteht.',
+            'Modernisierungs- und Förderkredite mit Zinsverbilligung.',
+            'Bausparvertrag als Zinssicherung – Rechenweise und typische Fehleinschätzung.',
+          ],
+        },
+        {
+          heading: 'Kredit als Hebel',
+          points: [
+            'Leverage-Effekt: Wie Fremdkapital die Eigenkapitalrendite erhöht – und den Verlust.',
+            'Wertpapierkredit und Lombardkredit: Nachschusspflicht und Zwangsverkauf.',
+            'Warum eine Anlage auf Kredit in Abschwüngen zwei Risiken gleichzeitig auslöst.',
+            'Grenzen der Verschuldung aus der eigenen Einkommens- und Liquiditätslage.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const notenbankenGeldpolitik = outlineTopic({
+  slug: 'notenbanken-geldpolitik',
+  title: 'Notenbanken & Geldpolitik',
+  headline: 'Notenbanken: warum ein Zinsentscheid dein Depot erreicht',
+  metaTitle: 'Notenbanken und Geldpolitik: EZB, Fed und die Leitzinsen',
+  metaDescription:
+    'Welche Aufgaben EZB und Fed haben, wie die drei Leitzinsen wirken, was Anleihekäufe bewirken und über welche Wege Geldpolitik bei Sparern und Anlegern ankommt.',
+  lead: 'Notenbanken setzen den Preis des Geldes – und damit die Messlatte für jede Anlage, jeden Kredit und jeden Sparzins.',
+  overview: [
+    'Die Europäische Zentralbank hat ein vorrangiges Ziel: Preisstabilität, definiert als eine Inflationsrate von zwei Prozent auf mittlere Sicht. Die US-Notenbank verfolgt zusätzlich ein Beschäftigungsziel – dieser Unterschied erklärt viele abweichende Entscheidungen.',
+    'Das wichtigste Werkzeug sind die Leitzinsen. Für Sparer ist der Einlagensatz maßgeblich: Er bestimmt, was Banken für über Nacht geparktes Geld erhalten, und damit die Obergrenze für Tagesgeldangebote.',
+    'Die Stufen führen von den Aufgaben und Instrumenten über den Transmissionsmechanismus und die unkonventionelle Geldpolitik bis zu Bilanzpolitik, Unabhängigkeit und der Wirkung auf Wechselkurse und Anlageklassen.',
+  ],
+  keywords: [
+    'Notenbank',
+    'EZB',
+    'Fed',
+    'Leitzins',
+    'Einlagenzins',
+    'Geldpolitik',
+    'Zinsentscheid',
+    'Quantitative Lockerung',
+  ],
+  related: ['inflation', 'tagesgeld', 'staatsanleihe', 'waehrungen-wechselkurse'],
+  symbols: ['eur-usd'],
+  levels: {
+    beginner: {
+      metaTitle: 'Notenbanken einfach erklärt – Aufgaben und Leitzinsen',
+      metaDescription:
+        'Was eine Notenbank tut, welche drei Leitzinsen die EZB setzt, welcher davon für Sparer zählt und wie ein Zinsentscheid abläuft.',
+      title: 'Notenbanken einfach erklärt',
+      lead: 'Welche Aufgabe eine Notenbank hat, welche Zinsen sie setzt und welcher davon dein Tagesgeld bestimmt.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Aufgabe und Auftrag',
+          points: [
+            'Preisstabilität als vorrangiges Ziel der EZB: zwei Prozent auf mittlere Sicht.',
+            'Doppelmandat der US-Notenbank: Preisstabilität und maximale Beschäftigung.',
+            'Unabhängigkeit von der Politik und warum sie als Voraussetzung gilt.',
+            'Abgrenzung: Notenbanken drucken kein Geld für den Staatshaushalt.',
+          ],
+        },
+        {
+          heading: 'Die drei Leitzinsen',
+          points: [
+            'Einlagesatz: Was Banken für über Nacht geparktes Geld erhalten – der Satz für Sparer.',
+            'Hauptrefinanzierungssatz: Zu diesem Satz leihen sich Banken wöchentlich Geld.',
+            'Spitzenrefinanzierungssatz: teurer Notfallsatz für kurzfristigen Bedarf.',
+            'Warum in Meldungen meist der Einlagesatz gemeint ist, wenn von „dem Leitzins“ die Rede ist.',
+          ],
+        },
+        {
+          heading: 'Wie ein Zinsentscheid abläuft',
+          points: [
+            'Sitzungsrhythmus von EZB-Rat und FOMC, Veröffentlichung und Pressekonferenz.',
+            'Warum die Erwartung wichtiger ist als die Entscheidung selbst.',
+            'Projektionen und Dot Plot als Signal über den weiteren Kurs.',
+            'Forward Guidance: Wirkung allein durch Ankündigung.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Transmission: Wie Geldpolitik in der Wirtschaft ankommt',
+      metaDescription:
+        'Über welche Kanäle ein Zinsschritt wirkt, warum die Wirkung Monate braucht, was Anleihekäufe bewirken und wie Geldpolitik auf Wechselkurse durchschlägt.',
+      title: 'Vom Zinsentscheid zur Wirkung',
+      lead: 'Welche Wege ein Leitzinsschritt nimmt, wie lange er braucht und welche Instrumente es neben dem Zins gibt.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Die Übertragungswege',
+          points: [
+            'Zinskanal: Kredite und Einlagen verteuern oder verbilligen sich.',
+            'Kreditkanal: Banken verändern Vergabebereitschaft und Bedingungen.',
+            'Vermögenspreiskanal: Bewertungen von Aktien, Anleihen und Immobilien passen sich an.',
+            'Wechselkurskanal: Zinsdifferenzen lenken internationale Kapitalströme.',
+          ],
+        },
+        {
+          heading: 'Zeitverzögerung',
+          points: [
+            'Wirkung auf die Inflation erst nach etwa vier bis sechs Quartalen.',
+            'Warum Notenbanken auf Prognosen und nicht auf aktuelle Daten reagieren müssen.',
+            'Risiko der Übersteuerung, wenn zu lange nachgesteuert wird.',
+            'Asymmetrie: Banken geben sinkende Zinsen schneller weiter als steigende.',
+          ],
+        },
+        {
+          heading: 'Instrumente jenseits des Zinses',
+          points: [
+            'Quantitative Lockerung: Anleihekäufe und ihre Wirkung auf lange Laufzeiten.',
+            'Quantitative Straffung: Bilanzabbau und seine Nebenwirkungen.',
+            'Langfristige Refinanzierungsgeschäfte für Banken.',
+            'Mindestreserve und ihre heute geringe praktische Bedeutung.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Geldpolitik: Bilanzpolitik, Regeln und Zielkonflikte',
+      metaDescription:
+        'Taylor-Regel, natürlicher Zins, Bilanzpolitik, fiskalische Dominanz und die Frage, wie Anleger geldpolitische Signale einordnen sollten.',
+      title: 'Zielkonflikte und Grenzen',
+      lead: 'Welche Regeln und Größen hinter Zinsentscheidungen stehen und wo Geldpolitik an ihre Grenzen stößt.',
+      readingMinutes: 12,
+      sections: [
+        {
+          heading: 'Regeln und Referenzgrößen',
+          points: [
+            'Taylor-Regel als Faustformel für einen angemessenen Leitzins.',
+            'Natürlicher Zins: das theoretische Niveau, das weder bremst noch stimuliert.',
+            'Output-Lücke und Phillips-Kurve als Bezugsgrößen – und ihre empirische Schwäche.',
+            'Warum Notenbanken sich an keine Regel binden, sie aber als Orientierung nutzen.',
+          ],
+        },
+        {
+          heading: 'Grenzen und Konflikte',
+          points: [
+            'Nullzinsgrenze und die Suche nach Wirkung ohne Zinssenkungsspielraum.',
+            'Fiskalische Dominanz: hohe Staatsschulden als Beschränkung der Zinspolitik.',
+            'Finanzstabilität gegen Preisstabilität als Zielkonflikt.',
+            'Fragmentierung im Euroraum und Instrumente dagegen.',
+          ],
+        },
+        {
+          heading: 'Was Anleger daraus machen',
+          points: [
+            'Zinserwartungen sind bereits in Kursen enthalten – bewegt wird nur die Abweichung.',
+            'Wirkung auf Anleihen über die Duration, auf Aktien über die Abzinsung.',
+            'Warum Notenbanksitzungen als Erklärung taugen, nicht als Handelssignal.',
+            'Beobachtbare Größen: Zinsstrukturkurve, Break-even-Inflation, Terminmärkte.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const depotUndBroker = outlineTopic({
+  slug: 'depot-und-broker',
+  title: 'Depot & Broker',
+  headline: 'Depot und Broker: der Weg vom Entschluss zur Order',
+  metaTitle: 'Depot eröffnen: Broker vergleichen, Order richtig aufgeben',
+  metaDescription:
+    'Wie ein Wertpapierdepot funktioniert, worin sich Broker unterscheiden, welche Ordertypen es gibt und welche Kosten beim Kauf tatsächlich anfallen.',
+  lead: 'Zwischen der Entscheidung und dem gekauften Wertpapier liegt ein Depot, ein Handelsplatz und eine Order – und in jedem Schritt stecken Kosten.',
+  overview: [
+    'Ein Depot ist ein Konto für Wertpapiere. Die Wertpapiere selbst gehören dir und sind kein Vermögen der Bank – bei einer Insolvenz des Brokers werden sie herausgegeben und fallen nicht in die Insolvenzmasse.',
+    'Die Unterschiede zwischen Anbietern liegen weniger im Depotpreis als in den Ordergebühren, den verfügbaren Handelsplätzen, dem Sparplanangebot und der steuerlichen Abwicklung – Letztere spart bei einem deutschen Anbieter erheblich Aufwand.',
+    'Die Stufen führen von der Depoteröffnung über Ordertypen, Handelszeiten und Spreads bis zu Wertpapierleihe, Payment for Order Flow, Depotübertrag und den Besonderheiten ausländischer Anbieter.',
+  ],
+  keywords: [
+    'Depot',
+    'Broker',
+    'Order',
+    'Limit-Order',
+    'Handelsplatz',
+    'Ordergebühren',
+    'Depotübertrag',
+    'Spread',
+  ],
+  related: ['boerse', 'wie-funktioniert-der-markt', 'kosten-und-gebuehren', 'etf'],
+  levels: {
+    beginner: {
+      metaTitle: 'Depot eröffnen – Grundlagen für Einsteiger',
+      metaDescription:
+        'Was ein Depot ist, wie die Eröffnung abläuft, warum Wertpapiere bei einer Brokerinsolvenz sicher sind und was beim ersten Kauf zu beachten ist.',
+      title: 'Depot und Broker einfach erklärt',
+      lead: 'Was ein Depot ist, wie du eines eröffnest und was beim ersten Kauf passiert.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Was ein Depot ist',
+          points: [
+            'Ein Konto für Wertpapiere, immer verbunden mit einem Verrechnungskonto für Geld.',
+            'Die Wertpapiere gehören dir – sie sind kein Vermögen des Brokers.',
+            'Bei Insolvenz des Brokers werden sie herausgegeben, nicht in die Masse gezogen.',
+            'Abgrenzung zur Einlagensicherung, die nur das Guthaben auf dem Verrechnungskonto betrifft.',
+          ],
+        },
+        {
+          heading: 'Eröffnung und erste Schritte',
+          points: [
+            'Legitimation per Video- oder Postident, Steuer-Identifikationsnummer bereithalten.',
+            'Freistellungsauftrag direkt bei der Eröffnung einrichten.',
+            'Verlustverrechnung und Kirchensteuermerkmal einmal korrekt hinterlegen.',
+            'Angemessenheitsprüfung: Warum der Broker nach Erfahrung fragt.',
+          ],
+        },
+        {
+          heading: 'Die erste Order',
+          points: [
+            'Wertpapierkennung: ISIN als eindeutige Angabe, WKN als deutsche Kurzform.',
+            'Handelsplatz wählen: Börse oder außerbörslicher Handel.',
+            'Stückzahl oder Betrag – und warum bei ETFs Bruchstücke möglich sind.',
+            'Ausführungsbestätigung und Abrechnung lesen.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Ordertypen und Handelsplätze richtig nutzen',
+      metaDescription:
+        'Market, Limit, Stop-Loss und Trailing-Stop im Vergleich, Unterschiede zwischen Handelsplätzen, Spread und Handelszeiten sowie der Depotübertrag.',
+      title: 'Ordertypen, Handelsplätze, Kosten',
+      lead: 'Welche Orderarten es gibt, wann welcher Handelsplatz sinnvoll ist und wie sich die Gesamtkosten zusammensetzen.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Ordertypen',
+          points: [
+            'Market-Order: sofortige Ausführung zum nächsten Kurs – Risiko bei dünnem Handel.',
+            'Limit-Order: Preisobergrenze beim Kauf, Untergrenze beim Verkauf.',
+            'Stop-Loss und Stop-Buy: Auslöseschwelle, danach Market-Order.',
+            'Trailing-Stop und Gültigkeitsdauer: taggültig gegen ultimo.',
+          ],
+        },
+        {
+          heading: 'Handelsplätze im Vergleich',
+          points: [
+            'Xetra als Referenzmarkt mit der höchsten Liquidität.',
+            'Regionalbörsen und außerbörsliche Handelsplätze: längere Zeiten, andere Spreads.',
+            'Warum der Spread oft mehr kostet als die Ordergebühr.',
+            'Handelszeiten vermeiden, in denen der Referenzmarkt geschlossen ist.',
+          ],
+        },
+        {
+          heading: 'Kosten und Wechsel',
+          points: [
+            'Ordergebühr, Handelsplatzentgelt, Spread und Fremdkostenpauschale getrennt betrachten.',
+            'Sparplanausführung: Kosten je Ausführung und Mindestbeträge.',
+            'Depotübertrag ist gesetzlich kostenfrei – Ablauf und typische Verzögerungen.',
+            'Beim Übertrag mitwandernde Anschaffungsdaten und die Folgen bei Lücken.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Broker-Modelle, Wertpapierleihe und Sonderfälle',
+      metaDescription:
+        'Payment for Order Flow, Wertpapierleihe, ausländische Broker mit Quellensteuerthemen und was bei einer Brokerinsolvenz tatsächlich passiert.',
+      title: 'Geschäftsmodelle und Sonderfälle',
+      lead: 'Woran Broker verdienen, welche Nebenwirkungen das hat und was bei Auslandsdepots zu beachten ist.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Woran der Broker verdient',
+          points: [
+            'Payment for Order Flow: Rückvergütung durch den Handelsplatz und der Interessenkonflikt.',
+            'Zinsmarge auf Guthaben des Verrechnungskontos.',
+            'Wertpapierleihe: Erträge, Sicherheiten und das verbleibende Restrisiko.',
+            'Best-Execution-Pflicht und wie sich ihre Einhaltung prüfen lässt.',
+          ],
+        },
+        {
+          heading: 'Ausländische Anbieter',
+          points: [
+            'Keine automatische Abgeltungssteuer – Erklärungspflicht über die Anlage KAP.',
+            'Quellensteuer und Doppelbesteuerungsabkommen bei ausländischen Dividenden.',
+            'Verlustverrechnung über Ländergrenzen und ihre praktischen Hürden.',
+            'Anlegerentschädigung im Sitzland statt deutscher Regelung.',
+          ],
+        },
+        {
+          heading: 'Wenn etwas schiefgeht',
+          points: [
+            'Ablauf bei Brokerinsolvenz: Herausgabe der Wertpapiere, Zeitverzug, Sperrfristen.',
+            'Sammelverwahrung gegen Streifbandverwahrung – rechtliche Stellung im Vergleich.',
+            'Beschwerdewege: Ombudsstelle, BaFin, Schlichtung.',
+            'Warum ein zweites Depot bei einem unabhängigen Anbieter Sinn ergeben kann.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const waehrungenWechselkurse = outlineTopic({
+  slug: 'waehrungen-wechselkurse',
+  title: 'Währungen & Wechselkurse',
+  headline: 'Währungen: das unsichtbare Risiko im weltweit gestreuten Depot',
+  metaTitle: 'Wechselkurse verstehen: Währungsrisiko im Depot',
+  metaDescription:
+    'Wie Wechselkurse entstehen, warum ein weltweit streuender ETF immer auch eine Währungswette enthält und wann sich eine Währungsabsicherung lohnt.',
+  lead: 'Wer weltweit anlegt, hält automatisch fremde Währungen – auch dann, wenn der ETF in Euro notiert.',
+  overview: [
+    'Ein Wechselkurs ist der Preis einer Währung in einer anderen. Er entsteht am größten Markt der Welt, an dem täglich ein Vielfaches des Welthandelsvolumens umgesetzt wird.',
+    'Für Privatanleger ist der wichtigste Punkt oft überraschend: Die Handelswährung eines ETF sagt nichts über sein Währungsrisiko. Entscheidend ist, in welchen Währungen die enthaltenen Unternehmen wirtschaften.',
+    'Die Stufen führen von der Notation und den Einflussfaktoren über Kaufkraftparität und Zinsparität bis zur Frage, ob eine Währungsabsicherung ihre Kosten wert ist – und wann sie sogar schadet.',
+  ],
+  keywords: [
+    'Wechselkurs',
+    'Währungsrisiko',
+    'Devisen',
+    'Euro',
+    'US-Dollar',
+    'Hedging',
+    'Kaufkraftparität',
+  ],
+  related: ['aktien-laender-branchen', 'etf', 'notenbanken-geldpolitik', 'rohstoffe'],
+  symbols: ['eur-usd', 'eur-chf', 'eur-gbp', 'eur-jpy', 'eur-cny'],
+  levels: {
+    beginner: {
+      metaTitle: 'Wechselkurse einfach erklärt – Grundlagen',
+      metaDescription:
+        'Wie ein Wechselkurs zu lesen ist, was ihn bewegt und warum er die Rendite ausländischer Anlagen verändert, ohne dass sich der Kurs bewegt.',
+      title: 'Wechselkurse einfach erklärt',
+      lead: 'Wie ein Wechselkurs entsteht, was ihn bewegt und wie er in deiner Rendite auftaucht.',
+      readingMinutes: 7,
+      sections: [
+        {
+          heading: 'Einen Kurs lesen',
+          points: [
+            'EUR/USD 1,10 bedeutet: ein Euro kostet 1,10 US-Dollar.',
+            'Steigender Kurs heißt starker Euro, fallender Kurs heißt starker Dollar.',
+            'Geld- und Briefkurs, Spread und der Aufschlag beim Umtausch am Schalter.',
+            'Warum Reisezahlungsmittel andere Kurse haben als der Devisenmarkt.',
+          ],
+        },
+        {
+          heading: 'Was Kurse bewegt',
+          points: [
+            'Zinsdifferenzen zwischen Währungsräumen als stärkster kurzfristiger Treiber.',
+            'Inflationsunterschiede und Kaufkraft auf lange Sicht.',
+            'Handelsbilanz und Kapitalströme.',
+            'Sichere Häfen in Krisen: Franken, Dollar und Yen.',
+          ],
+        },
+        {
+          heading: 'Wirkung auf dein Depot',
+          points: [
+            'Ein stärkerer Euro senkt den Eurowert von Dollar-Anlagen – ohne Kursbewegung dort.',
+            'Rechenbeispiel: Kurs unverändert, Wechselkurs verändert, Rendite verändert.',
+            'Die Handelswährung eines ETF ist nicht sein Währungsrisiko.',
+            'Warum ein in Euro notierter Welt-ETF trotzdem stark dollarabhängig ist.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Währungsrisiko und Absicherung für Fortgeschrittene',
+      metaDescription:
+        'Wie hedged Share Classes funktionieren, was sie kosten, wann sich eine Absicherung lohnt und warum sie bei Aktien seltener sinnvoll ist als bei Anleihen.',
+      title: 'Währungsrisiko steuern',
+      lead: 'Wie eine Absicherung funktioniert, was sie kostet und in welchen Fällen sie sich rechnet.',
+      readingMinutes: 10,
+      sections: [
+        {
+          heading: 'Absicherung verstehen',
+          points: [
+            'Hedged Share Class: laufende Absicherung über Terminkontrakte.',
+            'Kosten der Absicherung entsprechen im Kern der Zinsdifferenz beider Währungen.',
+            'Warum eine Absicherung bei negativer Zinsdifferenz teuer wird.',
+            'Tracking-Differenz zwischen abgesicherter und unabgesicherter Variante.',
+          ],
+        },
+        {
+          heading: 'Wann sie sinnvoll ist',
+          points: [
+            'Anleihen: Währungsschwankung übersteigt die erwartete Rendite deutlich – Absicherung üblich.',
+            'Aktien: Schwankung des Aktienmarktes dominiert, Absicherung meist verzichtbar.',
+            'Anlagehorizont: Je länger, desto eher gleichen sich Währungseffekte aus.',
+            'Entnahmephase: Absicherung gewinnt an Bedeutung, wenn Beträge fest geplant sind.',
+          ],
+        },
+        {
+          heading: 'Verdeckte Währungseffekte',
+          points: [
+            'Unternehmenswährung gegen Notierungswährung: Was zählt, ist der Umsatz.',
+            'Schwellenländer: Lokalwährungsanleihen gegen Hartwährungsanleihen.',
+            'Rohstoffe notieren in Dollar – auch das ist eine Währungsposition.',
+            'Aggregierte Währungsaufteilung des eigenen Depots ermitteln.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Devisenmarkt: Paritäten, Carry und Interventionen',
+      metaDescription:
+        'Kaufkraftparität, gedeckte und ungedeckte Zinsparität, Carry-Trades und die Rolle von Notenbankinterventionen und Währungsreserven.',
+      title: 'Theorien und Marktmechanik',
+      lead: 'Welche Modelle den Wechselkurs erklären wollen, wo sie funktionieren und wo sie versagen.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Die Paritätsbedingungen',
+          points: [
+            'Kaufkraftparität: gleiche Güter, gleicher Preis – langfristige Tendenz, kurzfristig unbrauchbar.',
+            'Gedeckte Zinsparität als Arbitragebedingung am Terminmarkt.',
+            'Ungedeckte Zinsparität und ihr empirisches Scheitern.',
+            'Das Forward-Premium-Puzzle als Grundlage des Carry-Trades.',
+          ],
+        },
+        {
+          heading: 'Marktstruktur',
+          points: [
+            'Kassa-, Termin- und Swapmarkt: Größenordnungen und Teilnehmer.',
+            'Handelszeiten rund um die Uhr und die Liquiditätsverteilung über den Tag.',
+            'Notenbankinterventionen: Wirkung, Grenzen und historische Beispiele.',
+            'Währungsreserven und ihre Rolle für Wechselkursbindungen.',
+          ],
+        },
+        {
+          heading: 'Steuer und Praxis',
+          points: [
+            'Behandlung von Fremdwährungsguthaben und Währungsgewinnen im Privatvermögen.',
+            'Fremdwährungskonten: Nutzen, Kosten und steuerliche Dokumentation.',
+            'Währungsrisiko in der Ruhestandsplanung mit Auslandsbezug.',
+            'Warum die einfachste Absicherung darin besteht, in der eigenen Verbrauchswährung zu planen.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const portfolioAufbau = outlineTopic({
+  slug: 'portfolio-aufbau',
+  title: 'Portfolio-Aufbau',
+  headline: 'Portfolio-Aufbau: aus einzelnen Bausteinen wird ein Depot',
+  metaTitle: 'Portfolio aufbauen: Aufteilung, Rebalancing, Kern-Satellit',
+  metaDescription:
+    'Wie eine Depotaufteilung entsteht, welche Rolle der risikoarme Anteil spielt, wie Rebalancing funktioniert und warum die Aufteilung wichtiger ist als die Auswahl.',
+  lead: 'Nicht die Auswahl der einzelnen Anlage entscheidet über das Ergebnis, sondern ihre Gewichtung zueinander.',
+  overview: [
+    'Ein Portfolio ist mehr als eine Sammlung guter Einzelanlagen. Entscheidend ist die Aufteilung zwischen risikoarmem und risikoreichem Teil – sie bestimmt den Großteil der Schwankung und einen erheblichen Teil der Rendite.',
+    'Die praktische Konsequenz ist unbequem: Die Zeit, die viele in die Auswahl des besten ETF stecken, wäre in der Frage nach der richtigen Aktienquote deutlich besser angelegt.',
+    'Die Stufen führen von einfachen Zwei-Topf-Modellen über Rebalancing-Regeln und Kern-Satellit-Strukturen bis zu Entnahmestrategien, Steuerwirkung des Umschichtens und der Frage, wie sich eine Aufteilung über Lebensphasen verändern sollte.',
+  ],
+  keywords: [
+    'Portfolio',
+    'Asset Allocation',
+    'Aufteilung',
+    'Rebalancing',
+    'Aktienquote',
+    'Kern-Satellit',
+    'Depotstruktur',
+  ],
+  related: [
+    'aktien-laender-branchen',
+    'risiko-und-rendite',
+    'etf',
+    'cost-average-sparplan',
+  ],
+  calculators: ['/rechner/zinsrechner', '/rechner/rentenluecke'],
+  symbols: ['msci-world'],
+  levels: {
+    beginner: {
+      metaTitle: 'Portfolio aufbauen – Grundlagen für Einsteiger',
+      metaDescription:
+        'Warum die Aufteilung wichtiger ist als die Auswahl, wie ein Zwei-Topf-Modell funktioniert und wie du deine Aktienquote bestimmst.',
+      title: 'Portfolio-Aufbau einfach erklärt',
+      lead: 'Wie aus einzelnen Anlagen ein Depot wird und welche Entscheidung dabei die wichtigste ist.',
+      readingMinutes: 8,
+      sections: [
+        {
+          heading: 'Die eine wichtige Entscheidung',
+          points: [
+            'Die Aufteilung zwischen risikoarm und risikoreich bestimmt den Großteil der Schwankung.',
+            'Die Auswahl einzelner Produkte wirkt deutlich weniger als ihre Gewichtung.',
+            'Warum die Frage „welcher ETF“ die zweite Frage ist, nicht die erste.',
+            'Sichere Anlagen sind kein Renditebremsklotz, sondern der Grund, warum man durchhält.',
+          ],
+        },
+        {
+          heading: 'Das Zwei-Topf-Modell',
+          points: [
+            'Topf eins: Notgroschen und kurzfristig benötigtes Geld auf dem Tagesgeldkonto.',
+            'Topf zwei: langfristiges Geld breit gestreut am Aktienmarkt.',
+            'Warum diese einfache Struktur die meisten Fälle abdeckt.',
+            'Erst wenn Topf eins steht, wird Topf zwei befüllt.',
+          ],
+        },
+        {
+          heading: 'Die eigene Aktienquote finden',
+          points: [
+            'Anlagehorizont als erste Grenze: Wann wird das Geld gebraucht?',
+            'Tragfähigkeit als zweite: Welcher Rückgang wäre finanziell verkraftbar?',
+            'Nachtschlaf-Test: Welcher Rückgang wäre emotional durchhaltbar?',
+            'Bekannte Faustregeln und warum sie nur ein Startpunkt sind.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Rebalancing und Depotstruktur für Fortgeschrittene',
+      metaDescription:
+        'Wann und wie Rebalancing sinnvoll ist, wie Kern-Satellit-Strukturen aufgebaut werden und welche Fehler beim Kombinieren von ETFs entstehen.',
+      title: 'Struktur und Rebalancing',
+      lead: 'Wie ein Depot im Gleichgewicht bleibt und welche Strukturen sich in der Praxis bewährt haben.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Rebalancing',
+          points: [
+            'Warum ein Depot ohne Eingriff mit der Zeit riskanter wird.',
+            'Kalenderregel gegen Bandbreitenregel: jährlich oder ab fünf Prozentpunkten Abweichung.',
+            'Rebalancing über neue Einzahlungen statt über Verkäufe – steuerlich meist besser.',
+            'Warum Rebalancing keine Renditemaschine ist, sondern Risikosteuerung.',
+          ],
+        },
+        {
+          heading: 'Strukturen',
+          points: [
+            'Ein-ETF-Lösung: Vorteile, Grenzen und wann sie ausreicht.',
+            'Kern-Satellit: breiter Kern plus kleine bewusste Abweichungen.',
+            'Regionale Gewichtung nach Marktkapitalisierung gegen BIP-Gewichtung.',
+            'Faktorprämien als Satellit: Anspruch, Evidenz und Kosten.',
+          ],
+        },
+        {
+          heading: 'Typische Konstruktionsfehler',
+          points: [
+            'Überschneidungen: Mehrere ETFs, die dieselben Unternehmen enthalten.',
+            'Verwechslung von Anzahl der Positionen mit tatsächlicher Streuung.',
+            'Themen-ETFs nach starkem Lauf – Kauf am Ende der Entwicklung.',
+            'Depotkomplexität, die das jährliche Rebalancing praktisch verhindert.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Lebenszyklus, Entnahme und Steuerwirkung im Portfolio',
+      metaDescription:
+        'Gleitpfade der Aktienquote, Entnahmestrategien im Ruhestand, Steuerwirkung des Umschichtens und die Frage nach dem Gesamtvermögen statt nur dem Depot.',
+      title: 'Lebenszyklus und Entnahme',
+      lead: 'Wie sich eine Aufteilung über Jahrzehnte verändert und was in der Entnahmephase anders gilt.',
+      readingMinutes: 12,
+      sections: [
+        {
+          heading: 'Über den Lebenszyklus',
+          points: [
+            'Gleitpfad: sinkende Aktienquote mit abnehmendem Horizont.',
+            'Humankapital als sichere Anleihe im Gesamtvermögen der Erwerbsphase.',
+            'Immobilie, Betriebsrente und gesetzliche Rente als Teil der Gesamtaufteilung.',
+            'Warum das Depot allein die falsche Bezugsgröße ist.',
+          ],
+        },
+        {
+          heading: 'Entnahmephase',
+          points: [
+            'Feste Entnahme gegen prozentuale Entnahme gegen dynamische Regeln.',
+            'Sequenzrisiko und der Cash-Puffer als Gegenmaßnahme.',
+            'Eimer-Strategie: Aufteilung nach Zeithorizont der Entnahme.',
+            'Warum Entnahmeraten aus historischen Studien nicht ungeprüft übertragbar sind.',
+          ],
+        },
+        {
+          heading: 'Steuern im Portfolio',
+          points: [
+            'Steuerstundung durch Nichtverkauf als eigener Renditebeitrag.',
+            'FIFO-Prinzip und die Folgen für Teilverkäufe.',
+            'Vorabpauschale und Liquiditätsbedarf beim Rebalancing.',
+            'Getrennte Depots zur Steuerung der Verkaufsreihenfolge.',
+          ],
+        },
+      ],
+    },
+  },
+})
+
+export const kostenUndGebuehren = outlineTopic({
+  slug: 'kosten-und-gebuehren',
+  title: 'Kosten & Gebühren',
+  headline: 'Kosten: der einzige Faktor, den du sicher beeinflussen kannst',
+  metaTitle: 'Kosten bei der Geldanlage: TER, Spread, Gebühren im Überblick',
+  metaDescription:
+    'Welche Kosten bei der Geldanlage anfallen, wo sie versteckt sind, wie stark sie über Jahrzehnte wirken und an welchen Stellen sich am meisten sparen lässt.',
+  lead: 'Die Rendite ist unsicher, die Kosten sind es nicht – deshalb ist jeder gesparte Kostenpunkt der verlässlichste Ertrag im Depot.',
+  overview: [
+    'Kosten wirken jedes Jahr auf das gesamte angelegte Vermögen, nicht nur auf die neue Sparrate. Über 30 Jahre kann ein Unterschied von einem Prozentpunkt jährlich ein Viertel des Endvermögens ausmachen.',
+    'Das Tückische ist die Unsichtbarkeit: Laufende Fondskosten werden täglich anteilig aus dem Fondsvermögen entnommen und tauchen auf keiner Abrechnung auf. Wer nur auf Ordergebühren achtet, sieht den kleineren Teil.',
+    'Die Stufen führen von den einzelnen Kostenarten über die vollständige Erfassung der Gesamtkostenquote bis zu Rückvergütungen, Performance-Fees und der Frage, wo Sparen sinnvoll ist und wo es zulasten der Qualität geht.',
+  ],
+  keywords: [
+    'Kosten',
+    'Gebühren',
+    'TER',
+    'Gesamtkostenquote',
+    'Ausgabeaufschlag',
+    'Spread',
+    'Ordergebühren',
+    'Depotgebühren',
+  ],
+  related: ['etf', 'fonds', 'depot-und-broker', 'zinseszins'],
+  calculators: ['/rechner/zinsrechner'],
+  levels: {
+    beginner: {
+      metaTitle: 'Kosten bei der Geldanlage – Grundlagen',
+      metaDescription:
+        'Welche Kostenarten es gibt, wo sie anfallen, warum laufende Kosten schwerer wiegen als einmalige und wie stark sie über Jahrzehnte wirken.',
+      title: 'Kosten einfach erklärt',
+      lead: 'Welche Kosten es gibt, wo sie versteckt sind und warum sie so stark wirken.',
+      readingMinutes: 7,
+      sections: [
+        {
+          heading: 'Die Kostenarten',
+          points: [
+            'Einmalige Kosten: Ausgabeaufschlag, Ordergebühr, Handelsplatzentgelt.',
+            'Laufende Kosten: Verwaltungsvergütung des Fonds, Depotgebühr.',
+            'Versteckte Kosten: Spread beim Kauf und Verkauf, Transaktionskosten im Fonds.',
+            'Warum laufende Kosten schwerer wiegen als einmalige.',
+          ],
+        },
+        {
+          heading: 'Die Wirkung über die Zeit',
+          points: [
+            'Kosten wirken auf das gesamte Vermögen, nicht nur auf die neue Rate.',
+            'Rechenbeispiel über 30 Jahre bei 0,2 gegen 1,5 Prozent jährlicher Kosten.',
+            'Der entgangene Zinseszins auf die entnommenen Kosten als zweiter Effekt.',
+            'Selbst nachrechnen mit dem Zinsrechner statt Prozentzahlen zu vergleichen.',
+          ],
+        },
+        {
+          heading: 'Wo am meisten zu holen ist',
+          points: [
+            'Größter Hebel: laufende Fondskosten, weil sie jedes Jahr wirken.',
+            'Zweiter Hebel: Ausgabeaufschlag – bei ETFs entfällt er ganz.',
+            'Dritter Hebel: Depotgebühr, die viele Anbieter gar nicht erheben.',
+            'Kleinster Hebel bei langfristiger Anlage: die einzelne Ordergebühr.',
+          ],
+        },
+      ],
+    },
+    fortgeschritten: {
+      metaTitle: 'Gesamtkosten ermitteln: TER, TCO und Tracking-Differenz',
+      metaDescription:
+        'Was die TER enthält und was nicht, wie die Tracking-Differenz die wahren Kosten eines ETF zeigt und wie sich die Gesamtkostenquote sauber berechnen lässt.',
+      title: 'Die tatsächlichen Gesamtkosten',
+      lead: 'Wie du alle Kosten zusammenrechnest und warum die beworbene Kostenquote nur ein Teil davon ist.',
+      readingMinutes: 10,
+      sections: [
+        {
+          heading: 'Was die TER nicht enthält',
+          points: [
+            'Transaktionskosten innerhalb des Fonds sind nicht Teil der TER.',
+            'Performance-Fee wird gesondert ausgewiesen.',
+            'Swap-Gebühren bei synthetischer Abbildung.',
+            'Deshalb ist die TER eine Untergrenze, keine Gesamtangabe.',
+          ],
+        },
+        {
+          heading: 'Die aussagekräftigere Größe',
+          points: [
+            'Tracking-Differenz: tatsächlicher Rückstand zum Index über ein Jahr.',
+            'Warum sie negativ sein kann – Erträge aus Wertpapierleihe und Quellensteueroptimierung.',
+            'Mehrjahresbetrachtung statt Einzeljahr.',
+            'Wo die Werte zu finden sind: Jahresbericht, unabhängige Datenbanken.',
+          ],
+        },
+        {
+          heading: 'Gesamtkosten je Anlagejahr',
+          points: [
+            'Formel: laufende Kosten plus anteilige Einmalkosten über die geplante Haltedauer.',
+            'Spread realistisch ansetzen: Handelsplatz und Uhrzeit beeinflussen ihn stark.',
+            'Sparplankosten je Ausführung auf das Jahr umrechnen.',
+            'Vergleich zweier Anbieter erst nach dieser Umrechnung.',
+          ],
+        },
+      ],
+    },
+    profi: {
+      metaTitle: 'Kickbacks, Performance-Fees und Kostenregulierung',
+      metaDescription:
+        'Bestandsprovisionen, Interessenkonflikte in der Beratung, Gestaltung von Performance-Fees und die regulatorischen Vorgaben zur Kostenausweisung.',
+      title: 'Vergütungsmodelle und Regulierung',
+      lead: 'Wer an deiner Anlage verdient, über welche Wege das geschieht und was die Regulierung offenlegen muss.',
+      readingMinutes: 11,
+      sections: [
+        {
+          heading: 'Vergütung in der Beratung',
+          points: [
+            'Bestandsprovision: laufende Zahlung des Fonds an den Vermittler.',
+            'Provisionsberatung gegen Honorarberatung – Anreize im Vergleich.',
+            'Warum ein Ausgabeaufschlag von fünf Prozent Jahre kostet, nicht Prozente.',
+            'Offenlegungspflichten und wo die Angaben stehen.',
+          ],
+        },
+        {
+          heading: 'Performance-Fees richtig lesen',
+          points: [
+            'Bemessungsgrundlage: absolute Rendite gegen Vergleichsindex.',
+            'High-Water-Mark und ihre Bedeutung nach Verlustjahren.',
+            'Kristallisationszeitpunkt und die Wirkung unterjähriger Abrechnung.',
+            'Asymmetrie: Beteiligung am Gewinn ohne Beteiligung am Verlust.',
+          ],
+        },
+        {
+          heading: 'Regulatorischer Rahmen',
+          points: [
+            'Basisinformationsblatt und die vorgeschriebene Kostendarstellung.',
+            'Ex-ante- und Ex-post-Kostenausweis des Brokers.',
+            'Kostenausweis in Euro statt in Prozent als wirksamste Transparenzregel.',
+            'Grenzen der Regulierung: Was weiterhin nicht ausgewiesen werden muss.',
+          ],
+        },
+      ],
+    },
+  },
+})

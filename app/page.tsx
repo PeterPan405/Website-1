@@ -12,12 +12,11 @@ import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { getMarketOverview } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
 import { buildMetadata } from '@/lib/seo'
-import { areas, areaStyles, siteConfig, type AreaId } from '@/lib/site'
+import { areas, areaStyles, LEARN_TOPIC_COUNT, siteConfig, type AreaId } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
   title: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
-  description:
-    'Finanzwissen in drei Lernstufen: 23 Themen von Aktie bis Zinseszins, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.',
+  description: `Finanzwissen in drei Lernstufen: ${LEARN_TOPIC_COUNT} Themen in aufbauender Reihenfolge, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.`,
   path: '/',
   ogTitle: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
 })
