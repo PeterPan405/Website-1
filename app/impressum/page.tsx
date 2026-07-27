@@ -167,10 +167,14 @@ export default function ImprintPage() {
               Kapitals.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Die auf dieser Website gezeigten Kurse, Nachrichten und Verschuldungsdaten
-              sind in der aktuellen Fassung{' '}
-              <strong className="text-fg font-semibold">Beispieldaten</strong> und keine
-              echten Marktinformationen.
+              Kurse werden als Tagesschlusskurse und zuletzt gehandelte Preise dargestellt
+              und sind{' '}
+              <strong className="text-fg font-semibold">keine Echtzeitdaten</strong>. Sie
+              können von den Angaben anderer Anbieter abweichen und sind nicht für
+              Handelszwecke bestimmt. Die Verschuldungszahlen sind Näherungswerte und
+              keine amtliche Statistik. Für Aktualität, Richtigkeit und Vollständigkeit
+              wird keine Gewähr übernommen; Herkunft und Stand stehen jeweils direkt an
+              der Angabe.
             </p>
           </section>
         </div>

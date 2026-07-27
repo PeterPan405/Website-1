@@ -217,15 +217,25 @@ richtiger Antworten kann die Stufe als erledigt markiert werden.
 
 ## Unternehmensphilosophie
 
-`app/unternehmensphilosophie/page.tsx` steht als Gerüst bereit, der Text wird redaktionell
-verfasst. Bearbeitet wird ausschließlich `data/philosophy.ts`:
+Verfasst und veröffentlicht (`PHILOSOPHY_PUBLISHED = true`). Fünf Abschnitte in
+`data/philosophy.ts`: warum es die Website gibt, die inhaltlichen
+Grundüberzeugungen, die redaktionelle Arbeitsweise, die Abgrenzung und die
+Finanzierung.
 
-1. Je Abschnitt `paragraphs` füllen – der Text ersetzt dann automatisch den Arbeitshinweis.
-2. Ist alles geschrieben: `PHILOSOPHY_PUBLISHED` auf `true` setzen.
+Die Abschnitte sind Daten, keine Seitenstruktur – `heading` wird als `<h2>`
+ausgegeben, jeder Eintrag in `paragraphs` als Absatz. Umformulieren, ergänzen
+oder streichen geht damit, ohne die Seite anzufassen. Das `hint`-Feld bleibt bei
+jedem Abschnitt stehen, obwohl es nicht mehr angezeigt wird: Es beschreibt, was
+in den Abschnitt gehört, und ist die Prüffrage für eine spätere Überarbeitung.
 
-Solange die Seite nicht veröffentlicht ist, wird sie mit `noindex` ausgeliefert und **nicht**
-in die Sitemap aufgenommen; eine fast leere Seite im Index würde die Sichtbarkeit der
-gesamten Domain belasten. Über die Fußzeile bleibt sie zum Korrekturlesen erreichbar.
+Solange `PHILOSOPHY_PUBLISHED` auf `false` steht, wird die Seite mit `noindex`
+ausgeliefert und **nicht** in die Sitemap aufgenommen; eine fast leere Seite im
+Index würde die Sichtbarkeit der gesamten Domain belasten.
+
+Der Abschnitt zur Finanzierung nennt: keine Werbung, keine Provisionen, keine
+Affiliate-Links, kein Abonnement, privat finanziert. **Das ist eine Aussage über
+das Geschäft und muss stimmen** – ändert sich daran etwas, gehört es dort
+geändert, bevor es woanders auffällt.
 
 ## Nachrichten und das rollierende Prinzip
 
@@ -398,8 +408,9 @@ Seitenkopf. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit sein.
 
 ## SEO
 
-- **Eigene Seite je Inhalt**, keine Anker auf einer Monolith-Seite: über 170
-  indexierbare URLs, davon 99 Lernstufen-Seiten (33 Themen × 3 Stufen).
+- **Eigene Seite je Inhalt**, keine Anker auf einer Monolith-Seite: rund 300
+  indexierbare URLs, davon 99 Lernstufen-Seiten (33 Themen × 3 Stufen) und 134
+  Kursseiten.
 - **`lib/seo.ts`** erzeugt Title, Description, canonical, Open Graph und Twitter-Card
   zentral. Im Entwicklungsmodus warnt es, wenn Title (30–62 Zeichen) oder Description
   (110–165 Zeichen) aus dem Zielkorridor fallen.
@@ -433,6 +444,23 @@ JS-Fehler bei 360/768/1440 px).
 - Hell-/Dunkelmodus über ein Inline-Script im `<head>` – kein Aufblitzen beim Laden.
 - Schriften werden über `next/font` zur Build-Zeit eingebunden und selbst
   ausgeliefert; zur Laufzeit gibt es keine Verbindung zu Google.
+
+## Zahlen im Fließtext gehören abgeleitet
+
+Auf `/ueber-uns` stand monatelang „Aktie und Zinseszins sind ausformuliert, die
+übrigen 20 Themen haben eine Gliederung“. Beides war irgendwann falsch:
+`rohstoffe` kam dazu, und aus 20 übrigen wurden 30. Dieselbe Sorte Fehler steckte
+in der Themenzahl im Menü und in der Aussage, Kurse und News seien Beispieldaten.
+
+Die Regel daraus: **Eine Zahl, die jemand beim Erweitern mitpflegen muss, wird
+irgendwann vergessen.** Solche Angaben kommen deshalb aus der Service-Schicht –
+auf `/ueber-uns` über `getLearnStats()` und `getCompleteTopics()`, im Lernbereich
+über `stats.topicCount`. Wo das nicht geht, weil eine Client-Komponente die Daten
+sonst ins Browser-Bundle zöge, steht die Zahl einmal als Konstante und wird beim
+Bauen gegen die Wirklichkeit geprüft (`LEARN_TOPIC_COUNT`).
+
+Was strukturell feststeht – „drei Stufen“, „fünf Rechner“ – darf im Text stehen.
+Was mit den Daten wächst, nicht.
 
 ## Was noch fehlt
 

@@ -215,10 +215,18 @@ export default function PrivacyPage() {
               6. Marktdaten und Nachrichten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              In der aktuellen Fassung werden Kurse, Nachrichten und Verschuldungsdaten
-              als Beispieldaten mit der Website ausgeliefert. Es findet dafür{' '}
+              Kurse und Nachrichten stammen aus externen Quellen, werden aber nicht beim
+              Aufruf der Seite geholt: Sie werden vorab abgerufen und fest in die
+              ausgelieferten Seiten eingebaut. Beim Besuch dieser Website findet deshalb{' '}
               <strong className="text-fg font-semibold">kein Abruf bei Dritten</strong>{' '}
-              statt – weder durch den Server noch durch deinen Browser.
+              statt – weder durch den Server noch durch deinen Browser. Es werden dabei
+              keine Daten über dich an die Quellen übermittelt, und diese erfahren nicht,
+              dass du diese Website aufgerufen hast.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Etwas anderes gilt erst, wenn du einen der angegebenen Quellenverweise
+              anklickst. Dann rufst du die fremde Seite unmittelbar auf, und es gelten
+              deren Datenschutzbestimmungen.
             </p>
           </section>
 

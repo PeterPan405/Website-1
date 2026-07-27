@@ -46,6 +46,11 @@ export const mainNav: NavItem[] = [
       { label: 'Gold', href: '/maerkte/gold', hint: 'Feinunze in US-Dollar' },
       { label: 'Bitcoin', href: '/maerkte/bitcoin', hint: 'Kryptowährung in US-Dollar' },
       { label: 'Brent', href: '/maerkte/brent', hint: 'Rohöl je Fass' },
+      {
+        label: 'Magnificent Seven',
+        href: '/maerkte#magnificent-seven',
+        hint: 'Die sieben schwersten Werte im S&P 500',
+      },
       { label: 'EUR/USD', href: '/maerkte/eur-usd', hint: 'Euro zu US-Dollar' },
       {
         label: 'MSCI World',
@@ -53,7 +58,7 @@ export const mainNav: NavItem[] = [
         hint: 'Industrieländer weltweit',
       },
     ],
-    footerLink: { label: 'Alle 20 Kurse ansehen', href: '/maerkte' },
+    footerLink: { label: 'Alle Kurse ansehen', href: '/maerkte' },
   },
   {
     label: 'Rechner',

@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
 
@@ -16,40 +17,57 @@ export const metadata: Metadata = buildMetadata({
   ogTitle: `Wofür ${siteConfig.name} steht`,
 })
 
+/**
+ * Die vier Grundsätze.
+ *
+ * Vorher waren es sechs, und sie beschrieben Verfahren: „Formeln offenlegen“,
+ * „Drei Stufen, die weitergehen“. Das war richtig, aber es war eine Liste von
+ * Maßnahmen, keine Haltung – und Maßnahmen ändern sich, wenn die Website
+ * wächst.
+ *
+ * Diese vier benennen stattdessen, woran sich jede einzelne Entscheidung messen
+ * lassen muss. Die Maßnahmen stehen weiterhin darin, aber als Beleg für den
+ * Grundsatz, nicht als Grundsatz selbst.
+ */
 const principles: { icon: IconName; title: string; text: string }[] = [
   {
-    icon: 'book',
-    title: 'Mechanismen statt Empfehlungen',
-    text: 'Wir erklären, wie etwas funktioniert, und nennen keine konkreten Produkte. Wer den Mechanismus versteht, kann Angebote selbst beurteilen – das ist haltbarer als jede Empfehlung.',
-  },
-  {
-    icon: 'calculator',
-    title: 'Formeln offenlegen',
-    text: 'Jeder Rechner zeigt seine Formel und benennt seine Annahmen. Ein Ergebnis ohne Methodik ist nicht überprüfbar und damit wertlos.',
-  },
-  {
-    icon: 'warning',
-    title: 'Risiken so deutlich wie Chancen',
-    text: 'Wo Verluste möglich sind, steht das dabei – nicht im Kleingedruckten. Renditeversprechen gibt es hier nicht, weil niemand sie halten kann.',
-  },
-  {
-    icon: 'layers',
-    title: 'Drei Stufen, die weitergehen',
-    text: 'Die Profi-Stufe wiederholt nicht die Grundlagen mit anderen Worten, sondern behandelt Kennzahlen, Sonderfälle, Steueraspekte und Bewertungsfragen.',
+    icon: 'scale',
+    title: 'Rational',
+    text: 'Entscheidungen über Geld gehören an Mechanismen und Zahlen ausgerichtet, nicht an Schlagzeilen oder Bauchgefühl. Jeder Rechner zeigt deshalb seine Formel, und wo eine Aussage von Annahmen abhängt, stehen die Annahmen daneben – ein Ergebnis ohne Rechenweg ist nicht überprüfbar und damit wertlos.',
   },
   {
     icon: 'shield',
-    title: 'Keine Datensammlung',
-    text: 'Rechnereingaben und Lernfortschritt bleiben im Browser. Es gibt kein Konto, kein Tracking und keine Weitergabe an Dritte.',
+    title: 'Ehrlich',
+    text: 'Risiken stehen so deutlich da wie Chancen, nicht im Kleingedruckten. Es gibt keine Renditeversprechen, weil niemand sie halten kann. Jede Zahl nennt ihre Herkunft und ihren Stand; wo Werte zur Veranschaulichung erzeugt sind, steht genau das dabei. Und ein Fehler wird benannt und korrigiert, nicht stillschweigend überschrieben.',
   },
   {
-    icon: 'info',
-    title: 'Unsicherheit benennen',
-    text: 'Wo eine Aussage von Annahmen abhängt, stehen die Annahmen dabei. Wo eine Frage steuerlich oder rechtlich wird, verweisen wir auf fachlichen Rat statt zu raten.',
+    icon: 'compass',
+    title: 'Zukunftsorientiert',
+    text: 'Vermögensaufbau ist eine Frage von Jahrzehnten, nicht von Quartalen. Die Inhalte sind deshalb auf das ausgerichtet, was in zehn Jahren noch gilt – auf Zinseszins, Streuung, Kosten und den eigenen Umgang mit Schwankungen. Aktuelle Kurse und Nachrichten stehen daneben, aber sie sind Anlass zum Verstehen, nicht zum Handeln.',
+  },
+  {
+    icon: 'lightbulb',
+    title: 'Verständlich',
+    text: 'Fachsprache ist kein Qualitätsmerkmal, Vereinfachung aber auch nicht. Jedes Thema gibt es deshalb dreimal: Die erste Stufe klärt die Begriffe, die zweite die Umsetzung, die dritte Kennzahlen, Sonderfälle und Steuern. Wer den Mechanismus einmal verstanden hat, kann jedes Angebot selbst beurteilen – das hält länger als jede Empfehlung.',
   },
 ]
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  /*
+    Die Zahlen kommen aus den Daten, nicht aus dem Fließtext.
+
+    Hier stand „Aktie und Zinseszins sind ausformuliert, die übrigen 20 Themen
+    haben eine Gliederung“. Beides war falsch geworden: Rohstoffe kam dazu, und
+    aus 20 übrigen wurden 30. Eine Zahl, die jemand beim Erweitern mitpflegen
+    muss, wird irgendwann vergessen – und steht dann als Behauptung auf einer
+    Seite, deren Thema Ehrlichkeit ist.
+  */
+  const [stats, completeTopics] = await Promise.all([
+    getLearnStats(),
+    getCompleteTopics(),
+  ])
+  const offen = stats.topicCount - completeTopics.length
+
   return (
     <>
       <PageHeader
@@ -75,10 +93,10 @@ export default function AboutPage() {
             wenn es unspektakulärer klingt.
           </p>
 
-          <h2 className="text-fg mt-12 text-2xl font-bold">Sechs Grundsätze</h2>
+          <h2 className="text-fg mt-12 text-2xl font-bold">Vier Grundsätze</h2>
         </div>
 
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {principles.map((principle) => (
             <li key={principle.title} className="fk-card h-full p-6">
               <span className="bg-brand-soft text-brand flex size-10 items-center justify-center rounded-xl">
@@ -101,13 +119,17 @@ export default function AboutPage() {
             Stufe gehören und was bewusst ausgeklammert bleibt.
           </p>
           <p className="text-fg-muted mt-4 leading-relaxed">
-            Derzeit sind die Themen{' '}
-            <strong className="text-fg font-semibold">Aktie</strong> und{' '}
-            <strong className="text-fg font-semibold">Zinseszins</strong> vollständig
-            ausformuliert. Die übrigen 20 Themen haben eigene Seiten mit Gliederung; der
-            Text wird Thema für Thema ergänzt. Der Stand ist auf jeder betroffenen Seite
-            gekennzeichnet – wir halten es für ehrlicher, den Bearbeitungsstand zu zeigen,
-            als leere Seiten zu verstecken.
+            Derzeit sind{' '}
+            {completeTopics.map((topic, index) => (
+              <span key={topic.slug}>
+                {index > 0 && (index === completeTopics.length - 1 ? ' und ' : ', ')}
+                <strong className="text-fg font-semibold">{topic.title}</strong>
+              </span>
+            ))}{' '}
+            vollständig ausformuliert. Die übrigen {offen} Themen haben eigene Seiten mit
+            Gliederung; der Text wird Thema für Thema ergänzt. Der Stand ist auf jeder
+            betroffenen Seite gekennzeichnet – wir halten es für ehrlicher, den
+            Bearbeitungsstand zu zeigen, als leere Seiten zu verstecken.
           </p>
 
           <div className="mt-8">
@@ -120,8 +142,11 @@ export default function AboutPage() {
                 eingesetzten Geldes.
               </p>
               <p>
-                Kurse, News und Verschuldungsdaten dieser Version sind Beispieldaten und
-                keine echten Marktinformationen.
+                Kurse werden als Tagesschlusskurse und zuletzt gehandelte Preise
+                dargestellt, nicht in Echtzeit; sie können von den Angaben anderer
+                Anbieter abweichen und sind nicht für Handelszwecke bestimmt. Die
+                Verschuldungszahlen sind Näherungswerte und keine amtliche Statistik.
+                Herkunft und Stand stehen jeweils direkt an der Angabe.
               </p>
             </Callout>
           </div>

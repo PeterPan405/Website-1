@@ -1,17 +1,17 @@
 import {
   MARKET_DATA_AS_OF,
   type MarketDefinition,
-  type MarketRange,
   type SeriesPoint,
 } from '@/data/markets'
 
 /**
  * Deterministische Erzeugung der Demo-Kursverläufe.
  *
- * Warum nicht einfach ein paar Zahlen ins Repository schreiben? Fünf Jahre
- * Tageskurse für zehn Instrumente wären rund 13.000 handgepflegte Werte. Statt
- * dessen wird der Verlauf aus einem festen Startwert plus festem Zufalls-Seed
- * berechnet. Ergebnis: bei jedem Aufruf exakt dieselbe Reihe, ohne dass die
+ * Nur noch der Rückfallweg: Instrumente ohne frei zugängliche Quelle – derzeit
+ * `msci-world` – bekommen hier einen erzeugten Verlauf, bis der Abruf greift.
+ * Fünf Jahre Tageskurse von Hand zu pflegen wäre für jedes Instrument über
+ * tausend Werte; stattdessen wird der Verlauf aus einem festen Startwert plus
+ * festem Zufalls-Seed berechnet. Ergebnis: bei jedem Aufruf exakt dieselbe Reihe, ohne dass die
  * Daten im Repository liegen.
  *
  * Sobald eine echte Kurs-API angebunden wird, entfällt diese Datei komplett –
@@ -138,6 +138,10 @@ export interface InstrumentSeries {
   daily: SeriesPoint[]
 }
 
+// Der Zuschnitt liegt in einem eigenen, importfreien Modul, damit er testbar
+// ist. Hier weitergereicht, damit Aufrufer nur eine Adresse kennen müssen.
+export { downsample, sliceRange } from '@/lib/market-range'
+
 /**
  * Ergebnis-Cache pro Prozess.
  *
@@ -154,46 +158,4 @@ export function getInstrumentSeries(definition: MarketDefinition): InstrumentSer
   const series: InstrumentSeries = { daily: generateDailySeries(definition, tradingDays) }
   seriesCache.set(definition.symbol, series)
   return series
-}
-
-/**
- * Reduziert eine Reihe auf höchstens `maxPoints` Werte.
- *
- * Charts brauchen keine 1.300 Punkte auf 800 Pixel Breite – jeder überflüssige
- * Punkt wandert sonst unnötig ins Browser-Bundle. Erster und letzter Wert
- * bleiben immer erhalten, damit Start und aktueller Kurs exakt stimmen.
- */
-export function downsample(points: SeriesPoint[], maxPoints: number): SeriesPoint[] {
-  if (points.length <= maxPoints) return points
-
-  const step = (points.length - 1) / (maxPoints - 1)
-  const result: SeriesPoint[] = []
-  for (let i = 0; i < maxPoints - 1; i += 1) {
-    result.push(points[Math.round(i * step)])
-  }
-  result.push(points[points.length - 1])
-  return result
-}
-
-/**
- * Wie viele Handelstage bzw. Punkte ein Zeitraum umfasst.
- *
- * `tradingDays` fehlt bei „fünf Jahre“ – dort wird die ganze Reihe genommen.
- * Die Werte sind Handelstage, nicht Kalendertage: fünf für eine Woche, 22 für
- * einen Monat.
- */
-const rangeConfig: Record<MarketRange, { tradingDays?: number; maxPoints: number }> = {
-  '1W': { tradingDays: 5, maxPoints: 5 },
-  '1M': { tradingDays: 22, maxPoints: 22 },
-  '1J': { tradingDays: TRADING_DAYS_PER_YEAR, maxPoints: 130 },
-  '5J': { maxPoints: 260 },
-}
-
-/** Schneidet die passende Teilreihe für einen Zeitraum zu. */
-export function sliceRange(series: InstrumentSeries, range: MarketRange): SeriesPoint[] {
-  const config = rangeConfig[range]
-  const points = config.tradingDays
-    ? series.daily.slice(-config.tradingDays)
-    : series.daily
-  return downsample(points, config.maxPoints)
 }

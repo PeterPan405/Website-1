@@ -9,6 +9,8 @@ import {
   type SeriesPoint,
 } from '@/data/markets'
 import { getLiveSeries, type QuoteSource } from '@/lib/market-live'
+import { computeQuoteFigures } from '@/lib/market-quote'
+import { sliceByDays } from '@/lib/market-range'
 import { downsample, getInstrumentSeries, sliceRange } from '@/lib/market-series'
 
 /**
@@ -142,34 +144,11 @@ function findDefinition(symbol: string): MarketDefinition | undefined {
 
 function buildQuote(definition: MarketDefinition): MarketQuote {
   const { daily, asOf, source, latest: laufend } = basisFor(definition)
-  const latest = daily[daily.length - 1]
-  const previous = daily[daily.length - 2]
 
-  /*
-    Der laufende Kurs verdrängt den Schlusskurs als angezeigten Wert.
-
-    Damit steht auf der Kachel die Zahl, nach der jemand sucht – und die
-    Tagesveränderung misst dann gegen den letzten Schluss, nicht gegen den
-    vorletzten. Genau so wird sie überall sonst auch gerechnet.
-
-    Der Chart bleibt unberührt: Ein Verlauf aus Schlusskursen mit einem
-    laufenden Preis am Ende hätte dort einen Knick, der nichts bedeutet.
-  */
-  const wert = laufend?.value ?? latest.value
-  const vergleich = laufend ? latest.value : previous.value
-
-  const lastYear = daily.slice(-252)
-  // Der laufende Kurs zählt beim Jahreshoch mit – sonst könnte der angezeigte
-  // Wert über dem „52-Wochen-Hoch“ liegen, und die Kennzahl daneben wäre falsch.
-  const values = [...lastYear.map((point) => point.value), wert]
-
-  const currentYear = latest.t.slice(0, 4)
-  // Letzter Schlusskurs, der noch im Vorjahr liegt – Basis für die YTD-Zahl.
-  const lastYearClose =
-    [...daily].reverse().find((point) => point.t.slice(0, 4) < currentYear)?.value ??
-    daily[0].value
-
-  const change = wert - vergleich
+  // Die Rechnung liegt in `lib/market-quote.ts`, weil sie dort ohne Datenschicht
+  // prüfbar ist – hier steckten drei Fehler, die von außen nur als „die Zahlen
+  // stimmen nicht“ auffielen.
+  const zahlen = computeQuoteFigures(daily, laufend)
 
   return {
     symbol: definition.symbol,
@@ -178,15 +157,15 @@ function buildQuote(definition: MarketDefinition): MarketQuote {
     kind: definition.kind,
     unit: definition.unit,
     decimals: definition.decimals,
-    value: wert,
-    previousClose: vergleich,
-    change,
-    changePercent: (change / vergleich) * 100,
-    high52w: Math.max(...values),
-    low52w: Math.min(...values),
-    ytdPercent: ((wert - lastYearClose) / lastYearClose) * 100,
+    value: zahlen.value,
+    previousClose: zahlen.previousClose,
+    change: zahlen.change,
+    changePercent: zahlen.changePercent,
+    high52w: zahlen.high52w,
+    low52w: zahlen.low52w,
+    ytdPercent: zahlen.ytdPercent,
     asOf: laufend?.at ?? asOf,
-    intraday: Boolean(laufend),
+    intraday: zahlen.intraday,
     source,
     sourcePlanned: definition.symbol in marketSources,
   }
@@ -256,7 +235,7 @@ export async function getSeries(
 ): Promise<SeriesPoint[]> {
   const definition = findDefinition(symbol)
   if (!definition) return []
-  return sliceRange({ daily: basisFor(definition).daily }, range)
+  return sliceRange(basisFor(definition).daily, range)
 }
 
 /**
@@ -271,7 +250,7 @@ export async function getAllSeries(
   const definition = findDefinition(symbol)
   if (!definition) return null
 
-  const series = { daily: basisFor(definition).daily }
+  const series = basisFor(definition).daily
   return {
     '1W': sliceRange(series, '1W'),
     '1M': sliceRange(series, '1M'),
@@ -281,13 +260,18 @@ export async function getAllSeries(
 }
 
 /** Sehr kurze Reihe für die Vorschau-Charts auf der Startseite. */
-export async function getSparkline(
-  symbol: string,
-  tradingDays = 90
-): Promise<SeriesPoint[]> {
+export async function getSparkline(symbol: string, days = 120): Promise<SeriesPoint[]> {
   const definition = findDefinition(symbol)
   if (!definition) return []
-  return downsample(basisFor(definition).daily.slice(-tradingDays), 44)
+  /*
+    Nach Kalendertagen zugeschnitten, nicht nach Anzahl der Punkte.
+
+    Bei 90 Punkten deckte der Mini-Verlauf für eine Aktie rund vier Monate ab,
+    für Bitcoin mit seinen sieben Handelstagen je Woche nur drei. Zwei Kacheln
+    nebeneinander zeigten damit verschieden lange Zeiträume, ohne dass es
+    irgendwo stand.
+  */
+  return downsample(sliceByDays(basisFor(definition).daily, days), 44)
 }
 
 export interface MarketPreview {
