@@ -9,3 +9,13 @@ next-env.d.ts
 # Prettier würde daraus vier Zeilen je Punkt machen und die Datei nach jedem
 # Workflow-Lauf als fehlerhaft formatiert melden.
 data/snapshots/markets.json
+
+# Die Kartengeometrie ist unverändert kopiertes Fremdmaterial – Natural Earth
+# über das Paket `world-atlas`, hergestellt von `npm run globus-geometrie`.
+#
+# Prettier würde die beiden Dateien umbrechen und damit aufblähen: 739 Kilobyte
+# TopoJSON in einer Zeile werden eingerückt zu einem Vielfachen davon, und
+# ausgeliefert wird die Datei so, wie sie im Repository liegt. Vor allem aber
+# wäre sie danach nicht mehr identisch mit der Quelle – ein kopiertes Fremdstück
+# umzuformatieren nimmt ihm genau die Eigenschaft, die es überprüfbar macht.
+public/globus/*.json
