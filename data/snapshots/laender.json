@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-27T19:03:25.392Z",
+  "abgerufenAm": "2026-07-27T19:37:22.497Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -13,6 +13,11 @@
     "label": "IWF, World Economic Outlook (GGXWDG_NGDP) über die Datamapper-Schnittstelle",
     "url": "https://www.imf.org/external/datamapper/GGXWDG_NGDP@WEO",
     "abgrenzung": "Bruttoschuld des Gesamtstaats in Prozent des BIP. Eine einheitliche Abgrenzung für alle Länder – nicht deckungsgleich mit der Maastricht-Abgrenzung von Eurostat."
+  },
+  "lohnQuelle": {
+    "label": "OECD, Durchschnittslöhne (AV_AN_WAGE) über die SDMX-Schnittstelle",
+    "url": "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CEmployment%23JOB%23%7CBenefits%252C%20earnings%20and%20wages%23JOB_BEW%23&pg=0&fc=Topic&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40AV_AN_WAGE",
+    "abgrenzung": "Durchschnittlicher Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt in US-Dollar. Brutto, vor Steuern und Abgaben. Nur OECD-Mitglieder – eine weltweite Reihe nach einheitlicher Abgrenzung gibt es offen nicht."
   },
   "laender": {
     "AFG": {

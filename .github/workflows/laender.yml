@@ -1,6 +1,7 @@
 name: Länderdaten aktualisieren
 
-# Holt Bruttoinlandsprodukt, Einwohnerzahl und Schuldenquote für den Globus.
+# Holt Bruttoinlandsprodukt, Einwohnerzahl, Schuldenquote und Durchschnitts-
+# löhne für den Globus.
 #
 # Warum als eigener Workflow und nicht im Kursabruf: Diese Reihen ändern sich
 # einmal im Jahr, Kurse jede Stunde. Sie im selben Lauf zu holen hieße,
@@ -12,11 +13,19 @@ name: Länderdaten aktualisieren
 # Outlook (April und Oktober). Monatlich reicht dafür mit Abstand und fängt
 # beide Termine sicher ein.
 #
-# Zum Hintergrund der Schuldenquote: Sie kommt von imf.org. In manchen
-# Umgebungen ist dieser Host nicht erreichbar – dann meldet das Skript eine
-# Warnung, behält den vorherigen Stand und aktualisiert den Rest. Hier auf
-# einem GitHub-Läufer gibt es diese Einschränkung nicht; genau deshalb läuft
-# der Abruf an dieser Stelle.
+# Zum Hintergrund von Schuldenquote und Löhnen: Sie kommen von imf.org und
+# sdmx.oecd.org. In manchen Umgebungen sind diese Hosts nicht erreichbar – dann
+# meldet das Skript eine Warnung, behält den vorherigen Stand und aktualisiert
+# den Rest. Hier auf einem GitHub-Läufer gibt es diese Einschränkung nicht;
+# genau deshalb läuft der Abruf an dieser Stelle.
+#
+# Beide Abrufe sind in der Entwicklungsumgebung nie durchgelaufen, weil dort
+# nur npm und GitHub erreichbar sind. Der erste Lauf hier ist damit auch der
+# erste Beleg, dass die Schnittstellen so antworten wie angenommen. Was das
+# Protokoll zeigen muss: „Schuldenquoten fuer … Laender geholt“ und
+# „Durchschnittsloehne fuer … Laender geholt“. Steht dort stattdessen eine
+# Warnung, hat sich an der Schnittstelle etwas geändert – die Seite zeigt dann
+# weiter den vorherigen Stand und keine falschen Zahlen.
 
 on:
   schedule:

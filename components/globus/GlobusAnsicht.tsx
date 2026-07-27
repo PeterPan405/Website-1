@@ -331,7 +331,7 @@ function Legende({
       {/* Knapp gehalten: Die ausführliche Erklärung steht einmal unter der
           Karte und muss nicht bei jeder Kennzahl wiederholt werden. */}
       <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
-        Angaben in {einheit} · {abgedeckt} von {gesamt} Ländern mit Wert
+        Angaben in {einheit} · {abgedeckt} von {gesamt} Ländern und Gebieten mit Wert
       </p>
     </div>
   )

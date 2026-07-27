@@ -179,9 +179,11 @@ type Momentaufnahme = {
       bipUsd?: number
       einwohner?: number
       schuldenquote?: { wert: number; jahr: number }
+      durchschnittsgehalt?: { wert: number; jahr: number }
     }
   >
   schuldenQuelle?: { label: string; url: string; abgrenzung: string }
+  lohnQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -190,14 +192,18 @@ const daten = momentaufnahme as Momentaufnahme
 export const WELTBANK_JAHR = daten.bezugsjahr
 export const WELTBANK_QUELLE = daten.quelle
 
-/**
- * Die Quelle der abgerufenen Schuldenquoten.
- *
- * Steht in der Momentaufnahme und nicht im Code, weil sie zum Datenstand
- * gehört: Wer den Abruf auf eine andere Reihe umstellt, ändert damit auch die
- * Angabe auf der Seite.
- */
-export const SCHULDEN_QUELLE = daten.schuldenQuelle ?? null
+/*
+  Die Momentaufnahme führt zu den abgerufenen Reihen `schuldenQuelle` und
+  `lohnQuelle` – Beschriftung, Link und Abgrenzung, so wie sie beim Abruf
+  gegolten haben.
+
+  Angezeigt werden sie von dort aus nicht. Auf der Seite steht die Quelle an
+  jedem einzelnen Wert, und dieser Weg führt über `kennzahlenQuellen`: Der
+  Kennwert trägt einen Schlüssel, die Tafel schlägt ihn nach. Zwei Wege zur
+  selben Angabe wären zwei Gelegenheiten, auseinanderzulaufen. Was in der
+  Momentaufnahme steht, ist deshalb Herkunftsnachweis für den, der die Datei
+  liest – die Anzeige gehört `data/laender/kennzahlen.ts`.
+*/
 
 function kursZu(symbol: string): Landeskurs | null {
   const definition = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)
@@ -217,9 +223,9 @@ function kursZu(symbol: string): Landeskurs | null {
   Die Länderliste entsteht aus den Namen, nicht aus der Momentaufnahme.
 
   `data/laender/namen.ts` deckt jede Form der Kartengeometrie ab – auch
-  Grönland, die Westsahara und die drei Gebiete ohne ISO-Kennung. Ginge man von
-  der Weltbank-Liste aus, hätten diese Flächen keinen Namen, und ein Klick
-  darauf liefe ins Leere.
+  Grönland, die Westsahara, Hongkong und die fünf Gebiete ohne ISO-Kennung.
+  Ginge man von der Weltbank-Liste aus, hätten diese Flächen keinen Namen, und
+  ein Klick darauf liefe ins Leere.
 */
 function baueLaender(): Land[] {
   // Von Alpha-3 auf numerisch: Die Momentaufnahme ist nach Alpha-3 abgelegt,
@@ -286,9 +292,28 @@ function baueLaender(): Land[] {
         }
         return schuldenquote[id] ? { schuldenquote: schuldenquote[id] } : {}
       })(),
-      ...(durchschnittsgehalt[id]
-        ? { durchschnittsgehalt: durchschnittsgehalt[id] }
-        : {}),
+      /*
+        Wie bei der Schuldenquote: der Abruf vor der Handpflege.
+
+        Die OECD-Reihe deckt rund vierzig Länder nach einer Abgrenzung ab; die
+        neun von Hand eingetragenen Werte waren der Notbehelf, solange es
+        keinen Abruf gab. Wo beides vorliegt, gewinnt die maschinelle Reihe.
+      */
+      ...(() => {
+        const abgerufen = basis?.durchschnittsgehalt
+        if (abgerufen) {
+          return {
+            durchschnittsgehalt: {
+              wert: abgerufen.wert,
+              zeitraum: String(abgerufen.jahr),
+              quelle: 'oecd-sdmx',
+            },
+          }
+        }
+        return durchschnittsgehalt[id]
+          ? { durchschnittsgehalt: durchschnittsgehalt[id] }
+          : {}
+      })(),
       ...(medianvermoegen[id] ? { medianvermoegen: medianvermoegen[id] } : {}),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
@@ -318,8 +343,8 @@ assertLaenderValid({
   kennzahlen: { schuldenquote, durchschnittsgehalt, medianvermoegen },
   quellen: kennzahlenQuellen,
   ersatzschluessel,
-  // Wird nicht in `kennzahlen` gesetzt, sondern aus der Momentaufnahme.
-  dynamischeQuellen: ['imf-datamapper'],
+  // Werden nicht in `kennzahlen` gesetzt, sondern aus der Momentaufnahme.
+  dynamischeQuellen: ['imf-datamapper', 'oecd-sdmx'],
 })
 
 /** Alle Länder der Karte, alphabetisch. */

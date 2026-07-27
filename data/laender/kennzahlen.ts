@@ -81,6 +81,12 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
     abgrenzung:
       'Durchschnittlicher Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt in US-Dollar. Brutto, vor Steuern und Abgaben.',
   },
+  'oecd-sdmx': {
+    label: 'OECD, Durchschnittslöhne (AV_AN_WAGE)',
+    url: 'https://data-explorer.oecd.org/',
+    abgrenzung:
+      'Durchschnittlicher Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt in US-Dollar, für alle OECD-Mitglieder nach derselben Abgrenzung. Wird von scripts/laender-abrufen.ts geholt.',
+  },
   'ubs-gwr-2025': {
     label: 'UBS Global Wealth Report 2025 (Aufbereitung bei Visual Capitalist)',
     url: 'https://www.visualcapitalist.com/wealth-per-person-by-country-2025/',

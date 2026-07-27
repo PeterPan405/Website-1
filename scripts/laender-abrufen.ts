@@ -49,6 +49,25 @@ const CODES_URL =
  */
 const IWF_SCHULDEN_URL = 'https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP'
 
+/**
+ * Durchschnittliche Jahresloehne aus der SDMX-Schnittstelle der OECD.
+ *
+ * `AV_AN_WAGE` ist der Durchschnittslohn einer vollzeitbeschaeftigten Person,
+ * kaufkraftbereinigt in US-Dollar. Die OECD deckt damit rund vierzig Laender ab
+ * – von Hand gepflegt waren es neun.
+ *
+ * Weiter reicht es nicht, und das ist keine Nachlaessigkeit: Eine weltweite
+ * Lohnreihe nach einheitlicher Abgrenzung veroeffentlicht niemand offen. Fuer
+ * die uebrigen Laender bleibt es deshalb bei „keine Angabe hinterlegt“.
+ *
+ * Wie beim IWF ist der Abruf **nicht zwingend** – siehe `ladeLoehne`.
+ */
+const OECD_LOEHNE_URL =
+  'https://sdmx.oecd.org/public/rest/data/OECD.ELS.SAE,DSD_EARNINGS@AV_AN_WAGE,1.0/all?format=csvfilewithlabels&dimensionAtObservation=AllDimensions'
+
+/** Die Einheit, die gemeint ist – siehe `ladeLoehne`. */
+const OECD_EINHEIT = 'USD_PPP'
+
 const ZIEL = 'data/snapshots/laender.json'
 
 /** Aggregate der Weltbank („Europäische Union“, „Welt“) sind keine Länder. */
@@ -219,6 +238,72 @@ async function ladeSchuldenquoten(): Promise<Map<
   }
 }
 
+/**
+ * Holt die Durchschnittsloehne, oder `null`, wenn die Quelle nicht antwortet.
+ *
+ * ## Warum hier strenger geprueft wird als beim IWF
+ *
+ * Die OECD liefert dieselbe Reihe in mehreren Einheiten: in Landeswaehrung, in
+ * Landeswaehrung zu konstanten Preisen und kaufkraftbereinigt in US-Dollar.
+ * Auf der Seite steht „US-Dollar im Jahr“. Griffe der Abruf versehentlich die
+ * Reihe in Landeswaehrung, staende bei Japan eine Zahl in Millionenhoehe unter
+ * der Ueberschrift US-Dollar – und bei Deutschland eine, die falsch ist, ohne
+ * falsch auszusehen.
+ *
+ * Deshalb: Es zaehlen nur Zeilen mit genau der erwarteten Einheit. Findet sich
+ * keine – etwa weil die OECD die Spalte umbenennt –, kommt nichts zurueck und
+ * es bleibt beim vorherigen Stand. Lieber eine Luecke als eine falsche Zahl.
+ *
+ * ## Wozu die zweite Schranke
+ *
+ * Ein Jahreslohn liegt zwischen wenigen tausend und wenigen hunderttausend
+ * Dollar. Alles ausserhalb ist keine Kennzahl, sondern ein Missverstaendnis –
+ * ein Monatswert, ein Index oder eine Waehrung, die durchgerutscht ist.
+ */
+async function ladeLoehne(): Promise<Map<string, { wert: number; jahr: number }> | null> {
+  try {
+    const antwort = await fetch(OECD_LOEHNE_URL)
+    if (!antwort.ok) {
+      console.log(
+        `::warning::OECD antwortete mit ${antwort.status} – Durchschnittsloehne bleiben unveraendert.`
+      )
+      return null
+    }
+
+    const zeilen = parseCsv(await antwort.text())
+    const aktuellesJahr = new Date().getUTCFullYear()
+    const werte = new Map<string, { wert: number; jahr: number }>()
+
+    for (const zeile of zeilen) {
+      if (zeile['UNIT_MEASURE'] !== OECD_EINHEIT) continue
+      const code = zeile['REF_AREA']
+      const jahr = Number(zeile['TIME_PERIOD'])
+      const wert = Number(zeile['OBS_VALUE'])
+      if (!code || code.length !== 3 || KEINE_LAENDER.test(code)) continue
+      if (!Number.isFinite(jahr) || jahr > aktuellesJahr) continue
+      if (!Number.isFinite(wert) || wert < 3_000 || wert > 250_000) continue
+
+      const bisher = werte.get(code)
+      if (!bisher || jahr > bisher.jahr) werte.set(code, { wert: Math.round(wert), jahr })
+    }
+
+    if (werte.size === 0) {
+      console.log(
+        `::warning::Keine Zeile mit Einheit ${OECD_EINHEIT} gefunden – Durchschnittsloehne bleiben unveraendert.`
+      )
+      return null
+    }
+
+    console.log(`Durchschnittsloehne fuer ${werte.size} Laender geholt.`)
+    return werte
+  } catch (fehler) {
+    console.log(
+      `::warning::Durchschnittsloehne nicht erreichbar (${fehler instanceof Error ? fehler.message : fehler}) – vorheriger Stand bleibt.`
+    )
+    return null
+  }
+}
+
 /** Der vorherige Stand, damit ein fehlgeschlagener Abruf nichts loescht. */
 async function ladeVorherigenStand(): Promise<Record<string, unknown> | null> {
   try {
@@ -231,11 +316,12 @@ async function ladeVorherigenStand(): Promise<Record<string, unknown> | null> {
 
 async function main() {
   console.log('Lade Weltbank-Reihen …')
-  const [gdpRoh, popRoh, codesRoh, schulden, vorher] = await Promise.all([
+  const [gdpRoh, popRoh, codesRoh, schulden, loehne, vorher] = await Promise.all([
     ladeCsv(GDP_URL),
     ladeCsv(POP_URL),
     ladeCsv(CODES_URL),
     ladeSchuldenquoten(),
+    ladeLoehne(),
     ladeVorherigenStand(),
   ])
 
@@ -280,13 +366,17 @@ async function main() {
       bipUsd?: number
       einwohner?: number
       schuldenquote?: { wert: number; jahr: number }
+      durchschnittsgehalt?: { wert: number; jahr: number }
     }
   > = {}
 
   const vorherigeLaender =
     (vorher?.laender as Record<
       string,
-      { schuldenquote?: { wert: number; jahr: number } }
+      {
+        schuldenquote?: { wert: number; jahr: number }
+        durchschnittsgehalt?: { wert: number; jahr: number }
+      }
     >) ?? {}
 
   for (const code of codes) {
@@ -310,14 +400,21 @@ async function main() {
         const gewaehlt = neu ?? alt
         return gewaehlt ? { schuldenquote: gewaehlt } : {}
       })(),
+      ...(() => {
+        const neu = loehne?.get(code.alpha3)
+        const alt = vorherigeLaender[code.alpha3]?.durchschnittsgehalt
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { durchschnittsgehalt: gewaehlt } : {}
+      })(),
     }
   }
 
   const mitBip = Object.values(laender).filter((land) => land.bipUsd).length
   const mitEinwohnern = Object.values(laender).filter((land) => land.einwohner).length
   const mitSchulden = Object.values(laender).filter((land) => land.schuldenquote).length
+  const mitLohn = Object.values(laender).filter((land) => land.durchschnittsgehalt).length
   console.log(
-    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl und ${mitSchulden} mit Schuldenquote.`
+    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote und ${mitLohn} mit Durchschnittslohn.`
   )
 
   if (mitBip < 150) {
@@ -339,6 +436,12 @@ async function main() {
       url: 'https://www.imf.org/external/datamapper/GGXWDG_NGDP@WEO',
       abgrenzung:
         'Bruttoschuld des Gesamtstaats in Prozent des BIP. Eine einheitliche Abgrenzung für alle Länder – nicht deckungsgleich mit der Maastricht-Abgrenzung von Eurostat.',
+    },
+    lohnQuelle: {
+      label: 'OECD, Durchschnittslöhne (AV_AN_WAGE) über die SDMX-Schnittstelle',
+      url: 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CEmployment%23JOB%23%7CBenefits%252C%20earnings%20and%20wages%23JOB_BEW%23&pg=0&fc=Topic&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40AV_AN_WAGE',
+      abgrenzung:
+        'Durchschnittlicher Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt in US-Dollar. Brutto, vor Steuern und Abgaben. Nur OECD-Mitglieder – eine weltweite Reihe nach einheitlicher Abgrenzung gibt es offen nicht.',
     },
     laender,
   }
