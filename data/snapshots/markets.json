@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-27T05:31:01.565Z",
+  "fetchedAt": "2026-07-27T05:39:53.474Z",
   "instruments": {
     "eur-usd": {
       "sourceLabel": "Europäische Zentralbank",
@@ -2455,6 +2455,7 @@
       "sourceLabel": "Yahoo Finance",
       "sourceUrl": "https://finance.yahoo.com/",
       "asOf": "2026-07-24",
+      "latest": {"value":25099,"at":"2026-07-24T16:00:00.000Z"},
       "points": [
         {"d":"2021-07-27","c":15519.13},
         {"d":"2021-08-02","c":15568.73},
@@ -2943,6 +2944,7 @@
       "sourceLabel": "Yahoo Finance",
       "sourceUrl": "https://finance.yahoo.com/",
       "asOf": "2026-07-24",
+      "latest": {"value":7411.98,"at":"2026-07-24T21:26:35.000Z"},
       "points": [
         {"d":"2021-07-27","c":4401.46},
         {"d":"2021-08-02","c":4387.16},
@@ -3428,6 +3430,7 @@
       "sourceLabel": "Yahoo Finance",
       "sourceUrl": "https://finance.yahoo.com/",
       "asOf": "2026-07-24",
+      "latest": {"value":6280.94,"at":"2026-07-24T16:00:00.000Z"},
       "points": [
         {"d":"2021-07-27","c":4064.83},
         {"d":"2021-08-02","c":4116.62},
@@ -3912,6 +3915,7 @@
       "sourceLabel": "Yahoo Finance",
       "sourceUrl": "https://finance.yahoo.com/",
       "asOf": "2026-07-24",
+      "latest": {"value":28128.34,"at":"2026-07-24T21:15:59.000Z"},
       "points": [
         {"d":"2021-07-27","c":14956.97},
         {"d":"2021-08-02","c":14963.62},
@@ -4397,6 +4401,7 @@
       "sourceLabel": "Yahoo Finance",
       "sourceUrl": "https://finance.yahoo.com/",
       "asOf": "2026-07-27",
+      "latest": {"value":4089.2,"at":"2026-07-27T05:29:33.000Z"},
       "points": [
         {"d":"2021-07-27","c":1799.5},
         {"d":"2021-08-02","c":1818.1},
@@ -4877,13 +4882,14 @@
         {"d":"2026-07-22","c":4146.9},
         {"d":"2026-07-23","c":4046.6},
         {"d":"2026-07-24","c":4067.6},
-        {"d":"2026-07-27","c":4093.5}
+        {"d":"2026-07-27","c":4089.2}
       ]
     },
     "silber": {
       "sourceLabel": "Yahoo Finance",
       "sourceUrl": "https://finance.yahoo.com/",
       "asOf": "2026-07-27",
+      "latest": {"value":59.54,"at":"2026-07-27T05:28:31.000Z"},
       "points": [
         {"d":"2021-07-27","c":24.63},
         {"d":"2021-08-02","c":25.56},
@@ -5364,7 +5370,7 @@
         {"d":"2026-07-22","c":60.02},
         {"d":"2026-07-23","c":57.8},
         {"d":"2026-07-24","c":58.66},
-        {"d":"2026-07-27","c":59.69}
+        {"d":"2026-07-27","c":59.54}
       ]
     }
   }
