@@ -30,7 +30,9 @@
  * Aufruf: `npm run globus-geometrie`
  */
 
-import { copyFile, mkdir, stat } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, stat } from 'node:fs/promises'
+
+import { ersatzschluessel, laendernamen } from '../data/laender/namen.ts'
 
 const QUELLE = 'node_modules/world-atlas'
 const ZIEL = 'public/globus'
@@ -40,6 +42,41 @@ const DATEIEN: { von: string; nach: string }[] = [
   { von: 'countries-50m.json', nach: 'welt-50m.json' },
   { von: 'LICENSE', nach: 'LIZENZ-world-atlas.txt' },
 ]
+
+/**
+ * Jede Form der Geometrie muss einen deutschen Namen haben.
+ *
+ * Die feine Auflösung führt 64 Formen mehr als die grobe – Kleinstaaten und
+ * Gebiete, die auf der ganzen Kugel keine zwei Pixel groß wären. Ohne Namen
+ * werden sie trotzdem gezeichnet und reagieren auf Klicks, nur öffnet sich
+ * dann eine leere Tafel. Genau so war es, bis es jemandem auffiel: Wer weit
+ * genug in den Pazifik zoomte, fand ein Dutzend Inseln, die auf nichts
+ * antworteten.
+ *
+ * Ein neues `world-atlas` kann jederzeit weitere Formen mitbringen. Deshalb
+ * wird hier geprüft und nicht darauf vertraut, dass es beim nächsten Mal
+ * auffällt.
+ */
+async function pruefeNamen(pfad: string): Promise<string[]> {
+  const topologie = JSON.parse(await readFile(pfad, 'utf8')) as {
+    objects: {
+      countries: { geometries: { id?: string; properties?: { name?: string } }[] }
+    }
+  }
+
+  const ohneNamen: string[] = []
+  for (const form of topologie.objects.countries.geometries) {
+    const name = form.properties?.name ?? '?'
+    if (form.id !== undefined && form.id !== null) {
+      if (!(String(form.id) in laendernamen)) ohneNamen.push(`${form.id} (${name})`)
+      continue
+    }
+    // Ohne ISO-Kennung bleibt nur der englische Name als Schlüssel.
+    const ersatz = ersatzschluessel[name]
+    if (!ersatz || !(ersatz in laendernamen)) ohneNamen.push(`ohne Kennung (${name})`)
+  }
+  return ohneNamen
+}
 
 async function main() {
   await mkdir(ZIEL, { recursive: true })
@@ -52,8 +89,25 @@ async function main() {
     console.log(`${nach} – ${Math.round(groesse / 1024)} kB`)
   }
 
+  const fehlend: string[] = []
+  for (const datei of DATEIEN.filter((eintrag) => eintrag.nach.endsWith('.json'))) {
+    for (const eintrag of await pruefeNamen(`${ZIEL}/${datei.nach}`)) {
+      fehlend.push(`${datei.nach}: ${eintrag}`)
+    }
+  }
+
+  if (fehlend.length > 0) {
+    console.error(
+      `\nOhne Eintrag in data/laender/namen.ts:\n${fehlend.map((f) => `  - ${f}`).join('\n')}`
+    )
+    process.exit(1)
+  }
+
   console.log(
-    '\nHerkunft: Natural Earth (gemeinfrei), TopoJSON-Umsetzung world-atlas (ISC).'
+    `\nAlle Formen haben einen Namen (${Object.keys(laendernamen).length} Kennungen).`
+  )
+  console.log(
+    'Herkunft: Natural Earth (gemeinfrei), TopoJSON-Umsetzung world-atlas (ISC).'
   )
 }
 

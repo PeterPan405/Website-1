@@ -1,3 +1,5 @@
+import { weitereAktien, weitereAktienQuellen } from '@/data/markets-aktien'
+
 /**
  * Demo-Datensatz für Wechselkurse und Indizes.
  *
@@ -142,6 +144,10 @@ export type MarketSourceRef =
  * Instrumente ohne frei zugängliche Quelle.
  */
 export const marketSources: Record<string, MarketSourceRef> = {
+  // Die breite Aktienauswahl aus `data/aktien-liste.txt`. Zuerst, damit ein
+  // hier unten von Hand gesetzter Eintrag sie überschreiben kann.
+  ...weitereAktienQuellen,
+
   'eur-usd': { provider: 'ecb', currency: 'USD' },
   'eur-cny': { provider: 'ecb', currency: 'CNY' },
   'eur-chf': { provider: 'ecb', currency: 'CHF' },
@@ -2918,6 +2924,15 @@ export const marketDefinitions: MarketDefinition[] = [
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: { startValue: 92.448, annualDrift: 0.082, annualVolatility: 0.42, seed: 23100 },
   },
+  /*
+    Die breite Auswahl aus `data/aktien-liste.txt`.
+
+    Angehängt statt eingemischt: Die Einträge oben sind einzeln geschrieben und
+    ausführlich beschrieben, diese hier nach einem Muster erzeugt. Sie
+    dazwischenzusetzen würde beides unleserlich machen. Für die Anzeige spielt
+    die Reihenfolge keine Rolle – die Marktübersicht sortiert selbst.
+  */
+  ...weitereAktien,
 ]
 
 /** Reihenfolge für Übersichten: Kurse, Indizes, Rohstoffe. */
