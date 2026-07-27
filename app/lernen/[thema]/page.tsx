@@ -10,6 +10,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { TagLinks } from '@/components/ui/TagLinks'
 import { getCalculatorDefinition } from '@/data/calculators'
 import { learnLevelIds } from '@/data/learn/types'
 import { collectionPageSchema } from '@/lib/jsonld'
@@ -161,16 +162,16 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 >
                   Begriffe in diesem Thema
                 </h2>
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  {topic.keywords.map((keyword) => (
-                    <li
-                      key={keyword}
-                      className="border-border text-fg-muted rounded-full border px-3 py-1 text-xs"
-                    >
-                      {keyword}
-                    </li>
-                  ))}
-                </ul>
+                {/*
+                  Die eigenen Stichwörter zeigen zwangsläufig auf diese Seite –
+                  „Tagesgeld“ steht bei den Begriffen des Themas Tagesgeld.
+                  Deshalb der Pfad: Verweise auf sich selbst entfallen.
+                */}
+                <TagLinks
+                  tags={topic.keywords}
+                  currentPath={`/lernen/${topic.slug}`}
+                  note="Begriffe mit Pfeil führen zu der Seite, die sie erklärt."
+                />
               </section>
             )}
           </div>
