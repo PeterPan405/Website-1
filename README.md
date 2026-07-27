@@ -1,6 +1,6 @@
 # IM Invests
 
-Deutschsprachige Finanzbildungs-Plattform: 23 Themen in je drei Lernstufen, fünf
+Deutschsprachige Finanzbildungs-Plattform: 33 Themen in je drei Lernstufen, fünf
 Rechner mit offengelegter Methodik, Marktdaten mit Erklärung, eingeordnete News und
 ein interaktiver Staatsverschuldungs-Vergleich.
 
@@ -78,6 +78,31 @@ Komponenten sprechen **nie** direkt mit `data/`, sondern ausschließlich über `
 Alle Funktionen sind bereits `async`. Für echte APIs muss deshalb nur der jeweilige
 Funktionsrumpf ausgetauscht werden – kein Aufrufer ändert sich.
 
+## Reihenfolge der Lernthemen
+
+Die 33 Themen stehen nicht alphabetisch und nicht nach Beliebtheit, sondern in der
+Reihenfolge, in der sie aufeinander aufbauen – in sechs Abschnitten:
+
+| #     | Abschnitt                | Worum es geht                                            |
+| ----- | ------------------------ | -------------------------------------------------------- |
+| 1–6   | Bevor es losgeht         | Budget, Zeit, Kaufkraft, Risiko und das eigene Verhalten |
+| 7–9   | Der sichere Sockel       | Notgroschen, Einlagensicherung, Schulden                 |
+| 10–13 | Wie Märkte funktionieren | Börse, Kursbildung, Notenbanken, Depot                   |
+| 14–25 | Die Anlageklassen        | Aktie bis Option, jeweils mit ihrem Risiko               |
+| 26–31 | Aus Bausteinen ein Depot | Streuung, Aufteilung, Sparplan, Kosten, Crashs           |
+| 32–33 | Steuern und Vorsorge     | Sparerpauschbetrag, Rente                                |
+
+Die Abschnitte stehen als `learnSections` in `data/learn/index.ts` und sind die
+**einzige** Stelle mit einer Reihenfolge – die Themenliste wird daraus abgeleitet.
+Wer dort etwas verschiebt, verschiebt es auch auf `/lernen`, wo die Abschnitte als
+Zwischenüberschriften erscheinen. Steht ein Thema in keinem oder in zwei Abschnitten,
+bricht der Build ab; ein neu angelegtes Thema wäre sonst still unsichtbar geblieben.
+
+Die Themenzahl steht zusätzlich als `LEARN_TOPIC_COUNT` in `lib/site.ts`, weil die
+Kopfzeile eine Client-Komponente ist und ein Import der Lerndaten den kompletten
+Datensatz ins Browser-Bundle zöge. `lib/learn.ts` prüft beim Bauen, ob die Zahl
+stimmt – sie stand schon einmal längere Zeit auf einem falschen Wert.
+
 ## Lernbereich und Wissenscheck
 
 Jede Lernstufe endet mit einem **Wissenscheck**: Multiple-Choice-Fragen mit genau einer
@@ -86,12 +111,12 @@ Antwort, denn dort liegt der Lernwert. Am Ende folgt eine Auswertung; ab 60 Proz
 richtiger Antworten kann die Stufe als erledigt markiert werden.
 
 - Fragen liegen zentral in `data/learn/quizzes.ts`, Schlüssel `themen-slug:stufe`.
-- Aktuell 24 Fragen zu den sechs vollständig ausformulierten Stufen (`aktie`,
-  `zinseszins`). Stufen ohne Fragen zeigen einen entsprechenden Hinweis – Fragen zu
-  einer Gliederung wären nicht beantwortbar.
+- Aktuell 36 Fragen zu den neun vollständig ausformulierten Stufen (`aktie`,
+  `zinseszins`, `rohstoffe`). Stufen ohne Fragen zeigen einen entsprechenden Hinweis –
+  Fragen zu einer Gliederung wären nicht beantwortbar.
 - **Regel bei neuen Fragen:** Die Position der richtigen Antwort muss wechseln. Liegt sie
   immer an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen. Derzeit verteilen
-  sich die 24 Fragen gleichmäßig auf die vier Positionen.
+  sich die 36 Fragen gleichmäßig auf die vier Positionen.
 - Fortschritt und Bestergebnisse liegen ausschließlich im localStorage
   (`fk-learn-progress`, `fk-quiz-results`) – kein Konto, keine Serverübertragung.
 
@@ -156,7 +181,7 @@ Fehler darin nicht still durchgehen.
 ## Suche
 
 Die Lupe in der Kopfzeile öffnet eine Suche über alle Inhalte – Bereichsseiten,
-23 Lernthemen mit ihren 69 Stufen, fünf Rechner, alle Kurse, Nachrichten,
+33 Lernthemen mit ihren 99 Stufen, fünf Rechner, alle Kurse, Nachrichten,
 Tagesausgaben und die festen Seiten. Tastenkürzel: `Strg`/`Cmd` + `K`.
 
 Sie läuft vollständig im Browser, weil die Website statisch ausgeliefert wird
@@ -257,8 +282,8 @@ Seitenkopf. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit sein.
 
 ## SEO
 
-- **Eigene Seite je Inhalt**, keine Anker auf einer Monolith-Seite: 121 indexierbare
-  URLs, davon 69 Lernstufen-Seiten (23 Themen × 3 Stufen).
+- **Eigene Seite je Inhalt**, keine Anker auf einer Monolith-Seite: über 170
+  indexierbare URLs, davon 99 Lernstufen-Seiten (33 Themen × 3 Stufen).
 - **`lib/seo.ts`** erzeugt Title, Description, canonical, Open Graph und Twitter-Card
   zentral. Im Entwicklungsmodus warnt es, wenn Title (30–62 Zeichen) oder Description
   (110–165 Zeichen) aus dem Zielkorridor fallen.
@@ -301,10 +326,12 @@ JS-Fehler bei 360/768/1440 px).
    sichtbar. Für echte Daten: `lib/markets.ts` umstellen, API-Keys über
    Umgebungsvariablen einbinden. Die Nachrichten sind bereits echt, werden aber von
    Hand gepflegt – eine Anbindung an eine News-API würde nur `lib/news.ts` betreffen.
-2. **Fließtext für 20 Lernthemen.** Vollständig ausformuliert sind `aktie` und
-   `zinseszins` (je drei Stufen). Die übrigen Themen haben funktionsfähige Seiten mit
-   Meta-Daten, Permalink und inhaltlicher Gliederung; der Status `outline` wird auf der
-   Seite ausgewiesen.
+2. **Fließtext für 30 Lernthemen.** Vollständig ausformuliert sind `aktie`,
+   `zinseszins` und `rohstoffe` (je drei Stufen). Die übrigen Themen haben
+   funktionsfähige Seiten mit Meta-Daten, Permalink und inhaltlicher Gliederung; der
+   Status `outline` wird auf der Seite ausgewiesen. Die Reihenfolge in
+   `data/learn/index.ts` gibt vor, welche Themen als Nächstes ausformuliert werden
+   sollten – vorne stehen die, ohne die der Rest nicht trägt.
 3. **Rechtliche Prüfung von Impressum und Datenschutzerklärung.** Beide Seiten sind
    ausgefüllt – Anbieter, Anschrift und Kontakt stehen in `lib/provider.ts`, die
    Erklärung beschreibt, was die Website tatsächlich tut. Zwei Angaben fehlen noch:
@@ -312,7 +339,7 @@ JS-Fehler bei 360/768/1440 px).
    Protokolldateien. Sie stehen in dessen eigener Datenschutzerklärung und sind dort
    nachzutragen, statt sie zu schätzen. Eine anwaltliche Prüfung vor dem endgültigen
    Live-Gang bleibt zu empfehlen, bei Finanzinhalten erst recht.
-4. **Quizfragen für die übrigen 20 Themen.** Sie entstehen jeweils zusammen mit dem
+4. **Quizfragen für die übrigen 30 Themen.** Sie entstehen jeweils zusammen mit dem
    Fließtext der Stufe – Struktur und Komponente stehen bereits.
 5. **Text der Unternehmensphilosophie** (siehe Abschnitt oben).
 6. **Kontaktformular.** Aktuell nur ein E-Mail-Link, weil die Seite statisch

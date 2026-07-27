@@ -27,13 +27,14 @@ import { normalize } from '@/lib/search-match'
  *    gefragt ist die Erklärung, nicht der Tageskurs.
  * 2. **Kurse** über Symbol, Kürzel und Name. Greift für „DAX“ oder „Nasdaq“,
  *    wozu es kein eigenes Lernthema gibt.
- * 3. **Rechner**, wo das Schlagwort auf eine Rechenfrage hinausläuft.
- * 4. **Zuordnungen von Hand** für wiederkehrendes Nachrichtenvokabular, das in
- *    keinem Stichwortverzeichnis steht.
+ * 3. **Zuordnungen von Hand** für wiederkehrendes Nachrichtenvokabular, das in
+ *    keinem Stichwortverzeichnis steht. Auch ein Rechner ist dort ein
+ *    zulässiges Ziel.
  *
  * Kommt derselbe Begriff bei zwei Lernthemen vor – „Realzins“ steht bei
- * Tagesgeld und bei Zinseszins –, gewinnt das erste in `data/learn`. Das ist
- * willkürlich, aber stabil: Dieselbe Eingabe führt immer zum selben Ziel.
+ * Zinseszins und bei Tagesgeld –, gewinnt das erste in der Lernreihenfolge.
+ * Das ist willkürlich, aber stabil und folgt dem Lernweg: Dieselbe Eingabe
+ * führt immer zum selben Ziel, und zwar zum früheren Thema.
  */
 
 /**
@@ -45,27 +46,17 @@ import { normalize } from '@/lib/search-match'
  * („SAP“, „Geopolitik“); sie bleiben unverlinkt.
  */
 export const TAG_ALIASES: Record<string, string> = {
-  // Notenbanken: Die Mechanik von Einlagenzins und Realzins steht beim
-  // Tagesgeld, das Zinsniveau insgesamt bei der Staatsanleihe.
-  ezb: '/lernen/tagesgeld',
-  leitzins: '/lernen/tagesgeld',
-  einlagenzins: '/lernen/tagesgeld',
-  notenbank: '/lernen/tagesgeld',
-  zinsentscheid: '/lernen/tagesgeld',
+  // Notenbanken. Bis zum Lernthema „Notenbanken & Geldpolitik“ landeten diese
+  // Begriffe behelfsweise beim Tagesgeld – jetzt gibt es die richtige Seite.
+  ezb: '/lernen/notenbanken-geldpolitik',
+  fed: '/lernen/notenbanken-geldpolitik',
+  fomc: '/lernen/notenbanken-geldpolitik',
+  'dot plot': '/lernen/notenbanken-geldpolitik',
+  'us-zinsen': '/lernen/notenbanken-geldpolitik',
   festgeld: '/lernen/tagesgeld',
-  fed: '/lernen/staatsanleihe',
-  fomc: '/lernen/staatsanleihe',
-  'dot plot': '/lernen/staatsanleihe',
-  'us-zinsen': '/lernen/staatsanleihe',
   anleihen: '/lernen/staatsanleihe',
 
-  // Preise und Kaufkraft laufen auf eine Rechnung hinaus.
-  inflation: '/rechner/inflationsrechner',
-  teuerung: '/rechner/inflationsrechner',
-  kaufkraft: '/rechner/inflationsrechner',
-
   // Vorsorge.
-  altersvorsorge: '/lernen/rente',
   fruehstartrente: '/lernen/rente',
   rentenluecke: '/rechner/rentenluecke',
 
@@ -74,28 +65,16 @@ export const TAG_ALIASES: Record<string, string> = {
   aktienmarkt: '/lernen/boerse',
   aktien: '/lernen/aktie',
   quartalszahlen: '/lernen/aktie',
-  marktkapitalisierung: '/lernen/aktie',
   indexgewichtung: '/lernen/aktien-laender-branchen',
-  klumpenrisiko: '/lernen/aktien-laender-branchen',
   nasdaq: '/maerkte/nasdaq-100',
 
   // Rohstoffe.
   oelpreis: '/lernen/rohstoffe',
   rohoel: '/lernen/rohstoffe',
   brent: '/lernen/rohstoffe',
-  edelmetalle: '/lernen/rohstoffe',
 
   // Krypto.
-  ethereum: '/lernen/bitcoin-krypto',
-  kryptowaehrungen: '/lernen/bitcoin-krypto',
   krypto: '/lernen/bitcoin-krypto',
-}
-
-/** Schlagwörter, die direkt auf einen Rechner führen. */
-const CALCULATOR_TERMS: Record<string, string> = {
-  zinseszins: '/rechner/zinsrechner',
-  sparquote: '/rechner/haushaltsrechner',
-  haushaltsbuch: '/rechner/haushaltsrechner',
 }
 
 /**
@@ -132,10 +111,7 @@ function buildIndex(): Map<string, string> {
     eintragen(map, kurs.name, href)
   }
 
-  // 3. und 4. Rechner und Zuordnungen von Hand.
-  for (const [begriff, href] of Object.entries(CALCULATOR_TERMS)) {
-    eintragen(map, begriff, href)
-  }
+  // 3. Zuordnungen von Hand.
   for (const [begriff, href] of Object.entries(TAG_ALIASES)) {
     eintragen(map, begriff, href)
   }

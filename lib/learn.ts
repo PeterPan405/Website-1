@@ -1,10 +1,12 @@
-import { learnTopics } from '@/data/learn'
+import { learnSections, learnTopics } from '@/data/learn'
 import {
   learnLevelIds,
   type LearnLevelContent,
   type LearnLevelId,
   type LearnTopic,
 } from '@/data/learn/types'
+
+import { LEARN_TOPIC_COUNT } from '@/lib/site'
 
 /**
  * Service-Schicht für den Lernbereich.
@@ -21,6 +23,22 @@ export type {
 } from '@/data/learn/types'
 export { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
 
+/*
+  Die Themenzahl in `lib/site.ts` gegen die Wirklichkeit prüfen.
+
+  Dort steht sie als Zahl, weil die Kopfzeile eine Client-Komponente ist und ein
+  Import der Lerndaten den kompletten Datensatz ins Browser-Bundle zöge. Der
+  Preis dafür ist, dass die Zahl veralten kann – sie stand schon einmal monatelang
+  auf einem falschen Wert. Diese Prüfung läuft bei jedem Build und bricht ab,
+  statt eine falsche Zahl auf Startseite, Fußzeile und in die Meta-Daten zu
+  schreiben.
+*/
+if (learnTopics.length !== LEARN_TOPIC_COUNT) {
+  throw new Error(
+    `LEARN_TOPIC_COUNT in lib/site.ts steht auf ${LEARN_TOPIC_COUNT}, es gibt aber ${learnTopics.length} Lernthemen. Bitte dort anpassen.`
+  )
+}
+
 /** Prüft zur Laufzeit, ob ein URL-Segment eine gültige Stufe ist. */
 export function isLearnLevelId(value: string): value is LearnLevelId {
   return (learnLevelIds as readonly string[]).includes(value)
@@ -36,6 +54,49 @@ export async function getLearnTopic(slug: string): Promise<LearnTopic | null> {
 
 export async function getLearnTopicSlugs(): Promise<string[]> {
   return learnTopics.map((topic) => topic.slug)
+}
+
+/** Ein Abschnitt des Lernwegs mit seinen Themen. */
+export interface LearnSectionWithTopics {
+  id: string
+  label: string
+  description: string
+  topics: LearnTopic[]
+  /**
+   * Nummer des ersten Themas in der Gesamtliste, von 0 an.
+   *
+   * Die Kacheln sind durchnummeriert. Ohne diesen Versatz begänne jeder
+   * Abschnitt wieder bei eins, und aus 33 Themen würden sechs kurze Listen –
+   * genau der Eindruck, den die Reihenfolge vermeiden soll.
+   */
+  offset: number
+}
+
+/**
+ * Die Themen in ihren Abschnitten.
+ *
+ * `getLearnTopics()` bleibt die flache Liste für Sitemap, Suche und alles
+ * andere; diese Sicht ist nur für die Lernübersicht.
+ */
+export async function getLearnSections(): Promise<LearnSectionWithTopics[]> {
+  const bySlug = new Map(learnTopics.map((topic) => [topic.slug, topic]))
+  let offset = 0
+
+  return learnSections.map((section) => {
+    const topics = section.slugs
+      .map((slug) => bySlug.get(slug))
+      .filter((topic): topic is LearnTopic => Boolean(topic))
+    const start = offset
+    offset += topics.length
+
+    return {
+      id: section.id,
+      label: section.label,
+      description: section.description,
+      topics,
+      offset: start,
+    }
+  })
 }
 
 /** Alle Kombinationen aus Thema und Stufe – für `generateStaticParams`. */
