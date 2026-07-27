@@ -59,8 +59,29 @@ jobs:
           fi
 
           echo ""
+          echo "=== Inhalt des Stylesheets ==="
+          if [ -n "$CSS" ]; then
+            curl -sS -A "$UA" -o stil.css "$URL$CSS" || true
+            echo "Regeln mit .fk-: $(grep -c -o '\.fk-' stil.css || echo 0)"
+            echo "Erste 200 Zeichen:"
+            head -c 200 stil.css
+            echo ""
+          fi
+
+          echo ""
+          echo "=== Alte Stylesheet-Adresse ==="
+          # Die Adresse aus dem Browser des Nutzers, als die Seite unformatiert
+          # aussah. Antwortet sie mit 404, während die oben verlinkte Adresse
+          # 200 liefert, dann zeigt der Browser eine zwischengespeicherte,
+          # veraltete Seite – und der Server ist in Ordnung.
+          printf '%-48s ' "/_next/static/chunks/22vr61z768k05.css"
+          curl -sS -A "$UA" -o /dev/null -w '%{http_code}\n' \
+            "$URL/_next/static/chunks/22vr61z768k05.css" || echo "Fehler"
+
+          echo ""
           echo "=== Weitere Seiten ==="
-          for p in /news/ /news/tag/ /news/tag/2026-07-25/ /lernen/aktie/beginner/ /sitemap.xml; do
+          for p in /news/ /news/tag/ /news/tag/2026-07-25/ /news/tag/2026-07-27/ \
+                   /lernen/aktie/beginner/ /rechner/ /staatsverschuldung/ /sitemap.xml; do
             printf '%-32s ' "$p"
             curl -sS -A "$UA" -o /dev/null -w '%{http_code}\n' "$URL$p" || echo "Fehler"
           done
