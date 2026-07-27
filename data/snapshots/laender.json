@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-27T20:29:47.487Z",
+  "abgerufenAm": "2026-07-27T20:33:15.821Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -48,8 +48,8 @@
       "bipUsd": 22978,
       "einwohner": 2414095,
       "schuldenquote": {
-        "wert": 51.5,
-        "jahr": 2026
+        "wert": 52.6,
+        "jahr": 2025
       }
     },
     "DZA": {
@@ -61,8 +61,8 @@
       "bipUsd": 239899,
       "einwohner": 46164219,
       "schuldenquote": {
-        "wert": 59.2,
-        "jahr": 2026
+        "wert": 54.1,
+        "jahr": 2025
       }
     },
     "ASM": {
@@ -82,8 +82,8 @@
       "bipUsd": 3728,
       "einwohner": 80856,
       "schuldenquote": {
-        "wert": 28,
-        "jahr": 2026
+        "wert": 30.3,
+        "jahr": 2025
       }
     },
     "AGO": {
@@ -95,8 +95,8 @@
       "bipUsd": 84723,
       "einwohner": 36749906,
       "schuldenquote": {
-        "wert": 51.6,
-        "jahr": 2026
+        "wert": 51.3,
+        "jahr": 2025
       }
     },
     "AIA": {
@@ -122,8 +122,8 @@
       "bipUsd": 2033,
       "einwohner": 93316,
       "schuldenquote": {
-        "wert": 66.5,
-        "jahr": 2026
+        "wert": 69.7,
+        "jahr": 2025
       }
     },
     "ARG": {
@@ -135,8 +135,8 @@
       "bipUsd": 640591,
       "einwohner": 45538401,
       "schuldenquote": {
-        "wert": 70.4,
-        "jahr": 2026
+        "wert": 80.3,
+        "jahr": 2025
       }
     },
     "ARM": {
@@ -148,8 +148,8 @@
       "bipUsd": 24212,
       "einwohner": 2964300,
       "schuldenquote": {
-        "wert": 50.6,
-        "jahr": 2026
+        "wert": 49,
+        "jahr": 2025
       }
     },
     "ABW": {
@@ -160,8 +160,8 @@
       "waehrung": "AWG",
       "einwohner": 107359,
       "schuldenquote": {
-        "wert": 60.3,
-        "jahr": 2026
+        "wert": 63.6,
+        "jahr": 2025
       }
     },
     "AUS": {
@@ -173,8 +173,12 @@
       "bipUsd": 1723827,
       "einwohner": 26659922,
       "schuldenquote": {
-        "wert": 50.6,
-        "jahr": 2026
+        "wert": 51,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 72018,
+        "jahr": 2025
       }
     },
     "AUT": {
@@ -186,8 +190,12 @@
       "bipUsd": 516034,
       "einwohner": 9131761,
       "schuldenquote": {
-        "wert": 82.1,
-        "jahr": 2026
+        "wert": 80.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 78301,
+        "jahr": 2025
       }
     },
     "AZE": {
@@ -199,8 +207,8 @@
       "bipUsd": 72356,
       "einwohner": 10153958,
       "schuldenquote": {
-        "wert": 20,
-        "jahr": 2026
+        "wert": 20.1,
+        "jahr": 2025
       }
     },
     "BHS": {
@@ -212,8 +220,8 @@
       "bipUsd": 14339,
       "einwohner": 399440,
       "schuldenquote": {
-        "wert": 71.9,
-        "jahr": 2026
+        "wert": 73.8,
+        "jahr": 2025
       }
     },
     "BHR": {
@@ -225,8 +233,8 @@
       "bipUsd": 43205,
       "einwohner": 1577059,
       "schuldenquote": {
-        "wert": 152.4,
-        "jahr": 2026
+        "wert": 147.6,
+        "jahr": 2025
       }
     },
     "BGD": {
@@ -238,8 +246,8 @@
       "bipUsd": 437415,
       "einwohner": 171466990,
       "schuldenquote": {
-        "wert": 41.8,
-        "jahr": 2026
+        "wert": 42,
+        "jahr": 2025
       }
     },
     "BRB": {
@@ -251,8 +259,8 @@
       "bipUsd": 6394,
       "einwohner": 282336,
       "schuldenquote": {
-        "wert": 89.5,
-        "jahr": 2026
+        "wert": 94.2,
+        "jahr": 2025
       }
     },
     "BLR": {
@@ -265,7 +273,7 @@
       "einwohner": 9178298,
       "schuldenquote": {
         "wert": 33.1,
-        "jahr": 2026
+        "jahr": 2025
       }
     },
     "BEL": {
@@ -277,8 +285,12 @@
       "bipUsd": 632217,
       "einwohner": 11779946,
       "schuldenquote": {
-        "wert": 109.2,
-        "jahr": 2026
+        "wert": 106.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 80009,
+        "jahr": 2025
       }
     },
     "BLZ": {
@@ -290,8 +302,8 @@
       "bipUsd": 3282,
       "einwohner": 411106,
       "schuldenquote": {
-        "wert": 63.2,
-        "jahr": 2026
+        "wert": 67.9,
+        "jahr": 2025
       }
     },
     "BEN": {
@@ -303,8 +315,8 @@
       "bipUsd": 19673,
       "einwohner": 14111034,
       "schuldenquote": {
-        "wert": 57.2,
-        "jahr": 2026
+        "wert": 57.3,
+        "jahr": 2025
       }
     },
     "BMU": {
@@ -323,8 +335,8 @@
       "waehrung": "INR,BTN",
       "einwohner": 786385,
       "schuldenquote": {
-        "wert": 120.3,
-        "jahr": 2026
+        "wert": 103.6,
+        "jahr": 2025
       }
     },
     "BOL": {
@@ -336,8 +348,8 @@
       "bipUsd": 45850,
       "einwohner": 12244159,
       "schuldenquote": {
-        "wert": 102.7,
-        "jahr": 2026
+        "wert": 84.8,
+        "jahr": 2025
       }
     },
     "BES": {
@@ -356,8 +368,8 @@
       "bipUsd": 27055,
       "einwohner": 3185073,
       "schuldenquote": {
-        "wert": 30.8,
-        "jahr": 2026
+        "wert": 29.9,
+        "jahr": 2025
       }
     },
     "BWA": {
@@ -369,8 +381,8 @@
       "bipUsd": 19396,
       "einwohner": 2480244,
       "schuldenquote": {
-        "wert": 47,
-        "jahr": 2026
+        "wert": 38.6,
+        "jahr": 2025
       }
     },
     "BVT": {
@@ -389,8 +401,8 @@
       "bipUsd": 2173666,
       "einwohner": 211140729,
       "schuldenquote": {
-        "wert": 96.5,
-        "jahr": 2026
+        "wert": 93.3,
+        "jahr": 2025
       }
     },
     "IOT": {
@@ -418,7 +430,7 @@
       "einwohner": 458949,
       "schuldenquote": {
         "wert": 1.5,
-        "jahr": 2026
+        "jahr": 2025
       }
     },
     "BGR": {
@@ -430,8 +442,8 @@
       "bipUsd": 101584,
       "einwohner": 6446596,
       "schuldenquote": {
-        "wert": 28.2,
-        "jahr": 2026
+        "wert": 27.1,
+        "jahr": 2025
       }
     },
     "BFA": {
@@ -443,8 +455,8 @@
       "bipUsd": 20325,
       "einwohner": 23025776,
       "schuldenquote": {
-        "wert": 48.8,
-        "jahr": 2026
+        "wert": 52,
+        "jahr": 2025
       }
     },
     "BDI": {
@@ -456,8 +468,8 @@
       "bipUsd": 2642,
       "einwohner": 13689450,
       "schuldenquote": {
-        "wert": 37,
-        "jahr": 2026
+        "wert": 41.2,
+        "jahr": 2025
       }
     },
     "CPV": {
@@ -469,8 +481,8 @@
       "bipUsd": 2587,
       "einwohner": 522331,
       "schuldenquote": {
-        "wert": 95.9,
-        "jahr": 2026
+        "wert": 101,
+        "jahr": 2025
       }
     },
     "KHM": {
@@ -482,8 +494,8 @@
       "bipUsd": 31773,
       "einwohner": 17423880,
       "schuldenquote": {
-        "wert": 27.1,
-        "jahr": 2026
+        "wert": 26.5,
+        "jahr": 2025
       }
     },
     "CMR": {
@@ -495,8 +507,8 @@
       "bipUsd": 47946,
       "einwohner": 28372687,
       "schuldenquote": {
-        "wert": 39.3,
-        "jahr": 2026
+        "wert": 40.4,
+        "jahr": 2025
       }
     },
     "CAN": {
@@ -508,8 +520,12 @@
       "bipUsd": 2140086,
       "einwohner": 40083484,
       "schuldenquote": {
-        "wert": 110.7,
-        "jahr": 2026
+        "wert": 113.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 67901,
+        "jahr": 2025
       }
     },
     "CYM": {
@@ -529,8 +545,8 @@
       "bipUsd": 2555,
       "einwohner": 5152421,
       "schuldenquote": {
-        "wert": 64,
-        "jahr": 2026
+        "wert": 61.8,
+        "jahr": 2025
       }
     },
     "TCD": {
@@ -542,8 +558,8 @@
       "bipUsd": 13149,
       "einwohner": 19319064,
       "schuldenquote": {
-        "wert": 29.9,
-        "jahr": 2026
+        "wert": 30.4,
+        "jahr": 2025
       }
     },
     "CHL": {
@@ -555,8 +571,12 @@
       "bipUsd": 335533,
       "einwohner": 19658835,
       "schuldenquote": {
-        "wert": 42.5,
-        "jahr": 2026
+        "wert": 41.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 40626,
+        "jahr": 2023
       }
     },
     "CHN": {
@@ -568,8 +588,8 @@
       "bipUsd": 17794782,
       "einwohner": 1410710000,
       "schuldenquote": {
-        "wert": 106.9,
-        "jahr": 2026
+        "wert": 99.2,
+        "jahr": 2025
       }
     },
     "HKG": {
@@ -581,8 +601,8 @@
       "bipUsd": 382055,
       "einwohner": 7536100,
       "schuldenquote": {
-        "wert": 14.1,
-        "jahr": 2026
+        "wert": 11.9,
+        "jahr": 2025
       }
     },
     "MAC": {
@@ -617,8 +637,12 @@
       "bipUsd": 363540,
       "einwohner": 52321152,
       "schuldenquote": {
-        "wert": 60.9,
-        "jahr": 2026
+        "wert": 59.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 30133,
+        "jahr": 2024
       }
     },
     "COM": {
@@ -630,8 +654,8 @@
       "bipUsd": 1352,
       "einwohner": 850387,
       "schuldenquote": {
-        "wert": 32.4,
-        "jahr": 2026
+        "wert": 29.5,
+        "jahr": 2025
       }
     },
     "COG": {
@@ -643,8 +667,8 @@
       "bipUsd": 15321,
       "einwohner": 6182885,
       "schuldenquote": {
-        "wert": 91.3,
-        "jahr": 2026
+        "wert": 96.8,
+        "jahr": 2025
       }
     },
     "COK": {
@@ -663,8 +687,12 @@
       "bipUsd": 86498,
       "einwohner": 5105525,
       "schuldenquote": {
-        "wert": 61.1,
-        "jahr": 2026
+        "wert": 60.4,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 44431,
+        "jahr": 2024
       }
     },
     "HRV": {
@@ -676,8 +704,8 @@
       "bipUsd": 82689,
       "einwohner": 3859686,
       "schuldenquote": {
-        "wert": 56.5,
-        "jahr": 2026
+        "wert": 55.9,
+        "jahr": 2025
       }
     },
     "CUB": {
@@ -705,8 +733,8 @@
       "bipUsd": 32230,
       "einwohner": 1344976,
       "schuldenquote": {
-        "wert": 50.9,
-        "jahr": 2026
+        "wert": 55.3,
+        "jahr": 2025
       }
     },
     "CZE": {
@@ -718,8 +746,12 @@
       "bipUsd": 330858,
       "einwohner": 10864042,
       "schuldenquote": {
-        "wert": 46.4,
-        "jahr": 2026
+        "wert": 44.6,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 43607,
+        "jahr": 2025
       }
     },
     "PRK": {
@@ -739,8 +771,8 @@
       "bipUsd": 66383,
       "einwohner": 105789731,
       "schuldenquote": {
-        "wert": 24.6,
-        "jahr": 2026
+        "wert": 20.2,
+        "jahr": 2025
       }
     },
     "DNK": {
@@ -752,8 +784,12 @@
       "bipUsd": 404199,
       "einwohner": 5946952,
       "schuldenquote": {
-        "wert": 27.4,
-        "jahr": 2026
+        "wert": 27.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 78090,
+        "jahr": 2025
       }
     },
     "DJI": {
@@ -765,8 +801,8 @@
       "bipUsd": 4099,
       "einwohner": 1152944,
       "schuldenquote": {
-        "wert": 29.6,
-        "jahr": 2026
+        "wert": 32.1,
+        "jahr": 2025
       }
     },
     "DMA": {
@@ -778,8 +814,8 @@
       "bipUsd": 654,
       "einwohner": 66510,
       "schuldenquote": {
-        "wert": 98.3,
-        "jahr": 2026
+        "wert": 102.6,
+        "jahr": 2025
       }
     },
     "DOM": {
@@ -791,8 +827,8 @@
       "bipUsd": 121444,
       "einwohner": 11331265,
       "schuldenquote": {
-        "wert": 58.3,
-        "jahr": 2026
+        "wert": 59,
+        "jahr": 2025
       }
     },
     "ECU": {
@@ -817,8 +853,8 @@
       "bipUsd": 395926,
       "einwohner": 114535772,
       "schuldenquote": {
-        "wert": 87,
-        "jahr": 2026
+        "wert": 86.8,
+        "jahr": 2025
       }
     },
     "SLV": {
@@ -830,8 +866,8 @@
       "bipUsd": 34016,
       "einwohner": 6309624,
       "schuldenquote": {
-        "wert": 84.5,
-        "jahr": 2026
+        "wert": 87.2,
+        "jahr": 2025
       }
     },
     "GNQ": {
@@ -843,8 +879,8 @@
       "bipUsd": 12117,
       "einwohner": 1847549,
       "schuldenquote": {
-        "wert": 39.1,
-        "jahr": 2026
+        "wert": 40.6,
+        "jahr": 2025
       }
     },
     "ERI": {
@@ -868,8 +904,12 @@
       "bipUsd": 40745,
       "einwohner": 1370286,
       "schuldenquote": {
-        "wert": 27.8,
-        "jahr": 2026
+        "wert": 24.2,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 41019,
+        "jahr": 2025
       }
     },
     "SWZ": {
@@ -881,8 +921,8 @@
       "bipUsd": 4598,
       "einwohner": 1230506,
       "schuldenquote": {
-        "wert": 50,
-        "jahr": 2026
+        "wert": 44.9,
+        "jahr": 2025
       }
     },
     "ETH": {
@@ -894,8 +934,8 @@
       "bipUsd": 163698,
       "einwohner": 128691692,
       "schuldenquote": {
-        "wert": 40.4,
-        "jahr": 2026
+        "wert": 43.1,
+        "jahr": 2025
       }
     },
     "FLK": {
@@ -922,8 +962,8 @@
       "bipUsd": 5495,
       "einwohner": 924145,
       "schuldenquote": {
-        "wert": 82.5,
-        "jahr": 2026
+        "wert": 78.7,
+        "jahr": 2025
       }
     },
     "FIN": {
@@ -935,8 +975,12 @@
       "bipUsd": 300187,
       "einwohner": 5583911,
       "schuldenquote": {
-        "wert": 93.1,
-        "jahr": 2026
+        "wert": 89.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 63053,
+        "jahr": 2025
       }
     },
     "FRA": {
@@ -948,8 +992,12 @@
       "bipUsd": 3030904,
       "einwohner": 68372286,
       "schuldenquote": {
-        "wert": 118.4,
-        "jahr": 2026
+        "wert": 116,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 60483,
+        "jahr": 2025
       }
     },
     "GUF": {
@@ -983,8 +1031,8 @@
       "bipUsd": 20516,
       "einwohner": 2484789,
       "schuldenquote": {
-        "wert": 86.1,
-        "jahr": 2026
+        "wert": 78.9,
+        "jahr": 2025
       }
     },
     "GMB": {
@@ -996,8 +1044,8 @@
       "bipUsd": 2340,
       "einwohner": 2697845,
       "schuldenquote": {
-        "wert": 68.3,
-        "jahr": 2026
+        "wert": 73.9,
+        "jahr": 2025
       }
     },
     "GEO": {
@@ -1009,8 +1057,8 @@
       "bipUsd": 30536,
       "einwohner": 3715483,
       "schuldenquote": {
-        "wert": 35.1,
-        "jahr": 2026
+        "wert": 34.3,
+        "jahr": 2025
       }
     },
     "DEU": {
@@ -1022,8 +1070,12 @@
       "bipUsd": 4456081,
       "einwohner": 83287273,
       "schuldenquote": {
-        "wert": 64.6,
-        "jahr": 2026
+        "wert": 62.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 76285,
+        "jahr": 2025
       }
     },
     "GHA": {
@@ -1035,8 +1087,8 @@
       "bipUsd": 76370,
       "einwohner": 33787914,
       "schuldenquote": {
-        "wert": 53,
-        "jahr": 2026
+        "wert": 48.8,
+        "jahr": 2025
       }
     },
     "GIB": {
@@ -1056,8 +1108,12 @@
       "bipUsd": 238206,
       "einwohner": 10407351,
       "schuldenquote": {
-        "wert": 136.9,
-        "jahr": 2026
+        "wert": 145.7,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 32412,
+        "jahr": 2025
       }
     },
     "GRL": {
@@ -1077,8 +1133,8 @@
       "bipUsd": 1320,
       "einwohner": 117081,
       "schuldenquote": {
-        "wert": 69,
-        "jahr": 2026
+        "wert": 71.6,
+        "jahr": 2025
       }
     },
     "GLP": {
@@ -1105,8 +1161,8 @@
       "bipUsd": 102050,
       "einwohner": 18124838,
       "schuldenquote": {
-        "wert": 27.6,
-        "jahr": 2026
+        "wert": 27.2,
+        "jahr": 2025
       }
     },
     "GGY": {
@@ -1125,8 +1181,8 @@
       "bipUsd": 23612,
       "einwohner": 14405468,
       "schuldenquote": {
-        "wert": 44.7,
-        "jahr": 2026
+        "wert": 48.1,
+        "jahr": 2025
       }
     },
     "GNB": {
@@ -1138,8 +1194,8 @@
       "bipUsd": 1966,
       "einwohner": 2153339,
       "schuldenquote": {
-        "wert": 73.6,
-        "jahr": 2026
+        "wert": 75.3,
+        "jahr": 2025
       }
     },
     "GUY": {
@@ -1151,8 +1207,8 @@
       "bipUsd": 16786,
       "einwohner": 826353,
       "schuldenquote": {
-        "wert": 29.2,
-        "jahr": 2026
+        "wert": 28.6,
+        "jahr": 2025
       }
     },
     "HTI": {
@@ -1164,8 +1220,8 @@
       "bipUsd": 19851,
       "einwohner": 11637398,
       "schuldenquote": {
-        "wert": 10.7,
-        "jahr": 2026
+        "wert": 12.3,
+        "jahr": 2025
       }
     },
     "HMD": {
@@ -1191,8 +1247,8 @@
       "bipUsd": 34401,
       "einwohner": 10644851,
       "schuldenquote": {
-        "wert": 43.8,
-        "jahr": 2026
+        "wert": 41.2,
+        "jahr": 2025
       }
     },
     "HUN": {
@@ -1204,8 +1260,12 @@
       "bipUsd": 212389,
       "einwohner": 9592186,
       "schuldenquote": {
-        "wert": 77.9,
-        "jahr": 2026
+        "wert": 75.2,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 39145,
+        "jahr": 2025
       }
     },
     "ISL": {
@@ -1217,8 +1277,12 @@
       "bipUsd": 31020,
       "einwohner": 385663,
       "schuldenquote": {
-        "wert": 53.6,
-        "jahr": 2026
+        "wert": 56.1,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 100605,
+        "jahr": 2025
       }
     },
     "IND": {
@@ -1230,8 +1294,8 @@
       "bipUsd": 3549919,
       "einwohner": 1438069596,
       "schuldenquote": {
-        "wert": 83.4,
-        "jahr": 2026
+        "wert": 84.1,
+        "jahr": 2025
       }
     },
     "IDN": {
@@ -1243,8 +1307,8 @@
       "bipUsd": 1371171,
       "einwohner": 281190067,
       "schuldenquote": {
-        "wert": 41.5,
-        "jahr": 2026
+        "wert": 41,
+        "jahr": 2025
       }
     },
     "IRN": {
@@ -1257,7 +1321,7 @@
       "einwohner": 90608707,
       "schuldenquote": {
         "wert": 37.3,
-        "jahr": 2026
+        "jahr": 2025
       }
     },
     "IRQ": {
@@ -1269,8 +1333,8 @@
       "bipUsd": 250843,
       "einwohner": 45074049,
       "schuldenquote": {
-        "wert": 61.7,
-        "jahr": 2026
+        "wert": 53.9,
+        "jahr": 2025
       }
     },
     "IRL": {
@@ -1282,8 +1346,12 @@
       "bipUsd": 545629,
       "einwohner": 5311538,
       "schuldenquote": {
-        "wert": 31.6,
-        "jahr": 2026
+        "wert": 32.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 70113,
+        "jahr": 2025
       }
     },
     "IMN": {
@@ -1303,8 +1371,12 @@
       "bipUsd": 509901,
       "einwohner": 9849000,
       "schuldenquote": {
-        "wert": 69.8,
-        "jahr": 2026
+        "wert": 68.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 57426,
+        "jahr": 2025
       }
     },
     "ITA": {
@@ -1316,8 +1388,12 @@
       "bipUsd": 2254851,
       "einwohner": 58984216,
       "schuldenquote": {
-        "wert": 138.4,
-        "jahr": 2026
+        "wert": 137.1,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 53864,
+        "jahr": 2025
       }
     },
     "CIV": {
@@ -1329,8 +1405,8 @@
       "bipUsd": 78789,
       "einwohner": 31165654,
       "schuldenquote": {
-        "wert": 55.1,
-        "jahr": 2026
+        "wert": 56.3,
+        "jahr": 2025
       }
     },
     "JAM": {
@@ -1342,8 +1418,8 @@
       "bipUsd": 19423,
       "einwohner": 2839786,
       "schuldenquote": {
-        "wert": 65.8,
-        "jahr": 2026
+        "wert": 67.7,
+        "jahr": 2025
       }
     },
     "JPN": {
@@ -1355,8 +1431,12 @@
       "bipUsd": 4212945,
       "einwohner": 124516650,
       "schuldenquote": {
-        "wert": 204.4,
-        "jahr": 2026
+        "wert": 206.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 50183,
+        "jahr": 2025
       }
     },
     "JEY": {
@@ -1375,8 +1455,8 @@
       "bipUsd": 50814,
       "einwohner": 11439213,
       "schuldenquote": {
-        "wert": 81.8,
-        "jahr": 2026
+        "wert": 82.8,
+        "jahr": 2025
       }
     },
     "KAZ": {
@@ -1388,8 +1468,8 @@
       "bipUsd": 261421,
       "einwohner": 20330104,
       "schuldenquote": {
-        "wert": 24.9,
-        "jahr": 2026
+        "wert": 24.6,
+        "jahr": 2025
       }
     },
     "KEN": {
@@ -1401,8 +1481,8 @@
       "bipUsd": 107441,
       "einwohner": 55339003,
       "schuldenquote": {
-        "wert": 71.6,
-        "jahr": 2026
+        "wert": 69.3,
+        "jahr": 2025
       }
     },
     "KIR": {
@@ -1414,8 +1494,8 @@
       "bipUsd": 279,
       "einwohner": 132530,
       "schuldenquote": {
-        "wert": 7.7,
-        "jahr": 2026
+        "wert": 8,
+        "jahr": 2025
       }
     },
     "KWT": {
@@ -1427,8 +1507,8 @@
       "bipUsd": 161772,
       "einwohner": 4853420,
       "schuldenquote": {
-        "wert": 22.3,
-        "jahr": 2026
+        "wert": 14.6,
+        "jahr": 2025
       }
     },
     "KGZ": {
@@ -1440,8 +1520,8 @@
       "bipUsd": 13988,
       "einwohner": 7099750,
       "schuldenquote": {
-        "wert": 37.4,
-        "jahr": 2026
+        "wert": 36,
+        "jahr": 2025
       }
     },
     "LAO": {
@@ -1453,8 +1533,8 @@
       "bipUsd": 15843,
       "einwohner": 7664993,
       "schuldenquote": {
-        "wert": 74.6,
-        "jahr": 2026
+        "wert": 80.6,
+        "jahr": 2025
       }
     },
     "LVA": {
@@ -1466,8 +1546,12 @@
       "bipUsd": 43627,
       "einwohner": 1883710,
       "schuldenquote": {
-        "wert": 47.4,
-        "jahr": 2026
+        "wert": 46.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 44709,
+        "jahr": 2025
       }
     },
     "LBN": {
@@ -1491,8 +1575,8 @@
       "bipUsd": 2046,
       "einwohner": 2311472,
       "schuldenquote": {
-        "wert": 49,
-        "jahr": 2026
+        "wert": 49.1,
+        "jahr": 2025
       }
     },
     "LBR": {
@@ -1504,8 +1588,8 @@
       "bipUsd": 4332,
       "einwohner": 5493031,
       "schuldenquote": {
-        "wert": 53.8,
-        "jahr": 2026
+        "wert": 54.9,
+        "jahr": 2025
       }
     },
     "LBY": {
@@ -1526,7 +1610,7 @@
       "einwohner": 39846,
       "schuldenquote": {
         "wert": 0.5,
-        "jahr": 2026
+        "jahr": 2025
       }
     },
     "LTU": {
@@ -1538,8 +1622,12 @@
       "bipUsd": 77836,
       "einwohner": 2871585,
       "schuldenquote": {
-        "wert": 45.1,
-        "jahr": 2026
+        "wert": 39.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 58112,
+        "jahr": 2025
       }
     },
     "LUX": {
@@ -1551,8 +1639,12 @@
       "bipUsd": 85755,
       "einwohner": 666430,
       "schuldenquote": {
-        "wert": 28,
-        "jahr": 2026
+        "wert": 27,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 98530,
+        "jahr": 2025
       }
     },
     "MDG": {
@@ -1564,8 +1656,8 @@
       "bipUsd": 16032,
       "einwohner": 31195932,
       "schuldenquote": {
-        "wert": 49.3,
-        "jahr": 2026
+        "wert": 48.7,
+        "jahr": 2025
       }
     },
     "MWI": {
@@ -1577,8 +1669,8 @@
       "bipUsd": 14084,
       "einwohner": 21104482,
       "schuldenquote": {
-        "wert": 74.5,
-        "jahr": 2026
+        "wert": 78.4,
+        "jahr": 2025
       }
     },
     "MYS": {
@@ -1590,8 +1682,8 @@
       "bipUsd": 399649,
       "einwohner": 35126298,
       "schuldenquote": {
-        "wert": 69.5,
-        "jahr": 2026
+        "wert": 70.7,
+        "jahr": 2025
       }
     },
     "MDV": {
@@ -1603,8 +1695,8 @@
       "bipUsd": 6600,
       "einwohner": 525994,
       "schuldenquote": {
-        "wert": 129.4,
-        "jahr": 2026
+        "wert": 125.4,
+        "jahr": 2025
       }
     },
     "MLI": {
@@ -1616,8 +1708,8 @@
       "bipUsd": 20905,
       "einwohner": 23769127,
       "schuldenquote": {
-        "wert": 40.8,
-        "jahr": 2026
+        "wert": 41.9,
+        "jahr": 2025
       }
     },
     "MLT": {
@@ -1629,8 +1721,8 @@
       "bipUsd": 20957,
       "einwohner": 552747,
       "schuldenquote": {
-        "wert": 47.3,
-        "jahr": 2026
+        "wert": 46.8,
+        "jahr": 2025
       }
     },
     "MHL": {
@@ -1642,8 +1734,8 @@
       "bipUsd": 284,
       "einwohner": 38827,
       "schuldenquote": {
-        "wert": 16.7,
-        "jahr": 2026
+        "wert": 11.8,
+        "jahr": 2025
       }
     },
     "MTQ": {
@@ -1662,8 +1754,8 @@
       "bipUsd": 10453,
       "einwohner": 5022441,
       "schuldenquote": {
-        "wert": 37.1,
-        "jahr": 2026
+        "wert": 40.1,
+        "jahr": 2025
       }
     },
     "MUS": {
@@ -1676,7 +1768,7 @@
       "einwohner": 1248647,
       "schuldenquote": {
         "wert": 86.5,
-        "jahr": 2026
+        "jahr": 2025
       }
     },
     "MYT": {
@@ -1695,8 +1787,12 @@
       "bipUsd": 1788887,
       "einwohner": 129739759,
       "schuldenquote": {
-        "wert": 62.7,
-        "jahr": 2026
+        "wert": 61.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 24463,
+        "jahr": 2025
       }
     },
     "FSM": {
@@ -1708,8 +1804,8 @@
       "bipUsd": 460,
       "einwohner": 112630,
       "schuldenquote": {
-        "wert": 7.5,
-        "jahr": 2026
+        "wert": 8.9,
+        "jahr": 2025
       }
     },
     "MCO": {
@@ -1729,8 +1825,8 @@
       "bipUsd": 19872,
       "einwohner": 3481145,
       "schuldenquote": {
-        "wert": 43.7,
-        "jahr": 2026
+        "wert": 45.1,
+        "jahr": 2025
       }
     },
     "MNE": {
@@ -1742,8 +1838,8 @@
       "bipUsd": 7405,
       "einwohner": 623529,
       "schuldenquote": {
-        "wert": 62.4,
-        "jahr": 2026
+        "wert": 67.1,
+        "jahr": 2025
       }
     },
     "MSR": {
@@ -1762,8 +1858,8 @@
       "bipUsd": 141109,
       "einwohner": 37712505,
       "schuldenquote": {
-        "wert": 65.8,
-        "jahr": 2026
+        "wert": 67.1,
+        "jahr": 2025
       }
     },
     "MOZ": {
@@ -1775,8 +1871,8 @@
       "bipUsd": 20625,
       "einwohner": 33635160,
       "schuldenquote": {
-        "wert": 106.1,
-        "jahr": 2026
+        "wert": 102.5,
+        "jahr": 2025
       }
     },
     "MMR": {
@@ -1789,7 +1885,7 @@
       "einwohner": 54133798,
       "schuldenquote": {
         "wert": 51.9,
-        "jahr": 2026
+        "jahr": 2025
       }
     },
     "NAM": {
@@ -1801,8 +1897,8 @@
       "bipUsd": 12351,
       "einwohner": 2963095,
       "schuldenquote": {
-        "wert": 70.5,
-        "jahr": 2026
+        "wert": 70.2,
+        "jahr": 2025
       }
     },
     "NRU": {
@@ -1814,8 +1910,8 @@
       "bipUsd": 154,
       "einwohner": 11875,
       "schuldenquote": {
-        "wert": 12.7,
-        "jahr": 2026
+        "wert": 14.6,
+        "jahr": 2025
       }
     },
     "NPL": {
@@ -1827,8 +1923,8 @@
       "bipUsd": 40908,
       "einwohner": 29694614,
       "schuldenquote": {
-        "wert": 49.6,
-        "jahr": 2026
+        "wert": 48.1,
+        "jahr": 2025
       }
     },
     "NLD": {
@@ -1840,8 +1936,12 @@
       "bipUsd": 1118125,
       "einwohner": 17877117,
       "schuldenquote": {
-        "wert": 44.1,
-        "jahr": 2026
+        "wert": 43.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 80136,
+        "jahr": 2025
       }
     },
     "NCL": {
@@ -1861,8 +1961,12 @@
       "bipUsd": 253466,
       "einwohner": 5200000,
       "schuldenquote": {
-        "wert": 56.7,
-        "jahr": 2026
+        "wert": 54.7,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 60896,
+        "jahr": 2025
       }
     },
     "NIC": {
@@ -1874,8 +1978,8 @@
       "bipUsd": 17829,
       "einwohner": 6823613,
       "schuldenquote": {
-        "wert": 33.2,
-        "jahr": 2026
+        "wert": 34.8,
+        "jahr": 2025
       }
     },
     "NER": {
@@ -1887,8 +1991,8 @@
       "bipUsd": 16819,
       "einwohner": 26159867,
       "schuldenquote": {
-        "wert": 45.5,
-        "jahr": 2026
+        "wert": 45.4,
+        "jahr": 2025
       }
     },
     "NGA": {
@@ -1900,8 +2004,8 @@
       "bipUsd": 362815,
       "einwohner": 227882945,
       "schuldenquote": {
-        "wert": 32.3,
-        "jahr": 2026
+        "wert": 35.5,
+        "jahr": 2025
       }
     },
     "NIU": {
@@ -1935,8 +2039,8 @@
       "bipUsd": 14761,
       "einwohner": 1827816,
       "schuldenquote": {
-        "wert": 53.1,
-        "jahr": 2026
+        "wert": 52.5,
+        "jahr": 2025
       }
     },
     "NOR": {
@@ -1948,8 +2052,12 @@
       "bipUsd": 485513,
       "einwohner": 5519601,
       "schuldenquote": {
-        "wert": 42.9,
-        "jahr": 2026
+        "wert": 45,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 73462,
+        "jahr": 2025
       }
     },
     "OMN": {
@@ -1961,8 +2069,8 @@
       "bipUsd": 108192,
       "einwohner": 5049269,
       "schuldenquote": {
-        "wert": 32.7,
-        "jahr": 2026
+        "wert": 35.8,
+        "jahr": 2025
       }
     },
     "PAK": {
@@ -1974,8 +2082,8 @@
       "bipUsd": 338368,
       "einwohner": 247504495,
       "schuldenquote": {
-        "wert": 70.1,
-        "jahr": 2026
+        "wert": 72.8,
+        "jahr": 2025
       }
     },
     "PLW": {
@@ -1987,8 +2095,8 @@
       "bipUsd": 263,
       "einwohner": 17727,
       "schuldenquote": {
-        "wert": 56.7,
-        "jahr": 2026
+        "wert": 62.3,
+        "jahr": 2025
       }
     },
     "PAN": {
@@ -2000,8 +2108,8 @@
       "bipUsd": 83382,
       "einwohner": 4458759,
       "schuldenquote": {
-        "wert": 57.7,
-        "jahr": 2026
+        "wert": 56.6,
+        "jahr": 2025
       }
     },
     "PNG": {
@@ -2013,8 +2121,8 @@
       "bipUsd": 30932,
       "einwohner": 10389635,
       "schuldenquote": {
-        "wert": 49.2,
-        "jahr": 2026
+        "wert": 52.1,
+        "jahr": 2025
       }
     },
     "PRY": {
@@ -2026,8 +2134,8 @@
       "bipUsd": 42956,
       "einwohner": 6844146,
       "schuldenquote": {
-        "wert": 37.8,
-        "jahr": 2026
+        "wert": 38.1,
+        "jahr": 2025
       }
     },
     "PER": {
@@ -2039,8 +2147,8 @@
       "bipUsd": 267603,
       "einwohner": 33845617,
       "schuldenquote": {
-        "wert": 30,
-        "jahr": 2026
+        "wert": 30.2,
+        "jahr": 2025
       }
     },
     "PHL": {
@@ -2052,8 +2160,8 @@
       "bipUsd": 437146,
       "einwohner": 114891199,
       "schuldenquote": {
-        "wert": 60.2,
-        "jahr": 2026
+        "wert": 59.4,
+        "jahr": 2025
       }
     },
     "PCN": {
@@ -2072,8 +2180,12 @@
       "bipUsd": 811229,
       "einwohner": 36687353,
       "schuldenquote": {
-        "wert": 65.7,
-        "jahr": 2026
+        "wert": 58.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 49074,
+        "jahr": 2025
       }
     },
     "PRT": {
@@ -2085,8 +2197,12 @@
       "bipUsd": 287080,
       "einwohner": 10578174,
       "schuldenquote": {
-        "wert": 85.6,
-        "jahr": 2026
+        "wert": 89.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 44937,
+        "jahr": 2025
       }
     },
     "PRI": {
@@ -2098,8 +2214,8 @@
       "bipUsd": 117902,
       "einwohner": 3203792,
       "schuldenquote": {
-        "wert": 18.8,
-        "jahr": 2026
+        "wert": 18,
+        "jahr": 2025
       }
     },
     "QAT": {
@@ -2110,8 +2226,8 @@
       "waehrung": "QAR",
       "einwohner": 2656032,
       "schuldenquote": {
-        "wert": 43.3,
-        "jahr": 2026
+        "wert": 41.4,
+        "jahr": 2025
       }
     },
     "KOR": {
@@ -2123,8 +2239,12 @@
       "bipUsd": 1712793,
       "einwohner": 51712619,
       "schuldenquote": {
-        "wert": 54.4,
-        "jahr": 2026
+        "wert": 52.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 61259,
+        "jahr": 2025
       }
     },
     "MDA": {
@@ -2136,8 +2256,8 @@
       "bipUsd": 16539,
       "einwohner": 2457783,
       "schuldenquote": {
-        "wert": 39.3,
-        "jahr": 2026
+        "wert": 36.6,
+        "jahr": 2025
       }
     },
     "REU": {
@@ -2156,8 +2276,8 @@
       "bipUsd": 351003,
       "einwohner": 19061062,
       "schuldenquote": {
-        "wert": 61.9,
-        "jahr": 2026
+        "wert": 60.6,
+        "jahr": 2025
       }
     },
     "RUS": {
@@ -2169,8 +2289,8 @@
       "bipUsd": 2021421,
       "einwohner": 143826130,
       "schuldenquote": {
-        "wert": 19.1,
-        "jahr": 2026
+        "wert": 17.2,
+        "jahr": 2025
       }
     },
     "RWA": {
@@ -2182,8 +2302,8 @@
       "bipUsd": 14098,
       "einwohner": 13954471,
       "schuldenquote": {
-        "wert": 66.8,
-        "jahr": 2026
+        "wert": 64.6,
+        "jahr": 2025
       }
     },
     "BLM": {
@@ -2209,8 +2329,8 @@
       "bipUsd": 1077,
       "einwohner": 46758,
       "schuldenquote": {
-        "wert": 64,
-        "jahr": 2026
+        "wert": 58.4,
+        "jahr": 2025
       }
     },
     "LCA": {
@@ -2222,8 +2342,8 @@
       "bipUsd": 2520,
       "einwohner": 179285,
       "schuldenquote": {
-        "wert": 77.5,
-        "jahr": 2026
+        "wert": 77.1,
+        "jahr": 2025
       }
     },
     "MAF": {
@@ -2250,8 +2370,8 @@
       "bipUsd": 1066,
       "einwohner": 101323,
       "schuldenquote": {
-        "wert": 120.1,
-        "jahr": 2026
+        "wert": 113.4,
+        "jahr": 2025
       }
     },
     "WSM": {
@@ -2263,8 +2383,8 @@
       "bipUsd": 934,
       "einwohner": 216663,
       "schuldenquote": {
-        "wert": 17.1,
-        "jahr": 2026
+        "wert": 21.2,
+        "jahr": 2025
       }
     },
     "SMR": {
@@ -2275,8 +2395,8 @@
       "waehrung": "EUR",
       "einwohner": 33860,
       "schuldenquote": {
-        "wert": 77.3,
-        "jahr": 2026
+        "wert": 60.6,
+        "jahr": 2025
       }
     },
     "STP": {
@@ -2288,8 +2408,8 @@
       "bipUsd": 603,
       "einwohner": 230871,
       "schuldenquote": {
-        "wert": 50.4,
-        "jahr": 2026
+        "wert": 55.7,
+        "jahr": 2025
       }
     },
     "SAU": {
@@ -2301,8 +2421,8 @@
       "bipUsd": 1067583,
       "einwohner": 33702731,
       "schuldenquote": {
-        "wert": 32.1,
-        "jahr": 2026
+        "wert": 31.7,
+        "jahr": 2025
       }
     },
     "SEN": {
@@ -2314,8 +2434,8 @@
       "bipUsd": 31014,
       "einwohner": 18077573,
       "schuldenquote": {
-        "wert": 132.3,
-        "jahr": 2026
+        "wert": 130.2,
+        "jahr": 2025
       }
     },
     "SRB": {
@@ -2327,8 +2447,8 @@
       "bipUsd": 75187,
       "einwohner": 6623183,
       "schuldenquote": {
-        "wert": 42.6,
-        "jahr": 2026
+        "wert": 42.4,
+        "jahr": 2025
       }
     },
     "SYC": {
@@ -2340,8 +2460,8 @@
       "bipUsd": 2141,
       "einwohner": 119773,
       "schuldenquote": {
-        "wert": 55,
-        "jahr": 2026
+        "wert": 51.5,
+        "jahr": 2025
       }
     },
     "SLE": {
@@ -2353,8 +2473,8 @@
       "bipUsd": 3810,
       "einwohner": 8460512,
       "schuldenquote": {
-        "wert": 44.3,
-        "jahr": 2026
+        "wert": 45.2,
+        "jahr": 2025
       }
     },
     "SGP": {
@@ -2366,8 +2486,8 @@
       "bipUsd": 501428,
       "einwohner": 5917648,
       "schuldenquote": {
-        "wert": 171.9,
-        "jahr": 2026
+        "wert": 171.3,
+        "jahr": 2025
       }
     },
     "SXM": {
@@ -2388,8 +2508,12 @@
       "bipUsd": 132794,
       "einwohner": 5426740,
       "schuldenquote": {
-        "wert": 63,
-        "jahr": 2026
+        "wert": 61.6,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 37832,
+        "jahr": 2025
       }
     },
     "SVN": {
@@ -2401,8 +2525,12 @@
       "bipUsd": 68217,
       "einwohner": 2120461,
       "schuldenquote": {
-        "wert": 65.2,
-        "jahr": 2026
+        "wert": 65.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 63376,
+        "jahr": 2025
       }
     },
     "SLB": {
@@ -2414,8 +2542,8 @@
       "bipUsd": 1631,
       "einwohner": 800005,
       "schuldenquote": {
-        "wert": 29.9,
-        "jahr": 2026
+        "wert": 28.7,
+        "jahr": 2025
       }
     },
     "SOM": {
@@ -2436,8 +2564,8 @@
       "bipUsd": 377782,
       "einwohner": 63212384,
       "schuldenquote": {
-        "wert": 78.9,
-        "jahr": 2026
+        "wert": 78.6,
+        "jahr": 2025
       }
     },
     "SGS": {
@@ -2455,8 +2583,8 @@
       "waehrung": "SSP",
       "einwohner": 11483374,
       "schuldenquote": {
-        "wert": 57.3,
-        "jahr": 2026
+        "wert": 62.1,
+        "jahr": 2025
       }
     },
     "ESP": {
@@ -2468,8 +2596,12 @@
       "bipUsd": 1580695,
       "einwohner": 48352528,
       "schuldenquote": {
-        "wert": 98.2,
-        "jahr": 2026
+        "wert": 100.4,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 57779,
+        "jahr": 2025
       }
     },
     "LKA": {
@@ -2503,8 +2635,8 @@
       "bipUsd": 109327,
       "einwohner": 50042791,
       "schuldenquote": {
-        "wert": 169.1,
-        "jahr": 2026
+        "wert": 187.6,
+        "jahr": 2025
       }
     },
     "SUR": {
@@ -2516,8 +2648,8 @@
       "bipUsd": 3782,
       "einwohner": 628886,
       "schuldenquote": {
-        "wert": 87.1,
-        "jahr": 2026
+        "wert": 105.8,
+        "jahr": 2025
       }
     },
     "SJM": {
@@ -2536,8 +2668,12 @@
       "bipUsd": 593268,
       "einwohner": 10536632,
       "schuldenquote": {
-        "wert": 36.7,
-        "jahr": 2026
+        "wert": 34.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 61443,
+        "jahr": 2025
       }
     },
     "CHE": {
@@ -2549,8 +2685,12 @@
       "bipUsd": 884940,
       "einwohner": 8888822,
       "schuldenquote": {
-        "wert": 38.5,
-        "jahr": 2026
+        "wert": 39.4,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 92285,
+        "jahr": 2025
       }
     },
     "SYR": {
@@ -2572,8 +2712,8 @@
       "subregion": "Eastern Asia",
       "waehrung": "TWD",
       "schuldenquote": {
-        "wert": 27.6,
-        "jahr": 2026
+        "wert": 22.4,
+        "jahr": 2025
       }
     },
     "TJK": {
@@ -2585,8 +2725,8 @@
       "bipUsd": 12061,
       "einwohner": 10389799,
       "schuldenquote": {
-        "wert": 21.9,
-        "jahr": 2026
+        "wert": 21.6,
+        "jahr": 2025
       }
     },
     "THA": {
@@ -2598,8 +2738,8 @@
       "bipUsd": 514945,
       "einwohner": 71702435,
       "schuldenquote": {
-        "wert": 66.8,
-        "jahr": 2026
+        "wert": 64.7,
+        "jahr": 2025
       }
     },
     "TLS": {
@@ -2611,8 +2751,8 @@
       "bipUsd": 2243,
       "einwohner": 1384286,
       "schuldenquote": {
-        "wert": 14.9,
-        "jahr": 2026
+        "wert": 14.3,
+        "jahr": 2025
       }
     },
     "TGO": {
@@ -2624,8 +2764,8 @@
       "bipUsd": 9171,
       "einwohner": 9304337,
       "schuldenquote": {
-        "wert": 64.7,
-        "jahr": 2026
+        "wert": 63,
+        "jahr": 2025
       }
     },
     "TKL": {
@@ -2643,8 +2783,8 @@
       "waehrung": "TOP",
       "einwohner": 104597,
       "schuldenquote": {
-        "wert": 34.4,
-        "jahr": 2026
+        "wert": 27.4,
+        "jahr": 2025
       }
     },
     "TTO": {
@@ -2656,8 +2796,8 @@
       "bipUsd": 28140,
       "einwohner": 1367510,
       "schuldenquote": {
-        "wert": 84.1,
-        "jahr": 2026
+        "wert": 84.2,
+        "jahr": 2025
       }
     },
     "TUN": {
@@ -2669,8 +2809,8 @@
       "bipUsd": 48530,
       "einwohner": 12200431,
       "schuldenquote": {
-        "wert": 84.9,
-        "jahr": 2026
+        "wert": 81.3,
+        "jahr": 2025
       }
     },
     "TUR": {
@@ -2682,8 +2822,12 @@
       "bipUsd": 1108022,
       "einwohner": 85325965,
       "schuldenquote": {
-        "wert": 25.5,
-        "jahr": 2026
+        "wert": 23.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 57275,
+        "jahr": 2024
       }
     },
     "TKM": {
@@ -2695,8 +2839,8 @@
       "bipUsd": 59887,
       "einwohner": 7364438,
       "schuldenquote": {
-        "wert": 3.7,
-        "jahr": 2026
+        "wert": 3.8,
+        "jahr": 2025
       }
     },
     "TCA": {
@@ -2717,8 +2861,8 @@
       "bipUsd": 62,
       "einwohner": 9816,
       "schuldenquote": {
-        "wert": 3.2,
-        "jahr": 2026
+        "wert": 3.6,
+        "jahr": 2025
       }
     },
     "UGA": {
@@ -2730,8 +2874,8 @@
       "bipUsd": 49273,
       "einwohner": 48656601,
       "schuldenquote": {
-        "wert": 55,
-        "jahr": 2026
+        "wert": 54.2,
+        "jahr": 2025
       }
     },
     "UKR": {
@@ -2743,8 +2887,8 @@
       "bipUsd": 178757,
       "einwohner": 37732836,
       "schuldenquote": {
-        "wert": 122.6,
-        "jahr": 2026
+        "wert": 108.7,
+        "jahr": 2025
       }
     },
     "ARE": {
@@ -2756,8 +2900,8 @@
       "bipUsd": 504173,
       "einwohner": 10483751,
       "schuldenquote": {
-        "wert": 31.4,
-        "jahr": 2026
+        "wert": 34.3,
+        "jahr": 2025
       }
     },
     "GBR": {
@@ -2769,8 +2913,12 @@
       "bipUsd": 3340032,
       "einwohner": 68492000,
       "schuldenquote": {
-        "wert": 103.6,
-        "jahr": 2026
+        "wert": 102.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 66299,
+        "jahr": 2025
       }
     },
     "TZA": {
@@ -2782,8 +2930,8 @@
       "bipUsd": 79158,
       "einwohner": 66617606,
       "schuldenquote": {
-        "wert": 48.7,
-        "jahr": 2026
+        "wert": 49.7,
+        "jahr": 2025
       }
     },
     "UMI": {
@@ -2802,8 +2950,12 @@
       "bipUsd": 27360935,
       "einwohner": 336806231,
       "schuldenquote": {
-        "wert": 125.8,
-        "jahr": 2026
+        "wert": 123.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 86977,
+        "jahr": 2025
       }
     },
     "VIR": {
@@ -2823,8 +2975,8 @@
       "bipUsd": 77241,
       "einwohner": 3388081,
       "schuldenquote": {
-        "wert": 66.8,
-        "jahr": 2026
+        "wert": 65.7,
+        "jahr": 2025
       }
     },
     "UZB": {
@@ -2836,8 +2988,8 @@
       "bipUsd": 90889,
       "einwohner": 35652307,
       "schuldenquote": {
-        "wert": 27.5,
-        "jahr": 2026
+        "wert": 28.6,
+        "jahr": 2025
       }
     },
     "VUT": {
@@ -2849,8 +3001,8 @@
       "bipUsd": 1126,
       "einwohner": 320409,
       "schuldenquote": {
-        "wert": 43.2,
-        "jahr": 2026
+        "wert": 40.9,
+        "jahr": 2025
       }
     },
     "VEN": {
@@ -2874,8 +3026,8 @@
       "bipUsd": 429717,
       "einwohner": 100352192,
       "schuldenquote": {
-        "wert": 29.8,
-        "jahr": 2026
+        "wert": 30.3,
+        "jahr": 2025
       }
     },
     "WLF": {
@@ -2922,8 +3074,8 @@
       "bipUsd": 26538,
       "einwohner": 16340822,
       "schuldenquote": {
-        "wert": 42.3,
-        "jahr": 2026
+        "wert": 43.8,
+        "jahr": 2025
       }
     }
   }
