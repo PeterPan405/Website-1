@@ -55,6 +55,17 @@
   --c-warning-soft: #faf0e2;
   --c-danger: #8b2225;
   --c-danger-soft: #faeaea;
+  /*
+    Die drei Zwischentöne des Angst-und-Gier-Bogens.
+
+    Die Enden übernehmen `--c-danger` und `--c-success` – Rot für Angst, Grün
+    für Gier, wie man es kennt. Dazwischen fehlten drei Stufen: ein Orange, ein
+    neutrales Gelb und ein helleres Grün. Eigene Werte und keine geliehenen,
+    weil sie eine Reihe bilden müssen und nicht einzeln stimmen sollen.
+  */
+  --c-stimmung-angst: #b4621a;
+  --c-stimmung-neutral: #9a8412;
+  --c-stimmung-gier: #4f7c33;
 
   /*
     Bereichsfarben.
@@ -188,6 +199,10 @@
   --c-warning-soft: #2c2109;
   --c-danger: #f08a8d;
   --c-danger-soft: #2c1214;
+  /* Auf dunklem Grund heller und weniger gesättigt – wie die übrige Palette. */
+  --c-stimmung-angst: #e09a5a;
+  --c-stimmung-neutral: #d6c05a;
+  --c-stimmung-gier: #93cf72;
 
   --c-news: #8da4f0;
   --c-news-soft: #141f3e;
