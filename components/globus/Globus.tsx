@@ -6,6 +6,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as topojson from 'topojson-client'
 import type { Topology } from 'topojson-specification'
 
+import { Icon } from '@/components/ui/Icon'
+import { cn } from '@/lib/cn'
 import {
   FEINE_GEOMETRIE_AB,
   MAX_NEIGUNG,
@@ -82,10 +84,36 @@ export function Globus({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const huelleRef = useRef<HTMLDivElement>(null)
+  /** Der Knoten, der ins Vollbild geht – Kugel und Bedienleiste zusammen. */
+  const rahmenRef = useRef<HTMLDivElement>(null)
+  /*
+    Ein eigener Rahmen nur zum Messen.
+
+    Vorher wurde die Hülle gemessen, in der auch die Zeichenfläche liegt – und
+    die trägt ihre Breite als Pixelwert im Stil. Auf dem Handy hielt sich das
+    gegenseitig fest: Die Fläche war 640 Pixel breit, die Hülle wuchs
+    entsprechend mit, und der gemessene Wert blieb 640, obwohl das Fenster nur
+    390 Pixel hatte. Sichtbar war dann der halbe Globus, der Rest lag rechts
+    außerhalb der Seite.
+
+    Dieser Rahmen ist leer und einen Pixel hoch. Er kann nur so breit werden,
+    wie der Platz hergibt.
+  */
+  const massRef = useRef<HTMLDivElement>(null)
 
   const [drehung, setDrehung] = useState<Drehung>({ lambda: -10, phi: 20 })
   const [zoom, setZoom] = useState(1)
-  const [groesse, setGroesse] = useState({ breite: 640, hoehe: 640 })
+  /*
+    Bewusst klein gestartet.
+
+    Der erste Wert steht, bevor gemessen wurde. Ist er zu groß, ragt die
+    Zeichenfläche für einen Bildaufbau lang aus der Seite heraus und schiebt
+    auf dem Handy einen waagerechten Rollbalken hinein, der erst danach wieder
+    verschwindet.
+  */
+  const [breite, setBreite] = useState(320)
+  const [fensterHoehe, setFensterHoehe] = useState(0)
+  const [vollbild, setVollbild] = useState(false)
   const [features, setFeatures] = useState<Feature<Geometry>[]>([])
   /*
     Ein Riegel, kein Zustand.
@@ -106,6 +134,15 @@ export function Globus({
     einsparen soll.
   */
   const zugRef = useRef<{ x: number; y: number; start: Drehung } | null>(null)
+  /*
+    Alle Finger, die gerade auf der Fläche liegen.
+
+    Auf dem Handy gibt es kein Mausrad. Zwei Finger sind dort die gewohnte
+    Geste zum Zoomen – ohne sie bliebe nur der kleine Plusknopf, und eine
+    Karte, die man nicht aufziehen kann, fühlt sich kaputt an.
+  */
+  const zeigerRef = useRef(new Map<number, { x: number; y: number }>())
+  const kneifRef = useRef<{ abstand: number; zoom: number } | null>(null)
   const animationRef = useRef<{
     von: Drehung
     nach: Drehung
@@ -184,17 +221,38 @@ export function Globus({
   // ----------------------------------------------------------------- Größe
 
   useEffect(() => {
-    const huelle = huelleRef.current
-    if (!huelle) return
+    const rahmen = massRef.current
+    if (!rahmen) return
     const beobachter = new ResizeObserver(([eintrag]) => {
-      const breite = eintrag.contentRect.width
-      // Quadratisch, aber nach oben begrenzt: Auf einem breiten Bildschirm
-      // soll der Globus nicht die ganze Höhe fressen.
-      setGroesse({ breite, hoehe: Math.min(breite, 560) })
+      const gemessen = Math.floor(eintrag.contentRect.width)
+      if (gemessen > 0) setBreite(gemessen)
     })
-    beobachter.observe(huelle)
+    beobachter.observe(rahmen)
     return () => beobachter.disconnect()
   }, [])
+
+  /*
+    Im Vollbild bestimmt die Fensterhöhe die Größe, sonst die Breite.
+
+    Nur die Breite zu messen genügt dort nicht: Ein Handy im Hochformat ist
+    schmal und hoch, und ein quadratischer Globus ließe die untere Hälfte des
+    Bildschirms leer. Abgezogen wird der Platz für die Bedienleiste darunter.
+  */
+  useEffect(() => {
+    const messen = () => setFensterHoehe(window.innerHeight)
+    messen()
+    window.addEventListener('resize', messen)
+    return () => window.removeEventListener('resize', messen)
+  }, [])
+
+  const groesse = useMemo(() => {
+    const hoehe = vollbild
+      ? Math.max(240, Math.min(breite * 1.6, fensterHoehe - 128))
+      : // Quadratisch, aber nach oben begrenzt: Auf einem breiten Bildschirm
+        // soll der Globus nicht die ganze Höhe fressen.
+        Math.min(breite, 560)
+    return { breite, hoehe }
+  }, [breite, vollbild, fensterHoehe])
 
   const radius = (Math.min(groesse.breite, groesse.hoehe) / 2 - 8) * zoom
 
@@ -358,15 +416,53 @@ export function Globus({
     return { x: ereignis.clientX - kasten.left, y: ereignis.clientY - kasten.top }
   }
 
+  /** Abstand der beiden ersten Finger, oder `null` bei weniger als zweien. */
+  const kneifabstand = (): number | null => {
+    const punkte = [...zeigerRef.current.values()]
+    if (punkte.length < 2) return null
+    return Math.hypot(punkte[0].x - punkte[1].x, punkte[0].y - punkte[1].y)
+  }
+
   const beiZeigerAb = (ereignis: React.PointerEvent<HTMLDivElement>) => {
     const { x, y } = zeigerPosition(ereignis)
-    zugRef.current = { x, y, start: drehung }
+    zeigerRef.current.set(ereignis.pointerId, { x, y })
     animationRef.current = null
-    ereignis.currentTarget.setPointerCapture(ereignis.pointerId)
+    // Kann werfen, wenn der Zeiger inzwischen nicht mehr gilt – etwa weil das
+    // Betriebssystem die Geste übernommen hat. Ohne Auffangen bräche dann die
+    // ganze Bewegung ab.
+    try {
+      ereignis.currentTarget.setPointerCapture(ereignis.pointerId)
+    } catch {
+      /* ohne Fangen weitermachen */
+    }
+
+    const abstand = kneifabstand()
+    if (abstand !== null) {
+      // Zweiter Finger: Ab jetzt wird gezoomt, nicht gedreht. Sonst würde die
+      // Kugel beim Aufziehen zusätzlich wegkippen.
+      kneifRef.current = { abstand, zoom }
+      zugRef.current = null
+      setZieht(false)
+      return
+    }
+    zugRef.current = { x, y, start: drehung }
   }
 
   const beiZeigerBewegung = (ereignis: React.PointerEvent<HTMLDivElement>) => {
     const { x, y } = zeigerPosition(ereignis)
+    if (zeigerRef.current.has(ereignis.pointerId)) {
+      zeigerRef.current.set(ereignis.pointerId, { x, y })
+    }
+
+    const kneifen = kneifRef.current
+    if (kneifen) {
+      const abstand = kneifabstand()
+      if (abstand !== null && kneifen.abstand > 0) {
+        setZoom(zoomSchritt(kneifen.zoom, abstand / kneifen.abstand))
+      }
+      return
+    }
+
     const zug = zugRef.current
 
     if (zug) {
@@ -389,9 +485,22 @@ export function Globus({
 
   const beiZeigerAuf = (ereignis: React.PointerEvent<HTMLDivElement>) => {
     const zug = zugRef.current
+    const kneifteGerade = kneifRef.current !== null
+    zeigerRef.current.delete(ereignis.pointerId)
     zugRef.current = null
-    ereignis.currentTarget.releasePointerCapture(ereignis.pointerId)
+    if (zeigerRef.current.size < 2) kneifRef.current = null
+    try {
+      ereignis.currentTarget.releasePointerCapture(ereignis.pointerId)
+    } catch {
+      /* war nie gefangen */
+    }
 
+    // Nach einer Zwei-Finger-Geste darf das Loslassen kein Land auswählen:
+    // Der zweite Finger hebt selten genau gleichzeitig ab.
+    if (kneifteGerade) {
+      setZieht(false)
+      return
+    }
     if (zieht) {
       setZieht(false)
       return
@@ -432,6 +541,12 @@ export function Globus({
         ereignis.preventDefault()
         return setZoom((vorher) => zoomSchritt(vorher, 1 / 1.3))
       case 'Escape':
+        // Erst das Vollbild verlassen, dann die Auswahl aufheben – sonst
+        // müsste man zweimal drücken, ohne zu sehen, was passiert ist.
+        if (vollbild) {
+          ereignis.preventDefault()
+          return vollbildUmschalten()
+        }
         return onAuswahl(null)
     }
   }
@@ -454,27 +569,112 @@ export function Globus({
     return () => huelle.removeEventListener('wheel', beiRad)
   }, [])
 
+  /*
+    Vollbild in zwei Schichten.
+
+    Die eigentliche Arbeit macht `position: fixed` – das funktioniert überall,
+    auch auf iPhones, wo die Vollbild-Schnittstelle des Browsers nur für Videos
+    freigegeben ist. Zusätzlich wird die Schnittstelle angefragt, wo es sie
+    gibt: Dann verschwindet auch die Leiste des Browsers, und es sieht aus wie
+    bei einem Video.
+
+    Schlägt die Anfrage fehl, bleibt es bei der ersten Schicht. Deshalb steht
+    dort ein bewusst leeres `catch` und keine Fehlermeldung: Für die Bedienung
+    ändert sich nichts.
+  */
+  const vollbildUmschalten = useCallback(() => {
+    const knoten = rahmenRef.current
+    setVollbild((vorher) => {
+      const neu = !vorher
+      if (neu) {
+        knoten?.requestFullscreen?.().catch(() => {})
+      } else if (document.fullscreenElement) {
+        document.exitFullscreen?.().catch(() => {})
+      }
+      return neu
+    })
+  }, [])
+
+  /*
+    Wer das Vollbild über die Taste des Browsers verlässt, muss auch hier
+    heraus. Ohne diesen Abgleich bliebe die Seite in ihrer Vollbild-Darstellung
+    hängen, während der Browser längst wieder normal anzeigt.
+  */
+  useEffect(() => {
+    const abgleichen = () => {
+      if (!document.fullscreenElement) setVollbild(false)
+    }
+    document.addEventListener('fullscreenchange', abgleichen)
+    return () => document.removeEventListener('fullscreenchange', abgleichen)
+  }, [])
+
+  // Im Vollbild darf die Seite dahinter nicht mitrollen.
+  useEffect(() => {
+    if (!vollbild) return
+    const vorher = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = vorher
+    }
+  }, [vollbild])
+
+  /*
+    Escape beendet das Vollbild von überall aus.
+
+    Der Tastaturzuhörer der Kugel greift nur, solange sie den Fokus hat – nach
+    einem Klick auf den Vollbildknopf liegt der aber auf dem Knopf. Wer dann
+    Escape drückt, säße fest. Bei echtem Browser-Vollbild erledigt das der
+    Browser selbst; diese Schicht deckt den Fall ab, in dem nur die
+    CSS-Darstellung aktiv ist.
+  */
+  useEffect(() => {
+    if (!vollbild) return
+    const beiTaste = (ereignis: KeyboardEvent) => {
+      if (ereignis.key !== 'Escape') return
+      ereignis.preventDefault()
+      setVollbild(false)
+      if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {})
+    }
+    document.addEventListener('keydown', beiTaste)
+    return () => document.removeEventListener('keydown', beiTaste)
+  }, [vollbild])
+
   const ueberName = ueber ? nameJeId.get(ueber) : null
 
   return (
-    <div className="relative">
+    <div
+      ref={rahmenRef}
+      className={cn(
+        'relative w-full min-w-0',
+        vollbild && 'bg-canvas fixed inset-0 z-50 flex flex-col justify-center p-3 sm:p-6'
+      )}
+    >
+      {/* Der Messrahmen – leer, unsichtbar und immer nur so breit wie der Platz. */}
+      <div ref={massRef} aria-hidden="true" className="h-px w-full" />
+
       <div
         ref={huelleRef}
         tabIndex={0}
         role="group"
-        aria-label="Drehbarer Globus. Ziehen dreht, Mausrad zoomt. Mit den Pfeiltasten drehen, mit Plus und Minus zoomen, mit Escape die Auswahl aufheben."
+        aria-label="Drehbarer Globus. Ziehen dreht, Mausrad oder zwei Finger zoomen. Mit den Pfeiltasten drehen, mit Plus und Minus zoomen, mit Escape die Auswahl aufheben."
         onPointerDown={beiZeigerAb}
         onPointerMove={beiZeigerBewegung}
         onPointerUp={beiZeigerAuf}
+        onPointerCancel={(ereignis) => {
+          zeigerRef.current.delete(ereignis.pointerId)
+          if (zeigerRef.current.size < 2) kneifRef.current = null
+          zugRef.current = null
+          setZieht(false)
+        }}
         onPointerLeave={() => {
           setUeber(null)
           onHover(null)
         }}
         onKeyDown={beiTaste}
-        className="ring-ring/60 relative touch-none rounded-2xl outline-none focus-visible:ring-2"
+        className="ring-ring/60 relative flex touch-none justify-center overflow-hidden rounded-2xl outline-none focus-visible:ring-2"
         style={{ cursor: zieht ? 'grabbing' : 'grab' }}
       >
-        <canvas ref={canvasRef} aria-hidden="true" className="block" />
+        <canvas ref={canvasRef} aria-hidden="true" className="block max-w-full" />
 
         {ueberName && (
           <span className="bg-fg text-canvas pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-semibold">
@@ -489,8 +689,8 @@ export function Globus({
         )}
       </div>
 
-      <div className="mt-3 flex items-center justify-between gap-3">
-        <div className="flex gap-2">
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+        <div className="flex flex-wrap gap-2">
           <Knopf
             beschriftung="Hineinzoomen"
             zeichen="+"
@@ -513,7 +713,18 @@ export function Globus({
             }}
             className="border-border text-fg-muted hover:text-fg hover:border-border-strong rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
           >
-            Ansicht zurücksetzen
+            Zurücksetzen
+          </button>
+          <button
+            type="button"
+            onClick={vollbildUmschalten}
+            aria-pressed={vollbild}
+            className="border-border text-fg-muted hover:text-fg hover:border-border-strong flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
+          >
+            <Icon name={vollbild ? 'compress' : 'expand'} className="size-3.5" />
+            {/* Im Vollbild kurz halten: Auf einem schmalen Gerät bricht
+                „Vollbild beenden“ sonst über zwei Zeilen um. */}
+            {vollbild ? 'Beenden' : 'Vollbild'}
           </button>
         </div>
         <p className="text-fg-subtle text-xs tabular-nums" aria-live="off">
