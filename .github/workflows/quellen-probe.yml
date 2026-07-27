@@ -2,29 +2,29 @@ name: Quellen abklopfen
 
 # Probiert Datenquellen durch und schreibt auf, welche antworten.
 #
-# ## Wozu ein eigener Workflow
-#
 # Aus der Entwicklungsumgebung sind nur npm und GitHub erreichbar; jeder
-# Versuch, eine Statistikschnittstelle anzusprechen, endet dort mit 403 des
-# Proxys. Auf einem GitHub-Läufer gibt es diese Einschränkung nicht.
+# Versuch, eine Schnittstelle anzusprechen, endet dort mit 403 des Proxys. Auf
+# einem GitHub-Läufer gibt es diese Einschränkung nicht. Ohne diesen Weg bliebe
+# nur Raten.
 #
-# Ohne diesen Weg bliebe nur Raten: eine Adresse ins Abrufskript schreiben,
-# committen, den Monatslauf abwarten und im Protokoll nachsehen. Hier kostet
-# eine Antwort zwei Minuten.
+# Der Workflow verändert nichts. Er ist Werkzeug, kein Bestandteil der Website.
 #
-# Der Workflow verändert nichts. Er ist Werkzeug, kein Bestandteil der
-# Website – wenn die Quellen feststehen, kann er weg.
+# ## Bisheriger Stand
 #
-# ## Stand nach der ersten Runde
+# - IWF (Schuldenquote): geht, seit ein User-Agent mitgeschickt wird → 191 Länder
+# - OECD (Löhne): geht, seit Sprache und Format ausdrücklich gesetzt sind → 38 Länder
+# - OECD (Vermögen): erreichbar, 31 Länder, enthält „Net wealth“ und „Median“ –
+#   aber in Landeswährung, für den Vergleich fehlt eine Umrechnung
+# - Yahoo (Fundamentaldaten): 401 Unauthorized bzw. Invalid Crumb
+# - ILO, Our World in Data: keine brauchbare Reihe gefunden
 #
-# Erreichbar: OECD-Vermögensverteilung (200, 197 kB) und die ILO-Schnittstelle
-# (400, aber mit Verweis auf ihr Verzeichnis – die Kennung war nur veraltet).
-# Nicht erreichbar: Our World in Data (404), ILO-Massendownload (404).
-# Yahoo antwortet auf Kennzahlen mit 401 „Invalid Crumb“ – die Reihen für den
-# Kursverlauf laufen weiter, die Fundamentaldaten sind ohne Anmeldung zu.
+# ## Diese Runde
 #
-# Diese Runde geht den beiden Treffern nach: Welche Größen führt die
-# OECD-Datenbank, und wie heißt die Lohnreihe der ILO heute?
+# Die Fundamentalkennzahlen. Gesucht wird eine Quelle, die Umsatz, Gewinn,
+# Cashflow und Aktienzahl liefert – ohne Anmeldung und ohne Lizenzverstoß.
+# Der aussichtsreichste Kandidat ist die Schnittstelle der US-Börsenaufsicht:
+# amtlich, gebührenfrei, ausdrücklich zur Nutzung vorgesehen. Ihr Nachteil
+# steht schon fest – sie kennt nur Unternehmen, die in den USA bilanzieren.
 
 on:
   workflow_dispatch:
@@ -34,59 +34,68 @@ jobs:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
-      - name: OECD – welche Größen enthält die Vermögensdatenbank?
+      - name: US-Börsenaufsicht (SEC) – Kennzahlen zu einem Unternehmen
         run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          url="https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels"
+          # Die SEC verlangt ausdrücklich einen Absender mit Kontaktadresse.
+          UA="IM-Invests Datenabruf pm252543@gmail.com"
 
-          curl -sS -L -A "$UA" -H 'Accept-Language: en' --max-time 60 -o /tmp/wealth.csv "$url"
-          echo "Zeilen: $(wc -l < /tmp/wealth.csv)"
-          echo ""
-          echo "── Alle Größen (MEASURE) mit Klartextnamen ──"
-          # Spalte 9 = MEASURE, 10 = Klartext, 11 = UNIT_MEASURE, 12 = Klartext
-          awk -F',' 'NR>1 {print $9" | "$10" | "$11}' /tmp/wealth.csv \
-            | sort -u | head -60
-          echo ""
-          echo "── Enthält es einen Medianwert? ──"
-          grep -io 'median[^,]*' /tmp/wealth.csv | sort -u | head -20 || echo "  kein Treffer auf 'median'"
-          echo ""
-          echo "── Wie viele Länder? ──"
-          awk -F',' 'NR>1 {print $5}' /tmp/wealth.csv | sort -u | tr '\n' ' '
-          echo ""
-
-      - name: ILO – wie heißt die Lohnreihe heute?
-        run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-
-          echo "── Verzeichnis der Kennungen holen ──"
-          curl -sS -L -A "$UA" --max-time 60 \
-            -o /tmp/ilo-toc.csv \
-            "https://rplumber.ilo.org/metadata/toc/indicator?lang=en&format=.csv"
-          echo "Zeilen: $(wc -l < /tmp/ilo-toc.csv)"
-          echo ""
-          echo "── Einträge zu Verdiensten (earnings) ──"
-          grep -i 'earning' /tmp/ilo-toc.csv | cut -c1-220 | head -25
-          echo ""
-          echo "── Einträge zu Löhnen (wage) ──"
-          grep -i 'wage' /tmp/ilo-toc.csv | cut -c1-220 | head -15
-
-      - name: Weltbank – gibt es dort eine Vermögensreihe?
-        run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          echo "── Suche im Indikatorverzeichnis nach 'wealth' ──"
-          curl -sS -L -A "$UA" --max-time 60 \
-            "https://api.worldbank.org/v2/indicator?format=json&per_page=25000" \
-            -o /tmp/wb.json
-          echo "Größe: $(stat -c%s /tmp/wb.json) Bytes"
+          echo "── Zuordnung Kürzel → Kennnummer ──"
+          curl -sS -A "$UA" --max-time 45 -o /tmp/tickers.json \
+            "https://www.sec.gov/files/company_tickers.json"
+          echo "Status/Größe: $(stat -c%s /tmp/tickers.json) Bytes"
           python3 - <<'PY'
           import json
-          with open('/tmp/wb.json') as f:
-              daten = json.load(f)
-          eintraege = daten[1] if isinstance(daten, list) and len(daten) > 1 else []
-          treffer = [e for e in eintraege
-                     if 'wealth' in (e.get('name') or '').lower()
-                     and 'per capita' in (e.get('name') or '').lower()]
-          print(f"{len(eintraege)} Indikatoren, {len(treffer)} mit 'wealth' und 'per capita':")
-          for e in treffer[:25]:
-              print(f"  {e['id']:28} {e['name'][:110]}")
+          try:
+              with open('/tmp/tickers.json') as f:
+                  d = json.load(f)
+          except Exception as fehler:
+              print('  nicht lesbar:', fehler)
+              raise SystemExit(0)
+          eintraege = list(d.values())
+          print(f"  {len(eintraege)} Unternehmen gelistet")
+          for e in eintraege[:3]:
+              print(f"   {e['ticker']:8} {e['cik_str']:>10}  {e['title'][:60]}")
           PY
+
+          echo ""
+          echo "── Kennzahlen zu Apple (CIK 320193) ──"
+          curl -sS -A "$UA" --max-time 60 -o /tmp/apple.json \
+            "https://data.sec.gov/api/xbrl/companyconcept/CIK0000320193/us-gaap/Revenues.json"
+          echo "Größe: $(stat -c%s /tmp/apple.json) Bytes"
+          head -c 300 /tmp/apple.json
+          echo ""
+
+          echo ""
+          echo "── Sammelabruf: Umsatz aller Melder für ein Quartal ──"
+          curl -sS -A "$UA" --max-time 90 -o /tmp/frame.json \
+            "https://data.sec.gov/api/xbrl/frames/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax/USD/CY2025Q1.json"
+          echo "Größe: $(stat -c%s /tmp/frame.json) Bytes"
+          python3 - <<'PY'
+          import json
+          try:
+              with open('/tmp/frame.json') as f:
+                  d = json.load(f)
+          except Exception as fehler:
+              print('  nicht lesbar:', fehler)
+              raise SystemExit(0)
+          daten = d.get('data', [])
+          print(f"  {len(daten)} Unternehmen in einem einzigen Abruf")
+          for e in daten[:3]:
+              print(f"   {e.get('cik'):>8}  {str(e.get('entityName'))[:40]:40} {e.get('val')}")
+          PY
+
+      - name: Gibt es eine Quelle ohne Anmeldung für Nicht-US-Unternehmen?
+        run: |
+          UA="IM-Invests-Abruf/1.0 (+https://iminvests.de)"
+          for eintrag in \
+            "Stooq Kursdatei|https://stooq.com/q/d/l/?s=sap.de&i=d" \
+            "Frankfurter (nur Devisen)|https://api.frankfurter.app/latest?from=EUR" \
+            "Yahoo Chart (was wir nutzen)|https://query1.finance.yahoo.com/v8/finance/chart/SAP.DE?range=5d&interval=1d"
+          do
+            name="${eintrag%%|*}"; url="${eintrag#*|}"
+            code=$(curl -sS -A "$UA" --max-time 30 -o /tmp/a -w '%{http_code}' "$url" || echo 000)
+            echo ""
+            echo "▶ $name → $code, $(stat -c%s /tmp/a) Bytes"
+            head -c 160 /tmp/a | tr '\n' ' '
+            echo ""
+          done
