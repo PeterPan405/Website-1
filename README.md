@@ -215,6 +215,68 @@ richtiger Antworten kann die Stufe als erledigt markiert werden.
 - Fortschritt und Bestergebnisse liegen ausschließlich im localStorage
   (`fk-learn-progress`, `fk-quiz-results`) – kein Konto, keine Serverübertragung.
 
+## Globus
+
+`/globus` zeigt eine drehbare Kugel: ziehen dreht, Mausrad zoomt, ein Klick auf ein
+Land öffnet seine Kennzahlen und die Kurse, die von dort kommen. Im Menü steht der
+Punkt zwischen **Lernen** und **Staatsverschuldung** – er beantwortet die Frage, die
+zwischen beiden liegt: wo auf der Welt findet das statt, worüber die Lernthemen
+sprechen, und wie groß ist es dort.
+
+### Vier Quellen, absichtlich getrennt
+
+| Was                        | Woher                                                               | Pflege                     |
+| -------------------------- | ------------------------------------------------------------------- | -------------------------- |
+| Formen der Länder          | Natural Earth über `world-atlas`, als TopoJSON in `public/globus/`  | `npm run globus-geometrie` |
+| BIP und Einwohner          | Weltbank-Reihen, Momentaufnahme in `data/snapshots/laender.json`    | `npm run laender`          |
+| Schulden, Gehalt, Vermögen | `data/laender/kennzahlen.ts`, Wert für Wert mit Quelle und Zeitraum | von Hand                   |
+| Indizes und Aktien je Land | `data/laender/markt-zuordnung.ts` über `data/markets.ts`            | von Hand                   |
+
+Zusammengeführt wird ausschließlich in `lib/laender.ts`; Komponenten sehen nur das
+Ergebnis. `lib/laender-validate.ts` bricht den Build ab, wenn ein Index oder eine
+Aktie kein Herkunftsland hat, eine Kennzahl auf eine unbekannte Länderkennung zeigt
+oder eine Quelle ohne Link oder ohne Abgrenzung dasteht.
+
+### Drei Entscheidungen, die den Unterschied machen
+
+**Canvas statt SVG.** 177 Länder bei jedem Bild einer Drehung als DOM-Knoten neu zu
+schreiben, bringt jeden Browser ins Stocken. Getroffen wird trotzdem exakt – nicht
+über Trefferflächen, sondern über `projection.invert` und `geoContains`.
+
+**Quantile statt gleich breiter Klassen.** Die größte Volkswirtschaft ist rund
+zwanzigtausendmal so groß wie die kleinste. Bei gleich breiten Klassen läge alles
+außer zwei Ländern in derselben Farbe. Der Preis: Die Farbe zeigt den Rang, nicht
+den Abstand – das steht so in der Legende, und die genaue Zahl steht bei jedem Land
+im Klartext.
+
+**„Keine Angabe“ ist keine Farbstufe.** `stufeFuer()` liefert für `null` bewusst
+`-1`, und diese Länder bekommen ein neutrales Grau außerhalb der Farbtreppe. Ein Land
+ohne Datensatz darf nicht aussehen wie ein Land ohne Schulden – der teuerste
+denkbare Fehler dieser Seite, weil ihn niemand der Karte ansieht. `tests/globus-geometrie.test.ts`
+prüft genau diesen Fall.
+
+### Warum die Abdeckung ungleich ist
+
+BIP und Einwohnerzahl liegen für über 150 Länder vor und werden automatisch geholt.
+Schuldenquote, Durchschnittsgehalt und Vermögen veröffentlichen IWF, Eurostat, OECD
+und UBS dagegen in Berichten und hinter Abfragemasken, nicht als offene Datei –
+diese Werte sind von Hand gepflegt und decken bisher nur wenige Länder ab. Die
+Alternative wäre gewesen, sie aus dem Gedächtnis zu ergänzen und eine plausible
+Quelle darunterzuschreiben; das wäre nicht nachprüfbar und als Fehler nicht
+erkennbar. Die Seite nennt die Abdeckung deshalb je Kennzahl.
+
+Besonders bei der Staatsverschuldung ist die Abgrenzung keine Formalie: Eine Quote
+nach Maastricht (Eurostat) und eine nach IWF-Abgrenzung sind verschiedene Größen und
+unterscheiden sich für dieselben USA um mehrere Prozentpunkte. Jeder Wert trägt
+deshalb seine eigene Quelle, und die Detailtafel zeigt sie an.
+
+### Zugänglichkeit
+
+Eine Zeichenfläche ist für Screenreader leer. Ersetzt wird das dreifach: Die Karte
+lässt sich mit den Pfeiltasten drehen und mit +/− zoomen, die Detailtafel ist eine
+`aria-live`-Region, und unter der Karte steht derselbe Datenbestand als vollständige
+Tabelle im HTML – ohne JavaScript lesbar und von Suchmaschinen erfassbar.
+
 ## Erklärgrafiken
 
 Zehn Diagramme im Lernbereich und auf `/maerkte/msci-world` – als **handgeschriebenes

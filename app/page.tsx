@@ -32,6 +32,7 @@ const areaTiles: { area: AreaId; icon: IconName }[] = [
   { area: 'learn', icon: 'book' },
   { area: 'tools', icon: 'calculator' },
   { area: 'markets', icon: 'chart' },
+  { area: 'globe', icon: 'globe' },
   { area: 'news', icon: 'newspaper' },
 ]
 
@@ -154,7 +155,7 @@ export default async function HomePage() {
         <SectionHeading
           id="bereiche"
           eyebrow="Überblick"
-          title="Vier Bereiche, ein Ziel"
+          title="Fünf Bereiche, ein Ziel"
           lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
         />
 

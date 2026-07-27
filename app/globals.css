@@ -78,8 +78,38 @@
   --c-learn-soft: #faf0e2;
   --c-debt: #8b2225;
   --c-debt-soft: #faeaea;
+  --c-globe: #4fc4cc;
+  --c-globe-soft: #0c2a2d;
+  --c-globe: #155e63;
+  --c-globe-soft: #e3f1f2;
 
   /* Fokus */
+  /*
+    Farbtreppe des Globus – fünf Stufen von hell nach dunkel.
+
+    Eine einzige Farbe in fünf Helligkeiten und nicht fünf verschiedene Farben:
+    Die Stufen sind eine Rangfolge, keine Kategorien. Ein Farbwechsel von Blau
+    nach Rot würde einen Bruch behaupten, den es in den Daten nicht gibt.
+  */
+  --c-globus-1: #dbe3f6;
+  --c-globus-2: #b3c1ea;
+  --c-globus-3: #7f93d5;
+  --c-globus-4: #4a61ab;
+  --c-globus-5: #17296f;
+  /*
+    Ozean und „keine Angabe“ haben eigene Werte und leihen sich keine.
+
+    Vorher war der Ozean `--c-surface-muted` und „keine Angabe“
+    `--c-border-strong`. Im dunklen Theme lag die unterste Farbstufe damit
+    dicht am Wasser, und „keine Angabe“ landete mitten in der Skala – ein Land
+    ohne Datensatz sah aus wie eins mit mittlerem Wert.
+
+    „keine Angabe“ ist bewusst grau und nicht blau: Es gehört nicht zur
+    Rangfolge, sondern daneben.
+  */
+  --c-globus-ozean: #edf1f9;
+  --c-globus-leer: #d1d7e1;
+
   --c-ring: #1f4fb6;
 
   /* Schatten – im Hellmodus weich, im Dunkelmodus fast unsichtbar */
@@ -89,6 +119,21 @@
 }
 
 [data-theme='dark'] {
+  /*
+    Im Dunkeln läuft die Treppe von gedämpft nach hell.
+
+    Auf dunklem Grund liest sich „mehr Farbe“ als „mehr Wert“ – dieselbe
+    Richtung wie im Hellen, aber mit umgekehrter Helligkeit. Die Stufen des
+    hellen Themes wären hier fast unsichtbar.
+  */
+  --c-globus-1: #2b3a63;
+  --c-globus-2: #3d5199;
+  --c-globus-3: #5a6ec6;
+  --c-globus-4: #8496e2;
+  --c-globus-5: #bcc7f6;
+  --c-globus-ozean: #080d18;
+  --c-globus-leer: #414859;
+
   color-scheme: dark;
 
   --c-canvas: #060911;
@@ -189,6 +234,8 @@
   --color-learn-soft: var(--c-learn-soft);
   --color-debt: var(--c-debt);
   --color-debt-soft: var(--c-debt-soft);
+  --color-globe: var(--c-globe);
+  --color-globe-soft: var(--c-globe-soft);
 
   --color-ring: var(--c-ring);
 

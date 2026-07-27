@@ -24,6 +24,7 @@ export type IconName =
   | 'book'
   | 'newspaper'
   | 'chart'
+  | 'globe'
   | 'scale'
   | 'sparkles'
   | 'info'
@@ -88,6 +89,15 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="M4 4v16h16" />
       <path d="m7 15 3.5-4.5 3 2.5L20 6" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      {/* Ein Längen- und ein Breitenkreis genügen: Mehr Linien werden bei
+          20 Pixeln Kantenlänge zu einem grauen Fleck. */}
+      <path d="M3 12h18" />
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18" />
     </>
   ),
   scale: (
