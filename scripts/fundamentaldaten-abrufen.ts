@@ -154,6 +154,12 @@ function quartale(anzahl: number): string[] {
   return liste
 }
 
+/** Abgeschlossene Kalenderjahre, jüngstes zuerst. */
+function jahre(anzahl: number): string[] {
+  const jetzt = new Date().getUTCFullYear()
+  return Array.from({ length: anzahl }, (_, i) => `CY${jetzt - 1 - i}`)
+}
+
 async function main() {
   console.log('Zuordnung Kürzel → Kennnummer holen …')
   const roh = (await hole(TICKER_URL)) as Record<
@@ -177,65 +183,53 @@ async function main() {
   for (const groesse of GROESSEN) {
     console.log(`\n${groesse.feld} …`)
     /*
-      Fließgrößen über vier Quartale summieren.
+      Fließgrößen als **Jahresrahmen**, nicht als Summe von vier Quartalen.
 
-      Ein Quartalsumsatz gegen einen Jahreskurs gerechnet ergäbe ein
-      Kurs-Umsatz-Verhältnis, das um den Faktor vier danebenliegt. Bestände –
-      Eigenkapital, Aktienzahl – gelten dagegen zum Stichtag und werden nicht
-      summiert; dort zählt der jüngste Wert.
+      Der zweite Lauf hat gezeigt, warum: Die Quartalsrahmen der SEC enthalten
+      nur Unternehmen, deren Geschäftsquartal auf das Kalenderquartal fällt.
+      Wer sein Jahr im September beendet – und das sind viele –, taucht in
+      `CY2025Q4` gar nicht auf, und die Bedingung „vier Quartale beisammen“
+      warf ihn heraus. Von 1.199 Kürzeln mit Daten blieben so 127 vollständige.
+
+      Der Jahresrahmen `CY2025` liefert dagegen den Zwölfmonatswert direkt,
+      unabhängig davon, wann das Geschäftsjahr endet. Ein Aufruf statt vier,
+      keine Summe, keine Bedingung.
     */
-    // Stichtagsgrößen gibt es nur je Quartal, nicht als Jahr.
-    const zeitraeume = quartale(groesse.fliessgroesse ? 5 : 4)
-    const gesammelt = new Map<number, number[]>()
+    const zeitraeume = groesse.fliessgroesse ? jahre(3) : quartale(4)
+    const gesammelt = new Map<number, number>()
     let quelleGefunden = ''
 
     for (const tag of groesse.tags) {
       for (const zeitraum of zeitraeume) {
-        // Bei Fließgrößen bis zu vier Quartale sammeln, sonst reicht eines.
-        if (!groesse.fliessgroesse && gesammelt.size > 0) break
         /*
           Stichtagsgrößen brauchen ein angehängtes `I`.
 
-          Die SEC unterscheidet Zeitraum- von Stichtagsangaben: Ein Umsatz
-          gilt für ein Quartal (`CY2025Q4`), ein Eigenkapital an einem Tag
-          (`CY2025Q4I`). Ohne das `I` antwortet die Schnittstelle mit 404 –
-          genau daran ist der erste Lauf gescheitert, für Eigenkapital und
-          Aktienzahl gleichermaßen.
+          Die SEC unterscheidet Zeitraum- von Stichtagsangaben: Ein Umsatz gilt
+          für ein Jahr (`CY2025`), ein Eigenkapital an einem Tag
+          (`CY2025Q4I`). Ohne das `I` antwortet die Schnittstelle mit 404.
         */
         const periode = groesse.fliessgroesse ? zeitraum : `${zeitraum}I`
         const url = `${RAHMEN_BASIS}/${groesse.taxonomie}/${tag}/${groesse.einheit}/${periode}.json`
         const antwort = (await hole(url)) as Rahmenantwort | null
         if (!antwort?.data) continue
-        quelleGefunden = tag
+        if (!quelleGefunden) quelleGefunden = tag
         for (const eintrag of antwort.data) {
           if (typeof eintrag.val !== 'number' || !Number.isFinite(eintrag.val)) continue
-          const bisher = gesammelt.get(eintrag.cik) ?? []
-          if (groesse.fliessgroesse ? bisher.length < 4 : bisher.length < 1) {
-            bisher.push(eintrag.val)
-            gesammelt.set(eintrag.cik, bisher)
-          }
+          // Jüngster Zeitraum zuerst – wer schon einen Wert hat, behält ihn.
+          if (!gesammelt.has(eintrag.cik)) gesammelt.set(eintrag.cik, eintrag.val)
         }
         // Zwischen den Abrufen kurz warten – die SEC bittet um Zurückhaltung.
         await new Promise((fertig) => setTimeout(fertig, 250))
       }
-      if (gesammelt.size > 0) break
     }
 
-    let uebernommen = 0
-    for (const [cik, liste] of gesammelt) {
-      // Fließgrößen nur, wenn wirklich vier Quartale zusammenkamen – aus zwei
-      // Quartalen einen Jahreswert hochzurechnen wäre eine Schätzung.
-      if (groesse.fliessgroesse && liste.length < 4) continue
-      const wert = groesse.fliessgroesse
-        ? liste.reduce((summe, zahl) => summe + zahl, 0)
-        : liste[0]
+    for (const [cik, wert] of gesammelt) {
       const eintrag = werte.get(cik) ?? {}
       eintrag[groesse.feld] = wert
       werte.set(cik, eintrag)
-      uebernommen += 1
     }
     console.log(
-      `  ${uebernommen} Unternehmen (Bezeichner: ${quelleGefunden || 'keiner'})`
+      `  ${gesammelt.size} Unternehmen (Bezeichner: ${quelleGefunden || 'keiner'})`
     )
   }
 
