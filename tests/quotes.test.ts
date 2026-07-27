@@ -1,0 +1,174 @@
+/**
+ * Prüfungen für die Kursanbieter und die Verdichtung der Momentaufnahme.
+ *
+ * Ausführen mit `npm test`. Geprüft wird ausschließlich das Zerlegen der
+ * Antworten, nicht der Abruf – ein Test, der die Anbieter tatsächlich anfragt,
+ * würde bei jeder Störung dort fehlschlagen und wäre kein Test dieses Codes.
+ *
+ * Der wichtigste Fall steht bei Yahoo: eine Antwort, die kein Kursmaterial
+ * enthält. Der Vorgänger Stooq schickte einem Server statt der Daten eine
+ * Bot-Prüfseite – mit Statuscode 200. Ohne Erkennung entstünde daraus eine
+ * leere Reihe, und der Abruf ersetzte eine gute Momentaufnahme durch nichts.
+ */
+
+import { parseYahooChart, yahooUrl } from '../lib/providers/yahoo.ts'
+import { parseTwelveData, twelveDataUrl } from '../lib/providers/twelvedata.ts'
+import { checkPoints, thinPoints } from '../lib/providers/snapshot.ts'
+
+let failed = 0
+
+function check(name: string, actual: unknown, expected: unknown) {
+  const a = JSON.stringify(actual)
+  const e = JSON.stringify(expected)
+  const ok = a === e
+  if (!ok) failed++
+  console.log(
+    `${ok ? 'OK  ' : 'FEHL'} ${name}${ok ? '' : `\n     erwartet ${e}\n     erhalten ${a}`}`
+  )
+}
+
+// ------------------------------------------------------------------- Yahoo
+
+const yahooAntwort = JSON.stringify({
+  chart: {
+    result: [
+      {
+        timestamp: [1753142400, 1753228800, 1753315200],
+        indicators: { quote: [{ close: [24812.44, null, 25099.03] }] },
+      },
+    ],
+    error: null,
+  },
+})
+
+check('liest Datum und Schlusskurs', parseYahooChart(yahooAntwort), [
+  { date: '2025-07-22', close: 24812.44 },
+  { date: '2025-07-24', close: 25099.03 },
+])
+
+check(
+  'erkennt eine HTML-Seite als Nicht-Kursdaten',
+  parseYahooChart('<!DOCTYPE html><html>'),
+  null
+)
+check('erkennt eine leere Antwort', parseYahooChart(''), null)
+check(
+  'erkennt eine Fehlerantwort ohne Reihe',
+  parseYahooChart(
+    JSON.stringify({ chart: { result: null, error: { code: 'Not Found' } } })
+  ),
+  null
+)
+check(
+  'erkennt eine Reihe ohne verwertbare Kurse',
+  parseYahooChart(
+    JSON.stringify({
+      chart: {
+        result: [{ timestamp: [1753142400], indicators: { quote: [{ close: [null] }] } }],
+      },
+    })
+  ),
+  null
+)
+
+check(
+  'kodiert das Dach im Symbol',
+  yahooUrl('^GDAXI'),
+  'https://query1.finance.yahoo.com/v8/finance/chart/%5EGDAXI?range=5y&interval=1d'
+)
+
+// ------------------------------------------------------------- Twelve Data
+
+const twelveAntwort = JSON.stringify({
+  meta: { symbol: 'DAX' },
+  values: [
+    { datetime: '2026-07-24', close: '25099.03' },
+    { datetime: '2026-07-23', close: '24763.12' },
+  ],
+  status: 'ok',
+})
+
+check('liest Werte und sortiert aufsteigend', parseTwelveData(twelveAntwort), [
+  { date: '2026-07-23', close: 24763.12 },
+  { date: '2026-07-24', close: 25099.03 },
+])
+
+// Twelve Data meldet Fehler mit Statuscode 200 – deshalb wird der Status geprueft.
+check(
+  'erkennt eine Fehlerantwort trotz Statuscode 200',
+  parseTwelveData(JSON.stringify({ status: 'error', message: 'symbol not found' })),
+  null
+)
+check('erkennt eine leere Antwort', parseTwelveData(''), null)
+
+check(
+  'haengt den Schluessel an die Adresse',
+  twelveDataUrl('XAU/USD', 'geheim').includes('apikey=geheim'),
+  true
+)
+check(
+  'kodiert den Schraegstrich im Symbol',
+  twelveDataUrl('XAU/USD', 'k').includes('symbol=XAU%2FUSD'),
+  true
+)
+
+// ------------------------------------------------------------- Verdichtung
+
+function reihe(tage: number, bis = '2026-07-24'): { d: string; c: number }[] {
+  const ende = Date.parse(`${bis}T00:00:00Z`)
+  const punkte = []
+  for (let i = tage - 1; i >= 0; i -= 1) {
+    punkte.push({
+      d: new Date(ende - i * 86_400_000).toISOString().slice(0, 10),
+      c: 100 + i,
+    })
+  }
+  return punkte
+}
+
+const langeReihe = reihe(1500)
+const verdichtet = thinPoints(langeReihe, '2026-07-24')
+
+check(
+  'behaelt den juengsten Wert',
+  verdichtet[verdichtet.length - 1],
+  langeReihe[langeReihe.length - 1]
+)
+check(
+  'verdichtet auf deutlich weniger Punkte',
+  verdichtet.length < langeReihe.length / 2,
+  true
+)
+check(
+  'haelt die Reihenfolge',
+  [...verdichtet].sort((a, b) => a.d.localeCompare(b.d)),
+  verdichtet
+)
+check('kommt mit einer leeren Reihe klar', thinPoints([], '2026-07-24'), [])
+
+// ------------------------------------------------------------ Plausibilitaet
+
+check('nimmt eine normale Reihe an', checkPoints(reihe(10)), [])
+check('lehnt eine zu kurze Reihe ab', checkPoints([{ d: '2026-07-24', c: 1 }]).length, 1)
+check(
+  'erkennt ein verrutschtes Dezimalzeichen',
+  checkPoints([{ d: '2026-07-24', c: 10812 }], [{ d: '2026-07-23', c: 1.0812 }]).length >
+    0,
+  true
+)
+check(
+  'laesst normale Tagesbewegung durch',
+  checkPoints(
+    [
+      { d: '2026-07-23', c: 1.079 },
+      { d: '2026-07-24', c: 1.0812 },
+    ],
+    [{ d: '2026-07-22', c: 1.075 }]
+  ),
+  []
+)
+
+console.log(
+  failed === 0 ? 'Alle Pruefungen bestanden' : `${failed} Pruefung(en) fehlgeschlagen`
+)
+if (failed > 0) process.exitCode = 1

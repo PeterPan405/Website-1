@@ -99,7 +99,7 @@ Stattdessen:
 
 ```
 .github/workflows/kurse.yml   werktags 16:00 UTC
-  └─ npm run kurse            holt EZB und Stooq
+  └─ npm run kurse            holt EZB und Yahoo Finance
   └─ data/snapshots/markets.json   nur bei Änderung committet
        └─ Push nach main → Hostinger baut
             └─ next build liest die Datei, ohne Netz
@@ -109,6 +109,27 @@ Ein Fehlschlag bleibt damit folgenlos: Es wird nichts committet, und die Website
 zeigt weiter den letzten guten Stand. Der Push nach `main` ist zugleich der
 einzige Weg auf den Webspace – der Workflow ist also nicht nur Datenpflege,
 sondern der Takt, in dem die Website neu gebaut wird.
+
+### Warum zwei Anbieter für Indizes
+
+Der erste Versuch lief über Stooq und scheiterte vollständig: Statt der
+CSV-Datei kam eine HTML-Seite mit dem Satz „This site requires JavaScript to
+verify your browser“ – eine Bot-Prüfung, und zwar mit Statuscode 200, weshalb
+es von außen wie Erfolg aussah. Das ist eine bewusst gesetzte Zugangssperre des
+Betreibers und nichts, was sich wegkonfigurieren ließe.
+
+Seitdem:
+
+- **Yahoo Finance** ist der Regelweg – keine Registrierung, kein Schlüssel. Die
+  Schnittstelle ist allerdings nicht offiziell dokumentiert.
+- **Twelve Data** springt ein, sobald das Repository-Secret
+  `TWELVEDATA_API_KEY` gesetzt ist. Dokumentierte Schnittstelle, kostenloser
+  Tarif mit 800 Abrufen je Tag – gebraucht werden sechs. Die Umschaltung ist
+  eine reine Einstellung und braucht keine Codeänderung.
+
+Gold und Silber kommen bei Yahoo als COMEX-Terminkontrakt, bei Twelve Data als
+Kassakurs. Beides ist vertretbar, aber es ist nicht dieselbe Zahl – ein
+Anbieterwechsel ist an einem kleinen Sprung erkennbar.
 
 ### Zwei Grundsätze
 

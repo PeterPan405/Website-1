@@ -33,8 +33,8 @@ export const marketKindMeta: Record<
 /**
  * Zeiträume der Charts.
  *
- * „Ein Handelstag“ gab es einmal und ist entfallen. Beide Quellen – EZB und
- * Stooq – liefern einen Wert je Handelstag, keinen fortlaufenden Handel. Aus
+ * „Ein Handelstag“ gab es einmal und ist entfallen. Alle Quellen liefern einen
+ * Wert je Handelstag, keinen fortlaufenden Handel. Aus
  * einem Punkt pro Tag lässt sich kein Intraday-Verlauf bilden; die Demo-Daten
  * hatten einen erzeugt, echte Daten geben ihn nicht her. Eine Kurve zu zeichnen,
  * für die keine Werte vorliegen, wäre genau die Schönfärberei, die diese Seite
@@ -49,53 +49,6 @@ export const marketRangeLabels: Record<MarketRange, string> = {
   '1M': 'Ein Monat',
   '1J': 'Ein Jahr',
   '5J': 'Fünf Jahre',
-}
-
-/** Woher die Kurse eines Instruments kommen. */
-export type MarketSourceProvider = 'ecb' | 'stooq'
-
-export interface MarketSourceRef {
-  provider: MarketSourceProvider
-  /** Kennung bei der Quelle: Währungscode bei der EZB, Symbol bei Stooq. */
-  key: string
-}
-
-/**
- * Zuordnung der Instrumente zu ihrer Datenquelle.
- *
- * Wird vom Abruf-Skript gelesen (`scripts/kurse-abrufen.ts`). Ein Instrument
- * ohne Eintrag bekommt keine echten Kurse und bleibt bei den gekennzeichneten
- * Demo-Daten – das ist kein Versehen, sondern der vorgesehene Zustand für
- * Instrumente ohne frei zugängliche Quelle.
- *
- * Devisen kommen von der EZB: amtlich, kostenlos, ausdrücklich zur Nutzung
- * freigegeben. Alles andere von Stooq, weil es dafür keine amtliche Quelle gibt.
- */
-export const marketSources: Record<string, MarketSourceRef> = {
-  'eur-usd': { provider: 'ecb', key: 'USD' },
-  'eur-cny': { provider: 'ecb', key: 'CNY' },
-  'eur-chf': { provider: 'ecb', key: 'CHF' },
-  'eur-gbp': { provider: 'ecb', key: 'GBP' },
-  'eur-jpy': { provider: 'ecb', key: 'JPY' },
-
-  dax: { provider: 'stooq', key: '^dax' },
-  sp500: { provider: 'stooq', key: '^spx' },
-  'euro-stoxx-50': { provider: 'stooq', key: '^stx50' },
-  'nasdaq-100': { provider: 'stooq', key: '^ndx' },
-
-  gold: { provider: 'stooq', key: 'xauusd' },
-  silber: { provider: 'stooq', key: 'xagusd' },
-
-  /*
-    `msci-world` fehlt hier mit Absicht.
-
-    Der Index ist Eigentum von MSCI und in keiner frei zugänglichen Quelle
-    enthalten. Naheliegend wäre, ersatzweise den Kurs eines ETF auf diesen Index
-    zu nehmen – das wäre aber eine andere Zahl in einer anderen Größenordnung
-    (rund 90 Euro je Anteil gegen rund 4.000 Indexpunkte) unter derselben
-    Überschrift. Solange die Kachel „MSCI World“ heißt, bleibt sie bei den
-    gekennzeichneten Demo-Daten.
-  */
 }
 
 /** Ein Punkt einer Zeitreihe. `t` ist ein ISO-8601-Zeitstempel. */
@@ -155,6 +108,68 @@ export interface MarketDefinition extends MarketInstrument {
  * Daten liefert die API diesen Zeitstempel mit.
  */
 export const MARKET_DATA_AS_OF = '2026-07-24T17:30:00+02:00'
+
+/** Woher die Kurse eines Instruments kommen. */
+export type MarketSourceRef =
+  /** Devisen: Euro-Referenzkurse der EZB, angefragt über den Währungscode. */
+  | { provider: 'ecb'; currency: string }
+  /**
+   * Indizes und Edelmetalle.
+   *
+   * Zwei Anbieter, weil einer allein sich als zu wenig erwiesen hat: Der erste
+   * Versuch lief über Stooq und scheiterte an einer Bot-Prüfung, die einem
+   * Server statt der Daten eine HTML-Seite schickt. Yahoo braucht keinen
+   * Schlüssel und ist deshalb der Regelweg; Twelve Data braucht einen, ist dafür
+   * aber eine dokumentierte Schnittstelle mit Nutzungsbedingungen.
+   *
+   * Welcher genommen wird, entscheidet allein das Vorhandensein des Schlüssels
+   * in `TWELVEDATA_API_KEY` – ohne Codeänderung.
+   */
+  | { provider: 'market'; yahoo: string; twelvedata: string }
+
+/**
+ * Zuordnung der Instrumente zu ihrer Datenquelle.
+ *
+ * Wird vom Abruf-Skript gelesen (`scripts/kurse-abrufen.ts`). Ein Instrument
+ * ohne Eintrag bekommt keine echten Kurse und bleibt bei den gekennzeichneten
+ * Demo-Daten – das ist kein Versehen, sondern der vorgesehene Zustand für
+ * Instrumente ohne frei zugängliche Quelle.
+ */
+export const marketSources: Record<string, MarketSourceRef> = {
+  'eur-usd': { provider: 'ecb', currency: 'USD' },
+  'eur-cny': { provider: 'ecb', currency: 'CNY' },
+  'eur-chf': { provider: 'ecb', currency: 'CHF' },
+  'eur-gbp': { provider: 'ecb', currency: 'GBP' },
+  'eur-jpy': { provider: 'ecb', currency: 'JPY' },
+
+  dax: { provider: 'market', yahoo: '^GDAXI', twelvedata: 'DAX' },
+  sp500: { provider: 'market', yahoo: '^GSPC', twelvedata: 'SPX' },
+  'euro-stoxx-50': { provider: 'market', yahoo: '^STOXX50E', twelvedata: 'STOXX50E' },
+  'nasdaq-100': { provider: 'market', yahoo: '^NDX', twelvedata: 'NDX' },
+
+  /*
+    Gold und Silber als Terminkontrakt der COMEX, nicht als Kassakurs.
+
+    Der Unterschied liegt üblicherweise im niedrigen einstelligen
+    Prozentbereich, die Abdeckung bei den freien Quellen ist dafür deutlich
+    besser. Twelve Data liefert dagegen den Kassakurs – deshalb stehen dort
+    andere Kennungen. Beide Angaben sind vertretbar, aber sie sind nicht
+    dieselbe Zahl; ein Anbieterwechsel ist an einem kleinen Sprung erkennbar.
+  */
+  gold: { provider: 'market', yahoo: 'GC=F', twelvedata: 'XAU/USD' },
+  silber: { provider: 'market', yahoo: 'SI=F', twelvedata: 'XAG/USD' },
+
+  /*
+    `msci-world` fehlt hier mit Absicht.
+
+    Der Index ist Eigentum von MSCI und in keiner frei zugänglichen Quelle
+    enthalten. Naheliegend wäre, ersatzweise den Kurs eines ETF auf diesen Index
+    zu nehmen – das wäre aber eine andere Zahl in einer anderen Größenordnung
+    (rund 90 Euro je Anteil gegen rund 4.000 Indexpunkte) unter derselben
+    Überschrift. Solange die Kachel „MSCI World“ heißt, bleibt sie bei den
+    gekennzeichneten Demo-Daten.
+  */
+}
 
 export const marketDefinitions: MarketDefinition[] = [
   {

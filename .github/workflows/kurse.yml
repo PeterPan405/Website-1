@@ -42,6 +42,11 @@ jobs:
       # Bewusst ohne `npm ci`: Das Skript braucht keine Abhängigkeit, nur Node.
       # Ein Installationslauf wäre hier reine Wartezeit.
       - name: Kurse abrufen
+        # Der Schluessel ist optional. Ohne ihn laeuft der Abruf ueber Yahoo,
+        # das keine Registrierung verlangt. Ist er als Repository-Secret
+        # hinterlegt, wird Twelve Data bevorzugt.
+        env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
         run: npm run kurse
 
       - name: Momentaufnahme committen

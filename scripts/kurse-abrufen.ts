@@ -31,7 +31,8 @@ import {
   type SnapshotInstrument,
   type SnapshotPoint,
 } from '../lib/providers/snapshot.ts'
-import { fetchStooqDaily } from '../lib/providers/stooq.ts'
+import { fetchTwelveDataDaily } from '../lib/providers/twelvedata.ts'
+import { fetchYahooDaily } from '../lib/providers/yahoo.ts'
 
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname } from 'node:path'
@@ -43,8 +44,44 @@ const QUELLEN = {
     label: 'Europäische Zentralbank',
     url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
   },
-  stooq: { label: 'Stooq', url: 'https://stooq.com/' },
+  yahoo: { label: 'Yahoo Finance', url: 'https://finance.yahoo.com/' },
+  twelvedata: { label: 'Twelve Data', url: 'https://twelvedata.com/' },
 } as const
+
+/**
+ * Schlüssel für Twelve Data, falls hinterlegt.
+ *
+ * Ist er gesetzt, wird er benutzt; sonst bleibt es bei Yahoo. Die Umschaltung
+ * ist damit eine Einstellung im Repository und keine Codeänderung.
+ */
+const TWELVEDATA_KEY = process.env.TWELVEDATA_API_KEY?.trim() || undefined
+
+/**
+ * Holt Index- und Rohstoffkurse beim ersten Anbieter, der antwortet.
+ *
+ * Zuerst Twelve Data, wenn ein Schlüssel vorliegt – die Schnittstelle ist
+ * dokumentiert und für diesen Zweck vorgesehen. Ohne Schlüssel Yahoo, das ohne
+ * Registrierung auskommt.
+ */
+async function holeMarktkurs(
+  yahooSymbol: string,
+  twelveSymbol: string
+): Promise<{ punkte: SnapshotPoint[]; quelle: 'yahoo' | 'twelvedata' } | null> {
+  if (TWELVEDATA_KEY) {
+    const tage = await fetchTwelveDataDaily(twelveSymbol, TWELVEDATA_KEY)
+    if (tage) {
+      return {
+        punkte: tage.map((tag) => ({ d: tag.date, c: tag.close })),
+        quelle: 'twelvedata',
+      }
+    }
+    console.warn(`[kurse] ${twelveSymbol}: Twelve Data ohne Ergebnis, versuche Yahoo.`)
+  }
+
+  const tage = await fetchYahooDaily(yahooSymbol)
+  if (!tage) return null
+  return { punkte: tage.map((tag) => ({ d: tag.date, c: tag.close })), quelle: 'yahoo' }
+}
 
 function ladeBisherige(): MarketSnapshot {
   try {
@@ -65,7 +102,7 @@ async function holeDevisen(): Promise<Map<string, SnapshotPoint[]>> {
 
   for (const [symbol, quelle] of Object.entries(marketSources)) {
     if (quelle.provider !== 'ecb') continue
-    const reihe = seriesForCurrency(tage, quelle.key)
+    const reihe = seriesForCurrency(tage, quelle.currency)
     if (reihe.length > 0) {
       ergebnis.set(
         symbol,
@@ -92,13 +129,17 @@ async function main(): Promise<void> {
       continue
     }
 
-    const roh =
-      quelle.provider === 'ecb'
-        ? (devisen.get(symbol) ?? null)
-        : ((await fetchStooqDaily(quelle.key))?.map((tag) => ({
-            d: tag.date,
-            c: tag.close,
-          })) ?? null)
+    let roh: SnapshotPoint[] | null
+    let quellenId: keyof typeof QUELLEN
+
+    if (quelle.provider === 'ecb') {
+      roh = devisen.get(symbol) ?? null
+      quellenId = 'ecb'
+    } else {
+      const ergebnis = await holeMarktkurs(quelle.yahoo, quelle.twelvedata)
+      roh = ergebnis?.punkte ?? null
+      quellenId = ergebnis?.quelle ?? 'yahoo'
+    }
 
     if (!roh) {
       behalten.push(`${symbol} (Abruf fehlgeschlagen)`)
@@ -114,8 +155,8 @@ async function main(): Promise<void> {
     }
 
     instrumente[symbol] = {
-      sourceLabel: QUELLEN[quelle.provider].label,
-      sourceUrl: QUELLEN[quelle.provider].url,
+      sourceLabel: QUELLEN[quellenId].label,
+      sourceUrl: QUELLEN[quellenId].url,
       asOf: punkte[punkte.length - 1].d,
       points: punkte,
     }
