@@ -59,6 +59,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      // Termine laufen ab und kommen dazu – häufiger als die Länderdaten.
+      url: absoluteUrl('/kalender'),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
       url: absoluteUrl('/staatsverschuldung'),
       changeFrequency: 'monthly',
       priority: 0.7,

@@ -164,6 +164,18 @@ export const mainNav: NavItem[] = [
     ],
     footerLink: { label: 'Globus öffnen', href: '/globus' },
   },
+  /*
+    An der Stelle, an der vorher die Staatsverschuldung stand.
+
+    Der Kalender beantwortet die Frage, die nach „was gibt es“ und „wo“ kommt:
+    wann. Er ist bewusst kein Untermenü des Globus – die Termine gehören zu den
+    Märkten, nicht zu den Ländern.
+  */
+  {
+    label: 'Kalender',
+    href: '/kalender',
+    area: 'calendar',
+  },
 ]
 
 /** Rechtliche und redaktionelle Seiten für die Fußzeile. */
@@ -176,6 +188,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },
       { label: 'Globus', href: '/globus' },
+      { label: 'Kalender', href: '/kalender' },
       { label: 'Staatsverschuldung', href: '/staatsverschuldung' },
     ],
   },

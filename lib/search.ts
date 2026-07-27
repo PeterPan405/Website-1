@@ -40,6 +40,23 @@ const seiten: SearchEntry[] = [
     ],
   },
   {
+    title: 'Börsenkalender',
+    href: '/kalender',
+    kind: 'Plattform',
+    hint: 'Zinsentscheide, Berichtssaison, Verfallstage, Börsenfeiertage und Wahlen mit Einordnung.',
+    keywords: [
+      'kalender',
+      'termine',
+      'zinsentscheid',
+      'ezb',
+      'fed',
+      'verfallstag',
+      'hexensabbat',
+      'boersenfeiertag',
+      'quartalszahlen',
+    ],
+  },
+  {
     title: 'Über uns',
     href: '/ueber-uns',
     kind: 'Plattform',

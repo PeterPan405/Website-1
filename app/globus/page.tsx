@@ -6,7 +6,6 @@ import { Laendertabelle } from '@/components/globus/Laendertabelle'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { datasetSchema } from '@/lib/jsonld'
 import {
@@ -58,7 +57,11 @@ export default async function GlobusPage() {
         breadcrumbs={<Breadcrumbs items={[{ name: 'Globus' }]} />}
         meta={
           <>
-            <span>{laender.length} Länder</span>
+            {/*
+              „und Gebiete“, weil die feine Karte auch Hongkong, Guam und die
+              Färöer zeichnet. Sie alle Länder zu nennen wäre bequem und falsch.
+            */}
+            <span>{laender.length} Länder und Gebiete</span>
             <span aria-hidden="true">·</span>
             <span>{abdeckung.bip} mit Wirtschaftsdaten</span>
             <span aria-hidden="true">·</span>
@@ -76,72 +79,34 @@ export default async function GlobusPage() {
         />
 
         {/* ------------------------------------------------------ Einordnung */}
-        <section aria-labelledby="lesen" className="mt-16 max-w-3xl">
+        <section aria-labelledby="lesen" className="mt-14 max-w-3xl">
           <h2 id="lesen" className="text-fg text-2xl font-bold">
-            Was diese Karte zeigt – und was nicht
+            Wie die Karte zu lesen ist
           </h2>
-
           <p className="text-fg-muted mt-4 leading-relaxed">
-            Eine eingefärbte Weltkarte wirkt vollständig, auch wenn sie es nicht ist.
-            Deshalb drei Dinge vorweg, die beim Lesen den Unterschied machen.
+            Die Klassen sind so geschnitten, dass in jeder gleich viele Länder liegen. Die
+            Farbe zeigt damit den <strong className="text-fg">Rang</strong>, nicht den
+            Abstand – bei einer Spanne vom Zwanzigtausendfachen zwischen der größten und
+            der kleinsten Volkswirtschaft ist das die einzige Einteilung, die überhaupt
+            etwas zeigt. Die genaue Zahl steht bei jedem Land im Klartext. Grau heißt
+            „keine Angabe“, nicht „null“.
           </p>
-
-          <h3 className="text-fg mt-8 text-lg font-semibold sm:text-xl">
-            Die Farbe zeigt den Rang, nicht den Abstand
-          </h3>
-          <p className="text-fg-muted mt-3 leading-relaxed">
-            Die Klassen sind so geschnitten, dass in jeder gleich viele Länder liegen. Das
-            ist bei diesen Größenordnungen die einzige brauchbare Wahl: Die größte
-            Volkswirtschaft ist rund zwanzigtausendmal so groß wie die kleinste. Bei
-            gleich breiten Klassen läge alles außer zwei Ländern in derselben Farbe – die
-            Karte wäre hübsch und leer. Der Preis ist, dass zwei benachbarte Farbstufen
-            mal ein paar Milliarden und mal ein paar Tausend auseinanderliegen. Die genaue
-            Zahl steht deshalb bei jedem Land im Klartext.
-          </p>
-
-          <h3 className="text-fg mt-8 text-lg font-semibold sm:text-xl">
-            Grau heißt „keine Angabe“, nicht „null“
-          </h3>
-          <p className="text-fg-muted mt-3 leading-relaxed">
-            Wirtschaftsleistung und Einwohnerzahl liegen für {abdeckung.bip} Länder vor
-            und werden automatisch aus den Reihen der Weltbank geholt. Für
-            Staatsverschuldung, Durchschnittsgehalt und Vermögen gibt es keine
-            vergleichbar offene Datei – diese Werte sind von Hand gepflegt und decken
-            bisher {abdeckung.schuldenquote}, {abdeckung.durchschnittsgehalt}
-            beziehungsweise {abdeckung.medianvermoegen} Länder ab. Wo nichts hinterlegt
-            ist, steht das auch so da. Ein Land ohne Datensatz darf nicht aussehen wie ein
-            Land ohne Schulden.
-          </p>
-
-          <h3 className="text-fg mt-8 text-lg font-semibold sm:text-xl">
-            Die Kurse zeigen unsere Auswahl, nicht die Welt
-          </h3>
-          <p className="text-fg-muted mt-3 leading-relaxed">
-            {mitKursen} Länder haben hier Kurse – der Rest der Welt nicht. Das sagt nichts
-            über diese Länder und alles über die Auswahl auf dieser Seite: Sie folgt dem,
-            was für ein deutschsprachiges Publikum erreichbar und gebräuchlich ist. Wer
-            die Kennzahl „Kurse auf dieser Seite“ einschaltet, sieht genau diese
-            Schlagseite.
-          </p>
-
           {uebernational.length > 0 && (
-            <Callout
-              variant="info"
-              title="Zwei Kurse gehören keinem Land"
-              className="mt-6"
-            >
-              {uebernational.map((eintrag) => (
-                <p key={eintrag.kurs.symbol}>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Zwei Kurse gehören keinem einzelnen Land:{' '}
+              {uebernational.map((eintrag, index) => (
+                <span key={eintrag.kurs.symbol}>
+                  {index > 0 && ' und '}
                   <Link
                     href={`/maerkte/${eintrag.kurs.symbol}`}
                     className="text-brand font-medium underline underline-offset-2"
                   >
                     {eintrag.kurs.name}
-                  </Link>{' '}
-                  – {eintrag.begruendung}
-                </p>
+                  </Link>
+                </span>
               ))}
-            </Callout>
+              . Sie stehen deshalb nicht auf der Kugel.
+            </p>
           )}
         </section>
 
@@ -159,64 +124,43 @@ export default async function GlobusPage() {
         </section>
 
         {/* --------------------------------------------------------- Quellen */}
-        <section aria-labelledby="quellen" className="mt-16 max-w-3xl">
-          <h2 id="quellen" className="text-fg text-2xl font-bold">
-            Herkunft der Daten
-          </h2>
-          <dl className="mt-6 space-y-5">
-            <div>
-              <dt className="text-fg text-sm font-semibold">
-                Bruttoinlandsprodukt und Einwohner – Bezugsjahr {WELTBANK_JAHR}
-              </dt>
-              <dd className="text-fg-muted mt-1 text-sm leading-relaxed">
-                {WELTBANK_QUELLE.label}. Beide Reihen stammen aus demselben Jahr, damit
-                das BIP pro Kopf eine gültige Division ist. Abgerufen von{' '}
-                <code className="text-fg-subtle text-xs">scripts/laender-abrufen.ts</code>
-                .
-              </dd>
-            </div>
-            {quellen.map((quelle) => (
-              <div key={quelle.url}>
-                <dt className="text-fg text-sm font-semibold">
-                  <a
-                    href={quelle.url}
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                    className="text-brand underline underline-offset-2"
-                  >
-                    {quelle.label}
-                  </a>
-                </dt>
-                <dd className="text-fg-muted mt-1 text-sm leading-relaxed">
-                  {quelle.abgrenzung}
-                </dd>
-              </div>
-            ))}
-          </dl>
+        {/*
+          Kurz, aber nicht weg.
 
-          <Callout
-            variant="warning"
-            title="Warum die Abdeckung lückenhaft ist"
-            className="mt-6"
+          Die TopoJSON-Umsetzung der Kartengeometrie steht unter der
+          ISC-Lizenz, und die verlangt ausdrücklich, dass der Urhebervermerk
+          erhalten bleibt. Die Weltbank stellt ihre Reihen unter CC BY 4.0 –
+          auch dort ist die Namensnennung Bedingung der Nutzung, nicht
+          Höflichkeit. Aus einem eigenen Abschnitt sind deshalb drei Zeilen
+          geworden; ganz streichen ließe sich das nicht.
+        */}
+        <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
+          <h2
+            id="quellen"
+            className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
           >
-            <p>
-              Schuldenquoten, Gehälter und Vermögen veröffentlichen IWF, Eurostat, OECD
-              und UBS in Berichten und hinter Abfragemasken, nicht als offene Datei. Jeder
-              hier eingetragene Wert trägt deshalb seinen eigenen Zeitraum und seine
-              eigene Quelle – und es sind nur die, die sich belegen ließen.
-            </p>
-            <p>
-              Besonders bei der Staatsverschuldung ist das keine Formalie: Eine Quote nach
-              Maastricht-Abgrenzung (Eurostat) und eine nach IWF-Abgrenzung sind
-              verschiedene Größen. Für dieselben USA unterscheiden sie sich um mehrere
-              Prozentpunkte. Sie unkommentiert in eine Spalte zu schreiben wäre bequem und
-              falsch.
-            </p>
-            <p>
-              Kartengeometrie: Natural Earth (gemeinfrei), TopoJSON-Umsetzung{' '}
-              <code className="text-xs">world-atlas</code> unter ISC-Lizenz.
-            </p>
-          </Callout>
+            Daten und Karte
+          </h2>
+          <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">
+            Wirtschaftsleistung und Einwohner: {WELTBANK_QUELLE.label}, Bezugsjahr{' '}
+            {WELTBANK_JAHR}.{' '}
+            {quellen.map((quelle, index) => (
+              <span key={quelle.url}>
+                {index > 0 && ' · '}
+                <a
+                  href={quelle.url}
+                  rel="noopener noreferrer nofollow"
+                  target="_blank"
+                  className="underline underline-offset-2"
+                >
+                  {quelle.label}
+                </a>
+              </span>
+            ))}
+            . Karte: Natural Earth (gemeinfrei), TopoJSON-Umsetzung{' '}
+            <code className="text-xs">world-atlas</code> unter ISC-Lizenz. Jeder Wert
+            trägt in der Detailtafel seinen eigenen Zeitraum und seine eigene Quelle.
+          </p>
         </section>
 
         <div className="mt-16">

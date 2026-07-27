@@ -1,3 +1,5 @@
+import { weitereAktienLaender } from '@/data/markets-aktien'
+
 /**
  * Zuordnung der Kurse zu ihrem Herkunftsland.
  *
@@ -23,6 +25,11 @@
 
 /** Schlüssel ist das Kurssymbol, Wert die ISO-3166-1-numerische Kennung. */
 export const marktLand: Record<string, string> = {
+  // Die breite Auswahl bringt ihre Zuordnung selbst mit – erzeugt aus
+  // derselben Liste, aus der auch die Kursdefinitionen entstehen. Damit kann
+  // eine neue Aktie gar nicht erst ohne Herkunftsland auf den Globus geraten.
+  ...weitereAktienLaender,
+
   // ------------------------------------------------------------- Indizes
   dax: '276',
   sp500: '840',
