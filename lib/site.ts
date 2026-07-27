@@ -78,7 +78,8 @@ export const siteConfig = {
 } as const
 
 /** Die fünf inhaltlichen Hauptbereiche der Website. */
-export type AreaId = 'news' | 'markets' | 'tools' | 'learn' | 'globe' | 'debt'
+export type AreaId =
+  'news' | 'markets' | 'tools' | 'learn' | 'globe' | 'calendar' | 'debt'
 
 export interface Area {
   id: AreaId
@@ -114,6 +115,13 @@ export const areas: Record<AreaId, Area> = {
     href: '/globus',
     description:
       'Ein drehbarer Globus: Wirtschaftsleistung, Einwohner, Wohlstand und Schulden je Land – und die Indizes und Aktien, die von dort kommen.',
+  },
+  calendar: {
+    id: 'calendar',
+    label: 'Kalender',
+    href: '/kalender',
+    description:
+      'Zinsentscheide, Berichtssaison, Verfallstage und Börsenfeiertage – mit einem Satz dazu, was jeder Termin bedeutet.',
   },
   markets: {
     id: 'markets',
@@ -207,6 +215,14 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     border: 'border-globe/30',
     dot: 'bg-globe',
     gradient: 'from-globe/18 to-globe/0',
+  },
+  calendar: {
+    text: 'text-calendar',
+    soft: 'bg-calendar-soft text-calendar',
+    solid: 'bg-calendar text-white',
+    border: 'border-calendar/30',
+    dot: 'bg-calendar',
+    gradient: 'from-calendar/18 to-calendar/0',
   },
   debt: {
     text: 'text-debt',

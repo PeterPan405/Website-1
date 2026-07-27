@@ -33,8 +33,18 @@ const areaTiles: { area: AreaId; icon: IconName }[] = [
   { area: 'tools', icon: 'calculator' },
   { area: 'markets', icon: 'chart' },
   { area: 'globe', icon: 'globe' },
+  { area: 'calendar', icon: 'clock' },
   { area: 'news', icon: 'newspaper' },
 ]
+
+/**
+ * Die Anzahl der Bereiche ausgeschrieben.
+ *
+ * Steht nicht als Wort im Text: Beim Anlegen des Globus wurde aus „Vier
+ * Bereiche“ nicht von selbst „Fünf“ – dieselbe Sorte Fehler, die auf
+ * `/ueber-uns` monatelang stand. Jetzt folgt das Wort der Liste.
+ */
+const ZAHLWOERTER = ['Null', 'Ein', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben']
 
 const calculatorTiles = [
   {
@@ -155,7 +165,7 @@ export default async function HomePage() {
         <SectionHeading
           id="bereiche"
           eyebrow="Überblick"
-          title="Fünf Bereiche, ein Ziel"
+          title={`${ZAHLWOERTER[areaTiles.length] ?? areaTiles.length} Bereiche, ein Ziel`}
           lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
         />
 

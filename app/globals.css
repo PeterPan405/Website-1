@@ -80,8 +80,12 @@
   --c-debt-soft: #faeaea;
   --c-globe: #4fc4cc;
   --c-globe-soft: #0c2a2d;
+  --c-calendar: #b998e0;
+  --c-calendar-soft: #241a33;
   --c-globe: #155e63;
   --c-globe-soft: #e3f1f2;
+  --c-calendar: #6d4694;
+  --c-calendar-soft: #f0e9f7;
 
   /* Fokus */
   /*
@@ -236,6 +240,8 @@
   --color-debt-soft: var(--c-debt-soft);
   --color-globe: var(--c-globe);
   --color-globe-soft: var(--c-globe-soft);
+  --color-calendar: var(--c-calendar);
+  --color-calendar-soft: var(--c-calendar-soft);
 
   --color-ring: var(--c-ring);
 
