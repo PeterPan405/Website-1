@@ -24,6 +24,7 @@ import {
 } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
 import { getTopicsBySlugs } from '@/lib/learn'
+import { getNewsForSymbol } from '@/lib/news'
 import {
   getAllSeries,
   getDataCoverage,
@@ -77,10 +78,11 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
 
   if (!instrument || !quote || !ranges) notFound()
 
-  const [relatedTopics, allQuotes, coverage] = await Promise.all([
+  const [relatedTopics, allQuotes, coverage, meldungen] = await Promise.all([
     getTopicsBySlugs(instrument.relatedTopics),
     getQuotes(),
     getDataCoverage(),
+    getNewsForSymbol(symbol),
   ])
 
   const positive = quote.changePercent >= 0
@@ -259,6 +261,55 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                   . Anders als der Kurs wird dieser Datensatz nicht automatisch
                   aktualisiert.
                 </p>
+              </section>
+            )}
+
+            {/*
+              Nachrichten zu genau diesem Kurs.
+
+              Die Zuordnung kommt aus `relatedSymbols` am Artikel, hier nur
+              andersherum gelesen. Der Abschnitt erscheint deshalb bedingt: Zu
+              den meisten der über fünfhundert Einzelwerte gibt es keine eigene
+              Meldung, und eine leere Überschrift „Nachrichten“ auf jeder
+              zweiten Seite behauptet mehr, als da ist.
+            */}
+            {meldungen.length > 0 && (
+              <section aria-labelledby="meldungen" className="mt-12">
+                <h2 id="meldungen" className="text-fg text-2xl font-bold">
+                  Nachrichten zu {instrument.name}
+                </h2>
+                <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+                  Was zuletzt über diesen Kurs geschrieben wurde – mit der Einordnung,
+                  warum es ihn bewegt.
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {meldungen.map((meldung) => (
+                    <li key={meldung.slug}>
+                      <Link
+                        href={`/news/${meldung.slug}`}
+                        className="fk-card hover:border-border-strong block p-5 transition-colors"
+                      >
+                        <span className="text-fg-subtle flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                          <span className="font-semibold tracking-wide uppercase">
+                            {meldung.category}
+                          </span>
+                          <span aria-hidden="true">·</span>
+                          <time dateTime={meldung.publishedAt}>
+                            {formatDate(meldung.publishedAt)}
+                          </time>
+                          <span aria-hidden="true">·</span>
+                          <span>{meldung.readingMinutes} Min. Lesezeit</span>
+                        </span>
+                        <span className="text-fg mt-1.5 block text-lg font-semibold">
+                          {meldung.title}
+                        </span>
+                        <span className="text-fg-muted mt-1.5 block text-sm leading-relaxed">
+                          {meldung.teaser}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </section>
             )}
 

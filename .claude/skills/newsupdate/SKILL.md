@@ -82,6 +82,11 @@ erreichbar. Die Grenze zwischen „Aktuelles" und „Weitere Artikel" zieht alle
 `CURRENT_NEWS_COUNT` in `lib/news.ts` (aktuell 9) — kein Kennzeichen in den
 Daten, kein Umtragen von Hand.
 
+**Das Archiv ist dauerhaft.** Es gibt keine Verfallszeit, weder dreißig Tage
+noch sonst eine: Ein einmal veröffentlichter Artikel bleibt. Also auch beim
+Aufräumen keine alten Artikel entfernen — jeder Verweis, der je auf ihn gesetzt
+wurde, hinge sonst in der Luft, und jede Tagesausgabe verlöre ihre Hälfte.
+
 Pflichtfelder je Artikel siehe `interface NewsArticle`. Was `lib/news-validate.ts`
 beim Bauen erzwingt — daran scheitert der Build, nicht nur eine Warnung:
 

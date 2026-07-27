@@ -63,12 +63,65 @@ const IWF_SCHULDEN_URL = 'https://www.imf.org/external/datamapper/api/v1/GGXWDG_
  * Wie beim IWF ist der Abruf **nicht zwingend** – siehe `ladeLoehne`.
  */
 const OECD_LOEHNE_URL =
-  'https://sdmx.oecd.org/public/rest/data/OECD.ELS.SAE,DSD_EARNINGS@AV_AN_WAGE,1.0/all?format=csvfilewithlabels&dimensionAtObservation=AllDimensions'
+  'https://sdmx.oecd.org/public/rest/data/OECD.ELS.SAE,DSD_EARNINGS@AV_AN_WAGE,1.0/?format=csvfilewithlabels&dimensionAtObservation=AllDimensions'
 
 /** Die Einheit, die gemeint ist – siehe `ladeLoehne`. */
 const OECD_EINHEIT = 'USD_PPP'
 
 const ZIEL = 'data/snapshots/laender.json'
+
+/**
+ * Kopfzeilen für die beiden Statistikschnittstellen.
+ *
+ * ## Warum das nötig wurde
+ *
+ * Der erste echte Lauf auf einem GitHub-Läufer hat beide Abrufe abgewiesen:
+ * imf.org mit 403, sdmx.oecd.org mit 500. Beim IWF ist 403 der typische
+ * Abweisungscode einer Schutzschicht, die einen Aufruf ohne erkennbaren
+ * Absender für einen Roboter hält – Node schickt von sich aus keine
+ * `User-Agent`-Zeile.
+ *
+ * Die Antwort darauf ist nicht, sich als Browser auszugeben, sondern zu sagen,
+ * wer man ist: Name des Abrufs und eine Adresse, unter der man erreichbar ist.
+ * Genau dafür ist das Feld gedacht, und wer den Abruf unterbinden will, kann
+ * ihn so gezielt sperren, statt dass jemand ihn tarnt.
+ */
+const KOPFZEILEN: Record<string, string> = {
+  'User-Agent': 'IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)',
+  Accept: 'application/json, text/csv;q=0.9, */*;q=0.8',
+}
+
+/**
+ * Eigene Kopfzeilen für die OECD.
+ *
+ * Deren SDMX-Dienst hat mit 500 und dem Text `languageTag1` geantwortet – eine
+ * Meldung aus der Sprachauswahl des Servers, nicht aus der Abfrage. Er bekommt
+ * deshalb ausdrücklich gesagt, in welcher Sprache und in welchem Format
+ * geantwortet werden soll, statt es aushandeln zu müssen.
+ */
+const OECD_KOPFZEILEN: Record<string, string> = {
+  'User-Agent': KOPFZEILEN['User-Agent'],
+  Accept: 'application/vnd.sdmx.data+csv; charset=utf-8; version=2',
+  'Accept-Language': 'en',
+}
+
+/**
+ * Sagt bei einer Fehlantwort, **was** der Server geantwortet hat.
+ *
+ * Ohne diesen Auszug stand im Protokoll nur „antwortete mit 500“. Bei einer
+ * SDMX-Schnittstelle steht die eigentliche Auskunft im Rumpf – welche
+ * Dimension unbekannt ist, welcher Datenfluss nicht existiert. Ein Statuscode
+ * allein lässt nur raten, und raten kostet bei zwei Minuten je Lauf mehr Zeit
+ * als lesen.
+ */
+async function fehlerauszug(antwort: Response): Promise<string> {
+  try {
+    const rumpf = (await antwort.text()).replace(/\s+/g, ' ').trim()
+    return rumpf.length > 0 ? ` – Antwort: ${rumpf.slice(0, 300)}` : ''
+  } catch {
+    return ''
+  }
+}
 
 /** Aggregate der Weltbank („Europäische Union“, „Welt“) sind keine Länder. */
 const KEINE_LAENDER =
@@ -179,10 +232,10 @@ async function ladeSchuldenquoten(): Promise<Map<
   { wert: number; jahr: number }
 > | null> {
   try {
-    const antwort = await fetch(IWF_SCHULDEN_URL)
+    const antwort = await fetch(IWF_SCHULDEN_URL, { headers: KOPFZEILEN })
     if (!antwort.ok) {
       console.log(
-        `::warning::IWF antwortete mit ${antwort.status} – Schuldenquoten bleiben unveraendert.`
+        `::warning::IWF antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – Schuldenquoten bleiben unveraendert.`
       )
       return null
     }
@@ -205,11 +258,14 @@ async function ladeSchuldenquoten(): Promise<Map<
     for (const [code, jahre] of Object.entries(reihe)) {
       if (code.length !== 3) continue
       /*
-        Das juengste Jahr bis einschliesslich heute.
+        Das juengste **abgeschlossene** Jahr.
 
-        Die WEO-Reihe enthaelt Projektionen mehrere Jahre voraus. Ein Wert fuer
-        2030 waere eine Vorhersage, keine Kennzahl – auf einer Karte ohne
-        Jahresangabe waere das nicht zu erkennen.
+        Die WEO-Reihe laeuft Jahre voraus; ein Wert fuer 2030 waere eine
+        Vorhersage, keine Kennzahl. Das laufende Jahr gehoert aus demselben
+        Grund nicht dazu, auch wenn die Versuchung gross ist: Beim ersten Lauf
+        kamen 183 von 191 Werten aus dem laufenden Jahr – eine Schaetzung fuer
+        zwoelf Monate, von denen sieben noch nicht vorbei waren, hätte auf der
+        Karte ausgesehen wie eine gemessene Groesse.
       */
       const passende = Object.entries(jahre)
         .map(([jahr, wert]) => ({ jahr: Number(jahr), wert: Number(wert) }))
@@ -218,7 +274,7 @@ async function ladeSchuldenquoten(): Promise<Map<
             Number.isFinite(eintrag.jahr) &&
             Number.isFinite(eintrag.wert) &&
             eintrag.wert > 0 &&
-            eintrag.jahr <= aktuellesJahr
+            eintrag.jahr < aktuellesJahr
         )
         .sort((a, b) => b.jahr - a.jahr)
       if (passende.length > 0) {
@@ -262,10 +318,10 @@ async function ladeSchuldenquoten(): Promise<Map<
  */
 async function ladeLoehne(): Promise<Map<string, { wert: number; jahr: number }> | null> {
   try {
-    const antwort = await fetch(OECD_LOEHNE_URL)
+    const antwort = await fetch(OECD_LOEHNE_URL, { headers: OECD_KOPFZEILEN })
     if (!antwort.ok) {
       console.log(
-        `::warning::OECD antwortete mit ${antwort.status} – Durchschnittsloehne bleiben unveraendert.`
+        `::warning::OECD antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – Durchschnittsloehne bleiben unveraendert.`
       )
       return null
     }
@@ -288,9 +344,20 @@ async function ladeLoehne(): Promise<Map<string, { wert: number; jahr: number }>
     }
 
     if (werte.size === 0) {
+      /*
+        Was stattdessen dastand, gehört ins Protokoll.
+
+        Die Antwort kam an, nur passte keine Zeile. Ohne die tatsächlich
+        vorhandenen Einheiten und Spaltennamen bliebe als nächster Schritt
+        wieder nur ein Versuch ins Blaue – mit ihnen ist es eine Zeile Arbeit.
+      */
+      const spalten = Object.keys(zeilen[0] ?? {}).join(', ')
+      const einheiten = [...new Set(zeilen.map((z) => z['UNIT_MEASURE']).filter(Boolean))]
       console.log(
-        `::warning::Keine Zeile mit Einheit ${OECD_EINHEIT} gefunden – Durchschnittsloehne bleiben unveraendert.`
+        `::warning::Keine Zeile mit Einheit ${OECD_EINHEIT} – Durchschnittsloehne bleiben unveraendert.`
       )
+      console.log(`  Zeilen: ${zeilen.length} | Spalten: ${spalten || '(keine)'}`)
+      console.log(`  Vorhandene Einheiten: ${einheiten.join(', ') || '(keine)'}`)
       return null
     }
 

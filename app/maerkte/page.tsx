@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { QuoteCard } from '@/components/markets/QuoteCard'
 import { QuoteRow } from '@/components/markets/QuoteRow'
+import { Stimmungstacho } from '@/components/markets/Stimmungstacho'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -10,7 +11,7 @@ import { Reveal } from '@/components/ui/Reveal'
 import { magnificentSeven } from '@/data/markets'
 import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { getQuotes, getSparkline } from '@/lib/markets'
+import { getMarktstimmung, getQuotes, getSparkline } from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
@@ -22,7 +23,11 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default async function MarketsOverviewPage() {
-  const quotes = await getQuotes()
+  const [quotes, stimmungAktien, stimmungKrypto] = await Promise.all([
+    getQuotes(),
+    getMarktstimmung('aktien'),
+    getMarktstimmung('krypto'),
+  ])
 
   const fxQuotes = quotes.filter((quote) => quote.kind === 'fx')
   const indexQuotes = quotes.filter((quote) => quote.kind === 'index')
@@ -108,6 +113,22 @@ export default async function MarketsOverviewPage() {
           quotes={quotes}
           className="text-fg-subtle text-sm leading-relaxed"
         />
+
+        {/*
+          Der Stimmungstacho steht über den Indizes und nicht bei einem
+          einzelnen Kurs: Er beschreibt den Aktienmarkt als Ganzes. Bei einer
+          einzelnen Aktie wäre er nur deren Kursverlauf mit anderer
+          Beschriftung.
+        */}
+        {stimmungAktien && (
+          <div className="mt-12">
+            <Stimmungstacho
+              stimmung={stimmungAktien}
+              titel="Angst und Gier am Aktienmarkt"
+              beschreibung="Wie zuversichtlich der Aktienmarkt gerade ist – gerechnet aus den Kursen dieser Seite, nicht von anderswo übernommen."
+            />
+          </div>
+        )}
 
         <section aria-labelledby="indizes" className="mt-12">
           <h2 id="indizes" className="text-fg text-2xl font-bold">
@@ -225,6 +246,16 @@ export default async function MarketsOverviewPage() {
               </li>
             ))}
           </ul>
+
+          {stimmungKrypto && (
+            <div className="mt-6">
+              <Stimmungstacho
+                stimmung={stimmungKrypto}
+                titel="Angst und Gier am Kryptomarkt"
+                beschreibung="Dieselbe Rechnung wie bei den Aktien, aber mit eigenem Maßstab: Zehn Prozent Abstand zum Halbjahrestrend sind hier ein ruhiger Monat."
+              />
+            </div>
+          )}
         </section>
 
         {/* Zuletzt, weil es der einzige Abschnitt ohne Kacheln ist: über

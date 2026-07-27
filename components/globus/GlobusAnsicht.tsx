@@ -192,6 +192,42 @@ export function GlobusAnsicht({
   }, [laender])
 
   /*
+    Die Kennzahlwahl – wie die Tafel einmal beschrieben, an zwei Stellen
+    gezeigt.
+
+    Im Vollbild gehört sie mit hinein: Ohne sie zeigt der Globus dort für immer
+    die Kennzahl, die beim Umschalten eingestellt war. Wer die Karte
+    bildschirmfüllend betrachtet, will aber gerade dann zwischen
+    Wirtschaftsleistung, Einwohnern und Schulden wechseln können.
+  */
+  const kennzahlwahl = (
+    <fieldset>
+      <legend className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+        Einfärbung nach
+      </legend>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {metriken.map((eintrag) => (
+          <button
+            key={eintrag.id}
+            type="button"
+            onClick={() => setMetrikId(eintrag.id)}
+            aria-pressed={eintrag.id === metrikId}
+            className={cn(
+              'rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors',
+              eintrag.id === metrikId
+                ? 'border-brand bg-brand text-brand-contrast'
+                : 'border-border text-fg-muted hover:text-fg hover:border-border-strong'
+            )}
+          >
+            {eintrag.label}
+          </button>
+        ))}
+      </div>
+      <p className="text-fg-muted mt-3 text-sm leading-relaxed">{metrik.erklaerung}</p>
+    </fieldset>
+  )
+
+  /*
     Der Inhalt der Tafel – einmal beschrieben, an zwei Stellen gezeigt.
 
     Normal steht er in der Seitenspalte, im Vollbild im Rahmen des Globus.
@@ -226,33 +262,9 @@ export function GlobusAnsicht({
     <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
       <div className="min-w-0">
         {/* --------------------------------------------------- Kennzahlwahl */}
-        <fieldset>
-          <legend className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-            Einfärbung nach
-          </legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {metriken.map((eintrag) => (
-              <button
-                key={eintrag.id}
-                type="button"
-                onClick={() => setMetrikId(eintrag.id)}
-                aria-pressed={eintrag.id === metrikId}
-                className={cn(
-                  'rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors',
-                  eintrag.id === metrikId
-                    ? 'border-brand bg-brand text-brand-contrast'
-                    : 'border-border text-fg-muted hover:text-fg hover:border-border-strong'
-                )}
-              >
-                {eintrag.label}
-              </button>
-            ))}
-          </div>
-        </fieldset>
+        {vollbild ? null : kennzahlwahl}
 
-        <p className="text-fg-muted mt-3 text-sm leading-relaxed">{metrik.erklaerung}</p>
-
-        <div className="mt-6">
+        <div className={cn(vollbild ? '' : 'mt-6')}>
           <Globus
             laender={globusLaender}
             farben={farben}
@@ -260,6 +272,7 @@ export function GlobusAnsicht({
             onAuswahl={waehle}
             onHover={() => {}}
             zielId={zielId}
+            werkzeuge={kennzahlwahl}
             tafel={tafelInhalt}
             onVollbild={setVollbild}
           />

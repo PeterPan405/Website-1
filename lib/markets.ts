@@ -12,6 +12,13 @@ import { getLiveSeries, type QuoteSource } from '@/lib/market-live'
 import { computeQuoteFigures } from '@/lib/market-quote'
 import { sliceByDays } from '@/lib/market-range'
 import { downsample, getInstrumentSeries, sliceRange } from '@/lib/market-series'
+import {
+  MASSSTAB_AKTIEN,
+  MASSSTAB_KRYPTO,
+  berechneStimmung,
+  type Kurspunkt,
+  type Stimmung,
+} from '@/lib/stimmungsindex'
 
 /**
  * Service-Schicht für Marktdaten.
@@ -28,6 +35,8 @@ import { downsample, getInstrumentSeries, sliceRange } from '@/lib/market-series
  */
 
 export type { MarketInstrument, MarketRange, SeriesPoint } from '@/data/markets'
+export type { Bestandteil, Stimmung, Stimmungsstufe } from '@/lib/stimmungsindex'
+export { STUFEN_TEXT } from '@/lib/stimmungsindex'
 
 /** Momentaufnahme eines Kurses inklusive der wichtigsten Kennzahlen. */
 export interface MarketQuote {
@@ -299,4 +308,69 @@ export async function getMarketOverview(): Promise<MarketPreview[]> {
 export async function getDataCoverage(): Promise<{ from: string; to: string }> {
   const { daily } = basisFor(marketDefinitions[0])
   return { from: daily[0].t, to: daily[daily.length - 1].t }
+}
+
+/**
+ * Angst und Gier für einen Anlagebereich.
+ *
+ * Gemeint ist ausdrücklich der **Bereich**, nicht der einzelne Titel: ein Wert
+ * für Aktien, einer für Kryptowährungen – so, wie man solche Anzeigen kennt.
+ * Eine Stimmungszahl für eine einzelne Aktie wäre auch keine Stimmung, sondern
+ * nur ihr Kursverlauf mit anderer Beschriftung.
+ *
+ * ## Nur echte Kurse
+ *
+ * Entscheidend ist der Filter auf `source`: Die breite Aktienauswahl wartet
+ * noch auf ihren ersten Abruf und zeigt bis dahin erzeugte Reihen. Eine
+ * Marktbreite über erzeugte Kurse wäre eine Zahl über Zufallszahlen – richtig
+ * gerechnet und vollkommen bedeutungslos. Wer keine echte Quelle hat, zählt
+ * nicht mit; bleiben zu wenige übrig, entfällt der Bestandteil, und bleibt gar
+ * nichts, kommt `null` zurück und die Seite zeigt den Tacho nicht.
+ *
+ * Der Leitkurs ist das erste Instrument der Liste, das echte Daten hat – für
+ * Aktien der breiteste verfügbare Index, für Krypto Bitcoin.
+ */
+export async function getMarktstimmung(
+  bereich: 'aktien' | 'krypto'
+): Promise<Stimmung | null> {
+  const leitkandidaten =
+    bereich === 'aktien'
+      ? ['sp500', 'msci-world', 'nasdaq-100', 'dax']
+      : ['bitcoin', 'ethereum']
+
+  const mitEchtenDaten = (definition: MarketDefinition) =>
+    basisFor(definition).source !== null
+
+  const leitDefinition = leitkandidaten
+    .map((symbol) => findDefinition(symbol))
+    .find(
+      (definition): definition is MarketDefinition =>
+        definition !== undefined && definition !== null && mitEchtenDaten(definition)
+    )
+  if (!leitDefinition) return null
+
+  const arten: MarketInstrument['kind'][] =
+    bereich === 'aktien' ? ['stock', 'index'] : ['crypto']
+
+  const einzelreihen = marketDefinitions
+    .filter((definition) => arten.includes(definition.kind) && mitEchtenDaten(definition))
+    .map((definition) => zuKurspunkten(basisFor(definition).daily))
+
+  return berechneStimmung(
+    zuKurspunkten(basisFor(leitDefinition).daily),
+    einzelreihen,
+    bereich === 'aktien' ? MASSSTAB_AKTIEN : MASSSTAB_KRYPTO
+  )
+}
+
+/**
+ * Von der Reihenform der Seite in die der Rechnung.
+ *
+ * `{ t, value }` heißt es hier, `{ d, c }` in der Momentaufnahme und im
+ * Rechenmodul – letzteres ist import-frei und kennt die Typen dieser Datei
+ * nicht. Eine Zeile Übersetzung ist der Preis dafür, dass sich die Rechnung
+ * ohne das halbe Projekt prüfen lässt.
+ */
+function zuKurspunkten(reihe: readonly SeriesPoint[]): Kurspunkt[] {
+  return reihe.map((punkt) => ({ d: punkt.t, c: punkt.value }))
 }

@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-27T19:37:22.497Z",
+  "abgerufenAm": "2026-07-27T20:33:15.821Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -26,7 +26,11 @@
       "region": "Asia",
       "subregion": "Southern Asia",
       "waehrung": "AFN",
-      "einwohner": 41454761
+      "einwohner": 41454761,
+      "schuldenquote": {
+        "wert": 8,
+        "jahr": 2025
+      }
     },
     "ALA": {
       "alpha2": "AX",
@@ -42,7 +46,11 @@
       "subregion": "Southern Europe",
       "waehrung": "ALL",
       "bipUsd": 22978,
-      "einwohner": 2414095
+      "einwohner": 2414095,
+      "schuldenquote": {
+        "wert": 52.6,
+        "jahr": 2025
+      }
     },
     "DZA": {
       "alpha2": "DZ",
@@ -51,7 +59,11 @@
       "subregion": "Northern Africa",
       "waehrung": "DZD",
       "bipUsd": 239899,
-      "einwohner": 46164219
+      "einwohner": 46164219,
+      "schuldenquote": {
+        "wert": 54.1,
+        "jahr": 2025
+      }
     },
     "ASM": {
       "alpha2": "AS",
@@ -68,7 +80,11 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 3728,
-      "einwohner": 80856
+      "einwohner": 80856,
+      "schuldenquote": {
+        "wert": 30.3,
+        "jahr": 2025
+      }
     },
     "AGO": {
       "alpha2": "AO",
@@ -77,7 +93,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "AOA",
       "bipUsd": 84723,
-      "einwohner": 36749906
+      "einwohner": 36749906,
+      "schuldenquote": {
+        "wert": 51.3,
+        "jahr": 2025
+      }
     },
     "AIA": {
       "alpha2": "AI",
@@ -100,7 +120,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "XCD",
       "bipUsd": 2033,
-      "einwohner": 93316
+      "einwohner": 93316,
+      "schuldenquote": {
+        "wert": 69.7,
+        "jahr": 2025
+      }
     },
     "ARG": {
       "alpha2": "AR",
@@ -109,7 +133,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "ARS",
       "bipUsd": 640591,
-      "einwohner": 45538401
+      "einwohner": 45538401,
+      "schuldenquote": {
+        "wert": 80.3,
+        "jahr": 2025
+      }
     },
     "ARM": {
       "alpha2": "AM",
@@ -118,7 +146,11 @@
       "subregion": "Western Asia",
       "waehrung": "AMD",
       "bipUsd": 24212,
-      "einwohner": 2964300
+      "einwohner": 2964300,
+      "schuldenquote": {
+        "wert": 49,
+        "jahr": 2025
+      }
     },
     "ABW": {
       "alpha2": "AW",
@@ -126,7 +158,11 @@
       "region": "Americas",
       "subregion": "Latin America and the Caribbean",
       "waehrung": "AWG",
-      "einwohner": 107359
+      "einwohner": 107359,
+      "schuldenquote": {
+        "wert": 63.6,
+        "jahr": 2025
+      }
     },
     "AUS": {
       "alpha2": "AU",
@@ -135,7 +171,15 @@
       "subregion": "Australia and New Zealand",
       "waehrung": "AUD",
       "bipUsd": 1723827,
-      "einwohner": 26659922
+      "einwohner": 26659922,
+      "schuldenquote": {
+        "wert": 51,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 72018,
+        "jahr": 2025
+      }
     },
     "AUT": {
       "alpha2": "AT",
@@ -144,7 +188,15 @@
       "subregion": "Western Europe",
       "waehrung": "EUR",
       "bipUsd": 516034,
-      "einwohner": 9131761
+      "einwohner": 9131761,
+      "schuldenquote": {
+        "wert": 80.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 78301,
+        "jahr": 2025
+      }
     },
     "AZE": {
       "alpha2": "AZ",
@@ -153,7 +205,11 @@
       "subregion": "Western Asia",
       "waehrung": "AZN",
       "bipUsd": 72356,
-      "einwohner": 10153958
+      "einwohner": 10153958,
+      "schuldenquote": {
+        "wert": 20.1,
+        "jahr": 2025
+      }
     },
     "BHS": {
       "alpha2": "BS",
@@ -162,7 +218,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "BSD",
       "bipUsd": 14339,
-      "einwohner": 399440
+      "einwohner": 399440,
+      "schuldenquote": {
+        "wert": 73.8,
+        "jahr": 2025
+      }
     },
     "BHR": {
       "alpha2": "BH",
@@ -171,7 +231,11 @@
       "subregion": "Western Asia",
       "waehrung": "BHD",
       "bipUsd": 43205,
-      "einwohner": 1577059
+      "einwohner": 1577059,
+      "schuldenquote": {
+        "wert": 147.6,
+        "jahr": 2025
+      }
     },
     "BGD": {
       "alpha2": "BD",
@@ -180,7 +244,11 @@
       "subregion": "Southern Asia",
       "waehrung": "BDT",
       "bipUsd": 437415,
-      "einwohner": 171466990
+      "einwohner": 171466990,
+      "schuldenquote": {
+        "wert": 42,
+        "jahr": 2025
+      }
     },
     "BRB": {
       "alpha2": "BB",
@@ -189,7 +257,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "BBD",
       "bipUsd": 6394,
-      "einwohner": 282336
+      "einwohner": 282336,
+      "schuldenquote": {
+        "wert": 94.2,
+        "jahr": 2025
+      }
     },
     "BLR": {
       "alpha2": "BY",
@@ -198,7 +270,11 @@
       "subregion": "Eastern Europe",
       "waehrung": "BYN",
       "bipUsd": 71857,
-      "einwohner": 9178298
+      "einwohner": 9178298,
+      "schuldenquote": {
+        "wert": 33.1,
+        "jahr": 2025
+      }
     },
     "BEL": {
       "alpha2": "BE",
@@ -207,7 +283,15 @@
       "subregion": "Western Europe",
       "waehrung": "EUR",
       "bipUsd": 632217,
-      "einwohner": 11779946
+      "einwohner": 11779946,
+      "schuldenquote": {
+        "wert": 106.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 80009,
+        "jahr": 2025
+      }
     },
     "BLZ": {
       "alpha2": "BZ",
@@ -216,7 +300,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "BZD",
       "bipUsd": 3282,
-      "einwohner": 411106
+      "einwohner": 411106,
+      "schuldenquote": {
+        "wert": 67.9,
+        "jahr": 2025
+      }
     },
     "BEN": {
       "alpha2": "BJ",
@@ -225,7 +313,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 19673,
-      "einwohner": 14111034
+      "einwohner": 14111034,
+      "schuldenquote": {
+        "wert": 57.3,
+        "jahr": 2025
+      }
     },
     "BMU": {
       "alpha2": "BM",
@@ -241,7 +333,11 @@
       "region": "Asia",
       "subregion": "Southern Asia",
       "waehrung": "INR,BTN",
-      "einwohner": 786385
+      "einwohner": 786385,
+      "schuldenquote": {
+        "wert": 103.6,
+        "jahr": 2025
+      }
     },
     "BOL": {
       "alpha2": "BO",
@@ -250,7 +346,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "BOB",
       "bipUsd": 45850,
-      "einwohner": 12244159
+      "einwohner": 12244159,
+      "schuldenquote": {
+        "wert": 84.8,
+        "jahr": 2025
+      }
     },
     "BES": {
       "alpha2": "BQ",
@@ -266,7 +366,11 @@
       "subregion": "Southern Europe",
       "waehrung": "BAM",
       "bipUsd": 27055,
-      "einwohner": 3185073
+      "einwohner": 3185073,
+      "schuldenquote": {
+        "wert": 29.9,
+        "jahr": 2025
+      }
     },
     "BWA": {
       "alpha2": "BW",
@@ -275,7 +379,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "BWP",
       "bipUsd": 19396,
-      "einwohner": 2480244
+      "einwohner": 2480244,
+      "schuldenquote": {
+        "wert": 38.6,
+        "jahr": 2025
+      }
     },
     "BVT": {
       "alpha2": "BV",
@@ -291,7 +399,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "BRL",
       "bipUsd": 2173666,
-      "einwohner": 211140729
+      "einwohner": 211140729,
+      "schuldenquote": {
+        "wert": 93.3,
+        "jahr": 2025
+      }
     },
     "IOT": {
       "alpha2": "IO",
@@ -315,7 +427,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "BND",
       "bipUsd": 15128,
-      "einwohner": 458949
+      "einwohner": 458949,
+      "schuldenquote": {
+        "wert": 1.5,
+        "jahr": 2025
+      }
     },
     "BGR": {
       "alpha2": "BG",
@@ -324,7 +440,11 @@
       "subregion": "Eastern Europe",
       "waehrung": "EUR",
       "bipUsd": 101584,
-      "einwohner": 6446596
+      "einwohner": 6446596,
+      "schuldenquote": {
+        "wert": 27.1,
+        "jahr": 2025
+      }
     },
     "BFA": {
       "alpha2": "BF",
@@ -333,7 +453,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 20325,
-      "einwohner": 23025776
+      "einwohner": 23025776,
+      "schuldenquote": {
+        "wert": 52,
+        "jahr": 2025
+      }
     },
     "BDI": {
       "alpha2": "BI",
@@ -342,7 +466,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "BIF",
       "bipUsd": 2642,
-      "einwohner": 13689450
+      "einwohner": 13689450,
+      "schuldenquote": {
+        "wert": 41.2,
+        "jahr": 2025
+      }
     },
     "CPV": {
       "alpha2": "CV",
@@ -351,7 +479,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "CVE",
       "bipUsd": 2587,
-      "einwohner": 522331
+      "einwohner": 522331,
+      "schuldenquote": {
+        "wert": 101,
+        "jahr": 2025
+      }
     },
     "KHM": {
       "alpha2": "KH",
@@ -360,7 +492,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "KHR",
       "bipUsd": 31773,
-      "einwohner": 17423880
+      "einwohner": 17423880,
+      "schuldenquote": {
+        "wert": 26.5,
+        "jahr": 2025
+      }
     },
     "CMR": {
       "alpha2": "CM",
@@ -369,7 +505,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XAF",
       "bipUsd": 47946,
-      "einwohner": 28372687
+      "einwohner": 28372687,
+      "schuldenquote": {
+        "wert": 40.4,
+        "jahr": 2025
+      }
     },
     "CAN": {
       "alpha2": "CA",
@@ -378,7 +518,15 @@
       "subregion": "Northern America",
       "waehrung": "CAD",
       "bipUsd": 2140086,
-      "einwohner": 40083484
+      "einwohner": 40083484,
+      "schuldenquote": {
+        "wert": 113.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 67901,
+        "jahr": 2025
+      }
     },
     "CYM": {
       "alpha2": "KY",
@@ -395,7 +543,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XAF",
       "bipUsd": 2555,
-      "einwohner": 5152421
+      "einwohner": 5152421,
+      "schuldenquote": {
+        "wert": 61.8,
+        "jahr": 2025
+      }
     },
     "TCD": {
       "alpha2": "TD",
@@ -404,7 +556,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XAF",
       "bipUsd": 13149,
-      "einwohner": 19319064
+      "einwohner": 19319064,
+      "schuldenquote": {
+        "wert": 30.4,
+        "jahr": 2025
+      }
     },
     "CHL": {
       "alpha2": "CL",
@@ -413,7 +569,15 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "CLP",
       "bipUsd": 335533,
-      "einwohner": 19658835
+      "einwohner": 19658835,
+      "schuldenquote": {
+        "wert": 41.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 40626,
+        "jahr": 2023
+      }
     },
     "CHN": {
       "alpha2": "CN",
@@ -422,7 +586,11 @@
       "subregion": "Eastern Asia",
       "waehrung": "CNY",
       "bipUsd": 17794782,
-      "einwohner": 1410710000
+      "einwohner": 1410710000,
+      "schuldenquote": {
+        "wert": 99.2,
+        "jahr": 2025
+      }
     },
     "HKG": {
       "alpha2": "HK",
@@ -431,7 +599,11 @@
       "subregion": "Eastern Asia",
       "waehrung": "HKD",
       "bipUsd": 382055,
-      "einwohner": 7536100
+      "einwohner": 7536100,
+      "schuldenquote": {
+        "wert": 11.9,
+        "jahr": 2025
+      }
     },
     "MAC": {
       "alpha2": "MO",
@@ -463,7 +635,15 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "COP",
       "bipUsd": 363540,
-      "einwohner": 52321152
+      "einwohner": 52321152,
+      "schuldenquote": {
+        "wert": 59.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 30133,
+        "jahr": 2024
+      }
     },
     "COM": {
       "alpha2": "KM",
@@ -472,7 +652,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "KMF",
       "bipUsd": 1352,
-      "einwohner": 850387
+      "einwohner": 850387,
+      "schuldenquote": {
+        "wert": 29.5,
+        "jahr": 2025
+      }
     },
     "COG": {
       "alpha2": "CG",
@@ -481,7 +665,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XAF",
       "bipUsd": 15321,
-      "einwohner": 6182885
+      "einwohner": 6182885,
+      "schuldenquote": {
+        "wert": 96.8,
+        "jahr": 2025
+      }
     },
     "COK": {
       "alpha2": "CK",
@@ -497,7 +685,15 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "CRC",
       "bipUsd": 86498,
-      "einwohner": 5105525
+      "einwohner": 5105525,
+      "schuldenquote": {
+        "wert": 60.4,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 44431,
+        "jahr": 2024
+      }
     },
     "HRV": {
       "alpha2": "HR",
@@ -506,7 +702,11 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 82689,
-      "einwohner": 3859686
+      "einwohner": 3859686,
+      "schuldenquote": {
+        "wert": 55.9,
+        "jahr": 2025
+      }
     },
     "CUB": {
       "alpha2": "CU",
@@ -531,7 +731,11 @@
       "subregion": "Western Asia",
       "waehrung": "EUR",
       "bipUsd": 32230,
-      "einwohner": 1344976
+      "einwohner": 1344976,
+      "schuldenquote": {
+        "wert": 55.3,
+        "jahr": 2025
+      }
     },
     "CZE": {
       "alpha2": "CZ",
@@ -540,7 +744,15 @@
       "subregion": "Eastern Europe",
       "waehrung": "CZK",
       "bipUsd": 330858,
-      "einwohner": 10864042
+      "einwohner": 10864042,
+      "schuldenquote": {
+        "wert": 44.6,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 43607,
+        "jahr": 2025
+      }
     },
     "PRK": {
       "alpha2": "KP",
@@ -557,7 +769,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "CDF",
       "bipUsd": 66383,
-      "einwohner": 105789731
+      "einwohner": 105789731,
+      "schuldenquote": {
+        "wert": 20.2,
+        "jahr": 2025
+      }
     },
     "DNK": {
       "alpha2": "DK",
@@ -566,7 +782,15 @@
       "subregion": "Northern Europe",
       "waehrung": "DKK",
       "bipUsd": 404199,
-      "einwohner": 5946952
+      "einwohner": 5946952,
+      "schuldenquote": {
+        "wert": 27.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 78090,
+        "jahr": 2025
+      }
     },
     "DJI": {
       "alpha2": "DJ",
@@ -575,7 +799,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "DJF",
       "bipUsd": 4099,
-      "einwohner": 1152944
+      "einwohner": 1152944,
+      "schuldenquote": {
+        "wert": 32.1,
+        "jahr": 2025
+      }
     },
     "DMA": {
       "alpha2": "DM",
@@ -584,7 +812,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "XCD",
       "bipUsd": 654,
-      "einwohner": 66510
+      "einwohner": 66510,
+      "schuldenquote": {
+        "wert": 102.6,
+        "jahr": 2025
+      }
     },
     "DOM": {
       "alpha2": "DO",
@@ -593,7 +825,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "DOP",
       "bipUsd": 121444,
-      "einwohner": 11331265
+      "einwohner": 11331265,
+      "schuldenquote": {
+        "wert": 59,
+        "jahr": 2025
+      }
     },
     "ECU": {
       "alpha2": "EC",
@@ -602,7 +838,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "USD",
       "bipUsd": 118845,
-      "einwohner": 17980083
+      "einwohner": 17980083,
+      "schuldenquote": {
+        "wert": 54.4,
+        "jahr": 2025
+      }
     },
     "EGY": {
       "alpha2": "EG",
@@ -611,7 +851,11 @@
       "subregion": "Northern Africa",
       "waehrung": "EGP",
       "bipUsd": 395926,
-      "einwohner": 114535772
+      "einwohner": 114535772,
+      "schuldenquote": {
+        "wert": 86.8,
+        "jahr": 2025
+      }
     },
     "SLV": {
       "alpha2": "SV",
@@ -620,7 +864,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "SVC,USD",
       "bipUsd": 34016,
-      "einwohner": 6309624
+      "einwohner": 6309624,
+      "schuldenquote": {
+        "wert": 87.2,
+        "jahr": 2025
+      }
     },
     "GNQ": {
       "alpha2": "GQ",
@@ -629,7 +877,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XAF",
       "bipUsd": 12117,
-      "einwohner": 1847549
+      "einwohner": 1847549,
+      "schuldenquote": {
+        "wert": 40.6,
+        "jahr": 2025
+      }
     },
     "ERI": {
       "alpha2": "ER",
@@ -637,7 +889,11 @@
       "region": "Africa",
       "subregion": "Sub-Saharan Africa",
       "waehrung": "ERN",
-      "einwohner": 3470390
+      "einwohner": 3470390,
+      "schuldenquote": {
+        "wert": 260.4,
+        "jahr": 2019
+      }
     },
     "EST": {
       "alpha2": "EE",
@@ -646,7 +902,15 @@
       "subregion": "Northern Europe",
       "waehrung": "EUR",
       "bipUsd": 40745,
-      "einwohner": 1370286
+      "einwohner": 1370286,
+      "schuldenquote": {
+        "wert": 24.2,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 41019,
+        "jahr": 2025
+      }
     },
     "SWZ": {
       "alpha2": "SZ",
@@ -655,7 +919,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "SZL",
       "bipUsd": 4598,
-      "einwohner": 1230506
+      "einwohner": 1230506,
+      "schuldenquote": {
+        "wert": 44.9,
+        "jahr": 2025
+      }
     },
     "ETH": {
       "alpha2": "ET",
@@ -664,7 +932,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "ETB",
       "bipUsd": 163698,
-      "einwohner": 128691692
+      "einwohner": 128691692,
+      "schuldenquote": {
+        "wert": 43.1,
+        "jahr": 2025
+      }
     },
     "FLK": {
       "alpha2": "FK",
@@ -688,7 +960,11 @@
       "subregion": "Melanesia",
       "waehrung": "FJD",
       "bipUsd": 5495,
-      "einwohner": 924145
+      "einwohner": 924145,
+      "schuldenquote": {
+        "wert": 78.7,
+        "jahr": 2025
+      }
     },
     "FIN": {
       "alpha2": "FI",
@@ -697,7 +973,15 @@
       "subregion": "Northern Europe",
       "waehrung": "EUR",
       "bipUsd": 300187,
-      "einwohner": 5583911
+      "einwohner": 5583911,
+      "schuldenquote": {
+        "wert": 89.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 63053,
+        "jahr": 2025
+      }
     },
     "FRA": {
       "alpha2": "FR",
@@ -706,7 +990,15 @@
       "subregion": "Western Europe",
       "waehrung": "EUR",
       "bipUsd": 3030904,
-      "einwohner": 68372286
+      "einwohner": 68372286,
+      "schuldenquote": {
+        "wert": 116,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 60483,
+        "jahr": 2025
+      }
     },
     "GUF": {
       "alpha2": "GF",
@@ -737,7 +1029,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XAF",
       "bipUsd": 20516,
-      "einwohner": 2484789
+      "einwohner": 2484789,
+      "schuldenquote": {
+        "wert": 78.9,
+        "jahr": 2025
+      }
     },
     "GMB": {
       "alpha2": "GM",
@@ -746,7 +1042,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "GMD",
       "bipUsd": 2340,
-      "einwohner": 2697845
+      "einwohner": 2697845,
+      "schuldenquote": {
+        "wert": 73.9,
+        "jahr": 2025
+      }
     },
     "GEO": {
       "alpha2": "GE",
@@ -755,7 +1055,11 @@
       "subregion": "Western Asia",
       "waehrung": "GEL",
       "bipUsd": 30536,
-      "einwohner": 3715483
+      "einwohner": 3715483,
+      "schuldenquote": {
+        "wert": 34.3,
+        "jahr": 2025
+      }
     },
     "DEU": {
       "alpha2": "DE",
@@ -764,7 +1068,15 @@
       "subregion": "Western Europe",
       "waehrung": "EUR",
       "bipUsd": 4456081,
-      "einwohner": 83287273
+      "einwohner": 83287273,
+      "schuldenquote": {
+        "wert": 62.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 76285,
+        "jahr": 2025
+      }
     },
     "GHA": {
       "alpha2": "GH",
@@ -773,7 +1085,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "GHS",
       "bipUsd": 76370,
-      "einwohner": 33787914
+      "einwohner": 33787914,
+      "schuldenquote": {
+        "wert": 48.8,
+        "jahr": 2025
+      }
     },
     "GIB": {
       "alpha2": "GI",
@@ -790,7 +1106,15 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 238206,
-      "einwohner": 10407351
+      "einwohner": 10407351,
+      "schuldenquote": {
+        "wert": 145.7,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 32412,
+        "jahr": 2025
+      }
     },
     "GRL": {
       "alpha2": "GL",
@@ -807,7 +1131,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "XCD",
       "bipUsd": 1320,
-      "einwohner": 117081
+      "einwohner": 117081,
+      "schuldenquote": {
+        "wert": 71.6,
+        "jahr": 2025
+      }
     },
     "GLP": {
       "alpha2": "GP",
@@ -831,7 +1159,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "GTQ",
       "bipUsd": 102050,
-      "einwohner": 18124838
+      "einwohner": 18124838,
+      "schuldenquote": {
+        "wert": 27.2,
+        "jahr": 2025
+      }
     },
     "GGY": {
       "alpha2": "GG",
@@ -847,7 +1179,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "GNF",
       "bipUsd": 23612,
-      "einwohner": 14405468
+      "einwohner": 14405468,
+      "schuldenquote": {
+        "wert": 48.1,
+        "jahr": 2025
+      }
     },
     "GNB": {
       "alpha2": "GW",
@@ -856,7 +1192,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 1966,
-      "einwohner": 2153339
+      "einwohner": 2153339,
+      "schuldenquote": {
+        "wert": 75.3,
+        "jahr": 2025
+      }
     },
     "GUY": {
       "alpha2": "GY",
@@ -865,7 +1205,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "GYD",
       "bipUsd": 16786,
-      "einwohner": 826353
+      "einwohner": 826353,
+      "schuldenquote": {
+        "wert": 28.6,
+        "jahr": 2025
+      }
     },
     "HTI": {
       "alpha2": "HT",
@@ -874,7 +1218,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "HTG,USD",
       "bipUsd": 19851,
-      "einwohner": 11637398
+      "einwohner": 11637398,
+      "schuldenquote": {
+        "wert": 12.3,
+        "jahr": 2025
+      }
     },
     "HMD": {
       "alpha2": "HM",
@@ -897,7 +1245,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "HNL",
       "bipUsd": 34401,
-      "einwohner": 10644851
+      "einwohner": 10644851,
+      "schuldenquote": {
+        "wert": 41.2,
+        "jahr": 2025
+      }
     },
     "HUN": {
       "alpha2": "HU",
@@ -906,7 +1258,15 @@
       "subregion": "Eastern Europe",
       "waehrung": "HUF",
       "bipUsd": 212389,
-      "einwohner": 9592186
+      "einwohner": 9592186,
+      "schuldenquote": {
+        "wert": 75.2,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 39145,
+        "jahr": 2025
+      }
     },
     "ISL": {
       "alpha2": "IS",
@@ -915,7 +1275,15 @@
       "subregion": "Northern Europe",
       "waehrung": "ISK",
       "bipUsd": 31020,
-      "einwohner": 385663
+      "einwohner": 385663,
+      "schuldenquote": {
+        "wert": 56.1,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 100605,
+        "jahr": 2025
+      }
     },
     "IND": {
       "alpha2": "IN",
@@ -924,7 +1292,11 @@
       "subregion": "Southern Asia",
       "waehrung": "INR",
       "bipUsd": 3549919,
-      "einwohner": 1438069596
+      "einwohner": 1438069596,
+      "schuldenquote": {
+        "wert": 84.1,
+        "jahr": 2025
+      }
     },
     "IDN": {
       "alpha2": "ID",
@@ -933,7 +1305,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "IDR",
       "bipUsd": 1371171,
-      "einwohner": 281190067
+      "einwohner": 281190067,
+      "schuldenquote": {
+        "wert": 41,
+        "jahr": 2025
+      }
     },
     "IRN": {
       "alpha2": "IR",
@@ -942,7 +1318,11 @@
       "subregion": "Southern Asia",
       "waehrung": "IRR",
       "bipUsd": 401505,
-      "einwohner": 90608707
+      "einwohner": 90608707,
+      "schuldenquote": {
+        "wert": 37.3,
+        "jahr": 2025
+      }
     },
     "IRQ": {
       "alpha2": "IQ",
@@ -951,7 +1331,11 @@
       "subregion": "Western Asia",
       "waehrung": "IQD",
       "bipUsd": 250843,
-      "einwohner": 45074049
+      "einwohner": 45074049,
+      "schuldenquote": {
+        "wert": 53.9,
+        "jahr": 2025
+      }
     },
     "IRL": {
       "alpha2": "IE",
@@ -960,7 +1344,15 @@
       "subregion": "Northern Europe",
       "waehrung": "EUR",
       "bipUsd": 545629,
-      "einwohner": 5311538
+      "einwohner": 5311538,
+      "schuldenquote": {
+        "wert": 32.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 70113,
+        "jahr": 2025
+      }
     },
     "IMN": {
       "alpha2": "IM",
@@ -977,7 +1369,15 @@
       "subregion": "Western Asia",
       "waehrung": "ILS",
       "bipUsd": 509901,
-      "einwohner": 9849000
+      "einwohner": 9849000,
+      "schuldenquote": {
+        "wert": 68.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 57426,
+        "jahr": 2025
+      }
     },
     "ITA": {
       "alpha2": "IT",
@@ -986,7 +1386,15 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 2254851,
-      "einwohner": 58984216
+      "einwohner": 58984216,
+      "schuldenquote": {
+        "wert": 137.1,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 53864,
+        "jahr": 2025
+      }
     },
     "CIV": {
       "alpha2": "CI",
@@ -995,7 +1403,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 78789,
-      "einwohner": 31165654
+      "einwohner": 31165654,
+      "schuldenquote": {
+        "wert": 56.3,
+        "jahr": 2025
+      }
     },
     "JAM": {
       "alpha2": "JM",
@@ -1004,7 +1416,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "JMD",
       "bipUsd": 19423,
-      "einwohner": 2839786
+      "einwohner": 2839786,
+      "schuldenquote": {
+        "wert": 67.7,
+        "jahr": 2025
+      }
     },
     "JPN": {
       "alpha2": "JP",
@@ -1013,7 +1429,15 @@
       "subregion": "Eastern Asia",
       "waehrung": "JPY",
       "bipUsd": 4212945,
-      "einwohner": 124516650
+      "einwohner": 124516650,
+      "schuldenquote": {
+        "wert": 206.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 50183,
+        "jahr": 2025
+      }
     },
     "JEY": {
       "alpha2": "JE",
@@ -1029,7 +1453,11 @@
       "subregion": "Western Asia",
       "waehrung": "JOD",
       "bipUsd": 50814,
-      "einwohner": 11439213
+      "einwohner": 11439213,
+      "schuldenquote": {
+        "wert": 82.8,
+        "jahr": 2025
+      }
     },
     "KAZ": {
       "alpha2": "KZ",
@@ -1038,7 +1466,11 @@
       "subregion": "Central Asia",
       "waehrung": "KZT",
       "bipUsd": 261421,
-      "einwohner": 20330104
+      "einwohner": 20330104,
+      "schuldenquote": {
+        "wert": 24.6,
+        "jahr": 2025
+      }
     },
     "KEN": {
       "alpha2": "KE",
@@ -1047,7 +1479,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "KES",
       "bipUsd": 107441,
-      "einwohner": 55339003
+      "einwohner": 55339003,
+      "schuldenquote": {
+        "wert": 69.3,
+        "jahr": 2025
+      }
     },
     "KIR": {
       "alpha2": "KI",
@@ -1056,7 +1492,11 @@
       "subregion": "Micronesia",
       "waehrung": "AUD",
       "bipUsd": 279,
-      "einwohner": 132530
+      "einwohner": 132530,
+      "schuldenquote": {
+        "wert": 8,
+        "jahr": 2025
+      }
     },
     "KWT": {
       "alpha2": "KW",
@@ -1065,7 +1505,11 @@
       "subregion": "Western Asia",
       "waehrung": "KWD",
       "bipUsd": 161772,
-      "einwohner": 4853420
+      "einwohner": 4853420,
+      "schuldenquote": {
+        "wert": 14.6,
+        "jahr": 2025
+      }
     },
     "KGZ": {
       "alpha2": "KG",
@@ -1074,7 +1518,11 @@
       "subregion": "Central Asia",
       "waehrung": "KGS",
       "bipUsd": 13988,
-      "einwohner": 7099750
+      "einwohner": 7099750,
+      "schuldenquote": {
+        "wert": 36,
+        "jahr": 2025
+      }
     },
     "LAO": {
       "alpha2": "LA",
@@ -1083,7 +1531,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "LAK",
       "bipUsd": 15843,
-      "einwohner": 7664993
+      "einwohner": 7664993,
+      "schuldenquote": {
+        "wert": 80.6,
+        "jahr": 2025
+      }
     },
     "LVA": {
       "alpha2": "LV",
@@ -1092,7 +1544,15 @@
       "subregion": "Northern Europe",
       "waehrung": "EUR",
       "bipUsd": 43627,
-      "einwohner": 1883710
+      "einwohner": 1883710,
+      "schuldenquote": {
+        "wert": 46.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 44709,
+        "jahr": 2025
+      }
     },
     "LBN": {
       "alpha2": "LB",
@@ -1100,7 +1560,11 @@
       "region": "Asia",
       "subregion": "Western Asia",
       "waehrung": "LBP",
-      "einwohner": 5773493
+      "einwohner": 5773493,
+      "schuldenquote": {
+        "wert": 139.4,
+        "jahr": 2025
+      }
     },
     "LSO": {
       "alpha2": "LS",
@@ -1109,7 +1573,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "LSL,ZAR",
       "bipUsd": 2046,
-      "einwohner": 2311472
+      "einwohner": 2311472,
+      "schuldenquote": {
+        "wert": 49.1,
+        "jahr": 2025
+      }
     },
     "LBR": {
       "alpha2": "LR",
@@ -1118,7 +1586,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "LRD",
       "bipUsd": 4332,
-      "einwohner": 5493031
+      "einwohner": 5493031,
+      "schuldenquote": {
+        "wert": 54.9,
+        "jahr": 2025
+      }
     },
     "LBY": {
       "alpha2": "LY",
@@ -1135,7 +1607,11 @@
       "region": "Europe",
       "subregion": "Western Europe",
       "waehrung": "CHF",
-      "einwohner": 39846
+      "einwohner": 39846,
+      "schuldenquote": {
+        "wert": 0.5,
+        "jahr": 2025
+      }
     },
     "LTU": {
       "alpha2": "LT",
@@ -1144,7 +1620,15 @@
       "subregion": "Northern Europe",
       "waehrung": "EUR",
       "bipUsd": 77836,
-      "einwohner": 2871585
+      "einwohner": 2871585,
+      "schuldenquote": {
+        "wert": 39.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 58112,
+        "jahr": 2025
+      }
     },
     "LUX": {
       "alpha2": "LU",
@@ -1153,7 +1637,15 @@
       "subregion": "Western Europe",
       "waehrung": "EUR",
       "bipUsd": 85755,
-      "einwohner": 666430
+      "einwohner": 666430,
+      "schuldenquote": {
+        "wert": 27,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 98530,
+        "jahr": 2025
+      }
     },
     "MDG": {
       "alpha2": "MG",
@@ -1162,7 +1654,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "MGA",
       "bipUsd": 16032,
-      "einwohner": 31195932
+      "einwohner": 31195932,
+      "schuldenquote": {
+        "wert": 48.7,
+        "jahr": 2025
+      }
     },
     "MWI": {
       "alpha2": "MW",
@@ -1171,7 +1667,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "MWK",
       "bipUsd": 14084,
-      "einwohner": 21104482
+      "einwohner": 21104482,
+      "schuldenquote": {
+        "wert": 78.4,
+        "jahr": 2025
+      }
     },
     "MYS": {
       "alpha2": "MY",
@@ -1180,7 +1680,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "MYR",
       "bipUsd": 399649,
-      "einwohner": 35126298
+      "einwohner": 35126298,
+      "schuldenquote": {
+        "wert": 70.7,
+        "jahr": 2025
+      }
     },
     "MDV": {
       "alpha2": "MV",
@@ -1189,7 +1693,11 @@
       "subregion": "Southern Asia",
       "waehrung": "MVR",
       "bipUsd": 6600,
-      "einwohner": 525994
+      "einwohner": 525994,
+      "schuldenquote": {
+        "wert": 125.4,
+        "jahr": 2025
+      }
     },
     "MLI": {
       "alpha2": "ML",
@@ -1198,7 +1706,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 20905,
-      "einwohner": 23769127
+      "einwohner": 23769127,
+      "schuldenquote": {
+        "wert": 41.9,
+        "jahr": 2025
+      }
     },
     "MLT": {
       "alpha2": "MT",
@@ -1207,7 +1719,11 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 20957,
-      "einwohner": 552747
+      "einwohner": 552747,
+      "schuldenquote": {
+        "wert": 46.8,
+        "jahr": 2025
+      }
     },
     "MHL": {
       "alpha2": "MH",
@@ -1216,7 +1732,11 @@
       "subregion": "Micronesia",
       "waehrung": "USD",
       "bipUsd": 284,
-      "einwohner": 38827
+      "einwohner": 38827,
+      "schuldenquote": {
+        "wert": 11.8,
+        "jahr": 2025
+      }
     },
     "MTQ": {
       "alpha2": "MQ",
@@ -1232,7 +1752,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "MRU",
       "bipUsd": 10453,
-      "einwohner": 5022441
+      "einwohner": 5022441,
+      "schuldenquote": {
+        "wert": 40.1,
+        "jahr": 2025
+      }
     },
     "MUS": {
       "alpha2": "MU",
@@ -1241,7 +1765,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "MUR",
       "bipUsd": 14397,
-      "einwohner": 1248647
+      "einwohner": 1248647,
+      "schuldenquote": {
+        "wert": 86.5,
+        "jahr": 2025
+      }
     },
     "MYT": {
       "alpha2": "YT",
@@ -1257,7 +1785,15 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "MXN",
       "bipUsd": 1788887,
-      "einwohner": 129739759
+      "einwohner": 129739759,
+      "schuldenquote": {
+        "wert": 61.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 24463,
+        "jahr": 2025
+      }
     },
     "FSM": {
       "alpha2": "FM",
@@ -1266,7 +1802,11 @@
       "subregion": "Micronesia",
       "waehrung": "USD",
       "bipUsd": 460,
-      "einwohner": 112630
+      "einwohner": 112630,
+      "schuldenquote": {
+        "wert": 8.9,
+        "jahr": 2025
+      }
     },
     "MCO": {
       "alpha2": "MC",
@@ -1283,7 +1823,11 @@
       "subregion": "Eastern Asia",
       "waehrung": "MNT",
       "bipUsd": 19872,
-      "einwohner": 3481145
+      "einwohner": 3481145,
+      "schuldenquote": {
+        "wert": 45.1,
+        "jahr": 2025
+      }
     },
     "MNE": {
       "alpha2": "ME",
@@ -1292,7 +1836,11 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 7405,
-      "einwohner": 623529
+      "einwohner": 623529,
+      "schuldenquote": {
+        "wert": 67.1,
+        "jahr": 2025
+      }
     },
     "MSR": {
       "alpha2": "MS",
@@ -1308,7 +1856,11 @@
       "subregion": "Northern Africa",
       "waehrung": "MAD",
       "bipUsd": 141109,
-      "einwohner": 37712505
+      "einwohner": 37712505,
+      "schuldenquote": {
+        "wert": 67.1,
+        "jahr": 2025
+      }
     },
     "MOZ": {
       "alpha2": "MZ",
@@ -1317,7 +1869,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "MZN",
       "bipUsd": 20625,
-      "einwohner": 33635160
+      "einwohner": 33635160,
+      "schuldenquote": {
+        "wert": 102.5,
+        "jahr": 2025
+      }
     },
     "MMR": {
       "alpha2": "MM",
@@ -1326,7 +1882,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "MMK",
       "bipUsd": 64815,
-      "einwohner": 54133798
+      "einwohner": 54133798,
+      "schuldenquote": {
+        "wert": 51.9,
+        "jahr": 2025
+      }
     },
     "NAM": {
       "alpha2": "NA",
@@ -1335,7 +1895,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "NAD,ZAR",
       "bipUsd": 12351,
-      "einwohner": 2963095
+      "einwohner": 2963095,
+      "schuldenquote": {
+        "wert": 70.2,
+        "jahr": 2025
+      }
     },
     "NRU": {
       "alpha2": "NR",
@@ -1344,7 +1908,11 @@
       "subregion": "Micronesia",
       "waehrung": "AUD",
       "bipUsd": 154,
-      "einwohner": 11875
+      "einwohner": 11875,
+      "schuldenquote": {
+        "wert": 14.6,
+        "jahr": 2025
+      }
     },
     "NPL": {
       "alpha2": "NP",
@@ -1353,7 +1921,11 @@
       "subregion": "Southern Asia",
       "waehrung": "NPR",
       "bipUsd": 40908,
-      "einwohner": 29694614
+      "einwohner": 29694614,
+      "schuldenquote": {
+        "wert": 48.1,
+        "jahr": 2025
+      }
     },
     "NLD": {
       "alpha2": "NL",
@@ -1362,7 +1934,15 @@
       "subregion": "Western Europe",
       "waehrung": "EUR",
       "bipUsd": 1118125,
-      "einwohner": 17877117
+      "einwohner": 17877117,
+      "schuldenquote": {
+        "wert": 43.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 80136,
+        "jahr": 2025
+      }
     },
     "NCL": {
       "alpha2": "NC",
@@ -1379,7 +1959,15 @@
       "subregion": "Australia and New Zealand",
       "waehrung": "NZD",
       "bipUsd": 253466,
-      "einwohner": 5200000
+      "einwohner": 5200000,
+      "schuldenquote": {
+        "wert": 54.7,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 60896,
+        "jahr": 2025
+      }
     },
     "NIC": {
       "alpha2": "NI",
@@ -1388,7 +1976,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "NIO",
       "bipUsd": 17829,
-      "einwohner": 6823613
+      "einwohner": 6823613,
+      "schuldenquote": {
+        "wert": 34.8,
+        "jahr": 2025
+      }
     },
     "NER": {
       "alpha2": "NE",
@@ -1397,7 +1989,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 16819,
-      "einwohner": 26159867
+      "einwohner": 26159867,
+      "schuldenquote": {
+        "wert": 45.4,
+        "jahr": 2025
+      }
     },
     "NGA": {
       "alpha2": "NG",
@@ -1406,7 +2002,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "NGN",
       "bipUsd": 362815,
-      "einwohner": 227882945
+      "einwohner": 227882945,
+      "schuldenquote": {
+        "wert": 35.5,
+        "jahr": 2025
+      }
     },
     "NIU": {
       "alpha2": "NU",
@@ -1437,7 +2037,11 @@
       "subregion": "Southern Europe",
       "waehrung": "MKD",
       "bipUsd": 14761,
-      "einwohner": 1827816
+      "einwohner": 1827816,
+      "schuldenquote": {
+        "wert": 52.5,
+        "jahr": 2025
+      }
     },
     "NOR": {
       "alpha2": "NO",
@@ -1446,7 +2050,15 @@
       "subregion": "Northern Europe",
       "waehrung": "NOK",
       "bipUsd": 485513,
-      "einwohner": 5519601
+      "einwohner": 5519601,
+      "schuldenquote": {
+        "wert": 45,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 73462,
+        "jahr": 2025
+      }
     },
     "OMN": {
       "alpha2": "OM",
@@ -1455,7 +2067,11 @@
       "subregion": "Western Asia",
       "waehrung": "OMR",
       "bipUsd": 108192,
-      "einwohner": 5049269
+      "einwohner": 5049269,
+      "schuldenquote": {
+        "wert": 35.8,
+        "jahr": 2025
+      }
     },
     "PAK": {
       "alpha2": "PK",
@@ -1464,7 +2080,11 @@
       "subregion": "Southern Asia",
       "waehrung": "PKR",
       "bipUsd": 338368,
-      "einwohner": 247504495
+      "einwohner": 247504495,
+      "schuldenquote": {
+        "wert": 72.8,
+        "jahr": 2025
+      }
     },
     "PLW": {
       "alpha2": "PW",
@@ -1473,7 +2093,11 @@
       "subregion": "Micronesia",
       "waehrung": "USD",
       "bipUsd": 263,
-      "einwohner": 17727
+      "einwohner": 17727,
+      "schuldenquote": {
+        "wert": 62.3,
+        "jahr": 2025
+      }
     },
     "PAN": {
       "alpha2": "PA",
@@ -1482,7 +2106,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "PAB,USD",
       "bipUsd": 83382,
-      "einwohner": 4458759
+      "einwohner": 4458759,
+      "schuldenquote": {
+        "wert": 56.6,
+        "jahr": 2025
+      }
     },
     "PNG": {
       "alpha2": "PG",
@@ -1491,7 +2119,11 @@
       "subregion": "Melanesia",
       "waehrung": "PGK",
       "bipUsd": 30932,
-      "einwohner": 10389635
+      "einwohner": 10389635,
+      "schuldenquote": {
+        "wert": 52.1,
+        "jahr": 2025
+      }
     },
     "PRY": {
       "alpha2": "PY",
@@ -1500,7 +2132,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "PYG",
       "bipUsd": 42956,
-      "einwohner": 6844146
+      "einwohner": 6844146,
+      "schuldenquote": {
+        "wert": 38.1,
+        "jahr": 2025
+      }
     },
     "PER": {
       "alpha2": "PE",
@@ -1509,7 +2145,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "PEN",
       "bipUsd": 267603,
-      "einwohner": 33845617
+      "einwohner": 33845617,
+      "schuldenquote": {
+        "wert": 30.2,
+        "jahr": 2025
+      }
     },
     "PHL": {
       "alpha2": "PH",
@@ -1518,7 +2158,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "PHP",
       "bipUsd": 437146,
-      "einwohner": 114891199
+      "einwohner": 114891199,
+      "schuldenquote": {
+        "wert": 59.4,
+        "jahr": 2025
+      }
     },
     "PCN": {
       "alpha2": "PN",
@@ -1534,7 +2178,15 @@
       "subregion": "Eastern Europe",
       "waehrung": "PLN",
       "bipUsd": 811229,
-      "einwohner": 36687353
+      "einwohner": 36687353,
+      "schuldenquote": {
+        "wert": 58.8,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 49074,
+        "jahr": 2025
+      }
     },
     "PRT": {
       "alpha2": "PT",
@@ -1543,7 +2195,15 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 287080,
-      "einwohner": 10578174
+      "einwohner": 10578174,
+      "schuldenquote": {
+        "wert": 89.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 44937,
+        "jahr": 2025
+      }
     },
     "PRI": {
       "alpha2": "PR",
@@ -1552,7 +2212,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "USD",
       "bipUsd": 117902,
-      "einwohner": 3203792
+      "einwohner": 3203792,
+      "schuldenquote": {
+        "wert": 18,
+        "jahr": 2025
+      }
     },
     "QAT": {
       "alpha2": "QA",
@@ -1560,7 +2224,11 @@
       "region": "Asia",
       "subregion": "Western Asia",
       "waehrung": "QAR",
-      "einwohner": 2656032
+      "einwohner": 2656032,
+      "schuldenquote": {
+        "wert": 41.4,
+        "jahr": 2025
+      }
     },
     "KOR": {
       "alpha2": "KR",
@@ -1569,7 +2237,15 @@
       "subregion": "Eastern Asia",
       "waehrung": "KRW",
       "bipUsd": 1712793,
-      "einwohner": 51712619
+      "einwohner": 51712619,
+      "schuldenquote": {
+        "wert": 52.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 61259,
+        "jahr": 2025
+      }
     },
     "MDA": {
       "alpha2": "MD",
@@ -1578,7 +2254,11 @@
       "subregion": "Eastern Europe",
       "waehrung": "MDL",
       "bipUsd": 16539,
-      "einwohner": 2457783
+      "einwohner": 2457783,
+      "schuldenquote": {
+        "wert": 36.6,
+        "jahr": 2025
+      }
     },
     "REU": {
       "alpha2": "RE",
@@ -1594,7 +2274,11 @@
       "subregion": "Eastern Europe",
       "waehrung": "RON",
       "bipUsd": 351003,
-      "einwohner": 19061062
+      "einwohner": 19061062,
+      "schuldenquote": {
+        "wert": 60.6,
+        "jahr": 2025
+      }
     },
     "RUS": {
       "alpha2": "RU",
@@ -1603,7 +2287,11 @@
       "subregion": "Eastern Europe",
       "waehrung": "RUB",
       "bipUsd": 2021421,
-      "einwohner": 143826130
+      "einwohner": 143826130,
+      "schuldenquote": {
+        "wert": 17.2,
+        "jahr": 2025
+      }
     },
     "RWA": {
       "alpha2": "RW",
@@ -1612,7 +2300,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "RWF",
       "bipUsd": 14098,
-      "einwohner": 13954471
+      "einwohner": 13954471,
+      "schuldenquote": {
+        "wert": 64.6,
+        "jahr": 2025
+      }
     },
     "BLM": {
       "alpha2": "BL",
@@ -1635,7 +2327,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "XCD",
       "bipUsd": 1077,
-      "einwohner": 46758
+      "einwohner": 46758,
+      "schuldenquote": {
+        "wert": 58.4,
+        "jahr": 2025
+      }
     },
     "LCA": {
       "alpha2": "LC",
@@ -1644,7 +2340,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "XCD",
       "bipUsd": 2520,
-      "einwohner": 179285
+      "einwohner": 179285,
+      "schuldenquote": {
+        "wert": 77.1,
+        "jahr": 2025
+      }
     },
     "MAF": {
       "alpha2": "MF",
@@ -1668,7 +2368,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "XCD",
       "bipUsd": 1066,
-      "einwohner": 101323
+      "einwohner": 101323,
+      "schuldenquote": {
+        "wert": 113.4,
+        "jahr": 2025
+      }
     },
     "WSM": {
       "alpha2": "WS",
@@ -1677,7 +2381,11 @@
       "subregion": "Polynesia",
       "waehrung": "WST",
       "bipUsd": 934,
-      "einwohner": 216663
+      "einwohner": 216663,
+      "schuldenquote": {
+        "wert": 21.2,
+        "jahr": 2025
+      }
     },
     "SMR": {
       "alpha2": "SM",
@@ -1685,7 +2393,11 @@
       "region": "Europe",
       "subregion": "Southern Europe",
       "waehrung": "EUR",
-      "einwohner": 33860
+      "einwohner": 33860,
+      "schuldenquote": {
+        "wert": 60.6,
+        "jahr": 2025
+      }
     },
     "STP": {
       "alpha2": "ST",
@@ -1694,7 +2406,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "STN",
       "bipUsd": 603,
-      "einwohner": 230871
+      "einwohner": 230871,
+      "schuldenquote": {
+        "wert": 55.7,
+        "jahr": 2025
+      }
     },
     "SAU": {
       "alpha2": "SA",
@@ -1703,7 +2419,11 @@
       "subregion": "Western Asia",
       "waehrung": "SAR",
       "bipUsd": 1067583,
-      "einwohner": 33702731
+      "einwohner": 33702731,
+      "schuldenquote": {
+        "wert": 31.7,
+        "jahr": 2025
+      }
     },
     "SEN": {
       "alpha2": "SN",
@@ -1712,7 +2432,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 31014,
-      "einwohner": 18077573
+      "einwohner": 18077573,
+      "schuldenquote": {
+        "wert": 130.2,
+        "jahr": 2025
+      }
     },
     "SRB": {
       "alpha2": "RS",
@@ -1721,7 +2445,11 @@
       "subregion": "Southern Europe",
       "waehrung": "RSD",
       "bipUsd": 75187,
-      "einwohner": 6623183
+      "einwohner": 6623183,
+      "schuldenquote": {
+        "wert": 42.4,
+        "jahr": 2025
+      }
     },
     "SYC": {
       "alpha2": "SC",
@@ -1730,7 +2458,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "SCR",
       "bipUsd": 2141,
-      "einwohner": 119773
+      "einwohner": 119773,
+      "schuldenquote": {
+        "wert": 51.5,
+        "jahr": 2025
+      }
     },
     "SLE": {
       "alpha2": "SL",
@@ -1739,7 +2471,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "SLE",
       "bipUsd": 3810,
-      "einwohner": 8460512
+      "einwohner": 8460512,
+      "schuldenquote": {
+        "wert": 45.2,
+        "jahr": 2025
+      }
     },
     "SGP": {
       "alpha2": "SG",
@@ -1748,7 +2484,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "SGD",
       "bipUsd": 501428,
-      "einwohner": 5917648
+      "einwohner": 5917648,
+      "schuldenquote": {
+        "wert": 171.3,
+        "jahr": 2025
+      }
     },
     "SXM": {
       "alpha2": "SX",
@@ -1766,7 +2506,15 @@
       "subregion": "Eastern Europe",
       "waehrung": "EUR",
       "bipUsd": 132794,
-      "einwohner": 5426740
+      "einwohner": 5426740,
+      "schuldenquote": {
+        "wert": 61.6,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 37832,
+        "jahr": 2025
+      }
     },
     "SVN": {
       "alpha2": "SI",
@@ -1775,7 +2523,15 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 68217,
-      "einwohner": 2120461
+      "einwohner": 2120461,
+      "schuldenquote": {
+        "wert": 65.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 63376,
+        "jahr": 2025
+      }
     },
     "SLB": {
       "alpha2": "SB",
@@ -1784,7 +2540,11 @@
       "subregion": "Melanesia",
       "waehrung": "SBD",
       "bipUsd": 1631,
-      "einwohner": 800005
+      "einwohner": 800005,
+      "schuldenquote": {
+        "wert": 28.7,
+        "jahr": 2025
+      }
     },
     "SOM": {
       "alpha2": "SO",
@@ -1802,7 +2562,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "ZAR",
       "bipUsd": 377782,
-      "einwohner": 63212384
+      "einwohner": 63212384,
+      "schuldenquote": {
+        "wert": 78.6,
+        "jahr": 2025
+      }
     },
     "SGS": {
       "alpha2": "GS",
@@ -1817,7 +2581,11 @@
       "region": "Africa",
       "subregion": "Sub-Saharan Africa",
       "waehrung": "SSP",
-      "einwohner": 11483374
+      "einwohner": 11483374,
+      "schuldenquote": {
+        "wert": 62.1,
+        "jahr": 2025
+      }
     },
     "ESP": {
       "alpha2": "ES",
@@ -1826,7 +2594,15 @@
       "subregion": "Southern Europe",
       "waehrung": "EUR",
       "bipUsd": 1580695,
-      "einwohner": 48352528
+      "einwohner": 48352528,
+      "schuldenquote": {
+        "wert": 100.4,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 57779,
+        "jahr": 2025
+      }
     },
     "LKA": {
       "alpha2": "LK",
@@ -1835,7 +2611,11 @@
       "subregion": "Southern Asia",
       "waehrung": "LKR",
       "bipUsd": 84357,
-      "einwohner": 22037000
+      "einwohner": 22037000,
+      "schuldenquote": {
+        "wert": 100.8,
+        "jahr": 2024
+      }
     },
     "PSE": {
       "alpha2": "PS",
@@ -1853,7 +2633,11 @@
       "subregion": "Northern Africa",
       "waehrung": "SDG",
       "bipUsd": 109327,
-      "einwohner": 50042791
+      "einwohner": 50042791,
+      "schuldenquote": {
+        "wert": 187.6,
+        "jahr": 2025
+      }
     },
     "SUR": {
       "alpha2": "SR",
@@ -1862,7 +2646,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "SRD",
       "bipUsd": 3782,
-      "einwohner": 628886
+      "einwohner": 628886,
+      "schuldenquote": {
+        "wert": 105.8,
+        "jahr": 2025
+      }
     },
     "SJM": {
       "alpha2": "SJ",
@@ -1878,7 +2666,15 @@
       "subregion": "Northern Europe",
       "waehrung": "SEK",
       "bipUsd": 593268,
-      "einwohner": 10536632
+      "einwohner": 10536632,
+      "schuldenquote": {
+        "wert": 34.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 61443,
+        "jahr": 2025
+      }
     },
     "CHE": {
       "alpha2": "CH",
@@ -1887,7 +2683,15 @@
       "subregion": "Western Europe",
       "waehrung": "CHF",
       "bipUsd": 884940,
-      "einwohner": 8888822
+      "einwohner": 8888822,
+      "schuldenquote": {
+        "wert": 39.4,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 92285,
+        "jahr": 2025
+      }
     },
     "SYR": {
       "alpha2": "SY",
@@ -1895,14 +2699,22 @@
       "region": "Asia",
       "subregion": "Western Asia",
       "waehrung": "SYP",
-      "einwohner": 23594623
+      "einwohner": 23594623,
+      "schuldenquote": {
+        "wert": 30,
+        "jahr": 2010
+      }
     },
     "TWN": {
       "alpha2": "TW",
       "numerisch": "158",
       "region": "Asia",
       "subregion": "Eastern Asia",
-      "waehrung": "TWD"
+      "waehrung": "TWD",
+      "schuldenquote": {
+        "wert": 22.4,
+        "jahr": 2025
+      }
     },
     "TJK": {
       "alpha2": "TJ",
@@ -1911,7 +2723,11 @@
       "subregion": "Central Asia",
       "waehrung": "TJS",
       "bipUsd": 12061,
-      "einwohner": 10389799
+      "einwohner": 10389799,
+      "schuldenquote": {
+        "wert": 21.6,
+        "jahr": 2025
+      }
     },
     "THA": {
       "alpha2": "TH",
@@ -1920,7 +2736,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "THB",
       "bipUsd": 514945,
-      "einwohner": 71702435
+      "einwohner": 71702435,
+      "schuldenquote": {
+        "wert": 64.7,
+        "jahr": 2025
+      }
     },
     "TLS": {
       "alpha2": "TL",
@@ -1929,7 +2749,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "USD",
       "bipUsd": 2243,
-      "einwohner": 1384286
+      "einwohner": 1384286,
+      "schuldenquote": {
+        "wert": 14.3,
+        "jahr": 2025
+      }
     },
     "TGO": {
       "alpha2": "TG",
@@ -1938,7 +2762,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "XOF",
       "bipUsd": 9171,
-      "einwohner": 9304337
+      "einwohner": 9304337,
+      "schuldenquote": {
+        "wert": 63,
+        "jahr": 2025
+      }
     },
     "TKL": {
       "alpha2": "TK",
@@ -1953,7 +2781,11 @@
       "region": "Oceania",
       "subregion": "Polynesia",
       "waehrung": "TOP",
-      "einwohner": 104597
+      "einwohner": 104597,
+      "schuldenquote": {
+        "wert": 27.4,
+        "jahr": 2025
+      }
     },
     "TTO": {
       "alpha2": "TT",
@@ -1962,7 +2794,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "TTD",
       "bipUsd": 28140,
-      "einwohner": 1367510
+      "einwohner": 1367510,
+      "schuldenquote": {
+        "wert": 84.2,
+        "jahr": 2025
+      }
     },
     "TUN": {
       "alpha2": "TN",
@@ -1971,7 +2807,11 @@
       "subregion": "Northern Africa",
       "waehrung": "TND",
       "bipUsd": 48530,
-      "einwohner": 12200431
+      "einwohner": 12200431,
+      "schuldenquote": {
+        "wert": 81.3,
+        "jahr": 2025
+      }
     },
     "TUR": {
       "alpha2": "TR",
@@ -1980,7 +2820,15 @@
       "subregion": "Western Asia",
       "waehrung": "",
       "bipUsd": 1108022,
-      "einwohner": 85325965
+      "einwohner": 85325965,
+      "schuldenquote": {
+        "wert": 23.5,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 57275,
+        "jahr": 2024
+      }
     },
     "TKM": {
       "alpha2": "TM",
@@ -1989,7 +2837,11 @@
       "subregion": "Central Asia",
       "waehrung": "TMT",
       "bipUsd": 59887,
-      "einwohner": 7364438
+      "einwohner": 7364438,
+      "schuldenquote": {
+        "wert": 3.8,
+        "jahr": 2025
+      }
     },
     "TCA": {
       "alpha2": "TC",
@@ -2007,7 +2859,11 @@
       "subregion": "Polynesia",
       "waehrung": "AUD",
       "bipUsd": 62,
-      "einwohner": 9816
+      "einwohner": 9816,
+      "schuldenquote": {
+        "wert": 3.6,
+        "jahr": 2025
+      }
     },
     "UGA": {
       "alpha2": "UG",
@@ -2016,7 +2872,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "UGX",
       "bipUsd": 49273,
-      "einwohner": 48656601
+      "einwohner": 48656601,
+      "schuldenquote": {
+        "wert": 54.2,
+        "jahr": 2025
+      }
     },
     "UKR": {
       "alpha2": "UA",
@@ -2025,7 +2885,11 @@
       "subregion": "Eastern Europe",
       "waehrung": "UAH",
       "bipUsd": 178757,
-      "einwohner": 37732836
+      "einwohner": 37732836,
+      "schuldenquote": {
+        "wert": 108.7,
+        "jahr": 2025
+      }
     },
     "ARE": {
       "alpha2": "AE",
@@ -2034,7 +2898,11 @@
       "subregion": "Western Asia",
       "waehrung": "AED",
       "bipUsd": 504173,
-      "einwohner": 10483751
+      "einwohner": 10483751,
+      "schuldenquote": {
+        "wert": 34.3,
+        "jahr": 2025
+      }
     },
     "GBR": {
       "alpha2": "GB",
@@ -2043,7 +2911,15 @@
       "subregion": "Northern Europe",
       "waehrung": "GBP",
       "bipUsd": 3340032,
-      "einwohner": 68492000
+      "einwohner": 68492000,
+      "schuldenquote": {
+        "wert": 102.3,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 66299,
+        "jahr": 2025
+      }
     },
     "TZA": {
       "alpha2": "TZ",
@@ -2052,7 +2928,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "TZS",
       "bipUsd": 79158,
-      "einwohner": 66617606
+      "einwohner": 66617606,
+      "schuldenquote": {
+        "wert": 49.7,
+        "jahr": 2025
+      }
     },
     "UMI": {
       "alpha2": "UM",
@@ -2068,7 +2948,15 @@
       "subregion": "Northern America",
       "waehrung": "USD",
       "bipUsd": 27360935,
-      "einwohner": 336806231
+      "einwohner": 336806231,
+      "schuldenquote": {
+        "wert": 123.9,
+        "jahr": 2025
+      },
+      "durchschnittsgehalt": {
+        "wert": 86977,
+        "jahr": 2025
+      }
     },
     "VIR": {
       "alpha2": "VI",
@@ -2085,7 +2973,11 @@
       "subregion": "Latin America and the Caribbean",
       "waehrung": "UYU,UYW",
       "bipUsd": 77241,
-      "einwohner": 3388081
+      "einwohner": 3388081,
+      "schuldenquote": {
+        "wert": 65.7,
+        "jahr": 2025
+      }
     },
     "UZB": {
       "alpha2": "UZ",
@@ -2094,7 +2986,11 @@
       "subregion": "Central Asia",
       "waehrung": "UZS",
       "bipUsd": 90889,
-      "einwohner": 35652307
+      "einwohner": 35652307,
+      "schuldenquote": {
+        "wert": 28.6,
+        "jahr": 2025
+      }
     },
     "VUT": {
       "alpha2": "VU",
@@ -2103,7 +2999,11 @@
       "subregion": "Melanesia",
       "waehrung": "VUV",
       "bipUsd": 1126,
-      "einwohner": 320409
+      "einwohner": 320409,
+      "schuldenquote": {
+        "wert": 40.9,
+        "jahr": 2025
+      }
     },
     "VEN": {
       "alpha2": "VE",
@@ -2111,7 +3011,11 @@
       "region": "Americas",
       "subregion": "Latin America and the Caribbean",
       "waehrung": "VES,VED",
-      "einwohner": 28300854
+      "einwohner": 28300854,
+      "schuldenquote": {
+        "wert": 308.7,
+        "jahr": 2025
+      }
     },
     "VNM": {
       "alpha2": "VN",
@@ -2120,7 +3024,11 @@
       "subregion": "South-eastern Asia",
       "waehrung": "VND",
       "bipUsd": 429717,
-      "einwohner": 100352192
+      "einwohner": 100352192,
+      "schuldenquote": {
+        "wert": 30.3,
+        "jahr": 2025
+      }
     },
     "WLF": {
       "alpha2": "WF",
@@ -2151,7 +3059,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "ZMW",
       "bipUsd": 28163,
-      "einwohner": 20723965
+      "einwohner": 20723965,
+      "schuldenquote": {
+        "wert": 86,
+        "jahr": 2025
+      }
     },
     "ZWE": {
       "alpha2": "ZW",
@@ -2160,7 +3072,11 @@
       "subregion": "Sub-Saharan Africa",
       "waehrung": "ZWG",
       "bipUsd": 26538,
-      "einwohner": 16340822
+      "einwohner": 16340822,
+      "schuldenquote": {
+        "wert": 43.8,
+        "jahr": 2025
+      }
     }
   }
 }
