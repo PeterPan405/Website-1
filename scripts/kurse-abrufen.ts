@@ -128,6 +128,50 @@ async function main(): Promise<void> {
     return
   }
 
+  console.log(
+    `[kurse] ${uebernommen.length} Instrumente aktualisiert: ${uebernommen.join(', ')}`
+  )
+  if (behalten.length > 0) {
+    console.log(`[kurse] Bisheriger Stand behalten für: ${behalten.join(', ')}`)
+  }
+
+  /*
+    Teilausfälle sichtbar machen.
+
+    Der erste Lauf endete grün, obwohl sechs von elf Instrumenten nichts
+    bekamen – „zusammenführen statt verwerfen“ funktionierte wie vorgesehen, nur
+    stand das Ergebnis ausschließlich mitten im Protokoll. Wer nur auf das grüne
+    Häkchen schaut, hält den Lauf für vollständig.
+
+    Eine Warnung erscheint dagegen oben auf der Übersicht des Laufs. Der Lauf
+    bleibt trotzdem erfolgreich: Ein Teilausfall ist ausdrücklich vorgesehen und
+    soll die Bereitstellung der übrigen Kurse nicht verhindern.
+  */
+  if (behalten.length > 0) {
+    console.log(
+      `::warning title=${behalten.length} von ${behalten.length + uebernommen.length} Instrumenten ohne neue Kurse::` +
+        `${behalten.join(', ')} – diese Instrumente behalten ihren bisherigen Stand.`
+    )
+  }
+
+  /*
+    Nichts schreiben, wenn sich kein Kurs geändert hat.
+
+    `fetchedAt` ändert sich bei jedem Lauf. Ohne diesen Vergleich entstünde
+    deshalb auch dann ein Commit, wenn die Kurse identisch sind – und weil ein
+    Push nach `main` die Bereitstellung bei Hostinger auslöst, würde die ganze
+    Website neu gebaut, um einen Zeitstempel zu ändern, den niemand sieht.
+
+    Genau das ist am ersten Tag dreimal passiert: drei Commits „Kurse: Stand
+    2026-07-27“ hintereinander, drei Bereitstellungen, kein einziger neuer Kurs.
+  */
+  const vorher = serializeSnapshot({ fetchedAt: null, instruments: bisher.instruments })
+  const nachher = serializeSnapshot({ fetchedAt: null, instruments: instrumente })
+  if (vorher === nachher) {
+    console.log('[kurse] Keine Kursänderung – Datei bleibt unberührt.')
+    return
+  }
+
   const neu: MarketSnapshot = {
     fetchedAt: new Date().toISOString(),
     instruments: instrumente,
@@ -141,12 +185,6 @@ async function main(): Promise<void> {
     0
   )
 
-  console.log(
-    `[kurse] ${uebernommen.length} Instrumente aktualisiert: ${uebernommen.join(', ')}`
-  )
-  if (behalten.length > 0) {
-    console.log(`[kurse] Bisheriger Stand behalten für: ${behalten.join(', ')}`)
-  }
   console.log(`[kurse] ${punkteGesamt} Kurswerte in ${ZIEL}`)
 }
 

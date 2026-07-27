@@ -8,7 +8,6 @@ import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SourceSummary } from '@/components/markets/SourceNote'
-import { DemoNotice } from '@/components/ui/DemoNotice'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -206,28 +205,16 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               </div>
             </section>
 
-            <div className="mt-10">
-              {quote.source ? (
-                <div className="rounded-card border-border bg-surface-muted border p-5 sm:p-6">
-                  <SourceSummary quotes={[quote]} />
-                  <p className="text-fg-subtle mt-2 text-xs">
-                    Der Verlauf reicht vom {formatDateShort(coverage.from)} bis{' '}
-                    {formatDateShort(coverage.to)}. Ältere Abschnitte sind auf einen Wert
-                    je Woche verdichtet.
-                  </p>
-                </div>
-              ) : (
-                <DemoNotice title="Demo-Kurse">
-                  <p>
-                    Für dieses Instrument gibt es keine frei zugängliche Quelle. Der
-                    gezeigte Verlauf ist{' '}
-                    <strong className="text-fg font-semibold">rechnerisch erzeugt</strong>{' '}
-                    und entspricht keinen echten Marktpreisen. Der Beispieldatensatz deckt
-                    den Zeitraum vom {formatDateShort(coverage.from)} bis{' '}
-                    {formatDateShort(coverage.to)} ab.
-                  </p>
-                </DemoNotice>
-              )}
+            <div className="border-border mt-10 border-t pt-5">
+              <SourceSummary
+                quotes={[quote]}
+                className="text-fg-subtle text-sm leading-relaxed"
+              />
+              <p className="text-fg-subtle mt-1 text-xs">
+                Verlauf vom {formatDateShort(coverage.from)} bis{' '}
+                {formatDateShort(coverage.to)}; ältere Abschnitte auf einen Wert je Woche
+                verdichtet.
+              </p>
             </div>
           </div>
 
