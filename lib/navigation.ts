@@ -128,6 +128,37 @@ export const mainNav: NavItem[] = [
     ],
     footerLink: { label: `Alle ${LEARN_TOPIC_COUNT} Themen ansehen`, href: '/lernen' },
   },
+  {
+    label: 'Globus',
+    href: '/globus',
+    area: 'globe',
+    /*
+      Bewusst zwischen „Lernen“ und „Staatsverschuldung“.
+
+      Der Globus beantwortet die Frage, die zwischen beiden steht: Wo auf der
+      Welt findet das eigentlich statt, worüber die Lernthemen sprechen – und
+      wie groß ist es dort. Die Staatsverschuldung ist danach der Sonderfall
+      einer einzelnen Kennzahl im Detail.
+    */
+    children: [
+      {
+        label: 'Wirtschaftsleistung',
+        href: '/globus',
+        hint: 'BIP, Einwohner und BIP pro Kopf für über 180 Länder',
+      },
+      {
+        label: 'Kurse nach Herkunft',
+        href: '/globus',
+        hint: 'Welche Indizes und Aktien aus welchem Land kommen',
+      },
+      {
+        label: 'Alle Länder als Tabelle',
+        href: '/globus#tabelle',
+        hint: 'Dieselben Zahlen zum Nachlesen und Vergleichen',
+      },
+    ],
+    footerLink: { label: 'Globus öffnen', href: '/globus' },
+  },
   { label: 'Staatsverschuldung', href: '/staatsverschuldung', area: 'debt' },
 ]
 
@@ -140,6 +171,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },
+      { label: 'Globus', href: '/globus' },
       { label: 'Staatsverschuldung', href: '/staatsverschuldung' },
     ],
   },

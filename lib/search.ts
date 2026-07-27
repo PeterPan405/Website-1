@@ -25,6 +25,21 @@ export type { SearchEntry }
 /** Feste Seiten ohne eigene Datenquelle. */
 const seiten: SearchEntry[] = [
   {
+    title: 'Globus',
+    href: '/globus',
+    kind: 'Plattform',
+    hint: 'Weltwirtschaft zum Drehen: BIP, Einwohner, Wohlstand und Schulden je Land – und die Kurse, die von dort kommen.',
+    keywords: [
+      'globus',
+      'weltkarte',
+      'laender',
+      'weltwirtschaft',
+      'bip',
+      'einwohner',
+      'karte',
+    ],
+  },
+  {
     title: 'Über uns',
     href: '/ueber-uns',
     kind: 'Plattform',

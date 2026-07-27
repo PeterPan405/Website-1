@@ -1,0 +1,2156 @@
+{
+  "abgerufenAm": "2026-07-27T14:10:23.986Z",
+  "bezugsjahr": 2023,
+  "quelle": {
+    "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
+    "urls": [
+      "https://raw.githubusercontent.com/datasets/gdp/main/data/gdp.csv",
+      "https://raw.githubusercontent.com/datasets/population/main/data/population.csv",
+      "https://raw.githubusercontent.com/datasets/country-codes/master/data/country-codes.csv"
+    ]
+  },
+  "laender": {
+    "AFG": {
+      "alpha2": "AF",
+      "numerisch": "004",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "AFN",
+      "einwohner": 41454761
+    },
+    "ALA": {
+      "alpha2": "AX",
+      "numerisch": "248",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "EUR"
+    },
+    "ALB": {
+      "alpha2": "AL",
+      "numerisch": "008",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "ALL",
+      "bipUsd": 22978,
+      "einwohner": 2414095
+    },
+    "DZA": {
+      "alpha2": "DZ",
+      "numerisch": "012",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "waehrung": "DZD",
+      "bipUsd": 239899,
+      "einwohner": 46164219
+    },
+    "ASM": {
+      "alpha2": "AS",
+      "numerisch": "016",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "USD",
+      "einwohner": 47521
+    },
+    "AND": {
+      "alpha2": "AD",
+      "numerisch": "020",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 3728,
+      "einwohner": 80856
+    },
+    "AGO": {
+      "alpha2": "AO",
+      "numerisch": "024",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "AOA",
+      "bipUsd": 84723,
+      "einwohner": 36749906
+    },
+    "AIA": {
+      "alpha2": "AI",
+      "numerisch": "660",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD"
+    },
+    "ATA": {
+      "alpha2": "AQ",
+      "numerisch": "010",
+      "region": "",
+      "subregion": "",
+      "waehrung": ""
+    },
+    "ATG": {
+      "alpha2": "AG",
+      "numerisch": "028",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD",
+      "bipUsd": 2033,
+      "einwohner": 93316
+    },
+    "ARG": {
+      "alpha2": "AR",
+      "numerisch": "032",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "ARS",
+      "bipUsd": 640591,
+      "einwohner": 45538401
+    },
+    "ARM": {
+      "alpha2": "AM",
+      "numerisch": "051",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "AMD",
+      "bipUsd": 24212,
+      "einwohner": 2964300
+    },
+    "ABW": {
+      "alpha2": "AW",
+      "numerisch": "533",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "AWG",
+      "einwohner": 107359
+    },
+    "AUS": {
+      "alpha2": "AU",
+      "numerisch": "036",
+      "region": "Oceania",
+      "subregion": "Australia and New Zealand",
+      "waehrung": "AUD",
+      "bipUsd": 1723827,
+      "einwohner": 26659922
+    },
+    "AUT": {
+      "alpha2": "AT",
+      "numerisch": "040",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "EUR",
+      "bipUsd": 516034,
+      "einwohner": 9131761
+    },
+    "AZE": {
+      "alpha2": "AZ",
+      "numerisch": "031",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "AZN",
+      "bipUsd": 72356,
+      "einwohner": 10153958
+    },
+    "BHS": {
+      "alpha2": "BS",
+      "numerisch": "044",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "BSD",
+      "bipUsd": 14339,
+      "einwohner": 399440
+    },
+    "BHR": {
+      "alpha2": "BH",
+      "numerisch": "048",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "BHD",
+      "bipUsd": 43205,
+      "einwohner": 1577059
+    },
+    "BGD": {
+      "alpha2": "BD",
+      "numerisch": "050",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "BDT",
+      "bipUsd": 437415,
+      "einwohner": 171466990
+    },
+    "BRB": {
+      "alpha2": "BB",
+      "numerisch": "052",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "BBD",
+      "bipUsd": 6394,
+      "einwohner": 282336
+    },
+    "BLR": {
+      "alpha2": "BY",
+      "numerisch": "112",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "BYN",
+      "bipUsd": 71857,
+      "einwohner": 9178298
+    },
+    "BEL": {
+      "alpha2": "BE",
+      "numerisch": "056",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "EUR",
+      "bipUsd": 632217,
+      "einwohner": 11779946
+    },
+    "BLZ": {
+      "alpha2": "BZ",
+      "numerisch": "084",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "BZD",
+      "bipUsd": 3282,
+      "einwohner": 411106
+    },
+    "BEN": {
+      "alpha2": "BJ",
+      "numerisch": "204",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 19673,
+      "einwohner": 14111034
+    },
+    "BMU": {
+      "alpha2": "BM",
+      "numerisch": "060",
+      "region": "Americas",
+      "subregion": "Northern America",
+      "waehrung": "BMD",
+      "einwohner": 64698
+    },
+    "BTN": {
+      "alpha2": "BT",
+      "numerisch": "064",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "INR,BTN",
+      "einwohner": 786385
+    },
+    "BOL": {
+      "alpha2": "BO",
+      "numerisch": "068",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "BOB",
+      "bipUsd": 45850,
+      "einwohner": 12244159
+    },
+    "BES": {
+      "alpha2": "BQ",
+      "numerisch": "535",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "USD"
+    },
+    "BIH": {
+      "alpha2": "BA",
+      "numerisch": "070",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "BAM",
+      "bipUsd": 27055,
+      "einwohner": 3185073
+    },
+    "BWA": {
+      "alpha2": "BW",
+      "numerisch": "072",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "BWP",
+      "bipUsd": 19396,
+      "einwohner": 2480244
+    },
+    "BVT": {
+      "alpha2": "BV",
+      "numerisch": "074",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "NOK"
+    },
+    "BRA": {
+      "alpha2": "BR",
+      "numerisch": "076",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "BRL",
+      "bipUsd": 2173666,
+      "einwohner": 211140729
+    },
+    "IOT": {
+      "alpha2": "IO",
+      "numerisch": "086",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "USD"
+    },
+    "VGB": {
+      "alpha2": "VG",
+      "numerisch": "092",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "USD",
+      "einwohner": 38985
+    },
+    "BRN": {
+      "alpha2": "BN",
+      "numerisch": "096",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "BND",
+      "bipUsd": 15128,
+      "einwohner": 458949
+    },
+    "BGR": {
+      "alpha2": "BG",
+      "numerisch": "100",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 101584,
+      "einwohner": 6446596
+    },
+    "BFA": {
+      "alpha2": "BF",
+      "numerisch": "854",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 20325,
+      "einwohner": 23025776
+    },
+    "BDI": {
+      "alpha2": "BI",
+      "numerisch": "108",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "BIF",
+      "bipUsd": 2642,
+      "einwohner": 13689450
+    },
+    "CPV": {
+      "alpha2": "CV",
+      "numerisch": "132",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "CVE",
+      "bipUsd": 2587,
+      "einwohner": 522331
+    },
+    "KHM": {
+      "alpha2": "KH",
+      "numerisch": "116",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "KHR",
+      "bipUsd": 31773,
+      "einwohner": 17423880
+    },
+    "CMR": {
+      "alpha2": "CM",
+      "numerisch": "120",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XAF",
+      "bipUsd": 47946,
+      "einwohner": 28372687
+    },
+    "CAN": {
+      "alpha2": "CA",
+      "numerisch": "124",
+      "region": "Americas",
+      "subregion": "Northern America",
+      "waehrung": "CAD",
+      "bipUsd": 2140086,
+      "einwohner": 40083484
+    },
+    "CYM": {
+      "alpha2": "KY",
+      "numerisch": "136",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "KYD",
+      "einwohner": 73038
+    },
+    "CAF": {
+      "alpha2": "CF",
+      "numerisch": "140",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XAF",
+      "bipUsd": 2555,
+      "einwohner": 5152421
+    },
+    "TCD": {
+      "alpha2": "TD",
+      "numerisch": "148",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XAF",
+      "bipUsd": 13149,
+      "einwohner": 19319064
+    },
+    "CHL": {
+      "alpha2": "CL",
+      "numerisch": "152",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "CLP",
+      "bipUsd": 335533,
+      "einwohner": 19658835
+    },
+    "CHN": {
+      "alpha2": "CN",
+      "numerisch": "156",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "CNY",
+      "bipUsd": 17794782,
+      "einwohner": 1410710000
+    },
+    "HKG": {
+      "alpha2": "HK",
+      "numerisch": "344",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "HKD",
+      "bipUsd": 382055,
+      "einwohner": 7536100
+    },
+    "MAC": {
+      "alpha2": "MO",
+      "numerisch": "446",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "MOP",
+      "bipUsd": 47062,
+      "einwohner": 678800
+    },
+    "CXR": {
+      "alpha2": "CX",
+      "numerisch": "162",
+      "region": "Oceania",
+      "subregion": "Australia and New Zealand",
+      "waehrung": "AUD"
+    },
+    "CCK": {
+      "alpha2": "CC",
+      "numerisch": "166",
+      "region": "Oceania",
+      "subregion": "Australia and New Zealand",
+      "waehrung": "AUD"
+    },
+    "COL": {
+      "alpha2": "CO",
+      "numerisch": "170",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "COP",
+      "bipUsd": 363540,
+      "einwohner": 52321152
+    },
+    "COM": {
+      "alpha2": "KM",
+      "numerisch": "174",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "KMF",
+      "bipUsd": 1352,
+      "einwohner": 850387
+    },
+    "COG": {
+      "alpha2": "CG",
+      "numerisch": "178",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XAF",
+      "bipUsd": 15321,
+      "einwohner": 6182885
+    },
+    "COK": {
+      "alpha2": "CK",
+      "numerisch": "184",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "NZD"
+    },
+    "CRI": {
+      "alpha2": "CR",
+      "numerisch": "188",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "CRC",
+      "bipUsd": 86498,
+      "einwohner": 5105525
+    },
+    "HRV": {
+      "alpha2": "HR",
+      "numerisch": "191",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 82689,
+      "einwohner": 3859686
+    },
+    "CUB": {
+      "alpha2": "CU",
+      "numerisch": "192",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "CUP",
+      "einwohner": 11019931
+    },
+    "CUW": {
+      "alpha2": "CW",
+      "numerisch": "531",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCG",
+      "einwohner": 154654
+    },
+    "CYP": {
+      "alpha2": "CY",
+      "numerisch": "196",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "EUR",
+      "bipUsd": 32230,
+      "einwohner": 1344976
+    },
+    "CZE": {
+      "alpha2": "CZ",
+      "numerisch": "203",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "CZK",
+      "bipUsd": 330858,
+      "einwohner": 10864042
+    },
+    "PRK": {
+      "alpha2": "KP",
+      "numerisch": "408",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "KPW",
+      "einwohner": 26418204
+    },
+    "COD": {
+      "alpha2": "CD",
+      "numerisch": "180",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "CDF",
+      "bipUsd": 66383,
+      "einwohner": 105789731
+    },
+    "DNK": {
+      "alpha2": "DK",
+      "numerisch": "208",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "DKK",
+      "bipUsd": 404199,
+      "einwohner": 5946952
+    },
+    "DJI": {
+      "alpha2": "DJ",
+      "numerisch": "262",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "DJF",
+      "bipUsd": 4099,
+      "einwohner": 1152944
+    },
+    "DMA": {
+      "alpha2": "DM",
+      "numerisch": "212",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD",
+      "bipUsd": 654,
+      "einwohner": 66510
+    },
+    "DOM": {
+      "alpha2": "DO",
+      "numerisch": "214",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "DOP",
+      "bipUsd": 121444,
+      "einwohner": 11331265
+    },
+    "ECU": {
+      "alpha2": "EC",
+      "numerisch": "218",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "USD",
+      "bipUsd": 118845,
+      "einwohner": 17980083
+    },
+    "EGY": {
+      "alpha2": "EG",
+      "numerisch": "818",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "waehrung": "EGP",
+      "bipUsd": 395926,
+      "einwohner": 114535772
+    },
+    "SLV": {
+      "alpha2": "SV",
+      "numerisch": "222",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "SVC,USD",
+      "bipUsd": 34016,
+      "einwohner": 6309624
+    },
+    "GNQ": {
+      "alpha2": "GQ",
+      "numerisch": "226",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XAF",
+      "bipUsd": 12117,
+      "einwohner": 1847549
+    },
+    "ERI": {
+      "alpha2": "ER",
+      "numerisch": "232",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "ERN",
+      "einwohner": 3470390
+    },
+    "EST": {
+      "alpha2": "EE",
+      "numerisch": "233",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 40745,
+      "einwohner": 1370286
+    },
+    "SWZ": {
+      "alpha2": "SZ",
+      "numerisch": "748",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "SZL",
+      "bipUsd": 4598,
+      "einwohner": 1230506
+    },
+    "ETH": {
+      "alpha2": "ET",
+      "numerisch": "231",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "ETB",
+      "bipUsd": 163698,
+      "einwohner": 128691692
+    },
+    "FLK": {
+      "alpha2": "FK",
+      "numerisch": "238",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "FKP"
+    },
+    "FRO": {
+      "alpha2": "FO",
+      "numerisch": "234",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "DKK",
+      "einwohner": 54414
+    },
+    "FJI": {
+      "alpha2": "FJ",
+      "numerisch": "242",
+      "region": "Oceania",
+      "subregion": "Melanesia",
+      "waehrung": "FJD",
+      "bipUsd": 5495,
+      "einwohner": 924145
+    },
+    "FIN": {
+      "alpha2": "FI",
+      "numerisch": "246",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 300187,
+      "einwohner": 5583911
+    },
+    "FRA": {
+      "alpha2": "FR",
+      "numerisch": "250",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "EUR",
+      "bipUsd": 3030904,
+      "einwohner": 68372286
+    },
+    "GUF": {
+      "alpha2": "GF",
+      "numerisch": "254",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "EUR"
+    },
+    "PYF": {
+      "alpha2": "PF",
+      "numerisch": "258",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "XPF",
+      "einwohner": 281118
+    },
+    "ATF": {
+      "alpha2": "TF",
+      "numerisch": "260",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "EUR"
+    },
+    "GAB": {
+      "alpha2": "GA",
+      "numerisch": "266",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XAF",
+      "bipUsd": 20516,
+      "einwohner": 2484789
+    },
+    "GMB": {
+      "alpha2": "GM",
+      "numerisch": "270",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "GMD",
+      "bipUsd": 2340,
+      "einwohner": 2697845
+    },
+    "GEO": {
+      "alpha2": "GE",
+      "numerisch": "268",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "GEL",
+      "bipUsd": 30536,
+      "einwohner": 3715483
+    },
+    "DEU": {
+      "alpha2": "DE",
+      "numerisch": "276",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "EUR",
+      "bipUsd": 4456081,
+      "einwohner": 83287273
+    },
+    "GHA": {
+      "alpha2": "GH",
+      "numerisch": "288",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "GHS",
+      "bipUsd": 76370,
+      "einwohner": 33787914
+    },
+    "GIB": {
+      "alpha2": "GI",
+      "numerisch": "292",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "GIP",
+      "einwohner": 38471
+    },
+    "GRC": {
+      "alpha2": "GR",
+      "numerisch": "300",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 238206,
+      "einwohner": 10407351
+    },
+    "GRL": {
+      "alpha2": "GL",
+      "numerisch": "304",
+      "region": "Americas",
+      "subregion": "Northern America",
+      "waehrung": "DKK",
+      "einwohner": 56865
+    },
+    "GRD": {
+      "alpha2": "GD",
+      "numerisch": "308",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD",
+      "bipUsd": 1320,
+      "einwohner": 117081
+    },
+    "GLP": {
+      "alpha2": "GP",
+      "numerisch": "312",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "EUR"
+    },
+    "GUM": {
+      "alpha2": "GU",
+      "numerisch": "316",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "USD",
+      "einwohner": 166506
+    },
+    "GTM": {
+      "alpha2": "GT",
+      "numerisch": "320",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "GTQ",
+      "bipUsd": 102050,
+      "einwohner": 18124838
+    },
+    "GGY": {
+      "alpha2": "GG",
+      "numerisch": "831",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "GBP"
+    },
+    "GIN": {
+      "alpha2": "GN",
+      "numerisch": "324",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "GNF",
+      "bipUsd": 23612,
+      "einwohner": 14405468
+    },
+    "GNB": {
+      "alpha2": "GW",
+      "numerisch": "624",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 1966,
+      "einwohner": 2153339
+    },
+    "GUY": {
+      "alpha2": "GY",
+      "numerisch": "328",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "GYD",
+      "bipUsd": 16786,
+      "einwohner": 826353
+    },
+    "HTI": {
+      "alpha2": "HT",
+      "numerisch": "332",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "HTG,USD",
+      "bipUsd": 19851,
+      "einwohner": 11637398
+    },
+    "HMD": {
+      "alpha2": "HM",
+      "numerisch": "334",
+      "region": "Oceania",
+      "subregion": "Australia and New Zealand",
+      "waehrung": "AUD"
+    },
+    "VAT": {
+      "alpha2": "VA",
+      "numerisch": "336",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR"
+    },
+    "HND": {
+      "alpha2": "HN",
+      "numerisch": "340",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "HNL",
+      "bipUsd": 34401,
+      "einwohner": 10644851
+    },
+    "HUN": {
+      "alpha2": "HU",
+      "numerisch": "348",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "HUF",
+      "bipUsd": 212389,
+      "einwohner": 9592186
+    },
+    "ISL": {
+      "alpha2": "IS",
+      "numerisch": "352",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "ISK",
+      "bipUsd": 31020,
+      "einwohner": 385663
+    },
+    "IND": {
+      "alpha2": "IN",
+      "numerisch": "356",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "INR",
+      "bipUsd": 3549919,
+      "einwohner": 1438069596
+    },
+    "IDN": {
+      "alpha2": "ID",
+      "numerisch": "360",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "IDR",
+      "bipUsd": 1371171,
+      "einwohner": 281190067
+    },
+    "IRN": {
+      "alpha2": "IR",
+      "numerisch": "364",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "IRR",
+      "bipUsd": 401505,
+      "einwohner": 90608707
+    },
+    "IRQ": {
+      "alpha2": "IQ",
+      "numerisch": "368",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "IQD",
+      "bipUsd": 250843,
+      "einwohner": 45074049
+    },
+    "IRL": {
+      "alpha2": "IE",
+      "numerisch": "372",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 545629,
+      "einwohner": 5311538
+    },
+    "IMN": {
+      "alpha2": "IM",
+      "numerisch": "833",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "GBP",
+      "einwohner": 84165
+    },
+    "ISR": {
+      "alpha2": "IL",
+      "numerisch": "376",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "ILS",
+      "bipUsd": 509901,
+      "einwohner": 9849000
+    },
+    "ITA": {
+      "alpha2": "IT",
+      "numerisch": "380",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 2254851,
+      "einwohner": 58984216
+    },
+    "CIV": {
+      "alpha2": "CI",
+      "numerisch": "384",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 78789,
+      "einwohner": 31165654
+    },
+    "JAM": {
+      "alpha2": "JM",
+      "numerisch": "388",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "JMD",
+      "bipUsd": 19423,
+      "einwohner": 2839786
+    },
+    "JPN": {
+      "alpha2": "JP",
+      "numerisch": "392",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "JPY",
+      "bipUsd": 4212945,
+      "einwohner": 124516650
+    },
+    "JEY": {
+      "alpha2": "JE",
+      "numerisch": "832",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "GBP"
+    },
+    "JOR": {
+      "alpha2": "JO",
+      "numerisch": "400",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "JOD",
+      "bipUsd": 50814,
+      "einwohner": 11439213
+    },
+    "KAZ": {
+      "alpha2": "KZ",
+      "numerisch": "398",
+      "region": "Asia",
+      "subregion": "Central Asia",
+      "waehrung": "KZT",
+      "bipUsd": 261421,
+      "einwohner": 20330104
+    },
+    "KEN": {
+      "alpha2": "KE",
+      "numerisch": "404",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "KES",
+      "bipUsd": 107441,
+      "einwohner": 55339003
+    },
+    "KIR": {
+      "alpha2": "KI",
+      "numerisch": "296",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "AUD",
+      "bipUsd": 279,
+      "einwohner": 132530
+    },
+    "KWT": {
+      "alpha2": "KW",
+      "numerisch": "414",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "KWD",
+      "bipUsd": 161772,
+      "einwohner": 4853420
+    },
+    "KGZ": {
+      "alpha2": "KG",
+      "numerisch": "417",
+      "region": "Asia",
+      "subregion": "Central Asia",
+      "waehrung": "KGS",
+      "bipUsd": 13988,
+      "einwohner": 7099750
+    },
+    "LAO": {
+      "alpha2": "LA",
+      "numerisch": "418",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "LAK",
+      "bipUsd": 15843,
+      "einwohner": 7664993
+    },
+    "LVA": {
+      "alpha2": "LV",
+      "numerisch": "428",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 43627,
+      "einwohner": 1883710
+    },
+    "LBN": {
+      "alpha2": "LB",
+      "numerisch": "422",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "LBP",
+      "einwohner": 5773493
+    },
+    "LSO": {
+      "alpha2": "LS",
+      "numerisch": "426",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "LSL,ZAR",
+      "bipUsd": 2046,
+      "einwohner": 2311472
+    },
+    "LBR": {
+      "alpha2": "LR",
+      "numerisch": "430",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "LRD",
+      "bipUsd": 4332,
+      "einwohner": 5493031
+    },
+    "LBY": {
+      "alpha2": "LY",
+      "numerisch": "434",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "waehrung": "LYD",
+      "bipUsd": 50492,
+      "einwohner": 7305659
+    },
+    "LIE": {
+      "alpha2": "LI",
+      "numerisch": "438",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "CHF",
+      "einwohner": 39846
+    },
+    "LTU": {
+      "alpha2": "LT",
+      "numerisch": "440",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 77836,
+      "einwohner": 2871585
+    },
+    "LUX": {
+      "alpha2": "LU",
+      "numerisch": "442",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "EUR",
+      "bipUsd": 85755,
+      "einwohner": 666430
+    },
+    "MDG": {
+      "alpha2": "MG",
+      "numerisch": "450",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "MGA",
+      "bipUsd": 16032,
+      "einwohner": 31195932
+    },
+    "MWI": {
+      "alpha2": "MW",
+      "numerisch": "454",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "MWK",
+      "bipUsd": 14084,
+      "einwohner": 21104482
+    },
+    "MYS": {
+      "alpha2": "MY",
+      "numerisch": "458",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "MYR",
+      "bipUsd": 399649,
+      "einwohner": 35126298
+    },
+    "MDV": {
+      "alpha2": "MV",
+      "numerisch": "462",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "MVR",
+      "bipUsd": 6600,
+      "einwohner": 525994
+    },
+    "MLI": {
+      "alpha2": "ML",
+      "numerisch": "466",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 20905,
+      "einwohner": 23769127
+    },
+    "MLT": {
+      "alpha2": "MT",
+      "numerisch": "470",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 20957,
+      "einwohner": 552747
+    },
+    "MHL": {
+      "alpha2": "MH",
+      "numerisch": "584",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "USD",
+      "bipUsd": 284,
+      "einwohner": 38827
+    },
+    "MTQ": {
+      "alpha2": "MQ",
+      "numerisch": "474",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "EUR"
+    },
+    "MRT": {
+      "alpha2": "MR",
+      "numerisch": "478",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "MRU",
+      "bipUsd": 10453,
+      "einwohner": 5022441
+    },
+    "MUS": {
+      "alpha2": "MU",
+      "numerisch": "480",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "MUR",
+      "bipUsd": 14397,
+      "einwohner": 1248647
+    },
+    "MYT": {
+      "alpha2": "YT",
+      "numerisch": "175",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "EUR"
+    },
+    "MEX": {
+      "alpha2": "MX",
+      "numerisch": "484",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "MXN",
+      "bipUsd": 1788887,
+      "einwohner": 129739759
+    },
+    "FSM": {
+      "alpha2": "FM",
+      "numerisch": "583",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "USD",
+      "bipUsd": 460,
+      "einwohner": 112630
+    },
+    "MCO": {
+      "alpha2": "MC",
+      "numerisch": "492",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "EUR",
+      "einwohner": 38956
+    },
+    "MNG": {
+      "alpha2": "MN",
+      "numerisch": "496",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "MNT",
+      "bipUsd": 19872,
+      "einwohner": 3481145
+    },
+    "MNE": {
+      "alpha2": "ME",
+      "numerisch": "499",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 7405,
+      "einwohner": 623529
+    },
+    "MSR": {
+      "alpha2": "MS",
+      "numerisch": "500",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD"
+    },
+    "MAR": {
+      "alpha2": "MA",
+      "numerisch": "504",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "waehrung": "MAD",
+      "bipUsd": 141109,
+      "einwohner": 37712505
+    },
+    "MOZ": {
+      "alpha2": "MZ",
+      "numerisch": "508",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "MZN",
+      "bipUsd": 20625,
+      "einwohner": 33635160
+    },
+    "MMR": {
+      "alpha2": "MM",
+      "numerisch": "104",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "MMK",
+      "bipUsd": 64815,
+      "einwohner": 54133798
+    },
+    "NAM": {
+      "alpha2": "NA",
+      "numerisch": "516",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "NAD,ZAR",
+      "bipUsd": 12351,
+      "einwohner": 2963095
+    },
+    "NRU": {
+      "alpha2": "NR",
+      "numerisch": "520",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "AUD",
+      "bipUsd": 154,
+      "einwohner": 11875
+    },
+    "NPL": {
+      "alpha2": "NP",
+      "numerisch": "524",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "NPR",
+      "bipUsd": 40908,
+      "einwohner": 29694614
+    },
+    "NLD": {
+      "alpha2": "NL",
+      "numerisch": "528",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "EUR",
+      "bipUsd": 1118125,
+      "einwohner": 17877117
+    },
+    "NCL": {
+      "alpha2": "NC",
+      "numerisch": "540",
+      "region": "Oceania",
+      "subregion": "Melanesia",
+      "waehrung": "XPF",
+      "einwohner": 289870
+    },
+    "NZL": {
+      "alpha2": "NZ",
+      "numerisch": "554",
+      "region": "Oceania",
+      "subregion": "Australia and New Zealand",
+      "waehrung": "NZD",
+      "bipUsd": 253466,
+      "einwohner": 5200000
+    },
+    "NIC": {
+      "alpha2": "NI",
+      "numerisch": "558",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "NIO",
+      "bipUsd": 17829,
+      "einwohner": 6823613
+    },
+    "NER": {
+      "alpha2": "NE",
+      "numerisch": "562",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 16819,
+      "einwohner": 26159867
+    },
+    "NGA": {
+      "alpha2": "NG",
+      "numerisch": "566",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "NGN",
+      "bipUsd": 362815,
+      "einwohner": 227882945
+    },
+    "NIU": {
+      "alpha2": "NU",
+      "numerisch": "570",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "NZD"
+    },
+    "NFK": {
+      "alpha2": "NF",
+      "numerisch": "574",
+      "region": "Oceania",
+      "subregion": "Australia and New Zealand",
+      "waehrung": "AUD"
+    },
+    "MNP": {
+      "alpha2": "MP",
+      "numerisch": "580",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "USD",
+      "einwohner": 45143
+    },
+    "MKD": {
+      "alpha2": "MK",
+      "numerisch": "807",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "MKD",
+      "bipUsd": 14761,
+      "einwohner": 1827816
+    },
+    "NOR": {
+      "alpha2": "NO",
+      "numerisch": "578",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "NOK",
+      "bipUsd": 485513,
+      "einwohner": 5519601
+    },
+    "OMN": {
+      "alpha2": "OM",
+      "numerisch": "512",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "OMR",
+      "bipUsd": 108192,
+      "einwohner": 5049269
+    },
+    "PAK": {
+      "alpha2": "PK",
+      "numerisch": "586",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "PKR",
+      "bipUsd": 338368,
+      "einwohner": 247504495
+    },
+    "PLW": {
+      "alpha2": "PW",
+      "numerisch": "585",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "USD",
+      "bipUsd": 263,
+      "einwohner": 17727
+    },
+    "PAN": {
+      "alpha2": "PA",
+      "numerisch": "591",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "PAB,USD",
+      "bipUsd": 83382,
+      "einwohner": 4458759
+    },
+    "PNG": {
+      "alpha2": "PG",
+      "numerisch": "598",
+      "region": "Oceania",
+      "subregion": "Melanesia",
+      "waehrung": "PGK",
+      "bipUsd": 30932,
+      "einwohner": 10389635
+    },
+    "PRY": {
+      "alpha2": "PY",
+      "numerisch": "600",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "PYG",
+      "bipUsd": 42956,
+      "einwohner": 6844146
+    },
+    "PER": {
+      "alpha2": "PE",
+      "numerisch": "604",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "PEN",
+      "bipUsd": 267603,
+      "einwohner": 33845617
+    },
+    "PHL": {
+      "alpha2": "PH",
+      "numerisch": "608",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "PHP",
+      "bipUsd": 437146,
+      "einwohner": 114891199
+    },
+    "PCN": {
+      "alpha2": "PN",
+      "numerisch": "612",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "NZD"
+    },
+    "POL": {
+      "alpha2": "PL",
+      "numerisch": "616",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "PLN",
+      "bipUsd": 811229,
+      "einwohner": 36687353
+    },
+    "PRT": {
+      "alpha2": "PT",
+      "numerisch": "620",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 287080,
+      "einwohner": 10578174
+    },
+    "PRI": {
+      "alpha2": "PR",
+      "numerisch": "630",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "USD",
+      "bipUsd": 117902,
+      "einwohner": 3203792
+    },
+    "QAT": {
+      "alpha2": "QA",
+      "numerisch": "634",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "QAR",
+      "einwohner": 2656032
+    },
+    "KOR": {
+      "alpha2": "KR",
+      "numerisch": "410",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "KRW",
+      "bipUsd": 1712793,
+      "einwohner": 51712619
+    },
+    "MDA": {
+      "alpha2": "MD",
+      "numerisch": "498",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "MDL",
+      "bipUsd": 16539,
+      "einwohner": 2457783
+    },
+    "REU": {
+      "alpha2": "RE",
+      "numerisch": "638",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "EUR"
+    },
+    "ROU": {
+      "alpha2": "RO",
+      "numerisch": "642",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "RON",
+      "bipUsd": 351003,
+      "einwohner": 19061062
+    },
+    "RUS": {
+      "alpha2": "RU",
+      "numerisch": "643",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "RUB",
+      "bipUsd": 2021421,
+      "einwohner": 143826130
+    },
+    "RWA": {
+      "alpha2": "RW",
+      "numerisch": "646",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "RWF",
+      "bipUsd": 14098,
+      "einwohner": 13954471
+    },
+    "BLM": {
+      "alpha2": "BL",
+      "numerisch": "652",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "EUR"
+    },
+    "SHN": {
+      "alpha2": "SH",
+      "numerisch": "654",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "SHP"
+    },
+    "KNA": {
+      "alpha2": "KN",
+      "numerisch": "659",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD",
+      "bipUsd": 1077,
+      "einwohner": 46758
+    },
+    "LCA": {
+      "alpha2": "LC",
+      "numerisch": "662",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD",
+      "bipUsd": 2520,
+      "einwohner": 179285
+    },
+    "MAF": {
+      "alpha2": "MF",
+      "numerisch": "663",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "EUR",
+      "einwohner": 27515
+    },
+    "SPM": {
+      "alpha2": "PM",
+      "numerisch": "666",
+      "region": "Americas",
+      "subregion": "Northern America",
+      "waehrung": "EUR"
+    },
+    "VCT": {
+      "alpha2": "VC",
+      "numerisch": "670",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCD",
+      "bipUsd": 1066,
+      "einwohner": 101323
+    },
+    "WSM": {
+      "alpha2": "WS",
+      "numerisch": "882",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "WST",
+      "bipUsd": 934,
+      "einwohner": 216663
+    },
+    "SMR": {
+      "alpha2": "SM",
+      "numerisch": "674",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "einwohner": 33860
+    },
+    "STP": {
+      "alpha2": "ST",
+      "numerisch": "678",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "STN",
+      "bipUsd": 603,
+      "einwohner": 230871
+    },
+    "SAU": {
+      "alpha2": "SA",
+      "numerisch": "682",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "SAR",
+      "bipUsd": 1067583,
+      "einwohner": 33702731
+    },
+    "SEN": {
+      "alpha2": "SN",
+      "numerisch": "686",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 31014,
+      "einwohner": 18077573
+    },
+    "SRB": {
+      "alpha2": "RS",
+      "numerisch": "688",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "RSD",
+      "bipUsd": 75187,
+      "einwohner": 6623183
+    },
+    "SYC": {
+      "alpha2": "SC",
+      "numerisch": "690",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "SCR",
+      "bipUsd": 2141,
+      "einwohner": 119773
+    },
+    "SLE": {
+      "alpha2": "SL",
+      "numerisch": "694",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "SLE",
+      "bipUsd": 3810,
+      "einwohner": 8460512
+    },
+    "SGP": {
+      "alpha2": "SG",
+      "numerisch": "702",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "SGD",
+      "bipUsd": 501428,
+      "einwohner": 5917648
+    },
+    "SXM": {
+      "alpha2": "SX",
+      "numerisch": "534",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "XCG",
+      "bipUsd": 1623,
+      "einwohner": 42749
+    },
+    "SVK": {
+      "alpha2": "SK",
+      "numerisch": "703",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 132794,
+      "einwohner": 5426740
+    },
+    "SVN": {
+      "alpha2": "SI",
+      "numerisch": "705",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 68217,
+      "einwohner": 2120461
+    },
+    "SLB": {
+      "alpha2": "SB",
+      "numerisch": "090",
+      "region": "Oceania",
+      "subregion": "Melanesia",
+      "waehrung": "SBD",
+      "bipUsd": 1631,
+      "einwohner": 800005
+    },
+    "SOM": {
+      "alpha2": "SO",
+      "numerisch": "706",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "SOS",
+      "bipUsd": 11680,
+      "einwohner": 18358615
+    },
+    "ZAF": {
+      "alpha2": "ZA",
+      "numerisch": "710",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "ZAR",
+      "bipUsd": 377782,
+      "einwohner": 63212384
+    },
+    "SGS": {
+      "alpha2": "GS",
+      "numerisch": "239",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": ""
+    },
+    "SSD": {
+      "alpha2": "SS",
+      "numerisch": "728",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "SSP",
+      "einwohner": 11483374
+    },
+    "ESP": {
+      "alpha2": "ES",
+      "numerisch": "724",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "waehrung": "EUR",
+      "bipUsd": 1580695,
+      "einwohner": 48352528
+    },
+    "LKA": {
+      "alpha2": "LK",
+      "numerisch": "144",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "waehrung": "LKR",
+      "bipUsd": 84357,
+      "einwohner": 22037000
+    },
+    "PSE": {
+      "alpha2": "PS",
+      "numerisch": "275",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "",
+      "bipUsd": 17396,
+      "einwohner": 5165775
+    },
+    "SDN": {
+      "alpha2": "SD",
+      "numerisch": "729",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "waehrung": "SDG",
+      "bipUsd": 109327,
+      "einwohner": 50042791
+    },
+    "SUR": {
+      "alpha2": "SR",
+      "numerisch": "740",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "SRD",
+      "bipUsd": 3782,
+      "einwohner": 628886
+    },
+    "SJM": {
+      "alpha2": "SJ",
+      "numerisch": "744",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "NOK"
+    },
+    "SWE": {
+      "alpha2": "SE",
+      "numerisch": "752",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "SEK",
+      "bipUsd": 593268,
+      "einwohner": 10536632
+    },
+    "CHE": {
+      "alpha2": "CH",
+      "numerisch": "756",
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "waehrung": "CHF",
+      "bipUsd": 884940,
+      "einwohner": 8888822
+    },
+    "SYR": {
+      "alpha2": "SY",
+      "numerisch": "760",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "SYP",
+      "einwohner": 23594623
+    },
+    "TWN": {
+      "alpha2": "TW",
+      "numerisch": "158",
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "waehrung": "TWD"
+    },
+    "TJK": {
+      "alpha2": "TJ",
+      "numerisch": "762",
+      "region": "Asia",
+      "subregion": "Central Asia",
+      "waehrung": "TJS",
+      "bipUsd": 12061,
+      "einwohner": 10389799
+    },
+    "THA": {
+      "alpha2": "TH",
+      "numerisch": "764",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "THB",
+      "bipUsd": 514945,
+      "einwohner": 71702435
+    },
+    "TLS": {
+      "alpha2": "TL",
+      "numerisch": "626",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "USD",
+      "bipUsd": 2243,
+      "einwohner": 1384286
+    },
+    "TGO": {
+      "alpha2": "TG",
+      "numerisch": "768",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "XOF",
+      "bipUsd": 9171,
+      "einwohner": 9304337
+    },
+    "TKL": {
+      "alpha2": "TK",
+      "numerisch": "772",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "NZD"
+    },
+    "TON": {
+      "alpha2": "TO",
+      "numerisch": "776",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "TOP",
+      "einwohner": 104597
+    },
+    "TTO": {
+      "alpha2": "TT",
+      "numerisch": "780",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "TTD",
+      "bipUsd": 28140,
+      "einwohner": 1367510
+    },
+    "TUN": {
+      "alpha2": "TN",
+      "numerisch": "788",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "waehrung": "TND",
+      "bipUsd": 48530,
+      "einwohner": 12200431
+    },
+    "TUR": {
+      "alpha2": "TR",
+      "numerisch": "792",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "",
+      "bipUsd": 1108022,
+      "einwohner": 85325965
+    },
+    "TKM": {
+      "alpha2": "TM",
+      "numerisch": "795",
+      "region": "Asia",
+      "subregion": "Central Asia",
+      "waehrung": "TMT",
+      "bipUsd": 59887,
+      "einwohner": 7364438
+    },
+    "TCA": {
+      "alpha2": "TC",
+      "numerisch": "796",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "USD",
+      "bipUsd": 1402,
+      "einwohner": 46198
+    },
+    "TUV": {
+      "alpha2": "TV",
+      "numerisch": "798",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "AUD",
+      "bipUsd": 62,
+      "einwohner": 9816
+    },
+    "UGA": {
+      "alpha2": "UG",
+      "numerisch": "800",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "UGX",
+      "bipUsd": 49273,
+      "einwohner": 48656601
+    },
+    "UKR": {
+      "alpha2": "UA",
+      "numerisch": "804",
+      "region": "Europe",
+      "subregion": "Eastern Europe",
+      "waehrung": "UAH",
+      "bipUsd": 178757,
+      "einwohner": 37732836
+    },
+    "ARE": {
+      "alpha2": "AE",
+      "numerisch": "784",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "AED",
+      "bipUsd": 504173,
+      "einwohner": 10483751
+    },
+    "GBR": {
+      "alpha2": "GB",
+      "numerisch": "826",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "waehrung": "GBP",
+      "bipUsd": 3340032,
+      "einwohner": 68492000
+    },
+    "TZA": {
+      "alpha2": "TZ",
+      "numerisch": "834",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "TZS",
+      "bipUsd": 79158,
+      "einwohner": 66617606
+    },
+    "UMI": {
+      "alpha2": "UM",
+      "numerisch": "581",
+      "region": "Oceania",
+      "subregion": "Micronesia",
+      "waehrung": "USD"
+    },
+    "USA": {
+      "alpha2": "US",
+      "numerisch": "840",
+      "region": "Americas",
+      "subregion": "Northern America",
+      "waehrung": "USD",
+      "bipUsd": 27360935,
+      "einwohner": 336806231
+    },
+    "VIR": {
+      "alpha2": "VI",
+      "numerisch": "850",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "USD",
+      "einwohner": 104917
+    },
+    "URY": {
+      "alpha2": "UY",
+      "numerisch": "858",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "UYU,UYW",
+      "bipUsd": 77241,
+      "einwohner": 3388081
+    },
+    "UZB": {
+      "alpha2": "UZ",
+      "numerisch": "860",
+      "region": "Asia",
+      "subregion": "Central Asia",
+      "waehrung": "UZS",
+      "bipUsd": 90889,
+      "einwohner": 35652307
+    },
+    "VUT": {
+      "alpha2": "VU",
+      "numerisch": "548",
+      "region": "Oceania",
+      "subregion": "Melanesia",
+      "waehrung": "VUV",
+      "bipUsd": 1126,
+      "einwohner": 320409
+    },
+    "VEN": {
+      "alpha2": "VE",
+      "numerisch": "862",
+      "region": "Americas",
+      "subregion": "Latin America and the Caribbean",
+      "waehrung": "VES,VED",
+      "einwohner": 28300854
+    },
+    "VNM": {
+      "alpha2": "VN",
+      "numerisch": "704",
+      "region": "Asia",
+      "subregion": "South-eastern Asia",
+      "waehrung": "VND",
+      "bipUsd": 429717,
+      "einwohner": 100352192
+    },
+    "WLF": {
+      "alpha2": "WF",
+      "numerisch": "876",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "waehrung": "XPF"
+    },
+    "ESH": {
+      "alpha2": "EH",
+      "numerisch": "732",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "waehrung": "MAD"
+    },
+    "YEM": {
+      "alpha2": "YE",
+      "numerisch": "887",
+      "region": "Asia",
+      "subregion": "Western Asia",
+      "waehrung": "YER",
+      "einwohner": 39390799
+    },
+    "ZMB": {
+      "alpha2": "ZM",
+      "numerisch": "894",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "ZMW",
+      "bipUsd": 28163,
+      "einwohner": 20723965
+    },
+    "ZWE": {
+      "alpha2": "ZW",
+      "numerisch": "716",
+      "region": "Africa",
+      "subregion": "Sub-Saharan Africa",
+      "waehrung": "ZWG",
+      "bipUsd": 26538,
+      "einwohner": 16340822
+    }
+  }
+}

@@ -78,7 +78,7 @@ export const siteConfig = {
 } as const
 
 /** Die fünf inhaltlichen Hauptbereiche der Website. */
-export type AreaId = 'news' | 'markets' | 'tools' | 'learn' | 'debt'
+export type AreaId = 'news' | 'markets' | 'tools' | 'learn' | 'globe' | 'debt'
 
 export interface Area {
   id: AreaId
@@ -107,6 +107,13 @@ export const areas: Record<AreaId, Area> = {
     label: 'Lernen',
     href: '/lernen',
     description: `${LEARN_TOPIC_COUNT} Finanzthemen in drei Stufen – von der ersten Definition bis zu Steuern, Kennzahlen und Sonderfällen.`,
+  },
+  globe: {
+    id: 'globe',
+    label: 'Globus',
+    href: '/globus',
+    description:
+      'Ein drehbarer Globus: Wirtschaftsleistung, Einwohner, Wohlstand und Schulden je Land – und die Indizes und Aktien, die von dort kommen.',
   },
   markets: {
     id: 'markets',
@@ -192,6 +199,14 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     border: 'border-news/30',
     dot: 'bg-news',
     gradient: 'from-news/18 to-news/0',
+  },
+  globe: {
+    text: 'text-globe',
+    soft: 'bg-globe-soft text-globe',
+    solid: 'bg-globe text-white',
+    border: 'border-globe/30',
+    dot: 'bg-globe',
+    gradient: 'from-globe/18 to-globe/0',
   },
   debt: {
     text: 'text-debt',
