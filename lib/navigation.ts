@@ -31,21 +31,29 @@ export const mainNav: NavItem[] = [
     label: 'Märkte',
     href: '/maerkte',
     area: 'markets',
+    /*
+      Nach Bedeutung sortiert, nicht nach Gattung.
+
+      Vorher standen die drei Währungspaare vorn – beim Aufklappen war also
+      EUR/CNY das Zweite, was jemand sah, und der DAX kam an vierter Stelle.
+      Das Menü zeigt einen Ausschnitt; welcher das ist, entscheidet, wofür die
+      Rubrik gehalten wird.
+    */
     children: [
-      { label: 'EUR/USD', href: '/maerkte/eur-usd', hint: 'Euro zu US-Dollar' },
-      { label: 'EUR/CNY', href: '/maerkte/eur-cny', hint: 'Euro zu Renminbi' },
-      { label: 'EUR/CHF', href: '/maerkte/eur-chf', hint: 'Euro zu Schweizer Franken' },
       { label: 'DAX', href: '/maerkte/dax', hint: '40 große deutsche Unternehmen' },
       { label: 'S&P 500', href: '/maerkte/sp500', hint: '500 US-Unternehmen' },
+      { label: 'Nasdaq 100', href: '/maerkte/nasdaq-100', hint: 'US-Technologiewerte' },
+      { label: 'Gold', href: '/maerkte/gold', hint: 'Feinunze in US-Dollar' },
+      { label: 'Bitcoin', href: '/maerkte/bitcoin', hint: 'Kryptowährung in US-Dollar' },
+      { label: 'Brent', href: '/maerkte/brent', hint: 'Rohöl je Fass' },
+      { label: 'EUR/USD', href: '/maerkte/eur-usd', hint: 'Euro zu US-Dollar' },
       {
         label: 'MSCI World',
         href: '/maerkte/msci-world',
         hint: 'Industrieländer weltweit',
       },
-      { label: 'Gold', href: '/maerkte/gold', hint: 'Feinunze in US-Dollar' },
-      { label: 'Silber', href: '/maerkte/silber', hint: 'Feinunze in US-Dollar' },
     ],
-    footerLink: { label: 'Alle Kurse und Indizes', href: '/maerkte' },
+    footerLink: { label: 'Alle 20 Kurse ansehen', href: '/maerkte' },
   },
   {
     label: 'Rechner',

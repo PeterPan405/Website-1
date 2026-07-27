@@ -31,6 +31,7 @@ export default async function MarketsOverviewPage() {
   const fxQuotes = quotes.filter((quote) => quote.kind === 'fx')
   const indexQuotes = quotes.filter((quote) => quote.kind === 'index')
   const commodityQuotes = quotes.filter((quote) => quote.kind === 'commodity')
+  const cryptoQuotes = quotes.filter((quote) => quote.kind === 'crypto')
   const asOf = quotes[0]?.asOf
 
   return (
@@ -44,11 +45,13 @@ export default async function MarketsOverviewPage() {
         breadcrumbs={<Breadcrumbs items={[{ name: 'Märkte' }]} />}
         meta={
           <>
-            <span>{fxQuotes.length} Währungspaare</span>
-            <span aria-hidden="true">·</span>
             <span>{indexQuotes.length} Indizes</span>
             <span aria-hidden="true">·</span>
             <span>{commodityQuotes.length} Rohstoffe</span>
+            <span aria-hidden="true">·</span>
+            <span>{fxQuotes.length} Währungspaare</span>
+            <span aria-hidden="true">·</span>
+            <span>{cryptoQuotes.length} Kryptowährung</span>
             {asOf && (
               <>
                 <span aria-hidden="true">·</span>
@@ -71,29 +74,7 @@ export default async function MarketsOverviewPage() {
           className="text-fg-subtle text-sm leading-relaxed"
         />
 
-        <section aria-labelledby="waehrungen" className="mt-12">
-          <h2 id="waehrungen" className="text-fg text-2xl font-bold">
-            Währungspaare
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Ein Wechselkurs gibt an, wie viel der zweiten Währung eine Einheit der ersten
-            kostet. Steigt EUR/USD, wird der Euro gegenüber dem Dollar stärker.
-          </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {fxQuotes.map((quote, index) => (
-              <li key={quote.symbol}>
-                <Reveal delay={index * 0.04} className="h-full">
-                  <QuoteCard
-                    quote={quote}
-                    sparkline={sparklineBySymbol.get(quote.symbol)}
-                  />
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="indizes" className="mt-16">
+        <section aria-labelledby="indizes" className="mt-12">
           <h2 id="indizes" className="text-fg text-2xl font-bold">
             Aktienindizes
           </h2>
@@ -121,13 +102,60 @@ export default async function MarketsOverviewPage() {
             Rohstoffe
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Edelmetalle werden je Feinunze in US-Dollar notiert – 31,1035 Gramm. Wer in
-            Euro rechnet, hat deshalb zwei Bewegungen im Preis: die des Metalls und die
-            des Wechselkurses. Anders als Aktien und Anleihen zahlen sie keinen laufenden
-            Ertrag.
+            Edelmetalle werden je Feinunze notiert – 31,1035 Gramm –, Rohöl je Fass zu 159
+            Litern. Beides in US-Dollar: Wer in Euro rechnet, hat deshalb zwei Bewegungen
+            im Preis, die des Rohstoffs und die des Wechselkurses. Anders als Aktien und
+            Anleihen zahlen Rohstoffe keinen laufenden Ertrag – der gesamte Ertrag muss
+            aus dem Preis kommen.
           </p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {commodityQuotes.map((quote, index) => (
+              <li key={quote.symbol}>
+                <Reveal delay={index * 0.04} className="h-full">
+                  <QuoteCard
+                    quote={quote}
+                    sparkline={sparklineBySymbol.get(quote.symbol)}
+                  />
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="waehrungen" className="mt-16">
+          <h2 id="waehrungen" className="text-fg text-2xl font-bold">
+            Währungspaare
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+            Ein Wechselkurs gibt an, wie viel der zweiten Währung eine Einheit der ersten
+            kostet. Steigt EUR/USD, wird der Euro gegenüber dem Dollar stärker.
+          </p>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {fxQuotes.map((quote, index) => (
+              <li key={quote.symbol}>
+                <Reveal delay={index * 0.04} className="h-full">
+                  <QuoteCard
+                    quote={quote}
+                    sparkline={sparklineBySymbol.get(quote.symbol)}
+                  />
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="krypto" className="mt-16">
+          <h2 id="krypto" className="text-fg text-2xl font-bold">
+            Kryptowährungen
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+            Gehandelt wird rund um die Uhr, auch an Wochenenden – einen Handelsschluss
+            gibt es nicht. Anders als bei Aktien und Anleihen lässt sich hier kein Wert
+            herleiten: Der Preis ergibt sich allein daraus, was der nächste Käufer zu
+            zahlen bereit ist.
+          </p>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {cryptoQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">
                   <QuoteCard
@@ -143,9 +171,9 @@ export default async function MarketsOverviewPage() {
 
       <JsonLd
         data={collectionPageSchema({
-          name: 'Märkte – Wechselkurse und Indizes',
+          name: 'Märkte – Indizes, Rohstoffe, Devisen und Krypto',
           description:
-            'Übersicht über Wechselkurse und Aktienindizes mit Verlaufscharts und Erklärungen.',
+            'Übersicht über Aktienindizes, Rohstoffe, Wechselkurse und Kryptowährungen mit Verlaufscharts und Erklärungen.',
           path: '/maerkte',
           items: quotes.map((quote) => ({
             name: quote.name,
