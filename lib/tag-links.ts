@@ -23,18 +23,28 @@ import { normalize } from '@/lib/search-match'
  *
  * Der erste Treffer gewinnt, in dieser Reihenfolge:
  *
- * 1. **Lernthemen** über Slug, Titel und Stichwörter. Das ist der Regelfall –
- *    gefragt ist die Erklärung, nicht der Tageskurs.
- * 2. **Kurse** über Symbol, Kürzel und Name. Greift für „DAX“ oder „Nasdaq“,
- *    wozu es kein eigenes Lernthema gibt.
- * 3. **Zuordnungen von Hand** für wiederkehrendes Nachrichtenvokabular, das in
- *    keinem Stichwortverzeichnis steht. Auch ein Rechner ist dort ein
- *    zulässiges Ziel.
+ * 1. **Slug und Titel eines Lernthemas.** Ein Wort, das ein Thema *benennt*,
+ *    führt immer zu diesem Thema.
+ * 2. **Zuordnungen von Hand** – bewusste redaktionelle Entscheidungen. Auch ein
+ *    Rechner oder eine Kursseite ist dort ein zulässiges Ziel.
+ * 3. **Stichwörter eines Lernthemas.** Das schwächste Signal: Ein Stichwort
+ *    sagt nur, dass das Wort in diesem Thema vorkommt.
+ * 4. **Kurse** über Symbol, Kürzel und Name – für „DAX“ oder „MSCI World“,
+ *    wozu es kein Lernthema gibt.
  *
- * Kommt derselbe Begriff bei zwei Lernthemen vor – „Realzins“ steht bei
- * Zinseszins und bei Tagesgeld –, gewinnt das erste in der Lernreihenfolge.
- * Das ist willkürlich, aber stabil und folgt dem Lernweg: Dieselbe Eingabe
- * führt immer zum selben Ziel, und zwar zum früheren Thema.
+ * Die Reihenfolge der ersten beiden Stufen ist der Punkt, an dem es
+ * ursprünglich schiefging: „Einlagensicherung“ ist Titel eines eigenen Themas
+ * **und** Stichwort beim Tagesgeld. Solange beides gleich zählte, gewann das
+ * Tagesgeld, weil es in der Lernreihenfolge früher steht – und der Begriff
+ * führte auf der Tagesgeld-Seite nirgendwohin, statt auf die Seite, die ihn
+ * erklärt.
+ *
+ * Kurse stehen bewusst zuletzt: „Gold“ ist ein Kurs, aber gefragt ist die
+ * Erklärung im Lernthema Rohstoffe, nicht der Tagespreis.
+ *
+ * Innerhalb einer Stufe gewinnt das erste Thema der Lernreihenfolge. Das ist
+ * willkürlich, aber stabil und folgt dem Lernweg: „Realzins“ steht bei
+ * Zinseszins und bei Tagesgeld und führt zum früheren der beiden.
  */
 
 /**
@@ -46,11 +56,8 @@ import { normalize } from '@/lib/search-match'
  * („SAP“, „Geopolitik“); sie bleiben unverlinkt.
  */
 export const TAG_ALIASES: Record<string, string> = {
-  // Notenbanken. Bis zum Lernthema „Notenbanken & Geldpolitik“ landeten diese
-  // Begriffe behelfsweise beim Tagesgeld – jetzt gibt es die richtige Seite.
-  ezb: '/lernen/notenbanken-geldpolitik',
-  fed: '/lernen/notenbanken-geldpolitik',
-  fomc: '/lernen/notenbanken-geldpolitik',
+  // Notenbanken. „EZB“ und „Fed“ stehen als Stichwörter am richtigen Thema und
+  // brauchen keinen Eintrag; diese beiden nicht.
   'dot plot': '/lernen/notenbanken-geldpolitik',
   'us-zinsen': '/lernen/notenbanken-geldpolitik',
   festgeld: '/lernen/tagesgeld',
@@ -59,6 +66,13 @@ export const TAG_ALIASES: Record<string, string> = {
   // Vorsorge.
   fruehstartrente: '/lernen/rente',
   rentenluecke: '/rechner/rentenluecke',
+
+  /*
+    „Sparplan“ steht bei Zinseszins und bei Cost-Average in den Stichwörtern.
+    Ohne diesen Eintrag gewänne Zinseszins, weil es früher im Lernweg steht –
+    gemeint ist aber das Thema, das den Sparplan selbst behandelt.
+  */
+  sparplan: '/lernen/cost-average-sparplan',
 
   // Markt und Handel.
   'wall street': '/lernen/boerse',
@@ -84,36 +98,56 @@ export const TAG_ALIASES: Record<string, string> = {
  * Ergebnis fest. Ein `Map` statt wiederholter Schleifen über alle Themen spart
  * bei über hundert Seiten mit je vier Schlagwörtern spürbar Zeit.
  */
-let verzeichnis: Map<string, string> | null = null
+let verzeichnis: Map<string, string[]> | null = null
 
-function eintragen(map: Map<string, string>, begriff: string, href: string): void {
+/**
+ * Trägt ein Ziel als weitere Möglichkeit für einen Begriff ein.
+ *
+ * Gespeichert wird eine Liste statt nur des ersten Treffers, weil das beste
+ * Ziel manchmal die Seite ist, auf der man gerade steht. Beim Thema Rohstoffe
+ * steht „Gold“ in den eigenen Stichwörtern – dort ist der Kurs das sinnvolle
+ * Ziel, nicht ein Verweis auf sich selbst. Mit einer Liste kann die Auflösung
+ * auf das nächstbeste Ziel ausweichen, statt aufzugeben.
+ */
+function eintragen(map: Map<string, string[]>, begriff: string, href: string): void {
   const schluessel = normalize(begriff).trim()
-  // Erster Treffer gewinnt – siehe Reihenfolge oben.
-  if (schluessel && !map.has(schluessel)) map.set(schluessel, href)
+  if (!schluessel) return
+
+  const ziele = map.get(schluessel)
+  if (!ziele) {
+    map.set(schluessel, [href])
+  } else if (!ziele.includes(href)) {
+    ziele.push(href)
+  }
 }
 
-function buildIndex(): Map<string, string> {
-  const map = new Map<string, string>()
+function buildIndex(): Map<string, string[]> {
+  const map = new Map<string, string[]>()
 
-  // 1. Lernthemen.
+  // 1. Lernthemen: Slug und Titel.
   for (const thema of learnTopics) {
     const href = `/lernen/${thema.slug}`
     eintragen(map, thema.slug, href)
     eintragen(map, thema.title, href)
+  }
+
+  // 2. Zuordnungen von Hand.
+  for (const [begriff, href] of Object.entries(TAG_ALIASES)) {
+    eintragen(map, begriff, href)
+  }
+
+  // 3. Lernthemen: Stichwörter.
+  for (const thema of learnTopics) {
+    const href = `/lernen/${thema.slug}`
     for (const stichwort of thema.keywords ?? []) eintragen(map, stichwort, href)
   }
 
-  // 2. Kurse.
+  // 4. Kurse.
   for (const kurs of marketDefinitions) {
     const href = `/maerkte/${kurs.symbol}`
     eintragen(map, kurs.symbol, href)
     eintragen(map, kurs.ticker, href)
     eintragen(map, kurs.name, href)
-  }
-
-  // 3. Zuordnungen von Hand.
-  for (const [begriff, href] of Object.entries(TAG_ALIASES)) {
-    eintragen(map, begriff, href)
   }
 
   return map
@@ -125,8 +159,12 @@ function buildIndex(): Map<string, string> {
  * `null` ist kein Fehlerfall: Nicht jede Meldung hat zu jedem ihrer Begriffe
  * eine eigene Seite, und ein Schlagwort ohne Verweis ist immer noch eine
  * nützliche Beschreibung des Artikels.
+ *
+ * `exclude` ist der Pfad der Seite, auf der der Begriff steht. Zu sich selbst
+ * verweist niemand; stattdessen greift das nächstbeste Ziel.
  */
-export function resolveTagHref(tag: string): string | null {
+export function resolveTagHref(tag: string, exclude?: string): string | null {
   verzeichnis ??= buildIndex()
-  return verzeichnis.get(normalize(tag).trim()) ?? null
+  const ziele = verzeichnis.get(normalize(tag).trim())
+  return ziele?.find((href) => href !== exclude) ?? null
 }

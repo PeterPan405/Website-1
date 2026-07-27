@@ -156,6 +156,27 @@ bricht den Build ab, wenn eine Quelle, ein Zeitzonen-Suffix in `publishedAt`
 oder ein referenziertes Lernthema fehlt. `publishedAt` ist dabei unser
 Erscheinungsdatum, nicht das der Quelle.
 
+### Verlinkte Schlagwörter
+
+Die Begriffe unter einem Nachrichtenartikel („Schlagwörter“) und unter einem
+Lernthema („Begriffe in diesem Thema“) sind Verweise, wo es ein Ziel gibt –
+gemeinsame Komponente `components/ui/TagLinks.tsx`, Auflösung in
+`lib/tag-links.ts`. Die Rangfolge:
+
+1. **Slug oder Titel eines Lernthemas** – ein Wort, das ein Thema benennt.
+2. **Zuordnungen von Hand** (`TAG_ALIASES`) für Nachrichtenvokabular wie
+   „Dot Plot“ oder „Brent“; auch Rechner und Kurse sind dort zulässige Ziele.
+3. **Stichwörter eines Lernthemas** – das schwächste Signal.
+4. **Kurse** über Symbol, Kürzel oder Name.
+
+Bewusst keine Volltextsuche im Hintergrund: Sie würde denselben Begriff nach
+einer Textänderung woanders hinführen, ohne dass es jemandem auffällt.
+
+Zwei Regeln, die den Unterschied machen: Zu **sich selbst** verweist niemand –
+steht „Gold“ bei den Begriffen des Themas Rohstoffe, führt es zum Goldkurs statt
+im Kreis. Und wo **nichts** passt, bleibt der Begriff unverlinkt und gestrichelt
+statt auf etwas ungefähr Passendes zu zeigen.
+
 ## Tagesüberblick
 
 Jeden Morgen erscheint unter `/news/tag/JJJJ-MM-TT` eine Ausgabe mit fünf

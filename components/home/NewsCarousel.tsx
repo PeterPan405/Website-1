@@ -23,6 +23,12 @@ const ROTATION_MS = 6000
  *   ein Screenreader alle sechs Sekunden ungefragt dazwischenreden. Erst wenn
  *   Nutzer selbst weiterschalten, werden Änderungen angekündigt.
  * - Links und Rechts auf der Tastatur blättern.
+ *
+ * Die gesamte Kachel führt zur Meldung, nicht nur die Überschrift – Rubrik,
+ * Anriss und Datum eingeschlossen. Der Hover-Zustand entspricht dem von
+ * `fk-card-interactive`, verzichtet aber auf dessen Anheben: Die Kachel ist groß
+ * und hält beim Überfahren ohnehin die Rotation an, ein zusätzlicher Versatz
+ * wirkte hier unruhig.
  */
 export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
   const [index, setIndex] = useState(0)
@@ -79,7 +85,7 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
         }
       }}
       onKeyDown={onKeyDown}
-      className="fk-card relative flex flex-col overflow-hidden p-6 sm:p-7"
+      className="fk-card group hover:border-border-strong hover:shadow-lift relative flex flex-col overflow-hidden p-6 transition duration-200 ease-out sm:p-7"
     >
       {/* Farbakzent in der News-Farbe. */}
       <div
@@ -87,7 +93,29 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
         className="from-news/20 to-news/0 pointer-events-none absolute inset-x-0 -top-24 h-48 bg-gradient-to-b blur-2xl"
       />
 
-      <div className="relative flex items-center justify-between gap-3">
+      {/*
+        Die ganze Kachel führt zur Meldung, nicht nur die Überschrift.
+
+        Umgesetzt als Fläche über der Karte statt als Verweis um sie herum: Ein
+        <a>, das die Karte umschließt, dürfte die Knöpfe für Pause, Punkte und
+        Pfeile nicht enthalten – verschachtelte Bedienelemente sind nicht
+        zulässig und werden von Screenreadern falsch angesagt. Die Fläche liegt
+        deshalb daneben, und die Knöpfe liegen mit z-20 darüber.
+
+        Für Tastatur und Screenreader ist sie unsichtbar (`aria-hidden`,
+        `tabIndex={-1}`): Dort führt weiterhin die Überschrift zum Ziel, sonst
+        stünde derselbe Verweis zweimal in der Vorlesereihenfolge.
+      */}
+      <Link
+        href={`/news/${current.slug}`}
+        aria-hidden="true"
+        tabIndex={-1}
+        className="absolute inset-0 z-10"
+      >
+        <span className="sr-only">{current.title}</span>
+      </Link>
+
+      <div className="relative z-20 flex items-center justify-between gap-3">
         <p className="fk-chip bg-news-soft text-news">
           <Icon name="newspaper" className="size-3.5" />
           Aktuelles
@@ -134,11 +162,14 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
             <p className="text-news text-xs font-semibold tracking-wide uppercase">
               {current.category}
             </p>
-            <h2 className="text-fg mt-2 text-xl leading-snug font-bold sm:text-2xl">
-              <Link
-                href={`/news/${current.slug}`}
-                className="hover:text-brand rounded transition"
-              >
+            {/*
+              Die Überschrift bleibt der eigentliche Verweis – für Tastatur,
+              Screenreader und Suchmaschinen. Mit der Maus trifft man ohnehin
+              die Fläche darüber, deshalb liegt der Hover-Effekt auf der
+              gesamten Kachel (`group-hover`) und nicht nur auf diesem Wort.
+            */}
+            <h2 className="text-fg group-hover:text-brand mt-2 text-xl leading-snug font-bold transition-colors sm:text-2xl">
+              <Link href={`/news/${current.slug}`} className="rounded">
                 {current.title}
               </Link>
             </h2>
@@ -156,7 +187,7 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
         </AnimatePresence>
       </div>
 
-      <div className="border-border relative mt-5 flex items-center justify-between gap-3 border-t pt-4">
+      <div className="border-border relative z-20 mt-5 flex items-center justify-between gap-3 border-t pt-4">
         {/* Punkt-Navigation: direkter Sprung zu einer Schlagzeile. */}
         <div className="flex items-center gap-1.5">
           {headlines.map((headline, dotIndex) => {
