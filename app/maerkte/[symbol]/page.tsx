@@ -144,16 +144,27 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 Kennzahlen
               </h2>
               <StatGrid columns={4} className="mt-5">
+                {/*
+                  Die Farbe gehört an den aktuellen Stand, nicht an den
+                  Schlusskurs.
+
+                  Vorher war es umgekehrt: Der aktuelle Stand stand neutral da,
+                  und der Schlusskurs des Vortages wurde grün, wenn der Kurs
+                  seitdem gestiegen war. Grün an einer Zahl heißt aber „diese
+                  Zahl ist gestiegen“ – und der Vortagesschluss steht fest, der
+                  steigt und fällt nicht mehr. Wer nur auf die Farben schaute,
+                  las die Bewegung am falschen Wert ab.
+                */}
                 <Stat
                   label="Aktueller Stand"
                   value={`${formatNumber(quote.value, quote.decimals)}`}
-                  hint={instrument.unit}
+                  hint={`${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`}
+                  tone={positive ? 'positive' : 'negative'}
                 />
                 <Stat
                   label={quote.intraday ? 'Letzter Schlusskurs' : 'Vortagesschluss'}
                   value={formatNumber(quote.previousClose, quote.decimals)}
-                  hint={`Veränderung ${formatPercentSigned(quote.changePercent)}`}
-                  tone={positive ? 'positive' : 'negative'}
+                  hint={instrument.unit}
                 />
                 <Stat
                   label="52-Wochen-Hoch"

@@ -101,18 +101,26 @@
   --c-globus-4: #4a61ab;
   --c-globus-5: #17296f;
   /*
-    Ozean und „keine Angabe“ haben eigene Werte und leihen sich keine.
+    Ozean, Kante und „keine Angabe“ haben eigene Werte und leihen sich keine.
 
     Vorher war der Ozean `--c-surface-muted` und „keine Angabe“
     `--c-border-strong`. Im dunklen Theme lag die unterste Farbstufe damit
     dicht am Wasser, und „keine Angabe“ landete mitten in der Skala – ein Land
     ohne Datensatz sah aus wie eins mit mittlerem Wert.
 
+    Im hellen Theme war der Ozean mit #edf1f9 vom Seitenhintergrund #f6f8fc
+    kaum zu unterscheiden. Die Kugel hatte damit keinen Rand: Man sah Länder,
+    aber keine Erde. Jetzt ist das Wasser ein deutliches Blaugrau – dunkler als
+    die Seite und dunkler als die hellste Länderstufe, sodass die Kugel als
+    Fläche dasteht und die Rangfolge trotzdem von hell nach dunkel läuft.
+
     „keine Angabe“ ist bewusst grau und nicht blau: Es gehört nicht zur
-    Rangfolge, sondern daneben.
+    Rangfolge, sondern daneben. Im Hellen liegt es jetzt über dem Wasser,
+    damit ein Land ohne Datensatz nicht im Meer verschwindet.
   */
-  --c-globus-ozean: #edf1f9;
-  --c-globus-leer: #d1d7e1;
+  --c-globus-ozean: #b6c2d6;
+  --c-globus-leer: #cfd5de;
+  --c-globus-kante: #7c8ba4;
 
   --c-ring: #1f4fb6;
 
@@ -137,6 +145,7 @@
   --c-globus-5: #bcc7f6;
   --c-globus-ozean: #080d18;
   --c-globus-leer: #414859;
+  --c-globus-kante: #35405a;
 
   color-scheme: dark;
 

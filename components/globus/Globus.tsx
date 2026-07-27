@@ -2,7 +2,7 @@
 
 import { geoContains, geoGraticule10, geoOrthographic, geoPath } from 'd3-geo'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import * as topojson from 'topojson-client'
 import type { Topology } from 'topojson-specification'
 
@@ -65,6 +65,8 @@ export function Globus({
   onAuswahl,
   onHover,
   zielId,
+  tafel,
+  onVollbild,
 }: {
   laender: readonly GlobusLand[]
   /**
@@ -81,6 +83,25 @@ export function Globus({
   onHover: (id: string | null) => void
   /** Land, auf das der Globus drehen soll – etwa nach einer Suche. */
   zielId: string | null
+  /**
+   * Die Detailtafel – nur im Vollbild hier gezeigt.
+   *
+   * Ausserhalb des Vollbilds steht sie in der Seitenspalte der Seite und wird
+   * hier nicht gebraucht. Im Vollbild liegt diese Spalte aber hinter dem
+   * schwarzen Rahmen: Wer ein Land anklickte, sah die Auswahl aufleuchten und
+   * sonst nichts. Der Knoten, der ins Vollbild geht, muss die Tafel deshalb
+   * enthalten – ein Element ausserhalb davon ist im Vollbild unsichtbar, das
+   * ist keine Frage der Gestaltung, sondern wie die Schnittstelle arbeitet.
+   */
+  tafel?: ReactNode
+  /**
+   * Meldet den Wechsel ins Vollbild und zurück.
+   *
+   * Die Seite braucht das, um ihre eigene Seitenspalte auszublenden, solange
+   * die Tafel hier drin steht. Sonst stünde derselbe Text zweimal im Dokument –
+   * unsichtbar hinter dem Vollbild, aber für einen Screenreader doppelt.
+   */
+  onVollbild?: (an: boolean) => void
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const huelleRef = useRef<HTMLDivElement>(null)
@@ -232,11 +253,13 @@ export function Globus({
   }, [])
 
   /*
-    Im Vollbild bestimmt die Fensterhöhe die Größe, sonst die Breite.
+    Im Vollbild begrenzt zusätzlich die Fensterhöhe.
 
-    Nur die Breite zu messen genügt dort nicht: Ein Handy im Hochformat ist
-    schmal und hoch, und ein quadratischer Globus ließe die untere Hälfte des
-    Bildschirms leer. Abgezogen wird der Platz für die Bedienleiste darunter.
+    Höher als breit zu zeichnen brächte nichts: Der Radius folgt der kleineren
+    der beiden Seiten, eine Zeichenfläche im Hochformat enthielte also
+    denselben Kreis und darunter Leere. Genau das war der Fall, bis die Tafel
+    dazukam – auf dem Handy schob die leere Fläche sie halb aus dem Bild.
+    Zentriert wird über das Layout, nicht über eine überhohe Fläche.
   */
   useEffect(() => {
     const messen = () => setFensterHoehe(window.innerHeight)
@@ -247,7 +270,7 @@ export function Globus({
 
   const groesse = useMemo(() => {
     const hoehe = vollbild
-      ? Math.max(240, Math.min(breite * 1.6, fensterHoehe - 128))
+      ? Math.max(240, Math.min(breite, fensterHoehe - 128))
       : // Quadratisch, aber nach oben begrenzt: Auf einem breiten Bildschirm
         // soll der Globus nicht die ganze Höhe fressen.
         Math.min(breite, 560)
@@ -328,12 +351,30 @@ export function Globus({
       ctx.stroke()
     }
     hebeHervor(ueber, lies('--c-fg') || '#0f172a', 1.4)
-    hebeHervor(ausgewaehlt, lies('--c-brand') || '#17296f', 2.4)
+    /*
+      Die Auswahl bekommt eine doppelte Linie.
 
-    // Kante der Kugel
+      Vorher war es eine einzelne in der Hausfarbe – einem dunklen Blau. Auf
+      einem Land der obersten Klasse, das genau dieses Blau als Füllung trägt,
+      war sie damit unsichtbar: Wer über die Suche auf die Vereinigten Staaten
+      oder Indonesien kam, sah keine Markierung. Zuerst eine breite Linie in
+      der Hintergrundfarbe, darüber eine schmale in der Textfarbe – dieses
+      Paar hebt sich von jeder Füllung ab, in beiden Themes.
+    */
+    hebeHervor(ausgewaehlt, lies('--c-canvas') || '#f6f8fc', 4.5)
+    hebeHervor(ausgewaehlt, lies('--c-fg') || '#0f172a', 2)
+
+    /*
+      Kante der Kugel – eigene Farbe, nicht `--c-border-strong`.
+
+      Seit das Wasser im hellen Theme ein deutliches Blaugrau ist, wäre der
+      Rahmenton heller als die Fläche, die er begrenzt: ein Lichtsaum um eine
+      dunkle Scheibe. Die Kante muss dunkler sein als das Wasser, sonst hört
+      die Kugel dort nicht auf, sondern leuchtet.
+    */
     ctx.beginPath()
     pfad({ type: 'Sphere' })
-    ctx.strokeStyle = lies('--c-border-strong') || '#c8d1e0'
+    ctx.strokeStyle = lies('--c-globus-kante') || '#7c8ba4'
     ctx.lineWidth = 1
     ctx.stroke()
   }, [features, projektion, groesse, stufeJeId, farben, ueber, ausgewaehlt, themawechsel])
@@ -583,17 +624,15 @@ export function Globus({
     ändert sich nichts.
   */
   const vollbildUmschalten = useCallback(() => {
-    const knoten = rahmenRef.current
-    setVollbild((vorher) => {
-      const neu = !vorher
-      if (neu) {
-        knoten?.requestFullscreen?.().catch(() => {})
-      } else if (document.fullscreenElement) {
-        document.exitFullscreen?.().catch(() => {})
-      }
-      return neu
-    })
-  }, [])
+    const neu = !vollbild
+    setVollbild(neu)
+    onVollbild?.(neu)
+    if (neu) {
+      rahmenRef.current?.requestFullscreen?.().catch(() => {})
+    } else if (document.fullscreenElement) {
+      document.exitFullscreen?.().catch(() => {})
+    }
+  }, [vollbild, onVollbild])
 
   /*
     Wer das Vollbild über die Taste des Browsers verlässt, muss auch hier
@@ -602,11 +641,13 @@ export function Globus({
   */
   useEffect(() => {
     const abgleichen = () => {
-      if (!document.fullscreenElement) setVollbild(false)
+      if (document.fullscreenElement) return
+      setVollbild(false)
+      onVollbild?.(false)
     }
     document.addEventListener('fullscreenchange', abgleichen)
     return () => document.removeEventListener('fullscreenchange', abgleichen)
-  }, [])
+  }, [onVollbild])
 
   // Im Vollbild darf die Seite dahinter nicht mitrollen.
   useEffect(() => {
@@ -633,11 +674,12 @@ export function Globus({
       if (ereignis.key !== 'Escape') return
       ereignis.preventDefault()
       setVollbild(false)
+      onVollbild?.(false)
       if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {})
     }
     document.addEventListener('keydown', beiTaste)
     return () => document.removeEventListener('keydown', beiTaste)
-  }, [vollbild])
+  }, [vollbild, onVollbild])
 
   const ueberName = ueber ? nameJeId.get(ueber) : null
 
@@ -646,90 +688,116 @@ export function Globus({
       ref={rahmenRef}
       className={cn(
         'relative w-full min-w-0',
-        vollbild && 'bg-canvas fixed inset-0 z-50 flex flex-col justify-center p-3 sm:p-6'
+        vollbild && 'bg-canvas fixed inset-0 z-50 flex flex-col p-3 sm:p-6'
       )}
     >
-      {/* Der Messrahmen – leer, unsichtbar und immer nur so breit wie der Platz. */}
-      <div ref={massRef} aria-hidden="true" className="h-px w-full" />
-
       <div
-        ref={huelleRef}
-        tabIndex={0}
-        role="group"
-        aria-label="Drehbarer Globus. Ziehen dreht, Mausrad oder zwei Finger zoomen. Mit den Pfeiltasten drehen, mit Plus und Minus zoomen, mit Escape die Auswahl aufheben."
-        onPointerDown={beiZeigerAb}
-        onPointerMove={beiZeigerBewegung}
-        onPointerUp={beiZeigerAuf}
-        onPointerCancel={(ereignis) => {
-          zeigerRef.current.delete(ereignis.pointerId)
-          if (zeigerRef.current.size < 2) kneifRef.current = null
-          zugRef.current = null
-          setZieht(false)
-        }}
-        onPointerLeave={() => {
-          setUeber(null)
-          onHover(null)
-        }}
-        onKeyDown={beiTaste}
-        className="ring-ring/60 relative flex touch-none justify-center overflow-hidden rounded-2xl outline-none focus-visible:ring-2"
-        style={{ cursor: zieht ? 'grabbing' : 'grab' }}
+        className={cn(
+          vollbild && 'flex min-h-0 flex-1 flex-col gap-4 lg:flex-row lg:items-stretch'
+        )}
       >
-        <canvas ref={canvasRef} aria-hidden="true" className="block max-w-full" />
+        <div className={cn('min-w-0', vollbild && 'flex flex-1 flex-col justify-center')}>
+          {/*
+            Der Messrahmen – leer, unsichtbar und immer nur so breit wie der
+            Platz. Er steht in derselben Spalte wie die Zeichenfläche und nicht
+            darüber: Im Vollbild nimmt die Tafel rechts Platz weg, und ein
+            Rahmen über beiden meldete eine Breite, die die Kugel nicht hat.
+          */}
+          <div ref={massRef} aria-hidden="true" className="h-px w-full" />
 
-        {ueberName && (
-          <span className="bg-fg text-canvas pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-semibold">
-            {ueberName}
-          </span>
-        )}
-
-        {features.length === 0 && (
-          <p className="text-fg-subtle absolute inset-0 flex items-center justify-center text-sm">
-            Kartendaten werden geladen …
-          </p>
-        )}
-      </div>
-
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
-        <div className="flex flex-wrap gap-2">
-          <Knopf
-            beschriftung="Hineinzoomen"
-            zeichen="+"
-            onKlick={() => setZoom((v) => zoomSchritt(v, 1.4))}
-            aus={zoom >= MAX_ZOOM}
-          />
-          <Knopf
-            beschriftung="Herauszoomen"
-            zeichen="−"
-            onKlick={() => setZoom((v) => zoomSchritt(v, 1 / 1.4))}
-            aus={zoom <= MIN_ZOOM}
-          />
-          <button
-            type="button"
-            onClick={() => {
-              animationRef.current = null
-              setZoom(1)
-              setDrehung({ lambda: -10, phi: 20 })
-              onAuswahl(null)
+          <div
+            ref={huelleRef}
+            tabIndex={0}
+            role="group"
+            aria-label="Drehbarer Globus. Ziehen dreht, Mausrad oder zwei Finger zoomen. Mit den Pfeiltasten drehen, mit Plus und Minus zoomen, mit Escape die Auswahl aufheben."
+            onPointerDown={beiZeigerAb}
+            onPointerMove={beiZeigerBewegung}
+            onPointerUp={beiZeigerAuf}
+            onPointerCancel={(ereignis) => {
+              zeigerRef.current.delete(ereignis.pointerId)
+              if (zeigerRef.current.size < 2) kneifRef.current = null
+              zugRef.current = null
+              setZieht(false)
             }}
-            className="border-border text-fg-muted hover:text-fg hover:border-border-strong rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
+            onPointerLeave={() => {
+              setUeber(null)
+              onHover(null)
+            }}
+            onKeyDown={beiTaste}
+            className="ring-ring/60 relative flex touch-none justify-center overflow-hidden rounded-2xl outline-none focus-visible:ring-2"
+            style={{ cursor: zieht ? 'grabbing' : 'grab' }}
           >
-            Zurücksetzen
-          </button>
-          <button
-            type="button"
-            onClick={vollbildUmschalten}
-            aria-pressed={vollbild}
-            className="border-border text-fg-muted hover:text-fg hover:border-border-strong flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
-          >
-            <Icon name={vollbild ? 'compress' : 'expand'} className="size-3.5" />
-            {/* Im Vollbild kurz halten: Auf einem schmalen Gerät bricht
+            <canvas ref={canvasRef} aria-hidden="true" className="block max-w-full" />
+
+            {ueberName && (
+              <span className="bg-fg text-canvas pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-semibold">
+                {ueberName}
+              </span>
+            )}
+
+            {features.length === 0 && (
+              <p className="text-fg-subtle absolute inset-0 flex items-center justify-center text-sm">
+                Kartendaten werden geladen …
+              </p>
+            )}
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+            <div className="flex flex-wrap gap-2">
+              <Knopf
+                beschriftung="Hineinzoomen"
+                zeichen="+"
+                onKlick={() => setZoom((v) => zoomSchritt(v, 1.4))}
+                aus={zoom >= MAX_ZOOM}
+              />
+              <Knopf
+                beschriftung="Herauszoomen"
+                zeichen="−"
+                onKlick={() => setZoom((v) => zoomSchritt(v, 1 / 1.4))}
+                aus={zoom <= MIN_ZOOM}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  animationRef.current = null
+                  setZoom(1)
+                  setDrehung({ lambda: -10, phi: 20 })
+                  onAuswahl(null)
+                }}
+                className="border-border text-fg-muted hover:text-fg hover:border-border-strong rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
+              >
+                Zurücksetzen
+              </button>
+              <button
+                type="button"
+                onClick={vollbildUmschalten}
+                aria-pressed={vollbild}
+                className="border-border text-fg-muted hover:text-fg hover:border-border-strong flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
+              >
+                <Icon name={vollbild ? 'compress' : 'expand'} className="size-3.5" />
+                {/* Im Vollbild kurz halten: Auf einem schmalen Gerät bricht
                 „Vollbild beenden“ sonst über zwei Zeilen um. */}
-            {vollbild ? 'Beenden' : 'Vollbild'}
-          </button>
+                {vollbild ? 'Beenden' : 'Vollbild'}
+              </button>
+            </div>
+            <p className="text-fg-subtle text-xs tabular-nums" aria-live="off">
+              {zoom.toFixed(1)}×
+            </p>
+          </div>
         </div>
-        <p className="text-fg-subtle text-xs tabular-nums" aria-live="off">
-          {zoom.toFixed(1)}×
-        </p>
+
+        {/*
+          Die Tafel im Vollbild – rechts daneben, auf schmalen Geräten darunter.
+
+          `overflow-y-auto` ist nicht Zierde: Ein Land mit vielen Kursen füllt
+          die Tafel über die Bildschirmhöhe hinaus, und im Vollbild kann die
+          Seite dahinter nicht scrollen.
+        */}
+        {vollbild && tafel && (
+          <aside className="max-h-[45vh] min-h-0 w-full overflow-y-auto lg:max-h-none lg:w-[22rem] lg:shrink-0">
+            {tafel}
+          </aside>
+        )}
       </div>
     </div>
   )

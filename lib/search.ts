@@ -12,7 +12,8 @@
  */
 
 import { getEditions } from '@/lib/editions'
-import { formatDate } from '@/lib/format'
+import { formatDate, formatNumber } from '@/lib/format'
+import { getLaender } from '@/lib/laender'
 import { getLearnTopics } from '@/lib/learn'
 import { learnLevelIds, learnLevelMeta } from '@/lib/learn'
 import { getInstruments } from '@/lib/markets'
@@ -94,11 +95,12 @@ const seiten: SearchEntry[] = [
 ]
 
 export async function buildSearchIndex(): Promise<SearchEntry[]> {
-  const [themen, instrumente, artikel, ausgaben] = await Promise.all([
+  const [themen, instrumente, artikel, ausgaben, laender] = await Promise.all([
     getLearnTopics(),
     getInstruments(),
     getNewsArticles(),
     getEditions(),
+    getLaender(),
   ])
 
   const eintraege: SearchEntry[] = []
@@ -195,7 +197,51 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     })
   }
 
-  // 5. Nachrichten und Tagesausgaben.
+  /*
+    5. Länder.
+
+    Wer „Indonesien“ in die Lupe tippt, sucht Indonesien – und nicht eine
+    Nachricht, in der das Wort vorkommt. Bis eben fand die Suche nichts: Die
+    Länder standen nur auf dem Globus, und der war ein einziger Eintrag.
+
+    Das Ziel ist deshalb nicht `/globus`, sondern `/globus#land-360`. Die
+    Globusansicht liest diese Raute, wählt das Land aus und dreht die Kugel
+    dorthin – dasselbe Ergebnis wie ein Klick auf die Fläche.
+
+    Ohne Datenlage kein Eintrag: Ein Gebiet wie die Heard-Insel, zu dem weder
+    Zahlen noch Kurse vorliegen, wäre in der Trefferliste ein leeres
+    Versprechen. Auf dem Globus bleibt es anklickbar, dort steht es im
+    räumlichen Zusammenhang.
+  */
+  for (const land of laender) {
+    const kurse = land.indizes.length + land.aktien.length
+    const hatZahlen = Boolean(land.bipUsd || land.einwohner)
+    if (!hatZahlen && kurse === 0) continue
+
+    const teile = [
+      land.region,
+      // Unter einer Million bliebe von „0 Mio.“ nichts übrig – Monaco hat
+      // 38.000 Einwohner, und die stehen dann ausgeschrieben da.
+      land.einwohner
+        ? land.einwohner >= 1_000_000
+          ? `${formatNumber(Math.round(land.einwohner / 1_000_000))} Mio. Einwohner`
+          : `${formatNumber(land.einwohner)} Einwohner`
+        : null,
+      kurse > 0 ? `${kurse} ${kurse === 1 ? 'Kurs' : 'Kurse'} von hier` : null,
+    ].filter(Boolean)
+
+    eintraege.push({
+      title: land.name,
+      href: `/globus#land-${land.id}`,
+      kind: 'Land',
+      hint: teile.join(' · '),
+      keywords: [land.alpha2, land.waehrung, 'globus', 'land'].filter(
+        (wert): wert is string => Boolean(wert)
+      ),
+    })
+  }
+
+  // 6. Nachrichten und Tagesausgaben.
   for (const beitrag of artikel) {
     eintraege.push({
       title: beitrag.title,
