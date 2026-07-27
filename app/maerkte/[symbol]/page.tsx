@@ -1,9 +1,11 @@
+import { indexZusammensetzung } from '@/data/index-zusammensetzung'
 import { marketKindMeta } from '@/data/markets'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { PriceChart } from '@/components/charts/PriceChart'
+import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
@@ -84,6 +86,13 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
   const kindLabel = marketKindMeta[instrument.kind].long
+  /*
+    Nur wenige Indizes haben eine hinterlegte Ländergewichtung.
+
+    Der Abschnitt erscheint deshalb bedingt statt für jedes Instrument mit einem
+    leeren Platzhalter – bei einem Währungspaar wäre die Frage ohnehin sinnlos.
+  */
+  const zusammensetzung = indexZusammensetzung[instrument.symbol]
 
   return (
     <>
@@ -204,6 +213,43 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 ))}
               </div>
             </section>
+
+            {zusammensetzung && (
+              <section aria-labelledby="zusammensetzung" className="mt-12">
+                <h2 id="zusammensetzung" className="text-fg text-2xl font-bold">
+                  Woher das Gewicht kommt
+                </h2>
+                <p className="text-fg-muted mt-4 leading-relaxed">
+                  Gewichtet wird nach Börsenwert: Je mehr ein Unternehmen an der Börse
+                  wert ist, desto stärker zählt es im Index. Nicht die Zahl der
+                  enthaltenen Länder entscheidet also über die Aufteilung, sondern der
+                  Marktwert der Unternehmen in ihnen.
+                </p>
+                <figure className="mt-6">
+                  <div className="rounded-card border-border bg-surface-muted border p-4 sm:p-6">
+                    <IndexLaendergewichtung symbol={instrument.symbol} />
+                  </div>
+                  <figcaption className="text-fg-subtle mt-2.5 text-sm leading-relaxed">
+                    {zusammensetzung.hinweis}
+                  </figcaption>
+                </figure>
+                {/* Die Gewichtung wird von Hand gepflegt, nicht stündlich abgerufen.
+                    Ohne sichtbares Datum wäre sie eine Behauptung. */}
+                <p className="text-fg-subtle mt-4 text-sm leading-relaxed">
+                  Stand der Gewichtung: {formatDate(zusammensetzung.stand)}. Quelle:{' '}
+                  <a
+                    href={zusammensetzung.quelle.url}
+                    rel="noopener noreferrer nofollow"
+                    target="_blank"
+                    className="text-brand underline underline-offset-2"
+                  >
+                    {zusammensetzung.quelle.label}
+                  </a>
+                  . Anders als der Kurs wird dieser Datensatz nicht automatisch
+                  aktualisiert.
+                </p>
+              </section>
+            )}
 
             <div className="border-border mt-10 border-t pt-5">
               <SourceSummary

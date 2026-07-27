@@ -60,6 +60,10 @@ export const aktie: LearnTopic = {
           text: 'Dieser Satz klingt banal, aber er beantwortet die meisten Einsteigerfragen. Eine Aktie hat einen Wert, weil das Unternehmen dahinter Werte besitzt und Gewinne erzielt. Sie ist keine Wette gegen andere Marktteilnehmer und kein Stück Papier, dessen Preis grundlos schwankt.',
         },
         {
+          type: 'figure',
+          figure: 'aktie-anteil',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Warum Unternehmen Aktien ausgeben',
@@ -111,6 +115,10 @@ export const aktie: LearnTopic = {
             'Schüttet ein Unternehmen 2 Euro pro Aktie aus, verlässt dieses Geld das Unternehmen. Der Kurs fällt am Tag der Ausschüttung rechnerisch um etwa diesen Betrag – der sogenannte Dividendenabschlag.',
             'Eine Dividende ist deshalb kein geschenktes Zusatzgeld, sondern eine Umschichtung: aus dem Unternehmenswert auf dein Konto. Wer ausschließlich auf hohe Dividendenrenditen schaut, übersieht das leicht.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'aktie-dividendenabschlag',
         },
         {
           type: 'heading',
@@ -362,6 +370,10 @@ export const aktie: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Dieselbe Aktie wird an mehreren Handelsplätzen gehandelt. Für jeden gibt es zwei Preise: den **Geldkurs** (Bid), zu dem jemand kaufen will, und den **Briefkurs** (Ask), zu dem jemand verkaufen will. Die Differenz ist der **Spread** – eine Kostenposition, die in keiner Gebührenübersicht auftaucht.',
+        },
+        {
+          type: 'figure',
+          figure: 'aktie-spread',
         },
         {
           type: 'paragraph',
