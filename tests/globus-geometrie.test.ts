@@ -13,6 +13,7 @@ import {
   MAX_NEIGUNG,
   MAX_ZOOM,
   MIN_ZOOM,
+  ZUG_GRAD_JE_RADIUS,
   drehungNachZug,
   drehungZu,
   drehungZwischen,
@@ -38,24 +39,58 @@ function check(name: string, actual: unknown, expected: unknown) {
 
 // ---------------------------------------------------------------- Drehung
 
+/*
+  Die Kugel klebt am Zeiger – beide Achsen ziehen mit, keine dagegen.
+
+  Der zweite Fall ist der, den ein Nutzer gemeldet hat: Nach unten zu ziehen
+  drehte den Globus nach oben. Waagerecht stimmte es, senkrecht nicht.
+*/
 check(
   'Ziehen nach rechts dreht nach Osten',
-  drehungNachZug({ lambda: 0, phi: 0 }, 180, 0, 180).lambda,
-  180 - 360 // normalisiert auf -180
+  drehungNachZug({ lambda: 0, phi: 0 }, 100, 0, 100).lambda,
+  ZUG_GRAD_JE_RADIUS
 )
 check(
-  'Ziehen nach oben hebt den Nordpol',
-  drehungNachZug({ lambda: 0, phi: 0 }, 0, -30, 180).phi > 0,
+  'Ziehen nach unten blickt weiter nach Norden',
+  drehungNachZug({ lambda: 0, phi: 0 }, 0, 100, 100).phi,
+  ZUG_GRAD_JE_RADIUS
+)
+check(
+  'Ziehen nach oben blickt weiter nach Süden',
+  drehungNachZug({ lambda: 0, phi: 0 }, 0, -100, 100).phi,
+  -ZUG_GRAD_JE_RADIUS
+)
+/*
+  Beide Achsen müssen bei gleichem Weg gleich weit drehen. Ein Unterschied
+  fühlt sich beim schrägen Ziehen an, als würde die Kugel wegrutschen.
+*/
+check(
+  'beide Achsen drehen bei gleichem Weg gleich weit',
+  Math.abs(drehungNachZug({ lambda: 0, phi: 0 }, 70, 0, 200).lambda),
+  Math.abs(drehungNachZug({ lambda: 0, phi: 0 }, 0, 70, 200).phi)
+)
+/*
+  Die Empfindlichkeit selbst: Ein Zug über den ganzen Radius darf die Kugel
+  nicht herumreißen. Physikalisch genau wären 90 Grad, gewollt sind weniger.
+*/
+check(
+  'ein Zug über den ganzen Radius dreht spürbar weniger als eine Vierteldrehung',
+  ZUG_GRAD_JE_RADIUS < 90,
+  true
+)
+check(
+  'aber genug, um die Kugel in zwei Zügen herumzudrehen',
+  ZUG_GRAD_JE_RADIUS * 2 >= 90,
   true
 )
 check(
   'die Neigung kippt nicht über den Pol',
-  drehungNachZug({ lambda: 0, phi: 80 }, 0, -400, 180).phi,
+  drehungNachZug({ lambda: 0, phi: 80 }, 0, 400, 180).phi,
   MAX_NEIGUNG
 )
 check(
   'auch nach unten nicht',
-  drehungNachZug({ lambda: 0, phi: -80 }, 0, 400, 180).phi,
+  drehungNachZug({ lambda: 0, phi: -80 }, 0, -400, 180).phi,
   -MAX_NEIGUNG
 )
 /*
