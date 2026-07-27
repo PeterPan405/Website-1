@@ -65,6 +65,7 @@ export function Globus({
   onAuswahl,
   onHover,
   zielId,
+  werkzeuge,
   tafel,
   onVollbild,
 }: {
@@ -94,6 +95,13 @@ export function Globus({
    * ist keine Frage der Gestaltung, sondern wie die Schnittstelle arbeitet.
    */
   tafel?: ReactNode
+  /**
+   * Die Kennzahlwahl – aus demselben Grund hier wie die Tafel.
+   *
+   * Sie steht links, weil sie die Karte steuert und nicht sie beschreibt: Was
+   * eingestellt wird, gehört vor das Ergebnis, was ausgelesen wird, dahinter.
+   */
+  werkzeuge?: ReactNode
   /**
    * Meldet den Wechsel ins Vollbild und zurück.
    *
@@ -696,6 +704,21 @@ export function Globus({
           vollbild && 'flex min-h-0 flex-1 flex-col gap-4 lg:flex-row lg:items-stretch'
         )}
       >
+        {/*
+          Die Kennzahlwahl im Vollbild – links neben der Kugel.
+
+          Auf schmalen Geräten steht sie oben und darf nicht schrumpfen: Die
+          Knöpfe brechen dort ohnehin um, und eine gestauchte Reihe wäre nicht
+          mehr zu treffen. Auf breiten Bildschirmen bekommt sie eine feste
+          Spalte, damit die Kugel beim Umschalten zwischen kurzen und langen
+          Beschriftungen nicht springt.
+        */}
+        {vollbild && werkzeuge && (
+          <div className="w-full shrink-0 overflow-y-auto lg:w-56 lg:self-center">
+            {werkzeuge}
+          </div>
+        )}
+
         <div className={cn('min-w-0', vollbild && 'flex flex-1 flex-col justify-center')}>
           {/*
             Der Messrahmen – leer, unsichtbar und immer nur so breit wie der

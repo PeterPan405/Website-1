@@ -45,9 +45,14 @@ jobs:
       contents: write
 
     steps:
+      # Der Zweig, auf dem der Lauf ausgelöst wurde – bei der Zeitsteuerung ist
+      # das `main`. Vorher stand hier fest `main`: Damit lief jeder Testlauf
+      # gegen den veröffentlichten Stand, und eine Änderung am Abrufskript ließ
+      # sich erst nach dem Zusammenführen ausprobieren. Bei zwei Minuten je Lauf
+      # ist das der Unterschied zwischen Messen und Raten.
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-node@v4
         with:
@@ -69,9 +74,13 @@ jobs:
           git add data/snapshots/laender.json
           git commit -m "Länderdaten: Stand $(date -u +%Y-%m-%d)"
 
+          # Zurück auf denselben Zweig, von dem ausgecheckt wurde – ein Testlauf
+          # auf einem Arbeitszweig darf nicht auf main schreiben.
+          zweig="${{ github.ref_name }}"
+
           # Zwischen Prüfung und Push kann jemand anders gepusht haben.
           for versuch in 1 2 3; do
-            git pull --rebase origin main && git push origin main && exit 0
+            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
             echo "Push fehlgeschlagen, Versuch $versuch – neuer Anlauf in $((versuch * 5))s"
             sleep $((versuch * 5))
           done
