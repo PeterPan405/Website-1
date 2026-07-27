@@ -813,6 +813,163 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Terminkontrakte laufen ab und müssen in den nächsten gerollt werden. Ist der spätere Kontrakt teurer als der auslaufende – Contango –, kostet jeder Rollvorgang einen Teil des Einsatzes. Über Jahre kann das den Preisanstieg des Rohstoffs vollständig aufzehren, während der Spotpreis gestiegen ist.',
     },
   ],
+  // ------------------------------------------------------------------ Börse
+  'boerse:beginner': [
+    {
+      question: 'Was garantiert eine Börse?',
+      options: [
+        'Dass die gehandelten Unternehmen wirtschaftlich gesund sind',
+        'Dass Kurse nicht unter einen Mindestwert fallen',
+        'Geordnete Preisfindung und eine verlässliche Abwicklung',
+        'Dass jeder Anleger am Ende Gewinn macht',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Eine Börse organisiert das Zusammentreffen von Aufträgen nach Regeln, die für alle gleich sind, und sorgt dafür, dass Wertpapiere und Geld auch wirklich den Besitzer wechseln. Über die Qualität eines Unternehmens sagt die Zulassung nichts – sie heißt nur, dass die formalen Anforderungen erfüllt sind.',
+    },
+    {
+      question: 'Deine Bank geht insolvent. Was passiert mit den Aktien in deinem Depot?',
+      options: [
+        'Sie gehören dir und fallen nicht in die Insolvenzmasse',
+        'Sie sind bis 100.000 Euro über die Einlagensicherung geschützt',
+        'Sie werden verkauft und der Erlös anteilig verteilt',
+        'Sie gehen an den Zentralverwahrer über und sind verloren',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Bank verwahrt die Papiere nur, Eigentümer bist du. Du kannst die Herausgabe verlangen oder das Depot übertragen lassen. Die Einlagensicherung über 100.000 Euro betrifft Guthaben – also Geld, das der Bank gehört und das sie dir schuldet. Wertpapiere muss sie nicht schulden, sie sind bereits deine.',
+    },
+    {
+      question:
+        'Warum beginnt und endet der Börsentag mit einer Auktion statt mit fortlaufendem Handel?',
+      options: [
+        'Damit die Börse ihre Gebühren berechnen kann',
+        'Weil sonst zu viele Orders gleichzeitig einträfen und das System überlastet wäre',
+        'Weil das Gesetz eine Preisfeststellung durch einen Makler vorschreibt',
+        'Weil nach einer Nachrichtenlage unklar ist, wo der Kurs steht – die Auktion bündelt das in einem Preis',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Würde nach der Nacht sofort fortlaufend gehandelt, entstünden willkürliche erste Kurse. In der Auktion sammeln sich Aufträge, und es wird der eine Preis ermittelt, zu dem das größte Volumen zustande kommt. Dasselbe am Ende des Tages, wo der Schlusskurs als Referenz für vieles dient.',
+    },
+    {
+      question:
+        'Welche der drei Kostenarten eines Wertpapierkaufs taucht auf keiner Abrechnung auf?',
+      options: [
+        'Die Ordergebühr des Brokers',
+        'Der Spread zwischen Kauf- und Verkaufspreis',
+        'Das Entgelt des Handelsplatzes',
+        'Die Depotgebühr',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Spread wird nie in Rechnung gestellt – er steckt im Preis. Wer sofort nach dem Kauf wieder verkaufen würde, bekäme weniger heraus, als er bezahlt hat, obwohl sich der Kurs nicht bewegt hat. Bei kleinen Ordern über einen ungünstigen Handelsplatz ist er oft der größte der drei Posten.',
+    },
+  ],
+  'boerse:fortgeschritten': [
+    {
+      question: 'Beim außerbörslichen Direkthandel handelst du gegen wen?',
+      options: [
+        'Gegen andere Privatanleger in einem geschlossenen Orderbuch',
+        'Gegen die Börse selbst',
+        'Gegen ein Unternehmen, das dir einen Preis stellt und vom Spread lebt',
+        'Gegen das Unternehmen, dessen Aktie gehandelt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Es gibt kein Orderbuch, sondern ein Gegenüber, das einen Preis anbietet. Das ist ein legitimes Geschäftsmodell, aber die Interessen sind gegenläufig. Deshalb gilt hier besonders: den gestellten Preis mit dem Kurs am Referenzmarkt vergleichen, bevor man annimmt.',
+    },
+    {
+      question: 'Warum ist der Handel um 22 Uhr regelmäßig teurer als am Nachmittag?',
+      options: [
+        'Weil Handelsplätze nachts höhere Entgelte verlangen',
+        'Weil der Referenzmarkt geschlossen ist und ein Vergleichskurs fehlt, an dem sich das Angebot messen ließe',
+        'Weil nachts nur unlimitierte Orders zulässig sind',
+        'Weil die Abwicklung dann einen Tag länger dauert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne laufenden Referenzkurs muss der Anbieter den fairen Wert schätzen und sichert sich über eine größere Spanne ab. Bei ausländischen Werten kommt hinzu, dass auch der Heimatmarkt geschlossen sein kann. Die Order kostet dann mehr, ohne dass irgendwo eine höhere Gebühr auftauchte.',
+    },
+    {
+      question: 'Was verlangt die Best-Execution-Pflicht von deinem Broker?',
+      options: [
+        'Immer den Handelsplatz mit dem besten Kurs zu wählen',
+        'Jede Order an den Referenzmarkt weiterzuleiten',
+        'Dich vor jeder Order über den Spread zu informieren',
+        'Das bestmögliche Gesamtergebnis anzustreben – Preis, Kosten, Geschwindigkeit und Ausführungswahrscheinlichkeit zusammen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Pflicht bezieht sich auf das Gesamtergebnis, nicht allein auf den Preis. Das gibt Spielraum, und deshalb ist die Standardvorgabe eines Brokers nicht automatisch der Handelsplatz mit dem besten Kurs. Wie er abwägt, steht in seinen Ausführungsgrundsätzen.',
+    },
+    {
+      question: 'Was leistet die Finanzaufsicht für Anleger nicht?',
+      options: [
+        'Sie warnt nicht vor schlechten Geschäftsmodellen und verhindert keine Kursstürze',
+        'Sie verfolgt keinen Insiderhandel',
+        'Sie überwacht die Veröffentlichungspflichten der Unternehmen nicht',
+        'Sie beaufsichtigt die Börsen nicht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Insiderhandel, Marktmanipulation und Publizitätspflichten fallen sehr wohl in ihren Bereich. Was sie nicht tut: Geschäftsmodelle bewerten oder vor Verlusten schützen. Sie greift überwiegend nachträglich ein – bei einem Betrug ist das Geld dann meist weg. „Das ist doch reguliert“ ist deshalb keine Aussage über das Risiko einer Anlage.',
+    },
+  ],
+  'boerse:profi': [
+    {
+      question:
+        'Worin unterscheiden sich regulierter Markt und Freiverkehr für Anleger am deutlichsten?',
+      options: [
+        'Im Freiverkehr gilt kein Marktmissbrauchsrecht',
+        'Im Freiverkehr sind die laufenden Informationspflichten der Unternehmen deutlich schwächer',
+        'Im Freiverkehr können nur institutionelle Anleger handeln',
+        'Im regulierten Markt garantiert die Börse die Kurse',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der regulierte Markt ist gesetzlich geregelt: Prospektpflicht, Rechnungslegung nach internationalen Standards, Ad-hoc-Publizität, Stimmrechtsmitteilungen. Der Freiverkehr ist privatrechtlich von der Börse organisiert und verlangt weniger. Marktmissbrauchsrecht gilt in beiden Segmenten.',
+    },
+    {
+      question:
+        'Welche Aufgabe hat die zentrale Gegenpartei zwischen Abschluss und Lieferung?',
+      options: [
+        'Sie verwahrt die Wertpapiere der Endanleger',
+        'Sie legt den Schlusskurs des Handelstages fest',
+        'Sie tritt zwischen beide Seiten, trägt das Ausfallrisiko und verrechnet Geschäfte gegeneinander',
+        'Sie prüft, ob der vereinbarte Preis marktgerecht ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus einem Geschäft werden rechtlich zwei: Du kaufst von der Gegenpartei, der Verkäufer verkauft an sie. Fällt eine Seite aus, trägt sie den Schaden – abgesichert über Sicherheitsleistungen und einen Ausfallfonds. Durch das Netting muss zudem nur die Differenz tatsächlich geliefert werden.',
+    },
+    {
+      question:
+        'Der Handel in einer Aktie wird für einige Minuten unterbrochen, nachdem der Kurs stark gesprungen ist. Was ist der Zweck?',
+      options: [
+        'Den Kurs zu stützen und weitere Verluste zu verhindern',
+        'Zeit für eine Prüfung durch die Aufsichtsbehörde zu schaffen',
+        'Ausstehende Orders automatisch zu löschen',
+        'Die Preisbildung zu entschleunigen, damit niemand zu einem Preis ausgeführt wird, der Sekunden später überholt ist',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Eine Volatilitätsunterbrechung ersetzt den fortlaufenden Handel kurzzeitig durch eine Auktion. Sie stützt keine Kurse – der Preis darf danach beliebig tief liegen. Davon zu unterscheiden ist die Handelsaussetzung, die auf eine fehlende Information wartet und Tage dauern kann.',
+    },
+    {
+      question:
+        'Nach einem Aktiensplit im Verhältnis eins zu drei findest du am Morgen dreimal so viele Aktien zu einem Drittel des Kurses. Was ist mit deiner offenen Limit-Order?',
+      options: [
+        'Sie wird in der Regel gelöscht und muss neu erfasst werden',
+        'Ihr Limit wird automatisch gedrittelt',
+        'Sie bleibt unverändert bestehen und wird zum alten Limit ausgeführt',
+        'Sie wird zur unlimitierten Order',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein Limit, das sich auf den alten Kurs bezog, wäre nach dem Split sinnlos – bei einem Kaufauftrag würde es sofort und weit über dem neuen Kurs greifen. Deshalb werden offene Orders bei Kapitalmaßnahmen üblicherweise gestrichen. Wer langfristige Orders stehen hat, muss sie danach neu einstellen.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */
