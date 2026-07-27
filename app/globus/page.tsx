@@ -57,7 +57,11 @@ export default async function GlobusPage() {
         breadcrumbs={<Breadcrumbs items={[{ name: 'Globus' }]} />}
         meta={
           <>
-            <span>{laender.length} Länder</span>
+            {/*
+              „und Gebiete“, weil die feine Karte auch Hongkong, Guam und die
+              Färöer zeichnet. Sie alle Länder zu nennen wäre bequem und falsch.
+            */}
+            <span>{laender.length} Länder und Gebiete</span>
             <span aria-hidden="true">·</span>
             <span>{abdeckung.bip} mit Wirtschaftsdaten</span>
             <span aria-hidden="true">·</span>

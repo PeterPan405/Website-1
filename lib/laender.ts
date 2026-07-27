@@ -144,7 +144,9 @@ export const metriken: Metrik[] = [
     label: 'Kurse auf dieser Seite',
     erklaerung:
       'Wie viele Indizes und Aktien aus diesem Land auf IM Invests zu finden sind. Zeigt die Schlagseite der Auswahl – nicht die der Weltwirtschaft.',
-    einheit: 'Kurse',
+    // „Kursen je Land“ und nicht „Kurse“: Die Legende setzt „Angaben in …“
+    // davor, und „Angaben in Kurse“ ist kein Satz.
+    einheit: 'Kursen je Land',
     hoherWertIstGross: true,
   },
 ]

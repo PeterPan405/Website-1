@@ -208,6 +208,7 @@ export function GlobusAnsicht({
           grenzen={grenzen}
           farben={farben}
           einheit={metrik.einheit}
+          metrikId={metrikId}
           abgedeckt={abgedeckt}
           gesamt={laender.length}
         />
@@ -279,16 +280,36 @@ export function GlobusAnsicht({
   )
 }
 
+/**
+ * Eine Klassengrenze so beschriften, wie sie in der Detailtafel stünde.
+ *
+ * Das Bruttoinlandsprodukt liegt in **Millionen** US-Dollar vor. Die Tafel
+ * rechnet das um und schreibt „382 Mrd. US-$“; die Legende schrieb bis eben die
+ * rohe Zahl unter die Überschrift „Angaben in US-Dollar“. Da stand dann „unter
+ * 263“ für Volkswirtschaften unter 263 Millionen – und „ab 330.858“ für alles
+ * ab 331 Milliarden. Beides um den Faktor eine Million daneben, ohne dass man
+ * es der Zahl ansieht.
+ *
+ * Die übrigen Kennzahlen stehen in ihrer eigenen Einheit und brauchen nichts.
+ */
+function grenzenbeschriftung(wert: number, metrikId: string): string {
+  if (metrikId !== 'bip') return formatNumber(wert)
+  // Unterhalb einer Milliarde bliebe von „0,3 Mrd.“ nach dem Runden nichts.
+  return wert >= 1000 ? `${formatNumber(wert / 1000)} Mrd.` : `${formatNumber(wert)} Mio.`
+}
+
 function Legende({
   grenzen,
   farben,
   einheit,
+  metrikId,
   abgedeckt,
   gesamt,
 }: {
   grenzen: number[]
   farben: string[]
   einheit: string
+  metrikId: string
   abgedeckt: number
   gesamt: number
 }) {
@@ -311,10 +332,10 @@ function Legende({
             />
             <span className="text-fg-subtle text-xs tabular-nums">
               {index === 0
-                ? `unter ${formatNumber(grenzen[0] ?? 0)}`
+                ? `unter ${grenzenbeschriftung(grenzen[0] ?? 0, metrikId)}`
                 : index === farben.length - 1
-                  ? `ab ${formatNumber(grenzen[index - 1] ?? 0)}`
-                  : `${formatNumber(grenzen[index - 1] ?? 0)}–${formatNumber(grenzen[index] ?? 0)}`}
+                  ? `ab ${grenzenbeschriftung(grenzen[index - 1] ?? 0, metrikId)}`
+                  : `${grenzenbeschriftung(grenzen[index - 1] ?? 0, metrikId)}–${grenzenbeschriftung(grenzen[index] ?? 0, metrikId)}`}
             </span>
           </div>
         ))}
