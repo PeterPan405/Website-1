@@ -84,9 +84,9 @@ export default async function MarketsOverviewPage() {
             <span aria-hidden="true">·</span>
             <span>{fxQuotes.length} Währungspaare</span>
             <span aria-hidden="true">·</span>
-            <span>{magSevenQuotes.length + stockQuotes.length} Einzelaktien</span>
-            <span aria-hidden="true">·</span>
             <span>{cryptoQuotes.length} Kryptowährungen</span>
+            <span aria-hidden="true">·</span>
+            <span>{magSevenQuotes.length + stockQuotes.length} Einzelaktien</span>
             {asOf && (
               <>
                 <span aria-hidden="true">·</span>
@@ -151,25 +151,6 @@ export default async function MarketsOverviewPage() {
                     sparkline={sparklineBySymbol.get(quote.symbol)}
                   />
                 </Reveal>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="aktien" className="mt-16">
-          <h2 id="aktien" className="text-fg text-2xl font-bold">
-            Weitere Aktien
-          </h2>
-          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Einzelwerte aus den USA, Europa und Asien. Anders als ein Index trägt eine
-            einzelne Aktie das Risiko genau dieses Unternehmens – dafür lässt sich an ihr
-            nachvollziehen, was ein Geschäftsmodell für den Kurs bedeutet. Notiert wird in
-            der Währung der jeweiligen Heimatbörse.
-          </p>
-          <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
-            {stockQuotes.map((quote) => (
-              <li key={quote.symbol}>
-                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>
@@ -241,6 +222,29 @@ export default async function MarketsOverviewPage() {
                     sparkline={sparklineBySymbol.get(quote.symbol)}
                   />
                 </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Zuletzt, weil es der einzige Abschnitt ohne Kacheln ist: über
+            hundert Zeilen am Stück würden jeden folgenden Abschnitt
+            wegdrücken. Die Magnificent Seven stehen weiter oben, wo sie
+            ihrem Gewicht nach hingehören. */}
+        <section aria-labelledby="aktien" className="mt-16">
+          <h2 id="aktien" className="text-fg text-2xl font-bold">
+            Weitere Aktien
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+            Einzelwerte aus den USA, Europa und Asien. Anders als ein Index trägt eine
+            einzelne Aktie das Risiko genau dieses Unternehmens – dafür lässt sich an ihr
+            nachvollziehen, was ein Geschäftsmodell für den Kurs bedeutet. Notiert wird in
+            der Währung der jeweiligen Heimatbörse.
+          </p>
+          <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
+            {stockQuotes.map((quote) => (
+              <li key={quote.symbol}>
+                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>
