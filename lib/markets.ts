@@ -2,6 +2,7 @@ import {
   featuredSymbols,
   MARKET_DATA_AS_OF,
   marketDefinitions,
+  marketSources,
   type MarketDefinition,
   type MarketInstrument,
   type MarketRange,
@@ -73,6 +74,15 @@ export interface MarketQuote {
    * pauschal über der Seite stehen, sondern muss am einzelnen Wert hängen.
    */
   source: QuoteSource | null
+  /**
+   * Ob für dieses Instrument überhaupt eine Quelle eingerichtet ist.
+   *
+   * Trennt zwei Fälle, die sonst gleich aussehen und es nicht sind: `MSCI World`
+   * hat dauerhaft keine frei zugängliche Quelle, ein gerade erst angelegtes
+   * Instrument dagegen schon – es wartet nur auf den nächsten Abruf. Beides als
+   * „keine Quelle vorhanden“ zu beschriften wäre schlicht falsch.
+   */
+  sourcePlanned: boolean
 }
 
 export type { QuoteSource } from '@/lib/market-live'
@@ -178,6 +188,7 @@ function buildQuote(definition: MarketDefinition): MarketQuote {
     asOf: laufend?.at ?? asOf,
     intraday: Boolean(laufend),
     source,
+    sourcePlanned: definition.symbol in marketSources,
   }
 }
 

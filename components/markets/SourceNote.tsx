@@ -65,7 +65,14 @@ export function SourceSummary({
   className?: string
 }) {
   const quellen = [...new Set(quotes.map((q) => q.source?.label).filter(Boolean))]
-  const demo = quotes.filter((q) => !q.source)
+  /*
+    Zwei Gründe für einen Demo-Kurs, die auseinandergehalten gehören: Für das
+    eine Instrument gibt es dauerhaft keine Quelle, das andere ist nur noch
+    nicht abgerufen worden. Wer den Unterschied verschweigt, behauptet über neue
+    Instrumente etwas Falsches.
+  */
+  const ohneQuelle = quotes.filter((q) => !q.source && !q.sourcePlanned)
+  const wartend = quotes.filter((q) => !q.source && q.sourcePlanned)
   const klasse = className ?? 'text-fg-muted text-sm leading-relaxed'
 
   /*
@@ -91,12 +98,21 @@ export function SourceSummary({
       Kurse werden während der Börsenzeit stündlich abgerufen, der Verlauf zeigt
       Tagesschlusskurse. Keine Echtzeitdaten – der angezeigte Stand kann bis zu einer
       Stunde alt sein. Quellen: {quellen.join(' und ')}.
-      {demo.length > 0 && (
+      {ohneQuelle.length > 0 && (
         <>
           {' '}
-          Für {demo.map((q) => q.ticker).join(', ')} gibt es keine frei zugängliche
-          Quelle; dort stehen weiterhin{' '}
+          Für {ohneQuelle.map((q) => q.ticker).join(', ')} gibt es keine frei zugängliche
+          Quelle; dort stehen{' '}
           <strong className="text-fg font-semibold">erzeugte Demo-Kurse</strong>.
+        </>
+      )}
+      {wartend.length > 0 && (
+        <>
+          {' '}
+          {wartend.map((q) => q.ticker).join(', ')}{' '}
+          {wartend.length === 1 ? 'wurde' : 'wurden'} neu aufgenommen und{' '}
+          {wartend.length === 1 ? 'wartet' : 'warten'} auf den ersten Abruf – bis dahin
+          stehen dort <strong className="text-fg font-semibold">Demo-Kurse</strong>.
         </>
       )}
     </p>
