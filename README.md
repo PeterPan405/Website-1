@@ -85,7 +85,7 @@ Kurse kommen aus echten Quellen, nicht mehr aus einem Zufallsgenerator:
 | Instrumente                                           | Quelle                                                             |
 | ----------------------------------------------------- | ------------------------------------------------------------------ |
 | Die fünf Euro-Wechselkurse                            | Europäische Zentralbank (amtlich, kostenlos, Quellenangabe genügt) |
-| DAX, S&P 500, Euro Stoxx 50, Nasdaq 100, Gold, Silber | Stooq                                                              |
+| DAX, S&P 500, Euro Stoxx 50, Nasdaq 100, Gold, Silber | Yahoo Finance, ersatzweise Twelve Data                             |
 | MSCI World                                            | keine – bleibt gekennzeichneter Demo-Kurs                          |
 
 ### Warum der Abruf nicht im Build läuft
