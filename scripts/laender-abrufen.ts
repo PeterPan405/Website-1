@@ -92,6 +92,20 @@ const KOPFZEILEN: Record<string, string> = {
 }
 
 /**
+ * Eigene Kopfzeilen für die OECD.
+ *
+ * Deren SDMX-Dienst hat mit 500 und dem Text `languageTag1` geantwortet – eine
+ * Meldung aus der Sprachauswahl des Servers, nicht aus der Abfrage. Er bekommt
+ * deshalb ausdrücklich gesagt, in welcher Sprache und in welchem Format
+ * geantwortet werden soll, statt es aushandeln zu müssen.
+ */
+const OECD_KOPFZEILEN: Record<string, string> = {
+  'User-Agent': KOPFZEILEN['User-Agent'],
+  Accept: 'application/vnd.sdmx.data+csv; charset=utf-8; version=2',
+  'Accept-Language': 'en',
+}
+
+/**
  * Sagt bei einer Fehlantwort, **was** der Server geantwortet hat.
  *
  * Ohne diesen Auszug stand im Protokoll nur „antwortete mit 500“. Bei einer
@@ -244,11 +258,14 @@ async function ladeSchuldenquoten(): Promise<Map<
     for (const [code, jahre] of Object.entries(reihe)) {
       if (code.length !== 3) continue
       /*
-        Das juengste Jahr bis einschliesslich heute.
+        Das juengste **abgeschlossene** Jahr.
 
-        Die WEO-Reihe enthaelt Projektionen mehrere Jahre voraus. Ein Wert fuer
-        2030 waere eine Vorhersage, keine Kennzahl – auf einer Karte ohne
-        Jahresangabe waere das nicht zu erkennen.
+        Die WEO-Reihe laeuft Jahre voraus; ein Wert fuer 2030 waere eine
+        Vorhersage, keine Kennzahl. Das laufende Jahr gehoert aus demselben
+        Grund nicht dazu, auch wenn die Versuchung gross ist: Beim ersten Lauf
+        kamen 183 von 191 Werten aus dem laufenden Jahr – eine Schaetzung fuer
+        zwoelf Monate, von denen sieben noch nicht vorbei waren, hätte auf der
+        Karte ausgesehen wie eine gemessene Groesse.
       */
       const passende = Object.entries(jahre)
         .map(([jahr, wert]) => ({ jahr: Number(jahr), wert: Number(wert) }))
@@ -257,7 +274,7 @@ async function ladeSchuldenquoten(): Promise<Map<
             Number.isFinite(eintrag.jahr) &&
             Number.isFinite(eintrag.wert) &&
             eintrag.wert > 0 &&
-            eintrag.jahr <= aktuellesJahr
+            eintrag.jahr < aktuellesJahr
         )
         .sort((a, b) => b.jahr - a.jahr)
       if (passende.length > 0) {
@@ -301,7 +318,7 @@ async function ladeSchuldenquoten(): Promise<Map<
  */
 async function ladeLoehne(): Promise<Map<string, { wert: number; jahr: number }> | null> {
   try {
-    const antwort = await fetch(OECD_LOEHNE_URL, { headers: KOPFZEILEN })
+    const antwort = await fetch(OECD_LOEHNE_URL, { headers: OECD_KOPFZEILEN })
     if (!antwort.ok) {
       console.log(
         `::warning::OECD antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – Durchschnittsloehne bleiben unveraendert.`
