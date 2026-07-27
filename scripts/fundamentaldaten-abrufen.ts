@@ -269,3 +269,13 @@ main().catch((fehler) => {
   console.error(fehler)
   process.exit(1)
 })
+
+/*
+  Macht die Datei zu einem Modul.
+
+  Ohne `import` oder `export` behandelt TypeScript eine Datei als globales
+  Skript – und dann kollidieren `KOPFZEILEN`, `ZIEL` und `main` mit denselben
+  Namen in `scripts/laender-abrufen.ts`. Eine leere Ausfuhr genügt, um den
+  Gültigkeitsbereich auf diese Datei zu begrenzen.
+*/
+export {}

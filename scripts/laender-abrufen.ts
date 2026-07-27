@@ -548,3 +548,11 @@ main().catch((fehler) => {
   console.error(fehler)
   process.exit(1)
 })
+
+/*
+  Macht die Datei zu einem Modul – siehe die gleiche Zeile in
+  `scripts/fundamentaldaten-abrufen.ts`. Ohne `import` oder `export` gilt eine
+  Datei als globales Skript, und dann kollidieren gleichnamige Konstanten
+  zwischen zwei Abrufskripten.
+*/
+export {}
