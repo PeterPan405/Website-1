@@ -33,6 +33,14 @@
  * Warnung, nicht als falscher Kurs. Das ist die ungefährliche Richtung, aber
  * es heißt: Nach dem ersten Abruf gehört ein Blick in das Protokoll dazu.
  *
+ * ## Warum `npm run aktien` und nicht der nackte Skriptaufruf
+ *
+ * Der npm-Befehl hängt Prettier an. Das ist keine Kosmetik: Der Workflow prüft
+ * die Formatierung des ganzen Repositories und bricht ab, wenn eine Datei
+ * abweicht – dann entsteht kein Paket, und die Website lässt sich nicht
+ * veröffentlichen. Genau das ist passiert, weil die erzeugte Datei nach einem
+ * späteren Lauf des Skripts unformatiert im Commit lag.
+ *
  * Aufruf: `npm run aktien`
  */
 

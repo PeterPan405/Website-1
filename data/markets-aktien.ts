@@ -24,8 +24,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Technologie: Betreibt die Suchmaschine Google, YouTube und die Cloud-Sparte, ohne Stimmrecht für diese Aktiengattung.',
-    metaDescription: 'Die Aktie von Alphabet (Klasse C) in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Technologie: Betreibt die Suchmaschine Google, YouTube und die Cloud-Sparte, ohne Stimmrecht für diese Aktiengattung.',
+    metaDescription:
+      'Die Aktie von Alphabet (Klasse C) in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Alphabet (Klasse C) – Betreibt die Suchmaschine Google, YouTube und die Cloud-Sparte, ohne Stimmrecht für diese Aktiengattung. Notiert wird die Aktie in USD unter dem Kürzel GOOG.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -45,8 +47,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versicherungen: Zeichnet Spezialversicherungen und legt die Beiträge bis zum Schadensfall in Aktien an.',
-    metaDescription: 'Die Aktie von Markel Group in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Zeichnet Spezialversicherungen und legt die Beiträge bis zum Schadensfall in Aktien an.',
+    metaDescription:
+      'Die Aktie von Markel Group in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Markel Group – Zeichnet Spezialversicherungen und legt die Beiträge bis zum Schadensfall in Aktien an. Notiert wird die Aktie in USD unter dem Kürzel MKL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -66,8 +70,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Halbleiter: Stellt Speicherchips für Rechenzentren, Mobilgeräte und Autos her.',
-    metaDescription: 'Die Aktie von Micron Technology in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Halbleiter: Stellt Speicherchips für Rechenzentren, Mobilgeräte und Autos her.',
+    metaDescription:
+      'Die Aktie von Micron Technology in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Micron Technology – Stellt Speicherchips für Rechenzentren, Mobilgeräte und Autos her. Notiert wird die Aktie in USD unter dem Kürzel MU.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -87,8 +93,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Halbleiter: Liefert die Anlagen, mit denen Chipfabriken ihre Wafer bearbeiten.',
-    metaDescription: 'Die Aktie von Applied Materials in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Halbleiter: Liefert die Anlagen, mit denen Chipfabriken ihre Wafer bearbeiten.',
+    metaDescription:
+      'Die Aktie von Applied Materials in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Applied Materials – Liefert die Anlagen, mit denen Chipfabriken ihre Wafer bearbeiten. Notiert wird die Aktie in USD unter dem Kürzel AMAT.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -109,7 +117,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Halbleiter: Baut Ätz- und Beschichtungsanlagen für die Chipfertigung.',
-    metaDescription: 'Die Aktie von Lam Research in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Lam Research in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Lam Research – Baut Ätz- und Beschichtungsanlagen für die Chipfertigung. Notiert wird die Aktie in USD unter dem Kürzel LRCX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -130,7 +139,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Halbleiter: Prüft Wafer und Masken auf Fehler, bevor daraus Chips werden.',
-    metaDescription: 'Die Aktie von KLA Corporation in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von KLA Corporation in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'KLA Corporation – Prüft Wafer und Masken auf Fehler, bevor daraus Chips werden. Notiert wird die Aktie in USD unter dem Kürzel KLAC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -150,8 +160,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Halbleiter: Stellt Chips her, die physikalische Signale in digitale umwandeln.',
-    metaDescription: 'Die Aktie von Analog Devices in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Halbleiter: Stellt Chips her, die physikalische Signale in digitale umwandeln.',
+    metaDescription:
+      'Die Aktie von Analog Devices in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Analog Devices – Stellt Chips her, die physikalische Signale in digitale umwandeln. Notiert wird die Aktie in USD unter dem Kürzel ADI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -172,7 +184,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Halbleiter: Liefert Chips für Autos, Zahlungskarten und Industrieanlagen.',
-    metaDescription: 'Die Aktie von NXP Semiconductors in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von NXP Semiconductors in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'NXP Semiconductors – Liefert Chips für Autos, Zahlungskarten und Industrieanlagen. Notiert wird die Aktie in USD unter dem Kürzel NXPI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -193,16 +206,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Halbleiter: Entwickelt Chips für Rechenzentren und Netzwerktechnik.',
-    metaDescription: 'Die Aktie von Marvell Technology in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Marvell Technology in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Marvell Technology – Entwickelt Chips für Rechenzentren und Netzwerktechnik. Notiert wird die Aktie in USD unter dem Kürzel MRVL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 215.50,
-      annualDrift: 0.050,
-      annualVolatility: 0.410,
+      startValue: 215.5,
+      annualDrift: 0.05,
+      annualVolatility: 0.41,
       seed: 53750,
     },
   },
@@ -213,8 +227,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Software: Verkauft die Software, mit der Chips entworfen und geprüft werden.',
-    metaDescription: 'Die Aktie von Synopsys in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Verkauft die Software, mit der Chips entworfen und geprüft werden.',
+    metaDescription:
+      'Die Aktie von Synopsys in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Synopsys – Verkauft die Software, mit der Chips entworfen und geprüft werden. Notiert wird die Aktie in USD unter dem Kürzel SNPS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -235,7 +251,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Software: Entwickelt Werkzeuge für den Entwurf elektronischer Schaltungen.',
-    metaDescription: 'Die Aktie von Cadence Design Systems in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Cadence Design Systems in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Cadence Design Systems – Entwickelt Werkzeuge für den Entwurf elektronischer Schaltungen. Notiert wird die Aktie in USD unter dem Kürzel CDNS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -255,8 +272,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Software: Bietet eine Plattform, mit der Unternehmen interne Abläufe automatisieren.',
-    metaDescription: 'Die Aktie von ServiceNow in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Bietet eine Plattform, mit der Unternehmen interne Abläufe automatisieren.',
+    metaDescription:
+      'Die Aktie von ServiceNow in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ServiceNow – Bietet eine Plattform, mit der Unternehmen interne Abläufe automatisieren. Notiert wird die Aktie in USD unter dem Kürzel NOW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -276,8 +295,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Software: Verkauft Steuer- und Buchhaltungssoftware für Privatleute und kleine Firmen.',
-    metaDescription: 'Die Aktie von Intuit in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Verkauft Steuer- und Buchhaltungssoftware für Privatleute und kleine Firmen.',
+    metaDescription:
+      'Die Aktie von Intuit in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Intuit – Verkauft Steuer- und Buchhaltungssoftware für Privatleute und kleine Firmen. Notiert wird die Aktie in USD unter dem Kürzel INTU.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -297,8 +318,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Software: Bietet Software für Personalverwaltung und Finanzplanung als Abonnement.',
-    metaDescription: 'Die Aktie von Workday in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Bietet Software für Personalverwaltung und Finanzplanung als Abonnement.',
+    metaDescription:
+      'Die Aktie von Workday in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Workday – Bietet Software für Personalverwaltung und Finanzplanung als Abonnement. Notiert wird die Aktie in USD unter dem Kürzel WDAY.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -318,8 +341,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Software: Betreibt eine Datenplattform, auf der Unternehmen große Datenmengen auswerten.',
-    metaDescription: 'Die Aktie von Snowflake in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Betreibt eine Datenplattform, auf der Unternehmen große Datenmengen auswerten.',
+    metaDescription:
+      'Die Aktie von Snowflake in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Snowflake – Betreibt eine Datenplattform, auf der Unternehmen große Datenmengen auswerten. Notiert wird die Aktie in USD unter dem Kürzel SNOW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -340,7 +365,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Software: Überwacht Anwendungen und Server und meldet Störungen.',
-    metaDescription: 'Die Aktie von Datadog in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Datadog in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Datadog – Überwacht Anwendungen und Server und meldet Störungen. Notiert wird die Aktie in USD unter dem Kürzel DDOG.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -360,8 +386,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Sicherheit: Schützt Firmenrechner vor Schadsoftware über einen Dienst in der Cloud.',
-    metaDescription: 'Die Aktie von CrowdStrike in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Sicherheit: Schützt Firmenrechner vor Schadsoftware über einen Dienst in der Cloud.',
+    metaDescription:
+      'Die Aktie von CrowdStrike in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CrowdStrike – Schützt Firmenrechner vor Schadsoftware über einen Dienst in der Cloud. Notiert wird die Aktie in USD unter dem Kürzel CRWD.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -381,8 +409,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Sicherheit: Verkauft Firewalls und Sicherheitssoftware für Unternehmensnetze.',
-    metaDescription: 'Die Aktie von Palo Alto Networks in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Sicherheit: Verkauft Firewalls und Sicherheitssoftware für Unternehmensnetze.',
+    metaDescription:
+      'Die Aktie von Palo Alto Networks in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Palo Alto Networks – Verkauft Firewalls und Sicherheitssoftware für Unternehmensnetze. Notiert wird die Aktie in USD unter dem Kürzel PANW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -403,7 +433,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Sicherheit: Stellt Netzwerksicherheitstechnik für Firmen und Behörden her.',
-    metaDescription: 'Die Aktie von Fortinet in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Fortinet in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fortinet – Stellt Netzwerksicherheitstechnik für Firmen und Behörden her. Notiert wird die Aktie in USD unter dem Kürzel FTNT.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -423,8 +454,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Sicherheit: Prüft den Internetverkehr von Unternehmen in der Cloud statt im eigenen Rechenzentrum.',
-    metaDescription: 'Die Aktie von Zscaler in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Sicherheit: Prüft den Internetverkehr von Unternehmen in der Cloud statt im eigenen Rechenzentrum.',
+    metaDescription:
+      'Die Aktie von Zscaler in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Zscaler – Prüft den Internetverkehr von Unternehmen in der Cloud statt im eigenen Rechenzentrum. Notiert wird die Aktie in USD unter dem Kürzel ZS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -445,7 +478,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Software: Bietet Werkzeuge für die Zusammenarbeit in Software-Teams.',
-    metaDescription: 'Die Aktie von Atlassian in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Atlassian in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Atlassian – Bietet Werkzeuge für die Zusammenarbeit in Software-Teams. Notiert wird die Aktie in USD unter dem Kürzel TEAM.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -466,7 +500,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Software: Stellt Händlern die Technik für eigene Online-Shops bereit.',
-    metaDescription: 'Die Aktie von Shopify in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Shopify in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Shopify – Stellt Händlern die Technik für eigene Online-Shops bereit. Notiert wird die Aktie in USD unter dem Kürzel SHOP.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -486,8 +521,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Zahlungsverkehr: Betreibt Kassensysteme für Händler und die Bezahl-App Cash App.',
-    metaDescription: 'Die Aktie von Block in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Zahlungsverkehr: Betreibt Kassensysteme für Händler und die Bezahl-App Cash App.',
+    metaDescription:
+      'Die Aktie von Block in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Block – Betreibt Kassensysteme für Händler und die Bezahl-App Cash App. Notiert wird die Aktie in USD unter dem Kürzel XYZ.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -507,17 +544,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Zahlungsverkehr: Wickelt Zahlungen und Kontoführung für Banken und Händler ab.',
-    metaDescription: 'Die Aktie von Fiserv in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Zahlungsverkehr: Wickelt Zahlungen und Kontoführung für Banken und Händler ab.',
+    metaDescription:
+      'Die Aktie von Fiserv in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fiserv – Wickelt Zahlungen und Kontoführung für Banken und Händler ab. Notiert wird die Aktie in USD unter dem Kürzel FI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 95.00,
-      annualDrift: 0.050,
-      annualVolatility: 0.200,
+      startValue: 95.0,
+      annualDrift: 0.05,
+      annualVolatility: 0.2,
       seed: 85700,
     },
   },
@@ -528,17 +567,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Zahlungsverkehr: Gibt eigene Kreditkarten aus und betreibt zugleich das Kartennetz.',
-    metaDescription: 'Die Aktie von American Express in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Zahlungsverkehr: Gibt eigene Kreditkarten aus und betreibt zugleich das Kartennetz.',
+    metaDescription:
+      'Die Aktie von American Express in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'American Express – Gibt eigene Kreditkarten aus und betreibt zugleich das Kartennetz. Notiert wird die Aktie in USD unter dem Kürzel AXP.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 33.10,
-      annualDrift: 0.030,
-      annualVolatility: 0.330,
+      startValue: 33.1,
+      annualDrift: 0.03,
+      annualVolatility: 0.33,
       seed: 3510,
     },
   },
@@ -549,8 +590,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Banken: Betreibt Investmentbanking und verwaltet Vermögen wohlhabender Kunden.',
-    metaDescription: 'Die Aktie von Morgan Stanley in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Betreibt Investmentbanking und verwaltet Vermögen wohlhabender Kunden.',
+    metaDescription:
+      'Die Aktie von Morgan Stanley in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Morgan Stanley – Betreibt Investmentbanking und verwaltet Vermögen wohlhabender Kunden. Notiert wird die Aktie in USD unter dem Kürzel MS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -570,17 +613,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Banken: Führt Wertpapierdepots für Privatanleger und verwahrt deren Guthaben.',
-    metaDescription: 'Die Aktie von Charles Schwab in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Führt Wertpapierdepots für Privatanleger und verwahrt deren Guthaben.',
+    metaDescription:
+      'Die Aktie von Charles Schwab in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Charles Schwab – Führt Wertpapierdepots für Privatanleger und verwahrt deren Guthaben. Notiert wird die Aktie in USD unter dem Kürzel SCHW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 208.50,
-      annualDrift: 0.060,
-      annualVolatility: 0.270,
+      startValue: 208.5,
+      annualDrift: 0.06,
+      annualVolatility: 0.27,
       seed: 7050,
     },
   },
@@ -592,7 +637,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Banken: Betreibt eine global tätige Geschäfts- und Investmentbank.',
-    metaDescription: 'Die Aktie von Citigroup in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Citigroup in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Citigroup – Betreibt eine global tätige Geschäfts- und Investmentbank. Notiert wird die Aktie in USD unter dem Kürzel C.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -613,16 +659,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Banken: Führt eines der größten Filialnetze im US-Privatkundengeschäft.',
-    metaDescription: 'Die Aktie von Wells Fargo in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Wells Fargo in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Wells Fargo – Führt eines der größten Filialnetze im US-Privatkundengeschäft. Notiert wird die Aktie in USD unter dem Kürzel WFC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 47.60,
-      annualDrift: 0.050,
-      annualVolatility: 0.260,
+      startValue: 47.6,
+      annualDrift: 0.05,
+      annualVolatility: 0.26,
       seed: 68960,
     },
   },
@@ -634,7 +681,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Banken: Betreibt eine regionale Großbank im Mittleren Westen der USA.',
-    metaDescription: 'Die Aktie von U.S. Bancorp in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von U.S. Bancorp in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'U.S. Bancorp – Betreibt eine regionale Großbank im Mittleren Westen der USA. Notiert wird die Aktie in USD unter dem Kürzel USB.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -655,7 +703,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Banken: Bietet Firmen- und Privatkundengeschäft im Osten der USA.',
-    metaDescription: 'Die Aktie von PNC Financial Services in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von PNC Financial Services in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'PNC Financial Services – Bietet Firmen- und Privatkundengeschäft im Osten der USA. Notiert wird die Aktie in USD unter dem Kürzel PNC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -675,8 +724,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Banken: Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab.',
-    metaDescription: 'Die Aktie von BNY Mellon in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab.',
+    metaDescription:
+      'Die Aktie von BNY Mellon in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BNY Mellon – Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab. Notiert wird die Aktie in USD unter dem Kürzel BK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -697,7 +748,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Banken: Verwahrt Fondsvermögen und legt eigene Indexfonds auf.',
-    metaDescription: 'Die Aktie von State Street in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von State Street in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'State Street – Verwahrt Fondsvermögen und legt eigene Indexfonds auf. Notiert wird die Aktie in USD unter dem Kürzel STT.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -717,8 +769,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versicherungen: Versichert überwiegend Autos und verkauft direkt an Privatkunden.',
-    metaDescription: 'Die Aktie von Progressive in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Versichert überwiegend Autos und verkauft direkt an Privatkunden.',
+    metaDescription:
+      'Die Aktie von Progressive in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Progressive – Versichert überwiegend Autos und verkauft direkt an Privatkunden. Notiert wird die Aktie in USD unter dem Kürzel PGR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -738,8 +792,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versicherungen: Versichert Industrieanlagen und große Sachrisiken weltweit.',
-    metaDescription: 'Die Aktie von Chubb in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Versichert Industrieanlagen und große Sachrisiken weltweit.',
+    metaDescription:
+      'Die Aktie von Chubb in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Chubb – Versichert Industrieanlagen und große Sachrisiken weltweit. Notiert wird die Aktie in USD unter dem Kürzel CB.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -759,8 +815,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versicherungen: Vermittelt Versicherungen für Unternehmen und berät zu Risiken.',
-    metaDescription: 'Die Aktie von Marsh & McLennan in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Vermittelt Versicherungen für Unternehmen und berät zu Risiken.',
+    metaDescription:
+      'Die Aktie von Marsh & McLennan in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Marsh & McLennan – Vermittelt Versicherungen für Unternehmen und berät zu Risiken. Notiert wird die Aktie in USD unter dem Kürzel MMC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -780,8 +838,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versicherungen: Berät Unternehmen zu Risiken und vermittelt deren Versicherungsschutz.',
-    metaDescription: 'Die Aktie von Aon in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Berät Unternehmen zu Risiken und vermittelt deren Versicherungsschutz.',
+    metaDescription:
+      'Die Aktie von Aon in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Aon – Berät Unternehmen zu Risiken und vermittelt deren Versicherungsschutz. Notiert wird die Aktie in USD unter dem Kürzel AON.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -801,8 +861,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versicherungen: Bietet Lebens- und Krankenversicherungen für Privat- und Firmenkunden.',
-    metaDescription: 'Die Aktie von MetLife in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Bietet Lebens- und Krankenversicherungen für Privat- und Firmenkunden.',
+    metaDescription:
+      'Die Aktie von MetLife in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'MetLife – Bietet Lebens- und Krankenversicherungen für Privat- und Firmenkunden. Notiert wird die Aktie in USD unter dem Kürzel MET.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -822,8 +884,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versicherungen: Verkauft Lebensversicherungen und verwaltet Altersvorsorgevermögen.',
-    metaDescription: 'Die Aktie von Prudential Financial in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Verkauft Lebensversicherungen und verwaltet Altersvorsorgevermögen.',
+    metaDescription:
+      'Die Aktie von Prudential Financial in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Prudential Financial – Verkauft Lebensversicherungen und verwaltet Altersvorsorgevermögen. Notiert wird die Aktie in USD unter dem Kürzel PRU.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -843,8 +907,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Gesundheit: Versichert Gesundheitsleistungen und verwaltet Arzneimittelausgaben.',
-    metaDescription: 'Die Aktie von Cigna in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Gesundheit: Versichert Gesundheitsleistungen und verwaltet Arzneimittelausgaben.',
+    metaDescription:
+      'Die Aktie von Cigna in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Cigna – Versichert Gesundheitsleistungen und verwaltet Arzneimittelausgaben. Notiert wird die Aktie in USD unter dem Kürzel CI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -865,7 +931,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Gesundheit: Betreibt Krankenversicherungen in mehreren US-Bundesstaaten.',
-    metaDescription: 'Die Aktie von Elevance Health in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Elevance Health in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Elevance Health – Betreibt Krankenversicherungen in mehreren US-Bundesstaaten. Notiert wird die Aktie in USD unter dem Kürzel ELV.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -886,7 +953,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Gesundheit: Betreibt eine der größten privaten Krankenhausketten der USA.',
-    metaDescription: 'Die Aktie von HCA Healthcare in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von HCA Healthcare in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'HCA Healthcare – Betreibt eine der größten privaten Krankenhausketten der USA. Notiert wird die Aktie in USD unter dem Kürzel HCA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -907,7 +975,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Gesundheit: Beliefert Apotheken und Kliniken mit Arzneimitteln.',
-    metaDescription: 'Die Aktie von McKesson in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von McKesson in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'McKesson – Beliefert Apotheken und Kliniken mit Arzneimitteln. Notiert wird die Aktie in USD unter dem Kürzel MCK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -927,8 +996,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Gesundheit: Handelt und verteilt Arzneimittel an Apotheken und Krankenhäuser.',
-    metaDescription: 'Die Aktie von Cencora in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Gesundheit: Handelt und verteilt Arzneimittel an Apotheken und Krankenhäuser.',
+    metaDescription:
+      'Die Aktie von Cencora in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Cencora – Handelt und verteilt Arzneimittel an Apotheken und Krankenhäuser. Notiert wird die Aktie in USD unter dem Kürzel COR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -948,8 +1019,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Gesundheit: Betreibt Apotheken und eine Krankenversicherung unter einem Dach.',
-    metaDescription: 'Die Aktie von CVS Health in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Gesundheit: Betreibt Apotheken und eine Krankenversicherung unter einem Dach.',
+    metaDescription:
+      'Die Aktie von CVS Health in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CVS Health – Betreibt Apotheken und eine Krankenversicherung unter einem Dach. Notiert wird die Aktie in USD unter dem Kürzel CVS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -969,8 +1042,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Pharma: Entwickelt Medikamente gegen Krebs und Herz-Kreislauf-Erkrankungen.',
-    metaDescription: 'Die Aktie von Bristol-Myers Squibb in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Pharma: Entwickelt Medikamente gegen Krebs und Herz-Kreislauf-Erkrankungen.',
+    metaDescription:
+      'Die Aktie von Bristol-Myers Squibb in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Bristol-Myers Squibb – Entwickelt Medikamente gegen Krebs und Herz-Kreislauf-Erkrankungen. Notiert wird die Aktie in USD unter dem Kürzel BMY.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -991,7 +1066,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Pharma: Stellt biotechnologisch hergestellte Medikamente her.',
-    metaDescription: 'Die Aktie von Amgen in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Amgen in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Amgen – Stellt biotechnologisch hergestellte Medikamente her. Notiert wird die Aktie in USD unter dem Kürzel AMGN.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1012,7 +1088,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Pharma: Entwickelt Medikamente gegen Virus- und Krebserkrankungen.',
-    metaDescription: 'Die Aktie von Gilead Sciences in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Gilead Sciences in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Gilead Sciences – Entwickelt Medikamente gegen Virus- und Krebserkrankungen. Notiert wird die Aktie in USD unter dem Kürzel GILD.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1033,7 +1110,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Pharma: Entwickelt Medikamente gegen seltene Erbkrankheiten.',
-    metaDescription: 'Die Aktie von Vertex Pharmaceuticals in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Vertex Pharmaceuticals in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Vertex Pharmaceuticals – Entwickelt Medikamente gegen seltene Erbkrankheiten. Notiert wird die Aktie in USD unter dem Kürzel VRTX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1053,8 +1131,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Pharma: Erforscht Antikörper-Medikamente gegen Augen- und Hauterkrankungen.',
-    metaDescription: 'Die Aktie von Regeneron in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Pharma: Erforscht Antikörper-Medikamente gegen Augen- und Hauterkrankungen.',
+    metaDescription:
+      'Die Aktie von Regeneron in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Regeneron – Erforscht Antikörper-Medikamente gegen Augen- und Hauterkrankungen. Notiert wird die Aktie in USD unter dem Kürzel REGN.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1075,7 +1155,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Pharma: Entwickelt Impfstoffe und Medikamente auf Basis von mRNA.',
-    metaDescription: 'Die Aktie von Moderna in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Moderna in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Moderna – Entwickelt Impfstoffe und Medikamente auf Basis von mRNA. Notiert wird die Aktie in USD unter dem Kürzel MRNA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1096,7 +1177,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Pharma: Erforscht Medikamente gegen Erkrankungen des Nervensystems.',
-    metaDescription: 'Die Aktie von Biogen in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Biogen in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Biogen – Erforscht Medikamente gegen Erkrankungen des Nervensystems. Notiert wird die Aktie in USD unter dem Kürzel BIIB.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1117,7 +1199,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Pharma: Stellt Medikamente und Impfstoffe für Nutz- und Haustiere her.',
-    metaDescription: 'Die Aktie von Zoetis in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Zoetis in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Zoetis – Stellt Medikamente und Impfstoffe für Nutz- und Haustiere her. Notiert wird die Aktie in USD unter dem Kürzel ZTS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1137,8 +1220,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Medizintechnik: Fertigt Laborgeräte und Diagnosetechnik für Kliniken und Forschung.',
-    metaDescription: 'Die Aktie von Danaher in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medizintechnik: Fertigt Laborgeräte und Diagnosetechnik für Kliniken und Forschung.',
+    metaDescription:
+      'Die Aktie von Danaher in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Danaher – Fertigt Laborgeräte und Diagnosetechnik für Kliniken und Forschung. Notiert wird die Aktie in USD unter dem Kürzel DHR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1159,7 +1244,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Medizintechnik: Stellt Diagnostik, Nährmittel und medizinische Geräte her.',
-    metaDescription: 'Die Aktie von Abbott Laboratories in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Abbott Laboratories in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Abbott Laboratories – Stellt Diagnostik, Nährmittel und medizinische Geräte her. Notiert wird die Aktie in USD unter dem Kürzel ABT.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1180,7 +1266,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Medizintechnik: Fertigt Herzschrittmacher, Insulinpumpen und OP-Technik.',
-    metaDescription: 'Die Aktie von Medtronic in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Medtronic in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Medtronic – Fertigt Herzschrittmacher, Insulinpumpen und OP-Technik. Notiert wird die Aktie in USD unter dem Kürzel MDT.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1201,7 +1288,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Medizintechnik: Stellt Implantate und Operationsinstrumente her.',
-    metaDescription: 'Die Aktie von Stryker in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Stryker in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Stryker – Stellt Implantate und Operationsinstrumente her. Notiert wird die Aktie in USD unter dem Kürzel SYK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1222,7 +1310,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Medizintechnik: Fertigt Spritzen, Katheter und Laborbedarf.',
-    metaDescription: 'Die Aktie von Becton Dickinson in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Becton Dickinson in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Becton Dickinson – Fertigt Spritzen, Katheter und Laborbedarf. Notiert wird die Aktie in USD unter dem Kürzel BDX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1243,7 +1332,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Medizintechnik: Baut Operationsroboter für minimalinvasive Eingriffe.',
-    metaDescription: 'Die Aktie von Intuitive Surgical in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Intuitive Surgical in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Intuitive Surgical – Baut Operationsroboter für minimalinvasive Eingriffe. Notiert wird die Aktie in USD unter dem Kürzel ISRG.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1264,7 +1354,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Medizintechnik: Liefert Diagnostik für Tierarztpraxen.',
-    metaDescription: 'Die Aktie von IDEXX Laboratories in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von IDEXX Laboratories in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'IDEXX Laboratories – Liefert Diagnostik für Tierarztpraxen. Notiert wird die Aktie in USD unter dem Kürzel IDXX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1285,7 +1376,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Medizintechnik: Baut Geräte zur Entschlüsselung des Erbguts.',
-    metaDescription: 'Die Aktie von Illumina in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Illumina in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Illumina – Baut Geräte zur Entschlüsselung des Erbguts. Notiert wird die Aktie in USD unter dem Kürzel ILMN.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1305,8 +1397,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Automobil: Baut Autos und Nutzfahrzeuge unter Marken wie Chevrolet und Cadillac.',
-    metaDescription: 'Die Aktie von General Motors in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Automobil: Baut Autos und Nutzfahrzeuge unter Marken wie Chevrolet und Cadillac.',
+    metaDescription:
+      'Die Aktie von General Motors in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'General Motors – Baut Autos und Nutzfahrzeuge unter Marken wie Chevrolet und Cadillac. Notiert wird die Aktie in USD unter dem Kürzel GM.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1327,7 +1421,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Automobil: Fertigt Pick-ups, Nutzfahrzeuge und Personenwagen.',
-    metaDescription: 'Die Aktie von Ford Motor in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Ford Motor in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ford Motor – Fertigt Pick-ups, Nutzfahrzeuge und Personenwagen. Notiert wird die Aktie in USD unter dem Kürzel F.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1348,7 +1443,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Automobil: Baut schwere Lastwagen der Marken Kenworth, Peterbilt und DAF.',
-    metaDescription: 'Die Aktie von Paccar in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Paccar in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Paccar – Baut schwere Lastwagen der Marken Kenworth, Peterbilt und DAF. Notiert wird die Aktie in USD unter dem Kürzel PCAR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1368,8 +1464,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Industrie: Fertigt Dieselmotoren und Antriebe für Lastwagen und Generatoren.',
-    metaDescription: 'Die Aktie von Cummins in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Industrie: Fertigt Dieselmotoren und Antriebe für Lastwagen und Generatoren.',
+    metaDescription:
+      'Die Aktie von Cummins in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Cummins – Fertigt Dieselmotoren und Antriebe für Lastwagen und Generatoren. Notiert wird die Aktie in USD unter dem Kürzel CMI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1389,17 +1487,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Industrie: Stellt Luftfahrttechnik, Gebäudesteuerung und Industriesoftware her.',
-    metaDescription: 'Die Aktie von Honeywell in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Industrie: Stellt Luftfahrttechnik, Gebäudesteuerung und Industriesoftware her.',
+    metaDescription:
+      'Die Aktie von Honeywell in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Honeywell – Stellt Luftfahrttechnik, Gebäudesteuerung und Industriesoftware her. Notiert wird die Aktie in USD unter dem Kürzel HON.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 205.80,
-      annualDrift: 0.080,
-      annualVolatility: 0.320,
+      startValue: 205.8,
+      annualDrift: 0.08,
+      annualVolatility: 0.32,
       seed: 26780,
     },
   },
@@ -1410,8 +1510,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Industrie: Fertigt Klebstoffe, Schleifmittel und Materialien für Industrie und Medizin.',
-    metaDescription: 'Die Aktie von 3M in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Industrie: Fertigt Klebstoffe, Schleifmittel und Materialien für Industrie und Medizin.',
+    metaDescription:
+      'Die Aktie von 3M in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       '3M – Fertigt Klebstoffe, Schleifmittel und Materialien für Industrie und Medizin. Notiert wird die Aktie in USD unter dem Kürzel MMM.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1432,7 +1534,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Industrie: Baut Mess- und Regeltechnik für Fabriken und Kraftwerke.',
-    metaDescription: 'Die Aktie von Emerson Electric in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Emerson Electric in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Emerson Electric – Baut Mess- und Regeltechnik für Fabriken und Kraftwerke. Notiert wird die Aktie in USD unter dem Kürzel EMR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1453,7 +1556,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Industrie: Stellt Komponenten für Stromverteilung und Antriebstechnik her.',
-    metaDescription: 'Die Aktie von Eaton in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Eaton in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Eaton – Stellt Komponenten für Stromverteilung und Antriebstechnik her. Notiert wird die Aktie in USD unter dem Kürzel ETN.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1473,8 +1577,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Industrie: Fertigt Hydraulik- und Filtertechnik für Maschinen und Flugzeuge.',
-    metaDescription: 'Die Aktie von Parker Hannifin in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Industrie: Fertigt Hydraulik- und Filtertechnik für Maschinen und Flugzeuge.',
+    metaDescription:
+      'Die Aktie von Parker Hannifin in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Parker Hannifin – Fertigt Hydraulik- und Filtertechnik für Maschinen und Flugzeuge. Notiert wird die Aktie in USD unter dem Kürzel PH.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1494,8 +1600,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Industrie: Stellt Verbindungstechnik und Spezialmaschinen für viele Branchen her.',
-    metaDescription: 'Die Aktie von Illinois Tool Works in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Industrie: Stellt Verbindungstechnik und Spezialmaschinen für viele Branchen her.',
+    metaDescription:
+      'Die Aktie von Illinois Tool Works in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Illinois Tool Works – Stellt Verbindungstechnik und Spezialmaschinen für viele Branchen her. Notiert wird die Aktie in USD unter dem Kürzel ITW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1516,7 +1624,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Rüstung: Baut U-Boote, Kampffahrzeuge und Geschäftsflugzeuge.',
-    metaDescription: 'Die Aktie von General Dynamics in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von General Dynamics in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'General Dynamics – Baut U-Boote, Kampffahrzeuge und Geschäftsflugzeuge. Notiert wird die Aktie in USD unter dem Kürzel GD.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1537,7 +1646,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Rüstung: Entwickelt Militärflugzeuge, Satelliten und Radarsysteme.',
-    metaDescription: 'Die Aktie von Northrop Grumman in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Northrop Grumman in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Northrop Grumman – Entwickelt Militärflugzeuge, Satelliten und Radarsysteme. Notiert wird die Aktie in USD unter dem Kürzel NOC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1558,7 +1668,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Rüstung: Liefert Kommunikations- und Aufklärungstechnik für Streitkräfte.',
-    metaDescription: 'Die Aktie von L3Harris in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von L3Harris in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'L3Harris – Liefert Kommunikations- und Aufklärungstechnik für Streitkräfte. Notiert wird die Aktie in USD unter dem Kürzel LHX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1578,8 +1689,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Luftfahrt: Fertigt Ersatzteile für Flugzeuge, oft als einziger zugelassener Anbieter.',
-    metaDescription: 'Die Aktie von TransDigm in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Luftfahrt: Fertigt Ersatzteile für Flugzeuge, oft als einziger zugelassener Anbieter.',
+    metaDescription:
+      'Die Aktie von TransDigm in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'TransDigm – Fertigt Ersatzteile für Flugzeuge, oft als einziger zugelassener Anbieter. Notiert wird die Aktie in USD unter dem Kürzel TDG.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1600,7 +1713,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Betreibt ein Güterbahnnetz im Osten der USA.',
-    metaDescription: 'Die Aktie von CSX in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von CSX in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CSX – Betreibt ein Güterbahnnetz im Osten der USA. Notiert wird die Aktie in USD unter dem Kürzel CSX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1621,7 +1735,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Transportiert Güter auf eigenen Schienen im Osten der USA.',
-    metaDescription: 'Die Aktie von Norfolk Southern in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Norfolk Southern in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Norfolk Southern – Transportiert Güter auf eigenen Schienen im Osten der USA. Notiert wird die Aktie in USD unter dem Kürzel NSC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1642,7 +1757,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Befördert Pakete und Fracht im Expressdienst weltweit.',
-    metaDescription: 'Die Aktie von FedEx in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von FedEx in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'FedEx – Befördert Pakete und Fracht im Expressdienst weltweit. Notiert wird die Aktie in USD unter dem Kürzel FDX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1663,7 +1779,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Betreibt eine der größten Fluggesellschaften der USA.',
-    metaDescription: 'Die Aktie von Delta Air Lines in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Delta Air Lines in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Delta Air Lines – Betreibt eine der größten Fluggesellschaften der USA. Notiert wird die Aktie in USD unter dem Kürzel DAL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1684,7 +1801,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Fliegt Passagiere im Inland und auf Langstrecken.',
-    metaDescription: 'Die Aktie von United Airlines in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von United Airlines in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'United Airlines – Fliegt Passagiere im Inland und auf Langstrecken. Notiert wird die Aktie in USD unter dem Kürzel UAL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1705,7 +1823,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Betreibt eine auf Kurzstrecken spezialisierte Fluggesellschaft.',
-    metaDescription: 'Die Aktie von Southwest Airlines in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Southwest Airlines in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Southwest Airlines – Betreibt eine auf Kurzstrecken spezialisierte Fluggesellschaft. Notiert wird die Aktie in USD unter dem Kürzel LUV.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1726,16 +1845,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Transportiert Stückgut auf der Straße zwischen Umschlagzentren.',
-    metaDescription: 'Die Aktie von Old Dominion Freight Line in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Old Dominion Freight Line in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Old Dominion Freight Line – Transportiert Stückgut auf der Straße zwischen Umschlagzentren. Notiert wird die Aktie in USD unter dem Kürzel ODFL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 166.70,
-      annualDrift: 0.100,
-      annualVolatility: 0.250,
+      startValue: 166.7,
+      annualDrift: 0.1,
+      annualVolatility: 0.25,
       seed: 10870,
     },
   },
@@ -1747,7 +1867,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Entsorgung: Sammelt Abfall ein und betreibt Deponien und Recyclinganlagen.',
-    metaDescription: 'Die Aktie von Waste Management in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Waste Management in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Waste Management – Sammelt Abfall ein und betreibt Deponien und Recyclinganlagen. Notiert wird die Aktie in USD unter dem Kürzel WM.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1768,7 +1889,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Entsorgung: Entsorgt Hausmüll und Gewerbeabfall in den USA.',
-    metaDescription: 'Die Aktie von Republic Services in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Republic Services in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Republic Services – Entsorgt Hausmüll und Gewerbeabfall in den USA. Notiert wird die Aktie in USD unter dem Kürzel RSG.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1789,7 +1911,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Chemie: Stellt Farben und Lacke her und verkauft sie über eigene Filialen.',
-    metaDescription: 'Die Aktie von Sherwin-Williams in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Sherwin-Williams in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sherwin-Williams – Stellt Farben und Lacke her und verkauft sie über eigene Filialen. Notiert wird die Aktie in USD unter dem Kürzel SHW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1809,8 +1932,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Chemie: Liefert Reinigungs- und Hygienetechnik für Industrie und Gastronomie.',
-    metaDescription: 'Die Aktie von Ecolab in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Chemie: Liefert Reinigungs- und Hygienetechnik für Industrie und Gastronomie.',
+    metaDescription:
+      'Die Aktie von Ecolab in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ecolab – Liefert Reinigungs- und Hygienetechnik für Industrie und Gastronomie. Notiert wird die Aktie in USD unter dem Kürzel ECL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1831,7 +1956,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Chemie: Stellt Industriegase wie Sauerstoff und Wasserstoff her.',
-    metaDescription: 'Die Aktie von Air Products in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Air Products in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Air Products – Stellt Industriegase wie Sauerstoff und Wasserstoff her. Notiert wird die Aktie in USD unter dem Kürzel APD.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1852,7 +1978,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Chemie: Produziert Kunststoffe und chemische Grundstoffe.',
-    metaDescription: 'Die Aktie von Dow in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Dow in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Dow – Produziert Kunststoffe und chemische Grundstoffe. Notiert wird die Aktie in USD unter dem Kürzel DOW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1873,7 +2000,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Bergbau: Fördert Kupfer und Gold in Amerika und Indonesien.',
-    metaDescription: 'Die Aktie von Freeport-McMoRan in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Freeport-McMoRan in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Freeport-McMoRan – Fördert Kupfer und Gold in Amerika und Indonesien. Notiert wird die Aktie in USD unter dem Kürzel FCX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1894,7 +2022,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Bergbau: Betreibt Goldminen auf mehreren Kontinenten.',
-    metaDescription: 'Die Aktie von Newmont in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Newmont in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Newmont – Betreibt Goldminen auf mehreren Kontinenten. Notiert wird die Aktie in USD unter dem Kürzel NEM.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1915,7 +2044,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Stahl: Erzeugt Stahl überwiegend aus Schrott in Elektroöfen.',
-    metaDescription: 'Die Aktie von Nucor in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Nucor in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nucor – Erzeugt Stahl überwiegend aus Schrott in Elektroöfen. Notiert wird die Aktie in USD unter dem Kürzel NUE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1936,7 +2066,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Baustoffe: Gewinnt Schotter, Sand und Kies für den Straßen- und Hochbau.',
-    metaDescription: 'Die Aktie von Vulcan Materials in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Vulcan Materials in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Vulcan Materials – Gewinnt Schotter, Sand und Kies für den Straßen- und Hochbau. Notiert wird die Aktie in USD unter dem Kürzel VMC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1957,7 +2088,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Erdgas in Nordamerika und darüber hinaus.',
-    metaDescription: 'Die Aktie von ConocoPhillips in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von ConocoPhillips in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ConocoPhillips – Fördert Öl und Erdgas in Nordamerika und darüber hinaus. Notiert wird die Aktie in USD unter dem Kürzel COP.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1978,7 +2110,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Energie: Fördert Schieferöl in den USA.',
-    metaDescription: 'Die Aktie von EOG Resources in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von EOG Resources in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'EOG Resources – Fördert Schieferöl in den USA. Notiert wird die Aktie in USD unter dem Kürzel EOG.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -1998,8 +2131,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Energie: Liefert Technik und Dienstleistungen für die Öl- und Gasförderung.',
-    metaDescription: 'Die Aktie von SLB in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Energie: Liefert Technik und Dienstleistungen für die Öl- und Gasförderung.',
+    metaDescription:
+      'Die Aktie von SLB in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'SLB – Liefert Technik und Dienstleistungen für die Öl- und Gasförderung. Notiert wird die Aktie in USD unter dem Kürzel SLB.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2020,7 +2155,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Energie: Betreibt Pipelines und Terminals für Erdgas und Rohöl.',
-    metaDescription: 'Die Aktie von Kinder Morgan in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Kinder Morgan in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kinder Morgan – Betreibt Pipelines und Terminals für Erdgas und Rohöl. Notiert wird die Aktie in USD unter dem Kürzel KMI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2041,7 +2177,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Energie: Transportiert und verarbeitet Erdgas über eigene Leitungen.',
-    metaDescription: 'Die Aktie von Williams Companies in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Williams Companies in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Williams Companies – Transportiert und verarbeitet Erdgas über eigene Leitungen. Notiert wird die Aktie in USD unter dem Kürzel WMB.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2062,7 +2199,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Versorger: Erzeugt und verteilt Strom im Südosten der USA.',
-    metaDescription: 'Die Aktie von Duke Energy in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Duke Energy in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Duke Energy – Erzeugt und verteilt Strom im Südosten der USA. Notiert wird die Aktie in USD unter dem Kürzel DUK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2083,7 +2221,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Versorger: Versorgt mehrere US-Bundesstaaten mit Strom und Gas.',
-    metaDescription: 'Die Aktie von Southern Company in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Southern Company in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Southern Company – Versorgt mehrere US-Bundesstaaten mit Strom und Gas. Notiert wird die Aktie in USD unter dem Kürzel SO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2104,7 +2243,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Versorger: Betreibt Stromnetze und Kraftwerke in elf Bundesstaaten.',
-    metaDescription: 'Die Aktie von American Electric Power in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von American Electric Power in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'American Electric Power – Betreibt Stromnetze und Kraftwerke in elf Bundesstaaten. Notiert wird die Aktie in USD unter dem Kürzel AEP.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2125,7 +2265,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Versorger: Versorgt Kalifornien und Texas mit Strom und Erdgas.',
-    metaDescription: 'Die Aktie von Sempra in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Sempra in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sempra – Versorgt Kalifornien und Texas mit Strom und Erdgas. Notiert wird die Aktie in USD unter dem Kürzel SRE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2146,7 +2287,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Versorger: Erzeugt Strom überwiegend in Kernkraftwerken.',
-    metaDescription: 'Die Aktie von Constellation Energy in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Constellation Energy in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Constellation Energy – Erzeugt Strom überwiegend in Kernkraftwerken. Notiert wird die Aktie in USD unter dem Kürzel CEG.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2166,8 +2308,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Versorger: Erzeugt und verkauft Strom in den USA, zunehmend für Rechenzentren.',
-    metaDescription: 'Die Aktie von Vistra in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versorger: Erzeugt und verkauft Strom in den USA, zunehmend für Rechenzentren.',
+    metaDescription:
+      'Die Aktie von Vistra in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Vistra – Erzeugt und verkauft Strom in den USA, zunehmend für Rechenzentren. Notiert wird die Aktie in USD unter dem Kürzel VST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2188,16 +2332,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt Firmenkunden- und Privatkundengeschäft in Deutschland.',
-    metaDescription: 'Die Aktie von Commerzbank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Commerzbank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Commerzbank – Betreibt Firmenkunden- und Privatkundengeschäft in Deutschland. Notiert wird die Aktie in EUR unter dem Kürzel CBK.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 374.90,
-      annualDrift: 0.100,
-      annualVolatility: 0.190,
+      startValue: 374.9,
+      annualDrift: 0.1,
+      annualVolatility: 0.19,
       seed: 19690,
     },
   },
@@ -2208,8 +2353,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Gesundheit: Betreibt Krankenhäuser und liefert Produkte für die Infusionstherapie.',
-    metaDescription: 'Die Aktie von Fresenius in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Gesundheit: Betreibt Krankenhäuser und liefert Produkte für die Infusionstherapie.',
+    metaDescription:
+      'Die Aktie von Fresenius in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fresenius – Betreibt Krankenhäuser und liefert Produkte für die Infusionstherapie. Notiert wird die Aktie in EUR unter dem Kürzel FRE.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2230,7 +2377,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Gesundheit: Betreibt Dialysezentren und stellt die zugehörigen Geräte her.',
-    metaDescription: 'Die Aktie von Fresenius Medical Care in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Fresenius Medical Care in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fresenius Medical Care – Betreibt Dialysezentren und stellt die zugehörigen Geräte her. Notiert wird die Aktie in EUR unter dem Kürzel FME.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2250,8 +2398,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Medizintechnik: Liefert Ausrüstung für die Herstellung biotechnologischer Medikamente.',
-    metaDescription: 'Die Aktie von Sartorius in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medizintechnik: Liefert Ausrüstung für die Herstellung biotechnologischer Medikamente.',
+    metaDescription:
+      'Die Aktie von Sartorius in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sartorius – Liefert Ausrüstung für die Herstellung biotechnologischer Medikamente. Notiert wird die Aktie in EUR unter dem Kürzel SRT3.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2271,8 +2421,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Medizintechnik: Stellt Reagenzien und Geräte für molekulare Diagnostik her.',
-    metaDescription: 'Die Aktie von Qiagen in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medizintechnik: Stellt Reagenzien und Geräte für molekulare Diagnostik her.',
+    metaDescription:
+      'Die Aktie von Qiagen in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Qiagen – Stellt Reagenzien und Geräte für molekulare Diagnostik her. Notiert wird die Aktie in EUR unter dem Kürzel QIA.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2293,7 +2445,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Chemie: Handelt mit Chemikalien und beliefert Industriekunden weltweit.',
-    metaDescription: 'Die Aktie von Brenntag in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Brenntag in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Brenntag – Handelt mit Chemikalien und beliefert Industriekunden weltweit. Notiert wird die Aktie in EUR unter dem Kürzel BNR.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2313,8 +2466,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Chemie: Stellt Duft- und Geschmacksstoffe für Lebensmittel und Kosmetik her.',
-    metaDescription: 'Die Aktie von Symrise in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Chemie: Stellt Duft- und Geschmacksstoffe für Lebensmittel und Kosmetik her.',
+    metaDescription:
+      'Die Aktie von Symrise in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Symrise – Stellt Duft- und Geschmacksstoffe für Lebensmittel und Kosmetik her. Notiert wird die Aktie in EUR unter dem Kürzel SY1.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2335,7 +2490,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Chemie: Produziert Kunststoffe und Schäume für Bau und Automobil.',
-    metaDescription: 'Die Aktie von Covestro in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Covestro in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Covestro – Produziert Kunststoffe und Schäume für Bau und Automobil. Notiert wird die Aktie in EUR unter dem Kürzel 1COV.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2356,7 +2512,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Chemie: Stellt Spezialchemikalien für Industrie und Konsumgüter her.',
-    metaDescription: 'Die Aktie von Evonik in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Evonik in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Evonik – Stellt Spezialchemikalien für Industrie und Konsumgüter her. Notiert wird die Aktie in EUR unter dem Kürzel EVK.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2376,8 +2533,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Chemie: Produziert Spezialchemikalien für Kunststoffe und Wasseraufbereitung.',
-    metaDescription: 'Die Aktie von Lanxess in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Chemie: Produziert Spezialchemikalien für Kunststoffe und Wasseraufbereitung.',
+    metaDescription:
+      'Die Aktie von Lanxess in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Lanxess – Produziert Spezialchemikalien für Kunststoffe und Wasseraufbereitung. Notiert wird die Aktie in EUR unter dem Kürzel LXS.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2398,16 +2557,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Handel: Betreibt eine Online-Plattform für Mode in Europa.',
-    metaDescription: 'Die Aktie von Zalando in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Zalando in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Zalando – Betreibt eine Online-Plattform für Mode in Europa. Notiert wird die Aktie in EUR unter dem Kürzel ZAL.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 44.50,
-      annualDrift: 0.090,
-      annualVolatility: 0.270,
+      startValue: 44.5,
+      annualDrift: 0.09,
+      annualVolatility: 0.27,
       seed: 58650,
     },
   },
@@ -2419,7 +2579,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Handel: Liefert Kochboxen mit vorportionierten Zutaten nach Hause.',
-    metaDescription: 'Die Aktie von HelloFresh in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von HelloFresh in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'HelloFresh – Liefert Kochboxen mit vorportionierten Zutaten nach Hause. Notiert wird die Aktie in EUR unter dem Kürzel HFG.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2440,7 +2601,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Handel: Vermittelt Essenslieferungen über Plattformen in vielen Ländern.',
-    metaDescription: 'Die Aktie von Delivery Hero in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Delivery Hero in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Delivery Hero – Vermittelt Essenslieferungen über Plattformen in vielen Ländern. Notiert wird die Aktie in EUR unter dem Kürzel DHER.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2461,7 +2623,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Luftfahrt: Entwickelt und wartet Triebwerke für Verkehrsflugzeuge.',
-    metaDescription: 'Die Aktie von MTU Aero Engines in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von MTU Aero Engines in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'MTU Aero Engines – Entwickelt und wartet Triebwerke für Verkehrsflugzeuge. Notiert wird die Aktie in EUR unter dem Kürzel MTX.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2482,7 +2645,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Baustoffe: Stellt Zement und Beton für den Bau her.',
-    metaDescription: 'Die Aktie von Heidelberg Materials in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Heidelberg Materials in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Heidelberg Materials – Stellt Zement und Beton für den Bau her. Notiert wird die Aktie in EUR unter dem Kürzel HEI.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2503,16 +2667,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Fertigt Bremssysteme für Züge und Nutzfahrzeuge.',
-    metaDescription: 'Die Aktie von Knorr-Bremse in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Knorr-Bremse in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Knorr-Bremse – Fertigt Bremssysteme für Züge und Nutzfahrzeuge. Notiert wird die Aktie in EUR unter dem Kürzel KBX.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 64.30,
-      annualDrift: 0.030,
-      annualVolatility: 0.330,
+      startValue: 64.3,
+      annualDrift: 0.03,
+      annualVolatility: 0.33,
       seed: 54630,
     },
   },
@@ -2524,7 +2689,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Baut Anlagen für die Lebensmittel- und Getränkeherstellung.',
-    metaDescription: 'Die Aktie von GEA Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von GEA Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'GEA Group – Baut Anlagen für die Lebensmittel- und Getränkeherstellung. Notiert wird die Aktie in EUR unter dem Kürzel G1A.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2545,7 +2711,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Stellt Gabelstapler und Lagertechnik her.',
-    metaDescription: 'Die Aktie von Kion Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Kion Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kion Group – Stellt Gabelstapler und Lagertechnik her. Notiert wird die Aktie in EUR unter dem Kürzel KGX.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2565,8 +2732,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Automobil: Baut Lastwagen und Busse unter Marken wie Mercedes-Benz und Freightliner.',
-    metaDescription: 'Die Aktie von Daimler Truck in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Automobil: Baut Lastwagen und Busse unter Marken wie Mercedes-Benz und Freightliner.',
+    metaDescription:
+      'Die Aktie von Daimler Truck in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Daimler Truck – Baut Lastwagen und Busse unter Marken wie Mercedes-Benz und Freightliner. Notiert wird die Aktie in EUR unter dem Kürzel DTG.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2587,16 +2756,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Automobil: Fertigt Reifen und Fahrzeugtechnik.',
-    metaDescription: 'Die Aktie von Continental in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Continental in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Continental – Fertigt Reifen und Fahrzeugtechnik. Notiert wird die Aktie in EUR unter dem Kürzel CON.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 376.90,
-      annualDrift: 0.060,
-      annualVolatility: 0.390,
+      startValue: 376.9,
+      annualDrift: 0.06,
+      annualVolatility: 0.39,
       seed: 85890,
     },
   },
@@ -2608,7 +2778,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Medizintechnik: Stellt Geräte für Augenheilkunde und Mikrochirurgie her.',
-    metaDescription: 'Die Aktie von Carl Zeiss Meditec in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Carl Zeiss Meditec in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Carl Zeiss Meditec – Stellt Geräte für Augenheilkunde und Mikrochirurgie her. Notiert wird die Aktie in EUR unter dem Kürzel AFX.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2629,7 +2800,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Entwirft und verkauft Sportschuhe und Sportbekleidung.',
-    metaDescription: 'Die Aktie von Puma in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Puma in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Puma – Entwirft und verkauft Sportschuhe und Sportbekleidung. Notiert wird die Aktie in EUR unter dem Kürzel PUM.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2650,7 +2822,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Technologie: Betreibt Online-Marktplätze für Immobilien.',
-    metaDescription: 'Die Aktie von Scout24 in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Scout24 in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Scout24 – Betreibt Online-Marktplätze für Immobilien. Notiert wird die Aktie in EUR unter dem Kürzel G24.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2671,7 +2844,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Software: Liefert Software für Planung und Bau von Gebäuden.',
-    metaDescription: 'Die Aktie von Nemetschek in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Nemetschek in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nemetschek – Liefert Software für Planung und Bau von Gebäuden. Notiert wird die Aktie in EUR unter dem Kürzel NEM.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2692,16 +2866,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Technologie: Betreibt Internetzugänge und Rechenzentren in Deutschland.',
-    metaDescription: 'Die Aktie von United Internet in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von United Internet in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'United Internet – Betreibt Internetzugänge und Rechenzentren in Deutschland. Notiert wird die Aktie in EUR unter dem Kürzel UTDI.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 153.60,
-      annualDrift: 0.110,
-      annualVolatility: 0.380,
+      startValue: 153.6,
+      annualDrift: 0.11,
+      annualVolatility: 0.38,
       seed: 15560,
     },
   },
@@ -2712,8 +2887,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Versicherungen: Betreibt Industrie- und Privatversicherungen sowie Rückversicherung.',
-    metaDescription: 'Die Aktie von Talanx in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Betreibt Industrie- und Privatversicherungen sowie Rückversicherung.',
+    metaDescription:
+      'Die Aktie von Talanx in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Talanx – Betreibt Industrie- und Privatversicherungen sowie Rückversicherung. Notiert wird die Aktie in EUR unter dem Kürzel TLX.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2734,16 +2911,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Beteiligungen: Hält die Mehrheit der Stimmrechte an Volkswagen.',
-    metaDescription: 'Die Aktie von Porsche SE in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Porsche SE in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Porsche SE – Hält die Mehrheit der Stimmrechte an Volkswagen. Notiert wird die Aktie in EUR unter dem Kürzel PAH3.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 241.90,
-      annualDrift: 0.030,
-      annualVolatility: 0.330,
+      startValue: 241.9,
+      annualDrift: 0.03,
+      annualVolatility: 0.33,
       seed: 60390,
     },
   },
@@ -2755,7 +2933,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Transport: Betreibt Fluggesellschaften und ein Wartungsgeschäft.',
-    metaDescription: 'Die Aktie von Lufthansa in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Lufthansa in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Lufthansa – Betreibt Fluggesellschaften und ein Wartungsgeschäft. Notiert wird die Aktie in EUR unter dem Kürzel LHA.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2775,8 +2954,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Medizintechnik: Baut Computertomografen, Röntgengeräte und Labordiagnostik.',
-    metaDescription: 'Die Aktie von Siemens Healthineers in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medizintechnik: Baut Computertomografen, Röntgengeräte und Labordiagnostik.',
+    metaDescription:
+      'Die Aktie von Siemens Healthineers in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Siemens Healthineers – Baut Computertomografen, Röntgengeräte und Labordiagnostik. Notiert wird die Aktie in EUR unter dem Kürzel SHL.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2797,7 +2978,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versorger: Erzeugt Strom aus Wind, Sonne und Gas.',
-    metaDescription: 'Die Aktie von RWE in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von RWE in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'RWE – Erzeugt Strom aus Wind, Sonne und Gas. Notiert wird die Aktie in EUR unter dem Kürzel RWE.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2818,7 +3000,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Energie: Fertigt Wechselrichter für Solaranlagen.',
-    metaDescription: 'Die Aktie von SMA Solar Technology in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von SMA Solar Technology in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'SMA Solar Technology – Fertigt Wechselrichter für Solaranlagen. Notiert wird die Aktie in EUR unter dem Kürzel S92.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2839,7 +3022,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Energie: Baut Windkraftanlagen für Onshore-Standorte.',
-    metaDescription: 'Die Aktie von Nordex in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Nordex in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nordex – Baut Windkraftanlagen für Onshore-Standorte. Notiert wird die Aktie in EUR unter dem Kürzel NDX1.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2860,7 +3044,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Stellt Flurförderzeuge und Lagersysteme her.',
-    metaDescription: 'Die Aktie von Jungheinrich in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Jungheinrich in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Jungheinrich – Stellt Flurförderzeuge und Lagersysteme her. Notiert wird die Aktie in EUR unter dem Kürzel JUN3.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2881,7 +3066,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Baut Lackieranlagen für die Automobilindustrie.',
-    metaDescription: 'Die Aktie von Dürr in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Dürr in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Dürr – Baut Lackieranlagen für die Automobilindustrie. Notiert wird die Aktie in EUR unter dem Kürzel DUE.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2902,7 +3088,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Entwirft und verkauft Herren- und Damenmode im gehobenen Segment.',
-    metaDescription: 'Die Aktie von Hugo Boss in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Hugo Boss in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hugo Boss – Entwirft und verkauft Herren- und Damenmode im gehobenen Segment. Notiert wird die Aktie in EUR unter dem Kürzel BOSS.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2923,7 +3110,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Handel: Betreibt Filialen für Brillen und Hörgeräte.',
-    metaDescription: 'Die Aktie von Fielmann in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Fielmann in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fielmann – Betreibt Filialen für Brillen und Hörgeräte. Notiert wird die Aktie in EUR unter dem Kürzel FIE.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2944,7 +3132,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Baut Kombidämpfer für Großküchen.',
-    metaDescription: 'Die Aktie von Rational in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Rational in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Rational – Baut Kombidämpfer für Großküchen. Notiert wird die Aktie in EUR unter dem Kürzel RAA.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2965,7 +3154,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Baut Abfüll- und Verpackungsanlagen für Getränkehersteller.',
-    metaDescription: 'Die Aktie von Krones in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Krones in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Krones – Baut Abfüll- und Verpackungsanlagen für Getränkehersteller. Notiert wird die Aktie in EUR unter dem Kürzel KRN.DE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -2985,8 +3175,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Pharma: Entwickelt Medikamente und Impfstoffe, besonders gegen Immunerkrankungen.',
-    metaDescription: 'Die Aktie von Sanofi in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Pharma: Entwickelt Medikamente und Impfstoffe, besonders gegen Immunerkrankungen.',
+    metaDescription:
+      'Die Aktie von Sanofi in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sanofi – Entwickelt Medikamente und Impfstoffe, besonders gegen Immunerkrankungen. Notiert wird die Aktie in EUR unter dem Kürzel SAN.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3006,8 +3198,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Versicherungen: Bietet Sach-, Lebens- und Krankenversicherungen in vielen Ländern.',
-    metaDescription: 'Die Aktie von AXA in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Bietet Sach-, Lebens- und Krankenversicherungen in vielen Ländern.',
+    metaDescription:
+      'Die Aktie von AXA in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'AXA – Bietet Sach-, Lebens- und Krankenversicherungen in vielen Ländern. Notiert wird die Aktie in EUR unter dem Kürzel CS.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3028,7 +3222,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt eine der größten Banken der Eurozone.',
-    metaDescription: 'Die Aktie von BNP Paribas in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von BNP Paribas in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BNP Paribas – Betreibt eine der größten Banken der Eurozone. Notiert wird die Aktie in EUR unter dem Kürzel BNP.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3049,7 +3244,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Bietet Privat- und Investmentbanking in Frankreich und Osteuropa.',
-    metaDescription: 'Die Aktie von Société Générale in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Société Générale in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Société Générale – Bietet Privat- und Investmentbanking in Frankreich und Osteuropa. Notiert wird die Aktie in EUR unter dem Kürzel GLE.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3070,7 +3266,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt ein genossenschaftlich verankertes Filialnetz.',
-    metaDescription: 'Die Aktie von Crédit Agricole in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Crédit Agricole in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Crédit Agricole – Betreibt ein genossenschaftlich verankertes Filialnetz. Notiert wird die Aktie in EUR unter dem Kürzel ACA.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3091,7 +3288,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Chemie: Stellt Industriegase für Industrie und Krankenhäuser her.',
-    metaDescription: 'Die Aktie von Air Liquide in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Air Liquide in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Air Liquide – Stellt Industriegase für Industrie und Krankenhäuser her. Notiert wird die Aktie in EUR unter dem Kürzel AI.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3112,7 +3310,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Bau: Baut Straßen und Gebäude und betreibt Flughäfen und Mautstrecken.',
-    metaDescription: 'Die Aktie von Vinci in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Vinci in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Vinci – Baut Straßen und Gebäude und betreibt Flughäfen und Mautstrecken. Notiert wird die Aktie in EUR unter dem Kürzel DG.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3133,7 +3332,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Bau: Betreibt Baugeschäft, Mobilfunk und Fernsehen.',
-    metaDescription: 'Die Aktie von Bouygues in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Bouygues in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Bouygues – Betreibt Baugeschäft, Mobilfunk und Fernsehen. Notiert wird die Aktie in EUR unter dem Kürzel EN.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3154,7 +3354,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Baustoffe: Stellt Glas, Dämmstoffe und Baumaterialien her.',
-    metaDescription: 'Die Aktie von Saint-Gobain in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Saint-Gobain in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Saint-Gobain – Stellt Glas, Dämmstoffe und Baumaterialien her. Notiert wird die Aktie in EUR unter dem Kürzel SGO.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3175,16 +3376,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Produziert Milchprodukte, Wasser und Babynahrung.',
-    metaDescription: 'Die Aktie von Danone in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Danone in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Danone – Produziert Milchprodukte, Wasser und Babynahrung. Notiert wird die Aktie in EUR unter dem Kürzel BN.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 243.00,
-      annualDrift: 0.110,
-      annualVolatility: 0.200,
+      startValue: 243.0,
+      annualDrift: 0.11,
+      annualVolatility: 0.2,
       seed: 48500,
     },
   },
@@ -3196,7 +3398,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Stellt Spirituosen wie Whisky, Gin und Cognac her.',
-    metaDescription: 'Die Aktie von Pernod Ricard in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Pernod Ricard in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Pernod Ricard – Stellt Spirituosen wie Whisky, Gin und Cognac her. Notiert wird die Aktie in EUR unter dem Kürzel RI.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3217,7 +3420,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Führt Luxusmarken wie Gucci und Saint Laurent.',
-    metaDescription: 'Die Aktie von Kering in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Kering in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kering – Führt Luxusmarken wie Gucci und Saint Laurent. Notiert wird die Aktie in EUR unter dem Kürzel KER.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3238,7 +3442,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Fertigt Brillengläser und Fassungen und betreibt Optikerketten.',
-    metaDescription: 'Die Aktie von EssilorLuxottica in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von EssilorLuxottica in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'EssilorLuxottica – Fertigt Brillengläser und Fassungen und betreibt Optikerketten. Notiert wird die Aktie in EUR unter dem Kürzel EL.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3259,7 +3464,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Technologie: Berät Unternehmen zu IT und betreibt deren Systeme.',
-    metaDescription: 'Die Aktie von Capgemini in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Capgemini in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Capgemini – Berät Unternehmen zu IT und betreibt deren Systeme. Notiert wird die Aktie in EUR unter dem Kürzel CAP.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3280,7 +3486,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Software: Liefert Software für Konstruktion und Produktentwicklung.',
-    metaDescription: 'Die Aktie von Dassault Systèmes in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Dassault Systèmes in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Dassault Systèmes – Liefert Software für Konstruktion und Produktentwicklung. Notiert wird die Aktie in EUR unter dem Kürzel DSY.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3301,7 +3508,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Rüstung: Entwickelt Elektronik für Luftfahrt, Verteidigung und Raumfahrt.',
-    metaDescription: 'Die Aktie von Thales in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Thales in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Thales – Entwickelt Elektronik für Luftfahrt, Verteidigung und Raumfahrt. Notiert wird die Aktie in EUR unter dem Kürzel HO.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3321,8 +3529,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Industrie: Stellt Schalter, Steckdosen und Elektroinstallationstechnik her.',
-    metaDescription: 'Die Aktie von Legrand in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Industrie: Stellt Schalter, Steckdosen und Elektroinstallationstechnik her.',
+    metaDescription:
+      'Die Aktie von Legrand in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Legrand – Stellt Schalter, Steckdosen und Elektroinstallationstechnik her. Notiert wird die Aktie in EUR unter dem Kürzel LR.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3343,7 +3553,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Automobil: Fertigt Reifen für Autos, Lastwagen und Flugzeuge.',
-    metaDescription: 'Die Aktie von Michelin in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Michelin in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Michelin – Fertigt Reifen für Autos, Lastwagen und Flugzeuge. Notiert wird die Aktie in EUR unter dem Kürzel ML.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3364,7 +3575,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Medien: Plant und schaltet Werbung für internationale Kunden.',
-    metaDescription: 'Die Aktie von Publicis in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Publicis in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Publicis – Plant und schaltet Werbung für internationale Kunden. Notiert wird die Aktie in EUR unter dem Kürzel PUB.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3384,8 +3596,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt Mobilfunk- und Festnetze in Frankreich und Afrika.',
-    metaDescription: 'Die Aktie von Orange in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt Mobilfunk- und Festnetze in Frankreich und Afrika.',
+    metaDescription:
+      'Die Aktie von Orange in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Orange – Betreibt Mobilfunk- und Festnetze in Frankreich und Afrika. Notiert wird die Aktie in EUR unter dem Kürzel ORA.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3406,7 +3620,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versorger: Erzeugt Strom und betreibt Gasnetze und Fernwärme.',
-    metaDescription: 'Die Aktie von Engie in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Engie in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Engie – Erzeugt Strom und betreibt Gasnetze und Fernwärme. Notiert wird die Aktie in EUR unter dem Kürzel ENGI.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3427,7 +3642,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versorger: Betreibt Wasserversorgung, Abfallentsorgung und Energiedienste.',
-    metaDescription: 'Die Aktie von Veolia in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Veolia in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Veolia – Betreibt Wasserversorgung, Abfallentsorgung und Energiedienste. Notiert wird die Aktie in EUR unter dem Kürzel VIE.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3447,8 +3663,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Dienstleistungen: Betreibt Kantinen und Gebäudedienste für Unternehmen, Schulen und Krankenhäuser.',
-    metaDescription: 'Die Aktie von Sodexo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Dienstleistungen: Betreibt Kantinen und Gebäudedienste für Unternehmen, Schulen und Krankenhäuser.',
+    metaDescription:
+      'Die Aktie von Sodexo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sodexo – Betreibt Kantinen und Gebäudedienste für Unternehmen, Schulen und Krankenhäuser. Notiert wird die Aktie in EUR unter dem Kürzel SW.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3468,17 +3686,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Handel: Betreibt Supermärkte und Verbrauchermärkte in Europa und Südamerika.',
-    metaDescription: 'Die Aktie von Carrefour in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Handel: Betreibt Supermärkte und Verbrauchermärkte in Europa und Südamerika.',
+    metaDescription:
+      'Die Aktie von Carrefour in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Carrefour – Betreibt Supermärkte und Verbrauchermärkte in Europa und Südamerika. Notiert wird die Aktie in EUR unter dem Kürzel CA.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 135.20,
-      annualDrift: 0.080,
-      annualVolatility: 0.380,
+      startValue: 135.2,
+      annualDrift: 0.08,
+      annualVolatility: 0.38,
       seed: 5720,
     },
   },
@@ -3490,7 +3710,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Betreibt Hotelmarken vom Budget- bis zum Luxussegment.',
-    metaDescription: 'Die Aktie von Accor in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Accor in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Accor – Betreibt Hotelmarken vom Budget- bis zum Luxussegment. Notiert wird die Aktie in EUR unter dem Kürzel AC.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3510,8 +3731,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Software: Liefert Buchhaltungs- und Lohnsoftware für kleine und mittlere Unternehmen.',
-    metaDescription: 'Die Aktie von Sage Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Liefert Buchhaltungs- und Lohnsoftware für kleine und mittlere Unternehmen.',
+    metaDescription:
+      'Die Aktie von Sage Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sage Group – Liefert Buchhaltungs- und Lohnsoftware für kleine und mittlere Unternehmen. Notiert wird die Aktie in GBP unter dem Kürzel SGE.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3532,7 +3755,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas und betreibt Tankstellen und Raffinerien.',
-    metaDescription: 'Die Aktie von BP in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von BP in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BP – Fördert Öl und Gas und betreibt Tankstellen und Raffinerien. Notiert wird die Aktie in GBP unter dem Kürzel BP.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3552,8 +3776,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Pharma: Entwickelt Impfstoffe und Medikamente gegen Atemwegs- und Infektionskrankheiten.',
-    metaDescription: 'Die Aktie von GSK in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Pharma: Entwickelt Impfstoffe und Medikamente gegen Atemwegs- und Infektionskrankheiten.',
+    metaDescription:
+      'Die Aktie von GSK in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'GSK – Entwickelt Impfstoffe und Medikamente gegen Atemwegs- und Infektionskrankheiten. Notiert wird die Aktie in GBP unter dem Kürzel GSK.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3574,7 +3800,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Konsum: Stellt Spirituosen wie Johnnie Walker und Guinness her.',
-    metaDescription: 'Die Aktie von Diageo in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Diageo in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Diageo – Stellt Spirituosen wie Johnnie Walker und Guinness her. Notiert wird die Aktie in GBP unter dem Kürzel DGE.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3595,7 +3822,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Konsum: Produziert Hygiene- und Gesundheitsprodukte für den Haushalt.',
-    metaDescription: 'Die Aktie von Reckitt in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Reckitt in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Reckitt – Produziert Hygiene- und Gesundheitsprodukte für den Haushalt. Notiert wird die Aktie in GBP unter dem Kürzel RKT.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3616,7 +3844,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Konsum: Stellt Zigaretten und Alternativprodukte her.',
-    metaDescription: 'Die Aktie von British American Tobacco in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von British American Tobacco in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'British American Tobacco – Stellt Zigaretten und Alternativprodukte her. Notiert wird die Aktie in GBP unter dem Kürzel BATS.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3637,7 +3866,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Banken: Betreibt Privatkundengeschäft und Investmentbanking.',
-    metaDescription: 'Die Aktie von Barclays in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Barclays in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Barclays – Betreibt Privatkundengeschäft und Investmentbanking. Notiert wird die Aktie in GBP unter dem Kürzel BARC.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3657,8 +3887,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Banken: Führt eines der größten Filialnetze im britischen Privatkundengeschäft.',
-    metaDescription: 'Die Aktie von Lloyds Banking Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Führt eines der größten Filialnetze im britischen Privatkundengeschäft.',
+    metaDescription:
+      'Die Aktie von Lloyds Banking Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Lloyds Banking Group – Führt eines der größten Filialnetze im britischen Privatkundengeschäft. Notiert wird die Aktie in GBP unter dem Kürzel LLOY.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3679,7 +3911,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Banken: Bietet Privat- und Firmenkundengeschäft in Großbritannien.',
-    metaDescription: 'Die Aktie von NatWest Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von NatWest Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'NatWest Group – Bietet Privat- und Firmenkundengeschäft in Großbritannien. Notiert wird die Aktie in GBP unter dem Kürzel NWG.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3700,7 +3933,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Versicherungen: Verkauft Lebensversicherungen in Asien und Afrika.',
-    metaDescription: 'Die Aktie von Prudential plc in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Prudential plc in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Prudential plc – Verkauft Lebensversicherungen in Asien und Afrika. Notiert wird die Aktie in GBP unter dem Kürzel PRU.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3720,8 +3954,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Versicherungen: Verwaltet Altersvorsorgevermögen und bietet Rentenversicherungen.',
-    metaDescription: 'Die Aktie von Legal & General in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Verwaltet Altersvorsorgevermögen und bietet Rentenversicherungen.',
+    metaDescription:
+      'Die Aktie von Legal & General in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Legal & General – Verwaltet Altersvorsorgevermögen und bietet Rentenversicherungen. Notiert wird die Aktie in GBP unter dem Kürzel LGEN.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3741,17 +3977,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Versicherungen: Bietet Sach- und Lebensversicherungen in Großbritannien und Irland.',
-    metaDescription: 'Die Aktie von Aviva in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Bietet Sach- und Lebensversicherungen in Großbritannien und Irland.',
+    metaDescription:
+      'Die Aktie von Aviva in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Aviva – Bietet Sach- und Lebensversicherungen in Großbritannien und Irland. Notiert wird die Aktie in GBP unter dem Kürzel AV.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 256.80,
-      annualDrift: 0.070,
-      annualVolatility: 0.220,
+      startValue: 256.8,
+      annualDrift: 0.07,
+      annualVolatility: 0.22,
       seed: 51880,
     },
   },
@@ -3763,7 +4001,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Bergbau: Fördert Eisenerz, Kupfer und Aluminium.',
-    metaDescription: 'Die Aktie von Rio Tinto in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Rio Tinto in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Rio Tinto – Fördert Eisenerz, Kupfer und Aluminium. Notiert wird die Aktie in GBP unter dem Kürzel RIO.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3784,7 +4023,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Bergbau: Fördert Rohstoffe und handelt weltweit damit.',
-    metaDescription: 'Die Aktie von Glencore in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Glencore in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Glencore – Fördert Rohstoffe und handelt weltweit damit. Notiert wird die Aktie in GBP unter dem Kürzel GLEN.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3805,7 +4045,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Bergbau: Fördert Platin, Kupfer, Diamanten und Eisenerz.',
-    metaDescription: 'Die Aktie von Anglo American in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Anglo American in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Anglo American – Fördert Platin, Kupfer, Diamanten und Eisenerz. Notiert wird die Aktie in GBP unter dem Kürzel AAL.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3826,7 +4067,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Luftfahrt: Baut Triebwerke für Verkehrsflugzeuge und Antriebe für Schiffe.',
-    metaDescription: 'Die Aktie von Rolls-Royce in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Rolls-Royce in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Rolls-Royce – Baut Triebwerke für Verkehrsflugzeuge und Antriebe für Schiffe. Notiert wird die Aktie in GBP unter dem Kürzel RR.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3846,8 +4088,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Rüstung: Baut Kampfflugzeuge, Kriegsschiffe und Elektronik für Streitkräfte.',
-    metaDescription: 'Die Aktie von BAE Systems in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Rüstung: Baut Kampfflugzeuge, Kriegsschiffe und Elektronik für Streitkräfte.',
+    metaDescription:
+      'Die Aktie von BAE Systems in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BAE Systems – Baut Kampfflugzeuge, Kriegsschiffe und Elektronik für Streitkräfte. Notiert wird die Aktie in GBP unter dem Kürzel BA.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3868,7 +4112,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Versorger: Betreibt Strom- und Gasnetze in Großbritannien und den USA.',
-    metaDescription: 'Die Aktie von National Grid in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von National Grid in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'National Grid – Betreibt Strom- und Gasnetze in Großbritannien und den USA. Notiert wird die Aktie in GBP unter dem Kürzel NG.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3889,7 +4134,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Handel: Betreibt die größte Supermarktkette Großbritanniens.',
-    metaDescription: 'Die Aktie von Tesco in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Tesco in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Tesco – Betreibt die größte Supermarktkette Großbritanniens. Notiert wird die Aktie in GBP unter dem Kürzel TSCO.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3910,7 +4156,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Handel: Betreibt Supermärkte und eine Bank in Großbritannien.',
-    metaDescription: "Die Aktie von Sainsbury's in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.",
+    metaDescription:
+      "Die Aktie von Sainsbury's in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.",
     description: [
       "Sainsbury's – Betreibt Supermärkte und eine Bank in Großbritannien. Notiert wird die Aktie in GBP unter dem Kürzel SBRY.L.",
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3930,8 +4177,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Medien: Verkauft Fachinformationen und Analysewerkzeuge an Wissenschaft und Wirtschaft.',
-    metaDescription: 'Die Aktie von RELX in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medien: Verkauft Fachinformationen und Analysewerkzeuge an Wissenschaft und Wirtschaft.',
+    metaDescription:
+      'Die Aktie von RELX in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'RELX – Verkauft Fachinformationen und Analysewerkzeuge an Wissenschaft und Wirtschaft. Notiert wird die Aktie in GBP unter dem Kürzel REL.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3952,7 +4201,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Finanzdienste: Betreibt Börsen und verkauft Marktdaten.',
-    metaDescription: 'Die Aktie von London Stock Exchange Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von London Stock Exchange Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'London Stock Exchange Group – Betreibt Börsen und verkauft Marktdaten. Notiert wird die Aktie in GBP unter dem Kürzel LSEG.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3973,7 +4223,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Telekommunikation: Betreibt Mobilfunknetze in Europa und Afrika.',
-    metaDescription: 'Die Aktie von Vodafone in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Vodafone in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Vodafone – Betreibt Mobilfunknetze in Europa und Afrika. Notiert wird die Aktie in GBP unter dem Kürzel VOD.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -3993,8 +4244,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Dienstleistung: Betreibt Kantinen und Verpflegung für Unternehmen und Kliniken.',
-    metaDescription: 'Die Aktie von Compass Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Dienstleistung: Betreibt Kantinen und Verpflegung für Unternehmen und Kliniken.',
+    metaDescription:
+      'Die Aktie von Compass Group in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Compass Group – Betreibt Kantinen und Verpflegung für Unternehmen und Kliniken. Notiert wird die Aktie in GBP unter dem Kürzel CPG.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4014,8 +4267,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'GBP',
     decimals: 2,
-    summary: 'Finanzdienste: Sammelt Kreditdaten und bewertet die Zahlungsfähigkeit von Verbrauchern.',
-    metaDescription: 'Die Aktie von Experian in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Finanzdienste: Sammelt Kreditdaten und bewertet die Zahlungsfähigkeit von Verbrauchern.',
+    metaDescription:
+      'Die Aktie von Experian in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Experian – Sammelt Kreditdaten und bewertet die Zahlungsfähigkeit von Verbrauchern. Notiert wird die Aktie in GBP unter dem Kürzel EXPN.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4036,7 +4291,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'GBP',
     decimals: 2,
     summary: 'Versorger: Erzeugt Strom aus Wind und Wasser und betreibt Netze.',
-    metaDescription: 'Die Aktie von SSE in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von SSE in GBP: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'SSE – Erzeugt Strom aus Wind und Wasser und betreibt Netze. Notiert wird die Aktie in GBP unter dem Kürzel SSE.L.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4056,8 +4312,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CHF',
     decimals: 2,
-    summary: 'Versicherungen: Versichert Sach- und Haftpflichtrisiken von Firmen und Privatkunden.',
-    metaDescription: 'Die Aktie von Zurich Insurance in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Versichert Sach- und Haftpflichtrisiken von Firmen und Privatkunden.',
+    metaDescription:
+      'Die Aktie von Zurich Insurance in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Zurich Insurance – Versichert Sach- und Haftpflichtrisiken von Firmen und Privatkunden. Notiert wird die Aktie in CHF unter dem Kürzel ZURN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4078,16 +4336,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Versicherungen: Versichert Versicherer gegen Großschäden.',
-    metaDescription: 'Die Aktie von Swiss Re in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Swiss Re in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Swiss Re – Versichert Versicherer gegen Großschäden. Notiert wird die Aktie in CHF unter dem Kürzel SREN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 354.30,
-      annualDrift: 0.030,
-      annualVolatility: 0.210,
+      startValue: 354.3,
+      annualDrift: 0.03,
+      annualVolatility: 0.21,
       seed: 63630,
     },
   },
@@ -4099,7 +4358,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Industrie: Baut Elektrotechnik, Antriebe und Industrieroboter.',
-    metaDescription: 'Die Aktie von ABB in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von ABB in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ABB – Baut Elektrotechnik, Antriebe und Industrieroboter. Notiert wird die Aktie in CHF unter dem Kürzel ABBN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4120,16 +4380,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Konsum: Führt Luxusmarken wie Cartier und IWC.',
-    metaDescription: 'Die Aktie von Richemont in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Richemont in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Richemont – Führt Luxusmarken wie Cartier und IWC. Notiert wird die Aktie in CHF unter dem Kürzel CFR.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 31.20,
-      annualDrift: 0.080,
-      annualVolatility: 0.380,
+      startValue: 31.2,
+      annualDrift: 0.08,
+      annualVolatility: 0.38,
       seed: 63320,
     },
   },
@@ -4141,7 +4402,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Pharma: Produziert Wirkstoffe im Auftrag von Pharmaunternehmen.',
-    metaDescription: 'Die Aktie von Lonza in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Lonza in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Lonza – Produziert Wirkstoffe im Auftrag von Pharmaunternehmen. Notiert wird die Aktie in CHF unter dem Kürzel LONN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4162,16 +4424,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Chemie: Entwickelt Duft- und Aromastoffe für Konsumgüter.',
-    metaDescription: 'Die Aktie von Givaudan in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Givaudan in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Givaudan – Entwickelt Duft- und Aromastoffe für Konsumgüter. Notiert wird die Aktie in CHF unter dem Kürzel GIVN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 312.30,
-      annualDrift: 0.080,
-      annualVolatility: 0.410,
+      startValue: 312.3,
+      annualDrift: 0.08,
+      annualVolatility: 0.41,
       seed: 7430,
     },
   },
@@ -4183,7 +4446,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Baustoffe: Stellt Zement, Beton und Dachsysteme her.',
-    metaDescription: 'Die Aktie von Holcim in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Holcim in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Holcim – Stellt Zement, Beton und Dachsysteme her. Notiert wird die Aktie in CHF unter dem Kürzel HOLN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4204,7 +4468,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Chemie: Produziert Bauchemie zum Kleben, Dichten und Verstärken.',
-    metaDescription: 'Die Aktie von Sika in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Sika in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sika – Produziert Bauchemie zum Kleben, Dichten und Verstärken. Notiert wird die Aktie in CHF unter dem Kürzel SIKA.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4225,7 +4490,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Industrie: Stellt Sanitärtechnik für Gebäude her.',
-    metaDescription: 'Die Aktie von Geberit in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Geberit in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Geberit – Stellt Sanitärtechnik für Gebäude her. Notiert wird die Aktie in CHF unter dem Kürzel GEBN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4246,7 +4512,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Medizintechnik: Fertigt Kontaktlinsen und Geräte für Augenoperationen.',
-    metaDescription: 'Die Aktie von Alcon in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Alcon in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Alcon – Fertigt Kontaktlinsen und Geräte für Augenoperationen. Notiert wird die Aktie in CHF unter dem Kürzel ALC.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4266,8 +4533,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CHF',
     decimals: 2,
-    summary: 'Finanzdienste: Legt Fonds für Beteiligungen an nicht börsennotierten Unternehmen auf.',
-    metaDescription: 'Die Aktie von Partners Group in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Finanzdienste: Legt Fonds für Beteiligungen an nicht börsennotierten Unternehmen auf.',
+    metaDescription:
+      'Die Aktie von Partners Group in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Partners Group – Legt Fonds für Beteiligungen an nicht börsennotierten Unternehmen auf. Notiert wird die Aktie in CHF unter dem Kürzel PGHN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4287,8 +4556,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CHF',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt das größte Telefon- und Mobilfunknetz der Schweiz.',
-    metaDescription: 'Die Aktie von Swisscom in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt das größte Telefon- und Mobilfunknetz der Schweiz.',
+    metaDescription:
+      'Die Aktie von Swisscom in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Swisscom – Betreibt das größte Telefon- und Mobilfunknetz der Schweiz. Notiert wird die Aktie in CHF unter dem Kürzel SCMN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4309,7 +4580,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CHF',
     decimals: 2,
     summary: 'Transport: Organisiert See- und Luftfracht für Industriekunden.',
-    metaDescription: 'Die Aktie von Kühne + Nagel in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Kühne + Nagel in CHF: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kühne + Nagel – Organisiert See- und Luftfracht für Industriekunden. Notiert wird die Aktie in CHF unter dem Kürzel KNIN.SW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4330,7 +4602,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt Direktbanken und Firmenkundengeschäft in Europa.',
-    metaDescription: 'Die Aktie von ING Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von ING Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ING Group – Betreibt Direktbanken und Firmenkundengeschäft in Europa. Notiert wird die Aktie in EUR unter dem Kürzel INGA.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4351,7 +4624,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Handel: Betreibt Supermarktketten in Europa und den USA.',
-    metaDescription: 'Die Aktie von Ahold Delhaize in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Ahold Delhaize in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ahold Delhaize – Betreibt Supermarktketten in Europa und den USA. Notiert wird die Aktie in EUR unter dem Kürzel AD.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4372,7 +4646,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Braut Bier und vertreibt es weltweit.',
-    metaDescription: 'Die Aktie von Heineken in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Heineken in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Heineken – Braut Bier und vertreibt es weltweit. Notiert wird die Aktie in EUR unter dem Kürzel HEIA.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4392,8 +4667,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Medizintechnik: Stellt bildgebende Geräte und Produkte für die Gesundheitspflege her.',
-    metaDescription: 'Die Aktie von Philips in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medizintechnik: Stellt bildgebende Geräte und Produkte für die Gesundheitspflege her.',
+    metaDescription:
+      'Die Aktie von Philips in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Philips – Stellt bildgebende Geräte und Produkte für die Gesundheitspflege her. Notiert wird die Aktie in EUR unter dem Kürzel PHIA.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4414,16 +4691,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Medien: Verkauft Fachinformationen und Software für Recht und Steuern.',
-    metaDescription: 'Die Aktie von Wolters Kluwer in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Wolters Kluwer in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Wolters Kluwer – Verkauft Fachinformationen und Software für Recht und Steuern. Notiert wird die Aktie in EUR unter dem Kürzel WKL.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 278.60,
-      annualDrift: 0.050,
-      annualVolatility: 0.320,
+      startValue: 278.6,
+      annualDrift: 0.05,
+      annualVolatility: 0.32,
       seed: 14060,
     },
   },
@@ -4435,7 +4713,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Zahlungsverkehr: Wickelt Kartenzahlungen für große Onlinehändler ab.',
-    metaDescription: 'Die Aktie von Adyen in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Adyen in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Adyen – Wickelt Kartenzahlungen für große Onlinehändler ab. Notiert wird die Aktie in EUR unter dem Kürzel ADYEN.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4456,7 +4735,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Beteiligungen: Hält Anteile an Internetunternehmen, darunter an Tencent.',
-    metaDescription: 'Die Aktie von Prosus in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Prosus in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Prosus – Hält Anteile an Internetunternehmen, darunter an Tencent. Notiert wird die Aktie in EUR unter dem Kürzel PRX.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4477,7 +4757,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Halbleiter: Baut Anlagen zur Abscheidung dünner Schichten auf Wafern.',
-    metaDescription: 'Die Aktie von ASM International in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von ASM International in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ASM International – Baut Anlagen zur Abscheidung dünner Schichten auf Wafern. Notiert wird die Aktie in EUR unter dem Kürzel ASM.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4498,7 +4779,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Halbleiter: Fertigt Maschinen zum Verbinden von Chips mit ihrem Gehäuse.',
-    metaDescription: 'Die Aktie von BE Semiconductor in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von BE Semiconductor in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BE Semiconductor – Fertigt Maschinen zum Verbinden von Chips mit ihrem Gehäuse. Notiert wird die Aktie in EUR unter dem Kürzel BESI.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4519,7 +4801,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Chemie: Stellt Farben und Lacke für Bau und Industrie her.',
-    metaDescription: 'Die Aktie von AkzoNobel in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von AkzoNobel in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'AkzoNobel – Stellt Farben und Lacke für Bau und Industrie her. Notiert wird die Aktie in EUR unter dem Kürzel AKZA.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4540,16 +4823,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Dienstleistung: Vermittelt Zeitarbeit und Personal an Unternehmen.',
-    metaDescription: 'Die Aktie von Randstad in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Randstad in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Randstad – Vermittelt Zeitarbeit und Personal an Unternehmen. Notiert wird die Aktie in EUR unter dem Kürzel RAND.AS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 60.60,
-      annualDrift: 0.110,
-      annualVolatility: 0.200,
+      startValue: 60.6,
+      annualDrift: 0.11,
+      annualVolatility: 0.2,
       seed: 36260,
     },
   },
@@ -4561,7 +4845,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Handel: Führt Modeketten wie Zara und produziert in kurzen Zyklen.',
-    metaDescription: 'Die Aktie von Inditex in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Inditex in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Inditex – Führt Modeketten wie Zara und produziert in kurzen Zyklen. Notiert wird die Aktie in EUR unter dem Kürzel ITX.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4582,7 +4867,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt Filialbanken in Spanien, Mexiko und der Türkei.',
-    metaDescription: 'Die Aktie von BBVA in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von BBVA in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BBVA – Betreibt Filialbanken in Spanien, Mexiko und der Türkei. Notiert wird die Aktie in EUR unter dem Kürzel BBVA.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4603,7 +4889,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Führt das größte Filialnetz im spanischen Privatkundengeschäft.',
-    metaDescription: 'Die Aktie von CaixaBank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von CaixaBank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CaixaBank – Führt das größte Filialnetz im spanischen Privatkundengeschäft. Notiert wird die Aktie in EUR unter dem Kürzel CABK.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4623,8 +4910,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt Fest- und Mobilfunknetze in Spanien und Lateinamerika.',
-    metaDescription: 'Die Aktie von Telefónica in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt Fest- und Mobilfunknetze in Spanien und Lateinamerika.',
+    metaDescription:
+      'Die Aktie von Telefónica in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Telefónica – Betreibt Fest- und Mobilfunknetze in Spanien und Lateinamerika. Notiert wird die Aktie in EUR unter dem Kürzel TEF.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4645,7 +4934,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas und betreibt Raffinerien und Tankstellen.',
-    metaDescription: 'Die Aktie von Repsol in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Repsol in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Repsol – Fördert Öl und Gas und betreibt Raffinerien und Tankstellen. Notiert wird die Aktie in EUR unter dem Kürzel REP.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4666,7 +4956,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Bau: Baut und betreibt Autobahnen und Flughäfen.',
-    metaDescription: 'Die Aktie von Ferrovial in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Ferrovial in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ferrovial – Baut und betreibt Autobahnen und Flughäfen. Notiert wird die Aktie in EUR unter dem Kürzel FER.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4686,8 +4977,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Software: Betreibt das Buchungssystem, über das Reisebüros Flüge verkaufen.',
-    metaDescription: 'Die Aktie von Amadeus IT Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Betreibt das Buchungssystem, über das Reisebüros Flüge verkaufen.',
+    metaDescription:
+      'Die Aktie von Amadeus IT Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Amadeus IT Group – Betreibt das Buchungssystem, über das Reisebüros Flüge verkaufen. Notiert wird die Aktie in EUR unter dem Kürzel AMS.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4708,7 +5001,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Transport: Betreibt die spanischen Flughäfen.',
-    metaDescription: 'Die Aktie von Aena in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Aena in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Aena – Betreibt die spanischen Flughäfen. Notiert wird die Aktie in EUR unter dem Kürzel AENA.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4729,7 +5023,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versorger: Verteilt Erdgas und erzeugt Strom in Spanien und Lateinamerika.',
-    metaDescription: 'Die Aktie von Naturgy in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Naturgy in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Naturgy – Verteilt Erdgas und erzeugt Strom in Spanien und Lateinamerika. Notiert wird die Aktie in EUR unter dem Kürzel NTGY.MC.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4750,7 +5045,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versorger: Erzeugt und verteilt Strom in Europa und Lateinamerika.',
-    metaDescription: 'Die Aktie von Enel in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Enel in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Enel – Erzeugt und verteilt Strom in Europa und Lateinamerika. Notiert wird die Aktie in EUR unter dem Kürzel ENEL.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4771,7 +5067,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas und betreibt Raffinerien.',
-    metaDescription: 'Die Aktie von Eni in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Eni in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Eni – Fördert Öl und Gas und betreibt Raffinerien. Notiert wird die Aktie in EUR unter dem Kürzel ENI.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4792,7 +5089,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt die größte Filialbank Italiens.',
-    metaDescription: 'Die Aktie von Intesa Sanpaolo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Intesa Sanpaolo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Intesa Sanpaolo – Betreibt die größte Filialbank Italiens. Notiert wird die Aktie in EUR unter dem Kürzel ISP.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4813,7 +5111,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt Banken in Italien, Deutschland und Osteuropa.',
-    metaDescription: 'Die Aktie von UniCredit in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von UniCredit in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'UniCredit – Betreibt Banken in Italien, Deutschland und Osteuropa. Notiert wird die Aktie in EUR unter dem Kürzel UCG.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4834,7 +5133,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versicherungen: Bietet Lebens- und Sachversicherungen in Europa.',
-    metaDescription: 'Die Aktie von Generali in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Generali in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Generali – Bietet Lebens- und Sachversicherungen in Europa. Notiert wird die Aktie in EUR unter dem Kürzel G.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4855,7 +5155,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Stellt Energie- und Datenkabel her.',
-    metaDescription: 'Die Aktie von Prysmian in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Prysmian in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Prysmian – Stellt Energie- und Datenkabel her. Notiert wird die Aktie in EUR unter dem Kürzel PRY.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4876,7 +5177,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Konsum: Fertigt Daunenjacken und Oberbekleidung im Luxussegment.',
-    metaDescription: 'Die Aktie von Moncler in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Moncler in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Moncler – Fertigt Daunenjacken und Oberbekleidung im Luxussegment. Notiert wird die Aktie in EUR unter dem Kürzel MONC.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4897,7 +5199,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Rüstung: Baut Hubschrauber, Elektronik und Sicherheitstechnik.',
-    metaDescription: 'Die Aktie von Leonardo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Leonardo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Leonardo – Baut Hubschrauber, Elektronik und Sicherheitstechnik. Notiert wird die Aktie in EUR unter dem Kürzel LDO.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4918,7 +5221,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versorger: Betreibt das italienische Stromübertragungsnetz.',
-    metaDescription: 'Die Aktie von Terna in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Terna in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Terna – Betreibt das italienische Stromübertragungsnetz. Notiert wird die Aktie in EUR unter dem Kürzel TRN.MI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4939,7 +5243,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Halbleiter: Fertigt Chips für Autos, Industrie und Haushaltsgeräte.',
-    metaDescription: 'Die Aktie von STMicroelectronics in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von STMicroelectronics in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'STMicroelectronics – Fertigt Chips für Autos, Industrie und Haushaltsgeräte. Notiert wird die Aktie in EUR unter dem Kürzel STMPA.PA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4960,7 +5265,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'DKK',
     decimals: 2,
     summary: 'Pharma: Entwickelt Medikamente gegen Diabetes und Adipositas.',
-    metaDescription: 'Die Aktie von Novo Nordisk (B) in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Novo Nordisk (B) in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Novo Nordisk (B) – Entwickelt Medikamente gegen Diabetes und Adipositas. Notiert wird die Aktie in DKK unter dem Kürzel NOVO-B.CO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -4981,7 +5287,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'DKK',
     decimals: 2,
     summary: 'Transport: Organisiert Luft-, See- und Landfracht für Industriekunden.',
-    metaDescription: 'Die Aktie von DSV in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von DSV in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'DSV – Organisiert Luft-, See- und Landfracht für Industriekunden. Notiert wird die Aktie in DKK unter dem Kürzel DSV.CO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5002,7 +5309,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'DKK',
     decimals: 2,
     summary: 'Energie: Baut und betreibt Windparks auf See.',
-    metaDescription: 'Die Aktie von Ørsted in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Ørsted in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ørsted – Baut und betreibt Windparks auf See. Notiert wird die Aktie in DKK unter dem Kürzel ORSTED.CO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5023,7 +5331,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'DKK',
     decimals: 2,
     summary: 'Konsum: Braut Bier und vertreibt es in Europa und Asien.',
-    metaDescription: 'Die Aktie von Carlsberg in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Carlsberg in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Carlsberg – Braut Bier und vertreibt es in Europa und Asien. Notiert wird die Aktie in DKK unter dem Kürzel CARL-B.CO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5044,7 +5353,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'DKK',
     decimals: 2,
     summary: 'Energie: Baut Windkraftanlagen und wartet sie über die Laufzeit.',
-    metaDescription: 'Die Aktie von Vestas Wind Systems in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Vestas Wind Systems in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Vestas Wind Systems – Baut Windkraftanlagen und wartet sie über die Laufzeit. Notiert wird die Aktie in DKK unter dem Kürzel VWS.CO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5064,8 +5374,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'DKK',
     decimals: 2,
-    summary: 'Medizintechnik: Stellt Produkte für Stoma-, Kontinenz- und Wundversorgung her.',
-    metaDescription: 'Die Aktie von Coloplast in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medizintechnik: Stellt Produkte für Stoma-, Kontinenz- und Wundversorgung her.',
+    metaDescription:
+      'Die Aktie von Coloplast in DKK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Coloplast – Stellt Produkte für Stoma-, Kontinenz- und Wundversorgung her. Notiert wird die Aktie in DKK unter dem Kürzel COLO-B.CO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5086,7 +5398,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Industrie: Baut Kompressoren, Vakuumpumpen und Industriewerkzeuge.',
-    metaDescription: 'Die Aktie von Atlas Copco in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Atlas Copco in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Atlas Copco – Baut Kompressoren, Vakuumpumpen und Industriewerkzeuge. Notiert wird die Aktie in SEK unter dem Kürzel ATCO-A.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5107,16 +5420,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Automobil: Baut Lastwagen, Busse und Baumaschinen.',
-    metaDescription: 'Die Aktie von Volvo in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Volvo in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Volvo – Baut Lastwagen, Busse und Baumaschinen. Notiert wird die Aktie in SEK unter dem Kürzel VOLV-B.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 147.30,
-      annualDrift: 0.110,
-      annualVolatility: 0.230,
+      startValue: 147.3,
+      annualDrift: 0.11,
+      annualVolatility: 0.23,
       seed: 14930,
     },
   },
@@ -5128,7 +5442,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Telekommunikation: Liefert Mobilfunknetztechnik an Netzbetreiber.',
-    metaDescription: 'Die Aktie von Ericsson in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Ericsson in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ericsson – Liefert Mobilfunknetztechnik an Netzbetreiber. Notiert wird die Aktie in SEK unter dem Kürzel ERIC-B.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5149,7 +5464,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Industrie: Fertigt Werkzeuge für Metallbearbeitung und Bergbau.',
-    metaDescription: 'Die Aktie von Sandvik in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Sandvik in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sandvik – Fertigt Werkzeuge für Metallbearbeitung und Bergbau. Notiert wird die Aktie in SEK unter dem Kürzel SAND.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5169,17 +5485,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'SEK',
     decimals: 2,
-    summary: 'Beteiligungen: Hält langfristige Beteiligungen an nordischen Industrieunternehmen.',
-    metaDescription: 'Die Aktie von Investor AB in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Beteiligungen: Hält langfristige Beteiligungen an nordischen Industrieunternehmen.',
+    metaDescription:
+      'Die Aktie von Investor AB in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Investor AB – Hält langfristige Beteiligungen an nordischen Industrieunternehmen. Notiert wird die Aktie in SEK unter dem Kürzel INVE-B.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 279.30,
-      annualDrift: 0.060,
-      annualVolatility: 0.390,
+      startValue: 279.3,
+      annualDrift: 0.06,
+      annualVolatility: 0.39,
       seed: 62130,
     },
   },
@@ -5191,7 +5509,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Technologie: Liefert Messtechnik und Software für Fertigung und Bau.',
-    metaDescription: 'Die Aktie von Hexagon in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Hexagon in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hexagon – Liefert Messtechnik und Software für Fertigung und Bau. Notiert wird die Aktie in SEK unter dem Kürzel HEXA-B.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5212,7 +5531,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Industrie: Stellt Schlösser und Zutrittssysteme her.',
-    metaDescription: 'Die Aktie von Assa Abloy in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Assa Abloy in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Assa Abloy – Stellt Schlösser und Zutrittssysteme her. Notiert wird die Aktie in SEK unter dem Kürzel ASSA-B.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5233,7 +5553,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Industrie: Baut Bohr- und Abbaugeräte für den Bergbau.',
-    metaDescription: 'Die Aktie von Epiroc in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Epiroc in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Epiroc – Baut Bohr- und Abbaugeräte für den Bergbau. Notiert wird die Aktie in SEK unter dem Kürzel EPI-A.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5253,8 +5574,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'SEK',
     decimals: 2,
-    summary: 'Banken: Betreibt Firmenkundengeschäft und Vermögensverwaltung in Nordeuropa.',
-    metaDescription: 'Die Aktie von SEB in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Betreibt Firmenkundengeschäft und Vermögensverwaltung in Nordeuropa.',
+    metaDescription:
+      'Die Aktie von SEB in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'SEB – Betreibt Firmenkundengeschäft und Vermögensverwaltung in Nordeuropa. Notiert wird die Aktie in SEK unter dem Kürzel SEB-A.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5275,7 +5598,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Banken: Führt ein großes Filialnetz in Schweden und im Baltikum.',
-    metaDescription: 'Die Aktie von Swedbank in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Swedbank in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Swedbank – Führt ein großes Filialnetz in Schweden und im Baltikum. Notiert wird die Aktie in SEK unter dem Kürzel SWED-A.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5296,7 +5620,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SEK',
     decimals: 2,
     summary: 'Banken: Betreibt eine dezentral geführte Filialbank in Nordeuropa.',
-    metaDescription: 'Die Aktie von Handelsbanken in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Handelsbanken in SEK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Handelsbanken – Betreibt eine dezentral geführte Filialbank in Nordeuropa. Notiert wird die Aktie in SEK unter dem Kürzel SHB-A.ST.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5317,7 +5642,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'NOK',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas in der Nordsee und baut Windkraft auf See.',
-    metaDescription: 'Die Aktie von Equinor in NOK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Equinor in NOK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Equinor – Fördert Öl und Gas in der Nordsee und baut Windkraft auf See. Notiert wird die Aktie in NOK unter dem Kürzel EQNR.OL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5338,7 +5664,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'NOK',
     decimals: 2,
     summary: 'Banken: Betreibt die größte Bank Norwegens.',
-    metaDescription: 'Die Aktie von DNB Bank in NOK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von DNB Bank in NOK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'DNB Bank – Betreibt die größte Bank Norwegens. Notiert wird die Aktie in NOK unter dem Kürzel DNB.OL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5359,7 +5686,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'NOK',
     decimals: 2,
     summary: 'Telekommunikation: Betreibt Mobilfunknetze in Skandinavien und Asien.',
-    metaDescription: 'Die Aktie von Telenor in NOK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Telenor in NOK: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Telenor – Betreibt Mobilfunknetze in Skandinavien und Asien. Notiert wird die Aktie in NOK unter dem Kürzel TEL.OL.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5380,7 +5708,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt die größte Bank Nordeuropas.',
-    metaDescription: 'Die Aktie von Nordea Bank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Nordea Bank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nordea Bank – Betreibt die größte Bank Nordeuropas. Notiert wird die Aktie in EUR unter dem Kürzel NDA-FI.HE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5401,7 +5730,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Baut und wartet Aufzüge und Rolltreppen.',
-    metaDescription: 'Die Aktie von Kone in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Kone in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kone – Baut und wartet Aufzüge und Rolltreppen. Notiert wird die Aktie in EUR unter dem Kürzel KNEBV.HE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5422,7 +5752,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Energie: Stellt erneuerbaren Diesel aus Abfallfetten her.',
-    metaDescription: 'Die Aktie von Neste in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Neste in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Neste – Stellt erneuerbaren Diesel aus Abfallfetten her. Notiert wird die Aktie in EUR unter dem Kürzel NESTE.HE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5443,7 +5774,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Industrie: Produziert Papier, Zellstoff und Holzwerkstoffe.',
-    metaDescription: 'Die Aktie von UPM-Kymmene in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von UPM-Kymmene in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'UPM-Kymmene – Produziert Papier, Zellstoff und Holzwerkstoffe. Notiert wird die Aktie in EUR unter dem Kürzel UPM.HE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5464,7 +5796,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versicherungen: Bietet Sachversicherungen in Nordeuropa.',
-    metaDescription: 'Die Aktie von Sampo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Sampo in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sampo – Bietet Sachversicherungen in Nordeuropa. Notiert wird die Aktie in EUR unter dem Kürzel SAMPO.HE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5485,16 +5818,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: "Konsum: Braut Bier und führt Marken wie Budweiser und Beck's.",
-    metaDescription: 'Die Aktie von Anheuser-Busch InBev in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Anheuser-Busch InBev in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       "Anheuser-Busch InBev – Braut Bier und führt Marken wie Budweiser und Beck's. Notiert wird die Aktie in EUR unter dem Kürzel ABI.BR.",
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 360.70,
-      annualDrift: 0.070,
-      annualVolatility: 0.370,
+      startValue: 360.7,
+      annualDrift: 0.07,
+      annualVolatility: 0.37,
       seed: 58270,
     },
   },
@@ -5506,7 +5840,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt Bank und Versicherung in Belgien und Osteuropa.',
-    metaDescription: 'Die Aktie von KBC Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von KBC Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'KBC Group – Betreibt Bank und Versicherung in Belgien und Osteuropa. Notiert wird die Aktie in EUR unter dem Kürzel KBC.BR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5527,7 +5862,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Chemie: Recycelt Edelmetalle und stellt Batteriematerialien her.',
-    metaDescription: 'Die Aktie von Umicore in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Umicore in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Umicore – Recycelt Edelmetalle und stellt Batteriematerialien her. Notiert wird die Aktie in EUR unter dem Kürzel UMI.BR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5548,7 +5884,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Chemie: Produziert Soda und Spezialchemikalien.',
-    metaDescription: 'Die Aktie von Solvay in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Solvay in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Solvay – Produziert Soda und Spezialchemikalien. Notiert wird die Aktie in EUR unter dem Kürzel SOLB.BR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5569,7 +5906,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Banken: Betreibt Sparkassen und Filialbanken in Mittel- und Osteuropa.',
-    metaDescription: 'Die Aktie von Erste Group Bank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Erste Group Bank in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Erste Group Bank – Betreibt Sparkassen und Filialbanken in Mittel- und Osteuropa. Notiert wird die Aktie in EUR unter dem Kürzel EBS.VI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5590,7 +5928,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas und betreibt Raffinerien und Tankstellen.',
-    metaDescription: 'Die Aktie von OMV in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von OMV in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'OMV – Fördert Öl und Gas und betreibt Raffinerien und Tankstellen. Notiert wird die Aktie in EUR unter dem Kürzel OMV.VI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5611,7 +5950,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Versorger: Erzeugt Strom überwiegend aus Wasserkraft.',
-    metaDescription: 'Die Aktie von Verbund in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Verbund in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Verbund – Erzeugt Strom überwiegend aus Wasserkraft. Notiert wird die Aktie in EUR unter dem Kürzel VER.VI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5632,7 +5972,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Stahl: Erzeugt Stahl und verarbeitet ihn zu Bahn- und Automobilteilen.',
-    metaDescription: 'Die Aktie von voestalpine in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von voestalpine in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'voestalpine – Erzeugt Stahl und verarbeitet ihn zu Bahn- und Automobilteilen. Notiert wird die Aktie in EUR unter dem Kürzel VOE.VI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5652,8 +5993,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
-    summary: 'Baustoffe: Stellt Zement, Asphalt und Baustoffe für Nordamerika und Europa her.',
-    metaDescription: 'Die Aktie von CRH in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Baustoffe: Stellt Zement, Asphalt und Baustoffe für Nordamerika und Europa her.',
+    metaDescription:
+      'Die Aktie von CRH in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CRH – Stellt Zement, Asphalt und Baustoffe für Nordamerika und Europa her. Notiert wird die Aktie in USD unter dem Kürzel CRH.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5674,7 +6017,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Transport: Betreibt die größte Billigfluggesellschaft Europas.',
-    metaDescription: 'Die Aktie von Ryanair in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Ryanair in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ryanair – Betreibt die größte Billigfluggesellschaft Europas. Notiert wird die Aktie in USD unter dem Kürzel RYAAY.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5695,7 +6039,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Konsum: Betreibt Sportwetten- und Glücksspielplattformen.',
-    metaDescription: 'Die Aktie von Flutter Entertainment in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Flutter Entertainment in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Flutter Entertainment – Betreibt Sportwetten- und Glücksspielplattformen. Notiert wird die Aktie in USD unter dem Kürzel FLUT.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5715,8 +6060,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Konsum: Stellt Zutaten und Geschmackssysteme für Lebensmittelhersteller her.',
-    metaDescription: 'Die Aktie von Kerry Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Konsum: Stellt Zutaten und Geschmackssysteme für Lebensmittelhersteller her.',
+    metaDescription:
+      'Die Aktie von Kerry Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kerry Group – Stellt Zutaten und Geschmackssysteme für Lebensmittelhersteller her. Notiert wird die Aktie in EUR unter dem Kürzel KYGA.IR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5736,8 +6083,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'EUR',
     decimals: 2,
-    summary: 'Versorger: Erzeugt Strom und betreibt Netze in Portugal, Spanien und Brasilien.',
-    metaDescription: 'Die Aktie von EDP in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versorger: Erzeugt Strom und betreibt Netze in Portugal, Spanien und Brasilien.',
+    metaDescription:
+      'Die Aktie von EDP in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'EDP – Erzeugt Strom und betreibt Netze in Portugal, Spanien und Brasilien. Notiert wird die Aktie in EUR unter dem Kürzel EDP.LS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5758,7 +6107,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'EUR',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas und betreibt Raffinerien in Portugal.',
-    metaDescription: 'Die Aktie von Galp Energia in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Galp Energia in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Galp Energia – Fördert Öl und Gas und betreibt Raffinerien in Portugal. Notiert wird die Aktie in EUR unter dem Kürzel GALP.LS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5779,7 +6129,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'PLN',
     decimals: 2,
     summary: 'Banken: Betreibt die größte Bank Polens.',
-    metaDescription: 'Die Aktie von PKO Bank Polski in PLN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von PKO Bank Polski in PLN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'PKO Bank Polski – Betreibt die größte Bank Polens. Notiert wird die Aktie in PLN unter dem Kürzel PKO.WA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5800,7 +6151,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'PLN',
     decimals: 2,
     summary: 'Energie: Betreibt Raffinerien und Tankstellen in Mitteleuropa.',
-    metaDescription: 'Die Aktie von Orlen in PLN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Orlen in PLN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Orlen – Betreibt Raffinerien und Tankstellen in Mitteleuropa. Notiert wird die Aktie in PLN unter dem Kürzel PKN.WA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5821,7 +6173,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Automobil: Baut Autos, Motorräder und Motoren für Arbeitsgeräte.',
-    metaDescription: 'Die Aktie von Honda Motor in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Honda Motor in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Honda Motor – Baut Autos, Motorräder und Motoren für Arbeitsgeräte. Notiert wird die Aktie in JPY unter dem Kürzel 7267.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5841,8 +6194,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Automobil: Fertigt Steuergeräte, Einspritzsysteme und Klimatechnik für Fahrzeuge.',
-    metaDescription: 'Die Aktie von Denso in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Automobil: Fertigt Steuergeräte, Einspritzsysteme und Klimatechnik für Fahrzeuge.',
+    metaDescription:
+      'Die Aktie von Denso in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Denso – Fertigt Steuergeräte, Einspritzsysteme und Klimatechnik für Fahrzeuge. Notiert wird die Aktie in JPY unter dem Kürzel 6902.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5863,7 +6218,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Automobil: Fertigt Reifen für Pkw, Lkw und Baumaschinen.',
-    metaDescription: 'Die Aktie von Bridgestone in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Bridgestone in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Bridgestone – Fertigt Reifen für Pkw, Lkw und Baumaschinen. Notiert wird die Aktie in JPY unter dem Kürzel 5108.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5884,16 +6240,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Unterhaltung: Entwickelt Spielkonsolen und die zugehörigen Spiele.',
-    metaDescription: 'Die Aktie von Nintendo in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Nintendo in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nintendo – Entwickelt Spielkonsolen und die zugehörigen Spiele. Notiert wird die Aktie in JPY unter dem Kürzel 7974.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 234.80,
-      annualDrift: 0.100,
-      annualVolatility: 0.340,
+      startValue: 234.8,
+      annualDrift: 0.1,
+      annualVolatility: 0.34,
       seed: 29680,
     },
   },
@@ -5905,7 +6262,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Industrie: Verkauft Sensoren und Messtechnik für die Fabrikautomation.',
-    metaDescription: 'Die Aktie von Keyence in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Keyence in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Keyence – Verkauft Sensoren und Messtechnik für die Fabrikautomation. Notiert wird die Aktie in JPY unter dem Kürzel 6861.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5926,16 +6284,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Industrie: Fertigt Industrieroboter und Steuerungen für Werkzeugmaschinen.',
-    metaDescription: 'Die Aktie von Fanuc in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Fanuc in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fanuc – Fertigt Industrieroboter und Steuerungen für Werkzeugmaschinen. Notiert wird die Aktie in JPY unter dem Kürzel 6954.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 246.30,
-      annualDrift: 0.090,
-      annualVolatility: 0.210,
+      startValue: 246.3,
+      annualDrift: 0.09,
+      annualVolatility: 0.21,
       seed: 58830,
     },
   },
@@ -5947,7 +6306,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Industrie: Baut Bagger und Maschinen für Bergbau und Bau.',
-    metaDescription: 'Die Aktie von Komatsu in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Komatsu in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Komatsu – Baut Bagger und Maschinen für Bergbau und Bau. Notiert wird die Aktie in JPY unter dem Kürzel 6301.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5968,7 +6328,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Industrie: Stellt Klimaanlagen und Wärmepumpen her.',
-    metaDescription: 'Die Aktie von Daikin Industries in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Daikin Industries in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Daikin Industries – Stellt Klimaanlagen und Wärmepumpen her. Notiert wird die Aktie in JPY unter dem Kürzel 6367.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -5988,8 +6349,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Industrie: Stellt Elektromotoren für Fahrzeuge, Festplatten und Haushaltsgeräte her.',
-    metaDescription: 'Die Aktie von Nidec in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Industrie: Stellt Elektromotoren für Fahrzeuge, Festplatten und Haushaltsgeräte her.',
+    metaDescription:
+      'Die Aktie von Nidec in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nidec – Stellt Elektromotoren für Fahrzeuge, Festplatten und Haushaltsgeräte her. Notiert wird die Aktie in JPY unter dem Kürzel 6594.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6010,7 +6373,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Industrie: Liefert Bahntechnik, Energieanlagen und Digitaldienste.',
-    metaDescription: 'Die Aktie von Hitachi in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Hitachi in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hitachi – Liefert Bahntechnik, Energieanlagen und Digitaldienste. Notiert wird die Aktie in JPY unter dem Kürzel 6501.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6031,7 +6395,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Halbleiter: Baut Anlagen für die Fertigung von Halbleiterchips.',
-    metaDescription: 'Die Aktie von Tokyo Electron in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Tokyo Electron in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Tokyo Electron – Baut Anlagen für die Fertigung von Halbleiterchips. Notiert wird die Aktie in JPY unter dem Kürzel 8035.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6052,7 +6417,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Halbleiter: Baut Prüfgeräte, mit denen fertige Chips getestet werden.',
-    metaDescription: 'Die Aktie von Advantest in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Advantest in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Advantest – Baut Prüfgeräte, mit denen fertige Chips getestet werden. Notiert wird die Aktie in JPY unter dem Kürzel 6857.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6073,7 +6439,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Chemie: Stellt Siliziumscheiben für die Chipfertigung und Kunststoffe her.',
-    metaDescription: 'Die Aktie von Shin-Etsu Chemical in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Shin-Etsu Chemical in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Shin-Etsu Chemical – Stellt Siliziumscheiben für die Chipfertigung und Kunststoffe her. Notiert wird die Aktie in JPY unter dem Kürzel 4063.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6094,7 +6461,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Elektronik: Stellt Keramikkondensatoren für Elektronik aller Art her.',
-    metaDescription: 'Die Aktie von Murata Manufacturing in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Murata Manufacturing in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Murata Manufacturing – Stellt Keramikkondensatoren für Elektronik aller Art her. Notiert wird die Aktie in JPY unter dem Kürzel 6981.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6114,8 +6482,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Elektronik: Stellt Kameras, Drucker und Belichtungsanlagen für die Chipfertigung her.',
-    metaDescription: 'Die Aktie von Canon in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Elektronik: Stellt Kameras, Drucker und Belichtungsanlagen für die Chipfertigung her.',
+    metaDescription:
+      'Die Aktie von Canon in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Canon – Stellt Kameras, Drucker und Belichtungsanlagen für die Chipfertigung her. Notiert wird die Aktie in JPY unter dem Kürzel 7751.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6136,7 +6506,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Elektronik: Fertigt Batteriezellen für Elektroautos sowie Haushaltsgeräte.',
-    metaDescription: 'Die Aktie von Panasonic Holdings in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Panasonic Holdings in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Panasonic Holdings – Fertigt Batteriezellen für Elektroautos sowie Haushaltsgeräte. Notiert wird die Aktie in JPY unter dem Kürzel 6752.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6157,7 +6528,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Banken: Betreibt die nach Bilanzsumme größte Bankengruppe Japans.',
-    metaDescription: 'Die Aktie von Mitsubishi UFJ Financial in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Mitsubishi UFJ Financial in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Mitsubishi UFJ Financial – Betreibt die nach Bilanzsumme größte Bankengruppe Japans. Notiert wird die Aktie in JPY unter dem Kürzel 8306.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6177,17 +6549,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Banken: Betreibt Privat- und Firmenkundengeschäft sowie eine Leasingsparte.',
-    metaDescription: 'Die Aktie von Sumitomo Mitsui Financial in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Betreibt Privat- und Firmenkundengeschäft sowie eine Leasingsparte.',
+    metaDescription:
+      'Die Aktie von Sumitomo Mitsui Financial in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sumitomo Mitsui Financial – Betreibt Privat- und Firmenkundengeschäft sowie eine Leasingsparte. Notiert wird die Aktie in JPY unter dem Kürzel 8316.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 220.60,
-      annualDrift: 0.070,
-      annualVolatility: 0.280,
+      startValue: 220.6,
+      annualDrift: 0.07,
+      annualVolatility: 0.28,
       seed: 32260,
     },
   },
@@ -6199,7 +6573,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Banken: Betreibt Bank-, Wertpapier- und Treuhandgeschäft in Japan.',
-    metaDescription: 'Die Aktie von Mizuho Financial in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Mizuho Financial in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Mizuho Financial – Betreibt Bank-, Wertpapier- und Treuhandgeschäft in Japan. Notiert wird die Aktie in JPY unter dem Kürzel 8411.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6219,8 +6594,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Versicherungen: Betreibt Schaden- und Unfallversicherung in Japan und im Ausland.',
-    metaDescription: 'Die Aktie von Tokio Marine in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Versicherungen: Betreibt Schaden- und Unfallversicherung in Japan und im Ausland.',
+    metaDescription:
+      'Die Aktie von Tokio Marine in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Tokio Marine – Betreibt Schaden- und Unfallversicherung in Japan und im Ausland. Notiert wird die Aktie in JPY unter dem Kürzel 8766.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6240,8 +6617,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Handel: Handelshaus mit Beteiligungen in Rohstoffen, Energie und Industrie.',
-    metaDescription: 'Die Aktie von Mitsubishi Corporation in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Handel: Handelshaus mit Beteiligungen in Rohstoffen, Energie und Industrie.',
+    metaDescription:
+      'Die Aktie von Mitsubishi Corporation in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Mitsubishi Corporation – Handelshaus mit Beteiligungen in Rohstoffen, Energie und Industrie. Notiert wird die Aktie in JPY unter dem Kürzel 8058.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6262,7 +6641,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Handel: Handelshaus mit Schwerpunkt auf Eisenerz, Energie und Maschinen.',
-    metaDescription: 'Die Aktie von Mitsui & Co in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Mitsui & Co in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Mitsui & Co – Handelshaus mit Schwerpunkt auf Eisenerz, Energie und Maschinen. Notiert wird die Aktie in JPY unter dem Kürzel 8031.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6282,8 +6662,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Handel: Handelshaus mit Schwerpunkt auf Textilien, Lebensmitteln und Rohstoffen.',
-    metaDescription: 'Die Aktie von Itochu in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Handel: Handelshaus mit Schwerpunkt auf Textilien, Lebensmitteln und Rohstoffen.',
+    metaDescription:
+      'Die Aktie von Itochu in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Itochu – Handelshaus mit Schwerpunkt auf Textilien, Lebensmitteln und Rohstoffen. Notiert wird die Aktie in JPY unter dem Kürzel 8001.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6304,7 +6686,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Handel: Betreibt die Bekleidungskette Uniqlo.',
-    metaDescription: 'Die Aktie von Fast Retailing in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Fast Retailing in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fast Retailing – Betreibt die Bekleidungskette Uniqlo. Notiert wird die Aktie in JPY unter dem Kürzel 9983.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6325,7 +6708,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Handel: Betreibt die Ladenkette 7-Eleven in Japan und Nordamerika.',
-    metaDescription: 'Die Aktie von Seven & i Holdings in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Seven & i Holdings in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Seven & i Holdings – Betreibt die Ladenkette 7-Eleven in Japan und Nordamerika. Notiert wird die Aktie in JPY unter dem Kürzel 3382.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6345,8 +6729,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Pharma: Entwickelt Medikamente gegen seltene Erkrankungen und Magen-Darm-Leiden.',
-    metaDescription: 'Die Aktie von Takeda Pharmaceutical in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Pharma: Entwickelt Medikamente gegen seltene Erkrankungen und Magen-Darm-Leiden.',
+    metaDescription:
+      'Die Aktie von Takeda Pharmaceutical in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Takeda Pharmaceutical – Entwickelt Medikamente gegen seltene Erkrankungen und Magen-Darm-Leiden. Notiert wird die Aktie in JPY unter dem Kürzel 4502.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6366,17 +6752,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Pharma: Entwickelt Krebsmedikamente auf Basis von Antikörper-Wirkstoff-Kopplungen.',
-    metaDescription: 'Die Aktie von Daiichi Sankyo in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Pharma: Entwickelt Krebsmedikamente auf Basis von Antikörper-Wirkstoff-Kopplungen.',
+    metaDescription:
+      'Die Aktie von Daiichi Sankyo in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Daiichi Sankyo – Entwickelt Krebsmedikamente auf Basis von Antikörper-Wirkstoff-Kopplungen. Notiert wird die Aktie in JPY unter dem Kürzel 4568.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 125.90,
-      annualDrift: 0.090,
-      annualVolatility: 0.330,
+      startValue: 125.9,
+      annualDrift: 0.09,
+      annualVolatility: 0.33,
       seed: 80790,
     },
   },
@@ -6388,7 +6776,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Medizintechnik: Stellt Katheter und Geräte für die Blutbehandlung her.',
-    metaDescription: 'Die Aktie von Terumo in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Terumo in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Terumo – Stellt Katheter und Geräte für die Blutbehandlung her. Notiert wird die Aktie in JPY unter dem Kürzel 4543.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6408,17 +6797,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Medizintechnik: Fertigt Endoskope für Diagnostik und minimalinvasive Eingriffe.',
-    metaDescription: 'Die Aktie von Olympus in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Medizintechnik: Fertigt Endoskope für Diagnostik und minimalinvasive Eingriffe.',
+    metaDescription:
+      'Die Aktie von Olympus in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Olympus – Fertigt Endoskope für Diagnostik und minimalinvasive Eingriffe. Notiert wird die Aktie in JPY unter dem Kürzel 7733.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 381.80,
-      annualDrift: 0.090,
-      annualVolatility: 0.240,
+      startValue: 381.8,
+      annualDrift: 0.09,
+      annualVolatility: 0.24,
       seed: 22380,
     },
   },
@@ -6429,8 +6820,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt Festnetz, Mobilfunk und Rechenzentren in Japan.',
-    metaDescription: 'Die Aktie von Nippon Telegraph and Telephone in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt Festnetz, Mobilfunk und Rechenzentren in Japan.',
+    metaDescription:
+      'Die Aktie von Nippon Telegraph and Telephone in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nippon Telegraph and Telephone – Betreibt Festnetz, Mobilfunk und Rechenzentren in Japan. Notiert wird die Aktie in JPY unter dem Kürzel 9432.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6451,7 +6844,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Telekommunikation: Betreibt Mobilfunk- und Festnetze unter der Marke au.',
-    metaDescription: 'Die Aktie von KDDI in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von KDDI in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'KDDI – Betreibt Mobilfunk- und Festnetze unter der Marke au. Notiert wird die Aktie in JPY unter dem Kürzel 9433.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6471,8 +6865,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Beteiligungen: Hält Beteiligungen an Technologieunternehmen weltweit, darunter Arm.',
-    metaDescription: 'Die Aktie von SoftBank Group in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Beteiligungen: Hält Beteiligungen an Technologieunternehmen weltweit, darunter Arm.',
+    metaDescription:
+      'Die Aktie von SoftBank Group in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'SoftBank Group – Hält Beteiligungen an Technologieunternehmen weltweit, darunter Arm. Notiert wird die Aktie in JPY unter dem Kürzel 9984.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6492,8 +6888,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Technologie: Betreibt Stellenbörsen, darunter Indeed, und Software für Kleinbetriebe.',
-    metaDescription: 'Die Aktie von Recruit Holdings in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Technologie: Betreibt Stellenbörsen, darunter Indeed, und Software für Kleinbetriebe.',
+    metaDescription:
+      'Die Aktie von Recruit Holdings in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Recruit Holdings – Betreibt Stellenbörsen, darunter Indeed, und Software für Kleinbetriebe. Notiert wird die Aktie in JPY unter dem Kürzel 6098.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6513,8 +6911,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'JPY',
     decimals: 2,
-    summary: 'Lebensmittel: Stellt Würzmittel und Aminosäuren für Lebensmittel und Medizin her.',
-    metaDescription: 'Die Aktie von Ajinomoto in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Lebensmittel: Stellt Würzmittel und Aminosäuren für Lebensmittel und Medizin her.',
+    metaDescription:
+      'Die Aktie von Ajinomoto in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ajinomoto – Stellt Würzmittel und Aminosäuren für Lebensmittel und Medizin her. Notiert wird die Aktie in JPY unter dem Kürzel 2802.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6535,7 +6935,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Getränke: Braut Bier und stellt alkoholfreie Getränke her.',
-    metaDescription: 'Die Aktie von Asahi Group in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Asahi Group in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Asahi Group – Braut Bier und stellt alkoholfreie Getränke her. Notiert wird die Aktie in JPY unter dem Kürzel 2502.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6556,7 +6957,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'JPY',
     decimals: 2,
     summary: 'Konsum: Fertigt Schaltungen und Bremsen für Fahrräder sowie Angelrollen.',
-    metaDescription: 'Die Aktie von Shimano in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Shimano in JPY: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Shimano – Fertigt Schaltungen und Bremsen für Fahrräder sowie Angelrollen. Notiert wird die Aktie in JPY unter dem Kürzel 7309.T.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6577,7 +6979,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Automobil: Liefert Module, Elektronik und Ersatzteile für Hyundai und Kia.',
-    metaDescription: 'Die Aktie von Hyundai Mobis in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Hyundai Mobis in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hyundai Mobis – Liefert Module, Elektronik und Ersatzteile für Hyundai und Kia. Notiert wird die Aktie in KRW unter dem Kürzel 012330.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6598,7 +7001,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Halbleiter: Stellt Speicherchips für Rechenzentren und Endgeräte her.',
-    metaDescription: 'Die Aktie von SK Hynix in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von SK Hynix in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'SK Hynix – Stellt Speicherchips für Rechenzentren und Endgeräte her. Notiert wird die Aktie in KRW unter dem Kürzel 000660.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6619,7 +7023,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Industrie: Fertigt Batteriezellen für Elektroautos und Energiespeicher.',
-    metaDescription: 'Die Aktie von Samsung SDI in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Samsung SDI in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Samsung SDI – Fertigt Batteriezellen für Elektroautos und Energiespeicher. Notiert wird die Aktie in KRW unter dem Kürzel 006400.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6640,7 +7045,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Chemie: Stellt Kunststoffe und Vorprodukte für Batterien her.',
-    metaDescription: 'Die Aktie von LG Chem in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von LG Chem in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'LG Chem – Stellt Kunststoffe und Vorprodukte für Batterien her. Notiert wird die Aktie in KRW unter dem Kürzel 051910.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6661,7 +7067,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Automobil: Baut Personenwagen mit Verbrenner- und Elektroantrieb.',
-    metaDescription: 'Die Aktie von Hyundai Motor in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Hyundai Motor in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hyundai Motor – Baut Personenwagen mit Verbrenner- und Elektroantrieb. Notiert wird die Aktie in KRW unter dem Kürzel 005380.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6682,7 +7089,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Automobil: Baut Personenwagen und teilt sich die Technik mit Hyundai.',
-    metaDescription: 'Die Aktie von Kia in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Kia in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kia – Baut Personenwagen und teilt sich die Technik mit Hyundai. Notiert wird die Aktie in KRW unter dem Kürzel 000270.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6703,7 +7111,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Stahl: Erzeugt Stahl und liefert Vorprodukte für Batterien.',
-    metaDescription: 'Die Aktie von POSCO Holdings in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von POSCO Holdings in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'POSCO Holdings – Erzeugt Stahl und liefert Vorprodukte für Batterien. Notiert wird die Aktie in KRW unter dem Kürzel 005490.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6723,8 +7132,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'KRW',
     decimals: 2,
-    summary: 'Technologie: Betreibt die meistgenutzte Suchmaschine Südkoreas und Onlinehandel.',
-    metaDescription: 'Die Aktie von Naver in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Technologie: Betreibt die meistgenutzte Suchmaschine Südkoreas und Onlinehandel.',
+    metaDescription:
+      'Die Aktie von Naver in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Naver – Betreibt die meistgenutzte Suchmaschine Südkoreas und Onlinehandel. Notiert wird die Aktie in KRW unter dem Kürzel 035420.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6744,8 +7155,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'KRW',
     decimals: 2,
-    summary: 'Technologie: Betreibt den Messenger KakaoTalk und daran angeschlossene Dienste.',
-    metaDescription: 'Die Aktie von Kakao in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Technologie: Betreibt den Messenger KakaoTalk und daran angeschlossene Dienste.',
+    metaDescription:
+      'Die Aktie von Kakao in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Kakao – Betreibt den Messenger KakaoTalk und daran angeschlossene Dienste. Notiert wird die Aktie in KRW unter dem Kürzel 035720.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6765,8 +7178,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'KRW',
     decimals: 2,
-    summary: 'Pharma: Entwickelt und fertigt Nachahmerpräparate biologischer Medikamente.',
-    metaDescription: 'Die Aktie von Celltrion in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Pharma: Entwickelt und fertigt Nachahmerpräparate biologischer Medikamente.',
+    metaDescription:
+      'Die Aktie von Celltrion in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Celltrion – Entwickelt und fertigt Nachahmerpräparate biologischer Medikamente. Notiert wird die Aktie in KRW unter dem Kürzel 068270.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6787,16 +7202,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Banken: Betreibt Privat- und Firmenkundenbank sowie Wertpapiergeschäft.',
-    metaDescription: 'Die Aktie von Shinhan Financial in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Shinhan Financial in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Shinhan Financial – Betreibt Privat- und Firmenkundenbank sowie Wertpapiergeschäft. Notiert wird die Aktie in KRW unter dem Kürzel 055550.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 150.80,
-      annualDrift: 0.070,
-      annualVolatility: 0.340,
+      startValue: 150.8,
+      annualDrift: 0.07,
+      annualVolatility: 0.34,
       seed: 57280,
     },
   },
@@ -6808,16 +7224,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'KRW',
     decimals: 2,
     summary: 'Banken: Betreibt die nach Bilanzsumme größte Bankengruppe Südkoreas.',
-    metaDescription: 'Die Aktie von KB Financial in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von KB Financial in KRW: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'KB Financial – Betreibt die nach Bilanzsumme größte Bankengruppe Südkoreas. Notiert wird die Aktie in KRW unter dem Kürzel 105560.KS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 294.70,
-      annualDrift: 0.080,
-      annualVolatility: 0.410,
+      startValue: 294.7,
+      annualDrift: 0.08,
+      annualVolatility: 0.41,
       seed: 55670,
     },
   },
@@ -6828,8 +7245,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'TWD',
     decimals: 2,
-    summary: 'Halbleiter: Fertigt Chips im Auftrag anderer Unternehmen – hier die Notiz an der Heimatbörse.',
-    metaDescription: 'Die Aktie von TSMC (Taipeh) in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Halbleiter: Fertigt Chips im Auftrag anderer Unternehmen – hier die Notiz an der Heimatbörse.',
+    metaDescription:
+      'Die Aktie von TSMC (Taipeh) in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'TSMC (Taipeh) – Fertigt Chips im Auftrag anderer Unternehmen – hier die Notiz an der Heimatbörse. Notiert wird die Aktie in TWD unter dem Kürzel 2330.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6849,8 +7268,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'TWD',
     decimals: 2,
-    summary: 'Elektronik: Montiert Elektronik im Auftrag, darunter einen Großteil aller iPhones.',
-    metaDescription: 'Die Aktie von Hon Hai Precision in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Elektronik: Montiert Elektronik im Auftrag, darunter einen Großteil aller iPhones.',
+    metaDescription:
+      'Die Aktie von Hon Hai Precision in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hon Hai Precision – Montiert Elektronik im Auftrag, darunter einen Großteil aller iPhones. Notiert wird die Aktie in TWD unter dem Kürzel 2317.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6871,7 +7292,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'TWD',
     decimals: 2,
     summary: 'Halbleiter: Entwirft Chips für Smartphones und vernetzte Geräte.',
-    metaDescription: 'Die Aktie von MediaTek in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von MediaTek in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'MediaTek – Entwirft Chips für Smartphones und vernetzte Geräte. Notiert wird die Aktie in TWD unter dem Kürzel 2454.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6892,7 +7314,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'TWD',
     decimals: 2,
     summary: 'Elektronik: Stellt Netzteile und Kühltechnik für Rechenzentren her.',
-    metaDescription: 'Die Aktie von Delta Electronics in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Delta Electronics in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Delta Electronics – Stellt Netzteile und Kühltechnik für Rechenzentren her. Notiert wird die Aktie in TWD unter dem Kürzel 2308.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6913,7 +7336,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'TWD',
     decimals: 2,
     summary: 'Elektronik: Fertigt Notebooks und Serverbaugruppen im Auftrag.',
-    metaDescription: 'Die Aktie von Quanta Computer in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Quanta Computer in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Quanta Computer – Fertigt Notebooks und Serverbaugruppen im Auftrag. Notiert wird die Aktie in TWD unter dem Kürzel 2382.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6934,7 +7358,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'TWD',
     decimals: 2,
     summary: 'Halbleiter: Fertigt Chips in älteren Strukturbreiten im Auftrag.',
-    metaDescription: 'Die Aktie von United Microelectronics in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von United Microelectronics in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'United Microelectronics – Fertigt Chips in älteren Strukturbreiten im Auftrag. Notiert wird die Aktie in TWD unter dem Kürzel 2303.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6955,7 +7380,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'TWD',
     decimals: 2,
     summary: 'Elektronik: Stellt Notebooks, Mainboards und Grafikkarten her.',
-    metaDescription: 'Die Aktie von Asustek Computer in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Asustek Computer in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Asustek Computer – Stellt Notebooks, Mainboards und Grafikkarten her. Notiert wird die Aktie in TWD unter dem Kürzel 2357.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6976,7 +7402,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'TWD',
     decimals: 2,
     summary: 'Versicherungen: Betreibt Lebensversicherung und Bankgeschäft in Taiwan.',
-    metaDescription: 'Die Aktie von Cathay Financial in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Cathay Financial in TWD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Cathay Financial – Betreibt Lebensversicherung und Bankgeschäft in Taiwan. Notiert wird die Aktie in TWD unter dem Kürzel 2882.TW.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -6997,7 +7424,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Handel: Betreibt Online-Marktplätze und ein Rechenzentrumsgeschäft.',
-    metaDescription: 'Die Aktie von Alibaba Group (Hongkong) in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Alibaba Group (Hongkong) in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Alibaba Group (Hongkong) – Betreibt Online-Marktplätze und ein Rechenzentrumsgeschäft. Notiert wird die Aktie in HKD unter dem Kürzel 9988.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7018,7 +7446,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Technologie: Vermittelt Essenslieferungen und örtliche Dienstleistungen.',
-    metaDescription: 'Die Aktie von Meituan in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Meituan in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Meituan – Vermittelt Essenslieferungen und örtliche Dienstleistungen. Notiert wird die Aktie in HKD unter dem Kürzel 3690.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7039,7 +7468,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Handel: Betreibt einen Online-Handel mit eigener Logistik.',
-    metaDescription: 'Die Aktie von JD.com (Hongkong) in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von JD.com (Hongkong) in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'JD.com (Hongkong) – Betreibt einen Online-Handel mit eigener Logistik. Notiert wird die Aktie in HKD unter dem Kürzel 9618.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7059,8 +7489,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'HKD',
     decimals: 2,
-    summary: 'Unterhaltung: Entwickelt Onlinespiele und betreibt Musik- und Bildungsdienste.',
-    metaDescription: 'Die Aktie von NetEase in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Unterhaltung: Entwickelt Onlinespiele und betreibt Musik- und Bildungsdienste.',
+    metaDescription:
+      'Die Aktie von NetEase in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'NetEase – Entwickelt Onlinespiele und betreibt Musik- und Bildungsdienste. Notiert wird die Aktie in HKD unter dem Kürzel 9999.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7080,8 +7512,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'HKD',
     decimals: 2,
-    summary: 'Elektronik: Stellt Smartphones, Haushaltsgeräte und seit Kurzem Elektroautos her.',
-    metaDescription: 'Die Aktie von Xiaomi in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Elektronik: Stellt Smartphones, Haushaltsgeräte und seit Kurzem Elektroautos her.',
+    metaDescription:
+      'Die Aktie von Xiaomi in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Xiaomi – Stellt Smartphones, Haushaltsgeräte und seit Kurzem Elektroautos her. Notiert wird die Aktie in HKD unter dem Kürzel 1810.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7102,16 +7536,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Automobil: Baut Elektroautos und die dafür nötigen Batterien selbst.',
-    metaDescription: 'Die Aktie von BYD in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von BYD in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BYD – Baut Elektroautos und die dafür nötigen Batterien selbst. Notiert wird die Aktie in HKD unter dem Kürzel 1211.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 316.40,
-      annualDrift: 0.060,
-      annualVolatility: 0.180,
+      startValue: 316.4,
+      annualDrift: 0.06,
+      annualVolatility: 0.18,
       seed: 63840,
     },
   },
@@ -7122,8 +7557,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'HKD',
     decimals: 2,
-    summary: 'Automobil: Baut Elektroautos, deren Reichweite ein kleiner Verbrennungsmotor verlängert.',
-    metaDescription: 'Die Aktie von Li Auto in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Automobil: Baut Elektroautos, deren Reichweite ein kleiner Verbrennungsmotor verlängert.',
+    metaDescription:
+      'Die Aktie von Li Auto in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Li Auto – Baut Elektroautos, deren Reichweite ein kleiner Verbrennungsmotor verlängert. Notiert wird die Aktie in HKD unter dem Kürzel 2015.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7143,8 +7580,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'HKD',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt das nach Kundenzahl größte Mobilfunknetz der Welt.',
-    metaDescription: 'Die Aktie von China Mobile in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt das nach Kundenzahl größte Mobilfunknetz der Welt.',
+    metaDescription:
+      'Die Aktie von China Mobile in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'China Mobile – Betreibt das nach Kundenzahl größte Mobilfunknetz der Welt. Notiert wird die Aktie in HKD unter dem Kürzel 0941.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7164,8 +7603,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'HKD',
     decimals: 2,
-    summary: 'Banken: Nach Bilanzsumme größte Bank der Welt, mehrheitlich in Staatsbesitz.',
-    metaDescription: 'Die Aktie von ICBC in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Nach Bilanzsumme größte Bank der Welt, mehrheitlich in Staatsbesitz.',
+    metaDescription:
+      'Die Aktie von ICBC in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ICBC – Nach Bilanzsumme größte Bank der Welt, mehrheitlich in Staatsbesitz. Notiert wird die Aktie in HKD unter dem Kürzel 1398.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7186,7 +7627,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Banken: Vergibt Kredite an Bau- und Infrastrukturvorhaben in China.',
-    metaDescription: 'Die Aktie von China Construction Bank in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von China Construction Bank in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'China Construction Bank – Vergibt Kredite an Bau- und Infrastrukturvorhaben in China. Notiert wird die Aktie in HKD unter dem Kürzel 0939.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7207,7 +7649,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Versicherungen: Betreibt Lebens- und Sachversicherung sowie eine Bank.',
-    metaDescription: 'Die Aktie von Ping An Insurance in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Ping An Insurance in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ping An Insurance – Betreibt Lebens- und Sachversicherung sowie eine Bank. Notiert wird die Aktie in HKD unter dem Kürzel 2318.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7228,7 +7671,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Versicherungen: Größter Lebensversicherer Chinas.',
-    metaDescription: 'Die Aktie von China Life Insurance in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von China Life Insurance in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'China Life Insurance – Größter Lebensversicherer Chinas. Notiert wird die Aktie in HKD unter dem Kürzel 2628.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7249,16 +7693,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas in China und betreibt Raffinerien.',
-    metaDescription: 'Die Aktie von PetroChina in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von PetroChina in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'PetroChina – Fördert Öl und Gas in China und betreibt Raffinerien. Notiert wird die Aktie in HKD unter dem Kürzel 0857.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 177.00,
-      annualDrift: 0.060,
-      annualVolatility: 0.240,
+      startValue: 177.0,
+      annualDrift: 0.06,
+      annualVolatility: 0.24,
       seed: 3900,
     },
   },
@@ -7270,7 +7715,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Energie: Verarbeitet Rohöl und betreibt ein dichtes Tankstellennetz.',
-    metaDescription: 'Die Aktie von Sinopec in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Sinopec in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sinopec – Verarbeitet Rohöl und betreibt ein dichtes Tankstellennetz. Notiert wird die Aktie in HKD unter dem Kürzel 0386.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7291,7 +7737,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Gas vor der chinesischen Küste.',
-    metaDescription: 'Die Aktie von CNOOC in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von CNOOC in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CNOOC – Fördert Öl und Gas vor der chinesischen Küste. Notiert wird die Aktie in HKD unter dem Kürzel 0883.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7312,7 +7759,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Konsum: Stellt Sportbekleidung her und vertreibt Fila in China.',
-    metaDescription: 'Die Aktie von Anta Sports in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Anta Sports in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Anta Sports – Stellt Sportbekleidung her und vertreibt Fila in China. Notiert wird die Aktie in HKD unter dem Kürzel 2020.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7333,7 +7781,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Versicherungen: Verkauft Lebensversicherungen in achtzehn Märkten Asiens.',
-    metaDescription: 'Die Aktie von AIA Group in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von AIA Group in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'AIA Group – Verkauft Lebensversicherungen in achtzehn Märkten Asiens. Notiert wird die Aktie in HKD unter dem Kürzel 1299.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7354,7 +7803,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'HKD',
     decimals: 2,
     summary: 'Börsen: Betreibt die Börse Hongkong und die London Metal Exchange.',
-    metaDescription: 'Die Aktie von Hong Kong Exchanges in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Hong Kong Exchanges in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hong Kong Exchanges – Betreibt die Börse Hongkong und die London Metal Exchange. Notiert wird die Aktie in HKD unter dem Kürzel 0388.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7374,8 +7824,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'HKD',
     decimals: 2,
-    summary: 'Beteiligungen: Betreibt Häfen, Drogerien und Mobilfunknetze in vielen Ländern.',
-    metaDescription: 'Die Aktie von CK Hutchison in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Beteiligungen: Betreibt Häfen, Drogerien und Mobilfunknetze in vielen Ländern.',
+    metaDescription:
+      'Die Aktie von CK Hutchison in HKD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CK Hutchison – Betreibt Häfen, Drogerien und Mobilfunknetze in vielen Ländern. Notiert wird die Aktie in HKD unter dem Kürzel 0001.HK.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7395,8 +7847,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'INR',
     decimals: 2,
-    summary: 'Mischkonzern: Betreibt Raffinerien, ein Mobilfunknetz und Einzelhandelsketten.',
-    metaDescription: 'Die Aktie von Reliance Industries in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Mischkonzern: Betreibt Raffinerien, ein Mobilfunknetz und Einzelhandelsketten.',
+    metaDescription:
+      'Die Aktie von Reliance Industries in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Reliance Industries – Betreibt Raffinerien, ein Mobilfunknetz und Einzelhandelsketten. Notiert wird die Aktie in INR unter dem Kürzel RELIANCE.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7417,7 +7871,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Technologie: Erbringt IT-Dienstleistungen für Unternehmen weltweit.',
-    metaDescription: 'Die Aktie von Tata Consultancy Services in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Tata Consultancy Services in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Tata Consultancy Services – Erbringt IT-Dienstleistungen für Unternehmen weltweit. Notiert wird die Aktie in INR unter dem Kürzel TCS.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7438,7 +7893,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Technologie: Entwickelt Software und betreibt IT-Systeme im Auftrag.',
-    metaDescription: 'Die Aktie von Infosys in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Infosys in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Infosys – Entwickelt Software und betreibt IT-Systeme im Auftrag. Notiert wird die Aktie in INR unter dem Kürzel INFY.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7459,7 +7915,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Technologie: Erbringt IT-Dienstleistungen und Beratung.',
-    metaDescription: 'Die Aktie von Wipro in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Wipro in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Wipro – Erbringt IT-Dienstleistungen und Beratung. Notiert wird die Aktie in INR unter dem Kürzel WIPRO.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7480,7 +7937,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Banken: Größte Privatbank Indiens nach Bilanzsumme.',
-    metaDescription: 'Die Aktie von HDFC Bank in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von HDFC Bank in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'HDFC Bank – Größte Privatbank Indiens nach Bilanzsumme. Notiert wird die Aktie in INR unter dem Kürzel HDFCBANK.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7500,8 +7958,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'INR',
     decimals: 2,
-    summary: 'Banken: Betreibt Privat- und Firmenkundengeschäft sowie eine Versicherungssparte.',
-    metaDescription: 'Die Aktie von ICICI Bank in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Betreibt Privat- und Firmenkundengeschäft sowie eine Versicherungssparte.',
+    metaDescription:
+      'Die Aktie von ICICI Bank in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ICICI Bank – Betreibt Privat- und Firmenkundengeschäft sowie eine Versicherungssparte. Notiert wird die Aktie in INR unter dem Kürzel ICICIBANK.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7522,7 +7982,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Banken: Größte Bank des Landes, mehrheitlich in Staatsbesitz.',
-    metaDescription: 'Die Aktie von State Bank of India in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von State Bank of India in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'State Bank of India – Größte Bank des Landes, mehrheitlich in Staatsbesitz. Notiert wird die Aktie in INR unter dem Kürzel SBIN.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7542,8 +8003,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'INR',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt Mobilfunknetze in Indien und in vielen Ländern Afrikas.',
-    metaDescription: 'Die Aktie von Bharti Airtel in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt Mobilfunknetze in Indien und in vielen Ländern Afrikas.',
+    metaDescription:
+      'Die Aktie von Bharti Airtel in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Bharti Airtel – Betreibt Mobilfunknetze in Indien und in vielen Ländern Afrikas. Notiert wird die Aktie in INR unter dem Kürzel BHARTIARTL.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7564,7 +8027,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Konsum: Stellt Tabakwaren, Lebensmittel und Hygieneartikel her.',
-    metaDescription: 'Die Aktie von ITC in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von ITC in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ITC – Stellt Tabakwaren, Lebensmittel und Hygieneartikel her. Notiert wird die Aktie in INR unter dem Kürzel ITC.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7585,7 +8049,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Konsum: Verkauft Wasch-, Pflege- und Lebensmittelmarken in Indien.',
-    metaDescription: 'Die Aktie von Hindustan Unilever in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Hindustan Unilever in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Hindustan Unilever – Verkauft Wasch-, Pflege- und Lebensmittelmarken in Indien. Notiert wird die Aktie in INR unter dem Kürzel HINDUNILVR.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7606,7 +8071,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Bau: Baut Infrastruktur, Kraftwerke und Industrieanlagen.',
-    metaDescription: 'Die Aktie von Larsen & Toubro in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Larsen & Toubro in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Larsen & Toubro – Baut Infrastruktur, Kraftwerke und Industrieanlagen. Notiert wird die Aktie in INR unter dem Kürzel LT.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7627,7 +8093,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Automobil: Baut Klein- und Kompaktwagen für den indischen Markt.',
-    metaDescription: 'Die Aktie von Maruti Suzuki in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Maruti Suzuki in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Maruti Suzuki – Baut Klein- und Kompaktwagen für den indischen Markt. Notiert wird die Aktie in INR unter dem Kürzel MARUTI.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7648,16 +8115,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Automobil: Baut Nutzfahrzeuge in Indien und besitzt Jaguar Land Rover.',
-    metaDescription: 'Die Aktie von Tata Motors in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Tata Motors in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Tata Motors – Baut Nutzfahrzeuge in Indien und besitzt Jaguar Land Rover. Notiert wird die Aktie in INR unter dem Kürzel TATAMOTORS.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 291.70,
-      annualDrift: 0.050,
-      annualVolatility: 0.350,
+      startValue: 291.7,
+      annualDrift: 0.05,
+      annualVolatility: 0.35,
       seed: 1370,
     },
   },
@@ -7669,7 +8137,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Chemie: Stellt Farben und Lacke für Gebäude her.',
-    metaDescription: 'Die Aktie von Asian Paints in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Asian Paints in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Asian Paints – Stellt Farben und Lacke für Gebäude her. Notiert wird die Aktie in INR unter dem Kürzel ASIANPAINT.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7690,7 +8159,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Pharma: Fertigt Nachahmermedikamente für Indien, die USA und Europa.',
-    metaDescription: 'Die Aktie von Sun Pharmaceutical in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Sun Pharmaceutical in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Sun Pharmaceutical – Fertigt Nachahmermedikamente für Indien, die USA und Europa. Notiert wird die Aktie in INR unter dem Kürzel SUNPHARMA.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7711,7 +8181,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'INR',
     decimals: 2,
     summary: 'Mischkonzern: Entwickelt Häfen, Flughäfen und Energieprojekte in Indien.',
-    metaDescription: 'Die Aktie von Adani Enterprises in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Adani Enterprises in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Adani Enterprises – Entwickelt Häfen, Flughäfen und Energieprojekte in Indien. Notiert wird die Aktie in INR unter dem Kürzel ADANIENT.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7731,8 +8202,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'AUD',
     decimals: 2,
-    summary: 'Bergbau: Fördert Eisenerz, Kupfer und Kohle, vor allem in Australien und Chile.',
-    metaDescription: 'Die Aktie von BHP Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Bergbau: Fördert Eisenerz, Kupfer und Kohle, vor allem in Australien und Chile.',
+    metaDescription:
+      'Die Aktie von BHP Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'BHP Group – Fördert Eisenerz, Kupfer und Kohle, vor allem in Australien und Chile. Notiert wird die Aktie in AUD unter dem Kürzel BHP.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7752,8 +8225,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'AUD',
     decimals: 2,
-    summary: 'Bergbau: Fördert Eisenerz, Aluminium und Kupfer – hier die australische Notiz.',
-    metaDescription: 'Die Aktie von Rio Tinto (Sydney) in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Bergbau: Fördert Eisenerz, Aluminium und Kupfer – hier die australische Notiz.',
+    metaDescription:
+      'Die Aktie von Rio Tinto (Sydney) in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Rio Tinto (Sydney) – Fördert Eisenerz, Aluminium und Kupfer – hier die australische Notiz. Notiert wird die Aktie in AUD unter dem Kürzel RIO.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7773,8 +8248,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'AUD',
     decimals: 2,
-    summary: 'Bergbau: Fördert Eisenerz in Westaustralien und baut Wasserstoffprojekte auf.',
-    metaDescription: 'Die Aktie von Fortescue in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Bergbau: Fördert Eisenerz in Westaustralien und baut Wasserstoffprojekte auf.',
+    metaDescription:
+      'Die Aktie von Fortescue in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Fortescue – Fördert Eisenerz in Westaustralien und baut Wasserstoffprojekte auf. Notiert wird die Aktie in AUD unter dem Kürzel FMG.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7795,7 +8272,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Pharma: Stellt Medikamente aus Blutplasma sowie Grippeimpfstoffe her.',
-    metaDescription: 'Die Aktie von CSL in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von CSL in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CSL – Stellt Medikamente aus Blutplasma sowie Grippeimpfstoffe her. Notiert wird die Aktie in AUD unter dem Kürzel CSL.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7816,7 +8294,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Banken: Größte Bank Australiens im Privatkundengeschäft.',
-    metaDescription: 'Die Aktie von Commonwealth Bank in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Commonwealth Bank in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Commonwealth Bank – Größte Bank Australiens im Privatkundengeschäft. Notiert wird die Aktie in AUD unter dem Kürzel CBA.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7836,8 +8315,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'AUD',
     decimals: 2,
-    summary: 'Banken: Betreibt Privat- und Firmenkundengeschäft in Australien und Neuseeland.',
-    metaDescription: 'Die Aktie von Westpac Banking in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Betreibt Privat- und Firmenkundengeschäft in Australien und Neuseeland.',
+    metaDescription:
+      'Die Aktie von Westpac Banking in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Westpac Banking – Betreibt Privat- und Firmenkundengeschäft in Australien und Neuseeland. Notiert wird die Aktie in AUD unter dem Kürzel WBC.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7858,7 +8339,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Banken: Betreibt Bankgeschäft in Australien, Neuseeland und Asien.',
-    metaDescription: 'Die Aktie von ANZ Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von ANZ Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'ANZ Group – Betreibt Bankgeschäft in Australien, Neuseeland und Asien. Notiert wird die Aktie in AUD unter dem Kürzel ANZ.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7879,7 +8361,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Banken: Schwerpunkt auf Firmenkunden und Agrarfinanzierung.',
-    metaDescription: 'Die Aktie von National Australia Bank in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von National Australia Bank in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'National Australia Bank – Schwerpunkt auf Firmenkunden und Agrarfinanzierung. Notiert wird die Aktie in AUD unter dem Kürzel NAB.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7899,8 +8382,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'AUD',
     decimals: 2,
-    summary: 'Banken: Betreibt Investmentbank und Vermögensverwaltung mit Schwerpunkt Infrastruktur.',
-    metaDescription: 'Die Aktie von Macquarie Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Betreibt Investmentbank und Vermögensverwaltung mit Schwerpunkt Infrastruktur.',
+    metaDescription:
+      'Die Aktie von Macquarie Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Macquarie Group – Betreibt Investmentbank und Vermögensverwaltung mit Schwerpunkt Infrastruktur. Notiert wird die Aktie in AUD unter dem Kürzel MQG.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7921,7 +8406,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Handel: Betreibt Baumärkte, Kaufhäuser und ein Chemiegeschäft.',
-    metaDescription: 'Die Aktie von Wesfarmers in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Wesfarmers in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Wesfarmers – Betreibt Baumärkte, Kaufhäuser und ein Chemiegeschäft. Notiert wird die Aktie in AUD unter dem Kürzel WES.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7942,7 +8428,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Handel: Betreibt Supermärkte in Australien und Neuseeland.',
-    metaDescription: 'Die Aktie von Woolworths Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Woolworths Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Woolworths Group – Betreibt Supermärkte in Australien und Neuseeland. Notiert wird die Aktie in AUD unter dem Kürzel WOW.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -7963,16 +8450,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Telekommunikation: Betreibt Mobilfunk und Festnetz in Australien.',
-    metaDescription: 'Die Aktie von Telstra Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Telstra Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Telstra Group – Betreibt Mobilfunk und Festnetz in Australien. Notiert wird die Aktie in AUD unter dem Kürzel TLS.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 205.80,
-      annualDrift: 0.110,
-      annualVolatility: 0.320,
+      startValue: 205.8,
+      annualDrift: 0.11,
+      annualVolatility: 0.32,
       seed: 38780,
     },
   },
@@ -7984,7 +8472,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'AUD',
     decimals: 2,
     summary: 'Immobilien: Entwickelt und vermietet Logistikhallen und Rechenzentren.',
-    metaDescription: 'Die Aktie von Goodman Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Goodman Group in AUD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Goodman Group – Entwickelt und vermietet Logistikhallen und Rechenzentren. Notiert wird die Aktie in AUD unter dem Kürzel GMG.AX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8005,7 +8494,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Banken: Größte Bank Kanadas nach Bilanzsumme.',
-    metaDescription: 'Die Aktie von Royal Bank of Canada in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Royal Bank of Canada in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Royal Bank of Canada – Größte Bank Kanadas nach Bilanzsumme. Notiert wird die Aktie in CAD unter dem Kürzel RY.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8026,7 +8516,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Banken: Betreibt Filialen in Kanada und an der US-Ostküste.',
-    metaDescription: 'Die Aktie von Toronto-Dominion Bank in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Toronto-Dominion Bank in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Toronto-Dominion Bank – Betreibt Filialen in Kanada und an der US-Ostküste. Notiert wird die Aktie in CAD unter dem Kürzel TD.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8047,7 +8538,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Banken: Betreibt Bankgeschäft in Kanada und in Lateinamerika.',
-    metaDescription: 'Die Aktie von Bank of Nova Scotia in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Bank of Nova Scotia in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Bank of Nova Scotia – Betreibt Bankgeschäft in Kanada und in Lateinamerika. Notiert wird die Aktie in CAD unter dem Kürzel BNS.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8067,8 +8559,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CAD',
     decimals: 2,
-    summary: 'Banken: Betreibt Privat- und Firmenkundengeschäft in Kanada und im Mittleren Westen der USA.',
-    metaDescription: 'Die Aktie von Bank of Montreal in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Banken: Betreibt Privat- und Firmenkundengeschäft in Kanada und im Mittleren Westen der USA.',
+    metaDescription:
+      'Die Aktie von Bank of Montreal in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Bank of Montreal – Betreibt Privat- und Firmenkundengeschäft in Kanada und im Mittleren Westen der USA. Notiert wird die Aktie in CAD unter dem Kürzel BMO.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8089,7 +8583,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Energie: Betreibt Pipelines für Öl und Gas quer durch Nordamerika.',
-    metaDescription: 'Die Aktie von Enbridge in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Enbridge in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Enbridge – Betreibt Pipelines für Öl und Gas quer durch Nordamerika. Notiert wird die Aktie in CAD unter dem Kürzel ENB.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8109,8 +8604,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CAD',
     decimals: 2,
-    summary: 'Energie: Fördert Ölsande in Alberta und betreibt Raffinerien und Tankstellen.',
-    metaDescription: 'Die Aktie von Suncor Energy in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Energie: Fördert Ölsande in Alberta und betreibt Raffinerien und Tankstellen.',
+    metaDescription:
+      'Die Aktie von Suncor Energy in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Suncor Energy – Fördert Ölsande in Alberta und betreibt Raffinerien und Tankstellen. Notiert wird die Aktie in CAD unter dem Kürzel SU.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8131,7 +8628,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Energie: Fördert Öl und Erdgas in Kanada, der Nordsee und Westafrika.',
-    metaDescription: 'Die Aktie von Canadian Natural Resources in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Canadian Natural Resources in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Canadian Natural Resources – Fördert Öl und Erdgas in Kanada, der Nordsee und Westafrika. Notiert wird die Aktie in CAD unter dem Kürzel CNQ.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8151,8 +8649,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CAD',
     decimals: 2,
-    summary: 'Transport: Betreibt ein Schienennetz von der Atlantik- bis zur Pazifikküste.',
-    metaDescription: 'Die Aktie von Canadian National Railway in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Transport: Betreibt ein Schienennetz von der Atlantik- bis zur Pazifikküste.',
+    metaDescription:
+      'Die Aktie von Canadian National Railway in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Canadian National Railway – Betreibt ein Schienennetz von der Atlantik- bis zur Pazifikküste. Notiert wird die Aktie in CAD unter dem Kürzel CNR.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8172,8 +8672,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CAD',
     decimals: 2,
-    summary: 'Transport: Betreibt die einzige Bahnstrecke, die Kanada, die USA und Mexiko verbindet.',
-    metaDescription: 'Die Aktie von Canadian Pacific Kansas City in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Transport: Betreibt die einzige Bahnstrecke, die Kanada, die USA und Mexiko verbindet.',
+    metaDescription:
+      'Die Aktie von Canadian Pacific Kansas City in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Canadian Pacific Kansas City – Betreibt die einzige Bahnstrecke, die Kanada, die USA und Mexiko verbindet. Notiert wird die Aktie in CAD unter dem Kürzel CP.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8193,8 +8695,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CAD',
     decimals: 2,
-    summary: 'Beteiligungen: Verwaltet Infrastruktur-, Immobilien- und Energieanlagen für Anleger.',
-    metaDescription: 'Die Aktie von Brookfield Corporation in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Beteiligungen: Verwaltet Infrastruktur-, Immobilien- und Energieanlagen für Anleger.',
+    metaDescription:
+      'Die Aktie von Brookfield Corporation in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Brookfield Corporation – Verwaltet Infrastruktur-, Immobilien- und Energieanlagen für Anleger. Notiert wird die Aktie in CAD unter dem Kürzel BN.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8215,7 +8719,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Software: Kauft Softwarehäuser für Nischenmärkte auf und führt sie weiter.',
-    metaDescription: 'Die Aktie von Constellation Software in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Constellation Software in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Constellation Software – Kauft Softwarehäuser für Nischenmärkte auf und führt sie weiter. Notiert wird die Aktie in CAD unter dem Kürzel CSU.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8235,8 +8740,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CAD',
     decimals: 2,
-    summary: 'Software: Stellt Software bereit, mit der Händler eigene Onlineläden betreiben.',
-    metaDescription: 'Die Aktie von Shopify (Toronto) in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Software: Stellt Software bereit, mit der Händler eigene Onlineläden betreiben.',
+    metaDescription:
+      'Die Aktie von Shopify (Toronto) in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Shopify (Toronto) – Stellt Software bereit, mit der Händler eigene Onlineläden betreiben. Notiert wird die Aktie in CAD unter dem Kürzel SHOP.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8257,7 +8764,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Bergbau: Fördert Gold und Kupfer auf mehreren Kontinenten.',
-    metaDescription: 'Die Aktie von Barrick Mining in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Barrick Mining in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Barrick Mining – Fördert Gold und Kupfer auf mehreren Kontinenten. Notiert wird die Aktie in CAD unter dem Kürzel ABX.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8278,7 +8786,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Bergbau: Fördert Gold in Kanada, Finnland, Australien und Mexiko.',
-    metaDescription: 'Die Aktie von Agnico Eagle Mines in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Agnico Eagle Mines in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Agnico Eagle Mines – Fördert Gold in Kanada, Finnland, Australien und Mexiko. Notiert wird die Aktie in CAD unter dem Kürzel AEM.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8298,17 +8807,19 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'CAD',
     decimals: 2,
-    summary: 'Chemie: Stellt Dünger her und beliefert Landwirte über eigene Handelsstellen.',
-    metaDescription: 'Die Aktie von Nutrien in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Chemie: Stellt Dünger her und beliefert Landwirte über eigene Handelsstellen.',
+    metaDescription:
+      'Die Aktie von Nutrien in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Nutrien – Stellt Dünger her und beliefert Landwirte über eigene Handelsstellen. Notiert wird die Aktie in CAD unter dem Kürzel NTR.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 210.90,
-      annualDrift: 0.110,
-      annualVolatility: 0.350,
+      startValue: 210.9,
+      annualDrift: 0.11,
+      annualVolatility: 0.35,
       seed: 69290,
     },
   },
@@ -8320,7 +8831,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'CAD',
     decimals: 2,
     summary: 'Medien: Liefert Rechts- und Steuerdatenbanken sowie Nachrichten.',
-    metaDescription: 'Die Aktie von Thomson Reuters in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Thomson Reuters in CAD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Thomson Reuters – Liefert Rechts- und Steuerdatenbanken sowie Nachrichten. Notiert wird die Aktie in CAD unter dem Kürzel TRI.TO.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8340,8 +8852,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'BRL',
     decimals: 2,
-    summary: 'Energie: Fördert Öl in Tiefseefeldern vor der Küste und betreibt Raffinerien.',
-    metaDescription: 'Die Aktie von Petrobras in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Energie: Fördert Öl in Tiefseefeldern vor der Küste und betreibt Raffinerien.',
+    metaDescription:
+      'Die Aktie von Petrobras in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Petrobras – Fördert Öl in Tiefseefeldern vor der Küste und betreibt Raffinerien. Notiert wird die Aktie in BRL unter dem Kürzel PETR4.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8362,7 +8876,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Bergbau: Fördert Eisenerz, Nickel und Kupfer.',
-    metaDescription: 'Die Aktie von Vale in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Vale in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Vale – Fördert Eisenerz, Nickel und Kupfer. Notiert wird die Aktie in BRL unter dem Kürzel VALE3.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8383,7 +8898,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Banken: Größte Privatbank Lateinamerikas.',
-    metaDescription: 'Die Aktie von Itaú Unibanco in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Itaú Unibanco in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Itaú Unibanco – Größte Privatbank Lateinamerikas. Notiert wird die Aktie in BRL unter dem Kürzel ITUB4.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8404,7 +8920,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Banken: Betreibt Filialgeschäft und eine große Versicherungssparte.',
-    metaDescription: 'Die Aktie von Banco Bradesco in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Banco Bradesco in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Banco Bradesco – Betreibt Filialgeschäft und eine große Versicherungssparte. Notiert wird die Aktie in BRL unter dem Kürzel BBDC4.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8425,7 +8942,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Banken: Staatlich beherrschte Bank mit Schwerpunkt Agrarfinanzierung.',
-    metaDescription: 'Die Aktie von Banco do Brasil in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Banco do Brasil in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Banco do Brasil – Staatlich beherrschte Bank mit Schwerpunkt Agrarfinanzierung. Notiert wird die Aktie in BRL unter dem Kürzel BBAS3.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8446,16 +8964,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Börsen: Betreibt die Wertpapier- und Terminbörse in São Paulo.',
-    metaDescription: 'Die Aktie von B3 in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von B3 in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'B3 – Betreibt die Wertpapier- und Terminbörse in São Paulo. Notiert wird die Aktie in BRL unter dem Kürzel B3SA3.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 206.30,
-      annualDrift: 0.030,
-      annualVolatility: 0.210,
+      startValue: 206.3,
+      annualDrift: 0.03,
+      annualVolatility: 0.21,
       seed: 88830,
     },
   },
@@ -8466,8 +8985,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'BRL',
     decimals: 2,
-    summary: 'Getränke: Braut Bier und füllt Erfrischungsgetränke für ganz Lateinamerika ab.',
-    metaDescription: 'Die Aktie von Ambev in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Getränke: Braut Bier und füllt Erfrischungsgetränke für ganz Lateinamerika ab.',
+    metaDescription:
+      'Die Aktie von Ambev in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Ambev – Braut Bier und füllt Erfrischungsgetränke für ganz Lateinamerika ab. Notiert wird die Aktie in BRL unter dem Kürzel ABEV3.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8488,7 +9009,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Lebensmittel: Größter Fleischverarbeiter der Welt nach Umsatz.',
-    metaDescription: 'Die Aktie von JBS in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von JBS in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'JBS – Größter Fleischverarbeiter der Welt nach Umsatz. Notiert wird die Aktie in BRL unter dem Kürzel JBSS3.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8509,7 +9031,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Industrie: Stellt Elektromotoren, Generatoren und Antriebstechnik her.',
-    metaDescription: 'Die Aktie von WEG in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von WEG in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'WEG – Stellt Elektromotoren, Generatoren und Antriebstechnik her. Notiert wird die Aktie in BRL unter dem Kürzel WEGE3.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8530,7 +9053,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'BRL',
     decimals: 2,
     summary: 'Papier: Größter Hersteller von Zellstoff aus Eukalyptus.',
-    metaDescription: 'Die Aktie von Suzano in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Suzano in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Suzano – Größter Hersteller von Zellstoff aus Eukalyptus. Notiert wird die Aktie in BRL unter dem Kürzel SUZB3.SA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8550,8 +9074,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'MXN',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt Mobilfunknetze in Mexiko und weiten Teilen Lateinamerikas.',
-    metaDescription: 'Die Aktie von América Móvil in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt Mobilfunknetze in Mexiko und weiten Teilen Lateinamerikas.',
+    metaDescription:
+      'Die Aktie von América Móvil in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'América Móvil – Betreibt Mobilfunknetze in Mexiko und weiten Teilen Lateinamerikas. Notiert wird die Aktie in MXN unter dem Kürzel AMXB.MX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8572,7 +9098,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'MXN',
     decimals: 2,
     summary: 'Handel: Betreibt die Ladenkette Oxxo und füllt Getränke für Coca-Cola ab.',
-    metaDescription: 'Die Aktie von FEMSA in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von FEMSA in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'FEMSA – Betreibt die Ladenkette Oxxo und füllt Getränke für Coca-Cola ab. Notiert wird die Aktie in MXN unter dem Kürzel FEMSAUBD.MX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8593,7 +9120,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'MXN',
     decimals: 2,
     summary: 'Handel: Betreibt Supermärkte in Mexiko und Mittelamerika.',
-    metaDescription: 'Die Aktie von Walmart de México in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Walmart de México in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Walmart de México – Betreibt Supermärkte in Mexiko und Mittelamerika. Notiert wird die Aktie in MXN unter dem Kürzel WALMEX.MX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8614,7 +9142,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'MXN',
     decimals: 2,
     summary: 'Bergbau: Fördert Kupfer und betreibt Eisenbahnstrecken.',
-    metaDescription: 'Die Aktie von Grupo México in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Grupo México in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Grupo México – Fördert Kupfer und betreibt Eisenbahnstrecken. Notiert wird die Aktie in MXN unter dem Kürzel GMEXICOB.MX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8635,7 +9164,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'MXN',
     decimals: 2,
     summary: 'Banken: Größte Bank Mexikos in einheimischem Besitz.',
-    metaDescription: 'Die Aktie von Grupo Financiero Banorte in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Grupo Financiero Banorte in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Grupo Financiero Banorte – Größte Bank Mexikos in einheimischem Besitz. Notiert wird die Aktie in MXN unter dem Kürzel GFNORTEO.MX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8656,7 +9186,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'MXN',
     decimals: 2,
     summary: 'Baustoffe: Stellt Zement und Transportbeton für Nord- und Südamerika her.',
-    metaDescription: 'Die Aktie von Cemex in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Cemex in MXN: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Cemex – Stellt Zement und Transportbeton für Nord- und Südamerika her. Notiert wird die Aktie in MXN unter dem Kürzel CEMEXCPO.MX.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8677,16 +9208,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SGD',
     decimals: 2,
     summary: 'Banken: Größte Bank Südostasiens nach Bilanzsumme.',
-    metaDescription: 'Die Aktie von DBS Group in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von DBS Group in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'DBS Group – Größte Bank Südostasiens nach Bilanzsumme. Notiert wird die Aktie in SGD unter dem Kürzel D05.SI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 340.40,
-      annualDrift: 0.100,
-      annualVolatility: 0.340,
+      startValue: 340.4,
+      annualDrift: 0.1,
+      annualVolatility: 0.34,
       seed: 10240,
     },
   },
@@ -8698,16 +9230,17 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SGD',
     decimals: 2,
     summary: 'Banken: Betreibt Bank- und Versicherungsgeschäft in Singapur und Malaysia.',
-    metaDescription: 'Die Aktie von OCBC in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von OCBC in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'OCBC – Betreibt Bank- und Versicherungsgeschäft in Singapur und Malaysia. Notiert wird die Aktie in SGD unter dem Kürzel O39.SI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     seed: {
-      startValue: 66.20,
-      annualDrift: 0.070,
-      annualVolatility: 0.280,
+      startValue: 66.2,
+      annualDrift: 0.07,
+      annualVolatility: 0.28,
       seed: 66820,
     },
   },
@@ -8719,7 +9252,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SGD',
     decimals: 2,
     summary: 'Banken: Betreibt Privat- und Firmenkundengeschäft in Südostasien.',
-    metaDescription: 'Die Aktie von United Overseas Bank in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von United Overseas Bank in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'United Overseas Bank – Betreibt Privat- und Firmenkundengeschäft in Südostasien. Notiert wird die Aktie in SGD unter dem Kürzel U11.SI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8739,8 +9273,10 @@ export const weitereAktien: MarketDefinition[] = [
     kind: 'stock',
     unit: 'SGD',
     decimals: 2,
-    summary: 'Telekommunikation: Betreibt Netze in Singapur und hält die Mehrheit an Optus in Australien.',
-    metaDescription: 'Die Aktie von Singtel in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    summary:
+      'Telekommunikation: Betreibt Netze in Singapur und hält die Mehrheit an Optus in Australien.',
+    metaDescription:
+      'Die Aktie von Singtel in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Singtel – Betreibt Netze in Singapur und hält die Mehrheit an Optus in Australien. Notiert wird die Aktie in SGD unter dem Kürzel Z74.SI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8761,7 +9297,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'SGD',
     decimals: 2,
     summary: 'Transport: Betreibt eine Fluggesellschaft mit Drehkreuz Singapur.',
-    metaDescription: 'Die Aktie von Singapore Airlines in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Singapore Airlines in SGD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Singapore Airlines – Betreibt eine Fluggesellschaft mit Drehkreuz Singapur. Notiert wird die Aktie in SGD unter dem Kürzel C6L.SI.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8782,7 +9319,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Software: Verkauft Firewalls und Software für Netzwerksicherheit.',
-    metaDescription: 'Die Aktie von Check Point Software in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Check Point Software in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Check Point Software – Verkauft Firewalls und Software für Netzwerksicherheit. Notiert wird die Aktie in USD unter dem Kürzel CHKP.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8803,7 +9341,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Software: Sichert Zugänge mit erweiterten Rechten in Unternehmensnetzen.',
-    metaDescription: 'Die Aktie von CyberArk Software in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von CyberArk Software in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'CyberArk Software – Sichert Zugänge mit erweiterten Rechten in Unternehmensnetzen. Notiert wird die Aktie in USD unter dem Kürzel CYBR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8824,7 +9363,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Software: Liefert Software für Kundendienstzentren und Betrugserkennung.',
-    metaDescription: 'Die Aktie von NICE in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von NICE in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'NICE – Liefert Software für Kundendienstzentren und Betrugserkennung. Notiert wird die Aktie in USD unter dem Kürzel NICE.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8845,7 +9385,8 @@ export const weitereAktien: MarketDefinition[] = [
     unit: 'USD',
     decimals: 2,
     summary: 'Pharma: Stellt Nachahmermedikamente in sehr großem Umfang her.',
-    metaDescription: 'Die Aktie von Teva Pharmaceutical in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+    metaDescription:
+      'Die Aktie von Teva Pharmaceutical in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
       'Teva Pharmaceutical – Stellt Nachahmermedikamente in sehr großem Umfang her. Notiert wird die Aktie in USD unter dem Kürzel TEVA.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
@@ -8863,849 +9404,865 @@ export const weitereAktien: MarketDefinition[] = [
 /** Kursquellen für die breite Auswahl – Yahoo als Regelweg, Twelve Data optional. */
 export const weitereAktienQuellen: Record<string, MarketSourceRef> = {
   'alphabet-c': { provider: 'market', yahoo: 'GOOG', twelvedata: 'GOOG' },
-  'markel': { provider: 'market', yahoo: 'MKL', twelvedata: 'MKL' },
-  'micron': { provider: 'market', yahoo: 'MU', twelvedata: 'MU' },
+  markel: { provider: 'market', yahoo: 'MKL', twelvedata: 'MKL' },
+  micron: { provider: 'market', yahoo: 'MU', twelvedata: 'MU' },
   'applied-materials': { provider: 'market', yahoo: 'AMAT', twelvedata: 'AMAT' },
   'lam-research': { provider: 'market', yahoo: 'LRCX', twelvedata: 'LRCX' },
   'kla-corp': { provider: 'market', yahoo: 'KLAC', twelvedata: 'KLAC' },
   'analog-devices': { provider: 'market', yahoo: 'ADI', twelvedata: 'ADI' },
-  'nxp': { provider: 'market', yahoo: 'NXPI', twelvedata: 'NXPI' },
-  'marvell': { provider: 'market', yahoo: 'MRVL', twelvedata: 'MRVL' },
-  'synopsys': { provider: 'market', yahoo: 'SNPS', twelvedata: 'SNPS' },
-  'cadence': { provider: 'market', yahoo: 'CDNS', twelvedata: 'CDNS' },
-  'servicenow': { provider: 'market', yahoo: 'NOW', twelvedata: 'NOW' },
-  'intuit': { provider: 'market', yahoo: 'INTU', twelvedata: 'INTU' },
-  'workday': { provider: 'market', yahoo: 'WDAY', twelvedata: 'WDAY' },
-  'snowflake': { provider: 'market', yahoo: 'SNOW', twelvedata: 'SNOW' },
-  'datadog': { provider: 'market', yahoo: 'DDOG', twelvedata: 'DDOG' },
-  'crowdstrike': { provider: 'market', yahoo: 'CRWD', twelvedata: 'CRWD' },
+  nxp: { provider: 'market', yahoo: 'NXPI', twelvedata: 'NXPI' },
+  marvell: { provider: 'market', yahoo: 'MRVL', twelvedata: 'MRVL' },
+  synopsys: { provider: 'market', yahoo: 'SNPS', twelvedata: 'SNPS' },
+  cadence: { provider: 'market', yahoo: 'CDNS', twelvedata: 'CDNS' },
+  servicenow: { provider: 'market', yahoo: 'NOW', twelvedata: 'NOW' },
+  intuit: { provider: 'market', yahoo: 'INTU', twelvedata: 'INTU' },
+  workday: { provider: 'market', yahoo: 'WDAY', twelvedata: 'WDAY' },
+  snowflake: { provider: 'market', yahoo: 'SNOW', twelvedata: 'SNOW' },
+  datadog: { provider: 'market', yahoo: 'DDOG', twelvedata: 'DDOG' },
+  crowdstrike: { provider: 'market', yahoo: 'CRWD', twelvedata: 'CRWD' },
   'palo-alto': { provider: 'market', yahoo: 'PANW', twelvedata: 'PANW' },
-  'fortinet': { provider: 'market', yahoo: 'FTNT', twelvedata: 'FTNT' },
-  'zscaler': { provider: 'market', yahoo: 'ZS', twelvedata: 'ZS' },
-  'atlassian': { provider: 'market', yahoo: 'TEAM', twelvedata: 'TEAM' },
-  'shopify': { provider: 'market', yahoo: 'SHOP', twelvedata: 'SHOP' },
-  'block': { provider: 'market', yahoo: 'XYZ', twelvedata: 'XYZ' },
-  'fiserv': { provider: 'market', yahoo: 'FI', twelvedata: 'FI' },
+  fortinet: { provider: 'market', yahoo: 'FTNT', twelvedata: 'FTNT' },
+  zscaler: { provider: 'market', yahoo: 'ZS', twelvedata: 'ZS' },
+  atlassian: { provider: 'market', yahoo: 'TEAM', twelvedata: 'TEAM' },
+  shopify: { provider: 'market', yahoo: 'SHOP', twelvedata: 'SHOP' },
+  block: { provider: 'market', yahoo: 'XYZ', twelvedata: 'XYZ' },
+  fiserv: { provider: 'market', yahoo: 'FI', twelvedata: 'FI' },
   'american-express': { provider: 'market', yahoo: 'AXP', twelvedata: 'AXP' },
   'morgan-stanley': { provider: 'market', yahoo: 'MS', twelvedata: 'MS' },
   'charles-schwab': { provider: 'market', yahoo: 'SCHW', twelvedata: 'SCHW' },
-  'citigroup': { provider: 'market', yahoo: 'C', twelvedata: 'C' },
+  citigroup: { provider: 'market', yahoo: 'C', twelvedata: 'C' },
   'wells-fargo': { provider: 'market', yahoo: 'WFC', twelvedata: 'WFC' },
   'us-bancorp': { provider: 'market', yahoo: 'USB', twelvedata: 'USB' },
-  'pnc': { provider: 'market', yahoo: 'PNC', twelvedata: 'PNC' },
+  pnc: { provider: 'market', yahoo: 'PNC', twelvedata: 'PNC' },
   'bny-mellon': { provider: 'market', yahoo: 'BK', twelvedata: 'BK' },
   'state-street': { provider: 'market', yahoo: 'STT', twelvedata: 'STT' },
-  'progressive': { provider: 'market', yahoo: 'PGR', twelvedata: 'PGR' },
-  'chubb': { provider: 'market', yahoo: 'CB', twelvedata: 'CB' },
+  progressive: { provider: 'market', yahoo: 'PGR', twelvedata: 'PGR' },
+  chubb: { provider: 'market', yahoo: 'CB', twelvedata: 'CB' },
   'marsh-mclennan': { provider: 'market', yahoo: 'MMC', twelvedata: 'MMC' },
-  'aon': { provider: 'market', yahoo: 'AON', twelvedata: 'AON' },
-  'metlife': { provider: 'market', yahoo: 'MET', twelvedata: 'MET' },
+  aon: { provider: 'market', yahoo: 'AON', twelvedata: 'AON' },
+  metlife: { provider: 'market', yahoo: 'MET', twelvedata: 'MET' },
   'prudential-financial': { provider: 'market', yahoo: 'PRU', twelvedata: 'PRU' },
-  'cigna': { provider: 'market', yahoo: 'CI', twelvedata: 'CI' },
-  'elevance': { provider: 'market', yahoo: 'ELV', twelvedata: 'ELV' },
-  'hca': { provider: 'market', yahoo: 'HCA', twelvedata: 'HCA' },
-  'mckesson': { provider: 'market', yahoo: 'MCK', twelvedata: 'MCK' },
-  'cencora': { provider: 'market', yahoo: 'COR', twelvedata: 'COR' },
-  'cvs': { provider: 'market', yahoo: 'CVS', twelvedata: 'CVS' },
+  cigna: { provider: 'market', yahoo: 'CI', twelvedata: 'CI' },
+  elevance: { provider: 'market', yahoo: 'ELV', twelvedata: 'ELV' },
+  hca: { provider: 'market', yahoo: 'HCA', twelvedata: 'HCA' },
+  mckesson: { provider: 'market', yahoo: 'MCK', twelvedata: 'MCK' },
+  cencora: { provider: 'market', yahoo: 'COR', twelvedata: 'COR' },
+  cvs: { provider: 'market', yahoo: 'CVS', twelvedata: 'CVS' },
   'bristol-myers': { provider: 'market', yahoo: 'BMY', twelvedata: 'BMY' },
-  'amgen': { provider: 'market', yahoo: 'AMGN', twelvedata: 'AMGN' },
-  'gilead': { provider: 'market', yahoo: 'GILD', twelvedata: 'GILD' },
-  'vertex': { provider: 'market', yahoo: 'VRTX', twelvedata: 'VRTX' },
-  'regeneron': { provider: 'market', yahoo: 'REGN', twelvedata: 'REGN' },
-  'moderna': { provider: 'market', yahoo: 'MRNA', twelvedata: 'MRNA' },
-  'biogen': { provider: 'market', yahoo: 'BIIB', twelvedata: 'BIIB' },
-  'zoetis': { provider: 'market', yahoo: 'ZTS', twelvedata: 'ZTS' },
-  'danaher': { provider: 'market', yahoo: 'DHR', twelvedata: 'DHR' },
-  'abbott': { provider: 'market', yahoo: 'ABT', twelvedata: 'ABT' },
-  'medtronic': { provider: 'market', yahoo: 'MDT', twelvedata: 'MDT' },
-  'stryker': { provider: 'market', yahoo: 'SYK', twelvedata: 'SYK' },
+  amgen: { provider: 'market', yahoo: 'AMGN', twelvedata: 'AMGN' },
+  gilead: { provider: 'market', yahoo: 'GILD', twelvedata: 'GILD' },
+  vertex: { provider: 'market', yahoo: 'VRTX', twelvedata: 'VRTX' },
+  regeneron: { provider: 'market', yahoo: 'REGN', twelvedata: 'REGN' },
+  moderna: { provider: 'market', yahoo: 'MRNA', twelvedata: 'MRNA' },
+  biogen: { provider: 'market', yahoo: 'BIIB', twelvedata: 'BIIB' },
+  zoetis: { provider: 'market', yahoo: 'ZTS', twelvedata: 'ZTS' },
+  danaher: { provider: 'market', yahoo: 'DHR', twelvedata: 'DHR' },
+  abbott: { provider: 'market', yahoo: 'ABT', twelvedata: 'ABT' },
+  medtronic: { provider: 'market', yahoo: 'MDT', twelvedata: 'MDT' },
+  stryker: { provider: 'market', yahoo: 'SYK', twelvedata: 'SYK' },
   'becton-dickinson': { provider: 'market', yahoo: 'BDX', twelvedata: 'BDX' },
   'intuitive-surgical': { provider: 'market', yahoo: 'ISRG', twelvedata: 'ISRG' },
-  'idexx': { provider: 'market', yahoo: 'IDXX', twelvedata: 'IDXX' },
-  'illumina': { provider: 'market', yahoo: 'ILMN', twelvedata: 'ILMN' },
+  idexx: { provider: 'market', yahoo: 'IDXX', twelvedata: 'IDXX' },
+  illumina: { provider: 'market', yahoo: 'ILMN', twelvedata: 'ILMN' },
   'general-motors': { provider: 'market', yahoo: 'GM', twelvedata: 'GM' },
-  'ford': { provider: 'market', yahoo: 'F', twelvedata: 'F' },
-  'paccar': { provider: 'market', yahoo: 'PCAR', twelvedata: 'PCAR' },
-  'cummins': { provider: 'market', yahoo: 'CMI', twelvedata: 'CMI' },
-  'honeywell': { provider: 'market', yahoo: 'HON', twelvedata: 'HON' },
+  ford: { provider: 'market', yahoo: 'F', twelvedata: 'F' },
+  paccar: { provider: 'market', yahoo: 'PCAR', twelvedata: 'PCAR' },
+  cummins: { provider: 'market', yahoo: 'CMI', twelvedata: 'CMI' },
+  honeywell: { provider: 'market', yahoo: 'HON', twelvedata: 'HON' },
   '3m': { provider: 'market', yahoo: 'MMM', twelvedata: 'MMM' },
-  'emerson': { provider: 'market', yahoo: 'EMR', twelvedata: 'EMR' },
-  'eaton': { provider: 'market', yahoo: 'ETN', twelvedata: 'ETN' },
+  emerson: { provider: 'market', yahoo: 'EMR', twelvedata: 'EMR' },
+  eaton: { provider: 'market', yahoo: 'ETN', twelvedata: 'ETN' },
   'parker-hannifin': { provider: 'market', yahoo: 'PH', twelvedata: 'PH' },
   'illinois-tool-works': { provider: 'market', yahoo: 'ITW', twelvedata: 'ITW' },
   'general-dynamics': { provider: 'market', yahoo: 'GD', twelvedata: 'GD' },
   'northrop-grumman': { provider: 'market', yahoo: 'NOC', twelvedata: 'NOC' },
-  'l3harris': { provider: 'market', yahoo: 'LHX', twelvedata: 'LHX' },
-  'transdigm': { provider: 'market', yahoo: 'TDG', twelvedata: 'TDG' },
-  'csx': { provider: 'market', yahoo: 'CSX', twelvedata: 'CSX' },
+  l3harris: { provider: 'market', yahoo: 'LHX', twelvedata: 'LHX' },
+  transdigm: { provider: 'market', yahoo: 'TDG', twelvedata: 'TDG' },
+  csx: { provider: 'market', yahoo: 'CSX', twelvedata: 'CSX' },
   'norfolk-southern': { provider: 'market', yahoo: 'NSC', twelvedata: 'NSC' },
-  'fedex': { provider: 'market', yahoo: 'FDX', twelvedata: 'FDX' },
+  fedex: { provider: 'market', yahoo: 'FDX', twelvedata: 'FDX' },
   'delta-air': { provider: 'market', yahoo: 'DAL', twelvedata: 'DAL' },
   'united-airlines': { provider: 'market', yahoo: 'UAL', twelvedata: 'UAL' },
-  'southwest': { provider: 'market', yahoo: 'LUV', twelvedata: 'LUV' },
+  southwest: { provider: 'market', yahoo: 'LUV', twelvedata: 'LUV' },
   'old-dominion': { provider: 'market', yahoo: 'ODFL', twelvedata: 'ODFL' },
   'waste-management': { provider: 'market', yahoo: 'WM', twelvedata: 'WM' },
   'republic-services': { provider: 'market', yahoo: 'RSG', twelvedata: 'RSG' },
   'sherwin-williams': { provider: 'market', yahoo: 'SHW', twelvedata: 'SHW' },
-  'ecolab': { provider: 'market', yahoo: 'ECL', twelvedata: 'ECL' },
+  ecolab: { provider: 'market', yahoo: 'ECL', twelvedata: 'ECL' },
   'air-products': { provider: 'market', yahoo: 'APD', twelvedata: 'APD' },
-  'dow': { provider: 'market', yahoo: 'DOW', twelvedata: 'DOW' },
-  'freeport': { provider: 'market', yahoo: 'FCX', twelvedata: 'FCX' },
-  'newmont': { provider: 'market', yahoo: 'NEM', twelvedata: 'NEM' },
-  'nucor': { provider: 'market', yahoo: 'NUE', twelvedata: 'NUE' },
+  dow: { provider: 'market', yahoo: 'DOW', twelvedata: 'DOW' },
+  freeport: { provider: 'market', yahoo: 'FCX', twelvedata: 'FCX' },
+  newmont: { provider: 'market', yahoo: 'NEM', twelvedata: 'NEM' },
+  nucor: { provider: 'market', yahoo: 'NUE', twelvedata: 'NUE' },
   'vulcan-materials': { provider: 'market', yahoo: 'VMC', twelvedata: 'VMC' },
-  'conocophillips': { provider: 'market', yahoo: 'COP', twelvedata: 'COP' },
-  'eog': { provider: 'market', yahoo: 'EOG', twelvedata: 'EOG' },
-  'schlumberger': { provider: 'market', yahoo: 'SLB', twelvedata: 'SLB' },
+  conocophillips: { provider: 'market', yahoo: 'COP', twelvedata: 'COP' },
+  eog: { provider: 'market', yahoo: 'EOG', twelvedata: 'EOG' },
+  schlumberger: { provider: 'market', yahoo: 'SLB', twelvedata: 'SLB' },
   'kinder-morgan': { provider: 'market', yahoo: 'KMI', twelvedata: 'KMI' },
-  'williams': { provider: 'market', yahoo: 'WMB', twelvedata: 'WMB' },
+  williams: { provider: 'market', yahoo: 'WMB', twelvedata: 'WMB' },
   'duke-energy': { provider: 'market', yahoo: 'DUK', twelvedata: 'DUK' },
   'southern-company': { provider: 'market', yahoo: 'SO', twelvedata: 'SO' },
-  'aep': { provider: 'market', yahoo: 'AEP', twelvedata: 'AEP' },
-  'sempra': { provider: 'market', yahoo: 'SRE', twelvedata: 'SRE' },
+  aep: { provider: 'market', yahoo: 'AEP', twelvedata: 'AEP' },
+  sempra: { provider: 'market', yahoo: 'SRE', twelvedata: 'SRE' },
   'constellation-energy': { provider: 'market', yahoo: 'CEG', twelvedata: 'CEG' },
-  'vistra': { provider: 'market', yahoo: 'VST', twelvedata: 'VST' },
-  'commerzbank': { provider: 'market', yahoo: 'CBK.DE', twelvedata: 'CBK' },
-  'fresenius': { provider: 'market', yahoo: 'FRE.DE', twelvedata: 'FRE' },
+  vistra: { provider: 'market', yahoo: 'VST', twelvedata: 'VST' },
+  commerzbank: { provider: 'market', yahoo: 'CBK.DE', twelvedata: 'CBK' },
+  fresenius: { provider: 'market', yahoo: 'FRE.DE', twelvedata: 'FRE' },
   'fresenius-medical': { provider: 'market', yahoo: 'FME.DE', twelvedata: 'FME' },
-  'sartorius': { provider: 'market', yahoo: 'SRT3.DE', twelvedata: 'SRT3' },
-  'qiagen': { provider: 'market', yahoo: 'QIA.DE', twelvedata: 'QIA' },
-  'brenntag': { provider: 'market', yahoo: 'BNR.DE', twelvedata: 'BNR' },
-  'symrise': { provider: 'market', yahoo: 'SY1.DE', twelvedata: 'SY1' },
-  'covestro': { provider: 'market', yahoo: '1COV.DE', twelvedata: '1COV' },
-  'evonik': { provider: 'market', yahoo: 'EVK.DE', twelvedata: 'EVK' },
-  'lanxess': { provider: 'market', yahoo: 'LXS.DE', twelvedata: 'LXS' },
-  'zalando': { provider: 'market', yahoo: 'ZAL.DE', twelvedata: 'ZAL' },
-  'hellofresh': { provider: 'market', yahoo: 'HFG.DE', twelvedata: 'HFG' },
+  sartorius: { provider: 'market', yahoo: 'SRT3.DE', twelvedata: 'SRT3' },
+  qiagen: { provider: 'market', yahoo: 'QIA.DE', twelvedata: 'QIA' },
+  brenntag: { provider: 'market', yahoo: 'BNR.DE', twelvedata: 'BNR' },
+  symrise: { provider: 'market', yahoo: 'SY1.DE', twelvedata: 'SY1' },
+  covestro: { provider: 'market', yahoo: '1COV.DE', twelvedata: '1COV' },
+  evonik: { provider: 'market', yahoo: 'EVK.DE', twelvedata: 'EVK' },
+  lanxess: { provider: 'market', yahoo: 'LXS.DE', twelvedata: 'LXS' },
+  zalando: { provider: 'market', yahoo: 'ZAL.DE', twelvedata: 'ZAL' },
+  hellofresh: { provider: 'market', yahoo: 'HFG.DE', twelvedata: 'HFG' },
   'delivery-hero': { provider: 'market', yahoo: 'DHER.DE', twelvedata: 'DHER' },
-  'mtu': { provider: 'market', yahoo: 'MTX.DE', twelvedata: 'MTX' },
+  mtu: { provider: 'market', yahoo: 'MTX.DE', twelvedata: 'MTX' },
   'heidelberg-materials': { provider: 'market', yahoo: 'HEI.DE', twelvedata: 'HEI' },
   'knorr-bremse': { provider: 'market', yahoo: 'KBX.DE', twelvedata: 'KBX' },
-  'gea': { provider: 'market', yahoo: 'G1A.DE', twelvedata: 'G1A' },
-  'kion': { provider: 'market', yahoo: 'KGX.DE', twelvedata: 'KGX' },
+  gea: { provider: 'market', yahoo: 'G1A.DE', twelvedata: 'G1A' },
+  kion: { provider: 'market', yahoo: 'KGX.DE', twelvedata: 'KGX' },
   'daimler-truck': { provider: 'market', yahoo: 'DTG.DE', twelvedata: 'DTG' },
-  'continental': { provider: 'market', yahoo: 'CON.DE', twelvedata: 'CON' },
+  continental: { provider: 'market', yahoo: 'CON.DE', twelvedata: 'CON' },
   'zeiss-meditec': { provider: 'market', yahoo: 'AFX.DE', twelvedata: 'AFX' },
-  'puma': { provider: 'market', yahoo: 'PUM.DE', twelvedata: 'PUM' },
-  'scout24': { provider: 'market', yahoo: 'G24.DE', twelvedata: 'G24' },
-  'nemetschek': { provider: 'market', yahoo: 'NEM.DE', twelvedata: 'NEM' },
+  puma: { provider: 'market', yahoo: 'PUM.DE', twelvedata: 'PUM' },
+  scout24: { provider: 'market', yahoo: 'G24.DE', twelvedata: 'G24' },
+  nemetschek: { provider: 'market', yahoo: 'NEM.DE', twelvedata: 'NEM' },
   'united-internet': { provider: 'market', yahoo: 'UTDI.DE', twelvedata: 'UTDI' },
-  'talanx': { provider: 'market', yahoo: 'TLX.DE', twelvedata: 'TLX' },
+  talanx: { provider: 'market', yahoo: 'TLX.DE', twelvedata: 'TLX' },
   'porsche-se': { provider: 'market', yahoo: 'PAH3.DE', twelvedata: 'PAH3' },
-  'lufthansa': { provider: 'market', yahoo: 'LHA.DE', twelvedata: 'LHA' },
+  lufthansa: { provider: 'market', yahoo: 'LHA.DE', twelvedata: 'LHA' },
   'siemens-healthineers': { provider: 'market', yahoo: 'SHL.DE', twelvedata: 'SHL' },
-  'rwe': { provider: 'market', yahoo: 'RWE.DE', twelvedata: 'RWE' },
+  rwe: { provider: 'market', yahoo: 'RWE.DE', twelvedata: 'RWE' },
   'sma-solar': { provider: 'market', yahoo: 'S92.DE', twelvedata: 'S92' },
-  'nordex': { provider: 'market', yahoo: 'NDX1.DE', twelvedata: 'NDX1' },
-  'jungheinrich': { provider: 'market', yahoo: 'JUN3.DE', twelvedata: 'JUN3' },
-  'duerr': { provider: 'market', yahoo: 'DUE.DE', twelvedata: 'DUE' },
+  nordex: { provider: 'market', yahoo: 'NDX1.DE', twelvedata: 'NDX1' },
+  jungheinrich: { provider: 'market', yahoo: 'JUN3.DE', twelvedata: 'JUN3' },
+  duerr: { provider: 'market', yahoo: 'DUE.DE', twelvedata: 'DUE' },
   'hugo-boss': { provider: 'market', yahoo: 'BOSS.DE', twelvedata: 'BOSS' },
-  'fielmann': { provider: 'market', yahoo: 'FIE.DE', twelvedata: 'FIE' },
-  'rational': { provider: 'market', yahoo: 'RAA.DE', twelvedata: 'RAA' },
-  'krones': { provider: 'market', yahoo: 'KRN.DE', twelvedata: 'KRN' },
-  'sanofi': { provider: 'market', yahoo: 'SAN.PA', twelvedata: 'SAN' },
-  'axa': { provider: 'market', yahoo: 'CS.PA', twelvedata: 'CS' },
+  fielmann: { provider: 'market', yahoo: 'FIE.DE', twelvedata: 'FIE' },
+  rational: { provider: 'market', yahoo: 'RAA.DE', twelvedata: 'RAA' },
+  krones: { provider: 'market', yahoo: 'KRN.DE', twelvedata: 'KRN' },
+  sanofi: { provider: 'market', yahoo: 'SAN.PA', twelvedata: 'SAN' },
+  axa: { provider: 'market', yahoo: 'CS.PA', twelvedata: 'CS' },
   'bnp-paribas': { provider: 'market', yahoo: 'BNP.PA', twelvedata: 'BNP' },
   'societe-generale': { provider: 'market', yahoo: 'GLE.PA', twelvedata: 'GLE' },
   'credit-agricole': { provider: 'market', yahoo: 'ACA.PA', twelvedata: 'ACA' },
   'air-liquide': { provider: 'market', yahoo: 'AI.PA', twelvedata: 'AI' },
-  'vinci': { provider: 'market', yahoo: 'DG.PA', twelvedata: 'DG' },
-  'bouygues': { provider: 'market', yahoo: 'EN.PA', twelvedata: 'EN' },
+  vinci: { provider: 'market', yahoo: 'DG.PA', twelvedata: 'DG' },
+  bouygues: { provider: 'market', yahoo: 'EN.PA', twelvedata: 'EN' },
   'saint-gobain': { provider: 'market', yahoo: 'SGO.PA', twelvedata: 'SGO' },
-  'danone': { provider: 'market', yahoo: 'BN.PA', twelvedata: 'BN' },
+  danone: { provider: 'market', yahoo: 'BN.PA', twelvedata: 'BN' },
   'pernod-ricard': { provider: 'market', yahoo: 'RI.PA', twelvedata: 'RI' },
-  'kering': { provider: 'market', yahoo: 'KER.PA', twelvedata: 'KER' },
-  'essilorluxottica': { provider: 'market', yahoo: 'EL.PA', twelvedata: 'EL' },
-  'capgemini': { provider: 'market', yahoo: 'CAP.PA', twelvedata: 'CAP' },
+  kering: { provider: 'market', yahoo: 'KER.PA', twelvedata: 'KER' },
+  essilorluxottica: { provider: 'market', yahoo: 'EL.PA', twelvedata: 'EL' },
+  capgemini: { provider: 'market', yahoo: 'CAP.PA', twelvedata: 'CAP' },
   'dassault-systemes': { provider: 'market', yahoo: 'DSY.PA', twelvedata: 'DSY' },
-  'thales': { provider: 'market', yahoo: 'HO.PA', twelvedata: 'HO' },
-  'legrand': { provider: 'market', yahoo: 'LR.PA', twelvedata: 'LR' },
-  'michelin': { provider: 'market', yahoo: 'ML.PA', twelvedata: 'ML' },
-  'publicis': { provider: 'market', yahoo: 'PUB.PA', twelvedata: 'PUB' },
-  'orange': { provider: 'market', yahoo: 'ORA.PA', twelvedata: 'ORA' },
-  'engie': { provider: 'market', yahoo: 'ENGI.PA', twelvedata: 'ENGI' },
-  'veolia': { provider: 'market', yahoo: 'VIE.PA', twelvedata: 'VIE' },
-  'sodexo': { provider: 'market', yahoo: 'SW.PA', twelvedata: 'SW' },
-  'carrefour': { provider: 'market', yahoo: 'CA.PA', twelvedata: 'CA' },
-  'accor': { provider: 'market', yahoo: 'AC.PA', twelvedata: 'AC' },
-  'sage': { provider: 'market', yahoo: 'SGE.L', twelvedata: 'SGE' },
-  'bp': { provider: 'market', yahoo: 'BP.L', twelvedata: 'BP' },
-  'glaxosmithkline': { provider: 'market', yahoo: 'GSK.L', twelvedata: 'GSK' },
-  'diageo': { provider: 'market', yahoo: 'DGE.L', twelvedata: 'DGE' },
-  'reckitt': { provider: 'market', yahoo: 'RKT.L', twelvedata: 'RKT' },
+  thales: { provider: 'market', yahoo: 'HO.PA', twelvedata: 'HO' },
+  legrand: { provider: 'market', yahoo: 'LR.PA', twelvedata: 'LR' },
+  michelin: { provider: 'market', yahoo: 'ML.PA', twelvedata: 'ML' },
+  publicis: { provider: 'market', yahoo: 'PUB.PA', twelvedata: 'PUB' },
+  orange: { provider: 'market', yahoo: 'ORA.PA', twelvedata: 'ORA' },
+  engie: { provider: 'market', yahoo: 'ENGI.PA', twelvedata: 'ENGI' },
+  veolia: { provider: 'market', yahoo: 'VIE.PA', twelvedata: 'VIE' },
+  sodexo: { provider: 'market', yahoo: 'SW.PA', twelvedata: 'SW' },
+  carrefour: { provider: 'market', yahoo: 'CA.PA', twelvedata: 'CA' },
+  accor: { provider: 'market', yahoo: 'AC.PA', twelvedata: 'AC' },
+  sage: { provider: 'market', yahoo: 'SGE.L', twelvedata: 'SGE' },
+  bp: { provider: 'market', yahoo: 'BP.L', twelvedata: 'BP' },
+  glaxosmithkline: { provider: 'market', yahoo: 'GSK.L', twelvedata: 'GSK' },
+  diageo: { provider: 'market', yahoo: 'DGE.L', twelvedata: 'DGE' },
+  reckitt: { provider: 'market', yahoo: 'RKT.L', twelvedata: 'RKT' },
   'british-american-tobacco': { provider: 'market', yahoo: 'BATS.L', twelvedata: 'BATS' },
-  'barclays': { provider: 'market', yahoo: 'BARC.L', twelvedata: 'BARC' },
-  'lloyds': { provider: 'market', yahoo: 'LLOY.L', twelvedata: 'LLOY' },
-  'natwest': { provider: 'market', yahoo: 'NWG.L', twelvedata: 'NWG' },
+  barclays: { provider: 'market', yahoo: 'BARC.L', twelvedata: 'BARC' },
+  lloyds: { provider: 'market', yahoo: 'LLOY.L', twelvedata: 'LLOY' },
+  natwest: { provider: 'market', yahoo: 'NWG.L', twelvedata: 'NWG' },
   'prudential-plc': { provider: 'market', yahoo: 'PRU.L', twelvedata: 'PRU' },
   'legal-general': { provider: 'market', yahoo: 'LGEN.L', twelvedata: 'LGEN' },
-  'aviva': { provider: 'market', yahoo: 'AV.L', twelvedata: 'AV' },
+  aviva: { provider: 'market', yahoo: 'AV.L', twelvedata: 'AV' },
   'rio-tinto': { provider: 'market', yahoo: 'RIO.L', twelvedata: 'RIO' },
-  'glencore': { provider: 'market', yahoo: 'GLEN.L', twelvedata: 'GLEN' },
+  glencore: { provider: 'market', yahoo: 'GLEN.L', twelvedata: 'GLEN' },
   'anglo-american': { provider: 'market', yahoo: 'AAL.L', twelvedata: 'AAL' },
   'rolls-royce': { provider: 'market', yahoo: 'RR.L', twelvedata: 'RR' },
   'bae-systems': { provider: 'market', yahoo: 'BA.L', twelvedata: 'BA' },
   'national-grid': { provider: 'market', yahoo: 'NG.L', twelvedata: 'NG' },
-  'tesco': { provider: 'market', yahoo: 'TSCO.L', twelvedata: 'TSCO' },
-  'sainsbury': { provider: 'market', yahoo: 'SBRY.L', twelvedata: 'SBRY' },
-  'relx': { provider: 'market', yahoo: 'REL.L', twelvedata: 'REL' },
+  tesco: { provider: 'market', yahoo: 'TSCO.L', twelvedata: 'TSCO' },
+  sainsbury: { provider: 'market', yahoo: 'SBRY.L', twelvedata: 'SBRY' },
+  relx: { provider: 'market', yahoo: 'REL.L', twelvedata: 'REL' },
   'london-stock-exchange': { provider: 'market', yahoo: 'LSEG.L', twelvedata: 'LSEG' },
-  'vodafone': { provider: 'market', yahoo: 'VOD.L', twelvedata: 'VOD' },
+  vodafone: { provider: 'market', yahoo: 'VOD.L', twelvedata: 'VOD' },
   'compass-group': { provider: 'market', yahoo: 'CPG.L', twelvedata: 'CPG' },
-  'experian': { provider: 'market', yahoo: 'EXPN.L', twelvedata: 'EXPN' },
-  'sse': { provider: 'market', yahoo: 'SSE.L', twelvedata: 'SSE' },
+  experian: { provider: 'market', yahoo: 'EXPN.L', twelvedata: 'EXPN' },
+  sse: { provider: 'market', yahoo: 'SSE.L', twelvedata: 'SSE' },
   'zurich-insurance': { provider: 'market', yahoo: 'ZURN.SW', twelvedata: 'ZURN' },
   'swiss-re': { provider: 'market', yahoo: 'SREN.SW', twelvedata: 'SREN' },
-  'abb': { provider: 'market', yahoo: 'ABBN.SW', twelvedata: 'ABBN' },
-  'richemont': { provider: 'market', yahoo: 'CFR.SW', twelvedata: 'CFR' },
-  'lonza': { provider: 'market', yahoo: 'LONN.SW', twelvedata: 'LONN' },
-  'givaudan': { provider: 'market', yahoo: 'GIVN.SW', twelvedata: 'GIVN' },
-  'holcim': { provider: 'market', yahoo: 'HOLN.SW', twelvedata: 'HOLN' },
-  'sika': { provider: 'market', yahoo: 'SIKA.SW', twelvedata: 'SIKA' },
-  'geberit': { provider: 'market', yahoo: 'GEBN.SW', twelvedata: 'GEBN' },
-  'alcon': { provider: 'market', yahoo: 'ALC.SW', twelvedata: 'ALC' },
+  abb: { provider: 'market', yahoo: 'ABBN.SW', twelvedata: 'ABBN' },
+  richemont: { provider: 'market', yahoo: 'CFR.SW', twelvedata: 'CFR' },
+  lonza: { provider: 'market', yahoo: 'LONN.SW', twelvedata: 'LONN' },
+  givaudan: { provider: 'market', yahoo: 'GIVN.SW', twelvedata: 'GIVN' },
+  holcim: { provider: 'market', yahoo: 'HOLN.SW', twelvedata: 'HOLN' },
+  sika: { provider: 'market', yahoo: 'SIKA.SW', twelvedata: 'SIKA' },
+  geberit: { provider: 'market', yahoo: 'GEBN.SW', twelvedata: 'GEBN' },
+  alcon: { provider: 'market', yahoo: 'ALC.SW', twelvedata: 'ALC' },
   'partners-group': { provider: 'market', yahoo: 'PGHN.SW', twelvedata: 'PGHN' },
-  'swisscom': { provider: 'market', yahoo: 'SCMN.SW', twelvedata: 'SCMN' },
+  swisscom: { provider: 'market', yahoo: 'SCMN.SW', twelvedata: 'SCMN' },
   'kuehne-nagel': { provider: 'market', yahoo: 'KNIN.SW', twelvedata: 'KNIN' },
-  'ing': { provider: 'market', yahoo: 'INGA.AS', twelvedata: 'INGA' },
+  ing: { provider: 'market', yahoo: 'INGA.AS', twelvedata: 'INGA' },
   'ahold-delhaize': { provider: 'market', yahoo: 'AD.AS', twelvedata: 'AD' },
-  'heineken': { provider: 'market', yahoo: 'HEIA.AS', twelvedata: 'HEIA' },
-  'philips': { provider: 'market', yahoo: 'PHIA.AS', twelvedata: 'PHIA' },
+  heineken: { provider: 'market', yahoo: 'HEIA.AS', twelvedata: 'HEIA' },
+  philips: { provider: 'market', yahoo: 'PHIA.AS', twelvedata: 'PHIA' },
   'wolters-kluwer': { provider: 'market', yahoo: 'WKL.AS', twelvedata: 'WKL' },
-  'adyen': { provider: 'market', yahoo: 'ADYEN.AS', twelvedata: 'ADYEN' },
-  'prosus': { provider: 'market', yahoo: 'PRX.AS', twelvedata: 'PRX' },
+  adyen: { provider: 'market', yahoo: 'ADYEN.AS', twelvedata: 'ADYEN' },
+  prosus: { provider: 'market', yahoo: 'PRX.AS', twelvedata: 'PRX' },
   'asm-international': { provider: 'market', yahoo: 'ASM.AS', twelvedata: 'ASM' },
   'be-semiconductor': { provider: 'market', yahoo: 'BESI.AS', twelvedata: 'BESI' },
-  'akzonobel': { provider: 'market', yahoo: 'AKZA.AS', twelvedata: 'AKZA' },
-  'randstad': { provider: 'market', yahoo: 'RAND.AS', twelvedata: 'RAND' },
-  'inditex': { provider: 'market', yahoo: 'ITX.MC', twelvedata: 'ITX' },
-  'bbva': { provider: 'market', yahoo: 'BBVA.MC', twelvedata: 'BBVA' },
-  'caixabank': { provider: 'market', yahoo: 'CABK.MC', twelvedata: 'CABK' },
-  'telefonica': { provider: 'market', yahoo: 'TEF.MC', twelvedata: 'TEF' },
-  'repsol': { provider: 'market', yahoo: 'REP.MC', twelvedata: 'REP' },
-  'ferrovial': { provider: 'market', yahoo: 'FER.MC', twelvedata: 'FER' },
-  'amadeus': { provider: 'market', yahoo: 'AMS.MC', twelvedata: 'AMS' },
-  'aena': { provider: 'market', yahoo: 'AENA.MC', twelvedata: 'AENA' },
-  'naturgy': { provider: 'market', yahoo: 'NTGY.MC', twelvedata: 'NTGY' },
-  'enel': { provider: 'market', yahoo: 'ENEL.MI', twelvedata: 'ENEL' },
-  'eni': { provider: 'market', yahoo: 'ENI.MI', twelvedata: 'ENI' },
+  akzonobel: { provider: 'market', yahoo: 'AKZA.AS', twelvedata: 'AKZA' },
+  randstad: { provider: 'market', yahoo: 'RAND.AS', twelvedata: 'RAND' },
+  inditex: { provider: 'market', yahoo: 'ITX.MC', twelvedata: 'ITX' },
+  bbva: { provider: 'market', yahoo: 'BBVA.MC', twelvedata: 'BBVA' },
+  caixabank: { provider: 'market', yahoo: 'CABK.MC', twelvedata: 'CABK' },
+  telefonica: { provider: 'market', yahoo: 'TEF.MC', twelvedata: 'TEF' },
+  repsol: { provider: 'market', yahoo: 'REP.MC', twelvedata: 'REP' },
+  ferrovial: { provider: 'market', yahoo: 'FER.MC', twelvedata: 'FER' },
+  amadeus: { provider: 'market', yahoo: 'AMS.MC', twelvedata: 'AMS' },
+  aena: { provider: 'market', yahoo: 'AENA.MC', twelvedata: 'AENA' },
+  naturgy: { provider: 'market', yahoo: 'NTGY.MC', twelvedata: 'NTGY' },
+  enel: { provider: 'market', yahoo: 'ENEL.MI', twelvedata: 'ENEL' },
+  eni: { provider: 'market', yahoo: 'ENI.MI', twelvedata: 'ENI' },
   'intesa-sanpaolo': { provider: 'market', yahoo: 'ISP.MI', twelvedata: 'ISP' },
-  'unicredit': { provider: 'market', yahoo: 'UCG.MI', twelvedata: 'UCG' },
-  'generali': { provider: 'market', yahoo: 'G.MI', twelvedata: 'G' },
-  'prysmian': { provider: 'market', yahoo: 'PRY.MI', twelvedata: 'PRY' },
-  'moncler': { provider: 'market', yahoo: 'MONC.MI', twelvedata: 'MONC' },
-  'leonardo': { provider: 'market', yahoo: 'LDO.MI', twelvedata: 'LDO' },
-  'terna': { provider: 'market', yahoo: 'TRN.MI', twelvedata: 'TRN' },
-  'stmicroelectronics': { provider: 'market', yahoo: 'STMPA.PA', twelvedata: 'STMPA' },
+  unicredit: { provider: 'market', yahoo: 'UCG.MI', twelvedata: 'UCG' },
+  generali: { provider: 'market', yahoo: 'G.MI', twelvedata: 'G' },
+  prysmian: { provider: 'market', yahoo: 'PRY.MI', twelvedata: 'PRY' },
+  moncler: { provider: 'market', yahoo: 'MONC.MI', twelvedata: 'MONC' },
+  leonardo: { provider: 'market', yahoo: 'LDO.MI', twelvedata: 'LDO' },
+  terna: { provider: 'market', yahoo: 'TRN.MI', twelvedata: 'TRN' },
+  stmicroelectronics: { provider: 'market', yahoo: 'STMPA.PA', twelvedata: 'STMPA' },
   'novo-nordisk-b': { provider: 'market', yahoo: 'NOVO-B.CO', twelvedata: 'NOVO-B' },
-  'dsv': { provider: 'market', yahoo: 'DSV.CO', twelvedata: 'DSV' },
-  'orsted': { provider: 'market', yahoo: 'ORSTED.CO', twelvedata: 'ORSTED' },
-  'carlsberg': { provider: 'market', yahoo: 'CARL-B.CO', twelvedata: 'CARL-B' },
-  'vestas': { provider: 'market', yahoo: 'VWS.CO', twelvedata: 'VWS' },
-  'coloplast': { provider: 'market', yahoo: 'COLO-B.CO', twelvedata: 'COLO-B' },
+  dsv: { provider: 'market', yahoo: 'DSV.CO', twelvedata: 'DSV' },
+  orsted: { provider: 'market', yahoo: 'ORSTED.CO', twelvedata: 'ORSTED' },
+  carlsberg: { provider: 'market', yahoo: 'CARL-B.CO', twelvedata: 'CARL-B' },
+  vestas: { provider: 'market', yahoo: 'VWS.CO', twelvedata: 'VWS' },
+  coloplast: { provider: 'market', yahoo: 'COLO-B.CO', twelvedata: 'COLO-B' },
   'atlas-copco': { provider: 'market', yahoo: 'ATCO-A.ST', twelvedata: 'ATCO-A' },
   'volvo-b': { provider: 'market', yahoo: 'VOLV-B.ST', twelvedata: 'VOLV-B' },
-  'ericsson': { provider: 'market', yahoo: 'ERIC-B.ST', twelvedata: 'ERIC-B' },
-  'sandvik': { provider: 'market', yahoo: 'SAND.ST', twelvedata: 'SAND' },
+  ericsson: { provider: 'market', yahoo: 'ERIC-B.ST', twelvedata: 'ERIC-B' },
+  sandvik: { provider: 'market', yahoo: 'SAND.ST', twelvedata: 'SAND' },
   'investor-b': { provider: 'market', yahoo: 'INVE-B.ST', twelvedata: 'INVE-B' },
-  'hexagon': { provider: 'market', yahoo: 'HEXA-B.ST', twelvedata: 'HEXA-B' },
+  hexagon: { provider: 'market', yahoo: 'HEXA-B.ST', twelvedata: 'HEXA-B' },
   'assa-abloy': { provider: 'market', yahoo: 'ASSA-B.ST', twelvedata: 'ASSA-B' },
-  'epiroc': { provider: 'market', yahoo: 'EPI-A.ST', twelvedata: 'EPI-A' },
-  'seb': { provider: 'market', yahoo: 'SEB-A.ST', twelvedata: 'SEB-A' },
-  'swedbank': { provider: 'market', yahoo: 'SWED-A.ST', twelvedata: 'SWED-A' },
-  'handelsbanken': { provider: 'market', yahoo: 'SHB-A.ST', twelvedata: 'SHB-A' },
-  'equinor': { provider: 'market', yahoo: 'EQNR.OL', twelvedata: 'EQNR' },
-  'dnb': { provider: 'market', yahoo: 'DNB.OL', twelvedata: 'DNB' },
-  'telenor': { provider: 'market', yahoo: 'TEL.OL', twelvedata: 'TEL' },
-  'nordea': { provider: 'market', yahoo: 'NDA-FI.HE', twelvedata: 'NDA-FI' },
-  'kone': { provider: 'market', yahoo: 'KNEBV.HE', twelvedata: 'KNEBV' },
-  'neste': { provider: 'market', yahoo: 'NESTE.HE', twelvedata: 'NESTE' },
-  'upm': { provider: 'market', yahoo: 'UPM.HE', twelvedata: 'UPM' },
-  'sampo': { provider: 'market', yahoo: 'SAMPO.HE', twelvedata: 'SAMPO' },
+  epiroc: { provider: 'market', yahoo: 'EPI-A.ST', twelvedata: 'EPI-A' },
+  seb: { provider: 'market', yahoo: 'SEB-A.ST', twelvedata: 'SEB-A' },
+  swedbank: { provider: 'market', yahoo: 'SWED-A.ST', twelvedata: 'SWED-A' },
+  handelsbanken: { provider: 'market', yahoo: 'SHB-A.ST', twelvedata: 'SHB-A' },
+  equinor: { provider: 'market', yahoo: 'EQNR.OL', twelvedata: 'EQNR' },
+  dnb: { provider: 'market', yahoo: 'DNB.OL', twelvedata: 'DNB' },
+  telenor: { provider: 'market', yahoo: 'TEL.OL', twelvedata: 'TEL' },
+  nordea: { provider: 'market', yahoo: 'NDA-FI.HE', twelvedata: 'NDA-FI' },
+  kone: { provider: 'market', yahoo: 'KNEBV.HE', twelvedata: 'KNEBV' },
+  neste: { provider: 'market', yahoo: 'NESTE.HE', twelvedata: 'NESTE' },
+  upm: { provider: 'market', yahoo: 'UPM.HE', twelvedata: 'UPM' },
+  sampo: { provider: 'market', yahoo: 'SAMPO.HE', twelvedata: 'SAMPO' },
   'anheuser-busch': { provider: 'market', yahoo: 'ABI.BR', twelvedata: 'ABI' },
-  'kbc': { provider: 'market', yahoo: 'KBC.BR', twelvedata: 'KBC' },
-  'umicore': { provider: 'market', yahoo: 'UMI.BR', twelvedata: 'UMI' },
-  'solvay': { provider: 'market', yahoo: 'SOLB.BR', twelvedata: 'SOLB' },
+  kbc: { provider: 'market', yahoo: 'KBC.BR', twelvedata: 'KBC' },
+  umicore: { provider: 'market', yahoo: 'UMI.BR', twelvedata: 'UMI' },
+  solvay: { provider: 'market', yahoo: 'SOLB.BR', twelvedata: 'SOLB' },
   'erste-group': { provider: 'market', yahoo: 'EBS.VI', twelvedata: 'EBS' },
-  'omv': { provider: 'market', yahoo: 'OMV.VI', twelvedata: 'OMV' },
-  'verbund': { provider: 'market', yahoo: 'VER.VI', twelvedata: 'VER' },
-  'voestalpine': { provider: 'market', yahoo: 'VOE.VI', twelvedata: 'VOE' },
-  'crh': { provider: 'market', yahoo: 'CRH', twelvedata: 'CRH' },
-  'ryanair': { provider: 'market', yahoo: 'RYAAY', twelvedata: 'RYAAY' },
-  'flutter': { provider: 'market', yahoo: 'FLUT', twelvedata: 'FLUT' },
+  omv: { provider: 'market', yahoo: 'OMV.VI', twelvedata: 'OMV' },
+  verbund: { provider: 'market', yahoo: 'VER.VI', twelvedata: 'VER' },
+  voestalpine: { provider: 'market', yahoo: 'VOE.VI', twelvedata: 'VOE' },
+  crh: { provider: 'market', yahoo: 'CRH', twelvedata: 'CRH' },
+  ryanair: { provider: 'market', yahoo: 'RYAAY', twelvedata: 'RYAAY' },
+  flutter: { provider: 'market', yahoo: 'FLUT', twelvedata: 'FLUT' },
   'kerry-group': { provider: 'market', yahoo: 'KYGA.IR', twelvedata: 'KYGA' },
-  'edp': { provider: 'market', yahoo: 'EDP.LS', twelvedata: 'EDP' },
-  'galp': { provider: 'market', yahoo: 'GALP.LS', twelvedata: 'GALP' },
-  'pko': { provider: 'market', yahoo: 'PKO.WA', twelvedata: 'PKO' },
+  edp: { provider: 'market', yahoo: 'EDP.LS', twelvedata: 'EDP' },
+  galp: { provider: 'market', yahoo: 'GALP.LS', twelvedata: 'GALP' },
+  pko: { provider: 'market', yahoo: 'PKO.WA', twelvedata: 'PKO' },
   'pkn-orlen': { provider: 'market', yahoo: 'PKN.WA', twelvedata: 'PKN' },
-  'honda': { provider: 'market', yahoo: '7267.T', twelvedata: '7267' },
-  'denso': { provider: 'market', yahoo: '6902.T', twelvedata: '6902' },
-  'bridgestone': { provider: 'market', yahoo: '5108.T', twelvedata: '5108' },
-  'nintendo': { provider: 'market', yahoo: '7974.T', twelvedata: '7974' },
-  'keyence': { provider: 'market', yahoo: '6861.T', twelvedata: '6861' },
-  'fanuc': { provider: 'market', yahoo: '6954.T', twelvedata: '6954' },
-  'komatsu': { provider: 'market', yahoo: '6301.T', twelvedata: '6301' },
-  'daikin': { provider: 'market', yahoo: '6367.T', twelvedata: '6367' },
-  'nidec': { provider: 'market', yahoo: '6594.T', twelvedata: '6594' },
-  'hitachi': { provider: 'market', yahoo: '6501.T', twelvedata: '6501' },
+  honda: { provider: 'market', yahoo: '7267.T', twelvedata: '7267' },
+  denso: { provider: 'market', yahoo: '6902.T', twelvedata: '6902' },
+  bridgestone: { provider: 'market', yahoo: '5108.T', twelvedata: '5108' },
+  nintendo: { provider: 'market', yahoo: '7974.T', twelvedata: '7974' },
+  keyence: { provider: 'market', yahoo: '6861.T', twelvedata: '6861' },
+  fanuc: { provider: 'market', yahoo: '6954.T', twelvedata: '6954' },
+  komatsu: { provider: 'market', yahoo: '6301.T', twelvedata: '6301' },
+  daikin: { provider: 'market', yahoo: '6367.T', twelvedata: '6367' },
+  nidec: { provider: 'market', yahoo: '6594.T', twelvedata: '6594' },
+  hitachi: { provider: 'market', yahoo: '6501.T', twelvedata: '6501' },
   'tokyo-electron': { provider: 'market', yahoo: '8035.T', twelvedata: '8035' },
-  'advantest': { provider: 'market', yahoo: '6857.T', twelvedata: '6857' },
+  advantest: { provider: 'market', yahoo: '6857.T', twelvedata: '6857' },
   'shin-etsu': { provider: 'market', yahoo: '4063.T', twelvedata: '4063' },
-  'murata': { provider: 'market', yahoo: '6981.T', twelvedata: '6981' },
-  'canon': { provider: 'market', yahoo: '7751.T', twelvedata: '7751' },
-  'panasonic': { provider: 'market', yahoo: '6752.T', twelvedata: '6752' },
+  murata: { provider: 'market', yahoo: '6981.T', twelvedata: '6981' },
+  canon: { provider: 'market', yahoo: '7751.T', twelvedata: '7751' },
+  panasonic: { provider: 'market', yahoo: '6752.T', twelvedata: '6752' },
   'mitsubishi-ufj': { provider: 'market', yahoo: '8306.T', twelvedata: '8306' },
   'sumitomo-mitsui': { provider: 'market', yahoo: '8316.T', twelvedata: '8316' },
-  'mizuho': { provider: 'market', yahoo: '8411.T', twelvedata: '8411' },
+  mizuho: { provider: 'market', yahoo: '8411.T', twelvedata: '8411' },
   'tokio-marine': { provider: 'market', yahoo: '8766.T', twelvedata: '8766' },
   'mitsubishi-corp': { provider: 'market', yahoo: '8058.T', twelvedata: '8058' },
   'mitsui-co': { provider: 'market', yahoo: '8031.T', twelvedata: '8031' },
-  'itochu': { provider: 'market', yahoo: '8001.T', twelvedata: '8001' },
+  itochu: { provider: 'market', yahoo: '8001.T', twelvedata: '8001' },
   'fast-retailing': { provider: 'market', yahoo: '9983.T', twelvedata: '9983' },
   'seven-i': { provider: 'market', yahoo: '3382.T', twelvedata: '3382' },
-  'takeda': { provider: 'market', yahoo: '4502.T', twelvedata: '4502' },
+  takeda: { provider: 'market', yahoo: '4502.T', twelvedata: '4502' },
   'daiichi-sankyo': { provider: 'market', yahoo: '4568.T', twelvedata: '4568' },
-  'terumo': { provider: 'market', yahoo: '4543.T', twelvedata: '4543' },
-  'olympus': { provider: 'market', yahoo: '7733.T', twelvedata: '7733' },
-  'ntt': { provider: 'market', yahoo: '9432.T', twelvedata: '9432' },
-  'kddi': { provider: 'market', yahoo: '9433.T', twelvedata: '9433' },
+  terumo: { provider: 'market', yahoo: '4543.T', twelvedata: '4543' },
+  olympus: { provider: 'market', yahoo: '7733.T', twelvedata: '7733' },
+  ntt: { provider: 'market', yahoo: '9432.T', twelvedata: '9432' },
+  kddi: { provider: 'market', yahoo: '9433.T', twelvedata: '9433' },
   'softbank-group': { provider: 'market', yahoo: '9984.T', twelvedata: '9984' },
-  'recruit': { provider: 'market', yahoo: '6098.T', twelvedata: '6098' },
-  'ajinomoto': { provider: 'market', yahoo: '2802.T', twelvedata: '2802' },
+  recruit: { provider: 'market', yahoo: '6098.T', twelvedata: '6098' },
+  ajinomoto: { provider: 'market', yahoo: '2802.T', twelvedata: '2802' },
   'asahi-group': { provider: 'market', yahoo: '2502.T', twelvedata: '2502' },
-  'shimano': { provider: 'market', yahoo: '7309.T', twelvedata: '7309' },
+  shimano: { provider: 'market', yahoo: '7309.T', twelvedata: '7309' },
   'hyundai-mobis': { provider: 'market', yahoo: '012330.KS', twelvedata: '012330' },
   'sk-hynix': { provider: 'market', yahoo: '000660.KS', twelvedata: '000660' },
   'samsung-sdi': { provider: 'market', yahoo: '006400.KS', twelvedata: '006400' },
   'lg-chem': { provider: 'market', yahoo: '051910.KS', twelvedata: '051910' },
   'hyundai-motor': { provider: 'market', yahoo: '005380.KS', twelvedata: '005380' },
-  'kia': { provider: 'market', yahoo: '000270.KS', twelvedata: '000270' },
-  'posco': { provider: 'market', yahoo: '005490.KS', twelvedata: '005490' },
-  'naver': { provider: 'market', yahoo: '035420.KS', twelvedata: '035420' },
-  'kakao': { provider: 'market', yahoo: '035720.KS', twelvedata: '035720' },
-  'celltrion': { provider: 'market', yahoo: '068270.KS', twelvedata: '068270' },
-  'shinhan': { provider: 'market', yahoo: '055550.KS', twelvedata: '055550' },
+  kia: { provider: 'market', yahoo: '000270.KS', twelvedata: '000270' },
+  posco: { provider: 'market', yahoo: '005490.KS', twelvedata: '005490' },
+  naver: { provider: 'market', yahoo: '035420.KS', twelvedata: '035420' },
+  kakao: { provider: 'market', yahoo: '035720.KS', twelvedata: '035720' },
+  celltrion: { provider: 'market', yahoo: '068270.KS', twelvedata: '068270' },
+  shinhan: { provider: 'market', yahoo: '055550.KS', twelvedata: '055550' },
   'kb-financial': { provider: 'market', yahoo: '105560.KS', twelvedata: '105560' },
   'tsmc-taipeh': { provider: 'market', yahoo: '2330.TW', twelvedata: '2330' },
   'hon-hai': { provider: 'market', yahoo: '2317.TW', twelvedata: '2317' },
-  'mediatek': { provider: 'market', yahoo: '2454.TW', twelvedata: '2454' },
+  mediatek: { provider: 'market', yahoo: '2454.TW', twelvedata: '2454' },
   'delta-electronics': { provider: 'market', yahoo: '2308.TW', twelvedata: '2308' },
-  'quanta': { provider: 'market', yahoo: '2382.TW', twelvedata: '2382' },
+  quanta: { provider: 'market', yahoo: '2382.TW', twelvedata: '2382' },
   'united-micro': { provider: 'market', yahoo: '2303.TW', twelvedata: '2303' },
-  'asustek': { provider: 'market', yahoo: '2357.TW', twelvedata: '2357' },
+  asustek: { provider: 'market', yahoo: '2357.TW', twelvedata: '2357' },
   'cathay-financial': { provider: 'market', yahoo: '2882.TW', twelvedata: '2882' },
   'alibaba-hk': { provider: 'market', yahoo: '9988.HK', twelvedata: '9988' },
-  'meituan': { provider: 'market', yahoo: '3690.HK', twelvedata: '3690' },
+  meituan: { provider: 'market', yahoo: '3690.HK', twelvedata: '3690' },
   'jd-hk': { provider: 'market', yahoo: '9618.HK', twelvedata: '9618' },
-  'netease': { provider: 'market', yahoo: '9999.HK', twelvedata: '9999' },
-  'xiaomi': { provider: 'market', yahoo: '1810.HK', twelvedata: '1810' },
-  'byd': { provider: 'market', yahoo: '1211.HK', twelvedata: '1211' },
+  netease: { provider: 'market', yahoo: '9999.HK', twelvedata: '9999' },
+  xiaomi: { provider: 'market', yahoo: '1810.HK', twelvedata: '1810' },
+  byd: { provider: 'market', yahoo: '1211.HK', twelvedata: '1211' },
   'li-auto': { provider: 'market', yahoo: '2015.HK', twelvedata: '2015' },
   'china-mobile': { provider: 'market', yahoo: '0941.HK', twelvedata: '0941' },
-  'icbc': { provider: 'market', yahoo: '1398.HK', twelvedata: '1398' },
+  icbc: { provider: 'market', yahoo: '1398.HK', twelvedata: '1398' },
   'china-construction-bank': { provider: 'market', yahoo: '0939.HK', twelvedata: '0939' },
   'ping-an': { provider: 'market', yahoo: '2318.HK', twelvedata: '2318' },
   'china-life': { provider: 'market', yahoo: '2628.HK', twelvedata: '2628' },
-  'petrochina': { provider: 'market', yahoo: '0857.HK', twelvedata: '0857' },
-  'sinopec': { provider: 'market', yahoo: '0386.HK', twelvedata: '0386' },
-  'cnooc': { provider: 'market', yahoo: '0883.HK', twelvedata: '0883' },
-  'anta': { provider: 'market', yahoo: '2020.HK', twelvedata: '2020' },
-  'aia': { provider: 'market', yahoo: '1299.HK', twelvedata: '1299' },
-  'hkex': { provider: 'market', yahoo: '0388.HK', twelvedata: '0388' },
+  petrochina: { provider: 'market', yahoo: '0857.HK', twelvedata: '0857' },
+  sinopec: { provider: 'market', yahoo: '0386.HK', twelvedata: '0386' },
+  cnooc: { provider: 'market', yahoo: '0883.HK', twelvedata: '0883' },
+  anta: { provider: 'market', yahoo: '2020.HK', twelvedata: '2020' },
+  aia: { provider: 'market', yahoo: '1299.HK', twelvedata: '1299' },
+  hkex: { provider: 'market', yahoo: '0388.HK', twelvedata: '0388' },
   'ck-hutchison': { provider: 'market', yahoo: '0001.HK', twelvedata: '0001' },
-  'reliance': { provider: 'market', yahoo: 'RELIANCE.NS', twelvedata: 'RELIANCE' },
-  'tcs': { provider: 'market', yahoo: 'TCS.NS', twelvedata: 'TCS' },
-  'infosys': { provider: 'market', yahoo: 'INFY.NS', twelvedata: 'INFY' },
-  'wipro': { provider: 'market', yahoo: 'WIPRO.NS', twelvedata: 'WIPRO' },
+  reliance: { provider: 'market', yahoo: 'RELIANCE.NS', twelvedata: 'RELIANCE' },
+  tcs: { provider: 'market', yahoo: 'TCS.NS', twelvedata: 'TCS' },
+  infosys: { provider: 'market', yahoo: 'INFY.NS', twelvedata: 'INFY' },
+  wipro: { provider: 'market', yahoo: 'WIPRO.NS', twelvedata: 'WIPRO' },
   'hdfc-bank': { provider: 'market', yahoo: 'HDFCBANK.NS', twelvedata: 'HDFCBANK' },
   'icici-bank': { provider: 'market', yahoo: 'ICICIBANK.NS', twelvedata: 'ICICIBANK' },
   'state-bank-india': { provider: 'market', yahoo: 'SBIN.NS', twelvedata: 'SBIN' },
-  'bharti-airtel': { provider: 'market', yahoo: 'BHARTIARTL.NS', twelvedata: 'BHARTIARTL' },
-  'itc': { provider: 'market', yahoo: 'ITC.NS', twelvedata: 'ITC' },
-  'hindustan-unilever': { provider: 'market', yahoo: 'HINDUNILVR.NS', twelvedata: 'HINDUNILVR' },
+  'bharti-airtel': {
+    provider: 'market',
+    yahoo: 'BHARTIARTL.NS',
+    twelvedata: 'BHARTIARTL',
+  },
+  itc: { provider: 'market', yahoo: 'ITC.NS', twelvedata: 'ITC' },
+  'hindustan-unilever': {
+    provider: 'market',
+    yahoo: 'HINDUNILVR.NS',
+    twelvedata: 'HINDUNILVR',
+  },
   'larsen-toubro': { provider: 'market', yahoo: 'LT.NS', twelvedata: 'LT' },
-  'maruti': { provider: 'market', yahoo: 'MARUTI.NS', twelvedata: 'MARUTI' },
+  maruti: { provider: 'market', yahoo: 'MARUTI.NS', twelvedata: 'MARUTI' },
   'tata-motors': { provider: 'market', yahoo: 'TATAMOTORS.NS', twelvedata: 'TATAMOTORS' },
-  'asian-paints': { provider: 'market', yahoo: 'ASIANPAINT.NS', twelvedata: 'ASIANPAINT' },
+  'asian-paints': {
+    provider: 'market',
+    yahoo: 'ASIANPAINT.NS',
+    twelvedata: 'ASIANPAINT',
+  },
   'sun-pharma': { provider: 'market', yahoo: 'SUNPHARMA.NS', twelvedata: 'SUNPHARMA' },
-  'adani-enterprises': { provider: 'market', yahoo: 'ADANIENT.NS', twelvedata: 'ADANIENT' },
-  'bhp': { provider: 'market', yahoo: 'BHP.AX', twelvedata: 'BHP' },
+  'adani-enterprises': {
+    provider: 'market',
+    yahoo: 'ADANIENT.NS',
+    twelvedata: 'ADANIENT',
+  },
+  bhp: { provider: 'market', yahoo: 'BHP.AX', twelvedata: 'BHP' },
   'rio-tinto-sydney': { provider: 'market', yahoo: 'RIO.AX', twelvedata: 'RIO' },
-  'fortescue': { provider: 'market', yahoo: 'FMG.AX', twelvedata: 'FMG' },
-  'csl': { provider: 'market', yahoo: 'CSL.AX', twelvedata: 'CSL' },
+  fortescue: { provider: 'market', yahoo: 'FMG.AX', twelvedata: 'FMG' },
+  csl: { provider: 'market', yahoo: 'CSL.AX', twelvedata: 'CSL' },
   'commonwealth-bank': { provider: 'market', yahoo: 'CBA.AX', twelvedata: 'CBA' },
-  'westpac': { provider: 'market', yahoo: 'WBC.AX', twelvedata: 'WBC' },
+  westpac: { provider: 'market', yahoo: 'WBC.AX', twelvedata: 'WBC' },
   'anz-group': { provider: 'market', yahoo: 'ANZ.AX', twelvedata: 'ANZ' },
-  'nab': { provider: 'market', yahoo: 'NAB.AX', twelvedata: 'NAB' },
-  'macquarie': { provider: 'market', yahoo: 'MQG.AX', twelvedata: 'MQG' },
-  'wesfarmers': { provider: 'market', yahoo: 'WES.AX', twelvedata: 'WES' },
+  nab: { provider: 'market', yahoo: 'NAB.AX', twelvedata: 'NAB' },
+  macquarie: { provider: 'market', yahoo: 'MQG.AX', twelvedata: 'MQG' },
+  wesfarmers: { provider: 'market', yahoo: 'WES.AX', twelvedata: 'WES' },
   'woolworths-group': { provider: 'market', yahoo: 'WOW.AX', twelvedata: 'WOW' },
-  'telstra': { provider: 'market', yahoo: 'TLS.AX', twelvedata: 'TLS' },
-  'goodman': { provider: 'market', yahoo: 'GMG.AX', twelvedata: 'GMG' },
-  'rbc': { provider: 'market', yahoo: 'RY.TO', twelvedata: 'RY' },
+  telstra: { provider: 'market', yahoo: 'TLS.AX', twelvedata: 'TLS' },
+  goodman: { provider: 'market', yahoo: 'GMG.AX', twelvedata: 'GMG' },
+  rbc: { provider: 'market', yahoo: 'RY.TO', twelvedata: 'RY' },
   'td-bank': { provider: 'market', yahoo: 'TD.TO', twelvedata: 'TD' },
   'bank-of-nova-scotia': { provider: 'market', yahoo: 'BNS.TO', twelvedata: 'BNS' },
-  'bmo': { provider: 'market', yahoo: 'BMO.TO', twelvedata: 'BMO' },
-  'enbridge': { provider: 'market', yahoo: 'ENB.TO', twelvedata: 'ENB' },
-  'suncor': { provider: 'market', yahoo: 'SU.TO', twelvedata: 'SU' },
+  bmo: { provider: 'market', yahoo: 'BMO.TO', twelvedata: 'BMO' },
+  enbridge: { provider: 'market', yahoo: 'ENB.TO', twelvedata: 'ENB' },
+  suncor: { provider: 'market', yahoo: 'SU.TO', twelvedata: 'SU' },
   'canadian-natural': { provider: 'market', yahoo: 'CNQ.TO', twelvedata: 'CNQ' },
   'canadian-national': { provider: 'market', yahoo: 'CNR.TO', twelvedata: 'CNR' },
   'canadian-pacific': { provider: 'market', yahoo: 'CP.TO', twelvedata: 'CP' },
-  'brookfield': { provider: 'market', yahoo: 'BN.TO', twelvedata: 'BN' },
+  brookfield: { provider: 'market', yahoo: 'BN.TO', twelvedata: 'BN' },
   'constellation-software': { provider: 'market', yahoo: 'CSU.TO', twelvedata: 'CSU' },
   'shopify-toronto': { provider: 'market', yahoo: 'SHOP.TO', twelvedata: 'SHOP' },
-  'barrick': { provider: 'market', yahoo: 'ABX.TO', twelvedata: 'ABX' },
+  barrick: { provider: 'market', yahoo: 'ABX.TO', twelvedata: 'ABX' },
   'agnico-eagle': { provider: 'market', yahoo: 'AEM.TO', twelvedata: 'AEM' },
-  'nutrien': { provider: 'market', yahoo: 'NTR.TO', twelvedata: 'NTR' },
+  nutrien: { provider: 'market', yahoo: 'NTR.TO', twelvedata: 'NTR' },
   'thomson-reuters': { provider: 'market', yahoo: 'TRI.TO', twelvedata: 'TRI' },
-  'petrobras': { provider: 'market', yahoo: 'PETR4.SA', twelvedata: 'PETR4' },
-  'vale': { provider: 'market', yahoo: 'VALE3.SA', twelvedata: 'VALE3' },
-  'itau': { provider: 'market', yahoo: 'ITUB4.SA', twelvedata: 'ITUB4' },
-  'bradesco': { provider: 'market', yahoo: 'BBDC4.SA', twelvedata: 'BBDC4' },
+  petrobras: { provider: 'market', yahoo: 'PETR4.SA', twelvedata: 'PETR4' },
+  vale: { provider: 'market', yahoo: 'VALE3.SA', twelvedata: 'VALE3' },
+  itau: { provider: 'market', yahoo: 'ITUB4.SA', twelvedata: 'ITUB4' },
+  bradesco: { provider: 'market', yahoo: 'BBDC4.SA', twelvedata: 'BBDC4' },
   'banco-do-brasil': { provider: 'market', yahoo: 'BBAS3.SA', twelvedata: 'BBAS3' },
-  'b3': { provider: 'market', yahoo: 'B3SA3.SA', twelvedata: 'B3SA3' },
-  'ambev': { provider: 'market', yahoo: 'ABEV3.SA', twelvedata: 'ABEV3' },
-  'jbs': { provider: 'market', yahoo: 'JBSS3.SA', twelvedata: 'JBSS3' },
-  'weg': { provider: 'market', yahoo: 'WEGE3.SA', twelvedata: 'WEGE3' },
-  'suzano': { provider: 'market', yahoo: 'SUZB3.SA', twelvedata: 'SUZB3' },
+  b3: { provider: 'market', yahoo: 'B3SA3.SA', twelvedata: 'B3SA3' },
+  ambev: { provider: 'market', yahoo: 'ABEV3.SA', twelvedata: 'ABEV3' },
+  jbs: { provider: 'market', yahoo: 'JBSS3.SA', twelvedata: 'JBSS3' },
+  weg: { provider: 'market', yahoo: 'WEGE3.SA', twelvedata: 'WEGE3' },
+  suzano: { provider: 'market', yahoo: 'SUZB3.SA', twelvedata: 'SUZB3' },
   'america-movil': { provider: 'market', yahoo: 'AMXB.MX', twelvedata: 'AMXB' },
-  'femsa': { provider: 'market', yahoo: 'FEMSAUBD.MX', twelvedata: 'FEMSAUBD' },
-  'walmex': { provider: 'market', yahoo: 'WALMEX.MX', twelvedata: 'WALMEX' },
+  femsa: { provider: 'market', yahoo: 'FEMSAUBD.MX', twelvedata: 'FEMSAUBD' },
+  walmex: { provider: 'market', yahoo: 'WALMEX.MX', twelvedata: 'WALMEX' },
   'grupo-mexico': { provider: 'market', yahoo: 'GMEXICOB.MX', twelvedata: 'GMEXICOB' },
-  'banorte': { provider: 'market', yahoo: 'GFNORTEO.MX', twelvedata: 'GFNORTEO' },
+  banorte: { provider: 'market', yahoo: 'GFNORTEO.MX', twelvedata: 'GFNORTEO' },
   'cemex-mexiko': { provider: 'market', yahoo: 'CEMEXCPO.MX', twelvedata: 'CEMEXCPO' },
-  'dbs': { provider: 'market', yahoo: 'D05.SI', twelvedata: 'D05' },
-  'ocbc': { provider: 'market', yahoo: 'O39.SI', twelvedata: 'O39' },
-  'uob': { provider: 'market', yahoo: 'U11.SI', twelvedata: 'U11' },
-  'singtel': { provider: 'market', yahoo: 'Z74.SI', twelvedata: 'Z74' },
+  dbs: { provider: 'market', yahoo: 'D05.SI', twelvedata: 'D05' },
+  ocbc: { provider: 'market', yahoo: 'O39.SI', twelvedata: 'O39' },
+  uob: { provider: 'market', yahoo: 'U11.SI', twelvedata: 'U11' },
+  singtel: { provider: 'market', yahoo: 'Z74.SI', twelvedata: 'Z74' },
   'singapore-airlines': { provider: 'market', yahoo: 'C6L.SI', twelvedata: 'C6L' },
   'check-point': { provider: 'market', yahoo: 'CHKP', twelvedata: 'CHKP' },
-  'cyberark': { provider: 'market', yahoo: 'CYBR', twelvedata: 'CYBR' },
+  cyberark: { provider: 'market', yahoo: 'CYBR', twelvedata: 'CYBR' },
   'nice-ltd': { provider: 'market', yahoo: 'NICE', twelvedata: 'NICE' },
-  'teva': { provider: 'market', yahoo: 'TEVA', twelvedata: 'TEVA' },
+  teva: { provider: 'market', yahoo: 'TEVA', twelvedata: 'TEVA' },
 }
 
 /** Herkunftsland je Aktie – Schlüssel wie in `data/laender/namen.ts`. */
 export const weitereAktienLaender: Record<string, string> = {
   'alphabet-c': '840',
-  'markel': '840',
-  'micron': '840',
+  markel: '840',
+  micron: '840',
   'applied-materials': '840',
   'lam-research': '840',
   'kla-corp': '840',
   'analog-devices': '840',
-  'nxp': '840',
-  'marvell': '840',
-  'synopsys': '840',
-  'cadence': '840',
-  'servicenow': '840',
-  'intuit': '840',
-  'workday': '840',
-  'snowflake': '840',
-  'datadog': '840',
-  'crowdstrike': '840',
+  nxp: '840',
+  marvell: '840',
+  synopsys: '840',
+  cadence: '840',
+  servicenow: '840',
+  intuit: '840',
+  workday: '840',
+  snowflake: '840',
+  datadog: '840',
+  crowdstrike: '840',
   'palo-alto': '840',
-  'fortinet': '840',
-  'zscaler': '840',
-  'atlassian': '840',
-  'shopify': '124',
-  'block': '840',
-  'fiserv': '840',
+  fortinet: '840',
+  zscaler: '840',
+  atlassian: '840',
+  shopify: '124',
+  block: '840',
+  fiserv: '840',
   'american-express': '840',
   'morgan-stanley': '840',
   'charles-schwab': '840',
-  'citigroup': '840',
+  citigroup: '840',
   'wells-fargo': '840',
   'us-bancorp': '840',
-  'pnc': '840',
+  pnc: '840',
   'bny-mellon': '840',
   'state-street': '840',
-  'progressive': '840',
-  'chubb': '840',
+  progressive: '840',
+  chubb: '840',
   'marsh-mclennan': '840',
-  'aon': '840',
-  'metlife': '840',
+  aon: '840',
+  metlife: '840',
   'prudential-financial': '840',
-  'cigna': '840',
-  'elevance': '840',
-  'hca': '840',
-  'mckesson': '840',
-  'cencora': '840',
-  'cvs': '840',
+  cigna: '840',
+  elevance: '840',
+  hca: '840',
+  mckesson: '840',
+  cencora: '840',
+  cvs: '840',
   'bristol-myers': '840',
-  'amgen': '840',
-  'gilead': '840',
-  'vertex': '840',
-  'regeneron': '840',
-  'moderna': '840',
-  'biogen': '840',
-  'zoetis': '840',
-  'danaher': '840',
-  'abbott': '840',
-  'medtronic': '372',
-  'stryker': '840',
+  amgen: '840',
+  gilead: '840',
+  vertex: '840',
+  regeneron: '840',
+  moderna: '840',
+  biogen: '840',
+  zoetis: '840',
+  danaher: '840',
+  abbott: '840',
+  medtronic: '372',
+  stryker: '840',
   'becton-dickinson': '840',
   'intuitive-surgical': '840',
-  'idexx': '840',
-  'illumina': '840',
+  idexx: '840',
+  illumina: '840',
   'general-motors': '840',
-  'ford': '840',
-  'paccar': '840',
-  'cummins': '840',
-  'honeywell': '840',
+  ford: '840',
+  paccar: '840',
+  cummins: '840',
+  honeywell: '840',
   '3m': '840',
-  'emerson': '840',
-  'eaton': '372',
+  emerson: '840',
+  eaton: '372',
   'parker-hannifin': '840',
   'illinois-tool-works': '840',
   'general-dynamics': '840',
   'northrop-grumman': '840',
-  'l3harris': '840',
-  'transdigm': '840',
-  'csx': '840',
+  l3harris: '840',
+  transdigm: '840',
+  csx: '840',
   'norfolk-southern': '840',
-  'fedex': '840',
+  fedex: '840',
   'delta-air': '840',
   'united-airlines': '840',
-  'southwest': '840',
+  southwest: '840',
   'old-dominion': '840',
   'waste-management': '840',
   'republic-services': '840',
   'sherwin-williams': '840',
-  'ecolab': '840',
+  ecolab: '840',
   'air-products': '840',
-  'dow': '840',
-  'freeport': '840',
-  'newmont': '840',
-  'nucor': '840',
+  dow: '840',
+  freeport: '840',
+  newmont: '840',
+  nucor: '840',
   'vulcan-materials': '840',
-  'conocophillips': '840',
-  'eog': '840',
-  'schlumberger': '840',
+  conocophillips: '840',
+  eog: '840',
+  schlumberger: '840',
   'kinder-morgan': '840',
-  'williams': '840',
+  williams: '840',
   'duke-energy': '840',
   'southern-company': '840',
-  'aep': '840',
-  'sempra': '840',
+  aep: '840',
+  sempra: '840',
   'constellation-energy': '840',
-  'vistra': '840',
-  'commerzbank': '276',
-  'fresenius': '276',
+  vistra: '840',
+  commerzbank: '276',
+  fresenius: '276',
   'fresenius-medical': '276',
-  'sartorius': '276',
-  'qiagen': '528',
-  'brenntag': '276',
-  'symrise': '276',
-  'covestro': '276',
-  'evonik': '276',
-  'lanxess': '276',
-  'zalando': '276',
-  'hellofresh': '276',
+  sartorius: '276',
+  qiagen: '528',
+  brenntag: '276',
+  symrise: '276',
+  covestro: '276',
+  evonik: '276',
+  lanxess: '276',
+  zalando: '276',
+  hellofresh: '276',
   'delivery-hero': '276',
-  'mtu': '276',
+  mtu: '276',
   'heidelberg-materials': '276',
   'knorr-bremse': '276',
-  'gea': '276',
-  'kion': '276',
+  gea: '276',
+  kion: '276',
   'daimler-truck': '276',
-  'continental': '276',
+  continental: '276',
   'zeiss-meditec': '276',
-  'puma': '276',
-  'scout24': '276',
-  'nemetschek': '276',
+  puma: '276',
+  scout24: '276',
+  nemetschek: '276',
   'united-internet': '276',
-  'talanx': '276',
+  talanx: '276',
   'porsche-se': '276',
-  'lufthansa': '276',
+  lufthansa: '276',
   'siemens-healthineers': '276',
-  'rwe': '276',
+  rwe: '276',
   'sma-solar': '276',
-  'nordex': '276',
-  'jungheinrich': '276',
-  'duerr': '276',
+  nordex: '276',
+  jungheinrich: '276',
+  duerr: '276',
   'hugo-boss': '276',
-  'fielmann': '276',
-  'rational': '276',
-  'krones': '276',
-  'sanofi': '250',
-  'axa': '250',
+  fielmann: '276',
+  rational: '276',
+  krones: '276',
+  sanofi: '250',
+  axa: '250',
   'bnp-paribas': '250',
   'societe-generale': '250',
   'credit-agricole': '250',
   'air-liquide': '250',
-  'vinci': '250',
-  'bouygues': '250',
+  vinci: '250',
+  bouygues: '250',
   'saint-gobain': '250',
-  'danone': '250',
+  danone: '250',
   'pernod-ricard': '250',
-  'kering': '250',
-  'essilorluxottica': '250',
-  'capgemini': '250',
+  kering: '250',
+  essilorluxottica: '250',
+  capgemini: '250',
   'dassault-systemes': '250',
-  'thales': '250',
-  'legrand': '250',
-  'michelin': '250',
-  'publicis': '250',
-  'orange': '250',
-  'engie': '250',
-  'veolia': '250',
-  'sodexo': '250',
-  'carrefour': '250',
-  'accor': '250',
-  'sage': '826',
-  'bp': '826',
-  'glaxosmithkline': '826',
-  'diageo': '826',
-  'reckitt': '826',
+  thales: '250',
+  legrand: '250',
+  michelin: '250',
+  publicis: '250',
+  orange: '250',
+  engie: '250',
+  veolia: '250',
+  sodexo: '250',
+  carrefour: '250',
+  accor: '250',
+  sage: '826',
+  bp: '826',
+  glaxosmithkline: '826',
+  diageo: '826',
+  reckitt: '826',
   'british-american-tobacco': '826',
-  'barclays': '826',
-  'lloyds': '826',
-  'natwest': '826',
+  barclays: '826',
+  lloyds: '826',
+  natwest: '826',
   'prudential-plc': '826',
   'legal-general': '826',
-  'aviva': '826',
+  aviva: '826',
   'rio-tinto': '826',
-  'glencore': '756',
+  glencore: '756',
   'anglo-american': '826',
   'rolls-royce': '826',
   'bae-systems': '826',
   'national-grid': '826',
-  'tesco': '826',
-  'sainsbury': '826',
-  'relx': '826',
+  tesco: '826',
+  sainsbury: '826',
+  relx: '826',
   'london-stock-exchange': '826',
-  'vodafone': '826',
+  vodafone: '826',
   'compass-group': '826',
-  'experian': '372',
-  'sse': '826',
+  experian: '372',
+  sse: '826',
   'zurich-insurance': '756',
   'swiss-re': '756',
-  'abb': '756',
-  'richemont': '756',
-  'lonza': '756',
-  'givaudan': '756',
-  'holcim': '756',
-  'sika': '756',
-  'geberit': '756',
-  'alcon': '756',
+  abb: '756',
+  richemont: '756',
+  lonza: '756',
+  givaudan: '756',
+  holcim: '756',
+  sika: '756',
+  geberit: '756',
+  alcon: '756',
   'partners-group': '756',
-  'swisscom': '756',
+  swisscom: '756',
   'kuehne-nagel': '756',
-  'ing': '528',
+  ing: '528',
   'ahold-delhaize': '528',
-  'heineken': '528',
-  'philips': '528',
+  heineken: '528',
+  philips: '528',
   'wolters-kluwer': '528',
-  'adyen': '528',
-  'prosus': '528',
+  adyen: '528',
+  prosus: '528',
   'asm-international': '528',
   'be-semiconductor': '528',
-  'akzonobel': '528',
-  'randstad': '528',
-  'inditex': '724',
-  'bbva': '724',
-  'caixabank': '724',
-  'telefonica': '724',
-  'repsol': '724',
-  'ferrovial': '528',
-  'amadeus': '724',
-  'aena': '724',
-  'naturgy': '724',
-  'enel': '380',
-  'eni': '380',
+  akzonobel: '528',
+  randstad: '528',
+  inditex: '724',
+  bbva: '724',
+  caixabank: '724',
+  telefonica: '724',
+  repsol: '724',
+  ferrovial: '528',
+  amadeus: '724',
+  aena: '724',
+  naturgy: '724',
+  enel: '380',
+  eni: '380',
   'intesa-sanpaolo': '380',
-  'unicredit': '380',
-  'generali': '380',
-  'prysmian': '380',
-  'moncler': '380',
-  'leonardo': '380',
-  'terna': '380',
-  'stmicroelectronics': '528',
+  unicredit: '380',
+  generali: '380',
+  prysmian: '380',
+  moncler: '380',
+  leonardo: '380',
+  terna: '380',
+  stmicroelectronics: '528',
   'novo-nordisk-b': '208',
-  'dsv': '208',
-  'orsted': '208',
-  'carlsberg': '208',
-  'vestas': '208',
-  'coloplast': '208',
+  dsv: '208',
+  orsted: '208',
+  carlsberg: '208',
+  vestas: '208',
+  coloplast: '208',
   'atlas-copco': '752',
   'volvo-b': '752',
-  'ericsson': '752',
-  'sandvik': '752',
+  ericsson: '752',
+  sandvik: '752',
   'investor-b': '752',
-  'hexagon': '752',
+  hexagon: '752',
   'assa-abloy': '752',
-  'epiroc': '752',
-  'seb': '752',
-  'swedbank': '752',
-  'handelsbanken': '752',
-  'equinor': '578',
-  'dnb': '578',
-  'telenor': '578',
-  'nordea': '246',
-  'kone': '246',
-  'neste': '246',
-  'upm': '246',
-  'sampo': '246',
+  epiroc: '752',
+  seb: '752',
+  swedbank: '752',
+  handelsbanken: '752',
+  equinor: '578',
+  dnb: '578',
+  telenor: '578',
+  nordea: '246',
+  kone: '246',
+  neste: '246',
+  upm: '246',
+  sampo: '246',
   'anheuser-busch': '056',
-  'kbc': '056',
-  'umicore': '056',
-  'solvay': '056',
+  kbc: '056',
+  umicore: '056',
+  solvay: '056',
   'erste-group': '040',
-  'omv': '040',
-  'verbund': '040',
-  'voestalpine': '040',
-  'crh': '372',
-  'ryanair': '372',
-  'flutter': '372',
+  omv: '040',
+  verbund: '040',
+  voestalpine: '040',
+  crh: '372',
+  ryanair: '372',
+  flutter: '372',
   'kerry-group': '372',
-  'edp': '620',
-  'galp': '620',
-  'pko': '616',
+  edp: '620',
+  galp: '620',
+  pko: '616',
   'pkn-orlen': '616',
-  'honda': '392',
-  'denso': '392',
-  'bridgestone': '392',
-  'nintendo': '392',
-  'keyence': '392',
-  'fanuc': '392',
-  'komatsu': '392',
-  'daikin': '392',
-  'nidec': '392',
-  'hitachi': '392',
+  honda: '392',
+  denso: '392',
+  bridgestone: '392',
+  nintendo: '392',
+  keyence: '392',
+  fanuc: '392',
+  komatsu: '392',
+  daikin: '392',
+  nidec: '392',
+  hitachi: '392',
   'tokyo-electron': '392',
-  'advantest': '392',
+  advantest: '392',
   'shin-etsu': '392',
-  'murata': '392',
-  'canon': '392',
-  'panasonic': '392',
+  murata: '392',
+  canon: '392',
+  panasonic: '392',
   'mitsubishi-ufj': '392',
   'sumitomo-mitsui': '392',
-  'mizuho': '392',
+  mizuho: '392',
   'tokio-marine': '392',
   'mitsubishi-corp': '392',
   'mitsui-co': '392',
-  'itochu': '392',
+  itochu: '392',
   'fast-retailing': '392',
   'seven-i': '392',
-  'takeda': '392',
+  takeda: '392',
   'daiichi-sankyo': '392',
-  'terumo': '392',
-  'olympus': '392',
-  'ntt': '392',
-  'kddi': '392',
+  terumo: '392',
+  olympus: '392',
+  ntt: '392',
+  kddi: '392',
   'softbank-group': '392',
-  'recruit': '392',
-  'ajinomoto': '392',
+  recruit: '392',
+  ajinomoto: '392',
   'asahi-group': '392',
-  'shimano': '392',
+  shimano: '392',
   'hyundai-mobis': '410',
   'sk-hynix': '410',
   'samsung-sdi': '410',
   'lg-chem': '410',
   'hyundai-motor': '410',
-  'kia': '410',
-  'posco': '410',
-  'naver': '410',
-  'kakao': '410',
-  'celltrion': '410',
-  'shinhan': '410',
+  kia: '410',
+  posco: '410',
+  naver: '410',
+  kakao: '410',
+  celltrion: '410',
+  shinhan: '410',
   'kb-financial': '410',
   'tsmc-taipeh': '158',
   'hon-hai': '158',
-  'mediatek': '158',
+  mediatek: '158',
   'delta-electronics': '158',
-  'quanta': '158',
+  quanta: '158',
   'united-micro': '158',
-  'asustek': '158',
+  asustek: '158',
   'cathay-financial': '158',
   'alibaba-hk': '156',
-  'meituan': '156',
+  meituan: '156',
   'jd-hk': '156',
-  'netease': '156',
-  'xiaomi': '156',
-  'byd': '156',
+  netease: '156',
+  xiaomi: '156',
+  byd: '156',
   'li-auto': '156',
   'china-mobile': '156',
-  'icbc': '156',
+  icbc: '156',
   'china-construction-bank': '156',
   'ping-an': '156',
   'china-life': '156',
-  'petrochina': '156',
-  'sinopec': '156',
-  'cnooc': '156',
-  'anta': '156',
-  'aia': '344',
-  'hkex': '344',
+  petrochina: '156',
+  sinopec: '156',
+  cnooc: '156',
+  anta: '156',
+  aia: '344',
+  hkex: '344',
   'ck-hutchison': '344',
-  'reliance': '356',
-  'tcs': '356',
-  'infosys': '356',
-  'wipro': '356',
+  reliance: '356',
+  tcs: '356',
+  infosys: '356',
+  wipro: '356',
   'hdfc-bank': '356',
   'icici-bank': '356',
   'state-bank-india': '356',
   'bharti-airtel': '356',
-  'itc': '356',
+  itc: '356',
   'hindustan-unilever': '356',
   'larsen-toubro': '356',
-  'maruti': '356',
+  maruti: '356',
   'tata-motors': '356',
   'asian-paints': '356',
   'sun-pharma': '356',
   'adani-enterprises': '356',
-  'bhp': '036',
+  bhp: '036',
   'rio-tinto-sydney': '036',
-  'fortescue': '036',
-  'csl': '036',
+  fortescue: '036',
+  csl: '036',
   'commonwealth-bank': '036',
-  'westpac': '036',
+  westpac: '036',
   'anz-group': '036',
-  'nab': '036',
-  'macquarie': '036',
-  'wesfarmers': '036',
+  nab: '036',
+  macquarie: '036',
+  wesfarmers: '036',
   'woolworths-group': '036',
-  'telstra': '036',
-  'goodman': '036',
-  'rbc': '124',
+  telstra: '036',
+  goodman: '036',
+  rbc: '124',
   'td-bank': '124',
   'bank-of-nova-scotia': '124',
-  'bmo': '124',
-  'enbridge': '124',
-  'suncor': '124',
+  bmo: '124',
+  enbridge: '124',
+  suncor: '124',
   'canadian-natural': '124',
   'canadian-national': '124',
   'canadian-pacific': '124',
-  'brookfield': '124',
+  brookfield: '124',
   'constellation-software': '124',
   'shopify-toronto': '124',
-  'barrick': '124',
+  barrick: '124',
   'agnico-eagle': '124',
-  'nutrien': '124',
+  nutrien: '124',
   'thomson-reuters': '124',
-  'petrobras': '076',
-  'vale': '076',
-  'itau': '076',
-  'bradesco': '076',
+  petrobras: '076',
+  vale: '076',
+  itau: '076',
+  bradesco: '076',
   'banco-do-brasil': '076',
-  'b3': '076',
-  'ambev': '076',
-  'jbs': '076',
-  'weg': '076',
-  'suzano': '076',
+  b3: '076',
+  ambev: '076',
+  jbs: '076',
+  weg: '076',
+  suzano: '076',
   'america-movil': '484',
-  'femsa': '484',
-  'walmex': '484',
+  femsa: '484',
+  walmex: '484',
   'grupo-mexico': '484',
-  'banorte': '484',
+  banorte: '484',
   'cemex-mexiko': '484',
-  'dbs': '702',
-  'ocbc': '702',
-  'uob': '702',
-  'singtel': '702',
+  dbs: '702',
+  ocbc: '702',
+  uob: '702',
+  singtel: '702',
   'singapore-airlines': '702',
   'check-point': '376',
-  'cyberark': '376',
+  cyberark: '376',
   'nice-ltd': '376',
-  'teva': '376',
+  teva: '376',
 }

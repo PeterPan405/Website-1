@@ -17,7 +17,7 @@
     "kurse": "node --experimental-strip-types scripts/kurse-abrufen.ts",
     "laender": "node --experimental-strip-types scripts/laender-abrufen.ts",
     "globus-geometrie": "node --experimental-strip-types scripts/globus-geometrie.ts",
-    "aktien": "node --experimental-strip-types scripts/aktien-erzeugen.ts"
+    "aktien": "node --experimental-strip-types scripts/aktien-erzeugen.ts && prettier --write --log-level warn data/markets-aktien.ts"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",
