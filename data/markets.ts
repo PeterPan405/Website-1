@@ -2921,6 +2921,28 @@ export const marketDefinitions: MarketDefinition[] = [
 ]
 
 /** Reihenfolge für Übersichten: Kurse, Indizes, Rohstoffe. */
+/**
+ * Die „Magnificent Seven“ – die sieben schwersten Werte im S&P 500.
+ *
+ * Sie stehen auf der Marktseite als eigener Abschnitt, nicht zwischen den
+ * übrigen hundert Einzelaktien. Der Grund ist nicht Prominenz, sondern Gewicht:
+ * Zusammen machen diese sieben Unternehmen einen erheblichen Teil des S&P 500
+ * und damit auch eines weltweit streuenden ETF aus. Wer „breit gestreut“
+ * anlegt, hält von ihnen mehr, als die Zahl der enthaltenen Titel vermuten
+ * lässt – und genau das ist der Punkt, den ein eigener Abschnitt sichtbar macht.
+ *
+ * Die Reihenfolge folgt der üblichen Nennung nach Börsenwert.
+ */
+export const magnificentSeven = [
+  'nvidia',
+  'apple',
+  'microsoft',
+  'alphabet',
+  'amazon',
+  'meta',
+  'tesla',
+] as const
+
 export const featuredSymbols = [
   'eur-usd',
   'dax',

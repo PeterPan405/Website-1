@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
+import { magnificentSeven } from '@/data/markets'
 import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getQuotes, getSparkline } from '@/lib/markets'
@@ -27,7 +28,22 @@ export default async function MarketsOverviewPage() {
   const indexQuotes = quotes.filter((quote) => quote.kind === 'index')
   const commodityQuotes = quotes.filter((quote) => quote.kind === 'commodity')
   const cryptoQuotes = quotes.filter((quote) => quote.kind === 'crypto')
-  const stockQuotes = quotes.filter((quote) => quote.kind === 'stock')
+  /*
+    Die Magnificent Seven stehen getrennt von den übrigen Aktien.
+
+    Nicht wegen ihrer Bekanntheit, sondern wegen ihres Gewichts: Zusammen
+    machen sie einen erheblichen Teil des S&P 500 aus. Sie zwischen hundert
+    andere Zeilen zu setzen, hieße genau die Konzentration zu verstecken, um
+    die es geht.
+  */
+  const magSevenQuotes = magnificentSeven
+    .map((symbol) => quotes.find((quote) => quote.symbol === symbol))
+    .filter((quote): quote is (typeof quotes)[number] => Boolean(quote))
+  const stockQuotes = quotes.filter(
+    (quote) =>
+      quote.kind === 'stock' &&
+      !magnificentSeven.includes(quote.symbol as (typeof magnificentSeven)[number])
+  )
 
   /*
     Mini-Verläufe nur für die Kachel-Abschnitte.
@@ -37,7 +53,11 @@ export default async function MarketsOverviewPage() {
     bei dieser Anzahl ohnehin niemand einzeln ansieht. Die Aktien stehen deshalb
     als kompakte Zeilen; ihren Verlauf gibt es auf der Detailseite.
   */
-  const mitVerlauf = quotes.filter((quote) => quote.kind !== 'stock')
+  const mitVerlauf = quotes.filter(
+    (quote) =>
+      quote.kind !== 'stock' ||
+      magnificentSeven.includes(quote.symbol as (typeof magnificentSeven)[number])
+  )
   const sparklines = await Promise.all(
     mitVerlauf.map(
       async (quote) => [quote.symbol, await getSparkline(quote.symbol)] as const
@@ -64,7 +84,7 @@ export default async function MarketsOverviewPage() {
             <span aria-hidden="true">·</span>
             <span>{fxQuotes.length} Währungspaare</span>
             <span aria-hidden="true">·</span>
-            <span>{stockQuotes.length} Einzelaktien</span>
+            <span>{magSevenQuotes.length + stockQuotes.length} Einzelaktien</span>
             <span aria-hidden="true">·</span>
             <span>{cryptoQuotes.length} Kryptowährungen</span>
             {asOf && (
@@ -112,9 +132,33 @@ export default async function MarketsOverviewPage() {
           </ul>
         </section>
 
+        <section aria-labelledby="magnificent-seven" className="mt-16">
+          <h2 id="magnificent-seven" className="text-fg text-2xl font-bold">
+            Magnificent Seven
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+            Die sieben schwersten Werte im S&amp;P 500. Zusammen machen sie einen
+            erheblichen Teil des Index aus – und damit auch eines weltweit streuenden ETF.
+            Wer breit gestreut anlegt, hält von diesen sieben Unternehmen meist deutlich
+            mehr, als die Zahl der enthaltenen Titel vermuten lässt.
+          </p>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {magSevenQuotes.map((quote, index) => (
+              <li key={quote.symbol}>
+                <Reveal delay={index * 0.04} className="h-full">
+                  <QuoteCard
+                    quote={quote}
+                    sparkline={sparklineBySymbol.get(quote.symbol)}
+                  />
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section aria-labelledby="aktien" className="mt-16">
           <h2 id="aktien" className="text-fg text-2xl font-bold">
-            Aktien
+            Weitere Aktien
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
             Einzelwerte aus den USA, Europa und Asien. Anders als ein Index trägt eine
