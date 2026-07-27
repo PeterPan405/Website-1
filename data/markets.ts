@@ -1,4 +1,13 @@
-import { weitereAktien, weitereAktienQuellen } from '@/data/markets-aktien'
+/*
+  Bewusst relativ statt über den Alias `@/`.
+
+  Diese Datei wird nicht nur von Next geladen, sondern auch von
+  `scripts/kurse-abrufen.ts` mit blankem Node. Dort gibt es keine
+  Pfadauflösung für `@/`, und der Abruf brach mit ERR_MODULE_NOT_FOUND ab –
+  seit dem Tag, an dem die Aktienliste hierher ausgelagert wurde. Sichtbar
+  war das nur daran, dass die 400 neuen Aktien keine echten Kurse bekamen.
+*/
+import { weitereAktien, weitereAktienQuellen } from './markets-aktien.ts'
 
 /**
  * Demo-Datensatz für Wechselkurse und Indizes.

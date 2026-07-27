@@ -1,4 +1,4 @@
-import type { MarketDefinition, MarketSourceRef } from '@/data/markets'
+import type { MarketDefinition, MarketSourceRef } from './markets.ts'
 
 /**
  * Die breite Aktienauswahl.
