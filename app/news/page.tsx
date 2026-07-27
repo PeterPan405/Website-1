@@ -4,12 +4,16 @@ import Link from 'next/link'
 import { ArticleCard } from '@/components/news/ArticleCard'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { DemoNotice } from '@/components/ui/DemoNotice'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { formatEditionDate, getEditions, getLatestEdition } from '@/lib/editions'
-import { getNewsArticles, getNewsCategories } from '@/lib/news'
+import {
+  getCurrentNews,
+  getFurtherNews,
+  getNewsArticles,
+  getNewsCategories,
+} from '@/lib/news'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
@@ -21,14 +25,22 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default async function NewsOverviewPage() {
-  const [articles, categories, latestEdition, editions] = await Promise.all([
-    getNewsArticles(),
-    getNewsCategories(),
-    getLatestEdition(),
-    getEditions(),
-  ])
+  const [articles, current, further, categories, latestEdition, editions] =
+    await Promise.all([
+      getNewsArticles(),
+      getCurrentNews(),
+      getFurtherNews(),
+      getNewsCategories(),
+      getLatestEdition(),
+      getEditions(),
+    ])
 
-  const [featured, ...rest] = articles
+  /*
+    Der jüngste Artikel bekommt die große Karte, die übrigen aktuellen stehen
+    darunter im Raster. „Weitere Artikel“ ist der Rest – wer dort landet,
+    entscheidet allein das Alter (siehe `lib/news.ts`).
+  */
+  const [featured, ...moreCurrent] = current
 
   return (
     <>
@@ -49,15 +61,6 @@ export default async function NewsOverviewPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <DemoNotice>
-          <p>
-            Die Artikel in dieser Version sind{' '}
-            <strong className="text-fg font-semibold">erfundene Beispieltexte</strong>.
-            Sie zeigen Aufbau, Verlinkung und strukturierte Daten der Nachrichtenseiten –
-            sie berichten nicht über tatsächliche Ereignisse.
-          </p>
-        </DemoNotice>
-
         {/* Tagesüberblick zuerst: die einzige Rubrik, die sich täglich ändert. */}
         {latestEdition && (
           <section aria-labelledby="tagesueberblick" className="mt-10">
@@ -112,17 +115,34 @@ export default async function NewsOverviewPage() {
         </section>
 
         {featured && (
-          <section aria-labelledby="aktuell" className="mt-10">
-            <h2 id="aktuell" className="sr-only">
-              Aktuellster Artikel
+          <section aria-labelledby="aktuelles" className="mt-10">
+            <h2
+              id="aktuelles"
+              className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+            >
+              Aktuelles
             </h2>
-            <Reveal>
-              <ArticleCard article={featured} featured />
-            </Reveal>
+            <div className="mt-5">
+              <Reveal>
+                <ArticleCard article={featured} featured />
+              </Reveal>
+            </div>
+
+            {moreCurrent.length > 0 && (
+              <ul className="mt-4 grid gap-4 md:grid-cols-2">
+                {moreCurrent.map((article, index) => (
+                  <li key={article.slug} className="relative">
+                    <Reveal delay={index * 0.04} className="h-full">
+                      <ArticleCard article={article} />
+                    </Reveal>
+                  </li>
+                ))}
+              </ul>
+            )}
           </section>
         )}
 
-        {rest.length > 0 && (
+        {further.length > 0 && (
           <section aria-labelledby="weitere" className="mt-12">
             <h2
               id="weitere"
@@ -131,7 +151,7 @@ export default async function NewsOverviewPage() {
               Weitere Artikel
             </h2>
             <ul className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {rest.map((article, index) => (
+              {further.map((article, index) => (
                 <li key={article.slug} className="relative">
                   <Reveal delay={index * 0.04} className="h-full">
                     <ArticleCard article={article} />

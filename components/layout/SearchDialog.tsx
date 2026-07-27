@@ -19,23 +19,20 @@ import { searchEntries, type SearchEntry } from '@/lib/search-match'
  * beziehungsweise Cmd+K öffnet, Pfeiltasten wählen aus, Enter öffnet den
  * Treffer, Escape schließt.
  */
-export function SearchDialog({
-  index,
-  open,
-  onClose,
-}: {
-  index: SearchEntry[]
-  open: boolean
-  onClose: () => void
-}) {
+export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter()
   const [query, setQuery] = useState('')
   const [aktiv, setAktiv] = useState(0)
   const [lastOpen, setLastOpen] = useState(open)
+  const [index, setIndex] = useState<SearchEntry[] | null>(null)
+  const [ladefehler, setLadefehler] = useState(false)
   const eingabe = useRef<HTMLInputElement>(null)
   const liste = useRef<HTMLUListElement>(null)
 
-  const treffer = useMemo(() => searchEntries(index, query), [index, query])
+  const treffer = useMemo(
+    () => (index ? searchEntries(index, query) : []),
+    [index, query]
+  )
 
   /*
     Beim Öffnen die vorherige Eingabe verwerfen.
@@ -59,6 +56,34 @@ export function SearchDialog({
     const timer = setTimeout(() => eingabe.current?.focus(), 20)
     return () => clearTimeout(timer)
   }, [open])
+
+  /*
+    Den Index beim ersten Öffnen holen, danach nie wieder.
+
+    Er liegt als eigene Datei vor, statt in den Daten jeder Seite mitzureisen.
+    Das spart auf jeder Seite rund 32 KB und kostet einmalig 31 KB – einen
+    Abruf, den der Browser anschließend zwischenspeichert.
+  */
+  useEffect(() => {
+    if (!open || index || ladefehler) return
+
+    let abgebrochen = false
+    fetch('/suchindex.json')
+      .then((antwort) => {
+        if (!antwort.ok) throw new Error(String(antwort.status))
+        return antwort.json()
+      })
+      .then((daten: SearchEntry[]) => {
+        if (!abgebrochen) setIndex(daten)
+      })
+      .catch(() => {
+        if (!abgebrochen) setLadefehler(true)
+      })
+
+    return () => {
+      abgebrochen = true
+    }
+  }, [open, index, ladefehler])
 
   // Solange die Suche offen ist, darf die Seite dahinter nicht scrollen.
   useEffect(() => {
@@ -161,11 +186,18 @@ export function SearchDialog({
               </button>
             </div>
 
-            {query.trim() === '' ? (
+            {ladefehler ? (
+              <p className="text-fg-muted px-4 py-6 text-sm">
+                Der Suchindex konnte nicht geladen werden. Über die Navigation oben kommst
+                du weiterhin überall hin.
+              </p>
+            ) : query.trim() === '' ? (
               <p className="text-fg-muted px-4 py-6 text-sm">
                 Durchsucht Lernthemen, Rechner, Kurse, Nachrichten und die Seiten der
                 Plattform.
               </p>
+            ) : !index ? (
+              <p className="text-fg-muted px-4 py-6 text-sm">Suche wird geladen …</p>
             ) : treffer.length === 0 ? (
               <p className="text-fg-muted px-4 py-6 text-sm">
                 Nichts gefunden zu <span className="text-fg font-medium">„{query}“</span>.

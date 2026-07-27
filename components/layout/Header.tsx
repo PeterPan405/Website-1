@@ -11,7 +11,6 @@ import { Icon } from '@/components/ui/Icon'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/lib/cn'
 import { mainNav, type NavItem } from '@/lib/navigation'
-import type { SearchEntry } from '@/lib/search-match'
 import { areaStyles, siteConfig } from '@/lib/site'
 
 /**
@@ -25,7 +24,7 @@ import { areaStyles, siteConfig } from '@/lib/site'
  * echte Buttons mit `aria-expanded`, Escape schließt das offene Menü, und ein
  * Fokuswechsel nach außen schließt es ebenfalls.
  */
-export function Header({ searchIndex }: { searchIndex: SearchEntry[] }) {
+export function Header() {
   const pathname = usePathname()
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -240,11 +239,7 @@ export function Header({ searchIndex }: { searchIndex: SearchEntry[] }) {
         )}
       </AnimatePresence>
 
-      <SearchDialog
-        index={searchIndex}
-        open={searchOpen}
-        onClose={() => setSearchOpen(false)}
-      />
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   )
 }

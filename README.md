@@ -71,7 +71,7 @@ Komponenten sprechen **nie** direkt mit `data/`, sondern ausschließlich über `
 | Modul            | Funktionen (Auszug)                                            |
 | ---------------- | -------------------------------------------------------------- |
 | `lib/markets.ts` | `getExchangeRate()`, `getIndex()`, `getQuote()`, `getSeries()` |
-| `lib/news.ts`    | `getNewsArticles()`, `getNewsArticle()`, `getNewsHeadlines()`  |
+| `lib/news.ts`    | `getCurrentNews()`, `getFurtherNews()`, `getNewsArticle()`     |
 | `lib/learn.ts`   | `getLearnTopics()`, `getLearnLevel()`, `getRelatedTopics()`    |
 | `lib/debt.ts`    | `getCountryDebts()`, `getDebtSummary()`                        |
 
@@ -107,6 +107,30 @@ Solange die Seite nicht veröffentlicht ist, wird sie mit `noindex` ausgeliefert
 in die Sitemap aufgenommen; eine fast leere Seite im Index würde die Sichtbarkeit der
 gesamten Domain belasten. Über die Fußzeile bleibt sie zum Korrekturlesen erreichbar.
 
+## Nachrichten und das rollierende Prinzip
+
+Die Artikel unter `/news` beziehen sich auf tatsächliche Ereignisse und nennen
+ihre Quellen. Bis Juli 2026 standen dort erfundene Beispieltexte; sie sind
+ersatzlos entfernt.
+
+Vorne stehen unter **Aktuelles** die fünf jüngsten Artikel, alles Ältere rutscht
+in **Weitere Artikel**. Dieselben fünf zeigt das Karussell auf der Startseite.
+Diese Aufteilung steht **nicht** in den Daten – sie ergibt sich in `lib/news.ts`
+allein aus `publishedAt`. Einen neuen Artikel anzulegen genügt also; das Ältere
+wandert von selbst nach hinten, ohne dass jemand ein Kennzeichen umsetzt.
+
+Die Grenze läuft bewusst nach Rang (`CURRENT_NEWS_COUNT = 5`) und nicht nach
+Uhrzeit. Bei einer statisch gebauten Seite wäre „alles aus den letzten 48
+Stunden“ auf den Zeitpunkt des letzten Builds bezogen – nach ein paar Tagen ohne
+neue Ausgabe stünde die Startseite ohne Meldungen da. Die 48 Stunden sind die
+redaktionelle Vorgabe für die Recherche, nicht die Anzeigelogik.
+
+Redaktionell gilt dasselbe wie beim Tagesüberblick: selbst zusammenfassen, nie
+spiegeln, und **mindestens eine Quelle je Artikel**. `lib/news-validate.ts`
+bricht den Build ab, wenn eine Quelle, ein Zeitzonen-Suffix in `publishedAt`
+oder ein referenziertes Lernthema fehlt. `publishedAt` ist dabei unser
+Erscheinungsdatum, nicht das der Quelle.
+
 ## Tagesüberblick
 
 Jeden Morgen erscheint unter `/news/tag/JJJJ-MM-TT` eine Ausgabe mit fünf
@@ -136,12 +160,15 @@ Die Lupe in der Kopfzeile öffnet eine Suche über alle Inhalte – Bereichsseit
 Tagesausgaben und die festen Seiten. Tastenkürzel: `Strg`/`Cmd` + `K`.
 
 Sie läuft vollständig im Browser, weil die Website statisch ausgeliefert wird
-und es keinen Server gibt, der eine Anfrage beantworten könnte. Aufgeteilt in
-drei Teile:
+und es keinen Server gibt, der eine Anfrage beantworten könnte. Der Index wird
+erst geladen, wenn jemand die Lupe anklickt – vorher steckte er in den Daten
+jeder Seite und kostete dort rund 32 KB pro Aufruf. Aufgeteilt in
+vier Teile:
 
 | Datei                                | Aufgabe                                                       |
 | ------------------------------------ | ------------------------------------------------------------- |
 | `lib/search.ts`                      | baut den Index beim Bauen aus der Service-Schicht             |
+| `app/suchindex.json/route.ts`        | legt ihn als eigene Datei unter `/suchindex.json` ab          |
 | `lib/search-match.ts`                | die Suchregeln, ohne Importe und daher unter `tests/` prüfbar |
 | `components/layout/SearchDialog.tsx` | die Oberfläche                                                |
 
@@ -268,11 +295,12 @@ JS-Fehler bei 360/768/1440 px).
 
 ## Was noch fehlt
 
-1. **Echte Live-Daten.** Kurse, News und Verschuldungszahlen sind Demo-Daten. Die
+1. **Echte Live-Daten für Kurse und Verschuldung.** Beide sind Demo-Daten. Die
    Kursverläufe werden in `lib/market-series.ts` deterministisch erzeugt (fester
    Zufalls-Seed, daher reproduzierbare Builds). Auf jeder betroffenen Seite steht das
-   sichtbar. Für echte Daten: `lib/markets.ts` bzw. `lib/news.ts` umstellen, API-Keys
-   über Umgebungsvariablen einbinden.
+   sichtbar. Für echte Daten: `lib/markets.ts` umstellen, API-Keys über
+   Umgebungsvariablen einbinden. Die Nachrichten sind bereits echt, werden aber von
+   Hand gepflegt – eine Anbindung an eine News-API würde nur `lib/news.ts` betreffen.
 2. **Fließtext für 20 Lernthemen.** Vollständig ausformuliert sind `aktie` und
    `zinseszins` (je drei Stufen). Die übrigen Themen haben funktionsfähige Seiten mit
    Meta-Daten, Permalink und inhaltlicher Gliederung; der Status `outline` wird auf der
@@ -294,4 +322,5 @@ JS-Fehler bei 360/768/1440 px).
 ## Hinweis zu den Inhalten
 
 Alle Inhalte dienen der Information und Bildung. Sie sind keine Anlage-, Steuer- oder
-Rechtsberatung. Kurse, News und Verschuldungszahlen dieser Fassung sind Beispieldaten.
+Rechtsberatung. Kurse und Verschuldungszahlen dieser Fassung sind Beispieldaten; die
+Nachrichten beziehen sich auf tatsächliche Ereignisse und verlinken ihre Quellen.

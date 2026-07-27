@@ -66,7 +66,8 @@ const calculatorTiles = [
 
 export default async function HomePage() {
   const [headlines, marketPreviews, learnStats, completeTopics] = await Promise.all([
-    getNewsHeadlines(6),
+    // Ohne Angabe: genau die Meldungen, die auch unter „Aktuelles“ stehen.
+    getNewsHeadlines(),
     getMarketOverview(),
     getLearnStats(),
     getCompleteTopics(),
