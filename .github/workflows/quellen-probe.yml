@@ -10,11 +10,21 @@ name: Quellen abklopfen
 #
 # Ohne diesen Weg bliebe nur Raten: eine Adresse ins Abrufskript schreiben,
 # committen, den Monatslauf abwarten und im Protokoll nachsehen. Hier kostet
-# eine Antwort zwei Minuten, und es lassen sich zehn Kandidaten gleichzeitig
-# prüfen.
+# eine Antwort zwei Minuten.
 #
 # Der Workflow verändert nichts. Er ist Werkzeug, kein Bestandteil der
 # Website – wenn die Quellen feststehen, kann er weg.
+#
+# ## Stand nach der ersten Runde
+#
+# Erreichbar: OECD-Vermögensverteilung (200, 197 kB) und die ILO-Schnittstelle
+# (400, aber mit Verweis auf ihr Verzeichnis – die Kennung war nur veraltet).
+# Nicht erreichbar: Our World in Data (404), ILO-Massendownload (404).
+# Yahoo antwortet auf Kennzahlen mit 401 „Invalid Crumb“ – die Reihen für den
+# Kursverlauf laufen weiter, die Fundamentaldaten sind ohne Anmeldung zu.
+#
+# Diese Runde geht den beiden Treffern nach: Welche Größen führt die
+# OECD-Datenbank, und wie heißt die Lohnreihe der ILO heute?
 
 on:
   workflow_dispatch:
@@ -24,76 +34,59 @@ jobs:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
-      - name: Quellen der Reihe nach abrufen
+      - name: OECD – welche Größen enthält die Vermögensdatenbank?
+        run: |
+          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
+          url="https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels"
+
+          curl -sS -L -A "$UA" -H 'Accept-Language: en' --max-time 60 -o /tmp/wealth.csv "$url"
+          echo "Zeilen: $(wc -l < /tmp/wealth.csv)"
+          echo ""
+          echo "── Alle Größen (MEASURE) mit Klartextnamen ──"
+          # Spalte 9 = MEASURE, 10 = Klartext, 11 = UNIT_MEASURE, 12 = Klartext
+          awk -F',' 'NR>1 {print $9" | "$10" | "$11}' /tmp/wealth.csv \
+            | sort -u | head -60
+          echo ""
+          echo "── Enthält es einen Medianwert? ──"
+          grep -io 'median[^,]*' /tmp/wealth.csv | sort -u | head -20 || echo "  kein Treffer auf 'median'"
+          echo ""
+          echo "── Wie viele Länder? ──"
+          awk -F',' 'NR>1 {print $5}' /tmp/wealth.csv | sort -u | tr '\n' ' '
+          echo ""
+
+      - name: ILO – wie heißt die Lohnreihe heute?
         run: |
           UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
 
-          probe() {
-            name="$1"; url="$2"
-            echo ""
-            echo "──────────────────────────────────────────────"
-            echo "▶ $name"
-            echo "  $url"
-            code=$(curl -sS -L -A "$UA" -H 'Accept-Language: en' \
-                     --max-time 45 -o /tmp/antwort -w '%{http_code}' "$url" 2>/tmp/fehler || echo 000)
-            groesse=$(stat -c%s /tmp/antwort 2>/dev/null || echo 0)
-            echo "  Status: $code   Größe: $groesse Bytes"
-            if [ "$code" = "200" ] && [ "$groesse" -gt 200 ]; then
-              echo "  Erste Zeilen:"
-              # Auch gepackte Antworten lesbar machen.
-              if file /tmp/antwort | grep -qi gzip; then
-                zcat /tmp/antwort 2>/dev/null | head -3 | cut -c1-400 | sed 's/^/    /'
-              else
-                head -3 /tmp/antwort | cut -c1-400 | sed 's/^/    /'
-              fi
-            else
-              head -c 200 /tmp/antwort 2>/dev/null | tr '\n' ' ' | sed 's/^/    /'
-              echo ""
-              head -2 /tmp/fehler 2>/dev/null | sed 's/^/    /'
-            fi
-          }
-
-          echo "=============================================="
-          echo " MEDIANVERMÖGEN JE ERWACHSENEM"
-          echo "=============================================="
-
-          probe "Our World in Data – Median-Vermögen" \
-            "https://ourworldindata.org/grapher/median-wealth-per-adult.csv"
-
-          probe "OWID – Grapher-Katalog (Suchbegriff wealth)" \
-            "https://api.ourworldindata.org/v1/indicators/search?q=median%20wealth"
-
-          probe "Weltbank – Vermögensrechnung (Wealth Accounts)" \
-            "https://api.worldbank.org/v2/country/all/indicator/NW.TOW.PC?format=json&per_page=400&mrnev=1"
-
-          probe "OECD – Vermögensverteilung (DSD_WEALTH)" \
-            "https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels&startPeriod=2019"
-
+          echo "── Verzeichnis der Kennungen holen ──"
+          curl -sS -L -A "$UA" --max-time 60 \
+            -o /tmp/ilo-toc.csv \
+            "https://rplumber.ilo.org/metadata/toc/indicator?lang=en&format=.csv"
+          echo "Zeilen: $(wc -l < /tmp/ilo-toc.csv)"
           echo ""
-          echo "=============================================="
-          echo " LÖHNE – BREITERE ABDECKUNG ALS DIE OECD"
-          echo "=============================================="
-
-          probe "ILOSTAT – Massendownload Monatsverdienste" \
-            "https://webapps.ilo.org/ilostat-files/WEB_bulk_download/indicator/EAR_4MTH_SEX_ECO_CUR_NB.csv.gz"
-
-          probe "ILOSTAT – Schnittstelle (rplumber)" \
-            "https://rplumber.ilo.org/data/indicator/?id=EAR_4MTH_SEX_ECO_CUR_NB&format=.csv&channel=ilostat"
-
-          probe "Weltbank – Lohn- und Gehaltsempfänger" \
-            "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.CD?format=json&per_page=400&mrnev=1"
-
+          echo "── Einträge zu Verdiensten (earnings) ──"
+          grep -i 'earning' /tmp/ilo-toc.csv | cut -c1-220 | head -25
           echo ""
-          echo "=============================================="
-          echo " ZUSATZKENNZAHLEN FÜR AKTIEN"
-          echo "=============================================="
+          echo "── Einträge zu Löhnen (wage) ──"
+          grep -i 'wage' /tmp/ilo-toc.csv | cut -c1-220 | head -15
 
-          probe "Yahoo – Kennzahlen zu einer Aktie" \
-            "https://query1.finance.yahoo.com/v7/finance/quote?symbols=SAP.DE"
-
-          probe "Yahoo – Kennzahlen (quoteSummary)" \
-            "https://query2.finance.yahoo.com/v10/finance/quoteSummary/SAP.DE?modules=summaryDetail,defaultKeyStatistics"
-
-          echo ""
-          echo "──────────────────────────────────────────────"
-          echo "Fertig."
+      - name: Weltbank – gibt es dort eine Vermögensreihe?
+        run: |
+          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
+          echo "── Suche im Indikatorverzeichnis nach 'wealth' ──"
+          curl -sS -L -A "$UA" --max-time 60 \
+            "https://api.worldbank.org/v2/indicator?format=json&per_page=25000" \
+            -o /tmp/wb.json
+          echo "Größe: $(stat -c%s /tmp/wb.json) Bytes"
+          python3 - <<'PY'
+          import json
+          with open('/tmp/wb.json') as f:
+              daten = json.load(f)
+          eintraege = daten[1] if isinstance(daten, list) and len(daten) > 1 else []
+          treffer = [e for e in eintraege
+                     if 'wealth' in (e.get('name') or '').lower()
+                     and 'per capita' in (e.get('name') or '').lower()]
+          print(f"{len(eintraege)} Indikatoren, {len(treffer)} mit 'wealth' und 'per capita':")
+          for e in treffer[:25]:
+              print(f"  {e['id']:28} {e['name'][:110]}")
+          PY
