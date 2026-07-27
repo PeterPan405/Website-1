@@ -96,7 +96,15 @@ export async function getCurrentNews(): Promise<NewsArticle[]> {
  * Kein eigenes Kennzeichen in den Daten: Was hier landet, ergibt sich allein
  * aus der Reihenfolge. Ein Artikel wandert also von selbst nach hinten, sobald
  * `CURRENT_NEWS_COUNT` neuere existieren – und bleibt dort vollständig
- * abrufbar. Gelöscht wird nichts.
+ * abrufbar.
+ *
+ * **Das Archiv hat keine Verfallszeit.** Hier steht bewusst kein Datumsfilter
+ * und kein `slice` mit Obergrenze: Ein Artikel bleibt, solange es die Website
+ * gibt. Wer später eine Grenze einbauen möchte – „nur die letzten dreißig
+ * Tage“, „nur hundert Artikel“ –, ändert damit nicht nur eine Anzeige, sondern
+ * bricht jeden Verweis, der je auf einen dieser Artikel gesetzt wurde, und
+ * nimmt jeder Tagesausgabe die Hälfte ihres Inhalts. Diese Entscheidung ist
+ * ausdrücklich gefallen; sie gehört nicht nebenbei rückgängig gemacht.
  */
 export async function getFurtherNews(): Promise<NewsArticle[]> {
   return sortedArticles().slice(CURRENT_NEWS_COUNT)
@@ -141,6 +149,32 @@ export async function getRelatedArticles(
   const rest = others.filter((article) => article.category !== current.category)
 
   return [...sameCategory, ...rest].slice(0, limit)
+}
+
+/**
+ * Nachrichten, die einen bestimmten Kurs betreffen.
+ *
+ * Die Verbindung steht schon in den Daten: Jeder Artikel führt unter
+ * `relatedSymbols` die Kurse, um die es geht. Bisher wurde sie nur in eine
+ * Richtung gelesen – vom Artikel zum Kurs. Wer auf der Ölseite stand, erfuhr
+ * nichts davon, dass es dazu am selben Tag eine Meldung gab.
+ *
+ * Die Rückrichtung braucht kein zweites Feld und keine Pflege: Dieselbe Liste,
+ * andersherum gelesen. Ein neuer Artikel erscheint damit von selbst bei jedem
+ * Kurs, den er nennt – und kann nicht mit einer zweiten Zuordnung auseinander-
+ * laufen, die jemand zu aktualisieren vergisst.
+ *
+ * Zurück kommen Kurzfassungen, keine ganzen Artikel: Die Kursseite zeigt
+ * Überschrift, Anriss und Datum, alles Weitere steht im Artikel selbst.
+ */
+export async function getNewsForSymbol(
+  symbol: string,
+  limit = 4
+): Promise<NewsHeadline[]> {
+  return sortedArticles()
+    .filter((article) => article.relatedSymbols.includes(symbol))
+    .slice(0, limit)
+    .map(toHeadline)
 }
 
 /** Zeitpunkt der jüngsten Veröffentlichung – für `lastModified` in der Sitemap. */
