@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-27T20:33:15.821Z",
+  "abgerufenAm": "2026-07-27T23:32:01.966Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -18,6 +18,15 @@
     "label": "OECD, Durchschnittslöhne (AV_AN_WAGE) über die SDMX-Schnittstelle",
     "url": "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CEmployment%23JOB%23%7CBenefits%252C%20earnings%20and%20wages%23JOB_BEW%23&pg=0&fc=Topic&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40AV_AN_WAGE",
     "abgrenzung": "Durchschnittlicher Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt in US-Dollar. Brutto, vor Steuern und Abgaben. Nur OECD-Mitglieder – eine weltweite Reihe nach einheitlicher Abgrenzung gibt es offen nicht."
+  },
+  "vermoegenQuelle": {
+    "label": "OECD, Vermögensverteilungsdatenbank (Reinvermögen, Median) über die SDMX-Schnittstelle",
+    "url": "https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CSociety%23SOC%23%7CInequality%23SOC_INE%23&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_WEALTH%40DF_WEALTH",
+    "abgrenzung": "Median des Reinvermögens je Haushalt – Vermögen abzüglich Schulden, in der Mitte der Verteilung. Von der Quelle in Landeswährung gemeldet und mit dem Referenzkurs der Europäischen Zentralbank zum Ende des jeweiligen Erhebungsjahres in US-Dollar umgerechnet. Das Erhebungsjahr steht an jedem Wert und reicht je Land von 2016 bis 2023.",
+    "umrechnung": {
+      "label": "Europäische Zentralbank, Euro-Referenzkurse",
+      "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
+    }
   },
   "laender": {
     "AFG": {
@@ -179,6 +188,10 @@
       "durchschnittsgehalt": {
         "wert": 72018,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 311764,
+        "jahr": 2020
       }
     },
     "AUT": {
@@ -196,6 +209,10 @@
       "durchschnittsgehalt": {
         "wert": 78301,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 157130,
+        "jahr": 2021
       }
     },
     "AZE": {
@@ -291,6 +308,10 @@
       "durchschnittsgehalt": {
         "wert": 80009,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 271348,
+        "jahr": 2020
       }
     },
     "BLZ": {
@@ -526,6 +547,10 @@
       "durchschnittsgehalt": {
         "wert": 67901,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 315423,
+        "jahr": 2023
       }
     },
     "CYM": {
@@ -706,6 +731,10 @@
       "schuldenquote": {
         "wert": 55.9,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 72883,
+        "jahr": 2020
       }
     },
     "CUB": {
@@ -752,6 +781,10 @@
       "durchschnittsgehalt": {
         "wert": 43607,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 117379,
+        "jahr": 2021
       }
     },
     "PRK": {
@@ -790,6 +823,10 @@
       "durchschnittsgehalt": {
         "wert": 78090,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 68242,
+        "jahr": 2022
       }
     },
     "DJI": {
@@ -910,6 +947,10 @@
       "durchschnittsgehalt": {
         "wert": 41019,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 81452,
+        "jahr": 2021
       }
     },
     "SWZ": {
@@ -981,6 +1022,10 @@
       "durchschnittsgehalt": {
         "wert": 63053,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 118529,
+        "jahr": 2019
       }
     },
     "FRA": {
@@ -998,6 +1043,10 @@
       "durchschnittsgehalt": {
         "wert": 60483,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 140666,
+        "jahr": 2020
       }
     },
     "GUF": {
@@ -1076,6 +1125,10 @@
       "durchschnittsgehalt": {
         "wert": 76285,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 131140,
+        "jahr": 2021
       }
     },
     "GHA": {
@@ -1114,6 +1167,10 @@
       "durchschnittsgehalt": {
         "wert": 32412,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 104041,
+        "jahr": 2021
       }
     },
     "GRL": {
@@ -1266,6 +1323,10 @@
       "durchschnittsgehalt": {
         "wert": 39145,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 66319,
+        "jahr": 2020
       }
     },
     "ISL": {
@@ -1352,6 +1413,10 @@
       "durchschnittsgehalt": {
         "wert": 70113,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 216841,
+        "jahr": 2020
       }
     },
     "IMN": {
@@ -1394,6 +1459,10 @@
       "durchschnittsgehalt": {
         "wert": 53864,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 177969,
+        "jahr": 2020
       }
     },
     "CIV": {
@@ -1437,6 +1506,10 @@
       "durchschnittsgehalt": {
         "wert": 50183,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 134970,
+        "jahr": 2019
       }
     },
     "JEY": {
@@ -1552,6 +1625,10 @@
       "durchschnittsgehalt": {
         "wert": 44709,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 35014,
+        "jahr": 2020
       }
     },
     "LBN": {
@@ -1628,6 +1705,10 @@
       "durchschnittsgehalt": {
         "wert": 58112,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 65977,
+        "jahr": 2021
       }
     },
     "LUX": {
@@ -1645,6 +1726,10 @@
       "durchschnittsgehalt": {
         "wert": 98530,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 882435,
+        "jahr": 2021
       }
     },
     "MDG": {
@@ -1942,6 +2027,10 @@
       "durchschnittsgehalt": {
         "wert": 80136,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 142404,
+        "jahr": 2023
       }
     },
     "NCL": {
@@ -1967,6 +2056,10 @@
       "durchschnittsgehalt": {
         "wert": 60896,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 241940,
+        "jahr": 2018
       }
     },
     "NIC": {
@@ -2058,6 +2151,10 @@
       "durchschnittsgehalt": {
         "wert": 73462,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 206414,
+        "jahr": 2022
       }
     },
     "OMN": {
@@ -2186,6 +2283,10 @@
       "durchschnittsgehalt": {
         "wert": 49074,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 66965,
+        "jahr": 2016
       }
     },
     "PRT": {
@@ -2203,6 +2304,10 @@
       "durchschnittsgehalt": {
         "wert": 44937,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 111523,
+        "jahr": 2020
       }
     },
     "PRI": {
@@ -2245,6 +2350,10 @@
       "durchschnittsgehalt": {
         "wert": 61259,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 188121,
+        "jahr": 2023
       }
     },
     "MDA": {
@@ -2514,6 +2623,10 @@
       "durchschnittsgehalt": {
         "wert": 37832,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 119221,
+        "jahr": 2021
       }
     },
     "SVN": {
@@ -2531,6 +2644,10 @@
       "durchschnittsgehalt": {
         "wert": 63376,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 146088,
+        "jahr": 2021
       }
     },
     "SLB": {
@@ -2602,6 +2719,10 @@
       "durchschnittsgehalt": {
         "wert": 57779,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 156992,
+        "jahr": 2021
       }
     },
     "LKA": {
@@ -2919,6 +3040,10 @@
       "durchschnittsgehalt": {
         "wert": 66299,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 224320,
+        "jahr": 2017
       }
     },
     "TZA": {
@@ -2956,6 +3081,10 @@
       "durchschnittsgehalt": {
         "wert": 86977,
         "jahr": 2025
+      },
+      "medianvermoegen": {
+        "wert": 165700,
+        "jahr": 2022
       }
     },
     "VIR": {
