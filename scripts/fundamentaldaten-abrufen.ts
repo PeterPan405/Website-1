@@ -62,6 +62,7 @@ const GROESSEN = [
   {
     feld: 'umsatz' as const,
     einheit: 'USD',
+    taxonomie: 'us-gaap',
     tags: ['RevenueFromContractWithCustomerExcludingAssessedTax', 'Revenues'],
     /** Fließgrößen werden über vier Quartale summiert, Bestände nicht. */
     fliessgroesse: true,
@@ -69,12 +70,14 @@ const GROESSEN = [
   {
     feld: 'gewinn' as const,
     einheit: 'USD',
+    taxonomie: 'us-gaap',
     tags: ['NetIncomeLoss'],
     fliessgroesse: true,
   },
   {
     feld: 'cashflow' as const,
     einheit: 'USD',
+    taxonomie: 'us-gaap',
     tags: [
       'NetCashProvidedByUsedInOperatingActivities',
       'NetCashProvidedByUsedInOperatingActivitiesContinuingOperations',
@@ -84,13 +87,23 @@ const GROESSEN = [
   {
     feld: 'eigenkapital' as const,
     einheit: 'USD',
-    tags: ['StockholdersEquity'],
+    taxonomie: 'us-gaap',
+    tags: [
+      'StockholdersEquity',
+      'StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest',
+    ],
     fliessgroesse: false,
   },
   {
+    /*
+      Die Aktienzahl steht nicht in `us-gaap`, sondern in `dei` – dem
+      Begriffssatz für die Angaben auf dem Deckblatt einer Meldung. Genau dort
+      steht, wie viele Aktien am Stichtag ausstanden.
+    */
     feld: 'aktien' as const,
     einheit: 'shares',
-    tags: ['CommonStockSharesOutstanding', 'CommonStockSharesIssued'],
+    taxonomie: 'dei',
+    tags: ['EntityCommonStockSharesOutstanding'],
     fliessgroesse: false,
   },
 ]
@@ -141,12 +154,6 @@ function quartale(anzahl: number): string[] {
   return liste
 }
 
-/** Jahre, absteigend – für Bestandsgrößen und als Rückfall. */
-function jahre(anzahl: number): string[] {
-  const jetzt = new Date().getUTCFullYear()
-  return Array.from({ length: anzahl }, (_, i) => `CY${jetzt - 1 - i}`)
-}
-
 async function main() {
   console.log('Zuordnung Kürzel → Kennnummer holen …')
   const roh = (await hole(TICKER_URL)) as Record<
@@ -177,7 +184,8 @@ async function main() {
       Eigenkapital, Aktienzahl – gelten dagegen zum Stichtag und werden nicht
       summiert; dort zählt der jüngste Wert.
     */
-    const zeitraeume = groesse.fliessgroesse ? quartale(5) : [...jahre(2), ...quartale(3)]
+    // Stichtagsgrößen gibt es nur je Quartal, nicht als Jahr.
+    const zeitraeume = quartale(groesse.fliessgroesse ? 5 : 4)
     const gesammelt = new Map<number, number[]>()
     let quelleGefunden = ''
 
@@ -185,7 +193,17 @@ async function main() {
       for (const zeitraum of zeitraeume) {
         // Bei Fließgrößen bis zu vier Quartale sammeln, sonst reicht eines.
         if (!groesse.fliessgroesse && gesammelt.size > 0) break
-        const url = `${RAHMEN_BASIS}/us-gaap/${tag}/${groesse.einheit}/${zeitraum}.json`
+        /*
+          Stichtagsgrößen brauchen ein angehängtes `I`.
+
+          Die SEC unterscheidet Zeitraum- von Stichtagsangaben: Ein Umsatz
+          gilt für ein Quartal (`CY2025Q4`), ein Eigenkapital an einem Tag
+          (`CY2025Q4I`). Ohne das `I` antwortet die Schnittstelle mit 404 –
+          genau daran ist der erste Lauf gescheitert, für Eigenkapital und
+          Aktienzahl gleichermaßen.
+        */
+        const periode = groesse.fliessgroesse ? zeitraum : `${zeitraum}I`
+        const url = `${RAHMEN_BASIS}/${groesse.taxonomie}/${tag}/${groesse.einheit}/${periode}.json`
         const antwort = (await hole(url)) as Rahmenantwort | null
         if (!antwort?.data) continue
         quelleGefunden = tag
