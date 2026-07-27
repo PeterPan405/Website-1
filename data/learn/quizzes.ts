@@ -494,6 +494,166 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Ein ETC ist grundsätzlich eine Schuldverschreibung und damit abgeltungsteuerpflichtig. Für Produkte mit verbrieftem Lieferanspruch hat die Rechtsprechung eine Behandlung wie physisches Gold anerkannt. Ob ein konkretes Produkt darunterfällt, hängt an seinen Bedingungen – das gehört vor den Kauf geprüft.',
     },
   ],
+  // --------------------------------------------------------------------- ETF
+  'etf:beginner': [
+    {
+      question:
+        'Worin unterscheidet sich ein ETF grundsätzlich von einem klassischen aktiven Fonds?',
+      options: [
+        'Ein ETF ist kein Sondervermögen und deshalb günstiger',
+        'Ein ETF bildet einen Index nach, statt Werte nach eigenem Urteil auszuwählen',
+        'Ein ETF enthält immer Aktien, ein aktiver Fonds immer Anleihen',
+        'Ein ETF kann nicht an Wert verlieren',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Unterschied liegt in der Entscheidung, nicht in der Rechtsform. Beide sind Sondervermögen. Ein aktiver Fonds bezahlt Menschen dafür, Werte auszuwählen; ein ETF folgt einer festen Regel – dem Index. Genau daraus folgen die niedrigeren Kosten.',
+    },
+    {
+      question:
+        'Ein ETF auf einen Technologie-Index verliert 35 Prozent. Was sagt das über den ETF aus?',
+      options: [
+        'Der Anbieter hat die Nachbildung schlecht umgesetzt',
+        'Das Sondervermögen wurde angegriffen',
+        'Nichts Ungewöhnliches – der ETF folgt seinem Index, und der ist gefallen',
+        'Der ETF war zu klein und wurde deshalb abgewertet',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein ETF soll seinen Index abbilden, nach oben wie nach unten. Fällt der Index, fällt der ETF – das ist keine Fehlfunktion, sondern die Funktion. Das Risiko steckt im gewählten Index, nicht in der Fondshülle.',
+    },
+    {
+      question: 'Was bedeutet „Sondervermögen“ bei einem ETF?',
+      options: [
+        'Das Fondsvermögen ist vom Vermögen der Fondsgesellschaft getrennt und fällt bei deren Insolvenz nicht in die Masse',
+        'Der Staat garantiert den eingezahlten Betrag bis 100.000 Euro',
+        'Der Fonds darf nur in besonders sichere Werte investieren',
+        'Kursverluste werden vom Anbieter ausgeglichen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Sondervermögen schützt vor der Pleite des Anbieters, nicht vor Kursverlusten. Die Einlagensicherung über 100.000 Euro gilt für Bankguthaben, nicht für Wertpapiere – dort braucht es sie auch nicht, weil die Papiere ohnehin dir gehören.',
+    },
+    {
+      question:
+        'Zwei ETFs bilden denselben Index ab, einer thesauriert, einer schüttet aus. Was folgt daraus für die Rendite?',
+      options: [
+        'Der ausschüttende bringt mehr, weil zusätzlich Geld aufs Konto kommt',
+        'Der thesaurierende bringt mehr, weil er höhere Kurse hat',
+        'Vor Steuern und Kosten ist es dasselbe Geld auf zwei Wegen',
+        'Der ausschüttende ist risikoärmer, weil laufend Geld entnommen wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Am Ausschüttungstag sinkt der Kurs um genau den ausgeschütteten Betrag. Es entsteht also kein zusätzlicher Ertrag – die Frage ist nur, ob das Geld im Fonds bleibt oder auf dein Konto geht. Unterschiede ergeben sich erst durch Steuern und die Kosten der Wiederanlage.',
+    },
+  ],
+  'etf:fortgeschritten': [
+    {
+      question:
+        'Warum ist die Tracking-Differenz aussagekräftiger als die Gesamtkostenquote TER?',
+      options: [
+        'Weil sie von der Aufsichtsbehörde geprüft wird, die TER nicht',
+        'Weil sie den tatsächlichen Rückstand zum Index misst und damit auch Handelskosten, Quellensteuern und Leiheerträge enthält',
+        'Weil sie immer kleiner ist als die TER',
+        'Weil die TER nur bei synthetischen ETFs anfällt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die TER nennt eine Gebühr, die Tracking-Differenz misst ein Ergebnis. Sie enthält alles, was zwischen Index und ETF tatsächlich passiert ist – auch Erträge aus Wertpapierleihe, die den Rückstand verkleinern können. Kleiner als die TER ist sie deshalb manchmal, aber nicht immer.',
+    },
+    {
+      question:
+        'Ein ETF auf japanische Aktien soll gekauft werden. Wann ist der Spread in Deutschland tendenziell am engsten?',
+      options: [
+        'Direkt zur Eröffnung um 9 Uhr, wenn die Umsätze am höchsten sind',
+        'In der letzten Handelsminute, weil dann der Schlusskurs festgestellt wird',
+        'Der Spread hängt nicht von der Uhrzeit ab',
+        'Wenn sich die Handelszeiten überlappen oder der Heimatmarkt zumindest kürzlich geschlossen hat',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Solange der Heimatmarkt geschlossen ist, muss der Market Maker den fairen Wert schätzen und sichert sich über eine größere Spanne ab. Eröffnung und Schluss sind aus demselben Grund die teuersten Zeitpunkte – dort ist die Preisfindung am unsichersten.',
+    },
+    {
+      question: 'Was besitzt ein synthetisch nachbildender ETF tatsächlich?',
+      options: [
+        'Ein Wertpapierportfolio, das mit dem Index nichts zu tun haben muss, plus ein Tauschgeschäft mit einer Bank',
+        'Die Indextitel, nur in abweichender Gewichtung',
+        'Ausschließlich Barmittel',
+        'Anteile an einem zweiten, physischen ETF',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Beim Swap liefert eine Bank die Indexrendite, der Fonds im Gegenzug die Rendite seines eigenen Portfolios. Was im Fonds liegt, dient als Sicherheit und ist von der Indexzusammensetzung unabhängig. Daraus folgt das Kontrahentenrisiko – gesetzlich auf 10 Prozent begrenzt und in der Praxis meist täglich besichert.',
+    },
+    {
+      question:
+        'Ein Anleger vergleicht die Wertentwicklung seines ETF mit dem Kursindex desselben Marktes und stellt einen Vorsprung fest. Was liegt am nächsten?',
+      options: [
+        'Der ETF hat den Markt geschlagen',
+        'Ein Rechenfehler des Anbieters',
+        'Der Kursindex lässt Dividenden unberücksichtigt, der ETF vereinnahmt sie',
+        'Der ETF enthält zusätzliche Werte außerhalb des Index',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Price Index bildet nur Kursbewegungen ab, ein ETF vereinnahmt zusätzlich die Dividenden. Über Jahre summiert sich das erheblich. Verglichen werden muss mit der Net-Return-Variante – sie unterstellt Wiederanlage abzüglich Quellensteuer und ist der Maßstab, an dem ETFs sich messen.',
+    },
+  ],
+  'etf:profi': [
+    {
+      question:
+        'Ein ETF auf den S&P 500 hat ein sehr geringes tägliches Handelsvolumen. Was folgt daraus für die Handelbarkeit?',
+      options: [
+        'Er ist schwer verkäuflich, weil Käufer fehlen',
+        'Wenig – Anteile können am Primärmarkt neu geschaffen oder zurückgegeben werden, die Liquidität hängt an den Basiswerten',
+        'Er wird zwangsläufig bald geschlossen',
+        'Er weicht deshalb stärker vom Index ab',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Anders als bei einer Aktie ist das Handelsvolumen eines ETF kein gutes Maß. Zugelassene Teilnehmer können jederzeit Anteile schaffen oder einlösen, indem sie die Basiswerte liefern oder abnehmen. Handelbar ist ein ETF deshalb so gut wie das, was in ihm steckt.',
+    },
+    {
+      question:
+        'Welche Angabe zur Wertpapierleihe eines ETF ist für die Risikoeinschätzung am wichtigsten?',
+      options: [
+        'Der Name des Entleihers',
+        'Die Anzahl der Leihgeschäfte im Jahr',
+        'Ob die Erträge thesauriert oder ausgeschüttet werden',
+        'Umfang der Leihe, Qualität und Höhe der Sicherheiten sowie die Aufteilung der Erträge',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Das Risiko besteht darin, dass ein Entleiher ausfällt und die Sicherheiten weniger wert sind als die verliehenen Papiere. Entscheidend sind deshalb Umfang, Übersicherung und Qualität der Sicherheiten. Die Ertragsteilung sagt zusätzlich, wie viel vom Ertrag beim Fonds bleibt und wie viel beim Anbieter.',
+    },
+    {
+      question: 'Was ist die Vorabpauschale?',
+      options: [
+        'Eine jährliche Mindestbesteuerung thesaurierender Fonds, begrenzt auf den Wertzuwachs des Jahres',
+        'Eine zusätzliche Gebühr des Anbieters für die Wiederanlage',
+        'Eine Steuer auf jeden Kauf von Fondsanteilen',
+        'Ein Abschlag auf den Verkaufserlös beim Depotwechsel',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Weil ein thesaurierender Fonds nichts ausschüttet, gäbe es ohne diese Regel bis zum Verkauf keinen steuerlichen Anknüpfungspunkt. Die Vorabpauschale schließt diese Lücke. Sie ist auf den Wertzuwachs des Jahres gedeckelt, entfällt in Verlustjahren und wird beim späteren Verkauf angerechnet.',
+    },
+    {
+      question:
+        'Ein Anleger hat über Jahre monatlich Anteile gekauft und will nun einen Teil verkaufen. Welche Anteile gelten als verkauft?',
+      options: [
+        'Die zuletzt gekauften, weil dort der Gewinn am kleinsten ist',
+        'Anteilig aus allen Käufen',
+        'Die zuerst gekauften – FIFO, ohne Wahlmöglichkeit',
+        'Die mit dem höchsten Einstandskurs, um Steuern zu sparen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Es gilt First in, first out: Die ältesten Anteile gelten als zuerst verkauft. Bei einem gestiegenen Kurs sind das die mit dem größten Gewinn und damit der höchsten Steuerlast. Wählen lässt sich das nicht – wer Entnahmen plant, sollte es einkalkulieren.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

@@ -1,4 +1,5 @@
 import { aktie } from '@/data/learn/topics/aktie'
+import { etf } from '@/data/learn/topics/etf'
 import {
   aktienLaenderBranchen,
   anlegerpsychologie,
@@ -10,7 +11,6 @@ import {
   depotUndBroker,
   derivat,
   einlagensicherung,
-  etf,
   fonds,
   groessteCrashes,
   immobilien,
