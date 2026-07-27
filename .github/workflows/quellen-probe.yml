@@ -1,0 +1,99 @@
+name: Quellen abklopfen
+
+# Probiert Datenquellen durch und schreibt auf, welche antworten.
+#
+# ## Wozu ein eigener Workflow
+#
+# Aus der Entwicklungsumgebung sind nur npm und GitHub erreichbar; jeder
+# Versuch, eine Statistikschnittstelle anzusprechen, endet dort mit 403 des
+# Proxys. Auf einem GitHub-Läufer gibt es diese Einschränkung nicht.
+#
+# Ohne diesen Weg bliebe nur Raten: eine Adresse ins Abrufskript schreiben,
+# committen, den Monatslauf abwarten und im Protokoll nachsehen. Hier kostet
+# eine Antwort zwei Minuten, und es lassen sich zehn Kandidaten gleichzeitig
+# prüfen.
+#
+# Der Workflow verändert nichts. Er ist Werkzeug, kein Bestandteil der
+# Website – wenn die Quellen feststehen, kann er weg.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  abklopfen:
+    name: Kandidaten prüfen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Quellen der Reihe nach abrufen
+        run: |
+          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
+
+          probe() {
+            name="$1"; url="$2"
+            echo ""
+            echo "──────────────────────────────────────────────"
+            echo "▶ $name"
+            echo "  $url"
+            code=$(curl -sS -L -A "$UA" -H 'Accept-Language: en' \
+                     --max-time 45 -o /tmp/antwort -w '%{http_code}' "$url" 2>/tmp/fehler || echo 000)
+            groesse=$(stat -c%s /tmp/antwort 2>/dev/null || echo 0)
+            echo "  Status: $code   Größe: $groesse Bytes"
+            if [ "$code" = "200" ] && [ "$groesse" -gt 200 ]; then
+              echo "  Erste Zeilen:"
+              # Auch gepackte Antworten lesbar machen.
+              if file /tmp/antwort | grep -qi gzip; then
+                zcat /tmp/antwort 2>/dev/null | head -3 | cut -c1-400 | sed 's/^/    /'
+              else
+                head -3 /tmp/antwort | cut -c1-400 | sed 's/^/    /'
+              fi
+            else
+              head -c 200 /tmp/antwort 2>/dev/null | tr '\n' ' ' | sed 's/^/    /'
+              echo ""
+              head -2 /tmp/fehler 2>/dev/null | sed 's/^/    /'
+            fi
+          }
+
+          echo "=============================================="
+          echo " MEDIANVERMÖGEN JE ERWACHSENEM"
+          echo "=============================================="
+
+          probe "Our World in Data – Median-Vermögen" \
+            "https://ourworldindata.org/grapher/median-wealth-per-adult.csv"
+
+          probe "OWID – Grapher-Katalog (Suchbegriff wealth)" \
+            "https://api.ourworldindata.org/v1/indicators/search?q=median%20wealth"
+
+          probe "Weltbank – Vermögensrechnung (Wealth Accounts)" \
+            "https://api.worldbank.org/v2/country/all/indicator/NW.TOW.PC?format=json&per_page=400&mrnev=1"
+
+          probe "OECD – Vermögensverteilung (DSD_WEALTH)" \
+            "https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels&startPeriod=2019"
+
+          echo ""
+          echo "=============================================="
+          echo " LÖHNE – BREITERE ABDECKUNG ALS DIE OECD"
+          echo "=============================================="
+
+          probe "ILOSTAT – Massendownload Monatsverdienste" \
+            "https://webapps.ilo.org/ilostat-files/WEB_bulk_download/indicator/EAR_4MTH_SEX_ECO_CUR_NB.csv.gz"
+
+          probe "ILOSTAT – Schnittstelle (rplumber)" \
+            "https://rplumber.ilo.org/data/indicator/?id=EAR_4MTH_SEX_ECO_CUR_NB&format=.csv&channel=ilostat"
+
+          probe "Weltbank – Lohn- und Gehaltsempfänger" \
+            "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.CD?format=json&per_page=400&mrnev=1"
+
+          echo ""
+          echo "=============================================="
+          echo " ZUSATZKENNZAHLEN FÜR AKTIEN"
+          echo "=============================================="
+
+          probe "Yahoo – Kennzahlen zu einer Aktie" \
+            "https://query1.finance.yahoo.com/v7/finance/quote?symbols=SAP.DE"
+
+          probe "Yahoo – Kennzahlen (quoteSummary)" \
+            "https://query2.finance.yahoo.com/v10/finance/quoteSummary/SAP.DE?modules=summaryDetail,defaultKeyStatistics"
+
+          echo ""
+          echo "──────────────────────────────────────────────"
+          echo "Fertig."
