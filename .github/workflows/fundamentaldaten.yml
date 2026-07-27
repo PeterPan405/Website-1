@@ -1,0 +1,59 @@
+name: Fundamentaldaten aktualisieren
+
+# Holt Umsatz, Gewinn, Cashflow, Eigenkapital und Aktienzahl bei der
+# US-Börsenaufsicht.
+#
+# Zeitplan: am fünften jeden Monats. Die Zahlen ändern sich nur mit den
+# Quartalsberichten, also viermal im Jahr – monatlich fängt jede Meldesaison
+# sicher ein und kostet zwölf Läufe.
+#
+# Warum nicht im Kursabruf mit: Kurse kommen stündlich, diese Zahlen viermal
+# jährlich. Sie im selben Lauf zu holen hieße, zehnmal am Tag zwanzig große
+# Dateien herunterzuladen, in denen sich nichts geändert hat.
+
+on:
+  schedule:
+    - cron: '0 6 5 * *'
+  workflow_dispatch:
+
+concurrency:
+  group: fundamentaldaten
+  cancel-in-progress: false
+
+jobs:
+  abrufen:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fundamentaldaten abrufen
+        run: npm run fundamentaldaten
+
+      - name: Momentaufnahme committen
+        run: |
+          if git diff --quiet -- data/snapshots/fundamentaldaten.json; then
+            echo "Keine Änderung – kein Commit."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/snapshots/fundamentaldaten.json
+          git commit -m "Fundamentaldaten: Stand $(date -u +%Y-%m-%d)"
+
+          zweig="${{ github.ref_name }}"
+          for versuch in 1 2 3; do
+            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
+            echo "Push fehlgeschlagen, Versuch $versuch"
+            sleep $((versuch * 5))
+          done
+          exit 1
