@@ -215,6 +215,52 @@ richtiger Antworten kann die Stufe als erledigt markiert werden.
 - Fortschritt und Bestergebnisse liegen ausschließlich im localStorage
   (`fk-learn-progress`, `fk-quiz-results`) – kein Konto, keine Serverübertragung.
 
+## Erklärgrafiken
+
+Zehn Diagramme im Lernbereich und auf `/maerkte/msci-world` – als **handgeschriebenes
+SVG im HTML**, nicht als Bilddateien. Verzeichnis in `data/figures.ts`, Zeichnungen unter
+`components/content/figures/`, eingesetzt über den Inhaltsblock
+`{ type: 'figure', figure: '…' }`.
+
+Vier Gründe für gezeichnetes SVG statt Bildmaterial:
+
+- **Rechte.** Ein fremdes Bild bräuchte Lizenz und Bildnachweis. Gezeichnetes gehört uns.
+- **Zahlen.** Die Werte kommen aus `lib/zins-beispiele.ts` – denselben Funktionen, aus
+  denen die Tabellen daneben entstehen. Ein Bild wäre eine zweite Quelle für dieselbe
+  Zahl. Genau das war der Zustand vorher: Die Sparplantabelle wies 478.000 Euro aus,
+  gerechnet sind es rund 454.000; in der Kostentabelle stimmte eine von vier Zeilen.
+- **Darstellung.** Skaliert mit der Spaltenbreite, wechselt mit hellem und dunklem Theme,
+  braucht kein JavaScript – die Grafik steht fertig im statisch gebauten HTML.
+- **Zugänglichkeit.** Jede Grafik trägt `<title>` und `<desc>` mit einem inhaltlichen
+  Satz. Wo die Zahlen aus einem Datensatz stammen (Ländergewichtung), wird auch die
+  Vorlesefassung daraus gebaut – sonst wäre sie nach der ersten Aktualisierung falsch,
+  und zwar unbemerkt.
+
+**Karikaturen und Illustrationen gibt es bewusst nicht.** Sie ließen sich hier nicht
+ehrlich herstellen: gezeichnet wird nicht von Hand, und fremdes Bildmaterial brächte eine
+Lizenzfrage mit, die eine Bildungsseite sich nicht einhandeln sollte.
+
+Zwei Fallen, beide bereits eingetreten und deshalb festgehalten:
+
+- **SVG-Text bricht nicht um.** Was nicht in die `viewBox` passt, wird abgeschnitten –
+  ohne Fehler. Längere Aussagen gehören in die `figcaption` darunter, die umbricht. Der
+  letzte Teilstrich einer Achse braucht Rand, sonst ragt seine Beschriftung zur Hälfte
+  hinaus.
+- **Eine Grafik hat keinen Fehlerzustand.** Eine vertauschte y-Achse oder eine
+  Gewichtung, die auf 94 statt 100 Prozent kommt, sieht plausibel aus. Deshalb liegt die
+  Geometrie importfrei in `lib/figure-geometry.ts` mit Prüfungen unter
+  `tests/figure-geometry.test.ts`, und `assertZusammensetzungVollstaendig()` wirft beim
+  Bauen, statt zu warnen.
+
+### Ländergewichtung des MSCI World
+
+`data/index-zusammensetzung.ts` hält die Aufteilung in der Einteilung des Anbieters – die
+fünf größten Länder einzeln, der Rest als Sammelposition. Der Datensatz trägt ein
+sichtbares `stand`-Datum und einen Link auf das Factsheet: Anders als der Kurs wird er
+nicht stündlich abgerufen, sondern von Hand gepflegt. Eine Gewichtung ohne Datum wäre eine
+Behauptung. Den „Rest“ selbst auf einzelne Länder zu verteilen hieße, Zahlen zu erfinden,
+die in der Quelle nicht stehen.
+
 ## Unternehmensphilosophie
 
 Verfasst und veröffentlicht (`PHILOSOPHY_PUBLISHED = true`). Fünf Abschnitte in

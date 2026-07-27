@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 
+import { ContentFigure } from '@/components/content/ContentFigure'
 import { Callout } from '@/components/ui/Callout'
 import { slugifyHeading, type ContentBlock } from '@/data/content'
 
@@ -175,6 +176,9 @@ function Block({ block }: { block: ContentBlock }) {
           </p>
         </div>
       )
+
+    case 'figure':
+      return <ContentFigure id={block.figure} caption={block.caption} />
 
     case 'keyfacts':
       return (

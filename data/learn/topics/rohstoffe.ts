@@ -103,6 +103,10 @@ export const rohstoffe: LearnTopic = {
           text: 'Bei Rohstoffen ist das anders. Ein Goldbarren im Tresor wird nicht mehr. Der **einzige** Weg zu einem Gewinn ist, dass später jemand mehr dafür zahlt als du. Das ist kein Makel, sondern eine Eigenschaft – aber sie ändert, wie man über eine solche Anlage nachdenkt.',
         },
         {
+          type: 'figure',
+          figure: 'rohstoffe-kein-ertrag',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Woran sich der Wert bemisst',
@@ -267,6 +271,10 @@ export const rohstoffe: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Ist der spätere Kontrakt teurer als der auslaufende, kostet jeder Rollvorgang Geld. Dieser Zustand heißt **Contango** und ist bei lagerfähigen Rohstoffen der Normalfall, weil Lagerung und Zinsen im Preis stecken. Der umgekehrte Fall – der spätere Kontrakt ist billiger – heißt **Backwardation** und bringt einen Rollgewinn.',
+        },
+        {
+          type: 'figure',
+          figure: 'rohstoffe-rollkurve',
         },
         {
           type: 'formula',

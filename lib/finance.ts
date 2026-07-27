@@ -138,6 +138,37 @@ export function calculateCompoundInterest(
 }
 
 /**
+ * Kapital bei einfachem Zins – die Erträge werden jedes Jahr entnommen.
+ *
+ * Der Gegenpol zur Zinseszinsrechnung und nur dafür da, den Unterschied
+ * zwischen beiden zeigen zu können: Das Kapital bleibt gleich, der Zuwachs ist
+ * jedes Jahr derselbe Betrag.
+ */
+export function simpleInterestBalance(
+  principal: number,
+  annualRatePercent: number,
+  years: number
+): number {
+  return principal * (1 + (annualRatePercent / 100) * years)
+}
+
+/**
+ * Kapital bei jährlicher Verzinsung mit Wiederanlage – die Grundformel.
+ *
+ * Bewusst jährlich und nicht monatlich wie `calculateCompoundInterest`: Diese
+ * Funktion bedient die Lehrbeispiele im Lernbereich, und dort steht die Formel
+ * `Startkapital × (1 + Zinssatz)^Jahre` im Text daneben. Eine monatliche
+ * Verzinsung ergäbe ein anderes Ergebnis als die abgedruckte Formel.
+ */
+export function compoundBalance(
+  principal: number,
+  annualRatePercent: number,
+  years: number
+): number {
+  return principal * (1 + annualRatePercent / 100) ** years
+}
+
+/**
  * Verdopplungszeit nach der 72er-Regel.
  *
  * @returns Jahre bis zur Verdopplung, oder `null` bei einem Zinssatz von null.

@@ -7,6 +7,8 @@
  * derselbe Datensatz ließe sich später auch für andere Ausgabekanäle nutzen.
  */
 
+import type { FigureId } from '@/data/figures'
+
 export type ContentCalloutVariant = 'info' | 'tip' | 'warning'
 
 export type ContentBlock =
@@ -26,6 +28,15 @@ export type ContentBlock =
   | { type: 'formula'; expression: string; description: string }
   /** Kompakte Faktenliste, z. B. „Risiko: hoch“. */
   | { type: 'keyfacts'; items: { label: string; value: string }[] }
+  /**
+   * Erklärgrafik aus `data/figures.ts`.
+   *
+   * Hier steht nur die Kennung, nicht die Zeichnung: Die Inhaltsdaten dürfen
+   * keine Komponenten kennen. Ohne `caption` gilt die Unterschrift aus dem
+   * Verzeichnis – die passende Formulierung gehört zur Grafik, nicht zur
+   * Stelle, an der sie eingesetzt wird.
+   */
+  | { type: 'figure'; figure: FigureId; caption?: string }
 
 /** Erzeugt aus einem Überschriftentext eine stabile Sprungmarke. */
 export function slugifyHeading(text: string): string {

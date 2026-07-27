@@ -1,4 +1,35 @@
 import type { LearnTopic } from '@/data/learn/types'
+import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+/*
+  Die einzige Stelle, an der eine Datei unter `data/` etwas aus `lib/` holt.
+
+  `lib/zins-beispiele.ts` und `lib/finance.ts` sind reine Rechnung ohne eigene
+  Datenabhängigkeit – es entsteht also kein Kreis. Der Grund für die Ausnahme:
+  Die Zahlen dieses Themas stehen zusätzlich in den Grafiken daneben. Als
+  Literale geschrieben wären das zwei Quellen für dieselbe Zahl, und beim
+  Anlegen dieses Moduls hat sich gezeigt, dass sie längst auseinandergelaufen
+  waren – die Sparplantabelle wies 478.000 Euro aus, gerechnet sind es rund
+  454.000.
+*/
+import {
+  grundbeispiel,
+  grundbeispielReihe,
+  kostenbeispiel,
+  kostenbeispielBrutto,
+  kostenbeispielReihe,
+  sparbeispiel,
+  sparbeispielReihe,
+} from '@/lib/zins-beispiele'
+
+const grundreihe = grundbeispielReihe()
+const stuetzjahre = grundreihe.filter((punkt) =>
+  (grundbeispiel.jahre as readonly number[]).includes(punkt.jahr)
+)
+const sparfaelle = sparbeispielReihe()
+const kostenfaelle = kostenbeispielReihe()
+/** Was der Unterschied zwischen der billigsten und der teuersten Variante kostet. */
+const kostenspanne =
+  kostenfaelle[0].endkapital - kostenfaelle[kostenfaelle.length - 1].endkapital
 
 /**
  * Vollständig ausgearbeitetes Thema.
@@ -62,15 +93,19 @@ export const zinseszins: LearnTopic = {
           text: 'Bei **einfachem Zins** werden die Erträge jedes Jahr entnommen. Das Kapital bleibt gleich, der Zuwachs ist jedes Jahr identisch – eine Gerade. Bei **Zinseszins** bleiben die Erträge liegen und verzinsen sich mit. Der Zuwachs wird jedes Jahr größer – eine Kurve, die immer steiler wird.',
         },
         {
+          type: 'figure',
+          figure: 'zins-gerade-vs-kurve',
+        },
+        {
           type: 'table',
-          caption: '10.000 Euro bei 6 Prozent – mit und ohne Wiederanlage der Erträge',
+          caption: `${formatCurrencyRounded(grundbeispiel.kapital)} bei ${formatPercent(grundbeispiel.zinssatz, 0)} – mit und ohne Wiederanlage der Erträge`,
           head: ['Jahr', 'Einfacher Zins', 'Zinseszins', 'Differenz'],
-          rows: [
-            ['10', '16.000 €', '17.908 €', '1.908 €'],
-            ['20', '22.000 €', '32.071 €', '10.071 €'],
-            ['30', '28.000 €', '57.435 €', '29.435 €'],
-            ['40', '34.000 €', '102.857 €', '68.857 €'],
-          ],
+          rows: stuetzjahre.map((punkt) => [
+            String(punkt.jahr),
+            formatCurrencyRounded(punkt.einfach),
+            formatCurrencyRounded(punkt.zinseszins),
+            formatCurrencyRounded(punkt.zinseszins - punkt.einfach),
+          ]),
         },
         {
           type: 'paragraph',
@@ -120,15 +155,19 @@ export const zinseszins: LearnTopic = {
           text: 'In der Formel steht der Zinssatz im Exponenten, das Startkapital nur als Faktor. Doppeltes Startkapital verdoppelt das Ergebnis. Doppelte Laufzeit **quadriert** den Wachstumsfaktor. Das ist der entscheidende Unterschied.',
         },
         {
+          type: 'figure',
+          figure: 'zins-frueh-vs-spaet',
+        },
+        {
           type: 'table',
-          caption:
-            'Alle sparen 200 Euro monatlich bei 6 Prozent – bis zum 67. Lebensjahr',
+          caption: `Alle sparen ${formatCurrencyRounded(sparbeispiel.rate)} monatlich bei ${formatPercent(sparbeispiel.zinssatz, 0)} – bis zum ${sparbeispiel.endalter}. Lebensjahr`,
           head: ['Start mit', 'Eingezahlt', 'Endkapital', 'davon Erträge'],
-          rows: [
-            ['25 Jahren', '100.800 €', '478.000 €', '377.200 €'],
-            ['35 Jahren', '76.800 €', '243.700 €', '166.900 €'],
-            ['45 Jahren', '52.800 €', '117.100 €', '64.300 €'],
-          ],
+          rows: sparfaelle.map((fall) => [
+            `${fall.startalter} Jahren`,
+            formatCurrencyRounded(fall.eingezahlt),
+            formatCurrencyRounded(fall.endkapital),
+            formatCurrencyRounded(fall.ertraege),
+          ]),
         },
         {
           type: 'paragraph',
@@ -280,19 +319,23 @@ export const zinseszins: LearnTopic = {
           text: 'Laufende Kosten eines Fonds werden jährlich vom gesamten Vermögen abgezogen, nicht von der Einzahlung. Sie schmälern damit genau die Basis, auf der der Zinseszins arbeitet – und ihre Wirkung wächst mit der Zeit ebenso exponentiell wie die Rendite.',
         },
         {
+          type: 'figure',
+          figure: 'zins-kosten',
+        },
+        {
           type: 'table',
-          caption: '200 Euro monatlich über 30 Jahre, 6 Prozent Bruttorendite',
+          caption: `${formatCurrencyRounded(kostenbeispiel.rate)} monatlich über ${kostenbeispiel.jahre} Jahre, ${formatPercent(kostenbeispiel.bruttoRendite, 0)} Bruttorendite – ohne Kosten wären es ${formatCurrencyRounded(kostenbeispielBrutto())}`,
           head: ['Laufende Kosten', 'Nettorendite', 'Endkapital', 'Kosten gesamt'],
-          rows: [
-            ['0,20 %', '5,80 %', '194.400 €', '6.500 €'],
-            ['0,50 %', '5,50 %', '186.300 €', '14.600 €'],
-            ['1,00 %', '5,00 %', '166.500 €', '34.400 €'],
-            ['1,80 %', '4,20 %', '145.000 €', '55.900 €'],
-          ],
+          rows: kostenfaelle.map((fall) => [
+            formatPercent(fall.quote, 2),
+            formatPercent(fall.nettoRendite, 2),
+            formatCurrencyRounded(fall.endkapital),
+            formatCurrencyRounded(fall.kosten),
+          ]),
         },
         {
           type: 'paragraph',
-          text: 'Von 0,2 auf 1,8 Prozent Kosten – ein Unterschied von 1,6 Prozentpunkten pro Jahr – kostet hier rund **49.000 Euro**, also mehr als zwei Drittel der gesamten Einzahlungen. Das ist der Grund, warum bei langfristigen Anlagen die Kostenquote wichtiger ist als fast jedes Auswahlkriterium: Sie ist die einzige Größe, die im Voraus bekannt ist.',
+          text: `Von ${formatPercent(kostenfaelle[0].quote, 1)} auf ${formatPercent(kostenfaelle[kostenfaelle.length - 1].quote, 1)} Kosten – ein Unterschied von ${formatNumber(kostenfaelle[kostenfaelle.length - 1].quote - kostenfaelle[0].quote, 1)} Prozentpunkten pro Jahr – kostet hier rund **${formatCurrencyRounded(kostenspanne)}**, also mehr als zwei Drittel der gesamten Einzahlungen. Das ist der Grund, warum bei langfristigen Anlagen die Kostenquote wichtiger ist als fast jedes Auswahlkriterium: Sie ist die einzige Größe, die im Voraus bekannt ist.`,
         },
         {
           type: 'callout',
@@ -328,6 +371,10 @@ export const zinseszins: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Ein Fonds macht in Jahr 1 plus 50 Prozent, in Jahr 2 minus 50 Prozent. Der Durchschnitt ist null – aus 100 Euro wurden aber 75 Euro. Aus 150 minus die Hälfte sind 75.',
+        },
+        {
+          type: 'figure',
+          figure: 'zins-volatilitaetsbremse',
         },
         {
           type: 'formula',
