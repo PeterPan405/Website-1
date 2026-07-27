@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
 
@@ -51,7 +52,22 @@ const principles: { icon: IconName; title: string; text: string }[] = [
   },
 ]
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  /*
+    Die Zahlen kommen aus den Daten, nicht aus dem Fließtext.
+
+    Hier stand „Aktie und Zinseszins sind ausformuliert, die übrigen 20 Themen
+    haben eine Gliederung“. Beides war falsch geworden: Rohstoffe kam dazu, und
+    aus 20 übrigen wurden 30. Eine Zahl, die jemand beim Erweitern mitpflegen
+    muss, wird irgendwann vergessen – und steht dann als Behauptung auf einer
+    Seite, deren Thema Ehrlichkeit ist.
+  */
+  const [stats, completeTopics] = await Promise.all([
+    getLearnStats(),
+    getCompleteTopics(),
+  ])
+  const offen = stats.topicCount - completeTopics.length
+
   return (
     <>
       <PageHeader
@@ -103,13 +119,17 @@ export default function AboutPage() {
             Stufe gehören und was bewusst ausgeklammert bleibt.
           </p>
           <p className="text-fg-muted mt-4 leading-relaxed">
-            Derzeit sind die Themen{' '}
-            <strong className="text-fg font-semibold">Aktie</strong> und{' '}
-            <strong className="text-fg font-semibold">Zinseszins</strong> vollständig
-            ausformuliert. Die übrigen 20 Themen haben eigene Seiten mit Gliederung; der
-            Text wird Thema für Thema ergänzt. Der Stand ist auf jeder betroffenen Seite
-            gekennzeichnet – wir halten es für ehrlicher, den Bearbeitungsstand zu zeigen,
-            als leere Seiten zu verstecken.
+            Derzeit sind{' '}
+            {completeTopics.map((topic, index) => (
+              <span key={topic.slug}>
+                {index > 0 && (index === completeTopics.length - 1 ? ' und ' : ', ')}
+                <strong className="text-fg font-semibold">{topic.title}</strong>
+              </span>
+            ))}{' '}
+            vollständig ausformuliert. Die übrigen {offen} Themen haben eigene Seiten mit
+            Gliederung; der Text wird Thema für Thema ergänzt. Der Stand ist auf jeder
+            betroffenen Seite gekennzeichnet – wir halten es für ehrlicher, den
+            Bearbeitungsstand zu zeigen, als leere Seiten zu verstecken.
           </p>
 
           <div className="mt-8">
@@ -122,8 +142,11 @@ export default function AboutPage() {
                 eingesetzten Geldes.
               </p>
               <p>
-                Kurse, News und Verschuldungsdaten dieser Version sind Beispieldaten und
-                keine echten Marktinformationen.
+                Kurse werden als Tagesschlusskurse und zuletzt gehandelte Preise
+                dargestellt, nicht in Echtzeit; sie können von den Angaben anderer
+                Anbieter abweichen und sind nicht für Handelszwecke bestimmt. Die
+                Verschuldungszahlen sind Näherungswerte und keine amtliche Statistik.
+                Herkunft und Stand stehen jeweils direkt an der Angabe.
               </p>
             </Callout>
           </div>

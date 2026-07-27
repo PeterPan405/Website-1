@@ -7,10 +7,11 @@ import {
 /**
  * Deterministische Erzeugung der Demo-Kursverläufe.
  *
- * Warum nicht einfach ein paar Zahlen ins Repository schreiben? Fünf Jahre
- * Tageskurse für zehn Instrumente wären rund 13.000 handgepflegte Werte. Statt
- * dessen wird der Verlauf aus einem festen Startwert plus festem Zufalls-Seed
- * berechnet. Ergebnis: bei jedem Aufruf exakt dieselbe Reihe, ohne dass die
+ * Nur noch der Rückfallweg: Instrumente ohne frei zugängliche Quelle – derzeit
+ * `msci-world` – bekommen hier einen erzeugten Verlauf, bis der Abruf greift.
+ * Fünf Jahre Tageskurse von Hand zu pflegen wäre für jedes Instrument über
+ * tausend Werte; stattdessen wird der Verlauf aus einem festen Startwert plus
+ * festem Zufalls-Seed berechnet. Ergebnis: bei jedem Aufruf exakt dieselbe Reihe, ohne dass die
  * Daten im Repository liegen.
  *
  * Sobald eine echte Kurs-API angebunden wird, entfällt diese Datei komplett –
