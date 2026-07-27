@@ -9,6 +9,7 @@ import { IndexLaendergewichtung } from '@/components/content/figures/index-laend
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
@@ -30,6 +31,7 @@ import {
   getDataCoverage,
   getInstrument,
   getInstrumentSymbols,
+  getKennzahlen,
   getQuote,
   getQuotes,
 } from '@/lib/markets'
@@ -78,11 +80,12 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
 
   if (!instrument || !quote || !ranges) notFound()
 
-  const [relatedTopics, allQuotes, coverage, meldungen] = await Promise.all([
+  const [relatedTopics, allQuotes, coverage, meldungen, kennzahlen] = await Promise.all([
     getTopicsBySlugs(instrument.relatedTopics),
     getQuotes(),
     getDataCoverage(),
     getNewsForSymbol(symbol),
+    getKennzahlen(symbol),
   ])
 
   const positive = quote.changePercent >= 0
@@ -312,6 +315,8 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 </ul>
               </section>
             )}
+
+            {kennzahlen && <Kennzahlentafel kennzahlen={kennzahlen} className="mt-12" />}
 
             <div className="border-border mt-10 border-t pt-5">
               <SourceSummary

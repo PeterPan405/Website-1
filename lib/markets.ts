@@ -8,6 +8,7 @@ import {
   type MarketRange,
   type SeriesPoint,
 } from '@/data/markets'
+import { berechneKennzahlen, type Kennzahlen } from '@/lib/kennzahlen'
 import { getLiveSeries, type QuoteSource } from '@/lib/market-live'
 import { computeQuoteFigures } from '@/lib/market-quote'
 import { sliceByDays } from '@/lib/market-range'
@@ -245,6 +246,19 @@ export async function getSeries(
   const definition = findDefinition(symbol)
   if (!definition) return []
   return sliceRange(basisFor(definition).daily, range)
+}
+
+/**
+ * Die gerechneten Kennzahlen zu einem Instrument.
+ *
+ * Gilt für **jeden** geführten Wert – Aktie, Index, Rohstoff, Währungspaar,
+ * Kryptowährung –, weil alle dieselbe Art von Tagesreihe haben. Was die Zahlen
+ * bedeuten und warum es gerade diese sind, steht in `lib/kennzahlen.ts`.
+ */
+export async function getKennzahlen(symbol: string): Promise<Kennzahlen | null> {
+  const definition = findDefinition(symbol)
+  if (!definition) return null
+  return berechneKennzahlen(basisFor(definition).daily)
 }
 
 /**
