@@ -289,17 +289,34 @@ Die Artikel unter `/news` beziehen sich auf tatsächliche Ereignisse und nennen
 ihre Quellen. Bis Juli 2026 standen dort erfundene Beispieltexte; sie sind
 ersatzlos entfernt.
 
-Vorne stehen unter **Aktuelles** die fünf jüngsten Artikel, alles Ältere rutscht
-in **Weitere Artikel**. Dieselben fünf zeigt das Karussell auf der Startseite.
-Diese Aufteilung steht **nicht** in den Daten – sie ergibt sich in `lib/news.ts`
-allein aus `publishedAt`. Einen neuen Artikel anzulegen genügt also; das Ältere
-wandert von selbst nach hinten, ohne dass jemand ein Kennzeichen umsetzt.
+Vorne stehen unter **Aktuelles** die neun jüngsten Artikel, alles Ältere rutscht
+in **Weitere Artikel** – das ist das Archiv, kein eigener Datenbestand. Dieselbe
+Auswahl zeigt das Karussell auf der Startseite. Die Aufteilung steht **nicht** in
+den Daten – sie ergibt sich in `lib/news.ts` allein aus `publishedAt`. Einen
+neuen Artikel anzulegen genügt also; das Ältere wandert von selbst nach hinten,
+ohne dass jemand ein Kennzeichen umsetzt oder etwas löscht.
 
-Die Grenze läuft bewusst nach Rang (`CURRENT_NEWS_COUNT = 5`) und nicht nach
-Uhrzeit. Bei einer statisch gebauten Seite wäre „alles aus den letzten 48
+Die Grenze läuft bewusst nach Rang (`CURRENT_NEWS_COUNT`) und nicht nach
+Uhrzeit. Bei einer statisch gebauten Seite wäre „alles aus den letzten 24
 Stunden“ auf den Zeitpunkt des letzten Builds bezogen – nach ein paar Tagen ohne
-neue Ausgabe stünde die Startseite ohne Meldungen da. Die 48 Stunden sind die
+neue Ausgabe stünde die Startseite ohne Meldungen da. Die 24 Stunden sind die
 redaktionelle Vorgabe für die Recherche, nicht die Anzeigelogik.
+
+Neun statt vorher fünf: An einem Tag mit einem beherrschenden Thema –
+Notenbank, Geopolitik – gehören die Meldungen zusammen gelesen. Fünf hätten die
+Hälfte einer Tagesausgabe sofort ins Archiv geschoben.
+
+### Der Ablauf steckt in einer Skill
+
+`.claude/skills/newsupdate/SKILL.md` beschreibt den vollständigen Durchlauf:
+Recherche mit Datumsprüfung, Lehrwinkel je Artikel, die Grenzwerte der
+Build-Prüfungen (Teaser 100–200 Zeichen, `intro` der Tagesausgabe 110–165), die
+Befehle für die Slug-Listen und der Hinweis, dass nichts live ist, bevor auf
+`main` gemerged wurde. Aufruf mit `/newsupdate`; nach dem Anlegen einmal
+`/reload-skills`.
+
+Der Tagesüberblick unter `/news/tag/<datum>` ist ein **eigener** Datenbestand
+und veraltet sonst still mit – die Skill legt ihn im selben Durchlauf mit an.
 
 Redaktionell gilt dasselbe wie beim Tagesüberblick: selbst zusammenfassen, nie
 spiegeln, und **mindestens eine Quelle je Artikel**. `lib/news-validate.ts`

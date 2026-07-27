@@ -23,9 +23,13 @@ assertNewsValid(newsArticles)
 /**
  * Wie viele Artikel unter „Aktuelles“ stehen.
  *
- * Das ist die ganze Mechanik des rollierenden Systems: Die fünf jüngsten
+ * Das ist die ganze Mechanik des rollierenden Systems: Die neun jüngsten
  * Artikel stehen vorne, alles Ältere rutscht in „Weitere Artikel“. Kommt eine
  * neue Meldung dazu, verschiebt sich die Grenze von selbst.
+ *
+ * Neun statt vorher fünf, weil eine Tagesausgabe so groß ist: An einem Tag mit
+ * einem beherrschenden Thema – Geopolitik, Notenbank – gehören die Meldungen
+ * zusammen gelesen. Fünf hätten die Hälfte davon sofort ins Archiv geschoben.
  *
  * Bewusst nach Rang und nicht nach Uhrzeit („alles aus den letzten 48
  * Stunden“): Die Website wird statisch gebaut, das „jetzt“ wäre also der
@@ -34,7 +38,7 @@ assertNewsValid(newsArticles)
  * eine mit Meldungen von vorgestern. Die 48 Stunden sind die redaktionelle
  * Vorgabe für die Recherche, nicht die technische Anzeigelogik.
  */
-export const CURRENT_NEWS_COUNT = 5
+export const CURRENT_NEWS_COUNT = 9
 
 /**
  * Reduzierte Artikel-Darstellung ohne Fließtext.
@@ -91,7 +95,8 @@ export async function getCurrentNews(): Promise<NewsArticle[]> {
  *
  * Kein eigenes Kennzeichen in den Daten: Was hier landet, ergibt sich allein
  * aus der Reihenfolge. Ein Artikel wandert also von selbst nach hinten, sobald
- * fünf neuere existieren.
+ * `CURRENT_NEWS_COUNT` neuere existieren – und bleibt dort vollständig
+ * abrufbar. Gelöscht wird nichts.
  */
 export async function getFurtherNews(): Promise<NewsArticle[]> {
   return sortedArticles().slice(CURRENT_NEWS_COUNT)

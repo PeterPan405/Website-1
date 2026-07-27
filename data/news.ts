@@ -10,11 +10,13 @@ import type { ContentBlock } from '@/data/content'
  *
  * ## Das rollierende Prinzip
  *
- * Vorne stehen die fünf jüngsten Artikel, alles Ältere rutscht in „Weitere
- * Artikel“. Diese Aufteilung steht **nicht** in den Daten – sie ergibt sich in
- * `lib/news.ts` aus der Reihenfolge. Kommt ein neuer Artikel dazu, verschiebt
- * sich alles von selbst; niemand muss einen alten Artikel umtragen oder ein
- * Kennzeichen umsetzen.
+ * Vorne stehen die jüngsten Artikel (`CURRENT_NEWS_COUNT` in `lib/news.ts`),
+ * alles Ältere rutscht in „Weitere Artikel“. Diese Aufteilung steht **nicht**
+ * in den Daten – sie ergibt sich allein aus der Reihenfolge. Kommt ein neuer
+ * Artikel dazu, verschiebt sich alles von selbst; niemand muss einen alten
+ * Artikel umtragen, ein Kennzeichen umsetzen oder etwas löschen. Ältere
+ * Ausgaben bleiben vollständig erreichbar – das Archiv ist kein eigener
+ * Datenbestand, sondern der hintere Teil derselben Liste.
  *
  * ## Was beim Schreiben gilt
  *
@@ -67,6 +69,553 @@ export interface NewsArticle {
 }
 
 export const newsArticles: NewsArticle[] = [
+  // ------------------------------------------------------------------ 27.07.
+  {
+    slug: 'dax-springt-nach-waffenpause-auf-25500-punkte',
+    title: 'DAX springt auf 25.500 Punkte – und niemand konnte dabei sein',
+    metaTitle: 'DAX auf 25.500 Punkte: höchster Stand seit drei Wochen',
+    teaser:
+      'Nach der Waffenpause zwischen den USA und Iran eröffnet der DAX mit einer Kurslücke und steigt auf den höchsten Stand seit fast drei Wochen. Handeln ließ sich der Sprung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-07-27T13:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Kurslücke', 'Markttiming', 'Geopolitik'],
+    relatedTopics: ['boerse', 'wann-kaufen-verkaufen', 'anlegerpsychologie'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label: 'wallstreetONLINE: DAX – Gap-up! (27.07.2026)',
+        url: 'https://www.wallstreet-online.de/nachricht/21154226-dax-gap-up',
+      },
+      {
+        label: 'Handelsblatt: Dax erreicht den höchsten Stand seit fast drei Wochen',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-erreicht-den-hoechsten-stand-seit-fast-drei-wochen/100243054.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist am Montag mit einer deutlichen Kurslücke in die Woche gestartet. Am Freitag schloss er bei 25.069 Punkten, vorbörslich notierte er bereits um 25.350; bis zum Mittag stand ein Plus von rund 1,6 Prozent auf etwa 25.500 Punkte – der höchste Stand seit fast drei Wochen. Auslöser ist die Waffenpause zwischen den USA und Iran: Nach dreizehn aufeinanderfolgenden Nächten mit Luftangriffen haben beide Seiten ihre Angriffe über das Wochenende ausgesetzt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Kurslücke ist – und warum sie hier alles erklärt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen dem Freitagsschluss und der Montagseröffnung wurde in Frankfurt nicht gehandelt. Die Nachricht kam am Wochenende, verarbeitet wurde sie in der ersten Sekunde des Montagshandels. Der Kurs sprang von 25.069 auf über 25.300, **ohne dass es dazwischen einen Preis gab**. Eine solche Lücke heißt Gap.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist mehr als eine Feinheit der Kursdarstellung. Wer am Freitag verkauft hatte – aus welchem guten Grund auch immer –, war bei diesem Sprung nicht dabei und konnte auch nicht mehr einsteigen: Der günstige Kurs existierte nie. Eine Stop-Loss-Order, die bei 25.000 Punkten verkaufen sollte, hätte bei einer Lücke nach unten genauso wenig zum gewünschten Preis ausgelöst.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum Markttiming daran scheitert',
+        items: [
+          'Ein erheblicher Teil der langfristigen Aktienrendite entsteht an wenigen einzelnen Handelstagen – und die sind vorher nicht erkennbar. Der heutige gehört dazu.',
+          'Diese Tage folgen typischerweise auf schlechte Nachrichten, also genau auf die Phasen, in denen der Ausstieg am naheliegendsten wirkt.',
+          'Wer investiert bleibt, muss nichts prognostizieren. Wer aussteigt, muss zweimal richtig liegen: beim Ausstieg und beim Wiedereinstieg.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Waffenpause ist keine Lösung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ausgesetzt ist nicht beendet. Der Markt preist heute die Hoffnung auf eine diplomatische Lösung ein, nicht die Lösung selbst. Kehrt der Konflikt zurück, kann dieselbe Bewegung in einer einzigen Eröffnung wieder verschwinden – dann als Lücke nach unten.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-bricht-nach-der-waffenpause-ein',
+    title: 'Ölpreis bricht ein – und liegt trotzdem 50 Prozent über Jahresbeginn',
+    metaTitle: 'Ölpreis nach Waffenpause: Brent fällt um neun Prozent',
+    teaser:
+      'Brent verliert am Montag zeitweise neun Prozent auf rund 88 Dollar, WTI fällt ähnlich stark. Der Blick auf ein einzelnes Tagesminus verdeckt dabei, wo der Preis herkommt.',
+    category: 'Märkte',
+    publishedAt: '2026-07-27T12:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Brent', 'WTI', 'Rohöl', 'Erdgas', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'inflation', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti', 'erdgas'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE: Eskalation gestoppt – Ölpreis fällt nach Waffenpause (27.07.2026)',
+        url: 'https://www.wallstreet-online.de/nachricht/21153272-eskalation-gestoppt-oelpreis-faellt-waffenpause-usa-iran',
+      },
+      {
+        label: 'Handelsblatt: Preise für Öl und Gas fallen nach Pause der US-Angriffe',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/devisen-rohstoffe/iran-krieg-preise-fuer-oel-und-gas-fallen-nach-pause-der-us-angriffe-deutlich/100243031.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Rohöl der Sorte Brent verlor am Montag im frühen Handel 4,1 Prozent auf 92,12 US-Dollar je Barrel und rutschte zeitweise um mehr als sieben Prozent unter die Marke von 90 Dollar; am Mittag lag der September-Kontrakt rund neun Prozent tiefer bei etwa 88 Dollar. Die US-Sorte WTI gab um 4,5 Prozent auf 84,72 Dollar nach. Auch die Gaspreise fielen deutlich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Bezugspunkt entscheidet über die Aussage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neun Prozent an einem Tag klingen nach einer Wende. Gemessen am Jahresanfang notiert Brent trotz dieses Einbruchs immer noch **mehr als 50 Prozent höher**. Beide Sätze sind richtig, und sie beschreiben denselben Preis. Welcher davon in einer Überschrift steht, hängt davon ab, welchen Zeitraum jemand gewählt hat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist der praktisch wichtigste Umgang mit Kursmeldungen: Zu jeder Prozentzahl gehört ein Vergleichszeitpunkt. Ohne ihn ist sie nicht falsch, sondern bedeutungslos.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Rohstoff so viel schneller fällt als eine Aktie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hinter einer Aktie steht ein Unternehmen mit Umsatz, Anlagen und erwarteten Gewinnen. Daran lässt sich ein Wert festmachen, und dieser Anker bremst Bewegungen. Ein Barrel Öl hat keinen solchen Anker: Sein Preis ergibt sich allein aus Angebot und Nachfrage – und die Nachfrage lässt sich kurzfristig kaum anpassen, das Angebot ebenso wenig.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kommt eine Nachricht dazu, die das erwartete Angebot verändert, springt der Preis. Genau das ist heute passiert: Nicht ein einziges Barrel mehr wurde gefördert, aber die Wahrscheinlichkeit einer Lieferstörung ist gesunken.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Was davon an der Tankstelle ankommt',
+        items: [
+          'Der Rohölpreis ist nur ein Teil des Spritpreises. Energiesteuer, Mehrwertsteuer, Raffinerie- und Vertriebsmarge machen den größeren Teil aus und bewegen sich nicht mit.',
+          'Der Rest wirkt mit Verzögerung: Was heute an der Börse gehandelt wird, betrifft Lieferungen im September.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'ifo-geschaeftsklima-steigt-im-juli-auf-86-6-punkte',
+    title: 'ifo-Geschäftsklima steigt überraschend – aber nur die Erwartungen',
+    metaTitle: 'ifo-Geschäftsklima Juli 2026: 86,6 Punkte',
+    teaser:
+      'Der ifo-Index klettert im Juli auf 86,6 Punkte und liegt damit über den Prognosen. Der Anstieg kommt vollständig aus den Erwartungen – die Lagebeurteilung fällt sogar.',
+    category: 'Märkte',
+    publishedAt: '2026-07-27T10:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ifo-Index', 'Konjunktur', 'Frühindikator', 'Deutschland'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt', 'boerse'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label: 'ifo Institut: ifo Geschäftsklimaindex gestiegen (Juli 2026)',
+        url: 'https://www.ifo.de/pressemitteilung/2026-07-27/ifo-geschaeftsklimaindex-gestiegen-juli-2026',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der ifo-Geschäftsklimaindex ist im Juli auf 86,6 Punkte gestiegen, nach 85,7 Punkten im Juni. Volkswirte hatten mit einem unveränderten Wert gerechnet. Der Anstieg geht vollständig auf die Erwartungen zurück: Der entsprechende Teilindex legte um 2,4 Punkte auf 86,7 zu, während die Beurteilung der aktuellen Lage auf 86,5 Punkte nachgab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, zwei verschiedene Fragen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ifo-Institut befragt monatlich rund 9.000 Unternehmen und stellt ihnen zwei Fragen: Wie beurteilen Sie Ihre **derzeitige** Geschäftslage? Und wie erwarten Sie die Entwicklung in den **kommenden sechs Monaten**? Aus beiden Antworten entsteht der Gesamtindex.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass die Erwartungen steigen und die Lage gleichzeitig fällt, ist deshalb kein Widerspruch, sondern die interessanteste Information des Tages: Die Geschäfte laufen heute etwas schlechter, die Unternehmen rechnen aber damit, dass es besser wird. Genau umgekehrt – gute Lage, fallende Erwartungen – kündigt sich üblicherweise ein Abschwung an.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Ein Stimmungsindex misst keine Produktion',
+        items: [
+          'Der ifo-Index ist eine Umfrage. Er sagt, was Unternehmen erwarten, nicht was sie herstellen. Erwartungen können sich als falsch erweisen.',
+          'Der Index hat keine Einheit. „86,6 Punkte“ bedeutet nichts für sich – Aussagekraft hat nur die Veränderung gegenüber dem Vormonat und der Abstand zum langjährigen Mittel.',
+          'Das ifo-Institut nennt die Lage am Persischen Golf ausdrücklich weiter als Risiko. Die Umfrage lief vor der Waffenpause vom Wochenende.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Börsen auf so etwas reagieren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aktienkurse bilden Erwartungen ab, nicht die Gegenwart. Ein Frühindikator wie der ifo-Index ist deshalb für den Markt oft relevanter als eine Zahl über das abgelaufene Quartal: Er kommt früher. Der Preis dafür ist, dass er sich häufiger irrt.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-entscheidet-am-mittwoch-ueber-den-leitzins',
+    title: 'Fed entscheidet am Mittwoch – erwartet wird nichts',
+    teaser:
+      'Die US-Notenbank tagt am Dienstag und Mittwoch. Die Märkte rechnen mit einer weiteren Pause – und genau deshalb bewegt nicht die Entscheidung die Kurse, sondern jede Abweichung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-27T09:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Leitzins', 'FOMC', 'Geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik', 'tagesgeld', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-usd', 'sp500'],
+    sources: [
+      {
+        label: 'LBBW: Fed-Zinsentscheid – aktueller Leitzins und Prognose 2026',
+        url: 'https://www.lbbw.de/artikel/maerkte-verstehen/fed-zinsentscheid-leitzins-prognosen_ait4a5bv66_d.html',
+      },
+      {
+        label: 'DeltaValue: Fed-Zinsentscheid – Termine und Bedeutung 2026',
+        url: 'https://www.deltavalue.de/fed-zinsentscheid/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Offenmarktausschuss der US-Notenbank tagt am Dienstag und Mittwoch; die Entscheidung wird am Mittwoch um 20:00 Uhr deutscher Zeit veröffentlicht, die Pressekonferenz beginnt um 20:30 Uhr. Der Leitzins liegt seit Dezember 2025 unverändert in der Spanne von 3,50 bis 3,75 Prozent. Nach dem FedWatch-Instrument der Terminbörse CME lag die eingepreiste Wahrscheinlichkeit für eine weitere Pause zuletzt bei knapp 78 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine erwartete Entscheidung keine Kurse bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wenn vier von fünf Marktteilnehmern mit einer Pause rechnen, steckt diese Pause bereits in den heutigen Kursen. Tritt sie ein, ändert sich rechnerisch nichts – die Erwartung war schon bezahlt. **Kurse bewegt nicht das Ereignis, sondern die Abweichung von dem, was erwartet wurde.**',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb richtet sich die Aufmerksamkeit am Mittwoch weniger auf die Zinszahl als auf die Formulierungen: Wie beschreibt die Fed die Inflation? Wie den Arbeitsmarkt? Ein einziger geänderter Halbsatz kann mehr bewegen als der Zinsbeschluss selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für Sparer in Deutschland heißt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Direkt nichts. Für Tagesgeld- und Festgeldzinsen in Euro ist die Europäische Zentralbank zuständig, und die hat am 23. Juli ihre Zinsen unverändert gelassen; der Einlagensatz liegt bei 2,25 Prozent. Indirekt gibt es zwei Verbindungen.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Der Wechselkurs.** Steigt der Zinsunterschied zwischen Dollar und Euro, wird die höher verzinste Währung für Anleger attraktiver. Das wirkt auf EUR/USD – und damit auf den Euro-Wert jedes Welt-ETFs, der überwiegend US-Aktien enthält.',
+          '**Der Ton.** Die EZB entscheidet eigenständig, beobachtet die Fed aber. Eine Notenbank, die früher lockert als die andere, schwächt ihre Währung – und importiert damit Inflation über teurere Einfuhren.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Für die eigene Anlage folgt daraus wenig',
+        items: [
+          'Ein Zinsentscheid ist ein Termin, keine Handlungsaufforderung. Wer langfristig anlegt, ändert an einem Mittwochabend nichts an seiner Aufteilung.',
+          'Wer Tagesgeld hält, sollte trotzdem hinsehen: Banken passen ihre Konditionen oft erst mit Wochen Verzögerung an – nach oben langsamer als nach unten.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-wieder-ueber-65000-dollar',
+    title: 'Bitcoin wieder über 65.000 Dollar – gestiegen ist er am Wochenende',
+    metaTitle: 'Bitcoin über 65.000 Dollar: Kurs am 27. Juli 2026',
+    teaser:
+      'Bitcoin legt binnen 24 Stunden rund 1,4 Prozent zu und notiert bei etwa 65.360 Dollar. Der Anstieg fand statt, während die Aktienbörsen geschlossen waren – das ist kein Zufall.',
+    category: 'Geldanlage',
+    publishedAt: '2026-07-27T09:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Ethereum', 'Kryptowährungen', 'Handelszeiten'],
+    relatedTopics: ['bitcoin-krypto', 'blockchain', 'risiko-und-rendite'],
+    relatedSymbols: ['bitcoin', 'ethereum'],
+    sources: [
+      {
+        label: 'Fortune: Current price of Bitcoin for July 27, 2026',
+        url: 'https://fortune.com/article/price-of-bitcoin-07-27-2026/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin notierte am Montagmittag deutscher Zeit bei rund 65.360 US-Dollar, ein Plus von etwa 900 Dollar oder 1,4 Prozent gegenüber dem Vortag. Damit liegt der Kurs wieder über der Marke von 65.000 Dollar, die er in der vergangenen Woche unterschritten hatte. Ethereum legte ebenfalls zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Anstieg fand an einem Sonntag statt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kryptowährungen werden rund um die Uhr gehandelt, auch samstags und sonntags. Ein Handelsschluss existiert nicht. Als die Nachricht von der Waffenpause am Wochenende kam, konnte Bitcoin sie sofort einpreisen – während der DAX bis Montagmorgen warten musste und die Bewegung dann als Kurslücke nachholte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist mehr als eine Randnotiz. Es macht jeden direkten Vergleich schief: Ein Aktienjahr hat rund 252 Handelstage, ein Bitcoin-Jahr 365. Wer „die letzten 250 Kurse“ vergleicht, vergleicht bei Aktien ein Jahr und bei Bitcoin acht Monate.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was der Wochenendhandel praktisch bedeutet',
+        items: [
+          'An Wochenenden sind weniger Marktteilnehmer aktiv. Dieselbe Nachricht bewegt den Kurs dann stärker als am Dienstagvormittag – die Schwankung ist teilweise ein Liquiditätseffekt, keine Meinungsänderung.',
+          'Eine Position lässt sich jederzeit schließen. Das klingt nach Freiheit und ist vor allem eine Einladung, nachts auf den Kurs zu schauen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs bleibt die kleinere Hälfte der Information',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als bei einer Aktie oder einer Anleihe lässt sich für Bitcoin kein Wert herleiten: Es gibt keine Gewinne, keine Zinsen, keine Anlagen. Der Preis ergibt sich vollständig daraus, was die nächste Käuferin zu zahlen bereit ist. Kursziele sind hier deshalb keine Bewertungen, sondern Erwartungen – und sollten entsprechend gelesen werden.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-fest-vor-dem-fed-entscheid',
+    title: 'Gold steigt auf rund 4.100 Dollar – in Euro weniger',
+    teaser:
+      'Der Goldpreis legt zum Wochenstart um ein Prozent zu. In Euro gerechnet bleibt weniger davon übrig, und daran lässt sich gut zeigen, warum ein Goldkurs zwei Ursachen hat.',
+    category: 'Märkte',
+    publishedAt: '2026-07-27T08:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Wechselkurs', 'Feinunze'],
+    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse', 'inflation'],
+    relatedSymbols: ['gold', 'silber', 'eur-usd'],
+    sources: [
+      {
+        label: 'Goldreporter: Marktbericht Gold – Gold steigt, Ölpreis fällt',
+        url: 'https://www.goldreporter.de/goldpreis-heute-28072026/marktbericht-gold/260364/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold ist fester in die Woche gestartet. Die Feinunze kostete am Montagmorgen rund 4.095 US-Dollar und damit etwa ein Prozent mehr als am Freitag. In Euro gerechnet lag der Preis bei etwa 3.588 Euro – ein Plus von nur rund 0,7 Prozent. Gestützt wird das Metall von der Entspannung im Iran-Konflikt und den fallenden Ölpreisen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum dieselbe Unze zwei verschiedene Zahlen ergibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wird international in US-Dollar je Feinunze gehandelt – 31,1035 Gramm. Der Euro-Preis entsteht daraus erst durch Umrechnung. Wer in Euro rechnet, hat deshalb **zwei Bewegungen im Preis**: die des Metalls und die des Wechselkurses.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute zeigt sich das an einer Differenz von 0,3 Prozentpunkten: Gold stieg in Dollar um ein Prozent, in Euro um 0,7 Prozent. Die Lücke ist der Wechselkurs – der Euro hat gegenüber dem Dollar zugelegt und einen Teil des Gewinns aufgezehrt. In anderen Phasen wirkt derselbe Mechanismus in die andere Richtung und macht aus einem Dollar-Verlust einen Euro-Gewinn.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Konsequenz für die eigene Rechnung',
+        items: [
+          'Für eine Anlegerin im Euroraum ist der Euro-Preis die einzig relevante Zahl. Dollar-Kurse aus internationalen Meldungen sagen nur die halbe Wahrheit.',
+          'Eine Währungsabsicherung entfernt diesen zweiten Effekt – sie kostet aber laufend Gebühr und nimmt auch die Chance mit.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Mittwoch ist der eigentliche Termin',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt keinen Zins. Wer es hält, verzichtet auf den Ertrag, den er anderswo sicher bekäme – und dieser Verzicht richtet sich nach dem Realzins, also dem Zins abzüglich der erwarteten Inflation. Deshalb ist der Fed-Entscheid am Mittwoch für den Goldpreis wichtiger als fast jede andere Nachricht dieser Woche.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aus technischer Sicht bleibt es vorerst bei einer Erholung: Um den seit rund sechs Monaten laufenden Abwärtstrend zu beenden, müsste der Preis die Marke von 4.200 Dollar überwinden.',
+      },
+    ],
+  },
+  {
+    slug: 'berichtswoche-apple-microsoft-meta-amazon',
+    title: 'Die dichteste Berichtswoche des Quartals beginnt',
+    teaser:
+      'Microsoft und Meta berichten am Mittwoch, Apple und Amazon am Donnerstag, dazu elf DAX-Konzerne. Warum ein Kurs auch nach guten Zahlen fallen kann.',
+    category: 'Märkte',
+    publishedAt: '2026-07-27T08:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Quartalszahlen', 'Berichtssaison', 'Erwartungen', 'Big Tech'],
+    relatedTopics: ['aktie', 'anlegerpsychologie', 'wann-kaufen-verkaufen'],
+    relatedSymbols: ['microsoft', 'meta', 'apple', 'amazon'],
+    sources: [
+      {
+        label:
+          'boersennews: Wochenvorschau KW 31 – Apple, Microsoft, Meta und der Fed-Entscheid',
+        url: 'https://www.boersennews.de/nachrichten/service/community/wochenvorschau-kw-31-rekorddichte-berichtswoche-apple-microsoft-meta-und-der-fed-entscheid/5220495/',
+      },
+      {
+        label:
+          'wallstreetONLINE: Wichtigste Woche des Quartals – 11 DAX-Konzerne berichten',
+        url: 'https://www.wallstreet-online.de/nachricht/21153185-wichtigste-woche-quartals-dax-11-konzerne-apple-amazon-sk-hynix-zahlen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Diese Woche legen Hunderte Unternehmen ihre Quartalszahlen vor. Nach US-Börsenschluss berichten am Mittwoch Microsoft und Meta, am Donnerstag folgen Apple und Amazon. In Deutschland öffnen elf DAX-Konzerne ihre Bücher; den Auftakt machen am Montag unter anderem AstraZeneca, LVMH und Hochtief. Am Mittwoch kommt der Fed-Entscheid dazu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gute Zahlen, fallender Kurs – wie das zusammengeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der häufigste Grund für Verwunderung in der Berichtssaison: Ein Unternehmen meldet einen Rekordgewinn, und die Aktie verliert danach fünf Prozent. Das ist kein Fehler des Marktes, sondern seine Funktionsweise.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im Kurs vor der Veröffentlichung steckt bereits, was Analysten erwarten. Veröffentlicht wird also nicht „ein guter Gewinn“, sondern **die Abweichung von der Erwartung**. Liegt der Gewinn über der Schätzung, aber der Ausblick darunter, kann der Kurs trotz Rekordzahlen fallen.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Die Zahl für das vergangene Quartal** ist Vergangenheit. Sie bestätigt oder korrigiert, was ohnehin geschätzt wurde.',
+          '**Der Ausblick auf die kommenden Quartale** ist die eigentliche Neuigkeit. Er verändert die Erwartung – und damit den Preis.',
+          '**Die Reaktion der ersten Minuten** ist selten das Ergebnis einer Analyse. Der vollständige Bericht hat oft mehr als hundert Seiten.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum das auch Anleger ohne Einzelaktien betrifft',
+        items: [
+          'Die vier Unternehmen dieser Woche gehören zu den schwersten Werten im S&P 500 und damit auch in jedem weltweit streuenden ETF. Wer breit gestreut anlegt, hält von ihnen mehr, als die Zahl der enthaltenen Titel vermuten lässt.',
+          'Eine Handlungsaufforderung ist das nicht. Wer die Aufteilung wegen einer Quartalsmeldung ändert, hat sie vorher falsch gewählt.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'bank-of-england-und-bip-zahlen-in-dieser-woche',
+    title: 'Nicht nur die Fed: Auch die Bank of England entscheidet',
+    teaser:
+      'Neben dem Fed-Entscheid stehen diese Woche die britische Notenbank, erste BIP-Schätzungen für das zweite Quartal und neue Inflationsdaten an.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-27T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Bank of England', 'Bruttoinlandsprodukt', 'Inflation', 'Konjunktur'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'staatsanleihe'],
+    relatedSymbols: ['eur-gbp'],
+    sources: [
+      {
+        label:
+          'onvista: Wochenausblick – Fed- und BoE-Zinsentscheid, BIP und Inflationsdaten (26.07.2026)',
+        url: 'https://www.onvista.de/news/2026/07-26-wochenausblick-fed-und-boe-zinsentscheid-bruttoinlandsprodukt-und-inflationsdaten-sowie-berichtssaison-im-fokus-0-12-26536151',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Fed-Entscheid am Mittwoch ist der bekannteste Termin dieser Woche, aber nicht der einzige. Auch die Bank of England entscheidet über ihren Leitzins. Dazu kommen erste Schätzungen zum Bruttoinlandsprodukt des zweiten Quartals und neue Inflationsdaten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Erstschätzung wert ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine BIP-Erstschätzung entsteht wenige Wochen nach Quartalsende, wenn viele Daten noch fehlen. Sie wird später zweimal revidiert, und diese Korrekturen fallen regelmäßig größer aus als der Unterschied, über den in der Erstmeldung diskutiert wird. Aus 0,1 Prozent Wachstum kann so nachträglich ein Rückgang werden – und umgekehrt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Börse zählt die Erstschätzung trotzdem, weil sie zuerst da ist. Für die Einschätzung der Wirtschaftslage sollte man wissen, wie vorläufig sie ist.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum mehrere Notenbanken in einer Woche interessant sind',
+        items: [
+          'Notenbanken entscheiden eigenständig, beobachten sich aber gegenseitig. Wer als Erster lockert, schwächt seine Währung.',
+          'Für Anleger im Euroraum wirkt das über den Wechselkurs auf jeden Fonds mit ausländischen Wertpapieren – auch ohne dass sich dort ein einziger Kurs bewegt.',
+        ],
+      },
+    ],
+  },
+  // ------------------------------------------------------------------ 26.07.
+  {
+    slug: 'ki-bewertungen-vor-der-testwoche',
+    title: 'Vor den Big-Tech-Zahlen: Was „KI-Blase“ eigentlich bedeutet',
+    metaTitle: 'KI-Bewertungen vor den Big-Tech-Quartalszahlen',
+    teaser:
+      'Vor den Zahlen von Microsoft, Meta, Apple und Amazon steht wieder die Blasenfrage im Raum. Sie ist vorher nicht beantwortbar – was sich prüfen lässt, ist etwas anderes.',
+    category: 'Geldanlage',
+    publishedAt: '2026-07-26T19:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Künstliche Intelligenz', 'Bewertung', 'Konzentrationsrisiko', 'ETF'],
+    relatedTopics: ['etf', 'aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nasdaq-100', 'msci-world', 'nvidia'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE: Earnings Preview – Ist das die Woche, in der die KI-Blase platzt? (26.07.2026)',
+        url: 'https://www.wallstreet-online.de/nachricht/21145460-earnings-preview-microsoft-meta-amazon-apple-woche-ki-blase-platzt',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Vor den Quartalszahlen der vier größten US-Technologiekonzerne taucht die Frage wieder auf, ob die Bewertungen rund um künstliche Intelligenz eine Blase sind. Die Frage ist berechtigt. Beantwortbar ist sie vorher nicht – und das liegt an ihrer Definition.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Blase erkennt man daran, dass sie geplatzt ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Von einer Blase spricht man, wenn Preise deutlich über dem liegen, was die künftigen Erträge rechtfertigen. Das Problem steckt im Wort „künftig“: Ob die Investitionen in Rechenzentren und Modelle sich auszahlen, entscheidet sich in den nächsten Jahren, nicht am Mittwochabend. Vorher lässt sich die Aussage weder bestätigen noch widerlegen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer heute „Blase“ sagt, trifft deshalb eine Prognose, keine Feststellung. Das gilt auch für die Gegenseite.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was sich stattdessen prüfen lässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwei Dinge sind keine Prognose, sondern nachlesbar – und für die eigene Anlage wichtiger als die Blasenfrage.',
+      },
+      {
+        type: 'list',
+        ordered: true,
+        items: [
+          '**Wie viel von deinem Depot hängt an diesen Unternehmen?** Der MSCI World gewichtet nach Börsenwert. Rund sieben von zehn Euro in einem Welt-ETF stecken in US-Aktien, ein erheblicher Teil davon in einer Handvoll Technologiewerte. Wer zusätzlich einzelne dieser Aktien hält, hat sie doppelt.',
+          '**Was du erwartest, wenn du falsch liegst.** Ein Rückgang von 50 Prozent verlangt anschließend ein Plus von 100 Prozent zum Ausgleich. Die entscheidende Frage ist nicht, ob es dazu kommt, sondern ob die Position so groß ist, dass sie die eigene Planung berühren würde.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der nützlichere Blick',
+        items: [
+          'Streuung ist die einzige Antwort, die ohne Prognose auskommt. Sie kostet Rendite, wenn die Konzentration recht behält – und rettet die Planung, wenn nicht.',
+          'Wer die Gewichtung seines Welt-ETFs nicht kennt, kann sie im Factsheet nachlesen. Das dauert zwei Minuten und ersetzt jede Blasendiskussion.',
+        ],
+      },
+    ],
+  },
   // ------------------------------------------------------------------ 25.07.
   {
     slug: 'bitcoin-haelt-64000-dollar',
