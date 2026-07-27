@@ -78,6 +78,64 @@ Komponenten sprechen **nie** direkt mit `data/`, sondern ausschließlich über `
 Alle Funktionen sind bereits `async`. Für echte APIs muss deshalb nur der jeweilige
 Funktionsrumpf ausgetauscht werden – kein Aufrufer ändert sich.
 
+## Marktdaten
+
+Kurse kommen aus echten Quellen, nicht mehr aus einem Zufallsgenerator:
+
+| Instrumente                                           | Quelle                                                             |
+| ----------------------------------------------------- | ------------------------------------------------------------------ |
+| Die fünf Euro-Wechselkurse                            | Europäische Zentralbank (amtlich, kostenlos, Quellenangabe genügt) |
+| DAX, S&P 500, Euro Stoxx 50, Nasdaq 100, Gold, Silber | Stooq                                                              |
+| MSCI World                                            | keine – bleibt gekennzeichneter Demo-Kurs                          |
+
+### Warum der Abruf nicht im Build läuft
+
+Die Seite wird statisch exportiert; zur Laufzeit kann niemand Kurse holen. Der
+naheliegende Weg wäre, im `next build` abzurufen – aber ein Build, der von fremden
+Servern abhängt, fällt aus, sobald einer davon hustet. Bei Hostinger heißt das:
+Bereitstellung rot.
+
+Stattdessen:
+
+```
+.github/workflows/kurse.yml   werktags 16:00 UTC
+  └─ npm run kurse            holt EZB und Stooq
+  └─ data/snapshots/markets.json   nur bei Änderung committet
+       └─ Push nach main → Hostinger baut
+            └─ next build liest die Datei, ohne Netz
+```
+
+Ein Fehlschlag bleibt damit folgenlos: Es wird nichts committet, und die Website
+zeigt weiter den letzten guten Stand. Der Push nach `main` ist zugleich der
+einzige Weg auf den Webspace – der Workflow ist also nicht nur Datenpflege,
+sondern der Takt, in dem die Website neu gebaut wird.
+
+### Zwei Grundsätze
+
+**Zusammenführen, nie verwerfen.** Schlägt ein einzelner Abruf fehl oder ist das
+Ergebnis unplausibel (`checkPoints` in `lib/providers/snapshot.ts` prüft auf
+verrutschte Dezimalzeichen und unbrauchbare Werte), behält das Instrument seinen
+bisherigen Wert. Die Momentaufnahme ist immer vollständig; ein hängender Anbieter
+lässt nur ein Datum älter werden – und das steht sichtbar dabei.
+
+**Kennzeichnung am einzelnen Wert.** Solange echte und erzeugte Kurse
+nebeneinander vorkommen, kann keine Angabe für die ganze Seite stimmen.
+`MarketQuote.source` ist `null` bei Demo-Daten, und `components/markets/SourceNote.tsx`
+schreibt an jede Liste, woher die Zahlen stammen und was noch erzeugt ist.
+
+### Kein Intraday
+
+Beide Quellen liefern einen Schlusskurs je Handelstag. Der Zeitraum „Ein
+Handelstag“ ist deshalb entfallen – die Demo-Daten hatten einen Verlauf innerhalb
+des Tages erzeugt, echte Daten geben ihn nicht her.
+
+### Größe der Momentaufnahme
+
+Die letzten 400 Tage in voller Auflösung, davor ein Wert je Woche, insgesamt fünf
+Jahre – rund 250 KB. Geschrieben wird ein Kurspunkt je Zeile: kompakter als
+eingerücktes JSON und in einem Diff lesbar. Ein Börsentag mehr ist genau elf neue
+Zeilen.
+
 ## Reihenfolge der Lernthemen
 
 Die 33 Themen stehen nicht alphabetisch und nicht nach Beliebtheit, sondern in der
@@ -341,12 +399,9 @@ JS-Fehler bei 360/768/1440 px).
 
 ## Was noch fehlt
 
-1. **Echte Live-Daten für Kurse und Verschuldung.** Beide sind Demo-Daten. Die
-   Kursverläufe werden in `lib/market-series.ts` deterministisch erzeugt (fester
-   Zufalls-Seed, daher reproduzierbare Builds). Auf jeder betroffenen Seite steht das
-   sichtbar. Für echte Daten: `lib/markets.ts` umstellen, API-Keys über
-   Umgebungsvariablen einbinden. Die Nachrichten sind bereits echt, werden aber von
-   Hand gepflegt – eine Anbindung an eine News-API würde nur `lib/news.ts` betreffen.
+1. **Echte Zahlen zur Staatsverschuldung.** Der einzige verbliebene Demo-Datensatz
+   neben `msci-world`. Kurse kommen inzwischen aus echten Quellen (siehe oben), die
+   Nachrichten sind echt und werden von Hand gepflegt.
 2. **Fließtext für 30 Lernthemen.** Vollständig ausformuliert sind `aktie`,
    `zinseszins` und `rohstoffe` (je drei Stufen). Die übrigen Themen haben
    funktionsfähige Seiten mit Meta-Daten, Permalink und inhaltlicher Gliederung; der

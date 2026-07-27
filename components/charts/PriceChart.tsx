@@ -14,11 +14,9 @@ import {
 import { cn } from '@/lib/cn'
 import {
   formatDateShort,
-  formatDateTime,
   formatMonthYear,
   formatNumber,
   formatPercentSigned,
-  formatTime,
 } from '@/lib/format'
 
 /**
@@ -61,16 +59,16 @@ export function PriceChart({
 
   const formatValue = (value: number) => formatNumber(value, decimals)
 
-  // Intraday-Zeiträume brauchen Uhrzeiten, lange Zeiträume Monatsangaben.
-  const formatAxisLabel = (iso: string) => {
-    if (range === '1T') return formatTime(iso)
-    if (range === '1W') return `${formatDateShort(iso).slice(0, 6)} ${formatTime(iso)}`
-    if (range === '5J') return formatMonthYear(iso)
-    return formatDateShort(iso)
-  }
+  /*
+    Alle Zeiträume zeigen Tagesdaten – Uhrzeiten gibt es nicht mehr.
 
-  const formatTooltipLabel = (iso: string) =>
-    range === '1T' || range === '1W' ? formatDateTime(iso) : formatDateShort(iso)
+    Beide Quellen liefern einen Schlusskurs je Handelstag. Der frühere Zeitraum
+    „Ein Handelstag“ ist deshalb entfallen, und mit ihm die Uhrzeit-Beschriftung.
+  */
+  const formatAxisLabel = (iso: string) =>
+    range === '5J' ? formatMonthYear(iso) : formatDateShort(iso)
+
+  const formatTooltipLabel = (iso: string) => formatDateShort(iso)
 
   return (
     <div>

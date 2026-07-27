@@ -3,11 +3,11 @@ import Link from 'next/link'
 
 import { NewsCarousel } from '@/components/home/NewsCarousel'
 import { QuoteCard } from '@/components/markets/QuoteCard'
+import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { cn } from '@/lib/cn'
-import { formatDateTime } from '@/lib/format'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { getMarketOverview } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
@@ -71,8 +71,6 @@ export default async function HomePage() {
     getLearnStats(),
     getCompleteTopics(),
   ])
-
-  const asOf = marketPreviews[0]?.quote.asOf
 
   return (
     <>
@@ -232,14 +230,9 @@ export default async function HomePage() {
             ))}
           </ul>
 
-          {asOf && (
-            <p className="border-brand/25 bg-brand-soft text-fg-muted mt-6 rounded-xl border px-4 py-3 text-sm">
-              <strong className="text-fg font-semibold">Hinweis:</strong> Diese Version
-              zeigt <strong className="text-fg font-semibold">Demo-Kurse</strong>, keine
-              echten Marktdaten. Datenstand des Beispieldatensatzes:{' '}
-              {formatDateTime(asOf)}.
-            </p>
-          )}
+          <div className="border-border bg-surface-muted text-fg-muted mt-6 rounded-xl border px-4 py-3">
+            <SourceSummary quotes={marketPreviews.map((preview) => preview.quote)} />
+          </div>
         </div>
       </section>
 
