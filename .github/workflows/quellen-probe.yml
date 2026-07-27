@@ -39,6 +39,43 @@ jobs:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
+      - name: OECD – die Reinvermögenszeilen im Detail
+        run: |
+          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
+          url="https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels"
+          curl -sS -L -A "$UA" -H 'Accept-Language: en' --max-time 90 -o /tmp/wealth.csv "$url"
+
+          python3 - <<'PY'
+          import csv, collections
+          with open('/tmp/wealth.csv', newline='', encoding='utf-8') as f:
+              alle = list(csv.DictReader(f))
+          nw = [z for z in alle if z['MEASURE'] == 'NW']
+          print(f"{len(nw)} Zeilen mit MEASURE=NW")
+
+          print("\n── Welche Kombinationen aus Rechengröße und Einheit? ──")
+          paare = collections.Counter(
+              (z['STATISTICAL_OPERATION'], z['Statistical operation'],
+               z['UNIT_MEASURE'], z['Unit of measure']) for z in nw)
+          for (op, opname, einheit, einheitname), anzahl in paare.most_common():
+              print(f"  {op:10} {opname:22} | {einheit:8} {einheitname:34} | {anzahl}")
+
+          median = [z for z in nw if z['STATISTICAL_OPERATION'] == 'MEDIAN']
+          print(f"\n── {len(median)} Medianzeilen ──")
+          print("  Währungen: " + ', '.join(sorted({z['CURRENCY'] for z in median})))
+          print("  Multiplikatoren: " + ', '.join(sorted({z['UNIT_MULT'] for z in median})))
+          print("  Preisbasis: " + ', '.join(sorted({z['PRICE_BASE'] for z in median})))
+
+          jeLand = collections.defaultdict(list)
+          for z in median:
+              if z['OBS_VALUE']:
+                  jeLand[z['REF_AREA']].append(z)
+          print(f"\n── {len(jeLand)} Länder mit mindestens einem Medianwert ──")
+          for land in sorted(jeLand)[:40]:
+              jung = max(jeLand[land], key=lambda z: z['TIME_PERIOD'])
+              print(f"  {land}  {jung['TIME_PERIOD']}  {float(jung['OBS_VALUE']):>14,.0f}"
+                    f"  {jung['CURRENCY']:4} x10^{jung['UNIT_MULT']}  {jung['UNIT_MEASURE']}")
+          PY
+
       - name: OECD – Aufbau der Vermögensdatenbank
         run: |
           UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
@@ -94,8 +131,8 @@ jobs:
         run: |
           UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
           for datum in 2021-12-31 2023-12-29 latest; do
-            code=$(curl -sS -A "$UA" --max-time 30 -o /tmp/fx.json -w '%{http_code}' \
-              "https://api.frankfurter.app/$datum?from=USD&to=EUR,CHF,GBP,JPY,SEK,KRW" || echo 000)
+            code=$(curl -sS -L -A "$UA" --max-time 30 -o /tmp/fx.json -w '%{http_code}' \
+              "https://api.frankfurter.app/v1/$datum?from=USD&to=EUR,CHF,GBP,JPY,SEK,KRW" || echo 000)
             echo "▶ $datum → $code"
             head -c 240 /tmp/fx.json
             echo ""
@@ -103,7 +140,7 @@ jobs:
 
           echo ""
           echo "── Deckt Frankfurter alle nötigen Währungen ab? ──"
-          curl -sS -A "$UA" --max-time 30 "https://api.frankfurter.app/currencies" -o /tmp/cur.json
+          curl -sS -L -A "$UA" --max-time 30 "https://api.frankfurter.app/v1/currencies" -o /tmp/cur.json
           python3 - <<'PY'
           import json
           waehrungen = json.load(open('/tmp/cur.json'))

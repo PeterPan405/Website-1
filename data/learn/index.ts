@@ -1,4 +1,5 @@
 import { aktie } from '@/data/learn/topics/aktie'
+import { boerse } from '@/data/learn/topics/boerse'
 import { etf } from '@/data/learn/topics/etf'
 import { inflation } from '@/data/learn/topics/inflation'
 import {
@@ -6,7 +7,6 @@ import {
   anlegerpsychologie,
   bitcoinKrypto,
   blockchain,
-  boerse,
   budgetUndSparquote,
   costAverageSparplan,
   depotUndBroker,
