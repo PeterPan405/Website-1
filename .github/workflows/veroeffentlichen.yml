@@ -128,17 +128,56 @@ jobs:
           tar -czf website.tar.gz -C out .
           ls -lh website.tar.gz
 
+      # Drei Prüfungen, die jede für sich sagen, was fehlt.
+      #
+      # Beim ersten Lauf ist dieser Schritt fehlgeschlagen, und im Protokoll
+      # stand nur „exit code 1“ – weil die Fehlerausgabe von `ssh-keyscan` nach
+      # /dev/null ging. Eine Diagnose, die ihre eigene Begründung wegwirft, ist
+      # keine. Deshalb wird jetzt einzeln geprüft und jede Stufe benannt.
       - name: SSH einrichten
         if: steps.zugang.outputs.vorhanden == 'ja'
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
         run: |
+          set -uo pipefail
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.HOSTINGER_SSH_KEY }}" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
 
-          # Den Hostschlüssel vorher holen, statt die Prüfung abzuschalten.
+          # 1. Ist der hinterlegte Schlüssel überhaupt ein Schlüssel?
+          echo "— Schlüssel prüfen"
+          if ssh-keygen -y -f ~/.ssh/id_deploy > /tmp/abgeleitet.pub 2>/tmp/keyfehler; then
+            echo "  Format in Ordnung. Öffentlicher Teil dazu:"
+            cat /tmp/abgeleitet.pub
+            echo "  ↑ Genau diese Zeile muss in hPanel unter SSH-Schlüssel stehen."
+          else
+            echo "::error::Der Wert in HOSTINGER_SSH_KEY ist kein gültiger privater Schlüssel."
+            sed 's/^/  /' /tmp/keyfehler
+            echo "  Erwartet wird der komplette Inhalt der Datei ohne .pub –"
+            echo "  von '-----BEGIN OPENSSH PRIVATE KEY-----' bis '-----END OPENSSH PRIVATE KEY-----'."
+            exit 1
+          fi
+
+          # 2. Antwortet der Port überhaupt?
+          echo "— Erreichbarkeit von Port $SSH_PORT"
+          if timeout 15 bash -c "true > /dev/tcp/$HOST/$SSH_PORT" 2>/dev/null; then
+            echo "  Port offen."
+          else
+            echo "::error::Port $SSH_PORT antwortet nicht."
+            echo "  Häufigste Ursache: SSH steht in hPanel noch auf INACTIVE."
+            echo "  hPanel > Erweitert > SSH-Zugang > rechts in der Box auf 'Aktivieren'."
+            exit 1
+          fi
+
+          # 3. Hostschlüssel holen – statt die Prüfung abzuschalten.
           # `StrictHostKeyChecking=no` würde jede Gegenstelle akzeptieren.
-          ssh-keyscan -p "$SSH_PORT" -H "${{ secrets.HOSTINGER_SSH_HOST }}" \
-            >> ~/.ssh/known_hosts 2>/dev/null
+          echo "— Hostschlüssel holen"
+          if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts; then
+            echo "  Hostschlüssel hinterlegt."
+          else
+            echo "::error::ssh-keyscan ist fehlgeschlagen, obwohl der Port antwortet."
+            exit 1
+          fi
 
       - name: Übertragen und umhängen
         if: steps.zugang.outputs.vorhanden == 'ja'
