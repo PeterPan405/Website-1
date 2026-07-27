@@ -1,3 +1,4 @@
+import { Kennzahlzeile } from '@/components/markets/Kennzahlzeile'
 import type { Kennzahlen } from '@/lib/kennzahlen'
 import { cn } from '@/lib/cn'
 import { formatDateShort, formatPercentSigned } from '@/lib/format'
@@ -5,18 +6,16 @@ import { formatDateShort, formatPercentSigned } from '@/lib/format'
 /**
  * Risiko und Verlauf eines Kurses in Zahlen.
  *
- * ## Warum nicht Kurs-Gewinn-Verhältnis und Marktkapitalisierung
+ * ## Warum das neben den Unternehmenszahlen steht
  *
- * Weil es sie nicht frei gibt. Yahoo beantwortet Anfragen an seine
- * Kennzahlenschnittstellen mit `401 Unauthorized` beziehungsweise
- * `Invalid Crumb`; geliefert werden nur Kurse. Ein geschätztes KGV wäre
- * schlimmer als gar keins – es sähe aus wie eine Tatsache.
+ * Die Bewertungskennzahlen in `Unternehmenszahlen.tsx` gibt es nur für Aktien,
+ * und auch dort nur für einen Teil. Was hier steht, ergibt sich vollständig aus
+ * den Kursen selbst und gilt deshalb für **jeden** geführten Wert – Aktie,
+ * Index, Rohstoff, Währungspaar, Kryptowährung.
  *
- * Was hier steht, ergibt sich vollständig aus den Kursen selbst und gilt
- * deshalb für jeden geführten Wert gleichermaßen. Für die Frage, ob ein Papier
- * zu jemandem passt, ist es sogar die nützlichere Hälfte: Ein KGV sagt etwas
- * über die Bewertung, „schlimmster Rückgang 62 Prozent“ sagt etwas darüber,
- * was man aushalten muss.
+ * Für die Frage, ob ein Papier zu jemandem passt, ist es sogar die nützlichere
+ * Hälfte: Ein Kurs-Gewinn-Verhältnis sagt etwas über die Bewertung,
+ * „schlimmster Rückgang 62 Prozent“ sagt etwas darüber, was man aushalten muss.
  *
  * ## Warum keine Farben bei der Wertentwicklung
  *
@@ -96,14 +95,14 @@ export function Kennzahlentafel({
         </h3>
         <dl className="mt-4 space-y-4">
           {kennzahlen.schwankung !== null && (
-            <Zeile
+            <Kennzahlzeile
               label="Schwankungsbreite"
               wert={`${kennzahlen.schwankung.toFixed(1)} % im Jahr`}
               erklaerung="Wie weit der Kurs im vergangenen Jahr typischerweise um seinen eigenen Trend schwankte, auf ein Jahr hochgerechnet. Ein Tagesgeldkonto läge bei null, ein breiter Aktienindex meist zwischen 12 und 20."
             />
           )}
           {kennzahlen.maxRueckgang !== null && (
-            <Zeile
+            <Kennzahlzeile
               label="Schlimmster Rückgang"
               wert={`${kennzahlen.maxRueckgang.toFixed(1)} %`}
               erklaerung={
@@ -114,14 +113,14 @@ export function Kennzahlentafel({
             />
           )}
           {kennzahlen.abstand200 !== null && (
-            <Zeile
+            <Kennzahlzeile
               label="Abstand zum langfristigen Durchschnitt"
               wert={formatPercentSigned(kennzahlen.abstand200)}
               erklaerung="Wie weit der aktuelle Kurs über oder unter dem Durchschnitt der letzten 200 Handelstage liegt. Eine Beschreibung der Lage, keine Kauf- oder Verkaufsempfehlung."
             />
           )}
           {kennzahlen.anteilGewinntage !== null && (
-            <Zeile
+            <Kennzahlzeile
               label="Tage mit Gewinn"
               wert={`${kennzahlen.anteilGewinntage.toFixed(0)} % der Handelstage`}
               erklaerung="Anteil der Tage im vergangenen Jahr, an denen der Kurs über dem Vortag schloss. Liegt bei fast allen Werten nahe der Hälfte – die Rendite entsteht aus der Größe der Bewegungen, nicht aus ihrer Anzahl."
@@ -130,25 +129,5 @@ export function Kennzahlentafel({
         </dl>
       </div>
     </section>
-  )
-}
-
-function Zeile({
-  label,
-  wert,
-  erklaerung,
-}: {
-  label: string
-  wert: string
-  erklaerung: string
-}) {
-  return (
-    <div className="border-border grid gap-1 border-t pt-4 first:border-0 first:pt-0 sm:grid-cols-[14rem_1fr] sm:gap-4">
-      <div>
-        <dt className="text-fg-subtle text-xs">{label}</dt>
-        <dd className="text-fg mt-0.5 text-lg font-bold tabular-nums">{wert}</dd>
-      </div>
-      <p className="text-fg-muted text-sm leading-relaxed sm:self-center">{erklaerung}</p>
-    </div>
   )
 }

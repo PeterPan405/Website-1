@@ -35,6 +35,9 @@
  * Aufruf: `npm run fundamentaldaten`
  */
 
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { dirname } from 'node:path'
+
 /**
  * Die SEC verlangt in ihren Nutzungshinweisen ausdrücklich einen Absender mit
  * Kontaktmöglichkeit. Ohne ihn wird gedrosselt oder gesperrt – und das zu Recht.
@@ -47,6 +50,9 @@ const KOPFZEILEN: Record<string, string> = {
 const TICKER_URL = 'https://www.sec.gov/files/company_tickers.json'
 const RAHMEN_BASIS = 'https://data.sec.gov/api/xbrl/frames'
 const ZIEL = 'data/snapshots/fundamentaldaten.json'
+
+/** Die Dateien, aus denen hervorgeht, welche Kürzel die Website überhaupt führt. */
+const KATALOG = ['data/markets.ts', 'data/markets-aktien.ts']
 
 /**
  * Die gesuchten Größen, jeweils mit den Bezeichnern, unter denen sie gemeldet
@@ -233,6 +239,23 @@ async function main() {
     )
   }
 
+  /*
+    Nur die Kürzel behalten, die auf der Website vorkommen.
+
+    Die SEC liefert gut 8.000 Unternehmen; geführt werden rund 200. Ungefiltert
+    wären das 1,1 MB, die monatlich neu ins Repository wandern und beim Bauen
+    eingelesen werden – für 2 Prozent Nutzen. Der Zuschnitt kostet nichts, weil
+    ohnehin schon alles im Speicher liegt.
+  */
+  const gefuehrt = new Set<string>()
+  for (const datei of KATALOG) {
+    const text = await readFile(datei, 'utf8')
+    for (const treffer of text.matchAll(/^\s*ticker: '([^']+)',$/gm)) {
+      gefuehrt.add(treffer[1])
+    }
+  }
+  console.log(`\n${gefuehrt.size} Kürzel im Katalog der Website.`)
+
   // Nach Kürzel ablegen – die Website kennt Ticker, keine Kennnummern.
   const jeKuerzel: Record<string, Record<string, number>> = {}
   for (const [cik, eintrag] of werte) {
@@ -243,17 +266,26 @@ async function main() {
       if (typeof wert === 'number' && Number.isFinite(wert)) sauber[feld] = wert
     }
     if (Object.keys(sauber).length === 0) continue
-    for (const k of kuerzel) jeKuerzel[k] = sauber
+    for (const k of kuerzel) if (gefuehrt.has(k)) jeKuerzel[k] = sauber
   }
 
   const vollstaendig = Object.values(jeKuerzel).filter(
     (e) => e.umsatz && e.gewinn && e.aktien
   ).length
   console.log(
-    `\n${Object.keys(jeKuerzel).length} Kürzel mit Daten, davon ${vollstaendig} mit Umsatz, Gewinn und Aktienzahl.`
+    `${Object.keys(jeKuerzel).length} geführte Kürzel mit Daten, davon ${vollstaendig} mit Umsatz, Gewinn und Aktienzahl.`
   )
 
-  if (vollstaendig < 200) {
+  /*
+    Untergrenze als Reißleine.
+
+    Sie ist bewusst niedrig: Von rund 200 geführten Kürzeln sind über 20 Indizes,
+    Rohstoffe und Währungspaare, weitere 300 Aktien notieren außerhalb der USA
+    und tauchen hier nie auf. Was bleibt, sind etwa 130 vollständige Sätze. Fällt
+    die Zahl deutlich darunter, hat sich an der Schnittstelle etwas geändert –
+    dann soll der Lauf scheitern statt eine halbe Datei abzulegen.
+  */
+  if (vollstaendig < 100) {
     throw new Error(
       `Nur ${vollstaendig} vollständige Datensätze – das ist zu wenig, hier stimmt etwas nicht.`
     )
@@ -265,13 +297,11 @@ async function main() {
       label: 'US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen',
       url: 'https://www.sec.gov/edgar/sec-api-documentation',
       abgrenzung:
-        'Umsatz, Nettogewinn und operativer Cashflow als Summe der letzten vier gemeldeten Quartale; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Nur Unternehmen, die in den USA bilanzieren.',
+        'Umsatz, Nettogewinn und operativer Cashflow für das zuletzt gemeldete Geschäftsjahr; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Nur Unternehmen, die nach US-Vorschriften bilanzieren.',
     },
     unternehmen: jeKuerzel,
   }
 
-  const { writeFile, mkdir } = await import('node:fs/promises')
-  const { dirname } = await import('node:path')
   await mkdir(dirname(ZIEL), { recursive: true })
   await writeFile(ZIEL, `${JSON.stringify(inhalt, null, 2)}\n`, 'utf8')
   console.log(`Geschrieben: ${ZIEL}`)
@@ -281,13 +311,3 @@ main().catch((fehler) => {
   console.error(fehler)
   process.exit(1)
 })
-
-/*
-  Macht die Datei zu einem Modul.
-
-  Ohne `import` oder `export` behandelt TypeScript eine Datei als globales
-  Skript – und dann kollidieren `KOPFZEILEN`, `ZIEL` und `main` mit denselben
-  Namen in `scripts/laender-abrufen.ts`. Eine leere Ausfuhr genügt, um den
-  Gültigkeitsbereich auf diese Datei zu begrenzen.
-*/
-export {}

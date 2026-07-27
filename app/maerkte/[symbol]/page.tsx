@@ -10,6 +10,7 @@ import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
+import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
@@ -31,6 +32,7 @@ import {
   getDataCoverage,
   getInstrument,
   getInstrumentSymbols,
+  getFundamentalkennzahlen,
   getKennzahlen,
   getQuote,
   getQuotes,
@@ -80,13 +82,15 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
 
   if (!instrument || !quote || !ranges) notFound()
 
-  const [relatedTopics, allQuotes, coverage, meldungen, kennzahlen] = await Promise.all([
-    getTopicsBySlugs(instrument.relatedTopics),
-    getQuotes(),
-    getDataCoverage(),
-    getNewsForSymbol(symbol),
-    getKennzahlen(symbol),
-  ])
+  const [relatedTopics, allQuotes, coverage, meldungen, kennzahlen, fundamental] =
+    await Promise.all([
+      getTopicsBySlugs(instrument.relatedTopics),
+      getQuotes(),
+      getDataCoverage(),
+      getNewsForSymbol(symbol),
+      getKennzahlen(symbol),
+      getFundamentalkennzahlen(symbol),
+    ])
 
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
@@ -316,6 +320,13 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               </section>
             )}
 
+            {fundamental && (
+              <Unternehmenszahlen
+                befund={fundamental}
+                name={instrument.name}
+                className="mt-12"
+              />
+            )}
             {kennzahlen && <Kennzahlentafel kennzahlen={kennzahlen} className="mt-12" />}
 
             <div className="border-border mt-10 border-t pt-5">
