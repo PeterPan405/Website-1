@@ -44,12 +44,38 @@ export const MAX_ZOOM = 8
 export const FEINE_GEOMETRIE_AB = 2.2
 
 /**
+ * Wie viel Drehung ein Mausweg von einem Kugelradius auslöst.
+ *
+ * **Warum überhaupt ein Radiusbezug.** Der Weg wird durch den Radius geteilt
+ * und nicht mit einem festen Faktor multipliziert: Auf einem großen Globus
+ * soll derselbe Weg in Pixeln dieselbe Strecke auf der Kugel bedeuten wie auf
+ * einem kleinen. Weil der Radius die Vergrößerung enthält, wird das Ziehen im
+ * Zoom automatisch feiner – genau dann, wenn man es genauer braucht.
+ *
+ * **Warum 60 und nicht 90.** Physikalisch genau wäre 90: Vom Mittelpunkt der
+ * Kugel bis zu ihrem Rand liegt eine Vierteldrehung, ein Zug über den ganzen
+ * Radius müsste die Kugel also um 90 Grad drehen, damit der Punkt unter dem
+ * Finger auch am Finger bleibt. In der Bedienung wirkt das trotzdem hektisch,
+ * weil man beim Ziehen nicht nur einen Punkt verfolgt, sondern die ganze
+ * Kugel im Blick hat. 60 Grad lassen sich noch mit zwei Zügen einmal
+ * herumdrehen und fühlen sich dabei ruhig an.
+ *
+ * Vorher standen hier 180 – doppelt so schnell wie physikalisch richtig und
+ * damit dreimal so schnell wie jetzt.
+ */
+export const ZUG_GRAD_JE_RADIUS = 60
+
+/**
  * Neue Drehung nach einem Mausweg.
  *
- * Der Weg wird durch den Radius geteilt, nicht mit einem festen Faktor
- * multipliziert: Auf einem großen Globus soll derselbe Weg in Pixeln dieselbe
- * Strecke auf der Kugel bedeuten wie auf einem kleinen. Ohne das fühlt sich
- * das Ziehen bei jeder Zoomstufe anders an.
+ * Beide Achsen folgen derselben Vorstellung: **Die Kugel klebt am Zeiger.**
+ * Nach rechts ziehen schiebt die Oberfläche nach rechts, nach unten ziehen
+ * schiebt sie nach unten – und weil dabei das, was oberhalb war, in die Mitte
+ * rutscht, blickt man anschließend weiter nach Norden.
+ *
+ * Genau daran hakte es: Die Neigung hatte das umgekehrte Vorzeichen. Nach
+ * unten zu ziehen drehte den Globus nach oben. Waagerecht stimmte es, was den
+ * Fehler noch merkwürdiger machte – eine Achse zog mit, die andere dagegen.
  */
 export function drehungNachZug(
   start: Drehung,
@@ -57,11 +83,10 @@ export function drehungNachZug(
   dy: number,
   radius: number
 ): Drehung {
-  const grad = 180 / Math.max(radius, 1)
+  const grad = ZUG_GRAD_JE_RADIUS / Math.max(radius, 1)
   return {
     lambda: normalisiereLaenge(start.lambda + dx * grad),
-    // Nach oben ziehen soll den Nordpol zeigen – deshalb das Minuszeichen.
-    phi: begrenze(start.phi - dy * grad, -MAX_NEIGUNG, MAX_NEIGUNG),
+    phi: begrenze(start.phi + dy * grad, -MAX_NEIGUNG, MAX_NEIGUNG),
   }
 }
 
