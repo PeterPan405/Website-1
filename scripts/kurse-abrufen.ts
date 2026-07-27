@@ -113,6 +113,20 @@ async function holeDevisen(): Promise<Map<string, SnapshotPoint[]>> {
   return ergebnis
 }
 
+/**
+ * Rundet auf die Genauigkeit, die die Website anzeigt.
+ *
+ * Yahoo liefert Fließkommazahlen in voller Maschinengenauigkeit: Der DAX kam
+ * als 24763.119140625 an, Silber als 59.689998626708984. Angezeigt werden davon
+ * zwei Stellen. Die übrigen sind kein Informationsgewinn, sondern Rauschen –
+ * sie blähen die Datei auf und erzeugen bei jedem Abruf Unterschiede in
+ * Stellen, die niemand sieht.
+ */
+function runde(wert: number, stellen: number): number {
+  const faktor = 10 ** stellen
+  return Math.round(wert * faktor) / faktor
+}
+
 async function main(): Promise<void> {
   const bisher = ladeBisherige()
   const instrumente: Record<string, SnapshotInstrument> = { ...bisher.instruments }
@@ -146,7 +160,12 @@ async function main(): Promise<void> {
       continue
     }
 
-    const punkte = thinPoints(roh)
+    const stellen =
+      marketDefinitions.find((definition) => definition.symbol === symbol)?.decimals ?? 4
+    const punkte = thinPoints(roh).map((punkt) => ({
+      d: punkt.d,
+      c: runde(punkt.c, stellen),
+    }))
     const probleme = checkPoints(punkte, instrumente[symbol]?.points)
     if (probleme.length > 0) {
       for (const problem of probleme) console.warn(`[kurse] ${symbol}: ${problem}`)
@@ -161,6 +180,33 @@ async function main(): Promise<void> {
       points: punkte,
     }
     uebernommen.push(symbol)
+  }
+
+  /*
+    Unterschiedlich alte Stände sichtbar machen.
+
+    Beim ersten erfolgreichen Lauf standen die Indizes auf dem 23. Juli, die
+    Wechselkurse auf dem 24. und die Edelmetalle auf dem 27. – ohne dass etwas
+    fehlgeschlagen wäre. Ein Anbieter kann einen Handelstag später nachliefern
+    oder eine Lücke haben; solange das unbemerkt bleibt, steht auf der Website
+    eine ältere Zahl, als es müsste.
+
+    Verglichen wird gegen den jüngsten Stand aller Instrumente. Vier Tage
+    Abstand decken ein Wochenende samt Feiertag ab, ohne jeden Montag zu warnen.
+  */
+  const staende = Object.values(instrumente).map((eintrag) => eintrag.asOf)
+  const juengster = staende.sort().at(-1)
+  if (juengster) {
+    const grenze = Date.parse(`${juengster}T00:00:00Z`) - 4 * 86_400_000
+    const hinterher = Object.entries(instrumente)
+      .filter(([, eintrag]) => Date.parse(`${eintrag.asOf}T00:00:00Z`) < grenze)
+      .map(([symbol, eintrag]) => `${symbol} (${eintrag.asOf})`)
+
+    if (hinterher.length > 0) {
+      console.log(
+        `::warning title=Ältere Stände als ${juengster}::${hinterher.join(', ')}`
+      )
+    }
   }
 
   if (uebernommen.length === 0) {
@@ -227,6 +273,10 @@ async function main(): Promise<void> {
   )
 
   console.log(`[kurse] ${punkteGesamt} Kurswerte in ${ZIEL}`)
+  for (const [symbol, eintrag] of Object.entries(instrumente)) {
+    const letzte = eintrag.points.slice(-3).map((punkt) => `${punkt.d}=${punkt.c}`)
+    console.log(`[kurse]   ${symbol.padEnd(15)} ${letzte.join('  ')}`)
+  }
 }
 
 await main()
