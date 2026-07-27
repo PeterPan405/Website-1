@@ -1,0 +1,202 @@
+name: Veröffentlichen
+
+# Überträgt die gebaute Website per SSH auf den Webspace.
+#
+# ## Warum nicht FTP
+#
+# Das Paket besteht aus rund 6.700 Dateien. FTP baut für jede eine eigene
+# Verbindung auf – nach drei vollständigen Uploads mit zusammen etwa 4.500
+# Zugriffen hat die Firewall des Hosters den Port 21 gesperrt, belegt durch
+# sieben Abrufe mit demselben Timeout. Das Werkzeug passt nicht zur Aufgabe.
+#
+# Hier läuft es umgekehrt: **ein** Archiv, **eine** Verbindung, entpackt wird
+# auf dem Server. Aus 6.700 Übertragungen wird eine.
+#
+# ## Warum getauscht und nicht überschrieben
+#
+# Die Dateinamen unter `_next/static` tragen eine Prüfsumme und ändern sich mit
+# jedem Build. Würde man in den laufenden Ordner hineinkopieren, gäbe es einen
+# Zeitraum von Minuten, in dem neues HTML auf altes CSS zeigt – die Seite käme
+# ohne Formatierung heraus. Genau dieser Fehler ist hier schon einmal
+# aufgetreten.
+#
+# Deshalb wird vollständig in einen Nebenordner entpackt und erst danach
+# umgehängt. Die Umschaltung sind zwei `mv`-Aufrufe und dauert Millisekunden.
+#
+# ## Was hinterlegt sein muss
+#
+# Unter Settings > Secrets and variables > Actions:
+#   HOSTINGER_SSH_KEY   – der **private** Schlüssel (mehrzeilig, komplett)
+#   HOSTINGER_SSH_HOST  – die IP aus hPanel > Erweitert > SSH-Zugang
+#   HOSTINGER_SSH_USER  – der Benutzername von derselben Seite
+#
+# Fehlt eines davon, überspringt der Workflow die Übertragung mit einem
+# Hinweis, statt fehlzuschlagen – ein Repository ohne Zugangsdaten soll bauen
+# können, ohne dass jeder Lauf rot wird.
+
+on:
+  # Nach jedem erfolgreichen Paketbau – der prüft Lint, Typen, Tests,
+  # Formatierung und Build. Was hier ankommt, ist also schon geprüft.
+  workflow_run:
+    workflows: ['Paket bauen']
+    types: [completed]
+    branches: [main]
+
+  workflow_dispatch:
+
+concurrency:
+  # Zwei gleichzeitige Übertragungen würden sich beim Umhängen in die Quere
+  # kommen. Der laufende Vorgang wird nicht abgebrochen: Ein Abbruch mitten im
+  # Tausch hinterließe einen Webspace ohne `public_html`.
+  group: veroeffentlichen
+  cancel-in-progress: false
+
+env:
+  SSH_PORT: '65002'
+  # Der Pfad ist bei Hostinger relativ zum Benutzerverzeichnis.
+  ZIELPFAD: domains/iminvests.de/public_html
+
+jobs:
+  uebertragen:
+    name: Auf den Webspace übertragen
+    runs-on: ubuntu-latest
+    # Nur wenn der Paketbau durchgelaufen ist. Bei manuellem Start greift die
+    # zweite Bedingung.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Zugangsdaten prüfen
+        id: zugang
+        run: |
+          if [ -z "${{ secrets.HOSTINGER_SSH_KEY }}" ] \
+            || [ -z "${{ secrets.HOSTINGER_SSH_HOST }}" ] \
+            || [ -z "${{ secrets.HOSTINGER_SSH_USER }}" ]; then
+            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
+            echo "::notice::Keine SSH-Zugangsdaten hinterlegt – es wird nichts übertragen."
+          else
+            echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Abhängigkeiten installieren
+        if: steps.zugang.outputs.vorhanden == 'ja'
+        run: npm ci
+
+      - name: Bauen
+        if: steps.zugang.outputs.vorhanden == 'ja'
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+
+      # Dieselben Prüfungen wie im Paketbau. Doppelt, aber billig: Ein Build
+      # ohne Stylesheet oder ohne .htaccess darf den funktionierenden Stand auf
+      # dem Server nicht ersetzen.
+      - name: Ergebnis prüfen
+        if: steps.zugang.outputs.vorhanden == 'ja'
+        run: |
+          test -f out/index.html   || { echo "out/index.html fehlt";  exit 1; }
+          test -f out/404.html     || { echo "out/404.html fehlt";    exit 1; }
+          test -f out/.htaccess    || { echo "out/.htaccess fehlt";   exit 1; }
+          test -f out/version.txt  || { echo "out/version.txt fehlt"; exit 1; }
+
+          if [ "$(find out/_next -name '*.css' | wc -l)" -lt 1 ]; then
+            echo "Kein Stylesheet im Paket – die Seite käme ohne Formatierung heraus."
+            exit 1
+          fi
+          seiten=$(find out -name index.html | wc -l)
+          if [ "$seiten" -lt 100 ]; then
+            echo "Nur $seiten Seiten – der Export ist unvollständig."
+            exit 1
+          fi
+          echo "Seiten: $seiten, Dateien: $(find out -type f | wc -l)"
+
+      - name: Archiv packen
+        if: steps.zugang.outputs.vorhanden == 'ja'
+        run: |
+          # Aus dem Ordner heraus, damit im Archiv kein `out/` steckt.
+          # `.htaccess` ist versteckt und muss ausdrücklich mit.
+          tar -czf website.tar.gz -C out .
+          ls -lh website.tar.gz
+
+      - name: SSH einrichten
+        if: steps.zugang.outputs.vorhanden == 'ja'
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.HOSTINGER_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+
+          # Den Hostschlüssel vorher holen, statt die Prüfung abzuschalten.
+          # `StrictHostKeyChecking=no` würde jede Gegenstelle akzeptieren.
+          ssh-keyscan -p "$SSH_PORT" -H "${{ secrets.HOSTINGER_SSH_HOST }}" \
+            >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Übertragen und umhängen
+        if: steps.zugang.outputs.vorhanden == 'ja'
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+        run: |
+          set -euo pipefail
+
+          echo "Archiv übertragen …"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            website.tar.gz "$USER@$HOST:~/website-neu.tar.gz"
+
+          echo "Auf dem Server entpacken und umhängen …"
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "ZIEL='$ZIELPFAD'" 'bash -s' <<'ENDE'
+            set -euo pipefail
+
+            NEU="$HOME/website-neu"
+            ALT="$HOME/website-alt"
+
+            rm -rf "$NEU" "$ALT"
+            mkdir -p "$NEU"
+            tar -xzf "$HOME/website-neu.tar.gz" -C "$NEU"
+
+            # Erst prüfen, dann tauschen. Ein halb entpacktes Archiv darf den
+            # laufenden Stand nicht ersetzen.
+            test -f "$NEU/index.html"
+            test -f "$NEU/.htaccess"
+
+            mkdir -p "$(dirname "$ZIEL")"
+            if [ -d "$ZIEL" ]; then mv "$ZIEL" "$ALT"; fi
+            mv "$NEU" "$ZIEL"
+            rm -rf "$ALT" "$HOME/website-neu.tar.gz"
+
+            echo "Übertragen. Stand:"
+            cat "$ZIEL/version.txt" 2>/dev/null || echo "(version.txt fehlt)"
+          ENDE
+
+      - name: Aufräumen
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
+
+      - name: Ergebnis von außen prüfen
+        if: steps.zugang.outputs.vorhanden == 'ja'
+        run: |
+          URL="${{ vars.NEXT_PUBLIC_SITE_URL }}"
+          if [ -z "$URL" ]; then URL="https://iminvests.de"; fi
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+
+          # Kurz warten – der Server braucht einen Moment nach dem Umhängen.
+          sleep 5
+          code=$(curl -sS -A "$UA" -o /dev/null -w '%{http_code}' "$URL/" || echo 000)
+          echo "Startseite: $code"
+          stand=$(curl -sS -A "$UA" "$URL/version.txt" || echo "(nicht abrufbar)")
+          echo "Stand auf dem Server:"
+          echo "$stand"
+
+          if [ "$code" != "200" ]; then
+            echo "::warning::Die Startseite antwortet mit $code. Übertragen wurde trotzdem – prüfe, ob eine Schicht davor blockt (etwa der Hostinger-CDN)."
+          fi
