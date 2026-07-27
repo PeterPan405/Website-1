@@ -29,6 +29,8 @@
  * Aufruf: `npm run laender`
  */
 
+import { ECB_HISTORY_FULL_URL, parseEcbEnvelope } from '../lib/providers/ecb.ts'
+
 const GDP_URL = 'https://raw.githubusercontent.com/datasets/gdp/main/data/gdp.csv'
 const POP_URL =
   'https://raw.githubusercontent.com/datasets/population/main/data/population.csv'
@@ -68,7 +70,54 @@ const OECD_LOEHNE_URL =
 /** Die Einheit, die gemeint ist – siehe `ladeLoehne`. */
 const OECD_EINHEIT = 'USD_PPP'
 
+/**
+ * Vermoegensverteilung aus derselben SDMX-Schnittstelle.
+ *
+ * Von Hand gepflegt standen hier drei Werte aus einem Bankenbericht. Diese
+ * Datenbank fuehrt 31 Laender nach einheitlicher Abgrenzung, mit Jahr und
+ * Waehrung an jedem Wert.
+ *
+ * ## Das Median-Reinvermoegen ist eine andere Groesse als vorher
+ *
+ * Die OECD weist es **je Haushalt** aus, der Bankenbericht wies es je
+ * erwachsener Person aus. Das sind zwei verschiedene Zahlen, und die
+ * Umrechnung ineinander braeuchte die durchschnittliche Haushaltsgroesse –
+ * also eine dritte Quelle und eine weitere Fehlerquelle. Auf der Seite steht
+ * deshalb ausdruecklich „je Haushalt“.
+ *
+ * Warum ueberhaupt der Median und nicht der Durchschnitt: Beim Durchschnitt
+ * zieht eine kleine Zahl sehr vermoegender Haushalte den Wert nach oben. Wer
+ * wissen will, wie es der Mitte einer Gesellschaft geht, braucht den Median.
+ */
+const OECD_VERMOEGEN_URL =
+  'https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels'
+
+/**
+ * Die Zeilen, die gemeint sind.
+ *
+ * `NW` ist das Reinvermoegen, `MEDIAN` die Rechengroesse, `XDC_HH` die Einheit
+ * „Landeswaehrung je Haushalt“. Alle drei muessen stimmen: Dieselbe Datenbank
+ * enthaelt auch den arithmetischen Mittelwert und eine Fassung je Person, und
+ * beide saehen im Ergebnis genauso plausibel aus.
+ */
+const VERMOEGEN_FILTER = {
+  groesse: 'NW',
+  rechnung: 'MEDIAN',
+  einheit: 'XDC_HH',
+} as const
+
 const ZIEL = 'data/snapshots/laender.json'
+
+/**
+ * Die taegliche Kursreihe der Europaeischen Zentralbank seit 1999.
+ *
+ * Sie liegt bereits im Projekt und wird fuer die Waehrungspaare auf der
+ * Marktseite benutzt (`lib/providers/ecb.ts`). Fuer die Umrechnung der
+ * Vermoegenswerte ist sie die naheliegende Wahl: amtlich, kostenlos, mit
+ * historischen Kursen bis 1999 – und eine Quelle weniger, als eine neue
+ * Schnittstelle bedeutet haette.
+ */
+const ECB_REIHE_URL = ECB_HISTORY_FULL_URL
 
 /**
  * Kopfzeilen für die beiden Statistikschnittstellen.
@@ -295,6 +344,165 @@ async function ladeSchuldenquoten(): Promise<Map<
 }
 
 /**
+ * Wechselkurse zum Jahresende, Euro zu Fremdwaehrung.
+ *
+ * Genommen wird der letzte Handelstag des jeweiligen Jahres. Ein
+ * Jahresdurchschnitt waere die sauberere Wahl fuer Stromgroessen wie einen
+ * Jahreslohn; ein Vermoegen ist aber ein Stichtagswert, und die Erhebungen
+ * beziehen sich auf das Jahresende. Der Stichtagskurs passt also zur Groesse.
+ */
+async function ladeJahresendkurse(): Promise<Map<number, Record<string, number>> | null> {
+  try {
+    const antwort = await fetch(ECB_REIHE_URL, { headers: KOPFZEILEN })
+    if (!antwort.ok) {
+      console.log(
+        `::warning::EZB antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – Vermoegenswerte bleiben unveraendert.`
+      )
+      return null
+    }
+
+    const tage = parseEcbEnvelope(await antwort.text())
+    if (tage.length === 0) {
+      console.log('::warning::EZB-Reihe leer – Vermoegenswerte bleiben unveraendert.')
+      return null
+    }
+
+    // Die Reihe kommt jüngster Tag zuerst. Je Jahr zählt der späteste Tag,
+    // also der erste, der für dieses Jahr vorbeikommt.
+    const jeJahr = new Map<number, Record<string, number>>()
+    for (const tag of tage) {
+      const jahr = Number(tag.date.slice(0, 4))
+      if (!Number.isFinite(jahr)) continue
+      const bisher = jeJahr.get(jahr)
+      if (!bisher) jeJahr.set(jahr, tag.rates)
+    }
+
+    console.log(`Jahresendkurse fuer ${jeJahr.size} Jahre geholt.`)
+    return jeJahr
+  } catch (fehler) {
+    console.log(
+      `::warning::EZB-Reihe nicht erreichbar (${fehler instanceof Error ? fehler.message : fehler}) – Vermoegenswerte bleiben unveraendert.`
+    )
+    return null
+  }
+}
+
+/**
+ * Holt das Median-Reinvermoegen je Haushalt, umgerechnet in US-Dollar.
+ *
+ * ## Warum die Umrechnung ueber den Euro laeuft
+ *
+ * Die EZB veroeffentlicht Kurse immer als Euro zu Fremdwaehrung. Ein Wert in
+ * australischen Dollar wird deshalb erst durch den AUD-Kurs geteilt – das
+ * ergibt Euro – und dann mit dem USD-Kurs desselben Tages multipliziert. Beide
+ * Kurse stammen aus einer Datei und einem Stichtag; ein Mischen von Quellen
+ * oder Tagen entfaellt.
+ *
+ * ## Was dabei herausfaellt
+ *
+ * Waehrungen, die die EZB nicht fuehrt. Das betrifft von den 31 Laendern der
+ * Datenbank genau eines: Chile. Eine zweite Kursquelle nur dafuer waere ein
+ * schlechtes Geschaeft – sie muesste gepflegt, geprueft und erklaert werden,
+ * fuer ein Land.
+ */
+async function ladeVermoegen(
+  kurse: Map<number, Record<string, number>> | null
+): Promise<Map<string, { wert: number; jahr: number }> | null> {
+  if (!kurse) return null
+
+  try {
+    const antwort = await fetch(OECD_VERMOEGEN_URL, { headers: OECD_KOPFZEILEN })
+    if (!antwort.ok) {
+      console.log(
+        `::warning::OECD-Vermoegen antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – bisheriger Stand bleibt.`
+      )
+      return null
+    }
+
+    const zeilen = parseCsv(await antwort.text())
+    const aktuellesJahr = new Date().getUTCFullYear()
+    const roh = new Map<string, { wert: number; jahr: number; waehrung: string }>()
+
+    for (const zeile of zeilen) {
+      if (zeile['MEASURE'] !== VERMOEGEN_FILTER.groesse) continue
+      if (zeile['STATISTICAL_OPERATION'] !== VERMOEGEN_FILTER.rechnung) continue
+      if (zeile['UNIT_MEASURE'] !== VERMOEGEN_FILTER.einheit) continue
+
+      const code = zeile['REF_AREA']
+      const jahr = Number(zeile['TIME_PERIOD'])
+      const wert = Number(zeile['OBS_VALUE'])
+      const waehrung = zeile['CURRENCY']
+      if (!code || code.length !== 3 || KEINE_LAENDER.test(code)) continue
+      if (!waehrung || waehrung.length !== 3) continue
+      if (!Number.isFinite(jahr) || jahr > aktuellesJahr) continue
+      if (!Number.isFinite(wert) || wert <= 0) continue
+
+      const bisher = roh.get(code)
+      if (!bisher || jahr > bisher.jahr) roh.set(code, { wert, jahr, waehrung })
+    }
+
+    if (roh.size === 0) {
+      const spalten = Object.keys(zeilen[0] ?? {}).join(', ')
+      console.log(
+        `::warning::Keine Zeile mit ${VERMOEGEN_FILTER.groesse}/${VERMOEGEN_FILTER.rechnung}/${VERMOEGEN_FILTER.einheit} – bisheriger Stand bleibt.`
+      )
+      console.log(`  Zeilen: ${zeilen.length} | Spalten: ${spalten || '(keine)'}`)
+      return null
+    }
+
+    const werte = new Map<string, { wert: number; jahr: number }>()
+    const ohneKurs: string[] = []
+
+    for (const [code, eintrag] of roh) {
+      /*
+        Kurse des Erhebungsjahres, nicht die von heute.
+
+        Ein britischer Wert von 2017 mit dem Pfundkurs von 2026 umgerechnet
+        waere eine Zahl, die es nie gab. Fehlt das Jahr in der Reihe, wird der
+        Wert weggelassen – nicht mit einem anderen Jahr behelfsmaessig
+        gerechnet.
+      */
+      const tag = kurse.get(eintrag.jahr)
+      if (!tag) {
+        ohneKurs.push(`${code} (Jahr ${eintrag.jahr})`)
+        continue
+      }
+
+      const usd = tag['USD']
+      if (!usd) {
+        ohneKurs.push(`${code} (kein USD-Kurs)`)
+        continue
+      }
+
+      // Der Euroraum selbst braucht keine Division – die Quelle steht schon
+      // in Euro, und die EZB fuehrt den Euro nicht gegen sich selbst.
+      const inEuro =
+        eintrag.waehrung === 'EUR'
+          ? eintrag.wert
+          : eintrag.wert / (tag[eintrag.waehrung] ?? 0)
+
+      if (!Number.isFinite(inEuro) || inEuro <= 0) {
+        ohneKurs.push(`${code} (${eintrag.waehrung})`)
+        continue
+      }
+
+      werte.set(code, { wert: Math.round(inEuro * usd), jahr: eintrag.jahr })
+    }
+
+    if (ohneKurs.length > 0) {
+      console.log(`  Ohne Umrechnung geblieben: ${ohneKurs.join(', ')}`)
+    }
+    console.log(`Medianvermoegen fuer ${werte.size} Laender geholt und umgerechnet.`)
+    return werte
+  } catch (fehler) {
+    console.log(
+      `::warning::OECD-Vermoegen nicht erreichbar (${fehler instanceof Error ? fehler.message : fehler}) – bisheriger Stand bleibt.`
+    )
+    return null
+  }
+}
+
+/**
  * Holt die Durchschnittsloehne, oder `null`, wenn die Quelle nicht antwortet.
  *
  * ## Warum hier strenger geprueft wird als beim IWF
@@ -383,12 +591,13 @@ async function ladeVorherigenStand(): Promise<Record<string, unknown> | null> {
 
 async function main() {
   console.log('Lade Weltbank-Reihen …')
-  const [gdpRoh, popRoh, codesRoh, schulden, loehne, vorher] = await Promise.all([
+  const [gdpRoh, popRoh, codesRoh, schulden, loehne, kurse, vorher] = await Promise.all([
     ladeCsv(GDP_URL),
     ladeCsv(POP_URL),
     ladeCsv(CODES_URL),
     ladeSchuldenquoten(),
     ladeLoehne(),
+    ladeJahresendkurse(),
     ladeVorherigenStand(),
   ])
 
@@ -403,6 +612,9 @@ async function main() {
     das BIP eines Jahres geteilt durch die Bevölkerung eines anderen – ein
     Fehler, den man dem Ergebnis nicht ansieht.
   */
+  // Braucht die Kurse und laeuft deshalb nach dem Buendel, nicht darin.
+  const vermoegen = await ladeVermoegen(kurse)
+
   const jahr = Math.min(juengstesVollesJahr(gdp), juengstesVollesJahr(pop))
   console.log(`Gemeinsames Bezugsjahr: ${jahr}`)
 
@@ -434,6 +646,7 @@ async function main() {
       einwohner?: number
       schuldenquote?: { wert: number; jahr: number }
       durchschnittsgehalt?: { wert: number; jahr: number }
+      medianvermoegen?: { wert: number; jahr: number }
     }
   > = {}
 
@@ -443,6 +656,7 @@ async function main() {
       {
         schuldenquote?: { wert: number; jahr: number }
         durchschnittsgehalt?: { wert: number; jahr: number }
+        medianvermoegen?: { wert: number; jahr: number }
       }
     >) ?? {}
 
@@ -473,6 +687,12 @@ async function main() {
         const gewaehlt = neu ?? alt
         return gewaehlt ? { durchschnittsgehalt: gewaehlt } : {}
       })(),
+      ...(() => {
+        const neu = vermoegen?.get(code.alpha3)
+        const alt = vorherigeLaender[code.alpha3]?.medianvermoegen
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { medianvermoegen: gewaehlt } : {}
+      })(),
     }
   }
 
@@ -480,8 +700,11 @@ async function main() {
   const mitEinwohnern = Object.values(laender).filter((land) => land.einwohner).length
   const mitSchulden = Object.values(laender).filter((land) => land.schuldenquote).length
   const mitLohn = Object.values(laender).filter((land) => land.durchschnittsgehalt).length
+  const mitVermoegen = Object.values(laender).filter(
+    (land) => land.medianvermoegen
+  ).length
   console.log(
-    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote und ${mitLohn} mit Durchschnittslohn.`
+    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn und ${mitVermoegen} mit Medianvermoegen.`
   )
 
   if (mitBip < 150) {
@@ -509,6 +732,17 @@ async function main() {
       url: 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CEmployment%23JOB%23%7CBenefits%252C%20earnings%20and%20wages%23JOB_BEW%23&pg=0&fc=Topic&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40AV_AN_WAGE',
       abgrenzung:
         'Durchschnittlicher Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt in US-Dollar. Brutto, vor Steuern und Abgaben. Nur OECD-Mitglieder – eine weltweite Reihe nach einheitlicher Abgrenzung gibt es offen nicht.',
+    },
+    vermoegenQuelle: {
+      label:
+        'OECD, Vermögensverteilungsdatenbank (Reinvermögen, Median) über die SDMX-Schnittstelle',
+      url: 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CSociety%23SOC%23%7CInequality%23SOC_INE%23&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_WEALTH%40DF_WEALTH',
+      abgrenzung:
+        'Median des Reinvermögens je Haushalt – Vermögen abzüglich Schulden, in der Mitte der Verteilung. Von der Quelle in Landeswährung gemeldet und mit dem Referenzkurs der Europäischen Zentralbank zum Ende des jeweiligen Erhebungsjahres in US-Dollar umgerechnet. Das Erhebungsjahr steht an jedem Wert und reicht je Land von 2016 bis 2023.',
+      umrechnung: {
+        label: 'Europäische Zentralbank, Euro-Referenzkurse',
+        url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+      },
     },
     laender,
   }
