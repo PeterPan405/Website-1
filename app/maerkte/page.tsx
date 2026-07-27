@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { QuoteCard } from '@/components/markets/QuoteCard'
 import { QuoteRow } from '@/components/markets/QuoteRow'
-import { Stimmungstacho } from '@/components/markets/Stimmungstacho'
+import { Stimmungskachel } from '@/components/markets/Stimmungskachel'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -114,22 +114,6 @@ export default async function MarketsOverviewPage() {
           className="text-fg-subtle text-sm leading-relaxed"
         />
 
-        {/*
-          Der Stimmungstacho steht über den Indizes und nicht bei einem
-          einzelnen Kurs: Er beschreibt den Aktienmarkt als Ganzes. Bei einer
-          einzelnen Aktie wäre er nur deren Kursverlauf mit anderer
-          Beschriftung.
-        */}
-        {stimmungAktien && (
-          <div className="mt-12">
-            <Stimmungstacho
-              stimmung={stimmungAktien}
-              titel="Angst und Gier am Aktienmarkt"
-              beschreibung="Wie zuversichtlich der Aktienmarkt gerade ist – gerechnet aus den Kursen dieser Seite, nicht von anderswo übernommen."
-            />
-          </div>
-        )}
-
         <section aria-labelledby="indizes" className="mt-12">
           <h2 id="indizes" className="text-fg text-2xl font-bold">
             Aktienindizes
@@ -150,6 +134,24 @@ export default async function MarketsOverviewPage() {
                 </Reveal>
               </li>
             ))}
+            {/*
+              Die Stimmung als letzte Kachel der Reihe.
+
+              Sie gehört zu den Indizes und nicht darüber: Sie beschreibt den
+              Aktienmarkt als Ganzes, genau wie ein Index – nur mit einer
+              anderen Größe. Über die volle Seitenbreite wirkte sie wie die
+              Hauptaussage der Seite.
+            */}
+            {stimmungAktien && (
+              <li>
+                <Reveal delay={indexQuotes.length * 0.04} className="h-full">
+                  <Stimmungskachel
+                    stimmung={stimmungAktien}
+                    titel="Angst und Gier am Aktienmarkt"
+                  />
+                </Reveal>
+              </li>
+            )}
           </ul>
         </section>
 
@@ -245,17 +247,19 @@ export default async function MarketsOverviewPage() {
                 </Reveal>
               </li>
             ))}
+            {/* Eigener Maßstab, gleiche Kachelgröße: Zehn Prozent Abstand zum
+                Halbjahrestrend sind hier ein ruhiger Monat. */}
+            {stimmungKrypto && (
+              <li>
+                <Reveal delay={cryptoQuotes.length * 0.04} className="h-full">
+                  <Stimmungskachel
+                    stimmung={stimmungKrypto}
+                    titel="Angst und Gier am Kryptomarkt"
+                  />
+                </Reveal>
+              </li>
+            )}
           </ul>
-
-          {stimmungKrypto && (
-            <div className="mt-6">
-              <Stimmungstacho
-                stimmung={stimmungKrypto}
-                titel="Angst und Gier am Kryptomarkt"
-                beschreibung="Dieselbe Rechnung wie bei den Aktien, aber mit eigenem Maßstab: Zehn Prozent Abstand zum Halbjahrestrend sind hier ein ruhiger Monat."
-              />
-            </div>
-          )}
         </section>
 
         {/* Zuletzt, weil es der einzige Abschnitt ohne Kacheln ist: über

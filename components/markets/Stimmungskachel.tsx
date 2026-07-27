@@ -1,8 +1,8 @@
-import type { Bestandteil, Stimmung, Stimmungsstufe } from '@/lib/markets'
+import type { Stimmung, Stimmungsstufe } from '@/lib/markets'
 import { STUFEN_TEXT } from '@/lib/markets'
 
 /**
- * Angst und Gier als Halbkreis.
+ * Angst und Gier als Halbkreis, in Kursgröße.
  *
  * ## Warum von Hand gezeichnet
  *
@@ -55,27 +55,38 @@ function bogen(von: number, bis: number, radius: number): string {
   return `M ${a.x.toFixed(2)} ${a.y.toFixed(2)} A ${radius} ${radius} 0 0 1 ${b.x.toFixed(2)} ${b.y.toFixed(2)}`
 }
 
-export function Stimmungstacho({
+/**
+ * Der Tacho als Kachel in Kursgröße.
+ *
+ * Über die volle Breite wirkte er wie die Hauptaussage der Seite – dabei ist er
+ * eine Kennzahl unter vielen. In der Kachelreihe steht er da, wo er hingehört:
+ * neben Hang Seng und Russell 2000, gleich groß, gleich gewichtet.
+ *
+ * Was dabei wegfällt, sind die Balken der einzelnen Bestandteile. Die Aufzählung
+ * bleibt trotzdem – als Satz, nicht als Grafik. Eine Zahl ohne Angabe, woraus
+ * sie entsteht, hätte auf dieser Seite nichts zu suchen.
+ */
+export function Stimmungskachel({
   stimmung,
   titel,
-  beschreibung,
 }: {
   stimmung: Stimmung
   titel: string
-  beschreibung: string
 }) {
   const zeiger = punkt(stimmung.wert, RADIUS)
   const stufentext = STUFEN_TEXT[stimmung.stufe]
+  const teile = stimmung.bestandteile.map((teil) => teil.label.toLowerCase()).join(', ')
 
   return (
-    <div className="fk-card p-6">
-      <h3 className="text-fg text-lg font-semibold">{titel}</h3>
-      <p className="text-fg-muted mt-1 text-sm leading-relaxed">{beschreibung}</p>
+    <div className="fk-card flex h-full flex-col p-5">
+      <h3 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+        {titel}
+      </h3>
 
-      <div className="mt-5 flex flex-wrap items-center gap-x-8 gap-y-4">
+      <div className="mt-2 flex justify-center">
         <svg
           viewBox="0 0 220 124"
-          className="h-auto w-[220px] shrink-0"
+          className="h-auto w-[150px]"
           aria-hidden="true"
           focusable="false"
         >
@@ -87,12 +98,9 @@ export function Stimmungstacho({
               stroke={abschnitt.farbe}
               strokeWidth={STRICH}
               strokeLinecap="butt"
-              // Der Abschnitt der aktuellen Stufe bleibt kräftig, die anderen
-              // treten zurück – sonst konkurrieren fünf Farben mit dem Zeiger.
               opacity={abschnitt.stufe === stimmung.stufe ? 1 : 0.28}
             />
           ))}
-
           <circle
             cx={zeiger.x}
             cy={zeiger.y}
@@ -101,68 +109,32 @@ export function Stimmungstacho({
             stroke="var(--c-fg)"
             strokeWidth={3}
           />
-
           <text
             x={MITTE_X}
-            y={MITTE_Y - 12}
+            y={MITTE_Y - 10}
             textAnchor="middle"
-            className="fill-[var(--c-fg)] text-[34px] font-bold tabular-nums"
+            className="fill-[var(--c-fg)] text-[38px] font-bold tabular-nums"
           >
             {stimmung.wert}
           </text>
           <text
             x={MITTE_X}
-            y={MITTE_Y + 12}
+            y={MITTE_Y + 14}
             textAnchor="middle"
-            className="fill-[var(--c-fg-subtle)] text-[13px] font-medium"
+            className="fill-[var(--c-fg-subtle)] text-[14px] font-medium"
           >
             {stufentext}
           </text>
         </svg>
-
-        <div className="min-w-[14rem] flex-1">
-          {/*
-            Dieselbe Aussage als Satz – das Diagramm ist aria-hidden.
-          */}
-          <p className="text-fg text-sm leading-relaxed">
-            <strong className="font-semibold">
-              {stimmung.wert} von 100 – {stufentext}.
-            </strong>{' '}
-            {stimmung.bestandteile.length === 1
-              ? 'Grundlage ist ein Bestandteil:'
-              : `Gemittelt aus ${stimmung.bestandteile.length} Bestandteilen:`}
-          </p>
-          <ul className="mt-3 space-y-2">
-            {stimmung.bestandteile.map((teil) => (
-              <Teil key={teil.label} teil={teil} />
-            ))}
-          </ul>
-        </div>
       </div>
+
+      {/* Dieselbe Aussage als Satz – das Diagramm ist aria-hidden. */}
+      <p className="text-fg-subtle mt-auto pt-3 text-xs leading-relaxed">
+        <span className="text-fg font-semibold">
+          {stimmung.wert} von 100 – {stufentext}.
+        </span>{' '}
+        Gerechnet aus {teile} der Kurse dieser Seite.
+      </p>
     </div>
-  )
-}
-
-function Teil({ teil }: { teil: Bestandteil }) {
-  return (
-    <li>
-      <div className="flex items-baseline justify-between gap-3">
-        <span className="text-fg-muted text-xs font-medium">{teil.label}</span>
-        <span className="text-fg text-xs font-semibold tabular-nums">
-          {Math.round(teil.wert)}
-        </span>
-      </div>
-      {/* Der Balken wiederholt die Zahl daneben nur optisch. */}
-      <div
-        aria-hidden="true"
-        className="bg-surface-muted mt-1 h-1.5 w-full overflow-hidden rounded-full"
-      >
-        <div
-          className="bg-brand h-full rounded-full"
-          style={{ width: `${Math.round(teil.wert)}%` }}
-        />
-      </div>
-      <p className="text-fg-subtle mt-1 text-xs leading-relaxed">{teil.erklaerung}</p>
-    </li>
   )
 }
