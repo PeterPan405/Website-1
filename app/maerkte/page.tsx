@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { QuoteCard } from '@/components/markets/QuoteCard'
+import { QuoteRow } from '@/components/markets/QuoteRow'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -22,16 +23,28 @@ export const metadata: Metadata = buildMetadata({
 export default async function MarketsOverviewPage() {
   const quotes = await getQuotes()
 
-  // Mini-Verläufe parallel laden, damit die Seite nicht seriell wartet.
-  const sparklines = await Promise.all(
-    quotes.map(async (quote) => [quote.symbol, await getSparkline(quote.symbol)] as const)
-  )
-  const sparklineBySymbol = new Map(sparklines)
-
   const fxQuotes = quotes.filter((quote) => quote.kind === 'fx')
   const indexQuotes = quotes.filter((quote) => quote.kind === 'index')
   const commodityQuotes = quotes.filter((quote) => quote.kind === 'commodity')
   const cryptoQuotes = quotes.filter((quote) => quote.kind === 'crypto')
+  const stockQuotes = quotes.filter((quote) => quote.kind === 'stock')
+
+  /*
+    Mini-Verläufe nur für die Kachel-Abschnitte.
+
+    Für die über hundert Einzelaktien wären es über hundert zusätzliche
+    SVG-Verläufe auf einer Seite – ein Vielfaches an HTML für eine Grafik, die
+    bei dieser Anzahl ohnehin niemand einzeln ansieht. Die Aktien stehen deshalb
+    als kompakte Zeilen; ihren Verlauf gibt es auf der Detailseite.
+  */
+  const mitVerlauf = quotes.filter((quote) => quote.kind !== 'stock')
+  const sparklines = await Promise.all(
+    mitVerlauf.map(
+      async (quote) => [quote.symbol, await getSparkline(quote.symbol)] as const
+    )
+  )
+  const sparklineBySymbol = new Map(sparklines)
+
   const asOf = quotes[0]?.asOf
 
   return (
@@ -51,7 +64,9 @@ export default async function MarketsOverviewPage() {
             <span aria-hidden="true">·</span>
             <span>{fxQuotes.length} Währungspaare</span>
             <span aria-hidden="true">·</span>
-            <span>{cryptoQuotes.length} Kryptowährung</span>
+            <span>{stockQuotes.length} Einzelaktien</span>
+            <span aria-hidden="true">·</span>
+            <span>{cryptoQuotes.length} Kryptowährungen</span>
             {asOf && (
               <>
                 <span aria-hidden="true">·</span>
@@ -92,6 +107,25 @@ export default async function MarketsOverviewPage() {
                     sparkline={sparklineBySymbol.get(quote.symbol)}
                   />
                 </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="aktien" className="mt-16">
+          <h2 id="aktien" className="text-fg text-2xl font-bold">
+            Aktien
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+            Einzelwerte aus den USA, Europa und Asien. Anders als ein Index trägt eine
+            einzelne Aktie das Risiko genau dieses Unternehmens – dafür lässt sich an ihr
+            nachvollziehen, was ein Geschäftsmodell für den Kurs bedeutet. Notiert wird in
+            der Währung der jeweiligen Heimatbörse.
+          </p>
+          <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
+            {stockQuotes.map((quote) => (
+              <li key={quote.symbol}>
+                <QuoteRow quote={quote} />
               </li>
             ))}
           </ul>

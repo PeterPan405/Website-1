@@ -139,6 +139,22 @@ function runde(wert: number, stellen: number): number {
   return Math.round(wert * faktor) / faktor
 }
 
+/**
+ * Kurze Pause zwischen zwei Abrufen.
+ *
+ * Mit über hundert Instrumenten und zehn Läufen am Tag kämen sonst weit über
+ * tausend Anfragen täglich bei Yahoo an, alle in wenigen Sekunden. Das ist für
+ * eine Schnittstelle ohne Registrierung nicht angemessen und der schnellste Weg,
+ * gesperrt zu werden. Ein Viertel einer Sekunde je Abruf streckt einen Lauf auf
+ * etwa eine halbe Minute – für einen Hintergrundjob ohne Belang.
+ */
+function warte(ms: number): Promise<void> {
+  return new Promise((fertig) => setTimeout(fertig, ms))
+}
+
+/** Pause zwischen zwei Marktabrufen in Millisekunden. */
+const ABSTAND_MS = 250
+
 async function main(): Promise<void> {
   const bisher = ladeBisherige()
   const instrumente: Record<string, SnapshotInstrument> = { ...bisher.instruments }
@@ -163,6 +179,7 @@ async function main(): Promise<void> {
       roh = devisen.get(symbol) ?? null
       quellenId = 'ecb'
     } else {
+      await warte(ABSTAND_MS)
       const ergebnis = await holeMarktkurs(quelle.yahoo, quelle.twelvedata)
       roh = ergebnis?.punkte ?? null
       latest = ergebnis?.latest ?? null

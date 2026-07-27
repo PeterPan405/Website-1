@@ -256,7 +256,7 @@ export async function getSeries(
 ): Promise<SeriesPoint[]> {
   const definition = findDefinition(symbol)
   if (!definition) return []
-  return sliceRange({ daily: basisFor(definition).daily }, range)
+  return sliceRange(basisFor(definition).daily, range)
 }
 
 /**
@@ -271,7 +271,7 @@ export async function getAllSeries(
   const definition = findDefinition(symbol)
   if (!definition) return null
 
-  const series = { daily: basisFor(definition).daily }
+  const series = basisFor(definition).daily
   return {
     '1W': sliceRange(series, '1W'),
     '1M': sliceRange(series, '1M'),
