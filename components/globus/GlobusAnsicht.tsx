@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { Globus, type GlobusLand } from '@/components/globus/Globus'
 import { cn } from '@/lib/cn'
@@ -96,6 +96,7 @@ export function GlobusAnsicht({
   const [ausgewaehlt, setAusgewaehlt] = useState<string | null>(null)
   const [zielId, setZielId] = useState<string | null>(null)
   const [suche, setSuche] = useState('')
+  const [vollbild, setVollbild] = useState(false)
 
   const metrik = metriken.find((eintrag) => eintrag.id === metrikId) ?? metriken[0]
 
@@ -150,10 +151,68 @@ export function GlobusAnsicht({
     ? (laender.find((eintrag) => eintrag.id === ausgewaehlt) ?? null)
     : null
 
-  const waehle = (id: string | null) => {
+  /*
+    Ein Land in der Adresse.
+
+    Die Suche in der Kopfzeile führt auf `/globus#land-360`, und das muss hier
+    ankommen: Wer „Indonesien“ eintippt, will das Land sehen, nicht die
+    Startansicht mit dem Hinweis, man möge etwas anklicken.
+
+    Warum die Raute und kein Abfrageparameter: Die Seite wird statisch
+    ausgeliefert. `useSearchParams` verlangt in Next.js eine Suspense-Grenze und
+    macht die Seite zur Laufzeitsache; die Raute liest der Browser ohne
+    Zutun – und sie überlebt jede Art von Hosting.
+
+    Zwei Wege führen herein: die erste Anzeige (die Seite wurde mit der Raute
+    aufgerufen) und `hashchange` (wir waren schon hier und die Suche hat nur die
+    Raute geändert; die Seite lädt dann nicht neu).
+  */
+  const waehle = useCallback((id: string | null) => {
     setAusgewaehlt(id)
     if (id) setZielId(id)
-  }
+    if (typeof window === 'undefined') return
+    // `replaceState` statt `pushState`: Der Zurückknopf soll die Seite
+    // verlassen und nicht durch ein Dutzend angeklickter Länder zurückgehen.
+    const ziel = id ? `#land-${id}` : window.location.pathname
+    window.history.replaceState(null, '', ziel)
+  }, [])
+
+  useEffect(() => {
+    const ausAdresse = () => {
+      const treffer = /^#land-([a-z0-9-]+)$/i.exec(window.location.hash)
+      if (!treffer) return
+      const id = treffer[1]
+      if (!laender.some((eintrag) => eintrag.id === id)) return
+      setAusgewaehlt(id)
+      setZielId(id)
+    }
+    ausAdresse()
+    window.addEventListener('hashchange', ausAdresse)
+    return () => window.removeEventListener('hashchange', ausAdresse)
+  }, [laender])
+
+  /*
+    Der Inhalt der Tafel – einmal beschrieben, an zwei Stellen gezeigt.
+
+    Normal steht er in der Seitenspalte, im Vollbild im Rahmen des Globus.
+    Beides gleichzeitig anzuzeigen hieße, denselben Text zweimal ins Dokument
+    zu schreiben; deshalb meldet der Globus den Wechsel, und die Seitenspalte
+    tritt so lange ab.
+  */
+  const tafelInhalt = land ? (
+    <Landtafel land={land} quellen={quellen} weltbankJahr={weltbankJahr} />
+  ) : (
+    <div className="rounded-card border-border bg-surface-muted border p-5">
+      <p className="text-fg-muted text-sm leading-relaxed">
+        Ein Land anklicken – oder oben suchen. Der Globus dreht sich dann dorthin und
+        zeigt hier, was zu diesem Land hinterlegt ist.
+      </p>
+      <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
+        Ziehen dreht die Kugel, das Mausrad zoomt. Mit der Tastatur: erst anwählen, dann
+        Pfeiltasten zum Drehen, Plus und Minus zum Zoomen.
+      </p>
+    </div>
+  )
 
   return (
     /*
@@ -201,6 +260,8 @@ export function GlobusAnsicht({
             onAuswahl={waehle}
             onHover={() => {}}
             zielId={zielId}
+            tafel={tafelInhalt}
+            onVollbild={setVollbild}
           />
         </div>
 
@@ -260,20 +321,7 @@ export function GlobusAnsicht({
           ihn folgenlos – der Inhalt änderte sich lautlos irgendwo auf der Seite.
         */}
         <div id="globus-landtafel" aria-live="polite">
-          {land ? (
-            <Landtafel land={land} quellen={quellen} weltbankJahr={weltbankJahr} />
-          ) : (
-            <div className="rounded-card border-border bg-surface-muted border p-5">
-              <p className="text-fg-muted text-sm leading-relaxed">
-                Ein Land anklicken – oder oben suchen. Der Globus dreht sich dann dorthin
-                und zeigt hier, was zu diesem Land hinterlegt ist.
-              </p>
-              <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
-                Ziehen dreht die Kugel, das Mausrad zoomt. Mit der Tastatur: erst
-                anwählen, dann Pfeiltasten zum Drehen, Plus und Minus zum Zoomen.
-              </p>
-            </div>
-          )}
+          {vollbild ? null : tafelInhalt}
         </div>
       </div>
     </div>

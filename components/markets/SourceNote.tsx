@@ -50,6 +50,26 @@ export function SourceNote({
   )
 }
 
+/** Ab wie vielen Kürzeln gezählt statt aufgezählt wird. */
+const HOECHSTENS_AUFZAEHLEN = 6
+
+/**
+ * Kürzel aufzählen – oder zählen, wenn es zu viele werden.
+ *
+ * Solange es eine Handvoll war, war die Aufzählung die bessere Auskunft: Man
+ * sah sofort, welcher Kurs betroffen ist. Mit über vierhundert neu
+ * aufgenommenen Aktien wurde daraus ein Absatz aus reinen Kürzeln, quer über
+ * den halben Bildschirm, den niemand liest und der die eigentliche Aussage
+ * begräbt.
+ *
+ * Weggelassen wird die Aussage deshalb nicht – nur die Liste. Welcher Kurs
+ * betroffen ist, steht ohnehin an jedem einzelnen Kurs.
+ */
+function nenne(kuerzel: string[], einzahl: string, mehrzahl: string) {
+  if (kuerzel.length <= HOECHSTENS_AUFZAEHLEN) return kuerzel.join(', ')
+  return `${kuerzel.length} ${kuerzel.length === 1 ? einzahl : mehrzahl}`
+}
+
 /**
  * Ein Satz über die Datenlage einer ganzen Liste von Kursen.
  *
@@ -101,18 +121,28 @@ export function SourceSummary({
       {ohneQuelle.length > 0 && (
         <>
           {' '}
-          Für {ohneQuelle.map((q) => q.ticker).join(', ')} gibt es keine frei zugängliche
-          Quelle; dort stehen{' '}
+          Für{' '}
+          {nenne(
+            ohneQuelle.map((q) => q.ticker),
+            'Wert',
+            'Werte'
+          )}{' '}
+          gibt es keine frei zugängliche Quelle; dort stehen{' '}
           <strong className="text-fg font-semibold">erzeugte Demo-Kurse</strong>.
         </>
       )}
       {wartend.length > 0 && (
         <>
           {' '}
-          {wartend.map((q) => q.ticker).join(', ')}{' '}
+          {nenne(
+            wartend.map((q) => q.ticker),
+            'Wert',
+            'Werte'
+          )}{' '}
           {wartend.length === 1 ? 'wurde' : 'wurden'} neu aufgenommen und{' '}
           {wartend.length === 1 ? 'wartet' : 'warten'} auf den ersten Abruf – bis dahin
-          stehen dort <strong className="text-fg font-semibold">Demo-Kurse</strong>.
+          stehen dort <strong className="text-fg font-semibold">Demo-Kurse</strong>. Der
+          Hinweis steht auch an jedem einzelnen dieser Kurse.
         </>
       )}
     </p>
