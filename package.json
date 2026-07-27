@@ -2,7 +2,7 @@
   "name": "im-invests",
   "version": "0.1.0",
   "private": true,
-  "description": "IM Invests – deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
+  "description": "IM Invests \u2013 deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/version.mjs",
@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "node --experimental-strip-types tests/ecb.test.ts && node --experimental-strip-types tests/resolve-site-url.test.ts && node --experimental-strip-types tests/search-match.test.ts"
+    "test": "node --experimental-strip-types tests/ecb.test.ts && node --experimental-strip-types tests/resolve-site-url.test.ts && node --experimental-strip-types tests/search-match.test.ts && node --experimental-strip-types tests/stooq.test.ts",
+    "kurse": "node --experimental-strip-types scripts/kurse-abrufen.ts"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",

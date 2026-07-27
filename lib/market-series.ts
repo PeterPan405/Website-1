@@ -21,14 +21,6 @@ import {
 /** Handelstage pro Jahr – üblicher Näherungswert an Aktienmärkten. */
 const TRADING_DAYS_PER_YEAR = 252
 
-/** Intraday-Fenster: 09:00 bis 17:30 in 5-Minuten-Schritten. */
-const INTRADAY_START_MINUTES = 9 * 60
-const INTRADAY_END_MINUTES = 17 * 60 + 30
-const INTRADAY_STEP_MINUTES = 5
-
-/** Anzahl Handelstage, für die Intraday-Werte erzeugt werden. */
-const INTRADAY_DAYS = 5
-
 /**
  * Mulberry32 – kleiner, schneller Pseudozufallsgenerator.
  *
@@ -142,66 +134,8 @@ function generateDailySeries(
   })
 }
 
-/**
- * Intraday-Werte für die letzten Handelstage.
- *
- * Konstruiert als Brownsche Brücke: Der erste Wert des Tages ist der
- * Vortagesschluss, der letzte exakt der Tagesschluss aus der Tagesreihe. Damit
- * widersprechen sich Intraday- und Tagesansicht nie.
- */
-function generateIntradaySeries(
-  definition: MarketDefinition,
-  daily: SeriesPoint[]
-): SeriesPoint[] {
-  // Eigener Saat-Offset, damit die Intraday-Reihe nicht dieselbe Zahlenfolge
-  // wie die Tagesreihe verwendet.
-  const gaussian = createGaussian(createRng(definition.seed.seed + 5_000))
-  const stepsPerDay = Math.round(
-    (INTRADAY_END_MINUTES - INTRADAY_START_MINUTES) / INTRADAY_STEP_MINUTES
-  )
-
-  // Tagesschwankung grob aus der Jahresvolatilität herunterskaliert.
-  const dailyVolatility =
-    (definition.seed.annualVolatility / Math.sqrt(TRADING_DAYS_PER_YEAR)) * 0.65
-
-  const firstIndex = Math.max(1, daily.length - INTRADAY_DAYS)
-  const points: SeriesPoint[] = []
-
-  for (let dayIndex = firstIndex; dayIndex < daily.length; dayIndex += 1) {
-    const previousClose = daily[dayIndex - 1].value
-    const close = daily[dayIndex].value
-    const dayKey = daily[dayIndex].t
-
-    // Zufallspfad, der anschließend an beiden Enden auf null gezogen wird.
-    const walk: number[] = [0]
-    for (let step = 1; step <= stepsPerDay; step += 1) {
-      walk.push(walk[step - 1] + gaussian())
-    }
-    const scale = (close * dailyVolatility) / Math.sqrt(stepsPerDay)
-
-    for (let step = 0; step <= stepsPerDay; step += 1) {
-      const progress = step / stepsPerDay
-      const bridge = walk[step] - progress * walk[stepsPerDay]
-      const value = previousClose + (close - previousClose) * progress + scale * bridge
-
-      const minutes = INTRADAY_START_MINUTES + step * INTRADAY_STEP_MINUTES
-      const hh = String(Math.floor(minutes / 60)).padStart(2, '0')
-      const mm = String(minutes % 60).padStart(2, '0')
-
-      points.push({
-        // Der Datenstand liegt in der Sommerzeit, daher fest +02:00 (MESZ).
-        t: `${dayKey}T${hh}:${mm}:00+02:00`,
-        value: roundTo(step === stepsPerDay ? close : value, definition.decimals),
-      })
-    }
-  }
-
-  return points
-}
-
 export interface InstrumentSeries {
   daily: SeriesPoint[]
-  intraday: SeriesPoint[]
 }
 
 /**
@@ -217,10 +151,7 @@ export function getInstrumentSeries(definition: MarketDefinition): InstrumentSer
   if (cached) return cached
 
   const tradingDays = collectTradingDays(new Date(MARKET_DATA_AS_OF), 5)
-  const daily = generateDailySeries(definition, tradingDays)
-  const intraday = generateIntradaySeries(definition, daily)
-
-  const series: InstrumentSeries = { daily, intraday }
+  const series: InstrumentSeries = { daily: generateDailySeries(definition, tradingDays) }
   seriesCache.set(definition.symbol, series)
   return series
 }
@@ -244,38 +175,25 @@ export function downsample(points: SeriesPoint[], maxPoints: number): SeriesPoin
   return result
 }
 
-/** Wie viele Handelstage bzw. Punkte ein Zeitraum umfasst. */
-const rangeConfig: Record<
-  MarketRange,
-  { source: 'intraday' | 'daily'; tradingDays?: number; maxPoints: number }
-> = {
-  '1T': { source: 'intraday', maxPoints: 110 },
-  '1W': { source: 'intraday', maxPoints: 90 },
-  '1M': { source: 'daily', tradingDays: 22, maxPoints: 22 },
-  '1J': { source: 'daily', tradingDays: TRADING_DAYS_PER_YEAR, maxPoints: 130 },
-  '5J': { source: 'daily', maxPoints: 260 },
+/**
+ * Wie viele Handelstage bzw. Punkte ein Zeitraum umfasst.
+ *
+ * `tradingDays` fehlt bei „fünf Jahre“ – dort wird die ganze Reihe genommen.
+ * Die Werte sind Handelstage, nicht Kalendertage: fünf für eine Woche, 22 für
+ * einen Monat.
+ */
+const rangeConfig: Record<MarketRange, { tradingDays?: number; maxPoints: number }> = {
+  '1W': { tradingDays: 5, maxPoints: 5 },
+  '1M': { tradingDays: 22, maxPoints: 22 },
+  '1J': { tradingDays: TRADING_DAYS_PER_YEAR, maxPoints: 130 },
+  '5J': { maxPoints: 260 },
 }
 
 /** Schneidet die passende Teilreihe für einen Zeitraum zu. */
 export function sliceRange(series: InstrumentSeries, range: MarketRange): SeriesPoint[] {
   const config = rangeConfig[range]
-
-  if (config.source === 'intraday') {
-    // '1T' zeigt ausschließlich den letzten Handelstag, '1W' alle erzeugten.
-    const points =
-      range === '1T' ? lastTradingDayPoints(series.intraday) : series.intraday
-    return downsample(points, config.maxPoints)
-  }
-
   const points = config.tradingDays
     ? series.daily.slice(-config.tradingDays)
     : series.daily
   return downsample(points, config.maxPoints)
-}
-
-/** Alle Intraday-Punkte, die auf denselben Tag wie der letzte Punkt fallen. */
-function lastTradingDayPoints(intraday: SeriesPoint[]): SeriesPoint[] {
-  const lastDay = intraday[intraday.length - 1].t.slice(0, 10)
-  const startIndex = intraday.findIndex((point) => point.t.startsWith(lastDay))
-  return intraday.slice(startIndex)
 }

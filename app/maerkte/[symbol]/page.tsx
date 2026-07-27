@@ -7,6 +7,7 @@ import { PriceChart } from '@/components/charts/PriceChart'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { SourceSummary } from '@/components/markets/SourceNote'
 import { DemoNotice } from '@/components/ui/DemoNotice'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
@@ -14,6 +15,7 @@ import { Stat, StatGrid } from '@/components/ui/Stat'
 import { cn } from '@/lib/cn'
 import {
   formatDateShort,
+  formatDate,
   formatDateTime,
   formatNumber,
   formatNumberSigned,
@@ -116,7 +118,11 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               {formatPercentSigned(quote.changePercent)})
             </span>
             <span aria-hidden="true">·</span>
-            <span>Stand {formatDateTime(quote.asOf)}</span>
+            <span>
+              {quote.source
+                ? `Schluss ${formatDate(quote.asOf)}`
+                : `Stand ${formatDateTime(quote.asOf)}`}
+            </span>
           </>
         }
       />
@@ -175,8 +181,8 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 Kursverlauf
               </h2>
               <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-                Wähle den Zeitraum. Ein Handelstag und eine Woche zeigen Werte im
-                Fünf-Minuten-Takt, längere Zeiträume Tagesschlusskurse.
+                Wähle den Zeitraum. Alle Zeiträume zeigen Tagesschlusskurse – einen Wert
+                je Handelstag, keinen Verlauf innerhalb eines Tages.
               </p>
               <div className="fk-card mt-5 p-5 sm:p-6">
                 <PriceChart
@@ -201,15 +207,27 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             </section>
 
             <div className="mt-10">
-              <DemoNotice title="Demo-Kurse">
-                <p>
-                  Der gezeigte Verlauf ist{' '}
-                  <strong className="text-fg font-semibold">rechnerisch erzeugt</strong>{' '}
-                  und entspricht keinen echten Marktpreisen. Der Beispieldatensatz deckt
-                  den Zeitraum vom {formatDateShort(coverage.from)} bis{' '}
-                  {formatDateShort(coverage.to)} ab.
-                </p>
-              </DemoNotice>
+              {quote.source ? (
+                <div className="rounded-card border-border bg-surface-muted border p-5 sm:p-6">
+                  <SourceSummary quotes={[quote]} />
+                  <p className="text-fg-subtle mt-2 text-xs">
+                    Der Verlauf reicht vom {formatDateShort(coverage.from)} bis{' '}
+                    {formatDateShort(coverage.to)}. Ältere Abschnitte sind auf einen Wert
+                    je Woche verdichtet.
+                  </p>
+                </div>
+              ) : (
+                <DemoNotice title="Demo-Kurse">
+                  <p>
+                    Für dieses Instrument gibt es keine frei zugängliche Quelle. Der
+                    gezeigte Verlauf ist{' '}
+                    <strong className="text-fg font-semibold">rechnerisch erzeugt</strong>{' '}
+                    und entspricht keinen echten Marktpreisen. Der Beispieldatensatz deckt
+                    den Zeitraum vom {formatDateShort(coverage.from)} bis{' '}
+                    {formatDateShort(coverage.to)} ab.
+                  </p>
+                </DemoNotice>
+              )}
             </div>
           </div>
 

@@ -7,6 +7,7 @@ import {
   type MarketRange,
   type SeriesPoint,
 } from '@/data/markets'
+import { getLiveSeries, type QuoteSource } from '@/lib/market-live'
 import { downsample, getInstrumentSeries, sliceRange } from '@/lib/market-series'
 
 /**
@@ -17,8 +18,10 @@ import { downsample, getInstrumentSeries, sliceRange } from '@/lib/market-series
  * vorliegen: Beim Umstieg auf eine echte Kurs-API (z. B. per `fetch` mit
  * API-Key) ändert sich dann nur der Funktionsrumpf, kein einziger Aufrufer.
  *
- * Die Umstellung betrifft genau diese Datei plus `data/markets.ts`;
- * `lib/market-series.ts` kann danach gelöscht werden.
+ * Kurse kommen aus der werktäglich abgerufenen Momentaufnahme
+ * (`lib/market-live.ts`). Wo es dafür keine Quelle gibt – derzeit `msci-world` –,
+ * greifen weiterhin die erzeugten Demo-Daten aus `lib/market-series.ts`. Welcher
+ * Fall vorliegt, steht in `MarketQuote.source` und gehört sichtbar auf die Seite.
  */
 
 export type { MarketInstrument, MarketRange, SeriesPoint } from '@/data/markets'
@@ -44,8 +47,44 @@ export interface MarketQuote {
   low52w: number
   /** Veränderung seit dem letzten Schlusskurs des Vorjahres, in Prozent. */
   ytdPercent: number
-  /** Zeitstempel des Datenstands (ISO 8601). */
+  /**
+   * Datenstand.
+   *
+   * Bei echten Kursen der Handelstag als `YYYY-MM-DD` – die Quellen liefern
+   * Tagesschlusskurse, eine Uhrzeit gäbe es nur erfunden. Bei Demo-Daten ein
+   * vollständiger Zeitstempel. Zum Formatieren deshalb `source` abfragen, nicht
+   * die Länge der Zeichenkette raten.
+   */
   asOf: string
+  /**
+   * Herkunft der Kurse – `null` bedeutet Demo-Daten.
+   *
+   * Steht sichtbar an jeder Kachel und unter jedem Chart. Solange echte und
+   * erzeugte Kurse nebeneinander vorkommen, kann die Kennzeichnung nicht
+   * pauschal über der Seite stehen, sondern muss am einzelnen Wert hängen.
+   */
+  source: QuoteSource | null
+}
+
+export type { QuoteSource } from '@/lib/market-live'
+
+/**
+ * Die Kursreihe eines Instruments plus ihre Herkunft.
+ *
+ * Eine Stelle entscheidet zwischen echt und erzeugt; alles Weitere rechnet
+ * unverändert weiter. Ohne diese Bündelung müsste jede Funktion die Fallunter-
+ * scheidung wiederholen.
+ */
+function basisFor(definition: MarketDefinition): {
+  daily: SeriesPoint[]
+  asOf: string
+  source: QuoteSource | null
+} {
+  const live = getLiveSeries(definition.symbol)
+  if (live) return { daily: live.daily, asOf: live.asOf, source: live.source }
+
+  const { daily } = getInstrumentSeries(definition)
+  return { daily, asOf: MARKET_DATA_AS_OF, source: null }
 }
 
 /**
@@ -75,7 +114,7 @@ function findDefinition(symbol: string): MarketDefinition | undefined {
 }
 
 function buildQuote(definition: MarketDefinition): MarketQuote {
-  const { daily } = getInstrumentSeries(definition)
+  const { daily, asOf, source } = basisFor(definition)
   const latest = daily[daily.length - 1]
   const previous = daily[daily.length - 2]
 
@@ -104,7 +143,8 @@ function buildQuote(definition: MarketDefinition): MarketQuote {
     high52w: Math.max(...values),
     low52w: Math.min(...values),
     ytdPercent: ((latest.value - lastYearClose) / lastYearClose) * 100,
-    asOf: MARKET_DATA_AS_OF,
+    asOf,
+    source,
   }
 }
 
@@ -172,7 +212,7 @@ export async function getSeries(
 ): Promise<SeriesPoint[]> {
   const definition = findDefinition(symbol)
   if (!definition) return []
-  return sliceRange(getInstrumentSeries(definition), range)
+  return sliceRange({ daily: basisFor(definition).daily }, range)
 }
 
 /**
@@ -187,9 +227,8 @@ export async function getAllSeries(
   const definition = findDefinition(symbol)
   if (!definition) return null
 
-  const series = getInstrumentSeries(definition)
+  const series = { daily: basisFor(definition).daily }
   return {
-    '1T': sliceRange(series, '1T'),
     '1W': sliceRange(series, '1W'),
     '1M': sliceRange(series, '1M'),
     '1J': sliceRange(series, '1J'),
@@ -204,7 +243,7 @@ export async function getSparkline(
 ): Promise<SeriesPoint[]> {
   const definition = findDefinition(symbol)
   if (!definition) return []
-  return downsample(getInstrumentSeries(definition).daily.slice(-tradingDays), 44)
+  return downsample(basisFor(definition).daily.slice(-tradingDays), 44)
 }
 
 export interface MarketPreview {
@@ -223,8 +262,13 @@ export async function getMarketOverview(): Promise<MarketPreview[]> {
   )
 }
 
-/** Zeitraum, den die Demo-Daten abdecken – für schema.org `temporalCoverage`. */
+/**
+ * Zeitraum, den die Kursreihen abdecken – für schema.org `temporalCoverage`.
+ *
+ * Genommen wird die Reihe des ersten Instruments stellvertretend für alle: Sie
+ * reichen alle über denselben Fünfjahreszeitraum.
+ */
 export async function getDataCoverage(): Promise<{ from: string; to: string }> {
-  const series = getInstrumentSeries(marketDefinitions[0])
-  return { from: series.daily[0].t, to: series.daily[series.daily.length - 1].t }
+  const { daily } = basisFor(marketDefinitions[0])
+  return { from: daily[0].t, to: daily[daily.length - 1].t }
 }

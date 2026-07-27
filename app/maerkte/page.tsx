@@ -3,10 +3,10 @@ import type { Metadata } from 'next'
 import { QuoteCard } from '@/components/markets/QuoteCard'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { DemoNotice } from '@/components/ui/DemoNotice'
+import { SourceSummary } from '@/components/markets/SourceNote'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
-import { formatDateTime } from '@/lib/format'
+import { formatDate } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getQuotes, getSparkline } from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -52,7 +52,7 @@ export default async function MarketsOverviewPage() {
             {asOf && (
               <>
                 <span aria-hidden="true">·</span>
-                <span>Datenstand {formatDateTime(asOf)}</span>
+                <span>Stand {formatDate(asOf)}</span>
               </>
             )}
           </>
@@ -60,19 +60,9 @@ export default async function MarketsOverviewPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <DemoNotice title="Demo-Kurse, keine echten Marktdaten">
-          <p>
-            Die Kursverläufe dieser Version werden aus festen Startwerten{' '}
-            <strong className="text-fg font-semibold">rechnerisch erzeugt</strong>. Sie
-            sehen realistisch aus, entsprechen aber keinen tatsächlichen Marktpreisen und
-            sind für Anlageentscheidungen unbrauchbar.
-          </p>
-          <p>
-            Die Datenzugriffe liegen hinter einer eigenen Service-Schicht (
-            <code className="font-mono text-xs">lib/markets.ts</code>), sodass eine echte
-            Kurs-API später eingesetzt werden kann, ohne eine einzige Seite anzupassen.
-          </p>
-        </DemoNotice>
+        <div className="rounded-card border-border bg-surface-muted border p-5 sm:p-6">
+          <SourceSummary quotes={quotes} />
+        </div>
 
         <section aria-labelledby="waehrungen" className="mt-12">
           <h2 id="waehrungen" className="text-fg text-2xl font-bold">

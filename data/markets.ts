@@ -30,16 +30,72 @@ export const marketKindMeta: Record<
 }
 
 /** Auswählbare Zeiträume auf den Detailseiten. */
-export type MarketRange = '1T' | '1W' | '1M' | '1J' | '5J'
+/**
+ * Zeiträume der Charts.
+ *
+ * „Ein Handelstag“ gab es einmal und ist entfallen. Beide Quellen – EZB und
+ * Stooq – liefern einen Wert je Handelstag, keinen fortlaufenden Handel. Aus
+ * einem Punkt pro Tag lässt sich kein Intraday-Verlauf bilden; die Demo-Daten
+ * hatten einen erzeugt, echte Daten geben ihn nicht her. Eine Kurve zu zeichnen,
+ * für die keine Werte vorliegen, wäre genau die Schönfärberei, die diese Seite
+ * sonst vermeidet.
+ */
+export type MarketRange = '1W' | '1M' | '1J' | '5J'
 
-export const marketRanges: readonly MarketRange[] = ['1T', '1W', '1M', '1J', '5J']
+export const marketRanges: readonly MarketRange[] = ['1W', '1M', '1J', '5J']
 
 export const marketRangeLabels: Record<MarketRange, string> = {
-  '1T': 'Ein Handelstag',
   '1W': 'Eine Woche',
   '1M': 'Ein Monat',
   '1J': 'Ein Jahr',
   '5J': 'Fünf Jahre',
+}
+
+/** Woher die Kurse eines Instruments kommen. */
+export type MarketSourceProvider = 'ecb' | 'stooq'
+
+export interface MarketSourceRef {
+  provider: MarketSourceProvider
+  /** Kennung bei der Quelle: Währungscode bei der EZB, Symbol bei Stooq. */
+  key: string
+}
+
+/**
+ * Zuordnung der Instrumente zu ihrer Datenquelle.
+ *
+ * Wird vom Abruf-Skript gelesen (`scripts/kurse-abrufen.ts`). Ein Instrument
+ * ohne Eintrag bekommt keine echten Kurse und bleibt bei den gekennzeichneten
+ * Demo-Daten – das ist kein Versehen, sondern der vorgesehene Zustand für
+ * Instrumente ohne frei zugängliche Quelle.
+ *
+ * Devisen kommen von der EZB: amtlich, kostenlos, ausdrücklich zur Nutzung
+ * freigegeben. Alles andere von Stooq, weil es dafür keine amtliche Quelle gibt.
+ */
+export const marketSources: Record<string, MarketSourceRef> = {
+  'eur-usd': { provider: 'ecb', key: 'USD' },
+  'eur-cny': { provider: 'ecb', key: 'CNY' },
+  'eur-chf': { provider: 'ecb', key: 'CHF' },
+  'eur-gbp': { provider: 'ecb', key: 'GBP' },
+  'eur-jpy': { provider: 'ecb', key: 'JPY' },
+
+  dax: { provider: 'stooq', key: '^dax' },
+  sp500: { provider: 'stooq', key: '^spx' },
+  'euro-stoxx-50': { provider: 'stooq', key: '^stx50' },
+  'nasdaq-100': { provider: 'stooq', key: '^ndx' },
+
+  gold: { provider: 'stooq', key: 'xauusd' },
+  silber: { provider: 'stooq', key: 'xagusd' },
+
+  /*
+    `msci-world` fehlt hier mit Absicht.
+
+    Der Index ist Eigentum von MSCI und in keiner frei zugänglichen Quelle
+    enthalten. Naheliegend wäre, ersatzweise den Kurs eines ETF auf diesen Index
+    zu nehmen – das wäre aber eine andere Zahl in einer anderen Größenordnung
+    (rund 90 Euro je Anteil gegen rund 4.000 Indexpunkte) unter derselben
+    Überschrift. Solange die Kachel „MSCI World“ heißt, bleibt sie bei den
+    gekennzeichneten Demo-Daten.
+  */
 }
 
 /** Ein Punkt einer Zeitreihe. `t` ist ein ISO-8601-Zeitstempel. */
