@@ -654,6 +654,165 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Es gilt First in, first out: Die ältesten Anteile gelten als zuerst verkauft. Bei einem gestiegenen Kurs sind das die mit dem größten Gewinn und damit der höchsten Steuerlast. Wählen lässt sich das nicht – wer Entnahmen plant, sollte es einkalkulieren.',
     },
   ],
+  // --------------------------------------------------------------- Inflation
+  'inflation:beginner': [
+    {
+      question:
+        'Die Inflationsrate fällt von 6 auf 2 Prozent. Was folgt daraus für die Preise?',
+      options: [
+        'Die Preise sinken um 4 Prozent',
+        'Die Preise kehren auf das Niveau von vor zwei Jahren zurück',
+        'Die Preise bleiben unverändert',
+        'Die Preise steigen weiter, nur langsamer als zuvor',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Rate misst die Geschwindigkeit, nicht den Stand. Bei 2 Prozent wird alles weiterhin teurer, nur eben langsamer. Der Preisanstieg der Vorjahre bleibt vollständig bestehen – er wird nicht zurückgenommen. Genau deshalb passt „Entspannung bei der Inflation“ und „im Supermarkt ist alles teuer“ widerspruchsfrei zusammen.',
+    },
+    {
+      question: 'Womit vergleicht die veröffentlichte Inflationsrate eines Monats?',
+      options: [
+        'Mit demselben Monat des Vorjahres',
+        'Mit dem Vormonat',
+        'Mit dem Jahresdurchschnitt der letzten zehn Jahre',
+        'Mit dem Zielwert der Europäischen Zentralbank',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Es ist ein Vorjahresvergleich. Daraus folgt der Basiseffekt: Die Rate hängt ebenso vom Vorjahresmonat ab wie von der Gegenwart. War der Vergleichsmonat außergewöhnlich teuer, fällt die Rate allein deshalb – ohne dass heute etwas billiger geworden wäre.',
+    },
+    {
+      question:
+        'Deine persönliche Teuerung weicht regelmäßig von der amtlichen Rate ab. Warum?',
+      options: [
+        'Weil die amtliche Statistik Mieten nicht erfasst',
+        'Weil dein Warenkorb anders gewichtet ist als der eines Durchschnittshaushalts',
+        'Weil die Rate erst mit einem Jahr Verzögerung veröffentlicht wird',
+        'Weil regionale Preise gar nicht erhoben werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der amtliche Warenkorb gewichtet nach dem Konsum eines Durchschnittshaushalts, den es so nicht gibt. Wer zur Miete wohnt und pendelt, spürt Mieten und Spritpreise stärker als jemand mit abbezahltem Haus im Ort. Das ist keine Schwäche der Statistik, sondern die Natur eines Durchschnitts.',
+    },
+    {
+      question:
+        'Tagesgeld bringt 2 Prozent, die Inflation liegt bei 2,5 Prozent. Wie steht es um dein Vermögen?',
+      options: [
+        'Es wächst um 2 Prozent, die Inflation betrifft nur Konsumausgaben',
+        'Es bleibt real unverändert, weil die Zahlen nahe beieinanderliegen',
+        'Nominal wächst es, real verlierst du rund ein halbes Prozent Kaufkraft',
+        'Es verliert 2,5 Prozent, der Zins wird davon nicht abgezogen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Realzins ist der Quotient aus Nominalzins und Inflation, hier rund minus 0,5 Prozent. Am Jahresende steht mehr Geld auf dem Konto, und du kannst dir weniger dafür kaufen. Nominal ist eine Zahl, real ist ein Ergebnis.',
+    },
+  ],
+  'inflation:fortgeschritten': [
+    {
+      question:
+        'Warum ist eine Zinserhöhung gegen reine Angebotsinflation ein schwaches Mittel?',
+      options: [
+        'Weil höhere Zinsen die Nachfrage dämpfen, aber Energie und Rohstoffe dadurch nicht billiger werden',
+        'Weil Zinserhöhungen bei Angebotsschocks gesetzlich ausgeschlossen sind',
+        'Weil Angebotsinflation sich immer von selbst zurückbildet',
+        'Weil höhere Zinsen die Produktionskosten zusätzlich senken',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Zins wirkt über die Nachfrageseite. Ist die Ursache ein verteuertes Angebot, trifft das Instrument die falsche Seite: Die Notenbank bremst eine ohnehin schwache Wirtschaft, ohne die Ursache zu berühren. Handeln muss sie trotzdem, sobald der Schock über Zweitrundeneffekte in Löhne und Preise einzusickern droht.',
+    },
+    {
+      question: 'Was misst die Kerninflation?',
+      options: [
+        'Nur die Preise der Grundversorgung – Lebensmittel, Energie, Miete',
+        'Die Preisentwicklung ohne Energie und Nahrungsmittel',
+        'Die Inflation im Euroraum ohne Deutschland',
+        'Den Preisanstieg abzüglich staatlicher Steuererhöhungen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ausgeklammert werden gerade die stark schwankenden Posten Energie und Nahrungsmittel – nicht weil sie unwichtig wären, sondern weil sie den Blick auf die Frage verstellen, ob die Teuerung sich im Rest der Wirtschaft festgesetzt hat. Als Aussage über die Lebenshaltungskosten taugt die Kernrate deshalb nicht.',
+    },
+    {
+      question:
+        'Die Break-even-Inflationsrate ergibt sich aus dem Renditeunterschied zweier Anleihen. Was zeigt sie?',
+      options: [
+        'Die vom Statistischen Bundesamt für das nächste Jahr prognostizierte Rate',
+        'Die Inflationsrate, ab der Aktien Anleihen schlagen',
+        'Welche durchschnittliche Inflation der Markt für die Laufzeit einpreist',
+        'Die Untergrenze, ab der die Notenbank eingreifen muss',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Sie ist die Differenz zwischen der Rendite einer normalen und einer inflationsindexierten Anleihe gleicher Laufzeit – also die Erwartung, für die Marktteilnehmer mit echtem Geld einstehen. Das macht sie zu einem anderen Indikator als eine Umfrage oder eine Prognose.',
+    },
+    {
+      question: 'Warum sprechen Notenbanken von „verankerten Inflationserwartungen“?',
+      options: [
+        'Weil Erwartungen gesetzlich an das Inflationsziel gebunden sind',
+        'Weil erwartete Inflation über Löhne und Kalkulationen zur tatsächlichen wird',
+        'Weil Erwartungen erst nach zwei Jahren messbar werden',
+        'Weil verankerte Erwartungen die Rate rechnerisch aus dem Index herausnehmen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer fünf Prozent Teuerung erwartet, verlangt fünf Prozent mehr Lohn und kalkuliert fünf Prozent höhere Preise – und macht die Erwartung damit wahr. Solange das Vertrauen in die Rückkehr zum Ziel hält, wird ein Preisschock als vorübergehend behandelt. Geht es verloren, muss es mit sehr viel höheren Zinsen zurückgekauft werden.',
+    },
+  ],
+  'inflation:profi': [
+    {
+      question:
+        'Aktien gelten als Inflationsschutz. Welche Einschränkung gehört zwingend dazu?',
+      options: [
+        'Der Schutz gilt nur für Dividendenaktien',
+        'Der Schutz gilt nur bei Inflationsraten unter 2 Prozent',
+        'Der Schutz greift nur bei physischer Verwahrung der Aktien',
+        'Der Schutz wirkt über lange Zeiträume; kurzfristig fallen Aktien bei anziehender Inflation eher',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Langfristig wachsen Unternehmenserträge mit dem Preisniveau. Kurzfristig wirken zwei Kräfte dagegen: Höhere Zinsen senken den heutigen Wert künftiger Gewinne, und Preise lassen sich nicht sofort weitergeben – die Margen geraten zuerst unter Druck. Ohne Angabe des Zeitraums ist die Aussage inhaltsleer.',
+    },
+    {
+      question: 'Wovor schützt eine inflationsindexierte Anleihe tatsächlich?',
+      options: [
+        'Vor unerwarteter Inflation – die erwartete steckt bereits im Preis',
+        'Vor jeder Inflation, unabhängig von der Höhe',
+        'Vor steigenden Zinsen',
+        'Vor dem Ausfall des Emittenten',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die erwartete Inflation ist als Break-even-Rate eingepreist. Liegt die tatsächliche Teuerung darunter, hättest du mit der normalen Anleihe mehr verdient. Es ist eine Wette auf die Abweichung von der Erwartung, nicht auf die Richtung der Preise.',
+    },
+    {
+      question:
+        'Eine Anlage bringt 2 Prozent nominal, die Inflation liegt bei 2,5 Prozent. Wie besteuert das Finanzamt das?',
+      options: [
+        'Gar nicht, weil real ein Verlust entstanden ist',
+        'Nur der Teil oberhalb der Inflationsrate wird besteuert',
+        'Der volle nominale Ertrag wird besteuert, obwohl real ein Verlust bleibt',
+        'Der Verlust lässt sich mit anderen Kapitalerträgen verrechnen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das deutsche Steuerrecht kennt keine Inflation. Besteuert wird der nominale Zuwachs – hier also ein Gewinn, den es real nicht gibt. Diese Scheingewinnbesteuerung vergrößert den realen Verlust zusätzlich, und zwar umso stärker, je höher die Inflation ist.',
+    },
+    {
+      question:
+        'Warum kann ein Rohstoff-Investment über Terminkontrakte seinen Inflationsschutz verlieren?',
+      options: [
+        'Weil Rohstoffe von der Inflationsstatistik ausgenommen sind',
+        'Weil Terminkontrakte nur in Fremdwährung handelbar sind',
+        'Weil Rohstoffe keine laufenden Erträge abwerfen',
+        'Weil beim Rollen in Contango jeder Wechsel in den nächsten Kontrakt Geld kostet',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Terminkontrakte laufen ab und müssen in den nächsten gerollt werden. Ist der spätere Kontrakt teurer als der auslaufende – Contango –, kostet jeder Rollvorgang einen Teil des Einsatzes. Über Jahre kann das den Preisanstieg des Rohstoffs vollständig aufzehren, während der Spotpreis gestiegen ist.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

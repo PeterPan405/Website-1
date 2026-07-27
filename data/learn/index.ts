@@ -1,5 +1,6 @@
 import { aktie } from '@/data/learn/topics/aktie'
 import { etf } from '@/data/learn/topics/etf'
+import { inflation } from '@/data/learn/topics/inflation'
 import {
   aktienLaenderBranchen,
   anlegerpsychologie,
@@ -14,7 +15,6 @@ import {
   fonds,
   groessteCrashes,
   immobilien,
-  inflation,
   kostenUndGebuehren,
   notenbankenGeldpolitik,
   option,
