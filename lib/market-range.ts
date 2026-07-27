@@ -65,6 +65,23 @@ const rangeConfig: Record<RangeId, { days?: number; maxPoints: number }> = {
   '5J': { maxPoints: 260 },
 }
 
+/**
+ * Schneidet die letzten `days` Kalendertage heraus.
+ *
+ * Bezugspunkt ist der letzte vorhandene Wert, nicht der heutige Tag – sonst
+ * wäre der Ausschnitt an einem Montagmorgen leer, wenn der jüngste Schlusskurs
+ * vom Freitag stammt.
+ */
+export function sliceByDays(daily: readonly RangePoint[], days: number): RangePoint[] {
+  const letzter = daily[daily.length - 1]
+  if (!letzter) return []
+
+  const grenze = Date.parse(`${letzter.t.slice(0, 10)}T00:00:00Z`) - days * 86_400_000
+  return daily.filter(
+    (point) => Date.parse(`${point.t.slice(0, 10)}T00:00:00Z`) >= grenze
+  )
+}
+
 /** Schneidet die passende Teilreihe für einen Zeitraum zu. */
 export function sliceRange(daily: readonly RangePoint[], range: RangeId): RangePoint[] {
   const config = rangeConfig[range]
@@ -76,14 +93,5 @@ export function sliceRange(daily: readonly RangePoint[], range: RangeId): RangeP
     Sonst wäre „eine Woche“ am Montagmorgen leer, wenn der jüngste Schlusskurs
     vom Freitag stammt – und über ein langes Wochenende erst recht.
   */
-  const letzter = daily[daily.length - 1]
-  if (!letzter) return []
-
-  const grenze =
-    Date.parse(`${letzter.t.slice(0, 10)}T00:00:00Z`) - config.days * 86_400_000
-  const points = daily.filter(
-    (point) => Date.parse(`${point.t.slice(0, 10)}T00:00:00Z`) >= grenze
-  )
-
-  return downsample(points, config.maxPoints)
+  return downsample(sliceByDays(daily, config.days), config.maxPoints)
 }
