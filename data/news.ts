@@ -571,7 +571,7 @@ export const newsArticles: NewsArticle[] = [
     publishedAt: '2026-07-22T08:00:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 5,
-    tags: ['Frühstartrente', 'Altersvorsorge', 'Zinseszins', 'Kinder'],
+    tags: ['Frühstartrente', 'Altersvorsorge', 'Zinseszins', 'Sparplan'],
     relatedTopics: ['rente', 'zinseszins', 'etf'],
     relatedSymbols: [],
     sources: [

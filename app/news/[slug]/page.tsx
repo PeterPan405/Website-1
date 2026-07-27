@@ -15,6 +15,7 @@ import { getTopicsBySlugs } from '@/lib/learn'
 import { getQuotes } from '@/lib/markets'
 import { getNewsArticle, getNewsSlugs, getRelatedArticles } from '@/lib/news'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { resolveTagHref } from '@/lib/tag-links'
 
 type NewsPageProps = { params: Promise<{ slug: string }> }
 
@@ -144,15 +145,42 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
                   Schlagwörter
                 </h2>
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  {article.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="border-border text-fg-muted rounded-full border px-3 py-1 text-xs"
-                    >
-                      {tag}
-                    </li>
-                  ))}
+                  {article.tags.map((tag) => {
+                    /*
+                      Nicht jedes Schlagwort hat ein Ziel: „SAP“ oder
+                      „Geopolitik“ führen nirgendwohin. Die verlinkten sind
+                      deshalb sichtbar anders – mit Pfeil und Hover –, damit
+                      niemand auf ein totes Wort klickt und sich wundert.
+                    */
+                    const href = resolveTagHref(tag)
+
+                    return (
+                      <li key={tag}>
+                        {href ? (
+                          <Link
+                            href={href}
+                            className="border-border text-fg-muted hover:border-brand hover:bg-brand-soft hover:text-brand inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs transition"
+                          >
+                            {tag}
+                            <Icon
+                              name="chevron-right"
+                              className="size-3"
+                              aria-hidden="true"
+                            />
+                          </Link>
+                        ) : (
+                          <span className="border-border text-fg-subtle inline-block rounded-full border border-dashed px-3 py-1 text-xs">
+                            {tag}
+                          </span>
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
+                <p className="text-fg-subtle mt-3 text-xs">
+                  Schlagwörter mit Pfeil führen zum passenden Lernthema, Kurs oder
+                  Rechner.
+                </p>
               </div>
             )}
 
