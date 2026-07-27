@@ -98,7 +98,7 @@ Bereitstellung rot.
 Stattdessen:
 
 ```
-.github/workflows/kurse.yml   werktags 16:00 UTC
+.github/workflows/kurse.yml   werktags stündlich, 07:00–16:00 UTC
   └─ npm run kurse            holt EZB und Yahoo Finance
   └─ data/snapshots/markets.json   nur bei Änderung committet
        └─ Push nach main → Hostinger baut
@@ -144,11 +144,27 @@ nebeneinander vorkommen, kann keine Angabe für die ganze Seite stimmen.
 `MarketQuote.source` ist `null` bei Demo-Daten, und `components/markets/SourceNote.tsx`
 schreibt an jede Liste, woher die Zahlen stammen und was noch erzeugt ist.
 
-### Kein Intraday
+### Zwei Preisarten, sauber getrennt
 
-Beide Quellen liefern einen Schlusskurs je Handelstag. Der Zeitraum „Ein
-Handelstag“ ist deshalb entfallen – die Demo-Daten hatten einen Verlauf innerhalb
-des Tages erzeugt, echte Daten geben ihn nicht her.
+Auf der Kachel steht der **zuletzt gehandelte Preis** mit Zeitpunkt („Stand
+27.07., 16:32“), im Chart stehen **Tagesschlusskurse**. Das ist Absicht: Ein
+Verlauf aus Schlusskursen mit einem laufenden Preis am Ende hätte dort einen
+Knick, der nichts bedeutet. `MarketQuote.intraday` sagt der Oberfläche, welche
+der beiden Arten gerade angezeigt wird – „Stand“ mit Uhrzeit gegen „Schluss“ mit
+Datum.
+
+Die Tagesveränderung misst beim laufenden Kurs gegen den letzten Schlusskurs,
+nicht gegen den vorletzten. So wird sie überall sonst auch gerechnet.
+
+Den laufenden Preis liefert nur Yahoo (`meta.regularMarketPrice`). Bei der EZB
+gibt es ihn nicht – Referenzkurse sind Tagesfixings; bei Twelve Data bräuchte es
+eine zweite Abfrage. In beiden Fällen zeigt die Kachel den Schlusskurs.
+
+### Kein Intraday-Verlauf
+
+Der Zeitraum „Ein Handelstag“ ist entfallen. Alle Quellen liefern einen
+Schlusskurs je Handelstag; die Demo-Daten hatten einen Verlauf innerhalb des
+Tages erzeugt, echte Daten geben ihn nicht her.
 
 ### Größe der Momentaufnahme
 

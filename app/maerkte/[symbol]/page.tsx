@@ -118,9 +118,9 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             </span>
             <span aria-hidden="true">·</span>
             <span>
-              {quote.source
-                ? `Schluss ${formatDate(quote.asOf)}`
-                : `Stand ${formatDateTime(quote.asOf)}`}
+              {quote.intraday || !quote.source
+                ? `Stand ${formatDateTime(quote.asOf)}`
+                : `Schluss ${formatDate(quote.asOf)}`}
             </span>
           </>
         }
@@ -141,7 +141,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                   hint={instrument.unit}
                 />
                 <Stat
-                  label="Vortagesschluss"
+                  label={quote.intraday ? 'Letzter Schlusskurs' : 'Vortagesschluss'}
                   value={formatNumber(quote.previousClose, quote.decimals)}
                   hint={`Veränderung ${formatPercentSigned(quote.changePercent)}`}
                   tone={positive ? 'positive' : 'negative'}

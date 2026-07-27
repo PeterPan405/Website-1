@@ -66,21 +66,33 @@ const TWELVEDATA_KEY = process.env.TWELVEDATA_API_KEY?.trim() || undefined
 async function holeMarktkurs(
   yahooSymbol: string,
   twelveSymbol: string
-): Promise<{ punkte: SnapshotPoint[]; quelle: 'yahoo' | 'twelvedata' } | null> {
+): Promise<{
+  punkte: SnapshotPoint[]
+  latest: { value: number; at: string } | null
+  quelle: 'yahoo' | 'twelvedata'
+} | null> {
   if (TWELVEDATA_KEY) {
     const tage = await fetchTwelveDataDaily(twelveSymbol, TWELVEDATA_KEY)
     if (tage) {
       return {
         punkte: tage.map((tag) => ({ d: tag.date, c: tag.close })),
+        // Die Zeitreihe von Twelve Data enthält keinen laufenden Kurs; dafür
+        // gäbe es eine eigene Abfrage. Solange das der Rückfallweg ist, bleibt
+        // es beim Schlusskurs.
+        latest: null,
         quelle: 'twelvedata',
       }
     }
     console.warn(`[kurse] ${twelveSymbol}: Twelve Data ohne Ergebnis, versuche Yahoo.`)
   }
 
-  const tage = await fetchYahooDaily(yahooSymbol)
-  if (!tage) return null
-  return { punkte: tage.map((tag) => ({ d: tag.date, c: tag.close })), quelle: 'yahoo' }
+  const reihe = await fetchYahooDaily(yahooSymbol)
+  if (!reihe) return null
+  return {
+    punkte: reihe.days.map((tag) => ({ d: tag.date, c: tag.close })),
+    latest: reihe.latest,
+    quelle: 'yahoo',
+  }
 }
 
 function ladeBisherige(): MarketSnapshot {
@@ -144,6 +156,7 @@ async function main(): Promise<void> {
     }
 
     let roh: SnapshotPoint[] | null
+    let latest: { value: number; at: string } | null = null
     let quellenId: keyof typeof QUELLEN
 
     if (quelle.provider === 'ecb') {
@@ -152,6 +165,7 @@ async function main(): Promise<void> {
     } else {
       const ergebnis = await holeMarktkurs(quelle.yahoo, quelle.twelvedata)
       roh = ergebnis?.punkte ?? null
+      latest = ergebnis?.latest ?? null
       quellenId = ergebnis?.quelle ?? 'yahoo'
     }
 
@@ -173,10 +187,30 @@ async function main(): Promise<void> {
       continue
     }
 
+    /*
+      Den laufenden Kurs derselben Prüfung unterwerfen wie die Reihe.
+
+      Er kommt aus einem anderen Feld der Antwort und könnte theoretisch in
+      einer anderen Einheit stehen. Weicht er um mehr als 35 Prozent vom letzten
+      Schlusskurs ab, wird er verworfen – dann zeigt die Kachel den Schluss, was
+      allemal besser ist als eine falsche Zahl.
+    */
+    const letzterSchluss = punkte[punkte.length - 1].c
+    const geprueft =
+      latest && Math.abs(latest.value - letzterSchluss) / letzterSchluss <= 0.35
+        ? { value: runde(latest.value, stellen), at: latest.at }
+        : null
+    if (latest && !geprueft) {
+      console.warn(
+        `[kurse] ${symbol}: laufender Kurs ${latest.value} weicht zu stark vom Schluss ${letzterSchluss} ab – verworfen.`
+      )
+    }
+
     instrumente[symbol] = {
       sourceLabel: QUELLEN[quellenId].label,
       sourceUrl: QUELLEN[quellenId].url,
       asOf: punkte[punkte.length - 1].d,
+      ...(geprueft ? { latest: geprueft } : {}),
       points: punkte,
     }
     uebernommen.push(symbol)
@@ -275,7 +309,10 @@ async function main(): Promise<void> {
   console.log(`[kurse] ${punkteGesamt} Kurswerte in ${ZIEL}`)
   for (const [symbol, eintrag] of Object.entries(instrumente)) {
     const letzte = eintrag.points.slice(-3).map((punkt) => `${punkt.d}=${punkt.c}`)
-    console.log(`[kurse]   ${symbol.padEnd(15)} ${letzte.join('  ')}`)
+    const jetzt = eintrag.latest
+      ? `  | jetzt ${eintrag.latest.value} (${eintrag.latest.at})`
+      : ''
+    console.log(`[kurse]   ${symbol.padEnd(15)} ${letzte.join('  ')}${jetzt}`)
   }
 }
 

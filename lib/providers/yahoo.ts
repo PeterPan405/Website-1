@@ -31,11 +31,33 @@ export interface YahooDay {
 interface YahooChartAntwort {
   chart?: {
     result?: {
+      meta?: { regularMarketPrice?: number; regularMarketTime?: number }
       timestamp?: number[]
       indicators?: { quote?: { close?: (number | null)[] }[] }
     }[]
     error?: { code?: string; description?: string } | null
   }
+}
+
+/** Der zuletzt gehandelte Preis mit seinem Zeitpunkt. */
+export interface YahooLatest {
+  value: number
+  /** ISO 8601 mit Zeitzone. */
+  at: string
+}
+
+export interface YahooSeries {
+  /** Tagesschlusskurse, aufsteigend sortiert. */
+  days: YahooDay[]
+  /**
+   * Der zuletzt gehandelte Preis, wenn die Antwort einen enthält.
+   *
+   * Das ist etwas anderes als der letzte Schlusskurs: Während der Handelszeit
+   * steht hier der Preis von eben, danach der Schluss des Tages. Beides in
+   * einen Topf zu werfen wäre falsch – ein Verlauf besteht aus Schlusskursen,
+   * eine Kachel soll den aktuellen Stand zeigen. Deshalb getrennt.
+   */
+  latest: YahooLatest | null
 }
 
 /**
@@ -45,11 +67,15 @@ interface YahooChartAntwort {
  * `indicators.quote[0].close` an derselben Stelle den Schlusskurs. Beide Listen
  * sind gleich lang; an Tagen ohne Handel steht `null` im Kurs.
  *
- * @returns Aufsteigend sortierte Handelstage, oder `null`, wenn die Antwort
- *   nicht die erwartete Form hat – dann ist etwas anderes zurückgekommen als
- *   Kursdaten, und der Aufrufer soll den bisherigen Stand behalten.
+ * Zusätzlich wird `meta.regularMarketPrice` gelesen – der zuletzt gehandelte
+ * Preis. Er beantwortet die Frage, die ein Schlusskurs nicht beantwortet:
+ * „Was kostet es jetzt?“
+ *
+ * @returns Die Reihe, oder `null`, wenn die Antwort nicht die erwartete Form
+ *   hat – dann ist etwas anderes zurückgekommen als Kursdaten, und der Aufrufer
+ *   soll den bisherigen Stand behalten.
  */
-export function parseYahooChart(text: string): YahooDay[] | null {
+export function parseYahooChart(text: string): YahooSeries | null {
   let daten: YahooChartAntwort
   try {
     daten = JSON.parse(text) as YahooChartAntwort
@@ -74,7 +100,21 @@ export function parseYahooChart(text: string): YahooDay[] | null {
   }
 
   if (tage.length === 0) return null
-  return tage.sort((a, b) => a.date.localeCompare(b.date))
+  tage.sort((a, b) => a.date.localeCompare(b.date))
+
+  const meta = ergebnis?.meta
+  const preis = meta?.regularMarketPrice
+  const zeit = meta?.regularMarketTime
+  const latest: YahooLatest | null =
+    typeof preis === 'number' &&
+    Number.isFinite(preis) &&
+    preis > 0 &&
+    typeof zeit === 'number' &&
+    Number.isFinite(zeit)
+      ? { value: preis, at: new Date(zeit * 1000).toISOString() }
+      : null
+
+  return { days: tage, latest }
 }
 
 /** Baut die Abrufadresse für ein Yahoo-Symbol, z. B. `^GDAXI`. */
@@ -107,7 +147,7 @@ export function describeResponse(text: string, maxLength = 300): string {
  * bisherigen Stand. Was genau zurückkam, steht im Protokoll – ohne diese
  * Ausgabe war beim Vorgänger tagelang nicht zu klären, woran es lag.
  */
-export async function fetchYahooDaily(symbol: string): Promise<YahooDay[] | null> {
+export async function fetchYahooDaily(symbol: string): Promise<YahooSeries | null> {
   const url = yahooUrl(symbol)
 
   try {
@@ -125,8 +165,8 @@ export async function fetchYahooDaily(symbol: string): Promise<YahooDay[] | null
       return null
     }
 
-    const tage = parseYahooChart(text)
-    if (tage === null) {
+    const reihe = parseYahooChart(text)
+    if (reihe === null) {
       console.warn(
         `[yahoo] ${symbol}: Antwort enthielt keine Kursreihe.` +
           `\n         URL:          ${url}` +
@@ -135,7 +175,7 @@ export async function fetchYahooDaily(symbol: string): Promise<YahooDay[] | null
       )
       return null
     }
-    return tage
+    return reihe
   } catch (error) {
     console.warn(`[yahoo] Abruf von ${symbol} fehlgeschlagen:`, error)
     return null

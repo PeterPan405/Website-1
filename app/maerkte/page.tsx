@@ -6,7 +6,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
-import { formatDate } from '@/lib/format'
+import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getQuotes, getSparkline } from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -52,7 +52,11 @@ export default async function MarketsOverviewPage() {
             {asOf && (
               <>
                 <span aria-hidden="true">·</span>
-                <span>Stand {formatDate(asOf)}</span>
+                <span>
+                  {quotes[0]?.intraday
+                    ? `Stand ${formatDateTime(asOf)}`
+                    : `Stand ${formatDate(asOf)}`}
+                </span>
               </>
             )}
           </>

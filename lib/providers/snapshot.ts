@@ -39,8 +39,20 @@ export interface SnapshotInstrument {
   sourceLabel: string
   /** Adresse der Quelle, für den Verweis unter dem Chart. */
   sourceUrl: string
-  /** Handelstag des jüngsten Werts, YYYY-MM-DD. */
+  /** Handelstag des jüngsten Schlusskurses, YYYY-MM-DD. */
   asOf: string
+  /**
+   * Zuletzt gehandelter Preis mit Zeitpunkt, wenn die Quelle einen liefert.
+   *
+   * Etwas anderes als der letzte Schlusskurs: Während der Handelszeit steht
+   * hier der Preis von eben. Die Kachel zeigt ihn, der Chart bleibt bei
+   * Schlusskursen – ein Verlauf aus gemischten Preisarten hätte an der letzten
+   * Stelle einen Knick, der nichts bedeutet.
+   *
+   * Fehlt bei der EZB: Referenzkurse sind Tagesfixings, einen „aktuellen“ Kurs
+   * gibt es dort nicht.
+   */
+  latest?: { value: number; at: string }
   /** Aufsteigend nach Datum sortiert, verdichtet (siehe `thinPoints`). */
   points: SnapshotPoint[]
 }
@@ -150,6 +162,7 @@ export function serializeSnapshot(snapshot: MarketSnapshot): string {
       `      "sourceLabel": ${JSON.stringify(eintrag.sourceLabel)},`,
       `      "sourceUrl": ${JSON.stringify(eintrag.sourceUrl)},`,
       `      "asOf": ${JSON.stringify(eintrag.asOf)},`,
+      ...(eintrag.latest ? [`      "latest": ${JSON.stringify(eintrag.latest)},`] : []),
       `      "points": [`,
       punkte,
       `      ]`,
