@@ -217,15 +217,25 @@ richtiger Antworten kann die Stufe als erledigt markiert werden.
 
 ## Unternehmensphilosophie
 
-`app/unternehmensphilosophie/page.tsx` steht als Gerüst bereit, der Text wird redaktionell
-verfasst. Bearbeitet wird ausschließlich `data/philosophy.ts`:
+Verfasst und veröffentlicht (`PHILOSOPHY_PUBLISHED = true`). Fünf Abschnitte in
+`data/philosophy.ts`: warum es die Website gibt, die inhaltlichen
+Grundüberzeugungen, die redaktionelle Arbeitsweise, die Abgrenzung und die
+Finanzierung.
 
-1. Je Abschnitt `paragraphs` füllen – der Text ersetzt dann automatisch den Arbeitshinweis.
-2. Ist alles geschrieben: `PHILOSOPHY_PUBLISHED` auf `true` setzen.
+Die Abschnitte sind Daten, keine Seitenstruktur – `heading` wird als `<h2>`
+ausgegeben, jeder Eintrag in `paragraphs` als Absatz. Umformulieren, ergänzen
+oder streichen geht damit, ohne die Seite anzufassen. Das `hint`-Feld bleibt bei
+jedem Abschnitt stehen, obwohl es nicht mehr angezeigt wird: Es beschreibt, was
+in den Abschnitt gehört, und ist die Prüffrage für eine spätere Überarbeitung.
 
-Solange die Seite nicht veröffentlicht ist, wird sie mit `noindex` ausgeliefert und **nicht**
-in die Sitemap aufgenommen; eine fast leere Seite im Index würde die Sichtbarkeit der
-gesamten Domain belasten. Über die Fußzeile bleibt sie zum Korrekturlesen erreichbar.
+Solange `PHILOSOPHY_PUBLISHED` auf `false` steht, wird die Seite mit `noindex`
+ausgeliefert und **nicht** in die Sitemap aufgenommen; eine fast leere Seite im
+Index würde die Sichtbarkeit der gesamten Domain belasten.
+
+Der Abschnitt zur Finanzierung nennt: keine Werbung, keine Provisionen, keine
+Affiliate-Links, kein Abonnement, privat finanziert. **Das ist eine Aussage über
+das Geschäft und muss stimmen** – ändert sich daran etwas, gehört es dort
+geändert, bevor es woanders auffällt.
 
 ## Nachrichten und das rollierende Prinzip
 
