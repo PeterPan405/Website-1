@@ -34,7 +34,10 @@ export function SourceNote({
 
   return (
     <p className={klasse}>
-      Schlusskurs vom {formatDate(quote.asOf)} · Quelle:{' '}
+      {quote.intraday
+        ? `Stand ${formatDateTime(quote.asOf)}`
+        : `Schlusskurs vom ${formatDate(quote.asOf)}`}{' '}
+      · Quelle:{' '}
       <a
         href={quote.source.url}
         target="_blank"
@@ -85,8 +88,9 @@ export function SourceSummary({
 
   return (
     <p className={klasse}>
-      Tagesschlusskurse, keine Echtzeitdaten – die Website wird einmal je Börsentag neu
-      gebaut. Quellen: {quellen.join(' und ')}.
+      Kurse werden während der Börsenzeit stündlich abgerufen, der Verlauf zeigt
+      Tagesschlusskurse. Keine Echtzeitdaten – der angezeigte Stand kann bis zu einer
+      Stunde alt sein. Quellen: {quellen.join(' und ')}.
       {demo.length > 0 && (
         <>
           {' '}

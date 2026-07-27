@@ -7,14 +7,22 @@ name: Kurse aktualisieren
 # dieser Workflow nicht nur Datenpflege, sondern der eigentliche Takt, in dem
 # die Website neu gebaut wird.
 #
-# Zeitplan: werktags 16:00 UTC. Die EZB veröffentlicht ihre Referenzkurse gegen
-# 16:00 Uhr MEZ – das sind 15:00 UTC im Winter und 14:00 UTC im Sommer. 16:00
-# UTC liegt in beiden Fällen sicher danach, ohne dass der Zeitplan zweimal im
-# Jahr angefasst werden muss.
+# Zeitplan: werktags stündlich von 07:00 bis 16:00 UTC – das sind 09:00 bis
+# 18:00 deutscher Sommerzeit und deckt den deutschen Handelstag ab. Zehn Läufe,
+# also ist ein angezeigter Kurs höchstens eine Stunde alt.
+#
+# Der letzte Lauf um 16:00 UTC liegt zugleich sicher hinter der EZB, die ihre
+# Referenzkurse gegen 16:00 Uhr MEZ veröffentlicht – 15:00 UTC im Winter, 14:00
+# UTC im Sommer. Damit muss der Zeitplan zur Zeitumstellung nicht angefasst
+# werden.
+#
+# Nicht jeder Lauf führt zu einer Bereitstellung: Ohne Kursänderung wird nichts
+# committet. Ausserhalb der Handelszeiten – Feiertage, Betriebsruhe – bleibt es
+# deshalb still.
 
 on:
   schedule:
-    - cron: '0 16 * * 1-5'
+    - cron: '0 7-16 * * 1-5'
   # Von Hand auslösbar – zum Prüfen und für den allerersten Lauf.
   workflow_dispatch:
 

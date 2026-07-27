@@ -33,6 +33,7 @@ const yahooAntwort = JSON.stringify({
   chart: {
     result: [
       {
+        meta: { regularMarketPrice: 25350.4, regularMarketTime: 1753360000 },
         timestamp: [1753142400, 1753228800, 1753315200],
         indicators: { quote: [{ close: [24812.44, null, 25099.03] }] },
       },
@@ -41,10 +42,35 @@ const yahooAntwort = JSON.stringify({
   },
 })
 
-check('liest Datum und Schlusskurs', parseYahooChart(yahooAntwort), [
+check('liest Datum und Schlusskurs', parseYahooChart(yahooAntwort)?.days, [
   { date: '2025-07-22', close: 24812.44 },
   { date: '2025-07-24', close: 25099.03 },
 ])
+
+// Der laufende Kurs ist der Grund, warum die Kachel nicht mehr den Schluss des
+// Vortages zeigen muss.
+check('liest den laufenden Kurs mit Zeitpunkt', parseYahooChart(yahooAntwort)?.latest, {
+  value: 25350.4,
+  at: '2025-07-24T12:26:40.000Z',
+})
+
+// Ohne meta bleibt es beim Schlusskurs - kein Fehler, nur kein laufender Preis.
+check(
+  'kommt ohne laufenden Kurs aus',
+  parseYahooChart(
+    JSON.stringify({
+      chart: {
+        result: [
+          {
+            timestamp: [1753142400],
+            indicators: { quote: [{ close: [24812.44] }] },
+          },
+        ],
+      },
+    })
+  )?.latest,
+  null
+)
 
 check(
   'erkennt eine HTML-Seite als Nicht-Kursdaten',

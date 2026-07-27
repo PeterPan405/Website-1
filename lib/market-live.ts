@@ -31,8 +31,10 @@ export interface LiveSeries {
   /** Aufsteigend nach Datum, ein Wert je Handelstag. */
   daily: SeriesPoint[]
   source: QuoteSource
-  /** Handelstag des jüngsten Werts, YYYY-MM-DD. */
+  /** Handelstag des jüngsten Schlusskurses, YYYY-MM-DD. */
   asOf: string
+  /** Zuletzt gehandelter Preis samt Zeitpunkt, falls vorhanden. */
+  latest: { value: number; at: string } | null
 }
 
 /**
@@ -57,6 +59,7 @@ export function getLiveSeries(symbol: string): LiveSeries | null {
     daily: eintrag.points.map((punkt) => ({ t: punkt.d, value: punkt.c })),
     source: { label: eintrag.sourceLabel, url: eintrag.sourceUrl },
     asOf: eintrag.asOf,
+    latest: eintrag.latest ?? null,
   }
 }
 

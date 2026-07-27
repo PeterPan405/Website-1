@@ -2,3 +2,10 @@
 node_modules
 package-lock.json
 next-env.d.ts
+
+# Die Kurs-Momentaufnahme schreibt `lib/providers/snapshot.ts` in einem eigenen
+# Format: ein Kurspunkt je Zeile. Das ist kompakter als eingerücktes JSON und
+# in einem Diff lesbar – ein Börsentag mehr sind genau elf neue Zeilen.
+# Prettier würde daraus vier Zeilen je Punkt machen und die Datei nach jedem
+# Workflow-Lauf als fehlerhaft formatiert melden.
+data/snapshots/markets.json

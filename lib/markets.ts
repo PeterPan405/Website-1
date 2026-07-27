@@ -57,6 +57,15 @@ export interface MarketQuote {
    */
   asOf: string
   /**
+   * Ob `value` ein laufender Kurs ist oder ein Tagesschluss.
+   *
+   * Bei `true` steht in `asOf` ein Zeitstempel mit Uhrzeit, bei `false` nur ein
+   * Datum. Die Oberfläche schreibt entsprechend „Stand 27.07., 14:32“ oder
+   * „Schluss 24.07.“ – die beiden Preisarten sind nicht dasselbe, und das darf
+   * nicht in einer Formulierung verschwimmen.
+   */
+  intraday: boolean
+  /**
    * Herkunft der Kurse – `null` bedeutet Demo-Daten.
    *
    * Steht sichtbar an jeder Kachel und unter jedem Chart. Solange echte und
@@ -79,12 +88,20 @@ function basisFor(definition: MarketDefinition): {
   daily: SeriesPoint[]
   asOf: string
   source: QuoteSource | null
+  latest: { value: number; at: string } | null
 } {
   const live = getLiveSeries(definition.symbol)
-  if (live) return { daily: live.daily, asOf: live.asOf, source: live.source }
+  if (live) {
+    return {
+      daily: live.daily,
+      asOf: live.asOf,
+      source: live.source,
+      latest: live.latest,
+    }
+  }
 
   const { daily } = getInstrumentSeries(definition)
-  return { daily, asOf: MARKET_DATA_AS_OF, source: null }
+  return { daily, asOf: MARKET_DATA_AS_OF, source: null, latest: null }
 }
 
 /**
@@ -114,12 +131,27 @@ function findDefinition(symbol: string): MarketDefinition | undefined {
 }
 
 function buildQuote(definition: MarketDefinition): MarketQuote {
-  const { daily, asOf, source } = basisFor(definition)
+  const { daily, asOf, source, latest: laufend } = basisFor(definition)
   const latest = daily[daily.length - 1]
   const previous = daily[daily.length - 2]
 
+  /*
+    Der laufende Kurs verdrängt den Schlusskurs als angezeigten Wert.
+
+    Damit steht auf der Kachel die Zahl, nach der jemand sucht – und die
+    Tagesveränderung misst dann gegen den letzten Schluss, nicht gegen den
+    vorletzten. Genau so wird sie überall sonst auch gerechnet.
+
+    Der Chart bleibt unberührt: Ein Verlauf aus Schlusskursen mit einem
+    laufenden Preis am Ende hätte dort einen Knick, der nichts bedeutet.
+  */
+  const wert = laufend?.value ?? latest.value
+  const vergleich = laufend ? latest.value : previous.value
+
   const lastYear = daily.slice(-252)
-  const values = lastYear.map((point) => point.value)
+  // Der laufende Kurs zählt beim Jahreshoch mit – sonst könnte der angezeigte
+  // Wert über dem „52-Wochen-Hoch“ liegen, und die Kennzahl daneben wäre falsch.
+  const values = [...lastYear.map((point) => point.value), wert]
 
   const currentYear = latest.t.slice(0, 4)
   // Letzter Schlusskurs, der noch im Vorjahr liegt – Basis für die YTD-Zahl.
@@ -127,7 +159,7 @@ function buildQuote(definition: MarketDefinition): MarketQuote {
     [...daily].reverse().find((point) => point.t.slice(0, 4) < currentYear)?.value ??
     daily[0].value
 
-  const change = latest.value - previous.value
+  const change = wert - vergleich
 
   return {
     symbol: definition.symbol,
@@ -136,14 +168,15 @@ function buildQuote(definition: MarketDefinition): MarketQuote {
     kind: definition.kind,
     unit: definition.unit,
     decimals: definition.decimals,
-    value: latest.value,
-    previousClose: previous.value,
+    value: wert,
+    previousClose: vergleich,
     change,
-    changePercent: (change / previous.value) * 100,
+    changePercent: (change / vergleich) * 100,
     high52w: Math.max(...values),
     low52w: Math.min(...values),
-    ytdPercent: ((latest.value - lastYearClose) / lastYearClose) * 100,
-    asOf,
+    ytdPercent: ((wert - lastYearClose) / lastYearClose) * 100,
+    asOf: laufend?.at ?? asOf,
+    intraday: Boolean(laufend),
     source,
   }
 }
