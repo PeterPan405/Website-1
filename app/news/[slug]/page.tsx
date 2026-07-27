@@ -189,7 +189,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
                   ))}
                 </ul>
                 <p className="text-fg-subtle mt-3 text-xs">
-                  Demo-Kurse, keine Echtzeitdaten.
+                  Tagesschlusskurse, keine Echtzeitdaten.
                 </p>
               </section>
             )}

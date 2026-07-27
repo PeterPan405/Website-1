@@ -60,9 +60,12 @@ export default async function MarketsOverviewPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <div className="rounded-card border-border bg-surface-muted border p-5 sm:p-6">
-          <SourceSummary quotes={quotes} />
-        </div>
+        {/* Bewusst eine Zeile und kein Kasten: Herkunftsangaben sind Pflicht,
+            aber sie sind nicht die Botschaft der Seite. */}
+        <SourceSummary
+          quotes={quotes}
+          className="text-fg-subtle text-sm leading-relaxed"
+        />
 
         <section aria-labelledby="waehrungen" className="mt-12">
           <h2 id="waehrungen" className="text-fg text-2xl font-bold">

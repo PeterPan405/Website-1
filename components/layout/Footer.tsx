@@ -99,11 +99,25 @@ export function Footer() {
             Kapitalanlage ist mit Risiken verbunden, bis zum vollständigen Verlust des
             eingesetzten Geldes.
           </p>
+          {/*
+            Dieser Hinweis stand hier als pauschales „alles ist Demo“. Das ist
+            überholt, seit die Wechselkurse von der EZB kommen – und eine falsche
+            Angabe über die eigenen Daten ist kein Schutz, sondern ein Mangel.
+
+            Die jetzige Fassung sagt, was tatsächlich gilt: Tagesschlusskurse
+            statt Echtzeit, mögliche Abweichungen gegenüber anderen Quellen, keine
+            Gewähr – und der Verweis darauf, dass jede einzelne Angabe an Ort und
+            Stelle ihre Herkunft nennt. Welche Kurse noch Beispielwerte sind,
+            steht dort, wo sie stehen, statt hier in einer Pauschale.
+          */}
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-            <strong className="text-fg font-semibold">Hinweis zu den Daten:</strong> Die
-            Kurs-, News- und Verschuldungsdaten dieser Version sind{' '}
-            <strong className="text-fg font-semibold">Demo-Daten</strong> und keine echten
-            Marktdaten.
+            <strong className="text-fg font-semibold">Hinweis zu den Daten:</strong> Kurse
+            werden als Tagesschlusskurse dargestellt und sind keine Echtzeitdaten. Sie
+            können von den Angaben anderer Anbieter abweichen und sind nicht für
+            Handelszwecke bestimmt. Nachrichten geben den Stand ihrer Veröffentlichung
+            wieder; die Verschuldungszahlen sind Näherungswerte und keine amtliche
+            Statistik. Für Aktualität, Richtigkeit und Vollständigkeit wird keine Gewähr
+            übernommen. Herkunft und Stand stehen jeweils direkt an der Angabe.
           </p>
         </div>
 

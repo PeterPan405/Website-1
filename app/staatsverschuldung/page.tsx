@@ -5,7 +5,6 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
-import { DemoNotice } from '@/components/ui/DemoNotice'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
@@ -55,7 +54,7 @@ export default async function DebtPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <DemoNotice title="Näherungswerte, keine amtliche Statistik">
+        <div className="text-fg-subtle text-sm leading-relaxed">
           <p>
             Die Zahlen sind{' '}
             <strong className="text-fg font-semibold">gerundete Näherungswerte</strong> zu
@@ -68,7 +67,7 @@ export default async function DebtPage() {
             Schulden pro Kopf werden daraus berechnet. So können die drei Werte nicht
             auseinanderlaufen.
           </p>
-        </DemoNotice>
+        </div>
 
         {/* -------------------------------------------------- Kennzahlen */}
         <section aria-labelledby="ueberblick" className="mt-12">

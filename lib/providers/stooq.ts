@@ -91,6 +91,36 @@ export function stooqUrl(symbol: string): string {
 }
 
 /**
+ * Kennung, mit der sich der Abruf zu erkennen gibt.
+ *
+ * Ohne Angabe schickt Node einen leeren beziehungsweise generischen Wert. Viele
+ * Anbieter antworten darauf mit einer Sperrseite statt mit Daten – und zwar mit
+ * Statuscode 200, was von außen wie Erfolg aussieht. Eine ehrliche Kennung mit
+ * Adresse ist außerdem das, was Betreiber erwarten: Sie können sehen, wer
+ * abfragt, und im Zweifel die Website ansprechen statt stumm zu sperren.
+ */
+export const STOOQ_USER_AGENT =
+  'IMInvestsBot/1.0 (+https://iminvests.de; Kursabruf einmal je Boersentag)'
+
+/**
+ * Kürzt eine unerwartete Antwort für die Protokollausgabe.
+ *
+ * Der erste Lauf im Workflow endete für alle sechs Stooq-Symbole mit „Antwort
+ * war kein CSV“ – und damit war die Ursache nicht zu klären. Ob ein Tageslimit,
+ * eine Sperre für Rechenzentren oder eine geänderte Adresse dahintersteckt,
+ * steht in der Antwort selbst. Also gehört sie ins Protokoll.
+ *
+ * Zeilenumbrüche werden ersetzt, damit eine HTML-Seite nicht das halbe
+ * Protokoll füllt.
+ */
+export function describeResponse(text: string, maxLength = 300): string {
+  const einzeilig = text.replace(/\s+/g, ' ').trim()
+  return einzeilig.length > maxLength
+    ? `${einzeilig.slice(0, maxLength)} … (${einzeilig.length} Zeichen insgesamt)`
+    : einzeilig
+}
+
+/**
  * Holt die Tageskurse eines Symbols.
  *
  * Fällt der Abruf aus, kommt `null` zurück. Der Aufrufer behält dann den
@@ -102,16 +132,26 @@ export async function fetchStooqDaily(symbol: string): Promise<StooqDay[] | null
   try {
     const response = await fetch(url, {
       signal: AbortSignal.timeout(20_000),
-      headers: { Accept: 'text/csv,text/plain' },
+      headers: {
+        Accept: 'text/csv,text/plain,*/*',
+        'User-Agent': STOOQ_USER_AGENT,
+      },
     })
     if (!response.ok) {
       console.warn(`[stooq] ${symbol} antwortete mit ${response.status}`)
       return null
     }
 
-    const days = parseStooqCsv(await response.text())
+    const text = await response.text()
+    const days = parseStooqCsv(text)
     if (days === null) {
-      console.warn(`[stooq] ${symbol}: Antwort war kein CSV (Tageslimit erreicht?)`)
+      // Der Inhalt der Antwort ist die einzige Auskunft über den Grund.
+      console.warn(
+        `[stooq] ${symbol}: Antwort war kein CSV.` +
+          `\n         URL:          ${url}` +
+          `\n         Content-Type: ${response.headers.get('content-type') ?? 'keiner'}` +
+          `\n         Antwort:      ${describeResponse(text)}`
+      )
       return null
     }
     if (days.length === 0) {

@@ -230,9 +230,10 @@ export default async function HomePage() {
             ))}
           </ul>
 
-          <div className="border-border bg-surface-muted text-fg-muted mt-6 rounded-xl border px-4 py-3">
-            <SourceSummary quotes={marketPreviews.map((preview) => preview.quote)} />
-          </div>
+          <SourceSummary
+            quotes={marketPreviews.map((preview) => preview.quote)}
+            className="text-fg-subtle mt-6 text-sm leading-relaxed"
+          />
         </div>
       </section>
 
