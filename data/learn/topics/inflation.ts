@@ -1,29 +1,24 @@
 import type { LearnTopic } from '@/data/learn/types'
-import { calculateInflation, realRatePercent } from '@/lib/finance'
+import {
+  inflationsbeispiel,
+  kaufkraftende,
+  kaufkraftreihe,
+  realzinsbeispiel,
+} from '@/lib/inflations-beispiele'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
 
 /*
   Zahlen gerechnet statt geschrieben.
 
-  Dieselbe Ausnahme wie in `zinseszins.ts`: `lib/finance.ts` ist reine Rechnung
-  ohne eigene Datenabhängigkeit, es entsteht also kein Kreis. Der Grund ist
-  derselbe – der Inflationsrechner auf dieser Website benutzt genau diese
-  Funktionen. Stünden die Zahlen hier als Literale, gäbe es zwei Quellen für
-  dieselbe Aussage, und die laufen erfahrungsgemäß auseinander.
+  Dieselbe Ausnahme wie in `zinseszins.ts`: `lib/inflations-beispiele.ts` ist
+  reine Rechnung ohne eigene Datenabhängigkeit, es entsteht also kein Kreis.
+  Der Grund ist derselbe – dieselben Zahlen stehen zusätzlich in der Grafik
+  daneben und im Inflationsrechner der Website. Als Literale wären das drei
+  Quellen für dieselbe Aussage, und die laufen erfahrungsgemäß auseinander.
 */
 
-/** Das Beispiel, das sich durch die Beginner-Stufe zieht. */
-const beispiel = { betrag: 10_000, rate: 2.5, jahre: 30 }
-const kaufkraft = calculateInflation({
-  amount: beispiel.betrag,
-  annualRatePercent: beispiel.rate,
-  years: beispiel.jahre,
-})
-const stuetzjahre = [10, 20, 30]
-
-/** Tagesgeld zu 2 Prozent bei 2,5 Prozent Inflation – der Regelfall der 2010er. */
-const realzinsBeispiel = { nominal: 2, inflation: beispiel.rate }
-const realzins = realRatePercent(realzinsBeispiel.nominal, realzinsBeispiel.inflation)
+const beispiel = inflationsbeispiel
+const reihe = kaufkraftreihe()
 
 /**
  * Vollständig ausgearbeitetes Thema.
@@ -140,6 +135,10 @@ export const inflation: LearnTopic = {
           text: `Nimm ${formatCurrencyRounded(beispiel.betrag)}, die unverzinst liegen bleiben, und eine Inflationsrate von ${formatPercent(beispiel.rate, 1)} im Jahr. Die Zahl auf dem Konto bleibt gleich. Was du dafür kaufen kannst, nicht:`,
         },
         {
+          type: 'figure',
+          figure: 'inflation-kaufkraft',
+        },
+        {
           type: 'table',
           caption: `Kaufkraft von ${formatCurrencyRounded(beispiel.betrag)} bei ${formatPercent(beispiel.rate, 1)} Inflation`,
           head: [
@@ -148,19 +147,19 @@ export const inflation: LearnTopic = {
             'Verlust',
             'Nötig für dieselbe Menge',
           ],
-          rows: stuetzjahre.map((jahr) => {
-            const zeile = kaufkraft.years[jahr - 1]
+          rows: beispiel.stuetzjahre.map((jahr) => {
+            const zeile = reihe[jahr]
             return [
               `${jahr} Jahren`,
-              formatCurrencyRounded(zeile.purchasingPower),
-              formatPercent(zeile.lossPercent, 1),
-              formatCurrencyRounded(zeile.requiredAmount),
+              formatCurrencyRounded(zeile.kaufkraft),
+              formatPercent(zeile.verlustProzent, 1),
+              formatCurrencyRounded(zeile.noetig),
             ]
           }),
         },
         {
           type: 'paragraph',
-          text: `Nach ${beispiel.jahre} Jahren sind aus ${formatCurrencyRounded(beispiel.betrag)} real ${formatCurrencyRounded(kaufkraft.purchasingPower)} geworden – ein Verlust von ${formatPercent(kaufkraft.lossPercent, 1)}, ohne dass irgendjemand etwas abgebucht hätte. Bei dieser Rate halbiert sich die Kaufkraft in rund ${formatNumber(kaufkraft.halvingYears ?? 0, 0)} Jahren.`,
+          text: `Nach ${beispiel.jahre} Jahren sind aus ${formatCurrencyRounded(beispiel.betrag)} real ${formatCurrencyRounded(kaufkraftende.kaufkraft)} geworden – ein Verlust von ${formatPercent(kaufkraftende.verlustProzent, 1)}, ohne dass irgendjemand etwas abgebucht hätte. Bei dieser Rate halbiert sich die Kaufkraft in rund ${formatNumber(kaufkraftende.halbierungNachJahren ?? 0, 0)} Jahren.`,
         },
         {
           type: 'heading',
@@ -169,7 +168,7 @@ export const inflation: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: `Ein Zins von ${formatPercent(realzinsBeispiel.nominal, 1)} klingt nach Zuwachs. Liegt die Inflation bei ${formatPercent(realzinsBeispiel.inflation, 1)}, ist er keiner: Der **Realzins** beträgt ${formatPercent(realzins, 2)}. Du hast am Jahresende mehr Geld und kannst dir weniger davon kaufen.`,
+          text: `Ein Zins von ${formatPercent(realzinsbeispiel.nominal, 1)} klingt nach Zuwachs. Liegt die Inflation bei ${formatPercent(realzinsbeispiel.inflation, 1)}, ist er keiner: Der **Realzins** beträgt ${formatPercent(realzinsbeispiel.real, 2)}. Du hast am Jahresende mehr Geld und kannst dir weniger davon kaufen.`,
         },
         {
           type: 'formula',
@@ -424,7 +423,7 @@ export const inflation: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: `Angenommen, eine Anlage bringt ${formatPercent(realzinsBeispiel.nominal, 1)} im Jahr, die Inflation liegt bei ${formatPercent(realzinsBeispiel.inflation, 1)}. Real hast du ${formatPercent(realzins, 2)} verloren. Das Finanzamt sieht davon nichts: Es sieht ${formatPercent(realzinsBeispiel.nominal, 1)} Gewinn und erhebt darauf Abgeltungsteuer, Solidaritätszuschlag und gegebenenfalls Kirchensteuer – rund ein Viertel bis gut ein Viertel des nominalen Ertrags. Nach Steuern ist der reale Verlust größer als vorher.`,
+          text: `Angenommen, eine Anlage bringt ${formatPercent(realzinsbeispiel.nominal, 1)} im Jahr, die Inflation liegt bei ${formatPercent(realzinsbeispiel.inflation, 1)}. Real hast du ${formatPercent(realzinsbeispiel.real, 2)} verloren. Das Finanzamt sieht davon nichts: Es sieht ${formatPercent(realzinsbeispiel.nominal, 1)} Gewinn und erhebt darauf Abgeltungsteuer, Solidaritätszuschlag und gegebenenfalls Kirchensteuer – rund ein Viertel bis gut ein Viertel des nominalen Ertrags. Nach Steuern ist der reale Verlust größer als vorher.`,
         },
         {
           type: 'callout',
