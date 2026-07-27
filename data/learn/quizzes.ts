@@ -970,6 +970,164 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Ein Limit, das sich auf den alten Kurs bezog, wäre nach dem Split sinnlos – bei einem Kaufauftrag würde es sofort und weit über dem neuen Kurs greifen. Deshalb werden offene Orders bei Kapitalmaßnahmen üblicherweise gestrichen. Wer langfristige Orders stehen hat, muss sie danach neu einstellen.',
     },
   ],
+  // -------------------------------------------------------------- Tagesgeld
+  'tagesgeld:beginner': [
+    {
+      question: 'Worin unterscheiden sich Tagesgeld und Festgeld im Kern?',
+      options: [
+        'Festgeld ist gesetzlich geschützt, Tagesgeld nicht',
+        'Beim Festgeld trägt die Bank das Zinsänderungsrisiko, beim Tagesgeld du',
+        'Festgeld wird nur bei ausländischen Banken angeboten',
+        'Tagesgeld ist nur für Beträge unter 10.000 Euro möglich',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Beim Festgeld steht der Satz für die gesamte Laufzeit fest – die Bank muss ihn auch dann zahlen, wenn die Zinsen inzwischen gefallen sind. Beim Tagesgeld ist er variabel: Sinkt das Zinsniveau, sinkt dein Zins mit. Geschützt sind beide gleichermaßen.',
+    },
+    {
+      question:
+        'Du hast bei derselben Bank ein Giro-, ein Tagesgeld- und ein Festgeldkonto mit zusammen 150.000 Euro. Wie viel ist gesetzlich geschützt?',
+      options: [
+        'Alles, weil es drei getrennte Konten sind',
+        '150.000 Euro, weil jedes Konto einzeln zählt',
+        '50.000 Euro, weil nur das Tagesgeld geschützt ist',
+        '100.000 Euro – der Schutz gilt je Person und Institut, nicht je Konto',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Alle Guthaben bei einem Institut werden zusammengezählt. Drei Konten bedeuten nicht dreimal Schutz. Bei einem Gemeinschaftskonto zweier Personen verdoppelt sich die Summe dagegen, weil der Schutz je Inhaber gilt.',
+    },
+    {
+      question:
+        'Warum ist Tagesgeld für den Vermögensaufbau über dreißig Jahre ungeeignet?',
+      options: [
+        'Weil Banken langfristige Einlagen kündigen dürfen',
+        'Weil der Zins die Inflation meist nicht ausgleicht – nominal sicher heißt nicht real sicher',
+        'Weil die Einlagensicherung nach zehn Jahren entfällt',
+        'Weil Zinserträge nach fünf Jahren höher besteuert werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kontostand fällt nie, die Kaufkraft schon. Bei 2 Prozent Zins und 2,5 Prozent Inflation liegt der Realzins bei rund minus einem halben Prozent – jedes Jahr. Für den Notgroschen ist genau diese nominale Stabilität der Zweck; für dreißig Jahre ist es das falsche Werkzeug.',
+    },
+    {
+      question: 'Wie groß sollte ein Notgroschen üblicherweise sein?',
+      options: [
+        'Drei bis sechs Monatsausgaben',
+        'Genau 10.000 Euro, unabhängig von der Lebenssituation',
+        'Ein Zwölftel des Jahresbruttoeinkommens',
+        'So viel wie eine Jahresmiete',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Maßstab sind die eigenen Ausgaben, nicht das Einkommen und keine Pauschale. Drei bis sechs Monate decken die üblichen Fälle ab – kaputte Heizung, defektes Auto, Kündigung. Wer selbstständig ist oder ein schwankendes Einkommen hat, rechnet eher am oberen Rand.',
+    },
+  ],
+  'tagesgeld:fortgeschritten': [
+    {
+      question:
+        'Warum reagieren Tagesgeldzinsen auf Leitzinssenkungen schneller als auf Erhöhungen?',
+      options: [
+        'Weil die Notenbank Senkungen sofort verbindlich vorgibt',
+        'Weil Erhöhungen erst zum Jahreswechsel wirksam werden dürfen',
+        'Weil wer sein Geld nicht bewegt, eine ausbleibende Erhöhung nicht bemerkt',
+        'Weil Banken bei steigenden Zinsen weniger Einlagen brauchen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Es gibt keine Vorschrift zur Weitergabe. Eine Senkung spart der Bank sofort Geld; eine Erhöhung kostet sie welche, und solange die Kunden bleiben, gibt es keinen Anlass dazu. Der Einlagenzins der Notenbank bleibt dabei die Obergrenze dessen, was überhaupt bezahlbar wäre.',
+    },
+    {
+      question:
+        'Ein Angebot wirbt mit einem hohen Zins „für 6 Monate, bis 50.000 Euro, nur für Neukunden“. Du willst 120.000 Euro anlegen. Was folgt daraus?',
+      options: [
+        'Der beworbene Satz gilt für den vollen Betrag, nur eben ein halbes Jahr',
+        'Nur ein Teil wird zum Aktionszins verzinst, der Rest zum niedrigeren Bestandssatz – der Durchschnitt liegt deutlich unter der beworbenen Zahl',
+        'Der Zins gilt gar nicht, weil die Obergrenze überschritten ist',
+        'Der Betrag über der Grenze wird unverzinst geführt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Beworben wird der günstigste Fall. Über der Obergrenze gilt der Bestandskundenzins, und nach der Frist gilt er für alles. Wer den tatsächlichen Ertrag wissen will, rechnet mit beiden Sätzen und über den gesamten Zeitraum – nicht mit der Zahl aus der Anzeige.',
+    },
+    {
+      question: 'Was passiert ohne Freistellungsauftrag mit den Steuern auf Zinserträge?',
+      options: [
+        'Es fällt keine Steuer an, solange der Sparerpauschbetrag nicht überschritten ist',
+        'Die Bank meldet die Erträge, zieht aber nichts ab',
+        'Die Bank führt die Steuer ab; zurückholen lässt sie sich über die Steuererklärung',
+        'Die Steuer wird erst bei Auflösung des Kontos fällig',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Freibetrag entsteht nicht automatisch beim Institut – die Bank muss wissen, dass sie ihn berücksichtigen soll. Ohne Auftrag führt sie ab, und das Geld ist für ein Jahr weg. Der Betrag lässt sich auf mehrere Banken verteilen, insgesamt aber nur einmal ausschöpfen.',
+    },
+    {
+      question:
+        'Du hast Tagesgeld bei einer Bank im EU-Ausland. Was ist steuerlich anders?',
+      options: [
+        'Die Zinsen sind in Deutschland steuerfrei',
+        'Es wird nichts automatisch abgeführt – die Zinsen gehören in die Steuererklärung',
+        'Es gilt ein doppelter Sparerpauschbetrag',
+        'Die deutsche Bank des Verrechnungskontos führt die Steuer ab',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ausländische Institute führen keine deutsche Abgeltungsteuer ab. Manche Länder behalten zudem eine eigene Quellensteuer ein, die sich in der Regel anrechnen lässt – aber nur, wenn man sie erklärt. Wer das übersieht, hat keinen Zinsvorteil erzielt, sondern eine unvollständige Erklärung abgegeben.',
+    },
+  ],
+  'tagesgeld:profi': [
+    {
+      question:
+        'Worin unterscheidet sich ein freiwilliger Einlagensicherungsfonds von der gesetzlichen Sicherung?',
+      options: [
+        'Er deckt höhere Beträge, begründet aber keinen einklagbaren Anspruch',
+        'Er gilt nur für Festgeld, nicht für Tagesgeld',
+        'Er ersetzt die gesetzliche Sicherung vollständig',
+        'Er wird vom Staat garantiert',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die gesetzliche Sicherung bis 100.000 Euro ist ein Rechtsanspruch mit gesetzlicher Auszahlungsfrist. Der freiwillige Fonds eines Verbands geht darüber hinaus, ist aber eine Leistung des Verbands – im Ernstfall abhängig von dessen Mitteln und Entscheidung.',
+    },
+    {
+      question: 'Was bedeutet Bail-in für Guthaben oberhalb der geschützten Summe?',
+      options: [
+        'Sie werden vorrangig aus Steuermitteln ersetzt',
+        'Sie sind über den freiwilligen Fonds automatisch mitversichert',
+        'Sie werden in Aktien der Bank umgewandelt und behalten ihren Wert',
+        'Sie können zur Sanierung der Bank herangezogen werden – geschützte Einlagen dagegen nicht',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Seit der Bankenkrise haften zuerst Eigentümer und Gläubiger, bevor öffentliche Mittel fließen. Einlagen von Privatpersonen stehen weit hinten in der Reihenfolge, und der Teil bis 100.000 Euro wird gar nicht herangezogen. Der Teil darüber schon – deshalb die Aufteilung auf mehrere Institute.',
+    },
+    {
+      question:
+        'Ein Fremdwährungskonto bietet deutlich mehr Zins als ein Eurokonto. Wie ist das einzuordnen?',
+      options: [
+        'Als Zinsvorteil ohne Gegenleistung',
+        'Der Zinsvorsprung entspricht meist der vom Markt erwarteten Abwertung dieser Währung',
+        'Als Zeichen besonderer Bonität der Bank',
+        'Als steuerfreier Ertrag, weil im Ausland erzielt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Höhere Zinsen und erwartete Abwertung sind zwei Seiten derselben Sache – sonst gäbe es einen risikolosen Gewinn, und den würde der Markt sofort wegarbitrieren. Der höhere Zins ist die Bezahlung für ein Wechselkursrisiko, nicht ein Geschenk.',
+    },
+    {
+      question: 'Ein Geldmarkt-ETF hat keinen Einlagenschutz. Wie schwer wiegt das?',
+      options: [
+        'Schwer – ohne Einlagenschutz droht bei Insolvenz des Anbieters der Totalverlust',
+        'Gar nicht – Geldmarktfonds sind staatlich garantiert',
+        'Wenig für den Anbieter, weil er Sondervermögen ist; das Risiko steckt in den gehaltenen Papieren',
+        'Nur bei Beträgen über 100.000 Euro',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Als Sondervermögen fällt der Fonds bei einer Insolvenz des Anbieters nicht in die Masse – dafür braucht er keinen Einlagenschutz. Sein Risiko liegt im Inhalt: Ein Fonds mit besicherten Übernachtgeschäften ist etwas anderes als einer mit kurzlaufenden Unternehmensanleihen, auch wenn beide „Geldmarkt“ heißen.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

@@ -1,5 +1,6 @@
 import { aktie } from '@/data/learn/topics/aktie'
 import { boerse } from '@/data/learn/topics/boerse'
+import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { inflation } from '@/data/learn/topics/inflation'
 import {
@@ -25,7 +26,6 @@ import {
   schuldverschreibung,
   sparerpauschbetrag,
   staatsanleihe,
-  tagesgeld,
   waehrungenWechselkurse,
   wannKaufenVerkaufen,
   wieFunktioniertDerMarkt,

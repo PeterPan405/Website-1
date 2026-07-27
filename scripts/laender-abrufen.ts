@@ -351,7 +351,10 @@ async function ladeSchuldenquoten(): Promise<Map<
  * Jahreslohn; ein Vermoegen ist aber ein Stichtagswert, und die Erhebungen
  * beziehen sich auf das Jahresende. Der Stichtagskurs passt also zur Groesse.
  */
-async function ladeJahresendkurse(): Promise<Map<number, Record<string, number>> | null> {
+async function ladeJahresendkurse(): Promise<Map<
+  number,
+  { datum: string; kurse: Record<string, number> }
+> | null> {
   try {
     const antwort = await fetch(ECB_REIHE_URL, { headers: KOPFZEILEN })
     if (!antwort.ok) {
@@ -367,14 +370,26 @@ async function ladeJahresendkurse(): Promise<Map<number, Record<string, number>>
       return null
     }
 
-    // Die Reihe kommt jüngster Tag zuerst. Je Jahr zählt der späteste Tag,
-    // also der erste, der für dieses Jahr vorbeikommt.
-    const jeJahr = new Map<number, Record<string, number>>()
+    /*
+      Je Jahr der spaeteste Tag – ausdruecklich per Datumsvergleich.
+
+      Der erste Anlauf hat sich auf die Reihenfolge der Datei verlassen und
+      angenommen, der juengste Tag komme zuerst. Er kommt zuletzt. Umgerechnet
+      wurde damit zum Kurs des 2. Januar statt zum Jahresende, und bei
+      Australien waren das 312.000 statt 344.000 Dollar – ein Unterschied von
+      zehn Prozent, dem man die Ursache nicht ansieht.
+
+      Ein Vergleich ist ein paar Zeichen mehr und haengt an nichts, was sich
+      auf der Gegenseite aendern kann.
+    */
+    const jeJahr = new Map<number, { datum: string; kurse: Record<string, number> }>()
     for (const tag of tage) {
       const jahr = Number(tag.date.slice(0, 4))
       if (!Number.isFinite(jahr)) continue
       const bisher = jeJahr.get(jahr)
-      if (!bisher) jeJahr.set(jahr, tag.rates)
+      if (!bisher || tag.date > bisher.datum) {
+        jeJahr.set(jahr, { datum: tag.date, kurse: tag.rates })
+      }
     }
 
     console.log(`Jahresendkurse fuer ${jeJahr.size} Jahre geholt.`)
@@ -406,7 +421,7 @@ async function ladeJahresendkurse(): Promise<Map<number, Record<string, number>>
  * fuer ein Land.
  */
 async function ladeVermoegen(
-  kurse: Map<number, Record<string, number>> | null
+  kurse: Map<number, { datum: string; kurse: Record<string, number> }> | null
 ): Promise<Map<string, { wert: number; jahr: number }> | null> {
   if (!kurse) return null
 
@@ -468,7 +483,7 @@ async function ladeVermoegen(
         continue
       }
 
-      const usd = tag['USD']
+      const usd = tag.kurse['USD']
       if (!usd) {
         ohneKurs.push(`${code} (kein USD-Kurs)`)
         continue
@@ -479,7 +494,7 @@ async function ladeVermoegen(
       const inEuro =
         eintrag.waehrung === 'EUR'
           ? eintrag.wert
-          : eintrag.wert / (tag[eintrag.waehrung] ?? 0)
+          : eintrag.wert / (tag.kurse[eintrag.waehrung] ?? 0)
 
       if (!Number.isFinite(inEuro) || inEuro <= 0) {
         ohneKurs.push(`${code} (${eintrag.waehrung})`)
