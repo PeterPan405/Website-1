@@ -7,7 +7,6 @@ import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { ArticleCard } from '@/components/news/ArticleCard'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { DemoNotice } from '@/components/ui/DemoNotice'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { formatDate, formatDateTime, formatNumber } from '@/lib/format'
@@ -106,18 +105,37 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
           {/* --------------------------------------------------- Artikeltext */}
           <article>
-            <DemoNotice>
-              <p>
-                Dieser Artikel ist ein{' '}
-                <strong className="text-fg font-semibold">erfundener Beispieltext</strong>{' '}
-                zur Demonstration der Seitenstruktur. Er beschreibt kein tatsächliches
-                Ereignis. Die erklärten Zusammenhänge sind fachlich korrekt, die Anlässe
-                und Zahlen sind es nicht.
-              </p>
-            </DemoNotice>
+            <ContentBlocks blocks={article.body} />
 
-            <div className="mt-8">
-              <ContentBlocks blocks={article.body} />
+            {/*
+              Quellen direkt unter dem Text, nicht in der Seitenleiste.
+
+              Die Zusammenfassung ist selbst geschrieben; nachprüfbar wird sie
+              erst durch die Verlinkung. Deshalb steht sie im Lesefluss und
+              nicht als Beiwerk daneben.
+            */}
+            <div className="border-border mt-10 border-t pt-6">
+              <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                Quellen
+              </h2>
+              <ul className="mt-3 space-y-2">
+                {article.sources.map((source) => (
+                  <li key={source.url} className="text-sm">
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-fg-muted hover:text-fg underline underline-offset-4"
+                    >
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-fg-subtle mt-3 text-xs">
+                Die Zusammenfassung ist redaktionell verfasst. Für die Inhalte verlinkter
+                Seiten sind deren Betreiber verantwortlich.
+              </p>
             </div>
 
             {article.tags.length > 0 && (

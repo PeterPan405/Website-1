@@ -1,5 +1,7 @@
 import { newsArticles, type NewsArticle, type NewsCategory } from '@/data/news'
 
+import { assertNewsValid } from '@/lib/news-validate'
+
 /**
  * Service-Schicht für Nachrichten.
  *
@@ -7,7 +9,32 @@ import { newsArticles, type NewsArticle, type NewsCategory } from '@/data/news'
  * (oder ein CMS) keine Änderung an den aufrufenden Komponenten erfordert.
  */
 
-export type { NewsArticle, NewsCategory } from '@/data/news'
+export type { NewsArticle, NewsCategory, NewsSource } from '@/data/news'
+
+/*
+  Prüfung beim Laden des Moduls und damit bei jedem Build.
+
+  Nachrichten werden schnell geschrieben und schnell ausgetauscht. Ein Artikel
+  ohne Quelle oder mit einem Themen-Slug, den es nicht gibt, soll den Build
+  abbrechen statt still online zu gehen.
+*/
+assertNewsValid(newsArticles)
+
+/**
+ * Wie viele Artikel unter „Aktuelles“ stehen.
+ *
+ * Das ist die ganze Mechanik des rollierenden Systems: Die fünf jüngsten
+ * Artikel stehen vorne, alles Ältere rutscht in „Weitere Artikel“. Kommt eine
+ * neue Meldung dazu, verschiebt sich die Grenze von selbst.
+ *
+ * Bewusst nach Rang und nicht nach Uhrzeit („alles aus den letzten 48
+ * Stunden“): Die Website wird statisch gebaut, das „jetzt“ wäre also der
+ * Zeitpunkt des letzten Builds. Nach ein paar Tagen ohne neue Ausgabe wäre der
+ * Bereich „Aktuelles“ dann leer – und eine leere Startseite ist schlimmer als
+ * eine mit Meldungen von vorgestern. Die 48 Stunden sind die redaktionelle
+ * Vorgabe für die Recherche, nicht die technische Anzeigelogik.
+ */
+export const CURRENT_NEWS_COUNT = 5
 
 /**
  * Reduzierte Artikel-Darstellung ohne Fließtext.
@@ -50,6 +77,26 @@ export async function getNewsArticles(limit?: number): Promise<NewsArticle[]> {
   return typeof limit === 'number' ? articles.slice(0, limit) : articles
 }
 
+/**
+ * Die aktuellen Meldungen – der vordere Teil des rollierenden Systems.
+ *
+ * Dieselbe Auswahl steht auf der Startseite und oben auf der News-Übersicht.
+ */
+export async function getCurrentNews(): Promise<NewsArticle[]> {
+  return sortedArticles().slice(0, CURRENT_NEWS_COUNT)
+}
+
+/**
+ * Alles, was aus „Aktuelles“ herausgerutscht ist.
+ *
+ * Kein eigenes Kennzeichen in den Daten: Was hier landet, ergibt sich allein
+ * aus der Reihenfolge. Ein Artikel wandert also von selbst nach hinten, sobald
+ * fünf neuere existieren.
+ */
+export async function getFurtherNews(): Promise<NewsArticle[]> {
+  return sortedArticles().slice(CURRENT_NEWS_COUNT)
+}
+
 export async function getNewsArticle(slug: string): Promise<NewsArticle | null> {
   return newsArticles.find((article) => article.slug === slug) ?? null
 }
@@ -60,7 +107,9 @@ export async function getNewsSlugs(): Promise<string[]> {
 }
 
 /** Kurzfassungen für Karussell und Teaser-Listen. */
-export async function getNewsHeadlines(limit = 6): Promise<NewsHeadline[]> {
+export async function getNewsHeadlines(
+  limit = CURRENT_NEWS_COUNT
+): Promise<NewsHeadline[]> {
   return sortedArticles().slice(0, limit).map(toHeadline)
 }
 
