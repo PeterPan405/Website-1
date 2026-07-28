@@ -35,15 +35,6 @@ jobs:
         with:
           node-version: 22
 
-      # VORÜBERGEHEND: Erstabruf der Quartalstermine.
-      #
-      # `quartalstermine.yml` liegt noch nicht auf main und ist deshalb für
-      # workflow_dispatch nicht registriert. Damit der erste Datenstand
-      # entstehen kann, läuft der Abruf einmalig hier mit. Wird direkt danach
-      # wieder entfernt.
-      - name: Quartalstermine abrufen (einmalig)
-        run: npm run quartalstermine
-
       - name: Fundamentaldaten abrufen
         run: npm run fundamentaldaten
 
@@ -55,8 +46,8 @@ jobs:
           # Erst vormerken, dann vergleichen. `git diff` allein sieht eine noch
           # nicht versionierte Datei nicht und meldet „keine Änderung“ – genau
           # daran ist der erste erfolgreiche Lauf gescheitert.
-          git add data/snapshots/fundamentaldaten.json data/snapshots/quartalstermine.json
-          if git diff --cached --quiet; then
+          git add data/snapshots/fundamentaldaten.json
+          if git diff --cached --quiet -- data/snapshots/fundamentaldaten.json; then
             echo "Keine Änderung – kein Commit."
             exit 0
           fi

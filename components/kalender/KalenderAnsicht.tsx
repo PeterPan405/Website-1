@@ -36,6 +36,72 @@ export interface AnsichtGruppe {
   termine: Termin[]
 }
 
+/**
+ * Eine Zeile in der Liste – entweder ein Termin oder ein ganzer Meldetag.
+ *
+ * Die erwarteten Quartalszahlen sind der Grund für diese Unterscheidung. Sie
+ * ballen sich: Am 29. Oktober 2026 melden fünfzehn der hier geführten
+ * Unternehmen am selben Tag. Fünfzehn Zeilen mit demselben Erklärungstext
+ * untereinander verdrängen den Zinsentscheid daneben, ohne einen Gedanken mehr
+ * zu transportieren.
+ *
+ * Zusammengefasst steht der Tag einmal da, die Erklärung einmal, und die
+ * Unternehmen als Liste von Links – dieselbe Information auf einem Bruchteil
+ * der Fläche.
+ */
+type Zeile =
+  | { schluessel: string; sammel: false; termin: Termin }
+  | { schluessel: string; sammel: true; datum: string; termine: Termin[] }
+
+/**
+ * Fasst erwartete Quartalszahlen desselben Tages zusammen.
+ *
+ * Zusammengefasst wird erst ab zwei Unternehmen: Ein einzelner Meldetag ist
+ * als vollständige Zeile besser aufgehoben – dort steht dann auch der
+ * Vorjahrestermin, aus dem die Erwartung stammt.
+ */
+function zuZeilen(termine: readonly Termin[]): Zeile[] {
+  const zeilen: Zeile[] = []
+  const sammelstellen = new Map<string, Extract<Zeile, { sammel: true }>>()
+
+  for (const termin of termine) {
+    if (!termin.geschaetzt || termin.art !== 'berichtssaison') {
+      zeilen.push({
+        schluessel: `${termin.datum}-${termin.titel}`,
+        sammel: false,
+        termin,
+      })
+      continue
+    }
+
+    const vorhanden = sammelstellen.get(termin.datum)
+    if (vorhanden) {
+      vorhanden.termine.push(termin)
+      continue
+    }
+
+    const neu: Extract<Zeile, { sammel: true }> = {
+      schluessel: `sammel-${termin.datum}`,
+      sammel: true,
+      datum: termin.datum,
+      termine: [termin],
+    }
+    sammelstellen.set(termin.datum, neu)
+    zeilen.push(neu)
+  }
+
+  // Aus Sammelstellen mit nur einem Unternehmen wird wieder eine normale Zeile.
+  return zeilen.map((zeile) =>
+    zeile.sammel && zeile.termine.length === 1
+      ? {
+          schluessel: `${zeile.termine[0].datum}-${zeile.termine[0].titel}`,
+          sammel: false,
+          termin: zeile.termine[0],
+        }
+      : zeile
+  )
+}
+
 export function KalenderAnsicht({
   gruppen,
   artMeta,
@@ -93,13 +159,15 @@ export function KalenderAnsicht({
     return gruppen
       .map((gruppe) => ({
         monat: gruppe.monat,
-        termine: gruppe.termine.filter((termin) => {
-          if (aktiv.size > 0 && !aktiv.has(termin.art)) return false
-          if (!zeigeVergangenes && istVorbei(termin)) return false
-          return true
-        }),
+        zeilen: zuZeilen(
+          gruppe.termine.filter((termin) => {
+            if (aktiv.size > 0 && !aktiv.has(termin.art)) return false
+            if (!zeigeVergangenes && istVorbei(termin)) return false
+            return true
+          })
+        ),
       }))
-      .filter((gruppe) => gruppe.termine.length > 0)
+      .filter((gruppe) => gruppe.zeilen.length > 0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gruppen, aktiv, zeigeVergangenes, heute])
 
@@ -124,6 +192,12 @@ export function KalenderAnsicht({
           </p>
           <p className="text-fg mt-1.5 text-lg font-bold">{naechster.titel}</p>
           <p className="text-fg-muted mt-1 text-sm">
+            {/* Auch hier: erst kennzeichnen, dann datieren. Der hervorgehobene
+                Kasten ist die Stelle, an der eine Hochrechnung am ehesten für
+                eine Tatsache gehalten würde. */}
+            {naechster.geschaetzt && (
+              <span className="text-fg-subtle">erwartet um den </span>
+            )}
             {langesDatum(naechster.datum)}
             {naechster.uhrzeit && ` · ${naechster.uhrzeit}`}
             {naechster.ort && ` · ${naechster.ort}`}
@@ -198,89 +272,191 @@ export function KalenderAnsicht({
                 {monatsname(gruppe.monat)}
               </h2>
               <ul className="mt-5 space-y-5">
-                {gruppe.termine.map((termin) => (
-                  <li
-                    key={`${termin.datum}-${termin.titel}`}
-                    className={cn(
-                      'grid gap-x-5 gap-y-2 sm:grid-cols-[7.5rem_minmax(0,1fr)]',
-                      istVorbei(termin) && 'opacity-55'
-                    )}
-                  >
-                    <div className="sm:text-right">
-                      <p className="text-fg text-sm font-semibold tabular-nums">
-                        {kurzesDatum(termin.datum)}
-                        {termin.bis && (
-                          <>
-                            <span className="text-fg-subtle"> bis </span>
-                            {kurzesDatum(termin.bis)}
-                          </>
-                        )}
-                      </p>
-                      {termin.uhrzeit && (
-                        <p className="text-fg-subtle mt-0.5 text-xs">{termin.uhrzeit}</p>
+                {gruppe.zeilen.map((zeile) =>
+                  zeile.sammel ? (
+                    <li
+                      key={zeile.schluessel}
+                      className={cn(
+                        'grid gap-x-5 gap-y-2 sm:grid-cols-[7.5rem_minmax(0,1fr)]',
+                        istVorbei(zeile.termine[0]) && 'opacity-55'
                       )}
-                    </div>
-
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={cn(
-                            'rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold',
-                            ARTFARBEN[termin.art]
-                          )}
-                        >
-                          {artMeta[termin.art].label}
-                        </span>
-                        {termin.ort && (
-                          <span className="text-fg-subtle text-xs">{termin.ort}</span>
-                        )}
-                        {istVorbei(termin) && (
-                          <span className="text-fg-subtle text-xs">vorbei</span>
-                        )}
+                    >
+                      <div className="sm:text-right">
+                        <p className="text-fg text-sm font-semibold tabular-nums">
+                          <span className="text-fg-subtle font-normal">um den </span>
+                          {kurzesDatum(zeile.datum)}
+                        </p>
                       </div>
 
-                      <h3 className="text-fg mt-1.5 font-semibold">{termin.titel}</h3>
-                      <p className="text-fg-muted mt-1 text-sm leading-relaxed">
-                        {termin.bedeutung}
-                      </p>
-
-                      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
-                        {termin.symbole?.map((symbol) => (
-                          <Link
-                            key={symbol}
-                            href={`/maerkte/${symbol}`}
-                            className="text-brand text-xs underline underline-offset-2"
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span
+                            className={cn(
+                              'rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold',
+                              ARTFARBEN.berichtssaison
+                            )}
                           >
-                            {kursnamen[symbol] ?? symbol}
-                          </Link>
-                        ))}
-                        {termin.themen?.map((thema) => (
-                          <Link
-                            key={thema}
-                            href={`/lernen/${thema}`}
+                            {artMeta.berichtssaison.label}
+                          </span>
+                          <span className="border-border text-fg-subtle rounded-full border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
+                            erwartet, nicht bestätigt
+                          </span>
+                          {istVorbei(zeile.termine[0]) && (
+                            <span className="text-fg-subtle text-xs">vorbei</span>
+                          )}
+                        </div>
+
+                        <h3 className="text-fg mt-1.5 font-semibold">
+                          {zeile.termine.length} Unternehmen melden Quartalszahlen
+                        </h3>
+                        <p className="text-fg-muted mt-1 text-sm leading-relaxed">
+                          Abgeleitet aus dem Meldemuster der vergangenen Jahre. Den
+                          genauen Tag geben die Unternehmen wenige Wochen vorher selbst
+                          bekannt. Für den Kurs zählt ohnehin nicht die Zahl, sondern ihre
+                          Abweichung von der Erwartung.
+                        </p>
+
+                        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                          {zeile.termine.map((termin) => {
+                            const symbol = termin.symbole?.[0]
+                            if (!symbol) return null
+                            return (
+                              <Link
+                                key={symbol}
+                                href={`/maerkte/${symbol}`}
+                                className="text-brand text-xs underline underline-offset-2"
+                              >
+                                {termin.titel.replace(': Quartalszahlen erwartet', '')}
+                              </Link>
+                            )
+                          })}
+                          <a
+                            href={zeile.termine[0].quelle.url}
+                            rel="noopener noreferrer nofollow"
+                            target="_blank"
                             className="text-fg-subtle hover:text-fg text-xs underline underline-offset-2"
                           >
-                            {themennamen[thema] ?? thema}
-                          </Link>
-                        ))}
-                        <a
-                          href={termin.quelle.url}
-                          rel="noopener noreferrer nofollow"
-                          target="_blank"
-                          className="text-fg-subtle hover:text-fg text-xs underline underline-offset-2"
-                        >
-                          Quelle
-                        </a>
+                            Quelle
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  ) : (
+                    <ZeileEinzeln
+                      key={zeile.schluessel}
+                      termin={zeile.termin}
+                      vorbei={istVorbei(zeile.termin)}
+                      artMeta={artMeta}
+                      themennamen={themennamen}
+                      kursnamen={kursnamen}
+                    />
+                  )
+                )}
               </ul>
             </section>
           ))}
         </div>
       )}
     </div>
+  )
+}
+
+function ZeileEinzeln({
+  termin,
+  vorbei,
+  artMeta,
+  themennamen,
+  kursnamen,
+}: {
+  termin: Termin
+  vorbei: boolean
+  artMeta: Record<TerminArt, { label: string; erklaerung: string }>
+  themennamen: Record<string, string>
+  kursnamen: Record<string, string>
+}) {
+  return (
+    <li
+      className={cn(
+        'grid gap-x-5 gap-y-2 sm:grid-cols-[7.5rem_minmax(0,1fr)]',
+        vorbei && 'opacity-55'
+      )}
+    >
+      <div className="sm:text-right">
+        <p className="text-fg text-sm font-semibold tabular-nums">
+          {termin.geschaetzt && (
+            <span className="text-fg-subtle font-normal">um den </span>
+          )}
+          {kurzesDatum(termin.datum)}
+          {termin.bis && (
+            <>
+              <span className="text-fg-subtle"> bis </span>
+              {kurzesDatum(termin.bis)}
+            </>
+          )}
+        </p>
+        {termin.uhrzeit && (
+          <p className="text-fg-subtle mt-0.5 text-xs">{termin.uhrzeit}</p>
+        )}
+      </div>
+
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center gap-2">
+          <span
+            className={cn(
+              'rounded-full px-2 py-0.5 text-[0.6875rem] font-semibold',
+              ARTFARBEN[termin.art]
+            )}
+          >
+            {artMeta[termin.art].label}
+          </span>
+          {termin.ort && <span className="text-fg-subtle text-xs">{termin.ort}</span>}
+          {/*
+            Der Unterschied zwischen bekannt gegeben und hochgerechnet gehört
+            an die Stelle, an der jemand den Termin liest – nicht in eine
+            Fußnote. Wer danach eine Order legt, muss es sehen, ohne zu
+            scrollen.
+          */}
+          {termin.geschaetzt && (
+            <span className="border-border text-fg-subtle rounded-full border border-dashed px-2 py-0.5 text-[0.6875rem] font-medium">
+              erwartet, nicht bestätigt
+            </span>
+          )}
+          {vorbei && <span className="text-fg-subtle text-xs">vorbei</span>}
+        </div>
+
+        <h3 className="text-fg mt-1.5 font-semibold">{termin.titel}</h3>
+        <p className="text-fg-muted mt-1 text-sm leading-relaxed">{termin.bedeutung}</p>
+
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+          {termin.symbole?.map((symbol) => (
+            <Link
+              key={symbol}
+              href={`/maerkte/${symbol}`}
+              className="text-brand text-xs underline underline-offset-2"
+            >
+              {kursnamen[symbol] ?? symbol}
+            </Link>
+          ))}
+          {termin.themen?.map((thema) => (
+            <Link
+              key={thema}
+              href={`/lernen/${thema}`}
+              className="text-fg-subtle hover:text-fg text-xs underline underline-offset-2"
+            >
+              {themennamen[thema] ?? thema}
+            </Link>
+          ))}
+          <a
+            href={termin.quelle.url}
+            rel="noopener noreferrer nofollow"
+            target="_blank"
+            className="text-fg-subtle hover:text-fg text-xs underline underline-offset-2"
+          >
+            Quelle
+          </a>
+        </div>
+      </div>
+    </li>
   )
 }
 

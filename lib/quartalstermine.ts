@@ -111,12 +111,14 @@ export function getQuartalstermine(): Termin[] {
           breit ausweisen, wie er tatsächlich bekannt ist – statt eine
           Genauigkeit vorzutäuschen, die die Quelle nicht hergibt.
         */
-        bis: unscharf ? verschiebe(vorhersage.erwartet, vorhersage.streuungTage) : undefined,
+        bis: unscharf
+          ? verschiebe(vorhersage.erwartet, vorhersage.streuungTage)
+          : undefined,
         titel: `${katalog.name}: Quartalszahlen erwartet`,
         art: 'berichtssaison',
         bedeutung:
           `Abgeleitet aus dem bisherigen Meldemuster – im Vorjahr meldete das Unternehmen am ` +
-          `${vorhersage.basis}. Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
+          `${aufDeutsch(vorhersage.basis)}. Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
           `Für den Kurs zählt ohnehin nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`,
         themen: ['aktie', 'wie-funktioniert-der-markt'],
         symbole: [katalog.symbol],
@@ -130,6 +132,33 @@ export function getQuartalstermine(): Termin[] {
   }
 
   return ergebnis
+}
+
+const MONATE = [
+  'Januar',
+  'Februar',
+  'März',
+  'April',
+  'Mai',
+  'Juni',
+  'Juli',
+  'August',
+  'September',
+  'Oktober',
+  'November',
+  'Dezember',
+]
+
+/**
+ * ISO-Datum als deutscher Fließtext.
+ *
+ * Die Momentaufnahme führt Daten als `2025-07-30` – richtig für einen
+ * Datensatz, falsch mitten in einem Satz. Ohne diese Umwandlung stünde die
+ * Maschinenschreibweise in der Erklärung unter dem Termin.
+ */
+function aufDeutsch(datum: string): string {
+  const [jahr, monat, tag] = datum.split('-')
+  return `${Number(tag)}. ${MONATE[Number(monat) - 1]} ${jahr}`
 }
 
 function verschiebe(datum: string, tage: number): string {

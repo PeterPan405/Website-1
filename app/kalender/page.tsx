@@ -14,14 +14,19 @@ import {
 } from '@/lib/kalender'
 import { getLearnTopics, getTopicsBySlugs } from '@/lib/learn'
 import { getInstruments } from '@/lib/markets'
+import {
+  getQuartalsterminAbdeckung,
+  quartalstermineQuelle,
+  quartalstermineStand,
+} from '@/lib/quartalstermine'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: withBrand('Börsenkalender – Termine, die feststehen'),
+  title: withBrand('Börsenkalender – Zinsentscheide und Quartalszahlen'),
   description:
-    'Zinsentscheide von EZB und Fed, Berichtssaison, Verfallstage, Börsenfeiertage und Wahlen – mit einer Einordnung, was jeder Termin für Anleger bedeutet.',
+    'Zinsentscheide von EZB und Fed, erwartete Quartalszahlen, Verfallstage, Börsenfeiertage und Wahlen – mit einer Einordnung, was jeder Termin bedeutet.',
   path: '/kalender',
-  ogTitle: 'Der Börsenkalender: Termine, die feststehen',
+  ogTitle: 'Der Börsenkalender: worauf der Markt schaut',
 })
 
 export default async function KalenderPage() {
@@ -49,6 +54,7 @@ export default async function KalenderPage() {
   )
 
   const gesamt = gruppen.reduce((summe, gruppe) => summe + gruppe.termine.length, 0)
+  const quartalstermine = getQuartalsterminAbdeckung()
 
   return (
     <>
@@ -56,8 +62,8 @@ export default async function KalenderPage() {
         area="calendar"
         eyebrow="Kalender"
         eyebrowIcon="clock"
-        title="Termine, die feststehen"
-        lead="Zinsentscheide, Berichtssaison, Verfallstage, Börsenfeiertage und Wahlen – und bei jedem Termin ein Satz dazu, was er für dein Geld bedeutet."
+        title="Die Termine, auf die der Markt schaut"
+        lead="Zinsentscheide, Quartalszahlen, Verfallstage, Börsenfeiertage und Wahlen – und bei jedem Termin ein Satz dazu, was er für dein Geld bedeutet. Erwartete Termine sind als solche gekennzeichnet."
         breadcrumbs={<Breadcrumbs items={[{ name: 'Kalender' }]} />}
         meta={
           <>
@@ -84,23 +90,60 @@ export default async function KalenderPage() {
           {/* ---------------------------------------------------- Einordnung */}
           <section aria-labelledby="hinweis" className="mt-16">
             <h2 id="hinweis" className="text-fg text-2xl font-bold">
-              Warum hier keine geschätzten Termine stehen
+              Was hier feststeht – und was erwartet wird
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              In diesem Kalender steht nur, was im Voraus feststeht und veröffentlicht
-              ist. Notenbanken geben ihre Sitzungstermine ein Jahr vorher bekannt, Börsen
-              ihre Feiertage, Verfallstage folgen einer festen Regel – dem dritten Freitag
-              der Quartalsmonate –, und Wahltermine stehen im Gesetz.
+              Das meiste in diesem Kalender steht im Voraus fest und ist veröffentlicht.
+              Notenbanken geben ihre Sitzungstermine ein Jahr vorher bekannt, Börsen ihre
+              Feiertage, Verfallstage folgen einer festen Regel – dem dritten Freitag der
+              Quartalsmonate –, und Wahltermine stehen im Gesetz.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Wann genau ein einzelnes Unternehmen seine Quartalszahlen vorlegt, kündigt
-              es dagegen selbst an, meist wenige Wochen vorher. Für alle Aktien dieser
-              Seite ein Jahr im Voraus ist das schlicht nicht bekannt. Deshalb stehen für
-              die Berichtssaison <strong className="text-fg">Zeitfenster</strong> im
-              Kalender und einzelne Tage nur dort, wo sie bestätigt sind. Ein Kalender,
-              der geratene Daten wie Fakten ausweist, wäre schlimmer als einer mit Lücken:
-              Wer danach plant, verpasst den echten Termin.
+              Wann ein einzelnes Unternehmen seine Quartalszahlen vorlegt, kündigt es
+              dagegen selbst an, meist wenige Wochen vorher. Ein Jahr im Voraus ist dieser
+              Tag nirgends zu bekommen. Was es gibt, ist das Muster: Unternehmen melden
+              Quartal für Quartal ungefähr am selben Tag des Jahres.{' '}
+              {quartalstermine.termine > 0 && (
+                <>
+                  Aus diesem Muster sind hier{' '}
+                  <strong className="text-fg">
+                    {quartalstermine.termine} Meldetermine
+                  </strong>{' '}
+                  für {quartalstermine.unternehmen} Unternehmen hochgerechnet – aus den
+                  Pflichtmeldungen der vergangenen Jahre bei der US-Börsenaufsicht SEC
+                  (Formular 8-K, Punkt 2.02).
+                </>
+              )}
             </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Diese Termine sind mit{' '}
+              <strong className="text-fg">„erwartet, nicht bestätigt“</strong> und mit „um
+              den …“ gekennzeichnet, und sie stehen nur ein halbes Jahr weit im Voraus.
+              Ein Kalender, der geratene Daten wie Fakten ausweist, wäre schlimmer als
+              einer mit Lücken: Wer danach plant, verpasst den echten Termin. Ein
+              gekennzeichneter Erwartungswert dagegen ist nützlich – er sagt, in welcher
+              Woche man hinsehen sollte.
+            </p>
+            {quartalstermineStand && (
+              <p className="text-fg-subtle mt-4 text-sm">
+                Hochgerechnet am{' '}
+                {new Date(quartalstermineStand).toLocaleDateString('de-DE', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                  timeZone: 'UTC',
+                })}
+                . {quartalstermineQuelle.abgrenzung}{' '}
+                <a
+                  href={quartalstermineQuelle.url}
+                  rel="noopener noreferrer nofollow"
+                  target="_blank"
+                  className="underline underline-offset-2"
+                >
+                  {quartalstermineQuelle.label}
+                </a>
+              </p>
+            )}
 
             <Callout variant="tip" title="Was Termine mit Kursen machen" className="mt-6">
               <p>

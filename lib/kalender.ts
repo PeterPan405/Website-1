@@ -1,6 +1,7 @@
-import { termine } from '@/data/kalender/termine'
+import { termine as gepflegteTermine } from '@/data/kalender/termine'
 import { terminArtReihenfolge, type Termin, type TerminArt } from '@/data/kalender/typen'
 import { assertTermineValid } from '@/lib/kalender-validate'
+import { getQuartalstermine } from '@/lib/quartalstermine'
 
 /**
  * Service-Schicht für den Börsenkalender.
@@ -27,6 +28,24 @@ export { terminArtMeta, terminArtReihenfolge } from '@/data/kalender/typen'
   Ein verrutschter Zinsentscheid sieht aus wie ein richtiger. Deshalb bricht
   der Build ab, statt zu warnen.
 */
+/*
+  Von Hand gepflegte und abgeleitete Termine in einer Liste.
+
+  Die abgeleiteten tragen `geschaetzt` und lassen sich dadurch überall
+  unterscheiden – in der Anzeige, in der Zählung und in jeder Auswertung. Sie
+  hier zusammenzuführen statt in der Seite ist Absicht: Sonst müsste jede
+  Stelle, die Termine anzeigt, an zwei Quellen denken, und irgendwann würde
+  eine davon vergessen.
+
+  Geprüft wird die zusammengeführte Liste, nicht nur der gepflegte Teil. Die
+  abgeleiteten Termine stammen aus einer wöchentlich neu gezogenen
+  Momentaufnahme der SEC – also aus der Quelle, die niemand hier
+  kontrolliert. Genau dort ist eine Prüfung beim Bauen etwas wert: Ein
+  Unternehmen, das plötzlich zwei Termine im selben Quartal meldet, ist im
+  ersten Lauf tatsächlich vorgekommen.
+*/
+const termine: Termin[] = [...gepflegteTermine, ...getQuartalstermine()]
+
 assertTermineValid(termine)
 
 function nachDatum(a: Termin, b: Termin): number {
