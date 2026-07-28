@@ -608,6 +608,29 @@ hier einen Punkt erledigt, streicht ihn hier.**
    neben `msci-world`; `data/debt.ts` weist das im Kopf und die Übersichtsseite es
    sichtbar aus. Kurse, Länderdaten, Fundamentalzahlen und Quartalstermine kommen
    inzwischen aus echten Quellen.
+
+   **Die Daten sind längst da.** `scripts/laender-abrufen.ts` holt seit dem Ausbau
+   der Länderdaten die Schuldenquote des IWF (`GGXWDG_NGDP` über die
+   Datamapper-Schnittstelle), das BIP der Weltbank und die Einwohnerzahlen.
+   `data/snapshots/laender.json` enthält damit **178 Länder mit allen drei
+   Größen** – darunter alle 18 des Demo-Datensatzes. Umzustellen ist nur
+   `lib/debt.ts`; dort steht seit jeher der Kommentar, dass beim Umstieg genau
+   diese eine Datei angepasst wird.
+
+   Zwei Entscheidungen sind vorher zu treffen, und beide sind inhaltlich, nicht
+   technisch:
+
+   - **Umrechnungskurs.** Das BIP der Weltbank steht in laufenden US-Dollar des
+     Bezugsjahres (derzeit 2023). Umgerechnet werden muss mit dem
+     Durchschnittskurs _desselben_ Jahres, nicht mit dem heutigen – sonst stünde
+     eine Zahl von 2023 zu einem Kurs von heute da. Die EZB-Reihe in
+     `data/snapshots/markets.json` reicht weit genug zurück.
+   - **Regionen.** `DebtRegion` kennt heute fünf handverlesene Gruppen
+     (`Eurozone`, `EU ohne Euro`, …). Bei 178 Ländern kommen Afrika und der Nahe
+     Osten hinzu; die Einteilung muss entweder auf die UN-Regionen des Snapshots
+     wechseln oder die Auswahl bleibt bewusst auf eine Ländergruppe beschränkt.
+     Das ist eine Produktentscheidung.
+
 2. **Kontaktformular.** Aktuell nur ein E-Mail-Link, weil die Seite statisch
    ausgeliefert wird. Ein Formular braucht serverseitige Verarbeitung, Spam-Schutz und
    eine Ergänzung der Datenschutzerklärung.
