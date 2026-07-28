@@ -75,15 +75,16 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   /*
-    Eine Farbe, nicht zwei nach Systemvorgabe.
+    Zwei Farben nach Systemvorgabe – für den Fall ohne gespeicherte Wahl.
 
-    Vorher standen hier zwei Einträge mit `prefers-color-scheme`. Seit der erste
-    Besuch immer hell beginnt, war das eine Fehlerquelle: Wer sein System auf
-    Dunkel gestellt hat, bekam eine helle Seite mit dunkler Browserleiste
-    darüber. Die Leiste folgt jetzt dem tatsächlichen Modus – anfangs hell, und
-    beim Umschalten setzt `ThemeToggle` sie um.
+    Das deckt den ersten Besuch ab, und zwar bevor irgendein Script läuft. Wer
+    schon einmal umgeschaltet hat, bekommt die passende Farbe vom Startskript
+    nachgereicht; dort ist die Systemvorgabe nicht mehr maßgeblich.
   */
-  themeColor: LEISTENFARBE.light,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: LEISTENFARBE.light },
+    { media: '(prefers-color-scheme: dark)', color: LEISTENFARBE.dark },
+  ],
   colorScheme: 'light dark',
 }
 
@@ -93,19 +94,38 @@ export const viewport: Viewport = {
  * Ohne dieses Script würde die Seite zuerst im Hellmodus gerendert und erst
  * nach der Hydration umgeschaltet – sichtbar als kurzes weißes Aufblitzen.
  *
- * ## Warum die Systemvorgabe nicht mehr abgefragt wird
+ * ## Die Rangfolge
  *
- * Der erste Besuch ist immer hell. Vorher folgte er `prefers-color-scheme`,
- * sodass ein Teil der Besucher die Seite zuerst dunkel sah – für eine Marke,
- * deren Erscheinungsbild hell gedacht ist, der falsche erste Eindruck.
+ * 1. **Die eigene Wahl.** Wer den Umschalter benutzt hat, bekommt sie bei jedem
+ *    weiteren Besuch auf demselben Gerät zurück – auch entgegen der
+ *    Systemvorgabe. Sie steht im localStorage und wird zuerst gelesen.
+ * 2. **Die Systemvorgabe.** Wer sein Gerät auf Dunkel gestellt hat – oft aus
+ *    Lichtempfindlichkeit –, bekommt die Seite von Anfang an dunkel.
+ * 3. **Hell.** Wer weder das eine noch das andere hat, sieht Weiß.
  *
- * Dunkel wird es nur noch, wenn jemand ausdrücklich umgeschaltet hat: Die
- * Bedingung ist `s === 'dark'` und sonst nichts. Die Wahl bleibt gespeichert
- * und gilt bei jedem weiteren Besuch – am Umschalter ändert sich nichts.
+ * `prefers-color-scheme` meldet nur „hell“ oder „dunkel“ und verrät nicht, ob
+ * jemand das eingestellt oder nur nie angefasst hat. Für Punkt 2 und 3 ist das
+ * ohne Belang: Wer nichts ändert, steht auf Hell.
+ *
+ * ## Warum das Skript auch die Browserleiste setzt
+ *
+ * Die Farbe im `<head>` folgt der Systemvorgabe. Bei einer gespeicherten Wahl,
+ * die davon abweicht, wäre sie falsch – helle Leiste über dunkler Seite. Das
+ * Skript korrigiert sie deshalb genau dann, wenn eine Wahl gespeichert ist.
+ *
+ * Dabei werden **beide** Meta-Angaben gesetzt, nicht nur die erste. Es gibt
+ * zwei, je eine mit `media`-Bedingung, und der Browser nimmt die passende. Ein
+ * `querySelector` trifft immer die helle; bei dunklem System und gespeicherter
+ * Wahl „hell“ blieb dadurch die dunkle Leiste stehen – heller Inhalt, dunkler
+ * Rahmen. Aufgefallen erst beim Durchspielen aller vier Fälle.
  */
-const themeScript = `(function(){try{var s=localStorage.getItem(${JSON.stringify(
-  THEME_STORAGE_KEY
-)});document.documentElement.dataset.theme=s==='dark'?'dark':'light'}catch(e){}})()`
+const themeScript = `(function(){try{
+var s=localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});
+var dark=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+document.documentElement.dataset.theme=dark?'dark':'light';
+if(s){var f=dark?${JSON.stringify(LEISTENFARBE.dark)}:${JSON.stringify(LEISTENFARBE.light)};
+document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',f)})}
+}catch(e){}})()`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

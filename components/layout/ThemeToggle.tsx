@@ -25,8 +25,8 @@ export function ThemeToggle({ className }: { className?: string }) {
       – auf dem Handy der auffälligste Teil der ganzen Umschaltung.
     */
     document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', LEISTENFARBE[next])
+      .querySelectorAll('meta[name="theme-color"]')
+      .forEach((m) => m.setAttribute('content', LEISTENFARBE[next]))
 
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, next)

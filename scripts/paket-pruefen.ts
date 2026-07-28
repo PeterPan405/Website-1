@@ -356,7 +356,9 @@ function pruefen(): string[] {
       Die Prüfung sieht deshalb ins Skript selbst, nicht in den sichtbaren Text
       – dort kommt sie mit `nurText` gar nicht an.
     */
-    const startskript = html.match(/<script>\(function\(\)\{try\{var s=[^<]*/)?.[0]
+    const startskript = html.match(
+      /<script>\(function\(\)\{try\{[\s\S]{0,600}?<\/script>/
+    )?.[0]
     if (startskript && /getItem\((undefined|null|""|'')\)/.test(startskript)) {
       fehler.push(
         `${pfad}: Das Farbschema-Startskript liest einen leeren Speicherschlüssel – ` +
