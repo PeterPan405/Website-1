@@ -6,6 +6,7 @@ import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
 import { inflation } from '@/data/learn/topics/inflation'
+import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
@@ -18,7 +19,6 @@ import {
   einlagensicherung,
   groessteCrashes,
   immobilien,
-  kostenUndGebuehren,
   notenbankenGeldpolitik,
   option,
   portfolioAufbau,

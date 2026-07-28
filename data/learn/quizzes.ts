@@ -1908,6 +1908,160 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Rendite ohne entsprechendes Risiko gibt es nicht – und eine seriöse Anlage läuft einem nicht weg. Weitere Warnzeichen: keine Zulassung bei der BaFin, Ertrag aus der Anwerbung weiterer Anleger, kein Basisinformationsblatt und keine ISIN. Ein EU-Sitz allein ist dagegen unauffällig.',
     },
   ],
+  // ------------------------------------------------------- Kosten & Gebühren
+  'kosten-und-gebuehren:beginner': [
+    {
+      question: 'Welche dieser Kostenarten taucht auf keiner Abrechnung auf?',
+      options: [
+        'Der Ausgabeaufschlag',
+        'Die Ordergebühr',
+        'Die laufenden Fondskosten',
+        'Die Depotgebühr',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Sie werden täglich anteilig aus dem Fondsvermögen entnommen – der Anteilspreis ist bereits um sie gemindert. Ebenso unsichtbar sind der Spread und die Handelskosten innerhalb des Fonds. Zusammen sind diese drei fast immer der größere Posten.',
+    },
+    {
+      question:
+        'Warum wiegen laufende Kosten schwerer als ein einmaliger Ausgabeaufschlag?',
+      options: [
+        'Weil sie höher sind als jeder Ausgabeaufschlag',
+        'Weil sie jedes Jahr auf das gesamte angesparte Vermögen wirken, nicht nur auf eine Einzahlung',
+        'Weil sie steuerlich nicht absetzbar sind',
+        'Weil sie beim Verkauf noch einmal anfallen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Ausgabeaufschlag trifft einmal die Einzahlung. Eine Kostenquote trifft im dreißigsten Jahr einen sechsstelligen Depotwert, nicht die Monatsrate. Dazu kommt: Was entnommen wird, kann sich nicht mehr verzinsen – der Verlust ist größer als die Summe der Gebühren.',
+    },
+    {
+      question:
+        '300 Euro monatlich über 30 Jahre bei 6 Prozent Bruttorendite. Wie viel bleibt bei 0,2 gegenüber 2,0 Prozent Kosten übrig?',
+      options: [
+        'Etwa 10.000 Euro Unterschied',
+        'Etwa 30.000 Euro Unterschied',
+        'Etwa 80.000 Euro Unterschied – rund ein Viertel des Ergebnisses',
+        'Der Unterschied ist bei Sparplänen vernachlässigbar',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 108.000 Euro Einzahlung werden bei 0,2 Prozent Kosten rund 290.000 Euro, bei 2,0 Prozent nur rund 208.000. Knapp 82.000 Euro Unterschied bei identischer Einzahlung und identischem Markt – der einzige Unterschied ist die Kostenquote, und die stand am ersten Tag fest.',
+    },
+    {
+      question: 'Wo lässt sich bei langfristiger Anlage am meisten sparen?',
+      options: [
+        'Bei den laufenden Fondskosten',
+        'Bei der einzelnen Ordergebühr',
+        'Bei der Depotgebühr',
+        'Beim Handelsplatzentgelt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Fondskosten wirken jedes Jahr auf alles – breite Indexfonds liegen bei 0,05 bis 0,25 Prozent, aktive Aktienfonds häufig bei 1,5 Prozent und mehr. Die Ordergebühr ist bei zwei Käufen im Jahr der kleinste Hebel; wichtig wird sie nur bei sehr kleinen Sparraten.',
+    },
+  ],
+  'kosten-und-gebuehren:fortgeschritten': [
+    {
+      question: 'Welcher Posten ist in der Gesamtkostenquote TER NICHT enthalten?',
+      options: [
+        'Die Verwaltungsvergütung',
+        'Die Kosten der Depotbank',
+        'Die Transaktionskosten innerhalb des Fonds',
+        'Die Wirtschaftsprüfungskosten',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die TER ist eine Untergrenze, keine Gesamtangabe: Handelskosten im Fonds, erfolgsabhängige Vergütungen und Swap-Gebühren stehen ausdrücklich nicht darin. Ein Fonds, der seinen Bestand jährlich umschlägt, zahlt hier ein Vielfaches eines ruhigen – bei identischer TER.',
+    },
+    {
+      question: 'Warum kann die Tracking-Differenz eines ETF kleiner sein als seine TER?',
+      options: [
+        'Weil die TER falsch berechnet wurde',
+        'Weil Erträge aus Wertpapierleihe und Quellensteueroptimierung den Rückstand verkleinern',
+        'Weil die Tracking-Differenz Dividenden ausklammert',
+        'Weil sie nur für synthetische ETFs gilt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Tracking-Differenz misst ein Ergebnis, keine Gebühr – alles, was tatsächlich passiert ist, steckt darin. Zusatzerträge können den Rückstand verkleinern, in Einzelfällen liegt ein Fonds sogar vor seinem Index. Zu betrachten sind mehrere Jahre; ein einzelnes kann von einem Sondereffekt geprägt sein.',
+    },
+    {
+      question: 'Wie vergleicht man die Gesamtkosten zweier Wege sauber?',
+      options: [
+        'Alle Prozentangaben addieren',
+        'Nur die TER vergleichen',
+        'Nur die Ordergebühren vergleichen',
+        'Alle Posten eines Jahres in Euro ausrechnen und durch den Depotwert teilen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Prozentzahlen verschiedener Bezugsgrößen lassen sich nicht addieren – die Kostenquote bezieht sich auf den Depotwert, die Ordergebühr auf die Ordergröße. In Euro gerechnet zeigt sich, dass bei kleinen Depots die Ordergebühren dominieren und bei großen die Fondskosten.',
+    },
+    {
+      question:
+        'Kleines Depot mit monatlichem Sparplan – worauf kommt es hier vor allem an?',
+      options: [
+        'Auf kostenfreie Sparplanausführung',
+        'Auf die niedrigstmögliche Fondskostenquote',
+        'Auf die Zahl der verfügbaren Handelsplätze',
+        'Auf die Höhe der Depotgebühr',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei kleinen Raten dominieren feste Ausführungskosten: Ein Euro auf 25 Euro Rate sind vier Prozent, die sofort weg sind. Die Fondskostenquote ist zweitrangig, solange sie im üblichen Rahmen liegt. Bei großen Depots mit seltenen Käufen kehrt sich das Verhältnis um.',
+    },
+  ],
+  'kosten-und-gebuehren:profi': [
+    {
+      question: 'Was ist eine Bestandsprovision?',
+      options: [
+        'Eine Gebühr für die Verwahrung großer Bestände',
+        'Ein Teil der laufenden Fondskosten, der jährlich an den Vertrieb zurückfließt',
+        'Eine einmalige Vergütung beim Fondskauf',
+        'Eine Prämie für langes Halten eines Fonds',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Sie wird gezahlt, solange der Fonds im Depot liegt, und beträgt oft die Hälfte der Verwaltungsvergütung. Das erklärt, warum ein provisionsfinanzierter Berater eher einen Fonds mit 1,5 Prozent Kosten empfiehlt als einen Indexfonds mit 0,15. Seit MiFID II steht der Betrag in der jährlichen Kosteninformation.',
+    },
+    {
+      question: 'Wozu dient eine Hochwassermarke bei einer erfolgsabhängigen Vergütung?',
+      options: [
+        'Sie begrenzt die Vergütung auf einen Höchstbetrag je Jahr',
+        'Sie verhindert, dass derselbe Wertzuwachs nach einem Verlustjahr ein zweites Mal vergütet wird',
+        'Sie legt fest, ab welchem Fondsvolumen die Vergütung entfällt',
+        'Sie koppelt die Vergütung an den risikolosen Zins',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Hochwassermarke kassiert der Manager nach einem Verlustjahr für die blosse Rückkehr zum alten Stand erneut. Mit ihr muss der frühere Höchststand erst wieder überschritten sein. Ohne Hochwassermarke, gegen den Geldmarktzins gemessen und jährlich abgerechnet ist eine Performance-Fee im Kern eine erhöhte Verwaltungsvergütung.',
+    },
+    {
+      question: 'Bei welcher Art von Produkt ist "billiger" NICHT automatisch besser?',
+      options: [
+        'Bei breiten Indexfonds',
+        'Beim Tagesgeld',
+        'Beim Wertpapierhandel an einem liquiden Handelsplatz',
+        'Bei Versicherungen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei standardisierten Produkten ist die Leistung identisch, dort entscheidet der Preis. Bei Leistungsversprechen entscheidet der Vertragstext: Der günstigste Tarif ist wertlos, wenn die Bedingungen den Leistungsfall ausschließen. Die Unterscheidung zu treffen ist die eigentliche Aufgabe.',
+    },
+    {
+      question: 'Warum ist ein sehr kleiner Fonds trotz niedriger Kostenquote riskant?',
+      options: [
+        'Weil er höhere Spreads hat',
+        'Weil er keine Dividenden ausschütten darf',
+        'Weil eine Schließung wahrscheinlicher ist – und sie schreibt Gewinne zu einem nicht gewählten Zeitpunkt fest',
+        'Weil er nicht als Sondervermögen gilt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Fondsvolumen im niedrigen zweistelligen Millionenbereich rechnet sich für den Anbieter kaum. Wird der Fonds aufgelöst, gilt das steuerlich als Verkauf – aufgelaufene Gewinne werden versteuert, ohne dass man den Zeitpunkt bestimmt hätte. Eine Verschmelzung ist dagegen meist steuerneutral.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */
