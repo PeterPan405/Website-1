@@ -206,12 +206,11 @@ Antwort, denn dort liegt der Lernwert. Am Ende folgt eine Auswertung; ab 60 Proz
 richtiger Antworten kann die Stufe als erledigt markiert werden.
 
 - Fragen liegen zentral in `data/learn/quizzes.ts`, Schlüssel `themen-slug:stufe`.
-- Aktuell 36 Fragen zu den neun vollständig ausformulierten Stufen (`aktie`,
-  `zinseszins`, `rohstoffe`). Stufen ohne Fragen zeigen einen entsprechenden Hinweis –
-  Fragen zu einer Gliederung wären nicht beantwortbar.
+- 396 Fragen zu allen 99 Stufen – jede Stufe hat vier.
 - **Regel bei neuen Fragen:** Die Position der richtigen Antwort muss wechseln. Liegt sie
-  immer an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen. Derzeit verteilen
-  sich die 36 Fragen gleichmäßig auf die vier Positionen.
+  immer an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen. Die Verteilung ist
+  nicht gleichmäßig, aber ohne Muster (95 / 126 / 104 / 71); bei neuen Fragen bitte die
+  bisher seltenste Position bevorzugen.
 - Fortschritt und Bestergebnisse liegen ausschließlich im localStorage
   (`fk-learn-progress`, `fk-quiz-results`) – kein Konto, keine Serverübertragung.
 
@@ -279,8 +278,9 @@ Tabelle im HTML – ohne JavaScript lesbar und von Suchmaschinen erfassbar.
 
 ## Erklärgrafiken
 
-Zehn Diagramme im Lernbereich und auf `/maerkte/msci-world` – als **handgeschriebenes
-SVG im HTML**, nicht als Bilddateien. Verzeichnis in `data/figures.ts`, Zeichnungen unter
+100 Diagramme, verteilt auf 103 Stellen – jede der 99 Lernstufen hat mindestens eines,
+dazu `/maerkte/msci-world`. Alle als **handgeschriebenes SVG im HTML**, nicht als
+Bilddateien. Verzeichnis in `data/figures.ts`, Zeichnungen unter
 `components/content/figures/`, eingesetzt über den Inhaltsblock
 `{ type: 'figure', figure: '…' }`.
 
@@ -550,10 +550,17 @@ Seitenkopf. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit sein.
 - Der Unternehmensname steht ausschließlich in `siteConfig.name`; Seitentitel setzen ihn
   über `withBrand()` an. Eine Umbenennung betrifft daher genau eine Zeile.
 
-Verifiziert wurde das über alle 121 Sitemap-URLs (h1-Anzahl, canonical, `og:image`,
-JSON-LD, Breadcrumb, Titel- und Description-Länge, Überschriftensprünge) sowie über
-48 Seiten-Viewport-Kombinationen im Browser (kein horizontaler Overflow, keine
-JS-Fehler bei 360/768/1440 px).
+Verifiziert wird das bei jedem Lauf über alle Sitemap-URLs – derzeit 738 – durch
+`scripts/paket-pruefen.ts`: h1-Anzahl, canonical, `og:image`, JSON-LD, Breadcrumb,
+Titel- und Description-Länge, Überschriftensprünge, tote Links und seit Neuestem die
+Geometrie jeder Lerngrafik.
+
+**Was diese Prüfung nicht sieht:** Layout. Sie liest HTML, sie rechnet es nicht aus.
+Hier stand deshalb lange die Behauptung, es gebe „keinen horizontalen Overflow bei
+360/768/1440 px“ – zu einem Zeitpunkt, als die Artikelseiten bei 320 bis 430 px um bis
+zu 210 Pixel über den Rand liefen und das Telefon die ganze Seite herauszoomte. Die
+Messung war einmal gemacht und danach als Zusage stehen geblieben. Wer eine solche
+Aussage wieder aufnimmt, muss sie messen, nicht erinnern.
 
 ## Barrierefreiheit und Performance
 
@@ -589,28 +596,43 @@ Was mit den Daten wächst, nicht.
 
 ## Was noch fehlt
 
+Diese Liste stand über Wochen falsch da: Sie führte Fließtext, Quizfragen und den
+Philosophietext als offen, obwohl alle drei fertig waren. Das ist derselbe Fehler,
+vor dem der Abschnitt „Zahlen im Fließtext gehören abgeleitet“ weiter unten warnt –
+nur in Prosa statt in einer Zahl, und deshalb von keiner Prüfung zu fangen. **Wer
+hier einen Punkt erledigt, streicht ihn hier.**
+
+### Offen, und zwar bei uns
+
 1. **Echte Zahlen zur Staatsverschuldung.** Der einzige verbliebene Demo-Datensatz
-   neben `msci-world`. Kurse kommen inzwischen aus echten Quellen (siehe oben), die
-   Nachrichten sind echt und werden von Hand gepflegt.
-2. **Fließtext für 30 Lernthemen.** Vollständig ausformuliert sind `aktie`,
-   `zinseszins` und `rohstoffe` (je drei Stufen). Die übrigen Themen haben
-   funktionsfähige Seiten mit Meta-Daten, Permalink und inhaltlicher Gliederung; der
-   Status `outline` wird auf der Seite ausgewiesen. Die Reihenfolge in
-   `data/learn/index.ts` gibt vor, welche Themen als Nächstes ausformuliert werden
-   sollten – vorne stehen die, ohne die der Rest nicht trägt.
-3. **Rechtliche Prüfung von Impressum und Datenschutzerklärung.** Beide Seiten sind
-   ausgefüllt – Anbieter, Anschrift und Kontakt stehen in `lib/provider.ts`, die
-   Erklärung beschreibt, was die Website tatsächlich tut. Zwei Angaben fehlen noch:
-   Firmierung und Anschrift des Hosters sowie dessen Speicherdauer für
-   Protokolldateien. Sie stehen in dessen eigener Datenschutzerklärung und sind dort
-   nachzutragen, statt sie zu schätzen. Eine anwaltliche Prüfung vor dem endgültigen
-   Live-Gang bleibt zu empfehlen, bei Finanzinhalten erst recht.
-4. **Quizfragen für die übrigen 30 Themen.** Sie entstehen jeweils zusammen mit dem
-   Fließtext der Stufe – Struktur und Komponente stehen bereits.
-5. **Text der Unternehmensphilosophie** (siehe Abschnitt oben).
-6. **Kontaktformular.** Aktuell nur ein E-Mail-Link, weil die Seite statisch
+   neben `msci-world`; `data/debt.ts` weist das im Kopf und die Übersichtsseite es
+   sichtbar aus. Kurse, Länderdaten, Fundamentalzahlen und Quartalstermine kommen
+   inzwischen aus echten Quellen.
+2. **Kontaktformular.** Aktuell nur ein E-Mail-Link, weil die Seite statisch
    ausgeliefert wird. Ein Formular braucht serverseitige Verarbeitung, Spam-Schutz und
    eine Ergänzung der Datenschutzerklärung.
+
+### Offen, und zwar außerhalb
+
+3. **Zugangsdaten für die drei Automatiken.** Ohne sie bauen alle Workflows durch,
+   liefern aber nichts aus beziehungsweise holen keine Termine. Was wohin gehört,
+   steht Schritt für Schritt in [`EINRICHTUNG.md`](./EINRICHTUNG.md).
+4. **Zwei Angaben in der Datenschutzerklärung.** Firmierung und Anschrift des Hosters
+   sowie dessen Speicherdauer für Protokolldateien. Sie stehen in dessen eigener
+   Erklärung und sind dort abzuschreiben, statt sie zu schätzen.
+5. **Anwaltliche Prüfung von Impressum und Datenschutzerklärung.** Beide Seiten sind
+   inhaltlich vollständig – Anbieter, Anschrift und Kontakt in `lib/provider.ts`, die
+   Erklärung beschreibt, was die Website tatsächlich tut. Eine Prüfung vor dem
+   endgültigen Live-Gang bleibt zu empfehlen, bei Finanzinhalten erst recht.
+
+### Erledigt, hier nur noch als Beleg
+
+- **Fließtext:** alle 99 Stufen stehen auf `status: 'complete'`; den Status `outline`
+  gibt es in `data/learn/topics/` nicht mehr.
+- **Quizfragen:** 396 Fragen, vier je Stufe, alle 99 Stufen abgedeckt.
+- **Erklärgrafiken:** 100 Zeichnungen an 103 Stellen, jede Stufe hat mindestens eine.
+- **Unternehmensphilosophie:** `PHILOSOPHY_PUBLISHED` steht auf `true`, die Seite ist
+  in der Sitemap.
 
 ## Hinweis zu den Inhalten
 
