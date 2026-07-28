@@ -189,6 +189,18 @@ export type FigureId =
   | 'sparplan-wartezeit'
   /** Zyklische und defensive Branchen im selben Konjunkturverlauf. */
   | 'branchen-zyklus'
+  /** Was eine Währungsabsicherung über zehn Jahre kostet. */
+  | 'waehrung-absicherung'
+  /** Preisniveau und Teuerungsrate nach einem einmaligen Preissprung. */
+  | 'inflation-basiseffekt'
+  /** Verkaufsgründe, sortiert nach ihrer Herkunft. */
+  | 'verkauf-gruende'
+  /** Drei Zugangswege zu Krypto und das jeweils bleibende Risiko. */
+  | 'krypto-zugangswege'
+  /** Fünf Fragen an ein Basisinformationsblatt, nach Schärfe geordnet. */
+  | 'einsteiger-pruefung'
+  /** Täglicher Kurs gegen periodische Bewertung. */
+  | 'fonds-bewertungsglaettung'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -632,6 +644,38 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Was Wartezeit kostet',
     caption:
       'Gerechnet ohne jede Kursschwankung – deshalb ist der Rückstand kein Pech, sondern Arithmetik. Was das Verteilen dafür kauft, steht im Text daneben.',
+  },
+  'waehrung-absicherung': {
+    title: 'Was die Absicherung kostet',
+    caption:
+      'Der Wechselkurs kommt in dieser Rechnung nicht vor – und das ist der Punkt. Die Absicherung kostet die Zinsdifferenz, wohin der Kurs auch läuft.',
+  },
+  'inflation-basiseffekt': {
+    title: 'Der Basiseffekt',
+    caption:
+      'Die Rate fällt auf null, ohne dass ein einziger Preis gesunken wäre. „Die Inflation geht zurück“ und „es wird wieder billiger“ sind zwei verschiedene Aussagen.',
+  },
+  'verkauf-gruende': {
+    title: 'Woher der Grund kommt',
+    caption:
+      'Die Herkunft ist das Erkennungsmerkmal: Was aus dem eigenen Plan stammt, trägt einen Verkauf. Was aus dem Markt kommt, steht bereits im Kurs.',
+  },
+  'krypto-zugangswege': {
+    title: 'Drei Wege, drei Risiken',
+    caption:
+      'Das Risiko verschwindet auf keinem der drei Wege – es wechselt nur die Stelle. Die Frage ist, welches man lieber trägt.',
+  },
+  'einsteiger-pruefung': {
+    title: 'Fünf Fragen an ein Produkt',
+    caption:
+      'Die Reihenfolge ist der eigentliche Rat: Die ersten beiden Fragen sortieren die meisten Produkte aus, und wer sie zuerst stellt, spart sich die übrigen drei.',
+  },
+  'fonds-bewertungsglaettung': {
+    title: 'Ruhiger Kurs, gleicher Wert',
+    description:
+      'Zwei Linien über denselben Verlauf. Die dünne graue Linie zeigt den Wert, wie er sich tatsächlich bewegt – laufend, mit allen Ausschlägen. Die kräftige Stufenlinie zeigt denselben Verlauf so, wie ihn eine Bewertung durch Gutachter erzeugt: Sie misst zu wenigen Stichtagen und schreibt den gemessenen Wert bis zur nächsten Messung fort. Das Ergebnis sieht deutlich ruhiger aus, obwohl es dieselbe Sache abbildet. Genau das passiert bei offenen Immobilienfonds: Ihr Preis schwankt kaum, weil Immobilien nicht täglich gehandelt, sondern periodisch bewertet werden. Das ist keine Stabilität der Anlage, sondern eine Eigenschaft des Messverfahrens. Wer einen solchen Fonds mit Tagesgeld vergleicht, weil der Kurs so ruhig aussieht, vergleicht eine Eigenschaft der Anlage mit einer Eigenschaft der Messung. Der Verlauf ist schematisch und behauptet keine Immobilienpreise – was er zeigt, gilt für jeden Verlauf.',
+    caption:
+      'Die ruhige Linie ist nicht ruhiger, sie ist seltener gemessen. Bei offenen Immobilienfonds ist das der ganze Unterschied.',
   },
   'branchen-zyklus': {
     title: 'Zyklisch und defensiv',

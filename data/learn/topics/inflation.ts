@@ -289,6 +289,10 @@ export const inflation: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'inflation-basiseffekt',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Erwartungen sind selbst eine Kraft',

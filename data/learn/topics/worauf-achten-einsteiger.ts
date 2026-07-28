@@ -274,6 +274,10 @@ export const woraufAchtenEinsteiger: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'einsteiger-pruefung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Die Strategie auf einem Blatt Papier',

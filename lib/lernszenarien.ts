@@ -777,3 +777,46 @@ export const handelszeiten = [
     hinweis: 'ein Handelspartner stellt den Preis',
   },
 ] as const
+
+// ------------------------------------------------------ Währungsabsicherung
+
+/**
+ * Der Zinsvorsprung der Fremdwährung in Prozentpunkten.
+ *
+ * Er ist zugleich der laufende Preis der Absicherung – das ist keine Annahme
+ * über den Markt, sondern eine Folge der Arbitragefreiheit: Der Terminkurs
+ * zweier Währungen entspricht dem Kassakurs, angepasst um genau diese
+ * Differenz. Zwei Prozentpunkte sind die Größenordnung, die das Thema als
+ * Zahlenbeispiel nennt.
+ */
+export const absicherungZinsdifferenz = 2
+
+/** Über wie viele Jahre der Kostenunterschied gezeigt wird. */
+export const absicherungJahre = 10
+
+/**
+ * Die angenommene Rendite der Anlage selbst, in Prozent.
+ *
+ * Sie ist für die Aussage gleichgültig – der Abstand zwischen abgesichert und
+ * nicht abgesichert entsteht allein aus der Zinsdifferenz. Sie steht hier,
+ * damit die Grafik einen Verlauf zeigt und nicht zwei fallende Linien.
+ */
+export const absicherungRendite = 6
+
+// --------------------------------------------------------- Basiseffekt
+
+/**
+ * Ein einmaliger Preissprung, an dem der Basiseffekt sichtbar wird.
+ *
+ * Ein Sprung um dreißig Prozent im vierten Monat, danach bleiben die Preise
+ * genau dort. Die Teuerungsrate misst den Abstand zum Vorjahresmonat und
+ * zeigt deshalb zwölf Monate lang dreißig Prozent – und fällt danach auf
+ * null, ohne dass ein einziger Preis gesunken wäre.
+ *
+ * Das ist keine Prognose und kein Marktereignis, sondern die Vorführung einer
+ * Rechenregel. Genau deshalb ist der Verlauf so einfach gewählt: Jede weitere
+ * Bewegung würde den Effekt verwischen, um den es geht.
+ */
+export const basiseffektSprungMonat = 4
+export const basiseffektSprungProzent = 30
+export const basiseffektMonate = 30

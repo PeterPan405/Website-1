@@ -283,6 +283,10 @@ export const wannKaufenVerkaufen: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'verkauf-gruende',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Regeln schlagen Entscheidungen',

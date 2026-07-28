@@ -224,6 +224,10 @@ export const waehrungenWechselkurse: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'waehrung-absicherung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wann sie sinnvoll ist',

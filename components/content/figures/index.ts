@@ -40,6 +40,14 @@ import {
   PortfolioQuoteRueckgang,
   StaatsanleiheLaufzeiten,
 } from '@/components/content/figures/grundlagen'
+import {
+  EinsteigerPruefung,
+  FondsBewertungsglaettung,
+  InflationBasiseffekt,
+  KryptoZugangswege,
+  VerkaufGruende,
+  WaehrungAbsicherung,
+} from '@/components/content/figures/erweitert'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import {
   BoerseHandelszeiten,
@@ -189,4 +197,10 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'derivat-margin': DerivatMargin,
   'sparplan-wartezeit': SparplanWartezeit,
   'branchen-zyklus': BranchenZyklus,
+  'waehrung-absicherung': WaehrungAbsicherung,
+  'inflation-basiseffekt': InflationBasiseffekt,
+  'verkauf-gruende': VerkaufGruende,
+  'krypto-zugangswege': KryptoZugangswege,
+  'einsteiger-pruefung': EinsteigerPruefung,
+  'fonds-bewertungsglaettung': FondsBewertungsglaettung,
 }

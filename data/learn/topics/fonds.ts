@@ -213,6 +213,10 @@ export const fonds: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'fonds-bewertungsglaettung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Aktiv oder passiv – die ehrliche Bilanz',

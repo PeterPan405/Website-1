@@ -294,6 +294,10 @@ export const bitcoinKrypto: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'krypto-zugangswege',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was Regulierung leistet',
