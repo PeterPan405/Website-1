@@ -4,10 +4,12 @@ import { boerse } from '@/data/learn/topics/boerse'
 import { budgetUndSparquote } from '@/data/learn/topics/budget-und-sparquote'
 import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
 import { depotUndBroker } from '@/data/learn/topics/depot-und-broker'
+import { derivat } from '@/data/learn/topics/derivat'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
 import { inflation } from '@/data/learn/topics/inflation'
+import { option } from '@/data/learn/topics/option'
 import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
 import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
@@ -18,12 +20,10 @@ import {
   aktienLaenderBranchen,
   bitcoinKrypto,
   blockchain,
-  derivat,
   einlagensicherung,
   groessteCrashes,
   immobilien,
   notenbankenGeldpolitik,
-  option,
   rente,
   schuldenUndKredit,
   sparerpauschbetrag,
@@ -51,8 +51,11 @@ import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
  * Reihenfolge für Besucher unsichtbar. Wer ein Thema verschiebt, verschiebt es
  * damit auch auf der Seite.
  *
- * `aktie`, `zinseszins` und `rohstoffe` sind vollständig ausformuliert, die
- * übrigen Themen liegen als Gliederung vor (Status `outline` je Stufe).
+ * Ausformulierte Themen liegen als eigene Datei unter `topics/` und tragen je
+ * Stufe `status: 'complete'`. Was noch als Gliederung vorliegt, steht in
+ * `topics/outlines.ts` und wird auf der Seite sichtbar als solche ausgewiesen.
+ * Ein Thema wandert beim Ausformulieren aus der Sammeldatei in eine eigene –
+ * die Zahl der Einträge in `outlines.ts` ist damit der Reststand.
  */
 /**
  * Hängt die Quizfragen an die passenden Stufen.

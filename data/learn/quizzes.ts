@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    216 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    240 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -2874,6 +2874,328 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 1,
       explanation:
         'Der Repo-Markt ist der Ort, an dem sich das Finanzsystem täglich refinanziert, und Staatsanleihen sind dort die üblichen Sicherheiten. Verlieren sie an Wert, müssen Banken Sicherheiten nachschießen oder Positionen auflösen. Das ist der Übertragungsweg – und der Grund für die regulatorische Bevorzugung dieser Papiere.',
+    },
+  ],
+
+  // ------------------------------------------------------------------ Derivat
+  'derivat:beginner': [
+    {
+      question: 'Was unterscheidet Absicherung von Spekulation mit demselben Future?',
+      options: [
+        'Ob man den Basiswert besitzt oder braucht – der Vertrag selbst ist identisch',
+        'Die Laufzeit des Kontrakts',
+        'Ob der Kontrakt an einer Börse oder außerbörslich abgeschlossen wird',
+        'Die Höhe der hinterlegten Sicherheit',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Landwirt, der seine Ernte im Voraus verkauft, gibt ein bestehendes Risiko ab. Wer denselben Kontrakt ohne Feld kauft, geht ein neues ein. Beide brauchen einander: Ohne die zweite Seite fände die erste keinen Vertragspartner. Die Frage ist deshalb nie, ob Derivate gut sind, sondern auf welcher Seite man steht.',
+    },
+    {
+      question:
+        'Du hinterlegst 1.000 € Sicherheit und steuerst damit eine Position von 20.000 €. Ab welcher Kursbewegung gegen dich ist der Einsatz aufgebraucht?',
+      options: [
+        'Ab 20 Prozent – dem Kehrwert des Hebels in Prozentpunkten',
+        'Ab 50 Prozent, weil nur die Hälfte des Risikos auf dich entfällt',
+        'Ab 5 Prozent – die Sicherheit entspricht einem Zwanzigstel der Position',
+        'Erst bei einem Totalverlust des Basiswerts',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Sicherheit ist ein Zwanzigstel der Position, also fünf Prozent. Bewegt sich der Kurs um fünf Prozent gegen dich, entspricht der Verlust genau dem Einsatz. Fünf Prozent an einem Tag sind bei einer Einzelaktie nichts Ungewöhnliches – das ist die Zahl, die vor dem Hebel selbst zu prüfen wäre.',
+    },
+    {
+      question:
+        'Warum ist der Hebel gefährlich, obwohl er in beide Richtungen exakt symmetrisch wirkt?',
+      options: [
+        'Weil Gewinne höher besteuert werden als Verluste absetzbar sind',
+        'Weil die Position vorher zwangsweise geschlossen wird und man die Erholung nicht mehr erlebt',
+        'Weil der Hebel bei Verlusten größer ist als bei Gewinnen',
+        'Weil Emittenten den Hebel nachträglich anpassen dürfen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Rechnung ist symmetrisch, der Verlauf ist es nicht. Reicht die Sicherheit nicht mehr, wird glattgestellt – die Position existiert nicht mehr, wenn sich der Kurs später zurückbewegt. Bei einer unbelehnten Aktie kann man aussitzen, bei einer gehebelten Position nicht.',
+    },
+    {
+      question: 'Welche Aussage über den Vermögensaufbau mit Derivaten trifft zu?',
+      options: [
+        'Sie eignen sich besonders für kleine Depots, weil weniger Kapital nötig ist',
+        'Sie sind für den langfristigen Aufbau notwendig, um die Marktrendite zu erreichen',
+        'Sie sind steuerlich vorteilhafter als der Direktbesitz',
+        'Sie lösen ein Absicherungsproblem – wer keines hat, hat keinen Grund für den Einsatz',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Derivate sind Werkzeuge für ein bestimmtes Problem: ein bestehendes Preisrisiko abzugeben. Für den Vermögensaufbau braucht man sie nicht. Dass die Werbung für Hebelprodukte sich fast ausschließlich an Menschen ohne dieses Problem richtet, ist kein Zufall – der geringere Kapitaleinsatz ist kein Vorteil, sondern die Definition des Hebels.',
+    },
+  ],
+
+  'derivat:fortgeschritten': [
+    {
+      question:
+        'Bei einem Future wird täglich abgerechnet. Welche praktische Folge hat das gegenüber einer Aktienposition?',
+      options: [
+        'Aus einem Verlustrisiko wird ein Liquiditätsrisiko – man kann herausgeworfen werden, obwohl die Einschätzung stimmt',
+        'Verluste können steuerlich sofort geltend gemacht werden',
+        'Die Position verliert an Wert, wenn der Kurs unverändert bleibt',
+        'Der Kontrakt kann nicht vor Fälligkeit geschlossen werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei einer Aktie lässt sich ein Rückschlag aussitzen. Beim Future muss die Sicherheit jeden Abend reichen; sonst kommt der Margin Call und danach die Zwangsglattstellung. Die zugrunde liegende Einschätzung kann am Ende richtig gewesen sein – die Position gibt es dann nicht mehr.',
+    },
+    {
+      question:
+        'Ein Indexprodukt auf Öl entwickelt sich über Jahre deutlich schlechter als der Ölpreis. Was ist die übliche Ursache?',
+      options: [
+        'Die Verwaltungsgebühr des Anbieters',
+        'Wechselkurseffekte zwischen Dollar und Euro',
+        'Contango: Beim Rollen wird billig verkauft und teuer gekauft – ein laufender Verlust',
+        'Der Index enthält andere Rohstoffe als Öl',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das Produkt bildet nicht den Ölpreis ab, sondern eine gerollte Terminposition. Bei Rohstoffen ist Contango der Normalfall, weil Lagerung und Versicherung im Terminpreis stecken. Über Jahre kann der Rohstoff steigen und das Produkt verlieren – der Unterschied steht selten dort, wo er hingehörte.',
+    },
+    {
+      question: 'Was ist ein Total Return Swap und wo begegnet er Privatanlegern?',
+      options: [
+        'Ein Tausch von festen gegen variable Zinszahlungen, üblich bei Unternehmenskrediten',
+        'Ein Tausch der gesamten Indexentwicklung gegen eine Zinszahlung – die Konstruktion synthetischer ETFs',
+        'Ein Währungstausch zur Absicherung von Auslandseinnahmen',
+        'Eine Absicherung gegen den Ausfall eines Emittenten',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein synthetischer ETF hält nicht die Indexwerte, sondern einen Sicherheitenkorb plus einen Swap auf die Indexentwicklung. Das kann die Abbildung genauer und billiger machen. Dafür kommt ein Kontrahentenrisiko hinzu, das ein physisch abbildender ETF nicht hat – ein bewusster Tausch, kein versteckter Mangel.',
+    },
+    {
+      question:
+        'Du sicherst ein Portfolio deutscher Nebenwerte mit DAX-Futures ab. Welches Risiko bleibt?',
+      options: [
+        'Keines – die Absicherung ist bei gleicher Nominalgröße vollständig',
+        'Nur das Währungsrisiko, da Futures in Euro notieren',
+        'Nur das Ausfallrisiko der Clearingstelle',
+        'Das Basisrisiko: Nebenwerte und Standardwerte können auseinanderlaufen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Abgesichert ist die gemeinsame Marktbewegung, nicht die Differenz zwischen den beiden Segmenten. Genau diese Differenz kann groß werden. Eine perfekte Absicherung gäbe es nur, wenn Instrument und Position identisch wären – dann hätte man allerdings auch schlicht verkaufen können.',
+    },
+  ],
+
+  'derivat:profi': [
+    {
+      question: 'Was sagt ein Terminpreis aus, der über dem aktuellen Kassapreis liegt?',
+      options: [
+        'Dass der Markt steigende Preise erwartet',
+        'Nichts über Erwartungen – er spiegelt Finanzierungs- und Lagerkosten bis zum Termin',
+        'Dass die Nachfrage nach dem Basiswert das Angebot übersteigt',
+        'Dass der Kontrakt überbewertet ist und eine Korrektur bevorsteht',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Terminpreis folgt der Arbitragefreiheit: Kassapreis plus Nettokosten des Haltens bis zum Termin. Läge er höher, könnte man den Basiswert kaufen, den Future verkaufen und die Differenz risikolos einstreichen. Eine steigende Terminkurve sagt deshalb etwas über Zinsen und Lagerkosten – nicht über die Zukunft.',
+    },
+    {
+      question:
+        'Ein Basiswert steigt um 10 Prozent und fällt am nächsten Tag um 9,09 Prozent – er steht wieder bei 100. Wo steht ein Faktorzertifikat mit Faktor 4?',
+      options: [
+        'Ebenfalls bei 100, da sich die Bewegungen ausgleichen',
+        'Bei etwa 104, weil der Anstieg stärker gehebelt wurde',
+        'Deutlich unter 100 – tägliches Hebeln macht Schwankung zu einem Verlust',
+        'Bei etwa 96, unabhängig vom gewählten Faktor',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 100 werden mit Faktor 4 zunächst 140, dann wirken −36,4 Prozent darauf: rund 89. Der Effekt heißt Pfadabhängigkeit, geht immer in dieselbe Richtung und wächst überproportional mit dem Faktor. Faktorzertifikate sind Instrumente für einzelne Tage – über Wochen gehalten sind sie ein anderes Produkt.',
+    },
+    {
+      question:
+        'Warum sind Bewertungsmodelle für Derivate genau dann unzuverlässig, wenn es darauf ankommt?',
+      options: [
+        'Weil die zugrunde liegenden Daten in Krisen nicht veröffentlicht werden',
+        'Weil sie laufendes Anpassen und stetige Kurse unterstellen – beides bricht bei Sprüngen und ausgetrockneter Liquidität',
+        'Weil Aufsichtsbehörden ihre Verwendung in Krisen untersagen',
+        'Weil sie nur für börsengehandelte Kontrakte gelten',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Replikation setzt voraus, dass man das Gegenportfolio laufend anpassen kann und dass sich Kurse stetig bewegen. Bei Kurssprüngen über Nacht, ausgesetztem Handel oder verschwundener Liquidität gilt beides nicht. Modelle sind in ruhigen Phasen präzise und im Ernstfall unbrauchbar – das ist das Modellrisiko.',
+    },
+    {
+      question:
+        'Ein Knock-out-Zertifikat, ein Faktorzertifikat und ein CFD haben ein Risiko gemeinsam. Welches?',
+      options: [
+        'Alle drei sind Schuldverschreibungen beziehungsweise Forderungen gegen den Anbieter – kein Sondervermögen',
+        'Bei allen dreien besteht in der EU eine Nachschusspflicht',
+        'Alle drei verfallen zu einem festen Termin',
+        'Alle drei werden ausschließlich außerbörslich gehandelt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Keines der drei Produkte ist Sondervermögen. Fällt der Emittent aus, ist das Papier wertlos, gleichgültig wie der Basiswert steht. Die anderen Merkmale unterscheiden sie gerade: Der Knock-out verfällt bei Berührung, das Faktorzertifikat ist pfadabhängig, und beim CFD ist die Nachschusspflicht für Privatanleger in der EU untersagt.',
+    },
+  ],
+
+  // ------------------------------------------------------------------- Option
+  'option:beginner': [
+    {
+      question:
+        'Ein Call hat Basispreis 100, der Kurs steht bei 95. Woraus besteht die Prämie?',
+      options: [
+        'Ausschließlich aus innerem Wert',
+        'Aus fünf Einheiten negativem inneren Wert plus Zeitwert',
+        'Sie ist null, weil die Option aus dem Geld ist',
+        'Ausschließlich aus Zeitwert – der innere Wert ist null',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der innere Wert ist nie negativ: Ausüben muss niemand, und genau darin besteht das Recht. Unter dem Basispreis besteht die Prämie deshalb vollständig aus Zeitwert – man bezahlt reine Hoffnung darauf, dass sich bis zum Verfall noch etwas tut.',
+    },
+    {
+      question:
+        'Der Kurs des Basiswerts bewegt sich über Wochen überhaupt nicht. Was passiert mit einer gekauften Option?',
+      options: [
+        'Sie behält ihren Wert, solange der Kurs unverändert bleibt',
+        'Sie verliert laufend an Wert, weil der Zeitwert schmilzt',
+        'Sie gewinnt an Wert, weil die Unsicherheit sinkt',
+        'Ihr Wert hängt nur vom Kurs ab, nicht von der Zeit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Zeitwert ist am Verfallstag zwangsläufig null, und der Weg dorthin läuft ununterbrochen. Ein Optionskäufer, der in der Richtung recht behält, aber zu spät, verliert trotzdem. Für den Verkäufer ist derselbe Vorgang der laufende Ertrag.',
+    },
+    {
+      question: 'Warum beschleunigt sich der Zeitwertverlust gegen Ende der Laufzeit?',
+      options: [
+        'Weil Broker kurz vor Verfall höhere Gebühren berechnen',
+        'Weil die implizite Volatilität zum Verfall hin immer steigt',
+        'Weil mit weniger Restzeit die Chance auf eine noch entscheidende Bewegung überproportional schrumpft',
+        'Weil der innere Wert gegen Ende in Zeitwert umgewandelt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Zeitwert bezahlt die verbleibende Chance. Von zwölf auf sechs Monate halbiert sich die Restzeit, die Chance aber nicht im selben Maß – von einem Monat auf zwei Wochen dagegen bricht sie weg. Im letzten Monat verliert dieselbe Option täglich etwa das Dreifache dessen, was sie ein Jahr vor Verfall verlor.',
+    },
+    {
+      question:
+        'Worin unterscheiden sich Optionskäufer und Optionsverkäufer grundlegend?',
+      options: [
+        'Der Käufer trägt ein begrenztes Risiko bei großer Chance, der Verkäufer das Gegenteil',
+        'Beide tragen dasselbe Risiko, nur mit umgekehrtem Vorzeichen',
+        'Der Verkäufer kann höchstens die Prämie verlieren',
+        'Der Käufer ist zur Ausübung verpflichtet, der Verkäufer nicht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Käufer verliert höchstens die Prämie und kann theoretisch viel gewinnen. Der Verkäufer gewinnt höchstens die Prämie und trägt beim ungedeckten Call ein nach oben offenes Risiko. Anders als beim Aktienhandel sind die Profile also nicht spiegelbildlich – deshalb ist der ungedeckte Verkauf für Privatanleger ungeeignet.',
+    },
+  ],
+
+  'option:fortgeschritten': [
+    {
+      question: 'Welcher Preistreiber einer Option lässt sich nicht am Markt ablesen?',
+      options: [
+        'Der Basispreis',
+        'Die Restlaufzeit',
+        'Der risikofreie Zins',
+        'Die erwartete künftige Schwankung – die implizite Volatilität',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Kurs, Basispreis, Restlaufzeit und Zins stehen fest oder sind ablesbar. Die erwartete Schwankung nicht: Sie ist die Größe, die aus dem bezahlten Preis zurückgerechnet wird. Deshalb sagt man, dass Optionshändler Volatilität handeln – der Preis in Euro ist nur deren Übersetzung.',
+    },
+    {
+      question:
+        'Du kaufst vor Quartalszahlen einen Call. Die Zahlen sind gut, der Kurs steigt – und die Option verliert trotzdem. Warum?',
+      options: [
+        'Weil gute Nachrichten den inneren Wert nicht erhöhen',
+        'Volatility Crush: Die eingepreiste Erwartung fällt nach dem Termin schlagartig',
+        'Weil Optionen an Tagen mit Nachrichten nicht gehandelt werden',
+        'Weil der Broker die Position vor dem Termin zwangsweise anpasst',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Vor einem angekündigten Termin ist die implizite Volatilität hoch, weil eine große Bewegung wahrscheinlich ist – und sie steckt in der Prämie. Ist der Termin vorbei, fällt sie zurück. Wer vorher kauft, kauft die Erwartung mit und kann bei richtiger Richtung verlieren.',
+    },
+    {
+      question:
+        'Warum schneidet eine Covered-Call-Strategie in langfristig steigenden Märkten meist schlechter ab als schlichtes Halten?',
+      options: [
+        'Weil die vereinnahmten Prämien voll zu versteuern sind',
+        'Weil die Aktien beim Verkauf des Calls sofort abgegeben werden müssen',
+        'Weil sie die großen Aufwärtsbewegungen wegverkauft, aus denen die Aktienrendite besteht',
+        'Weil Calls auf Einzelaktien nicht liquide genug sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Aktienrendite entsteht in wenigen starken Phasen. Ein Covered Call tauscht eine kleine sichere Zahlung gegen genau den Teil dieser Phasen ein, der über dem Basispreis liegt. Nach unten schützt er dabei nur in Höhe der Prämie – ein ungünstiges Tauschverhältnis über lange Zeiträume.',
+    },
+    {
+      question: 'Was leistet ein Vertical Spread und was kostet er?',
+      options: [
+        'Er begrenzt Verlust und Gewinn zugleich – dafür fallen vier Transaktionen samt Spread an',
+        'Er verdoppelt die Gewinnchance bei gleichem Einsatz',
+        'Er schaltet das Risiko der impliziten Volatilität vollständig aus',
+        'Er verlängert die Laufzeit einer bestehenden Position',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die verkaufte Option verbilligt die gekaufte und deckelt zugleich den Gewinn. Der Verlust ist auf die Nettoprämie begrenzt, der Gewinn auf den Abstand der Basispreise abzüglich dieser Prämie. Weil Öffnen und Schließen je zwei Transaktionen sind und Optionsspreads breit ausfallen, gibt es eine Mindestgröße, unterhalb derer die Rechnung nicht aufgeht.',
+    },
+  ],
+
+  'option:profi': [
+    {
+      question: 'In welchem Verhältnis stehen Gamma und Theta zueinander?',
+      options: [
+        'Sie sind unabhängig voneinander',
+        'Sie sind gegenläufig: Wer Gamma besitzt, zahlt mit Theta – und umgekehrt',
+        'Beide sind für gekaufte Optionen positiv',
+        'Gamma wirkt nur auf Puts, Theta nur auf Calls',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer Optionen gekauft hat, profitiert von schnellen Bewegungen (positives Gamma) und bezahlt dafür täglich Zeitwert (negatives Theta). Der Verkäufer nimmt Theta ein und ist dafür short Gamma. Es gibt keine Position, die beides auf der guten Seite hat – das ist der Kern des Optionsgeschäfts.',
+    },
+    {
+      question: 'Was beschreibt der Volatilitäts-Skew und woher kommt er?',
+      options: [
+        'Dass die Volatilität im Tagesverlauf schwankt – eine Folge der Handelszeiten',
+        'Dass Optionen mit längerer Laufzeit stets höhere Volatilität einpreisen',
+        'Dass Calls und Puts am selben Basispreis unterschiedlich bewertet werden – ein Modellfehler',
+        'Dass Puts weit unter dem Kurs teurer sind als das Modell nahelegt – Absicherung gegen Einbrüche ist dauerhaft gefragt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Das Modell unterstellt eine einheitliche Volatilität für alle Basispreise. Der Markt preist tiefe Puts systematisch teurer, weil Aktienmärkte schneller fallen als sie steigen und Absicherung gefragt bleibt. Diese Schiefe ist seit 1987 fest im Markt und keine Rechenschwäche.',
+    },
+    {
+      question:
+        'Die Volatilitätsrisikoprämie sorgt dafür, dass Optionsverkäufer im Mittel verdienen. Warum enden solche Strategien trotzdem regelmäßig in Katastrophen?',
+      options: [
+        'Weil das Ertragsprofil viele kleine Gewinne und selten einen sehr großen Verlust liefert – und die ruhige Phase zum Hebeln verleitet',
+        'Weil die Prämie tatsächlich nicht existiert und nur ein statistisches Artefakt ist',
+        'Weil Broker solche Positionen willkürlich schließen',
+        'Weil die Prämie ausschließlich bei Indexoptionen anfällt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Prämie ist real – sie ist die Vergütung für ein übernommenes Versicherungsrisiko. Über Monate sieht die Strategie aus wie ein sicherer Zins, und genau das verleitet dazu, die Position zu vergrößern. Am 5. Februar 2018 verdreifachte sich der Volatilitätsindex an einem Tag; darauf ausgerichtete Produkte verloren über Nacht fast alles.',
+    },
+    {
+      question: 'Was ist das Pin-Risiko am Verfallstag?',
+      options: [
+        'Dass der Broker die Position kurz vor Verfall automatisch schließt',
+        'Dass der Kurs praktisch auf dem Basispreis schließt und der Verkäufer bis nach Handelsschluss nicht weiß, ob er zugeteilt wird',
+        'Dass die Option wegen fehlender Liquidität nicht mehr handelbar ist',
+        'Dass der Basispreis wegen einer Kapitalmaßnahme angepasst wird',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Schließt der Kurs genau am Basispreis, ist die Zuteilung offen und entscheidet sich erst nach Handelsschluss. Der Verkäufer hält am Montag unter Umständen eine ungewollte Position mit vollem Marktrisiko über das Wochenende – ein Abwicklungsrisiko, das in keiner Bewertungsformel vorkommt.',
     },
   ],
 }
