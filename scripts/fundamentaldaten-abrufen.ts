@@ -401,7 +401,7 @@ interface Fakten {
 function jahreswerteJeWaehrung(
   einheiten: Record<string, Faktenreihe[]>,
   zeitraum: boolean
-): Map<string, number> {
+): Map<string, { wert: number; ende: string }> {
   const je = new Map<string, { wert: number; ende: string }>()
 
   for (const [waehrung, eintraege] of Object.entries(einheiten)) {
@@ -423,8 +423,17 @@ function jahreswerteJeWaehrung(
     }
   }
 
-  return new Map([...je].map(([waehrung, { wert }]) => [waehrung, wert]))
+  return je
 }
+
+/**
+ * Wie alt der juengste Abschluss einer Reihe hoechstens sein darf.
+ *
+ * Zwei Jahre und ein halbes. Wer laenger nichts gemeldet hat, ist entweder von
+ * der Boerse verschwunden oder meldet unter anderem Namen weiter – in beiden
+ * Faellen taugen die Zahlen nicht mehr, um einen heutigen Kurs einzuordnen.
+ */
+const HOECHSTALTER_TAGE = 900
 
 /**
  * Der beste zusammenhaengende Satz Zahlen aus einer `companyfacts`-Antwort.
@@ -434,22 +443,41 @@ function jahreswerteJeWaehrung(
  * Kurs-Buchwert-Verhaeltnis, das um den Wechselkurs danebenliegt, und dem
  * sieht man nichts an.
  *
- * Bei mehreren moeglichen Saetzen gewinnt der in der Kurswaehrung – damit
- * gerechnet werden kann, ohne umzurechnen. Gibt es den nicht, der mit den
- * meisten belegten Groessen.
+ * ## Die Rangfolge unter mehreren Saetzen
+ *
+ * 1. **Nicht veraltet.** Diese Regel kam nachtraeglich dazu, und zwar wegen
+ *    UBS. Die Bank meldet seit 2018 in Dollar, in den Meldungen davor stehen
+ *    Franken. Der Franken-Satz war vollstaendig, passte zur Kurswaehrung und
+ *    gewann deshalb – gerechnet ergab das ein Kurs-Gewinn-Verhaeltnis von 126
+ *    aus einem Gewinn des Jahres 2017. Das sah aus wie eine teure Aktie und war
+ *    eine acht Jahre alte Zahl.
+ * 2. **Mehr belegte Groessen.** Vier Zahlen sind besser als zwei.
+ * 3. **Juenger.** Bei gleicher Anzahl gewinnt der neuere Abschluss.
+ * 4. **Kurswaehrung.** Erst zuletzt, und nur unter sonst Gleichen: Damit laesst
+ *    sich ohne Umrechnung rechnen, aber es ist kein Grund, aeltere oder
+ *    duennere Zahlen zu nehmen.
  */
 function bestenSatz(
   fakten: Fakten,
   kurswaehrung: string | undefined
-): { taxonomie: string; waehrung: string; werte: Partial<Record<Feld, number>> } | null {
+): {
+  taxonomie: string
+  waehrung: string
+  werte: Partial<Record<Feld, number>>
+  ende: string
+} | null {
   const kandidaten: {
     taxonomie: string
     waehrung: string
     werte: Partial<Record<Feld, number>>
+    ende: string
   }[] = []
 
   for (const [taxonomie, groessen] of Object.entries(GROESSEN_JE_TAXONOMIE)) {
-    const jeWaehrung = new Map<string, Partial<Record<Feld, number>>>()
+    const jeWaehrung = new Map<
+      string,
+      { werte: Partial<Record<Feld, number>>; ende: string }
+    >()
 
     for (const groesse of groessen) {
       for (const tag of groesse.tags) {
@@ -458,31 +486,38 @@ function bestenSatz(
         const treffer = jahreswerteJeWaehrung(einheiten, groesse.zeitraum)
         if (treffer.size === 0) continue
 
-        for (const [waehrung, wert] of treffer) {
-          const eintrag = jeWaehrung.get(waehrung) ?? {}
+        for (const [waehrung, gefunden] of treffer) {
+          const eintrag = jeWaehrung.get(waehrung) ?? { werte: {}, ende: '' }
           // Erster Bezeichner gewinnt; ein zweiter waeren dieselben Erloese doppelt.
-          if (eintrag[groesse.feld] === undefined) eintrag[groesse.feld] = wert
+          if (eintrag.werte[groesse.feld] === undefined) {
+            eintrag.werte[groesse.feld] = gefunden.wert
+          }
+          if (gefunden.ende > eintrag.ende) eintrag.ende = gefunden.ende
           jeWaehrung.set(waehrung, eintrag)
         }
         break
       }
     }
 
-    for (const [waehrung, werte] of jeWaehrung) {
-      kandidaten.push({ taxonomie, waehrung, werte })
+    for (const [waehrung, eintrag] of jeWaehrung) {
+      kandidaten.push({ taxonomie, waehrung, ...eintrag })
     }
   }
 
-  if (kandidaten.length === 0) return null
+  const grenze = Date.now() - HOECHSTALTER_TAGE * 86_400_000
+  const aktuell = kandidaten.filter((k) => Date.parse(k.ende) >= grenze)
+  if (aktuell.length === 0) return null
 
-  kandidaten.sort((a, b) => {
+  aktuell.sort((a, b) => {
+    const anzahl = Object.keys(b.werte).length - Object.keys(a.werte).length
+    if (anzahl !== 0) return anzahl
+    if (a.ende !== b.ende) return a.ende < b.ende ? 1 : -1
     const passtA = a.waehrung === kurswaehrung ? 1 : 0
     const passtB = b.waehrung === kurswaehrung ? 1 : 0
-    if (passtA !== passtB) return passtB - passtA
-    return Object.keys(b.werte).length - Object.keys(a.werte).length
+    return passtB - passtA
   })
 
-  return kandidaten[0]
+  return aktuell[0]
 }
 
 /**
@@ -852,7 +887,7 @@ async function main() {
     console.log(
       `  ${ziel.padEnd(12)} ${satz.taxonomie.padEnd(9)} ${satz.waehrung}` +
         `${kurswaehrung && kurswaehrung !== satz.waehrung ? ` (Kurs in ${kurswaehrung})` : ''}` +
-        `  ${Object.keys(satz.werte).length}/4 Groessen` +
+        `  ${Object.keys(satz.werte).length}/4 Groessen, Stand ${satz.ende}` +
         `${aktien ? '' : ', ohne Aktienzahl'}`
     )
   }

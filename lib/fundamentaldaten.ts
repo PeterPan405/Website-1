@@ -1,5 +1,6 @@
 import momentaufnahme from '@/data/snapshots/fundamentaldaten.json'
 
+import { HINTERLEGUNGSSCHEINE } from '@/lib/hinterlegungsscheine'
 import type { Bilanzzahlen } from '@/lib/fundamentalkennzahlen'
 
 /**
@@ -36,35 +37,6 @@ export const fundamentalStand: string = daten.abgerufenAm
 
 /** Herkunft und Abgrenzung, wie sie unter der Tafel steht. */
 export const fundamentalQuelle = daten.quelle
-
-/**
- * Aktien, deren US-Notierung ein Hinterlegungsschein ist.
- *
- * Ein American Depositary Receipt ist nicht die Aktie selbst, sondern ein
- * Zertifikat darauf – und das Bezugsverhältnis ist nicht immer eins zu eins.
- * Ein Papier von Taiwan Semiconductor verbrieft fünf Stammaktien, eines von
- * Alibaba acht. Die Aktienzahl aus der Meldung zählt aber Stammaktien.
- *
- * Wer beides ungeprüft verrechnet, bekommt eine Marktkapitalisierung, die um
- * genau diesen Faktor danebenliegt – bei Taiwan Semiconductor also das
- * Fünffache. Das sähe aus wie eine Tatsache und wäre grob falsch. Für diese
- * Werte wird deshalb nichts gerechnet.
- *
- * Die meisten Kandidaten fallen ohnehin vorher heraus, weil sie nach
- * internationalen Vorschriften bilanzieren und in den US-Meldungen nur ihre
- * Aktienzahl hinterlassen. Die Liste fängt den Rest ab – und den nächsten Wert,
- * der ohne diesen Hinweis dazukäme.
- */
-const HINTERLEGUNGSSCHEINE = new Set([
-  'BABA', // Alibaba – ein Papier verbrieft acht Stammaktien
-  'TSM', // Taiwan Semiconductor – fünf
-  'UMC', // United Microelectronics – fünf
-  'RYAAY', // Ryanair – fünf
-  'ASML', // ASML – eins, aber Bilanz nach IFRS
-  'SAP', // SAP – eins, Bilanz nach IFRS
-  'NVO', // Novo Nordisk – eins, Bilanz nach IFRS
-  'ARM', // Arm Holdings – eins, Bilanz nach IFRS
-])
 
 /**
  * Die Währung, in der ein Datensatz gemeldet ist.

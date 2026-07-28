@@ -50,10 +50,46 @@ const KOPFZEILEN = {
 
 /** Rechtsformen und Beiwerk, die im Namensvergleich nichts zu suchen haben. */
 const BEIWERK = new Set([
-  'THE','AG','SE','NV','PLC','SA','SAB','SPA','AB','ASA','AS','OYJ','ABP','INC',
-  'CORP','CORPORATION','CO','COMPANY','LTD','LIMITED','HOLDING','HOLDINGS',
-  'GROUP','GROUPE','GRP','PUBLIC','GMBH','KGAA','BV','CV','NA','SASA','SPOLKA',
-  'AKCYJNA','AKTIENGESELLSCHAFT','SOCIETE','ANONYME','KONZERN','SANV','SAB',
+  'THE',
+  'AG',
+  'SE',
+  'NV',
+  'PLC',
+  'SA',
+  'SAB',
+  'SPA',
+  'AB',
+  'ASA',
+  'AS',
+  'OYJ',
+  'ABP',
+  'INC',
+  'CORP',
+  'CORPORATION',
+  'CO',
+  'COMPANY',
+  'LTD',
+  'LIMITED',
+  'HOLDING',
+  'HOLDINGS',
+  'GROUP',
+  'GROUPE',
+  'GRP',
+  'PUBLIC',
+  'GMBH',
+  'KGAA',
+  'BV',
+  'CV',
+  'NA',
+  'SASA',
+  'SPOLKA',
+  'AKCYJNA',
+  'AKTIENGESELLSCHAFT',
+  'SOCIETE',
+  'ANONYME',
+  'KONZERN',
+  'SANV',
+  'SAB',
 ])
 
 function normalisiere(name: string): string {
@@ -108,7 +144,9 @@ async function hole(url: string): Promise<unknown | null> {
     }
     return await antwort.json()
   } catch (fehler) {
-    console.log(`  Fehler bei ${url}: ${fehler instanceof Error ? fehler.message : fehler}`)
+    console.log(
+      `  Fehler bei ${url}: ${fehler instanceof Error ? fehler.message : fehler}`
+    )
     return null
   }
 }
@@ -200,14 +238,17 @@ async function main() {
       unternehmen.get(gesucht) ??
       [...unternehmen.entries()].find(
         ([k]) =>
-          gesucht.length >= 5 && (k.startsWith(gesucht + ' ') || gesucht.startsWith(k + ' '))
+          gesucht.length >= 5 &&
+          (k.startsWith(gesucht + ' ') || gesucht.startsWith(k + ' '))
       )?.[1]
-    if (gefunden) treffer.push({ ticker: aktie.ticker, name: aktie.name, verzeichnis: gefunden.name })
+    if (gefunden)
+      treffer.push({ ticker: aktie.ticker, name: aktie.name, verzeichnis: gefunden.name })
     else daneben.push(aktie)
   }
 
   console.log(`\nGefunden: ${treffer.length} von ${offen.length}`)
-  for (const t of treffer) console.log(`  ${t.ticker.padEnd(14)} ${t.name} = ${t.verzeichnis}`)
+  for (const t of treffer)
+    console.log(`  ${t.ticker.padEnd(14)} ${t.name} = ${t.verzeichnis}`)
   console.log(`\nNicht gefunden: ${daneben.length}`)
   console.log(daneben.map((a) => a.ticker).join(' '))
 

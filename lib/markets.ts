@@ -14,6 +14,7 @@ import {
   type Fundamentalkennzahlen,
 } from '@/lib/fundamentalkennzahlen'
 import { berechneKennzahlen, type Kennzahlen } from '@/lib/kennzahlen'
+import { gleicheWaehrung, inHauptwaehrung } from '@/lib/waehrungseinheit'
 import { getLiveSeries, type QuoteSource } from '@/lib/market-live'
 import { computeQuoteFigures } from '@/lib/market-quote'
 import { sliceByDays } from '@/lib/market-range'
@@ -314,8 +315,13 @@ export async function getFundamentalkennzahlen(
     Umgerechnet wird bewusst nicht: Das brächte einen zweiten Stichtag ins
     Spiel – der Kurs von heute, die Bilanz vom Jahresende – und einen weiteren
     Weg, still falsch zu liegen. Die Lücke ist die ehrlichere Antwort.
+
+    Ausgenommen ist die Untereinheit: Die Londoner Börse stellt Aktien in Pence,
+    die Bilanzen lauten auf Pfund. Das ist keine Umrechnung mit einem
+    Wechselkurs, sondern ein Faktor 100 – dafür braucht es keinen Stichtag.
   */
-  if (definition.unit !== getBilanzwaehrung(definition.ticker)) {
+  const bilanzwaehrung = getBilanzwaehrung(definition.ticker)
+  if (!gleicheWaehrung(definition.unit, bilanzwaehrung)) {
     return { art: 'keineMeldung' }
   }
 
@@ -338,9 +344,12 @@ export async function getFundamentalkennzahlen(
   */
   if (quote.source === null) return { art: 'keinEchterKurs' }
 
-  const kennzahlen = berechneFundamentalkennzahlen(zahlen, quote.value)
+  // Gerechnet und ausgewiesen wird in der Hauptwährung: 525,70 GBp sind 5,26 GBP.
+  const kurs = inHauptwaehrung(quote.value, definition.unit)
+
+  const kennzahlen = berechneFundamentalkennzahlen(zahlen, kurs.wert)
   return kennzahlen.belegt > 0
-    ? { art: 'zahlen', kennzahlen, waehrung: definition.unit }
+    ? { art: 'zahlen', kennzahlen, waehrung: kurs.waehrung }
     : { art: 'keineMeldung' }
 }
 

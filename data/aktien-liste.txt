@@ -6,6 +6,13 @@
 # - symbol         Kleinbuchstaben und Bindestriche, wird zur URL
 # - ticker         wie bei Yahoo Finance, mit Börsenkürzel (.DE, .PA, .L, .T, .HK …)
 # - Länderkennung  ISO 3166-1 numerisch, dieselbe wie auf dem Globus
+# - Währung        die Einheit, in der die **Kursquelle** notiert, nicht die des
+#                  Landes. Die Londoner Börse stellt Aktien in Pence, und Yahoo
+#                  liefert sie so: BP steht dort mit 525,70, gemeint sind 5,26
+#                  Pfund. Deshalb `GBp` mit kleinem p und nicht `GBP` – hier
+#                  stand lange das Falsche, und die Website zeigte für 26
+#                  britische Werte den hundertfachen Kurs mit korrekt
+#                  aussehendem Währungskürzel daneben.
 # - Geschäftsmodell  ein Satz, ohne Punkt am Ende
 #
 # Nach dem Ändern: `npm run aktien`, danach `npm run build`.
@@ -185,32 +192,32 @@ carrefour|CA.PA|Carrefour|250|EUR|Handel|Betreibt Supermärkte und Verbraucherm�
 accor|AC.PA|Accor|250|EUR|Konsum|Betreibt Hotelmarken vom Budget- bis zum Luxussegment
 
 # ---------------------------------------------- Vereinigtes Königreich
-sage|SGE.L|Sage Group|826|GBP|Software|Liefert Buchhaltungs- und Lohnsoftware für kleine und mittlere Unternehmen
-bp|BP.L|BP|826|GBP|Energie|Fördert Öl und Gas und betreibt Tankstellen und Raffinerien
-glaxosmithkline|GSK.L|GSK|826|GBP|Pharma|Entwickelt Impfstoffe und Medikamente gegen Atemwegs- und Infektionskrankheiten
-diageo|DGE.L|Diageo|826|GBP|Konsum|Stellt Spirituosen wie Johnnie Walker und Guinness her
-reckitt|RKT.L|Reckitt|826|GBP|Konsum|Produziert Hygiene- und Gesundheitsprodukte für den Haushalt
-british-american-tobacco|BATS.L|British American Tobacco|826|GBP|Konsum|Stellt Zigaretten und Alternativprodukte her
-barclays|BARC.L|Barclays|826|GBP|Banken|Betreibt Privatkundengeschäft und Investmentbanking
-lloyds|LLOY.L|Lloyds Banking Group|826|GBP|Banken|Führt eines der größten Filialnetze im britischen Privatkundengeschäft
-natwest|NWG.L|NatWest Group|826|GBP|Banken|Bietet Privat- und Firmenkundengeschäft in Großbritannien
-prudential-plc|PRU.L|Prudential plc|826|GBP|Versicherungen|Verkauft Lebensversicherungen in Asien und Afrika
-legal-general|LGEN.L|Legal & General|826|GBP|Versicherungen|Verwaltet Altersvorsorgevermögen und bietet Rentenversicherungen
-aviva|AV.L|Aviva|826|GBP|Versicherungen|Bietet Sach- und Lebensversicherungen in Großbritannien und Irland
-rio-tinto|RIO.L|Rio Tinto|826|GBP|Bergbau|Fördert Eisenerz, Kupfer und Aluminium
-glencore|GLEN.L|Glencore|756|GBP|Bergbau|Fördert Rohstoffe und handelt weltweit damit
-anglo-american|AAL.L|Anglo American|826|GBP|Bergbau|Fördert Platin, Kupfer, Diamanten und Eisenerz
-rolls-royce|RR.L|Rolls-Royce|826|GBP|Luftfahrt|Baut Triebwerke für Verkehrsflugzeuge und Antriebe für Schiffe
-bae-systems|BA.L|BAE Systems|826|GBP|Rüstung|Baut Kampfflugzeuge, Kriegsschiffe und Elektronik für Streitkräfte
-national-grid|NG.L|National Grid|826|GBP|Versorger|Betreibt Strom- und Gasnetze in Großbritannien und den USA
-tesco|TSCO.L|Tesco|826|GBP|Handel|Betreibt die größte Supermarktkette Großbritanniens
-sainsbury|SBRY.L|Sainsbury's|826|GBP|Handel|Betreibt Supermärkte und eine Bank in Großbritannien
-relx|REL.L|RELX|826|GBP|Medien|Verkauft Fachinformationen und Analysewerkzeuge an Wissenschaft und Wirtschaft
-london-stock-exchange|LSEG.L|London Stock Exchange Group|826|GBP|Finanzdienste|Betreibt Börsen und verkauft Marktdaten
-vodafone|VOD.L|Vodafone|826|GBP|Telekommunikation|Betreibt Mobilfunknetze in Europa und Afrika
-compass-group|CPG.L|Compass Group|826|GBP|Dienstleistung|Betreibt Kantinen und Verpflegung für Unternehmen und Kliniken
-experian|EXPN.L|Experian|372|GBP|Finanzdienste|Sammelt Kreditdaten und bewertet die Zahlungsfähigkeit von Verbrauchern
-sse|SSE.L|SSE|826|GBP|Versorger|Erzeugt Strom aus Wind und Wasser und betreibt Netze
+sage|SGE.L|Sage Group|826|GBp|Software|Liefert Buchhaltungs- und Lohnsoftware für kleine und mittlere Unternehmen
+bp|BP.L|BP|826|GBp|Energie|Fördert Öl und Gas und betreibt Tankstellen und Raffinerien
+glaxosmithkline|GSK.L|GSK|826|GBp|Pharma|Entwickelt Impfstoffe und Medikamente gegen Atemwegs- und Infektionskrankheiten
+diageo|DGE.L|Diageo|826|GBp|Konsum|Stellt Spirituosen wie Johnnie Walker und Guinness her
+reckitt|RKT.L|Reckitt|826|GBp|Konsum|Produziert Hygiene- und Gesundheitsprodukte für den Haushalt
+british-american-tobacco|BATS.L|British American Tobacco|826|GBp|Konsum|Stellt Zigaretten und Alternativprodukte her
+barclays|BARC.L|Barclays|826|GBp|Banken|Betreibt Privatkundengeschäft und Investmentbanking
+lloyds|LLOY.L|Lloyds Banking Group|826|GBp|Banken|Führt eines der größten Filialnetze im britischen Privatkundengeschäft
+natwest|NWG.L|NatWest Group|826|GBp|Banken|Bietet Privat- und Firmenkundengeschäft in Großbritannien
+prudential-plc|PRU.L|Prudential plc|826|GBp|Versicherungen|Verkauft Lebensversicherungen in Asien und Afrika
+legal-general|LGEN.L|Legal & General|826|GBp|Versicherungen|Verwaltet Altersvorsorgevermögen und bietet Rentenversicherungen
+aviva|AV.L|Aviva|826|GBp|Versicherungen|Bietet Sach- und Lebensversicherungen in Großbritannien und Irland
+rio-tinto|RIO.L|Rio Tinto|826|GBp|Bergbau|Fördert Eisenerz, Kupfer und Aluminium
+glencore|GLEN.L|Glencore|756|GBp|Bergbau|Fördert Rohstoffe und handelt weltweit damit
+anglo-american|AAL.L|Anglo American|826|GBp|Bergbau|Fördert Platin, Kupfer, Diamanten und Eisenerz
+rolls-royce|RR.L|Rolls-Royce|826|GBp|Luftfahrt|Baut Triebwerke für Verkehrsflugzeuge und Antriebe für Schiffe
+bae-systems|BA.L|BAE Systems|826|GBp|Rüstung|Baut Kampfflugzeuge, Kriegsschiffe und Elektronik für Streitkräfte
+national-grid|NG.L|National Grid|826|GBp|Versorger|Betreibt Strom- und Gasnetze in Großbritannien und den USA
+tesco|TSCO.L|Tesco|826|GBp|Handel|Betreibt die größte Supermarktkette Großbritanniens
+sainsbury|SBRY.L|Sainsbury's|826|GBp|Handel|Betreibt Supermärkte und eine Bank in Großbritannien
+relx|REL.L|RELX|826|GBp|Medien|Verkauft Fachinformationen und Analysewerkzeuge an Wissenschaft und Wirtschaft
+london-stock-exchange|LSEG.L|London Stock Exchange Group|826|GBp|Finanzdienste|Betreibt Börsen und verkauft Marktdaten
+vodafone|VOD.L|Vodafone|826|GBp|Telekommunikation|Betreibt Mobilfunknetze in Europa und Afrika
+compass-group|CPG.L|Compass Group|826|GBp|Dienstleistung|Betreibt Kantinen und Verpflegung für Unternehmen und Kliniken
+experian|EXPN.L|Experian|372|GBp|Finanzdienste|Sammelt Kreditdaten und bewertet die Zahlungsfähigkeit von Verbrauchern
+sse|SSE.L|SSE|826|GBp|Versorger|Erzeugt Strom aus Wind und Wasser und betreibt Netze
 
 # ---------------------------------------------------------------- Schweiz
 zurich-insurance|ZURN.SW|Zurich Insurance|756|CHF|Versicherungen|Versichert Sach- und Haftpflichtrisiken von Firmen und Privatkunden
