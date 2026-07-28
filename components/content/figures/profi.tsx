@@ -3,7 +3,7 @@ import {
   LinienDiagramm,
   type Reihe,
 } from '@/components/content/figures/Diagramme'
-import { kurs, zinsschock } from '@/lib/anleihen'
+import { zinsschock } from '@/lib/anleihen'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
 import {
   anleiheBeispiel,
@@ -14,7 +14,7 @@ import {
   sequenzStartkapital,
 } from '@/lib/lernszenarien'
 import { sensitivitaeten } from '@/lib/optionen'
-import { mittlereRendite, reihenfolgevergleich } from '@/lib/sequenzrisiko'
+import { reihenfolgevergleich } from '@/lib/sequenzrisiko'
 
 /**
  * Grafiken für die Profi-Stufen.
