@@ -38,18 +38,37 @@ export function InflationChart({
     requiredAmount: Math.round(row.requiredAmount),
   }))
 
-  const tickInterval = Math.max(0, Math.ceil(data.length / 10) - 1)
+  /*
+    Wie viele Jahre beschriftet werden, entscheidet das Diagramm.
+
+    Vorher stand hier ein fester Abstand für zehn Beschriftungen. Zehnmal
+    „30. J.“ passt auf einen Bildschirm und nicht auf ein Telefon – dort lagen
+    sie übereinander. Ein fester Zahlenwert bei `interval` schaltet in Recharts
+    zudem die Kollisionsprüfung ab; `minTickGap` wird dann nicht ausgewertet.
+  */
+  const MINDESTABSTAND = 26
 
   return (
     <div style={{ height }} className="w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
+        <LineChart
+          data={data}
+          margin={{
+            top: 8,
+            right: 8,
+            bottom: 0,
+            // Links Platz für die halbe erste Beschriftung – sie steht mittig
+            // über ihrem Punkt und würde am Rand sonst angeschnitten.
+            left: 16,
+          }}
+        >
           <CartesianGrid {...gridProps} />
 
           <XAxis
             dataKey="year"
             {...axisProps}
-            interval={tickInterval}
+            interval="preserveStartEnd"
+            minTickGap={MINDESTABSTAND}
             tickFormatter={(year: number) => `${year}. J.`}
           />
           <YAxis

@@ -145,7 +145,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div>
             {/* ------------------------------------------------ Kennzahlen */}
             <section aria-labelledby="kennzahlen">

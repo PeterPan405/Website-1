@@ -27,7 +27,7 @@ export default function ContactPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="max-w-2xl">
             <section aria-labelledby="per-mail" className="fk-card p-6 sm:p-8">
               <h2 id="per-mail" className="text-fg text-xl font-semibold">

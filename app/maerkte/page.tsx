@@ -148,6 +148,7 @@ export default async function MarketsOverviewPage() {
                   <Stimmungskachel
                     stimmung={stimmungAktien}
                     titel="Angst und Gier am Aktienmarkt"
+                    bereich="aktien"
                   />
                 </Reveal>
               </li>
@@ -255,6 +256,7 @@ export default async function MarketsOverviewPage() {
                   <Stimmungskachel
                     stimmung={stimmungKrypto}
                     titel="Angst und Gier am Kryptomarkt"
+                    bereich="krypto"
                   />
                 </Reveal>
               </li>

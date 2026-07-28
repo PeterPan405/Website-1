@@ -103,9 +103,21 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
           {/* --------------------------------------------------- Artikeltext */}
-          <article>
+          {/*
+            `min-w-0` ist hier nicht kosmetisch.
+
+            Ein Rasterfeld darf sich standardmäßig nicht kleiner machen als
+            sein Inhalt. Steht im Artikel eine breite Tabelle, wächst deshalb
+            die Spalte mit – und zwar über den Bildschirmrand hinaus. Auf dem
+            Handy zoomt der Browser die ganze Seite heraus, um sie
+            unterzubringen: Der Text wird winzig, obwohl mit ihm nichts ist.
+
+            Die Tabelle bringt ihren eigenen Scrollbereich mit. Der greift nur,
+            wenn ihm jemand eine Grenze setzt, und das ist diese Zeile.
+          */}
+          <article className="min-w-0">
             <ContentBlocks blocks={article.body} />
 
             {/*

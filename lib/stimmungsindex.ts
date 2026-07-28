@@ -345,3 +345,95 @@ export function berechneStimmung(
 
   return { wert, stufe: stufeFuer(wert), bestandteile }
 }
+
+// ------------------------------------------------------- Stand zu einem Stichtag
+
+/**
+ * Wie viele Punkte die längste Rechnung braucht.
+ *
+ * Die Jahresspanne und der Vergleich der Schwankung greifen beide 250 Punkte
+ * zurück. Wer weniger hat, bekommt von `berechneStimmung` zwar ein Ergebnis –
+ * aber eines aus weniger Bestandteilen, und das ist mit dem heutigen Wert nicht
+ * vergleichbar. Für einen Verlauf ist Vergleichbarkeit der ganze Zweck.
+ */
+export const BENOETIGTE_PUNKTE = 250
+
+/**
+ * Ob die letzten `anzahl` Punkte tatsächlich Handelstage sind.
+ *
+ * ## Warum das geprüft werden muss
+ *
+ * Die Kursreihen dieser Seite sind hinten täglich und vorne wöchentlich – das
+ * Tagesarchiv beginnt erst mit dem ersten eigenen Abruf. Für den heutigen Wert
+ * spielt das keine Rolle: Die letzten 250 Punkte liegen im täglichen Bereich.
+ *
+ * Für einen Stichtag ein Jahr zurück ist es entscheidend. Dort sind von 250
+ * Punkten nur zwei Dutzend Tage und der Rest Wochen; „der Durchschnitt der
+ * letzten 125 Punkte“ umfasst dann nicht ein halbes Jahr, sondern über zwei.
+ * Die Zahl käme heraus, sähe richtig aus und wäre falsch.
+ *
+ * Geprüft wird deshalb nicht das Datum, sondern der Abstand: 250 Handelstage
+ * umfassen rund 350 Kalendertage. Mit dem Faktor 1,7 bleibt Luft für
+ * Feiertage und Handelspausen, während eine Wochenreihe – sie käme auf das
+ * Fünffache – sicher durchfällt.
+ */
+export function istTagesreihe(
+  punkte: readonly Kurspunkt[],
+  anzahl = BENOETIGTE_PUNKTE,
+  faktor = 1.7
+): boolean {
+  if (punkte.length < anzahl) return false
+  const abschnitt = punkte.slice(-anzahl)
+  const spanne = tageZwischen(abschnitt[0].d, abschnitt[abschnitt.length - 1].d)
+  if (spanne === null) return false
+  return spanne <= anzahl * faktor
+}
+
+/** Kalendertage zwischen zwei ISO-Daten, oder `null` bei unbrauchbarer Eingabe. */
+export function tageZwischen(von: string, bis: string): number | null {
+  const a = Date.parse(`${von}T00:00:00Z`)
+  const b = Date.parse(`${bis}T00:00:00Z`)
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return null
+  return Math.round((b - a) / 86_400_000)
+}
+
+/** Alles bis einschließlich `stichtag`. Die Reihen sind aufsteigend sortiert. */
+export function bisStichtag(punkte: readonly Kurspunkt[], stichtag: string): Kurspunkt[] {
+  return punkte.filter((punkt) => punkt.d <= stichtag)
+}
+
+/**
+ * Der Stand von Angst und Gier, wie er an einem vergangenen Tag ausgesehen hat.
+ *
+ * Es wird nichts gespeichert und nichts nachgeschlagen: Dieselbe Rechnung läuft
+ * noch einmal, nur mit abgeschnittenen Reihen. Das ist der Grund, warum es
+ * diesen Verlauf überhaupt geben kann, ohne dass jemals jemand einen Wert
+ * archiviert hätte – und es ist zugleich die Absicherung, dass der Verlauf mit
+ * dem heutigen Wert nach demselben Verfahren entsteht.
+ *
+ * `null`, wenn die Reihe am Stichtag nicht dicht genug ist. Lieber eine Lücke
+ * mit Begründung als eine Zahl, die anders zustande kam als die daneben.
+ */
+export function stimmungAm(
+  leitreihe: readonly Kurspunkt[],
+  einzelreihen: readonly (readonly Kurspunkt[])[],
+  massstab: Massstab,
+  stichtag: string
+): Stimmung | null {
+  const leit = bisStichtag(leitreihe, stichtag)
+  if (!istTagesreihe(leit)) return null
+
+  /*
+    Die Einzelreihen werden nur abgeschnitten, nicht geprüft.
+
+    Sie tragen die Marktbreite, und die greift 50 Punkte zurück – ein Fünftel
+    dessen, was die Leitreihe braucht. Eine Reihe, die dort zu grob wird,
+    verzerrt den einen Bestandteil geringfügig; ihn deswegen ganz wegzulassen
+    wäre der größere Eingriff.
+  */
+  const einzeln = einzelreihen
+    .map((reihe) => bisStichtag(reihe, stichtag))
+    .filter((reihe) => reihe.length > 0)
+
+  return berechneStimmung(leit, einzeln, massstab)
+}
