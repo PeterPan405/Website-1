@@ -1,41 +1,11 @@
 {
-  "abgerufenAm": "2026-07-28T09:43:10.529Z",
+  "abgerufenAm": "2026-07-28T10:44:50.022Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
     "abgrenzung": "Die Termine sind aus dem bisherigen Meldemuster jedes Unternehmens abgeleitet und keine Ankündigung. Den genauen Tag gibt jedes Unternehmen wenige Wochen vorher selbst bekannt. Erfasst sind nur Unternehmen, die bei der SEC ein 8-K einreichen – überwiegend US-Emittenten."
   },
   "unternehmen": {
-    "WTI": {
-      "name": "W&T OFFSHORE INC",
-      "bisher": [
-        "2026-05-07",
-        "2026-03-16",
-        "2026-03-09",
-        "2025-11-05",
-        "2025-08-04",
-        "2025-05-06",
-        "2025-03-03",
-        "2024-11-07"
-      ],
-      "vorhersagen": [
-        {
-          "erwartet": "2026-11-04",
-          "basis": "2025-11-05",
-          "streuungTage": 1
-        },
-        {
-          "erwartet": "2027-03-08",
-          "basis": "2026-03-09",
-          "streuungTage": 7
-        },
-        {
-          "erwartet": "2027-05-06",
-          "basis": "2026-05-07",
-          "streuungTage": 2
-        }
-      ]
-    },
     "NVDA": {
       "name": "NVIDIA CORP",
       "bisher": [
@@ -1086,6 +1056,40 @@
         }
       ]
     },
+    "JPM": {
+      "name": "JPMORGAN CHASE & CO",
+      "bisher": [
+        "2026-07-14",
+        "2026-04-14",
+        "2026-01-13",
+        "2025-10-14",
+        "2025-07-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-07-13",
+          "basis": "2026-07-14",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "BAC": {
+      "name": "BANK OF AMERICA CORP /DE/",
+      "bisher": [
+        "2026-07-14",
+        "2026-04-15",
+        "2026-01-14",
+        "2025-10-15",
+        "2025-07-16"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-07-13",
+          "basis": "2026-07-14",
+          "streuungTage": 1
+        }
+      ]
+    },
     "BRK-B": {
       "name": "BERKSHIRE HATHAWAY INC",
       "bisher": [
@@ -1118,6 +1122,29 @@
           "erwartet": "2027-05-06",
           "basis": "2026-05-07",
           "streuungTage": 2
+        }
+      ]
+    },
+    "BLK": {
+      "name": "BlackRock, Inc.",
+      "bisher": [
+        "2026-07-15",
+        "2026-04-14",
+        "2026-01-15",
+        "2025-10-14",
+        "2025-07-15",
+        "2025-04-11"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-04-13",
+          "basis": "2026-04-14",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 1
         }
       ]
     },
@@ -1629,14 +1656,14 @@
     "UPS": {
       "name": "UNITED PARCEL SERVICE INC",
       "bisher": [
+        "2026-07-28",
         "2026-04-28",
         "2026-01-27",
         "2025-10-28",
         "2025-07-29",
         "2025-04-29",
         "2025-01-30",
-        "2024-10-24",
-        "2024-07-23"
+        "2024-10-24"
       ],
       "vorhersagen": [
         {
@@ -1652,6 +1679,11 @@
         {
           "erwartet": "2027-04-27",
           "basis": "2026-04-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-27",
+          "basis": "2026-07-28",
           "streuungTage": 0
         }
       ]
@@ -2548,6 +2580,23 @@
         }
       ]
     },
+    "MS": {
+      "name": "MORGAN STANLEY",
+      "bisher": [
+        "2026-07-15",
+        "2026-04-15",
+        "2026-01-15",
+        "2025-10-15",
+        "2025-07-16"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 0
+        }
+      ]
+    },
     "SCHW": {
       "name": "SCHWAB CHARLES CORP",
       "bisher": [
@@ -2580,6 +2629,23 @@
           "erwartet": "2027-07-20",
           "basis": "2026-07-21",
           "streuungTage": 4
+        }
+      ]
+    },
+    "C": {
+      "name": "CITIGROUP INC",
+      "bisher": [
+        "2026-07-14",
+        "2026-04-14",
+        "2026-01-14",
+        "2025-10-14",
+        "2025-07-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-07-13",
+          "basis": "2026-07-14",
+          "streuungTage": 0
         }
       ]
     },
