@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-28T21:33:07.764Z",
+  "abgerufenAm": "2026-07-28T21:40:54.530Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -1131,9 +1131,11 @@
       "aktien": 173972199
     },
     "RYAAY": {
-      "gewinn": 885000000,
-      "cashflow": 2017500000,
-      "waehrung": "USD",
+      "umsatz": 13948500000,
+      "gewinn": 1611600000,
+      "cashflow": 3415700000,
+      "eigenkapital": 7036900000,
+      "waehrung": "EUR",
       "aktien": 1043931708
     },
     "XRP": {
@@ -1148,11 +1150,11 @@
       "aktien": 385417665
     },
     "SAP": {
-      "umsatz": 28205000000,
-      "gewinn": 4876000000,
-      "cashflow": 6065000000,
-      "eigenkapital": 30704000000,
-      "waehrung": "USD",
+      "umsatz": 36800000000,
+      "gewinn": 7326000000,
+      "cashflow": 9156000000,
+      "eigenkapital": 45073000000,
+      "waehrung": "EUR",
       "aktien": 1228504232
     },
     "UMC": {
@@ -1205,46 +1207,25 @@
       "aktien": 12588156344
     },
     "7203.T": {
-      "umsatz": 29929992000000,
-      "gewinn": 2076183000000,
-      "cashflow": 3590643000000,
-      "eigenkapital": 20060618000000,
+      "umsatz": 48036704000000,
+      "gewinn": 4789755000000,
+      "cashflow": 3696934000000,
+      "eigenkapital": 36878913000000,
       "waehrung": "JPY",
       "aktien": 13033931974
     },
     "6758.T": {
-      "umsatz": 8999360000000,
-      "gewinn": 1171776000000,
-      "cashflow": 1350150000000,
-      "eigenkapital": 5575839000000,
+      "umsatz": 12957064000000,
+      "gewinn": 1159887000000,
+      "cashflow": 2321675000000,
+      "eigenkapital": 8510151000000,
       "waehrung": "JPY"
     },
     "7267.T": {
-      "umsatz": 11842451000000,
-      "gewinn": 574107000000,
-      "cashflow": 1229191000000,
-      "eigenkapital": 5918979000000,
-      "waehrung": "JPY"
-    },
-    "6501.T": {
-      "umsatz": 8968546000000,
-      "gewinn": -106961000000,
-      "cashflow": 798299000000,
-      "eigenkapital": 1284658000000,
-      "waehrung": "JPY"
-    },
-    "6857.T": {
-      "umsatz": 132903000000,
-      "gewinn": 12948000000,
-      "cashflow": -2215000000,
-      "eigenkapital": 140938000000,
-      "waehrung": "JPY"
-    },
-    "7751.T": {
-      "umsatz": 4031414000000,
-      "gewinn": 243961000000,
-      "cashflow": 262603000000,
-      "eigenkapital": 3113105000000,
+      "umsatz": 21688767000000,
+      "gewinn": 903034000000,
+      "cashflow": 292152000000,
+      "eigenkapital": 12627822000000,
       "waehrung": "JPY"
     },
     "8306.T": {
@@ -1275,13 +1256,6 @@
       "gewinn": 108143000000,
       "cashflow": 1057182000000,
       "eigenkapital": 6935979000000,
-      "waehrung": "JPY"
-    },
-    "9432.T": {
-      "umsatz": 11391016000000,
-      "gewinn": 800129000000,
-      "cashflow": 2453682000000,
-      "eigenkapital": 9052479000000,
       "waehrung": "JPY"
     },
     "DBK.DE": {
@@ -1315,13 +1289,6 @@
       "waehrung": "EUR",
       "aktien": 1219427096
     },
-    "ORA.PA": {
-      "umsatz": 44122000000,
-      "gewinn": 2892000000,
-      "cashflow": 12054000000,
-      "eigenkapital": 35098000000,
-      "waehrung": "EUR"
-    },
     "TTE.PA": {
       "umsatz": 149099000000,
       "gewinn": 13357000000,
@@ -1347,11 +1314,11 @@
       "aktien": 4315445026
     },
     "DGE.L": {
-      "umsatz": 23515000000,
-      "gewinn": 3766000000,
-      "cashflow": 3024000000,
-      "eigenkapital": 9292000000,
-      "waehrung": "GBP",
+      "umsatz": 27964000000,
+      "gewinn": 2538000000,
+      "cashflow": 4297000000,
+      "eigenkapital": 13178000000,
+      "waehrung": "USD",
       "aktien": 2432425127
     },
     "BATS.L": {
@@ -1386,11 +1353,10 @@
       "waehrung": "GBP"
     },
     "PRU.L": {
-      "umsatz": 35194000000,
-      "gewinn": 3013000000,
-      "cashflow": 2464000000,
-      "eigenkapital": 17267000000,
-      "waehrung": "GBP",
+      "umsatz": 11491000000,
+      "gewinn": 4119000000,
+      "eigenkapital": 21360000000,
+      "waehrung": "USD",
       "aktien": 2548213779
     },
     "NG.L": {
@@ -1453,11 +1419,11 @@
       "waehrung": "EUR"
     },
     "UBSG.SW": {
-      "umsatz": 29195000000,
-      "gewinn": 1128000000,
-      "cashflow": -50911000000,
-      "eigenkapital": 51271000000,
-      "waehrung": "CHF",
+      "umsatz": 35393000000,
+      "gewinn": 7797000000,
+      "cashflow": 21851000000,
+      "eigenkapital": 90484000000,
+      "waehrung": "USD",
       "aktien": 3341581714
     },
     "NOVN.SW": {
@@ -1466,13 +1432,6 @@
       "eigenkapital": 46549000000,
       "waehrung": "USD",
       "aktien": 1908151679
-    },
-    "ABBN.SW": {
-      "umsatz": 32235000000,
-      "gewinn": 2561000000,
-      "cashflow": 4290000000,
-      "eigenkapital": 13410000000,
-      "waehrung": "USD"
     },
     "ALC.SW": {
       "umsatz": 10401000000,
@@ -1607,20 +1566,6 @@
       "eigenkapital": 72619255000,
       "waehrung": "CNY",
       "aktien": 2027667098
-    },
-    "2628.HK": {
-      "umsatz": 804388000000,
-      "gewinn": 33514000000,
-      "cashflow": 351968000000,
-      "eigenkapital": 445121000000,
-      "waehrung": "CNY"
-    },
-    "0857.HK": {
-      "umsatz": 3239167000000,
-      "gewinn": 163982000000,
-      "cashflow": 393768000000,
-      "eigenkapital": 1537853000000,
-      "waehrung": "CNY"
     },
     "BHP.AX": {
       "umsatz": 51262000000,
@@ -1778,11 +1723,11 @@
       "aktien": 60264000000
     },
     "CEMEXCPO.MX": {
-      "umsatz": 276855000000,
-      "gewinn": 11256000000,
-      "cashflow": 26545000000,
-      "eigenkapital": 219533000000,
-      "waehrung": "MXN",
+      "umsatz": 16200000000,
+      "gewinn": 960000000,
+      "cashflow": 1894000000,
+      "eigenkapital": 12477000000,
+      "waehrung": "USD",
       "aktien": 14507429244
     },
     "FI": {
