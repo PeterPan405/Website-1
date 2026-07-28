@@ -1128,6 +1128,163 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Als Sondervermögen fällt der Fonds bei einer Insolvenz des Anbieters nicht in die Masse – dafür braucht er keinen Einlagenschutz. Sein Risiko liegt im Inhalt: Ein Fonds mit besicherten Übernachtgeschäften ist etwas anderes als einer mit kurzlaufenden Unternehmensanleihen, auch wenn beide „Geldmarkt“ heißen.',
     },
   ],
+  // ------------------------------------------------------------------ Fonds
+  'fonds:beginner': [
+    {
+      question: 'Was besitzt du, wenn du Fondsanteile hältst?',
+      options: [
+        'Die einzelnen Aktien anteilig, mit Stimmrecht auf den Hauptversammlungen',
+        'Anteile am gesamten Fondsvermögen – die Wertpapiere selbst hält der Fonds',
+        'Ein Darlehen an die Fondsgesellschaft',
+        'Ein Recht auf eine feste jährliche Ausschüttung',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Du hältst einen Bruchteil von allem, was im Fonds liegt. Auf Hauptversammlungen stimmt die Fondsgesellschaft ab, Dividenden fließen in den Fonds. Ein Darlehen wäre eine Anleihe, und eine feste Ausschüttung verspricht kein Fonds – was ausgeschüttet wird, hängt davon ab, was erwirtschaftet wurde.',
+    },
+    {
+      question: 'Wie entsteht der Anteilspreis eines Fonds?',
+      options: [
+        'Durch Angebot und Nachfrage an der Börse',
+        'Die Fondsgesellschaft legt ihn wöchentlich fest',
+        'Wert aller Anlagen abzüglich Verbindlichkeiten, geteilt durch die Zahl der Anteile',
+        'Er entspricht dem Einstandspreis zuzüglich der laufenden Kosten',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Anteilspreis ist eine tägliche Rechnung, kein Verhandlungsergebnis – deshalb kann ein Fonds keine Blase auf sich selbst bilden. Bei börsengehandelten Fonds kommt zusätzlich ein Börsenpreis daneben, der leicht abweichen kann.',
+    },
+    {
+      question:
+        'Die Fondsgesellschaft meldet Insolvenz an. Was passiert mit deinem Geld?',
+      options: [
+        'Es fällt nicht in die Insolvenzmasse – das Fondsvermögen ist rechtlich getrennt',
+        'Es ist bis 100.000 Euro über die Einlagensicherung geschützt, darüber verloren',
+        'Es wird anteilig an die Gläubiger der Gesellschaft verteilt',
+        'Der Fonds wird eingefroren und nach zehn Jahren ausgezahlt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das ist der Kern des Sondervermögens: Das Fondsvermögen gehört den Anlegern, nicht der Gesellschaft, und wird von einer unabhängigen Depotbank verwahrt. Es wird übertragen oder aufgelöst und ausgezahlt. Vor fallenden Kursen schützt das allerdings nicht.',
+    },
+    {
+      question:
+        'Warum wiegen die laufenden Kosten eines Fonds schwerer als der einmalige Ausgabeaufschlag?',
+      options: [
+        'Weil sie steuerlich nicht absetzbar sind',
+        'Weil sie beim Verkauf noch einmal anfallen',
+        'Weil sie höher sind als jeder Ausgabeaufschlag',
+        'Weil sie jedes Jahr auf das gesamte Vermögen anfallen – auch in Verlustjahren',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Ausgabeaufschlag trifft einmal den eingezahlten Betrag, die laufenden Kosten jedes Jahr das gesamte angesparte Vermögen. Über Jahrzehnte summiert sich das erheblich. Und es ist die einzige Größe der Geldanlage, die im Voraus feststeht: Rendite ist eine Hoffnung, Kosten sind eine Tatsache.',
+    },
+  ],
+  'fonds:fortgeschritten': [
+    {
+      question: 'Der Kurs eines offenen Immobilienfonds schwankt kaum. Was folgt daraus?',
+      options: [
+        'Der Fonds ist besonders sicher und mit Tagesgeld vergleichbar',
+        'Wenig – Immobilien werden periodisch durch Gutachter bewertet, nicht täglich gehandelt',
+        'Der Fonds hält überwiegend Bargeld',
+        'Die Wertentwicklung ist garantiert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der ruhige Kurs ist eine Folge der Bewertungsmethode, keine Eigenschaft der Anlage. Dazu kommen gesetzliche Fristen: 24 Monate Mindesthaltedauer und zwölf Monate Kündigungsfrist – eingeführt, nachdem in der Finanzkrise mehrere Fonds die Rücknahme aussetzen mussten.',
+    },
+    {
+      question:
+        'Warum liegt die durchschnittliche Rendite aktiver Fonds nach Kosten unter der des Marktes?',
+      options: [
+        'Weil Fondsmanager schlechter informiert sind als Privatanleger',
+        'Weil aktive Fonds gesetzlich schlechtere Anlagen kaufen müssen',
+        'Weil alle Anleger zusammen den Markt halten – ihr Durchschnitt vor Kosten ist die Marktrendite, nach Kosten weniger',
+        'Weil aktive Fonds keine Dividenden vereinnahmen dürfen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das Argument ist arithmetisch, nicht polemisch: Was der eine besser macht, macht ein anderer schlechter, und in der Summe halten alle den Markt. Die höheren Kosten ziehen den Durchschnitt darunter. Das schließt nicht aus, dass einzelne Fonds den Markt schlagen – nur der Durchschnitt kann es nicht.',
+    },
+    {
+      question: 'Welcher Kostenblock ist in der Gesamtkostenquote (TER) NICHT enthalten?',
+      options: [
+        'Die Verwaltungsgebühr',
+        'Die Kosten der Depotbank',
+        'Die Prüfungskosten',
+        'Die Transaktionskosten des Handels innerhalb des Fonds',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Handelskosten innerhalb des Fonds stehen in keiner TER. Ein Fonds, der seinen Bestand jedes Jahr komplett umschichtet, zahlt hier ein Vielfaches eines ruhigen – bei gleicher ausgewiesener Kostenquote. Deshalb ist die Wertentwicklung nach Kosten der bessere Vergleichsmaßstab.',
+    },
+    {
+      question:
+        'Ein Fonds wird mit einem Kursindex verglichen und schneidet hervorragend ab. Was ist zu prüfen?',
+      options: [
+        'Ob der Fonds überhaupt zugelassen ist',
+        'Ob im Kursindex die Dividenden fehlen – dann ist der Vergleich systematisch geschönt',
+        'Ob der Fonds thesauriert oder ausschüttet',
+        'Ob der Vergleich in Euro oder Dollar gerechnet wurde',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Kursindex bildet nur Kursbewegungen ab, ein Fonds vereinnahmt zusätzlich die Dividenden. Über Jahre ergibt das einen Vorsprung, der nichts mit dem Können des Managements zu tun hat. Verglichen wird gegen die Net-Return-Variante – und gegen den passenden Index, nicht irgendeinen.',
+    },
+  ],
+  'fonds:profi': [
+    {
+      question: 'Was besagt die 5/10/40-Regel für OGAW-Fonds?',
+      options: [
+        'Der Fonds darf höchstens 40 Prozent seines Vermögens in Aktien halten',
+        'Mindestens 40 Prozent müssen in liquiden Anlagen liegen',
+        'Höchstens 10 Prozent in einen Emittenten, und Positionen über 5 Prozent zusammen höchstens 40 Prozent',
+        'Der Fonds muss mindestens 40 verschiedene Werte halten',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Regel begrenzt das Klumpenrisiko rechtlich statt nach Ermessen des Managers. Deshalb kann ein OGAW-Fonds nie zur Hälfte aus einem einzigen Wert bestehen, auch wenn der Manager es für richtig hielte.',
+    },
+    {
+      question: 'Wozu dient Swing Pricing?',
+      options: [
+        'Den Anteilspreis bei hohen Rückgaben zu senken, damit die Handelskosten die Zurückgebenden treffen statt die Verbleibenden',
+        'Den Anteilspreis an Börsentagen mehrfach anzupassen',
+        'Erfolgsabhängige Vergütungen zu glätten',
+        'Wechselkursschwankungen im Fonds auszugleichen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ohne diesen Mechanismus zahlen die Verbleibenden die Kosten der Notverkäufe – und genau das erzeugt den Anreiz, als Erster zu gehen. Swing Pricing dreht den Anreiz um, indem es die Kosten dorthin legt, wo sie verursacht werden.',
+    },
+    {
+      question:
+        'Ein Fonds weist einen hohen Anteil an Positionen der Bewertungsstufe 3 aus. Was heißt das?',
+      options: [
+        'Er hält überwiegend Aktien großer Unternehmen',
+        'Seine Anlagen sind besonders liquide',
+        'Er hat besonders niedrige Kosten',
+        'Ein erheblicher Teil des Anteilspreises beruht auf Modellannahmen statt auf beobachteten Preisen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Stufe 1 sind notierte Preise an aktiven Märkten, Stufe 2 Ableitungen aus beobachtbaren Größen, Stufe 3 überwiegend Modell. Bei einem Aktienfonds liegt der Anteil nahe null, bei manchen Anleihe- und Mischfonds erheblich. Er steht im Jahresbericht.',
+    },
+    {
+      question:
+        'Wie hoch ist die Teilfreistellung bei einem Fonds mit mindestens 51 Prozent Aktienanteil?',
+      options: [
+        '15 Prozent der Erträge bleiben steuerfrei',
+        '30 Prozent der Erträge bleiben steuerfrei',
+        '51 Prozent der Erträge bleiben steuerfrei',
+        'Es gibt keine Teilfreistellung für Aktienfonds',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Teilfreistellung gleicht pauschal aus, dass der Fonds selbst bereits Steuern gezahlt hat. Bei Aktienfonds ab 51 Prozent Aktienanteil sind es 30 Prozent, bei Mischfonds ab 25 Prozent sind es 15 Prozent, bei Immobilienfonds 60 oder 80 Prozent.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */
