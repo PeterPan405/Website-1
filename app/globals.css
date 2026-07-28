@@ -339,34 +339,27 @@
     border-color: var(--c-border);
   }
 
+  /*
+    Das Scrollen gehört dem Browser.
+
+    Hier stand einmal eine Bibliothek (Lenis), die das Mausrad abgefangen und die
+    Seite selbst Bild für Bild bewegt hat. Das klingt nach mehr Kontrolle, kostet
+    aber genau die Eigenschaft, die flüssiges Scrollen ausmacht: Der Browser
+    scrollt sonst im Compositor, also unabhängig vom Haupt-Thread. Eine solche
+    Bibliothek braucht dagegen einen `wheel`-Zuhörer mit `passive: false` und
+    verschiebt damit jede Radbewegung auf den Haupt-Thread. Jede kurze Pause dort
+    – ein React-Rendering, ein Diagramm, ein Layout – wird dann als Ruckeln
+    sichtbar. Gemessen: dieselbe Strecke kostete mit der Bibliothek 505 Paints
+    und 240 Commits, ohne sie 181 und 154.
+
+    `scroll-behavior: smooth` bleibt. Es wirkt nur bei Sprungmarken und
+    programmatischem Scrollen, nicht beim Rad, und läuft ebenfalls im Browser.
+  */
   html {
     scroll-behavior: smooth;
     /* Verhindert, dass Sprungziele unter der Sticky-Navigation landen. */
     scroll-padding-top: 6rem;
     -webkit-text-size-adjust: 100%;
-  }
-
-  /*
-    Solange das gleitende Scrollen aktiv ist (components/layout/SmoothScroll.tsx),
-    muss das browsereigene weiche Scrollen aus. Beide gleichzeitig ergäben zwei
-    Bewegungen auf dasselbe Ziel, die sich gegenseitig ausbremsen.
-
-    Die Klassen setzt die Bibliothek selbst am <html>-Element. Fällt das
-    JavaScript aus oder ist reduzierte Bewegung eingestellt, greifen sie nicht –
-    dann gilt weiterhin die Regel darüber.
-  */
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-
-  /* Während eines programmatischen Sprungs keine Scroll-Verkettung. */
-  .lenis.lenis-stopped {
-    overflow: hidden;
   }
 
   body {
