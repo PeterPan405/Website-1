@@ -1,23 +1,36 @@
-import { learnTopics } from '@/data/learn'
-import { marketDefinitions } from '@/data/markets'
-
 import type { DailyEdition } from '@/data/editions'
 
 /**
  * Prüft die Tagesausgaben beim Bauen.
  *
- * Diese Daten entstehen automatisch: Jeden Morgen legt eine Routine eine neue
- * Ausgabe an, ohne dass vorher jemand darüberliest. Ein Tippfehler in einem
- * Themen-Slug oder eine Meldung ohne Quelle würde sonst still auf die Website
- * gelangen – als toter Link oder als Zusammenfassung ohne nachprüfbare Herkunft.
+ * Eine Ausgabe wird geschrieben und nicht von einem zweiten Menschen
+ * gegengelesen. Ein Tippfehler in einem Themen-Slug oder eine Meldung ohne
+ * Quelle würde sonst still auf die Website gelangen – als toter Link oder als
+ * Zusammenfassung ohne nachprüfbare Herkunft.
  *
  * Deshalb bricht der Build ab, statt zu warnen. Eine fehlende Ausgabe ist ein
  * sichtbares Problem, das jemand behebt; eine kaputte Ausgabe im Netz nicht.
  *
- * Der Typ deckt bereits die Struktur ab (drei plus zwei Meldungen). Hier geht es
- * um alles, was der Compiler nicht sehen kann: ob Verweise ins Leere zeigen und
- * ob die Texte die Anforderungen erfüllen.
+ * Geprüft wird alles, was der Compiler nicht sehen kann: ob Verweise ins Leere
+ * zeigen, ob die Texte die Anforderungen erfüllen – und seit die Meldungszahl
+ * nicht mehr im Typ steht, auch der Umfang der Ausgabe.
+ *
+ * ## Warum die Bezugslisten von außen kommen
+ *
+ * Die Lernthemen und Kurse stehen unter `data/`, das Modul holte sie sich früher
+ * selbst. Damit war es nur noch im Next-Build lauffähig – ein Test hätte die
+ * Alias-Pfade auflösen müssen. Ausgerechnet die Prüfung, die einen Fehler in
+ * automatisch entstandenen Daten abfangen soll, war deshalb selbst ungeprüft.
+ * Jetzt bekommt sie die beiden Mengen übergeben und läuft überall.
  */
+
+/** Die Listen, gegen die eine Meldung ihre Verweise prüfen lassen muss. */
+export interface Bezuege {
+  /** Alle Slugs aus `data/learn`. */
+  topicSlugs: ReadonlySet<string>
+  /** Alle Symbole aus `data/markets`. */
+  symbols: ReadonlySet<string>
+}
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 
@@ -25,10 +38,25 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 const INTRO_MIN = 110
 const INTRO_MAX = 165
 
-export function validateEditions(editions: readonly DailyEdition[]): string[] {
+/*
+  Der erlaubte Umfang einer Ausgabe.
+
+  Die Untergrenze ist die eigentliche Aussage: Unter drei Meldungen ist es kein
+  Überblick über einen Tag, sondern eine einzelne Nachricht mit Beiwerk. Die
+  Obergrenze ist keine redaktionelle Regel, sondern ein Notausgang – wer
+  versehentlich eine Ausgabe zweimal einträgt, soll es beim Bauen erfahren und
+  nicht daran, dass die Seite plötzlich doppelt so lang ist.
+*/
+const TOP_MIN = 1
+const TOP_MAX = 6
+const ITEMS_MIN = 3
+const ITEMS_MAX = 12
+
+export function validateEditions(
+  editions: readonly DailyEdition[],
+  { topicSlugs, symbols }: Bezuege
+): string[] {
   const problems: string[] = []
-  const topicSlugs = new Set(learnTopics.map((topic) => topic.slug))
-  const symbols = new Set(marketDefinitions.map((definition) => definition.symbol))
   const seenDates = new Set<string>()
 
   for (const edition of editions) {
@@ -50,6 +78,18 @@ export function validateEditions(editions: readonly DailyEdition[]): string[] {
     }
 
     const items = [...edition.top, ...edition.further]
+
+    if (edition.top.length < TOP_MIN || edition.top.length > TOP_MAX) {
+      problems.push(
+        `${where}: ${edition.top.length} Top-Meldungen, erlaubt sind ${TOP_MIN} bis ${TOP_MAX}.`
+      )
+    }
+    if (items.length < ITEMS_MIN || items.length > ITEMS_MAX) {
+      problems.push(
+        `${where}: ${items.length} Meldungen insgesamt, erlaubt sind ${ITEMS_MIN} bis ${ITEMS_MAX}.`
+      )
+    }
+
     const headlines = new Set<string>()
 
     for (const item of items) {
@@ -104,8 +144,11 @@ export function validateEditions(editions: readonly DailyEdition[]): string[] {
  *
  * Wird beim Laden der Service-Schicht aufgerufen und damit bei jedem Build.
  */
-export function assertEditionsValid(editions: readonly DailyEdition[]): void {
-  const problems = validateEditions(editions)
+export function assertEditionsValid(
+  editions: readonly DailyEdition[],
+  bezuege: Bezuege
+): void {
+  const problems = validateEditions(editions, bezuege)
   if (problems.length > 0) {
     throw new Error(
       `Die Tagesausgaben sind fehlerhaft:\n${problems.map((p) => `  - ${p}`).join('\n')}`

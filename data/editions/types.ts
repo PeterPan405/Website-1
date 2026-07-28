@@ -3,10 +3,11 @@ import type { NewsCategory } from '@/data/news'
 /**
  * Datenmodell für die Tagesausgaben.
  *
- * Jeden Morgen erscheint eine Ausgabe mit genau fünf Meldungen, davon drei
- * Top-Meldungen. Die Zusammenfassungen sind selbst geschrieben und keine
- * Übernahme fremder Texte – das ist nicht nur redaktionell besser, sondern auch
- * der Grund, warum das Ganze urheberrechtlich unproblematisch ist. Fremde
+ * Eine Ausgabe fasst die Meldungen eines Tages zusammen, die wichtigsten zuerst.
+ * Wie viele es sind, gibt der Tag vor – an einem Zinsentscheid sind es andere als
+ * an einem ruhigen Freitag. Die Zusammenfassungen sind selbst geschrieben und
+ * keine Übernahme fremder Texte; das ist nicht nur redaktionell besser, sondern
+ * auch der Grund, warum das Ganze urheberrechtlich unproblematisch ist. Fremde
  * Artikel dürften weder im Volltext noch in längeren Auszügen gespiegelt werden;
  * verlinkt wird stattdessen auf die Quelle.
  */
@@ -41,11 +42,16 @@ export interface EditionItem {
 /**
  * Eine Tagesausgabe.
  *
- * `top` und `further` sind absichtlich als Tupel typisiert und nicht als Array:
- * So erzwingt der Compiler die Aufteilung in drei Top-Meldungen und zwei
- * weitere. Eine Ausgabe mit vier oder sechs Meldungen lässt sich damit gar
- * nicht erst schreiben, und niemand muss sich auf eine Prüfung zur Laufzeit
- * verlassen.
+ * `top` und `further` waren einmal Tupel: drei plus zwei, vom Compiler
+ * erzwungen. Das war eine Regel über die Nachrichtenlage, und die hält sich
+ * nicht daran. An manchen Tagen gibt es zwei Meldungen, die diesen Namen
+ * verdienen, an anderen sieben. Die feste Zahl hätte nur zwei Auswege gelassen:
+ * Belangloses auffüllen oder Wichtiges weglassen.
+ *
+ * Ganz ohne Regel bleibt es trotzdem nicht – die Untergrenzen stehen jetzt in
+ * `lib/editions-validate.ts` und brechen den Build. Der Unterschied ist, dass
+ * dort eine Zahl steht, die sich begründen lässt, statt einer, die zufällig
+ * einmal gestimmt hat.
  */
 export interface DailyEdition {
   /** Erscheinungstag im Format YYYY-MM-DD. Gleichzeitig der URL-Slug. */
@@ -57,8 +63,8 @@ export interface DailyEdition {
    * daher 110 bis 165 Zeichen (siehe `lib/seo.ts`).
    */
   intro: string
-  /** Die drei wichtigsten Meldungen des Tages. */
-  top: [EditionItem, EditionItem, EditionItem]
-  /** Zwei weitere Meldungen, die es wert sind, gelesen zu werden. */
-  further: [EditionItem, EditionItem]
+  /** Die wichtigsten Meldungen des Tages, mindestens eine. */
+  top: EditionItem[]
+  /** Weitere Meldungen, die es wert sind, gelesen zu werden. Darf leer sein. */
+  further: EditionItem[]
 }

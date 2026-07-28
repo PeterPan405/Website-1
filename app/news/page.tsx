@@ -61,11 +61,16 @@ export default async function NewsOverviewPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        {/* Tagesüberblick zuerst: die einzige Rubrik, die sich täglich ändert. */}
+        {/* Tagesüberblick zuerst: die Rubrik, die sich am häufigsten ändert. */}
         {latestEdition && (
           <section aria-labelledby="tagesueberblick" className="mt-10">
             <div className="fk-card border-news/30 p-6 sm:p-8">
-              <p className="fk-chip bg-news-soft text-news">Jeden Morgen neu</p>
+              {/*
+                Stand „Neueste Ausgabe“ statt „Jeden Morgen neu“: Der
+                27. Juli 2026 hat eine Ausgabe, der 26. nicht. Ein Versprechen,
+                das die eigene Archivseite widerlegt, ist keins.
+              */}
+              <p className="fk-chip bg-news-soft text-news">Neueste Ausgabe</p>
               <h2 id="tagesueberblick" className="mt-3 text-xl font-semibold sm:text-2xl">
                 Tagesüberblick vom {formatEditionDate(latestEdition.date, false)}
               </h2>

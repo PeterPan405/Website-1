@@ -6,9 +6,9 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import {
-  allItems,
   formatEditionDate,
   getEditionLibrary,
+  getEditionStats,
   getEditions,
 } from '@/lib/editions'
 import { collectionPageSchema } from '@/lib/jsonld'
@@ -17,14 +17,30 @@ import { buildMetadata, withBrand } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Tagesüberblick: Archiv aller Ausgaben'),
   description:
-    'Alle bisher erschienenen Tagesüberblicke zum Nachlesen – jeden Morgen fünf Meldungen aus Wirtschaft und Finanzmärkten, nach Monaten geordnet.',
+    'Alle bisher erschienenen Tagesüberblicke zum Nachlesen – die Meldungen des Tages aus Wirtschaft und Finanzmärkten, nach Monaten geordnet.',
   path: '/news/tag',
   ogTitle: 'Archiv der Tagesüberblicke',
 })
 
 export default async function EditionLibraryPage() {
-  const [library, editions] = await Promise.all([getEditionLibrary(), getEditions()])
-  const itemCount = editions.reduce((sum, edition) => sum + allItems(edition).length, 0)
+  const [library, editions, stats] = await Promise.all([
+    getEditionLibrary(),
+    getEditions(),
+    getEditionStats(),
+  ])
+
+  /*
+    Der Umfang als gezählte Angabe, nicht als Versprechen im Fließtext.
+
+    Sind alle Ausgaben gleich lang, steht dort eine Zahl; sobald sie es nicht
+    mehr sind, von selbst eine Spanne. So kann die Zeile nicht falsch werden,
+    ohne dass jemand daran denken muss.
+  */
+  const umfang = stats.jeAusgabe
+    ? stats.jeAusgabe.min === stats.jeAusgabe.max
+      ? `${stats.jeAusgabe.min} je Ausgabe`
+      : `${stats.jeAusgabe.min} bis ${stats.jeAusgabe.max} je Ausgabe`
+    : null
 
   return (
     <>
@@ -33,7 +49,7 @@ export default async function EditionLibraryPage() {
         eyebrow="Tagesüberblick"
         eyebrowIcon="newspaper"
         title="Alle Ausgaben zum Nachlesen"
-        lead="Jeden Morgen erscheint eine Ausgabe mit fünf Meldungen, davon drei Top-Themen. Hier stehen alle bisherigen Tage – ältere Ausgaben verschwinden nicht."
+        lead="Jede Ausgabe bündelt die Meldungen eines Tages, die wichtigsten zuerst. Wie viele es sind, gibt die Nachrichtenlage vor. Hier stehen alle bisherigen Tage, ältere Ausgaben verschwinden nicht."
         breadcrumbs={
           <Breadcrumbs
             items={[{ name: 'News', path: '/news' }, { name: 'Tagesüberblick' }]}
@@ -42,10 +58,16 @@ export default async function EditionLibraryPage() {
         meta={
           <>
             <span>
-              {editions.length} {editions.length === 1 ? 'Ausgabe' : 'Ausgaben'}
+              {stats.ausgaben} {stats.ausgaben === 1 ? 'Ausgabe' : 'Ausgaben'}
             </span>
             <span aria-hidden="true">·</span>
-            <span>{itemCount} Meldungen</span>
+            <span>{stats.meldungen} Meldungen</span>
+            {umfang && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>{umfang}</span>
+              </>
+            )}
           </>
         }
       />
