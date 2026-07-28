@@ -89,6 +89,29 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
   },
 
   /**
+   * Kein Messwert, sondern eine Rechnung – und deshalb eine eigene Quelle.
+   *
+   * Die OECD erhebt Löhne nur bei ihren Mitgliedern. Für die übrigen Länder
+   * gibt es keine vergleichbare Erhebung, die sich abrufen ließe; ohne
+   * Schätzung stünde auf über 160 Ländertafeln „keine Angabe hinterlegt“.
+   *
+   * Dass die Schätzung eine eigene Quellenangabe bekommt, ist der Kern der
+   * Sache: Auf der Tafel steht die Herkunft an jedem einzelnen Wert, und damit
+   * ist an Ort und Stelle zu sehen, ob dort etwas gemessen oder gerechnet
+   * wurde. Ein geschätzter Wert, der wie ein gemessener aussieht, wäre
+   * schlimmer als eine Lücke.
+   *
+   * Das Verfahren steht in `lib/schaetzung.ts`, die Güte wird bei jedem Bauen
+   * neu gemessen und auf der Globusseite ausgewiesen.
+   */
+  'geschaetzt-kaufkraft': {
+    label: 'geschätzt aus der Kaufkraft je Kopf',
+    url: 'https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD',
+    abgrenzung:
+      'Kein erhobener Wert. Aus dem Verhältnis von Durchschnittslohn zu Wirtschaftsleistung je Kopf in den 38 Ländern mit gemessenem Lohn hochgerechnet. Beide Größen sind kaufkraftbereinigt – nur so ist das Verhältnis über arme und reiche Länder hinweg vergleichbar. Gibt eine Größenordnung an, keinen Lohn.',
+  },
+
+  /**
    * Die Vermögensverteilungsdatenbank derselben Organisation.
    *
    * Eigener Schlüssel, obwohl derselbe Herausgeber: Es ist eine andere

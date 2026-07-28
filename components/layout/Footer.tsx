@@ -59,44 +59,23 @@ export function Footer() {
             </nav>
 
             {/*
-              Der Google-Eintrag steht als Text, nicht als Symbol.
+              Der Bewertungslink steht als Text, nicht als Symbol.
 
               Bei YouTube und Instagram genügt das Zeichen – es ist bekannt und
               bedeutet nur eines. Ein Google-Symbol beantwortet die Frage nicht,
               worauf es führt: auf die Suche? auf die Karte? auf ein Formular?
-              Genau hier trennen sich die beiden Links auch inhaltlich, und der
-              Unterschied gehört benannt.
+              Hier führt es auf ein Formular, und das gehört dazugeschrieben.
             */}
-            <nav aria-labelledby="footer-google" className="mt-6">
-              <h2
-                id="footer-google"
-                className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+            <p className="mt-6 text-sm">
+              <a
+                href={siteConfig.googleProfil.bewertung}
+                target="_blank"
+                rel="noreferrer"
+                className="text-fg-muted hover:text-brand transition"
               >
-                Bei Google
-              </h2>
-              <ul className="mt-3 space-y-2 text-sm">
-                <li>
-                  <a
-                    href={siteConfig.googleProfil.karte}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-fg-muted hover:text-brand transition"
-                  >
-                    Standort auf Google Maps
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={siteConfig.googleProfil.bewertung}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-fg-muted hover:text-brand transition"
-                  >
-                    IM Invests bewerten
-                  </a>
-                </li>
-              </ul>
-            </nav>
+                IM Invests bei Google bewerten
+              </a>
+            </p>
           </div>
 
           {footerNav.map((group) => (
