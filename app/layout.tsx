@@ -6,7 +6,7 @@ import './globals.css'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { SmoothScroll } from '@/components/layout/SmoothScroll'
-import { THEME_STORAGE_KEY } from '@/components/layout/ThemeToggle'
+import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
 import { siteConfig, siteUrl } from '@/lib/site'
@@ -74,11 +74,16 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  // Passend zur Canvas-Farbe je Modus, damit die Browserleiste mitläuft.
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f6f8fc' },
-    { media: '(prefers-color-scheme: dark)', color: '#060911' },
-  ],
+  /*
+    Eine Farbe, nicht zwei nach Systemvorgabe.
+
+    Vorher standen hier zwei Einträge mit `prefers-color-scheme`. Seit der erste
+    Besuch immer hell beginnt, war das eine Fehlerquelle: Wer sein System auf
+    Dunkel gestellt hat, bekam eine helle Seite mit dunkler Browserleiste
+    darüber. Die Leiste folgt jetzt dem tatsächlichen Modus – anfangs hell, und
+    beim Umschalten setzt `ThemeToggle` sie um.
+  */
+  themeColor: LEISTENFARBE.light,
   colorScheme: 'light dark',
 }
 
@@ -87,10 +92,20 @@ export const viewport: Viewport = {
  *
  * Ohne dieses Script würde die Seite zuerst im Hellmodus gerendert und erst
  * nach der Hydration umgeschaltet – sichtbar als kurzes weißes Aufblitzen.
+ *
+ * ## Warum die Systemvorgabe nicht mehr abgefragt wird
+ *
+ * Der erste Besuch ist immer hell. Vorher folgte er `prefers-color-scheme`,
+ * sodass ein Teil der Besucher die Seite zuerst dunkel sah – für eine Marke,
+ * deren Erscheinungsbild hell gedacht ist, der falsche erste Eindruck.
+ *
+ * Dunkel wird es nur noch, wenn jemand ausdrücklich umgeschaltet hat: Die
+ * Bedingung ist `s === 'dark'` und sonst nichts. Die Wahl bleibt gespeichert
+ * und gilt bei jedem weiteren Besuch – am Umschalter ändert sich nichts.
  */
 const themeScript = `(function(){try{var s=localStorage.getItem(${JSON.stringify(
   THEME_STORAGE_KEY
-)});var dark=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=dark?'dark':'light'}catch(e){}})()`
+)});document.documentElement.dataset.theme=s==='dark'?'dark':'light'}catch(e){}})()`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

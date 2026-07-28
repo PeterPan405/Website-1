@@ -1,9 +1,7 @@
 'use client'
 
 import { Icon } from '@/components/ui/Icon'
-
-/** Schlüssel im localStorage – identisch mit dem Inline-Script im Layout. */
-export const THEME_STORAGE_KEY = 'fk-theme'
+import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
 
 /**
  * Umschalter für Hell-/Dunkelmodus.
@@ -18,6 +16,18 @@ export function ThemeToggle({ className }: { className?: string }) {
     const root = document.documentElement
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark'
     root.dataset.theme = next
+
+    /*
+      Die Browserleiste mitziehen.
+
+      Auf dem Telefon färbt Safari die Leiste über der Seite nach diesem
+      Attribut. Ohne diese Zeile bliebe sie hell, während die Seite dunkel wird
+      – auf dem Handy der auffälligste Teil der ganzen Umschaltung.
+    */
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', LEISTENFARBE[next])
+
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, next)
     } catch {

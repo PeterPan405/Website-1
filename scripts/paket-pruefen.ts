@@ -339,6 +339,30 @@ function pruefen(): string[] {
 
     // ----------------------------------------------------------- Lerngrafiken
     fehler.push(...grafikenPruefen(html, grafikGemeldet))
+
+    /*
+      Das Startskript für das Farbschema.
+
+      Es steht als Zeichenkette im Layout und wird beim Bauen zusammengesetzt.
+      Genau das ist einmal schiefgegangen: Der Schlüssel für den localStorage
+      kam aus einer `'use client'`-Datei, über diese Grenze reicht der Server
+      keinen Wert – im HTML stand `localStorage.getItem(undefined)`.
+
+      Gültiges JavaScript, keine Fehlermeldung, kein Absturz. Nur hat der
+      Umschalter unter `fk-theme` geschrieben und das Startskript unter
+      `"undefined"` gelesen: Die Wahl des Besuchers überlebte kein Neuladen.
+      Aufgefallen ist es erst, als jemand das ausgelieferte HTML gelesen hat.
+
+      Die Prüfung sieht deshalb ins Skript selbst, nicht in den sichtbaren Text
+      – dort kommt sie mit `nurText` gar nicht an.
+    */
+    const startskript = html.match(/<script>\(function\(\)\{try\{var s=[^<]*/)?.[0]
+    if (startskript && /getItem\((undefined|null|""|'')\)/.test(startskript)) {
+      fehler.push(
+        `${pfad}: Das Farbschema-Startskript liest einen leeren Speicherschlüssel – ` +
+          'die Wahl des Besuchers überlebt kein Neuladen.'
+      )
+    }
   }
 
   for (const [wert, pfade] of titel) {
