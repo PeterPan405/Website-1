@@ -12,6 +12,7 @@ import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
 import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
 import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
+import { staatsanleihe } from '@/data/learn/topics/staatsanleihe'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
@@ -26,7 +27,6 @@ import {
   rente,
   schuldenUndKredit,
   sparerpauschbetrag,
-  staatsanleihe,
   waehrungenWechselkurse,
   wannKaufenVerkaufen,
   wieFunktioniertDerMarkt,

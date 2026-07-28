@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    204 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    216 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -2710,6 +2710,170 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 2,
       explanation:
         'Zerlegt besteht das Produkt aus einer Nullkuponanleihe der Bank plus einer Option. Der „Schutz“ ist die Rückzahlung dieser Anleihe – also ein Zahlungsversprechen desselben Emittenten. Fällt er aus, schützt es nichts. Die Marge des Anbieters findet man, indem man beide Bausteine einzeln bewertet.',
+    },
+  ],
+
+  // ------------------------------------------------------------ Staatsanleihe
+  'staatsanleihe:beginner': [
+    {
+      question: 'Was ist mit dem „risikofreien Zins“ gemeint?',
+      options: [
+        'Dass der Kurs solcher Anleihen nicht schwankt',
+        'Dass die Rendite den Kaufkraftverlust in jedem Fall ausgleicht',
+        'Dass die nominale Rückzahlung als nahezu sicher gilt – mehr nicht',
+        'Dass die Anlage durch die Einlagensicherung abgedeckt ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Begriff bezieht sich ausschließlich auf die Ausfallwahrscheinlichkeit des Emittenten. Der Kurs schwankt trotzdem, teils erheblich, und die Kaufkraft der zurückgezahlten Summe kann deutlich unter der eingesetzten liegen. „Risikofrei“ meint eine Art von Risiko, nicht alle.',
+    },
+    {
+      question:
+        'Wodurch unterscheiden sich Bundesanleihe, Bundesobligation und Bundesschatzanweisung?',
+      options: [
+        'Durch die Laufzeit bei Ausgabe – zehn bis dreißig, fünf und zwei Jahre',
+        'Durch die Höhe der staatlichen Garantie',
+        'Durch die Art des Emittenten innerhalb des Bundes',
+        'Durch die steuerliche Behandlung der Zinserträge',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Schuldner ist in allen drei Fällen derselbe, die Bonität ebenfalls. Unterschiedlich ist nur die Laufzeit – und damit die Zinsempfindlichkeit. Die zweijährige Schatzanweisung reagiert am stärksten auf Notenbankentscheidungen, die zehnjährige Anleihe ist der Zinsmaßstab der Eurozone.',
+    },
+    {
+      question: 'Warum hängen Bauzinsen an der Rendite langlaufender Staatsanleihen?',
+      options: [
+        'Weil Banken gesetzlich verpflichtet sind, sich daran zu orientieren',
+        'Weil Baukredite über den Verkauf von Staatsanleihen finanziert werden',
+        'Weil jeder andere Zins einen Aufschlag auf diesen Referenzsatz darstellt',
+        'Weil die Notenbank den Bauzins direkt festlegt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Rendite sicherer Staatsanleihen ist der Bezugspunkt für alles andere: Wer risikoreicher verleiht, verlangt einen Aufschlag darauf. Weil ein Baukredit über zehn oder mehr Jahre läuft, orientiert er sich an der zehnjährigen Anleihe – und nicht am Leitzins, der das kurze Ende bestimmt.',
+    },
+    {
+      question:
+        'Eine Staatsanleihe in Fremdwährung bietet deutlich mehr Zins als eine vergleichbare in Euro. Was ist dabei zu bedenken?',
+      options: [
+        'Fremdwährungsanleihen sind steuerfrei, was den Zinsvorteil relativiert',
+        'Der Zinsvorteil ist garantiert, weil er im Kupon festgeschrieben ist',
+        'Der höhere Zins gleicht ein höheres Ausfallrisiko desselben Staates aus',
+        'Es kommt ein Wechselkursrisiko hinzu, das den gesamten Zinsvorteil übersteigen kann',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Das zweite Risiko hat mit dem Emittenten nichts zu tun: Verliert die Währung gegenüber dem Euro zehn Prozent, ist ein Zinsvorsprung von drei Prozentpunkten mehrfach aufgezehrt. Wer in Euro lebt und rechnet, trägt dieses Risiko voll – auch bei tadelloser Bonität des Staates.',
+    },
+  ],
+
+  'staatsanleihe:fortgeschritten': [
+    {
+      question:
+        'Wie ist eine inverse Zinsstrukturkurve als Rezessionssignal einzuordnen?',
+      options: [
+        'Historisch mit hoher Trefferquote, aber ohne Aussage über den Zeitpunkt',
+        'Als zuverlässiges Handelssignal mit einem Vorlauf von etwa drei Monaten',
+        'Als widerlegtes Muster, das nur zufällig zustande kam',
+        'Als Signal, das ausschließlich für die Eurozone gilt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'In den USA ging fast jeder Rezession seit den 1950er-Jahren eine Inversion voraus – das ist der Grund für die Aufmerksamkeit. Der Abstand betrug aber sechs Monate bis über zwei Jahre, und es gab Inversionen ohne folgende Rezession. Als Handelssignal ist das unbrauchbar.',
+    },
+    {
+      question:
+        'Warum geriet die Eurozone ab 2010 in eine Schuldenkrise, während Japan mit weit höherer Quote nie in eine vergleichbare Lage kam?',
+      options: [
+        'Weil Japans Wirtschaft schneller wuchs',
+        'Weil Euro-Staaten in einer Währung verschuldet sind, die sie nicht selbst herstellen',
+        'Weil japanische Anleihen höhere Kupons bieten',
+        'Weil die Eurozone insgesamt höher verschuldet ist als Japan',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Staat mit eigener Währung kann nominal immer zahlen – ob das sinnvoll ist, steht auf einem anderen Blatt. Ein Euro-Staat kann das nicht: Er hat eine gemeinsame Geldpolitik, aber einen eigenen Haushalt. Genau diese Trennung ist die strukturelle Spannung, aus der die Spreads entstehen.',
+    },
+    {
+      question:
+        'Worin unterscheidet sich eine einzelne Staatsanleihe grundlegend von einem Anleihe-ETF?',
+      options: [
+        'Der ETF unterliegt keinem Zinsänderungsrisiko',
+        'Die Einzelanleihe kann nicht vor Fälligkeit verkauft werden',
+        'Die Einzelanleihe hat einen Endtermin, an dem der Nennwert zurückkommt – der ETF hat keinen',
+        'Der ETF garantiert die Rückzahlung des eingesetzten Kapitals',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Endtermin ist der entscheidende Unterschied: Wer hält und dessen Schuldner zahlt, bekommt den Nennwert, wie auch immer der Kurs zwischendurch stand. Ein ETF ersetzt fällige Papiere laufend und hat diesen Punkt nie. Dafür bietet er Streuung und ist jederzeit in kleinen Beträgen handelbar.',
+    },
+    {
+      question:
+        'Warum haben Anleihen 2022 nicht als Puffer gegen fallende Aktienkurse funktioniert?',
+      options: [
+        'Weil die Bonität der Emittenten sich verschlechtert hatte',
+        'Weil Anleihen 2022 kaum gehandelt wurden',
+        'Weil die Notenbanken Anleihen verkauften und damit die Kurse drückten',
+        'Weil beide aus demselben Grund fielen: hohe Inflation und daraufhin steigende Zinsen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Puffer beruht darauf, dass Notenbanken in einer Konjunkturschwäche die Zinsen senken – dann steigen Anleihen, während Aktien fallen. 2022 war die Ursache eine andere: Inflation zwang zu Zinserhöhungen, und die trafen beide Seiten. Bei langen Laufzeiten wurde daraus ein zweistelliger Verlust.',
+    },
+  ],
+
+  'staatsanleihe:profi': [
+    {
+      question:
+        'Unter welcher Bedingung sinkt eine Schuldenquote von allein, auch ohne Primärüberschuss?',
+      options: [
+        'Wenn der durchschnittliche Zins unter dem nominalen Wachstum liegt',
+        'Wenn die Schuldenquote unter 60 Prozent des BIP liegt',
+        'Wenn die Notenbank einen Teil der Anleihen hält',
+        'Wenn die durchschnittliche Restlaufzeit über zehn Jahre beträgt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Zins-Wachstums-Differenz ist der entscheidende Term. Wächst die Wirtschaft nominal schneller, als der Schuldenberg sich verzinst, sinkt die Quote selbst bei laufendem Defizit. Genau diese Konstellation herrschte in Europa über weite Teile der 2010er-Jahre.',
+    },
+    {
+      question:
+        'Warum ist die durchschnittliche Restlaufzeit der Staatsschulden so wichtig?',
+      options: [
+        'Weil sie die Höhe der Schuldenquote begrenzt',
+        'Weil ein Zinsanstieg nur die neu aufgenommenen Schulden trifft – je länger finanziert, desto langsamer schlägt er durch',
+        'Weil kurze Laufzeiten grundsätzlich teurer sind',
+        'Weil sie über die Ratingeinstufung des Landes entscheidet',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Auf seinen Altbestand zahlt ein Staat weiter die alten Kupons. Ein Zinssprung wirkt deshalb nur auf den Teil, der ohnehin refinanziert werden muss. Wer über zehn Jahre finanziert ist, spürt ihn über Jahre verteilt; wer kurzfristig finanziert ist, innerhalb weniger Monate in voller Höhe.',
+    },
+    {
+      question:
+        'Bei einer Umschuldung wird statt eines Nennwertschnitts die Laufzeit deutlich verlängert. Wie ist das wirtschaftlich zu bewerten?',
+      options: [
+        'Als reine Formalie ohne Wirkung auf den Gläubiger',
+        'Als Vorteil für den Gläubiger, weil länger Zinsen fließen',
+        'Ebenfalls als Verlust – der Barwert sinkt, es sieht nur harmloser aus',
+        'Als Verlust nur dann, wenn zusätzlich der Kupon gesenkt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Geld, das zwanzig Jahre später kommt, ist heute weniger wert als Geld in fünf Jahren. Eine Streckung senkt den Barwert genauso wie ein Nennwertschnitt – sie ist politisch nur leichter zu vermitteln, weil die Zahl auf dem Papier unverändert bleibt.',
+    },
+    {
+      question:
+        'Warum kann aus Zweifeln an einem Staat innerhalb von Tagen eine Bankenkrise werden?',
+      options: [
+        'Weil Banken gesetzlich verpflichtet sind, Staatsanleihen zu halten',
+        'Weil Staatsanleihen im Repo-Markt die Sicherheiten stellen – fällt ihr Wert, sinkt der Beleihungswert und Banken müssen nachschießen',
+        'Weil Sparer bei fallenden Anleihekursen ihre Einlagen abziehen',
+        'Weil Staatsanleihen den größten Teil der Bankbilanzen ausmachen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Repo-Markt ist der Ort, an dem sich das Finanzsystem täglich refinanziert, und Staatsanleihen sind dort die üblichen Sicherheiten. Verlieren sie an Wert, müssen Banken Sicherheiten nachschießen oder Positionen auflösen. Das ist der Übertragungsweg – und der Grund für die regulatorische Bevorzugung dieser Papiere.',
     },
   ],
 }
