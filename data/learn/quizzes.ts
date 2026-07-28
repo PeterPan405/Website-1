@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    276 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    300 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -3678,6 +3678,325 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 2,
       explanation:
         'Anerkannt wird die Gestaltung nur, wenn die Übertragung echt ist. Wer die Verfügungsmacht behält oder das Geld später für eigene Zwecke verwendet, hat steuerlich nichts erreicht. Zu bedenken sind außerdem Familienversicherung und Kindergeldanspruch, die von eigenen Einkünften des Kindes berührt werden können.',
+    },
+  ],
+
+  // ------------------------------------------------- Notenbanken & Geldpolitik
+  'notenbanken-geldpolitik:beginner': [
+    {
+      question: 'Worin unterscheidet sich der Auftrag von EZB und US-Notenbank?',
+      options: [
+        'Die EZB hat Preisstabilität als vorrangiges Ziel, die Fed zusätzlich maximale Beschäftigung',
+        'Die Fed ist auf Preisstabilität festgelegt, die EZB auf Wachstum',
+        'Beide haben denselben Auftrag, nur verschiedene Zielwerte',
+        'Die EZB ist der Politik weisungsgebunden, die Fed nicht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die EZB muss bei hoher Inflation handeln, auch wenn die Konjunktur leidet – ihr Ziel ist eindeutig. Die Fed hat ein Doppelmandat und damit zwei Ziele, die sich widersprechen können. Unabhängig von der Politik sind beide, und das gilt als Voraussetzung dafür, dass eine Notenbank überhaupt glaubwürdig sein kann.',
+    },
+    {
+      question:
+        'Wenn in Meldungen aus dem Euroraum von „dem Leitzins“ die Rede ist – welcher Satz ist meist gemeint?',
+      options: [
+        'Der Hauptrefinanzierungssatz',
+        'Der Spitzenrefinanzierungssatz',
+        'Der Einlagesatz – er bestimmt die Untergrenze des Geldmarkts und damit das Tagesgeld',
+        'Der Durchschnitt aller drei Sätze',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Einlagesatz ist das, was Banken für über Nacht geparktes Geld erhalten. Er ist der Satz, an dem sie sich orientieren, wenn sie überschüssige Liquidität haben – und deshalb bewegt sich dein Tagesgeldzins mit ihm, nicht mit den beiden anderen.',
+    },
+    {
+      question: 'Darf die EZB Staatshaushalte direkt finanzieren?',
+      options: [
+        'Ja, das ist eine ihrer Kernaufgaben',
+        'Nein – die direkte Finanzierung ist vertraglich untersagt; Käufe erfolgen am Sekundärmarkt',
+        'Ja, aber nur bis zu einer festgelegten Obergrenze je Staat',
+        'Nur in Krisenzeiten nach Beschluss des Europäischen Rates',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Anleihen kauft die EZB von Banken und Fonds, nicht vom Staat selbst. Der Unterschied ist rechtlich wesentlich und wirtschaftlich umstritten – aber er ist keine Formalie: Ein Staat muss seine Papiere zunächst am Markt platzieren und dort einen Preis akzeptieren.',
+    },
+    {
+      question:
+        'Die EZB erhöht den Zins wie erwartet – und die Aktienkurse steigen. Wie ist das zu erklären?',
+      options: [
+        'Zinserhöhungen sind für Aktien grundsätzlich positiv',
+        'Der Markt reagiert immer mit Verzögerung von mehreren Tagen',
+        'Die Erhöhung war bereits eingepreist; bewegt wird nur die Abweichung von der Erwartung',
+        'Aktienkurse hängen nicht von Zinsentscheidungen ab',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein erwarteter Zinsschritt steht längst in den Kursen, wenn er verkündet wird. Fiel er kleiner aus als befürchtet oder klang der Ausblick milder, ist das die eigentliche Nachricht. Genau darauf beruht auch die Forward Guidance: Eine Notenbank kann allein durch Ankündigungen wirken, ohne den Zins anzufassen.',
+    },
+  ],
+
+  'notenbanken-geldpolitik:fortgeschritten': [
+    {
+      question:
+        'Warum trifft ein Zinsanstieg Wachstumswerte stärker als etablierte Unternehmen mit stabilen Gewinnen?',
+      options: [
+        'Weil Wachstumsunternehmen höher verschuldet sind',
+        'Weil ihre Gewinne weiter in der Zukunft liegen und damit stärker auf den Abzinsungssatz reagieren',
+        'Weil sie häufiger von institutionellen Anlegern gehalten werden',
+        'Weil ihre Dividenden gekürzt werden müssen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Wert einer Aktie ist der Barwert künftiger Gewinne. Je weiter diese in der Zukunft liegen, desto heftiger wirkt jede Änderung des Abzinsungssatzes. Das erklärt, warum 2022 Technologiewerte deutlich stärker verloren als Versorger – ohne dass sich an ihren Geschäften etwas geändert hätte.',
+    },
+    {
+      question:
+        'Warum reagieren Notenbanken auf Prognosen statt auf die aktuelle Inflationsrate?',
+      options: [
+        'Weil aktuelle Daten erst mit einem Jahr Verzögerung veröffentlicht werden',
+        'Weil die Prognosen gesetzlich vorgeschrieben sind',
+        'Weil aktuelle Daten regelmäßig revidiert werden',
+        'Weil ein Zinsschritt erst nach vier bis sechs Quartalen voll auf die Inflation wirkt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bestehende Kredite laufen weiter, Tarifabschlüsse gelten für Jahre, Investitionen sind entschieden. Wer auf die heutige Inflation reagiert, kommt anderthalb Jahre zu spät. Daraus folgt zugleich das strukturelle Risiko der Übersteuerung: Wer nachsteuert, bis die Daten sich bessern, hat zwangsläufig zu lange nachgesteuert.',
+    },
+    {
+      question: 'Warum kommt ein Zinsanstieg beim Sparer später an als ein Zinsrückgang?',
+      options: [
+        'Weil Banken sinkende Zinsen auf Einlagen schnell und steigende langsam weitergeben',
+        'Weil die Einlagensicherung eine Frist vorschreibt',
+        'Weil Tagesgeldzinsen gesetzlich nur quartalsweise angepasst werden dürfen',
+        'Weil die EZB Zinserhöhungen erst mit Verzögerung wirksam werden lässt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Weitergabe ist asymmetrisch, und bei Krediten ist es genau umgekehrt. Das ist kein Vorwurf, sondern Wettbewerbsverhalten – für Sparer bedeutet es aber, dass der Vergleich von Angeboten nach einem Zinsschritt besonders lohnt, weil die Institute unterschiedlich schnell nachziehen.',
+    },
+    {
+      question: 'Was bewirkt quantitative Lockerung, das eine Zinssenkung nicht bewirkt?',
+      options: [
+        'Sie senkt die kurzfristigen Zinsen unter null',
+        'Sie erhöht direkt die Kreditvergabe der Banken',
+        'Sie senkt die langfristigen Zinsen, wenn die kurzen bereits bei null angekommen sind',
+        'Sie verhindert Kursverluste bei Anleihen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Leitzins wirkt am kurzen Ende. Ist er ausgereizt, bleibt der Ankauf langlaufender Anleihen, um auch die langen Zinsen zu drücken. Die Nebenwirkung zeigt sich beim Ausstieg: Ein großer Teil des Umlaufs war aus dem Markt verschwunden, und private Käufer verlangen einen Preis, den die Notenbank nicht verlangt hat.',
+    },
+  ],
+
+  'notenbanken-geldpolitik:profi': [
+    {
+      question: 'Warum taugt die Taylor-Regel zur Erklärung, aber nicht als Vorgabe?',
+      options: [
+        'Weil sie nur für die US-Notenbank formuliert wurde',
+        'Weil zwei ihrer Eingangsgrößen – natürlicher Zins und Output-Lücke – nicht messbar, sondern geschätzt sind',
+        'Weil sie die Inflation nicht berücksichtigt',
+        'Weil sie erst seit wenigen Jahren bekannt ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Regel erklärt vergangene Entscheidungen erstaunlich gut. Als Vorgabe scheitert sie daran, dass der natürliche Zins nicht beobachtbar ist und die Output-Lücke im Nachhinein regelmäßig deutlich revidiert wird. Geldpolitik ist damit keine Steuerung nach Messwerten, sondern Navigation mit unsicherer Position.',
+    },
+    {
+      question: 'Was ist mit fiskalischer Dominanz gemeint?',
+      options: [
+        'Dass die Regierung der Notenbank Weisungen erteilen darf',
+        'Dass Staatsausgaben stärker auf die Inflation wirken als der Leitzins',
+        'Dass die Notenbank Staatsanleihen kaufen muss, wenn niemand sonst sie nimmt',
+        'Dass hohe Staatsschulden jede Zinserhöhung zur Haushaltsbelastung machen und den Spielraum faktisch einengen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei hoher Verschuldung schlägt jeder Zinsschritt auf den Haushalt durch. Schon der Verdacht, eine Notenbank könnte deshalb zögern, untergräbt ihre Glaubwürdigkeit – auch wenn sie es nicht tut. Eine rechtliche Weisungsbefugnis besteht dabei nicht; die Beschränkung ist eine faktische.',
+    },
+    {
+      question:
+        'Welche Größe zeigt am direktesten, welchen Zinspfad der Markt tatsächlich einpreist?',
+      options: [
+        'Die Prognosen der Notenbank selbst',
+        'Die Zinsstrukturkurve und die Terminmärkte auf Tagesgeldsätze',
+        'Die Kommentare der Ratsmitglieder nach der Sitzung',
+        'Der Verlauf des Aktienindex am Sitzungstag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Zinskurve und Terminmärkte zeigen, was mit echtem Geld erwartet wird – nicht, was jemand meint. Sie sind nützlich, um zu verstehen, was gerade eingepreist ist. Nützlich, um es besser zu wissen, sind sie nicht: Genau diese Erwartung steckt bereits in jedem Kurs.',
+    },
+    {
+      question: 'Welche Konsequenz aus der Geldpolitik ist für ein Privatdepot sinnvoll?',
+      options: [
+        'Die Aktienquote nach jeder Notenbanksitzung anpassen',
+        'Vor erwarteten Zinserhöhungen Anleihen verkaufen',
+        'Die Laufzeit der Anleihen und die Konzentration auf Wachstumswerte bewusst wählen – als Strukturentscheidung',
+        'Die Sparrate an den Leitzins koppeln',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Notenbanksitzungen taugen als Erklärung, nicht als Handelssignal – die erwartete Entwicklung steht im Kurs. Sinnvoll ist, was aus dem Verständnis folgt: Wer weiß, dass lange Anleihen um ein Vielfaches stärker reagieren als kurze, wählt die Laufzeit bewusst. Das ist eine Entscheidung über die Aufteilung, und die trifft man einmal.',
+    },
+  ],
+
+  // ------------------------------------------------- Währungen & Wechselkurse
+  'waehrungen-wechselkurse:beginner': [
+    {
+      question: 'EUR/USD steigt von 1,10 auf 1,20. Was bedeutet das?',
+      options: [
+        'Der Euro ist stärker geworden – ein Euro kostet jetzt mehr Dollar',
+        'Der Dollar ist stärker geworden',
+        'Beide Währungen haben gegenüber Gold verloren',
+        'Der Kurs sagt nichts über die Stärke der Währungen aus',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die erste Währung ist die Ware, die zweite der Preis. EUR/USD sagt, was ein Euro in Dollar kostet – steigt die Zahl, ist der Euro stärker. Für einen europäischen Anleger mit Dollar-Anlagen ist das die ungünstige Richtung: Beim Rücktausch bekommt er weniger Euro je Dollar.',
+    },
+    {
+      question: 'Welcher Faktor bewegt Wechselkurse kurzfristig am stärksten?',
+      options: [
+        'Die Kaufkraftunterschiede zwischen den Ländern',
+        'Zinsdifferenzen zwischen den Währungsräumen',
+        'Die Handelsbilanz',
+        'Die Staatsverschuldung',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Kapital fließt dorthin, wo es mehr Zins gibt – das wirkt binnen Tagen. Inflationsunterschiede und Kaufkraft wirken über Jahrzehnte, die Handelsbilanz über Monate bis Jahre. Und in Krisen setzt sich die Flucht in sichere Häfen über alles andere hinweg.',
+    },
+    {
+      question:
+        'Eine US-Aktie steigt um 10 Prozent in Dollar, gleichzeitig steigt EUR/USD von 1,10 auf 1,20. Was ergibt sich für einen Euro-Anleger?',
+      options: [
+        'Ungefähr 10 Prozent Gewinn, der Währungseffekt wirkt sich kaum aus',
+        'Rund 20 Prozent Gewinn – beide Effekte addieren sich',
+        'Knapp über null – der stärkere Euro zehrt den Kursgewinn fast vollständig auf',
+        'Rund 10 Prozent Verlust, weil der Währungseffekt den Kursgewinn übersteigt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 10.000 € werden 11.000 $ zum Ausgangskurs. Die Aktie bringt 12.100 $. Zurückgetauscht zu 1,20 sind das rund 10.083 € – also gut null Prozent. Bei einem Kurs von 1,30 wären es rund sieben Prozent Verlust. Kurs- und Währungseffekt addieren sich nicht, sie multiplizieren sich.',
+    },
+    {
+      question:
+        'Ein weltweit anlegender ETF wird in Euro gehandelt. Trägt er ein Währungsrisiko?',
+      options: [
+        'Ja – die Handelswährung ist nicht das Währungsrisiko; entscheidend ist, worin die Unternehmen wirtschaften',
+        'Nein, die Euro-Notierung schließt Währungsrisiken aus',
+        'Nur, wenn er ausschüttet',
+        'Nur bei einem synthetisch abbildenden ETF',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der ETF hält Aktien von Unternehmen, die überwiegend in Dollar bilanzieren. Fällt der Dollar, fällt der Eurowert dieser Beteiligungen – die Euro-Notierung rechnet das nur um. Umgekehrt trägt ein in Dollar gehandelter Europa-ETF kein nennenswertes Dollarrisiko.',
+    },
+  ],
+
+  'waehrungen-wechselkurse:fortgeschritten': [
+    {
+      question: 'Wovon hängen die laufenden Kosten einer Währungsabsicherung ab?',
+      options: [
+        'Von der erwarteten Wechselkursentwicklung',
+        'Von der Zinsdifferenz zwischen beiden Währungsräumen',
+        'Von der Größe des abgesicherten Betrags, mit Mengenrabatt',
+        'Von der Schwankungsbreite des Wechselkurses im Vorjahr',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Terminkurs folgt der Arbitragefreiheit, nicht einer Prognose: Er entspricht dem Kassakurs, angepasst um die Zinsdifferenz. Genau diese Differenz sind die Kosten. Bei zwei Prozentpunkten Zinsvorsprung des Dollars kostet die Absicherung rund zwei Prozent im Jahr – unabhängig davon, wohin der Kurs läuft.',
+    },
+    {
+      question:
+        'Warum ist eine Währungsabsicherung bei Anleihen üblich, bei Aktien dagegen meist nicht?',
+      options: [
+        'Weil Anleihen häufiger in Fremdwährung notieren',
+        'Weil sich Aktien nicht absichern lassen',
+        'Weil bei Anleihen die Währungsschwankung die erwartete Rendite deutlich übersteigt, bei Aktien die Marktschwankung dominiert',
+        'Weil die Absicherung bei Aktien steuerlich nachteilig ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Bei einer Anleihe mit drei Prozent Rendite würde eine Währungsbewegung von zehn Prozent das Ergebnis vollständig bestimmen – dort ist Absicherung sinnvoll. Bei Aktien schwankt der Markt selbst stärker als die Währung; die laufenden Kosten der Absicherung verschlechtern das Ergebnis dann über lange Zeiträume eher.',
+    },
+    {
+      question:
+        'Ein europäischer Konzern macht drei Viertel seines Umsatzes in Dollar. Was folgt daraus für die Währungsaufteilung deines Depots?',
+      options: [
+        'Nichts – als europäische Aktie ist die Position eine Euro-Position',
+        'Wirtschaftlich ist es zu drei Vierteln eine Dollarposition; der Sitz ändert daran nichts',
+        'Die Position ist währungsneutral, weil der Konzern selbst absichert',
+        'Es hängt allein davon ab, an welcher Börse die Aktie gehandelt wird',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die echte Währungsaufteilung folgt der Umsatzwährung, nicht dem Sitzland und nicht der Handelswährung. Deshalb steht sie in keiner Depotübersicht – dort wird die Handelswährung ausgewiesen, also die falsche Größe. Die Übung, sie einmal selbst zu ermitteln, ist die aufschlussreichste zu diesem Thema.',
+    },
+    {
+      question:
+        'Worin unterscheiden sich Schwellenländeranleihen in Lokalwährung von solchen in Hartwährung?',
+      options: [
+        'In Lokalwährung trägst du das Währungsrisiko; in Hartwährung trägt es der Emittent, was sein Ausfallrisiko erhöht',
+        'Hartwährungsanleihen sind grundsätzlich risikofrei',
+        'Lokalwährungsanleihen sind steuerlich begünstigt',
+        'Es gibt keinen wirtschaftlichen Unterschied, nur einen in der Notierung',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das Risiko verschwindet nicht, es wechselt die Seite. Bei Lokalwährungsanleihen liegt es beim Anleger und wird über höhere Kupons vergütet. Bei Hartwährungsanleihen muss der Emittent in einer Währung zahlen, die er nicht selbst herstellt – genau die Konstellation, an der Staaten in Zahlungsschwierigkeiten geraten.',
+    },
+  ],
+
+  'waehrungen-wechselkurse:profi': [
+    {
+      question: 'Welche der Paritätsbedingungen gilt praktisch immer und warum?',
+      options: [
+        'Die Kaufkraftparität, weil Güterpreise sich angleichen',
+        'Die ungedeckte Zinsparität, weil sonst freie Gewinne möglich wären',
+        'Die gedeckte Zinsparität – sie ist eine Arbitragebedingung, keine Verhaltensannahme',
+        'Alle drei gelten gleichermaßen, nur über verschiedene Zeiträume',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Terminkurs muss der Zinsdifferenz entsprechen, sonst ließe sich risikolos Geld verdienen – das ist keine Theorie über Verhalten, sondern Arbitrage. Größere Abweichungen traten nach 2008 auf und wurden zum Indikator für Stress im Bankensystem. Die Kaufkraftparität wirkt nur über Jahrzehnte, die ungedeckte Zinsparität gar nicht.',
+    },
+    {
+      question: 'Worauf beruht der Carry-Trade?',
+      options: [
+        'Darauf, dass Hochzinswährungen im Durchschnitt nicht so abwerten, wie es die ungedeckte Zinsparität verlangt',
+        'Darauf, dass Terminkurse künftige Kassakurse zuverlässig vorhersagen',
+        'Auf Kursunterschieden zwischen verschiedenen Handelsplätzen',
+        'Auf Notenbankinterventionen zugunsten schwacher Währungen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'In einer Niedrigzinswährung aufnehmen, in einer Hochzinswährung anlegen, die Differenz vereinnahmen. Das funktioniert über Monate und Jahre und bricht dann abrupt zusammen – dasselbe Ertragsprofil wie beim Verkauf von Volatilität. Das ist zugleich die beste Erklärung: Die Zinsdifferenz ist keine Anomalie, sondern die Vergütung eines Risikos.',
+    },
+    {
+      question: 'Wie wirksam sind Notenbankinterventionen am Devisenmarkt?',
+      options: [
+        'Sehr wirksam, weil Notenbanken unbegrenzte Mittel haben',
+        'Gegen einen anhaltenden Trend selten dauerhaft – Reserven sind endlich, der Markt ist es nicht',
+        'Wirkungslos, weil der Markt zu groß ist',
+        'Nur wirksam bei fest gebundenen Wechselkursen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Devisenreserven eines Landes sind begrenzt, der Markt ist es nicht – der tägliche Umsatz übersteigt den aller Aktienmärkte zusammen um ein Vielfaches. Wirksamer sind koordinierte Interventionen mehrerer Notenbanken und solche, die eine ohnehin drehende Entwicklung verstärken.',
+    },
+    {
+      question:
+        'Was ist die praktisch wirksamste Form der Währungsabsicherung für einen Privatanleger?',
+      options: [
+        'Ein Fremdwährungskonto zum Ausgleich der Depotpositionen',
+        'Regelmäßiges Umschichten je nach Wechselkursniveau',
+        'Ausschließlich abgesicherte Anteilsklassen zu verwenden',
+        'In der eigenen Verbrauchswährung zu planen und die Fremdwährungsquote danach zu bemessen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer seinen Ruhestand in Euro verbringt, sollte seine Verpflichtungen in Euro rechnen. Die Quote folgt dann aus dieser Planung – nicht aus einer Einschätzung darüber, wohin der Dollar läuft. Diese Einschätzung hat noch niemand verlässlich hinbekommen; der Devisenmarkt ist der Ort, an dem die meisten Prognosen scheitern.',
     },
   ],
 }

@@ -10,6 +10,7 @@ import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
 import { inflation } from '@/data/learn/topics/inflation'
+import { notenbankenGeldpolitik } from '@/data/learn/topics/notenbanken-geldpolitik'
 import { option } from '@/data/learn/topics/option'
 import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
 import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
@@ -18,6 +19,7 @@ import { schuldenUndKredit } from '@/data/learn/topics/schulden-und-kredit'
 import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
 import { sparerpauschbetrag } from '@/data/learn/topics/sparerpauschbetrag'
 import { staatsanleihe } from '@/data/learn/topics/staatsanleihe'
+import { waehrungenWechselkurse } from '@/data/learn/topics/waehrungen-wechselkurse'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
@@ -25,9 +27,7 @@ import {
   blockchain,
   groessteCrashes,
   immobilien,
-  notenbankenGeldpolitik,
   rente,
-  waehrungenWechselkurse,
   wannKaufenVerkaufen,
   wieFunktioniertDerMarkt,
 } from '@/data/learn/topics/outlines'
