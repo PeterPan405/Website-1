@@ -494,6 +494,640 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Ein ETC ist grundsätzlich eine Schuldverschreibung und damit abgeltungsteuerpflichtig. Für Produkte mit verbrieftem Lieferanspruch hat die Rechtsprechung eine Behandlung wie physisches Gold anerkannt. Ob ein konkretes Produkt darunterfällt, hängt an seinen Bedingungen – das gehört vor den Kauf geprüft.',
     },
   ],
+  // --------------------------------------------------------------------- ETF
+  'etf:beginner': [
+    {
+      question:
+        'Worin unterscheidet sich ein ETF grundsätzlich von einem klassischen aktiven Fonds?',
+      options: [
+        'Ein ETF ist kein Sondervermögen und deshalb günstiger',
+        'Ein ETF bildet einen Index nach, statt Werte nach eigenem Urteil auszuwählen',
+        'Ein ETF enthält immer Aktien, ein aktiver Fonds immer Anleihen',
+        'Ein ETF kann nicht an Wert verlieren',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Unterschied liegt in der Entscheidung, nicht in der Rechtsform. Beide sind Sondervermögen. Ein aktiver Fonds bezahlt Menschen dafür, Werte auszuwählen; ein ETF folgt einer festen Regel – dem Index. Genau daraus folgen die niedrigeren Kosten.',
+    },
+    {
+      question:
+        'Ein ETF auf einen Technologie-Index verliert 35 Prozent. Was sagt das über den ETF aus?',
+      options: [
+        'Der Anbieter hat die Nachbildung schlecht umgesetzt',
+        'Das Sondervermögen wurde angegriffen',
+        'Nichts Ungewöhnliches – der ETF folgt seinem Index, und der ist gefallen',
+        'Der ETF war zu klein und wurde deshalb abgewertet',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein ETF soll seinen Index abbilden, nach oben wie nach unten. Fällt der Index, fällt der ETF – das ist keine Fehlfunktion, sondern die Funktion. Das Risiko steckt im gewählten Index, nicht in der Fondshülle.',
+    },
+    {
+      question: 'Was bedeutet „Sondervermögen“ bei einem ETF?',
+      options: [
+        'Das Fondsvermögen ist vom Vermögen der Fondsgesellschaft getrennt und fällt bei deren Insolvenz nicht in die Masse',
+        'Der Staat garantiert den eingezahlten Betrag bis 100.000 Euro',
+        'Der Fonds darf nur in besonders sichere Werte investieren',
+        'Kursverluste werden vom Anbieter ausgeglichen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Sondervermögen schützt vor der Pleite des Anbieters, nicht vor Kursverlusten. Die Einlagensicherung über 100.000 Euro gilt für Bankguthaben, nicht für Wertpapiere – dort braucht es sie auch nicht, weil die Papiere ohnehin dir gehören.',
+    },
+    {
+      question:
+        'Zwei ETFs bilden denselben Index ab, einer thesauriert, einer schüttet aus. Was folgt daraus für die Rendite?',
+      options: [
+        'Der ausschüttende bringt mehr, weil zusätzlich Geld aufs Konto kommt',
+        'Der thesaurierende bringt mehr, weil er höhere Kurse hat',
+        'Vor Steuern und Kosten ist es dasselbe Geld auf zwei Wegen',
+        'Der ausschüttende ist risikoärmer, weil laufend Geld entnommen wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Am Ausschüttungstag sinkt der Kurs um genau den ausgeschütteten Betrag. Es entsteht also kein zusätzlicher Ertrag – die Frage ist nur, ob das Geld im Fonds bleibt oder auf dein Konto geht. Unterschiede ergeben sich erst durch Steuern und die Kosten der Wiederanlage.',
+    },
+  ],
+  'etf:fortgeschritten': [
+    {
+      question:
+        'Warum ist die Tracking-Differenz aussagekräftiger als die Gesamtkostenquote TER?',
+      options: [
+        'Weil sie von der Aufsichtsbehörde geprüft wird, die TER nicht',
+        'Weil sie den tatsächlichen Rückstand zum Index misst und damit auch Handelskosten, Quellensteuern und Leiheerträge enthält',
+        'Weil sie immer kleiner ist als die TER',
+        'Weil die TER nur bei synthetischen ETFs anfällt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die TER nennt eine Gebühr, die Tracking-Differenz misst ein Ergebnis. Sie enthält alles, was zwischen Index und ETF tatsächlich passiert ist – auch Erträge aus Wertpapierleihe, die den Rückstand verkleinern können. Kleiner als die TER ist sie deshalb manchmal, aber nicht immer.',
+    },
+    {
+      question:
+        'Ein ETF auf japanische Aktien soll gekauft werden. Wann ist der Spread in Deutschland tendenziell am engsten?',
+      options: [
+        'Direkt zur Eröffnung um 9 Uhr, wenn die Umsätze am höchsten sind',
+        'In der letzten Handelsminute, weil dann der Schlusskurs festgestellt wird',
+        'Der Spread hängt nicht von der Uhrzeit ab',
+        'Wenn sich die Handelszeiten überlappen oder der Heimatmarkt zumindest kürzlich geschlossen hat',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Solange der Heimatmarkt geschlossen ist, muss der Market Maker den fairen Wert schätzen und sichert sich über eine größere Spanne ab. Eröffnung und Schluss sind aus demselben Grund die teuersten Zeitpunkte – dort ist die Preisfindung am unsichersten.',
+    },
+    {
+      question: 'Was besitzt ein synthetisch nachbildender ETF tatsächlich?',
+      options: [
+        'Ein Wertpapierportfolio, das mit dem Index nichts zu tun haben muss, plus ein Tauschgeschäft mit einer Bank',
+        'Die Indextitel, nur in abweichender Gewichtung',
+        'Ausschließlich Barmittel',
+        'Anteile an einem zweiten, physischen ETF',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Beim Swap liefert eine Bank die Indexrendite, der Fonds im Gegenzug die Rendite seines eigenen Portfolios. Was im Fonds liegt, dient als Sicherheit und ist von der Indexzusammensetzung unabhängig. Daraus folgt das Kontrahentenrisiko – gesetzlich auf 10 Prozent begrenzt und in der Praxis meist täglich besichert.',
+    },
+    {
+      question:
+        'Ein Anleger vergleicht die Wertentwicklung seines ETF mit dem Kursindex desselben Marktes und stellt einen Vorsprung fest. Was liegt am nächsten?',
+      options: [
+        'Der ETF hat den Markt geschlagen',
+        'Ein Rechenfehler des Anbieters',
+        'Der Kursindex lässt Dividenden unberücksichtigt, der ETF vereinnahmt sie',
+        'Der ETF enthält zusätzliche Werte außerhalb des Index',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Price Index bildet nur Kursbewegungen ab, ein ETF vereinnahmt zusätzlich die Dividenden. Über Jahre summiert sich das erheblich. Verglichen werden muss mit der Net-Return-Variante – sie unterstellt Wiederanlage abzüglich Quellensteuer und ist der Maßstab, an dem ETFs sich messen.',
+    },
+  ],
+  'etf:profi': [
+    {
+      question:
+        'Ein ETF auf den S&P 500 hat ein sehr geringes tägliches Handelsvolumen. Was folgt daraus für die Handelbarkeit?',
+      options: [
+        'Er ist schwer verkäuflich, weil Käufer fehlen',
+        'Wenig – Anteile können am Primärmarkt neu geschaffen oder zurückgegeben werden, die Liquidität hängt an den Basiswerten',
+        'Er wird zwangsläufig bald geschlossen',
+        'Er weicht deshalb stärker vom Index ab',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Anders als bei einer Aktie ist das Handelsvolumen eines ETF kein gutes Maß. Zugelassene Teilnehmer können jederzeit Anteile schaffen oder einlösen, indem sie die Basiswerte liefern oder abnehmen. Handelbar ist ein ETF deshalb so gut wie das, was in ihm steckt.',
+    },
+    {
+      question:
+        'Welche Angabe zur Wertpapierleihe eines ETF ist für die Risikoeinschätzung am wichtigsten?',
+      options: [
+        'Der Name des Entleihers',
+        'Die Anzahl der Leihgeschäfte im Jahr',
+        'Ob die Erträge thesauriert oder ausgeschüttet werden',
+        'Umfang der Leihe, Qualität und Höhe der Sicherheiten sowie die Aufteilung der Erträge',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Das Risiko besteht darin, dass ein Entleiher ausfällt und die Sicherheiten weniger wert sind als die verliehenen Papiere. Entscheidend sind deshalb Umfang, Übersicherung und Qualität der Sicherheiten. Die Ertragsteilung sagt zusätzlich, wie viel vom Ertrag beim Fonds bleibt und wie viel beim Anbieter.',
+    },
+    {
+      question: 'Was ist die Vorabpauschale?',
+      options: [
+        'Eine jährliche Mindestbesteuerung thesaurierender Fonds, begrenzt auf den Wertzuwachs des Jahres',
+        'Eine zusätzliche Gebühr des Anbieters für die Wiederanlage',
+        'Eine Steuer auf jeden Kauf von Fondsanteilen',
+        'Ein Abschlag auf den Verkaufserlös beim Depotwechsel',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Weil ein thesaurierender Fonds nichts ausschüttet, gäbe es ohne diese Regel bis zum Verkauf keinen steuerlichen Anknüpfungspunkt. Die Vorabpauschale schließt diese Lücke. Sie ist auf den Wertzuwachs des Jahres gedeckelt, entfällt in Verlustjahren und wird beim späteren Verkauf angerechnet.',
+    },
+    {
+      question:
+        'Ein Anleger hat über Jahre monatlich Anteile gekauft und will nun einen Teil verkaufen. Welche Anteile gelten als verkauft?',
+      options: [
+        'Die zuletzt gekauften, weil dort der Gewinn am kleinsten ist',
+        'Anteilig aus allen Käufen',
+        'Die zuerst gekauften – FIFO, ohne Wahlmöglichkeit',
+        'Die mit dem höchsten Einstandskurs, um Steuern zu sparen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Es gilt First in, first out: Die ältesten Anteile gelten als zuerst verkauft. Bei einem gestiegenen Kurs sind das die mit dem größten Gewinn und damit der höchsten Steuerlast. Wählen lässt sich das nicht – wer Entnahmen plant, sollte es einkalkulieren.',
+    },
+  ],
+  // --------------------------------------------------------------- Inflation
+  'inflation:beginner': [
+    {
+      question:
+        'Die Inflationsrate fällt von 6 auf 2 Prozent. Was folgt daraus für die Preise?',
+      options: [
+        'Die Preise sinken um 4 Prozent',
+        'Die Preise kehren auf das Niveau von vor zwei Jahren zurück',
+        'Die Preise bleiben unverändert',
+        'Die Preise steigen weiter, nur langsamer als zuvor',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Rate misst die Geschwindigkeit, nicht den Stand. Bei 2 Prozent wird alles weiterhin teurer, nur eben langsamer. Der Preisanstieg der Vorjahre bleibt vollständig bestehen – er wird nicht zurückgenommen. Genau deshalb passt „Entspannung bei der Inflation“ und „im Supermarkt ist alles teuer“ widerspruchsfrei zusammen.',
+    },
+    {
+      question: 'Womit vergleicht die veröffentlichte Inflationsrate eines Monats?',
+      options: [
+        'Mit demselben Monat des Vorjahres',
+        'Mit dem Vormonat',
+        'Mit dem Jahresdurchschnitt der letzten zehn Jahre',
+        'Mit dem Zielwert der Europäischen Zentralbank',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Es ist ein Vorjahresvergleich. Daraus folgt der Basiseffekt: Die Rate hängt ebenso vom Vorjahresmonat ab wie von der Gegenwart. War der Vergleichsmonat außergewöhnlich teuer, fällt die Rate allein deshalb – ohne dass heute etwas billiger geworden wäre.',
+    },
+    {
+      question:
+        'Deine persönliche Teuerung weicht regelmäßig von der amtlichen Rate ab. Warum?',
+      options: [
+        'Weil die amtliche Statistik Mieten nicht erfasst',
+        'Weil dein Warenkorb anders gewichtet ist als der eines Durchschnittshaushalts',
+        'Weil die Rate erst mit einem Jahr Verzögerung veröffentlicht wird',
+        'Weil regionale Preise gar nicht erhoben werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der amtliche Warenkorb gewichtet nach dem Konsum eines Durchschnittshaushalts, den es so nicht gibt. Wer zur Miete wohnt und pendelt, spürt Mieten und Spritpreise stärker als jemand mit abbezahltem Haus im Ort. Das ist keine Schwäche der Statistik, sondern die Natur eines Durchschnitts.',
+    },
+    {
+      question:
+        'Tagesgeld bringt 2 Prozent, die Inflation liegt bei 2,5 Prozent. Wie steht es um dein Vermögen?',
+      options: [
+        'Es wächst um 2 Prozent, die Inflation betrifft nur Konsumausgaben',
+        'Es bleibt real unverändert, weil die Zahlen nahe beieinanderliegen',
+        'Nominal wächst es, real verlierst du rund ein halbes Prozent Kaufkraft',
+        'Es verliert 2,5 Prozent, der Zins wird davon nicht abgezogen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Realzins ist der Quotient aus Nominalzins und Inflation, hier rund minus 0,5 Prozent. Am Jahresende steht mehr Geld auf dem Konto, und du kannst dir weniger dafür kaufen. Nominal ist eine Zahl, real ist ein Ergebnis.',
+    },
+  ],
+  'inflation:fortgeschritten': [
+    {
+      question:
+        'Warum ist eine Zinserhöhung gegen reine Angebotsinflation ein schwaches Mittel?',
+      options: [
+        'Weil höhere Zinsen die Nachfrage dämpfen, aber Energie und Rohstoffe dadurch nicht billiger werden',
+        'Weil Zinserhöhungen bei Angebotsschocks gesetzlich ausgeschlossen sind',
+        'Weil Angebotsinflation sich immer von selbst zurückbildet',
+        'Weil höhere Zinsen die Produktionskosten zusätzlich senken',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Zins wirkt über die Nachfrageseite. Ist die Ursache ein verteuertes Angebot, trifft das Instrument die falsche Seite: Die Notenbank bremst eine ohnehin schwache Wirtschaft, ohne die Ursache zu berühren. Handeln muss sie trotzdem, sobald der Schock über Zweitrundeneffekte in Löhne und Preise einzusickern droht.',
+    },
+    {
+      question: 'Was misst die Kerninflation?',
+      options: [
+        'Nur die Preise der Grundversorgung – Lebensmittel, Energie, Miete',
+        'Die Preisentwicklung ohne Energie und Nahrungsmittel',
+        'Die Inflation im Euroraum ohne Deutschland',
+        'Den Preisanstieg abzüglich staatlicher Steuererhöhungen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ausgeklammert werden gerade die stark schwankenden Posten Energie und Nahrungsmittel – nicht weil sie unwichtig wären, sondern weil sie den Blick auf die Frage verstellen, ob die Teuerung sich im Rest der Wirtschaft festgesetzt hat. Als Aussage über die Lebenshaltungskosten taugt die Kernrate deshalb nicht.',
+    },
+    {
+      question:
+        'Die Break-even-Inflationsrate ergibt sich aus dem Renditeunterschied zweier Anleihen. Was zeigt sie?',
+      options: [
+        'Die vom Statistischen Bundesamt für das nächste Jahr prognostizierte Rate',
+        'Die Inflationsrate, ab der Aktien Anleihen schlagen',
+        'Welche durchschnittliche Inflation der Markt für die Laufzeit einpreist',
+        'Die Untergrenze, ab der die Notenbank eingreifen muss',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Sie ist die Differenz zwischen der Rendite einer normalen und einer inflationsindexierten Anleihe gleicher Laufzeit – also die Erwartung, für die Marktteilnehmer mit echtem Geld einstehen. Das macht sie zu einem anderen Indikator als eine Umfrage oder eine Prognose.',
+    },
+    {
+      question: 'Warum sprechen Notenbanken von „verankerten Inflationserwartungen“?',
+      options: [
+        'Weil Erwartungen gesetzlich an das Inflationsziel gebunden sind',
+        'Weil erwartete Inflation über Löhne und Kalkulationen zur tatsächlichen wird',
+        'Weil Erwartungen erst nach zwei Jahren messbar werden',
+        'Weil verankerte Erwartungen die Rate rechnerisch aus dem Index herausnehmen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer fünf Prozent Teuerung erwartet, verlangt fünf Prozent mehr Lohn und kalkuliert fünf Prozent höhere Preise – und macht die Erwartung damit wahr. Solange das Vertrauen in die Rückkehr zum Ziel hält, wird ein Preisschock als vorübergehend behandelt. Geht es verloren, muss es mit sehr viel höheren Zinsen zurückgekauft werden.',
+    },
+  ],
+  'inflation:profi': [
+    {
+      question:
+        'Aktien gelten als Inflationsschutz. Welche Einschränkung gehört zwingend dazu?',
+      options: [
+        'Der Schutz gilt nur für Dividendenaktien',
+        'Der Schutz gilt nur bei Inflationsraten unter 2 Prozent',
+        'Der Schutz greift nur bei physischer Verwahrung der Aktien',
+        'Der Schutz wirkt über lange Zeiträume; kurzfristig fallen Aktien bei anziehender Inflation eher',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Langfristig wachsen Unternehmenserträge mit dem Preisniveau. Kurzfristig wirken zwei Kräfte dagegen: Höhere Zinsen senken den heutigen Wert künftiger Gewinne, und Preise lassen sich nicht sofort weitergeben – die Margen geraten zuerst unter Druck. Ohne Angabe des Zeitraums ist die Aussage inhaltsleer.',
+    },
+    {
+      question: 'Wovor schützt eine inflationsindexierte Anleihe tatsächlich?',
+      options: [
+        'Vor unerwarteter Inflation – die erwartete steckt bereits im Preis',
+        'Vor jeder Inflation, unabhängig von der Höhe',
+        'Vor steigenden Zinsen',
+        'Vor dem Ausfall des Emittenten',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die erwartete Inflation ist als Break-even-Rate eingepreist. Liegt die tatsächliche Teuerung darunter, hättest du mit der normalen Anleihe mehr verdient. Es ist eine Wette auf die Abweichung von der Erwartung, nicht auf die Richtung der Preise.',
+    },
+    {
+      question:
+        'Eine Anlage bringt 2 Prozent nominal, die Inflation liegt bei 2,5 Prozent. Wie besteuert das Finanzamt das?',
+      options: [
+        'Gar nicht, weil real ein Verlust entstanden ist',
+        'Nur der Teil oberhalb der Inflationsrate wird besteuert',
+        'Der volle nominale Ertrag wird besteuert, obwohl real ein Verlust bleibt',
+        'Der Verlust lässt sich mit anderen Kapitalerträgen verrechnen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das deutsche Steuerrecht kennt keine Inflation. Besteuert wird der nominale Zuwachs – hier also ein Gewinn, den es real nicht gibt. Diese Scheingewinnbesteuerung vergrößert den realen Verlust zusätzlich, und zwar umso stärker, je höher die Inflation ist.',
+    },
+    {
+      question:
+        'Warum kann ein Rohstoff-Investment über Terminkontrakte seinen Inflationsschutz verlieren?',
+      options: [
+        'Weil Rohstoffe von der Inflationsstatistik ausgenommen sind',
+        'Weil Terminkontrakte nur in Fremdwährung handelbar sind',
+        'Weil Rohstoffe keine laufenden Erträge abwerfen',
+        'Weil beim Rollen in Contango jeder Wechsel in den nächsten Kontrakt Geld kostet',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Terminkontrakte laufen ab und müssen in den nächsten gerollt werden. Ist der spätere Kontrakt teurer als der auslaufende – Contango –, kostet jeder Rollvorgang einen Teil des Einsatzes. Über Jahre kann das den Preisanstieg des Rohstoffs vollständig aufzehren, während der Spotpreis gestiegen ist.',
+    },
+  ],
+  // ------------------------------------------------------------------ Börse
+  'boerse:beginner': [
+    {
+      question: 'Was garantiert eine Börse?',
+      options: [
+        'Dass die gehandelten Unternehmen wirtschaftlich gesund sind',
+        'Dass Kurse nicht unter einen Mindestwert fallen',
+        'Geordnete Preisfindung und eine verlässliche Abwicklung',
+        'Dass jeder Anleger am Ende Gewinn macht',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Eine Börse organisiert das Zusammentreffen von Aufträgen nach Regeln, die für alle gleich sind, und sorgt dafür, dass Wertpapiere und Geld auch wirklich den Besitzer wechseln. Über die Qualität eines Unternehmens sagt die Zulassung nichts – sie heißt nur, dass die formalen Anforderungen erfüllt sind.',
+    },
+    {
+      question: 'Deine Bank geht insolvent. Was passiert mit den Aktien in deinem Depot?',
+      options: [
+        'Sie gehören dir und fallen nicht in die Insolvenzmasse',
+        'Sie sind bis 100.000 Euro über die Einlagensicherung geschützt',
+        'Sie werden verkauft und der Erlös anteilig verteilt',
+        'Sie gehen an den Zentralverwahrer über und sind verloren',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Bank verwahrt die Papiere nur, Eigentümer bist du. Du kannst die Herausgabe verlangen oder das Depot übertragen lassen. Die Einlagensicherung über 100.000 Euro betrifft Guthaben – also Geld, das der Bank gehört und das sie dir schuldet. Wertpapiere muss sie nicht schulden, sie sind bereits deine.',
+    },
+    {
+      question:
+        'Warum beginnt und endet der Börsentag mit einer Auktion statt mit fortlaufendem Handel?',
+      options: [
+        'Damit die Börse ihre Gebühren berechnen kann',
+        'Weil sonst zu viele Orders gleichzeitig einträfen und das System überlastet wäre',
+        'Weil das Gesetz eine Preisfeststellung durch einen Makler vorschreibt',
+        'Weil nach einer Nachrichtenlage unklar ist, wo der Kurs steht – die Auktion bündelt das in einem Preis',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Würde nach der Nacht sofort fortlaufend gehandelt, entstünden willkürliche erste Kurse. In der Auktion sammeln sich Aufträge, und es wird der eine Preis ermittelt, zu dem das größte Volumen zustande kommt. Dasselbe am Ende des Tages, wo der Schlusskurs als Referenz für vieles dient.',
+    },
+    {
+      question:
+        'Welche der drei Kostenarten eines Wertpapierkaufs taucht auf keiner Abrechnung auf?',
+      options: [
+        'Die Ordergebühr des Brokers',
+        'Der Spread zwischen Kauf- und Verkaufspreis',
+        'Das Entgelt des Handelsplatzes',
+        'Die Depotgebühr',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Spread wird nie in Rechnung gestellt – er steckt im Preis. Wer sofort nach dem Kauf wieder verkaufen würde, bekäme weniger heraus, als er bezahlt hat, obwohl sich der Kurs nicht bewegt hat. Bei kleinen Ordern über einen ungünstigen Handelsplatz ist er oft der größte der drei Posten.',
+    },
+  ],
+  'boerse:fortgeschritten': [
+    {
+      question: 'Beim außerbörslichen Direkthandel handelst du gegen wen?',
+      options: [
+        'Gegen andere Privatanleger in einem geschlossenen Orderbuch',
+        'Gegen die Börse selbst',
+        'Gegen ein Unternehmen, das dir einen Preis stellt und vom Spread lebt',
+        'Gegen das Unternehmen, dessen Aktie gehandelt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Es gibt kein Orderbuch, sondern ein Gegenüber, das einen Preis anbietet. Das ist ein legitimes Geschäftsmodell, aber die Interessen sind gegenläufig. Deshalb gilt hier besonders: den gestellten Preis mit dem Kurs am Referenzmarkt vergleichen, bevor man annimmt.',
+    },
+    {
+      question: 'Warum ist der Handel um 22 Uhr regelmäßig teurer als am Nachmittag?',
+      options: [
+        'Weil Handelsplätze nachts höhere Entgelte verlangen',
+        'Weil der Referenzmarkt geschlossen ist und ein Vergleichskurs fehlt, an dem sich das Angebot messen ließe',
+        'Weil nachts nur unlimitierte Orders zulässig sind',
+        'Weil die Abwicklung dann einen Tag länger dauert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne laufenden Referenzkurs muss der Anbieter den fairen Wert schätzen und sichert sich über eine größere Spanne ab. Bei ausländischen Werten kommt hinzu, dass auch der Heimatmarkt geschlossen sein kann. Die Order kostet dann mehr, ohne dass irgendwo eine höhere Gebühr auftauchte.',
+    },
+    {
+      question: 'Was verlangt die Best-Execution-Pflicht von deinem Broker?',
+      options: [
+        'Immer den Handelsplatz mit dem besten Kurs zu wählen',
+        'Jede Order an den Referenzmarkt weiterzuleiten',
+        'Dich vor jeder Order über den Spread zu informieren',
+        'Das bestmögliche Gesamtergebnis anzustreben – Preis, Kosten, Geschwindigkeit und Ausführungswahrscheinlichkeit zusammen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Pflicht bezieht sich auf das Gesamtergebnis, nicht allein auf den Preis. Das gibt Spielraum, und deshalb ist die Standardvorgabe eines Brokers nicht automatisch der Handelsplatz mit dem besten Kurs. Wie er abwägt, steht in seinen Ausführungsgrundsätzen.',
+    },
+    {
+      question: 'Was leistet die Finanzaufsicht für Anleger nicht?',
+      options: [
+        'Sie warnt nicht vor schlechten Geschäftsmodellen und verhindert keine Kursstürze',
+        'Sie verfolgt keinen Insiderhandel',
+        'Sie überwacht die Veröffentlichungspflichten der Unternehmen nicht',
+        'Sie beaufsichtigt die Börsen nicht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Insiderhandel, Marktmanipulation und Publizitätspflichten fallen sehr wohl in ihren Bereich. Was sie nicht tut: Geschäftsmodelle bewerten oder vor Verlusten schützen. Sie greift überwiegend nachträglich ein – bei einem Betrug ist das Geld dann meist weg. „Das ist doch reguliert“ ist deshalb keine Aussage über das Risiko einer Anlage.',
+    },
+  ],
+  'boerse:profi': [
+    {
+      question:
+        'Worin unterscheiden sich regulierter Markt und Freiverkehr für Anleger am deutlichsten?',
+      options: [
+        'Im Freiverkehr gilt kein Marktmissbrauchsrecht',
+        'Im Freiverkehr sind die laufenden Informationspflichten der Unternehmen deutlich schwächer',
+        'Im Freiverkehr können nur institutionelle Anleger handeln',
+        'Im regulierten Markt garantiert die Börse die Kurse',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der regulierte Markt ist gesetzlich geregelt: Prospektpflicht, Rechnungslegung nach internationalen Standards, Ad-hoc-Publizität, Stimmrechtsmitteilungen. Der Freiverkehr ist privatrechtlich von der Börse organisiert und verlangt weniger. Marktmissbrauchsrecht gilt in beiden Segmenten.',
+    },
+    {
+      question:
+        'Welche Aufgabe hat die zentrale Gegenpartei zwischen Abschluss und Lieferung?',
+      options: [
+        'Sie verwahrt die Wertpapiere der Endanleger',
+        'Sie legt den Schlusskurs des Handelstages fest',
+        'Sie tritt zwischen beide Seiten, trägt das Ausfallrisiko und verrechnet Geschäfte gegeneinander',
+        'Sie prüft, ob der vereinbarte Preis marktgerecht ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus einem Geschäft werden rechtlich zwei: Du kaufst von der Gegenpartei, der Verkäufer verkauft an sie. Fällt eine Seite aus, trägt sie den Schaden – abgesichert über Sicherheitsleistungen und einen Ausfallfonds. Durch das Netting muss zudem nur die Differenz tatsächlich geliefert werden.',
+    },
+    {
+      question:
+        'Der Handel in einer Aktie wird für einige Minuten unterbrochen, nachdem der Kurs stark gesprungen ist. Was ist der Zweck?',
+      options: [
+        'Den Kurs zu stützen und weitere Verluste zu verhindern',
+        'Zeit für eine Prüfung durch die Aufsichtsbehörde zu schaffen',
+        'Ausstehende Orders automatisch zu löschen',
+        'Die Preisbildung zu entschleunigen, damit niemand zu einem Preis ausgeführt wird, der Sekunden später überholt ist',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Eine Volatilitätsunterbrechung ersetzt den fortlaufenden Handel kurzzeitig durch eine Auktion. Sie stützt keine Kurse – der Preis darf danach beliebig tief liegen. Davon zu unterscheiden ist die Handelsaussetzung, die auf eine fehlende Information wartet und Tage dauern kann.',
+    },
+    {
+      question:
+        'Nach einem Aktiensplit im Verhältnis eins zu drei findest du am Morgen dreimal so viele Aktien zu einem Drittel des Kurses. Was ist mit deiner offenen Limit-Order?',
+      options: [
+        'Sie wird in der Regel gelöscht und muss neu erfasst werden',
+        'Ihr Limit wird automatisch gedrittelt',
+        'Sie bleibt unverändert bestehen und wird zum alten Limit ausgeführt',
+        'Sie wird zur unlimitierten Order',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein Limit, das sich auf den alten Kurs bezog, wäre nach dem Split sinnlos – bei einem Kaufauftrag würde es sofort und weit über dem neuen Kurs greifen. Deshalb werden offene Orders bei Kapitalmaßnahmen üblicherweise gestrichen. Wer langfristige Orders stehen hat, muss sie danach neu einstellen.',
+    },
+  ],
+  // -------------------------------------------------------------- Tagesgeld
+  'tagesgeld:beginner': [
+    {
+      question: 'Worin unterscheiden sich Tagesgeld und Festgeld im Kern?',
+      options: [
+        'Festgeld ist gesetzlich geschützt, Tagesgeld nicht',
+        'Beim Festgeld trägt die Bank das Zinsänderungsrisiko, beim Tagesgeld du',
+        'Festgeld wird nur bei ausländischen Banken angeboten',
+        'Tagesgeld ist nur für Beträge unter 10.000 Euro möglich',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Beim Festgeld steht der Satz für die gesamte Laufzeit fest – die Bank muss ihn auch dann zahlen, wenn die Zinsen inzwischen gefallen sind. Beim Tagesgeld ist er variabel: Sinkt das Zinsniveau, sinkt dein Zins mit. Geschützt sind beide gleichermaßen.',
+    },
+    {
+      question:
+        'Du hast bei derselben Bank ein Giro-, ein Tagesgeld- und ein Festgeldkonto mit zusammen 150.000 Euro. Wie viel ist gesetzlich geschützt?',
+      options: [
+        'Alles, weil es drei getrennte Konten sind',
+        '150.000 Euro, weil jedes Konto einzeln zählt',
+        '50.000 Euro, weil nur das Tagesgeld geschützt ist',
+        '100.000 Euro – der Schutz gilt je Person und Institut, nicht je Konto',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Alle Guthaben bei einem Institut werden zusammengezählt. Drei Konten bedeuten nicht dreimal Schutz. Bei einem Gemeinschaftskonto zweier Personen verdoppelt sich die Summe dagegen, weil der Schutz je Inhaber gilt.',
+    },
+    {
+      question:
+        'Warum ist Tagesgeld für den Vermögensaufbau über dreißig Jahre ungeeignet?',
+      options: [
+        'Weil Banken langfristige Einlagen kündigen dürfen',
+        'Weil der Zins die Inflation meist nicht ausgleicht – nominal sicher heißt nicht real sicher',
+        'Weil die Einlagensicherung nach zehn Jahren entfällt',
+        'Weil Zinserträge nach fünf Jahren höher besteuert werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kontostand fällt nie, die Kaufkraft schon. Bei 2 Prozent Zins und 2,5 Prozent Inflation liegt der Realzins bei rund minus einem halben Prozent – jedes Jahr. Für den Notgroschen ist genau diese nominale Stabilität der Zweck; für dreißig Jahre ist es das falsche Werkzeug.',
+    },
+    {
+      question: 'Wie groß sollte ein Notgroschen üblicherweise sein?',
+      options: [
+        'Drei bis sechs Monatsausgaben',
+        'Genau 10.000 Euro, unabhängig von der Lebenssituation',
+        'Ein Zwölftel des Jahresbruttoeinkommens',
+        'So viel wie eine Jahresmiete',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Maßstab sind die eigenen Ausgaben, nicht das Einkommen und keine Pauschale. Drei bis sechs Monate decken die üblichen Fälle ab – kaputte Heizung, defektes Auto, Kündigung. Wer selbstständig ist oder ein schwankendes Einkommen hat, rechnet eher am oberen Rand.',
+    },
+  ],
+  'tagesgeld:fortgeschritten': [
+    {
+      question:
+        'Warum reagieren Tagesgeldzinsen auf Leitzinssenkungen schneller als auf Erhöhungen?',
+      options: [
+        'Weil die Notenbank Senkungen sofort verbindlich vorgibt',
+        'Weil Erhöhungen erst zum Jahreswechsel wirksam werden dürfen',
+        'Weil wer sein Geld nicht bewegt, eine ausbleibende Erhöhung nicht bemerkt',
+        'Weil Banken bei steigenden Zinsen weniger Einlagen brauchen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Es gibt keine Vorschrift zur Weitergabe. Eine Senkung spart der Bank sofort Geld; eine Erhöhung kostet sie welche, und solange die Kunden bleiben, gibt es keinen Anlass dazu. Der Einlagenzins der Notenbank bleibt dabei die Obergrenze dessen, was überhaupt bezahlbar wäre.',
+    },
+    {
+      question:
+        'Ein Angebot wirbt mit einem hohen Zins „für 6 Monate, bis 50.000 Euro, nur für Neukunden“. Du willst 120.000 Euro anlegen. Was folgt daraus?',
+      options: [
+        'Der beworbene Satz gilt für den vollen Betrag, nur eben ein halbes Jahr',
+        'Nur ein Teil wird zum Aktionszins verzinst, der Rest zum niedrigeren Bestandssatz – der Durchschnitt liegt deutlich unter der beworbenen Zahl',
+        'Der Zins gilt gar nicht, weil die Obergrenze überschritten ist',
+        'Der Betrag über der Grenze wird unverzinst geführt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Beworben wird der günstigste Fall. Über der Obergrenze gilt der Bestandskundenzins, und nach der Frist gilt er für alles. Wer den tatsächlichen Ertrag wissen will, rechnet mit beiden Sätzen und über den gesamten Zeitraum – nicht mit der Zahl aus der Anzeige.',
+    },
+    {
+      question: 'Was passiert ohne Freistellungsauftrag mit den Steuern auf Zinserträge?',
+      options: [
+        'Es fällt keine Steuer an, solange der Sparerpauschbetrag nicht überschritten ist',
+        'Die Bank meldet die Erträge, zieht aber nichts ab',
+        'Die Bank führt die Steuer ab; zurückholen lässt sie sich über die Steuererklärung',
+        'Die Steuer wird erst bei Auflösung des Kontos fällig',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Freibetrag entsteht nicht automatisch beim Institut – die Bank muss wissen, dass sie ihn berücksichtigen soll. Ohne Auftrag führt sie ab, und das Geld ist für ein Jahr weg. Der Betrag lässt sich auf mehrere Banken verteilen, insgesamt aber nur einmal ausschöpfen.',
+    },
+    {
+      question:
+        'Du hast Tagesgeld bei einer Bank im EU-Ausland. Was ist steuerlich anders?',
+      options: [
+        'Die Zinsen sind in Deutschland steuerfrei',
+        'Es wird nichts automatisch abgeführt – die Zinsen gehören in die Steuererklärung',
+        'Es gilt ein doppelter Sparerpauschbetrag',
+        'Die deutsche Bank des Verrechnungskontos führt die Steuer ab',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ausländische Institute führen keine deutsche Abgeltungsteuer ab. Manche Länder behalten zudem eine eigene Quellensteuer ein, die sich in der Regel anrechnen lässt – aber nur, wenn man sie erklärt. Wer das übersieht, hat keinen Zinsvorteil erzielt, sondern eine unvollständige Erklärung abgegeben.',
+    },
+  ],
+  'tagesgeld:profi': [
+    {
+      question:
+        'Worin unterscheidet sich ein freiwilliger Einlagensicherungsfonds von der gesetzlichen Sicherung?',
+      options: [
+        'Er deckt höhere Beträge, begründet aber keinen einklagbaren Anspruch',
+        'Er gilt nur für Festgeld, nicht für Tagesgeld',
+        'Er ersetzt die gesetzliche Sicherung vollständig',
+        'Er wird vom Staat garantiert',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die gesetzliche Sicherung bis 100.000 Euro ist ein Rechtsanspruch mit gesetzlicher Auszahlungsfrist. Der freiwillige Fonds eines Verbands geht darüber hinaus, ist aber eine Leistung des Verbands – im Ernstfall abhängig von dessen Mitteln und Entscheidung.',
+    },
+    {
+      question: 'Was bedeutet Bail-in für Guthaben oberhalb der geschützten Summe?',
+      options: [
+        'Sie werden vorrangig aus Steuermitteln ersetzt',
+        'Sie sind über den freiwilligen Fonds automatisch mitversichert',
+        'Sie werden in Aktien der Bank umgewandelt und behalten ihren Wert',
+        'Sie können zur Sanierung der Bank herangezogen werden – geschützte Einlagen dagegen nicht',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Seit der Bankenkrise haften zuerst Eigentümer und Gläubiger, bevor öffentliche Mittel fließen. Einlagen von Privatpersonen stehen weit hinten in der Reihenfolge, und der Teil bis 100.000 Euro wird gar nicht herangezogen. Der Teil darüber schon – deshalb die Aufteilung auf mehrere Institute.',
+    },
+    {
+      question:
+        'Ein Fremdwährungskonto bietet deutlich mehr Zins als ein Eurokonto. Wie ist das einzuordnen?',
+      options: [
+        'Als Zinsvorteil ohne Gegenleistung',
+        'Der Zinsvorsprung entspricht meist der vom Markt erwarteten Abwertung dieser Währung',
+        'Als Zeichen besonderer Bonität der Bank',
+        'Als steuerfreier Ertrag, weil im Ausland erzielt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Höhere Zinsen und erwartete Abwertung sind zwei Seiten derselben Sache – sonst gäbe es einen risikolosen Gewinn, und den würde der Markt sofort wegarbitrieren. Der höhere Zins ist die Bezahlung für ein Wechselkursrisiko, nicht ein Geschenk.',
+    },
+    {
+      question: 'Ein Geldmarkt-ETF hat keinen Einlagenschutz. Wie schwer wiegt das?',
+      options: [
+        'Schwer – ohne Einlagenschutz droht bei Insolvenz des Anbieters der Totalverlust',
+        'Gar nicht – Geldmarktfonds sind staatlich garantiert',
+        'Wenig für den Anbieter, weil er Sondervermögen ist; das Risiko steckt in den gehaltenen Papieren',
+        'Nur bei Beträgen über 100.000 Euro',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Als Sondervermögen fällt der Fonds bei einer Insolvenz des Anbieters nicht in die Masse – dafür braucht er keinen Einlagenschutz. Sein Risiko liegt im Inhalt: Ein Fonds mit besicherten Übernachtgeschäften ist etwas anderes als einer mit kurzlaufenden Unternehmensanleihen, auch wenn beide „Geldmarkt“ heißen.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

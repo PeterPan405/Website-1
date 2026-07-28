@@ -15,16 +15,21 @@ name: Quellen abklopfen
 # - OECD (Löhne): geht, seit Sprache und Format ausdrücklich gesetzt sind → 38 Länder
 # - OECD (Vermögen): erreichbar, 31 Länder, enthält „Net wealth“ und „Median“ –
 #   aber in Landeswährung, für den Vergleich fehlt eine Umrechnung
+# - SEC (Fundamentaldaten): geht über die Jahresrahmen, rund 3.900 vollständige
+#   Datensätze; eingebaut und in Betrieb
 # - Yahoo (Fundamentaldaten): 401 Unauthorized bzw. Invalid Crumb
 # - ILO, Our World in Data: keine brauchbare Reihe gefunden
 #
 # ## Diese Runde
 #
-# Die Fundamentalkennzahlen. Gesucht wird eine Quelle, die Umsatz, Gewinn,
-# Cashflow und Aktienzahl liefert – ohne Anmeldung und ohne Lizenzverstoß.
-# Der aussichtsreichste Kandidat ist die Schnittstelle der US-Börsenaufsicht:
-# amtlich, gebührenfrei, ausdrücklich zur Nutzung vorgesehen. Ihr Nachteil
-# steht schon fest – sie kennt nur Unternehmen, die in den USA bilanzieren.
+# Das Medianvermögen. Die Datenbank ist erreichbar und enthält den gesuchten
+# Wert – offen sind zwei Fragen, die sich nur am echten Datensatz beantworten
+# lassen: Wie heißen die Spalten genau, und in welcher Einheit stehen die
+# Zahlen? Erst danach lässt sich ein Parser schreiben, der nicht rät.
+#
+# Zweite Frage: Für die Umrechnung in eine Vergleichswährung braucht es
+# historische Wechselkurse zum jeweiligen Erhebungsjahr. Getestet wird, ob die
+# Frankfurter-Schnittstelle die liefert.
 
 on:
   workflow_dispatch:
@@ -34,68 +39,114 @@ jobs:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
-      - name: US-Börsenaufsicht (SEC) – Kennzahlen zu einem Unternehmen
+      - name: OECD – die Reinvermögenszeilen im Detail
         run: |
-          # Die SEC verlangt ausdrücklich einen Absender mit Kontaktadresse.
-          UA="IM-Invests Datenabruf pm252543@gmail.com"
+          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
+          url="https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels"
+          curl -sS -L -A "$UA" -H 'Accept-Language: en' --max-time 90 -o /tmp/wealth.csv "$url"
 
-          echo "── Zuordnung Kürzel → Kennnummer ──"
-          curl -sS -A "$UA" --max-time 45 -o /tmp/tickers.json \
-            "https://www.sec.gov/files/company_tickers.json"
-          echo "Status/Größe: $(stat -c%s /tmp/tickers.json) Bytes"
           python3 - <<'PY'
-          import json
-          try:
-              with open('/tmp/tickers.json') as f:
-                  d = json.load(f)
-          except Exception as fehler:
-              print('  nicht lesbar:', fehler)
-              raise SystemExit(0)
-          eintraege = list(d.values())
-          print(f"  {len(eintraege)} Unternehmen gelistet")
-          for e in eintraege[:3]:
-              print(f"   {e['ticker']:8} {e['cik_str']:>10}  {e['title'][:60]}")
+          import csv, collections
+          with open('/tmp/wealth.csv', newline='', encoding='utf-8') as f:
+              alle = list(csv.DictReader(f))
+          nw = [z for z in alle if z['MEASURE'] == 'NW']
+          print(f"{len(nw)} Zeilen mit MEASURE=NW")
+
+          print("\n── Welche Kombinationen aus Rechengröße und Einheit? ──")
+          paare = collections.Counter(
+              (z['STATISTICAL_OPERATION'], z['Statistical operation'],
+               z['UNIT_MEASURE'], z['Unit of measure']) for z in nw)
+          for (op, opname, einheit, einheitname), anzahl in paare.most_common():
+              print(f"  {op:10} {opname:22} | {einheit:8} {einheitname:34} | {anzahl}")
+
+          median = [z for z in nw if z['STATISTICAL_OPERATION'] == 'MEDIAN']
+          print(f"\n── {len(median)} Medianzeilen ──")
+          print("  Währungen: " + ', '.join(sorted({z['CURRENCY'] for z in median})))
+          print("  Multiplikatoren: " + ', '.join(sorted({z['UNIT_MULT'] for z in median})))
+          print("  Preisbasis: " + ', '.join(sorted({z['PRICE_BASE'] for z in median})))
+
+          jeLand = collections.defaultdict(list)
+          for z in median:
+              if z['OBS_VALUE']:
+                  jeLand[z['REF_AREA']].append(z)
+          print(f"\n── {len(jeLand)} Länder mit mindestens einem Medianwert ──")
+          for land in sorted(jeLand)[:40]:
+              jung = max(jeLand[land], key=lambda z: z['TIME_PERIOD'])
+              print(f"  {land}  {jung['TIME_PERIOD']}  {float(jung['OBS_VALUE']):>14,.0f}"
+                    f"  {jung['CURRENCY']:4} x10^{jung['UNIT_MULT']}  {jung['UNIT_MEASURE']}")
+          PY
+
+      - name: OECD – Aufbau der Vermögensdatenbank
+        run: |
+          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
+          url="https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels"
+
+          curl -sS -L -A "$UA" -H 'Accept-Language: en' --max-time 90 -o /tmp/wealth.csv "$url"
+          echo "Zeilen: $(wc -l < /tmp/wealth.csv), Größe: $(stat -c%s /tmp/wealth.csv) Bytes"
+
+          echo ""
+          echo "── Kopfzeile, eine Spalte je Zeile mit Nummer ──"
+          head -1 /tmp/wealth.csv | tr ',' '\n' | nl
+
+          echo ""
+          echo "── Drei vollständige Datenzeilen ──"
+          sed -n '2,4p' /tmp/wealth.csv
+
+          echo ""
+          echo "── Zeilen, die 'Median' enthalten: wie viele, und wie sehen sie aus? ──"
+          grep -c -i 'median' /tmp/wealth.csv || echo 0
+          grep -i 'median' /tmp/wealth.csv | head -5
+
+          echo ""
+          echo "── Welche Einheiten kommen vor? ──"
+          python3 - <<'PY'
+          import csv, collections
+          with open('/tmp/wealth.csv', newline='', encoding='utf-8') as f:
+              zeilen = list(csv.DictReader(f))
+          print(f"  {len(zeilen)} Datenzeilen")
+          for spalte in ('UNIT_MEASURE', 'Unit of measure', 'MEASURE', 'Measure',
+                         'PRICE_BASE', 'Price base', 'TRANSFORMATION', 'Transformation'):
+              if zeilen and spalte in zeilen[0]:
+                  werte = collections.Counter(z[spalte] for z in zeilen)
+                  print(f"  {spalte}: " + ', '.join(f'{k}({v})' for k, v in werte.most_common(12)))
           PY
 
           echo ""
-          echo "── Kennzahlen zu Apple (CIK 320193) ──"
-          curl -sS -A "$UA" --max-time 60 -o /tmp/apple.json \
-            "https://data.sec.gov/api/xbrl/companyconcept/CIK0000320193/us-gaap/Revenues.json"
-          echo "Größe: $(stat -c%s /tmp/apple.json) Bytes"
-          head -c 300 /tmp/apple.json
-          echo ""
-
-          echo ""
-          echo "── Sammelabruf: Umsatz aller Melder für ein Quartal ──"
-          curl -sS -A "$UA" --max-time 90 -o /tmp/frame.json \
-            "https://data.sec.gov/api/xbrl/frames/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax/USD/CY2025Q1.json"
-          echo "Größe: $(stat -c%s /tmp/frame.json) Bytes"
+          echo "── Ein konkreter Medianwert für Deutschland, alle Spalten ──"
           python3 - <<'PY'
-          import json
-          try:
-              with open('/tmp/frame.json') as f:
-                  d = json.load(f)
-          except Exception as fehler:
-              print('  nicht lesbar:', fehler)
-              raise SystemExit(0)
-          daten = d.get('data', [])
-          print(f"  {len(daten)} Unternehmen in einem einzigen Abruf")
-          for e in daten[:3]:
-              print(f"   {e.get('cik'):>8}  {str(e.get('entityName'))[:40]:40} {e.get('val')}")
+          import csv
+          with open('/tmp/wealth.csv', newline='', encoding='utf-8') as f:
+              for zeile in csv.DictReader(f):
+                  treffer = [w for w in zeile.values() if w and 'edian' in str(w)]
+                  if treffer and zeile.get('REF_AREA') == 'DEU':
+                      for schluessel, wert in zeile.items():
+                          if wert:
+                              print(f"    {schluessel:28} = {wert}")
+                      break
+              else:
+                  print("    keine Medianzeile für DEU gefunden")
           PY
 
-      - name: Gibt es eine Quelle ohne Anmeldung für Nicht-US-Unternehmen?
+      - name: Historische Wechselkurse für die Umrechnung
         run: |
-          UA="IM-Invests-Abruf/1.0 (+https://iminvests.de)"
-          for eintrag in \
-            "Stooq Kursdatei|https://stooq.com/q/d/l/?s=sap.de&i=d" \
-            "Frankfurter (nur Devisen)|https://api.frankfurter.app/latest?from=EUR" \
-            "Yahoo Chart (was wir nutzen)|https://query1.finance.yahoo.com/v8/finance/chart/SAP.DE?range=5d&interval=1d"
-          do
-            name="${eintrag%%|*}"; url="${eintrag#*|}"
-            code=$(curl -sS -A "$UA" --max-time 30 -o /tmp/a -w '%{http_code}' "$url" || echo 000)
-            echo ""
-            echo "▶ $name → $code, $(stat -c%s /tmp/a) Bytes"
-            head -c 160 /tmp/a | tr '\n' ' '
+          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
+          for datum in 2021-12-31 2023-12-29 latest; do
+            code=$(curl -sS -L -A "$UA" --max-time 30 -o /tmp/fx.json -w '%{http_code}' \
+              "https://api.frankfurter.app/v1/$datum?from=USD&to=EUR,CHF,GBP,JPY,SEK,KRW" || echo 000)
+            echo "▶ $datum → $code"
+            head -c 240 /tmp/fx.json
             echo ""
           done
+
+          echo ""
+          echo "── Deckt Frankfurter alle nötigen Währungen ab? ──"
+          curl -sS -L -A "$UA" --max-time 30 "https://api.frankfurter.app/v1/currencies" -o /tmp/cur.json
+          python3 - <<'PY'
+          import json
+          waehrungen = json.load(open('/tmp/cur.json'))
+          print(f"  {len(waehrungen)} Währungen: " + ' '.join(sorted(waehrungen)))
+          gebraucht = ['EUR','CHF','GBP','JPY','KRW','SEK','NOK','DKK','PLN','HUF',
+                       'CZK','CAD','AUD','NZD','MXN','ILS','TRY','CLP','COP','ISK']
+          fehlt = [w for w in gebraucht if w not in waehrungen]
+          print("  fehlt: " + (' '.join(fehlt) if fehlt else "nichts"))
+          PY

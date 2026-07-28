@@ -8,6 +8,11 @@ import {
   type MarketRange,
   type SeriesPoint,
 } from '@/data/markets'
+import { getBilanzzahlen } from '@/lib/fundamentaldaten'
+import {
+  berechneFundamentalkennzahlen,
+  type Fundamentalkennzahlen,
+} from '@/lib/fundamentalkennzahlen'
 import { berechneKennzahlen, type Kennzahlen } from '@/lib/kennzahlen'
 import { getLiveSeries, type QuoteSource } from '@/lib/market-live'
 import { computeQuoteFigures } from '@/lib/market-quote'
@@ -36,6 +41,8 @@ import {
  */
 
 export type { MarketInstrument, MarketRange, SeriesPoint } from '@/data/markets'
+export { fundamentalQuelle, fundamentalStand } from '@/lib/fundamentaldaten'
+export type { Fundamentalkennzahlen } from '@/lib/fundamentalkennzahlen'
 export type { Bestandteil, Stimmung, Stimmungsstufe } from '@/lib/stimmungsindex'
 export { STUFEN_TEXT } from '@/lib/stimmungsindex'
 
@@ -259,6 +266,68 @@ export async function getKennzahlen(symbol: string): Promise<Kennzahlen | null> 
   const definition = findDefinition(symbol)
   if (!definition) return null
   return berechneKennzahlen(basisFor(definition).daily)
+}
+
+/**
+ * Was die Unternehmenszahlen zu einer Aktie hergeben.
+ *
+ * Bewusst kein `null` für den Fehlschlag, sondern ein benannter Grund: Auf der
+ * Seite steht dann, **warum** nichts dasteht. „Keine Angabe“ ohne Begründung
+ * ist auf einer Bildungsseite die schlechteste aller Antworten.
+ */
+export type Fundamentalbefund =
+  | { art: 'zahlen'; kennzahlen: Fundamentalkennzahlen }
+  /** Das Unternehmen meldet nicht bei der US-Börsenaufsicht. */
+  | { art: 'keineMeldung' }
+  /** Zahlen ja, aber kein echter Kurs – dann ergäbe jede Verhältniszahl Unsinn. */
+  | { art: 'keinEchterKurs' }
+
+/**
+ * Die gemeldeten Unternehmenszahlen zu einer Aktie – oder `null`.
+ *
+ * Anders als `getKennzahlen` gilt das **nicht** für jeden geführten Wert: Ein
+ * Index hat keinen Umsatz, Gold keinen Gewinn, ein Währungspaar keine Aktien.
+ * Für alles außer Aktien kommt deshalb `null` zurück, und die Seite lässt den
+ * Abschnitt ganz weg.
+ */
+export async function getFundamentalkennzahlen(
+  symbol: string
+): Promise<Fundamentalbefund | null> {
+  const definition = findDefinition(symbol)
+  if (!definition || definition.kind !== 'stock') return null
+
+  /*
+    Nur bei Kursen in US-Dollar.
+
+    Die Bilanzzahlen der SEC sind in US-Dollar gemeldet. Stünde daneben ein Kurs
+    in Euro, käme ein Kurs-Gewinn-Verhältnis heraus, das um den Wechselkurs
+    danebenliegt. Eine Umrechnung wäre möglich, brächte aber einen zweiten
+    Stichtag ins Spiel – der Kurs von heute, die Bilanz vom Jahresende. Bei den
+    hier betroffenen Werten notiert der Kurs ohnehin in Dollar.
+  */
+  if (definition.unit !== 'USD') return { art: 'keineMeldung' }
+
+  const zahlen = getBilanzzahlen(definition.ticker)
+  if (!zahlen) return { art: 'keineMeldung' }
+
+  const quote = buildQuote(definition)
+
+  /*
+    Nur mit einem echten Kurs.
+
+    Für Instrumente ohne eingerichtete Quelle erzeugt `basisFor` gekennzeichnete
+    Demo-Daten. Bei einem Chart ist das vertretbar, weil daneben steht, was es
+    ist. Hier wäre es das nicht: Der erste Versuch hat Moderna eine
+    Marktkapitalisierung von 160 Milliarden Dollar bescheinigt – echte
+    Aktienzahl aus der Bilanz, erfundener Kurs. Herausgekommen wäre eine Zahl,
+    die weder als Demo erkennbar noch annähernd richtig ist.
+
+    Eine halb echte Kennzahl ist schlimmer als keine.
+  */
+  if (quote.source === null) return { art: 'keinEchterKurs' }
+
+  const kennzahlen = berechneFundamentalkennzahlen(zahlen, quote.value)
+  return kennzahlen.belegt > 0 ? { art: 'zahlen', kennzahlen } : { art: 'keineMeldung' }
 }
 
 /**

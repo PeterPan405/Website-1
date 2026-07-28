@@ -5,6 +5,7 @@ import {
   AktieDividendenabschlag,
   AktieSpread,
 } from '@/components/content/figures/aktie'
+import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
 import {
   RohstoffeKeinErtrag,
@@ -37,4 +38,5 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'rohstoffe-kein-ertrag': RohstoffeKeinErtrag,
   'rohstoffe-rollkurve': RohstoffeRollkurve,
   'msci-world-laender': IndexLaendergewichtung,
+  'inflation-kaufkraft': InflationKaufkraft,
 }

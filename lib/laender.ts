@@ -134,9 +134,17 @@ export const metriken: Metrik[] = [
   {
     id: 'medianvermoegen',
     label: 'Medianvermögen',
+    /*
+      Die Angabe „je Haushalt“ gehört in die Erklärung, nicht nur in die
+      Einheit.
+
+      Ein Haushaltswert liegt naturgemäß über einem Pro-Kopf-Wert. Wer das
+      nicht mitliest, hält 106.000 Euro für Deutschland für ein Pro-Kopf-
+      Vermögen und wundert sich – oder rechnet damit weiter.
+    */
     erklaerung:
-      'Das Vermögen der Person genau in der Mitte. Aussagekräftiger als der Durchschnitt, den wenige sehr Vermögende nach oben ziehen.',
-    einheit: 'US-Dollar je Erwachsenem',
+      'Das Vermögen des Haushalts genau in der Mitte – Besitz abzüglich Schulden. Aussagekräftiger als der Durchschnitt, den wenige sehr Vermögende nach oben ziehen. Ein Haushalt umfasst je nach Land ein bis drei Personen; der Wert ist deshalb nicht mit einem Pro-Kopf-Vermögen zu verwechseln.',
+    einheit: 'US-Dollar je Haushalt',
     hoherWertIstGross: true,
   },
   {
@@ -182,10 +190,12 @@ type Momentaufnahme = {
       einwohner?: number
       schuldenquote?: { wert: number; jahr: number }
       durchschnittsgehalt?: { wert: number; jahr: number }
+      medianvermoegen?: { wert: number; jahr: number }
     }
   >
   schuldenQuelle?: { label: string; url: string; abgrenzung: string }
   lohnQuelle?: { label: string; url: string; abgrenzung: string }
+  vermoegenQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -316,7 +326,33 @@ function baueLaender(): Land[] {
           ? { durchschnittsgehalt: durchschnittsgehalt[id] }
           : {}
       })(),
-      ...(medianvermoegen[id] ? { medianvermoegen: medianvermoegen[id] } : {}),
+      /*
+        Der Abruf vor der Handpflege – mit einer Besonderheit.
+
+        Die abgerufene Reihe misst das Median-Reinvermögen **je Haushalt**, die
+        drei von Hand eingetragenen Werte stammen aus einem Bankenbericht und
+        gelten **je erwachsener Person**. Das sind zwei verschiedene Zahlen.
+
+        Beide nebeneinander in einer Spalte wären deshalb nicht bloß ungenau,
+        sondern eine falsche Rangfolge: Ein Haushaltswert liegt naturgemäß über
+        einem Pro-Kopf-Wert, und ein Land mit Handpflege stünde ohne Grund
+        weiter unten. Wo die Reihe greift, gilt allein sie; wo nicht, bleibt es
+        beim alten Wert samt seiner eigenen Quellenangabe, die auf der Seite an
+        jedem einzelnen Wert steht.
+      */
+      ...(() => {
+        const abgerufen = basis?.medianvermoegen
+        if (abgerufen) {
+          return {
+            medianvermoegen: {
+              wert: abgerufen.wert,
+              zeitraum: String(abgerufen.jahr),
+              quelle: 'oecd-vermoegen',
+            },
+          }
+        }
+        return medianvermoegen[id] ? { medianvermoegen: medianvermoegen[id] } : {}
+      })(),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
     }
@@ -346,7 +382,7 @@ assertLaenderValid({
   quellen: kennzahlenQuellen,
   ersatzschluessel,
   // Werden nicht in `kennzahlen` gesetzt, sondern aus der Momentaufnahme.
-  dynamischeQuellen: ['imf-datamapper', 'oecd-sdmx'],
+  dynamischeQuellen: ['imf-datamapper', 'oecd-sdmx', 'oecd-vermoegen'],
 })
 
 /** Alle Länder der Karte, alphabetisch. */

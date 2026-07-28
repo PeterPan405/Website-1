@@ -86,6 +86,21 @@ export function formatBillionsEur(valueInBillions: number): string {
   return `${formatNumber(valueInBillions, 0)} Mrd. €`
 }
 
+/**
+ * Große Beträge mit passender Stufe: `3,88 Bio. USD`, `412,5 Mrd. USD`.
+ *
+ * Anders als `formatBillionsEur` erwartet diese Funktion den vollen Betrag,
+ * nicht schon Milliarden – Bilanzzahlen kommen so aus der Quelle, und eine
+ * Umrechnung an jeder Aufrufstelle wäre eine Fehlerquelle mehr.
+ */
+export function formatLargeAmount(value: number, currency = 'USD'): string {
+  const betrag = Math.abs(value)
+  if (betrag >= 1e12) return `${formatNumber(value / 1e12, 2)} Bio. ${currency}`
+  if (betrag >= 1e9) return `${formatNumber(value / 1e9, 1)} Mrd. ${currency}`
+  if (betrag >= 1e6) return `${formatNumber(value / 1e6, 0)} Mio. ${currency}`
+  return `${formatNumber(value, 0)} ${currency}`
+}
+
 const dateFormatters = new Map<string, Intl.DateTimeFormat>()
 
 function dateFormatter(options: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {

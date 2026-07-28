@@ -199,7 +199,9 @@ async function main() {
     process.exit(1)
   }
 
-  const kopf = `import type { MarketDefinition, MarketSourceRef } from '@/data/markets'
+  // Relativ, nicht über den Alias `@/`: Diese Datei hängt an `data/markets.ts`,
+  // und die wird auch von `scripts/kurse-abrufen.ts` mit blankem Node geladen.
+  const kopf = `import type { MarketDefinition, MarketSourceRef } from './markets.ts'
 
 /**
  * Die breite Aktienauswahl.

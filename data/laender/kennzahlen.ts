@@ -87,11 +87,20 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
     abgrenzung:
       'Durchschnittlicher Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt in US-Dollar, für alle OECD-Mitglieder nach derselben Abgrenzung. Wird von scripts/laender-abrufen.ts geholt.',
   },
-  'ubs-gwr-2025': {
-    label: 'UBS Global Wealth Report 2025 (Aufbereitung bei Visual Capitalist)',
-    url: 'https://www.visualcapitalist.com/wealth-per-person-by-country-2025/',
+
+  /**
+   * Die Vermögensverteilungsdatenbank derselben Organisation.
+   *
+   * Eigener Schlüssel, obwohl derselbe Herausgeber: Es ist eine andere
+   * Datenbank mit einer anderen Abgrenzung, und die Umrechnung in US-Dollar
+   * kommt von einer zweiten Stelle. Beides gehört an den Wert, nicht in eine
+   * Fußnote.
+   */
+  'oecd-vermoegen': {
+    label: 'OECD, Vermögensverteilungsdatenbank',
+    url: 'https://data-explorer.oecd.org/vis?fs[0]=Topic%2C1%7CSociety%23SOC%23%7CInequality%23SOC_INE%23&df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_WEALTH%40DF_WEALTH',
     abgrenzung:
-      'Medianvermögen je erwachsener Person in US-Dollar: Nettovermögen einschließlich Immobilien, abzüglich Schulden. Der Median – nicht der Durchschnitt – zeigt die Mitte.',
+      'Median des Reinvermögens je Haushalt – Vermögen abzüglich Schulden, in der Mitte der Verteilung. Von der Quelle in Landeswährung gemeldet und mit dem Euro-Referenzkurs der Europäischen Zentralbank zum Ende des jeweiligen Erhebungsjahres in US-Dollar umgerechnet. Wird von scripts/laender-abrufen.ts geholt.',
   },
 }
 
@@ -151,7 +160,22 @@ export const durchschnittsgehalt: Record<string, Kennwert> = {
  * den Median – genau deshalb steht diese Zahl hier und nicht die andere.
  */
 export const medianvermoegen: Record<string, Kennwert> = {
-  '442': { wert: 395_000, zeitraum: '2025', quelle: 'ubs-gwr-2025' },
-  '756': { wert: 167_353, zeitraum: '2025', quelle: 'ubs-gwr-2025' },
-  '840': { wert: 124_041, zeitraum: '2025', quelle: 'ubs-gwr-2025' },
+  /*
+    Leer, und das ist kein Versehen.
+
+    Hier standen drei Werte aus einem Bankenbericht: Medianvermögen je
+    erwachsener Person. Seit `scripts/laender-abrufen.ts` die
+    Vermögensverteilungsdatenbank der OECD holt, kommen dreißig Länder aus
+    einer Reihe – allerdings **je Haushalt**, und das ist eine andere Größe.
+
+    Beide nebeneinander wären nicht bloß ungenau, sondern eine falsche
+    Rangfolge: Ein Haushaltswert liegt naturgemäß über einem Pro-Kopf-Wert,
+    und die Schweiz – als einziges der drei Länder nicht in der Datenbank –
+    stünde mit einer Pro-Kopf-Zahl unter der Überschrift „je Haushalt“ zu
+    weit unten. Eine Zahl weniger ist besser als eine, die nicht dazugehört.
+
+    Die Karte bleibt bestehen, weil sie der vorgesehene Weg für Werte ist, die
+    sich nicht abrufen lassen. Wer hier etwas einträgt, muss dieselbe
+    Abgrenzung treffen: Median des Reinvermögens je Haushalt, in US-Dollar.
+  */
 }

@@ -57,6 +57,8 @@ export type FigureId =
   | 'rohstoffe-rollkurve'
   /** Ländergewichtung des MSCI World. */
   | 'msci-world-laender'
+  /** Kontostand und Kaufkraft desselben Betrags über 30 Jahre. */
+  | 'inflation-kaufkraft'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -143,5 +145,12 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Balken für die Länderanteile im MSCI World. Die USA stellen mit Abstand den größten Teil, danach folgen Japan, Großbritannien, Kanada und Frankreich mit jeweils wenigen Prozent; der Rest verteilt sich auf die übrigen Industrieländer. Die genauen Werte trägt die Grafik selbst nach, weil sie aus einem datierten Datensatz stammen.',
     caption:
       'Nach Börsenwert gewichtet heißt: Das Gewicht folgt dem Marktwert, nicht der Zahl der Länder.',
+  },
+  'inflation-kaufkraft': {
+    title: 'Kontostand und Kaufkraft im Vergleich',
+    description:
+      'Ein fester Betrag bleibt 30 Jahre unverzinst liegen. Die Zahl auf dem Konto ändert sich nie – die gestrichelte Linie verläuft waagerecht. Was diese Zahl kaufen kann, fällt stetig; nach 30 Jahren ist gut die Hälfte verschwunden, ohne dass etwas abgebucht wurde.',
+    caption:
+      'Der Abstand zwischen beiden Linien ist der Verlust. Er steht auf keinem Kontoauszug.',
   },
 }

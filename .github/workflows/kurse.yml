@@ -41,7 +41,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          # Der Zweig, auf dem der Lauf gestartet wurde. Beim Zeitplan ist das
+          # der Standardzweig; von Hand gestartet der jeweils gemeinte – sonst
+          # liesse sich ein Abruf auf einem Arbeitszweig nicht ausprobieren.
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-node@v4
         with:
@@ -71,8 +74,9 @@ jobs:
 
           # Zwischen Prüfung und Push kann jemand anders gepusht haben.
           # Rebase statt Merge, damit die Historie eine Linie bleibt.
+          zweig="${{ github.ref_name }}"
           for versuch in 1 2 3; do
-            git pull --rebase origin main && git push origin main && exit 0
+            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
             echo "Push fehlgeschlagen, Versuch $versuch – neuer Anlauf in $((versuch * 5))s"
             sleep $((versuch * 5))
           done
