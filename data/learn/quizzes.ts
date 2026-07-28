@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    240 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    264 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -3196,6 +3196,328 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 1,
       explanation:
         'Schließt der Kurs genau am Basispreis, ist die Zuteilung offen und entscheidet sich erst nach Handelsschluss. Der Verkäufer hält am Montag unter Umständen eine ungewollte Position mit vollem Marktrisiko über das Wochenende – ein Abwicklungsrisiko, das in keiner Bewertungsformel vorkommt.',
+    },
+  ],
+
+  // -------------------------------------------------------- Einlagensicherung
+  'einlagensicherung:beginner': [
+    {
+      question:
+        'Du hast bei derselben Bank 50.000 € auf dem Tagesgeld und 80.000 € auf dem Festgeld. Wie viel ist gesichert?',
+      options: [
+        '100.000 € – die Grenze gilt je Person und Institut, die Konten werden zusammengezählt',
+        '130.000 € – jedes Konto ist einzeln gesichert',
+        '200.000 € – die Grenze gilt je Konto bis maximal zwei Konten',
+        '80.000 € – nur das höher verzinste Konto ist erfasst',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Grenze bezieht sich auf die Person und das Institut, nicht auf einzelne Konten. Alle Guthaben bei derselben Bank werden addiert; 30.000 € lägen hier ungesichert. Bei einem Gemeinschaftskonto steht die Grenze dagegen jedem Inhaber einzeln zu.',
+    },
+    {
+      question:
+        'Deine Depotbank wird insolvent. Was passiert mit den ETFs in deinem Depot?',
+      options: [
+        'Sie fallen in die Insolvenzmasse und werden bis zur Sicherungsgrenze ersetzt',
+        'Sie sind Sondervermögen, gehören dir und werden herausgegeben oder übertragen',
+        'Sie werden zum letzten Kurs verkauft und der Erlös ausgezahlt',
+        'Sie sind vollständig verloren, weil sie nicht der Einlagensicherung unterliegen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wertpapiere im Depot werden nur verwahrt – rechtlich gehören sie dir. Sie tauchen in der Insolvenzmasse gar nicht auf und brauchen deshalb keine Sicherung. Eine Bankpleite kostet dort Zeit und Nerven, aber nicht das Geld. „Nicht gesichert“ und „unsicher“ sind hier zwei verschiedene Dinge.',
+    },
+    {
+      question:
+        'Welches Papier in deinem Depot ist im Fall einer Bankpleite tatsächlich gefährdet?',
+      options: [
+        'Ein weltweit anlegender ETF',
+        'Eine Bundesanleihe',
+        'Ein Zertifikat, das diese Bank selbst ausgegeben hat',
+        'Ein aktiv gemanagter Aktienfonds',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Zertifikat der eigenen Bank ist eine Forderung gegen genau den Schuldner, der ausgefallen ist – und es ist ausdrücklich von der Einlagensicherung ausgenommen. Fonds und ETFs sind Sondervermögen, die Bundesanleihe ist eine Forderung gegen den Bund. Nur das Zertifikat trifft der Ausfall voll.',
+    },
+    {
+      question: 'Warum ist es wichtig, die Markenzugehörigkeit einer Bank zu prüfen?',
+      options: [
+        'Weil verschiedene Marken unterschiedliche Zinsen anbieten',
+        'Weil die Sicherungsgrenze bei bekannten Marken höher ausfällt',
+        'Weil nur Marken mit deutschem Namen der deutschen Sicherung angehören',
+        'Weil mehrere Marken zu einer juristischen Person gehören können – dann gilt die Grenze nur einmal für alle zusammen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer sein Geld auf zwei Marken verteilt, die zu demselben Institut gehören, hat nichts gewonnen: Die Guthaben werden addiert. Die Sicherungsangaben stehen im Impressum und im Preis- und Leistungsverzeichnis und sind in wenigen Minuten geprüft – vor der Verteilung größerer Beträge lohnt sich das.',
+    },
+  ],
+
+  'einlagensicherung:fortgeschritten': [
+    {
+      question:
+        'Worin unterscheidet sich die gesetzliche Einlagensicherung von einem freiwilligen Sicherungsfonds?',
+      options: [
+        'Die gesetzliche gibt einen einklagbaren Anspruch, der freiwillige Fonds leistet nach seiner Satzung',
+        'Der freiwillige Fonds zahlt schneller aus',
+        'Die gesetzliche gilt nur für Girokonten, der freiwillige auch für Festgeld',
+        'Es gibt keinen rechtlichen Unterschied, nur einen in der Höhe',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der gesetzliche Anspruch besteht unabhängig davon, wie es dem System geht, und lässt sich einklagen. Eine satzungsmäßige Leistung folgt Regeln, die der Fonds ändern kann – deutsche Fonds haben ihre Grenzen mehrfach abgesenkt. Sie haben in der Praxis zuverlässig gezahlt; die Zusage hat nur eine andere Qualität.',
+    },
+    {
+      question: 'Was ist das Besondere an der Institutssicherung bei Verbundbanken?',
+      options: [
+        'Sie sichert unbegrenzt hohe Beträge zu',
+        'Sie stützt das Institut selbst, statt Einleger zu entschädigen – ein Sicherungsfall tritt dann gar nicht ein',
+        'Sie gilt zusätzlich zur gesetzlichen Sicherung und verdoppelt die Grenze',
+        'Sie erfasst auch Wertpapiere im Depot',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Ansatz ist ein anderer: Statt nach dem Ausfall zu entschädigen, soll der Ausfall verhindert werden. Für Einleger ist das im Ergebnis oft besser, weil sie den Entschädigungsfall gar nicht erleben. Ein individueller Rechtsanspruch entsteht daraus allerdings ebenso wenig wie beim freiwilligen Fonds.',
+    },
+    {
+      question:
+        'Du hast gerade deine selbstgenutzte Wohnung verkauft und 400.000 € auf dem Konto. Was gilt?',
+      options: [
+        'Der Betrag ist unbegrenzt gesichert, solange er aus einem Immobilienverkauf stammt',
+        'Es gilt die reguläre Grenze; alles darüber ist ungesichert',
+        'Für sechs Monate greift ein erhöhter Schutz bis 500.000 € – gegen Nachweis des Anlasses',
+        'Der erhöhte Schutz gilt automatisch für zwölf Monate ohne Nachweis',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Nach bestimmten Lebensereignissen – Verkauf der selbstgenutzten Immobilie, Erbschaft, Abfindung – gilt vorübergehend eine höhere Grenze. Sie greift aber nicht automatisch: Der Anlass muss im Entschädigungsfall belegt werden. Die Unterlagen dazu gehören aufgehoben, solange das Geld auf dem Konto liegt.',
+    },
+    {
+      question:
+        'Du legst über eine Zinsplattform Festgeld bei einer Bank im EU-Ausland an. Wer ist im Sicherungsfall zuständig?',
+      options: [
+        'Die Plattform, weil der Vertrag über sie geschlossen wurde',
+        'Das Sicherungssystem des Sitzlandes der Partnerbank',
+        'Die deutsche Einlagensicherung, weil du in Deutschland ansässig bist',
+        'Niemand – Anlagen über Plattformen sind von der Sicherung ausgenommen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Vertragspartner ist die Partnerbank, nicht die Plattform. Die Grenze ist EU-weit dieselbe, das System dahinter aber nicht: Es steht hinter dem Bankensektor seines Landes. Wer über eine Plattform bei drei Banken anlegt, hat drei getrennte Grenzen – und drei Systeme unterschiedlicher Leistungsfähigkeit.',
+    },
+  ],
+
+  'einlagensicherung:profi': [
+    {
+      question: 'An welcher Stelle der Haftungskaskade stehen gedeckte Einlagen?',
+      options: [
+        'Vor den Nachranganleihen, aber hinter dem Eigenkapital',
+        'Gleichrangig mit den übrigen vorrangigen Verbindlichkeiten',
+        'Ganz am Ende – sie sind gesetzlich vom Bail-in ausgenommen',
+        'Sie sind Teil des Eigenkapitals und haften zuerst',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Reihenfolge lautet: Eigenkapital, hybride und nachrangige Papiere, nicht bevorrechtigte Anleihen, übrige vorrangige Verbindlichkeiten samt Einlagen über der Grenze – und erst ganz zuletzt gedeckte Einlagen. Praktisch wird diese Stufe nie erreicht, und genau darauf ist der Aufbau ausgelegt.',
+    },
+    {
+      question: 'Wozu dient die MREL-Anforderung an Banken?',
+      options: [
+        'Sie legt fest, wie viel Bargeld eine Bank vorhalten muss',
+        'Sie begrenzt die Höhe der Einlagen je Kunde',
+        'Sie regelt die Beitragshöhe zum Einlagensicherungsfonds',
+        'Sie verlangt genug haftendes Material, damit die Kaskade Verluste trägt, bevor sie die Einlagen erreicht',
+      ],
+      correctIndex: 3,
+      explanation:
+        'MREL zielt nicht auf Solvenz, sondern auf Abwickelbarkeit. Für Einleger ist die Anforderung damit der wirksamere Schutz als der Sicherungsfonds: Sie verhindert den Entschädigungsfall, statt ihn zu bezahlen. Für Halter von Bankanleihen ist es umgekehrt die Ansage, dass genau ihre Papiere das Haftungsmaterial bilden.',
+    },
+    {
+      question:
+        'Die gesetzlichen Sicherungsfonds sind auf einen niedrigen einstelligen Prozentsatz der gedeckten Einlagen vorfinanziert. Wie ist das zu bewerten?',
+      options: [
+        'Als Konstruktionsfehler – der Fonds kann keinen einzigen Ausfall bewältigen',
+        'Als bewusste Auslegung: ausreichend für den Einzelfall, nicht für eine Systemkrise',
+        'Als unerheblich, weil der Staat eine ausdrückliche Garantie übernommen hat',
+        'Als überdimensioniert, weil Bankausfälle praktisch nicht mehr vorkommen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Für den Ausfall eines mittelgroßen Instituts ist der Fonds gut ausgestattet – dafür ist er gebaut. Fallen mehrere große Institute gleichzeitig aus, übersteigt der Bedarf jeden vorfinanzierten Bestand; dann greifen Nachschusspflichten der übrigen Banken, die dabei selbst unter Druck stehen. Eine ausdrückliche Staatsgarantie gibt es nicht.',
+    },
+    {
+      question:
+        'Was hat der Ausfall der Silicon Valley Bank 2023 über die Annahmen des Aufsichtsrechts gezeigt?',
+      options: [
+        'Dass Einlagen heute binnen Stunden abfließen können – die Annahmen zur Abflussgeschwindigkeit sind zu langsam kalibriert',
+        'Dass Sicherungsfonds grundsätzlich überflüssig sind',
+        'Dass Bail-in-Regeln in der Praxis nicht angewendet werden können',
+        'Dass Einlagen über der Grenze in jedem Fall vollständig ersetzt werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Binnen eines Tages flossen Beträge ab, für die früher Wochen nötig gewesen wären – ausgelöst über soziale Netzwerke, ausgeführt per App. Die aufsichtsrechtlichen Annahmen stammen aus einer Zeit, in der man dafür in eine Filiale gehen musste. Für Einleger bestätigt das nur die eine wirksame Maßnahme: Verteilung über mehrere Institute und Systeme.',
+    },
+  ],
+
+  // -------------------------------------------------------- Schulden & Kredit
+  'schulden-und-kredit:beginner': [
+    {
+      question:
+        'Warum ist ein Dispositionskredit besonders teuer und besonders gefährlich?',
+      options: [
+        'Weil er gesetzlich mit einem Mindestzins belegt ist',
+        'Weil er unbesichert und jederzeit abrufbar ist – und weil ihm ein Tilgungsplan fehlt',
+        'Weil er nur für kurze Laufzeiten vergeben werden darf',
+        'Weil er die Bonitätsbewertung automatisch verschlechtert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der hohe Zins folgt aus der fehlenden Sicherheit und der jederzeitigen Verfügbarkeit. Gefährlich macht ihn aber etwas anderes: Ohne Laufzeit und Tilgungsplan wird nichts abgebaut, und der Zins läuft weiter. Die Ablösung durch einen Ratenkredit ist einer der wenigen Fälle, in denen ein neuer Kredit die richtige Antwort ist.',
+    },
+    {
+      question: 'Woraus besteht die Rate eines Annuitätendarlehens?',
+      options: [
+        'Aus einem gleichbleibenden Zinsanteil und einem gleichbleibenden Tilgungsanteil',
+        'Ausschließlich aus Tilgung; die Zinsen werden am Ende fällig',
+        'Aus Zins auf die Restschuld und Tilgung – der Zinsanteil sinkt im Zeitverlauf, der Tilgungsanteil wächst',
+        'Aus Tilgung und einer festen Bearbeitungsgebühr',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Rate bleibt gleich, ihre Zusammensetzung nicht. Weil der Zins auf die noch offene Schuld berechnet wird und diese sinkt, verschiebt sich das Verhältnis laufend zugunsten der Tilgung. Am Anfang geht der größere Teil der Rate an die Bank – bei einem Immobilienkredit oft deutlich mehr als die Hälfte.',
+    },
+    {
+      question: 'Wie wirkt sich eine längere Laufzeit bei gleichem Zinssatz aus?',
+      options: [
+        'Niedrigere Rate und niedrigere Gesamtkosten',
+        'Niedrigere Rate, aber deutlich höhere Gesamtkosten',
+        'Höhere Rate, dafür niedrigere Gesamtkosten',
+        'Sie wirkt sich nur auf die Rate aus, nicht auf die Zinssumme',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Schuld steht länger offen, also fallen länger Zinsen an. Beworben wird immer die Rate, weil sie in den Monatshaushalt passen muss; bezahlt wird die Zinssumme. Die Laufzeit ist damit der Hebel mit der größten Wirkung – wer sie verkürzen kann, spart mehr als durch jede Zinsverhandlung.',
+    },
+    {
+      question: 'Was sagt ein beworbener Zinssatz „ab 2,9 Prozent“ aus?',
+      options: [
+        'Dass dieser Satz der beste Bonitätsklasse vorbehalten ist – dein Angebot kann deutlich darüber liegen',
+        'Dass 2,9 Prozent der Durchschnittszins aller vergebenen Kredite ist',
+        'Dass der Zins nach oben auf 2,9 Prozent begrenzt ist',
+        'Dass der Effektivzins bei 2,9 Prozent liegt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bonitätsabhängige Zinsen bedeuten, dass der beworbene Satz die untere Kante ist. Aussagekräftiger ist das gesetzlich vorgeschriebene repräsentative Beispiel. Und vergleichbar ist ohnehin nur der Effektivzins – der allerdings eine mitverkaufte Restschuldversicherung nicht enthalten muss.',
+    },
+  ],
+
+  'schulden-und-kredit:fortgeschritten': [
+    {
+      question:
+        'Was bewirkt eine Anfangstilgung von einem Prozent bei einem Immobilienkredit zu heutigen Zinsen?',
+      options: [
+        'Eine Laufzeit von etwa zwanzig Jahren bei niedriger Rate',
+        'Eine Laufzeit von über vierzig Jahren und eine Zinssumme nahe der Darlehenshöhe',
+        'Eine Laufzeit von etwa dreißig Jahren, danach ist der Kredit getilgt',
+        'Sie wirkt nur auf die Rate, nicht auf die Laufzeit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Bei Immobilienkrediten wird nicht die Laufzeit vereinbart, sondern der anfängliche Tilgungssatz – die Laufzeit ergibt sich daraus. Ein Prozent führt zu über vierzig Jahren, also über den Ruhestand hinaus, und zu Zinsen in der Größenordnung des Darlehens selbst. Der Schritt auf zwei Prozent kostet gut ein Fünftel mehr Rate und spart mehr als ein Drittel der Zinsen.',
+    },
+    {
+      question:
+        'Warum ist die Restschuld nach Ablauf der Zinsbindung das eigentliche Risiko?',
+      options: [
+        'Weil sie sofort in einer Summe zurückgezahlt werden muss',
+        'Weil auf sie ein Strafzins erhoben wird',
+        'Weil sie zu dann geltenden Konditionen weiterfinanziert werden muss, die heute niemand kennt',
+        'Weil sie nicht mehr durch die Grundschuld besichert ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Zins ist nur für die Dauer der Bindung festgeschrieben. Was danach gilt, entscheidet der Markt in zehn oder fünfzehn Jahren. Bei niedriger Anfangstilgung stehen dann noch fast neunzig Prozent der ursprünglichen Summe offen – wer nur auf die Rate geschaut hat, sieht diese Zahl nie.',
+    },
+    {
+      question:
+        'Ein Immobilienkredit hat eine Zinsbindung über zwanzig Jahre. Bist du daran gebunden?',
+      options: [
+        'Ja, ein vorzeitiges Ende ist nur gegen Vorfälligkeitsentschädigung möglich',
+        'Nein – nach zehn Jahren ab Vollauszahlung kann mit sechs Monaten Frist gekündigt werden, ohne Entschädigung',
+        'Ja, eine Kündigung ist während der Zinsbindung ausgeschlossen',
+        'Nein, aber nur bei einem Verkauf der Immobilie',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das gesetzliche Kündigungsrecht nach zehn Jahren gilt unabhängig von der vereinbarten Bindung. Eine Zinsbindung über fünfzehn oder zwanzig Jahre ist damit einseitig: Sie bindet die Bank, nicht dich. Bei niedrigem Zinsniveau ist eine lange Bindung deshalb die vermutlich sinnvollste Versicherung im Kreditbereich.',
+    },
+    {
+      question:
+        'Du hast einen Dispo zu zehn Prozent und legst gleichzeitig Geld zu zwei Prozent an. Wie ist das zu bewerten?',
+      options: [
+        'Sinnvoll, weil das angelegte Geld verfügbar bleibt',
+        'Sinnvoll, solange die Anlage breit gestreut ist',
+        'Ein sicherer Verlust in Höhe der Zinsdifferenz – mit einer Ausnahme beim Notgroschen',
+        'Neutral, weil sich Zinsen und Erträge steuerlich ausgleichen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Differenz geht jedes Jahr verloren, bei jeder Marktlage. Der Vorgang ist ein Musterbeispiel für mentale Buchführung: zwei Töpfe, keine gemeinsame Rechnung. Die einzige begründete Ausnahme ist der Notgroschen – wer ihn zur Tilgung auflöst, landet beim nächsten unerwarteten Betrag wieder im Dispo.',
+    },
+  ],
+
+  'schulden-und-kredit:profi': [
+    {
+      question:
+        'Warum ist der Vergleich „Kreditzins 3 Prozent gegen erwartete Aktienrendite 7 Prozent“ falsch aufgestellt?',
+      options: [
+        'Weil die Tilgung eine sichere Rendite liefert und Kapitalerträge zusätzlich besteuert werden',
+        'Weil Aktienrenditen langfristig unter drei Prozent liegen',
+        'Weil Kreditzinsen immer steuerlich absetzbar sind',
+        'Weil die Rendite eines Depots nicht berechenbar ist',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Zwei Fehler wirken in dieselbe Richtung. Die Tilgung bringt exakt den Kreditzins, und zwar sicher – ihr fairer Vergleichspartner ist eine sichere Anlage, nicht der Aktienmarkt. Und Steuern greifen nur auf einer Seite: Erträge werden besteuert, ersparte Schuldzinsen nicht.',
+    },
+    {
+      question: 'Wann sind Schuldzinsen in Deutschland steuerlich absetzbar?',
+      options: [
+        'Immer, sofern der Kredit über eine deutsche Bank läuft',
+        'Bei einer vermieteten Immobilie als Werbungskosten – bei Selbstnutzung und bei Kapitalanlagen dagegen nicht',
+        'Nur bei selbstgenutzten Immobilien',
+        'Bei allen Krediten, die der Vermögensbildung dienen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Entscheidend ist der Zweck. Bei Vermietung gibt es eine Einkunftsart, der die Zinsen zugeordnet werden können. Bei Selbstnutzung und beim Konsumkredit gibt es sie nicht. Bei Kapitalanlagen ist der Abzug tatsächlicher Werbungskosten grundsätzlich ausgeschlossen – der Sparerpauschbetrag tritt an ihre Stelle.',
+    },
+    {
+      question: 'Was macht einen Wertpapierkredit im Abschwung besonders gefährlich?',
+      options: [
+        'Die Zinsen steigen bei fallenden Kursen automatisch an',
+        'Der Beleihungswert sinkt mit den Kursen – die Nachschussforderung kommt genau dann, wenn Nachschießen am schwersten fällt',
+        'Er darf bei fallenden Kursen nicht mehr getilgt werden',
+        'Die Bank darf ihn nur bei steigenden Kursen kündigen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kredit ist durch das Depot besichert, und dessen Wert fällt mit dem Markt. Wer nicht nachschießen kann, wird zwangsweise verkauft – am Tiefpunkt und ohne Wahl. Es ist derselbe Mechanismus wie bei Derivaten: Aus einem Verlustrisiko wird ein Liquiditätsrisiko.',
+    },
+    {
+      question: 'Wie ist ein Bausparvertrag wirtschaftlich zu bewerten?',
+      options: [
+        'Als Sparprodukt, dessen Verzinsung mit dem Marktzins vergleichbar ist',
+        'Als Darlehen, dessen Konditionen erst bei Zuteilung feststehen',
+        'Als zwei Verträge, die nur gemeinsam bewertbar sind: schwache Sparverzinsung als Preis für die spätere Zinssicherung',
+        'Als reine Zinswette ohne Sparkomponente',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Sparphase mit niedriger Verzinsung und das Darlehensrecht zu einem heute festgelegten Zins gehören zusammen. Wer nur eine der beiden Phasen ansieht, bewertet falsch – und wer das Darlehen später nicht abruft, hat eine schlecht verzinste Spareinlage bezahlt, ohne die Gegenleistung je in Anspruch zu nehmen.',
     },
   ],
 }

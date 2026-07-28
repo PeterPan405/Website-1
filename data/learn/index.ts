@@ -5,6 +5,7 @@ import { budgetUndSparquote } from '@/data/learn/topics/budget-und-sparquote'
 import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
 import { depotUndBroker } from '@/data/learn/topics/depot-und-broker'
 import { derivat } from '@/data/learn/topics/derivat'
+import { einlagensicherung } from '@/data/learn/topics/einlagensicherung'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
@@ -13,6 +14,7 @@ import { option } from '@/data/learn/topics/option'
 import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
 import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
+import { schuldenUndKredit } from '@/data/learn/topics/schulden-und-kredit'
 import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
 import { staatsanleihe } from '@/data/learn/topics/staatsanleihe'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
@@ -20,12 +22,10 @@ import {
   aktienLaenderBranchen,
   bitcoinKrypto,
   blockchain,
-  einlagensicherung,
   groessteCrashes,
   immobilien,
   notenbankenGeldpolitik,
   rente,
-  schuldenUndKredit,
   sparerpauschbetrag,
   waehrungenWechselkurse,
   wannKaufenVerkaufen,
