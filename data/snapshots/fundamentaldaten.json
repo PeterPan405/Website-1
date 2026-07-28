@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-28T05:01:37.315Z",
+  "abgerufenAm": "2026-07-28T05:07:13.694Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -1116,11 +1116,6 @@
       "aktien": 173972199
     },
     "RYAAY": {
-      "waehrung": "EUR",
-      "umsatz": 13948500000,
-      "gewinn": 1611600000,
-      "cashflow": 3415700000,
-      "eigenkapital": 7036900000,
       "aktien": 1043931708
     },
     "XRP": {
@@ -1130,50 +1125,44 @@
       "aktien": 385417665
     },
     "SAP": {
-      "waehrung": "EUR",
-      "umsatz": 36800000000,
-      "gewinn": 7326000000,
-      "cashflow": 9156000000,
-      "eigenkapital": 45073000000,
       "aktien": 1228504232
     },
     "UMC": {
-      "waehrung": "TWD",
-      "umsatz": 232302584000,
-      "gewinn": 48674626000,
-      "cashflow": 93872042000,
-      "eigenkapital": 365706711000,
       "aktien": 12588156344
     },
     "TSM": {
-      "waehrung": "TWD",
-      "umsatz": 2894307700000,
-      "gewinn": 1157523900000,
-      "cashflow": 1826177100000,
-      "eigenkapital": 4279271600000,
       "aktien": 25932524521
     },
     "STLA": {
-      "waehrung": "EUR",
-      "umsatz": 153508000000,
-      "gewinn": -22332000000,
-      "cashflow": -4650000000,
-      "eigenkapital": 54001000000,
       "aktien": 2897483196
     },
-    "NVO": {
-      "waehrung": "DKK",
-      "umsatz": 309064000000,
-      "gewinn": 102434000000,
-      "cashflow": 119102000000,
-      "eigenkapital": 194047000000
+    "7203.T": {
+      "waehrung": "JPY",
+      "umsatz": 48036704000000,
+      "gewinn": 4789755000000,
+      "cashflow": 3696934000000,
+      "eigenkapital": 36878913000000
     },
-    "RACE": {
+    "6758.T": {
+      "waehrung": "JPY",
+      "umsatz": 12957064000000,
+      "gewinn": 1159887000000,
+      "cashflow": 2321675000000,
+      "eigenkapital": 8510151000000
+    },
+    "7267.T": {
+      "waehrung": "JPY",
+      "umsatz": 21688767000000,
+      "gewinn": 903034000000,
+      "cashflow": 292152000000,
+      "eigenkapital": 12627822000000
+    },
+    "SAN.MC": {
       "waehrung": "EUR",
-      "umsatz": 7145768000,
-      "gewinn": 1599516000,
-      "cashflow": 2349306000,
-      "eigenkapital": 3914742000
+      "umsatz": 74182000000,
+      "gewinn": 15500000000,
+      "cashflow": -14835000000,
+      "eigenkapital": 112748000000
     }
   }
 }
