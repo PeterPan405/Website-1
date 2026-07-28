@@ -486,6 +486,31 @@ function bestenSatz(
 }
 
 /**
+ * Wo eine Aktienzahl stehen kann, in der Reihenfolge, in der sie gesucht wird.
+ *
+ * Nur den ersten Bezeichner zu nehmen, hat 45 Unternehmen ohne Aktienzahl
+ * dastehen lassen – darunter Meta, Alphabet, Visa und Mastercard, also
+ * ausgerechnet die, die jeder zuerst aufschlaegt. Ohne Aktienzahl rechnet keine
+ * der fuenf Kennzahlen, denn alle fuehren ueber den Wert je Aktie.
+ *
+ * `dei` steht vorn, weil es der Wert vom Deckblatt der juengsten Meldung ist
+ * und damit der aktuellste. Danach die Bestandsangaben aus der Bilanz. Zuletzt
+ * der gewichtete Jahresdurchschnitt: Der ist streng genommen etwas anderes –
+ * ein Mittel ueber das Jahr statt ein Stand am Stichtag –, aber der Unterschied
+ * liegt bei wenigen Prozent, und er ist die Zahl, mit der das Unternehmen
+ * selbst seinen Gewinn je Aktie ausweist.
+ */
+const AKTIENZAHL_BEZEICHNER: [string, string][] = [
+  ['dei', 'EntityCommonStockSharesOutstanding'],
+  ['ifrs-full', 'NumberOfSharesOutstanding'],
+  ['us-gaap', 'CommonStockSharesOutstanding'],
+  ['us-gaap', 'CommonStockSharesIssued'],
+  ['ifrs-full', 'WeightedAverageNumberOfOrdinarySharesOutstanding'],
+  ['us-gaap', 'WeightedAverageNumberOfSharesOutstandingBasic'],
+  ['us-gaap', 'WeightedAverageNumberOfDilutedSharesOutstanding'],
+]
+
+/**
  * Die Aktienzahl vom juengsten Stichtag – aber nur, wenn sie aktuell ist.
  *
  * Sony und Honda haben 2024 ihre Aktien gesplittet. Die juengste Angabe der
@@ -496,28 +521,42 @@ function bestenSatz(
  * Ein Split aendert die Aktienzahl schlagartig, den Kurs im selben Verhaeltnis
  * und den Boersenwert gar nicht. Wer beide aus verschiedenen Zeiten
  * kombiniert, bekommt genau diesen Faktor als Fehler. Deshalb: nur, was nicht
- * aelter als 15 Monate ist.
+ * aelter als 15 Monate ist – und wenn der erste Bezeichner nur Veraltetes
+ * hergibt, wird der naechste gefragt, statt aufzugeben.
  */
 function aktienzahlAusFakten(fakten: Fakten, wo: string): number | undefined {
-  const einheiten = fakten.facts?.dei?.EntityCommonStockSharesOutstanding?.units
-  if (!einheiten) return undefined
+  const grenze = Date.now() - 450 * 86_400_000
+  let aeltester: { wert: number; ende: string; woher: string } | null = null
 
-  let bester: { wert: number; ende: string } | null = null
-  for (const eintraege of Object.values(einheiten)) {
-    for (const eintrag of eintraege) {
-      if (typeof eintrag.val !== 'number' || !Number.isFinite(eintrag.val)) continue
-      if (!bester || eintrag.end > bester.ende) {
-        bester = { wert: eintrag.val, ende: eintrag.end }
+  for (const [taxonomie, tag] of AKTIENZAHL_BEZEICHNER) {
+    const einheiten = fakten.facts?.[taxonomie]?.[tag]?.units
+    if (!einheiten) continue
+
+    let bester: { wert: number; ende: string } | null = null
+    for (const eintraege of Object.values(einheiten)) {
+      for (const eintrag of eintraege) {
+        if (typeof eintrag.val !== 'number' || !Number.isFinite(eintrag.val)) continue
+        // Eine Aktienzahl unter tausend ist keine, sondern ein Lesefehler.
+        if (eintrag.val < 1000) continue
+        if (!bester || eintrag.end > bester.ende) {
+          bester = { wert: eintrag.val, ende: eintrag.end }
+        }
       }
     }
-  }
-  if (!bester) return undefined
+    if (!bester) continue
 
-  if (Date.parse(bester.ende) < Date.now() - 450 * 86_400_000) {
-    console.log(`  ${wo}: Aktienzahl vom ${bester.ende} ist zu alt – ausgelassen.`)
-    return undefined
+    if (Date.parse(bester.ende) >= grenze) return bester.wert
+    if (!aeltester || bester.ende > aeltester.ende) {
+      aeltester = { ...bester, woher: `${taxonomie}:${tag}` }
+    }
   }
-  return bester.wert
+
+  if (aeltester) {
+    console.log(
+      `  ${wo}: juengste Aktienzahl vom ${aeltester.ende} (${aeltester.woher}) ist zu alt – ausgelassen.`
+    )
+  }
+  return undefined
 }
 
 interface Rahmenantwort {
@@ -726,10 +765,24 @@ async function main() {
     }
   }
 
+  /*
+    Wer in die zweite Runde kommt.
+
+    Zwei Faelle: keine Zahlen, oder Zahlen ohne Aktienzahl. Der zweite Fall
+    stand lange unbemerkt in der Datei – 20 Unternehmen hatten Umsatz, Gewinn
+    und Eigenkapital, aber keine Aktienzahl, darunter Meta, Alphabet, Visa und
+    Mastercard. Auf der Website sah das aus wie „meldet nicht“, obwohl vier von
+    fuenf Groessen dalagen: Alle Kennzahlen fuehren ueber den Wert je Aktie.
+
+    Der Grund liegt in der Rahmenabfrage. Die Aktienzahl ist eine
+    Bestandsgroesse und wird je Quartalsstichtag abgefragt; wer sein Deckblatt
+    zu einem anderen Datum stellt, steht in keinem dieser Rahmen. Die
+    Einzelabfrage kennt dieses Problem nicht.
+  */
   const offen = [...cikJeKuerzel.keys()].filter((k) => {
     const eintrag = jeKuerzel[k]
     if (!eintrag) return true
-    // Nur die Aktienzahl heisst: aus us-gaap kam nichts.
+    if (!eintrag.aktien) return true
     return !eintrag.umsatz && !eintrag.gewinn && !eintrag.eigenkapital
   })
 
@@ -760,6 +813,30 @@ async function main() {
     await new Promise((fertig) => setTimeout(fertig, 130))
     if (!fakten) continue
 
+    /*
+      Die Aktienzahl steht in derselben Antwort – `companyfacts` liefert auch
+      `dei`. Frueher war das ein eigener Abruf, und er lief ins Leere, wenn die
+      erste Runde den Wert unter dem SEC-Kuerzel abgelegt hatte statt unter dem
+      Katalogkuerzel. Toyota steht hier als `7203.T`, gemeldet wird unter `TM`.
+    */
+    const aktien = aktienzahlAusFakten(fakten, ziel)
+    const bestand = jeKuerzel[kuerzel]
+
+    /*
+      Hat das Unternehmen schon Zahlen, fehlt also nur die Aktienzahl, wird
+      genau die ergaenzt. Alles andere zu ueberschreiben waere ein Rueckschritt:
+      Die Rahmenabfrage liefert Dollarwerte aus einem Jahresrahmen, und daran
+      ist nichts auszusetzen.
+    */
+    if (bestand?.umsatz || bestand?.gewinn || bestand?.eigenkapital) {
+      if (aktien) {
+        nachwerte[ziel] = { ...bestand, aktien }
+        nachtreffer += 1
+        console.log(`  ${ziel.padEnd(12)} nur Aktienzahl ergaenzt: ${aktien}`)
+      }
+      continue
+    }
+
     const kurswaehrung = waehrungJeKuerzel.get(ziel)
     const satz = bestenSatz(fakten, kurswaehrung)
     if (!satz || (!satz.werte.umsatz && !satz.werte.gewinn)) continue
@@ -768,15 +845,6 @@ async function main() {
       ...satz.werte,
       waehrung: satz.waehrung,
     }
-
-    /*
-      Die Aktienzahl kommt aus `dei` und damit aus derselben Antwort.
-
-      Frueher war das ein eigener Abruf – und er lief ins Leere, wenn die erste
-      Runde den Wert unter dem SEC-Kuerzel abgelegt hatte statt unter dem
-      Katalogkuerzel. Toyota steht hier als `7203.T`, gemeldet wird unter `TM`.
-    */
-    const aktien = jeKuerzel[kuerzel]?.aktien ?? aktienzahlAusFakten(fakten, ziel)
     if (aktien) gefunden.aktien = aktien
 
     nachwerte[ziel] = gefunden
