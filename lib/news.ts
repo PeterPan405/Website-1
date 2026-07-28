@@ -110,6 +110,51 @@ export async function getFurtherNews(): Promise<NewsArticle[]> {
   return sortedArticles().slice(CURRENT_NEWS_COUNT)
 }
 
+/** Ein Tag im Archiv mit den Artikeln, die an ihm erschienen sind. */
+export interface Archivtag {
+  /** `JJJJ-MM-TT` – zugleich der Schlüssel für die Tagesausgabe. */
+  datum: string
+  artikel: NewsArticle[]
+}
+
+/**
+ * Das Archiv nach Erscheinungstag gruppiert, jüngster Tag zuerst.
+ *
+ * ## Warum gruppiert und nicht als eine Liste
+ *
+ * Weil die Liste wächst und nie wieder schrumpft: Das Archiv ist dauerhaft,
+ * es fällt kein Artikel heraus. Nach ein paar Wochen stünden dort hundert
+ * Kacheln ohne Gliederung, und niemand fände darin etwas wieder.
+ *
+ * Der Tag ist die naheliegende Gliederung, weil er dieselbe Einheit ist, in
+ * der die Nachrichten entstehen – und weil es zu vielen Tagen ohnehin eine
+ * Tagesausgabe unter `/news/tag/<datum>` gibt, auf die sich von hier aus
+ * verweisen lässt.
+ */
+export async function getFurtherNewsByDay(): Promise<Archivtag[]> {
+  const tage = new Map<string, NewsArticle[]>()
+
+  for (const artikel of sortedArticles().slice(CURRENT_NEWS_COUNT)) {
+    /*
+      Der Tag kommt aus `publishedAt`, nicht aus einem eigenen Feld.
+
+      `publishedAt` trägt eine Zeitzone; die ersten zehn Zeichen sind damit
+      der Kalendertag in genau der Zone, in der der Artikel erschienen ist.
+      Ein `new Date(...)` mit anschließendem `toISOString()` würde ihn nach
+      UTC verschieben – ein Artikel von 00:30 Uhr deutscher Zeit landete
+      dann auf dem Vortag.
+    */
+    const datum = artikel.publishedAt.slice(0, 10)
+    const bisher = tage.get(datum)
+    if (bisher) bisher.push(artikel)
+    else tage.set(datum, [artikel])
+  }
+
+  // `sortedArticles` liefert bereits absteigend; damit stimmt auch die
+  // Reihenfolge der Tage, weil eine Map ihre Einfügereihenfolge behält.
+  return [...tage].map(([datum, artikel]) => ({ datum, artikel }))
+}
+
 export async function getNewsArticle(slug: string): Promise<NewsArticle | null> {
   return newsArticles.find((article) => article.slug === slug) ?? null
 }
