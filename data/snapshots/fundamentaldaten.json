@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-28T05:08:58.381Z",
+  "abgerufenAm": "2026-07-28T05:16:22.637Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -1149,16 +1149,14 @@
       "umsatz": 12957064000000,
       "gewinn": 1159887000000,
       "cashflow": 2321675000000,
-      "eigenkapital": 8510151000000,
-      "aktien": 1250746867
+      "eigenkapital": 8510151000000
     },
     "7267.T": {
       "waehrung": "JPY",
       "umsatz": 21688767000000,
       "gewinn": 903034000000,
       "cashflow": 292152000000,
-      "eigenkapital": 12627822000000,
-      "aktien": 1726609786
+      "eigenkapital": 12627822000000
     },
     "SAN.MC": {
       "waehrung": "EUR",
