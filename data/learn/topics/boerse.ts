@@ -231,6 +231,10 @@ export const boerse: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'boerse-handelszeiten',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Best Execution: die Pflicht und ihre Grenze',

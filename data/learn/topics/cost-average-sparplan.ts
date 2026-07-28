@@ -206,6 +206,10 @@ export const costAverageSparplan: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'sparplan-wartezeit',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Warum Stückeln trotzdem oft richtig ist',

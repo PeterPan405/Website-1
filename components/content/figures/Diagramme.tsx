@@ -347,7 +347,17 @@ export function LinienDiagramm({
   rechterRand?: number
 }) {
   const oben = 26
-  const unten = xLabel ? 52 : 38
+  /*
+    Unter der Zeichenfläche liegen drei Zeilen übereinander: die Teilstriche
+    der x-Achse, die Legende und – falls vorhanden – die Achsenbeschriftung.
+
+    Bis eben war dafür Platz für zwei eingeplant. Die Legende landete deshalb
+    auf den Teilstrichen: Bei „etf-index-fassungen“ stand das Farbfeld des
+    ersten Eintrags mitten in „Start“, bei „5 J.“ und „10 J.“ lief der
+    Legendentext quer durch die Zahlen. Sichtbar war das auf jeder
+    Liniengrafik der Seite.
+  */
+  const unten = xLabel ? 68 : 52
   const flaeche: Plotflaeche = {
     links: 66,
     oben,
@@ -462,6 +472,10 @@ export function LinienDiagramm({
         y={hoehe - (xLabel ? 30 : 14)}
         eintraege={reihen.map((r) => ({ farbe: r.farbe, text: r.name }))}
       />
+      {/* Die Legende steht bewusst unter den Teilstrichen und nicht über der
+          Zeichenfläche: Oben sitzt bei den meisten Liniengrafiken bereits die
+          Einheit, und zwei Zeilen Vorspann vor dem eigentlichen Bild sind eine
+          zu viel. */}
     </FigureSvg>
   )
 }

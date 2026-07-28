@@ -282,6 +282,10 @@ export const aktienLaenderBranchen: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'branchen-zyklus',
+        },
+        {
           type: 'callout',
           variant: 'warning',
           title: 'Warum Branchenwetten selten aufgehen',

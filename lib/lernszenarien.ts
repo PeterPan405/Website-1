@@ -694,3 +694,86 @@ export const renteErhoehungProzent = 2
 
 /** Über wie viele Rentenjahre die Wirkung gezeigt wird. */
 export const renteFreibetragJahre = 20
+
+// ------------------------------------------------------------------- Margin
+
+/**
+ * Ein Future-Beispiel, an dem die tägliche Abrechnung sichtbar wird.
+ *
+ * Die Zahlen sind gewählt, nicht gemessen – runde Beträge, damit die Rechnung
+ * nachvollziehbar bleibt. Was sie zeigen sollen, ist keine Marktlage, sondern
+ * eine Mechanik: dass eine Position zwangsweise geschlossen werden kann,
+ * obwohl die Einschätzung dahinter am Ende zutrifft.
+ */
+export const marginKontraktwert = 100_000
+
+/** Ersteinschuss in Prozent des Kontraktwerts. */
+export const marginErsteinschussProzent = 10
+
+/** Untergrenze in Prozent des Kontraktwerts – darunter kommt der Margin Call. */
+export const marginUntergrenzeProzent = 7
+
+/**
+ * Der Kursverlauf des Beispiels in Prozent, Tag für Tag.
+ *
+ * Er fällt fünf Tage lang und erholt sich danach über den Ausgangswert
+ * hinaus. Genau darin liegt die Aussage: Wer am fünften Tag glattgestellt
+ * wurde, hat den Verlust realisiert und die Erholung nicht mehr mitgenommen.
+ */
+export const marginKursverlauf = [
+  0, -0.6, -0.9, -0.7, -0.5, -1, 1.2, 1.4, 1.1, 0.9,
+] as const
+
+// ------------------------------------------------------- Zeit am Markt
+
+/**
+ * Über wie viele Monate eine größere Summe verteilt angelegt wird.
+ *
+ * Null heißt: alles sofort. Die übrigen Werte decken den Bereich ab, den der
+ * Text als sinnvoll bezeichnet, und einen darüber hinaus – damit sichtbar
+ * wird, dass längeres Verteilen zunehmend kostet.
+ */
+export const verteilmonate = [0, 6, 12, 24] as const
+
+/** Die Summe, die auf einmal oder verteilt angelegt wird. */
+export const verteilsumme = 100_000
+
+/** Der Anlagehorizont in Jahren, über den verglichen wird. */
+export const verteiljahre = 15
+
+/**
+ * Die angenommene Jahresrendite in Prozent.
+ *
+ * Bewusst gleichmäßig und ohne Schwankung. Das ist keine Vereinfachung,
+ * sondern der Kern der Aussage: Selbst in einem Markt, der völlig
+ * gleichmäßig steigt – ohne jeden Rückschlag, den das Verteilen abfedern
+ * könnte –, kostet Wartezeit Rendite. Der Nachteil des Verteilens ist nicht
+ * Pech, sondern Arithmetik.
+ */
+export const verteilrendite = 7
+
+// --------------------------------------------------------- Handelszeiten
+
+/**
+ * Die Handelszeiten der drei Platzarten, in Stunden nach Mitternacht.
+ *
+ * Sie stehen so in der Tabelle des Themas. Der Grund, sie zusätzlich zu
+ * zeichnen: Die eigentliche Aussage ist nicht, wann geöffnet ist, sondern
+ * wann *nur einer* geöffnet hat – und das ist eine Aussage über die
+ * Überlappung, die eine Tabelle nicht zeigen kann.
+ */
+export const handelszeiten = [
+  {
+    name: 'Elektronischer Referenzmarkt',
+    von: 9,
+    bis: 17.5,
+    hinweis: 'die meiste Liquidität, die engsten Spannen',
+  },
+  { name: 'Regionalbörse', von: 8, bis: 20, hinweis: 'Makler stellt auch dünne Kurse' },
+  {
+    name: 'Außerbörslicher Direkthandel',
+    von: 7.5,
+    bis: 23,
+    hinweis: 'ein Handelspartner stellt den Preis',
+  },
+] as const

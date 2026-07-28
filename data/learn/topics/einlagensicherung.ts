@@ -213,6 +213,10 @@ export const einlagensicherung: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'einlagensicherung-anspruch',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Sonderfälle',

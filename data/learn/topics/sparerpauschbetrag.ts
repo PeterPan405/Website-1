@@ -239,6 +239,10 @@ export const sparerpauschbetrag: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'sparerpauschbetrag-reihenfolge',
+        },
+        {
           type: 'callout',
           variant: 'warning',
           title: 'Beim Depotwechsel',

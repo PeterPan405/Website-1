@@ -177,6 +177,18 @@ export type FigureId =
   | 'crashes-spirale'
   /** Welcher Kostenblock in welchem Depot überwiegt. */
   | 'kosten-wahre-quote'
+  /** Die Handelszeiten der drei Platzarten und die Stunden ohne Vergleichskurs. */
+  | 'boerse-handelszeiten'
+  /** Umfang der Sicherung gegen die Rechtsqualität des Anspruchs. */
+  | 'einlagensicherung-anspruch'
+  /** In welcher Reihenfolge der Freistellungsauftrag verteilt wird. */
+  | 'sparerpauschbetrag-reihenfolge'
+  /** Das Sicherheitskonto eines Futures bis zum Margin Call. */
+  | 'derivat-margin'
+  /** Was das Verteilen einer größeren Summe an Zeit am Markt kostet. */
+  | 'sparplan-wartezeit'
+  /** Zyklische und defensive Branchen im selben Konjunkturverlauf. */
+  | 'branchen-zyklus'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -593,5 +605,39 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Welcher Kostenblock überwiegt',
     caption:
       'Dieselben drei Kostenarten, zwei Depots, umgekehrte Rangfolge. Deshalb hat die Frage nach dem günstigeren Anbieter keine allgemeine Antwort.',
+  },
+  'boerse-handelszeiten': {
+    title: 'Wann welcher Handelsplatz offen hat',
+    caption:
+      'Die Öffnungszeiten stehen in der Tabelle. Was erst übereinandergelegt sichtbar wird, sind die Stunden, in denen kein Vergleichskurs existiert.',
+  },
+  'einlagensicherung-anspruch': {
+    title: 'Umfang gegen Rechtsanspruch',
+    description:
+      'Die drei Sicherungssysteme gegeneinander aufgetragen: waagerecht, wie weit die Zusage reicht, senkrecht, wie belastbar sie rechtlich ist. Die gesetzliche Einlagensicherung steht links oben – sie reicht nur bis zur gesetzlichen Grenze, ist dafür ein einklagbarer Anspruch, den jede Bank in der EU erfüllen muss. Der freiwillige Sicherungsfonds steht rechts unten – er reicht weit darüber hinaus, leistet aber nach seiner Satzung, und die kann er ändern; deutsche Fonds haben ihre Grenzen mehrfach abgesenkt. Die Institutssicherung liegt dazwischen und verfolgt einen anderen Ansatz: Sie stützt das Institut, damit ein Entschädigungsfall gar nicht erst eintritt. Die Anordnung zeigt den Zusammenhang, den die Tabelle nebeneinanderstellt: Je weiter die Zusage reicht, desto schwächer ist sie unterlegt. Das entwertet die freiwilligen Systeme nicht – sie haben in der Praxis zuverlässig gezahlt. Es heißt nur, dass man sich auf eine Zusage anderer Qualität verlässt. Beträge über der gesetzlichen Grenze stehen bewusst nicht daran: Wie weit ein Fonds reicht, hängt am Eigenkapital der einzelnen Bank.',
+    caption:
+      'Je weiter die Zusage reicht, desto schwächer ist sie rechtlich unterlegt. Beides zu wissen ist die ganze Aussage dieses Themas.',
+  },
+  'sparerpauschbetrag-reihenfolge': {
+    title: 'Die Reihenfolge der Verteilung',
+    caption:
+      'Vorn steht, was ohne dein Zutun belastet wird, hinten, worüber du selbst entscheidest. Das Gefälle ist die Begründung für die Reihenfolge.',
+  },
+  'derivat-margin': {
+    title: 'Der Margin Call',
+    caption:
+      'Die Position wird geschlossen, obwohl die Einschätzung dahinter am Ende zutrifft. Das ist der Unterschied zwischen einem Verlust- und einem Liquiditätsrisiko.',
+  },
+  'sparplan-wartezeit': {
+    title: 'Was Wartezeit kostet',
+    caption:
+      'Gerechnet ohne jede Kursschwankung – deshalb ist der Rückstand kein Pech, sondern Arithmetik. Was das Verteilen dafür kauft, steht im Text daneben.',
+  },
+  'branchen-zyklus': {
+    title: 'Zyklisch und defensiv',
+    description:
+      'Zwei schematische Kurven über einen vollständigen Konjunkturzyklus, beide um dieselbe Mittellinie. Die zyklische Kurve schlägt weit aus: Im Aufschwung liegt sie deutlich oben, im Abschwung deutlich unten. Dazu gehören Automobil, Maschinenbau, Chemie, Banken und Luxusgüter – Branchen, deren Gewinne stark mit der Konjunktur schwanken. Die defensive Kurve folgt demselben Verlauf mit kleinem Ausschlag: Nahrungsmittel, Versorger, Gesundheit und Telekommunikation werden auch in einer Krise gebraucht, bleiben dafür in starken Aufschwüngen zurück. Beide Kurven enden auf derselben Höhe, weil die Aussage der Schwankung gilt und nicht der Rendite. An den Achsen stehen bewusst keine Zahlen: Wie stark eine Branche schwankt, hängt am Zyklus, am Land und am Zeitraum. Weil beide derselben Konjunktur folgen, ist eine Branchenwette fast immer eine Wette auf den Zeitpunkt der Wende – und der ist so wenig vorhersagbar wie alles andere am Markt.',
+    caption:
+      'Beide folgen derselben Konjunktur, nur mit verschiedenem Ausschlag. Wer auf eine Branche setzt, wettet deshalb meist auf einen Zeitpunkt.',
   },
 }

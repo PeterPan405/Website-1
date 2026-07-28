@@ -269,6 +269,10 @@ export const derivat: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'derivat-margin',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Rollen, Contango und die Rohstofffalle',

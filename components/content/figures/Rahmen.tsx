@@ -119,23 +119,39 @@ export function Legende({
   eintraege: readonly { farbe: string; text: string }[]
 }) {
   /*
-    Die x-Position jedes Eintrags vorab, nicht als mitlaufende Summe.
+    Die Breite ist eine Schätzung aus der Zeichenzahl.
 
-    Die Breite ist eine Schätzung aus der Zeichenzahl: Beschriftungen stehen
-    fest im Code, und eine echte Textmessung gibt es beim statischen Bauen
-    ohnehin nicht – dort rendert kein Browser, der Buchstaben ausmessen könnte.
+    Beschriftungen stehen fest im Code, und eine echte Textmessung gibt es
+    beim statischen Bauen ohnehin nicht – dort rendert kein Browser, der
+    Buchstaben ausmessen könnte. 7,2 Pixel je Zeichen bei 13 Pixel Schrift:
+    Mit 6,6 stieß bei „Fondskosten – Ordergebühr – Spread“ das Farbfeld des
+    folgenden Eintrags in den Text des vorigen. Die Schätzung muss in diese
+    Richtung großzügig sein.
   */
+  const JE_ZEICHEN = 7.2 / 13
+  const VERFUEGBAR = 640 - x - 8
+
+  const zeichen = eintraege.reduce((summe, e) => summe + e.text.length, 0)
+  const gesamt = zeichen * JE_ZEICHEN * 13 + eintraege.length * 22
+
+  /*
+    Passt die Legende nicht, wird sie kleiner – nicht abgeschnitten.
+
+    Bei der Margin-Grafik lief der dritte Eintrag über den rechten Rand hinaus
+    und war zur Hälfte weg. Auffallen konnte das keiner Prüfung: Der
+    Ankerpunkt des Textes liegt im Bild, nur sein Ende nicht. Elf Pixel sind
+    die Untergrenze; darunter ist eine Legende ohnehin nicht mehr lesbar, und
+    dann ist der Beschriftungstext zu lang und nicht die Zeichnung zu klein.
+  */
+  const groesse = gesamt > VERFUEGBAR ? Math.max((VERFUEGBAR / gesamt) * 13, 11) : 13
+  const feld = Math.max(groesse - 1, 10)
+
   const positionen = eintraege.reduce<number[]>((liste, eintrag, index) => {
     const vorher = index === 0 ? x : liste[index - 1]
-    /*
-      7,2 Pixel je Zeichen, nicht 6,6.
-
-      Mit 6,6 stieß bei „Fondskosten – Ordergebühr – Spread“ das Farbfeld des
-      folgenden Eintrags in den Text des vorigen. Die Schätzung muss in diese
-      Richtung großzügig sein: zu viel Abstand sieht luftig aus, zu wenig sieht
-      kaputt aus.
-    */
-    const breite = index === 0 ? 0 : 22 + eintraege[index - 1].text.length * 7.2
+    const breite =
+      index === 0
+        ? 0
+        : feld + 10 + eintraege[index - 1].text.length * JE_ZEICHEN * groesse
     liste.push(vorher + breite)
     return liste
   }, [])
@@ -148,13 +164,13 @@ export function Legende({
           <g key={eintrag.text}>
             <rect
               x={links}
-              y={y - 9}
-              width={12}
-              height={12}
+              y={y - feld * 0.75}
+              width={feld}
+              height={feld}
               rx={3}
               fill={eintrag.farbe}
             />
-            <text x={links + 18} y={y} fontSize={13} fill="var(--c-fg-muted)">
+            <text x={links + feld + 6} y={y} fontSize={groesse} fill="var(--c-fg-muted)">
               {eintrag.text}
             </text>
           </g>

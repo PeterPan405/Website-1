@@ -42,6 +42,14 @@ import {
 } from '@/components/content/figures/grundlagen'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import {
+  BoerseHandelszeiten,
+  BranchenZyklus,
+  DerivatMargin,
+  EinlagensicherungAnspruch,
+  SparerpauschbetragReihenfolge,
+  SparplanWartezeit,
+} from '@/components/content/figures/maerkte'
+import {
   ImmobilieRestschuld,
   KreditAnfangstilgung,
   KreditTilgungsverlauf,
@@ -175,4 +183,10 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'rente-freibetrag': RenteFreibetrag,
   'crashes-spirale': CrashesSpirale,
   'kosten-wahre-quote': KostenWahreQuote,
+  'boerse-handelszeiten': BoerseHandelszeiten,
+  'einlagensicherung-anspruch': EinlagensicherungAnspruch,
+  'sparerpauschbetrag-reihenfolge': SparerpauschbetragReihenfolge,
+  'derivat-margin': DerivatMargin,
+  'sparplan-wartezeit': SparplanWartezeit,
+  'branchen-zyklus': BranchenZyklus,
 }
