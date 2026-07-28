@@ -1,6 +1,7 @@
 import { aktie } from '@/data/learn/topics/aktie'
 import { anlegerpsychologie } from '@/data/learn/topics/anlegerpsychologie'
 import { boerse } from '@/data/learn/topics/boerse'
+import { budgetUndSparquote } from '@/data/learn/topics/budget-und-sparquote'
 import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
 import { depotUndBroker } from '@/data/learn/topics/depot-und-broker'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
@@ -15,7 +16,6 @@ import {
   aktienLaenderBranchen,
   bitcoinKrypto,
   blockchain,
-  budgetUndSparquote,
   derivat,
   einlagensicherung,
   groessteCrashes,

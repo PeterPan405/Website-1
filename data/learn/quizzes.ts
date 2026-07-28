@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    180 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    192 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -2383,6 +2383,167 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 3,
       explanation:
         'Der Rückschaufehler vernichtet die Beweise: Er verändert die Erinnerung an das, was man vorher dachte. Wer sich fragt, ob er Märkte einschätzen kann, befragt damit eine bereits angepasste Erinnerung. Prüfbar wird eine Einschätzung nur, wenn sie vor dem Ereignis mit Datum notiert wurde.',
+    },
+  ],
+
+  // ------------------------------------------------------ Budget & Sparquote
+  'budget-und-sparquote:beginner': [
+    {
+      question: 'Wie ist die Sparquote definiert?',
+      options: [
+        'Als Anteil des Nettoeinkommens, der nach allen Ausgaben übrig bleibt',
+        'Als Anteil des Nettoeinkommens, der nach den Fixkosten übrig bleibt',
+        'Als Betrag, der monatlich per Dauerauftrag überwiesen wird',
+        'Als Anteil des Bruttoeinkommens, der angelegt wird',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Entscheidend ist das Wort „allen“. Der Betrag nach Miete und Versicherungen sieht deutlich besser aus als der Betrag am Monatsende – genau daran schätzen die meisten ihre Quote zu hoch. Und die Bezugsgröße ist das Netto, weil nur das tatsächlich zur Verfügung steht.',
+    },
+    {
+      question:
+        'Warum reicht es nicht, drei Monate Kontoauszüge auszuwerten, ohne etwas zu ergänzen?',
+      options: [
+        'Weil Kontoauszüge nur zwei Jahre lang abrufbar sind',
+        'Weil Lastschriften erst mit Verzögerung gebucht werden',
+        'Weil Jahreskosten wie Kfz-Versicherung oder Urlaub in einem Dreimonatsfenster meist gar nicht vorkommen',
+        'Weil variable Kosten in jedem Monat gleich hoch sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Fixkosten und variable Kosten sind in drei Monaten sichtbar, Jahreskosten nicht. Sie treffen das Budget später umso härter. Das Gegenmittel ist einfach: alle Jahreskosten zusammenzählen, durch zwölf teilen und den Betrag als monatliche Position mitführen.',
+    },
+    {
+      question: 'Warum ist eine Bargeldabhebung keine brauchbare Ausgabenkategorie?',
+      options: [
+        'Weil Bargeldabhebungen Gebühren auslösen',
+        'Weil sie erst im Folgemonat gebucht wird',
+        'Weil sie steuerlich nicht absetzbar ist',
+        'Weil sie die eigentliche Ausgabe verdeckt – man weiß hinterher nicht, wofür das Geld ausgegeben wurde',
+      ],
+      correctIndex: 3,
+      explanation:
+        '„Abhebung 200 €“ sagt nichts darüber, ob daraus Lebensmittel, Freizeit oder Geschenke wurden. Bei größeren Barbeträgen bleibt nur, diesen Teil eine Woche lang mitzuschreiben – sonst ist der größte unklare Posten ausgerechnet der, den man ändern könnte.',
+    },
+    {
+      question: 'In welcher Reihenfolge gehören Sparen, Notgroschen und Anlegen?',
+      options: [
+        'Anlegen zuerst, damit die Zeit im Markt nicht verloren geht; der Notgroschen wächst nebenher',
+        'Erst sparen und den Notgroschen aufbauen, danach anlegen',
+        'Notgroschen und Depot parallel, jeweils zur Hälfte des Überschusses',
+        'Zuerst anlegen, den Notgroschen erst ab einem Depotwert von 10.000 Euro',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Notgroschen wird die erste unerwartete Rechnung aus dem Depot bezahlt – und die kommt erfahrungsgemäß dann, wenn die Kurse gerade niedrig sind. Der Notgroschen kostet ein wenig Rendite und schützt dafür genau die Entscheidung, auf der der ganze Plan beruht.',
+    },
+  ],
+
+  'budget-und-sparquote:fortgeschritten': [
+    {
+      question:
+        'Warum sollten Rücklage für Jahreskosten und Notgroschen getrennt geführt werden?',
+      options: [
+        'Weil für beide unterschiedliche Zinssätze gelten',
+        'Weil die Rücklage steuerpflichtig ist, der Notgroschen nicht',
+        'Weil sonst das Geplante das Ungeplante aufbraucht – der Urlaub wird gebucht und der Notgroschen ist weg',
+        'Weil die Einlagensicherung nur ein Konto je Zweck abdeckt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Rücklage ist dafür da, jedes Jahr aufgebraucht zu werden – das ist ihr Zweck. Der Notgroschen darf genau das nie. In einem gemeinsamen Topf lässt sich beides nicht auseinanderhalten, und im Ernstfall stellt sich heraus, dass der Puffer längst verplant war.',
+    },
+    {
+      question: 'Was beschreibt Lifestyle-Inflation?',
+      options: [
+        'Den Anstieg der Lebenshaltungskosten durch die allgemeine Preisentwicklung',
+        'Dass Ausgaben mit steigendem Einkommen mitwachsen, sodass die Sparquote trotz mehr Gehalt sinkt',
+        'Die jährliche Anpassung der Sparrate an die Inflationsrate',
+        'Den Anstieg der Fixkosten durch langfristige Verträge',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Vorgang läuft ohne bewusste Entscheidung ab: größere Wohnung, besseres Auto, mehr Abonnements. Nach einem Jahr bleibt prozentual weniger übrig als vor der Gehaltserhöhung. Dagegen hilft, die Anpassung im selben Monat vorzunehmen, in dem die Erhöhung kommt.',
+    },
+    {
+      question:
+        'Wie funktioniert die Regel der halben Erhöhung und warum ist sie leichter durchzuhalten als Verzicht?',
+      options: [
+        'Die Sparrate wird halbiert, sobald das Einkommen steigt',
+        'Die Hälfte des Notgroschens wird angelegt, sobald er vollständig aufgebaut ist',
+        'Die Sparrate wird jedes Jahr um die halbe Inflationsrate angehoben',
+        'Die Hälfte jeder Gehaltserhöhung geht in die Sparrate, die andere Hälfte steht zur Verfügung',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Nach der Erhöhung bleibt mehr Geld übrig als vorher – nur eben nicht das gesamte zusätzliche. Es gibt also nichts aufzugeben, und genau deshalb hält die Regel: Sie verlangt keine Änderung an einer bestehenden Gewohnheit, sondern nur an einer neuen.',
+    },
+    {
+      question:
+        'Wie sollte eine Sparquote bei stark schwankendem Einkommen festgelegt werden?',
+      options: [
+        'Als Untergrenze beziehungsweise Prozentsatz vom Eingang statt als fester Eurobetrag',
+        'Als fester Eurobetrag, damit die Planung verlässlich bleibt',
+        'Als Betrag, der sich am besten Monat des Vorjahres orientiert',
+        'Gar nicht – bei schwankendem Einkommen wird erst am Jahresende gespart',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein fester Betrag ist in guten Monaten zu niedrig und in schlechten nicht zu halten. Ein Prozentsatz vom tatsächlichen Eingang passt sich von selbst an, und eine Untergrenze sorgt dafür, dass auch in schwachen Monaten etwas fließt. Vor einer Kreditaufnahme wird die Rate gesenkt, nicht danach.',
+    },
+  ],
+
+  'budget-und-sparquote:profi': [
+    {
+      question:
+        'Warum wiegt in den ersten Jahren eine höhere Sparrate schwerer als ein Prozentpunkt mehr Rendite?',
+      options: [
+        'Weil Renditen in den ersten Jahren steuerlich schlechter behandelt werden',
+        'Weil eine höhere Rendite erst ab einer bestimmten Depotgröße gutgeschrieben wird',
+        'Weil der Renditehebel auf den Bestand wirkt – und der ist am Anfang klein',
+        'Weil Sparraten in den ersten Jahren nicht mitverzinst werden',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein zusätzlicher Euro Sparrate ist sofort in voller Höhe da. Ein Prozentpunkt mehr Rendite auf 5.000 Euro sind 50 Euro im Jahr. Erst wenn der Bestand groß geworden ist, dreht sich das Verhältnis – bei einem typischen Sparplan nach ungefähr einem Vierteljahrhundert.',
+    },
+    {
+      question:
+        'Was passiert mit einer Sparrate, die zehn Jahre lang unverändert bei einem festen Eurobetrag bleibt?',
+      options: [
+        'Sie bleibt real gleich, weil auch die Kurse mit der Inflation steigen',
+        'Sie sinkt als Anteil des Einkommens, weil Einkommen und Preise steigen und der Betrag stillsteht',
+        'Sie steigt real, weil der Zinseszins den Kaufkraftverlust ausgleicht',
+        'Sie wird von der Bank automatisch an die Inflation angepasst',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ausgaben und meist auch Einkommen wachsen mit der Inflation, der feste Betrag nicht. Aus zwölf Prozent des Nettoeinkommens werden über die Jahre still und leise acht. Wer die Quote als Prozentsatz definiert statt in Euro, bekommt die Anpassung ohne jeden Aufwand.',
+    },
+    {
+      question:
+        'Welche Posten sind auf der Ausgabenseite die einzigen Hebel mit relevanter Größe?',
+      options: [
+        'Stromanbieter, Mobilfunktarif und Versicherungsvergleiche',
+        'Lebensmittel und Freizeit, weil sie monatlich anfallen',
+        'Abonnements, weil sie sich sofort kündigen lassen',
+        'Wohnen und Mobilität – und darüber hinaus die Einkommensseite',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die kleinen Posten sind schnell optimiert und dann ausgereizt; weitere Mühe bringt zwanzig Euro im Monat. Wohnen ist meist der größte Einzelposten, ein Auto kostet mit Abschreibung und Wartung deutlich mehr als die Rate suggeriert. Danach bleibt nur noch mehr Einkommen.',
+    },
+    {
+      question: 'Warum ist die höchstmögliche Sparquote selten die beste?',
+      options: [
+        'Weil ein Plan, der jede Ausgabe streicht, meist aufgegeben wird – und ein abgebrochener Plan keine Rendite hat',
+        'Weil hohe Sparquoten steuerlich benachteiligt werden',
+        'Weil ab einer bestimmten Quote der Sparerpauschbetrag überschritten wird',
+        'Weil eine hohe Quote den Notgroschen unnötig macht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Dasselbe Muster wie bei der Aktienquote: Die durchhaltbare Größe schlägt die maximale. Eine Quote, die jede Reise und jeden Restaurantbesuch ausschließt, hält selten zwei Jahre – und mit ihr endet meist auch der Sparplan, um den es eigentlich ging.',
     },
   ],
 }
