@@ -276,7 +276,12 @@ export async function getKennzahlen(symbol: string): Promise<Kennzahlen | null> 
  * ist auf einer Bildungsseite die schlechteste aller Antworten.
  */
 export type Fundamentalbefund =
-  | { art: 'zahlen'; kennzahlen: Fundamentalkennzahlen }
+  | {
+      art: 'zahlen'
+      kennzahlen: Fundamentalkennzahlen
+      /** Die Währung, in der Bilanz **und** Kurs stehen – geprüft, nicht geraten. */
+      waehrung: string
+    }
   /** Das Unternehmen meldet nicht bei der US-Börsenaufsicht. */
   | { art: 'keineMeldung' }
   /** Zahlen ja, aber kein echter Kurs – dann ergäbe jede Verhältniszahl Unsinn. */
@@ -333,7 +338,9 @@ export async function getFundamentalkennzahlen(
   if (quote.source === null) return { art: 'keinEchterKurs' }
 
   const kennzahlen = berechneFundamentalkennzahlen(zahlen, quote.value)
-  return kennzahlen.belegt > 0 ? { art: 'zahlen', kennzahlen } : { art: 'keineMeldung' }
+  return kennzahlen.belegt > 0
+    ? { art: 'zahlen', kennzahlen, waehrung: definition.unit }
+    : { art: 'keineMeldung' }
 }
 
 /**

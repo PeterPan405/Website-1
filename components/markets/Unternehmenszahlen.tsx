@@ -38,6 +38,20 @@ export function Unternehmenszahlen({
   className?: string
 }) {
   const kennzahlen = befund.art === 'zahlen' ? befund.kennzahlen : null
+  /*
+    Die Währung kommt vom Befund, nicht als Festwert.
+
+    Vorher stand hier „USD“ – für die us-gaap-Melder richtig, für Toyota
+    grundfalsch: Dessen Börsenwert von 38,65 Billionen Yen erschien als
+    „38,65 Bio. USD“. Eine Zahl, die um den Faktor 150 danebenliegt und der
+    man nichts ansieht.
+  */
+  const waehrung = befund.art === 'zahlen' ? befund.waehrung : 'USD'
+  const betrag = (wert: number) =>
+    // Unter tausend Einheiten ist es ein Wert je Aktie, darüber eine Bilanzsumme.
+    Math.abs(wert) < 1000
+      ? `${formatNumber(wert, 2)} ${waehrung}`
+      : formatLargeAmount(wert, waehrung)
 
   return (
     <section aria-labelledby="unternehmenszahlen" className={className}>
@@ -151,13 +165,6 @@ export function Unternehmenszahlen({
 /** Formatiert einen Kennwert oder setzt einen Gedankenstrich. */
 function zahl(eintrag: Kennwert, wie: (wert: number) => string): string {
   return eintrag.wert === null ? '–' : wie(eintrag.wert)
-}
-
-function betrag(wert: number): string {
-  // Unter tausend Dollar ist es ein Wert je Aktie, darüber eine Bilanzsumme.
-  return Math.abs(wert) < 1000
-    ? `${formatNumber(wert, 2)} USD`
-    : formatLargeAmount(wert, 'USD')
 }
 
 function verhaeltnis(wert: number): string {

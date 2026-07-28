@@ -513,7 +513,28 @@ async function main() {
               }
             }
           }
-          if (bester) aktien = bester.wert
+
+          /*
+            Eine veraltete Aktienzahl ist schlimmer als keine.
+
+            Sony und Honda haben 2024 ihre Aktien gesplittet. Die juengste
+            Angabe der SEC stammte bei beiden von davor – gerechnet ergab das
+            ein Kurs-Gewinn-Verhaeltnis von 3,9 beziehungsweise 3,0, also den
+            drei- bis fuenffachen Fehler, und der sah aus wie eine Tatsache.
+
+            Ein Split aendert die Aktienzahl schlagartig, den Kurs im selben
+            Verhaeltnis und den Boersenwert gar nicht. Wer beide aus
+            verschiedenen Zeiten kombiniert, bekommt genau diesen Faktor als
+            Fehler. Deshalb: nur, was nicht aelter als 15 Monate ist.
+          */
+          const grenze = Date.now() - 450 * 86_400_000
+          if (bester && Date.parse(bester.ende) >= grenze) {
+            aktien = bester.wert
+          } else if (bester) {
+            console.log(
+              `  ${ziel}: Aktienzahl vom ${bester.ende} ist zu alt – ausgelassen.`
+            )
+          }
         }
       }
       if (aktien) gefunden.aktien = aktien
