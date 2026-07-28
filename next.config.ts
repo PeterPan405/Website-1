@@ -11,9 +11,10 @@ const nextConfig: NextConfig = {
 
     Zur Vorgeschichte: Zwischendurch stand hier `output: 'standalone'`, weil ein
     Node-Server den Upload von 1.500 Einzeldateien vermieden hätte. Node.js gibt
-    es beim Hoster aber nur mit einem eigenen VPS. Der Export ist ohnehin die
-    passendere Form – Cloudflare Pages baut das Repository selbst und liefert das
-    Ergebnis aus, es wird also überhaupt nichts mehr übertragen.
+    es beim Hoster aber nur mit einem eigenen VPS.
+
+    Ein früherer Stand dieses Kommentars nannte Cloudflare Pages als Ziel. Das
+    trifft nicht zu – die Veröffentlichung läuft über Hostinger.
   */
   output: 'export',
 
