@@ -193,7 +193,37 @@ function vorhersagen(termine: string[], heute: string): Vorhersage[] {
     ergebnis.push({ erwartet, basis, streuungTage: besterAbstand })
   }
 
-  return ergebnis.sort((a, b) => (a.erwartet < b.erwartet ? -1 : 1))
+  ergebnis.sort((a, b) => (a.erwartet < b.erwartet ? -1 : 1))
+
+  /*
+    Doppelte Vorhersagen für dasselbe Quartal entfernen.
+
+    Manche Unternehmen melden zweimal kurz hintereinander – etwa den
+    Jahresabschluss und wenige Tage später eine Ergänzung. Beide bekommen
+    dann einen eigenen Vorjahrespartner, und im Kalender stünden zwei
+    Termine für dieselbe Berichtsperiode. Beobachtet bei W&T Offshore mit
+    dem 8. und dem 15. März.
+
+    Behalten wird der Termin mit der kleineren Streuung: Er stammt aus dem
+    Muster, das sich über die Jahre bestätigt hat.
+  */
+  const ABSTAND_GLEICHES_QUARTAL = 30
+  const bereinigt: Vorhersage[] = []
+  for (const kandidat of ergebnis) {
+    const nachbar = bereinigt.findIndex(
+      (vorhanden) =>
+        Math.abs(tage(kandidat.erwartet, vorhanden.erwartet)) < ABSTAND_GLEICHES_QUARTAL
+    )
+    if (nachbar === -1) {
+      bereinigt.push(kandidat)
+      continue
+    }
+    if (kandidat.streuungTage < bereinigt[nachbar].streuungTage) {
+      bereinigt[nachbar] = kandidat
+    }
+  }
+
+  return bereinigt
 }
 
 async function main(): Promise<void> {
