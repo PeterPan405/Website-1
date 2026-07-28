@@ -16,37 +16,80 @@ name: Quellen abklopfen
 # - OECD (Vermögen): geht → 30 Länder nach Umrechnung, eingebaut
 # - SEC (Fundamentaldaten, us-gaap): geht → 170 geführte Kürzel, eingebaut
 # - SEC (Quartalstermine, 8-K/2.02): geht → 158 Unternehmen, eingebaut
+# - SEC (Quartalstermine, 6-K für ausländische Emittenten): geprüft, verworfen.
+#   Die Dokumentbeschreibung lautet bei SAP, ASML, Novo Nordisk, Shell, Sony
+#   und TSMC ausnahmslos „FORM 6-K“; bei AstraZeneca sind die Treffer auf
+#   „results“ Ergebnisse klinischer Studien.
 # - Yahoo (Kennzahlen): 401 Unauthorized
 # - Frankfurter (Devisen): 301 auf eine andere Adresse; EZB reicht ohnehin
 #
-# ## Geprüft und verworfen: 6-K für ausländische Emittenten
+# ## Diese Runde: Quartalstermine für die übrigen 371 Aktien
 #
-# Der Kalender deckt nur ein knappes Drittel der geführten Aktien ab, weil die
-# Pflichtmeldung mit der Punktnummer 2.02 eine US-Besonderheit ist. Naheliegend
-# wäre, für ausländische Emittenten das Formular 6-K zu nehmen und die
-# Ergebnismeldung an der Dokumentbeschreibung zu erkennen.
+# Über die SEC sind 158 der 529 geführten Aktien abgedeckt. Die übrigen
+# notieren in Europa und Asien und reichen dort nichts ein. Gesucht ist eine
+# Quelle, die für diese Werte **vergangene oder künftige Meldetermine**
+# liefert – ohne Registrierung, ohne Schlüssel, ohne Bedingungen, die einer
+# Website die Nutzung verbieten.
 #
-# Das geht nicht, und zwar nachweislich: Bei SAP, ASML, Novo Nordisk, Shell,
-# Sony und TSMC lautet die Beschreibung ausnahmslos „FORM 6-K“ und sonst nichts
-# – bei 361 bis 891 Meldungen je Unternehmen. AstraZeneca hat als einziges
-# sprechende Beschreibungen, aber die 65 Treffer auf „results“ sind Ergebnisse
-# klinischer Studien („SONE-VE IMPROVED SURVIVAL IN GASTRIC CANCERS“). Ein
-# Filter darauf erzeugte Kalendereinträge, die mit Quartalszahlen nichts zu tun
-# haben.
-#
-# Die Lücke bleibt deshalb bestehen und steht als solche auf der Kalenderseite.
+# Geprüft werden fünf Kandidaten. Für jeden zählt dasselbe: Antwortet er, und
+# steht in der Antwort ein Datum, das sich einem Unternehmen zuordnen lässt?
 
 on:
   workflow_dispatch:
 
 jobs:
   abklopfen:
-    name: Kandidaten prüfen
+    name: Quellen für Quartalstermine ausserhalb der USA
     runs-on: ubuntu-latest
     steps:
-      - name: Derzeit steht keine Quelle zur Prüfung an
+      - name: 1 – Yahoo, Kalender je Kürzel
         run: |
-          echo "Dieser Workflow hat keinen offenen Auftrag."
-          echo "Er wird beschrieben, sobald eine neue Quelle geprüft werden soll –"
-          echo "der Kopf der Datei hält fest, was bisher geprüft wurde und mit"
-          echo "welchem Ergebnis."
+          UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
+          for k in SAP.DE ASML.AS NESN.SW MC.PA 7203.T; do
+            code=$(curl -sS -A "$UA" --max-time 40 -o "/tmp/y-$k.json" -w '%{http_code}' \
+              "https://query2.finance.yahoo.com/v10/finance/quoteSummary/$k?modules=calendarEvents,earnings" || echo 000)
+            echo "▶ $k → $code, $(stat -c%s "/tmp/y-$k.json" 2>/dev/null || echo 0) Bytes"
+            head -c 400 "/tmp/y-$k.json" 2>/dev/null; echo; echo
+          done
+
+      - name: 2 – Financial Modeling Prep ohne Schlüssel
+        run: |
+          for pfad in "earning_calendar" "historical/earning_calendar/SAP.DE"; do
+            code=$(curl -sS --max-time 40 -o /tmp/fmp.json -w '%{http_code}' \
+              "https://financialmodelingprep.com/api/v3/$pfad" || echo 000)
+            echo "▶ $pfad → $code"
+            head -c 300 /tmp/fmp.json; echo; echo
+          done
+
+      - name: 3 – Börse Frankfurt, Unternehmenstermine
+        run: |
+          UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
+          for url in \
+            "https://api.boerse-frankfurt.de/v1/data/company_dates?isin=DE0007164600&limit=20" \
+            "https://www.boerse-frankfurt.de/api/v1/data/company_dates?isin=DE0007164600"; do
+            code=$(curl -sS -A "$UA" --max-time 40 -o /tmp/bf.json -w '%{http_code}' "$url" || echo 000)
+            echo "▶ $url → $code"
+            head -c 300 /tmp/bf.json; echo; echo
+          done
+
+      - name: 4 – stockanalysis.com
+        run: |
+          UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
+          for url in \
+            "https://stockanalysis.com/api/screener/s/f?m=marketCap&s=desc&c=s,n,earningsDate&cn=20" \
+            "https://stockanalysis.com/quote/etr/SAP/__data.json"; do
+            code=$(curl -sS -A "$UA" --max-time 40 -o /tmp/sa.json -w '%{http_code}' "$url" || echo 000)
+            echo "▶ $url → $code, $(stat -c%s /tmp/sa.json 2>/dev/null || echo 0) Bytes"
+            head -c 400 /tmp/sa.json; echo; echo
+          done
+
+      - name: 5 – Die eigene Kursquelle, auf Termine abgeklopft
+        run: |
+          # Der Kursabruf dieser Website läuft bereits über Yahoo. Wenn dort
+          # ein Termin mitgeliefert wird, wäre das die billigste Lösung: keine
+          # neue Quelle, keine neuen Bedingungen.
+          UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
+          code=$(curl -sS -A "$UA" --max-time 40 -o /tmp/q.json -w '%{http_code}' \
+            "https://query1.finance.yahoo.com/v7/finance/quote?symbols=SAP.DE,ASML.AS,AAPL&fields=earningsTimestamp,earningsTimestampStart,earningsTimestampEnd" || echo 000)
+          echo "▶ quote-Endpunkt → $code"
+          head -c 600 /tmp/q.json; echo
