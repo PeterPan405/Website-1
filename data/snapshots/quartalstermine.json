@@ -1,0 +1,5204 @@
+{
+  "abgerufenAm": "2026-07-28T09:40:13.188Z",
+  "quelle": {
+    "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
+    "abgrenzung": "Die Termine sind aus dem bisherigen Meldemuster jedes Unternehmens abgeleitet und keine Ankündigung. Den genauen Tag gibt jedes Unternehmen wenige Wochen vorher selbst bekannt. Erfasst sind nur Unternehmen, die bei der SEC ein 8-K einreichen – überwiegend US-Emittenten."
+  },
+  "unternehmen": {
+    "WTI": {
+      "name": "W&T OFFSHORE INC",
+      "bisher": [
+        "2026-05-07",
+        "2026-03-16",
+        "2026-03-09",
+        "2025-11-05",
+        "2025-08-04",
+        "2025-05-06",
+        "2025-03-03",
+        "2024-11-07"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-03-08",
+          "basis": "2026-03-09",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-03-15",
+          "basis": "2026-03-16",
+          "streuungTage": 14
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "NVDA": {
+      "name": "NVIDIA CORP",
+      "bisher": [
+        "2026-05-20",
+        "2026-02-25",
+        "2025-11-19",
+        "2025-08-27",
+        "2025-05-28",
+        "2025-02-26",
+        "2024-11-20",
+        "2024-08-28"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-26",
+          "basis": "2025-08-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-18",
+          "basis": "2025-11-19",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-24",
+          "basis": "2026-02-25",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-19",
+          "basis": "2026-05-20",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "AAPL": {
+      "name": "Apple Inc.",
+      "bisher": [
+        "2026-04-30",
+        "2026-01-29",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-05-01",
+        "2025-01-30",
+        "2024-10-31",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "MSFT": {
+      "name": "MICROSOFT CORP",
+      "bisher": [
+        "2026-04-29",
+        "2026-01-28",
+        "2025-10-29",
+        "2025-07-30",
+        "2025-04-30",
+        "2025-01-29",
+        "2024-10-30",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "GOOGL": {
+      "name": "Alphabet Inc.",
+      "bisher": [
+        "2026-07-22",
+        "2026-04-29",
+        "2026-02-04",
+        "2025-10-29",
+        "2025-07-23",
+        "2025-04-24",
+        "2025-02-04",
+        "2024-10-29"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "AMZN": {
+      "name": "AMAZON COM INC",
+      "bisher": [
+        "2026-04-29",
+        "2026-02-05",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-05-01",
+        "2025-02-06",
+        "2024-10-31",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "META": {
+      "name": "Meta Platforms, Inc.",
+      "bisher": [
+        "2026-04-29",
+        "2026-01-28",
+        "2025-10-29",
+        "2025-07-30",
+        "2025-04-30",
+        "2025-01-29",
+        "2024-10-30",
+        "2024-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "TSLA": {
+      "name": "Tesla, Inc.",
+      "bisher": [
+        "2026-07-22",
+        "2026-07-02",
+        "2026-04-22",
+        "2026-04-02",
+        "2026-01-28",
+        "2026-01-02",
+        "2025-10-22",
+        "2025-10-02"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-04-01",
+          "basis": "2026-04-02",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-01",
+          "basis": "2026-07-02",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "AVGO": {
+      "name": "Broadcom Inc.",
+      "bisher": [
+        "2026-06-03",
+        "2026-03-04",
+        "2025-12-11",
+        "2025-09-04",
+        "2025-06-05",
+        "2025-03-06",
+        "2024-12-12",
+        "2024-09-05"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-03",
+          "basis": "2025-09-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-12-10",
+          "basis": "2025-12-11",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-03",
+          "basis": "2026-03-04",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-06-02",
+          "basis": "2026-06-03",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "AMD": {
+      "name": "ADVANCED MICRO DEVICES INC",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-03",
+        "2025-11-04",
+        "2025-08-05",
+        "2025-05-06",
+        "2025-02-04",
+        "2024-10-29",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2025-11-04",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "INTC": {
+      "name": "INTEL CORP",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-23",
+        "2026-01-22",
+        "2025-10-23",
+        "2025-07-24",
+        "2025-04-24",
+        "2025-01-30",
+        "2024-10-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-22",
+          "basis": "2025-10-23",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-21",
+          "basis": "2026-01-22",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "QCOM": {
+      "name": "QUALCOMM INC/DE",
+      "bisher": [
+        "2026-04-29",
+        "2026-02-04",
+        "2025-11-05",
+        "2025-07-30",
+        "2025-04-30",
+        "2025-02-05",
+        "2024-11-06",
+        "2024-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "TXN": {
+      "name": "TEXAS INSTRUMENTS INC",
+      "bisher": [
+        "2026-07-22",
+        "2026-04-22",
+        "2026-01-27",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-23",
+        "2025-01-23",
+        "2024-10-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "ORCL": {
+      "name": "ORACLE CORP",
+      "bisher": [
+        "2026-06-10",
+        "2026-03-10",
+        "2025-12-10",
+        "2025-09-09",
+        "2025-06-11",
+        "2025-03-10",
+        "2024-12-09",
+        "2024-09-09"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-08",
+          "basis": "2025-09-09",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-12-09",
+          "basis": "2025-12-10",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-03-09",
+          "basis": "2026-03-10",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-06-09",
+          "basis": "2026-06-10",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CRM": {
+      "name": "Salesforce, Inc.",
+      "bisher": [
+        "2026-05-27",
+        "2026-02-25",
+        "2025-12-03",
+        "2025-09-03",
+        "2025-05-28",
+        "2025-02-26",
+        "2024-12-03",
+        "2024-08-28"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-02",
+          "basis": "2025-09-03",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-12-02",
+          "basis": "2025-12-03",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-24",
+          "basis": "2026-02-25",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-26",
+          "basis": "2026-05-27",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ADBE": {
+      "name": "ADOBE INC.",
+      "bisher": [
+        "2026-06-11",
+        "2026-03-12",
+        "2025-12-10",
+        "2025-09-11",
+        "2025-06-12",
+        "2025-03-12",
+        "2024-12-11",
+        "2024-09-12"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-10",
+          "basis": "2025-09-11",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-12-09",
+          "basis": "2025-12-10",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-11",
+          "basis": "2026-03-12",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-06-10",
+          "basis": "2026-06-11",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CSCO": {
+      "name": "CISCO SYSTEMS, INC.",
+      "bisher": [
+        "2026-05-13",
+        "2026-02-11",
+        "2025-11-12",
+        "2025-08-13",
+        "2025-05-14",
+        "2025-02-12",
+        "2024-11-13",
+        "2024-08-14"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-12",
+          "basis": "2025-08-13",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-11",
+          "basis": "2025-11-12",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-02-11",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-12",
+          "basis": "2026-05-13",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "IBM": {
+      "name": "INTERNATIONAL BUSINESS MACHINES CORP",
+      "bisher": [
+        "2026-07-22",
+        "2026-07-14",
+        "2026-04-22",
+        "2026-01-28",
+        "2025-10-22",
+        "2025-07-23",
+        "2025-04-23",
+        "2025-01-29"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-13",
+          "basis": "2026-07-14",
+          "streuungTage": 8
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "PLTR": {
+      "name": "Palantir Technologies Inc.",
+      "bisher": [
+        "2026-05-04",
+        "2026-02-02",
+        "2025-11-03",
+        "2025-08-04",
+        "2025-05-05",
+        "2025-02-03",
+        "2024-11-04",
+        "2024-08-05"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-03",
+          "basis": "2025-08-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2025-11-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-01",
+          "basis": "2026-02-02",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-03",
+          "basis": "2026-05-04",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "NFLX": {
+      "name": "NETFLIX INC",
+      "bisher": [
+        "2026-07-16",
+        "2026-04-16",
+        "2026-01-20",
+        "2025-10-21",
+        "2025-07-17",
+        "2025-04-17",
+        "2025-01-21",
+        "2024-10-17"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-01-19",
+          "basis": "2026-01-20",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-15",
+          "basis": "2026-04-16",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-15",
+          "basis": "2026-07-16",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "UBER": {
+      "name": "Uber Technologies, Inc",
+      "bisher": [
+        "2026-05-06",
+        "2026-02-04",
+        "2025-11-04",
+        "2025-08-06",
+        "2025-05-07",
+        "2025-02-05",
+        "2024-10-31",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-05",
+          "basis": "2025-08-06",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2025-11-04",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2026-05-06",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ABNB": {
+      "name": "Airbnb, Inc.",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-12",
+        "2025-11-06",
+        "2025-08-06",
+        "2025-05-01",
+        "2025-02-13",
+        "2024-11-07",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-05",
+          "basis": "2025-08-06",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-11",
+          "basis": "2026-02-12",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "PYPL": {
+      "name": "PayPal Holdings, Inc.",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-03",
+        "2025-10-28",
+        "2025-07-29",
+        "2025-04-29",
+        "2025-02-04",
+        "2024-10-29",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2025-10-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "V": {
+      "name": "VISA INC.",
+      "bisher": [
+        "2026-04-28",
+        "2026-01-29",
+        "2025-10-28",
+        "2025-07-29",
+        "2025-04-29",
+        "2025-01-30",
+        "2024-10-29",
+        "2024-07-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2025-10-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "MA": {
+      "name": "Mastercard Inc",
+      "bisher": [
+        "2026-04-30",
+        "2026-01-29",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-05-01",
+        "2025-01-30",
+        "2024-10-31",
+        "2024-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "LLY": {
+      "name": "ELI LILLY & Co",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-04",
+        "2025-10-30",
+        "2025-08-07",
+        "2025-05-01",
+        "2025-02-06",
+        "2025-01-14",
+        "2024-10-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "JNJ": {
+      "name": "JOHNSON & JOHNSON",
+      "bisher": [
+        "2026-07-15",
+        "2026-04-14",
+        "2026-01-21",
+        "2025-10-14",
+        "2025-07-16",
+        "2025-04-15",
+        "2025-01-22",
+        "2024-10-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-13",
+          "basis": "2025-10-14",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-20",
+          "basis": "2026-01-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-13",
+          "basis": "2026-04-14",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "UNH": {
+      "name": "UNITEDHEALTH GROUP INC",
+      "bisher": [
+        "2026-07-16",
+        "2026-04-21",
+        "2026-01-27",
+        "2025-10-28",
+        "2025-07-29",
+        "2025-04-17",
+        "2025-01-16",
+        "2024-10-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2025-10-28",
+          "streuungTage": 14
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 12
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-07-15",
+          "basis": "2026-07-16",
+          "streuungTage": 12
+        }
+      ]
+    },
+    "ABBV": {
+      "name": "AbbVie Inc.",
+      "bisher": [
+        "2026-07-06",
+        "2026-04-29",
+        "2026-04-03",
+        "2026-02-04",
+        "2026-01-07",
+        "2025-10-31",
+        "2025-10-03",
+        "2025-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-04-02",
+          "basis": "2026-04-03",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-07-05",
+          "basis": "2026-07-06",
+          "streuungTage": 4
+        }
+      ]
+    },
+    "MRK": {
+      "name": "Merck & Co., Inc.",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-03",
+        "2025-10-30",
+        "2025-07-29",
+        "2025-04-24",
+        "2025-02-04",
+        "2024-10-31",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "PFE": {
+      "name": "PFIZER INC",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-03",
+        "2025-11-04",
+        "2025-08-05",
+        "2025-04-29",
+        "2025-02-04",
+        "2024-10-29",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2025-11-04",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "TMO": {
+      "name": "THERMO FISHER SCIENTIFIC INC.",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-23",
+        "2026-01-29",
+        "2025-10-22",
+        "2025-07-23",
+        "2025-04-23",
+        "2025-01-30",
+        "2024-10-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-21",
+          "basis": "2025-10-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "BRK-B": {
+      "name": "BERKSHIRE HATHAWAY INC",
+      "bisher": [
+        "2026-05-07",
+        "2026-03-02",
+        "2025-11-03",
+        "2025-08-04",
+        "2025-05-06",
+        "2025-02-24",
+        "2024-11-04",
+        "2024-08-05"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-03",
+          "basis": "2025-08-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2025-11-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-01",
+          "basis": "2026-03-02",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "WMT": {
+      "name": "Walmart Inc.",
+      "bisher": [
+        "2026-05-21",
+        "2026-02-19",
+        "2025-11-20",
+        "2025-08-21",
+        "2025-05-15",
+        "2025-02-20",
+        "2024-11-19",
+        "2024-08-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-20",
+          "basis": "2025-08-21",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-19",
+          "basis": "2025-11-20",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-02-18",
+          "basis": "2026-02-19",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-20",
+          "basis": "2026-05-21",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "COST": {
+      "name": "COSTCO WHOLESALE CORP /NEW",
+      "bisher": [
+        "2026-05-28",
+        "2026-03-05",
+        "2025-12-11",
+        "2025-09-25",
+        "2025-05-29",
+        "2025-03-06",
+        "2024-12-12",
+        "2024-09-26"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-24",
+          "basis": "2025-09-25",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-12-10",
+          "basis": "2025-12-11",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-04",
+          "basis": "2026-03-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-27",
+          "basis": "2026-05-28",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "PG": {
+      "name": "PROCTER & GAMBLE Co",
+      "bisher": [
+        "2026-04-24",
+        "2026-01-22",
+        "2025-10-24",
+        "2025-07-29",
+        "2025-04-24",
+        "2025-01-22",
+        "2024-10-18",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-23",
+          "basis": "2025-10-24",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-21",
+          "basis": "2026-01-22",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-23",
+          "basis": "2026-04-24",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "KO": {
+      "name": "COCA COLA CO",
+      "bisher": [
+        "2026-04-28",
+        "2026-02-10",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-29",
+        "2025-02-11",
+        "2024-10-23",
+        "2024-07-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "PEP": {
+      "name": "PEPSICO INC",
+      "bisher": [
+        "2026-07-09",
+        "2026-04-16",
+        "2026-02-03",
+        "2025-10-09",
+        "2025-07-17",
+        "2025-04-24",
+        "2025-02-04",
+        "2024-10-08"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-08",
+          "basis": "2025-10-09",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-15",
+          "basis": "2026-04-16",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-07-08",
+          "basis": "2026-07-09",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "MCD": {
+      "name": "MCDONALDS CORP",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-11",
+        "2025-11-05",
+        "2025-08-06",
+        "2025-05-01",
+        "2025-02-10",
+        "2024-10-29",
+        "2024-07-29"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-05",
+          "basis": "2025-08-06",
+          "streuungTage": 9
+        },
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 8
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-02-11",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "NKE": {
+      "name": "NIKE, Inc.",
+      "bisher": [
+        "2026-06-30",
+        "2026-06-23",
+        "2026-03-31",
+        "2025-12-18",
+        "2025-09-30",
+        "2025-06-26",
+        "2025-03-20",
+        "2024-12-19"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-12-17",
+          "basis": "2025-12-18",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-30",
+          "basis": "2026-03-31",
+          "streuungTage": 12
+        },
+        {
+          "erwartet": "2027-06-22",
+          "basis": "2026-06-23",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-06-29",
+          "basis": "2026-06-30",
+          "streuungTage": 5
+        }
+      ]
+    },
+    "HD": {
+      "name": "HOME DEPOT, INC.",
+      "bisher": [
+        "2026-05-19",
+        "2026-02-24",
+        "2025-11-18",
+        "2025-08-19",
+        "2025-05-20",
+        "2025-02-25",
+        "2024-11-12",
+        "2024-08-13"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-18",
+          "basis": "2025-08-19",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-17",
+          "basis": "2025-11-18",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-23",
+          "basis": "2026-02-24",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-18",
+          "basis": "2026-05-19",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "BA": {
+      "name": "BOEING CO",
+      "bisher": [
+        "2026-04-22",
+        "2026-01-27",
+        "2025-10-29",
+        "2025-07-29",
+        "2025-04-23",
+        "2025-01-28",
+        "2024-10-23",
+        "2024-10-11"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CAT": {
+      "name": "CATERPILLAR INC",
+      "bisher": [
+        "2026-04-30",
+        "2026-01-29",
+        "2025-10-29",
+        "2025-08-05",
+        "2025-04-30",
+        "2025-01-30",
+        "2024-10-30",
+        "2024-10-11"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "DE": {
+      "name": "DEERE & CO",
+      "bisher": [
+        "2026-05-21",
+        "2026-02-19",
+        "2025-11-26",
+        "2025-08-14",
+        "2025-05-15",
+        "2025-02-13",
+        "2024-11-21",
+        "2024-08-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-13",
+          "basis": "2025-08-14",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-25",
+          "basis": "2025-11-26",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-02-18",
+          "basis": "2026-02-19",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-05-20",
+          "basis": "2026-05-21",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "GE": {
+      "name": "GENERAL ELECTRIC CO",
+      "bisher": [
+        "2026-07-16",
+        "2026-04-21",
+        "2026-01-22",
+        "2025-10-21",
+        "2025-07-17",
+        "2025-04-22",
+        "2025-01-23",
+        "2024-10-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-21",
+          "basis": "2026-01-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-15",
+          "basis": "2026-07-16",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "LMT": {
+      "name": "LOCKHEED MARTIN CORP",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-23",
+        "2026-01-29",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-22",
+        "2025-01-28",
+        "2024-10-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "RTX": {
+      "name": "RTX Corp",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-21",
+        "2026-01-27",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-22",
+        "2025-01-28",
+        "2024-10-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "UNP": {
+      "name": "UNION PACIFIC CORP",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-23",
+        "2026-01-27",
+        "2025-10-23",
+        "2025-07-24",
+        "2025-04-24",
+        "2025-01-23",
+        "2024-10-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-22",
+          "basis": "2025-10-23",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "UPS": {
+      "name": "UNITED PARCEL SERVICE INC",
+      "bisher": [
+        "2026-04-28",
+        "2026-01-27",
+        "2025-10-28",
+        "2025-07-29",
+        "2025-04-29",
+        "2025-01-30",
+        "2024-10-24",
+        "2024-07-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2025-10-28",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CVX": {
+      "name": "CHEVRON CORP",
+      "bisher": [
+        "2026-05-01",
+        "2026-04-09",
+        "2026-01-30",
+        "2025-10-31",
+        "2025-08-01",
+        "2025-05-02",
+        "2025-01-31",
+        "2024-11-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2025-10-31",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-01-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-30",
+          "basis": "2026-05-01",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "NEE": {
+      "name": "NEXTERA ENERGY INC",
+      "bisher": [
+        "2026-07-24",
+        "2026-04-23",
+        "2026-01-27",
+        "2026-01-02",
+        "2025-10-28",
+        "2025-07-23",
+        "2025-04-23",
+        "2025-01-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-01",
+          "basis": "2026-01-02",
+          "streuungTage": 21
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-23",
+          "basis": "2026-07-24",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "LIN": {
+      "name": "LINDE PLC",
+      "bisher": [
+        "2026-05-01",
+        "2026-02-05",
+        "2025-10-31",
+        "2025-08-01",
+        "2025-05-01",
+        "2025-02-06",
+        "2024-10-31",
+        "2024-08-02"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-31",
+          "basis": "2025-08-01",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2025-10-31",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-30",
+          "basis": "2026-05-01",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "GOOG": {
+      "name": "Alphabet Inc.",
+      "bisher": [
+        "2026-07-22",
+        "2026-04-29",
+        "2026-02-04",
+        "2025-10-29",
+        "2025-07-23",
+        "2025-04-24",
+        "2025-02-04",
+        "2024-10-29"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "MKL": {
+      "name": "MARKEL GROUP INC.",
+      "bisher": [
+        "2026-02-04",
+        "2025-10-29",
+        "2025-02-05",
+        "2024-01-31",
+        "2023-02-01",
+        "2022-02-02",
+        "2021-02-02",
+        "2020-02-04"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "MU": {
+      "name": "MICRON TECHNOLOGY INC",
+      "bisher": [
+        "2026-06-24",
+        "2026-03-18",
+        "2025-12-17",
+        "2025-09-23",
+        "2025-06-25",
+        "2025-03-20",
+        "2024-12-18",
+        "2024-09-25"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-22",
+          "basis": "2025-09-23",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-12-16",
+          "basis": "2025-12-17",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-17",
+          "basis": "2026-03-18",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-06-23",
+          "basis": "2026-06-24",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "AMAT": {
+      "name": "APPLIED MATERIALS INC /DE",
+      "bisher": [
+        "2026-05-14",
+        "2026-02-12",
+        "2025-11-13",
+        "2025-08-14",
+        "2025-05-15",
+        "2025-02-13",
+        "2024-11-14",
+        "2024-08-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-13",
+          "basis": "2025-08-14",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-12",
+          "basis": "2025-11-13",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-11",
+          "basis": "2026-02-12",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-13",
+          "basis": "2026-05-14",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "LRCX": {
+      "name": "LAM RESEARCH CORP",
+      "bisher": [
+        "2026-04-22",
+        "2026-01-28",
+        "2025-10-22",
+        "2025-07-30",
+        "2025-04-23",
+        "2025-01-29",
+        "2024-10-23",
+        "2024-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-21",
+          "basis": "2025-10-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "KLAC": {
+      "name": "KLA CORP",
+      "bisher": [
+        "2026-04-29",
+        "2026-01-29",
+        "2025-10-29",
+        "2025-07-31",
+        "2025-04-30",
+        "2025-01-30",
+        "2024-10-30",
+        "2024-07-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 8
+        },
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ADI": {
+      "name": "ANALOG DEVICES INC",
+      "bisher": [
+        "2026-05-20",
+        "2026-02-18",
+        "2025-11-25",
+        "2025-08-20",
+        "2025-05-22",
+        "2025-02-19",
+        "2024-11-26",
+        "2024-08-21"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-19",
+          "basis": "2025-08-20",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-24",
+          "basis": "2025-11-25",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-17",
+          "basis": "2026-02-18",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-19",
+          "basis": "2026-05-20",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "NXPI": {
+      "name": "NXP Semiconductors N.V.",
+      "bisher": [
+        "2026-04-28",
+        "2026-02-03",
+        "2025-10-28",
+        "2025-07-22",
+        "2025-04-28",
+        "2025-02-04",
+        "2024-11-05",
+        "2024-07-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2025-10-28",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "MRVL": {
+      "name": "Marvell Technology, Inc.",
+      "bisher": [
+        "2026-05-27",
+        "2026-03-05",
+        "2025-12-02",
+        "2025-08-28",
+        "2025-05-29",
+        "2025-05-06",
+        "2025-03-05",
+        "2024-12-03"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-27",
+          "basis": "2025-08-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-12-01",
+          "basis": "2025-12-02",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-04",
+          "basis": "2026-03-05",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-05-26",
+          "basis": "2026-05-27",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "SNPS": {
+      "name": "SYNOPSYS INC",
+      "bisher": [
+        "2026-05-27",
+        "2026-02-25",
+        "2025-12-10",
+        "2025-09-09",
+        "2025-05-28",
+        "2025-02-26",
+        "2024-12-04",
+        "2024-08-21"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-08",
+          "basis": "2025-09-09",
+          "streuungTage": 20
+        },
+        {
+          "erwartet": "2026-12-09",
+          "basis": "2025-12-10",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-24",
+          "basis": "2026-02-25",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-26",
+          "basis": "2026-05-27",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CDNS": {
+      "name": "CADENCE DESIGN SYSTEMS INC",
+      "bisher": [
+        "2026-07-27",
+        "2026-04-27",
+        "2026-02-17",
+        "2025-10-27",
+        "2025-07-28",
+        "2025-04-28",
+        "2025-02-18",
+        "2024-10-28"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-26",
+          "basis": "2025-10-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-16",
+          "basis": "2026-02-17",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-26",
+          "basis": "2026-04-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-26",
+          "basis": "2026-07-27",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "NOW": {
+      "name": "ServiceNow, Inc.",
+      "bisher": [
+        "2026-07-22",
+        "2026-04-22",
+        "2026-01-28",
+        "2025-10-29",
+        "2025-07-23",
+        "2025-04-23",
+        "2025-01-29",
+        "2024-10-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "INTU": {
+      "name": "INTUIT INC.",
+      "bisher": [
+        "2026-05-20",
+        "2026-02-26",
+        "2025-11-20",
+        "2025-08-21",
+        "2025-05-22",
+        "2025-02-25",
+        "2024-11-21",
+        "2024-08-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-20",
+          "basis": "2025-08-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-19",
+          "basis": "2025-11-20",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-25",
+          "basis": "2026-02-26",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-05-19",
+          "basis": "2026-05-20",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "WDAY": {
+      "name": "Workday, Inc.",
+      "bisher": [
+        "2026-05-21",
+        "2026-02-24",
+        "2026-02-04",
+        "2025-11-25",
+        "2025-08-21",
+        "2025-05-22",
+        "2025-02-25",
+        "2025-02-05"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-24",
+          "basis": "2025-11-25",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-23",
+          "basis": "2026-02-24",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-20",
+          "basis": "2026-05-21",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "SNOW": {
+      "name": "Snowflake Inc.",
+      "bisher": [
+        "2026-05-27",
+        "2026-02-25",
+        "2025-12-03",
+        "2025-08-27",
+        "2025-05-21",
+        "2025-02-26",
+        "2024-11-20",
+        "2024-08-21"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-26",
+          "basis": "2025-08-27",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-12-02",
+          "basis": "2025-12-03",
+          "streuungTage": 14
+        },
+        {
+          "erwartet": "2027-02-24",
+          "basis": "2026-02-25",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-26",
+          "basis": "2026-05-27",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "DDOG": {
+      "name": "Datadog, Inc.",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-10",
+        "2025-11-06",
+        "2025-08-07",
+        "2025-05-06",
+        "2025-02-13",
+        "2024-11-07",
+        "2024-08-08"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "CRWD": {
+      "name": "CrowdStrike Holdings, Inc.",
+      "bisher": [
+        "2026-06-03",
+        "2026-03-03",
+        "2025-12-02",
+        "2025-08-27",
+        "2025-06-03",
+        "2025-05-07",
+        "2025-03-04",
+        "2024-11-26"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-26",
+          "basis": "2025-08-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-12-01",
+          "basis": "2025-12-02",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-03-02",
+          "basis": "2026-03-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-06-02",
+          "basis": "2026-06-03",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "PANW": {
+      "name": "Palo Alto Networks Inc",
+      "bisher": [
+        "2026-06-02",
+        "2026-02-17",
+        "2025-11-19",
+        "2025-08-18",
+        "2025-05-20",
+        "2025-02-13",
+        "2024-11-20",
+        "2024-08-19"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-17",
+          "basis": "2025-08-18",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-18",
+          "basis": "2025-11-19",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-16",
+          "basis": "2026-02-17",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-06-01",
+          "basis": "2026-06-02",
+          "streuungTage": 14
+        }
+      ]
+    },
+    "FTNT": {
+      "name": "Fortinet, Inc.",
+      "bisher": [
+        "2026-05-06",
+        "2026-02-05",
+        "2025-11-05",
+        "2025-08-06",
+        "2025-05-07",
+        "2025-02-06",
+        "2024-11-07",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-05",
+          "basis": "2025-08-06",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2026-05-06",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ZS": {
+      "name": "Zscaler, Inc.",
+      "bisher": [
+        "2026-05-26",
+        "2026-02-26",
+        "2025-11-25",
+        "2025-09-02",
+        "2025-05-29",
+        "2025-03-05",
+        "2024-12-02",
+        "2024-09-03"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-09-01",
+          "basis": "2025-09-02",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-24",
+          "basis": "2025-11-25",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-02-25",
+          "basis": "2026-02-26",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-05-25",
+          "basis": "2026-05-26",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "TEAM": {
+      "name": "Atlassian Corp",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-05",
+        "2025-10-30",
+        "2025-08-07",
+        "2025-05-01",
+        "2025-01-30",
+        "2024-10-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "SHOP": {
+      "name": "SHOPIFY INC.",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-11",
+        "2025-11-04",
+        "2025-08-06",
+        "2025-05-08",
+        "2025-02-11"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-02-11",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "XYZ": {
+      "name": "Block, Inc.",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-26",
+        "2025-11-06",
+        "2025-08-07",
+        "2025-05-01",
+        "2025-02-20",
+        "2024-11-07",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-25",
+          "basis": "2026-02-26",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "AXP": {
+      "name": "AMERICAN EXPRESS CO",
+      "bisher": [
+        "2026-07-24",
+        "2026-04-23",
+        "2026-01-30",
+        "2025-10-17",
+        "2025-07-18",
+        "2025-04-17",
+        "2025-01-24",
+        "2024-10-18"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-16",
+          "basis": "2025-10-17",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-01-30",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-07-23",
+          "basis": "2026-07-24",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "SCHW": {
+      "name": "SCHWAB CHARLES CORP",
+      "bisher": [
+        "2026-07-21",
+        "2026-04-16",
+        "2026-01-21",
+        "2025-10-16",
+        "2025-07-18",
+        "2025-04-17",
+        "2025-01-21",
+        "2024-10-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-15",
+          "basis": "2025-10-16",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-01-20",
+          "basis": "2026-01-21",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-15",
+          "basis": "2026-04-16",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-20",
+          "basis": "2026-07-21",
+          "streuungTage": 4
+        }
+      ]
+    },
+    "WFC": {
+      "name": "WELLS FARGO & COMPANY/MN",
+      "bisher": [
+        "2026-07-14",
+        "2026-04-14",
+        "2026-01-14",
+        "2025-10-14",
+        "2025-07-15",
+        "2025-04-11"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-04-13",
+          "basis": "2026-04-14",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-07-13",
+          "basis": "2026-07-14",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "USB": {
+      "name": "US BANCORP \\DE\\",
+      "bisher": [
+        "2026-07-16",
+        "2026-04-16",
+        "2026-01-20",
+        "2025-10-16",
+        "2025-07-17",
+        "2025-04-16",
+        "2025-01-16",
+        "2024-10-16"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-15",
+          "basis": "2025-10-16",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-01-19",
+          "basis": "2026-01-20",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-04-15",
+          "basis": "2026-04-16",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-15",
+          "basis": "2026-07-16",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "PNC": {
+      "name": "PNC FINANCIAL SERVICES GROUP, INC.",
+      "bisher": [
+        "2026-07-15",
+        "2026-04-15",
+        "2026-01-16",
+        "2025-11-07",
+        "2025-10-15",
+        "2025-07-16",
+        "2025-04-15",
+        "2025-01-16"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2025-11-07",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-15",
+          "basis": "2026-01-16",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-14",
+          "basis": "2026-04-15",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "STT": {
+      "name": "STATE STREET CORP",
+      "bisher": [
+        "2026-07-16",
+        "2026-04-17",
+        "2026-01-16",
+        "2025-10-17",
+        "2025-07-15",
+        "2025-04-17",
+        "2025-01-17"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-15",
+          "basis": "2026-01-16",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-16",
+          "basis": "2026-04-17",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-15",
+          "basis": "2026-07-16",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "PGR": {
+      "name": "PROGRESSIVE CORP/OH/",
+      "bisher": [
+        "2026-07-15",
+        "2026-04-15",
+        "2026-01-28",
+        "2025-10-15",
+        "2025-07-16",
+        "2025-04-16",
+        "2025-01-29",
+        "2024-10-15"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-14",
+          "basis": "2025-10-15",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-14",
+          "basis": "2026-04-15",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CB": {
+      "name": "Chubb Ltd",
+      "bisher": [
+        "2026-07-21",
+        "2026-04-21",
+        "2026-02-03",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-22",
+        "2025-01-28",
+        "2024-10-29"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-20",
+          "basis": "2026-07-21",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "AON": {
+      "name": "Aon plc",
+      "bisher": [
+        "2026-05-01",
+        "2026-01-30",
+        "2025-10-31",
+        "2025-07-25",
+        "2025-04-25",
+        "2025-01-31",
+        "2024-10-25",
+        "2024-07-26"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2025-10-31",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-01-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-30",
+          "basis": "2026-05-01",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "MET": {
+      "name": "METLIFE INC",
+      "bisher": [
+        "2026-05-06",
+        "2026-02-04",
+        "2025-11-05",
+        "2025-08-06",
+        "2025-04-30",
+        "2025-02-05",
+        "2024-10-30",
+        "2024-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-05",
+          "basis": "2025-08-06",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2026-05-06",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "PRU": {
+      "name": "PRUDENTIAL FINANCIAL INC",
+      "bisher": [
+        "2026-07-15",
+        "2026-05-05",
+        "2026-04-21",
+        "2026-04-14",
+        "2026-02-03",
+        "2026-01-15",
+        "2025-10-29",
+        "2025-10-14"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-04-13",
+          "basis": "2026-04-14",
+          "streuungTage": 15
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 8
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "CI": {
+      "name": "Cigna Group",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-05",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-05-02",
+        "2025-01-30",
+        "2024-10-31",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "ELV": {
+      "name": "Elevance Health, Inc.",
+      "bisher": [
+        "2026-07-15",
+        "2026-04-22",
+        "2026-01-28",
+        "2025-10-21",
+        "2025-07-17",
+        "2025-04-22",
+        "2025-04-17",
+        "2025-01-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "HCA": {
+      "name": "HCA Healthcare, Inc.",
+      "bisher": [
+        "2026-07-24",
+        "2026-07-14",
+        "2026-04-24",
+        "2026-01-27",
+        "2025-10-24",
+        "2025-07-25",
+        "2025-04-25",
+        "2025-01-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-04-23",
+          "basis": "2026-04-24",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-13",
+          "basis": "2026-07-14",
+          "streuungTage": 10
+        },
+        {
+          "erwartet": "2027-07-23",
+          "basis": "2026-07-24",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "MCK": {
+      "name": "MCKESSON CORP",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-04",
+        "2025-11-05",
+        "2025-09-18",
+        "2025-08-06",
+        "2025-05-08",
+        "2025-02-05",
+        "2024-11-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "COR": {
+      "name": "Cencora, Inc.",
+      "bisher": [
+        "2026-05-06",
+        "2026-02-04",
+        "2025-11-05",
+        "2025-08-06",
+        "2025-05-07",
+        "2025-02-05",
+        "2024-11-06",
+        "2024-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-05",
+          "basis": "2025-08-06",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2026-05-06",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CVS": {
+      "name": "CVS HEALTH Corp",
+      "bisher": [
+        "2026-05-06",
+        "2026-02-10",
+        "2025-10-29",
+        "2025-07-31",
+        "2025-05-01",
+        "2025-02-12",
+        "2024-11-06",
+        "2024-10-18"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2026-05-06",
+          "streuungTage": 6
+        }
+      ]
+    },
+    "BMY": {
+      "name": "BRISTOL MYERS SQUIBB CO",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-05",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-04-24",
+        "2025-02-06",
+        "2024-10-31",
+        "2024-07-26"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "AMGN": {
+      "name": "AMGEN INC",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-03",
+        "2025-11-04",
+        "2025-08-05",
+        "2025-05-01",
+        "2025-02-04",
+        "2024-10-30",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2025-11-04",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "GILD": {
+      "name": "GILEAD SCIENCES, INC.",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-10",
+        "2025-10-30",
+        "2025-08-07",
+        "2025-04-24",
+        "2025-02-11",
+        "2024-11-06",
+        "2024-08-08"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 14
+        }
+      ]
+    },
+    "VRTX": {
+      "name": "VERTEX PHARMACEUTICALS INC / MA",
+      "bisher": [
+        "2026-05-04",
+        "2026-02-12",
+        "2025-11-03",
+        "2025-08-04",
+        "2025-05-05",
+        "2025-02-10",
+        "2024-11-04",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-03",
+          "basis": "2025-08-04",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2025-11-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-11",
+          "basis": "2026-02-12",
+          "streuungTage": 3
+        },
+        {
+          "erwartet": "2027-05-03",
+          "basis": "2026-05-04",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "REGN": {
+      "name": "REGENERON PHARMACEUTICALS, INC.",
+      "bisher": [
+        "2026-07-06",
+        "2026-04-29",
+        "2026-04-08",
+        "2026-01-30",
+        "2026-01-12",
+        "2025-10-28",
+        "2025-10-06",
+        "2025-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-01-30",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-04-07",
+          "basis": "2026-04-08",
+          "streuungTage": 20
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "MRNA": {
+      "name": "Moderna, Inc.",
+      "bisher": [
+        "2026-05-01",
+        "2026-02-13",
+        "2026-01-12",
+        "2025-11-06",
+        "2025-08-01",
+        "2025-05-01",
+        "2025-02-14",
+        "2025-01-13"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-11",
+          "basis": "2026-01-12",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-12",
+          "basis": "2026-02-13",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-30",
+          "basis": "2026-05-01",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "BIIB": {
+      "name": "BIOGEN INC.",
+      "bisher": [
+        "2026-07-01",
+        "2026-04-29",
+        "2026-04-06",
+        "2026-02-06",
+        "2026-01-14",
+        "2025-10-30",
+        "2025-10-14",
+        "2025-07-31"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-02-06",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-06-30",
+          "basis": "2026-07-01",
+          "streuungTage": 5
+        }
+      ]
+    },
+    "ZTS": {
+      "name": "Zoetis Inc.",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-12",
+        "2025-11-04",
+        "2025-08-05",
+        "2025-05-06",
+        "2025-02-13",
+        "2024-11-04",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2025-11-04",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-11",
+          "basis": "2026-02-12",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 2
+        }
+      ]
+    },
+    "DHR": {
+      "name": "DANAHER CORP /DE/",
+      "bisher": [
+        "2026-07-21",
+        "2026-04-21",
+        "2026-01-28",
+        "2026-01-12",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-22",
+        "2025-01-29"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-11",
+          "basis": "2026-01-12",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-20",
+          "basis": "2026-07-21",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ABT": {
+      "name": "ABBOTT LABORATORIES",
+      "bisher": [
+        "2026-07-16",
+        "2026-04-16",
+        "2026-01-22",
+        "2025-10-15",
+        "2025-07-17",
+        "2025-04-16",
+        "2025-01-22",
+        "2024-10-16"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-14",
+          "basis": "2025-10-15",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-21",
+          "basis": "2026-01-22",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-15",
+          "basis": "2026-04-16",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-15",
+          "basis": "2026-07-16",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "MDT": {
+      "name": "Medtronic plc",
+      "bisher": [
+        "2026-06-03",
+        "2026-02-17",
+        "2025-11-18",
+        "2025-08-19",
+        "2025-05-21",
+        "2025-02-18",
+        "2024-11-19",
+        "2024-08-20"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-18",
+          "basis": "2025-08-19",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-17",
+          "basis": "2025-11-18",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-16",
+          "basis": "2026-02-17",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-06-02",
+          "basis": "2026-06-03",
+          "streuungTage": 14
+        }
+      ]
+    },
+    "SYK": {
+      "name": "STRYKER CORP",
+      "bisher": [
+        "2026-04-30",
+        "2026-01-29",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-05-01",
+        "2025-01-28",
+        "2024-10-29",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "BDX": {
+      "name": "BECTON DICKINSON & CO",
+      "bisher": [
+        "2026-05-07",
+        "2026-04-02",
+        "2026-02-09",
+        "2025-11-06",
+        "2025-10-15",
+        "2025-08-07",
+        "2025-05-01",
+        "2025-02-05"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-02-09",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "ISRG": {
+      "name": "INTUITIVE SURGICAL INC",
+      "bisher": [
+        "2026-07-16",
+        "2026-04-21",
+        "2026-01-22",
+        "2026-01-14",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-22",
+        "2025-01-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-13",
+          "basis": "2026-01-14",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-21",
+          "basis": "2026-01-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-15",
+          "basis": "2026-07-16",
+          "streuungTage": 5
+        }
+      ]
+    },
+    "IDXX": {
+      "name": "IDEXX LABORATORIES INC /DE",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-02",
+        "2025-11-03",
+        "2025-08-04",
+        "2025-05-01",
+        "2025-02-03",
+        "2024-10-31",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-03",
+          "basis": "2025-08-04",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2025-11-03",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-02-01",
+          "basis": "2026-02-02",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 5
+        }
+      ]
+    },
+    "ILMN": {
+      "name": "ILLUMINA, INC.",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-05",
+        "2026-01-13",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-05-08",
+        "2025-02-06",
+        "2025-01-14"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-01-12",
+          "basis": "2026-01-13",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "GM": {
+      "name": "General Motors Co",
+      "bisher": [
+        "2026-07-21",
+        "2026-04-28",
+        "2026-01-27",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-29",
+        "2025-01-28",
+        "2024-10-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-20",
+          "basis": "2026-07-21",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "F": {
+      "name": "FORD MOTOR CO",
+      "bisher": [
+        "2026-04-29",
+        "2026-02-10",
+        "2025-10-23",
+        "2025-07-30",
+        "2025-05-05",
+        "2025-02-05",
+        "2024-10-28",
+        "2024-07-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-10-22",
+          "basis": "2025-10-23",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 5
+        }
+      ]
+    },
+    "PCAR": {
+      "name": "PACCAR INC",
+      "bisher": [
+        "2026-04-28",
+        "2026-01-27",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-29",
+        "2025-01-28",
+        "2024-10-22",
+        "2024-07-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CMI": {
+      "name": "CUMMINS INC",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-05",
+        "2025-11-06",
+        "2025-08-05",
+        "2025-05-05",
+        "2025-02-04",
+        "2024-11-05",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "HON": {
+      "name": "HONEYWELL INTERNATIONAL INC",
+      "bisher": [
+        "2026-07-23",
+        "2026-06-29",
+        "2026-04-23",
+        "2026-01-29",
+        "2025-12-22",
+        "2025-10-23",
+        "2025-07-24",
+        "2025-04-29"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "MMM": {
+      "name": "3M CO",
+      "bisher": [
+        "2026-07-21",
+        "2026-04-21",
+        "2026-01-20",
+        "2025-10-21",
+        "2025-07-18",
+        "2025-04-22",
+        "2025-01-21",
+        "2024-10-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-19",
+          "basis": "2026-01-20",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-20",
+          "basis": "2026-07-21",
+          "streuungTage": 4
+        }
+      ]
+    },
+    "EMR": {
+      "name": "EMERSON ELECTRIC CO",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-03",
+        "2025-11-20",
+        "2025-11-05",
+        "2025-08-06",
+        "2025-05-07",
+        "2025-02-05",
+        "2024-11-05"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-11-19",
+          "basis": "2025-11-20",
+          "streuungTage": 16
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "ETN": {
+      "name": "Eaton Corp plc",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-03",
+        "2025-11-04",
+        "2025-08-05",
+        "2025-05-02",
+        "2025-01-31",
+        "2024-10-31",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2025-11-04",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 4
+        }
+      ]
+    },
+    "PH": {
+      "name": "Parker-Hannifin Corp",
+      "bisher": [
+        "2026-04-30",
+        "2026-01-29",
+        "2025-11-06",
+        "2025-08-07",
+        "2025-05-01",
+        "2025-01-30",
+        "2024-10-31",
+        "2024-08-08"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ITW": {
+      "name": "ILLINOIS TOOL WORKS INC",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-03",
+        "2025-10-24",
+        "2025-07-30",
+        "2025-04-30",
+        "2025-02-05",
+        "2024-10-30",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-10-23",
+          "basis": "2025-10-24",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "GD": {
+      "name": "GENERAL DYNAMICS CORP",
+      "bisher": [
+        "2026-04-29",
+        "2026-01-28",
+        "2025-10-24",
+        "2025-07-23",
+        "2025-04-23",
+        "2025-01-29",
+        "2024-10-23",
+        "2024-07-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-23",
+          "basis": "2025-10-24",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "NOC": {
+      "name": "NORTHROP GRUMMAN CORP /DE/",
+      "bisher": [
+        "2026-07-21",
+        "2026-04-21",
+        "2026-01-27",
+        "2025-10-21",
+        "2025-07-22",
+        "2025-04-22",
+        "2025-01-30",
+        "2024-10-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-20",
+          "basis": "2025-10-21",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-01-27",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-20",
+          "basis": "2026-07-21",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "LHX": {
+      "name": "L3HARRIS TECHNOLOGIES, INC. /DE/",
+      "bisher": [
+        "2026-04-30",
+        "2026-01-29",
+        "2025-10-30",
+        "2025-07-24",
+        "2025-04-24",
+        "2025-01-30",
+        "2024-10-24",
+        "2024-07-25"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "TDG": {
+      "name": "TransDigm Group INC",
+      "bisher": [
+        "2026-05-05",
+        "2026-04-14",
+        "2026-02-03",
+        "2025-11-12",
+        "2025-08-05",
+        "2025-05-06",
+        "2025-02-04",
+        "2024-11-07"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-11",
+          "basis": "2025-11-12",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-02-03",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-13",
+          "basis": "2026-04-14",
+          "streuungTage": 21
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CSX": {
+      "name": "CSX CORP",
+      "bisher": [
+        "2026-07-22",
+        "2026-04-22",
+        "2026-01-22",
+        "2025-10-16",
+        "2025-07-23",
+        "2025-04-16",
+        "2025-01-23",
+        "2024-10-16"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-15",
+          "basis": "2025-10-16",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-01-21",
+          "basis": "2026-01-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "NSC": {
+      "name": "NORFOLK SOUTHERN CORP",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-24",
+        "2026-01-29",
+        "2025-10-23",
+        "2025-07-29",
+        "2025-04-23",
+        "2025-01-29",
+        "2024-10-22"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-22",
+          "basis": "2025-10-23",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-23",
+          "basis": "2026-04-24",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 5
+        }
+      ]
+    },
+    "FDX": {
+      "name": "FEDEX CORP",
+      "bisher": [
+        "2026-07-21",
+        "2026-06-23",
+        "2026-03-19",
+        "2025-12-18",
+        "2025-09-18",
+        "2025-06-24",
+        "2025-03-20",
+        "2024-12-19"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-12-17",
+          "basis": "2025-12-18",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-18",
+          "basis": "2026-03-19",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-06-22",
+          "basis": "2026-06-23",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "DAL": {
+      "name": "DELTA AIR LINES, INC.",
+      "bisher": [
+        "2026-07-10",
+        "2026-04-08",
+        "2026-01-13",
+        "2025-10-09",
+        "2025-07-10",
+        "2025-04-09",
+        "2025-01-10",
+        "2024-10-10"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-08",
+          "basis": "2025-10-09",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-12",
+          "basis": "2026-01-13",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-04-07",
+          "basis": "2026-04-08",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-09",
+          "basis": "2026-07-10",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "UAL": {
+      "name": "United Airlines Holdings, Inc.",
+      "bisher": [
+        "2026-07-15",
+        "2026-04-21",
+        "2026-01-20",
+        "2025-10-15",
+        "2025-07-16",
+        "2025-07-09",
+        "2025-04-15",
+        "2025-01-21"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-14",
+          "basis": "2025-10-15",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-01-19",
+          "basis": "2026-01-20",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-20",
+          "basis": "2026-04-21",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-07-14",
+          "basis": "2026-07-15",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "LUV": {
+      "name": "SOUTHWEST AIRLINES CO",
+      "bisher": [
+        "2026-07-22",
+        "2026-04-22",
+        "2026-01-28",
+        "2025-10-22",
+        "2025-07-23",
+        "2025-04-23",
+        "2025-01-30",
+        "2024-10-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-21",
+          "basis": "2025-10-22",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ODFL": {
+      "name": "OLD DOMINION FREIGHT LINE, INC.",
+      "bisher": [
+        "2026-04-29",
+        "2026-02-04",
+        "2025-10-29",
+        "2025-07-30",
+        "2025-04-23",
+        "2025-02-05",
+        "2024-10-23",
+        "2024-07-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-02-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "WM": {
+      "name": "WASTE MANAGEMENT INC",
+      "bisher": [
+        "2026-04-28",
+        "2026-01-28",
+        "2025-10-27",
+        "2025-07-28",
+        "2025-04-28",
+        "2025-01-30",
+        "2024-10-28",
+        "2024-07-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-26",
+          "basis": "2025-10-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "RSG": {
+      "name": "REPUBLIC SERVICES, INC.",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-17",
+        "2025-10-30",
+        "2025-07-29",
+        "2025-04-24",
+        "2025-02-13",
+        "2024-10-29",
+        "2024-07-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-02-16",
+          "basis": "2026-02-17",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 14
+        }
+      ]
+    },
+    "SHW": {
+      "name": "SHERWIN WILLIAMS CO",
+      "bisher": [
+        "2026-04-28",
+        "2026-01-29",
+        "2025-10-28",
+        "2025-07-22",
+        "2025-04-29",
+        "2025-01-30",
+        "2024-10-22",
+        "2024-07-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2025-10-28",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "ECL": {
+      "name": "ECOLAB INC.",
+      "bisher": [
+        "2026-04-28",
+        "2026-03-27",
+        "2026-03-20",
+        "2026-02-10",
+        "2025-10-28",
+        "2025-07-29",
+        "2025-04-29",
+        "2025-03-28"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-03-19",
+          "basis": "2026-03-20",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-03-26",
+          "basis": "2026-03-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2026-04-28",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "APD": {
+      "name": "Air Products & Chemicals, Inc.",
+      "bisher": [
+        "2026-04-30",
+        "2026-01-30",
+        "2025-11-06",
+        "2025-07-31",
+        "2025-05-01",
+        "2025-02-06",
+        "2025-01-14",
+        "2024-11-07"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-01-30",
+          "streuungTage": 6
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "DOW": {
+      "name": "DOW INC.",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-23",
+        "2026-01-29",
+        "2025-10-23",
+        "2025-07-24",
+        "2025-04-24",
+        "2025-01-30",
+        "2024-10-24"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-22",
+          "basis": "2025-10-23",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-28",
+          "basis": "2026-01-29",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "FCX": {
+      "name": "FREEPORT-MCMORAN INC",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-23",
+        "2026-01-22",
+        "2025-10-23",
+        "2025-07-23",
+        "2025-04-24",
+        "2025-03-31",
+        "2025-01-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-22",
+          "basis": "2025-10-23",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-01-21",
+          "basis": "2026-01-22",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "NEM": {
+      "name": "NEWMONT Corp /DE/",
+      "bisher": [
+        "2026-07-23",
+        "2026-04-23",
+        "2026-02-19",
+        "2025-10-23",
+        "2025-07-24",
+        "2025-04-23",
+        "2025-02-20",
+        "2024-10-23"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-22",
+          "basis": "2025-10-23",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-18",
+          "basis": "2026-02-19",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-22",
+          "basis": "2026-04-23",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-07-22",
+          "basis": "2026-07-23",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "NUE": {
+      "name": "NUCOR CORP",
+      "bisher": [
+        "2026-07-27",
+        "2026-04-27",
+        "2026-01-26",
+        "2025-10-27",
+        "2025-07-28",
+        "2025-04-28",
+        "2025-01-27",
+        "2024-10-21"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-26",
+          "basis": "2025-10-27",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-25",
+          "basis": "2026-01-26",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-26",
+          "basis": "2026-04-27",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-26",
+          "basis": "2026-07-27",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "VMC": {
+      "name": "Vulcan Materials CO",
+      "bisher": [
+        "2026-04-29",
+        "2026-02-17",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-04-30",
+        "2025-02-18",
+        "2024-10-30",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-16",
+          "basis": "2026-02-17",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "COP": {
+      "name": "CONOCOPHILLIPS",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-05",
+        "2025-11-06",
+        "2025-08-07",
+        "2025-05-08",
+        "2025-02-06",
+        "2024-10-31",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-04",
+          "basis": "2026-02-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "EOG": {
+      "name": "EOG RESOURCES INC",
+      "bisher": [
+        "2026-07-09",
+        "2026-05-05",
+        "2026-04-09",
+        "2026-02-24",
+        "2026-01-12",
+        "2025-11-06",
+        "2025-10-08",
+        "2025-08-07"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2027-02-23",
+          "basis": "2026-02-24",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-04-08",
+          "basis": "2026-04-09",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-07-08",
+          "basis": "2026-07-09",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "SLB": {
+      "name": "SLB LIMITED/NV",
+      "bisher": [
+        "2026-07-24",
+        "2026-04-24",
+        "2026-01-23",
+        "2025-10-17",
+        "2025-07-18",
+        "2025-04-25",
+        "2025-01-17",
+        "2024-10-18"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-16",
+          "basis": "2025-10-17",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-22",
+          "basis": "2026-01-23",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-23",
+          "basis": "2026-04-24",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-07-23",
+          "basis": "2026-07-24",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "KMI": {
+      "name": "KINDER MORGAN, INC.",
+      "bisher": [
+        "2026-07-22",
+        "2026-04-22",
+        "2026-01-21",
+        "2025-10-22",
+        "2025-07-16",
+        "2025-04-16",
+        "2025-01-22",
+        "2024-10-16"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-21",
+          "basis": "2025-10-22",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-01-20",
+          "basis": "2026-01-21",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2026-04-22",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-07-21",
+          "basis": "2026-07-22",
+          "streuungTage": 7
+        }
+      ]
+    },
+    "WMB": {
+      "name": "WILLIAMS COMPANIES, INC.",
+      "bisher": [
+        "2026-05-04",
+        "2026-02-10",
+        "2025-11-03",
+        "2025-08-04",
+        "2025-05-05",
+        "2025-02-12",
+        "2024-11-06",
+        "2024-08-05"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-03",
+          "basis": "2025-08-04",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2025-11-03",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-05-03",
+          "basis": "2026-05-04",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "DUK": {
+      "name": "Duke Energy CORP",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-10",
+        "2025-11-07",
+        "2025-08-05",
+        "2025-05-06",
+        "2025-02-13",
+        "2024-11-07",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-04",
+          "basis": "2025-08-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2025-11-07",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-02-10",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "SO": {
+      "name": "SOUTHERN CO",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-19",
+        "2025-10-30",
+        "2025-07-31",
+        "2025-05-01",
+        "2025-02-20",
+        "2024-10-31",
+        "2024-08-01"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-30",
+          "basis": "2025-07-31",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-10-29",
+          "basis": "2025-10-30",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-18",
+          "basis": "2026-02-19",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "AEP": {
+      "name": "AMERICAN ELECTRIC POWER CO INC",
+      "bisher": [
+        "2026-05-05",
+        "2026-02-12",
+        "2025-10-29",
+        "2025-07-30",
+        "2025-05-06",
+        "2025-02-13",
+        "2024-11-06",
+        "2024-07-30"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-07-29",
+          "basis": "2025-07-30",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2025-10-29",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-02-11",
+          "basis": "2026-02-12",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2026-05-05",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "SRE": {
+      "name": "SEMPRA",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-26",
+        "2025-11-05",
+        "2025-08-07",
+        "2025-05-08",
+        "2025-02-25",
+        "2024-11-06",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-25",
+          "basis": "2026-02-26",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "CEG": {
+      "name": "Constellation Energy Corp",
+      "bisher": [
+        "2026-05-11",
+        "2026-02-24",
+        "2025-11-07",
+        "2025-08-07",
+        "2025-05-06",
+        "2025-02-18",
+        "2024-11-04",
+        "2024-08-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 2
+        },
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2025-11-07",
+          "streuungTage": 4
+        },
+        {
+          "erwartet": "2027-02-23",
+          "basis": "2026-02-24",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-05-10",
+          "basis": "2026-05-11",
+          "streuungTage": 6
+        }
+      ]
+    },
+    "VST": {
+      "name": "Vistra Corp.",
+      "bisher": [
+        "2026-05-07",
+        "2026-02-26",
+        "2025-11-06",
+        "2025-08-07",
+        "2025-05-07",
+        "2025-02-27",
+        "2024-11-07",
+        "2024-08-08"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2025-11-06",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-02-25",
+          "basis": "2026-02-26",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2026-05-07",
+          "streuungTage": 1
+        }
+      ]
+    },
+    "CRH": {
+      "name": "CRH PUBLIC LTD CO",
+      "bisher": [
+        "2026-04-30",
+        "2026-02-18",
+        "2025-11-05",
+        "2025-08-06",
+        "2025-05-05",
+        "2025-02-26",
+        "2024-11-07",
+        "2024-08-08"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-05",
+          "basis": "2025-08-06",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-17",
+          "basis": "2026-02-18",
+          "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2026-04-30",
+          "streuungTage": 4
+        }
+      ]
+    },
+    "FLUT": {
+      "name": "Flutter Entertainment plc",
+      "bisher": [
+        "2026-05-06",
+        "2026-02-26",
+        "2025-11-12",
+        "2025-08-07",
+        "2025-05-07",
+        "2025-03-04",
+        "2025-01-07",
+        "2024-11-12"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-08-06",
+          "basis": "2025-08-07",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2026-11-11",
+          "basis": "2025-11-12",
+          "streuungTage": 1
+        },
+        {
+          "erwartet": "2027-02-25",
+          "basis": "2026-02-26",
+          "streuungTage": 5
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2026-05-06",
+          "streuungTage": 0
+        }
+      ]
+    },
+    "TEVA": {
+      "name": "TEVA PHARMACEUTICAL INDUSTRIES LTD",
+      "bisher": [
+        "2026-04-29",
+        "2026-01-28",
+        "2026-01-12",
+        "2025-11-05",
+        "2025-07-30",
+        "2025-05-07",
+        "2025-01-29",
+        "2024-11-06"
+      ],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2025-11-05",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-01-11",
+          "basis": "2026-01-12",
+          "streuungTage": 16
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-01-28",
+          "streuungTage": 0
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2026-04-29",
+          "streuungTage": 7
+        }
+      ]
+    }
+  }
+}
