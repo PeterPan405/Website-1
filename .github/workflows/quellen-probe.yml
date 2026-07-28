@@ -72,37 +72,18 @@ on:
 
 jobs:
   abklopfen:
-    name: Deckt Twelve Data europäische Termine ab?
+    name: Ist ein Twelve-Data-Schlüssel hinterlegt?
     runs-on: ubuntu-latest
     steps:
-      - name: Mit dem Demo-Schlüssel prüfen
+      - name: Nachsehen, ohne etwas zu verraten
+        env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
         run: |
-          # Twelve Data ist in diesem Projekt bereits als Kursanbieter
-          # vorgesehen (`lib/providers/twelvedata.ts`, Secret
-          # TWELVEDATA_API_KEY). Wenn derselbe Zugang auch Meldetermine
-          # liefert, wäre das ein Schlüssel für zwei Zwecke statt zwei
-          # Anmeldungen bei zwei Anbietern.
-          #
-          # Geprüft wird mit dem öffentlichen Demo-Schlüssel. Er ist auf
-          # wenige Symbole beschränkt, beantwortet aber die eine Frage, um
-          # die es geht: Gibt es den Endpunkt, und kennt er nicht-amerikanische
-          # Kürzel?
-          for url in \
-            "https://api.twelvedata.com/earnings?symbol=AAPL&apikey=demo" \
-            "https://api.twelvedata.com/earnings?symbol=SAP&exchange=XETR&apikey=demo" \
-            "https://api.twelvedata.com/earnings_calendar?apikey=demo" \
-            "https://api.twelvedata.com/stocks?symbol=SAP&apikey=demo"; do
-            code=$(curl -sS --max-time 30 -o /tmp/td.json -w '%{http_code}' "$url" || echo 000)
-            echo "▶ $code  $(stat -c%s /tmp/td.json 2>/dev/null || echo 0)B  ${url%%&apikey*}"
-            head -c 500 /tmp/td.json; echo; echo
-          done
-
-      - name: Und was Finnhub ohne Schlüssel sagt
-        run: |
-          for url in \
-            "https://finnhub.io/api/v1/calendar/earnings?from=2026-07-01&to=2026-12-31" \
-            "https://finnhub.io/api/v1/stock/earnings?symbol=SAP.DE"; do
-            code=$(curl -sS --max-time 30 -o /tmp/fh.json -w '%{http_code}' "$url" || echo 000)
-            echo "▶ $code  $url"
-            head -c 300 /tmp/fh.json; echo; echo
-          done
+          # Ausgegeben wird ausschließlich ja oder nein und die Länge. Ein
+          # Protokoll eines Workflows ist öffentlich lesbar; der Schlüssel
+          # selbst hat darin nichts zu suchen.
+          if [ -n "$TWELVEDATA_API_KEY" ]; then
+            echo "Schlüssel hinterlegt: ja (${#TWELVEDATA_API_KEY} Zeichen)"
+          else
+            echo "Schlüssel hinterlegt: nein"
+          fi
