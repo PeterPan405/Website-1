@@ -1,5 +1,10 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatNumber, formatPercent } from '@/lib/format'
+import {
+  bitcoinBloeckeJeEpoche as BLOECKE_JE_EPOCHE,
+  bitcoinObergrenze as gesamtmenge,
+  bitcoinStartbelohnung as START_BELOHNUNG,
+} from '@/lib/lernszenarien'
 
 /*
   Das Halving-Schema wird gerechnet, nicht abgeschrieben.
@@ -11,8 +16,6 @@ import { formatNumber, formatPercent } from '@/lib/format'
   nicht als Versprechen – und sieht zugleich, dass der weit überwiegende
   Teil längst erzeugt ist.
 */
-const START_BELOHNUNG = 50
-const BLOECKE_JE_EPOCHE = 210_000
 const EPOCHEN = 6
 
 const halvings = Array.from({ length: EPOCHEN }, (_, index) => {
@@ -21,8 +24,6 @@ const halvings = Array.from({ length: EPOCHEN }, (_, index) => {
   return { epoche: index + 1, belohnung, menge }
 })
 
-/** Die vollständige Reihe konvergiert gegen 21 Millionen. */
-const gesamtmenge = START_BELOHNUNG * BLOECKE_JE_EPOCHE * 2
 const nachSechsEpochen = halvings.reduce((summe, e) => summe + e.menge, 0)
 
 /**
@@ -111,6 +112,10 @@ export const bitcoinKrypto: LearnTopic = {
             `Schon nach sechs Epochen sind ${formatNumber(nachSechsEpochen, 0)} erzeugt, also ${formatPercent((nachSechsEpochen / gesamtmenge) * 100, 1)} der Gesamtmenge. Der weit überwiegende Teil entstand in den ersten Jahren.`,
             'Was daraus **nicht** folgt: dass der Preis steigen muss. Knappheit allein erzeugt keinen Wert – seltene Dinge ohne Nachfrage sind wertlos. Sie erzeugt nur die Voraussetzung dafür, dass Nachfrage sich im Preis niederschlägt.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'bitcoin-angebot',
         },
         {
           type: 'heading',

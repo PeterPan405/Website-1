@@ -1,10 +1,3 @@
-import type { ComponentType } from 'react'
-
-import {
-  AktieAnteil,
-  AktieDividendenabschlag,
-  AktieSpread,
-} from '@/components/content/figures/aktie'
 import {
   BlockchainZahlung,
   BoerseVomKlickZurBuchung,
@@ -12,9 +5,23 @@ import {
   NotenbankTransmission,
 } from '@/components/content/figures/ablaeufe'
 import {
+  AktieAnteil,
+  AktieDividendenabschlag,
+  AktieSpread,
+} from '@/components/content/figures/aktie'
+import {
   AnleiheKursUndZins,
   StaatsanleiheZinsschock,
 } from '@/components/content/figures/anleihen'
+import {
+  DepotOrderkosten,
+  DerivatHebel,
+  EinlagensicherungGrenze,
+  SparplanDurchschnittspreis,
+  TagesgeldRealzins,
+  WaehrungErgebnis,
+} from '@/components/content/figures/geldanlage'
+import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import {
   KreditAnfangstilgung,
@@ -27,12 +34,24 @@ import {
 import { MarktOrderbuch } from '@/components/content/figures/orderbuch'
 import { RenteLuecke } from '@/components/content/figures/rente'
 import { RisikoErholung } from '@/components/content/figures/risiko'
-import { TimingBesteWochen } from '@/components/content/figures/timing'
-import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
 import {
   RohstoffeKeinErtrag,
   RohstoffeRollkurve,
 } from '@/components/content/figures/rohstoffe'
+import {
+  BudgetHebel,
+  KostenEndkapital,
+  PortfolioDrift,
+  PsychologieVerhaltensluecke,
+} from '@/components/content/figures/sparen'
+import { TimingBesteWochen } from '@/components/content/figures/timing'
+import {
+  BitcoinAngebot,
+  CrashesErholung,
+  FondsSondervermoegen,
+  ImmobilieNettorendite,
+  SparerpauschbetragGrenze,
+} from '@/components/content/figures/vermoegen'
 import {
   ZinsFruehVsSpaet,
   ZinsGeradeVsKurve,
@@ -40,6 +59,7 @@ import {
   ZinsVolatilitaetsbremse,
 } from '@/components/content/figures/zins'
 import type { FigureId } from '@/data/figures'
+import type { ComponentType } from 'react'
 
 /**
  * Zuordnung von Kennung zu Zeichnung.
@@ -75,4 +95,19 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'notenbank-transmission': NotenbankTransmission,
   'einsteiger-reihenfolge': EinsteigerReihenfolge,
   'markt-orderbuch': MarktOrderbuch,
+  'tagesgeld-realzins': TagesgeldRealzins,
+  'sparplan-durchschnittspreis': SparplanDurchschnittspreis,
+  'waehrung-ergebnis': WaehrungErgebnis,
+  'derivat-hebel': DerivatHebel,
+  'einlagensicherung-grenze': EinlagensicherungGrenze,
+  'depot-orderkosten': DepotOrderkosten,
+  'kosten-endkapital': KostenEndkapital,
+  'psychologie-verhaltensluecke': PsychologieVerhaltensluecke,
+  'budget-hebel': BudgetHebel,
+  'portfolio-drift': PortfolioDrift,
+  'sparerpauschbetrag-grenze': SparerpauschbetragGrenze,
+  'immobilie-nettorendite': ImmobilieNettorendite,
+  'bitcoin-angebot': BitcoinAngebot,
+  'crashes-erholung': CrashesErholung,
+  'fonds-sondervermoegen': FondsSondervermoegen,
 }

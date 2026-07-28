@@ -107,6 +107,10 @@ export const fonds: LearnTopic = {
           text: 'Die letzte Zeile ist der eigentliche Grund, warum Fonds für die meisten Menschen die passendere Form sind als Einzelaktien. Nicht weil sie mehr Rendite bringen – sondern weil ein einzelner Fehlgriff nicht mehr das ganze Ergebnis bestimmt.',
         },
         {
+          type: 'figure',
+          figure: 'fonds-sondervermoegen',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was ein Fonds kostet',

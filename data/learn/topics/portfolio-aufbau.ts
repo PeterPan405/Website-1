@@ -1,5 +1,26 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatPercent } from '@/lib/format'
+import {
+  portfolioJahre,
+  portfolioRenditeAktien,
+  portfolioRenditeSicher,
+  portfolioStart,
+} from '@/lib/lernszenarien'
+
+/*
+  Die Verschiebung der Aufteilung wird gerechnet, nicht geschätzt.
+
+  Hier stand „nach fünf guten Börsenjahren vielleicht bei 82 zu 18“. Bei den
+  Renditen, mit denen die Grafik daneben zeichnet, sind es nach fünf Jahren
+  erst gut 76 Prozent – die 82 werden nach zehn Jahren erreicht. Solche
+  Zahlen aus dem Gefühl heraus zu setzen ist genau die Art Fehler, die diese
+  Seite anderen vorwirft.
+*/
+function aktienquoteNach(jahre: number): number {
+  const aktien = portfolioStart.aktien * (1 + portfolioRenditeAktien / 100) ** jahre
+  const sicher = portfolioStart.sicher * (1 + portfolioRenditeSicher / 100) ** jahre
+  return (aktien / (aktien + sicher)) * 100
+}
 
 /*
   Die Rückgangstabelle wird gerechnet.
@@ -185,7 +206,7 @@ export const portfolioAufbau: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Angenommen, du startest mit 70 Prozent Aktien und 30 Prozent Tagesgeld. Nach fünf guten Börsenjahren ist der Aktienteil stärker gewachsen als der andere – die Aufteilung liegt vielleicht bei 82 zu 18. Ohne dass du etwas entschieden hättest, trägst du mehr Risiko als geplant. Und zwar am Ende einer guten Phase, also genau dann, wenn ein Rückschlag am wahrscheinlichsten ist.',
+          text: `Angenommen, du startest mit ${formatPercent(portfolioStart.aktien, 0)} Aktien und ${formatPercent(portfolioStart.sicher, 0)} Tagesgeld. Läuft der Aktienteil mit ${formatPercent(portfolioRenditeAktien, 0)} im Jahr und der sichere mit ${formatPercent(portfolioRenditeSicher, 0)}, liegt die Aufteilung nach fünf Jahren bei ${formatPercent(aktienquoteNach(5), 0)} zu ${formatPercent(100 - aktienquoteNach(5), 0)} und nach zehn bei ${formatPercent(aktienquoteNach(portfolioJahre), 0)} zu ${formatPercent(100 - aktienquoteNach(portfolioJahre), 0)}. Ohne dass du etwas entschieden hättest, trägst du mehr Risiko als geplant. Und zwar am Ende einer guten Phase, also genau dann, wenn ein Rückschlag am wahrscheinlichsten ist.`,
         },
         {
           type: 'paragraph',
@@ -217,6 +238,10 @@ export const portfolioAufbau: LearnTopic = {
             'Das funktioniert, solange die Einzahlungen im Verhältnis zum Bestand groß genug sind – bei 400.000 Euro Depot und 300 Euro Rate bewegt sich damit nichts mehr.',
             'Erst danach über Verkäufe, und dann bevorzugt in Konten ohne laufende Besteuerung, falls vorhanden.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'portfolio-drift',
         },
         {
           type: 'heading',

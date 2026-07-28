@@ -187,6 +187,10 @@ export const sparerpauschbetrag: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'sparerpauschbetrag-grenze',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

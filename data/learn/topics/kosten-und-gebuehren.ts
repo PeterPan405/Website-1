@@ -166,6 +166,10 @@ export const kostenUndGebuehren: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'kosten-endkapital',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wo am meisten zu holen ist',

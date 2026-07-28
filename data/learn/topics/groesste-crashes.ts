@@ -126,6 +126,10 @@ export const groessteCrashes: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'crashes-erholung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Das gemeinsame Muster',

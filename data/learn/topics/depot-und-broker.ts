@@ -234,6 +234,10 @@ export const depotUndBroker: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'depot-orderkosten',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Der Depotübertrag',

@@ -1,5 +1,6 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrency, formatNumber } from '@/lib/format'
+import { sparplanKurse as KURSE, sparplanRate as RATE } from '@/lib/lernszenarien'
 
 /*
   Das Sparplanbeispiel wird gerechnet, nicht getippt.
@@ -9,8 +10,6 @@ import { formatCurrency, formatNumber } from '@/lib/format'
   verwechselt werden können, und genau darin liegt die Aussage. Als Rechnung
   kann die Tabelle ihrer eigenen Schlussfolgerung nicht widersprechen.
 */
-const RATE = 100
-const KURSE = [50, 40, 25, 40, 50, 50]
 
 const kaeufe = KURSE.map((kurs) => ({ kurs, anteile: RATE / kurs }))
 const anteileGesamt = kaeufe.reduce((summe, kauf) => summe + kauf.anteile, 0)
@@ -151,6 +150,10 @@ export const costAverageSparplan: LearnTopic = {
             '**Kosten je Ausführung prüfen.** Ein Euro auf 25 Euro Rate sind vier Prozent – mehr, als die laufenden Kosten eines ETF in zehn Jahren ausmachen. Viele Broker führen Sparpläne kostenfrei aus.',
             '**Termin ist fast egal.** Ob am Ersten oder am Fünfzehnten gekauft wird, macht über Jahrzehnte keinen erkennbaren Unterschied.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'sparplan-durchschnittspreis',
         },
         {
           type: 'heading',

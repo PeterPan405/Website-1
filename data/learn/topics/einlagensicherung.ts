@@ -1,5 +1,9 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrencyRounded } from '@/lib/format'
+import {
+  einlagensicherungErhoeht as ERHOEHT,
+  einlagensicherungGrenze as GRENZE,
+} from '@/lib/lernszenarien'
 
 /*
   Die Grenze steht an einer Stelle.
@@ -10,8 +14,6 @@ import { formatCurrencyRounded } from '@/lib/format'
   getippte Zahl an sieben Stellen wäre sie beim ersten Rechtsänderungsfall
   an sechs Stellen falsch.
 */
-const GRENZE = 100_000
-const ERHOEHT = 500_000
 const ERHOEHT_MONATE = 6
 const FRIST_ARBEITSTAGE = 7
 
@@ -140,6 +142,10 @@ export const einlagensicherung: LearnTopic = {
             '**Prüfen, wer wirklich der Vertragspartner ist.** Bei Zinsplattformen liegt das Geld nicht bei der Plattform, sondern bei einer Partnerbank, oft im Ausland. Deren Sicherungssystem ist zuständig, nicht das deutsche.',
             '**Bei auffällig hohen Zinsen genauer hinsehen.** Ein Institut, das deutlich über dem Markt bietet, braucht das Geld dringender als andere. Das muss nichts heißen – es ist aber der Anlass, das Sicherungssystem zu prüfen, statt nur die Zinstabelle.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'einlagensicherung-grenze',
         },
         {
           type: 'heading',

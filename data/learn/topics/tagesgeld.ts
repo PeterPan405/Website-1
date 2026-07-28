@@ -128,6 +128,10 @@ export const tagesgeld: LearnTopic = {
           text: 'Wertpapiere im Depot brauchen diesen Schutz übrigens nicht. Sie gehören dir und nicht der Bank – sie fallen bei einer Insolvenz gar nicht erst in die Masse. Die Einlagensicherung deckt Guthaben, also Geld, das die Bank dir schuldet.',
         },
         {
+          type: 'figure',
+          figure: 'tagesgeld-realzins',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

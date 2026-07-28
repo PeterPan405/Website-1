@@ -87,6 +87,36 @@ export type FigureId =
   | 'einsteiger-reihenfolge'
   /** Kauf- und Verkaufseite eines Orderbuchs mit dem Spread dazwischen. */
   | 'markt-orderbuch'
+  /** Zins aufs Tagesgeldkonto gegen die Inflation desselben Jahres. */
+  | 'tagesgeld-realzins'
+  /** Wie viele Anteile eine gleichbleibende Rate bei schwankendem Kurs kauft. */
+  | 'sparplan-durchschnittspreis'
+  /** Ergebnis einer Fremdwährungsanlage bei vier Wechselkursen. */
+  | 'waehrung-ergebnis'
+  /** Welchen Hebel eine Sicherheitsleistung ergibt – und wann der Einsatz weg ist. */
+  | 'derivat-hebel'
+  /** Gesicherte und ungesicherte Anteile eines Bankguthabens. */
+  | 'einlagensicherung-grenze'
+  /** Ordergebühr und Spread nach Ordergröße. */
+  | 'depot-orderkosten'
+  /** Endkapital desselben Sparplans bei fünf Kostenquoten. */
+  | 'kosten-endkapital'
+  /** Zwei Sparverläufe, die sich um einen Prozentpunkt unterscheiden. */
+  | 'psychologie-verhaltensluecke'
+  /** Mehr sparen gegen mehr Rendite, über vierzig Jahre. */
+  | 'budget-hebel'
+  /** Wie der Aktienanteil ohne Zutun über die geplante Quote steigt. */
+  | 'portfolio-drift'
+  /** Bis zu welchem Depotwert der Sparerpauschbetrag reicht. */
+  | 'sparerpauschbetrag-grenze'
+  /** Von der beworbenen Mietrendite zu dem, was übrig bleibt. */
+  | 'immobilie-nettorendite'
+  /** Die Bitcoin-Umlaufmenge nach dem Emissionsplan. */
+  | 'bitcoin-angebot'
+  /** Tiefe und Erholungsdauer der großen Kurseinbrüche. */
+  | 'crashes-erholung'
+  /** Warum das Fondsvermögen in keine Insolvenzmasse fällt. */
+  | 'fonds-sondervermoegen'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -266,5 +296,82 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Kauf- und Verkaufseite eines Orderbuchs',
     caption:
       'Es gibt nie „den Kurs“. Es gibt zwei Seiten, eine Lücke dazwischen und für jede Stückzahl einen anderen Preis.',
+  },
+  'tagesgeld-realzins': {
+    title: 'Zins und Inflation nebeneinander',
+    caption:
+      'Auf dem Kontoauszug steht nur die linke Säule. Die rechte steht nirgends – und entscheidet trotzdem, ob das Geld mehr oder weniger wert wird.',
+  },
+  'sparplan-durchschnittspreis': {
+    title: 'Was eine gleichbleibende Rate kauft',
+    caption:
+      'Nicht der Sparplan ist klug, sondern die feste Rate: Sie kauft automatisch mehr, wenn es billig ist, und weniger, wenn es teuer ist.',
+  },
+  'waehrung-ergebnis': {
+    title: 'Dasselbe Geschäft, vier Wechselkurse',
+    caption:
+      'Bei einer Anlage in fremder Währung wettet man immer auf zwei Dinge zugleich. Der Wechselkurs kann das eine vollständig auffressen.',
+  },
+  'derivat-hebel': {
+    title: 'Sicherheitsleistung, Hebel und Totalverlust',
+    caption:
+      'Der Hebel ist der Kehrwert der Sicherheitsleistung. Der Preis dafür steht rechts: die Kursbewegung, nach der nichts mehr da ist.',
+  },
+  'einlagensicherung-grenze': {
+    title: 'Was die Einlagensicherung deckt',
+    caption:
+      'Die Grenze gilt je Kunde und Bank, nicht je Konto. Zwei Konten bei derselben Bank werden zusammengezählt, zwei Banken verdoppeln den Schutz.',
+  },
+  'depot-orderkosten': {
+    title: 'Ordergebühr und Spread nach Ordergröße',
+    caption:
+      'Der Kostenblock, der auf der Abrechnung steht, ist bei größeren Orders der kleinere. Der andere lässt sich durch Handelsplatz und Uhrzeit beeinflussen.',
+  },
+  'kosten-endkapital': {
+    title: 'Endkapital bei fünf Kostenquoten',
+    caption:
+      'Der graue Sockel ist bei allen gleich – das eingezahlte Geld. Die Kosten zehren ausschließlich am Ertrag darüber, und zwar jedes Jahr erneut.',
+  },
+  'psychologie-verhaltensluecke': {
+    title: 'Was ein Prozentpunkt im Jahr ausmacht',
+    caption:
+      'Zwanzig Jahre lang liegen die beiden Linien fast aufeinander. Genau deshalb merkt man die Verhaltenslücke nicht, während sie entsteht.',
+  },
+  'budget-hebel': {
+    title: 'Mehr sparen oder mehr Rendite',
+    caption:
+      'Die Frage hat keine Antwort ohne Zeitangabe. Die Rate wirkt sofort und liegt in der eigenen Hand; die Rendite überholt sie erst später – und ist nicht bestellbar.',
+  },
+  'portfolio-drift': {
+    title: 'Wie die Aufteilung von allein wandert',
+    caption:
+      'Niemand hat etwas entschieden, und trotzdem trägt das Depot mehr Risiko als geplant. Rebalancing ist die Antwort darauf – kein Renditewerkzeug.',
+  },
+  'sparerpauschbetrag-grenze': {
+    title: 'Bis zu welchem Depotwert der Freibetrag reicht',
+    caption:
+      'Nicht die Depotgröße entscheidet, sondern wie viel laufender Ertrag anfällt. Zwei gleich große Depots können völlig unterschiedlich besteuert werden.',
+  },
+  'immobilie-nettorendite': {
+    title: 'Von der beworbenen Mietrendite zur tatsächlichen',
+    caption:
+      'Beworben wird die linke Säule. Übrig bleibt der untere Abschnitt der rechten – und der Kredit ist darin noch nicht einmal enthalten.',
+  },
+  'bitcoin-angebot': {
+    title: 'Die Umlaufmenge nach dem Emissionsplan',
+    caption:
+      'Die Knappheit ist kein Versprechen, sondern eine Regel im Programmcode. Was sie über den Preis aussagt, ist eine andere Frage.',
+  },
+  'crashes-erholung': {
+    title: 'Tiefe und Dauer der großen Einbrüche',
+    caption:
+      'Die Balken sind nach der Tiefe sortiert – ihre Länge folgt dieser Reihenfolge nicht. Wie lange eine Erholung dauert, entscheidet sich nach dem Einbruch.',
+  },
+  'fonds-sondervermoegen': {
+    title: 'Warum das Fondsvermögen geschützt ist',
+    description:
+      'Zwei getrennte Kästen. Links die Fondsgesellschaft: Sie verwaltet, entscheidet über Käufe und Verkäufe und kassiert die Verwaltungsgebühr. Wird sie insolvent, fällt in die Masse, was ihr gehört – Büros, Verträge, Forderungen. Rechts das Fondsvermögen: die Aktien und Anleihen selbst, verwahrt bei einer unabhängigen Depotbank. Es gehört den Anlegern und fällt in keine Insolvenzmasse, weder in die der Gesellschaft noch in die der Depotbank. Wovor die Trennung nicht schützt: Fallen die enthaltenen Aktien um 40 Prozent, fällt der eigene Anteil um 40 Prozent.',
+    caption:
+      'Die Trennung schützt vor der Pleite des Anbieters, nicht vor dem Markt. Beides wird regelmäßig verwechselt.',
   },
 }

@@ -207,6 +207,10 @@ export const budgetUndSparquote: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'budget-hebel',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

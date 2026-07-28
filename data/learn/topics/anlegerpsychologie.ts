@@ -268,6 +268,10 @@ export const anlegerpsychologie: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'psychologie-verhaltensluecke',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was tatsächlich hilft',

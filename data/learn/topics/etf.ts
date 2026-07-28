@@ -114,6 +114,12 @@ export const etf: LearnTopic = {
           text: 'Das ist ein echter Schutz, und er wird trotzdem oft falsch verstanden. Er schützt vor der Pleite des Anbieters, nicht vor fallenden Kursen. Wenn die enthaltenen Aktien die Hälfte wert sind, ist auch das Sondervermögen die Hälfte wert.',
         },
         {
+          type: 'figure',
+          figure: 'msci-world-laender',
+          caption:
+            'Ein Welt-ETF ist breit gestreut – aber nicht gleichmäßig. Nach Börsenwert gewichtet heißt: Das Gewicht folgt dem Marktwert, nicht der Zahl der Länder.',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Vier Angaben, die du vor jedem Kauf prüfst',

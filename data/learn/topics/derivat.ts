@@ -1,5 +1,9 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import {
+  derivatEinsatz as EINSATZ,
+  derivatSicherheitssaetze as SICHERHEITSSAETZE,
+} from '@/lib/lernszenarien'
 
 /*
   Zwei gerechnete Blöcke, beide gegen verbreitete Fehlvorstellungen gerichtet.
@@ -15,8 +19,6 @@ import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format
      kontraintuitiv ist: Der Basiswert steht wieder am Ausgangspunkt und das
      Zertifikat notiert zweistellig im Minus.
 */
-const EINSATZ = 1000
-const SICHERHEITSSAETZE = [50, 20, 10, 5, 2]
 const hebelreihe = SICHERHEITSSAETZE.map((satz) => {
   const hebel = 100 / satz
   return {
@@ -182,6 +184,10 @@ export const derivat: LearnTopic = {
             '**Manche Derivate verlieren auch ohne Kursbewegung.** Optionen verlieren Zeitwert, gehebelte Produkte tragen Finanzierungskosten. Wer nichts tut, verliert trotzdem – das ist bei einer Aktie anders.',
             '**Für den Vermögensaufbau braucht man das nicht.** Derivate lösen ein Problem, das die meisten Privatanleger nicht haben. Wer keinen konkreten Absicherungsbedarf hat, hat keinen Grund für den Einsatz – und die Werbung für Hebelprodukte richtet sich fast ausschließlich an Menschen ohne diesen Bedarf.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'derivat-hebel',
         },
         {
           type: 'heading',

@@ -1,5 +1,11 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+import {
+  waehrungEinsatz as EINSATZ,
+  waehrungKurse as KURSE,
+  waehrungKursgewinn as KURSGEWINN,
+  waehrungKursStart as KURS_START,
+} from '@/lib/lernszenarien'
 
 /*
   Der Währungseffekt wird gerechnet.
@@ -9,10 +15,6 @@ import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
   überrascht regelmäßig, weil sich Kurs- und Währungsentwicklung nicht
   addieren, sondern multiplizieren. Genau daran scheitert die Kopfrechnung.
 */
-const EINSATZ = 10_000
-const KURS_START = 1.1
-const KURSGEWINN = 10
-const KURSE = [1.0, 1.1, 1.2, 1.3]
 
 const waehrungsreihe = KURSE.map((kursEnde) => {
   // In Dollar gerechnet: Einsatz umtauschen, Kursgewinn erzielen, zurücktauschen.
@@ -169,6 +171,10 @@ export const waehrungenWechselkurse: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Dasselbe gilt in der Gegenrichtung: Ein in Dollar gehandelter ETF auf europäische Aktien trägt kein nennenswertes Dollarrisiko. Entscheidend ist immer, worin die enthaltenen Unternehmen ihr Geld verdienen – nicht, in welcher Währung das Papier notiert.',
+        },
+        {
+          type: 'figure',
+          figure: 'waehrung-ergebnis',
         },
         {
           type: 'heading',

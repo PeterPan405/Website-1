@@ -202,6 +202,10 @@ export const immobilien: LearnTopic = {
           text: 'Eine Verwaltung durch Dritte nimmt den größten Teil dieser Arbeit ab und kostet dafür einen Teil der Rendite – bei den oben gerechneten Zahlen einen erheblichen. Wer den eigenen Zeitaufwand nicht als Kostenposition ansetzt, vergleicht eine Immobilie mit einem ETF, als wäre beides gleich viel Arbeit. Das ist es nicht.',
         },
         {
+          type: 'figure',
+          figure: 'immobilie-nettorendite',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

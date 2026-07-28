@@ -163,6 +163,10 @@ export const aktienLaenderBranchen: LearnTopic = {
           text: 'Ein breiter Weltindex enthält weit über tausend Unternehmen aus dreiundzwanzig Industrieländern. Die Branchenstreuung entsteht dabei automatisch mit – man muss sie nicht getrennt herstellen. Was ein solcher Index **nicht** abdeckt, ist ebenso wichtig zu wissen: Schwellenländer fehlen, und kleine Unternehmen fehlen. Beides lässt sich ergänzen, muss es aber nicht.',
         },
         {
+          type: 'figure',
+          figure: 'msci-world-laender',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
