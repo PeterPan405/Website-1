@@ -422,6 +422,10 @@ export const inflation: LearnTopic = {
           text: 'Das deutsche Steuerrecht kennt keine Inflation. Besteuert wird der **nominale** Ertrag – auch dann, wenn real nichts hinzugekommen ist. Das führt zu einem Ergebnis, das viele überrascht, wenn sie es zum ersten Mal durchrechnen.',
         },
         {
+          type: 'figure',
+          figure: 'inflation-steuer',
+        },
+        {
           type: 'paragraph',
           text: `Angenommen, eine Anlage bringt ${formatPercent(realzinsbeispiel.nominal, 1)} im Jahr, die Inflation liegt bei ${formatPercent(realzinsbeispiel.inflation, 1)}. Real hast du ${formatPercent(realzinsbeispiel.real, 2)} verloren. Das Finanzamt sieht davon nichts: Es sieht ${formatPercent(realzinsbeispiel.nominal, 1)} Gewinn und erhebt darauf Abgeltungsteuer, Solidaritätszuschlag und gegebenenfalls Kirchensteuer – rund ein Viertel bis gut ein Viertel des nominalen Ertrags. Nach Steuern ist der reale Verlust größer als vorher.`,
         },

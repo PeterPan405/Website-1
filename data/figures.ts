@@ -123,6 +123,12 @@ export type FigureId =
   | 'option-delta'
   /** Tatsächliche Kursänderung gegen die Vorhersage der Duration. */
   | 'anleihe-konvexitaet'
+  /** Jährlich versteuert gegen erst beim Verkauf versteuert. */
+  | 'zinseszins-steuerstundung'
+  /** Was von einer Nominalrendite nach Steuer und Inflation übrig bleibt. */
+  | 'inflation-steuer'
+  /** Wertänderung des Objekts, umgerechnet auf das Eigenkapital. */
+  | 'immobilie-hebel'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -394,5 +400,20 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Näherung über die Duration gegen die exakte Rechnung',
     caption:
       'Die Gerade ist die Faustformel, die Kurve die Wirklichkeit. Der Abstand dazwischen fällt immer zugunsten des Anleihebesitzers aus.',
+  },
+  'zinseszins-steuerstundung': {
+    title: 'Was Steuerstundung über dreißig Jahre wert ist',
+    caption:
+      'Derselbe Steuersatz, dasselbe Produkt. Der Unterschied entsteht allein daraus, dass der noch nicht abgeführte Betrag bis zum Verkauf mitarbeitet.',
+  },
+  'inflation-steuer': {
+    title: 'Steuer auf Gewinne, die keine sind',
+    caption:
+      'Besteuert wird der nominale Ertrag – auch der Teil, der nur die Geldentwertung ausgleicht. Ein Zins, der die Inflation gerade deckt, ist real ein Verlust.',
+  },
+  'immobilie-hebel': {
+    title: 'Der Hebel in beide Richtungen',
+    caption:
+      'Nach oben wird diese Rechnung in jedem Beratungsgespräch vorgeführt. Es ist dieselbe Rechnung wie nach unten – nur mit anderem Vorzeichen.',
   },
 }

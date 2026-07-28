@@ -34,8 +34,11 @@ import {
 import { MarktOrderbuch } from '@/components/content/figures/orderbuch'
 import {
   AnleiheKonvexitaet,
+  ImmobilieHebel,
+  InflationSteuer,
   OptionSensitivitaeten,
   RisikoSequenz,
+  ZinseszinsSteuerstundung,
 } from '@/components/content/figures/profi'
 import { RenteLuecke } from '@/components/content/figures/rente'
 import { RisikoErholung } from '@/components/content/figures/risiko'
@@ -118,4 +121,7 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'risiko-sequenz': RisikoSequenz,
   'option-delta': OptionSensitivitaeten,
   'anleihe-konvexitaet': AnleiheKonvexitaet,
+  'zinseszins-steuerstundung': ZinseszinsSteuerstundung,
+  'inflation-steuer': InflationSteuer,
+  'immobilie-hebel': ImmobilieHebel,
 }

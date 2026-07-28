@@ -382,6 +382,10 @@ export const immobilien: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'immobilie-hebel',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Lage ist kein Ort, sondern eine Prognose',

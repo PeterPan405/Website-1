@@ -1,14 +1,23 @@
 import {
+  BalkenDiagramm,
   FARBEN,
   LinienDiagramm,
+  SaeulenDiagramm,
   type Reihe,
 } from '@/components/content/figures/Diagramme'
 import { zinsschock } from '@/lib/anleihen'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import { inflationsbeispiel } from '@/lib/inflations-beispiele'
 import {
   anleiheBeispiel,
   anleiheMarktzins,
+  effektiverSteuersatz,
+  immobilieEigenkapitalquoten,
+  immobilieKaufpreis,
+  immobilieWertaenderungen,
+  inflationNominalrenditen,
   optionBasis,
+  sparfall,
   sequenzEntnahme,
   sequenzRenditen,
   sequenzStartkapital,
@@ -224,6 +233,193 @@ export function AnleiheKonvexitaet() {
         `immer zugunsten des Anleihebesitzers aus: Es fällt weniger als gedacht und steigt mehr als ` +
         `gedacht. Die Duration allein ist deshalb keine grobe Schätzung, sondern eine systematisch ` +
         `vorsichtige.`
+      }
+    />
+  )
+}
+
+// ---------------------------------------------------- Was Steuerstundung wert ist
+
+/**
+ * Jährlich versteuert gegen erst am Ende versteuert.
+ *
+ * Der Lerntext sagt, die gestundete Variante liege „spürbar vorn“, ohne die
+ * Zahl zu nennen. Sie steht jetzt in der Grafik – und sie ist größer, als
+ * „spürbar“ vermuten lässt.
+ *
+ * Gerechnet wird ohne Vorabpauschale und ohne Teilfreistellung: Beide
+ * verkleinern den Effekt, beide hängen an Werten, die sich jährlich ändern,
+ * und beide stehen im Text daneben. Was hier gezeigt wird, ist die
+ * Obergrenze des Effekts – so ist es auch beschriftet.
+ */
+export function ZinseszinsSteuerstundung() {
+  const jahre = Array.from({ length: sparfall.jahre + 1 }, (_, index) => index)
+  const satz = effektiverSteuersatz / 100
+  const brutto = sparfall.brutto / 100
+
+  /*
+    Zwei Verläufe, ein Unterschied.
+
+    Bei jährlicher Versteuerung wächst das Kapital mit der um die Steuer
+    verminderten Rendite – Jahr für Jahr, auf einer dadurch kleineren Basis.
+    Bei Stundung wächst es brutto, und die Steuer fällt einmal am Ende auf
+    den gesamten Gewinn an.
+  */
+  const jaehrlich = jahre.map((jahr) => {
+    let wert = 0
+    for (let i = 0; i < jahr; i++) {
+      wert = (wert + sparfall.rate * 12) * (1 + brutto * (1 - satz))
+    }
+    return { x: jahr, y: wert }
+  })
+
+  const gestundet = jahre.map((jahr) => {
+    let wert = 0
+    for (let i = 0; i < jahr; i++) {
+      wert = (wert + sparfall.rate * 12) * (1 + brutto)
+    }
+    const eingezahlt = sparfall.rate * 12 * jahr
+    return { x: jahr, y: wert - Math.max(wert - eingezahlt, 0) * satz }
+  })
+
+  const endeJaehrlich = jaehrlich[jaehrlich.length - 1].y
+  const endeGestundet = gestundet[gestundet.length - 1].y
+
+  return (
+    <LinienDiagramm
+      id="zinseszins-steuerstundung"
+      reihen={[
+        {
+          name: 'Steuer erst beim Verkauf',
+          farbe: FARBEN.marke,
+          punkte: gestundet,
+          endText: formatCurrencyRounded(endeGestundet),
+        },
+        {
+          name: 'jährlich versteuert',
+          farbe: FARBEN.warnung,
+          gestrichelt: true,
+          punkte: jaehrlich,
+        },
+      ]}
+      xVon={0}
+      xBis={sparfall.jahre}
+      xTeilstriche={[0, 10, 20, 30].map((wert) => ({
+        wert,
+        text: wert === 0 ? 'Start' : `${wert} J.`,
+      }))}
+      yEinheit="nach Steuern, in Euro"
+      hoehe={300}
+      rechterRand={96}
+      beschreibung={
+        `${formatCurrencyRounded(sparfall.rate)} monatlich über ${sparfall.jahre} Jahre bei ` +
+        `${formatPercent(sparfall.brutto, 0)} Bruttorendite und ` +
+        `${formatPercent(effektiverSteuersatz, 2)} Steuer auf Erträge. Wird jedes Jahr versteuert, ` +
+        `bleiben am Ende ${formatCurrencyRounded(endeJaehrlich)}; fällt die Steuer erst beim Verkauf an, ` +
+        `sind es ${formatCurrencyRounded(endeGestundet)} – ` +
+        `${formatCurrencyRounded(endeGestundet - endeJaehrlich)} mehr bei identischem Steuersatz. Der ` +
+        `Unterschied entsteht allein daraus, dass der noch nicht abgeführte Betrag bis zum Verkauf ` +
+        `mitarbeitet. Die deutsche Vorabpauschale verkleinert diesen Vorteil; sie ist hier nicht ` +
+        `eingerechnet, die Grafik zeigt also die Obergrenze.`
+      }
+    />
+  )
+}
+
+// ------------------------------------------------- Steuer auf Scheingewinne
+
+/**
+ * Was von einer Nominalrendite nach Steuer und Inflation übrig bleibt.
+ *
+ * Der wunde Punkt: Versteuert wird der nominale Ertrag, auch der Teil, der
+ * nur die Geldentwertung ausgleicht. Wer real bei null steht, zahlt trotzdem.
+ */
+export function InflationSteuer() {
+  const saeulen = inflationNominalrenditen.map((nominal) => {
+    const nachSteuer = nominal * (1 - effektiverSteuersatz / 100)
+    const real = nachSteuer - inflationsbeispiel.rate
+    return {
+      label: formatPercent(nominal, 0),
+      teile: [
+        { wert: Math.max(real, 0), farbe: FARBEN.marke },
+        { wert: Math.min(inflationsbeispiel.rate, nachSteuer), farbe: FARBEN.warnung },
+        { wert: nominal - nachSteuer, farbe: FARBEN.gefahr },
+      ],
+      wertText: `${real >= 0 ? '+' : '−'} ${formatPercent(Math.abs(real), 1)}`,
+      hinweis: 'real nach Steuer',
+    }
+  })
+
+  const schwelle = inflationsbeispiel.rate / (1 - effektiverSteuersatz / 100)
+
+  return (
+    <SaeulenDiagramm
+      id="inflation-steuer"
+      saeulen={saeulen}
+      einheit="Nominalrendite in Prozent"
+      legende={[
+        { farbe: FARBEN.gefahr, text: 'Steuer' },
+        { farbe: FARBEN.warnung, text: 'Kaufkraftverlust' },
+        { farbe: FARBEN.marke, text: 'was real übrig bleibt' },
+      ]}
+      hoehe={300}
+      beschreibung={
+        `Vier Nominalrenditen bei ${formatPercent(inflationsbeispiel.rate, 1)} Inflation und ` +
+        `${formatPercent(effektiverSteuersatz, 2)} Steuer. Versteuert wird der nominale Ertrag – auch der ` +
+        `Teil, der nur die Geldentwertung ausgleicht. ` +
+        saeulen
+          .map((s, index) =>
+            index === 0
+              ? `Bei ${s.label} nominal bleiben real ${s.wertText}`
+              : `bei ${s.label} nominal ${s.wertText}`
+          )
+          .join(', ') +
+        `. Erst ab ${formatPercent(schwelle, 1)} Nominalrendite steht man nach Steuer und Inflation ` +
+        `überhaupt bei null. Das ist der Grund, warum ein Zinssatz, der die Inflation gerade deckt, real ` +
+        `ein Verlust ist.`
+      }
+    />
+  )
+}
+
+// ------------------------------------------------------ Der Hebel bei Immobilien
+
+/**
+ * Wertänderung des Objekts, umgerechnet auf das eingesetzte Eigenkapital.
+ *
+ * Die Zahlen sind die des Lernthemas: Der Kredit bleibt in voller Höhe
+ * stehen, also trifft die gesamte Wertänderung den eigenen Einsatz. Nach oben
+ * wird das in Beratungsgesprächen vorgerechnet, nach unten selten.
+ */
+export function ImmobilieHebel() {
+  const balken = immobilieEigenkapitalquoten.flatMap((quote) => {
+    const eigenkapital = immobilieKaufpreis * (quote / 100)
+    return immobilieWertaenderungen.map((aenderung) => {
+      const wirkung = ((immobilieKaufpreis * (aenderung / 100)) / eigenkapital) * 100
+      return {
+        label: `${formatPercent(quote, 0)} Eigenkapital, ${aenderung > 0 ? '+' : '−'}${formatPercent(Math.abs(aenderung), 0)}`,
+        wert: Math.abs(wirkung),
+        wertText: `${wirkung > 0 ? '+' : '−'} ${formatPercent(Math.abs(wirkung), 0)}`,
+        farbe: wirkung > 0 ? FARBEN.marke : FARBEN.gefahr,
+      }
+    })
+  })
+
+  const kleinste = immobilieEigenkapitalquoten[immobilieEigenkapitalquoten.length - 1]
+
+  return (
+    <BalkenDiagramm
+      id="immobilie-hebel"
+      balken={balken}
+      labelBreite={186}
+      beschreibung={
+        `Ein Objekt für ${formatCurrencyRounded(immobilieKaufpreis)}, finanziert mit unterschiedlich viel ` +
+        `Eigenkapital. Der Kredit bleibt bei einer Wertänderung in voller Höhe stehen, also trifft die ` +
+        `gesamte Änderung den eigenen Einsatz. ` +
+        balken.map((b) => `${b.label} ergibt ${b.wertText}`).join('; ') +
+        `. Bei ${formatPercent(kleinste, 0)} Eigenkapital wird aus zehn Prozent Wertverlust ein Verlust von ` +
+        `hundert Prozent des Einsatzes – das Eigenkapital ist dann rechnerisch weg, der Kredit läuft weiter. ` +
+        `Der Hebel wirkt in beide Richtungen gleich stark; vorgerechnet wird meist nur die eine.`
       }
     />
   )

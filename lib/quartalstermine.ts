@@ -182,14 +182,26 @@ function verschiebe(datum: string, tage: number): string {
   return d.toISOString().slice(0, 10)
 }
 
-/** Wie viele Unternehmen und Termine abgedeckt sind – gehört sichtbar auf die Seite. */
+/**
+ * Wie viele Unternehmen und Termine abgedeckt sind – gehört sichtbar auf die Seite.
+ *
+ * Die Zahl der geführten Aktien steht bewusst daneben. Ohne sie liest sich
+ * „158 Unternehmen“ wie Vollständigkeit; mit ihr wird sichtbar, dass es ein
+ * knappes Drittel ist. Der Rest notiert nur an seiner Heimatbörse und reicht
+ * bei der US-Börsenaufsicht nichts ein – für diese Aktien gibt es keine
+ * vergleichbare öffentliche Quelle, und das gehört auf die Seite und nicht in
+ * ein Protokoll, das niemand liest.
+ */
 export function getQuartalsterminAbdeckung(): {
   unternehmen: number
   termine: number
+  /** Alle Aktien im Katalog der Website, also der mögliche Höchstwert. */
+  aktienGesamt: number
 } {
   const termine = getQuartalstermine()
   return {
     unternehmen: new Set(termine.map((t) => t.symbole?.[0])).size,
     termine: termine.length,
+    aktienGesamt: marketDefinitions.filter((d) => d.kind === 'stock').length,
   }
 }

@@ -1,5 +1,11 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
+import {
+  abgeltungsteuer as ABGELTUNGSTEUER,
+  effektiverSteuersatz as effektiverSatz,
+  soliAufSteuer as SOLI_AUF_STEUER,
+  sparerPauschbetrag as PAUSCHBETRAG,
+} from '@/lib/lernszenarien'
 
 /*
   Steuersätze und Freibeträge stehen an genau einer Stelle.
@@ -15,10 +21,6 @@ import { formatCurrencyRounded, formatPercent } from '@/lib/format'
   Solidaritätszuschlag darauf – und der Zuschlag wirkt auf die Steuer, nicht
   auf den Ertrag. Das ist der Rechenfehler, der dabei am häufigsten passiert.
 */
-const PAUSCHBETRAG = 1_000
-const ABGELTUNGSTEUER = 25
-const SOLI_AUF_STEUER = 5.5
-const effektiverSatz = ABGELTUNGSTEUER * (1 + SOLI_AUF_STEUER / 100)
 
 /** Was von einem Ertrag oberhalb des Freibetrags übrig bleibt. */
 function nachSteuern(ertrag: number): number {

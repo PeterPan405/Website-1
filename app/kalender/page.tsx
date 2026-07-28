@@ -116,6 +116,19 @@ export default async function KalenderPage() {
               )}
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
+              Abgedeckt sind damit {quartalstermine.unternehmen} der{' '}
+              {quartalstermine.aktienGesamt} hier geführten Aktien. Die Lücke hat einen
+              Grund, der sich nicht wegarbeiten lässt: Die Pflichtmeldung mit der
+              Punktnummer gibt es nur in den USA. Wer an einer europäischen oder
+              asiatischen Börse notiert, reicht dort nichts ein – und wer als
+              ausländisches Unternehmen in den USA gelistet ist, meldet über ein Formular
+              ohne Punktnummern, aus dem sich eine Ergebnisveröffentlichung nicht
+              zuverlässig herauslesen lässt. Geprüft wurde das; für SAP, ASML, Novo
+              Nordisk, Shell, Sony und TSMC lautet die Dokumentbeschreibung ausnahmslos
+              „FORM 6-K“. Eine Schätzung auf dieser Grundlage wäre geraten, nicht
+              abgeleitet.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Termine sind mit{' '}
               <strong className="text-fg">„erwartet, nicht bestätigt“</strong> und mit „um
               den …“ gekennzeichnet, und sie stehen nur ein halbes Jahr weit im Voraus.

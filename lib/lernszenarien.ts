@@ -272,6 +272,20 @@ export const sequenzRenditen = [-30, -15, -5, 3, 5, 7, 8, 10, 12, 15, 18, 25] as
 // -------------------------------------------------------------- Steuer
 
 /**
+ * Abgeltungsteuer und Solidaritätszuschlag.
+ *
+ * Der Zuschlag wirkt auf die Steuer, nicht auf den Ertrag – das ist der
+ * Rechenfehler, der dabei am häufigsten passiert. Beide Sätze stehen hier,
+ * weil vier Themen mit ihnen rechnen: Sparerpauschbetrag, Zinseszins,
+ * Inflation und Rohstoffe.
+ */
+export const abgeltungsteuer = 25
+export const soliAufSteuer = 5.5
+
+/** Was von einem steuerpflichtigen Ertrag tatsächlich abgeht, in Prozent. */
+export const effektiverSteuersatz = abgeltungsteuer * (1 + soliAufSteuer / 100)
+
+/**
  * Der Sparerpauschbetrag für Alleinstehende, in Euro.
  *
  * Ein gesetzlicher Wert, kein gewählter – er kann sich ändern, und der Text
@@ -312,6 +326,12 @@ export const immobilieInstandhaltung = 1_800
 /** Kalkulierter Mietausfall in Prozent der Jahresmiete – Leerstand und Ausfälle. */
 export const immobilieMietausfallProzent = 3
 
+/** Eigenkapitalanteile in Prozent, von vollständig bezahlt bis knapp finanziert. */
+export const immobilieEigenkapitalquoten = [100, 40, 20, 10] as const
+
+/** Wertänderungen des Objekts in Prozent – der Hebel wirkt in beide Richtungen. */
+export const immobilieWertaenderungen = [10, -10] as const
+
 // ------------------------------------------------------------ Orderkosten
 
 /**
@@ -333,6 +353,17 @@ export const ordergebuehrFest = 4.9
  * gängigen ETF außerhalb der Referenzzeiten eine realistische Größe.
  */
 export const spreadProzent = 0.3
+
+// ---------------------------------------------------- Inflation und Steuer
+
+/**
+ * Nominalrenditen, an denen die Steuer auf Scheingewinne gezeigt wird.
+ *
+ * Versteuert wird der nominale Ertrag, auch der Teil, der nur die Inflation
+ * ausgleicht. Wer real bei null steht, zahlt trotzdem – die Spanne zeigt, ab
+ * welcher Nominalrendite überhaupt etwas übrig bleibt.
+ */
+export const inflationNominalrenditen = [2, 4, 6, 8] as const
 
 // ------------------------------------------------------------------ Krypto
 
