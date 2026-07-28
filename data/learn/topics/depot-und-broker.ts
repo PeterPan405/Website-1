@@ -93,6 +93,10 @@ export const depotUndBroker: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'depot-und-konto',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Die Eröffnung',

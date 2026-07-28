@@ -31,6 +31,11 @@ import {
   RisikoKorrelation,
   TagesgeldAktionszins,
 } from '@/components/content/figures/fortgeschritten'
+import {
+  BudgetHaushalt,
+  DepotUndKonto,
+  StaatsanleiheLaufzeiten,
+} from '@/components/content/figures/grundlagen'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import {
   KreditAnfangstilgung,
@@ -152,4 +157,7 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'tagesgeld-aktionszins': TagesgeldAktionszins,
   'einlagensicherung-kaskade': EinlagensicherungKaskade,
   'boerse-abwicklung': BoerseAbwicklung,
+  'budget-haushalt': BudgetHaushalt,
+  'depot-und-konto': DepotUndKonto,
+  'staatsanleihe-laufzeiten': StaatsanleiheLaufzeiten,
 }

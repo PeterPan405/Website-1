@@ -222,6 +222,31 @@ export const kostenstufen = [0.2, 0.5, 1, 1.5, 2] as const
  */
 export const verhaltensluecke = 1
 
+// -------------------------------------------------------------- Haushalt
+
+/**
+ * Ein Beispielhaushalt – die Zahlen sind gesetzt, die Auswertung gerechnet.
+ *
+ * Ein Nettoeinkommen knapp über dem deutschen Median, eine Wohnkostenquote
+ * von gut einem Drittel. Beides ist gewählt und nicht gemessen; der Zweck ist
+ * zu zeigen, wie eine Sparquote entsteht, nicht wie ein Durchschnittshaushalt
+ * aussieht.
+ */
+export const haushaltEinnahmen = [
+  { id: 'netto', label: 'Nettoeinkommen', amount: 2600 },
+] as const
+
+export const haushaltAusgaben = [
+  { id: 'wohnen', label: 'Wohnen (warm)', amount: 950 },
+  { id: 'lebensmittel', label: 'Lebensmittel und Haushalt', amount: 400 },
+  { id: 'mobilitaet', label: 'Mobilität', amount: 220 },
+  { id: 'freizeit', label: 'Freizeit und Abonnements', amount: 180 },
+  { id: 'sonstiges', label: 'Kleidung und Sonstiges', amount: 150 },
+  { id: 'versicherungen', label: 'Versicherungen', amount: 130 },
+  { id: 'jahreskosten', label: 'Rücklage für Jahreskosten', amount: 115 },
+  { id: 'kommunikation', label: 'Telefon und Internet', amount: 55 },
+] as const
+
 // ------------------------------------------------ Sparquote und Zeitraum
 
 /**

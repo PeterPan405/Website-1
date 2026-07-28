@@ -155,6 +155,12 @@ export type FigureId =
   | 'einlagensicherung-kaskade'
   /** Was zwischen Geschäftsabschluss und Buchung im Depot passiert. */
   | 'boerse-abwicklung'
+  /** Ein Haushalt, nach Größe der Ausgabenposten sortiert. */
+  | 'budget-haushalt'
+  /** Depot und Verrechnungskonto – zwei völlig verschiedene Rechtslagen. */
+  | 'depot-und-konto'
+  /** Die Bundeswertpapiere nach ihrer Laufzeit bei Ausgabe. */
+  | 'staatsanleihe-laufzeiten'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -506,5 +512,22 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Zwischen Abschluss und Depot',
     caption:
       'Aus einem Geschäft werden rechtlich zwei, und die Gegenpartei steht in beiden. Deshalb trifft der Ausfall einer Seite nie die andere.',
+  },
+  'budget-haushalt': {
+    title: 'Wohin das Geld geht',
+    caption:
+      'Die Reihenfolge ist die Aussage. Zehn Prozent beim größten Posten bringen mehr als der vollständige Verzicht auf die beiden kleinsten.',
+  },
+  'depot-und-konto': {
+    title: 'Depot und Verrechnungskonto',
+    description:
+      'Zwei Kästen nebeneinander. Links das Depot: Die Wertpapiere gehören dir, die Bank verwahrt sie nur und führt sie getrennt von ihrem eigenen Vermögen. Bei einer Pleite fallen sie nicht in die Insolvenzmasse; du kannst Herausgabe verlangen oder das Depot übertragen. Rechts das Verrechnungskonto: Das Guthaben gehört der Bank, sie schuldet es dir – ein Anspruch, kein Eigentum. Genau deshalb greift hier die Einlagensicherung, und nur hier. Sie schützt also das, was du nicht besitzt, und wird ausgerechnet für das gesucht, was dir ohnehin gehört.',
+    caption:
+      'Die Einlagensicherung schützt das Konto, nicht das Depot. Das klingt nach einer Lücke und ist das Gegenteil: Was dir gehört, braucht keine Sicherung.',
+  },
+  'staatsanleihe-laufzeiten': {
+    title: 'Bundeswertpapiere nach Laufzeit',
+    caption:
+      'Die Namen sagen nichts über die Sicherheit – dahinter steht überall derselbe Schuldner. Sie sagen etwas darüber, wie stark der Kurs auf Zinsänderungen reagiert.',
   },
 }

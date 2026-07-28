@@ -132,6 +132,10 @@ export const staatsanleihe: LearnTopic = {
           text: 'Gekauft werden diese Papiere überwiegend von Banken, Versicherungen, Pensionskassen und Fonds – und in den vergangenen Jahren in erheblichem Umfang von der Europäischen Zentralbank. Privatanleger sind eine kleine Gruppe, können aber über die Börse jederzeit mitmachen.',
         },
         {
+          type: 'figure',
+          figure: 'staatsanleihe-laufzeiten',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Der Maßstab für alles andere',

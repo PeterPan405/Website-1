@@ -2,6 +2,8 @@ import type { LearnTopic } from '@/data/learn/types'
 import { calculateBudget, calculateCompoundInterest } from '@/lib/finance'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
 import {
+  haushaltAusgaben as AUSGABEN,
+  haushaltEinnahmen as EINNAHMEN,
   hebelAusgang as AUSGANG,
   hebelMehrRate as MEHR_RATE,
   hebelMehrRendite as MEHR_RENDITE,
@@ -17,19 +19,7 @@ import {
   den dieses Thema haben kann.
 */
 
-/** Ein Beispielhaushalt – die Zahlen sind gesetzt, die Auswertung gerechnet. */
-const EINNAHMEN = [{ id: 'netto', label: 'Nettoeinkommen', amount: 2600 }]
-const AUSGABEN = [
-  { id: 'wohnen', label: 'Wohnen (warm)', amount: 950 },
-  { id: 'lebensmittel', label: 'Lebensmittel und Haushalt', amount: 400 },
-  { id: 'mobilitaet', label: 'Mobilität', amount: 220 },
-  { id: 'freizeit', label: 'Freizeit und Abonnements', amount: 180 },
-  { id: 'sonstiges', label: 'Kleidung und Sonstiges', amount: 150 },
-  { id: 'versicherungen', label: 'Versicherungen', amount: 130 },
-  { id: 'jahreskosten', label: 'Rücklage für Jahreskosten', amount: 115 },
-  { id: 'kommunikation', label: 'Telefon und Internet', amount: 55 },
-]
-const haushalt = calculateBudget(EINNAHMEN, AUSGABEN)
+const haushalt = calculateBudget([...EINNAHMEN], [...AUSGABEN])
 
 /*
   Die zweite Rechnung: Welcher Hebel wiegt schwerer – mehr sparen oder mehr
@@ -207,6 +197,10 @@ export const budgetUndSparquote: LearnTopic = {
             '**Zuerst sparen, nicht zuletzt.** Ein Dauerauftrag am Tag nach dem Geldeingang. Was nicht auf dem Girokonto liegt, wird nicht ausgegeben; was am Monatsende übrig bleiben soll, bleibt es selten.',
             '**Notgroschen vor Anlage.** Drei bis sechs Monatsausgaben auf dem Tagesgeldkonto. Er verdient wenig und soll das auch – seine Aufgabe ist, im Ernstfall da zu sein.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'budget-haushalt',
         },
         {
           type: 'heading',
