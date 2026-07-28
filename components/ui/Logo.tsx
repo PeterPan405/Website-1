@@ -38,7 +38,12 @@ export function Logo({
           className={large ? 'size-16 shrink-0' : 'size-10 shrink-0'}
           withLettering={large}
         />
+        {/*
+          Der Markenname bleibt stehen, auch beim Umschalten auf Englisch.
+          Ein übersetzter Firmenname ist kein Firmenname mehr.
+        */}
         <span
+          data-nicht-uebersetzen
           className={
             large
               ? 'font-display text-2xl font-semibold tracking-tight'
