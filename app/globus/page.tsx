@@ -24,7 +24,7 @@ import { kennzahlenQuellen } from '@/data/laender/kennzahlen'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Globus – die Weltwirtschaft zum Drehen'),
   description:
-    'Ein drehbarer Globus mit Wirtschaftsleistung, Einwohnern, BIP pro Kopf, Staatsverschuldung, Gehältern und Vermögen – und den Indizes und Aktien, die aus jedem Land kommen.',
+    'Ein drehbarer Globus mit Wirtschaftsleistung, Einwohnern, BIP pro Kopf, Staatsverschuldung und Vermögen – samt den Indizes und Aktien jedes Landes.',
   path: '/globus',
   ogTitle: 'Der Globus: Weltwirtschaft zum Drehen',
 })

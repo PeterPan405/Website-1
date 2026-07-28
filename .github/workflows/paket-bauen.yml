@@ -20,6 +20,15 @@ on:
   push:
     branches: [main]
 
+  # Und auf jedem Pull Request.
+  #
+  # Bis hierher lief die Prüfung ausschließlich auf `main` – also erst,
+  # nachdem ein Fehler bereits eingezogen war. Auf einem Arbeitszweig sind
+  # dutzende Commits entstanden, die nie durch diese Kette gelaufen sind;
+  # geprüft wurde lokal, und das ist nicht dasselbe. Ein Pull Request kostet
+  # nichts extra und verschiebt den Befund vor den Merge.
+  pull_request:
+
   # Täglich um 04:15 UTC, kurz nach der Routine für den Tagesüberblick.
   # Cron rechnet in UTC: 04:15 UTC sind in der Sommerzeit 06:15 Uhr deutscher
   # Zeit, in der Winterzeit 05:15 Uhr.
@@ -70,54 +79,18 @@ jobs:
 
       # Prüft das Ergebnis, nicht die Absicht.
       #
-      # Der Abschnitt ist aus Erfahrung entstanden: Ein früherer Lauf hat eine
+      # Der Schritt ist aus Erfahrung entstanden: Ein früherer Lauf hat eine
       # Website ohne Stylesheet ausgeliefert, und niemand hat es vor dem
-      # Hochladen bemerkt. Deshalb wird hier ausdrücklich nachgesehen, dass die
-      # Formatierung im Paket liegt.
+      # Hochladen bemerkt. Was hier früher als Folge von `test -f`-Aufrufen
+      # stand, liegt jetzt in `scripts/paket-pruefen.ts` – dieselben
+      # Dateiprüfungen, dazu tote Links, Meta-Längen, Überschriftenstruktur,
+      # Alternativtexte und die Deckung mit der Sitemap über alle Seiten.
+      #
+      # Der Umzug ins Skript hat einen zweiten Grund: So lässt sich dieselbe
+      # Prüfung mit `npm run pruefen` auch lokal ausführen, bevor überhaupt
+      # ein Commit entsteht.
       - name: Paket prüfen
-        run: |
-          test -f out/index.html || { echo "out/index.html fehlt"; exit 1; }
-          test -f out/404.html || { echo "out/404.html fehlt"; exit 1; }
-          test -f out/sitemap.xml || { echo "out/sitemap.xml fehlt"; exit 1; }
-          test -f out/robots.txt || { echo "out/robots.txt fehlt"; exit 1; }
-          test -f out/version.txt || { echo "out/version.txt fehlt"; exit 1; }
-
-          # Versteckte Datei, deshalb ausdrücklich geprüft: Sie ist schon einmal
-          # unbemerkt aus dem Artefakt gefallen, weil upload-artifact versteckte
-          # Dateien standardmäßig überspringt. Ohne sie liefert der Server bei
-          # unbekannten Adressen seine eigene Fehlerseite statt der gestalteten.
-          test -f out/.htaccess || { echo "out/.htaccess fehlt"; exit 1; }
-
-          css=$(find out/_next -name '*.css' | wc -l)
-          if [ "$css" -lt 1 ]; then
-            echo "Kein Stylesheet im Paket – die Seite käme ohne Formatierung heraus."
-            exit 1
-          fi
-
-          seiten=$(find out -name index.html | wc -l)
-          if [ "$seiten" -lt 100 ]; then
-            echo "Nur $seiten Seiten im Paket – der Export ist unvollständig."
-            exit 1
-          fi
-
-          # Eine echte Domain muss im Ergebnis stehen, kein Platzhalter. Sonst
-          # zeigt jede Seite auf eine Adresse, die es nicht gibt – im Browser
-          # unsichtbar, für Suchmaschinen fatal.
-          #
-          # Seit die Basis-URL in lib/resolve-site-url.ts auf die echte Domain
-          # zeigt, kann das eigentlich nicht mehr passieren. Die Prüfung bleibt
-          # trotzdem: Sie hat den Fehler zweimal gefunden, und die reservierte
-          # .example-TLD gehört unter keinen Umständen in eine Sitemap.
-          if grep -q "\.example/" out/sitemap.xml; then
-            echo "Die Sitemap enthält eine Platzhalter-Domain (.example)."
-            echo "NEXT_PUBLIC_SITE_URL prüfen oder lib/resolve-site-url.ts."
-            exit 1
-          fi
-
-          echo "Seiten:      $seiten"
-          echo "Stylesheets: $css"
-          echo "Dateien:     $(find out -type f | wc -l)"
-          echo "Größe:       $(du -sh out | cut -f1)"
+        run: npm run pruefen
 
       - uses: actions/upload-artifact@v4
         with:

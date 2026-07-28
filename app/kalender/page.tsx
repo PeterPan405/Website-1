@@ -19,7 +19,7 @@ import { buildMetadata, withBrand } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Börsenkalender – Termine, die feststehen'),
   description:
-    'Zinsentscheide von EZB und Fed, Berichtssaison, Verfallstage, Börsenfeiertage und Wahlen – mit einer Einordnung, was jeder Termin für Anlegerinnen und Anleger bedeutet.',
+    'Zinsentscheide von EZB und Fed, Berichtssaison, Verfallstage, Börsenfeiertage und Wahlen – mit einer Einordnung, was jeder Termin für Anleger bedeutet.',
   path: '/kalender',
   ogTitle: 'Der Börsenkalender: Termine, die feststehen',
 })
