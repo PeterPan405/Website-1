@@ -66,6 +66,8 @@ export interface Land {
   schuldenquote?: Kennwert
   durchschnittsgehalt?: Kennwert
   medianvermoegen?: Kennwert
+  bneProKopf?: Kennwert
+  bipProKopfKKP?: Kennwert
 
   indizes: Landeskurs[]
   aktien: Landeskurs[]
@@ -79,6 +81,8 @@ export type MetrikId =
   | 'schuldenquote'
   | 'durchschnittsgehalt'
   | 'medianvermoegen'
+  | 'bneProKopf'
+  | 'bipProKopfKKP'
   | 'kurse'
 
 export interface Metrik {
@@ -148,6 +152,31 @@ export const metriken: Metrik[] = [
     hoherWertIstGross: true,
   },
   {
+    id: 'bneProKopf',
+    label: 'Einkommen je Kopf',
+    /*
+      Der Name ist mit Bedacht nicht „Durchschnittsgehalt“.
+
+      Das Bruttonationaleinkommen enthält Unternehmensgewinne und
+      Staatseinnahmen; geteilt durch die Einwohnerzahl ergibt das eine Zahl, die
+      deutlich über dem liegt, was ein Angestellter verdient. Wer sie für ein
+      Gehalt hält, zieht falsche Schlüsse – deshalb steht der Unterschied
+      ausdrücklich in der Erklärung.
+    */
+    erklaerung:
+      'Bruttonationaleinkommen je Einwohner: alles, was ein Land in einem Jahr erwirtschaftet, geteilt durch seine Bevölkerung. Kein Gehalt – enthalten sind auch Unternehmensgewinne und Staatseinnahmen. Die Weltbank glättet Wechselkursschwankungen über drei Jahre (Atlas-Methode).',
+    einheit: 'US-Dollar im Jahr',
+    hoherWertIstGross: true,
+  },
+  {
+    id: 'bipProKopfKKP',
+    label: 'Kaufkraft je Kopf',
+    erklaerung:
+      'Wirtschaftsleistung je Einwohner, umgerechnet nach dem, was man vor Ort dafür bekommt. Ein Friseurbesuch kostet in Kairo weniger als in Kopenhagen; wer nur zum Wechselkurs umrechnet, unterschätzt ärmere Länder deshalb systematisch. Diese Zahl gleicht das aus.',
+    einheit: 'internationale Dollar im Jahr',
+    hoherWertIstGross: true,
+  },
+  {
     id: 'kurse',
     label: 'Kurse auf dieser Seite',
     erklaerung:
@@ -191,11 +220,14 @@ type Momentaufnahme = {
       schuldenquote?: { wert: number; jahr: number }
       durchschnittsgehalt?: { wert: number; jahr: number }
       medianvermoegen?: { wert: number; jahr: number }
+      bneProKopf?: { wert: number; jahr: number }
+      bipProKopfKKP?: { wert: number; jahr: number }
     }
   >
   schuldenQuelle?: { label: string; url: string; abgrenzung: string }
   lohnQuelle?: { label: string; url: string; abgrenzung: string }
   vermoegenQuelle?: { label: string; url: string; abgrenzung: string }
+  einkommenQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -353,6 +385,30 @@ function baueLaender(): Land[] {
         }
         return medianvermoegen[id] ? { medianvermoegen: medianvermoegen[id] } : {}
       })(),
+      /*
+        Die beiden Einkommensreihen gibt es nur aus dem Abruf.
+
+        Von Hand gepflegte Ersatzwerte wären hier sinnlos: Die Weltbank deckt
+        245 beziehungsweise 242 Länder ab – mehr, als diese Website führt.
+      */
+      ...(basis?.bneProKopf
+        ? {
+            bneProKopf: {
+              wert: basis.bneProKopf.wert,
+              zeitraum: String(basis.bneProKopf.jahr),
+              quelle: 'weltbank-einkommen',
+            },
+          }
+        : {}),
+      ...(basis?.bipProKopfKKP
+        ? {
+            bipProKopfKKP: {
+              wert: basis.bipProKopfKKP.wert,
+              zeitraum: String(basis.bipProKopfKKP.jahr),
+              quelle: 'weltbank-einkommen',
+            },
+          }
+        : {}),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
     }
@@ -382,7 +438,12 @@ assertLaenderValid({
   quellen: kennzahlenQuellen,
   ersatzschluessel,
   // Werden nicht in `kennzahlen` gesetzt, sondern aus der Momentaufnahme.
-  dynamischeQuellen: ['imf-datamapper', 'oecd-sdmx', 'oecd-vermoegen'],
+  dynamischeQuellen: [
+    'imf-datamapper',
+    'oecd-sdmx',
+    'oecd-vermoegen',
+    'weltbank-einkommen',
+  ],
 })
 
 /** Alle Länder der Karte, alphabetisch. */
@@ -421,6 +482,10 @@ export function wertFuer(land: Land, metrik: MetrikId): number | null {
       return land.durchschnittsgehalt?.wert ?? null
     case 'medianvermoegen':
       return land.medianvermoegen?.wert ?? null
+    case 'bneProKopf':
+      return land.bneProKopf?.wert ?? null
+    case 'bipProKopfKKP':
+      return land.bipProKopfKKP?.wert ?? null
     case 'kurse': {
       const anzahl = land.indizes.length + land.aktien.length
       // Null Kurse ist eine Aussage, kein fehlender Wert – deshalb 0 und nicht

@@ -38,6 +38,39 @@ const CODES_URL =
   'https://raw.githubusercontent.com/datasets/country-codes/master/data/country-codes.csv'
 
 /**
+ * Zwei Einkommensreihen der Weltbank – die Antwort auf den weissen Fleck Afrika.
+ *
+ * ## Das Problem, das sie loesen
+ *
+ * Beim Durchschnittsgehalt standen 38 von 249 Laendern, in Afrika kein
+ * einziges von 60. Die OECD erhebt Loehne nur bei ihren Mitgliedern, und eine
+ * weltweite Lohnreihe nach einheitlicher Abgrenzung veroeffentlicht niemand
+ * offen – die ILO-Schnittstelle antwortet auf jede Abfrage mit HTML.
+ *
+ * ## Warum nicht geschaetzt wird
+ *
+ * Ein aus dem BIP hochgerechnetes „Durchschnittsgehalt“ waere eine erfundene
+ * Zahl unter einer Ueberschrift, die etwas anderes verspricht. Diese beiden
+ * Reihen sind statt dessen **gemessen** und fuer fast jedes Land vorhanden:
+ *
+ * - `NY.GNP.PCAP.CD` – Bruttonationaleinkommen je Kopf in US-Dollar nach der
+ *   Atlas-Methode. Was ein Land im Schnitt je Einwohner einnimmt, ueber drei
+ *   Jahre wechselkursgeglaettet. 245 Laender.
+ * - `NY.GDP.PCAP.PP.CD` – Wirtschaftsleistung je Kopf, kaufkraftbereinigt.
+ *   Macht Laender mit sehr unterschiedlichem Preisniveau vergleichbar. 242
+ *   Laender.
+ *
+ * Beides ist kein Gehalt und wird auf der Seite auch nicht so genannt. Es
+ * beantwortet die Frage, um die es beim Blick auf die Karte meist geht – wie
+ * wohlhabend ist dieses Land – und zwar fuer fast alle statt fuer ein Sechstel.
+ */
+const WELTBANK_BASIS = 'https://api.worldbank.org/v2/country/all/indicator'
+const EINKOMMENSREIHEN = [
+  { feld: 'bneProKopf' as const, indikator: 'NY.GNP.PCAP.CD' },
+  { feld: 'bipProKopfKKP' as const, indikator: 'NY.GDP.PCAP.PP.CD' },
+]
+
+/**
  * Schuldenquote aus der Datamapper-Schnittstelle des IWF.
  *
  * `GGXWDG_NGDP` ist die Bruttoschuld des Gesamtstaats in Prozent des BIP – die
@@ -344,6 +377,71 @@ async function ladeSchuldenquoten(): Promise<Map<
 }
 
 /**
+ * Holt eine Reihe der Weltbank je Land, juengstes Jahr mit Wert.
+ *
+ * Abgefragt werden mehrere Jahrgaenge auf einmal (`date=2018:2025`), weil die
+ * Reihen je Land unterschiedlich weit reichen: Fuer Deutschland liegt 2024
+ * vor, fuer manche kleine Volkswirtschaft nur 2021. Ein fester Jahrgang haette
+ * genau die Laender wieder herausgeworfen, um die es hier geht.
+ *
+ * Die Antwort ist ein Array aus zwei Elementen: erst ein Kopf mit der
+ * Seitenzahl, dann die Zeilen. Ohne `per_page` liefert die Schnittstelle nur
+ * fuenfzig Zeilen und verteilt den Rest auf Folgeseiten.
+ */
+async function ladeWeltbankreihe(
+  indikator: string
+): Promise<Map<string, { wert: number; jahr: number }> | null> {
+  const url = `${WELTBANK_BASIS}/${indikator}?format=json&per_page=20000&date=2018:2025`
+  try {
+    const antwort = await fetch(url, { headers: KOPFZEILEN })
+    if (!antwort.ok) {
+      console.log(
+        `::warning::Weltbank ${indikator} antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – bisheriger Stand bleibt.`
+      )
+      return null
+    }
+
+    const roh = (await antwort.json()) as unknown
+    if (!Array.isArray(roh) || roh.length < 2 || !Array.isArray(roh[1])) {
+      console.log(`::warning::Weltbank ${indikator}: unerwarteter Aufbau der Antwort.`)
+      return null
+    }
+
+    const zeilen = roh[1] as {
+      countryiso3code?: string
+      date?: string
+      value?: number | null
+    }[]
+
+    const werte = new Map<string, { wert: number; jahr: number }>()
+    for (const zeile of zeilen) {
+      const code = zeile.countryiso3code
+      const jahr = Number(zeile.date)
+      const wert = zeile.value
+      if (!code || code.length !== 3 || KEINE_LAENDER.test(code)) continue
+      if (!Number.isFinite(jahr)) continue
+      if (typeof wert !== 'number' || !Number.isFinite(wert) || wert <= 0) continue
+
+      const bisher = werte.get(code)
+      if (!bisher || jahr > bisher.jahr) werte.set(code, { wert: Math.round(wert), jahr })
+    }
+
+    if (werte.size === 0) {
+      console.log(`::warning::Weltbank ${indikator}: keine verwertbare Zeile.`)
+      return null
+    }
+
+    console.log(`Weltbank ${indikator}: ${werte.size} Laender.`)
+    return werte
+  } catch (fehler) {
+    console.log(
+      `::warning::Weltbank ${indikator} nicht erreichbar (${fehler instanceof Error ? fehler.message : fehler}) – bisheriger Stand bleibt.`
+    )
+    return null
+  }
+}
+
+/**
  * Wechselkurse zum Jahresende, Euro zu Fremdwaehrung.
  *
  * Genommen wird der letzte Handelstag des jeweiligen Jahres. Ein
@@ -606,15 +704,18 @@ async function ladeVorherigenStand(): Promise<Record<string, unknown> | null> {
 
 async function main() {
   console.log('Lade Weltbank-Reihen …')
-  const [gdpRoh, popRoh, codesRoh, schulden, loehne, kurse, vorher] = await Promise.all([
-    ladeCsv(GDP_URL),
-    ladeCsv(POP_URL),
-    ladeCsv(CODES_URL),
-    ladeSchuldenquoten(),
-    ladeLoehne(),
-    ladeJahresendkurse(),
-    ladeVorherigenStand(),
-  ])
+  const [gdpRoh, popRoh, codesRoh, schulden, loehne, kurse, bne, bipKkp, vorher] =
+    await Promise.all([
+      ladeCsv(GDP_URL),
+      ladeCsv(POP_URL),
+      ladeCsv(CODES_URL),
+      ladeSchuldenquoten(),
+      ladeLoehne(),
+      ladeJahresendkurse(),
+      ladeWeltbankreihe(EINKOMMENSREIHEN[0].indikator),
+      ladeWeltbankreihe(EINKOMMENSREIHEN[1].indikator),
+      ladeVorherigenStand(),
+    ])
 
   const gdp = zuReihe(gdpRoh)
   const pop = zuReihe(popRoh)
@@ -662,6 +763,8 @@ async function main() {
       schuldenquote?: { wert: number; jahr: number }
       durchschnittsgehalt?: { wert: number; jahr: number }
       medianvermoegen?: { wert: number; jahr: number }
+      bneProKopf?: { wert: number; jahr: number }
+      bipProKopfKKP?: { wert: number; jahr: number }
     }
   > = {}
 
@@ -672,6 +775,8 @@ async function main() {
         schuldenquote?: { wert: number; jahr: number }
         durchschnittsgehalt?: { wert: number; jahr: number }
         medianvermoegen?: { wert: number; jahr: number }
+        bneProKopf?: { wert: number; jahr: number }
+        bipProKopfKKP?: { wert: number; jahr: number }
       }
     >) ?? {}
 
@@ -708,6 +813,18 @@ async function main() {
         const gewaehlt = neu ?? alt
         return gewaehlt ? { medianvermoegen: gewaehlt } : {}
       })(),
+      ...(() => {
+        const neu = bne?.get(code.alpha3)
+        const alt = vorherigeLaender[code.alpha3]?.bneProKopf
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { bneProKopf: gewaehlt } : {}
+      })(),
+      ...(() => {
+        const neu = bipKkp?.get(code.alpha3)
+        const alt = vorherigeLaender[code.alpha3]?.bipProKopfKKP
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { bipProKopfKKP: gewaehlt } : {}
+      })(),
     }
   }
 
@@ -718,8 +835,10 @@ async function main() {
   const mitVermoegen = Object.values(laender).filter(
     (land) => land.medianvermoegen
   ).length
+  const mitBne = Object.values(laender).filter((land) => land.bneProKopf).length
+  const mitKkp = Object.values(laender).filter((land) => land.bipProKopfKKP).length
   console.log(
-    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn und ${mitVermoegen} mit Medianvermoegen.`
+    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn, ${mitVermoegen} mit Medianvermoegen, ${mitBne} mit Einkommen je Kopf und ${mitKkp} mit Kaufkraft je Kopf.`
   )
 
   if (mitBip < 150) {
@@ -758,6 +877,12 @@ async function main() {
         label: 'Europäische Zentralbank, Euro-Referenzkurse',
         url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
       },
+    },
+    einkommenQuelle: {
+      label: 'Weltbank, World Development Indicators (NY.GNP.PCAP.CD, NY.GDP.PCAP.PP.CD)',
+      url: 'https://data.worldbank.org/indicator/NY.GNP.PCAP.CD',
+      abgrenzung:
+        'Bruttonationaleinkommen je Kopf in US-Dollar nach der Atlas-Methode sowie Wirtschaftsleistung je Kopf zu Kaufkraftparitaeten. Beides ist kein Lohn: Es umfasst die gesamte Wertschoepfung einschliesslich Unternehmensgewinnen und Staatseinnahmen, geteilt durch die Einwohnerzahl. Genommen wird je Land das juengste Jahr mit Wert; das Jahr steht an jedem Eintrag.',
     },
     laender,
   }

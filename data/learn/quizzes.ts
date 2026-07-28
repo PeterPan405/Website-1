@@ -1128,6 +1128,470 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Als Sondervermögen fällt der Fonds bei einer Insolvenz des Anbieters nicht in die Masse – dafür braucht er keinen Einlagenschutz. Sein Risiko liegt im Inhalt: Ein Fonds mit besicherten Übernachtgeschäften ist etwas anderes als einer mit kurzlaufenden Unternehmensanleihen, auch wenn beide „Geldmarkt“ heißen.',
     },
   ],
+  // ------------------------------------------------------------------ Fonds
+  'fonds:beginner': [
+    {
+      question: 'Was besitzt du, wenn du Fondsanteile hältst?',
+      options: [
+        'Die einzelnen Aktien anteilig, mit Stimmrecht auf den Hauptversammlungen',
+        'Anteile am gesamten Fondsvermögen – die Wertpapiere selbst hält der Fonds',
+        'Ein Darlehen an die Fondsgesellschaft',
+        'Ein Recht auf eine feste jährliche Ausschüttung',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Du hältst einen Bruchteil von allem, was im Fonds liegt. Auf Hauptversammlungen stimmt die Fondsgesellschaft ab, Dividenden fließen in den Fonds. Ein Darlehen wäre eine Anleihe, und eine feste Ausschüttung verspricht kein Fonds – was ausgeschüttet wird, hängt davon ab, was erwirtschaftet wurde.',
+    },
+    {
+      question: 'Wie entsteht der Anteilspreis eines Fonds?',
+      options: [
+        'Durch Angebot und Nachfrage an der Börse',
+        'Die Fondsgesellschaft legt ihn wöchentlich fest',
+        'Wert aller Anlagen abzüglich Verbindlichkeiten, geteilt durch die Zahl der Anteile',
+        'Er entspricht dem Einstandspreis zuzüglich der laufenden Kosten',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Anteilspreis ist eine tägliche Rechnung, kein Verhandlungsergebnis – deshalb kann ein Fonds keine Blase auf sich selbst bilden. Bei börsengehandelten Fonds kommt zusätzlich ein Börsenpreis daneben, der leicht abweichen kann.',
+    },
+    {
+      question:
+        'Die Fondsgesellschaft meldet Insolvenz an. Was passiert mit deinem Geld?',
+      options: [
+        'Es fällt nicht in die Insolvenzmasse – das Fondsvermögen ist rechtlich getrennt',
+        'Es ist bis 100.000 Euro über die Einlagensicherung geschützt, darüber verloren',
+        'Es wird anteilig an die Gläubiger der Gesellschaft verteilt',
+        'Der Fonds wird eingefroren und nach zehn Jahren ausgezahlt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das ist der Kern des Sondervermögens: Das Fondsvermögen gehört den Anlegern, nicht der Gesellschaft, und wird von einer unabhängigen Depotbank verwahrt. Es wird übertragen oder aufgelöst und ausgezahlt. Vor fallenden Kursen schützt das allerdings nicht.',
+    },
+    {
+      question:
+        'Warum wiegen die laufenden Kosten eines Fonds schwerer als der einmalige Ausgabeaufschlag?',
+      options: [
+        'Weil sie steuerlich nicht absetzbar sind',
+        'Weil sie beim Verkauf noch einmal anfallen',
+        'Weil sie höher sind als jeder Ausgabeaufschlag',
+        'Weil sie jedes Jahr auf das gesamte Vermögen anfallen – auch in Verlustjahren',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Ausgabeaufschlag trifft einmal den eingezahlten Betrag, die laufenden Kosten jedes Jahr das gesamte angesparte Vermögen. Über Jahrzehnte summiert sich das erheblich. Und es ist die einzige Größe der Geldanlage, die im Voraus feststeht: Rendite ist eine Hoffnung, Kosten sind eine Tatsache.',
+    },
+  ],
+  'fonds:fortgeschritten': [
+    {
+      question: 'Der Kurs eines offenen Immobilienfonds schwankt kaum. Was folgt daraus?',
+      options: [
+        'Der Fonds ist besonders sicher und mit Tagesgeld vergleichbar',
+        'Wenig – Immobilien werden periodisch durch Gutachter bewertet, nicht täglich gehandelt',
+        'Der Fonds hält überwiegend Bargeld',
+        'Die Wertentwicklung ist garantiert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der ruhige Kurs ist eine Folge der Bewertungsmethode, keine Eigenschaft der Anlage. Dazu kommen gesetzliche Fristen: 24 Monate Mindesthaltedauer und zwölf Monate Kündigungsfrist – eingeführt, nachdem in der Finanzkrise mehrere Fonds die Rücknahme aussetzen mussten.',
+    },
+    {
+      question:
+        'Warum liegt die durchschnittliche Rendite aktiver Fonds nach Kosten unter der des Marktes?',
+      options: [
+        'Weil Fondsmanager schlechter informiert sind als Privatanleger',
+        'Weil aktive Fonds gesetzlich schlechtere Anlagen kaufen müssen',
+        'Weil alle Anleger zusammen den Markt halten – ihr Durchschnitt vor Kosten ist die Marktrendite, nach Kosten weniger',
+        'Weil aktive Fonds keine Dividenden vereinnahmen dürfen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das Argument ist arithmetisch, nicht polemisch: Was der eine besser macht, macht ein anderer schlechter, und in der Summe halten alle den Markt. Die höheren Kosten ziehen den Durchschnitt darunter. Das schließt nicht aus, dass einzelne Fonds den Markt schlagen – nur der Durchschnitt kann es nicht.',
+    },
+    {
+      question: 'Welcher Kostenblock ist in der Gesamtkostenquote (TER) NICHT enthalten?',
+      options: [
+        'Die Verwaltungsgebühr',
+        'Die Kosten der Depotbank',
+        'Die Prüfungskosten',
+        'Die Transaktionskosten des Handels innerhalb des Fonds',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Handelskosten innerhalb des Fonds stehen in keiner TER. Ein Fonds, der seinen Bestand jedes Jahr komplett umschichtet, zahlt hier ein Vielfaches eines ruhigen – bei gleicher ausgewiesener Kostenquote. Deshalb ist die Wertentwicklung nach Kosten der bessere Vergleichsmaßstab.',
+    },
+    {
+      question:
+        'Ein Fonds wird mit einem Kursindex verglichen und schneidet hervorragend ab. Was ist zu prüfen?',
+      options: [
+        'Ob der Fonds überhaupt zugelassen ist',
+        'Ob im Kursindex die Dividenden fehlen – dann ist der Vergleich systematisch geschönt',
+        'Ob der Fonds thesauriert oder ausschüttet',
+        'Ob der Vergleich in Euro oder Dollar gerechnet wurde',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Kursindex bildet nur Kursbewegungen ab, ein Fonds vereinnahmt zusätzlich die Dividenden. Über Jahre ergibt das einen Vorsprung, der nichts mit dem Können des Managements zu tun hat. Verglichen wird gegen die Net-Return-Variante – und gegen den passenden Index, nicht irgendeinen.',
+    },
+  ],
+  'fonds:profi': [
+    {
+      question: 'Was besagt die 5/10/40-Regel für OGAW-Fonds?',
+      options: [
+        'Der Fonds darf höchstens 40 Prozent seines Vermögens in Aktien halten',
+        'Mindestens 40 Prozent müssen in liquiden Anlagen liegen',
+        'Höchstens 10 Prozent in einen Emittenten, und Positionen über 5 Prozent zusammen höchstens 40 Prozent',
+        'Der Fonds muss mindestens 40 verschiedene Werte halten',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Regel begrenzt das Klumpenrisiko rechtlich statt nach Ermessen des Managers. Deshalb kann ein OGAW-Fonds nie zur Hälfte aus einem einzigen Wert bestehen, auch wenn der Manager es für richtig hielte.',
+    },
+    {
+      question: 'Wozu dient Swing Pricing?',
+      options: [
+        'Den Anteilspreis bei hohen Rückgaben zu senken, damit die Handelskosten die Zurückgebenden treffen statt die Verbleibenden',
+        'Den Anteilspreis an Börsentagen mehrfach anzupassen',
+        'Erfolgsabhängige Vergütungen zu glätten',
+        'Wechselkursschwankungen im Fonds auszugleichen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ohne diesen Mechanismus zahlen die Verbleibenden die Kosten der Notverkäufe – und genau das erzeugt den Anreiz, als Erster zu gehen. Swing Pricing dreht den Anreiz um, indem es die Kosten dorthin legt, wo sie verursacht werden.',
+    },
+    {
+      question:
+        'Ein Fonds weist einen hohen Anteil an Positionen der Bewertungsstufe 3 aus. Was heißt das?',
+      options: [
+        'Er hält überwiegend Aktien großer Unternehmen',
+        'Seine Anlagen sind besonders liquide',
+        'Er hat besonders niedrige Kosten',
+        'Ein erheblicher Teil des Anteilspreises beruht auf Modellannahmen statt auf beobachteten Preisen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Stufe 1 sind notierte Preise an aktiven Märkten, Stufe 2 Ableitungen aus beobachtbaren Größen, Stufe 3 überwiegend Modell. Bei einem Aktienfonds liegt der Anteil nahe null, bei manchen Anleihe- und Mischfonds erheblich. Er steht im Jahresbericht.',
+    },
+    {
+      question:
+        'Wie hoch ist die Teilfreistellung bei einem Fonds mit mindestens 51 Prozent Aktienanteil?',
+      options: [
+        '15 Prozent der Erträge bleiben steuerfrei',
+        '30 Prozent der Erträge bleiben steuerfrei',
+        '51 Prozent der Erträge bleiben steuerfrei',
+        'Es gibt keine Teilfreistellung für Aktienfonds',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Teilfreistellung gleicht pauschal aus, dass der Fonds selbst bereits Steuern gezahlt hat. Bei Aktienfonds ab 51 Prozent Aktienanteil sind es 30 Prozent, bei Mischfonds ab 25 Prozent sind es 15 Prozent, bei Immobilienfonds 60 oder 80 Prozent.',
+    },
+  ],
+  // -------------------------------------------------------- Risiko & Rendite
+  'risiko-und-rendite:beginner': [
+    {
+      question:
+        'Ein Angebot verspricht 12 Prozent Rendite bei „voller Sicherheit“. Was ist die richtige Reaktion?',
+      options: [
+        'Zugreifen, solange das Angebot gilt',
+        'Nachrechnen, ob die Rendite nach Steuern noch reicht',
+        'Fragen, wofür man hier bezahlt wird – findet sich keine Gegenleistung, stimmt die Beschreibung nicht',
+        'Den Betrag auf mehrere Anbieter verteilen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Rendite ist die Entschädigung dafür, dass jemand etwas übernimmt, das ein anderer vermeiden möchte. Findet man diese Gegenleistung nicht, hat man sie entweder übersehen oder sie wird verschwiegen. Ein Aufteilen auf mehrere Anbieter hilft nicht, wenn das Grundgeschäft nicht aufgeht.',
+    },
+    {
+      question:
+        'Dein Depot steht 25 Prozent im Minus. Wann wird daraus ein echter Verlust?',
+      options: [
+        'Sofort – der Wert ist ja gesunken',
+        'Erst beim Verkauf; bis dahin ist es ein Buchverlust',
+        'Nach zwölf Monaten, wenn die Spekulationsfrist abläuft',
+        'Sobald die Bank den Depotauszug verschickt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Kursrückgang schreibt sich erst durch den Verkauf fest. Genau deshalb ist das Zeitpunktrisiko das gefährlichste der vier: Wer verkaufen muss, weil er das Geld braucht, hat die Wahl nicht mehr. Der Notgroschen auf dem Tagesgeldkonto ist die Versicherung dagegen.',
+    },
+    {
+      question: 'Ein Wert ist um 50 Prozent gefallen. Welcher Anstieg gleicht das aus?',
+      options: ['100 Prozent', '50 Prozent', '75 Prozent', '150 Prozent'],
+      correctIndex: 0,
+      explanation:
+        'Aus 100 werden 50; um wieder auf 100 zu kommen, muss sich der Wert verdoppeln. Diese Asymmetrie wächst rasch: Nach minus 90 Prozent braucht es eine Verzehnfachung. Sie ist der Grund, warum Streuung wichtiger ist als Trefferquote – ein Totalausfall lässt sich nicht durch drei gute Griffe ausgleichen.',
+    },
+    {
+      question: 'Welche Angabe entscheidet vor einem Kauf über die passende Anlageform?',
+      options: [
+        'Die erwartete Rendite',
+        'Die Kostenquote',
+        'Die Bewertung des Marktes',
+        'Wann das Geld wieder gebraucht wird',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Anlagehorizont bestimmt, wie viel Schwankung überhaupt tragbar ist. Geld, das in zwei Jahren gebraucht wird, gehört unabhängig von jeder Renditeerwartung nicht in den Aktienmarkt – denn dort kann es in zwei Jahren deutlich weniger sein, und dann fehlt die Zeit, das auszusitzen.',
+    },
+  ],
+  'risiko-und-rendite:fortgeschritten': [
+    {
+      question: 'Was ist die wichtigste Schwäche der Volatilität als Risikomaß?',
+      options: [
+        'Sie lässt sich nur für Aktien berechnen',
+        'Sie behandelt Aufwärts- und Abwärtsbewegungen gleich',
+        'Sie ist erst nach zehn Jahren aussagekräftig',
+        'Sie berücksichtigt keine Dividenden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Wert, der um 30 Prozent steigt, geht als ebenso „riskant“ in die Rechnung ein wie einer, der um 30 Prozent fällt. Über den ersten Fall hat sich noch niemand beschwert. Dazu kommen zwei weitere Schwächen: die Annahme einer Normalverteilung und der Blick nach hinten.',
+    },
+    {
+      question:
+        'Warum ist der maximale Rückgang für viele Anleger die nützlichere Zahl als die Volatilität?',
+      options: [
+        'Weil er von der Aufsicht vorgeschrieben ist',
+        'Weil er die künftige Entwicklung besser vorhersagt',
+        'Weil er beschreibt, was tatsächlich auszuhalten war – zusammen mit der Erholungsdauer',
+        'Weil er Dividenden mit einrechnet',
+      ],
+      correctIndex: 2,
+      explanation:
+        '„Volatilität 18 Prozent“ sagt einem Menschen wenig, „das Depot stand zwei Jahre 40 Prozent im Minus“ sagt ihm alles. Vorhersagekraft hat auch der Rückgang nicht – er beantwortet aber die Frage, auf die es ankommt: Hätte ich das durchgehalten?',
+    },
+    {
+      question: 'Eine Aktie hat ein Beta von 0,6. Was folgt daraus?',
+      options: [
+        'Sie schwankt historisch schwächer als der Gesamtmarkt – über ihr Insolvenzrisiko sagt das nichts',
+        'Sie kann höchstens 60 Prozent verlieren',
+        'Sie ist zu 60 Prozent im Index enthalten',
+        'Sie erwirtschaftet 60 Prozent der Marktrendite',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Beta misst die Bewegung relativ zum Markt, nicht die Wahrscheinlichkeit eines Ausfalls. Ein Unternehmen kann jahrelang ruhig verlaufen und dann insolvent gehen – das Beta hätte davon nichts angezeigt.',
+    },
+    {
+      question: 'Warum enttäuscht Streuung ausgerechnet in Krisen?',
+      options: [
+        'Weil Fonds dann geschlossen werden',
+        'Weil Korrelationen dann steigen – vieles fällt gleichzeitig',
+        'Weil die Börsen den Handel aussetzen',
+        'Weil Dividenden gestrichen werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'In ruhigen Zeiten laufen Anlageklassen auseinander, in Panikphasen fallen sie gemeinsam – 2008 und 2020 gaben Aktien, Unternehmensanleihen, Rohstoffe und Immobilienwerte zugleich nach. Streuung wirkt trotzdem, nur schwächer als die historische Korrelation verspricht.',
+    },
+  ],
+  'risiko-und-rendite:profi': [
+    {
+      question: 'Was bedeuten „fette Ränder“ in der Verteilung der Renditen?',
+      options: [
+        'Die Handelsspannen sind an den Rändern des Tages größer',
+        'Die Renditen sind gleichmäßig über alle Werte verteilt',
+        'Extreme Tage kommen deutlich häufiger vor, als eine Normalverteilung zulässt',
+        'Die Gebühren steigen bei extremen Bewegungen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Unter der Glockenkurve wäre der Tagesverlust von über 20 Prozent im Oktober 1987 ein Ereignis, das in der Lebensdauer des Universums nicht hätte auftreten dürfen. Er trat auf. Wer Risiko über die Standardabweichung steuert, unterschätzt genau die Fälle, auf die es ankommt.',
+    },
+    {
+      question:
+        'Warum ist die Reihenfolge der Renditejahre in der Entnahmephase entscheidend?',
+      options: [
+        'Weil in schlechten Jahren Anteile zu niedrigen Kursen verkauft werden und dauerhaft fehlen',
+        'Weil die Steuer auf Kursgewinne mit den Jahren steigt',
+        'Weil Dividenden in schlechten Jahren ausfallen',
+        'Weil die Depotgebühren dann höher sind',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer nur anspart, dem ist die Reihenfolge gleichgültig – am Ende steht dasselbe Ergebnis. Wer entnimmt, verkauft in Rückgangsjahren mehr Anteile für denselben Betrag; diese Anteile fehlen, und die spätere Erholung findet auf einem kleineren Bestand statt.',
+    },
+    {
+      question:
+        'Risikotragfähigkeit und Risikobereitschaft weichen voneinander ab. Welche ist maßgeblich?',
+      options: [
+        'Die Tragfähigkeit, weil sie nachrechenbar ist',
+        'Die Bereitschaft, weil sie die persönliche Einstellung abbildet',
+        'Der Durchschnitt aus beiden',
+        'Die kleinere von beiden',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer viel tragen könnte, es aber nicht aushält, verkauft im Rückgang – und realisiert genau den Verlust, den er sich rechnerisch hätte leisten können. Ein Depot, das nicht durchgehalten wird, ist unabhängig von seiner Konstruktion das falsche.',
+    },
+    {
+      question: 'Was hilft gegen das Sequenzrisiko zu Beginn der Entnahmephase?',
+      options: [
+        'Die Aktienquote erst nach einem Rückgang senken',
+        'Ein Puffer aus schwankungsarmen Anlagen und flexible statt fester Entnahmen',
+        'Höhere Entnahmen in schlechten Jahren, um den Verlust auszugleichen',
+        'Den Entnahmebetrag jährlich an die Inflation koppeln',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Zwei bis drei Jahresbedarfe in schwankungsarmen Anlagen erlauben es, schlechte Jahre zu überbrücken, ohne Anteile zum Tiefstkurs zu verkaufen. Höhere Entnahmen im Rückgang verstärken den Effekt, statt ihn auszugleichen – und die Aktienquote senkt man vor Beginn der Entnahme, nicht danach.',
+    },
+  ],
+  // ------------------------------------------------------- Cost-Average
+  'cost-average-sparplan:beginner': [
+    {
+      question:
+        'Warum liegt der durchschnittlich gezahlte Preis je Anteil unter dem Durchschnitt der Kurse?',
+      options: [
+        'Weil der Broker bei Sparplänen einen Rabatt gewährt',
+        'Weil bei niedrigen Kursen mehr Anteile gekauft werden und diese Monate stärker ins Gewicht fallen',
+        'Weil Sparpläne steuerlich begünstigt sind',
+        'Weil die Ausführung immer zum Tagestief erfolgt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Dieselbe Rate kauft bei einem Kurs von 25 doppelt so viele Anteile wie bei 50. Die billigen Monate wiegen deshalb in deinem eigenen Durchschnitt schwerer als im schlichten Mittelwert der Kurse. Mit Rabatten oder Steuern hat das nichts zu tun.',
+    },
+    {
+      question:
+        'Unter welcher Bedingung entsteht der Durchschnittskosteneffekt überhaupt?',
+      options: [
+        'Wenn der Kurs zwischenzeitlich fällt',
+        'Wenn der Kurs durchgehend steigt',
+        'Wenn monatlich statt wöchentlich gekauft wird',
+        'Wenn der Fonds thesauriert',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ohne Kursrückgänge gibt es keine billigen Monate – und damit keinen Effekt. Bei durchgehend steigenden Kursen kehrt er sich sogar um: Jede spätere Rate kauft teurer, und eine Einmalanlage zu Beginn hätte besser abgeschnitten.',
+    },
+    {
+      question: 'Was ist der eigentliche Vorteil eines Sparplans?',
+      options: [
+        'Er erzielt zuverlässig eine höhere Rendite als die Einmalanlage',
+        'Er schützt vor Kursverlusten',
+        'Er macht die Frage nach dem richtigen Einstiegszeitpunkt überflüssig',
+        'Er senkt die laufenden Kosten des Fonds',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Zeitpunktfrage ist unbeantwortbar und hält Menschen jahrelang vom Anfangen ab. Ein Sparplan beantwortet sie ein für alle Mal mit „egal“ und läuft ohne monatliche Entscheidung weiter – gerade dann, wenn schlechte Nachrichten zum Aussetzen verleiten würden.',
+    },
+    {
+      question: 'Was gehört vor den ersten Sparplan?',
+      options: [
+        'Eine Depoteröffnung bei mindestens zwei Brokern',
+        'Der Notgroschen auf einem Tagesgeldkonto',
+        'Eine Analyse der aktuellen Marktbewertung',
+        'Ein Steuerberatungsgespräch',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Notgroschen wird der Sparplan zur Notreserve, und dann verkauft man ausgerechnet dann, wenn die Kurse unten stehen. Drei bis sechs Monatsausgaben, sofort verfügbar – das ist die Versicherung gegen das Zeitpunktrisiko.',
+    },
+  ],
+  'cost-average-sparplan:fortgeschritten': [
+    {
+      question:
+        'Warum schneidet die Einmalanlage im Durchschnitt besser ab als das Verteilen?',
+      options: [
+        'Weil sie günstigere Ausführungskosten hat',
+        'Weil Einmalanlagen steuerlich begünstigt sind',
+        'Weil das Geld länger am Markt ist – in steigenden Märkten kostet jede Wartezeit erwartete Rendite',
+        'Weil Fondsgesellschaften Einmalanlagen bevorzugt ausführen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Vorteil ist Zeit, nicht Timing. Wer verteilt anlegt, hat einen Teil des Geldes monatelang nicht investiert. In den bekannten Auswertungen für den US-Markt lag die Einmalanlage in etwa zwei von drei Fällen vorn – im verbleibenden Drittel kam kurz nach dem Start ein Rückgang.',
+    },
+    {
+      question: 'Wann ist das Verteilen einer grossen Summe trotzdem die bessere Wahl?',
+      options: [
+        'Wenn man einen Rückgang kurz nach dem Einstieg nicht aushalten würde, ohne zu verkaufen',
+        'Wenn die Summe über 100.000 Euro liegt',
+        'Wenn die Märkte gerade auf einem Höchststand stehen',
+        'Wenn der Anlagehorizont über zwanzig Jahre beträgt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Rechnung kennt nur die Rendite, nicht den Menschen. Ein Verkauf im Rückgang kostet weit mehr, als die Wartezeit gekostet hätte. Das Verteilen ist deshalb eine bewusst bezahlte Versicherungsprämie gegen die eigene Reaktion – man sollte nur wissen, dass man sie zahlt.',
+    },
+    {
+      question:
+        'Welche Stellschraube eines Sparplans hat praktisch keine Wirkung auf das Ergebnis?',
+      options: [
+        'Die Kosten je Ausführung',
+        'Die laufenden Kosten des Fonds',
+        'Die Höhe der Rate',
+        'Der Ausführungstag im Monat',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Auswertungen über Jahrzehnte finden keinen belastbaren Unterschied zwischen dem Ersten und dem Fünfzehnten. Kosten je Ausführung dagegen wirken erheblich: Ein Euro auf eine Rate von 25 Euro sind vier Prozent, die sofort weg sind.',
+    },
+    {
+      question:
+        'Bei einer Rate von 25 Euro verlangt der Broker 1 Euro je Ausführung. Wie ordnet man das ein?',
+      options: [
+        'Unerheblich, weil es ein fester Betrag ist',
+        'Vier Prozent der Rate – mehr, als die laufenden Kosten eines breiten ETF in zehn Jahren ausmachen',
+        'Etwa so viel wie die Abgeltungsteuer auf den erwarteten Gewinn',
+        'Vertretbar, solange der Fonds thesauriert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Feste Gebühren treffen kleine Raten prozentual hart. Vier Prozent Einstiegskosten muss die Anlage erst wieder erwirtschaften. Viele Broker führen Sparpläne auf breite ETFs kostenfrei aus – ein Vergleich lohnt hier mehr als jede Feinjustierung am Ausführungstag.',
+    },
+  ],
+  'cost-average-sparplan:profi': [
+    {
+      question: 'Warum ist eine Dynamisierung der Rate sinnvoll?',
+      options: [
+        'Weil höhere Raten günstigere Ausführungskonditionen bekommen',
+        'Weil eine feste Rate real schrumpft – bei 2,5 Prozent Inflation nach dreissig Jahren auf etwa die Hälfte',
+        'Weil sie den Durchschnittskosteneffekt verstärkt',
+        'Weil sie die Steuerlast senkt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Eine nominal gleichbleibende Rate verliert über Jahrzehnte den Grossteil ihrer Kaufkraft. Wer sie jährlich um die Inflationsrate oder die Gehaltssteigerung erhöht, hält sie real konstant – am besten direkt nach einer Gehaltserhöhung, bevor sich der Lebensstandard daran gewöhnt.',
+    },
+    {
+      question: 'Wie lässt sich in der Ansparphase ohne Steuerfolge rebalancieren?',
+      options: [
+        'Indem die neuen Raten dorthin fliessen, wo etwas fehlt',
+        'Indem einmal jährlich der gestiegene Teil verkauft wird',
+        'Indem der Fonds gewechselt wird',
+        'Indem Ausschüttungen entnommen statt wiederangelegt werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein Verkauf löst Abgeltungsteuer aus, eine Umlenkung der nächsten Rate nicht. Das funktioniert, solange die neuen Einzahlungen im Verhältnis zum Bestand gross genug sind – bei 400.000 Euro Depot und 300 Euro Rate verschiebt sich damit nichts mehr.',
+    },
+    {
+      question: 'Was ist der praktische Haupteinwand gegen Value Averaging?',
+      options: [
+        'Es ist bei deutschen Brokern nicht zulässig',
+        'Es funktioniert nur bei Einzelaktien',
+        'Es verlangt die grössten Einzahlungen ausgerechnet nach einem Kursrutsch – und erzeugt Verkäufe mit Steuerfolge',
+        'Es erfordert tägliche Überwachung des Depots',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Methode kauft noch stärker antizyklisch als ein gewöhnlicher Sparplan, verlangt dafür aber unvorhersehbare Beträge genau dann, wenn oft auch das Einkommen unsicher ist. Der gemessene Vorsprung ist klein und verschwindet vielfach, sobald Steuern und Handelskosten eingerechnet werden.',
+    },
+    {
+      question: 'Wann beginnt der Übergang von der Anspar- in die Entnahmephase?',
+      options: [
+        'Am Tag der ersten Entnahme',
+        'Sobald das Sparziel erreicht ist',
+        'Mit dem Renteneintritt',
+        'Jahre vorher – wegen des Sequenzrisikos in den ersten Entnahmejahren',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Fällt der Markt kurz nach Beginn der Entnahmen, werden Anteile zu niedrigen Kursen verkauft und fehlen dauerhaft. Deshalb wird die Aktienquote fünf bis zehn Jahre vorher schrittweise gesenkt – über die laufenden Raten, nicht über Verkäufe – und ein Puffer für zwei bis drei Jahre aufgebaut.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

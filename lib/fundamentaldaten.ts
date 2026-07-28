@@ -26,7 +26,7 @@ import type { Bilanzzahlen } from '@/lib/fundamentalkennzahlen'
 interface Momentaufnahme {
   abgerufenAm: string
   quelle: { label: string; url: string; abgrenzung: string }
-  unternehmen: Record<string, Bilanzzahlen>
+  unternehmen: Record<string, Bilanzzahlen & { waehrung?: string }>
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -67,6 +67,17 @@ const HINTERLEGUNGSSCHEINE = new Set([
 ])
 
 /**
+ * Die Währung, in der ein Datensatz gemeldet ist.
+ *
+ * Fehlt sie, sind es US-Dollar: So kommen die Zahlen aus der us-gaap-Runde,
+ * und dort ist der Dollar in der Abfrage festgelegt. Nur die IFRS-Melder
+ * tragen eine eigene Währung, weil sie in ihrer Heimatwährung berichten.
+ */
+export function getBilanzwaehrung(ticker: string): string {
+  return daten.unternehmen[ticker]?.waehrung ?? 'USD'
+}
+
+/**
  * Die gemeldeten Bilanzzahlen zu einem Börsenkürzel – oder `null`.
  *
  * `null` heißt: Dieses Unternehmen meldet nicht bei der SEC, oder seine
@@ -93,5 +104,7 @@ export function getBilanzzahlen(ticker: string): Bilanzzahlen | null {
   ).length
   if (belegt < 2) return null
 
-  return eintrag
+  // `waehrung` ist keine Bilanzgroesse und hat in der Rechnung nichts verloren.
+  const { waehrung: _waehrung, ...zahlen } = eintrag
+  return zahlen
 }

@@ -1,9 +1,9 @@
 {
-  "abgerufenAm": "2026-07-27T22:45:26.470Z",
+  "abgerufenAm": "2026-07-28T05:16:22.637Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
-    "abgrenzung": "Umsatz, Nettogewinn und operativer Cashflow für das zuletzt gemeldete Geschäftsjahr; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Nur Unternehmen, die nach US-Vorschriften bilanzieren."
+    "abgrenzung": "Umsatz, Nettogewinn und operativer Cashflow für das zuletzt gemeldete Geschäftsjahr; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Erfasst sind Unternehmen, die bei der SEC melden – nach US-Vorschriften (us-gaap) oder nach internationalen (ifrs-full). IFRS-Melder berichten in ihrer eigenen Währung; sie steht dann am Datensatz."
   },
   "unternehmen": {
     "ABT": {
@@ -1135,6 +1135,36 @@
     },
     "STLA": {
       "aktien": 2897483196
+    },
+    "7203.T": {
+      "waehrung": "JPY",
+      "umsatz": 48036704000000,
+      "gewinn": 4789755000000,
+      "cashflow": 3696934000000,
+      "eigenkapital": 36878913000000,
+      "aktien": 13033931974
+    },
+    "6758.T": {
+      "waehrung": "JPY",
+      "umsatz": 12957064000000,
+      "gewinn": 1159887000000,
+      "cashflow": 2321675000000,
+      "eigenkapital": 8510151000000
+    },
+    "7267.T": {
+      "waehrung": "JPY",
+      "umsatz": 21688767000000,
+      "gewinn": 903034000000,
+      "cashflow": 292152000000,
+      "eigenkapital": 12627822000000
+    },
+    "SAN.MC": {
+      "waehrung": "EUR",
+      "umsatz": 74182000000,
+      "gewinn": 15500000000,
+      "cashflow": -14835000000,
+      "eigenkapital": 112748000000,
+      "aktien": 14689319502
     }
   }
 }

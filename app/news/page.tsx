@@ -10,7 +10,7 @@ import { collectionPageSchema } from '@/lib/jsonld'
 import { formatEditionDate, getEditions, getLatestEdition } from '@/lib/editions'
 import {
   getCurrentNews,
-  getFurtherNews,
+  getFurtherNewsByDay,
   getNewsArticles,
   getNewsCategories,
 } from '@/lib/news'
@@ -25,11 +25,11 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default async function NewsOverviewPage() {
-  const [articles, current, further, categories, latestEdition, editions] =
+  const [articles, current, archivtage, categories, latestEdition, editions] =
     await Promise.all([
       getNewsArticles(),
       getCurrentNews(),
-      getFurtherNews(),
+      getFurtherNewsByDay(),
       getNewsCategories(),
       getLatestEdition(),
       getEditions(),
@@ -142,7 +142,7 @@ export default async function NewsOverviewPage() {
           </section>
         )}
 
-        {further.length > 0 && (
+        {archivtage.length > 0 && (
           <section aria-labelledby="weitere" className="mt-12">
             <h2
               id="weitere"
@@ -150,15 +150,54 @@ export default async function NewsOverviewPage() {
             >
               Weitere Artikel
             </h2>
-            <ul className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {further.map((article, index) => (
-                <li key={article.slug} className="relative">
-                  <Reveal delay={index * 0.04} className="h-full">
-                    <ArticleCard article={article} />
-                  </Reveal>
-                </li>
+            <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
+              Nach Erscheinungstag geordnet. Das Archiv ist dauerhaft – kein Artikel fällt
+              heraus.
+            </p>
+
+            {/*
+              Aufgeklappt ist nur der jüngste Tag.
+
+              Ohne das stünde hier eine Liste, die mit jedem Tag länger wird und
+              nie wieder kürzer. Mit `<details>` statt eines Schalters bleibt es
+              ohne JavaScript bedienbar, und die Browsersuche findet auch
+              zugeklappte Einträge.
+            */}
+            <div className="mt-5 space-y-3">
+              {archivtage.map((tag, tagIndex) => (
+                <details
+                  key={tag.datum}
+                  open={tagIndex === 0}
+                  className="fk-card group px-5 py-4 sm:px-6"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
+                    <span className="text-fg font-semibold">
+                      {formatEditionDate(tag.datum)}
+                    </span>
+                    <span className="text-fg-subtle flex items-center gap-3 text-sm">
+                      <span className="tabular-nums">
+                        {tag.artikel.length}{' '}
+                        {tag.artikel.length === 1 ? 'Artikel' : 'Artikel'}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="transition-transform group-open:rotate-90"
+                      >
+                        ›
+                      </span>
+                    </span>
+                  </summary>
+
+                  <ul className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {tag.artikel.map((article) => (
+                      <li key={article.slug} className="relative">
+                        <ArticleCard article={article} />
+                      </li>
+                    ))}
+                  </ul>
+                </details>
               ))}
-            </ul>
+            </div>
           </section>
         )}
       </div>

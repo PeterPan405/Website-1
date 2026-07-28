@@ -28,12 +28,117 @@ const XETRA_QUELLE = {
   url: 'https://www.cashmarket.deutsche-boerse.com/cash-de/Handelskalender-und-zeiten-4302078',
 }
 
+const IFO_QUELLE = {
+  label: 'ifo Institut: Geschäftsklimaindex Deutschland',
+  url: 'https://www.ifo.de/en/survey/ifo-business-climate-index-germany',
+}
+
+const DESTATIS_QUELLE = {
+  label: 'Statistisches Bundesamt: Veröffentlichungskalender',
+  url: 'https://www.destatis.de/SiteGlobals/Forms/Suche/Termine/DE/Terminsuche_Formular.html?templateQueryString=verbraucherpreisindex',
+}
+
+const BLS_QUELLE = {
+  label: 'US Bureau of Labor Statistics: Release Schedule',
+  url: 'https://www.bls.gov/schedule/2026/11_sched_list.htm',
+}
+
+const LBBW_QUELLE = {
+  label: 'LBBW: Termine – das bewegt die Märkte im Juli 2026',
+  url: 'https://www.lbbw.de/artikel/maerkte-verstehen/termine-juli-2026_am4innwm2g_d.html',
+}
+
 const NYSE_QUELLE = {
   label: 'NYSE: Holidays & Trading Hours',
   url: 'https://www.nyse.com/trade/hours-calendars',
 }
 
 export const termine: Termin[] = [
+  // ------------------------------------------------------------ Konjunktur
+  {
+    datum: '2026-07-30',
+    titel: 'Inflation Deutschland: Schnellschätzung für Juli',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '14:00 Uhr',
+    bedeutung:
+      'Die vorläufige Rate für den laufenden Monat, gut zwei Wochen vor dem endgültigen Wert. Wichtiger als die Gesamtrate ist für die Notenbank die Kernrate ohne Energie und Nahrungsmittel: Sie zeigt, ob sich die Teuerung in der Breite festgesetzt hat.',
+    themen: ['inflation', 'notenbanken-geldpolitik', 'tagesgeld'],
+    symbole: ['dax', 'eur-usd'],
+    quelle: DESTATIS_QUELLE,
+  },
+  {
+    datum: '2026-07-30',
+    titel: 'Bruttoinlandsprodukt im Euroraum, zweites Quartal',
+    art: 'konjunktur',
+    ort: 'Euroraum',
+    bedeutung:
+      'Die erste Schätzung für das abgelaufene Quartal. Achten Sie darauf, welche Zahl genannt wird: Der Vergleich zum Vorquartal fällt naturgemäß klein aus, der zum Vorjahresquartal größer – dieselbe Wirtschaft, zwei sehr verschieden klingende Prozentzahlen.',
+    themen: ['wie-funktioniert-der-markt', 'notenbanken-geldpolitik'],
+    symbole: ['euro-stoxx-50', 'dax'],
+    quelle: LBBW_QUELLE,
+  },
+  {
+    datum: '2026-08-25',
+    titel: 'ifo-Geschäftsklimaindex für August',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:00 Uhr',
+    bedeutung:
+      'Rund 9.000 Unternehmen bewerten ihre Lage und ihre Erwartungen für die kommenden sechs Monate. Ein Stimmungsindex misst keine Produktion – er kommt dafür Wochen früher als jede amtliche Zahl und irrt sich entsprechend öfter.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
+  {
+    datum: '2026-09-24',
+    titel: 'ifo-Geschäftsklimaindex für September',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:00 Uhr',
+    bedeutung:
+      'Lage und Erwartungen werden getrennt erhoben und lohnen den getrennten Blick: Steigt der Gesamtindex nur, weil die Erwartungen anziehen, hat sich an der tatsächlichen Geschäftslage noch nichts geändert.',
+    themen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
+  {
+    datum: '2026-10-26',
+    titel: 'ifo-Geschäftsklimaindex für Oktober',
+    art: 'konjunktur',
+    ort: 'Deutschland',
+    uhrzeit: '10:00 Uhr',
+    bedeutung:
+      'Der meistbeachtete Frühindikator der deutschen Wirtschaft. Für ein einzelnes Depot folgt daraus nichts – für die Frage, wie die Notenbank in den kommenden Monaten entscheidet, schon.',
+    themen: ['wie-funktioniert-der-markt', 'notenbanken-geldpolitik'],
+    symbole: ['dax'],
+    quelle: IFO_QUELLE,
+  },
+  {
+    datum: '2026-11-06',
+    titel: 'US-Arbeitsmarktbericht für Oktober',
+    art: 'konjunktur',
+    ort: 'USA',
+    uhrzeit: '14:30 Uhr',
+    bedeutung:
+      'Die meistbeachtete Einzelzahl der Woche, in der sie erscheint. Der Arbeitsmarkt ist die zweite Hälfte des Auftrags der US-Notenbank – neben der Preisstabilität –, und die Zahl wird deshalb unmittelbar in Zinserwartungen übersetzt.',
+    themen: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    symbole: ['sp500', 'eur-usd'],
+    quelle: BLS_QUELLE,
+  },
+  {
+    datum: '2026-11-10',
+    titel: 'US-Verbraucherpreise für Oktober',
+    art: 'konjunktur',
+    ort: 'USA',
+    uhrzeit: '14:30 Uhr',
+    bedeutung:
+      'Der CPI steht in den Schlagzeilen, die Notenbank steuert aber nach dem PCE-Deflator – zwei verschiedene Maße, die regelmäßig zu verschiedenen Zahlen kommen. Wer beide verwechselt, wundert sich über die Reaktion der Märkte.',
+    themen: ['inflation', 'notenbanken-geldpolitik'],
+    symbole: ['sp500', 'eur-usd', 'gold'],
+    quelle: BLS_QUELLE,
+  },
+
   // ------------------------------------------------------------ Notenbanken
   {
     datum: '2026-07-29',

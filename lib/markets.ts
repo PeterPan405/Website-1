@@ -8,7 +8,7 @@ import {
   type MarketRange,
   type SeriesPoint,
 } from '@/data/markets'
-import { getBilanzzahlen } from '@/lib/fundamentaldaten'
+import { getBilanzwaehrung, getBilanzzahlen } from '@/lib/fundamentaldaten'
 import {
   berechneFundamentalkennzahlen,
   type Fundamentalkennzahlen,
@@ -276,7 +276,12 @@ export async function getKennzahlen(symbol: string): Promise<Kennzahlen | null> 
  * ist auf einer Bildungsseite die schlechteste aller Antworten.
  */
 export type Fundamentalbefund =
-  | { art: 'zahlen'; kennzahlen: Fundamentalkennzahlen }
+  | {
+      art: 'zahlen'
+      kennzahlen: Fundamentalkennzahlen
+      /** Die Währung, in der Bilanz **und** Kurs stehen – geprüft, nicht geraten. */
+      waehrung: string
+    }
   /** Das Unternehmen meldet nicht bei der US-Börsenaufsicht. */
   | { art: 'keineMeldung' }
   /** Zahlen ja, aber kein echter Kurs – dann ergäbe jede Verhältniszahl Unsinn. */
@@ -297,15 +302,21 @@ export async function getFundamentalkennzahlen(
   if (!definition || definition.kind !== 'stock') return null
 
   /*
-    Nur bei Kursen in US-Dollar.
+    Bilanz und Kurs müssen dieselbe Währung tragen.
 
-    Die Bilanzzahlen der SEC sind in US-Dollar gemeldet. Stünde daneben ein Kurs
-    in Euro, käme ein Kurs-Gewinn-Verhältnis heraus, das um den Wechselkurs
-    danebenliegt. Eine Umrechnung wäre möglich, brächte aber einen zweiten
-    Stichtag ins Spiel – der Kurs von heute, die Bilanz vom Jahresende. Bei den
-    hier betroffenen Werten notiert der Kurs ohnehin in Dollar.
+    Die us-gaap-Melder berichten in US-Dollar, die IFRS-Melder in ihrer
+    Heimatwährung – Toyota in Yen, Santander in Euro. Passt das zur Währung des
+    Kurses, lässt sich rechnen; passt es nicht, käme ein Kurs-Gewinn-Verhältnis
+    heraus, das um den Wechselkurs danebenliegt, ohne dass man ihm etwas
+    ansieht.
+
+    Umgerechnet wird bewusst nicht: Das brächte einen zweiten Stichtag ins
+    Spiel – der Kurs von heute, die Bilanz vom Jahresende – und einen weiteren
+    Weg, still falsch zu liegen. Die Lücke ist die ehrlichere Antwort.
   */
-  if (definition.unit !== 'USD') return { art: 'keineMeldung' }
+  if (definition.unit !== getBilanzwaehrung(definition.ticker)) {
+    return { art: 'keineMeldung' }
+  }
 
   const zahlen = getBilanzzahlen(definition.ticker)
   if (!zahlen) return { art: 'keineMeldung' }
@@ -327,7 +338,9 @@ export async function getFundamentalkennzahlen(
   if (quote.source === null) return { art: 'keinEchterKurs' }
 
   const kennzahlen = berechneFundamentalkennzahlen(zahlen, quote.value)
-  return kennzahlen.belegt > 0 ? { art: 'zahlen', kennzahlen } : { art: 'keineMeldung' }
+  return kennzahlen.belegt > 0
+    ? { art: 'zahlen', kennzahlen, waehrung: definition.unit }
+    : { art: 'keineMeldung' }
 }
 
 /**
