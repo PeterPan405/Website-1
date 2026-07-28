@@ -466,6 +466,10 @@ export const option: LearnTopic = {
           text: '**Delta-Hedging** neutralisiert die Richtungswette: Man hält den Basiswert im Verhältnis des Delta gegen und passt laufend an. In der Theorie bleibt eine reine Wette auf Volatilität übrig. In der Praxis kostet das Anpassen Gebühren und Spread bei jeder Bewegung – und je größer Gamma, desto häufiger muss angepasst werden. Der Handel mit Volatilität ist deshalb kein Modellproblem, sondern ein Kostenproblem.',
         },
         {
+          type: 'figure',
+          figure: 'option-delta',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Volatilität ist keine einzelne Zahl',

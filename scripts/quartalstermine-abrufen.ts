@@ -184,6 +184,27 @@ function ergebnismeldungen(block: Einreichungen | undefined): string[] {
 const MINDESTTERMINE = 5
 
 /**
+ * Und so weit muss die Reihe zurückreichen.
+ *
+ * Die Zahl allein genügt nicht, und daran ist Goldman Sachs gescheitert: Die
+ * Bank hatte fünf Meldungen – aber alle aus zwölf Monaten, weil zwei davon im
+ * selben Januar lagen. Zu keinem der jüngeren Quartale gab es einen
+ * Vorjahrespartner, also entstand keine einzige Vorhersage, obwohl formal
+ * genug Daten da waren.
+ *
+ * Gut zwei Jahre statt genau zwei: Ein Unternehmen, das seinen Termin um zwei
+ * Wochen verschiebt, soll nicht knapp aus dem Fenster fallen.
+ */
+const BENOETIGTE_HISTORIE_TAGE = 800
+
+/** Reicht, was bisher zusammengekommen ist? */
+function reichtAus(termine: readonly string[]): boolean {
+  if (termine.length < MINDESTTERMINE) return false
+  const sortiert = [...termine].sort()
+  return tage(sortiert[sortiert.length - 1], sortiert[0]) >= BENOETIGTE_HISTORIE_TAGE
+}
+
+/**
  * Alle Veröffentlichungstermine eines Unternehmens, neueste zuerst.
  *
  * ## Warum die ausgelagerten Blöcke gelesen werden müssen
@@ -200,8 +221,9 @@ const MINDESTTERMINE = 5
  * Häuser, deren Zahlen die Berichtssaison eröffnen, fehlten deshalb im
  * Kalender.
  *
- * Nachgeladen wird nur, wenn der junge Block nicht reicht. Bei den meisten
- * Unternehmen entsteht dadurch keine einzige zusätzliche Anfrage.
+ * Nachgeladen wird nur, solange die Reihe weder genug Termine noch genug
+ * Historie hat. Bei den meisten Unternehmen entsteht dadurch keine einzige
+ * zusätzliche Anfrage.
  *
  * ## Warum die Blöcke nach ihrem Zeitraum ausgewählt werden
  *
@@ -235,7 +257,7 @@ async function termineVon(cik: number): Promise<{ name: string; termine: string[
   )
 
   for (const block of bloecke) {
-    if (termine.length >= MINDESTTERMINE) break
+    if (reichtAus(termine)) break
     if (!block.name) continue
 
     try {
@@ -419,7 +441,7 @@ async function main(): Promise<void> {
       const abgeleitet = vorhersagen(termine, heute)
 
       if (abgeleitet.length === 0) {
-        ohneMuster.push(`${katalog} (${termine.length} Meldungen)`)
+        ohneMuster.push(`${katalog}/CIK${cik} (${termine.length} Meldungen)`)
       } else {
         unternehmen[katalog] = {
           name,

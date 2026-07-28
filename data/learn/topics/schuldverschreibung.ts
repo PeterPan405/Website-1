@@ -503,6 +503,10 @@ export const schuldverschreibung: LearnTopic = {
           text: 'Die Rechnung ist eine Näherung – sie unterschlägt Zinseszins, Laufzeitstruktur und die Tatsache, dass Ausfälle gehäuft in Rezessionen auftreten, also gerade dann, wenn auch der Rest des Depots leidet. Als Größenordnung leistet sie trotzdem etwas: Ein Aufschlag von fünf Prozentpunkten ist kein Geschenk, sondern die Aussage des Marktes, dass hier mit erheblichen Ausfällen gerechnet wird.',
         },
         {
+          type: 'figure',
+          figure: 'anleihe-konvexitaet',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Zertifikate zerlegen',

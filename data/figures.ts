@@ -117,6 +117,12 @@ export type FigureId =
   | 'crashes-erholung'
   /** Warum das Fondsvermögen in keine Insolvenzmasse fällt. */
   | 'fonds-sondervermoegen'
+  /** Dieselben Renditejahre in beiden Reihenfolgen, mit Entnahme. */
+  | 'risiko-sequenz'
+  /** Das Delta einer Kaufoption über dem Kurs des Basiswerts. */
+  | 'option-delta'
+  /** Tatsächliche Kursänderung gegen die Vorhersage der Duration. */
+  | 'anleihe-konvexitaet'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -373,5 +379,20 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Zwei getrennte Kästen. Links die Fondsgesellschaft: Sie verwaltet, entscheidet über Käufe und Verkäufe und kassiert die Verwaltungsgebühr. Wird sie insolvent, fällt in die Masse, was ihr gehört – Büros, Verträge, Forderungen. Rechts das Fondsvermögen: die Aktien und Anleihen selbst, verwahrt bei einer unabhängigen Depotbank. Es gehört den Anlegern und fällt in keine Insolvenzmasse, weder in die der Gesellschaft noch in die der Depotbank. Wovor die Trennung nicht schützt: Fallen die enthaltenen Aktien um 40 Prozent, fällt der eigene Anteil um 40 Prozent.',
     caption:
       'Die Trennung schützt vor der Pleite des Anbieters, nicht vor dem Markt. Beides wird regelmäßig verwechselt.',
+  },
+  'risiko-sequenz': {
+    title: 'Dieselben Renditen, zwei Reihenfolgen',
+    caption:
+      'Ohne Entnahme wären beide Linien am Ende deckungsgleich. Mit Entnahme entscheidet die Reihenfolge – und sie ist niemand zu wählen gegeben.',
+  },
+  'option-delta': {
+    title: 'Das Delta über dem Kurs des Basiswerts',
+    caption:
+      'Wie stark eine Option reagiert, hängt davon ab, wo der Basiswert steht. Kurz vor Verfall wird aus dem Übergang eine Stufe – das ist das Gamma.',
+  },
+  'anleihe-konvexitaet': {
+    title: 'Näherung über die Duration gegen die exakte Rechnung',
+    caption:
+      'Die Gerade ist die Faustformel, die Kurve die Wirklichkeit. Der Abstand dazwischen fällt immer zugunsten des Anleihebesitzers aus.',
   },
 }

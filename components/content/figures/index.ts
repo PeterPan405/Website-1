@@ -32,6 +32,11 @@ import {
   OptionZeitwertverfall,
 } from '@/components/content/figures/optionen'
 import { MarktOrderbuch } from '@/components/content/figures/orderbuch'
+import {
+  AnleiheKonvexitaet,
+  OptionSensitivitaeten,
+  RisikoSequenz,
+} from '@/components/content/figures/profi'
 import { RenteLuecke } from '@/components/content/figures/rente'
 import { RisikoErholung } from '@/components/content/figures/risiko'
 import {
@@ -110,4 +115,7 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'bitcoin-angebot': BitcoinAngebot,
   'crashes-erholung': CrashesErholung,
   'fonds-sondervermoegen': FondsSondervermoegen,
+  'risiko-sequenz': RisikoSequenz,
+  'option-delta': OptionSensitivitaeten,
+  'anleihe-konvexitaet': AnleiheKonvexitaet,
 }

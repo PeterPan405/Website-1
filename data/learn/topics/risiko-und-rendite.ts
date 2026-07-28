@@ -1,7 +1,28 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { recoveryGainPercent } from '@/lib/finance'
-import { formatPercent } from '@/lib/format'
-import { risikoRueckgaenge } from '@/lib/lernszenarien'
+import { formatCurrencyRounded, formatPercent } from '@/lib/format'
+import {
+  risikoRueckgaenge,
+  sequenzEntnahme,
+  sequenzRenditen,
+  sequenzStartkapital,
+} from '@/lib/lernszenarien'
+import { reihenfolgevergleich } from '@/lib/sequenzrisiko'
+
+/*
+  Das Sequenzrisiko wird gerechnet, nicht behauptet.
+
+  Hier stand, zwei Ruheständler „können völlig verschieden dastehen“. Das ist
+  richtig und sagt nichts – niemand ahnt, ob damit zehn Prozent Unterschied
+  gemeint sind oder das Dreifache. Gerechnet mit `lib/sequenzrisiko.ts`, das
+  unter `tests/` geprüft wird, und mit denselben Annahmen wie die Grafik
+  daneben.
+*/
+const sequenz = reihenfolgevergleich(
+  sequenzStartkapital,
+  sequenzRenditen,
+  sequenzEntnahme
+)
 
 /*
   Die Ausgleichsrechnung wird gerechnet, nicht geschrieben.
@@ -336,7 +357,7 @@ export const risikoUndRendite: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Fallen die schlechten Jahre an den Anfang der Entnahmephase, werden Anteile zu niedrigen Kursen verkauft. Diese Anteile fehlen dauerhaft – die spätere Erholung findet auf einem kleineren Bestand statt. Zwei Ruheständler mit identischer Durchschnittsrendite über zwanzig Jahre können deshalb völlig verschieden dastehen, je nachdem, in welcher Reihenfolge die Jahre kamen.',
+          text: `Fallen die schlechten Jahre an den Anfang der Entnahmephase, werden Anteile zu niedrigen Kursen verkauft. Diese Anteile fehlen dauerhaft – die spätere Erholung findet auf einem kleineren Bestand statt. Wie groß der Unterschied wird, lässt sich ausrechnen: Bei ${formatCurrencyRounded(sequenzStartkapital)} Startkapital, ${formatCurrencyRounded(sequenzEntnahme)} Entnahme im Jahr und ${sequenzRenditen.length} Jahren mit im Mittel ${formatPercent(sequenz.mittlereRenditeProzent, 1)} Rendite stehen am Ende ${formatCurrencyRounded(sequenz.gutZuerst.endwert)} gegen ${formatCurrencyRounded(sequenz.schlechtZuerst.endwert)} – dieselben Renditen, dieselbe Entnahme, nur eine andere Reihenfolge.`,
         },
         {
           type: 'callout',
@@ -347,6 +368,10 @@ export const risikoUndRendite: LearnTopic = {
             '**Flexible statt fester Entnahmen**: Wer in einem Rückgangsjahr weniger entnimmt, verkauft weniger Anteile zum Tiefstkurs.',
             '**Die Aktienquote vor Beginn der Entnahme senken** – nicht danach. Das Sequenzrisiko ist in den ersten Jahren am größten.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'risiko-sequenz',
         },
         {
           type: 'heading',
