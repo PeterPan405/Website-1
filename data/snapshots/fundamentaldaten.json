@@ -1,9 +1,9 @@
 {
-  "abgerufenAm": "2026-07-27T22:45:26.470Z",
+  "abgerufenAm": "2026-07-28T05:01:37.315Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
-    "abgrenzung": "Umsatz, Nettogewinn und operativer Cashflow für das zuletzt gemeldete Geschäftsjahr; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Nur Unternehmen, die nach US-Vorschriften bilanzieren."
+    "abgrenzung": "Umsatz, Nettogewinn und operativer Cashflow für das zuletzt gemeldete Geschäftsjahr; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Erfasst sind Unternehmen, die bei der SEC melden – nach US-Vorschriften (us-gaap) oder nach internationalen (ifrs-full). IFRS-Melder berichten in ihrer eigenen Währung; sie steht dann am Datensatz."
   },
   "unternehmen": {
     "ABT": {
@@ -1116,6 +1116,11 @@
       "aktien": 173972199
     },
     "RYAAY": {
+      "waehrung": "EUR",
+      "umsatz": 13948500000,
+      "gewinn": 1611600000,
+      "cashflow": 3415700000,
+      "eigenkapital": 7036900000,
       "aktien": 1043931708
     },
     "XRP": {
@@ -1125,16 +1130,50 @@
       "aktien": 385417665
     },
     "SAP": {
+      "waehrung": "EUR",
+      "umsatz": 36800000000,
+      "gewinn": 7326000000,
+      "cashflow": 9156000000,
+      "eigenkapital": 45073000000,
       "aktien": 1228504232
     },
     "UMC": {
+      "waehrung": "TWD",
+      "umsatz": 232302584000,
+      "gewinn": 48674626000,
+      "cashflow": 93872042000,
+      "eigenkapital": 365706711000,
       "aktien": 12588156344
     },
     "TSM": {
+      "waehrung": "TWD",
+      "umsatz": 2894307700000,
+      "gewinn": 1157523900000,
+      "cashflow": 1826177100000,
+      "eigenkapital": 4279271600000,
       "aktien": 25932524521
     },
     "STLA": {
+      "waehrung": "EUR",
+      "umsatz": 153508000000,
+      "gewinn": -22332000000,
+      "cashflow": -4650000000,
+      "eigenkapital": 54001000000,
       "aktien": 2897483196
+    },
+    "NVO": {
+      "waehrung": "DKK",
+      "umsatz": 309064000000,
+      "gewinn": 102434000000,
+      "cashflow": 119102000000,
+      "eigenkapital": 194047000000
+    },
+    "RACE": {
+      "waehrung": "EUR",
+      "umsatz": 7145768000,
+      "gewinn": 1599516000,
+      "cashflow": 2349306000,
+      "eigenkapital": 3914742000
     }
   }
 }
