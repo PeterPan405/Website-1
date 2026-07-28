@@ -102,6 +102,20 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
     abgrenzung:
       'Median des Reinvermögens je Haushalt – Vermögen abzüglich Schulden, in der Mitte der Verteilung. Von der Quelle in Landeswährung gemeldet und mit dem Euro-Referenzkurs der Europäischen Zentralbank zum Ende des jeweiligen Erhebungsjahres in US-Dollar umgerechnet. Wird von scripts/laender-abrufen.ts geholt.',
   },
+  /**
+   * Die beiden Einkommensreihen der Weltbank.
+   *
+   * Sie schliessen die grösste Lücke auf der Karte: Beim Durchschnittsgehalt
+   * standen 38 von 249 Ländern und in Afrika kein einziges von 60. Diese
+   * Reihen decken 245 beziehungsweise 242 Länder ab – gemessen, nicht
+   * geschätzt.
+   */
+  'weltbank-einkommen': {
+    label: 'Weltbank, World Development Indicators',
+    url: 'https://data.worldbank.org/indicator/NY.GNP.PCAP.CD',
+    abgrenzung:
+      'Bruttonationaleinkommen je Kopf nach der Atlas-Methode (NY.GNP.PCAP.CD) und Wirtschaftsleistung je Kopf zu Kaufkraftparitäten (NY.GDP.PCAP.PP.CD). Je Land das jüngste Jahr mit Wert; das Jahr steht an jedem Eintrag. Wird von scripts/laender-abrufen.ts geholt.',
+  },
 }
 
 /**
