@@ -159,3 +159,35 @@ jobs:
               except Exception as fehler:
                   print(f'  {k:5} CIK {cik:>8}  {fehler}')
           PY
+
+      # ------------------------------------------------------------------
+      # Quartalszahlen-Termine: Melden Unternehmen ihre Ergebnisse über 8-K?
+      #
+      # Gesucht ist der Tag der Ergebnisveröffentlichung, nicht der der
+      # Bilanzeinreichung – die liegt Tage bis Wochen später. Ein 8-K mit
+      # Item 2.02 („Results of Operations and Financial Condition“) ist genau
+      # die Pflichtmeldung zur Ergebnisveröffentlichung.
+      #
+      # Geprüft wird: Liefert die submissions-Schnittstelle diese Items, und
+      # ist das Muster über die Jahre stabil genug für eine Vorhersage?
+      - name: SEC – Ergebnistermine über 8-K Item 2.02
+        run: |
+          for CIK in 0000320193 0000789019 0001018724 0000104169; do
+            echo "===== CIK $CIK"
+            curl -sS --max-time 40 \
+              -H "User-Agent: IM Invests Kalender kontakt@iminvests.de" \
+              "https://data.sec.gov/submissions/CIK$CIK.json" -o /tmp/sub.json || { echo "  Abruf fehlgeschlagen"; continue; }
+            python3 - <<'EOF'
+          import json
+          d=json.load(open('/tmp/sub.json'))
+          r=d['filings']['recent']
+          print('  Name:', d.get('name'))
+          treffer=[(r['filingDate'][i], r['reportDate'][i], r['items'][i])
+                   for i in range(len(r['form']))
+                   if r['form'][i]=='8-K' and '2.02' in (r['items'][i] or '')]
+          print('  8-K mit Item 2.02 im jüngsten Block:', len(treffer))
+          for t in treffer[:8]: print('   ', t[0], '| Berichtsperiode:', t[1] or '-')
+          print('  ältere Blöcke verfügbar:', len(d['filings'].get('files',[])))
+          EOF
+            sleep 1
+          done
