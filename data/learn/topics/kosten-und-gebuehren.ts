@@ -166,6 +166,10 @@ export const kostenUndGebuehren: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'kosten-endkapital',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wo am meisten zu holen ist',
@@ -274,6 +278,10 @@ export const kostenUndGebuehren: LearnTopic = {
           text: 'Diese Rechnung führt regelmäßig zu einer Überraschung: Bei einem kleinen Depot mit häufigen Käufen dominieren die Ordergebühren, bei einem großen mit wenigen Käufen die Fondskosten. Die Frage „welcher Broker ist günstiger“ hat deshalb keine allgemeine Antwort – sie hängt an Depotgröße und Handelshäufigkeit.',
         },
         {
+          type: 'figure',
+          figure: 'kosten-wahre-quote',
+        },
+        {
           type: 'callout',
           variant: 'tip',
           title: 'Die praktische Konsequenz',
@@ -329,6 +337,10 @@ export const kostenUndGebuehren: LearnTopic = {
             'Seit MiFID II muss offengelegt werden, was geflossen ist. Die Angabe steht in der jährlichen Kosteninformation, meist auf der letzten Seite.',
             'Die Alternative heißt **Honorarberatung**: Man zahlt für die Beratung direkt und bekommt Fonds ohne Vertriebsvergütung. Sichtbar teurer, in der Summe häufig günstiger.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'kosten-bestandsprovision',
         },
         {
           type: 'heading',

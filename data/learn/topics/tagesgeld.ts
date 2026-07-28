@@ -128,6 +128,10 @@ export const tagesgeld: LearnTopic = {
           text: 'Wertpapiere im Depot brauchen diesen Schutz übrigens nicht. Sie gehören dir und nicht der Bank – sie fallen bei einer Insolvenz gar nicht erst in die Masse. Die Einlagensicherung deckt Guthaben, also Geld, das die Bank dir schuldet.',
         },
         {
+          type: 'figure',
+          figure: 'tagesgeld-realzins',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -195,6 +199,10 @@ export const tagesgeld: LearnTopic = {
             '**Wann wird gutgeschrieben?** Monatlich, quartalsweise oder jährlich. Bei monatlicher Gutschrift verzinsen sich die Zinsen mit; der effektive Satz liegt dann leicht über dem nominalen.',
             '**Was kostet der Wechsel?** Kontoeröffnung, Identifizierung, Umbuchen – zusammen eine gute Stunde. Bei einem halben Prozentpunkt Unterschied auf 5.000 Euro sind das 25 Euro im Jahr. Ob sich das lohnt, ist eine ehrliche Rechnung wert.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'tagesgeld-aktionszins',
         },
         {
           type: 'heading',
@@ -355,6 +363,10 @@ export const tagesgeld: LearnTopic = {
               'Kursschwankungen bei vorzeitigem Verkauf, Handels- und Depotkosten',
             ],
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'tagesgeld-parkplaetze',
         },
         {
           type: 'paragraph',

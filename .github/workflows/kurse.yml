@@ -7,22 +7,41 @@ name: Kurse aktualisieren
 # dieser Workflow nicht nur Datenpflege, sondern der eigentliche Takt, in dem
 # die Website neu gebaut wird.
 #
-# Zeitplan: werktags stündlich von 07:00 bis 16:00 UTC – das sind 09:00 bis
-# 18:00 deutscher Sommerzeit und deckt den deutschen Handelstag ab. Zehn Läufe,
-# also ist ein angezeigter Kurs höchstens eine Stunde alt.
+# ## Zeitplan
 #
-# Der letzte Lauf um 16:00 UTC liegt zugleich sicher hinter der EZB, die ihre
-# Referenzkurse gegen 16:00 Uhr MEZ veröffentlicht – 15:00 UTC im Winter, 14:00
-# UTC im Sommer. Damit muss der Zeitplan zur Zeitumstellung nicht angefasst
-# werden.
+# Werktags alle **30 Minuten** von 07:00 bis 20:30 UTC – 28 Läufe. Ein
+# angezeigter Kurs ist damit höchstens eine halbe Stunde alt.
 #
-# Nicht jeder Lauf führt zu einer Bereitstellung: Ohne Kursänderung wird nichts
-# committet. Ausserhalb der Handelszeiten – Feiertage, Betriebsruhe – bleibt es
-# deshalb still.
+# Das Fenster deckt beide Handelstage ab, die für diesen Katalog zählen:
+#
+# - **Europa** von 09:00 bis 17:30 deutscher Zeit, also 07:00 bis 15:30 UTC im
+#   Sommer.
+# - **USA** von 15:30 bis 22:00 deutscher Zeit, also 13:30 bis 20:00 UTC im
+#   Sommer. Das ist der wichtigere Teil: Die Mehrzahl der hier geführten
+#   Aktien notiert in New York.
+#
+# Bis hierher endete der Zeitplan um 16:00 UTC und verpasste damit die
+# gesamte zweite Hälfte des US-Handels – einschließlich des Schlusskurses.
+# Wer abends auf die Seite sah, bekam für eine amerikanische Aktie einen
+# Stand vom frühen Nachmittag, ohne dass etwas darauf hinwies.
+#
+# Der Lauf um 15:30 UTC liegt zugleich sicher hinter der EZB, die ihre
+# Referenzkurse gegen 16:00 Uhr MEZ veröffentlicht – 15:00 UTC im Winter,
+# 14:00 UTC im Sommer. Damit muss der Zeitplan zur Zeitumstellung nicht
+# angefasst werden.
+#
+# ## Was der Takt kostet
+#
+# Jeder Lauf mit geänderten Kursen erzeugt einen Commit auf `main`, und der
+# stößt Paketbau und Bereitstellung an. Halbstündlich über vierzehn Stunden
+# sind das an einem Handelstag bis zu 28 Bereitstellungen statt bisher zehn.
+# Das ist der Preis für aktuelle Kurse auf einer statisch gebauten Seite –
+# und der Grund, warum ohne Kursänderung nichts committet wird: An
+# Feiertagen und ausserhalb der Handelszeiten bleibt es still.
 
 on:
   schedule:
-    - cron: '0 7-16 * * 1-5'
+    - cron: '0,30 7-20 * * 1-5'
   # Von Hand auslösbar – zum Prüfen und für den allerersten Lauf.
   workflow_dispatch:
 

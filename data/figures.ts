@@ -59,6 +59,184 @@ export type FigureId =
   | 'msci-world-laender'
   /** Kontostand und Kaufkraft desselben Betrags über 30 Jahre. */
   | 'inflation-kaufkraft'
+  /** Anleihekurs über dem Marktzins, für drei Restlaufzeiten. */
+  | 'anleihe-kurs-und-zins'
+  /** Kursverlust je Restlaufzeit bei zwei Prozentpunkten mehr Zins. */
+  | 'staatsanleihe-zinsschock'
+  /** Ergebnis von Kauf- und Verkaufoption bei Verfall. */
+  | 'option-auszahlung'
+  /** Wie die Prämie mit der Restlaufzeit schrumpft. */
+  | 'option-zeitwertverfall'
+  /** Wie sich die gleichbleibende Kreditrate in Zins und Tilgung aufteilt. */
+  | 'kredit-zins-und-tilgung'
+  /** Laufzeit desselben Darlehens bei vier Anfangstilgungen. */
+  | 'kredit-anfangstilgung'
+  /** Welcher Gewinn nötig ist, um einen Verlust auszugleichen. */
+  | 'risiko-erholung'
+  /** Gesamtrendite ohne die besten Wochen. */
+  | 'timing-beste-wochen'
+  /** Heutiges Netto gegen gesetzliche Nettorente. */
+  | 'rente-luecke'
+  /** Der Weg einer Wertpapierorder vom Broker bis ins Depot. */
+  | 'boerse-vom-klick-zur-buchung'
+  /** Der Weg einer Zahlung durch ein Blockchain-Netz. */
+  | 'blockchain-zahlung'
+  /** Vom Leitzins über die Banken bis zu den Preisen. */
+  | 'notenbank-transmission'
+  /** Die Reihenfolge vor dem ersten Wertpapierkauf. */
+  | 'einsteiger-reihenfolge'
+  /** Kauf- und Verkaufseite eines Orderbuchs mit dem Spread dazwischen. */
+  | 'markt-orderbuch'
+  /** Zins aufs Tagesgeldkonto gegen die Inflation desselben Jahres. */
+  | 'tagesgeld-realzins'
+  /** Wie viele Anteile eine gleichbleibende Rate bei schwankendem Kurs kauft. */
+  | 'sparplan-durchschnittspreis'
+  /** Ergebnis einer Fremdwährungsanlage bei vier Wechselkursen. */
+  | 'waehrung-ergebnis'
+  /** Welchen Hebel eine Sicherheitsleistung ergibt – und wann der Einsatz weg ist. */
+  | 'derivat-hebel'
+  /** Gesicherte und ungesicherte Anteile eines Bankguthabens. */
+  | 'einlagensicherung-grenze'
+  /** Ordergebühr und Spread nach Ordergröße. */
+  | 'depot-orderkosten'
+  /** Endkapital desselben Sparplans bei fünf Kostenquoten. */
+  | 'kosten-endkapital'
+  /** Zwei Sparverläufe, die sich um einen Prozentpunkt unterscheiden. */
+  | 'psychologie-verhaltensluecke'
+  /** Mehr sparen gegen mehr Rendite, über vierzig Jahre. */
+  | 'budget-hebel'
+  /** Wie der Aktienanteil ohne Zutun über die geplante Quote steigt. */
+  | 'portfolio-drift'
+  /** Bis zu welchem Depotwert der Sparerpauschbetrag reicht. */
+  | 'sparerpauschbetrag-grenze'
+  /** Von der beworbenen Mietrendite zu dem, was übrig bleibt. */
+  | 'immobilie-nettorendite'
+  /** Die Bitcoin-Umlaufmenge nach dem Emissionsplan. */
+  | 'bitcoin-angebot'
+  /** Tiefe und Erholungsdauer der großen Kurseinbrüche. */
+  | 'crashes-erholung'
+  /** Warum das Fondsvermögen in keine Insolvenzmasse fällt. */
+  | 'fonds-sondervermoegen'
+  /** Dieselben Renditejahre in beiden Reihenfolgen, mit Entnahme. */
+  | 'risiko-sequenz'
+  /** Das Delta einer Kaufoption über dem Kurs des Basiswerts. */
+  | 'option-delta'
+  /** Tatsächliche Kursänderung gegen die Vorhersage der Duration. */
+  | 'anleihe-konvexitaet'
+  /** Jährlich versteuert gegen erst beim Verkauf versteuert. */
+  | 'zinseszins-steuerstundung'
+  /** Was von einer Nominalrendite nach Steuer und Inflation übrig bleibt. */
+  | 'inflation-steuer'
+  /** Wertänderung des Objekts, umgerechnet auf das Eigenkapital. */
+  | 'immobilie-hebel'
+  /** Warum ein Hebelprodukt nach Hin und Her zurückbleibt. */
+  | 'derivat-pfadabhaengigkeit'
+  /** Wie die Schwankung eines Depots mit der Zahl der Titel sinkt. */
+  | 'streuung-titelzahl'
+  /** Vier Entnahmeraten, gerechnet gegen beide Reihenfolgen. */
+  | 'portfolio-entnahme'
+  /** Steuerfreies Gold gegen ein Wertpapier auf denselben Preis. */
+  | 'rohstoffe-gold-steuer'
+  /** Die Rente je nach Zeitpunkt des Beginns. */
+  | 'rente-rentenbeginn'
+  /** Wie oft eine Timing-Strategie richtig liegen müsste. */
+  | 'timing-trefferquote'
+  /** Jahre bis zur Unabhängigkeit, allein nach der Sparquote. */
+  | 'budget-sparquote-jahre'
+  /** Schwankung einer Mischung über der Korrelation. */
+  | 'risiko-korrelation'
+  /** Dieselbe Option bei vier erwarteten Schwankungen. */
+  | 'option-volatilitaet'
+  /** Preis-, Netto- und Bruttoindex desselben Marktes über zwanzig Jahre. */
+  | 'etf-index-fassungen'
+  /** Beworbener Aktionszins gegen den, der übers Jahr ankommt. */
+  | 'tagesgeld-aktionszins'
+  /** Die Reihenfolge, in der eine Bank abgewickelt wird. */
+  | 'einlagensicherung-kaskade'
+  /** Was zwischen Geschäftsabschluss und Buchung im Depot passiert. */
+  | 'boerse-abwicklung'
+  /** Ein Haushalt, nach Größe der Ausgabenposten sortiert. */
+  | 'budget-haushalt'
+  /** Depot und Verrechnungskonto – zwei völlig verschiedene Rechtslagen. */
+  | 'depot-und-konto'
+  /** Die Bundeswertpapiere nach ihrer Laufzeit bei Ausgabe. */
+  | 'staatsanleihe-laufzeiten'
+  /** Warum eine geänderte alte Buchung die ganze Kette ungültig macht. */
+  | 'blockchain-kette'
+  /** Die drei Leitzinsen der EZB als Korridor. */
+  | 'notenbank-zinskorridor'
+  /** Wer in der Insolvenz in welcher Reihenfolge bedient wird. */
+  | 'anleihe-rangfolge'
+  /** Was vom Depot bleibt, je nach Aktienquote. */
+  | 'portfolio-quote-rueckgang'
+  /** Wie wenig nach dem Ende der Zinsbindung getilgt ist. */
+  | 'immobilie-restschuld'
+  /** Der eingefrorene Rentenfreibetrag gegen die steigende Rente. */
+  | 'rente-freibetrag'
+  /** Der Kreis aus Verkaufszwang, fallenden Preisen und Nachschusspflicht. */
+  | 'crashes-spirale'
+  /** Welcher Kostenblock in welchem Depot überwiegt. */
+  | 'kosten-wahre-quote'
+  /** Die Handelszeiten der drei Platzarten und die Stunden ohne Vergleichskurs. */
+  | 'boerse-handelszeiten'
+  /** Umfang der Sicherung gegen die Rechtsqualität des Anspruchs. */
+  | 'einlagensicherung-anspruch'
+  /** In welcher Reihenfolge der Freistellungsauftrag verteilt wird. */
+  | 'sparerpauschbetrag-reihenfolge'
+  /** Das Sicherheitskonto eines Futures bis zum Margin Call. */
+  | 'derivat-margin'
+  /** Was das Verteilen einer größeren Summe an Zeit am Markt kostet. */
+  | 'sparplan-wartezeit'
+  /** Zyklische und defensive Branchen im selben Konjunkturverlauf. */
+  | 'branchen-zyklus'
+  /** Was eine Währungsabsicherung über zehn Jahre kostet. */
+  | 'waehrung-absicherung'
+  /** Preisniveau und Teuerungsrate nach einem einmaligen Preissprung. */
+  | 'inflation-basiseffekt'
+  /** Verkaufsgründe, sortiert nach ihrer Herkunft. */
+  | 'verkauf-gruende'
+  /** Drei Zugangswege zu Krypto und das jeweils bleibende Risiko. */
+  | 'krypto-zugangswege'
+  /** Fünf Fragen an ein Basisinformationsblatt, nach Schärfe geordnet. */
+  | 'einsteiger-pruefung'
+  /** Täglicher Kurs gegen periodische Bewertung. */
+  | 'fonds-bewertungsglaettung'
+  /** Der Barwert derselben Zahlungsreihe über dem Kapitalkostensatz. */
+  | 'aktie-barwert'
+  /** Welche Bruttorendite eine Anlage braucht, um eine Tilgung zu schlagen. */
+  | 'kredit-tilgen-oder-anlegen'
+  /** Dieselbe Schuldenquote bei vier Zins-Wachstums-Differenzen. */
+  | 'staatsschuld-dynamik'
+  /** Endkapital bei gleichbleibender und bei wachsender Sparrate. */
+  | 'sparplan-dynamisierung'
+  /** Die drei Stufen der Informationseffizienz als ineinanderliegende Mengen. */
+  | 'markt-effizienzstufen'
+  /** Wer eine kostenlose Order bezahlt. */
+  | 'broker-orderflow'
+  /** Was in einem synthetischen Fonds liegt und wo das Risiko sitzt. */
+  | 'etf-swap'
+  /** Wohin die laufende Verwaltungsvergütung fließt. */
+  | 'kosten-bestandsprovision'
+  /** Die beiden Verlustverrechnungstöpfe und die Wand dazwischen. */
+  | 'sparer-verlusttoepfe'
+  /** Langer Aufbau, kurzer Absturz – Zwang gegen Zuversicht. */
+  | 'psychologie-asymmetrie'
+  /** Wie sich aus der Reihenfolge von Transaktionen Geld ziehen lässt. */
+  | 'blockchain-reihenfolge'
+  /** Die drei Bewertungsstufen eines Fonds nach Nachprüfbarkeit. */
+  | 'fonds-bewertungsstufen'
+  /** Die drei Wege vom Kurssturz in die Wirtschaft. */
+  | 'crashes-ansteckung'
+  /** Die Bezugsgrößen der Geldpolitik – zwei davon nicht messbar. */
+  | 'notenbank-messgroessen'
+  /** Vier Wege, Geld kurzfristig zu parken, nach Verfügbarkeit und Schutz. */
+  | 'tagesgeld-parkplaetze'
+  /** Die drei Paritätsbedingungen nach ihrem empirischen Rang. */
+  | 'waehrung-paritaeten'
+  /** Vier Kostenebenen, nach Sichtbarkeit statt nach Höhe geordnet. */
+  | 'kosten-ebenen'
+  /** Warum jede Bewertung eines Kryptowerts an derselben Stelle scheitert. */
+  | 'krypto-bewertung'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -69,8 +247,14 @@ export interface FigureMeta {
    * Landet als `<desc>` im SVG und ersetzt die Grafik für alle, die sie nicht
    * sehen. Deshalb inhaltlich, nicht formal: „Die Kurve verdreifacht sich in
    * vierzig Jahren“ hilft, „Ein Liniendiagramm mit zwei Kurven“ nicht.
+   *
+   * Optional, weil viele Zeichnungen ihre Beschreibung selbst mitbringen: Wo
+   * die Zahlen beim Bauen aus `lib/` entstehen, gehört die Beschreibung
+   * dorthin, wo sie entstehen – sonst stünden hier Werte, die nach der
+   * nächsten Änderung still danebenliegen. Fehlt beides, bricht der Build ab;
+   * eine Grafik ohne Vorlesefassung darf es nicht geben.
    */
-  description: string
+  description?: string
   /** Bildunterschrift unter der Grafik. */
   caption: string
 }
@@ -152,5 +336,490 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Ein fester Betrag bleibt 30 Jahre unverzinst liegen. Die Zahl auf dem Konto ändert sich nie – die gestrichelte Linie verläuft waagerecht. Was diese Zahl kaufen kann, fällt stetig; nach 30 Jahren ist gut die Hälfte verschwunden, ohne dass etwas abgebucht wurde.',
     caption:
       'Der Abstand zwischen beiden Linien ist der Verlust. Er steht auf keinem Kontoauszug.',
+  },
+
+  /*
+    Ab hier tragen die Zeichnungen ihre Beschreibung selbst.
+
+    Ihre Zahlen entstehen beim Bauen aus `lib/` – aus denselben Funktionen wie
+    die Tabellen daneben. Eine hier hinterlegte Beschreibung müsste diese
+    Zahlen wiederholen und wäre nach der ersten Änderung an einer Annahme
+    still falsch, ohne dass es jemandem auffiele: Sie ist nur für die
+    sichtbar, die die Grafik gerade nicht sehen können.
+  */
+  'anleihe-kurs-und-zins': {
+    title: 'Anleihekurs und Marktzins',
+    caption:
+      'Der Kupon ist fest, der Kurs ist es nicht. Er stellt sich so ein, dass die Anleihe genau den Marktzins abwirft – und je länger sie läuft, desto weiter muss er dafür ausschlagen.',
+  },
+  'staatsanleihe-zinsschock': {
+    title: 'Kursverlust bei steigendem Zins',
+    caption:
+      '„Sicher“ heißt bei einer Staatsanleihe: Der Staat zahlt zurück. Es heißt nicht, dass der Kurs bis dahin ruhig bleibt – wer vorher verkaufen muss, trägt diesen Verlust.',
+  },
+  'option-auszahlung': {
+    title: 'Ergebnis von Kauf- und Verkaufoption bei Verfall',
+    caption:
+      'Der Knick ist der Basispreis, der waagerechte Teil die bezahlte Prämie. Nach unten ist der Verlust des Käufers begrenzt – für den Verkäufer der Option gilt genau das Gegenteil.',
+  },
+  'option-zeitwertverfall': {
+    title: 'Wie die Prämie mit der Restlaufzeit schrumpft',
+    caption:
+      'Zeit ist bei Optionen ein Preisbestandteil, und sie läuft immer in dieselbe Richtung. Am Ende geht es am schnellsten.',
+  },
+  'kredit-zins-und-tilgung': {
+    title: 'Zins und Tilgung innerhalb derselben Rate',
+    caption:
+      'Die Rate bleibt gleich – deshalb sind alle Säulen gleich hoch. Nur was darin steckt, verschiebt sich: erst fast alles Zins, am Ende fast alles Tilgung.',
+  },
+  'kredit-anfangstilgung': {
+    title: 'Anfangstilgung und Laufzeit',
+    caption:
+      'Ein Prozentpunkt mehr Anfangstilgung kostet etwas mehr im Monat und spart Jahrzehnte. Das ist die folgenreichste Zahl im ganzen Kreditvertrag.',
+  },
+  'risiko-erholung': {
+    title: 'Welcher Gewinn einen Verlust ausgleicht',
+    caption:
+      'Verlust und Erholung sind nicht symmetrisch. Deshalb ist es wichtiger, große Verluste zu vermeiden, als große Gewinne zu treffen.',
+  },
+  'timing-beste-wochen': {
+    title: 'Rendite ohne die besten Wochen',
+    caption:
+      'Die guten Wochen sind wenige und lassen sich nicht ankündigen. Wer sie mitnehmen will, muss die schlechten aushalten – dazwischen liegen oft nur Tage.',
+  },
+  'rente-luecke': {
+    title: 'Heutiges Einkommen und gesetzliche Rente',
+    caption:
+      'Auf der Renteninformation steht der obere Rand der zweiten Säule. Auf dem Konto landet der untere Abschnitt – die Lücke dazwischen ist kein Betriebsunfall, sondern die Bauart des Systems.',
+  },
+  'boerse-vom-klick-zur-buchung': {
+    title: 'Der Weg einer Order',
+    caption:
+      'Die ersten drei Schritte dauern Sekundenbruchteile, die letzten beiden Tage. Deshalb steht nach einem Kauf sofort ein Kurs im Depot, aber noch nicht das Papier.',
+  },
+  'blockchain-zahlung': {
+    title: 'Eine Zahlung im Blockchain-Netz',
+    caption:
+      'Anders als bei einer Überweisung gibt es keinen Moment, in dem eine Zahlung „durch“ ist. Sie wird mit jedem weiteren Block nur schwerer rückgängig zu machen.',
+  },
+  'notenbank-transmission': {
+    title: 'Vom Leitzins zu den Preisen',
+    caption:
+      'Die Notenbank setzt nur den ersten Kasten. Alles danach entscheiden Banken, Unternehmen und Haushalte – und jede Übergabe kostet Monate.',
+  },
+  'einsteiger-reihenfolge': {
+    title: 'Was vor dem ersten Kauf kommt',
+    caption:
+      'Jeder Schritt vor dem letzten bringt sicher etwas. Der letzte bringt vermutlich mehr – aber nur, wenn die vier davor stehen.',
+  },
+  'markt-orderbuch': {
+    title: 'Kauf- und Verkaufseite eines Orderbuchs',
+    caption:
+      'Es gibt nie „den Kurs“. Es gibt zwei Seiten, eine Lücke dazwischen und für jede Stückzahl einen anderen Preis.',
+  },
+  'tagesgeld-realzins': {
+    title: 'Zins und Inflation nebeneinander',
+    caption:
+      'Auf dem Kontoauszug steht nur die linke Säule. Die rechte steht nirgends – und entscheidet trotzdem, ob das Geld mehr oder weniger wert wird.',
+  },
+  'sparplan-durchschnittspreis': {
+    title: 'Was eine gleichbleibende Rate kauft',
+    caption:
+      'Nicht der Sparplan ist klug, sondern die feste Rate: Sie kauft automatisch mehr, wenn es billig ist, und weniger, wenn es teuer ist.',
+  },
+  'waehrung-ergebnis': {
+    title: 'Dasselbe Geschäft, vier Wechselkurse',
+    caption:
+      'Bei einer Anlage in fremder Währung wettet man immer auf zwei Dinge zugleich. Der Wechselkurs kann das eine vollständig auffressen.',
+  },
+  'derivat-hebel': {
+    title: 'Sicherheitsleistung, Hebel und Totalverlust',
+    caption:
+      'Der Hebel ist der Kehrwert der Sicherheitsleistung. Der Preis dafür steht rechts: die Kursbewegung, nach der nichts mehr da ist.',
+  },
+  'einlagensicherung-grenze': {
+    title: 'Was die Einlagensicherung deckt',
+    caption:
+      'Die Grenze gilt je Kunde und Bank, nicht je Konto. Zwei Konten bei derselben Bank werden zusammengezählt, zwei Banken verdoppeln den Schutz.',
+  },
+  'depot-orderkosten': {
+    title: 'Ordergebühr und Spread nach Ordergröße',
+    caption:
+      'Der Kostenblock, der auf der Abrechnung steht, ist bei größeren Orders der kleinere. Der andere lässt sich durch Handelsplatz und Uhrzeit beeinflussen.',
+  },
+  'kosten-endkapital': {
+    title: 'Endkapital bei fünf Kostenquoten',
+    caption:
+      'Der graue Sockel ist bei allen gleich – das eingezahlte Geld. Die Kosten zehren ausschließlich am Ertrag darüber, und zwar jedes Jahr erneut.',
+  },
+  'psychologie-verhaltensluecke': {
+    title: 'Was ein Prozentpunkt im Jahr ausmacht',
+    caption:
+      'Zwanzig Jahre lang liegen die beiden Linien fast aufeinander. Genau deshalb merkt man die Verhaltenslücke nicht, während sie entsteht.',
+  },
+  'budget-hebel': {
+    title: 'Mehr sparen oder mehr Rendite',
+    caption:
+      'Die Frage hat keine Antwort ohne Zeitangabe. Die Rate wirkt sofort und liegt in der eigenen Hand; die Rendite überholt sie erst später – und ist nicht bestellbar.',
+  },
+  'portfolio-drift': {
+    title: 'Wie die Aufteilung von allein wandert',
+    caption:
+      'Niemand hat etwas entschieden, und trotzdem trägt das Depot mehr Risiko als geplant. Rebalancing ist die Antwort darauf – kein Renditewerkzeug.',
+  },
+  'sparerpauschbetrag-grenze': {
+    title: 'Bis zu welchem Depotwert der Freibetrag reicht',
+    caption:
+      'Nicht die Depotgröße entscheidet, sondern wie viel laufender Ertrag anfällt. Zwei gleich große Depots können völlig unterschiedlich besteuert werden.',
+  },
+  'immobilie-nettorendite': {
+    title: 'Von der beworbenen Mietrendite zur tatsächlichen',
+    caption:
+      'Beworben wird die linke Säule. Übrig bleibt der untere Abschnitt der rechten – und der Kredit ist darin noch nicht einmal enthalten.',
+  },
+  'bitcoin-angebot': {
+    title: 'Die Umlaufmenge nach dem Emissionsplan',
+    caption:
+      'Die Knappheit ist kein Versprechen, sondern eine Regel im Programmcode. Was sie über den Preis aussagt, ist eine andere Frage.',
+  },
+  'crashes-erholung': {
+    title: 'Tiefe und Dauer der großen Einbrüche',
+    caption:
+      'Die Balken sind nach der Tiefe sortiert – ihre Länge folgt dieser Reihenfolge nicht. Wie lange eine Erholung dauert, entscheidet sich nach dem Einbruch.',
+  },
+  'fonds-sondervermoegen': {
+    title: 'Warum das Fondsvermögen geschützt ist',
+    description:
+      'Zwei getrennte Kästen. Links die Fondsgesellschaft: Sie verwaltet, entscheidet über Käufe und Verkäufe und kassiert die Verwaltungsgebühr. Wird sie insolvent, fällt in die Masse, was ihr gehört – Büros, Verträge, Forderungen. Rechts das Fondsvermögen: die Aktien und Anleihen selbst, verwahrt bei einer unabhängigen Depotbank. Es gehört den Anlegern und fällt in keine Insolvenzmasse, weder in die der Gesellschaft noch in die der Depotbank. Wovor die Trennung nicht schützt: Fallen die enthaltenen Aktien um 40 Prozent, fällt der eigene Anteil um 40 Prozent.',
+    caption:
+      'Die Trennung schützt vor der Pleite des Anbieters, nicht vor dem Markt. Beides wird regelmäßig verwechselt.',
+  },
+  'risiko-sequenz': {
+    title: 'Dieselben Renditen, zwei Reihenfolgen',
+    caption:
+      'Ohne Entnahme wären beide Linien am Ende deckungsgleich. Mit Entnahme entscheidet die Reihenfolge – und sie ist niemand zu wählen gegeben.',
+  },
+  'option-delta': {
+    title: 'Das Delta über dem Kurs des Basiswerts',
+    caption:
+      'Wie stark eine Option reagiert, hängt davon ab, wo der Basiswert steht. Kurz vor Verfall wird aus dem Übergang eine Stufe – das ist das Gamma.',
+  },
+  'anleihe-konvexitaet': {
+    title: 'Näherung über die Duration gegen die exakte Rechnung',
+    caption:
+      'Die Gerade ist die Faustformel, die Kurve die Wirklichkeit. Der Abstand dazwischen fällt immer zugunsten des Anleihebesitzers aus.',
+  },
+  'zinseszins-steuerstundung': {
+    title: 'Was Steuerstundung über dreißig Jahre wert ist',
+    caption:
+      'Derselbe Steuersatz, dasselbe Produkt. Der Unterschied entsteht allein daraus, dass der noch nicht abgeführte Betrag bis zum Verkauf mitarbeitet.',
+  },
+  'inflation-steuer': {
+    title: 'Steuer auf Gewinne, die keine sind',
+    caption:
+      'Besteuert wird der nominale Ertrag – auch der Teil, der nur die Geldentwertung ausgleicht. Ein Zins, der die Inflation gerade deckt, ist real ein Verlust.',
+  },
+  'immobilie-hebel': {
+    title: 'Der Hebel in beide Richtungen',
+    caption:
+      'Nach oben wird diese Rechnung in jedem Beratungsgespräch vorgeführt. Es ist dieselbe Rechnung wie nach unten – nur mit anderem Vorzeichen.',
+  },
+  'derivat-pfadabhaengigkeit': {
+    title: 'Zwei Tage Hin und Her',
+    caption:
+      'Der Basiswert steht wieder bei hundert, die Produkte darauf nicht. Das Vielfache wird täglich neu angesetzt – und arbeitet ab dem zweiten Tag auf einer anderen Basis.',
+  },
+  'streuung-titelzahl': {
+    title: 'Wie viele Titel Streuung braucht',
+    caption:
+      'Zwischen einem und zwanzig Titeln liegt fast der ganze Gewinn. Was danach bleibt, ist das Risiko des Marktes selbst – und dagegen hilft keine Zahl von Titeln.',
+  },
+  'portfolio-entnahme': {
+    title: 'Vier Entnahmeraten, zwei Reihenfolgen',
+    caption:
+      'Eine Entnahmerate ist keine Zahl, sondern eine Zahl mit einer Spanne. Und die Spanne wächst mit der Rate.',
+  },
+  'rohstoffe-gold-steuer': {
+    title: 'Physisches Gold und die Haltefrist',
+    caption:
+      'Bei gleicher Bruttorendite trennt die Steuer gut ein Viertel des Gewinns. Dem stehen Kosten gegenüber, die ein Wertpapier nicht hat.',
+  },
+  'rente-rentenbeginn': {
+    title: 'Rentenbeginn und was er dauerhaft ausmacht',
+    caption:
+      'Der Abschlag endet nicht mit dem Regelalter. Er gilt lebenslang – und wirkt auch auf spätere Rentenerhöhungen und auf die Hinterbliebenenrente.',
+  },
+  'timing-trefferquote': {
+    title: 'Wie oft es sitzen müsste',
+    caption:
+      'Ohne Kosten genügt die Hälfte, also der Münzwurf. Jeder Prozentpunkt an Kosten hebt die Schwelle darüber – und das ist erst die Frage nach dem Aufwand, nicht die nach der Prognosefähigkeit.',
+  },
+  'budget-sparquote-jahre': {
+    title: 'Sparquote und die Zahl der Jahre',
+    caption:
+      'Das Einkommen kommt in dieser Rechnung nicht vor – es kürzt sich heraus. Entscheidend ist der Abstand zwischen Einnehmen und Ausgeben, nicht die Höhe.',
+  },
+  'risiko-korrelation': {
+    title: 'Korrelation und die Schwankung der Mischung',
+    caption:
+      'Die erwartete Rendite bleibt der Durchschnitt, gleich wie die beiden zusammenhängen – die Schwankung nicht. Das ist der Hebel, für den niemand bezahlt.',
+  },
+  'option-volatilitaet': {
+    title: 'Dieselbe Option, vier Erwartungen',
+    caption:
+      'Am Kurs hat sich nichts geändert. Die erwartete Schwankung ist der einzige Preisbestandteil, den man nicht ablesen kann – und deshalb der, über den man eine Meinung hat.',
+  },
+  'etf-index-fassungen': {
+    title: 'Derselbe Index in drei Fassungen',
+    caption:
+      'Welcher Maßstab in einem Werbeblatt steht, entscheidet über das Urteil, bevor über den Fonds selbst gesprochen wird. Üblich und richtig ist der Nettoindex.',
+  },
+  'tagesgeld-aktionszins': {
+    title: 'Beworben und tatsächlich',
+    caption:
+      'Beworben wird die erste Säule, gutgeschrieben die dritte. Wer die Frist im Kalender hat, bekommt den Aktionszins wirklich – darauf ist das Angebot allerdings nicht gerechnet.',
+  },
+  'einlagensicherung-kaskade': {
+    title: 'Die Haftungskaskade',
+    caption:
+      'Wer ganz unten steht, ist nicht ein bisschen sicherer – er ist durch alles darüber geschützt. Die Kästen zeigen die Reihenfolge, nicht die Beträge.',
+  },
+  'boerse-abwicklung': {
+    title: 'Zwischen Abschluss und Depot',
+    caption:
+      'Aus einem Geschäft werden rechtlich zwei, und die Gegenpartei steht in beiden. Deshalb trifft der Ausfall einer Seite nie die andere.',
+  },
+  'budget-haushalt': {
+    title: 'Wohin das Geld geht',
+    caption:
+      'Die Reihenfolge ist die Aussage. Zehn Prozent beim größten Posten bringen mehr als der vollständige Verzicht auf die beiden kleinsten.',
+  },
+  'depot-und-konto': {
+    title: 'Depot und Verrechnungskonto',
+    description:
+      'Zwei Kästen nebeneinander. Links das Depot: Die Wertpapiere gehören dir, die Bank verwahrt sie nur und führt sie getrennt von ihrem eigenen Vermögen. Bei einer Pleite fallen sie nicht in die Insolvenzmasse; du kannst Herausgabe verlangen oder das Depot übertragen. Rechts das Verrechnungskonto: Das Guthaben gehört der Bank, sie schuldet es dir – ein Anspruch, kein Eigentum. Genau deshalb greift hier die Einlagensicherung, und nur hier. Sie schützt also das, was du nicht besitzt, und wird ausgerechnet für das gesucht, was dir ohnehin gehört.',
+    caption:
+      'Die Einlagensicherung schützt das Konto, nicht das Depot. Das klingt nach einer Lücke und ist das Gegenteil: Was dir gehört, braucht keine Sicherung.',
+  },
+  'staatsanleihe-laufzeiten': {
+    title: 'Bundeswertpapiere nach Laufzeit',
+    caption:
+      'Die Namen sagen nichts über die Sicherheit – dahinter steht überall derselbe Schuldner. Sie sagen etwas darüber, wie stark der Kurs auf Zinsänderungen reagiert.',
+  },
+  'blockchain-kette': {
+    title: 'Warum sich eine alte Buchung nicht ändern lässt',
+    description:
+      'Zwei Ketten aus je drei Blöcken untereinander. Jeder Block trägt zwei Felder: die Prüfsumme, die er von seinem Vorgänger übernommen hat, und die Prüfsumme über seinen eigenen Inhalt. Oben die unveränderte Kette – die übernommene Prüfsumme stimmt jeweils mit der des Vorgängers überein, die Glieder passen zusammen. Unten dieselbe Kette, nachdem jemand eine Buchung im ersten Block geändert hat. Mit dem Inhalt ändert sich dessen Prüfsumme, aus A wird A′. Block 2 trägt aber weiterhin A, und damit ist die erste Verbindung gebrochen. Sie ist die einzige: Block 2 und 3 sind unverändert und passen weiter zueinander – gerade darin liegt der Aufwand für den Fälscher. Um den Bruch zu schließen, muss er Block 2 neu bilden, wodurch sich dessen Prüfsumme ändert und die nächste Verbindung bricht, dann Block 3, und so fort bis zum Ende der Kette. Und das gegen alle anderen Teilnehmer, die die richtige Kette haben. Nicht Verschlüsselung schützt hier, sondern die Verkettung.',
+    caption:
+      'Nicht ein einzelner Block ist geschützt, sondern die Reihenfolge. Eine geänderte Buchung macht alles danach ungültig – und zwar sichtbar.',
+  },
+  'notenbank-zinskorridor': {
+    title: 'Die drei Leitzinsen als Korridor',
+    description:
+      'Die drei Leitzinsen der EZB übereinander als Korridor. Ganz oben der Spitzenrefinanzierungssatz: der Notfallkredit über Nacht und damit die Obergrenze – wer ihn zahlt, hat keine günstigere Quelle mehr. In der Mitte der Hauptrefinanzierungssatz, zu dem sich Banken wöchentlich Geld leihen. Ganz unten der Einlagesatz: was Banken bekommen, wenn sie Geld über Nacht bei der EZB parken. Er ist die Untergrenze, denn niemand verleiht Geld für weniger, als die Notenbank ohne jedes Risiko zahlt. Zwischen diesen beiden Linien bewegt sich der Geldmarktzins, und er liegt dicht über der unteren – deshalb hängt an ihr auch das Tagesgeld. Ist in Meldungen von „dem Leitzins“ die Rede, ist im Euroraum meist dieser untere Satz gemeint. Die Abstände sind nicht maßstäblich; sie ändern sich mit jedem Beschluss. Fest steht nur die Reihenfolge.',
+    caption:
+      'Von den drei Sätzen ist der unterste der wichtigste: Er ist die Untergrenze des Geldmarkts – und damit die Grenze, an der dein Tagesgeldzins hängt.',
+  },
+  'anleihe-rangfolge': {
+    title: 'Wer in der Insolvenz zuerst bedient wird',
+    description:
+      'Fünf Stufen untereinander, von oben nach unten in der Reihenfolge der Bedienung. Erstens die Sicherheiten: Wer eine Sache als Pfand hat – eine Maschine, eine Immobilie –, verwertet sie und ist damit außen vor. Zweitens die Kosten des Verfahrens, Löhne und laufende Verbindlichkeiten. Drittens die einfachen Gläubiger; hier steht eine gewöhnliche Schuldverschreibung, und hier wird verteilt, was übrig ist. Viertens die nachrangigen Gläubiger, die erst an der Reihe sind, wenn die dritte Stufe vollständig bedient wurde – was selten vorkommt. Fünftens die Aktionäre, denen zusteht, was danach bleibt: meist nichts. Die Stufen werden nach unten schmaler, weil auf jeder weniger ankommt. „Vor den Aktionären“ heißt deshalb nicht „an erster Stelle“ – es heißt nur: nicht ganz zuletzt.',
+    caption:
+      'Vor dem Anleihegläubiger stehen zwei Stufen, hinter ihm zwei. Das ist der ganze Unterschied zur Aktie – und er ist kleiner, als „vorrangig“ klingt.',
+  },
+  'portfolio-quote-rueckgang': {
+    title: 'Was die Aktienquote im Ernstfall bedeutet',
+    caption:
+      'Fünf Depots mit demselben Startwert. Was sie unterscheidet, ist keine Produktwahl, sondern eine einzige Zahl – und im Rückgang entscheidet sie alles.',
+  },
+  'immobilie-restschuld': {
+    title: 'Was nach der Zinsbindung offen bleibt',
+    caption:
+      'Zehn Jahre zahlen fühlt sich nach der Hälfte an. Getilgt ist knapp ein Fünftel – der Rest wird zu Konditionen weiterfinanziert, die heute niemand kennt.',
+  },
+  'rente-freibetrag': {
+    title: 'Der Freibetrag wächst nicht mit',
+    caption:
+      'Der steuerfreie Betrag wird einmal in Euro festgeschrieben. Jede spätere Rentenerhöhung ist voll steuerpflichtig – die Steuerlast steigt, ohne dass sich ein Gesetz ändert.',
+  },
+  'crashes-spirale': {
+    title: 'Die Liquiditätsspirale',
+    description:
+      'Vier Stationen in einem geschlossenen Kreis, im Uhrzeigersinn. Erstens Verkäufe: Wer auf Kredit gekauft hat und nicht nachschießen kann, verkauft – nicht weil er will, sondern weil er muss. Zweitens fallen die Preise, weil viele Verkäufe auf einmal auf wenige Käufer treffen. Drittens schrumpfen dadurch die Sicherheiten: Was als Pfand hinterlegt ist, ist plötzlich weniger wert. Viertens fordert die Bank Nachschuss oder stellt die Position glatt – und damit ist der Kreis wieder bei den erzwungenen Verkäufen. Es gibt keinen letzten Kasten; die vierte Station ist die Ursache der ersten. Das ist der Grund, warum ein Einbruch schneller abläuft als der Anstieg davor: Ein erheblicher Teil der Verkäufe ist nicht entschieden, sondern erzwungen. Wer ohne Kredit gekauft hat, steht in diesem Kreis nicht drin. Zahlen stehen bewusst nicht daran – wie schnell sich der Kreis dreht, hängt daran, wie viel im Markt auf Kredit gekauft wurde.',
+    caption:
+      'Kein Ablauf, sondern ein Kreis: Die letzte Station ist die Ursache der ersten. Deshalb hört ein Crash nicht auf, wenn die Meinungen drehen.',
+  },
+  'kosten-wahre-quote': {
+    title: 'Welcher Kostenblock überwiegt',
+    caption:
+      'Dieselben drei Kostenarten, zwei Depots, umgekehrte Rangfolge. Deshalb hat die Frage nach dem günstigeren Anbieter keine allgemeine Antwort.',
+  },
+  'boerse-handelszeiten': {
+    title: 'Wann welcher Handelsplatz offen hat',
+    caption:
+      'Die Öffnungszeiten stehen in der Tabelle. Was erst übereinandergelegt sichtbar wird, sind die Stunden, in denen kein Vergleichskurs existiert.',
+  },
+  'einlagensicherung-anspruch': {
+    title: 'Umfang gegen Rechtsanspruch',
+    description:
+      'Die drei Sicherungssysteme gegeneinander aufgetragen: waagerecht, wie weit die Zusage reicht, senkrecht, wie belastbar sie rechtlich ist. Die gesetzliche Einlagensicherung steht links oben – sie reicht nur bis zur gesetzlichen Grenze, ist dafür ein einklagbarer Anspruch, den jede Bank in der EU erfüllen muss. Der freiwillige Sicherungsfonds steht rechts unten – er reicht weit darüber hinaus, leistet aber nach seiner Satzung, und die kann er ändern; deutsche Fonds haben ihre Grenzen mehrfach abgesenkt. Die Institutssicherung liegt dazwischen und verfolgt einen anderen Ansatz: Sie stützt das Institut, damit ein Entschädigungsfall gar nicht erst eintritt. Die Anordnung zeigt den Zusammenhang, den die Tabelle nebeneinanderstellt: Je weiter die Zusage reicht, desto schwächer ist sie unterlegt. Das entwertet die freiwilligen Systeme nicht – sie haben in der Praxis zuverlässig gezahlt. Es heißt nur, dass man sich auf eine Zusage anderer Qualität verlässt. Beträge über der gesetzlichen Grenze stehen bewusst nicht daran: Wie weit ein Fonds reicht, hängt am Eigenkapital der einzelnen Bank.',
+    caption:
+      'Je weiter die Zusage reicht, desto schwächer ist sie rechtlich unterlegt. Beides zu wissen ist die ganze Aussage dieses Themas.',
+  },
+  'sparerpauschbetrag-reihenfolge': {
+    title: 'Die Reihenfolge der Verteilung',
+    caption:
+      'Vorn steht, was ohne dein Zutun belastet wird, hinten, worüber du selbst entscheidest. Das Gefälle ist die Begründung für die Reihenfolge.',
+  },
+  'derivat-margin': {
+    title: 'Der Margin Call',
+    caption:
+      'Die Position wird geschlossen, obwohl die Einschätzung dahinter am Ende zutrifft. Das ist der Unterschied zwischen einem Verlust- und einem Liquiditätsrisiko.',
+  },
+  'sparplan-wartezeit': {
+    title: 'Was Wartezeit kostet',
+    caption:
+      'Gerechnet ohne jede Kursschwankung – deshalb ist der Rückstand kein Pech, sondern Arithmetik. Was das Verteilen dafür kauft, steht im Text daneben.',
+  },
+  'waehrung-absicherung': {
+    title: 'Was die Absicherung kostet',
+    caption:
+      'Der Wechselkurs kommt in dieser Rechnung nicht vor – und das ist der Punkt. Die Absicherung kostet die Zinsdifferenz, wohin der Kurs auch läuft.',
+  },
+  'inflation-basiseffekt': {
+    title: 'Der Basiseffekt',
+    caption:
+      'Die Rate fällt auf null, ohne dass ein einziger Preis gesunken wäre. „Die Inflation geht zurück“ und „es wird wieder billiger“ sind zwei verschiedene Aussagen.',
+  },
+  'verkauf-gruende': {
+    title: 'Woher der Grund kommt',
+    caption:
+      'Die Herkunft ist das Erkennungsmerkmal: Was aus dem eigenen Plan stammt, trägt einen Verkauf. Was aus dem Markt kommt, steht bereits im Kurs.',
+  },
+  'krypto-zugangswege': {
+    title: 'Drei Wege, drei Risiken',
+    caption:
+      'Das Risiko verschwindet auf keinem der drei Wege – es wechselt nur die Stelle. Die Frage ist, welches man lieber trägt.',
+  },
+  'einsteiger-pruefung': {
+    title: 'Fünf Fragen an ein Produkt',
+    caption:
+      'Die Reihenfolge ist der eigentliche Rat: Die ersten beiden Fragen sortieren die meisten Produkte aus, und wer sie zuerst stellt, spart sich die übrigen drei.',
+  },
+  'aktie-barwert': {
+    title: 'Warum eine Bewertung keine Zahl ist',
+    caption:
+      'Die Kurve steigt zum unteren Ende nicht, sie läuft davon. Ein halber Prozentpunkt an einer Stelle, die niemand kennt, verschiebt den Wert zweistellig.',
+  },
+  'kredit-tilgen-oder-anlegen': {
+    title: 'Was die Anlage bringen müsste',
+    caption:
+      'Der ersparte Kreditzins ist steuerfrei, der Anlageertrag nicht. Wer beide Prozentzahlen nebeneinanderlegt, vergleicht netto mit brutto.',
+  },
+  'staatsschuld-dynamik': {
+    title: 'Nicht die Höhe, die Richtung',
+    caption:
+      'Vier Wege aus derselben Startquote, alle bei ausgeglichenem Haushalt. Was sie trennt, ist eine einzige Differenz – und über die stimmt niemand ab.',
+  },
+  'sparplan-dynamisierung': {
+    title: 'Wenn die Rate mitwächst',
+    caption:
+      'Der Unterschied entsteht nicht durch Rendite, sondern durch Einzahlung. Deshalb ist die Dynamisierung die einzige wirksame Stellschraube, die keine Prognose braucht.',
+  },
+  'broker-orderflow': {
+    title: 'Wer die kostenlose Order bezahlt',
+    description:
+      'Der Weg einer gebührenfreien Order und der Weg des Geldes zurück. Oben drei Kästen nebeneinander: Du erteilst eine Order und zahlst dafür keine Gebühr. Der Broker leitet sie an einen bestimmten Handelsplatz weiter. Der Handelsplatz führt sie aus. Darunter der Rückweg: Der Handelsplatz zahlt dem Broker eine Vergütung für die Weiterleitung – das ist Payment for Order Flow. Bezahlt wird diese Vergütung aus dem Spread, also aus dem Kurs, zu dem deine Order ausgeführt wird. Das Geld, das der Broker nicht von dir nimmt, kommt damit über einen Umweg doch von dir. Das ist kein Vorwurf, sondern ein Geschäftsmodell, und es ist nicht automatisch nachteilig: Bei kleinen Orders ist die gesparte Gebühr oft mehr wert als ein etwas besserer Ausführungskurs. Bei großen kehrt sich das um – ein Zehntelprozent auf 50.000 Euro sind 50 Euro, und dann wären fünf Euro Ordergebühr am Referenzmarkt das bessere Geschäft. Die Gegenprobe ist immer dieselbe: erzielter Kurs gegen Referenzkurs zur selben Sekunde, plus alle Gebühren.',
+    caption:
+      'Das Geld, das der Broker nicht von dir nimmt, kommt über den Spread doch von dir. Kein Vorwurf – nur der Grund, „kostenlos“ nachzurechnen.',
+  },
+  'etf-swap': {
+    title: 'Was in einem Swap-ETF liegt',
+    description:
+      'Der Aufbau eines synthetischen ETF in zwei Kästen. Links der Fonds: Er hält ein Trägerportfolio aus liquiden Wertpapieren – nicht die Werte des abgebildeten Index. Dieses Portfolio ist Sondervermögen wie bei jedem Fonds. Rechts der Swap-Partner, eine Bank: Er liefert dem Fonds die Wertentwicklung des Index und bekommt dafür die Wertentwicklung des Trägerportfolios. Zwei Pfeile zwischen den Kästen zeigen diesen Tausch in beide Richtungen. Darunter der entscheidende Satz: Das Risiko sitzt zwischen den beiden Kästen. Fällt der Swap-Partner aus, fehlt die zugesagte Indexrendite – das Trägerportfolio bleibt, es bildet aber etwas anderes ab. Die OGAW-Richtlinie begrenzt dieses Ausfallrisiko gegenüber einer einzelnen Gegenpartei auf zehn Prozent des Fondsvermögens; in der Praxis liegt es deutlich darunter, weil der Swap täglich oder bei Erreichen einer Schwelle zurückgesetzt und durch Sicherheiten unterlegt wird. Entscheidend ist deren Qualität: Ein mit Staatsanleihen bester Bonität besicherter Swap ist etwas anderes als einer, der mit Aktien zweiter Reihe unterlegt ist. Die Zusammensetzung steht im Jahresbericht.',
+    caption:
+      'Ein synthetischer Fonds hält nicht nichts – er hält etwas anderes. Das Risiko sitzt nicht im Kasten, sondern zwischen den beiden.',
+  },
+  'kosten-bestandsprovision': {
+    title: 'Wohin die Vergütung fließt',
+    description:
+      'Der Weg der laufenden Fondskosten in drei Stationen. Dein Depot zahlt die laufende Verwaltungsvergütung – nicht als Rechnung, sondern täglich anteilig aus dem Fondsvermögen. Sie geht an die Fondsgesellschaft, die den Fonds verwaltet. Von dort fließt ein Teil zurück an die Bank oder den Vermittler, über den der Fonds verkauft wurde: die Bestandsprovision. Sie wird jährlich gezahlt, solange der Fonds im Depot liegt, und beträgt oft die Hälfte der Verwaltungsvergütung. Daraus folgt, warum eine Empfehlung erwartbar ist: Ein Berater, der davon lebt, verdient an einem Fonds mit 1,5 Prozent laufenden Kosten jährlich und an einem Indexfonds mit 0,15 Prozent praktisch nichts. Das macht ihn nicht unehrlich – beides zu wissen ist besser, als eines davon zu unterstellen. Seit MiFID II muss offengelegt werden, was tatsächlich geflossen ist; die Angabe steht in der jährlichen Kosteninformation, meist auf der letzten Seite. Die Alternative ist die Honorarberatung: sichtbar teurer, in der Summe häufig günstiger.',
+    caption:
+      'Die Beratung ist wörtlich kostenlos und wirtschaftlich nicht. Bezahlt wird sie jedes Jahr, aus dem Fondsvermögen, ohne dass es auf einer Rechnung steht.',
+  },
+  'psychologie-asymmetrie': {
+    title: 'Zwang und Zuversicht',
+    description:
+      'Eine schematische Kurve über einen vollständigen Zyklus: ein langer, sich beschleunigender Aufbau und ein kurzer, steiler Absturz. Etwa drei Viertel der Zeitachse entfallen auf den Anstieg, ein Viertel auf den Einbruch. Die Erklärung steht unter den beiden Abschnitten: Steigende Kurse erzeugen Berichterstattung, Berichterstattung erzeugt Zuflüsse, Zuflüsse erzeugen steigende Kurse – dieser Kreis braucht Zeit. Fallende Kurse dagegen zwingen fremdfinanzierte Marktteilnehmer zu Verkäufen, und diese Verkäufe drücken die Kurse weiter. Ein Margin Call kennt keine Bedenkzeit. Deshalb sind Einbrüche schneller als Anstiege: Zwang wirkt sofort, Zuversicht braucht Zeit. An den Achsen stehen bewusst keine Zahlen – wie lange ein Aufbau dauert und wie tief ein Einbruch geht, ist von Fall zu Fall verschieden. Das Verhältnis der beiden Zeiträume ist es nicht.',
+    caption:
+      'Zwang wirkt sofort, Zuversicht braucht Zeit. Das ist der ganze Grund, warum Einbrüche schneller ablaufen als die Anstiege davor.',
+  },
+  'blockchain-reihenfolge': {
+    title: 'Die Reihenfolge ist Geld wert',
+    caption:
+      'Bezahlt hat es der, dessen Auftrag sichtbar war, bevor er ausgeführt wurde. Verletzt wurde dabei keine Regel – und genau das ist der Punkt.',
+  },
+  'fonds-bewertungsstufen': {
+    title: 'Wie sicher der Preis ist',
+    caption:
+      'Für eine DAX-Aktie gibt es einen Kurs. Für ein Papier, das zuletzt vor drei Wochen gehandelt wurde, wird bewertet statt abgelesen – und auf der untersten Stufe entscheidet, wer die Annahmen setzt.',
+  },
+  'crashes-ansteckung': {
+    title: 'Kurssturz oder Krise',
+    caption:
+      'Drei Wege führen vom Markt in die Wirtschaft, und nur einer führt zu sich selbst zurück. Ist dieser Kreis geschlossen, entscheidet nur noch die Reaktion.',
+  },
+  'notenbank-messgroessen': {
+    title: 'Navigation mit unsicherer Position',
+    caption:
+      'Zwei der drei Größen, aus denen sich der angemessene Zins ergeben soll, kann niemand messen. Notenbanken sagen das inzwischen selbst.',
+  },
+  'tagesgeld-parkplaetze': {
+    title: 'Vier Parkplätze',
+    caption:
+      'Der Ertragsunterschied beträgt Bruchteile eines Prozentpunkts. Der Unterschied zwischen „am Tag X verfügbar“ und „nicht verfügbar“ kann teuer werden.',
+  },
+  'waehrung-paritaeten': {
+    title: 'Drei Bedingungen, drei Ränge',
+    caption:
+      'Eine gilt immer, weil sie eine Arbitragebedingung ist. Eine gilt als langfristige Tendenz. Und eine gilt systematisch nicht – daraus lebt der Carry-Trade.',
+  },
+  'kosten-ebenen': {
+    title: 'Vier Ebenen, nach Sichtbarkeit',
+    caption:
+      'Die Reihenfolge ist die der Sichtbarkeit, nicht die der Höhe. Wer nur auf die Ordergebühr schaut, betrachtet den kleinsten Betrag mit dem größten Aufhebens.',
+  },
+  'krypto-bewertung': {
+    title: 'Ein Preis ohne Anker',
+    caption:
+      'Das Verfahren ist hier nicht ungenau, sondern nicht anwendbar. Das macht die Anlage nicht illegitim – es macht „fair bewertet“ gegenstandslos.',
+  },
+  'sparer-verlusttoepfe': {
+    title: 'Zwei Töpfe, keine Verbindung',
+    description:
+      'Die beiden Verlustverrechnungstöpfe nebeneinander, getrennt durch eine durchgezogene Wand. Links der Aktienverlusttopf: Er enthält Verluste aus dem Verkauf einzelner Aktien und lässt sich ausschließlich gegen Gewinne aus dem Verkauf einzelner Aktien verrechnen – nicht gegen Dividenden und nicht gegen Fondsgewinne. Rechts der allgemeine Topf: Er enthält Verluste aus Fonds, ETFs, Anleihen und Zertifikaten und ist gegen alle übrigen Kapitalerträge verrechenbar, einschließlich Zinsen und Dividenden. Zwischen beiden gibt es keinen Übergang. Praktisch heißt das: Wer mit Einzelaktien Verluste macht und mit ETFs Gewinne, kann beides nicht gegeneinander stellen – der Aktienverlust bleibt liegen, der ETF-Gewinn wird versteuert. Vorgetragen wird der Aktienverlust unbegrenzt, aber immer topfgebunden. Wer nie wieder Einzelaktien mit Gewinn verkauft, nutzt ihn nie. Das ist die folgenreichste Einzelheit des deutschen Kapitalertragsteuerrechts und wird regelmäßig zu spät bemerkt.',
+    caption:
+      'Die Wand ist die Aussage. Ein Aktienverlust gleicht einen Fondsgewinn nicht aus – und das merken die meisten erst in der Abrechnung.',
+  },
+  'markt-effizienzstufen': {
+    title: 'Drei Stufen, ineinander',
+    description:
+      'Die drei Stufen der Informationseffizienz als ineinanderliegende Rahmen. Innen die schwache Stufe: Aus vergangenen Kursen lässt sich nichts über künftige ableiten – weitgehend bestätigt, die dokumentierten Ausnahmen sind klein und nach Kosten meist verschwunden. Darum die halbstarke Stufe: Zusätzlich stecken alle öffentlich verfügbaren Informationen bereits im Kurs – überwiegend bestätigt, die Einpreisung erfolgt in Sekunden, nicht in Tagen. Ganz außen die strenge Stufe: Auch nicht öffentliche Informationen steckten im Kurs – klar widerlegt, sonst wäre Insiderhandel nicht einträglich und müsste nicht verfolgt werden. Die Verschachtelung ist die Aussage: Jede stärkere Stufe schließt die schwächere ein, denn wer behauptet, alle öffentlichen Informationen steckten im Kurs, behauptet damit auch, die vergangenen Kurse täten es. Dass die äußerste Stufe widerlegt ist, sagt deshalb nichts über die inneren beiden – ein Schluss, der in der Debatte über Markteffizienz regelmäßig gezogen wird und nicht trägt.',
+    caption:
+      'Jede stärkere Stufe schließt die schwächere ein. Dass die äußerste widerlegt ist, sagt deshalb nichts über die inneren beiden.',
+  },
+  'fonds-bewertungsglaettung': {
+    title: 'Ruhiger Kurs, gleicher Wert',
+    description:
+      'Zwei Linien über denselben Verlauf. Die dünne graue Linie zeigt den Wert, wie er sich tatsächlich bewegt – laufend, mit allen Ausschlägen. Die kräftige Stufenlinie zeigt denselben Verlauf so, wie ihn eine Bewertung durch Gutachter erzeugt: Sie misst zu wenigen Stichtagen und schreibt den gemessenen Wert bis zur nächsten Messung fort. Das Ergebnis sieht deutlich ruhiger aus, obwohl es dieselbe Sache abbildet. Genau das passiert bei offenen Immobilienfonds: Ihr Preis schwankt kaum, weil Immobilien nicht täglich gehandelt, sondern periodisch bewertet werden. Das ist keine Stabilität der Anlage, sondern eine Eigenschaft des Messverfahrens. Wer einen solchen Fonds mit Tagesgeld vergleicht, weil der Kurs so ruhig aussieht, vergleicht eine Eigenschaft der Anlage mit einer Eigenschaft der Messung. Der Verlauf ist schematisch und behauptet keine Immobilienpreise – was er zeigt, gilt für jeden Verlauf.',
+    caption:
+      'Die ruhige Linie ist nicht ruhiger, sie ist seltener gemessen. Bei offenen Immobilienfonds ist das der ganze Unterschied.',
+  },
+  'branchen-zyklus': {
+    title: 'Zyklisch und defensiv',
+    description:
+      'Zwei schematische Kurven über einen vollständigen Konjunkturzyklus, beide um dieselbe Mittellinie. Die zyklische Kurve schlägt weit aus: Im Aufschwung liegt sie deutlich oben, im Abschwung deutlich unten. Dazu gehören Automobil, Maschinenbau, Chemie, Banken und Luxusgüter – Branchen, deren Gewinne stark mit der Konjunktur schwanken. Die defensive Kurve folgt demselben Verlauf mit kleinem Ausschlag: Nahrungsmittel, Versorger, Gesundheit und Telekommunikation werden auch in einer Krise gebraucht, bleiben dafür in starken Aufschwüngen zurück. Beide Kurven enden auf derselben Höhe, weil die Aussage der Schwankung gilt und nicht der Rendite. An den Achsen stehen bewusst keine Zahlen: Wie stark eine Branche schwankt, hängt am Zyklus, am Land und am Zeitraum. Weil beide derselben Konjunktur folgen, ist eine Branchenwette fast immer eine Wette auf den Zeitpunkt der Wende – und der ist so wenig vorhersagbar wie alles andere am Markt.',
+    caption:
+      'Beide folgen derselben Konjunktur, nur mit verschiedenem Ausschlag. Wer auf eine Branche setzt, wettet deshalb meist auf einen Zeitpunkt.',
   },
 }

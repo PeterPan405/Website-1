@@ -75,7 +75,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Fünf Maschinen gegen 131 – warum ASML trotzdem einbricht',
     metaTitle: 'ASML bricht ein: China baut eigene DUV-Anlagen',
     teaser:
-      'Ein Bericht über chinesische Lithografieanlagen kostet ASML zeitweise 8,5 Prozent. Um Stückzahlen geht es dabei nicht – die sprechen vorerst klar für den Marktführer.',
+      'Ein Bericht über chinesische Lithografieanlagen kostet ASML zeitweise 8,5 Prozent. Um Stückzahlen geht es dabei nicht – die sprechen für den Marktführer.',
     category: 'Märkte',
     publishedAt: '2026-07-28T06:45:00+02:00',
     author: 'Redaktion IM Invests',
@@ -242,7 +242,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'dow-steigt-nasdaq-faellt-am-selben-tag',
     title: 'Dow steigt, Nasdaq fällt – am selben Tag, im selben Markt',
     teaser:
-      'Der Dow legte am Montag 0,5 Prozent zu, der Nasdaq verlor 0,2 Prozent, der S&P 500 bewegte sich fast nicht. Drei Zahlen, ein Handelstag – und ein Missverständnis.',
+      'Der Dow legte 0,5 Prozent zu, der Nasdaq verlor 0,2 Prozent, der S&P 500 bewegte sich kaum. Drei Zahlen, ein Handelstag – und ein Missverständnis.',
     category: 'Märkte',
     publishedAt: '2026-07-28T07:15:00+02:00',
     author: 'Redaktion IM Invests',
@@ -328,7 +328,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Die Fed hat ihre eigene Inflationsprognose kräftig angehoben',
     metaTitle: 'Fed hebt Inflationsprognose von 2,7 auf 3,6 Prozent',
     teaser:
-      'Von 2,7 auf 3,6 Prozent für das laufende Jahr – und neun der achtzehn Sitzungsteilnehmer erwarten inzwischen eine Zinserhöhung. Vor der Sitzung lohnt ein Blick auf diese Zahl.',
+      'Von 2,7 auf 3,6 Prozent für das laufende Jahr – und neun von achtzehn Sitzungsteilnehmern erwarten inzwischen eine Zinserhöhung. Ein Blick auf diese Zahl lohnt.',
     category: 'Geldpolitik',
     publishedAt: '2026-07-28T07:30:00+02:00',
     author: 'Redaktion IM Invests',
@@ -430,7 +430,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'wer-die-fed-fuehrt-und-warum-das-fuer-sparer-zaehlt',
     title: 'Wer die Fed führt – und warum das auch deutsche Sparer angeht',
     teaser:
-      'Seit Mai leitet Kevin Warsh die US-Notenbank, bestätigt mit der knappsten Mehrheit ihrer Geschichte. Was daran für die eigene Anlage zählt, ist nicht die Person.',
+      'Seit Mai leitet Kevin Warsh die US-Notenbank, bestätigt mit der knappsten Mehrheit ihrer Geschichte. Was für die eigene Anlage zählt, ist nicht die Person.',
     category: 'Geldpolitik',
     publishedAt: '2026-07-28T07:40:00+02:00',
     author: 'Redaktion IM Invests',
@@ -661,7 +661,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Mercedes-Benz eröffnet die dichteste Berichtswoche des Jahres',
     metaTitle: 'Mercedes-Benz, Boeing, Visa: Zahlen am Dienstag',
     teaser:
-      'Heute legen Mercedes-Benz, Coca-Cola, Boeing und Visa Zahlen vor, Mittwoch folgt Microsoft, Donnerstag Apple und Amazon. Warum gute Zahlen den Kurs drücken können.',
+      'Heute legen Mercedes-Benz, Coca-Cola, Boeing und Visa Zahlen vor, Mittwoch Microsoft, Donnerstag Apple. Warum gute Zahlen den Kurs drücken können.',
     category: 'Märkte',
     publishedAt: '2026-07-28T08:10:00+02:00',
     author: 'Redaktion IM Invests',
@@ -801,7 +801,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'DAX springt auf 25.500 Punkte – und niemand konnte dabei sein',
     metaTitle: 'DAX auf 25.500 Punkte: höchster Stand seit drei Wochen',
     teaser:
-      'Nach der Waffenpause zwischen den USA und Iran eröffnet der DAX mit einer Kurslücke und steigt auf den höchsten Stand seit fast drei Wochen. Handeln ließ sich der Sprung nicht.',
+      'Nach der Waffenpause eröffnet der DAX mit einer Kurslücke und steigt auf den höchsten Stand seit fast drei Wochen. Handeln ließ sich der Sprung nicht.',
     category: 'Märkte',
     publishedAt: '2026-07-27T13:10:00+02:00',
     author: 'Redaktion IM Invests',
@@ -863,7 +863,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Ölpreis bricht ein – und liegt trotzdem 50 Prozent über Jahresbeginn',
     metaTitle: 'Ölpreis nach Waffenpause: Brent fällt um neun Prozent',
     teaser:
-      'Brent verliert am Montag zeitweise neun Prozent auf rund 88 Dollar, WTI fällt ähnlich stark. Der Blick auf ein einzelnes Tagesminus verdeckt dabei, wo der Preis herkommt.',
+      'Brent verliert zeitweise neun Prozent auf rund 88 Dollar, WTI fällt ähnlich stark. Der Blick auf ein Tagesminus verdeckt, wo der Preis herkommt.',
     category: 'Märkte',
     publishedAt: '2026-07-27T12:40:00+02:00',
     author: 'Redaktion IM Invests',
@@ -929,7 +929,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'ifo-Geschäftsklima steigt überraschend – aber nur die Erwartungen',
     metaTitle: 'ifo-Geschäftsklima Juli 2026: 86,6 Punkte',
     teaser:
-      'Der ifo-Index klettert im Juli auf 86,6 Punkte und liegt damit über den Prognosen. Der Anstieg kommt vollständig aus den Erwartungen – die Lagebeurteilung fällt sogar.',
+      'Der ifo-Index klettert im Juli auf 86,6 Punkte und liegt über den Prognosen. Der Anstieg kommt ganz aus den Erwartungen – die Lagebeurteilung fällt.',
     category: 'Märkte',
     publishedAt: '2026-07-27T10:45:00+02:00',
     author: 'Redaktion IM Invests',
@@ -986,7 +986,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'fed-entscheidet-am-mittwoch-ueber-den-leitzins',
     title: 'Fed entscheidet am Mittwoch – erwartet wird nichts',
     teaser:
-      'Die US-Notenbank tagt am Dienstag und Mittwoch. Die Märkte rechnen mit einer weiteren Pause – und genau deshalb bewegt nicht die Entscheidung die Kurse, sondern jede Abweichung.',
+      'Die US-Notenbank tagt Dienstag und Mittwoch. Die Märkte rechnen mit einer Pause – deshalb bewegt nicht die Entscheidung die Kurse, sondern jede Abweichung.',
     category: 'Geldpolitik',
     publishedAt: '2026-07-27T09:40:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1054,7 +1054,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Bitcoin wieder über 65.000 Dollar – gestiegen ist er am Wochenende',
     metaTitle: 'Bitcoin über 65.000 Dollar: Kurs am 27. Juli 2026',
     teaser:
-      'Bitcoin legt binnen 24 Stunden rund 1,4 Prozent zu und notiert bei etwa 65.360 Dollar. Der Anstieg fand statt, während die Aktienbörsen geschlossen waren – das ist kein Zufall.',
+      'Bitcoin legt binnen 24 Stunden 1,4 Prozent zu und notiert bei 65.360 Dollar. Der Anstieg fiel in die Zeit geschlossener Aktienbörsen – kein Zufall.',
     category: 'Geldanlage',
     publishedAt: '2026-07-27T09:10:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1110,7 +1110,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'goldpreis-fest-vor-dem-fed-entscheid',
     title: 'Gold steigt auf rund 4.100 Dollar – in Euro weniger',
     teaser:
-      'Der Goldpreis legt zum Wochenstart um ein Prozent zu. In Euro gerechnet bleibt weniger davon übrig, und daran lässt sich gut zeigen, warum ein Goldkurs zwei Ursachen hat.',
+      'Der Goldpreis legt zum Wochenstart ein Prozent zu. In Euro bleibt weniger übrig – daran zeigt sich, warum ein Goldkurs zwei Ursachen hat.',
     category: 'Märkte',
     publishedAt: '2026-07-27T08:50:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1281,7 +1281,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Vor den Big-Tech-Zahlen: Was „KI-Blase“ eigentlich bedeutet',
     metaTitle: 'KI-Bewertungen vor den Big-Tech-Quartalszahlen',
     teaser:
-      'Vor den Zahlen von Microsoft, Meta, Apple und Amazon steht wieder die Blasenfrage im Raum. Sie ist vorher nicht beantwortbar – was sich prüfen lässt, ist etwas anderes.',
+      'Vor den Zahlen von Microsoft, Meta, Apple und Amazon steht die Blasenfrage im Raum. Sie ist vorher nicht beantwortbar – prüfen lässt sich anderes.',
     category: 'Geldanlage',
     publishedAt: '2026-07-26T19:30:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1348,7 +1348,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Bitcoin hält die 64.000 Dollar – und der Kurs sagt wenig über den Markt',
     metaTitle: 'Bitcoin bei 64.000 Dollar: Kurs und Marktgröße',
     teaser:
-      'Nach schwachen Handelstagen stabilisiert sich Bitcoin. Interessanter als der Kurs ist, wie groß der Kryptomarkt insgesamt noch ist – und wie wenig davon Bitcoin ist.',
+      'Nach schwachen Handelstagen stabilisiert sich Bitcoin. Interessanter als der Kurs ist, wie groß der Kryptomarkt noch ist – und wie wenig davon Bitcoin.',
     category: 'Geldanlage',
     publishedAt: '2026-07-25T21:45:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1408,7 +1408,7 @@ export const newsArticles: NewsArticle[] = [
     slug: 'gold-nach-dem-rekord-in-der-korrektur',
     title: 'Gold nach dem Rekord: Auch ein sicherer Hafen schwankt',
     teaser:
-      'Der Goldpreis liegt gut ein Viertel unter seinem Allzeithoch von 5.598 Dollar. Silber hält sich bei knapp 58 Dollar. Beides zeigt, was Rohstoffe im Depot leisten – und was nicht.',
+      'Gold liegt gut ein Viertel unter seinem Allzeithoch von 5.598 Dollar, Silber bei knapp 58 Dollar. Beides zeigt, was Rohstoffe leisten – und was nicht.',
     category: 'Märkte',
     publishedAt: '2026-07-25T10:30:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1546,7 +1546,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Brent über 100 Dollar: Wie ein Ölpreis in der eigenen Inflationsrate landet',
     metaTitle: 'Brent über 100 Dollar: der Weg in die Inflationsrate',
     teaser:
-      'Der Streit um die Straße von Hormus hat den Ölpreis auf den höchsten Stand seit zwei Monaten getrieben. Die Kette von dort bis zur Zinsentscheidung ist kürzer als gedacht.',
+      'Der Streit um die Straße von Hormus treibt den Ölpreis auf den höchsten Stand seit zwei Monaten. Die Kette bis zur Zinsentscheidung ist kurz.',
     category: 'Märkte',
     publishedAt: '2026-07-24T18:30:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1617,7 +1617,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'DAX über 25.000 Punkten – getragen von einer einzigen Aktie',
     metaTitle: 'DAX über 25.000: Wenn ein Wert den Index trägt',
     teaser:
-      'Der Leitindex holt sich die 25.000 zurück und schließt die Woche im Plus. Der Schub kam vor allem von SAP – und das sagt mehr über den Index als über die Wirtschaft.',
+      'Der Leitindex holt sich die 25.000 zurück und schließt die Woche im Plus. Der Schub kam von SAP – das sagt mehr über den Index als über die Wirtschaft.',
     category: 'Märkte',
     publishedAt: '2026-07-24T18:10:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1683,7 +1683,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'EZB pausiert nach der Erhöhung – Einlagenzins bleibt bei 2,25 Prozent',
     metaTitle: 'EZB-Zinspause: Einlagenzins bleibt bei 2,25 Prozent',
     teaser:
-      'Der EZB-Rat lässt die Leitzinsen unverändert – sechs Wochen nach der ersten Erhöhung seit drei Jahren. Für Sparer entscheidet genau dieser eine Satz über das Tagesgeld.',
+      'Der EZB-Rat lässt die Leitzinsen unverändert – sechs Wochen nach der ersten Erhöhung seit drei Jahren. Für Sparer zählt genau dieser eine Satz.',
     category: 'Geldpolitik',
     publishedAt: '2026-07-23T16:00:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1772,7 +1772,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Fed vor der Juli-Sitzung: Der Dot Plot zeigt erstmals nach oben',
     metaTitle: 'Fed-Sitzung im Juli: Was der Dot Plot signalisiert',
     teaser:
-      'Am 29. Juli entscheidet die US-Notenbank. Erwartet wird die fünfte Pause in Folge – bemerkenswert ist aber, was die Projektionen der Mitglieder inzwischen andeuten.',
+      'Am 29. Juli entscheidet die US-Notenbank. Erwartet wird die fünfte Pause in Folge – bemerkenswert ist, was die Projektionen inzwischen andeuten.',
     category: 'Geldpolitik',
     publishedAt: '2026-07-23T09:00:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1841,7 +1841,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Frühstartrente: 10 Euro im Monat vom Staat – der Gesetzentwurf liegt vor',
     metaTitle: 'Frühstartrente: Was im Gesetzentwurf steht',
     teaser:
-      'Das Bundesfinanzministerium hat den Entwurf zur Frühstartrente vorgelegt. Zehn Euro im Monat klingen nach wenig – über die Laufzeit ist es vor allem eine Zeitfrage.',
+      'Das Bundesfinanzministerium hat den Entwurf zur Frühstartrente vorgelegt. Zehn Euro im Monat klingen nach wenig – über die Laufzeit ist es eine Zeitfrage.',
     category: 'Vorsorge',
     publishedAt: '2026-07-22T08:00:00+02:00',
     author: 'Redaktion IM Invests',
@@ -1924,7 +1924,7 @@ export const newsArticles: NewsArticle[] = [
     title: 'Tagesgeld: Die Zinsen ziehen wieder an – der Realzins bleibt dünn',
     metaTitle: 'Tagesgeldzinsen steigen: Was real übrig bleibt',
     teaser:
-      'Im Schnitt gibt es 2,6 Prozent, einzelne Aktionsangebote liegen über vier Prozent. Nach Inflation und Steuer bleibt davon weniger übrig, als die Zahlen vermuten lassen.',
+      'Im Schnitt gibt es 2,6 Prozent, einzelne Aktionsangebote über vier. Nach Inflation und Steuer bleibt weniger übrig, als die Zahlen vermuten lassen.',
     category: 'Geldanlage',
     publishedAt: '2026-07-21T07:30:00+02:00',
     author: 'Redaktion IM Invests',

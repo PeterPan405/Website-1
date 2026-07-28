@@ -25,7 +25,20 @@ const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
  * im Suchergebnis, deutlich länger wird abgeschnitten.
  */
 const TEASER_MIN = 100
-const TEASER_MAX = 200
+
+/*
+  160 und nicht 200.
+
+  Die Obergrenze stand bis hierher bei 200 – und widersprach damit dem Satz
+  direkt darüber: Wenn der Teaser als Meta-Description dient, ist die
+  maßgebliche Grenze die, ab der die Suchmaschine abschneidet. Das sind rund
+  160 Zeichen. Zwanzig Artikel lagen darüber, ohne dass es jemandem auffiel,
+  weil im Suchergebnis eben nur der Anfang steht.
+
+  Aufgefallen ist es erst `scripts/paket-pruefen.ts`, das die ausgelieferte
+  Seite ansieht statt die Absicht.
+*/
+const TEASER_MAX = 160
 
 /** Länge, ab der `metaTitle` nötig wird, weil `title` abgeschnitten würde. */
 const TITLE_MAX_WITHOUT_META = 65

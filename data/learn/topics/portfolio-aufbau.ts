@@ -1,5 +1,29 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatPercent } from '@/lib/format'
+import {
+  portfolioDepotwert,
+  portfolioJahre,
+  portfolioMarktrueckgang,
+  portfolioQuoten,
+  portfolioRenditeAktien,
+  portfolioRenditeSicher,
+  portfolioStart,
+} from '@/lib/lernszenarien'
+
+/*
+  Die Verschiebung der Aufteilung wird gerechnet, nicht geschätzt.
+
+  Hier stand „nach fünf guten Börsenjahren vielleicht bei 82 zu 18“. Bei den
+  Renditen, mit denen die Grafik daneben zeichnet, sind es nach fünf Jahren
+  erst gut 76 Prozent – die 82 werden nach zehn Jahren erreicht. Solche
+  Zahlen aus dem Gefühl heraus zu setzen ist genau die Art Fehler, die diese
+  Seite anderen vorwirft.
+*/
+function aktienquoteNach(jahre: number): number {
+  const aktien = portfolioStart.aktien * (1 + portfolioRenditeAktien / 100) ** jahre
+  const sicher = portfolioStart.sicher * (1 + portfolioRenditeSicher / 100) ** jahre
+  return (aktien / (aktien + sicher)) * 100
+}
 
 /*
   Die Rückgangstabelle wird gerechnet.
@@ -8,12 +32,14 @@ import { formatPercent } from '@/lib/format'
   zu ihm passt, muss sehen, was sie im Ernstfall bedeutet. Als getippte Tabelle
   wäre sie beim ersten Umschreiben inkonsistent – ein geänderter Marktrückgang
   und fünf vergessene Zeilen.
+
+  Die Annahmen stehen in `lib/lernszenarien.ts`, weil die Grafik unter der
+  Tabelle dieselbe Rechnung zeichnet. Zwei Quellen für dieselben fünf Zeilen
+  wären genau der Fehler, den niemand bemerkt.
 */
-const MARKTRUECKGANG = 40
-const QUOTEN = [100, 80, 60, 40, 20]
-const rueckgangJeQuote = QUOTEN.map((quote) => ({
+const rueckgangJeQuote = portfolioQuoten.map((quote) => ({
   quote,
-  rueckgang: (quote / 100) * MARKTRUECKGANG,
+  rueckgang: (quote / 100) * portfolioMarktrueckgang,
 }))
 
 /**
@@ -80,17 +106,25 @@ export const portfolioAufbau: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: `Nimm an, der Aktienmarkt fällt um ${formatPercent(MARKTRUECKGANG, 0)} – ein Rückgang, wie er historisch mehrfach vorgekommen ist. Der risikoarme Teil bleibt dabei ungefähr, wo er ist. Was mit dem Gesamtvermögen geschieht, hängt allein an der Quote:`,
+          text: `Nimm an, der Aktienmarkt fällt um ${formatPercent(portfolioMarktrueckgang, 0)} – ein Rückgang, wie er historisch mehrfach vorgekommen ist. Der risikoarme Teil bleibt dabei ungefähr, wo er ist. Was mit dem Gesamtvermögen geschieht, hängt allein an der Quote:`,
         },
         {
           type: 'table',
-          caption: `Wertverlust des Gesamtdepots bei ${formatPercent(MARKTRUECKGANG, 0)} Marktrückgang`,
-          head: ['Aktienquote', 'Rückgang des Depots', 'Aus 100.000 Euro werden'],
+          caption: `Wertverlust des Gesamtdepots bei ${formatPercent(portfolioMarktrueckgang, 0)} Marktrückgang`,
+          head: [
+            'Aktienquote',
+            'Rückgang des Depots',
+            `Aus ${portfolioDepotwert.toLocaleString('de-DE')} Euro werden`,
+          ],
           rows: rueckgangJeQuote.map((zeile) => [
             formatPercent(zeile.quote, 0),
             `− ${formatPercent(zeile.rueckgang, 0)}`,
-            `${(100_000 * (1 - zeile.rueckgang / 100)).toLocaleString('de-DE')} €`,
+            `${(portfolioDepotwert * (1 - zeile.rueckgang / 100)).toLocaleString('de-DE')} €`,
           ]),
+        },
+        {
+          type: 'figure',
+          figure: 'portfolio-quote-rueckgang',
         },
         {
           type: 'paragraph',
@@ -185,7 +219,7 @@ export const portfolioAufbau: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Angenommen, du startest mit 70 Prozent Aktien und 30 Prozent Tagesgeld. Nach fünf guten Börsenjahren ist der Aktienteil stärker gewachsen als der andere – die Aufteilung liegt vielleicht bei 82 zu 18. Ohne dass du etwas entschieden hättest, trägst du mehr Risiko als geplant. Und zwar am Ende einer guten Phase, also genau dann, wenn ein Rückschlag am wahrscheinlichsten ist.',
+          text: `Angenommen, du startest mit ${formatPercent(portfolioStart.aktien, 0)} Aktien und ${formatPercent(portfolioStart.sicher, 0)} Tagesgeld. Läuft der Aktienteil mit ${formatPercent(portfolioRenditeAktien, 0)} im Jahr und der sichere mit ${formatPercent(portfolioRenditeSicher, 0)}, liegt die Aufteilung nach fünf Jahren bei ${formatPercent(aktienquoteNach(5), 0)} zu ${formatPercent(100 - aktienquoteNach(5), 0)} und nach zehn bei ${formatPercent(aktienquoteNach(portfolioJahre), 0)} zu ${formatPercent(100 - aktienquoteNach(portfolioJahre), 0)}. Ohne dass du etwas entschieden hättest, trägst du mehr Risiko als geplant. Und zwar am Ende einer guten Phase, also genau dann, wenn ein Rückschlag am wahrscheinlichsten ist.`,
         },
         {
           type: 'paragraph',
@@ -217,6 +251,10 @@ export const portfolioAufbau: LearnTopic = {
             'Das funktioniert, solange die Einzahlungen im Verhältnis zum Bestand groß genug sind – bei 400.000 Euro Depot und 300 Euro Rate bewegt sich damit nichts mehr.',
             'Erst danach über Verkäufe, und dann bevorzugt in Konten ohne laufende Besteuerung, falls vorhanden.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'portfolio-drift',
         },
         {
           type: 'heading',
@@ -384,6 +422,10 @@ export const portfolioAufbau: LearnTopic = {
             'Umschichtungen und Entnahmen lösen in Deutschland regelmäßig Abgeltungsteuer aus; die Reihenfolge der Schritte hat erhebliche Wirkung.',
             'Bei größeren Vermögen gehört die Planung zu jemandem mit Zulassung.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'portfolio-entnahme',
         },
         {
           type: 'heading',

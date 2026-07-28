@@ -1,5 +1,11 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
+import {
+  abgeltungsteuer as ABGELTUNGSTEUER,
+  effektiverSteuersatz as effektiverSatz,
+  soliAufSteuer as SOLI_AUF_STEUER,
+  sparerPauschbetrag as PAUSCHBETRAG,
+} from '@/lib/lernszenarien'
 
 /*
   Steuersätze und Freibeträge stehen an genau einer Stelle.
@@ -15,10 +21,6 @@ import { formatCurrencyRounded, formatPercent } from '@/lib/format'
   Solidaritätszuschlag darauf – und der Zuschlag wirkt auf die Steuer, nicht
   auf den Ertrag. Das ist der Rechenfehler, der dabei am häufigsten passiert.
 */
-const PAUSCHBETRAG = 1_000
-const ABGELTUNGSTEUER = 25
-const SOLI_AUF_STEUER = 5.5
-const effektiverSatz = ABGELTUNGSTEUER * (1 + SOLI_AUF_STEUER / 100)
 
 /** Was von einem Ertrag oberhalb des Freibetrags übrig bleibt. */
 function nachSteuern(ertrag: number): number {
@@ -187,6 +189,10 @@ export const sparerpauschbetrag: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'sparerpauschbetrag-grenze',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -231,6 +237,10 @@ export const sparerpauschbetrag: LearnTopic = {
             '**Dann die Depots mit Dividenden.** Auch die sind ungefähr kalkulierbar.',
             '**Zuletzt der Rest.** Realisierte Kursgewinne entstehen nur, wenn du verkaufst – und darüber entscheidest du selbst. Diesen Posten kann man ans Ende der Reihenfolge stellen, weil er sich steuern lässt.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'sparerpauschbetrag-reihenfolge',
         },
         {
           type: 'callout',
@@ -364,6 +374,10 @@ export const sparerpauschbetrag: LearnTopic = {
             'Der Aktienverlusttopf wird über die Jahre vorgetragen – unbegrenzt, aber immer topfgebunden. Wer nie wieder Einzelaktien mit Gewinn verkauft, nutzt ihn nie.',
             'Für **Termingeschäfte** galt zeitweise eine zusätzliche betragsmäßige Verrechnungsgrenze, die Absicherungsstrategien empfindlich traf. Sie war verfassungsrechtlich umstritten, und die Rechtslage hat sich seither geändert – wer betroffen ist, sollte den aktuellen Stand prüfen lassen.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'sparer-verlusttoepfe',
         },
         {
           type: 'heading',

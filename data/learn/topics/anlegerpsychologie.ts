@@ -1,5 +1,6 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { calculateCompoundInterest } from '@/lib/finance'
+import { risikoRueckgaenge } from '@/lib/lernszenarien'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
 
 /*
@@ -18,8 +19,7 @@ import { formatCurrencyRounded, formatPercent } from '@/lib/format'
      Ansparzeit ausmacht, rechnet dieselbe Funktion aus, die auch der
      Zinsrechner der Website benutzt.
 */
-const RUECKGAENGE = [10, 20, 30, 40, 50, 60]
-const erholungJeRueckgang = RUECKGAENGE.map((rueckgang) => ({
+const erholungJeRueckgang = risikoRueckgaenge.map((rueckgang) => ({
   rueckgang,
   // Aus 100 werden (100 − r). Um zurück auf 100 zu kommen, braucht es
   // r / (100 − r) – bezogen auf den kleiner gewordenen Bestand.
@@ -141,6 +141,10 @@ export const anlegerpsychologie: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Halbierung braucht eine Verdopplung. Das ist keine Psychologie, sondern Prozentrechnung – und es ist der Grund, warum große Verluste zu vermeiden wichtiger ist, als große Gewinne zu treffen.',
+        },
+        {
+          type: 'figure',
+          figure: 'risiko-erholung',
         },
         {
           type: 'heading',
@@ -268,6 +272,10 @@ export const anlegerpsychologie: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'psychologie-verhaltensluecke',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was tatsächlich hilft',
@@ -325,6 +333,10 @@ export const anlegerpsychologie: LearnTopic = {
             '**Die Erzählung.** Jede Blase hat einen plausiblen Kern und einen Satz, der die hohen Bewertungen erklärt: neue Technologie, neue Wirtschaftsordnung, diesmal ist es anders. Der Kern stimmt oft. Falsch ist der Schluss, dass daraus jeder Preis gerechtfertigt sei.',
             '**Die Abwärtsspirale.** Fallende Kurse zwingen fremdfinanzierte Marktteilnehmer zu Verkäufen, diese Verkäufe drücken die Kurse weiter. Deshalb sind Einbrüche schneller als Anstiege – Zwang wirkt sofort, Zuversicht braucht Zeit.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'psychologie-asymmetrie',
         },
         {
           type: 'heading',

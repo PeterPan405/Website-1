@@ -160,6 +160,10 @@ export const notenbankenGeldpolitik: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'notenbank-zinskorridor',
+        },
+        {
           type: 'paragraph',
           text: 'Ist in Meldungen von „dem Leitzins“ die Rede, ist im Euroraum meist der **Einlagesatz** gemeint. Er ist der Satz, an dem sich Banken orientieren, wenn sie überschüssige Liquidität haben – und genau deshalb bewegt sich dein Tagesgeldzins mit ihm und nicht mit den anderen beiden.',
         },
@@ -228,6 +232,10 @@ export const notenbankenGeldpolitik: LearnTopic = {
             '**Vermögenspreiskanal.** Höhere Zinsen senken den Barwert künftiger Zahlungen – Anleihen, Aktien und Immobilien werden neu bewertet. Wer sich ärmer fühlt, gibt weniger aus.',
             '**Wechselkurskanal.** Höhere Zinsen ziehen Kapital an, die Währung wertet auf. Importe werden billiger, was die Inflation dämpft; Exporte werden teurer, was die Konjunktur dämpft.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'notenbank-transmission',
         },
         {
           type: 'heading',
@@ -371,6 +379,10 @@ export const notenbankenGeldpolitik: LearnTopic = {
             'Geldpolitik ist deshalb keine Steuerung nach Messwerten, sondern Navigation mit unsicherer Position. Notenbanken sagen das inzwischen selbst.',
             'Für Anleger folgt daraus vor allem eines: Wer meint, die richtige Zinshöhe besser zu kennen als der Rat, überschätzt die Genauigkeit der verfügbaren Größen – aller verfügbaren, auch der eigenen.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'notenbank-messgroessen',
         },
         {
           type: 'heading',

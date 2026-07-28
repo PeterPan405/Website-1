@@ -92,6 +92,10 @@ export const boerse: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'boerse-vom-klick-zur-buchung',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Dein Depot ist kein Bankkonto',
@@ -225,6 +229,10 @@ export const boerse: LearnTopic = {
             'Der Anbieter weiß das und kalkuliert entsprechend. Die Spanne ist dann regelmäßig deutlich größer als am Nachmittag.',
             'Bei ausländischen Werten kommt hinzu: Ist der Heimatmarkt geschlossen, muss auch ein Referenzmarkt schätzen.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'boerse-handelszeiten',
         },
         {
           type: 'heading',
@@ -362,6 +370,10 @@ export const boerse: LearnTopic = {
             'Ein Großteil solcher Fälle hat mit Leerverkäufen zu tun: Verkauft wurde etwas, das erst noch geliehen werden musste.',
             'Für dich als Käufer ändert das in der Regel nichts – die zentrale Gegenpartei steht dazwischen und beschafft notfalls am Markt.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'boerse-abwicklung',
         },
         {
           type: 'heading',

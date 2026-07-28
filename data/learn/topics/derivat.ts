@@ -1,5 +1,9 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import {
+  derivatEinsatz as EINSATZ,
+  derivatSicherheitssaetze as SICHERHEITSSAETZE,
+} from '@/lib/lernszenarien'
 
 /*
   Zwei gerechnete Blöcke, beide gegen verbreitete Fehlvorstellungen gerichtet.
@@ -15,8 +19,6 @@ import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format
      kontraintuitiv ist: Der Basiswert steht wieder am Ausgangspunkt und das
      Zertifikat notiert zweistellig im Minus.
 */
-const EINSATZ = 1000
-const SICHERHEITSSAETZE = [50, 20, 10, 5, 2]
 const hebelreihe = SICHERHEITSSAETZE.map((satz) => {
   const hebel = 100 / satz
   return {
@@ -184,6 +186,10 @@ export const derivat: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'derivat-hebel',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -261,6 +267,10 @@ export const derivat: LearnTopic = {
             'Eine Position kann also zwangsweise geschlossen werden, obwohl die zugrunde liegende Einschätzung am Ende richtig war. Nur eben zu spät.',
             'Genau das ist der Unterschied zwischen einem Verlustrisiko und einem Liquiditätsrisiko – und Letzteres ist der häufigere Grund für gescheiterte Positionen.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'derivat-margin',
         },
         {
           type: 'heading',
@@ -398,6 +408,10 @@ export const derivat: LearnTopic = {
             'Das ist kein Konstruktionsfehler und keine versteckte Gebühr. Es ist die zwangsläufige Folge davon, dass täglich neu gehebelt wird – und es steht meist korrekt im Prospekt, nur nicht in der Werbung.',
             'Praktische Folge: Faktorzertifikate sind Instrumente für einzelne Tage. Wer sie über Wochen hält, hat ein anderes Produkt, als er gekauft zu haben glaubte.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'derivat-pfadabhaengigkeit',
         },
         {
           type: 'heading',

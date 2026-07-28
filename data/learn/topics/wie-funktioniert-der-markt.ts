@@ -95,6 +95,10 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'aktie-spread',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Der Spread ist der Preis der Sofortigkeit',
@@ -214,6 +218,10 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
             'Daraus folgt der praktische Rat: Ein Limit, das genau auf dem aktuellen Geldkurs liegt, steht hinter allen Aufträgen, die schon dort liegen. Wer sicher zum Zuge kommen will, muss einen Schritt besser bieten.',
             '**Auktionen** funktionieren anders: Zur Eröffnung und zum Schluss werden Aufträge gesammelt und zu einem einheitlichen Preis ausgeführt, der das größte Volumen ermöglicht. Diese Auktionen sind die liquidesten Momente des Tages – bei wenig gehandelten Werten oft die einzigen brauchbaren.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'markt-orderbuch',
         },
         {
           type: 'heading',
@@ -338,6 +346,10 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
               'Klar widerlegt – sonst wäre Insiderhandel nicht einträglich und müsste nicht verfolgt werden',
             ],
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'markt-effizienzstufen',
         },
         {
           type: 'callout',

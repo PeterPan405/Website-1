@@ -7,7 +7,7 @@ name: Quellen abklopfen
 # einem GitHub-Läufer gibt es diese Einschränkung nicht. Ohne diesen Weg bliebe
 # nur Raten.
 #
-# Der Workflow verändert nichts. Er ist Werkzeug, kein Bestandteil der Website.
+# Der Workflow ist Werkzeug, kein Bestandteil der Website. Er verändert nichts.
 #
 # ## Bisheriger Stand
 #
@@ -15,20 +15,60 @@ name: Quellen abklopfen
 # - OECD (Löhne): geht → 38 Länder, eingebaut
 # - OECD (Vermögen): geht → 30 Länder nach Umrechnung, eingebaut
 # - SEC (Fundamentaldaten, us-gaap): geht → 170 geführte Kürzel, eingebaut
-# - Yahoo (Kennzahlen): 401 Unauthorized
+# - SEC (Quartalstermine, 8-K/2.02): geht → 158 Unternehmen, eingebaut
+# - SEC (6-K für ausländische Emittenten): geprüft, verworfen – die
+#   Dokumentbeschreibung lautet ausnahmslos „FORM 6-K“.
+# - Yahoo (Kennzahlen, Kalender, quote-Endpunkt): 401. Der Kalender verlangt
+#   seit Kurzem einen Crumb, also Cookie und Einmalkennung aus dem Browser.
+#   Das ist eine gesetzte Zugangssperre und nichts, was man wegkonfiguriert –
+#   dieselbe Entscheidung wie seinerzeit bei Stooq.
+# - Financial Modeling Prep: 401, verlangt einen Schlüssel.
+# - stockanalysis.com: liefert 200, ist aber eine fremde Website und keine
+#   Schnittstelle. Deren Aufbereitung abzugreifen ist etwas anderes als eine
+#   Quelle zu nutzen.
 # - Frankfurter (Devisen): 301 auf eine andere Adresse; EZB reicht ohnehin
 #
-# ## Diese Runde: die drei größten verbliebenen Lücken
+# - Börse Frankfurt: **403, „Invalid CORS request“** auf allen Datenpfaden.
+#   Die 200 der ersten Runde kam von einem Auffangpfad und enthielt ein leeres
+#   Objekt; dasselbe liefern `/v1/`, `swagger.json` und `openapi.json`. Die
+#   Schnittstelle verlangt einen im Browser errechneten Kopfzeilenwert.
 #
-# 1. **BIP und Einwohner** fehlen bei 65 beziehungsweise 34 Ländern, weil die
-#    genutzten CSV-Spiegel der Weltbank nicht alle führen. Der IWF-Datamapper
-#    liefert dieselben Größen und ist über die Schuldenquote schon erschlossen.
-# 2. **Löhne außerhalb der OECD** – 211 Länder ohne Angabe, in Afrika alle 60.
-#    Die ILO führt Verdienststatistiken für deutlich mehr Länder.
-# 3. **Kennzahlen für Nicht-US-Aktien.** Die SEC führt neben `us-gaap` eine
-#    zweite Taxonomie: `ifrs-full`. Wer als ausländischer Emittent nach IFRS
-#    bilanziert und in den USA notiert, meldet dorthin. Das ist bisher nie
-#    abgefragt worden.
+# ## Ergebnis zu den Quartalsterminen ausserhalb der USA
+#
+# Sechs Quellen geprüft, keine frei zugängliche gefunden. Das Muster ist
+# überall dasselbe: Wer Termine für europäische und asiatische Werte führt,
+# verlangt entweder einen Schlüssel oder eine Kennung, die nur ein Browser
+# erzeugt.
+#
+# Damit ist die Frage keine technische mehr, sondern eine Entscheidung: Ein
+# kostenloser Zugangsschlüssel bei einem Anbieter, der Europa abdeckt – oder
+# die Lücke bleibt und steht wie bisher als solche auf der Kalenderseite.
+# Beides ist vertretbar; nur das Nachbauen einer Zugangssperre nicht.
+#
+# ## Twelve Data: der Endpunkt gibt es, und er liefert
+#
+# Geprüft mit dem öffentlichen Demo-Schlüssel:
+#
+# - `/earnings?symbol=AAPL` → **200**, mit echten Meldeterminen samt Schätzung
+#   und tatsächlichem Ergebnis je Quartal.
+# - `/earnings?symbol=SAP&exchange=XETR` → 403, aber mit dem Hinweis, dass der
+#   Demo-Schlüssel nur der ersten Bekanntschaft dient. Keine Aussage über
+#   fehlende Abdeckung.
+# - `/stocks?symbol=SAP` → **200**, und SAP SE steht mit europäischen
+#   Handelsplätzen im Verzeichnis. Der Anbieter kennt die Werte also.
+# - Finnhub: 401 ohne Schlüssel, sonst keine Aussage möglich.
+#
+# Twelve Data ist in diesem Projekt bereits als Kursanbieter vorgesehen
+# (`lib/providers/twelvedata.ts`, Secret `TWELVEDATA_API_KEY`). Ein Schlüssel
+# würde damit zwei Zwecken dienen: bessere Kurse und die fehlenden
+# Meldetermine.
+#
+# Was ein Schlüssel nicht beantwortet, solange keiner hinterlegt ist: ob der
+# kostenlose Tarif den Endpunkt `/earnings` überhaupt freischaltet und wie
+# viele Abfragen je Minute er zulässt. Beides zeigt sich beim ersten Lauf.
+#
+# Nachgesehen am 28. Juli 2026: **kein Schlüssel hinterlegt.** Der zweite Weg
+# im Abrufskript ist gebaut und meldet sich nicht, solange das so bleibt.
 
 on:
   workflow_dispatch:
@@ -38,124 +78,8 @@ jobs:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
-      - name: IWF – BIP, Einwohner und Kaufkraft je Kopf
+      - name: Derzeit steht keine Quelle zur Prüfung an
         run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          for reihe in NGDPD LP PPPPC NGDPDPC; do
-            code=$(curl -sS -L -A "$UA" --max-time 60 -o "/tmp/$reihe.json" -w '%{http_code}' \
-              "https://www.imf.org/external/datamapper/api/v1/$reihe" || echo 000)
-            echo "▶ $reihe → $code, $(stat -c%s /tmp/$reihe.json) Bytes"
-          done
-
-          python3 - <<'PY'
-          import json
-          for reihe, was in [('NGDPD','BIP in Mrd. USD'), ('LP','Einwohner in Mio.'),
-                             ('PPPPC','BIP je Kopf, kaufkraftbereinigt'),
-                             ('NGDPDPC','BIP je Kopf in USD')]:
-              try:
-                  d = json.load(open(f'/tmp/{reihe}.json'))
-              except Exception as fehler:
-                  print(f'  {reihe}: nicht lesbar ({fehler})')
-                  continue
-              werte = d.get('values', {}).get(reihe, {})
-              # Nur echte Ländercodes: drei Grossbuchstaben
-              laender = {k: v for k, v in werte.items() if len(k) == 3 and k.isupper()}
-              mit2025 = sum(1 for v in laender.values() if v.get('2025') is not None)
-              mit2024 = sum(1 for v in laender.values() if v.get('2024') is not None)
-              print(f'  {reihe:9} ({was}): {len(laender)} Codes, 2024: {mit2024}, 2025: {mit2025}')
-              beispiel = laender.get('NGA') or laender.get('KEN')
-              if beispiel:
-                  jahre = {j: beispiel[j] for j in ('2023','2024','2025') if j in beispiel}
-                  print(f'            Beispiel Nigeria/Kenia: {jahre}')
-          PY
-
-      - name: ILO – Verdienststatistik für Länder ausserhalb der OECD
-        run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          echo "── Welche Reihen gibt es? ──"
-          code=$(curl -sS -L -A "$UA" --max-time 60 -o /tmp/ilo_idx.json -w '%{http_code}' \
-            "https://rplumber.ilo.org/data/indicator/?id=EAR_4MTH_SEX_ECO_CUR_NB&format=json" || echo 000)
-          echo "rplumber EAR_4MTH → $code, $(stat -c%s /tmp/ilo_idx.json) Bytes"
-          head -c 400 /tmp/ilo_idx.json; echo ""
-
-          echo ""
-          echo "── Massendatei für mittlere Monatsverdienste ──"
-          for kennung in EAR_4MTH_SEX_ECO_CUR_NB EAR_XEES_SEX_ECO_NB EAR_4MTH_SEX_ECO_NB; do
-            code=$(curl -sS -L -A "$UA" --max-time 90 -o /tmp/ilo.csv.gz -w '%{http_code}' \
-              "https://www.ilo.org/sdmx/rest/data/ILO,DF_$kennung/all?format=csv" || echo 000)
-            echo "▶ SDMX $kennung → $code, $(stat -c%s /tmp/ilo.csv.gz) Bytes"
-            head -c 200 /tmp/ilo.csv.gz | tr -d '\0'; echo ""
-          done
-
-          echo ""
-          echo "── Weltbank: Lohn- und Einkommensreihen als Ersatz ──"
-          for ind in NY.GNP.PCAP.CD NY.GDP.PCAP.PP.CD SL.EMP.TOTL.SP.ZS; do
-            code=$(curl -sS -L -A "$UA" --max-time 60 -o /tmp/wb.json -w '%{http_code}' \
-              "https://api.worldbank.org/v2/country/all/indicator/$ind?format=json&per_page=400&date=2024" || echo 000)
-            echo "▶ Weltbank $ind → $code, $(stat -c%s /tmp/wb.json) Bytes"
-            python3 -c "
-          import json
-          try:
-              d = json.load(open('/tmp/wb.json'))
-              reihen = d[1] if isinstance(d, list) and len(d) > 1 and d[1] else []
-              mit = [r for r in reihen if r.get('value') is not None]
-              print(f'    {len(reihen)} Zeilen, davon {len(mit)} mit Wert')
-              for r in mit[:3]:
-                  print(f\"      {r['country']['value'][:24]:24} {r['value']}\")
-          except Exception as f:
-              print('    nicht lesbar:', f)
-          " || true
-          done
-
-      - name: SEC – die IFRS-Taxonomie für ausländische Emittenten
-        run: |
-          UA="IM-Invests Datenabruf pm252543@gmail.com"
-          echo "── Umsatz nach IFRS für ein ganzes Jahr ──"
-          for tag in Revenue RevenueFromContractsWithCustomers ProfitLoss Equity; do
-            code=$(curl -sS -A "$UA" --max-time 90 -o /tmp/ifrs.json -w '%{http_code}' \
-              "https://data.sec.gov/api/xbrl/frames/ifrs-full/$tag/USD/CY2025.json" || echo 000)
-            groesse=$(stat -c%s /tmp/ifrs.json)
-            echo "▶ ifrs-full/$tag/USD/CY2025 → $code, $groesse Bytes"
-            if [ "$code" = "200" ]; then
-              python3 -c "
-          import json
-          d = json.load(open('/tmp/ifrs.json'))
-          daten = d.get('data', [])
-          print(f'    {len(daten)} Unternehmen')
-          for e in daten[:4]:
-              print(f\"      {str(e.get('entityName'))[:34]:34} {e.get('val'):>18,}\")
-          " || true
-            fi
-          done
-
-          echo ""
-          echo "── Melden SAP, ASML und Novo Nordisk dort? ──"
-          curl -sS -A "$UA" --max-time 45 -o /tmp/tickers.json \
-            "https://www.sec.gov/files/company_tickers.json"
-          python3 - <<'PY'
-          import json, urllib.request
-          kopf = {'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com'}
-          tickers = json.load(open('/tmp/tickers.json'))
-          nach_kuerzel = {e['ticker']: e['cik_str'] for e in tickers.values()}
-          for k in ('SAP', 'ASML', 'NVO', 'TSM', 'TM', 'STLA', 'RACE', 'BABA', 'UMC'):
-              cik = nach_kuerzel.get(k)
-              if not cik:
-                  print(f'  {k:5} nicht in der Kürzelliste')
-                  continue
-              url = f'https://data.sec.gov/api/xbrl/companyconcept/CIK{cik:010d}/ifrs-full/Revenue.json'
-              try:
-                  with urllib.request.urlopen(urllib.request.Request(url, headers=kopf), timeout=45) as a:
-                      d = json.load(a)
-                  einheiten = d.get('units', {})
-                  waehrungen = ', '.join(einheiten)
-                  neueste = ''
-                  for w, eintraege in einheiten.items():
-                      jahre = [e for e in eintraege if e.get('form') in ('20-F', '10-K')]
-                      if jahre:
-                          j = max(jahre, key=lambda e: e['end'])
-                          neueste = f" – {j['end']}: {j['val']:,} {w}"
-                          break
-                  print(f'  {k:5} CIK {cik:>8}  Einheiten: {waehrungen}{neueste}')
-              except Exception as fehler:
-                  print(f'  {k:5} CIK {cik:>8}  {fehler}')
-          PY
+          echo "Dieser Workflow hat keinen offenen Auftrag."
+          echo "Der Kopf der Datei hält fest, was geprüft wurde und mit welchem"
+          echo "Ergebnis – damit keine Quelle zweimal abgeklopft wird."

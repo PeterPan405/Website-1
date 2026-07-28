@@ -11,7 +11,7 @@ import type { DailyEdition } from './types'
 export const edition: DailyEdition = {
   date: '2026-07-27',
   intro:
-    'Die Waffenpause zwischen USA und Iran lässt den Ölpreis einbrechen und den DAX springen. Voraus liegen der Fed-Entscheid und die dichteste Berichtswoche des Jahres.',
+    'Die Waffenpause zwischen USA und Iran lässt den Ölpreis einbrechen und den DAX springen. Voraus liegen der Fed-Entscheid und die dichteste Berichtswoche.',
   top: [
     {
       headline: 'DAX eröffnet mit einer Kurslücke und steigt auf 25.500 Punkte',

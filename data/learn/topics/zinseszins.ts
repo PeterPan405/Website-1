@@ -545,6 +545,10 @@ export const zinseszins: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'zinseszins-steuerstundung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Alles zusammen: eine ehrliche Rechnung',

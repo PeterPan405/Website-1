@@ -163,6 +163,10 @@ export const aktienLaenderBranchen: LearnTopic = {
           text: 'Ein breiter Weltindex enthält weit über tausend Unternehmen aus dreiundzwanzig Industrieländern. Die Branchenstreuung entsteht dabei automatisch mit – man muss sie nicht getrennt herstellen. Was ein solcher Index **nicht** abdeckt, ist ebenso wichtig zu wissen: Schwellenländer fehlen, und kleine Unternehmen fehlen. Beides lässt sich ergänzen, muss es aber nicht.',
         },
         {
+          type: 'figure',
+          figure: 'msci-world-laender',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -276,6 +280,10 @@ export const aktienLaenderBranchen: LearnTopic = {
               'Nachfrage bleibt weitgehend bestehen. Schwankt weniger – und bleibt in starken Aufschwüngen zurück',
             ],
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'branchen-zyklus',
         },
         {
           type: 'callout',
@@ -419,6 +427,10 @@ export const aktienLaenderBranchen: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Ab etwa fünf Bausteinen wird das Rebalancing zur Arbeit, ohne dass sich das Ergebnis erkennbar verbessert. Und jede zusätzliche Position ist eine Entscheidung, die künftig überprüft werden will – der Aufwand fällt nicht einmal an, sondern jedes Jahr.',
+        },
+        {
+          type: 'figure',
+          figure: 'streuung-titelzahl',
         },
         {
           type: 'heading',

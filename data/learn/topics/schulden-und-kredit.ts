@@ -6,8 +6,14 @@ import {
   rateBeiTilgungssatz,
   restschuldNach,
   tilgungsplan,
-  type Kreditparameter,
 } from '@/lib/kredit'
+import {
+  immobilienkredit as IMMOBILIE,
+  immobilienTilgungssaetze as TILGUNGSSAETZE,
+  immobilienZinsbindung as ZINSBINDUNG,
+  ratenkredit as RATENKREDIT,
+  ratenkreditLaufzeiten as LAUFZEITEN,
+} from '@/lib/lernszenarien'
 
 /*
   Alle Kreditzahlen dieses Themas kommen aus `lib/kredit.ts`.
@@ -19,15 +25,10 @@ import {
   Zinssumme übersteigt dann fast das Darlehen selbst. Solche Zahlen darf man
   nicht tippen.
 */
-const RATENKREDIT: Kreditparameter = { summe: 15_000, zinsProzent: 8 }
-const LAUFZEITEN = [3, 5, 7, 10]
 const laufzeitreihe = LAUFZEITEN.map((jahre) =>
   auswerten(RATENKREDIT, rateBeiLaufzeit(RATENKREDIT, jahre))
 ).map((ergebnis, index) => ({ jahre: LAUFZEITEN[index], ...ergebnis }))
 
-const IMMOBILIE: Kreditparameter = { summe: 300_000, zinsProzent: 3.5 }
-const ZINSBINDUNG = 10
-const TILGUNGSSAETZE = [1, 2, 3, 4]
 const tilgungsreihe = TILGUNGSSAETZE.map((satz) => {
   const rate = rateBeiTilgungssatz(IMMOBILIE, satz)
   const ergebnis = auswerten(IMMOBILIE, rate)
@@ -208,6 +209,10 @@ export const schuldenUndKredit: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'kredit-zins-und-tilgung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Effektivzins: die einzige vergleichbare Zahl',
@@ -287,6 +292,10 @@ export const schuldenUndKredit: LearnTopic = {
             `Der Schritt von einem auf zwei Prozent Anfangstilgung kostet ${formatPercent(rateMehr, 0)} mehr Rate – und spart ${formatPercent(zinsErsparnis, 0)} der gesamten Zinsen. Kaum eine andere Entscheidung im Kreditbereich hat ein solches Verhältnis.`,
             'Niedrige Anfangstilgungen wurden in der Niedrigzinsphase üblich, weil sie die Rate klein hielten. Bei den heutigen Zinsen bedeuten sie eine Laufzeit, die über den Ruhestand hinausreicht.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'kredit-anfangstilgung',
         },
         {
           type: 'heading',
@@ -408,6 +417,10 @@ export const schuldenUndKredit: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Als Größenordnung lässt sich daraus eine belastbare Regel ableiten: Bei Kreditzinsen im zweistelligen Bereich gewinnt die Tilgung praktisch immer. Im mittleren einstelligen Bereich wird es eine Abwägung zwischen Sicherheit und Erwartung. Unterhalb von etwa zwei bis drei Prozent nach Steuern spricht mehr für die Anlage – vorausgesetzt, der Anlagehorizont ist lang genug, dass die Erwartung überhaupt tragen kann.',
+        },
+        {
+          type: 'figure',
+          figure: 'kredit-tilgen-oder-anlegen',
         },
         {
           type: 'heading',

@@ -109,5 +109,23 @@ export interface Termin {
   themen?: string[]
   /** Symbole betroffener Kurse. */
   symbole?: string[]
+  /**
+   * Gesetzt, wenn der Termin abgeleitet ist statt bekannt gegeben.
+   *
+   * Alles andere in diesem Kalender steht fest: Ein Zinsentscheid ist ein
+   * Jahr vorher terminiert, ein Verfallstag folgt einer Regel, ein Wahltermin
+   * steht im Gesetz. Die erwarteten Quartalszahlen-Termine sind dagegen aus
+   * dem bisherigen Meldemuster eines Unternehmens hochgerechnet.
+   *
+   * Der Unterschied gehört sichtbar gemacht. Ein geschätzter Termin, der
+   * aussieht wie ein feststehender, ist schlechter als gar keiner – wer
+   * danach handelt, verlässt sich auf eine Hochrechnung, ohne es zu wissen.
+   */
+  geschaetzt?: {
+    /** Der tatsächliche Termin des Vorjahres, aus dem hochgerechnet wurde. */
+    basis: string
+    /** Wie weit das Muster bisher gestreut hat, in Tagen. */
+    streuungTage: number
+  }
   quelle: { label: string; url: string }
 }

@@ -132,6 +132,10 @@ export const staatsanleihe: LearnTopic = {
           text: 'Gekauft werden diese Papiere überwiegend von Banken, Versicherungen, Pensionskassen und Fonds – und in den vergangenen Jahren in erheblichem Umfang von der Europäischen Zentralbank. Privatanleger sind eine kleine Gruppe, können aber über die Börse jederzeit mitmachen.',
         },
         {
+          type: 'figure',
+          figure: 'staatsanleihe-laufzeiten',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Der Maßstab für alles andere',
@@ -341,6 +345,12 @@ export const staatsanleihe: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'staatsanleihe-zinsschock',
+          caption:
+            'Derselbe Zinsanstieg, vier Restlaufzeiten. Die Wahl der Laufzeit entscheidet über den Verlust – nicht die Bonität des Staates.',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -423,6 +433,10 @@ export const staatsanleihe: LearnTopic = {
             'Deshalb ist die **durchschnittliche Restlaufzeit** der wichtigste Puffer. Wer über zehn Jahre finanziert ist, spürt einen Zinsanstieg erst über Jahre – wer kurzfristig finanziert ist, sofort.',
             'Und sie unterschlägt die **Währungsfrage**: Wer sich in eigener Währung verschuldet, kann nominal immer zahlen. Wer es in fremder tut, kann es nicht – das unterscheidet Argentinien von Japan mehr als jede Kennzahl.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'staatsschuld-dynamik',
         },
         {
           type: 'heading',

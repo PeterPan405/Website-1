@@ -93,6 +93,10 @@ export const depotUndBroker: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'depot-und-konto',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Die Eröffnung',
@@ -234,6 +238,10 @@ export const depotUndBroker: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'depot-orderkosten',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Der Depotübertrag',
@@ -299,6 +307,10 @@ export const depotUndBroker: LearnTopic = {
             'In der EU ist Payment for Order Flow nach der überarbeiteten Finanzmarktrichtlinie mit einer Übergangsfrist bis 2026 zu beenden. Was danach an seine Stelle tritt, entscheidet über die Preismodelle mehrerer großer Anbieter.',
             'Die Gegenprobe ist immer dieselbe: erzielter Kurs gegen Referenzkurs zur selben Sekunde, plus alle Gebühren.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'broker-orderflow',
         },
         {
           type: 'heading',

@@ -1,5 +1,11 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatDate, formatPercent } from '@/lib/format'
+import {
+  timingAuslassungen as AUSLASSUNGEN,
+  timingGewinnJeTreffer as GEWINN_JE_TREFFER,
+  timingIndex as INDEX,
+  timingKostenJeRunde as KOSTEN_JE_RUNDE,
+} from '@/lib/lernszenarien'
 import { getLiveSeries } from '@/lib/market-live'
 import {
   bestePerioden,
@@ -23,8 +29,6 @@ import {
   beste Woche des gesamten Zeitraums folgte unmittelbar auf die
   schlechteste.
 */
-const INDEX = 'dax'
-
 /*
   Die Reihe kommt aus der Service-Schicht, nicht aus der Momentaufnahme.
 
@@ -36,7 +40,6 @@ const INDEX = 'dax'
 const reihe = getLiveSeries(INDEX)
 const punkte: Kurspunkt[] =
   reihe?.daily.map((punkt) => ({ d: punkt.t, c: punkt.value })) ?? []
-const AUSLASSUNGEN = [0, 5, 10, 20]
 const auslassungen = ohneBestePerioden(punkte, AUSLASSUNGEN)
 const extreme = bestePerioden(punkte, 3)
 
@@ -54,8 +57,6 @@ const vonBis =
   angesetzt – und schon damit liegt die nötige Trefferquote deutlich über
   der Hälfte.
 */
-const GEWINN_JE_TREFFER = 5
-const KOSTEN_JE_RUNDE = [0, 0.5, 1, 2]
 const schwellen = KOSTEN_JE_RUNDE.map((kosten) => ({
   kosten,
   quote: noetigeTrefferquote(GEWINN_JE_TREFFER, kosten),
@@ -157,6 +158,10 @@ export const wannKaufenVerkaufen: LearnTopic = {
         {
           type: 'paragraph',
           text: `Aus einem klar positiven Ergebnis wird ein Verlust, wenn zehn von rund ${vonBis?.wochen ?? 250} Wochen fehlen – das sind vier Prozent der Zeit. Die Rendite eines Zeitraums steckt in sehr wenigen Perioden, und wer nicht investiert ist, verpasst sie.`,
+        },
+        {
+          type: 'figure',
+          figure: 'timing-beste-wochen',
         },
         {
           type: 'heading',
@@ -278,6 +283,10 @@ export const wannKaufenVerkaufen: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'verkauf-gruende',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Regeln schlagen Entscheidungen',
@@ -360,6 +369,10 @@ export const wannKaufenVerkaufen: LearnTopic = {
             'Die Schwelle gilt **je Runde**. Wer zwölfmal im Jahr entscheidet, muss diese Trefferquote zwölfmal erreichen – nicht einmal.',
             'Das Modell ist grob. Sein Zweck ist zu zeigen, dass die Diskussion über Prognosefähigkeit erst danach beginnt: Selbst wer den Markt besser einschätzt als der Durchschnitt, verdient daran nichts, wenn der Vorsprung kleiner ist als die Reibung.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'timing-trefferquote',
         },
         {
           type: 'heading',

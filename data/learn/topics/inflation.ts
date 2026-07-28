@@ -289,6 +289,10 @@ export const inflation: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'inflation-basiseffekt',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Erwartungen sind selbst eine Kraft',
@@ -420,6 +424,10 @@ export const inflation: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Das deutsche Steuerrecht kennt keine Inflation. Besteuert wird der **nominale** Ertrag – auch dann, wenn real nichts hinzugekommen ist. Das führt zu einem Ergebnis, das viele überrascht, wenn sie es zum ersten Mal durchrechnen.',
+        },
+        {
+          type: 'figure',
+          figure: 'inflation-steuer',
         },
         {
           type: 'paragraph',

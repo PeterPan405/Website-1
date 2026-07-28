@@ -107,6 +107,10 @@ export const fonds: LearnTopic = {
           text: 'Die letzte Zeile ist der eigentliche Grund, warum Fonds für die meisten Menschen die passendere Form sind als Einzelaktien. Nicht weil sie mehr Rendite bringen – sondern weil ein einzelner Fehlgriff nicht mehr das ganze Ergebnis bestimmt.',
         },
         {
+          type: 'figure',
+          figure: 'fonds-sondervermoegen',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was ein Fonds kostet',
@@ -207,6 +211,10 @@ export const fonds: LearnTopic = {
             'Seit der Reform gelten eine Mindesthaltefrist von 24 Monaten und eine Kündigungsfrist von zwölf Monaten – eingeführt, nachdem in der Finanzkrise mehrere Fonds die Rücknahme aussetzen mussten und Anleger jahrelang nicht an ihr Geld kamen.',
             'Wer sie mit Tagesgeld vergleicht, weil „der Kurs so ruhig ist“, vergleicht Ungleiches.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'fonds-bewertungsglaettung',
         },
         {
           type: 'heading',
@@ -313,6 +321,10 @@ export const fonds: LearnTopic = {
             '**Stufe 3** – überwiegend aus Modellannahmen. Hier entscheidet, wer die Annahmen setzt.',
             'Wie hoch der Anteil der Stufen 2 und 3 ist, steht im Jahresbericht. Bei einem Aktienfonds ist er nahe null, bei manchen Anleihe- und Mischfonds erheblich.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'fonds-bewertungsstufen',
         },
         {
           type: 'heading',

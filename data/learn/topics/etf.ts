@@ -114,6 +114,12 @@ export const etf: LearnTopic = {
           text: 'Das ist ein echter Schutz, und er wird trotzdem oft falsch verstanden. Er schützt vor der Pleite des Anbieters, nicht vor fallenden Kursen. Wenn die enthaltenen Aktien die Hälfte wert sind, ist auch das Sondervermögen die Hälfte wert.',
         },
         {
+          type: 'figure',
+          figure: 'msci-world-laender',
+          caption:
+            'Ein Welt-ETF ist breit gestreut – aber nicht gleichmäßig. Nach Börsenwert gewichtet heißt: Das Gewicht folgt dem Marktwert, nicht der Zahl der Länder.',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Vier Angaben, die du vor jedem Kauf prüfst',
@@ -296,6 +302,10 @@ export const etf: LearnTopic = {
           text: 'Über lange Zeiträume ist der Unterschied gewaltig. Der DAX wird üblicherweise als Performanceindex zitiert, der Dow Jones und der S&P 500 als Kursindex – wer beide Zahlen nebeneinanderlegt, vergleicht Ungleiches. Für ETF-Vergleiche gilt: Fast alle messen sich am Net Return, und genau daran gehört die Tracking-Differenz gemessen.',
         },
         {
+          type: 'figure',
+          figure: 'etf-index-fassungen',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Handeln: wann, wo, und immer mit Limit',
@@ -362,6 +372,10 @@ export const etf: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Entscheidend ist die Qualität dieser Sicherheiten. Ein mit Staatsanleihen bester Bonität besicherter Swap ist etwas anderes als einer, der mit Aktien zweiter Reihe unterlegt ist. Die Zusammensetzung steht im Jahresbericht des Fonds; bei den großen Anbietern liegt sie zusätzlich als tägliche Übersicht online.',
+        },
+        {
+          type: 'figure',
+          figure: 'etf-swap',
         },
         {
           type: 'heading',

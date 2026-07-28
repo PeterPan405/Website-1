@@ -1,6 +1,10 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { calculatePension, pensionDefaults } from '@/lib/finance'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import {
+  rentenBeispiel as BEISPIEL,
+  rentenEinkommen as EINKOMMEN,
+} from '@/lib/lernszenarien'
 
 /*
   Die Rentenrechnung kommt aus derselben Funktion wie der Rentenrechner.
@@ -14,15 +18,9 @@ import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format
   Alle diese Werte ändern sich jährlich. Der Text sagt das ausdrücklich und
   verweist für die verbindliche Auskunft auf die Rentenversicherung.
 */
-const BEISPIEL = {
-  grossAnnualIncome: 50_000,
-  yearsWorked: 15,
-  yearsRemaining: 25,
-}
 const rechnung = calculatePension(BEISPIEL)
 
 /** Wie viele Punkte verschiedene Einkommen im Jahr bringen. */
-const EINKOMMEN = [30_000, 45_000, 50_500, 70_000, 100_000]
 const punktereihe = EINKOMMEN.map((brutto) => ({
   brutto,
   punkte: calculatePension({ ...BEISPIEL, grossAnnualIncome: brutto }).pointsPerYear,
@@ -196,6 +194,10 @@ export const rente: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'rente-luecke',
+        },
+        {
           type: 'paragraph',
           text: 'Die Rechnung oben ist bewusst vereinfacht: konstantes Einkommen, konstanter Rentenwert, keine Kindererziehungszeiten, keine Abschläge. Sie liefert eine Größenordnung, keine Zusage. Verbindlich ist ausschließlich die Auskunft der Deutschen Rentenversicherung – und die ist kostenlos.',
         },
@@ -248,6 +250,10 @@ export const rente: LearnTopic = {
             'Die Folge ist eine langsam steigende Steuerlast im Ruhestand, ohne dass sich am Steuerrecht etwas ändern müsste. Wer nur mit dem Prozentsatz des ersten Jahres rechnet, plant zu optimistisch.',
             'Ob überhaupt Steuer anfällt, hängt am Gesamteinkommen. Bei einer alleinstehenden Person mit ausschließlich gesetzlicher Rente in üblicher Höhe bleibt oft wenig oder nichts – sobald Betriebsrente, private Rente oder Mieteinnahmen hinzukommen, ändert sich das.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'rente-freibetrag',
         },
         {
           type: 'heading',
@@ -343,6 +349,10 @@ export const rente: LearnTopic = {
             'Der Preis: Das Geld ist unwiderruflich weg und im Todesfall weitgehend verloren – ein Erbe gibt es nicht, nur gegebenenfalls eine Hinterbliebenenrente.',
             'Ob es sich lohnt, hängt am Steuersatz heute, an der erwarteten Lebensdauer und an der Alternative. Wer die Sicherheit einer lebenslangen Zahlung sucht, findet hier eine der wenigen ehrlich kalkulierten – aber es ist eine Wette auf ein langes Leben.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'rente-rentenbeginn',
         },
         {
           type: 'heading',

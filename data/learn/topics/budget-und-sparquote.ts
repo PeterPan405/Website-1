@@ -1,6 +1,14 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { calculateBudget, calculateCompoundInterest } from '@/lib/finance'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
+import {
+  haushaltAusgaben as AUSGABEN,
+  haushaltEinnahmen as EINNAHMEN,
+  hebelAusgang as AUSGANG,
+  hebelMehrRate as MEHR_RATE,
+  hebelMehrRendite as MEHR_RENDITE,
+  hebelZeitraeume as ZEITRAEUME,
+} from '@/lib/lernszenarien'
 
 /*
   Beide Rechnungen dieses Themas laufen über die Funktionen der Website.
@@ -11,29 +19,13 @@ import { formatCurrencyRounded, formatPercent } from '@/lib/format'
   den dieses Thema haben kann.
 */
 
-/** Ein Beispielhaushalt – die Zahlen sind gesetzt, die Auswertung gerechnet. */
-const EINNAHMEN = [{ id: 'netto', label: 'Nettoeinkommen', amount: 2600 }]
-const AUSGABEN = [
-  { id: 'wohnen', label: 'Wohnen (warm)', amount: 950 },
-  { id: 'lebensmittel', label: 'Lebensmittel und Haushalt', amount: 400 },
-  { id: 'mobilitaet', label: 'Mobilität', amount: 220 },
-  { id: 'freizeit', label: 'Freizeit und Abonnements', amount: 180 },
-  { id: 'sonstiges', label: 'Kleidung und Sonstiges', amount: 150 },
-  { id: 'versicherungen', label: 'Versicherungen', amount: 130 },
-  { id: 'jahreskosten', label: 'Rücklage für Jahreskosten', amount: 115 },
-  { id: 'kommunikation', label: 'Telefon und Internet', amount: 55 },
-]
-const haushalt = calculateBudget(EINNAHMEN, AUSGABEN)
+const haushalt = calculateBudget([...EINNAHMEN], [...AUSGABEN])
 
 /*
   Die zweite Rechnung: Welcher Hebel wiegt schwerer – mehr sparen oder mehr
   Rendite? Die Antwort hängt am Zeitraum, und genau das wird oft unterschlagen.
   Deshalb wird der Wechselpunkt hier gesucht statt behauptet.
 */
-const AUSGANG = { rate: 300, rendite: 6 }
-const MEHR_RATE = 50
-const MEHR_RENDITE = 1
-const ZEITRAEUME = [10, 20, 30, 40]
 
 function endkapital(rate: number, rendite: number, jahre: number): number {
   return calculateCompoundInterest({
@@ -207,6 +199,10 @@ export const budgetUndSparquote: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'budget-haushalt',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -325,6 +321,10 @@ export const budgetUndSparquote: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'budget-sparquote-jahre',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -379,6 +379,10 @@ export const budgetUndSparquote: LearnTopic = {
         {
           type: 'paragraph',
           text: `Nach zehn Jahren bringt die höhere Sparrate ungefähr das Dreifache des Renditehebels. Nach vierzig Jahren ist es umgekehrt. Der Wechsel liegt bei etwa **${wechseljahr} Jahren** – ab dann wiegt der eine Prozentpunkt schwerer als die ${formatCurrencyRounded(MEHR_RATE)}.`,
+        },
+        {
+          type: 'figure',
+          figure: 'budget-hebel',
         },
         {
           type: 'callout',

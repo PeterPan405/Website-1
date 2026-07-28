@@ -1,6 +1,13 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { kurs, modifizierteDuration, zinsschock } from '@/lib/anleihen'
 import { formatNumber, formatPercent } from '@/lib/format'
+import {
+  anleiheBeispiel as BEISPIEL,
+  anleiheLaufzeiten as LAUFZEITEN,
+  anleiheMarktzins as MARKTZINS,
+  anleiheNeuerZins as NEUER_ZINS,
+  anleiheSchocks as SCHOCKS,
+} from '@/lib/lernszenarien'
 
 /*
   Alle Kurse und Durationen dieses Themas kommen aus `lib/anleihen.ts`.
@@ -11,12 +18,6 @@ import { formatNumber, formatPercent } from '@/lib/format'
   Duration liegt dabei systematisch daneben. Beides nebeneinander zu zeigen
   geht nur, wenn beide Zahlen aus derselben geprüften Funktion stammen.
 */
-const BEISPIEL = { kuponProzent: 2, jahre: 10 }
-const MARKTZINS = 2
-const NEUER_ZINS = 4
-
-/** Wie stark der Kurs bei höherem Marktzins von der Restlaufzeit abhängt. */
-const LAUFZEITEN = [2, 5, 10, 20]
 const kursJeLaufzeit = LAUFZEITEN.map((jahre) => ({
   jahre,
   kurs: kurs({ kuponProzent: BEISPIEL.kuponProzent, jahre }, NEUER_ZINS),
@@ -27,7 +28,6 @@ const kursJeLaufzeit = LAUFZEITEN.map((jahre) => ({
 }))
 
 /** Näherung gegen tatsächliche Rechnung – der Unterschied ist die Konvexität. */
-const SCHOCKS = [1, 2, -1, -2]
 const schockreihe = SCHOCKS.map((punkte) => ({
   punkte,
   ...zinsschock(BEISPIEL, MARKTZINS, punkte),
@@ -175,6 +175,10 @@ export const schuldverschreibung: LearnTopic = {
           text: 'Die letzte Zeile ist die wichtigste und wird am häufigsten missverstanden. „Vor den Aktionären“ heißt nicht „an erster Stelle“. Vor dir stehen Sicherheiten, Löhne, Steuern und oft besicherte Kredite. Was danach übrig ist, wird unter den einfachen Gläubigern verteilt.',
         },
         {
+          type: 'figure',
+          figure: 'anleihe-rangfolge',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Das entscheidende Risiko',
@@ -250,6 +254,10 @@ export const schuldverschreibung: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Dieselbe Zinsbewegung, viermal derselbe Kupon – und der Kursverlust reicht von wenigen Prozent bis über ein Viertel. Die Restlaufzeit ist der Hebel, nicht die Zinsänderung. Das ist die Erklärung dafür, warum 2022 langlaufende Anleihen zweistellig verloren haben, obwohl an ihrer Bonität nichts auszusetzen war.',
+        },
+        {
+          type: 'figure',
+          figure: 'anleihe-kurs-und-zins',
         },
         {
           type: 'callout',
@@ -497,6 +505,10 @@ export const schuldverschreibung: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Die Rechnung ist eine Näherung – sie unterschlägt Zinseszins, Laufzeitstruktur und die Tatsache, dass Ausfälle gehäuft in Rezessionen auftreten, also gerade dann, wenn auch der Rest des Depots leidet. Als Größenordnung leistet sie trotzdem etwas: Ein Aufschlag von fünf Prozentpunkten ist kein Geschenk, sondern die Aussage des Marktes, dass hier mit erheblichen Ausfällen gerechnet wird.',
+        },
+        {
+          type: 'figure',
+          figure: 'anleihe-konvexitaet',
         },
         {
           type: 'heading',

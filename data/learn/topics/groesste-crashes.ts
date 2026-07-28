@@ -126,6 +126,10 @@ export const groessteCrashes: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'crashes-erholung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Das gemeinsame Muster',
@@ -251,6 +255,10 @@ export const groessteCrashes: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'crashes-spirale',
+        },
+        {
           type: 'callout',
           variant: 'warning',
           title: 'Die unbequeme Folge für die Streuung',
@@ -307,6 +315,10 @@ export const groessteCrashes: LearnTopic = {
             '**Der Vermögenskanal.** Fällt das Vermögen, sinkt der Konsum. Dieser Effekt ist real, aber deutlich schwächer und wirkt langsamer.',
             '**Der Rückkopplungskanal.** Eine schwächere Wirtschaft erzeugt Kreditausfälle, die die Banken erneut treffen. Ist dieser Kreis erst geschlossen, wird aus einem Kurssturz eine Krise – und dann entscheidet nur noch die Reaktion.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'crashes-ansteckung',
         },
         {
           type: 'heading',

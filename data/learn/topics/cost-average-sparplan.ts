@@ -1,5 +1,6 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrency, formatNumber } from '@/lib/format'
+import { sparplanKurse as KURSE, sparplanRate as RATE } from '@/lib/lernszenarien'
 
 /*
   Das Sparplanbeispiel wird gerechnet, nicht getippt.
@@ -9,8 +10,6 @@ import { formatCurrency, formatNumber } from '@/lib/format'
   verwechselt werden können, und genau darin liegt die Aussage. Als Rechnung
   kann die Tabelle ihrer eigenen Schlussfolgerung nicht widersprechen.
 */
-const RATE = 100
-const KURSE = [50, 40, 25, 40, 50, 50]
 
 const kaeufe = KURSE.map((kurs) => ({ kurs, anteile: RATE / kurs }))
 const anteileGesamt = kaeufe.reduce((summe, kauf) => summe + kauf.anteile, 0)
@@ -153,6 +152,10 @@ export const costAverageSparplan: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'sparplan-durchschnittspreis',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -201,6 +204,10 @@ export const costAverageSparplan: LearnTopic = {
             'In etwa einem Drittel der Fälle war das Verteilen besser – nämlich wenn kurz nach dem Start ein Rückgang kam.',
             'Wer die 500.000 Euro aus dem Hausverkauf am Tag vor einem Crash anlegt, hat vom statistischen Durchschnitt nichts.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'sparplan-wartezeit',
         },
         {
           type: 'heading',
@@ -305,6 +312,10 @@ export const costAverageSparplan: LearnTopic = {
             'Viele Broker bieten eine automatische jährliche Dynamisierung um einen festen Prozentsatz – einmal eingerichtet, nie wieder Thema.',
             'Wichtig ist nur, dass die Erhöhung stattfindet. Ob im Januar oder im Juli, spielt keine Rolle.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'sparplan-dynamisierung',
         },
         {
           type: 'heading',

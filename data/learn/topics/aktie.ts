@@ -460,6 +460,10 @@ export const aktie: LearnTopic = {
           text: 'Produktiver als „Was ist die Aktie wert?“ ist die umgekehrte Frage: **Welche Annahmen müssten zutreffen, damit der heutige Kurs gerechtfertigt ist?** Wenn ein Kurs unterstellt, dass ein Unternehmen zwanzig Jahre lang 25 Prozent jährlich wächst, ist die Bewertung damit einschätzbar, ohne dass man selbst prognostizieren muss.',
         },
         {
+          type: 'figure',
+          figure: 'aktie-barwert',
+        },
+        {
           type: 'heading',
           level: 3,
           text: 'Qualitätskennzahlen',

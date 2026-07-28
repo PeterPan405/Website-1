@@ -1,5 +1,9 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrencyRounded } from '@/lib/format'
+import {
+  einlagensicherungErhoeht as ERHOEHT,
+  einlagensicherungGrenze as GRENZE,
+} from '@/lib/lernszenarien'
 
 /*
   Die Grenze steht an einer Stelle.
@@ -10,8 +14,6 @@ import { formatCurrencyRounded } from '@/lib/format'
   getippte Zahl an sieben Stellen wäre sie beim ersten Rechtsänderungsfall
   an sechs Stellen falsch.
 */
-const GRENZE = 100_000
-const ERHOEHT = 500_000
 const ERHOEHT_MONATE = 6
 const FRIST_ARBEITSTAGE = 7
 
@@ -142,6 +144,10 @@ export const einlagensicherung: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'einlagensicherung-grenze',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -205,6 +211,10 @@ export const einlagensicherung: LearnTopic = {
             'Das entwertet die freiwilligen Systeme nicht – sie haben in der Praxis zuverlässig gezahlt. Es heißt nur: Wer sich auf Beträge weit über der gesetzlichen Grenze verlässt, verlässt sich auf eine Zusage anderer Qualität.',
             'Die **Institutssicherung** verfolgt einen anderen Ansatz: Sie lässt das Institut gar nicht erst ausfallen. Für Einleger ist das im Ergebnis oft besser – ein Entschädigungsfall tritt dann nie ein.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'einlagensicherung-anspruch',
         },
         {
           type: 'heading',
@@ -333,6 +343,10 @@ export const einlagensicherung: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Wie das praktisch aussieht, zeigen zwei Fälle. In **Zypern 2013** wurden Einlagen oberhalb der Grenze in erheblichem Umfang herangezogen – der erste große Fall, in dem Einleger tatsächlich verloren. Bei der **Credit Suisse 2023** wurden AT1-Papiere vollständig abgeschrieben, während Aktionäre noch Anteile erhielten; die gewohnte Reihenfolge war damit umgekehrt. Beide Fälle zeigen dieselbe Lehre: Die Kaskade ist Recht, aber ihre Anwendung im Einzelfall folgt der politischen Lage.',
+        },
+        {
+          type: 'figure',
+          figure: 'einlagensicherung-kaskade',
         },
         {
           type: 'heading',

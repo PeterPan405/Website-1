@@ -1,5 +1,11 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+import {
+  waehrungEinsatz as EINSATZ,
+  waehrungKurse as KURSE,
+  waehrungKursgewinn as KURSGEWINN,
+  waehrungKursStart as KURS_START,
+} from '@/lib/lernszenarien'
 
 /*
   Der Währungseffekt wird gerechnet.
@@ -9,10 +15,6 @@ import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
   überrascht regelmäßig, weil sich Kurs- und Währungsentwicklung nicht
   addieren, sondern multiplizieren. Genau daran scheitert die Kopfrechnung.
 */
-const EINSATZ = 10_000
-const KURS_START = 1.1
-const KURSGEWINN = 10
-const KURSE = [1.0, 1.1, 1.2, 1.3]
 
 const waehrungsreihe = KURSE.map((kursEnde) => {
   // In Dollar gerechnet: Einsatz umtauschen, Kursgewinn erzielen, zurücktauschen.
@@ -171,6 +173,10 @@ export const waehrungenWechselkurse: LearnTopic = {
           text: 'Dasselbe gilt in der Gegenrichtung: Ein in Dollar gehandelter ETF auf europäische Aktien trägt kein nennenswertes Dollarrisiko. Entscheidend ist immer, worin die enthaltenen Unternehmen ihr Geld verdienen – nicht, in welcher Währung das Papier notiert.',
         },
         {
+          type: 'figure',
+          figure: 'waehrung-ergebnis',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
@@ -216,6 +222,10 @@ export const waehrungenWechselkurse: LearnTopic = {
             'Ein Zahlenbeispiel: Bei zwei Prozentpunkten Zinsvorsprung des Dollars kostet die Absicherung einer Dollarposition rund zwei Prozent im Jahr. Das ist keine Gebühr, die sich verhandeln ließe, sondern eine Folge der Zinsstruktur.',
             'Kehrt sich die Differenz um, wird die Absicherung zur Einnahme. Beides ist symmetrisch und unabhängig davon, wohin der Wechselkurs tatsächlich läuft.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'waehrung-absicherung',
         },
         {
           type: 'heading',
@@ -322,6 +332,10 @@ export const waehrungenWechselkurse: LearnTopic = {
             'Er funktioniert über Monate und Jahre und bricht dann abrupt zusammen. Das Ertragsprofil ist dasselbe wie beim Verkauf von Volatilität: viele kleine Gewinne, selten ein sehr großer Verlust.',
             'Genau das ist die vermutlich beste Erklärung für das Puzzle – die Zinsdifferenz ist keine Anomalie, sondern die Vergütung für ein Risiko, das sich in ruhigen Phasen nicht zeigt.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'waehrung-paritaeten',
         },
         {
           type: 'heading',
