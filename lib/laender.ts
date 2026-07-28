@@ -13,7 +13,7 @@ import {
   uebernational,
   zuordnungshinweise,
 } from '@/data/laender/markt-zuordnung'
-import { ersatzschluessel, laendernamen } from '@/data/laender/namen'
+import { ersatzschluessel, laendernamen, unbewohnt } from '@/data/laender/namen'
 import { marketDefinitions, marketKindMeta, type MarketKind } from '@/data/markets'
 import { assertLaenderValid } from '@/lib/laender-validate'
 import {
@@ -65,6 +65,15 @@ export interface Land {
 
   /** Bruttoinlandsprodukt in Millionen US-Dollar. */
   bipUsd?: number
+  /** Wahr, wenn `bipUsd` aus Einwohnern und Einkommen gebildet wurde. */
+  bipUsdGeschaetzt?: boolean
+  /**
+   * Gesetzt, wenn das Gebiet keine ständige Bevölkerung hat.
+   *
+   * Dann fehlen die Kennzahlen nicht, es gibt sie nicht – ein Unterschied, den
+   * „keine Angabe hinterlegt“ verwischt.
+   */
+  unbewohnt?: string
   einwohner?: number
   /** Gerechnet, nicht gespeichert – siehe `scripts/laender-abrufen.ts`. */
   bipProKopfUsd?: number
@@ -137,7 +146,7 @@ export const metriken: Metrik[] = [
     id: 'durchschnittsgehalt',
     label: 'Durchschnittsgehalt',
     erklaerung:
-      'Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt. Brutto, vor Steuern und Abgaben.',
+      'Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt. Brutto, vor Steuern und Abgaben. Erhoben wird er nur für die 38 OECD-Mitglieder; bei den übrigen ist er aus der Wirtschaftsleistung je Kopf geschätzt und liegt typischerweise um ein Achtel daneben.',
     einheit: 'US-Dollar im Jahr',
     hoherWertIstGross: true,
   },
@@ -153,7 +162,7 @@ export const metriken: Metrik[] = [
       Vermögen und wundert sich – oder rechnet damit weiter.
     */
     erklaerung:
-      'Das Vermögen des Haushalts genau in der Mitte – Besitz abzüglich Schulden. Aussagekräftiger als der Durchschnitt, den wenige sehr Vermögende nach oben ziehen. Ein Haushalt umfasst je nach Land ein bis drei Personen; der Wert ist deshalb nicht mit einem Pro-Kopf-Vermögen zu verwechseln.',
+      'Das Vermögen des Haushalts genau in der Mitte – Besitz abzüglich Schulden. Aussagekräftiger als der Durchschnitt, den wenige sehr Vermögende nach oben ziehen. Ein Haushalt umfasst je nach Land ein bis drei Personen; der Wert ist deshalb nicht mit einem Pro-Kopf-Vermögen zu verwechseln. Erhoben wird er nur für 30 wohlhabende Länder – bei allen übrigen ist er geschätzt und liegt typischerweise um ein gutes Drittel daneben. Die Karte zeigt hier also überwiegend eine Größenordnung, keine Messung.',
     einheit: 'US-Dollar je Haushalt',
     hoherWertIstGross: true,
   },
@@ -255,25 +264,26 @@ export const WELTBANK_QUELLE = daten.quelle
   liest – die Anzeige gehört `data/laender/kennzahlen.ts`.
 */
 
+/** Die Felder der Momentaufnahme, die als Kennwert mit Jahr vorliegen. */
+type Reihenfeld =
+  'durchschnittsgehalt' | 'medianvermoegen' | 'bneProKopf' | 'bipProKopfKKP'
+
 /**
- * Das Lohnmodell, angepasst an die Länder mit gemessenem Lohn.
+ * Baut ein Schätzmodell aus zwei Reihen der Momentaufnahme.
  *
  * Einmal beim Laden des Moduls, nicht je Land: Die Anpassung ist für alle
- * dieselbe, und die Fehlermessung durch Weglassen kostet knapp vierzig
- * Regressionen. Beides je Aufruf zu wiederholen wäre Verschwendung – und
- * schlimmer, es könnte je nach Aufrufreihenfolge verschiedene Ergebnisse
- * liefern.
+ * dieselbe, und die Fehlermessung durch Weglassen kostet je Modell so viele
+ * Regressionen, wie es Beobachtungen gibt. Beides je Aufruf zu wiederholen wäre
+ * Verschwendung – und schlimmer, es könnte je nach Aufrufreihenfolge
+ * verschiedene Ergebnisse liefern.
  *
  * Die Güte wird mitgeführt, weil sie auf die Seite gehört. Eine Schätzung ohne
  * Angabe, wie weit sie danebenliegt, ist eine Behauptung.
  */
-export const lohnSchaetzung = (() => {
+function modellFuer(ziel: Reihenfeld, basis: Reihenfeld) {
   const beobachtungen: Beobachtung[] = Object.values(daten.laender)
-    .filter((land) => land.durchschnittsgehalt && land.bipProKopfKKP)
-    .map((land) => ({
-      x: land.bipProKopfKKP!.wert,
-      y: land.durchschnittsgehalt!.wert,
-    }))
+    .filter((land) => land[ziel] && land[basis])
+    .map((land) => ({ x: land[basis]!.wert, y: land[ziel]!.wert }))
 
   const modell = passeAn(beobachtungen)
   const fehlerProzent = typischerFehlerProzent(beobachtungen)
@@ -281,14 +291,47 @@ export const lohnSchaetzung = (() => {
   return {
     modell,
     fehlerProzent,
-    /** Der geschätzte Lohn zu einem Einkommen, auf volle Dollar gerundet. */
-    fuer(einkommenJeKopf: number | undefined): number | null {
-      if (!modell || einkommenJeKopf === undefined) return null
-      const wert = schaetze(modell, einkommenJeKopf)
+    /** Der geschätzte Zielwert, auf volle Einheiten gerundet. */
+    fuer(eingang: number | undefined | null): number | null {
+      if (!modell || eingang === undefined || eingang === null) return null
+      const wert = schaetze(modell, eingang)
       return wert === null ? null : Math.round(wert)
     },
   }
-})()
+}
+
+/**
+ * Die vier Schätzungen, die aus den vorhandenen Reihen ableitbar sind.
+ *
+ * ## Warum diese vier und keine fünfte
+ *
+ * Weil es bei den übrigen keinen Zusammenhang gibt, aus dem sich etwas
+ * ableiten ließe. Für die **Schuldenquote** ist das gemessen: Gegen die
+ * Kaufkraft je Kopf ergibt sie ein Bestimmtheitsmaß von 0,010 – praktisch null.
+ * Japan ist reich und hoch verschuldet, Norwegen reich und kaum; Ruanda ist arm
+ * und mäßig verschuldet, der Sudan arm und überschuldet. Eine Regression würde
+ * dort im schlimmsten Fall um das Siebenunddreißigfache danebenliegen. Das wäre
+ * keine Schätzung mehr, sondern eine Erfindung mit Nachkommastelle.
+ *
+ * **Einwohnerzahlen** stehen aus demselben Grund nicht hier: Sie lassen sich
+ * aus Wirtschaftsdaten grundsätzlich nicht herleiten.
+ *
+ * ## Zur Reihenfolge
+ *
+ * `kaufkraft` wird zuerst gebraucht, weil Lohn und Vermögen darauf aufsetzen.
+ * Wo sie selbst geschätzt ist, beruht die zweite Schätzung auf einer ersten –
+ * das betrifft sechs Länder und ist an der Quellenangabe erkennbar.
+ */
+const schaetzungen = {
+  lohn: modellFuer('durchschnittsgehalt', 'bipProKopfKKP'),
+  vermoegen: modellFuer('medianvermoegen', 'bipProKopfKKP'),
+  kaufkraft: modellFuer('bipProKopfKKP', 'bneProKopf'),
+  einkommen: modellFuer('bneProKopf', 'bipProKopfKKP'),
+}
+
+/** Für die Anzeige der Güte auf der Globusseite. */
+export const lohnSchaetzung = schaetzungen.lohn
+export const vermoegenSchaetzung = schaetzungen.vermoegen
 
 function kursZu(symbol: string): Landeskurs | null {
   const definition = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)
@@ -337,8 +380,37 @@ function baueLaender(): Land[] {
       // die Einzelwerte sind Beispiele daraus.
       .sort((a, b) => (a.kind === b.kind ? 0 : a.kind === 'index' ? -1 : 1))
 
-    const bipUsd = basis?.bipUsd
     const einwohner = basis?.einwohner
+
+    /*
+      Die Kaufkraft je Kopf, notfalls geschätzt.
+
+      Sie steht vor allem anderen, weil Lohn und Vermögen darauf aufsetzen.
+      Gemessen liegt sie für 197 Länder vor; für sechs weitere lässt sie sich
+      aus dem Bruttonationaleinkommen ableiten, das dort vorhanden ist.
+    */
+    const kaufkraftGemessen = basis?.bipProKopfKKP
+    const kaufkraftGeschaetzt =
+      kaufkraftGemessen === undefined
+        ? schaetzungen.kaufkraft.fuer(basis?.bneProKopf?.wert)
+        : null
+    const kaufkraft = kaufkraftGemessen?.wert ?? kaufkraftGeschaetzt ?? undefined
+
+    /*
+      Das Bruttoinlandsprodukt, notfalls aus Einwohnern und Einkommen gebildet.
+
+      Das ist keine Regression, sondern fast eine Identität: Das
+      Bruttonationaleinkommen je Kopf mal der Einwohnerzahl ergibt das
+      Nationaleinkommen, und das weicht vom Inlandsprodukt nur um die
+      Grenzüberschreitungen ab. An den 184 Ländern, wo alle drei Größen
+      vorliegen, liegt die Rechnung im Mittel 10,6 Prozent daneben.
+    */
+    const bipGemessen = basis?.bipUsd
+    const bipAbgeleitet =
+      bipGemessen === undefined && einwohner && basis?.bneProKopf
+        ? Math.round((einwohner * basis.bneProKopf.wert) / 1_000_000)
+        : null
+    const bipUsd = bipGemessen ?? bipAbgeleitet ?? undefined
 
     return {
       id,
@@ -346,7 +418,9 @@ function baueLaender(): Land[] {
       ...(basis?.alpha2 ? { alpha2: basis.alpha2 } : {}),
       ...(basis?.region ? { region: regionsnamen[basis.region] ?? basis.region } : {}),
       ...(basis?.waehrung ? { waehrung: basis.waehrung } : {}),
+      ...(unbewohnt[id] ? { unbewohnt: unbewohnt[id] } : {}),
       ...(bipUsd ? { bipUsd } : {}),
+      ...(bipAbgeleitet !== null ? { bipUsdGeschaetzt: true } : {}),
       ...(einwohner ? { einwohner } : {}),
       /*
         Pro Kopf wird gerechnet, nicht gespeichert.
@@ -406,7 +480,7 @@ function baueLaender(): Land[] {
           Quellenangabe, damit auf der Tafel zu sehen ist, dass hier gerechnet
           und nicht gemessen wurde.
         */
-        const geschaetzt = lohnSchaetzung.fuer(basis?.bipProKopfKKP?.wert)
+        const geschaetzt = schaetzungen.lohn.fuer(kaufkraft)
         return geschaetzt !== null
           ? {
               durchschnittsgehalt: {
@@ -442,7 +516,26 @@ function baueLaender(): Land[] {
             },
           }
         }
-        return medianvermoegen[id] ? { medianvermoegen: medianvermoegen[id] } : {}
+        if (medianvermoegen[id]) return { medianvermoegen: medianvermoegen[id] }
+        /*
+          Zuletzt die Schätzung – mit deutlich mehr Unsicherheit als beim Lohn.
+
+          Sie steht hier, weil eine Lücke auf 210 von 240 Tafeln die Kennzahl
+          unbrauchbar machte. Wie weit sie danebenliegt, steht an der
+          Quellenangabe und auf der Globusseite: rund 38 Prozent im Mittel
+          gegenüber 12 beim Lohn. Der Grund ist inhaltlich – Vermögen hängt an
+          Wohneigentum, Rentensystem und Verschuldung, nicht am Einkommen.
+        */
+        const geschaetzt = schaetzungen.vermoegen.fuer(kaufkraft)
+        return geschaetzt !== null
+          ? {
+              medianvermoegen: {
+                wert: geschaetzt,
+                zeitraum: String(basis?.bipProKopfKKP?.jahr ?? WELTBANK_JAHR),
+                quelle: 'geschaetzt-vermoegen',
+              },
+            }
+          : {}
       })(),
       /*
         Die beiden Einkommensreihen gibt es nur aus dem Abruf.
@@ -458,7 +551,19 @@ function baueLaender(): Land[] {
               quelle: 'weltbank-einkommen',
             },
           }
-        : {}),
+        : (() => {
+            // Fehlt nur diese Reihe, lässt sie sich aus der Kaufkraft ableiten.
+            const geschaetzt = schaetzungen.einkommen.fuer(basis?.bipProKopfKKP?.wert)
+            return geschaetzt !== null
+              ? {
+                  bneProKopf: {
+                    wert: geschaetzt,
+                    zeitraum: String(basis?.bipProKopfKKP?.jahr ?? WELTBANK_JAHR),
+                    quelle: 'geschaetzt-reihe',
+                  },
+                }
+              : {}
+          })()),
       ...(basis?.bipProKopfKKP
         ? {
             bipProKopfKKP: {
@@ -467,7 +572,15 @@ function baueLaender(): Land[] {
               quelle: 'weltbank-einkommen',
             },
           }
-        : {}),
+        : kaufkraftGeschaetzt !== null
+          ? {
+              bipProKopfKKP: {
+                wert: kaufkraftGeschaetzt,
+                zeitraum: String(basis?.bneProKopf?.jahr ?? WELTBANK_JAHR),
+                quelle: 'geschaetzt-reihe',
+              },
+            }
+          : {}),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
     }
@@ -504,6 +617,8 @@ assertLaenderValid({
     'oecd-vermoegen',
     'weltbank-einkommen',
     'geschaetzt-kaufkraft',
+    'geschaetzt-vermoegen',
+    'geschaetzt-reihe',
   ],
 })
 

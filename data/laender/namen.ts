@@ -293,3 +293,40 @@ export const ersatzschluessel: Record<string, string> = {
   'Siachen Glacier': 'x-siachen',
   'Indian Ocean Ter.': 'x-indischer-ozean',
 }
+
+/**
+ * Gebiete ohne ständige Bevölkerung.
+ *
+ * ## Warum das keine Datenlücke ist
+ *
+ * Auf der Ländertafel stand für die Antarktis „keine Angabe hinterlegt“ –
+ * derselbe Satz wie bei einem Land, dessen Zahlen nur niemand eingetragen hat.
+ * Das ist irreführend: Für den Siachen-Gletscher und die Heard-Insel gibt es
+ * keine Wirtschaftsleistung, die jemand versäumt hätte zu erheben. Es gibt dort
+ * niemanden.
+ *
+ * Ein Wert lässt sich hier auch nicht schätzen. Eine Schätzung leitet aus
+ * Bekanntem ab; hier ist nichts abzuleiten, weil die Größe selbst keinen
+ * Gegenstand hat.
+ *
+ * ## Was in der Liste steht
+ *
+ * Nur Gebiete ohne dauerhafte Zivilbevölkerung. Forschungsstationen und
+ * Militärposten mit wechselnder Besatzung zählen nicht als Bevölkerung – die
+ * Weltbank führt diese Gebiete aus demselben Grund nicht.
+ *
+ * Nicht enthalten sind bewohnte Gebiete ohne Weltbank-Reihe, etwa Jersey,
+ * die Cookinseln oder der Vatikan. Dort fehlen die Zahlen tatsächlich, und
+ * genau das soll die Tafel dann auch sagen.
+ *
+ * Schlüssel ist die ISO-3166-1-numerische Kennung wie in der Kartengeometrie.
+ */
+export const unbewohnt: Record<string, string> = {
+  '010': 'Antarktis – nur Forschungsstationen mit wechselnder Besatzung',
+  '074': 'Bouvetinsel – unbewohnte Vulkaninsel im Südatlantik',
+  '086': 'Britisches Territorium im Indischen Ozean – nur ein Militärstützpunkt',
+  '239': 'Südgeorgien und die Südlichen Sandwichinseln – nur eine Forschungsstation',
+  '260': 'Französische Süd- und Antarktisgebiete – nur Forschungsstationen',
+  '334': 'Heard und McDonaldinseln – unbewohnte subantarktische Inseln',
+  '581': 'Kleinere Amerikanische Überseeinseln – unbewohnt bis auf ein Atoll',
+}

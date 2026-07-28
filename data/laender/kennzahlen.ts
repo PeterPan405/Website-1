@@ -112,6 +112,45 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
   },
 
   /**
+   * Dieselbe Rechnung, aber auf schwächerem Grund – und das gehört gesagt.
+   *
+   * Beim Lohn liegt die Schätzung typischerweise zwölf Prozent daneben, beim
+   * Vermögen achtunddreißig. Der Unterschied ist nicht handwerklich, sondern
+   * inhaltlich: Was ein Haushalt besitzt, hängt an Wohneigentumsquote,
+   * Rentensystem und Verschuldung – Größen, die mit dem Einkommen wenig zu tun
+   * haben. Dänemark hat hohe Einkommen und ein niedriges Medianvermögen, weil
+   * dort viel über Hypotheken und Rentenfonds läuft; Luxemburg kippt in die
+   * Gegenrichtung.
+   *
+   * Hinzu kommt, dass alle 30 Länder mit gemessenem Wert reich sind. Für ein
+   * Land mit einem Zehntel ihrer Kaufkraft rechnet das Modell weit außerhalb
+   * dessen, was es gesehen hat.
+   *
+   * Die Zahl steht trotzdem da, weil eine Lücke auf 210 von 240 Tafeln die
+   * Kennzahl unbrauchbar machte. Sie ist eine Größenordnung und nichts weiter.
+   */
+  'geschaetzt-vermoegen': {
+    label: 'geschätzt, größere Unsicherheit',
+    url: 'https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD',
+    abgrenzung:
+      'Kein erhobener Wert. Aus dem Verhältnis von Medianvermögen zu Wirtschaftsleistung je Kopf in den 30 Ländern mit gemessenem Vermögen hochgerechnet. Diese 30 sind durchweg wohlhabend, und Vermögen hängt stärker an Wohneigentum und Rentensystem als am Einkommen: Die Schätzung liegt typischerweise um achtunddreißig Prozent daneben, gegenüber zwölf beim Lohn. Als Größenordnung brauchbar, als Zahl nicht.',
+  },
+
+  /**
+   * Die beiden Weltbank-Reihen füreinander.
+   *
+   * Bruttonationaleinkommen und kaufkraftbereinigte Wirtschaftsleistung messen
+   * dasselbe aus zwei Blickwinkeln; wo nur eine vorliegt, lässt sich die andere
+   * gut daraus ableiten. Es betrifft acht Länder.
+   */
+  'geschaetzt-reihe': {
+    label: 'geschätzt aus der jeweils anderen Einkommensreihe',
+    url: 'https://data.worldbank.org/indicator/NY.GNP.PCAP.CD',
+    abgrenzung:
+      'Kein erhobener Wert. Aus der jeweils anderen Weltbank-Reihe hochgerechnet – Bruttonationaleinkommen je Kopf und kaufkraftbereinigte Wirtschaftsleistung je Kopf hängen eng zusammen. Die Abweichung liegt typischerweise zwischen achtzehn und sechsundzwanzig Prozent.',
+  },
+
+  /**
    * Die Vermögensverteilungsdatenbank derselben Organisation.
    *
    * Eigener Schlüssel, obwohl derselbe Herausgeber: Es ist eine andere

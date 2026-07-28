@@ -18,6 +18,7 @@ import {
   getUebernationaleKurse,
   lohnSchaetzung,
   metriken,
+  vermoegenSchaetzung,
 } from '@/lib/laender'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -117,6 +118,94 @@ export default async function GlobusPage() {
                 </span>
               ))}
               . Sie stehen deshalb nicht auf der Kugel.
+            </p>
+          )}
+        </section>
+
+        {/* --------------------------------------------------------- Tabelle */}
+        <section aria-labelledby="tabelle" className="mt-16">
+          <h2 id="tabelle" className="text-fg text-2xl font-bold">
+            Alle Länder als Tabelle
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-3xl leading-relaxed">
+            Dieselben Zahlen zum Nachlesen, sortiert nach Wirtschaftsleistung. Der Globus
+            ist eine Zeichenfläche und für Screenreader nicht lesbar – diese Tabelle ist
+            deshalb nicht die Beigabe, sondern die vollständige Fassung.
+          </p>
+          <Laendertabelle laender={laender} />
+        </section>
+
+        {/* --------------------------------------------------------- Quellen */}
+        {/*
+          Kurz, aber nicht weg.
+
+          Die TopoJSON-Umsetzung der Kartengeometrie steht unter der
+          ISC-Lizenz, und die verlangt ausdrücklich, dass der Urhebervermerk
+          erhalten bleibt. Die Weltbank stellt ihre Reihen unter CC BY 4.0 –
+          auch dort ist die Namensnennung Bedingung der Nutzung, nicht
+          Höflichkeit. Aus einem eigenen Abschnitt sind deshalb drei Zeilen
+          geworden; ganz streichen ließe sich das nicht.
+        */}
+        <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
+          <h2
+            id="quellen"
+            className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+          >
+            Daten und Karte
+          </h2>
+          <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">
+            Wirtschaftsleistung und Einwohner: {WELTBANK_QUELLE.label}, Bezugsjahr{' '}
+            {WELTBANK_JAHR}.{' '}
+            {quellen.map((quelle, index) => (
+              <span key={quelle.url}>
+                {index > 0 && ' · '}
+                <a
+                  href={quelle.url}
+                  rel="noopener noreferrer nofollow"
+                  target="_blank"
+                  className="underline underline-offset-2"
+                >
+                  {quelle.label}
+                </a>
+              </span>
+            ))}
+            . Karte: Natural Earth (gemeinfrei), TopoJSON-Umsetzung{' '}
+            <code className="text-xs">world-atlas</code> unter ISC-Lizenz. Jeder Wert
+            trägt in der Detailtafel seinen eigenen Zeitraum und seine eigene Quelle.
+          </p>
+
+          {/*
+            Die Güte der Schätzung gehört auf die Seite, nicht nur in den Code.
+
+            Ein geschätzter Wert ohne Angabe, wie weit er danebenliegt, ist eine
+            Behauptung. Die Zahlen kommen aus derselben Rechnung, die die
+            Schätzung erzeugt – getippt wäre der Fehler beim nächsten Datenstand
+            falsch, und zwar unbemerkt.
+          */}
+          {lohnSchaetzung.modell && lohnSchaetzung.fehlerProzent !== null && (
+            <p className="text-fg-subtle mt-3 max-w-3xl text-sm leading-relaxed">
+              <strong className="text-fg-muted font-semibold">
+                Zu Gehalt und Vermögen:
+              </strong>{' '}
+              Die OECD erhebt beide nur bei ihren Mitgliedern – den Lohn für{' '}
+              {lohnSchaetzung.modell?.beobachtungen ?? 0} Länder, das Vermögen für{' '}
+              {`${vermoegenSchaetzung.modell?.beobachtungen ?? 0}. `}
+              Bei allen übrigen steht dort eine{' '}
+              <strong className="text-fg-muted font-semibold">Schätzung</strong> aus der
+              Wirtschaftsleistung je Kopf. Lässt man ein Land mit gemessenem Wert aus der
+              Rechnung und schätzt es aus den übrigen, liegt das Ergebnis beim Lohn
+              typischerweise {formatNumber(lohnSchaetzung.fehlerProzent ?? 0, 1)} Prozent
+              daneben, beim Vermögen{' '}
+              {formatNumber(vermoegenSchaetzung.fehlerProzent ?? 0, 1)} – dort hängt der
+              Wert stärker an Wohneigentum und Rentensystem als am Einkommen, und die
+              gemessenen Länder sind durchweg wohlhabend. In der Detailtafel ist jeder
+              geschätzte Wert als solcher ausgewiesen; wo ein gemessener vorliegt, gilt
+              immer er. Für die{' '}
+              <strong className="text-fg-muted font-semibold">Staatsverschuldung</strong>{' '}
+              wird ausdrücklich nicht geschätzt: Sie hängt nicht am Wohlstand – Japan ist
+              reich und hoch verschuldet, Norwegen reich und kaum. Das Bestimmtheitsmaß
+              liegt bei 0,01, und eine Zahl daraus wäre keine Ableitung, sondern eine
+              Erfindung.
             </p>
           )}
         </section>
