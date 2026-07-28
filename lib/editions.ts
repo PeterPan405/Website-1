@@ -1,5 +1,7 @@
 import { editions } from '@/data/editions'
 import type { DailyEdition, EditionItem } from '@/data/editions'
+import { learnTopics } from '@/data/learn'
+import { marketDefinitions } from '@/data/markets'
 
 import { formatMonthKey } from '@/lib/edition-date'
 import { assertEditionsValid } from '@/lib/editions-validate'
@@ -21,16 +23,47 @@ export type { DailyEdition, EditionItem }
   Ein Fehler darin soll den Build abbrechen, statt still auf die Website zu
   gelangen – eine fehlende Ausgabe fällt auf, eine kaputte nicht.
 */
-assertEditionsValid(editions)
+assertEditionsValid(editions, {
+  topicSlugs: new Set(learnTopics.map((topic) => topic.slug)),
+  symbols: new Set(marketDefinitions.map((definition) => definition.symbol)),
+})
 
 /** Neueste Ausgabe zuerst. */
 function sortedEditions(): DailyEdition[] {
   return [...editions].sort((a, b) => b.date.localeCompare(a.date))
 }
 
-/** Alle fünf Meldungen einer Ausgabe in Anzeigereihenfolge. */
+/** Alle Meldungen einer Ausgabe in Anzeigereihenfolge. */
 export function allItems(edition: DailyEdition): EditionItem[] {
   return [...edition.top, ...edition.further]
+}
+
+/** Kennzahlen des Archivs – für die Zeile unter der Überschrift. */
+export interface EditionStats {
+  ausgaben: number
+  meldungen: number
+  /** Wenigste und meiste Meldungen einer einzelnen Ausgabe. */
+  jeAusgabe: { min: number; max: number } | null
+}
+
+/**
+ * Zählt das Archiv aus.
+ *
+ * Steht hier und nicht in der Seite, weil auf der Seite sonst wieder eine Zahl
+ * im Text stünde. Genau das war der Fehler: „fünf Meldungen“ war einmal richtig
+ * und blieb stehen, als es nicht mehr stimmte. Gezählte Zahlen veralten nicht.
+ */
+export async function getEditionStats(): Promise<EditionStats> {
+  const alle = sortedEditions()
+  const zahlen = alle.map((edition) => allItems(edition).length)
+
+  return {
+    ausgaben: alle.length,
+    meldungen: zahlen.reduce((summe, wert) => summe + wert, 0),
+    jeAusgabe: zahlen.length
+      ? { min: Math.min(...zahlen), max: Math.max(...zahlen) }
+      : null,
+  }
 }
 
 export async function getEditions(limit?: number): Promise<DailyEdition[]> {

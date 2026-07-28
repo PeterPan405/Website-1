@@ -9,6 +9,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import {
+  allItems,
   formatEditionDate,
   getEdition,
   getEditionDates,
@@ -125,6 +126,7 @@ export default async function EditionPage(props: PageProps) {
 
   const { previous, next } = await getEditionNeighbours(edition.date)
   const short = formatEditionDate(edition.date, false)
+  const alle = allItems(edition)
 
   return (
     <>
@@ -145,9 +147,11 @@ export default async function EditionPage(props: PageProps) {
         }
         meta={
           <>
-            <span>3 Top-Themen</span>
+            <span>
+              {edition.top.length} {edition.top.length === 1 ? 'Top-Thema' : 'Top-Themen'}
+            </span>
             <span aria-hidden="true">·</span>
-            <span>5 Meldungen</span>
+            <span>{alle.length} Meldungen</span>
             <span aria-hidden="true">·</span>
             <Link href="/news/tag" className="hover:text-fg underline">
               Alle Ausgaben
@@ -159,7 +163,9 @@ export default async function EditionPage(props: PageProps) {
       <div className="fk-container py-12 sm:py-16">
         <section aria-labelledby="top-themen">
           <h2 id="top-themen" className="text-xl font-semibold sm:text-2xl">
-            Die drei wichtigsten Meldungen
+            {edition.top.length === 1
+              ? 'Die wichtigste Meldung'
+              : 'Die wichtigsten Meldungen'}
           </h2>
           <ul className="mt-5 space-y-5">
             {edition.top.map((item, index) => (
@@ -172,20 +178,23 @@ export default async function EditionPage(props: PageProps) {
           </ul>
         </section>
 
-        <section aria-labelledby="weitere-meldungen" className="mt-14">
-          <h2 id="weitere-meldungen" className="text-xl font-semibold sm:text-2xl">
-            Außerdem wichtig
-          </h2>
-          <ul className="mt-5 space-y-5">
-            {edition.further.map((item, index) => (
-              <li key={item.headline}>
-                <Reveal delay={index * 0.05}>
-                  <Item item={item} />
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {/* An ruhigen Tagen bleibt es bei den Top-Meldungen – dann keine leere Rubrik. */}
+        {edition.further.length > 0 && (
+          <section aria-labelledby="weitere-meldungen" className="mt-14">
+            <h2 id="weitere-meldungen" className="text-xl font-semibold sm:text-2xl">
+              Außerdem wichtig
+            </h2>
+            <ul className="mt-5 space-y-5">
+              {edition.further.map((item, index) => (
+                <li key={item.headline}>
+                  <Reveal delay={index * 0.05}>
+                    <Item item={item} />
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* Blättern durch das Archiv – nur anzeigen, was es tatsächlich gibt. */}
         <nav aria-label="Weitere Ausgaben" className="border-border mt-14 border-t pt-6">
