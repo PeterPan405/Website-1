@@ -327,6 +327,10 @@ export const budgetUndSparquote: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'budget-sparquote-jahre',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

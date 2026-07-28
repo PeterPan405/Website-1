@@ -22,6 +22,11 @@ import {
   WaehrungErgebnis,
 } from '@/components/content/figures/geldanlage'
 import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
+import {
+  BudgetSparquoteJahre,
+  OptionVolatilitaet,
+  RisikoKorrelation,
+} from '@/components/content/figures/fortgeschritten'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import {
   KreditAnfangstilgung,
@@ -136,4 +141,7 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'rohstoffe-gold-steuer': RohstoffeGoldSteuer,
   'rente-rentenbeginn': RenteRentenbeginn,
   'timing-trefferquote': TimingTrefferquote,
+  'budget-sparquote-jahre': BudgetSparquoteJahre,
+  'risiko-korrelation': RisikoKorrelation,
+  'option-volatilitaet': OptionVolatilitaet,
 }

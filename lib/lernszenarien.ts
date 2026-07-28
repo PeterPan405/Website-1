@@ -222,6 +222,36 @@ export const kostenstufen = [0.2, 0.5, 1, 1.5, 2] as const
  */
 export const verhaltensluecke = 1
 
+// ------------------------------------------------ Sparquote und Zeitraum
+
+/**
+ * Sparquoten, an denen gezeigt wird, wie lange es bis zur Unabhängigkeit dauert.
+ *
+ * Bemerkenswert an dieser Rechnung ist, was in ihr **nicht** vorkommt: das
+ * Einkommen. Es kürzt sich heraus, weil sowohl das Ziel als auch die Sparrate
+ * daran hängen. Wer die Hälfte seines Einkommens spart, braucht dieselbe Zahl
+ * Jahre – ob mit zweitausend oder mit zwanzigtausend im Monat.
+ */
+export const sparquoten = [10, 20, 30, 40, 50, 60, 70] as const
+
+/**
+ * Angenommene Rendite nach Kosten und Inflation, in Prozent.
+ *
+ * Real gerechnet, nicht nominal: Das Ziel ist ein Lebensstandard, kein
+ * Betrag. Fünf Prozent real ist für ein breit gestreutes Aktiendepot eine
+ * gängige Größenordnung und im Text als Annahme bezeichnet.
+ */
+export const sparquoteRendite = 5
+
+/**
+ * Das Vielfache der Jahresausgaben, das als Ziel gilt.
+ *
+ * Fünfundzwanzig entspricht der verbreiteten Vier-Prozent-Regel. Wie
+ * belastbar die ist, zeigt die Grafik zur Entnahme im Thema Portfolio – sie
+ * ist eine Größenordnung und keine Zusage.
+ */
+export const sparquoteZielvielfaches = 25
+
 // ---------------------------------------------------- Sparen gegen Rendite
 
 /** Der Ausgangssparplan für die Frage, welcher Hebel mehr bringt. */

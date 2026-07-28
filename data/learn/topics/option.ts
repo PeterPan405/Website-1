@@ -389,6 +389,10 @@ export const option: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'option-volatilitaet',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

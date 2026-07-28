@@ -141,6 +141,12 @@ export type FigureId =
   | 'rente-rentenbeginn'
   /** Wie oft eine Timing-Strategie richtig liegen müsste. */
   | 'timing-trefferquote'
+  /** Jahre bis zur Unabhängigkeit, allein nach der Sparquote. */
+  | 'budget-sparquote-jahre'
+  /** Schwankung einer Mischung über der Korrelation. */
+  | 'risiko-korrelation'
+  /** Dieselbe Option bei vier erwarteten Schwankungen. */
+  | 'option-volatilitaet'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -457,5 +463,20 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Wie oft es sitzen müsste',
     caption:
       'Ohne Kosten genügt die Hälfte, also der Münzwurf. Jeder Prozentpunkt an Kosten hebt die Schwelle darüber – und das ist erst die Frage nach dem Aufwand, nicht die nach der Prognosefähigkeit.',
+  },
+  'budget-sparquote-jahre': {
+    title: 'Sparquote und die Zahl der Jahre',
+    caption:
+      'Das Einkommen kommt in dieser Rechnung nicht vor – es kürzt sich heraus. Entscheidend ist der Abstand zwischen Einnehmen und Ausgeben, nicht die Höhe.',
+  },
+  'risiko-korrelation': {
+    title: 'Korrelation und die Schwankung der Mischung',
+    caption:
+      'Die erwartete Rendite bleibt der Durchschnitt, gleich wie die beiden zusammenhängen – die Schwankung nicht. Das ist der Hebel, für den niemand bezahlt.',
+  },
+  'option-volatilitaet': {
+    title: 'Dieselbe Option, vier Erwartungen',
+    caption:
+      'Am Kurs hat sich nichts geändert. Die erwartete Schwankung ist der einzige Preisbestandteil, den man nicht ablesen kann – und deshalb der, über den man eine Meinung hat.',
   },
 }

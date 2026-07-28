@@ -297,6 +297,10 @@ export const risikoUndRendite: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'risiko-korrelation',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
