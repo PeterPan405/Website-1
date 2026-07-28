@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    192 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    204 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -2544,6 +2544,172 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 0,
       explanation:
         'Dasselbe Muster wie bei der Aktienquote: Die durchhaltbare Größe schlägt die maximale. Eine Quote, die jede Reise und jeden Restaurantbesuch ausschließt, hält selten zwei Jahre – und mit ihr endet meist auch der Sparplan, um den es eigentlich ging.',
+    },
+  ],
+
+  // -------------------------------------------------------- Schuldverschreibung
+  'schuldverschreibung:beginner': [
+    {
+      question:
+        'Du kaufst eine Anleihe mit 1.000 € Nennwert und 3 % Kupon für 900 €. Wie hoch ist die jährliche Zinszahlung?',
+      options: [
+        '27 € – der Kupon bezieht sich auf den Kaufpreis',
+        '30 € – der Kupon bezieht sich immer auf den Nennwert',
+        '33 € – der Kupon wird auf den Rückzahlungsbetrag hochgerechnet',
+        'Das hängt vom jeweiligen Marktzins des Jahres ab',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kupon ist auf den Nennwert festgeschrieben: 3 % von 1.000 € sind 30 € im Jahr, unabhängig davon, was du bezahlt hast. Deine tatsächliche Verzinsung ist dadurch höher als der Kupon – 30 € auf 900 € Einsatz –, und dazu kommt der Gewinn, wenn am Ende 1.000 € zurückfließen.',
+    },
+    {
+      question:
+        'Welche Stellung hat ein Anleihegläubiger in der Insolvenz des Emittenten?',
+      options: [
+        'An erster Stelle – Anleihen werden immer vorrangig bedient',
+        'Gleichrangig mit den Aktionären, aufgeteilt nach Kapitalanteil',
+        'Vor den Aktionären, aber hinter besicherten Gläubigern',
+        'Nachrangig gegenüber allen anderen Beteiligten',
+      ],
+      correctIndex: 2,
+      explanation:
+        '„Vor den Aktionären“ ist nicht dasselbe wie „an erster Stelle“. Vor einem gewöhnlichen Anleihegläubiger stehen Sicherheiten, Löhne, Verfahrenskosten und besicherte Kredite. Verteilt wird erst, was danach übrig bleibt – und das ist häufig nur ein Teil des Nennwerts.',
+    },
+    {
+      question:
+        'Ein Zertifikat auf einen Aktienindex verliert seinen Wert, obwohl der Index unverändert steht. Was ist die wahrscheinlichste Ursache?',
+      options: [
+        'Der Index wurde neu zusammengesetzt',
+        'Die ausgebende Bank ist zahlungsunfähig geworden – ein Zertifikat ist ihre Schuldverschreibung',
+        'Die Ausschüttungen des Index wurden gestrichen',
+        'Das Zertifikat wurde vorzeitig fällig gestellt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Zertifikat bildet einen Index nur ab; rechtlich ist es ein Zahlungsversprechen der Bank. Fällt die Bank aus, ist es wertlos, egal wie der Index steht. 2008 traf das in Deutschland viele Käufer von Lehman-Zertifikaten. Ein Fonds ist dagegen Sondervermögen und gehört nicht der Bank.',
+    },
+    {
+      question:
+        'Was bedeutet es, wenn eine Anleihe deutlich mehr Kupon bietet als vergleichbare?',
+      options: [
+        'Dass der Emittent besonders anlegerfreundlich kalkuliert',
+        'Dass die Laufzeit besonders kurz ist',
+        'Dass der Kupon steuerlich anders behandelt wird',
+        'Dass der Markt ein höheres Ausfallrisiko sieht – der Aufschlag ist dessen Preis',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Kein Schuldner zahlt freiwillig mehr als nötig. Wer acht Prozent bieten muss, während andere drei zahlen, bekommt zu drei Prozent kein Geld. Der Aufschlag ist die Einschätzung des Marktes zum Ausfallrisiko – er kann sich als übertrieben herausstellen, aber er ist nie ein Geschenk.',
+    },
+  ],
+
+  'schuldverschreibung:fortgeschritten': [
+    {
+      question:
+        'Warum fällt der Kurs einer bestehenden Anleihe, wenn das Zinsniveau steigt?',
+      options: [
+        'Weil der Emittent den Kupon bei steigenden Zinsen kürzen darf',
+        'Weil der Kupon fest ist und sich deshalb nur der Kurs an das neue Zinsniveau anpassen kann',
+        'Weil Anleihen bei hohen Zinsen seltener gehandelt werden',
+        'Weil die Restlaufzeit sich rechnerisch verkürzt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kupon steht für die gesamte Laufzeit fest. Zahlen neue Papiere vier Prozent, will niemand ein Papier mit zwei Prozent zum selben Preis. Es wird gekauft, sobald es so günstig ist, dass die Gesamtrendite wieder passt. Rechnerisch ist der Kurs der Barwert aller Zahlungen – steigt der Zins, sinkt er.',
+    },
+    {
+      question:
+        'Zwei Anleihen haben denselben Kupon, aber zwei und zwanzig Jahre Restlaufzeit. Was passiert bei derselben Zinserhöhung?',
+      options: [
+        'Beide verlieren gleich viel, weil der Kupon identisch ist',
+        'Die kurze verliert mehr, weil sie schneller fällig wird',
+        'Die lange verliert ein Vielfaches, weil deutlich mehr künftige Zahlungen betroffen sind',
+        'Die lange verliert weniger, weil sie mehr Kupons abwirft',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Restlaufzeit ist der eigentliche Hebel, nicht die Höhe der Zinsänderung. Bei zwei Jahren geht es um wenige Prozent, bei zwanzig um mehr als ein Viertel. Genau daran lagen 2022 die zweistelligen Verluste langlaufender Anleihen, an deren Bonität nichts auszusetzen war.',
+    },
+    {
+      question:
+        'Die modifizierte Duration einer Anleihe beträgt 9. Der Marktzins steigt um zwei Prozentpunkte. Was gilt für den tatsächlichen Kursverlust?',
+      options: [
+        'Er liegt bei etwas weniger als 18 Prozent – die Näherung übertreibt den Verlust',
+        'Er liegt bei genau 18 Prozent',
+        'Er liegt bei etwas mehr als 18 Prozent, weil die Näherung zu optimistisch ist',
+        'Er lässt sich aus der Duration nicht einmal näherungsweise ableiten',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Durationsregel ist eine lineare Näherung an eine gekrümmte Kurve. Diese Krümmung – die Konvexität – wirkt immer zugunsten des Anleihebesitzers: Bei steigenden Zinsen fällt der Kurs weniger stark als vorhergesagt, bei fallenden steigt er stärker. Je größer der Zinssprung, desto größer die Abweichung.',
+    },
+    {
+      question:
+        'Worin unterscheiden sich Einzelanleihe und Anleihefonds nach einem Zinsanstieg grundlegend?',
+      options: [
+        'Der Fonds ist von Zinsänderungen nicht betroffen, weil er laufend umschichtet',
+        'Die Einzelanleihe hat einen Endtermin, an dem der Nennwert zurückkommt; der Fonds hat keinen und holt den Verlust erst über die Zeit seiner Duration auf',
+        'Beim Fonds ist der Buchverlust endgültig realisiert',
+        'Die Einzelanleihe verliert grundsätzlich stärker als ein Fonds gleicher Laufzeit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer eine Einzelanleihe bis zur Fälligkeit hält und deren Schuldner zahlt, bekommt den Nennwert – der Buchverlust löst sich von selbst auf. Ein Fonds ersetzt fällige Papiere laufend durch neue; der Verlust wird durch deren höhere Kupons ausgeglichen, aber eben erst über einen Zeitraum. Dafür bietet er Streuung.',
+    },
+  ],
+
+  'schuldverschreibung:profi': [
+    {
+      question:
+        'Bei der Notübernahme der Credit Suisse 2023 wurden AT1-Anleihen vollständig abgeschrieben, während Aktionäre UBS-Anteile erhielten. Was zeigt dieser Fall?',
+      options: [
+        'Dass Anleihen generell riskanter sind als Aktien',
+        'Dass Aufsichtsbehörden die Insolvenzordnung außer Kraft setzen können',
+        'Dass bei hybriden Papieren das Risiko in den Vertragsbedingungen steht, nicht in der gewohnten Rangfolge',
+        'Dass Bail-in-Regeln in der Praxis nicht angewendet werden',
+      ],
+      correctIndex: 2,
+      explanation:
+        'AT1-Papiere tragen die Abschreibungs- oder Wandlungsklausel im Vertrag; sie greift bei Unterschreiten einer Kapitalquote, ohne dass ein Insolvenzverfahren nötig wäre. Rund 16 Milliarden Franken wurden so auf null gesetzt. Die übliche Rangfolge war umgekehrt – vertraglich zulässig und für viele überraschend.',
+    },
+    {
+      question:
+        'Eine Anleihe enthält ein Kündigungsrecht des Emittenten. Wie wirkt sich das auf dein Rendite-Risiko-Profil aus?',
+      options: [
+        'Der Kursgewinn bei fallenden Zinsen ist gedeckelt, das Verlustrisiko bei steigenden bleibt voll bestehen',
+        'Beide Richtungen werden gleichermaßen begrenzt',
+        'Das Kündigungsrecht schützt vor Kursverlusten bei steigenden Zinsen',
+        'Es wirkt sich nur auf die Stückzinsberechnung aus',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Emittent kündigt genau dann, wenn er sich billiger refinanzieren kann – also bei gefallenen Zinsen, wenn dein Papier gerade im Wert gestiegen wäre. Bei steigenden Zinsen lässt er es laufen. Deshalb ist die Rendite bis zum frühesten Kündigungstermin die aussagekräftigere Kennzahl.',
+    },
+    {
+      question:
+        'Eine Anleihe bietet fünf Prozentpunkte Aufschlag gegenüber einer sicheren Anlage. Bei einer Erlösquote von 40 Prozent im Ausfall: Welche jährliche Ausfallquote trägt dieser Aufschlag näherungsweise?',
+      options: [
+        'Etwa 2 Prozent – die Erlösquote verringert den nötigen Aufschlag kaum',
+        'Etwa 5 Prozent – Aufschlag und Ausfallquote entsprechen einander',
+        'Etwa 12,5 Prozent',
+        'Etwa 8 Prozent – der Aufschlag geteilt durch den Verlust im Ausfall',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Im Ausfall gehen nicht 100 Prozent verloren, sondern 60. Der Aufschlag muss den erwarteten Verlust decken: 5 geteilt durch 0,6 sind rund 8,3 Prozent pro Jahr. Die Näherung unterschlägt Zinseszins und dass Ausfälle sich in Rezessionen häufen – als Größenordnung zeigt sie aber, dass ein solcher Aufschlag kein Geschenk ist.',
+    },
+    {
+      question:
+        'Ein Kapitalschutzzertifikat verspricht die Rückzahlung des Einsatzes zum Laufzeitende. Wovon hängt dieser Schutz ab?',
+      options: [
+        'Von einer gesetzlichen Sicherung vergleichbar der Einlagensicherung',
+        'Von hinterlegten Sicherheiten, die separat verwahrt werden',
+        'Von der Zahlungsfähigkeit der ausgebenden Bank – es ist ihr Versprechen, keine Sicherheit',
+        'Vom Stand des zugrunde liegenden Index bei Fälligkeit',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Zerlegt besteht das Produkt aus einer Nullkuponanleihe der Bank plus einer Option. Der „Schutz“ ist die Rückzahlung dieser Anleihe – also ein Zahlungsversprechen desselben Emittenten. Fällt er aus, schützt es nichts. Die Marge des Anbieters findet man, indem man beide Bausteine einzeln bewertet.',
     },
   ],
 }

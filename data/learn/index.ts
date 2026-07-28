@@ -11,6 +11,7 @@ import { inflation } from '@/data/learn/topics/inflation'
 import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
 import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
+import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
@@ -24,7 +25,6 @@ import {
   option,
   rente,
   schuldenUndKredit,
-  schuldverschreibung,
   sparerpauschbetrag,
   staatsanleihe,
   waehrungenWechselkurse,
