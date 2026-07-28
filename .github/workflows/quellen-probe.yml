@@ -70,6 +70,23 @@ name: Quellen abklopfen
 # Nachgesehen am 28. Juli 2026: **kein Schlüssel hinterlegt.** Der zweite Weg
 # im Abrufskript ist gebaut und meldet sich nicht, solange das so bleibt.
 
+#
+# ## Offener Auftrag: Unternehmenszahlen ausserhalb der USA
+#
+# 172 der 529 Aktien haben Umsatz, Gewinn, Cashflow, Eigenkapital und
+# Aktienzahl. Die uebrigen 357 sind fast alle ausserhalb der USA notiert.
+#
+# Die Annahme dahinter war, dass diese Unternehmen bei der SEC nicht melden.
+# Das gilt aber nur fuer die, die keinen Hinterlegungsschein in New York haben.
+# Wer einen hat, reicht jaehrlich einen `20-F` ein – Kanadier einen `40-F` –,
+# und der liegt im selben XBRL-Format wie ein amerikanischer `10-K`.
+#
+# `scripts/quellen-probe-fundamentaldaten.ts` gleicht die 357 Namen gegen das
+# Kuerzelverzeichnis der SEC ab und prueft jeden Treffer mit einem echten
+# Abruf: Welche Groessen liegen vor, in welcher Waehrung, unter welcher
+# Rechnungslegung. Das Ergebnis ist eine Vorlage zum Durchsehen, keine Tabelle
+# zum Uebernehmen – eine falsche Zuordnung faellt spaeter niemandem auf.
+
 on:
   workflow_dispatch:
 
@@ -78,8 +95,21 @@ jobs:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
-      - name: Derzeit steht keine Quelle zur Prüfung an
-        run: |
-          echo "Dieser Workflow hat keinen offenen Auftrag."
-          echo "Der Kopf der Datei hält fest, was geprüft wurde und mit welchem"
-          echo "Ergebnis – damit keine Quelle zweimal abgeklopft wird."
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: SEC nach den fehlenden Unternehmen absuchen
+        run: node --experimental-strip-types scripts/quellen-probe-fundamentaldaten.ts
+
+      - name: Kandidatenliste sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sec-kandidaten
+          path: sec-kandidaten.json
+          if-no-files-found: warn

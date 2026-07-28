@@ -383,8 +383,17 @@ async function main() {
   const gefuehrt = new Set<string>()
   for (const datei of KATALOG) {
     const text = await readFile(datei, 'utf8')
+    /*
+      Der Name steht in einfachen **oder** doppelten Anführungszeichen.
+
+      "McDonald's", "L'Oréal" und "Sainsbury's" tragen ein Apostroph und stehen
+      deshalb in doppelten. Ein Muster nur für einfache übersah sie – nicht
+      hörbar, weil der Auffangdurchlauf darunter das Kürzel trotzdem aufnahm.
+      Ohne Wirkung blieb das nicht: Die Währung wird nur hier gesetzt, und ohne
+      sie fällt bei einem IFRS-Melder die Währungsprüfung aus.
+    */
     for (const treffer of text.matchAll(
-      /^\s*ticker: '([^']+)',\n\s*name: '[^']*',\n\s*kind: '([^']+)',\n\s*unit: '([^']+)',/gm
+      /^\s*ticker: '([^']+)',\n\s*name: (?:'[^']*'|"[^"]*"),\n\s*kind: '([^']+)',\n\s*unit: '([^']+)',/gm
     )) {
       gefuehrt.add(treffer[1])
       if (treffer[2] === 'stock') waehrungJeKuerzel.set(treffer[1], treffer[3])
