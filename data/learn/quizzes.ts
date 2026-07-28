@@ -1749,6 +1749,165 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Die Papiere liegen beim Zentralverwahrer und werden übertragen – ein Totalverlust droht nicht. Aber die Übertragung dauert, und wer in dieser Zeit verkaufen will, kann es nicht. Zusätzlich ist Guthaben auf dem Verrechnungskonto nur bis 100.000 Euro geschützt.',
     },
   ],
+  // -------------------------------------------------- Worauf Einsteiger achten
+  'worauf-achten-einsteiger:beginner': [
+    {
+      question:
+        'Du hast einen Dispokredit und willst mit dem Investieren anfangen. Was kommt zuerst?',
+      options: [
+        'Den Dispo abbauen – er kostet sicher mehr, als eine Anlage erwarten lässt',
+        'Beides parallel, damit die Zeit am Markt nicht verloren geht',
+        'Investieren, weil Aktien langfristig mehr bringen als der Dispozins',
+        'Erst den Notgroschen, dann den Dispo',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein Dispo kostet zweistellig, und zwar sicher. Eine Aktienrendite ist eine Hoffnung. Schulden abzubauen ist deshalb keine Alternative zum Anlegen, sondern die Anlage mit der höchsten garantierten Verzinsung, die es gibt.',
+    },
+    {
+      question: 'Wonach bemisst sich die Größe des Notgroschens?',
+      options: [
+        'Nach dem Nettoeinkommen',
+        'Nach den monatlichen Ausgaben – drei bis sechs davon',
+        'Nach der Höhe des Depots',
+        'Nach einer Pauschale von 10.000 Euro',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Was gedeckt werden muss, sind laufende Ausgaben, nicht Einkommen. Wer selbstständig ist, ein schwankendes Einkommen hat oder allein für Kinder sorgt, rechnet eher am oberen Rand. Der Notgroschen ist keine Renditeposition, sondern die Versicherung gegen den Verkauf im falschen Moment.',
+    },
+    {
+      question:
+        'Welche dieser Versicherungen ist für die meisten Erwerbstätigen existenziell?',
+      options: [
+        'Handyversicherung',
+        'Reiserücktrittsversicherung',
+        'Berufsunfähigkeitsversicherung',
+        'Brillenversicherung',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Versichert wird, was ruiniert, nicht was ärgert. Der Verlust der Arbeitskraft beendet das Einkommen womöglich für Jahrzehnte – ein kaputtes Handy zahlt man aus dem Notgroschen. Ebenfalls existenziell: die Privathaftpflicht, weil dort unbegrenzte Summen möglich sind.',
+    },
+    {
+      question:
+        'Du brauchst in drei Jahren 15.000 Euro für ein Auto. Wohin gehört das Geld?',
+      options: [
+        'In einen breit gestreuten Aktien-ETF',
+        'Auf Tages- oder Festgeld',
+        'In Einzelaktien mit hoher Dividende',
+        'Zur Hälfte in Aktien, zur Hälfte in Krypto',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Drei Jahre sind zu kurz für den Aktienmarkt – er kann in dieser Zeit deutlich im Minus stehen, und dann fehlt die Zeit, das auszusitzen. Jedes Ziel braucht einen Betrag und ein Datum; daraus folgt die Anlageform, nicht umgekehrt.',
+    },
+  ],
+  'worauf-achten-einsteiger:fortgeschritten': [
+    {
+      question:
+        '10.000 Euro, 6 Prozent Bruttorendite, 30 Jahre. Wie groß ist der Unterschied zwischen 0,2 und 1,8 Prozent laufenden Kosten?',
+      options: [
+        'Etwa 2.000 Euro',
+        'Etwa 5.000 Euro',
+        'Etwa 20.000 Euro – rund das Doppelte des ursprünglichen Einsatzes',
+        'Etwa 50.000 Euro',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 10.000 Euro werden bei 0,2 Prozent Kosten rund 54.000, bei 1,8 Prozent rund 34.000 – knapp 20.000 Euro Unterschied bei identischer Anlage und identischem Marktverlauf. Der Unterschied ist keine Frage des Glücks; er stand am ersten Tag fest.',
+    },
+    {
+      question:
+        'Warum sind Arbeitgeberaktien ein besonders unterschätztes Klumpenrisiko?',
+      options: [
+        'Weil sie steuerlich schlechter behandelt werden',
+        'Weil sie nur mit Haltefrist verkauft werden dürfen',
+        'Weil sie meist überbewertet sind',
+        'Weil Einkommen und Vermögen am selben Unternehmen hängen – geht es schief, fällt beides zugleich',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Genau dann, wenn man Rücklagen bräuchte, ist auch der Arbeitsplatz gefährdet. Belegschaftsaktien mit Rabatt bleiben trotzdem attraktiv – die Regel lautet nicht "nicht nehmen", sondern "nach der Haltefrist verkaufen und breit anlegen". Als Obergrenze gelten fünf bis zehn Prozent des Vermögens.',
+    },
+    {
+      question: 'Welcher Unterschied im Basisinformationsblatt ist der folgenreichste?',
+      options: [
+        'Ob das Produkt thesauriert oder ausschüttet',
+        'Ob es sich um Sondervermögen handelt oder um eine Schuldverschreibung des Emittenten',
+        'Ob die Kosten monatlich oder jährlich berechnet werden',
+        'Ob eine empfohlene Haltedauer angegeben ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Fonds ist Sondervermögen und übersteht die Insolvenz des Anbieters. Ein Zertifikat ist eine Schuldverschreibung – geht der Emittent pleite, ist das Geld weg, unabhängig davon, wie sich der Basiswert entwickelt hat. Dieser Unterschied steht selten in der Werbung.',
+    },
+    {
+      question:
+        'Welcher Satz gehört in eine schriftliche Anlagestrategie und wird am häufigsten vergessen?',
+      options: [
+        'Die erwartete Jahresrendite',
+        'Der Name des bevorzugten Brokers',
+        'Was bei einem Kursrückgang von 30 Prozent geschieht',
+        'Die Liste der geplanten Einzelaktien',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Dieser Satz muss geschrieben sein, bevor die 30 Prozent da sind. Im Rückgang argumentiert man mit sich selbst – und gegen ein Blatt Papier vom letzten Jahr argumentiert man schlechter als gegen ein vages Vorhaben.',
+    },
+  ],
+  'worauf-achten-einsteiger:profi': [
+    {
+      question: 'Warum hilft es, seltener ins Depot zu sehen?',
+      options: [
+        'Weil die Kurse dann stabiler verlaufen',
+        'Weil häufiges Hinsehen überwiegend Rauschen zeigt und die Handelsfrequenz erhöht',
+        'Weil Broker für häufige Abfragen Gebühren berechnen',
+        'Weil die Steuer sich nach der Zahl der Depotabfragen richtet',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer täglich hineinsieht, sieht kurzfristige Schwankungen und handelt entsprechend häufiger – jede Runde kostet Gebühr und Spread. Wer vierteljährlich hineinsieht, trifft die gleichen langfristigen Entscheidungen mit deutlich weniger Transaktionen.',
+    },
+    {
+      question:
+        'Welches Ausfallszenario wird bei der Depotstruktur am häufigsten übersehen?',
+      options: [
+        'Der eigene Ausfall – weiß jemand, dass es das Depot gibt und wie man darankommt?',
+        'Die Insolvenz des Brokers',
+        'Die Schließung eines Fonds',
+        'Ein Ausfall der Handelsplattform',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die anderen drei sind bekannt und beherrschbar. Der eigene Ausfall wird dagegen selten bedacht: Eine Aufstellung an einem auffindbaren Ort mit Anbieter, Zugangsweg und Ansprechpartner erspart Angehörigen erhebliche Mühe.',
+    },
+    {
+      question:
+        'Welche der vier Kostenebenen ist typischerweise die teuerste und zugleich am schlechtesten sichtbar?',
+      options: [
+        'Die Depotebene mit Order- und Handelsplatzgebühren',
+        'Die Produktebene mit der laufenden Kostenquote',
+        'Die Steuerebene mit Abgeltungsteuer und Vorabpauschale',
+        'Die Beratungsebene mit Ausgabeaufschlägen und Bestandsprovisionen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ausgabeaufschläge, Bestandsprovisionen und Verwaltungsgebühren tauchen auf keiner Abrechnung als Posten auf – sie sind im Preis oder im Fondsvermögen enthalten. Vollständig ist eine Kostenbetrachtung erst, wenn alle vier Ebenen zusammengezählt sind.',
+    },
+    {
+      question: 'Welche Kombination reicht allein aus, um ein Angebot abzulehnen?',
+      options: [
+        'Hohe Rendite bei angeblich geringem Risiko, verbunden mit Zeitdruck',
+        'Eine Mindestanlagesumme über 10.000 Euro',
+        'Ein Sitz des Anbieters im EU-Ausland',
+        'Eine empfohlene Haltedauer über zehn Jahre',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Rendite ohne entsprechendes Risiko gibt es nicht – und eine seriöse Anlage läuft einem nicht weg. Weitere Warnzeichen: keine Zulassung bei der BaFin, Ertrag aus der Anwerbung weiterer Anleger, kein Basisinformationsblatt und keine ISIN. Ein EU-Sitz allein ist dagegen unauffällig.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

@@ -7,6 +7,7 @@ import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
 import { inflation } from '@/data/learn/topics/inflation'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
+import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
   anlegerpsychologie,
@@ -29,7 +30,6 @@ import {
   waehrungenWechselkurse,
   wannKaufenVerkaufen,
   wieFunktioniertDerMarkt,
-  woraufAchtenEinsteiger,
 } from '@/data/learn/topics/outlines'
 import { getQuizFor } from '@/data/learn/quizzes'
 import { rohstoffe } from '@/data/learn/topics/rohstoffe'
