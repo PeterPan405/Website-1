@@ -54,8 +54,7 @@ components/
   content/              Renderer für das Inhalts-Blockmodell
   debt/                 Ländervergleich (sortier- und filterbar)
   home/                 Rotierende News-Säule
-  layout/               Header mit Mega-Menü und Suche, Footer, Theme-Umschalter,
-                        gleitendes Scrollen
+  layout/               Header mit Mega-Menü und Suche, Footer, Theme-Umschalter
   learn/                Fortschrittslogik, Stufen-Navigation, Themen-Kacheln
   markets/              Kurskacheln
   seo/                  JSON-LD-Ausgabe
