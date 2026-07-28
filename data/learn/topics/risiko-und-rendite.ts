@@ -1,5 +1,7 @@
 import type { LearnTopic } from '@/data/learn/types'
+import { recoveryGainPercent } from '@/lib/finance'
 import { formatPercent } from '@/lib/format'
+import { risikoRueckgaenge } from '@/lib/lernszenarien'
 
 /*
   Die Ausgleichsrechnung wird gerechnet, nicht geschrieben.
@@ -8,8 +10,7 @@ import { formatPercent } from '@/lib/format'
   Satz, die beim Umschreiben still falsch wird – jemand ändert die 30 in eine
   40 und vergisst die zweite Zahl. Als Funktion kann das nicht passieren.
 */
-const ausgleichProzent = (verlust: number) => (1 / (1 - verlust / 100) - 1) * 100
-const RUECKGAENGE = [10, 20, 30, 50, 70, 90]
+const ausgleichProzent = (verlust: number) => recoveryGainPercent(verlust) ?? 0
 
 /**
  * Vollständig ausgearbeitetes Thema.
@@ -125,7 +126,7 @@ export const risikoUndRendite: LearnTopic = {
           type: 'table',
           caption: 'Was ein Rückgang zum Ausgleich verlangt',
           head: ['Rückgang', 'Nötiger Anstieg'],
-          rows: RUECKGAENGE.map((rueckgang) => [
+          rows: risikoRueckgaenge.map((rueckgang) => [
             `− ${formatPercent(rueckgang, 0)}`,
             `+ ${formatPercent(ausgleichProzent(rueckgang), 0)}`,
           ]),
@@ -133,6 +134,10 @@ export const risikoUndRendite: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Bis etwa 20 Prozent ist der Unterschied klein. Danach wird er dramatisch: Nach minus 90 Prozent braucht es eine Verzehnfachung, nur um wieder bei null zu sein. Diese Asymmetrie ist der ganze Grund, warum Streuung wichtiger ist als Trefferquote – ein Totalausfall ist nicht durch drei gute Griffe auszugleichen.',
+        },
+        {
+          type: 'figure',
+          figure: 'risiko-erholung',
         },
         {
           type: 'heading',

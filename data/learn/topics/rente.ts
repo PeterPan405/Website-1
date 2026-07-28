@@ -1,6 +1,10 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { calculatePension, pensionDefaults } from '@/lib/finance'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import {
+  rentenBeispiel as BEISPIEL,
+  rentenEinkommen as EINKOMMEN,
+} from '@/lib/lernszenarien'
 
 /*
   Die Rentenrechnung kommt aus derselben Funktion wie der Rentenrechner.
@@ -14,15 +18,9 @@ import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format
   Alle diese Werte ändern sich jährlich. Der Text sagt das ausdrücklich und
   verweist für die verbindliche Auskunft auf die Rentenversicherung.
 */
-const BEISPIEL = {
-  grossAnnualIncome: 50_000,
-  yearsWorked: 15,
-  yearsRemaining: 25,
-}
 const rechnung = calculatePension(BEISPIEL)
 
 /** Wie viele Punkte verschiedene Einkommen im Jahr bringen. */
-const EINKOMMEN = [30_000, 45_000, 50_500, 70_000, 100_000]
 const punktereihe = EINKOMMEN.map((brutto) => ({
   brutto,
   punkte: calculatePension({ ...BEISPIEL, grossAnnualIncome: brutto }).pointsPerYear,
@@ -194,6 +192,10 @@ export const rente: LearnTopic = {
             '**Sie ist in heutiger Kaufkraft ausgedrückt** – das ist korrekt und hilfreich, wird aber oft mit dem künftigen Nominalbetrag verwechselt.',
             '**Sie unterstellt, dass es so weitergeht.** Die Hochrechnung schreibt das bisherige Einkommen fort. Teilzeit, Elternzeit, Arbeitslosigkeit oder ein Wechsel in die Selbstständigkeit sind darin nicht enthalten.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'rente-luecke',
         },
         {
           type: 'paragraph',

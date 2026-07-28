@@ -59,6 +59,24 @@ export type FigureId =
   | 'msci-world-laender'
   /** Kontostand und Kaufkraft desselben Betrags über 30 Jahre. */
   | 'inflation-kaufkraft'
+  /** Anleihekurs über dem Marktzins, für drei Restlaufzeiten. */
+  | 'anleihe-kurs-und-zins'
+  /** Kursverlust je Restlaufzeit bei zwei Prozentpunkten mehr Zins. */
+  | 'staatsanleihe-zinsschock'
+  /** Ergebnis von Kauf- und Verkaufoption bei Verfall. */
+  | 'option-auszahlung'
+  /** Wie die Prämie mit der Restlaufzeit schrumpft. */
+  | 'option-zeitwertverfall'
+  /** Wie sich die gleichbleibende Kreditrate in Zins und Tilgung aufteilt. */
+  | 'kredit-zins-und-tilgung'
+  /** Laufzeit desselben Darlehens bei vier Anfangstilgungen. */
+  | 'kredit-anfangstilgung'
+  /** Welcher Gewinn nötig ist, um einen Verlust auszugleichen. */
+  | 'risiko-erholung'
+  /** Gesamtrendite ohne die besten Wochen. */
+  | 'timing-beste-wochen'
+  /** Heutiges Netto gegen gesetzliche Nettorente. */
+  | 'rente-luecke'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -69,8 +87,14 @@ export interface FigureMeta {
    * Landet als `<desc>` im SVG und ersetzt die Grafik für alle, die sie nicht
    * sehen. Deshalb inhaltlich, nicht formal: „Die Kurve verdreifacht sich in
    * vierzig Jahren“ hilft, „Ein Liniendiagramm mit zwei Kurven“ nicht.
+   *
+   * Optional, weil viele Zeichnungen ihre Beschreibung selbst mitbringen: Wo
+   * die Zahlen beim Bauen aus `lib/` entstehen, gehört die Beschreibung
+   * dorthin, wo sie entstehen – sonst stünden hier Werte, die nach der
+   * nächsten Änderung still danebenliegen. Fehlt beides, bricht der Build ab;
+   * eine Grafik ohne Vorlesefassung darf es nicht geben.
    */
-  description: string
+  description?: string
   /** Bildunterschrift unter der Grafik. */
   caption: string
 }
@@ -152,5 +176,60 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Ein fester Betrag bleibt 30 Jahre unverzinst liegen. Die Zahl auf dem Konto ändert sich nie – die gestrichelte Linie verläuft waagerecht. Was diese Zahl kaufen kann, fällt stetig; nach 30 Jahren ist gut die Hälfte verschwunden, ohne dass etwas abgebucht wurde.',
     caption:
       'Der Abstand zwischen beiden Linien ist der Verlust. Er steht auf keinem Kontoauszug.',
+  },
+
+  /*
+    Ab hier tragen die Zeichnungen ihre Beschreibung selbst.
+
+    Ihre Zahlen entstehen beim Bauen aus `lib/` – aus denselben Funktionen wie
+    die Tabellen daneben. Eine hier hinterlegte Beschreibung müsste diese
+    Zahlen wiederholen und wäre nach der ersten Änderung an einer Annahme
+    still falsch, ohne dass es jemandem auffiele: Sie ist nur für die
+    sichtbar, die die Grafik gerade nicht sehen können.
+  */
+  'anleihe-kurs-und-zins': {
+    title: 'Anleihekurs und Marktzins',
+    caption:
+      'Der Kupon ist fest, der Kurs ist es nicht. Er stellt sich so ein, dass die Anleihe genau den Marktzins abwirft – und je länger sie läuft, desto weiter muss er dafür ausschlagen.',
+  },
+  'staatsanleihe-zinsschock': {
+    title: 'Kursverlust bei steigendem Zins',
+    caption:
+      '„Sicher“ heißt bei einer Staatsanleihe: Der Staat zahlt zurück. Es heißt nicht, dass der Kurs bis dahin ruhig bleibt – wer vorher verkaufen muss, trägt diesen Verlust.',
+  },
+  'option-auszahlung': {
+    title: 'Ergebnis von Kauf- und Verkaufoption bei Verfall',
+    caption:
+      'Der Knick ist der Basispreis, der waagerechte Teil die bezahlte Prämie. Nach unten ist der Verlust des Käufers begrenzt – für den Verkäufer der Option gilt genau das Gegenteil.',
+  },
+  'option-zeitwertverfall': {
+    title: 'Wie die Prämie mit der Restlaufzeit schrumpft',
+    caption:
+      'Zeit ist bei Optionen ein Preisbestandteil, und sie läuft immer in dieselbe Richtung. Am Ende geht es am schnellsten.',
+  },
+  'kredit-zins-und-tilgung': {
+    title: 'Zins und Tilgung innerhalb derselben Rate',
+    caption:
+      'Die Rate bleibt gleich – deshalb sind alle Säulen gleich hoch. Nur was darin steckt, verschiebt sich: erst fast alles Zins, am Ende fast alles Tilgung.',
+  },
+  'kredit-anfangstilgung': {
+    title: 'Anfangstilgung und Laufzeit',
+    caption:
+      'Ein Prozentpunkt mehr Anfangstilgung kostet etwas mehr im Monat und spart Jahrzehnte. Das ist die folgenreichste Zahl im ganzen Kreditvertrag.',
+  },
+  'risiko-erholung': {
+    title: 'Welcher Gewinn einen Verlust ausgleicht',
+    caption:
+      'Verlust und Erholung sind nicht symmetrisch. Deshalb ist es wichtiger, große Verluste zu vermeiden, als große Gewinne zu treffen.',
+  },
+  'timing-beste-wochen': {
+    title: 'Rendite ohne die besten Wochen',
+    caption:
+      'Die guten Wochen sind wenige und lassen sich nicht ankündigen. Wer sie mitnehmen will, muss die schlechten aushalten – dazwischen liegen oft nur Tage.',
+  },
+  'rente-luecke': {
+    title: 'Heutiges Einkommen und gesetzliche Rente',
+    caption:
+      'Auf der Renteninformation steht der obere Rand der zweiten Säule. Auf dem Konto landet der untere Abschnitt – die Lücke dazwischen ist kein Betriebsunfall, sondern die Bauart des Systems.',
   },
 }

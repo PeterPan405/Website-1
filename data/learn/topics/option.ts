@@ -6,8 +6,13 @@ import {
   preis,
   sensitivitaeten,
   zeitwert,
-  type Optionsparameter,
 } from '@/lib/optionen'
+import {
+  optionBasis as BASIS,
+  optionKurse as KURSE,
+  optionMonate as MONATE,
+  optionVolatilitaeten as VOLATILITAETEN,
+} from '@/lib/lernszenarien'
 
 /*
   Alle Prämien dieses Themas kommen aus `lib/optionen.ts`.
@@ -20,16 +25,7 @@ import {
   Zeitwertverfall zum Ende beschleunigt. Die steht damit als Spalte in einer
   Tabelle statt als Behauptung im Fließtext.
 */
-const BASIS: Optionsparameter = {
-  kurs: 100,
-  basispreis: 100,
-  jahre: 0.25,
-  volatilitaetProzent: 20,
-  zinsProzent: 3,
-}
-
 /** Innerer Wert und Zeitwert über verschiedene Kurse des Basiswerts. */
-const KURSE = [85, 95, 100, 105, 120]
 const wertaufteilung = KURSE.map((kurs) => {
   const p = { ...BASIS, kurs }
   return {
@@ -41,7 +37,6 @@ const wertaufteilung = KURSE.map((kurs) => {
 })
 
 /** Wie die Prämie mit der Restlaufzeit schrumpft – und wie schnell zum Schluss. */
-const MONATE = [12, 6, 3, 1]
 const verfallsreihe = MONATE.map((monate) => {
   const p = { ...BASIS, jahre: monate / 12 }
   return {
@@ -52,7 +47,6 @@ const verfallsreihe = MONATE.map((monate) => {
 })
 
 /** Der stärkste Preistreiber: die erwartete Schwankung. */
-const VOLATILITAETEN = [15, 20, 30, 50]
 const volareihe = VOLATILITAETEN.map((volatilitaetProzent) => ({
   volatilitaetProzent,
   praemie: preis('call', { ...BASIS, volatilitaetProzent }),
@@ -166,6 +160,10 @@ export const option: LearnTopic = {
           text: 'Zwei Beobachtungen. Bei einem Kurs unter dem Basispreis besteht die Prämie **ausschließlich** aus Zeitwert – man bezahlt reine Hoffnung. Und weit im Geld schrumpft der Zeitwert fast auf null: Die Option verhält sich dann fast wie der Basiswert selbst, nur mit Verfallsdatum.',
         },
         {
+          type: 'figure',
+          figure: 'option-auszahlung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Der Zeitwert schmilzt – und zwar schneller zum Schluss',
@@ -194,6 +192,10 @@ export const option: LearnTopic = {
             'Das passiert **auch bei völlig unverändertem Kurs**. Ein Optionskäufer, der recht behält, aber zu spät, verliert trotzdem.',
             'Für den Käufer ist das der laufende Aufwand, für den Verkäufer der laufende Ertrag. Beides ist dieselbe Zahl mit umgekehrtem Vorzeichen.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'option-zeitwertverfall',
         },
         {
           type: 'heading',

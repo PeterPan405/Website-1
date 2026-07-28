@@ -341,6 +341,12 @@ export const staatsanleihe: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'staatsanleihe-zinsschock',
+          caption:
+            'Derselbe Zinsanstieg, vier Restlaufzeiten. Die Wahl der Laufzeit entscheidet über den Verlust – nicht die Bonität des Staates.',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

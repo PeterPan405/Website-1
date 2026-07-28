@@ -5,7 +5,22 @@ import {
   AktieDividendenabschlag,
   AktieSpread,
 } from '@/components/content/figures/aktie'
+import {
+  AnleiheKursUndZins,
+  StaatsanleiheZinsschock,
+} from '@/components/content/figures/anleihen'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
+import {
+  KreditAnfangstilgung,
+  KreditTilgungsverlauf,
+} from '@/components/content/figures/kredit'
+import {
+  OptionAuszahlung,
+  OptionZeitwertverfall,
+} from '@/components/content/figures/optionen'
+import { RenteLuecke } from '@/components/content/figures/rente'
+import { RisikoErholung } from '@/components/content/figures/risiko'
+import { TimingBesteWochen } from '@/components/content/figures/timing'
 import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
 import {
   RohstoffeKeinErtrag,
@@ -39,4 +54,13 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'rohstoffe-rollkurve': RohstoffeRollkurve,
   'msci-world-laender': IndexLaendergewichtung,
   'inflation-kaufkraft': InflationKaufkraft,
+  'anleihe-kurs-und-zins': AnleiheKursUndZins,
+  'staatsanleihe-zinsschock': StaatsanleiheZinsschock,
+  'option-auszahlung': OptionAuszahlung,
+  'option-zeitwertverfall': OptionZeitwertverfall,
+  'kredit-zins-und-tilgung': KreditTilgungsverlauf,
+  'kredit-anfangstilgung': KreditAnfangstilgung,
+  'risiko-erholung': RisikoErholung,
+  'timing-beste-wochen': TimingBesteWochen,
+  'rente-luecke': RenteLuecke,
 }

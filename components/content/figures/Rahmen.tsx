@@ -36,6 +36,14 @@ export function FigureSvg({
   children: ReactNode
 }) {
   const meta = figureMeta[id]
+  const vorlesefassung = beschreibung ?? meta.description
+  if (!vorlesefassung) {
+    throw new Error(
+      `Die Grafik „${id}“ hat keine Beschreibung – weder in data/figures.ts noch in der Zeichnung. ` +
+        'Ohne sie ist sie für alle, die sie nicht sehen können, ein leerer Kasten.'
+    )
+  }
+
   return (
     <svg
       viewBox={viewBox}
@@ -46,7 +54,7 @@ export function FigureSvg({
       fontFamily="inherit"
     >
       <title id={`${id}-titel`}>{meta.title}</title>
-      <desc id={`${id}-beschreibung`}>{beschreibung ?? meta.description}</desc>
+      <desc id={`${id}-beschreibung`}>{vorlesefassung}</desc>
       {children}
     </svg>
   )

@@ -1,5 +1,9 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatDate, formatPercent } from '@/lib/format'
+import {
+  timingAuslassungen as AUSLASSUNGEN,
+  timingIndex as INDEX,
+} from '@/lib/lernszenarien'
 import { getLiveSeries } from '@/lib/market-live'
 import {
   bestePerioden,
@@ -23,8 +27,6 @@ import {
   beste Woche des gesamten Zeitraums folgte unmittelbar auf die
   schlechteste.
 */
-const INDEX = 'dax'
-
 /*
   Die Reihe kommt aus der Service-Schicht, nicht aus der Momentaufnahme.
 
@@ -36,7 +38,6 @@ const INDEX = 'dax'
 const reihe = getLiveSeries(INDEX)
 const punkte: Kurspunkt[] =
   reihe?.daily.map((punkt) => ({ d: punkt.t, c: punkt.value })) ?? []
-const AUSLASSUNGEN = [0, 5, 10, 20]
 const auslassungen = ohneBestePerioden(punkte, AUSLASSUNGEN)
 const extreme = bestePerioden(punkte, 3)
 
@@ -157,6 +158,10 @@ export const wannKaufenVerkaufen: LearnTopic = {
         {
           type: 'paragraph',
           text: `Aus einem klar positiven Ergebnis wird ein Verlust, wenn zehn von rund ${vonBis?.wochen ?? 250} Wochen fehlen – das sind vier Prozent der Zeit. Die Rendite eines Zeitraums steckt in sehr wenigen Perioden, und wer nicht investiert ist, verpasst sie.`,
+        },
+        {
+          type: 'figure',
+          figure: 'timing-beste-wochen',
         },
         {
           type: 'heading',

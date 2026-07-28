@@ -9,6 +9,24 @@
  * Prognosen. Renditen und Inflationsraten sind Annahmen des Nutzers.
  */
 
+/**
+ * Der Gewinn, der einen Verlust genau ausgleicht – beides in Prozent.
+ *
+ * Nach einem Verlust von `v` ist der Anteil `1 − v` übrig; um wieder auf den
+ * Ausgangswert zu kommen, muss dieser Rest um `1 / (1 − v) − 1` steigen. Bei
+ * einem Totalverlust gibt es keinen solchen Gewinn – dann kommt `null`
+ * zurück, und zwar bevor jemand durch null teilt.
+ *
+ * Steht als Funktion und nicht als Tabelle da, weil beides sonst auseinander
+ * läuft: Der Satz „minus 50 verlangt plus 100“ wird beim Umschreiben still
+ * falsch, sobald jemand eine der beiden Zahlen ändert.
+ */
+export function recoveryGainPercent(lossPercent: number): number | null {
+  const rest = 1 - lossPercent / 100
+  if (rest <= 0) return null
+  return (1 / rest - 1) * 100
+}
+
 /** Wie oft im Jahr eingezahlt wird. */
 export type ContributionInterval = 'monthly' | 'quarterly' | 'yearly'
 
