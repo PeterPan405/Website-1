@@ -77,6 +77,16 @@ export type FigureId =
   | 'timing-beste-wochen'
   /** Heutiges Netto gegen gesetzliche Nettorente. */
   | 'rente-luecke'
+  /** Der Weg einer Wertpapierorder vom Broker bis ins Depot. */
+  | 'boerse-vom-klick-zur-buchung'
+  /** Der Weg einer Zahlung durch ein Blockchain-Netz. */
+  | 'blockchain-zahlung'
+  /** Vom Leitzins über die Banken bis zu den Preisen. */
+  | 'notenbank-transmission'
+  /** Die Reihenfolge vor dem ersten Wertpapierkauf. */
+  | 'einsteiger-reihenfolge'
+  /** Kauf- und Verkaufseite eines Orderbuchs mit dem Spread dazwischen. */
+  | 'markt-orderbuch'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -231,5 +241,30 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Heutiges Einkommen und gesetzliche Rente',
     caption:
       'Auf der Renteninformation steht der obere Rand der zweiten Säule. Auf dem Konto landet der untere Abschnitt – die Lücke dazwischen ist kein Betriebsunfall, sondern die Bauart des Systems.',
+  },
+  'boerse-vom-klick-zur-buchung': {
+    title: 'Der Weg einer Order',
+    caption:
+      'Die ersten drei Schritte dauern Sekundenbruchteile, die letzten beiden Tage. Deshalb steht nach einem Kauf sofort ein Kurs im Depot, aber noch nicht das Papier.',
+  },
+  'blockchain-zahlung': {
+    title: 'Eine Zahlung im Blockchain-Netz',
+    caption:
+      'Anders als bei einer Überweisung gibt es keinen Moment, in dem eine Zahlung „durch“ ist. Sie wird mit jedem weiteren Block nur schwerer rückgängig zu machen.',
+  },
+  'notenbank-transmission': {
+    title: 'Vom Leitzins zu den Preisen',
+    caption:
+      'Die Notenbank setzt nur den ersten Kasten. Alles danach entscheiden Banken, Unternehmen und Haushalte – und jede Übergabe kostet Monate.',
+  },
+  'einsteiger-reihenfolge': {
+    title: 'Was vor dem ersten Kauf kommt',
+    caption:
+      'Jeder Schritt vor dem letzten bringt sicher etwas. Der letzte bringt vermutlich mehr – aber nur, wenn die vier davor stehen.',
+  },
+  'markt-orderbuch': {
+    title: 'Kauf- und Verkaufseite eines Orderbuchs',
+    caption:
+      'Es gibt nie „den Kurs“. Es gibt zwei Seiten, eine Lücke dazwischen und für jede Stückzahl einen anderen Preis.',
   },
 }

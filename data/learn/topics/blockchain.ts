@@ -203,6 +203,10 @@ export const blockchain: LearnTopic = {
           text: 'Ein **Fork** entsteht, wenn sich die Regeln ändern. Ein geplantes Upgrade, dem alle folgen, ist unproblematisch. Folgt ein Teil der Teilnehmer nicht, laufen zwei Ketten dauerhaft parallel weiter – mit gemeinsamer Vergangenheit und getrennter Zukunft. Wer vorher Guthaben hielt, hält es danach auf beiden Ketten.',
         },
         {
+          type: 'figure',
+          figure: 'blockchain-zahlung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Smart Contracts',

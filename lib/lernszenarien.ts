@@ -92,6 +92,46 @@ export const immobilienZinsbindung = 10
 /** Anfangstilgungen in Prozent, von der gerade noch zulässigen bis zur zügigen. */
 export const immobilienTilgungssaetze = [1, 2, 3, 4] as const
 
+// -------------------------------------------------------------- Orderbuch
+
+/**
+ * Ein Orderbuch als Beispiel, keine Momentaufnahme.
+ *
+ * Ein echtes Orderbuch ändert sich mehrmals pro Sekunde; abgedruckt wäre es
+ * eine Zahlenreihe ohne Aussage. Dieses hier ist so gebaut, dass es die drei
+ * Dinge zeigt, um die es im Text geht: dass zwischen den besten Geboten eine
+ * Lücke klafft, dass in den ersten Lagen wenig liegt, und dass ein großer
+ * Auftrag sich durch mehrere Lagen frisst.
+ *
+ * Geld- und Briefkurs entsprechen der Spread-Grafik im Thema Aktie – beide
+ * Themen sollen dasselbe Papier beschreiben.
+ */
+export const orderbuchBeispiel = {
+  /** Verkaufsseite, absteigend – die beste (niedrigste) Forderung steht zuletzt. */
+  brief: [
+    { preis: 50.16, stueck: 900 },
+    { preis: 50.14, stueck: 400 },
+    { preis: 50.12, stueck: 250 },
+    { preis: 50.1, stueck: 120 },
+  ],
+  /** Kaufseite, absteigend – das beste (höchste) Gebot steht zuerst. */
+  geld: [
+    { preis: 49.9, stueck: 150 },
+    { preis: 49.88, stueck: 300 },
+    { preis: 49.85, stueck: 450 },
+    { preis: 49.8, stueck: 800 },
+  ],
+} as const
+
+/**
+ * Stückzahl eines sofort ausgeführten Kaufauftrags.
+ *
+ * Größer als die beste Lage und kleiner als die ersten drei zusammen – nur
+ * dann zeigt die Rechnung, worum es geht: Der Auftrag bekommt einen Teil zum
+ * besten Kurs und den Rest teurer.
+ */
+export const orderbuchMarktauftrag = 600
+
 // ---------------------------------------------------------------- Risiko
 
 /**

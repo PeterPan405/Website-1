@@ -230,6 +230,10 @@ export const notenbankenGeldpolitik: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'notenbank-transmission',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Der Vermögenspreiskanal, ausgerechnet',

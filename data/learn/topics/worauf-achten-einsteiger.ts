@@ -72,6 +72,10 @@ export const woraufAchtenEinsteiger: LearnTopic = {
           text: 'Die meiste Zeit beim Einstieg geht für die Frage drauf, *was* man kaufen soll. Diese Frage ist die unwichtigste. Wer die vier Schritte davor auslässt, kann das beste Produkt der Welt kaufen und wird trotzdem zum falschen Zeitpunkt verkaufen müssen.',
         },
         {
+          type: 'figure',
+          figure: 'einsteiger-reihenfolge',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Schritt 1: Teure Schulden zuerst',

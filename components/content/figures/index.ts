@@ -6,6 +6,12 @@ import {
   AktieSpread,
 } from '@/components/content/figures/aktie'
 import {
+  BlockchainZahlung,
+  BoerseVomKlickZurBuchung,
+  EinsteigerReihenfolge,
+  NotenbankTransmission,
+} from '@/components/content/figures/ablaeufe'
+import {
   AnleiheKursUndZins,
   StaatsanleiheZinsschock,
 } from '@/components/content/figures/anleihen'
@@ -18,6 +24,7 @@ import {
   OptionAuszahlung,
   OptionZeitwertverfall,
 } from '@/components/content/figures/optionen'
+import { MarktOrderbuch } from '@/components/content/figures/orderbuch'
 import { RenteLuecke } from '@/components/content/figures/rente'
 import { RisikoErholung } from '@/components/content/figures/risiko'
 import { TimingBesteWochen } from '@/components/content/figures/timing'
@@ -63,4 +70,9 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'risiko-erholung': RisikoErholung,
   'timing-beste-wochen': TimingBesteWochen,
   'rente-luecke': RenteLuecke,
+  'boerse-vom-klick-zur-buchung': BoerseVomKlickZurBuchung,
+  'blockchain-zahlung': BlockchainZahlung,
+  'notenbank-transmission': NotenbankTransmission,
+  'einsteiger-reihenfolge': EinsteigerReihenfolge,
+  'markt-orderbuch': MarktOrderbuch,
 }

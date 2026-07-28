@@ -216,6 +216,10 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'markt-orderbuch',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Markttiefe und Slippage',

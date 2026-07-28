@@ -92,6 +92,10 @@ export const boerse: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'boerse-vom-klick-zur-buchung',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Dein Depot ist kein Bankkonto',
