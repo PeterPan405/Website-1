@@ -15,179 +15,123 @@ name: Quellen abklopfen
 # - OECD (Löhne): geht → 38 Länder, eingebaut
 # - OECD (Vermögen): geht → 30 Länder nach Umrechnung, eingebaut
 # - SEC (Fundamentaldaten, us-gaap): geht → 170 geführte Kürzel, eingebaut
+# - SEC (Quartalstermine, 8-K/2.02): geht → 153 Unternehmen, eingebaut
 # - Yahoo (Kennzahlen): 401 Unauthorized
 # - Frankfurter (Devisen): 301 auf eine andere Adresse; EZB reicht ohnehin
 #
-# ## Diese Runde: die drei größten verbliebenen Lücken
+# ## Diese Runde: warum 377 von 529 Aktien keine Quartalstermine haben
 #
-# 1. **BIP und Einwohner** fehlen bei 65 beziehungsweise 34 Ländern, weil die
-#    genutzten CSV-Spiegel der Weltbank nicht alle führen. Der IWF-Datamapper
-#    liefert dieselben Größen und ist über die Schuldenquote schon erschlossen.
-# 2. **Löhne außerhalb der OECD** – 211 Länder ohne Angabe, in Afrika alle 60.
-#    Die ILO führt Verdienststatistiken für deutlich mehr Länder.
-# 3. **Kennzahlen für Nicht-US-Aktien.** Die SEC führt neben `us-gaap` eine
-#    zweite Taxonomie: `ifrs-full`. Wer als ausländischer Emittent nach IFRS
-#    bilanziert und in den USA notiert, meldet dorthin. Das ist bisher nie
-#    abgefragt worden.
+# Der erste Lauf hat für 153 Unternehmen ein Meldemuster gefunden. Das ist
+# weniger als ein Drittel des Katalogs, und dafür gibt es zwei Verdachtsmomente,
+# die sich sauber trennen lassen:
+#
+# 1. **Das Fenster der jüngsten Einreichungen ist zu klein.** Die
+#    submissions-Datei führt in `filings.recent` nur die letzten rund tausend
+#    Einreichungen; ältere liegen in ausgelagerten Blöcken unter
+#    `filings.files`. Großbanken reichen Hunderte von 8-K im Jahr ein – fast
+#    alle für Zertifikate und strukturierte Anleihen. Bei JPMorgan, Goldman
+#    Sachs oder Citigroup könnten die tausend jüngsten Einreichungen deshalb
+#    weniger als fünf Meldungen mit Punkt 2.02 enthalten, und dann entsteht
+#    kein Muster. Zu prüfen: Wie viele 2.02-Meldungen stecken im jungen Block,
+#    und wie viele ausgelagerte Blöcke gibt es?
+#
+# 2. **Ausländische Emittenten melden über 6-K.** SAP, ASML, Novo Nordisk,
+#    TSMC, Toyota und die übrigen ADR-Werte sind bei der SEC registriert,
+#    reichen aber kein 8-K ein. Das 6-K kennt keine Punktnummern – die Frage
+#    ist, ob sich Ergebnismeldungen an der Dokumentbeschreibung
+#    (`primaryDocDescription`) erkennen lassen. Wenn ja, ließe sich dieselbe
+#    Ableitung darauf anwenden. Wenn nein, bleibt die Lücke bestehen, und das
+#    gehört dann so auf die Seite.
 
 on:
   workflow_dispatch:
 
 jobs:
   abklopfen:
-    name: Kandidaten prüfen
+    name: SEC-Lücken bei den Quartalsterminen
     runs-on: ubuntu-latest
     steps:
-      - name: IWF – BIP, Einwohner und Kaufkraft je Kopf
-        run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          for reihe in NGDPD LP PPPPC NGDPDPC; do
-            code=$(curl -sS -L -A "$UA" --max-time 60 -o "/tmp/$reihe.json" -w '%{http_code}' \
-              "https://www.imf.org/external/datamapper/api/v1/$reihe" || echo 000)
-            echo "▶ $reihe → $code, $(stat -c%s /tmp/$reihe.json) Bytes"
-          done
-
-          python3 - <<'PY'
-          import json
-          for reihe, was in [('NGDPD','BIP in Mrd. USD'), ('LP','Einwohner in Mio.'),
-                             ('PPPPC','BIP je Kopf, kaufkraftbereinigt'),
-                             ('NGDPDPC','BIP je Kopf in USD')]:
-              try:
-                  d = json.load(open(f'/tmp/{reihe}.json'))
-              except Exception as fehler:
-                  print(f'  {reihe}: nicht lesbar ({fehler})')
-                  continue
-              werte = d.get('values', {}).get(reihe, {})
-              # Nur echte Ländercodes: drei Grossbuchstaben
-              laender = {k: v for k, v in werte.items() if len(k) == 3 and k.isupper()}
-              mit2025 = sum(1 for v in laender.values() if v.get('2025') is not None)
-              mit2024 = sum(1 for v in laender.values() if v.get('2024') is not None)
-              print(f'  {reihe:9} ({was}): {len(laender)} Codes, 2024: {mit2024}, 2025: {mit2025}')
-              beispiel = laender.get('NGA') or laender.get('KEN')
-              if beispiel:
-                  jahre = {j: beispiel[j] for j in ('2023','2024','2025') if j in beispiel}
-                  print(f'            Beispiel Nigeria/Kenia: {jahre}')
-          PY
-
-      - name: ILO – Verdienststatistik für Länder ausserhalb der OECD
-        run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          echo "── Welche Reihen gibt es? ──"
-          code=$(curl -sS -L -A "$UA" --max-time 60 -o /tmp/ilo_idx.json -w '%{http_code}' \
-            "https://rplumber.ilo.org/data/indicator/?id=EAR_4MTH_SEX_ECO_CUR_NB&format=json" || echo 000)
-          echo "rplumber EAR_4MTH → $code, $(stat -c%s /tmp/ilo_idx.json) Bytes"
-          head -c 400 /tmp/ilo_idx.json; echo ""
-
-          echo ""
-          echo "── Massendatei für mittlere Monatsverdienste ──"
-          for kennung in EAR_4MTH_SEX_ECO_CUR_NB EAR_XEES_SEX_ECO_NB EAR_4MTH_SEX_ECO_NB; do
-            code=$(curl -sS -L -A "$UA" --max-time 90 -o /tmp/ilo.csv.gz -w '%{http_code}' \
-              "https://www.ilo.org/sdmx/rest/data/ILO,DF_$kennung/all?format=csv" || echo 000)
-            echo "▶ SDMX $kennung → $code, $(stat -c%s /tmp/ilo.csv.gz) Bytes"
-            head -c 200 /tmp/ilo.csv.gz | tr -d '\0'; echo ""
-          done
-
-          echo ""
-          echo "── Weltbank: Lohn- und Einkommensreihen als Ersatz ──"
-          for ind in NY.GNP.PCAP.CD NY.GDP.PCAP.PP.CD SL.EMP.TOTL.SP.ZS; do
-            code=$(curl -sS -L -A "$UA" --max-time 60 -o /tmp/wb.json -w '%{http_code}' \
-              "https://api.worldbank.org/v2/country/all/indicator/$ind?format=json&per_page=400&date=2024" || echo 000)
-            echo "▶ Weltbank $ind → $code, $(stat -c%s /tmp/wb.json) Bytes"
-            python3 -c "
-          import json
-          try:
-              d = json.load(open('/tmp/wb.json'))
-              reihen = d[1] if isinstance(d, list) and len(d) > 1 and d[1] else []
-              mit = [r for r in reihen if r.get('value') is not None]
-              print(f'    {len(reihen)} Zeilen, davon {len(mit)} mit Wert')
-              for r in mit[:3]:
-                  print(f\"      {r['country']['value'][:24]:24} {r['value']}\")
-          except Exception as f:
-              print('    nicht lesbar:', f)
-          " || true
-          done
-
-      - name: SEC – die IFRS-Taxonomie für ausländische Emittenten
+      - name: Verdacht 1 – reicht der junge Block bei Vielmeldern?
         run: |
           UA="IM-Invests Datenabruf pm252543@gmail.com"
-          echo "── Umsatz nach IFRS für ein ganzes Jahr ──"
-          for tag in Revenue RevenueFromContractsWithCustomers ProfitLoss Equity; do
-            code=$(curl -sS -A "$UA" --max-time 90 -o /tmp/ifrs.json -w '%{http_code}' \
-              "https://data.sec.gov/api/xbrl/frames/ifrs-full/$tag/USD/CY2025.json" || echo 000)
-            groesse=$(stat -c%s /tmp/ifrs.json)
-            echo "▶ ifrs-full/$tag/USD/CY2025 → $code, $groesse Bytes"
-            if [ "$code" = "200" ]; then
-              python3 -c "
-          import json
-          d = json.load(open('/tmp/ifrs.json'))
-          daten = d.get('data', [])
-          print(f'    {len(daten)} Unternehmen')
-          for e in daten[:4]:
-              print(f\"      {str(e.get('entityName'))[:34]:34} {e.get('val'):>18,}\")
-          " || true
-            fi
+
+          # JPMorgan, Goldman Sachs, Citigroup, Bank of America, ExxonMobil,
+          # Morgan Stanley, BlackRock, Fiserv – alles US-Emittenten, die
+          # zweifelsfrei quartalsweise melden und trotzdem fehlen.
+          for eintrag in JPM:0000019617 GS:0000886982 C:0000831001 BAC:0000070858 \
+                         XOM:0000034088 MS:0000895421 BLK:0001364742 FI:0000798354; do
+            kuerzel=${eintrag%%:*}
+            cik=${eintrag##*:}
+            curl -sS -A "$UA" --max-time 90 -o "/tmp/$kuerzel.json" \
+              "https://data.sec.gov/submissions/CIK$cik.json" || echo "  $kuerzel: Abruf fehlgeschlagen"
           done
 
-          echo ""
-          echo "── Melden SAP, ASML und Novo Nordisk dort? ──"
-          curl -sS -A "$UA" --max-time 45 -o /tmp/tickers.json \
-            "https://www.sec.gov/files/company_tickers.json"
           python3 - <<'PY'
-          import json, urllib.request
-          kopf = {'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com'}
-          tickers = json.load(open('/tmp/tickers.json'))
-          nach_kuerzel = {e['ticker']: e['cik_str'] for e in tickers.values()}
-          for k in ('SAP', 'ASML', 'NVO', 'TSM', 'TM', 'STLA', 'RACE', 'BABA', 'UMC'):
-              cik = nach_kuerzel.get(k)
-              if not cik:
-                  print(f'  {k:5} nicht in der Kürzelliste')
-                  continue
-              url = f'https://data.sec.gov/api/xbrl/companyconcept/CIK{cik:010d}/ifrs-full/Revenue.json'
+          import json, glob, os, collections
+          for pfad in sorted(glob.glob('/tmp/*.json')):
+              kuerzel = os.path.basename(pfad)[:-5]
               try:
-                  with urllib.request.urlopen(urllib.request.Request(url, headers=kopf), timeout=45) as a:
-                      d = json.load(a)
-                  einheiten = d.get('units', {})
-                  waehrungen = ', '.join(einheiten)
-                  neueste = ''
-                  for w, eintraege in einheiten.items():
-                      jahre = [e for e in eintraege if e.get('form') in ('20-F', '10-K')]
-                      if jahre:
-                          j = max(jahre, key=lambda e: e['end'])
-                          neueste = f" – {j['end']}: {j['val']:,} {w}"
-                          break
-                  print(f'  {k:5} CIK {cik:>8}  Einheiten: {waehrungen}{neueste}')
+                  d = json.load(open(pfad))
               except Exception as fehler:
-                  print(f'  {k:5} CIK {cik:>8}  {fehler}')
+                  print(f'{kuerzel}: nicht lesbar ({fehler})'); continue
+              jung = d.get('filings', {}).get('recent', {})
+              formen = jung.get('form', [])
+              items = jung.get('items', [])
+              datum = jung.get('filingDate', [])
+              zweizweinull = [datum[i] for i in range(len(formen))
+                              if formen[i] == '8-K' and '2.02' in (items[i] or '')]
+              bloecke = d.get('filings', {}).get('files', [])
+              print(f'--- {kuerzel} ({d.get("name","?")})')
+              print(f'    Einreichungen im jungen Block: {len(formen)}'
+                    f'  Zeitraum: {datum[-1] if datum else "?"} bis {datum[0] if datum else "?"}')
+              print(f'    davon 8-K gesamt: {sum(1 for f in formen if f == "8-K")}'
+                    f'   mit Punkt 2.02: {len(zweizweinull)}')
+              print(f'    2.02-Termine: {zweizweinull[:8]}')
+              print(f'    ausgelagerte Blöcke: {len(bloecke)}'
+                    f' {[b.get("name") for b in bloecke[:3]]}')
           PY
 
-      # ------------------------------------------------------------------
-      # Quartalszahlen-Termine: Melden Unternehmen ihre Ergebnisse über 8-K?
-      #
-      # Gesucht ist der Tag der Ergebnisveröffentlichung, nicht der der
-      # Bilanzeinreichung – die liegt Tage bis Wochen später. Ein 8-K mit
-      # Item 2.02 („Results of Operations and Financial Condition“) ist genau
-      # die Pflichtmeldung zur Ergebnisveröffentlichung.
-      #
-      # Geprüft wird: Liefert die submissions-Schnittstelle diese Items, und
-      # ist das Muster über die Jahre stabil genug für eine Vorhersage?
-      - name: SEC – Ergebnistermine über 8-K Item 2.02
+      - name: Verdacht 2 – lassen sich 6-K-Ergebnismeldungen erkennen?
         run: |
-          for CIK in 0000320193 0000789019 0001018724 0000104169; do
-            echo "===== CIK $CIK"
-            curl -sS --max-time 40 \
-              -H "User-Agent: IM Invests Kalender kontakt@iminvests.de" \
-              "https://data.sec.gov/submissions/CIK$CIK.json" -o /tmp/sub.json || { echo "  Abruf fehlgeschlagen"; continue; }
-            python3 - <<'EOF'
-          import json
-          d=json.load(open('/tmp/sub.json'))
-          r=d['filings']['recent']
-          print('  Name:', d.get('name'))
-          treffer=[(r['filingDate'][i], r['reportDate'][i], r['items'][i])
-                   for i in range(len(r['form']))
-                   if r['form'][i]=='8-K' and '2.02' in (r['items'][i] or '')]
-          print('  8-K mit Item 2.02 im jüngsten Block:', len(treffer))
-          for t in treffer[:8]: print('   ', t[0], '| Berichtsperiode:', t[1] or '-')
-          print('  ältere Blöcke verfügbar:', len(d['filings'].get('files',[])))
-          EOF
-            sleep 1
+          UA="IM-Invests Datenabruf pm252543@gmail.com"
+          rm -f /tmp/*.json
+
+          # SAP, ASML, Novo Nordisk, TSMC, Toyota, Sony, Shell, AstraZeneca.
+          for eintrag in SAP:0001000184 ASML:0000937966 NVO:0000353278 TSM:0001046179 \
+                         TM:0000320193X SONY:0000313838 SHEL:0001306965 AZN:0000901832; do
+            kuerzel=${eintrag%%:*}
+            cik=${eintrag##*:}
+            case "$cik" in *X) continue;; esac
+            curl -sS -A "$UA" --max-time 90 -o "/tmp/$kuerzel.json" \
+              "https://data.sec.gov/submissions/CIK$cik.json" || echo "  $kuerzel: Abruf fehlgeschlagen"
           done
+
+          python3 - <<'PY'
+          import json, glob, os, collections, re
+          for pfad in sorted(glob.glob('/tmp/*.json')):
+              kuerzel = os.path.basename(pfad)[:-5]
+              try:
+                  d = json.load(open(pfad))
+              except Exception as fehler:
+                  print(f'{kuerzel}: nicht lesbar ({fehler})'); continue
+              jung = d.get('filings', {}).get('recent', {})
+              formen = jung.get('form', [])
+              datum = jung.get('filingDate', [])
+              beschreibung = jung.get('primaryDocDescription', [])
+              bericht = jung.get('reportDate', [])
+              print(f'--- {kuerzel} ({d.get("name","?")})')
+              print(f'    Formen: {collections.Counter(formen).most_common(6)}')
+              sechser = [(datum[i], (beschreibung[i] if i < len(beschreibung) else "") or "",
+                          (bericht[i] if i < len(bericht) else "") or "")
+                         for i in range(len(formen)) if formen[i] == '6-K']
+              print(f'    6-K gesamt: {len(sechser)}')
+              for tag, beschr, rep in sechser[:14]:
+                  print(f'      {tag}  report={rep or "-":10}  {beschr[:70]}')
+              # Wie viele tragen ein Ergebnis-Stichwort?
+              muster = re.compile(r'result|earning|quarter|interim|annual|financial|Q[1-4]', re.I)
+              treffer = [t for t, b, r in sechser if muster.search(b)]
+              print(f'    mit Ergebnis-Stichwort in der Beschreibung: {len(treffer)} → {treffer[:8]}')
+              # Wie oft ist ein reportDate gesetzt? Das wäre der bessere Anker.
+              mitReport = [t for t, b, r in sechser if r]
+              print(f'    mit reportDate: {len(mitReport)} → {mitReport[:8]}')
+          PY
