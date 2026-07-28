@@ -73,31 +73,23 @@ export const siteConfig = {
     },
   ],
   /**
-   * Der Google-Eintrag – Standort und Bewertung.
+   * Der Bewertungslink bei Google.
    *
    * ## Warum getrennt von `socialLinks`
    *
    * Nicht aus Ordnungsliebe, sondern weil `socialLinks` zusätzlich als `sameAs`
    * in die strukturierten Daten geht. `sameAs` bedeutet „dasselbe Unternehmen,
-   * anderswo“. Auf den Eintrag bei Google trifft das zu, auf das
-   * Bewertungsformular nicht: Das ist eine Handlung, kein zweites Profil. Beide
+   * anderswo“ – ein Bewertungsformular ist das nicht, sondern eine Handlung. Es
    * dort einzutragen hieße, einer Suchmaschine zu sagen, ein Eingabeformular sei
    * das Unternehmen.
    *
-   * ## Zu den Adressen
+   * ## Zur Adresse
    *
-   * Es sind Kurzlinks von Google. Der geteilte Maps-Link trug zusätzlich
-   * `?g_st=iw` – ein Vermerk, dass er aus der App heraus geteilt wurde. Nach der
-   * Regel über `socialLinks` ist er abgeschnitten: In einer dauerhaften
-   * Verlinkung haben solche Anhängsel nichts zu suchen.
-   *
-   * Ein Kurzlink ist hier vertretbar, aber nicht ideal – er lebt davon, dass der
-   * Weiterleitungsdienst bestehen bleibt. Liegt die ausgeschriebene Adresse vor
-   * (`https://www.google.com/maps/place/…`), gehört sie hierher und der
-   * Standort-Eintrag zusätzlich in `sameAs`.
+   * Ein Kurzlink von Google. Vertretbar, aber nicht ideal: Er lebt davon, dass
+   * der Weiterleitungsdienst bestehen bleibt. Liegt die ausgeschriebene Adresse
+   * vor, gehört sie hierher.
    */
   googleProfil: {
-    karte: 'https://maps.app.goo.gl/PyQJDJimAu3Bppmr5',
     bewertung: 'https://share.google/7Af3N45IIocqtDL9i',
   },
   /** Platzhalter-Handle für Twitter-Cards. */

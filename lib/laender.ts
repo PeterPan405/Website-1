@@ -16,6 +16,12 @@ import {
 import { ersatzschluessel, laendernamen } from '@/data/laender/namen'
 import { marketDefinitions, marketKindMeta, type MarketKind } from '@/data/markets'
 import { assertLaenderValid } from '@/lib/laender-validate'
+import {
+  passeAn,
+  schaetze,
+  typischerFehlerProzent,
+  type Beobachtung,
+} from '@/lib/schaetzung'
 
 /**
  * Service-Schicht für den Globus.
@@ -249,6 +255,41 @@ export const WELTBANK_QUELLE = daten.quelle
   liest – die Anzeige gehört `data/laender/kennzahlen.ts`.
 */
 
+/**
+ * Das Lohnmodell, angepasst an die Länder mit gemessenem Lohn.
+ *
+ * Einmal beim Laden des Moduls, nicht je Land: Die Anpassung ist für alle
+ * dieselbe, und die Fehlermessung durch Weglassen kostet knapp vierzig
+ * Regressionen. Beides je Aufruf zu wiederholen wäre Verschwendung – und
+ * schlimmer, es könnte je nach Aufrufreihenfolge verschiedene Ergebnisse
+ * liefern.
+ *
+ * Die Güte wird mitgeführt, weil sie auf die Seite gehört. Eine Schätzung ohne
+ * Angabe, wie weit sie danebenliegt, ist eine Behauptung.
+ */
+export const lohnSchaetzung = (() => {
+  const beobachtungen: Beobachtung[] = Object.values(daten.laender)
+    .filter((land) => land.durchschnittsgehalt && land.bipProKopfKKP)
+    .map((land) => ({
+      x: land.bipProKopfKKP!.wert,
+      y: land.durchschnittsgehalt!.wert,
+    }))
+
+  const modell = passeAn(beobachtungen)
+  const fehlerProzent = typischerFehlerProzent(beobachtungen)
+
+  return {
+    modell,
+    fehlerProzent,
+    /** Der geschätzte Lohn zu einem Einkommen, auf volle Dollar gerundet. */
+    fuer(einkommenJeKopf: number | undefined): number | null {
+      if (!modell || einkommenJeKopf === undefined) return null
+      const wert = schaetze(modell, einkommenJeKopf)
+      return wert === null ? null : Math.round(wert)
+    },
+  }
+})()
+
 function kursZu(symbol: string): Landeskurs | null {
   const definition = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)
   if (!definition) return null
@@ -354,8 +395,26 @@ function baueLaender(): Land[] {
             },
           }
         }
-        return durchschnittsgehalt[id]
-          ? { durchschnittsgehalt: durchschnittsgehalt[id] }
+        if (durchschnittsgehalt[id]) {
+          return { durchschnittsgehalt: durchschnittsgehalt[id] }
+        }
+        /*
+          Zuletzt die Schätzung – nur in die Lücke, nie über einen Messwert.
+
+          Sie steht bewusst am Ende dieser Kette: erst der Abruf, dann die
+          Handpflege, dann die Rechnung. Und sie trägt eine eigene
+          Quellenangabe, damit auf der Tafel zu sehen ist, dass hier gerechnet
+          und nicht gemessen wurde.
+        */
+        const geschaetzt = lohnSchaetzung.fuer(basis?.bipProKopfKKP?.wert)
+        return geschaetzt !== null
+          ? {
+              durchschnittsgehalt: {
+                wert: geschaetzt,
+                zeitraum: String(basis?.bipProKopfKKP?.jahr ?? WELTBANK_JAHR),
+                quelle: 'geschaetzt-kaufkraft',
+              },
+            }
           : {}
       })(),
       /*
@@ -437,12 +496,14 @@ assertLaenderValid({
   kennzahlen: { schuldenquote, durchschnittsgehalt, medianvermoegen },
   quellen: kennzahlenQuellen,
   ersatzschluessel,
-  // Werden nicht in `kennzahlen` gesetzt, sondern aus der Momentaufnahme.
+  // Werden nicht in `kennzahlen` gesetzt, sondern aus der Momentaufnahme –
+  // die letzte nicht einmal von dort, sondern aus der Rechnung darüber.
   dynamischeQuellen: [
     'imf-datamapper',
     'oecd-sdmx',
     'oecd-vermoegen',
     'weltbank-einkommen',
+    'geschaetzt-kaufkraft',
   ],
 })
 

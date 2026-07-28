@@ -7,6 +7,7 @@ import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { formatNumber } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
 import {
   WELTBANK_JAHR,
@@ -15,6 +16,7 @@ import {
   getLaender,
   getQuellen,
   getUebernationaleKurse,
+  lohnSchaetzung,
   metriken,
 } from '@/lib/laender'
 import { getTopicsBySlugs } from '@/lib/learn'
@@ -170,6 +172,33 @@ export default async function GlobusPage() {
             <code className="text-xs">world-atlas</code> unter ISC-Lizenz. Jeder Wert
             trägt in der Detailtafel seinen eigenen Zeitraum und seine eigene Quelle.
           </p>
+
+          {/*
+            Die Güte der Schätzung gehört auf die Seite, nicht nur in den Code.
+
+            Ein geschätzter Wert ohne Angabe, wie weit er danebenliegt, ist eine
+            Behauptung. Die Zahlen kommen aus derselben Rechnung, die die
+            Schätzung erzeugt – getippt wäre der Fehler beim nächsten Datenstand
+            falsch, und zwar unbemerkt.
+          */}
+          {lohnSchaetzung.modell && lohnSchaetzung.fehlerProzent !== null && (
+            <p className="text-fg-subtle mt-3 max-w-3xl text-sm leading-relaxed">
+              <strong className="text-fg-muted font-semibold">
+                Zum Durchschnittsgehalt:
+              </strong>{' '}
+              Die OECD erhebt es nur bei ihren {lohnSchaetzung.modell.beobachtungen}{' '}
+              Mitgliedern. Für die übrigen Länder steht dort eine{' '}
+              <strong className="text-fg-muted font-semibold">Schätzung</strong> – aus dem
+              Verhältnis von Lohn zu Wirtschaftsleistung je Kopf in genau diesen{' '}
+              {lohnSchaetzung.modell.beobachtungen} Ländern, beides kaufkraftbereinigt.
+              Lässt man eines davon aus der Rechnung und schätzt es aus den übrigen, liegt
+              das Ergebnis typischerweise {formatNumber(lohnSchaetzung.fehlerProzent, 1)}{' '}
+              Prozent daneben. In der Detailtafel ist jeder geschätzte Wert als solcher
+              ausgewiesen; wo ein gemessener vorliegt, gilt immer er. Für das
+              Medianvermögen wird ausdrücklich nicht geschätzt – dort reicht die
+              Datengrundlage nicht über die reichen Länder hinaus.
+            </p>
+          )}
         </section>
 
         <div className="mt-16">
