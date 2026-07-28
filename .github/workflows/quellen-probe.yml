@@ -86,6 +86,45 @@ name: Quellen abklopfen
 # Abruf: Welche Groessen liegen vor, in welcher Waehrung, unter welcher
 # Rechnungslegung. Das Ergebnis ist eine Vorlage zum Durchsehen, keine Tabelle
 # zum Uebernehmen – eine falsche Zuordnung faellt spaeter niemandem auf.
+#
+# **Ergebnis vom 28. Juli 2026: 114 Fundstellen, davon 81 uebernommen.** Der
+# Rest waren Namensverwechslungen (Merck KGaA gegen Merck & Co., Tencent gegen
+# Tencent Music, Reliance Industries gegen einen Stahlhaendler in Los Angeles).
+# Eingebaut in `scripts/fundamentaldaten-abrufen.ts`; die Abdeckung stieg damit
+# von rund 150 auf 216 der 529 Aktien.
+#
+# ## ESEF: geht, und deckt Europa ab
+#
+# Fuer die verbliebenen 287 Werte ohne SEC-Meldung wurde `filings.xbrl.org`
+# geprueft – das offene Verzeichnis, das XBRL International ueber die
+# ESEF-Pflichtmeldungen der EU fuehrt. Seit dem Geschaeftsjahr 2021 muss jeder
+# Emittent an einem geregelten EU-Markt seinen Konzernabschluss maschinenlesbar
+# abgeben, ausgezeichnet nach `ifrs-full` – derselben Taxonomie, aus der dieses
+# Projekt bereits die IFRS-Melder der SEC liest.
+#
+# **Ergebnis: Das Verzeichnis fuehrt 3.895 Unternehmen, 98 davon lassen sich
+# den hier fehlenden Werten zuordnen.** Darunter Airbus, L'Oreal, AXA, BNP
+# Paribas, Danone, Kering, Thales, Enel, Intesa Sanpaolo, UniCredit, Oersted,
+# Vestas, Atlas Copco, Nordea, Kone, Erste Group und OMV.
+#
+# Damit ist die Quelle bestaetigt, aber noch nicht eingebaut. Was dafuer fehlt:
+# je Unternehmen den Abschluss unter `json_url` holen, die Groessen aus den
+# xBRL-JSON-Fakten lesen und die Zuordnung von Hand durchsehen. Die
+# Kandidatenliste liegt als Artefakt am Lauf.
+#
+# Zu erwarten sind etwa 70 bis 80 gesicherte Zuordnungen: In der Liste stehen
+# dieselben Arten von Verwechslung wie bei der SEC – Roche traf ROCHE BOBOIS
+# (ein Moebelhaus), Nestle die US-Finanzierungstochter, Volvo die davon
+# getrennte Volvo Car, SK Hynix die SK Telecom.
+#
+# ## Was auch ESEF nicht abdeckt
+#
+# Deutsche Werte fehlen fast vollstaendig – Allianz, BMW, BASF, Bayer, die
+# Deutsche Telekom stehen nicht im Verzeichnis; ihre Meldungen gehen an den
+# Bundesanzeiger und tauchen dort nicht auf. Ausserhalb der EU gilt die Pflicht
+# ohnehin nicht: Japan (EDINET), Korea (DART), Indien, Taiwan und Hongkong
+# haetten jeweils eine eigene Aufsicht mit eigenem Format und teils
+# Registrierungspflicht. Das sind zusammen rund 190 der 529 Aktien.
 
 on:
   workflow_dispatch:
