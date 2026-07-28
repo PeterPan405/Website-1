@@ -43,15 +43,38 @@ export function PriceArea({
   const values = points.map((point) => point.value)
   const [min, max] = paddedDomain(values)
 
-  // Bei vielen Punkten nur jeden n-ten beschriften, sonst überlappen die Labels.
-  const tickInterval = Math.max(0, Math.floor(points.length / 6) - 1)
+  /*
+    Die Beschriftung der Zeitachse überlässt die Auswahl dem Diagramm.
+
+    Vorher stand hier ein fester Abstand: jeder n-te Punkt, gerechnet als
+    `points.length / 6`. Sechs Beschriftungen passen auf einen Bildschirm,
+    aber nicht auf ein Telefon – dort blieben nach Abzug der Werteachse rund
+    230 Pixel für sechsmal „09.2025“, und die Angaben lagen übereinander. Auf
+    dem Handy war die Zeitachse damit unlesbar.
+
+    Ein fester Zahlenwert bei `interval` schaltet in Recharts außerdem die
+    Kollisionsprüfung ab: `minTickGap` wird dann gar nicht ausgewertet. Mit
+    `preserveStartEnd` misst das Diagramm die Beschriftungen selbst und lässt
+    so viele weg, wie nötig sind – auf dem Telefon drei, auf dem Bildschirm
+    acht. Anfang und Ende bleiben in jedem Fall stehen, denn sie sagen, worauf
+    sich die Prozentangabe darüber bezieht.
+  */
+  const MINDESTABSTAND = 30
 
   return (
     <div style={{ height }} className="w-full">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={points as SeriesPoint[]}
-          margin={{ top: 8, right: 8, bottom: 0, left: 0 }}
+          /*
+            Links Platz für die halbe erste Datumsangabe.
+
+            Beschriftungen der Zeitachse stehen mittig über ihrem Punkt. Der
+            erste Punkt liegt am linken Rand – ohne diesen Abstand wird die
+            linke Hälfte von „27.07.2025“ abgeschnitten. Rechts entsteht der
+            Platz von selbst, weil dort die Werteachse steht.
+          */
+          margin={{ top: 8, right: 8, bottom: 0, left: 28 }}
         >
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -65,9 +88,9 @@ export function PriceArea({
           <XAxis
             dataKey="t"
             {...axisProps}
-            interval={tickInterval}
+            interval="preserveStartEnd"
             tickFormatter={formatAxisLabel}
-            minTickGap={16}
+            minTickGap={MINDESTABSTAND}
           />
           <YAxis
             {...axisProps}
