@@ -22,6 +22,7 @@ import {
   MASSSTAB_AKTIEN,
   MASSSTAB_KRYPTO,
   berechneStimmung,
+  stimmungAm,
   type Kurspunkt,
   type Stimmung,
 } from '@/lib/stimmungsindex'
@@ -426,9 +427,9 @@ export async function getDataCoverage(): Promise<{ from: string; to: string }> {
  * Der Leitkurs ist das erste Instrument der Liste, das echte Daten hat – für
  * Aktien der breiteste verfügbare Index, für Krypto Bitcoin.
  */
-export async function getMarktstimmung(
-  bereich: 'aktien' | 'krypto'
-): Promise<Stimmung | null> {
+export type Marktbereich = 'aktien' | 'krypto'
+
+export async function getMarktstimmung(bereich: Marktbereich): Promise<Stimmung | null> {
   const leitkandidaten =
     bereich === 'aktien'
       ? ['sp500', 'msci-world', 'nasdaq-100', 'dax']
@@ -457,6 +458,139 @@ export async function getMarktstimmung(
     einzelreihen,
     bereich === 'aktien' ? MASSSTAB_AKTIEN : MASSSTAB_KRYPTO
   )
+}
+
+/**
+ * Die Reihen, aus denen die Stimmung eines Bereichs entsteht.
+ *
+ * Herausgezogen, weil der Verlauf dieselben braucht. Stünden sie zweimal da,
+ * könnte der Verlauf irgendwann auf einem anderen Leitkurs beruhen als der
+ * Wert darüber – und das wäre nicht zu sehen.
+ */
+function stimmungsgrundlage(bereich: Marktbereich): {
+  leit: MarketDefinition
+  leitreihe: Kurspunkt[]
+  einzelreihen: Kurspunkt[][]
+  massstab: typeof MASSSTAB_AKTIEN
+} | null {
+  const leitkandidaten =
+    bereich === 'aktien'
+      ? ['sp500', 'msci-world', 'nasdaq-100', 'dax']
+      : ['bitcoin', 'ethereum']
+
+  const mitEchtenDaten = (definition: MarketDefinition) =>
+    basisFor(definition).source !== null
+
+  const leit = leitkandidaten
+    .map((symbol) => findDefinition(symbol))
+    .find(
+      (definition): definition is MarketDefinition =>
+        definition !== undefined && definition !== null && mitEchtenDaten(definition)
+    )
+  if (!leit) return null
+
+  const arten: MarketInstrument['kind'][] =
+    bereich === 'aktien' ? ['stock', 'index'] : ['crypto']
+
+  return {
+    leit,
+    leitreihe: zuKurspunkten(basisFor(leit).daily),
+    einzelreihen: marketDefinitions
+      .filter((d) => arten.includes(d.kind) && mitEchtenDaten(d))
+      .map((d) => zuKurspunkten(basisFor(d).daily)),
+    massstab: bereich === 'aktien' ? MASSSTAB_AKTIEN : MASSSTAB_KRYPTO,
+  }
+}
+
+/** Ein Stichtag im Verlauf. */
+export interface Stimmungsstand {
+  /** Beschriftung, etwa „vor einer Woche“. */
+  label: string
+  /** Der Handelstag, auf den gerechnet wurde. */
+  datum: string
+  /**
+   * `null`, wenn die Kursreihe am Stichtag noch wöchentlich war.
+   *
+   * Das ist kein Fehler, sondern der Kern der Sache: Das Tagesarchiv beginnt
+   * mit dem ersten eigenen Abruf. Vorher lägen der Rechnung Wochenwerte
+   * zugrunde, und das Ergebnis wäre mit dem heutigen nicht vergleichbar.
+   */
+  stimmung: Stimmung | null
+}
+
+export interface Stimmungsverlauf {
+  jetzt: Stimmung
+  /** Der Handelstag, auf den sich `jetzt` bezieht. */
+  stand: string
+  frueher: Stimmungsstand[]
+  /** Woran gerechnet wurde – gehört sichtbar auf die Seite. */
+  leitkurs: { symbol: string; name: string }
+  /** Wie viele Einzelreihen in die Marktbreite eingehen. */
+  einzelwerte: number
+}
+
+/** Ein ISO-Datum um Tage / Monate / Jahre zurückversetzen. */
+function zurueck(iso: string, teil: 'tage' | 'monate' | 'jahre', menge: number): string {
+  const datum = new Date(`${iso}T00:00:00Z`)
+  if (teil === 'tage') datum.setUTCDate(datum.getUTCDate() - menge)
+  if (teil === 'monate') datum.setUTCMonth(datum.getUTCMonth() - menge)
+  if (teil === 'jahre') datum.setUTCFullYear(datum.getUTCFullYear() - menge)
+  return datum.toISOString().slice(0, 10)
+}
+
+/**
+ * Angst und Gier über die Zeit – heute und an vier früheren Stichtagen.
+ *
+ * ## Warum kein Archiv nötig ist
+ *
+ * Die Werte werden nicht nachgeschlagen, sondern erneut gerechnet: dieselbe
+ * Funktion, dieselben Reihen, nur am Stichtag abgeschnitten. Dadurch gibt es
+ * den Verlauf ab dem ersten Tag, ohne dass jemals jemand einen Wert
+ * gespeichert hätte – und er kann nicht nach einem anderen Verfahren
+ * entstanden sein als die Zahl darüber.
+ *
+ * Der Preis dafür steht in `stimmungAm`: Wo die Kursreihe damals nur
+ * wöchentlich war, kommt kein Wert. Die Seite zeigt dann die Lücke samt Grund,
+ * statt eine Zahl zu erfinden.
+ */
+export async function getStimmungsverlauf(
+  bereich: Marktbereich
+): Promise<Stimmungsverlauf | null> {
+  const grundlage = stimmungsgrundlage(bereich)
+  if (!grundlage) return null
+
+  const { leit, leitreihe, einzelreihen, massstab } = grundlage
+  const jetzt = berechneStimmung(leitreihe, einzelreihen, massstab)
+  if (!jetzt) return null
+
+  const letzter = leitreihe[leitreihe.length - 1]?.d
+  const vorletzter = leitreihe[leitreihe.length - 2]?.d
+  if (!letzter || !vorletzter) return null
+
+  /*
+    Dieselben vier Stufen, die man von solchen Anzeigen kennt.
+
+    „Vorheriger Schluss“ ist ausdrücklich der vorherige *Handelstag*, nicht
+    gestern: Am Montag wäre gestern ein Sonntag, an dem die Börse zu hatte.
+  */
+  const stichtage: { label: string; datum: string }[] = [
+    { label: 'Vorheriger Schluss', datum: vorletzter },
+    { label: 'Vor einer Woche', datum: zurueck(letzter, 'tage', 7) },
+    { label: 'Vor einem Monat', datum: zurueck(letzter, 'monate', 1) },
+    { label: 'Vor einem Jahr', datum: zurueck(letzter, 'jahre', 1) },
+  ]
+
+  return {
+    jetzt,
+    stand: letzter,
+    leitkurs: { symbol: leit.symbol, name: leit.name },
+    einzelwerte: einzelreihen.length,
+    frueher: stichtage.map(({ label, datum }) => ({
+      label,
+      datum,
+      stimmung: stimmungAm(leitreihe, einzelreihen, massstab, datum),
+    })),
+  }
 }
 
 /**

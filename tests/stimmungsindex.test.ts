@@ -24,7 +24,11 @@ import {
   schwankung,
   schwankungsverhaeltnis,
   standInJahresspanne,
+  stimmungAm,
   stufeFuer,
+  bisStichtag,
+  istTagesreihe,
+  tageZwischen,
   type Kurspunkt,
 } from '../lib/stimmungsindex.ts'
 
@@ -281,6 +285,97 @@ pruefe(
   'derselbe Verlauf wirkt bei Aktien gieriger als bei Krypto',
   (alsAktie?.wert ?? 0) > (alsKrypto?.wert ?? 0)
 )
+
+// ------------------------------------------------ Stand zu einem Stichtag
+
+/**
+ * Eine Reihe mit echten, fortlaufenden Datumsangaben.
+ *
+ * Die Hilfsfunktion weiter oben lässt Datumsangaben absichtlich kreisen –
+ * für die reinen Rechenprüfungen ist das gleichgültig. Hier ist es das nicht:
+ * Geprüft wird gerade, was der Abstand der Tage bedeutet.
+ */
+function datumsreihe(
+  anzahl: number,
+  abstandTage: number,
+  bis = '2026-07-28'
+): Kurspunkt[] {
+  const punkte: Kurspunkt[] = []
+  const ende = Date.parse(`${bis}T00:00:00Z`)
+  for (let i = anzahl - 1; i >= 0; i -= 1) {
+    const tag = new Date(ende - i * abstandTage * 86_400_000)
+    punkte.push({ d: tag.toISOString().slice(0, 10), c: 100 + (i % 7) })
+  }
+  return punkte
+}
+
+console.log('\n— Stand zu einem Stichtag —')
+
+check('Tage zwischen zwei Daten', tageZwischen('2026-07-01', '2026-07-28'), 27)
+check('über den Monatswechsel', tageZwischen('2026-06-28', '2026-07-28'), 30)
+check('unbrauchbare Eingabe ergibt null', tageZwischen('gestern', '2026-07-28'), null)
+
+/*
+  Der Kern der Sache: Eine Wochenreihe darf nicht als Tagesreihe durchgehen.
+
+  Genau daran hängt, ob der Verlauf ehrlich ist. 250 Wochenpunkte umfassen
+  fast fünf Jahre; „der Durchschnitt der letzten 125 Punkte“ wäre dann kein
+  halbes Jahr, sondern über zwei. Die Zahl käme heraus und wäre falsch.
+*/
+pruefe('250 Tagespunkte gelten als Tagesreihe', istTagesreihe(datumsreihe(250, 1)))
+pruefe(
+  'Handelstage mit Wochenenden ebenfalls',
+  // 250 Handelstage liegen über rund 350 Kalendertagen – Faktor 1,4.
+  istTagesreihe(datumsreihe(250, 1.4))
+)
+pruefe('250 Wochenpunkte nicht', !istTagesreihe(datumsreihe(250, 7)))
+pruefe('eine zu kurze Reihe nicht', !istTagesreihe(datumsreihe(120, 1)))
+
+check(
+  'bis zum Stichtag abschneiden',
+  bisStichtag(datumsreihe(10, 1), '2026-07-25').length,
+  7
+)
+check(
+  'ein Stichtag vor der Reihe lässt nichts übrig',
+  bisStichtag(datumsreihe(10, 1), '2020-01-01').length,
+  0
+)
+
+/*
+  Auf einer Wochenreihe gibt es keinen Verlauf – auch dann nicht, wenn genug
+  Punkte da sind. Das ist die Sperre, die verhindert, dass die Seite eine Zahl
+  zeigt, die anders zustande kam als die daneben.
+*/
+check(
+  'auf einer Wochenreihe kommt null',
+  stimmungAm(datumsreihe(300, 7), [], MASSSTAB_AKTIEN, '2026-07-28'),
+  null
+)
+
+{
+  /*
+    Und die Gegenprobe: Auf einer Tagesreihe kommt ein Wert – und zwar
+    derselbe, den `berechneStimmung` für die abgeschnittene Reihe liefert.
+    Ein Verlauf, der anders rechnet als der Tacho darüber, wäre wertlos.
+  */
+  const lang = datumsreihe(400, 1)
+  const stichtag = lang[lang.length - 30].d
+  const ueberVerlauf = stimmungAm(lang, [], MASSSTAB_AKTIEN, stichtag)
+  const direkt = berechneStimmung(bisStichtag(lang, stichtag), [], MASSSTAB_AKTIEN)
+  pruefe('auf einer Tagesreihe kommt ein Wert', ueberVerlauf !== null)
+  check('und es ist derselbe wie ohne Umweg', ueberVerlauf?.wert, direkt?.wert)
+}
+
+{
+  // Ein Stichtag ohne genug Vorlauf ergibt null statt eines dünnen Werts.
+  const kurz = datumsreihe(400, 1)
+  check(
+    'zu wenig Vorlauf ergibt null',
+    stimmungAm(kurz, [], MASSSTAB_AKTIEN, kurz[100].d),
+    null
+  )
+}
 
 console.log(
   failed === 0 ? '\nAlle Pruefungen bestanden' : `\n${failed} Pruefung(en) fehlgeschlagen`
