@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    168 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    180 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -2221,6 +2221,168 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 0,
       explanation:
         'Die Regel stammt aus einer Untersuchung des US-Marktes über historische Dreißigjahreszeiträume. Andere Märkte, andere Zeiträume und ein längerer Ruhestand führen zu anderen Ergebnissen. Wer sie benutzt, sollte die Entnahme in schlechten Jahren nach unten anpassen können.',
+    },
+  ],
+
+  // ------------------------------------------------------- Anlegerpsychologie
+  'anlegerpsychologie:beginner': [
+    {
+      question:
+        'Ein Depot ist um 50 Prozent gefallen. Welcher Anstieg bringt es zurück auf den Ausgangswert?',
+      options: [
+        '100 Prozent – der Anstieg wirkt nur noch auf den halbierten Bestand',
+        '50 Prozent – Rückgang und Anstieg heben sich auf',
+        '75 Prozent, weil zwischenzeitliche Zinsen mitwirken',
+        'Das lässt sich ohne Kenntnis des Ausgangsbetrags nicht sagen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Aus 100 werden 50. Um von 50 zurück auf 100 zu kommen, braucht es eine Verdopplung. Rückgang und Erholung sind nie gleich groß, weil der Anstieg auf einen kleineren Bestand wirkt – das ist Prozentrechnung und der sachliche Kern hinter dem Gefühl, dass Verluste schwerer wiegen.',
+    },
+    {
+      question: 'Was beschreibt der Dispositionseffekt?',
+      options: [
+        'Die Neigung, das Depot nach einem Verlust häufiger zu prüfen',
+        'Die Neigung, Gewinner zu früh zu verkaufen und Verlierer zu lange zu halten',
+        'Die Bevorzugung von Aktien aus dem eigenen Land',
+        'Die Neigung, nach guten Jahren die Sparrate zu erhöhen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Verkauf eines Gewinners bestätigt eine gute Entscheidung, der Verkauf eines Verlierers macht den Fehler endgültig. Gehandelt wird also nach dem Bedürfnis, sich nichts eingestehen zu müssen – nicht nach einer Einschätzung dessen, was die Papiere künftig tun.',
+    },
+    {
+      question:
+        'Welche Rolle spielt der eigene Einstandskurs für die Frage, ob eine Anlage heute gehalten werden sollte?',
+      options: [
+        'Er ist die wichtigste Größe, weil unterhalb davon nicht verkauft werden sollte',
+        'Er bestimmt, ab wann ein Verkauf steuerlich sinnvoll wird',
+        'Er ist eine sinnvolle Untergrenze für Verkaufsentscheidungen',
+        'Keine – für die künftige Entwicklung ist er bedeutungslos',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Was du bezahlt hast, weiß der Markt nicht und beeinflusst die künftige Entwicklung nicht. Der Einstandskurs wirkt trotzdem als Anker: „erst wieder bei null verkaufen“ ist eine der teuersten Regeln überhaupt, weil sie an einer Zahl festhält, die nur in der eigenen Buchhaltung existiert.',
+    },
+    {
+      question: 'Warum schützt das Wissen über Denkfehler allein nicht vor ihnen?',
+      options: [
+        'Weil die Muster unter Stress trotzdem greifen – wirksam sind nur vorher festgelegte Regeln',
+        'Weil die Forschungsergebnisse für Privatanleger nicht gelten',
+        'Weil die Muster nur bei kurzfristigen Anlagen auftreten',
+        'Weil sie sich mit genügend Erfahrung vollständig abtrainieren lassen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer die Muster kennt, kann sie hinterher benennen. Im Moment fallender Kurse greifen sie trotzdem, weil sie schnell und unbewusst wirken. Deshalb setzt alles Wirksame vorher an: eine schriftliche Regel oder ein Sparplan trifft die Entscheidung, solange nichts passiert ist.',
+    },
+  ],
+
+  'anlegerpsychologie:fortgeschritten': [
+    {
+      question: 'Was ist mit „mentaler Buchführung“ gemeint?',
+      options: [
+        'Das Führen eines Anlagetagebuchs mit Datum und Begründung',
+        'Die getrennte Erfassung von Kursgewinnen und Ausschüttungen im Depot',
+        'Dass Geld je nach Herkunft in getrennten Schubladen behandelt wird, statt in einer Gesamtrechnung',
+        'Die Aufteilung des Vermögens auf mehrere Banken',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Euro ist ein Euro, egal ob geerbt, gewonnen oder erspart. Die mentale Buchführung trennt ihn trotzdem – und erzeugt Entscheidungen wie einen Kredit zu acht Prozent zu bedienen, während Tagesgeld zu zwei Prozent danebenliegt. Über beide Schubladen zusammen gerechnet wäre der Fall eindeutig.',
+    },
+    {
+      question:
+        'Warum ist es riskant, größere Bestände an Aktien des eigenen Arbeitgebers zu halten?',
+      options: [
+        'Weil Mitarbeiteraktien höher besteuert werden als andere Aktien',
+        'Weil Einkommen und Vermögen dann am selben Unternehmen hängen und gemeinsam ausfallen können',
+        'Weil sie in der Regel schlechter abschneiden als der Gesamtmarkt',
+        'Weil sie nicht über das eigene Depot gehandelt werden dürfen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Gerät der Arbeitgeber in Schwierigkeiten, fallen Gehalt und Depotwert gleichzeitig – also genau dann, wenn Rücklagen gebraucht würden. Der Rabatt auf Mitarbeiteraktien ist ein echter Vorteil und rechtfertigt den Kauf; er rechtfertigt nicht, den Bestand dauerhaft aufzubauen.',
+    },
+    {
+      question:
+        'Untersuchungen finden zwischen der Fondsrendite und dem Ergebnis der Anleger meist rund einen Prozentpunkt pro Jahr Unterschied. Woher stammt diese Lücke?',
+      options: [
+        'Aus den laufenden Kosten des Fonds, die in der Wertentwicklung nicht enthalten sind',
+        'Aus Währungseffekten bei international anlegenden Fonds',
+        'Aus der Abgeltungsteuer auf Ausschüttungen',
+        'Aus den Zeitpunkten der Ein- und Ausstiege: Es wird nach Anstiegen gekauft und nach Rückgängen verkauft',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Verglichen wird dieselbe Anlage mit sich selbst: die Wertentwicklung des Fonds gegen die tatsächlich erzielte Rendite seiner Anleger. Die Kosten stecken in beiden Zahlen. Was übrig bleibt, ist das Verhalten – und über eine Ansparzeit kostet ein Prozentpunkt einen erheblichen Teil des Endergebnisses.',
+    },
+    {
+      question: 'Warum wird empfohlen, seltener ins Depot zu schauen?',
+      options: [
+        'Weil häufiges Nachsehen mehr rote Tage zeigt und dadurch Handlungsdruck ohne neue Information erzeugt',
+        'Weil jeder Depotaufruf Gebühren beim Broker auslöst',
+        'Weil Kurse erst mit Verzögerung korrekt angezeigt werden',
+        'Weil man sonst den optimalen Verkaufszeitpunkt verpasst',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei täglicher Betrachtung ist etwa die Hälfte aller Tage negativ, bei jährlicher deutlich weniger. Der Informationsgehalt eines einzelnen Tages ist für einen langfristigen Anleger gleich null – der emotionale Gehalt nicht. Mehr Blicke führen nachweislich zu mehr Handel, und mehr Handel kostet.',
+    },
+  ],
+
+  'anlegerpsychologie:profi': [
+    {
+      question:
+        'Warum heben sich individuelle Denkfehler im Markt nicht gegenseitig auf?',
+      options: [
+        'Weil professionelle Anleger sie gezielt verstärken',
+        'Weil sie gleichgerichtet auftreten – Menschen werden zur selben Zeit optimistisch',
+        'Weil es zu wenige Marktteilnehmer für einen Ausgleich gibt',
+        'Weil Kurse nur von institutionellen Anlegern bestimmt werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Zufällig verteilte Fehler würden sich im Durchschnitt ausgleichen. Verhaltensmuster sind aber synchron: Dieselben Nachrichten erzeugen bei vielen dieselbe Reaktion. Aus einem individuellen Muster wird dadurch eine Marktbewegung – und mit Kredit im Spiel eine selbstverstärkende.',
+    },
+    {
+      question:
+        'Warum lassen sich dokumentierte Anomalien wie Momentum in der Praxis oft nicht in Rendite umsetzen?',
+      options: [
+        'Weil sie nur an US-Börsen auftreten',
+        'Weil Privatanleger die nötigen Daten nicht bekommen',
+        'Weil sie nach Veröffentlichung schwächer werden und Handelskosten, Steuern und lange Durststrecken den Rest aufzehren',
+        'Weil sie inzwischen als statistische Artefakte widerlegt sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Folgt genug Kapital einem beschriebenen Effekt, verschwindet der Vorsprung, dem es folgt. Was bleibt, wird von Spread, Gebühren und Abgeltungsteuer auf jeden realisierten Gewinn aufgebraucht. Und eine Strategie, die zehn Jahre zurückliegt, geben fast alle vorher auf – wieder aus psychologischen Gründen.',
+    },
+    {
+      question:
+        'Die Verhaltensökonomie hat die strenge Effizienzmarkthypothese widerlegt. Was folgt daraus praktisch?',
+      options: [
+        'Wenig: Ein Markt kann unvollkommen und trotzdem schwer zu schlagen sein, weil die Abweichungen klein und teuer zu handeln sind',
+        'Dass aktives Handeln für Privatanleger nun systematisch überlegen ist',
+        'Dass Indexanlagen ihre Berechtigung verloren haben',
+        'Dass Kurse keinerlei Informationsgehalt besitzen',
+      ],
+      correctIndex: 0,
+      explanation:
+        '„Nicht vollkommen effizient“ ist nicht dasselbe wie „leicht auszunutzen“. Die nachgewiesenen Abweichungen sind klein, unbeständig und verursachen im Handel Kosten. Für die Praxis bleibt die Schlussfolgerung deshalb dieselbe wie unter der strengen Hypothese.',
+    },
+    {
+      question:
+        'Warum macht der Rückschaufehler die eigene Selbsteinschätzung unbrauchbar?',
+      options: [
+        'Weil sich frühere Kurse im Nachhinein nicht mehr abrufen lassen',
+        'Weil Verluste stärker erinnert werden als Gewinne',
+        'Weil er nur bei sehr langen Anlagezeiträumen auftritt',
+        'Weil der Verlauf im Nachhinein naheliegend erscheint und die damalige Unsicherheit aus der Erinnerung verschwindet',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Rückschaufehler vernichtet die Beweise: Er verändert die Erinnerung an das, was man vorher dachte. Wer sich fragt, ob er Märkte einschätzen kann, befragt damit eine bereits angepasste Erinnerung. Prüfbar wird eine Einschätzung nur, wenn sie vor dem Ereignis mit Datum notiert wurde.',
     },
   ],
 }

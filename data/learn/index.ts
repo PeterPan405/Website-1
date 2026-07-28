@@ -1,4 +1,5 @@
 import { aktie } from '@/data/learn/topics/aktie'
+import { anlegerpsychologie } from '@/data/learn/topics/anlegerpsychologie'
 import { boerse } from '@/data/learn/topics/boerse'
 import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
 import { depotUndBroker } from '@/data/learn/topics/depot-und-broker'
@@ -12,7 +13,6 @@ import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
-  anlegerpsychologie,
   bitcoinKrypto,
   blockchain,
   budgetUndSparquote,
