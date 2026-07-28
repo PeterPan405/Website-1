@@ -1436,6 +1436,162 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Zwei bis drei Jahresbedarfe in schwankungsarmen Anlagen erlauben es, schlechte Jahre zu überbrücken, ohne Anteile zum Tiefstkurs zu verkaufen. Höhere Entnahmen im Rückgang verstärken den Effekt, statt ihn auszugleichen – und die Aktienquote senkt man vor Beginn der Entnahme, nicht danach.',
     },
   ],
+  // ------------------------------------------------------- Cost-Average
+  'cost-average-sparplan:beginner': [
+    {
+      question:
+        'Warum liegt der durchschnittlich gezahlte Preis je Anteil unter dem Durchschnitt der Kurse?',
+      options: [
+        'Weil der Broker bei Sparplänen einen Rabatt gewährt',
+        'Weil bei niedrigen Kursen mehr Anteile gekauft werden und diese Monate stärker ins Gewicht fallen',
+        'Weil Sparpläne steuerlich begünstigt sind',
+        'Weil die Ausführung immer zum Tagestief erfolgt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Dieselbe Rate kauft bei einem Kurs von 25 doppelt so viele Anteile wie bei 50. Die billigen Monate wiegen deshalb in deinem eigenen Durchschnitt schwerer als im schlichten Mittelwert der Kurse. Mit Rabatten oder Steuern hat das nichts zu tun.',
+    },
+    {
+      question:
+        'Unter welcher Bedingung entsteht der Durchschnittskosteneffekt überhaupt?',
+      options: [
+        'Wenn der Kurs zwischenzeitlich fällt',
+        'Wenn der Kurs durchgehend steigt',
+        'Wenn monatlich statt wöchentlich gekauft wird',
+        'Wenn der Fonds thesauriert',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ohne Kursrückgänge gibt es keine billigen Monate – und damit keinen Effekt. Bei durchgehend steigenden Kursen kehrt er sich sogar um: Jede spätere Rate kauft teurer, und eine Einmalanlage zu Beginn hätte besser abgeschnitten.',
+    },
+    {
+      question: 'Was ist der eigentliche Vorteil eines Sparplans?',
+      options: [
+        'Er erzielt zuverlässig eine höhere Rendite als die Einmalanlage',
+        'Er schützt vor Kursverlusten',
+        'Er macht die Frage nach dem richtigen Einstiegszeitpunkt überflüssig',
+        'Er senkt die laufenden Kosten des Fonds',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Zeitpunktfrage ist unbeantwortbar und hält Menschen jahrelang vom Anfangen ab. Ein Sparplan beantwortet sie ein für alle Mal mit „egal“ und läuft ohne monatliche Entscheidung weiter – gerade dann, wenn schlechte Nachrichten zum Aussetzen verleiten würden.',
+    },
+    {
+      question: 'Was gehört vor den ersten Sparplan?',
+      options: [
+        'Eine Depoteröffnung bei mindestens zwei Brokern',
+        'Der Notgroschen auf einem Tagesgeldkonto',
+        'Eine Analyse der aktuellen Marktbewertung',
+        'Ein Steuerberatungsgespräch',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Notgroschen wird der Sparplan zur Notreserve, und dann verkauft man ausgerechnet dann, wenn die Kurse unten stehen. Drei bis sechs Monatsausgaben, sofort verfügbar – das ist die Versicherung gegen das Zeitpunktrisiko.',
+    },
+  ],
+  'cost-average-sparplan:fortgeschritten': [
+    {
+      question:
+        'Warum schneidet die Einmalanlage im Durchschnitt besser ab als das Verteilen?',
+      options: [
+        'Weil sie günstigere Ausführungskosten hat',
+        'Weil Einmalanlagen steuerlich begünstigt sind',
+        'Weil das Geld länger am Markt ist – in steigenden Märkten kostet jede Wartezeit erwartete Rendite',
+        'Weil Fondsgesellschaften Einmalanlagen bevorzugt ausführen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Vorteil ist Zeit, nicht Timing. Wer verteilt anlegt, hat einen Teil des Geldes monatelang nicht investiert. In den bekannten Auswertungen für den US-Markt lag die Einmalanlage in etwa zwei von drei Fällen vorn – im verbleibenden Drittel kam kurz nach dem Start ein Rückgang.',
+    },
+    {
+      question: 'Wann ist das Verteilen einer grossen Summe trotzdem die bessere Wahl?',
+      options: [
+        'Wenn man einen Rückgang kurz nach dem Einstieg nicht aushalten würde, ohne zu verkaufen',
+        'Wenn die Summe über 100.000 Euro liegt',
+        'Wenn die Märkte gerade auf einem Höchststand stehen',
+        'Wenn der Anlagehorizont über zwanzig Jahre beträgt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Rechnung kennt nur die Rendite, nicht den Menschen. Ein Verkauf im Rückgang kostet weit mehr, als die Wartezeit gekostet hätte. Das Verteilen ist deshalb eine bewusst bezahlte Versicherungsprämie gegen die eigene Reaktion – man sollte nur wissen, dass man sie zahlt.',
+    },
+    {
+      question:
+        'Welche Stellschraube eines Sparplans hat praktisch keine Wirkung auf das Ergebnis?',
+      options: [
+        'Die Kosten je Ausführung',
+        'Die laufenden Kosten des Fonds',
+        'Die Höhe der Rate',
+        'Der Ausführungstag im Monat',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Auswertungen über Jahrzehnte finden keinen belastbaren Unterschied zwischen dem Ersten und dem Fünfzehnten. Kosten je Ausführung dagegen wirken erheblich: Ein Euro auf eine Rate von 25 Euro sind vier Prozent, die sofort weg sind.',
+    },
+    {
+      question:
+        'Bei einer Rate von 25 Euro verlangt der Broker 1 Euro je Ausführung. Wie ordnet man das ein?',
+      options: [
+        'Unerheblich, weil es ein fester Betrag ist',
+        'Vier Prozent der Rate – mehr, als die laufenden Kosten eines breiten ETF in zehn Jahren ausmachen',
+        'Etwa so viel wie die Abgeltungsteuer auf den erwarteten Gewinn',
+        'Vertretbar, solange der Fonds thesauriert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Feste Gebühren treffen kleine Raten prozentual hart. Vier Prozent Einstiegskosten muss die Anlage erst wieder erwirtschaften. Viele Broker führen Sparpläne auf breite ETFs kostenfrei aus – ein Vergleich lohnt hier mehr als jede Feinjustierung am Ausführungstag.',
+    },
+  ],
+  'cost-average-sparplan:profi': [
+    {
+      question: 'Warum ist eine Dynamisierung der Rate sinnvoll?',
+      options: [
+        'Weil höhere Raten günstigere Ausführungskonditionen bekommen',
+        'Weil eine feste Rate real schrumpft – bei 2,5 Prozent Inflation nach dreissig Jahren auf etwa die Hälfte',
+        'Weil sie den Durchschnittskosteneffekt verstärkt',
+        'Weil sie die Steuerlast senkt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Eine nominal gleichbleibende Rate verliert über Jahrzehnte den Grossteil ihrer Kaufkraft. Wer sie jährlich um die Inflationsrate oder die Gehaltssteigerung erhöht, hält sie real konstant – am besten direkt nach einer Gehaltserhöhung, bevor sich der Lebensstandard daran gewöhnt.',
+    },
+    {
+      question: 'Wie lässt sich in der Ansparphase ohne Steuerfolge rebalancieren?',
+      options: [
+        'Indem die neuen Raten dorthin fliessen, wo etwas fehlt',
+        'Indem einmal jährlich der gestiegene Teil verkauft wird',
+        'Indem der Fonds gewechselt wird',
+        'Indem Ausschüttungen entnommen statt wiederangelegt werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein Verkauf löst Abgeltungsteuer aus, eine Umlenkung der nächsten Rate nicht. Das funktioniert, solange die neuen Einzahlungen im Verhältnis zum Bestand gross genug sind – bei 400.000 Euro Depot und 300 Euro Rate verschiebt sich damit nichts mehr.',
+    },
+    {
+      question: 'Was ist der praktische Haupteinwand gegen Value Averaging?',
+      options: [
+        'Es ist bei deutschen Brokern nicht zulässig',
+        'Es funktioniert nur bei Einzelaktien',
+        'Es verlangt die grössten Einzahlungen ausgerechnet nach einem Kursrutsch – und erzeugt Verkäufe mit Steuerfolge',
+        'Es erfordert tägliche Überwachung des Depots',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Methode kauft noch stärker antizyklisch als ein gewöhnlicher Sparplan, verlangt dafür aber unvorhersehbare Beträge genau dann, wenn oft auch das Einkommen unsicher ist. Der gemessene Vorsprung ist klein und verschwindet vielfach, sobald Steuern und Handelskosten eingerechnet werden.',
+    },
+    {
+      question: 'Wann beginnt der Übergang von der Anspar- in die Entnahmephase?',
+      options: [
+        'Am Tag der ersten Entnahme',
+        'Sobald das Sparziel erreicht ist',
+        'Mit dem Renteneintritt',
+        'Jahre vorher – wegen des Sequenzrisikos in den ersten Entnahmejahren',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Fällt der Markt kurz nach Beginn der Entnahmen, werden Anteile zu niedrigen Kursen verkauft und fehlen dauerhaft. Deshalb wird die Aktienquote fünf bis zehn Jahre vorher schrittweise gesenkt – über die laufenden Raten, nicht über Verkäufe – und ein Puffer für zwei bis drei Jahre aufgebaut.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

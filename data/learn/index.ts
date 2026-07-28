@@ -1,5 +1,6 @@
 import { aktie } from '@/data/learn/topics/aktie'
 import { boerse } from '@/data/learn/topics/boerse'
+import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
@@ -11,7 +12,6 @@ import {
   bitcoinKrypto,
   blockchain,
   budgetUndSparquote,
-  costAverageSparplan,
   depotUndBroker,
   derivat,
   einlagensicherung,
