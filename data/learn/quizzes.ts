@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    264 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    276 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -3518,6 +3518,166 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 2,
       explanation:
         'Die Sparphase mit niedriger Verzinsung und das Darlehensrecht zu einem heute festgelegten Zins gehören zusammen. Wer nur eine der beiden Phasen ansieht, bewertet falsch – und wer das Darlehen später nicht abruft, hat eine schlecht verzinste Spareinlage bezahlt, ohne die Gegenleistung je in Anspruch zu nehmen.',
+    },
+  ],
+
+  // ------------------------------------------------------- Sparerpauschbetrag
+  'sparerpauschbetrag:beginner': [
+    {
+      question:
+        'Du hast Kapitalerträge unterhalb des Sparerpauschbetrags, aber keinen Freistellungsauftrag gestellt. Was passiert?',
+      options: [
+        'Die Bank führt Steuer ab – sie kann nicht wissen, ob der Freibetrag anderswo schon genutzt wird',
+        'Nichts, der Freibetrag wirkt automatisch',
+        'Die Bank fragt beim Finanzamt nach und behält nur bei Überschreitung ein',
+        'Die Steuer wird erst mit der Steuererklärung fällig',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Freibetrag wirkt nicht von selbst. Ohne Auftrag zieht die Bank ab dem ersten Euro ab – sie kennt nur deine Konten bei ihr, nicht deine Gesamtsituation. Zurückholen lässt sich das über die Anlage KAP; einfacher ist es, den Auftrag rechtzeitig zu stellen.',
+    },
+    {
+      question: 'Wie wirkt der Solidaritätszuschlag auf Kapitalerträge?',
+      options: [
+        'Er wird auf den Ertrag erhoben, sodass insgesamt 30,5 Prozent anfallen',
+        'Er wird auf die Abgeltungsteuer erhoben – zusammen ergibt das rund 26,4 Prozent des Ertrags',
+        'Er entfällt bei Kapitalerträgen vollständig',
+        'Er ersetzt die Abgeltungsteuer bei Erträgen unter dem Freibetrag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Zuschlag bemisst sich nach der Steuer, nicht nach dem Ertrag: 5,5 Prozent von 25 Prozent sind 1,375 Prozentpunkte, zusammen 26,375 Prozent. Das ist der Rechenfehler, der bei dieser Zahl am häufigsten passiert – die Sätze werden addiert statt verkettet.',
+    },
+    {
+      question: 'Was geschieht mit einem nicht ausgeschöpften Sparerpauschbetrag?',
+      options: [
+        'Er wird auf das Folgejahr übertragen',
+        'Er wird beim nächsten Verkauf nachträglich angerechnet',
+        'Er verfällt zum 31. Dezember – einen Übertrag gibt es nicht',
+        'Er erhöht den Freibetrag des Ehepartners',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Freibetrag ist ein Jahresbetrag ohne Übertragsmöglichkeit. Wer im November noch Luft hat, kann sie nutzen, indem er Anteile mit Gewinn verkauft und sofort zurückkauft: Der Gewinn bleibt steuerfrei, und der Einstandskurs steigt. Zu rechnen ist das gegen Ordergebühren und Spread.',
+    },
+    {
+      question: 'Wann fällt Steuer auf einen Kursgewinn an?',
+      options: [
+        'Sobald der Depotwert steigt',
+        'Jährlich anteilig auf die Wertsteigerung des Vorjahres',
+        'Erst bei der Steuererklärung des Folgejahres',
+        'Erst beim Verkauf – nur realisierte Gewinne sind steuerpflichtig',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Eine bloße Wertsteigerung im Depot löst nichts aus; besteuert wird erst der realisierte Gewinn. Genau darin liegt die Steuerstundung, die langes Halten wertvoll macht. Die einzige Ausnahme ist die Vorabpauschale bei thesaurierenden Fonds – sie entsteht ohne eigenes Zutun.',
+    },
+  ],
+
+  'sparerpauschbetrag:fortgeschritten': [
+    {
+      question:
+        'Bei welchem Konto oder Depot sollte der Freistellungsauftrag zuerst liegen?',
+      options: [
+        'Beim Depot mit thesaurierenden Fonds – die Vorabpauschale wird ohne dein Zutun im Januar eingezogen',
+        'Beim Girokonto, weil dort der Zahlungsverkehr läuft',
+        'Beim Depot mit den höchsten Kursgewinnen des Vorjahres',
+        'Es spielt keine Rolle, die Banken gleichen untereinander ab',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die sinnvolle Reihenfolge folgt der Steuerbarkeit: zuerst dorthin, wo Erträge ohne dein Zutun entstehen. Die Vorabpauschale wird Anfang Januar automatisch belastet. Realisierte Kursgewinne stehen ans Ende der Reihenfolge, weil du über sie selbst entscheidest.',
+    },
+    {
+      question: 'Was passiert beim Depotwechsel mit dem Freistellungsauftrag?',
+      options: [
+        'Er wandert automatisch mit dem Depot mit',
+        'Er wird beim Übertrag anteilig aufgeteilt',
+        'Er bleibt beim alten Institut stehen und blockiert dort einen Teil des Freibetrags',
+        'Er erlischt automatisch mit der Depotauflösung',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Auftrag bleibt, wo er ist. Erst beim alten Institut widerrufen oder herabsetzen, dann beim neuen erteilen – in dieser Reihenfolge, sonst überschreitet die Summe kurzzeitig die Grenze. Mitzudenken ist auch die Übermittlung der Anschaffungsdaten: Fehlen sie, unterstellt die neue Bank eine ungünstigere Ersatzbemessungsgrundlage.',
+    },
+    {
+      question:
+        'Du hast bei Bank A Verluste und bei Bank B Gewinne realisiert. Wie lassen sie sich verrechnen?',
+      options: [
+        'Gar nicht – Verluste sind immer institutsgebunden',
+        'Automatisch, sobald beide Banken die Jahressteuerbescheinigung ausstellen',
+        'Über eine Verlustbescheinigung von Bank A und die Anlage KAP – Antrag bis 15. Dezember',
+        'Durch einen Depotübertrag von Bank A zu Bank B',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Banken verrechnen nur institutsintern. Institutsübergreifend geht es nur über die Steuererklärung, und dafür braucht es eine Verlustbescheinigung – beantragt bis zum 15. Dezember des Jahres. Diese Frist ist gesetzlich und nicht verlängerbar; versäumt man sie, bleiben die Verluste im Topf der Bank A und werden dort vorgetragen.',
+    },
+    {
+      question:
+        'Wer profitiert von einer Nichtveranlagungsbescheinigung – und was leistet sie?',
+      options: [
+        'Kirchensteuerpflichtige; sie verhindert den automatischen Kirchensteuerabzug',
+        'Wer mit dem gesamten Einkommen unter dem Grundfreibetrag bleibt; sie stellt Erträge über den Sparerpauschbetrag hinaus frei',
+        'Anleger mit ausländischem Depot; sie ersetzt die Erklärungspflicht',
+        'Alle Anleger; sie verdoppelt den Sparerpauschbetrag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Sie wird beim Finanzamt beantragt und lohnt sich typischerweise für Studierende, Kinder und teils im Ruhestand. Anders als der Freistellungsauftrag ist sie nicht auf den Pauschbetrag begrenzt: Sie stellt die Kapitalerträge vollständig frei. Der Kirchensteuerabzug wird dagegen über einen Sperrvermerk gesteuert – und entfällt dadurch nicht, sondern läuft über die Erklärung.',
+    },
+  ],
+
+  'sparerpauschbetrag:profi': [
+    {
+      question:
+        'Du hast mit Einzelaktien Verluste und mit ETFs Gewinne realisiert. Was gilt?',
+      options: [
+        'Beides ist verrechenbar, solange es beim selben Institut anfällt',
+        'Aktienverluste sind nur mit Gewinnen aus Einzelaktien verrechenbar – der ETF-Gewinn wird versteuert',
+        'Der Aktienverlust mindert zuerst den Sparerpauschbetrag',
+        'Aktienverluste verfallen am Jahresende, wenn sie nicht genutzt werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Aktienverlusttopf ist strikt getrennt: Er lässt sich weder mit Dividenden noch mit Fondsgewinnen verrechnen, sondern ausschließlich mit Gewinnen aus dem Verkauf einzelner Aktien. Er wird unbegrenzt vorgetragen, bleibt aber topfgebunden – wer nie wieder Einzelaktien mit Gewinn verkauft, nutzt ihn nie.',
+    },
+    {
+      question: 'Wie wird die Vorabpauschale bei einem thesaurierenden Fonds ermittelt?',
+      options: [
+        'Als fester Prozentsatz des Depotwerts am Jahresende',
+        'Als Differenz zwischen Kauf- und Jahresendkurs',
+        'Als voller Wertzuwachs des Fonds im abgelaufenen Jahr',
+        'Als Basisertrag – Wert am Jahresanfang mal Basiszins mal 0,7 –, gedeckelt auf die tatsächliche Wertsteigerung',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Deckelung ist der entscheidende Teil: In einem Verlustjahr fällt keine Vorabpauschale an. Der Basiszins wird jährlich vom Bundesfinanzministerium festgesetzt. Bei einem Aktienfonds bleiben davon zusätzlich 30 Prozent teilfreigestellt.',
+    },
+    {
+      question: 'Ist die Vorabpauschale eine Doppelbesteuerung?',
+      options: [
+        'Nein – gezahlte Vorabpauschalen werden beim späteren Verkauf vom Gewinn abgezogen',
+        'Ja, deshalb ist sie verfassungsrechtlich umstritten',
+        'Nur bei Fonds mit Sitz im Ausland',
+        'Ja, sie wird beim Verkauf ein zweites Mal erhoben',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Sie ist eine Vorverlagerung, keine zusätzliche Belastung: Alle gezahlten Pauschalen mindern den steuerpflichtigen Gewinn beim Verkauf. Das praktische Problem liegt woanders – der Betrag wird vom Verrechnungskonto eingezogen, auch wenn nichts verkauft wurde. Ist es nicht gedeckt, entsteht daraus eine Überziehung.',
+    },
+    {
+      question:
+        'Ein Depot auf den Namen des Kindes soll dessen eigenen Freibetrag nutzen. Was ist die Bedingung?',
+      options: [
+        'Ein Sperrvermerk beim Bundeszentralamt für Steuern',
+        'Ein gemeinsamer Freistellungsauftrag der Eltern',
+        'Das Geld muss dem Kind tatsächlich gehören – endgültig übertragen, mit voller Verfügung ab 18',
+        'Das Depot muss bei derselben Bank geführt werden wie das der Eltern',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Anerkannt wird die Gestaltung nur, wenn die Übertragung echt ist. Wer die Verfügungsmacht behält oder das Geld später für eigene Zwecke verwendet, hat steuerlich nichts erreicht. Zu bedenken sind außerdem Familienversicherung und Kindergeldanspruch, die von eigenen Einkünften des Kindes berührt werden können.',
     },
   ],
 }

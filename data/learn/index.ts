@@ -16,6 +16,7 @@ import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
 import { schuldenUndKredit } from '@/data/learn/topics/schulden-und-kredit'
 import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
+import { sparerpauschbetrag } from '@/data/learn/topics/sparerpauschbetrag'
 import { staatsanleihe } from '@/data/learn/topics/staatsanleihe'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
@@ -26,7 +27,6 @@ import {
   immobilien,
   notenbankenGeldpolitik,
   rente,
-  sparerpauschbetrag,
   waehrungenWechselkurse,
   wannKaufenVerkaufen,
   wieFunktioniertDerMarkt,
