@@ -57,6 +57,46 @@ export function Footer() {
                 ))}
               </ul>
             </nav>
+
+            {/*
+              Der Google-Eintrag steht als Text, nicht als Symbol.
+
+              Bei YouTube und Instagram genügt das Zeichen – es ist bekannt und
+              bedeutet nur eines. Ein Google-Symbol beantwortet die Frage nicht,
+              worauf es führt: auf die Suche? auf die Karte? auf ein Formular?
+              Genau hier trennen sich die beiden Links auch inhaltlich, und der
+              Unterschied gehört benannt.
+            */}
+            <nav aria-labelledby="footer-google" className="mt-6">
+              <h2
+                id="footer-google"
+                className="text-fg-subtle text-xs font-semibold tracking-wide uppercase"
+              >
+                Bei Google
+              </h2>
+              <ul className="mt-3 space-y-2 text-sm">
+                <li>
+                  <a
+                    href={siteConfig.googleProfil.karte}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-fg-muted hover:text-brand transition"
+                  >
+                    Standort auf Google Maps
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={siteConfig.googleProfil.bewertung}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-fg-muted hover:text-brand transition"
+                  >
+                    IM Invests bewerten
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
 
           {footerNav.map((group) => (
