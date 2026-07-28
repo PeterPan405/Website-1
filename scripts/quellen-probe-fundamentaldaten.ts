@@ -261,22 +261,51 @@ async function main() {
     verschiedene Gattungen). Gesucht wird das Unternehmen, nicht die Gattung.
   */
   const nachName = new Map<string, { cik: number; ticker: string; titel: string }[]>()
+  /*
+    Zweiter Schlüssel ohne Leerzeichen.
+
+    „ExxonMobil“ steht hier als ein Wort, bei der SEC als „EXXON MOBIL CORP“.
+    Nach dem Abräumen der Rechtsform bleibt „EXXONMOBIL“ gegen „EXXON MOBIL“ –
+    zwei Zeichenketten, die kein Vergleich zusammenbringt, der Leerzeichen
+    ernst nimmt. Dasselbe betrifft „Coca-Cola“, „T-Mobile“ und jeden Namen, bei
+    dem die eine Seite trennt und die andere nicht.
+  */
+  const nachGepresst = new Map<string, { cik: number; ticker: string; titel: string }[]>()
+  const nachKuerzel = new Map<string, { cik: number; ticker: string; titel: string }>()
+
   for (const e of secListe) {
+    const eintrag = { cik: e.cik_str, ticker: e.ticker, titel: e.title }
+    nachKuerzel.set(e.ticker, eintrag)
+
     const schluessel = normalisiere(e.title)
     if (!schluessel) continue
-    const liste = nachName.get(schluessel) ?? []
-    liste.push({ cik: e.cik_str, ticker: e.ticker, titel: e.title })
-    nachName.set(schluessel, liste)
+    nachName.set(schluessel, [...(nachName.get(schluessel) ?? []), eintrag])
+    const gepresst = schluessel.replace(/ /g, '')
+    nachGepresst.set(gepresst, [...(nachGepresst.get(gepresst) ?? []), eintrag])
   }
 
   const schluessel = [...nachName.keys()]
 
-  /** Kandidaten für eine Aktie: erst genau, dann als Wortanfang. */
-  function kandidaten(name: string) {
-    const gesucht = normalisiere(name)
+  /**
+   * Kandidaten für eine Aktie.
+   *
+   * Zuerst das Kürzel: Wer hier `XOM` heißt, heißt bei der SEC auch `XOM` –
+   * dafür braucht es keinen Namensvergleich, und ein Treffer über das Kürzel
+   * ist sicherer als jeder über den Namen. Erst danach die Namenswege.
+   */
+  function kandidaten(aktie: Aktie) {
+    const ueberKuerzel = nachKuerzel.get(aktie.ticker)
+    if (ueberKuerzel) return [{ ...ueberKuerzel, art: 'Kürzel' as const }]
+
+    const gesucht = normalisiere(aktie.name)
     if (!gesucht) return []
+
     const genau = nachName.get(gesucht)
-    if (genau) return genau.map((k) => ({ ...k, art: 'genau' as const }))
+    if (genau) return genau.map((k) => ({ ...k, art: 'Name' as const }))
+
+    const gepresst = nachGepresst.get(gesucht.replace(/ /g, ''))
+    if (gepresst)
+      return gepresst.map((k) => ({ ...k, art: 'Name ohne Leerzeichen' as const }))
 
     // Nur ausreichend lange Namen, sonst trifft „BP“ auf alles.
     if (gesucht.length < 5) return []
@@ -298,7 +327,7 @@ async function main() {
   const ohneKandidat: Aktie[] = []
 
   for (const aktie of offen) {
-    const gefunden = kandidaten(aktie.name)
+    const gefunden = kandidaten(aktie)
     if (!gefunden.length) {
       ohneKandidat.push(aktie)
       continue
@@ -336,6 +365,12 @@ async function main() {
     // Die SEC bittet um Zurückhaltung: höchstens zehn Abrufe je Sekunde.
     await new Promise((fertig) => setTimeout(fertig, 130))
     if (!fakten) continue
+
+    if (nr % 25 === 0) {
+      console.log(`  … ${nr} von ${zuPruefen.length} geprüft`)
+      // Zwischenstand sichern: Bricht der Lauf ab, ist nicht alles verloren.
+      await writeFile(BERICHT, JSON.stringify({ bestaetigt, ohneKandidat }, null, 2))
+    }
 
     const auswertung = auswerten(fakten)
     if (!auswertung.length) continue
