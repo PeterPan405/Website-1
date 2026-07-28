@@ -28,17 +28,22 @@ name: Quellen abklopfen
 #   Quelle zu nutzen.
 # - Frankfurter (Devisen): 301 auf eine andere Adresse; EZB reicht ohnehin
 #
-# ## Diese Runde: Börse Frankfurt
+# - Börse Frankfurt: **403, „Invalid CORS request“** auf allen Datenpfaden.
+#   Die 200 der ersten Runde kam von einem Auffangpfad und enthielt ein leeres
+#   Objekt; dasselbe liefern `/v1/`, `swagger.json` und `openapi.json`. Die
+#   Schnittstelle verlangt einen im Browser errechneten Kopfzeilenwert.
 #
-# Als einzige der fünf geprüften Adressen hat `api.boerse-frankfurt.de` mit
-# 200 geantwortet – allerdings mit einem leeren Objekt. Das kann zweierlei
-# heißen: falscher Pfad oder falscher Parametername. Beides lässt sich
-# durchprobieren.
+# ## Ergebnis zu den Quartalsterminen ausserhalb der USA
 #
-# Der Weg wäre der richtige: Deutsche Börse führt die Unternehmenstermine der
-# hier gelisteten Gesellschaften selbst, und börsennotierte Gesellschaften sind
-# verpflichtet, einen Finanzkalender zu veröffentlichen. Wenn es geht, deckt
-# das die deutschen und einen Teil der europäischen Werte ab.
+# Sechs Quellen geprüft, keine frei zugängliche gefunden. Das Muster ist
+# überall dasselbe: Wer Termine für europäische und asiatische Werte führt,
+# verlangt entweder einen Schlüssel oder eine Kennung, die nur ein Browser
+# erzeugt.
+#
+# Damit ist die Frage keine technische mehr, sondern eine Entscheidung: Ein
+# kostenloser Zugangsschlüssel bei einem Anbieter, der Europa abdeckt – oder
+# die Lücke bleibt und steht wie bisher als solche auf der Kalenderseite.
+# Beides ist vertretbar; nur das Nachbauen einer Zugangssperre nicht.
 
 on:
   workflow_dispatch:
