@@ -426,6 +426,10 @@ export const bitcoinKrypto: LearnTopic = {
           text: 'Ehrlicher ist die Feststellung, dass ein Preis ohne Bewertungsanker existiert. Das macht die Anlage nicht illegitim – Gold hat dasselbe Problem und wird seit Jahrtausenden gehalten. Es macht nur jede Aussage der Form „fair bewertet“ oder „unterbewertet“ gegenstandslos.',
         },
         {
+          type: 'figure',
+          figure: 'krypto-bewertung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Der Beitrag zu einem Portfolio',

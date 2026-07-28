@@ -334,6 +334,10 @@ export const waehrungenWechselkurse: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'waehrung-paritaeten',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wie dieser Markt gebaut ist',

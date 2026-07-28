@@ -409,6 +409,10 @@ export const woraufAchtenEinsteiger: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'kosten-ebenen',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Unseriöse Angebote erkennen',

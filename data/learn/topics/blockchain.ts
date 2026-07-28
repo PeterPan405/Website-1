@@ -332,6 +332,10 @@ export const blockchain: LearnTopic = {
           text: 'Bemerkenswert daran ist die Parallele: An regulierten Börsen ist Front-Running verboten und wird verfolgt. Hier ist es kein Regelverstoß, sondern eine Eigenschaft des Systems – die Reihenfolge ist frei, und wer sie bestimmt, darf sie verkaufen. Ein System, das ohne Vertrauen auskommen sollte, hat damit eine Ertragsquelle geschaffen, die es an regulierten Märkten nicht mehr gibt.',
         },
         {
+          type: 'figure',
+          figure: 'blockchain-reihenfolge',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Gebühren und Langfristrisiken',

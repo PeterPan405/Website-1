@@ -335,6 +335,10 @@ export const anlegerpsychologie: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'psychologie-asymmetrie',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Lassen sich Verhaltensmuster ausnutzen?',

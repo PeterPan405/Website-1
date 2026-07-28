@@ -365,6 +365,10 @@ export const tagesgeld: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'tagesgeld-parkplaetze',
+        },
+        {
           type: 'paragraph',
           text: 'Der Geldmarkt-ETF verdient eine Erläuterung, weil er oft als „besseres Tagesgeld“ verkauft wird. Er hat keinen Einlagenschutz – braucht ihn als Sondervermögen aber auch nicht, denn er fällt bei einer Insolvenz des Anbieters nicht in die Masse. Sein Risiko liegt woanders: in den Papieren, die er hält. Ein Fonds, der ausschließlich besicherte Übernachtgeschäfte abbildet, ist etwas anderes als einer mit Unternehmensanleihen kurzer Laufzeit, auch wenn beide „Geldmarkt“ heißen.',
         },

@@ -219,6 +219,24 @@ export type FigureId =
   | 'kosten-bestandsprovision'
   /** Die beiden Verlustverrechnungstöpfe und die Wand dazwischen. */
   | 'sparer-verlusttoepfe'
+  /** Langer Aufbau, kurzer Absturz – Zwang gegen Zuversicht. */
+  | 'psychologie-asymmetrie'
+  /** Wie sich aus der Reihenfolge von Transaktionen Geld ziehen lässt. */
+  | 'blockchain-reihenfolge'
+  /** Die drei Bewertungsstufen eines Fonds nach Nachprüfbarkeit. */
+  | 'fonds-bewertungsstufen'
+  /** Die drei Wege vom Kurssturz in die Wirtschaft. */
+  | 'crashes-ansteckung'
+  /** Die Bezugsgrößen der Geldpolitik – zwei davon nicht messbar. */
+  | 'notenbank-messgroessen'
+  /** Vier Wege, Geld kurzfristig zu parken, nach Verfügbarkeit und Schutz. */
+  | 'tagesgeld-parkplaetze'
+  /** Die drei Paritätsbedingungen nach ihrem empirischen Rang. */
+  | 'waehrung-paritaeten'
+  /** Vier Kostenebenen, nach Sichtbarkeit statt nach Höhe geordnet. */
+  | 'kosten-ebenen'
+  /** Warum jede Bewertung eines Kryptowerts an derselben Stelle scheitert. */
+  | 'krypto-bewertung'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -728,6 +746,53 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Der Weg der laufenden Fondskosten in drei Stationen. Dein Depot zahlt die laufende Verwaltungsvergütung – nicht als Rechnung, sondern täglich anteilig aus dem Fondsvermögen. Sie geht an die Fondsgesellschaft, die den Fonds verwaltet. Von dort fließt ein Teil zurück an die Bank oder den Vermittler, über den der Fonds verkauft wurde: die Bestandsprovision. Sie wird jährlich gezahlt, solange der Fonds im Depot liegt, und beträgt oft die Hälfte der Verwaltungsvergütung. Daraus folgt, warum eine Empfehlung erwartbar ist: Ein Berater, der davon lebt, verdient an einem Fonds mit 1,5 Prozent laufenden Kosten jährlich und an einem Indexfonds mit 0,15 Prozent praktisch nichts. Das macht ihn nicht unehrlich – beides zu wissen ist besser, als eines davon zu unterstellen. Seit MiFID II muss offengelegt werden, was tatsächlich geflossen ist; die Angabe steht in der jährlichen Kosteninformation, meist auf der letzten Seite. Die Alternative ist die Honorarberatung: sichtbar teurer, in der Summe häufig günstiger.',
     caption:
       'Die Beratung ist wörtlich kostenlos und wirtschaftlich nicht. Bezahlt wird sie jedes Jahr, aus dem Fondsvermögen, ohne dass es auf einer Rechnung steht.',
+  },
+  'psychologie-asymmetrie': {
+    title: 'Zwang und Zuversicht',
+    description:
+      'Eine schematische Kurve über einen vollständigen Zyklus: ein langer, sich beschleunigender Aufbau und ein kurzer, steiler Absturz. Etwa drei Viertel der Zeitachse entfallen auf den Anstieg, ein Viertel auf den Einbruch. Die Erklärung steht unter den beiden Abschnitten: Steigende Kurse erzeugen Berichterstattung, Berichterstattung erzeugt Zuflüsse, Zuflüsse erzeugen steigende Kurse – dieser Kreis braucht Zeit. Fallende Kurse dagegen zwingen fremdfinanzierte Marktteilnehmer zu Verkäufen, und diese Verkäufe drücken die Kurse weiter. Ein Margin Call kennt keine Bedenkzeit. Deshalb sind Einbrüche schneller als Anstiege: Zwang wirkt sofort, Zuversicht braucht Zeit. An den Achsen stehen bewusst keine Zahlen – wie lange ein Aufbau dauert und wie tief ein Einbruch geht, ist von Fall zu Fall verschieden. Das Verhältnis der beiden Zeiträume ist es nicht.',
+    caption:
+      'Zwang wirkt sofort, Zuversicht braucht Zeit. Das ist der ganze Grund, warum Einbrüche schneller ablaufen als die Anstiege davor.',
+  },
+  'blockchain-reihenfolge': {
+    title: 'Die Reihenfolge ist Geld wert',
+    caption:
+      'Bezahlt hat es der, dessen Auftrag sichtbar war, bevor er ausgeführt wurde. Verletzt wurde dabei keine Regel – und genau das ist der Punkt.',
+  },
+  'fonds-bewertungsstufen': {
+    title: 'Wie sicher der Preis ist',
+    caption:
+      'Für eine DAX-Aktie gibt es einen Kurs. Für ein Papier, das zuletzt vor drei Wochen gehandelt wurde, wird bewertet statt abgelesen – und auf der untersten Stufe entscheidet, wer die Annahmen setzt.',
+  },
+  'crashes-ansteckung': {
+    title: 'Kurssturz oder Krise',
+    caption:
+      'Drei Wege führen vom Markt in die Wirtschaft, und nur einer führt zu sich selbst zurück. Ist dieser Kreis geschlossen, entscheidet nur noch die Reaktion.',
+  },
+  'notenbank-messgroessen': {
+    title: 'Navigation mit unsicherer Position',
+    caption:
+      'Zwei der drei Größen, aus denen sich der angemessene Zins ergeben soll, kann niemand messen. Notenbanken sagen das inzwischen selbst.',
+  },
+  'tagesgeld-parkplaetze': {
+    title: 'Vier Parkplätze',
+    caption:
+      'Der Ertragsunterschied beträgt Bruchteile eines Prozentpunkts. Der Unterschied zwischen „am Tag X verfügbar“ und „nicht verfügbar“ kann teuer werden.',
+  },
+  'waehrung-paritaeten': {
+    title: 'Drei Bedingungen, drei Ränge',
+    caption:
+      'Eine gilt immer, weil sie eine Arbitragebedingung ist. Eine gilt als langfristige Tendenz. Und eine gilt systematisch nicht – daraus lebt der Carry-Trade.',
+  },
+  'kosten-ebenen': {
+    title: 'Vier Ebenen, nach Sichtbarkeit',
+    caption:
+      'Die Reihenfolge ist die der Sichtbarkeit, nicht die der Höhe. Wer nur auf die Ordergebühr schaut, betrachtet den kleinsten Betrag mit dem größten Aufhebens.',
+  },
+  'krypto-bewertung': {
+    title: 'Ein Preis ohne Anker',
+    caption:
+      'Das Verfahren ist hier nicht ungenau, sondern nicht anwendbar. Das macht die Anlage nicht illegitim – es macht „fair bewertet“ gegenstandslos.',
   },
   'sparer-verlusttoepfe': {
     title: 'Zwei Töpfe, keine Verbindung',

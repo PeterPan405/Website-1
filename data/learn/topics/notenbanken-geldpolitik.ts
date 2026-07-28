@@ -381,6 +381,10 @@ export const notenbankenGeldpolitik: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'notenbank-messgroessen',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wo die Werkzeuge an Grenzen stoßen',

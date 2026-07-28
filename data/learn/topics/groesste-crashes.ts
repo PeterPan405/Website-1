@@ -317,6 +317,10 @@ export const groessteCrashes: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'crashes-ansteckung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was die Reaktion ausmacht',

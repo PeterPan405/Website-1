@@ -94,6 +94,17 @@ import {
   KostenBestandsprovision,
   SparerVerlusttoepfe,
 } from '@/components/content/figures/profi-drei'
+import {
+  BlockchainReihenfolge,
+  CrashesAnsteckung,
+  FondsBewertungsstufen,
+  KostenEbenen,
+  KryptoBewertung,
+  NotenbankMessgroessen,
+  PsychologieAsymmetrie,
+  TagesgeldParkplaetze,
+  WaehrungParitaeten,
+} from '@/components/content/figures/profi-vier'
 import { RenteFreibetrag, RenteLuecke } from '@/components/content/figures/rente'
 import { RisikoErholung } from '@/components/content/figures/risiko'
 import {
@@ -225,4 +236,13 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'etf-swap': EtfSwap,
   'kosten-bestandsprovision': KostenBestandsprovision,
   'sparer-verlusttoepfe': SparerVerlusttoepfe,
+  'psychologie-asymmetrie': PsychologieAsymmetrie,
+  'blockchain-reihenfolge': BlockchainReihenfolge,
+  'fonds-bewertungsstufen': FondsBewertungsstufen,
+  'crashes-ansteckung': CrashesAnsteckung,
+  'notenbank-messgroessen': NotenbankMessgroessen,
+  'tagesgeld-parkplaetze': TagesgeldParkplaetze,
+  'waehrung-paritaeten': WaehrungParitaeten,
+  'kosten-ebenen': KostenEbenen,
+  'krypto-bewertung': KryptoBewertung,
 }

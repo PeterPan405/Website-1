@@ -323,6 +323,10 @@ export const fonds: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'fonds-bewertungsstufen',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wenn alle gleichzeitig zurückgeben wollen',
