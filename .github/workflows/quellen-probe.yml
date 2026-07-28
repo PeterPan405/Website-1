@@ -7,7 +7,7 @@ name: Quellen abklopfen
 # einem GitHub-Läufer gibt es diese Einschränkung nicht. Ohne diesen Weg bliebe
 # nur Raten.
 #
-# Der Workflow verändert nichts. Er ist Werkzeug, kein Bestandteil der Website.
+# Der Workflow ist Werkzeug, kein Bestandteil der Website.
 #
 # ## Bisheriger Stand
 #
@@ -15,123 +15,62 @@ name: Quellen abklopfen
 # - OECD (Löhne): geht → 38 Länder, eingebaut
 # - OECD (Vermögen): geht → 30 Länder nach Umrechnung, eingebaut
 # - SEC (Fundamentaldaten, us-gaap): geht → 170 geführte Kürzel, eingebaut
-# - SEC (Quartalstermine, 8-K/2.02): geht → 153 Unternehmen, eingebaut
+# - SEC (Quartalstermine, 8-K/2.02): geht, eingebaut
+# - SEC (Quartalstermine, 6-K für ausländische Emittenten): **geprüft und
+#   verworfen.** Die Dokumentbeschreibung lautet bei SAP, ASML, Novo Nordisk,
+#   Shell, Sony und TSMC ausnahmslos „FORM 6-K“. Bei AstraZeneca gibt es
+#   Beschreibungen, aber die Treffer auf „results“ sind Ergebnisse klinischer
+#   Studien. Ein Filter darauf erzeugte Kalendereinträge, die mit
+#   Quartalszahlen nichts zu tun haben.
 # - Yahoo (Kennzahlen): 401 Unauthorized
 # - Frankfurter (Devisen): 301 auf eine andere Adresse; EZB reicht ohnehin
 #
-# ## Diese Runde: warum 377 von 529 Aktien keine Quartalstermine haben
+# ## VORÜBERGEHEND: Neuabruf der Quartalstermine
 #
-# Der erste Lauf hat für 153 Unternehmen ein Meldemuster gefunden. Das ist
-# weniger als ein Drittel des Katalogs, und dafür gibt es zwei Verdachtsmomente,
-# die sich sauber trennen lassen:
-#
-# 1. **Das Fenster der jüngsten Einreichungen ist zu klein.** Die
-#    submissions-Datei führt in `filings.recent` nur die letzten rund tausend
-#    Einreichungen; ältere liegen in ausgelagerten Blöcken unter
-#    `filings.files`. Großbanken reichen Hunderte von 8-K im Jahr ein – fast
-#    alle für Zertifikate und strukturierte Anleihen. Bei JPMorgan, Goldman
-#    Sachs oder Citigroup könnten die tausend jüngsten Einreichungen deshalb
-#    weniger als fünf Meldungen mit Punkt 2.02 enthalten, und dann entsteht
-#    kein Muster. Zu prüfen: Wie viele 2.02-Meldungen stecken im jungen Block,
-#    und wie viele ausgelagerte Blöcke gibt es?
-#
-# 2. **Ausländische Emittenten melden über 6-K.** SAP, ASML, Novo Nordisk,
-#    TSMC, Toyota und die übrigen ADR-Werte sind bei der SEC registriert,
-#    reichen aber kein 8-K ein. Das 6-K kennt keine Punktnummern – die Frage
-#    ist, ob sich Ergebnismeldungen an der Dokumentbeschreibung
-#    (`primaryDocDescription`) erkennen lassen. Wenn ja, ließe sich dieselbe
-#    Ableitung darauf anwenden. Wenn nein, bleibt die Lücke bestehen, und das
-#    gehört dann so auf die Seite.
+# `quartalstermine.yml` liegt noch nicht auf dem Standardzweig und ist deshalb
+# für workflow_dispatch nicht registriert. Damit der korrigierte Abruf laufen
+# kann – ohne Rohstoffkürzel, mit nachgeladenen Altblöcken und mit
+# Wiederholung –, hängt er einmalig hier mit drin. Wird nach dem Lauf wieder
+# entfernt; sobald der Zweig auf main ist, übernimmt die eigene Routine.
 
 on:
   workflow_dispatch:
 
+concurrency:
+  group: quartalstermine
+  cancel-in-progress: false
+
 jobs:
-  abklopfen:
-    name: SEC-Lücken bei den Quartalsterminen
+  abrufen:
+    name: Quartalstermine neu ableiten
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - name: Verdacht 1 – reicht der junge Block bei Vielmeldern?
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Quartalstermine abrufen
+        run: npm run quartalstermine
+
+      - name: Ergebnis festhalten
         run: |
-          UA="IM-Invests Datenabruf pm252543@gmail.com"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
 
-          # JPMorgan, Goldman Sachs, Citigroup, Bank of America, ExxonMobil,
-          # Morgan Stanley, BlackRock, Fiserv – alles US-Emittenten, die
-          # zweifelsfrei quartalsweise melden und trotzdem fehlen.
-          for eintrag in JPM:0000019617 GS:0000886982 C:0000831001 BAC:0000070858 \
-                         XOM:0000034088 MS:0000895421 BLK:0001364742 FI:0000798354; do
-            kuerzel=${eintrag%%:*}
-            cik=${eintrag##*:}
-            curl -sS -A "$UA" --max-time 90 -o "/tmp/$kuerzel.json" \
-              "https://data.sec.gov/submissions/CIK$cik.json" || echo "  $kuerzel: Abruf fehlgeschlagen"
-          done
+          # Erst vormerken, dann vergleichen: `git diff` allein sieht eine noch
+          # nicht versionierte Datei nicht und meldet „keine Änderung“.
+          git add data/snapshots/quartalstermine.json
+          if git diff --cached --quiet -- data/snapshots/quartalstermine.json; then
+            echo "Keine Änderung – kein Commit."
+            exit 0
+          fi
 
-          python3 - <<'PY'
-          import json, glob, os, collections
-          for pfad in sorted(glob.glob('/tmp/*.json')):
-              kuerzel = os.path.basename(pfad)[:-5]
-              try:
-                  d = json.load(open(pfad))
-              except Exception as fehler:
-                  print(f'{kuerzel}: nicht lesbar ({fehler})'); continue
-              jung = d.get('filings', {}).get('recent', {})
-              formen = jung.get('form', [])
-              items = jung.get('items', [])
-              datum = jung.get('filingDate', [])
-              zweizweinull = [datum[i] for i in range(len(formen))
-                              if formen[i] == '8-K' and '2.02' in (items[i] or '')]
-              bloecke = d.get('filings', {}).get('files', [])
-              print(f'--- {kuerzel} ({d.get("name","?")})')
-              print(f'    Einreichungen im jungen Block: {len(formen)}'
-                    f'  Zeitraum: {datum[-1] if datum else "?"} bis {datum[0] if datum else "?"}')
-              print(f'    davon 8-K gesamt: {sum(1 for f in formen if f == "8-K")}'
-                    f'   mit Punkt 2.02: {len(zweizweinull)}')
-              print(f'    2.02-Termine: {zweizweinull[:8]}')
-              print(f'    ausgelagerte Blöcke: {len(bloecke)}'
-                    f' {[b.get("name") for b in bloecke[:3]]}')
-          PY
-
-      - name: Verdacht 2 – lassen sich 6-K-Ergebnismeldungen erkennen?
-        run: |
-          UA="IM-Invests Datenabruf pm252543@gmail.com"
-          rm -f /tmp/*.json
-
-          # SAP, ASML, Novo Nordisk, TSMC, Toyota, Sony, Shell, AstraZeneca.
-          for eintrag in SAP:0001000184 ASML:0000937966 NVO:0000353278 TSM:0001046179 \
-                         TM:0000320193X SONY:0000313838 SHEL:0001306965 AZN:0000901832; do
-            kuerzel=${eintrag%%:*}
-            cik=${eintrag##*:}
-            case "$cik" in *X) continue;; esac
-            curl -sS -A "$UA" --max-time 90 -o "/tmp/$kuerzel.json" \
-              "https://data.sec.gov/submissions/CIK$cik.json" || echo "  $kuerzel: Abruf fehlgeschlagen"
-          done
-
-          python3 - <<'PY'
-          import json, glob, os, collections, re
-          for pfad in sorted(glob.glob('/tmp/*.json')):
-              kuerzel = os.path.basename(pfad)[:-5]
-              try:
-                  d = json.load(open(pfad))
-              except Exception as fehler:
-                  print(f'{kuerzel}: nicht lesbar ({fehler})'); continue
-              jung = d.get('filings', {}).get('recent', {})
-              formen = jung.get('form', [])
-              datum = jung.get('filingDate', [])
-              beschreibung = jung.get('primaryDocDescription', [])
-              bericht = jung.get('reportDate', [])
-              print(f'--- {kuerzel} ({d.get("name","?")})')
-              print(f'    Formen: {collections.Counter(formen).most_common(6)}')
-              sechser = [(datum[i], (beschreibung[i] if i < len(beschreibung) else "") or "",
-                          (bericht[i] if i < len(bericht) else "") or "")
-                         for i in range(len(formen)) if formen[i] == '6-K']
-              print(f'    6-K gesamt: {len(sechser)}')
-              for tag, beschr, rep in sechser[:14]:
-                  print(f'      {tag}  report={rep or "-":10}  {beschr[:70]}')
-              # Wie viele tragen ein Ergebnis-Stichwort?
-              muster = re.compile(r'result|earning|quarter|interim|annual|financial|Q[1-4]', re.I)
-              treffer = [t for t, b, r in sechser if muster.search(b)]
-              print(f'    mit Ergebnis-Stichwort in der Beschreibung: {len(treffer)} → {treffer[:8]}')
-              # Wie oft ist ein reportDate gesetzt? Das wäre der bessere Anker.
-              mitReport = [t for t, b, r in sechser if r]
-              print(f'    mit reportDate: {len(mitReport)} → {mitReport[:8]}')
-          PY
+          git commit -m "Quartalstermine: Stand $(date -u +%Y-%m-%d)"
+          git push origin HEAD:${{ github.ref_name }}
