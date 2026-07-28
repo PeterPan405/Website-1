@@ -1,18 +1,19 @@
 import { aktie } from '@/data/learn/topics/aktie'
 import { boerse } from '@/data/learn/topics/boerse'
 import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
+import { depotUndBroker } from '@/data/learn/topics/depot-und-broker'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
 import { inflation } from '@/data/learn/topics/inflation'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
+import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
   anlegerpsychologie,
   bitcoinKrypto,
   blockchain,
   budgetUndSparquote,
-  depotUndBroker,
   derivat,
   einlagensicherung,
   groessteCrashes,
@@ -29,7 +30,6 @@ import {
   waehrungenWechselkurse,
   wannKaufenVerkaufen,
   wieFunktioniertDerMarkt,
-  woraufAchtenEinsteiger,
 } from '@/data/learn/topics/outlines'
 import { getQuizFor } from '@/data/learn/quizzes'
 import { rohstoffe } from '@/data/learn/topics/rohstoffe'

@@ -1592,6 +1592,322 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Fällt der Markt kurz nach Beginn der Entnahmen, werden Anteile zu niedrigen Kursen verkauft und fehlen dauerhaft. Deshalb wird die Aktienquote fünf bis zehn Jahre vorher schrittweise gesenkt – über die laufenden Raten, nicht über Verkäufe – und ein Puffer für zwei bis drei Jahre aufgebaut.',
     },
   ],
+  // ---------------------------------------------------------- Depot & Broker
+  'depot-und-broker:beginner': [
+    {
+      question: 'Dein Broker wird insolvent. Was gilt für die Wertpapiere im Depot?',
+      options: [
+        'Sie gehören dir und fallen nicht in die Insolvenzmasse',
+        'Sie sind bis 100.000 Euro über die Einlagensicherung gedeckt',
+        'Sie werden verkauft und der Erlös anteilig verteilt',
+        'Sie gehen an die Fondsgesellschaft zurück',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Bank verwahrt nur, Eigentümer bist du – die Papiere werden herausgegeben oder übertragen. Anders das Guthaben auf dem Verrechnungskonto: Das gehört der Bank, sie schuldet es dir, und dafür greift die Einlagensicherung bis 100.000 Euro.',
+    },
+    {
+      question: 'Welche Angabe identifiziert ein Wertpapier eindeutig?',
+      options: [
+        'Der Name des Fonds oder Unternehmens',
+        'Das Börsenkürzel',
+        'Die ISIN',
+        'Die Fondsgesellschaft',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die ISIN ist die weltweit eindeutige zwölfstellige Kennung. Namen sind mehrdeutig – es gibt Dutzende Fonds mit „Global“ im Titel, die völlig Verschiedenes enthalten. Die WKN ist die ältere deutsche Kurzform und ebenfalls eindeutig, aber nur im Inland gebräuchlich.',
+    },
+    {
+      question:
+        'Warum sollte der Freistellungsauftrag gleich bei der Depoteröffnung eingerichtet werden?',
+      options: [
+        'Weil er später nicht mehr geändert werden kann',
+        'Weil sonst auf jeden Ertrag Steuer abgeführt wird, die man erst über die Steuererklärung zurückbekommt',
+        'Weil er die Ordergebühren senkt',
+        'Weil ohne ihn keine Sparpläne möglich sind',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Auftrag weiß die Bank nicht, dass sie den Sparerpauschbetrag berücksichtigen soll, und führt ab. Das Geld ist damit für rund ein Jahr weg. Ändern lässt sich der Auftrag jederzeit – er sollte nur von Anfang an da sein.',
+    },
+    {
+      question: 'Was sagt eine Limit-Order zu, was eine Market-Order nicht zusagt?',
+      options: [
+        'Die sofortige Ausführung',
+        'Den Handelsplatz',
+        'Den Höchstpreis beim Kauf beziehungsweise Mindestpreis beim Verkauf',
+        'Die Ausführung ohne Gebühren',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Market sagt Ausführung zu, aber nicht den Preis; Limit sagt den Preis zu, aber nicht die Ausführung. Beides zugleich gibt es nicht. Bei umsatzstarken Werten am Nachmittag ist der Unterschied klein, außerhalb der Haupthandelszeit kann er erheblich sein.',
+    },
+  ],
+  'depot-und-broker:fortgeschritten': [
+    {
+      question:
+        'Ein Wert eröffnet 25 Prozent tiefer. Dein Stop-Loss lag bei minus 10 Prozent. Was passiert?',
+      options: [
+        'Es wird bei minus 10 Prozent verkauft, wie eingestellt',
+        'Die Order verfällt, weil die Schwelle übersprungen wurde',
+        'Es wird bei minus 25 Prozent verkauft – der Stop löst nur aus, er begrenzt den Preis nicht',
+        'Der Broker führt zum Vortagesschluss aus',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Stop-Loss löst bei Erreichen der Schwelle eine Market-Order aus, und die wird zum nächsten verfügbaren Preis ausgeführt. Genau im Crash, wo man den Schutz bräuchte, versagt er deshalb. Wer den Preis begrenzen will, braucht eine Stop-Limit-Order – riskiert dann aber, gar nicht zu verkaufen.',
+    },
+    {
+      question:
+        'Wann ist eine US-Aktie in Deutschland tendenziell am günstigsten zu handeln?',
+      options: [
+        'Morgens um 9 Uhr zur Eröffnung in Frankfurt',
+        'Ab 15:30 Uhr, wenn der US-Heimatmarkt geöffnet hat',
+        'Kurz vor 22 Uhr im außerbörslichen Handel',
+        'Der Zeitpunkt spielt keine Rolle',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Solange der Heimatmarkt geschlossen ist, muss der Market Maker den fairen Wert schätzen und sichert sich über eine größere Spanne ab. Mit der Öffnung in New York gibt es einen laufenden Referenzkurs, und die Spanne wird enger.',
+    },
+    {
+      question: 'Was kostet ein Depotübertrag zu einem anderen Anbieter?',
+      options: [
+        'Nichts – er ist gesetzlich kostenfrei',
+        'Eine Pauschale je übertragener Position',
+        'Ein Prozent des Depotwerts',
+        'Die Differenz der Depotgebühren beider Anbieter',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Verwahrung ist eine Nebenpflicht, und für ihre Beendigung darf nichts berechnet werden. Zwei bis sechs Wochen dauert es trotzdem, und in dieser Zeit lässt sich nicht handeln.',
+    },
+    {
+      question: 'Worauf ist bei einem Depotübertrag besonders zu achten?',
+      options: [
+        'Dass beide Depots dieselbe Bank haben',
+        'Dass die Anschaffungsdaten mitwandern – sonst unterstellt der neue Broker Anschaffungskosten von null',
+        'Dass der Übertrag im Januar erfolgt',
+        'Dass alle Positionen vorher verkauft werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Kaufdatum und Kaufkurs kann der neue Broker den steuerpflichtigen Gewinn nicht berechnen und versteuert beim Verkauf den vollen Erlös. Das lässt sich über die Steuererklärung korrigieren – aber nur mit Belegen. Besonders häufig fehlen die Daten bei Überträgen aus dem Ausland.',
+    },
+  ],
+  'depot-und-broker:profi': [
+    {
+      question:
+        'Wie verdient ein Broker an einer Order, für die er keine Gebühr verlangt?',
+      options: [
+        'Über Zinsen auf das Verrechnungskonto allein',
+        'Über eine Vergütung des Handelsplatzes, an den er die Order weiterleitet',
+        'Über eine staatliche Förderung',
+        'Gar nicht – er subventioniert das Geschäft dauerhaft',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Payment for Order Flow: Der Handelsplatz zahlt für die Weiterleitung und verdient am Spread. Für kleine Order kann das vorteilhaft sein, bei großen kehrt es sich um – ein Zehntelprozent auf 50.000 Euro sind 50 Euro. In der EU läuft das Modell mit einer Übergangsfrist bis 2026 aus.',
+    },
+    {
+      question:
+        'Du nimmst am Wertpapierleihe-Programm deines Brokers teil. Was ändert sich?',
+      options: [
+        'Nichts – die Papiere bleiben Sondervermögen',
+        'Die Dividenden verdoppeln sich',
+        'Für die Dauer der Leihe bist du nicht mehr Eigentümer, sondern hast einen Rückgabeanspruch',
+        'Die Papiere sind zusätzlich staatlich versichert',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Verliehene Papiere sind kein Sondervermögen mehr – fällt der Entleiher aus, greifen nur die gestellten Sicherheiten. Dividenden werden zudem nur ersetzt, nicht gezahlt, was steuerlich anders behandelt werden kann. Die Erträge liegen bei Standardwerten oft im Bruchteil eines Prozents.',
+    },
+    {
+      question:
+        'Was ist der wesentliche Unterschied zwischen einem deutschen und einem ausländischen Broker?',
+      options: [
+        'Ausländische Broker dürfen keine deutschen Aktien anbieten',
+        'Bei ausländischen Brokern gibt es keine Einlagensicherung',
+        'Deutsche Broker verlangen grundsätzlich höhere Gebühren',
+        'Der deutsche führt die Abgeltungsteuer automatisch ab, beim ausländischen gehört alles in die Steuererklärung',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Unterschied liegt selten bei den Gebühren, sondern in der Abwicklung: kein Freistellungsauftrag, Vorabpauschale selbst ermitteln, Verlustverrechnung von Hand über die Anlage KAP. Für ein einfaches Depot überschaubar, bei vielen Transaktionen ein Abend im Jahr plus Fehlerrisiko.',
+    },
+    {
+      question: 'Was ist bei einer Brokerinsolvenz die praktisch unangenehmste Folge?',
+      options: [
+        'Dass die Wertpapiere verloren sind',
+        'Dass wochen- bis monatelang nicht gehandelt werden kann',
+        'Dass alle Positionen zwangsverkauft werden',
+        'Dass die Anschaffungsdaten gelöscht werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Papiere liegen beim Zentralverwahrer und werden übertragen – ein Totalverlust droht nicht. Aber die Übertragung dauert, und wer in dieser Zeit verkaufen will, kann es nicht. Zusätzlich ist Guthaben auf dem Verrechnungskonto nur bis 100.000 Euro geschützt.',
+    },
+  ],
+  // -------------------------------------------------- Worauf Einsteiger achten
+  'worauf-achten-einsteiger:beginner': [
+    {
+      question:
+        'Du hast einen Dispokredit und willst mit dem Investieren anfangen. Was kommt zuerst?',
+      options: [
+        'Den Dispo abbauen – er kostet sicher mehr, als eine Anlage erwarten lässt',
+        'Beides parallel, damit die Zeit am Markt nicht verloren geht',
+        'Investieren, weil Aktien langfristig mehr bringen als der Dispozins',
+        'Erst den Notgroschen, dann den Dispo',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein Dispo kostet zweistellig, und zwar sicher. Eine Aktienrendite ist eine Hoffnung. Schulden abzubauen ist deshalb keine Alternative zum Anlegen, sondern die Anlage mit der höchsten garantierten Verzinsung, die es gibt.',
+    },
+    {
+      question: 'Wonach bemisst sich die Größe des Notgroschens?',
+      options: [
+        'Nach dem Nettoeinkommen',
+        'Nach den monatlichen Ausgaben – drei bis sechs davon',
+        'Nach der Höhe des Depots',
+        'Nach einer Pauschale von 10.000 Euro',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Was gedeckt werden muss, sind laufende Ausgaben, nicht Einkommen. Wer selbstständig ist, ein schwankendes Einkommen hat oder allein für Kinder sorgt, rechnet eher am oberen Rand. Der Notgroschen ist keine Renditeposition, sondern die Versicherung gegen den Verkauf im falschen Moment.',
+    },
+    {
+      question:
+        'Welche dieser Versicherungen ist für die meisten Erwerbstätigen existenziell?',
+      options: [
+        'Handyversicherung',
+        'Reiserücktrittsversicherung',
+        'Berufsunfähigkeitsversicherung',
+        'Brillenversicherung',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Versichert wird, was ruiniert, nicht was ärgert. Der Verlust der Arbeitskraft beendet das Einkommen womöglich für Jahrzehnte – ein kaputtes Handy zahlt man aus dem Notgroschen. Ebenfalls existenziell: die Privathaftpflicht, weil dort unbegrenzte Summen möglich sind.',
+    },
+    {
+      question:
+        'Du brauchst in drei Jahren 15.000 Euro für ein Auto. Wohin gehört das Geld?',
+      options: [
+        'In einen breit gestreuten Aktien-ETF',
+        'Auf Tages- oder Festgeld',
+        'In Einzelaktien mit hoher Dividende',
+        'Zur Hälfte in Aktien, zur Hälfte in Krypto',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Drei Jahre sind zu kurz für den Aktienmarkt – er kann in dieser Zeit deutlich im Minus stehen, und dann fehlt die Zeit, das auszusitzen. Jedes Ziel braucht einen Betrag und ein Datum; daraus folgt die Anlageform, nicht umgekehrt.',
+    },
+  ],
+  'worauf-achten-einsteiger:fortgeschritten': [
+    {
+      question:
+        '10.000 Euro, 6 Prozent Bruttorendite, 30 Jahre. Wie groß ist der Unterschied zwischen 0,2 und 1,8 Prozent laufenden Kosten?',
+      options: [
+        'Etwa 2.000 Euro',
+        'Etwa 5.000 Euro',
+        'Etwa 20.000 Euro – rund das Doppelte des ursprünglichen Einsatzes',
+        'Etwa 50.000 Euro',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 10.000 Euro werden bei 0,2 Prozent Kosten rund 54.000, bei 1,8 Prozent rund 34.000 – knapp 20.000 Euro Unterschied bei identischer Anlage und identischem Marktverlauf. Der Unterschied ist keine Frage des Glücks; er stand am ersten Tag fest.',
+    },
+    {
+      question:
+        'Warum sind Arbeitgeberaktien ein besonders unterschätztes Klumpenrisiko?',
+      options: [
+        'Weil sie steuerlich schlechter behandelt werden',
+        'Weil sie nur mit Haltefrist verkauft werden dürfen',
+        'Weil sie meist überbewertet sind',
+        'Weil Einkommen und Vermögen am selben Unternehmen hängen – geht es schief, fällt beides zugleich',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Genau dann, wenn man Rücklagen bräuchte, ist auch der Arbeitsplatz gefährdet. Belegschaftsaktien mit Rabatt bleiben trotzdem attraktiv – die Regel lautet nicht "nicht nehmen", sondern "nach der Haltefrist verkaufen und breit anlegen". Als Obergrenze gelten fünf bis zehn Prozent des Vermögens.',
+    },
+    {
+      question: 'Welcher Unterschied im Basisinformationsblatt ist der folgenreichste?',
+      options: [
+        'Ob das Produkt thesauriert oder ausschüttet',
+        'Ob es sich um Sondervermögen handelt oder um eine Schuldverschreibung des Emittenten',
+        'Ob die Kosten monatlich oder jährlich berechnet werden',
+        'Ob eine empfohlene Haltedauer angegeben ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Fonds ist Sondervermögen und übersteht die Insolvenz des Anbieters. Ein Zertifikat ist eine Schuldverschreibung – geht der Emittent pleite, ist das Geld weg, unabhängig davon, wie sich der Basiswert entwickelt hat. Dieser Unterschied steht selten in der Werbung.',
+    },
+    {
+      question:
+        'Welcher Satz gehört in eine schriftliche Anlagestrategie und wird am häufigsten vergessen?',
+      options: [
+        'Die erwartete Jahresrendite',
+        'Der Name des bevorzugten Brokers',
+        'Was bei einem Kursrückgang von 30 Prozent geschieht',
+        'Die Liste der geplanten Einzelaktien',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Dieser Satz muss geschrieben sein, bevor die 30 Prozent da sind. Im Rückgang argumentiert man mit sich selbst – und gegen ein Blatt Papier vom letzten Jahr argumentiert man schlechter als gegen ein vages Vorhaben.',
+    },
+  ],
+  'worauf-achten-einsteiger:profi': [
+    {
+      question: 'Warum hilft es, seltener ins Depot zu sehen?',
+      options: [
+        'Weil die Kurse dann stabiler verlaufen',
+        'Weil häufiges Hinsehen überwiegend Rauschen zeigt und die Handelsfrequenz erhöht',
+        'Weil Broker für häufige Abfragen Gebühren berechnen',
+        'Weil die Steuer sich nach der Zahl der Depotabfragen richtet',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer täglich hineinsieht, sieht kurzfristige Schwankungen und handelt entsprechend häufiger – jede Runde kostet Gebühr und Spread. Wer vierteljährlich hineinsieht, trifft die gleichen langfristigen Entscheidungen mit deutlich weniger Transaktionen.',
+    },
+    {
+      question:
+        'Welches Ausfallszenario wird bei der Depotstruktur am häufigsten übersehen?',
+      options: [
+        'Der eigene Ausfall – weiß jemand, dass es das Depot gibt und wie man darankommt?',
+        'Die Insolvenz des Brokers',
+        'Die Schließung eines Fonds',
+        'Ein Ausfall der Handelsplattform',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die anderen drei sind bekannt und beherrschbar. Der eigene Ausfall wird dagegen selten bedacht: Eine Aufstellung an einem auffindbaren Ort mit Anbieter, Zugangsweg und Ansprechpartner erspart Angehörigen erhebliche Mühe.',
+    },
+    {
+      question:
+        'Welche der vier Kostenebenen ist typischerweise die teuerste und zugleich am schlechtesten sichtbar?',
+      options: [
+        'Die Depotebene mit Order- und Handelsplatzgebühren',
+        'Die Produktebene mit der laufenden Kostenquote',
+        'Die Steuerebene mit Abgeltungsteuer und Vorabpauschale',
+        'Die Beratungsebene mit Ausgabeaufschlägen und Bestandsprovisionen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ausgabeaufschläge, Bestandsprovisionen und Verwaltungsgebühren tauchen auf keiner Abrechnung als Posten auf – sie sind im Preis oder im Fondsvermögen enthalten. Vollständig ist eine Kostenbetrachtung erst, wenn alle vier Ebenen zusammengezählt sind.',
+    },
+    {
+      question: 'Welche Kombination reicht allein aus, um ein Angebot abzulehnen?',
+      options: [
+        'Hohe Rendite bei angeblich geringem Risiko, verbunden mit Zeitdruck',
+        'Eine Mindestanlagesumme über 10.000 Euro',
+        'Ein Sitz des Anbieters im EU-Ausland',
+        'Eine empfohlene Haltedauer über zehn Jahre',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Rendite ohne entsprechendes Risiko gibt es nicht – und eine seriöse Anlage läuft einem nicht weg. Weitere Warnzeichen: keine Zulassung bei der BaFin, Ertrag aus der Anwerbung weiterer Anleger, kein Basisinformationsblatt und keine ISIN. Ein EU-Sitz allein ist dagegen unauffällig.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */
