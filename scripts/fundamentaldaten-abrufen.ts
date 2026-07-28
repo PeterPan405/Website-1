@@ -49,6 +49,8 @@ const KOPFZEILEN: Record<string, string> = {
 
 const TICKER_URL = 'https://www.sec.gov/files/company_tickers.json'
 const RAHMEN_BASIS = 'https://data.sec.gov/api/xbrl/frames'
+/** Einzelabfrage je Unternehmen – der einzige Weg zu den IFRS-Zahlen. */
+const BEGRIFF_BASIS = 'https://data.sec.gov/api/xbrl/companyconcept'
 const ZIEL = 'data/snapshots/fundamentaldaten.json'
 
 /** Die Dateien, aus denen hervorgeht, welche Kürzel die Website überhaupt führt. */
@@ -116,15 +118,115 @@ const GROESSEN = [
 
 type Feld = (typeof GROESSEN)[number]['feld']
 
+/**
+ * Dieselben Groessen nach internationalen Vorschriften.
+ *
+ * ## Warum das eine zweite Runde braucht
+ *
+ * Wer als auslaendischer Emittent in den USA notiert und nach IFRS bilanziert,
+ * meldet nicht in `us-gaap`, sondern in `ifrs-full`. Die erste Runde hat diese
+ * Unternehmen deshalb gar nicht gesehen – SAP, Novo Nordisk, Toyota, Stellantis,
+ * Ferrari und rund zwei Dutzend weitere standen auf der Seite ohne Kennzahlen.
+ *
+ * ## Warum je Unternehmen und nicht als Rahmen
+ *
+ * Weil es fuer `ifrs-full` keine Rahmen gibt: Jede Abfrage an
+ * `frames/ifrs-full/...` antwortet mit 404, geprueft fuer Umsatz, Gewinn und
+ * Eigenkapital. Der Sammelabruf, der die erste Runde auf zwanzig Anfragen
+ * gedrueckt hat, faellt hier aus – es bleibt nur `companyconcept`, also eine
+ * Abfrage je Unternehmen und Groesse.
+ *
+ * ## Warum die Waehrung mitkommt
+ *
+ * IFRS-Melder berichten in ihrer eigenen Waehrung: SAP in Euro, Novo Nordisk in
+ * Kronen, Toyota in Yen. Eine Umrechnung in Dollar waere hier falsch, weil die
+ * Kurse auf dieser Seite teils in derselben Waehrung notieren – Toyota in Yen,
+ * Samsung in Won. Abgelegt wird deshalb der gemeldete Wert **mit** seiner
+ * Waehrung; was damit geschieht, entscheidet die Website.
+ */
+const IFRS_GROESSEN = [
+  {
+    feld: 'umsatz' as const,
+    tags: ['Revenue', 'RevenueFromContractsWithCustomers'],
+    zeitraum: true,
+  },
+  {
+    feld: 'gewinn' as const,
+    tags: ['ProfitLoss', 'ProfitLossAttributableToOwnersOfParent'],
+    zeitraum: true,
+  },
+  {
+    feld: 'cashflow' as const,
+    tags: ['CashFlowsFromUsedInOperatingActivities'],
+    zeitraum: true,
+  },
+  {
+    feld: 'eigenkapital' as const,
+    tags: ['Equity', 'EquityAttributableToOwnersOfParent'],
+    zeitraum: false,
+  },
+]
+
+/** Ein Eintrag aus `companyconcept`. */
+interface Begriffsantwort {
+  units?: Record<
+    string,
+    { start?: string; end: string; val: number; form?: string; fy?: number }[]
+  >
+}
+
+/**
+ * Der juengste Jahreswert einer Groesse, samt Waehrung.
+ *
+ * Genommen wird nur, was aus einem Jahresbericht stammt (`20-F`, `40-F`, `10-K`)
+ * und – bei Zeitraumgroessen – einen Zeitraum von ungefaehr zwoelf Monaten
+ * abdeckt. Ohne diese Pruefung stuenden Halbjahres- oder Quartalswerte unter
+ * derselben Ueberschrift, und ein Umsatz waere ploetzlich halb so gross.
+ */
+function juengsterJahreswert(
+  antwort: Begriffsantwort,
+  zeitraum: boolean
+): { wert: number; waehrung: string } | null {
+  let bester: { wert: number; waehrung: string; ende: string } | null = null
+
+  for (const [waehrung, eintraege] of Object.entries(antwort.units ?? {})) {
+    for (const eintrag of eintraege) {
+      if (!['20-F', '40-F', '10-K'].includes(eintrag.form ?? '')) continue
+      if (typeof eintrag.val !== 'number' || !Number.isFinite(eintrag.val)) continue
+
+      if (zeitraum) {
+        if (!eintrag.start) continue
+        const tage = (Date.parse(eintrag.end) - Date.parse(eintrag.start)) / 86_400_000
+        if (!(tage > 300 && tage < 400)) continue
+      }
+
+      if (!bester || eintrag.end > bester.ende) {
+        bester = { wert: eintrag.val, waehrung, ende: eintrag.end }
+      }
+    }
+  }
+
+  return bester ? { wert: bester.wert, waehrung: bester.waehrung } : null
+}
+
 interface Rahmenantwort {
   data?: { cik: number; entityName?: string; val?: number }[]
 }
 
-async function hole(url: string): Promise<unknown | null> {
+async function hole(url: string, stillBei404 = false): Promise<unknown | null> {
   try {
     const antwort = await fetch(url, { headers: KOPFZEILEN })
     if (!antwort.ok) {
-      console.log(`  ${antwort.status} bei ${url.replace(RAHMEN_BASIS, '…')}`)
+      /*
+        Beim Durchprobieren von Bezeichnern ist 404 der Regelfall.
+
+        Jeder Versuch, der ins Leere geht, waere sonst eine Zeile im Protokoll –
+        bei zweihundert Unternehmen mal fuenf Bezeichnern waeren das tausend
+        Zeilen, in denen die echten Fehler untergingen.
+      */
+      if (!(stillBei404 && antwort.status === 404)) {
+        console.log(`  ${antwort.status} bei ${url.replace(RAHMEN_BASIS, '…')}`)
+      }
       return null
     }
     return await antwort.json()
@@ -269,6 +371,69 @@ async function main() {
     for (const k of kuerzel) if (gefuehrt.has(k)) jeKuerzel[k] = sauber
   }
 
+  /*
+    Zweite Runde: die IFRS-Melder.
+
+    Gefragt wird nur nach Kuerzeln, die im Katalog stehen und aus der ersten
+    Runde hoechstens eine Aktienzahl mitgebracht haben – die kommt aus `dei`
+    und liegt auch bei IFRS-Meldern vor, sagt aber allein nichts.
+  */
+  const cikJeKuerzel = new Map<string, number>()
+  for (const [cik, kuerzel] of kuerzelJeCik) {
+    for (const k of kuerzel) if (gefuehrt.has(k)) cikJeKuerzel.set(k, cik)
+  }
+
+  const offen = [...cikJeKuerzel.keys()].filter((k) => {
+    const eintrag = jeKuerzel[k]
+    if (!eintrag) return true
+    // Nur die Aktienzahl heisst: aus us-gaap kam nichts.
+    return !eintrag.umsatz && !eintrag.gewinn && !eintrag.eigenkapital
+  })
+
+  console.log(`\n${offen.length} gefuehrte Kuerzel ohne us-gaap-Daten – IFRS pruefen …`)
+
+  const ifrsWerte: Record<string, Record<string, number | string>> = {}
+  let ifrsTreffer = 0
+
+  for (const kuerzel of offen) {
+    const cik = cikJeKuerzel.get(kuerzel)
+    if (cik === undefined) continue
+    const gefunden: Record<string, number | string> = {}
+
+    for (const groesse of IFRS_GROESSEN) {
+      for (const tag of groesse.tags) {
+        const url = `${BEGRIFF_BASIS}/CIK${String(cik).padStart(10, '0')}/ifrs-full/${tag}.json`
+        const antwort = (await hole(url, true)) as Begriffsantwort | null
+        // Zwischen den Abrufen kurz warten – die SEC bittet um Zurueckhaltung.
+        await new Promise((fertig) => setTimeout(fertig, 120))
+        if (!antwort) continue
+        const wert = juengsterJahreswert(antwort, groesse.zeitraum)
+        if (!wert) continue
+
+        /*
+          Alle Groessen eines Unternehmens muessen dieselbe Waehrung haben.
+
+          Manche melden zusaetzlich in Dollar. Ein Umsatz in Euro neben einem
+          Eigenkapital in Dollar ergaebe ein Kurs-Buchwert-Verhaeltnis, das um
+          den Wechselkurs danebenliegt – und dem sieht man nichts an.
+        */
+        if (gefunden.waehrung && gefunden.waehrung !== wert.waehrung) break
+        gefunden.waehrung = wert.waehrung
+        gefunden[groesse.feld] = wert.wert
+        break
+      }
+    }
+
+    if (gefunden.umsatz || gefunden.gewinn) {
+      const aktien = jeKuerzel[kuerzel]?.aktien
+      if (aktien) gefunden.aktien = aktien
+      ifrsWerte[kuerzel] = gefunden
+      ifrsTreffer += 1
+    }
+  }
+
+  console.log(`IFRS: ${ifrsTreffer} weitere Unternehmen mit Zahlen.`)
+
   const vollstaendig = Object.values(jeKuerzel).filter(
     (e) => e.umsatz && e.gewinn && e.aktien
   ).length
@@ -291,13 +456,19 @@ async function main() {
     )
   }
 
+  // IFRS-Zahlen dazulegen. Sie ueberschreiben nichts: Abgefragt wurden nur
+  // Kuerzel, zu denen aus der ersten Runde nichts Brauchbares kam.
+  for (const [kuerzel, werte] of Object.entries(ifrsWerte)) {
+    jeKuerzel[kuerzel] = werte as unknown as Record<string, number>
+  }
+
   const inhalt = {
     abgerufenAm: new Date().toISOString(),
     quelle: {
       label: 'US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen',
       url: 'https://www.sec.gov/edgar/sec-api-documentation',
       abgrenzung:
-        'Umsatz, Nettogewinn und operativer Cashflow für das zuletzt gemeldete Geschäftsjahr; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Nur Unternehmen, die nach US-Vorschriften bilanzieren.',
+        'Umsatz, Nettogewinn und operativer Cashflow für das zuletzt gemeldete Geschäftsjahr; Eigenkapital und Aktienzahl zum jüngsten Stichtag. Erfasst sind Unternehmen, die bei der SEC melden – nach US-Vorschriften (us-gaap) oder nach internationalen (ifrs-full). IFRS-Melder berichten in ihrer eigenen Währung; sie steht dann am Datensatz.',
     },
     unternehmen: jeKuerzel,
   }
