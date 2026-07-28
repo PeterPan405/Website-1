@@ -22,14 +22,14 @@ import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
 import { sparerpauschbetrag } from '@/data/learn/topics/sparerpauschbetrag'
 import { staatsanleihe } from '@/data/learn/topics/staatsanleihe'
 import { waehrungenWechselkurse } from '@/data/learn/topics/waehrungen-wechselkurse'
+import { wannKaufenVerkaufen } from '@/data/learn/topics/wann-kaufen-verkaufen'
+import { wieFunktioniertDerMarkt } from '@/data/learn/topics/wie-funktioniert-der-markt'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
   groessteCrashes,
   immobilien,
   rente,
-  wannKaufenVerkaufen,
-  wieFunktioniertDerMarkt,
 } from '@/data/learn/topics/outlines'
 import { getQuizFor } from '@/data/learn/quizzes'
 import { rohstoffe } from '@/data/learn/topics/rohstoffe'

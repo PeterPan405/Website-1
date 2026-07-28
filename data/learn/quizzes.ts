@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    324 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    348 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -4315,6 +4315,323 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 3,
       explanation:
         'Wer einen Block zusammenstellt, entscheidet über Inhalt und Reihenfolge – und kann dieses Recht verkaufen. Ein System, das ohne Vertrauen auskommen sollte, hat damit eine Ertragsquelle geschaffen, die an regulierten Märkten verfolgt wird. Sandwich-Angriffe und bevorzugte Liquidationen sind die praktischen Formen.',
+    },
+  ],
+
+  // ------------------------------------------------- Wie funktioniert der Markt
+  'wie-funktioniert-der-markt:beginner': [
+    {
+      question: 'Was ist der Spread zwischen Geld- und Briefkurs?',
+      options: [
+        'Eine Gebühr, die die Börse erhebt',
+        'Der Preis dafür, sofort handeln zu können – er geht an denjenigen, der bereitsteht',
+        'Die Differenz zwischen Kurs und innerem Wert des Unternehmens',
+        'Die Schwankungsbreite des Kurses über einen Handelstag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Er wird von niemandem berechnet, sondern ist die Vergütung dafür, dass immer eine Gegenseite bereitsteht. Für dich ist er trotzdem eine echte Kostenposition: Wer kauft und sofort wieder verkauft, hat ihn in voller Höhe verloren, ohne dass sich am Kurs etwas geändert hätte.',
+    },
+    {
+      question:
+        'Ein Unternehmen meldet 15 Prozent Gewinnwachstum – und der Kurs fällt. Wie ist das zu erklären?',
+      options: [
+        'Der Markt reagiert grundsätzlich verzögert auf Quartalszahlen',
+        'Kursbewegungen hängen nicht mit Unternehmenszahlen zusammen',
+        'Erwartet worden waren mehr – gegenüber der Erwartung ist die Meldung eine Enttäuschung',
+        'Gewinnwachstum wirkt sich erst im Folgejahr auf den Kurs aus',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Kurs enthielt die erwarteten 20 Prozent bereits. Bewegt wird er von der Abweichung, nicht von der Tatsache. Umgekehrt kann ein Verlust den Kurs steigen lassen, wenn ein größerer erwartet wurde – wer Kursreaktionen verstehen will, braucht immer zwei Zahlen, und nur eine steht in der Schlagzeile.',
+    },
+    {
+      question: 'Was bedeutet es, dass jeder Kurs zwei Seiten braucht?',
+      options: [
+        'Dass jede Aktie an mindestens zwei Börsen notiert sein muss',
+        'Dass es für jeden Kurs einen Geld- und einen Briefkurs gibt',
+        'Dass Kauf- und Verkaufsvolumen immer gleich groß sind',
+        'Dass jemand kauft, weil er das Papier für zu billig hält – und jemand verkauft, weil er es für teuer genug hält',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Beide handeln bei gleicher öffentlicher Informationslage in entgegengesetzter Richtung, und beide können nicht recht haben. Daraus folgt eine unbequeme, angebrachte Frage vor jedem Kauf: Warum sollte ich mehr wissen als der auf der anderen Seite?',
+    },
+    {
+      question: 'Worin besteht der strukturelle Vorteil eines Privatanlegers?',
+      options: [
+        'Im längeren Anlagehorizont – niemand zwingt ihn zu verkaufen',
+        'In niedrigeren Handelskosten als bei institutionellen Anlegern',
+        'Im schnelleren Zugang zu Unternehmensnachrichten',
+        'In der Möglichkeit, kleinere Positionen unbemerkt zu handeln',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei Kosten, Geschwindigkeit und Datenzugang ist ein Privatanleger im Nachteil. Was ihm bleibt, ist die Zeit: Kein Anleger kann sein Kapital abziehen, niemand verlangt eine Quartalserklärung. Diesen Vorteil hat kein Berufsanleger – und er lässt sich nur nutzen, indem man selten handelt.',
+    },
+  ],
+
+  'wie-funktioniert-der-markt:fortgeschritten': [
+    {
+      question: 'Worin unterscheiden sich Limit- und Marktauftrag grundsätzlich?',
+      options: [
+        'Der Limitauftrag ist immer günstiger in den Gebühren',
+        'Beim Limit ist der Preis sicher und die Ausführung nicht, beim Marktauftrag umgekehrt',
+        'Der Marktauftrag wird nur zur Eröffnungsauktion ausgeführt',
+        'Der Limitauftrag entnimmt Liquidität, der Marktauftrag stellt sie bereit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Limitauftrag wird ins Buch gestellt und wartet – er stellt Liquidität bereit. Ein Marktauftrag wird sofort gegen die beste Gegenseite ausgeführt und entnimmt sie. Welcher passt, hängt davon ab, was wichtiger ist: ein bestimmter Preis oder die sichere Ausführung.',
+    },
+    {
+      question: 'Was beschreibt Slippage?',
+      options: [
+        'Die Verzögerung zwischen Auftragseingabe und Ausführung',
+        'Die Kursänderung über Nacht bei geschlossener Börse',
+        'Die Differenz zwischen erwartetem und tatsächlich erzieltem Durchschnittspreis',
+        'Die Gebührendifferenz zwischen zwei Handelsplätzen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer mehr Stücke will, als in der besten Lage liegen, arbeitet sich in schlechtere Lagen vor. Deshalb ist die Markttiefe aussagekräftiger als der Spread allein: Nicht nur, wie eng die erste Lage ist, sondern wie viel dahinter liegt.',
+    },
+    {
+      question:
+        'Wann ist die Liquidität an einem Handelstag typischerweise am geringsten?',
+      options: [
+        'Kurz nach der Eröffnung und in der Mittagszeit',
+        'In der Überlappung mit dem US-Handel am Nachmittag',
+        'Während der Schlussauktion',
+        'Die Liquidität ist über den Tag gleichmäßig verteilt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Am dichtesten ist der Handel nachmittags, wenn europäischer und US-Handel sich überschneiden. Wer in den ersten Minuten nach Handelsbeginn kauft, zahlt regelmäßig einen breiteren Spread. Auktionen zur Eröffnung und zum Schluss sind dagegen die liquidesten Momente – bei wenig gehandelten Werten oft die einzigen brauchbaren.',
+    },
+    {
+      question: 'Wie ist der Hochfrequenzhandel für Privatanleger einzuordnen?',
+      options: [
+        'Er hat Spreads deutlich verengt – und zieht sich in Stressphasen zurück',
+        'Er verschlechtert die Ausführungsqualität durchgehend',
+        'Er betrifft nur institutionelle Anleger',
+        'Er sorgt dafür, dass Kurse in Krisen stabil bleiben',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Beide Befunde stehen nebeneinander und stimmen: Die Verengung der Spreads ist messbar und ein echter Vorteil für normale Anleger. Und wenn die Modelle keine Kurse mehr stellen, verschwindet die Gegenseite genau dann, wenn viele verkaufen wollen. Die Bewertung hängt davon ab, welchen Fall man betrachtet.',
+    },
+  ],
+
+  'wie-funktioniert-der-markt:profi': [
+    {
+      question: 'Welche Form der Informationseffizienz ist klar widerlegt?',
+      options: [
+        'Die schwache Form',
+        'Die halbstarke Form',
+        'Die starke Form – sonst wäre Insiderhandel nicht einträglich',
+        'Alle drei Formen sind empirisch bestätigt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die starke Form behauptet, selbst nicht öffentliche Informationen steckten im Kurs. Wäre das so, müsste Insiderhandel weder verboten noch verfolgt werden. Die schwache Form ist weitgehend, die halbstarke überwiegend bestätigt – neue öffentliche Informationen werden in Sekunden eingepreist, nicht in Tagen.',
+    },
+    {
+      question: 'Was besagt das Effizienzparadox?',
+      options: [
+        'Dass effiziente Märkte höhere Renditen liefern als ineffiziente',
+        'Dass Effizienz durch die Suche nach Ineffizienz entsteht – und deshalb nie vollständig sein kann',
+        'Dass Kurse in effizienten Märkten nicht mehr schwanken',
+        'Dass Indexfonds Märkte ineffizient machen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wäre ein Markt vollkommen effizient, lohnte die Suche nicht mehr – niemand würde sie betreiben, und er würde ineffizient. Effizienz ist ein Gleichgewicht, in dem die Suche gerade ihre Kosten deckt. Für Privatanleger heißt das: Was zu finden ist, kostet ungefähr so viel, wie es bringt.',
+    },
+    {
+      question:
+        'Warum werden Überbewertungen schlechter korrigiert als Unterbewertungen?',
+      options: [
+        'Weil Aufsichtsbehörden Leerverkäufe generell untersagen',
+        'Weil Käufer stets zahlreicher sind als Verkäufer',
+        'Weil Überbewertungen seltener auftreten',
+        'Weil Leerverkäufe unbegrenzte Verluste tragen, Leihgebühren kosten und das Papier zurückgefordert werden kann',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Eine Unterbewertung lässt sich schlicht durch Kaufen ausnutzen. Eine Überbewertung erfordert einen Leerverkauf – mit nach oben unbegrenztem Verlust, laufenden Leihgebühren und dem Risiko, das Papier zurückgeben zu müssen. Das ist ein systematischer Grund für anhaltend zu hohe Preise.',
+    },
+    {
+      question:
+        'Hundert Muster werden auf einem Signifikanzniveau von fünf Prozent geprüft. Was folgt daraus?',
+      options: [
+        'Im Schnitt „funktionieren“ fünf davon rein zufällig – veröffentlicht wird meist eines',
+        'Fünf Prozent der gefundenen Effekte sind statistisch belegt',
+        'Alle gefundenen Effekte sind belastbar, sofern die Datenreihe lang genug ist',
+        'Die Prüfung ist nur bei weniger als zehn Hypothesen zulässig',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das ist die Struktur der Anomalienliteratur, keine Unterstellung: Die 99 gescheiterten Versuche stehen nirgends, und ohne sie lässt sich nicht beurteilen, wie außergewöhnlich der eine Erfolg war. Belastbar wird ein Effekt erst durch einen Test auf Daten, die bei der Entwicklung nicht verwendet wurden – plus eine ökonomische Begründung.',
+    },
+  ],
+
+  // ----------------------------------------------------- Wann kaufen & verkaufen
+  'wann-kaufen-verkaufen:beginner': [
+    {
+      question: 'Welche zwei Risiken trägt, wer auf einen besseren Einstieg wartet?',
+      options: [
+        'Kursrisiko und Währungsrisiko',
+        'Kursrisiko und das Risiko, die Aufwärtsbewegung zu verpassen',
+        'Inflationsrisiko und Emittentenrisiko',
+        'Nur das Kursrisiko – Warten selbst ist risikofrei',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das zweite Risiko fühlt sich nicht wie eines an, weil kein Geld verschwindet – rechnerisch ist es aber eines. Dazu kommt: Wer aussteigt, muss zweimal richtig liegen, und die Rückkehrentscheidung fällt in einer Phase, in der alle Nachrichten schlecht sind.',
+    },
+    {
+      question:
+        'Warum ist ein Höchststand in einem langfristig steigenden Markt kein Warnsignal?',
+      options: [
+        'Weil auf Höchststände statistisch immer Rückgänge folgen',
+        'Weil Höchststände dort der Normalfall sind – wer nur darunter kauft, kauft in manchen Jahren gar nicht',
+        'Weil Höchststände nur bei Einzelaktien vorkommen',
+        'Weil Indizes ihre Höchststände regelmäßig zurücksetzen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Markt, der über lange Zeiträume steigt, erreicht laufend neue Höchststände – das ist die Definition. Sie als Warnung zu lesen führt dazu, in genau den Phasen nicht zu kaufen, in denen es aufwärtsging.',
+    },
+    {
+      question:
+        'Was zeigt die Rechnung, in der die besten Wochen eines Zeitraums ausgelassen werden?',
+      options: [
+        'Dass sich die Rendite gleichmäßig über alle Wochen verteilt',
+        'Dass Aussteigen die Rendite verbessert, wenn man die schlechtesten Wochen meidet',
+        'Dass die Rendite eines Zeitraums an sehr wenigen Wochen hängt',
+        'Dass die Ergebnisse vom gewählten Index unabhängig sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Fehlen zehn von rund 250 Wochen – vier Prozent der Zeit –, wird aus einem klar positiven Ergebnis ein Verlust. Wer nicht investiert ist, verpasst genau diese Wochen. Das ist der rechnerische Kern des Nichtinvestiert-Risikos.',
+    },
+    {
+      question:
+        'Warum funktioniert das Ausweichen vor schlechten Phasen in der Praxis so selten?',
+      options: [
+        'Weil die besten und die schlechtesten Perioden unmittelbar nebeneinander liegen',
+        'Weil Verkäufe technisch zu lange dauern',
+        'Weil Börsen in Krisen den Handel aussetzen',
+        'Weil die schlechtesten Perioden nicht vorhersehbar sind, die besten aber schon',
+      ],
+      correctIndex: 0,
+      explanation:
+        'In den Daten dieser Website folgt die stärkste Aufwärtswoche des Zeitraums unmittelbar auf die stärkste Abwärtswoche. Starke Bewegungen treten in beiden Richtungen in denselben unruhigen Phasen auf. Wer nach dem Einbruch verkauft, ist in der Erholung nicht dabei.',
+    },
+  ],
+
+  'wann-kaufen-verkaufen:fortgeschritten': [
+    {
+      question: 'Was haben die tragfähigen Verkaufsgründe gemeinsam?',
+      options: [
+        'Sie beruhen auf technischen Kurssignalen',
+        'Sie stammen überwiegend aus dem eigenen Leben oder dem eigenen Plan, nicht aus dem Markt',
+        'Sie setzen einen Kursrückgang von mindestens 20 Prozent voraus',
+        'Sie gelten nur für Einzelaktien, nicht für Fonds',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Geldbedarf, erreichtes Ziel und Rebalancing nach Regel haben mit der Marktlage nichts zu tun. Der vierte Grund – die widerlegte Anlagethese – bezieht sich auf das Unternehmen, nicht auf den Kurs. Das ist das Erkennungsmerkmal eines guten Verkaufsgrundes.',
+    },
+    {
+      question: 'Warum ist „erst wieder bei null verkaufen“ eine teure Regel?',
+      options: [
+        'Weil sie steuerlich nachteilig ist',
+        'Weil sie den Verkauf zu lange hinauszögert und dadurch Gebühren erhöht',
+        'Weil sie an eine Zahl bindet, die nur du kennst und die für die Zukunft bedeutungslos ist',
+        'Weil sie bei Fonds technisch nicht umsetzbar ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Markt kennt deinen Einstiegskurs nicht und richtet sich nicht danach. Für die Frage, ob eine Anlage heute gehalten werden soll, ist er ohne jede Bedeutung – die Regel hält an einem Bezugspunkt fest, der nur in der eigenen Buchhaltung existiert.',
+    },
+    {
+      question: 'Was leistet ein Stop-Kurs – und was nicht?',
+      options: [
+        'Er garantiert den festgelegten Verkaufspreis',
+        'Er verhindert Kursverluste vollständig',
+        'Er wirkt nur während der Auktionen',
+        'Er löst automatisch einen Verkauf aus, garantiert aber keinen Preis – bei einer Kurslücke wird deutlich darunter verkauft',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ein Stop löst eine Marktorder aus. Öffnet der Kurs nach schlechten Nachrichten mit einer Lücke, wird zum nächsten verfügbaren Kurs verkauft. Dazu wird er regelmäßig durch bloße Schwankung ausgelöst – und dann steht man vor derselben Frage wie jeder Aussteiger: Wann zurück?',
+    },
+    {
+      question: 'Warum wirkt Rebalancing nach festen Bandbreiten antizyklisch?',
+      options: [
+        'Weil es verkauft, was gut lief, und kauft, was schlecht lief – ohne Marktmeinung',
+        'Weil es nur in fallenden Märkten ausgelöst wird',
+        'Weil es die Aktienquote dauerhaft senkt',
+        'Weil es Kursprognosen in die Entscheidung einbezieht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Regel wird festgelegt, solange nichts passiert ist, und greift dann mechanisch. Sie stellt die geplante Aufteilung wieder her – dass sie dabei antizyklisch handelt, ist eine Folge, kein Ziel. Genau deshalb hält sie auch dann, wenn eine bewusste Entscheidung schwerfiele.',
+    },
+  ],
+
+  'wann-kaufen-verkaufen:profi': [
+    {
+      question:
+        'Warum liegt die nötige Trefferquote einer Timing-Strategie deutlich über 50 Prozent?',
+      options: [
+        'Weil Märkte häufiger steigen als fallen',
+        'Weil jede Runde Kosten verursacht – Spread, Gebühren und Steuer auf realisierte Gewinne',
+        'Weil Prognosen grundsätzlich unmöglich sind',
+        'Weil die Schwelle regulatorisch festgelegt ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Kosten genügten 50 Prozent – die Münzwurf-Schwelle, und der Grund, warum Timing im Gespräch immer machbar klingt. Schon ein Prozent Kosten je Runde hebt sie spürbar darüber, und die Schwelle gilt je Runde: Wer zwölfmal im Jahr entscheidet, muss sie zwölfmal erreichen.',
+    },
+    {
+      question:
+        'Was liefert Trendfolge über gleitende Durchschnitte nach Kosten typischerweise?',
+      options: [
+        'Deutlich höhere Rendite bei gleicher Schwankung',
+        'Eine Rendite meist unter dem schlichten Halten, dafür geringere Schwankung',
+        'Verlässlich negative Ergebnisse',
+        'Dieselbe Rendite wie Halten, aber steuerfrei',
+      ],
+      correctIndex: 1,
+      explanation:
+        'In Rückrechnungen sieht die Strategie oft gut aus, weil sie große Abwärtsphasen abschneidet. In der Umsetzung frisst die hohe Zahl von Fehlsignalen in Seitwärtsphasen den Vorteil, dazu Kosten und Steuern bei jedem Wechsel. Was bleibt, ist meist ein Tausch von Rendite gegen Ruhe.',
+    },
+    {
+      question: 'Was ist der eigentliche Preis eines Verkaufs im Privatvermögen?',
+      options: [
+        'Die Ordergebühr',
+        'Der Spread beim Wiedereinstieg',
+        'Der verlorene Stundungseffekt: Der abgeführte Steuerbetrag arbeitet nicht mehr mit',
+        'Die Vorabpauschale des Folgejahres',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Steuer selbst wäre irgendwann ohnehin fällig. Teuer ist die Vorverlegung – über eine lange Restlaufzeit ist der entgangene Zinseszins auf diesen Betrag der größere Posten. Wer hält, zahlt einmal am Ende, auf eine Summe, die zwischenzeitlich weitergearbeitet hat.',
+    },
+    {
+      question: 'Warum sind Rückrechnungen systematisch zu optimistisch?',
+      options: [
+        'Weil historische Kurse nachträglich korrigiert werden',
+        'Weil Überanpassung, Publikationsverzerrung und fehlende Umsetzungskosten zusammenwirken',
+        'Weil sie ausschließlich mit Indexdaten arbeiten',
+        'Weil Börsen ältere Daten nicht vollständig bereitstellen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer Parameter so lange verändert, bis das Ergebnis stimmt, hat die Vergangenheit beschrieben. Veröffentlicht wird ohnehin nur, was funktioniert hat. Und Papierrenditen rechnen ohne Spread, ohne Marktwirkung der eigenen Aufträge und ohne Steuern – die drei Posten, die bei häufigem Handeln entscheiden.',
     },
   ],
 }
