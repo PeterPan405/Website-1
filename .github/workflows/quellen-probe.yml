@@ -16,80 +16,75 @@ name: Quellen abklopfen
 # - OECD (Vermögen): geht → 30 Länder nach Umrechnung, eingebaut
 # - SEC (Fundamentaldaten, us-gaap): geht → 170 geführte Kürzel, eingebaut
 # - SEC (Quartalstermine, 8-K/2.02): geht → 158 Unternehmen, eingebaut
-# - SEC (Quartalstermine, 6-K für ausländische Emittenten): geprüft, verworfen.
-#   Die Dokumentbeschreibung lautet bei SAP, ASML, Novo Nordisk, Shell, Sony
-#   und TSMC ausnahmslos „FORM 6-K“; bei AstraZeneca sind die Treffer auf
-#   „results“ Ergebnisse klinischer Studien.
-# - Yahoo (Kennzahlen): 401 Unauthorized
+# - SEC (6-K für ausländische Emittenten): geprüft, verworfen – die
+#   Dokumentbeschreibung lautet ausnahmslos „FORM 6-K“.
+# - Yahoo (Kennzahlen, Kalender, quote-Endpunkt): 401. Der Kalender verlangt
+#   seit Kurzem einen Crumb, also Cookie und Einmalkennung aus dem Browser.
+#   Das ist eine gesetzte Zugangssperre und nichts, was man wegkonfiguriert –
+#   dieselbe Entscheidung wie seinerzeit bei Stooq.
+# - Financial Modeling Prep: 401, verlangt einen Schlüssel.
+# - stockanalysis.com: liefert 200, ist aber eine fremde Website und keine
+#   Schnittstelle. Deren Aufbereitung abzugreifen ist etwas anderes als eine
+#   Quelle zu nutzen.
 # - Frankfurter (Devisen): 301 auf eine andere Adresse; EZB reicht ohnehin
 #
-# ## Diese Runde: Quartalstermine für die übrigen 371 Aktien
+# ## Diese Runde: Börse Frankfurt
 #
-# Über die SEC sind 158 der 529 geführten Aktien abgedeckt. Die übrigen
-# notieren in Europa und Asien und reichen dort nichts ein. Gesucht ist eine
-# Quelle, die für diese Werte **vergangene oder künftige Meldetermine**
-# liefert – ohne Registrierung, ohne Schlüssel, ohne Bedingungen, die einer
-# Website die Nutzung verbieten.
+# Als einzige der fünf geprüften Adressen hat `api.boerse-frankfurt.de` mit
+# 200 geantwortet – allerdings mit einem leeren Objekt. Das kann zweierlei
+# heißen: falscher Pfad oder falscher Parametername. Beides lässt sich
+# durchprobieren.
 #
-# Geprüft werden fünf Kandidaten. Für jeden zählt dasselbe: Antwortet er, und
-# steht in der Antwort ein Datum, das sich einem Unternehmen zuordnen lässt?
+# Der Weg wäre der richtige: Deutsche Börse führt die Unternehmenstermine der
+# hier gelisteten Gesellschaften selbst, und börsennotierte Gesellschaften sind
+# verpflichtet, einen Finanzkalender zu veröffentlichen. Wenn es geht, deckt
+# das die deutschen und einen Teil der europäischen Werte ab.
 
 on:
   workflow_dispatch:
 
 jobs:
   abklopfen:
-    name: Quellen für Quartalstermine ausserhalb der USA
+    name: Börse Frankfurt – Unternehmenstermine
     runs-on: ubuntu-latest
     steps:
-      - name: 1 – Yahoo, Kalender je Kürzel
+      - name: Pfade und Parameter durchprobieren
         run: |
           UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
-          for k in SAP.DE ASML.AS NESN.SW MC.PA 7203.T; do
-            code=$(curl -sS -A "$UA" --max-time 40 -o "/tmp/y-$k.json" -w '%{http_code}' \
-              "https://query2.finance.yahoo.com/v10/finance/quoteSummary/$k?modules=calendarEvents,earnings" || echo 000)
-            echo "▶ $k → $code, $(stat -c%s "/tmp/y-$k.json" 2>/dev/null || echo 0) Bytes"
-            head -c 400 "/tmp/y-$k.json" 2>/dev/null; echo; echo
+          # SAP: DE0007164600, Siemens: DE0007236101
+          ISIN=DE0007164600
+
+          probiere() {
+            code=$(curl -sS -A "$UA" -H 'Accept: application/json' \
+              -H 'Origin: https://www.boerse-frankfurt.de' \
+              -H 'Referer: https://www.boerse-frankfurt.de/' \
+              --max-time 40 -o /tmp/bf.json -w '%{http_code}' "$1" || echo 000)
+            groesse=$(stat -c%s /tmp/bf.json 2>/dev/null || echo 0)
+            echo "▶ $code  ${groesse}B  $1"
+            if [ "$groesse" -gt 3 ]; then head -c 500 /tmp/bf.json; echo; fi
+          }
+
+          for pfad in \
+            "data/company_dates?isin=$ISIN" \
+            "data/company_dates?isin=$ISIN&limit=25&offset=0" \
+            "data/corporate_dates?isin=$ISIN" \
+            "data/equity_company_dates?isin=$ISIN" \
+            "data/company_information?isin=$ISIN" \
+            "data/equity_master_data?isin=$ISIN" \
+            "data/price_information?isin=$ISIN&mic=XETR" \
+            "search/equity_search"; do
+            probiere "https://api.boerse-frankfurt.de/v1/$pfad"
           done
 
-      - name: 2 – Financial Modeling Prep ohne Schlüssel
-        run: |
-          for pfad in "earning_calendar" "historical/earning_calendar/SAP.DE"; do
-            code=$(curl -sS --max-time 40 -o /tmp/fmp.json -w '%{http_code}' \
-              "https://financialmodelingprep.com/api/v3/$pfad" || echo 000)
-            echo "▶ $pfad → $code"
-            head -c 300 /tmp/fmp.json; echo; echo
-          done
-
-      - name: 3 – Börse Frankfurt, Unternehmenstermine
-        run: |
-          UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
-          for url in \
-            "https://api.boerse-frankfurt.de/v1/data/company_dates?isin=DE0007164600&limit=20" \
-            "https://www.boerse-frankfurt.de/api/v1/data/company_dates?isin=DE0007164600"; do
-            code=$(curl -sS -A "$UA" --max-time 40 -o /tmp/bf.json -w '%{http_code}' "$url" || echo 000)
-            echo "▶ $url → $code"
-            head -c 300 /tmp/bf.json; echo; echo
-          done
-
-      - name: 4 – stockanalysis.com
+      - name: Gibt es einen offenen Einstiegspunkt?
         run: |
           UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
           for url in \
-            "https://stockanalysis.com/api/screener/s/f?m=marketCap&s=desc&c=s,n,earningsDate&cn=20" \
-            "https://stockanalysis.com/quote/etr/SAP/__data.json"; do
-            code=$(curl -sS -A "$UA" --max-time 40 -o /tmp/sa.json -w '%{http_code}' "$url" || echo 000)
-            echo "▶ $url → $code, $(stat -c%s /tmp/sa.json 2>/dev/null || echo 0) Bytes"
-            head -c 400 /tmp/sa.json; echo; echo
+            "https://api.boerse-frankfurt.de/v1/" \
+            "https://api.boerse-frankfurt.de/" \
+            "https://api.boerse-frankfurt.de/v1/swagger.json" \
+            "https://api.boerse-frankfurt.de/v1/openapi.json"; do
+            code=$(curl -sS -A "$UA" --max-time 30 -o /tmp/e.json -w '%{http_code}' "$url" || echo 000)
+            echo "▶ $code  $(stat -c%s /tmp/e.json 2>/dev/null || echo 0)B  $url"
+            head -c 300 /tmp/e.json; echo; echo
           done
-
-      - name: 5 – Die eigene Kursquelle, auf Termine abgeklopft
-        run: |
-          # Der Kursabruf dieser Website läuft bereits über Yahoo. Wenn dort
-          # ein Termin mitgeliefert wird, wäre das die billigste Lösung: keine
-          # neue Quelle, keine neuen Bedingungen.
-          UA="Mozilla/5.0 (compatible; IM-Invests/1.0; +https://iminvests.de)"
-          code=$(curl -sS -A "$UA" --max-time 40 -o /tmp/q.json -w '%{http_code}' \
-            "https://query1.finance.yahoo.com/v7/finance/quote?symbols=SAP.DE,ASML.AS,AAPL&fields=earningsTimestamp,earningsTimestampStart,earningsTimestampEnd" || echo 000)
-          echo "▶ quote-Endpunkt → $code"
-          head -c 600 /tmp/q.json; echo
