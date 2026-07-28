@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    348 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    396 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -4632,6 +4632,628 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 1,
       explanation:
         'Wer Parameter so lange verändert, bis das Ergebnis stimmt, hat die Vergangenheit beschrieben. Veröffentlicht wird ohnehin nur, was funktioniert hat. Und Papierrenditen rechnen ohne Spread, ohne Marktwirkung der eigenen Aufträge und ohne Steuern – die drei Posten, die bei häufigem Handeln entscheiden.',
+    },
+  ],
+
+  // ------------------------------------------------------------ Größte Crashs
+  'groesste-crashes:beginner': [
+    {
+      question: 'Was sagt das Ausmaß eines Crashs über die Dauer der Erholung?',
+      options: [
+        'Wenig – 1987 war der Tagesverlust dramatisch und nach zwei Jahren erledigt, 1929 dauerte es eine Generation',
+        'Je größer der Rückgang, desto länger die Erholung',
+        'Je größer der Rückgang, desto schneller die Erholung',
+        'Die Erholung dauert historisch immer etwa fünf Jahre',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Unterschied lag nicht im Auslöser, sondern in dem, was danach geschah: 1929 wurde die Geldmenge verknappt und der Handel eingeschränkt, 2020 flossen binnen Wochen Hilfen in beispiellosem Umfang. Wer die Dauer abschätzen will, müsste die politische Reaktion abschätzen.',
+    },
+    {
+      question: 'Welches Muster hatten alle großen Einbrüche gemeinsam?',
+      options: [
+        'Denselben Auslöser: überhöhte Bewertungen',
+        'Wachsende Zuversicht, ein Auslöser, Verstärkung durch Zwangsverkäufe, dann eine Erholung sehr unterschiedlicher Dauer',
+        'Einen Rückgang von exakt 50 Prozent',
+        'Eine vorherige Warnung durch verlässliche Indikatoren',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Auslöser waren jedes Mal verschieden – Spekulation, Technologie, Immobilienkredite, eine Pandemie. Der Ablauf ähnelte sich. Der Auslöser ist dabei nicht die Ursache, sondern der Moment, in dem die Ursache sichtbar wird.',
+    },
+    {
+      question: 'Wie sind Rückgänge von 20 Prozent und mehr einzuordnen?',
+      options: [
+        'Als seltene Ausnahmen, die etwa einmal pro Generation vorkommen',
+        'Als Zeichen eines strukturell defekten Marktes',
+        'Als wiederkehrender Bestandteil des Aktienmarkts – wer Jahrzehnte anlegt, erlebt mehrere',
+        'Als Ereignisse, die sich durch Streuung vollständig vermeiden lassen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Sogar in den fünf Jahren, die die Kursdaten dieser Website abdecken, steckt ein deutlicher Rückgang – er trägt keinen Namen, weil er längst aufgeholt ist. Genau das ist der Punkt: Rückgänge dieser Größe gehören zum Normalbetrieb.',
+    },
+    {
+      question: 'Welche praktische Folgerung ziehen die Daten nahe?',
+      options: [
+        'Nur Geld anlegen, das lange liegen bleiben kann – wer verkaufte, verpasste historisch den stärksten Teil der Erholung',
+        'Vor jedem Rückgang aussteigen und danach zurückkehren',
+        'Bei einem Rückgang von 20 Prozent grundsätzlich verkaufen',
+        'Ausschließlich in defensive Branchen investieren',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Erholung kam bisher immer – aber nur, wer dabei war, hat sie mitgenommen. Da sich weder Zeitpunkt noch Dauer vorhersagen lassen, folgt daraus keine Timing-Regel, sondern eine Bedingung an das eingesetzte Geld.',
+    },
+  ],
+
+  'groesste-crashes:fortgeschritten': [
+    {
+      question: 'Womit beginnt eine Blase typischerweise?',
+      options: [
+        'Mit einer bewussten Manipulation durch Großanleger',
+        'Mit einer zutreffenden Beobachtung – einer neuen Technologie oder Marktlage',
+        'Mit einer Zinssenkung der Notenbank',
+        'Mit fallenden Unternehmensgewinnen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Eisenbahn, das Internet und die Digitalisierung haben die Welt tatsächlich verändert – der Kern der Geschichte stimmt. Falsch wird erst der Preis. Deshalb ist „diesmal ist es anders“ teilweise richtig; falsch ist nur die Schlussfolgerung, dass deshalb jeder Preis gerechtfertigt sei.',
+    },
+    {
+      question: 'Warum verläuft ein Absturz schneller als der vorherige Anstieg?',
+      options: [
+        'Weil Verkaufsaufträge technisch schneller ausgeführt werden',
+        'Weil institutionelle Anleger zuerst verkaufen dürfen',
+        'Weil ein großer Teil der Verkäufe unfreiwillig ist – Margin Calls und Zwangsliquidationen',
+        'Weil Börsen in Abwärtsphasen länger geöffnet sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer auf Kredit gekauft hat, muss nachschießen oder wird glattgestellt. Die Verkäufe drücken die Preise, das senkt Beleihungswerte, das erzwingt weitere Verkäufe. Die Bewegung wird von der Mechanik getragen, nicht mehr von Einschätzungen.',
+    },
+    {
+      question: 'Was passiert mit der Streuung in einem Einbruch?',
+      options: [
+        'Sie wirkt stärker, weil die Unterschiede zwischen Anlagen zunehmen',
+        'Sie wirkt schlechter – Korrelationen steigen, weil nach Verkäuflichkeit verkauft wird',
+        'Sie bleibt unverändert wirksam',
+        'Sie wirkt nur bei Anleihen weiter',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer Liquidität braucht, verkauft was sich verkaufen lässt – nicht was er loswerden will. Das ist kein Versagen des Prinzips, sondern seine bekannte Grenze. Was in jeder Krise gehalten hat, ist die Trennung nach Zweck: Ein Notgroschen auf dem Tagesgeldkonto korreliert mit nichts, weil er nicht am Markt hängt.',
+    },
+    {
+      question: 'Wozu dienen Handelsunterbrechungen?',
+      options: [
+        'Sie stützen den Kurs auf einem festgelegten Niveau',
+        'Sie verhindern Verkäufe institutioneller Anleger',
+        'Sie gleichen Orderbücher zwischen Handelsplätzen ab',
+        'Sie unterbrechen die Rückkopplung und schaffen Zeit für die Bewertung von Informationen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ihr Zweck ist nicht die Kursstützung. Ob sie den Fall dämpfen oder nur verschieben, ist umstritten – dass sie Zwangsverkäufe entzerren und die Rückkopplung zwischen Verkaufsdruck und fallenden Preisen unterbrechen, ist unstrittig.',
+    },
+  ],
+
+  'groesste-crashes:profi': [
+    {
+      question: 'Wann wird aus einem Kurssturz eine Wirtschaftskrise?',
+      options: [
+        'Wenn der Rückgang mehr als 30 Prozent beträgt',
+        'Wenn das Bankensystem betroffen ist und die Kreditvergabe einbricht',
+        'Wenn mehrere Länder gleichzeitig fallen',
+        'Wenn er länger als sechs Monate dauert',
+      ],
+      correctIndex: 1,
+      explanation:
+        '1987 verlor der Markt an einem Tag rund ein Fünftel ohne folgende Rezession. Verlieren dagegen Banken Eigenkapital, vergeben sie weniger Kredite – Unternehmen investieren nicht, stellen nicht ein, gehen im Zweifel unter, obwohl mit ihrem Geschäft nichts war. Das ist der Übertragungsweg mit der größten Wucht.',
+    },
+    {
+      question: 'Aus den schnellen Erholungen von 2008 und 2020 lässt sich was ableiten?',
+      options: [
+        'Dass künftige Krisen ebenso schnell überwunden werden',
+        'Dass Notenbanken jede Krise auffangen können',
+        'Wenig für die Zukunft – der Spielraum für solche Reaktionen hängt an Inflationslage und Schuldenstand',
+        'Dass Fiskalpolitik wirkungslos ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Zu lernen ist, dass die Erholungsdauer historisch stärker an der Reaktion hing als am Auslöser – die Lehren aus 1929 sind der Grund dafür. Nicht zu lernen ist, dass die Reaktion künftig ebenso ausfallen wird. Wer aus drei Beobachtungen eine vierte ableitet, folgt dem Rezenzeffekt.',
+    },
+    {
+      question: 'Welche Konsequenz aus der Beschäftigung mit Crashs ist tragfähig?',
+      options: [
+        'Vor dem nächsten Einbruch aussteigen, sobald die Warnzeichen auftreten',
+        'Eine dauerhafte Absicherung gegen Einbrüche halten',
+        'Nach jedem Crash die Depotstruktur an das Erlebte anpassen',
+        'Die Struktur in ruhigen Zeiten festlegen: Quote nach dem Ernstfall, kein Hebel, Liquidität außerhalb des Marktes, Plan auf Papier',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Kein Indikator hat Crashs verlässlich angekündigt, eine dauerhafte Absicherung kostet über lange Zeiträume mehr als sie abwendet, und wer nach einem Crash umbaut, richtet sein Depot am zuletzt Erlebten aus. Die nächste Krise kommt aus einer anderen Richtung – das ist die einzige verlässliche Aussage über sie.',
+    },
+    {
+      question:
+        'Warum ist ein Wertpapierkredit in dieser Betrachtung besonders problematisch?',
+      options: [
+        'Weil er den Unterschied zwischen Buchverlust und realisiertem Verlust aufhebt – die Freiheit, nichts zu tun',
+        'Weil seine Zinsen nicht absetzbar sind',
+        'Weil er nur für Einzelaktien gewährt wird',
+        'Weil er die Streuung des Depots verringert',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer nicht verkaufen muss, kann einen Rückgang aussitzen. Ein Wertpapierkredit nimmt genau diese Möglichkeit: Fällt der Beleihungswert, wird nachgefordert oder zwangsweise verkauft – am Tiefpunkt und ohne Wahl.',
+    },
+  ],
+
+  // ---------------------------------------------------------- Länder & Branchen
+  'aktien-laender-branchen:beginner': [
+    {
+      question: 'Warum kostet Streuung keine erwartete Rendite?',
+      options: [
+        'Weil breite Fonds niedrigere Gebühren haben',
+        'Weil für das wegstreubare Unternehmensrisiko niemand bezahlt – vergütet wird nur das Marktrisiko',
+        'Weil gestreute Depots seltener umgeschichtet werden',
+        'Weil Streuung die Schwankung nicht wirklich senkt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Risiko, das sich beseitigen lässt, wird nicht vergütet – sonst gäbe es freies Geld. Bezahlt wird nur für das Marktrisiko, und das behält man ohnehin. Wer nicht streut, trägt also ein Risiko ohne Gegenleistung. Das ist der einzige Vorgang in der Geldanlage ohne Preis.',
+    },
+    {
+      question: 'Wie schnell nimmt der Nutzen zusätzlicher Positionen ab?',
+      options: [
+        'Er bleibt bis etwa 200 Positionen konstant',
+        'Die ersten zwanzig bringen den größten Teil; von zwanzig auf hundert ist die Verbesserung klein',
+        'Er steigt mit jeder weiteren Position gleichmäßig',
+        'Erst ab fünfzig Positionen setzt eine Wirkung ein',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das verbleibende Einzelrisiko sinkt näherungsweise mit der Wurzel aus der Zahl der Positionen. Entscheidend ist dabei die Verschiedenheit: Zwanzig Unternehmen aus verschiedenen Branchen und Ländern streuen deutlich besser als hundert aus derselben Branche.',
+    },
+    {
+      question: 'Was ist am Home Bias teuer?',
+      options: [
+        'Höhere Ordergebühren bei ausländischen Börsen',
+        'Die Quellensteuer auf heimische Dividenden',
+        'Dass Arbeitsplatz und Depot an derselben Volkswirtschaft hängen – und Vertrautheit kein Risiko senkt',
+        'Dass heimische Aktien niedrigere Dividenden zahlen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Man kennt die Namen und war Kunde – nichts davon hat mit dem Risiko zu tun. Dazu kauft man die Branchenstruktur des Landes mit. Und gerät die heimische Wirtschaft in eine Krise, trifft das Einkommen und Vermögen gleichzeitig. Es ist derselbe Fehler wie bei Mitarbeiteraktien, nur eine Ebene höher.',
+    },
+    {
+      question: 'Was deckt ein breiter Weltindex der Industrieländer nicht ab?',
+      options: [
+        'Schwellenländer und kleine Unternehmen',
+        'Die Branchenstreuung – die muss getrennt hergestellt werden',
+        'Unternehmen außerhalb Europas',
+        'Dividendenzahler',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Branchenstreuung entsteht automatisch mit – man muss sie nicht getrennt herstellen. Was fehlt, sind Schwellenländer und Nebenwerte. Beides lässt sich ergänzen, muss es aber nicht: Ein einzelner breiter Weltindex ist eine vollständig vertretbare Lösung.',
+    },
+  ],
+
+  'aktien-laender-branchen:fortgeschritten': [
+    {
+      question:
+        'Ein Weltindex ist zu rund 70 Prozent auf ein Land konzentriert. Wie ist das zu bewerten?',
+      options: [
+        'Als Konstruktionsfehler des Index',
+        'Als Folge der Marktkapitalisierungsgewichtung – der Index bildet ab, was die Unternehmen wert sind',
+        'Als vorübergehende Verzerrung, die sich automatisch ausgleicht',
+        'Als Zeichen dafür, dass der Index nicht breit gestreut ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Gewichtung folgt dem Börsenwert, und die US-Unternehmen sind tatsächlich so viel wert. Der Index bildet die Realität ab. Es heißt aber, dass „weltweit“ und „gleichmäßig über die Welt verteilt“ zwei verschiedene Dinge sind – und dass eine erhebliche Wette auf einen Markt und eine Währung enthalten ist.',
+    },
+    {
+      question: 'Was spricht für die Gewichtung nach Marktkapitalisierung?',
+      options: [
+        'Sie liefert die höchste Rendite',
+        'Sie erzeugt die gleichmäßigste Länderverteilung',
+        'Sie ist selbstregulierend – der Index passt sich ohne Handel an und spart dadurch Kosten',
+        'Sie gewichtet kleine Unternehmen stärker',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Steigt ein Unternehmen im Wert, steigt sein Anteil automatisch mit – ohne dass gehandelt werden müsste. Alle Alternativen erfordern laufende Umschichtung und kosten damit Rendite. Der Preis ist die hohe Länder- und Unternehmenskonzentration.',
+    },
+    {
+      question: 'Warum sind fünf Autohersteller keine Streuung?',
+      options: [
+        'Weil fünf Positionen grundsätzlich zu wenige sind',
+        'Weil sie an derselben Konjunktur, denselben Rohstoffpreisen und denselben Regulierungen hängen',
+        'Weil Automobilaktien besonders schwanken',
+        'Weil sie meist aus demselben Land stammen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Streuung entsteht durch Verschiedenheit, nicht durch Anzahl. Was gemeinsam getroffen wird, streut nicht – auch nicht bei zwanzig Positionen. Aus demselben Grund ist eine Branchenwette meist eine Wette auf einen Zeitpunkt: Zyklische Werte laufen gut, wenn die Konjunktur dreht.',
+    },
+    {
+      question:
+        'Warum ist Währungsabsicherung bei Aktien meist verzichtbar, bei Anleihen aber nicht?',
+      options: [
+        'Weil Aktien nicht in Fremdwährung notieren',
+        'Weil sich Aktien technisch nicht absichern lassen',
+        'Weil die Absicherung bei Aktien teurer ist',
+        'Weil bei Aktien die Marktschwankung die Währungsschwankung deutlich übersteigt, bei Anleihen umgekehrt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei einer Anleihe mit drei Prozent Rendite bestimmt eine Währungsbewegung von zehn Prozent das Ergebnis vollständig. Bei Aktien schwankt der Markt selbst stärker – die laufenden Kosten der Absicherung verschlechtern das Ergebnis dann über lange Zeiträume eher.',
+    },
+  ],
+
+  'aktien-laender-branchen:profi': [
+    {
+      question: 'Welche Frage entscheidet über die Belastbarkeit einer Faktorprämie?',
+      options: [
+        'Ob sie ein zusätzliches Risiko vergütet oder ein Verhaltensmuster ausnutzt',
+        'Wie lange die zugrunde liegende Datenreihe ist',
+        'Ob der Anbieter des Produkts groß genug ist',
+        'Ob sie in den letzten fünf Jahren funktioniert hat',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Vergütet die Prämie ein Risiko, bleibt sie bestehen – aber das Risiko auch. Nutzt sie ein Verhaltensmuster aus, kann sie verschwinden, sobald genug Kapital ihr folgt. Die Antwort bestimmt, was man von der Zukunft erwarten darf.',
+    },
+    {
+      question: 'Warum scheitern Faktorstrategien in der Praxis häufig?',
+      options: [
+        'Weil die Effekte statistisch nie belegt waren',
+        'Weil die Durststrecken über ein Jahrzehnt dauern können und fast jeder vorher aufgibt',
+        'Weil Faktorprodukte in der EU nicht zugelassen sind',
+        'Weil sie nur bei Einzelaktien funktionieren',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Value lag über mehr als ein Jahrzehnt zurück. Wer dann aufgibt, hat den Nachteil ohne den späteren Vorteil. Dazu kommen höhere Umschichtungskosten und die Tatsache, dass „Value“ von verschiedenen Anbietern verschieden definiert wird – der Faktor im Produkt ist nicht zwingend der aus der Studie.',
+    },
+    {
+      question: 'Welches Klumpenrisiko steht in keiner Depotübersicht?',
+      options: [
+        'Die Gewichtung der größten Indexpositionen',
+        'Die Aufteilung nach Handelswährungen',
+        'Das eigene Einkommen und die selbstgenutzte Immobilie',
+        'Die Zahl der gehaltenen Fonds',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das Einkommen ist die größte Position im Gesamtvermögen und hängt an einer Branche und einem Land; die Immobilie ist oft der größte Einzelposten und an einen Standort gebunden. Wer in der Automobilindustrie arbeitet und Automobilaktien hält, hat eine Konzentration, die nirgends ausgewiesen wird.',
+    },
+    {
+      question: 'Wann lohnt ein zusätzlicher Baustein im Depot?',
+      options: [
+        'Immer – mehr Produkte bedeuten mehr Streuung',
+        'Ab einem Depotwert von 100.000 Euro',
+        'Wenn er von einem anderen Anbieter stammt',
+        'Nur wenn er etwas enthält, das im ersten fehlt – und man begründen kann, warum man diese Abweichung will',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ein breiter Weltindex enthält bereits über tausend Unternehmen; ein zweiter Fonds auf denselben Markt fügt nur Verwaltungsaufwand hinzu. Ab etwa fünf Bausteinen wird Rebalancing zur Arbeit, ohne dass sich das Ergebnis erkennbar verbessert – und der Aufwand fällt jedes Jahr an.',
+    },
+  ],
+
+  // --------------------------------------------------------------- Immobilien
+  'immobilien:beginner': [
+    {
+      question: 'Was bedeuten rund zehn Prozent Kaufnebenkosten praktisch?',
+      options: [
+        'Sie erhöhen den Kaufpreis und sind im Objekt enthalten',
+        'Sie sind sofort weg, stecken nicht im Objekt und müssen erst wieder erwirtschaftet werden',
+        'Sie werden über die Nutzungsdauer abgeschrieben und sind damit neutral',
+        'Sie lassen sich beim Verkauf auf den Käufer umlegen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Grunderwerbsteuer, Notar, Grundbuch und gegebenenfalls Makler erhöhen den Einsatz, nicht den Wert. Bei realistischen Renditen dauert es mehrere Jahre, bis sie wieder eingespielt sind – deshalb ist eine Immobilie mit kurzem Horizont fast immer ein Verlustgeschäft.',
+    },
+    {
+      question: 'Wie unterscheidet sich die Netto- von der Bruttomietrendite?',
+      options: [
+        'Nur durch die Finanzierungskosten',
+        'Gar nicht – beide Begriffe meinen dasselbe',
+        'Durch Verwaltung, Instandhaltung und Mietausfall – netto bleibt regelmäßig weniger als die Hälfte',
+        'Die Nettorendite ist höher, weil Steuervorteile hinzukommen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Bruttorendite ist Jahresmiete geteilt durch Kaufpreis und enthält keine einzige Kostenposition. Mit ihr wird geworben. Die ehrliche Zahl bezieht die nicht umlagefähigen Kosten ein und rechnet auf den tatsächlichen Einsatz einschließlich Nebenkosten.',
+    },
+    {
+      question: 'Welcher Kostenposten fehlt in den meisten Renditerechnungen?',
+      options: [
+        'Die Grundsteuer',
+        'Die Instandhaltungsrücklage – sie fällt in Sprüngen an: Dach, Heizung, Fenster',
+        'Die Gebäudeversicherung',
+        'Die Maklerprovision',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Als Größenordnung gelten etwa ein bis anderthalb Prozent des Gebäudewerts pro Jahr, bei älteren Objekten mehr. Weil sie nicht gleichmäßig anfällt, wird sie in Rechnungen leicht übersehen – bis der erste größere Posten kommt.',
+    },
+    {
+      question:
+        'Wie ist die Unterscheidung zwischen selbstgenutzter und vermieteter Immobilie einzuordnen?',
+      options: [
+        'Die selbstgenutzte ist primär eine Konsumentscheidung, die vermietete eine Kapitalanlage – es gelten verschiedene Maßstäbe',
+        'Beide sind Kapitalanlagen und identisch zu bewerten',
+        'Die selbstgenutzte ist steuerlich vorteilhafter',
+        'Der Unterschied betrifft nur die Finanzierung',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei der Selbstnutzung wohnt man darin, spart Miete und bindet Kapital – der wichtigste Maßstab ist dabei nicht die Rendite. Eine vermietete Immobilie muss sich dagegen wie eine Kapitalanlage rechnen lassen, und dafür gilt die Nettorechnung.',
+    },
+  ],
+
+  'immobilien:fortgeschritten': [
+    {
+      question:
+        'Warum ist die Restschuld nach der Zinsbindung das zentrale Risiko einer Immobilienfinanzierung?',
+      options: [
+        'Weil sie sofort in einer Summe fällig wird',
+        'Weil sie zu unbekannten künftigen Konditionen weiterfinanziert werden muss',
+        'Weil auf sie ein Strafzins erhoben wird',
+        'Weil die Grundschuld dann erlischt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Bei üblicher Anfangstilgung steht nach zehn Jahren noch der weitaus größte Teil offen. Steigt der Zins bis dahin um zwei Prozentpunkte, passt die Rate nicht mehr zur ursprünglichen Kalkulation – ein Problem, das mit der Immobilie selbst nichts zu tun hat.',
+    },
+    {
+      question:
+        'Bei 10 Prozent Eigenkapital und 10 Prozent Wertverlust – was passiert mit dem Eigenkapital?',
+      options: [
+        'Es sinkt um 10 Prozent',
+        'Es sinkt um etwa 20 Prozent',
+        'Es ist vollständig aufgezehrt',
+        'Es bleibt unverändert, solange die Rate gezahlt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Hebel wirkt symmetrisch: Dieselbe Zeile, die bei plus zehn Prozent eine Eigenkapitalrendite von hundert Prozent ausweist, bedeutet bei minus zehn Prozent den Totalverlust des Einsatzes. In Beratungsgesprächen wird meist nur die erste Spalte gezeigt.',
+    },
+    {
+      question:
+        'Zinsanstieg, Mietausfall und Wertverlust – was ist an dieser Kombination bemerkenswert?',
+      options: [
+        'Sie schließen einander gegenseitig aus',
+        'Sie haben eine gemeinsame Ursache – eine Rezession – und treten deshalb häufiger gemeinsam auf',
+        'Sie sind statistisch unabhängig voneinander',
+        'Sie betreffen nur vermietete Objekte',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Genau darauf ist zu kalkulieren: nicht auf jedes Risiko einzeln, sondern auf ihr gemeinsames Auftreten. Wer die Rate nur bei laufendem Einkommen und niedrigem Zins tragen kann, hat keine Reserve für den Fall, in dem alle drei zusammenkommen.',
+    },
+    {
+      question:
+        'Worin unterscheidet sich der Immobilienhebel von einem Wertpapierkredit?',
+      options: [
+        'Bei der Immobilie fordert die Bank nicht nach, solange die Rate fließt – ein Wertpapierkredit verlangt Nachschuss bei fallenden Kursen',
+        'Der Immobilienhebel wirkt nur nach oben',
+        'Wertpapierkredite haben niedrigere Zinsen',
+        'Es gibt keinen wesentlichen Unterschied',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Fällt der Immobilienwert unter die Restschuld, ist das Eigenkapital rechnerisch negativ – solange die Rate fließt, passiert aber nichts. Ein Wertpapierkredit zwingt dagegen zum Verkauf am Tiefpunkt. Der Unterschied ist erheblich und spricht hier für die Immobilie.',
+    },
+  ],
+
+  'immobilien:profi': [
+    {
+      question: 'Was macht die Abschreibung bei vermieteten Immobilien besonders?',
+      options: [
+        'Sie erhöht den Wert des Gebäudes über die Zeit',
+        'Sie ist ein Aufwand ohne Zahlung – sie mindert die Steuer, ohne Geld zu kosten',
+        'Sie gilt auch für den Grundstücksanteil',
+        'Sie ist bei Selbstnutzung ebenso möglich',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Abgeschrieben wird das Gebäude, nicht das Grundstück. Für viele vermietete Objekte ist dieser Posten der Grund, warum die Rechnung nach Steuern besser aussieht als davor – zusammen mit den Schuldzinsen, die bei Vermietung abzugsfähig sind und bei Selbstnutzung nicht.',
+    },
+    {
+      question:
+        'Ein Objekt rechnet sich nur wegen der Steuerersparnis. Wie ist das zu bewerten?',
+      options: [
+        'Als sinnvolle Gestaltung bei hohem persönlichem Steuersatz',
+        'Als neutral – die Ersparnis ist echtes Geld',
+        'Dann rechnet es sich nicht: Die Ersparnis ist nur ein Anteil eines echten Verlusts',
+        'Als vorteilhaft, solange die Spekulationsfrist eingehalten wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer die Ersparnis sucht, muss zuerst einen Verlust erzeugen und bekommt davon einen Teil erstattet. Das ist die Grundlage etlicher regelmäßig scheiternder Steuersparmodelle. Die Reihenfolge lautet: erst prüfen, ob das Objekt sich vor Steuern trägt – dann die Steuer als Verbesserung rechnen.',
+    },
+    {
+      question: 'Was ist mit „auf die Lage kommt es an“ eigentlich gemeint?',
+      options: [
+        'Die heutige Lage – erstklassige Adressen sind immer die bessere Wahl',
+        'Die künftige Entwicklung – die heutige Lage ist bereits im Preis enthalten',
+        'Die Entfernung zum nächsten Ballungszentrum',
+        'Die Ausrichtung des Objekts und die Etage',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Eine bereits erstklassige Lage ist entsprechend bepreist; der Ertrag liegt in der Veränderung, nicht im Zustand. Belastbar auswertbar sind vor allem Bevölkerungsentwicklung, die Breite der Arbeitgeberstruktur und geplante Infrastruktur – Letztere ist öffentlich einsehbar und wird oft spät eingepreist.',
+    },
+    {
+      question: 'Warum schwanken offene Immobilienfonds so wenig?',
+      options: [
+        'Weil ihr Risiko tatsächlich gering ist',
+        'Weil sie überwiegend in Staatsanleihen investieren',
+        'Weil sie gesetzlich zur Kursglättung verpflichtet sind',
+        'Weil die Bewertung über Gutachten erfolgt und nicht über einen Marktpreis',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die geringe Schwankung ist eine Folge der Bewertungsmethode, nicht des Risikos. Dazu kommen gesetzliche Mindesthalte- und Kündigungsfristen: Die Liquidität ist begrenzt, und genau daran sind offene Immobilienfonds in der Vergangenheit bereits gescheitert.',
+    },
+  ],
+
+  // -------------------------------------------------------------------- Rente
+  'rente:beginner': [
+    {
+      question: 'Was passiert im Umlageverfahren mit deinen Rentenbeiträgen?',
+      options: [
+        'Sie werden auf einem persönlichen Konto angespart und verzinst',
+        'Sie werden im selben Monat an die heutigen Rentner ausgezahlt – du erwirbst einen Anspruch, kein Guthaben',
+        'Sie werden am Kapitalmarkt angelegt',
+        'Sie werden zur Hälfte angespart und zur Hälfte ausgezahlt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Es gibt keinen Topf, aus dem später deine Rente käme. Daraus folgt die bekannte Abhängigkeit vom Verhältnis der Beitragszahler zu den Rentnern – aber auch etwas Positives: Die Rente ist an die Lohnentwicklung gekoppelt und verliert damit nicht wie ein fester Betrag an Kaufkraft.',
+    },
+    {
+      question: 'Wann erhält man genau einen Rentenpunkt?',
+      options: [
+        'Für jedes Beitragsjahr, unabhängig vom Einkommen',
+        'Für jedes Jahr, in dem man die Beitragsbemessungsgrenze erreicht',
+        'In einem Jahr mit genau dem Durchschnittsentgelt aller Versicherten',
+        'Für je 1.000 Euro gezahlter Beiträge',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer die Hälfte des Durchschnitts verdient, bekommt einen halben Punkt; wer das Doppelte verdient, zwei – nach oben begrenzt durch die Beitragsbemessungsgrenze. Die Rentenformel lautet dann schlicht: gesammelte Punkte mal aktueller Rentenwert.',
+    },
+    {
+      question:
+        'Warum ist der Betrag auf der Renteninformation zu optimistisch zu lesen?',
+      options: [
+        'Weil er brutto ist, in heutiger Kaufkraft steht und unterstellt, dass alles so weitergeht',
+        'Weil er die Inflation bereits abgezogen hat',
+        'Weil er nur die betriebliche Vorsorge enthält',
+        'Weil er die Beitragsjahre zu niedrig ansetzt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Kranken- und Pflegeversicherung sowie Steuern fehlen dort vollständig. Die Angabe in heutiger Kaufkraft ist korrekt, wird aber oft mit dem künftigen Nominalbetrag verwechselt. Und die Hochrechnung schreibt das bisherige Einkommen fort – Teilzeit oder Elternzeit sind nicht enthalten.',
+    },
+    {
+      question: 'Wie viele Beitragsjahre sind für einen Rentenanspruch mindestens nötig?',
+      options: ['Fünf Jahre', 'Ein Jahr', 'Fünfzehn Jahre', 'Fünfunddreißig Jahre'],
+      correctIndex: 0,
+      explanation:
+        'Wer unter dieser Wartezeit bleibt, bekommt keine Rente – kann sich die Beiträge unter Umständen aber erstatten lassen. Die oft genannten 40 Punkte für die „Standardrente“ sind dagegen kein Mindestwert, sondern ein statistischer Bezugswert: 40 Jahre mit exakt durchschnittlichem Verdienst.',
+    },
+  ],
+
+  'rente:fortgeschritten': [
+    {
+      question: 'Wie funktioniert der Rentenfreibetrag?',
+      options: [
+        'Er wird jährlich neu als Prozentsatz der Rente ermittelt',
+        'Er wird im ersten vollen Rentenjahr als Eurobetrag festgeschrieben und bleibt dann unverändert',
+        'Er steigt mit jeder Rentenerhöhung mit',
+        'Er entfällt ab einem bestimmten Gesamteinkommen vollständig',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Weil der Betrag festgeschrieben wird, ist jede spätere Rentenerhöhung vollständig steuerpflichtig. Die Steuerlast steigt dadurch im Ruhestand langsam an, ohne dass sich am Steuerrecht etwas ändern müsste – wer nur mit dem Prozentsatz des ersten Jahres rechnet, plant zu optimistisch.',
+    },
+    {
+      question: 'Welche Nebenwirkung hat die Entgeltumwandlung heute?',
+      options: [
+        'Sie erhöht den Beitrag zur Arbeitslosenversicherung',
+        'Sie senkt das Bruttoeinkommen und damit die erworbenen Rentenpunkte',
+        'Sie verlängert die Wartezeit für den Rentenanspruch',
+        'Sie ist auf die Hälfte des Bruttogehalts begrenzt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Beitrag geht vom Bruttogehalt ab – ohne Steuer und Sozialabgaben, weshalb der Nettoverzicht deutlich kleiner ist als der eingezahlte Betrag. Weniger Brutto bedeutet aber auch weniger Rentenpunkte. Dieser Posten gehört in die Rechnung, wird aber selten genannt.',
+    },
+    {
+      question: 'Wann rechnet sich eine Betriebsrente über Entgeltumwandlung deutlich?',
+      options: [
+        'Wenn der Arbeitgeber nennenswert zuschießt – ein Zuschuss ist eine sofortige sichere Rendite',
+        'Wenn der persönliche Steuersatz im Ruhestand höher ist als heute',
+        'Wenn der Vertrag eine lange Mindestlaufzeit hat',
+        'Immer, weil die Beiträge steuerfrei sind',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ohne nennenswerten Zuschuss steht dem Steuervorteil heute die volle Steuer- und Beitragspflicht später gegenüber; der Vorteil schrumpft auf die Differenz der Steuersätze und die gesparten Sozialabgaben, abzüglich der verlorenen Rentenpunkte. Dazu können die Produktkosten den Rest aufzehren.',
+    },
+    {
+      question: 'Was ist mit „nachgelagerter Besteuerung“ gemeint?',
+      options: [
+        'Dass die Steuer erst im Folgejahr abgeführt wird',
+        'Dass Renten erst ab einem bestimmten Alter besteuert werden',
+        'Dass die Beiträge im Erwerbsleben zunehmend steuerfrei waren und die Rente dafür zunehmend steuerpflichtig ist',
+        'Dass die Steuer über zehn Jahre verteilt gezahlt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Systematik verschiebt die Besteuerung von der Einzahlung in die Auszahlung. Der steuerpflichtige Anteil hängt am Jahr des Rentenbeginns und steigt für spätere Jahrgänge – zusammen mit dem festgeschriebenen Freibetrag ergibt das eine über die Rentenzeit steigende Belastung.',
+    },
+  ],
+
+  'rente:profi': [
+    {
+      question:
+        'Wie hoch ist der Abschlag beim vorzeitigen Rentenbezug – und wie lange gilt er?',
+      options: [
+        '0,3 Prozent je Monat, und er gilt lebenslang',
+        '0,3 Prozent je Monat, aber nur bis zur Regelaltersgrenze',
+        '1 Prozent je Jahr, lebenslang',
+        'Der Abschlag entfällt nach 35 Beitragsjahren',
+      ],
+      correctIndex: 0,
+      explanation:
+        '3,6 Prozent im Jahr, dauerhaft. Wer drei Jahre früher geht, verliert rund elf Prozent – und der Abschlag wirkt auch auf spätere Rentenerhöhungen und auf die Hinterbliebenenrente. Das macht den Rentenbeginn zur folgenreichsten Einzelentscheidung dieses Themas.',
+    },
+    {
+      question: 'Was ist der Preis einer Sonderzahlung zum Ausgleich von Abschlägen?',
+      options: [
+        'Sie ist steuerlich nicht absetzbar',
+        'Das Geld ist unwiderruflich weg und im Todesfall weitgehend verloren – es gibt kein Erbe',
+        'Sie erhöht die Beiträge zur Krankenversicherung der Rentner',
+        'Sie ist erst ab 63 möglich und dann zu teuer',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Dem stehen zwei echte Vorteile gegenüber: Die Zahlung ist im Jahr der Leistung weitgehend als Sonderausgabe absetzbar, und der erworbene Anspruch ist lebenslang, inflationsgebunden und ohne Kursrisiko. Es bleibt aber eine Wette auf ein langes Leben.',
+    },
+    {
+      question: 'Wie ermittelt man die eigene Versorgungslücke belastbar?',
+      options: [
+        'Über die Faustregel von 70 bis 80 Prozent des letzten Nettoeinkommens',
+        'Über den Betrag auf der Renteninformation abzüglich 20 Prozent',
+        'Von den Ausgaben her: aktuelles Budget, wegfallende Posten streichen, hinzukommende schätzen',
+        'Über den Durchschnittsbedarf der eigenen Altersgruppe',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Faustregel unterstellt, dass sich die Ausgaben proportional entwickeln. Tatsächlich verschieben sie sich in beide Richtungen erheblich: Rentenbeiträge, Fahrtkosten und oft der Immobilienkredit fallen weg, Gesundheit und Freizeit kommen hinzu. Die Rechnung vom Budget her dauert eine Stunde und ist jeder Regel überlegen.',
+    },
+    {
+      question: 'Welche Planungsannahme folgt aus der demografischen Entwicklung?',
+      options: [
+        'Dass die gesetzliche Rente in Zukunft entfallen wird',
+        'Dass der Beitragssatz konstant bleibt',
+        'Dass eine Reform das Verhältnis von Beitragszahlern zu Rentnern korrigieren wird',
+        'Dass die Rente kommt, ihr Anteil am Lebensstandard für spätere Jahrgänge aber kleiner sein wird',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Menschen, die in dreißig Jahren Beiträge zahlen, sind bereits geboren – daran ändert keine Reform etwas. Verstellbar sind Beitragssatz, Rentenniveau und Eintrittsalter; alle drei wurden bewegt und werden es wieder. Wer die Rente mit einem Abschlag ansetzt, plant vorsichtig statt pessimistisch.',
     },
   ],
 }

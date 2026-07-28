@@ -1,4 +1,5 @@
 import { aktie } from '@/data/learn/topics/aktie'
+import { aktienLaenderBranchen } from '@/data/learn/topics/aktien-laender-branchen'
 import { anlegerpsychologie } from '@/data/learn/topics/anlegerpsychologie'
 import { bitcoinKrypto } from '@/data/learn/topics/bitcoin-krypto'
 import { blockchain } from '@/data/learn/topics/blockchain'
@@ -11,11 +12,14 @@ import { einlagensicherung } from '@/data/learn/topics/einlagensicherung'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
+import { groessteCrashes } from '@/data/learn/topics/groesste-crashes'
+import { immobilien } from '@/data/learn/topics/immobilien'
 import { inflation } from '@/data/learn/topics/inflation'
 import { notenbankenGeldpolitik } from '@/data/learn/topics/notenbanken-geldpolitik'
 import { option } from '@/data/learn/topics/option'
 import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
 import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
+import { rente } from '@/data/learn/topics/rente'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
 import { schuldenUndKredit } from '@/data/learn/topics/schulden-und-kredit'
 import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
@@ -25,12 +29,6 @@ import { waehrungenWechselkurse } from '@/data/learn/topics/waehrungen-wechselku
 import { wannKaufenVerkaufen } from '@/data/learn/topics/wann-kaufen-verkaufen'
 import { wieFunktioniertDerMarkt } from '@/data/learn/topics/wie-funktioniert-der-markt'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
-import {
-  aktienLaenderBranchen,
-  groessteCrashes,
-  immobilien,
-  rente,
-} from '@/data/learn/topics/outlines'
 import { getQuizFor } from '@/data/learn/quizzes'
 import { rohstoffe } from '@/data/learn/topics/rohstoffe'
 import { zinseszins } from '@/data/learn/topics/zinseszins'
