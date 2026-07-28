@@ -23,12 +23,23 @@ function numberFormatter(options: Intl.NumberFormatOptions): Intl.NumberFormat {
   return formatter
 }
 
-/** Zahl mit Tausenderpunkten, z. B. `1.234,5`. */
+/**
+ * Zahl mit Tausenderpunkten, z. B. `1.234,5`.
+ *
+ * Negative Werte bekommen das typografische Minuszeichen (U+2212), nicht den
+ * Bindestrich. `Intl` liefert je nach Laufzeitumgebung das eine oder das
+ * andere – und auf derselben Seite standen dadurch beide nebeneinander: ein
+ * von Hand gesetztes „− 12 %“ neben einem gerechneten „-12 %“. Das ist
+ * derselbe Anspruch wie bei `formatPercentSigned`, nur an der Stelle, an der
+ * alle Zahlen vorbeikommen.
+ */
 export function formatNumber(value: number, fractionDigits = 0): string {
   return numberFormatter({
     minimumFractionDigits: fractionDigits,
     maximumFractionDigits: fractionDigits,
-  }).format(value)
+  })
+    .format(value)
+    .replace('-', '−')
 }
 
 /** Geldbetrag, z. B. `1.234,56 €`. */

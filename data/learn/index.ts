@@ -1,40 +1,39 @@
 import { aktie } from '@/data/learn/topics/aktie'
+import { aktienLaenderBranchen } from '@/data/learn/topics/aktien-laender-branchen'
+import { anlegerpsychologie } from '@/data/learn/topics/anlegerpsychologie'
+import { bitcoinKrypto } from '@/data/learn/topics/bitcoin-krypto'
+import { blockchain } from '@/data/learn/topics/blockchain'
 import { boerse } from '@/data/learn/topics/boerse'
+import { budgetUndSparquote } from '@/data/learn/topics/budget-und-sparquote'
 import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
 import { depotUndBroker } from '@/data/learn/topics/depot-und-broker'
+import { derivat } from '@/data/learn/topics/derivat'
+import { einlagensicherung } from '@/data/learn/topics/einlagensicherung'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
+import { groessteCrashes } from '@/data/learn/topics/groesste-crashes'
+import { immobilien } from '@/data/learn/topics/immobilien'
 import { inflation } from '@/data/learn/topics/inflation'
+import { notenbankenGeldpolitik } from '@/data/learn/topics/notenbanken-geldpolitik'
+import { option } from '@/data/learn/topics/option'
+import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
+import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
+import { rente } from '@/data/learn/topics/rente'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
+import { schuldenUndKredit } from '@/data/learn/topics/schulden-und-kredit'
+import { schuldverschreibung } from '@/data/learn/topics/schuldverschreibung'
+import { sparerpauschbetrag } from '@/data/learn/topics/sparerpauschbetrag'
+import { staatsanleihe } from '@/data/learn/topics/staatsanleihe'
+import { waehrungenWechselkurse } from '@/data/learn/topics/waehrungen-wechselkurse'
+import { wannKaufenVerkaufen } from '@/data/learn/topics/wann-kaufen-verkaufen'
+import { wieFunktioniertDerMarkt } from '@/data/learn/topics/wie-funktioniert-der-markt'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
-import {
-  aktienLaenderBranchen,
-  anlegerpsychologie,
-  bitcoinKrypto,
-  blockchain,
-  budgetUndSparquote,
-  derivat,
-  einlagensicherung,
-  groessteCrashes,
-  immobilien,
-  kostenUndGebuehren,
-  notenbankenGeldpolitik,
-  option,
-  portfolioAufbau,
-  rente,
-  schuldenUndKredit,
-  schuldverschreibung,
-  sparerpauschbetrag,
-  staatsanleihe,
-  waehrungenWechselkurse,
-  wannKaufenVerkaufen,
-  wieFunktioniertDerMarkt,
-} from '@/data/learn/topics/outlines'
 import { getQuizFor } from '@/data/learn/quizzes'
 import { rohstoffe } from '@/data/learn/topics/rohstoffe'
 import { zinseszins } from '@/data/learn/topics/zinseszins'
 import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
+import { assertLearnValid } from '@/lib/learn-validate'
 
 /**
  * Alle Lernthemen in einer Reihenfolge, die aufeinander aufbaut.
@@ -51,8 +50,11 @@ import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
  * Reihenfolge für Besucher unsichtbar. Wer ein Thema verschiebt, verschiebt es
  * damit auch auf der Seite.
  *
- * `aktie`, `zinseszins` und `rohstoffe` sind vollständig ausformuliert, die
- * übrigen Themen liegen als Gliederung vor (Status `outline` je Stufe).
+ * Ausformulierte Themen liegen als eigene Datei unter `topics/` und tragen je
+ * Stufe `status: 'complete'`. Was noch als Gliederung vorliegt, steht in
+ * `topics/outlines.ts` und wird auf der Seite sichtbar als solche ausgewiesen.
+ * Ein Thema wandert beim Ausformulieren aus der Sammeldatei in eine eigene –
+ * die Zahl der Einträge in `outlines.ts` ist damit der Reststand.
  */
 /**
  * Hängt die Quizfragen an die passenden Stufen.
@@ -248,3 +250,14 @@ function orderBySections(): LearnTopic[] {
 }
 
 export const learnTopics: LearnTopic[] = orderBySections().map(attachQuizzes)
+
+/*
+  Beim Bauen geprüft, nicht zur Laufzeit.
+
+  Der Aufruf steht hier und nicht in einer Komponente, weil er genau einmal
+  laufen soll – beim Auswerten dieses Moduls. Schlägt er fehl, bricht der
+  Build ab; das ist gewollt. Ein toter Querverweis oder eine abgeschnittene
+  Meta-Description sind beim Betrachten der Seite unsichtbar und wären sonst
+  still im Netz gelandet.
+*/
+assertLearnValid(learnTopics)

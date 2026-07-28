@@ -45,7 +45,7 @@ export const aktie: LearnTopic = {
     beginner: {
       metaTitle: 'Aktie einfach erklärt – Grundlagen für Einsteiger',
       metaDescription:
-        'Was ist eine Aktie? Wie du mit Kursgewinn und Dividende verdienst, wo du Aktien kaufst und welche vier Missverständnisse Einsteiger am häufigsten teuer bezahlen.',
+        'Was eine Aktie ist, wie du mit Kursgewinn und Dividende verdienst und welche vier Missverständnisse Einsteiger am häufigsten teuer bezahlen.',
       title: 'Aktie einfach erklärt',
       lead: 'Nach dieser Stufe weißt du, was du beim Aktienkauf tatsächlich erwirbst, woher eine Rendite kommt und was schiefgehen kann.',
       readingMinutes: 9,

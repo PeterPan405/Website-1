@@ -73,7 +73,16 @@ export default async function GlobusPage() {
       <div className="fk-container py-12 sm:py-16">
         <GlobusAnsicht
           laender={laender}
-          metriken={metriken}
+          /*
+            Die Abdeckung wird ohnehin berechnet – bisher nur für die
+            Kopfzeile. Sie gehört an jede einzelne Kennzahl: Wer „Gehälter“
+            wählt und eine überwiegend graue Karte sieht, soll den Grund
+            danebenstehen haben.
+          */
+          metriken={metriken.map((metrik) => ({
+            ...metrik,
+            belegt: abdeckung[metrik.id],
+          }))}
           quellen={kennzahlenQuellen}
           weltbankJahr={WELTBANK_JAHR}
         />

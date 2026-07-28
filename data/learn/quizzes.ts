@@ -18,9 +18,9 @@ import type { QuizQuestion } from '@/data/learn/types'
  * 3. Die Begründung erklärt, warum die richtige Antwort richtig ist – nicht nur,
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
- *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – aktuell
- *    verteilen sich die 36 Fragen gleichmäßig auf die vier Positionen. Bei neuen
- *    Fragen bitte darauf achten.
+ *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
+ *    396 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
   // ------------------------------------------------------------------- Aktie
@@ -1906,6 +1906,3354 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 0,
       explanation:
         'Rendite ohne entsprechendes Risiko gibt es nicht – und eine seriöse Anlage läuft einem nicht weg. Weitere Warnzeichen: keine Zulassung bei der BaFin, Ertrag aus der Anwerbung weiterer Anleger, kein Basisinformationsblatt und keine ISIN. Ein EU-Sitz allein ist dagegen unauffällig.',
+    },
+  ],
+  // ------------------------------------------------------- Kosten & Gebühren
+  'kosten-und-gebuehren:beginner': [
+    {
+      question: 'Welche dieser Kostenarten taucht auf keiner Abrechnung auf?',
+      options: [
+        'Der Ausgabeaufschlag',
+        'Die Ordergebühr',
+        'Die laufenden Fondskosten',
+        'Die Depotgebühr',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Sie werden täglich anteilig aus dem Fondsvermögen entnommen – der Anteilspreis ist bereits um sie gemindert. Ebenso unsichtbar sind der Spread und die Handelskosten innerhalb des Fonds. Zusammen sind diese drei fast immer der größere Posten.',
+    },
+    {
+      question:
+        'Warum wiegen laufende Kosten schwerer als ein einmaliger Ausgabeaufschlag?',
+      options: [
+        'Weil sie höher sind als jeder Ausgabeaufschlag',
+        'Weil sie jedes Jahr auf das gesamte angesparte Vermögen wirken, nicht nur auf eine Einzahlung',
+        'Weil sie steuerlich nicht absetzbar sind',
+        'Weil sie beim Verkauf noch einmal anfallen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Ausgabeaufschlag trifft einmal die Einzahlung. Eine Kostenquote trifft im dreißigsten Jahr einen sechsstelligen Depotwert, nicht die Monatsrate. Dazu kommt: Was entnommen wird, kann sich nicht mehr verzinsen – der Verlust ist größer als die Summe der Gebühren.',
+    },
+    {
+      question:
+        '300 Euro monatlich über 30 Jahre bei 6 Prozent Bruttorendite. Wie viel bleibt bei 0,2 gegenüber 2,0 Prozent Kosten übrig?',
+      options: [
+        'Etwa 10.000 Euro Unterschied',
+        'Etwa 30.000 Euro Unterschied',
+        'Etwa 80.000 Euro Unterschied – rund ein Viertel des Ergebnisses',
+        'Der Unterschied ist bei Sparplänen vernachlässigbar',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 108.000 Euro Einzahlung werden bei 0,2 Prozent Kosten rund 290.000 Euro, bei 2,0 Prozent nur rund 208.000. Knapp 82.000 Euro Unterschied bei identischer Einzahlung und identischem Markt – der einzige Unterschied ist die Kostenquote, und die stand am ersten Tag fest.',
+    },
+    {
+      question: 'Wo lässt sich bei langfristiger Anlage am meisten sparen?',
+      options: [
+        'Bei den laufenden Fondskosten',
+        'Bei der einzelnen Ordergebühr',
+        'Bei der Depotgebühr',
+        'Beim Handelsplatzentgelt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Fondskosten wirken jedes Jahr auf alles – breite Indexfonds liegen bei 0,05 bis 0,25 Prozent, aktive Aktienfonds häufig bei 1,5 Prozent und mehr. Die Ordergebühr ist bei zwei Käufen im Jahr der kleinste Hebel; wichtig wird sie nur bei sehr kleinen Sparraten.',
+    },
+  ],
+  'kosten-und-gebuehren:fortgeschritten': [
+    {
+      question: 'Welcher Posten ist in der Gesamtkostenquote TER NICHT enthalten?',
+      options: [
+        'Die Verwaltungsvergütung',
+        'Die Kosten der Depotbank',
+        'Die Transaktionskosten innerhalb des Fonds',
+        'Die Wirtschaftsprüfungskosten',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die TER ist eine Untergrenze, keine Gesamtangabe: Handelskosten im Fonds, erfolgsabhängige Vergütungen und Swap-Gebühren stehen ausdrücklich nicht darin. Ein Fonds, der seinen Bestand jährlich umschlägt, zahlt hier ein Vielfaches eines ruhigen – bei identischer TER.',
+    },
+    {
+      question: 'Warum kann die Tracking-Differenz eines ETF kleiner sein als seine TER?',
+      options: [
+        'Weil die TER falsch berechnet wurde',
+        'Weil Erträge aus Wertpapierleihe und Quellensteueroptimierung den Rückstand verkleinern',
+        'Weil die Tracking-Differenz Dividenden ausklammert',
+        'Weil sie nur für synthetische ETFs gilt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Tracking-Differenz misst ein Ergebnis, keine Gebühr – alles, was tatsächlich passiert ist, steckt darin. Zusatzerträge können den Rückstand verkleinern, in Einzelfällen liegt ein Fonds sogar vor seinem Index. Zu betrachten sind mehrere Jahre; ein einzelnes kann von einem Sondereffekt geprägt sein.',
+    },
+    {
+      question: 'Wie vergleicht man die Gesamtkosten zweier Wege sauber?',
+      options: [
+        'Alle Prozentangaben addieren',
+        'Nur die TER vergleichen',
+        'Nur die Ordergebühren vergleichen',
+        'Alle Posten eines Jahres in Euro ausrechnen und durch den Depotwert teilen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Prozentzahlen verschiedener Bezugsgrößen lassen sich nicht addieren – die Kostenquote bezieht sich auf den Depotwert, die Ordergebühr auf die Ordergröße. In Euro gerechnet zeigt sich, dass bei kleinen Depots die Ordergebühren dominieren und bei großen die Fondskosten.',
+    },
+    {
+      question:
+        'Kleines Depot mit monatlichem Sparplan – worauf kommt es hier vor allem an?',
+      options: [
+        'Auf kostenfreie Sparplanausführung',
+        'Auf die niedrigstmögliche Fondskostenquote',
+        'Auf die Zahl der verfügbaren Handelsplätze',
+        'Auf die Höhe der Depotgebühr',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei kleinen Raten dominieren feste Ausführungskosten: Ein Euro auf 25 Euro Rate sind vier Prozent, die sofort weg sind. Die Fondskostenquote ist zweitrangig, solange sie im üblichen Rahmen liegt. Bei großen Depots mit seltenen Käufen kehrt sich das Verhältnis um.',
+    },
+  ],
+  'kosten-und-gebuehren:profi': [
+    {
+      question: 'Was ist eine Bestandsprovision?',
+      options: [
+        'Eine Gebühr für die Verwahrung großer Bestände',
+        'Ein Teil der laufenden Fondskosten, der jährlich an den Vertrieb zurückfließt',
+        'Eine einmalige Vergütung beim Fondskauf',
+        'Eine Prämie für langes Halten eines Fonds',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Sie wird gezahlt, solange der Fonds im Depot liegt, und beträgt oft die Hälfte der Verwaltungsvergütung. Das erklärt, warum ein provisionsfinanzierter Berater eher einen Fonds mit 1,5 Prozent Kosten empfiehlt als einen Indexfonds mit 0,15. Seit MiFID II steht der Betrag in der jährlichen Kosteninformation.',
+    },
+    {
+      question: 'Wozu dient eine Hochwassermarke bei einer erfolgsabhängigen Vergütung?',
+      options: [
+        'Sie begrenzt die Vergütung auf einen Höchstbetrag je Jahr',
+        'Sie verhindert, dass derselbe Wertzuwachs nach einem Verlustjahr ein zweites Mal vergütet wird',
+        'Sie legt fest, ab welchem Fondsvolumen die Vergütung entfällt',
+        'Sie koppelt die Vergütung an den risikolosen Zins',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Hochwassermarke kassiert der Manager nach einem Verlustjahr für die blosse Rückkehr zum alten Stand erneut. Mit ihr muss der frühere Höchststand erst wieder überschritten sein. Ohne Hochwassermarke, gegen den Geldmarktzins gemessen und jährlich abgerechnet ist eine Performance-Fee im Kern eine erhöhte Verwaltungsvergütung.',
+    },
+    {
+      question: 'Bei welcher Art von Produkt ist "billiger" NICHT automatisch besser?',
+      options: [
+        'Bei breiten Indexfonds',
+        'Beim Tagesgeld',
+        'Beim Wertpapierhandel an einem liquiden Handelsplatz',
+        'Bei Versicherungen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei standardisierten Produkten ist die Leistung identisch, dort entscheidet der Preis. Bei Leistungsversprechen entscheidet der Vertragstext: Der günstigste Tarif ist wertlos, wenn die Bedingungen den Leistungsfall ausschließen. Die Unterscheidung zu treffen ist die eigentliche Aufgabe.',
+    },
+    {
+      question: 'Warum ist ein sehr kleiner Fonds trotz niedriger Kostenquote riskant?',
+      options: [
+        'Weil er höhere Spreads hat',
+        'Weil er keine Dividenden ausschütten darf',
+        'Weil eine Schließung wahrscheinlicher ist – und sie schreibt Gewinne zu einem nicht gewählten Zeitpunkt fest',
+        'Weil er nicht als Sondervermögen gilt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Fondsvolumen im niedrigen zweistelligen Millionenbereich rechnet sich für den Anbieter kaum. Wird der Fonds aufgelöst, gilt das steuerlich als Verkauf – aufgelaufene Gewinne werden versteuert, ohne dass man den Zeitpunkt bestimmt hätte. Eine Verschmelzung ist dagegen meist steuerneutral.',
+    },
+  ],
+
+  // --------------------------------------------------------- Portfolio-Aufbau
+  'portfolio-aufbau:beginner': [
+    {
+      question:
+        'Warum entscheidet die Aktienquote mehr über das Ergebnis als die Wahl zwischen zwei ähnlichen Welt-ETFs?',
+      options: [
+        'Weil ETFs untereinander steuerlich unterschiedlich behandelt werden',
+        'Weil die Kostenquote eines ETF über die Jahre keine Rolle spielt',
+        'Weil nur die Quote die Rendite bestimmt, das Produkt gar nicht',
+        'Weil die Quote festlegt, wie stark sich ein Marktrückgang überhaupt auf das Gesamtvermögen auswirkt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Zwei breite Welt-ETFs unterscheiden sich um Bruchteile eines Prozentpunkts im Jahr. Ob 40 oder 80 Prozent des Vermögens in Aktien stecken, verdoppelt dagegen den Ausschlag nach oben wie nach unten. Die Produktwahl ist nicht egal – sie ist nur die kleinere von zwei Entscheidungen.',
+    },
+    {
+      question:
+        'Wozu dient der risikoarme Topf in einem Zwei-Topf-Modell in erster Linie?',
+      options: [
+        'Er sorgt dafür, dass der Aktienteil im Rückgang nicht angetastet werden muss',
+        'Er erwirtschaftet den Inflationsausgleich für das Gesamtvermögen',
+        'Er gleicht Kursverluste des Aktienteils rechnerisch aus',
+        'Er ist die eigentliche Renditequelle des Depots',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der sichere Topf verdient wenig und soll das auch nicht. Seine Aufgabe ist, laufende Ausgaben und Notfälle zu decken, damit im Rückgang niemand Aktien zu schlechten Kursen verkaufen muss. Genau das Durchhalten ist der Grund, warum der Aktienteil seine Rendite überhaupt liefern kann.',
+    },
+    {
+      question:
+        'Der Aktienmarkt fällt um 40 Prozent, der risikoarme Teil bleibt stabil. Wie stark verliert ein Depot mit 60 Prozent Aktienquote?',
+      options: [
+        'Um 40 Prozent – der Rückgang wirkt auf das ganze Depot',
+        'Um 60 Prozent – Quote und Rückgang addieren sich',
+        'Gar nicht, solange nichts verkauft wird',
+        'Um 24 Prozent – der Rückgang trifft nur den Aktienanteil',
+      ],
+      correctIndex: 3,
+      explanation:
+        '60 Prozent des Depots verlieren 40 Prozent ihres Werts, der Rest bleibt. 0,6 × 40 = 24 Prozent Rückgang des Gesamtdepots. Diese einfache Rechnung ist das eigentliche Werkzeug: Sie übersetzt eine abstrakte Quote in den Betrag, den man im Ernstfall auf dem Auszug sieht.',
+    },
+    {
+      question: 'Wie belastbar ist die Regel „100 minus Lebensalter gleich Aktienquote“?',
+      options: [
+        'Als grober Startpunkt brauchbar, aber sie kennt weder Anlagehorizont noch Rücklagen noch Einkommen',
+        'Sie ist die aktuell beste verfügbare Berechnung und sollte übernommen werden',
+        'Sie gilt nur für Menschen ohne gesetzliche Rentenansprüche',
+        'Sie ist wissenschaftlich widerlegt und darf nicht verwendet werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Regel benutzt eine einzige Größe – das Alter – für eine Entscheidung, die von mehreren abhängt. Ein 60-Jähriger mit sicherer Rente und ohne Miete kann mehr Risiko tragen als ein 35-Jähriger mit schwankendem Einkommen. Als Anhaltspunkt taugt sie, als Antwort nicht.',
+    },
+  ],
+
+  'portfolio-aufbau:fortgeschritten': [
+    {
+      question:
+        'Warum steigt die Aktienquote eines Depots ohne jedes Zutun – und warum ist das ungünstig?',
+      options: [
+        'Weil der Aktienteil in guten Phasen stärker wächst; das Risiko steigt damit ausgerechnet am Ende einer guten Phase',
+        'Weil Ausschüttungen automatisch in Aktien angelegt werden',
+        'Weil der risikoarme Teil durch Inflation nominal schrumpft',
+        'Weil Fondsanbieter die Gewichtung regelmäßig anpassen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Aus 70 zu 30 werden nach guten Börsenjahren leicht 82 zu 18. Niemand hat das entschieden, aber das Depot trägt jetzt mehr Risiko als geplant – und zwar nach einem langen Anstieg, also dann, wenn ein Rückschlag eher wahrscheinlicher als unwahrscheinlicher geworden ist.',
+    },
+    {
+      question: 'Was ist der Zweck von Rebalancing?',
+      options: [
+        'Höhere Rendite durch systematisches Kaufen zu niedrigen Kursen',
+        'Steuern zu sparen, weil Verluste mit Gewinnen verrechnet werden',
+        'Die Kosten des Depots zu senken',
+        'Die geplante Aufteilung und damit das geplante Risiko wiederherzustellen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Rebalancing ist Risikosteuerung, kein Renditewerkzeug. Über lange Zeiträume kostet es sogar leicht Rendite, weil regelmäßig vom besser laufenden in den schwächeren Teil umgeschichtet wird. Dafür hält es die Schwankung dort, wo man sie geplant hat – und das ist der eigentliche Nutzen.',
+    },
+    {
+      question:
+        'Was ist in der Ansparphase der steuerlich günstigste Weg, eine verschobene Aufteilung zurückzusetzen?',
+      options: [
+        'Den zu stark gewachsenen Teil verkaufen und sofort neu aufteilen',
+        'Die nächsten Einzahlungen in den zu kleinen Teil umlenken, statt zu verkaufen',
+        'Den Sparplan aussetzen, bis sich die Quote von allein wieder einpendelt',
+        'Alles verkaufen und das Depot neu aufbauen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Neue Raten in den untergewichteten Teil zu lenken verschiebt die Quote ohne Verkauf und damit ohne Steuer. Der Weg funktioniert allerdings nur, solange die Einzahlungen im Verhältnis zum Bestand groß genug sind: Bei 400.000 Euro Depot und 300 Euro Rate bewegt sich damit nichts mehr.',
+    },
+    {
+      question:
+        'Warum ist ein Welt-ETF plus ein zusätzlicher US-ETF meist keine bessere Streuung?',
+      options: [
+        'Weil die USA im Weltindex ohnehin den größten Anteil stellen – die Wette wird ungewollt verdoppelt',
+        'Weil zwei ETFs steuerlich schlechter behandelt werden als einer',
+        'Weil US-Aktien im Weltindex vollständig fehlen',
+        'Weil ein zweiter ETF die Kostenquote des ersten erhöht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Mehr Bausteine sind nicht automatisch mehr Streuung. Ein zusätzlicher Fonds bringt nur dann etwas, wenn er enthält, was im ersten fehlt. Verstärkt er lediglich eine bereits vorhandene Übergewichtung, ist es eine Wette – nur eine, die man nicht bewusst eingegangen ist.',
+    },
+  ],
+
+  'portfolio-aufbau:profi': [
+    {
+      question:
+        'Warum kann ein Beamter mit fünfzig oft mehr Aktienrisiko tragen als ein Selbstständiger mit dreißig?',
+      options: [
+        'Weil Beamte steuerlich bevorzugt anlegen dürfen',
+        'Weil das Alter für die Aktienquote grundsätzlich keine Rolle spielt',
+        'Weil ein längerer Anlagehorizont das Risiko in jedem Fall ausgleicht',
+        'Weil sicheres Einkommen und sichere Rentenansprüche wie ein großer anleiheähnlicher Vermögensteil wirken',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer ein planbares Einkommen und eine gesicherte Rente hat, besitzt außerhalb des Depots bereits einen großen stabilen Posten und braucht im Depot weniger Puffer. Ein Selbstständiger hat das Gegenteil: schwankendes Einkommen, gekoppelt an dieselbe Konjunktur wie die Aktienmärkte.',
+    },
+    {
+      question: 'Was ist der eigentliche Preis einer Umschichtung im Privatvermögen?',
+      options: [
+        'Die Ordergebühren beider Transaktionen',
+        'Der Spread zwischen Kauf- und Verkaufskurs',
+        'Der Zinseszins auf den Betrag, der als Steuer abfließt und deshalb nicht weiterarbeitet',
+        'Die Vorabpauschale des Folgejahres',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Abgeltungsteuer selbst wäre irgendwann ohnehin fällig. Teuer ist die Vorverlegung: Wer heute 5.000 Euro Steuer zahlt statt in zwanzig Jahren, verliert nicht 5.000 Euro, sondern das, was daraus in zwanzig Jahren geworden wäre. Deshalb braucht eine Umschichtung einen Grund, der darüber hinausgeht.',
+    },
+    {
+      question: 'Was beschreibt das Sequenzrisiko in der Entnahmephase?',
+      options: [
+        'Dass die Reihenfolge der Verkäufe steuerlich nach FIFO festgelegt ist',
+        'Dass die Inflation die Entnahmen über die Jahre entwertet',
+        'Dass Ausschüttungen und Entnahmen zeitlich auseinanderfallen',
+        'Dass ein Markteinbruch kurz nach dem Start dauerhaft wirkt, weil Anteile zu niedrigen Kursen verkauft werden',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei gleicher Durchschnittsrendite entscheidet die Reihenfolge der Jahre über das Ergebnis. Anteile, die früh zu niedrigen Kursen verkauft wurden, fehlen in jeder späteren Erholung. Deshalb beginnt der Übergang zur Entnahme Jahre vor der ersten Auszahlung, nicht am Tag davor.',
+    },
+    {
+      question: 'Wie ist die oft zitierte Vier-Prozent-Regel einzuordnen?',
+      options: [
+        'Als Größenordnung aus historischen US-Daten brauchbar, als Zusage für die Zukunft nicht',
+        'Als gesetzlich festgelegte Obergrenze für Entnahmen aus Depots',
+        'Als Regel, die für jeden Markt und jede Ruhestandslänge gleichermaßen gilt',
+        'Als Berechnung des jährlich steuerfrei entnehmbaren Betrags',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Regel stammt aus einer Untersuchung des US-Marktes über historische Dreißigjahreszeiträume. Andere Märkte, andere Zeiträume und ein längerer Ruhestand führen zu anderen Ergebnissen. Wer sie benutzt, sollte die Entnahme in schlechten Jahren nach unten anpassen können.',
+    },
+  ],
+
+  // ------------------------------------------------------- Anlegerpsychologie
+  'anlegerpsychologie:beginner': [
+    {
+      question:
+        'Ein Depot ist um 50 Prozent gefallen. Welcher Anstieg bringt es zurück auf den Ausgangswert?',
+      options: [
+        '100 Prozent – der Anstieg wirkt nur noch auf den halbierten Bestand',
+        '50 Prozent – Rückgang und Anstieg heben sich auf',
+        '75 Prozent, weil zwischenzeitliche Zinsen mitwirken',
+        'Das lässt sich ohne Kenntnis des Ausgangsbetrags nicht sagen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Aus 100 werden 50. Um von 50 zurück auf 100 zu kommen, braucht es eine Verdopplung. Rückgang und Erholung sind nie gleich groß, weil der Anstieg auf einen kleineren Bestand wirkt – das ist Prozentrechnung und der sachliche Kern hinter dem Gefühl, dass Verluste schwerer wiegen.',
+    },
+    {
+      question: 'Was beschreibt der Dispositionseffekt?',
+      options: [
+        'Die Neigung, das Depot nach einem Verlust häufiger zu prüfen',
+        'Die Neigung, Gewinner zu früh zu verkaufen und Verlierer zu lange zu halten',
+        'Die Bevorzugung von Aktien aus dem eigenen Land',
+        'Die Neigung, nach guten Jahren die Sparrate zu erhöhen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Verkauf eines Gewinners bestätigt eine gute Entscheidung, der Verkauf eines Verlierers macht den Fehler endgültig. Gehandelt wird also nach dem Bedürfnis, sich nichts eingestehen zu müssen – nicht nach einer Einschätzung dessen, was die Papiere künftig tun.',
+    },
+    {
+      question:
+        'Welche Rolle spielt der eigene Einstandskurs für die Frage, ob eine Anlage heute gehalten werden sollte?',
+      options: [
+        'Er ist die wichtigste Größe, weil unterhalb davon nicht verkauft werden sollte',
+        'Er bestimmt, ab wann ein Verkauf steuerlich sinnvoll wird',
+        'Er ist eine sinnvolle Untergrenze für Verkaufsentscheidungen',
+        'Keine – für die künftige Entwicklung ist er bedeutungslos',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Was du bezahlt hast, weiß der Markt nicht und beeinflusst die künftige Entwicklung nicht. Der Einstandskurs wirkt trotzdem als Anker: „erst wieder bei null verkaufen“ ist eine der teuersten Regeln überhaupt, weil sie an einer Zahl festhält, die nur in der eigenen Buchhaltung existiert.',
+    },
+    {
+      question: 'Warum schützt das Wissen über Denkfehler allein nicht vor ihnen?',
+      options: [
+        'Weil die Muster unter Stress trotzdem greifen – wirksam sind nur vorher festgelegte Regeln',
+        'Weil die Forschungsergebnisse für Privatanleger nicht gelten',
+        'Weil die Muster nur bei kurzfristigen Anlagen auftreten',
+        'Weil sie sich mit genügend Erfahrung vollständig abtrainieren lassen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer die Muster kennt, kann sie hinterher benennen. Im Moment fallender Kurse greifen sie trotzdem, weil sie schnell und unbewusst wirken. Deshalb setzt alles Wirksame vorher an: eine schriftliche Regel oder ein Sparplan trifft die Entscheidung, solange nichts passiert ist.',
+    },
+  ],
+
+  'anlegerpsychologie:fortgeschritten': [
+    {
+      question: 'Was ist mit „mentaler Buchführung“ gemeint?',
+      options: [
+        'Das Führen eines Anlagetagebuchs mit Datum und Begründung',
+        'Die getrennte Erfassung von Kursgewinnen und Ausschüttungen im Depot',
+        'Dass Geld je nach Herkunft in getrennten Schubladen behandelt wird, statt in einer Gesamtrechnung',
+        'Die Aufteilung des Vermögens auf mehrere Banken',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Euro ist ein Euro, egal ob geerbt, gewonnen oder erspart. Die mentale Buchführung trennt ihn trotzdem – und erzeugt Entscheidungen wie einen Kredit zu acht Prozent zu bedienen, während Tagesgeld zu zwei Prozent danebenliegt. Über beide Schubladen zusammen gerechnet wäre der Fall eindeutig.',
+    },
+    {
+      question:
+        'Warum ist es riskant, größere Bestände an Aktien des eigenen Arbeitgebers zu halten?',
+      options: [
+        'Weil Mitarbeiteraktien höher besteuert werden als andere Aktien',
+        'Weil Einkommen und Vermögen dann am selben Unternehmen hängen und gemeinsam ausfallen können',
+        'Weil sie in der Regel schlechter abschneiden als der Gesamtmarkt',
+        'Weil sie nicht über das eigene Depot gehandelt werden dürfen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Gerät der Arbeitgeber in Schwierigkeiten, fallen Gehalt und Depotwert gleichzeitig – also genau dann, wenn Rücklagen gebraucht würden. Der Rabatt auf Mitarbeiteraktien ist ein echter Vorteil und rechtfertigt den Kauf; er rechtfertigt nicht, den Bestand dauerhaft aufzubauen.',
+    },
+    {
+      question:
+        'Untersuchungen finden zwischen der Fondsrendite und dem Ergebnis der Anleger meist rund einen Prozentpunkt pro Jahr Unterschied. Woher stammt diese Lücke?',
+      options: [
+        'Aus den laufenden Kosten des Fonds, die in der Wertentwicklung nicht enthalten sind',
+        'Aus Währungseffekten bei international anlegenden Fonds',
+        'Aus der Abgeltungsteuer auf Ausschüttungen',
+        'Aus den Zeitpunkten der Ein- und Ausstiege: Es wird nach Anstiegen gekauft und nach Rückgängen verkauft',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Verglichen wird dieselbe Anlage mit sich selbst: die Wertentwicklung des Fonds gegen die tatsächlich erzielte Rendite seiner Anleger. Die Kosten stecken in beiden Zahlen. Was übrig bleibt, ist das Verhalten – und über eine Ansparzeit kostet ein Prozentpunkt einen erheblichen Teil des Endergebnisses.',
+    },
+    {
+      question: 'Warum wird empfohlen, seltener ins Depot zu schauen?',
+      options: [
+        'Weil häufiges Nachsehen mehr rote Tage zeigt und dadurch Handlungsdruck ohne neue Information erzeugt',
+        'Weil jeder Depotaufruf Gebühren beim Broker auslöst',
+        'Weil Kurse erst mit Verzögerung korrekt angezeigt werden',
+        'Weil man sonst den optimalen Verkaufszeitpunkt verpasst',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei täglicher Betrachtung ist etwa die Hälfte aller Tage negativ, bei jährlicher deutlich weniger. Der Informationsgehalt eines einzelnen Tages ist für einen langfristigen Anleger gleich null – der emotionale Gehalt nicht. Mehr Blicke führen nachweislich zu mehr Handel, und mehr Handel kostet.',
+    },
+  ],
+
+  'anlegerpsychologie:profi': [
+    {
+      question:
+        'Warum heben sich individuelle Denkfehler im Markt nicht gegenseitig auf?',
+      options: [
+        'Weil professionelle Anleger sie gezielt verstärken',
+        'Weil sie gleichgerichtet auftreten – Menschen werden zur selben Zeit optimistisch',
+        'Weil es zu wenige Marktteilnehmer für einen Ausgleich gibt',
+        'Weil Kurse nur von institutionellen Anlegern bestimmt werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Zufällig verteilte Fehler würden sich im Durchschnitt ausgleichen. Verhaltensmuster sind aber synchron: Dieselben Nachrichten erzeugen bei vielen dieselbe Reaktion. Aus einem individuellen Muster wird dadurch eine Marktbewegung – und mit Kredit im Spiel eine selbstverstärkende.',
+    },
+    {
+      question:
+        'Warum lassen sich dokumentierte Anomalien wie Momentum in der Praxis oft nicht in Rendite umsetzen?',
+      options: [
+        'Weil sie nur an US-Börsen auftreten',
+        'Weil Privatanleger die nötigen Daten nicht bekommen',
+        'Weil sie nach Veröffentlichung schwächer werden und Handelskosten, Steuern und lange Durststrecken den Rest aufzehren',
+        'Weil sie inzwischen als statistische Artefakte widerlegt sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Folgt genug Kapital einem beschriebenen Effekt, verschwindet der Vorsprung, dem es folgt. Was bleibt, wird von Spread, Gebühren und Abgeltungsteuer auf jeden realisierten Gewinn aufgebraucht. Und eine Strategie, die zehn Jahre zurückliegt, geben fast alle vorher auf – wieder aus psychologischen Gründen.',
+    },
+    {
+      question:
+        'Die Verhaltensökonomie hat die strenge Effizienzmarkthypothese widerlegt. Was folgt daraus praktisch?',
+      options: [
+        'Wenig: Ein Markt kann unvollkommen und trotzdem schwer zu schlagen sein, weil die Abweichungen klein und teuer zu handeln sind',
+        'Dass aktives Handeln für Privatanleger nun systematisch überlegen ist',
+        'Dass Indexanlagen ihre Berechtigung verloren haben',
+        'Dass Kurse keinerlei Informationsgehalt besitzen',
+      ],
+      correctIndex: 0,
+      explanation:
+        '„Nicht vollkommen effizient“ ist nicht dasselbe wie „leicht auszunutzen“. Die nachgewiesenen Abweichungen sind klein, unbeständig und verursachen im Handel Kosten. Für die Praxis bleibt die Schlussfolgerung deshalb dieselbe wie unter der strengen Hypothese.',
+    },
+    {
+      question:
+        'Warum macht der Rückschaufehler die eigene Selbsteinschätzung unbrauchbar?',
+      options: [
+        'Weil sich frühere Kurse im Nachhinein nicht mehr abrufen lassen',
+        'Weil Verluste stärker erinnert werden als Gewinne',
+        'Weil er nur bei sehr langen Anlagezeiträumen auftritt',
+        'Weil der Verlauf im Nachhinein naheliegend erscheint und die damalige Unsicherheit aus der Erinnerung verschwindet',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Rückschaufehler vernichtet die Beweise: Er verändert die Erinnerung an das, was man vorher dachte. Wer sich fragt, ob er Märkte einschätzen kann, befragt damit eine bereits angepasste Erinnerung. Prüfbar wird eine Einschätzung nur, wenn sie vor dem Ereignis mit Datum notiert wurde.',
+    },
+  ],
+
+  // ------------------------------------------------------ Budget & Sparquote
+  'budget-und-sparquote:beginner': [
+    {
+      question: 'Wie ist die Sparquote definiert?',
+      options: [
+        'Als Anteil des Nettoeinkommens, der nach allen Ausgaben übrig bleibt',
+        'Als Anteil des Nettoeinkommens, der nach den Fixkosten übrig bleibt',
+        'Als Betrag, der monatlich per Dauerauftrag überwiesen wird',
+        'Als Anteil des Bruttoeinkommens, der angelegt wird',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Entscheidend ist das Wort „allen“. Der Betrag nach Miete und Versicherungen sieht deutlich besser aus als der Betrag am Monatsende – genau daran schätzen die meisten ihre Quote zu hoch. Und die Bezugsgröße ist das Netto, weil nur das tatsächlich zur Verfügung steht.',
+    },
+    {
+      question:
+        'Warum reicht es nicht, drei Monate Kontoauszüge auszuwerten, ohne etwas zu ergänzen?',
+      options: [
+        'Weil Kontoauszüge nur zwei Jahre lang abrufbar sind',
+        'Weil Lastschriften erst mit Verzögerung gebucht werden',
+        'Weil Jahreskosten wie Kfz-Versicherung oder Urlaub in einem Dreimonatsfenster meist gar nicht vorkommen',
+        'Weil variable Kosten in jedem Monat gleich hoch sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Fixkosten und variable Kosten sind in drei Monaten sichtbar, Jahreskosten nicht. Sie treffen das Budget später umso härter. Das Gegenmittel ist einfach: alle Jahreskosten zusammenzählen, durch zwölf teilen und den Betrag als monatliche Position mitführen.',
+    },
+    {
+      question: 'Warum ist eine Bargeldabhebung keine brauchbare Ausgabenkategorie?',
+      options: [
+        'Weil Bargeldabhebungen Gebühren auslösen',
+        'Weil sie erst im Folgemonat gebucht wird',
+        'Weil sie steuerlich nicht absetzbar ist',
+        'Weil sie die eigentliche Ausgabe verdeckt – man weiß hinterher nicht, wofür das Geld ausgegeben wurde',
+      ],
+      correctIndex: 3,
+      explanation:
+        '„Abhebung 200 €“ sagt nichts darüber, ob daraus Lebensmittel, Freizeit oder Geschenke wurden. Bei größeren Barbeträgen bleibt nur, diesen Teil eine Woche lang mitzuschreiben – sonst ist der größte unklare Posten ausgerechnet der, den man ändern könnte.',
+    },
+    {
+      question: 'In welcher Reihenfolge gehören Sparen, Notgroschen und Anlegen?',
+      options: [
+        'Anlegen zuerst, damit die Zeit im Markt nicht verloren geht; der Notgroschen wächst nebenher',
+        'Erst sparen und den Notgroschen aufbauen, danach anlegen',
+        'Notgroschen und Depot parallel, jeweils zur Hälfte des Überschusses',
+        'Zuerst anlegen, den Notgroschen erst ab einem Depotwert von 10.000 Euro',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Notgroschen wird die erste unerwartete Rechnung aus dem Depot bezahlt – und die kommt erfahrungsgemäß dann, wenn die Kurse gerade niedrig sind. Der Notgroschen kostet ein wenig Rendite und schützt dafür genau die Entscheidung, auf der der ganze Plan beruht.',
+    },
+  ],
+
+  'budget-und-sparquote:fortgeschritten': [
+    {
+      question:
+        'Warum sollten Rücklage für Jahreskosten und Notgroschen getrennt geführt werden?',
+      options: [
+        'Weil für beide unterschiedliche Zinssätze gelten',
+        'Weil die Rücklage steuerpflichtig ist, der Notgroschen nicht',
+        'Weil sonst das Geplante das Ungeplante aufbraucht – der Urlaub wird gebucht und der Notgroschen ist weg',
+        'Weil die Einlagensicherung nur ein Konto je Zweck abdeckt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Rücklage ist dafür da, jedes Jahr aufgebraucht zu werden – das ist ihr Zweck. Der Notgroschen darf genau das nie. In einem gemeinsamen Topf lässt sich beides nicht auseinanderhalten, und im Ernstfall stellt sich heraus, dass der Puffer längst verplant war.',
+    },
+    {
+      question: 'Was beschreibt Lifestyle-Inflation?',
+      options: [
+        'Den Anstieg der Lebenshaltungskosten durch die allgemeine Preisentwicklung',
+        'Dass Ausgaben mit steigendem Einkommen mitwachsen, sodass die Sparquote trotz mehr Gehalt sinkt',
+        'Die jährliche Anpassung der Sparrate an die Inflationsrate',
+        'Den Anstieg der Fixkosten durch langfristige Verträge',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Vorgang läuft ohne bewusste Entscheidung ab: größere Wohnung, besseres Auto, mehr Abonnements. Nach einem Jahr bleibt prozentual weniger übrig als vor der Gehaltserhöhung. Dagegen hilft, die Anpassung im selben Monat vorzunehmen, in dem die Erhöhung kommt.',
+    },
+    {
+      question:
+        'Wie funktioniert die Regel der halben Erhöhung und warum ist sie leichter durchzuhalten als Verzicht?',
+      options: [
+        'Die Sparrate wird halbiert, sobald das Einkommen steigt',
+        'Die Hälfte des Notgroschens wird angelegt, sobald er vollständig aufgebaut ist',
+        'Die Sparrate wird jedes Jahr um die halbe Inflationsrate angehoben',
+        'Die Hälfte jeder Gehaltserhöhung geht in die Sparrate, die andere Hälfte steht zur Verfügung',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Nach der Erhöhung bleibt mehr Geld übrig als vorher – nur eben nicht das gesamte zusätzliche. Es gibt also nichts aufzugeben, und genau deshalb hält die Regel: Sie verlangt keine Änderung an einer bestehenden Gewohnheit, sondern nur an einer neuen.',
+    },
+    {
+      question:
+        'Wie sollte eine Sparquote bei stark schwankendem Einkommen festgelegt werden?',
+      options: [
+        'Als Untergrenze beziehungsweise Prozentsatz vom Eingang statt als fester Eurobetrag',
+        'Als fester Eurobetrag, damit die Planung verlässlich bleibt',
+        'Als Betrag, der sich am besten Monat des Vorjahres orientiert',
+        'Gar nicht – bei schwankendem Einkommen wird erst am Jahresende gespart',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ein fester Betrag ist in guten Monaten zu niedrig und in schlechten nicht zu halten. Ein Prozentsatz vom tatsächlichen Eingang passt sich von selbst an, und eine Untergrenze sorgt dafür, dass auch in schwachen Monaten etwas fließt. Vor einer Kreditaufnahme wird die Rate gesenkt, nicht danach.',
+    },
+  ],
+
+  'budget-und-sparquote:profi': [
+    {
+      question:
+        'Warum wiegt in den ersten Jahren eine höhere Sparrate schwerer als ein Prozentpunkt mehr Rendite?',
+      options: [
+        'Weil Renditen in den ersten Jahren steuerlich schlechter behandelt werden',
+        'Weil eine höhere Rendite erst ab einer bestimmten Depotgröße gutgeschrieben wird',
+        'Weil der Renditehebel auf den Bestand wirkt – und der ist am Anfang klein',
+        'Weil Sparraten in den ersten Jahren nicht mitverzinst werden',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein zusätzlicher Euro Sparrate ist sofort in voller Höhe da. Ein Prozentpunkt mehr Rendite auf 5.000 Euro sind 50 Euro im Jahr. Erst wenn der Bestand groß geworden ist, dreht sich das Verhältnis – bei einem typischen Sparplan nach ungefähr einem Vierteljahrhundert.',
+    },
+    {
+      question:
+        'Was passiert mit einer Sparrate, die zehn Jahre lang unverändert bei einem festen Eurobetrag bleibt?',
+      options: [
+        'Sie bleibt real gleich, weil auch die Kurse mit der Inflation steigen',
+        'Sie sinkt als Anteil des Einkommens, weil Einkommen und Preise steigen und der Betrag stillsteht',
+        'Sie steigt real, weil der Zinseszins den Kaufkraftverlust ausgleicht',
+        'Sie wird von der Bank automatisch an die Inflation angepasst',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ausgaben und meist auch Einkommen wachsen mit der Inflation, der feste Betrag nicht. Aus zwölf Prozent des Nettoeinkommens werden über die Jahre still und leise acht. Wer die Quote als Prozentsatz definiert statt in Euro, bekommt die Anpassung ohne jeden Aufwand.',
+    },
+    {
+      question:
+        'Welche Posten sind auf der Ausgabenseite die einzigen Hebel mit relevanter Größe?',
+      options: [
+        'Stromanbieter, Mobilfunktarif und Versicherungsvergleiche',
+        'Lebensmittel und Freizeit, weil sie monatlich anfallen',
+        'Abonnements, weil sie sich sofort kündigen lassen',
+        'Wohnen und Mobilität – und darüber hinaus die Einkommensseite',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die kleinen Posten sind schnell optimiert und dann ausgereizt; weitere Mühe bringt zwanzig Euro im Monat. Wohnen ist meist der größte Einzelposten, ein Auto kostet mit Abschreibung und Wartung deutlich mehr als die Rate suggeriert. Danach bleibt nur noch mehr Einkommen.',
+    },
+    {
+      question: 'Warum ist die höchstmögliche Sparquote selten die beste?',
+      options: [
+        'Weil ein Plan, der jede Ausgabe streicht, meist aufgegeben wird – und ein abgebrochener Plan keine Rendite hat',
+        'Weil hohe Sparquoten steuerlich benachteiligt werden',
+        'Weil ab einer bestimmten Quote der Sparerpauschbetrag überschritten wird',
+        'Weil eine hohe Quote den Notgroschen unnötig macht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Dasselbe Muster wie bei der Aktienquote: Die durchhaltbare Größe schlägt die maximale. Eine Quote, die jede Reise und jeden Restaurantbesuch ausschließt, hält selten zwei Jahre – und mit ihr endet meist auch der Sparplan, um den es eigentlich ging.',
+    },
+  ],
+
+  // -------------------------------------------------------- Schuldverschreibung
+  'schuldverschreibung:beginner': [
+    {
+      question:
+        'Du kaufst eine Anleihe mit 1.000 € Nennwert und 3 % Kupon für 900 €. Wie hoch ist die jährliche Zinszahlung?',
+      options: [
+        '27 € – der Kupon bezieht sich auf den Kaufpreis',
+        '30 € – der Kupon bezieht sich immer auf den Nennwert',
+        '33 € – der Kupon wird auf den Rückzahlungsbetrag hochgerechnet',
+        'Das hängt vom jeweiligen Marktzins des Jahres ab',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kupon ist auf den Nennwert festgeschrieben: 3 % von 1.000 € sind 30 € im Jahr, unabhängig davon, was du bezahlt hast. Deine tatsächliche Verzinsung ist dadurch höher als der Kupon – 30 € auf 900 € Einsatz –, und dazu kommt der Gewinn, wenn am Ende 1.000 € zurückfließen.',
+    },
+    {
+      question:
+        'Welche Stellung hat ein Anleihegläubiger in der Insolvenz des Emittenten?',
+      options: [
+        'An erster Stelle – Anleihen werden immer vorrangig bedient',
+        'Gleichrangig mit den Aktionären, aufgeteilt nach Kapitalanteil',
+        'Vor den Aktionären, aber hinter besicherten Gläubigern',
+        'Nachrangig gegenüber allen anderen Beteiligten',
+      ],
+      correctIndex: 2,
+      explanation:
+        '„Vor den Aktionären“ ist nicht dasselbe wie „an erster Stelle“. Vor einem gewöhnlichen Anleihegläubiger stehen Sicherheiten, Löhne, Verfahrenskosten und besicherte Kredite. Verteilt wird erst, was danach übrig bleibt – und das ist häufig nur ein Teil des Nennwerts.',
+    },
+    {
+      question:
+        'Ein Zertifikat auf einen Aktienindex verliert seinen Wert, obwohl der Index unverändert steht. Was ist die wahrscheinlichste Ursache?',
+      options: [
+        'Der Index wurde neu zusammengesetzt',
+        'Die ausgebende Bank ist zahlungsunfähig geworden – ein Zertifikat ist ihre Schuldverschreibung',
+        'Die Ausschüttungen des Index wurden gestrichen',
+        'Das Zertifikat wurde vorzeitig fällig gestellt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Zertifikat bildet einen Index nur ab; rechtlich ist es ein Zahlungsversprechen der Bank. Fällt die Bank aus, ist es wertlos, egal wie der Index steht. 2008 traf das in Deutschland viele Käufer von Lehman-Zertifikaten. Ein Fonds ist dagegen Sondervermögen und gehört nicht der Bank.',
+    },
+    {
+      question:
+        'Was bedeutet es, wenn eine Anleihe deutlich mehr Kupon bietet als vergleichbare?',
+      options: [
+        'Dass der Emittent besonders anlegerfreundlich kalkuliert',
+        'Dass die Laufzeit besonders kurz ist',
+        'Dass der Kupon steuerlich anders behandelt wird',
+        'Dass der Markt ein höheres Ausfallrisiko sieht – der Aufschlag ist dessen Preis',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Kein Schuldner zahlt freiwillig mehr als nötig. Wer acht Prozent bieten muss, während andere drei zahlen, bekommt zu drei Prozent kein Geld. Der Aufschlag ist die Einschätzung des Marktes zum Ausfallrisiko – er kann sich als übertrieben herausstellen, aber er ist nie ein Geschenk.',
+    },
+  ],
+
+  'schuldverschreibung:fortgeschritten': [
+    {
+      question:
+        'Warum fällt der Kurs einer bestehenden Anleihe, wenn das Zinsniveau steigt?',
+      options: [
+        'Weil der Emittent den Kupon bei steigenden Zinsen kürzen darf',
+        'Weil der Kupon fest ist und sich deshalb nur der Kurs an das neue Zinsniveau anpassen kann',
+        'Weil Anleihen bei hohen Zinsen seltener gehandelt werden',
+        'Weil die Restlaufzeit sich rechnerisch verkürzt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kupon steht für die gesamte Laufzeit fest. Zahlen neue Papiere vier Prozent, will niemand ein Papier mit zwei Prozent zum selben Preis. Es wird gekauft, sobald es so günstig ist, dass die Gesamtrendite wieder passt. Rechnerisch ist der Kurs der Barwert aller Zahlungen – steigt der Zins, sinkt er.',
+    },
+    {
+      question:
+        'Zwei Anleihen haben denselben Kupon, aber zwei und zwanzig Jahre Restlaufzeit. Was passiert bei derselben Zinserhöhung?',
+      options: [
+        'Beide verlieren gleich viel, weil der Kupon identisch ist',
+        'Die kurze verliert mehr, weil sie schneller fällig wird',
+        'Die lange verliert ein Vielfaches, weil deutlich mehr künftige Zahlungen betroffen sind',
+        'Die lange verliert weniger, weil sie mehr Kupons abwirft',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Restlaufzeit ist der eigentliche Hebel, nicht die Höhe der Zinsänderung. Bei zwei Jahren geht es um wenige Prozent, bei zwanzig um mehr als ein Viertel. Genau daran lagen 2022 die zweistelligen Verluste langlaufender Anleihen, an deren Bonität nichts auszusetzen war.',
+    },
+    {
+      question:
+        'Die modifizierte Duration einer Anleihe beträgt 9. Der Marktzins steigt um zwei Prozentpunkte. Was gilt für den tatsächlichen Kursverlust?',
+      options: [
+        'Er liegt bei etwas weniger als 18 Prozent – die Näherung übertreibt den Verlust',
+        'Er liegt bei genau 18 Prozent',
+        'Er liegt bei etwas mehr als 18 Prozent, weil die Näherung zu optimistisch ist',
+        'Er lässt sich aus der Duration nicht einmal näherungsweise ableiten',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Durationsregel ist eine lineare Näherung an eine gekrümmte Kurve. Diese Krümmung – die Konvexität – wirkt immer zugunsten des Anleihebesitzers: Bei steigenden Zinsen fällt der Kurs weniger stark als vorhergesagt, bei fallenden steigt er stärker. Je größer der Zinssprung, desto größer die Abweichung.',
+    },
+    {
+      question:
+        'Worin unterscheiden sich Einzelanleihe und Anleihefonds nach einem Zinsanstieg grundlegend?',
+      options: [
+        'Der Fonds ist von Zinsänderungen nicht betroffen, weil er laufend umschichtet',
+        'Die Einzelanleihe hat einen Endtermin, an dem der Nennwert zurückkommt; der Fonds hat keinen und holt den Verlust erst über die Zeit seiner Duration auf',
+        'Beim Fonds ist der Buchverlust endgültig realisiert',
+        'Die Einzelanleihe verliert grundsätzlich stärker als ein Fonds gleicher Laufzeit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer eine Einzelanleihe bis zur Fälligkeit hält und deren Schuldner zahlt, bekommt den Nennwert – der Buchverlust löst sich von selbst auf. Ein Fonds ersetzt fällige Papiere laufend durch neue; der Verlust wird durch deren höhere Kupons ausgeglichen, aber eben erst über einen Zeitraum. Dafür bietet er Streuung.',
+    },
+  ],
+
+  'schuldverschreibung:profi': [
+    {
+      question:
+        'Bei der Notübernahme der Credit Suisse 2023 wurden AT1-Anleihen vollständig abgeschrieben, während Aktionäre UBS-Anteile erhielten. Was zeigt dieser Fall?',
+      options: [
+        'Dass Anleihen generell riskanter sind als Aktien',
+        'Dass Aufsichtsbehörden die Insolvenzordnung außer Kraft setzen können',
+        'Dass bei hybriden Papieren das Risiko in den Vertragsbedingungen steht, nicht in der gewohnten Rangfolge',
+        'Dass Bail-in-Regeln in der Praxis nicht angewendet werden',
+      ],
+      correctIndex: 2,
+      explanation:
+        'AT1-Papiere tragen die Abschreibungs- oder Wandlungsklausel im Vertrag; sie greift bei Unterschreiten einer Kapitalquote, ohne dass ein Insolvenzverfahren nötig wäre. Rund 16 Milliarden Franken wurden so auf null gesetzt. Die übliche Rangfolge war umgekehrt – vertraglich zulässig und für viele überraschend.',
+    },
+    {
+      question:
+        'Eine Anleihe enthält ein Kündigungsrecht des Emittenten. Wie wirkt sich das auf dein Rendite-Risiko-Profil aus?',
+      options: [
+        'Der Kursgewinn bei fallenden Zinsen ist gedeckelt, das Verlustrisiko bei steigenden bleibt voll bestehen',
+        'Beide Richtungen werden gleichermaßen begrenzt',
+        'Das Kündigungsrecht schützt vor Kursverlusten bei steigenden Zinsen',
+        'Es wirkt sich nur auf die Stückzinsberechnung aus',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Emittent kündigt genau dann, wenn er sich billiger refinanzieren kann – also bei gefallenen Zinsen, wenn dein Papier gerade im Wert gestiegen wäre. Bei steigenden Zinsen lässt er es laufen. Deshalb ist die Rendite bis zum frühesten Kündigungstermin die aussagekräftigere Kennzahl.',
+    },
+    {
+      question:
+        'Eine Anleihe bietet fünf Prozentpunkte Aufschlag gegenüber einer sicheren Anlage. Bei einer Erlösquote von 40 Prozent im Ausfall: Welche jährliche Ausfallquote trägt dieser Aufschlag näherungsweise?',
+      options: [
+        'Etwa 2 Prozent – die Erlösquote verringert den nötigen Aufschlag kaum',
+        'Etwa 5 Prozent – Aufschlag und Ausfallquote entsprechen einander',
+        'Etwa 12,5 Prozent',
+        'Etwa 8 Prozent – der Aufschlag geteilt durch den Verlust im Ausfall',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Im Ausfall gehen nicht 100 Prozent verloren, sondern 60. Der Aufschlag muss den erwarteten Verlust decken: 5 geteilt durch 0,6 sind rund 8,3 Prozent pro Jahr. Die Näherung unterschlägt Zinseszins und dass Ausfälle sich in Rezessionen häufen – als Größenordnung zeigt sie aber, dass ein solcher Aufschlag kein Geschenk ist.',
+    },
+    {
+      question:
+        'Ein Kapitalschutzzertifikat verspricht die Rückzahlung des Einsatzes zum Laufzeitende. Wovon hängt dieser Schutz ab?',
+      options: [
+        'Von einer gesetzlichen Sicherung vergleichbar der Einlagensicherung',
+        'Von hinterlegten Sicherheiten, die separat verwahrt werden',
+        'Von der Zahlungsfähigkeit der ausgebenden Bank – es ist ihr Versprechen, keine Sicherheit',
+        'Vom Stand des zugrunde liegenden Index bei Fälligkeit',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Zerlegt besteht das Produkt aus einer Nullkuponanleihe der Bank plus einer Option. Der „Schutz“ ist die Rückzahlung dieser Anleihe – also ein Zahlungsversprechen desselben Emittenten. Fällt er aus, schützt es nichts. Die Marge des Anbieters findet man, indem man beide Bausteine einzeln bewertet.',
+    },
+  ],
+
+  // ------------------------------------------------------------ Staatsanleihe
+  'staatsanleihe:beginner': [
+    {
+      question: 'Was ist mit dem „risikofreien Zins“ gemeint?',
+      options: [
+        'Dass der Kurs solcher Anleihen nicht schwankt',
+        'Dass die Rendite den Kaufkraftverlust in jedem Fall ausgleicht',
+        'Dass die nominale Rückzahlung als nahezu sicher gilt – mehr nicht',
+        'Dass die Anlage durch die Einlagensicherung abgedeckt ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Begriff bezieht sich ausschließlich auf die Ausfallwahrscheinlichkeit des Emittenten. Der Kurs schwankt trotzdem, teils erheblich, und die Kaufkraft der zurückgezahlten Summe kann deutlich unter der eingesetzten liegen. „Risikofrei“ meint eine Art von Risiko, nicht alle.',
+    },
+    {
+      question:
+        'Wodurch unterscheiden sich Bundesanleihe, Bundesobligation und Bundesschatzanweisung?',
+      options: [
+        'Durch die Laufzeit bei Ausgabe – zehn bis dreißig, fünf und zwei Jahre',
+        'Durch die Höhe der staatlichen Garantie',
+        'Durch die Art des Emittenten innerhalb des Bundes',
+        'Durch die steuerliche Behandlung der Zinserträge',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Schuldner ist in allen drei Fällen derselbe, die Bonität ebenfalls. Unterschiedlich ist nur die Laufzeit – und damit die Zinsempfindlichkeit. Die zweijährige Schatzanweisung reagiert am stärksten auf Notenbankentscheidungen, die zehnjährige Anleihe ist der Zinsmaßstab der Eurozone.',
+    },
+    {
+      question: 'Warum hängen Bauzinsen an der Rendite langlaufender Staatsanleihen?',
+      options: [
+        'Weil Banken gesetzlich verpflichtet sind, sich daran zu orientieren',
+        'Weil Baukredite über den Verkauf von Staatsanleihen finanziert werden',
+        'Weil jeder andere Zins einen Aufschlag auf diesen Referenzsatz darstellt',
+        'Weil die Notenbank den Bauzins direkt festlegt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Rendite sicherer Staatsanleihen ist der Bezugspunkt für alles andere: Wer risikoreicher verleiht, verlangt einen Aufschlag darauf. Weil ein Baukredit über zehn oder mehr Jahre läuft, orientiert er sich an der zehnjährigen Anleihe – und nicht am Leitzins, der das kurze Ende bestimmt.',
+    },
+    {
+      question:
+        'Eine Staatsanleihe in Fremdwährung bietet deutlich mehr Zins als eine vergleichbare in Euro. Was ist dabei zu bedenken?',
+      options: [
+        'Fremdwährungsanleihen sind steuerfrei, was den Zinsvorteil relativiert',
+        'Der Zinsvorteil ist garantiert, weil er im Kupon festgeschrieben ist',
+        'Der höhere Zins gleicht ein höheres Ausfallrisiko desselben Staates aus',
+        'Es kommt ein Wechselkursrisiko hinzu, das den gesamten Zinsvorteil übersteigen kann',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Das zweite Risiko hat mit dem Emittenten nichts zu tun: Verliert die Währung gegenüber dem Euro zehn Prozent, ist ein Zinsvorsprung von drei Prozentpunkten mehrfach aufgezehrt. Wer in Euro lebt und rechnet, trägt dieses Risiko voll – auch bei tadelloser Bonität des Staates.',
+    },
+  ],
+
+  'staatsanleihe:fortgeschritten': [
+    {
+      question:
+        'Wie ist eine inverse Zinsstrukturkurve als Rezessionssignal einzuordnen?',
+      options: [
+        'Historisch mit hoher Trefferquote, aber ohne Aussage über den Zeitpunkt',
+        'Als zuverlässiges Handelssignal mit einem Vorlauf von etwa drei Monaten',
+        'Als widerlegtes Muster, das nur zufällig zustande kam',
+        'Als Signal, das ausschließlich für die Eurozone gilt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'In den USA ging fast jeder Rezession seit den 1950er-Jahren eine Inversion voraus – das ist der Grund für die Aufmerksamkeit. Der Abstand betrug aber sechs Monate bis über zwei Jahre, und es gab Inversionen ohne folgende Rezession. Als Handelssignal ist das unbrauchbar.',
+    },
+    {
+      question:
+        'Warum geriet die Eurozone ab 2010 in eine Schuldenkrise, während Japan mit weit höherer Quote nie in eine vergleichbare Lage kam?',
+      options: [
+        'Weil Japans Wirtschaft schneller wuchs',
+        'Weil Euro-Staaten in einer Währung verschuldet sind, die sie nicht selbst herstellen',
+        'Weil japanische Anleihen höhere Kupons bieten',
+        'Weil die Eurozone insgesamt höher verschuldet ist als Japan',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Staat mit eigener Währung kann nominal immer zahlen – ob das sinnvoll ist, steht auf einem anderen Blatt. Ein Euro-Staat kann das nicht: Er hat eine gemeinsame Geldpolitik, aber einen eigenen Haushalt. Genau diese Trennung ist die strukturelle Spannung, aus der die Spreads entstehen.',
+    },
+    {
+      question:
+        'Worin unterscheidet sich eine einzelne Staatsanleihe grundlegend von einem Anleihe-ETF?',
+      options: [
+        'Der ETF unterliegt keinem Zinsänderungsrisiko',
+        'Die Einzelanleihe kann nicht vor Fälligkeit verkauft werden',
+        'Die Einzelanleihe hat einen Endtermin, an dem der Nennwert zurückkommt – der ETF hat keinen',
+        'Der ETF garantiert die Rückzahlung des eingesetzten Kapitals',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Endtermin ist der entscheidende Unterschied: Wer hält und dessen Schuldner zahlt, bekommt den Nennwert, wie auch immer der Kurs zwischendurch stand. Ein ETF ersetzt fällige Papiere laufend und hat diesen Punkt nie. Dafür bietet er Streuung und ist jederzeit in kleinen Beträgen handelbar.',
+    },
+    {
+      question:
+        'Warum haben Anleihen 2022 nicht als Puffer gegen fallende Aktienkurse funktioniert?',
+      options: [
+        'Weil die Bonität der Emittenten sich verschlechtert hatte',
+        'Weil Anleihen 2022 kaum gehandelt wurden',
+        'Weil die Notenbanken Anleihen verkauften und damit die Kurse drückten',
+        'Weil beide aus demselben Grund fielen: hohe Inflation und daraufhin steigende Zinsen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Puffer beruht darauf, dass Notenbanken in einer Konjunkturschwäche die Zinsen senken – dann steigen Anleihen, während Aktien fallen. 2022 war die Ursache eine andere: Inflation zwang zu Zinserhöhungen, und die trafen beide Seiten. Bei langen Laufzeiten wurde daraus ein zweistelliger Verlust.',
+    },
+  ],
+
+  'staatsanleihe:profi': [
+    {
+      question:
+        'Unter welcher Bedingung sinkt eine Schuldenquote von allein, auch ohne Primärüberschuss?',
+      options: [
+        'Wenn der durchschnittliche Zins unter dem nominalen Wachstum liegt',
+        'Wenn die Schuldenquote unter 60 Prozent des BIP liegt',
+        'Wenn die Notenbank einen Teil der Anleihen hält',
+        'Wenn die durchschnittliche Restlaufzeit über zehn Jahre beträgt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Zins-Wachstums-Differenz ist der entscheidende Term. Wächst die Wirtschaft nominal schneller, als der Schuldenberg sich verzinst, sinkt die Quote selbst bei laufendem Defizit. Genau diese Konstellation herrschte in Europa über weite Teile der 2010er-Jahre.',
+    },
+    {
+      question:
+        'Warum ist die durchschnittliche Restlaufzeit der Staatsschulden so wichtig?',
+      options: [
+        'Weil sie die Höhe der Schuldenquote begrenzt',
+        'Weil ein Zinsanstieg nur die neu aufgenommenen Schulden trifft – je länger finanziert, desto langsamer schlägt er durch',
+        'Weil kurze Laufzeiten grundsätzlich teurer sind',
+        'Weil sie über die Ratingeinstufung des Landes entscheidet',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Auf seinen Altbestand zahlt ein Staat weiter die alten Kupons. Ein Zinssprung wirkt deshalb nur auf den Teil, der ohnehin refinanziert werden muss. Wer über zehn Jahre finanziert ist, spürt ihn über Jahre verteilt; wer kurzfristig finanziert ist, innerhalb weniger Monate in voller Höhe.',
+    },
+    {
+      question:
+        'Bei einer Umschuldung wird statt eines Nennwertschnitts die Laufzeit deutlich verlängert. Wie ist das wirtschaftlich zu bewerten?',
+      options: [
+        'Als reine Formalie ohne Wirkung auf den Gläubiger',
+        'Als Vorteil für den Gläubiger, weil länger Zinsen fließen',
+        'Ebenfalls als Verlust – der Barwert sinkt, es sieht nur harmloser aus',
+        'Als Verlust nur dann, wenn zusätzlich der Kupon gesenkt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Geld, das zwanzig Jahre später kommt, ist heute weniger wert als Geld in fünf Jahren. Eine Streckung senkt den Barwert genauso wie ein Nennwertschnitt – sie ist politisch nur leichter zu vermitteln, weil die Zahl auf dem Papier unverändert bleibt.',
+    },
+    {
+      question:
+        'Warum kann aus Zweifeln an einem Staat innerhalb von Tagen eine Bankenkrise werden?',
+      options: [
+        'Weil Banken gesetzlich verpflichtet sind, Staatsanleihen zu halten',
+        'Weil Staatsanleihen im Repo-Markt die Sicherheiten stellen – fällt ihr Wert, sinkt der Beleihungswert und Banken müssen nachschießen',
+        'Weil Sparer bei fallenden Anleihekursen ihre Einlagen abziehen',
+        'Weil Staatsanleihen den größten Teil der Bankbilanzen ausmachen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Repo-Markt ist der Ort, an dem sich das Finanzsystem täglich refinanziert, und Staatsanleihen sind dort die üblichen Sicherheiten. Verlieren sie an Wert, müssen Banken Sicherheiten nachschießen oder Positionen auflösen. Das ist der Übertragungsweg – und der Grund für die regulatorische Bevorzugung dieser Papiere.',
+    },
+  ],
+
+  // ------------------------------------------------------------------ Derivat
+  'derivat:beginner': [
+    {
+      question: 'Was unterscheidet Absicherung von Spekulation mit demselben Future?',
+      options: [
+        'Ob man den Basiswert besitzt oder braucht – der Vertrag selbst ist identisch',
+        'Die Laufzeit des Kontrakts',
+        'Ob der Kontrakt an einer Börse oder außerbörslich abgeschlossen wird',
+        'Die Höhe der hinterlegten Sicherheit',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Landwirt, der seine Ernte im Voraus verkauft, gibt ein bestehendes Risiko ab. Wer denselben Kontrakt ohne Feld kauft, geht ein neues ein. Beide brauchen einander: Ohne die zweite Seite fände die erste keinen Vertragspartner. Die Frage ist deshalb nie, ob Derivate gut sind, sondern auf welcher Seite man steht.',
+    },
+    {
+      question:
+        'Du hinterlegst 1.000 € Sicherheit und steuerst damit eine Position von 20.000 €. Ab welcher Kursbewegung gegen dich ist der Einsatz aufgebraucht?',
+      options: [
+        'Ab 20 Prozent – dem Kehrwert des Hebels in Prozentpunkten',
+        'Ab 50 Prozent, weil nur die Hälfte des Risikos auf dich entfällt',
+        'Ab 5 Prozent – die Sicherheit entspricht einem Zwanzigstel der Position',
+        'Erst bei einem Totalverlust des Basiswerts',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Sicherheit ist ein Zwanzigstel der Position, also fünf Prozent. Bewegt sich der Kurs um fünf Prozent gegen dich, entspricht der Verlust genau dem Einsatz. Fünf Prozent an einem Tag sind bei einer Einzelaktie nichts Ungewöhnliches – das ist die Zahl, die vor dem Hebel selbst zu prüfen wäre.',
+    },
+    {
+      question:
+        'Warum ist der Hebel gefährlich, obwohl er in beide Richtungen exakt symmetrisch wirkt?',
+      options: [
+        'Weil Gewinne höher besteuert werden als Verluste absetzbar sind',
+        'Weil die Position vorher zwangsweise geschlossen wird und man die Erholung nicht mehr erlebt',
+        'Weil der Hebel bei Verlusten größer ist als bei Gewinnen',
+        'Weil Emittenten den Hebel nachträglich anpassen dürfen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Rechnung ist symmetrisch, der Verlauf ist es nicht. Reicht die Sicherheit nicht mehr, wird glattgestellt – die Position existiert nicht mehr, wenn sich der Kurs später zurückbewegt. Bei einer unbelehnten Aktie kann man aussitzen, bei einer gehebelten Position nicht.',
+    },
+    {
+      question: 'Welche Aussage über den Vermögensaufbau mit Derivaten trifft zu?',
+      options: [
+        'Sie eignen sich besonders für kleine Depots, weil weniger Kapital nötig ist',
+        'Sie sind für den langfristigen Aufbau notwendig, um die Marktrendite zu erreichen',
+        'Sie sind steuerlich vorteilhafter als der Direktbesitz',
+        'Sie lösen ein Absicherungsproblem – wer keines hat, hat keinen Grund für den Einsatz',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Derivate sind Werkzeuge für ein bestimmtes Problem: ein bestehendes Preisrisiko abzugeben. Für den Vermögensaufbau braucht man sie nicht. Dass die Werbung für Hebelprodukte sich fast ausschließlich an Menschen ohne dieses Problem richtet, ist kein Zufall – der geringere Kapitaleinsatz ist kein Vorteil, sondern die Definition des Hebels.',
+    },
+  ],
+
+  'derivat:fortgeschritten': [
+    {
+      question:
+        'Bei einem Future wird täglich abgerechnet. Welche praktische Folge hat das gegenüber einer Aktienposition?',
+      options: [
+        'Aus einem Verlustrisiko wird ein Liquiditätsrisiko – man kann herausgeworfen werden, obwohl die Einschätzung stimmt',
+        'Verluste können steuerlich sofort geltend gemacht werden',
+        'Die Position verliert an Wert, wenn der Kurs unverändert bleibt',
+        'Der Kontrakt kann nicht vor Fälligkeit geschlossen werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei einer Aktie lässt sich ein Rückschlag aussitzen. Beim Future muss die Sicherheit jeden Abend reichen; sonst kommt der Margin Call und danach die Zwangsglattstellung. Die zugrunde liegende Einschätzung kann am Ende richtig gewesen sein – die Position gibt es dann nicht mehr.',
+    },
+    {
+      question:
+        'Ein Indexprodukt auf Öl entwickelt sich über Jahre deutlich schlechter als der Ölpreis. Was ist die übliche Ursache?',
+      options: [
+        'Die Verwaltungsgebühr des Anbieters',
+        'Wechselkurseffekte zwischen Dollar und Euro',
+        'Contango: Beim Rollen wird billig verkauft und teuer gekauft – ein laufender Verlust',
+        'Der Index enthält andere Rohstoffe als Öl',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das Produkt bildet nicht den Ölpreis ab, sondern eine gerollte Terminposition. Bei Rohstoffen ist Contango der Normalfall, weil Lagerung und Versicherung im Terminpreis stecken. Über Jahre kann der Rohstoff steigen und das Produkt verlieren – der Unterschied steht selten dort, wo er hingehörte.',
+    },
+    {
+      question: 'Was ist ein Total Return Swap und wo begegnet er Privatanlegern?',
+      options: [
+        'Ein Tausch von festen gegen variable Zinszahlungen, üblich bei Unternehmenskrediten',
+        'Ein Tausch der gesamten Indexentwicklung gegen eine Zinszahlung – die Konstruktion synthetischer ETFs',
+        'Ein Währungstausch zur Absicherung von Auslandseinnahmen',
+        'Eine Absicherung gegen den Ausfall eines Emittenten',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein synthetischer ETF hält nicht die Indexwerte, sondern einen Sicherheitenkorb plus einen Swap auf die Indexentwicklung. Das kann die Abbildung genauer und billiger machen. Dafür kommt ein Kontrahentenrisiko hinzu, das ein physisch abbildender ETF nicht hat – ein bewusster Tausch, kein versteckter Mangel.',
+    },
+    {
+      question:
+        'Du sicherst ein Portfolio deutscher Nebenwerte mit DAX-Futures ab. Welches Risiko bleibt?',
+      options: [
+        'Keines – die Absicherung ist bei gleicher Nominalgröße vollständig',
+        'Nur das Währungsrisiko, da Futures in Euro notieren',
+        'Nur das Ausfallrisiko der Clearingstelle',
+        'Das Basisrisiko: Nebenwerte und Standardwerte können auseinanderlaufen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Abgesichert ist die gemeinsame Marktbewegung, nicht die Differenz zwischen den beiden Segmenten. Genau diese Differenz kann groß werden. Eine perfekte Absicherung gäbe es nur, wenn Instrument und Position identisch wären – dann hätte man allerdings auch schlicht verkaufen können.',
+    },
+  ],
+
+  'derivat:profi': [
+    {
+      question: 'Was sagt ein Terminpreis aus, der über dem aktuellen Kassapreis liegt?',
+      options: [
+        'Dass der Markt steigende Preise erwartet',
+        'Nichts über Erwartungen – er spiegelt Finanzierungs- und Lagerkosten bis zum Termin',
+        'Dass die Nachfrage nach dem Basiswert das Angebot übersteigt',
+        'Dass der Kontrakt überbewertet ist und eine Korrektur bevorsteht',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Terminpreis folgt der Arbitragefreiheit: Kassapreis plus Nettokosten des Haltens bis zum Termin. Läge er höher, könnte man den Basiswert kaufen, den Future verkaufen und die Differenz risikolos einstreichen. Eine steigende Terminkurve sagt deshalb etwas über Zinsen und Lagerkosten – nicht über die Zukunft.',
+    },
+    {
+      question:
+        'Ein Basiswert steigt um 10 Prozent und fällt am nächsten Tag um 9,09 Prozent – er steht wieder bei 100. Wo steht ein Faktorzertifikat mit Faktor 4?',
+      options: [
+        'Ebenfalls bei 100, da sich die Bewegungen ausgleichen',
+        'Bei etwa 104, weil der Anstieg stärker gehebelt wurde',
+        'Deutlich unter 100 – tägliches Hebeln macht Schwankung zu einem Verlust',
+        'Bei etwa 96, unabhängig vom gewählten Faktor',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 100 werden mit Faktor 4 zunächst 140, dann wirken −36,4 Prozent darauf: rund 89. Der Effekt heißt Pfadabhängigkeit, geht immer in dieselbe Richtung und wächst überproportional mit dem Faktor. Faktorzertifikate sind Instrumente für einzelne Tage – über Wochen gehalten sind sie ein anderes Produkt.',
+    },
+    {
+      question:
+        'Warum sind Bewertungsmodelle für Derivate genau dann unzuverlässig, wenn es darauf ankommt?',
+      options: [
+        'Weil die zugrunde liegenden Daten in Krisen nicht veröffentlicht werden',
+        'Weil sie laufendes Anpassen und stetige Kurse unterstellen – beides bricht bei Sprüngen und ausgetrockneter Liquidität',
+        'Weil Aufsichtsbehörden ihre Verwendung in Krisen untersagen',
+        'Weil sie nur für börsengehandelte Kontrakte gelten',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Replikation setzt voraus, dass man das Gegenportfolio laufend anpassen kann und dass sich Kurse stetig bewegen. Bei Kurssprüngen über Nacht, ausgesetztem Handel oder verschwundener Liquidität gilt beides nicht. Modelle sind in ruhigen Phasen präzise und im Ernstfall unbrauchbar – das ist das Modellrisiko.',
+    },
+    {
+      question:
+        'Ein Knock-out-Zertifikat, ein Faktorzertifikat und ein CFD haben ein Risiko gemeinsam. Welches?',
+      options: [
+        'Alle drei sind Schuldverschreibungen beziehungsweise Forderungen gegen den Anbieter – kein Sondervermögen',
+        'Bei allen dreien besteht in der EU eine Nachschusspflicht',
+        'Alle drei verfallen zu einem festen Termin',
+        'Alle drei werden ausschließlich außerbörslich gehandelt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Keines der drei Produkte ist Sondervermögen. Fällt der Emittent aus, ist das Papier wertlos, gleichgültig wie der Basiswert steht. Die anderen Merkmale unterscheiden sie gerade: Der Knock-out verfällt bei Berührung, das Faktorzertifikat ist pfadabhängig, und beim CFD ist die Nachschusspflicht für Privatanleger in der EU untersagt.',
+    },
+  ],
+
+  // ------------------------------------------------------------------- Option
+  'option:beginner': [
+    {
+      question:
+        'Ein Call hat Basispreis 100, der Kurs steht bei 95. Woraus besteht die Prämie?',
+      options: [
+        'Ausschließlich aus innerem Wert',
+        'Aus fünf Einheiten negativem inneren Wert plus Zeitwert',
+        'Sie ist null, weil die Option aus dem Geld ist',
+        'Ausschließlich aus Zeitwert – der innere Wert ist null',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der innere Wert ist nie negativ: Ausüben muss niemand, und genau darin besteht das Recht. Unter dem Basispreis besteht die Prämie deshalb vollständig aus Zeitwert – man bezahlt reine Hoffnung darauf, dass sich bis zum Verfall noch etwas tut.',
+    },
+    {
+      question:
+        'Der Kurs des Basiswerts bewegt sich über Wochen überhaupt nicht. Was passiert mit einer gekauften Option?',
+      options: [
+        'Sie behält ihren Wert, solange der Kurs unverändert bleibt',
+        'Sie verliert laufend an Wert, weil der Zeitwert schmilzt',
+        'Sie gewinnt an Wert, weil die Unsicherheit sinkt',
+        'Ihr Wert hängt nur vom Kurs ab, nicht von der Zeit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Zeitwert ist am Verfallstag zwangsläufig null, und der Weg dorthin läuft ununterbrochen. Ein Optionskäufer, der in der Richtung recht behält, aber zu spät, verliert trotzdem. Für den Verkäufer ist derselbe Vorgang der laufende Ertrag.',
+    },
+    {
+      question: 'Warum beschleunigt sich der Zeitwertverlust gegen Ende der Laufzeit?',
+      options: [
+        'Weil Broker kurz vor Verfall höhere Gebühren berechnen',
+        'Weil die implizite Volatilität zum Verfall hin immer steigt',
+        'Weil mit weniger Restzeit die Chance auf eine noch entscheidende Bewegung überproportional schrumpft',
+        'Weil der innere Wert gegen Ende in Zeitwert umgewandelt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Zeitwert bezahlt die verbleibende Chance. Von zwölf auf sechs Monate halbiert sich die Restzeit, die Chance aber nicht im selben Maß – von einem Monat auf zwei Wochen dagegen bricht sie weg. Im letzten Monat verliert dieselbe Option täglich etwa das Dreifache dessen, was sie ein Jahr vor Verfall verlor.',
+    },
+    {
+      question:
+        'Worin unterscheiden sich Optionskäufer und Optionsverkäufer grundlegend?',
+      options: [
+        'Der Käufer trägt ein begrenztes Risiko bei großer Chance, der Verkäufer das Gegenteil',
+        'Beide tragen dasselbe Risiko, nur mit umgekehrtem Vorzeichen',
+        'Der Verkäufer kann höchstens die Prämie verlieren',
+        'Der Käufer ist zur Ausübung verpflichtet, der Verkäufer nicht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Käufer verliert höchstens die Prämie und kann theoretisch viel gewinnen. Der Verkäufer gewinnt höchstens die Prämie und trägt beim ungedeckten Call ein nach oben offenes Risiko. Anders als beim Aktienhandel sind die Profile also nicht spiegelbildlich – deshalb ist der ungedeckte Verkauf für Privatanleger ungeeignet.',
+    },
+  ],
+
+  'option:fortgeschritten': [
+    {
+      question: 'Welcher Preistreiber einer Option lässt sich nicht am Markt ablesen?',
+      options: [
+        'Der Basispreis',
+        'Die Restlaufzeit',
+        'Der risikofreie Zins',
+        'Die erwartete künftige Schwankung – die implizite Volatilität',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Kurs, Basispreis, Restlaufzeit und Zins stehen fest oder sind ablesbar. Die erwartete Schwankung nicht: Sie ist die Größe, die aus dem bezahlten Preis zurückgerechnet wird. Deshalb sagt man, dass Optionshändler Volatilität handeln – der Preis in Euro ist nur deren Übersetzung.',
+    },
+    {
+      question:
+        'Du kaufst vor Quartalszahlen einen Call. Die Zahlen sind gut, der Kurs steigt – und die Option verliert trotzdem. Warum?',
+      options: [
+        'Weil gute Nachrichten den inneren Wert nicht erhöhen',
+        'Volatility Crush: Die eingepreiste Erwartung fällt nach dem Termin schlagartig',
+        'Weil Optionen an Tagen mit Nachrichten nicht gehandelt werden',
+        'Weil der Broker die Position vor dem Termin zwangsweise anpasst',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Vor einem angekündigten Termin ist die implizite Volatilität hoch, weil eine große Bewegung wahrscheinlich ist – und sie steckt in der Prämie. Ist der Termin vorbei, fällt sie zurück. Wer vorher kauft, kauft die Erwartung mit und kann bei richtiger Richtung verlieren.',
+    },
+    {
+      question:
+        'Warum schneidet eine Covered-Call-Strategie in langfristig steigenden Märkten meist schlechter ab als schlichtes Halten?',
+      options: [
+        'Weil die vereinnahmten Prämien voll zu versteuern sind',
+        'Weil die Aktien beim Verkauf des Calls sofort abgegeben werden müssen',
+        'Weil sie die großen Aufwärtsbewegungen wegverkauft, aus denen die Aktienrendite besteht',
+        'Weil Calls auf Einzelaktien nicht liquide genug sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Aktienrendite entsteht in wenigen starken Phasen. Ein Covered Call tauscht eine kleine sichere Zahlung gegen genau den Teil dieser Phasen ein, der über dem Basispreis liegt. Nach unten schützt er dabei nur in Höhe der Prämie – ein ungünstiges Tauschverhältnis über lange Zeiträume.',
+    },
+    {
+      question: 'Was leistet ein Vertical Spread und was kostet er?',
+      options: [
+        'Er begrenzt Verlust und Gewinn zugleich – dafür fallen vier Transaktionen samt Spread an',
+        'Er verdoppelt die Gewinnchance bei gleichem Einsatz',
+        'Er schaltet das Risiko der impliziten Volatilität vollständig aus',
+        'Er verlängert die Laufzeit einer bestehenden Position',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die verkaufte Option verbilligt die gekaufte und deckelt zugleich den Gewinn. Der Verlust ist auf die Nettoprämie begrenzt, der Gewinn auf den Abstand der Basispreise abzüglich dieser Prämie. Weil Öffnen und Schließen je zwei Transaktionen sind und Optionsspreads breit ausfallen, gibt es eine Mindestgröße, unterhalb derer die Rechnung nicht aufgeht.',
+    },
+  ],
+
+  'option:profi': [
+    {
+      question: 'In welchem Verhältnis stehen Gamma und Theta zueinander?',
+      options: [
+        'Sie sind unabhängig voneinander',
+        'Sie sind gegenläufig: Wer Gamma besitzt, zahlt mit Theta – und umgekehrt',
+        'Beide sind für gekaufte Optionen positiv',
+        'Gamma wirkt nur auf Puts, Theta nur auf Calls',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer Optionen gekauft hat, profitiert von schnellen Bewegungen (positives Gamma) und bezahlt dafür täglich Zeitwert (negatives Theta). Der Verkäufer nimmt Theta ein und ist dafür short Gamma. Es gibt keine Position, die beides auf der guten Seite hat – das ist der Kern des Optionsgeschäfts.',
+    },
+    {
+      question: 'Was beschreibt der Volatilitäts-Skew und woher kommt er?',
+      options: [
+        'Dass die Volatilität im Tagesverlauf schwankt – eine Folge der Handelszeiten',
+        'Dass Optionen mit längerer Laufzeit stets höhere Volatilität einpreisen',
+        'Dass Calls und Puts am selben Basispreis unterschiedlich bewertet werden – ein Modellfehler',
+        'Dass Puts weit unter dem Kurs teurer sind als das Modell nahelegt – Absicherung gegen Einbrüche ist dauerhaft gefragt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Das Modell unterstellt eine einheitliche Volatilität für alle Basispreise. Der Markt preist tiefe Puts systematisch teurer, weil Aktienmärkte schneller fallen als sie steigen und Absicherung gefragt bleibt. Diese Schiefe ist seit 1987 fest im Markt und keine Rechenschwäche.',
+    },
+    {
+      question:
+        'Die Volatilitätsrisikoprämie sorgt dafür, dass Optionsverkäufer im Mittel verdienen. Warum enden solche Strategien trotzdem regelmäßig in Katastrophen?',
+      options: [
+        'Weil das Ertragsprofil viele kleine Gewinne und selten einen sehr großen Verlust liefert – und die ruhige Phase zum Hebeln verleitet',
+        'Weil die Prämie tatsächlich nicht existiert und nur ein statistisches Artefakt ist',
+        'Weil Broker solche Positionen willkürlich schließen',
+        'Weil die Prämie ausschließlich bei Indexoptionen anfällt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Prämie ist real – sie ist die Vergütung für ein übernommenes Versicherungsrisiko. Über Monate sieht die Strategie aus wie ein sicherer Zins, und genau das verleitet dazu, die Position zu vergrößern. Am 5. Februar 2018 verdreifachte sich der Volatilitätsindex an einem Tag; darauf ausgerichtete Produkte verloren über Nacht fast alles.',
+    },
+    {
+      question: 'Was ist das Pin-Risiko am Verfallstag?',
+      options: [
+        'Dass der Broker die Position kurz vor Verfall automatisch schließt',
+        'Dass der Kurs praktisch auf dem Basispreis schließt und der Verkäufer bis nach Handelsschluss nicht weiß, ob er zugeteilt wird',
+        'Dass die Option wegen fehlender Liquidität nicht mehr handelbar ist',
+        'Dass der Basispreis wegen einer Kapitalmaßnahme angepasst wird',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Schließt der Kurs genau am Basispreis, ist die Zuteilung offen und entscheidet sich erst nach Handelsschluss. Der Verkäufer hält am Montag unter Umständen eine ungewollte Position mit vollem Marktrisiko über das Wochenende – ein Abwicklungsrisiko, das in keiner Bewertungsformel vorkommt.',
+    },
+  ],
+
+  // -------------------------------------------------------- Einlagensicherung
+  'einlagensicherung:beginner': [
+    {
+      question:
+        'Du hast bei derselben Bank 50.000 € auf dem Tagesgeld und 80.000 € auf dem Festgeld. Wie viel ist gesichert?',
+      options: [
+        '100.000 € – die Grenze gilt je Person und Institut, die Konten werden zusammengezählt',
+        '130.000 € – jedes Konto ist einzeln gesichert',
+        '200.000 € – die Grenze gilt je Konto bis maximal zwei Konten',
+        '80.000 € – nur das höher verzinste Konto ist erfasst',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Grenze bezieht sich auf die Person und das Institut, nicht auf einzelne Konten. Alle Guthaben bei derselben Bank werden addiert; 30.000 € lägen hier ungesichert. Bei einem Gemeinschaftskonto steht die Grenze dagegen jedem Inhaber einzeln zu.',
+    },
+    {
+      question:
+        'Deine Depotbank wird insolvent. Was passiert mit den ETFs in deinem Depot?',
+      options: [
+        'Sie fallen in die Insolvenzmasse und werden bis zur Sicherungsgrenze ersetzt',
+        'Sie sind Sondervermögen, gehören dir und werden herausgegeben oder übertragen',
+        'Sie werden zum letzten Kurs verkauft und der Erlös ausgezahlt',
+        'Sie sind vollständig verloren, weil sie nicht der Einlagensicherung unterliegen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wertpapiere im Depot werden nur verwahrt – rechtlich gehören sie dir. Sie tauchen in der Insolvenzmasse gar nicht auf und brauchen deshalb keine Sicherung. Eine Bankpleite kostet dort Zeit und Nerven, aber nicht das Geld. „Nicht gesichert“ und „unsicher“ sind hier zwei verschiedene Dinge.',
+    },
+    {
+      question:
+        'Welches Papier in deinem Depot ist im Fall einer Bankpleite tatsächlich gefährdet?',
+      options: [
+        'Ein weltweit anlegender ETF',
+        'Eine Bundesanleihe',
+        'Ein Zertifikat, das diese Bank selbst ausgegeben hat',
+        'Ein aktiv gemanagter Aktienfonds',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein Zertifikat der eigenen Bank ist eine Forderung gegen genau den Schuldner, der ausgefallen ist – und es ist ausdrücklich von der Einlagensicherung ausgenommen. Fonds und ETFs sind Sondervermögen, die Bundesanleihe ist eine Forderung gegen den Bund. Nur das Zertifikat trifft der Ausfall voll.',
+    },
+    {
+      question: 'Warum ist es wichtig, die Markenzugehörigkeit einer Bank zu prüfen?',
+      options: [
+        'Weil verschiedene Marken unterschiedliche Zinsen anbieten',
+        'Weil die Sicherungsgrenze bei bekannten Marken höher ausfällt',
+        'Weil nur Marken mit deutschem Namen der deutschen Sicherung angehören',
+        'Weil mehrere Marken zu einer juristischen Person gehören können – dann gilt die Grenze nur einmal für alle zusammen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer sein Geld auf zwei Marken verteilt, die zu demselben Institut gehören, hat nichts gewonnen: Die Guthaben werden addiert. Die Sicherungsangaben stehen im Impressum und im Preis- und Leistungsverzeichnis und sind in wenigen Minuten geprüft – vor der Verteilung größerer Beträge lohnt sich das.',
+    },
+  ],
+
+  'einlagensicherung:fortgeschritten': [
+    {
+      question:
+        'Worin unterscheidet sich die gesetzliche Einlagensicherung von einem freiwilligen Sicherungsfonds?',
+      options: [
+        'Die gesetzliche gibt einen einklagbaren Anspruch, der freiwillige Fonds leistet nach seiner Satzung',
+        'Der freiwillige Fonds zahlt schneller aus',
+        'Die gesetzliche gilt nur für Girokonten, der freiwillige auch für Festgeld',
+        'Es gibt keinen rechtlichen Unterschied, nur einen in der Höhe',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der gesetzliche Anspruch besteht unabhängig davon, wie es dem System geht, und lässt sich einklagen. Eine satzungsmäßige Leistung folgt Regeln, die der Fonds ändern kann – deutsche Fonds haben ihre Grenzen mehrfach abgesenkt. Sie haben in der Praxis zuverlässig gezahlt; die Zusage hat nur eine andere Qualität.',
+    },
+    {
+      question: 'Was ist das Besondere an der Institutssicherung bei Verbundbanken?',
+      options: [
+        'Sie sichert unbegrenzt hohe Beträge zu',
+        'Sie stützt das Institut selbst, statt Einleger zu entschädigen – ein Sicherungsfall tritt dann gar nicht ein',
+        'Sie gilt zusätzlich zur gesetzlichen Sicherung und verdoppelt die Grenze',
+        'Sie erfasst auch Wertpapiere im Depot',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Ansatz ist ein anderer: Statt nach dem Ausfall zu entschädigen, soll der Ausfall verhindert werden. Für Einleger ist das im Ergebnis oft besser, weil sie den Entschädigungsfall gar nicht erleben. Ein individueller Rechtsanspruch entsteht daraus allerdings ebenso wenig wie beim freiwilligen Fonds.',
+    },
+    {
+      question:
+        'Du hast gerade deine selbstgenutzte Wohnung verkauft und 400.000 € auf dem Konto. Was gilt?',
+      options: [
+        'Der Betrag ist unbegrenzt gesichert, solange er aus einem Immobilienverkauf stammt',
+        'Es gilt die reguläre Grenze; alles darüber ist ungesichert',
+        'Für sechs Monate greift ein erhöhter Schutz bis 500.000 € – gegen Nachweis des Anlasses',
+        'Der erhöhte Schutz gilt automatisch für zwölf Monate ohne Nachweis',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Nach bestimmten Lebensereignissen – Verkauf der selbstgenutzten Immobilie, Erbschaft, Abfindung – gilt vorübergehend eine höhere Grenze. Sie greift aber nicht automatisch: Der Anlass muss im Entschädigungsfall belegt werden. Die Unterlagen dazu gehören aufgehoben, solange das Geld auf dem Konto liegt.',
+    },
+    {
+      question:
+        'Du legst über eine Zinsplattform Festgeld bei einer Bank im EU-Ausland an. Wer ist im Sicherungsfall zuständig?',
+      options: [
+        'Die Plattform, weil der Vertrag über sie geschlossen wurde',
+        'Das Sicherungssystem des Sitzlandes der Partnerbank',
+        'Die deutsche Einlagensicherung, weil du in Deutschland ansässig bist',
+        'Niemand – Anlagen über Plattformen sind von der Sicherung ausgenommen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Vertragspartner ist die Partnerbank, nicht die Plattform. Die Grenze ist EU-weit dieselbe, das System dahinter aber nicht: Es steht hinter dem Bankensektor seines Landes. Wer über eine Plattform bei drei Banken anlegt, hat drei getrennte Grenzen – und drei Systeme unterschiedlicher Leistungsfähigkeit.',
+    },
+  ],
+
+  'einlagensicherung:profi': [
+    {
+      question: 'An welcher Stelle der Haftungskaskade stehen gedeckte Einlagen?',
+      options: [
+        'Vor den Nachranganleihen, aber hinter dem Eigenkapital',
+        'Gleichrangig mit den übrigen vorrangigen Verbindlichkeiten',
+        'Ganz am Ende – sie sind gesetzlich vom Bail-in ausgenommen',
+        'Sie sind Teil des Eigenkapitals und haften zuerst',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Reihenfolge lautet: Eigenkapital, hybride und nachrangige Papiere, nicht bevorrechtigte Anleihen, übrige vorrangige Verbindlichkeiten samt Einlagen über der Grenze – und erst ganz zuletzt gedeckte Einlagen. Praktisch wird diese Stufe nie erreicht, und genau darauf ist der Aufbau ausgelegt.',
+    },
+    {
+      question: 'Wozu dient die MREL-Anforderung an Banken?',
+      options: [
+        'Sie legt fest, wie viel Bargeld eine Bank vorhalten muss',
+        'Sie begrenzt die Höhe der Einlagen je Kunde',
+        'Sie regelt die Beitragshöhe zum Einlagensicherungsfonds',
+        'Sie verlangt genug haftendes Material, damit die Kaskade Verluste trägt, bevor sie die Einlagen erreicht',
+      ],
+      correctIndex: 3,
+      explanation:
+        'MREL zielt nicht auf Solvenz, sondern auf Abwickelbarkeit. Für Einleger ist die Anforderung damit der wirksamere Schutz als der Sicherungsfonds: Sie verhindert den Entschädigungsfall, statt ihn zu bezahlen. Für Halter von Bankanleihen ist es umgekehrt die Ansage, dass genau ihre Papiere das Haftungsmaterial bilden.',
+    },
+    {
+      question:
+        'Die gesetzlichen Sicherungsfonds sind auf einen niedrigen einstelligen Prozentsatz der gedeckten Einlagen vorfinanziert. Wie ist das zu bewerten?',
+      options: [
+        'Als Konstruktionsfehler – der Fonds kann keinen einzigen Ausfall bewältigen',
+        'Als bewusste Auslegung: ausreichend für den Einzelfall, nicht für eine Systemkrise',
+        'Als unerheblich, weil der Staat eine ausdrückliche Garantie übernommen hat',
+        'Als überdimensioniert, weil Bankausfälle praktisch nicht mehr vorkommen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Für den Ausfall eines mittelgroßen Instituts ist der Fonds gut ausgestattet – dafür ist er gebaut. Fallen mehrere große Institute gleichzeitig aus, übersteigt der Bedarf jeden vorfinanzierten Bestand; dann greifen Nachschusspflichten der übrigen Banken, die dabei selbst unter Druck stehen. Eine ausdrückliche Staatsgarantie gibt es nicht.',
+    },
+    {
+      question:
+        'Was hat der Ausfall der Silicon Valley Bank 2023 über die Annahmen des Aufsichtsrechts gezeigt?',
+      options: [
+        'Dass Einlagen heute binnen Stunden abfließen können – die Annahmen zur Abflussgeschwindigkeit sind zu langsam kalibriert',
+        'Dass Sicherungsfonds grundsätzlich überflüssig sind',
+        'Dass Bail-in-Regeln in der Praxis nicht angewendet werden können',
+        'Dass Einlagen über der Grenze in jedem Fall vollständig ersetzt werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Binnen eines Tages flossen Beträge ab, für die früher Wochen nötig gewesen wären – ausgelöst über soziale Netzwerke, ausgeführt per App. Die aufsichtsrechtlichen Annahmen stammen aus einer Zeit, in der man dafür in eine Filiale gehen musste. Für Einleger bestätigt das nur die eine wirksame Maßnahme: Verteilung über mehrere Institute und Systeme.',
+    },
+  ],
+
+  // -------------------------------------------------------- Schulden & Kredit
+  'schulden-und-kredit:beginner': [
+    {
+      question:
+        'Warum ist ein Dispositionskredit besonders teuer und besonders gefährlich?',
+      options: [
+        'Weil er gesetzlich mit einem Mindestzins belegt ist',
+        'Weil er unbesichert und jederzeit abrufbar ist – und weil ihm ein Tilgungsplan fehlt',
+        'Weil er nur für kurze Laufzeiten vergeben werden darf',
+        'Weil er die Bonitätsbewertung automatisch verschlechtert',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der hohe Zins folgt aus der fehlenden Sicherheit und der jederzeitigen Verfügbarkeit. Gefährlich macht ihn aber etwas anderes: Ohne Laufzeit und Tilgungsplan wird nichts abgebaut, und der Zins läuft weiter. Die Ablösung durch einen Ratenkredit ist einer der wenigen Fälle, in denen ein neuer Kredit die richtige Antwort ist.',
+    },
+    {
+      question: 'Woraus besteht die Rate eines Annuitätendarlehens?',
+      options: [
+        'Aus einem gleichbleibenden Zinsanteil und einem gleichbleibenden Tilgungsanteil',
+        'Ausschließlich aus Tilgung; die Zinsen werden am Ende fällig',
+        'Aus Zins auf die Restschuld und Tilgung – der Zinsanteil sinkt im Zeitverlauf, der Tilgungsanteil wächst',
+        'Aus Tilgung und einer festen Bearbeitungsgebühr',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Rate bleibt gleich, ihre Zusammensetzung nicht. Weil der Zins auf die noch offene Schuld berechnet wird und diese sinkt, verschiebt sich das Verhältnis laufend zugunsten der Tilgung. Am Anfang geht der größere Teil der Rate an die Bank – bei einem Immobilienkredit oft deutlich mehr als die Hälfte.',
+    },
+    {
+      question: 'Wie wirkt sich eine längere Laufzeit bei gleichem Zinssatz aus?',
+      options: [
+        'Niedrigere Rate und niedrigere Gesamtkosten',
+        'Niedrigere Rate, aber deutlich höhere Gesamtkosten',
+        'Höhere Rate, dafür niedrigere Gesamtkosten',
+        'Sie wirkt sich nur auf die Rate aus, nicht auf die Zinssumme',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Schuld steht länger offen, also fallen länger Zinsen an. Beworben wird immer die Rate, weil sie in den Monatshaushalt passen muss; bezahlt wird die Zinssumme. Die Laufzeit ist damit der Hebel mit der größten Wirkung – wer sie verkürzen kann, spart mehr als durch jede Zinsverhandlung.',
+    },
+    {
+      question: 'Was sagt ein beworbener Zinssatz „ab 2,9 Prozent“ aus?',
+      options: [
+        'Dass dieser Satz der beste Bonitätsklasse vorbehalten ist – dein Angebot kann deutlich darüber liegen',
+        'Dass 2,9 Prozent der Durchschnittszins aller vergebenen Kredite ist',
+        'Dass der Zins nach oben auf 2,9 Prozent begrenzt ist',
+        'Dass der Effektivzins bei 2,9 Prozent liegt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bonitätsabhängige Zinsen bedeuten, dass der beworbene Satz die untere Kante ist. Aussagekräftiger ist das gesetzlich vorgeschriebene repräsentative Beispiel. Und vergleichbar ist ohnehin nur der Effektivzins – der allerdings eine mitverkaufte Restschuldversicherung nicht enthalten muss.',
+    },
+  ],
+
+  'schulden-und-kredit:fortgeschritten': [
+    {
+      question:
+        'Was bewirkt eine Anfangstilgung von einem Prozent bei einem Immobilienkredit zu heutigen Zinsen?',
+      options: [
+        'Eine Laufzeit von etwa zwanzig Jahren bei niedriger Rate',
+        'Eine Laufzeit von über vierzig Jahren und eine Zinssumme nahe der Darlehenshöhe',
+        'Eine Laufzeit von etwa dreißig Jahren, danach ist der Kredit getilgt',
+        'Sie wirkt nur auf die Rate, nicht auf die Laufzeit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Bei Immobilienkrediten wird nicht die Laufzeit vereinbart, sondern der anfängliche Tilgungssatz – die Laufzeit ergibt sich daraus. Ein Prozent führt zu über vierzig Jahren, also über den Ruhestand hinaus, und zu Zinsen in der Größenordnung des Darlehens selbst. Der Schritt auf zwei Prozent kostet gut ein Fünftel mehr Rate und spart mehr als ein Drittel der Zinsen.',
+    },
+    {
+      question:
+        'Warum ist die Restschuld nach Ablauf der Zinsbindung das eigentliche Risiko?',
+      options: [
+        'Weil sie sofort in einer Summe zurückgezahlt werden muss',
+        'Weil auf sie ein Strafzins erhoben wird',
+        'Weil sie zu dann geltenden Konditionen weiterfinanziert werden muss, die heute niemand kennt',
+        'Weil sie nicht mehr durch die Grundschuld besichert ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Zins ist nur für die Dauer der Bindung festgeschrieben. Was danach gilt, entscheidet der Markt in zehn oder fünfzehn Jahren. Bei niedriger Anfangstilgung stehen dann noch fast neunzig Prozent der ursprünglichen Summe offen – wer nur auf die Rate geschaut hat, sieht diese Zahl nie.',
+    },
+    {
+      question:
+        'Ein Immobilienkredit hat eine Zinsbindung über zwanzig Jahre. Bist du daran gebunden?',
+      options: [
+        'Ja, ein vorzeitiges Ende ist nur gegen Vorfälligkeitsentschädigung möglich',
+        'Nein – nach zehn Jahren ab Vollauszahlung kann mit sechs Monaten Frist gekündigt werden, ohne Entschädigung',
+        'Ja, eine Kündigung ist während der Zinsbindung ausgeschlossen',
+        'Nein, aber nur bei einem Verkauf der Immobilie',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das gesetzliche Kündigungsrecht nach zehn Jahren gilt unabhängig von der vereinbarten Bindung. Eine Zinsbindung über fünfzehn oder zwanzig Jahre ist damit einseitig: Sie bindet die Bank, nicht dich. Bei niedrigem Zinsniveau ist eine lange Bindung deshalb die vermutlich sinnvollste Versicherung im Kreditbereich.',
+    },
+    {
+      question:
+        'Du hast einen Dispo zu zehn Prozent und legst gleichzeitig Geld zu zwei Prozent an. Wie ist das zu bewerten?',
+      options: [
+        'Sinnvoll, weil das angelegte Geld verfügbar bleibt',
+        'Sinnvoll, solange die Anlage breit gestreut ist',
+        'Ein sicherer Verlust in Höhe der Zinsdifferenz – mit einer Ausnahme beim Notgroschen',
+        'Neutral, weil sich Zinsen und Erträge steuerlich ausgleichen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Differenz geht jedes Jahr verloren, bei jeder Marktlage. Der Vorgang ist ein Musterbeispiel für mentale Buchführung: zwei Töpfe, keine gemeinsame Rechnung. Die einzige begründete Ausnahme ist der Notgroschen – wer ihn zur Tilgung auflöst, landet beim nächsten unerwarteten Betrag wieder im Dispo.',
+    },
+  ],
+
+  'schulden-und-kredit:profi': [
+    {
+      question:
+        'Warum ist der Vergleich „Kreditzins 3 Prozent gegen erwartete Aktienrendite 7 Prozent“ falsch aufgestellt?',
+      options: [
+        'Weil die Tilgung eine sichere Rendite liefert und Kapitalerträge zusätzlich besteuert werden',
+        'Weil Aktienrenditen langfristig unter drei Prozent liegen',
+        'Weil Kreditzinsen immer steuerlich absetzbar sind',
+        'Weil die Rendite eines Depots nicht berechenbar ist',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Zwei Fehler wirken in dieselbe Richtung. Die Tilgung bringt exakt den Kreditzins, und zwar sicher – ihr fairer Vergleichspartner ist eine sichere Anlage, nicht der Aktienmarkt. Und Steuern greifen nur auf einer Seite: Erträge werden besteuert, ersparte Schuldzinsen nicht.',
+    },
+    {
+      question: 'Wann sind Schuldzinsen in Deutschland steuerlich absetzbar?',
+      options: [
+        'Immer, sofern der Kredit über eine deutsche Bank läuft',
+        'Bei einer vermieteten Immobilie als Werbungskosten – bei Selbstnutzung und bei Kapitalanlagen dagegen nicht',
+        'Nur bei selbstgenutzten Immobilien',
+        'Bei allen Krediten, die der Vermögensbildung dienen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Entscheidend ist der Zweck. Bei Vermietung gibt es eine Einkunftsart, der die Zinsen zugeordnet werden können. Bei Selbstnutzung und beim Konsumkredit gibt es sie nicht. Bei Kapitalanlagen ist der Abzug tatsächlicher Werbungskosten grundsätzlich ausgeschlossen – der Sparerpauschbetrag tritt an ihre Stelle.',
+    },
+    {
+      question: 'Was macht einen Wertpapierkredit im Abschwung besonders gefährlich?',
+      options: [
+        'Die Zinsen steigen bei fallenden Kursen automatisch an',
+        'Der Beleihungswert sinkt mit den Kursen – die Nachschussforderung kommt genau dann, wenn Nachschießen am schwersten fällt',
+        'Er darf bei fallenden Kursen nicht mehr getilgt werden',
+        'Die Bank darf ihn nur bei steigenden Kursen kündigen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Kredit ist durch das Depot besichert, und dessen Wert fällt mit dem Markt. Wer nicht nachschießen kann, wird zwangsweise verkauft – am Tiefpunkt und ohne Wahl. Es ist derselbe Mechanismus wie bei Derivaten: Aus einem Verlustrisiko wird ein Liquiditätsrisiko.',
+    },
+    {
+      question: 'Wie ist ein Bausparvertrag wirtschaftlich zu bewerten?',
+      options: [
+        'Als Sparprodukt, dessen Verzinsung mit dem Marktzins vergleichbar ist',
+        'Als Darlehen, dessen Konditionen erst bei Zuteilung feststehen',
+        'Als zwei Verträge, die nur gemeinsam bewertbar sind: schwache Sparverzinsung als Preis für die spätere Zinssicherung',
+        'Als reine Zinswette ohne Sparkomponente',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Sparphase mit niedriger Verzinsung und das Darlehensrecht zu einem heute festgelegten Zins gehören zusammen. Wer nur eine der beiden Phasen ansieht, bewertet falsch – und wer das Darlehen später nicht abruft, hat eine schlecht verzinste Spareinlage bezahlt, ohne die Gegenleistung je in Anspruch zu nehmen.',
+    },
+  ],
+
+  // ------------------------------------------------------- Sparerpauschbetrag
+  'sparerpauschbetrag:beginner': [
+    {
+      question:
+        'Du hast Kapitalerträge unterhalb des Sparerpauschbetrags, aber keinen Freistellungsauftrag gestellt. Was passiert?',
+      options: [
+        'Die Bank führt Steuer ab – sie kann nicht wissen, ob der Freibetrag anderswo schon genutzt wird',
+        'Nichts, der Freibetrag wirkt automatisch',
+        'Die Bank fragt beim Finanzamt nach und behält nur bei Überschreitung ein',
+        'Die Steuer wird erst mit der Steuererklärung fällig',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Freibetrag wirkt nicht von selbst. Ohne Auftrag zieht die Bank ab dem ersten Euro ab – sie kennt nur deine Konten bei ihr, nicht deine Gesamtsituation. Zurückholen lässt sich das über die Anlage KAP; einfacher ist es, den Auftrag rechtzeitig zu stellen.',
+    },
+    {
+      question: 'Wie wirkt der Solidaritätszuschlag auf Kapitalerträge?',
+      options: [
+        'Er wird auf den Ertrag erhoben, sodass insgesamt 30,5 Prozent anfallen',
+        'Er wird auf die Abgeltungsteuer erhoben – zusammen ergibt das rund 26,4 Prozent des Ertrags',
+        'Er entfällt bei Kapitalerträgen vollständig',
+        'Er ersetzt die Abgeltungsteuer bei Erträgen unter dem Freibetrag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Zuschlag bemisst sich nach der Steuer, nicht nach dem Ertrag: 5,5 Prozent von 25 Prozent sind 1,375 Prozentpunkte, zusammen 26,375 Prozent. Das ist der Rechenfehler, der bei dieser Zahl am häufigsten passiert – die Sätze werden addiert statt verkettet.',
+    },
+    {
+      question: 'Was geschieht mit einem nicht ausgeschöpften Sparerpauschbetrag?',
+      options: [
+        'Er wird auf das Folgejahr übertragen',
+        'Er wird beim nächsten Verkauf nachträglich angerechnet',
+        'Er verfällt zum 31. Dezember – einen Übertrag gibt es nicht',
+        'Er erhöht den Freibetrag des Ehepartners',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Freibetrag ist ein Jahresbetrag ohne Übertragsmöglichkeit. Wer im November noch Luft hat, kann sie nutzen, indem er Anteile mit Gewinn verkauft und sofort zurückkauft: Der Gewinn bleibt steuerfrei, und der Einstandskurs steigt. Zu rechnen ist das gegen Ordergebühren und Spread.',
+    },
+    {
+      question: 'Wann fällt Steuer auf einen Kursgewinn an?',
+      options: [
+        'Sobald der Depotwert steigt',
+        'Jährlich anteilig auf die Wertsteigerung des Vorjahres',
+        'Erst bei der Steuererklärung des Folgejahres',
+        'Erst beim Verkauf – nur realisierte Gewinne sind steuerpflichtig',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Eine bloße Wertsteigerung im Depot löst nichts aus; besteuert wird erst der realisierte Gewinn. Genau darin liegt die Steuerstundung, die langes Halten wertvoll macht. Die einzige Ausnahme ist die Vorabpauschale bei thesaurierenden Fonds – sie entsteht ohne eigenes Zutun.',
+    },
+  ],
+
+  'sparerpauschbetrag:fortgeschritten': [
+    {
+      question:
+        'Bei welchem Konto oder Depot sollte der Freistellungsauftrag zuerst liegen?',
+      options: [
+        'Beim Depot mit thesaurierenden Fonds – die Vorabpauschale wird ohne dein Zutun im Januar eingezogen',
+        'Beim Girokonto, weil dort der Zahlungsverkehr läuft',
+        'Beim Depot mit den höchsten Kursgewinnen des Vorjahres',
+        'Es spielt keine Rolle, die Banken gleichen untereinander ab',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die sinnvolle Reihenfolge folgt der Steuerbarkeit: zuerst dorthin, wo Erträge ohne dein Zutun entstehen. Die Vorabpauschale wird Anfang Januar automatisch belastet. Realisierte Kursgewinne stehen ans Ende der Reihenfolge, weil du über sie selbst entscheidest.',
+    },
+    {
+      question: 'Was passiert beim Depotwechsel mit dem Freistellungsauftrag?',
+      options: [
+        'Er wandert automatisch mit dem Depot mit',
+        'Er wird beim Übertrag anteilig aufgeteilt',
+        'Er bleibt beim alten Institut stehen und blockiert dort einen Teil des Freibetrags',
+        'Er erlischt automatisch mit der Depotauflösung',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Auftrag bleibt, wo er ist. Erst beim alten Institut widerrufen oder herabsetzen, dann beim neuen erteilen – in dieser Reihenfolge, sonst überschreitet die Summe kurzzeitig die Grenze. Mitzudenken ist auch die Übermittlung der Anschaffungsdaten: Fehlen sie, unterstellt die neue Bank eine ungünstigere Ersatzbemessungsgrundlage.',
+    },
+    {
+      question:
+        'Du hast bei Bank A Verluste und bei Bank B Gewinne realisiert. Wie lassen sie sich verrechnen?',
+      options: [
+        'Gar nicht – Verluste sind immer institutsgebunden',
+        'Automatisch, sobald beide Banken die Jahressteuerbescheinigung ausstellen',
+        'Über eine Verlustbescheinigung von Bank A und die Anlage KAP – Antrag bis 15. Dezember',
+        'Durch einen Depotübertrag von Bank A zu Bank B',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Banken verrechnen nur institutsintern. Institutsübergreifend geht es nur über die Steuererklärung, und dafür braucht es eine Verlustbescheinigung – beantragt bis zum 15. Dezember des Jahres. Diese Frist ist gesetzlich und nicht verlängerbar; versäumt man sie, bleiben die Verluste im Topf der Bank A und werden dort vorgetragen.',
+    },
+    {
+      question:
+        'Wer profitiert von einer Nichtveranlagungsbescheinigung – und was leistet sie?',
+      options: [
+        'Kirchensteuerpflichtige; sie verhindert den automatischen Kirchensteuerabzug',
+        'Wer mit dem gesamten Einkommen unter dem Grundfreibetrag bleibt; sie stellt Erträge über den Sparerpauschbetrag hinaus frei',
+        'Anleger mit ausländischem Depot; sie ersetzt die Erklärungspflicht',
+        'Alle Anleger; sie verdoppelt den Sparerpauschbetrag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Sie wird beim Finanzamt beantragt und lohnt sich typischerweise für Studierende, Kinder und teils im Ruhestand. Anders als der Freistellungsauftrag ist sie nicht auf den Pauschbetrag begrenzt: Sie stellt die Kapitalerträge vollständig frei. Der Kirchensteuerabzug wird dagegen über einen Sperrvermerk gesteuert – und entfällt dadurch nicht, sondern läuft über die Erklärung.',
+    },
+  ],
+
+  'sparerpauschbetrag:profi': [
+    {
+      question:
+        'Du hast mit Einzelaktien Verluste und mit ETFs Gewinne realisiert. Was gilt?',
+      options: [
+        'Beides ist verrechenbar, solange es beim selben Institut anfällt',
+        'Aktienverluste sind nur mit Gewinnen aus Einzelaktien verrechenbar – der ETF-Gewinn wird versteuert',
+        'Der Aktienverlust mindert zuerst den Sparerpauschbetrag',
+        'Aktienverluste verfallen am Jahresende, wenn sie nicht genutzt werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Aktienverlusttopf ist strikt getrennt: Er lässt sich weder mit Dividenden noch mit Fondsgewinnen verrechnen, sondern ausschließlich mit Gewinnen aus dem Verkauf einzelner Aktien. Er wird unbegrenzt vorgetragen, bleibt aber topfgebunden – wer nie wieder Einzelaktien mit Gewinn verkauft, nutzt ihn nie.',
+    },
+    {
+      question: 'Wie wird die Vorabpauschale bei einem thesaurierenden Fonds ermittelt?',
+      options: [
+        'Als fester Prozentsatz des Depotwerts am Jahresende',
+        'Als Differenz zwischen Kauf- und Jahresendkurs',
+        'Als voller Wertzuwachs des Fonds im abgelaufenen Jahr',
+        'Als Basisertrag – Wert am Jahresanfang mal Basiszins mal 0,7 –, gedeckelt auf die tatsächliche Wertsteigerung',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Deckelung ist der entscheidende Teil: In einem Verlustjahr fällt keine Vorabpauschale an. Der Basiszins wird jährlich vom Bundesfinanzministerium festgesetzt. Bei einem Aktienfonds bleiben davon zusätzlich 30 Prozent teilfreigestellt.',
+    },
+    {
+      question: 'Ist die Vorabpauschale eine Doppelbesteuerung?',
+      options: [
+        'Nein – gezahlte Vorabpauschalen werden beim späteren Verkauf vom Gewinn abgezogen',
+        'Ja, deshalb ist sie verfassungsrechtlich umstritten',
+        'Nur bei Fonds mit Sitz im Ausland',
+        'Ja, sie wird beim Verkauf ein zweites Mal erhoben',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Sie ist eine Vorverlagerung, keine zusätzliche Belastung: Alle gezahlten Pauschalen mindern den steuerpflichtigen Gewinn beim Verkauf. Das praktische Problem liegt woanders – der Betrag wird vom Verrechnungskonto eingezogen, auch wenn nichts verkauft wurde. Ist es nicht gedeckt, entsteht daraus eine Überziehung.',
+    },
+    {
+      question:
+        'Ein Depot auf den Namen des Kindes soll dessen eigenen Freibetrag nutzen. Was ist die Bedingung?',
+      options: [
+        'Ein Sperrvermerk beim Bundeszentralamt für Steuern',
+        'Ein gemeinsamer Freistellungsauftrag der Eltern',
+        'Das Geld muss dem Kind tatsächlich gehören – endgültig übertragen, mit voller Verfügung ab 18',
+        'Das Depot muss bei derselben Bank geführt werden wie das der Eltern',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Anerkannt wird die Gestaltung nur, wenn die Übertragung echt ist. Wer die Verfügungsmacht behält oder das Geld später für eigene Zwecke verwendet, hat steuerlich nichts erreicht. Zu bedenken sind außerdem Familienversicherung und Kindergeldanspruch, die von eigenen Einkünften des Kindes berührt werden können.',
+    },
+  ],
+
+  // ------------------------------------------------- Notenbanken & Geldpolitik
+  'notenbanken-geldpolitik:beginner': [
+    {
+      question: 'Worin unterscheidet sich der Auftrag von EZB und US-Notenbank?',
+      options: [
+        'Die EZB hat Preisstabilität als vorrangiges Ziel, die Fed zusätzlich maximale Beschäftigung',
+        'Die Fed ist auf Preisstabilität festgelegt, die EZB auf Wachstum',
+        'Beide haben denselben Auftrag, nur verschiedene Zielwerte',
+        'Die EZB ist der Politik weisungsgebunden, die Fed nicht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die EZB muss bei hoher Inflation handeln, auch wenn die Konjunktur leidet – ihr Ziel ist eindeutig. Die Fed hat ein Doppelmandat und damit zwei Ziele, die sich widersprechen können. Unabhängig von der Politik sind beide, und das gilt als Voraussetzung dafür, dass eine Notenbank überhaupt glaubwürdig sein kann.',
+    },
+    {
+      question:
+        'Wenn in Meldungen aus dem Euroraum von „dem Leitzins“ die Rede ist – welcher Satz ist meist gemeint?',
+      options: [
+        'Der Hauptrefinanzierungssatz',
+        'Der Spitzenrefinanzierungssatz',
+        'Der Einlagesatz – er bestimmt die Untergrenze des Geldmarkts und damit das Tagesgeld',
+        'Der Durchschnitt aller drei Sätze',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Einlagesatz ist das, was Banken für über Nacht geparktes Geld erhalten. Er ist der Satz, an dem sie sich orientieren, wenn sie überschüssige Liquidität haben – und deshalb bewegt sich dein Tagesgeldzins mit ihm, nicht mit den beiden anderen.',
+    },
+    {
+      question: 'Darf die EZB Staatshaushalte direkt finanzieren?',
+      options: [
+        'Ja, das ist eine ihrer Kernaufgaben',
+        'Nein – die direkte Finanzierung ist vertraglich untersagt; Käufe erfolgen am Sekundärmarkt',
+        'Ja, aber nur bis zu einer festgelegten Obergrenze je Staat',
+        'Nur in Krisenzeiten nach Beschluss des Europäischen Rates',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Anleihen kauft die EZB von Banken und Fonds, nicht vom Staat selbst. Der Unterschied ist rechtlich wesentlich und wirtschaftlich umstritten – aber er ist keine Formalie: Ein Staat muss seine Papiere zunächst am Markt platzieren und dort einen Preis akzeptieren.',
+    },
+    {
+      question:
+        'Die EZB erhöht den Zins wie erwartet – und die Aktienkurse steigen. Wie ist das zu erklären?',
+      options: [
+        'Zinserhöhungen sind für Aktien grundsätzlich positiv',
+        'Der Markt reagiert immer mit Verzögerung von mehreren Tagen',
+        'Die Erhöhung war bereits eingepreist; bewegt wird nur die Abweichung von der Erwartung',
+        'Aktienkurse hängen nicht von Zinsentscheidungen ab',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Ein erwarteter Zinsschritt steht längst in den Kursen, wenn er verkündet wird. Fiel er kleiner aus als befürchtet oder klang der Ausblick milder, ist das die eigentliche Nachricht. Genau darauf beruht auch die Forward Guidance: Eine Notenbank kann allein durch Ankündigungen wirken, ohne den Zins anzufassen.',
+    },
+  ],
+
+  'notenbanken-geldpolitik:fortgeschritten': [
+    {
+      question:
+        'Warum trifft ein Zinsanstieg Wachstumswerte stärker als etablierte Unternehmen mit stabilen Gewinnen?',
+      options: [
+        'Weil Wachstumsunternehmen höher verschuldet sind',
+        'Weil ihre Gewinne weiter in der Zukunft liegen und damit stärker auf den Abzinsungssatz reagieren',
+        'Weil sie häufiger von institutionellen Anlegern gehalten werden',
+        'Weil ihre Dividenden gekürzt werden müssen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Wert einer Aktie ist der Barwert künftiger Gewinne. Je weiter diese in der Zukunft liegen, desto heftiger wirkt jede Änderung des Abzinsungssatzes. Das erklärt, warum 2022 Technologiewerte deutlich stärker verloren als Versorger – ohne dass sich an ihren Geschäften etwas geändert hätte.',
+    },
+    {
+      question:
+        'Warum reagieren Notenbanken auf Prognosen statt auf die aktuelle Inflationsrate?',
+      options: [
+        'Weil aktuelle Daten erst mit einem Jahr Verzögerung veröffentlicht werden',
+        'Weil die Prognosen gesetzlich vorgeschrieben sind',
+        'Weil aktuelle Daten regelmäßig revidiert werden',
+        'Weil ein Zinsschritt erst nach vier bis sechs Quartalen voll auf die Inflation wirkt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bestehende Kredite laufen weiter, Tarifabschlüsse gelten für Jahre, Investitionen sind entschieden. Wer auf die heutige Inflation reagiert, kommt anderthalb Jahre zu spät. Daraus folgt zugleich das strukturelle Risiko der Übersteuerung: Wer nachsteuert, bis die Daten sich bessern, hat zwangsläufig zu lange nachgesteuert.',
+    },
+    {
+      question: 'Warum kommt ein Zinsanstieg beim Sparer später an als ein Zinsrückgang?',
+      options: [
+        'Weil Banken sinkende Zinsen auf Einlagen schnell und steigende langsam weitergeben',
+        'Weil die Einlagensicherung eine Frist vorschreibt',
+        'Weil Tagesgeldzinsen gesetzlich nur quartalsweise angepasst werden dürfen',
+        'Weil die EZB Zinserhöhungen erst mit Verzögerung wirksam werden lässt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Weitergabe ist asymmetrisch, und bei Krediten ist es genau umgekehrt. Das ist kein Vorwurf, sondern Wettbewerbsverhalten – für Sparer bedeutet es aber, dass der Vergleich von Angeboten nach einem Zinsschritt besonders lohnt, weil die Institute unterschiedlich schnell nachziehen.',
+    },
+    {
+      question: 'Was bewirkt quantitative Lockerung, das eine Zinssenkung nicht bewirkt?',
+      options: [
+        'Sie senkt die kurzfristigen Zinsen unter null',
+        'Sie erhöht direkt die Kreditvergabe der Banken',
+        'Sie senkt die langfristigen Zinsen, wenn die kurzen bereits bei null angekommen sind',
+        'Sie verhindert Kursverluste bei Anleihen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Leitzins wirkt am kurzen Ende. Ist er ausgereizt, bleibt der Ankauf langlaufender Anleihen, um auch die langen Zinsen zu drücken. Die Nebenwirkung zeigt sich beim Ausstieg: Ein großer Teil des Umlaufs war aus dem Markt verschwunden, und private Käufer verlangen einen Preis, den die Notenbank nicht verlangt hat.',
+    },
+  ],
+
+  'notenbanken-geldpolitik:profi': [
+    {
+      question: 'Warum taugt die Taylor-Regel zur Erklärung, aber nicht als Vorgabe?',
+      options: [
+        'Weil sie nur für die US-Notenbank formuliert wurde',
+        'Weil zwei ihrer Eingangsgrößen – natürlicher Zins und Output-Lücke – nicht messbar, sondern geschätzt sind',
+        'Weil sie die Inflation nicht berücksichtigt',
+        'Weil sie erst seit wenigen Jahren bekannt ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Regel erklärt vergangene Entscheidungen erstaunlich gut. Als Vorgabe scheitert sie daran, dass der natürliche Zins nicht beobachtbar ist und die Output-Lücke im Nachhinein regelmäßig deutlich revidiert wird. Geldpolitik ist damit keine Steuerung nach Messwerten, sondern Navigation mit unsicherer Position.',
+    },
+    {
+      question: 'Was ist mit fiskalischer Dominanz gemeint?',
+      options: [
+        'Dass die Regierung der Notenbank Weisungen erteilen darf',
+        'Dass Staatsausgaben stärker auf die Inflation wirken als der Leitzins',
+        'Dass die Notenbank Staatsanleihen kaufen muss, wenn niemand sonst sie nimmt',
+        'Dass hohe Staatsschulden jede Zinserhöhung zur Haushaltsbelastung machen und den Spielraum faktisch einengen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei hoher Verschuldung schlägt jeder Zinsschritt auf den Haushalt durch. Schon der Verdacht, eine Notenbank könnte deshalb zögern, untergräbt ihre Glaubwürdigkeit – auch wenn sie es nicht tut. Eine rechtliche Weisungsbefugnis besteht dabei nicht; die Beschränkung ist eine faktische.',
+    },
+    {
+      question:
+        'Welche Größe zeigt am direktesten, welchen Zinspfad der Markt tatsächlich einpreist?',
+      options: [
+        'Die Prognosen der Notenbank selbst',
+        'Die Zinsstrukturkurve und die Terminmärkte auf Tagesgeldsätze',
+        'Die Kommentare der Ratsmitglieder nach der Sitzung',
+        'Der Verlauf des Aktienindex am Sitzungstag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Zinskurve und Terminmärkte zeigen, was mit echtem Geld erwartet wird – nicht, was jemand meint. Sie sind nützlich, um zu verstehen, was gerade eingepreist ist. Nützlich, um es besser zu wissen, sind sie nicht: Genau diese Erwartung steckt bereits in jedem Kurs.',
+    },
+    {
+      question: 'Welche Konsequenz aus der Geldpolitik ist für ein Privatdepot sinnvoll?',
+      options: [
+        'Die Aktienquote nach jeder Notenbanksitzung anpassen',
+        'Vor erwarteten Zinserhöhungen Anleihen verkaufen',
+        'Die Laufzeit der Anleihen und die Konzentration auf Wachstumswerte bewusst wählen – als Strukturentscheidung',
+        'Die Sparrate an den Leitzins koppeln',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Notenbanksitzungen taugen als Erklärung, nicht als Handelssignal – die erwartete Entwicklung steht im Kurs. Sinnvoll ist, was aus dem Verständnis folgt: Wer weiß, dass lange Anleihen um ein Vielfaches stärker reagieren als kurze, wählt die Laufzeit bewusst. Das ist eine Entscheidung über die Aufteilung, und die trifft man einmal.',
+    },
+  ],
+
+  // ------------------------------------------------- Währungen & Wechselkurse
+  'waehrungen-wechselkurse:beginner': [
+    {
+      question: 'EUR/USD steigt von 1,10 auf 1,20. Was bedeutet das?',
+      options: [
+        'Der Euro ist stärker geworden – ein Euro kostet jetzt mehr Dollar',
+        'Der Dollar ist stärker geworden',
+        'Beide Währungen haben gegenüber Gold verloren',
+        'Der Kurs sagt nichts über die Stärke der Währungen aus',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die erste Währung ist die Ware, die zweite der Preis. EUR/USD sagt, was ein Euro in Dollar kostet – steigt die Zahl, ist der Euro stärker. Für einen europäischen Anleger mit Dollar-Anlagen ist das die ungünstige Richtung: Beim Rücktausch bekommt er weniger Euro je Dollar.',
+    },
+    {
+      question: 'Welcher Faktor bewegt Wechselkurse kurzfristig am stärksten?',
+      options: [
+        'Die Kaufkraftunterschiede zwischen den Ländern',
+        'Zinsdifferenzen zwischen den Währungsräumen',
+        'Die Handelsbilanz',
+        'Die Staatsverschuldung',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Kapital fließt dorthin, wo es mehr Zins gibt – das wirkt binnen Tagen. Inflationsunterschiede und Kaufkraft wirken über Jahrzehnte, die Handelsbilanz über Monate bis Jahre. Und in Krisen setzt sich die Flucht in sichere Häfen über alles andere hinweg.',
+    },
+    {
+      question:
+        'Eine US-Aktie steigt um 10 Prozent in Dollar, gleichzeitig steigt EUR/USD von 1,10 auf 1,20. Was ergibt sich für einen Euro-Anleger?',
+      options: [
+        'Ungefähr 10 Prozent Gewinn, der Währungseffekt wirkt sich kaum aus',
+        'Rund 20 Prozent Gewinn – beide Effekte addieren sich',
+        'Knapp über null – der stärkere Euro zehrt den Kursgewinn fast vollständig auf',
+        'Rund 10 Prozent Verlust, weil der Währungseffekt den Kursgewinn übersteigt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Aus 10.000 € werden 11.000 $ zum Ausgangskurs. Die Aktie bringt 12.100 $. Zurückgetauscht zu 1,20 sind das rund 10.083 € – also gut null Prozent. Bei einem Kurs von 1,30 wären es rund sieben Prozent Verlust. Kurs- und Währungseffekt addieren sich nicht, sie multiplizieren sich.',
+    },
+    {
+      question:
+        'Ein weltweit anlegender ETF wird in Euro gehandelt. Trägt er ein Währungsrisiko?',
+      options: [
+        'Ja – die Handelswährung ist nicht das Währungsrisiko; entscheidend ist, worin die Unternehmen wirtschaften',
+        'Nein, die Euro-Notierung schließt Währungsrisiken aus',
+        'Nur, wenn er ausschüttet',
+        'Nur bei einem synthetisch abbildenden ETF',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der ETF hält Aktien von Unternehmen, die überwiegend in Dollar bilanzieren. Fällt der Dollar, fällt der Eurowert dieser Beteiligungen – die Euro-Notierung rechnet das nur um. Umgekehrt trägt ein in Dollar gehandelter Europa-ETF kein nennenswertes Dollarrisiko.',
+    },
+  ],
+
+  'waehrungen-wechselkurse:fortgeschritten': [
+    {
+      question: 'Wovon hängen die laufenden Kosten einer Währungsabsicherung ab?',
+      options: [
+        'Von der erwarteten Wechselkursentwicklung',
+        'Von der Zinsdifferenz zwischen beiden Währungsräumen',
+        'Von der Größe des abgesicherten Betrags, mit Mengenrabatt',
+        'Von der Schwankungsbreite des Wechselkurses im Vorjahr',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Terminkurs folgt der Arbitragefreiheit, nicht einer Prognose: Er entspricht dem Kassakurs, angepasst um die Zinsdifferenz. Genau diese Differenz sind die Kosten. Bei zwei Prozentpunkten Zinsvorsprung des Dollars kostet die Absicherung rund zwei Prozent im Jahr – unabhängig davon, wohin der Kurs läuft.',
+    },
+    {
+      question:
+        'Warum ist eine Währungsabsicherung bei Anleihen üblich, bei Aktien dagegen meist nicht?',
+      options: [
+        'Weil Anleihen häufiger in Fremdwährung notieren',
+        'Weil sich Aktien nicht absichern lassen',
+        'Weil bei Anleihen die Währungsschwankung die erwartete Rendite deutlich übersteigt, bei Aktien die Marktschwankung dominiert',
+        'Weil die Absicherung bei Aktien steuerlich nachteilig ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Bei einer Anleihe mit drei Prozent Rendite würde eine Währungsbewegung von zehn Prozent das Ergebnis vollständig bestimmen – dort ist Absicherung sinnvoll. Bei Aktien schwankt der Markt selbst stärker als die Währung; die laufenden Kosten der Absicherung verschlechtern das Ergebnis dann über lange Zeiträume eher.',
+    },
+    {
+      question:
+        'Ein europäischer Konzern macht drei Viertel seines Umsatzes in Dollar. Was folgt daraus für die Währungsaufteilung deines Depots?',
+      options: [
+        'Nichts – als europäische Aktie ist die Position eine Euro-Position',
+        'Wirtschaftlich ist es zu drei Vierteln eine Dollarposition; der Sitz ändert daran nichts',
+        'Die Position ist währungsneutral, weil der Konzern selbst absichert',
+        'Es hängt allein davon ab, an welcher Börse die Aktie gehandelt wird',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die echte Währungsaufteilung folgt der Umsatzwährung, nicht dem Sitzland und nicht der Handelswährung. Deshalb steht sie in keiner Depotübersicht – dort wird die Handelswährung ausgewiesen, also die falsche Größe. Die Übung, sie einmal selbst zu ermitteln, ist die aufschlussreichste zu diesem Thema.',
+    },
+    {
+      question:
+        'Worin unterscheiden sich Schwellenländeranleihen in Lokalwährung von solchen in Hartwährung?',
+      options: [
+        'In Lokalwährung trägst du das Währungsrisiko; in Hartwährung trägt es der Emittent, was sein Ausfallrisiko erhöht',
+        'Hartwährungsanleihen sind grundsätzlich risikofrei',
+        'Lokalwährungsanleihen sind steuerlich begünstigt',
+        'Es gibt keinen wirtschaftlichen Unterschied, nur einen in der Notierung',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das Risiko verschwindet nicht, es wechselt die Seite. Bei Lokalwährungsanleihen liegt es beim Anleger und wird über höhere Kupons vergütet. Bei Hartwährungsanleihen muss der Emittent in einer Währung zahlen, die er nicht selbst herstellt – genau die Konstellation, an der Staaten in Zahlungsschwierigkeiten geraten.',
+    },
+  ],
+
+  'waehrungen-wechselkurse:profi': [
+    {
+      question: 'Welche der Paritätsbedingungen gilt praktisch immer und warum?',
+      options: [
+        'Die Kaufkraftparität, weil Güterpreise sich angleichen',
+        'Die ungedeckte Zinsparität, weil sonst freie Gewinne möglich wären',
+        'Die gedeckte Zinsparität – sie ist eine Arbitragebedingung, keine Verhaltensannahme',
+        'Alle drei gelten gleichermaßen, nur über verschiedene Zeiträume',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Terminkurs muss der Zinsdifferenz entsprechen, sonst ließe sich risikolos Geld verdienen – das ist keine Theorie über Verhalten, sondern Arbitrage. Größere Abweichungen traten nach 2008 auf und wurden zum Indikator für Stress im Bankensystem. Die Kaufkraftparität wirkt nur über Jahrzehnte, die ungedeckte Zinsparität gar nicht.',
+    },
+    {
+      question: 'Worauf beruht der Carry-Trade?',
+      options: [
+        'Darauf, dass Hochzinswährungen im Durchschnitt nicht so abwerten, wie es die ungedeckte Zinsparität verlangt',
+        'Darauf, dass Terminkurse künftige Kassakurse zuverlässig vorhersagen',
+        'Auf Kursunterschieden zwischen verschiedenen Handelsplätzen',
+        'Auf Notenbankinterventionen zugunsten schwacher Währungen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'In einer Niedrigzinswährung aufnehmen, in einer Hochzinswährung anlegen, die Differenz vereinnahmen. Das funktioniert über Monate und Jahre und bricht dann abrupt zusammen – dasselbe Ertragsprofil wie beim Verkauf von Volatilität. Das ist zugleich die beste Erklärung: Die Zinsdifferenz ist keine Anomalie, sondern die Vergütung eines Risikos.',
+    },
+    {
+      question: 'Wie wirksam sind Notenbankinterventionen am Devisenmarkt?',
+      options: [
+        'Sehr wirksam, weil Notenbanken unbegrenzte Mittel haben',
+        'Gegen einen anhaltenden Trend selten dauerhaft – Reserven sind endlich, der Markt ist es nicht',
+        'Wirkungslos, weil der Markt zu groß ist',
+        'Nur wirksam bei fest gebundenen Wechselkursen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Devisenreserven eines Landes sind begrenzt, der Markt ist es nicht – der tägliche Umsatz übersteigt den aller Aktienmärkte zusammen um ein Vielfaches. Wirksamer sind koordinierte Interventionen mehrerer Notenbanken und solche, die eine ohnehin drehende Entwicklung verstärken.',
+    },
+    {
+      question:
+        'Was ist die praktisch wirksamste Form der Währungsabsicherung für einen Privatanleger?',
+      options: [
+        'Ein Fremdwährungskonto zum Ausgleich der Depotpositionen',
+        'Regelmäßiges Umschichten je nach Wechselkursniveau',
+        'Ausschließlich abgesicherte Anteilsklassen zu verwenden',
+        'In der eigenen Verbrauchswährung zu planen und die Fremdwährungsquote danach zu bemessen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer seinen Ruhestand in Euro verbringt, sollte seine Verpflichtungen in Euro rechnen. Die Quote folgt dann aus dieser Planung – nicht aus einer Einschätzung darüber, wohin der Dollar läuft. Diese Einschätzung hat noch niemand verlässlich hinbekommen; der Devisenmarkt ist der Ort, an dem die meisten Prognosen scheitern.',
+    },
+  ],
+
+  // ------------------------------------------------------------ Bitcoin & Krypto
+  'bitcoin-krypto:beginner': [
+    {
+      question: 'Woraus ergibt sich die Obergrenze von 21 Millionen Bitcoin?',
+      options: [
+        'Aus einer Vereinbarung der größten Mining-Betreiber',
+        'Aus der Summe der Blockbelohnungen, die sich alle 210.000 Blöcke halbieren',
+        'Aus der begrenzten Rechenkapazität des Netzes',
+        'Aus einer Obergrenze, die jederzeit per Mehrheit geändert werden kann',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Zahl ist kein Beschluss, sondern die Summe einer geometrischen Reihe: 50 Coins je Block, alle 210.000 Blöcke halbiert. Die Reihe konvergiert gegen 21 Millionen, und schon nach sechs Halbierungsstufen sind über 98 Prozent davon erzeugt.',
+    },
+    {
+      question: 'Folgt aus der begrenzten Menge, dass der Preis steigen muss?',
+      options: [
+        'Ja, Knappheit erzeugt zwangsläufig Wert',
+        'Ja, sobald die Gesamtmenge erreicht ist',
+        'Nein – Knappheit ist nur die Voraussetzung dafür, dass Nachfrage sich im Preis niederschlägt',
+        'Nein, weil die Menge jederzeit erhöht werden kann',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Seltene Dinge ohne Nachfrage sind wertlos. Die Mengenbegrenzung sorgt dafür, dass zusätzliche Nachfrage nicht durch zusätzliches Angebot aufgefangen wird – mehr nicht. Ein Preis entsteht daraus erst, wenn jemand kaufen will.',
+    },
+    {
+      question: 'Was bedeutet „Not your keys, not your coins“?',
+      options: [
+        'Dass Coins ohne Wallet-Software nicht übertragbar sind',
+        'Dass ein Konto bei einer Plattform nur eine Forderung gegen ein Unternehmen ist, keine Verfügung über den Registereintrag',
+        'Dass jede Adresse mehrere Schlüssel benötigt',
+        'Dass Coins ohne Registrierung bei einer Behörde nicht anerkannt werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Liegen die Coins bei einer Plattform, gehören sie dir nur nach deren Buchführung. Bei der Insolvenz mehrerer großer Plattformen standen Kunden als gewöhnliche Gläubiger da. Die Gegenseite ist ebenso hart: Ein verlorener privater Schlüssel bedeutet endgültigen Verlust, ohne jede Wiederherstellung.',
+    },
+    {
+      question:
+        'Welche Regel folgt aus dem Fehlen eines Bewertungsankers und den historischen Rückgängen?',
+      options: [
+        'Nur Beträge einsetzen, deren vollständiger Verlust die Finanzplanung nicht berührt',
+        'Immer mindestens zehn Prozent des Depots investieren, um die Streuung zu erhöhen',
+        'Nur nach starken Rückgängen kaufen',
+        'Ausschließlich über regulierte Anbieter investieren, dann besteht kein Verlustrisiko',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Es gibt keine Zahlungsströme, gegen die sich ein Preis prüfen ließe, und Rückgänge von über 70 Prozent sind mehrfach eingetreten. Daraus folgt die Größe der Position, nicht ein Verzicht. Vorher stehen Notgroschen und die Tilgung teurer Schulden – beides bringt eine sichere Rendite.',
+    },
+  ],
+
+  'bitcoin-krypto:fortgeschritten': [
+    {
+      question: 'Warum gibt es in Europa keine echten Krypto-ETFs?',
+      options: [
+        'Weil Kryptowerte in der EU nicht handelbar sind',
+        'Weil die Aufsicht sie ausdrücklich untersagt hat',
+        'Weil ein Fonds nach europäischen Regeln gestreut sein muss – ein Produkt auf einen einzigen Wert erfüllt das nicht',
+        'Weil die Verwahrung durch eine Depotbank technisch unmöglich ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die europäischen Produkte sind ETPs, also Schuldverschreibungen, meist mit Coins besichert. Die Besicherung mildert das Emittentenrisiko, beseitigt es aber nicht. Der Unterschied zum Sondervermögen eines echten Fonds ist rechtlich erheblich – und die Ähnlichkeit der Kürzel führt in die Irre.',
+    },
+    {
+      question: 'Worauf kommt es bei einem mit Währungsreserven gedeckten Stablecoin an?',
+      options: [
+        'Auf die Prüfbarkeit der Reserven – wer sie bestätigt, wie oft und mit welcher Tiefe',
+        'Auf die Zahl der Handelsplätze, an denen er notiert',
+        'Auf die Höhe der Verzinsung, die er ausschüttet',
+        'Auf die Zahl der Nutzer im Netzwerk',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das Versprechen hängt vollständig an der Deckung, und ein Bestätigungsvermerk ist keine Vollprüfung. Algorithmische Konstruktionen ohne echtes Deckungsvermögen sind 2022 in großem Stil zusammengebrochen – der Mechanismus hielt der ersten ernsten Belastung nicht stand.',
+    },
+    {
+      question:
+        'Was leistet der europäische Regulierungsrahmen für Kryptowerte – und was nicht?',
+      options: [
+        'Er sichert Kursverluste bis zu einer festgelegten Grenze ab',
+        'Er stellt Anforderungen an die Anbieter, schützt aber nicht den Wert der Anlage selbst',
+        'Er macht Kryptowerte zu Sondervermögen',
+        'Er garantiert die Rückzahlung bei Insolvenz einer Plattform',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Geregelt werden Zulassung, Eigenkapital, Trennung von Kundenbeständen und Informationspflichten – der Umgang mit deinen Werten. Eine Einlagensicherung für Kryptowerte gibt es nicht. „Reguliert“ heißt, dass der Anbieter Regeln unterliegt; es heißt nicht, dass jemand für das Ergebnis einsteht.',
+    },
+    {
+      question: 'Warum sind kleine Coins besonders anfällig für Kursmanipulation?',
+      options: [
+        'Weil sie technisch schlechter abgesichert sind',
+        'Weil sie nicht an regulierten Börsen notieren dürfen',
+        'Weil ihre Orderbücher dünn sind – einzelne Aufträge bewegen den Preis erheblich',
+        'Weil ihre Gesamtmenge unbegrenzt ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Marktkapitalisierung ist stark konzentriert; die vielen tausend kleinen Coins teilen sich einen geringen Rest. Wo wenig gehandelt wird, genügen kleine Beträge für große Bewegungen – das Muster aus schnellem Anstieg, Werbung und Abverkauf ist regelmäßig dokumentiert.',
+    },
+  ],
+
+  'bitcoin-krypto:profi': [
+    {
+      question:
+        'Warum lassen sich Discounted-Cashflow-Verfahren auf Kryptowerte nicht anwenden?',
+      options: [
+        'Weil die Zahlungsströme zu stark schwanken',
+        'Weil die nötigen Daten nicht öffentlich sind',
+        'Weil der Abzinsungssatz nicht bestimmbar ist',
+        'Weil es überhaupt keine künftigen Zahlungen gibt – das Verfahren ist nicht ungenau, sondern nicht anwendbar',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Jede Bewertung von Aktien, Anleihen und Immobilien beruht darauf, künftige Zahlungen zu schätzen und abzuzinsen. Fehlen sie vollständig, greift das Verfahren nicht. Das macht die Anlage nicht illegitim – Gold hat dasselbe Problem –, aber es macht jede Aussage der Form „unterbewertet“ gegenstandslos.',
+    },
+    {
+      question:
+        'Warum taugt das Argument „der Preis kann nicht unter die Mining-Kosten fallen“ nicht?',
+      options: [
+        'Weil die Kausalität umgekehrt läuft: Der Aufwand richtet sich nach dem Preis, nicht der Preis nach dem Aufwand',
+        'Weil die Mining-Kosten nicht messbar sind',
+        'Weil Mining in vielen Ländern subventioniert wird',
+        'Weil der Aufwand seit dem letzten Halving gesunken ist',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Steigt der Preis, lohnt sich mehr Rechenleistung, und die Schwierigkeit passt sich an. Fällt er, schalten Betreiber ab. Der Aufwand folgt dem Preis – daraus lässt sich keine Untergrenze für den Preis ableiten, so plausibel es zunächst klingt.',
+    },
+    {
+      question: 'Wie hat sich die These bestätigt, Krypto sei unkorreliert zu Aktien?',
+      options: [
+        'Sie hat sich bestätigt: In Stressphasen stieg Krypto, während Aktien fielen',
+        'Sie hat sich nicht bestätigt – in Stressphasen fiel Krypto gemeinsam mit Aktien, und stärker',
+        'Sie gilt weiterhin für Bitcoin, nicht aber für andere Coins',
+        'Die Korrelation ist dauerhaft negativ',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Korrelation stieg genau dann, wenn ein Ausgleich gebraucht worden wäre – dasselbe Muster wie bei anderen risikoreichen Anlagen. Dazu kommt die Größenordnung der Schwankung: Schon eine Quote von wenigen Prozent trägt spürbar zur Gesamtschwankung eines Depots bei.',
+    },
+    {
+      question: 'Was macht einen 51-Prozent-Angriff bei großen Netzen unattraktiv?',
+      options: [
+        'Ein technisches Verbot im Protokoll',
+        'Die Überwachung durch Aufsichtsbehörden',
+        'Dass die Kosten für Rechenleistung oder Kapitaleinsatz den möglichen Ertrag übersteigen',
+        'Dass Transaktionen nach sechs Bestätigungen mathematisch endgültig sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Sicherheit dieser Netze ist ein wirtschaftliches Argument: Ein Angriff muss mehr kosten, als er einbringt. Bei kleineren Netzen ist diese Schwelle mehrfach unterschritten und der Angriff tatsächlich durchgeführt worden. Mathematisch endgültig wird eine Transaktion bei Proof of Work ohnehin nie.',
+    },
+  ],
+
+  // ---------------------------------------------------------------- Blockchain
+  'blockchain:beginner': [
+    {
+      question:
+        'Warum lässt sich eine Transaktion in einem alten Block nicht unbemerkt ändern?',
+      options: [
+        'Weil alte Blöcke verschlüsselt und nicht lesbar sind',
+        'Weil eine Änderung den Hash des Blocks verändert und damit die Verkettung zu allen Folgeblöcken bricht',
+        'Weil nur der ursprüngliche Absender Schreibrechte hat',
+        'Weil ältere Blöcke nach einer Frist gelöscht werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Jeder Block enthält den Hash seines Vorgängers. Ändert sich der Inhalt, ändert sich der Hash – und der Folgeblock enthält noch den alten. Die Manipulation wäre sofort sichtbar, und alle anderen Teilnehmer haben ohnehin die richtige Version.',
+    },
+    {
+      question: 'Welches Problem löst eine Blockchain?',
+      options: [
+        'Sie beschleunigt Zahlungen gegenüber herkömmlichen Systemen',
+        'Sie stellt sicher, dass eingetragene Daten inhaltlich richtig sind',
+        'Sie macht Transaktionen anonym',
+        'Sie klärt ohne zentrale Stelle, wer was besitzt – und schließt doppelte Ausgaben aus',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Digitale Dinge lassen sich beliebig kopieren; bisher verhinderte eine zentrale Stelle die doppelte Ausgabe. Eine Blockchain ersetzt das Vertrauen in eine Institution durch Vertrauen in ein nachprüfbares Regelwerk. Das ist die eigentliche Leistung – und sie ist teuer erkauft.',
+    },
+    {
+      question: 'Garantiert eine Blockchain, dass die enthaltenen Daten stimmen?',
+      options: [
+        'Nein – garantiert wird Unveränderlichkeit, nicht Richtigkeit',
+        'Ja, falsche Einträge werden vom Netz automatisch abgelehnt',
+        'Ja, sofern mehr als die Hälfte der Teilnehmer sie bestätigt',
+        'Nur bei Verwendung von Smart Contracts',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer einen falschen Wert einträgt, hat ihn danach unveränderlich falsch eingetragen. Das Netz prüft die Einhaltung der Regeln, nicht den Wahrheitsgehalt. Diese Unterscheidung ist der Grund, warum viele Anwendungsideen an der Schnittstelle zur realen Welt scheitern.',
+    },
+    {
+      question:
+        'Wann ist eine gewöhnliche Datenbank die bessere Wahl als eine Blockchain?',
+      options: [
+        'Wenn die Datenmenge klein ist',
+        'Wenn keine Zahlungen abgewickelt werden',
+        'Immer, wenn es zulässig ist, dass eine bekannte Stelle das Register führt',
+        'Wenn die Daten öffentlich einsehbar sein sollen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Konsens unter vielen Teilnehmern kostet Zeit und Kapazität; eine Datenbank ist um Größenordnungen schneller und billiger. Der Aufwand lohnt nur, wenn niemand die zentrale Stelle sein darf oder kann. „Warum keine Datenbank?“ ist die Frage, an der die meisten Projekte scheitern.',
+    },
+  ],
+
+  'blockchain:fortgeschritten': [
+    {
+      question:
+        'Worin unterscheiden sich Proof of Work und Proof of Stake bei der Sanktion?',
+      options: [
+        'Beide sanktionieren identisch über den Ausschluss aus dem Netz',
+        'Bei Proof of Work verliert ein Angreifer nur Betriebskosten; bei Proof of Stake wird das hinterlegte Kapital eingezogen',
+        'Proof of Stake sieht keine Sanktion vor',
+        'Bei Proof of Work wird die Hardware unbrauchbar gemacht',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Beide machen Betrug teuer, aber mit verschiedenen Mitteln. Bei Proof of Work behält der Angreifer seine Hardware und verliert nur den Aufwand. Bei Proof of Stake trifft die Sanktion unmittelbar das eingesetzte Kapital – das ist der wesentliche Unterschied im Anreizgefüge.',
+    },
+    {
+      question: 'Was bedeutet Finalität bei Proof of Work?',
+      options: [
+        'Nach sechs Bestätigungen ist eine Transaktion mathematisch endgültig',
+        'Finalität tritt nach 24 Stunden automatisch ein',
+        'Eine Transaktion ist nie mathematisch endgültig – sie wird nur immer unwahrscheinlicher rückgängig zu machen',
+        'Finalität wird von den Mining-Pools gemeinsam festgestellt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die üblichen sechs Bestätigungen sind eine Konvention, keine Garantie. Bei Proof of Stake ist echte Finalität dagegen erreichbar, weil ein Rückgängigmachen den Einzug erheblicher Sicherheiten auslösen würde. Praktisch heißt das: Der Wert der Ware bestimmt, wie lange man warten sollte.',
+    },
+    {
+      question: 'Was ist das Oracle-Problem bei Smart Contracts?',
+      options: [
+        'Dass Verträge nicht mehrere Bedingungen gleichzeitig prüfen können',
+        'Dass der Code nach der Veröffentlichung nicht mehr lesbar ist',
+        'Dass Verträge nur auf Zahlungen reagieren können, nicht auf Zeitpunkte',
+        'Dass Daten von außen jemandem geliefert werden müssen – womit die zentrale Stelle zurückkehrt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ein Vertrag, der auf einen Kurs, ein Wahlergebnis oder eine Lieferung reagieren soll, braucht diese Information von außerhalb der Kette. Wer sie liefert, muss vertraut werden. Für rein netzinterne Vorgänge gilt das nicht – für fast alles andere schon, und daran scheitern viele Anwendungsideen.',
+    },
+    {
+      question: 'Warum lässt sich der Durchsatz einer Blockchain nicht beliebig erhöhen?',
+      options: [
+        'Weil größere Blöcke oder kürzere Abstände mehr Bandbreite und Speicher verlangen – und damit weniger Teilnehmer mitmachen können',
+        'Weil die Konsensverfahren eine feste Obergrenze vorschreiben',
+        'Weil die Kryptografie ab einer bestimmten Datenmenge unsicher wird',
+        'Weil Aufsichtsbehörden eine Obergrenze vorgeben',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Geschwindigkeit wird immer gegen Dezentralisierung getauscht: Wer mitmachen will, braucht mehr Ressourcen, also können es weniger. Zusatzschichten umgehen das, indem sie Vorgänge auslagern – und führen dabei neue Vertrauensannahmen ein, über die Nutzer selten informiert sind.',
+    },
+  ],
+
+  'blockchain:profi': [
+    {
+      question:
+        'Welche Annahme des Sicherheitsmodells greift bei einem staatlichen Angreifer möglicherweise nicht?',
+      options: [
+        'Dass Teilnehmer über ausreichend Bandbreite verfügen',
+        'Dass Teilnehmer eigennützig handeln – ein Angreifer, der Verluste in Kauf nimmt, ist nicht vorgesehen',
+        'Dass die Kryptografie sicher ist',
+        'Dass die Blockzeit konstant bleibt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das Modell unterstellt, dass Teilnehmer ihren wirtschaftlichen Vorteil verfolgen – deshalb funktioniert das Argument über Angriffskosten. Wer das System schädigen will und dafür zahlt, fällt aus dieser Logik heraus. Bei staatlichen Akteuren ist das keine theoretische Möglichkeit.',
+    },
+    {
+      question: 'Was ist ein Eclipse-Angriff?',
+      options: [
+        'Ein Angriff, der die Mehrheit der Rechenleistung erfordert',
+        'Das Zurückrechnen der Kette aus alten Schlüsseln heraus',
+        'Das Abschneiden eines einzelnen Teilnehmers vom ehrlichen Netz, um ihm eine gefälschte Sicht zu liefern',
+        'Ein Ausfall aller Knoten in einer geografischen Region',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Er kommt ohne Mehrheit aus und richtet sich gegen einen einzelnen Teilnehmer. Damit greift er die Annahme an, dass Nachrichten im Netz verlässlich ankommen – eine der stillen Voraussetzungen, die in der Darstellung meist fehlen.',
+    },
+    {
+      question:
+        'Warum entstehen Zentralisierungstendenzen bei Mining-Pools und Staking-Anbietern?',
+      options: [
+        'Aus Skaleneffekten – gebündelte Ressourcen liefern planbarere Erträge',
+        'Aus regulatorischen Vorgaben in der EU',
+        'Weil die Protokolle sie ausdrücklich vorsehen',
+        'Weil Einzelteilnehmer technisch ausgeschlossen werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Einzelne Betreiber haben nur bei gebündelter Leistung planbare Erträge, und wer nicht selbst betreiben will, gibt sein Kapital an einen Dienstleister. Beides folgt aus Skaleneffekten, nicht aus Fehlverhalten – es lässt sich abmildern, nicht beseitigen. Das ist der ehrlichste Einwand gegen die Dezentralisierungserzählung.',
+    },
+    {
+      question:
+        'Was ist an der Ausnutzung der Transaktionsreihenfolge (MEV) bemerkenswert?',
+      options: [
+        'Sie ist nur bei privaten Blockchains möglich',
+        'Sie erfordert die Kontrolle über die Mehrheit des Netzes',
+        'Sie ist technisch nicht nachweisbar',
+        'Front-Running ist an regulierten Börsen verboten – hier ist es keine Regelverletzung, sondern eine Systemeigenschaft',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer einen Block zusammenstellt, entscheidet über Inhalt und Reihenfolge – und kann dieses Recht verkaufen. Ein System, das ohne Vertrauen auskommen sollte, hat damit eine Ertragsquelle geschaffen, die an regulierten Märkten verfolgt wird. Sandwich-Angriffe und bevorzugte Liquidationen sind die praktischen Formen.',
+    },
+  ],
+
+  // ------------------------------------------------- Wie funktioniert der Markt
+  'wie-funktioniert-der-markt:beginner': [
+    {
+      question: 'Was ist der Spread zwischen Geld- und Briefkurs?',
+      options: [
+        'Eine Gebühr, die die Börse erhebt',
+        'Der Preis dafür, sofort handeln zu können – er geht an denjenigen, der bereitsteht',
+        'Die Differenz zwischen Kurs und innerem Wert des Unternehmens',
+        'Die Schwankungsbreite des Kurses über einen Handelstag',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Er wird von niemandem berechnet, sondern ist die Vergütung dafür, dass immer eine Gegenseite bereitsteht. Für dich ist er trotzdem eine echte Kostenposition: Wer kauft und sofort wieder verkauft, hat ihn in voller Höhe verloren, ohne dass sich am Kurs etwas geändert hätte.',
+    },
+    {
+      question:
+        'Ein Unternehmen meldet 15 Prozent Gewinnwachstum – und der Kurs fällt. Wie ist das zu erklären?',
+      options: [
+        'Der Markt reagiert grundsätzlich verzögert auf Quartalszahlen',
+        'Kursbewegungen hängen nicht mit Unternehmenszahlen zusammen',
+        'Erwartet worden waren mehr – gegenüber der Erwartung ist die Meldung eine Enttäuschung',
+        'Gewinnwachstum wirkt sich erst im Folgejahr auf den Kurs aus',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Kurs enthielt die erwarteten 20 Prozent bereits. Bewegt wird er von der Abweichung, nicht von der Tatsache. Umgekehrt kann ein Verlust den Kurs steigen lassen, wenn ein größerer erwartet wurde – wer Kursreaktionen verstehen will, braucht immer zwei Zahlen, und nur eine steht in der Schlagzeile.',
+    },
+    {
+      question: 'Was bedeutet es, dass jeder Kurs zwei Seiten braucht?',
+      options: [
+        'Dass jede Aktie an mindestens zwei Börsen notiert sein muss',
+        'Dass es für jeden Kurs einen Geld- und einen Briefkurs gibt',
+        'Dass Kauf- und Verkaufsvolumen immer gleich groß sind',
+        'Dass jemand kauft, weil er das Papier für zu billig hält – und jemand verkauft, weil er es für teuer genug hält',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Beide handeln bei gleicher öffentlicher Informationslage in entgegengesetzter Richtung, und beide können nicht recht haben. Daraus folgt eine unbequeme, angebrachte Frage vor jedem Kauf: Warum sollte ich mehr wissen als der auf der anderen Seite?',
+    },
+    {
+      question: 'Worin besteht der strukturelle Vorteil eines Privatanlegers?',
+      options: [
+        'Im längeren Anlagehorizont – niemand zwingt ihn zu verkaufen',
+        'In niedrigeren Handelskosten als bei institutionellen Anlegern',
+        'Im schnelleren Zugang zu Unternehmensnachrichten',
+        'In der Möglichkeit, kleinere Positionen unbemerkt zu handeln',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei Kosten, Geschwindigkeit und Datenzugang ist ein Privatanleger im Nachteil. Was ihm bleibt, ist die Zeit: Kein Anleger kann sein Kapital abziehen, niemand verlangt eine Quartalserklärung. Diesen Vorteil hat kein Berufsanleger – und er lässt sich nur nutzen, indem man selten handelt.',
+    },
+  ],
+
+  'wie-funktioniert-der-markt:fortgeschritten': [
+    {
+      question: 'Worin unterscheiden sich Limit- und Marktauftrag grundsätzlich?',
+      options: [
+        'Der Limitauftrag ist immer günstiger in den Gebühren',
+        'Beim Limit ist der Preis sicher und die Ausführung nicht, beim Marktauftrag umgekehrt',
+        'Der Marktauftrag wird nur zur Eröffnungsauktion ausgeführt',
+        'Der Limitauftrag entnimmt Liquidität, der Marktauftrag stellt sie bereit',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Limitauftrag wird ins Buch gestellt und wartet – er stellt Liquidität bereit. Ein Marktauftrag wird sofort gegen die beste Gegenseite ausgeführt und entnimmt sie. Welcher passt, hängt davon ab, was wichtiger ist: ein bestimmter Preis oder die sichere Ausführung.',
+    },
+    {
+      question: 'Was beschreibt Slippage?',
+      options: [
+        'Die Verzögerung zwischen Auftragseingabe und Ausführung',
+        'Die Kursänderung über Nacht bei geschlossener Börse',
+        'Die Differenz zwischen erwartetem und tatsächlich erzieltem Durchschnittspreis',
+        'Die Gebührendifferenz zwischen zwei Handelsplätzen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer mehr Stücke will, als in der besten Lage liegen, arbeitet sich in schlechtere Lagen vor. Deshalb ist die Markttiefe aussagekräftiger als der Spread allein: Nicht nur, wie eng die erste Lage ist, sondern wie viel dahinter liegt.',
+    },
+    {
+      question:
+        'Wann ist die Liquidität an einem Handelstag typischerweise am geringsten?',
+      options: [
+        'Kurz nach der Eröffnung und in der Mittagszeit',
+        'In der Überlappung mit dem US-Handel am Nachmittag',
+        'Während der Schlussauktion',
+        'Die Liquidität ist über den Tag gleichmäßig verteilt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Am dichtesten ist der Handel nachmittags, wenn europäischer und US-Handel sich überschneiden. Wer in den ersten Minuten nach Handelsbeginn kauft, zahlt regelmäßig einen breiteren Spread. Auktionen zur Eröffnung und zum Schluss sind dagegen die liquidesten Momente – bei wenig gehandelten Werten oft die einzigen brauchbaren.',
+    },
+    {
+      question: 'Wie ist der Hochfrequenzhandel für Privatanleger einzuordnen?',
+      options: [
+        'Er hat Spreads deutlich verengt – und zieht sich in Stressphasen zurück',
+        'Er verschlechtert die Ausführungsqualität durchgehend',
+        'Er betrifft nur institutionelle Anleger',
+        'Er sorgt dafür, dass Kurse in Krisen stabil bleiben',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Beide Befunde stehen nebeneinander und stimmen: Die Verengung der Spreads ist messbar und ein echter Vorteil für normale Anleger. Und wenn die Modelle keine Kurse mehr stellen, verschwindet die Gegenseite genau dann, wenn viele verkaufen wollen. Die Bewertung hängt davon ab, welchen Fall man betrachtet.',
+    },
+  ],
+
+  'wie-funktioniert-der-markt:profi': [
+    {
+      question: 'Welche Form der Informationseffizienz ist klar widerlegt?',
+      options: [
+        'Die schwache Form',
+        'Die halbstarke Form',
+        'Die starke Form – sonst wäre Insiderhandel nicht einträglich',
+        'Alle drei Formen sind empirisch bestätigt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die starke Form behauptet, selbst nicht öffentliche Informationen steckten im Kurs. Wäre das so, müsste Insiderhandel weder verboten noch verfolgt werden. Die schwache Form ist weitgehend, die halbstarke überwiegend bestätigt – neue öffentliche Informationen werden in Sekunden eingepreist, nicht in Tagen.',
+    },
+    {
+      question: 'Was besagt das Effizienzparadox?',
+      options: [
+        'Dass effiziente Märkte höhere Renditen liefern als ineffiziente',
+        'Dass Effizienz durch die Suche nach Ineffizienz entsteht – und deshalb nie vollständig sein kann',
+        'Dass Kurse in effizienten Märkten nicht mehr schwanken',
+        'Dass Indexfonds Märkte ineffizient machen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wäre ein Markt vollkommen effizient, lohnte die Suche nicht mehr – niemand würde sie betreiben, und er würde ineffizient. Effizienz ist ein Gleichgewicht, in dem die Suche gerade ihre Kosten deckt. Für Privatanleger heißt das: Was zu finden ist, kostet ungefähr so viel, wie es bringt.',
+    },
+    {
+      question:
+        'Warum werden Überbewertungen schlechter korrigiert als Unterbewertungen?',
+      options: [
+        'Weil Aufsichtsbehörden Leerverkäufe generell untersagen',
+        'Weil Käufer stets zahlreicher sind als Verkäufer',
+        'Weil Überbewertungen seltener auftreten',
+        'Weil Leerverkäufe unbegrenzte Verluste tragen, Leihgebühren kosten und das Papier zurückgefordert werden kann',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Eine Unterbewertung lässt sich schlicht durch Kaufen ausnutzen. Eine Überbewertung erfordert einen Leerverkauf – mit nach oben unbegrenztem Verlust, laufenden Leihgebühren und dem Risiko, das Papier zurückgeben zu müssen. Das ist ein systematischer Grund für anhaltend zu hohe Preise.',
+    },
+    {
+      question:
+        'Hundert Muster werden auf einem Signifikanzniveau von fünf Prozent geprüft. Was folgt daraus?',
+      options: [
+        'Im Schnitt „funktionieren“ fünf davon rein zufällig – veröffentlicht wird meist eines',
+        'Fünf Prozent der gefundenen Effekte sind statistisch belegt',
+        'Alle gefundenen Effekte sind belastbar, sofern die Datenreihe lang genug ist',
+        'Die Prüfung ist nur bei weniger als zehn Hypothesen zulässig',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das ist die Struktur der Anomalienliteratur, keine Unterstellung: Die 99 gescheiterten Versuche stehen nirgends, und ohne sie lässt sich nicht beurteilen, wie außergewöhnlich der eine Erfolg war. Belastbar wird ein Effekt erst durch einen Test auf Daten, die bei der Entwicklung nicht verwendet wurden – plus eine ökonomische Begründung.',
+    },
+  ],
+
+  // ----------------------------------------------------- Wann kaufen & verkaufen
+  'wann-kaufen-verkaufen:beginner': [
+    {
+      question: 'Welche zwei Risiken trägt, wer auf einen besseren Einstieg wartet?',
+      options: [
+        'Kursrisiko und Währungsrisiko',
+        'Kursrisiko und das Risiko, die Aufwärtsbewegung zu verpassen',
+        'Inflationsrisiko und Emittentenrisiko',
+        'Nur das Kursrisiko – Warten selbst ist risikofrei',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das zweite Risiko fühlt sich nicht wie eines an, weil kein Geld verschwindet – rechnerisch ist es aber eines. Dazu kommt: Wer aussteigt, muss zweimal richtig liegen, und die Rückkehrentscheidung fällt in einer Phase, in der alle Nachrichten schlecht sind.',
+    },
+    {
+      question:
+        'Warum ist ein Höchststand in einem langfristig steigenden Markt kein Warnsignal?',
+      options: [
+        'Weil auf Höchststände statistisch immer Rückgänge folgen',
+        'Weil Höchststände dort der Normalfall sind – wer nur darunter kauft, kauft in manchen Jahren gar nicht',
+        'Weil Höchststände nur bei Einzelaktien vorkommen',
+        'Weil Indizes ihre Höchststände regelmäßig zurücksetzen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Markt, der über lange Zeiträume steigt, erreicht laufend neue Höchststände – das ist die Definition. Sie als Warnung zu lesen führt dazu, in genau den Phasen nicht zu kaufen, in denen es aufwärtsging.',
+    },
+    {
+      question:
+        'Was zeigt die Rechnung, in der die besten Wochen eines Zeitraums ausgelassen werden?',
+      options: [
+        'Dass sich die Rendite gleichmäßig über alle Wochen verteilt',
+        'Dass Aussteigen die Rendite verbessert, wenn man die schlechtesten Wochen meidet',
+        'Dass die Rendite eines Zeitraums an sehr wenigen Wochen hängt',
+        'Dass die Ergebnisse vom gewählten Index unabhängig sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Fehlen zehn von rund 250 Wochen – vier Prozent der Zeit –, wird aus einem klar positiven Ergebnis ein Verlust. Wer nicht investiert ist, verpasst genau diese Wochen. Das ist der rechnerische Kern des Nichtinvestiert-Risikos.',
+    },
+    {
+      question:
+        'Warum funktioniert das Ausweichen vor schlechten Phasen in der Praxis so selten?',
+      options: [
+        'Weil die besten und die schlechtesten Perioden unmittelbar nebeneinander liegen',
+        'Weil Verkäufe technisch zu lange dauern',
+        'Weil Börsen in Krisen den Handel aussetzen',
+        'Weil die schlechtesten Perioden nicht vorhersehbar sind, die besten aber schon',
+      ],
+      correctIndex: 0,
+      explanation:
+        'In den Daten dieser Website folgt die stärkste Aufwärtswoche des Zeitraums unmittelbar auf die stärkste Abwärtswoche. Starke Bewegungen treten in beiden Richtungen in denselben unruhigen Phasen auf. Wer nach dem Einbruch verkauft, ist in der Erholung nicht dabei.',
+    },
+  ],
+
+  'wann-kaufen-verkaufen:fortgeschritten': [
+    {
+      question: 'Was haben die tragfähigen Verkaufsgründe gemeinsam?',
+      options: [
+        'Sie beruhen auf technischen Kurssignalen',
+        'Sie stammen überwiegend aus dem eigenen Leben oder dem eigenen Plan, nicht aus dem Markt',
+        'Sie setzen einen Kursrückgang von mindestens 20 Prozent voraus',
+        'Sie gelten nur für Einzelaktien, nicht für Fonds',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Geldbedarf, erreichtes Ziel und Rebalancing nach Regel haben mit der Marktlage nichts zu tun. Der vierte Grund – die widerlegte Anlagethese – bezieht sich auf das Unternehmen, nicht auf den Kurs. Das ist das Erkennungsmerkmal eines guten Verkaufsgrundes.',
+    },
+    {
+      question: 'Warum ist „erst wieder bei null verkaufen“ eine teure Regel?',
+      options: [
+        'Weil sie steuerlich nachteilig ist',
+        'Weil sie den Verkauf zu lange hinauszögert und dadurch Gebühren erhöht',
+        'Weil sie an eine Zahl bindet, die nur du kennst und die für die Zukunft bedeutungslos ist',
+        'Weil sie bei Fonds technisch nicht umsetzbar ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Markt kennt deinen Einstiegskurs nicht und richtet sich nicht danach. Für die Frage, ob eine Anlage heute gehalten werden soll, ist er ohne jede Bedeutung – die Regel hält an einem Bezugspunkt fest, der nur in der eigenen Buchhaltung existiert.',
+    },
+    {
+      question: 'Was leistet ein Stop-Kurs – und was nicht?',
+      options: [
+        'Er garantiert den festgelegten Verkaufspreis',
+        'Er verhindert Kursverluste vollständig',
+        'Er wirkt nur während der Auktionen',
+        'Er löst automatisch einen Verkauf aus, garantiert aber keinen Preis – bei einer Kurslücke wird deutlich darunter verkauft',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ein Stop löst eine Marktorder aus. Öffnet der Kurs nach schlechten Nachrichten mit einer Lücke, wird zum nächsten verfügbaren Kurs verkauft. Dazu wird er regelmäßig durch bloße Schwankung ausgelöst – und dann steht man vor derselben Frage wie jeder Aussteiger: Wann zurück?',
+    },
+    {
+      question: 'Warum wirkt Rebalancing nach festen Bandbreiten antizyklisch?',
+      options: [
+        'Weil es verkauft, was gut lief, und kauft, was schlecht lief – ohne Marktmeinung',
+        'Weil es nur in fallenden Märkten ausgelöst wird',
+        'Weil es die Aktienquote dauerhaft senkt',
+        'Weil es Kursprognosen in die Entscheidung einbezieht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Regel wird festgelegt, solange nichts passiert ist, und greift dann mechanisch. Sie stellt die geplante Aufteilung wieder her – dass sie dabei antizyklisch handelt, ist eine Folge, kein Ziel. Genau deshalb hält sie auch dann, wenn eine bewusste Entscheidung schwerfiele.',
+    },
+  ],
+
+  'wann-kaufen-verkaufen:profi': [
+    {
+      question:
+        'Warum liegt die nötige Trefferquote einer Timing-Strategie deutlich über 50 Prozent?',
+      options: [
+        'Weil Märkte häufiger steigen als fallen',
+        'Weil jede Runde Kosten verursacht – Spread, Gebühren und Steuer auf realisierte Gewinne',
+        'Weil Prognosen grundsätzlich unmöglich sind',
+        'Weil die Schwelle regulatorisch festgelegt ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ohne Kosten genügten 50 Prozent – die Münzwurf-Schwelle, und der Grund, warum Timing im Gespräch immer machbar klingt. Schon ein Prozent Kosten je Runde hebt sie spürbar darüber, und die Schwelle gilt je Runde: Wer zwölfmal im Jahr entscheidet, muss sie zwölfmal erreichen.',
+    },
+    {
+      question:
+        'Was liefert Trendfolge über gleitende Durchschnitte nach Kosten typischerweise?',
+      options: [
+        'Deutlich höhere Rendite bei gleicher Schwankung',
+        'Eine Rendite meist unter dem schlichten Halten, dafür geringere Schwankung',
+        'Verlässlich negative Ergebnisse',
+        'Dieselbe Rendite wie Halten, aber steuerfrei',
+      ],
+      correctIndex: 1,
+      explanation:
+        'In Rückrechnungen sieht die Strategie oft gut aus, weil sie große Abwärtsphasen abschneidet. In der Umsetzung frisst die hohe Zahl von Fehlsignalen in Seitwärtsphasen den Vorteil, dazu Kosten und Steuern bei jedem Wechsel. Was bleibt, ist meist ein Tausch von Rendite gegen Ruhe.',
+    },
+    {
+      question: 'Was ist der eigentliche Preis eines Verkaufs im Privatvermögen?',
+      options: [
+        'Die Ordergebühr',
+        'Der Spread beim Wiedereinstieg',
+        'Der verlorene Stundungseffekt: Der abgeführte Steuerbetrag arbeitet nicht mehr mit',
+        'Die Vorabpauschale des Folgejahres',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Steuer selbst wäre irgendwann ohnehin fällig. Teuer ist die Vorverlegung – über eine lange Restlaufzeit ist der entgangene Zinseszins auf diesen Betrag der größere Posten. Wer hält, zahlt einmal am Ende, auf eine Summe, die zwischenzeitlich weitergearbeitet hat.',
+    },
+    {
+      question: 'Warum sind Rückrechnungen systematisch zu optimistisch?',
+      options: [
+        'Weil historische Kurse nachträglich korrigiert werden',
+        'Weil Überanpassung, Publikationsverzerrung und fehlende Umsetzungskosten zusammenwirken',
+        'Weil sie ausschließlich mit Indexdaten arbeiten',
+        'Weil Börsen ältere Daten nicht vollständig bereitstellen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer Parameter so lange verändert, bis das Ergebnis stimmt, hat die Vergangenheit beschrieben. Veröffentlicht wird ohnehin nur, was funktioniert hat. Und Papierrenditen rechnen ohne Spread, ohne Marktwirkung der eigenen Aufträge und ohne Steuern – die drei Posten, die bei häufigem Handeln entscheiden.',
+    },
+  ],
+
+  // ------------------------------------------------------------ Größte Crashs
+  'groesste-crashes:beginner': [
+    {
+      question: 'Was sagt das Ausmaß eines Crashs über die Dauer der Erholung?',
+      options: [
+        'Wenig – 1987 war der Tagesverlust dramatisch und nach zwei Jahren erledigt, 1929 dauerte es eine Generation',
+        'Je größer der Rückgang, desto länger die Erholung',
+        'Je größer der Rückgang, desto schneller die Erholung',
+        'Die Erholung dauert historisch immer etwa fünf Jahre',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Unterschied lag nicht im Auslöser, sondern in dem, was danach geschah: 1929 wurde die Geldmenge verknappt und der Handel eingeschränkt, 2020 flossen binnen Wochen Hilfen in beispiellosem Umfang. Wer die Dauer abschätzen will, müsste die politische Reaktion abschätzen.',
+    },
+    {
+      question: 'Welches Muster hatten alle großen Einbrüche gemeinsam?',
+      options: [
+        'Denselben Auslöser: überhöhte Bewertungen',
+        'Wachsende Zuversicht, ein Auslöser, Verstärkung durch Zwangsverkäufe, dann eine Erholung sehr unterschiedlicher Dauer',
+        'Einen Rückgang von exakt 50 Prozent',
+        'Eine vorherige Warnung durch verlässliche Indikatoren',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Auslöser waren jedes Mal verschieden – Spekulation, Technologie, Immobilienkredite, eine Pandemie. Der Ablauf ähnelte sich. Der Auslöser ist dabei nicht die Ursache, sondern der Moment, in dem die Ursache sichtbar wird.',
+    },
+    {
+      question: 'Wie sind Rückgänge von 20 Prozent und mehr einzuordnen?',
+      options: [
+        'Als seltene Ausnahmen, die etwa einmal pro Generation vorkommen',
+        'Als Zeichen eines strukturell defekten Marktes',
+        'Als wiederkehrender Bestandteil des Aktienmarkts – wer Jahrzehnte anlegt, erlebt mehrere',
+        'Als Ereignisse, die sich durch Streuung vollständig vermeiden lassen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Sogar in den fünf Jahren, die die Kursdaten dieser Website abdecken, steckt ein deutlicher Rückgang – er trägt keinen Namen, weil er längst aufgeholt ist. Genau das ist der Punkt: Rückgänge dieser Größe gehören zum Normalbetrieb.',
+    },
+    {
+      question: 'Welche praktische Folgerung ziehen die Daten nahe?',
+      options: [
+        'Nur Geld anlegen, das lange liegen bleiben kann – wer verkaufte, verpasste historisch den stärksten Teil der Erholung',
+        'Vor jedem Rückgang aussteigen und danach zurückkehren',
+        'Bei einem Rückgang von 20 Prozent grundsätzlich verkaufen',
+        'Ausschließlich in defensive Branchen investieren',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Erholung kam bisher immer – aber nur, wer dabei war, hat sie mitgenommen. Da sich weder Zeitpunkt noch Dauer vorhersagen lassen, folgt daraus keine Timing-Regel, sondern eine Bedingung an das eingesetzte Geld.',
+    },
+  ],
+
+  'groesste-crashes:fortgeschritten': [
+    {
+      question: 'Womit beginnt eine Blase typischerweise?',
+      options: [
+        'Mit einer bewussten Manipulation durch Großanleger',
+        'Mit einer zutreffenden Beobachtung – einer neuen Technologie oder Marktlage',
+        'Mit einer Zinssenkung der Notenbank',
+        'Mit fallenden Unternehmensgewinnen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Eisenbahn, das Internet und die Digitalisierung haben die Welt tatsächlich verändert – der Kern der Geschichte stimmt. Falsch wird erst der Preis. Deshalb ist „diesmal ist es anders“ teilweise richtig; falsch ist nur die Schlussfolgerung, dass deshalb jeder Preis gerechtfertigt sei.',
+    },
+    {
+      question: 'Warum verläuft ein Absturz schneller als der vorherige Anstieg?',
+      options: [
+        'Weil Verkaufsaufträge technisch schneller ausgeführt werden',
+        'Weil institutionelle Anleger zuerst verkaufen dürfen',
+        'Weil ein großer Teil der Verkäufe unfreiwillig ist – Margin Calls und Zwangsliquidationen',
+        'Weil Börsen in Abwärtsphasen länger geöffnet sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer auf Kredit gekauft hat, muss nachschießen oder wird glattgestellt. Die Verkäufe drücken die Preise, das senkt Beleihungswerte, das erzwingt weitere Verkäufe. Die Bewegung wird von der Mechanik getragen, nicht mehr von Einschätzungen.',
+    },
+    {
+      question: 'Was passiert mit der Streuung in einem Einbruch?',
+      options: [
+        'Sie wirkt stärker, weil die Unterschiede zwischen Anlagen zunehmen',
+        'Sie wirkt schlechter – Korrelationen steigen, weil nach Verkäuflichkeit verkauft wird',
+        'Sie bleibt unverändert wirksam',
+        'Sie wirkt nur bei Anleihen weiter',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Wer Liquidität braucht, verkauft was sich verkaufen lässt – nicht was er loswerden will. Das ist kein Versagen des Prinzips, sondern seine bekannte Grenze. Was in jeder Krise gehalten hat, ist die Trennung nach Zweck: Ein Notgroschen auf dem Tagesgeldkonto korreliert mit nichts, weil er nicht am Markt hängt.',
+    },
+    {
+      question: 'Wozu dienen Handelsunterbrechungen?',
+      options: [
+        'Sie stützen den Kurs auf einem festgelegten Niveau',
+        'Sie verhindern Verkäufe institutioneller Anleger',
+        'Sie gleichen Orderbücher zwischen Handelsplätzen ab',
+        'Sie unterbrechen die Rückkopplung und schaffen Zeit für die Bewertung von Informationen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ihr Zweck ist nicht die Kursstützung. Ob sie den Fall dämpfen oder nur verschieben, ist umstritten – dass sie Zwangsverkäufe entzerren und die Rückkopplung zwischen Verkaufsdruck und fallenden Preisen unterbrechen, ist unstrittig.',
+    },
+  ],
+
+  'groesste-crashes:profi': [
+    {
+      question: 'Wann wird aus einem Kurssturz eine Wirtschaftskrise?',
+      options: [
+        'Wenn der Rückgang mehr als 30 Prozent beträgt',
+        'Wenn das Bankensystem betroffen ist und die Kreditvergabe einbricht',
+        'Wenn mehrere Länder gleichzeitig fallen',
+        'Wenn er länger als sechs Monate dauert',
+      ],
+      correctIndex: 1,
+      explanation:
+        '1987 verlor der Markt an einem Tag rund ein Fünftel ohne folgende Rezession. Verlieren dagegen Banken Eigenkapital, vergeben sie weniger Kredite – Unternehmen investieren nicht, stellen nicht ein, gehen im Zweifel unter, obwohl mit ihrem Geschäft nichts war. Das ist der Übertragungsweg mit der größten Wucht.',
+    },
+    {
+      question: 'Aus den schnellen Erholungen von 2008 und 2020 lässt sich was ableiten?',
+      options: [
+        'Dass künftige Krisen ebenso schnell überwunden werden',
+        'Dass Notenbanken jede Krise auffangen können',
+        'Wenig für die Zukunft – der Spielraum für solche Reaktionen hängt an Inflationslage und Schuldenstand',
+        'Dass Fiskalpolitik wirkungslos ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Zu lernen ist, dass die Erholungsdauer historisch stärker an der Reaktion hing als am Auslöser – die Lehren aus 1929 sind der Grund dafür. Nicht zu lernen ist, dass die Reaktion künftig ebenso ausfallen wird. Wer aus drei Beobachtungen eine vierte ableitet, folgt dem Rezenzeffekt.',
+    },
+    {
+      question: 'Welche Konsequenz aus der Beschäftigung mit Crashs ist tragfähig?',
+      options: [
+        'Vor dem nächsten Einbruch aussteigen, sobald die Warnzeichen auftreten',
+        'Eine dauerhafte Absicherung gegen Einbrüche halten',
+        'Nach jedem Crash die Depotstruktur an das Erlebte anpassen',
+        'Die Struktur in ruhigen Zeiten festlegen: Quote nach dem Ernstfall, kein Hebel, Liquidität außerhalb des Marktes, Plan auf Papier',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Kein Indikator hat Crashs verlässlich angekündigt, eine dauerhafte Absicherung kostet über lange Zeiträume mehr als sie abwendet, und wer nach einem Crash umbaut, richtet sein Depot am zuletzt Erlebten aus. Die nächste Krise kommt aus einer anderen Richtung – das ist die einzige verlässliche Aussage über sie.',
+    },
+    {
+      question:
+        'Warum ist ein Wertpapierkredit in dieser Betrachtung besonders problematisch?',
+      options: [
+        'Weil er den Unterschied zwischen Buchverlust und realisiertem Verlust aufhebt – die Freiheit, nichts zu tun',
+        'Weil seine Zinsen nicht absetzbar sind',
+        'Weil er nur für Einzelaktien gewährt wird',
+        'Weil er die Streuung des Depots verringert',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer nicht verkaufen muss, kann einen Rückgang aussitzen. Ein Wertpapierkredit nimmt genau diese Möglichkeit: Fällt der Beleihungswert, wird nachgefordert oder zwangsweise verkauft – am Tiefpunkt und ohne Wahl.',
+    },
+  ],
+
+  // ---------------------------------------------------------- Länder & Branchen
+  'aktien-laender-branchen:beginner': [
+    {
+      question: 'Warum kostet Streuung keine erwartete Rendite?',
+      options: [
+        'Weil breite Fonds niedrigere Gebühren haben',
+        'Weil für das wegstreubare Unternehmensrisiko niemand bezahlt – vergütet wird nur das Marktrisiko',
+        'Weil gestreute Depots seltener umgeschichtet werden',
+        'Weil Streuung die Schwankung nicht wirklich senkt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Risiko, das sich beseitigen lässt, wird nicht vergütet – sonst gäbe es freies Geld. Bezahlt wird nur für das Marktrisiko, und das behält man ohnehin. Wer nicht streut, trägt also ein Risiko ohne Gegenleistung. Das ist der einzige Vorgang in der Geldanlage ohne Preis.',
+    },
+    {
+      question: 'Wie schnell nimmt der Nutzen zusätzlicher Positionen ab?',
+      options: [
+        'Er bleibt bis etwa 200 Positionen konstant',
+        'Die ersten zwanzig bringen den größten Teil; von zwanzig auf hundert ist die Verbesserung klein',
+        'Er steigt mit jeder weiteren Position gleichmäßig',
+        'Erst ab fünfzig Positionen setzt eine Wirkung ein',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das verbleibende Einzelrisiko sinkt näherungsweise mit der Wurzel aus der Zahl der Positionen. Entscheidend ist dabei die Verschiedenheit: Zwanzig Unternehmen aus verschiedenen Branchen und Ländern streuen deutlich besser als hundert aus derselben Branche.',
+    },
+    {
+      question: 'Was ist am Home Bias teuer?',
+      options: [
+        'Höhere Ordergebühren bei ausländischen Börsen',
+        'Die Quellensteuer auf heimische Dividenden',
+        'Dass Arbeitsplatz und Depot an derselben Volkswirtschaft hängen – und Vertrautheit kein Risiko senkt',
+        'Dass heimische Aktien niedrigere Dividenden zahlen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Man kennt die Namen und war Kunde – nichts davon hat mit dem Risiko zu tun. Dazu kauft man die Branchenstruktur des Landes mit. Und gerät die heimische Wirtschaft in eine Krise, trifft das Einkommen und Vermögen gleichzeitig. Es ist derselbe Fehler wie bei Mitarbeiteraktien, nur eine Ebene höher.',
+    },
+    {
+      question: 'Was deckt ein breiter Weltindex der Industrieländer nicht ab?',
+      options: [
+        'Schwellenländer und kleine Unternehmen',
+        'Die Branchenstreuung – die muss getrennt hergestellt werden',
+        'Unternehmen außerhalb Europas',
+        'Dividendenzahler',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Branchenstreuung entsteht automatisch mit – man muss sie nicht getrennt herstellen. Was fehlt, sind Schwellenländer und Nebenwerte. Beides lässt sich ergänzen, muss es aber nicht: Ein einzelner breiter Weltindex ist eine vollständig vertretbare Lösung.',
+    },
+  ],
+
+  'aktien-laender-branchen:fortgeschritten': [
+    {
+      question:
+        'Ein Weltindex ist zu rund 70 Prozent auf ein Land konzentriert. Wie ist das zu bewerten?',
+      options: [
+        'Als Konstruktionsfehler des Index',
+        'Als Folge der Marktkapitalisierungsgewichtung – der Index bildet ab, was die Unternehmen wert sind',
+        'Als vorübergehende Verzerrung, die sich automatisch ausgleicht',
+        'Als Zeichen dafür, dass der Index nicht breit gestreut ist',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Gewichtung folgt dem Börsenwert, und die US-Unternehmen sind tatsächlich so viel wert. Der Index bildet die Realität ab. Es heißt aber, dass „weltweit“ und „gleichmäßig über die Welt verteilt“ zwei verschiedene Dinge sind – und dass eine erhebliche Wette auf einen Markt und eine Währung enthalten ist.',
+    },
+    {
+      question: 'Was spricht für die Gewichtung nach Marktkapitalisierung?',
+      options: [
+        'Sie liefert die höchste Rendite',
+        'Sie erzeugt die gleichmäßigste Länderverteilung',
+        'Sie ist selbstregulierend – der Index passt sich ohne Handel an und spart dadurch Kosten',
+        'Sie gewichtet kleine Unternehmen stärker',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Steigt ein Unternehmen im Wert, steigt sein Anteil automatisch mit – ohne dass gehandelt werden müsste. Alle Alternativen erfordern laufende Umschichtung und kosten damit Rendite. Der Preis ist die hohe Länder- und Unternehmenskonzentration.',
+    },
+    {
+      question: 'Warum sind fünf Autohersteller keine Streuung?',
+      options: [
+        'Weil fünf Positionen grundsätzlich zu wenige sind',
+        'Weil sie an derselben Konjunktur, denselben Rohstoffpreisen und denselben Regulierungen hängen',
+        'Weil Automobilaktien besonders schwanken',
+        'Weil sie meist aus demselben Land stammen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Streuung entsteht durch Verschiedenheit, nicht durch Anzahl. Was gemeinsam getroffen wird, streut nicht – auch nicht bei zwanzig Positionen. Aus demselben Grund ist eine Branchenwette meist eine Wette auf einen Zeitpunkt: Zyklische Werte laufen gut, wenn die Konjunktur dreht.',
+    },
+    {
+      question:
+        'Warum ist Währungsabsicherung bei Aktien meist verzichtbar, bei Anleihen aber nicht?',
+      options: [
+        'Weil Aktien nicht in Fremdwährung notieren',
+        'Weil sich Aktien technisch nicht absichern lassen',
+        'Weil die Absicherung bei Aktien teurer ist',
+        'Weil bei Aktien die Marktschwankung die Währungsschwankung deutlich übersteigt, bei Anleihen umgekehrt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei einer Anleihe mit drei Prozent Rendite bestimmt eine Währungsbewegung von zehn Prozent das Ergebnis vollständig. Bei Aktien schwankt der Markt selbst stärker – die laufenden Kosten der Absicherung verschlechtern das Ergebnis dann über lange Zeiträume eher.',
+    },
+  ],
+
+  'aktien-laender-branchen:profi': [
+    {
+      question: 'Welche Frage entscheidet über die Belastbarkeit einer Faktorprämie?',
+      options: [
+        'Ob sie ein zusätzliches Risiko vergütet oder ein Verhaltensmuster ausnutzt',
+        'Wie lange die zugrunde liegende Datenreihe ist',
+        'Ob der Anbieter des Produkts groß genug ist',
+        'Ob sie in den letzten fünf Jahren funktioniert hat',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Vergütet die Prämie ein Risiko, bleibt sie bestehen – aber das Risiko auch. Nutzt sie ein Verhaltensmuster aus, kann sie verschwinden, sobald genug Kapital ihr folgt. Die Antwort bestimmt, was man von der Zukunft erwarten darf.',
+    },
+    {
+      question: 'Warum scheitern Faktorstrategien in der Praxis häufig?',
+      options: [
+        'Weil die Effekte statistisch nie belegt waren',
+        'Weil die Durststrecken über ein Jahrzehnt dauern können und fast jeder vorher aufgibt',
+        'Weil Faktorprodukte in der EU nicht zugelassen sind',
+        'Weil sie nur bei Einzelaktien funktionieren',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Value lag über mehr als ein Jahrzehnt zurück. Wer dann aufgibt, hat den Nachteil ohne den späteren Vorteil. Dazu kommen höhere Umschichtungskosten und die Tatsache, dass „Value“ von verschiedenen Anbietern verschieden definiert wird – der Faktor im Produkt ist nicht zwingend der aus der Studie.',
+    },
+    {
+      question: 'Welches Klumpenrisiko steht in keiner Depotübersicht?',
+      options: [
+        'Die Gewichtung der größten Indexpositionen',
+        'Die Aufteilung nach Handelswährungen',
+        'Das eigene Einkommen und die selbstgenutzte Immobilie',
+        'Die Zahl der gehaltenen Fonds',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Das Einkommen ist die größte Position im Gesamtvermögen und hängt an einer Branche und einem Land; die Immobilie ist oft der größte Einzelposten und an einen Standort gebunden. Wer in der Automobilindustrie arbeitet und Automobilaktien hält, hat eine Konzentration, die nirgends ausgewiesen wird.',
+    },
+    {
+      question: 'Wann lohnt ein zusätzlicher Baustein im Depot?',
+      options: [
+        'Immer – mehr Produkte bedeuten mehr Streuung',
+        'Ab einem Depotwert von 100.000 Euro',
+        'Wenn er von einem anderen Anbieter stammt',
+        'Nur wenn er etwas enthält, das im ersten fehlt – und man begründen kann, warum man diese Abweichung will',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ein breiter Weltindex enthält bereits über tausend Unternehmen; ein zweiter Fonds auf denselben Markt fügt nur Verwaltungsaufwand hinzu. Ab etwa fünf Bausteinen wird Rebalancing zur Arbeit, ohne dass sich das Ergebnis erkennbar verbessert – und der Aufwand fällt jedes Jahr an.',
+    },
+  ],
+
+  // --------------------------------------------------------------- Immobilien
+  'immobilien:beginner': [
+    {
+      question: 'Was bedeuten rund zehn Prozent Kaufnebenkosten praktisch?',
+      options: [
+        'Sie erhöhen den Kaufpreis und sind im Objekt enthalten',
+        'Sie sind sofort weg, stecken nicht im Objekt und müssen erst wieder erwirtschaftet werden',
+        'Sie werden über die Nutzungsdauer abgeschrieben und sind damit neutral',
+        'Sie lassen sich beim Verkauf auf den Käufer umlegen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Grunderwerbsteuer, Notar, Grundbuch und gegebenenfalls Makler erhöhen den Einsatz, nicht den Wert. Bei realistischen Renditen dauert es mehrere Jahre, bis sie wieder eingespielt sind – deshalb ist eine Immobilie mit kurzem Horizont fast immer ein Verlustgeschäft.',
+    },
+    {
+      question: 'Wie unterscheidet sich die Netto- von der Bruttomietrendite?',
+      options: [
+        'Nur durch die Finanzierungskosten',
+        'Gar nicht – beide Begriffe meinen dasselbe',
+        'Durch Verwaltung, Instandhaltung und Mietausfall – netto bleibt regelmäßig weniger als die Hälfte',
+        'Die Nettorendite ist höher, weil Steuervorteile hinzukommen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Bruttorendite ist Jahresmiete geteilt durch Kaufpreis und enthält keine einzige Kostenposition. Mit ihr wird geworben. Die ehrliche Zahl bezieht die nicht umlagefähigen Kosten ein und rechnet auf den tatsächlichen Einsatz einschließlich Nebenkosten.',
+    },
+    {
+      question: 'Welcher Kostenposten fehlt in den meisten Renditerechnungen?',
+      options: [
+        'Die Grundsteuer',
+        'Die Instandhaltungsrücklage – sie fällt in Sprüngen an: Dach, Heizung, Fenster',
+        'Die Gebäudeversicherung',
+        'Die Maklerprovision',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Als Größenordnung gelten etwa ein bis anderthalb Prozent des Gebäudewerts pro Jahr, bei älteren Objekten mehr. Weil sie nicht gleichmäßig anfällt, wird sie in Rechnungen leicht übersehen – bis der erste größere Posten kommt.',
+    },
+    {
+      question:
+        'Wie ist die Unterscheidung zwischen selbstgenutzter und vermieteter Immobilie einzuordnen?',
+      options: [
+        'Die selbstgenutzte ist primär eine Konsumentscheidung, die vermietete eine Kapitalanlage – es gelten verschiedene Maßstäbe',
+        'Beide sind Kapitalanlagen und identisch zu bewerten',
+        'Die selbstgenutzte ist steuerlich vorteilhafter',
+        'Der Unterschied betrifft nur die Finanzierung',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Bei der Selbstnutzung wohnt man darin, spart Miete und bindet Kapital – der wichtigste Maßstab ist dabei nicht die Rendite. Eine vermietete Immobilie muss sich dagegen wie eine Kapitalanlage rechnen lassen, und dafür gilt die Nettorechnung.',
+    },
+  ],
+
+  'immobilien:fortgeschritten': [
+    {
+      question:
+        'Warum ist die Restschuld nach der Zinsbindung das zentrale Risiko einer Immobilienfinanzierung?',
+      options: [
+        'Weil sie sofort in einer Summe fällig wird',
+        'Weil sie zu unbekannten künftigen Konditionen weiterfinanziert werden muss',
+        'Weil auf sie ein Strafzins erhoben wird',
+        'Weil die Grundschuld dann erlischt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Bei üblicher Anfangstilgung steht nach zehn Jahren noch der weitaus größte Teil offen. Steigt der Zins bis dahin um zwei Prozentpunkte, passt die Rate nicht mehr zur ursprünglichen Kalkulation – ein Problem, das mit der Immobilie selbst nichts zu tun hat.',
+    },
+    {
+      question:
+        'Bei 10 Prozent Eigenkapital und 10 Prozent Wertverlust – was passiert mit dem Eigenkapital?',
+      options: [
+        'Es sinkt um 10 Prozent',
+        'Es sinkt um etwa 20 Prozent',
+        'Es ist vollständig aufgezehrt',
+        'Es bleibt unverändert, solange die Rate gezahlt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Der Hebel wirkt symmetrisch: Dieselbe Zeile, die bei plus zehn Prozent eine Eigenkapitalrendite von hundert Prozent ausweist, bedeutet bei minus zehn Prozent den Totalverlust des Einsatzes. In Beratungsgesprächen wird meist nur die erste Spalte gezeigt.',
+    },
+    {
+      question:
+        'Zinsanstieg, Mietausfall und Wertverlust – was ist an dieser Kombination bemerkenswert?',
+      options: [
+        'Sie schließen einander gegenseitig aus',
+        'Sie haben eine gemeinsame Ursache – eine Rezession – und treten deshalb häufiger gemeinsam auf',
+        'Sie sind statistisch unabhängig voneinander',
+        'Sie betreffen nur vermietete Objekte',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Genau darauf ist zu kalkulieren: nicht auf jedes Risiko einzeln, sondern auf ihr gemeinsames Auftreten. Wer die Rate nur bei laufendem Einkommen und niedrigem Zins tragen kann, hat keine Reserve für den Fall, in dem alle drei zusammenkommen.',
+    },
+    {
+      question:
+        'Worin unterscheidet sich der Immobilienhebel von einem Wertpapierkredit?',
+      options: [
+        'Bei der Immobilie fordert die Bank nicht nach, solange die Rate fließt – ein Wertpapierkredit verlangt Nachschuss bei fallenden Kursen',
+        'Der Immobilienhebel wirkt nur nach oben',
+        'Wertpapierkredite haben niedrigere Zinsen',
+        'Es gibt keinen wesentlichen Unterschied',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Fällt der Immobilienwert unter die Restschuld, ist das Eigenkapital rechnerisch negativ – solange die Rate fließt, passiert aber nichts. Ein Wertpapierkredit zwingt dagegen zum Verkauf am Tiefpunkt. Der Unterschied ist erheblich und spricht hier für die Immobilie.',
+    },
+  ],
+
+  'immobilien:profi': [
+    {
+      question: 'Was macht die Abschreibung bei vermieteten Immobilien besonders?',
+      options: [
+        'Sie erhöht den Wert des Gebäudes über die Zeit',
+        'Sie ist ein Aufwand ohne Zahlung – sie mindert die Steuer, ohne Geld zu kosten',
+        'Sie gilt auch für den Grundstücksanteil',
+        'Sie ist bei Selbstnutzung ebenso möglich',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Abgeschrieben wird das Gebäude, nicht das Grundstück. Für viele vermietete Objekte ist dieser Posten der Grund, warum die Rechnung nach Steuern besser aussieht als davor – zusammen mit den Schuldzinsen, die bei Vermietung abzugsfähig sind und bei Selbstnutzung nicht.',
+    },
+    {
+      question:
+        'Ein Objekt rechnet sich nur wegen der Steuerersparnis. Wie ist das zu bewerten?',
+      options: [
+        'Als sinnvolle Gestaltung bei hohem persönlichem Steuersatz',
+        'Als neutral – die Ersparnis ist echtes Geld',
+        'Dann rechnet es sich nicht: Die Ersparnis ist nur ein Anteil eines echten Verlusts',
+        'Als vorteilhaft, solange die Spekulationsfrist eingehalten wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer die Ersparnis sucht, muss zuerst einen Verlust erzeugen und bekommt davon einen Teil erstattet. Das ist die Grundlage etlicher regelmäßig scheiternder Steuersparmodelle. Die Reihenfolge lautet: erst prüfen, ob das Objekt sich vor Steuern trägt – dann die Steuer als Verbesserung rechnen.',
+    },
+    {
+      question: 'Was ist mit „auf die Lage kommt es an“ eigentlich gemeint?',
+      options: [
+        'Die heutige Lage – erstklassige Adressen sind immer die bessere Wahl',
+        'Die künftige Entwicklung – die heutige Lage ist bereits im Preis enthalten',
+        'Die Entfernung zum nächsten Ballungszentrum',
+        'Die Ausrichtung des Objekts und die Etage',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Eine bereits erstklassige Lage ist entsprechend bepreist; der Ertrag liegt in der Veränderung, nicht im Zustand. Belastbar auswertbar sind vor allem Bevölkerungsentwicklung, die Breite der Arbeitgeberstruktur und geplante Infrastruktur – Letztere ist öffentlich einsehbar und wird oft spät eingepreist.',
+    },
+    {
+      question: 'Warum schwanken offene Immobilienfonds so wenig?',
+      options: [
+        'Weil ihr Risiko tatsächlich gering ist',
+        'Weil sie überwiegend in Staatsanleihen investieren',
+        'Weil sie gesetzlich zur Kursglättung verpflichtet sind',
+        'Weil die Bewertung über Gutachten erfolgt und nicht über einen Marktpreis',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die geringe Schwankung ist eine Folge der Bewertungsmethode, nicht des Risikos. Dazu kommen gesetzliche Mindesthalte- und Kündigungsfristen: Die Liquidität ist begrenzt, und genau daran sind offene Immobilienfonds in der Vergangenheit bereits gescheitert.',
+    },
+  ],
+
+  // -------------------------------------------------------------------- Rente
+  'rente:beginner': [
+    {
+      question: 'Was passiert im Umlageverfahren mit deinen Rentenbeiträgen?',
+      options: [
+        'Sie werden auf einem persönlichen Konto angespart und verzinst',
+        'Sie werden im selben Monat an die heutigen Rentner ausgezahlt – du erwirbst einen Anspruch, kein Guthaben',
+        'Sie werden am Kapitalmarkt angelegt',
+        'Sie werden zur Hälfte angespart und zur Hälfte ausgezahlt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Es gibt keinen Topf, aus dem später deine Rente käme. Daraus folgt die bekannte Abhängigkeit vom Verhältnis der Beitragszahler zu den Rentnern – aber auch etwas Positives: Die Rente ist an die Lohnentwicklung gekoppelt und verliert damit nicht wie ein fester Betrag an Kaufkraft.',
+    },
+    {
+      question: 'Wann erhält man genau einen Rentenpunkt?',
+      options: [
+        'Für jedes Beitragsjahr, unabhängig vom Einkommen',
+        'Für jedes Jahr, in dem man die Beitragsbemessungsgrenze erreicht',
+        'In einem Jahr mit genau dem Durchschnittsentgelt aller Versicherten',
+        'Für je 1.000 Euro gezahlter Beiträge',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Wer die Hälfte des Durchschnitts verdient, bekommt einen halben Punkt; wer das Doppelte verdient, zwei – nach oben begrenzt durch die Beitragsbemessungsgrenze. Die Rentenformel lautet dann schlicht: gesammelte Punkte mal aktueller Rentenwert.',
+    },
+    {
+      question:
+        'Warum ist der Betrag auf der Renteninformation zu optimistisch zu lesen?',
+      options: [
+        'Weil er brutto ist, in heutiger Kaufkraft steht und unterstellt, dass alles so weitergeht',
+        'Weil er die Inflation bereits abgezogen hat',
+        'Weil er nur die betriebliche Vorsorge enthält',
+        'Weil er die Beitragsjahre zu niedrig ansetzt',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Kranken- und Pflegeversicherung sowie Steuern fehlen dort vollständig. Die Angabe in heutiger Kaufkraft ist korrekt, wird aber oft mit dem künftigen Nominalbetrag verwechselt. Und die Hochrechnung schreibt das bisherige Einkommen fort – Teilzeit oder Elternzeit sind nicht enthalten.',
+    },
+    {
+      question: 'Wie viele Beitragsjahre sind für einen Rentenanspruch mindestens nötig?',
+      options: ['Fünf Jahre', 'Ein Jahr', 'Fünfzehn Jahre', 'Fünfunddreißig Jahre'],
+      correctIndex: 0,
+      explanation:
+        'Wer unter dieser Wartezeit bleibt, bekommt keine Rente – kann sich die Beiträge unter Umständen aber erstatten lassen. Die oft genannten 40 Punkte für die „Standardrente“ sind dagegen kein Mindestwert, sondern ein statistischer Bezugswert: 40 Jahre mit exakt durchschnittlichem Verdienst.',
+    },
+  ],
+
+  'rente:fortgeschritten': [
+    {
+      question: 'Wie funktioniert der Rentenfreibetrag?',
+      options: [
+        'Er wird jährlich neu als Prozentsatz der Rente ermittelt',
+        'Er wird im ersten vollen Rentenjahr als Eurobetrag festgeschrieben und bleibt dann unverändert',
+        'Er steigt mit jeder Rentenerhöhung mit',
+        'Er entfällt ab einem bestimmten Gesamteinkommen vollständig',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Weil der Betrag festgeschrieben wird, ist jede spätere Rentenerhöhung vollständig steuerpflichtig. Die Steuerlast steigt dadurch im Ruhestand langsam an, ohne dass sich am Steuerrecht etwas ändern müsste – wer nur mit dem Prozentsatz des ersten Jahres rechnet, plant zu optimistisch.',
+    },
+    {
+      question: 'Welche Nebenwirkung hat die Entgeltumwandlung heute?',
+      options: [
+        'Sie erhöht den Beitrag zur Arbeitslosenversicherung',
+        'Sie senkt das Bruttoeinkommen und damit die erworbenen Rentenpunkte',
+        'Sie verlängert die Wartezeit für den Rentenanspruch',
+        'Sie ist auf die Hälfte des Bruttogehalts begrenzt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Beitrag geht vom Bruttogehalt ab – ohne Steuer und Sozialabgaben, weshalb der Nettoverzicht deutlich kleiner ist als der eingezahlte Betrag. Weniger Brutto bedeutet aber auch weniger Rentenpunkte. Dieser Posten gehört in die Rechnung, wird aber selten genannt.',
+    },
+    {
+      question: 'Wann rechnet sich eine Betriebsrente über Entgeltumwandlung deutlich?',
+      options: [
+        'Wenn der Arbeitgeber nennenswert zuschießt – ein Zuschuss ist eine sofortige sichere Rendite',
+        'Wenn der persönliche Steuersatz im Ruhestand höher ist als heute',
+        'Wenn der Vertrag eine lange Mindestlaufzeit hat',
+        'Immer, weil die Beiträge steuerfrei sind',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Ohne nennenswerten Zuschuss steht dem Steuervorteil heute die volle Steuer- und Beitragspflicht später gegenüber; der Vorteil schrumpft auf die Differenz der Steuersätze und die gesparten Sozialabgaben, abzüglich der verlorenen Rentenpunkte. Dazu können die Produktkosten den Rest aufzehren.',
+    },
+    {
+      question: 'Was ist mit „nachgelagerter Besteuerung“ gemeint?',
+      options: [
+        'Dass die Steuer erst im Folgejahr abgeführt wird',
+        'Dass Renten erst ab einem bestimmten Alter besteuert werden',
+        'Dass die Beiträge im Erwerbsleben zunehmend steuerfrei waren und die Rente dafür zunehmend steuerpflichtig ist',
+        'Dass die Steuer über zehn Jahre verteilt gezahlt wird',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Systematik verschiebt die Besteuerung von der Einzahlung in die Auszahlung. Der steuerpflichtige Anteil hängt am Jahr des Rentenbeginns und steigt für spätere Jahrgänge – zusammen mit dem festgeschriebenen Freibetrag ergibt das eine über die Rentenzeit steigende Belastung.',
+    },
+  ],
+
+  'rente:profi': [
+    {
+      question:
+        'Wie hoch ist der Abschlag beim vorzeitigen Rentenbezug – und wie lange gilt er?',
+      options: [
+        '0,3 Prozent je Monat, und er gilt lebenslang',
+        '0,3 Prozent je Monat, aber nur bis zur Regelaltersgrenze',
+        '1 Prozent je Jahr, lebenslang',
+        'Der Abschlag entfällt nach 35 Beitragsjahren',
+      ],
+      correctIndex: 0,
+      explanation:
+        '3,6 Prozent im Jahr, dauerhaft. Wer drei Jahre früher geht, verliert rund elf Prozent – und der Abschlag wirkt auch auf spätere Rentenerhöhungen und auf die Hinterbliebenenrente. Das macht den Rentenbeginn zur folgenreichsten Einzelentscheidung dieses Themas.',
+    },
+    {
+      question: 'Was ist der Preis einer Sonderzahlung zum Ausgleich von Abschlägen?',
+      options: [
+        'Sie ist steuerlich nicht absetzbar',
+        'Das Geld ist unwiderruflich weg und im Todesfall weitgehend verloren – es gibt kein Erbe',
+        'Sie erhöht die Beiträge zur Krankenversicherung der Rentner',
+        'Sie ist erst ab 63 möglich und dann zu teuer',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Dem stehen zwei echte Vorteile gegenüber: Die Zahlung ist im Jahr der Leistung weitgehend als Sonderausgabe absetzbar, und der erworbene Anspruch ist lebenslang, inflationsgebunden und ohne Kursrisiko. Es bleibt aber eine Wette auf ein langes Leben.',
+    },
+    {
+      question: 'Wie ermittelt man die eigene Versorgungslücke belastbar?',
+      options: [
+        'Über die Faustregel von 70 bis 80 Prozent des letzten Nettoeinkommens',
+        'Über den Betrag auf der Renteninformation abzüglich 20 Prozent',
+        'Von den Ausgaben her: aktuelles Budget, wegfallende Posten streichen, hinzukommende schätzen',
+        'Über den Durchschnittsbedarf der eigenen Altersgruppe',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Faustregel unterstellt, dass sich die Ausgaben proportional entwickeln. Tatsächlich verschieben sie sich in beide Richtungen erheblich: Rentenbeiträge, Fahrtkosten und oft der Immobilienkredit fallen weg, Gesundheit und Freizeit kommen hinzu. Die Rechnung vom Budget her dauert eine Stunde und ist jeder Regel überlegen.',
+    },
+    {
+      question: 'Welche Planungsannahme folgt aus der demografischen Entwicklung?',
+      options: [
+        'Dass die gesetzliche Rente in Zukunft entfallen wird',
+        'Dass der Beitragssatz konstant bleibt',
+        'Dass eine Reform das Verhältnis von Beitragszahlern zu Rentnern korrigieren wird',
+        'Dass die Rente kommt, ihr Anteil am Lebensstandard für spätere Jahrgänge aber kleiner sein wird',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Die Menschen, die in dreißig Jahren Beiträge zahlen, sind bereits geboren – daran ändert keine Reform etwas. Verstellbar sind Beitragssatz, Rentenniveau und Eintrittsalter; alle drei wurden bewegt und werden es wieder. Wer die Rente mit einem Abschlag ansetzt, plant vorsichtig statt pessimistisch.',
     },
   ],
 }

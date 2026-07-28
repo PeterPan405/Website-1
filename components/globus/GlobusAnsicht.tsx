@@ -47,6 +47,15 @@ export interface AnsichtMetrik {
   label: string
   erklaerung: string
   einheit: string
+  /**
+   * Für wie viele Länder ein Wert hinterlegt ist.
+   *
+   * Bei Gehältern und Vermögen sind es je nach Quelle nur einige Dutzend –
+   * die Karte ist dann überwiegend grau. Ohne diese Angabe liest sich das
+   * wie ein Defekt, obwohl es die Datenlage ist. Deshalb steht sie neben der
+   * Erklärung und nicht in einer Fußnote.
+   */
+  belegt?: number
 }
 
 export interface AnsichtQuelle {
@@ -223,7 +232,18 @@ export function GlobusAnsicht({
           </button>
         ))}
       </div>
-      <p className="text-fg-muted mt-3 text-sm leading-relaxed">{metrik.erklaerung}</p>
+      <p className="text-fg-muted mt-3 text-sm leading-relaxed">
+        {metrik.erklaerung}
+        {metrik.belegt !== undefined && (
+          <>
+            {' '}
+            <span className="text-fg-subtle">
+              Hinterlegt für {metrik.belegt} von {laender.length} Ländern und Gebieten
+              {metrik.belegt < laender.length / 2 && ' – die übrigen bleiben grau'}.
+            </span>
+          </>
+        )}
+      </p>
     </fieldset>
   )
 

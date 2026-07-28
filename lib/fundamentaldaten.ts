@@ -105,6 +105,7 @@ export function getBilanzzahlen(ticker: string): Bilanzzahlen | null {
   if (belegt < 2) return null
 
   // `waehrung` ist keine Bilanzgroesse und hat in der Rechnung nichts verloren.
-  const { waehrung: _waehrung, ...zahlen } = eintrag
+  const zahlen: Bilanzzahlen & { waehrung?: string } = { ...eintrag }
+  delete zahlen.waehrung
   return zahlen
 }
