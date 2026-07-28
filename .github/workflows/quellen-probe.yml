@@ -11,25 +11,24 @@ name: Quellen abklopfen
 #
 # ## Bisheriger Stand
 #
-# - IWF (Schuldenquote): geht, seit ein User-Agent mitgeschickt wird → 191 Länder
-# - OECD (Löhne): geht, seit Sprache und Format ausdrücklich gesetzt sind → 38 Länder
-# - OECD (Vermögen): erreichbar, 31 Länder, enthält „Net wealth“ und „Median“ –
-#   aber in Landeswährung, für den Vergleich fehlt eine Umrechnung
-# - SEC (Fundamentaldaten): geht über die Jahresrahmen, rund 3.900 vollständige
-#   Datensätze; eingebaut und in Betrieb
-# - Yahoo (Fundamentaldaten): 401 Unauthorized bzw. Invalid Crumb
-# - ILO, Our World in Data: keine brauchbare Reihe gefunden
+# - IWF (Schuldenquote): geht → 191 Länder, eingebaut
+# - OECD (Löhne): geht → 38 Länder, eingebaut
+# - OECD (Vermögen): geht → 30 Länder nach Umrechnung, eingebaut
+# - SEC (Fundamentaldaten, us-gaap): geht → 170 geführte Kürzel, eingebaut
+# - Yahoo (Kennzahlen): 401 Unauthorized
+# - Frankfurter (Devisen): 301 auf eine andere Adresse; EZB reicht ohnehin
 #
-# ## Diese Runde
+# ## Diese Runde: die drei größten verbliebenen Lücken
 #
-# Das Medianvermögen. Die Datenbank ist erreichbar und enthält den gesuchten
-# Wert – offen sind zwei Fragen, die sich nur am echten Datensatz beantworten
-# lassen: Wie heißen die Spalten genau, und in welcher Einheit stehen die
-# Zahlen? Erst danach lässt sich ein Parser schreiben, der nicht rät.
-#
-# Zweite Frage: Für die Umrechnung in eine Vergleichswährung braucht es
-# historische Wechselkurse zum jeweiligen Erhebungsjahr. Getestet wird, ob die
-# Frankfurter-Schnittstelle die liefert.
+# 1. **BIP und Einwohner** fehlen bei 65 beziehungsweise 34 Ländern, weil die
+#    genutzten CSV-Spiegel der Weltbank nicht alle führen. Der IWF-Datamapper
+#    liefert dieselben Größen und ist über die Schuldenquote schon erschlossen.
+# 2. **Löhne außerhalb der OECD** – 211 Länder ohne Angabe, in Afrika alle 60.
+#    Die ILO führt Verdienststatistiken für deutlich mehr Länder.
+# 3. **Kennzahlen für Nicht-US-Aktien.** Die SEC führt neben `us-gaap` eine
+#    zweite Taxonomie: `ifrs-full`. Wer als ausländischer Emittent nach IFRS
+#    bilanziert und in den USA notiert, meldet dorthin. Das ist bisher nie
+#    abgefragt worden.
 
 on:
   workflow_dispatch:
@@ -39,114 +38,124 @@ jobs:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
-      - name: OECD – die Reinvermögenszeilen im Detail
+      - name: IWF – BIP, Einwohner und Kaufkraft je Kopf
         run: |
           UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          url="https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels"
-          curl -sS -L -A "$UA" -H 'Accept-Language: en' --max-time 90 -o /tmp/wealth.csv "$url"
+          for reihe in NGDPD LP PPPPC NGDPDPC; do
+            code=$(curl -sS -L -A "$UA" --max-time 60 -o "/tmp/$reihe.json" -w '%{http_code}' \
+              "https://www.imf.org/external/datamapper/api/v1/$reihe" || echo 000)
+            echo "▶ $reihe → $code, $(stat -c%s /tmp/$reihe.json) Bytes"
+          done
 
           python3 - <<'PY'
-          import csv, collections
-          with open('/tmp/wealth.csv', newline='', encoding='utf-8') as f:
-              alle = list(csv.DictReader(f))
-          nw = [z for z in alle if z['MEASURE'] == 'NW']
-          print(f"{len(nw)} Zeilen mit MEASURE=NW")
-
-          print("\n── Welche Kombinationen aus Rechengröße und Einheit? ──")
-          paare = collections.Counter(
-              (z['STATISTICAL_OPERATION'], z['Statistical operation'],
-               z['UNIT_MEASURE'], z['Unit of measure']) for z in nw)
-          for (op, opname, einheit, einheitname), anzahl in paare.most_common():
-              print(f"  {op:10} {opname:22} | {einheit:8} {einheitname:34} | {anzahl}")
-
-          median = [z for z in nw if z['STATISTICAL_OPERATION'] == 'MEDIAN']
-          print(f"\n── {len(median)} Medianzeilen ──")
-          print("  Währungen: " + ', '.join(sorted({z['CURRENCY'] for z in median})))
-          print("  Multiplikatoren: " + ', '.join(sorted({z['UNIT_MULT'] for z in median})))
-          print("  Preisbasis: " + ', '.join(sorted({z['PRICE_BASE'] for z in median})))
-
-          jeLand = collections.defaultdict(list)
-          for z in median:
-              if z['OBS_VALUE']:
-                  jeLand[z['REF_AREA']].append(z)
-          print(f"\n── {len(jeLand)} Länder mit mindestens einem Medianwert ──")
-          for land in sorted(jeLand)[:40]:
-              jung = max(jeLand[land], key=lambda z: z['TIME_PERIOD'])
-              print(f"  {land}  {jung['TIME_PERIOD']}  {float(jung['OBS_VALUE']):>14,.0f}"
-                    f"  {jung['CURRENCY']:4} x10^{jung['UNIT_MULT']}  {jung['UNIT_MEASURE']}")
+          import json
+          for reihe, was in [('NGDPD','BIP in Mrd. USD'), ('LP','Einwohner in Mio.'),
+                             ('PPPPC','BIP je Kopf, kaufkraftbereinigt'),
+                             ('NGDPDPC','BIP je Kopf in USD')]:
+              try:
+                  d = json.load(open(f'/tmp/{reihe}.json'))
+              except Exception as fehler:
+                  print(f'  {reihe}: nicht lesbar ({fehler})')
+                  continue
+              werte = d.get('values', {}).get(reihe, {})
+              # Nur echte Ländercodes: drei Grossbuchstaben
+              laender = {k: v for k, v in werte.items() if len(k) == 3 and k.isupper()}
+              mit2025 = sum(1 for v in laender.values() if v.get('2025') is not None)
+              mit2024 = sum(1 for v in laender.values() if v.get('2024') is not None)
+              print(f'  {reihe:9} ({was}): {len(laender)} Codes, 2024: {mit2024}, 2025: {mit2025}')
+              beispiel = laender.get('NGA') or laender.get('KEN')
+              if beispiel:
+                  jahre = {j: beispiel[j] for j in ('2023','2024','2025') if j in beispiel}
+                  print(f'            Beispiel Nigeria/Kenia: {jahre}')
           PY
 
-      - name: OECD – Aufbau der Vermögensdatenbank
+      - name: ILO – Verdienststatistik für Länder ausserhalb der OECD
         run: |
           UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          url="https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WEALTH@DF_WEALTH,1.0/?format=csvfilewithlabels"
-
-          curl -sS -L -A "$UA" -H 'Accept-Language: en' --max-time 90 -o /tmp/wealth.csv "$url"
-          echo "Zeilen: $(wc -l < /tmp/wealth.csv), Größe: $(stat -c%s /tmp/wealth.csv) Bytes"
-
-          echo ""
-          echo "── Kopfzeile, eine Spalte je Zeile mit Nummer ──"
-          head -1 /tmp/wealth.csv | tr ',' '\n' | nl
+          echo "── Welche Reihen gibt es? ──"
+          code=$(curl -sS -L -A "$UA" --max-time 60 -o /tmp/ilo_idx.json -w '%{http_code}' \
+            "https://rplumber.ilo.org/data/indicator/?id=EAR_4MTH_SEX_ECO_CUR_NB&format=json" || echo 000)
+          echo "rplumber EAR_4MTH → $code, $(stat -c%s /tmp/ilo_idx.json) Bytes"
+          head -c 400 /tmp/ilo_idx.json; echo ""
 
           echo ""
-          echo "── Drei vollständige Datenzeilen ──"
-          sed -n '2,4p' /tmp/wealth.csv
-
-          echo ""
-          echo "── Zeilen, die 'Median' enthalten: wie viele, und wie sehen sie aus? ──"
-          grep -c -i 'median' /tmp/wealth.csv || echo 0
-          grep -i 'median' /tmp/wealth.csv | head -5
-
-          echo ""
-          echo "── Welche Einheiten kommen vor? ──"
-          python3 - <<'PY'
-          import csv, collections
-          with open('/tmp/wealth.csv', newline='', encoding='utf-8') as f:
-              zeilen = list(csv.DictReader(f))
-          print(f"  {len(zeilen)} Datenzeilen")
-          for spalte in ('UNIT_MEASURE', 'Unit of measure', 'MEASURE', 'Measure',
-                         'PRICE_BASE', 'Price base', 'TRANSFORMATION', 'Transformation'):
-              if zeilen and spalte in zeilen[0]:
-                  werte = collections.Counter(z[spalte] for z in zeilen)
-                  print(f"  {spalte}: " + ', '.join(f'{k}({v})' for k, v in werte.most_common(12)))
-          PY
-
-          echo ""
-          echo "── Ein konkreter Medianwert für Deutschland, alle Spalten ──"
-          python3 - <<'PY'
-          import csv
-          with open('/tmp/wealth.csv', newline='', encoding='utf-8') as f:
-              for zeile in csv.DictReader(f):
-                  treffer = [w for w in zeile.values() if w and 'edian' in str(w)]
-                  if treffer and zeile.get('REF_AREA') == 'DEU':
-                      for schluessel, wert in zeile.items():
-                          if wert:
-                              print(f"    {schluessel:28} = {wert}")
-                      break
-              else:
-                  print("    keine Medianzeile für DEU gefunden")
-          PY
-
-      - name: Historische Wechselkurse für die Umrechnung
-        run: |
-          UA="IM-Invests-Laenderabruf/1.0 (+https://iminvests.de)"
-          for datum in 2021-12-31 2023-12-29 latest; do
-            code=$(curl -sS -L -A "$UA" --max-time 30 -o /tmp/fx.json -w '%{http_code}' \
-              "https://api.frankfurter.app/v1/$datum?from=USD&to=EUR,CHF,GBP,JPY,SEK,KRW" || echo 000)
-            echo "▶ $datum → $code"
-            head -c 240 /tmp/fx.json
-            echo ""
+          echo "── Massendatei für mittlere Monatsverdienste ──"
+          for kennung in EAR_4MTH_SEX_ECO_CUR_NB EAR_XEES_SEX_ECO_NB EAR_4MTH_SEX_ECO_NB; do
+            code=$(curl -sS -L -A "$UA" --max-time 90 -o /tmp/ilo.csv.gz -w '%{http_code}' \
+              "https://www.ilo.org/sdmx/rest/data/ILO,DF_$kennung/all?format=csv" || echo 000)
+            echo "▶ SDMX $kennung → $code, $(stat -c%s /tmp/ilo.csv.gz) Bytes"
+            head -c 200 /tmp/ilo.csv.gz | tr -d '\0'; echo ""
           done
 
           echo ""
-          echo "── Deckt Frankfurter alle nötigen Währungen ab? ──"
-          curl -sS -L -A "$UA" --max-time 30 "https://api.frankfurter.app/v1/currencies" -o /tmp/cur.json
-          python3 - <<'PY'
+          echo "── Weltbank: Lohn- und Einkommensreihen als Ersatz ──"
+          for ind in NY.GNP.PCAP.CD NY.GDP.PCAP.PP.CD SL.EMP.TOTL.SP.ZS; do
+            code=$(curl -sS -L -A "$UA" --max-time 60 -o /tmp/wb.json -w '%{http_code}' \
+              "https://api.worldbank.org/v2/country/all/indicator/$ind?format=json&per_page=400&date=2024" || echo 000)
+            echo "▶ Weltbank $ind → $code, $(stat -c%s /tmp/wb.json) Bytes"
+            python3 -c "
           import json
-          waehrungen = json.load(open('/tmp/cur.json'))
-          print(f"  {len(waehrungen)} Währungen: " + ' '.join(sorted(waehrungen)))
-          gebraucht = ['EUR','CHF','GBP','JPY','KRW','SEK','NOK','DKK','PLN','HUF',
-                       'CZK','CAD','AUD','NZD','MXN','ILS','TRY','CLP','COP','ISK']
-          fehlt = [w for w in gebraucht if w not in waehrungen]
-          print("  fehlt: " + (' '.join(fehlt) if fehlt else "nichts"))
+          try:
+              d = json.load(open('/tmp/wb.json'))
+              reihen = d[1] if isinstance(d, list) and len(d) > 1 and d[1] else []
+              mit = [r for r in reihen if r.get('value') is not None]
+              print(f'    {len(reihen)} Zeilen, davon {len(mit)} mit Wert')
+              for r in mit[:3]:
+                  print(f\"      {r['country']['value'][:24]:24} {r['value']}\")
+          except Exception as f:
+              print('    nicht lesbar:', f)
+          " || true
+          done
+
+      - name: SEC – die IFRS-Taxonomie für ausländische Emittenten
+        run: |
+          UA="IM-Invests Datenabruf pm252543@gmail.com"
+          echo "── Umsatz nach IFRS für ein ganzes Jahr ──"
+          for tag in Revenue RevenueFromContractsWithCustomers ProfitLoss Equity; do
+            code=$(curl -sS -A "$UA" --max-time 90 -o /tmp/ifrs.json -w '%{http_code}' \
+              "https://data.sec.gov/api/xbrl/frames/ifrs-full/$tag/USD/CY2025.json" || echo 000)
+            groesse=$(stat -c%s /tmp/ifrs.json)
+            echo "▶ ifrs-full/$tag/USD/CY2025 → $code, $groesse Bytes"
+            if [ "$code" = "200" ]; then
+              python3 -c "
+          import json
+          d = json.load(open('/tmp/ifrs.json'))
+          daten = d.get('data', [])
+          print(f'    {len(daten)} Unternehmen')
+          for e in daten[:4]:
+              print(f\"      {str(e.get('entityName'))[:34]:34} {e.get('val'):>18,}\")
+          " || true
+            fi
+          done
+
+          echo ""
+          echo "── Melden SAP, ASML und Novo Nordisk dort? ──"
+          curl -sS -A "$UA" --max-time 45 -o /tmp/tickers.json \
+            "https://www.sec.gov/files/company_tickers.json"
+          python3 - <<'PY'
+          import json, urllib.request
+          kopf = {'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com'}
+          tickers = json.load(open('/tmp/tickers.json'))
+          nach_kuerzel = {e['ticker']: e['cik_str'] for e in tickers.values()}
+          for k in ('SAP', 'ASML', 'NVO', 'TSM', 'TM', 'STLA', 'RACE', 'BABA', 'UMC'):
+              cik = nach_kuerzel.get(k)
+              if not cik:
+                  print(f'  {k:5} nicht in der Kürzelliste')
+                  continue
+              url = f'https://data.sec.gov/api/xbrl/companyconcept/CIK{cik:010d}/ifrs-full/Revenue.json'
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url, headers=kopf), timeout=45) as a:
+                      d = json.load(a)
+                  einheiten = d.get('units', {})
+                  waehrungen = ', '.join(einheiten)
+                  neueste = ''
+                  for w, eintraege in einheiten.items():
+                      jahre = [e for e in eintraege if e.get('form') in ('20-F', '10-K')]
+                      if jahre:
+                          j = max(jahre, key=lambda e: e['end'])
+                          neueste = f" – {j['end']}: {j['val']:,} {w}"
+                          break
+                  print(f'  {k:5} CIK {cik:>8}  Einheiten: {waehrungen}{neueste}')
+              except Exception as fehler:
+                  print(f'  {k:5} CIK {cik:>8}  {fehler}')
           PY
