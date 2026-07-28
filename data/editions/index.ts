@@ -1,5 +1,6 @@
 import { edition as edition20260725 } from './2026-07-25'
 import { edition as edition20260727 } from './2026-07-27'
+import { edition as edition20260728 } from './2026-07-28'
 import type { DailyEdition } from './types'
 
 export type { DailyEdition, EditionItem } from './types'
@@ -17,4 +18,8 @@ export type { DailyEdition, EditionItem } from './types'
  * Ausgabe im Ordner liegt, die hier fehlt; ein vergessener Eintrag fällt also
  * auf, statt still zu verschwinden.
  */
-export const editions: DailyEdition[] = [edition20260725, edition20260727]
+export const editions: DailyEdition[] = [
+  edition20260725,
+  edition20260727,
+  edition20260728,
+]

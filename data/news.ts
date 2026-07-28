@@ -69,6 +69,732 @@ export interface NewsArticle {
 }
 
 export const newsArticles: NewsArticle[] = [
+  // ------------------------------------------------------------------ 28.07.
+  {
+    slug: 'china-baut-eigene-duv-anlagen-asml-bricht-ein',
+    title: 'Fünf Maschinen gegen 131 – warum ASML trotzdem einbricht',
+    metaTitle: 'ASML bricht ein: China baut eigene DUV-Anlagen',
+    teaser:
+      'Ein Bericht über chinesische Lithografieanlagen kostet ASML zeitweise 8,5 Prozent. Um Stückzahlen geht es dabei nicht – die sprechen vorerst klar für den Marktführer.',
+    category: 'Märkte',
+    publishedAt: '2026-07-28T06:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['ASML', 'Halbleiter', 'China', 'Bewertung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'aktien-laender-branchen'],
+    relatedSymbols: ['asml', 'nvidia', 'tsmc'],
+    sources: [
+      {
+        label:
+          'MarketScreener: China beginnt mit der Herstellung heimischer DUV-Lithografieanlagen (Bericht von The Information)',
+        url: 'https://de.marketscreener.com/boerse-nachrichten/china-beginnt-mit-der-herstellung-heimischer-duv-lithografieanlagen-berichtet-the-information-ce7f51dcde89ff22',
+      },
+      {
+        label: 'onvista: ASML fallen aus Sorge vor China-Konkurrenz (27.07.2026)',
+        url: 'https://www.onvista.de/news/2026/07-27-aktie-im-fokus-asml-fallen-aus-sorge-vor-china-konkurrenz-chipsektor-folgt-0-10-26536524',
+      },
+      {
+        label:
+          'Investing.com: Bericht über Chinas DUV-Durchbruch schickt ASML und US-Chip-Aktien auf Talfahrt',
+        url: 'https://de.investing.com/news/stock-market-news/bericht-uber-chinas-duvdurchbruch-schickt-asml-und-uschipaktien-auf-talfahrt-3581320',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Branchendienst The Information berichtete am Montag, ein staatlich gestütztes Unternehmen in Schanghai habe begonnen, selbst entwickelte Immersions-DUV-Anlagen zu bauen – jene Maschinen, mit denen Chiphersteller Schaltungsmuster auf Silizium belichten. Bislang beherrschen das weltweit nur eine Handvoll Anbieter, allen voran der niederländische Konzern ASML.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Reaktion kam sofort. Die ASML-Aktie verlor im Tagesverlauf zeitweise 8,5 Prozent und notierte am Nachmittag rund 6,6 Prozent tiefer bei etwa 1.442 Euro – der niedrigste Stand seit gut sieben Wochen. Je nach Uhrzeit meldeten einzelne Dienste zwischen 4,6 und 8,5 Prozent Minus; das ist kein Widerspruch, sondern derselbe Tag zu verschiedenen Stunden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Stückzahlen sprechen eine andere Sprache',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer die Meldung neben die Produktionszahlen legt, findet zunächst kein Drama:',
+      },
+      {
+        type: 'table',
+        caption:
+          'Immersions-DUV-Anlagen: geplante chinesische Fertigung gegen ASML-Auslieferungen',
+        head: ['', 'Anlagen'],
+        rows: [
+          ['Schanghaier Hersteller, geplant für 2026', 'etwa 5'],
+          ['Schanghaier Hersteller, geplant für 2027', 'etwa 20'],
+          ['ASML, ausgeliefert im Jahr 2025', '131'],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'ASML lieferte 2025 insgesamt 327 Lithografiesysteme aus, darunter 131 Immersions-DUV-Anlagen und 48 EUV-Systeme, und erzielte damit 32,7 Milliarden Euro Umsatz. Fünf Maschinen aus Schanghai ändern daran in diesem Jahr nichts. Auch die Berichte selbst schränken ein: Leistung und Zuverlässigkeit liegen zurück, vor einer Serienfertigung steht noch umfangreiche Erprobung, und ähnliche Meldungen über chinesische Fortschritte haben sich in der Vergangenheit schon als überzogen erwiesen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Kurs trotzdem fällt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil ein Kurs nicht das laufende Jahr bezahlt, sondern alle künftigen. In der Bewertung von ASML steckt die Annahme, dass es auf absehbare Zeit kaum jemanden gibt, der dasselbe kann – und wer keine Konkurrenz hat, bestimmt den Preis. Eine glaubwürdige Meldung, dass jemand anfängt, es zu können, ändert nicht die Zahlen von heute, sondern die Wahrscheinlichkeit für die Zahlen von 2032.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Was hier gehandelt wurde',
+        items: [
+          'Nicht fünf Maschinen, sondern die Frage, ob aus fünf irgendwann fünfzig werden.',
+          'Nicht der Umsatz dieses Jahres, sondern die Dauer des Vorsprungs.',
+          'Genau deshalb reagieren hoch bewertete Aktien so heftig auf Nachrichten, die sich in keiner Quartalszahl niederschlagen: Ihr Preis besteht überwiegend aus Zukunft.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die eigene Anlage weniger, als die Schlagzeile nahelegt. Wer ASML einzeln hält, hat gestern gesehen, was Einzelwertrisiko konkret bedeutet: Ein Bericht eines einzelnen Mediums, den niemand nachprüfen kann, bewegt an einem Vormittag mehr, als eine solide Dividende in einem Jahr einbringt. Wer den Wert über einen breiten Index hält, hat den Tag kaum bemerkt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die nützliche Frage ist nicht, ob China es schafft – das weiß heute niemand. Sie lautet, wie viel vom eigenen Vermögen an dieser einen Frage hängt.',
+      },
+    ],
+  },
+  {
+    slug: 'chip-abverkauf-laeuft-durch-drei-zeitzonen',
+    title: 'Ein Bericht, drei Zeitzonen: wie sich der Chip-Abverkauf fortpflanzte',
+    metaTitle: 'Chip-Abverkauf in drei Zeitzonen: Amsterdam, New York, Tokio',
+    teaser:
+      'Von Amsterdam über New York nach Tokio: Dieselbe Meldung drückte binnen eines Tages Kurse auf drei Kontinenten. Über Streuung sagt das etwas Unbequemes.',
+    category: 'Märkte',
+    publishedAt: '2026-07-28T07:00:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Halbleiter', 'Streuung', 'Klumpenrisiko', 'Nvidia'],
+    relatedTopics: ['portfolio-aufbau', 'etf', 'aktien-laender-branchen'],
+    relatedSymbols: ['nvidia', 'micron', 'nikkei-225'],
+    sources: [
+      {
+        label:
+          'MarketScreener: Stock Market Today – Chip Stocks Fall, Dragging Down Nasdaq',
+        url: 'https://www.marketscreener.com/news/stock-market-today-chip-stocks-fall-dragging-down-nasdaq-ce7f51dcd180f32c',
+      },
+      {
+        label: 'MarketScreener: Japans Nikkei fällt nach Chip-Abverkauf',
+        url: 'https://de.marketscreener.com/boerse-nachrichten/japans-nikkei-faellt-nach-chip-abverkauf-ce7f51ddd980f42c',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Bericht über chinesische Lithografieanlagen erschien am Montag. Sein Weg um die Welt lässt sich fast auf die Stunde nachzeichnen – und er ist lehrreicher als die Meldung selbst.',
+      },
+      {
+        type: 'list',
+        ordered: true,
+        items: [
+          '**Amsterdam, Vormittag.** ASML gibt frühe Gewinne ab und rutscht zeitweise 8,5 Prozent ins Minus. Der europäische Chipsektor folgt.',
+          '**New York, Nachmittag.** Der Verkaufsdruck erreicht die US-Werte: Nvidia verliert mehr als 5 Prozent, Micron über 5,5 Prozent, SanDisk fast 12 Prozent. Der Nasdaq schließt 0,2 Prozent tiefer.',
+          '**Tokio, Nacht.** Der japanische Markt startet schwach in den Dienstag; als Grund gelten ausdrücklich die Verluste im Nasdaq und im Philadelphia-Halbleiterindex.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das über Streuung sagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die übliche Empfehlung lautet, über Länder zu streuen. Dieser Tag zeigt die Grenze davon: Ein niederländischer, ein amerikanischer und ein japanischer Wert fielen aus demselben Grund. Nicht weil sie im selben Land sitzen – sie tun es nicht –, sondern weil sie in derselben Lieferkette stehen.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Ländergrenzen sind nicht die Bruchlinie',
+        items: [
+          'Ein Halbleiterhersteller in Taiwan, sein Ausrüster in den Niederlanden und sein Kunde in Kalifornien reagieren auf dieselbe Nachricht.',
+          'Ein weltweiter Aktienindex enthält sie alle – die Streuung über 23 Länder hilft an einem solchen Tag wenig, wenn eine einzige Branche schwer wiegt.',
+          'Wer wissen will, wie stark er betroffen ist, schaut nicht auf die Länderliste seines Fonds, sondern auf die Branchengewichtung und die zehn größten Positionen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das heißt nicht, dass Streuung nicht wirkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sie wirkte auch am Montag – nur an anderer Stelle. Während die Chipwerte fielen, stieg der Dow Jones um ein halbes Prozent, weil Öl deutlich billiger wurde und das andere Branchen entlastet. Genau das ist der Zweck: nicht, dass nichts fällt, sondern dass nicht alles zugleich fällt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die praktische Folgerung ist unspektakulär. Wer breit anlegt, sollte einmal nachsehen, welchen Anteil Technologie in seinem Depot tatsächlich hat – in vielen weltweiten Indizes ist er über die Jahre still gewachsen, ohne dass jemand eine Entscheidung dafür getroffen hätte.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-steigt-nasdaq-faellt-am-selben-tag',
+    title: 'Dow steigt, Nasdaq fällt – am selben Tag, im selben Markt',
+    teaser:
+      'Der Dow legte am Montag 0,5 Prozent zu, der Nasdaq verlor 0,2 Prozent, der S&P 500 bewegte sich fast nicht. Drei Zahlen, ein Handelstag – und ein Missverständnis.',
+    category: 'Märkte',
+    publishedAt: '2026-07-28T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dow Jones', 'Nasdaq', 'S&P 500', 'Index'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'etf', 'aktie'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'Proactive Investors: Dow closes higher as oil tumbles, Nasdaq slips with Nvidia leading chip selloff',
+        url: 'https://www.proactiveinvestors.com/companies/news/1096070/dow-jones-and-nasdaq-make-solid-start-to-massive-week-as-oil-tumbles-1096070.html',
+      },
+      {
+        label:
+          'Yahoo Finance: Stock market today – Dow rises, Nasdaq slips as Nvidia leads chip stocks lower (27.07.2026)',
+        url: 'https://finance.yahoo.com/markets/live/stock-market-today-monday-july-27-dow-sp-500-nasdaq-080412540.html',
+      },
+    ],
+    body: [
+      {
+        type: 'keyfacts',
+        items: [
+          { label: 'Dow Jones', value: '52.210 Punkte, plus 263 (0,5 %)' },
+          { label: 'S&P 500', value: '7.413 Punkte, plus 1,2 Punkte' },
+          { label: 'Nasdaq Composite', value: '24.932 Punkte, minus 44 (0,2 %)' },
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer am Montagabend wissen wollte, wie die amerikanische Börse gelaufen ist, bekam drei verschiedene Antworten. Alle drei stimmen. Sie messen nur verschiedene Dinge.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Indizes, drei Bauweisen',
+      },
+      {
+        type: 'table',
+        caption: 'Was hinter den Namen steckt',
+        head: ['Index', 'Enthält', 'Gewichtet nach'],
+        rows: [
+          [
+            'Dow Jones',
+            '30 große US-Unternehmen, von Hand ausgewählt',
+            'Kurs je Aktie – eine teure Aktie zählt mehr',
+          ],
+          ['S&P 500', '500 große US-Unternehmen nach festen Regeln', 'Börsenwert'],
+          [
+            'Nasdaq Composite',
+            'Alle an der Nasdaq notierten Werte, überwiegend Technologie',
+            'Börsenwert',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Daraus erklärt sich der Montag von selbst. Der Chip-Abverkauf traf den technologielastigen Nasdaq voll, ließ den Dow mit seinen dreißig Industrie-, Konsum- und Finanzwerten weitgehend kalt – und im S&P 500 hoben sich beide Kräfte fast genau auf, weshalb dort am Ende 1,2 Punkte Zuwachs standen.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der Dow ist der eigenartigste der drei',
+        items: [
+          'Er gewichtet nach dem **Kurs je Aktie**, nicht nach der Größe des Unternehmens. Eine Aktie zu 500 Dollar bewegt ihn zehnmal so stark wie eine zu 50 Dollar – auch wenn das zweite Unternehmen dreimal so viel wert ist.',
+          'Das ist ein Überbleibsel aus dem Jahr 1896, als man Kurse noch mit Bleistift addierte.',
+          'Für die Frage „wie lief der US-Markt?" ist der S&P 500 deshalb die bessere Zahl, obwohl der Dow öfter genannt wird.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer einen Index als Vergleichsmaßstab für das eigene Depot nimmt, sollte wissen, wogegen er sich misst. Ein technologielastiges Depot mit dem Dow zu vergleichen, schmeichelt in guten Technologiejahren und wirkt in schlechten wie ein Versagen – beides hat mit der eigenen Leistung nichts zu tun, sondern mit der Wahl des Maßstabs.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-hebt-eigene-inflationsprognose-auf-36-prozent',
+    title: 'Die Fed hat ihre eigene Inflationsprognose kräftig angehoben',
+    metaTitle: 'Fed hebt Inflationsprognose von 2,7 auf 3,6 Prozent',
+    teaser:
+      'Von 2,7 auf 3,6 Prozent für das laufende Jahr – und neun der achtzehn Sitzungsteilnehmer erwarten inzwischen eine Zinserhöhung. Vor der Sitzung lohnt ein Blick auf diese Zahl.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-28T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'PCE', 'Inflation', 'Leitzins'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'tagesgeld'],
+    relatedSymbols: ['eur-usd', 'sp500', 'gold'],
+    sources: [
+      {
+        label: 'Yahoo Finanzen: Neun Fed-Vertreter kündigen Zinserhöhung für 2026 an',
+        url: 'https://de.finance.yahoo.com/nachrichten/warsh-warnt-neun-fed-vertreter-180221098.html',
+      },
+      {
+        label: 'LBBW: Fed-Zinsentscheid – aktueller Leitzins und Prognose 2026',
+        url: 'https://www.lbbw.de/artikel/maerkte-verstehen/fed-zinsentscheid-leitzins-prognosen_ait4a5bv66_d.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Fed-Sitzung beginnt an diesem Dienstag, die Entscheidung kommt am Mittwoch um 20:00 Uhr deutscher Zeit. Dass der Leitzins bei 3,50 bis 3,75 Prozent bleibt, ist weitgehend eingepreist. Wir haben vergangene Woche beschrieben, warum der Dot Plot dabei die interessantere Größe ist als der Zinssatz. Eine Zahl aus derselben Juni-Sitzung ist dabei bisher untergegangen.',
+      },
+      {
+        type: 'keyfacts',
+        items: [
+          { label: 'PCE-Prognose der Fed für 2026, bisher', value: '2,7 Prozent' },
+          { label: 'PCE-Prognose der Fed für 2026, seit Juni', value: '3,6 Prozent' },
+          { label: 'Teilnehmer, die 2026 eine Erhöhung erwarten', value: '9 von 18' },
+          { label: 'Beschluss im Juni', value: 'unverändert, einstimmig 12 zu 0' },
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Notenbank hat ihre eigene Erwartung für die Teuerung im laufenden Jahr um 0,9 Prozentpunkte angehoben – von 2,7 auf 3,6 Prozent. Gemessen an ihrem Ziel von zwei Prozent ist das keine Feinjustierung, sondern eine Korrektur um fast die Hälfte des Zielwerts. Zugleich verschwand der Hinweis auf eine mögliche Lockerung aus der Erklärung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'PCE, nicht CPI – und warum das nicht dasselbe ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'In den Nachrichten steht meist die Verbraucherpreisinflation, der CPI. Die Fed steuert aber nach einer anderen Größe: dem **PCE-Deflator**, der Preisentwicklung der privaten Konsumausgaben. Beide messen Teuerung, kommen aber regelmäßig zu unterschiedlichen Zahlen – der PCE liegt meist etwas niedriger.',
+      },
+      {
+        type: 'table',
+        caption: 'Zwei Inflationsmaße, zwei Bauweisen',
+        head: ['', 'CPI (Verbraucherpreise)', 'PCE (Konsumausgaben)'],
+        rows: [
+          [
+            'Warenkorb',
+            'Fest, wird nur selten angepasst',
+            'Wird laufend angepasst, wenn Haushalte ihr Verhalten ändern',
+          ],
+          [
+            'Erfasst',
+            'Was Haushalte selbst bezahlen',
+            'Zusätzlich, was für sie bezahlt wird – etwa Gesundheitskosten über Versicherungen',
+          ],
+          ['Gewicht der Wohnkosten', 'Hoch', 'Deutlich niedriger'],
+          [
+            'Wird genutzt von',
+            'Öffentlichkeit, Rentenanpassungen, Verträge',
+            'Der Notenbank für ihr Zwei-Prozent-Ziel',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum die Fed den PCE bevorzugt',
+        items: [
+          'Weil er Substitution abbildet: Wird Rindfleisch teuer und die Leute kaufen Hühnchen, sieht der PCE das, der feste Warenkorb des CPI nicht.',
+          'Das ist keine Beschönigung, sondern eine andere Frage – der CPI misst die Kosten eines gleichbleibenden Korbs, der PCE die Kosten des tatsächlichen Konsums.',
+          'Für die eigene Haushaltsrechnung ist der CPI der ehrlichere Maßstab. Für die Frage, was die Notenbank tun wird, der PCE.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank, die ihre eigene Inflationsprognose deutlich anhebt, hat zwei Möglichkeiten: Sie hält die Zinsen länger hoch, oder sie akzeptiert, dass sie ihr Ziel länger verfehlt. Beides ist für Sparer keine schlechte Nachricht und für Kreditnehmer keine gute – nur ist es das Gegenteil dessen, worauf sich die Märkte über Jahre eingerichtet hatten.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Die Zahl ist eine Prognose, kein Ergebnis',
+        items: [
+          'Notenbankprognosen sind in der Vergangenheit regelmäßig danebengelegen – in beide Richtungen.',
+          'Für einen Sparplan über Jahrzehnte folgt daraus nichts. Für die Frage, ob man Geld heute für fünf Jahre festlegt, schon.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'wer-die-fed-fuehrt-und-warum-das-fuer-sparer-zaehlt',
+    title: 'Wer die Fed führt – und warum das auch deutsche Sparer angeht',
+    teaser:
+      'Seit Mai leitet Kevin Warsh die US-Notenbank, bestätigt mit der knappsten Mehrheit ihrer Geschichte. Was daran für die eigene Anlage zählt, ist nicht die Person.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-28T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Notenbank', 'Unabhängigkeit', 'Inflation'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-usd', 'gold'],
+    sources: [
+      {
+        label: 'CNBC: Kevin Warsh to be sworn in as Federal Reserve chair',
+        url: 'https://www.cnbc.com/2026/05/18/kevin-warsh-trump-federal-reserve-chair.html',
+      },
+      {
+        label:
+          'CNN Business: Kevin Warsh sworn in as Fed chair at pivotal moment for US economy',
+        url: 'https://www.cnn.com/2026/05/22/economy/kevin-warsh-sworn-in-fed-chair',
+      },
+      {
+        label: 'Al Jazeera: Kevin Warsh sworn in as new US Fed chair',
+        url: 'https://www.aljazeera.com/economy/2026/5/22/kevin-warsh-sworn-in-as-new-us-fed-chair',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am 22. Mai 2026 wurde Kevin Warsh als siebzehnter Vorsitzender der US-Notenbank vereidigt und trat damit die Nachfolge von Jerome Powell an. Der Senat hatte ihn neun Tage zuvor mit 54 zu 45 Stimmen bestätigt – die knappste Bestätigung, die es für dieses Amt je gab. Seine Amtszeit läuft bis Mai 2030. Die Sitzung, die an diesem Dienstag beginnt, ist seine zweite.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Personalfragen einer fremden Notenbank wirken weit weg. Sie sind es nicht: Der Dollar ist die Währung, in der Öl, Gold und ein großer Teil des Welthandels abgerechnet werden, und der amerikanische Leitzins bestimmt mit, was Kapital weltweit kostet. Wer einen weltweiten Aktienindex hält, hält zu rund zwei Dritteln amerikanische Unternehmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Unabhängigkeit keine Formalie ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank hat eine unangenehme Aufgabe: Sie muss die Zinsen manchmal genau dann erhöhen, wenn es politisch am teuersten ist – vor einer Wahl, in einer Abschwächung, gegen den erklärten Wunsch der Regierung. Damit sie das kann, ist sie in den meisten Ländern rechtlich unabhängig.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Grund dafür ist keine Ideologie, sondern eine Erfahrung. Notenbanken, die politischem Druck nachgeben, verlieren ihre Glaubwürdigkeit – und mit ihr das wirksamste Instrument, das sie haben. Solange alle darauf vertrauen, dass die Inflation mittelfristig zum Ziel zurückkehrt, wird ein Preisschub als vorübergehend behandelt und nicht in Löhne und Kalkulationen eingebaut. Geht dieses Vertrauen verloren, muss es mit sehr viel höheren Zinsen zurückgekauft werden. Genau das geschah in den USA Anfang der achtziger Jahre, zum Preis einer schweren Rezession.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Woran man das im Alltag merkt',
+        items: [
+          'An den Renditen langlaufender Staatsanleihen: Sie enthalten die Inflation, mit der Anleger für die nächsten zehn Jahre rechnen.',
+          'Am Wechselkurs: Eine Währung, deren Notenbank als beeinflussbar gilt, verliert gegenüber anderen an Wert.',
+          'Am Goldpreis, der historisch dann steigt, wenn das Vertrauen in Papierwährungen nachlässt.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht, den Kurs eines Notenbankchefs zu handeln – wer das versucht, wettet gegen Marktteilnehmer, die dieselben Reden hören und schneller sind. Wohl aber, die eigene Anlage nicht auf eine einzige Währung zu stellen. Ein weltweit anlegender Index tut das automatisch; ein Depot, das nur aus Euro-Anleihen oder nur aus US-Technologie besteht, tut es nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-schliesst-auf-hoechstem-stand-seit-drei-wochen',
+    title: 'DAX schließt auf 25.361 Punkten – 36 von 40 Werten im Plus',
+    teaser:
+      'Der deutsche Leitindex gewann am Montag ein Prozent. Die aussagekräftigere Zahl ist nicht das Prozent, sondern wie viele Werte den Anstieg getragen haben.',
+    category: 'Märkte',
+    publishedAt: '2026-07-28T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Marktbreite', 'Index', 'Handelstag'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label: 'Handelsblatt: Dax schließt auf höchstem Stand seit fast drei Wochen',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-schliesst-auf-hoechstem-stand-seit-fast-drei-wochen/100243054.html',
+      },
+      {
+        label: 'finanzen.net: Aufschläge in Frankfurt – DAX klettert zum Handelsende',
+        url: 'https://www.finanzen.net/nachricht/aktien/aufschlaege-in-frankfurt-dax-klettert-zum-handelsende-15825201',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX schloss am Montag ein Prozent höher bei 25.361 Punkten – der höchste Schlussstand seit fast drei Wochen. Getragen wurde der Anstieg von der vorläufigen Waffenpause zwischen den USA und Iran und den daraufhin deutlich gefallenen Energiepreisen.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Ein Hinweis zu unserer eigenen Meldung von gestern',
+        items: [
+          'Am Montagmittag stand hier „DAX springt auf 25.500 Punkte“. Der Schlussstand lautet 25.361.',
+          'Beides ist richtig: Das eine war der Stand während des Handels, das andere der Schluss. Zwischen Höchstkurs und Schlusskurs eines Tages liegen regelmäßig ein bis zwei Prozent.',
+          'Wer Kurse vergleicht, sollte deshalb immer wissen, welche Sorte er vor sich hat – die meisten Charts und Statistiken arbeiten mit Schlusskursen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Zahl hinter der Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Von den 40 DAX-Werten schlossen 36 im Plus. Diese Angabe heißt **Marktbreite**, und sie beantwortet eine Frage, die das Indexprozent offenlässt: Steigt der Markt, oder steigen ein paar große Werte und ziehen den Rest optisch mit?',
+      },
+      {
+        type: 'table',
+        caption: 'Ein Prozent Plus – zwei sehr verschiedene Tage',
+        head: ['', 'Breiter Anstieg', 'Schmaler Anstieg'],
+        rows: [
+          ['Werte im Plus', '36 von 40', 'etwa 12 von 40'],
+          [
+            'Ursache',
+            'Etwas betrifft alle – Zinsen, Energie, Konjunktur',
+            'Einzelne Schwergewichte, oft nach Quartalszahlen',
+          ],
+          [
+            'Was es aussagt',
+            'Die Lageeinschätzung hat sich verschoben',
+            'Über den Markt insgesamt wenig',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Montag war eindeutig der erste Fall. Ein billigerer Ölpreis senkt Kosten für Chemie, Verkehr, Industrie und Konsum zugleich – deshalb stiegen fast alle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die eigene Anlage nichts, was heute zu tun wäre. Aber die Marktbreite ist eine der wenigen Zusatzangaben, die in fast jedem Börsenbericht steht und die tatsächlich etwas erklärt. Wer sie mitliest, versteht schneller, ob eine Bewegung ein Thema hat oder nur einen Namen.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-faellt-nach-etf-abfluessen-auf-64000-dollar',
+    title: 'Bitcoin bei 64.000 Dollar – 240 Millionen flossen aus den ETFs ab',
+    teaser:
+      'Der Kurs bewegte sich binnen 24 Stunden in einer Spanne von rund 1.700 Dollar. Auffällig ist nicht der Kurs, sondern woher der Verkaufsdruck kam.',
+    category: 'Geldanlage',
+    publishedAt: '2026-07-28T08:00:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'ETF', 'Kryptowährung', 'Volatilität'],
+    relatedTopics: ['bitcoin-krypto', 'etf', 'risiko-und-rendite'],
+    relatedSymbols: ['bitcoin', 'ethereum'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE: Bitcoin Prognose Juli 2026 – BTC bei 64.000 Dollar nach 240 Millionen an ETF-Abflüssen (28.07.2026)',
+        url: 'https://www.wallstreet-online.de/nachricht/21157712-bitcoin-prognose-juli-2026-btc-64-000-dollar-240-millionen-etf-abfluessen',
+      },
+      {
+        label:
+          'wallstreetONLINE: Bitcoin Kurs heute – BTC rutscht unter 64.000 Dollar (26.07.2026)',
+        url: 'https://www.wallstreet-online.de/nachricht/21152366-bitcoin-kurs-heute-btc-rutscht-64-000-dollar-28-juli-entscheidet-fed',
+      },
+    ],
+    body: [
+      {
+        type: 'keyfacts',
+        items: [
+          { label: 'Bitcoin', value: 'rund 64.000 bis 64.600 US-Dollar' },
+          { label: 'Spanne der letzten 24 Stunden', value: 'etwa 1.700 US-Dollar' },
+          {
+            label: 'Krypto-Marktkapitalisierung',
+            value: '2,28 Billionen Dollar, minus 1,1 Prozent',
+          },
+          { label: 'Bitcoin-Anteil daran', value: '56,4 Prozent' },
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Bitcoin pendelt vor dem Zinsentscheid am Mittwoch um die Marke von 64.000 Dollar. Genannt wird als Grund für den Druck ein Abfluss von rund 240 Millionen Dollar aus den amerikanischen Spot-ETFs.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein ETF-Abfluss überhaupt ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Spot-ETF auf Bitcoin hält echte Bitcoin. Kaufen mehr Anleger Anteile, als verkaufen, muss der Fonds Bitcoin nachkaufen; überwiegen die Verkäufe, muss er welche abgeben. Der Nettobetrag dieser Bewegung heißt Zufluss oder Abfluss – und im Unterschied zu Käufen und Verkäufen zwischen Anlegern an der Börse landet er tatsächlich am Markt.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum das den Kurs anders bewegt',
+        items: [
+          'Wenn zwei Anleger an der Börse Anteile tauschen, ändert sich am Bestand des Fonds nichts – es wechselt nur der Besitzer.',
+          'Ein **Abfluss** dagegen bedeutet, dass der Fonds selbst Bitcoin verkauft. Das ist zusätzliches Angebot, das vorher nicht da war.',
+          'Deshalb werden diese Zahlen seit Zulassung der Spot-ETFs täglich verfolgt: Sie sind einer der wenigen halbwegs messbaren Indikatoren für die Nachfrage einer sonst schwer greifbaren Anlegergruppe.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Größenordnung einordnen',
+      },
+      {
+        type: 'paragraph',
+        text: '240 Millionen Dollar klingen nach viel und sind es im Verhältnis nicht: Der gesamte Kryptomarkt kommt auf 2,28 Billionen Dollar. Der Abfluss entspricht rund einem Zehntausendstel davon. Dass er trotzdem als Erklärung genannt wird, sagt mehr über die Dünne des Marktes an einem ruhigen Julitag als über die Summe.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Vorsicht mit Kausalerklärungen',
+        items: [
+          'Ein Kurs fällt, ein Abfluss wird gemeldet, und beides wird zu einer Geschichte verbunden. Ob das eine das andere verursacht hat, weiß niemand.',
+          'Eine Spanne von 1.700 Dollar in 24 Stunden entspricht rund 2,7 Prozent – für Bitcoin ein unauffälliger Tag, für einen breiten Aktienindex ein sehr bewegter.',
+          'Wer Kryptowährungen hält, sollte diesen Unterschied im Anteil am Gesamtvermögen abbilden, nicht in der Häufigkeit des Nachschauens.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'mercedes-benz-und-die-dichteste-berichtswoche-des-jahres',
+    title: 'Mercedes-Benz eröffnet die dichteste Berichtswoche des Jahres',
+    metaTitle: 'Mercedes-Benz, Boeing, Visa: Zahlen am Dienstag',
+    teaser:
+      'Heute legen Mercedes-Benz, Coca-Cola, Boeing und Visa Zahlen vor, Mittwoch folgt Microsoft, Donnerstag Apple und Amazon. Warum gute Zahlen den Kurs drücken können.',
+    category: 'Märkte',
+    publishedAt: '2026-07-28T08:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Quartalszahlen', 'Mercedes-Benz', 'Berichtssaison', 'Erwartungen'],
+    relatedTopics: ['aktie', 'anlegerpsychologie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['mercedes-benz', 'coca-cola', 'boeing', 'visa'],
+    sources: [
+      {
+        label: 'boersennews: Wochenvorschau KW 31 – rekorddichte Berichtswoche',
+        url: 'https://www.boersennews.de/nachrichten/service/community/wochenvorschau-kw-31-rekorddichte-berichtswoche-apple-microsoft-meta-und-der-fed-entscheid/5220495/',
+      },
+      {
+        label:
+          'TradingKey: Die kommende Woche – Fed-Zinsentscheidung im Fokus, Quartalszahlen von Apple, Microsoft, Meta und Amazon',
+        url: 'https://www.tradingkey.com/de/analysis/stocks/us-stocks/262054306-weekly-preview-fed-apple-microsoft-meta-amazon-earnings-reports-tradingkey',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An diesem Dienstag legen in Europa Mercedes-Benz, Barclays und Unilever ihre Halbjahreszahlen vor, in den USA berichten Coca-Cola, Boeing, Visa und PayPal. Am Mittwoch folgt Microsoft, am Donnerstag nach US-Börsenschluss Apple und Amazon. Dazwischen liegt am Mittwochabend der Zinsentscheid der Fed.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Kurs nach Rekordzahlen fallen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Es ist der häufigste Moment, in dem die Börse unlogisch wirkt: Ein Unternehmen meldet den höchsten Gewinn seiner Geschichte, und die Aktie verliert fünf Prozent. Erklärt ist das schnell, wenn man einen Schritt zurücktritt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kurs vor der Veröffentlichung enthält bereits, was der Markt erwartet. Analysten schätzen, Anleger positionieren sich, und beides ist im Preis. Was den Kurs bewegt, ist deshalb nicht das Ergebnis, sondern die **Abweichung** vom Erwarteten – und der Ausblick auf die kommenden Quartale, der oft schwerer wiegt als die Zahlen selbst.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Drei Dinge, die den Kurs nach Zahlen bewegen',
+        items: [
+          '**Die Abweichung.** Ein Gewinn über der Schätzung ist gut, einer unter der Schätzung schlecht – unabhängig davon, ob er absolut hoch oder niedrig ist.',
+          '**Der Ausblick.** Senkt ein Unternehmen seine Prognose fürs Gesamtjahr, hilft ein starkes Quartal wenig.',
+          '**Die Qualität.** Ein Gewinn aus dem laufenden Geschäft wird anders bewertet als einer aus einem Grundstücksverkauf. Deshalb lohnt der Blick auf den operativen Cashflow.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer breit gestreut anlegt, muss diese Woche nichts tun – in einem Weltindex gleichen sich Enttäuschungen und Überraschungen weitgehend aus. Wer einzelne Aktien hält, sollte wissen, dass die Tage um eine Veröffentlichung die schwankungsreichsten des Quartals sind. Wer in dieser Woche ohnehin kaufen oder verkaufen wollte, hat einen sachlichen Grund, es vor oder nach dem Termin zu tun statt am Tag selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'inflationsdaten-am-donnerstag-gesamtrate-und-kernrate',
+    title: 'Inflationsdaten am Donnerstag: auf welche Zahl es ankommt',
+    teaser:
+      'Am 30. Juli kommt die Schnellschätzung für Juli. Für die Notenbanken zählt dabei nicht die Zahl in den Schlagzeilen, sondern eine zweite daneben.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-28T08:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Kerninflation', 'HVPI', 'EZB'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik', 'tagesgeld'],
+    relatedSymbols: ['eur-usd', 'dax'],
+    sources: [
+      {
+        label: 'LBBW: Fed und EZB Zinsentscheid – das bewegt Märkte im Juli 2026',
+        url: 'https://www.lbbw.de/artikel/maerkte-verstehen/termine-juli-2026_am4innwm2g_d.html',
+      },
+      {
+        label: 'Deutsche Bundesbank: Harmonisierter Verbraucherpreisindex',
+        url: 'https://www.bundesbank.de/de/statistiken/konjunktur-und-preise/harmonisierter-verbraucherpreisindex/harmonisierter-verbraucherpreisindex-927952',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag, dem 30. Juli, veröffentlicht das Statistische Bundesamt die vorläufigen Ergebnisse des harmonisierten Verbraucherpreisindex für Juli. Für den Euroraum erwartet die LBBW einen leichten Rückgang auf 2,7 Prozent bei einer unveränderten Kernrate von 2,4 Prozent. Im selben Zeitraum kommen die BIP-Zahlen für das zweite Quartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Raten, zwei Fragen',
+      },
+      {
+        type: 'table',
+        caption: 'Gesamtrate und Kernrate im Vergleich',
+        head: ['', 'Gesamtrate', 'Kernrate'],
+        rows: [
+          ['Enthält', 'Alles im Warenkorb', 'Alles außer Energie und Nahrungsmitteln'],
+          [
+            'Beantwortet',
+            'Wie viel teurer ist das Leben geworden?',
+            'Hat sich die Teuerung in der Breite festgesetzt?',
+          ],
+          [
+            'Schwankt',
+            'Stark – Energiepreise bewegen sich sprunghaft',
+            'Träge, dafür hartnäckig',
+          ],
+          ['Wichtig für', 'Den Haushalt', 'Die Notenbank'],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kernrate lässt ausgerechnet das weg, was für viele Haushalte am meisten zählt – Heizung, Tanken, Lebensmittel. Als Aussage über die Lebenshaltungskosten taugt sie deshalb nicht. Ihr Zweck ist ein anderer: Energiepreise werden von Wetter, Kriegen und Förderquoten getrieben, also von Dingen, auf die ein Leitzins keinen Einfluss hat. Wer wissen will, ob die Teuerung im Rest der Wirtschaft angekommen ist, muss sie herausrechnen.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der häufigste Lesefehler',
+        items: [
+          'Eine **fallende** Inflationsrate bedeutet nicht, dass etwas billiger wird. Sie bedeutet, dass es langsamer teurer wird.',
+          'Der Preisanstieg der Vorjahre bleibt vollständig im System – er wird nicht zurückgenommen.',
+          'Deshalb passt „Entspannung bei der Inflation“ in den Nachrichten widerspruchsfrei zu „im Supermarkt ist alles teuer“.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die eigene Anlage ist die Inflationsrate keine Handlungsaufforderung, sondern die Messlatte. Erst was über ihr liegt, ist ein echter Zuwachs – ein Tagesgeldzins von zwei Prozent bei 2,7 Prozent Inflation lässt das Konto wachsen und die Kaufkraft schrumpfen. Genau diese Rechnung führt das Lernthema Inflation Schritt für Schritt vor.',
+      },
+    ],
+  },
   // ------------------------------------------------------------------ 27.07.
   {
     slug: 'dax-springt-nach-waffenpause-auf-25500-punkte',
