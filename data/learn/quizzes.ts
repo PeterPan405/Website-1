@@ -1285,6 +1285,157 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Die Teilfreistellung gleicht pauschal aus, dass der Fonds selbst bereits Steuern gezahlt hat. Bei Aktienfonds ab 51 Prozent Aktienanteil sind es 30 Prozent, bei Mischfonds ab 25 Prozent sind es 15 Prozent, bei Immobilienfonds 60 oder 80 Prozent.',
     },
   ],
+  // -------------------------------------------------------- Risiko & Rendite
+  'risiko-und-rendite:beginner': [
+    {
+      question:
+        'Ein Angebot verspricht 12 Prozent Rendite bei „voller Sicherheit“. Was ist die richtige Reaktion?',
+      options: [
+        'Zugreifen, solange das Angebot gilt',
+        'Nachrechnen, ob die Rendite nach Steuern noch reicht',
+        'Fragen, wofür man hier bezahlt wird – findet sich keine Gegenleistung, stimmt die Beschreibung nicht',
+        'Den Betrag auf mehrere Anbieter verteilen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Rendite ist die Entschädigung dafür, dass jemand etwas übernimmt, das ein anderer vermeiden möchte. Findet man diese Gegenleistung nicht, hat man sie entweder übersehen oder sie wird verschwiegen. Ein Aufteilen auf mehrere Anbieter hilft nicht, wenn das Grundgeschäft nicht aufgeht.',
+    },
+    {
+      question:
+        'Dein Depot steht 25 Prozent im Minus. Wann wird daraus ein echter Verlust?',
+      options: [
+        'Sofort – der Wert ist ja gesunken',
+        'Erst beim Verkauf; bis dahin ist es ein Buchverlust',
+        'Nach zwölf Monaten, wenn die Spekulationsfrist abläuft',
+        'Sobald die Bank den Depotauszug verschickt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Kursrückgang schreibt sich erst durch den Verkauf fest. Genau deshalb ist das Zeitpunktrisiko das gefährlichste der vier: Wer verkaufen muss, weil er das Geld braucht, hat die Wahl nicht mehr. Der Notgroschen auf dem Tagesgeldkonto ist die Versicherung dagegen.',
+    },
+    {
+      question: 'Ein Wert ist um 50 Prozent gefallen. Welcher Anstieg gleicht das aus?',
+      options: ['100 Prozent', '50 Prozent', '75 Prozent', '150 Prozent'],
+      correctIndex: 0,
+      explanation:
+        'Aus 100 werden 50; um wieder auf 100 zu kommen, muss sich der Wert verdoppeln. Diese Asymmetrie wächst rasch: Nach minus 90 Prozent braucht es eine Verzehnfachung. Sie ist der Grund, warum Streuung wichtiger ist als Trefferquote – ein Totalausfall lässt sich nicht durch drei gute Griffe ausgleichen.',
+    },
+    {
+      question: 'Welche Angabe entscheidet vor einem Kauf über die passende Anlageform?',
+      options: [
+        'Die erwartete Rendite',
+        'Die Kostenquote',
+        'Die Bewertung des Marktes',
+        'Wann das Geld wieder gebraucht wird',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Der Anlagehorizont bestimmt, wie viel Schwankung überhaupt tragbar ist. Geld, das in zwei Jahren gebraucht wird, gehört unabhängig von jeder Renditeerwartung nicht in den Aktienmarkt – denn dort kann es in zwei Jahren deutlich weniger sein, und dann fehlt die Zeit, das auszusitzen.',
+    },
+  ],
+  'risiko-und-rendite:fortgeschritten': [
+    {
+      question: 'Was ist die wichtigste Schwäche der Volatilität als Risikomaß?',
+      options: [
+        'Sie lässt sich nur für Aktien berechnen',
+        'Sie behandelt Aufwärts- und Abwärtsbewegungen gleich',
+        'Sie ist erst nach zehn Jahren aussagekräftig',
+        'Sie berücksichtigt keine Dividenden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Ein Wert, der um 30 Prozent steigt, geht als ebenso „riskant“ in die Rechnung ein wie einer, der um 30 Prozent fällt. Über den ersten Fall hat sich noch niemand beschwert. Dazu kommen zwei weitere Schwächen: die Annahme einer Normalverteilung und der Blick nach hinten.',
+    },
+    {
+      question:
+        'Warum ist der maximale Rückgang für viele Anleger die nützlichere Zahl als die Volatilität?',
+      options: [
+        'Weil er von der Aufsicht vorgeschrieben ist',
+        'Weil er die künftige Entwicklung besser vorhersagt',
+        'Weil er beschreibt, was tatsächlich auszuhalten war – zusammen mit der Erholungsdauer',
+        'Weil er Dividenden mit einrechnet',
+      ],
+      correctIndex: 2,
+      explanation:
+        '„Volatilität 18 Prozent“ sagt einem Menschen wenig, „das Depot stand zwei Jahre 40 Prozent im Minus“ sagt ihm alles. Vorhersagekraft hat auch der Rückgang nicht – er beantwortet aber die Frage, auf die es ankommt: Hätte ich das durchgehalten?',
+    },
+    {
+      question: 'Eine Aktie hat ein Beta von 0,6. Was folgt daraus?',
+      options: [
+        'Sie schwankt historisch schwächer als der Gesamtmarkt – über ihr Insolvenzrisiko sagt das nichts',
+        'Sie kann höchstens 60 Prozent verlieren',
+        'Sie ist zu 60 Prozent im Index enthalten',
+        'Sie erwirtschaftet 60 Prozent der Marktrendite',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Beta misst die Bewegung relativ zum Markt, nicht die Wahrscheinlichkeit eines Ausfalls. Ein Unternehmen kann jahrelang ruhig verlaufen und dann insolvent gehen – das Beta hätte davon nichts angezeigt.',
+    },
+    {
+      question: 'Warum enttäuscht Streuung ausgerechnet in Krisen?',
+      options: [
+        'Weil Fonds dann geschlossen werden',
+        'Weil Korrelationen dann steigen – vieles fällt gleichzeitig',
+        'Weil die Börsen den Handel aussetzen',
+        'Weil Dividenden gestrichen werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'In ruhigen Zeiten laufen Anlageklassen auseinander, in Panikphasen fallen sie gemeinsam – 2008 und 2020 gaben Aktien, Unternehmensanleihen, Rohstoffe und Immobilienwerte zugleich nach. Streuung wirkt trotzdem, nur schwächer als die historische Korrelation verspricht.',
+    },
+  ],
+  'risiko-und-rendite:profi': [
+    {
+      question: 'Was bedeuten „fette Ränder“ in der Verteilung der Renditen?',
+      options: [
+        'Die Handelsspannen sind an den Rändern des Tages größer',
+        'Die Renditen sind gleichmäßig über alle Werte verteilt',
+        'Extreme Tage kommen deutlich häufiger vor, als eine Normalverteilung zulässt',
+        'Die Gebühren steigen bei extremen Bewegungen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Unter der Glockenkurve wäre der Tagesverlust von über 20 Prozent im Oktober 1987 ein Ereignis, das in der Lebensdauer des Universums nicht hätte auftreten dürfen. Er trat auf. Wer Risiko über die Standardabweichung steuert, unterschätzt genau die Fälle, auf die es ankommt.',
+    },
+    {
+      question:
+        'Warum ist die Reihenfolge der Renditejahre in der Entnahmephase entscheidend?',
+      options: [
+        'Weil in schlechten Jahren Anteile zu niedrigen Kursen verkauft werden und dauerhaft fehlen',
+        'Weil die Steuer auf Kursgewinne mit den Jahren steigt',
+        'Weil Dividenden in schlechten Jahren ausfallen',
+        'Weil die Depotgebühren dann höher sind',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer nur anspart, dem ist die Reihenfolge gleichgültig – am Ende steht dasselbe Ergebnis. Wer entnimmt, verkauft in Rückgangsjahren mehr Anteile für denselben Betrag; diese Anteile fehlen, und die spätere Erholung findet auf einem kleineren Bestand statt.',
+    },
+    {
+      question:
+        'Risikotragfähigkeit und Risikobereitschaft weichen voneinander ab. Welche ist maßgeblich?',
+      options: [
+        'Die Tragfähigkeit, weil sie nachrechenbar ist',
+        'Die Bereitschaft, weil sie die persönliche Einstellung abbildet',
+        'Der Durchschnitt aus beiden',
+        'Die kleinere von beiden',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer viel tragen könnte, es aber nicht aushält, verkauft im Rückgang – und realisiert genau den Verlust, den er sich rechnerisch hätte leisten können. Ein Depot, das nicht durchgehalten wird, ist unabhängig von seiner Konstruktion das falsche.',
+    },
+    {
+      question: 'Was hilft gegen das Sequenzrisiko zu Beginn der Entnahmephase?',
+      options: [
+        'Die Aktienquote erst nach einem Rückgang senken',
+        'Ein Puffer aus schwankungsarmen Anlagen und flexible statt fester Entnahmen',
+        'Höhere Entnahmen in schlechten Jahren, um den Verlust auszugleichen',
+        'Den Entnahmebetrag jährlich an die Inflation koppeln',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Zwei bis drei Jahresbedarfe in schwankungsarmen Anlagen erlauben es, schlechte Jahre zu überbrücken, ohne Anteile zum Tiefstkurs zu verkaufen. Höhere Entnahmen im Rückgang verstärken den Effekt, statt ihn auszugleichen – und die Aktienquote senkt man vor Beginn der Entnahme, nicht danach.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */
