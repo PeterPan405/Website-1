@@ -18,9 +18,9 @@ import type { QuizQuestion } from '@/data/learn/types'
  * 3. Die Begründung erklärt, warum die richtige Antwort richtig ist – nicht nur,
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
- *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – aktuell
- *    verteilen sich die 36 Fragen gleichmäßig auf die vier Positionen. Bei neuen
- *    Fragen bitte darauf achten.
+ *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
+ *    168 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
   // ------------------------------------------------------------------- Aktie
@@ -2060,6 +2060,167 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 2,
       explanation:
         'Ein Fondsvolumen im niedrigen zweistelligen Millionenbereich rechnet sich für den Anbieter kaum. Wird der Fonds aufgelöst, gilt das steuerlich als Verkauf – aufgelaufene Gewinne werden versteuert, ohne dass man den Zeitpunkt bestimmt hätte. Eine Verschmelzung ist dagegen meist steuerneutral.',
+    },
+  ],
+
+  // --------------------------------------------------------- Portfolio-Aufbau
+  'portfolio-aufbau:beginner': [
+    {
+      question:
+        'Warum entscheidet die Aktienquote mehr über das Ergebnis als die Wahl zwischen zwei ähnlichen Welt-ETFs?',
+      options: [
+        'Weil ETFs untereinander steuerlich unterschiedlich behandelt werden',
+        'Weil die Kostenquote eines ETF über die Jahre keine Rolle spielt',
+        'Weil nur die Quote die Rendite bestimmt, das Produkt gar nicht',
+        'Weil die Quote festlegt, wie stark sich ein Marktrückgang überhaupt auf das Gesamtvermögen auswirkt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Zwei breite Welt-ETFs unterscheiden sich um Bruchteile eines Prozentpunkts im Jahr. Ob 40 oder 80 Prozent des Vermögens in Aktien stecken, verdoppelt dagegen den Ausschlag nach oben wie nach unten. Die Produktwahl ist nicht egal – sie ist nur die kleinere von zwei Entscheidungen.',
+    },
+    {
+      question:
+        'Wozu dient der risikoarme Topf in einem Zwei-Topf-Modell in erster Linie?',
+      options: [
+        'Er sorgt dafür, dass der Aktienteil im Rückgang nicht angetastet werden muss',
+        'Er erwirtschaftet den Inflationsausgleich für das Gesamtvermögen',
+        'Er gleicht Kursverluste des Aktienteils rechnerisch aus',
+        'Er ist die eigentliche Renditequelle des Depots',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der sichere Topf verdient wenig und soll das auch nicht. Seine Aufgabe ist, laufende Ausgaben und Notfälle zu decken, damit im Rückgang niemand Aktien zu schlechten Kursen verkaufen muss. Genau das Durchhalten ist der Grund, warum der Aktienteil seine Rendite überhaupt liefern kann.',
+    },
+    {
+      question:
+        'Der Aktienmarkt fällt um 40 Prozent, der risikoarme Teil bleibt stabil. Wie stark verliert ein Depot mit 60 Prozent Aktienquote?',
+      options: [
+        'Um 40 Prozent – der Rückgang wirkt auf das ganze Depot',
+        'Um 60 Prozent – Quote und Rückgang addieren sich',
+        'Gar nicht, solange nichts verkauft wird',
+        'Um 24 Prozent – der Rückgang trifft nur den Aktienanteil',
+      ],
+      correctIndex: 3,
+      explanation:
+        '60 Prozent des Depots verlieren 40 Prozent ihres Werts, der Rest bleibt. 0,6 × 40 = 24 Prozent Rückgang des Gesamtdepots. Diese einfache Rechnung ist das eigentliche Werkzeug: Sie übersetzt eine abstrakte Quote in den Betrag, den man im Ernstfall auf dem Auszug sieht.',
+    },
+    {
+      question: 'Wie belastbar ist die Regel „100 minus Lebensalter gleich Aktienquote“?',
+      options: [
+        'Als grober Startpunkt brauchbar, aber sie kennt weder Anlagehorizont noch Rücklagen noch Einkommen',
+        'Sie ist die aktuell beste verfügbare Berechnung und sollte übernommen werden',
+        'Sie gilt nur für Menschen ohne gesetzliche Rentenansprüche',
+        'Sie ist wissenschaftlich widerlegt und darf nicht verwendet werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Regel benutzt eine einzige Größe – das Alter – für eine Entscheidung, die von mehreren abhängt. Ein 60-Jähriger mit sicherer Rente und ohne Miete kann mehr Risiko tragen als ein 35-Jähriger mit schwankendem Einkommen. Als Anhaltspunkt taugt sie, als Antwort nicht.',
+    },
+  ],
+
+  'portfolio-aufbau:fortgeschritten': [
+    {
+      question:
+        'Warum steigt die Aktienquote eines Depots ohne jedes Zutun – und warum ist das ungünstig?',
+      options: [
+        'Weil der Aktienteil in guten Phasen stärker wächst; das Risiko steigt damit ausgerechnet am Ende einer guten Phase',
+        'Weil Ausschüttungen automatisch in Aktien angelegt werden',
+        'Weil der risikoarme Teil durch Inflation nominal schrumpft',
+        'Weil Fondsanbieter die Gewichtung regelmäßig anpassen',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Aus 70 zu 30 werden nach guten Börsenjahren leicht 82 zu 18. Niemand hat das entschieden, aber das Depot trägt jetzt mehr Risiko als geplant – und zwar nach einem langen Anstieg, also dann, wenn ein Rückschlag eher wahrscheinlicher als unwahrscheinlicher geworden ist.',
+    },
+    {
+      question: 'Was ist der Zweck von Rebalancing?',
+      options: [
+        'Höhere Rendite durch systematisches Kaufen zu niedrigen Kursen',
+        'Steuern zu sparen, weil Verluste mit Gewinnen verrechnet werden',
+        'Die Kosten des Depots zu senken',
+        'Die geplante Aufteilung und damit das geplante Risiko wiederherzustellen',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Rebalancing ist Risikosteuerung, kein Renditewerkzeug. Über lange Zeiträume kostet es sogar leicht Rendite, weil regelmäßig vom besser laufenden in den schwächeren Teil umgeschichtet wird. Dafür hält es die Schwankung dort, wo man sie geplant hat – und das ist der eigentliche Nutzen.',
+    },
+    {
+      question:
+        'Was ist in der Ansparphase der steuerlich günstigste Weg, eine verschobene Aufteilung zurückzusetzen?',
+      options: [
+        'Den zu stark gewachsenen Teil verkaufen und sofort neu aufteilen',
+        'Die nächsten Einzahlungen in den zu kleinen Teil umlenken, statt zu verkaufen',
+        'Den Sparplan aussetzen, bis sich die Quote von allein wieder einpendelt',
+        'Alles verkaufen und das Depot neu aufbauen',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Neue Raten in den untergewichteten Teil zu lenken verschiebt die Quote ohne Verkauf und damit ohne Steuer. Der Weg funktioniert allerdings nur, solange die Einzahlungen im Verhältnis zum Bestand groß genug sind: Bei 400.000 Euro Depot und 300 Euro Rate bewegt sich damit nichts mehr.',
+    },
+    {
+      question:
+        'Warum ist ein Welt-ETF plus ein zusätzlicher US-ETF meist keine bessere Streuung?',
+      options: [
+        'Weil die USA im Weltindex ohnehin den größten Anteil stellen – die Wette wird ungewollt verdoppelt',
+        'Weil zwei ETFs steuerlich schlechter behandelt werden als einer',
+        'Weil US-Aktien im Weltindex vollständig fehlen',
+        'Weil ein zweiter ETF die Kostenquote des ersten erhöht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Mehr Bausteine sind nicht automatisch mehr Streuung. Ein zusätzlicher Fonds bringt nur dann etwas, wenn er enthält, was im ersten fehlt. Verstärkt er lediglich eine bereits vorhandene Übergewichtung, ist es eine Wette – nur eine, die man nicht bewusst eingegangen ist.',
+    },
+  ],
+
+  'portfolio-aufbau:profi': [
+    {
+      question:
+        'Warum kann ein Beamter mit fünfzig oft mehr Aktienrisiko tragen als ein Selbstständiger mit dreißig?',
+      options: [
+        'Weil Beamte steuerlich bevorzugt anlegen dürfen',
+        'Weil das Alter für die Aktienquote grundsätzlich keine Rolle spielt',
+        'Weil ein längerer Anlagehorizont das Risiko in jedem Fall ausgleicht',
+        'Weil sicheres Einkommen und sichere Rentenansprüche wie ein großer anleiheähnlicher Vermögensteil wirken',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer ein planbares Einkommen und eine gesicherte Rente hat, besitzt außerhalb des Depots bereits einen großen stabilen Posten und braucht im Depot weniger Puffer. Ein Selbstständiger hat das Gegenteil: schwankendes Einkommen, gekoppelt an dieselbe Konjunktur wie die Aktienmärkte.',
+    },
+    {
+      question: 'Was ist der eigentliche Preis einer Umschichtung im Privatvermögen?',
+      options: [
+        'Die Ordergebühren beider Transaktionen',
+        'Der Spread zwischen Kauf- und Verkaufskurs',
+        'Der Zinseszins auf den Betrag, der als Steuer abfließt und deshalb nicht weiterarbeitet',
+        'Die Vorabpauschale des Folgejahres',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Abgeltungsteuer selbst wäre irgendwann ohnehin fällig. Teuer ist die Vorverlegung: Wer heute 5.000 Euro Steuer zahlt statt in zwanzig Jahren, verliert nicht 5.000 Euro, sondern das, was daraus in zwanzig Jahren geworden wäre. Deshalb braucht eine Umschichtung einen Grund, der darüber hinausgeht.',
+    },
+    {
+      question: 'Was beschreibt das Sequenzrisiko in der Entnahmephase?',
+      options: [
+        'Dass die Reihenfolge der Verkäufe steuerlich nach FIFO festgelegt ist',
+        'Dass die Inflation die Entnahmen über die Jahre entwertet',
+        'Dass Ausschüttungen und Entnahmen zeitlich auseinanderfallen',
+        'Dass ein Markteinbruch kurz nach dem Start dauerhaft wirkt, weil Anteile zu niedrigen Kursen verkauft werden',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bei gleicher Durchschnittsrendite entscheidet die Reihenfolge der Jahre über das Ergebnis. Anteile, die früh zu niedrigen Kursen verkauft wurden, fehlen in jeder späteren Erholung. Deshalb beginnt der Übergang zur Entnahme Jahre vor der ersten Auszahlung, nicht am Tag davor.',
+    },
+    {
+      question: 'Wie ist die oft zitierte Vier-Prozent-Regel einzuordnen?',
+      options: [
+        'Als Größenordnung aus historischen US-Daten brauchbar, als Zusage für die Zukunft nicht',
+        'Als gesetzlich festgelegte Obergrenze für Entnahmen aus Depots',
+        'Als Regel, die für jeden Markt und jede Ruhestandslänge gleichermaßen gilt',
+        'Als Berechnung des jährlich steuerfrei entnehmbaren Betrags',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Die Regel stammt aus einer Untersuchung des US-Marktes über historische Dreißigjahreszeiträume. Andere Märkte, andere Zeiträume und ein längerer Ruhestand führen zu anderen Ergebnissen. Wer sie benutzt, sollte die Entnahme in schlechten Jahren nach unten anpassen können.',
     },
   ],
 }

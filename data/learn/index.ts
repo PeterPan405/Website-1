@@ -7,6 +7,7 @@ import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
 import { inflation } from '@/data/learn/topics/inflation'
 import { kostenUndGebuehren } from '@/data/learn/topics/kosten-und-gebuehren'
+import { portfolioAufbau } from '@/data/learn/topics/portfolio-aufbau'
 import { risikoUndRendite } from '@/data/learn/topics/risiko-und-rendite'
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
@@ -21,7 +22,6 @@ import {
   immobilien,
   notenbankenGeldpolitik,
   option,
-  portfolioAufbau,
   rente,
   schuldenUndKredit,
   schuldverschreibung,
