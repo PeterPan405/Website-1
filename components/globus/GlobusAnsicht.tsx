@@ -24,8 +24,12 @@ export interface AnsichtLand {
   region?: string
   waehrung?: string
   bipUsd?: number
+  /** Wahr, wenn das BIP aus Einwohnern und Einkommen gebildet wurde. */
+  bipUsdGeschaetzt?: boolean
   einwohner?: number
   bipProKopfUsd?: number
+  /** Gesetzt, wenn das Gebiet keine ständige Bevölkerung hat. */
+  unbewohnt?: string
   schuldenquote?: { wert: number; zeitraum: string; quelle: string }
   durchschnittsgehalt?: { wert: number; zeitraum: string; quelle: string }
   medianvermoegen?: { wert: number; zeitraum: string; quelle: string }
@@ -456,7 +460,9 @@ function Landtafel({
     {
       label: 'Bruttoinlandsprodukt',
       wert: land.bipUsd ? `${formatNumber(land.bipUsd / 1000)} Mrd. US-$` : null,
-      fussnote: `Weltbank, ${weltbankJahr}`,
+      fussnote: land.bipUsdGeschaetzt
+        ? `gerechnet aus Einwohnern und Einkommen, ${weltbankJahr}`
+        : `Weltbank, ${weltbankJahr}`,
     },
     {
       label: 'Einwohner',
@@ -530,13 +536,20 @@ function Landtafel({
               </>
             ) : (
               /*
-                Ausdrücklich „keine Angabe hinterlegt“ und nicht einfach ein
-                Strich oder eine Null. Für Staatsverschuldung, Gehalt und
-                Vermögen gibt es keine offene Datei; was hier steht, ist von
-                Hand gepflegt und deshalb lückenhaft. Eine Null stünde da wie
-                ein Land ohne Schulden.
+                Zwei Fälle, die nicht dasselbe sind.
+
+                „Keine Angabe hinterlegt“ heißt: Die Zahl gibt es, sie steht nur
+                nirgends, wo wir sie holen könnten. Ausdrücklich nicht ein Strich
+                oder eine Null – eine Null stünde da wie ein Land ohne Schulden.
+
+                Bei einem unbewohnten Gebiet stimmt dieser Satz aber nicht. Für
+                den Siachen-Gletscher hat niemand versäumt, ein
+                Durchschnittsgehalt zu erheben; es gibt dort niemanden, der eines
+                verdient. Das ist keine Lücke, sondern eine Eigenschaft.
               */
-              <dd className="text-fg-subtle text-sm italic">keine Angabe hinterlegt</dd>
+              <dd className="text-fg-subtle text-sm italic">
+                {land.unbewohnt ? 'ohne ständige Bevölkerung' : 'keine Angabe hinterlegt'}
+              </dd>
             )}
           </div>
         ))}
