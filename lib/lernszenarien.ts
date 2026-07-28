@@ -324,6 +324,45 @@ export const sequenzEntnahme = 24_000
  */
 export const sequenzRenditen = [-30, -15, -5, 3, 5, 7, 8, 10, 12, 15, 18, 25] as const
 
+// ----------------------------------------------------- Index in drei Fassungen
+
+/**
+ * Preis-, Netto- und Bruttoindex desselben Marktes.
+ *
+ * Derselbe Index wird in drei Fassungen veröffentlicht, und wer die falsche
+ * zum Vergleich heranzieht, hält einen ETF für schlechter oder besser, als er
+ * ist. Der Unterschied ist keine Feinheit: Über zwanzig Jahre trennt die
+ * Dividende die Fassungen um ein Vielfaches der Kostenquote.
+ */
+export const indexKursrendite = 5
+export const indexDividendenrendite = 2
+
+/**
+ * Quellensteuer auf Dividenden, die ein Nettoindex unterstellt, in Prozent.
+ *
+ * MSCI rechnet mit dem Satz, der für einen Anleger ohne Abkommensvorteile
+ * gilt. Ein Fonds bekommt oft mehr zurück – deshalb kann ein ETF seinen
+ * Nettoindex schlagen, ohne dass etwas faul ist.
+ */
+export const indexQuellensteuer = 30
+
+/** Zeitraum in Jahren, über den die drei Fassungen auseinanderlaufen. */
+export const indexJahre = 20
+
+// ------------------------------------------------------------ Aktionszins
+
+/**
+ * Ein Lockangebot gegen ein dauerhaftes.
+ *
+ * Beworben wird der Aktionszins, gezahlt wird er für ein halbes Jahr. Was am
+ * Ende auf dem Konto steht, entscheidet die Mischung – und die liegt
+ * regelmäßig unter einem unspektakulären Dauerangebot.
+ */
+export const aktionszins = 3.5
+export const aktionsmonate = 6
+export const folgezins = 1.0
+export const dauerzins = 2.5
+
 // -------------------------------------------------------------- Steuer
 
 /**

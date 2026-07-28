@@ -341,6 +341,10 @@ export const einlagensicherung: LearnTopic = {
           text: 'Wie das praktisch aussieht, zeigen zwei Fälle. In **Zypern 2013** wurden Einlagen oberhalb der Grenze in erheblichem Umfang herangezogen – der erste große Fall, in dem Einleger tatsächlich verloren. Bei der **Credit Suisse 2023** wurden AT1-Papiere vollständig abgeschrieben, während Aktionäre noch Anteile erhielten; die gewohnte Reihenfolge war damit umgekehrt. Beide Fälle zeigen dieselbe Lehre: Die Kaskade ist Recht, aber ihre Anwendung im Einzelfall folgt der politischen Lage.',
         },
         {
+          type: 'figure',
+          figure: 'einlagensicherung-kaskade',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wie belastbar sind die Fonds?',

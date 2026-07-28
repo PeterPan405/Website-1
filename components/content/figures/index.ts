@@ -1,6 +1,8 @@
 import {
   BlockchainZahlung,
+  BoerseAbwicklung,
   BoerseVomKlickZurBuchung,
+  EinlagensicherungKaskade,
   EinsteigerReihenfolge,
   NotenbankTransmission,
 } from '@/components/content/figures/ablaeufe'
@@ -24,8 +26,10 @@ import {
 import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
 import {
   BudgetSparquoteJahre,
+  EtfIndexFassungen,
   OptionVolatilitaet,
   RisikoKorrelation,
+  TagesgeldAktionszins,
 } from '@/components/content/figures/fortgeschritten'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import {
@@ -144,4 +148,8 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'budget-sparquote-jahre': BudgetSparquoteJahre,
   'risiko-korrelation': RisikoKorrelation,
   'option-volatilitaet': OptionVolatilitaet,
+  'etf-index-fassungen': EtfIndexFassungen,
+  'tagesgeld-aktionszins': TagesgeldAktionszins,
+  'einlagensicherung-kaskade': EinlagensicherungKaskade,
+  'boerse-abwicklung': BoerseAbwicklung,
 }

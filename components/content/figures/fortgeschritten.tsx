@@ -5,6 +5,14 @@ import {
 } from '@/components/content/figures/Diagramme'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
 import {
+  aktionsmonate,
+  aktionszins,
+  dauerzins,
+  folgezins,
+  indexDividendenrendite,
+  indexJahre,
+  indexKursrendite,
+  indexQuellensteuer,
   optionBasis,
   optionVolatilitaeten,
   sparquoteRendite,
@@ -204,6 +212,137 @@ export function OptionVolatilitaet() {
         `sich dabei nichts geändert. Die erwartete Schwankung ist der einzige Preisbestandteil, den man ` +
         `nicht ablesen kann – Kurs, Basispreis, Laufzeit und Zins stehen fest. Deshalb ist der Kauf einer ` +
         `Option immer auch eine Meinung darüber, ob diese Erwartung zu hoch oder zu niedrig ist.`
+      }
+    />
+  )
+}
+
+// ------------------------------------------ Derselbe Index in drei Fassungen
+
+/**
+ * Warum der Vergleichsmaßstab über das Urteil entscheidet.
+ *
+ * Ein ETF wird an seinem Index gemessen. Nur gibt es denselben Index in drei
+ * Fassungen, und zwischen ihnen liegt mehr als jede Kostenquote. Wer einen
+ * ausschüttenden Fonds gegen den Preisindex hält, sieht einen Rückstand, der
+ * keiner ist; wer ihn gegen den Bruttoindex hält, sieht einen, den kein Fonds
+ * vermeiden kann.
+ */
+export function EtfIndexFassungen() {
+  const jahre = Array.from({ length: indexJahre + 1 }, (_, index) => index)
+
+  const verlauf = (jahresrendite: number) =>
+    jahre.map((jahr) => ({ x: jahr, y: 100 * (1 + jahresrendite / 100) ** jahr }))
+
+  const netto = indexKursrendite + indexDividendenrendite * (1 - indexQuellensteuer / 100)
+  const brutto = indexKursrendite + indexDividendenrendite
+
+  const ende = (rendite: number) => 100 * (1 + rendite / 100) ** indexJahre
+
+  return (
+    <LinienDiagramm
+      id="etf-index-fassungen"
+      reihen={[
+        {
+          name: 'Bruttoindex (Gross Return)',
+          farbe: FARBEN.marke,
+          punkte: verlauf(brutto),
+          endText: formatNumber(ende(brutto), 0),
+        },
+        {
+          name: 'Nettoindex (Net Return)',
+          farbe: FARBEN.akzent,
+          punkte: verlauf(netto),
+        },
+        {
+          name: 'Preisindex (Price)',
+          farbe: FARBEN.ruhig,
+          gestrichelt: true,
+          punkte: verlauf(indexKursrendite),
+          endText: formatNumber(ende(indexKursrendite), 0),
+        },
+      ]}
+      xVon={0}
+      xBis={indexJahre}
+      xTeilstriche={[0, 5, 10, 15, 20].map((wert) => ({
+        wert,
+        text: wert === 0 ? 'Start' : `${wert} J.`,
+      }))}
+      yEinheit="Indexstand, Start = 100"
+      yFormat={(wert) => formatNumber(wert, 0)}
+      hoehe={310}
+      rechterRand={72}
+      beschreibung={
+        `Derselbe Markt in drei Fassungen, über ${indexJahre} Jahre: ` +
+        `${formatPercent(indexKursrendite, 0)} Kursrendite und ` +
+        `${formatPercent(indexDividendenrendite, 0)} Dividendenrendite, bei ` +
+        `${formatPercent(indexQuellensteuer, 0)} unterstellter Quellensteuer. Der Preisindex zählt nur ` +
+        `die Kurse und steht am Ende bei ${formatNumber(ende(indexKursrendite), 0)}. Der Nettoindex ` +
+        `rechnet Dividenden nach Quellensteuer mit und kommt auf ` +
+        `${formatNumber(ende(netto), 0)}, der Bruttoindex rechnet sie voll mit und erreicht ` +
+        `${formatNumber(ende(brutto), 0)}. Zwischen der obersten und der untersten Linie liegen damit ` +
+        `${formatNumber(ende(brutto) - ende(indexKursrendite), 0)} Punkte – ein Vielfaches jeder ` +
+        `Kostenquote. Welcher Maßstab in einem Werbeblatt steht, entscheidet deshalb über das Urteil, ` +
+        `bevor über den Fonds selbst gesprochen wird. Üblich und richtig ist der Nettoindex.`
+      }
+    />
+  )
+}
+
+// ---------------------------------------------------- Aktionszins und Realität
+
+export function TagesgeldAktionszins() {
+  /*
+    Was übers Jahr tatsächlich gutgeschrieben wird.
+
+    Der Aktionszins gilt `aktionsmonate` lang, danach der Folgezins. Gerechnet
+    wird ohne Zinseszins innerhalb des Jahres – Tagesgeldzinsen werden meist
+    quartalsweise gutgeschrieben, und der Unterschied läge weit unter der
+    Rundung. Die Vereinfachung schmeichelt dem Aktionsangebot eher, als dass
+    sie ihm schadet.
+  */
+  const anteilAktion = aktionsmonate / 12
+  const gemischt = aktionszins * anteilAktion + folgezins * (1 - anteilAktion)
+
+  return (
+    <SaeulenDiagramm
+      id="tagesgeld-aktionszins"
+      saeulen={[
+        {
+          label: 'beworben',
+          teile: [{ wert: aktionszins, farbe: FARBEN.warnung }],
+          wertText: formatPercent(aktionszins, 2),
+          hinweis: `gilt ${aktionsmonate} Monate`,
+        },
+        {
+          label: 'danach',
+          teile: [{ wert: folgezins, farbe: FARBEN.gefahr }],
+          wertText: formatPercent(folgezins, 2),
+          hinweis: 'der Rest des Jahres',
+        },
+        {
+          label: 'tatsächlich im Jahr',
+          teile: [{ wert: gemischt, farbe: FARBEN.ruhig }],
+          wertText: formatPercent(gemischt, 2),
+          hinweis: 'die Mischung aus beiden',
+        },
+        {
+          label: 'ruhiges Dauerangebot',
+          teile: [{ wert: dauerzins, farbe: FARBEN.marke }],
+          wertText: formatPercent(dauerzins, 2),
+          hinweis: 'ohne Frist',
+        },
+      ]}
+      einheit="Zins im Jahr, in Prozent"
+      hoehe={290}
+      beschreibung={
+        `Ein Angebot mit ${formatPercent(aktionszins, 2)} Aktionszins für ${aktionsmonate} Monate, danach ` +
+        `${formatPercent(folgezins, 2)}. Über das ganze Jahr ergibt das ${formatPercent(gemischt, 2)} – ` +
+        `beworben wird die erste Säule, gutgeschrieben wird die dritte. Ein unspektakuläres Dauerangebot ` +
+        `mit ${formatPercent(dauerzins, 2)} liegt darüber, obwohl es in keinem Vergleichsportal oben ` +
+        `steht. Wer die Frist im Kalender hat und rechtzeitig wechselt, bekommt den Aktionszins wirklich; ` +
+        `wer das nicht tut – und das sind die meisten –, bekommt die Mischung. Genau darauf ist das ` +
+        `Angebot gerechnet.`
       }
     />
   )

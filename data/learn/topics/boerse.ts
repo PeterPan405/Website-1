@@ -368,6 +368,10 @@ export const boerse: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'boerse-abwicklung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wenn der Handel unterbrochen wird',

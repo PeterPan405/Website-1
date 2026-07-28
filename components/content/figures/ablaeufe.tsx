@@ -1,4 +1,5 @@
 import { AblaufKette, FARBEN } from '@/components/content/figures/Diagramme'
+import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
 
 /**
  * Die Grafiken, die einen Weg zeigen statt einer Menge.
@@ -222,6 +223,158 @@ export function EinsteigerReihenfolge() {
         'existenzbedrohend wären, und nur diese. Viertens die Ziele mit einem Zeitraum versehen; erst er ' +
         'entscheidet, was überhaupt in Frage kommt. Der eigentliche Kauf steht am Ende dieser Kette, nicht ' +
         'am Anfang.'
+      }
+    />
+  )
+}
+
+// ----------------------------------------------------------- Haftungskaskade
+
+/**
+ * In welcher Reihenfolge eine Bank abgewickelt wird.
+ *
+ * ## Warum als Stapel und nicht als Kette
+ *
+ * Die übrigen Grafiken dieser Datei zeigen einen Weg – hier geht es um eine
+ * Rangfolge. Ein Stapel bildet das ab, was die Sache ausmacht: Jede Stufe muss
+ * vollständig aufgezehrt sein, bevor die nächste überhaupt angefasst wird. Wer
+ * ganz unten steht, ist nicht ein bisschen sicherer, sondern durch alles
+ * darüber geschützt.
+ *
+ * Die Höhen sind gleich und stellen keine Beträge dar. Das ist Absicht: Die
+ * tatsächlichen Größenverhältnisse unterscheiden sich von Bank zu Bank und
+ * ändern sich laufend. Was hier steht, ist die Reihenfolge, und die ist
+ * gesetzlich festgelegt.
+ */
+const KASKADE = [
+  {
+    stufe: 'Eigenkapital der Aktionäre',
+    text: 'Wird zuerst und in voller Höhe aufgezehrt',
+  },
+  {
+    stufe: 'Hybride und Nachranganleihen',
+    text: 'Wandlung oder Abschreibung, oft schon vor der Abwicklung',
+  },
+  {
+    stufe: 'Nicht bevorrechtigte vorrangige Anleihen',
+    text: 'Eigens geschaffen, um den Puffer vor den Einlagen zu bilden',
+  },
+  {
+    stufe: 'Übrige Verbindlichkeiten und Einlagen über der Grenze',
+    text: 'Hier beginnt es Unternehmen und große Vermögen zu treffen',
+  },
+  {
+    stufe: 'Gedeckte Einlagen',
+    text: 'Gesetzlich vom Bail-in ausgenommen – praktisch nie erreicht',
+  },
+] as const
+
+export function EinlagensicherungKaskade() {
+  const zeilenhoehe = 52
+  const oben = 34
+  const hoehe = oben + KASKADE.length * zeilenhoehe + 16
+  const links = 34
+  const breite = 640 - links * 2
+
+  return (
+    <FigureSvg
+      id="einlagensicherung-kaskade"
+      viewBox={`0 0 640 ${hoehe}`}
+      beschreibung={
+        'Die gesetzliche Reihenfolge, in der eine Bank abgewickelt wird, von oben nach unten: ' +
+        KASKADE.map((k, index) => `${index + 1}. ${k.stufe} – ${k.text}`).join('; ') +
+        '. Jede Stufe muss vollständig aufgezehrt sein, bevor die nächste angefasst wird. Gedeckte ' +
+        'Einlagen stehen ganz unten und sind damit nicht ein bisschen sicherer als der Rest, sondern ' +
+        'durch alles darüber geschützt. Die Kästen sind gleich hoch und stellen keine Beträge dar: Die ' +
+        'tatsächlichen Größenverhältnisse unterscheiden sich von Bank zu Bank. Was feststeht, ist die ' +
+        'Reihenfolge.'
+      }
+    >
+      <Beschriftung x={links} y={20} ton="leise" groesse={12}>
+        wird zuerst herangezogen
+      </Beschriftung>
+
+      {KASKADE.map((eintrag, index) => {
+        const y = oben + index * zeilenhoehe
+        const letzte = index === KASKADE.length - 1
+        const farbe = letzte ? FARBEN.marke : index === 0 ? FARBEN.gefahr : FARBEN.warnung
+        return (
+          <g key={eintrag.stufe}>
+            <rect
+              x={links}
+              y={y}
+              width={breite}
+              height={zeilenhoehe - 8}
+              rx={6}
+              fill="var(--c-bg-subtle)"
+              stroke={farbe}
+              strokeWidth={letzte ? 2 : 1.25}
+            />
+            <Beschriftung x={links + 14} y={y + 20} ton="stark" gewicht="kraeftig">
+              {`${index + 1}. ${eintrag.stufe}`}
+            </Beschriftung>
+            <Beschriftung x={links + 14} y={y + 36} ton="gedaempft" groesse={12}>
+              {eintrag.text}
+            </Beschriftung>
+          </g>
+        )
+      })}
+
+      <Beschriftung x={links} y={hoehe - 2} ton="leise" groesse={12}>
+        zuletzt – und praktisch nie
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+// ------------------------------------------------ Zwischen Abschluss und Depot
+
+/**
+ * Was in den zwei Werktagen nach dem Geschäft passiert.
+ *
+ * Kurzfassung des Abschnitts „Was zwischen Abschluss und Lieferung passiert“
+ * im Thema Börse. Der Punkt, den die Kette deutlicher macht als der Text: Aus
+ * einem Geschäft werden rechtlich zwei, und die Gegenpartei steht in beiden –
+ * deshalb trifft der Ausfall einer Seite nie die andere.
+ */
+export function BoerseAbwicklung() {
+  return (
+    <AblaufKette
+      id="boerse-abwicklung"
+      hoehe={172}
+      stationen={[
+        {
+          titel: 'Abschluss',
+          text: 'Zwei Aufträge treffen sich im Orderbuch',
+        },
+        {
+          titel: 'Gegenpartei',
+          text: 'Aus einem Geschäft werden rechtlich zwei',
+          farbe: FARBEN.akzent,
+        },
+        {
+          titel: 'Netting',
+          text: 'Nur der Saldo des Tages wird bewegt',
+          farbe: FARBEN.akzent,
+        },
+        {
+          titel: 'Lieferung',
+          text: 'Papiere und Geld wechseln Zug um Zug',
+        },
+        {
+          titel: 'Depot',
+          text: 'Erst hier gehören die Papiere dir',
+        },
+      ]}
+      beschreibung={
+        'Was zwischen dem Geschäft und der Buchung im Depot passiert – zwei Werktage, in denen zwei ' +
+        'Einrichtungen arbeiten, von denen Privatanleger nie hören. Erstens der Abschluss: Zwei Aufträge ' +
+        'treffen sich im Orderbuch. Zweitens die zentrale Gegenpartei: Sie schaltet sich dazwischen, und ' +
+        'aus einem Geschäft werden rechtlich zwei – du kaufst von ihr, der Verkäufer verkauft an sie. ' +
+        'Fällt eine Seite aus, trägt sie den Schaden, nicht die andere Seite. Drittens das Netting: Wer an ' +
+        'einem Tag 900 Stück kauft und 850 verkauft, lässt nur 50 liefern; das verkleinert die tatsächlich ' +
+        'bewegten Beträge um ein Vielfaches. Viertens die Lieferung Zug um Zug, damit keine Seite in ' +
+        'Vorleistung geht. Und erst danach die Buchung ins Depot.'
       }
     />
   )

@@ -147,6 +147,14 @@ export type FigureId =
   | 'risiko-korrelation'
   /** Dieselbe Option bei vier erwarteten Schwankungen. */
   | 'option-volatilitaet'
+  /** Preis-, Netto- und Bruttoindex desselben Marktes über zwanzig Jahre. */
+  | 'etf-index-fassungen'
+  /** Beworbener Aktionszins gegen den, der übers Jahr ankommt. */
+  | 'tagesgeld-aktionszins'
+  /** Die Reihenfolge, in der eine Bank abgewickelt wird. */
+  | 'einlagensicherung-kaskade'
+  /** Was zwischen Geschäftsabschluss und Buchung im Depot passiert. */
+  | 'boerse-abwicklung'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -478,5 +486,25 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Dieselbe Option, vier Erwartungen',
     caption:
       'Am Kurs hat sich nichts geändert. Die erwartete Schwankung ist der einzige Preisbestandteil, den man nicht ablesen kann – und deshalb der, über den man eine Meinung hat.',
+  },
+  'etf-index-fassungen': {
+    title: 'Derselbe Index in drei Fassungen',
+    caption:
+      'Welcher Maßstab in einem Werbeblatt steht, entscheidet über das Urteil, bevor über den Fonds selbst gesprochen wird. Üblich und richtig ist der Nettoindex.',
+  },
+  'tagesgeld-aktionszins': {
+    title: 'Beworben und tatsächlich',
+    caption:
+      'Beworben wird die erste Säule, gutgeschrieben die dritte. Wer die Frist im Kalender hat, bekommt den Aktionszins wirklich – darauf ist das Angebot allerdings nicht gerechnet.',
+  },
+  'einlagensicherung-kaskade': {
+    title: 'Die Haftungskaskade',
+    caption:
+      'Wer ganz unten steht, ist nicht ein bisschen sicherer – er ist durch alles darüber geschützt. Die Kästen zeigen die Reihenfolge, nicht die Beträge.',
+  },
+  'boerse-abwicklung': {
+    title: 'Zwischen Abschluss und Depot',
+    caption:
+      'Aus einem Geschäft werden rechtlich zwei, und die Gegenpartei steht in beiden. Deshalb trifft der Ausfall einer Seite nie die andere.',
   },
 }

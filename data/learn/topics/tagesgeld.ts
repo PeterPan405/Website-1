@@ -201,6 +201,10 @@ export const tagesgeld: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'tagesgeld-aktionszins',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Steuern auf Zinsen',
