@@ -44,6 +44,28 @@ name: Quellen abklopfen
 # kostenloser Zugangsschlüssel bei einem Anbieter, der Europa abdeckt – oder
 # die Lücke bleibt und steht wie bisher als solche auf der Kalenderseite.
 # Beides ist vertretbar; nur das Nachbauen einer Zugangssperre nicht.
+#
+# ## Twelve Data: der Endpunkt gibt es, und er liefert
+#
+# Geprüft mit dem öffentlichen Demo-Schlüssel:
+#
+# - `/earnings?symbol=AAPL` → **200**, mit echten Meldeterminen samt Schätzung
+#   und tatsächlichem Ergebnis je Quartal.
+# - `/earnings?symbol=SAP&exchange=XETR` → 403, aber mit dem Hinweis, dass der
+#   Demo-Schlüssel nur der ersten Bekanntschaft dient. Keine Aussage über
+#   fehlende Abdeckung.
+# - `/stocks?symbol=SAP` → **200**, und SAP SE steht mit europäischen
+#   Handelsplätzen im Verzeichnis. Der Anbieter kennt die Werte also.
+# - Finnhub: 401 ohne Schlüssel, sonst keine Aussage möglich.
+#
+# Twelve Data ist in diesem Projekt bereits als Kursanbieter vorgesehen
+# (`lib/providers/twelvedata.ts`, Secret `TWELVEDATA_API_KEY`). Ein Schlüssel
+# würde damit zwei Zwecken dienen: bessere Kurse und die fehlenden
+# Meldetermine.
+#
+# Was ein Schlüssel nicht beantwortet, solange keiner hinterlegt ist: ob der
+# kostenlose Tarif den Endpunkt `/earnings` überhaupt freischaltet und wie
+# viele Abfragen je Minute er zulässt. Beides zeigt sich beim ersten Lauf.
 
 on:
   workflow_dispatch:
