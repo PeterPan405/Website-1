@@ -425,6 +425,10 @@ export const aktienLaenderBranchen: LearnTopic = {
           text: 'Ab etwa fünf Bausteinen wird das Rebalancing zur Arbeit, ohne dass sich das Ergebnis erkennbar verbessert. Und jede zusätzliche Position ist eine Entscheidung, die künftig überprüft werden will – der Aufwand fällt nicht einmal an, sondern jedes Jahr.',
         },
         {
+          type: 'figure',
+          figure: 'streuung-titelzahl',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',

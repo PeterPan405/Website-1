@@ -129,6 +129,14 @@ export type FigureId =
   | 'inflation-steuer'
   /** Wertänderung des Objekts, umgerechnet auf das Eigenkapital. */
   | 'immobilie-hebel'
+  /** Warum ein Hebelprodukt nach Hin und Her zurückbleibt. */
+  | 'derivat-pfadabhaengigkeit'
+  /** Wie die Schwankung eines Depots mit der Zahl der Titel sinkt. */
+  | 'streuung-titelzahl'
+  /** Vier Entnahmeraten, gerechnet gegen beide Reihenfolgen. */
+  | 'portfolio-entnahme'
+  /** Steuerfreies Gold gegen ein Wertpapier auf denselben Preis. */
+  | 'rohstoffe-gold-steuer'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -415,5 +423,25 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Der Hebel in beide Richtungen',
     caption:
       'Nach oben wird diese Rechnung in jedem Beratungsgespräch vorgeführt. Es ist dieselbe Rechnung wie nach unten – nur mit anderem Vorzeichen.',
+  },
+  'derivat-pfadabhaengigkeit': {
+    title: 'Zwei Tage Hin und Her',
+    caption:
+      'Der Basiswert steht wieder bei hundert, die Produkte darauf nicht. Das Vielfache wird täglich neu angesetzt – und arbeitet ab dem zweiten Tag auf einer anderen Basis.',
+  },
+  'streuung-titelzahl': {
+    title: 'Wie viele Titel Streuung braucht',
+    caption:
+      'Zwischen einem und zwanzig Titeln liegt fast der ganze Gewinn. Was danach bleibt, ist das Risiko des Marktes selbst – und dagegen hilft keine Zahl von Titeln.',
+  },
+  'portfolio-entnahme': {
+    title: 'Vier Entnahmeraten, zwei Reihenfolgen',
+    caption:
+      'Eine Entnahmerate ist keine Zahl, sondern eine Zahl mit einer Spanne. Und die Spanne wächst mit der Rate.',
+  },
+  'rohstoffe-gold-steuer': {
+    title: 'Physisches Gold und die Haltefrist',
+    caption:
+      'Bei gleicher Bruttorendite trennt die Steuer gut ein Viertel des Gewinns. Dem stehen Kosten gegenüber, die ein Wertpapier nicht hat.',
   },
 }

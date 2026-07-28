@@ -34,10 +34,14 @@ import {
 import { MarktOrderbuch } from '@/components/content/figures/orderbuch'
 import {
   AnleiheKonvexitaet,
+  DerivatPfadabhaengigkeit,
   ImmobilieHebel,
   InflationSteuer,
   OptionSensitivitaeten,
+  PortfolioEntnahme,
   RisikoSequenz,
+  RohstoffeGoldSteuer,
+  StreuungTitelzahl,
   ZinseszinsSteuerstundung,
 } from '@/components/content/figures/profi'
 import { RenteLuecke } from '@/components/content/figures/rente'
@@ -124,4 +128,8 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'zinseszins-steuerstundung': ZinseszinsSteuerstundung,
   'inflation-steuer': InflationSteuer,
   'immobilie-hebel': ImmobilieHebel,
+  'derivat-pfadabhaengigkeit': DerivatPfadabhaengigkeit,
+  'streuung-titelzahl': StreuungTitelzahl,
+  'portfolio-entnahme': PortfolioEntnahme,
+  'rohstoffe-gold-steuer': RohstoffeGoldSteuer,
 }

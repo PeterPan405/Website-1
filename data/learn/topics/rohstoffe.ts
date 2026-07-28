@@ -399,6 +399,10 @@ export const rohstoffe: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'rohstoffe-gold-steuer',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Umsatzsteuer: warum Silber teurer startet',

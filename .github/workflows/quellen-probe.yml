@@ -66,24 +66,20 @@ name: Quellen abklopfen
 # Was ein Schlüssel nicht beantwortet, solange keiner hinterlegt ist: ob der
 # kostenlose Tarif den Endpunkt `/earnings` überhaupt freischaltet und wie
 # viele Abfragen je Minute er zulässt. Beides zeigt sich beim ersten Lauf.
+#
+# Nachgesehen am 28. Juli 2026: **kein Schlüssel hinterlegt.** Der zweite Weg
+# im Abrufskript ist gebaut und meldet sich nicht, solange das so bleibt.
 
 on:
   workflow_dispatch:
 
 jobs:
   abklopfen:
-    name: Ist ein Twelve-Data-Schlüssel hinterlegt?
+    name: Kandidaten prüfen
     runs-on: ubuntu-latest
     steps:
-      - name: Nachsehen, ohne etwas zu verraten
-        env:
-          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+      - name: Derzeit steht keine Quelle zur Prüfung an
         run: |
-          # Ausgegeben wird ausschließlich ja oder nein und die Länge. Ein
-          # Protokoll eines Workflows ist öffentlich lesbar; der Schlüssel
-          # selbst hat darin nichts zu suchen.
-          if [ -n "$TWELVEDATA_API_KEY" ]; then
-            echo "Schlüssel hinterlegt: ja (${#TWELVEDATA_API_KEY} Zeichen)"
-          else
-            echo "Schlüssel hinterlegt: nein"
-          fi
+          echo "Dieser Workflow hat keinen offenen Auftrag."
+          echo "Der Kopf der Datei hält fest, was geprüft wurde und mit welchem"
+          echo "Ergebnis – damit keine Quelle zweimal abgeklopft wird."

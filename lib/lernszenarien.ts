@@ -121,6 +121,20 @@ export const waehrungKursgewinn = 10
 /** Wechselkurse beim Verkauf, von der Aufwertung des Euro bis zur Abwertung. */
 export const waehrungKurse = [1.0, 1.1, 1.2, 1.3] as const
 
+// ------------------------------------------------------ Pfadabhängigkeit
+
+/**
+ * Ein Zweitagesbeispiel für Hebelprodukte mit täglichem Vielfachen.
+ *
+ * Der Basiswert steigt und fällt anschließend genau so weit zurück, dass er
+ * wieder bei hundert steht. Das tägliche Vielfache tut das nicht – und genau
+ * darin liegt der Rechenfehler, den die Werbung für diese Produkte ausspart.
+ */
+export const hebelAnstieg = 10
+
+/** Faktoren, mit denen solche Produkte angeboten werden. */
+export const hebelFaktoren = [2, 3, 4] as const
+
 // ---------------------------------------------------------------- Hebel
 
 /** Der eingesetzte Betrag, an dem die Hebelwirkung gezeigt wird. */
@@ -241,6 +255,17 @@ export const portfolioRenditeSicher = 2
 
 /** Über wie viele Jahre die Verschiebung gezeigt wird. */
 export const portfolioJahre = 10
+
+// -------------------------------------------------------- Entnahmerate
+
+/**
+ * Entnahmeraten in Prozent des Startkapitals.
+ *
+ * Die verbreitete Faustregel nennt vier Prozent. Ob sie trägt, hängt an der
+ * Reihenfolge der Renditejahre – deshalb wird sie hier gegen dieselbe
+ * Renditereihe gerechnet, einmal in jeder Richtung.
+ */
+export const entnahmeraten = [3, 4, 5, 6] as const
 
 // ------------------------------------------------------- Sequenzrisiko
 
@@ -365,6 +390,21 @@ export const spreadProzent = 0.3
  */
 export const inflationNominalrenditen = [2, 4, 6, 8] as const
 
+// -------------------------------------------------------------- Rohstoffe
+
+/**
+ * Der Sonderweg bei physischem Gold.
+ *
+ * Nach einem Jahr Haltedauer ist der Gewinn aus physischem Gold in
+ * Deutschland steuerfrei; bei Wertpapieren fällt Abgeltungsteuer an, gleich
+ * wie lange gehalten wurde. Das ist kein Detail, sondern bei gleicher
+ * Bruttorendite ein Vorsprung von einem Viertel des Gewinns.
+ *
+ * Rechtsstand kann sich ändern; im Text steht der Hinweis.
+ */
+export const goldEinsatz = 10_000
+export const goldWertsteigerungen = [20, 50, 100] as const
+
 // ------------------------------------------------------------------ Krypto
 
 /** Die Blockbelohnung zu Beginn, in Münzen. */
@@ -397,6 +437,23 @@ export const bitcoinObergrenze = bitcoinStartbelohnung * bitcoinBloeckeJeEpoche 
  * der Bereich vorkommt, in dem die Rechnung kippt.
  */
 export const risikoRueckgaenge = [10, 20, 30, 50, 70, 90] as const
+
+// ------------------------------------------------------------ Streuung
+
+/**
+ * Wie viele Titel es für Streuung braucht.
+ *
+ * Gerechnet nach der Standardformel für ein gleichgewichtetes Depot: Die
+ * Schwankung sinkt mit der Zahl der Titel, aber nur bis zu der Grenze, die
+ * die gemeinsame Marktbewegung setzt. Die beiden Annahmen – Schwankung eines
+ * Einzeltitels und ihre mittlere Korrelation – sind Größenordnungen für
+ * Aktien entwickelter Märkte und im Text als solche bezeichnet.
+ */
+export const streuungEinzelvolatilitaet = 35
+export const streuungKorrelation = 0.2
+
+/** Titelzahlen, an denen der Effekt abgelesen wird. */
+export const streuungTitelzahlen = [1, 2, 5, 10, 20, 30, 50, 100, 250] as const
 
 // -------------------------------------------------------------- Markttiming
 

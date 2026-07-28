@@ -16,8 +16,16 @@ import {
   immobilieKaufpreis,
   immobilieWertaenderungen,
   inflationNominalrenditen,
+  entnahmeraten,
+  goldEinsatz,
+  goldWertsteigerungen,
+  hebelAnstieg,
+  hebelFaktoren,
   optionBasis,
   sparfall,
+  streuungEinzelvolatilitaet,
+  streuungKorrelation,
+  streuungTitelzahlen,
   sequenzEntnahme,
   sequenzRenditen,
   sequenzStartkapital,
@@ -420,6 +428,249 @@ export function ImmobilieHebel() {
         `. Bei ${formatPercent(kleinste, 0)} Eigenkapital wird aus zehn Prozent Wertverlust ein Verlust von ` +
         `hundert Prozent des Einsatzes – das Eigenkapital ist dann rechnerisch weg, der Kredit läuft weiter. ` +
         `Der Hebel wirkt in beide Richtungen gleich stark; vorgerechnet wird meist nur die eine.`
+      }
+    />
+  )
+}
+
+// -------------------------------------------------- Pfadabhängigkeit
+
+/**
+ * Warum ein Hebelprodukt mit täglichem Vielfachen zurückbleibt.
+ *
+ * Der Basiswert steigt und fällt anschließend genau so weit zurück, dass er
+ * wieder bei hundert steht. Das Produkt tut das nicht, und der Rückstand
+ * wächst mit dem Faktor. Zwei Tage genügen, um ihn zu zeigen – über Wochen
+ * mit Seitwärtsbewegung wird daraus ein Verlust, obwohl der Basiswert sich
+ * nicht bewegt hat.
+ */
+export function DerivatPfadabhaengigkeit() {
+  const rueckgang = (100 / (100 + hebelAnstieg)) * 100 - 100
+
+  const nachZweiTagen = (faktor: number) => {
+    const tagEins = 100 * (1 + (faktor * hebelAnstieg) / 100)
+    return tagEins * (1 + (faktor * rueckgang) / 100)
+  }
+
+  const saeulen = [
+    {
+      label: 'Basiswert',
+      teile: [{ wert: 100, farbe: FARBEN.marke }],
+      wertText: formatNumber(100, 1),
+      hinweis: 'wieder am Ausgangspunkt',
+    },
+    ...hebelFaktoren.map((faktor) => {
+      const ende = nachZweiTagen(faktor)
+      return {
+        label: `Faktor ${faktor}`,
+        teile: [{ wert: ende, farbe: FARBEN.gefahr }],
+        wertText: formatNumber(ende, 1),
+        hinweis: `${formatNumber(ende - 100, 1)} gegenüber Start`,
+      }
+    }),
+  ]
+
+  const schlimmster = nachZweiTagen(hebelFaktoren[hebelFaktoren.length - 1])
+
+  return (
+    <SaeulenDiagramm
+      id="derivat-pfadabhaengigkeit"
+      saeulen={saeulen}
+      einheit="Stand nach zwei Tagen, Start = 100"
+      hoehe={290}
+      beschreibung={
+        `Zwei Tage: Der Basiswert steigt um ${formatPercent(hebelAnstieg, 0)} und fällt dann um ` +
+        `${formatNumber(Math.abs(rueckgang), 2)} Prozent – womit er wieder genau bei 100 steht. ` +
+        `Produkte mit täglichem Vielfachen stehen danach bei ` +
+        hebelFaktoren
+          .map((f) => `Faktor ${f}: ${formatNumber(nachZweiTagen(f), 1)}`)
+          .join(', ') +
+        `. Keines ist wieder bei 100, und der Rückstand wächst mit dem Faktor: beim höchsten sind es ` +
+        `${formatNumber(100 - schlimmster, 1)} Punkte. Der Grund ist, dass das Vielfache **täglich** ` +
+        `neu angesetzt wird – nach dem ersten Tag arbeitet es auf einer anderen Basis. Über Wochen mit ` +
+        `Seitwärtsbewegung wird daraus ein Verlust, obwohl der Basiswert sich nicht bewegt hat.`
+      }
+    />
+  )
+}
+
+// ------------------------------------------------- Wie viele Titel es braucht
+
+export function StreuungTitelzahl() {
+  /*
+    Die Standardformel für ein gleichgewichtetes Depot.
+
+    Die Schwankung eines Depots aus n gleich gewichteten Titeln beträgt
+    σ · √(1/n + (1 − 1/n) · ρ). Der zweite Summand verschwindet nicht: Er ist
+    die gemeinsame Marktbewegung, und gegen die hilft keine Zahl von Titeln.
+    Genau das ist die Aussage – Streuung senkt das Risiko bis zu einer Grenze
+    und nicht darüber hinaus.
+  */
+  const volatilitaet = (n: number) =>
+    streuungEinzelvolatilitaet * Math.sqrt(1 / n + (1 - 1 / n) * streuungKorrelation)
+
+  const untergrenze = streuungEinzelvolatilitaet * Math.sqrt(streuungKorrelation)
+
+  return (
+    <LinienDiagramm
+      id="streuung-titelzahl"
+      reihen={[
+        {
+          name: 'Schwankung des Depots',
+          farbe: FARBEN.marke,
+          punkte: streuungTitelzahlen.map((n) => ({
+            x: Math.log10(n),
+            y: volatilitaet(n),
+          })),
+        },
+        {
+          name: 'Grenze durch die gemeinsame Marktbewegung',
+          farbe: FARBEN.ruhig,
+          gestrichelt: true,
+          punkte: [
+            { x: 0, y: untergrenze },
+            { x: Math.log10(250), y: untergrenze },
+          ],
+        },
+      ]}
+      /*
+        Die x-Achse ist logarithmisch.
+
+        Von einem auf zwanzig Titel passiert fast alles; von hundert auf
+        zweihundertfünfzig nichts mehr. Linear aufgetragen klebte der ganze
+        Inhalt am linken Rand.
+      */
+      xVon={0}
+      xBis={Math.log10(250)}
+      xTeilstriche={[1, 5, 20, 100, 250].map((n) => ({
+        wert: Math.log10(n),
+        text: String(n),
+      }))}
+      xLabel="Zahl der Titel im Depot"
+      yEinheit="Schwankung im Jahr, in Prozent"
+      yFormat={(wert) => formatNumber(wert, 0)}
+      hoehe={300}
+      beschreibung={
+        `Ein gleichgewichtetes Depot aus Titeln mit je ` +
+        `${formatPercent(streuungEinzelvolatilitaet, 0)} Schwankung und einer mittleren Korrelation von ` +
+        `${formatNumber(streuungKorrelation, 1)}. Ein einzelner Titel schwankt mit ` +
+        `${formatNumber(volatilitaet(1), 0)} Prozent, fünf Titel mit ${formatNumber(volatilitaet(5), 0)}, ` +
+        `zwanzig mit ${formatNumber(volatilitaet(20), 0)} und hundert mit ` +
+        `${formatNumber(volatilitaet(100), 0)}. Der weitaus größte Teil des Gewinns liegt zwischen einem und ` +
+        `zwanzig Titeln; danach passiert kaum noch etwas. Die gestrichelte Linie bei ` +
+        `${formatNumber(untergrenze, 0)} Prozent ist die Grenze: Sie entsteht daraus, dass alle Aktien ` +
+        `teilweise gemeinsam schwanken, und gegen sie hilft keine Zahl von Titeln. Wer streut, entfernt das ` +
+        `Risiko einzelner Unternehmen – nicht das des Marktes.`
+      }
+    />
+  )
+}
+
+// ----------------------------------------------------- Wie lange das Geld reicht
+
+/**
+ * Entnahmeraten gegen die Reihenfolge der Renditejahre.
+ *
+ * Die verbreitete Faustregel nennt vier Prozent. Ob sie trägt, hängt an
+ * etwas, das niemand wählen kann – deshalb steht hier beides nebeneinander.
+ */
+export function PortfolioEntnahme() {
+  const saeulen = entnahmeraten.map((rate) => {
+    const entnahme = (sequenzStartkapital * rate) / 100
+    const vergleich = reihenfolgevergleich(sequenzStartkapital, sequenzRenditen, entnahme)
+    return {
+      label: formatPercent(rate, 0),
+      teile: [
+        { wert: Math.max(vergleich.schlechtZuerst.endwert, 0), farbe: FARBEN.gefahr },
+        {
+          wert: Math.max(
+            vergleich.gutZuerst.endwert - vergleich.schlechtZuerst.endwert,
+            0
+          ),
+          farbe: FARBEN.marke,
+        },
+      ],
+      wertText: formatCurrencyRounded(vergleich.gutZuerst.endwert),
+      hinweis: `mind. ${formatCurrencyRounded(vergleich.schlechtZuerst.endwert)}`,
+    }
+  })
+
+  const vier = entnahmeraten.indexOf(4 as (typeof entnahmeraten)[number])
+  const beiVier = reihenfolgevergleich(
+    sequenzStartkapital,
+    sequenzRenditen,
+    (sequenzStartkapital * 4) / 100
+  )
+
+  return (
+    <SaeulenDiagramm
+      id="portfolio-entnahme"
+      saeulen={saeulen}
+      einheit="Restkapital nach den Jahren, in Euro"
+      legende={[
+        { farbe: FARBEN.gefahr, text: 'schlechte Jahre zuerst' },
+        { farbe: FARBEN.marke, text: 'zusätzlich, wenn die guten zuerst kamen' },
+      ]}
+      hoehe={300}
+      beschreibung={
+        `Vier Entnahmeraten auf ${formatCurrencyRounded(sequenzStartkapital)} über ` +
+        `${sequenzRenditen.length} Jahre, gerechnet gegen dieselbe Renditereihe – einmal mit den schlechten ` +
+        `Jahren zuerst, einmal mit den guten. Der untere Teil jeder Säule ist das, was in beiden Fällen ` +
+        `sicher übrig bleibt; der obere ist der Unterschied, den allein die Reihenfolge ausmacht. ` +
+        (vier >= 0
+          ? `Bei der verbreiteten Vier-Prozent-Regel stehen am Ende zwischen ` +
+            `${formatCurrencyRounded(beiVier.schlechtZuerst.endwert)} und ` +
+            `${formatCurrencyRounded(beiVier.gutZuerst.endwert)}. `
+          : '') +
+        `Je höher die Rate, desto größer wird der obere Teil im Verhältnis – die Regel wird also nicht nur ` +
+        `knapper, sondern auch unsicherer. Eine Entnahmerate ist deshalb keine Zahl, sondern eine Zahl mit ` +
+        `einer Spanne.`
+      }
+    />
+  )
+}
+
+// -------------------------------------------------- Gold und die Haltefrist
+
+export function RohstoffeGoldSteuer() {
+  const saeulen = goldWertsteigerungen.map((zuwachs) => {
+    const gewinn = (goldEinsatz * zuwachs) / 100
+    const steuer = gewinn * (effektiverSteuersatz / 100)
+    return {
+      label: `+ ${formatPercent(zuwachs, 0)}`,
+      teile: [
+        { wert: gewinn - steuer, farbe: FARBEN.marke },
+        { wert: steuer, farbe: FARBEN.gefahr },
+      ],
+      wertText: formatCurrencyRounded(gewinn),
+      hinweis: `${formatCurrencyRounded(steuer)} Unterschied`,
+    }
+  })
+
+  return (
+    <SaeulenDiagramm
+      id="rohstoffe-gold-steuer"
+      saeulen={saeulen}
+      einheit="Gewinn in Euro"
+      legende={[
+        { farbe: FARBEN.marke, text: 'bleibt in jedem Fall' },
+        { farbe: FARBEN.gefahr, text: 'nur bei Wertpapieren fällig' },
+      ]}
+      hoehe={290}
+      beschreibung={
+        `${formatCurrencyRounded(goldEinsatz)} Einsatz, drei Wertsteigerungen. Bei physischem Gold ist der ` +
+        `Gewinn nach einem Jahr Haltedauer in Deutschland steuerfrei; bei einem Wertpapier auf denselben ` +
+        `Goldpreis fallen ${formatPercent(effektiverSteuersatz, 2)} an, gleich wie lange gehalten wurde. ` +
+        saeulen
+          .map((s, index) =>
+            index === 0
+              ? `Bei ${formatPercent(goldWertsteigerungen[index], 0)} Wertsteigerung sind das ${s.hinweis}`
+              : `bei ${formatPercent(goldWertsteigerungen[index], 0)} ${s.hinweis}`
+          )
+          .join(', ') +
+        `. Der Unterschied ist kein Detail, sondern bei gleicher Bruttorendite gut ein Viertel des Gewinns. ` +
+        `Dem stehen Kosten gegenüber, die ein Wertpapier nicht hat: Aufschlag beim Kauf, Abschlag beim ` +
+        `Verkauf, Verwahrung. Der Rechtsstand kann sich ändern.`
       }
     />
   )

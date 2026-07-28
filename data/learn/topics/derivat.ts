@@ -406,6 +406,10 @@ export const derivat: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'derivat-pfadabhaengigkeit',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Die drei Retail-Hebelprodukte im Vergleich',

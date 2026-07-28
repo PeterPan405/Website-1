@@ -411,6 +411,10 @@ export const portfolioAufbau: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'portfolio-entnahme',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Was du dir merken solltest',
