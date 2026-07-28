@@ -1,6 +1,12 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { calculateBudget, calculateCompoundInterest } from '@/lib/finance'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
+import {
+  hebelAusgang as AUSGANG,
+  hebelMehrRate as MEHR_RATE,
+  hebelMehrRendite as MEHR_RENDITE,
+  hebelZeitraeume as ZEITRAEUME,
+} from '@/lib/lernszenarien'
 
 /*
   Beide Rechnungen dieses Themas laufen über die Funktionen der Website.
@@ -30,10 +36,6 @@ const haushalt = calculateBudget(EINNAHMEN, AUSGABEN)
   Rendite? Die Antwort hängt am Zeitraum, und genau das wird oft unterschlagen.
   Deshalb wird der Wechselpunkt hier gesucht statt behauptet.
 */
-const AUSGANG = { rate: 300, rendite: 6 }
-const MEHR_RATE = 50
-const MEHR_RENDITE = 1
-const ZEITRAEUME = [10, 20, 30, 40]
 
 function endkapital(rate: number, rendite: number, jahre: number): number {
   return calculateCompoundInterest({
@@ -205,10 +207,6 @@ export const budgetUndSparquote: LearnTopic = {
             '**Zuerst sparen, nicht zuletzt.** Ein Dauerauftrag am Tag nach dem Geldeingang. Was nicht auf dem Girokonto liegt, wird nicht ausgegeben; was am Monatsende übrig bleiben soll, bleibt es selten.',
             '**Notgroschen vor Anlage.** Drei bis sechs Monatsausgaben auf dem Tagesgeldkonto. Er verdient wenig und soll das auch – seine Aufgabe ist, im Ernstfall da zu sein.',
           ],
-        },
-        {
-          type: 'figure',
-          figure: 'budget-hebel',
         },
         {
           type: 'heading',
@@ -383,6 +381,10 @@ export const budgetUndSparquote: LearnTopic = {
         {
           type: 'paragraph',
           text: `Nach zehn Jahren bringt die höhere Sparrate ungefähr das Dreifache des Renditehebels. Nach vierzig Jahren ist es umgekehrt. Der Wechsel liegt bei etwa **${wechseljahr} Jahren** – ab dann wiegt der eine Prozentpunkt schwerer als die ${formatCurrencyRounded(MEHR_RATE)}.`,
+        },
+        {
+          type: 'figure',
+          figure: 'budget-hebel',
         },
         {
           type: 'callout',

@@ -242,6 +242,33 @@ export const portfolioRenditeSicher = 2
 /** Über wie viele Jahre die Verschiebung gezeigt wird. */
 export const portfolioJahre = 10
 
+// ------------------------------------------------------- Sequenzrisiko
+
+/**
+ * Ein Ruhestandsdepot, an dem die Reihenfolge der Renditejahre gezeigt wird.
+ *
+ * Eine halbe Million, zweitausend Euro Entnahme im Monat, zwölf Jahre. Die
+ * Entnahmequote liegt damit bei knapp fünf Prozent des Startkapitals – hoch
+ * genug, dass die Reihenfolge sichtbar wird, und niedrig genug, dass das Depot
+ * in keiner der beiden Reihenfolgen leerläuft. Liefe es leer, verschöbe sich
+ * die Aussage von „unterschiedlich viel übrig“ zu „einmal reicht es nicht“ –
+ * auch wahr, aber ein anderer Satz.
+ */
+export const sequenzStartkapital = 500_000
+
+/** Entnahme im Jahr, gleichbleibend. */
+export const sequenzEntnahme = 24_000
+
+/**
+ * Zwölf Jahresrenditen in Prozent.
+ *
+ * Konstruiert, nicht gemessen: drei schlechte Jahre, ein mittleres Feld, drei
+ * gute. Die Streuung entspricht der Größenordnung, die ein Aktiendepot über
+ * zwölf Jahre erlebt; die Reihenfolge wird in der Grafik ohnehin beide Male
+ * umsortiert, sodass hier nur die Menge der Werte zählt.
+ */
+export const sequenzRenditen = [-30, -15, -5, 3, 5, 7, 8, 10, 12, 15, 18, 25] as const
+
 // -------------------------------------------------------------- Steuer
 
 /**

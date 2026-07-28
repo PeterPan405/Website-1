@@ -200,20 +200,41 @@ const MINDESTTERMINE = 5
  * Häuser, deren Zahlen die Berichtssaison eröffnen, fehlten deshalb im
  * Kalender.
  *
- * Nachgeladen wird nur, wenn der junge Block nicht reicht, und nur so lange,
- * bis genug zusammen ist. Bei den meisten Unternehmen entsteht dadurch keine
- * einzige zusätzliche Anfrage.
+ * Nachgeladen wird nur, wenn der junge Block nicht reicht. Bei den meisten
+ * Unternehmen entsteht dadurch keine einzige zusätzliche Anfrage.
+ *
+ * ## Warum die Blöcke nach ihrem Zeitraum ausgewählt werden
+ *
+ * Sie stehen in der Datei aufsteigend nach Alter – `-001` enthält die
+ * ältesten Einreichungen. Wer sie der Reihe nach nachlädt und aufhört, sobald
+ * fünf Termine zusammen sind, bekommt bei JPMorgan Meldungen aus den
+ * Neunzigerjahren und keine aus dem Vorjahr. Genau das ist im ersten Lauf
+ * passiert: Die Bank tauchte danach zwar im Kalender auf, aber mit einem
+ * einzigen Termin statt vier, weil zu jedem der jüngeren Quartale der
+ * Vorjahrespartner fehlte.
+ *
+ * Ausgewählt wird deshalb über `filingTo`, den jüngsten Tag im Block, und in
+ * absteigender Reihenfolge – also von der Gegenwart rückwärts. Fehlt das Feld,
+ * bleibt es bei der Reihenfolge der Datei; dann ist wenigstens etwas besser
+ * als nichts.
  */
 async function termineVon(cik: number): Promise<{ name: string; termine: string[] }> {
   const kennung = String(cik).padStart(10, '0')
   const daten = (await hole(`${SUBMISSIONS_BASIS}/CIK${kennung}.json`)) as {
     name?: string
-    filings?: { recent?: Einreichungen; files?: { name?: string }[] }
+    filings?: {
+      recent?: Einreichungen
+      files?: { name?: string; filingFrom?: string; filingTo?: string }[]
+    }
   }
 
   const termine = ergebnismeldungen(daten.filings?.recent)
 
-  for (const block of daten.filings?.files ?? []) {
+  const bloecke = [...(daten.filings?.files ?? [])].sort((a, b) =>
+    (b.filingTo ?? '').localeCompare(a.filingTo ?? '')
+  )
+
+  for (const block of bloecke) {
     if (termine.length >= MINDESTTERMINE) break
     if (!block.name) continue
 
@@ -368,16 +389,29 @@ async function main(): Promise<void> {
   }
 
   const gesucht: { katalog: string; cik: number }[] = []
+  const nichtRegistriert: string[] = []
   for (const kuerzel of gefuehrt) {
     const secKuerzel = KUERZELBRUECKE[kuerzel] ?? kuerzel
     const cik = cikJeKuerzel.get(secKuerzel)
     if (cik !== undefined) gesucht.push({ katalog: kuerzel, cik })
+    else nichtRegistriert.push(kuerzel)
   }
   console.log(`${gesucht.length} davon sind bei der SEC registriert.`)
 
   // ------------------------------------------------------------- abrufen
   const unternehmen: Record<string, Eintrag> = {}
-  let ohneMuster = 0
+
+  /*
+    Wer herausfällt, wird namentlich festgehalten.
+
+    Vorher wurden die Ausfälle nur gezählt. Eine Zahl beantwortet aber nicht
+    die einzige Frage, die zählt: Fehlt hier ein Unternehmen, das eigentlich
+    drin sein müsste? Die Liste macht aus einer Vermutung eine Prüfung – und
+    hat auf Anhieb gezeigt, dass ExxonMobil und Goldman Sachs nicht an der
+    Quelle scheitern, sondern am Muster.
+  */
+  const ohneMuster: string[] = []
+  const gescheitert: string[] = []
 
   for (const [index, { katalog, cik }] of gesucht.entries()) {
     try {
@@ -385,7 +419,7 @@ async function main(): Promise<void> {
       const abgeleitet = vorhersagen(termine, heute)
 
       if (abgeleitet.length === 0) {
-        ohneMuster++
+        ohneMuster.push(`${katalog} (${termine.length} Meldungen)`)
       } else {
         unternehmen[katalog] = {
           name,
@@ -394,6 +428,7 @@ async function main(): Promise<void> {
         }
       }
     } catch (fehler) {
+      gescheitert.push(katalog)
       console.warn(`  ${katalog}: ${(fehler as Error).message}`)
     }
 
@@ -420,14 +455,29 @@ async function main(): Promise<void> {
     (summe, e) => summe + e.vorhersagen.length,
     0
   )
+  const jeUnternehmen = Object.values(unternehmen).map((e) => e.vorhersagen.length)
+  const vollstaendig = jeUnternehmen.filter((n) => n >= VORHERSAGEN).length
+
   console.log(
     `\n${Object.keys(unternehmen).length} Unternehmen mit erkennbarem Muster, ` +
       `${anzahlTermine} erwartete Termine.`
   )
   console.log(
-    `${ohneMuster} ohne verwertbares Muster (zu wenige oder unregelmäßige 8-K).`
+    `  davon ${vollstaendig} mit allen ${VORHERSAGEN} Quartalen, ` +
+      `${jeUnternehmen.length - vollstaendig} mit weniger.`
   )
-  console.log(`Geschrieben nach ${ZIEL}.`)
+  console.log(`\n${ohneMuster.length} ohne verwertbares Muster:`)
+  console.log(`  ${ohneMuster.join(', ') || '–'}`)
+  if (gescheitert.length > 0) {
+    console.log(
+      `\n${gescheitert.length} beim Abruf gescheitert: ${gescheitert.join(', ')}`
+    )
+  }
+  console.log(
+    `\n${nichtRegistriert.length} Kürzel sind bei der SEC nicht registriert – ` +
+      `Aktien, die nur an ihrer Heimatbörse notieren. Für sie gibt es diese Quelle nicht.`
+  )
+  console.log(`\nGeschrieben nach ${ZIEL}.`)
 }
 
 main().catch((fehler) => {
