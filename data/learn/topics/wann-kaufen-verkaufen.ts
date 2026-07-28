@@ -2,7 +2,9 @@ import type { LearnTopic } from '@/data/learn/types'
 import { formatDate, formatPercent } from '@/lib/format'
 import {
   timingAuslassungen as AUSLASSUNGEN,
+  timingGewinnJeTreffer as GEWINN_JE_TREFFER,
   timingIndex as INDEX,
+  timingKostenJeRunde as KOSTEN_JE_RUNDE,
 } from '@/lib/lernszenarien'
 import { getLiveSeries } from '@/lib/market-live'
 import {
@@ -55,8 +57,6 @@ const vonBis =
   angesetzt – und schon damit liegt die nötige Trefferquote deutlich über
   der Hälfte.
 */
-const GEWINN_JE_TREFFER = 5
-const KOSTEN_JE_RUNDE = [0, 0.5, 1, 2]
 const schwellen = KOSTEN_JE_RUNDE.map((kosten) => ({
   kosten,
   quote: noetigeTrefferquote(GEWINN_JE_TREFFER, kosten),
@@ -365,6 +365,10 @@ export const wannKaufenVerkaufen: LearnTopic = {
             'Die Schwelle gilt **je Runde**. Wer zwölfmal im Jahr entscheidet, muss diese Trefferquote zwölfmal erreichen – nicht einmal.',
             'Das Modell ist grob. Sein Zweck ist zu zeigen, dass die Diskussion über Prognosefähigkeit erst danach beginnt: Selbst wer den Markt besser einschätzt als der Durchschnitt, verdient daran nichts, wenn der Vorsprung kleiner ist als die Reibung.',
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'timing-trefferquote',
         },
         {
           type: 'heading',

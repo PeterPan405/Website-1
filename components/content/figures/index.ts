@@ -39,9 +39,11 @@ import {
   InflationSteuer,
   OptionSensitivitaeten,
   PortfolioEntnahme,
+  RenteRentenbeginn,
   RisikoSequenz,
   RohstoffeGoldSteuer,
   StreuungTitelzahl,
+  TimingTrefferquote,
   ZinseszinsSteuerstundung,
 } from '@/components/content/figures/profi'
 import { RenteLuecke } from '@/components/content/figures/rente'
@@ -132,4 +134,6 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'streuung-titelzahl': StreuungTitelzahl,
   'portfolio-entnahme': PortfolioEntnahme,
   'rohstoffe-gold-steuer': RohstoffeGoldSteuer,
+  'rente-rentenbeginn': RenteRentenbeginn,
+  'timing-trefferquote': TimingTrefferquote,
 }

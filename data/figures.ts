@@ -137,6 +137,10 @@ export type FigureId =
   | 'portfolio-entnahme'
   /** Steuerfreies Gold gegen ein Wertpapier auf denselben Preis. */
   | 'rohstoffe-gold-steuer'
+  /** Die Rente je nach Zeitpunkt des Beginns. */
+  | 'rente-rentenbeginn'
+  /** Wie oft eine Timing-Strategie richtig liegen müsste. */
+  | 'timing-trefferquote'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -443,5 +447,15 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Physisches Gold und die Haltefrist',
     caption:
       'Bei gleicher Bruttorendite trennt die Steuer gut ein Viertel des Gewinns. Dem stehen Kosten gegenüber, die ein Wertpapier nicht hat.',
+  },
+  'rente-rentenbeginn': {
+    title: 'Rentenbeginn und was er dauerhaft ausmacht',
+    caption:
+      'Der Abschlag endet nicht mit dem Regelalter. Er gilt lebenslang – und wirkt auch auf spätere Rentenerhöhungen und auf die Hinterbliebenenrente.',
+  },
+  'timing-trefferquote': {
+    title: 'Wie oft es sitzen müsste',
+    caption:
+      'Ohne Kosten genügt die Hälfte, also der Münzwurf. Jeder Prozentpunkt an Kosten hebt die Schwelle darüber – und das ist erst die Frage nach dem Aufwand, nicht die nach der Prognosefähigkeit.',
   },
 }

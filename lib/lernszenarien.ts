@@ -458,6 +458,18 @@ export const streuungTitelzahlen = [1, 2, 5, 10, 20, 30, 50, 100, 250] as const
 // -------------------------------------------------------------- Markttiming
 
 /**
+ * Gewinn je richtiger Entscheidung, in Prozent.
+ *
+ * Wohlwollend angesetzt: Fünf Prozent je Treffer ist mehr, als die meisten
+ * Timing-Ansätze für sich beanspruchen. Der Punkt der Rechnung ist, dass
+ * selbst dann die nötige Trefferquote deutlich über der Hälfte liegt.
+ */
+export const timingGewinnJeTreffer = 5
+
+/** Kosten je Runde aus Spread, Gebühren und Steuer auf realisierte Gewinne. */
+export const timingKostenJeRunde = [0, 0.5, 1, 2] as const
+
+/**
  * Der Index, an dem das Auslassen der besten Wochen gerechnet wird.
  *
  * Der DAX und nicht ein Weltindex: Für ihn liegen auf dieser Website echte
@@ -483,6 +495,21 @@ export const rentenBeispiel = {
   yearsWorked: 15,
   yearsRemaining: 25,
 } as const
+
+/**
+ * Abschlag je Monat vorgezogenem Rentenbeginn, in Prozent.
+ *
+ * Gesetzlich festgelegt und dauerhaft: Der Abschlag gilt nicht bis zur
+ * Regelaltersgrenze, sondern lebenslang – und wirkt auch auf spätere
+ * Rentenerhöhungen und auf die Hinterbliebenenrente.
+ */
+export const renteAbschlagJeMonat = 0.3
+
+/** Zuschlag je Monat Aufschub über die Regelaltersgrenze hinaus, in Prozent. */
+export const renteZuschlagJeMonat = 0.5
+
+/** Verschiebungen des Rentenbeginns in Jahren, um die es praktisch geht. */
+export const renteVerschiebungen = [-3, -2, -1, 0, 1, 2, 3] as const
 
 /** Bruttoeinkommen für den Vergleich, wie viele Punkte sie im Jahr bringen. */
 export const rentenEinkommen = [30_000, 45_000, 50_500, 70_000, 100_000] as const

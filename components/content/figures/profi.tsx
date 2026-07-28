@@ -6,6 +6,7 @@ import {
   type Reihe,
 } from '@/components/content/figures/Diagramme'
 import { zinsschock } from '@/lib/anleihen'
+import { calculatePension } from '@/lib/finance'
 import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
 import { inflationsbeispiel } from '@/lib/inflations-beispiele'
 import {
@@ -22,6 +23,10 @@ import {
   hebelAnstieg,
   hebelFaktoren,
   optionBasis,
+  renteAbschlagJeMonat,
+  rentenBeispiel,
+  renteVerschiebungen,
+  renteZuschlagJeMonat,
   sparfall,
   streuungEinzelvolatilitaet,
   streuungKorrelation,
@@ -29,8 +34,11 @@ import {
   sequenzEntnahme,
   sequenzRenditen,
   sequenzStartkapital,
+  timingGewinnJeTreffer,
+  timingKostenJeRunde,
 } from '@/lib/lernszenarien'
 import { sensitivitaeten } from '@/lib/optionen'
+import { noetigeTrefferquote } from '@/lib/timing'
 import { reihenfolgevergleich } from '@/lib/sequenzrisiko'
 
 /**
@@ -671,6 +679,125 @@ export function RohstoffeGoldSteuer() {
         `. Der Unterschied ist kein Detail, sondern bei gleicher Bruttorendite gut ein Viertel des Gewinns. ` +
         `Dem stehen Kosten gegenüber, die ein Wertpapier nicht hat: Aufschlag beim Kauf, Abschlag beim ` +
         `Verkauf, Verwahrung. Der Rechtsstand kann sich ändern.`
+      }
+    />
+  )
+}
+
+// ------------------------------------------------ Was ein früherer Beginn kostet
+
+/**
+ * Die Rente je nach Beginn, dauerhaft.
+ *
+ * Der Abschlag ist die folgenreichste Einzelentscheidung des Themas, weil
+ * seine Wirkung nicht endet: Er gilt nicht bis zur Regelaltersgrenze, sondern
+ * lebenslang, und wirkt auch auf spätere Rentenerhöhungen und auf die
+ * Hinterbliebenenrente.
+ */
+export function RenteRentenbeginn() {
+  const rechnung = calculatePension({ ...rentenBeispiel })
+
+  const saeulen = renteVerschiebungen.map((jahre) => {
+    const monate = Math.abs(jahre) * 12
+    const faktor =
+      jahre < 0
+        ? 1 - (monate * renteAbschlagJeMonat) / 100
+        : 1 + (monate * renteZuschlagJeMonat) / 100
+    const betrag = rechnung.netStatutoryMonthly * faktor
+    return {
+      label: jahre === 0 ? 'Regelalter' : `${jahre > 0 ? '+' : '−'}${Math.abs(jahre)} J.`,
+      teile: [
+        {
+          wert: betrag,
+          farbe: jahre < 0 ? FARBEN.gefahr : jahre > 0 ? FARBEN.marke : FARBEN.akzent,
+        },
+      ],
+      wertText: formatCurrencyRounded(betrag),
+      hinweis:
+        jahre === 0
+          ? 'ohne Ab- oder Zuschlag'
+          : `${jahre > 0 ? '+' : '−'} ${formatPercent(Math.abs((faktor - 1) * 100), 1)}`,
+    }
+  })
+
+  const frueh = rechnung.netStatutoryMonthly * (1 - (36 * renteAbschlagJeMonat) / 100)
+  const spaet = rechnung.netStatutoryMonthly * (1 + (36 * renteZuschlagJeMonat) / 100)
+
+  return (
+    <SaeulenDiagramm
+      id="rente-rentenbeginn"
+      saeulen={saeulen}
+      einheit="Nettorente im Monat, in Euro"
+      hoehe={300}
+      beschreibung={
+        `Dieselbe erworbene Rente, sieben Zeitpunkte des Beginns. Je vorgezogenem Monat mindert sich die ` +
+        `Rente um ${formatPercent(renteAbschlagJeMonat, 1)}, je aufgeschobenem erhöht sie sich um ` +
+        `${formatPercent(renteZuschlagJeMonat, 1)}. Drei Jahre früher bedeuten ` +
+        `${formatCurrencyRounded(frueh)} im Monat statt ` +
+        `${formatCurrencyRounded(rechnung.netStatutoryMonthly)}, drei Jahre später ` +
+        `${formatCurrencyRounded(spaet)}. Zwischen dem frühesten und dem spätesten Zeitpunkt liegen damit ` +
+        `${formatCurrencyRounded(spaet - frueh)} im Monat – und zwar dauerhaft, nicht bis zum Regelalter. ` +
+        `Der Aufschub bringt zusätzlich weiter erworbene Punkte, wenn man weiterarbeitet; die sind hier ` +
+        `nicht eingerechnet.`
+      }
+    />
+  )
+}
+
+// ------------------------------------------- Wie oft man richtig liegen müsste
+
+export function TimingTrefferquote() {
+  const stufen: { kosten: number; quote: number | null }[] = timingKostenJeRunde.map(
+    (kosten) => ({
+      kosten,
+      quote: noetigeTrefferquote(timingGewinnJeTreffer, kosten),
+    })
+  )
+
+  /*
+    Fälle ohne Lösung fallen heraus, statt als Null zu erscheinen.
+
+    Übersteigen die Kosten den Gewinn je Treffer, gibt es keine Trefferquote,
+    die das ausgleicht – `noetigeTrefferquote` gibt dann `null` zurück. Ein
+    Balken der Länge null an dieser Stelle sähe aus wie „keine Anforderung“
+    und wäre damit das genaue Gegenteil der Wahrheit.
+  */
+  const balken = stufen
+    .filter((s): s is { kosten: number; quote: number } => s.quote !== null)
+    .map((s) => ({
+      label: s.kosten === 0 ? 'ohne Kosten' : `${formatPercent(s.kosten, 1)} je Runde`,
+      kostenText: s.kosten === 0 ? null : formatPercent(s.kosten, 1),
+      wert: s.quote,
+      wertText: `${formatPercent(s.quote, 1)} müssen sitzen`,
+      anteil: formatPercent(s.quote, 1),
+      farbe: s.quote >= 60 ? FARBEN.gefahr : s.quote > 50 ? FARBEN.warnung : FARBEN.marke,
+    }))
+
+  return (
+    <BalkenDiagramm
+      id="timing-trefferquote"
+      balken={balken}
+      labelBreite={128}
+      beschreibung={
+        `Wie oft eine Timing-Strategie richtig liegen müsste, um überhaupt bei null herauszukommen – bei ` +
+        `${formatPercent(timingGewinnJeTreffer, 0)} Gewinn je richtiger Entscheidung. ` +
+        /*
+          Die Beschriftung wird für den Satz neu gebaut, nicht zerschnitten.
+
+          Ein früherer Versuch setzte den ersten Buchstaben um und hängte den
+          Rest an – aus „0,5 % je Runde“ wurde dabei „b,5 % je Runde“. Wer
+          die Grafik nicht sehen kann, bekam genau diesen Satz vorgelesen.
+        */
+        balken
+          .map((b) =>
+            b.kostenText === null
+              ? `Ohne Kosten müssen ${b.anteil} der Entscheidungen sitzen`
+              : `bei ${b.kostenText} Kosten je Runde ${b.anteil}`
+          )
+          .join(', ') +
+        `. Ohne Kosten genügt die Hälfte – das ist der Münzwurf. Jeder Prozentpunkt an Spread, Gebühren ` +
+        `und Steuer auf realisierte Gewinne hebt die Schwelle darüber. Und das ist erst die Frage, ob sich ` +
+        `der Aufwand lohnt; die Frage, ob überhaupt jemand so oft richtig liegt, kommt danach.`
       }
     />
   )

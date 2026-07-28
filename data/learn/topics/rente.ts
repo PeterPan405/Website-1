@@ -347,6 +347,10 @@ export const rente: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'rente-rentenbeginn',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Die eigene Lücke ehrlich ermitteln',
