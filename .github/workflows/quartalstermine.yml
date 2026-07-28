@@ -1,0 +1,64 @@
+name: Quartalstermine aktualisieren
+
+# Leitet die Termine der Quartalszahlen aus dem bisherigen Meldemuster jedes
+# Unternehmens ab – aus den 8-K-Meldungen mit Punkt 2.02 bei der SEC.
+#
+# Zeitplan: wöchentlich, montags. Häufiger als bei den Fundamentaldaten, weil
+# hier nicht nur neue Zahlen einlaufen: Sobald ein Unternehmen tatsächlich
+# gemeldet hat, rückt die ganze Reihe eine Position weiter, und der bisher
+# erwartete Termin muss durch den nächsten ersetzt werden. Ein Kalender, der
+# einen Termin von letzter Woche als „erwartet“ führt, ist schlimmer als
+# einer ohne Angabe.
+#
+# Der Abruf dauert wegen der Schonfrist zwischen den Anfragen einige Minuten.
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: quartalstermine
+  cancel-in-progress: false
+
+jobs:
+  abrufen:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Quartalstermine abrufen
+        run: npm run quartalstermine
+
+      - name: Momentaufnahme committen
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Erst vormerken, dann vergleichen. `git diff` allein sieht eine noch
+          # nicht versionierte Datei nicht und meldet „keine Änderung“ – genau
+          # daran ist der erste erfolgreiche Lauf gescheitert.
+          git add data/snapshots/quartalstermine.json
+          if git diff --cached --quiet -- data/snapshots/quartalstermine.json; then
+            echo "Keine Änderung – kein Commit."
+            exit 0
+          fi
+
+          git commit -m "Quartalstermine: Stand $(date -u +%Y-%m-%d)"
+
+          zweig="${{ github.ref_name }}"
+          for versuch in 1 2 3; do
+            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
+            echo "Push fehlgeschlagen, Versuch $versuch"
+            sleep $((versuch * 5))
+          done
+          exit 1
