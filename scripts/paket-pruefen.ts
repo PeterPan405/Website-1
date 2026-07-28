@@ -105,6 +105,101 @@ function adresse(datei: string): string {
   return rel.replace(/index\.html$/, '').replace(/\.html$/, '')
 }
 
+/**
+ * Prüft die Lerngrafiken auf Geometrie, die aus dem Bild läuft.
+ *
+ * ## Warum das eine eigene Prüfung braucht
+ *
+ * SVG bricht nicht um und schiebt nichts zurecht: Ein `<text>`, dessen
+ * Grundlinie zwei Pixel unter dem unteren Rand liegt, wird abgeschnitten. Im
+ * Quelltext sieht das völlig unauffällig aus – eine Zahl unter einer anderen –,
+ * und beim Betrachten am großen Bildschirm fällt es ebenfalls nicht auf, weil
+ * dort nur der letzte Buchstabenrest fehlt.
+ *
+ * Genau das ist bei `staatsanleihe-laufzeiten` passiert: Die zweite Zeile des
+ * Fußtextes ragte zweieinhalb Pixel heraus. Gefunden hat es nicht das Auge,
+ * sondern diese Rechnung.
+ *
+ * ## Was geprüft wird
+ *
+ * - Jede Textgrundlinie muss samt Oberlänge und Unterlänge in die viewBox
+ *   passen.
+ * - Kein Rechteck darf eine negative Höhe oder Breite haben. Negative Maße
+ *   zeichnen nichts – eine Säule verschwindet dann stillschweigend, statt
+ *   falsch zu stehen.
+ * - In keinem Zahlenattribut darf `NaN` stehen. Eine fehlgeschlagene Rechnung
+ *   macht sonst aus einer Grafik ein leeres Feld.
+ *
+ * Die Breite von Text lässt sich hier nicht prüfen: Wie breit eine Zeile
+ * wirklich wird, weiß erst der Browser. Geprüft wird deshalb nur der
+ * Ankerpunkt.
+ *
+ * ## Warum je Grafik nur einmal gemeldet wird
+ *
+ * Dieselbe Grafik steht auf vielen Seiten. Ohne die Sammlung stünde ein
+ * einziger Fehler hundertfach in der Ausgabe und verdeckte alles andere.
+ */
+function grafikenPruefen(html: string, gemeldet: Set<string>): string[] {
+  const fehler: string[] = []
+
+  for (const treffer of html.matchAll(/<svg\b([^>]*)>([\s\S]*?)<\/svg>/g)) {
+    const kopf = treffer[1]
+    const inhalt = treffer[2]
+
+    // Nur die Lerngrafiken – Symbole im Seitengerüst tragen kein aria-labelledby.
+    const kennung = kopf.match(/aria-labelledby="([^"\s]+)-titel/)?.[1]
+    if (!kennung || gemeldet.has(kennung)) continue
+
+    const box = kopf.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/)
+    if (!box) continue
+    const breite = Number(box[1])
+    const hoehe = Number(box[2])
+
+    const melden = (text: string): void => {
+      fehler.push(`Grafik „${kennung}“: ${text}`)
+      gemeldet.add(kennung)
+    }
+
+    if (/(^|["\s])NaN|>NaN</.test(inhalt)) {
+      melden('enthält NaN – eine Rechnung darin ist fehlgeschlagen.')
+      continue
+    }
+
+    for (const text of inhalt.matchAll(/<text\b([^>]*)>/g)) {
+      const attribute = text[1]
+      const y = Number(attribute.match(/\by="(-?[\d.]+)"/)?.[1])
+      const x = Number(attribute.match(/\bx="(-?[\d.]+)"/)?.[1])
+      const groesse = Number(attribute.match(/font-size="([\d.]+)"/)?.[1] ?? 13)
+      if (!Number.isFinite(x) || !Number.isFinite(y)) continue
+
+      // Oberlänge über der Grundlinie, Unterlänge darunter – grob, aber in die
+      // sichere Richtung gerundet.
+      if (y - groesse < -0.5 || y + groesse * 0.22 > hoehe + 0.5) {
+        melden(
+          `Text bei y=${y} (Schriftgröße ${groesse}) passt nicht in die Höhe ${hoehe} – er wird abgeschnitten.`
+        )
+        break
+      }
+      if (x < -0.5 || x > breite + 0.5) {
+        melden(`Text bei x=${x} liegt außerhalb der Breite ${breite}.`)
+        break
+      }
+    }
+
+    for (const rechteck of inhalt.matchAll(/<rect\b([^>]*)>/g)) {
+      const attribute = rechteck[1]
+      const h = Number(attribute.match(/\bheight="(-?[\d.]+)"/)?.[1])
+      const b = Number(attribute.match(/\bwidth="(-?[\d.]+)"/)?.[1])
+      if (h < 0 || b < 0) {
+        melden(`Rechteck mit negativer Kantenlänge (${b} × ${h}) – es zeichnet nichts.`)
+        break
+      }
+    }
+  }
+
+  return fehler
+}
+
 /** Sichtbarer Text – Skripte und Stilblöcke zählen nicht als Inhalt. */
 function nurText(html: string): string {
   return html
@@ -142,6 +237,7 @@ function pruefen(): string[] {
   const erreichbar = new Set(seiten.map(adresse))
   const titel = new Map<string, string[]>()
   const beschreibungen = new Map<string, string[]>()
+  const grafikGemeldet = new Set<string>()
 
   for (const datei of seiten) {
     const pfad = adresse(datei)
@@ -240,6 +336,9 @@ function pruefen(): string[] {
     for (const { name, muster } of VERBOTENE_MUSTER) {
       if (muster.test(text)) fehler.push(`${pfad}: „${name}“ steht im sichtbaren Text`)
     }
+
+    // ----------------------------------------------------------- Lerngrafiken
+    fehler.push(...grafikenPruefen(html, grafikGemeldet))
   }
 
   for (const [wert, pfade] of titel) {

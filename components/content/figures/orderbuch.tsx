@@ -122,7 +122,7 @@ export function MarktOrderbuch() {
           width={SPALTE * 2 + 52}
           height={SPRUNG - 3}
           rx={3}
-          fill="var(--c-bg-subtle)"
+          fill="var(--c-surface-muted)"
         />
         <Beschriftung
           x={MITTE}

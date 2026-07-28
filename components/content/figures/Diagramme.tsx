@@ -41,7 +41,7 @@ export const FARBEN = {
   warnung: 'var(--c-warning)',
   ruhig: 'var(--c-fg-subtle)',
   raster: 'var(--c-border)',
-  flaeche: 'var(--c-bg-subtle)',
+  flaeche: 'var(--c-surface-muted)',
 } as const
 
 export type Farbe = string
@@ -505,7 +505,7 @@ export function AblaufKette({
               width={breite}
               height={kastenHoehe}
               rx={8}
-              fill="var(--c-bg-subtle)"
+              fill="var(--c-surface-muted)"
               stroke={farbe}
               strokeWidth={1.5}
             />
@@ -650,7 +650,7 @@ export function Feld({
         width={breite}
         height={hoehe}
         rx={8}
-        fill={gefuellt ? farbe : 'var(--c-bg-subtle)'}
+        fill={gefuellt ? farbe : 'var(--c-surface-muted)'}
         stroke={farbe}
         strokeWidth={1.5}
       />

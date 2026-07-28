@@ -306,7 +306,7 @@ export function EinlagensicherungKaskade() {
               width={breite}
               height={zeilenhoehe - 8}
               rx={6}
-              fill="var(--c-bg-subtle)"
+              fill="var(--c-surface-muted)"
               stroke={farbe}
               strokeWidth={letzte ? 2 : 1.25}
             />
@@ -320,7 +320,9 @@ export function EinlagensicherungKaskade() {
         )
       })}
 
-      <Beschriftung x={links} y={hoehe - 2} ton="leise" groesse={12}>
+      {/* Acht Pixel Luft, nicht zwei: Bei zwei lagen die Unterlängen von „zuletzt“
+          und „praktisch“ unter dem Rand und wurden abgeschnitten. */}
+      <Beschriftung x={links} y={hoehe - 8} ton="leise" groesse={12}>
         zuletzt – und praktisch nie
       </Beschriftung>
     </FigureSvg>

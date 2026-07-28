@@ -95,6 +95,10 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'aktie-spread',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Der Spread ist der Preis der Sofortigkeit',

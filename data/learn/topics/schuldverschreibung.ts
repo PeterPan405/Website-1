@@ -175,6 +175,10 @@ export const schuldverschreibung: LearnTopic = {
           text: 'Die letzte Zeile ist die wichtigste und wird am häufigsten missverstanden. „Vor den Aktionären“ heißt nicht „an erster Stelle“. Vor dir stehen Sicherheiten, Löhne, Steuern und oft besicherte Kredite. Was danach übrig ist, wird unter den einfachen Gläubigern verteilt.',
         },
         {
+          type: 'figure',
+          figure: 'anleihe-rangfolge',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Das entscheidende Risiko',

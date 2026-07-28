@@ -160,6 +160,10 @@ export const notenbankenGeldpolitik: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'notenbank-zinskorridor',
+        },
+        {
           type: 'paragraph',
           text: 'Ist in Meldungen von „dem Leitzins“ die Rede, ist im Euroraum meist der **Einlagesatz** gemeint. Er ist der Satz, an dem sich Banken orientieren, wenn sie überschüssige Liquidität haben – und genau deshalb bewegt sich dein Tagesgeldzins mit ihm und nicht mit den anderen beiden.',
         },

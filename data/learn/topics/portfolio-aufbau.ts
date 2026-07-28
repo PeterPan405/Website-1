@@ -1,7 +1,10 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatPercent } from '@/lib/format'
 import {
+  portfolioDepotwert,
   portfolioJahre,
+  portfolioMarktrueckgang,
+  portfolioQuoten,
   portfolioRenditeAktien,
   portfolioRenditeSicher,
   portfolioStart,
@@ -29,12 +32,14 @@ function aktienquoteNach(jahre: number): number {
   zu ihm passt, muss sehen, was sie im Ernstfall bedeutet. Als getippte Tabelle
   wäre sie beim ersten Umschreiben inkonsistent – ein geänderter Marktrückgang
   und fünf vergessene Zeilen.
+
+  Die Annahmen stehen in `lib/lernszenarien.ts`, weil die Grafik unter der
+  Tabelle dieselbe Rechnung zeichnet. Zwei Quellen für dieselben fünf Zeilen
+  wären genau der Fehler, den niemand bemerkt.
 */
-const MARKTRUECKGANG = 40
-const QUOTEN = [100, 80, 60, 40, 20]
-const rueckgangJeQuote = QUOTEN.map((quote) => ({
+const rueckgangJeQuote = portfolioQuoten.map((quote) => ({
   quote,
-  rueckgang: (quote / 100) * MARKTRUECKGANG,
+  rueckgang: (quote / 100) * portfolioMarktrueckgang,
 }))
 
 /**
@@ -101,17 +106,25 @@ export const portfolioAufbau: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: `Nimm an, der Aktienmarkt fällt um ${formatPercent(MARKTRUECKGANG, 0)} – ein Rückgang, wie er historisch mehrfach vorgekommen ist. Der risikoarme Teil bleibt dabei ungefähr, wo er ist. Was mit dem Gesamtvermögen geschieht, hängt allein an der Quote:`,
+          text: `Nimm an, der Aktienmarkt fällt um ${formatPercent(portfolioMarktrueckgang, 0)} – ein Rückgang, wie er historisch mehrfach vorgekommen ist. Der risikoarme Teil bleibt dabei ungefähr, wo er ist. Was mit dem Gesamtvermögen geschieht, hängt allein an der Quote:`,
         },
         {
           type: 'table',
-          caption: `Wertverlust des Gesamtdepots bei ${formatPercent(MARKTRUECKGANG, 0)} Marktrückgang`,
-          head: ['Aktienquote', 'Rückgang des Depots', 'Aus 100.000 Euro werden'],
+          caption: `Wertverlust des Gesamtdepots bei ${formatPercent(portfolioMarktrueckgang, 0)} Marktrückgang`,
+          head: [
+            'Aktienquote',
+            'Rückgang des Depots',
+            `Aus ${portfolioDepotwert.toLocaleString('de-DE')} Euro werden`,
+          ],
           rows: rueckgangJeQuote.map((zeile) => [
             formatPercent(zeile.quote, 0),
             `− ${formatPercent(zeile.rueckgang, 0)}`,
-            `${(100_000 * (1 - zeile.rueckgang / 100)).toLocaleString('de-DE')} €`,
+            `${(portfolioDepotwert * (1 - zeile.rueckgang / 100)).toLocaleString('de-DE')} €`,
           ]),
+        },
+        {
+          type: 'figure',
+          figure: 'portfolio-quote-rueckgang',
         },
         {
           type: 'paragraph',

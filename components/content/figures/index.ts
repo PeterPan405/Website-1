@@ -32,8 +32,12 @@ import {
   TagesgeldAktionszins,
 } from '@/components/content/figures/fortgeschritten'
 import {
+  AnleiheRangfolge,
+  BlockchainKette,
   BudgetHaushalt,
   DepotUndKonto,
+  NotenbankZinskorridor,
+  PortfolioQuoteRueckgang,
   StaatsanleiheLaufzeiten,
 } from '@/components/content/figures/grundlagen'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
@@ -160,4 +164,8 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'budget-haushalt': BudgetHaushalt,
   'depot-und-konto': DepotUndKonto,
   'staatsanleihe-laufzeiten': StaatsanleiheLaufzeiten,
+  'blockchain-kette': BlockchainKette,
+  'notenbank-zinskorridor': NotenbankZinskorridor,
+  'anleihe-rangfolge': AnleiheRangfolge,
+  'portfolio-quote-rueckgang': PortfolioQuoteRueckgang,
 }

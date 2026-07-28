@@ -311,6 +311,24 @@ export const portfolioRenditeSicher = 2
 /** Über wie viele Jahre die Verschiebung gezeigt wird. */
 export const portfolioJahre = 10
 
+// --------------------------------------------- Was die Aktienquote bedeutet
+
+/**
+ * Der angenommene Marktrückgang, an dem die Aktienquote messbar wird.
+ *
+ * Vierzig Prozent sind kein Extremwert, sondern die Größenordnung, die der
+ * breite Aktienmarkt mehrfach erreicht hat – zuletzt 2008 und 2020. Als
+ * Rechengröße taugt sie deshalb besser als eine kleinere: Wer eine Quote nach
+ * einem Zehn-Prozent-Rückgang wählt, hat die Frage nicht beantwortet.
+ */
+export const portfolioMarktrueckgang = 40
+
+/** Die Aktienquoten, für die der Rückgang durchgerechnet wird, in Prozent. */
+export const portfolioQuoten = [100, 80, 60, 40, 20] as const
+
+/** Das Depot, an dem der Rückgang in Euro sichtbar gemacht wird. */
+export const portfolioDepotwert = 100_000
+
 // -------------------------------------------------------- Entnahmerate
 
 /**

@@ -161,6 +161,14 @@ export type FigureId =
   | 'depot-und-konto'
   /** Die Bundeswertpapiere nach ihrer Laufzeit bei Ausgabe. */
   | 'staatsanleihe-laufzeiten'
+  /** Warum eine geänderte alte Buchung die ganze Kette ungültig macht. */
+  | 'blockchain-kette'
+  /** Die drei Leitzinsen der EZB als Korridor. */
+  | 'notenbank-zinskorridor'
+  /** Wer in der Insolvenz in welcher Reihenfolge bedient wird. */
+  | 'anleihe-rangfolge'
+  /** Was vom Depot bleibt, je nach Aktienquote. */
+  | 'portfolio-quote-rueckgang'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -529,5 +537,31 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Bundeswertpapiere nach Laufzeit',
     caption:
       'Die Namen sagen nichts über die Sicherheit – dahinter steht überall derselbe Schuldner. Sie sagen etwas darüber, wie stark der Kurs auf Zinsänderungen reagiert.',
+  },
+  'blockchain-kette': {
+    title: 'Warum sich eine alte Buchung nicht ändern lässt',
+    description:
+      'Zwei Ketten aus je drei Blöcken untereinander. Jeder Block trägt zwei Felder: die Prüfsumme, die er von seinem Vorgänger übernommen hat, und die Prüfsumme über seinen eigenen Inhalt. Oben die unveränderte Kette – die übernommene Prüfsumme stimmt jeweils mit der des Vorgängers überein, die Glieder passen zusammen. Unten dieselbe Kette, nachdem jemand eine Buchung im ersten Block geändert hat. Mit dem Inhalt ändert sich dessen Prüfsumme, aus A wird A′. Block 2 trägt aber weiterhin A, und damit ist die erste Verbindung gebrochen. Sie ist die einzige: Block 2 und 3 sind unverändert und passen weiter zueinander – gerade darin liegt der Aufwand für den Fälscher. Um den Bruch zu schließen, muss er Block 2 neu bilden, wodurch sich dessen Prüfsumme ändert und die nächste Verbindung bricht, dann Block 3, und so fort bis zum Ende der Kette. Und das gegen alle anderen Teilnehmer, die die richtige Kette haben. Nicht Verschlüsselung schützt hier, sondern die Verkettung.',
+    caption:
+      'Nicht ein einzelner Block ist geschützt, sondern die Reihenfolge. Eine geänderte Buchung macht alles danach ungültig – und zwar sichtbar.',
+  },
+  'notenbank-zinskorridor': {
+    title: 'Die drei Leitzinsen als Korridor',
+    description:
+      'Die drei Leitzinsen der EZB übereinander als Korridor. Ganz oben der Spitzenrefinanzierungssatz: der Notfallkredit über Nacht und damit die Obergrenze – wer ihn zahlt, hat keine günstigere Quelle mehr. In der Mitte der Hauptrefinanzierungssatz, zu dem sich Banken wöchentlich Geld leihen. Ganz unten der Einlagesatz: was Banken bekommen, wenn sie Geld über Nacht bei der EZB parken. Er ist die Untergrenze, denn niemand verleiht Geld für weniger, als die Notenbank ohne jedes Risiko zahlt. Zwischen diesen beiden Linien bewegt sich der Geldmarktzins, und er liegt dicht über der unteren – deshalb hängt an ihr auch das Tagesgeld. Ist in Meldungen von „dem Leitzins“ die Rede, ist im Euroraum meist dieser untere Satz gemeint. Die Abstände sind nicht maßstäblich; sie ändern sich mit jedem Beschluss. Fest steht nur die Reihenfolge.',
+    caption:
+      'Von den drei Sätzen ist der unterste der wichtigste: Er ist die Untergrenze des Geldmarkts – und damit die Grenze, an der dein Tagesgeldzins hängt.',
+  },
+  'anleihe-rangfolge': {
+    title: 'Wer in der Insolvenz zuerst bedient wird',
+    description:
+      'Fünf Stufen untereinander, von oben nach unten in der Reihenfolge der Bedienung. Erstens die Sicherheiten: Wer eine Sache als Pfand hat – eine Maschine, eine Immobilie –, verwertet sie und ist damit außen vor. Zweitens die Kosten des Verfahrens, Löhne und laufende Verbindlichkeiten. Drittens die einfachen Gläubiger; hier steht eine gewöhnliche Schuldverschreibung, und hier wird verteilt, was übrig ist. Viertens die nachrangigen Gläubiger, die erst an der Reihe sind, wenn die dritte Stufe vollständig bedient wurde – was selten vorkommt. Fünftens die Aktionäre, denen zusteht, was danach bleibt: meist nichts. Die Stufen werden nach unten schmaler, weil auf jeder weniger ankommt. „Vor den Aktionären“ heißt deshalb nicht „an erster Stelle“ – es heißt nur: nicht ganz zuletzt.',
+    caption:
+      'Vor dem Anleihegläubiger stehen zwei Stufen, hinter ihm zwei. Das ist der ganze Unterschied zur Aktie – und er ist kleiner, als „vorrangig“ klingt.',
+  },
+  'portfolio-quote-rueckgang': {
+    title: 'Was die Aktienquote im Ernstfall bedeutet',
+    caption:
+      'Fünf Depots mit demselben Startwert. Was sie unterscheidet, ist keine Produktwahl, sondern eine einzige Zahl – und im Rückgang entscheidet sie alles.',
   },
 }

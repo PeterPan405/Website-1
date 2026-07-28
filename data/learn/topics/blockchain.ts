@@ -86,6 +86,10 @@ export const blockchain: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'blockchain-kette',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Warum sich nichts nachträglich ändern lässt',
