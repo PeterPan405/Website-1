@@ -339,6 +339,10 @@ export const kostenUndGebuehren: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'kosten-bestandsprovision',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Erfolgsabhängige Vergütung – auf die Bedingungen kommt es an',

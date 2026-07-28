@@ -201,6 +201,24 @@ export type FigureId =
   | 'einsteiger-pruefung'
   /** Täglicher Kurs gegen periodische Bewertung. */
   | 'fonds-bewertungsglaettung'
+  /** Der Barwert derselben Zahlungsreihe über dem Kapitalkostensatz. */
+  | 'aktie-barwert'
+  /** Welche Bruttorendite eine Anlage braucht, um eine Tilgung zu schlagen. */
+  | 'kredit-tilgen-oder-anlegen'
+  /** Dieselbe Schuldenquote bei vier Zins-Wachstums-Differenzen. */
+  | 'staatsschuld-dynamik'
+  /** Endkapital bei gleichbleibender und bei wachsender Sparrate. */
+  | 'sparplan-dynamisierung'
+  /** Die drei Stufen der Informationseffizienz als ineinanderliegende Mengen. */
+  | 'markt-effizienzstufen'
+  /** Wer eine kostenlose Order bezahlt. */
+  | 'broker-orderflow'
+  /** Was in einem synthetischen Fonds liegt und wo das Risiko sitzt. */
+  | 'etf-swap'
+  /** Wohin die laufende Verwaltungsvergütung fließt. */
+  | 'kosten-bestandsprovision'
+  /** Die beiden Verlustverrechnungstöpfe und die Wand dazwischen. */
+  | 'sparer-verlusttoepfe'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -669,6 +687,61 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Fünf Fragen an ein Produkt',
     caption:
       'Die Reihenfolge ist der eigentliche Rat: Die ersten beiden Fragen sortieren die meisten Produkte aus, und wer sie zuerst stellt, spart sich die übrigen drei.',
+  },
+  'aktie-barwert': {
+    title: 'Warum eine Bewertung keine Zahl ist',
+    caption:
+      'Die Kurve steigt zum unteren Ende nicht, sie läuft davon. Ein halber Prozentpunkt an einer Stelle, die niemand kennt, verschiebt den Wert zweistellig.',
+  },
+  'kredit-tilgen-oder-anlegen': {
+    title: 'Was die Anlage bringen müsste',
+    caption:
+      'Der ersparte Kreditzins ist steuerfrei, der Anlageertrag nicht. Wer beide Prozentzahlen nebeneinanderlegt, vergleicht netto mit brutto.',
+  },
+  'staatsschuld-dynamik': {
+    title: 'Nicht die Höhe, die Richtung',
+    caption:
+      'Vier Wege aus derselben Startquote, alle bei ausgeglichenem Haushalt. Was sie trennt, ist eine einzige Differenz – und über die stimmt niemand ab.',
+  },
+  'sparplan-dynamisierung': {
+    title: 'Wenn die Rate mitwächst',
+    caption:
+      'Der Unterschied entsteht nicht durch Rendite, sondern durch Einzahlung. Deshalb ist die Dynamisierung die einzige wirksame Stellschraube, die keine Prognose braucht.',
+  },
+  'broker-orderflow': {
+    title: 'Wer die kostenlose Order bezahlt',
+    description:
+      'Der Weg einer gebührenfreien Order und der Weg des Geldes zurück. Oben drei Kästen nebeneinander: Du erteilst eine Order und zahlst dafür keine Gebühr. Der Broker leitet sie an einen bestimmten Handelsplatz weiter. Der Handelsplatz führt sie aus. Darunter der Rückweg: Der Handelsplatz zahlt dem Broker eine Vergütung für die Weiterleitung – das ist Payment for Order Flow. Bezahlt wird diese Vergütung aus dem Spread, also aus dem Kurs, zu dem deine Order ausgeführt wird. Das Geld, das der Broker nicht von dir nimmt, kommt damit über einen Umweg doch von dir. Das ist kein Vorwurf, sondern ein Geschäftsmodell, und es ist nicht automatisch nachteilig: Bei kleinen Orders ist die gesparte Gebühr oft mehr wert als ein etwas besserer Ausführungskurs. Bei großen kehrt sich das um – ein Zehntelprozent auf 50.000 Euro sind 50 Euro, und dann wären fünf Euro Ordergebühr am Referenzmarkt das bessere Geschäft. Die Gegenprobe ist immer dieselbe: erzielter Kurs gegen Referenzkurs zur selben Sekunde, plus alle Gebühren.',
+    caption:
+      'Das Geld, das der Broker nicht von dir nimmt, kommt über den Spread doch von dir. Kein Vorwurf – nur der Grund, „kostenlos“ nachzurechnen.',
+  },
+  'etf-swap': {
+    title: 'Was in einem Swap-ETF liegt',
+    description:
+      'Der Aufbau eines synthetischen ETF in zwei Kästen. Links der Fonds: Er hält ein Trägerportfolio aus liquiden Wertpapieren – nicht die Werte des abgebildeten Index. Dieses Portfolio ist Sondervermögen wie bei jedem Fonds. Rechts der Swap-Partner, eine Bank: Er liefert dem Fonds die Wertentwicklung des Index und bekommt dafür die Wertentwicklung des Trägerportfolios. Zwei Pfeile zwischen den Kästen zeigen diesen Tausch in beide Richtungen. Darunter der entscheidende Satz: Das Risiko sitzt zwischen den beiden Kästen. Fällt der Swap-Partner aus, fehlt die zugesagte Indexrendite – das Trägerportfolio bleibt, es bildet aber etwas anderes ab. Die OGAW-Richtlinie begrenzt dieses Ausfallrisiko gegenüber einer einzelnen Gegenpartei auf zehn Prozent des Fondsvermögens; in der Praxis liegt es deutlich darunter, weil der Swap täglich oder bei Erreichen einer Schwelle zurückgesetzt und durch Sicherheiten unterlegt wird. Entscheidend ist deren Qualität: Ein mit Staatsanleihen bester Bonität besicherter Swap ist etwas anderes als einer, der mit Aktien zweiter Reihe unterlegt ist. Die Zusammensetzung steht im Jahresbericht.',
+    caption:
+      'Ein synthetischer Fonds hält nicht nichts – er hält etwas anderes. Das Risiko sitzt nicht im Kasten, sondern zwischen den beiden.',
+  },
+  'kosten-bestandsprovision': {
+    title: 'Wohin die Vergütung fließt',
+    description:
+      'Der Weg der laufenden Fondskosten in drei Stationen. Dein Depot zahlt die laufende Verwaltungsvergütung – nicht als Rechnung, sondern täglich anteilig aus dem Fondsvermögen. Sie geht an die Fondsgesellschaft, die den Fonds verwaltet. Von dort fließt ein Teil zurück an die Bank oder den Vermittler, über den der Fonds verkauft wurde: die Bestandsprovision. Sie wird jährlich gezahlt, solange der Fonds im Depot liegt, und beträgt oft die Hälfte der Verwaltungsvergütung. Daraus folgt, warum eine Empfehlung erwartbar ist: Ein Berater, der davon lebt, verdient an einem Fonds mit 1,5 Prozent laufenden Kosten jährlich und an einem Indexfonds mit 0,15 Prozent praktisch nichts. Das macht ihn nicht unehrlich – beides zu wissen ist besser, als eines davon zu unterstellen. Seit MiFID II muss offengelegt werden, was tatsächlich geflossen ist; die Angabe steht in der jährlichen Kosteninformation, meist auf der letzten Seite. Die Alternative ist die Honorarberatung: sichtbar teurer, in der Summe häufig günstiger.',
+    caption:
+      'Die Beratung ist wörtlich kostenlos und wirtschaftlich nicht. Bezahlt wird sie jedes Jahr, aus dem Fondsvermögen, ohne dass es auf einer Rechnung steht.',
+  },
+  'sparer-verlusttoepfe': {
+    title: 'Zwei Töpfe, keine Verbindung',
+    description:
+      'Die beiden Verlustverrechnungstöpfe nebeneinander, getrennt durch eine durchgezogene Wand. Links der Aktienverlusttopf: Er enthält Verluste aus dem Verkauf einzelner Aktien und lässt sich ausschließlich gegen Gewinne aus dem Verkauf einzelner Aktien verrechnen – nicht gegen Dividenden und nicht gegen Fondsgewinne. Rechts der allgemeine Topf: Er enthält Verluste aus Fonds, ETFs, Anleihen und Zertifikaten und ist gegen alle übrigen Kapitalerträge verrechenbar, einschließlich Zinsen und Dividenden. Zwischen beiden gibt es keinen Übergang. Praktisch heißt das: Wer mit Einzelaktien Verluste macht und mit ETFs Gewinne, kann beides nicht gegeneinander stellen – der Aktienverlust bleibt liegen, der ETF-Gewinn wird versteuert. Vorgetragen wird der Aktienverlust unbegrenzt, aber immer topfgebunden. Wer nie wieder Einzelaktien mit Gewinn verkauft, nutzt ihn nie. Das ist die folgenreichste Einzelheit des deutschen Kapitalertragsteuerrechts und wird regelmäßig zu spät bemerkt.',
+    caption:
+      'Die Wand ist die Aussage. Ein Aktienverlust gleicht einen Fondsgewinn nicht aus – und das merken die meisten erst in der Abrechnung.',
+  },
+  'markt-effizienzstufen': {
+    title: 'Drei Stufen, ineinander',
+    description:
+      'Die drei Stufen der Informationseffizienz als ineinanderliegende Rahmen. Innen die schwache Stufe: Aus vergangenen Kursen lässt sich nichts über künftige ableiten – weitgehend bestätigt, die dokumentierten Ausnahmen sind klein und nach Kosten meist verschwunden. Darum die halbstarke Stufe: Zusätzlich stecken alle öffentlich verfügbaren Informationen bereits im Kurs – überwiegend bestätigt, die Einpreisung erfolgt in Sekunden, nicht in Tagen. Ganz außen die strenge Stufe: Auch nicht öffentliche Informationen steckten im Kurs – klar widerlegt, sonst wäre Insiderhandel nicht einträglich und müsste nicht verfolgt werden. Die Verschachtelung ist die Aussage: Jede stärkere Stufe schließt die schwächere ein, denn wer behauptet, alle öffentlichen Informationen steckten im Kurs, behauptet damit auch, die vergangenen Kurse täten es. Dass die äußerste Stufe widerlegt ist, sagt deshalb nichts über die inneren beiden – ein Schluss, der in der Debatte über Markteffizienz regelmäßig gezogen wird und nicht trägt.',
+    caption:
+      'Jede stärkere Stufe schließt die schwächere ein. Dass die äußerste widerlegt ist, sagt deshalb nichts über die inneren beiden.',
   },
   'fonds-bewertungsglaettung': {
     title: 'Ruhiger Kurs, gleicher Wert',

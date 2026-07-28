@@ -81,6 +81,19 @@ import {
   TimingTrefferquote,
   ZinseszinsSteuerstundung,
 } from '@/components/content/figures/profi'
+import {
+  AktieBarwert,
+  KreditTilgenOderAnlegen,
+  MarktEffizienzstufen,
+  SparplanDynamisierung,
+  StaatsschuldDynamik,
+} from '@/components/content/figures/profi-zwei'
+import {
+  BrokerOrderflow,
+  EtfSwap,
+  KostenBestandsprovision,
+  SparerVerlusttoepfe,
+} from '@/components/content/figures/profi-drei'
 import { RenteFreibetrag, RenteLuecke } from '@/components/content/figures/rente'
 import { RisikoErholung } from '@/components/content/figures/risiko'
 import {
@@ -203,4 +216,13 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'krypto-zugangswege': KryptoZugangswege,
   'einsteiger-pruefung': EinsteigerPruefung,
   'fonds-bewertungsglaettung': FondsBewertungsglaettung,
+  'aktie-barwert': AktieBarwert,
+  'kredit-tilgen-oder-anlegen': KreditTilgenOderAnlegen,
+  'staatsschuld-dynamik': StaatsschuldDynamik,
+  'sparplan-dynamisierung': SparplanDynamisierung,
+  'markt-effizienzstufen': MarktEffizienzstufen,
+  'broker-orderflow': BrokerOrderflow,
+  'etf-swap': EtfSwap,
+  'kosten-bestandsprovision': KostenBestandsprovision,
+  'sparer-verlusttoepfe': SparerVerlusttoepfe,
 }

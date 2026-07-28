@@ -348,6 +348,10 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'markt-effizienzstufen',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Das Effizienzparadox',

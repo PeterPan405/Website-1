@@ -374,6 +374,10 @@ export const etf: LearnTopic = {
           text: 'Entscheidend ist die Qualität dieser Sicherheiten. Ein mit Staatsanleihen bester Bonität besicherter Swap ist etwas anderes als einer, der mit Aktien zweiter Reihe unterlegt ist. Die Zusammensetzung steht im Jahresbericht des Fonds; bei den großen Anbietern liegt sie zusätzlich als tägliche Übersicht online.',
         },
         {
+          type: 'figure',
+          figure: 'etf-swap',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wertpapierleihe: die stille Ertragsquelle',

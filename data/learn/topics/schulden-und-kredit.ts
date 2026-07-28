@@ -419,6 +419,10 @@ export const schuldenUndKredit: LearnTopic = {
           text: 'Als Größenordnung lässt sich daraus eine belastbare Regel ableiten: Bei Kreditzinsen im zweistelligen Bereich gewinnt die Tilgung praktisch immer. Im mittleren einstelligen Bereich wird es eine Abwägung zwischen Sicherheit und Erwartung. Unterhalb von etwa zwei bis drei Prozent nach Steuern spricht mehr für die Anlage – vorausgesetzt, der Anlagehorizont ist lang genug, dass die Erwartung überhaupt tragen kann.',
         },
         {
+          type: 'figure',
+          figure: 'kredit-tilgen-oder-anlegen',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wo Schuldzinsen absetzbar sind',

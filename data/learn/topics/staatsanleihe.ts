@@ -435,6 +435,10 @@ export const staatsanleihe: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'staatsschuld-dynamik',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wenn es doch schiefgeht',

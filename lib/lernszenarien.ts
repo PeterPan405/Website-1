@@ -820,3 +820,60 @@ export const absicherungRendite = 6
 export const basiseffektSprungMonat = 4
 export const basiseffektSprungProzent = 30
 export const basiseffektMonate = 30
+
+// ------------------------------------------------------------- Bewertung
+
+/**
+ * Kapitalkostensätze, über die der Unternehmenswert aufgetragen wird.
+ *
+ * Der Bereich ist so gewählt, dass die Kurve ihre Eigenart zeigt: Zum unteren
+ * Ende hin wächst der Wert nicht linear, sondern läuft davon. Genau daran
+ * scheitert die verbreitete Vorstellung, eine Bewertung sei eine Zahl.
+ */
+export const bewertungKapitalkosten = { von: 5.5, bis: 9 } as const
+
+/** Zwei Wachstumsannahmen – dieselbe Zahlungsreihe, zwei Kurven. */
+export const bewertungWachstum = [2, 4] as const
+
+/** Der Kapitalkostensatz, an dem die Empfindlichkeit vorgerechnet wird. */
+export const bewertungBasiszins = 7
+
+/** Die Änderung in Prozentpunkten, deren Wirkung gezeigt wird. */
+export const bewertungAenderung = 0.5
+
+// -------------------------------------------------------- Tilgen oder anlegen
+
+/**
+ * Kreditzinsen, für die der Vergleich mit einer Anlage aufgestellt wird.
+ *
+ * Von der günstigen Immobilienfinanzierung bis zum Dispositionskredit. Die
+ * Spanne ist der Punkt: Bei zwei Prozent ist die Frage eine Abwägung, bei
+ * zwölf gibt es keine.
+ */
+export const tilgungszinsen = [2, 3, 5, 8, 12] as const
+
+// ------------------------------------------------------- Schuldendynamik
+
+/** Die Startquote, von der aus die Schuldendynamik gezeigt wird, in Prozent. */
+export const schuldenStartquote = 100
+
+/** Zins-Wachstums-Differenzen in Prozentpunkten – der einzige Treiber. */
+export const schuldenDifferenzen = [-1, 0, 1, 2] as const
+
+/** Das angenommene nominale Wachstum, in Prozent. */
+export const schuldenWachstum = 3
+
+/** Über wie viele Jahre die Quote fortgeschrieben wird. */
+export const schuldenJahre = 20
+
+// ------------------------------------------------------ Dynamisierter Sparplan
+
+/** Die Startrate eines Sparplans, in Euro im Monat. */
+export const dynamikStartrate = 300
+
+/** Jährliche Steigerungen der Rate in Prozent, von gar nicht bis kräftig. */
+export const dynamikSteigerungen = [0, 2, 3, 5] as const
+
+/** Laufzeit und angenommene Rendite des Vergleichs. */
+export const dynamikJahre = 30
+export const dynamikRendite = 6

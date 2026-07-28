@@ -314,6 +314,10 @@ export const costAverageSparplan: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'sparplan-dynamisierung',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Rebalancing über neue Raten statt über Verkäufe',

@@ -376,6 +376,10 @@ export const sparerpauschbetrag: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'sparer-verlusttoepfe',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Die Vorabpauschale',

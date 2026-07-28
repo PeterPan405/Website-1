@@ -309,6 +309,10 @@ export const depotUndBroker: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'broker-orderflow',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Wertpapierleihe im Depot',
