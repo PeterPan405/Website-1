@@ -1,5 +1,7 @@
 import { aktie } from '@/data/learn/topics/aktie'
 import { anlegerpsychologie } from '@/data/learn/topics/anlegerpsychologie'
+import { bitcoinKrypto } from '@/data/learn/topics/bitcoin-krypto'
+import { blockchain } from '@/data/learn/topics/blockchain'
 import { boerse } from '@/data/learn/topics/boerse'
 import { budgetUndSparquote } from '@/data/learn/topics/budget-und-sparquote'
 import { costAverageSparplan } from '@/data/learn/topics/cost-average-sparplan'
@@ -23,8 +25,6 @@ import { waehrungenWechselkurse } from '@/data/learn/topics/waehrungen-wechselku
 import { woraufAchtenEinsteiger } from '@/data/learn/topics/worauf-achten-einsteiger'
 import {
   aktienLaenderBranchen,
-  bitcoinKrypto,
-  blockchain,
   groessteCrashes,
   immobilien,
   rente,

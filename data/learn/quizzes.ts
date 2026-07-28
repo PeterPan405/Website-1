@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    300 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    324 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {
@@ -3997,6 +3997,324 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       correctIndex: 3,
       explanation:
         'Wer seinen Ruhestand in Euro verbringt, sollte seine Verpflichtungen in Euro rechnen. Die Quote folgt dann aus dieser Planung – nicht aus einer Einschätzung darüber, wohin der Dollar läuft. Diese Einschätzung hat noch niemand verlässlich hinbekommen; der Devisenmarkt ist der Ort, an dem die meisten Prognosen scheitern.',
+    },
+  ],
+
+  // ------------------------------------------------------------ Bitcoin & Krypto
+  'bitcoin-krypto:beginner': [
+    {
+      question: 'Woraus ergibt sich die Obergrenze von 21 Millionen Bitcoin?',
+      options: [
+        'Aus einer Vereinbarung der größten Mining-Betreiber',
+        'Aus der Summe der Blockbelohnungen, die sich alle 210.000 Blöcke halbieren',
+        'Aus der begrenzten Rechenkapazität des Netzes',
+        'Aus einer Obergrenze, die jederzeit per Mehrheit geändert werden kann',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Zahl ist kein Beschluss, sondern die Summe einer geometrischen Reihe: 50 Coins je Block, alle 210.000 Blöcke halbiert. Die Reihe konvergiert gegen 21 Millionen, und schon nach sechs Halbierungsstufen sind über 98 Prozent davon erzeugt.',
+    },
+    {
+      question: 'Folgt aus der begrenzten Menge, dass der Preis steigen muss?',
+      options: [
+        'Ja, Knappheit erzeugt zwangsläufig Wert',
+        'Ja, sobald die Gesamtmenge erreicht ist',
+        'Nein – Knappheit ist nur die Voraussetzung dafür, dass Nachfrage sich im Preis niederschlägt',
+        'Nein, weil die Menge jederzeit erhöht werden kann',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Seltene Dinge ohne Nachfrage sind wertlos. Die Mengenbegrenzung sorgt dafür, dass zusätzliche Nachfrage nicht durch zusätzliches Angebot aufgefangen wird – mehr nicht. Ein Preis entsteht daraus erst, wenn jemand kaufen will.',
+    },
+    {
+      question: 'Was bedeutet „Not your keys, not your coins“?',
+      options: [
+        'Dass Coins ohne Wallet-Software nicht übertragbar sind',
+        'Dass ein Konto bei einer Plattform nur eine Forderung gegen ein Unternehmen ist, keine Verfügung über den Registereintrag',
+        'Dass jede Adresse mehrere Schlüssel benötigt',
+        'Dass Coins ohne Registrierung bei einer Behörde nicht anerkannt werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Liegen die Coins bei einer Plattform, gehören sie dir nur nach deren Buchführung. Bei der Insolvenz mehrerer großer Plattformen standen Kunden als gewöhnliche Gläubiger da. Die Gegenseite ist ebenso hart: Ein verlorener privater Schlüssel bedeutet endgültigen Verlust, ohne jede Wiederherstellung.',
+    },
+    {
+      question:
+        'Welche Regel folgt aus dem Fehlen eines Bewertungsankers und den historischen Rückgängen?',
+      options: [
+        'Nur Beträge einsetzen, deren vollständiger Verlust die Finanzplanung nicht berührt',
+        'Immer mindestens zehn Prozent des Depots investieren, um die Streuung zu erhöhen',
+        'Nur nach starken Rückgängen kaufen',
+        'Ausschließlich über regulierte Anbieter investieren, dann besteht kein Verlustrisiko',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Es gibt keine Zahlungsströme, gegen die sich ein Preis prüfen ließe, und Rückgänge von über 70 Prozent sind mehrfach eingetreten. Daraus folgt die Größe der Position, nicht ein Verzicht. Vorher stehen Notgroschen und die Tilgung teurer Schulden – beides bringt eine sichere Rendite.',
+    },
+  ],
+
+  'bitcoin-krypto:fortgeschritten': [
+    {
+      question: 'Warum gibt es in Europa keine echten Krypto-ETFs?',
+      options: [
+        'Weil Kryptowerte in der EU nicht handelbar sind',
+        'Weil die Aufsicht sie ausdrücklich untersagt hat',
+        'Weil ein Fonds nach europäischen Regeln gestreut sein muss – ein Produkt auf einen einzigen Wert erfüllt das nicht',
+        'Weil die Verwahrung durch eine Depotbank technisch unmöglich ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die europäischen Produkte sind ETPs, also Schuldverschreibungen, meist mit Coins besichert. Die Besicherung mildert das Emittentenrisiko, beseitigt es aber nicht. Der Unterschied zum Sondervermögen eines echten Fonds ist rechtlich erheblich – und die Ähnlichkeit der Kürzel führt in die Irre.',
+    },
+    {
+      question: 'Worauf kommt es bei einem mit Währungsreserven gedeckten Stablecoin an?',
+      options: [
+        'Auf die Prüfbarkeit der Reserven – wer sie bestätigt, wie oft und mit welcher Tiefe',
+        'Auf die Zahl der Handelsplätze, an denen er notiert',
+        'Auf die Höhe der Verzinsung, die er ausschüttet',
+        'Auf die Zahl der Nutzer im Netzwerk',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Das Versprechen hängt vollständig an der Deckung, und ein Bestätigungsvermerk ist keine Vollprüfung. Algorithmische Konstruktionen ohne echtes Deckungsvermögen sind 2022 in großem Stil zusammengebrochen – der Mechanismus hielt der ersten ernsten Belastung nicht stand.',
+    },
+    {
+      question:
+        'Was leistet der europäische Regulierungsrahmen für Kryptowerte – und was nicht?',
+      options: [
+        'Er sichert Kursverluste bis zu einer festgelegten Grenze ab',
+        'Er stellt Anforderungen an die Anbieter, schützt aber nicht den Wert der Anlage selbst',
+        'Er macht Kryptowerte zu Sondervermögen',
+        'Er garantiert die Rückzahlung bei Insolvenz einer Plattform',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Geregelt werden Zulassung, Eigenkapital, Trennung von Kundenbeständen und Informationspflichten – der Umgang mit deinen Werten. Eine Einlagensicherung für Kryptowerte gibt es nicht. „Reguliert“ heißt, dass der Anbieter Regeln unterliegt; es heißt nicht, dass jemand für das Ergebnis einsteht.',
+    },
+    {
+      question: 'Warum sind kleine Coins besonders anfällig für Kursmanipulation?',
+      options: [
+        'Weil sie technisch schlechter abgesichert sind',
+        'Weil sie nicht an regulierten Börsen notieren dürfen',
+        'Weil ihre Orderbücher dünn sind – einzelne Aufträge bewegen den Preis erheblich',
+        'Weil ihre Gesamtmenge unbegrenzt ist',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Marktkapitalisierung ist stark konzentriert; die vielen tausend kleinen Coins teilen sich einen geringen Rest. Wo wenig gehandelt wird, genügen kleine Beträge für große Bewegungen – das Muster aus schnellem Anstieg, Werbung und Abverkauf ist regelmäßig dokumentiert.',
+    },
+  ],
+
+  'bitcoin-krypto:profi': [
+    {
+      question:
+        'Warum lassen sich Discounted-Cashflow-Verfahren auf Kryptowerte nicht anwenden?',
+      options: [
+        'Weil die Zahlungsströme zu stark schwanken',
+        'Weil die nötigen Daten nicht öffentlich sind',
+        'Weil der Abzinsungssatz nicht bestimmbar ist',
+        'Weil es überhaupt keine künftigen Zahlungen gibt – das Verfahren ist nicht ungenau, sondern nicht anwendbar',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Jede Bewertung von Aktien, Anleihen und Immobilien beruht darauf, künftige Zahlungen zu schätzen und abzuzinsen. Fehlen sie vollständig, greift das Verfahren nicht. Das macht die Anlage nicht illegitim – Gold hat dasselbe Problem –, aber es macht jede Aussage der Form „unterbewertet“ gegenstandslos.',
+    },
+    {
+      question:
+        'Warum taugt das Argument „der Preis kann nicht unter die Mining-Kosten fallen“ nicht?',
+      options: [
+        'Weil die Kausalität umgekehrt läuft: Der Aufwand richtet sich nach dem Preis, nicht der Preis nach dem Aufwand',
+        'Weil die Mining-Kosten nicht messbar sind',
+        'Weil Mining in vielen Ländern subventioniert wird',
+        'Weil der Aufwand seit dem letzten Halving gesunken ist',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Steigt der Preis, lohnt sich mehr Rechenleistung, und die Schwierigkeit passt sich an. Fällt er, schalten Betreiber ab. Der Aufwand folgt dem Preis – daraus lässt sich keine Untergrenze für den Preis ableiten, so plausibel es zunächst klingt.',
+    },
+    {
+      question: 'Wie hat sich die These bestätigt, Krypto sei unkorreliert zu Aktien?',
+      options: [
+        'Sie hat sich bestätigt: In Stressphasen stieg Krypto, während Aktien fielen',
+        'Sie hat sich nicht bestätigt – in Stressphasen fiel Krypto gemeinsam mit Aktien, und stärker',
+        'Sie gilt weiterhin für Bitcoin, nicht aber für andere Coins',
+        'Die Korrelation ist dauerhaft negativ',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Die Korrelation stieg genau dann, wenn ein Ausgleich gebraucht worden wäre – dasselbe Muster wie bei anderen risikoreichen Anlagen. Dazu kommt die Größenordnung der Schwankung: Schon eine Quote von wenigen Prozent trägt spürbar zur Gesamtschwankung eines Depots bei.',
+    },
+    {
+      question: 'Was macht einen 51-Prozent-Angriff bei großen Netzen unattraktiv?',
+      options: [
+        'Ein technisches Verbot im Protokoll',
+        'Die Überwachung durch Aufsichtsbehörden',
+        'Dass die Kosten für Rechenleistung oder Kapitaleinsatz den möglichen Ertrag übersteigen',
+        'Dass Transaktionen nach sechs Bestätigungen mathematisch endgültig sind',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die Sicherheit dieser Netze ist ein wirtschaftliches Argument: Ein Angriff muss mehr kosten, als er einbringt. Bei kleineren Netzen ist diese Schwelle mehrfach unterschritten und der Angriff tatsächlich durchgeführt worden. Mathematisch endgültig wird eine Transaktion bei Proof of Work ohnehin nie.',
+    },
+  ],
+
+  // ---------------------------------------------------------------- Blockchain
+  'blockchain:beginner': [
+    {
+      question:
+        'Warum lässt sich eine Transaktion in einem alten Block nicht unbemerkt ändern?',
+      options: [
+        'Weil alte Blöcke verschlüsselt und nicht lesbar sind',
+        'Weil eine Änderung den Hash des Blocks verändert und damit die Verkettung zu allen Folgeblöcken bricht',
+        'Weil nur der ursprüngliche Absender Schreibrechte hat',
+        'Weil ältere Blöcke nach einer Frist gelöscht werden',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Jeder Block enthält den Hash seines Vorgängers. Ändert sich der Inhalt, ändert sich der Hash – und der Folgeblock enthält noch den alten. Die Manipulation wäre sofort sichtbar, und alle anderen Teilnehmer haben ohnehin die richtige Version.',
+    },
+    {
+      question: 'Welches Problem löst eine Blockchain?',
+      options: [
+        'Sie beschleunigt Zahlungen gegenüber herkömmlichen Systemen',
+        'Sie stellt sicher, dass eingetragene Daten inhaltlich richtig sind',
+        'Sie macht Transaktionen anonym',
+        'Sie klärt ohne zentrale Stelle, wer was besitzt – und schließt doppelte Ausgaben aus',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Digitale Dinge lassen sich beliebig kopieren; bisher verhinderte eine zentrale Stelle die doppelte Ausgabe. Eine Blockchain ersetzt das Vertrauen in eine Institution durch Vertrauen in ein nachprüfbares Regelwerk. Das ist die eigentliche Leistung – und sie ist teuer erkauft.',
+    },
+    {
+      question: 'Garantiert eine Blockchain, dass die enthaltenen Daten stimmen?',
+      options: [
+        'Nein – garantiert wird Unveränderlichkeit, nicht Richtigkeit',
+        'Ja, falsche Einträge werden vom Netz automatisch abgelehnt',
+        'Ja, sofern mehr als die Hälfte der Teilnehmer sie bestätigt',
+        'Nur bei Verwendung von Smart Contracts',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Wer einen falschen Wert einträgt, hat ihn danach unveränderlich falsch eingetragen. Das Netz prüft die Einhaltung der Regeln, nicht den Wahrheitsgehalt. Diese Unterscheidung ist der Grund, warum viele Anwendungsideen an der Schnittstelle zur realen Welt scheitern.',
+    },
+    {
+      question:
+        'Wann ist eine gewöhnliche Datenbank die bessere Wahl als eine Blockchain?',
+      options: [
+        'Wenn die Datenmenge klein ist',
+        'Wenn keine Zahlungen abgewickelt werden',
+        'Immer, wenn es zulässig ist, dass eine bekannte Stelle das Register führt',
+        'Wenn die Daten öffentlich einsehbar sein sollen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Konsens unter vielen Teilnehmern kostet Zeit und Kapazität; eine Datenbank ist um Größenordnungen schneller und billiger. Der Aufwand lohnt nur, wenn niemand die zentrale Stelle sein darf oder kann. „Warum keine Datenbank?“ ist die Frage, an der die meisten Projekte scheitern.',
+    },
+  ],
+
+  'blockchain:fortgeschritten': [
+    {
+      question:
+        'Worin unterscheiden sich Proof of Work und Proof of Stake bei der Sanktion?',
+      options: [
+        'Beide sanktionieren identisch über den Ausschluss aus dem Netz',
+        'Bei Proof of Work verliert ein Angreifer nur Betriebskosten; bei Proof of Stake wird das hinterlegte Kapital eingezogen',
+        'Proof of Stake sieht keine Sanktion vor',
+        'Bei Proof of Work wird die Hardware unbrauchbar gemacht',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Beide machen Betrug teuer, aber mit verschiedenen Mitteln. Bei Proof of Work behält der Angreifer seine Hardware und verliert nur den Aufwand. Bei Proof of Stake trifft die Sanktion unmittelbar das eingesetzte Kapital – das ist der wesentliche Unterschied im Anreizgefüge.',
+    },
+    {
+      question: 'Was bedeutet Finalität bei Proof of Work?',
+      options: [
+        'Nach sechs Bestätigungen ist eine Transaktion mathematisch endgültig',
+        'Finalität tritt nach 24 Stunden automatisch ein',
+        'Eine Transaktion ist nie mathematisch endgültig – sie wird nur immer unwahrscheinlicher rückgängig zu machen',
+        'Finalität wird von den Mining-Pools gemeinsam festgestellt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die üblichen sechs Bestätigungen sind eine Konvention, keine Garantie. Bei Proof of Stake ist echte Finalität dagegen erreichbar, weil ein Rückgängigmachen den Einzug erheblicher Sicherheiten auslösen würde. Praktisch heißt das: Der Wert der Ware bestimmt, wie lange man warten sollte.',
+    },
+    {
+      question: 'Was ist das Oracle-Problem bei Smart Contracts?',
+      options: [
+        'Dass Verträge nicht mehrere Bedingungen gleichzeitig prüfen können',
+        'Dass der Code nach der Veröffentlichung nicht mehr lesbar ist',
+        'Dass Verträge nur auf Zahlungen reagieren können, nicht auf Zeitpunkte',
+        'Dass Daten von außen jemandem geliefert werden müssen – womit die zentrale Stelle zurückkehrt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Ein Vertrag, der auf einen Kurs, ein Wahlergebnis oder eine Lieferung reagieren soll, braucht diese Information von außerhalb der Kette. Wer sie liefert, muss vertraut werden. Für rein netzinterne Vorgänge gilt das nicht – für fast alles andere schon, und daran scheitern viele Anwendungsideen.',
+    },
+    {
+      question: 'Warum lässt sich der Durchsatz einer Blockchain nicht beliebig erhöhen?',
+      options: [
+        'Weil größere Blöcke oder kürzere Abstände mehr Bandbreite und Speicher verlangen – und damit weniger Teilnehmer mitmachen können',
+        'Weil die Konsensverfahren eine feste Obergrenze vorschreiben',
+        'Weil die Kryptografie ab einer bestimmten Datenmenge unsicher wird',
+        'Weil Aufsichtsbehörden eine Obergrenze vorgeben',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Geschwindigkeit wird immer gegen Dezentralisierung getauscht: Wer mitmachen will, braucht mehr Ressourcen, also können es weniger. Zusatzschichten umgehen das, indem sie Vorgänge auslagern – und führen dabei neue Vertrauensannahmen ein, über die Nutzer selten informiert sind.',
+    },
+  ],
+
+  'blockchain:profi': [
+    {
+      question:
+        'Welche Annahme des Sicherheitsmodells greift bei einem staatlichen Angreifer möglicherweise nicht?',
+      options: [
+        'Dass Teilnehmer über ausreichend Bandbreite verfügen',
+        'Dass Teilnehmer eigennützig handeln – ein Angreifer, der Verluste in Kauf nimmt, ist nicht vorgesehen',
+        'Dass die Kryptografie sicher ist',
+        'Dass die Blockzeit konstant bleibt',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das Modell unterstellt, dass Teilnehmer ihren wirtschaftlichen Vorteil verfolgen – deshalb funktioniert das Argument über Angriffskosten. Wer das System schädigen will und dafür zahlt, fällt aus dieser Logik heraus. Bei staatlichen Akteuren ist das keine theoretische Möglichkeit.',
+    },
+    {
+      question: 'Was ist ein Eclipse-Angriff?',
+      options: [
+        'Ein Angriff, der die Mehrheit der Rechenleistung erfordert',
+        'Das Zurückrechnen der Kette aus alten Schlüsseln heraus',
+        'Das Abschneiden eines einzelnen Teilnehmers vom ehrlichen Netz, um ihm eine gefälschte Sicht zu liefern',
+        'Ein Ausfall aller Knoten in einer geografischen Region',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Er kommt ohne Mehrheit aus und richtet sich gegen einen einzelnen Teilnehmer. Damit greift er die Annahme an, dass Nachrichten im Netz verlässlich ankommen – eine der stillen Voraussetzungen, die in der Darstellung meist fehlen.',
+    },
+    {
+      question:
+        'Warum entstehen Zentralisierungstendenzen bei Mining-Pools und Staking-Anbietern?',
+      options: [
+        'Aus Skaleneffekten – gebündelte Ressourcen liefern planbarere Erträge',
+        'Aus regulatorischen Vorgaben in der EU',
+        'Weil die Protokolle sie ausdrücklich vorsehen',
+        'Weil Einzelteilnehmer technisch ausgeschlossen werden',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Einzelne Betreiber haben nur bei gebündelter Leistung planbare Erträge, und wer nicht selbst betreiben will, gibt sein Kapital an einen Dienstleister. Beides folgt aus Skaleneffekten, nicht aus Fehlverhalten – es lässt sich abmildern, nicht beseitigen. Das ist der ehrlichste Einwand gegen die Dezentralisierungserzählung.',
+    },
+    {
+      question:
+        'Was ist an der Ausnutzung der Transaktionsreihenfolge (MEV) bemerkenswert?',
+      options: [
+        'Sie ist nur bei privaten Blockchains möglich',
+        'Sie erfordert die Kontrolle über die Mehrheit des Netzes',
+        'Sie ist technisch nicht nachweisbar',
+        'Front-Running ist an regulierten Börsen verboten – hier ist es keine Regelverletzung, sondern eine Systemeigenschaft',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer einen Block zusammenstellt, entscheidet über Inhalt und Reihenfolge – und kann dieses Recht verkaufen. Ein System, das ohne Vertrauen auskommen sollte, hat damit eine Ertragsquelle geschaffen, die an regulierten Märkten verfolgt wird. Sandwich-Angriffe und bevorzugte Liquidationen sind die praktischen Formen.',
     },
   ],
 }
