@@ -72,6 +72,21 @@ export const quartalstermineQuelle = daten.quelle
 function ausKatalog(ticker: string): { name: string; symbol: string } | null {
   const eintrag = marketDefinitions.find((definition) => definition.ticker === ticker)
   if (!eintrag) return null
+
+  /*
+    Nur Aktien, und das ist die zweite Sperre für denselben Fehler.
+
+    Das Kürzel „WTI“ steht im Katalog für die amerikanische Ölsorte, bei der
+    SEC für W&T Offshore. Solange der Abruf beides zusammenwarf, stand im
+    Kalender „WTI Rohöl (USA): Quartalszahlen erwartet“ – ein Termin für einen
+    Rohstoff, der keine Zahlen vorlegt.
+
+    Behoben ist das schon beim Abruf. Die Prüfung hier bleibt trotzdem: Die
+    Momentaufnahme kommt aus einer wöchentlichen Routine, und wenn dort etwas
+    schiefgeht, soll es nicht bis auf die Seite durchschlagen.
+  */
+  if (eintrag.kind !== 'stock') return null
+
   return { name: eintrag.name, symbol: eintrag.symbol }
 }
 

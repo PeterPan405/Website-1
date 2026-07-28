@@ -31,11 +31,20 @@
  * ## Wen es nicht erfasst
  *
  * Nur Unternehmen, die bei der SEC ein `8-K` einreichen – also im Wesentlichen
- * US-Emittenten. Ausländische Emittenten melden über `6-K`, das keine
- * Punktnummern kennt; deutsche und europäische Unternehmen melden gar nicht
- * dorthin. Für sie bleibt der Kalender bei den Zeitfenstern der Berichtssaison.
- * Das ist eine echte Lücke und keine, die sich mit dieser Quelle schließen
- * lässt.
+ * US-Emittenten. Ausländische Emittenten melden über `6-K`, und das kennt
+ * keine Punktnummern.
+ *
+ * Ob sich die Ergebnismeldung stattdessen an der Dokumentbeschreibung erkennen
+ * lässt, ist geprüft worden und scheitert: Bei SAP, ASML, Novo Nordisk, Shell,
+ * Sony und TSMC steht dort ausnahmslos „FORM 6-K“ und sonst nichts. Bei
+ * AstraZeneca gibt es Beschreibungen, aber die Treffer auf „results“ sind
+ * Studienergebnisse aus der Arzneimittelentwicklung – ein Filter darauf würde
+ * Kalendereinträge erzeugen, die mit Quartalszahlen nichts zu tun haben.
+ *
+ * Für ausländische Emittenten bleibt der Kalender deshalb leer. Das ist eine
+ * echte Lücke, sie ist auf der Seite benannt, und sie lässt sich mit dieser
+ * Quelle nicht schließen. Eine plausibel aussehende Schätzung wäre hier
+ * schlechter als keine Angabe.
  *
  * Aufruf: `npm run quartalstermine`
  */
@@ -114,36 +123,111 @@ function plusTage(datum: string, anzahl: number): string {
   return d.toISOString().slice(0, 10)
 }
 
+/**
+ * Holt eine Datei und versucht es bei Störungen erneut.
+ *
+ * Ohne Wiederholung hing die Vollständigkeit an der Tagesform der Gegenstelle:
+ * Im ersten Lauf fehlten ExxonMobil, Goldman Sachs und Fiserv, obwohl alle
+ * drei reichlich Meldungen haben – ein einzelner gescheiterter Abruf, und das
+ * Unternehmen fiel für eine Woche aus dem Kalender. Ein solcher Ausfall ist
+ * unsichtbar: Ein fehlender Termin sieht aus wie ein Unternehmen ohne Muster.
+ */
+const VERSUCHE = 3
+
 async function hole(url: string): Promise<unknown> {
-  const antwort = await fetch(url, { headers: KOPFZEILEN })
-  if (!antwort.ok) throw new Error(`${antwort.status} ${antwort.statusText} – ${url}`)
-  return antwort.json()
+  let letzterFehler: unknown = null
+
+  for (let versuch = 1; versuch <= VERSUCHE; versuch++) {
+    try {
+      const antwort = await fetch(url, { headers: KOPFZEILEN })
+      if (!antwort.ok) {
+        throw new Error(`${antwort.status} ${antwort.statusText} – ${url}`)
+      }
+      return await antwort.json()
+    } catch (fehler) {
+      letzterFehler = fehler
+      // Wachsender Abstand: 1s, 2s. Die SEC drosselt bei zu vielen Anfragen.
+      if (versuch < VERSUCHE) {
+        await new Promise((weiter) => setTimeout(weiter, 1000 * versuch))
+      }
+    }
+  }
+
+  throw letzterFehler
 }
+
+interface Einreichungen {
+  form?: string[]
+  filingDate?: string[]
+  items?: string[]
+}
+
+/** Die Ergebnismeldungen aus einem Block von Einreichungen. */
+function ergebnismeldungen(block: Einreichungen | undefined): string[] {
+  const treffer: string[] = []
+  if (!block?.form || !block.filingDate || !block.items) return treffer
+
+  for (let i = 0; i < block.form.length; i++) {
+    if (block.form[i] !== '8-K') continue
+    if (!(block.items[i] ?? '').includes('2.02')) continue
+    treffer.push(block.filingDate[i])
+  }
+  return treffer
+}
+
+/**
+ * So viele Termine braucht die Ableitung, damit ein Muster erkennbar ist.
+ *
+ * Vier für die vier Quartale des kommenden Jahres, dazu mindestens einer aus
+ * dem Vorjahr als Beleg. Weniger heißt: keine Vorhersage.
+ */
+const MINDESTTERMINE = 5
 
 /**
  * Alle Veröffentlichungstermine eines Unternehmens, neueste zuerst.
  *
+ * ## Warum die ausgelagerten Blöcke gelesen werden müssen
+ *
  * Die submissions-Datei führt die jüngsten Einreichungen direkt und ältere in
- * ausgelagerten Blöcken. Für ein stabiles Muster genügen die jüngsten – wer
- * fünf Jahre zurückgeht, holt sich vor allem Zeiten ein, in denen das
- * Unternehmen anders getaktet war.
+ * ausgelagerten Blöcken. Ursprünglich wurde nur der junge Block gelesen – mit
+ * der Begründung, für ein Muster genügten die jüngsten Meldungen.
+ *
+ * Das stimmt für die meisten Unternehmen und ist bei Großbanken grundfalsch.
+ * JPMorgan hat im jungen Block **25.493** Einreichungen, und sie decken
+ * dennoch nur zwölf Monate ab: Fast alle sind 8-K für strukturierte Anleihen.
+ * Übrig bleiben vier Meldungen mit Punkt 2.02 – eine zu wenig. Dasselbe bei
+ * Citigroup, Bank of America, Morgan Stanley und Goldman Sachs. Genau die
+ * Häuser, deren Zahlen die Berichtssaison eröffnen, fehlten deshalb im
+ * Kalender.
+ *
+ * Nachgeladen wird nur, wenn der junge Block nicht reicht, und nur so lange,
+ * bis genug zusammen ist. Bei den meisten Unternehmen entsteht dadurch keine
+ * einzige zusätzliche Anfrage.
  */
 async function termineVon(cik: number): Promise<{ name: string; termine: string[] }> {
-  const daten = (await hole(
-    `${SUBMISSIONS_BASIS}/CIK${String(cik).padStart(10, '0')}.json`
-  )) as {
+  const kennung = String(cik).padStart(10, '0')
+  const daten = (await hole(`${SUBMISSIONS_BASIS}/CIK${kennung}.json`)) as {
     name?: string
-    filings?: { recent?: { form?: string[]; filingDate?: string[]; items?: string[] } }
+    filings?: { recent?: Einreichungen; files?: { name?: string }[] }
   }
 
-  const jung = daten.filings?.recent
-  const termine: string[] = []
-  if (jung?.form && jung.filingDate && jung.items) {
-    for (let i = 0; i < jung.form.length; i++) {
-      if (jung.form[i] !== '8-K') continue
-      if (!(jung.items[i] ?? '').includes('2.02')) continue
-      termine.push(jung.filingDate[i])
+  const termine = ergebnismeldungen(daten.filings?.recent)
+
+  for (const block of daten.filings?.files ?? []) {
+    if (termine.length >= MINDESTTERMINE) break
+    if (!block.name) continue
+
+    try {
+      const nachgeladen = (await hole(
+        `${SUBMISSIONS_BASIS}/${block.name}`
+      )) as Einreichungen
+      termine.push(...ergebnismeldungen(nachgeladen))
+    } catch (fehler) {
+      // Ein fehlender Altblock ist kein Grund, das Unternehmen ganz fallen zu
+      // lassen – vielleicht reicht schon, was bis hierher zusammengekommen ist.
+      console.warn(`    Altblock ${block.name}: ${(fehler as Error).message}`)
     }
+    await new Promise((weiter) => setTimeout(weiter, PAUSE_MS))
   }
 
   // Absteigend und ohne Dubletten – ein Tag kann mehrfach gemeldet worden sein.
@@ -164,7 +248,7 @@ async function termineVon(cik: number): Promise<{ name: string; termine: string[
  * Lücke als eine Zahl ohne Grundlage.
  */
 function vorhersagen(termine: string[], heute: string): Vorhersage[] {
-  if (termine.length < 5) return []
+  if (termine.length < MINDESTTERMINE) return []
 
   const ergebnis: Vorhersage[] = []
 
@@ -229,15 +313,49 @@ function vorhersagen(termine: string[], heute: string): Vorhersage[] {
 async function main(): Promise<void> {
   const heute = new Date().toISOString().slice(0, 10)
 
-  // ----------------------------------------------- Kürzel der Website lesen
+  /*
+    ------------------------------------------- Kürzel der Website lesen
+
+    Nur Aktien, und das ist keine Feinheit.
+
+    Vorher wurde jedes `ticker`-Feld genommen, gleich welcher Art. Der
+    Katalog führt aber auch Rohstoffe, Indizes und Währungen – und deren
+    Kürzel kollidieren mit echten Firmenkürzeln. „WTI“ steht hier für die
+    amerikanische Ölsorte; bei der SEC ist es W&T Offshore, ein
+    Ölförderunternehmen. Im Kalender stand daraufhin „WTI Rohöl (USA):
+    Quartalszahlen erwartet“. Rohöl legt keine Quartalszahlen vor.
+
+    Der Fehler ist deshalb heimtückisch, weil beide Seiten für sich stimmen:
+    Das Kürzel gibt es wirklich, die Termine sind echt, nur gehören sie einer
+    anderen Sache. Ein Abgleich der Art schließt die ganze Klasse aus.
+  */
   const gefuehrt = new Set<string>()
+  let verworfen = 0
+
+  /*
+    Zerlegt wird an `symbol:`, nicht an geschweiften Klammern.
+
+    Die Einträge enthalten verschachtelte Objekte; ein Ausdruck über
+    Klammerpaare findet deshalb keinen einzigen vollständigen Block. Jeder
+    Eintrag beginnt aber mit `symbol:`, und `ticker` wie `kind` stehen in den
+    ersten Zeilen danach.
+  */
+  const FENSTER = 600
   for (const datei of KATALOG) {
     const text = await readFile(datei, 'utf8')
-    for (const treffer of text.matchAll(/^\s*ticker: '([^']+)',$/gm)) {
-      gefuehrt.add(treffer[1])
+    for (const teil of text.split("symbol: '").slice(1)) {
+      const kopf = teil.slice(0, FENSTER)
+      const kuerzel = /ticker: '([^']+)'/.exec(kopf)?.[1]
+      const art = /kind: '([^']+)'/.exec(kopf)?.[1]
+      if (!kuerzel || !art) continue
+      if (art === 'stock') gefuehrt.add(kuerzel)
+      else verworfen++
     }
   }
-  console.log(`${gefuehrt.size} Kürzel im Katalog der Website.`)
+  console.log(
+    `${gefuehrt.size} Aktienkürzel im Katalog der Website ` +
+      `(${verworfen} Einträge anderer Art übergangen).`
+  )
 
   // ------------------------------------------------- Kennnummern zuordnen
   const verzeichnis = (await hole(TICKER_URL)) as Record<
