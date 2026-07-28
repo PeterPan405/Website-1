@@ -179,7 +179,8 @@ export const option: LearnTopic = {
           caption: `Call am Geld, Basispreis ${formatNumber(BASIS.basispreis, 0)}, ${formatPercent(BASIS.volatilitaetProzent, 0)} erwartete Schwankung`,
           head: ['Restlaufzeit', 'Prämie', 'Verlust pro Tag'],
           rows: verfallsreihe.map((zeile) => [
-            `${zeile.monate} Monate`,
+            // „1 Monate“ stand hier, bis es jemandem auffiel.
+            `${zeile.monate} ${zeile.monate === 1 ? 'Monat' : 'Monate'}`,
             formatNumber(zeile.praemie, 2),
             formatNumber(zeile.proTag, 3),
           ]),
@@ -258,7 +259,7 @@ export const option: LearnTopic = {
     fortgeschritten: {
       metaTitle: 'Optionen: Preistreiber und Standardstrategien',
       metaDescription:
-        'Was die Prämie bestimmt, wie Covered Call und Cash Secured Put funktionieren, wozu Spreads dienen und warum implizite Volatilität der wichtigste Preistreiber ist.',
+        'Was die Prämie bestimmt, wie Covered Call und Cash Secured Put funktionieren und warum die implizite Volatilität der wichtigste Preistreiber ist.',
       title: 'Preistreiber und Strategien',
       lead: 'Warum eine Option vor Quartalszahlen teuer ist, welche Strategien mit Bestand funktionieren – und wo ihre Kosten stecken.',
       readingMinutes: 12,

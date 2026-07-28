@@ -285,7 +285,7 @@ export const groessteCrashes: LearnTopic = {
     profi: {
       metaTitle: 'Crashs: Ansteckung, Reaktion und Konsequenzen',
       metaDescription:
-        'Wie sich Krisen vom Finanzmarkt in die Realwirtschaft übertragen, welche Rolle das Bankensystem spielt und wie sich die politische Reaktion auf die Erholungsdauer auswirkte.',
+        'Wie Krisen vom Finanzmarkt in die Realwirtschaft übergreifen, welche Rolle das Bankensystem spielt und warum die Reaktion die Erholungsdauer bestimmt.',
       title: 'Ansteckung, Reaktion, Konsequenz',
       lead: 'Warum manche Einbrüche folgenlos bleiben und andere ein Jahrzehnt kosten – und was daraus für ein Depot folgt.',
       readingMinutes: 13,

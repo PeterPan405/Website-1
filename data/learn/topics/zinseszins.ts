@@ -393,7 +393,7 @@ export const zinseszins: LearnTopic = {
     profi: {
       metaTitle: 'Zinseszins für Profis: Volatilitätsbremse und Sequenzrisiko',
       metaDescription:
-        'Volatilitätsbremse, zeit- und geldgewichtete Rendite, Sequenzrisiko in der Entnahmephase und der Steuerstundungseffekt – wo die Zinseszinsformel praktisch versagt.',
+        'Volatilitätsbremse, zeit- und geldgewichtete Rendite, Sequenzrisiko und Steuerstundung – wo die Zinseszinsformel praktisch versagt.',
       title: 'Zinseszins auf Profi-Niveau',
       lead: 'Warum Schwankung Rendite kostet, weshalb die Reihenfolge der Jahre bei Entnahmen entscheidend ist und was Steuerstundung wirklich wert ist.',
       readingMinutes: 14,

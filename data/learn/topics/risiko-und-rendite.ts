@@ -289,9 +289,9 @@ export const risikoUndRendite: LearnTopic = {
 
     // ------------------------------------------------------------------ Profi
     profi: {
-      metaTitle: 'Risiko für Profis: Verteilungen, Sequenzrisiko, Tragfähigkeit',
+      metaTitle: 'Risiko: Verteilungen, Sequenzrisiko, Tragfähigkeit',
       metaDescription:
-        'Warum Extremereignisse häufiger sind als das Modell erlaubt, was das Sequenzrisiko in der Entnahmephase anrichtet und wie Tragfähigkeit und Bereitschaft auseinanderfallen.',
+        'Warum Extremereignisse häufiger sind als das Modell erlaubt, was das Sequenzrisiko in der Entnahmephase anrichtet und wo Tragfähigkeit endet.',
       title: 'Risiko auf Profi-Niveau',
       lead: 'Wo die Modelle brechen, warum die Reihenfolge der Renditen zählt und wie man die eigene Grenze bestimmt.',
       readingMinutes: 12,

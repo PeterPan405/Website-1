@@ -35,7 +35,7 @@ export const portfolioAufbau: LearnTopic = {
   headline: 'Die Aufteilung entscheidet – nicht die Auswahl',
   metaTitle: 'Portfolio aufbauen: Aufteilung, Aktienquote, Rebalancing',
   metaDescription:
-    'Wie eine Depotaufteilung entsteht, welche Rolle der risikoarme Anteil spielt, wie Rebalancing funktioniert und warum die Aufteilung wichtiger ist als die Auswahl.',
+    'Wie eine Depotaufteilung entsteht, welche Rolle der risikoarme Anteil spielt und warum die Aufteilung mehr entscheidet als die Produktauswahl.',
   lead: 'Die Frage „welcher ETF?“ ist die zweite. Die erste lautet: Wie viel davon?',
   overview: [
     'Ein Portfolio ist mehr als eine Sammlung guter Einzelanlagen. Entscheidend ist die Aufteilung zwischen risikoarmem und risikoreichem Teil – sie bestimmt den Großteil der Schwankung und einen erheblichen Teil der Rendite.',

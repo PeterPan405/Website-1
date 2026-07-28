@@ -343,7 +343,7 @@ export const immobilien: LearnTopic = {
     profi: {
       metaTitle: 'Immobilien: Steuern, Lage und Alternativen',
       metaDescription:
-        'Abschreibung und Werbungskosten, die Spekulationsfrist samt Ausnahme für Selbstnutzung, wie Lage tatsächlich zu bewerten ist und welche Wege ohne Verwaltungsaufwand es gibt.',
+        'Abschreibung und Werbungskosten, die Spekulationsfrist, wie Lage tatsächlich zu bewerten ist und welche Wege es ohne Verwaltungsaufwand gibt.',
       title: 'Steuern, Lage und Alternativen',
       lead: 'Was die Steuer beiträgt, warum Lage keine Adresse ist – und wie sich in Immobilien anlegen lässt, ohne eine zu besitzen.',
       readingMinutes: 13,

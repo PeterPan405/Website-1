@@ -191,7 +191,7 @@ export const waehrungenWechselkurse: LearnTopic = {
     fortgeschritten: {
       metaTitle: 'Währungsabsicherung: Kosten, Nutzen, verdeckte Effekte',
       metaDescription:
-        'Wie eine Währungsabsicherung funktioniert, warum sie ungefähr die Zinsdifferenz kostet, wann sie sinnvoll ist und wo im Depot verdeckte Währungspositionen stecken.',
+        'Wie eine Währungsabsicherung funktioniert, warum sie die Zinsdifferenz kostet und wo im Depot verdeckte Währungspositionen stecken.',
       title: 'Absichern – oder bewusst nicht',
       lead: 'Was eine Absicherung kostet, wann sie sich lohnt und welche Währungspositionen im Depot stecken, ohne dass sie irgendwo stehen.',
       readingMinutes: 11,

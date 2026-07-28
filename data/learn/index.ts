@@ -33,6 +33,7 @@ import { getQuizFor } from '@/data/learn/quizzes'
 import { rohstoffe } from '@/data/learn/topics/rohstoffe'
 import { zinseszins } from '@/data/learn/topics/zinseszins'
 import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
+import { assertLearnValid } from '@/lib/learn-validate'
 
 /**
  * Alle Lernthemen in einer Reihenfolge, die aufeinander aufbaut.
@@ -249,3 +250,14 @@ function orderBySections(): LearnTopic[] {
 }
 
 export const learnTopics: LearnTopic[] = orderBySections().map(attachQuizzes)
+
+/*
+  Beim Bauen geprüft, nicht zur Laufzeit.
+
+  Der Aufruf steht hier und nicht in einer Komponente, weil er genau einmal
+  laufen soll – beim Auswerten dieses Moduls. Schlägt er fehl, bricht der
+  Build ab; das ist gewollt. Ein toter Querverweis oder eine abgeschnittene
+  Meta-Description sind beim Betrachten der Seite unsichtbar und wären sonst
+  still im Netz gelandet.
+*/
+assertLearnValid(learnTopics)

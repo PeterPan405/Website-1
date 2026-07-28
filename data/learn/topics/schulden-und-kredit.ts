@@ -83,7 +83,7 @@ export const schuldenUndKredit: LearnTopic = {
   headline: 'Der Zinseszins in die andere Richtung',
   metaTitle: 'Kredit und Schulden: Effektivzins, Tilgung und Reihenfolge',
   metaDescription:
-    'Wie Kredite wirklich rechnen, was der Effektivzins enthält, warum Dispo und Ratenkredit so teuer sind und in welcher Reihenfolge Schulden getilgt werden sollten.',
+    'Wie Kredite wirklich rechnen, was der Effektivzins enthält und in welcher Reihenfolge mehrere Schulden getilgt werden sollten.',
   lead: 'Ein Kredit ist Zinseszins mit umgekehrtem Vorzeichen – meist zu einem Satz, den keine Geldanlage verlässlich erreicht.',
   overview: [
     'Vor jeder Anlageentscheidung steht die Frage nach bestehenden Schulden. Ein Dispositionskredit zu zweistelligem Zins schlägt jede realistisch erwartbare Anlagerendite – die Tilgung ist dann die beste verfügbare Geldanlage, und zwar eine risikolose.',
@@ -245,7 +245,7 @@ export const schuldenUndKredit: LearnTopic = {
     fortgeschritten: {
       metaTitle: 'Schulden abbauen: Tilgungsplan, Reihenfolge, Umschuldung',
       metaDescription:
-        'Wie Tilgungspläne funktionieren, welche Restschuld nach der Zinsbindung bleibt, in welcher Reihenfolge mehrere Kredite abzulösen sind und wann sich Umschulden rechnet.',
+        'Wie Tilgungspläne funktionieren, welche Restschuld nach der Zinsbindung bleibt und wann sich eine Umschuldung tatsächlich rechnet.',
       title: 'Schulden gezielt abbauen',
       lead: 'Was ein Tilgungssatz über die Laufzeit entscheidet, welche Reihenfolge bei mehreren Schulden gilt – und was nach der Zinsbindung übrig bleibt.',
       readingMinutes: 11,

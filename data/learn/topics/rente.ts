@@ -163,7 +163,12 @@ export const rente: LearnTopic = {
           head: ['Größe', 'Wert'],
           rows: [
             ['Punkte je Jahr', formatNumber(rechnung.pointsPerYear, 2)],
-            ['Punkte insgesamt nach 40 Jahren', formatNumber(rechnung.totalPoints, 1)],
+            [
+              // Nicht „40 Jahre“ tippen: Die Zahl folgt aus dem Beispiel und
+              // wäre bei jeder Änderung daran still falsch geworden.
+              `Punkte insgesamt nach ${BEISPIEL.yearsWorked + BEISPIEL.yearsRemaining} Jahren`,
+              formatNumber(rechnung.totalPoints, 1),
+            ],
             [
               'Bruttorente im Monat',
               formatCurrencyRounded(rechnung.grossStatutoryMonthly),
