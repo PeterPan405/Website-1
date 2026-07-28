@@ -22,9 +22,13 @@
  * Sie sollen nicht beurteilen, ob eine Aktie teuer ist. Sie sollen den Fall
  * abfangen, in dem eine Größenordnung nicht stimmt – und Größenordnungen
  * verfehlt man um Faktoren wie 100 (Pence statt Pfund), 150 (Yen statt Dollar)
- * oder 5 (ein Aktiensplit). Ein Kurs-Umsatz-Verhältnis zwischen 0,05 und 60
- * lässt jedes reale Unternehmen durch und keinen dieser Fehler: Der teuerste
- * Wert im Bestand liegt bei 53, der günstigste bei 0,19, der Mittelwert bei 4.
+ * oder 5 (ein Aktiensplit).
+ *
+ * Die Obergrenze liegt bei 120. Der höchste echte Wert im Bestand ist Palantir
+ * mit 66 – eine Aktie, die tatsächlich das Sechsundsechzigfache ihres
+ * Jahresumsatzes kostet. Eine Grenze von 60 hätte den gemeldet, und eine
+ * Prüfung, die Richtiges anschlägt, schaut man nach dem zweiten Mal nicht mehr
+ * an. Der Median liegt bei 4, der niedrigste Wert bei 0,19.
  *
  * ## Was diese Prüfung schon gefunden hat
  *
@@ -156,7 +160,7 @@ console.log('\n— Bewertung im Verhältnis zum Kurs —')
 
 /** Untere und obere Grenze für das Kurs-Umsatz-Verhältnis. */
 const KUV_MIN = 0.05
-const KUV_MAX = 60
+const KUV_MAX = 120
 
 const auffaellig: string[] = []
 let geprueft = 0

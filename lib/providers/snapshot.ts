@@ -57,11 +57,35 @@ export interface SnapshotInstrument {
   points: SnapshotPoint[]
 }
 
+/**
+ * Die Euro-Referenzkurse der EZB vom jüngsten Handelstag.
+ *
+ * ## Wozu sie in der Momentaufnahme stehen
+ *
+ * Nicht zur Anzeige – dafür gibt es die Währungspaare als eigene Instrumente.
+ * Sondern zum Umrechnen: Shell berichtet in Dollar und notiert in London,
+ * Enbridge berichtet in Kanada-Dollar und notiert dort auch, aber Brookfield
+ * berichtet in US-Dollar bei kanadischer Notierung. Ohne Kurs lassen sich für
+ * solche Werte keine Kennzahlen bilden.
+ *
+ * Die Tabelle kostet nichts: Der Kursabruf lädt die vollständige EZB-Tabelle
+ * ohnehin, bisher wurden daraus nur fünf Paare übernommen und der Rest
+ * weggeworfen. Abgelegt wird je Währung eine Zahl.
+ */
+export interface Devisenkurse {
+  /** Handelstag der EZB-Fixings im Format YYYY-MM-DD. */
+  stand: string
+  /** Wie viele Einheiten dieser Währung ein Euro kostet. Euro selbst fehlt. */
+  jeEuro: Record<string, number>
+}
+
 export interface MarketSnapshot {
   /** Wann der Abruf lief (ISO 8601 mit Zeitzone), `null` vor dem ersten Lauf. */
   fetchedAt: string | null
   /** Nach Instrument-Slug, z. B. `eur-usd`. */
   instruments: Record<string, SnapshotInstrument>
+  /** Fehlt vor dem ersten Lauf, der sie schreibt. */
+  devisen?: Devisenkurse
 }
 
 /** Eine Momentaufnahme ohne Daten – der Zustand vor dem ersten Workflow-Lauf. */
@@ -170,12 +194,34 @@ export function serializeSnapshot(snapshot: MarketSnapshot): string {
     ].join('\n')
   })
 
+  /*
+    Die Devisentabelle kommt ans Ende und in eine Zeile je Währung.
+
+    Ans Ende, weil sie sich taeglich in jeder Zahl aendert – stuende sie oben,
+    begaenne jeder Diff mit dreissig geaenderten Zeilen, bevor die eigentliche
+    Neuigkeit kaeme.
+  */
+  const devisen = snapshot.devisen
+    ? [
+        '  "devisen": {',
+        `    "stand": ${JSON.stringify(snapshot.devisen.stand)},`,
+        '    "jeEuro": {',
+        Object.entries(snapshot.devisen.jeEuro)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([waehrung, kurs]) => `      ${JSON.stringify(waehrung)}: ${kurs}`)
+          .join(',\n'),
+        '    }',
+        '  }',
+      ]
+    : null
+
   return [
     '{',
     `  "fetchedAt": ${JSON.stringify(snapshot.fetchedAt)},`,
     '  "instruments": {',
     eintraege.join(',\n'),
-    '  }',
+    devisen ? '  },' : '  }',
+    ...(devisen ?? []),
     '}',
     '',
   ].join('\n')

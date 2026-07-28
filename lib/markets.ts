@@ -14,8 +14,9 @@ import {
   type Fundamentalkennzahlen,
 } from '@/lib/fundamentalkennzahlen'
 import { berechneKennzahlen, type Kennzahlen } from '@/lib/kennzahlen'
+import { rechneUm } from '@/lib/devisen'
 import { gleicheWaehrung, inHauptwaehrung } from '@/lib/waehrungseinheit'
-import { getLiveSeries, type QuoteSource } from '@/lib/market-live'
+import { getDevisenkurse, getLiveSeries, type QuoteSource } from '@/lib/market-live'
 import { computeQuoteFigures } from '@/lib/market-quote'
 import { sliceByDays } from '@/lib/market-range'
 import { downsample, getInstrumentSeries, sliceRange } from '@/lib/market-series'
@@ -281,8 +282,16 @@ export type Fundamentalbefund =
   | {
       art: 'zahlen'
       kennzahlen: Fundamentalkennzahlen
-      /** Die Währung, in der Bilanz **und** Kurs stehen – geprüft, nicht geraten. */
+      /** Die Währung, in der die Zahlen stehen – die des Unternehmensberichts. */
       waehrung: string
+      /**
+       * Gesetzt, wenn der Börsenwert dafür umgerechnet werden musste.
+       *
+       * Steht dann unter der Tafel: Es ist ein Unterschied, ob eine Kennzahl
+       * aus zwei Zahlen derselben Währung entsteht oder ob ein Wechselkurs
+       * dazwischensteht.
+       */
+      umrechnung?: { vonWaehrung: string; kursStand: string }
     }
   /** Das Unternehmen meldet nicht bei der US-Börsenaufsicht. */
   | { art: 'keineMeldung' }
@@ -303,28 +312,7 @@ export async function getFundamentalkennzahlen(
   const definition = findDefinition(symbol)
   if (!definition || definition.kind !== 'stock') return null
 
-  /*
-    Bilanz und Kurs müssen dieselbe Währung tragen.
-
-    Die us-gaap-Melder berichten in US-Dollar, die IFRS-Melder in ihrer
-    Heimatwährung – Toyota in Yen, Santander in Euro. Passt das zur Währung des
-    Kurses, lässt sich rechnen; passt es nicht, käme ein Kurs-Gewinn-Verhältnis
-    heraus, das um den Wechselkurs danebenliegt, ohne dass man ihm etwas
-    ansieht.
-
-    Umgerechnet wird bewusst nicht: Das brächte einen zweiten Stichtag ins
-    Spiel – der Kurs von heute, die Bilanz vom Jahresende – und einen weiteren
-    Weg, still falsch zu liegen. Die Lücke ist die ehrlichere Antwort.
-
-    Ausgenommen ist die Untereinheit: Die Londoner Börse stellt Aktien in Pence,
-    die Bilanzen lauten auf Pfund. Das ist keine Umrechnung mit einem
-    Wechselkurs, sondern ein Faktor 100 – dafür braucht es keinen Stichtag.
-  */
   const bilanzwaehrung = getBilanzwaehrung(definition.ticker)
-  if (!gleicheWaehrung(definition.unit, bilanzwaehrung)) {
-    return { art: 'keineMeldung' }
-  }
-
   const zahlen = getBilanzzahlen(definition.ticker)
   if (!zahlen) return { art: 'keineMeldung' }
 
@@ -344,12 +332,40 @@ export async function getFundamentalkennzahlen(
   */
   if (quote.source === null) return { art: 'keinEchterKurs' }
 
-  // Gerechnet und ausgewiesen wird in der Hauptwährung: 525,70 GBp sind 5,26 GBP.
+  // Zuerst in die Hauptwährung: 525,70 GBp sind 5,26 GBP. Kein Wechselkurs,
+  // sondern ein Faktor 100 – die Londoner Börse stellt Aktien in Pence.
   const kurs = inHauptwaehrung(quote.value, definition.unit)
 
-  const kennzahlen = berechneFundamentalkennzahlen(zahlen, kurs.wert)
+  /*
+    Passen Kurs- und Bilanzwährung, wird direkt gerechnet.
+
+    Sonst wird der **Kurs** umgerechnet, nicht die Bilanz. Der Kurs ist eine
+    Größe von heute, der Wechselkurs auch – das ist exakt und nicht geschätzt.
+    Die gemeldeten Zahlen bleiben unangetastet in ihrer eigenen Währung, und
+    genau darin liegt der Unterschied zu einer umgerechneten Bilanz, gegen die
+    hier lange und zu Recht argumentiert wurde.
+  */
+  if (gleicheWaehrung(kurs.waehrung, bilanzwaehrung)) {
+    const kennzahlen = berechneFundamentalkennzahlen(zahlen, kurs.wert)
+    return kennzahlen.belegt > 0
+      ? { art: 'zahlen', kennzahlen, waehrung: kurs.waehrung }
+      : { art: 'keineMeldung' }
+  }
+
+  const devisen = getDevisenkurse()
+  if (!devisen) return { art: 'keineMeldung' }
+
+  const umgerechnet = rechneUm(kurs.wert, kurs.waehrung, bilanzwaehrung, devisen.jeEuro)
+  if (umgerechnet === null) return { art: 'keineMeldung' }
+
+  const kennzahlen = berechneFundamentalkennzahlen(zahlen, umgerechnet)
   return kennzahlen.belegt > 0
-    ? { art: 'zahlen', kennzahlen, waehrung: kurs.waehrung }
+    ? {
+        art: 'zahlen',
+        kennzahlen,
+        waehrung: bilanzwaehrung,
+        umrechnung: { vonWaehrung: kurs.waehrung, kursStand: devisen.stand },
+      }
     : { art: 'keineMeldung' }
 }
 

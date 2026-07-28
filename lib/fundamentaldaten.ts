@@ -13,11 +13,18 @@ import type { Bilanzzahlen } from '@/lib/fundamentalkennzahlen'
  *
  * ## Warum längst nicht jede Aktie dabei ist
  *
- * Die SEC kennt nur Unternehmen, die nach US-Vorschriften bilanzieren. Von den
- * gut 420 geführten Aktien sind das rund 130. Für SAP, Toyota, Nestlé oder
- * Samsung gibt es keine vergleichbare offene Quelle: Jedes Land hat seine
- * eigene Aufsicht mit eigenem Format, und die kommerziellen Anbieter verlangen
- * einen Schlüssel und eine Lizenz.
+ * Erfasst ist, wer bei der SEC einreicht – und das sind mehr als lange
+ * angenommen. Neben den amerikanischen Unternehmen gehören dazu alle mit einem
+ * Hinterlegungsschein in New York: Toyota, Shell, die Royal Bank of Canada, die
+ * japanischen Großbanken. Sie reichen jährlich einen `20-F` ein, kanadische
+ * Gesellschaften einen `40-F`, beide im selben Format wie ein amerikanischer
+ * `10-K`.
+ *
+ * Nicht erfasst ist, wer keine US-Notierung hat – Nestlé, Allianz, BMW,
+ * Samsung, der Großteil der deutschen und französischen Werte. Für sie gibt es
+ * keine vergleichbare offene Quelle: Jedes Land hat seine eigene Aufsicht mit
+ * eigenem Format, und die kommerziellen Anbieter verlangen einen Schlüssel und
+ * eine Lizenz.
  *
  * Dort steht deshalb „keine Angabe“. Das ist unbefriedigend, aber es ist die
  * Wahrheit – ein geschätztes Kurs-Gewinn-Verhältnis wäre schlimmer als gar

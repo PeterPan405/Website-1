@@ -106,10 +106,16 @@ jobs:
       - name: SEC nach den fehlenden Unternehmen absuchen
         run: node --experimental-strip-types scripts/quellen-probe-fundamentaldaten.ts
 
-      - name: Kandidatenliste sichern
+      - name: ESEF-Verzeichnis für die europäischen Werte abklopfen
+        if: always()
+        run: node --experimental-strip-types scripts/quellen-probe-esef.ts
+
+      - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sec-kandidaten
-          path: sec-kandidaten.json
+          name: kandidaten
+          path: |
+            sec-kandidaten.json
+            esef-kandidaten.json
           if-no-files-found: warn
