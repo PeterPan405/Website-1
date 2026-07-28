@@ -480,7 +480,42 @@ async function main() {
 
     if (gefunden.umsatz || gefunden.gewinn) {
       const ziel = katalogJeSecKuerzel.get(kuerzel) ?? kuerzel
-      const aktien = jeKuerzel[kuerzel]?.aktien
+
+      /*
+        Die Aktienzahl braucht einen eigenen Abruf.
+
+        Sie steht in `dei`, nicht in `ifrs-full`, und die erste Runde hat sie
+        nur fuer Kuerzel abgelegt, die im Katalog stehen. Toyota steht dort als
+        `7203.T`, gemeldet wird sie aber unter `TM` – der Wert lag also nie am
+        richtigen Platz. Ohne ihn rechnet keine einzige der fuenf Kennzahlen,
+        denn alle fuehren ueber den Wert je Aktie.
+      */
+      let aktien = jeKuerzel[kuerzel]?.aktien
+      if (!aktien) {
+        const url = `${BEGRIFF_BASIS}/CIK${String(cik).padStart(10, '0')}/dei/EntityCommonStockSharesOutstanding.json`
+        const antwort = (await hole(url, true)) as Begriffsantwort | null
+        await new Promise((fertig) => setTimeout(fertig, 120))
+        if (antwort) {
+          /*
+            Hier zaehlt der juengste Stichtag, nicht der juengste Jahresbericht.
+
+            Die Aktienzahl steht auf dem Deckblatt jeder Meldung, auch der
+            unterjaehrigen. `juengsterJahreswert` filtert auf Jahresberichte und
+            faende deshalb oft gar nichts.
+          */
+          let bester: { wert: number; ende: string } | null = null
+          for (const eintraege of Object.values(antwort.units ?? {})) {
+            for (const eintrag of eintraege) {
+              if (typeof eintrag.val !== 'number' || !Number.isFinite(eintrag.val))
+                continue
+              if (!bester || eintrag.end > bester.ende) {
+                bester = { wert: eintrag.val, ende: eintrag.end }
+              }
+            }
+          }
+          if (bester) aktien = bester.wert
+        }
+      }
       if (aktien) gefunden.aktien = aktien
 
       /*
