@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-28T09:40:13.188Z",
+  "abgerufenAm": "2026-07-28T09:43:10.529Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -28,11 +28,6 @@
           "erwartet": "2027-03-08",
           "basis": "2026-03-09",
           "streuungTage": 7
-        },
-        {
-          "erwartet": "2027-03-15",
-          "basis": "2026-03-16",
-          "streuungTage": 14
         },
         {
           "erwartet": "2027-05-06",
@@ -267,16 +262,6 @@
         {
           "erwartet": "2027-04-01",
           "basis": "2026-04-02",
-          "streuungTage": 1
-        },
-        {
-          "erwartet": "2027-04-21",
-          "basis": "2026-04-22",
-          "streuungTage": 1
-        },
-        {
-          "erwartet": "2027-07-01",
-          "basis": "2026-07-02",
           "streuungTage": 1
         },
         {
@@ -623,11 +608,6 @@
           "erwartet": "2027-04-21",
           "basis": "2026-04-22",
           "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-07-13",
-          "basis": "2026-07-14",
-          "streuungTage": 8
         },
         {
           "erwartet": "2027-07-21",
@@ -1000,11 +980,6 @@
           "streuungTage": 1
         },
         {
-          "erwartet": "2027-04-28",
-          "basis": "2026-04-29",
-          "streuungTage": 5
-        },
-        {
           "erwartet": "2027-07-05",
           "basis": "2026-07-06",
           "streuungTage": 4
@@ -1373,11 +1348,6 @@
           "erwartet": "2027-06-22",
           "basis": "2026-06-23",
           "streuungTage": 2
-        },
-        {
-          "erwartet": "2027-06-29",
-          "basis": "2026-06-30",
-          "streuungTage": 5
         }
       ]
     },
@@ -1729,11 +1699,6 @@
         "2025-01-24"
       ],
       "vorhersagen": [
-        {
-          "erwartet": "2027-01-01",
-          "basis": "2026-01-02",
-          "streuungTage": 21
-        },
         {
           "erwartet": "2027-01-26",
           "basis": "2026-01-27",
@@ -2242,11 +2207,6 @@
         {
           "erwartet": "2027-02-03",
           "basis": "2026-02-04",
-          "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-02-23",
-          "basis": "2026-02-24",
           "streuungTage": 0
         },
         {
@@ -2894,16 +2854,6 @@
       ],
       "vorhersagen": [
         {
-          "erwartet": "2027-04-13",
-          "basis": "2026-04-14",
-          "streuungTage": 15
-        },
-        {
-          "erwartet": "2027-04-20",
-          "basis": "2026-04-21",
-          "streuungTage": 8
-        },
-        {
           "erwartet": "2027-05-04",
           "basis": "2026-05-05",
           "streuungTage": 6
@@ -3007,11 +2957,6 @@
           "erwartet": "2027-04-23",
           "basis": "2026-04-24",
           "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-07-13",
-          "basis": "2026-07-14",
-          "streuungTage": 10
         },
         {
           "erwartet": "2027-07-23",
@@ -3279,11 +3224,6 @@
           "streuungTage": 4
         },
         {
-          "erwartet": "2027-04-07",
-          "basis": "2026-04-08",
-          "streuungTage": 20
-        },
-        {
           "erwartet": "2027-04-28",
           "basis": "2026-04-29",
           "streuungTage": 1
@@ -3406,11 +3346,6 @@
         {
           "erwartet": "2027-01-11",
           "basis": "2026-01-12",
-          "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-01-27",
-          "basis": "2026-01-28",
           "streuungTage": 0
         },
         {
@@ -3579,11 +3514,6 @@
           "streuungTage": 0
         },
         {
-          "erwartet": "2027-01-21",
-          "basis": "2026-01-22",
-          "streuungTage": 0
-        },
-        {
           "erwartet": "2027-04-20",
           "basis": "2026-04-21",
           "streuungTage": 0
@@ -3651,11 +3581,6 @@
         {
           "erwartet": "2027-01-12",
           "basis": "2026-01-13",
-          "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-02-04",
-          "basis": "2026-02-05",
           "streuungTage": 0
         },
         {
@@ -3882,11 +3807,6 @@
           "erwartet": "2026-11-04",
           "basis": "2025-11-05",
           "streuungTage": 1
-        },
-        {
-          "erwartet": "2026-11-19",
-          "basis": "2025-11-20",
-          "streuungTage": 16
         },
         {
           "erwartet": "2027-02-02",
@@ -4122,11 +4042,6 @@
           "erwartet": "2027-02-02",
           "basis": "2026-02-03",
           "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-04-13",
-          "basis": "2026-04-14",
-          "streuungTage": 21
         },
         {
           "erwartet": "2027-05-04",
@@ -4484,11 +4399,6 @@
           "streuungTage": 0
         },
         {
-          "erwartet": "2027-03-19",
-          "basis": "2026-03-20",
-          "streuungTage": 7
-        },
-        {
           "erwartet": "2027-03-26",
           "basis": "2026-03-27",
           "streuungTage": 0
@@ -4767,11 +4677,6 @@
           "erwartet": "2027-04-08",
           "basis": "2026-04-09",
           "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-05-04",
-          "basis": "2026-05-05",
-          "streuungTage": 5
         },
         {
           "erwartet": "2027-07-08",
@@ -5182,11 +5087,6 @@
           "erwartet": "2026-11-04",
           "basis": "2025-11-05",
           "streuungTage": 0
-        },
-        {
-          "erwartet": "2027-01-11",
-          "basis": "2026-01-12",
-          "streuungTage": 16
         },
         {
           "erwartet": "2027-01-27",
