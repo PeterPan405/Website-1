@@ -9,12 +9,16 @@ import {
   hebelAusgang,
   hebelMehrRate,
   hebelMehrRendite,
+  kostenfaelle,
+  kostenFondsquote,
   kostenstufen,
+  ordergebuehrFest,
   portfolioJahre,
   portfolioRenditeAktien,
   portfolioRenditeSicher,
   portfolioStart,
   sparfall,
+  spreadProzent,
   verhaltensluecke,
 } from '@/lib/lernszenarien'
 
@@ -287,6 +291,96 @@ export function PortfolioDrift() {
         `${formatPercent(ende, 0)}. Das Depot trägt dann mehr Risiko als geplant – und zwar am Ende einer ` +
         `guten Phase, also genau dann, wenn ein Rückschlag am wahrscheinlichsten ist. Die gestrichelte ` +
         `Linie ist die geplante Quote, auf die Rebalancing zurücksetzt.`
+      }
+    />
+  )
+}
+
+// -------------------------------------------- Welcher Kostenblock überwiegt
+
+/**
+ * Warum die Frage nach dem günstigeren Anbieter keine allgemeine Antwort hat.
+ *
+ * ## Was die Grafik zeigt
+ *
+ * Zwei Depots, beide üblich, und in beiden dieselben drei Kostenarten – nur
+ * in umgekehrter Rangfolge. Beim kleinen Depot mit monatlichem Sparplan
+ * überwiegen Ordergebühr und Spread; beim großen mit zwei Käufen im Jahr sind
+ * sie neben den laufenden Fondskosten kaum noch sichtbar.
+ *
+ * ## Warum in Prozent und nicht in Euro
+ *
+ * In Euro wäre der Vergleich sinnlos: Ein Depot ist fünfzehnmal so groß wie
+ * das andere, die Säule daneben wäre ein Strich. Bezogen auf den Depotwert
+ * werden beide vergleichbar – und genau diese Bezugsgröße meint der Abschnitt,
+ * wenn er von der „wahren Quote“ spricht.
+ *
+ * Der Text daneben sagt allerdings ausdrücklich, dass man *rechnen* muss, statt
+ * Prozentzahlen zu addieren. Das ist kein Widerspruch: Hier wird in Euro
+ * gerechnet und erst das Ergebnis durch den Depotwert geteilt. Genau die
+ * Reihenfolge, die dort steht.
+ */
+export function KostenWahreQuote() {
+  const faelle = kostenfaelle.map((fall) => {
+    const umsatz = fall.kaeufeJeJahr * fall.kaufbetrag
+    const fondskosten = fall.depotwert * (kostenFondsquote / 100)
+    const ordergebuehren = fall.kaeufeJeJahr * ordergebuehrFest
+    const spread = umsatz * (spreadProzent / 100)
+    const summe = fondskosten + ordergebuehren + spread
+    const alsQuote = (betrag: number) => (betrag / fall.depotwert) * 100
+    return {
+      ...fall,
+      umsatz,
+      teile: [
+        { name: 'Fondskosten', wert: alsQuote(fondskosten), euro: fondskosten },
+        { name: 'Ordergebühr', wert: alsQuote(ordergebuehren), euro: ordergebuehren },
+        { name: 'Spread', wert: alsQuote(spread), euro: spread },
+      ],
+      summe,
+      quote: alsQuote(summe),
+    }
+  })
+
+  const farben = [FARBEN.marke, FARBEN.gefahr, FARBEN.warnung]
+
+  return (
+    <SaeulenDiagramm
+      id="kosten-wahre-quote"
+      einheit="Prozent des Depotwerts im Jahr"
+      hoehe={310}
+      legende={faelle[0].teile.map((teil, index) => ({
+        farbe: farben[index],
+        text: teil.name,
+      }))}
+      saeulen={faelle.map((fall) => ({
+        label: formatCurrencyRounded(fall.depotwert),
+        teile: fall.teile.map((teil, index) => ({
+          wert: teil.wert,
+          farbe: farben[index],
+        })),
+        wertText: formatPercent(fall.quote, 2),
+        hinweis: `${fall.kaeufeJeJahr} Käufe im Jahr`,
+      }))}
+      beschreibung={
+        `Dieselben drei Kostenarten in zwei Depots, jeweils auf ein Jahr gerechnet und durch den ` +
+        `Depotwert geteilt. ` +
+        faelle
+          .map(
+            (fall) =>
+              `Beim ${fall.name} – ${formatCurrencyRounded(fall.depotwert)} Depotwert, ` +
+              `${fall.kaeufeJeJahr} Käufe zu je ${formatCurrencyRounded(fall.kaufbetrag)} – kostet ein ` +
+              `Jahr ${formatCurrencyRounded(fall.summe)}, also ${formatPercent(fall.quote, 2)}: ` +
+              fall.teile
+                .map((teil) => `${teil.name} ${formatCurrencyRounded(teil.euro)}`)
+                .join(', ')
+          )
+          .join('. ') +
+        `. Die Rangfolge dreht sich um: Im kleinen Depot machen Ordergebühr und Spread den größten ` +
+        `Teil aus, im großen sind sie neben den laufenden Fondskosten kaum noch zu sehen. Deshalb hat ` +
+        `die Frage, welcher Anbieter günstiger ist, keine allgemeine Antwort – sie hängt an Depotgröße ` +
+        `und Handelshäufigkeit. Gerechnet ist mit ${formatPercent(kostenFondsquote, 1)} Fondskosten, ` +
+        `${formatCurrencyRounded(ordergebuehrFest)} je Order und ${formatPercent(spreadProzent, 1)} ` +
+        `Spread; eine Depotgebühr fällt bei den üblichen Anbietern nicht an.`
       }
     />
   )

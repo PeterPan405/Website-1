@@ -127,7 +127,15 @@ export function Legende({
   */
   const positionen = eintraege.reduce<number[]>((liste, eintrag, index) => {
     const vorher = index === 0 ? x : liste[index - 1]
-    const breite = index === 0 ? 0 : 22 + eintraege[index - 1].text.length * 6.6
+    /*
+      7,2 Pixel je Zeichen, nicht 6,6.
+
+      Mit 6,6 stieß bei „Fondskosten – Ordergebühr – Spread“ das Farbfeld des
+      folgenden Eintrags in den Text des vorigen. Die Schätzung muss in diese
+      Richtung großzügig sein: zu viel Abstand sieht luftig aus, zu wenig sieht
+      kaputt aus.
+    */
+    const breite = index === 0 ? 0 : 22 + eintraege[index - 1].text.length * 7.2
     liste.push(vorher + breite)
     return liste
   }, [])

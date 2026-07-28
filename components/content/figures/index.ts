@@ -42,6 +42,7 @@ import {
 } from '@/components/content/figures/grundlagen'
 import { InflationKaufkraft } from '@/components/content/figures/inflation'
 import {
+  ImmobilieRestschuld,
   KreditAnfangstilgung,
   KreditTilgungsverlauf,
 } from '@/components/content/figures/kredit'
@@ -64,7 +65,7 @@ import {
   TimingTrefferquote,
   ZinseszinsSteuerstundung,
 } from '@/components/content/figures/profi'
-import { RenteLuecke } from '@/components/content/figures/rente'
+import { RenteFreibetrag, RenteLuecke } from '@/components/content/figures/rente'
 import { RisikoErholung } from '@/components/content/figures/risiko'
 import {
   RohstoffeKeinErtrag,
@@ -73,6 +74,7 @@ import {
 import {
   BudgetHebel,
   KostenEndkapital,
+  KostenWahreQuote,
   PortfolioDrift,
   PsychologieVerhaltensluecke,
 } from '@/components/content/figures/sparen'
@@ -80,6 +82,7 @@ import { TimingBesteWochen } from '@/components/content/figures/timing'
 import {
   BitcoinAngebot,
   CrashesErholung,
+  CrashesSpirale,
   FondsSondervermoegen,
   ImmobilieNettorendite,
   SparerpauschbetragGrenze,
@@ -168,4 +171,8 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'notenbank-zinskorridor': NotenbankZinskorridor,
   'anleihe-rangfolge': AnleiheRangfolge,
   'portfolio-quote-rueckgang': PortfolioQuoteRueckgang,
+  'immobilie-restschuld': ImmobilieRestschuld,
+  'rente-freibetrag': RenteFreibetrag,
+  'crashes-spirale': CrashesSpirale,
+  'kosten-wahre-quote': KostenWahreQuote,
 }

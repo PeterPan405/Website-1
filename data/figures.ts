@@ -169,6 +169,14 @@ export type FigureId =
   | 'anleihe-rangfolge'
   /** Was vom Depot bleibt, je nach Aktienquote. */
   | 'portfolio-quote-rueckgang'
+  /** Wie wenig nach dem Ende der Zinsbindung getilgt ist. */
+  | 'immobilie-restschuld'
+  /** Der eingefrorene Rentenfreibetrag gegen die steigende Rente. */
+  | 'rente-freibetrag'
+  /** Der Kreis aus Verkaufszwang, fallenden Preisen und Nachschusspflicht. */
+  | 'crashes-spirale'
+  /** Welcher Kostenblock in welchem Depot überwiegt. */
+  | 'kosten-wahre-quote'
 
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
@@ -563,5 +571,27 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Was die Aktienquote im Ernstfall bedeutet',
     caption:
       'Fünf Depots mit demselben Startwert. Was sie unterscheidet, ist keine Produktwahl, sondern eine einzige Zahl – und im Rückgang entscheidet sie alles.',
+  },
+  'immobilie-restschuld': {
+    title: 'Was nach der Zinsbindung offen bleibt',
+    caption:
+      'Zehn Jahre zahlen fühlt sich nach der Hälfte an. Getilgt ist knapp ein Fünftel – der Rest wird zu Konditionen weiterfinanziert, die heute niemand kennt.',
+  },
+  'rente-freibetrag': {
+    title: 'Der Freibetrag wächst nicht mit',
+    caption:
+      'Der steuerfreie Betrag wird einmal in Euro festgeschrieben. Jede spätere Rentenerhöhung ist voll steuerpflichtig – die Steuerlast steigt, ohne dass sich ein Gesetz ändert.',
+  },
+  'crashes-spirale': {
+    title: 'Die Liquiditätsspirale',
+    description:
+      'Vier Stationen in einem geschlossenen Kreis, im Uhrzeigersinn. Erstens Verkäufe: Wer auf Kredit gekauft hat und nicht nachschießen kann, verkauft – nicht weil er will, sondern weil er muss. Zweitens fallen die Preise, weil viele Verkäufe auf einmal auf wenige Käufer treffen. Drittens schrumpfen dadurch die Sicherheiten: Was als Pfand hinterlegt ist, ist plötzlich weniger wert. Viertens fordert die Bank Nachschuss oder stellt die Position glatt – und damit ist der Kreis wieder bei den erzwungenen Verkäufen. Es gibt keinen letzten Kasten; die vierte Station ist die Ursache der ersten. Das ist der Grund, warum ein Einbruch schneller abläuft als der Anstieg davor: Ein erheblicher Teil der Verkäufe ist nicht entschieden, sondern erzwungen. Wer ohne Kredit gekauft hat, steht in diesem Kreis nicht drin. Zahlen stehen bewusst nicht daran – wie schnell sich der Kreis dreht, hängt daran, wie viel im Markt auf Kredit gekauft wurde.',
+    caption:
+      'Kein Ablauf, sondern ein Kreis: Die letzte Station ist die Ursache der ersten. Deshalb hört ein Crash nicht auf, wenn die Meinungen drehen.',
+  },
+  'kosten-wahre-quote': {
+    title: 'Welcher Kostenblock überwiegt',
+    caption:
+      'Dieselben drei Kostenarten, zwei Depots, umgekehrte Rangfolge. Deshalb hat die Frage nach dem günstigeren Anbieter keine allgemeine Antwort.',
   },
 }

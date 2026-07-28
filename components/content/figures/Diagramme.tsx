@@ -90,7 +90,16 @@ export function SaeulenDiagramm({
   beschreibung?: string
   hoehe?: number
 }) {
-  const obenFrei = legende ? 52 : 30
+  /*
+    Die Einheit bekommt eine eigene Zeile über der Zeichenfläche.
+
+    Sie stand vorher dicht über der Achse, und das ging so lange gut, bis eine
+    Säule die Achse voll ausfüllte: Dann sitzt ihre Beschriftung auf derselben
+    Höhe wie die Einheit, und bei „Euro Darlehen“ neben „213.814 €“ liegen die
+    beiden übereinander. Bei den gestapelten Säulen, die alle gleich hoch sind,
+    ist das nicht der Ausnahmefall, sondern die Regel.
+  */
+  const obenFrei = legende ? 64 : 40
   const untenFrei = saeulen.some((s) => s.hinweis) ? 46 : 28
   const flaeche: Plotflaeche = {
     links: 66,
@@ -118,7 +127,7 @@ export function SaeulenDiagramm({
   return (
     <FigureSvg id={id} viewBox={`0 0 640 ${hoehe}`} beschreibung={beschreibung}>
       {einheit && (
-        <Beschriftung x={flaeche.links - 2} y={obenFrei - 17} ton="leise" groesse={12}>
+        <Beschriftung x={flaeche.links - 2} y={obenFrei - 24} ton="leise" groesse={12}>
           {einheit}
         </Beschriftung>
       )}
@@ -616,8 +625,16 @@ export function UmbrochenerText({
  * Bis 20 mit einer Nachkommastelle, darüber ganzzahlig mit Tausenderpunkt.
  * Ohne diese Unterscheidung stünde an einer Prozentachse „0“, „0“, „1“, „1“ –
  * viermal dieselbe Zahl, weil 0,5 gerundet wird.
+ *
+ * Bei einem Maximum von zwei oder weniger reicht auch eine Nachkommastelle
+ * nicht: Die Achse teilt in Vierteln, und aus 0,25 wurde damit „0,3“. Eine
+ * Achse, an der eine andere Zahl steht, als die Linie bedeutet, ist schlimmer
+ * als eine ohne Beschriftung.
  */
 function achsenwert(wert: number, maximum: number): string {
+  if (maximum <= 2 && !Number.isInteger(wert)) {
+    return wert.toLocaleString('de-DE', { maximumFractionDigits: 2 })
+  }
   if (maximum <= 20 && !Number.isInteger(wert)) {
     return wert.toLocaleString('de-DE', { maximumFractionDigits: 1 })
   }

@@ -469,6 +469,25 @@ export const immobilieEigenkapitalquoten = [100, 40, 20, 10] as const
 /** Wertänderungen des Objekts in Prozent – der Hebel wirkt in beide Richtungen. */
 export const immobilieWertaenderungen = [10, -10] as const
 
+/**
+ * Der Fremdkapitalanteil des Kaufbeispiels, in Prozent des Kaufpreises.
+ *
+ * Achtzig Prozent entsprechen zwanzig Prozent Eigenkapital – die Aufteilung,
+ * bei der die meisten Banken ohne Zuschlag finanzieren.
+ *
+ * Im Thema stand das Darlehen zuvor als getippte Zahl da, mit dem Zusatz „die
+ * gleiche Rechnung wie unter Schulden & Kredit“. Das stimmte nicht: Dort geht
+ * es um 300.000 Euro Darlehen, hier um 300.000 Euro Kaufpreis. Abgeleitet
+ * statt getippt kann die Beziehung nicht mehr auseinanderlaufen.
+ */
+export const immobilieDarlehensquote = 80
+
+/** Der Zinssatz des Kaufbeispiels, in Prozent. */
+export const immobilieDarlehenszins = 3.5
+
+/** Die Anfangstilgung des Kaufbeispiels, in Prozent. */
+export const immobilieAnfangstilgung = 2
+
 // ------------------------------------------------------------ Orderkosten
 
 /**
@@ -490,6 +509,41 @@ export const ordergebuehrFest = 4.9
  * gängigen ETF außerhalb der Referenzzeiten eine realistische Größe.
  */
 export const spreadProzent = 0.3
+
+/**
+ * Zwei Depots, an denen sich zeigt, welcher Kostenblock jeweils überwiegt.
+ *
+ * Der Abschnitt „Die eigenen Gesamtkosten ausrechnen“ endet mit der Aussage,
+ * die Frage nach dem günstigeren Anbieter habe keine allgemeine Antwort. Genau
+ * das lässt sich nachrechnen, und zwar an zwei Fällen, die beide üblich sind:
+ * der monatliche Sparplan über kleine Beträge und das größere Depot, das
+ * selten angefasst wird.
+ *
+ * Die Kostensätze sind Größenordnungen für gängige Anbieter, keine Angebote.
+ */
+export const kostenfaelle = [
+  {
+    name: 'kleines Depot, monatlicher Sparplan',
+    depotwert: 10_000,
+    kaeufeJeJahr: 12,
+    kaufbetrag: 200,
+  },
+  {
+    name: 'großes Depot, zwei Käufe im Jahr',
+    depotwert: 150_000,
+    kaeufeJeJahr: 2,
+    kaufbetrag: 5_000,
+  },
+] as const
+
+/**
+ * Die laufende Fondskostenquote in Prozent – ein gängiger Indexfonds.
+ *
+ * Eine Depotgebühr steht hier bewusst nicht: Sie ist bei den üblichen Anbietern
+ * null, und ein Kostenblock, der in beiden Fällen null beträgt, gehört nicht in
+ * einen Vergleich, der zeigen soll, welcher Block überwiegt.
+ */
+export const kostenFondsquote = 0.2
 
 // ---------------------------------------------------- Inflation und Steuer
 
@@ -625,3 +679,18 @@ export const renteVerschiebungen = [-3, -2, -1, 0, 1, 2, 3] as const
 
 /** Bruttoeinkommen für den Vergleich, wie viele Punkte sie im Jahr bringen. */
 export const rentenEinkommen = [30_000, 45_000, 50_500, 70_000, 100_000] as const
+
+/**
+ * Die jährliche Rentenerhöhung, mit der der Freibetrag verglichen wird.
+ *
+ * Zwei Prozent sind eine Annahme, keine Prognose – die tatsächlichen
+ * Anpassungen schwanken stark und folgen der Lohnentwicklung. Gewählt ist
+ * bewusst ein *niedriger* Wert: Die Aussage der Rechnung ist, dass der
+ * festgeschriebene Freibetrag selbst bei bescheidenen Erhöhungen anteilig
+ * schrumpft. Bei größeren Erhöhungen fällt der Effekt stärker aus, nicht
+ * schwächer.
+ */
+export const renteErhoehungProzent = 2
+
+/** Über wie viele Rentenjahre die Wirkung gezeigt wird. */
+export const renteFreibetragJahre = 20

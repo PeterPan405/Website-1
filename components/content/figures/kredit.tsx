@@ -7,6 +7,10 @@ import {
   tilgungsplan,
 } from '@/lib/kredit'
 import {
+  immobilieAnfangstilgung,
+  immobilieDarlehenszins,
+  immobilieDarlehensquote,
+  immobilieKaufpreis,
   immobilienkredit,
   immobilienTilgungssaetze,
   immobilienZinsbindung,
@@ -125,6 +129,94 @@ export function KreditAnfangstilgung() {
         `Nach ${immobilienZinsbindung} Jahren Zinsbindung stehen bei der langsamsten Variante noch ` +
         `${formatCurrencyRounded(restLangsam)} offen, die dann zum unbekannten Zins der Zukunft neu ` +
         `finanziert werden müssen.`
+      }
+    />
+  )
+}
+
+// ------------------------------------------------ Restschuld und Zinsbindung
+
+/**
+ * Wie wenig nach der Zinsbindung getilgt ist.
+ *
+ * ## Warum alle Säulen gleich hoch sind
+ *
+ * Sie zeigen dieselbe Darlehenssumme, aufgeteilt in getilgt und offen. Die
+ * Aussage steckt nicht in der Höhe, sondern im Verhältnis – und dieses
+ * Verhältnis ist der Punkt, an dem die meisten Finanzierungen falsch geplant
+ * werden. Zehn Jahre lang eine Rate zu zahlen fühlt sich nach der Hälfte an;
+ * getilgt ist knapp ein Fünftel.
+ *
+ * Der Grund steht in der Grafik daneben: Anfangs geht fast die ganze Rate für
+ * Zinsen weg. Hier ist die Folge daraus zu sehen.
+ *
+ * Gerechnet wird mit `restschuldNach` – derselben Funktion, aus der auch die
+ * Zahl in der Tabelle über der Grafik stammt.
+ */
+export function ImmobilieRestschuld() {
+  const darlehen = {
+    summe: immobilieKaufpreis * (immobilieDarlehensquote / 100),
+    zinsProzent: immobilieDarlehenszins,
+  }
+  const rate = rateBeiTilgungssatz(darlehen, immobilieAnfangstilgung)
+  const laufzeit = Math.round(auswerten(darlehen, rate).monate / 12)
+
+  /*
+    Die Stützjahre enthalten die Zinsbindung, weil sie der Anlass der Grafik
+    ist – und das Laufzeitende, weil sonst offenbliebe, dass die Kurve
+    überhaupt bei null ankommt. Der Rest teilt die Strecke grob auf.
+  */
+  const stuetzjahre = [5, immobilienZinsbindung, 20, laufzeit]
+
+  const zeilen = stuetzjahre.map((jahr) => {
+    const offen = restschuldNach(darlehen, rate, jahr)
+    return {
+      jahr,
+      offen,
+      getilgt: darlehen.summe - offen,
+      anteil: (offen / darlehen.summe) * 100,
+    }
+  })
+
+  const beiBindung = zeilen.find((zeile) => zeile.jahr === immobilienZinsbindung)!
+
+  return (
+    <SaeulenDiagramm
+      id="immobilie-restschuld"
+      einheit="Euro Darlehen"
+      hoehe={300}
+      legende={[
+        { farbe: FARBEN.marke, text: 'getilgt' },
+        { farbe: FARBEN.gefahr, text: 'noch offen' },
+      ]}
+      saeulen={zeilen.map((zeile) => ({
+        label: `nach ${zeile.jahr} Jahren`,
+        teile: [
+          { wert: zeile.getilgt, farbe: FARBEN.marke },
+          { wert: zeile.offen, farbe: FARBEN.gefahr },
+        ],
+        wertText:
+          zeile.offen < 1 ? 'nichts mehr offen' : formatCurrencyRounded(zeile.offen),
+        hinweis:
+          zeile.jahr === immobilienZinsbindung
+            ? 'Ende der Zinsbindung'
+            : `${formatNumber(100 - zeile.anteil, 0)} % getilgt`,
+      }))}
+      beschreibung={
+        `Ein Darlehen über ${formatCurrencyRounded(darlehen.summe)} zu ` +
+        `${formatNumber(darlehen.zinsProzent, 1)} Prozent mit ${immobilieAnfangstilgung} Prozent ` +
+        `Anfangstilgung. Jede Säule zeigt dieselbe Summe, aufgeteilt in bereits getilgt und noch offen: ` +
+        zeilen
+          .map(
+            (zeile) =>
+              `nach ${zeile.jahr} Jahren sind ${formatCurrencyRounded(zeile.getilgt)} getilgt und ` +
+              `${formatCurrencyRounded(zeile.offen)} offen`
+          )
+          .join('; ') +
+        `. Am Ende der üblichen Zinsbindung von ${immobilienZinsbindung} Jahren stehen damit noch ` +
+        `${formatNumber(beiBindung.anteil, 0)} Prozent der ursprünglichen Summe offen. Genau dieser ` +
+        `Betrag muss zu den dann geltenden Konditionen weiterfinanziert werden – und welche das sein ` +
+        `werden, weiß heute niemand. Vollständig getilgt ist das Darlehen erst nach ${laufzeit} Jahren.`
       }
     />
   )

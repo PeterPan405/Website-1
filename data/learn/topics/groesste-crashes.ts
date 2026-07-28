@@ -255,6 +255,10 @@ export const groessteCrashes: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'crashes-spirale',
+        },
+        {
           type: 'callout',
           variant: 'warning',
           title: 'Die unbequeme Folge für die Streuung',

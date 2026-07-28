@@ -278,6 +278,10 @@ export const kostenUndGebuehren: LearnTopic = {
           text: 'Diese Rechnung führt regelmäßig zu einer Überraschung: Bei einem kleinen Depot mit häufigen Käufen dominieren die Ordergebühren, bei einem großen mit wenigen Käufen die Fondskosten. Die Frage „welcher Broker ist günstiger“ hat deshalb keine allgemeine Antwort – sie hängt an Depotgröße und Handelshäufigkeit.',
         },
         {
+          type: 'figure',
+          figure: 'kosten-wahre-quote',
+        },
+        {
           type: 'callout',
           variant: 'tip',
           title: 'Die praktische Konsequenz',

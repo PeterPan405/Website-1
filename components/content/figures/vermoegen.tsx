@@ -337,3 +337,155 @@ export function FondsSondervermoegen() {
     </FigureSvg>
   )
 }
+
+// ------------------------------------------------------- Die Liquiditätsspirale
+
+/**
+ * Die vier Stationen des Verkaufszwangs – als Kreis, weil es einer ist.
+ *
+ * ## Warum keine Kette
+ *
+ * Für Abläufe gibt es hier `AblaufKette`: Kästen nebeneinander, Pfeile
+ * dazwischen, ein Anfang und ein Ende. Genau das trifft hier nicht zu. Der
+ * Text sagt es selbst – „der Kreis schließt sich“. Eine Liquiditätsspirale hat
+ * keinen letzten Kasten; ihre vierte Station ist die Ursache der ersten.
+ *
+ * Als Kette gezeichnet wäre das ein Ablauf, der irgendwann aufhört, und damit
+ * wäre die Aussage verloren. Der geschlossene Ring ist der Inhalt der Grafik.
+ *
+ * ## Was hier bewusst fehlt
+ *
+ * Zahlen. Wie schnell sich der Kreis dreht und wie tief er trägt, hängt am
+ * Ausmaß der Kreditfinanzierung im Markt – dafür gibt es keine Größe, die für
+ * „einen Crash“ allgemein gilt. Was allgemein gilt, ist die Reihenfolge.
+ */
+const SPIRALE = [
+  {
+    titel: 'Verkäufe',
+    text: 'Wer nachschießen muss und nicht kann, verkauft – nicht weil er will',
+  },
+  {
+    titel: 'Preise fallen',
+    text: 'Viele Verkäufe auf einmal treffen auf wenige Käufer',
+  },
+  {
+    titel: 'Sicherheiten schrumpfen',
+    text: 'Was als Pfand hinterlegt ist, ist plötzlich weniger wert',
+  },
+  {
+    titel: 'Nachschuss gefordert',
+    text: 'Die Bank verlangt frisches Geld oder stellt die Position glatt',
+  },
+] as const
+
+export function CrashesSpirale() {
+  // Platz für drei Zeilen Fußtext unter dem Ring, samt Unterlängen.
+  const hoehe = 416
+  const mitteX = 320
+  const mitteY = 196
+  const kastenBreite = 232
+  const kastenHoehe = 78
+  /* Der Abstand der Kästen von der Mitte, waagerecht weiter als senkrecht:
+     Ein Kasten ist dreimal so breit wie hoch, ein kreisrunder Ring ließe die
+     linken und rechten fast zusammenstoßen. */
+  const radiusX = 190
+  const radiusY = 118
+
+  // Oben, rechts, unten, links – im Uhrzeigersinn, wie der Kreis gelesen wird.
+  const plaetze = [
+    { x: mitteX, y: mitteY - radiusY },
+    { x: mitteX + radiusX, y: mitteY },
+    { x: mitteX, y: mitteY + radiusY },
+    { x: mitteX - radiusX, y: mitteY },
+  ]
+
+  return (
+    <FigureSvg id="crashes-spirale" viewBox={`0 0 640 ${hoehe}`}>
+      <Beschriftung x={320} y={20} anchor="middle" ton="leise" groesse={12}>
+        vier Stationen, kein Ende – jede folgt aus der vorigen
+      </Beschriftung>
+
+      {/* Der Ring liegt hinter den Kästen und ist das eigentliche Bild: Er hat
+          keinen Anfang. Die Pfeilspitzen auf ihm geben die Richtung. */}
+      <ellipse
+        cx={mitteX}
+        cy={mitteY}
+        rx={radiusX}
+        ry={radiusY}
+        fill="none"
+        stroke={FARBEN.gefahr}
+        strokeWidth={2}
+        strokeDasharray="7 5"
+      />
+
+      {plaetze.map((platz, index) => {
+        /*
+          Die Pfeilspitze sitzt auf dem Ring, mittig zwischen zwei Kästen, und
+          zeigt in Umlaufrichtung. Bei einer Ellipse ist die Tangente nicht die
+          Verbindung der Nachbarpunkte – sie wird deshalb aus der Ableitung
+          gebildet: x = rx·cos t, y = ry·sin t ergibt (−rx·sin t, ry·cos t).
+        */
+        const winkel = (-Math.PI / 2 + ((index + 0.5) * Math.PI) / 2) % (2 * Math.PI)
+        const px = mitteX + radiusX * Math.cos(winkel)
+        const py = mitteY + radiusY * Math.sin(winkel)
+        const tx = -radiusX * Math.sin(winkel)
+        const ty = radiusY * Math.cos(winkel)
+        const laenge = Math.hypot(tx, ty)
+        const dreh = (Math.atan2(ty, tx) * 180) / Math.PI
+
+        return (
+          <g key={`pfeil-${index}`}>
+            <path
+              d={`M${px + (tx / laenge) * 7} ${py + (ty / laenge) * 7} l-11 -6 v12 Z`}
+              fill={FARBEN.gefahr}
+              transform={`rotate(${dreh} ${px + (tx / laenge) * 7} ${py + (ty / laenge) * 7})`}
+            />
+          </g>
+        )
+      })}
+
+      {SPIRALE.map((station, index) => {
+        const platz = plaetze[index]
+        const x = platz.x - kastenBreite / 2
+        const y = platz.y - kastenHoehe / 2
+        return (
+          <g key={station.titel}>
+            <Feld
+              x={x}
+              y={y}
+              breite={kastenBreite}
+              hoehe={kastenHoehe}
+              farbe={FARBEN.gefahr}
+            >
+              <Beschriftung
+                x={platz.x}
+                y={y + 24}
+                anchor="middle"
+                ton="stark"
+                gewicht="kraeftig"
+              >
+                {station.titel}
+              </Beschriftung>
+              <UmbrochenerText
+                x={platz.x}
+                y={y + 44}
+                breite={kastenBreite - 20}
+                text={station.text}
+                ton="gedaempft"
+                groesse={11.5}
+              />
+            </Feld>
+          </g>
+        )
+      })}
+
+      <UmbrochenerText
+        x={320}
+        y={370}
+        breite={608}
+        text="Deshalb ist ein Einbruch schneller als der Anstieg davor: Ein erheblicher Teil der Verkäufe ist nicht entschieden, sondern erzwungen. Wer ohne Kredit gekauft hat, steht in diesem Kreis nicht drin."
+        ton="gedaempft"
+      />
+    </FigureSvg>
+  )
+}

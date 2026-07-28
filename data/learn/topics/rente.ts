@@ -252,6 +252,10 @@ export const rente: LearnTopic = {
           ],
         },
         {
+          type: 'figure',
+          figure: 'rente-freibetrag',
+        },
+        {
           type: 'heading',
           level: 2,
           text: 'Die betriebliche Altersversorgung',

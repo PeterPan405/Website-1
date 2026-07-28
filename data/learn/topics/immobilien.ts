@@ -1,6 +1,20 @@
 import type { LearnTopic } from '@/data/learn/types'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
 import { auswerten, rateBeiTilgungssatz, restschuldNach } from '@/lib/kredit'
+import {
+  immobilieAnfangstilgung as TILGUNG,
+  immobilieDarlehenszins,
+  immobilieDarlehensquote,
+  immobilieEigenkapitalquoten as EIGENKAPITALQUOTEN,
+  immobilieInstandhaltung as INSTANDHALTUNG,
+  immobilieJahresmiete as JAHRESMIETE,
+  immobilieKaufpreis as KAUFPREIS,
+  immobilieMietausfallProzent as MIETAUSFALL_PROZENT,
+  immobilieNebenkostenProzent as NEBENKOSTEN_PROZENT,
+  immobilieVerwaltung as VERWALTUNG,
+  immobilieWertaenderungen as WERTAENDERUNGEN,
+  immobilienZinsbindung as ZINSBINDUNG,
+} from '@/lib/lernszenarien'
 
 /*
   Zwei Rechnungen tragen dieses Thema, und beide korrigieren dieselbe
@@ -13,21 +27,15 @@ import { auswerten, rateBeiTilgungssatz, restschuldNach } from '@/lib/kredit'
   2. Der Hebel. Er wird in Beratungsgesprächen nach oben vorgerechnet und
      nach unten weggelassen. Hier steht beides in derselben Tabelle, aus
      derselben Formel – das ist der ganze Trick.
+
+  Die Annahmen standen bis eben hier im Thema und noch einmal in
+  `lib/lernszenarien.ts`, weil die Grafiken sie ebenfalls brauchen. Zweimal
+  dieselbe Zahl heißt: einmal ändern genügt, damit Text und Zeichnung
+  auseinandergehen. Jetzt gibt es nur noch eine Stelle.
 */
-const KAUFPREIS = 300_000
-const NEBENKOSTEN_PROZENT = 10
-const JAHRESMIETE = 12_000
 
 const gesamteinsatz = KAUFPREIS * (1 + NEBENKOSTEN_PROZENT / 100)
 const bruttorendite = (JAHRESMIETE / KAUFPREIS) * 100
-
-/*
-  Laufende Kosten, die der Vermieter trägt und nicht umlegen kann.
-  Größenordnungen, keine Messwerte – sie stehen im Text als solche.
-*/
-const VERWALTUNG = 400
-const INSTANDHALTUNG = 1_800
-const MIETAUSFALL_PROZENT = 3
 
 const mietausfall = JAHRESMIETE * (MIETAUSFALL_PROZENT / 100)
 const nettomiete = JAHRESMIETE - VERWALTUNG - INSTANDHALTUNG - mietausfall
@@ -41,9 +49,6 @@ const nettorenditeAufEinsatz = (nettomiete / gesamteinsatz) * 100
   ergibt sich aus der Wertänderung des gesamten Objekts, bezogen auf den
   eigenen Einsatz – der Kredit bleibt in voller Höhe stehen.
 */
-const EIGENKAPITALQUOTEN = [100, 40, 20, 10]
-const WERTAENDERUNGEN = [10, -10]
-
 const hebelreihe = EIGENKAPITALQUOTEN.map((quote) => {
   const eigenkapital = KAUFPREIS * (quote / 100)
   return {
@@ -55,12 +60,22 @@ const hebelreihe = EIGENKAPITALQUOTEN.map((quote) => {
   }
 })
 
-/** Ein Finanzierungsbeispiel – dieselbe Rechnung wie unter „Schulden & Kredit“. */
-const DARLEHEN = { summe: 240_000, zinsProzent: 3.5 }
-const TILGUNG = 2
+/*
+  Das Darlehen ist abgeleitet, nicht gesetzt.
+
+  Es finanziert dasselbe Objekt, um das es oben geht – deshalb ergibt es sich
+  aus dem Kaufpreis und dem Fremdkapitalanteil. Vorher stand hier eine getippte
+  Summe mit dem Hinweis, es sei „dieselbe Rechnung wie unter Schulden &
+  Kredit“. Das war nicht so: Dort ist die Darlehenssumme 300.000 Euro, hier ist
+  es der Kaufpreis.
+*/
+const DARLEHEN = {
+  summe: KAUFPREIS * (immobilieDarlehensquote / 100),
+  zinsProzent: immobilieDarlehenszins,
+}
 const rate = rateBeiTilgungssatz(DARLEHEN, TILGUNG)
 const finanzierung = auswerten(DARLEHEN, rate)
-const restschuld10 = restschuldNach(DARLEHEN, rate, 10)
+const restschuld10 = restschuldNach(DARLEHEN, rate, ZINSBINDUNG)
 
 /**
  * Vollständig ausgearbeitetes Thema.
@@ -256,10 +271,14 @@ export const immobilien: LearnTopic = {
               formatCurrencyRounded(finanzierung.zinsenGesamt),
             ],
             [
-              'Restschuld nach 10 Jahren Zinsbindung',
+              `Restschuld nach ${ZINSBINDUNG} Jahren Zinsbindung`,
               formatCurrencyRounded(restschuld10),
             ],
           ],
+        },
+        {
+          type: 'figure',
+          figure: 'immobilie-restschuld',
         },
         {
           type: 'callout',
