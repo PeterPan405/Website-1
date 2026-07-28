@@ -49,7 +49,15 @@
  * Aufruf: `npm run quartalstermine`
  */
 
-import { readFile, writeFile } from 'node:fs/promises'
+import { writeFile } from 'node:fs/promises'
+
+import { marketDefinitions, marketSources } from '../data/markets.ts'
+import {
+  holeTermine,
+  istAbfragbar,
+  KontingentErschoepft,
+  marktcodeAusYahoo,
+} from '../lib/providers/twelvedata-termine.ts'
 
 const KOPFZEILEN: Record<string, string> = {
   'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com',
@@ -59,9 +67,6 @@ const KOPFZEILEN: Record<string, string> = {
 const TICKER_URL = 'https://www.sec.gov/files/company_tickers.json'
 const SUBMISSIONS_BASIS = 'https://data.sec.gov/submissions'
 const ZIEL = 'data/snapshots/quartalstermine.json'
-
-/** Die Dateien, aus denen hervorgeht, welche Kürzel die Website führt. */
-const KATALOG = ['data/markets.ts', 'data/markets-aktien.ts']
 
 /** Kürzel, die hier anders heißen als bei der SEC. */
 const KUERZELBRUECKE: Record<string, string> = {
@@ -78,6 +83,15 @@ const KUERZELBRUECKE: Record<string, string> = {
  * doppelt so lange zu brauchen kostet nichts und hält Abstand zur Grenze.
  */
 const PAUSE_MS = 200
+
+/**
+ * Abstand zwischen zwei Abfragen bei Twelve Data.
+ *
+ * Der kostenlose Tarif erlaubt acht Abrufe je Minute. Achteinhalb Sekunden
+ * halten Abstand zur Grenze, ohne den Lauf unnötig zu dehnen: Für rund 370
+ * offene Aktien sind das gut fünfzig Minuten, einmal die Woche.
+ */
+const TWELVEDATA_PAUSE_MS = 8_500
 
 /** Vier Quartale, ein Jahr – so viele Termine werden vorausgerechnet. */
 const VORHERSAGEN = 4
@@ -357,47 +371,38 @@ async function main(): Promise<void> {
   const heute = new Date().toISOString().slice(0, 10)
 
   /*
-    ------------------------------------------- Kürzel der Website lesen
+    ------------------------------------------- Aktien der Website lesen
 
-    Nur Aktien, und das ist keine Feinheit.
+    Gelesen wird der Katalog selbst, nicht sein Quelltext.
 
-    Vorher wurde jedes `ticker`-Feld genommen, gleich welcher Art. Der
-    Katalog führt aber auch Rohstoffe, Indizes und Währungen – und deren
-    Kürzel kollidieren mit echten Firmenkürzeln. „WTI“ steht hier für die
-    amerikanische Ölsorte; bei der SEC ist es W&T Offshore, ein
-    Ölförderunternehmen. Im Kalender stand daraufhin „WTI Rohöl (USA):
-    Quartalszahlen erwartet“. Rohöl legt keine Quartalszahlen vor.
+    Bis hierher wurde die Datei als Text zerlegt und nach `ticker:` durchsucht.
+    Das ging so lange gut, wie nur das Kürzel gebraucht wurde – und ging schief,
+    sobald es um die Art ging: Der Ausdruck nahm auch Rohstoffe mit, und im
+    Kalender stand „WTI Rohöl (USA): Quartalszahlen erwartet“, weil das Kürzel
+    der Ölsorte bei der SEC einem Ölförderunternehmen gehört.
 
-    Der Fehler ist deshalb heimtückisch, weil beide Seiten für sich stimmen:
-    Das Kürzel gibt es wirklich, die Termine sind echt, nur gehören sie einer
-    anderen Sache. Ein Abgleich der Art schließt die ganze Klasse aus.
+    Die Datenmodule sind bewusst mit relativen Pfaden geschrieben, damit
+    Skripte sie mit blankem Node laden können. Also werden sie geladen. Dann
+    ist `kind` ein Feld und keine Zeichenkette in einem Ausdruck.
   */
-  const gefuehrt = new Set<string>()
-  let verworfen = 0
+  const aktien = marketDefinitions.filter((eintrag) => eintrag.kind === 'stock')
+  const gefuehrt = new Set(aktien.map((eintrag) => eintrag.ticker))
 
-  /*
-    Zerlegt wird an `symbol:`, nicht an geschweiften Klammern.
-
-    Die Einträge enthalten verschachtelte Objekte; ein Ausdruck über
-    Klammerpaare findet deshalb keinen einzigen vollständigen Block. Jeder
-    Eintrag beginnt aber mit `symbol:`, und `ticker` wie `kind` stehen in den
-    ersten Zeilen danach.
-  */
-  const FENSTER = 600
-  for (const datei of KATALOG) {
-    const text = await readFile(datei, 'utf8')
-    for (const teil of text.split("symbol: '").slice(1)) {
-      const kopf = teil.slice(0, FENSTER)
-      const kuerzel = /ticker: '([^']+)'/.exec(kopf)?.[1]
-      const art = /kind: '([^']+)'/.exec(kopf)?.[1]
-      if (!kuerzel || !art) continue
-      if (art === 'stock') gefuehrt.add(kuerzel)
-      else verworfen++
+  /** Kursquelle je Kürzel – für den zweiten Weg über Twelve Data. */
+  const kursquellen = new Map<string, { yahoo: string; twelvedata: string }>()
+  for (const eintrag of aktien) {
+    const quelle = marketSources[eintrag.symbol]
+    if (quelle && quelle.provider === 'market') {
+      kursquellen.set(eintrag.ticker, {
+        yahoo: quelle.yahoo,
+        twelvedata: quelle.twelvedata,
+      })
     }
   }
+
   console.log(
-    `${gefuehrt.size} Aktienkürzel im Katalog der Website ` +
-      `(${verworfen} Einträge anderer Art übergangen).`
+    `${gefuehrt.size} Aktien im Katalog der Website, ` +
+      `${kursquellen.size} davon mit hinterlegter Kursquelle.`
   )
 
   // ------------------------------------------------- Kennnummern zuordnen
@@ -460,6 +465,75 @@ async function main(): Promise<void> {
     await new Promise((weiter) => setTimeout(weiter, PAUSE_MS))
   }
 
+  /*
+    ------------------------------------------ Zweiter Weg: Twelve Data
+
+    Die SEC deckt nur US-Emittenten ab. Wer hier noch keine Vorhersage hat,
+    bekommt eine zweite Chance über einen Anbieter mit Nutzungsbedingungen,
+    die den Abruf ausdrücklich vorsehen.
+
+    Abgeleitet wird danach mit **derselben** Funktion wie bei der SEC. Das ist
+    der Punkt: Zwei Quellen, aber ein Verfahren – sonst stünden im Kalender
+    Termine nebeneinander, die nach verschiedenen Regeln entstanden sind, und
+    die Angabe zur Streuung bedeutete für die eine Hälfte etwas anderes als
+    für die andere.
+  */
+  const schluessel = process.env.TWELVEDATA_API_KEY
+  const zweiterWeg: string[] = []
+
+  if (!schluessel) {
+    console.log(
+      '\nKein TWELVEDATA_API_KEY hinterlegt – der zweite Weg bleibt zu.\n' +
+        'Ohne ihn bleibt es bei den Unternehmen, die bei der SEC melden.'
+    )
+  } else {
+    const offen = [...gefuehrt].filter((kuerzel) => !unternehmen[kuerzel])
+    console.log(`\n${offen.length} Aktien ohne Termin – zweiter Anlauf über Twelve Data.`)
+
+    let kontingentWeg = false
+    for (const [index, kuerzel] of offen.entries()) {
+      if (kontingentWeg) break
+
+      const quelle = kursquellen.get(kuerzel)
+      if (!quelle || !istAbfragbar(quelle.yahoo)) continue
+
+      try {
+        const termine = await holeTermine(
+          quelle.twelvedata,
+          marktcodeAusYahoo(quelle.yahoo),
+          schluessel
+        )
+        if (termine) {
+          const abgeleitet = vorhersagen(termine, heute)
+          if (abgeleitet.length > 0) {
+            unternehmen[kuerzel] = {
+              name: kuerzel,
+              bisher: termine.slice(0, 8),
+              vorhersagen: abgeleitet,
+            }
+            zweiterWeg.push(kuerzel)
+          }
+        }
+      } catch (fehler) {
+        if (fehler instanceof KontingentErschoepft) {
+          console.warn(
+            `\nKontingent aufgebraucht nach ${index} Abfragen: ${fehler.message}\n` +
+              'Der Rest bleibt für den nächsten Lauf liegen – was bis hierher\n' +
+              'zusammengekommen ist, wird geschrieben.'
+          )
+          kontingentWeg = true
+        } else {
+          throw fehler
+        }
+      }
+
+      if ((index + 1) % 25 === 0) {
+        console.log(`  … ${index + 1} von ${offen.length}`)
+      }
+      await new Promise((weiter) => setTimeout(weiter, TWELVEDATA_PAUSE_MS))
+    }
+  }
+
   const momentaufnahme = {
     abgerufenAm: new Date().toISOString(),
     quelle: {
@@ -497,7 +571,18 @@ async function main(): Promise<void> {
   }
   console.log(
     `\n${nichtRegistriert.length} Kürzel sind bei der SEC nicht registriert – ` +
-      `Aktien, die nur an ihrer Heimatbörse notieren. Für sie gibt es diese Quelle nicht.`
+      `Aktien, die nur an ihrer Heimatbörse notieren.`
+  )
+  console.log(
+    zweiterWeg.length > 0
+      ? `Davon über Twelve Data nachgeholt: ${zweiterWeg.length}.`
+      : 'Über Twelve Data ist nichts dazugekommen.'
+  )
+
+  const ohneTermin = gefuehrt.size - Object.keys(unternehmen).length
+  console.log(
+    `\nStand: ${Object.keys(unternehmen).length} von ${gefuehrt.size} Aktien mit Terminen, ` +
+      `${ohneTermin} ohne.`
   )
   console.log(`\nGeschrieben nach ${ZIEL}.`)
 }

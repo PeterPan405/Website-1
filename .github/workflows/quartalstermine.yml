@@ -24,6 +24,11 @@ concurrency:
 jobs:
   abrufen:
     runs-on: ubuntu-latest
+    # Ohne Schlüssel ist der Lauf in einer Minute durch. Mit Schlüssel wartet
+    # er zwischen den Abfragen auf das Kontingent des kostenlosen Tarifs und
+    # braucht gut eine Stunde. Das Standardlimit von sechs Stunden reicht,
+    # aber ein gesetztes Limit sagt, womit zu rechnen ist.
+    timeout-minutes: 120
     permissions:
       contents: write
 
@@ -37,6 +42,16 @@ jobs:
           node-version: 22
 
       - name: Quartalstermine abrufen
+        # Der Schlüssel ist optional und derselbe wie beim Kursabruf. Ohne ihn
+        # bleibt es bei den Unternehmen, die bei der US-Börsenaufsicht melden –
+        # rund 158 von 529. Mit ihm kommen die europäischen und asiatischen
+        # Werte über Twelve Data dazu.
+        #
+        # Der Lauf dauert dann deutlich länger: Der kostenlose Tarif erlaubt
+        # acht Abrufe je Minute, und offen sind rund 370 Aktien. Das ist der
+        # Grund für den wöchentlichen statt täglichen Zeitplan.
+        env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
         run: npm run quartalstermine
 
       - name: Momentaufnahme committen
