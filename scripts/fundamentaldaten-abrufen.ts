@@ -57,6 +57,37 @@ const ZIEL = 'data/snapshots/fundamentaldaten.json'
 const KATALOG = ['data/markets.ts', 'data/markets-aktien.ts']
 
 /**
+ * Kuerzelbruecke fuer Unternehmen, die hier anders heissen als bei der SEC.
+ *
+ * Diese Website fuehrt Toyota unter `7203.T` – dem Kuerzel der Boerse Tokio,
+ * an der die Aktie tatsaechlich gehandelt wird. Die SEC kennt dasselbe
+ * Unternehmen als `TM`, das Kuerzel seines US-Hinterlegungsscheins. Ohne diese
+ * Zuordnung findet der Abgleich nichts, obwohl beide Seiten Daten haben.
+ *
+ * Aufgenommen ist nur, wo beide Bedingungen erfuellt sind: Das Unternehmen
+ * meldet bei der SEC, **und** es berichtet in derselben Waehrung, in der hier
+ * sein Kurs notiert. Toyota berichtet in Yen und notiert hier in Yen – da
+ * passt es. Shell berichtet in Dollar und notiert hier in britischen Pence –
+ * da braeuchte es eine Umrechnung ueber zwei Waehrungen, und der Gewinn an
+ * Genauigkeit stuende in keinem Verhaeltnis zum Risiko, sie falsch zu machen.
+ */
+const KUERZELBRUECKE: Record<string, string> = {
+  '7203.T': 'TM', // Toyota – berichtet in Yen
+  '6758.T': 'SONY', // Sony – berichtet in Yen
+  '7267.T': 'HMC', // Honda – berichtet in Yen
+  'SAN.MC': 'SAN', // Banco Santander – berichtet in Euro
+}
+
+/**
+ * Die Waehrung, in der ein Kurs auf dieser Website notiert.
+ *
+ * Wird beim Zuschnitt aus dem Katalog gelesen, damit die Umrechnung weiss,
+ * wohin. Ohne sie liesse sich nicht entscheiden, ob ein Euro-Umsatz zu einem
+ * Kurs passt oder erst umgerechnet werden muss.
+ */
+const waehrungJeKuerzel = new Map<string, string>()
+
+/**
  * Die gesuchten Größen, jeweils mit den Bezeichnern, unter denen sie gemeldet
  * werden.
  *
@@ -352,6 +383,13 @@ async function main() {
   const gefuehrt = new Set<string>()
   for (const datei of KATALOG) {
     const text = await readFile(datei, 'utf8')
+    for (const treffer of text.matchAll(
+      /^\s*ticker: '([^']+)',\n\s*name: '[^']*',\n\s*kind: '([^']+)',\n\s*unit: '([^']+)',/gm
+    )) {
+      gefuehrt.add(treffer[1])
+      if (treffer[2] === 'stock') waehrungJeKuerzel.set(treffer[1], treffer[3])
+    }
+    // Fallback fuer Eintraege, deren Felder in anderer Reihenfolge stehen.
     for (const treffer of text.matchAll(/^\s*ticker: '([^']+)',$/gm)) {
       gefuehrt.add(treffer[1])
     }
@@ -381,6 +419,22 @@ async function main() {
   const cikJeKuerzel = new Map<string, number>()
   for (const [cik, kuerzel] of kuerzelJeCik) {
     for (const k of kuerzel) if (gefuehrt.has(k)) cikJeKuerzel.set(k, cik)
+  }
+
+  /*
+    Die Bruecke rueckwaerts: SEC-Kuerzel auf Katalogkuerzel.
+
+    Gesucht wird bei der SEC unter `TM`, abgelegt wird das Ergebnis unter
+    `7203.T` – dem Kuerzel, unter dem die Website Toyota kennt.
+  
+  */
+  const katalogJeSecKuerzel = new Map<string, string>()
+  for (const [katalog, sec] of Object.entries(KUERZELBRUECKE)) {
+    const cik = [...kuerzelJeCik].find(([, liste]) => liste.includes(sec))?.[0]
+    if (cik !== undefined) {
+      cikJeKuerzel.set(sec, cik)
+      katalogJeSecKuerzel.set(sec, katalog)
+    }
   }
 
   const offen = [...cikJeKuerzel.keys()].filter((k) => {
@@ -425,10 +479,27 @@ async function main() {
     }
 
     if (gefunden.umsatz || gefunden.gewinn) {
+      const ziel = katalogJeSecKuerzel.get(kuerzel) ?? kuerzel
       const aktien = jeKuerzel[kuerzel]?.aktien
       if (aktien) gefunden.aktien = aktien
-      ifrsWerte[kuerzel] = gefunden
-      ifrsTreffer += 1
+
+      /*
+        Nur ablegen, wenn Melde- und Kurswaehrung uebereinstimmen.
+
+        Ein Umsatz in Euro neben einem Kurs in Dollar ergaebe ein
+        Kurs-Umsatz-Verhaeltnis, das um den Wechselkurs danebenliegt – und
+        dem sieht man nichts an. Wo es auseinandergeht, bleibt es bei „keine
+        Angabe“; das ist die ehrlichere Luecke.
+      */
+      const kurswaehrung = waehrungJeKuerzel.get(ziel)
+      if (kurswaehrung && kurswaehrung === gefunden.waehrung) {
+        ifrsWerte[ziel] = gefunden
+        ifrsTreffer += 1
+      } else {
+        console.log(
+          `  ${ziel}: meldet in ${gefunden.waehrung}, notiert in ${kurswaehrung ?? 'unbekannt'} – ausgelassen.`
+        )
+      }
     }
   }
 
