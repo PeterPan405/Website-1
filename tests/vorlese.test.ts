@@ -12,6 +12,7 @@ import { figureMeta } from '../data/figures.ts'
 import {
   bevorzugteStimme,
   klingtMaennlich,
+  klingtNatuerlich,
   vorleseAbschnitte,
 } from '../lib/vorlese-text.ts'
 
@@ -125,15 +126,34 @@ const unklarWeiblich = {
   localService: true,
 }
 
+const googleDeutsch = {
+  name: 'Google Deutsch',
+  lang: 'de-DE',
+  voiceURI: 'google-de',
+  localService: false,
+}
+
 pruefe('ein Männername wird erkannt', klingtMaennlich(stefan))
 pruefe('„female“ in der Kennung zählt nicht als „male“', !klingtMaennlich(unklarWeiblich))
+pruefe('„Online (Natural)“ gilt als natürlich', klingtNatuerlich(conrad))
+pruefe('„Google Deutsch“ gilt als natürlich', klingtNatuerlich(googleDeutsch))
+pruefe('eine schlichte Systemstimme nicht', !klingtNatuerlich(stefan))
+
+/*
+  Natürlich schlägt lokal – das ist die Umkehr gegenüber der ersten Fassung
+  und der Kern dieser Rangfolge: Die lokalen Stimmen sind die synthetischen.
+*/
 pruefe(
-  'die lokale Männerstimme schlägt die weibliche und die Netz-Männerstimme',
-  bevorzugteStimme([anna, conrad, stefan])?.voiceURI === 'stefan'
+  'die natürliche Männerstimme schlägt die lokale Männerstimme',
+  bevorzugteStimme([anna, stefan, conrad])?.voiceURI === 'conrad-netz'
 )
 pruefe(
-  'ohne lokale Männerstimme gewinnt die Netz-Männerstimme',
-  bevorzugteStimme([anna, conrad])?.voiceURI === 'conrad-netz'
+  'ohne männliche natürliche gewinnt die natürliche vor der lokalen',
+  bevorzugteStimme([anna, googleDeutsch])?.voiceURI === 'google-de'
+)
+pruefe(
+  'ohne natürliche Stimme gewinnt die lokale Männerstimme',
+  bevorzugteStimme([anna, stefan])?.voiceURI === 'stefan'
 )
 pruefe(
   'ohne Männerstimme bleibt die lokale deutsche',
