@@ -17,6 +17,9 @@ import { getLaender } from '@/lib/laender'
 import { getLearnTopics } from '@/lib/learn'
 import { learnLevelIds, learnLevelMeta } from '@/lib/learn'
 import { getInstruments } from '@/lib/markets'
+import { calculators } from '@/data/calculators'
+import { getGlossar } from '@/lib/glossar'
+import { getLernpfade } from '@/lib/lernpfade'
 import { getNewsArticles } from '@/lib/news'
 import type { SearchEntry } from '@/lib/search-match'
 import { areas } from '@/lib/site'
@@ -77,6 +80,13 @@ const seiten: SearchEntry[] = [
     kind: 'Plattform',
     hint: 'Korrekturen, Themenwünsche und Fragen zur Plattform.',
     keywords: ['email', 'telefon', 'schreiben', 'anrufen'],
+  },
+  {
+    title: 'Quellen',
+    href: '/quellen',
+    kind: 'Rechtliches',
+    hint: 'Woher die Zahlen kommen – alle Datenquellen an einer Stelle.',
+    keywords: ['quellen', 'daten', 'herkunft', 'nachweis', 'lizenz'],
   },
   {
     title: 'Impressum',
@@ -146,45 +156,55 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     }
   }
 
-  // 3. Rechner. Nicht aus einer Datenquelle, sondern eigene Seiten – deshalb
-  //    hier ausgeschrieben, mit den Begriffen, unter denen man sie sucht.
-  eintraege.push(
-    {
-      title: 'Zinsrechner',
-      href: '/rechner/zinsrechner',
+  /*
+    3. Rechner – aus ihrer eigenen Liste.
+
+    Hier standen sie abgetippt, und wie in der Sitemap war die Kopie irgendwann
+    veraltet: Kosten-, Steuerrechner und Vermögensübersicht gab es längst, in
+    der Suche fanden sie sich nicht. Die Suchbegriffe entstehen aus den
+    verwandten Lernthemen – dieselben Wörter, unter denen jemand sucht.
+  */
+  for (const rechner of calculators) {
+    eintraege.push({
+      title: rechner.title,
+      href: `/rechner/${rechner.slug}`,
       kind: 'Rechner',
-      hint: 'Zinseszins mit Sparplan – zeigt, wie viel vom Ergebnis aus Erträgen stammt.',
-      keywords: ['zinseszins', 'sparplan', 'rendite', 'zinsen'],
-    },
-    {
-      title: 'Inflationsrechner',
-      href: '/rechner/inflationsrechner',
-      kind: 'Rechner',
-      hint: 'Was von einem Betrag nach Jahren an Kaufkraft übrig bleibt.',
-      keywords: ['inflation', 'kaufkraft', 'geldentwertung'],
-    },
-    {
-      title: 'Rentenrechner',
-      href: '/rechner/rentenrechner',
-      kind: 'Rechner',
-      hint: 'Grobe Schätzung des Alterseinkommens über Rentenpunkte.',
-      keywords: ['rente', 'rentenpunkte', 'altersvorsorge'],
-    },
-    {
-      title: 'Rentenlücke',
-      href: '/rechner/rentenluecke',
-      kind: 'Rechner',
-      hint: 'Bedarf gegen Erwartung – und die nötige monatliche Sparrate.',
-      keywords: ['rentenluecke', 'vorsorge', 'sparrate'],
-    },
-    {
-      title: 'Haushaltsrechner',
-      href: '/rechner/haushaltsrechner',
-      kind: 'Rechner',
-      hint: 'Einnahmen, Ausgaben und deine tatsächliche Sparquote.',
-      keywords: ['budget', 'haushalt', 'sparquote', 'ausgaben'],
-    }
-  )
+      hint: rechner.summary,
+      keywords: [rechner.slug, ...rechner.relatedTopics],
+    })
+  }
+
+  // 3b. Lernpfade – die geführten Wege durch den Lernbereich.
+  for (const pfad of await getLernpfade()) {
+    eintraege.push({
+      title: `Lernpfad: ${pfad.titel}`,
+      href: `/lernen/pfade/${pfad.slug}`,
+      kind: 'Lernpfad',
+      hint: pfad.kurz,
+      keywords: ['lernpfad', 'pfad', pfad.slug],
+    })
+  }
+
+  /*
+    3c. Glossarbegriffe.
+
+    Jeder Begriff einzeln, mit Sprungmarke: Wer „Vorabpauschale“ sucht, will
+    nicht die Glossarseite, sondern die Stelle darauf. Die Kurzerklärung steht
+    als Hinweis darunter – oft ist die Frage damit schon beantwortet, ohne dass
+    jemand klicken muss.
+  */
+  for (const begriff of await getGlossar()) {
+    eintraege.push({
+      title: begriff.begriff,
+      href: `/glossar#${begriff.slug}`,
+      kind: 'Begriff',
+      hint: begriff.kurz,
+      keywords: [
+        begriff.slug,
+        ...(begriff.formen ?? []).map((form) => form.toLowerCase()),
+      ],
+    })
+  }
 
   // 4. Kurse und Indizes.
   for (const instrument of instrumente) {

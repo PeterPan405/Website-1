@@ -119,6 +119,11 @@ export const mainNav: NavItem[] = [
         hint: 'Geführte Wege für einen bestimmten Anlass',
       },
       {
+        label: 'Glossar',
+        href: '/glossar',
+        hint: 'Fachbegriffe, in je einem Satz erklärt',
+      },
+      {
         label: 'Aktie',
         href: '/lernen/aktie',
         hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
@@ -204,6 +209,8 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: 'Inhalte',
     links: [
       { label: 'Lernbereich', href: '/lernen' },
+      { label: 'Lernpfade', href: '/lernen/pfade' },
+      { label: 'Glossar', href: '/glossar' },
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },

@@ -16,6 +16,7 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
 import { learningResourceSchema } from '@/lib/jsonld'
 import { getLearnLevel, getLearnLevelParams, getRelatedTopics } from '@/lib/learn'
+import { begriffeZumThema, getBegriffsindex, kurzerklaerung } from '@/lib/glossar'
 import { getPfadeMitStufe } from '@/lib/lernpfade'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
@@ -63,6 +64,19 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
   const { topic, levelId, level, previousLevelId, nextLevelId } = result
   const relatedTopics = await getRelatedTopics(thema, 3)
   const pfade = await getPfadeMitStufe(thema, stufe)
+
+  /*
+    Die Glossarverlinkung gilt je Seite: `benutzt` sammelt, was schon verlinkt
+    ist, damit ein Begriff genau einmal vorkommt. Ausgenommen sind die Begriffe
+    des eigenen Themas – ein Verweis von der Aktien-Seite auf „Aktie“ führt auf
+    eine kürzere Fassung dessen, was gerade dasteht.
+  */
+  const glossarlage = {
+    index: getBegriffsindex(),
+    benutzt: new Set<string>(),
+    ausgenommen: begriffeZumThema(thema),
+    erklaerung: kurzerklaerung,
+  }
 
   const levelEntries: LevelNavEntry[] = learnLevelIds.map((id) => ({
     id,
@@ -145,7 +159,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             )}
 
             <div className={isOutline ? 'mt-8' : ''}>
-              <ContentBlocks blocks={level.blocks} />
+              <ContentBlocks blocks={level.blocks} glossar={glossarlage} />
             </div>
 
             {/* ------------------------------------------------ Wissenscheck */}

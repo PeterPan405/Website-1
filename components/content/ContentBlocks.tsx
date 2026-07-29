@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react'
+import Link from 'next/link'
 
 import { ContentFigure } from '@/components/content/ContentFigure'
 import { Callout } from '@/components/ui/Callout'
 import { slugifyHeading, type ContentBlock } from '@/data/content'
+import { zerlege, type Begriffsindex } from '@/lib/glossar-text'
 
 /**
  * Rendert das Blockmodell aus `data/content.ts` als semantisches HTML.
@@ -13,13 +15,49 @@ import { slugifyHeading, type ContentBlock } from '@/data/content'
  */
 
 /**
- * Setzt `**fett**` in <strong> um.
+ * Was der Renderer über das Glossar weiß.
+ *
+ * Der Zustand wandert bewusst als Parameter durch und liegt nicht im Modul:
+ * `benutzt` gilt je Seite, und beim statischen Erzeugen werden mehrere Seiten
+ * im selben Prozess gebaut. Ein Modulzustand hätte dazu geführt, dass die
+ * zweite Seite keine Verweise mehr bekommt – ein Fehler, den man erst im
+ * fertigen Paket sieht.
+ */
+interface Glossarlage {
+  index: Begriffsindex
+  /** Bereits verlinkte Begriffe dieser Seite. Wird beim Rendern erweitert. */
+  benutzt: Set<string>
+  /** Begriffe, die auf dieser Seite nicht verlinkt werden. */
+  ausgenommen: ReadonlySet<string>
+  /** Die Kurzerklärung eines Begriffs – sie steht als Titel am Verweis. */
+  erklaerung: (slug: string) => string
+}
+
+/** Ein erkannter Begriff als Verweis auf die Glossarseite. */
+function Begriff({ text, slug, titel }: { text: string; slug: string; titel: string }) {
+  return (
+    <Link
+      href={`/glossar#${slug}`}
+      title={titel}
+      className="decoration-fg-subtle/60 hover:decoration-brand underline decoration-dotted underline-offset-4 transition"
+    >
+      {text}
+    </Link>
+  )
+}
+
+/**
+ * Setzt `**fett**` in <strong> um und verlinkt Glossarbegriffe.
  *
  * Ein vollständiger Markdown-Parser wäre für diesen Zweck überdimensioniert.
  * Weil hier ausschließlich Text-Knoten erzeugt werden und niemals HTML
  * interpretiert wird, kann über die Inhalte kein Markup eingeschleust werden.
+ *
+ * Begriffe werden nur in den einfachen Textstücken gesucht. Was fett gesetzt
+ * ist, bleibt unangetastet: Dort steht ohnehin schon eine Hervorhebung, und
+ * zwei übereinander lesen sich als Fehler.
  */
-function renderInline(text: string): ReactNode {
+function renderInline(text: string, glossar?: Glossarlage): ReactNode {
   const segments = text.split(/(\*\*[^*]+\*\*)/g)
   return segments.map((segment, index) => {
     if (segment.startsWith('**') && segment.endsWith('**') && segment.length > 4) {
@@ -29,11 +67,31 @@ function renderInline(text: string): ReactNode {
         </strong>
       )
     }
-    return segment
+    if (!glossar) return segment
+
+    const teile = zerlege(segment, glossar.index, glossar.benutzt, glossar.ausgenommen)
+    if (teile.length === 1 && !teile[0].slug) return segment
+
+    return (
+      <span key={index}>
+        {teile.map((teil, stelle) =>
+          teil.slug ? (
+            <Begriff
+              key={stelle}
+              text={teil.text}
+              slug={teil.slug}
+              titel={glossar.erklaerung(teil.slug)}
+            />
+          ) : (
+            teil.text
+          )
+        )}
+      </span>
+    )
   })
 }
 
-function Block({ block }: { block: ContentBlock }) {
+function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage }) {
   switch (block.type) {
     case 'heading': {
       const id = slugifyHeading(block.text)
@@ -59,7 +117,9 @@ function Block({ block }: { block: ContentBlock }) {
 
     case 'paragraph':
       return (
-        <p className="text-fg-muted mt-4 leading-relaxed">{renderInline(block.text)}</p>
+        <p className="text-fg-muted mt-4 leading-relaxed">
+          {renderInline(block.text, glossar)}
+        </p>
       )
 
     case 'list': {
@@ -80,14 +140,14 @@ function Block({ block }: { block: ContentBlock }) {
               }
             >
               {block.ordered ? (
-                renderInline(item)
+                renderInline(item, glossar)
               ) : (
                 <>
                   <span
                     aria-hidden="true"
                     className="bg-brand mt-2 size-1.5 shrink-0 rounded-full"
                   />
-                  <span>{renderInline(item)}</span>
+                  <span>{renderInline(item, glossar)}</span>
                 </>
               )}
             </li>
@@ -100,7 +160,7 @@ function Block({ block }: { block: ContentBlock }) {
       return (
         <Callout variant={block.variant} title={block.title} className="mt-6">
           {block.items.map((item, index) => (
-            <p key={index}>{renderInline(item)}</p>
+            <p key={index}>{renderInline(item, glossar)}</p>
           ))}
         </Callout>
       )
@@ -109,7 +169,7 @@ function Block({ block }: { block: ContentBlock }) {
       return (
         <figure className="border-brand mt-6 border-l-2 pl-5">
           <blockquote className="text-fg text-lg leading-relaxed font-medium italic">
-            {renderInline(block.text)}
+            {renderInline(block.text, glossar)}
           </blockquote>
           {block.source && (
             <figcaption className="text-fg-subtle mt-2 text-sm">
@@ -155,7 +215,7 @@ function Block({ block }: { block: ContentBlock }) {
                           : 'text-fg-muted px-4 py-2.5 tabular-nums'
                       }
                     >
-                      {renderInline(cell)}
+                      {renderInline(cell, glossar)}
                     </td>
                   ))}
                 </tr>
@@ -172,7 +232,7 @@ function Block({ block }: { block: ContentBlock }) {
             {block.expression}
           </p>
           <p className="text-fg-muted mt-2.5 text-sm leading-relaxed">
-            {renderInline(block.description)}
+            {renderInline(block.description, glossar)}
           </p>
         </div>
       )
@@ -192,7 +252,7 @@ function Block({ block }: { block: ContentBlock }) {
                 {item.label}
               </dt>
               <dd className="text-fg mt-1 text-sm font-semibold">
-                {renderInline(item.value)}
+                {renderInline(item.value, glossar)}
               </dd>
             </div>
           ))}
@@ -201,12 +261,28 @@ function Block({ block }: { block: ContentBlock }) {
   }
 }
 
-export function ContentBlocks({ blocks }: { blocks: readonly ContentBlock[] }) {
+export function ContentBlocks({
+  blocks,
+  glossar,
+}: {
+  blocks: readonly ContentBlock[]
+  /**
+   * Verlinkt Fachbegriffe ins Glossar.
+   *
+   * Ohne diese Angabe bleibt der Text unverändert – die Verlinkung ist nichts,
+   * was überall passt. In einer Methodik-Erläuterung unter einem Rechner etwa
+   * stünde neben jeder Formel ein Verweis, und der Text erklärt den Begriff
+   * gerade selbst.
+   */
+  glossar?: Glossarlage
+}) {
   return (
     <div className="text-base sm:text-[1.0625rem]">
       {blocks.map((block, index) => (
-        <Block key={index} block={block} />
+        <Block key={index} block={block} glossar={glossar} />
       ))}
     </div>
   )
 }
+
+export type { Glossarlage }

@@ -145,6 +145,10 @@ export function Footer() {
             © {year} {siteConfig.name}. {siteConfig.slogan}
           </p>
           <p>
+            <Link href="/glossar" className="hover:text-brand transition">
+              Glossar
+            </Link>
+            <span aria-hidden="true"> · </span>
             <Link href="/quellen" className="hover:text-brand transition">
               Quellen
             </Link>
