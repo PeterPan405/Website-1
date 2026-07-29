@@ -1,3 +1,4 @@
+import { lektionen as akademieLektionen } from '@/data/akademie'
 import { calculators } from '@/data/calculators'
 import { glossar, type Glossareintrag } from '@/data/glossar'
 import { learnTopics } from '@/data/learn'
@@ -21,6 +22,9 @@ function pruefe(): void {
   const slugs = new Set(glossar.map((eintrag) => eintrag.slug))
   const themen = new Set(learnTopics.map((thema) => thema.slug))
   const rechner = new Set(calculators.map((eintrag) => eintrag.slug))
+  const lektionen = new Set(
+    akademieLektionen.map((lektion) => `${lektion.bereich}/${lektion.slug}`)
+  )
   const formen = new Map<string, string>()
 
   for (const eintrag of glossar) {
@@ -42,6 +46,9 @@ function pruefe(): void {
     }
     if (eintrag.rechner && !rechner.has(eintrag.rechner)) {
       fehler.push(`${wo}: Rechner „${eintrag.rechner}“ gibt es nicht`)
+    }
+    if (eintrag.lektion && !lektionen.has(eintrag.lektion)) {
+      fehler.push(`${wo}: Lektion „${eintrag.lektion}“ gibt es nicht`)
     }
 
     /*
@@ -69,6 +76,7 @@ export type { Glossareintrag } from '@/data/glossar'
 export interface Glossaransicht extends Glossareintrag {
   verwandt: { slug: string; begriff: string }[]
   themaTitel?: string
+  lektionTitel?: string
   rechnerTitel?: string
 }
 
@@ -80,6 +88,9 @@ function ansicht(eintrag: Glossareintrag): Glossaransicht {
       return { slug, begriff: ziel.begriff }
     }),
     themaTitel: learnTopics.find((thema) => thema.slug === eintrag.thema)?.title,
+    lektionTitel: akademieLektionen.find(
+      (lektion) => `${lektion.bereich}/${lektion.slug}` === eintrag.lektion
+    )?.titel,
     rechnerTitel: calculators.find((eintrag2) => eintrag2.slug === eintrag.rechner)
       ?.title,
   }

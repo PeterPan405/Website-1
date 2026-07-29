@@ -183,3 +183,21 @@ export function nachbarn(lektion: Lektion): { vorher?: Lektion; nachher?: Lektio
 export function lektionenGesamt(): number {
   return lektionen.length
 }
+
+/**
+ * Die Lektionen, die ein bestimmtes Lernthema vertiefen.
+ *
+ * ## Warum abgeleitet und nicht gepflegt
+ *
+ * Der Verweis existiert schon – jede Lektion nennt in `lernthemen`, worauf sie
+ * aufbaut. Ihn zusätzlich am Lernthema einzutragen hieße, dieselbe Beziehung
+ * an zwei Stellen zu pflegen, und die zweite wäre nach der ersten Änderung
+ * falsch. Genau diese Sorte Doppelung hat auf dieser Website schon einmal für
+ * eine Rechnerzahl gesorgt, die zwei Jahre zu klein war.
+ *
+ * Der Preis ist ein Durchlauf über alle Lektionen je Themenseite. Bei
+ * sechsundzwanzig Einträgen zur Bauzeit ist das nicht messbar.
+ */
+export function lektionenZumThema(themaSlug: string): Lektion[] {
+  return lektionen.filter((lektion) => lektion.lernthemen?.includes(themaSlug))
+}

@@ -91,6 +91,7 @@ export default async function GlossarSeite() {
 
                     {(eintrag.verwandt.length > 0 ||
                       eintrag.themaTitel ||
+                      eintrag.lektionTitel ||
                       eintrag.rechnerTitel) && (
                       <div className="border-border mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-3 text-sm">
                         {eintrag.themaTitel && (
@@ -99,6 +100,14 @@ export default async function GlossarSeite() {
                             className="text-learn hover:text-brand font-semibold transition"
                           >
                             Lernthema: {eintrag.themaTitel}
+                          </Link>
+                        )}
+                        {eintrag.lektionTitel && (
+                          <Link
+                            href={`/akademie/${eintrag.lektion}`}
+                            className="text-akademie hover:text-brand font-semibold transition"
+                          >
+                            Akademie: {eintrag.lektionTitel}
                           </Link>
                         )}
                         {eintrag.rechnerTitel && (

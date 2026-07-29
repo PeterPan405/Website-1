@@ -13,12 +13,27 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { TagLinks } from '@/components/ui/TagLinks'
 import { getCalculatorDefinition } from '@/data/calculators'
 import { learnLevelIds } from '@/data/learn/types'
+import { lektionenZumThema } from '@/lib/akademie'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getLearnTopic, getLearnTopicSlugs, getRelatedTopics } from '@/lib/learn'
 import { getQuotes } from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 type TopicPageProps = { params: Promise<{ thema: string }> }
+
+/**
+ * Wie viele Lektionen die Vertiefungskarte zeigt.
+ *
+ * Zehn der sechsundzwanzig Lektionen nennen „aktie“ als Grundlage – fast die
+ * gesamte Fundamentalanalyse baut darauf auf. Ungekürzt wäre die Karte in der
+ * Randspalte länger als der Fortschrittsblock daneben und hätte den Charakter
+ * eines zweiten Inhaltsverzeichnisses. Sie soll aber ein Hinweis sein, kein
+ * Verzeichnis: fünf Einstiege, der Rest über die Übersicht.
+ *
+ * Die Reihenfolge ist die des Lehrplans, nicht Zufall – die einführenden
+ * Lektionen stehen in beiden Bereichen vorn und damit auch hier.
+ */
+const VERTIEFUNG_HOECHSTENS = 5
 
 export async function generateStaticParams() {
   const slugs = await getLearnTopicSlugs()
@@ -51,6 +66,9 @@ export default async function TopicPage({ params }: TopicPageProps) {
   const topic = await getLearnTopic(thema)
 
   if (!topic) notFound()
+
+  const akademieLektionen = lektionenZumThema(thema)
+  const uebrigeLektionen = akademieLektionen.length - VERTIEFUNG_HOECHSTENS
 
   const [relatedTopics, quotes] = await Promise.all([
     getRelatedTopics(thema),
@@ -216,6 +234,52 @@ export default async function TopicPage({ params }: TopicPageProps) {
                     )
                   })}
                 </ul>
+              </section>
+            )}
+
+            {/*
+              Die Vertiefung steht vor den Kursen und nach den Rechnern.
+
+              Reihenfolge nach Nähe zum Text: Ein Rechner rechnet nach, was der
+              Artikel erklärt hat; die Akademie erklärt dasselbe Thema eine
+              Stufe genauer; die Kurse sind Anschauungsmaterial. Die Liste ist
+              nicht gepflegt, sondern abgeleitet – jede Lektion nennt selbst,
+              worauf sie aufbaut.
+            */}
+            {akademieLektionen.length > 0 && (
+              <section aria-labelledby="vertiefung" className="fk-card p-6">
+                <h2 id="vertiefung" className="text-fg text-base font-semibold">
+                  Vertiefung in der Akademie
+                </h2>
+                <ul className="mt-4 space-y-2">
+                  {akademieLektionen.slice(0, VERTIEFUNG_HOECHSTENS).map((lektion) => (
+                    <li key={lektion.slug}>
+                      <Link
+                        href={`/akademie/${lektion.bereich}/${lektion.slug}`}
+                        className="text-fg hover:bg-surface-muted hover:text-brand flex items-start gap-2.5 rounded-xl p-2.5 text-sm font-medium transition"
+                      >
+                        <Icon
+                          name={
+                            lektion.bereich === 'technische-analyse' ? 'chart' : 'scale'
+                          }
+                          className="text-akademie mt-0.5 size-4 shrink-0"
+                        />
+                        {lektion.titel}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                {uebrigeLektionen > 0 && (
+                  <Link
+                    href="/akademie"
+                    className="text-fg-muted hover:text-akademie mt-3 inline-flex items-center gap-1.5 px-2.5 text-sm transition"
+                  >
+                    {uebrigeLektionen === 1
+                      ? 'eine weitere Lektion'
+                      : `${uebrigeLektionen} weitere Lektionen`}
+                    <Icon name="arrow-right" className="size-3.5" />
+                  </Link>
+                )}
               </section>
             )}
 

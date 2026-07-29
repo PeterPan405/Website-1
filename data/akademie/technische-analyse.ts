@@ -151,6 +151,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 6,
     stichworte: ['Candlestick', 'Kerzenchart', 'OHLC', 'Zeitrahmen'],
     setztVoraus: ['was-technische-analyse-ist'],
+    lernthemen: ['boerse'],
     inhalt: [
       {
         type: 'paragraph',
@@ -239,6 +240,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
       'Trendkanal',
     ],
     setztVoraus: ['charttypen-und-kerzen'],
+    lernthemen: ['wann-kaufen-verkaufen'],
     inhalt: [
       {
         type: 'paragraph',
@@ -315,6 +317,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 7,
     stichworte: ['Unterstützung', 'Widerstand', 'Support', 'Resistance', 'Rollentausch'],
     setztVoraus: ['trend-und-trendlinien'],
+    lernthemen: ['wie-funktioniert-der-markt'],
     inhalt: [
       {
         type: 'paragraph',
@@ -386,6 +389,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     ],
     setztVoraus: ['trend-und-trendlinien'],
     rechner: ['zinsrechner'],
+    lernthemen: ['wann-kaufen-verkaufen'],
     inhalt: [
       {
         type: 'paragraph',
@@ -540,6 +544,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 8,
     stichworte: ['RSI', 'Relative Stärke', 'überkauft', 'überverkauft', 'Stochastik'],
     setztVoraus: ['gleitende-durchschnitte'],
+    lernthemen: ['anlegerpsychologie'],
     inhalt: [
       {
         type: 'paragraph',
@@ -692,6 +697,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 7,
     stichworte: ['Volumen', 'Umsatz', 'OBV', 'Ausbruch'],
     setztVoraus: ['unterstuetzung-und-widerstand'],
+    lernthemen: ['wie-funktioniert-der-markt', 'boerse'],
     inhalt: [
       {
         type: 'paragraph',
@@ -749,6 +755,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 9,
     stichworte: ['Kopf-Schulter', 'Doppeltop', 'Dreieck', 'Flagge', 'Chartformation'],
     setztVoraus: ['unterstuetzung-und-widerstand', 'volumen'],
+    lernthemen: ['anlegerpsychologie'],
     inhalt: [
       {
         type: 'paragraph',
@@ -826,6 +833,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 6,
     stichworte: ['Hammer', 'Engulfing', 'Doji', 'Kerzenmuster'],
     setztVoraus: ['charttypen-und-kerzen'],
+    lernthemen: ['anlegerpsychologie'],
     inhalt: [
       {
         type: 'paragraph',
@@ -883,6 +891,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 6,
     stichworte: ['Fibonacci', 'Retracement', 'Goldener Schnitt', '61,8 Prozent'],
     setztVoraus: ['trend-und-trendlinien'],
+    lernthemen: ['wann-kaufen-verkaufen'],
     inhalt: [
       {
         type: 'paragraph',
@@ -939,6 +948,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     dauer: 10,
     stichworte: ['Elliott', 'Wellentheorie', 'Impulswelle', 'Korrekturwelle', 'Fraktal'],
     setztVoraus: ['trend-und-trendlinien', 'fibonacci-retracements'],
+    lernthemen: ['anlegerpsychologie'],
     inhalt: [
       {
         type: 'paragraph',

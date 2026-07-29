@@ -52,6 +52,15 @@ export interface Glossareintrag {
   siehe?: string[]
   /** Passendes Lernthema, als Slug. */
   thema?: string
+  /**
+   * Passende Lektion der Akademie, als `bereich/slug`.
+   *
+   * Neben `thema` und nicht statt dessen: Ein Begriff wie „Cashflow“ hat
+   * beides – eine Einführung im Lernbereich und die ausführliche Behandlung in
+   * der Akademie. Die Fachbegriffe der Chartanalyse haben dagegen nur die
+   * Lektion, weil es dazu kein Lernthema gibt und auch keins geben soll.
+   */
+  lektion?: string
   /** Passender Rechner, als Slug. */
   rechner?: string
 }
@@ -702,6 +711,272 @@ export const glossar: Glossareintrag[] = [
     siehe: ['rendite', 'thesaurierung'],
     thema: 'zinseszins',
     rechner: 'zinsrechner',
+  },
+  /* ------------------------------------------------------------------
+     Begriffe der Akademie.
+
+     Nachgetragen, als die Akademie entstand: Ihre Lektionen führen
+     achtundzwanzig Fachwörter ein, die im Glossar fehlten – und damit im
+     Fließtext der ganzen Website nicht erklärt wurden. Ein Glossar, das
+     „Abgeltungsteuer“ kennt und „Widerstand“ nicht, hat eine Lücke genau
+     dort, wo die neuen Texte anfangen.
+  ------------------------------------------------------------------- */
+  {
+    slug: 'technische-analyse',
+    begriff: 'Technische Analyse',
+    kurz: 'Die Deutung von Kursverlauf und Handelsvolumen, ohne Rücksicht auf die Zahlen des Unternehmens.',
+    lang: 'Sie ruht auf drei Annahmen: Der Kurs enthält alles Bekannte, Kurse bewegen sich in Trends, und Muster wiederholen sich. Die ersten beiden vertragen sich schlecht miteinander – wenn der Kurs wirklich alles enthält, wäre auch der Trend längst eingepreist.',
+    formen: ['Chartanalyse', 'Charttechnik'],
+    siehe: ['fundamentalanalyse', 'trendlinie', 'random-walk'],
+    lektion: 'technische-analyse/was-technische-analyse-ist',
+  },
+  {
+    slug: 'fundamentalanalyse',
+    begriff: 'Fundamentalanalyse',
+    kurz: 'Die Bewertung eines Unternehmens anhand seiner Zahlen und seiner Wettbewerbsposition statt anhand des Kursverlaufs.',
+    formen: ['fundamental'],
+    siehe: ['technische-analyse', 'innerer-wert', 'kgv'],
+    lektion: 'fundamentalanalyse/was-fundamentalanalyse-ist',
+  },
+  {
+    slug: 'random-walk',
+    begriff: 'Random Walk',
+    kurz: 'Die These, dass Kursänderungen im Wesentlichen zufällig sind und der nächste Schritt nicht vom letzten abhängt.',
+    lang: 'Trifft sie zu, ist jedes Chartmuster eine Figur, die das Auge hineinsieht. Ganz so eindeutig ist die Lage nicht: Über kurze Zeiträume finden Untersuchungen einen schwachen Momentum-Effekt, über lange kehrt er sich um. Beide sind klein und nach Handelskosten oft verschwunden.',
+    formen: ['Zufallspfad'],
+    siehe: ['technische-analyse', 'momentum'],
+    lektion: 'technische-analyse/was-technische-analyse-ist',
+  },
+  {
+    slug: 'trendlinie',
+    begriff: 'Trendlinie',
+    kurz: 'Eine Gerade, die im Aufwärtstrend die Tiefpunkte und im Abwärtstrend die Hochpunkte verbindet.',
+    lang: 'Als bestätigt gilt sie erst mit dem dritten Berührungspunkt – durch zwei Punkte lässt sich immer eine Gerade legen. Ob auf Schlusskursbasis oder auf Basis der Dochte gezeichnet wird und ob die Achse linear oder logarithmisch ist, verschiebt ihren Verlauf erheblich.',
+    formen: ['Trendlinien', 'Trendkanal'],
+    siehe: ['aufwaertstrend', 'unterstuetzung', 'widerstand'],
+    lektion: 'technische-analyse/trend-und-trendlinien',
+  },
+  {
+    slug: 'aufwaertstrend',
+    begriff: 'Aufwärtstrend',
+    kurz: 'Eine Kursfolge, in der jedes neue Hoch über dem vorigen Hoch und jedes neue Tief über dem vorigen Tief liegt.',
+    lang: 'Der Trend endet nicht, wenn der Kurs einmal fällt, sondern wenn die Struktur bricht – wenn also ein Tief unter das vorherige rutscht. Ein Rücksetzer, der über dem letzten Tief endet, ist eine Korrektur innerhalb des Trends.',
+    formen: ['Abwärtstrend', 'Seitwärtstrend'],
+    siehe: ['trendlinie', 'unterstuetzung'],
+    lektion: 'technische-analyse/trend-und-trendlinien',
+  },
+  {
+    slug: 'unterstuetzung',
+    begriff: 'Unterstützung',
+    kurz: 'Ein Kursbereich, in dem wiederholt genug Nachfrage entsteht, um einen Rückgang zu stoppen.',
+    lang: 'Die Erklärung ist Verhalten, keine Chartmagie: Wer den Bereich beim letzten Mal verpasst hat, legt seine Kauforder dorthin. Es ist immer eine Zone und nie ein Strich – nicht alle sind zum selben Kurs eingestiegen.',
+    formen: ['Unterstützungen', 'Support'],
+    siehe: ['widerstand', 'trendlinie'],
+    lektion: 'technische-analyse/unterstuetzung-und-widerstand',
+  },
+  {
+    slug: 'widerstand',
+    begriff: 'Widerstand',
+    kurz: 'Ein Kursbereich, in dem wiederholt genug Angebot entsteht, um einen Anstieg zu stoppen.',
+    lang: 'Wer bei 100 Euro gekauft hat und den Kurs auf 80 fallen sah, wartet auf die Rückkehr zu 100. Steigt der Kurs dorthin, treffen diese Verkäufe auf den Markt. Wird ein Widerstand nachhaltig überwunden, wird er der Erfahrung nach häufig zur Unterstützung.',
+    formen: ['Widerstände', 'Resistance'],
+    siehe: ['unterstuetzung', 'trendlinie'],
+    lektion: 'technische-analyse/unterstuetzung-und-widerstand',
+  },
+  {
+    slug: 'kerzenchart',
+    begriff: 'Kerzenchart',
+    kurz: 'Eine Darstellung, in der jede Periode vier Kurse zeigt: Eröffnung, Hoch, Tief und Schluss.',
+    lang: 'Der Körper reicht von der Eröffnung bis zum Schluss, die dünnen Dochte bis zum Hoch und zum Tief. Ein langer Körper heißt, dass sich eine Seite durchgesetzt hat; ein kurzer mit langen Dochten, dass in beide Richtungen gezogen wurde und am Ende fast nichts übrig blieb.',
+    formen: ['Kerzencharts', 'Candlestick', 'Candlesticks', 'Kerzenmuster'],
+    siehe: ['technische-analyse'],
+    lektion: 'technische-analyse/charttypen-und-kerzen',
+  },
+  {
+    slug: 'gleitender-durchschnitt',
+    begriff: 'Gleitender Durchschnitt',
+    kurz: 'Der Mittelwert der letzten n Schlusskurse, für jeden Tag neu gebildet – eine geglättete Fassung des Kursverlaufs.',
+    lang: 'Beim einfachen Durchschnitt (SMA) zählt jeder Kurs gleich viel, beim exponentiellen (EMA) die neueren stärker. Beide laufen dem Kurs hinterher; diese Verzögerung ist kein Fehler, sondern der Preis für die Glättung.',
+    formen: ['Gleitende Durchschnitte', 'SMA', 'EMA', '200-Tage-Linie'],
+    siehe: ['macd', 'goldenes-kreuz'],
+    lektion: 'technische-analyse/gleitende-durchschnitte',
+  },
+  {
+    slug: 'goldenes-kreuz',
+    begriff: 'Goldenes Kreuz',
+    kurz: 'Der Punkt, an dem ein kurzer gleitender Durchschnitt einen längeren von unten nach oben schneidet.',
+    lang: 'Meist gemeint sind der 50- und der 200-Tage-Durchschnitt; die umgekehrte Kreuzung heißt Todeskreuz. Beides ist keine Vorhersage, sondern eine Feststellung über die Vergangenheit – und weil beide Linien nachlaufen, tritt sie regelmäßig erst ein, wenn ein guter Teil der Bewegung gelaufen ist.',
+    formen: ['Golden Cross', 'Todeskreuz', 'Death Cross'],
+    siehe: ['gleitender-durchschnitt'],
+    lektion: 'technische-analyse/gleitende-durchschnitte',
+  },
+  {
+    slug: 'macd',
+    begriff: 'MACD',
+    kurz: 'Ein Indikator, der den Abstand zwischen einem schnellen und einem langsamen gleitenden Durchschnitt misst.',
+    lang: 'Der Name steht für Moving Average Convergence Divergence. Er misst die Beschleunigung einer Bewegung, nicht ihre Richtung. In Seitwärtsphasen kreuzt er ständig und erzeugt eine Folge von Signalen, die sich gegenseitig aufheben.',
+    formen: ['Signallinie'],
+    siehe: ['gleitender-durchschnitt', 'divergenz'],
+    lektion: 'technische-analyse/macd',
+  },
+  {
+    slug: 'divergenz',
+    begriff: 'Divergenz',
+    kurz: 'Der Fall, dass der Kurs ein neues Hoch erreicht, ein Indikator aber nicht – gelesen als nachlassende Kraft der Bewegung.',
+    lang: 'Sie ist im Rückblick immer offensichtlich und kann sich über Monate hinziehen, während der Kurs weiter steigt. „Zu früh“ ist an der Börse dasselbe wie „falsch“.',
+    formen: ['Divergenzen'],
+    siehe: ['macd', 'rsi'],
+    lektion: 'technische-analyse/macd',
+  },
+  {
+    slug: 'rsi',
+    begriff: 'Relative-Stärke-Index',
+    kurz: 'Ein Indikator zwischen 0 und 100, der das Verhältnis von Aufwärts- zu Abwärtsbewegung der letzten Perioden misst.',
+    lang: 'Über 70 gilt als „überkauft“, unter 30 als „überverkauft“ – der am häufigsten missverstandene Teil der technischen Analyse. Überkauft heißt nicht „zu teuer“, sondern „zuletzt stark gestiegen“: In kräftigen Trends bleibt der Wert wochenlang über 70, während der Kurs weiter steigt.',
+    formen: ['RSI', 'überkauft', 'überverkauft', 'Oszillator'],
+    siehe: ['divergenz', 'momentum'],
+    lektion: 'technische-analyse/rsi-und-oszillatoren',
+  },
+  {
+    slug: 'bollinger-baender',
+    begriff: 'Bollinger-Bänder',
+    kurz: 'Ein Schlauch aus zwei Linien um einen gleitenden Durchschnitt, dessen Breite sich nach der Streuung der letzten Kurse richtet.',
+    lang: 'Üblich sind zwei Standardabweichungen um den 20-Tage-Durchschnitt. Eine Berührung des oberen Bands ist kein Verkaufssignal – in einem Ausbruch läuft der Kurs teils wochenlang daran entlang.',
+    formen: ['Bollinger-Band', 'Squeeze'],
+    siehe: ['average-true-range', 'volatilitaet'],
+    lektion: 'technische-analyse/volatilitaet-bollinger-atr',
+  },
+  {
+    slug: 'average-true-range',
+    begriff: 'Average True Range',
+    kurz: 'Die durchschnittliche Schwankungsbreite einer Periode, einschließlich der Sprünge zwischen Schluss- und Eröffnungskurs.',
+    lang: 'Sie sagt nichts über die Richtung, aber viel über das Risiko: Wer weiß, wie stark ein Wert üblicherweise schwankt, kann seine Positionsgröße und den Abstand einer Verlustbegrenzung daran ausrichten.',
+    formen: ['ATR'],
+    siehe: ['bollinger-baender', 'volatilitaet'],
+    lektion: 'technische-analyse/volatilitaet-bollinger-atr',
+  },
+  {
+    slug: 'handelsvolumen',
+    begriff: 'Handelsvolumen',
+    kurz: 'Die Stückzahl, die in einer Periode gehandelt wurde – die einzige Größe neben dem Kurs, die die technische Analyse kennt.',
+    lang: 'Es misst Umschlag, nicht Kaufdruck: Zu jedem Käufer gehört ein Verkäufer. Bei Devisen gibt es kein Gesamtvolumen, weil der Handel nicht über eine zentrale Börse läuft.',
+    formen: ['Volumen', 'Umsatzvolumen'],
+    siehe: ['technische-analyse'],
+    lektion: 'technische-analyse/volumen',
+  },
+  {
+    slug: 'chartmuster',
+    begriff: 'Chartmuster',
+    kurz: 'Eine wiederkehrende Form im Kursverlauf, der die technische Analyse einen Namen und eine Bedeutung gegeben hat.',
+    lang: 'Kopf-Schulter, Doppeltop, Dreiecke und Flaggen gehören dazu. Ihre Messregeln – etwa „der Kurs fällt so weit, wie der Kopf über der Nackenlinie stand“ – sind Konventionen ohne Herleitung. Das eigentliche Problem ist das Erkennen: Ein Mensch findet mehr Muster als ein Rechner, weil er großzügiger ist.',
+    formen: ['Chartformation', 'Chartformationen', 'Kopf-Schulter', 'Doppeltop'],
+    siehe: ['technische-analyse', 'kerzenchart'],
+    lektion: 'technische-analyse/chartmuster',
+  },
+  {
+    slug: 'fibonacci-retracement',
+    begriff: 'Fibonacci-Retracement',
+    kurz: 'Waagerechte Linien bei 38,2, 50 und 61,8 Prozent einer Bewegung, an denen eine Gegenbewegung enden soll.',
+    lang: 'Die Verhältnisse stammen aus der Fibonacci-Folge und sind mathematisch korrekt hergeleitet. Dass Kurse sich daran halten sollten, hat niemand je begründet – und mit fünf Marken ist der Bereich so dicht bedeckt, dass fast jede Umkehr in der Nähe einer Linie liegt.',
+    formen: ['Fibonacci', 'Retracement', 'Retracements'],
+    siehe: ['elliott-wellen'],
+    lektion: 'technische-analyse/fibonacci-retracements',
+  },
+  {
+    slug: 'elliott-wellen',
+    begriff: 'Elliott-Wellen',
+    kurz: 'Eine Theorie, nach der Kurse in fünf Wellen mit dem Trend und drei dagegen verlaufen – auf jeder Zeitebene.',
+    lang: 'Sie kennt drei harte Regeln und zahlreiche zulässige Sonderformen. Genau das ist der Einwand: Zu fast jedem Verlauf lässt sich eine gültige Zählung finden, und erweist sich eine Prognose als falsch, wird die Zählung angepasst statt verworfen.',
+    formen: ['Elliott-Wellen-Theorie', 'Wellentheorie', 'Impulswelle', 'Korrekturwelle'],
+    siehe: ['fibonacci-retracement', 'technische-analyse'],
+    lektion: 'technische-analyse/elliott-wellen',
+  },
+  {
+    slug: 'momentum',
+    begriff: 'Momentum',
+    kurz: 'Die Beobachtung, dass zuletzt gestiegene Kurse etwas häufiger weiter steigen, als der Zufall erwarten ließe.',
+    lang: 'Der Effekt ist über kurze Zeiträume messbar, kehrt sich über lange um, schwankt über die Jahrzehnte und schrumpft weiter, sobald Handelskosten abgezogen werden.',
+    siehe: ['random-walk', 'technische-analyse'],
+    lektion: 'technische-analyse/rsi-und-oszillatoren',
+  },
+  {
+    slug: 'bilanz',
+    begriff: 'Bilanz',
+    kurz: 'Eine Aufstellung zum Stichtag: links, was ein Unternehmen besitzt, rechts, wem es gehört – den Eigentümern oder den Gläubigern.',
+    lang: 'Beide Seiten sind zwangsläufig gleich groß, daher der Name von der Waage. Das Eigenkapital ist die Differenz aus Vermögen und Schulden.',
+    formen: ['Bilanzen', 'Bilanzsumme'],
+    siehe: ['eigenkapital', 'buchwert', 'freier-cashflow'],
+    lektion: 'fundamentalanalyse/die-drei-abschluesse',
+  },
+  {
+    slug: 'ebit',
+    begriff: 'EBIT',
+    kurz: 'Das Ergebnis vor Zinsen und Steuern – das Ergebnis des eigentlichen Geschäfts, unabhängig von der Finanzierung.',
+    formen: ['operatives Ergebnis'],
+    siehe: ['ebitda', 'bilanz'],
+    lektion: 'fundamentalanalyse/umsatz-und-margen',
+  },
+  {
+    slug: 'ebitda',
+    begriff: 'EBITDA',
+    kurz: 'Das Ergebnis vor Zinsen, Steuern und Abschreibungen.',
+    lang: 'Abschreibungen sind keine Erfindung der Buchhaltung: Eine Maschine verschleißt tatsächlich. Wer sie herausrechnet, tut so, als koste das Anlagevermögen nichts – bei kapitalintensiven Geschäften ist der Unterschied erheblich.',
+    siehe: ['ebit', 'unternehmenswert'],
+    lektion: 'fundamentalanalyse/unternehmenswert-und-verschuldung',
+  },
+  {
+    slug: 'unternehmenswert',
+    begriff: 'Unternehmenswert',
+    kurz: 'Börsenwert plus Nettoverschuldung – das, was ein Käufer für das ganze Unternehmen aufwenden müsste.',
+    lang: 'Zwei Unternehmen mit gleichem Börsenwert und gleichem Gewinn haben dasselbe Kurs-Gewinn-Verhältnis. Hat das eine zwei Milliarden Schulden und das andere zwei Milliarden auf dem Konto, sind sie trotzdem nicht gleich teuer.',
+    formen: ['Enterprise Value', 'EV/EBITDA', 'Nettoverschuldung'],
+    siehe: ['ebitda', 'kgv'],
+    lektion: 'fundamentalanalyse/unternehmenswert-und-verschuldung',
+  },
+  {
+    slug: 'freier-cashflow',
+    begriff: 'Freier Cashflow',
+    kurz: 'Das Geld, das nach allen Investitionen übrig bleibt – die Grundlage für Dividenden, Rückkäufe und Tilgungen.',
+    lang: 'Gewinn ist eine Rechengröße, Geld nicht. Ein Unternehmen kann Gewinn ausweisen und zahlungsunfähig werden, wenn die Rechnungen zwar geschrieben, aber nicht bezahlt wurden.',
+    formen: ['Free Cashflow'],
+    siehe: ['bilanz', 'ausschuettungsquote'],
+    lektion: 'fundamentalanalyse/cashflow',
+  },
+  {
+    slug: 'eigenkapitalrendite',
+    begriff: 'Eigenkapitalrendite',
+    kurz: 'Der Jahresüberschuss im Verhältnis zum Eigenkapital – was das Unternehmen aus dem Geld der Eigentümer macht.',
+    lang: 'Sie lässt sich erhöhen, ohne dass das Geschäft besser wird: Man ersetzt Eigenkapital durch Schulden. Aussagekräftiger ist deshalb die Rendite auf das gesamte eingesetzte Kapital – und der Abstand zu den Kapitalkosten.',
+    formen: ['ROE', 'ROIC', 'ROCE', 'Kapitalrendite'],
+    siehe: ['eigenkapital', 'unternehmenswert'],
+    lektion: 'fundamentalanalyse/kapitalrenditen',
+  },
+  {
+    slug: 'ausschuettungsquote',
+    begriff: 'Ausschüttungsquote',
+    kurz: 'Der Anteil des Gewinns, der als Dividende ausgezahlt wird.',
+    lang: 'Über 100 Prozent wird mehr ausgeschüttet als verdient – das geht aus Rücklagen oder auf Kredit und nicht lange. Aussagekräftiger als die Quote auf den Gewinn ist die auf den freien Cashflow: Die Dividende wird in echtem Geld gezahlt.',
+    formen: ['Payout Ratio'],
+    siehe: ['dividende', 'freier-cashflow'],
+    lektion: 'fundamentalanalyse/dividende-und-ausschuettung',
+  },
+  {
+    slug: 'innerer-wert',
+    begriff: 'Innerer Wert',
+    kurz: 'Der geschätzte Wert eines Unternehmens, unabhängig davon, was gerade an der Börse dafür bezahlt wird.',
+    lang: 'Ermittelt wird er, indem künftige Zahlungsströme auf heute abgezinst werden. In vielen Rechnungen stammen 60 bis 80 Prozent des Ergebnisses aus der Zeit nach dem Prognosezeitraum – der am wenigsten belastbare Teil wiegt am schwersten.',
+    formen: ['Discounted Cashflow', 'DCF', 'Abzinsung'],
+    siehe: ['fundamentalanalyse', 'kgv'],
+    lektion: 'fundamentalanalyse/wachstum-und-innerer-wert',
+  },
+  {
+    slug: 'burggraben',
+    begriff: 'Burggraben',
+    kurz: 'Ein dauerhafter Wettbewerbsvorteil, der verhindert, dass Nachahmer die hohe Kapitalrendite eines Unternehmens wegkonkurrieren.',
+    lang: 'Als dauerhaft erwiesen haben sich vier Arten: Wechselkosten, Netzwerkeffekte, Größenvorteile und immaterielle Werte wie Marke, Patent oder Zulassung.',
+    formen: ['Wettbewerbsvorteil', 'Moat'],
+    siehe: ['fundamentalanalyse', 'eigenkapitalrendite'],
+    lektion: 'fundamentalanalyse/qualitative-analyse',
   },
 ]
 

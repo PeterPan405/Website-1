@@ -78,7 +78,7 @@ export default async function BereichPage({ params }: Props) {
             Ein Kasten mit den Schwächen eines Verfahrens, den man erst nach
             dreizehn Lektionen erreicht, erfüllt seinen Zweck nicht.
           */}
-          <Callout variant="warning" title={`Was ${gefunden.titel} nicht leistet`}>
+          <Callout variant="warning" title="Was dieses Verfahren nicht leistet">
             <ul>
               {gefunden.grenzen.map((grenze) => (
                 <li key={grenze}>{grenze}</li>

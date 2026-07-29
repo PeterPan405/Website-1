@@ -125,6 +125,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 9,
     stichworte: ['Bilanz', 'GuV', 'Kapitalflussrechnung', 'Jahresabschluss'],
     setztVoraus: ['was-fundamentalanalyse-ist'],
+    lernthemen: ['aktie'],
     inhalt: [
       {
         type: 'paragraph',
@@ -217,6 +218,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 7,
     stichworte: ['Umsatz', 'Marge', 'Bruttomarge', 'operative Marge', 'EBIT'],
     setztVoraus: ['die-drei-abschluesse'],
+    lernthemen: ['aktien-laender-branchen'],
     inhalt: [
       {
         type: 'paragraph',
@@ -288,6 +290,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 7,
     stichworte: ['EPS', 'Gewinn je Aktie', 'Verwässerung', 'Aktienrückkauf'],
     setztVoraus: ['die-drei-abschluesse'],
+    lernthemen: ['aktie'],
     inhalt: [
       {
         type: 'paragraph',
@@ -344,6 +347,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 9,
     stichworte: ['KGV', 'P/E', 'Kurs-Gewinn-Verhältnis', 'Bewertung'],
     setztVoraus: ['gewinn-je-aktie'],
+    lernthemen: ['aktie'],
     inhalt: [
       {
         type: 'formula',
@@ -431,6 +435,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 7,
     stichworte: ['KBV', 'Buchwert', 'Eigenkapital', 'P/B'],
     setztVoraus: ['die-drei-abschluesse'],
+    lernthemen: ['aktie'],
     inhalt: [
       {
         type: 'formula',
@@ -501,6 +506,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 5,
     stichworte: ['KUV', 'P/S', 'Kurs-Umsatz-Verhältnis'],
     setztVoraus: ['umsatz-und-margen', 'kurs-gewinn-verhaeltnis'],
+    lernthemen: ['aktie'],
     inhalt: [
       {
         type: 'formula',
@@ -546,6 +552,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 8,
     stichworte: ['Enterprise Value', 'EV/EBITDA', 'Nettoverschuldung', 'EBITDA'],
     setztVoraus: ['kurs-gewinn-verhaeltnis', 'die-drei-abschluesse'],
+    lernthemen: ['schulden-und-kredit'],
     inhalt: [
       {
         type: 'paragraph',
@@ -610,6 +617,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 8,
     stichworte: ['Cashflow', 'freier Cashflow', 'Investitionen', 'Working Capital'],
     setztVoraus: ['die-drei-abschluesse'],
+    lernthemen: ['aktie'],
     inhalt: [
       {
         type: 'paragraph',
@@ -684,6 +692,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     dauer: 8,
     stichworte: ['ROE', 'ROCE', 'ROIC', 'Eigenkapitalrendite', 'Kapitalrendite'],
     setztVoraus: ['unternehmenswert-und-verschuldung'],
+    lernthemen: ['aktie'],
     inhalt: [
       {
         type: 'paragraph',
@@ -810,6 +819,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     stichworte: ['PEG', 'DCF', 'Abzinsung', 'innerer Wert', 'Wachstum'],
     setztVoraus: ['kurs-gewinn-verhaeltnis', 'cashflow'],
     rechner: ['zinsrechner'],
+    lernthemen: ['zinseszins'],
     inhalt: [
       {
         type: 'paragraph',
@@ -883,6 +893,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
       'Management',
     ],
     setztVoraus: ['kapitalrenditen'],
+    lernthemen: ['portfolio-aufbau', 'worauf-achten-einsteiger'],
     inhalt: [
       {
         type: 'paragraph',

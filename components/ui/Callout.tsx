@@ -58,7 +58,18 @@ export function Callout({
         />
         <div className="min-w-0">
           <p className="text-fg text-sm font-semibold">{title ?? config.defaultTitle}</p>
-          <div className="text-fg-muted mt-1.5 space-y-2 text-sm leading-relaxed">
+          {/*
+            Listen brauchen hier eigene Regeln.
+
+            `space-y-2` greift nur auf die direkten Kinder – eine Liste ist ein
+            einziges davon, ihre Punkte liefen also ohne Abstand ineinander, und
+            die Aufzählungszeichen entfernt der Tailwind-Reset. Ohne diese Regeln
+            liest sich eine Aufzählung im Kasten wie ein durchgehender Absatz.
+
+            Der Punkt nimmt `currentColor`, damit er die Farbe der jeweiligen
+            Kastenart annimmt statt gegen sie zu stehen.
+          */}
+          <div className="text-fg-muted mt-1.5 space-y-2 text-sm leading-relaxed [&_ul]:space-y-1.5 [&_ul>li]:relative [&_ul>li]:pl-4 [&_ul>li]:before:absolute [&_ul>li]:before:top-[0.55em] [&_ul>li]:before:left-0 [&_ul>li]:before:size-1.5 [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-current [&_ul>li]:before:opacity-40">
             {children}
           </div>
         </div>
