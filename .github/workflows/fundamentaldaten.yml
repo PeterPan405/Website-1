@@ -38,6 +38,11 @@ jobs:
       - name: Fundamentaldaten abrufen
         run: npm run fundamentaldaten
 
+      # Zweiter Weg für die Werte ohne US-Notierung: die ESEF-Pflichtmeldungen
+      # der EU. Läuft danach und ergänzt nur, was die SEC nicht abdeckt.
+      - name: ESEF-Meldungen ergänzen
+        run: npm run esef
+
       - name: Momentaufnahme committen
         run: |
           git config user.name  "github-actions[bot]"
