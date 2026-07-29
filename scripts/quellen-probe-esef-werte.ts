@@ -123,7 +123,7 @@ const GROESSEN = [
   },
   {
     feld: 'gewinn' as const,
-    tags: ['ProfitLoss', 'ProfitLossAttributableToOwnersOfParent'],
+    tags: ['ProfitLossAttributableToOwnersOfParent', 'ProfitLoss'],
     zeitraum: true,
   },
   {

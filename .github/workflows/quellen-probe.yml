@@ -210,6 +210,12 @@ jobs:
         if: always()
         run: node --experimental-strip-types scripts/quellen-probe-asien.ts
 
+      # Der offene Rest aus dem ESEF-Abruf: drei nordische Werte, die im
+      # Verzeichnis stehen und trotzdem nichts hergeben.
+      - name: Nordische Abschlüsse untersuchen
+        if: always()
+        run: node --experimental-strip-types scripts/quellen-probe-nordisch.ts
+
       - name: ESEF-Verzeichnis für die europäischen Werte abklopfen
         if: always()
         run: node --experimental-strip-types scripts/quellen-probe-esef.ts
