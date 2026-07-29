@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-29T07:16:50.444Z",
+  "abgerufenAm": "2026-07-29T07:20:17.491Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -41,37 +41,37 @@
     "2303.TW": {
       "waehrung": "TWD",
       "eigenkapital": 406736158000,
-      "aktien": 12576984870000
+      "aktien": 12576984870
     },
     "2308.TW": {
       "waehrung": "TWD",
       "eigenkapital": 357259207000,
-      "aktien": 2597543329000
+      "aktien": 2597543329
     },
     "2317.TW": {
       "waehrung": "TWD",
       "eigenkapital": 1988798469000,
-      "aktien": 14028648626000
+      "aktien": 14028648626
     },
     "2330.TW": {
       "waehrung": "TWD",
       "eigenkapital": 5932388921000,
-      "aktien": 25932370067000
+      "aktien": 25932370067
     },
     "2357.TW": {
       "waehrung": "TWD",
       "eigenkapital": 316730012000,
-      "aktien": 742760280000
+      "aktien": 742760280
     },
     "2382.TW": {
       "waehrung": "TWD",
       "eigenkapital": 219448483000,
-      "aktien": 3862627432000
+      "aktien": 3862627432
     },
     "2454.TW": {
       "waehrung": "TWD",
       "eigenkapital": 398446955000,
-      "aktien": 1603895407000
+      "aktien": 1603895407
     },
     "4502.T": {
       "umsatz": 4581551000000,
