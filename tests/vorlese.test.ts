@@ -9,7 +9,11 @@
 
 import { technischeAnalyseLektionen } from '../data/akademie/technische-analyse.ts'
 import { figureMeta } from '../data/figures.ts'
-import { vorleseAbschnitte } from '../lib/vorlese-text.ts'
+import {
+  bevorzugteStimme,
+  klingtMaennlich,
+  vorleseAbschnitte,
+} from '../lib/vorlese-text.ts'
 
 let bestanden = 0
 let gescheitert = 0
@@ -91,6 +95,53 @@ pruefe(
 pruefe(
   'ohne Verzeichnis entsteht keine Stille mit leerem Abschnitt',
   vorleseAbschnitte([{ type: 'figure', figure: 'ta-macd' }]).length === 0
+)
+
+console.log('\n— Stimmwahl —')
+
+/*
+  Die Voreinstellung soll eine Männerstimme nehmen, wo es eine gibt – die
+  Schnittstelle kennt kein Geschlecht, erkannt wird es am Namen. Geprüft wird
+  die Rangfolge und die Falle, dass „female“ das Wort „male“ enthält.
+*/
+const anna = { name: 'Anna', lang: 'de-DE', voiceURI: 'anna', localService: true }
+const conrad = {
+  name: 'Microsoft Conrad Online (Natural)',
+  lang: 'de-DE',
+  voiceURI: 'conrad-netz',
+  localService: false,
+}
+const stefan = { name: 'Stefan', lang: 'de-AT', voiceURI: 'stefan', localService: true }
+const englisch = {
+  name: 'Daniel',
+  lang: 'en-GB',
+  voiceURI: 'daniel-en',
+  localService: true,
+}
+const unklarWeiblich = {
+  name: 'Voice 3',
+  lang: 'de-DE',
+  voiceURI: 'de-DE-x-abc#female_2-local',
+  localService: true,
+}
+
+pruefe('ein Männername wird erkannt', klingtMaennlich(stefan))
+pruefe('„female“ in der Kennung zählt nicht als „male“', !klingtMaennlich(unklarWeiblich))
+pruefe(
+  'die lokale Männerstimme schlägt die weibliche und die Netz-Männerstimme',
+  bevorzugteStimme([anna, conrad, stefan])?.voiceURI === 'stefan'
+)
+pruefe(
+  'ohne lokale Männerstimme gewinnt die Netz-Männerstimme',
+  bevorzugteStimme([anna, conrad])?.voiceURI === 'conrad-netz'
+)
+pruefe(
+  'ohne Männerstimme bleibt die lokale deutsche',
+  bevorzugteStimme([anna, unklarWeiblich])?.voiceURI === 'anna'
+)
+pruefe(
+  'eine englische Männerstimme wird nicht gewählt',
+  bevorzugteStimme([englisch]) === null
 )
 
 console.log('\n— Über die echten Lektionen —')

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
+import { bevorzugteStimme } from '@/lib/vorlese-text'
 
 /**
  * Liest die Abschnitte einer Seite mit der Stimme des Browsers vor.
@@ -21,7 +22,7 @@ import { cn } from '@/lib/cn'
  * Chrome bricht lange Vorleseaufträge bei manchen Stimmen kommentarlos ab.
  * Deshalb bekommt die Stimme immer nur einen Abschnitt; erst wenn er zu Ende
  * ist, wird der nächste gestartet. Nebenbei ergibt das den Fortschritt und
- * eine saubere Stelle, an der ein Tempowechsel greifen kann.
+ * eine saubere Stelle, an der ein Tempo- oder Stimmwechsel greifen kann.
  *
  * ## Ein Wechsel der Seite beendet das Vorlesen
  *
@@ -29,9 +30,48 @@ import { cn } from '@/lib/cn'
  * Aufräumen beim Abbau spräche die Stimme auf der nächsten Seite weiter –
  * über einen Text, der längst nicht mehr zu sehen ist.
  */
+
+/** Wo die gewählte Stimme liegt – ein Gerät, eine Wahl, alle Seiten. */
+const STIMMWAHL_SCHLUESSEL = 'fk-vorlesen-stimme'
+
+/*
+  Die Tonlage liegt unter der Mitte.
+
+  Gewünscht ist eine tiefe Männerstimme als Voreinstellung dieser Website.
+  Welche Stimmen es gibt, entscheidet das Gerät – aber die Tonhöhe lässt sich
+  je Auftrag absenken. 0,85 ist der Bereich, in dem eine Stimme dunkler wird,
+  ohne verzerrt zu klingen; tiefer wird es bei vielen Systemstimmen blechern.
+*/
+const TONLAGE = 0.85
+
 /** Nichts zu beobachten – die Fähigkeit des Browsers ändert sich nicht. */
 function nieWieder() {
   return () => {}
+}
+
+/** Stabile leere Referenz für das Server-Rendering. */
+const KEINE_STIMMEN: readonly SpeechSynthesisVoice[] = []
+
+/*
+  Die Stimmen des Geräts als beobachtbarer Bestand.
+
+  `getVoices()` liefert in Chrome beim ersten Aufruf oft eine leere Liste und
+  reicht die echte erst über das Ereignis `voiceschanged` nach. Ein einfacher
+  Aufruf beim Rendern sähe deshalb auf vielen Geräten keine einzige Stimme.
+  Der kleine Speicher hier füllt sich beim Abonnieren und bei jedem Nachschub –
+  und `useSyncExternalStore` hält alle Vorleseleisten auf demselben Stand.
+*/
+let stimmenBestand: readonly SpeechSynthesisVoice[] = KEINE_STIMMEN
+
+function stimmenAbo(melden: () => void) {
+  if (!('speechSynthesis' in window)) return () => {}
+  const laden = () => {
+    stimmenBestand = window.speechSynthesis.getVoices()
+    melden()
+  }
+  laden()
+  window.speechSynthesis.addEventListener?.('voiceschanged', laden)
+  return () => window.speechSynthesis.removeEventListener?.('voiceschanged', laden)
 }
 
 export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
@@ -47,9 +87,25 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     () => 'speechSynthesis' in window,
     () => false
   )
+  const stimmen = useSyncExternalStore(
+    stimmenAbo,
+    () => stimmenBestand,
+    () => KEINE_STIMMEN
+  )
+
   const [zustand, setZustand] = useState<'aus' | 'laeuft' | 'pausiert'>('aus')
   const [stelle, setStelle] = useState(0)
   const [tempo, setTempo] = useState(1)
+  /*
+    Die Wahl kommt aus dem localStorage und gilt für alle Seiten. Der Server
+    kennt weder Speicher noch Stimmen – er rendert die Leiste ohne Auswahl,
+    und die erscheint erst mit den Stimmen des Geräts.
+  */
+  const [stimmwahl, setStimmwahl] = useState(() =>
+    typeof window === 'undefined'
+      ? ''
+      : (window.localStorage?.getItem(STIMMWAHL_SCHLUESSEL) ?? '')
+  )
 
   /*
     Die Refs führen den Lauf, der Zustand beschriftet die Knöpfe.
@@ -61,6 +117,7 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
   */
   const laueftRef = useRef(false)
   const tempoRef = useRef(1)
+  const stimmwahlRef = useRef(stimmwahl)
 
   /* Beim Verlassen der Seite verstummen – siehe Kopfkommentar. */
   useEffect(() => {
@@ -70,19 +127,27 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     }
   }, [])
 
+  /*
+    Zur Auswahl stehen die deutschen Stimmen des Geräts; gibt es keine, alle.
+    Netzstimmen schicken den Text zum Hersteller des Browsers – sie sind
+    gekennzeichnet, damit die Wahl eine informierte ist.
+  */
+  const deutsche = stimmen.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
+  const zurAuswahl = deutsche.length > 0 ? deutsche : stimmen
+  const wahlVorhanden = zurAuswahl.some((stimme) => stimme.voiceURI === stimmwahl)
+
   /**
-   * Die Stimme des Geräts für Deutsch – lokale vor eingesandten.
+   * Die gewählte Stimme – oder die Voreinstellung: männlich, lokal, deutsch.
    *
-   * Manche Browser bieten Netzstimmen an, die den Text zum Hersteller
-   * schicken. Auf einer Seite, die sonst nichts überträgt, wird die lokale
-   * Stimme bevorzugt, wo es eine gibt.
+   * Die Rangfolge steht in `lib/vorlese-text.ts` und ist dort geprüft; die
+   * Schnittstelle kennt kein Geschlecht, erkannt wird es am Stimmnamen.
    */
-  function deutscheStimme(): SpeechSynthesisVoice | null {
-    const stimmen = window.speechSynthesis.getVoices()
-    const deutsche = stimmen.filter((stimme) =>
-      stimme.lang.toLowerCase().startsWith('de')
+  function stimmeFuerAuftrag(): SpeechSynthesisVoice | null {
+    const alle = window.speechSynthesis.getVoices()
+    return (
+      alle.find((stimme) => stimme.voiceURI === stimmwahlRef.current) ??
+      bevorzugteStimme(alle)
     )
-    return deutsche.find((stimme) => stimme.localService) ?? deutsche[0] ?? null
   }
 
   function sprich(ab: number) {
@@ -97,7 +162,8 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     const auftrag = new SpeechSynthesisUtterance(abschnitte[ab])
     auftrag.lang = 'de-DE'
     auftrag.rate = tempoRef.current
-    const stimme = deutscheStimme()
+    auftrag.pitch = TONLAGE
+    const stimme = stimmeFuerAuftrag()
     if (stimme) auftrag.voice = stimme
     auftrag.onend = () => sprich(ab + 1)
     /*
@@ -136,29 +202,42 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
   }
 
   /**
-   * 1 → 1,25 → 1,5 → 0,75 → 1 …
+   * Setzt den aktuellen Abschnitt mit den neuen Einstellungen neu an.
    *
-   * Ein laufender Auftrag behält sein Tempo; deshalb wird der aktuelle
-   * Abschnitt mit dem neuen Tempo neu gestartet statt nur der nächste.
+   * Ein laufender Auftrag behält Tempo und Stimme; nur ein Neustart des
+   * Abschnitts übernimmt die Änderung sofort statt erst beim nächsten.
+   * `cancel` feuert das `onend` des abgebrochenen Auftrags, und das würde
+   * eine zweite Kette starten – der Neustart wartet deshalb einen Tick, bis
+   * der alte Rückruf ins Leere gelaufen ist.
    */
+  function neuAnsetzen() {
+    if (!laueftRef.current || zustand !== 'laeuft') return
+    window.speechSynthesis.cancel()
+    laueftRef.current = false
+    window.setTimeout(() => {
+      laueftRef.current = true
+      sprich(stelle)
+    }, 60)
+  }
+
+  /** 1 → 1,25 → 1,5 → 0,75 → 1 … */
   function tempoWechseln() {
     const reihe = [1, 1.25, 1.5, 0.75]
     const naechstes = reihe[(reihe.indexOf(tempoRef.current) + 1) % reihe.length]
     tempoRef.current = naechstes
     setTempo(naechstes)
-    if (laueftRef.current && zustand === 'laeuft') {
-      window.speechSynthesis.cancel()
-      /*
-        `cancel` feuert das `onend` des abgebrochenen Auftrags, und das würde
-        eine zweite Kette starten. Der Neustart wartet deshalb einen Tick, bis
-        der alte Rückruf ins Leere gelaufen ist.
-      */
-      laueftRef.current = false
-      window.setTimeout(() => {
-        laueftRef.current = true
-        sprich(stelle)
-      }, 60)
+    neuAnsetzen()
+  }
+
+  function stimmeWechseln(voiceURI: string) {
+    stimmwahlRef.current = voiceURI
+    setStimmwahl(voiceURI)
+    try {
+      window.localStorage?.setItem(STIMMWAHL_SCHLUESSEL, voiceURI)
+    } catch {
+      // Privater Modus oder voller Speicher: Die Wahl gilt dann nur hier.
     }
+    neuAnsetzen()
   }
 
   if (abschnitte.length === 0) return null
@@ -184,7 +263,7 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
           type="button"
           onClick={zustand === 'pausiert' ? weiter : start}
           className="fk-btn-secondary px-3 py-1.5 text-xs"
-          title="Gelesen von der Stimme deines Browsers – Klang und Sprache hängen vom Gerät ab."
+          title="Gelesen von einer Stimme deines Browsers – Klang und Auswahl hängen vom Gerät ab."
         >
           <Icon name="play" className="size-3.5" />
           {zustand === 'pausiert' ? 'Weiter' : 'Vorlesen'}
@@ -213,6 +292,28 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
             Abschnitt {stelle + 1} von {abschnitte.length}
           </span>
         </>
+      )}
+
+      {/*
+        Die Stimmauswahl steht auch vor dem Start – wer die Stimme wechseln
+        will, soll sie nicht erst suchen müssen, während gesprochen wird.
+        Bei nur einer Stimme gibt es nichts zu wählen.
+      */}
+      {zurAuswahl.length > 1 && (
+        <select
+          value={wahlVorhanden ? stimmwahl : ''}
+          onChange={(ereignis) => stimmeWechseln(ereignis.target.value)}
+          aria-label="Vorlesestimme wählen"
+          className="border-border bg-canvas text-fg focus-visible:ring-ring ml-auto max-w-44 rounded-lg border px-2 py-1.5 text-xs focus-visible:ring-2 focus-visible:outline-none"
+        >
+          <option value="">Stimme: automatisch</option>
+          {zurAuswahl.map((stimme) => (
+            <option key={stimme.voiceURI} value={stimme.voiceURI}>
+              {stimme.name}
+              {stimme.localService ? '' : ' (online)'}
+            </option>
+          ))}
+        </select>
       )}
     </div>
   )
