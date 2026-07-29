@@ -158,7 +158,7 @@ export const areas: Record<AreaId, Area> = {
     label: 'Akademie',
     href: '/akademie',
     description:
-      'Technische und fundamentale Analyse in einzelnen Lektionen – wie Charts gelesen und Kennzahlen eingeordnet werden, samt dem, was beide Verfahren nicht können.',
+      'Fünf Bereiche in einzelnen Lektionen: Charts, Kennzahlen, Depotaufbau, Konjunktur und die eigenen Denkfehler – jeder mit dem, was er nicht leistet.',
   },
   globe: {
     id: 'globe',

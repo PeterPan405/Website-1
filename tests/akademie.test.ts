@@ -18,14 +18,10 @@
  * Type-Stripping entfernt –, deshalb funktioniert das hier überhaupt.
  */
 
-import {
-  fundamentalanalyse,
-  fundamentalanalyseLektionen,
-} from '../data/akademie/fundamentalanalyse.ts'
-import {
-  technischeAnalyse,
-  technischeAnalyseLektionen,
-} from '../data/akademie/technische-analyse.ts'
+import { readdirSync } from 'node:fs'
+
+import { technischeAnalyseLektionen } from '../data/akademie/technische-analyse.ts'
+import type { Bereich, Lektion } from '../data/akademie/types.ts'
 import { figureMeta } from '../data/figures.ts'
 
 let bestanden = 0
@@ -41,12 +37,69 @@ function pruefe(name: string, bedingung: boolean, hinweis?: string) {
   }
 }
 
-const bereiche = [technischeAnalyse, fundamentalanalyse]
-const lektionen = [...technischeAnalyseLektionen, ...fundamentalanalyseLektionen]
+/*
+  Die Bereiche werden aus dem Ordner gelesen, nicht aufgezählt.
+
+  Hier stand einmal `[technischeAnalyse, fundamentalanalyse]`. Als drei weitere
+  Bereiche dazukamen, lief der Test weiter durch und prüfte sie schlicht nicht –
+  achtzehn grüne Zeilen für zwei von fünf Bereichen. Das ist die schlechteste
+  Sorte Prüfung: eine, die schweigt, obwohl sie nichts gesehen hat.
+
+  `data/akademie/index.ts` lässt sich hier nicht laden, weil es den `@/`-Alias
+  benutzt. Die einzelnen Bereichsdateien kommen ohne Laufzeitimporte aus.
+*/
+const bereiche: Bereich[] = []
+const lektionen: Lektion[] = []
+
+for (const datei of readdirSync('data/akademie').sort()) {
+  if (!datei.endsWith('.ts') || datei === 'index.ts' || datei === 'types.ts') continue
+  const modul: Record<string, unknown> = await import(`../data/akademie/${datei}`)
+  for (const wert of Object.values(modul)) {
+    if (Array.isArray(wert)) {
+      if (
+        wert.length > 0 &&
+        typeof wert[0] === 'object' &&
+        wert[0] !== null &&
+        'slug' in wert[0]
+      ) {
+        lektionen.push(...(wert as Lektion[]))
+      }
+    } else if (typeof wert === 'object' && wert !== null && 'grenzen' in wert) {
+      bereiche.push(wert as Bereich)
+    }
+  }
+}
+
+pruefe(
+  'jede Bereichsdatei wurde eingelesen',
+  bereiche.length ===
+    readdirSync('data/akademie').filter(
+      (d) => d.endsWith('.ts') && d !== 'index.ts' && d !== 'types.ts'
+    ).length,
+  `${bereiche.length} Bereiche aus dem Ordner`
+)
 
 console.log('\n— Aufbau —')
 
-pruefe('es gibt zwei Bereiche', bereiche.length === 2)
+/*
+  Die Zahl der Bereiche steht nicht fest im Test.
+
+  Sie stand hier einmal auf zwei, und beim dritten Bereich wäre der Test
+  gescheitert, obwohl nichts kaputt war – eine Prüfung, die beim Erweitern
+  anschlägt, wird beim nächsten Mal einfach hochgezählt und prüft dann nichts
+  mehr. Geprüft wird stattdessen, was tatsächlich schiefgehen kann: dass ein
+  Bereich ohne Lektionen dasteht oder eine Lektion zu einem Bereich gehört,
+  den es nicht gibt.
+*/
+pruefe('es gibt mindestens zwei Bereiche', bereiche.length >= 2)
+
+const bereichsIds = new Set(bereiche.map((bereich) => bereich.id))
+const heimatlos = lektionen.filter((lektion) => !bereichsIds.has(lektion.bereich))
+pruefe(
+  'jede Lektion gehört zu einem vorhandenen Bereich',
+  heimatlos.length === 0,
+  heimatlos.map((l) => `${l.slug} → ${l.bereich}`).join(', ')
+)
 pruefe(
   'jeder Bereich hat mindestens zehn Lektionen',
   bereiche.every(

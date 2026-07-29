@@ -12,11 +12,11 @@ import { collectionPageSchema } from '@/lib/jsonld'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
-  title: withBrand('Akademie: technische und fundamentale Analyse'),
+  title: withBrand('Akademie: Analyse, Depot, Konjunktur, Verhalten'),
   description:
-    'Wie Charts gelesen und Kennzahlen eingeordnet werden – Trends, Indikatoren, Bilanz und Cashflow in einzelnen Lektionen, samt den Grenzen beider Verfahren.',
+    'Fünf Bereiche in einzelnen Lektionen: Charts lesen, Kennzahlen einordnen, ein Depot zusammensetzen, Konjunkturdaten deuten und die eigenen Denkfehler kennen.',
   path: '/akademie',
-  ogTitle: 'Akademie: Charts lesen, Kennzahlen einordnen',
+  ogTitle: 'Akademie: fünf Bereiche mit benannten Grenzen',
 })
 
 export default function AkademiePage() {
@@ -28,8 +28,8 @@ export default function AkademiePage() {
         area="akademie"
         eyebrow="Akademie"
         eyebrowIcon="scale"
-        title="Charts lesen, Kennzahlen einordnen"
-        lead="Der Lernbereich erklärt, was es gibt. Die Akademie erklärt, wie man beurteilt, was man vor sich hat – und wo die Verfahren an ihre Grenzen kommen."
+        title="Beurteilen lernen, nicht nur benennen"
+        lead="Der Lernbereich erklärt, was es gibt. Die Akademie erklärt, wie man beurteilt, was man vor sich hat – und wo jedes dieser Verfahren an seine Grenzen kommt."
         breadcrumbs={<Breadcrumbs items={[{ name: 'Akademie' }]} />}
         meta={
           <>
@@ -52,12 +52,12 @@ export default function AkademiePage() {
         <div className="max-w-3xl">
           <Callout variant="info" title="Was hier erklärt wird und was nicht">
             <p>
-              Beide Verfahren sind in der Praxis verbreitet und in ihrer Aussagekraft
-              unterschiedlich gut belegt. Jede Lektion trägt deshalb eine Einstufung:{' '}
-              <strong>Rechenweg</strong> für das, was schlicht Arithmetik ist,{' '}
-              <strong>Beobachtung</strong> für Muster, deren Vorhersagekraft umstritten
-              ist, und <strong>Auslegung</strong> für alles, bei dem zwei Fachleute zu
-              verschiedenen Ergebnissen kommen können.
+              Die hier behandelten Verfahren sind in der Praxis verbreitet und in ihrer
+              Aussagekraft sehr unterschiedlich gut belegt. Jede Lektion trägt deshalb
+              eine Einstufung: <strong>Rechenweg</strong> für das, was schlicht Arithmetik
+              ist, <strong>Beobachtung</strong> für Muster, deren Vorhersagekraft
+              umstritten ist, und <strong>Auslegung</strong> für alles, bei dem zwei
+              Fachleute zu verschiedenen Ergebnissen kommen können.
             </p>
             <p>
               Nichts davon ist eine Anlageempfehlung. Die Akademie erklärt Verfahren – sie
@@ -87,10 +87,7 @@ export default function AkademiePage() {
                   className="fk-card-interactive group flex h-full flex-col p-6 sm:p-7"
                 >
                   <span className="bg-akademie-soft text-akademie flex size-11 items-center justify-center rounded-xl">
-                    <Icon
-                      name={bereich.id === 'technische-analyse' ? 'chart' : 'scale'}
-                      className="size-5"
-                    />
+                    <Icon name={bereich.sinnbild} className="size-5" />
                   </span>
 
                   <h2 className="text-fg group-hover:text-akademie mt-4 text-2xl font-bold transition">
@@ -136,8 +133,10 @@ export default function AkademiePage() {
               will, was hinter einem Kurs steht, bei der Fundamentalanalyse.
             </p>
             <p>
-              Die beiden Zweige bauen <em>nicht</em> aufeinander auf. Man kann mit jedem
-              von beiden anfangen und den anderen weglassen.
+              Die Bereiche bauen <em>nicht</em> aufeinander auf. Man kann mit jedem
+              anfangen und die übrigen weglassen. Wer schon anlegt und nur einen lesen
+              will, nimmt <strong>Anlegerverhalten</strong> – dort geht es um die Fehler,
+              die am meisten kosten und am wenigsten auffallen.
             </p>
           </Callout>
         </div>
@@ -147,7 +146,7 @@ export default function AkademiePage() {
         data={collectionPageSchema({
           name: 'Akademie',
           description:
-            'Technische und fundamentale Analyse in einzelnen Lektionen, jeweils mit benannten Grenzen.',
+            'Fünf Bereiche in einzelnen Lektionen, jeweils mit benannten Grenzen.',
           path: '/akademie',
           items: bereiche.map((bereich) => ({
             name: bereich.titel,

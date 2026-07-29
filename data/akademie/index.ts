@@ -7,9 +7,18 @@
  */
 
 import {
+  anlegerverhalten,
+  anlegerverhaltenLektionen,
+} from '@/data/akademie/anlegerverhalten'
+import {
   fundamentalanalyse,
   fundamentalanalyseLektionen,
 } from '@/data/akademie/fundamentalanalyse'
+import { makroanalyse, makroanalyseLektionen } from '@/data/akademie/makroanalyse'
+import {
+  portfoliotheorie,
+  portfoliotheorieLektionen,
+} from '@/data/akademie/portfoliotheorie'
 import {
   technischeAnalyse,
   technischeAnalyseLektionen,
@@ -23,12 +32,27 @@ import type { Bereich, Lektion } from '@/data/akademie/types'
  * die meisten stolpern, weil die Begriffe in jeder Börsenmeldung vorkommen.
  * Die Fundamentalanalyse braucht mehr Vorwissen und mehr Geduld – wer sie
  * zuerst aufschlägt, hört bei der Kapitalflussrechnung auf.
+ *
+ * Danach die drei Zweige, die keine einzelne Anlage beurteilen, sondern das
+ * Drumherum: die Zusammensetzung des Depots, die Lage der Wirtschaft und das
+ * eigene Verhalten. Sie stehen hinten, weil sie sich leichter erschließen,
+ * wenn die Begriffe der ersten beiden sitzen – und das Anlegerverhalten ganz
+ * zum Schluss, weil es die Annahmen der übrigen vier in Frage stellt.
  */
-export const bereiche: Bereich[] = [technischeAnalyse, fundamentalanalyse]
+export const bereiche: Bereich[] = [
+  technischeAnalyse,
+  fundamentalanalyse,
+  portfoliotheorie,
+  makroanalyse,
+  anlegerverhalten,
+]
 
 export const lektionen: Lektion[] = [
   ...technischeAnalyseLektionen,
   ...fundamentalanalyseLektionen,
+  ...portfoliotheorieLektionen,
+  ...makroanalyseLektionen,
+  ...anlegerverhaltenLektionen,
 ]
 
 export type { Bereich, BereichId, Belegart, Lektion } from '@/data/akademie/types'

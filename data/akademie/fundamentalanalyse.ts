@@ -26,6 +26,7 @@ import type { Bereich, Lektion } from '@/data/akademie/types'
 export const fundamentalanalyse: Bereich = {
   id: 'fundamentalanalyse',
   titel: 'Fundamentalanalyse',
+  sinnbild: 'scale',
   kurz: 'Was ein Unternehmen verdient, besitzt und schuldet – und wie sich daraus eine Einschätzung bildet.',
   einleitung:
     'Die Fundamentalanalyse fragt nicht, was der Kurs zuletzt getan hat, sondern was hinter ihm steht: Umsatz, Gewinn, Cashflow, Schulden, Wettbewerbsposition. Diese Lektionen erklären, wo diese Zahlen herkommen, wie die gängigen Kennzahlen gerechnet werden – und an welcher Stelle jede von ihnen in die Irre führt.',

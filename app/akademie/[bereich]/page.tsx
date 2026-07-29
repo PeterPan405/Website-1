@@ -52,7 +52,7 @@ export default async function BereichPage({ params }: Props) {
       <PageHeader
         area="akademie"
         eyebrow="Akademie"
-        eyebrowIcon={gefunden.id === 'technische-analyse' ? 'chart' : 'scale'}
+        eyebrowIcon={gefunden.sinnbild}
         title={gefunden.titel}
         lead={gefunden.einleitung}
         breadcrumbs={
