@@ -216,16 +216,16 @@ export const calculators: CalculatorDefinition[] = [
     headline: 'Vermögensübersicht: Bogen zum Ausfüllen und Abheften',
     metaTitle: 'Vermögensübersicht: Nettovermögen erfassen und herunterladen',
     metaDescription:
-      'Trage Besitz und Schulden in einen Bogen ein und lade ihn als Tabelle herunter – ausgefüllt oder leer zum Ausdrucken. Alle Eingaben bleiben im Browser.',
-    lead: 'Was besitzt du, was schuldest du, was bleibt? Der Bogen führt durch beide Seiten und rechnet das Nettovermögen aus. Herunterladen kannst du ihn ausgefüllt oder leer zum Ausdrucken – gedacht zum Abheften und Wiedervorlegen.',
+      'Trage Besitz und Schulden in einen Bogen ein und lade ihn als PDF herunter – ausgefüllt oder leer zum Ausdrucken. Alle Eingaben bleiben im Browser.',
+    lead: 'Was besitzt du, was schuldest du, was bleibt? Der Bogen führt durch beide Seiten und rechnet das Nettovermögen aus. Herunterladen kannst du ihn als PDF – ausgefüllt oder leer zum Ausdrucken, gedacht zum Abheften und Wiedervorlegen.',
     summary:
       'Besitz und Schulden erfassen, Nettovermögen ermitteln, Bogen herunterladen.',
     featureList: [
       'Sechs Bereiche von Konten bis Sachwerten und Schulden',
       'Mehrere Zeilen je Posten, jede mit eigener Bezeichnung',
       'Nettovermögen, Besitz und Schulden auf einen Blick',
-      'Download als Tabelle – ausgefüllt oder leer zum Ausdrucken',
-      'Leere Spalten für die nächsten Stichtage',
+      'Download als PDF – ausgefüllt oder leer zum Ausdrucken',
+      'Zusätzlich als Tabelle zum Weiterrechnen',
       'Eingaben bleiben im Browser, ohne Anmeldung',
     ],
     relatedTopics: ['worauf-achten-einsteiger', 'tagesgeld', 'immobilien', 'rente'],
@@ -258,7 +258,7 @@ export const calculators: CalculatorDefinition[] = [
       },
       {
         type: 'paragraph',
-        text: 'In der heruntergeladenen Datei steht jede Zeile einzeln, mit ihrem eigenen Namen. Zusammengezogen würde sie genau die Auskunft verlieren, für die man sie getrennt eingetragen hat.',
+        text: 'Im PDF steht jede Zeile einzeln, mit ihrem eigenen Namen. Zusammengezogen würde sie genau die Auskunft verlieren, für die man sie getrennt eingetragen hat.',
       },
       { type: 'heading', level: 2, text: 'Warum es zwei Downloads gibt' },
       {
@@ -267,7 +267,11 @@ export const calculators: CalculatorDefinition[] = [
       },
       {
         type: 'paragraph',
-        text: 'Die Datei ist eine Tabelle mit Semikolon-Trennung und Dezimalkomma. Sie öffnet sich in deutschen Tabellenprogrammen ohne Importdialog und bringt fünf leere Spalten für die nächsten Stichtage mit.',
+        text: 'Beide sind **PDF-Dateien**: Ein PDF sieht auf jedem Gerät gleich aus, lässt sich ohne Rückfrage drucken und altert nicht mit dem Tabellenprogramm. Der leere Bogen bringt für jeden Posten eine Punktlinie mit, auf die man mit der Hand schreibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer mit den Zahlen weiterrechnen will, findet unter den Download-Knöpfen zusätzlich die **Tabellenfassung** mit Semikolon-Trennung und Dezimalkomma – zum Kopieren und Einfügen in ein Tabellenprogramm.',
       },
       {
         type: 'callout',
@@ -303,7 +307,7 @@ export const calculators: CalculatorDefinition[] = [
         title: 'Wenn der Download nicht ankommt',
         items: [
           'Auf verwalteten Geräten – Firmenlaptops, Schulrechner, manche Sicherheitsprogramme – sperren Browser Downloads pauschal und melden „durch Richtlinie blockiert“. Die Sperre sitzt vor dem Herunterladen; von der Seite aus lässt sich daran nichts ändern.',
-          'Dafür gibt es den Weg über die Zwischenablage: „Ausgefüllt anzeigen“ zeigt dieselbe Tabelle als Text. Kopieren, in eine leere Tabelle einfügen und beim Einfügen das Semikolon als Trennzeichen wählen – das Ergebnis ist dasselbe.',
+          'Dafür gibt es den Weg über die Zwischenablage: „Als Tabelle anzeigen“ zeigt denselben Bogen als Text. Kopieren, in eine leere Tabelle einfügen und beim Einfügen das Semikolon als Trennzeichen wählen – die Zahlen sind dieselben.',
         ],
       },
     ],

@@ -18,7 +18,9 @@ import { Icon } from '@/components/ui/Icon'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { formatCurrency, formatNumber } from '@/lib/format'
 import { formatForInput, parseGermanNumber } from '@/lib/parse-number'
+import { erzeugePdf } from '@/lib/pdf'
 import {
+  alsPdfZeilen,
   alsTabelle,
   bogen,
   dateiname,
@@ -46,6 +48,14 @@ import {
  * nehmen das Ergebnis mit. Die anderen wollen einen leeren Bogen, den sie
  * ausdrucken und mit dem Kontoauszug daneben mit der Hand ausfüllen. Beide
  * Wege enden bei derselben Datei – nur einmal mit Zahlen und einmal ohne.
+ *
+ * ## Warum ein PDF und keine Tabelle
+ *
+ * Weil der Bogen zum Abheften da ist. Ein PDF sieht auf jedem Gerät gleich
+ * aus, lässt sich ohne Rückfrage drucken und altert nicht mit dem
+ * Tabellenprogramm. Die Fassung mit Semikolon gibt es weiterhin – aber unten,
+ * bei der Zwischenablage, wo sie hingehört: für alle, die mit den Zahlen
+ * weiterrechnen wollen.
  *
  * ## Wo die Eingaben bleiben
  *
@@ -76,8 +86,13 @@ const WEITERE_SPALTEN = 5
  * und macht aus jedem Umlaut ein Fragezeichen. Mit ihm erkennt sie UTF-8 und
  * öffnet die Datei ohne Rückfrage.
  */
-function herunterladen(inhalt: string, name: string) {
-  const datei = new Blob(['﻿', inhalt], { type: 'text/csv;charset=utf-8' })
+function herunterladen(
+  inhalt: Blob | string,
+  name: string,
+  typ = 'text/csv;charset=utf-8'
+) {
+  const datei =
+    inhalt instanceof Blob ? inhalt : new Blob(['\ufeff', inhalt], { type: typ })
   const adresse = URL.createObjectURL(datei)
   const verweis = document.createElement('a')
   verweis.href = adresse
@@ -109,6 +124,33 @@ export function NetWorthSheet() {
   const [tabelle, setTabelle] = useState<{ inhalt: string; name: string } | null>(null)
   const [kopiert, setKopiert] = useState(false)
 
+  /**
+   * Den Bogen als PDF erzeugen und herunterladen.
+   *
+   * Gebaut wird die Datei erst beim Klick. Ein PDF, das niemand anfordert,
+   * muss auch nicht entstehen – und beim Klick sind es wenige Millisekunden.
+   */
+  function ladePdf(ausgefuellt: boolean) {
+    const tag = stichtag || heute()
+    const bytes = erzeugePdf({
+      titel: 'Vermögensübersicht',
+      untertitel: ausgefuellt
+        ? `Stichtag ${tag.split('-').reverse().join('.')}`
+        : `Zum Ausfüllen · Stichtag ${tag.split('-').reverse().join('.')}`,
+      fusszeile: 'im-invests.de · Vermögensübersicht',
+      zeilen: alsPdfZeilen({
+        werte: ausgefuellt ? werte : undefined,
+        stichtag: tag,
+        weitereSpalten: 0,
+      }),
+    })
+    herunterladen(
+      new Blob([bytes as BlobPart], { type: 'application/pdf' }),
+      dateiname(tag, ausgefuellt, 'pdf'),
+      'application/pdf'
+    )
+  }
+
   function zeigeTabelle(ausgefuellt: boolean) {
     const tag = stichtag || heute()
     setKopiert(false)
@@ -118,7 +160,7 @@ export function NetWorthSheet() {
         stichtag: tag,
         weitereSpalten: WEITERE_SPALTEN,
       }),
-      name: dateiname(tag, ausgefuellt),
+      name: dateiname(tag, ausgefuellt, 'csv'),
     })
   }
 
@@ -169,31 +211,19 @@ export function NetWorthSheet() {
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
-              onClick={() => {
-                const tag = stichtag || heute()
-                herunterladen(
-                  alsTabelle({ werte, stichtag: tag, weitereSpalten: WEITERE_SPALTEN }),
-                  dateiname(tag, true)
-                )
-              }}
+              onClick={() => ladePdf(true)}
               className="fk-btn-primary px-4 py-2 text-sm"
             >
               <Icon name="download" className="size-4" />
-              Ausgefüllt herunterladen
+              Ausgefüllt als PDF
             </button>
             <button
               type="button"
-              onClick={() => {
-                const tag = stichtag || heute()
-                herunterladen(
-                  alsTabelle({ stichtag: tag, weitereSpalten: WEITERE_SPALTEN }),
-                  dateiname(tag, false)
-                )
-              }}
+              onClick={() => ladePdf(false)}
               className="fk-btn-secondary px-4 py-2 text-sm"
             >
               <Icon name="download" className="size-4" />
-              Leeren Bogen herunterladen
+              Leerer Bogen als PDF
             </button>
           </div>
         </div>
@@ -215,14 +245,14 @@ export function NetWorthSheet() {
               onClick={() => zeigeTabelle(true)}
               className="fk-btn-ghost px-3 py-1.5 text-xs"
             >
-              Ausgefüllt anzeigen
+              Als Tabelle anzeigen
             </button>
             <button
               type="button"
               onClick={() => zeigeTabelle(false)}
               className="fk-btn-ghost px-3 py-1.5 text-xs"
             >
-              Leer anzeigen
+              Leere Tabelle anzeigen
             </button>
           </div>
         </div>
@@ -378,9 +408,9 @@ export function NetWorthSheet() {
       <Callout variant="tip" title="Zweimal im Jahr genügt">
         <p>
           Eine einzelne Aufstellung sagt wenig. Erst die Reihe zeigt, ob das Nettovermögen
-          wächst und woran das liegt – am Sparen oder an den Kursen. Die heruntergeladene
-          Datei hat deshalb {formatNumber(WEITERE_SPALTEN, 0)} leere Spalten für die
-          nächsten Male: Wer sie ausdruckt, trägt beim nächsten Mal einfach daneben ein.
+          wächst und woran das liegt – am Sparen oder an den Kursen. Leg das PDF deshalb
+          ab und mach in einem halben Jahr das nächste: Nebeneinander beantworten die
+          beiden eine Frage, die eines allein nicht beantworten kann.
         </p>
       </Callout>
     </div>
