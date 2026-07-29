@@ -437,6 +437,37 @@ function pruefen(): string[] {
     if (!erreichbar.has(pfad)) fehler.push(`Sitemap zeigt ins Leere: ${pfad}`)
   }
 
+  /*
+    ------------------------------------------------------------- Suchindex
+
+    Dieselbe Frage wie bei der Sitemap, nur für die Lupe: Findet die Suche
+    jede Seite, die es gibt?
+
+    Der Anlass ist konkret. Der Index wird in `lib/search.ts` abschnittsweise
+    zusammengesetzt – Bereiche, Lernthemen, Rechner, Kurse, Länder. Wer eine
+    neue Seite baut, denkt an die Sitemap, weil sie abgeleitet ist, und
+    vergisst die Suche, weil sie es nicht ist. Vier Seiten hatten deshalb
+    keinen Eintrag: die beiden Stimmungsindizes, die Lernpfad-Übersicht und
+    die Startseite. Aufgefallen ist es niemandem, denn eine Suche, die nichts
+    findet, sieht aus wie eine Suche ohne Treffer.
+  */
+  const suchindex: { href: string }[] = JSON.parse(
+    readFileSync(join(PAKET, 'suchindex.json'), 'utf8')
+  )
+  const gelistet = new Set(
+    suchindex.map((eintrag) => {
+      const ohneAnker = eintrag.href.split('#')[0]
+      return ohneAnker.endsWith('/') ? ohneAnker : `${ohneAnker}/`
+    })
+  )
+  for (const pfad of erreichbar) {
+    if (FEHLERSEITEN.test(pfad)) continue
+    if (!gelistet.has(pfad)) fehler.push(`Nicht im Suchindex: ${pfad}`)
+  }
+  for (const pfad of gelistet) {
+    if (!erreichbar.has(pfad)) fehler.push(`Suchindex zeigt ins Leere: ${pfad}`)
+  }
+
   return fehler
 }
 

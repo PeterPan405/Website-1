@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { LektionAbschluss } from '@/components/akademie/LektionAbschluss'
 import { ContentBlocks } from '@/components/content/ContentBlocks'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
@@ -137,6 +138,20 @@ export default async function LektionPage({ params }: Props) {
                 <p>{belegarten[gefunden.belegart].erklaerung}</p>
               </Callout>
             </div>
+
+            {/*
+              Der Erledigt-Schalter steht vor der Blätternavigation.
+
+              Wer unten ankommt, hat die Lektion gelesen – der Haken gehört
+              deshalb an diese Stelle und nicht in die Seitenleiste, wo er beim
+              Ankommen längst aus dem Bild wäre.
+            */}
+            <LektionAbschluss
+              bereich={bereich}
+              lektionSlug={gefunden.slug}
+              lektionTitel={gefunden.titel}
+              naechste={nachher && { slug: nachher.slug, titel: nachher.titel }}
+            />
 
             {/* Vor und zurück innerhalb des Bereichs */}
             <nav

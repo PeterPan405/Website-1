@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { BereichFortschritt } from '@/components/akademie/BereichFortschritt'
+import { LektionKacheln } from '@/components/akademie/LektionKacheln'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
-import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { Reveal } from '@/components/ui/Reveal'
 import { belegarten, getBereich, getBereiche, getLektionen } from '@/lib/akademie'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -94,44 +93,21 @@ export default async function BereichPage({ params }: Props) {
           direkt einsteigen – die Voraussetzungen stehen auf jeder Seite oben.
         </p>
 
-        <ol className="mt-6 space-y-3">
-          {lektionen.map((lektion, nummer) => (
-            <Reveal key={lektion.slug} delay={Math.min(nummer, 8) * 0.03}>
-              <li>
-                <Link
-                  href={`/akademie/${gefunden.id}/${lektion.slug}`}
-                  className="fk-card-interactive group flex gap-4 p-5"
-                >
-                  <span className="bg-akademie-soft text-akademie mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg text-sm font-bold tabular-nums">
-                    {nummer + 1}
-                  </span>
+        <BereichFortschritt
+          bereich={gefunden.id}
+          slugs={lektionen.map((lektion) => lektion.slug)}
+        />
 
-                  <span className="min-w-0 flex-1">
-                    <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <span className="text-fg text-lg font-semibold">
-                        {lektion.titel}
-                      </span>
-                      <span className="border-border text-fg-subtle rounded-full border px-2 py-0.5 text-xs">
-                        {belegarten[lektion.belegart].label}
-                      </span>
-                    </span>
-                    <span className="text-fg-muted mt-1.5 block text-sm leading-relaxed">
-                      {lektion.kurz}
-                    </span>
-                    <span className="text-fg-subtle mt-2 block text-xs">
-                      {lektion.dauer} Min. Lesezeit
-                    </span>
-                  </span>
-
-                  <Icon
-                    name="chevron-right"
-                    className="text-fg-subtle group-hover:text-akademie mt-1 size-5 shrink-0 transition"
-                  />
-                </Link>
-              </li>
-            </Reveal>
-          ))}
-        </ol>
+        <LektionKacheln
+          bereich={gefunden.id}
+          lektionen={lektionen.map((lektion) => ({
+            slug: lektion.slug,
+            titel: lektion.titel,
+            kurz: lektion.kurz,
+            dauer: lektion.dauer,
+            belegart: belegarten[lektion.belegart].label,
+          }))}
+        />
 
         <div className="mt-10 max-w-3xl">
           <Callout variant="info" title="Die drei Einstufungen">

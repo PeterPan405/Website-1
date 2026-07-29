@@ -66,12 +66,26 @@ export default function AkademiePage() {
           </Callout>
         </div>
 
+        {/*
+          Die ganze Kachel ist der Verweis, nicht nur die Zeile darunter.
+
+          Vorher war jeder Lektionstitel für sich verlinkt und der Fußlink
+          führte auf den Bereich – vier Dutzend Ziele auf einer Übersicht, von
+          denen keines das offensichtliche war. Jetzt gibt es je Bereich genau
+          ein Ziel: die Bereichsseite, auf der dieselben Lektionen als Kacheln
+          samt Bearbeitungsstand stehen. Die Titel hier bleiben als Vorschau
+          stehen, aber als Text – ein Verweis im Verweis ginge weder mit der
+          Maus noch mit der Tastatur gut aus.
+        */}
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {bereiche.map((bereich, stelle) => {
             const lektionen = getLektionen(bereich.id)
             return (
               <Reveal key={bereich.id} delay={stelle * 0.06} className="h-full">
-                <section className="fk-card flex h-full flex-col p-6 sm:p-7">
+                <Link
+                  href={`/akademie/${bereich.id}`}
+                  className="fk-card-interactive group flex h-full flex-col p-6 sm:p-7"
+                >
                   <span className="bg-akademie-soft text-akademie flex size-11 items-center justify-center rounded-xl">
                     <Icon
                       name={bereich.id === 'technische-analyse' ? 'chart' : 'scale'}
@@ -79,35 +93,35 @@ export default function AkademiePage() {
                     />
                   </span>
 
-                  <h2 className="text-fg mt-4 text-2xl font-bold">{bereich.titel}</h2>
+                  <h2 className="text-fg group-hover:text-akademie mt-4 text-2xl font-bold transition">
+                    {bereich.titel}
+                  </h2>
                   <p className="text-fg-muted mt-2 leading-relaxed">
                     {bereich.einleitung}
                   </p>
 
                   <ol className="mt-5 flex-1 space-y-1.5">
                     {lektionen.map((lektion, nummer) => (
-                      <li key={lektion.slug}>
-                        <Link
-                          href={`/akademie/${bereich.id}/${lektion.slug}`}
-                          className="text-fg-muted hover:text-akademie flex items-start gap-2.5 text-sm transition"
-                        >
-                          <span className="text-fg-subtle w-5 shrink-0 text-right tabular-nums">
-                            {nummer + 1}
-                          </span>
-                          <span>{lektion.titel}</span>
-                        </Link>
+                      <li
+                        key={lektion.slug}
+                        className="text-fg-muted flex items-start gap-2.5 text-sm"
+                      >
+                        <span className="text-fg-subtle w-5 shrink-0 text-right tabular-nums">
+                          {nummer + 1}
+                        </span>
+                        <span>{lektion.titel}</span>
                       </li>
                     ))}
                   </ol>
 
-                  <Link
-                    href={`/akademie/${bereich.id}`}
-                    className="text-akademie mt-6 flex items-center gap-1 text-sm font-semibold"
-                  >
+                  <span className="text-akademie mt-6 flex items-center gap-1 text-sm font-semibold">
                     {bereich.titel} öffnen
-                    <Icon name="arrow-right" className="size-4" />
-                  </Link>
-                </section>
+                    <Icon
+                      name="arrow-right"
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </span>
+                </Link>
               </Reveal>
             )
           })}

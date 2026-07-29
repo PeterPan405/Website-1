@@ -7,7 +7,12 @@ import { Tacho } from '@/components/markets/Tacho'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { formatDate } from '@/lib/format'
-import { getStimmungsverlauf, STUFEN_TEXT, type Marktbereich } from '@/lib/markets'
+import {
+  getStimmungsverlauf,
+  STIMMUNG_SEITEN,
+  STUFEN_TEXT,
+  type Marktbereich,
+} from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 /**
@@ -30,22 +35,8 @@ import { buildMetadata, withBrand } from '@/lib/seo'
  * Messungen sind, und sie lassen sich einzeln verlinken.
  */
 
-const BEREICHE = {
-  aktien: {
-    titel: 'Angst und Gier am Aktienmarkt',
-    kurz: 'Aktienmarkt',
-    lead: 'Wie ängstlich oder gierig der Aktienmarkt gerade ist – gerechnet aus den Kursen dieser Seite, nicht abgeschrieben.',
-    beschreibung:
-      'Der Angst-und-Gier-Index für Aktien: aktueller Stand, Verlauf über Woche, Monat und Jahr, alle vier Bestandteile einzeln und was die Zahl nicht bedeutet.',
-  },
-  krypto: {
-    titel: 'Angst und Gier am Kryptomarkt',
-    kurz: 'Kryptomarkt',
-    lead: 'Wie ängstlich oder gierig der Kryptomarkt gerade ist – nach demselben Verfahren wie bei Aktien, aber mit eigenem Maßstab.',
-    beschreibung:
-      'Der Angst-und-Gier-Index für Kryptowährungen: aktueller Stand, Verlauf über Woche, Monat und Jahr, die Bestandteile einzeln und die Grenzen der Aussage.',
-  },
-} as const satisfies Record<Marktbereich, unknown>
+/* Die Texte liegen in `lib/markets.ts` – der Suchindex braucht sie ebenfalls. */
+const BEREICHE = STIMMUNG_SEITEN
 
 type SeitenProps = { params: Promise<{ bereich: string }> }
 

@@ -888,12 +888,19 @@ export const technischeAnalyseLektionen: Lektion[] = [
     slug: 'fibonacci-retracements',
     bereich: 'technische-analyse',
     titel: 'Fibonacci-Retracements',
-    kurz: 'Woher die Zahlen 38,2, 50 und 61,8 kommen – und was von ihrer Anwendung auf Kurse zu halten ist.',
+    kurz: 'Woher 38,2, 50 und 61,8 kommen, wie tief welche Welle üblicherweise zurückläuft – und was davon zu halten ist.',
     kernaussage:
       'Die Fibonacci-Verhältnisse sind mathematisch korrekt hergeleitet. Dass Kurse sich an sie halten sollten, ist eine Behauptung ohne Begründung.',
     belegart: 'deutung',
-    dauer: 6,
-    stichworte: ['Fibonacci', 'Retracement', 'Goldener Schnitt', '61,8 Prozent'],
+    dauer: 9,
+    stichworte: [
+      'Fibonacci',
+      'Retracement',
+      'Goldener Schnitt',
+      '61,8 Prozent',
+      'Projektion',
+      'Regel des Wechsels',
+    ],
     setztVoraus: ['trend-und-trendlinien'],
     lernthemen: ['wann-kaufen-verkaufen'],
     inhalt: [
@@ -918,6 +925,58 @@ export const technischeAnalyseLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'In der Anwendung wird eine abgeschlossene Bewegung genommen – vom Tief zum Hoch – und diese Prozentsätze der Strecke als waagerechte Linien eingezeichnet. Die Erwartung: Eine Gegenbewegung endet an einer dieser Marken.',
       },
+
+      { type: 'heading', level: 2, text: 'Welche Welle wie tief zurückläuft' },
+      {
+        type: 'paragraph',
+        text: 'Wer die Wellenzählung benutzt – sie steht in der nächsten Lektion –, findet in der Literatur für jede Welle einen erwarteten Rücklauf. Die folgenden Bereiche stammen aus der Standarddarstellung von Frost und Prechter und sind seither weitgehend unverändert weitergereicht worden.',
+      },
+      {
+        type: 'table',
+        caption:
+          'Übliche Erwartung je Welle. Bezugsstrecke ist jeweils die Welle in der letzten Spalte.',
+        head: ['Welle', 'Üblicher Bereich', 'Häufig genannt', 'gemessen an'],
+        rows: [
+          ['Welle 2', '50 – 78,6 %', '61,8 %', 'Welle 1'],
+          ['Welle 4', '23,6 – 50 %', '38,2 %', 'Welle 3'],
+          ['Welle B', '38,2 – 78,6 %', '50 %', 'Welle A'],
+          ['Welle 3 (Ziel)', '161,8 – 261,8 %', '161,8 %', 'Welle 1'],
+          ['Welle 5 (Ziel)', '61,8 – 100 %', '100 %', 'Welle 1'],
+          ['Welle C (Ziel)', '100 – 161,8 %', '100 %', 'Welle A'],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die beiden Rücklaufwellen hängen zusammen. Die **Regel des Wechsels** besagt: Läuft Welle 2 tief und schnell zurück, ist Welle 4 meist flach und zäh – und umgekehrt. Wer die zweite Welle gesehen hat, hat damit einen Anhaltspunkt für die vierte, und nur für diesen Zusammenhang gibt es in der Wellenlehre überhaupt eine Begründung: Nach einem tiefen Rücksetzer ist weniger Anlass für einen zweiten.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum hier keine Wahrscheinlichkeiten stehen',
+        items: [
+          'Diese Bereiche sind Faustregeln aus der Literatur, keine gemessenen Häufigkeiten. Wer „Welle 2 endet zu 70 Prozent bei 61,8“ liest, sollte nach der Untersuchung fragen, aus der die Zahl stammt – es gibt keine allgemein anerkannte.',
+          'Eine solche Häufigkeit ließe sich auch schwer bilden: Die Wellenzählung steht erst im Rückblick fest. Man müsste zählen, wie oft eine Welle 2 an einer Marke endete – aber als Welle 2 gilt eine Bewegung meist erst, nachdem sie dort geendet hat.',
+          'Nimmt man die Bereiche zusammen, sind 23,6 bis 78,6 Prozent abgedeckt. Ein Rücklauf, der nicht in irgendeine Zeile passt, ist die Ausnahme.',
+        ],
+      },
+
+      { type: 'heading', level: 2, text: 'Zum Übernehmen ins Chartprogramm' },
+      {
+        type: 'formula',
+        expression:
+          'Retracement:  23,6   38,2   50,0   61,8   78,6\nProjektion:   100,0   127,2   161,8   261,8',
+        description:
+          'Diese Werte trägt man einmal als Voreinstellung des Fibonacci-Werkzeugs ein; die meisten Programme erwarten sie als Liste. 127,2 ist die Wurzel aus 1,618 und gehört nur zu den Projektionen, nicht zu den Rücklaufmarken.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Retracement** wird vom Anfang zum Ende der Bewegung aufgezogen – für einen Rücklauf in einem Aufwärtstrend also vom Tief zum Hoch. Die Marke 0 liegt am Ende, 100 am Anfang.',
+          '**Projektion** braucht drei Punkte statt zwei und dient den Zielen aus der Tabelle: Welle 3 aus Welle 1, Welle C aus Welle A.',
+          'Wer mit den Wellen nichts anfangen kann, kommt mit drei Marken aus – 38,2, 50 und 61,8. Die übrigen zwei erhöhen vor allem die Zahl der Linien, an denen sich hinterher etwas erklären lässt.',
+        ],
+      },
+
       {
         type: 'callout',
         variant: 'warning',

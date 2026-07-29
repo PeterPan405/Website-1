@@ -454,6 +454,54 @@ export async function getDataCoverage(): Promise<{ from: string; to: string }> {
  */
 export type Marktbereich = 'aktien' | 'krypto'
 
+/**
+ * Die Texte der beiden Stimmungsseiten.
+ *
+ * Stehen hier und nicht in der Seite, weil zwei Stellen sie brauchen: die
+ * Seite selbst und der Suchindex in `lib/search.ts`. Solange sie nur in der
+ * Seitendatei standen, kannte die Suche die beiden Seiten überhaupt nicht –
+ * und hätte man sie dort abgeschrieben, wären beim nächsten Umformulieren zwei
+ * Fassungen im Umlauf gewesen.
+ */
+export const STIMMUNG_SEITEN = {
+  aktien: {
+    titel: 'Angst und Gier am Aktienmarkt',
+    kurz: 'Aktienmarkt',
+    lead: 'Wie ängstlich oder gierig der Aktienmarkt gerade ist – gerechnet aus den Kursen dieser Seite, nicht abgeschrieben.',
+    beschreibung:
+      'Der Angst-und-Gier-Index für Aktien: aktueller Stand, Verlauf über Woche, Monat und Jahr, alle vier Bestandteile einzeln und was die Zahl nicht bedeutet.',
+    stichworte: [
+      'angst',
+      'gier',
+      'stimmung',
+      'sentiment',
+      'fear',
+      'greed',
+      'aktien',
+      'tacho',
+      'marktbreite',
+    ],
+  },
+  krypto: {
+    titel: 'Angst und Gier am Kryptomarkt',
+    kurz: 'Kryptomarkt',
+    lead: 'Wie ängstlich oder gierig der Kryptomarkt gerade ist – nach demselben Verfahren wie bei Aktien, aber mit eigenem Maßstab.',
+    beschreibung:
+      'Der Angst-und-Gier-Index für Kryptowährungen: aktueller Stand, Verlauf über Woche, Monat und Jahr, die Bestandteile einzeln und die Grenzen der Aussage.',
+    stichworte: [
+      'angst',
+      'gier',
+      'stimmung',
+      'sentiment',
+      'fear',
+      'greed',
+      'krypto',
+      'bitcoin',
+      'tacho',
+    ],
+  },
+} as const satisfies Record<Marktbereich, unknown>
+
 export async function getMarktstimmung(bereich: Marktbereich): Promise<Stimmung | null> {
   const leitkandidaten =
     bereich === 'aktien'
