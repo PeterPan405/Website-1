@@ -97,9 +97,9 @@ export const siteConfig = {
   url: siteUrl,
 } as const
 
-/** Die fünf inhaltlichen Hauptbereiche der Website. */
+/** Die inhaltlichen Hauptbereiche der Website. */
 export type AreaId =
-  'news' | 'markets' | 'tools' | 'learn' | 'globe' | 'calendar' | 'debt'
+  'news' | 'markets' | 'tools' | 'learn' | 'akademie' | 'globe' | 'calendar' | 'debt'
 
 export interface Area {
   id: AreaId
@@ -152,6 +152,13 @@ export const areas: Record<AreaId, Area> = {
     label: 'Lernen',
     href: '/lernen',
     description: `${LEARN_TOPIC_COUNT} Finanzthemen in drei Stufen – von der ersten Definition bis zu Steuern, Kennzahlen und Sonderfällen.`,
+  },
+  akademie: {
+    id: 'akademie',
+    label: 'Akademie',
+    href: '/akademie',
+    description:
+      'Technische und fundamentale Analyse in einzelnen Lektionen – wie Charts gelesen und Kennzahlen eingeordnet werden, samt dem, was beide Verfahren nicht können.',
   },
   globe: {
     id: 'globe',
@@ -250,6 +257,14 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     border: 'border-news/30',
     dot: 'bg-news',
     gradient: 'from-news/18 to-news/0',
+  },
+  akademie: {
+    text: 'text-akademie',
+    soft: 'bg-akademie-soft text-akademie',
+    solid: 'bg-akademie text-white',
+    border: 'border-akademie/30',
+    dot: 'bg-akademie',
+    gradient: 'from-akademie/18 to-akademie/0',
   },
   globe: {
     text: 'text-globe',

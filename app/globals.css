@@ -87,6 +87,17 @@
   --c-tools-soft: #edeef1;
   --c-learn: #8a5410;
   --c-learn-soft: #faf0e2;
+  /*
+    Akademie: Magenta-Plum.
+
+    Die einzige Stelle im Farbkreis, die noch frei war. News liegt bei 220
+    Grad, Märkte bei 150, Lernen bei 33, Schulden bei 359, Globus bei 184 und
+    Kalender bei 271 – zwischen Kalender und Schulden klafft die Lücke, und
+    dort sitzt dieser Ton. Auf Weiß kommt er auf ein Kontrastverhältnis von
+    rund 8:1 und damit über WCAG AAA.
+  */
+  --c-akademie: #9b1c62;
+  --c-akademie-soft: #fbe9f3;
   --c-debt: #8b2225;
   --c-debt-soft: #faeaea;
   --c-globe: #4fc4cc;
@@ -212,6 +223,8 @@
   --c-tools-soft: #1b202b;
   --c-learn: #e0a649;
   --c-learn-soft: #2c2109;
+  --c-akademie: #f195c6;
+  --c-akademie-soft: #2e1122;
   --c-debt: #f08a8d;
   --c-debt-soft: #2c1214;
 
@@ -260,6 +273,8 @@
   --color-tools-soft: var(--c-tools-soft);
   --color-learn: var(--c-learn);
   --color-learn-soft: var(--c-learn-soft);
+  --color-akademie: var(--c-akademie);
+  --color-akademie-soft: var(--c-akademie-soft);
   --color-debt: var(--c-debt);
   --color-debt-soft: var(--c-debt-soft);
   --color-globe: var(--c-globe);

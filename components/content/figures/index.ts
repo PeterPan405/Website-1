@@ -1,4 +1,12 @@
 import {
+  TaElliottZyklus,
+  TaKerzeAufbau,
+  TaMacd,
+  TaSmaVsEma,
+  TaTrendstruktur,
+  TaUnterstuetzungWiderstand,
+} from '@/components/content/figures/akademie'
+import {
   BlockchainZahlung,
   BoerseAbwicklung,
   BoerseVomKlickZurBuchung,
@@ -245,4 +253,12 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'waehrung-paritaeten': WaehrungParitaeten,
   'kosten-ebenen': KostenEbenen,
   'krypto-bewertung': KryptoBewertung,
+
+  /* ---------------------------------------------------------- Akademie */
+  'ta-kerze-aufbau': TaKerzeAufbau,
+  'ta-trendstruktur': TaTrendstruktur,
+  'ta-unterstuetzung-widerstand': TaUnterstuetzungWiderstand,
+  'ta-sma-vs-ema': TaSmaVsEma,
+  'ta-macd': TaMacd,
+  'ta-elliott-zyklus': TaElliottZyklus,
 }

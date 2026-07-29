@@ -41,6 +41,8 @@ const areaTiles: { area: AreaId; icon: IconName }[] = [
   { area: 'tools', icon: 'calculator' },
   { area: 'markets', icon: 'chart' },
   { area: 'globe', icon: 'globe' },
+  // Zwischen Globus und Kalender – dieselbe Stelle wie in der Kopfzeile.
+  { area: 'akademie', icon: 'scale' },
   { area: 'calendar', icon: 'clock' },
   { area: 'news', icon: 'newspaper' },
 ]

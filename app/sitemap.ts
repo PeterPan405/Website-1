@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 
+import { getAlleLektionen, getBereiche } from '@/lib/akademie'
 import { calculators } from '@/data/calculators'
 import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
 
@@ -159,6 +160,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  /*
+    Die Akademie: Übersicht, zwei Bereiche, alle Lektionen.
+
+    Abgeleitet und nicht abgetippt – aus demselben Grund wie bei den Rechnern
+    einen Absatz weiter oben. Dort stand die Liste einmal von Hand da, und der
+    sechste Rechner fehlte still in der Sitemap.
+  */
+  const akademiePages: MetadataRoute.Sitemap = [
+    { url: absoluteUrl('/akademie'), changeFrequency: 'monthly', priority: 0.8 },
+    ...getBereiche().map((bereich) => ({
+      url: absoluteUrl(`/akademie/${bereich.id}`),
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    })),
+    ...getAlleLektionen().map((lektion) => ({
+      url: absoluteUrl(`/akademie/${lektion.bereich}/${lektion.slug}`),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
+
   const pfadPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/lernen/pfade'), changeFrequency: 'monthly', priority: 0.8 },
     ...pfadSlugs.map((slug) => ({
@@ -170,6 +192,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticPages,
+    ...akademiePages,
     ...pfadPages,
     ...topicPages,
     ...levelPages,
