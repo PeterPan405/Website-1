@@ -139,7 +139,8 @@ export function NetWorthSheet() {
         ? `Stichtag ${tag.split('-').reverse().join('.')}`
         : `Zum Ausfüllen · Stichtag ${tag.split('-').reverse().join('.')}`,
       marke: siteConfig.name,
-      fusszeile: 'im-invests.de · Vermögensübersicht · im Browser erstellt, nichts gesendet',
+      fusszeile:
+        'im-invests.de · Vermögensübersicht · im Browser erstellt, nichts gesendet',
       zeilen: alsPdfZeilen({
         werte: ausgefuellt ? werte : undefined,
         stichtag: tag,

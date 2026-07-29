@@ -121,9 +121,9 @@ export default async function HomePage() {
 
             <p className="text-fg-muted mt-5 max-w-xl text-lg leading-relaxed">
               {learnStats.topicCount} Finanzthemen, jeweils in den Stufen Beginner,
-              Fortgeschritten und Profi. Dazu {RECHNER_ANZAHL_WORT} Rechner mit offengelegter
-              Methodik, Marktdaten mit Erklärung und Nachrichten, die eingeordnet werden –
-              statt nur gemeldet.
+              Fortgeschritten und Profi. Dazu {RECHNER_ANZAHL_WORT} Rechner mit
+              offengelegter Methodik, Marktdaten mit Erklärung und Nachrichten, die
+              eingeordnet werden – statt nur gemeldet.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

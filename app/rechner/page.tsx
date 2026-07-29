@@ -111,8 +111,7 @@ export default function CalculatorsOverviewPage() {
       <JsonLd
         data={collectionPageSchema({
           name: 'Finanzrechner',
-          description:
-            `${RECHNER_ANZAHL} Rechner für Zinseszins, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke und Haushaltsbudget.`,
+          description: `${RECHNER_ANZAHL} Rechner für Zinseszins, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke und Haushaltsbudget.`,
           path: '/rechner',
           items: calculators.map((calculator) => ({
             name: calculator.title,
