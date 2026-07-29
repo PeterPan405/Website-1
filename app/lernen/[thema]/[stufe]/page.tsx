@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { ContentBlocks } from '@/components/content/ContentBlocks'
+import { Vorlesen } from '@/components/ui/Vorlesen'
 import { LevelComplete } from '@/components/learn/LevelComplete'
 import { LevelNav, type LevelNavEntry } from '@/components/learn/LevelNav'
 import { Quiz } from '@/components/learn/Quiz'
@@ -19,6 +20,8 @@ import { getLearnLevel, getLearnLevelParams, getRelatedTopics } from '@/lib/lear
 import { begriffeZumThema, getBegriffsindex, kurzerklaerung } from '@/lib/glossar'
 import { getPfadeMitStufe } from '@/lib/lernpfade'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { vorleseAbschnitte } from '@/lib/vorlese-text'
+import { figureMeta } from '@/data/figures'
 
 type LevelPageProps = { params: Promise<{ thema: string; stufe: string }> }
 
@@ -156,6 +159,13 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
                   .
                 </p>
               </Callout>
+            )}
+
+            {/* Vorlesen: dieselben Blöcke, als gesprochene Abschnitte. */}
+            {!isOutline && (
+              <div className="mb-8">
+                <Vorlesen abschnitte={vorleseAbschnitte(level.blocks, figureMeta)} />
+              </div>
             )}
 
             <div className={isOutline ? 'mt-8' : ''}>

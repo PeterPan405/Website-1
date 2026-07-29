@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { LektionAbschluss } from '@/components/akademie/LektionAbschluss'
 import { ContentBlocks } from '@/components/content/ContentBlocks'
+import { Vorlesen } from '@/components/ui/Vorlesen'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
@@ -11,6 +12,7 @@ import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { TagLinks } from '@/components/ui/TagLinks'
 import { getCalculatorDefinition } from '@/data/calculators'
+import { figureMeta } from '@/data/figures'
 import {
   belegarten,
   getAlleLektionen,
@@ -22,6 +24,7 @@ import { begriffeZumThema, getBegriffsindex, kurzerklaerung } from '@/lib/glossa
 import { learningResourceSchema } from '@/lib/jsonld'
 import { getLearnTopic } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { vorleseAbschnitte } from '@/lib/vorlese-text'
 
 type Props = { params: Promise<{ bereich: string; lektion: string }> }
 
@@ -125,6 +128,20 @@ export default async function LektionPage({ params }: Props) {
             <p className="border-akademie text-fg border-l-4 py-1 pl-5 text-lg leading-relaxed font-medium">
               {gefunden.kernaussage}
             </p>
+
+            {/*
+              Die Abschnitte entstehen beim Bauen aus denselben Blöcken wie die
+              Seite – die Kernaussage zuerst, dann der Inhalt. Grafiken werden
+              über ihre Vorlesefassung aus data/figures.ts gesprochen.
+            */}
+            <div className="mt-6">
+              <Vorlesen
+                abschnitte={vorleseAbschnitte(
+                  [{ type: 'paragraph', text: gefunden.kernaussage }, ...gefunden.inhalt],
+                  figureMeta
+                )}
+              />
+            </div>
 
             <div className="mt-8">
               <ContentBlocks blocks={gefunden.inhalt} glossar={glossarlage} />
