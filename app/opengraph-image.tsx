@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+
 import { ImageResponse } from 'next/og'
 
 import { siteConfig } from '@/lib/site'
@@ -9,11 +12,27 @@ import { siteConfig } from '@/lib/site'
  * Bild definieren. Next.js hängt es automatisch als absolute URL in die
  * og:image- und twitter:image-Metadaten ein.
  *
- * Bewusst ohne externe Bilder und Schriften aufgebaut, damit die Erzeugung
- * ohne Netzwerkzugriff funktioniert. Das Signet ist deshalb kein eingebettetes
- * SVG, sondern ein Kreis mit vier unterschiedlich gefärbten Rahmenseiten – das
- * ergibt dieselben vier Viertelbögen in den Logofarben.
+ * Ohne Netzwerkzugriff aufgebaut: keine geladenen Schriften, kein Bild von
+ * außerhalb. Das Logo kommt aus `public/logo.svg`, das beim Bauen von der
+ * Platte gelesen wird – es ist dieselbe Datei, die auch die Website ausliefert,
+ * und kann deshalb nicht davon abweichen.
+ *
+ * Bis hierher stand hier ein Kreis mit vier verschieden gefärbten Rahmenseiten.
+ * Das ergab vier Viertelbögen in den Logofarben und war eine Notlösung aus der
+ * Zeit, in der das Logo selbst aus Bögen bestand. Mit der Puzzleform trägt sie
+ * nicht mehr.
  */
+
+/*
+  Beim Bauen von der Platte gelesen, nicht importiert.
+
+  Ein Import würde die Datei durch den Bundler schleifen; hier läuft der Code
+  ohnehin nur einmal beim Bauen, in Node, mit dem Projektverzeichnis als
+  Arbeitsverzeichnis. Und er liest genau die Datei, die später ausgeliefert
+  wird.
+*/
+const logo = readFileSync(join(process.cwd(), 'public/logo.svg'), 'utf8')
+const logoDatenUrl = `data:image/svg+xml;base64,${Buffer.from(logo).toString('base64')}`
 
 /*
   Das Bild wird beim Build einmal erzeugt und als Datei abgelegt, nicht pro
@@ -42,20 +61,24 @@ export default function OpengraphImage() {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
+        {/*
+          Auf einer weißen Scheibe, nicht frei auf dem Verlauf: Das Logo führt
+          eine navyfarbene Figur, und der Hintergrund hier ist ebenfalls navy.
+          Ohne die Scheibe fehlte genau ein Viertel des Zeichens.
+        */}
         <div
           style={{
-            width: 64,
-            height: 64,
+            width: 84,
+            height: 84,
             borderRadius: 999,
-            borderStyle: 'solid',
-            borderWidth: 15,
-            /* Reihenfolge wie im Logo: Navy, Grau, Rot, Grün im Uhrzeigersinn. */
-            borderTopColor: '#8b9ce4',
-            borderRightColor: '#a8aeb9',
-            borderBottomColor: '#d47b7e',
-            borderLeftColor: '#56a878',
+            background: '#ffffff',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-        />
+        >
+          <img src={logoDatenUrl} width={62} height={62} alt="" />
+        </div>
         <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.5 }}>
           {siteConfig.name}
         </div>
