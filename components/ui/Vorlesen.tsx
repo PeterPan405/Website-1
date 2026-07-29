@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
-import { bevorzugteStimme } from '@/lib/vorlese-text'
+import { bevorzugteStimme, klingtNatuerlich } from '@/lib/vorlese-text'
 
 /**
  * Liest die Abschnitte einer Seite mit der Stimme des Browsers vor.
@@ -33,16 +33,6 @@ import { bevorzugteStimme } from '@/lib/vorlese-text'
 
 /** Wo die gewählte Stimme liegt – ein Gerät, eine Wahl, alle Seiten. */
 const STIMMWAHL_SCHLUESSEL = 'fk-vorlesen-stimme'
-
-/*
-  Die Tonlage liegt unter der Mitte.
-
-  Gewünscht ist eine tiefe Männerstimme als Voreinstellung dieser Website.
-  Welche Stimmen es gibt, entscheidet das Gerät – aber die Tonhöhe lässt sich
-  je Auftrag absenken. 0,85 ist der Bereich, in dem eine Stimme dunkler wird,
-  ohne verzerrt zu klingen; tiefer wird es bei vielen Systemstimmen blechern.
-*/
-const TONLAGE = 0.85
 
 /** Nichts zu beobachten – die Fähigkeit des Browsers ändert sich nicht. */
 function nieWieder() {
@@ -133,7 +123,10 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     gekennzeichnet, damit die Wahl eine informierte ist.
   */
   const deutsche = stimmen.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
-  const zurAuswahl = deutsche.length > 0 ? deutsche : stimmen
+  /* Die natürlichen Stimmen zuerst – wer wechselt, sucht fast immer eine. */
+  const zurAuswahl = (deutsche.length > 0 ? deutsche : stimmen)
+    .slice()
+    .sort((a, b) => Number(klingtNatuerlich(b)) - Number(klingtNatuerlich(a)))
   const wahlVorhanden = zurAuswahl.some((stimme) => stimme.voiceURI === stimmwahl)
 
   /**
@@ -162,7 +155,12 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     const auftrag = new SpeechSynthesisUtterance(abschnitte[ab])
     auftrag.lang = 'de-DE'
     auftrag.rate = tempoRef.current
-    auftrag.pitch = TONLAGE
+    /*
+      Die Tonlage bleibt bei der Mitte. Sie stand hier einmal auf 0,85 für
+      einen dunkleren Klang – aber verschobene Tonhöhe ist genau das, was
+      synthetische Stimmen künstlich klingen lässt, und die neuronalen
+      verlieren dabei am meisten. Natürlich schlägt tief.
+    */
     const stimme = stimmeFuerAuftrag()
     if (stimme) auftrag.voice = stimme
     auftrag.onend = () => sprich(ab + 1)

@@ -189,6 +189,31 @@ const MAENNERNAMEN = [
   'felix',
 ]
 
+/**
+ * Kennzeichen der natürlich klingenden Stimmen.
+ *
+ * Die Systeme führen zwei Generationen nebeneinander: die alten Formant- und
+ * Bausteinstimmen, die hörbar synthetisch sind, und die neuronalen, die wie
+ * ein Mensch klingen. Auch das steht nirgends als Feld – nur im Namen:
+ * Edge nennt sie „Online (Natural)“, Apple „Enhanced“ oder „Premium“,
+ * Googles Netzstimmen heißen schlicht „Google …“.
+ */
+const NATUERLICH_KENNZEICHEN = [
+  'natural',
+  'neural',
+  'premium',
+  'enhanced',
+  'erweitert',
+  'google',
+  'siri',
+]
+
+/** Ob Name oder Kennung nach einer neuronalen, natürlichen Stimme klingen. */
+export function klingtNatuerlich(stimme: Stimmprofil): boolean {
+  const kennung = `${stimme.name} ${stimme.voiceURI}`.toLowerCase()
+  return NATUERLICH_KENNZEICHEN.some((wort) => kennung.includes(wort))
+}
+
 /** Ob Name oder Kennung nach einer Männerstimme klingen. */
 export function klingtMaennlich(stimme: Stimmprofil): boolean {
   const kennung = `${stimme.name} ${stimme.voiceURI}`.toLowerCase()
@@ -199,16 +224,24 @@ export function klingtMaennlich(stimme: Stimmprofil): boolean {
 }
 
 /**
- * Die Voreinstellung „automatisch“: männlich und lokal zuerst.
+ * Die Voreinstellung „automatisch“: natürlich vor lokal, männlich vor weiblich.
  *
- * Die Rangfolge in vier Stufen – lokale Männerstimme, Männerstimme, lokale
- * deutsche Stimme, irgendeine deutsche. `null` heißt: keine deutsche Stimme
- * vorhanden; der Browser nimmt dann seine Standardstimme mit deutscher
- * Sprachangabe.
+ * Die Rangfolge hat sich einmal umgedreht, und der Grund gehört
+ * festgehalten: Zuerst bevorzugte die Automatik lokale Stimmen – der
+ * datensparsamste Weg, aber genau die lokalen sind die alten, hörbar
+ * synthetischen. Eine Vorlesefunktion, die nach Roboter klingt, benutzt
+ * niemand. Deshalb gewinnt jetzt die natürliche Stimme, auch wenn sie eine
+ * Netzstimme ist; die Kennzeichnung „(online)“ in der Auswahl bleibt, und
+ * wer die lokale will, wählt sie dort von Hand.
+ *
+ * `null` heißt: keine deutsche Stimme vorhanden; der Browser nimmt dann
+ * seine Standardstimme mit deutscher Sprachangabe.
  */
 export function bevorzugteStimme<T extends Stimmprofil>(stimmen: readonly T[]): T | null {
   const deutsche = stimmen.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
   return (
+    deutsche.find((stimme) => klingtNatuerlich(stimme) && klingtMaennlich(stimme)) ??
+    deutsche.find((stimme) => klingtNatuerlich(stimme)) ??
     deutsche.find((stimme) => stimme.localService && klingtMaennlich(stimme)) ??
     deutsche.find((stimme) => klingtMaennlich(stimme)) ??
     deutsche.find((stimme) => stimme.localService) ??
