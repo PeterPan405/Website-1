@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
@@ -9,6 +10,7 @@ import {
   darfUebersetzen,
   inBloecke,
   SPRACH_SCHLUESSEL,
+  TEXTATTRIBUTE,
 } from '@/lib/uebersetzung'
 
 /**
@@ -77,10 +79,44 @@ type Zustand = 'deutsch' | 'laedt' | 'englisch'
  */
 const ausgangstexte = new Map<Text, string>()
 
+/** Dasselbe für Attribute: Element, Attributname, ursprünglicher Wert. */
+const ausgangsattribute: { element: Element; attribut: string; wert: string }[] = []
+
+/** Und für den Titel im Browser-Tab. */
+let ausgangstitel = ''
+
+/**
+ * Der übersetzte Titel, damit er sich nicht heimlich zurücksetzt.
+ *
+ * Next verwaltet den Inhalt von `<title>` selbst und schreibt ihn beim
+ * Seitenwechsel neu. Ohne diese Merker stünde im Reiter wieder Deutsch, während
+ * die Seite darunter englisch ist.
+ */
+let uebersetzterTitel = ''
+
 export function SprachUmschalter({ className }: { className?: string }) {
   const [zustand, setZustand] = useState<Zustand>('deutsch')
   const [fortschritt, setFortschritt] = useState(0)
   const uebersetzerRef = useRef<Uebersetzer | null>(null)
+
+  /**
+   * Alle übersetzbaren Attribute unterhalb eines Elements.
+   *
+   * Getrennt von den Textknoten, weil sie anders ersetzt werden – und weil
+   * sonst leicht vergessen wird, dass es sie gibt. Auf der Startseite hängen
+   * daran die Beschriftungen der Knöpfe in der Kopfzeile.
+   */
+  const textattribute = useCallback((wurzel: Element): [Element, string][] => {
+    const gefunden: [Element, string][] = []
+    for (const element of [wurzel, ...wurzel.querySelectorAll('*')]) {
+      if (!darfUebersetzen(element)) continue
+      for (const attribut of TEXTATTRIBUTE) {
+        const wert = element.getAttribute(attribut)
+        if (wert && brauchtUebersetzung(wert)) gefunden.push([element, attribut])
+      }
+    }
+    return gefunden
+  }, [])
 
   /** Alle übersetzbaren Textknoten unterhalb eines Elements. */
   const textknoten = useCallback((wurzel: Node): Text[] => {
@@ -148,7 +184,21 @@ export function SprachUmschalter({ className }: { className?: string }) {
       }
 
       const uebersetzer = uebersetzerRef.current
+
+      /*
+        Knoten der vorigen Seite wegräumen.
+
+        Beim Seitenwechsel hängen sie nicht mehr im Dokument. Ohne dieses
+        Aufräumen wüchse die Map mit jedem Seitenaufruf weiter, und das
+        Zurückschalten liefe über tausende Knoten, die es nicht mehr gibt.
+      */
+      for (const knoten of [...ausgangstexte.keys()]) {
+        if (!knoten.isConnected) ausgangstexte.delete(knoten)
+      }
+
       const knoten = textknoten(document.body)
+      const attribute = textattribute(document.body)
+      const gesamt = knoten.length + attribute.length + 1
       let fertig = 0
       let gelungen = 0
 
@@ -167,8 +217,43 @@ export function SprachUmschalter({ className }: { className?: string }) {
           })
         )
         fertig += block.length
-        setFortschritt(Math.round((fertig / Math.max(knoten.length, 1)) * 100))
+        setFortschritt(Math.round((fertig / gesamt) * 100))
       }
+
+      for (const block of inBloecke(attribute, 12)) {
+        await Promise.all(
+          block.map(async ([element, attribut]) => {
+            const quelle = element.getAttribute(attribut) ?? ''
+            ausgangsattribute.push({ element, attribut, wert: quelle })
+            try {
+              element.setAttribute(attribut, await uebersetzer.translate(quelle))
+              gelungen += 1
+            } catch {
+              // siehe oben
+            }
+          })
+        )
+        fertig += block.length
+        setFortschritt(Math.round((fertig / gesamt) * 100))
+      }
+
+      /*
+        Der Titel steht im Browser-Tab und im Lesezeichen.
+
+        Ihn zu übersehen wäre der auffälligste Rest: Die Seite ist englisch, der
+        Reiter darüber deutsch.
+      */
+      if (document.title && brauchtUebersetzung(document.title)) {
+        ausgangstitel = document.title
+        try {
+          uebersetzterTitel = await uebersetzer.translate(document.title)
+          document.title = uebersetzterTitel
+          gelungen += 1
+        } catch {
+          // siehe oben
+        }
+      }
+      setFortschritt(100)
 
       /*
         Wenn nichts durchging, ist auch nichts übersetzt.
@@ -191,13 +276,25 @@ export function SprachUmschalter({ className }: { className?: string }) {
     } catch {
       ausweichen()
     }
-  }, [textknoten, ausweichen])
+  }, [textknoten, textattribute, ausweichen])
 
   const insDeutsche = useCallback(() => {
     for (const [knoten, text] of ausgangstexte) {
       if (knoten.isConnected) knoten.nodeValue = text
     }
     ausgangstexte.clear()
+
+    for (const { element, attribut, wert } of ausgangsattribute) {
+      if (element.isConnected) element.setAttribute(attribut, wert)
+    }
+    ausgangsattribute.length = 0
+
+    if (ausgangstitel) {
+      document.title = ausgangstitel
+      ausgangstitel = ''
+    }
+    uebersetzterTitel = ''
+
     document.documentElement.lang = 'de'
     setZustand('deutsch')
     try {
@@ -208,13 +305,21 @@ export function SprachUmschalter({ className }: { className?: string }) {
   }, [])
 
   /*
-    Die Wahl gilt über den Seitenwechsel hinaus.
+    Die Wahl gilt über den Seitenwechsel hinaus – auch über den, den man nicht
+    sieht.
 
-    Ohne das wäre der Umschalter nutzlos: Ein Klick auf den ersten Verweis
-    brächte wieder eine deutsche Seite. Weil die Website statisch ausgeliefert
-    wird, gibt es keinen Server, der das übernehmen könnte – also fragt jede
-    Seite beim Aufbau selbst nach, was zuletzt gewählt war.
+    Diese Website wechselt die Seite ohne Neuladen: Next tauscht nur den Inhalt
+    aus, die Kopfzeile bleibt stehen. Für diese Komponente heißt das, dass sie
+    von einem Seitenwechsel nichts mitbekommt – sie wird nicht neu aufgebaut.
+    Genau daran ist die erste Fassung gescheitert: Die Startseite war englisch,
+    ein Klick auf „Lernen“ brachte eine deutsche Seite zurück, und der Knopf
+    stand weiter auf „DE“.
+
+    `usePathname` schließt die Lücke. Der Pfad ändert sich bei jedem Wechsel,
+    also läuft die Übersetzung erneut – für den neuen Inhalt.
   */
+  const pfad = usePathname()
+
   useEffect(() => {
     let gewaehlt: string | null = null
     try {
@@ -225,16 +330,37 @@ export function SprachUmschalter({ className }: { className?: string }) {
     if (gewaehlt !== 'en' || !bauer()) return
 
     /*
-      Erst nach dem ersten Bild anfangen.
+      Kurz warten, statt sofort loszulaufen.
 
-      Die Übersetzung schreibt in hunderte Textknoten. Liefe sie noch im
-      Aufbau, sähe der Besucher eine Weile gar nichts – so sieht er die
-      deutsche Seite und dann, Abschnitt für Abschnitt, die englische.
+      Beim Seitenwechsel steht der neue Inhalt nicht im selben Augenblick im
+      Dokument, in dem sich der Pfad ändert. Wer sofort anfängt, übersetzt die
+      alte Seite ein zweites Mal und die neue gar nicht.
     */
-    const gestartet = window.setTimeout(() => void insEnglische(), 0)
+    const gestartet = window.setTimeout(() => void insEnglische(), 120)
     return () => window.clearTimeout(gestartet)
-    // Absichtlich nur beim ersten Aufbau.
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pfad])
+
+  /*
+    Den übersetzten Titel gegen Next verteidigen.
+
+    Den Inhalt von `<title>` verwaltet Next selbst und schreibt ihn beim
+    Seitenwechsel neu – nach der Übersetzung, nicht davor. Im Reiter stand
+    dadurch Deutsch über einer englischen Seite.
+  */
+  useEffect(() => {
+    const titelKnoten = document.querySelector('title')
+    if (!titelKnoten) return
+    const beobachter = new MutationObserver(() => {
+      if (!uebersetzterTitel) return
+      if (document.title !== uebersetzterTitel) document.title = uebersetzterTitel
+    })
+    beobachter.observe(titelKnoten, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    })
+    return () => beobachter.disconnect()
   }, [])
 
   useEffect(() => {

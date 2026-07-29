@@ -80,6 +80,17 @@ export function inBloecke<T>(liste: readonly T[], groesse: number): T[][] {
 }
 
 /**
+ * Attribute, die sichtbaren oder vorgelesenen Text tragen.
+ *
+ * Der Textknoten allein ist nicht die ganze Seite. Ein Bild hat sein `alt`, ein
+ * Eingabefeld seinen Platzhalter, ein Knopf ohne Beschriftung sein
+ * `aria-label` – und das ist genau der Text, den ein Screenreader vorliest.
+ * Wer nur die Textknoten übersetzt, liefert eine englische Seite, die auf
+ * Deutsch vorgelesen wird.
+ */
+export const TEXTATTRIBUTE = ['alt', 'title', 'aria-label', 'placeholder'] as const
+
+/**
  * Die Adresse, unter der ein Übersetzungsdienst diese Seite anzeigt.
  *
  * Nur für den Fall, dass der Browser keinen eigenen Übersetzer mitbringt. Der
