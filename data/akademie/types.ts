@@ -7,7 +7,7 @@
  * funktioniert ein ETF, was passiert bei einer Zinserhöhung. Die Akademie
  * beantwortet die Frage danach: Wie beurteilt man, was man vor sich hat. Das
  * ist ein anderes Handwerk und setzt den Lernbereich nicht voraus – wer einen
- * Chart lesen lernen will, muss nicht vorher 33 Themen durchgearbeitet haben.
+ * Chart lesen lernen will, muss nicht vorher 34 Themen durchgearbeitet haben.
  *
  * ## Warum die Lektionen flach liegen
  *

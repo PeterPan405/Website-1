@@ -5256,6 +5256,168 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
         'Die Menschen, die in dreißig Jahren Beiträge zahlen, sind bereits geboren – daran ändert keine Reform etwas. Verstellbar sind Beitragssatz, Rentenniveau und Eintrittsalter; alle drei wurden bewegt und werden es wieder. Wer die Rente mit einem Abschlag ansetzt, plant vorsichtig statt pessimistisch.',
     },
   ],
+
+  // -------------------------------------------------------------- Geldsystem
+  'geldsystem:beginner': [
+    {
+      question:
+        'Wo entsteht der größte Teil des Geldes, mit dem in Deutschland bezahlt wird?',
+      options: [
+        'In der Notenbank, die es an die Banken verteilt',
+        'In der Bundesdruckerei, die Scheine herstellt',
+        'Im Bundesfinanzministerium über den Haushalt',
+        'In Geschäftsbanken, jedes Mal wenn ein Kredit vergeben wird',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Bewilligt eine Bank einen Kredit, schreibt sie den Betrag auf dem Konto gut und trägt gleichzeitig eine Forderung in gleicher Höhe ein. Das Guthaben gab es vorher nicht – es wurde in diesem Moment geschaffen. Bank of England und Bundesbank haben das in eigenen Veröffentlichungen ausdrücklich klargestellt.',
+    },
+    {
+      question: 'Was passiert mit der Geldmenge, wenn ein Kredit zurückgezahlt wird?',
+      options: [
+        'Sie sinkt – Gutschrift und Forderung verschwinden gemeinsam',
+        'Sie steigt, weil das Geld wieder verliehen werden kann',
+        'Sie bleibt gleich, das Geld wechselt nur den Besitzer',
+        'Sie hängt allein vom Leitzins ab',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Tilgung ist der umgekehrte Buchungsvorgang: Beide Seiten der Bankbilanz werden kürzer, das Giralgeld verschwindet. Deshalb hängen Geldmenge und Verschuldung zusammen – würden alle Kredite gleichzeitig getilgt, bliebe kaum Zahlungsmittel übrig.',
+    },
+    {
+      question: 'Was bedeutet es, dass heutige Währungen Fiatgeld sind?',
+      options: [
+        'Dass sie durch Gold in den Tresoren der Notenbank gedeckt sind',
+        'Dass sie durch Devisenreserven gedeckt sind',
+        'Dass sie gelten, weil sie für gültig erklärt wurden – ohne Einlöseanspruch',
+        'Dass sie jederzeit in Silber getauscht werden können',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Bis 1971 war der Dollar in Gold einlösbar und alle anderen Währungen an ihn gebunden. Seither gibt es keinen Einlöseanspruch mehr. „Fiat“ heißt „es werde“: Die Währung gilt aufgrund gesetzlicher Anordnung und weil alle darauf vertrauen, dass der Nächste sie ebenfalls nimmt.',
+    },
+    {
+      question:
+        'Warum strebt eine Notenbank überhaupt Inflation an statt stabiler Preise?',
+      options: [
+        'Weil sie damit die Staatsschulden entwertet',
+        'Weil eine Währung, die sicher an Wert gewinnt, gehortet statt ausgegeben wird',
+        'Weil höhere Preise höhere Steuereinnahmen bedeuten',
+        'Weil es technisch nicht möglich ist, die Preise stabil zu halten',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Bei erwarteten Preisrückgängen schieben Haushalte und Unternehmen Käufe auf, und die Nachfrage bricht weg. Das Ziel von zwei Prozent macht Geld absichtlich zu einem mäßigen Wertspeicher, damit es ein gutes Tauschmittel bleibt.',
+    },
+  ],
+
+  'geldsystem:fortgeschritten': [
+    {
+      question:
+        'Was spricht dagegen, die vielzitierten „27 Jahre durchschnittliche Lebensdauer“ als Statistik zu verwenden?',
+      options: [
+        'Die Zahl ist zu hoch angesetzt, tatsächlich sind es weniger',
+        'Sie gilt nur für Währungen außerhalb Europas',
+        'Sie stammt aus einer Sammlung ohne nachvollziehbare Auswahl und zählt Währungsunionen wie Zusammenbrüche',
+        'Sie berücksichtigt keine digitalen Währungen',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Die D-Mark ist 1999 nicht gescheitert, sie ist im Euro aufgegangen – in der Sterbetafel steht sie trotzdem neben dem Zimbabwe-Dollar. Nachprüfbar sind dagegen die Einzelfälle, und die zeigen: Wo der Staat funktioniert, halten Währungen Jahrhunderte.',
+    },
+    {
+      question:
+        'Welcher Schritt entscheidet darüber, ob aus hoher Inflation eine Hyperinflation wird?',
+      options: [
+        'Der Moment, in dem die Erwartung kippt und alle ihr Geld sofort ausgeben',
+        'Der Moment, in dem neue Scheine mit höheren Nennwerten gedruckt werden',
+        'Der Moment, in dem die Notenbank den Leitzins senkt',
+        'Der Moment, in dem der Außenhandel zusammenbricht',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Zwischen hoher und außer Kontrolle geratener Inflation liegt kein neuer Geldschein, sondern eine Meinungsänderung: Dieselbe Geldmenge wechselt viel häufiger den Besitzer und wirkt dadurch wie ein Vielfaches. Deshalb endeten historische Fälle auch nicht durch Einsammeln von Geld, sondern durch einen glaubwürdigen Bruch.',
+    },
+    {
+      question:
+        'Japan ist mit über 200 Prozent der Wirtschaftsleistung verschuldet und zahlt sehr niedrige Zinsen, Argentinien war mit weit weniger verschuldet und ist ausgefallen. Woran liegt das vor allem?',
+      options: [
+        'An der Größe der jeweiligen Volkswirtschaft',
+        'An der Höhe der Steuerquote',
+        'Am Alter der jeweiligen Notenbank',
+        'An der Währung, auf die die Schulden lauten',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Wer sich in eigener Währung verschuldet, kann nominal immer zahlen – das Risiko liegt in der Kaufkraft. Wer in fremder Währung schuldet, kann sie nicht herstellen; dort ist der Ausfall ein reales Risiko. Nicht die Höhe entscheidet, sondern die Währung.',
+    },
+    {
+      question:
+        'Was ist ein frühes Anzeichen dafür, dass das Vertrauen in eine Währung bröckelt?',
+      options: [
+        'Die Notenbank veröffentlicht ihre Bilanz seltener',
+        'Der Bargeldumlauf steigt saisonal an',
+        'Die Zahl der Geldautomaten sinkt',
+        'Die Renditen langlaufender Staatsanleihen steigen, während die Notenbank die Zinsen senkt',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Normalerweise folgen lange Renditen der Zinserwartung. Laufen sie ihr entgegen, preist der Markt kein Zinsniveau mehr ein, sondern Risiko. Ebenso deutlich ist es, wenn im Inland anfängt, in einer fremden Währung gerechnet zu werden – dann wird die eigene Recheneinheit aufgegeben.',
+    },
+  ],
+
+  'geldsystem:profi': [
+    {
+      question: 'Woraus besteht der größte Teil des Umsatzes am Devisenmarkt?',
+      options: [
+        'Aus Devisenswaps, also besicherten Geldaufnahmen in fremder Währung',
+        'Aus Spekulation auf Kursbewegungen',
+        'Aus der Bezahlung von Importen und Exporten',
+        'Aus Käufen und Verkäufen der Notenbanken',
+      ],
+      correctIndex: 0,
+      explanation:
+        'Der Welthandel erklärt nur einen Bruchteil: In gut vier Handelstagen wird so viel getauscht, wie der Welthandel in einem ganzen Jahr bewegt. Den größten Einzelposten stellen Swaps, dazu kommen Absicherung und die Weitergabe von Aufträgen zwischen Banken. Spekulation ist der kleinste der vier Blöcke.',
+    },
+    {
+      question:
+        'Warum löst der Renminbi den Dollar als wichtigste Reservewährung bisher nicht ab?',
+      options: [
+        'Weil Chinas Wirtschaft zu klein ist',
+        'Weil der Renminbi erst seit wenigen Jahren existiert',
+        'Weil eine Reservewährung freien Kapitalverkehr und einen jederzeit handelbaren Anleihemarkt braucht',
+        'Weil der Internationale Währungsfonds es untersagt',
+      ],
+      correctIndex: 2,
+      explanation:
+        'Eine Notenbank legt Reserven nur dort an, wo sie jederzeit wieder herauskommt. Das setzt voraus, dass fremdes Kapital frei ein- und ausreisen darf – und dagegen hat China sich bislang entschieden. Der Anteil an den Weltwährungsreserven liegt deshalb bei rund zwei Prozent.',
+    },
+    {
+      question: 'Was trifft auf den Petrodollar zu?',
+      options: [
+        'Ein Vertrag von 1974 schreibt bis heute vor, dass Öl in Dollar abgerechnet wird',
+        'Das entsprechende Abkommen ist im Juni 2024 ausgelaufen',
+        'Er ist eine eigene Währung, die nur im Ölhandel verwendet wird',
+        'Die Preisstellung in Dollar ist Marktbrauch; entscheidend ist die Wiederanlage der Erlöse',
+      ],
+      correctIndex: 3,
+      explanation:
+        'Einen Vertrag über die Preisstellung gab es nie, und folglich konnte auch keiner 2024 auslaufen – diese Meldung ließ sich auf kein Dokument zurückführen. Der eigentliche Effekt liegt darin, dass Ölerlöse in US-Staatsanleihen zurückfließen: Nur dieser Markt nimmt solche Beträge auf, ohne die Kurse zu verwerfen.',
+    },
+    {
+      question:
+        'Warum fallen bei der Auflösung großer Carry-Positionen oft Märkte, die mit der Sache nichts zu tun haben?',
+      options: [
+        'Weil Notenbanken in solchen Phasen gleichzeitig die Zinsen erhöhen',
+        'Weil die Positionen mit geliehenem Geld aufgebaut sind und zur Deckung anderes verkauft werden muss',
+        'Weil die betroffenen Währungen aus dem Handel genommen werden',
+        'Weil Anleger dann in Rohstoffe umschichten',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Der Ertrag ist die Zinsdifferenz, aufgebaut wird die Position auf Kredit in der Niedrigzinswährung. Steigt diese Währung, wird die Position teuer und muss glattgestellt werden – verkauft wird dann, was liquide ist. Am 5. August 2024 verlor der Nikkei so 12,4 Prozent, den stärksten Tagesverlust seit 1987.',
+    },
+  ],
 }
 
 /** Fragen zu einer Stufe, falls vorhanden. */

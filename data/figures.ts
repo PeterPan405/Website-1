@@ -251,6 +251,14 @@ export type FigureId =
   /** Warum jede Bewertung eines Kryptowerts an derselben Stelle scheitert. */
   | 'krypto-bewertung'
 
+  /* ------------------------------------------------ Lernbereich: Geldsystem */
+  /** Zwei Bankbilanzen vor und nach einer Kreditvergabe. */
+  | 'geldsystem-giralgeld'
+  /** Wie lange einzelne Währungen tatsächlich im Umlauf waren. */
+  | 'geldsystem-lebensdauer'
+  /** Tagesumsatz am Devisenmarkt gegen den Welthandel eines Jahres. */
+  | 'geldsystem-devisenmarkt'
+
 export interface FigureMeta {
   /** Kurzer Titel – wird als `<title>` im SVG vorgelesen. */
   title: string
@@ -876,5 +884,26 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Ein schematischer Verlauf aus acht Wellen, jede beschriftet. Fünf Impulswellen laufen in Trendrichtung nach oben, nummeriert von 1 bis 5: Welle 1 steigt, Welle 2 korrigiert, ohne den Anfang von Welle 1 zu unterschreiten, Welle 3 ist die längste und steilste, Welle 4 pendelt seitwärts, ohne in den Kursbereich von Welle 1 zu reichen, Welle 5 bringt den letzten Schub. Danach folgen drei Korrekturwellen gegen den Trend, mit A, B und C bezeichnet. Die drei festen Regeln der Theorie sind in der Zeichnung eingehalten und markiert: Welle 2 bleibt über dem Start, Welle 3 ist nicht die kürzeste, Welle 4 überlappt Welle 1 nicht. Alles Übrige an der Theorie ist auslegbar – und weil sie zahlreiche Sonderformen zulässt, lässt sich für fast jeden tatsächlichen Verlauf eine regelkonforme Zählung finden.',
     caption:
       'Fünf Wellen vor, drei zurück. Die drei harten Regeln stehen in der Grafik – die vielen erlaubten Ausnahmen sind der Grund, warum die Zählung selten eindeutig ist.',
+  },
+  'geldsystem-giralgeld': {
+    title: 'Wie aus einem Kredit Geld wird',
+    description:
+      'Zwei Bankbilanzen nebeneinander. Links vor der Kreditvergabe: Aktiva und Passiva sind gleich hoch und bestehen nur aus dem bisherigen Bestand. Rechts nach der Kreditvergabe: Auf der Aktivseite ist eine Forderung an den Kreditnehmer hinzugekommen, auf der Passivseite ein Guthaben in exakt derselben Höhe. Beide Seiten sind gleichzeitig und um denselben Betrag gewachsen. Niemandem wurde etwas weggenommen – das Guthaben, mit dem der Kreditnehmer bezahlt, gab es vorher nicht. Genau diese gleichzeitige Verlängerung ist der Vorgang, den die verbreitete Vorstellung nicht erklären kann, die Bank verleihe eingelegtes Spargeld weiter: Dann müsste eine Seite kürzer werden.',
+    caption:
+      'Ein Kredit nimmt niemandem etwas weg. Beide Seiten der Bilanz wachsen gleichzeitig – das neue Guthaben ist das neue Geld.',
+  },
+  'geldsystem-lebensdauer': {
+    title: 'Wie lange Währungen im Umlauf waren',
+    description:
+      'Waagerechte Balken auf einer Jahresachse, nach Dauer sortiert. Die längsten gehören zu Währungen, die bis heute gelten: das von der Bank of England ausgegebene Pfund Sterling seit 1694, der US-Dollar seit 1792, der Schweizer Franken seit 1850, der japanische Yen seit 1871. Ihre Balken enden offen, weil sie weiterlaufen. Deutlich kürzer sind die Balken der gescheiterten oder ersetzten Währungen: der Zimbabwe-Dollar mit 29 Jahren, die Reichsmark mit 24, der ungarische Pengő mit 19, die deutsche Papiermark mit 9 und der argentinische Austral mit 7. Der Euro steht mit seinen bisherigen Jahren am unteren Ende der laufenden Gruppe. Die Aussage der Grafik ist der Abstand zwischen beiden Gruppen: Währungen scheitern in Staaten, die in Krieg, Bürgerkrieg oder Systemzusammenbruch stehen – wo das nicht der Fall ist, halten sie Jahrhunderte.',
+    caption:
+      'Die kurzlebigen Währungen gehören fast alle zu Staaten im Ausnahmezustand. Ein Durchschnitt über beide Gruppen sagt über keine von beiden etwas aus.',
+  },
+  'geldsystem-devisenmarkt': {
+    title: 'Devisenmarkt gegen Welthandel',
+    description:
+      'Drei Balken im Größenvergleich. Der Devisenmarkt setzt an einem einzigen Handelstag 7,5 Billionen US-Dollar um, in einer Woche entsprechend 37,5 Billionen. Der gesamte Welthandel mit Waren und Dienstleistungen kommt in einem ganzen Jahr auf rund 32 Billionen. In gut vier Handelstagen wird damit so viel Währung getauscht, wie der Welthandel in zwölf Monaten bewegt. Der Unterschied erklärt sich nicht durch Spekulation: Der größte Einzelposten sind Devisenswaps, also besicherte Geldaufnahmen in fremder Währung, dazu kommen Absicherungsgeschäfte und die Weitergabe von Aufträgen zwischen Banken.',
+    caption:
+      'Import und Export erklären nur einen Bruchteil des Umsatzes. Der größte Teil sind Swaps und Absicherung, nicht Spekulation.',
   },
 }

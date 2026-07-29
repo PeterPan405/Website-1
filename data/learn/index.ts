@@ -12,6 +12,7 @@ import { einlagensicherung } from '@/data/learn/topics/einlagensicherung'
 import { tagesgeld } from '@/data/learn/topics/tagesgeld'
 import { etf } from '@/data/learn/topics/etf'
 import { fonds } from '@/data/learn/topics/fonds'
+import { geldsystem } from '@/data/learn/topics/geldsystem'
 import { groessteCrashes } from '@/data/learn/topics/groesste-crashes'
 import { immobilien } from '@/data/learn/topics/immobilien'
 import { inflation } from '@/data/learn/topics/inflation'
@@ -125,6 +126,14 @@ export const learnSections: LearnSection[] = [
     slugs: [
       'boerse',
       'wie-funktioniert-der-markt',
+      /*
+        Das Geldsystem steht vor den Notenbanken, nicht danach.
+
+        Wer erklärt bekommt, wie eine Notenbank den Zins steuert, ohne zu
+        wissen, dass der weitaus größte Teil des Geldes gar nicht bei ihr
+        entsteht, bekommt ein falsches Bild von ihrer Macht.
+      */
+      'geldsystem',
       'notenbanken-geldpolitik',
       'depot-und-broker',
     ],
@@ -187,6 +196,7 @@ const allTopics: LearnTopic[] = [
   einlagensicherung,
   etf,
   fonds,
+  geldsystem,
   groessteCrashes,
   immobilien,
   inflation,

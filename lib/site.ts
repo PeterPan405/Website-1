@@ -120,7 +120,7 @@ export interface Area {
  * Damit die Zahl nicht still falsch wird, prüft `lib/learn.ts` beim Bauen, ob
  * sie zur tatsächlichen Themenzahl passt, und bricht sonst ab.
  */
-export const LEARN_TOPIC_COUNT = 33
+export const LEARN_TOPIC_COUNT = 34
 
 /**
  * Anzahl der Rechner.

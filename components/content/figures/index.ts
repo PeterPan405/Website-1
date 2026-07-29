@@ -1,4 +1,9 @@
 import {
+  GeldsystemDevisenmarkt,
+  GeldsystemGiralgeld,
+  GeldsystemLebensdauer,
+} from '@/components/content/figures/geldsystem'
+import {
   TaElliottZyklus,
   TaKerzeAufbau,
   TaMacd,
@@ -261,4 +266,9 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'ta-sma-vs-ema': TaSmaVsEma,
   'ta-macd': TaMacd,
   'ta-elliott-zyklus': TaElliottZyklus,
+
+  /* -------------------------------------------------------- Geldsystem */
+  'geldsystem-giralgeld': GeldsystemGiralgeld,
+  'geldsystem-lebensdauer': GeldsystemLebensdauer,
+  'geldsystem-devisenmarkt': GeldsystemDevisenmarkt,
 }
