@@ -425,8 +425,12 @@ export const technischeAnalyseLektionen: Lektion[] = [
         head: ['Periode', 'Üblich für', 'Verhalten'],
         rows: [
           ['20 Tage', 'kurzfristig, etwa ein Handelsmonat', 'nah am Kurs, viele Signale'],
-          ['50 Tage', 'mittelfristig, etwa ein Quartal', 'ausgeglichen'],
-          ['200 Tage', 'langfristig, knapp ein Handelsjahr', 'träge, gilt als Trendmaß'],
+          ['50 Tage', 'mittelfristig, gut zwei Handelsmonate', 'ausgeglichen'],
+          [
+            '200 Tage',
+            'langfristig, gut ein Dreivierteljahr',
+            'träge, gilt als Trendmaß',
+          ],
         ],
       },
       {
@@ -903,7 +907,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
         caption: 'Wie die Werte zustande kommen.',
         head: ['Marke', 'Herkunft'],
         rows: [
-          ['23,6 %', 'Zahl geteilt durch die übernächste, dann noch einmal'],
+          ['23,6 %', 'Zahl geteilt durch die drittnächste (etwa 21 ÷ 89)'],
           ['38,2 %', 'Zahl geteilt durch die übernächste (etwa 34 ÷ 89)'],
           ['50,0 %', 'keine Fibonacci-Zahl – schlicht die Hälfte'],
           ['61,8 %', 'Zahl geteilt durch die nächste (etwa 55 ÷ 89)'],

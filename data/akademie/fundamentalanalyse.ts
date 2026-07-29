@@ -790,7 +790,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
         rows: [
           ['unter 30 %', 'Viel bleibt im Unternehmen – typisch für Wachstumswerte'],
           ['30 bis 60 %', 'Ausgewogen, in den meisten Branchen tragfähig'],
-          ['60 bis 90 %', 'Wenig Spielraum für schwächere Jahre'],
+          ['60 bis 100 %', 'Wenig Spielraum für schwächere Jahre'],
           ['über 100 %', 'Nicht verdient. Eine Kürzung ist wahrscheinlich'],
         ],
       },
