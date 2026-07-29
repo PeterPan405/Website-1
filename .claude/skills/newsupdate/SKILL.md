@@ -117,8 +117,14 @@ Kategorien: `Geldpolitik` · `Märkte` · `Vorsorge` · `Steuern & Recht` ·
 Der Tagesüberblick unter `/news/tag/<datum>` ist ein **eigener** Datenbestand
 und veraltet sonst still mit. Aus derselben Recherche entsteht er in Minuten:
 
-1. `data/editions/JJJJ-MM-TT.ts` anlegen — die drei wichtigsten Meldungen als
-   `top`, zwei weitere als `further`. Die Tupel-Typen erzwingen genau 3 + 2.
+1. `data/editions/JJJJ-MM-TT.ts` anlegen — die wichtigsten Meldungen als `top`,
+   weitere als `further`. Drei plus zwei ist der Regelfall und eine gute
+   Voreinstellung, aber **keine Vorschrift**: Erzwungen sind nur mindestens eine
+   Top-Meldung und mindestens drei insgesamt (`lib/editions-validate.ts`). Gibt
+   der Tag zwei her, die diesen Namen verdienen, schreibe zwei; gibt er sieben
+   her, schreibe sieben. Bis Juli 2026 stand hier ein Tupel-Typ, der 3 + 2
+   erzwang — eine Regel über die Nachrichtenlage, an die sich die Nachrichtenlage
+   nicht hält.
 2. In `data/editions/index.ts` importieren **und** in das Array eintragen.
    Beides, sonst schlägt `tests/` oder der Build fehl.
 3. `intro`: **110 bis 165 Zeichen**. Das ist die häufigste Fehlerquelle —
