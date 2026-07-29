@@ -145,3 +145,74 @@ export function vorleseAbschnitte(
 
   return abschnitte
 }
+
+/* ---------------------------------------------------------- Stimmwahl */
+
+/** Das, was die Web-Speech-Schnittstelle über eine Stimme verrät. */
+export interface Stimmprofil {
+  name: string
+  lang: string
+  voiceURI: string
+  localService: boolean
+}
+
+/**
+ * Männliche Vornamen der gängigen Systemstimmen.
+ *
+ * Die Schnittstelle kennt kein Geschlecht – es steckt nur im Namen. Die Liste
+ * deckt Windows und Edge (Conrad, Stefan, Killian, Bernd, Florian, Jonas),
+ * Apple (Markus, Martin, Viktor, Yannick) und einige Android-Kennungen ab.
+ * Eine unbekannte Männerstimme fällt durch – dann greift die nächste Stufe,
+ * nicht Stille.
+ */
+const MAENNERNAMEN = [
+  'conrad',
+  'stefan',
+  'killian',
+  'bernd',
+  'christoph',
+  'klaus',
+  'markus',
+  'martin',
+  'viktor',
+  'florian',
+  'jonas',
+  'hans',
+  'ralf',
+  'yannick',
+  'andreas',
+  'paul',
+  'georg',
+  'michael',
+  'werner',
+  'daniel',
+  'felix',
+]
+
+/** Ob Name oder Kennung nach einer Männerstimme klingen. */
+export function klingtMaennlich(stimme: Stimmprofil): boolean {
+  const kennung = `${stimme.name} ${stimme.voiceURI}`.toLowerCase()
+  /* „female“ enthält „male“ – die Reihenfolge der Prüfungen trägt die Logik. */
+  if (kennung.includes('female')) return false
+  if (kennung.includes('male')) return true
+  return MAENNERNAMEN.some((name) => kennung.includes(name))
+}
+
+/**
+ * Die Voreinstellung „automatisch“: männlich und lokal zuerst.
+ *
+ * Die Rangfolge in vier Stufen – lokale Männerstimme, Männerstimme, lokale
+ * deutsche Stimme, irgendeine deutsche. `null` heißt: keine deutsche Stimme
+ * vorhanden; der Browser nimmt dann seine Standardstimme mit deutscher
+ * Sprachangabe.
+ */
+export function bevorzugteStimme<T extends Stimmprofil>(stimmen: readonly T[]): T | null {
+  const deutsche = stimmen.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
+  return (
+    deutsche.find((stimme) => stimme.localService && klingtMaennlich(stimme)) ??
+    deutsche.find((stimme) => klingtMaennlich(stimme)) ??
+    deutsche.find((stimme) => stimme.localService) ??
+    deutsche[0] ??
+    null
+  )
+}

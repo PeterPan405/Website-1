@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
+import { bevorzugteStimme } from '@/lib/vorlese-text'
 
 /**
  * Liest die Abschnitte einer Seite mit der Stimme des Browsers vor.
@@ -32,6 +33,16 @@ import { cn } from '@/lib/cn'
 
 /** Wo die gewählte Stimme liegt – ein Gerät, eine Wahl, alle Seiten. */
 const STIMMWAHL_SCHLUESSEL = 'fk-vorlesen-stimme'
+
+/*
+  Die Tonlage liegt unter der Mitte.
+
+  Gewünscht ist eine tiefe Männerstimme als Voreinstellung dieser Website.
+  Welche Stimmen es gibt, entscheidet das Gerät – aber die Tonhöhe lässt sich
+  je Auftrag absenken. 0,85 ist der Bereich, in dem eine Stimme dunkler wird,
+  ohne verzerrt zu klingen; tiefer wird es bei vielen Systemstimmen blechern.
+*/
+const TONLAGE = 0.85
 
 /** Nichts zu beobachten – die Fähigkeit des Browsers ändert sich nicht. */
 function nieWieder() {
@@ -125,13 +136,18 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
   const zurAuswahl = deutsche.length > 0 ? deutsche : stimmen
   const wahlVorhanden = zurAuswahl.some((stimme) => stimme.voiceURI === stimmwahl)
 
-  /** Die gewählte Stimme – oder die Voreinstellung: lokal und deutsch. */
+  /**
+   * Die gewählte Stimme – oder die Voreinstellung: männlich, lokal, deutsch.
+   *
+   * Die Rangfolge steht in `lib/vorlese-text.ts` und ist dort geprüft; die
+   * Schnittstelle kennt kein Geschlecht, erkannt wird es am Stimmnamen.
+   */
   function stimmeFuerAuftrag(): SpeechSynthesisVoice | null {
     const alle = window.speechSynthesis.getVoices()
-    const gewuenschte = alle.find((stimme) => stimme.voiceURI === stimmwahlRef.current)
-    if (gewuenschte) return gewuenschte
-    const de = alle.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
-    return de.find((stimme) => stimme.localService) ?? de[0] ?? null
+    return (
+      alle.find((stimme) => stimme.voiceURI === stimmwahlRef.current) ??
+      bevorzugteStimme(alle)
+    )
   }
 
   function sprich(ab: number) {
@@ -146,6 +162,7 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     const auftrag = new SpeechSynthesisUtterance(abschnitte[ab])
     auftrag.lang = 'de-DE'
     auftrag.rate = tempoRef.current
+    auftrag.pitch = TONLAGE
     const stimme = stimmeFuerAuftrag()
     if (stimme) auftrag.voice = stimme
     auftrag.onend = () => sprich(ab + 1)
