@@ -149,6 +149,13 @@ jobs:
         if: always()
         run: node --experimental-strip-types scripts/quellen-probe-esef.ts
 
+      # Zweite Runde: nicht nur, ob der Name im Verzeichnis steht, sondern
+      # welche Zahlen dahinterstehen. Erst daran lässt sich eine Zuordnung
+      # prüfen – ein Namenstreffer allein hat hier schon zweimal danebengelegen.
+      - name: ESEF-Abschlüsse auslesen
+        if: always()
+        run: node --experimental-strip-types scripts/quellen-probe-esef-werte.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -157,4 +164,5 @@ jobs:
           path: |
             sec-kandidaten.json
             esef-kandidaten.json
+            esef-werte.json
           if-no-files-found: warn
