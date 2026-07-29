@@ -46,11 +46,26 @@
  * Deshalb der Umweg über das Ergebnis je Aktie: Es steht in praktisch jedem
  * Abschluss, weil IAS 33 es vorschreibt.
  *
- *     Aktienzahl = Jahresüberschuss / Ergebnis je Aktie
+ *     Aktienzahl = Ergebnisanteil der Eigentümer / Ergebnis je Aktie
  *
  * Das ergibt die gewichtete Durchschnittszahl des Jahres, nicht den Stand am
  * Stichtag. Für ein Kurs-Gewinn-Verhältnis ist das die richtige Größe – es ist
  * genau die Zahl, mit der auch das Ergebnis je Aktie gerechnet wurde.
+ *
+ * ## Warum im Zähler nicht der Jahresüberschuss steht
+ *
+ * Weil das um bis zu einem Fünftel danebengeht. IAS 33 definiert das Ergebnis
+ * je Aktie als **Ergebnisanteil der Eigentümer des Mutterunternehmens** geteilt
+ * durch die Aktienzahl – Minderheitsanteile sind darin nicht enthalten. Wer
+ * oben den Jahresüberschuss samt Minderheiten einsetzt, teilt eine zu große
+ * Zahl durch eine dazu passende kleine und bekommt zu viele Aktien heraus.
+ *
+ * Der erste Lauf hat genau das getan: Enel bekam 12,28 Milliarden Aktien statt
+ * 10,17 – und damit ein Kurs-Gewinn-Verhältnis, das um ein Fünftel zu niedrig
+ * war. Aufgefallen ist es beim Nachrechnen von Hand, nicht bei der
+ * Plausibilitätsprüfung: Die fängt Faktoren wie 100 ab, keine 20 Prozent.
+ * Betroffen sind alle Konzerne mit nennenswerten Minderheitsanteilen, also
+ * gerade die Versorger und Banken.
  *
  * Aufruf: `npm run esef`
  */
@@ -193,8 +208,18 @@ const GROESSEN = [
     zeitraum: true,
   },
   {
+    /*
+      Der Ergebnisanteil der Eigentümer zuerst, nicht der Jahresüberschuss.
+
+      Aus dieser Zahl entsteht auf der Website das Kurs-Gewinn-Verhältnis, und
+      der Kurs bezahlt genau diesen Anteil – nicht den Teil, der
+      Minderheitsgesellschaftern gehört. Sie ist außerdem dieselbe Größe, auf
+      der das Ergebnis je Aktie beruht, und damit die einzige, die zur
+      Aktienzahl weiter unten passt. Der Jahresüberschuss bleibt Rückfallebene
+      für Abschlüsse, die den Anteil nicht getrennt ausweisen.
+    */
     feld: 'gewinn' as const,
-    tags: ['ProfitLoss', 'ProfitLossAttributableToOwnersOfParent'],
+    tags: ['ProfitLossAttributableToOwnersOfParent', 'ProfitLoss'],
     zeitraum: true,
   },
   {
@@ -226,6 +251,16 @@ const AKTIEN_TAGS = [
 
 /** Ergebnis je Aktie – der Umweg zur Aktienzahl, wenn sie nicht dasteht. */
 const EPS_TAGS = ['BasicEarningsLossPerShare', 'DilutedEarningsLossPerShare']
+
+/**
+ * Der Zähler dieses Umwegs, in dieser Reihenfolge.
+ *
+ * Der Ergebnisanteil der Eigentümer zuerst, weil das Ergebnis je Aktie nach
+ * IAS 33 genau darauf beruht. Der Jahresüberschuss ist nur die Rückfallebene
+ * für Abschlüsse, die den Anteil nicht getrennt ausweisen – dort gibt es dann
+ * meist auch keine nennenswerten Minderheiten.
+ */
+const EPS_ZAEHLER_TAGS = ['ProfitLossAttributableToOwnersOfParent', 'ProfitLoss']
 
 interface Fakt {
   value?: unknown
@@ -347,19 +382,23 @@ function werteAus(bericht: Bericht): Bilanzsatz {
   if (gemeldet && gemeldet.zahl > 0) {
     satz.aktien = gemeldet.zahl
     satz.aktienherkunft = 'gemeldet'
-  } else if (satz.gewinn) {
+  } else {
     /*
       Der Umweg über das Ergebnis je Aktie.
 
-      Nur wenn beide dasselbe Vorzeichen haben: Ein negatives Ergebnis je Aktie
-      neben einem positiven Gewinn (oder umgekehrt) bedeutet, dass die beiden
-      Zahlen nicht zueinander gehören – etwa weil die eine den Anteil der
-      Eigentümer meint und die andere den Gesamtgewinn samt Minderheiten.
-      Herauskäme eine negative Aktienzahl.
+      Genommen wird nur, was zusammengehört: Zähler und Ergebnis je Aktie
+      müssen dasselbe Vorzeichen haben. Sonst stammen die beiden Zahlen aus
+      verschiedenen Größen, und herauskäme eine negative Aktienzahl.
     */
+    const zaehler = suche(EPS_ZAEHLER_TAGS, true)
     const eps = suche(EPS_TAGS, true)
-    if (eps && eps.zahl !== 0 && Math.sign(eps.zahl) === Math.sign(satz.gewinn)) {
-      satz.aktien = Math.round(satz.gewinn / eps.zahl)
+    if (
+      zaehler &&
+      eps &&
+      eps.zahl !== 0 &&
+      Math.sign(eps.zahl) === Math.sign(zaehler.zahl)
+    ) {
+      satz.aktien = Math.round(zaehler.zahl / eps.zahl)
       satz.aktienherkunft = 'ausErgebnisJeAktie'
     }
   }
