@@ -19,6 +19,7 @@ import { Stat, StatGrid } from '@/components/ui/Stat'
 import { formatCurrency, formatNumber } from '@/lib/format'
 import { formatForInput, parseGermanNumber } from '@/lib/parse-number'
 import { erzeugePdf } from '@/lib/pdf'
+import { siteConfig } from '@/lib/site'
 import {
   alsPdfZeilen,
   alsTabelle,
@@ -137,7 +138,8 @@ export function NetWorthSheet() {
       untertitel: ausgefuellt
         ? `Stichtag ${tag.split('-').reverse().join('.')}`
         : `Zum Ausfüllen · Stichtag ${tag.split('-').reverse().join('.')}`,
-      fusszeile: 'im-invests.de · Vermögensübersicht',
+      marke: siteConfig.name,
+      fusszeile: 'im-invests.de · Vermögensübersicht · im Browser erstellt, nichts gesendet',
       zeilen: alsPdfZeilen({
         werte: ausgefuellt ? werte : undefined,
         stichtag: tag,

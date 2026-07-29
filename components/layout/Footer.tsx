@@ -107,8 +107,13 @@ export function Footer() {
           Anlageberatung stattfindet. Der Text steht auf jeder Seite.
         */}
         <div className="rounded-card border-border bg-surface-muted mt-12 border p-5">
+          {/*
+            „Steuerberatung“ steht jetzt auch in der Überschrift. Wer den Kasten nur
+            überfliegt, liest die Überschrift und sonst nichts – und die Rechner zur
+            Abgeltungsteuer und zur Vorabpauschale sind kein Randthema dieser Seite.
+          */}
           <h2 className="text-fg text-sm font-semibold">
-            Keine Anlageberatung – nur Wissensvermittlung
+            Keine Anlage- oder Steuerberatung – nur Wissensvermittlung
           </h2>
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">
             Alle Inhalte dieser Website dienen der allgemeinen Information und Bildung.
@@ -137,6 +142,37 @@ export function Footer() {
             wieder; die Verschuldungszahlen sind Näherungswerte und keine amtliche
             Statistik. Für Aktualität, Richtigkeit und Vollständigkeit wird keine Gewähr
             übernommen. Herkunft und Stand stehen jeweils direkt an der Angabe.
+          </p>
+          {/*
+            Steuern brauchen einen eigenen Absatz, nicht nur das Wort „Steuerberatung“
+            in der Aufzählung darüber.
+
+            Der Grund steht im Steuerberatungsgesetz: Geschäftsmäßige Hilfe in
+            Steuersachen ist den dort genannten Berufen vorbehalten (§ 2 StBerG). Diese
+            Website rechnet Abgeltungsteuer, Vorabpauschale und Sparerpauschbetrag aus
+            und schreibt über die Besteuerung von Aktien, ETFs und Renten – also genau
+            an der Grenze entlang. Was sie tut, ist Information an unbestimmt viele
+            Leser, keine Anwendung des Steuerrechts auf einen konkreten Einzelfall. Der
+            Absatz sagt das ausdrücklich, statt es dem Leser zu überlassen.
+
+            Die zwei Sätze zur Rückwirkung und zur verbindlichen Auskunft stehen nicht
+            aus Vorsicht da, sondern weil beides stimmt und für den Leser wichtiger ist
+            als der Haftungssatz am Ende: Steuerrecht ändert sich, und wer Sicherheit
+            braucht, bekommt sie beim Finanzamt (§ 89 Abs. 2 AO) – nicht hier.
+          */}
+          <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+            <strong className="text-fg font-semibold">Hinweis zu Steuerfragen:</strong>{' '}
+            Steuerliche Erläuterungen, Beispielrechnungen und die Ergebnisse der Rechner
+            sind allgemeine und unverbindliche Information. Sie stellen keine
+            geschäftsmäßige Hilfeleistung in Steuersachen im Sinne des
+            Steuerberatungsgesetzes dar und ersetzen nicht die Beratung durch eine
+            Steuerberaterin, einen Steuerberater oder eine andere zur Hilfeleistung in
+            Steuersachen befugte Person. Wie ein Sachverhalt tatsächlich besteuert wird,
+            hängt von den persönlichen Verhältnissen ab und kann sich durch Gesetzgebung
+            und Rechtsprechung ändern, unter Umständen auch rückwirkend. Verbindliche
+            Auskunft erteilen allein das zuständige Finanzamt und die Angehörigen der
+            steuerberatenden Berufe. Für Entscheidungen, die auf steuerliche Angaben
+            dieser Website gestützt werden, wird keine Haftung übernommen.
           </p>
         </div>
 

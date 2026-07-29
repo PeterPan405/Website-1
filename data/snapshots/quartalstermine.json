@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-29T10:19:57.042Z",
+  "abgerufenAm": "2026-07-29T11:06:13.069Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -2987,14 +2987,14 @@
     "AON": {
       "name": "Aon plc",
       "bisher": [
+        "2026-07-29",
         "2026-05-01",
         "2026-01-30",
         "2025-10-31",
         "2025-07-25",
         "2025-04-25",
         "2025-01-31",
-        "2024-10-25",
-        "2024-07-26"
+        "2024-10-25"
       ],
       "vorhersagen": [
         {
@@ -3011,6 +3011,11 @@
           "erwartet": "2027-04-30",
           "basis": "2026-05-01",
           "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-07-28",
+          "basis": "2026-07-29",
+          "streuungTage": 5
         }
       ]
     },
@@ -5282,21 +5287,16 @@
     "TEVA": {
       "name": "TEVA PHARMACEUTICAL INDUSTRIES LTD",
       "bisher": [
+        "2026-07-29",
         "2026-04-29",
         "2026-01-28",
         "2026-01-12",
         "2025-11-05",
         "2025-07-30",
         "2025-05-07",
-        "2025-01-29",
-        "2024-11-06"
+        "2025-01-29"
       ],
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-04",
-          "basis": "2025-11-05",
-          "streuungTage": 0
-        },
         {
           "erwartet": "2027-01-27",
           "basis": "2026-01-28",
@@ -5306,6 +5306,11 @@
           "erwartet": "2027-04-28",
           "basis": "2026-04-29",
           "streuungTage": 7
+        },
+        {
+          "erwartet": "2027-07-28",
+          "basis": "2026-07-29",
+          "streuungTage": 0
         }
       ]
     }

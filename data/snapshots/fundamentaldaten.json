@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-29T10:27:53.491Z",
+  "abgerufenAm": "2026-07-29T11:13:11.841Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -465,8 +465,8 @@
       "umsatz": 9890600000,
       "gewinn": 1293000000,
       "cashflow": 2204600000,
-      "eigenkapital": 18651700000,
-      "aktien": 147637117
+      "eigenkapital": 18848000000,
+      "aktien": 147753998
     },
     "BLK": {
       "umsatz": 24216000000,

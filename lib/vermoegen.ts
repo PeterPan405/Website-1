@@ -31,9 +31,21 @@
  */
 export type PdfZeilen = (
   | { art: 'ueberschrift'; text: string }
-  | { art: 'unterueberschrift'; text: string; betrag?: string }
-  | { art: 'zeile'; text: string; betrag?: string; eingerueckt?: boolean }
-  | { art: 'summe'; text: string; betrag?: string }
+  | {
+      art: 'unterueberschrift'
+      text: string
+      betrag?: string
+      ton?: 'navy' | 'grau' | 'rot' | 'gruen'
+    }
+  | {
+      art: 'zeile'
+      text: string
+      betrag?: string
+      eingerueckt?: boolean
+      schreiblinie?: boolean
+    }
+  | { art: 'summe'; text: string; betrag?: string; schreiblinie?: boolean }
+  | { art: 'abschluss'; text: string; betrag?: string; schreiblinie?: boolean }
   | { art: 'hinweis'; text: string }
   | { art: 'abstand' }
   | { art: 'linie' }
@@ -419,10 +431,10 @@ function betragsText(wert: number): string {
  * ## Was im PDF anders ist als in der Tabelle
  *
  * Die Tabelle ist zum Weiterrechnen da, das PDF zum Abheften. Deshalb stehen
- * hier Tausenderpunkte und die Währung an jedem Betrag, die Summen sind
- * hervorgehoben, und am Ende steht das Nettovermögen groß. Leere Zeilen bleiben
- * mit einer Punktreihe stehen – auf einem Blatt, das man ausdruckt und mit der
- * Hand ausfüllt, ist genau das der Zweck.
+ * hier Tausenderpunkte und die Währung an jedem Betrag, die Summen liegen auf
+ * einem Band, und das Nettovermögen steht am Ende in einem eigenen Kasten.
+ * Leere Posten behalten eine gezogene Linie in der Betragsspalte – auf einem
+ * Blatt, das man ausdruckt und mit der Hand ausfüllt, ist genau das der Zweck.
  */
 export function alsPdfZeilen(optionen: TabellenOptionen): PdfZeilen {
   const { werte, stichtag } = optionen
@@ -430,10 +442,18 @@ export function alsPdfZeilen(optionen: TabellenOptionen): PdfZeilen {
   const zeilen: PdfZeilen = []
 
   for (const gruppe of bogen) {
+    /*
+      Der Balken links neben der Gruppenüberschrift trägt die Bedeutung mit:
+      Besitz in Navy, Schulden in Rot. Beides sind Farben des Logos, und beide
+      stehen an der einzigen Stelle, an der sie eine Auskunft geben – wer den
+      Bogen überfliegt, sieht sofort, wo die Aufstellung von Haben nach Soll
+      wechselt.
+    */
     zeilen.push({
       art: 'unterueberschrift',
       text: gruppe.titel,
       betrag: auswertung ? betragsText(auswertung.jeGruppe[gruppe.id] ?? 0) : undefined,
+      ton: gruppe.art === 'besitz' ? 'navy' : 'rot',
     })
     zeilen.push({ art: 'hinweis', text: gruppe.erklaerung })
 
@@ -445,12 +465,18 @@ export function alsPdfZeilen(optionen: TabellenOptionen): PdfZeilen {
         : []
 
       if (eingetragen.length === 0) {
-        // Die Punktreihe ist die Linie zum Eintragen mit der Hand.
+        /*
+          Auf dem leeren Bogen bekommt jeder Posten eine gezogene Linie in der
+          Betragsspalte. Früher stand dort eine Punktreihe aus Zeichen – die
+          war eine Notlösung aus der Zeit, als das PDF nur Text setzen konnte,
+          und sah auch danach aus. Eine echte Linie ist dünner, endet überall
+          an derselben Stelle und lädt zum Ausfüllen ein.
+        */
         zeilen.push({
           art: 'zeile',
           text: posten.label,
-          betrag: werte ? undefined : '. . . . . . . . . . .',
           eingerueckt: true,
+          schreiblinie: !werte,
         })
         continue
       }
@@ -468,21 +494,28 @@ export function alsPdfZeilen(optionen: TabellenOptionen): PdfZeilen {
     zeilen.push({ art: 'abstand' })
   }
 
-  zeilen.push({ art: 'linie' })
+  /*
+    Auch die drei Endsummen bekommen auf dem leeren Bogen ihre Linie. Ohne sie
+    endete das Blatt mit drei Zeilen, bei denen rechts nichts steht – gerade
+    dort, wo das Ergebnis hingehört, für das man den Bogen ausgefüllt hat.
+  */
   zeilen.push({
     art: 'summe',
     text: 'Besitz gesamt',
     betrag: auswertung ? betragsText(auswertung.besitz) : undefined,
+    schreiblinie: !werte,
   })
   zeilen.push({
     art: 'summe',
     text: 'Schulden gesamt',
     betrag: auswertung ? betragsText(auswertung.schulden) : undefined,
+    schreiblinie: !werte,
   })
   zeilen.push({
-    art: 'unterueberschrift',
-    text: 'NETTOVERMÖGEN',
+    art: 'abschluss',
+    text: 'Nettovermögen',
     betrag: auswertung ? betragsText(auswertung.netto) : undefined,
+    schreiblinie: !werte,
   })
 
   zeilen.push({ art: 'abstand' })
