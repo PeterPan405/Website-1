@@ -93,7 +93,7 @@ export default async function LektionPage({ params }: Props) {
       <PageHeader
         area="akademie"
         eyebrow={bereichsdaten.titel}
-        eyebrowIcon={bereich === 'technische-analyse' ? 'chart' : 'scale'}
+        eyebrowIcon={bereichsdaten.sinnbild}
         title={gefunden.titel}
         lead={gefunden.kurz}
         breadcrumbs={

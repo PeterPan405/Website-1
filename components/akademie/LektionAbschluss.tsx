@@ -99,7 +99,15 @@ export function LektionAbschluss({
             href={`/akademie/${bereich}/${naechste.slug}`}
             className={cn(fertig ? 'fk-btn-primary' : 'fk-btn-secondary')}
           >
-            Weiter: {naechste.titel}
+            {/*
+              Nur „Nächste Lektion“, nicht der Titel.
+
+              `fk-btn` setzt `whitespace-nowrap` – ein eingesetzter Lektionstitel
+              kann deshalb nicht umbrechen und schob die Seite bei 390 Pixeln um
+              bis zu neunzig Pixel zur Seite. Der Titel steht in der
+              Blätternavigation direkt darunter, es fehlt also nichts.
+            */}
+            Nächste Lektion
             <Icon name="arrow-right" className="size-4" />
           </Link>
         ) : (

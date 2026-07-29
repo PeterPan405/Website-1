@@ -24,6 +24,7 @@ import type { Bereich, Lektion } from '@/data/akademie/types'
 export const technischeAnalyse: Bereich = {
   id: 'technische-analyse',
   titel: 'Technische Analyse',
+  sinnbild: 'chart',
   kurz: 'Was sich aus Kurs und Umsatz ablesen lässt – Trends, Marken, Indikatoren und Muster.',
   einleitung:
     'Die technische Analyse betrachtet nur zwei Dinge: den Kurs und den gehandelten Umsatz. Sie fragt nicht, was ein Unternehmen verdient, sondern was die Käufer und Verkäufer bisher getan haben. Diese Lektionen erklären die Begriffe, die Rechenwege und die Muster – und an jeder Stelle, wie belastbar das jeweils ist.',

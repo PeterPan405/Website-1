@@ -22,7 +22,12 @@
 import type { ContentBlock } from '@/data/content'
 
 /** Die beiden Zweige der Akademie. */
-export type BereichId = 'technische-analyse' | 'fundamentalanalyse'
+export type BereichId =
+  | 'technische-analyse'
+  | 'fundamentalanalyse'
+  | 'portfoliotheorie'
+  | 'makroanalyse'
+  | 'anlegerverhalten'
 
 /**
  * Wie gesichert eine Methode ist.
@@ -94,6 +99,16 @@ export interface Lektion {
 export interface Bereich {
   id: BereichId
   titel: string
+  /**
+   * Das Sinnbild des Bereichs, als Kennung aus `components/ui/Icon.tsx`.
+   *
+   * Steht hier und nicht in den Seiten: Solange es zwei Bereiche waren, stand
+   * an vier Stellen `id === 'technische-analyse' ? 'chart' : 'scale'`. Beim
+   * dritten Bereich hätte jede dieser Stellen still die Waage gezeigt – und
+   * zwar ohne Fehlermeldung, weil der Ausdruck ja weiterhin ein gültiges
+   * Sinnbild liefert.
+   */
+  sinnbild: 'chart' | 'scale' | 'layers' | 'globe' | 'compass'
   /** Ein Satz für die Übersichtsseite. */
   kurz: string
   /** Der einleitende Absatz auf der Bereichsseite. */

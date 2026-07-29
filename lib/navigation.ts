@@ -208,6 +208,15 @@ export const mainNav: NavItem[] = [
     label: 'Akademie',
     href: '/akademie',
     area: 'akademie',
+    /*
+      Das Menü führt die fünf Bereiche, nicht einzelne Lektionen.
+
+      Solange es zwei Bereiche gab, standen hier vier ausgewählte Lektionen
+      daneben. Bei fünf Bereichen und siebzig Lektionen ist jede solche Auswahl
+      willkürlich – und sie veraltet, sobald eine Lektion umbenannt wird. Der
+      Einstieg ist jetzt einheitlich der Bereich; die Lektionen stehen dort als
+      Kacheln.
+    */
     children: [
       {
         label: 'Technische Analyse',
@@ -220,24 +229,19 @@ export const mainNav: NavItem[] = [
         hint: 'Bilanz, Cashflow und die Deutung von Kennzahlen',
       },
       {
-        label: 'Trend, Unterstützung, Widerstand',
-        href: '/akademie/technische-analyse/trend-und-trendlinien',
-        hint: 'Die Grundbegriffe jeder Chartbetrachtung',
+        label: 'Portfoliotheorie',
+        href: '/akademie/portfoliotheorie',
+        hint: 'Streuung, Risikomaße und die Grenzen der Modelle',
       },
       {
-        label: 'Gleitende Durchschnitte',
-        href: '/akademie/technische-analyse/gleitende-durchschnitte',
-        hint: 'SMA, EMA und was ihre Kreuzungen wert sind',
+        label: 'Makroanalyse',
+        href: '/akademie/makroanalyse',
+        hint: 'Konjunktur, Zinsen und was Marktdaten verraten',
       },
       {
-        label: 'Elliott-Wellen',
-        href: '/akademie/technische-analyse/elliott-wellen',
-        hint: 'Die Theorie – und warum sie so schwer zu widerlegen ist',
-      },
-      {
-        label: 'Kurs-Gewinn-Verhältnis',
-        href: '/akademie/fundamentalanalyse/kurs-gewinn-verhaeltnis',
-        hint: 'Die bekannteste Kennzahl und ihre Fallstricke',
+        label: 'Anlegerverhalten',
+        href: '/akademie/anlegerverhalten',
+        hint: 'Die belegten Denkfehler – und was gegen sie hilft',
       },
     ],
     footerLink: { label: 'Alle Lektionen ansehen', href: '/akademie' },
