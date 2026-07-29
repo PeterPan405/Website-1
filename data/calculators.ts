@@ -211,6 +211,85 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'vermoegensuebersicht',
+    title: 'Vermögensübersicht',
+    headline: 'Vermögensübersicht: Bogen zum Ausfüllen und Abheften',
+    metaTitle: 'Vermögensübersicht: Nettovermögen erfassen und herunterladen',
+    metaDescription:
+      'Trage Besitz und Schulden in einen Bogen ein und lade ihn als Tabelle herunter – ausgefüllt oder leer zum Ausdrucken. Alle Eingaben bleiben im Browser.',
+    lead: 'Was besitzt du, was schuldest du, was bleibt? Der Bogen führt durch beide Seiten und rechnet das Nettovermögen aus. Herunterladen kannst du ihn ausgefüllt oder leer zum Ausdrucken – gedacht zum Abheften und Wiedervorlegen.',
+    summary:
+      'Besitz und Schulden erfassen, Nettovermögen ermitteln, Bogen herunterladen.',
+    featureList: [
+      'Sechs Bereiche von Konten bis Sachwerten und Schulden',
+      'Nettovermögen, Besitz und Schulden auf einen Blick',
+      'Download als Tabelle – ausgefüllt oder leer zum Ausdrucken',
+      'Leere Spalten für die nächsten Stichtage',
+      'Eingaben bleiben im Browser, ohne Anmeldung',
+    ],
+    relatedTopics: ['worauf-achten-einsteiger', 'tagesgeld', 'immobilien', 'rente'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'Was das Nettovermögen ist' },
+      {
+        type: 'formula',
+        expression: 'Nettovermögen = Besitz − Schulden',
+        description:
+          'Mehr steht hier nicht dahinter. Der Wert dieser Aufstellung liegt nicht in der Rechnung, sondern darin, einmal alles zusammenzutragen – die meisten kennen ihre Kontostände und schätzen die Summe trotzdem falsch.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schulden werden als **positive Beträge** eingetragen und abgezogen. Ein negatives Ergebnis ist kein Fehler: Wer ein Haus finanziert oder ein Studium hinter sich hat, steht am Anfang regelmäßig im Minus.',
+      },
+      { type: 'heading', level: 2, text: 'Welcher Wert gehört in die Zeile' },
+      {
+        type: 'list',
+        items: [
+          '**Geldanlagen:** der heutige Kurswert, nicht der Einstandspreis. Was du bezahlt hast, ist für diese Aufstellung ohne Bedeutung.',
+          '**Immobilien:** eine vorsichtige Schätzung. Entscheidend ist weniger, dass sie genau stimmt, als dass sie beim nächsten Mal nach derselben Regel entsteht – sonst misst du deine Bewertungslaune statt deines Vermögens.',
+          '**Kredite:** die heutige Restschuld, nicht die ursprüngliche Kreditsumme. Sie steht in der jährlichen Mitteilung der Bank.',
+          '**Altersvorsorge:** der Rückkaufs- oder Anwartschaftswert. Ob die gesetzliche Rente hineingehört, ist Ansichtssache – der Bogen lässt die Zeile deshalb bewusst leer.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Warum es zwei Downloads gibt' },
+      {
+        type: 'paragraph',
+        text: 'Weil es zwei Arten gibt, so etwas zu führen. Die einen füllen den Bogen hier aus und nehmen das Ergebnis mit. Die anderen wollen einen leeren Bogen zum Ausdrucken, den sie mit dem Kontoauszug daneben mit der Hand ausfüllen. Beide Wege enden bei derselben Datei – einmal mit Zahlen, einmal ohne.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Datei ist eine Tabelle mit Semikolon-Trennung und Dezimalkomma. Sie öffnet sich in deutschen Tabellenprogrammen ohne Importdialog und bringt fünf leere Spalten für die nächsten Stichtage mit.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Zweimal im Jahr genügt',
+        items: [
+          'Eine einzelne Momentaufnahme sagt wenig. Erst die Reihe über zwei bis drei Jahre zeigt, ob das Nettovermögen wächst – und ob das am Sparen liegt oder an den Kursen.',
+          'Halte den Stichtag fest: immer zum Jahresende und zur Jahresmitte. Wer mal im Januar und mal im Mai zählt, vergleicht Zeiträume unterschiedlicher Länge.',
+          'Die interessantere Zahl ist oft nicht die Summe, sondern ihre Zusammensetzung: Wie viel liegt unverzinst auf dem Girokonto, wie viel steckt in einer einzigen Position?',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Grenzen' },
+      {
+        type: 'list',
+        items: [
+          '**Alles in Euro.** Fremdwährungsbestände musst du selbst zum Stichtagskurs umrechnen.',
+          '**Keine Steuern.** In Depot und Immobilien stecken stille Reserven, auf die bei einem Verkauf Steuer anfiele. Das Nettovermögen ist ein Bruttowert vor Steuern.',
+          '**Keine Bewertung.** Der Bogen sagt nicht, ob eine Aufteilung gut ist. Er stellt sie nur hin.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Deine Daten bleiben bei dir',
+        items: [
+          'Die Eingaben werden ausschließlich im Browser verarbeitet und dort gespeichert, damit der Bogen beim nächsten Besuch noch dasteht. Es findet keine Übertragung an einen Server statt.',
+          'Über „Alle Eingaben löschen“ ist der Speicher wieder leer. Auf einem fremden Gerät ist das der Schritt, den man nicht vergessen sollte.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'inflationsrechner',
     title: 'Inflationsrechner',
     headline: 'Inflationsrechner: Kaufkraft über die Jahre',

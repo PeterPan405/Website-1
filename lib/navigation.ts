@@ -90,6 +90,21 @@ export const mainNav: NavItem[] = [
         href: '/rechner/haushaltsrechner',
         hint: 'Budget und Sparquote',
       },
+      {
+        label: 'Kostenrechner',
+        href: '/rechner/kostenrechner',
+        hint: 'Was eine Gebühr über 30 Jahre kostet',
+      },
+      {
+        label: 'Steuerrechner',
+        href: '/rechner/steuerrechner',
+        hint: 'Kapitalerträge und Vorabpauschale',
+      },
+      {
+        label: 'Vermögensübersicht',
+        href: '/rechner/vermoegensuebersicht',
+        hint: 'Bogen zum Ausfüllen und Abheften',
+      },
     ],
     footerLink: { label: 'Alle Rechner im Überblick', href: '/rechner' },
   },

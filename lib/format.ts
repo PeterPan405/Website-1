@@ -42,7 +42,14 @@ export function formatNumber(value: number, fractionDigits = 0): string {
     .replace('-', '−')
 }
 
-/** Geldbetrag, z. B. `1.234,56 €`. */
+/**
+ * Geldbetrag, z. B. `1.234,56 €`.
+ *
+ * Negative Beträge bekommen wie bei {@link formatNumber} das typografische
+ * Minuszeichen. Sichtbar wird das vor allem in der Vermögensübersicht, wo ein
+ * negatives Ergebnis der Normalfall und kein Ausrutscher ist – dort stünde
+ * sonst ein Bindestrich neben lauter Minuszeichen.
+ */
 export function formatCurrency(
   value: number,
   fractionDigits = 2,
@@ -53,7 +60,9 @@ export function formatCurrency(
     currency,
     minimumFractionDigits: fractionDigits,
     maximumFractionDigits: fractionDigits,
-  }).format(value)
+  })
+    .format(value)
+    .replace('-', '−')
 }
 
 /**

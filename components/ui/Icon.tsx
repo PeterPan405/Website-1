@@ -41,6 +41,7 @@ export type IconName =
   | 'mail'
   | 'clock'
   | 'layers'
+  | 'download'
   | 'phone'
   | 'search'
   | 'youtube'
@@ -177,6 +178,12 @@ const paths: Record<IconName, ReactNode> = {
     </>
   ),
   layers: <path d="m12 3 9 5-9 5-9-5 9-5Zm9 9-9 5-9-5m18 4-9 5-9-5" />,
+  download: (
+    <>
+      <path d="M12 4v11m0 0 4-4m-4 4-4-4" />
+      <path d="M4 17v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1" />
+    </>
+  ),
   search: (
     <>
       <circle cx="11" cy="11" r="7" />
