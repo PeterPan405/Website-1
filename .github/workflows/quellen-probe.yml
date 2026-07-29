@@ -143,6 +143,35 @@ name: Quellen abklopfen
 # Hexagon Purus, Sartorius die Sartorius Stedim Biotech, Macquarie Group die
 # Macquarie Bank. Alle sieben stehen deshalb nicht in der Zuordnung.
 #
+# ## Ergebnis der Runde ausserhalb von USA und EU
+#
+# Geprueft am 29. Juli 2026 mit `quellen-probe-asien.ts`. Genau eine Stelle
+# antwortet ohne Schluessel und mit brauchbaren Daten:
+#
+# - **Taiwan (TWSE), `openapi.twse.com.tw`: 200, JSON, vollstaendig.** Drei
+#   Tabellen – Erfolgsrechnung, Bilanz, Stammdaten – je Gesellschaft, mit der
+#   amtlichen Nummer als Schluessel. Damit braucht es keinen Namensabgleich und
+#   keine Zuordnung von Hand: `2330.TW` ist die Gesellschaft 2330. Eingebaut in
+#   `scripts/taiwan-abrufen.ts`.
+# - **Japan (EDINET) v2: 401**, „invalid subscription key“. v1 unter
+#   `disclosure.edinet-fsa.go.jp`: 403. Ein kostenloser Schluessel ist
+#   erhaeltlich.
+# - **Korea (DART): HTML** statt JSON – die Adresse fuehrt auf die Anmeldeseite
+#   des OpenDART-Systems. Ebenfalls Schluessel noetig.
+# - **Hongkong (HKEX): HTML**, eine Suchmaske ohne Schnittstelle.
+# - **Indien (BSE): 403**, „Access Denied“.
+# - **Deutschland: keine Schnittstelle.** Das Unternehmensregister liefert eine
+#   Website, der Bundesanzeiger antwortet gar nicht. Das ist die groesste
+#   verbliebene Luecke – Allianz, BMW, BASF, Bayer, Telekom – und sie ist von
+#   hier aus nicht zu schliessen.
+# - **GLEIF: 200, JSON.** Keine Bilanzzahlen, aber die amtlichen
+#   Rechtstraegerkennungen. Falls einmal eine Quelle mit LEI statt Namen
+#   arbeitet, waere das die Bruecke.
+#
+# Damit ist die Frage bei Japan und Korea dieselbe wie bei den Quartalsterminen:
+# keine technische mehr, sondern eine Entscheidung ueber einen kostenlosen
+# Zugangsschluessel.
+#
 # ## Was auch ESEF nicht abdeckt
 #
 # Deutsche Werte fehlen fast vollstaendig – Allianz, BMW, BASF, Bayer, die
