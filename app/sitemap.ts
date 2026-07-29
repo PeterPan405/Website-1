@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 
+import { calculators } from '@/data/calculators'
 import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
 
 import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
@@ -122,14 +123,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  const calculatorPages: MetadataRoute.Sitemap = [
-    'zinsrechner',
-    'inflationsrechner',
-    'rentenrechner',
-    'rentenluecke',
-    'haushaltsrechner',
-  ].map((slug) => ({
-    url: absoluteUrl(`/rechner/${slug}`),
+  /*
+    Die Rechner kommen aus ihrer eigenen Liste.
+
+    Hier standen sie zweimal – einmal in `data/calculators.ts` und einmal
+    abgetippt an dieser Stelle. Der sechste Rechner hat die Doppelung sofort
+    auffliegen lassen: Er war gebaut, verlinkt und gebaut worden, stand aber
+    nicht in der Sitemap. Gemerkt hat es die Paketprüfung, nicht der Mensch.
+  */
+  const calculatorPages: MetadataRoute.Sitemap = calculators.map((rechner) => ({
+    url: absoluteUrl(`/rechner/${rechner.slug}`),
     changeFrequency: 'monthly',
     priority: 0.8,
   }))

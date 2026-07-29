@@ -83,6 +83,64 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'kostenrechner',
+    title: 'Kostenrechner',
+    headline: 'Kostenrechner: was eine Gebühr über die Jahre kostet',
+    metaTitle: 'Kostenrechner: TER-Vergleich über 30 Jahre',
+    metaDescription:
+      'Vergleiche zwei Kostenquoten bei gleicher Rendite: Der Rechner zeigt, welchen Anteil am Endvermögen die laufende Gebühr über die Jahre auffrisst.',
+    lead: 'Eine Kostenquote von 1,5 Prozent klingt nach 1,5 Prozent weniger Ertrag. Über dreißig Jahre ist es rund ein Fünftel des Endvermögens. Der Rechner stellt zwei Gebühren bei sonst gleichen Annahmen gegenüber.',
+    summary: 'Was zwei Kostenquoten bei gleicher Rendite auseinanderbringt.',
+    featureList: [
+      'Endvermögen bei zwei Kostenquoten',
+      'Unterschied in Euro und als Anteil am Vermögen',
+      'Nettorendite nach laufenden Kosten',
+      'Gesamte Gebührenlast samt entgangenem Zinsertrag',
+    ],
+    relatedTopics: ['etf', 'kosten-und-gebuehren', 'fonds', 'zinseszins'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Eine Fondskostenquote wird dem **Vermögen** entnommen, nicht dem Ertrag. Über ein Jahr gerechnet bleibt deshalb nicht die Differenz aus Rendite und Kosten übrig, sondern etwas weniger.',
+      },
+      {
+        type: 'formula',
+        expression: 'Nettorendite = (1 + Bruttorendite) × (1 − Kostenquote) − 1',
+        description:
+          'Bei 7 Prozent Rendite und 1,5 Prozent Kosten bleiben 5,395 Prozent, nicht 5,5. Der Unterschied ist der Teil der Gebühr, der auf den Wertzuwachs des Jahres erhoben wird.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sparraten werden **monatlich** verzinst, nicht als Jahresbetrag am Jahresende. Der Unterschied beträgt über dreißig Jahre mehrere Prozent, und er geht immer zulasten der bequemeren Rechnung.',
+      },
+      { type: 'heading', level: 2, text: 'Warum die Zahl so groß ausfällt' },
+      {
+        type: 'paragraph',
+        text: 'Weil die Gebühr zweimal wirkt. Sie nimmt einen Betrag heraus – und dieser Betrag erwirtschaftet danach nie wieder etwas. Nach dreißig Jahren besteht der größere Teil der Differenz nicht aus den Gebühren selbst, sondern aus dem Zinseszins, den sie verhindert haben.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Wo die Zahl im Factsheet steht',
+        items: [
+          'Als **laufende Kosten** oder **TER** (Total Expense Ratio), meist in Prozent je Jahr.',
+          'Nicht enthalten sind darin: Ausgabeaufschlag, Depotgebühr, Transaktionskosten des Fonds und Steuern.',
+          'Bei ETFs steht daneben oft die **Tracking-Differenz** – sie ist die ehrlichere Zahl, weil sie misst, was am Ende tatsächlich gegenüber dem Index fehlte.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Annahmen und Grenzen' },
+      {
+        type: 'list',
+        items: [
+          '**Gleiche Bruttorendite für beide.** Das ist die entscheidende Annahme. Ob ein teurer Fonds seine Kosten durch bessere Auswahl wieder einspielt, beantwortet dieser Rechner nicht – er zeigt, wie hoch die Hürde dafür ist.',
+          '**Konstante Rendite.** Tatsächlich schwankt sie. Für den Vergleich zweier Kostenquoten spielt das keine Rolle, weil beide dieselbe Schwankung erleben.',
+          '**Keine Steuern.** Sie fallen bei beiden an und verschieben das Ergebnis in dieselbe Richtung.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'inflationsrechner',
     title: 'Inflationsrechner',
     headline: 'Inflationsrechner: Kaufkraft über die Jahre',
