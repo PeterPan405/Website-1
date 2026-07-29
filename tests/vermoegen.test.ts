@@ -14,11 +14,19 @@
 
 import {
   alsTabelle,
+  ausAltemFormat,
   bogen,
   dateiname,
+  neueZeile,
   werteAuswerten,
+  zeilenVon,
   type Werte,
 } from '../lib/vermoegen.ts'
+
+/** Kurzschreibweise: eine einzelne Zeile ohne Namen. */
+function eine(betrag: number): ReturnType<typeof neueZeile>[] {
+  return [neueZeile(betrag)]
+}
 
 let bestanden = 0
 let gescheitert = 0
@@ -63,12 +71,12 @@ pruefe(
 console.log('\n— Die Summen —')
 
 const beispiel: Werte = {
-  giro: 2_500,
-  tagesgeld: 12_000,
-  depot: 48_000,
-  immobilie: 320_000,
-  hypothek: 180_000,
-  dispo: 1_500,
+  giro: eine(2_500),
+  tagesgeld: eine(12_000),
+  depot: eine(48_000),
+  immobilie: eine(320_000),
+  hypothek: eine(180_000),
+  dispo: eine(1_500),
 }
 
 const auswertung = werteAuswerten(beispiel)
@@ -110,7 +118,7 @@ pruefe(
   Besitz. Das Ergebnis muss negativ herauskommen und darf nicht auf null
   begrenzt werden – eine geschönte Null wäre hier die schlechtere Auskunft.
 */
-const ueberschuldet = werteAuswerten({ giro: 500, ratenkredit: 8_000 })
+const ueberschuldet = werteAuswerten({ giro: eine(500), ratenkredit: eine(8_000) })
 pruefe(
   'mehr Schulden als Besitz ergeben ein negatives Nettovermögen',
   ueberschuldet.netto === -7_500,
@@ -126,17 +134,17 @@ pruefe(
 console.log('\n— Was nicht schiefgehen darf —')
 
 const unsinn = werteAuswerten({
-  giro: Number.NaN,
-  tagesgeld: Number.POSITIVE_INFINITY,
-  depot: 1_000,
-} as Werte)
+  giro: eine(Number.NaN),
+  tagesgeld: eine(Number.POSITIVE_INFINITY),
+  depot: eine(1_000),
+})
 pruefe(
   'NaN und Unendlich werden wie eine leere Zeile behandelt',
   unsinn.netto === 1_000,
   unsinn.netto.toString()
 )
 
-const unbekannt = werteAuswerten({ giro: 100, gibtEsNicht: 999_999 })
+const unbekannt = werteAuswerten({ giro: eine(100), gibtEsNicht: eine(999_999) })
 pruefe(
   'eine unbekannte Postennummer fließt in keine Summe ein',
   unbekannt.besitz === 100,
@@ -189,6 +197,94 @@ pruefe(
   'Beträge stehen mit Dezimalkomma da',
   gefuellt.includes(';48000,00'),
   zeilen.find((zeile) => zeile.includes('Depot')) ?? '—'
+)
+
+console.log('\n— Mehrere Zeilen je Posten —')
+
+const mehrere: Werte = {
+  giro: [
+    neueZeile(2_000, 'Girokonto Sparkasse'),
+    neueZeile(800, 'Gemeinschaftskonto'),
+    neueZeile(150),
+  ],
+  depot: [neueZeile(48_000, 'Depot ING')],
+}
+const summeMehrere = werteAuswerten(mehrere)
+
+pruefe(
+  'alle Zeilen eines Postens werden addiert',
+  summeMehrere.jeGruppe.liquide === 2_950,
+  String(summeMehrere.jeGruppe.liquide)
+)
+pruefe(
+  'jede ausgefüllte Zeile zählt einzeln',
+  summeMehrere.ausgefuellt === 4,
+  String(summeMehrere.ausgefuellt)
+)
+
+const tabelleMehrere = alsTabelle({
+  werte: mehrere,
+  stichtag: '2026-07-29',
+  weitereSpalten: 2,
+})
+pruefe(
+  'jede Zeile steht mit ihrem eigenen Namen in der Tabelle',
+  tabelleMehrere.includes('Girokonto Sparkasse;2000,00') &&
+    tabelleMehrere.includes('Gemeinschaftskonto;800,00'),
+  tabelleMehrere
+    .split('\r\n')
+    .filter((zeile) => zeile.includes('Konten'))
+    .join(' / ')
+)
+pruefe(
+  'eine Zeile ohne Namen bekommt die Bezeichnung des Postens',
+  tabelleMehrere.includes('Girokonto;150,00')
+)
+
+/*
+  Die Spaltenzahl muss auch dann gleich bleiben, wenn ein Posten drei Zeilen
+  hat und ein anderer keine – sonst verrutscht in der Tabellenkalkulation
+  genau die Zeile, die jemand von Hand ergänzt hat.
+*/
+const spaltenMehrere = new Set(
+  tabelleMehrere
+    .split('\r\n')
+    .filter((zeile) => zeile.length > 0)
+    .map((zeile) => zeile.split(';').length)
+)
+pruefe(
+  'auch bei mehreren Zeilen je Posten stimmen die Spalten',
+  spaltenMehrere.size === 1 && spaltenMehrere.has(5),
+  [...spaltenMehrere].join(', ')
+)
+
+pruefe(
+  'ein Posten ohne Eintrag steht trotzdem mit seiner Zeile da',
+  tabelleMehrere.includes('Bargeld;;')
+)
+
+console.log('\n— Die alte Speicherform —')
+
+/*
+  Wer den Bogen vor der Erweiterung ausgefüllt hat, hat eine Zahl je Posten
+  auf seinem Gerät. Sie darf beim nächsten Besuch nicht verschwinden.
+*/
+const umgestellt = ausAltemFormat({ giro: 2_500, depot: 48_000, unsinn: Number.NaN })
+pruefe(
+  'aus einer Zahl wird eine Zeile',
+  zeilenVon(umgestellt, 'giro').length === 1 &&
+    zeilenVon(umgestellt, 'giro')[0].betrag === 2_500
+)
+pruefe('die umgestellte Zeile hat keinen Namen', !zeilenVon(umgestellt, 'giro')[0].name)
+pruefe(
+  'jede umgestellte Zeile bekommt eine eigene Nummer',
+  zeilenVon(umgestellt, 'giro')[0].id !== zeilenVon(umgestellt, 'depot')[0].id
+)
+pruefe('unbrauchbare Zahlen fallen weg', zeilenVon(umgestellt, 'unsinn').length === 0)
+pruefe(
+  'die Summe bleibt nach der Umstellung dieselbe',
+  werteAuswerten(umgestellt).netto === 50_500,
+  String(werteAuswerten(umgestellt).netto)
 )
 pruefe('kein Betrag enthält einen Dezimalpunkt', !/;\d+\.\d/.test(gefuellt))
 pruefe(

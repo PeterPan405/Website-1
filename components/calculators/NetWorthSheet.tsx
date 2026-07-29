@@ -4,10 +4,13 @@ import { useId, useMemo, useState } from 'react'
 
 import { ComparisonBars } from '@/components/calculators/CalculatorPanels'
 import {
+  entferneZeile,
+  ergaenzeZeile,
   heute,
   leereWerte,
+  setzeBetrag,
+  setzeName,
   setzeStichtag,
-  setzeWert,
   useBogenstand,
 } from '@/components/calculators/vermoegen-speicher'
 import { Callout } from '@/components/ui/Callout'
@@ -20,8 +23,11 @@ import {
   bogen,
   dateiname,
   werteAuswerten,
+  zeilenVon,
   type Gruppe,
+  type Posten,
   type Werte,
+  type Zeile,
 } from '@/lib/vermoegen'
 
 /**
@@ -52,28 +58,80 @@ import {
 /** Wie viele leere Spalten die heruntergeladene Datei für spätere Male bekommt. */
 const WEITERE_SPALTEN = 5
 
-/** Eine Datei im Browser erzeugen und herunterladen. */
+/**
+ * Eine Datei im Browser erzeugen und herunterladen.
+ *
+ * ## Warum die Adresse erst später freigegeben wird
+ *
+ * Hier stand `URL.revokeObjectURL` unmittelbar nach dem Klick. Das sieht
+ * aufgeräumt aus und ist ein Fehler: Der Klick stößt den Download nur an, der
+ * Browser liest die Adresse erst danach. Wer sie sofort zurückgibt, zieht ihm
+ * die Datei unter den Händen weg – je nach Browser kommt dann nichts oder ein
+ * abgebrochener Download heraus. Eine Sekunde später ist der Download längst
+ * gestartet und die Adresse wird nicht mehr gebraucht.
+ *
+ * ## Warum das Byte-Order-Mark davor gehört
+ *
+ * Ohne es liest eine deutsche Tabellenkalkulation die Datei als Windows-1252
+ * und macht aus jedem Umlaut ein Fragezeichen. Mit ihm erkennt sie UTF-8 und
+ * öffnet die Datei ohne Rückfrage.
+ */
 function herunterladen(inhalt: string, name: string) {
-  /*
-    Das Byte-Order-Mark davor ist kein Zierrat: Ohne es liest eine deutsche
-    Tabellenkalkulation die Datei als Windows-1252 und macht aus jedem Umlaut
-    ein Fragezeichen. Mit ihm erkennt sie UTF-8 und öffnet die Datei ohne
-    Rückfrage.
-  */
   const datei = new Blob(['﻿', inhalt], { type: 'text/csv;charset=utf-8' })
   const adresse = URL.createObjectURL(datei)
   const verweis = document.createElement('a')
   verweis.href = adresse
   verweis.download = name
+  verweis.rel = 'noopener'
   document.body.append(verweis)
   verweis.click()
   verweis.remove()
-  URL.revokeObjectURL(adresse)
+  window.setTimeout(() => URL.revokeObjectURL(adresse), 60_000)
 }
 
 export function NetWorthSheet() {
   const { stichtag, werte } = useBogenstand()
   const auswertung = useMemo(() => werteAuswerten(werte), [werte])
+
+  /*
+    Der Ausweg, wenn der Download nicht ankommt.
+
+    Auf verwalteten Geräten – Firmenlaptops, Schulrechner, manche
+    Sicherheitsprogramme – sperrt der Browser Downloads pauschal und meldet
+    „durch Richtlinie blockiert“. Von der Website aus lässt sich daran nichts
+    ändern: Die Sperre sitzt vor dem Herunterladen, nicht darin.
+
+    Was sich ändern lässt, ist die Sackgasse. Der Bogen wird auf Wunsch als
+    Text angezeigt, und von dort führen zwei Wege weiter, die keine Richtlinie
+    kennt: kopieren und in eine leere Tabelle einfügen, oder markieren und
+    ausdrucken.
+  */
+  const [tabelle, setTabelle] = useState<{ inhalt: string; name: string } | null>(null)
+  const [kopiert, setKopiert] = useState(false)
+
+  function zeigeTabelle(ausgefuellt: boolean) {
+    const tag = stichtag || heute()
+    setKopiert(false)
+    setTabelle({
+      inhalt: alsTabelle({
+        werte: ausgefuellt ? werte : undefined,
+        stichtag: tag,
+        weitereSpalten: WEITERE_SPALTEN,
+      }),
+      name: dateiname(tag, ausgefuellt),
+    })
+  }
+
+  async function kopiere() {
+    if (!tabelle) return
+    try {
+      await navigator.clipboard.writeText(tabelle.inhalt)
+      setKopiert(true)
+    } catch {
+      // Ohne Zwischenablage bleibt der Text zum Markieren stehen.
+      setKopiert(false)
+    }
+  }
 
   /*
     Der Stichtag ist bis zur Übernahme durch den Browser leer – absichtlich:
@@ -139,6 +197,73 @@ export function NetWorthSheet() {
             </button>
           </div>
         </div>
+
+        {/*
+          Steht bewusst sichtbar unter den Knöpfen und nicht in einer
+          Fehlermeldung: Ob der Download ankommt, weiß die Seite nicht – der
+          Browser meldet die Sperre nicht zurück. Wer nichts bekommen hat, muss
+          den zweiten Weg finden können, ohne danach zu suchen.
+        */}
+        <div className="border-border mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-3">
+          <p className="text-fg-subtle text-xs leading-relaxed">
+            Kommt keine Datei an? Auf verwalteten Geräten sperren Browser Downloads
+            pauschal. Dann hilft der Weg über die Zwischenablage:
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => zeigeTabelle(true)}
+              className="fk-btn-ghost px-3 py-1.5 text-xs"
+            >
+              Ausgefüllt anzeigen
+            </button>
+            <button
+              type="button"
+              onClick={() => zeigeTabelle(false)}
+              className="fk-btn-ghost px-3 py-1.5 text-xs"
+            >
+              Leer anzeigen
+            </button>
+          </div>
+        </div>
+
+        {tabelle && (
+          <div className="border-border mt-4 border-t pt-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-fg text-sm font-medium">{tabelle.name}</p>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => void kopiere()}
+                  className="fk-btn-secondary px-3 py-1.5 text-xs"
+                >
+                  <Icon name={kopiert ? 'check' : 'layers'} className="size-3.5" />
+                  {kopiert ? 'Kopiert' : 'Alles kopieren'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTabelle(null)}
+                  className="fk-btn-ghost px-3 py-1.5 text-xs"
+                >
+                  <Icon name="close" className="size-3.5" />
+                  Schließen
+                </button>
+              </div>
+            </div>
+            <p className="text-fg-subtle mt-2 text-xs leading-relaxed">
+              Kopieren, in einer leeren Tabelle einfügen und beim Einfügen das Semikolon
+              als Trennzeichen wählen. Zum Ausdrucken genügt es, den Text zu markieren.
+            </p>
+            <textarea
+              readOnly
+              value={tabelle.inhalt}
+              rows={12}
+              onFocus={(event) => event.currentTarget.select()}
+              aria-label={`Inhalt von ${tabelle.name}`}
+              className="fk-input mt-3 font-mono text-xs"
+            />
+          </div>
+        )}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
@@ -157,7 +282,6 @@ export function NetWorthSheet() {
               gruppe={gruppe}
               werte={werte}
               summe={auswertung.jeGruppe[gruppe.id] ?? 0}
-              onChange={setzeWert}
             />
           ))}
 
@@ -263,17 +387,15 @@ export function NetWorthSheet() {
   )
 }
 
-/** Eine Gruppe des Bogens mit ihren Zeilen und der Gruppensumme. */
+/** Eine Gruppe des Bogens mit ihren Posten. */
 function GruppenKarte({
   gruppe,
   werte,
   summe,
-  onChange,
 }: {
   gruppe: Gruppe
   werte: Werte
   summe: number
-  onChange: (id: string, wert: number | undefined) => void
 }) {
   return (
     <section aria-labelledby={`gruppe-${gruppe.id}`} className="fk-card p-5 sm:p-6">
@@ -294,12 +416,10 @@ function GruppenKarte({
 
       <div className="mt-4 space-y-3">
         {gruppe.posten.map((posten) => (
-          <BetragsZeile
+          <PostenBlock
             key={posten.id}
-            label={posten.label}
-            hinweis={posten.hinweis}
-            wert={werte[posten.id]}
-            onChange={(wert) => onChange(posten.id, wert)}
+            posten={posten}
+            zeilen={zeilenVon(werte, posten.id)}
           />
         ))}
       </div>
@@ -307,27 +427,117 @@ function GruppenKarte({
   )
 }
 
+/** Das Raster einer Eingabezeile: Bezeichnung, Betrag, Knopf. */
+const RASTER = 'grid grid-cols-[minmax(0,1fr)_8.5rem_2rem] items-center gap-2'
+
 /**
- * Eine Zeile des Bogens.
+ * Ein Posten mit seinen Zeilen.
  *
- * Bewusst nicht `NumberField`: Bei 26 Zeilen untereinander braucht es keine
- * Schieberegler und keine Hinweistexte unter jedem Feld, sondern Label und
- * Eingabe in einer Zeile. Ein leeres Feld bleibt leer und wird nicht zu einer
- * Null – wer eine Zeile nicht ausfüllt, soll das später auch sehen.
+ * ## Warum es zwei Darstellungen gibt
+ *
+ * Weil die meisten Posten nur eine Zeile haben. Solange das so ist, steht die
+ * Bezeichnung links und der Betrag rechts – eine Zeile, wie auf einem Formular.
+ * Ein Bogen, der 26-mal zusätzlich nach einem Namen fragt, den niemand braucht,
+ * wäre doppelt so lang und halb so benutzbar.
+ *
+ * Erst mit der zweiten Zeile ändert sich das: Ab da muss man sie unterscheiden
+ * können, also bekommt jede ein Feld für ihre Bezeichnung, und der Name des
+ * Postens rückt als Überschrift darüber.
  */
-function BetragsZeile({
-  label,
-  hinweis,
-  wert,
-  onChange,
-}: {
-  label: string
-  hinweis?: string
-  wert: number | undefined
-  onChange: (wert: number | undefined) => void
-}) {
+function PostenBlock({ posten, zeilen }: { posten: Posten; zeilen: Zeile[] }) {
+  /*
+    Ohne Eintrag wird eine gedachte erste Zeile gezeigt. Sie steht noch in
+    keinem Speicher – erst wenn jemand etwas einträgt, entsteht sie wirklich.
+    Ihre Nummer ist deshalb aus dem Posten abgeleitet und bleibt stabil.
+  */
+  const angezeigt: Zeile[] =
+    zeilen.length > 0 ? zeilen : [{ id: `${posten.id}-erste`, betrag: 0 }]
+  const mehrere = angezeigt.length > 1
+
+  const plus = (
+    <button
+      type="button"
+      onClick={() => ergaenzeZeile(posten.id)}
+      className="fk-btn-ghost justify-self-center px-1.5 py-1"
+      title={`Weitere Zeile für „${posten.label}“`}
+    >
+      <span aria-hidden="true" className="text-base leading-none">
+        +
+      </span>
+      <span className="sr-only">Weitere Zeile für {posten.label}</span>
+    </button>
+  )
+
+  const beschriftung = (
+    <span className="min-w-0">
+      <span className="text-fg block text-sm">{posten.label}</span>
+      {posten.hinweis && (
+        <span className="text-fg-subtle block text-xs leading-snug">
+          {posten.hinweis}
+        </span>
+      )}
+    </span>
+  )
+
+  if (!mehrere) {
+    return (
+      <div className={RASTER}>
+        {beschriftung}
+        <BetragsFeld posten={posten} zeile={angezeigt[0]} />
+        {plus}
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-2">
+        {beschriftung}
+        {plus}
+      </div>
+
+      <div className="mt-1.5 space-y-2">
+        {angezeigt.map((zeile) => (
+          <div key={zeile.id} className={RASTER}>
+            <input
+              type="text"
+              value={zeile.name ?? ''}
+              placeholder={posten.label}
+              onChange={(event) => setzeName(posten.id, zeile.id, event.target.value)}
+              aria-label={`Bezeichnung für ${posten.label}`}
+              className="fk-input text-sm"
+            />
+            <BetragsFeld posten={posten} zeile={zeile} />
+            <button
+              type="button"
+              onClick={() => entferneZeile(posten.id, zeile.id)}
+              className="fk-btn-ghost justify-self-center px-1.5 py-1"
+              title={`Zeile „${zeile.name?.trim() || posten.label}“ entfernen`}
+            >
+              <Icon name="close" className="size-3.5" />
+              <span className="sr-only">
+                Zeile {zeile.name?.trim() || posten.label} entfernen
+              </span>
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Das Betragsfeld einer Zeile.
+ *
+ * Bewusst nicht `NumberField`: Bei über zwanzig Zeilen untereinander braucht es
+ * keine Schieberegler und keine Hinweistexte unter jedem Feld. Ein leeres Feld
+ * bleibt leer und wird nicht zu einer Null – wer eine Zeile nicht ausfüllt,
+ * soll das später auch sehen.
+ */
+function BetragsFeld({ posten, zeile }: { posten: Posten; zeile: Zeile }) {
   const fehlerId = useId()
-  const [text, setText] = useState(() => (wert === undefined ? '' : formatForInput(wert)))
+  const wert = zeile.betrag
+  const [text, setText] = useState(() => (wert === 0 ? '' : formatForInput(wert)))
   const [zuletzt, setZuletzt] = useState(wert)
   const [fehler, setFehler] = useState<string | undefined>(undefined)
 
@@ -336,7 +546,7 @@ function BetragsZeile({
   // statt in einem Effekt, wie React es für abgeleiteten State empfiehlt.
   if (wert !== zuletzt) {
     setZuletzt(wert)
-    setText(wert === undefined ? '' : formatForInput(wert))
+    setText(wert === 0 ? '' : formatForInput(wert))
     setFehler(undefined)
   }
 
@@ -344,50 +554,38 @@ function BetragsZeile({
     setText(eingabe)
     if (eingabe.trim() === '') {
       setFehler(undefined)
-      onChange(undefined)
+      setzeBetrag(posten.id, zeile.id, undefined)
       return
     }
-    const gelesen = parseGermanNumber(eingabe, { min: 0, label })
+    const gelesen = parseGermanNumber(eingabe, { min: 0, label: posten.label })
     setFehler(gelesen.error)
-    if (gelesen.ok) onChange(gelesen.value)
+    if (gelesen.ok) setzeBetrag(posten.id, zeile.id, gelesen.value)
   }
 
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_9rem] items-center gap-3">
-      <label className="min-w-0">
-        <span className="text-fg block text-sm">{label}</span>
-        {hinweis && (
-          <span className="text-fg-subtle block text-xs leading-snug">{hinweis}</span>
-        )}
-      </label>
-      <div className="relative">
-        <input
-          type="text"
-          inputMode="decimal"
-          autoComplete="off"
-          value={text}
-          placeholder="—"
-          onChange={(event) => aendern(event.target.value)}
-          aria-label={label}
-          aria-invalid={fehler ? true : undefined}
-          aria-describedby={fehler ? fehlerId : undefined}
-          className={`fk-input pr-8 text-right tabular-nums ${
-            fehler ? 'border-danger focus:border-danger' : ''
-          }`}
-        />
-        <span
-          aria-hidden="true"
-          className="text-fg-subtle pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm"
-        >
-          €
-        </span>
-      </div>
+    <div className="relative">
+      <input
+        type="text"
+        inputMode="decimal"
+        autoComplete="off"
+        value={text}
+        placeholder="—"
+        onChange={(event) => aendern(event.target.value)}
+        aria-label={zeile.name?.trim() || posten.label}
+        aria-invalid={fehler ? true : undefined}
+        aria-describedby={fehler ? fehlerId : undefined}
+        className={`fk-input pr-7 text-right tabular-nums ${
+          fehler ? 'border-danger focus:border-danger' : ''
+        }`}
+      />
+      <span
+        aria-hidden="true"
+        className="text-fg-subtle pointer-events-none absolute inset-y-0 right-2.5 flex items-center text-sm"
+      >
+        €
+      </span>
       {fehler && (
-        <p
-          id={fehlerId}
-          role="alert"
-          className="text-danger col-span-2 -mt-1 text-xs font-medium"
-        >
+        <p id={fehlerId} role="alert" className="text-danger mt-1 text-xs font-medium">
           {fehler}
         </p>
       )}
