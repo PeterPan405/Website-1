@@ -171,6 +171,16 @@ jobs:
       - name: SEC nach den fehlenden Unternehmen absuchen
         run: node --experimental-strip-types scripts/quellen-probe-fundamentaldaten.ts
 
+      # Steht vor den ESEF-Schritten: Diese Sonde dauert Sekunden, jene
+      # zusammen zwanzig Minuten – und wer nur das Neue sehen will, wartet
+      # sonst umsonst.
+      #
+      # Was nach SEC und ESEF noch fehlt: Deutschland, Japan, Korea, Taiwan,
+      # Hongkong, Indien. Jedes Land mit eigener Aufsicht und eigenem Format.
+      - name: Aufsichtsbehörden außerhalb von USA und EU abklopfen
+        if: always()
+        run: node --experimental-strip-types scripts/quellen-probe-asien.ts
+
       - name: ESEF-Verzeichnis für die europäischen Werte abklopfen
         if: always()
         run: node --experimental-strip-types scripts/quellen-probe-esef.ts
@@ -181,12 +191,6 @@ jobs:
       - name: ESEF-Abschlüsse auslesen
         if: always()
         run: node --experimental-strip-types scripts/quellen-probe-esef-werte.ts
-
-      # Was nach SEC und ESEF noch fehlt: Deutschland, Japan, Korea, Taiwan,
-      # Hongkong, Indien. Jedes Land mit eigener Aufsicht und eigenem Format.
-      - name: Aufsichtsbehörden außerhalb von USA und EU abklopfen
-        if: always()
-        run: node --experimental-strip-types scripts/quellen-probe-asien.ts
 
       - name: Kandidatenlisten sichern
         if: always()
