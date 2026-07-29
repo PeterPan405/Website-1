@@ -141,6 +141,76 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'steuerrechner',
+    title: 'Steuerrechner',
+    headline: 'Steuer auf Kapitalerträge – samt Vorabpauschale',
+    metaTitle: 'Steuerrechner: Kapitalerträge und Vorabpauschale',
+    metaDescription:
+      'Berechne die Steuer auf Zinsen, Dividenden und Fondserträge: mit Teilfreistellung, Sparerpauschbetrag, Kirchensteuer und der Vorabpauschale.',
+    lead: 'Auf Kapitalerträge werden 25 Prozent fällig – aber fast nie auf den vollen Betrag. Der Rechner zeigt, was Teilfreistellung und Sparerpauschbetrag davon abziehen, und wie die Vorabpauschale entsteht, die viele erst beim Blick aufs Verrechnungskonto bemerken.',
+    summary: 'Abgeltungsteuer, Teilfreistellung, Freibetrag und Vorabpauschale.',
+    featureList: [
+      'Kapitalertragsteuer, Solidaritätszuschlag und Kirchensteuer',
+      'Teilfreistellung nach Fondsart',
+      'Sparerpauschbetrag für Einzel- und Zusammenveranlagung',
+      'Vorabpauschale aus Basiszins, Wertzuwachs und Ausschüttungen',
+    ],
+    relatedTopics: ['sparerpauschbetrag', 'etf', 'fonds', 'depot-und-broker'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'Die Reihenfolge entscheidet' },
+      {
+        type: 'paragraph',
+        text: 'Zwischen dem Ertrag und der Steuer stehen vier Schritte, und sie gehören in diese Reihenfolge: **Teilfreistellung**, dann **Sparerpauschbetrag**, dann **Kapitalertragsteuer**, dann die **Zuschläge**. Wer Freibetrag und Teilfreistellung vertauscht, rechnet bei kleinen Beträgen Steuer aus, die gar nicht anfällt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beispiel: 1.400 Euro Ertrag aus einem Aktienfonds. Nach 30 Prozent Teilfreistellung bleiben 980 Euro – und die deckt der Sparerpauschbetrag von 1.000 Euro vollständig ab. Es fällt keine Steuer an.',
+      },
+      { type: 'heading', level: 2, text: 'Warum es nicht 25 Prozent sind' },
+      {
+        type: 'paragraph',
+        text: 'Auf die Kapitalertragsteuer kommen 5,5 Prozent Solidaritätszuschlag. Wer kirchensteuerpflichtig ist, zahlt zusätzlich 8 oder 9 Prozent davon – aber die Kirchensteuer mindert zugleich als Sonderausgabe ihre eigene Bemessungsgrundlage. Deshalb wird nicht addiert, sondern geteilt:',
+      },
+      {
+        type: 'formula',
+        expression: 'Kapitalertragsteuer = Ertrag / (4 + Kirchensteuersatz)',
+        description:
+          'Ohne Kirchensteuer ergibt das 25 Prozent und eine Gesamtbelastung von 26,375 Prozent. Mit 9 Prozent Kirchensteuer sind es 24,45 Prozent und insgesamt 27,99 – nicht 28,375, wie die naheliegende Addition ergäbe.',
+      },
+      { type: 'heading', level: 2, text: 'Die Vorabpauschale' },
+      {
+        type: 'paragraph',
+        text: 'Ein thesaurierender Fonds schüttet nichts aus. Ohne Vorabpauschale bliebe er bis zum Verkauf unversteuert, ein ausschüttender nicht. Deshalb gilt jährlich ein Mindestbetrag als zugeflossen – auch wenn kein Geld geflossen ist.',
+      },
+      {
+        type: 'formula',
+        expression: 'Basisertrag = Wert zu Jahresbeginn × Basiszins × 0,7',
+        description:
+          'Der Basiszins wird jährlich vom Bundesfinanzministerium bekanntgegeben; für 2025 lag er bei 2,53 Prozent. Die 70 Prozent sind ein pauschaler Abschlag und stehen so im Gesetz.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Drei Regeln, an denen die meisten hängen bleiben',
+        items: [
+          'Der Basisertrag ist auf den **Wertzuwachs des Jahres begrenzt**. Ist der Fonds gefallen, gibt es keine Vorabpauschale.',
+          '**Ausschüttungen werden abgezogen.** Wer genug ausgeschüttet bekommen hat, zahlt keine.',
+          'Sie ist **keine zusätzliche Steuer**: Beim Verkauf wird alles bereits Versteuerte vom Gewinn abgezogen.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Annahmen und Grenzen' },
+      {
+        type: 'list',
+        items: [
+          '**Privatanleger mit Wohnsitz in Deutschland.** Für Betriebsvermögen gelten andere Teilfreistellungssätze.',
+          '**Keine Günstigerprüfung.** Wer insgesamt wenig verdient, fährt mit dem persönlichen Steuersatz besser und beantragt das in der Steuererklärung.',
+          '**Keine ausländische Quellensteuer, keine Verlustverrechnung, keine Altbestände von vor 2009.**',
+          'Das Ergebnis ist eine Orientierung und ersetzt keine Steuerberatung.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'inflationsrechner',
     title: 'Inflationsrechner',
     headline: 'Inflationsrechner: Kaufkraft über die Jahre',
