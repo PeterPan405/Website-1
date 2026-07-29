@@ -15,6 +15,12 @@ on:
   schedule:
     - cron: '0 6 5 * *'
   workflow_dispatch:
+    inputs:
+      quellen:
+        description: 'Welche Quellen abrufen'
+        type: choice
+        default: alle
+        options: [alle, sec, esef, taiwan]
 
 concurrency:
   group: fundamentaldaten
@@ -35,8 +41,26 @@ jobs:
         with:
           node-version: 22
 
+      # Die Auswahl gibt es, weil der ESEF-Schritt allein zwanzig Minuten
+      # dauert: Er blättert das gesamte Verzeichnis durch. Wer nur eine
+      # Zahlenreihe nachziehen will, soll dafür nicht den ganzen Lauf abwarten.
+      #
+      # Ohne Auswahl – also beim monatlichen Lauf – läuft alles.
       - name: Fundamentaldaten abrufen
+        if: inputs.quellen == '' || inputs.quellen == 'alle' || inputs.quellen == 'sec'
         run: npm run fundamentaldaten
+
+      # Zweiter Weg für die Werte ohne US-Notierung: die ESEF-Pflichtmeldungen
+      # der EU. Läuft danach und ergänzt nur, was die SEC nicht abdeckt.
+      - name: ESEF-Meldungen ergänzen
+        if: inputs.quellen == '' || inputs.quellen == 'alle' || inputs.quellen == 'esef'
+        run: npm run esef
+
+      # Dritter Weg: die Börse Taipeh. Die einzige Aufsichtsstelle ausserhalb
+      # von USA und EU, die ohne Schlüssel antwortet.
+      - name: Börse Taipeh ergänzen
+        if: inputs.quellen == '' || inputs.quellen == 'alle' || inputs.quellen == 'taiwan'
+        run: npm run taiwan
 
       - name: Momentaufnahme committen
         run: |

@@ -16,6 +16,7 @@ import {
   getLearnStats,
   getLearnTopics,
 } from '@/lib/learn'
+import { getLernpfade } from '@/lib/lernpfade'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { LEARN_TOPIC_COUNT } from '@/lib/site'
 
@@ -27,11 +28,12 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default async function LearnOverviewPage() {
-  const [topics, sections, stats, completeTopics] = await Promise.all([
+  const [topics, sections, stats, completeTopics, pfade] = await Promise.all([
     getLearnTopics(),
     getLearnSections(),
     getLearnStats(),
     getCompleteTopics(),
+    getLernpfade(),
   ])
 
   const topicSlugs = topics.map((topic) => topic.slug)
@@ -61,6 +63,51 @@ export default async function LearnOverviewPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <OverallProgress topicSlugs={topicSlugs} />
+
+        {/* ------------------------------------------------- Lernpfade */}
+        {/*
+          Steht bewusst vor den Stufen und weit vor dem Themen-Grid: Wer mit
+          einer konkreten Frage kommt, soll nicht erst an 33 Kacheln vorbei.
+        */}
+        <section
+          aria-labelledby="pfade"
+          className="rounded-card border-learn/25 bg-learn-soft mt-12 border p-6 sm:p-8"
+        >
+          <div className="flex flex-wrap items-end justify-between gap-5">
+            <div className="max-w-2xl">
+              <p className="text-learn text-xs font-semibold tracking-wide uppercase">
+                Neu
+              </p>
+              <h2 id="pfade" className="text-fg mt-1.5 text-xl font-bold sm:text-2xl">
+                Du hast eine konkrete Frage? Nimm einen Pfad.
+              </h2>
+              <p className="text-fg-muted mt-3 text-sm leading-relaxed">
+                {pfade.length} geführte Wege durch den Bestand – vom ersten Sparplan über
+                eine geerbte Summe bis zur Vorsorgelücke. Ein Pfad greift sich die Stufen
+                heraus, auf die es beim jeweiligen Anlass ankommt, und begründet bei jedem
+                Schritt, warum ausgerechnet er jetzt dran ist.
+              </p>
+            </div>
+            <Link href="/lernen/pfade" className="fk-btn-primary">
+              Pfade ansehen
+              <Icon name="arrow-right" className="size-4" />
+            </Link>
+          </div>
+
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {pfade.map((pfad) => (
+              <li key={pfad.slug}>
+                <Link
+                  href={`/lernen/pfade/${pfad.slug}`}
+                  className="fk-btn-secondary text-sm"
+                >
+                  <Icon name="compass" className="text-learn size-4" />
+                  {pfad.titel}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         {/* --------------------------------------------- Stufen erklären */}
         <section aria-labelledby="stufen" className="mt-14">

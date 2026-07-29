@@ -331,8 +331,18 @@ const IFRS_GROESSEN = [
     zeitraum: true,
   },
   {
+    /*
+      Der Ergebnisanteil der Eigentuemer zuerst, nicht der Jahresueberschuss.
+
+      Der Kurs bezahlt den Anteil der Aktionaere; der Teil, der
+      Minderheitsgesellschaftern gehoert, gehoert nicht in ein
+      Kurs-Gewinn-Verhaeltnis. Bei Konzernen mit grossen Minderheiten – vor
+      allem Versorger und Banken – liegen beide Zahlen um bis zu einem Fuenftel
+      auseinander. `us-gaap:NetIncomeLoss` in der ersten Runde meint ohnehin
+      bereits den Anteil des Mutterunternehmens; erst hier stand es andersherum.
+    */
     feld: 'gewinn' as const,
-    tags: ['ProfitLoss', 'ProfitLossAttributableToOwnersOfParent'],
+    tags: ['ProfitLossAttributableToOwnersOfParent', 'ProfitLoss'],
     zeitraum: true,
   },
   {

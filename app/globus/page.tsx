@@ -14,11 +14,10 @@ import {
   WELTBANK_QUELLE,
   getAbdeckung,
   getLaender,
-  getQuellen,
   getUebernationaleKurse,
   lohnSchaetzung,
-  metriken,
   vermoegenSchaetzung,
+  metriken,
 } from '@/lib/laender'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -33,10 +32,9 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default async function GlobusPage() {
-  const [laender, abdeckung, quellen, uebernational, relatedTopics] = await Promise.all([
+  const [laender, abdeckung, uebernational, relatedTopics] = await Promise.all([
     getLaender(),
     getAbdeckung(),
-    getQuellen(),
     getUebernationaleKurse(),
     getTopicsBySlugs([
       'aktien-laender-branchen',
@@ -137,14 +135,14 @@ export default async function GlobusPage() {
 
         {/* --------------------------------------------------------- Quellen */}
         {/*
-          Kurz, aber nicht weg.
+          Kurz, aber die Namen bleiben.
 
           Die TopoJSON-Umsetzung der Kartengeometrie steht unter der
-          ISC-Lizenz, und die verlangt ausdrücklich, dass der Urhebervermerk
-          erhalten bleibt. Die Weltbank stellt ihre Reihen unter CC BY 4.0 –
-          auch dort ist die Namensnennung Bedingung der Nutzung, nicht
-          Höflichkeit. Aus einem eigenen Abschnitt sind deshalb drei Zeilen
-          geworden; ganz streichen ließe sich das nicht.
+          ISC-Lizenz, die Weltbank stellt ihre Reihen unter CC BY 4.0 – in
+          beiden Fällen ist die Namensnennung Bedingung der Nutzung und nicht
+          Höflichkeit. CC BY lässt ausdrücklich zu, die Angaben auf einer eigenen
+          Seite zu bündeln und dorthin zu verweisen; die Namen selbst stehen
+          deshalb weiterhin hier, alles Weitere unter /quellen.
         */}
         <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
           <h2
@@ -154,24 +152,16 @@ export default async function GlobusPage() {
             Daten und Karte
           </h2>
           <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">
-            Wirtschaftsleistung und Einwohner: {WELTBANK_QUELLE.label}, Bezugsjahr{' '}
-            {WELTBANK_JAHR}.{' '}
-            {quellen.map((quelle, index) => (
-              <span key={quelle.url}>
-                {index > 0 && ' · '}
-                <a
-                  href={quelle.url}
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                  className="underline underline-offset-2"
-                >
-                  {quelle.label}
-                </a>
-              </span>
-            ))}
-            . Karte: Natural Earth (gemeinfrei), TopoJSON-Umsetzung{' '}
+            Wirtschaftsleistung und Einwohner: {WELTBANK_QUELLE.label} (CC BY 4.0),
+            Bezugsjahr {WELTBANK_JAHR}. Weitere Kennzahlen von IWF, Eurostat und OECD.
+            Karte: Natural Earth (gemeinfrei), TopoJSON-Umsetzung{' '}
             <code className="text-xs">world-atlas</code> unter ISC-Lizenz. Jeder Wert
-            trägt in der Detailtafel seinen eigenen Zeitraum und seine eigene Quelle.
+            trägt in der Detailtafel seinen eigenen Zeitraum und seine eigene Quelle;
+            Herkunft, Abgrenzung und Abrufdatum aller Reihen stehen unter{' '}
+            <Link href="/quellen" className="underline underline-offset-2">
+              Quellen
+            </Link>
+            .
           </p>
 
           {/*
@@ -225,14 +215,14 @@ export default async function GlobusPage() {
 
         {/* --------------------------------------------------------- Quellen */}
         {/*
-          Kurz, aber nicht weg.
+          Kurz, aber die Namen bleiben.
 
           Die TopoJSON-Umsetzung der Kartengeometrie steht unter der
-          ISC-Lizenz, und die verlangt ausdrücklich, dass der Urhebervermerk
-          erhalten bleibt. Die Weltbank stellt ihre Reihen unter CC BY 4.0 –
-          auch dort ist die Namensnennung Bedingung der Nutzung, nicht
-          Höflichkeit. Aus einem eigenen Abschnitt sind deshalb drei Zeilen
-          geworden; ganz streichen ließe sich das nicht.
+          ISC-Lizenz, die Weltbank stellt ihre Reihen unter CC BY 4.0 – in
+          beiden Fällen ist die Namensnennung Bedingung der Nutzung und nicht
+          Höflichkeit. CC BY lässt ausdrücklich zu, die Angaben auf einer eigenen
+          Seite zu bündeln und dorthin zu verweisen; die Namen selbst stehen
+          deshalb weiterhin hier, alles Weitere unter /quellen.
         */}
         <section aria-labelledby="quellen" className="border-border mt-14 border-t pt-6">
           <h2
@@ -242,24 +232,16 @@ export default async function GlobusPage() {
             Daten und Karte
           </h2>
           <p className="text-fg-subtle mt-2 max-w-3xl text-sm leading-relaxed">
-            Wirtschaftsleistung und Einwohner: {WELTBANK_QUELLE.label}, Bezugsjahr{' '}
-            {WELTBANK_JAHR}.{' '}
-            {quellen.map((quelle, index) => (
-              <span key={quelle.url}>
-                {index > 0 && ' · '}
-                <a
-                  href={quelle.url}
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                  className="underline underline-offset-2"
-                >
-                  {quelle.label}
-                </a>
-              </span>
-            ))}
-            . Karte: Natural Earth (gemeinfrei), TopoJSON-Umsetzung{' '}
+            Wirtschaftsleistung und Einwohner: {WELTBANK_QUELLE.label} (CC BY 4.0),
+            Bezugsjahr {WELTBANK_JAHR}. Weitere Kennzahlen von IWF, Eurostat und OECD.
+            Karte: Natural Earth (gemeinfrei), TopoJSON-Umsetzung{' '}
             <code className="text-xs">world-atlas</code> unter ISC-Lizenz. Jeder Wert
-            trägt in der Detailtafel seinen eigenen Zeitraum und seine eigene Quelle.
+            trägt in der Detailtafel seinen eigenen Zeitraum und seine eigene Quelle;
+            Herkunft, Abgrenzung und Abrufdatum aller Reihen stehen unter{' '}
+            <Link href="/quellen" className="underline underline-offset-2">
+              Quellen
+            </Link>
+            .
           </p>
 
           {/*
@@ -273,19 +255,27 @@ export default async function GlobusPage() {
           {lohnSchaetzung.modell && lohnSchaetzung.fehlerProzent !== null && (
             <p className="text-fg-subtle mt-3 max-w-3xl text-sm leading-relaxed">
               <strong className="text-fg-muted font-semibold">
-                Zum Durchschnittsgehalt:
+                Zu Gehalt und Vermögen:
               </strong>{' '}
-              Die OECD erhebt es nur bei ihren {lohnSchaetzung.modell.beobachtungen}{' '}
-              Mitgliedern. Für die übrigen Länder steht dort eine{' '}
-              <strong className="text-fg-muted font-semibold">Schätzung</strong> – aus dem
-              Verhältnis von Lohn zu Wirtschaftsleistung je Kopf in genau diesen{' '}
-              {lohnSchaetzung.modell.beobachtungen} Ländern, beides kaufkraftbereinigt.
-              Lässt man eines davon aus der Rechnung und schätzt es aus den übrigen, liegt
-              das Ergebnis typischerweise {formatNumber(lohnSchaetzung.fehlerProzent, 1)}{' '}
-              Prozent daneben. In der Detailtafel ist jeder geschätzte Wert als solcher
-              ausgewiesen; wo ein gemessener vorliegt, gilt immer er. Für das
-              Medianvermögen wird ausdrücklich nicht geschätzt – dort reicht die
-              Datengrundlage nicht über die reichen Länder hinaus.
+              Die OECD erhebt beide nur bei ihren Mitgliedern – den Lohn für{' '}
+              {lohnSchaetzung.modell?.beobachtungen ?? 0} Länder, das Vermögen für{' '}
+              {`${vermoegenSchaetzung.modell?.beobachtungen ?? 0}. `}
+              Bei allen übrigen steht dort eine{' '}
+              <strong className="text-fg-muted font-semibold">Schätzung</strong> aus der
+              Wirtschaftsleistung je Kopf. Lässt man ein Land mit gemessenem Wert aus der
+              Rechnung und schätzt es aus den übrigen, liegt das Ergebnis beim Lohn
+              typischerweise {formatNumber(lohnSchaetzung.fehlerProzent ?? 0, 1)} Prozent
+              daneben, beim Vermögen{' '}
+              {formatNumber(vermoegenSchaetzung.fehlerProzent ?? 0, 1)} – dort hängt der
+              Wert stärker an Wohneigentum und Rentensystem als am Einkommen, und die
+              gemessenen Länder sind durchweg wohlhabend. In der Detailtafel ist jeder
+              geschätzte Wert als solcher ausgewiesen; wo ein gemessener vorliegt, gilt
+              immer er. Für die{' '}
+              <strong className="text-fg-muted font-semibold">Staatsverschuldung</strong>{' '}
+              wird ausdrücklich nicht geschätzt: Sie hängt nicht am Wohlstand – Japan ist
+              reich und hoch verschuldet, Norwegen reich und kaum. Das Bestimmtheitsmaß
+              liegt bei 0,01, und eine Zahl daraus wäre keine Ableitung, sondern eine
+              Erfindung.
             </p>
           )}
         </section>

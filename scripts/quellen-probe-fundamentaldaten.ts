@@ -185,7 +185,7 @@ const FELDER = {
   },
   'ifrs-full': {
     umsatz: ['Revenue', 'RevenueFromContractsWithCustomers'],
-    gewinn: ['ProfitLoss', 'ProfitLossAttributableToOwnersOfParent'],
+    gewinn: ['ProfitLossAttributableToOwnersOfParent', 'ProfitLoss'],
     cashflow: ['CashFlowsFromUsedInOperatingActivities'],
     eigenkapital: ['Equity', 'EquityAttributableToOwnersOfParent'],
   },

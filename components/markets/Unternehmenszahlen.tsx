@@ -1,8 +1,10 @@
+import Link from 'next/link'
+
 import { Kennzahlzeile } from '@/components/markets/Kennzahlzeile'
 import type { Ausfallgrund, Kennwert } from '@/lib/fundamentalkennzahlen'
 import type { Fundamentalbefund } from '@/lib/markets'
 import { formatDate, formatLargeAmount, formatNumber } from '@/lib/format'
-import { fundamentalQuelle, fundamentalStand } from '@/lib/fundamentaldaten'
+import { fundamentalStand } from '@/lib/fundamentaldaten'
 
 /**
  * Die fünf Bewertungskennzahlen einer Aktie.
@@ -22,20 +24,29 @@ import { fundamentalQuelle, fundamentalStand } from '@/lib/fundamentaldaten'
  *
  * ## Warum bei manchen Aktien nichts steht
  *
- * Die Zahlen stammen aus den Pflichtmeldungen an die US-Börsenaufsicht. Dort
- * meldet, wer in den USA notiert ist – auch mit einem Hinterlegungsschein, und
- * damit auch Toyota, Shell oder die Royal Bank of Canada. Wer keine
- * US-Notierung hat, meldet dort nichts; für Nestlé, Allianz oder Samsung gibt
- * es keine offene Quelle mit derselben Verlässlichkeit. Dann steht hier ein
- * Satz, der das erklärt, und keine geschätzte Zahl.
+ * Die Zahlen stammen aus drei Sammlungen von Pflichtangaben: der
+ * US-Börsenaufsicht für alles mit US-Notierung – auch über einen
+ * Hinterlegungsschein, und damit auch Toyota und Shell –, den ESEF-Meldungen
+ * der EU für die europäischen Werte ohne US-Notierung und den offenen Daten
+ * der Börse Taipeh.
+ *
+ * Welche der beiden es war, steht unter der Tafel und wird nicht geraten: Für
+ * Airbus stünde sonst die SEC da, eine Behörde, bei der Airbus nichts
+ * einreicht.
+ *
+ * Wer in keine davon fällt – der deutsche Markt, Japan, Korea, Indien –,
+ * bekommt hier einen Satz, der das erklärt, und keine geschätzte Zahl.
  */
 export function Unternehmenszahlen({
   befund,
   name,
+  quelle,
   className,
 }: {
   befund: Fundamentalbefund
   name: string
+  /** Die Sammlung, aus der die Zahlen dieses Unternehmens stammen. */
+  quelle?: { label: string } | null
   className?: string
 }) {
   const kennzahlen = befund.art === 'zahlen' ? befund.kennzahlen : null
@@ -128,19 +139,22 @@ export function Unternehmenszahlen({
             </p>
           )}
 
+          {/*
+            Kurz, und der Rest auf der Quellenseite.
+
+            Hier stand die vollständige Herkunft samt Abgrenzung – auf jeder
+            einzelnen der über fünfhundert Aktienseiten derselbe Absatz. Was
+            hier bleiben muss, ist das Datum: Der Kurs ist tagesaktuell, die
+            Bilanzzahlen sind es naturgemäß nicht, und wer das nicht danebenstehen
+            hat, liest eine Kennzahl als Aussage über heute.
+          */}
           <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
-            Quelle:{' '}
-            <a
-              href={fundamentalQuelle.url}
-              rel="noopener noreferrer"
-              target="_blank"
-              className="hover:text-fg underline underline-offset-2"
-            >
-              {fundamentalQuelle.label}
-            </a>
-            . {fundamentalQuelle.abgrenzung} Abgerufen am {formatDate(fundamentalStand)};
-            der Kurs ist tagesaktuell, die Bilanzzahlen sind es naturgemäß nicht – sie
-            ändern sich mit den Quartalsberichten.
+            {quelle?.label ?? 'Bilanzzahlen der US-Börsenaufsicht'}, abgerufen am{' '}
+            {formatDate(fundamentalStand)}; der Kurs ist tagesaktuell, die Bilanzzahlen
+            sind es naturgemäß nicht – sie ändern sich mit den Quartalsberichten.{' '}
+            <Link href="/quellen" className="hover:text-fg underline underline-offset-2">
+              Herkunft und Abgrenzung
+            </Link>
           </p>
         </>
       ) : (
@@ -155,13 +169,16 @@ export function Unternehmenszahlen({
             </p>
           ) : (
             <p className="text-fg-muted leading-relaxed">
-              Für {name} liegen keine Unternehmenszahlen vor. Sie stammen aus den
-              Pflichtmeldungen an die US-Börsenaufsicht, und dort meldet nur, wer in den
-              Vereinigten Staaten notiert ist – auch mit einem Hinterlegungsschein,
-              weshalb etwa Toyota und Shell erfasst sind. Wer keine US-Notierung hat,
-              meldet dort nichts. Für diese Unternehmen gibt es keine offene Quelle, die
-              dieselbe Verlässlichkeit hätte: Jedes Land hat seine eigene Aufsicht mit
-              eigenem Format, und die kommerziellen Anbieter verlangen eine Lizenz.
+              Für {name} liegen keine Unternehmenszahlen vor. Sie stammen aus drei
+              Sammlungen von Pflichtangaben: der US-Börsenaufsicht für alles, was in den
+              Vereinigten Staaten notiert ist – auch über einen Hinterlegungsschein,
+              weshalb etwa Toyota und Shell erfasst sind –, den ESEF-Meldungen der EU für
+              die europäischen Werte ohne US-Notierung und den offenen Daten der Börse
+              Taipeh. Was in keine davon fällt, hat keine offene Quelle mit derselben
+              Verlässlichkeit: Der deutsche Markt meldet an den Bundesanzeiger, der keine
+              Schnittstelle anbietet; Japan und Korea verlangen einen Zugangsschlüssel;
+              Hongkong und Indien haben gar keine. Und die kommerziellen Anbieter
+              verlangen eine Lizenz.
             </p>
           )}
           <p className="text-fg-muted mt-3 leading-relaxed">

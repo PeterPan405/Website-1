@@ -90,6 +90,21 @@ export const mainNav: NavItem[] = [
         href: '/rechner/haushaltsrechner',
         hint: 'Budget und Sparquote',
       },
+      {
+        label: 'Kostenrechner',
+        href: '/rechner/kostenrechner',
+        hint: 'Was eine Gebühr über 30 Jahre kostet',
+      },
+      {
+        label: 'Steuerrechner',
+        href: '/rechner/steuerrechner',
+        hint: 'Kapitalerträge und Vorabpauschale',
+      },
+      {
+        label: 'Vermögensübersicht',
+        href: '/rechner/vermoegensuebersicht',
+        hint: 'Bogen zum Ausfüllen und Abheften',
+      },
     ],
     footerLink: { label: 'Alle Rechner im Überblick', href: '/rechner' },
   },
@@ -98,6 +113,16 @@ export const mainNav: NavItem[] = [
     href: '/lernen',
     area: 'learn',
     children: [
+      {
+        label: 'Lernpfade',
+        href: '/lernen/pfade',
+        hint: 'Geführte Wege für einen bestimmten Anlass',
+      },
+      {
+        label: 'Glossar',
+        href: '/glossar',
+        hint: 'Fachbegriffe, in je einem Satz erklärt',
+      },
       {
         label: 'Aktie',
         href: '/lernen/aktie',
@@ -184,6 +209,8 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: 'Inhalte',
     links: [
       { label: 'Lernbereich', href: '/lernen' },
+      { label: 'Lernpfade', href: '/lernen/pfade' },
+      { label: 'Glossar', href: '/glossar' },
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },

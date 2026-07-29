@@ -11,6 +11,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
+import { getFundamentalquelle } from '@/lib/fundamentaldaten'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
@@ -324,6 +325,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               <Unternehmenszahlen
                 befund={fundamental}
                 name={instrument.name}
+                quelle={getFundamentalquelle(instrument.ticker)}
                 className="mt-12"
               />
             )}

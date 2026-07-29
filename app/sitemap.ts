@@ -1,8 +1,10 @@
 import type { MetadataRoute } from 'next'
 
+import { calculators } from '@/data/calculators'
 import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
 
 import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
+import { getLernpfadSlugs } from '@/lib/lernpfade'
 import { getEditionDates } from '@/lib/editions'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
@@ -25,15 +27,23 @@ export const dynamic = 'force-static'
 const buildDate = new Date()
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [newsArticles, latestNewsDate, symbols, topicSlugs, levelParams, editionDates] =
-    await Promise.all([
-      getNewsArticles(),
-      getLatestNewsDate(),
-      getInstrumentSymbols(),
-      getLearnTopicSlugs(),
-      getLearnLevelParams(),
-      getEditionDates(),
-    ])
+  const [
+    newsArticles,
+    latestNewsDate,
+    symbols,
+    topicSlugs,
+    levelParams,
+    editionDates,
+    pfadSlugs,
+  ] = await Promise.all([
+    getNewsArticles(),
+    getLatestNewsDate(),
+    getInstrumentSymbols(),
+    getLearnTopicSlugs(),
+    getLearnLevelParams(),
+    getEditionDates(),
+    getLernpfadSlugs(),
+  ])
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/'), changeFrequency: 'daily', priority: 1 },
@@ -82,6 +92,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ] satisfies MetadataRoute.Sitemap)
       : []),
     { url: absoluteUrl('/kontakt'), changeFrequency: 'yearly', priority: 0.4 },
+    { url: absoluteUrl('/glossar'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: absoluteUrl('/quellen'), changeFrequency: 'monthly', priority: 0.3 },
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },
   ]
@@ -121,14 +133,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  const calculatorPages: MetadataRoute.Sitemap = [
-    'zinsrechner',
-    'inflationsrechner',
-    'rentenrechner',
-    'rentenluecke',
-    'haushaltsrechner',
-  ].map((slug) => ({
-    url: absoluteUrl(`/rechner/${slug}`),
+  /*
+    Die Rechner kommen aus ihrer eigenen Liste.
+
+    Hier standen sie zweimal – einmal in `data/calculators.ts` und einmal
+    abgetippt an dieser Stelle. Der sechste Rechner hat die Doppelung sofort
+    auffliegen lassen: Er war gebaut, verlinkt und gebaut worden, stand aber
+    nicht in der Sitemap. Gemerkt hat es die Paketprüfung, nicht der Mensch.
+  */
+  const calculatorPages: MetadataRoute.Sitemap = calculators.map((rechner) => ({
+    url: absoluteUrl(`/rechner/${rechner.slug}`),
     changeFrequency: 'monthly',
     priority: 0.8,
   }))
@@ -145,8 +159,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  const pfadPages: MetadataRoute.Sitemap = [
+    { url: absoluteUrl('/lernen/pfade'), changeFrequency: 'monthly', priority: 0.8 },
+    ...pfadSlugs.map((slug) => ({
+      url: absoluteUrl(`/lernen/pfade/${slug}`),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
+
   return [
     ...staticPages,
+    ...pfadPages,
     ...topicPages,
     ...levelPages,
     ...calculatorPages,
