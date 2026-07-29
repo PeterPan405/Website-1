@@ -99,9 +99,12 @@ const KOPFZEILEN = {
  *   Macquarie** – Namensverwechslungen, siehe oben.
  * - **Intesa Sanpaolo** und **UniCredit** – beide melden kein Eigenkapital
  *   unter `ifrs-full:Equity`; ohne das bleibt zu wenig übrig.
- * - **Ørsted, Vestas, Coloplast** – ihre Abschlüsse liefern über `json_url`
- *   keine auswertbaren Fakten. Woran das liegt, ist offen; sie stehen deshalb
- *   weiter ohne Zahlen da statt mit falschen.
+ *
+ * Ørsted, Vestas und Coloplast standen hier zunächst ebenfalls – angeblich
+ * ohne auswertbare Fakten. Das war ein Fehler dieses Skripts und nicht der
+ * Quelle: Ihr jüngster Verzeichniseintrag ist ein Halbjahresbericht, und
+ * daraus wird zu Recht kein Jahresumsatz gelesen. Seit der Abruf die drei
+ * jüngsten Meldungen durchgeht, sind sie dabei.
  */
 const ZUORDNUNG: Record<string, string> = {
   // Frankreich
@@ -171,6 +174,9 @@ const ZUORDNUNG: Record<string, string> = {
     '"TERNA - RETE ELETTRICA NAZIONALE SOCIETA\' PER AZIONI" (IN FORMA ABBREVIATA "TERNA S.P.A.")',
 
   // Skandinavien
+  'ORSTED.CO': 'ØRSTED A/S',
+  'VWS.CO': 'VESTAS WIND SYSTEMS A/S',
+  'COLO-B.CO': 'COLOPLAST A/S',
   'ATCO-A.ST': 'ATLAS COPCO AKTIEBOLAG',
   'SAND.ST': 'Sandvik Aktiebolag',
   'INVE-B.ST': 'Investor Aktiebolag',
@@ -248,6 +254,9 @@ const AKTIEN_TAGS = [
   'WeightedAverageNumberOfOrdinarySharesOutstanding',
   'WeightedAverageShares',
 ]
+
+/** Wie viele Meldungen je Unternehmen aufgehoben werden, um eine Jahreszahl zu finden. */
+const HOECHSTENS_MELDUNGEN = 3
 
 /** Ergebnis je Aktie – der Umweg zur Aktienzahl, wenn sie nicht dasteht. */
 const EPS_TAGS = ['BasicEarningsLossPerShare', 'DilutedEarningsLossPerShare']
@@ -444,10 +453,24 @@ function werteAus(bericht: Bericht): Bilanzsatz {
   return satz
 }
 
-/** Das Verzeichnis durchblättern: je Unternehmensname der jüngste Abschluss. */
-async function verzeichnis(): Promise<Map<string, { json: string; ende: string }>> {
+/**
+ * Das Verzeichnis durchblättern: je Unternehmensname die jüngsten Abschlüsse.
+ *
+ * ## Warum mehrere und nicht nur der jüngste
+ *
+ * Weil der jüngste oft ein Halbjahresbericht ist. Coloplast schließt sein
+ * Geschäftsjahr Ende September ab; im Verzeichnis stand als neuester Eintrag
+ * der Bericht zum 31. März. Der enthält keinen Jahreszeitraum, und weil dieses
+ * Skript einen Halbjahresumsatz zu Recht nicht als Jahresumsatz durchgehen
+ * lässt, kam gar nichts an – Ørsted, Vestas und Coloplast standen deshalb ohne
+ * Zahlen da, obwohl ihre Abschlüsse vollständig ausgezeichnet sind.
+ *
+ * Gehalten werden deshalb die drei jüngsten Meldungen je Unternehmen. Gelesen
+ * wird von der neuesten an, bis eine einen Jahresabschluss hergibt.
+ */
+async function verzeichnis(): Promise<Map<string, { json: string; ende: string }[]>> {
   const namen = new Map<string, string>()
-  const jeEntitaet = new Map<string, { json: string; ende: string; entitaet: string }>()
+  const jeEntitaet = new Map<string, { json: string; ende: string; entitaet: string }[]>()
 
   let seite: string | null = `${VERZEICHNIS}?page%5Bsize%5D=500&include=entity`
   let seiten = 0
@@ -468,15 +491,13 @@ async function verzeichnis(): Promise<Map<string, { json: string; ende: string }
       const json = f.attributes?.json_url
       if (!entitaet || typeof json !== 'string' || !json) continue
 
-      const ende = String(f.attributes?.period_end ?? '')
-      const vorhanden = jeEntitaet.get(entitaet)
-      if (vorhanden && vorhanden.ende >= ende) continue
-
-      jeEntitaet.set(entitaet, {
+      const eintraege = jeEntitaet.get(entitaet) ?? []
+      eintraege.push({
         entitaet,
-        ende,
+        ende: String(f.attributes?.period_end ?? ''),
         json: new URL(json, 'https://filings.xbrl.org/').toString(),
       })
+      jeEntitaet.set(entitaet, eintraege)
     }
 
     seite = antwort.links?.next
@@ -485,13 +506,21 @@ async function verzeichnis(): Promise<Map<string, { json: string; ende: string }
     await new Promise((fertig) => setTimeout(fertig, 150))
   }
 
-  const nachName = new Map<string, { json: string; ende: string }>()
-  for (const abschluss of jeEntitaet.values()) {
-    const name = namen.get(abschluss.entitaet)
+  const nachName = new Map<string, { json: string; ende: string }[]>()
+  for (const eintraege of jeEntitaet.values()) {
+    const name = namen.get(eintraege[0].entitaet)
     if (!name) continue
-    const vorhanden = nachName.get(name)
-    if (vorhanden && vorhanden.ende >= abschluss.ende) continue
-    nachName.set(name, { json: abschluss.json, ende: abschluss.ende })
+    const jung = [...eintraege]
+      .sort((a, b) => b.ende.localeCompare(a.ende))
+      .slice(0, HOECHSTENS_MELDUNGEN)
+      .map(({ json, ende }) => ({ json, ende }))
+    const vorhanden = nachName.get(name) ?? []
+    nachName.set(
+      name,
+      [...vorhanden, ...jung]
+        .sort((a, b) => b.ende.localeCompare(a.ende))
+        .slice(0, HOECHSTENS_MELDUNGEN)
+    )
   }
 
   console.log(`${seiten} Seiten gelesen, ${nachName.size} Unternehmen mit Abschluss.\n`)
@@ -520,15 +549,27 @@ async function main() {
   const fehlend: string[] = []
 
   for (const [ticker, name] of Object.entries(ZUORDNUNG)) {
-    const abschluss = nachName.get(name)
-    if (!abschluss) {
+    const abschluesse = nachName.get(name)
+    if (!abschluesse || abschluesse.length === 0) {
       fehlend.push(`${ticker} (${name} steht nicht mehr im Verzeichnis)`)
       continue
     }
 
-    const bericht = (await hole(abschluss.json)) as Bericht | null
-    const satz = bericht ? werteAus(bericht) : {}
-    await new Promise((fertig) => setTimeout(fertig, 200))
+    /*
+      Von der neuesten Meldung an, bis eine einen Jahresabschluss hergibt.
+      Halbjahresberichte liefern hier nichts und werden übersprungen.
+    */
+    let satz: Bilanzsatz = {}
+    for (const abschluss of abschluesse) {
+      const bericht = (await hole(abschluss.json)) as Bericht | null
+      await new Promise((fertig) => setTimeout(fertig, 200))
+      if (!bericht) continue
+      const gelesen = werteAus(bericht)
+      if (gelesen.gewinn || gelesen.eigenkapital) {
+        satz = gelesen
+        break
+      }
+    }
 
     /*
       Ohne Aktienzahl ist der Datensatz für diese Website wertlos: Alle
