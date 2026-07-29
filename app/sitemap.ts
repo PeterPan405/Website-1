@@ -82,6 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ] satisfies MetadataRoute.Sitemap)
       : []),
     { url: absoluteUrl('/kontakt'), changeFrequency: 'yearly', priority: 0.4 },
+    { url: absoluteUrl('/quellen'), changeFrequency: 'monthly', priority: 0.3 },
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },
   ]

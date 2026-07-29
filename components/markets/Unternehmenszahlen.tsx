@@ -1,8 +1,10 @@
+import Link from 'next/link'
+
 import { Kennzahlzeile } from '@/components/markets/Kennzahlzeile'
 import type { Ausfallgrund, Kennwert } from '@/lib/fundamentalkennzahlen'
 import type { Fundamentalbefund } from '@/lib/markets'
 import { formatDate, formatLargeAmount, formatNumber } from '@/lib/format'
-import { fundamentalQuelle, fundamentalStand } from '@/lib/fundamentaldaten'
+import { fundamentalStand } from '@/lib/fundamentaldaten'
 
 /**
  * Die fünf Bewertungskennzahlen einer Aktie.
@@ -128,19 +130,22 @@ export function Unternehmenszahlen({
             </p>
           )}
 
+          {/*
+            Kurz, und der Rest auf der Quellenseite.
+
+            Hier stand die vollständige Herkunft samt Abgrenzung – auf jeder
+            einzelnen der über fünfhundert Aktienseiten derselbe Absatz. Was
+            hier bleiben muss, ist das Datum: Der Kurs ist tagesaktuell, die
+            Bilanzzahlen sind es naturgemäß nicht, und wer das nicht danebenstehen
+            hat, liest eine Kennzahl als Aussage über heute.
+          */}
           <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
-            Quelle:{' '}
-            <a
-              href={fundamentalQuelle.url}
-              rel="noopener noreferrer"
-              target="_blank"
-              className="hover:text-fg underline underline-offset-2"
-            >
-              {fundamentalQuelle.label}
-            </a>
-            . {fundamentalQuelle.abgrenzung} Abgerufen am {formatDate(fundamentalStand)};
-            der Kurs ist tagesaktuell, die Bilanzzahlen sind es naturgemäß nicht – sie
-            ändern sich mit den Quartalsberichten.
+            Bilanzzahlen der US-Börsenaufsicht, abgerufen am{' '}
+            {formatDate(fundamentalStand)}; der Kurs ist tagesaktuell, die Bilanzzahlen
+            sind es naturgemäß nicht – sie ändern sich mit den Quartalsberichten.{' '}
+            <Link href="/quellen" className="hover:text-fg underline underline-offset-2">
+              Herkunft und Abgrenzung
+            </Link>
           </p>
         </>
       ) : (
