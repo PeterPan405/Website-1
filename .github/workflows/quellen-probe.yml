@@ -117,6 +117,32 @@ name: Quellen abklopfen
 # (ein Moebelhaus), Nestle die US-Finanzierungstochter, Volvo die davon
 # getrennte Volvo Car, SK Hynix die SK Telecom.
 #
+# ## ESEF, zweite Runde: die Zahlen selbst
+#
+# Die Sonde `quellen-probe-esef-werte.ts` hat je Kandidat den juengsten
+# Abschluss unter `json_url` geholt und die fuenf Groessen ausgelesen.
+#
+# **Ergebnis vom 29. Juli 2026: 77 der 98 Kandidaten mit Umsatz, Gewinn und
+# Eigenkapital – aber nur 11 mit Aktienzahl.** Und ohne die ist der Datensatz
+# fuer diese Website wertlos: Marktkapitalisierung, KGV, KUV, KBV und Cashflow
+# je Aktie laufen alle ueber sie.
+#
+# Der Grund: ESEF verlangt die Aktienzahl nicht. `NumberOfSharesOutstanding`
+# ist eine Angabe im Anhang, und wer sie auszeichnet, tut das freiwillig.
+#
+# Der Ausweg steht in IAS 33: Das **Ergebnis je Aktie** ist vorgeschrieben und
+# steht in praktisch jedem Abschluss. Jahresueberschuss geteilt durch Ergebnis
+# je Aktie ergibt die gewichtete Durchschnittszahl des Jahres – genau die Zahl,
+# mit der auch das Ergebnis je Aktie gerechnet wurde, und damit die richtige
+# fuer ein KGV. Eingebaut in `scripts/esef-abrufen.ts`.
+#
+# Die Sonde hat ausserdem die erwarteten Verwechslungen bestaetigt: Nestle traf
+# `NESTLE HOLDINGS, INC.` (die US-Finanzierungstochter, 31 statt 91 Mrd.
+# Umsatz), Volvo die Volvo Car, SEB den franzoesischen
+# Haushaltsgeraetehersteller `SEB SA`, SK Hynix die SK Telecom, Hexagon die
+# Hexagon Purus, Sartorius die Sartorius Stedim Biotech, Macquarie Group die
+# Macquarie Bank. Alle sieben stehen deshalb nicht in der Zuordnung.
+#
 # ## Was auch ESEF nicht abdeckt
 #
 # Deutsche Werte fehlen fast vollstaendig – Allianz, BMW, BASF, Bayer, die
