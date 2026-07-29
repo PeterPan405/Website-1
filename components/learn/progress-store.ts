@@ -28,6 +28,25 @@ export function levelKey(topicSlug: string, levelId: string): string {
   return `${topicSlug}:${levelId}`
 }
 
+/**
+ * Schlüssel einer Akademielektion: `akademie:bereich/lektion`.
+ *
+ * ## Warum derselbe Speicher wie im Lernbereich
+ *
+ * Weil es derselbe Fortschritt ist. Zwei Speicherschlüssel hießen zwei
+ * Zurücksetzen-Schalter, zwei Datenschutzhinweise und die Frage, welcher von
+ * beiden gemeint ist, wenn jemand „mein Fortschritt ist weg“ meldet.
+ *
+ * Die Zähler bleiben trotzdem getrennt: `OverallProgress` bildet die Schlüssel,
+ * die es zählen will, selbst und schneidet sie mit dem Gespeicherten – ein
+ * fremder Eintrag in der Liste verschiebt dort nichts. Der Bindestrich-Präfix
+ * `akademie:` kann mit keinem Lernthema kollidieren, weil kein Thema so heißt;
+ * geprüft wird das in `tests/fortschritt.test.ts`.
+ */
+export function lektionKey(bereich: string, lektionSlug: string): string {
+  return `akademie:${bereich}/${lektionSlug}`
+}
+
 function read(): readonly string[] {
   if (cache) return cache
   if (typeof window === 'undefined') return EMPTY
