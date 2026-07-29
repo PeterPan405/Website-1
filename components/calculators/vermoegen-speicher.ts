@@ -2,7 +2,14 @@
 
 import { useSyncExternalStore } from 'react'
 
-import { bogen, type Werte } from '@/lib/vermoegen'
+import {
+  ausAltemFormat,
+  bogen,
+  neueZeile,
+  zeilenVon,
+  type Werte,
+  type Zeile,
+} from '@/lib/vermoegen'
 
 /**
  * Der ausgefüllte Vermögensbogen im Browser.
@@ -54,15 +61,44 @@ export function heute(): string {
  * Ohne diesen Schritt käme jeder Inhalt in die Summen, den jemand von Hand in
  * den localStorage schreibt – und ein Posten, den eine spätere Fassung des
  * Bogens nicht mehr kennt, würde stumm mitgezählt.
+ *
+ * ## Zwei Formen, eine Wahrheit
+ *
+ * Früher stand je Posten eine Zahl im Speicher, heute eine Liste von Zeilen.
+ * Wer den Bogen vorher ausgefüllt hat, hat die alte Form auf seinem Gerät –
+ * und die soll beim nächsten Besuch nicht einfach weg sein. Gelesen wird
+ * deshalb beides; geschrieben nur noch die neue.
  */
 function bereinige(roh: unknown): Werte {
   const werte: Werte = {}
   if (typeof roh !== 'object' || roh === null) return werte
 
+  const quelle = roh as Record<string, unknown>
+
   for (const gruppe of bogen) {
     for (const posten of gruppe.posten) {
-      const wert = (roh as Record<string, unknown>)[posten.id]
-      if (typeof wert === 'number' && Number.isFinite(wert)) werte[posten.id] = wert
+      const wert = quelle[posten.id]
+
+      // Die alte Form: eine Zahl je Posten.
+      if (typeof wert === 'number' && Number.isFinite(wert)) {
+        werte[posten.id] = ausAltemFormat({ [posten.id]: wert })[posten.id]
+        continue
+      }
+
+      if (!Array.isArray(wert)) continue
+
+      const zeilen: Zeile[] = []
+      for (const eintrag of wert) {
+        if (typeof eintrag !== 'object' || eintrag === null) continue
+        const { id, name, betrag } = eintrag as Partial<Zeile>
+        if (typeof betrag !== 'number' || !Number.isFinite(betrag)) continue
+        zeilen.push({
+          id: typeof id === 'string' && id ? id : neueZeile().id,
+          name: typeof name === 'string' && name.trim() ? name : undefined,
+          betrag,
+        })
+      }
+      if (zeilen.length > 0) werte[posten.id] = zeilen
     }
   }
   return werte
@@ -124,12 +160,80 @@ export function setzeStichtag(stichtag: string) {
   write({ ...read(), stichtag })
 }
 
-/** Einen Betrag setzen – `undefined` löscht die Zeile wieder. */
-export function setzeWert(id: string, wert: number | undefined) {
+/** Die Zeilen eines Postens ersetzen. Eine leere Liste löscht ihn ganz. */
+function setzeZeilen(posten: string, zeilen: Zeile[]) {
   const werte = { ...read().werte }
-  if (wert === undefined) delete werte[id]
-  else werte[id] = wert
+  if (zeilen.length === 0) delete werte[posten]
+  else werte[posten] = zeilen
   write({ ...read(), werte })
+}
+
+/**
+ * Die Zeilen eines Postens, um die angesprochene ergänzt.
+ *
+ * ## Warum das nötig ist
+ *
+ * Ein Posten ohne Eintrag zeigt im Bogen trotzdem eine Zeile – sonst gäbe es
+ * nichts, in das man schreiben könnte. Diese Zeile steht aber noch in keinem
+ * Speicher. Ohne diese Stelle liefe die erste Eingabe deshalb ins Leere: Die
+ * Zuordnung fände die Nummer nicht, änderte nichts und schriebe eine leere
+ * Liste zurück. Genau das ist beim ersten Versuch passiert – 2.000 Euro
+ * eingetippt, „+“ gedrückt, Betrag weg.
+ */
+function mitZeile(posten: string, zeileId: string): Zeile[] {
+  const vorhanden = zeilenVon(read().werte, posten)
+  return vorhanden.some((zeile) => zeile.id === zeileId)
+    ? vorhanden
+    : [...vorhanden, { id: zeileId, betrag: 0 }]
+}
+
+/**
+ * Einen Betrag setzen – `undefined` bedeutet: Feld leer.
+ *
+ * Die Zeile bleibt dabei stehen. Sie zu entfernen, sobald das Feld leer ist,
+ * wäre naheliegend und im Weg: Wer eine Zahl korrigieren will, löscht sie
+ * zuerst – und bekäme die Zeile unter den Fingern weggezogen. Weg ist sie erst
+ * mit dem Kreuz daneben. In der Datei taucht eine leere Zeile ohnehin nicht auf.
+ */
+export function setzeBetrag(posten: string, zeileId: string, wert: number | undefined) {
+  setzeZeilen(
+    posten,
+    mitZeile(posten, zeileId).map((zeile) =>
+      zeile.id === zeileId ? { ...zeile, betrag: wert ?? 0 } : zeile
+    )
+  )
+}
+
+/** Die Bezeichnung einer Zeile ändern. */
+export function setzeName(posten: string, zeileId: string, name: string) {
+  setzeZeilen(
+    posten,
+    mitZeile(posten, zeileId).map((zeile) =>
+      zeile.id === zeileId ? { ...zeile, name: name.trim() ? name : undefined } : zeile
+    )
+  )
+}
+
+/** Eine weitere Zeile an einen Posten hängen und ihre Nummer zurückgeben. */
+export function ergaenzeZeile(posten: string): string {
+  const zeile = neueZeile()
+  const vorhanden = zeilenVon(read().werte, posten)
+  /*
+    Hat der Posten noch gar keine Zeile, entstehen zwei: die bisher gedachte
+    erste und die neue. Sonst verschwände beim ersten Klick auf das Plus die
+    Zeile, in die man gerade etwas eintragen wollte.
+  */
+  const grundlage = vorhanden.length === 0 ? [neueZeile()] : vorhanden
+  setzeZeilen(posten, [...grundlage, zeile])
+  return zeile.id
+}
+
+/** Eine Zeile entfernen. */
+export function entferneZeile(posten: string, zeileId: string) {
+  setzeZeilen(
+    posten,
+    zeilenVon(read().werte, posten).filter((zeile) => zeile.id !== zeileId)
+  )
 }
 
 /** Alle Beträge löschen. Der Stichtag bleibt stehen. */

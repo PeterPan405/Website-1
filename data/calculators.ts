@@ -222,6 +222,7 @@ export const calculators: CalculatorDefinition[] = [
       'Besitz und Schulden erfassen, Nettovermögen ermitteln, Bogen herunterladen.',
     featureList: [
       'Sechs Bereiche von Konten bis Sachwerten und Schulden',
+      'Mehrere Zeilen je Posten, jede mit eigener Bezeichnung',
       'Nettovermögen, Besitz und Schulden auf einen Blick',
       'Download als Tabelle – ausgefüllt oder leer zum Ausdrucken',
       'Leere Spalten für die nächsten Stichtage',
@@ -249,6 +250,15 @@ export const calculators: CalculatorDefinition[] = [
           '**Kredite:** die heutige Restschuld, nicht die ursprüngliche Kreditsumme. Sie steht in der jährlichen Mitteilung der Bank.',
           '**Altersvorsorge:** der Rückkaufs- oder Anwartschaftswert. Ob die gesetzliche Rente hineingehört, ist Ansichtssache – der Bogen lässt die Zeile deshalb bewusst leer.',
         ],
+      },
+      { type: 'heading', level: 2, text: 'Mehrere Konten, mehrere Depots' },
+      {
+        type: 'paragraph',
+        text: 'Kaum jemand hat genau ein Girokonto. Über das **Plus** rechts an einem Posten entsteht deshalb eine weitere Zeile, und ab der zweiten bekommt jede ein Feld für ihre Bezeichnung – „Girokonto Sparkasse“, „Depot bei der ING“. Bleibt es bei einer Zeile, bleibt auch die Ansicht wie vorher: Bezeichnung links, Betrag rechts.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der heruntergeladenen Datei steht jede Zeile einzeln, mit ihrem eigenen Namen. Zusammengezogen würde sie genau die Auskunft verlieren, für die man sie getrennt eingetragen hat.',
       },
       { type: 'heading', level: 2, text: 'Warum es zwei Downloads gibt' },
       {
@@ -285,6 +295,15 @@ export const calculators: CalculatorDefinition[] = [
         items: [
           'Die Eingaben werden ausschließlich im Browser verarbeitet und dort gespeichert, damit der Bogen beim nächsten Besuch noch dasteht. Es findet keine Übertragung an einen Server statt.',
           'Über „Alle Eingaben löschen“ ist der Speicher wieder leer. Auf einem fremden Gerät ist das der Schritt, den man nicht vergessen sollte.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Wenn der Download nicht ankommt',
+        items: [
+          'Auf verwalteten Geräten – Firmenlaptops, Schulrechner, manche Sicherheitsprogramme – sperren Browser Downloads pauschal und melden „durch Richtlinie blockiert“. Die Sperre sitzt vor dem Herunterladen; von der Seite aus lässt sich daran nichts ändern.',
+          'Dafür gibt es den Weg über die Zwischenablage: „Ausgefüllt anzeigen“ zeigt dieselbe Tabelle als Text. Kopieren, in eine leere Tabelle einfügen und beim Einfügen das Semikolon als Trennzeichen wählen – das Ergebnis ist dasselbe.',
         ],
       },
     ],

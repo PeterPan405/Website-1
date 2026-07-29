@@ -137,8 +137,56 @@ export const bogen: Gruppe[] = [
   },
 ]
 
-/** Die eingetragenen Beträge, nach Postennummer. */
-export type Werte = Record<string, number>
+/**
+ * Eine eingetragene Zeile.
+ *
+ * Ein Posten kann mehrere haben – wer drei Girokonten führt, trägt drei ein.
+ * Der Name ist freiwillig: Steht keiner da, gilt die Bezeichnung des Postens.
+ * Das hält den Bogen für alle leicht, die nur eine Zeile brauchen, und öffnet
+ * ihn für alle anderen.
+ */
+export interface Zeile {
+  /** Innerhalb des Postens eindeutig – für die Zuordnung im Speicher. */
+  id: string
+  /** Freie Bezeichnung, etwa „Girokonto Sparkasse“. */
+  name?: string
+  betrag: number
+}
+
+/** Die eingetragenen Zeilen, nach Postennummer. */
+export type Werte = Record<string, Zeile[]>
+
+/**
+ * Die frühere Form: ein Betrag je Posten.
+ *
+ * Sie steht noch im Speicher aller, die den Bogen vor der Erweiterung
+ * ausgefüllt haben. Weggeworfen wird davon nichts – gelesen wird beides.
+ */
+export type AlteWerte = Record<string, number>
+
+/** Eine Zeile mit einer neuen, eindeutigen Nummer. */
+export function neueZeile(betrag = 0, name?: string): Zeile {
+  return {
+    id: `z${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`,
+    name,
+    betrag,
+  }
+}
+
+/**
+ * Alte Werte in die neue Form bringen.
+ *
+ * Aus `{ giro: 2500 }` wird eine Zeile ohne Namen. Sie sieht danach im Bogen
+ * genauso aus wie vorher – nur dass jetzt eine zweite danebenpasst.
+ */
+export function ausAltemFormat(alt: AlteWerte): Werte {
+  const werte: Werte = {}
+  for (const [id, betrag] of Object.entries(alt)) {
+    if (typeof betrag !== 'number' || !Number.isFinite(betrag)) continue
+    werte[id] = [neueZeile(betrag)]
+  }
+  return werte
+}
 
 export interface Auswertung {
   besitz: number
@@ -150,9 +198,16 @@ export interface Auswertung {
   ausgefuellt: number
 }
 
-function betrag(werte: Werte, id: string): number {
-  const wert = werte[id]
-  return typeof wert === 'number' && Number.isFinite(wert) ? wert : 0
+/** Die Zeilen eines Postens – auch wenn keine da sind. */
+export function zeilenVon(werte: Werte, id: string): Zeile[] {
+  const zeilen = werte[id]
+  return Array.isArray(zeilen) ? zeilen : []
+}
+
+function betrag(zeile: Zeile): number {
+  return typeof zeile.betrag === 'number' && Number.isFinite(zeile.betrag)
+    ? zeile.betrag
+    : 0
 }
 
 export function werteAuswerten(werte: Werte): Auswertung {
@@ -164,9 +219,11 @@ export function werteAuswerten(werte: Werte): Auswertung {
   for (const gruppe of bogen) {
     let summe = 0
     for (const posten of gruppe.posten) {
-      const wert = betrag(werte, posten.id)
-      summe += wert
-      if (wert !== 0) ausgefuellt += 1
+      for (const zeile of zeilenVon(werte, posten.id)) {
+        const wert = betrag(zeile)
+        summe += wert
+        if (wert !== 0) ausgefuellt += 1
+      }
     }
     jeGruppe[gruppe.id] = summe
     if (gruppe.art === 'besitz') besitz += summe
@@ -232,20 +289,48 @@ export function alsTabelle(optionen: TabellenOptionen): string {
 
     for (const posten of gruppe.posten) {
       /*
-        Nicht ausgefüllte Zeilen bleiben leer statt „0,00“.
+        Leere Zeilen fallen hier heraus, nicht schon im Speicher.
 
-        Für die Summe ist beides dasselbe – eine leere Zelle zählt in jeder
-        Tabellenkalkulation als null. Für den Menschen davor nicht: Eine Null
-        behauptet „geprüft, es ist keins da“, eine leere Zelle sagt „hier stand
-        nichts an“. Auf einem Bogen mit 26 Zeilen, von denen die meisten leer
-        bleiben, ist das der Unterschied zwischen lesbar und zugestellt.
+        Im Bogen bleibt eine Zeile stehen, auch wenn ihr Feld gerade leer ist –
+        sonst verschwände sie beim Korrigieren einer Zahl unter den Fingern. In
+        der Datei hat sie nichts verloren: Dort stünde „0,00“, und das behauptet
+        „geprüft, es ist keins da“, wo nichts geprüft wurde.
       */
-      const eingetragen = werte ? werte[posten.id] : undefined
-      const wert =
-        typeof eingetragen === 'number' && Number.isFinite(eingetragen)
-          ? deutscheZahl(eingetragen)
-          : ''
-      zeilen.push([feld(gruppe.titel), feld(posten.label), wert].join(';') + leer)
+      const eingetragen = werte
+        ? zeilenVon(werte, posten.id).filter(
+            (zeile) => betrag(zeile) !== 0 || zeile.name?.trim()
+          )
+        : []
+
+      /*
+        Ein Posten ohne Eintrag bekommt trotzdem seine Zeile.
+
+        Das ist der ganze Zweck des leeren Bogens: Er soll die Gliederung
+        zeigen, damit man ihn ausdrucken und mit der Hand ausfüllen kann. Aus
+        demselben Grund bleibt der Betrag leer statt „0,00“ – für die Summe ist
+        beides dasselbe, für den Menschen davor nicht. Eine Null behauptet
+        „geprüft, es ist keins da“, eine leere Zelle sagt „hier stand nichts an“.
+      */
+      if (eingetragen.length === 0) {
+        zeilen.push([feld(gruppe.titel), feld(posten.label), ''].join(';') + leer)
+        continue
+      }
+
+      /*
+        Mehrere Zeilen je Posten stehen einzeln untereinander.
+
+        Wer drei Girokonten führt, will beim Nachlesen sehen, welches wie viel
+        hält – eine zusammengezogene Summe nähme genau die Auskunft weg, für die
+        er sie einzeln eingetragen hat. Ohne eigenen Namen steht die Bezeichnung
+        des Postens da.
+      */
+      for (const zeile of eingetragen) {
+        const bezeichnung = zeile.name?.trim() ? zeile.name.trim() : posten.label
+        zeilen.push(
+          [feld(gruppe.titel), feld(bezeichnung), deutscheZahl(betrag(zeile))].join(';') +
+            leer
+        )
+      }
     }
 
     zeilen.push(
