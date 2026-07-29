@@ -156,15 +156,21 @@ async function main() {
     const e = erfolgJe.get(nummer)
 
     /*
-      Das eingezahlte Kapital steht in Tausend, der Nennwert je Aktie in ganzen
-      Dollar. Der Faktor 1000 gehört deshalb dazu und ist kein Vertipper.
+      Zwei Tabellen, zwei Einheiten – und das ist die Stelle, an der der erste
+      Lauf danebenlag.
+
+      Die Bilanz führt ihre Beträge in Tausend, die Stammdaten das eingezahlte
+      Kapital in vollen Neuen Taiwan-Dollar. Wer beide gleich behandelt,
+      bekommt für TSMC 25,9 Billionen Aktien statt 25,9 Milliarden – tausendmal
+      zu viel, und weil Umsatz und Gewinn im laufenden Jahr fehlen, schlägt
+      dabei keine der Bewertungsgrenzen an. Aufgefallen ist es an der
+      Marktkapitalisierung; seitdem prüft `tests/fundamentalplausibel.test.ts`
+      auch die.
     */
     const kapital = zahl(stamm?.['實收資本額'])
     const proAktie = nennwert(stamm?.['普通股每股面額'])
     const aktien =
-      kapital !== null && proAktie !== null
-        ? Math.round((kapital * 1000) / proAktie)
-        : null
+      kapital !== null && proAktie !== null ? Math.round(kapital / proAktie) : null
 
     const eigenkapital = zahl(b?.['權益總額']) ?? zahl(b?.['權益總計'])
 

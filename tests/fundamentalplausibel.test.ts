@@ -204,6 +204,64 @@ pruefe(
   `\n       ${auffaellig.join('\n       ')}`
 )
 
+/* ---------------------------------------------------------------------------
+   Der Börsenwert gegen das Eigenkapital
+--------------------------------------------------------------------------- */
+
+console.log('\n— Börsenwert gegen Eigenkapital —')
+
+/*
+  Diese Prüfung gibt es, weil die vorige eine Lücke hatte.
+
+  Das Kurs-Umsatz-Verhältnis braucht einen Umsatz. Für die Werte an der Börse
+  Taipeh liegt der in den ersten drei Quartalen eines Jahres nicht vor – und
+  genau dort ist die Aktienzahl beim ersten Lauf um den Faktor tausend
+  danebengelegen, ohne dass irgendetwas angeschlagen hätte. TSMC bekam 25,9
+  Billionen Aktien statt 25,9 Milliarden.
+
+  Das Kurs-Buchwert-Verhältnis braucht nur Eigenkapital und Aktienzahl. Es
+  deckt damit auch die Datensätze ab, die noch keine Erfolgsrechnung haben.
+
+  Die Obergrenze ist bewusst weit: Es gibt Unternehmen, deren Börsenwert das
+  Fünfzigfache ihres Buchwerts beträgt – wer kaum Sachanlagen braucht, hat
+  wenig Eigenkapital. Ein Faktor tausend kommt nicht vor.
+*/
+const KBV_MIN = 0.02
+const KBV_MAX = 150
+
+const auffaelligKbv: string[] = []
+let geprueftKbv = 0
+
+for (const [ticker, zahlen] of eintraege) {
+  const eintrag = katalog.get(ticker)
+  if (!eintrag || HINTERLEGUNGSSCHEINE.has(ticker)) continue
+
+  const berichtswaehrung = zahlen.waehrung ?? 'USD'
+  if (!gleicheWaehrung(eintrag.waehrung, berichtswaehrung)) continue
+
+  // Negatives Eigenkapital gibt es wirklich – dort sagt ein KBV nichts.
+  if (!zahlen.aktien || !zahlen.eigenkapital || zahlen.eigenkapital <= 0) continue
+  const roh = letzterKurs(eintrag.symbol)
+  if (roh === null || roh <= 0) continue
+
+  geprueftKbv += 1
+  const kurs = inHauptwaehrung(roh, eintrag.waehrung)
+  const kbv = (kurs.wert * zahlen.aktien) / zahlen.eigenkapital
+  if (kbv < KBV_MIN || kbv > KBV_MAX) {
+    auffaelligKbv.push(
+      `${ticker} (${eintrag.symbol}): KBV ${kbv < 1 ? kbv.toFixed(3) : Math.round(kbv)} ` +
+        `aus Kurs ${kurs.wert} ${kurs.waehrung} × ${zahlen.aktien} Aktien / Eigenkapital ${zahlen.eigenkapital}`
+    )
+  }
+}
+
+pruefe(`es wurden überhaupt Buchwerte gerechnet (${geprueftKbv})`, geprueftKbv > 50)
+pruefe(
+  `jedes Kurs-Buchwert-Verhältnis liegt zwischen ${KBV_MIN} und ${KBV_MAX}`,
+  auffaelligKbv.length === 0,
+  `\n       ${auffaelligKbv.join('\n       ')}`
+)
+
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert.`)
 if (gescheitert > 0) process.exit(1)
 console.log('Alle Prüfungen bestanden.')
