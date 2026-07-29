@@ -3,7 +3,12 @@ import { kennzahlenQuellen } from '@/data/laender/kennzahlen'
 import { editions } from '@/data/editions'
 import laenderSnapshot from '@/data/snapshots/laender.json'
 
-import { fundamentalQuelle, fundamentalStand } from '@/lib/fundamentaldaten'
+import {
+  fundamentalHerkunft,
+  fundamentalQuelle,
+  fundamentalQuelleEsef,
+  fundamentalStand,
+} from '@/lib/fundamentaldaten'
 import { getDevisenkurse, getLiveSeries, snapshotFetchedAt } from '@/lib/market-live'
 import { marketDefinitions } from '@/data/markets'
 import { quartalstermineQuelle, quartalstermineStand } from '@/lib/quartalstermine'
@@ -144,18 +149,30 @@ export async function getQuellengruppen(): Promise<Quellengruppe[]> {
     },
     {
       titel: 'Unternehmenszahlen',
-      einleitung:
-        'Umsatz, Gewinn, Cashflow, Eigenkapital und Aktienzahl stammen aus den Pflichtmeldungen an die US-Börsenaufsicht. Dort meldet, wer in den Vereinigten Staaten notiert ist – auch mit einem Hinterlegungsschein, weshalb Toyota, Shell oder die Royal Bank of Canada erfasst sind. Wer keine US-Notierung hat, meldet dort nichts; für diese Unternehmen steht auf der Seite „keine Angabe“ statt einer geschätzten Zahl.',
+      einleitung: `Umsatz, Gewinn, Cashflow, Eigenkapital und Aktienzahl stammen aus zwei Sammlungen von Pflichtmeldungen: der US-Börsenaufsicht für alles, was in den Vereinigten Staaten notiert ist – auch über einen Hinterlegungsschein, weshalb Toyota und Shell erfasst sind –, und den ESEF-Meldungen der EU für die europäischen Werte ohne US-Notierung. Beides sind Meldungen der Unternehmen selbst, keine Aufbereitung eines Anbieters. Was in keine der beiden fällt – der deutsche Markt, Japan, Korea, Indien –, steht mit „keine Angabe“ da statt mit einer geschätzten Zahl.`,
       eintraege: [
         {
           name: fundamentalQuelle.label,
-          verwendung: `Bewertungskennzahlen für die geführten Aktien (${unternehmenszahl()} Werte im Katalog).`,
+          verwendung: `Bewertungskennzahlen für ${fundamentalHerkunft().sec} der ${unternehmenszahl()} geführten Aktien.`,
           url: fundamentalQuelle.url,
           lizenz: 'Werk der US-Regierung, gemeinfrei',
           grund: 'nachpruefbarkeit',
           stand: fundamentalStand,
           abgrenzung: fundamentalQuelle.abgrenzung,
         },
+        ...(fundamentalQuelleEsef && fundamentalHerkunft().esef > 0
+          ? [
+              {
+                name: fundamentalQuelleEsef.label,
+                verwendung: `Dieselben Kennzahlen für ${fundamentalHerkunft().esef} europäische Werte ohne US-Notierung.`,
+                url: fundamentalQuelleEsef.url,
+                lizenz: 'Offenes Verzeichnis, Abschlüsse als Pflichtveröffentlichung',
+                grund: 'nachpruefbarkeit' as const,
+                stand: fundamentalStand,
+                abgrenzung: fundamentalQuelleEsef.abgrenzung,
+              },
+            ]
+          : []),
         {
           name: quartalstermineQuelle.label,
           verwendung: 'Die Termine im Quartalskalender.',
