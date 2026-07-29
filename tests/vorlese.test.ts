@@ -148,7 +148,11 @@ pruefe(
   bevorzugteStimme([anna, stefan, conrad])?.voiceURI === 'conrad-netz'
 )
 pruefe(
-  'ohne männliche natürliche gewinnt die natürliche vor der lokalen',
+  'die Männerstimme schlägt die natürliche Frauenstimme',
+  bevorzugteStimme([anna, googleDeutsch, stefan])?.voiceURI === 'stefan'
+)
+pruefe(
+  'ohne Männerstimme gewinnt die natürliche vor der lokalen',
   bevorzugteStimme([anna, googleDeutsch])?.voiceURI === 'google-de'
 )
 pruefe(

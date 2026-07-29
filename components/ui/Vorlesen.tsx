@@ -128,6 +128,7 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     .slice()
     .sort((a, b) => Number(klingtNatuerlich(b)) - Number(klingtNatuerlich(a)))
   const wahlVorhanden = zurAuswahl.some((stimme) => stimme.voiceURI === stimmwahl)
+  const automatik = bevorzugteStimme(stimmen)
 
   /**
    * Die gewählte Stimme – oder die Voreinstellung: männlich, lokal, deutsch.
@@ -156,11 +157,12 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     auftrag.lang = 'de-DE'
     auftrag.rate = tempoRef.current
     /*
-      Die Tonlage bleibt bei der Mitte. Sie stand hier einmal auf 0,85 für
-      einen dunkleren Klang – aber verschobene Tonhöhe ist genau das, was
-      synthetische Stimmen künstlich klingen lässt, und die neuronalen
-      verlieren dabei am meisten. Natürlich schlägt tief.
+      Tonlage unter der Mitte – gewünscht ist eine tiefe Stimme. 0,85 macht
+      lokale Stimmen dunkler, ohne blechern zu werden; die neuronalen
+      Netzstimmen ignorieren die Tonhöhe größtenteils und bleiben, wie sie
+      sind. Der Regler kostet dort also nichts.
     */
+    auftrag.pitch = 0.85
     const stimme = stimmeFuerAuftrag()
     if (stimme) auftrag.voice = stimme
     auftrag.onend = () => sprich(ab + 1)
@@ -304,7 +306,14 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
           aria-label="Vorlesestimme wählen"
           className="border-border bg-canvas text-fg focus-visible:ring-ring ml-auto max-w-44 rounded-lg border px-2 py-1.5 text-xs focus-visible:ring-2 focus-visible:outline-none"
         >
-          <option value="">Stimme: automatisch</option>
+          {/*
+            Die Automatik nennt ihre Wahl beim Namen. „Automatisch“ allein
+            hieße: Man hört eine Stimme und weiß nicht, welche – und ob eine
+            Änderung der Rangfolge überhaupt ankommt, ist nicht zu erkennen.
+          */}
+          <option value="">
+            {automatik ? `Automatisch: ${automatik.name}` : 'Stimme: automatisch'}
+          </option>
           {zurAuswahl.map((stimme) => (
             <option key={stimme.voiceURI} value={stimme.voiceURI}>
               {stimme.name}

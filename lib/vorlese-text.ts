@@ -224,15 +224,15 @@ export function klingtMaennlich(stimme: Stimmprofil): boolean {
 }
 
 /**
- * Die Voreinstellung „automatisch“: natürlich vor lokal, männlich vor weiblich.
+ * Die Voreinstellung „automatisch“: männlich zuerst, dabei natürlich vor lokal.
  *
- * Die Rangfolge hat sich einmal umgedreht, und der Grund gehört
- * festgehalten: Zuerst bevorzugte die Automatik lokale Stimmen – der
- * datensparsamste Weg, aber genau die lokalen sind die alten, hörbar
- * synthetischen. Eine Vorlesefunktion, die nach Roboter klingt, benutzt
- * niemand. Deshalb gewinnt jetzt die natürliche Stimme, auch wenn sie eine
- * Netzstimme ist; die Kennzeichnung „(online)“ in der Auswahl bleibt, und
- * wer die lokale will, wählt sie dort von Hand.
+ * Diese Rangfolge ist zweimal umgebaut worden, und beide Gründe gehören
+ * festgehalten. Zuerst gewann die lokale Stimme (datensparsam) – aber die
+ * lokalen sind die alten, hörbar synthetischen. Dann gewann die natürliche –
+ * aber auf Geräten ohne natürliche Männerstimme hieß das eine Frauenstimme,
+ * und gewünscht ist eine männliche. Jetzt gilt: erst das Geschlecht, dann
+ * der Klang, dann die Datensparsamkeit. Die Kennzeichnung „(online)“ in der
+ * Auswahl bleibt; wer anders gewichtet, wählt von Hand.
  *
  * `null` heißt: keine deutsche Stimme vorhanden; der Browser nimmt dann
  * seine Standardstimme mit deutscher Sprachangabe.
@@ -241,9 +241,9 @@ export function bevorzugteStimme<T extends Stimmprofil>(stimmen: readonly T[]): 
   const deutsche = stimmen.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
   return (
     deutsche.find((stimme) => klingtNatuerlich(stimme) && klingtMaennlich(stimme)) ??
-    deutsche.find((stimme) => klingtNatuerlich(stimme)) ??
     deutsche.find((stimme) => stimme.localService && klingtMaennlich(stimme)) ??
     deutsche.find((stimme) => klingtMaennlich(stimme)) ??
+    deutsche.find((stimme) => klingtNatuerlich(stimme)) ??
     deutsche.find((stimme) => stimme.localService) ??
     deutsche[0] ??
     null
