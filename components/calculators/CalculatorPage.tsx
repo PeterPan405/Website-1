@@ -16,7 +16,7 @@ import { getTopicsBySlugs } from '@/lib/learn'
  * Gemeinsamer Rahmen aller Rechner-Seiten.
  *
  * Kopfbereich, Methodik-Abschnitt, Querverweise und die
- * WebApplication-Auszeichnung sind für alle fünf Rechner identisch – nur das
+ * WebApplication-Auszeichnung sind für alle Rechner identisch – nur das
  * eigentliche Bedienelement unterscheidet sich und wird als `children`
  * übergeben.
  */

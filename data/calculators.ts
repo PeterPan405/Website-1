@@ -1,11 +1,16 @@
 import type { ContentBlock } from '@/data/content'
+import { RECHNER_ANZAHL } from '@/lib/site'
 
 /**
- * Metadaten und Methodik-Texte der fünf Rechner.
+ * Metadaten und Methodik-Texte der Rechner.
  *
  * Die Rechenlogik selbst liegt in `lib/finance.ts`. Hier steht ausschließlich,
  * was auf der Seite erklärt wird – jeder Rechner legt seine Formel und seine
  * Annahmen offen, damit ein Ergebnis eingeordnet werden kann.
+ *
+ * Über dieser Zeile stand „Metadaten und Methodik-Texte der fünf Rechner“, und
+ * das war das kleinste Problem: Auf Startseite und Übersicht warb die Website
+ * mit fünf, während hier acht standen. Deshalb die Prüfung am Ende der Datei.
  */
 
 export interface CalculatorDefinition {
@@ -539,6 +544,25 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
 ]
+
+/*
+  Die Zahl in `lib/site.ts` gegen die Wirklichkeit prüfen.
+
+  Dort steht sie als Ziffer, weil die Kopfzeile eine Client-Komponente ist und
+  ein Import dieser Datei den ganzen Datensatz ins Browser-Bundle zöge – für
+  eine einzige Zahl. Der Preis dafür ist, dass sie veralten kann. Genau das ist
+  passiert: Drei Rechner kamen dazu, die Texte blieben bei fünf stehen.
+
+  Umgekehrt als beim Lernbereich, wo `lib/learn.ts` die Daten prüft: Hier
+  importiert die Datendatei die Zahl, weil es keine Dienstschicht für die
+  Rechner gibt. Der Effekt ist derselbe – der Build bricht ab, statt eine
+  falsche Zahl auf die Startseite zu schreiben.
+*/
+if (calculators.length !== RECHNER_ANZAHL) {
+  throw new Error(
+    `RECHNER_ANZAHL in lib/site.ts steht auf ${RECHNER_ANZAHL}, es gibt aber ${calculators.length} Rechner. Bitte dort anpassen – auch RECHNER_ANZAHL_WORT.`
+  )
+}
 
 export function getCalculatorDefinition(slug: string): CalculatorDefinition | undefined {
   return calculators.find((calculator) => calculator.slug === slug)
