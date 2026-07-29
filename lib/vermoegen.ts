@@ -21,6 +21,25 @@
  * landet alles in einer einzigen Spalte, und Umlaute werden zu Fragezeichen.
  */
 
+/**
+ * Die Zeilenform, die `lib/pdf.ts` erwartet.
+ *
+ * Bewusst hier wiederholt statt importiert: Diese Datei bleibt ohne Importe,
+ * damit die Prüfungen sie direkt laden können. Die Wiederholung ist drei Zeilen
+ * lang, und wenn sie auseinanderläuft, meldet es der Übersetzer an der Stelle,
+ * an der beide zusammenkommen.
+ */
+export type PdfZeilen = (
+  | { art: 'ueberschrift'; text: string }
+  | { art: 'unterueberschrift'; text: string; betrag?: string }
+  | { art: 'zeile'; text: string; betrag?: string; eingerueckt?: boolean }
+  | { art: 'summe'; text: string; betrag?: string }
+  | { art: 'hinweis'; text: string }
+  | { art: 'abstand' }
+  | { art: 'linie' }
+  | { art: 'seitenumbruch' }
+)[]
+
 export type Gruppenart = 'besitz' | 'schulden'
 
 export interface Posten {
@@ -365,6 +384,117 @@ export function alsTabelle(optionen: TabellenOptionen): string {
 }
 
 /** Der Dateiname, unter dem der Bogen gespeichert wird. */
-export function dateiname(stichtag: string, ausgefuellt: boolean): string {
-  return `vermoegensuebersicht-${stichtag}${ausgefuellt ? '' : '-leer'}.csv`
+export function dateiname(
+  stichtag: string,
+  ausgefuellt: boolean,
+  endung: 'pdf' | 'csv' = 'pdf'
+): string {
+  return `vermoegensuebersicht-${stichtag}${ausgefuellt ? '' : '-leer'}.${endung}`
+}
+
+/** Ein Datum von `2026-07-29` nach `29.07.2026`. */
+function deutschesDatum(stichtag: string): string {
+  const teile = stichtag.split('-')
+  return teile.length === 3 ? `${teile[2]}.${teile[1]}.${teile[0]}` : stichtag
+}
+
+/** Ein Betrag mit Tausenderpunkten – im PDF ist Platz dafür. */
+function betragsText(wert: number): string {
+  const zeichen = wert < 0 ? '-' : ''
+  const [ganz, nachkomma] = Math.abs(wert).toFixed(2).split('.')
+  const gruppiert = ganz.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  return `${zeichen}${gruppiert},${nachkomma} EUR`
+}
+
+/**
+ * Der Bogen als Zeilen für ein PDF.
+ *
+ * ## Warum das hier steht und nicht im PDF-Modul
+ *
+ * Weil es zwei verschiedene Fragen sind: Wie ein Vermögensbogen aufgebaut ist,
+ * weiß diese Datei; wie man Text auf eine Seite setzt, weiß `lib/pdf.ts`.
+ * Dazwischen liegt eine Liste von Zeilen, und beide Seiten können sich ändern,
+ * ohne die andere anzufassen.
+ *
+ * ## Was im PDF anders ist als in der Tabelle
+ *
+ * Die Tabelle ist zum Weiterrechnen da, das PDF zum Abheften. Deshalb stehen
+ * hier Tausenderpunkte und die Währung an jedem Betrag, die Summen sind
+ * hervorgehoben, und am Ende steht das Nettovermögen groß. Leere Zeilen bleiben
+ * mit einer Punktreihe stehen – auf einem Blatt, das man ausdruckt und mit der
+ * Hand ausfüllt, ist genau das der Zweck.
+ */
+export function alsPdfZeilen(optionen: TabellenOptionen): PdfZeilen {
+  const { werte, stichtag } = optionen
+  const auswertung = werte ? werteAuswerten(werte) : null
+  const zeilen: PdfZeilen = []
+
+  for (const gruppe of bogen) {
+    zeilen.push({
+      art: 'unterueberschrift',
+      text: gruppe.titel,
+      betrag: auswertung ? betragsText(auswertung.jeGruppe[gruppe.id] ?? 0) : undefined,
+    })
+    zeilen.push({ art: 'hinweis', text: gruppe.erklaerung })
+
+    for (const posten of gruppe.posten) {
+      const eingetragen = werte
+        ? zeilenVon(werte, posten.id).filter(
+            (zeile) => betrag(zeile) !== 0 || zeile.name?.trim()
+          )
+        : []
+
+      if (eingetragen.length === 0) {
+        // Die Punktreihe ist die Linie zum Eintragen mit der Hand.
+        zeilen.push({
+          art: 'zeile',
+          text: posten.label,
+          betrag: werte ? undefined : '. . . . . . . . . . .',
+          eingerueckt: true,
+        })
+        continue
+      }
+
+      for (const zeile of eingetragen) {
+        zeilen.push({
+          art: 'zeile',
+          text: zeile.name?.trim() ? zeile.name.trim() : posten.label,
+          betrag: betragsText(betrag(zeile)),
+          eingerueckt: true,
+        })
+      }
+    }
+
+    zeilen.push({ art: 'abstand' })
+  }
+
+  zeilen.push({ art: 'linie' })
+  zeilen.push({
+    art: 'summe',
+    text: 'Besitz gesamt',
+    betrag: auswertung ? betragsText(auswertung.besitz) : undefined,
+  })
+  zeilen.push({
+    art: 'summe',
+    text: 'Schulden gesamt',
+    betrag: auswertung ? betragsText(auswertung.schulden) : undefined,
+  })
+  zeilen.push({
+    art: 'unterueberschrift',
+    text: 'NETTOVERMÖGEN',
+    betrag: auswertung ? betragsText(auswertung.netto) : undefined,
+  })
+
+  zeilen.push({ art: 'abstand' })
+  zeilen.push({
+    art: 'hinweis',
+    text: werte
+      ? `Stand ${deutschesDatum(stichtag)}. Eine einzelne Aufstellung sagt wenig – erst die Reihe uber mehrere Jahre zeigt, ob das Nettovermogen wachst und woran das liegt.`
+          .replace('uber', 'über')
+          .replace('Nettovermogen', 'Nettovermögen')
+          .replace('wachst', 'wächst')
+      : 'Zum Ausdrucken und mit der Hand Ausfüllen. Schulden werden als positive Beträge eingetragen und beim Nettovermögen abgezogen.',
+  })
+
+  return zeilen
 }

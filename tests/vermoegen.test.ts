@@ -346,13 +346,18 @@ console.log('\n— Der Dateiname —')
 
 pruefe(
   'der ausgefüllte Bogen heißt nach dem Stichtag',
-  dateiname('2026-07-29', true) === 'vermoegensuebersicht-2026-07-29.csv',
+  dateiname('2026-07-29', true) === 'vermoegensuebersicht-2026-07-29.pdf',
   dateiname('2026-07-29', true)
 )
 pruefe(
   'der leere Bogen ist als solcher erkennbar',
-  dateiname('2026-07-29', false) === 'vermoegensuebersicht-2026-07-29-leer.csv',
+  dateiname('2026-07-29', false) === 'vermoegensuebersicht-2026-07-29-leer.pdf',
   dateiname('2026-07-29', false)
+)
+pruefe(
+  'die Tabelle bekommt dieselbe Benennung mit anderer Endung',
+  dateiname('2026-07-29', true, 'csv') === 'vermoegensuebersicht-2026-07-29.csv',
+  dateiname('2026-07-29', true, 'csv')
 )
 
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert.`)
