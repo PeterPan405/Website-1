@@ -12,11 +12,19 @@ import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { getMarketOverview } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
 import { buildMetadata } from '@/lib/seo'
-import { areas, areaStyles, LEARN_TOPIC_COUNT, siteConfig, type AreaId } from '@/lib/site'
+import {
+  areas,
+  areaStyles,
+  LEARN_TOPIC_COUNT,
+  RECHNER_ANZAHL,
+  RECHNER_ANZAHL_WORT,
+  siteConfig,
+  type AreaId,
+} from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
   title: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
-  description: `Finanzwissen in drei Lernstufen: ${LEARN_TOPIC_COUNT} Themen in aufbauender Reihenfolge, fünf Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.`,
+  description: `Finanzwissen in drei Lernstufen: ${LEARN_TOPIC_COUNT} Themen in aufbauender Reihenfolge, ${RECHNER_ANZAHL_WORT} Rechner, Marktdaten und eingeordnete News – verständlich und ohne Verkaufsdruck.`,
   path: '/',
   ogTitle: `${siteConfig.name} – Finanzen verstehen, Fehler vermeiden`,
 })
@@ -113,9 +121,9 @@ export default async function HomePage() {
 
             <p className="text-fg-muted mt-5 max-w-xl text-lg leading-relaxed">
               {learnStats.topicCount} Finanzthemen, jeweils in den Stufen Beginner,
-              Fortgeschritten und Profi. Dazu fünf Rechner mit offengelegter Methodik,
-              Marktdaten mit Erklärung und Nachrichten, die eingeordnet werden – statt nur
-              gemeldet.
+              Fortgeschritten und Profi. Dazu {RECHNER_ANZAHL_WORT} Rechner mit
+              offengelegter Methodik, Marktdaten mit Erklärung und Nachrichten, die
+              eingeordnet werden – statt nur gemeldet.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -150,7 +158,9 @@ export default async function HomePage() {
                 <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
                   Rechner
                 </dt>
-                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">5</dd>
+                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">
+                  {RECHNER_ANZAHL}
+                </dd>
               </div>
             </dl>
           </div>

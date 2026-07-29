@@ -10,13 +10,16 @@ import { Reveal } from '@/components/ui/Reveal'
 import { calculators } from '@/data/calculators'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { RECHNER_ANZAHL } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Finanzrechner: Zinsen, Inflation, Rente'),
   description:
-    'Fünf Rechner für Zinseszins, Kaufkraftverlust, Rente, Rentenlücke und Haushaltsbudget – jeweils mit offengelegter Formel und benannten Annahmen.',
+    // Höchstens 160 Zeichen – darüber schneidet Google ab, und `npm run
+    // pruefen` beanstandet es. Deshalb hier nicht alle acht Rechner aufzählen.
+    `${RECHNER_ANZAHL} Rechner für Zinsen, Kosten, Steuern, Vermögen, Inflation und Rente – jeweils mit offengelegter Formel und benannten Annahmen.`,
   path: '/rechner',
-  ogTitle: 'Fünf Finanzrechner mit offener Methodik',
+  ogTitle: `${RECHNER_ANZAHL} Finanzrechner mit offener Methodik`,
 })
 
 export default function CalculatorsOverviewPage() {
@@ -108,8 +111,7 @@ export default function CalculatorsOverviewPage() {
       <JsonLd
         data={collectionPageSchema({
           name: 'Finanzrechner',
-          description:
-            'Fünf Rechner für Zinseszins, Inflation, Rente, Rentenlücke und Haushaltsbudget.',
+          description: `${RECHNER_ANZAHL} Rechner für Zinseszins, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke und Haushaltsbudget.`,
           path: '/rechner',
           items: calculators.map((calculator) => ({
             name: calculator.title,

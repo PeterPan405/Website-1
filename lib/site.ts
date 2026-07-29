@@ -122,6 +122,30 @@ export interface Area {
  */
 export const LEARN_TOPIC_COUNT = 33
 
+/**
+ * Anzahl der Rechner.
+ *
+ * Aus demselben Grund eine Zahl wie {@link LEARN_TOPIC_COUNT} – und aus
+ * demselben Grund mit einer Prüfung versehen: In `data/calculators.ts` bricht
+ * der Build ab, wenn sie nicht mehr stimmt.
+ *
+ * Diese Prüfung fehlte, und genau das ist passiert. Auf der Startseite und der
+ * Rechnerübersicht stand „fünf Rechner“, während es längst acht waren –
+ * Kostenrechner, Steuerrechner und Vermögensübersicht sind dazugekommen, ohne
+ * dass die Texte mitgezogen wurden. Eine Website, die mit einer zu kleinen Zahl
+ * für sich wirbt, ist der harmlosere Fall; dieselbe Nachlässigkeit an einer
+ * Kennzahl wäre keiner.
+ */
+export const RECHNER_ANZAHL = 8
+
+/**
+ * Dieselbe Zahl als Wort – für Fließtext, in dem eine Ziffer stört.
+ *
+ * Steht bewusst daneben statt in einer Umrechnungstabelle: Es sind zwei
+ * Stellen, und wer die eine ändert, sieht die andere.
+ */
+export const RECHNER_ANZAHL_WORT = 'acht'
+
 export const areas: Record<AreaId, Area> = {
   learn: {
     id: 'learn',
@@ -154,8 +178,7 @@ export const areas: Record<AreaId, Area> = {
     id: 'tools',
     label: 'Rechner',
     href: '/rechner',
-    description:
-      'Fünf Rechner für Zinsen, Inflation, Rente, Rentenlücke und Haushaltsbudget – jeweils mit offengelegter Methodik.',
+    description: `${RECHNER_ANZAHL} Rechner für Zinsen, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke und Haushaltsbudget – jeweils mit offengelegter Methodik.`,
   },
   news: {
     id: 'news',

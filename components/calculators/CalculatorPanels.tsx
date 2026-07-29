@@ -8,7 +8,7 @@ import { cn } from '@/lib/cn'
 /**
  * Wiederverwendbare Bausteine für die Rechner-Oberflächen.
  *
- * Alle fünf Rechner nutzen dasselbe Muster: links die Eingaben, rechts das
+ * Alle Rechner nutzen dasselbe Muster: links die Eingaben, rechts das
  * Ergebnis. Das reduziert die Einarbeitung von einem Rechner zum nächsten auf
  * null.
  */

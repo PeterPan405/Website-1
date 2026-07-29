@@ -173,8 +173,8 @@ export default function ImprintPage() {
               gelesen. Die Fassungen müssen deshalb zusammen gepflegt werden.
             */}
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Steuerliche Erläuterungen, Beispielrechnungen und die Ergebnisse der
-              Rechner sind allgemeine und unverbindliche Information. Sie stellen{' '}
+              Steuerliche Erläuterungen, Beispielrechnungen und die Ergebnisse der Rechner
+              sind allgemeine und unverbindliche Information. Sie stellen{' '}
               <strong className="text-fg font-semibold">
                 keine geschäftsmäßige Hilfeleistung in Steuersachen
               </strong>{' '}
@@ -182,11 +182,11 @@ export default function ImprintPage() {
               durch eine Steuerberaterin, einen Steuerberater oder eine andere zur
               Hilfeleistung in Steuersachen befugte Person. Wie ein Sachverhalt
               tatsächlich besteuert wird, hängt von den persönlichen Verhältnissen ab und
-              kann sich durch Gesetzgebung und Rechtsprechung ändern, unter Umständen
-              auch rückwirkend. Verbindliche Auskunft erteilen allein das zuständige
-              Finanzamt und die Angehörigen der steuerberatenden Berufe. Für
-              Entscheidungen, die auf steuerliche Angaben dieser Website gestützt werden,
-              wird keine Haftung übernommen.
+              kann sich durch Gesetzgebung und Rechtsprechung ändern, unter Umständen auch
+              rückwirkend. Verbindliche Auskunft erteilen allein das zuständige Finanzamt
+              und die Angehörigen der steuerberatenden Berufe. Für Entscheidungen, die auf
+              steuerliche Angaben dieser Website gestützt werden, wird keine Haftung
+              übernommen.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Kurse werden als Tagesschlusskurse und zuletzt gehandelte Preise dargestellt

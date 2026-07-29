@@ -263,28 +263,66 @@ const geschmueckt = alsText(
 )
 
 /*
-  Das Logo besteht aus vier Bögen und vier Kreisen, alle als Bézierkurven. Wäre
-  beim Übertragen aus der SVG-Datei ein Winkel falsch herum geraten, stünde hier
-  trotzdem eine gültige PDF-Datei – sie sähe nur falsch aus. Deshalb wird
-  gezählt, was gezeichnet wird: 4 Bögen à 1 Kurve plus 4 Kreise à 4 Kurven.
+  Das Logo wird als Pfad gezeichnet, nicht mehr als Bogen und Kreis.
+
+  Die Pfaddaten stammen wörtlich aus `public/logo.svg`. Beim Übertragen kann
+  genau zweierlei schiefgehen, und beides ergibt trotzdem eine gültige Datei:
+  Der Maßstab stimmt nicht, oder die y-Achse ist nicht gespiegelt – SVG zählt
+  nach unten, PDF nach oben. Sichtbar wird das erst auf dem Papier.
+
+  Deshalb wird nachgerechnet, wo die Punkte landen: Ein Signet mit 40 Punkt
+  Kantenlänge an der linken oberen Ecke des Satzspiegels muss vollständig in
+  diesem Quadrat liegen. Bei fehlender Spiegelung läge es darunter, bei
+  falschem Maßstab ragte es heraus.
 */
-const kurven = (geschmueckt.match(/ c\n/g) ?? []).length
-pruefe(
-  'das Signet steht mit allen Bögen und Köpfen auf der Seite',
-  kurven === 20,
-  `${kurven} Kurven statt 20`
-)
-pruefe(
-  'die Bögen werden mit runden Enden gestrichen',
-  geschmueckt.includes('q 1 J\n') && geschmueckt.includes('\nQ\n')
-)
-pruefe(
-  'die Strichstärke des Körpers ist ein Sechstel der Zeichengröße',
-  // 32 von 200 Einheiten, bei 40 Punkt Kantenlänge also 6,40.
-  geschmueckt.includes('6.40 w'),
-  'bei 40 Punkt Signet'
+const RAND = 52
+const KOPF = 842 - 46
+const punkteImSignet = [...geschmueckt.matchAll(/^([\d.]+) ([\d.]+) m$/gm)].map(
+  (treffer) => ({ x: Number(treffer[1]), y: Number(treffer[2]) })
 )
 
+const imKasten = punkteImSignet.filter(
+  (punkt) =>
+    punkt.x >= RAND - 0.5 &&
+    punkt.x <= RAND + 40.5 &&
+    punkt.y <= KOPF + 0.5 &&
+    punkt.y >= KOPF - 40.5
+)
+
+pruefe(
+  'das Signet liegt vollständig in seinem Quadrat',
+  punkteImSignet.length > 0 && imKasten.length === punkteImSignet.length,
+  `${imKasten.length} von ${punkteImSignet.length} Startpunkten im Kasten`
+)
+
+/*
+  Ein zweiter Fehler, den die Lage allein nicht fängt: ein Pfad, von dem nur
+  ein Teil ankommt. Die vier Figuren zusammen bestehen aus 145 Kurven; der
+  Schriftzug kommt auf der ersten Seite dazu. Die Zahl steht hier als
+  Untergrenze, damit ein zusätzlicher Feinschliff am Logo sie nicht bricht,
+  eine halb übertragene Figur aber sehr wohl.
+*/
+const kurven = (geschmueckt.match(/ c\n/g) ?? []).length
+pruefe('alle Kurven des Zeichens kommen an', kurven >= 145, `${kurven} Kurven`)
+
+/*
+  Der Schriftzug „IMI“ erscheint erst ab 34 Punkt Kantenlänge. Die erste Seite
+  trägt das große Signet, jede weitere ein kleines – auf der zweiten darf der
+  Schriftzug deshalb nicht auftauchen.
+*/
+const seitenStroeme = stroeme(geschmueckt)
+const kurvenJeSeite = seitenStroeme.map((strom) => (strom.match(/ c\n/g) ?? []).length)
+pruefe(
+  'der Schriftzug steht nur im großen Signet',
+  kurvenJeSeite.length >= 1 && kurvenJeSeite[0] > 145,
+  `Kurven je Seite: ${kurvenJeSeite.join(', ')}`
+)
+
+/*
+  Die Figuren werden gefüllt, nicht gestrichen. Vorher waren sie Striche mit
+  runden Enden; stünde eine Logofarbe noch als Strichfarbe da, wäre ein Rest
+  der alten Fassung stehen geblieben.
+*/
 for (const [name, farbe] of [
   ['Navy', '0.09 0.161 0.435'],
   ['Grau', '0.431 0.431 0.431'],
@@ -292,15 +330,12 @@ for (const [name, farbe] of [
   ['Grün', '0.125 0.329 0.216'],
 ] as const) {
   pruefe(
-    `${name} aus dem Logo kommt vor`,
-    geschmueckt.includes(`${farbe} rg`) && geschmueckt.includes(`${farbe} RG`)
+    `${name} aus dem Logo wird als Fläche gesetzt`,
+    geschmueckt.includes(`${farbe} rg`) && !geschmueckt.includes(`${farbe} RG`)
   )
 }
 
-pruefe(
-  'der Markenname steht im Kopf',
-  geschmueckt.includes('(IM Invests) Tj')
-)
+pruefe('der Markenname steht im Kopf', geschmueckt.includes('(IM Invests) Tj'))
 pruefe(
   'die Summe liegt auf einem Band, das Ergebnis in einem Kasten',
   (geschmueckt.match(/ re f\n/g) ?? []).length >= 3
@@ -311,10 +346,7 @@ pruefe(
     geschmueckt.includes('/BaseFont /Helvetica /') &&
     geschmueckt.includes('/BaseFont /Helvetica-Bold ')
 )
-pruefe(
-  'keine Schreibmaschinenschrift mehr',
-  !geschmueckt.includes('Courier')
-)
+pruefe('keine Schreibmaschinenschrift mehr', !geschmueckt.includes('Courier'))
 
 /*
   Rechtsbündige Beträge.
@@ -329,10 +361,23 @@ pruefe(
   einmal, damit die Prüfung eine eigene Rechnung ist und nicht dieselbe.
 */
 const BREITEN: Record<string, number> = {
-  '0': 556, '1': 556, '2': 556, '3': 556, '4': 556,
-  '5': 556, '6': 556, '7': 556, '8': 556, '9': 556,
-  ' ': 278, '.': 278, ',': 278, '-': 333,
-  E: 667, U: 722, R: 722,
+  '0': 556,
+  '1': 556,
+  '2': 556,
+  '3': 556,
+  '4': 556,
+  '5': 556,
+  '6': 556,
+  '7': 556,
+  '8': 556,
+  '9': 556,
+  ' ': 278,
+  '.': 278,
+  ',': 278,
+  '-': 333,
+  E: 667,
+  U: 722,
+  R: 722,
 }
 function betragsbreite(inhalt: string, groesse: number): number {
   let summe = 0
@@ -514,12 +559,22 @@ const leerText = alsText(erzeugePdf({ titel: 'Leer', zeilen: leer }))
 /** Die Inhaltsströme der einzelnen Seiten. */
 function stroeme(datei: string): string[] {
   return [...datei.matchAll(/<< \/Length (\d+) >>\nstream\n/g)].map((treffer) =>
-    datei.slice(treffer.index + treffer[0].length, treffer.index + treffer[0].length + Number(treffer[1]))
+    datei.slice(
+      treffer.index + treffer[0].length,
+      treffer.index + treffer[0].length + Number(treffer[1])
+    )
   )
 }
 
 type Gemalt =
-  | { art: 'flaeche'; x: number; y: number; breite: number; hoehe: number; stelle: number }
+  | {
+      art: 'flaeche'
+      x: number
+      y: number
+      breite: number
+      hoehe: number
+      stelle: number
+    }
   | { art: 'linie'; x1: number; x2: number; y: number; stelle: number }
 
 const verdeckt: string[] = []
