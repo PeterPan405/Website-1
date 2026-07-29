@@ -190,6 +190,59 @@ export const mainNav: NavItem[] = [
     footerLink: { label: 'Globus öffnen', href: '/globus' },
   },
   /*
+    Die Akademie steht zwischen Globus und Kalender – und nicht im Lernbereich.
+
+    Beides sind Lehrinhalte, aber sie beantworten verschiedene Fragen. Der
+    Lernbereich erklärt, was es gibt: Was ist eine Aktie, wie funktioniert ein
+    ETF, was passiert bei einer Zinserhöhung. Die Akademie erklärt, wie man
+    beurteilt, was man da vor sich hat – einen Chart lesen, eine Kennzahl
+    einordnen. Das setzt den Lernbereich voraus und ist trotzdem ein anderes
+    Handwerk.
+
+    Unter „Lernen“ wäre daraus eine vierte Stufe hinter Beginner,
+    Fortgeschritten und Profi geworden, und das stimmt nicht: Wer die
+    technische Analyse verstehen will, muss den Lernbereich nicht abgeschlossen
+    haben.
+  */
+  {
+    label: 'Akademie',
+    href: '/akademie',
+    area: 'akademie',
+    children: [
+      {
+        label: 'Technische Analyse',
+        href: '/akademie/technische-analyse',
+        hint: 'Trends, Unterstützungen, Indikatoren und Chartmuster',
+      },
+      {
+        label: 'Fundamentalanalyse',
+        href: '/akademie/fundamentalanalyse',
+        hint: 'Bilanz, Cashflow und die Deutung von Kennzahlen',
+      },
+      {
+        label: 'Trend, Unterstützung, Widerstand',
+        href: '/akademie/technische-analyse/trend-und-trendlinien',
+        hint: 'Die Grundbegriffe jeder Chartbetrachtung',
+      },
+      {
+        label: 'Gleitende Durchschnitte',
+        href: '/akademie/technische-analyse/gleitende-durchschnitte',
+        hint: 'SMA, EMA und was ihre Kreuzungen wert sind',
+      },
+      {
+        label: 'Elliott-Wellen',
+        href: '/akademie/technische-analyse/elliott-wellen',
+        hint: 'Die Theorie – und warum sie so schwer zu widerlegen ist',
+      },
+      {
+        label: 'Kurs-Gewinn-Verhältnis',
+        href: '/akademie/fundamentalanalyse/kurs-gewinn-verhaeltnis',
+        hint: 'Die bekannteste Kennzahl und ihre Fallstricke',
+      },
+    ],
+    footerLink: { label: 'Alle Lektionen ansehen', href: '/akademie' },
+  },
+  /*
     An der Stelle, an der vorher die Staatsverschuldung stand.
 
     Der Kalender beantwortet die Frage, die nach „was gibt es“ und „wo“ kommt:
@@ -210,6 +263,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     links: [
       { label: 'Lernbereich', href: '/lernen' },
       { label: 'Lernpfade', href: '/lernen/pfade' },
+      { label: 'Akademie', href: '/akademie' },
       { label: 'Glossar', href: '/glossar' },
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },

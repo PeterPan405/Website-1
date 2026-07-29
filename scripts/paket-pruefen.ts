@@ -337,6 +337,30 @@ function pruefen(): string[] {
       if (muster.test(text)) fehler.push(`${pfad}: „${name}“ steht im sichtbaren Text`)
     }
 
+    /*
+      Mehrzeilige Formeln, die zu einer Zeile zusammenfallen.
+
+      HTML macht aus einem Zeilenumbruch ein Leerzeichen, sofern die
+      Weißraumbehandlung nichts anderes sagt. Der MACD besteht aus drei
+      Definitionen, die True Range aus vier Zeilen – ohne `whitespace-pre-*`
+      wird daraus eine durchlaufende Zeile, in der die Gleichheitszeichen
+      wahllos verteilt scheinen.
+
+      Der Fehler ist im Quelltext unsichtbar: Dort stehen die Umbrüche ja. Er
+      entsteht erst beim Anzeigen, und beim Überfliegen der Seite sieht eine
+      lange Formel nicht falsch aus, sondern nur lang. Deshalb steht die
+      Prüfung hier und nicht bei den Daten.
+    */
+    for (const treffer of html.matchAll(/<p\b([^>]*)>([^<]*)<\/p>/g)) {
+      if (!treffer[2].includes('\n')) continue
+      if (/white-?space[-:]\s*(pre|break)/.test(treffer[1])) continue
+      fehler.push(
+        `${pfad}: Ein Absatz enthält Zeilenumbrüche, die der Browser zu Leerzeichen ` +
+          'macht – vermutlich eine mehrzeilige Formel ohne `whitespace-pre-wrap`.'
+      )
+      break
+    }
+
     // ----------------------------------------------------------- Lerngrafiken
     fehler.push(...grafikenPruefen(html, grafikGemeldet))
 

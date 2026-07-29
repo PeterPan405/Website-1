@@ -228,7 +228,17 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
     case 'formula':
       return (
         <div className="rounded-card border-border bg-surface-muted mt-6 border p-4 sm:p-5">
-          <p className="text-fg overflow-x-auto font-mono text-sm font-medium sm:text-base">
+          {/*
+            `whitespace-pre-wrap`, weil eine Formel mehrzeilig sein darf.
+
+            Der MACD besteht aus drei Zeilen, die True Range aus vier. Ohne
+            diese Regel fasst der Browser die Zeilenumbrüche zu Leerzeichen
+            zusammen, und aus drei Definitionen wird eine durchlaufende Zeile,
+            die niemand mehr auseinandernehmen kann. `pre-wrap` statt `pre`:
+            Einrückungen bleiben erhalten, eine zu lange Zeile bricht aber um,
+            statt am Telefon rechts aus dem Kasten zu laufen.
+          */}
+          <p className="text-fg overflow-x-auto font-mono text-sm font-medium whitespace-pre-wrap sm:text-base">
             {block.expression}
           </p>
           <p className="text-fg-muted mt-2.5 text-sm leading-relaxed">

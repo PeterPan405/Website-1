@@ -29,6 +29,22 @@
 /** Buchstaben und Ziffern, die an einer Wortgrenze nicht stehen dürfen. */
 const WORTZEICHEN = 'A-Za-zÄÖÜäöüßÀ-ÿ0-9'
 
+/**
+ * Der Bindestrich zählt auf beiden Seiten als Wortzeichen.
+ *
+ * Im Deutschen ist ein Wort mit angehängtem Bindestrich fast nie das Wort
+ * selbst, sondern die Hälfte einer Zusammensetzung – entweder als Ergänzungs-
+ * strich („Gewinn- und Verlustrechnung“) oder als Fuge („Index-ETF“). In
+ * beiden Fällen bedeutet die Hälfte etwas anderes als der Begriff im Glossar:
+ * Die Gewinn- und Verlustrechnung ist keine Erklärung des Gewinns, und ein
+ * Squeeze-out hat mit einem Squeeze nichts zu tun.
+ *
+ * Vor dem Wort wurde der Bindestrich von Anfang an ausgeschlossen, damit
+ * „Kurs-Gewinn-Verhältnis“ nicht in der Mitte aufbricht. Dass er dahinter
+ * erlaubt blieb, war ein Versehen – es traf zwölf Stellen im Paket.
+ */
+const GRENZE = `${WORTZEICHEN}-`
+
 export interface Wortform {
   /** Die Form, wie sie im Text steht. */
   form: string
@@ -64,10 +80,7 @@ export function baueIndex(formen: Wortform[]): Begriffsindex {
   const alternativen = sortiert.map(maskiere).join('|')
 
   return {
-    muster: new RegExp(
-      `(?<![${WORTZEICHEN}-])(${alternativen})(?![${WORTZEICHEN}])`,
-      'gi'
-    ),
+    muster: new RegExp(`(?<![${GRENZE}])(${alternativen})(?![${GRENZE}])`, 'gi'),
     nachForm,
   }
 }

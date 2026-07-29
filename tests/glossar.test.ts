@@ -105,6 +105,31 @@ pruefe(
   verlinkt('Ein Themen-Index ist etwas anderes.').join(', ')
 )
 
+/*
+  Dieselbe Regel muss rechts gelten – sie tat es zunächst nicht.
+
+  Im Paket standen zwölf Stellen, an denen die erste Hälfte einer
+  Zusammensetzung verlinkt war: „Squeeze-out“ zeigte auf den Squeeze,
+  „Index-ETF“ auf den Index, „Gewinn- und Verlustrechnung“ auf den Gewinn.
+  Der Ergänzungsstrich ist dabei der heimtückischere Fall, weil zwischen den
+  beiden Hälften ein Leerzeichen steht und die Zeile deshalb richtig aussieht.
+*/
+pruefe(
+  'ein Bindestrich rechts zählt ebenso als Wortzeichen',
+  verlinkt('Ein Index-ETF bildet ihn nach.').length === 0,
+  verlinkt('Ein Index-ETF bildet ihn nach.').join(', ')
+)
+pruefe(
+  'auch der Ergänzungsstrich mit folgendem Leerzeichen',
+  verlinkt('Die Aktien- und Anleihequote steht fest.').length === 0,
+  verlinkt('Die Aktien- und Anleihequote steht fest.').join(', ')
+)
+pruefe(
+  'eine Wortform mit eigenem Bindestrich bleibt erkennbar',
+  verlinkt('Das Kurs-Gewinn-Verhältnis liegt bei 15.').includes('kgv'),
+  verlinkt('Das Kurs-Gewinn-Verhältnis liegt bei 15.').join(', ')
+)
+
 console.log('\n— Nur einmal —')
 
 const einmal = zerlege(

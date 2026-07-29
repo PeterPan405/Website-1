@@ -11,6 +11,7 @@
  * einzelnen Themen und diese vor den Unterseiten.
  */
 
+import { getAlleLektionen, getBereiche } from '@/lib/akademie'
 import { getEditions } from '@/lib/editions'
 import { formatDate, formatNumber } from '@/lib/format'
 import { getLaender } from '@/lib/laender'
@@ -164,6 +165,32 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     der Suche fanden sie sich nicht. Die Suchbegriffe entstehen aus den
     verwandten Lernthemen – dieselben Wörter, unter denen jemand sucht.
   */
+  /*
+    Die Akademie: erst die beiden Bereiche, dann jede Lektion.
+
+    Die Stichworte einer Lektion sind genau die Wörter, unter denen jemand
+    sucht – „MACD“, „Widerstand“, „KGV“. Sie stehen deshalb ohne Umweg als
+    Suchbegriffe im Index; der Titel allein würde „überkauft“ nicht finden.
+  */
+  for (const bereich of getBereiche()) {
+    eintraege.push({
+      title: bereich.titel,
+      href: `/akademie/${bereich.id}`,
+      kind: 'Akademie',
+      hint: bereich.kurz,
+    })
+  }
+
+  for (const lektion of getAlleLektionen()) {
+    eintraege.push({
+      title: lektion.titel,
+      href: `/akademie/${lektion.bereich}/${lektion.slug}`,
+      kind: 'Akademie',
+      hint: lektion.kurz,
+      keywords: [lektion.slug, ...lektion.stichworte],
+    })
+  }
+
   for (const rechner of calculators) {
     eintraege.push({
       title: rechner.title,

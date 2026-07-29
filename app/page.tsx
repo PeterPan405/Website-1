@@ -34,13 +34,16 @@ export const metadata: Metadata = buildMetadata({
  *
  * Ohne Staatsverschuldung: Der Bereich bleibt über die Kopf- und Fußzeile
  * erreichbar, ist auf der Startseite aber kein gleichrangiger Einstieg neben
- * Lernen, Rechnern, Märkten und News.
+ * den übrigen. Die Überschrift darüber zählt die Kacheln selbst – wer hier
+ * eine ergänzt, muss sie nirgends sonst nachtragen.
  */
 const areaTiles: { area: AreaId; icon: IconName }[] = [
   { area: 'learn', icon: 'book' },
   { area: 'tools', icon: 'calculator' },
   { area: 'markets', icon: 'chart' },
   { area: 'globe', icon: 'globe' },
+  // Zwischen Globus und Kalender – dieselbe Stelle wie in der Kopfzeile.
+  { area: 'akademie', icon: 'scale' },
   { area: 'calendar', icon: 'clock' },
   { area: 'news', icon: 'newspaper' },
 ]

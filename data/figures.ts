@@ -37,6 +37,19 @@
  */
 
 export type FigureId =
+  /* -------------------------------------------------- Akademie: Charts */
+  /** Aufbau einer Kerze: Körper, Dochte, die vier Kurse. */
+  | 'ta-kerze-aufbau'
+  /** Aufwärtstrend aus höheren Hochs und Tiefs, danach der Bruch. */
+  | 'ta-trendstruktur'
+  /** Eine Marke als Widerstand, nach dem Ausbruch als Unterstützung. */
+  | 'ta-unterstuetzung-widerstand'
+  /** Derselbe Kurs mit einfachem und exponentiellem Durchschnitt. */
+  | 'ta-sma-vs-ema'
+  /** MACD-Linie, Signallinie und Histogramm unter einem Kursverlauf. */
+  | 'ta-macd'
+  /** Der Elliott-Grundzyklus aus fünf Impuls- und drei Korrekturwellen. */
+  | 'ta-elliott-zyklus'
   /** Einfacher Zins gegen Zinseszins über 40 Jahre. */
   | 'zins-gerade-vs-kurve'
   /** Drei Sparer mit gleicher Rate und unterschiedlichem Startalter. */
@@ -821,5 +834,47 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Zwei schematische Kurven über einen vollständigen Konjunkturzyklus, beide um dieselbe Mittellinie. Die zyklische Kurve schlägt weit aus: Im Aufschwung liegt sie deutlich oben, im Abschwung deutlich unten. Dazu gehören Automobil, Maschinenbau, Chemie, Banken und Luxusgüter – Branchen, deren Gewinne stark mit der Konjunktur schwanken. Die defensive Kurve folgt demselben Verlauf mit kleinem Ausschlag: Nahrungsmittel, Versorger, Gesundheit und Telekommunikation werden auch in einer Krise gebraucht, bleiben dafür in starken Aufschwüngen zurück. Beide Kurven enden auf derselben Höhe, weil die Aussage der Schwankung gilt und nicht der Rendite. An den Achsen stehen bewusst keine Zahlen: Wie stark eine Branche schwankt, hängt am Zyklus, am Land und am Zeitraum. Weil beide derselben Konjunktur folgen, ist eine Branchenwette fast immer eine Wette auf den Zeitpunkt der Wende – und der ist so wenig vorhersagbar wie alles andere am Markt.',
     caption:
       'Beide folgen derselben Konjunktur, nur mit verschiedenem Ausschlag. Wer auf eine Branche setzt, wettet deshalb meist auf einen Zeitpunkt.',
+  },
+  'ta-kerze-aufbau': {
+    title: 'Was eine Kerze zeigt',
+    description:
+      'Zwei Kerzen nebeneinander, beschriftet. Die linke ist hell und steht für eine Periode mit steigendem Kurs: Der Körper reicht von der Eröffnung unten bis zum Schluss oben, die dünnen Dochte darüber und darunter reichen bis zum Hoch und zum Tief. Die rechte ist dunkel und steht für eine fallende Periode – dort liegt die Eröffnung oben und der Schluss unten, der Körper ist derselbe Kasten, nur die Bedeutung seiner Kanten hat sich vertauscht. Die Aussage steckt im Verhältnis: Ein langer Körper heißt, dass sich eine Seite von Anfang bis Ende durchgesetzt hat. Ein kurzer Körper mit langen Dochten heißt, dass in beide Richtungen gezogen wurde und am Ende fast nichts übrig blieb.',
+    caption:
+      'Vier Kurse in einem Zeichen: Eröffnung, Hoch, Tief, Schluss. Die Farbe sagt nur, welche der beiden Körperkanten die Eröffnung war.',
+  },
+  'ta-trendstruktur': {
+    title: 'Woran ein Trend endet',
+    description:
+      'Ein schematischer Kursverlauf im Aufwärtstrend, in dem die Hoch- und Tiefpunkte markiert und nummeriert sind. Drei aufeinanderfolgende Hochs liegen jeweils höher als das vorige, ebenso die Tiefs dazwischen – das ist die Definition eines Aufwärtstrends. Eine Gerade durch die Tiefpunkte bildet die Trendlinie. Im rechten Teil bricht die Struktur: Das vierte Hoch bleibt unter dem dritten, und das darauffolgende Tief unterschreitet erstmals das vorherige Tief. Erst dieser zweite Schritt beendet den Trend, nicht schon der erste. Die Grafik zeigt damit, warum ein einzelner Kursrückgang keinen Trendbruch bedeutet: Solange ein Rücksetzer über dem letzten Tief endet, ist er eine Korrektur innerhalb des Trends.',
+    caption:
+      'Ein Aufwärtstrend endet nicht, wenn der Kurs fällt, sondern wenn ein Tief unter das vorige rutscht.',
+  },
+  'ta-unterstuetzung-widerstand': {
+    title: 'Der Rollentausch einer Marke',
+    description:
+      'Ein waagerechtes Band liegt über den gesamten Chart. Links läuft der Kurs dreimal von unten an dieses Band heran und dreht jedes Mal wieder nach unten ab – das Band wirkt als Widerstand. In der Mitte bricht der Kurs darüber hinaus. Rechts fällt er zurück bis auf dasselbe Band und dreht dort nach oben – dieselbe Marke wirkt jetzt als Unterstützung. Das Band ist bewusst als Zone gezeichnet und nicht als Strich: Anleger haben nicht alle zum selben Kurs gekauft, sondern in einem Bereich darum herum. Die Erklärung für den Rollentausch steckt im Verhalten: Vor dem Ausbruch warten dort die Verkäufer, die zu diesem Kurs eingestiegen waren; nach dem Ausbruch sind es die Käufer, die dort zugegriffen haben.',
+    caption:
+      'Ein gebrochener Widerstand wird häufig zur Unterstützung. Der Grund liegt nicht im Chart, sondern bei den Anlegern, die dort ihren Einstand haben.',
+  },
+  'ta-sma-vs-ema': {
+    title: 'Wie stark ein Durchschnitt nachläuft',
+    description:
+      'Ein schematischer Kursverlauf mit einem Anstieg, einem scharfen Einbruch und einer Erholung. Darüber liegen zwei geglättete Linien über dieselbe Periode: der einfache Durchschnitt, der alle Kurse gleich gewichtet, und der exponentielle, der neuere Kurse stärker gewichtet. Beide folgen dem Kurs mit Verzögerung, aber unterschiedlich stark: Am Einbruch dreht die exponentielle Linie früher nach unten und liegt danach näher am Kurs, während die einfache Linie länger oben bleibt und flacher verläuft. Der Preis für die schnellere Reaktion ist Unruhe – die exponentielle Linie folgt auch kleinen Bewegungen, die keine Bedeutung haben. Die Verzögerung beider Linien ist kein Fehler der Rechnung, sondern ihr Zweck: Wer glätten will, muss Vergangenheit mitnehmen.',
+    caption:
+      'Beide laufen dem Kurs hinterher. Der exponentielle Durchschnitt reagiert früher – und meldet dafür häufiger etwas, das keine Bewegung war.',
+  },
+  'ta-macd': {
+    title: 'Der MACD unter dem Kurs',
+    description:
+      'Zwei übereinanderliegende Darstellungen desselben Zeitraums. Oben ein schematischer Kursverlauf mit Anstieg, Gipfel und Rückgang. Unten der daraus abgeleitete MACD: die MACD-Linie als Differenz zweier exponentieller Durchschnitte, die geglättete Signallinie und das Histogramm als Balken um die Nulllinie, das den Abstand zwischen beiden Linien zeigt. Zwei Stellen sind markiert: Wo die MACD-Linie die Signallinie von unten kreuzt, wechseln die Balken von negativ auf positiv – das ist das übliche Signal. Am Gipfel ist zu sehen, dass die Balken bereits schrumpfen, während der Kurs noch steigt: Die Bewegung verliert an Beschleunigung, bevor sie die Richtung wechselt. Genau darin liegt der Nutzen und zugleich die Schwäche des Indikators – dieselbe Beobachtung tritt auch auf, wenn der Kurs anschließend weitersteigt.',
+    caption:
+      'Der MACD misst die Beschleunigung, nicht die Richtung. Das Histogramm dreht vor den Linien – manchmal zu Recht, oft zu früh.',
+  },
+  'ta-elliott-zyklus': {
+    title: 'Der Elliott-Grundzyklus',
+    description:
+      'Ein schematischer Verlauf aus acht Wellen, jede beschriftet. Fünf Impulswellen laufen in Trendrichtung nach oben, nummeriert von 1 bis 5: Welle 1 steigt, Welle 2 korrigiert, ohne den Anfang von Welle 1 zu unterschreiten, Welle 3 ist die längste und steilste, Welle 4 pendelt seitwärts, ohne in den Kursbereich von Welle 1 zu reichen, Welle 5 bringt den letzten Schub. Danach folgen drei Korrekturwellen gegen den Trend, mit A, B und C bezeichnet. Die drei festen Regeln der Theorie sind in der Zeichnung eingehalten und markiert: Welle 2 bleibt über dem Start, Welle 3 ist nicht die kürzeste, Welle 4 überlappt Welle 1 nicht. Alles Übrige an der Theorie ist auslegbar – und weil sie zahlreiche Sonderformen zulässt, lässt sich für fast jeden tatsächlichen Verlauf eine regelkonforme Zählung finden.',
+    caption:
+      'Fünf Wellen vor, drei zurück. Die drei harten Regeln stehen in der Grafik – die vielen erlaubten Ausnahmen sind der Grund, warum die Zählung selten eindeutig ist.',
   },
 }
