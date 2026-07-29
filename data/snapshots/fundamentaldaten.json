@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-29T07:59:06.123Z",
+  "abgerufenAm": "2026-07-29T08:10:34.562Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -619,6 +619,14 @@
       "eigenkapital": 44366000000,
       "waehrung": "CAD",
       "aktien": 2081578000
+    },
+    "COLO-B.CO": {
+      "waehrung": "DKK",
+      "umsatz": 27874000000,
+      "gewinn": 3636000000,
+      "cashflow": 6645000000,
+      "eigenkapital": 16122000000,
+      "aktien": 225418475
     },
     "COP": {
       "umsatz": 51824000000,
@@ -2388,6 +2396,7 @@
     "BNP.PA",
     "CA.PA",
     "CAP.PA",
+    "COLO-B.CO",
     "CPG.L",
     "CS.PA",
     "DG.PA",
