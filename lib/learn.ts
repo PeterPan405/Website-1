@@ -66,7 +66,7 @@ export interface LearnSectionWithTopics {
    * Nummer des ersten Themas in der Gesamtliste, von 0 an.
    *
    * Die Kacheln sind durchnummeriert. Ohne diesen Versatz begänne jeder
-   * Abschnitt wieder bei eins, und aus 33 Themen würden sechs kurze Listen –
+   * Abschnitt wieder bei eins, und aus 34 Themen würden sechs kurze Listen –
    * genau der Eindruck, den die Reihenfolge vermeiden soll.
    */
   offset: number

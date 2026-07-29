@@ -3,7 +3,7 @@ import { learnLevelIds, type LearnTopic } from '@/data/learn/types'
 /**
  * Prüft die Lerninhalte beim Bauen.
  *
- * Der Lernbereich ist der größte Teil dieser Website: 33 Themen, 99 Stufen,
+ * Der Lernbereich ist der größte Teil dieser Website: 34 Themen, 102 Stufen,
  * fast 400 Wissensfragen. Er wächst nicht auf einmal, sondern Thema für
  * Thema – und genau dabei entstehen die Fehler, die niemandem auffallen:
  * eine Meta-Description, die im Suchergebnis abgeschnitten wird; ein
