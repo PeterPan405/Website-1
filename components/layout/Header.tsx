@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
 
 import { SearchDialog } from '@/components/layout/SearchDialog'
+import { SprachUmschalter } from '@/components/layout/SprachUmschalter'
 import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import { Icon } from '@/components/ui/Icon'
 import { Logo } from '@/components/ui/Logo'
@@ -143,6 +144,7 @@ export function Header() {
             <Icon name="search" className="size-5" />
             <span className="sr-only">Suche öffnen</span>
           </button>
+          <SprachUmschalter />
           <ThemeToggle />
           <Link href="/lernen" className="fk-btn-primary hidden lg:inline-flex">
             Jetzt lernen

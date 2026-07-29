@@ -27,6 +27,7 @@ import {
   EMPTY_SNAPSHOT,
   serializeSnapshot,
   thinPoints,
+  type Devisenkurse,
   type MarketSnapshot,
   type SnapshotInstrument,
   type SnapshotPoint,
@@ -107,22 +108,42 @@ function ladeBisherige(): MarketSnapshot {
 }
 
 /** Sammelt die Devisenreihen. Ein Abruf deckt alle Währungen ab. */
-async function holeDevisen(): Promise<Map<string, SnapshotPoint[]>> {
-  const ergebnis = new Map<string, SnapshotPoint[]>()
+async function holeDevisen(): Promise<{
+  reihen: Map<string, SnapshotPoint[]>
+  tabelle: Devisenkurse | null
+}> {
+  const reihen = new Map<string, SnapshotPoint[]>()
   const tage = await fetchEcbHistoryFull()
-  if (!tage) return ergebnis
+  if (!tage) return { reihen, tabelle: null }
 
   for (const [symbol, quelle] of Object.entries(marketSources)) {
     if (quelle.provider !== 'ecb') continue
     const reihe = seriesForCurrency(tage, quelle.currency)
     if (reihe.length > 0) {
-      ergebnis.set(
+      reihen.set(
         symbol,
         reihe.map((punkt) => ({ d: punkt.date, c: punkt.value }))
       )
     }
   }
-  return ergebnis
+
+  /*
+    Die vollstaendige Tabelle des juengsten Tages mitnehmen.
+
+    Bisher wurden aus dieser Datei fuenf Paare uebernommen und der Rest
+    weggeworfen. Gebraucht wird er trotzdem: Wer in einer anderen Waehrung
+    bilanziert als er notiert – Shell in Dollar an der Londoner Boerse – bekommt
+    ohne Umrechnung keine Kennzahlen. Die Tabelle kostet dreissig Zahlen.
+  */
+  const juengster = tage.reduce(
+    (bester, tag) => (bester && bester.date >= tag.date ? bester : tag),
+    null as (typeof tage)[number] | null
+  )
+  const tabelle = juengster
+    ? { stand: juengster.date, jeEuro: { ...juengster.rates } }
+    : null
+
+  return { reihen, tabelle }
 }
 
 /**
@@ -163,7 +184,7 @@ async function main(): Promise<void> {
   const uebernommen: string[] = []
   const behalten: string[] = []
 
-  const devisen = await holeDevisen()
+  const { reihen: devisen, tabelle: devisentabelle } = await holeDevisen()
 
   for (const [symbol, quelle] of Object.entries(marketSources)) {
     if (!bekannt.has(symbol)) {
@@ -303,8 +324,17 @@ async function main(): Promise<void> {
     Genau das ist am ersten Tag dreimal passiert: drei Commits „Kurse: Stand
     2026-07-27“ hintereinander, drei Bereitstellungen, kein einziger neuer Kurs.
   */
-  const vorher = serializeSnapshot({ fetchedAt: null, instruments: bisher.instruments })
-  const nachher = serializeSnapshot({ fetchedAt: null, instruments: instrumente })
+  const tabelle = devisentabelle ?? bisher.devisen
+  const vorher = serializeSnapshot({
+    fetchedAt: null,
+    instruments: bisher.instruments,
+    devisen: bisher.devisen,
+  })
+  const nachher = serializeSnapshot({
+    fetchedAt: null,
+    instruments: instrumente,
+    devisen: tabelle,
+  })
   if (vorher === nachher) {
     console.log('[kurse] Keine Kursänderung – Datei bleibt unberührt.')
     return
@@ -313,6 +343,7 @@ async function main(): Promise<void> {
   const neu: MarketSnapshot = {
     fetchedAt: new Date().toISOString(),
     instruments: instrumente,
+    devisen: tabelle,
   }
 
   mkdirSync(dirname(ZIEL), { recursive: true })

@@ -21,6 +21,22 @@ const daten = snapshot as MarketSnapshot
 /** Wann der Abruf zuletzt lief – `null`, solange noch keiner lief. */
 export const snapshotFetchedAt: string | null = daten.fetchedAt
 
+/**
+ * Die Euro-Referenzkurse der EZB vom jüngsten Handelstag.
+ *
+ * `null`, solange die Momentaufnahme sie nicht enthält – geschrieben werden sie
+ * erst seit dem Umbau des Kursabrufs. Wer damit rechnet, muss den Fall
+ * behandeln, statt einen Kurs zu erfinden.
+ */
+export function getDevisenkurse(): {
+  stand: string
+  jeEuro: Record<string, number>
+} | null {
+  const tabelle = daten.devisen
+  if (!tabelle?.stand || !tabelle.jeEuro) return null
+  return tabelle
+}
+
 /** Herkunft der Kurse eines Instruments, wie sie unter dem Chart steht. */
 export interface QuoteSource {
   label: string

@@ -20,13 +20,14 @@ import { fundamentalQuelle, fundamentalStand } from '@/lib/fundamentaldaten'
  * - **Cashflow je Aktie** – wie viel Geld fließt wirklich herein? Gewinn lässt
  *   sich buchhalterisch gestalten, Zahlungsströme weit weniger.
  *
- * ## Warum bei vielen Aktien nichts steht
+ * ## Warum bei manchen Aktien nichts steht
  *
- * Die Zahlen stammen aus den Pflichtmeldungen an die US-Börsenaufsicht. Wer
- * nicht dort meldet – und das sind die meisten europäischen und asiatischen
- * Unternehmen –, ist nicht enthalten. Eine offene, kostenfreie Quelle mit
- * derselben Verlässlichkeit für den Rest der Welt gibt es nicht. Dann steht
- * hier ein Satz, der das erklärt, und keine geschätzte Zahl.
+ * Die Zahlen stammen aus den Pflichtmeldungen an die US-Börsenaufsicht. Dort
+ * meldet, wer in den USA notiert ist – auch mit einem Hinterlegungsschein, und
+ * damit auch Toyota, Shell oder die Royal Bank of Canada. Wer keine
+ * US-Notierung hat, meldet dort nichts; für Nestlé, Allianz oder Samsung gibt
+ * es keine offene Quelle mit derselben Verlässlichkeit. Dann steht hier ein
+ * Satz, der das erklärt, und keine geschätzte Zahl.
  */
 export function Unternehmenszahlen({
   befund,
@@ -116,6 +117,17 @@ export function Unternehmenszahlen({
             </dl>
           </div>
 
+          {befund.art === 'zahlen' && befund.umrechnung && (
+            <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
+              Die Aktie notiert in {befund.umrechnung.vonWaehrung}, das Unternehmen
+              berichtet in {waehrung}. Umgerechnet wurde deshalb der Börsenwert – Kurs mal
+              Aktienzahl, beides von heute – mit dem Euro-Referenzkurs der Europäischen
+              Zentralbank vom {formatDate(befund.umrechnung.kursStand)}. Die gemeldeten
+              Zahlen selbst sind unangetastet geblieben; ein Wechselkurs berührt hier
+              keine einzige Bilanzgröße.
+            </p>
+          )}
+
           <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
             Quelle:{' '}
             <a
@@ -144,11 +156,12 @@ export function Unternehmenszahlen({
           ) : (
             <p className="text-fg-muted leading-relaxed">
               Für {name} liegen keine Unternehmenszahlen vor. Sie stammen aus den
-              Pflichtmeldungen an die US-Börsenaufsicht, und die erfassen nur Unternehmen,
-              die nach US-Vorschriften bilanzieren. Für die übrigen gibt es keine offene
-              Quelle, die dieselbe Verlässlichkeit hätte – jedes Land hat seine eigene
-              Aufsicht mit eigenem Format, und die kommerziellen Anbieter verlangen eine
-              Lizenz.
+              Pflichtmeldungen an die US-Börsenaufsicht, und dort meldet nur, wer in den
+              Vereinigten Staaten notiert ist – auch mit einem Hinterlegungsschein,
+              weshalb etwa Toyota und Shell erfasst sind. Wer keine US-Notierung hat,
+              meldet dort nichts. Für diese Unternehmen gibt es keine offene Quelle, die
+              dieselbe Verlässlichkeit hätte: Jedes Land hat seine eigene Aufsicht mit
+              eigenem Format, und die kommerziellen Anbieter verlangen eine Lizenz.
             </p>
           )}
           <p className="text-fg-muted mt-3 leading-relaxed">
