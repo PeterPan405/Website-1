@@ -24,16 +24,17 @@ import { fundamentalStand } from '@/lib/fundamentaldaten'
  *
  * ## Warum bei manchen Aktien nichts steht
  *
- * Die Zahlen stammen aus zwei Sammlungen von Pflichtmeldungen: der
+ * Die Zahlen stammen aus drei Sammlungen von Pflichtangaben: der
  * US-Börsenaufsicht für alles mit US-Notierung – auch über einen
- * Hinterlegungsschein, und damit auch Toyota und Shell – und den
- * ESEF-Meldungen der EU für die europäischen Werte ohne US-Notierung.
+ * Hinterlegungsschein, und damit auch Toyota und Shell –, den ESEF-Meldungen
+ * der EU für die europäischen Werte ohne US-Notierung und den offenen Daten
+ * der Börse Taipeh.
  *
  * Welche der beiden es war, steht unter der Tafel und wird nicht geraten: Für
  * Airbus stünde sonst die SEC da, eine Behörde, bei der Airbus nichts
  * einreicht.
  *
- * Wer in keine der beiden fällt – der deutsche Markt, Japan, Korea, Indien –,
+ * Wer in keine davon fällt – der deutsche Markt, Japan, Korea, Indien –,
  * bekommt hier einen Satz, der das erklärt, und keine geschätzte Zahl.
  */
 export function Unternehmenszahlen({
@@ -168,15 +169,16 @@ export function Unternehmenszahlen({
             </p>
           ) : (
             <p className="text-fg-muted leading-relaxed">
-              Für {name} liegen keine Unternehmenszahlen vor. Sie stammen aus zwei
-              Sammlungen von Pflichtmeldungen: der US-Börsenaufsicht für alles, was in den
+              Für {name} liegen keine Unternehmenszahlen vor. Sie stammen aus drei
+              Sammlungen von Pflichtangaben: der US-Börsenaufsicht für alles, was in den
               Vereinigten Staaten notiert ist – auch über einen Hinterlegungsschein,
-              weshalb etwa Toyota und Shell erfasst sind –, und den ESEF-Meldungen der EU
-              für die europäischen Werte ohne US-Notierung. Was in keine der beiden fällt,
-              hat keine offene Quelle mit derselben Verlässlichkeit: Der deutsche Markt
-              meldet an den Bundesanzeiger, Japan, Korea und Indien haben je eine eigene
-              Aufsicht mit eigenem Format, und die kommerziellen Anbieter verlangen eine
-              Lizenz.
+              weshalb etwa Toyota und Shell erfasst sind –, den ESEF-Meldungen der EU für
+              die europäischen Werte ohne US-Notierung und den offenen Daten der Börse
+              Taipeh. Was in keine davon fällt, hat keine offene Quelle mit derselben
+              Verlässlichkeit: Der deutsche Markt meldet an den Bundesanzeiger, der keine
+              Schnittstelle anbietet; Japan und Korea verlangen einen Zugangsschlüssel;
+              Hongkong und Indien haben gar keine. Und die kommerziellen Anbieter
+              verlangen eine Lizenz.
             </p>
           )}
           <p className="text-fg-muted mt-3 leading-relaxed">
