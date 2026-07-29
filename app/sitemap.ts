@@ -4,6 +4,7 @@ import { calculators } from '@/data/calculators'
 import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
 
 import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
+import { getLernpfadSlugs } from '@/lib/lernpfade'
 import { getEditionDates } from '@/lib/editions'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
@@ -26,15 +27,23 @@ export const dynamic = 'force-static'
 const buildDate = new Date()
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [newsArticles, latestNewsDate, symbols, topicSlugs, levelParams, editionDates] =
-    await Promise.all([
-      getNewsArticles(),
-      getLatestNewsDate(),
-      getInstrumentSymbols(),
-      getLearnTopicSlugs(),
-      getLearnLevelParams(),
-      getEditionDates(),
-    ])
+  const [
+    newsArticles,
+    latestNewsDate,
+    symbols,
+    topicSlugs,
+    levelParams,
+    editionDates,
+    pfadSlugs,
+  ] = await Promise.all([
+    getNewsArticles(),
+    getLatestNewsDate(),
+    getInstrumentSymbols(),
+    getLearnTopicSlugs(),
+    getLearnLevelParams(),
+    getEditionDates(),
+    getLernpfadSlugs(),
+  ])
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/'), changeFrequency: 'daily', priority: 1 },
@@ -149,8 +158,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  const pfadPages: MetadataRoute.Sitemap = [
+    { url: absoluteUrl('/lernen/pfade'), changeFrequency: 'monthly', priority: 0.8 },
+    ...pfadSlugs.map((slug) => ({
+      url: absoluteUrl(`/lernen/pfade/${slug}`),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
+
   return [
     ...staticPages,
+    ...pfadPages,
     ...topicPages,
     ...levelPages,
     ...calculatorPages,

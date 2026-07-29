@@ -16,6 +16,7 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
 import { learningResourceSchema } from '@/lib/jsonld'
 import { getLearnLevel, getLearnLevelParams, getRelatedTopics } from '@/lib/learn'
+import { getPfadeMitStufe } from '@/lib/lernpfade'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 type LevelPageProps = { params: Promise<{ thema: string; stufe: string }> }
@@ -61,6 +62,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
 
   const { topic, levelId, level, previousLevelId, nextLevelId } = result
   const relatedTopics = await getRelatedTopics(thema, 3)
+  const pfade = await getPfadeMitStufe(thema, stufe)
 
   const levelEntries: LevelNavEntry[] = learnLevelIds.map((id) => ({
     id,
@@ -253,6 +255,36 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
                 </Link>
               </p>
             </section>
+
+            {/*
+              Wozu diese Stufe gehört.
+
+              Wer über die Suche hier landet, sieht sonst eine einzelne Seite
+              ohne Zusammenhang. Der Verweis sagt, auf welchem Weg sie liegt und
+              an welcher Stelle – das ist die Gegenrichtung zum Pfad selbst.
+            */}
+            {pfade.length > 0 && (
+              <section aria-labelledby="pfade-mit" className="fk-card p-6">
+                <h2 id="pfade-mit" className="text-fg text-base font-semibold">
+                  Teil dieser Lernpfade
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {pfade.map(({ pfad, nummer }) => (
+                    <li key={pfad.slug}>
+                      <Link
+                        href={`/lernen/pfade/${pfad.slug}`}
+                        className="text-learn hover:text-brand text-sm font-semibold transition"
+                      >
+                        {pfad.titel}
+                      </Link>
+                      <p className="text-fg-subtle text-xs">
+                        Schritt {nummer} von {pfad.schritte.length}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             <TopicLinkList topics={relatedTopics} title="Verwandte Themen" />
           </aside>

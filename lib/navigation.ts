@@ -114,6 +114,11 @@ export const mainNav: NavItem[] = [
     area: 'learn',
     children: [
       {
+        label: 'Lernpfade',
+        href: '/lernen/pfade',
+        hint: 'Geführte Wege für einen bestimmten Anlass',
+      },
+      {
         label: 'Aktie',
         href: '/lernen/aktie',
         hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
