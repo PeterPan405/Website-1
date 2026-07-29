@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-29T08:10:34.562Z",
+  "abgerufenAm": "2026-07-29T11:13:11.841Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -465,8 +465,8 @@
       "umsatz": 9890600000,
       "gewinn": 1293000000,
       "cashflow": 2204600000,
-      "eigenkapital": 18651700000,
-      "aktien": 147637117
+      "eigenkapital": 18848000000,
+      "aktien": 147753998
     },
     "BLK": {
       "umsatz": 24216000000,
@@ -574,8 +574,8 @@
       "umsatz": 5296759000,
       "gewinn": 1108888000,
       "cashflow": 1728781000,
-      "eigenkapital": 6561463000,
-      "aktien": 275816000
+      "eigenkapital": 6857963000,
+      "aktien": 275393000
     },
     "CEG": {
       "umsatz": 22663000000,
@@ -916,7 +916,7 @@
       "umsatz": 187267000000,
       "gewinn": 5879000000,
       "cashflow": 21282000000,
-      "eigenkapital": 37453000000,
+      "eigenkapital": 35719000000,
       "aktien": 3991000000
     },
     "FCX": {
@@ -2222,7 +2222,7 @@
       "umsatz": 40000000000,
       "gewinn": 20058000000,
       "cashflow": 23059000000,
-      "eigenkapital": 35661000000
+      "eigenkapital": 35178000000
     },
     "VER.VI": {
       "waehrung": "EUR",
