@@ -183,6 +183,12 @@ name: Quellen abklopfen
 
 on:
   workflow_dispatch:
+    inputs:
+      sonde:
+        description: 'Welche Sonde laufen soll'
+        type: choice
+        default: alle
+        options: [alle, sec, asien, nordisch, esef]
 
 jobs:
   abklopfen:
@@ -198,6 +204,7 @@ jobs:
           node-version: 22
 
       - name: SEC nach den fehlenden Unternehmen absuchen
+        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'sec')
         run: node --experimental-strip-types scripts/quellen-probe-fundamentaldaten.ts
 
       # Steht vor den ESEF-Schritten: Diese Sonde dauert Sekunden, jene
@@ -207,24 +214,24 @@ jobs:
       # Was nach SEC und ESEF noch fehlt: Deutschland, Japan, Korea, Taiwan,
       # Hongkong, Indien. Jedes Land mit eigener Aufsicht und eigenem Format.
       - name: Aufsichtsbehörden außerhalb von USA und EU abklopfen
-        if: always()
+        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'asien')
         run: node --experimental-strip-types scripts/quellen-probe-asien.ts
 
       # Der offene Rest aus dem ESEF-Abruf: drei nordische Werte, die im
       # Verzeichnis stehen und trotzdem nichts hergeben.
       - name: Nordische Abschlüsse untersuchen
-        if: always()
+        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'nordisch')
         run: node --experimental-strip-types scripts/quellen-probe-nordisch.ts
 
       - name: ESEF-Verzeichnis für die europäischen Werte abklopfen
-        if: always()
+        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'esef')
         run: node --experimental-strip-types scripts/quellen-probe-esef.ts
 
       # Zweite Runde: nicht nur, ob der Name im Verzeichnis steht, sondern
       # welche Zahlen dahinterstehen. Erst daran lässt sich eine Zuordnung
       # prüfen – ein Namenstreffer allein hat hier schon zweimal danebengelegen.
       - name: ESEF-Abschlüsse auslesen
-        if: always()
+        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'esef')
         run: node --experimental-strip-types scripts/quellen-probe-esef-werte.ts
 
       - name: Kandidatenlisten sichern
