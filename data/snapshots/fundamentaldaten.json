@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-29T07:20:17.491Z",
+  "abgerufenAm": "2026-07-29T07:59:06.123Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -1584,6 +1584,14 @@
       "eigenkapital": 42508000000,
       "aktien": 2880471000
     },
+    "ORSTED.CO": {
+      "waehrung": "DKK",
+      "umsatz": 73244000000,
+      "gewinn": 1727000000,
+      "cashflow": 23741000000,
+      "eigenkapital": 148941000000,
+      "aktien": 863500000
+    },
     "PANW": {
       "umsatz": 9221500000,
       "gewinn": 1133900000,
@@ -2260,6 +2268,14 @@
       "eigenkapital": 5597000000,
       "aktien": 337182468
     },
+    "VWS.CO": {
+      "waehrung": "EUR",
+      "umsatz": 18822000000,
+      "gewinn": 778000000,
+      "cashflow": 2286000000,
+      "eigenkapital": 3881000000,
+      "aktien": 997435897
+    },
     "WBC.AX": {
       "umsatz": 58046000000,
       "gewinn": 6916000000,
@@ -2403,6 +2419,7 @@
     "OMV.VI",
     "OR.PA",
     "ORA.PA",
+    "ORSTED.CO",
     "PKN.WA",
     "PRX.AS",
     "PRY.MI",
@@ -2429,6 +2446,7 @@
     "VER.VI",
     "VIE.PA",
     "VOE.VI",
+    "VWS.CO",
     "WKL.AS"
   ],
   "quelleTwse": {
