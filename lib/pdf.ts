@@ -9,25 +9,40 @@
  * Weil die üblichen PDF-Bibliotheken zwischen 300 KB und einem Megabyte ins
  * Browser-Paket bringen, und zwar auf jeder Seite, die den Rechner lädt. Was
  * hier gebraucht wird, ist ein Bruchteil davon: Text in zwei Spalten, ein paar
- * Linien, Seitenumbruch. Ein PDF, das nur das kann, ist eine überschaubare
- * Datei – und niemand muss eine Abhängigkeit pflegen, deren Rest er nie
- * benutzt.
+ * Flächen, das Signet, Seitenumbruch. Ein PDF, das nur das kann, ist eine
+ * überschaubare Datei – und niemand muss eine Abhängigkeit pflegen, deren Rest
+ * er nie benutzt.
  *
  * ## Warum keine Schriftart eingebettet wird
  *
  * PDF-Betrachter müssen vierzehn Standardschriften mitbringen, darunter
- * Helvetica und Courier. Wer sie benutzt, spart das Einbetten vollständig –
- * die Datei bleibt bei wenigen Kilobyte, und es gibt keine Lizenzfrage.
+ * Helvetica in allen drei hier benutzten Schnitten. Wer sie verwendet, spart
+ * das Einbetten vollständig – die Datei bleibt bei wenigen Kilobyte, und es
+ * gibt keine Lizenzfrage.
  *
- * ## Warum die Beträge in Courier stehen
+ * ## Warum das Logo gezeichnet und nicht eingebettet wird
  *
- * Weil Zahlen rechtsbündig gehören und PDF keine Ausrichtung kennt: Man muss
- * die Textbreite selbst ausrechnen und die Startposition entsprechend
- * verschieben. Bei Helvetica hieße das, für jedes Zeichen eine Breitentabelle
- * mitzuführen. Courier ist dicktengleich – jedes Zeichen misst genau 0,6 der
- * Schriftgröße –, und damit ist die Breite eine Multiplikation. Nebenbei stehen
- * die Ziffern dadurch exakt untereinander, was in einer Tabelle ohnehin richtig
- * ist.
+ * Weil es aus vier Kreisbögen, vier Kreisen und nichts weiter besteht. Als
+ * Bild müsste es in einer festen Auflösung mitgeliefert werden und wäre im
+ * Ausdruck entweder pixelig oder unnötig groß. Als Vektor sind es zweihundert
+ * Byte im Inhaltsstrom, und es druckt in jeder Größe scharf. Die Maße stammen
+ * aus `public/logo.svg`; die Bögen sind dort dieselben.
+ *
+ * Ein Unterschied fällt beim Übertragen an: SVG zählt die y-Achse nach unten,
+ * PDF nach oben. Ein Winkel im Logo wird hier deshalb zu seinem Gegenwinkel.
+ *
+ * ## Warum die Beträge sich exakt ausrichten lassen
+ *
+ * PDF kennt keine Ausrichtung: Wer rechtsbündig setzen will, muss die
+ * Textbreite selbst ausrechnen. Für Fließtext ginge das nur mit der
+ * vollständigen Breitentabelle der Schrift – 224 Zahlen für einen einzigen
+ * Zweck. Für Beträge genügt ein Dutzend: Ziffern, Komma, Punkt, Leerzeichen,
+ * Minus und die drei Buchstaben von „EUR“. Deren Breiten stehen unten exakt
+ * da, und weil alle zehn Ziffern in Helvetica gleich breit sind, stehen die
+ * Beträge zugleich sauber untereinander.
+ *
+ * Alles andere – Umbruch, Seitenzahl – kommt mit einer Schätzung nach
+ * Zeichenklassen aus, die eher zu breit als zu schmal liegt.
  *
  * ## Warum die Datei als Zeichenkette entsteht
  *
@@ -38,12 +53,24 @@
  * Zeichen in Bytes übersetzt.
  */
 
+/** Der Farbton eines Gruppenbalkens – die vier Farben des Logos. */
+export type Ton = 'navy' | 'grau' | 'rot' | 'gruen'
+
 /** Eine Zeile im Dokument. */
 export type PdfZeile =
   | { art: 'ueberschrift'; text: string }
-  | { art: 'unterueberschrift'; text: string; betrag?: string }
-  | { art: 'zeile'; text: string; betrag?: string; eingerueckt?: boolean }
-  | { art: 'summe'; text: string; betrag?: string }
+  | { art: 'unterueberschrift'; text: string; betrag?: string; ton?: Ton }
+  | {
+      art: 'zeile'
+      text: string
+      betrag?: string
+      eingerueckt?: boolean
+      /** Zieht statt eines Betrags eine Linie zum Eintragen mit der Hand. */
+      schreiblinie?: boolean
+    }
+  | { art: 'summe'; text: string; betrag?: string; schreiblinie?: boolean }
+  /** Das Ergebnis ganz unten – als ausgefüllter Kasten, damit man es findet. */
+  | { art: 'abschluss'; text: string; betrag?: string; schreiblinie?: boolean }
   | { art: 'hinweis'; text: string }
   | { art: 'abstand' }
   | { art: 'linie' }
@@ -53,6 +80,8 @@ export interface PdfDokument {
   titel: string
   /** Steht klein unter dem Titel, etwa der Stichtag. */
   untertitel?: string
+  /** Der Markenname oben rechts, neben Signet und Titel. */
+  marke?: string
   /** Steht auf jeder Seite unten links; die Seitenzahl kommt rechts dazu. */
   fusszeile?: string
   zeilen: PdfZeile[]
@@ -66,19 +95,70 @@ const HOEHE = 842
 const RAND = 52
 const RECHTS = BREITE - RAND
 const UNTEN = 64
+/** Oberkante des Kopfes – Signet und Titel beginnen hier. */
+const KOPF = HOEHE - 46
+
+/* --------------------------------------------------------------------------
+   Farben. Die vier Logofarben stammen aus `public/logo.svg`, die Grautöne
+   sind so gewählt, dass sie im Schwarzweißdruck noch unterscheidbar bleiben.
+-------------------------------------------------------------------------- */
+type Farbe = readonly [number, number, number]
+
+const NAVY: Farbe = [0.09, 0.161, 0.435] // #17296F
+const GRAU: Farbe = [0.431, 0.431, 0.431] // #6E6E6E
+const ROT: Farbe = [0.545, 0.133, 0.145] // #8B2225
+const GRUEN: Farbe = [0.125, 0.329, 0.216] // #205437
+
+const TEXT: Farbe = [0.13, 0.13, 0.14]
+const LEISE: Farbe = [0.45, 0.45, 0.47]
+const ZEBRA: Farbe = [0.965, 0.968, 0.976]
+const BAND: Farbe = [0.918, 0.929, 0.949]
+const HAARLINIE: Farbe = [0.84, 0.85, 0.87]
+const WEISS: Farbe = [1, 1, 1]
+
+const TOENE: Record<Ton, Farbe> = { navy: NAVY, grau: GRAU, rot: ROT, gruen: GRUEN }
+/** Ohne eigene Angabe bekommt jede Gruppe der Reihe nach eine Logofarbe. */
+const REIHUM: Farbe[] = [NAVY, GRAU, ROT, GRUEN]
 
 /** Schriftgrößen und Zeilenhöhen je Zeilenart. */
 const MASSE = {
-  ueberschrift: { groesse: 15, hoehe: 26, fett: true },
-  unterueberschrift: { groesse: 11, hoehe: 20, fett: true },
-  zeile: { groesse: 9.5, hoehe: 15, fett: false },
-  summe: { groesse: 9.5, hoehe: 17, fett: true },
-  hinweis: { groesse: 8, hoehe: 12, fett: false },
+  ueberschrift: { groesse: 14, hoehe: 26, fett: true },
+  unterueberschrift: { groesse: 11.5, hoehe: 23, fett: true },
+  zeile: { groesse: 9.5, hoehe: 16, fett: false },
+  summe: { groesse: 10, hoehe: 20, fett: true },
+  abschluss: { groesse: 12, hoehe: 34, fett: true },
+  hinweis: { groesse: 8, hoehe: 11.5, fett: false },
 } as const
 
-/** Breite eines Courier-Textes: dicktengleich, jedes Zeichen 0,6 der Größe. */
-function courierBreite(text: string, groesse: number): number {
-  return text.length * groesse * 0.6
+/* --------------------------------------------------------------------- Maße */
+
+/**
+ * Exakte Zeichenbreiten für alles, was in einem Betrag vorkommen kann.
+ *
+ * Die Werte stammen aus der AFM-Tabelle von Helvetica und sind in Tausendstel
+ * der Schriftgröße angegeben. Für genau diese Zeichen hat Helvetica-Bold
+ * dieselben Breiten – deshalb genügt eine Tabelle für beide Schnitte, und ein
+ * fetter Summenbetrag steht bündig unter den mageren darüber.
+ */
+const BETRAGSBREITEN: Record<string, number> = {
+  '0': 556,
+  '1': 556,
+  '2': 556,
+  '3': 556,
+  '4': 556,
+  '5': 556,
+  '6': 556,
+  '7': 556,
+  '8': 556,
+  '9': 556,
+  ' ': 278,
+  '.': 278,
+  ',': 278,
+  '-': 333,
+  '−': 333,
+  E: 667,
+  U: 722,
+  R: 722,
 }
 
 /**
@@ -92,10 +172,6 @@ function courierBreite(text: string, groesse: number): number {
  * Zeichenklassen, solange sie eher zu breit schätzt als zu schmal. Ein Umbruch,
  * der zwei Zeichen zu früh kommt, fällt niemandem auf; einer, der zu spät
  * kommt, schiebt Text über den Rand.
- *
- * Rechtsbündige Beträge stehen deshalb weiterhin in Courier: Dort ist die
- * Breite exakt, und exakt muss sie sein, damit die Ziffern untereinander
- * stehen.
  */
 function helvetikaBreite(text: string, groesse: number): number {
   let breite = 0
@@ -108,6 +184,24 @@ function helvetikaBreite(text: string, groesse: number): number {
     else breite += 0.56
   }
   return breite * groesse
+}
+
+/**
+ * Die Breite eines Textes, so genau es geht.
+ *
+ * Besteht er nur aus Zeichen, die in einem Betrag vorkommen, ist das Ergebnis
+ * exakt; sonst die Schätzung. Genau das ist der Unterschied, auf den es
+ * ankommt: Beträge stehen auf den Punkt am rechten Rand, eine Seitenzahl darf
+ * einen halben Punkt daneben liegen.
+ */
+function breiteVon(text: string, groesse: number): number {
+  let summe = 0
+  for (const zeichen of text) {
+    const breite = BETRAGSBREITEN[zeichen]
+    if (breite === undefined) return helvetikaBreite(text, groesse)
+    summe += breite
+  }
+  return (summe / 1000) * groesse
 }
 
 /**
@@ -134,6 +228,8 @@ function umbrich(text: string, groesse: number, breite: number): string[] {
   if (laufend) zeilen.push(laufend)
   return zeilen.length > 0 ? zeilen : ['']
 }
+
+/* ---------------------------------------------------------------- Kodierung */
 
 /**
  * Zeichen in die Kodierung bringen, die PDF für die Standardschriften nutzt.
@@ -177,15 +273,179 @@ function kodiere(text: string): string {
   return heraus
 }
 
-/** Ein Textbefehl im Inhaltsstrom. */
-function text(schrift: string, groesse: number, x: number, y: number, inhalt: string) {
-  return `BT /${schrift} ${groesse} Tf 1 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)} Tm (${kodiere(inhalt)}) Tj ET\n`
+/* ------------------------------------------------------------- Zeichenbefehle */
+
+function fuellfarbe(farbe: Farbe): string {
+  return `${farbe[0]} ${farbe[1]} ${farbe[2]} rg\n`
 }
 
-/** Eine waagerechte Linie in hellem Grau. */
-function linie(y: number, staerke = 0.5, grau = 0.75) {
-  return `${grau} G ${staerke} w ${RAND} ${y.toFixed(2)} m ${RECHTS} ${y.toFixed(2)} l S\n`
+function strichfarbe(farbe: Farbe): string {
+  return `${farbe[0]} ${farbe[1]} ${farbe[2]} RG\n`
 }
+
+/** Ein Textbefehl im Inhaltsstrom, in der gewünschten Farbe. */
+function text(
+  schrift: string,
+  groesse: number,
+  x: number,
+  y: number,
+  inhalt: string,
+  farbe: Farbe = TEXT
+) {
+  return (
+    fuellfarbe(farbe) +
+    `BT /${schrift} ${groesse} Tf 1 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)} Tm (${kodiere(inhalt)}) Tj ET\n`
+  )
+}
+
+/** Denselben Text rechtsbündig an einer Kante setzen. */
+function rechtsbuendig(
+  schrift: string,
+  groesse: number,
+  kante: number,
+  y: number,
+  inhalt: string,
+  farbe: Farbe = TEXT
+) {
+  return text(schrift, groesse, kante - breiteVon(inhalt, groesse), y, inhalt, farbe)
+}
+
+/** Eine ausgefüllte Fläche – Grundlage für Zebrastreifen, Balken und Kästen. */
+function flaeche(x: number, y: number, breite: number, hoehe: number, farbe: Farbe) {
+  return (
+    fuellfarbe(farbe) +
+    `${x.toFixed(2)} ${y.toFixed(2)} ${breite.toFixed(2)} ${hoehe.toFixed(2)} re f\n`
+  )
+}
+
+/** Eine waagerechte Linie zwischen zwei x-Werten. */
+function strecke(x1: number, x2: number, y: number, staerke: number, farbe: Farbe) {
+  return (
+    strichfarbe(farbe) +
+    `${staerke} w ${x1.toFixed(2)} ${y.toFixed(2)} m ${x2.toFixed(2)} ${y.toFixed(2)} l S\n`
+  )
+}
+
+/** Eine waagerechte Linie über den ganzen Satzspiegel. */
+function linie(y: number, staerke = 0.5, farbe: Farbe = HAARLINIE) {
+  return strecke(RAND, RECHTS, y, staerke, farbe)
+}
+
+/**
+ * Der Balken unter dem Kopf: vier gleich breite Felder in den Logofarben.
+ *
+ * Er ersetzt die frühere graue Linie und ist der einzige Schmuck auf der
+ * Seite. Mehr braucht ein Formular nicht – und weniger sähe aus, als hätte
+ * niemand hingesehen.
+ */
+function farbleiste(y: number, staerke = 2.5): string {
+  const feld = (RECHTS - RAND) / 4
+  let heraus = ''
+  REIHUM.forEach((farbe, stelle) => {
+    heraus += flaeche(RAND + stelle * feld, y, feld, staerke, farbe)
+  })
+  return heraus
+}
+
+/* -------------------------------------------------------------------- Signet */
+
+const GRAD = Math.PI / 180
+
+/**
+ * Ein Kreisbogen als kubische Bézierkurven.
+ *
+ * PDF kennt keinen Bogen, nur Kurven. Ein Viertelkreis lässt sich mit einer
+ * Kurve so genau nachbilden, dass der Fehler unter einem Promille des Radius
+ * bleibt; der Faktor dafür ist 4/3·tan(Winkel/4). Größere Bögen werden in
+ * Stücke von höchstens 90 Grad zerlegt.
+ */
+function kreisbogen(mx: number, my: number, r: number, von: number, bis: number): string {
+  const stuecke = Math.max(1, Math.ceil(Math.abs(bis - von) / 90))
+  const schritt = (bis - von) / stuecke
+  const k = (4 / 3) * Math.tan((schritt * GRAD) / 4)
+  const px = (w: number) => mx + r * Math.cos(w * GRAD)
+  const py = (w: number) => my + r * Math.sin(w * GRAD)
+
+  let winkel = von
+  let pfad = `${px(winkel).toFixed(2)} ${py(winkel).toFixed(2)} m\n`
+
+  for (let i = 0; i < stuecke; i += 1) {
+    const naechst = winkel + schritt
+    const x1 = px(winkel) - k * r * Math.sin(winkel * GRAD)
+    const y1 = py(winkel) + k * r * Math.cos(winkel * GRAD)
+    const x2 = px(naechst) + k * r * Math.sin(naechst * GRAD)
+    const y2 = py(naechst) - k * r * Math.cos(naechst * GRAD)
+    pfad +=
+      `${x1.toFixed(2)} ${y1.toFixed(2)} ${x2.toFixed(2)} ${y2.toFixed(2)} ` +
+      `${px(naechst).toFixed(2)} ${py(naechst).toFixed(2)} c\n`
+    winkel = naechst
+  }
+  return pfad
+}
+
+/** Ein voller Kreis aus vier Kurven; 0,5523 ist der bekannte Näherungsfaktor. */
+function kreis(mx: number, my: number, r: number): string {
+  const k = r * 0.5523
+  const z = (wert: number) => wert.toFixed(2)
+  return (
+    `${z(mx + r)} ${z(my)} m\n` +
+    `${z(mx + r)} ${z(my + k)} ${z(mx + k)} ${z(my + r)} ${z(mx)} ${z(my + r)} c\n` +
+    `${z(mx - k)} ${z(my + r)} ${z(mx - r)} ${z(my + k)} ${z(mx - r)} ${z(my)} c\n` +
+    `${z(mx - r)} ${z(my - k)} ${z(mx - k)} ${z(my - r)} ${z(mx)} ${z(my - r)} c\n` +
+    `${z(mx + k)} ${z(my - r)} ${z(mx + r)} ${z(my - k)} ${z(mx + r)} ${z(my)} c\n`
+  )
+}
+
+/**
+ * Die vier Figuren im Ring.
+ *
+ * Je Figur ein Viertelbogen als Körper und ein Kopfkreis, der mittig über dem
+ * eigenen Körper auf der Diagonale sitzt und in ihn hineinreicht – gleiche
+ * Farbe und Überlappung lassen beide zu einer Form verschmelzen. Die Maße sind
+ * dieselben wie in `public/logo.svg`: Radius 60, Strichstärke 32, Köpfe mit
+ * Radius 19 auf den Diagonalen, dazwischen 14 Grad Lücke.
+ *
+ * Die Winkel sind gegenüber der SVG-Fassung gespiegelt, weil PDF die y-Achse
+ * nach oben zählt. Der Schriftzug „IMI“ aus dem Volllogo fehlt bewusst: In den
+ * Größen, in denen das Zeichen hier steht, wäre er ein grauer Fleck – der Name
+ * steht stattdessen als lesbarer Text daneben.
+ *
+ * @param x Linke Kante des Zeichens.
+ * @param oben Obere Kante des Zeichens.
+ * @param groesse Kantenlänge; das Zeichen ist quadratisch.
+ */
+function signet(x: number, oben: number, groesse: number): string {
+  const s = groesse / 200
+  const mx = x + 100 * s
+  const my = oben - 100 * s
+
+  const figuren = [
+    { farbe: NAVY, von: 173, bis: 97, kopf: [43.43, 43.43] },
+    { farbe: GRAU, von: 83, bis: 7, kopf: [156.57, 43.43] },
+    { farbe: ROT, von: -7, bis: -83, kopf: [156.57, 156.57] },
+    { farbe: GRUEN, von: -97, bis: -173, kopf: [43.43, 156.57] },
+  ] as const
+
+  // `q … Q` kapselt die runden Linienenden, damit sie nicht auf die Linien
+  // der Tabelle abfärben.
+  let heraus = 'q 1 J\n'
+  for (const figur of figuren) {
+    heraus +=
+      strichfarbe(figur.farbe) +
+      `${(32 * s).toFixed(2)} w\n` +
+      kreisbogen(mx, my, 60 * s, figur.von, figur.bis) +
+      'S\n'
+    heraus +=
+      fuellfarbe(figur.farbe) +
+      kreis(x + figur.kopf[0] * s, oben - figur.kopf[1] * s, 19 * s) +
+      'f\n'
+  }
+  return heraus + 'Q\n'
+}
+
+/* --------------------------------------------------------------------------
+   Der Satz
+-------------------------------------------------------------------------- */
 
 /**
  * Setzt das Dokument und gibt die fertige Datei als Bytes zurück.
@@ -194,26 +454,49 @@ function linie(y: number, staerke = 0.5, grau = 0.75) {
  * nächste Zeile nicht mehr, beginnt eine neue Seite. Zwischenüberschriften
  * nehmen ihre erste Folgezeile mit – eine Überschrift allein am Seitenfuß ist
  * der klassische Satzfehler, den man beim Ausdrucken sofort sieht.
+ *
+ * Die erste Seite bekommt den vollen Kopf mit Signet, Titel und Farbleiste,
+ * jede weitere einen schmalen: Wer ein Formular abheftet, will auf Seite drei
+ * noch erkennen, wozu sie gehört, aber nicht noch einmal den ganzen Titel.
  */
 export function erzeugePdf(dokument: PdfDokument): Uint8Array {
   const seiten: string[] = []
   let inhalt = ''
   let y = 0
+  /** Zählt die Posten innerhalb einer Gruppe – für die Zebrastreifen. */
+  let streifen = 0
+  /** Zählt die Gruppen – für die Farbe des Balkens, wenn keine genannt ist. */
+  let gruppen = 0
 
   function neueSeite() {
+    const erste = seiten.length === 0 && !inhalt
     if (inhalt) seiten.push(inhalt)
     inhalt = ''
-    y = HOEHE - RAND
+    streifen = 0
 
-    inhalt += text('F2', MASSE.ueberschrift.groesse, RAND, y, dokument.titel)
-    y -= 16
-    if (dokument.untertitel) {
-      inhalt += text('F1', 9, RAND, y, dokument.untertitel)
-      y -= 6
+    if (erste) {
+      inhalt += signet(RAND, KOPF, 40)
+      const spalte = RAND + 54
+      inhalt += text('F2', 17, spalte, KOPF - 21, dokument.titel, NAVY)
+      if (dokument.untertitel) {
+        inhalt += text('F1', 9.5, spalte, KOPF - 35, dokument.untertitel, LEISE)
+      }
+      if (dokument.marke) {
+        inhalt += rechtsbuendig('F2', 10, RECHTS, KOPF - 21, dokument.marke, GRAU)
+      }
+      y = KOPF - 54
+      inhalt += farbleiste(y)
+      y -= 26
+    } else {
+      inhalt += signet(RAND, KOPF, 16)
+      inhalt += text('F2', 8.5, RAND + 24, KOPF - 12, dokument.titel, GRAU)
+      if (dokument.untertitel) {
+        inhalt += rechtsbuendig('F1', 8, RECHTS, KOPF - 12, dokument.untertitel, LEISE)
+      }
+      y = KOPF - 26
+      inhalt += linie(y, 0.6)
+      y -= 24
     }
-    y -= 8
-    inhalt += linie(y)
-    y -= 18
   }
 
   function platzFuer(hoehe: number): boolean {
@@ -222,21 +505,21 @@ export function erzeugePdf(dokument: PdfDokument): Uint8Array {
 
   neueSeite()
 
-  dokument.zeilen.forEach((zeile, stelle) => {
+  for (const zeile of dokument.zeilen) {
     if (zeile.art === 'seitenumbruch') {
       neueSeite()
-      return
+      continue
     }
     if (zeile.art === 'abstand') {
-      y -= 8
-      return
+      y -= 10
+      continue
     }
     if (zeile.art === 'linie') {
-      if (!platzFuer(10)) neueSeite()
-      y -= 4
-      inhalt += linie(y, 0.5, 0.85)
-      y -= 6
-      return
+      if (!platzFuer(12)) neueSeite()
+      y -= 5
+      inhalt += linie(y, 0.5)
+      y -= 7
+      continue
     }
 
     const mass = MASSE[zeile.art]
@@ -247,44 +530,139 @@ export function erzeugePdf(dokument: PdfDokument): Uint8Array {
       rechten Rand hinaus, und beim Drucken wäre er dort abgeschnitten.
     */
     if (zeile.art === 'hinweis') {
-      for (const stueck of umbrich(zeile.text, mass.groesse, RECHTS - RAND)) {
+      const links = RAND + 10
+      for (const stueck of umbrich(zeile.text, mass.groesse, RECHTS - links)) {
         if (!platzFuer(mass.hoehe)) neueSeite()
-        inhalt += text('F1', mass.groesse, RAND, y, stueck)
+        inhalt += text('F3', mass.groesse, links, y, stueck, LEISE)
         y -= mass.hoehe
       }
-      return
+      y -= 3
+      continue
     }
 
     /*
-      Eine Überschrift braucht die nächste Zeile bei sich. Sonst steht sie
-      unten allein und ihr Inhalt beginnt auf der nächsten Seite.
+      Eine Überschrift nimmt ihren Anfang mit auf die Seite.
+
+      Zuerst stand hier eine einzige Folgezeile – das reichte, um die Überschrift
+      nicht allein am Fuß stehen zu lassen, und ergab trotzdem einen hässlichen
+      Umbruch: Überschrift, Erklärung und ein einziger Posten unten auf der
+      Seite, die restlichen vier auf der nächsten. Verlangt werden deshalb zwei
+      Erklärungszeilen und zwei Posten. Passt das nicht mehr, fängt die Gruppe
+      geschlossen auf der nächsten Seite an.
     */
     const zusammenhalt =
       zeile.art === 'unterueberschrift' || zeile.art === 'ueberschrift'
-        ? mass.hoehe + MASSE.zeile.hoehe
+        ? mass.hoehe + 2 * MASSE.hinweis.hoehe + 2 * MASSE.zeile.hoehe
         : mass.hoehe
 
     if (!platzFuer(zusammenhalt)) neueSeite()
 
-    const schrift = mass.fett ? 'F2' : 'F1'
-    const eingerueckt = zeile.art === 'zeile' && zeile.eingerueckt ? RAND + 14 : RAND
+    /*
+      Das Ergebnis steht in einem ausgefüllten Kasten.
 
-    if (zeile.art === 'summe') {
-      y -= 3
-      inhalt += linie(y + mass.groesse + 2, 0.5, 0.85)
+      Ein Nettovermögen, das als eine weitere fette Zeile unter zwanzig anderen
+      steht, findet beim Durchblättern niemand wieder. Der Kasten kostet nichts
+      und beantwortet die Frage, wegen der das Blatt existiert, auf einen Blick.
+    */
+    if (zeile.art === 'abschluss') {
+      /*
+        Sechs Punkt Luft über dem Kasten.
+
+        Ohne sie reichte seine Oberkante in die Zeile darüber und deckte deren
+        Schreiblinie zu – auf dem leeren Bogen fehlte hinter „Schulden gesamt“
+        die Linie, und zwar nur dort. Ein Fehler, den man in der Datei nicht
+        sieht, sondern erst auf dem Blatt.
+      */
+      y -= 6
+      inhalt += flaeche(RAND, y - 9, RECHTS - RAND, 30, NAVY)
+      inhalt += text('F2', mass.groesse, RAND + 12, y, zeile.text, WEISS)
+      if (zeile.betrag) {
+        inhalt += rechtsbuendig('F2', 13, RECHTS - 12, y, zeile.betrag, WEISS)
+      } else if (zeile.schreiblinie) {
+        inhalt += strecke(RECHTS - 142, RECHTS - 12, y - 3, 0.6, WEISS)
+      }
+      y -= mass.hoehe - 6
+      streifen = 0
+      continue
     }
 
-    inhalt += text(schrift, mass.groesse, eingerueckt, y, zeile.text)
+    /*
+      Jede Gruppe bekommt links einen schmalen Balken in einer Logofarbe. Er
+      trennt die Gruppen ohne eine weitere Linie und gibt dem Blatt die Farben
+      der Marke, ohne dass irgendwo eine Fläche eingefärbt werden müsste.
+    */
+    if (zeile.art === 'unterueberschrift') {
+      const farbe = zeile.ton
+        ? TOENE[zeile.ton]
+        : REIHUM[gruppen % REIHUM.length]
+      gruppen += 1
+      streifen = 0
 
-    const betrag = 'betrag' in zeile ? zeile.betrag : undefined
-    if (betrag) {
-      const breite = courierBreite(betrag, mass.groesse)
-      inhalt += text(mass.fett ? 'F4' : 'F3', mass.groesse, RECHTS - breite, y, betrag)
+      inhalt += flaeche(RAND, y - 2.5, 3.5, mass.groesse + 3, farbe)
+      inhalt += text('F2', mass.groesse, RAND + 11, y, zeile.text, NAVY)
+      if (zeile.betrag) {
+        // Dieselbe Kante wie bei den Posten darunter: Eine Gruppensumme, die
+        // acht Punkt weiter rechts endet als ihre eigenen Zeilen, sieht nach
+        // Versehen aus und nicht nach Gliederung.
+        inhalt += rechtsbuendig('F2', 10.5, RECHTS - 8, y, zeile.betrag, NAVY)
+      }
+      y -= mass.hoehe
+      continue
+    }
+
+    if (zeile.art === 'ueberschrift') {
+      inhalt += text('F2', mass.groesse, RAND, y, zeile.text, NAVY)
+      y -= mass.hoehe
+      continue
+    }
+
+    /*
+      Summen liegen auf einem hellen Band statt unter einer Linie. Auf dem
+      Papier ist der Unterschied deutlich: Eine Linie gehört zur Zeile darüber,
+      ein Band gehört zur Zeile selbst.
+    */
+    if (zeile.art === 'summe') {
+      inhalt += flaeche(RAND, y - 5.5, RECHTS - RAND, mass.hoehe, BAND)
+      inhalt += text('F2', mass.groesse, RAND + 11, y, zeile.text, NAVY)
+      if (zeile.betrag) {
+        inhalt += rechtsbuendig('F2', mass.groesse, RECHTS - 8, y, zeile.betrag, NAVY)
+      } else if (zeile.schreiblinie) {
+        inhalt += strecke(RECHTS - 138, RECHTS - 8, y - 3, 0.6, GRAU)
+      }
+      y -= mass.hoehe + 4
+      streifen = 0
+      continue
+    }
+
+    /*
+      Die Posten selbst: jede zweite Zeile bekommt einen sehr hellen Grund.
+      Auf einer Liste mit sechsundzwanzig Einträgen und einer Betragsspalte am
+      anderen Blattende ist das der Unterschied zwischen Nachschauen und
+      Verrutschen.
+
+      Auf dem Blatt zum Ausfüllen entfällt er: Dort führt schon die Schreiblinie
+      das Auge, und beides zusammen war nicht nur zu viel, sondern mehrdeutig –
+      die Linie einer ungestreiften Zeile endete unmittelbar über dem Streifen
+      der nächsten und sah aus, als gehöre sie zu dieser.
+    */
+    if (streifen % 2 === 1 && !zeile.schreiblinie) {
+      inhalt += flaeche(RAND, y - 4.5, RECHTS - RAND, mass.hoehe, ZEBRA)
+    }
+    streifen += 1
+
+    const links = zeile.eingerueckt ? RAND + 11 : RAND
+    inhalt += text('F1', mass.groesse, links, y, zeile.text, TEXT)
+
+    if (zeile.betrag) {
+      inhalt += rechtsbuendig('F1', mass.groesse, RECHTS - 8, y, zeile.betrag, TEXT)
+    } else if (zeile.schreiblinie) {
+      // Die Linie zum Eintragen mit der Hand – ohne sie weiß niemand, wie
+      // weit die Spalte reicht.
+      inhalt += strecke(RECHTS - 130, RECHTS - 8, y - 3, 0.5, HAARLINIE)
     }
 
     y -= mass.hoehe
-    void stelle
-  })
+  }
 
   seiten.push(inhalt)
 
@@ -294,10 +672,10 @@ export function erzeugePdf(dokument: PdfDokument): Uint8Array {
     const rechts = `Seite ${nummer + 1} von ${seiten.length}`
     return (
       seite +
-      linie(UNTEN + 14, 0.5, 0.85) +
+      linie(UNTEN + 16, 0.5) +
       // Ohne Fußzeile wird auch kein leerer Textbefehl gesetzt.
-      (links ? text('F1', 8, RAND, UNTEN, links) : '') +
-      text('F3', 8, RECHTS - courierBreite(rechts, 8), UNTEN, rechts)
+      (links ? text('F1', 8, RAND, UNTEN, links, LEISE) : '') +
+      rechtsbuendig('F1', 8, RECHTS, UNTEN, rechts, LEISE)
     )
   })
 
@@ -305,15 +683,15 @@ export function erzeugePdf(dokument: PdfDokument): Uint8Array {
   const objekte: string[] = []
   const seitenIds: number[] = []
 
-  // 1 Katalog, 2 Seitenbaum, 3–6 Schriften. Danach je Seite zwei Objekte.
-  const ERSTE_SEITE = 7
+  // 1 Katalog, 2 Seitenbaum, 3–5 Schriften. Danach je Seite zwei Objekte.
+  const ERSTE_SEITE = 6
   mitFuss.forEach((_, nummer) => seitenIds.push(ERSTE_SEITE + nummer * 2))
 
   objekte.push('<< /Type /Catalog /Pages 2 0 R >>')
   objekte.push(
     `<< /Type /Pages /Kids [${seitenIds.map((id) => `${id} 0 R`).join(' ')}] /Count ${mitFuss.length} >>`
   )
-  for (const schrift of ['Helvetica', 'Helvetica-Bold', 'Courier', 'Courier-Bold']) {
+  for (const schrift of ['Helvetica', 'Helvetica-Bold', 'Helvetica-Oblique']) {
     objekte.push(
       `<< /Type /Font /Subtype /Type1 /BaseFont /${schrift} /Encoding /WinAnsiEncoding >>`
     )
@@ -323,7 +701,7 @@ export function erzeugePdf(dokument: PdfDokument): Uint8Array {
     const id = seitenIds[nummer]
     objekte.push(
       `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${BREITE} ${HOEHE}] ` +
-        `/Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> ` +
+        `/Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> ` +
         `/Contents ${id + 1} 0 R >>`
     )
     objekte.push(`<< /Length ${seite.length} >>\nstream\n${seite}endstream`)
