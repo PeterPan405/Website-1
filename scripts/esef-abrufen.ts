@@ -280,19 +280,57 @@ interface Seite {
   links?: { next?: string }
 }
 
+/**
+ * Eine Adresse abrufen, mit drei Versuchen.
+ *
+ * ## Warum der Rumpf auch dann gelesen wird, wenn er nicht gebraucht wird
+ *
+ * Weil das Weglassen den ganzen Lauf umgebracht hat. Bei einer Antwort, die
+ * nicht `ok` ist, stand hier ein `return null` – und der ungelesene Rumpf blieb
+ * an einer offenen Verbindung hängen. Node bricht dann irgendwann mit
+ * `assert(!this.paused)` aus dem HTTP-Unterbau ab, und zwar nicht als
+ * abfangbarer Fehler an der Aufrufstelle, sondern als unbehandelte Ausnahme
+ * aus dem Netzwerk-Rückruf. Der Lauf vom 29. Juli ist genau daran nach 60 von
+ * 78 Unternehmen gestorben, ohne etwas zu committen.
+ *
+ * `cancel()` schließt den Rumpf ordentlich. Das ist eine Zeile, die nichts
+ * bewirkt, solange alles gutgeht – und den Unterschied macht, sobald eine
+ * Anfrage schiefläuft.
+ */
 async function hole(url: string): Promise<unknown | null> {
   for (let versuch = 1; versuch <= 3; versuch += 1) {
     try {
-      const antwort = await fetch(url, { headers: KOPFZEILEN })
+      const antwort = await fetch(url, {
+        headers: KOPFZEILEN,
+        signal: AbortSignal.timeout(60_000),
+      })
       if (antwort.ok) return await antwort.json()
+
+      await antwort.body?.cancel()
       if (antwort.status < 500) return null
-    } catch {
-      // Netzfehler: gleich noch einmal.
+    } catch (fehler) {
+      console.log(
+        `  Versuch ${versuch} bei ${url}: ${fehler instanceof Error ? fehler.message : fehler}`
+      )
     }
     await new Promise((fertig) => setTimeout(fertig, versuch * 1000))
   }
   return null
 }
+
+/*
+  Der letzte Rettungsanker.
+
+  Sollte doch noch eine Ausnahme aus dem Netzwerk-Unterbau kommen, die sich an
+  keiner Aufrufstelle abfangen lässt, bricht der Lauf mit einer verständlichen
+  Meldung ab statt mit einem Stapelabzug aus den Interna von Node. Die
+  Momentaufnahme bleibt dann unverändert – lieber alte Zahlen als halbe.
+*/
+process.on('uncaughtException', (fehler) => {
+  console.error(`\nAbbruch durch einen unerwarteten Fehler: ${fehler.message}`)
+  console.error('Die Momentaufnahme bleibt unverändert.')
+  process.exit(1)
+})
 
 /** Dimensionen, die jeder Fakt trägt – alles Weitere ist eine Aufgliederung. */
 const GRUNDDIMENSIONEN = new Set([

@@ -185,9 +185,15 @@ async function katalog(): Promise<Aktie[]> {
 
 async function hole(url: string): Promise<unknown | null> {
   try {
-    const antwort = await fetch(url, { headers: KOPFZEILEN })
+    const antwort = await fetch(url, {
+      headers: KOPFZEILEN,
+      signal: AbortSignal.timeout(60_000),
+    })
     if (!antwort.ok) {
       console.log(`  ${antwort.status} bei ${url}`)
+      // Den Rumpf schließen, sonst bleibt die Verbindung halb gelesen stehen
+      // und Node bricht später aus dem HTTP-Unterbau ab.
+      await antwort.body?.cancel()
       return null
     }
     return await antwort.json()

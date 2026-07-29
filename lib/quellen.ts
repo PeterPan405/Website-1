@@ -7,6 +7,7 @@ import {
   fundamentalHerkunft,
   fundamentalQuelle,
   fundamentalQuelleEsef,
+  fundamentalQuelleTwse,
   fundamentalStand,
 } from '@/lib/fundamentaldaten'
 import { getDevisenkurse, getLiveSeries, snapshotFetchedAt } from '@/lib/market-live'
@@ -149,7 +150,7 @@ export async function getQuellengruppen(): Promise<Quellengruppe[]> {
     },
     {
       titel: 'Unternehmenszahlen',
-      einleitung: `Umsatz, Gewinn, Cashflow, Eigenkapital und Aktienzahl stammen aus zwei Sammlungen von Pflichtmeldungen: der US-Börsenaufsicht für alles, was in den Vereinigten Staaten notiert ist – auch über einen Hinterlegungsschein, weshalb Toyota und Shell erfasst sind –, und den ESEF-Meldungen der EU für die europäischen Werte ohne US-Notierung. Beides sind Meldungen der Unternehmen selbst, keine Aufbereitung eines Anbieters. Was in keine der beiden fällt – der deutsche Markt, Japan, Korea, Indien –, steht mit „keine Angabe“ da statt mit einer geschätzten Zahl.`,
+      einleitung: `Umsatz, Gewinn, Cashflow, Eigenkapital und Aktienzahl stammen aus zwei Sammlungen von Pflichtmeldungen: der US-Börsenaufsicht für alles, was in den Vereinigten Staaten notiert ist – auch über einen Hinterlegungsschein, weshalb Toyota und Shell erfasst sind –, den ESEF-Meldungen der EU für die europäischen Werte ohne US-Notierung und den offenen Daten der Börse Taipeh. Alle drei sind Angaben der Unternehmen selbst, keine Aufbereitung eines Anbieters. Was in keine davon fällt – der deutsche Markt, Japan, Korea, Indien, Hongkong –, steht mit „keine Angabe“ da statt mit einer geschätzten Zahl.`,
       eintraege: [
         {
           name: fundamentalQuelle.label,
@@ -160,6 +161,19 @@ export async function getQuellengruppen(): Promise<Quellengruppe[]> {
           stand: fundamentalStand,
           abgrenzung: fundamentalQuelle.abgrenzung,
         },
+        ...(fundamentalQuelleTwse && fundamentalHerkunft().twse > 0
+          ? [
+              {
+                name: fundamentalQuelleTwse.label,
+                verwendung: `Dieselben Kennzahlen für ${fundamentalHerkunft().twse} Werte an der Börse Taipeh.`,
+                url: fundamentalQuelleTwse.url,
+                lizenz: 'Offene Daten der Börse',
+                grund: 'nachpruefbarkeit' as const,
+                stand: fundamentalStand,
+                abgrenzung: fundamentalQuelleTwse.abgrenzung,
+              },
+            ]
+          : []),
         ...(fundamentalQuelleEsef && fundamentalHerkunft().esef > 0
           ? [
               {

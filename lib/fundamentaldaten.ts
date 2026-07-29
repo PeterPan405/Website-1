@@ -33,13 +33,20 @@ import type { Bilanzzahlen } from '@/lib/fundamentalkennzahlen'
  * willen, sondern steht auf der Seite: Wer eine Zahl nachprüfen will, muss
  * wissen, wo er nachsehen muss.
  *
+ * ## Die dritte Quelle: die Börse Taipeh
+ *
+ * Sie stellt die Pflichtangaben ihrer notierten Gesellschaften als offene
+ * Daten bereit – die einzige Aufsichtsstelle außerhalb von USA und EU, die auf
+ * eine Anfrage ohne Schlüssel antwortet. Die Aktienzahl ist dort sogar exakt:
+ * eingezahltes Kapital geteilt durch den Nennwert je Aktie.
+ *
  * ## Was auch damit nicht abgedeckt ist
  *
  * Der deutsche Markt fast vollständig – Allianz, BMW, BASF melden an den
- * Bundesanzeiger, und der taucht im ESEF-Verzeichnis nicht auf. Ebenso alles
- * außerhalb der EU und ohne US-Notierung: Japan, Korea, Indien, Taiwan,
- * Hongkong. Jedes dieser Länder hat eine eigene Aufsicht mit eigenem Format,
- * teils mit Registrierungspflicht.
+ * Bundesanzeiger, und weder er noch das Unternehmensregister haben eine offene
+ * Schnittstelle. Japan (EDINET) und Korea (DART) verlangen einen kostenlosen
+ * Zugangsschlüssel; ob einer beantragt wird, ist eine Entscheidung und keine
+ * technische Frage. Hongkong und Indien haben gar keine Schnittstelle.
  *
  * Dort steht weiterhin „keine Angabe“. Das ist unbefriedigend, aber es ist die
  * Wahrheit – ein geschätztes Kurs-Gewinn-Verhältnis wäre schlimmer als gar
@@ -60,6 +67,9 @@ interface Momentaufnahme {
   quelleEsef?: Datenquelle
   /** Die Kürzel, deren Zahlen aus den ESEF-Meldungen stammen. */
   esefKuerzel?: string[]
+  /** Dasselbe für die Börse Taipeh. */
+  quelleTwse?: Datenquelle
+  twseKuerzel?: string[]
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -73,7 +83,11 @@ export const fundamentalQuelle = daten.quelle
 /** Dieselbe Angabe für die europäischen Werte, sofern es welche gibt. */
 export const fundamentalQuelleEsef = daten.quelleEsef ?? null
 
+/** Und für die Werte an der Börse Taipeh. */
+export const fundamentalQuelleTwse = daten.quelleTwse ?? null
+
 const ausEsef = new Set(daten.esefKuerzel ?? [])
+const ausTwse = new Set(daten.twseKuerzel ?? [])
 
 /**
  * Welche der beiden Quellen die Zahlen eines Kürzels geliefert hat.
@@ -84,16 +98,17 @@ const ausEsef = new Set(daten.esefKuerzel ?? [])
  */
 export function getFundamentalquelle(ticker: string): Datenquelle | null {
   if (!daten.unternehmen[ticker]) return null
-  return ausEsef.has(ticker) ? (daten.quelleEsef ?? daten.quelle) : daten.quelle
+  if (ausEsef.has(ticker)) return daten.quelleEsef ?? daten.quelle
+  if (ausTwse.has(ticker)) return daten.quelleTwse ?? daten.quelle
+  return daten.quelle
 }
 
 /** Wie viele Datensätze aus welcher Quelle stammen – für die Quellenseite. */
-export function fundamentalHerkunft(): { sec: number; esef: number } {
-  const gesamt = Object.keys(daten.unternehmen).length
-  const esef = Object.keys(daten.unternehmen).filter((ticker) =>
-    ausEsef.has(ticker)
-  ).length
-  return { sec: gesamt - esef, esef }
+export function fundamentalHerkunft(): { sec: number; esef: number; twse: number } {
+  const kuerzel = Object.keys(daten.unternehmen)
+  const esef = kuerzel.filter((ticker) => ausEsef.has(ticker)).length
+  const twse = kuerzel.filter((ticker) => ausTwse.has(ticker)).length
+  return { sec: kuerzel.length - esef - twse, esef, twse }
 }
 
 /**

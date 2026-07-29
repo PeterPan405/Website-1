@@ -43,6 +43,11 @@ jobs:
       - name: ESEF-Meldungen ergänzen
         run: npm run esef
 
+      # Dritter Weg: die Börse Taipeh. Die einzige Aufsichtsstelle ausserhalb
+      # von USA und EU, die ohne Schlüssel antwortet.
+      - name: Börse Taipeh ergänzen
+        run: npm run taiwan
+
       - name: Momentaufnahme committen
         run: |
           git config user.name  "github-actions[bot]"
