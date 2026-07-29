@@ -69,6 +69,676 @@ export interface NewsArticle {
 }
 
 export const newsArticles: NewsArticle[] = [
+  {
+    slug: 'fed-entscheid-was-eingepreist-ist-bewegt-nichts',
+    title: 'Fed entscheidet heute – warum das Erwartete kaum etwas bewegt',
+    teaser:
+      'Um 20 Uhr verkündet die Fed ihren Zinsentscheid. 77,7 Prozent des Marktes rechnen mit unverändert – und genau deshalb liegt die Bewegung anderswo.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-29T06:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Leitzins', 'Kevin Warsh', 'Erwartungen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt', 'inflation'],
+    relatedSymbols: ['sp500', 'eur-usd', 'gold'],
+    sources: [
+      {
+        label: 'LBBW: Fed-Zinsentscheid – Uhrzeit, Ablaufplan und Prognose (29.07.2026)',
+        url: 'https://www.lbbw.de/artikel/maerkte-verstehen/fed-zinsentscheid-uhrzeit-ablaufplan-29-07-2026_am7r939aon_d.html',
+      },
+      {
+        label: 'LBBW: Fed-Zinsentscheid – aktueller Leitzins und Prognose 2026',
+        url: 'https://www.lbbw.de/artikel/maerkte-verstehen/fed-zinsentscheid-leitzins-prognosen_ait4a5bv66_d.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute Abend um 20 Uhr deutscher Zeit gibt die US-Notenbank ihren Zinsentscheid bekannt, eine halbe Stunde später beginnt die Pressekonferenz. Es ist die erste Entscheidung unter dem neuen Vorsitzenden Kevin Warsh. Der Leitzins liegt seit dem 10. Dezember 2025 in der Spanne von 3,50 bis 3,75 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach dem FedWatch-Instrument der CME Group liegt die Wahrscheinlichkeit, dass es dabei bleibt, bei **77,7 Prozent**. Wer daraus schließt, der Abend werde unspektakulär, hat die Hälfte verstanden – und die falsche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kurs bezahlt keine Tatsachen, sondern Überraschungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wenn drei Viertel des Marktes mit unveränderten Zinsen rechnen, dann steht diese Erwartung längst in jedem Anleihekurs, in jedem Wechselkurs und in jeder Aktienbewertung. Tritt sie ein, ändert sich nichts – es wurde ja schon dafür bezahlt. Das ist keine Eigenheit der Notenbanken, sondern die Grundmechanik einer Börse: Gehandelt wird die Differenz zwischen dem, was erwartet wurde, und dem, was kommt.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Wo an so einem Abend die Bewegung entsteht',
+        items: [
+          'Nicht im Zinssatz selbst – der ist mit 77,7 Prozent Wahrscheinlichkeit bekannt.',
+          'Sondern in den restlichen 22,3 Prozent: dem Fall, mit dem kaum jemand gerechnet hat.',
+          'Und in der Pressekonferenz, in der es um die nächsten Sitzungen geht. Dafür gibt es keine Wahrscheinlichkeitstabelle.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Lage in diesem Sommer besonders unklar ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die im Juni aktualisierten Projektionen der Notenbanker zeigten eine deutlich straffere Haltung: Die Mehrheit erwartete keine weiteren Senkungen, einzelne Mitglieder sogar Erhöhungen. Dann fiel der Arbeitsmarktbericht für Juli überraschend schwach aus. Beides zusammen ergibt kein klares Bild – und ein unklares Bild ist genau die Lage, in der eine Pressekonferenz mehr bewegt als die Entscheidung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die eigene Anlage vor allem eines: Der Reiz, an solchen Abenden etwas zu tun, ist größer als der Nutzen. Wer heute umschichtet, weil er den Ausgang zu kennen glaubt, wettet nicht gegen die Fed, sondern gegen die 77,7 Prozent – also gegen die gesammelte Einschätzung aller, die dieselbe Information haben und Geld darauf gesetzt haben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die nützlichere Übung ist, sich vorher aufzuschreiben, was man erwartet. Am Donnerstag lässt sich dann nachlesen, ob man richtig lag – und ob es überhaupt einen Unterschied gemacht hätte.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-faellt-warum-rohstoffe-schneller-drehen',
+    title: 'Öl unter 84 Dollar – warum ein Rohstoff schneller dreht als eine Aktie',
+    metaTitle: 'Ölpreis fällt: Warum Rohstoffe schneller drehen',
+    teaser:
+      'Brent kostet 83,74 Dollar, 1,8 Prozent weniger als am Vorabend. Hinter dem Rückgang steht eine Hoffnung – und dahinter ein Preismechanismus ohne Puffer.',
+    category: 'Märkte',
+    publishedAt: '2026-07-29T06:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Brent', 'Rohstoffe', 'Geopolitik'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite', 'inflation'],
+    relatedSymbols: ['brent', 'wti', 'dax'],
+    sources: [
+      {
+        label:
+          'Energynewsmagazine: Brent-Ölpreis gibt auf 83,74 Dollar nach (28.07.2026)',
+        url: 'https://www.energynewsmagazine.at/2026/07/28/brent-oelpreis-gibt-auf-8374-dollar-nach/',
+      },
+      {
+        label:
+          'ARIVA: Ölpreise fallen weiter – Brent kostet deutlich weniger als 90 US-Dollar (28.07.2026)',
+        url: 'https://www.ariva.de/brent-crude-rohoel-ice-rolling-kurs/news/oelpreise-fallen-weiter-brent-kostet-deutlich-weniger-als-12082209',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Barrel Brent zur September-Lieferung kostete am Dienstag 83,74 US-Dollar und damit 1,8 Prozent weniger als am Montagabend. Der Auslöser war keine Zahl, sondern eine Aussicht: Nach der Pause der US-Angriffe am Wochenende keimte die Hoffnung, die Vereinigten Staaten und der Iran könnten wieder verhandeln.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vor wenigen Monaten kostete dasselbe Fass deutlich mehr als 90 Dollar. Wer den Rückgang mit den Kursbewegungen einer Aktie vergleicht, wundert sich über das Tempo. Der Grund dafür steckt in der Sache selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Aktie hat einen Boden, ein Fass Öl nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hinter einer Aktie steht ein Unternehmen mit Umsatz, Gewinn und Eigenkapital. Fällt der Kurs weit genug, wird die Bewertung irgendwann so niedrig, dass Käufer eingreifen – es gibt einen rechnerischen Bezugspunkt, auch wenn niemand ihn genau kennt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rohstoff hat das nicht. Er erwirtschaftet nichts, zahlt keine Dividende und hat kein Eigenkapital. Sein Preis ist ausschließlich das, was jemand heute dafür zahlt – bestimmt von der Menge, die gefördert wird, der Menge, die gebraucht wird, und der Erwartung an beides. Ändert sich die Erwartung, gibt es nichts, was den Preis bremst.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der Unterschied in einem Satz',
+        items: [
+          'Bei einer Aktie fragt der Markt: Was verdient dieses Unternehmen künftig?',
+          'Bei einem Rohstoff fragt er: Wie viel davon gibt es nächsten Monat, und wie viel braucht jemand?',
+          'Die zweite Frage lässt sich durch eine einzige Nachricht über Nacht neu beantworten. Die erste nicht.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das den DAX freut',
+      },
+      {
+        type: 'paragraph',
+        text: 'Billigeres Öl senkt die Kosten fast jedes produzierenden Unternehmens und dämpft zugleich die Inflation – beides hilft europäischen Aktien. Der DAX schloss am Dienstag 0,52 Prozent fester bei 25.492,59 Punkten und näherte sich damit wieder seinem Rekordhoch, während in den USA am selben Tag die Halbleiterwerte einbrachen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer Rohstoffe im Depot hat, sollte den Anteil danach bemessen, wie viel Schwankung er aushält – nicht danach, wie überzeugend die Geschichte gerade klingt. Und wer keine hält, hält sie trotzdem mittelbar: über die Energiekosten der Unternehmen, deren Aktien er besitzt.',
+      },
+    ],
+  },
+  {
+    slug: 'chip-ausverkauf-was-im-index-davon-haengt',
+    title: 'Zwölf Prozent in Seoul – wie viel Halbleiter in einem Welt-ETF steckt',
+    metaTitle: 'Chip-Ausverkauf: Wie viel davon steckt im ETF?',
+    teaser:
+      'SK Hynix und Samsung verlieren über zwölf Prozent, Nvidia knapp fünf. Der Tag ist eine gute Gelegenheit, im eigenen Depot nachzusehen.',
+    category: 'Märkte',
+    publishedAt: '2026-07-29T06:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 6,
+    tags: ['Halbleiter', 'ETF', 'Klumpenrisiko', 'KI'],
+    relatedTopics: ['etf', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia', 'amd', 'micron', 'sk-hynix', 'samsung'],
+    sources: [
+      {
+        label:
+          'MarketScreener: Weltweite Aktien fallen auf Einmonatstief, Chip-Ausverkauf verschärft sich',
+        url: 'https://de.marketscreener.com/boerse-nachrichten/weltaktien-fallen-auf-einmonatstief-chip-ausverkauf-verschaerft-sich-ce7f51ddda80ff24',
+      },
+      {
+        label: 'TradingKey: US-Chip-Aktien brechen vorbörslich ein (28.07.2026)',
+        url: 'https://www.tradingkey.com/de/analysis/stocks/us-stocks/262058366-us-chip-stocks-plunged-pre-market-trading-micron-fell-5-amd-intel-fell-4-tradingkey',
+      },
+      {
+        label:
+          'Euronews: Shares slip as chip stocks come under heavy selling (28.07.2026)',
+        url: 'https://www.euronews.com/business/2026/07/28/shares-slip-as-chip-stocks-come-under-heavy-selling-heres-why',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ausverkauf bei Halbleiteraktien, der am Montag mit einem Bericht über chinesische Lithografieanlagen begann, hat sich am Dienstag verschärft. Die Speicherhersteller SK Hynix und Samsung Electronics verloren in Seoul mehr als zwölf Prozent – eine zuvor außergewöhnlich starke Rally löste sich binnen zweier Tage auf.',
+      },
+      {
+        type: 'table',
+        caption: 'Halbleiterwerte am 28. Juli 2026',
+        head: ['Wert', 'Veränderung'],
+        rows: [
+          ['SK Hynix, Samsung Electronics (Seoul)', 'über −12 %'],
+          ['SanDisk (S&P 500, größter Verlierer)', '−11,02 %'],
+          ['AMD', '−5,17 %'],
+          ['Nvidia', '−4,99 %'],
+          ['Lam Research', '−4,46 %'],
+          ['Chipindex SOX', '−2,20 %'],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Auslöser sind drei: anhaltende Zweifel, ob sich die enormen Investitionen in künstliche Intelligenz rechnen; die wachsende Verschuldung, mit der neue Rechenzentren finanziert werden; und die Konkurrenz aus China – der Börsengang des Speicherherstellers CXMT verlief stark, und über den Beginn einer eigenen DUV-Fertigung war schon am Montag berichtet worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Frage, die sich jetzt lohnt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht: Ist der Ausverkauf übertrieben? Das weiß heute niemand. Sondern: Wie viel des eigenen Vermögens hängt eigentlich an dieser einen Branche – auch ohne dass man je eine Chip-Aktie gekauft hat?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Denn ein weltweit streuender Index gewichtet nach Börsenwert, nicht nach Anzahl. Wenn eine Branche jahrelang schneller wächst als der Rest, wächst ihr Anteil im Index mit – ohne dass jemand eine Entscheidung getroffen hätte. Wer 2015 einen Welt-ETF gekauft hat, hält heute etwas anderes als damals, obwohl er nichts getan hat.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Streuung nach Anzahl ist nicht Streuung nach Gewicht',
+        items: [
+          '1.500 Werte im Index klingen nach Streuung.',
+          'Wenn die zehn größten davon ein Viertel des Gewichts ausmachen und mehrere davon dieselbe Branche sind, ist es weniger, als es klingt.',
+          'Die Zahl steht im Factsheet jedes ETF unter „Top-Positionen“ und „Branchengewichtung“. Sie nachzusehen dauert zwei Minuten.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nichts Hektisches. Ein Tag wie dieser ist kein Grund zu verkaufen, aber ein guter Anlass nachzusehen. Wer feststellt, dass ein Fünftel seines Depots an einer einzigen Branche hängt, hat eine Entscheidung zu treffen – in Ruhe, und nicht an dem Tag, an dem die Kurse zwölf Prozent nachgeben.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-liquidationen-hebel-bewegt-den-kurs',
+    title: 'Bitcoin unter 64.000 – wenn der Hebel den Kurs selbst bewegt',
+    teaser:
+      'Bitcoin verliert knapp drei Prozent, rund 670 Millionen Dollar werden zwangsweise glattgestellt. Das eine ist die Ursache des anderen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-07-29T06:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Bitcoin', 'Liquidation', 'Hebel', 'Kryptowährungen'],
+    relatedTopics: ['bitcoin-krypto', 'derivat', 'anlegerpsychologie'],
+    relatedSymbols: ['bitcoin', 'ethereum'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE: Bitcoin fällt am 28. Juli auf 63.150 Dollar, bevor die Fed entscheidet',
+        url: 'https://www.wallstreet-online.de/nachricht/21161918-krypto-news-bitcoin-faellt-28-juli-63-150-dollar-fed-entscheidet',
+      },
+      {
+        label:
+          'wallstreetONLINE: BTC stürzt auf 63.400 Dollar, 670 Millionen Dollar werden liquidiert',
+        url: 'https://www.wallstreet-online.de/nachricht/21162731-bitcoin-prognose-2026-btc-stuerzt-63-400-dollar-670-millionen-dollar-liquidiert',
+      },
+      {
+        label: 'finanzen.net: Kryptomarkt am Nachmittag des 28. Juli 2026',
+        url: 'https://www.finanzen.net/nachricht/devisen/kryptomarkt-bitcoin-gibt-nach-fomc-vorabend-liquidationen-und-ny-regulierungsdruck-druecken-btc-unter-64-000-dollar-00-15826715',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin notierte am Dienstag zwischen 63.150 und 63.566 US-Dollar und damit knapp drei Prozent unter dem Vortag. Die Spanne ist kein Widerspruch: Es sind Kurse zu verschiedenen Uhrzeiten desselben Tages, und bei einem Markt, der rund um die Uhr handelt, ist die Uhrzeit ein Teil der Angabe.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist eine andere Zahl. Rund 670 Millionen Dollar an Positionen wurden im selben Zeitraum zwangsweise glattgestellt. Der Angst-und-Gier-Index stand bei 29 – im Bereich „Angst“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Liquidation ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer auf Kredit spekuliert, hinterlegt eine Sicherheit und leiht sich den Rest. Fällt der Kurs so weit, dass die Sicherheit den Verlust nicht mehr deckt, verkauft die Börse die Position automatisch – ohne Rückfrage. Das ist eine Liquidation, und sie hat eine Eigenschaft, die sie von einem gewöhnlichen Verkauf unterscheidet: Sie ist erzwungen und kommt genau dann, wenn der Kurs ohnehin fällt.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Die Rückkopplung',
+        items: [
+          'Der Kurs fällt.',
+          'Gehebelte Positionen werden zwangsverkauft.',
+          'Diese Verkäufe drücken den Kurs weiter.',
+          'Dadurch werden die nächsten Positionen fällig.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb sind starke Bewegungen an Kryptobörsen oft steiler, als es die Nachricht dahinter erklärt. Der Kurs bewegt sich am Ende nicht mehr wegen der Meldung, sondern wegen der Positionen, die die Meldung ausgelöst hat. Am Montag lief Bitcoin zweimal gegen 65.600 Dollar und wurde abgewiesen; beim zweiten Mal fiel er in kurzer Zeit um fast 3.000 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer ohne Hebel investiert ist, wird nie liquidiert – er sitzt einen Rückgang aus, wenn er will. Das ist der eigentliche Unterschied zwischen den beiden Arten, an diesem Markt teilzunehmen, und er zeigt sich nicht im Gewinnfall, sondern an Tagen wie diesem.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein zweiter Punkt betrifft den Vergleich: Bitcoin handelt an 365 Tagen, ein Aktienindex an rund 252. Wer Wochenendbewegungen mit Börsentagen vermengt, vergleicht ungleiche Zeiträume – und wundert sich über Zahlen, die nur unterschiedlich gezählt sind.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-in-euro-hat-zwei-ursachen',
+    title: 'Gold gibt nach – und warum ein Euro-Preis zwei Ursachen hat',
+    teaser:
+      'Die Feinunze kostete in London 4.034 Dollar, 41 weniger als am Vortag. Für wen der Preis in Euro zählt, ist damit erst die Hälfte gesagt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-07-29T06:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Wechselkurs', 'Dollar', 'Fed'],
+    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse', 'inflation'],
+    relatedSymbols: ['gold', 'eur-usd'],
+    sources: [
+      {
+        label: 'ARIVA: Goldpreis gibt nach – Warten auf US-Zinsentscheidung (28.07.2026)',
+        url: 'https://www.ariva.de/gold-kurs/news/goldpreis-gibt-nach-warten-auf-us-zinsentscheidung-12082963',
+      },
+      {
+        label:
+          'finanzen.at: US-Zinsentscheidung voraus – Goldpreis gibt nach (28.07.2026)',
+        url: 'https://www.finanzen.at/nachrichten/rohstoffe/us-zinsentscheidung-voraus-goldpreis-gibt-nach-1036371883',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Börse in London kostete eine Feinunze Gold – etwa 31,1 Gramm – am Dienstag 4.034 US-Dollar und damit 41 Dollar weniger als am Vortag, ein Minus von 0,88 Prozent. Der Grund lag weniger beim Gold als beim Dollar: Die US-Währung rückte in die Nähe eines Ein-Monats-Hochs, weil immer mehr Handelsdaten auf eine Zinserhöhung im September hindeuten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Hebel, ein Preis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wird weltweit in Dollar gehandelt. Wer in Deutschland kauft, zahlt in Euro – und dieser Euro-Preis entsteht aus zwei voneinander unabhängigen Größen:',
+      },
+      {
+        type: 'list',
+        items: [
+          'dem Dollarpreis der Unze, den Angebot und Nachfrage weltweit bestimmen,',
+          'dem Wechselkurs Euro zu Dollar, der davon unabhängig schwankt.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide können sich gegenläufig bewegen. Ein steigender Dollar verteuert Gold für alle, die in anderen Währungen kaufen – und drückt gleichzeitig den Dollarpreis, weil er Käufer außerhalb der USA abschreckt. Für einen Anleger im Euroraum heben sich diese Effekte teilweise auf. Wer nur die Dollarnotierung liest, sieht deshalb nicht, was in seinem Depot passiert ist.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Die Probe',
+        items: [
+          'Ist der Goldpreis in Dollar gefallen, in Euro aber gestiegen? Dann war es der Wechselkurs.',
+          'Sind beide gefallen? Dann war es das Gold.',
+          'Diese Unterscheidung braucht dreißig Sekunden und erklärt die meisten Fälle, in denen sich die Schlagzeile und der eigene Depotauszug zu widersprechen scheinen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer Gold als Absicherung hält, hält immer auch eine Wette auf den Dollar – ob er will oder nicht. Das ist kein Argument dagegen, aber ein Grund, den eigenen Ertrag in Euro zu messen und nicht in der Währung, in der zufällig gehandelt wird. Bemerkenswert ist an diesem Dienstag noch etwas anderes: Auch die zuletzt gefallenen Ölpreise und die damit nachlassenden Inflationsgefahren stützten den Goldpreis nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'drei-notenbanken-abstimmung-als-nachricht',
+    title: 'Drei Notenbanken in drei Tagen – lesen Sie das Abstimmungsergebnis',
+    metaTitle: 'Fed, BoE, BoJ: Das Abstimmungsergebnis zählt',
+    teaser:
+      'Fed, Bank of England und Bank of Japan entscheiden diese Woche. Alle drei halten voraussichtlich still – die Nachricht steht deshalb woanders.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-29T06:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Notenbanken', 'Bank of England', 'Bank of Japan', 'Leitzins'],
+    relatedTopics: [
+      'notenbanken-geldpolitik',
+      'waehrungen-wechselkurse',
+      'staatsanleihe',
+    ],
+    relatedSymbols: ['eur-gbp', 'eur-jpy', 'nikkei-225'],
+    sources: [
+      {
+        label: 'Bank of England: Interest rates and Bank Rate – our latest decision',
+        url: 'https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate',
+      },
+      {
+        label:
+          'HomeOwners Alliance: Will the Bank of England cut interest rates on 30 July 2026?',
+        url: 'https://hoa.org.uk/news/interest-rate-predictions-2/',
+      },
+      {
+        label:
+          'TechTimes: Bank of Japan holds rates at 1% and upgrades GDP forecast as yen nears 40-year low',
+        url: 'https://www.techtimes.com/articles/321731/20260727/bank-japan-holds-rates-1-upgrades-gdp-forecast-yen-nears-40-year-low.htm',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Drei Notenbanken entscheiden innerhalb von drei Tagen: die Fed heute Abend, die Bank of England am Donnerstag um 13 Uhr deutscher Zeit, die Bank of Japan zum Abschluss ihrer Sitzung am Donnerstag und Freitag. In allen drei Fällen erwartet der Markt, dass sich nichts ändert.',
+      },
+      {
+        type: 'table',
+        caption: 'Die drei Entscheidungen dieser Woche',
+        head: ['Notenbank', 'Leitzins', 'Erwartung'],
+        rows: [
+          ['Fed (29. Juli)', '3,50–3,75 %', '77,7 % für unverändert'],
+          ['Bank of England (30. Juli)', '3,75 %', 'rund 86 % für unverändert'],
+          ['Bank of Japan (30./31. Juli)', '1,00 %', 'weit überwiegend unverändert'],
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das Ergebnis nicht die ganze Nachricht ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank entscheidet nicht als Person, sondern als Gremium – und veröffentlicht, wie abgestimmt wurde. Im Juni hielt die Bank of England ihren Zins bei 3,75 Prozent, aber mit 7 zu 2 Stimmen: Megan Greene und Huw Pill stimmten für eine Erhöhung auf 4,00 Prozent. Dasselbe Ergebnis mit 9 zu 0 wäre eine völlig andere Botschaft gewesen.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Was ein Abstimmungsverhältnis verrät',
+        items: [
+          'Einstimmig: Der Kurs ist gefestigt, eine Änderung ist nicht in Sicht.',
+          'Knapp: Es fehlen ein oder zwei Stimmen für die Wende – und die Wende kann bei der nächsten Sitzung kommen.',
+          'Deshalb bewegt eine Abstimmung von 5 zu 4 die Anleihemärkte oft mehr als der Zinssatz selbst, der ja unverändert blieb.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Japan: eine Währung als Nebenwirkung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bank of Japan hält ihren Zins bei 1,00 Prozent und hat zuletzt ihre Wachstumsprognose angehoben, während der Yen sich einem Vierzig-Jahres-Tief nähert. Beides hängt zusammen: Wer deutlich niedrigere Zinsen bietet als andere, dessen Währung verliert an Nachfrage. Für japanische Exporteure ist das gut, für jeden, der importiert, teuer. Ein Zinsentscheid ist deshalb nie nur eine Zinsentscheidung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer diese Woche verfolgt, sollte nicht auf die Zahl schauen, die überall in der Überschrift steht, sondern auf zwei Zeilen weiter unten: das Abstimmungsverhältnis und den Satz zur nächsten Sitzung. Dort steht, was der Markt am nächsten Morgen einpreist.',
+      },
+    ],
+  },
+  {
+    slug: 'konsumklima-ein-index-ohne-einheit',
+    title: 'Minus 29,6 – wie man einen Index liest, der keine Einheit hat',
+    teaser:
+      'Das Konsumklima sinkt für August um 0,3 auf −29,6 Punkte. Die Zahl bedeutet für sich genommen nichts – erst der Vergleich macht sie lesbar.',
+    category: 'Märkte',
+    publishedAt: '2026-07-29T06:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Konsumklima', 'Konjunktur', 'Stimmungsindikator', 'Deutschland'],
+    relatedTopics: ['budget-und-sparquote', 'inflation', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'retail-news.de: GfK – Konsumklima in Deutschland verharrt auf niedrigem Niveau (Juli 2026)',
+        url: 'https://retail-news.de/konsumklima-deutschland-juli-2026-gfk/',
+      },
+      {
+        label: 'NIM: Consumer Climate – aktuelle Verbraucherstimmung',
+        url: 'https://www.nim.org/en/consumer-climate',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Konsumklima-Indikator für Deutschland sinkt für August um 0,3 Punkte auf **−29,6 Punkte**. Der Teilindikator für die Einkommenserwartung fällt deutlicher: um 2,3 Punkte auf −14,5. Schwache Einkommenserwartungen und eine hohe Sparneigung belasten die Nachfrage, obwohl sich Kauf- und Konjunkturerwartungen leicht verbesserten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Minus 29,6 was?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nichts. Der Wert hat keine Einheit – keine Euro, keine Prozent, keine Stück. Er entsteht aus Befragungen und ist so normiert, dass ein bestimmter Zeitraum den Nullpunkt bildet. Für sich allein ist die Zahl deshalb bedeutungslos. Lesbar wird sie erst im Vergleich: mit dem Vormonat, mit dem Vorjahr, mit dem langjährigen Mittel.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Drei Fragen an jeden Stimmungsindex',
+        items: [
+          'Wo lag der Wert im Vormonat? Die Richtung ist wichtiger als der Stand.',
+          'Wird die Lage abgefragt oder die Erwartung? Beides steckt oft in derselben Zahl, meint aber Verschiedenes.',
+          'Wie weit ist er vom eigenen Normalwert entfernt? Dafür braucht es die Reihe, nicht den einzelnen Punkt.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Lage und Erwartung sind zwei verschiedene Dinge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau das zeigt dieser Monat. Die Kauf- und Konjunkturerwartungen verbesserten sich leicht – im Juni hatten sich die Stimmungsindikatoren vor dem Hintergrund der Verhandlungen zum Iran-Konflikt aufgehellt. Gleichzeitig fiel die Erwartung an das eigene Einkommen. Man kann die Wirtschaft insgesamt optimistischer sehen und für den eigenen Geldbeutel trotzdem schwarzsehen. Wer nur den Gesamtwert liest, bekommt davon nichts mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die eigene Planung ist die Einkommenserwartung die interessantere der beiden Zahlen, denn sie beschreibt, was Menschen im nächsten halben Jahr zu tun gedenken – sparen oder ausgeben. Für das Depot folgt daraus wenig unmittelbar. Stimmungsindizes sagen etwas über die Richtung der Konjunktur, aber sie sagen nichts darüber, wann.',
+      },
+    ],
+  },
+  {
+    slug: 'quartalszahlen-warum-rekorde-den-kurs-druecken',
+    title: 'Sechs Bilanzen an einem Morgen – warum Rekorde den Kurs drücken können',
+    metaTitle: 'Quartalszahlen: Wenn Rekorde den Kurs drücken',
+    teaser:
+      'Deutsche Bank, BASF, Porsche und drei weitere legen heute früh Zahlen vor. Ein Kurs kann danach fallen, obwohl die Zahlen gut sind – das ist kein Widerspruch.',
+    category: 'Märkte',
+    publishedAt: '2026-07-29T06:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Quartalszahlen', 'Erwartungen', 'DAX', 'Bilanz'],
+    relatedTopics: ['aktie', 'wann-kaufen-verkaufen', 'anlegerpsychologie'],
+    relatedSymbols: ['deutsche-bank', 'basf', 'porsche-ag', 'nordex', 'krones'],
+    sources: [
+      {
+        label: 'onvista: Tagesvorschau – Termine am 29. Juli 2026',
+        url: 'https://www.onvista.de/news/2026/07-28-tagesvorschau-termine-am-29-juli-2026-0-10-26536934',
+      },
+      {
+        label: 'ARIVA: Tagesvorschau – Termine am 29. Juli 2026',
+        url: 'https://www.ariva.de/news/tagesvorschau-termine-am-29-juli-2026-12083289',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute früh veröffentlichen mehrere große deutsche Unternehmen ihre Zahlen zum zweiten Quartal beziehungsweise zum Halbjahr: Krones um 6:45 Uhr, Deutsche Bank, BASF, DWS und Nordex um 7:00 Uhr, Porsche AG um 7:30 Uhr. Analystenkonferenzen und Pressekonferenzen folgen über den Vormittag verteilt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer an solchen Tagen die Kurse verfolgt, erlebt regelmäßig etwas, das zunächst unlogisch wirkt: Ein Unternehmen meldet den höchsten Gewinn seiner Geschichte – und die Aktie fällt um fünf Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs kennt die Zahlen schon',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht die Zahlen selbst, aber die Erwartung an sie. Analysten veröffentlichen Schätzungen, Anleger handeln darauf, und der Kurs am Vorabend enthält bereits die Annahme, wie das Quartal ausgefallen sein dürfte. Am Morgen wird nicht der Gewinn gehandelt, sondern der **Abstand zwischen Gewinn und Erwartung**.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die vier möglichen Fälle',
+        items: [
+          'Zahlen gut, Erwartung war niedriger: Der Kurs steigt.',
+          'Zahlen gut, Erwartung war höher: Der Kurs fällt – trotz Rekord.',
+          'Zahlen schwach, Erwartung war noch schwächer: Der Kurs steigt trotz Verlust.',
+          'Und in jedem Fall gilt: Der Ausblick auf das kommende Halbjahr wiegt oft schwerer als das abgelaufene Quartal.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ausblick mehr zählt als die Bilanz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil eine Bilanz die Vergangenheit beschreibt und ein Kurs die Zukunft bezahlt. Ein Quartalsbericht ist ein Blick zurück auf drei Monate, die vorbei sind. Der Satz „wir erwarten für das Gesamtjahr“ dagegen ändert die Annahmen für alle kommenden Jahre – und damit den Wert, den der Markt dem Unternehmen beimisst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer eine Aktie langfristig hält, gewinnt an solchen Tagen wenig durch Zuschauen. Die Kursreaktion der ersten Stunde ist überwiegend eine Reaktion auf die Abweichung von einer Schätzung, die in einem Jahr niemand mehr kennt. Interessanter ist der Bericht selbst – und dort weniger der Gewinn als die Frage, woher er kam und ob er wiederkehrt.',
+      },
+    ],
+  },
+  {
+    slug: 'zwei-boersen-ein-tag-zwei-richtungen',
+    title: 'DAX im Plus, Chipwerte im Minus – zwei Börsen, ein Tag',
+    teaser:
+      'Der DAX schloss 0,52 Prozent fester bei 25.492,59 Punkten, während in New York die Halbleiter einbrachen. Der Unterschied steckt in der Zusammensetzung.',
+    category: 'Märkte',
+    publishedAt: '2026-07-29T06:05:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Index', 'Branchen', 'Streuung'],
+    relatedTopics: ['aktien-laender-branchen', 'etf', 'boerse'],
+    relatedSymbols: ['dax', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'ARIVA: DAX-FLASH – Dax nähert sich Rekordhoch, Ölpreisrückgang hilft (28.07.2026)',
+        url: 'https://www.ariva.de/dax-index/news/dax-flash-dax-naehert-sich-rekordhoch-oelpreisrueckgang-12082208',
+      },
+      {
+        label:
+          'Handelsblatt: Dax schließt im Plus – Siemens Energy größter Verlierer, SAP legt zu',
+        url: 'https://www.handelsblatt.com/finanzen/maerkte/marktberichte/dax-aktuell-dax-trotzt-ki-sorgen-und-notiert-im-plus/100243302.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am selben Dienstag, an dem in Seoul und New York die Halbleiterwerte zweistellig verloren, schloss der DAX 0,52 Prozent fester bei 25.492,59 Punkten und näherte sich damit wieder seinem Rekordhoch. Zwei Börsen, ein Handelstag, zwei Richtungen – wer beide Schlagzeilen nebeneinander liest, hält das leicht für einen Fehler.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index ist kein Land, sondern eine Liste',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Unterschied liegt nicht in der Stimmung, sondern in der Zusammensetzung. Im Nasdaq 100 stehen Technologie- und Halbleiterunternehmen mit hohem Gewicht; ein Ausverkauf in dieser Branche zieht den ganzen Index mit. Im DAX wiegt dieselbe Branche deutlich weniger, dafür stehen dort Chemie, Versicherer, Autobauer, Industrie und Versorger.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag kam hinzu, dass gefallene Ölpreise europäische Werte stützten – für einen Chemiekonzern ist Energie ein Kostenblock, für einen Chiphersteller nicht der entscheidende. Innerhalb des DAX war die Spreizung übrigens genauso groß: Siemens Energy war der größte Verlierer, SAP legte zu.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Was „breit gestreut“ wirklich heißt',
+        items: [
+          'Nicht: viele Werte. Sondern: Werte, die auf dieselbe Nachricht unterschiedlich reagieren.',
+          'Zwanzig Halbleiterunternehmen sind zwanzig Positionen und eine Wette.',
+          'Ein Chemiekonzern und ein Softwarehaus sind zwei Positionen und zwei verschiedene Geschäftsmodelle.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass ein Tag wie dieser kein Argument für oder gegen einen der beiden Märkte ist. Er zeigt nur, dass „der Markt“ als Sammelbegriff wenig taugt: Es gibt keinen Markt, es gibt Listen von Unternehmen, und wer eine davon kauft, kauft ihre Zusammensetzung mit. Die steht im Factsheet, nicht in der Schlagzeile.',
+      },
+    ],
+  },
   // ------------------------------------------------------------------ 28.07.
   {
     slug: 'china-baut-eigene-duv-anlagen-asml-bricht-ein',
