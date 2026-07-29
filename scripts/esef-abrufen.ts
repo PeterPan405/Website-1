@@ -255,8 +255,16 @@ const AKTIEN_TAGS = [
   'WeightedAverageShares',
 ]
 
-/** Wie viele Meldungen je Unternehmen aufgehoben werden, um eine Jahreszahl zu finden. */
-const HOECHSTENS_MELDUNGEN = 3
+/**
+ * Wie viele Meldungen je Unternehmen aufgehoben werden, um eine Jahreszahl zu
+ * finden.
+ *
+ * Drei waren zu wenig: Coloplast schließt Ende September ab und hat seither
+ * mehr Zwischenberichte im Verzeichnis, als das Fenster breit war. Die Zahl
+ * kostet nichts, solange die neueste Meldung ein Jahresabschluss ist – dann
+ * wird nur eine Datei geholt und der Rest gar nicht erst angefasst.
+ */
+const HOECHSTENS_MELDUNGEN = 6
 
 /** Ergebnis je Aktie – der Umweg zur Aktienzahl, wenn sie nicht dasteht. */
 const EPS_TAGS = ['BasicEarningsLossPerShare', 'DilutedEarningsLossPerShare']
