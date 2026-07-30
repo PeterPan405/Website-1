@@ -373,7 +373,15 @@ export default async function MarketsOverviewPage() {
             >
               Merkliste
             </Link>{' '}
-            – sie bleibt im Browser und braucht kein Konto.
+            – sie bleibt im Browser und braucht kein Konto. Und wer zwischen zwei Titeln
+            schwankt, stellt sie im{' '}
+            <Link
+              href="/maerkte/vergleich"
+              className="text-markets font-medium underline underline-offset-2"
+            >
+              Vergleich
+            </Link>{' '}
+            nebeneinander.
           </p>
           <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
             {stockQuotes.map((quote) => (

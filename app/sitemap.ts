@@ -143,6 +143,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Das Tagesbild rechnet sich mit jedem Kursabruf neu.
     { url: absoluteUrl('/maerkte/tagesbild'), changeFrequency: 'hourly', priority: 0.7 },
     { url: absoluteUrl('/maerkte/branchen'), changeFrequency: 'weekly', priority: 0.7 },
+    // Der Vergleich rechnet mit denselben Kursen und ändert sich mit ihnen.
+    { url: absoluteUrl('/maerkte/vergleich'), changeFrequency: 'daily', priority: 0.7 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,

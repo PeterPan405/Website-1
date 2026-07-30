@@ -253,6 +253,20 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     keywords: ['tagesbild', 'marktbericht', 'breite', 'gewinner', 'verlierer', 'heute'],
   })
   eintraege.push({
+    title: 'Zwei Aktien vergleichen',
+    href: '/maerkte/vergleich',
+    kind: 'Bereich',
+    hint: 'Zwei Titel nebeneinander – mit der Angabe, welche Gegenüberstellung etwas bedeutet',
+    keywords: [
+      'vergleich',
+      'vergleichen',
+      'gegenueberstellung',
+      'besser',
+      'welche aktie',
+      'duell',
+    ],
+  })
+  eintraege.push({
     title: 'Merkliste',
     href: '/maerkte/merkliste',
     kind: 'Bereich',

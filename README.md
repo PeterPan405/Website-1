@@ -223,6 +223,36 @@ Jahre – rund 250 KB. Geschrieben wird ein Kurspunkt je Zeile: kompakter als
 eingerücktes JSON und in einem Diff lesbar. Ein Börsentag mehr ist genau elf neue
 Zeilen.
 
+### Zwei Aktien vergleichen
+
+Unter `/maerkte/vergleich` stehen zwei Titel nebeneinander. Die eigentliche
+Arbeit steckt nicht in der Tabelle, sondern in `lib/vergleich.ts`: der Frage,
+**welche** Gegenüberstellung überhaupt etwas bedeutet. Drei Regeln, alle in
+`tests/vergleich.test.ts` festgehalten:
+
+- **Kein Sieger ohne Richtung.** Kurs, Börsenwert, Branche und Tagesbewegung
+  tragen nie eine Markierung. Ein Kurs von 320 gegen einen von 41 sagt nichts:
+  Er hängt daran, in wie viele Stücke ein Unternehmen zerlegt wurde.
+- **Kein Sieger bei zu kleinem Abstand.** Ein Prozentpunkt bei Prozentangaben,
+  fünf Prozent relativ bei Verhältniszahlen. Absolut wäre bei den Letzteren
+  falsch: Bei einem KGV von 6 gegen 7 ist ein Punkt viel, bei 60 gegen 61
+  nichts.
+- **Kein Bewertungsvergleich über Branchengrenzen.** KGV, KUV und KBV bleiben
+  unmarkiert, sobald die Branchen auseinandergehen – ein Versorger und ein
+  Softwarehaus werden aus guten Gründen verschieden bewertet.
+
+Dazu die Vorbehalte über der Tabelle statt darunter: verschiedene Währungen,
+verschiedene Branchen, verschiedene Sitzländer (und damit verschiedene
+Quellensteuer), ungleich lange Kursreihen. Wer sie erst nach den Zahlen liest,
+hat die Zahlen schon geglaubt.
+
+Die Seite entsteht beim Bauen und trägt die Daten aller 1.029 Aktien im Paket –
+wie die Merkliste, und aus demselben Grund: Welche zwei Titel jemand vergleicht,
+weiß erst der Browser, und eine Seite je Paarung wären über eine halbe Million.
+Die Zahlen werden vor dem Ausliefern auf die Stellen gerundet, die die Tabelle
+auch zeigt; das allein hat die Seite von 772 auf 666 Kilobyte gebracht
+(übertragen, also gezippt: 193 auf 128).
+
 ## Reihenfolge der Lernthemen
 
 Die 33 Themen stehen nicht alphabetisch und nicht nach Beliebtheit, sondern in der
