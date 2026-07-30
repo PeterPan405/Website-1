@@ -124,6 +124,42 @@ Getrennt schreibt der halbstündliche Lauf nur noch `kurse-aktuell.json` mit
 rund siebzig Kilobyte. `lib/market-live.ts` führt beide Dateien wieder
 zusammen, sodass der Rest der Website davon nichts merkt.
 
+### Wie vollständig die Daten sind
+
+`npm run abdeckung` rechnet es aus – aus denselben Dateien, die auch die
+Website liest, ohne Netz und ohne etwas zu verändern:
+
+```
+Kursverlauf         1029 von 1029 (100 %)
+Dividendenhistorie   919 von 1029 (89 %)
+Unternehmenszahlen   495 von 1029 (48 %)
+Quartalstermine      158 von 1029 (15 %)
+```
+
+Die Zahlen stehen hier bewusst nicht als Fließtext, sondern als Befehl: Eine
+abgetippte Abdeckung ist nach einer Woche falsch, ohne dass es jemandem
+auffiele.
+
+Zu den beiden Lücken:
+
+**Quartalstermine** liegen bei 158, weil das genau die Unternehmen sind, die
+bei der SEC ein 8-K einreichen. Der zweite Weg über Twelve Data ist gebaut und
+braucht einen Schlüssel; danach füllt er das Feld über zwei Wochenläufe.
+Warum zwei und nicht einer, steht in `EINRICHTUNG.md`.
+
+**Unternehmenszahlen** liegen bei 48 %, und der größte einzelne Block ist
+Deutschland mit 86 Titeln – Allianz, Münchener Rück, Siemens. Das ist der
+ärgerlichste, denn deutsche Emittenten melden nach ESEF wie alle anderen an
+einem geregelten EU-Markt, und dieses Projekt liest ESEF bereits. Die
+Zuordnungsliste in `scripts/esef-abrufen.ts` enthält aber 26 französische und
+13 britische Titel und keinen einzigen deutschen.
+
+Sie ist von Hand geführt, und das aus gutem Grund: Ein Namenstreffer ist keine
+Zuordnung. Nestlé traf einmal die US-Finanzierungstochter mit 31 Milliarden
+Umsatz statt der Gruppe mit 91. Was fehlt, ist also nicht die Quelle, sondern
+die geprüfte Zeile je Unternehmen – und die Kandidaten dafür liefert
+`scripts/quellen-probe-esef.ts` über den Workflow „Quellen abklopfen“.
+
 ### Warum zwei Anbieter für Indizes
 
 Der erste Versuch lief über Stooq und scheiterte vollständig: Statt der
@@ -186,6 +222,36 @@ Die letzten 400 Tage in voller Auflösung, davor ein Wert je Woche, insgesamt f�
 Jahre – rund 250 KB. Geschrieben wird ein Kurspunkt je Zeile: kompakter als
 eingerücktes JSON und in einem Diff lesbar. Ein Börsentag mehr ist genau elf neue
 Zeilen.
+
+### Zwei Aktien vergleichen
+
+Unter `/maerkte/vergleich` stehen zwei Titel nebeneinander. Die eigentliche
+Arbeit steckt nicht in der Tabelle, sondern in `lib/vergleich.ts`: der Frage,
+**welche** Gegenüberstellung überhaupt etwas bedeutet. Drei Regeln, alle in
+`tests/vergleich.test.ts` festgehalten:
+
+- **Kein Sieger ohne Richtung.** Kurs, Börsenwert, Branche und Tagesbewegung
+  tragen nie eine Markierung. Ein Kurs von 320 gegen einen von 41 sagt nichts:
+  Er hängt daran, in wie viele Stücke ein Unternehmen zerlegt wurde.
+- **Kein Sieger bei zu kleinem Abstand.** Ein Prozentpunkt bei Prozentangaben,
+  fünf Prozent relativ bei Verhältniszahlen. Absolut wäre bei den Letzteren
+  falsch: Bei einem KGV von 6 gegen 7 ist ein Punkt viel, bei 60 gegen 61
+  nichts.
+- **Kein Bewertungsvergleich über Branchengrenzen.** KGV, KUV und KBV bleiben
+  unmarkiert, sobald die Branchen auseinandergehen – ein Versorger und ein
+  Softwarehaus werden aus guten Gründen verschieden bewertet.
+
+Dazu die Vorbehalte über der Tabelle statt darunter: verschiedene Währungen,
+verschiedene Branchen, verschiedene Sitzländer (und damit verschiedene
+Quellensteuer), ungleich lange Kursreihen. Wer sie erst nach den Zahlen liest,
+hat die Zahlen schon geglaubt.
+
+Die Seite entsteht beim Bauen und trägt die Daten aller 1.029 Aktien im Paket –
+wie die Merkliste, und aus demselben Grund: Welche zwei Titel jemand vergleicht,
+weiß erst der Browser, und eine Seite je Paarung wären über eine halbe Million.
+Die Zahlen werden vor dem Ausliefern auf die Stellen gerundet, die die Tabelle
+auch zeigt; das allein hat die Seite von 772 auf 666 Kilobyte gebracht
+(übertragen, also gezippt: 193 auf 128).
 
 ## Reihenfolge der Lernthemen
 
@@ -442,6 +508,52 @@ Meldung, https-Links, und ob die verwiesenen Lernthemen und Kurse überhaupt
 existieren. Stimmt etwas nicht, bricht der Build ab, statt eine fehlerhafte
 Ausgabe zu veröffentlichen – die Ausgaben entstehen automatisch, also darf ein
 Fehler darin nicht still durchgehen.
+
+## Podcast
+
+Unter `/podcast` stehen die Folgen des Podcasts, jede mit eigener Adresse unter
+`/podcast#<slug>`. Sie kommen aus dem **RSS-Feed** des Podcast-Hosters, nicht
+aus der Spotify-Schnittstelle: Die verlangt eine Registrierung als Anwendung
+samt Geheimnis und gibt Folgen nur nach OAuth heraus, während der Feed ohne
+Zugangsdaten lesbar ist und beim Hoster liegt – zieht der Podcast auf eine
+andere Plattform, bleibt er derselbe.
+
+| Datei                           | Aufgabe                                                         |
+| ------------------------------- | --------------------------------------------------------------- |
+| `lib/podcast-feed.ts`           | zerlegt den Feed, ohne Importe und daher unter `tests/` prüfbar |
+| `scripts/podcast-abrufen.ts`    | holt den Feed und schreibt die Momentaufnahme                   |
+| `lib/podcast.ts`                | die Service-Schicht für die Seiten                              |
+| `.github/workflows/podcast.yml` | ruft täglich ab und committet bei Änderung                      |
+
+**Damit Folgen erscheinen, muss die Feed-Adresse hinterlegt werden.** Sie steht
+im Verwaltungsbereich des Hosters (bei „Spotify for Creators" unter
+_Settings → Distribution_) und gehört unter _GitHub → Settings → Secrets and
+variables → Actions_ in die **Variablen** unter dem Namen `PODCAST_RSS_URL` –
+nicht in die Secrets: Ein Podcast-Feed ist öffentlich, jeder Abspieler liest
+ihn. Aus der Spotify-Adresse allein lässt sie sich nicht ableiten, und geraten
+wird sie nicht: Ein falscher Feed brächte fremde Folgen unter unserem Namen auf
+die Seite.
+
+Ohne diese Angabe bleibt die Liste leer. Das ist ein gültiger Zustand: Die
+Seite steht trotzdem und verweist auf Spotify.
+
+Drei Entscheidungen, die nicht offensichtlich sind:
+
+- **Eine Seite mit Sprungmarken, nicht eine Seite je Folge.** Erst der zwingende
+  Grund: Ein `[slug]`-Verzeichnis, dessen `generateStaticParams()` eine leere
+  Liste zurückgibt, bricht den Build ab – `output: export` verlangt mindestens
+  eine vorgerenderte Adresse, und genau dieser Zustand liegt ohne Feed-Adresse
+  vor. Der Fehler kam erst im Build, nicht in `tsc` oder `lint`. Dann der
+  inhaltliche: Was ein Feed je Folge hergibt, sind ein Titel, ein Datum und ein
+  Ankündigungsabsatz – daraus entstünden dünne Seiten. Eine eigene Adresse hat
+  jede Folge trotzdem, genau wie jeder Glossarbegriff unter `/glossar#<slug>`.
+- **Kein eingebetteter Abspieler.** Er lädt beim bloßen Seitenaufruf die Skripte
+  seines Anbieters nach und setzt Kennungen, bevor jemand auf „Play" gedrückt
+  hat. Verlinkt wird die Folge, gehört wird sie beim Anbieter.
+- **Was einmal im Bestand war, bleibt darin.** Viele Hoster liefern nur die
+  letzten fünfzig oder hundert Folgen aus. Wer den Feed eins zu eins übernimmt,
+  löscht die älteren aus dem Bestand – und jede Sprungmarke, die je
+  weitergegeben wurde, zeigt ins Leere.
 
 ## Suche
 

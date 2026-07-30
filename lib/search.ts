@@ -22,6 +22,7 @@ import { calculators } from '@/data/calculators'
 import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getNewsArticles } from '@/lib/news'
+import { folgenAdresse, getFolgen, kurzfassung } from '@/lib/podcast'
 import { getBranchen } from '@/lib/branchen'
 import type { SearchEntry } from '@/lib/search-match'
 import { areas } from '@/lib/site'
@@ -245,6 +246,27 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     einen Umweg – sie heißt nicht wie eine Branche.
   */
   eintraege.push({
+    title: 'Das Tagesbild',
+    href: '/maerkte/tagesbild',
+    kind: 'Bereich',
+    hint: 'Wie viele Aktien heute steigen, welche Branche vorn liegt, wie breit die Bewegung ist',
+    keywords: ['tagesbild', 'marktbericht', 'breite', 'gewinner', 'verlierer', 'heute'],
+  })
+  eintraege.push({
+    title: 'Zwei Aktien vergleichen',
+    href: '/maerkte/vergleich',
+    kind: 'Bereich',
+    hint: 'Zwei Titel nebeneinander – mit der Angabe, welche Gegenüberstellung etwas bedeutet',
+    keywords: [
+      'vergleich',
+      'vergleichen',
+      'gegenueberstellung',
+      'besser',
+      'welche aktie',
+      'duell',
+    ],
+  })
+  eintraege.push({
     title: 'Merkliste',
     href: '/maerkte/merkliste',
     kind: 'Bereich',
@@ -375,6 +397,35 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Tagesüberblick',
       hint: ausgabe.intro,
       keywords: [ausgabe.date],
+    })
+  }
+
+  /*
+    Der Podcast: die Übersicht und jede Folge einzeln.
+
+    Der Grund, warum die Folgen überhaupt im Bestand liegen, ist genau dieser
+    Eintrag – gesucht wird nach dem Titel einer Folge, an die man sich erinnert.
+    Solange keine Feed-Adresse hinterlegt ist, bleibt es beim Übersichtseintrag;
+    er beantwortet die Frage „gibt es einen Podcast?“ auch dann.
+  */
+  const folgen = getFolgen()
+  eintraege.push({
+    title: 'Der Podcast',
+    href: '/podcast',
+    kind: 'Bereich',
+    hint:
+      folgen.length > 0
+        ? `${folgen.length} Folgen zum Hören – mit Titel, Datum und Inhalt zum Nachlesen`
+        : 'Dieselben Themen wie hier, nur gesprochen – und wo sie zu hören sind',
+    keywords: ['podcast', 'folge', 'folgen', 'hoeren', 'audio', 'spotify'],
+  })
+  for (const folge of folgen) {
+    eintraege.push({
+      title: folge.titel,
+      href: folgenAdresse(folge),
+      kind: 'Podcastfolge',
+      hint: folge.beschreibung ? kurzfassung(folge.beschreibung) : folge.datum,
+      keywords: ['podcast', 'folge', folge.datum],
     })
   }
 

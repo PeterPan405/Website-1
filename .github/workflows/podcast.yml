@@ -1,0 +1,66 @@
+name: Podcastfolgen aktualisieren
+
+# Liest den RSS-Feed des Podcasts und schreibt die Folgen in den Bestand.
+#
+# Zeitplan: täglich. Ein Podcast erscheint seltener, aber der Abruf kostet eine
+# einzige Anfrage – und eine Folge, die einen Tag lang nicht auf der Website
+# steht, obwohl sie veröffentlicht ist, ist das teurere Ende des Handels.
+#
+# Ohne hinterlegte Feed-Adresse ist der Lauf in Sekunden durch und ändert
+# nichts. Die Adresse gehört unter Settings → Secrets and variables → Actions
+# in die **Variablen**, nicht in die Secrets: Ein Podcast-Feed ist öffentlich,
+# jeder Abspieler liest ihn.
+
+on:
+  schedule:
+    # Täglich um 04:40 UTC – vor dem Kursabruf und nach den nächtlichen Läufen.
+    - cron: '40 4 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: podcast
+  cancel-in-progress: false
+
+jobs:
+  abrufen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Podcastfolgen abrufen
+        env:
+          PODCAST_RSS_URL: ${{ vars.PODCAST_RSS_URL }}
+        run: npm run podcast
+
+      - name: Momentaufnahme committen
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Erst vormerken, dann vergleichen – `git diff` allein sieht eine noch
+          # nicht versionierte Datei nicht und meldete „keine Änderung“.
+          git add data/snapshots/podcast.json
+          if git diff --cached --quiet -- data/snapshots/podcast.json; then
+            echo "Keine Änderung – kein Commit."
+            exit 0
+          fi
+
+          git commit -m "Podcast: Stand $(date -u +%Y-%m-%d)"
+
+          zweig="${{ github.ref_name }}"
+          for versuch in 1 2 3; do
+            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
+            echo "Push fehlgeschlagen, Versuch $versuch"
+            sleep $((versuch * 5))
+          done
+          exit 1

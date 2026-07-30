@@ -13,6 +13,7 @@ import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
 import { Merkschalter } from '@/components/markets/Merkschalter'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
+import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -34,6 +35,7 @@ import { laendernamen } from '@/data/laender/namen'
 import { getBrancheVon } from '@/lib/branchen'
 import { getQuellensteuer } from '@/lib/quellensteuer'
 import { inEuro, lohntEuroAngabe } from '@/lib/euro'
+import { einmalanlage, sparplan } from '@/lib/rueckblick'
 import {
   dividendenQuelle,
   getDividendenbefund,
@@ -113,6 +115,15 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
   const dividende = getDividendenbefund(symbol)
   const dividendenverlauf = getDividendenverlauf(symbol)
   const branche = getBrancheVon(symbol)
+  /*
+    Der Rückblick nutzt die Fünfjahresreihe, die für den Chart ohnehin
+    geladen ist. Feste Beträge statt Eingabefeld: Die Antwort ist linear, und
+    ein Regler auf tausend Seiten kostete JavaScript für eine Multiplikation.
+  */
+  const reihe = ranges['5J'].map((punkt) => ({ d: punkt.t.slice(0, 10), c: punkt.value }))
+  const abTag5J = reihe[0]?.d ?? ''
+  const einmal = einmalanlage(reihe, 1000, abTag5J)
+  const monatsplan = sparplan(reihe, 100, abTag5J)
   /*
     Die Quellensteuer nur, wo sie eine Rolle spielt: bei Aktien, die auch
     Dividende zahlen. Bei einem Titel ohne Ausschüttung wäre die Tafel eine
@@ -422,6 +433,16 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               <Quellensteuertafel
                 befund={quellensteuerbefund}
                 land={sitzlandName}
+                className="mt-12"
+              />
+            )}
+
+            {einmal && (
+              <Rueckblicktafel
+                einmal={einmal}
+                plan={monatsplan}
+                einheit={instrument.unit}
+                name={instrument.name}
                 className="mt-12"
               />
             )}

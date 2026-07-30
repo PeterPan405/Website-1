@@ -6,7 +6,7 @@ brauchen trotzdem Zugangsdaten, weil sie nach außen wirken:
 | Was                               | Secrets                                                         | Ohne sie passiert                                         |
 | --------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------- |
 | Website ausliefern                | `HOSTINGER_SSH_HOST`, `HOSTINGER_SSH_USER`, `HOSTINGER_SSH_KEY` | Das Paket wird gebaut und geprüft, aber nicht hochgeladen |
-| Quartalstermine außerhalb der USA | `TWELVEDATA_API_KEY`                                            | Es bleibt bei den Unternehmen, die bei der SEC melden     |
+| Quartalstermine außerhalb der USA | `TWELVEDATA_API_KEY`                                            | Es bleibt bei 158 von 1.029 Aktien – nur die SEC-Melder   |
 | Unternehmenszahlen aus Korea      | `DART_API_KEY`                                                  | Die 15 koreanischen Titel bleiben ohne Kennzahlen         |
 | Unternehmenszahlen aus Japan      | `EDINET_API_KEY`                                                | Die Abfrage, ob sich der Weg lohnt, unterbleibt           |
 
@@ -169,6 +169,33 @@ darin, und der Weg dorthin ist deutlich länger. `npm run edinet` klopft
 deshalb vorerst nur ab, ob die Schnittstelle antwortet und ob unter den
 Jahresberichten Titel dieses Katalogs vorkommen. Es schreibt keine Datei. Erst
 wenn diese Abfrage trägt, lohnt der zweite Schritt.
+
+### 2.3b Warum es zwei Läufe braucht
+
+Ohne den Schlüssel steht der Kalender bei **158 von 1.029** Aktien – das sind
+genau die, die bei der SEC ein 8-K einreichen. Von den 871 offenen sind 817
+über Twelve Data erreichbar.
+
+Sie passen aber nicht in einen Lauf. Der kostenlose Tarif erlaubt acht Anfragen
+je Minute, daher die 8,5 Sekunden Pause; 817 Abfragen wären 116 Minuten, und
+der Workflow hat 120. Vier Minuten Puffer sind keine – eine langsame Antwort,
+und GitHub bricht bei 120 Minuten ab. Geschrieben wäre dann **nichts**, denn
+der Prozess stirbt vor dem Speichern.
+
+Der Abruf hört deshalb nach 75 Minuten von selbst auf, schreibt, was er hat,
+und merkt sich je Kürzel den Tag des Versuchs. Der nächste Lauf beginnt bei den
+am längsten nicht versuchten. **Nach zwei Wochenläufen ist das Feld einmal
+durch**; danach hält sich der Bestand von selbst frisch, weil immer die
+ältesten Einträge nachgezogen werden.
+
+Im Protokoll steht, was passiert ist:
+
+```
+817 Aktien ohne Termin – zweiter Anlauf über Twelve Data.
+  Zeitbudget: 75 Minuten, das reicht für rund 529 Abfragen.
+  … 525 von 817
+Zeitbudget nach 529 Abfragen aufgebraucht.
+```
 
 ### 2.4 Auslösen und ablesen
 

@@ -10,6 +10,7 @@ import { getLernpfadSlugs } from '@/lib/lernpfade'
 import { getEditionDates } from '@/lib/editions'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
+import { getFolgen } from '@/lib/podcast'
 import { absoluteUrl } from '@/lib/site'
 
 /**
@@ -81,6 +82,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      /*
+        Der Podcast steht auf einer Seite, mit einer Sprungmarke je Folge –
+        nicht als eine Seite je Folge. Der Grund steht in `lib/podcast.ts`.
+        Ihr Änderungsstand ist deshalb das Datum der jüngsten Folge.
+      */
+      url: absoluteUrl('/podcast'),
+      lastModified: getFolgen()[0]?.datum ? new Date(getFolgen()[0].datum) : buildDate,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
     { url: absoluteUrl('/ueber-uns'), changeFrequency: 'yearly', priority: 0.4 },
     // Die Philosophie-Seite erscheint erst in der Sitemap, wenn ihr Text steht –
     // sonst würde eine noindex-Seite zur Indexierung angemeldet.
@@ -128,7 +140,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     das die ehrlichere Angabe.
   */
   const branchenPages: MetadataRoute.Sitemap = [
+    // Das Tagesbild rechnet sich mit jedem Kursabruf neu.
+    { url: absoluteUrl('/maerkte/tagesbild'), changeFrequency: 'hourly', priority: 0.7 },
     { url: absoluteUrl('/maerkte/branchen'), changeFrequency: 'weekly', priority: 0.7 },
+    // Der Vergleich rechnet mit denselben Kursen und ändert sich mit ihnen.
+    { url: absoluteUrl('/maerkte/vergleich'), changeFrequency: 'daily', priority: 0.7 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,
