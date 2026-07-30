@@ -194,7 +194,16 @@ export function werteDividenden(
   let schaetzungBasis: string | null = null
   if (rhythmus !== 'unregelmaessig') {
     const schritt = Math.round(365 / ZAHLUNGEN_JE_JAHR[rhythmus])
-    const basis = gueltig.find((z) => tageZwischen(z.date, letzte.date) >= 330) ?? null
+    /*
+      `findLast`, nicht `find`. Gesucht ist die Zahlung **ein** Zyklus vor der
+      letzten, und die Liste ist aufsteigend sortiert: `find` liefert die
+      älteste passende, also bei Allianz die von 2022. Im Text stand dann „im
+      Zyklus davor am 05.05.2022“ – vier Jahre her und als Beleg für eine
+      Jahresschätzung wertlos. `findLast` liefert die jüngste, die mindestens
+      330 Tage zurückliegt, und das ist der Vorjahrestermin.
+    */
+    const basis =
+      gueltig.findLast((z) => tageZwischen(z.date, letzte.date) >= 330) ?? null
     let kandidat = plusTage(letzte.date, schritt)
     // Bei sehr alten Reihen kann der geschätzte Termin in der Vergangenheit
     // liegen; dann wird weitergezählt, bis er in der Zukunft liegt.

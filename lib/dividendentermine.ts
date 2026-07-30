@@ -151,7 +151,18 @@ export function getDividendentermine(): Termin[] {
 
     ergebnis.push({
       datum: befund.naechsterErwartet,
-      titel: `${definition.name}: Dividendenabschlag erwartet`,
+      /*
+        Das Kürzel gehört in den Titel, und nicht nur zur Unterscheidung.
+
+        Aufgefallen ist es an United Microelectronics: Die Firma steht zweimal
+        im Katalog – als US-Hinterlegungsschein (UMC) und in Taipeh (2303.TW).
+        Zwei Einträge mit identischem Titel hat die Kalenderprüfung zu Recht
+        als Dublette abgewiesen. Der eigentliche Grund ist aber inhaltlich: Die
+        beiden Notierungen haben verschiedene Abschlagstage, verschiedene
+        Währungen und verschiedene Quellensteuer. Wer den Termin liest, muss
+        wissen, welche der beiden gemeint ist.
+      */
+      titel: `${definition.name} (${definition.ticker}): Dividendenabschlag erwartet`,
       art: 'dividende',
       bedeutung:
         `Zahlt ${rhythmusLabel[befund.rhythmus]}, zuletzt ${betrag} am ` +

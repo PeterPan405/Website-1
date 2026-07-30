@@ -100,7 +100,20 @@ check(
 check(
   'kodiert das Dach im Symbol',
   yahooUrl('^GDAXI'),
-  'https://query1.finance.yahoo.com/v8/finance/chart/%5EGDAXI?range=5y&interval=1d'
+  'https://query1.finance.yahoo.com/v8/finance/chart/%5EGDAXI?range=5y&interval=1d&events=div'
+)
+
+/*
+  Die Dividendenereignisse gehören zwingend an die Adresse.
+
+  Ohne `events=div` liefert Yahoo dieselbe Kursreihe, aber keine Dividenden –
+  und die Auswertung könnte nicht unterscheiden, ob ein Titel keine zahlt oder
+  ob nur nicht danach gefragt wurde. Der Bestand ginge dann still leer aus.
+*/
+check(
+  'fragt die Dividendenereignisse mit ab',
+  yahooUrl('AAPL').includes('events=div'),
+  true
 )
 
 // ------------------------------------------------------------- Twelve Data

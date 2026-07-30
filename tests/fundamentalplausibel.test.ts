@@ -42,6 +42,7 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { werteDividenden } from '../lib/dividenden.ts'
 import { HINTERLEGUNGSSCHEINE } from '../lib/hinterlegungsscheine.ts'
 import { gleicheWaehrung, inHauptwaehrung } from '../lib/waehrungseinheit.ts'
 
@@ -286,6 +287,60 @@ pruefe(
     `beziehungsweise ${KBV_MAX_MIT_UMSATZ}, wo ein Umsatz gegenprüft`,
   auffaelligKbv.length === 0,
   `\n       ${auffaelligKbv.join('\n       ')}`
+)
+
+/* ---------------------------------------------------------------------------
+   Die Dividendenrendite
+--------------------------------------------------------------------------- */
+
+console.log('\n— Dividendenrendite —')
+
+/*
+  Dieselbe Prüfung wie oben, für die dritte Quelle: die gemeldeten
+  Dividendenzahlungen.
+
+  Der Fehler, der hier gefangen wird, ist ein Einheitenfehler – und es hat
+  ihn schon gegeben, wenn auch nur in der Anzeige: Weil `formatPercent` die
+  Prozentzahl selbst erwartet und nicht den Anteil, wies Apple eine
+  Dividendenrendite von 0,00 Prozent aus statt 0,31. Andersherum wäre er
+  gefährlicher: Stünde bei Shell versehentlich der Kurs in Pfund und die
+  Dividende in Pence, käme eine Rendite von 327 Prozent heraus.
+
+  Eine reguläre Dividendenrendite über 20 Prozent gibt es praktisch nicht.
+  Über 15 liegen einige Sonderfälle – geschlossene Fonds, einmalige
+  Sonderausschüttungen –, deshalb ist die Grenze nicht knapp gesetzt. Ein
+  Faktor 100 liegt weit darüber.
+*/
+const RENDITE_MAX = 25
+
+const dividenden = JSON.parse(
+  readFileSync(join(wurzel, 'data/snapshots/dividenden.json'), 'utf8')
+) as { titel: Record<string, { date: string; amount: number }[]> }
+
+const heute = new Date().toISOString().slice(0, 10)
+const auffaelligeRendite: string[] = []
+let geprueftRendite = 0
+
+for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
+  const kurs = letzterKurs(symbol)
+  if (kurs === null || kurs <= 0) continue
+  const befund = werteDividenden(zahlungen, kurs, heute)
+  if (!befund || befund.renditeProzent === null) continue
+
+  geprueftRendite += 1
+  if (befund.renditeProzent > RENDITE_MAX) {
+    auffaelligeRendite.push(
+      `${symbol}: ${befund.renditeProzent.toFixed(1)} % aus ` +
+        `${befund.summeZwoelfMonate} je Aktie bei Kurs ${kurs}`
+    )
+  }
+}
+
+pruefe(`es wurden Renditen gerechnet (${geprueftRendite})`, geprueftRendite > 50)
+pruefe(
+  `jede Dividendenrendite liegt unter ${RENDITE_MAX} Prozent`,
+  auffaelligeRendite.length === 0,
+  `\n       ${auffaelligeRendite.join('\n       ')}`
 )
 
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert.`)

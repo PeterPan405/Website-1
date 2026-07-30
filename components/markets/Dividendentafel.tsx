@@ -5,6 +5,21 @@ import { rhythmusLabel, type Dividendenbefund } from '@/lib/dividenden'
 import { formatDateShort, formatNumber, formatPercent } from '@/lib/format'
 
 /**
+ * Ein Dividendenbetrag mit so vielen Stellen, wie er braucht.
+ *
+ * Feste vier Nachkommastellen sähen bei Allianz als „17,1000 EUR“ aus, feste
+ * zwei würden BP mit 6,1844 Pence auf 6,18 runden. Also so viele, wie der
+ * Betrag tatsächlich hat, höchstens vier.
+ */
+function betrag(wert: number, einheit: string): string {
+  const stellen = Math.min(
+    4,
+    (wert.toFixed(4).split('.')[1] ?? '').replace(/0+$/, '').length
+  )
+  return `${formatNumber(wert, Math.max(2, stellen))} ${einheit}`
+}
+
+/**
  * Was eine Aktie ausschüttet – und wann voraussichtlich die nächste kommt.
  *
  * ## Warum die Rendite auf zwölf Monate zurückblickt
@@ -58,12 +73,12 @@ export function Dividendentafel({
         />
         <Stat
           label="Letzte Zahlung"
-          value={`${formatNumber(befund.letzte.amount, 4)} ${einheit}`}
+          value={betrag(befund.letzte.amount, einheit)}
           hint={`Abschlagstag ${formatDateShort(befund.letzte.date)}`}
         />
         <Stat
           label="Zwölf Monate"
-          value={`${formatNumber(befund.summeZwoelfMonate, 4)} ${einheit}`}
+          value={betrag(befund.summeZwoelfMonate, einheit)}
           hint={`Summe aus ${befund.zahlungenZwoelfMonate} ${
             befund.zahlungenZwoelfMonate === 1 ? 'Zahlung' : 'Zahlungen'
           } je Aktie`}
@@ -71,8 +86,16 @@ export function Dividendentafel({
         <Stat
           label="Dividendenrendite"
           value={
+            /*
+              `formatPercent` erwartet die Prozentzahl selbst und hängt nur das
+              Zeichen an – hier stand ein Teilen durch hundert, und damit wies
+              Apple eine Dividendenrendite von 0,00 Prozent aus statt 0,31.
+              Aufgefallen ist es beim Nachrechnen der gebauten Seiten, nicht
+              beim Lesen des Codes: Eine Rendite von 0,03 Prozent sieht auf
+              einer Aktienseite nicht falsch aus, sondern nur mager.
+            */
             befund.renditeProzent !== null
-              ? formatPercent(befund.renditeProzent / 100)
+              ? formatPercent(befund.renditeProzent)
               : 'nicht gebildet'
           }
           hint={
@@ -94,8 +117,9 @@ export function Dividendentafel({
               {befund.streuungTage > 0 && (
                 <>
                   {' '}
-                  Die Abstände haben bisher um bis zu {befund.streuungTage} Tage
-                  geschwankt; so genau ist die Schätzung also höchstens.
+                  Die Abstände haben bisher um bis zu {befund.streuungTage}{' '}
+                  {befund.streuungTage === 1 ? 'Tag' : 'Tage'} geschwankt; so genau ist
+                  die Schätzung also höchstens.
                 </>
               )}{' '}
               Den verbindlichen Tag nennt das Unternehmen selbst, meist wenige Wochen
