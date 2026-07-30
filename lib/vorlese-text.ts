@@ -187,6 +187,32 @@ const MAENNERNAMEN = [
   'werner',
   'daniel',
   'felix',
+  /* Apples sprachübergreifende Stimmen – die männlichen darunter. */
+  'eddy',
+  'reed',
+  'rocko',
+  'grandpa',
+  /* Weitere deutsche Männernamen gängiger Sprachpakete. */
+  'erik',
+  'sven',
+  'lars',
+  'kai',
+  'uwe',
+  'wolfgang',
+  'juergen',
+  'jürgen',
+  'dieter',
+  'holger',
+  'ingo',
+  'rainer',
+  'thomas',
+  'torsten',
+  'ulrich',
+  'volker',
+  'sebastian',
+  'tobias',
+  'matthias',
+  'johannes',
 ]
 
 /**
@@ -214,13 +240,23 @@ export function klingtNatuerlich(stimme: Stimmprofil): boolean {
   return NATUERLICH_KENNZEICHEN.some((wort) => kennung.includes(wort))
 }
 
-/** Ob Name oder Kennung nach einer Männerstimme klingen. */
+/**
+ * Ob Name oder Kennung nach einer Männerstimme klingen.
+ *
+ * Die Namen werden als ganze Wörter verglichen, nicht als Teilzeichenkette.
+ * Der Unterschied ist keine Feinheit: „Martina“, „Daniela“, „Michaela“ und
+ * „Paula“ enthalten Männernamen als Teilwort – als Teilzeichenkette geprüft
+ * hielte die Automatik ausgerechnet diese Frauenstimmen für männlich und
+ * wählte sie mit Vorrang. So war es bis Juli 2026, und auf Geräten mit einer
+ * solchen Stimme kam die gewünschte Männerstimme deshalb nie an.
+ */
 export function klingtMaennlich(stimme: Stimmprofil): boolean {
   const kennung = `${stimme.name} ${stimme.voiceURI}`.toLowerCase()
   /* „female“ enthält „male“ – die Reihenfolge der Prüfungen trägt die Logik. */
   if (kennung.includes('female')) return false
   if (kennung.includes('male')) return true
-  return MAENNERNAMEN.some((name) => kennung.includes(name))
+  const woerter = kennung.split(/[^a-zäöüß]+/)
+  return MAENNERNAMEN.some((name) => woerter.includes(name))
 }
 
 /**

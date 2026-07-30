@@ -133,8 +133,35 @@ const googleDeutsch = {
   localService: false,
 }
 
+const martina = {
+  name: 'Martina',
+  lang: 'de-DE',
+  voiceURI: 'martina',
+  localService: true,
+}
+const daniela = {
+  name: 'Microsoft Daniela Online (Natural)',
+  lang: 'de-AT',
+  voiceURI: 'daniela-netz',
+  localService: false,
+}
+const eddy = {
+  name: 'Eddy (Deutsch (Deutschland))',
+  lang: 'de-DE',
+  voiceURI: 'com.apple.eloquence.de-DE.Eddy',
+  localService: true,
+}
+
 pruefe('ein Männername wird erkannt', klingtMaennlich(stefan))
 pruefe('„female“ in der Kennung zählt nicht als „male“', !klingtMaennlich(unklarWeiblich))
+/*
+  Die Namensfalle: „Martina“ enthält „martin“, „Daniela“ enthält „daniel“.
+  Als Teilzeichenkette geprüft wären das Männerstimmen – und die Automatik
+  wählte mit Vorrang eine Frauenstimme. Ganze Wörter, nicht Teilwörter.
+*/
+pruefe('„Martina“ ist keine Männerstimme', !klingtMaennlich(martina))
+pruefe('„Daniela“ ist keine Männerstimme', !klingtMaennlich(daniela))
+pruefe('Apples „Eddy“ wird erkannt', klingtMaennlich(eddy))
 pruefe('„Online (Natural)“ gilt als natürlich', klingtNatuerlich(conrad))
 pruefe('„Google Deutsch“ gilt als natürlich', klingtNatuerlich(googleDeutsch))
 pruefe('eine schlichte Systemstimme nicht', !klingtNatuerlich(stefan))
@@ -166,6 +193,10 @@ pruefe(
 pruefe(
   'eine englische Männerstimme wird nicht gewählt',
   bevorzugteStimme([englisch]) === null
+)
+pruefe(
+  'die natürliche „Daniela“ schlägt die männliche „Stefan“ nicht',
+  bevorzugteStimme([daniela, stefan])?.voiceURI === 'stefan'
 )
 
 console.log('\n— Über die echten Lektionen —')
