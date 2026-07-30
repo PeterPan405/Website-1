@@ -155,6 +155,20 @@ function toInstrument(definition: MarketDefinition): MarketInstrument {
     metaDescription: definition.metaDescription,
     description: definition.description,
     relatedTopics: definition.relatedTopics,
+    /*
+      Die beiden optionalen Felder gehören mit übertragen – und genau das ist
+      hier zweimal untergegangen.
+
+      Diese Funktion zählt jedes Feld einzeln auf. Neue Felder in
+      `MarketInstrument` erscheinen deshalb nicht von selbst, und weil sie
+      optional sind, beschwert sich auch der Typprüfer nicht: Branche und
+      Sitzland waren gesetzt, kamen auf der Seite aber nie an. Die
+      Quellensteuertafel fehlte auf allen tausend Aktienseiten, ohne dass
+      Build, Lint oder Typprüfung etwas gemeldet hätten. Aufgefallen ist es
+      erst beim Ansehen der gebauten Seite.
+    */
+    ...(definition.branche ? { branche: definition.branche } : {}),
+    ...(definition.sitzland ? { sitzland: definition.sitzland } : {}),
   }
 }
 

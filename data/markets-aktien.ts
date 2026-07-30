@@ -34,6 +34,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 168.42,
       annualDrift: 0.082,
@@ -58,6 +59,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 312.31,
       annualDrift: 0.051,
@@ -82,6 +84,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 139.91,
       annualDrift: 0.081,
@@ -106,6 +109,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 218.23,
       annualDrift: 0.103,
@@ -129,6 +133,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 350.01,
       annualDrift: 0.071,
@@ -152,6 +157,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 90.52,
       annualDrift: 0.072,
@@ -176,6 +182,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 177.77,
       annualDrift: 0.057,
@@ -199,6 +206,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 238.65,
       annualDrift: 0.085,
@@ -222,6 +230,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 215.5,
       annualDrift: 0.05,
@@ -246,6 +255,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 237.75,
       annualDrift: 0.045,
@@ -269,6 +279,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 32.12,
       annualDrift: 0.032,
@@ -293,6 +304,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 54.28,
       annualDrift: 0.108,
@@ -317,6 +329,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 234.04,
       annualDrift: 0.034,
@@ -341,6 +354,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 148.78,
       annualDrift: 0.118,
@@ -365,6 +379,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 23.53,
       annualDrift: 0.053,
@@ -388,6 +403,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 112.49,
       annualDrift: 0.059,
@@ -412,6 +428,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Sicherheit',
+    sitzland: '840',
     seed: {
       startValue: 270.52,
       annualDrift: 0.042,
@@ -436,6 +453,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Sicherheit',
+    sitzland: '840',
     seed: {
       startValue: 77.54,
       annualDrift: 0.074,
@@ -459,6 +477,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Sicherheit',
+    sitzland: '840',
     seed: {
       startValue: 197.38,
       annualDrift: 0.108,
@@ -483,6 +502,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Sicherheit',
+    sitzland: '840',
     seed: {
       startValue: 281.69,
       annualDrift: 0.119,
@@ -506,6 +526,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 43.55,
       annualDrift: 0.115,
@@ -529,6 +550,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '124',
     seed: {
       startValue: 116.55,
       annualDrift: 0.095,
@@ -553,6 +575,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '840',
     seed: {
       startValue: 264.22,
       annualDrift: 0.112,
@@ -577,6 +600,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '840',
     seed: {
       startValue: 95.0,
       annualDrift: 0.05,
@@ -601,6 +625,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '840',
     seed: {
       startValue: 33.1,
       annualDrift: 0.03,
@@ -625,6 +650,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 226.06,
       annualDrift: 0.086,
@@ -649,6 +675,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 208.5,
       annualDrift: 0.06,
@@ -672,6 +699,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 173.79,
       annualDrift: 0.059,
@@ -695,6 +723,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 47.6,
       annualDrift: 0.05,
@@ -718,6 +747,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 132.67,
       annualDrift: 0.047,
@@ -741,6 +771,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 110.16,
       annualDrift: 0.046,
@@ -765,6 +796,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 308.84,
       annualDrift: 0.114,
@@ -788,6 +820,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 364.18,
       annualDrift: 0.108,
@@ -812,6 +845,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 299.48,
       annualDrift: 0.058,
@@ -836,6 +870,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 121.19,
       annualDrift: 0.039,
@@ -860,6 +895,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 256.25,
       annualDrift: 0.045,
@@ -884,6 +920,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 67.01,
       annualDrift: 0.081,
@@ -908,6 +945,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 53.09,
       annualDrift: 0.109,
@@ -932,6 +970,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 94.13,
       annualDrift: 0.053,
@@ -956,6 +995,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 25.53,
       annualDrift: 0.053,
@@ -979,6 +1019,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 119.68,
       annualDrift: 0.038,
@@ -1002,6 +1043,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 43.03,
       annualDrift: 0.113,
@@ -1025,6 +1067,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 107.38,
       annualDrift: 0.048,
@@ -1049,6 +1092,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 206.46,
       annualDrift: 0.106,
@@ -1073,6 +1117,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 321.65,
       annualDrift: 0.115,
@@ -1097,6 +1142,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 291.05,
       annualDrift: 0.095,
@@ -1120,6 +1166,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 127.45,
       annualDrift: 0.075,
@@ -1143,6 +1190,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 201.11,
       annualDrift: 0.091,
@@ -1166,6 +1214,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 311.05,
       annualDrift: 0.085,
@@ -1190,6 +1239,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 275.04,
       annualDrift: 0.044,
@@ -1213,6 +1263,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 297.37,
       annualDrift: 0.067,
@@ -1236,6 +1287,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 65.05,
       annualDrift: 0.065,
@@ -1259,6 +1311,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 100.77,
       annualDrift: 0.037,
@@ -1283,6 +1336,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 59.26,
       annualDrift: 0.046,
@@ -1306,6 +1360,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 252.77,
       annualDrift: 0.067,
@@ -1329,6 +1384,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '372',
     seed: {
       startValue: 316.06,
       annualDrift: 0.106,
@@ -1352,6 +1408,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 176.95,
       annualDrift: 0.045,
@@ -1375,6 +1432,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 217.91,
       annualDrift: 0.051,
@@ -1398,6 +1456,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 142.33,
       annualDrift: 0.103,
@@ -1421,6 +1480,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 240.49,
       annualDrift: 0.119,
@@ -1444,6 +1504,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 61.32,
       annualDrift: 0.102,
@@ -1468,6 +1529,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '840',
     seed: {
       startValue: 21.76,
       annualDrift: 0.096,
@@ -1491,6 +1553,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '840',
     seed: {
       startValue: 332.36,
       annualDrift: 0.056,
@@ -1514,6 +1577,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '840',
     seed: {
       startValue: 160.61,
       annualDrift: 0.071,
@@ -1538,6 +1602,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 376.51,
       annualDrift: 0.051,
@@ -1562,6 +1627,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 205.8,
       annualDrift: 0.08,
@@ -1586,6 +1652,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 69.81,
       annualDrift: 0.041,
@@ -1609,6 +1676,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 31.52,
       annualDrift: 0.042,
@@ -1632,6 +1700,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '372',
     seed: {
       startValue: 351.92,
       annualDrift: 0.032,
@@ -1656,6 +1725,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 213.02,
       annualDrift: 0.082,
@@ -1680,6 +1750,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 149.58,
       annualDrift: 0.118,
@@ -1703,6 +1774,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '840',
     seed: {
       startValue: 371.96,
       annualDrift: 0.056,
@@ -1726,6 +1798,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '840',
     seed: {
       startValue: 236.09,
       annualDrift: 0.069,
@@ -1749,6 +1822,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '840',
     seed: {
       startValue: 263.03,
       annualDrift: 0.073,
@@ -1773,6 +1847,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '840',
     seed: {
       startValue: 75.54,
       annualDrift: 0.114,
@@ -1796,6 +1871,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 109.35,
       annualDrift: 0.065,
@@ -1819,6 +1895,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 340.43,
       annualDrift: 0.083,
@@ -1842,6 +1919,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 340.93,
       annualDrift: 0.103,
@@ -1865,6 +1943,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 143.28,
       annualDrift: 0.068,
@@ -1888,6 +1967,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 280.62,
       annualDrift: 0.052,
@@ -1911,6 +1991,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 349.69,
       annualDrift: 0.059,
@@ -1934,6 +2015,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 166.7,
       annualDrift: 0.1,
@@ -1957,6 +2039,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Entsorgung',
+    sitzland: '840',
     seed: {
       startValue: 122.83,
       annualDrift: 0.093,
@@ -1980,6 +2063,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Entsorgung',
+    sitzland: '840',
     seed: {
       startValue: 84.04,
       annualDrift: 0.034,
@@ -2003,6 +2087,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 250.06,
       annualDrift: 0.066,
@@ -2027,6 +2112,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 242.23,
       annualDrift: 0.073,
@@ -2050,6 +2136,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 248.86,
       annualDrift: 0.096,
@@ -2073,6 +2160,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 311.83,
       annualDrift: 0.113,
@@ -2096,6 +2184,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '840',
     seed: {
       startValue: 385.72,
       annualDrift: 0.072,
@@ -2119,6 +2208,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '840',
     seed: {
       startValue: 338.37,
       annualDrift: 0.117,
@@ -2142,6 +2232,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '840',
     seed: {
       startValue: 42.04,
       annualDrift: 0.104,
@@ -2165,6 +2256,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '840',
     seed: {
       startValue: 370.09,
       annualDrift: 0.109,
@@ -2188,6 +2280,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 273.17,
       annualDrift: 0.117,
@@ -2211,6 +2304,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 126.82,
       annualDrift: 0.092,
@@ -2235,6 +2329,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 203.64,
       annualDrift: 0.054,
@@ -2258,6 +2353,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 338.27,
       annualDrift: 0.117,
@@ -2281,6 +2377,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 393.93,
       annualDrift: 0.083,
@@ -2304,6 +2401,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 92.51,
       annualDrift: 0.031,
@@ -2327,6 +2425,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 263.89,
       annualDrift: 0.039,
@@ -2350,6 +2449,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 362.49,
       annualDrift: 0.059,
@@ -2373,6 +2473,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 133.07,
       annualDrift: 0.067,
@@ -2396,6 +2497,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 282.27,
       annualDrift: 0.117,
@@ -2420,6 +2522,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 132.02,
       annualDrift: 0.032,
@@ -2443,6 +2546,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '276',
     seed: {
       startValue: 374.9,
       annualDrift: 0.1,
@@ -2467,6 +2571,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '276',
     seed: {
       startValue: 193.33,
       annualDrift: 0.033,
@@ -2490,6 +2595,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '276',
     seed: {
       startValue: 86.73,
       annualDrift: 0.073,
@@ -2514,6 +2620,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '276',
     seed: {
       startValue: 191.75,
       annualDrift: 0.085,
@@ -2538,6 +2645,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '528',
     seed: {
       startValue: 41.12,
       annualDrift: 0.102,
@@ -2561,6 +2669,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '276',
     seed: {
       startValue: 141.56,
       annualDrift: 0.116,
@@ -2585,6 +2694,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '276',
     seed: {
       startValue: 186.57,
       annualDrift: 0.067,
@@ -2608,6 +2718,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '276',
     seed: {
       startValue: 387.42,
       annualDrift: 0.082,
@@ -2631,6 +2742,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '276',
     seed: {
       startValue: 186.89,
       annualDrift: 0.119,
@@ -2655,6 +2767,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '276',
     seed: {
       startValue: 312.85,
       annualDrift: 0.035,
@@ -2678,6 +2791,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '276',
     seed: {
       startValue: 44.5,
       annualDrift: 0.09,
@@ -2701,6 +2815,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '276',
     seed: {
       startValue: 338.61,
       annualDrift: 0.071,
@@ -2724,6 +2839,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '276',
     seed: {
       startValue: 46.88,
       annualDrift: 0.098,
@@ -2747,6 +2863,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '276',
     seed: {
       startValue: 98.29,
       annualDrift: 0.099,
@@ -2770,6 +2887,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '276',
     seed: {
       startValue: 309.43,
       annualDrift: 0.043,
@@ -2793,6 +2911,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 64.3,
       annualDrift: 0.03,
@@ -2816,6 +2935,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 390.24,
       annualDrift: 0.114,
@@ -2839,6 +2959,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 280.68,
       annualDrift: 0.038,
@@ -2863,6 +2984,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '276',
     seed: {
       startValue: 390.59,
       annualDrift: 0.069,
@@ -2886,6 +3008,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '276',
     seed: {
       startValue: 376.9,
       annualDrift: 0.06,
@@ -2909,6 +3032,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '276',
     seed: {
       startValue: 20.47,
       annualDrift: 0.077,
@@ -2932,6 +3056,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '276',
     seed: {
       startValue: 243.68,
       annualDrift: 0.118,
@@ -2955,6 +3080,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '276',
     seed: {
       startValue: 286.67,
       annualDrift: 0.087,
@@ -2978,6 +3104,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '276',
     seed: {
       startValue: 339.72,
       annualDrift: 0.072,
@@ -3001,6 +3128,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '276',
     seed: {
       startValue: 153.6,
       annualDrift: 0.11,
@@ -3025,6 +3153,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '276',
     seed: {
       startValue: 114.03,
       annualDrift: 0.053,
@@ -3048,6 +3177,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '276',
     seed: {
       startValue: 241.9,
       annualDrift: 0.03,
@@ -3071,6 +3201,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '276',
     seed: {
       startValue: 165.99,
       annualDrift: 0.069,
@@ -3095,6 +3226,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '276',
     seed: {
       startValue: 210.56,
       annualDrift: 0.036,
@@ -3118,6 +3250,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '276',
     seed: {
       startValue: 200.17,
       annualDrift: 0.107,
@@ -3141,6 +3274,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '276',
     seed: {
       startValue: 397.72,
       annualDrift: 0.042,
@@ -3164,6 +3298,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '276',
     seed: {
       startValue: 71.59,
       annualDrift: 0.059,
@@ -3187,6 +3322,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 205.11,
       annualDrift: 0.111,
@@ -3210,6 +3346,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 348.61,
       annualDrift: 0.101,
@@ -3233,6 +3370,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '276',
     seed: {
       startValue: 363.38,
       annualDrift: 0.078,
@@ -3256,6 +3394,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '276',
     seed: {
       startValue: 122.47,
       annualDrift: 0.037,
@@ -3279,6 +3418,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 54.35,
       annualDrift: 0.035,
@@ -3302,6 +3442,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 154.45,
       annualDrift: 0.035,
@@ -3326,6 +3467,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '250',
     seed: {
       startValue: 144.59,
       annualDrift: 0.109,
@@ -3350,6 +3492,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '250',
     seed: {
       startValue: 293.91,
       annualDrift: 0.031,
@@ -3373,6 +3516,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '250',
     seed: {
       startValue: 231.34,
       annualDrift: 0.114,
@@ -3396,6 +3540,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '250',
     seed: {
       startValue: 215.17,
       annualDrift: 0.097,
@@ -3419,6 +3564,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '250',
     seed: {
       startValue: 50.83,
       annualDrift: 0.073,
@@ -3442,6 +3588,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '250',
     seed: {
       startValue: 121.21,
       annualDrift: 0.051,
@@ -3465,6 +3612,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '250',
     seed: {
       startValue: 206.22,
       annualDrift: 0.052,
@@ -3488,6 +3636,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '250',
     seed: {
       startValue: 318.28,
       annualDrift: 0.118,
@@ -3511,6 +3660,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '250',
     seed: {
       startValue: 350.63,
       annualDrift: 0.083,
@@ -3534,6 +3684,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '250',
     seed: {
       startValue: 243.0,
       annualDrift: 0.11,
@@ -3557,6 +3708,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '250',
     seed: {
       startValue: 122.47,
       annualDrift: 0.057,
@@ -3580,6 +3732,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '250',
     seed: {
       startValue: 46.93,
       annualDrift: 0.033,
@@ -3603,6 +3756,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '250',
     seed: {
       startValue: 309.79,
       annualDrift: 0.059,
@@ -3626,6 +3780,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '250',
     seed: {
       startValue: 257.48,
       annualDrift: 0.038,
@@ -3649,6 +3804,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '250',
     seed: {
       startValue: 343.08,
       annualDrift: 0.078,
@@ -3672,6 +3828,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '250',
     seed: {
       startValue: 392.08,
       annualDrift: 0.098,
@@ -3696,6 +3853,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '250',
     seed: {
       startValue: 21.76,
       annualDrift: 0.046,
@@ -3719,6 +3877,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '250',
     seed: {
       startValue: 178.82,
       annualDrift: 0.112,
@@ -3742,6 +3901,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '250',
     seed: {
       startValue: 23.68,
       annualDrift: 0.068,
@@ -3766,6 +3926,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '250',
     seed: {
       startValue: 58.59,
       annualDrift: 0.119,
@@ -3789,6 +3950,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '250',
     seed: {
       startValue: 237.39,
       annualDrift: 0.079,
@@ -3812,6 +3974,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '250',
     seed: {
       startValue: 350.79,
       annualDrift: 0.119,
@@ -3836,6 +3999,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '250',
     seed: {
       startValue: 20.41,
       annualDrift: 0.051,
@@ -3860,6 +4024,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '250',
     seed: {
       startValue: 135.2,
       annualDrift: 0.08,
@@ -3883,6 +4048,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '250',
     seed: {
       startValue: 23.05,
       annualDrift: 0.115,
@@ -3907,6 +4073,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '826',
     seed: {
       startValue: 166.19,
       annualDrift: 0.059,
@@ -3930,6 +4097,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '826',
     seed: {
       startValue: 170.31,
       annualDrift: 0.081,
@@ -3954,6 +4122,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '826',
     seed: {
       startValue: 169.78,
       annualDrift: 0.078,
@@ -3977,6 +4146,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '826',
     seed: {
       startValue: 373.78,
       annualDrift: 0.118,
@@ -4000,6 +4170,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '826',
     seed: {
       startValue: 269.81,
       annualDrift: 0.111,
@@ -4023,6 +4194,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '826',
     seed: {
       startValue: 76.61,
       annualDrift: 0.111,
@@ -4046,6 +4218,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '826',
     seed: {
       startValue: 277.24,
       annualDrift: 0.044,
@@ -4070,6 +4243,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '826',
     seed: {
       startValue: 57.36,
       annualDrift: 0.116,
@@ -4093,6 +4267,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '826',
     seed: {
       startValue: 364.93,
       annualDrift: 0.063,
@@ -4116,6 +4291,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '826',
     seed: {
       startValue: 332.57,
       annualDrift: 0.117,
@@ -4140,6 +4316,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '826',
     seed: {
       startValue: 212.83,
       annualDrift: 0.073,
@@ -4164,6 +4341,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '826',
     seed: {
       startValue: 256.8,
       annualDrift: 0.07,
@@ -4187,6 +4365,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '826',
     seed: {
       startValue: 252.46,
       annualDrift: 0.106,
@@ -4210,6 +4389,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '756',
     seed: {
       startValue: 61.58,
       annualDrift: 0.058,
@@ -4233,6 +4413,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '826',
     seed: {
       startValue: 100.85,
       annualDrift: 0.105,
@@ -4256,6 +4437,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '826',
     seed: {
       startValue: 327.32,
       annualDrift: 0.092,
@@ -4280,6 +4462,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '826',
     seed: {
       startValue: 180.96,
       annualDrift: 0.076,
@@ -4303,6 +4486,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '826',
     seed: {
       startValue: 104.82,
       annualDrift: 0.102,
@@ -4326,6 +4510,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '826',
     seed: {
       startValue: 262.77,
       annualDrift: 0.087,
@@ -4349,6 +4534,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '826',
     seed: {
       startValue: 207.57,
       annualDrift: 0.097,
@@ -4373,6 +4559,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '826',
     seed: {
       startValue: 373.16,
       annualDrift: 0.096,
@@ -4396,6 +4583,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '826',
     seed: {
       startValue: 377.98,
       annualDrift: 0.038,
@@ -4419,6 +4607,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '826',
     seed: {
       startValue: 91.05,
       annualDrift: 0.035,
@@ -4443,6 +4632,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '826',
     seed: {
       startValue: 347.69,
       annualDrift: 0.109,
@@ -4467,6 +4657,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '372',
     seed: {
       startValue: 270.05,
       annualDrift: 0.095,
@@ -4490,6 +4681,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '826',
     seed: {
       startValue: 135.58,
       annualDrift: 0.068,
@@ -4514,6 +4706,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '756',
     seed: {
       startValue: 376.37,
       annualDrift: 0.047,
@@ -4537,6 +4730,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '756',
     seed: {
       startValue: 354.3,
       annualDrift: 0.03,
@@ -4560,6 +4754,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '756',
     seed: {
       startValue: 265.12,
       annualDrift: 0.102,
@@ -4583,6 +4778,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '756',
     seed: {
       startValue: 31.2,
       annualDrift: 0.08,
@@ -4606,6 +4802,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '756',
     seed: {
       startValue: 252.55,
       annualDrift: 0.035,
@@ -4629,6 +4826,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '756',
     seed: {
       startValue: 312.3,
       annualDrift: 0.08,
@@ -4652,6 +4850,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '756',
     seed: {
       startValue: 228.21,
       annualDrift: 0.111,
@@ -4675,6 +4874,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '756',
     seed: {
       startValue: 195.73,
       annualDrift: 0.043,
@@ -4698,6 +4898,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '756',
     seed: {
       startValue: 205.93,
       annualDrift: 0.103,
@@ -4721,6 +4922,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '756',
     seed: {
       startValue: 139.72,
       annualDrift: 0.052,
@@ -4745,6 +4947,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '756',
     seed: {
       startValue: 331.44,
       annualDrift: 0.044,
@@ -4769,6 +4972,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '756',
     seed: {
       startValue: 21.39,
       annualDrift: 0.119,
@@ -4792,6 +4996,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '756',
     seed: {
       startValue: 369.41,
       annualDrift: 0.061,
@@ -4815,6 +5020,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '528',
     seed: {
       startValue: 273.89,
       annualDrift: 0.119,
@@ -4838,6 +5044,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '528',
     seed: {
       startValue: 270.48,
       annualDrift: 0.108,
@@ -4861,6 +5068,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '528',
     seed: {
       startValue: 145.82,
       annualDrift: 0.102,
@@ -4885,6 +5093,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '528',
     seed: {
       startValue: 318.46,
       annualDrift: 0.066,
@@ -4908,6 +5117,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '528',
     seed: {
       startValue: 278.6,
       annualDrift: 0.05,
@@ -4931,6 +5141,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '528',
     seed: {
       startValue: 37.16,
       annualDrift: 0.076,
@@ -4954,6 +5165,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '528',
     seed: {
       startValue: 208.11,
       annualDrift: 0.041,
@@ -4977,6 +5189,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '528',
     seed: {
       startValue: 379.55,
       annualDrift: 0.095,
@@ -5000,6 +5213,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '528',
     seed: {
       startValue: 49.42,
       annualDrift: 0.052,
@@ -5023,6 +5237,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '528',
     seed: {
       startValue: 177.64,
       annualDrift: 0.084,
@@ -5046,6 +5261,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '528',
     seed: {
       startValue: 60.6,
       annualDrift: 0.11,
@@ -5069,6 +5285,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '724',
     seed: {
       startValue: 213.06,
       annualDrift: 0.036,
@@ -5092,6 +5309,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '724',
     seed: {
       startValue: 318.24,
       annualDrift: 0.064,
@@ -5115,6 +5333,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '724',
     seed: {
       startValue: 300.87,
       annualDrift: 0.047,
@@ -5139,6 +5358,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '724',
     seed: {
       startValue: 41.19,
       annualDrift: 0.089,
@@ -5162,6 +5382,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '724',
     seed: {
       startValue: 397.42,
       annualDrift: 0.042,
@@ -5185,6 +5406,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '528',
     seed: {
       startValue: 225.47,
       annualDrift: 0.097,
@@ -5209,6 +5431,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '724',
     seed: {
       startValue: 140.99,
       annualDrift: 0.059,
@@ -5232,6 +5455,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '724',
     seed: {
       startValue: 367.66,
       annualDrift: 0.116,
@@ -5255,6 +5479,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '724',
     seed: {
       startValue: 310.41,
       annualDrift: 0.111,
@@ -5278,6 +5503,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '380',
     seed: {
       startValue: 57.17,
       annualDrift: 0.057,
@@ -5301,6 +5527,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '380',
     seed: {
       startValue: 251.21,
       annualDrift: 0.051,
@@ -5324,6 +5551,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '380',
     seed: {
       startValue: 375.89,
       annualDrift: 0.089,
@@ -5347,6 +5575,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '380',
     seed: {
       startValue: 375.12,
       annualDrift: 0.032,
@@ -5370,6 +5599,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '380',
     seed: {
       startValue: 169.78,
       annualDrift: 0.058,
@@ -5393,6 +5623,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '380',
     seed: {
       startValue: 302.58,
       annualDrift: 0.108,
@@ -5416,6 +5647,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '380',
     seed: {
       startValue: 214.87,
       annualDrift: 0.107,
@@ -5439,6 +5671,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '380',
     seed: {
       startValue: 88.61,
       annualDrift: 0.081,
@@ -5462,6 +5695,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '380',
     seed: {
       startValue: 215.11,
       annualDrift: 0.111,
@@ -5485,6 +5719,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '528',
     seed: {
       startValue: 300.35,
       annualDrift: 0.075,
@@ -5508,6 +5743,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '208',
     seed: {
       startValue: 214.91,
       annualDrift: 0.071,
@@ -5531,6 +5767,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '208',
     seed: {
       startValue: 221.34,
       annualDrift: 0.034,
@@ -5554,6 +5791,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '208',
     seed: {
       startValue: 336.38,
       annualDrift: 0.088,
@@ -5577,6 +5815,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '208',
     seed: {
       startValue: 379.62,
       annualDrift: 0.102,
@@ -5600,6 +5839,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '208',
     seed: {
       startValue: 322.15,
       annualDrift: 0.035,
@@ -5624,6 +5864,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '208',
     seed: {
       startValue: 266.66,
       annualDrift: 0.056,
@@ -5647,6 +5888,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '752',
     seed: {
       startValue: 122.87,
       annualDrift: 0.067,
@@ -5670,6 +5912,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '752',
     seed: {
       startValue: 147.3,
       annualDrift: 0.11,
@@ -5693,6 +5936,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '752',
     seed: {
       startValue: 113.51,
       annualDrift: 0.051,
@@ -5716,6 +5960,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '752',
     seed: {
       startValue: 124.19,
       annualDrift: 0.039,
@@ -5740,6 +5985,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '752',
     seed: {
       startValue: 279.3,
       annualDrift: 0.06,
@@ -5763,6 +6009,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '752',
     seed: {
       startValue: 266.69,
       annualDrift: 0.089,
@@ -5786,6 +6033,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '752',
     seed: {
       startValue: 251.99,
       annualDrift: 0.099,
@@ -5809,6 +6057,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '752',
     seed: {
       startValue: 179.73,
       annualDrift: 0.073,
@@ -5833,6 +6082,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '752',
     seed: {
       startValue: 88.19,
       annualDrift: 0.089,
@@ -5856,6 +6106,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '752',
     seed: {
       startValue: 271.68,
       annualDrift: 0.098,
@@ -5879,6 +6130,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '752',
     seed: {
       startValue: 175.07,
       annualDrift: 0.097,
@@ -5902,6 +6154,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '578',
     seed: {
       startValue: 257.48,
       annualDrift: 0.108,
@@ -5925,6 +6178,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '578',
     seed: {
       startValue: 238.97,
       annualDrift: 0.067,
@@ -5948,6 +6202,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '578',
     seed: {
       startValue: 304.88,
       annualDrift: 0.038,
@@ -5971,6 +6226,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '246',
     seed: {
       startValue: 36.34,
       annualDrift: 0.034,
@@ -5994,6 +6250,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '246',
     seed: {
       startValue: 383.42,
       annualDrift: 0.062,
@@ -6017,6 +6274,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '246',
     seed: {
       startValue: 25.14,
       annualDrift: 0.084,
@@ -6040,6 +6298,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '246',
     seed: {
       startValue: 66.87,
       annualDrift: 0.097,
@@ -6063,6 +6322,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '246',
     seed: {
       startValue: 244.23,
       annualDrift: 0.103,
@@ -6086,6 +6346,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '056',
     seed: {
       startValue: 360.7,
       annualDrift: 0.07,
@@ -6109,6 +6370,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '056',
     seed: {
       startValue: 261.37,
       annualDrift: 0.097,
@@ -6132,6 +6394,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '056',
     seed: {
       startValue: 168.85,
       annualDrift: 0.105,
@@ -6155,6 +6418,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '056',
     seed: {
       startValue: 117.37,
       annualDrift: 0.107,
@@ -6178,6 +6442,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '040',
     seed: {
       startValue: 354.58,
       annualDrift: 0.118,
@@ -6201,6 +6466,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '040',
     seed: {
       startValue: 50.67,
       annualDrift: 0.087,
@@ -6224,6 +6490,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '040',
     seed: {
       startValue: 318.21,
       annualDrift: 0.081,
@@ -6247,6 +6514,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '040',
     seed: {
       startValue: 242.25,
       annualDrift: 0.055,
@@ -6271,6 +6539,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '372',
     seed: {
       startValue: 196.48,
       annualDrift: 0.078,
@@ -6294,6 +6563,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '372',
     seed: {
       startValue: 168.53,
       annualDrift: 0.113,
@@ -6317,6 +6587,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '372',
     seed: {
       startValue: 348.01,
       annualDrift: 0.071,
@@ -6341,6 +6612,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '372',
     seed: {
       startValue: 151.98,
       annualDrift: 0.068,
@@ -6365,6 +6637,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '620',
     seed: {
       startValue: 175.48,
       annualDrift: 0.068,
@@ -6388,6 +6661,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '620',
     seed: {
       startValue: 340.41,
       annualDrift: 0.111,
@@ -6411,6 +6685,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '616',
     seed: {
       startValue: 219.21,
       annualDrift: 0.081,
@@ -6434,6 +6709,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '616',
     seed: {
       startValue: 322.47,
       annualDrift: 0.047,
@@ -6457,6 +6733,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '392',
     seed: {
       startValue: 68.97,
       annualDrift: 0.107,
@@ -6481,6 +6758,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '392',
     seed: {
       startValue: 46.82,
       annualDrift: 0.102,
@@ -6504,6 +6782,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '392',
     seed: {
       startValue: 180.61,
       annualDrift: 0.081,
@@ -6527,6 +6806,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '392',
     seed: {
       startValue: 234.8,
       annualDrift: 0.1,
@@ -6550,6 +6830,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 224.53,
       annualDrift: 0.093,
@@ -6573,6 +6854,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 246.3,
       annualDrift: 0.09,
@@ -6596,6 +6878,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 124.07,
       annualDrift: 0.077,
@@ -6619,6 +6902,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 135.09,
       annualDrift: 0.059,
@@ -6643,6 +6927,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 143.92,
       annualDrift: 0.072,
@@ -6666,6 +6951,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 47.85,
       annualDrift: 0.095,
@@ -6689,6 +6975,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '392',
     seed: {
       startValue: 224.62,
       annualDrift: 0.052,
@@ -6712,6 +6999,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '392',
     seed: {
       startValue: 113.07,
       annualDrift: 0.057,
@@ -6735,6 +7023,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '392',
     seed: {
       startValue: 186.69,
       annualDrift: 0.039,
@@ -6758,6 +7047,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '392',
     seed: {
       startValue: 264.25,
       annualDrift: 0.055,
@@ -6782,6 +7072,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '392',
     seed: {
       startValue: 375.76,
       annualDrift: 0.106,
@@ -6805,6 +7096,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '392',
     seed: {
       startValue: 132.83,
       annualDrift: 0.043,
@@ -6828,6 +7120,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '392',
     seed: {
       startValue: 30.56,
       annualDrift: 0.106,
@@ -6852,6 +7145,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '392',
     seed: {
       startValue: 220.6,
       annualDrift: 0.07,
@@ -6875,6 +7169,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '392',
     seed: {
       startValue: 371.23,
       annualDrift: 0.053,
@@ -6899,6 +7194,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '392',
     seed: {
       startValue: 38.94,
       annualDrift: 0.054,
@@ -6923,6 +7219,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '392',
     seed: {
       startValue: 155.79,
       annualDrift: 0.039,
@@ -6946,6 +7243,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '392',
     seed: {
       startValue: 331.97,
       annualDrift: 0.037,
@@ -6970,6 +7268,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '392',
     seed: {
       startValue: 39.83,
       annualDrift: 0.083,
@@ -6993,6 +7292,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '392',
     seed: {
       startValue: 185.83,
       annualDrift: 0.113,
@@ -7016,6 +7316,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '392',
     seed: {
       startValue: 235.12,
       annualDrift: 0.042,
@@ -7040,6 +7341,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '392',
     seed: {
       startValue: 115.33,
       annualDrift: 0.113,
@@ -7064,6 +7366,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '392',
     seed: {
       startValue: 125.9,
       annualDrift: 0.09,
@@ -7087,6 +7390,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '392',
     seed: {
       startValue: 227.39,
       annualDrift: 0.119,
@@ -7111,6 +7415,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '392',
     seed: {
       startValue: 381.8,
       annualDrift: 0.09,
@@ -7135,6 +7440,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '392',
     seed: {
       startValue: 79.61,
       annualDrift: 0.031,
@@ -7158,6 +7464,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '392',
     seed: {
       startValue: 384.81,
       annualDrift: 0.081,
@@ -7182,6 +7489,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '392',
     seed: {
       startValue: 160.23,
       annualDrift: 0.093,
@@ -7206,6 +7514,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '392',
     seed: {
       startValue: 216.87,
       annualDrift: 0.047,
@@ -7230,6 +7539,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '392',
     seed: {
       startValue: 133.99,
       annualDrift: 0.099,
@@ -7253,6 +7563,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '392',
     seed: {
       startValue: 307.27,
       annualDrift: 0.087,
@@ -7276,6 +7587,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '392',
     seed: {
       startValue: 313.04,
       annualDrift: 0.074,
@@ -7299,6 +7611,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '410',
     seed: {
       startValue: 347.62,
       annualDrift: 0.082,
@@ -7322,6 +7635,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '410',
     seed: {
       startValue: 383.76,
       annualDrift: 0.096,
@@ -7345,6 +7659,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '410',
     seed: {
       startValue: 166.08,
       annualDrift: 0.088,
@@ -7368,6 +7683,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '410',
     seed: {
       startValue: 42.06,
       annualDrift: 0.056,
@@ -7391,6 +7707,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '410',
     seed: {
       startValue: 390.75,
       annualDrift: 0.085,
@@ -7414,6 +7731,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '410',
     seed: {
       startValue: 222.56,
       annualDrift: 0.076,
@@ -7437,6 +7755,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '410',
     seed: {
       startValue: 362.51,
       annualDrift: 0.051,
@@ -7461,6 +7780,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '410',
     seed: {
       startValue: 71.49,
       annualDrift: 0.089,
@@ -7485,6 +7805,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '410',
     seed: {
       startValue: 310.22,
       annualDrift: 0.092,
@@ -7509,6 +7830,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '410',
     seed: {
       startValue: 27.69,
       annualDrift: 0.069,
@@ -7532,6 +7854,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '410',
     seed: {
       startValue: 150.8,
       annualDrift: 0.07,
@@ -7555,6 +7878,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '410',
     seed: {
       startValue: 294.7,
       annualDrift: 0.08,
@@ -7579,6 +7903,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '158',
     seed: {
       startValue: 32.88,
       annualDrift: 0.048,
@@ -7603,6 +7928,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '158',
     seed: {
       startValue: 276.31,
       annualDrift: 0.051,
@@ -7626,6 +7952,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '158',
     seed: {
       startValue: 147.11,
       annualDrift: 0.031,
@@ -7649,6 +7976,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '158',
     seed: {
       startValue: 63.27,
       annualDrift: 0.057,
@@ -7672,6 +8000,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '158',
     seed: {
       startValue: 71.51,
       annualDrift: 0.041,
@@ -7695,6 +8024,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '158',
     seed: {
       startValue: 336.57,
       annualDrift: 0.047,
@@ -7718,6 +8048,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '158',
     seed: {
       startValue: 192.55,
       annualDrift: 0.105,
@@ -7741,6 +8072,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '158',
     seed: {
       startValue: 392.15,
       annualDrift: 0.035,
@@ -7764,6 +8096,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '156',
     seed: {
       startValue: 92.53,
       annualDrift: 0.043,
@@ -7787,6 +8120,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '156',
     seed: {
       startValue: 271.42,
       annualDrift: 0.092,
@@ -7810,6 +8144,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '156',
     seed: {
       startValue: 320.87,
       annualDrift: 0.097,
@@ -7834,6 +8169,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '156',
     seed: {
       startValue: 146.14,
       annualDrift: 0.074,
@@ -7858,6 +8194,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '156',
     seed: {
       startValue: 262.68,
       annualDrift: 0.098,
@@ -7881,6 +8218,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '156',
     seed: {
       startValue: 316.4,
       annualDrift: 0.06,
@@ -7905,6 +8243,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '156',
     seed: {
       startValue: 179.54,
       annualDrift: 0.044,
@@ -7929,6 +8268,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '156',
     seed: {
       startValue: 309.75,
       annualDrift: 0.105,
@@ -7953,6 +8293,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '156',
     seed: {
       startValue: 134.46,
       annualDrift: 0.056,
@@ -7976,6 +8317,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '156',
     seed: {
       startValue: 194.37,
       annualDrift: 0.037,
@@ -7999,6 +8341,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '156',
     seed: {
       startValue: 77.95,
       annualDrift: 0.095,
@@ -8022,6 +8365,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '156',
     seed: {
       startValue: 70.83,
       annualDrift: 0.103,
@@ -8045,6 +8389,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '156',
     seed: {
       startValue: 177.0,
       annualDrift: 0.06,
@@ -8068,6 +8413,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '156',
     seed: {
       startValue: 88.38,
       annualDrift: 0.098,
@@ -8091,6 +8437,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '156',
     seed: {
       startValue: 190.75,
       annualDrift: 0.095,
@@ -8114,6 +8461,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '156',
     seed: {
       startValue: 57.15,
       annualDrift: 0.065,
@@ -8137,6 +8485,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '344',
     seed: {
       startValue: 131.06,
       annualDrift: 0.076,
@@ -8160,6 +8509,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '344',
     seed: {
       startValue: 285.21,
       annualDrift: 0.041,
@@ -8184,6 +8534,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '344',
     seed: {
       startValue: 200.83,
       annualDrift: 0.063,
@@ -8208,6 +8559,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Mischkonzern',
+    sitzland: '356',
     seed: {
       startValue: 91.12,
       annualDrift: 0.042,
@@ -8231,6 +8583,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '356',
     seed: {
       startValue: 166.39,
       annualDrift: 0.069,
@@ -8254,6 +8607,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '356',
     seed: {
       startValue: 387.02,
       annualDrift: 0.072,
@@ -8277,6 +8631,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '356',
     seed: {
       startValue: 385.04,
       annualDrift: 0.034,
@@ -8300,6 +8655,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '356',
     seed: {
       startValue: 191.05,
       annualDrift: 0.055,
@@ -8324,6 +8680,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '356',
     seed: {
       startValue: 83.59,
       annualDrift: 0.069,
@@ -8347,6 +8704,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '356',
     seed: {
       startValue: 112.03,
       annualDrift: 0.053,
@@ -8371,6 +8729,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '356',
     seed: {
       startValue: 163.39,
       annualDrift: 0.089,
@@ -8394,6 +8753,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '356',
     seed: {
       startValue: 40.31,
       annualDrift: 0.041,
@@ -8417,6 +8777,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '356',
     seed: {
       startValue: 394.32,
       annualDrift: 0.082,
@@ -8440,6 +8801,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '356',
     seed: {
       startValue: 280.52,
       annualDrift: 0.112,
@@ -8463,6 +8825,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '356',
     seed: {
       startValue: 205.45,
       annualDrift: 0.085,
@@ -8486,6 +8849,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '356',
     seed: {
       startValue: 291.7,
       annualDrift: 0.05,
@@ -8509,6 +8873,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '356',
     seed: {
       startValue: 210.09,
       annualDrift: 0.089,
@@ -8532,6 +8897,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '356',
     seed: {
       startValue: 55.71,
       annualDrift: 0.111,
@@ -8555,6 +8921,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Mischkonzern',
+    sitzland: '356',
     seed: {
       startValue: 64.19,
       annualDrift: 0.099,
@@ -8579,6 +8946,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '036',
     seed: {
       startValue: 199.97,
       annualDrift: 0.087,
@@ -8603,6 +8971,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '036',
     seed: {
       startValue: 169.21,
       annualDrift: 0.051,
@@ -8627,6 +8996,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '036',
     seed: {
       startValue: 83.39,
       annualDrift: 0.099,
@@ -8650,6 +9020,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '036',
     seed: {
       startValue: 50.45,
       annualDrift: 0.065,
@@ -8673,6 +9044,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '036',
     seed: {
       startValue: 281.82,
       annualDrift: 0.062,
@@ -8697,6 +9069,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '036',
     seed: {
       startValue: 62.06,
       annualDrift: 0.116,
@@ -8720,6 +9093,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '036',
     seed: {
       startValue: 201.66,
       annualDrift: 0.046,
@@ -8743,6 +9117,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '036',
     seed: {
       startValue: 142.22,
       annualDrift: 0.092,
@@ -8767,6 +9142,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '036',
     seed: {
       startValue: 53.99,
       annualDrift: 0.109,
@@ -8790,6 +9166,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '036',
     seed: {
       startValue: 162.14,
       annualDrift: 0.034,
@@ -8813,6 +9190,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '036',
     seed: {
       startValue: 171.69,
       annualDrift: 0.069,
@@ -8836,6 +9214,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '036',
     seed: {
       startValue: 205.8,
       annualDrift: 0.11,
@@ -8859,6 +9238,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '036',
     seed: {
       startValue: 46.92,
       annualDrift: 0.062,
@@ -8882,6 +9262,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '124',
     seed: {
       startValue: 195.62,
       annualDrift: 0.082,
@@ -8905,6 +9286,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '124',
     seed: {
       startValue: 70.42,
       annualDrift: 0.102,
@@ -8928,6 +9310,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '124',
     seed: {
       startValue: 179.64,
       annualDrift: 0.084,
@@ -8952,6 +9335,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '124',
     seed: {
       startValue: 360.45,
       annualDrift: 0.075,
@@ -8975,6 +9359,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '124',
     seed: {
       startValue: 332.29,
       annualDrift: 0.079,
@@ -8999,6 +9384,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '124',
     seed: {
       startValue: 110.11,
       annualDrift: 0.101,
@@ -9022,6 +9408,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '124',
     seed: {
       startValue: 339.32,
       annualDrift: 0.102,
@@ -9046,6 +9433,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '124',
     seed: {
       startValue: 316.13,
       annualDrift: 0.083,
@@ -9070,6 +9458,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '124',
     seed: {
       startValue: 291.66,
       annualDrift: 0.066,
@@ -9094,6 +9483,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '124',
     seed: {
       startValue: 117.48,
       annualDrift: 0.088,
@@ -9117,6 +9507,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '124',
     seed: {
       startValue: 319.78,
       annualDrift: 0.038,
@@ -9141,6 +9532,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '124',
     seed: {
       startValue: 181.53,
       annualDrift: 0.093,
@@ -9164,6 +9556,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '124',
     seed: {
       startValue: 324.73,
       annualDrift: 0.053,
@@ -9187,6 +9580,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '124',
     seed: {
       startValue: 353.17,
       annualDrift: 0.087,
@@ -9211,6 +9605,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '124',
     seed: {
       startValue: 210.9,
       annualDrift: 0.11,
@@ -9234,6 +9629,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '124',
     seed: {
       startValue: 293.18,
       annualDrift: 0.098,
@@ -9258,6 +9654,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '076',
     seed: {
       startValue: 382.23,
       annualDrift: 0.103,
@@ -9281,6 +9678,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '076',
     seed: {
       startValue: 192.03,
       annualDrift: 0.063,
@@ -9304,6 +9702,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '076',
     seed: {
       startValue: 90.46,
       annualDrift: 0.116,
@@ -9327,6 +9726,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '076',
     seed: {
       startValue: 148.62,
       annualDrift: 0.092,
@@ -9350,6 +9750,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '076',
     seed: {
       startValue: 273.92,
       annualDrift: 0.052,
@@ -9373,6 +9774,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '076',
     seed: {
       startValue: 206.3,
       annualDrift: 0.03,
@@ -9397,6 +9799,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '076',
     seed: {
       startValue: 57.16,
       annualDrift: 0.116,
@@ -9420,6 +9823,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '076',
     seed: {
       startValue: 202.86,
       annualDrift: 0.066,
@@ -9443,6 +9847,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '076',
     seed: {
       startValue: 264.82,
       annualDrift: 0.082,
@@ -9466,6 +9871,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Papier',
+    sitzland: '076',
     seed: {
       startValue: 224.37,
       annualDrift: 0.077,
@@ -9490,6 +9896,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '484',
     seed: {
       startValue: 84.51,
       annualDrift: 0.041,
@@ -9513,6 +9920,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '484',
     seed: {
       startValue: 109.47,
       annualDrift: 0.057,
@@ -9536,6 +9944,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '484',
     seed: {
       startValue: 33.43,
       annualDrift: 0.053,
@@ -9559,6 +9968,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '484',
     seed: {
       startValue: 360.78,
       annualDrift: 0.078,
@@ -9582,6 +9992,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '484',
     seed: {
       startValue: 202.72,
       annualDrift: 0.052,
@@ -9605,6 +10016,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '484',
     seed: {
       startValue: 109.31,
       annualDrift: 0.111,
@@ -9628,6 +10040,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '702',
     seed: {
       startValue: 340.4,
       annualDrift: 0.1,
@@ -9651,6 +10064,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '702',
     seed: {
       startValue: 66.2,
       annualDrift: 0.07,
@@ -9674,6 +10088,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '702',
     seed: {
       startValue: 295.89,
       annualDrift: 0.109,
@@ -9698,6 +10113,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '702',
     seed: {
       startValue: 95.19,
       annualDrift: 0.079,
@@ -9721,6 +10137,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '702',
     seed: {
       startValue: 397.25,
       annualDrift: 0.105,
@@ -9744,6 +10161,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '376',
     seed: {
       startValue: 77.04,
       annualDrift: 0.074,
@@ -9767,6 +10185,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '376',
     seed: {
       startValue: 387.46,
       annualDrift: 0.056,
@@ -9790,6 +10209,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '376',
     seed: {
       startValue: 59.15,
       annualDrift: 0.105,
@@ -9813,6 +10233,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '376',
     seed: {
       startValue: 268.17,
       annualDrift: 0.117,
@@ -9837,6 +10258,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '840',
     seed: {
       startValue: 323.52,
       annualDrift: 0.042,
@@ -9860,6 +10282,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '840',
     seed: {
       startValue: 218.05,
       annualDrift: 0.095,
@@ -9883,6 +10306,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '840',
     seed: {
       startValue: 46.12,
       annualDrift: 0.052,
@@ -9906,6 +10330,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '840',
     seed: {
       startValue: 49.4,
       annualDrift: 0.04,
@@ -9930,6 +10355,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '840',
     seed: {
       startValue: 277.65,
       annualDrift: 0.055,
@@ -9953,6 +10379,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 325.12,
       annualDrift: 0.042,
@@ -9976,6 +10403,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 103.2,
       annualDrift: 0.04,
@@ -9999,6 +10427,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '840',
     seed: {
       startValue: 390.07,
       annualDrift: 0.097,
@@ -10022,6 +10451,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '840',
     seed: {
       startValue: 362.1,
       annualDrift: 0.04,
@@ -10045,6 +10475,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '840',
     seed: {
       startValue: 199.71,
       annualDrift: 0.111,
@@ -10069,6 +10500,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '840',
     seed: {
       startValue: 40.67,
       annualDrift: 0.097,
@@ -10092,6 +10524,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 293.9,
       annualDrift: 0.09,
@@ -10115,6 +10548,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 336.62,
       annualDrift: 0.072,
@@ -10138,6 +10572,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 184.99,
       annualDrift: 0.079,
@@ -10161,6 +10596,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 360.08,
       annualDrift: 0.038,
@@ -10184,6 +10620,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 59.28,
       annualDrift: 0.108,
@@ -10207,6 +10644,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 190.81,
       annualDrift: 0.091,
@@ -10231,6 +10669,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 309.44,
       annualDrift: 0.054,
@@ -10254,6 +10693,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 129.22,
       annualDrift: 0.052,
@@ -10277,6 +10717,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 78.07,
       annualDrift: 0.097,
@@ -10300,6 +10741,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 156.27,
       annualDrift: 0.097,
@@ -10323,6 +10765,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 139.84,
       annualDrift: 0.094,
@@ -10346,6 +10789,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 325.95,
       annualDrift: 0.075,
@@ -10369,6 +10813,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 302.21,
       annualDrift: 0.031,
@@ -10392,6 +10837,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 152.89,
       annualDrift: 0.049,
@@ -10415,6 +10861,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 262.95,
       annualDrift: 0.065,
@@ -10439,6 +10886,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gastgewerbe',
+    sitzland: '840',
     seed: {
       startValue: 166.11,
       annualDrift: 0.111,
@@ -10463,6 +10911,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gastgewerbe',
+    sitzland: '840',
     seed: {
       startValue: 154.11,
       annualDrift: 0.081,
@@ -10486,6 +10935,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Reise',
+    sitzland: '840',
     seed: {
       startValue: 88.88,
       annualDrift: 0.078,
@@ -10509,6 +10959,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Reise',
+    sitzland: '840',
     seed: {
       startValue: 317.18,
       annualDrift: 0.108,
@@ -10533,6 +10984,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Reise',
+    sitzland: '840',
     seed: {
       startValue: 382.99,
       annualDrift: 0.049,
@@ -10556,6 +11008,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Glücksspiel',
+    sitzland: '840',
     seed: {
       startValue: 125.94,
       annualDrift: 0.074,
@@ -10579,6 +11032,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Glücksspiel',
+    sitzland: '840',
     seed: {
       startValue: 324.65,
       annualDrift: 0.045,
@@ -10603,6 +11057,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Glücksspiel',
+    sitzland: '840',
     seed: {
       startValue: 159.2,
       annualDrift: 0.07,
@@ -10626,6 +11081,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '840',
     seed: {
       startValue: 321.93,
       annualDrift: 0.033,
@@ -10649,6 +11105,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '840',
     seed: {
       startValue: 282.07,
       annualDrift: 0.077,
@@ -10673,6 +11130,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '840',
     seed: {
       startValue: 374.4,
       annualDrift: 0.03,
@@ -10696,6 +11154,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '840',
     seed: {
       startValue: 265.74,
       annualDrift: 0.114,
@@ -10720,6 +11179,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '840',
     seed: {
       startValue: 371.35,
       annualDrift: 0.045,
@@ -10744,6 +11204,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '840',
     seed: {
       startValue: 112.54,
       annualDrift: 0.094,
@@ -10767,6 +11228,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '840',
     seed: {
       startValue: 225.54,
       annualDrift: 0.044,
@@ -10791,6 +11253,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '840',
     seed: {
       startValue: 105.46,
       annualDrift: 0.086,
@@ -10814,6 +11277,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '840',
     seed: {
       startValue: 237.08,
       annualDrift: 0.038,
@@ -10837,6 +11301,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '840',
     seed: {
       startValue: 157.68,
       annualDrift: 0.048,
@@ -10860,6 +11325,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '840',
     seed: {
       startValue: 370.26,
       annualDrift: 0.086,
@@ -10883,6 +11349,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '840',
     seed: {
       startValue: 261.04,
       annualDrift: 0.114,
@@ -10906,6 +11373,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '840',
     seed: {
       startValue: 129.61,
       annualDrift: 0.061,
@@ -10929,6 +11397,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 82.74,
       annualDrift: 0.094,
@@ -10953,6 +11422,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '840',
     seed: {
       startValue: 267.0,
       annualDrift: 0.03,
@@ -10976,6 +11446,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 395.19,
       annualDrift: 0.109,
@@ -10999,6 +11470,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 299.79,
       annualDrift: 0.079,
@@ -11022,6 +11494,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '840',
     seed: {
       startValue: 93.92,
       annualDrift: 0.082,
@@ -11046,6 +11519,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 344.25,
       annualDrift: 0.065,
@@ -11070,6 +11544,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 55.13,
       annualDrift: 0.073,
@@ -11094,6 +11569,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 211.08,
       annualDrift: 0.098,
@@ -11117,6 +11593,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 292.57,
       annualDrift: 0.047,
@@ -11140,6 +11617,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 286.56,
       annualDrift: 0.036,
@@ -11163,6 +11641,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 92.91,
       annualDrift: 0.111,
@@ -11186,6 +11665,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 151.61,
       annualDrift: 0.101,
@@ -11209,6 +11689,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '840',
     seed: {
       startValue: 189.03,
       annualDrift: 0.033,
@@ -11232,6 +11713,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '840',
     seed: {
       startValue: 238.85,
       annualDrift: 0.105,
@@ -11255,6 +11737,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '840',
     seed: {
       startValue: 320.83,
       annualDrift: 0.063,
@@ -11278,6 +11761,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 157.81,
       annualDrift: 0.061,
@@ -11301,6 +11785,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 253.91,
       annualDrift: 0.091,
@@ -11324,6 +11809,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 359.16,
       annualDrift: 0.076,
@@ -11347,6 +11833,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '840',
     seed: {
       startValue: 31.1,
       annualDrift: 0.05,
@@ -11370,6 +11857,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Papier',
+    sitzland: '840',
     seed: {
       startValue: 371.72,
       annualDrift: 0.102,
@@ -11393,6 +11881,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Verpackung',
+    sitzland: '840',
     seed: {
       startValue: 36.44,
       annualDrift: 0.044,
@@ -11416,6 +11905,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Verpackung',
+    sitzland: '840',
     seed: {
       startValue: 255.47,
       annualDrift: 0.037,
@@ -11439,6 +11929,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '840',
     seed: {
       startValue: 57.75,
       annualDrift: 0.055,
@@ -11462,6 +11953,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '840',
     seed: {
       startValue: 385.43,
       annualDrift: 0.043,
@@ -11485,6 +11977,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 302.52,
       annualDrift: 0.062,
@@ -11508,6 +12001,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 312.95,
       annualDrift: 0.095,
@@ -11531,6 +12025,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 189.45,
       annualDrift: 0.045,
@@ -11554,6 +12049,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 213.54,
       annualDrift: 0.074,
@@ -11577,6 +12073,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 230.42,
       annualDrift: 0.032,
@@ -11600,6 +12097,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '840',
     seed: {
       startValue: 128.11,
       annualDrift: 0.061,
@@ -11623,6 +12121,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '840',
     seed: {
       startValue: 201.03,
       annualDrift: 0.053,
@@ -11646,6 +12145,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '840',
     seed: {
       startValue: 330.44,
       annualDrift: 0.034,
@@ -11669,6 +12169,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '840',
     seed: {
       startValue: 119.45,
       annualDrift: 0.045,
@@ -11692,6 +12193,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '840',
     seed: {
       startValue: 222.94,
       annualDrift: 0.074,
@@ -11715,6 +12217,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '840',
     seed: {
       startValue: 116.58,
       annualDrift: 0.118,
@@ -11738,6 +12241,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '840',
     seed: {
       startValue: 334.51,
       annualDrift: 0.081,
@@ -11761,6 +12265,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '840',
     seed: {
       startValue: 196.52,
       annualDrift: 0.082,
@@ -11784,6 +12289,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '840',
     seed: {
       startValue: 33.03,
       annualDrift: 0.073,
@@ -11808,6 +12314,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '840',
     seed: {
       startValue: 197.3,
       annualDrift: 0.07,
@@ -11831,6 +12338,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '840',
     seed: {
       startValue: 280.48,
       annualDrift: 0.118,
@@ -11854,6 +12362,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '840',
     seed: {
       startValue: 72.83,
       annualDrift: 0.113,
@@ -11877,6 +12386,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 309.73,
       annualDrift: 0.073,
@@ -11900,6 +12410,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 118.35,
       annualDrift: 0.105,
@@ -11923,6 +12434,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 173.24,
       annualDrift: 0.074,
@@ -11946,6 +12458,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 101.81,
       annualDrift: 0.031,
@@ -11969,6 +12482,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 298.53,
       annualDrift: 0.113,
@@ -11992,6 +12506,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 347.27,
       annualDrift: 0.067,
@@ -12015,6 +12530,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 349.03,
       annualDrift: 0.053,
@@ -12038,6 +12554,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 59.02,
       annualDrift: 0.092,
@@ -12061,6 +12578,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 191.92,
       annualDrift: 0.092,
@@ -12084,6 +12602,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 48.13,
       annualDrift: 0.103,
@@ -12107,6 +12626,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '840',
     seed: {
       startValue: 60.61,
       annualDrift: 0.061,
@@ -12130,6 +12650,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 93.5,
       annualDrift: 0.04,
@@ -12153,6 +12674,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '840',
     seed: {
       startValue: 134.79,
       annualDrift: 0.049,
@@ -12176,6 +12698,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 146.15,
       annualDrift: 0.035,
@@ -12200,6 +12723,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 28.14,
       annualDrift: 0.044,
@@ -12223,6 +12747,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 335.04,
       annualDrift: 0.104,
@@ -12246,6 +12771,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 19.75,
       annualDrift: 0.085,
@@ -12269,6 +12795,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '840',
     seed: {
       startValue: 387.32,
       annualDrift: 0.052,
@@ -12292,6 +12819,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '840',
     seed: {
       startValue: 159.04,
       annualDrift: 0.064,
@@ -12315,6 +12843,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '840',
     seed: {
       startValue: 341.09,
       annualDrift: 0.059,
@@ -12338,6 +12867,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '840',
     seed: {
       startValue: 48.35,
       annualDrift: 0.105,
@@ -12361,6 +12891,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '840',
     seed: {
       startValue: 53.33,
       annualDrift: 0.043,
@@ -12384,6 +12915,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Sicherheit',
+    sitzland: '840',
     seed: {
       startValue: 350.09,
       annualDrift: 0.119,
@@ -12407,6 +12939,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 111.73,
       annualDrift: 0.093,
@@ -12430,6 +12963,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 265.66,
       annualDrift: 0.086,
@@ -12453,6 +12987,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 250.76,
       annualDrift: 0.036,
@@ -12476,6 +13011,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 249.27,
       annualDrift: 0.057,
@@ -12500,6 +13036,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 233.54,
       annualDrift: 0.114,
@@ -12523,6 +13060,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 362.33,
       annualDrift: 0.103,
@@ -12547,6 +13085,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 73.55,
       annualDrift: 0.065,
@@ -12570,6 +13109,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '840',
     seed: {
       startValue: 101.26,
       annualDrift: 0.076,
@@ -12593,6 +13133,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '840',
     seed: {
       startValue: 154.12,
       annualDrift: 0.102,
@@ -12617,6 +13158,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '840',
     seed: {
       startValue: 86.18,
       annualDrift: 0.038,
@@ -12641,6 +13183,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '840',
     seed: {
       startValue: 18.24,
       annualDrift: 0.104,
@@ -12664,6 +13207,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '840',
     seed: {
       startValue: 234.37,
       annualDrift: 0.047,
@@ -12688,6 +13232,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '840',
     seed: {
       startValue: 223.52,
       annualDrift: 0.082,
@@ -12711,6 +13256,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 122.68,
       annualDrift: 0.058,
@@ -12734,6 +13280,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 151.88,
       annualDrift: 0.108,
@@ -12757,6 +13304,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 57.19,
       annualDrift: 0.109,
@@ -12780,6 +13328,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 25.18,
       annualDrift: 0.058,
@@ -12803,6 +13352,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 274.8,
       annualDrift: 0.05,
@@ -12826,6 +13376,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '840',
     seed: {
       startValue: 397.64,
       annualDrift: 0.094,
@@ -12849,6 +13400,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 64.07,
       annualDrift: 0.047,
@@ -12872,6 +13424,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 277.39,
       annualDrift: 0.109,
@@ -12896,6 +13449,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 22.43,
       annualDrift: 0.033,
@@ -12919,6 +13473,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '840',
     seed: {
       startValue: 82.15,
       annualDrift: 0.095,
@@ -12942,6 +13497,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '840',
     seed: {
       startValue: 392.01,
       annualDrift: 0.041,
@@ -12965,6 +13521,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '840',
     seed: {
       startValue: 71.21,
       annualDrift: 0.031,
@@ -12988,6 +13545,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '840',
     seed: {
       startValue: 177.3,
       annualDrift: 0.11,
@@ -13011,6 +13569,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '840',
     seed: {
       startValue: 264.87,
       annualDrift: 0.107,
@@ -13034,6 +13593,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '840',
     seed: {
       startValue: 387.61,
       annualDrift: 0.031,
@@ -13057,6 +13617,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '840',
     seed: {
       startValue: 322.35,
       annualDrift: 0.115,
@@ -13080,6 +13641,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '840',
     seed: {
       startValue: 229.9,
       annualDrift: 0.08,
@@ -13103,6 +13665,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '840',
     seed: {
       startValue: 266.03,
       annualDrift: 0.073,
@@ -13126,6 +13689,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '840',
     seed: {
       startValue: 314.75,
       annualDrift: 0.055,
@@ -13149,6 +13713,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '840',
     seed: {
       startValue: 95.7,
       annualDrift: 0.05,
@@ -13173,6 +13738,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '840',
     seed: {
       startValue: 313.59,
       annualDrift: 0.119,
@@ -13196,6 +13762,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '840',
     seed: {
       startValue: 224.54,
       annualDrift: 0.054,
@@ -13219,6 +13786,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bildung',
+    sitzland: '840',
     seed: {
       startValue: 68.4,
       annualDrift: 0.04,
@@ -13242,6 +13810,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '840',
     seed: {
       startValue: 297.47,
       annualDrift: 0.087,
@@ -13265,6 +13834,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '276',
     seed: {
       startValue: 252.81,
       annualDrift: 0.051,
@@ -13289,6 +13859,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '276',
     seed: {
       startValue: 378.09,
       annualDrift: 0.059,
@@ -13313,6 +13884,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '276',
     seed: {
       startValue: 365.61,
       annualDrift: 0.101,
@@ -13336,6 +13908,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 332.09,
       annualDrift: 0.049,
@@ -13359,6 +13932,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '276',
     seed: {
       startValue: 281.2,
       annualDrift: 0.09,
@@ -13382,6 +13956,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '276',
     seed: {
       startValue: 62.0,
       annualDrift: 0.06,
@@ -13405,6 +13980,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 282.97,
       annualDrift: 0.067,
@@ -13428,6 +14004,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '276',
     seed: {
       startValue: 227.78,
       annualDrift: 0.058,
@@ -13451,6 +14028,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '276',
     seed: {
       startValue: 62.12,
       annualDrift: 0.072,
@@ -13474,6 +14052,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '276',
     seed: {
       startValue: 183.8,
       annualDrift: 0.11,
@@ -13497,6 +14076,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '276',
     seed: {
       startValue: 106.98,
       annualDrift: 0.068,
@@ -13520,6 +14100,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '276',
     seed: {
       startValue: 395.89,
       annualDrift: 0.069,
@@ -13543,6 +14124,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '276',
     seed: {
       startValue: 150.15,
       annualDrift: 0.075,
@@ -13567,6 +14149,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '276',
     seed: {
       startValue: 256.19,
       annualDrift: 0.059,
@@ -13590,6 +14173,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '276',
     seed: {
       startValue: 376.69,
       annualDrift: 0.099,
@@ -13613,6 +14197,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '276',
     seed: {
       startValue: 317.36,
       annualDrift: 0.096,
@@ -13636,6 +14221,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '276',
     seed: {
       startValue: 45.03,
       annualDrift: 0.063,
@@ -13659,6 +14245,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '276',
     seed: {
       startValue: 306.45,
       annualDrift: 0.075,
@@ -13682,6 +14269,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '276',
     seed: {
       startValue: 344.49,
       annualDrift: 0.109,
@@ -13705,6 +14293,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '276',
     seed: {
       startValue: 27.85,
       annualDrift: 0.095,
@@ -13728,6 +14317,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '276',
     seed: {
       startValue: 322.88,
       annualDrift: 0.098,
@@ -13751,6 +14341,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '276',
     seed: {
       startValue: 187.38,
       annualDrift: 0.068,
@@ -13774,6 +14365,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '276',
     seed: {
       startValue: 107.94,
       annualDrift: 0.064,
@@ -13797,6 +14389,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '276',
     seed: {
       startValue: 37.42,
       annualDrift: 0.092,
@@ -13820,6 +14413,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '276',
     seed: {
       startValue: 352.1,
       annualDrift: 0.11,
@@ -13843,6 +14437,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '276',
     seed: {
       startValue: 321.49,
       annualDrift: 0.099,
@@ -13866,6 +14461,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '276',
     seed: {
       startValue: 285.53,
       annualDrift: 0.073,
@@ -13889,6 +14485,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '276',
     seed: {
       startValue: 218.24,
       annualDrift: 0.104,
@@ -13913,6 +14510,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '276',
     seed: {
       startValue: 316.67,
       annualDrift: 0.107,
@@ -13936,6 +14534,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '276',
     seed: {
       startValue: 317.51,
       annualDrift: 0.071,
@@ -13959,6 +14558,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '250',
     seed: {
       startValue: 51.02,
       annualDrift: 0.042,
@@ -13982,6 +14582,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '250',
     seed: {
       startValue: 41.98,
       annualDrift: 0.058,
@@ -14005,6 +14606,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '250',
     seed: {
       startValue: 99.61,
       annualDrift: 0.071,
@@ -14028,6 +14630,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '250',
     seed: {
       startValue: 352.92,
       annualDrift: 0.092,
@@ -14052,6 +14655,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '250',
     seed: {
       startValue: 112.78,
       annualDrift: 0.088,
@@ -14075,6 +14679,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '250',
     seed: {
       startValue: 103.95,
       annualDrift: 0.095,
@@ -14098,6 +14703,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '250',
     seed: {
       startValue: 318.09,
       annualDrift: 0.059,
@@ -14122,6 +14728,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '250',
     seed: {
       startValue: 269.41,
       annualDrift: 0.091,
@@ -14145,6 +14752,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '250',
     seed: {
       startValue: 295.12,
       annualDrift: 0.082,
@@ -14168,6 +14776,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '826',
     seed: {
       startValue: 397.01,
       annualDrift: 0.031,
@@ -14192,6 +14801,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '826',
     seed: {
       startValue: 59.3,
       annualDrift: 0.11,
@@ -14215,6 +14825,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '826',
     seed: {
       startValue: 298.08,
       annualDrift: 0.118,
@@ -14238,6 +14849,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '826',
     seed: {
       startValue: 71.25,
       annualDrift: 0.045,
@@ -14262,6 +14874,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '826',
     seed: {
       startValue: 269.79,
       annualDrift: 0.089,
@@ -14285,6 +14898,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '826',
     seed: {
       startValue: 282.73,
       annualDrift: 0.063,
@@ -14308,6 +14922,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '826',
     seed: {
       startValue: 224.3,
       annualDrift: 0.06,
@@ -14331,6 +14946,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '826',
     seed: {
       startValue: 26.3,
       annualDrift: 0.11,
@@ -14354,6 +14970,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '826',
     seed: {
       startValue: 168.69,
       annualDrift: 0.089,
@@ -14377,6 +14994,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '826',
     seed: {
       startValue: 249.48,
       annualDrift: 0.098,
@@ -14400,6 +15018,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gastgewerbe',
+    sitzland: '826',
     seed: {
       startValue: 68.27,
       annualDrift: 0.087,
@@ -14423,6 +15042,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gastgewerbe',
+    sitzland: '826',
     seed: {
       startValue: 110.26,
       annualDrift: 0.106,
@@ -14446,6 +15066,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '826',
     seed: {
       startValue: 371.62,
       annualDrift: 0.072,
@@ -14469,6 +15090,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Zahlungsverkehr',
+    sitzland: '826',
     seed: {
       startValue: 76.37,
       annualDrift: 0.037,
@@ -14492,6 +15114,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Sicherheit',
+    sitzland: '826',
     seed: {
       startValue: 174.52,
       annualDrift: 0.102,
@@ -14515,6 +15138,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '826',
     seed: {
       startValue: 109.48,
       annualDrift: 0.098,
@@ -14538,6 +15162,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '826',
     seed: {
       startValue: 295.1,
       annualDrift: 0.11,
@@ -14561,6 +15186,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '826',
     seed: {
       startValue: 265.62,
       annualDrift: 0.062,
@@ -14584,6 +15210,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '826',
     seed: {
       startValue: 169.0,
       annualDrift: 0.1,
@@ -14607,6 +15234,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '250',
     seed: {
       startValue: 324.02,
       annualDrift: 0.092,
@@ -14630,6 +15258,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '250',
     seed: {
       startValue: 259.46,
       annualDrift: 0.056,
@@ -14653,6 +15282,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '250',
     seed: {
       startValue: 355.91,
       annualDrift: 0.031,
@@ -14676,6 +15306,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '250',
     seed: {
       startValue: 149.41,
       annualDrift: 0.071,
@@ -14699,6 +15330,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '250',
     seed: {
       startValue: 66.03,
       annualDrift: 0.053,
@@ -14723,6 +15355,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '250',
     seed: {
       startValue: 109.06,
       annualDrift: 0.056,
@@ -14746,6 +15379,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '250',
     seed: {
       startValue: 161.02,
       annualDrift: 0.042,
@@ -14769,6 +15403,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '250',
     seed: {
       startValue: 87.2,
       annualDrift: 0.08,
@@ -14792,6 +15427,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '250',
     seed: {
       startValue: 208.83,
       annualDrift: 0.103,
@@ -14815,6 +15451,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '250',
     seed: {
       startValue: 219.12,
       annualDrift: 0.112,
@@ -14838,6 +15475,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '250',
     seed: {
       startValue: 212.62,
       annualDrift: 0.052,
@@ -14861,6 +15499,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '826',
     seed: {
       startValue: 98.7,
       annualDrift: 0.06,
@@ -14884,6 +15523,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '826',
     seed: {
       startValue: 324.49,
       annualDrift: 0.119,
@@ -14907,6 +15547,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '826',
     seed: {
       startValue: 339.81,
       annualDrift: 0.101,
@@ -14930,6 +15571,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bildung',
+    sitzland: '826',
     seed: {
       startValue: 208.69,
       annualDrift: 0.099,
@@ -14953,6 +15595,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '826',
     seed: {
       startValue: 150.54,
       annualDrift: 0.114,
@@ -14976,6 +15619,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '826',
     seed: {
       startValue: 368.49,
       annualDrift: 0.109,
@@ -14999,6 +15643,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '826',
     seed: {
       startValue: 155.52,
       annualDrift: 0.032,
@@ -15022,6 +15667,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '826',
     seed: {
       startValue: 342.42,
       annualDrift: 0.082,
@@ -15045,6 +15691,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '826',
     seed: {
       startValue: 230.75,
       annualDrift: 0.035,
@@ -15068,6 +15715,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '826',
     seed: {
       startValue: 31.95,
       annualDrift: 0.065,
@@ -15091,6 +15739,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '826',
     seed: {
       startValue: 302.3,
       annualDrift: 0.04,
@@ -15114,6 +15763,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '826',
     seed: {
       startValue: 176.37,
       annualDrift: 0.107,
@@ -15138,6 +15788,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '826',
     seed: {
       startValue: 227.43,
       annualDrift: 0.043,
@@ -15162,6 +15813,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '826',
     seed: {
       startValue: 197.84,
       annualDrift: 0.044,
@@ -15185,6 +15837,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '826',
     seed: {
       startValue: 129.98,
       annualDrift: 0.048,
@@ -15208,6 +15861,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '528',
     seed: {
       startValue: 335.73,
       annualDrift: 0.063,
@@ -15231,6 +15885,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '528',
     seed: {
       startValue: 324.7,
       annualDrift: 0.04,
@@ -15254,6 +15909,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '528',
     seed: {
       startValue: 267.09,
       annualDrift: 0.099,
@@ -15278,6 +15934,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '528',
     seed: {
       startValue: 103.41,
       annualDrift: 0.111,
@@ -15301,6 +15958,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '528',
     seed: {
       startValue: 262.8,
       annualDrift: 0.1,
@@ -15324,6 +15982,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '528',
     seed: {
       startValue: 116.86,
       annualDrift: 0.066,
@@ -15347,6 +16006,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bau',
+    sitzland: '528',
     seed: {
       startValue: 336.54,
       annualDrift: 0.034,
@@ -15370,6 +16030,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '528',
     seed: {
       startValue: 18.57,
       annualDrift: 0.067,
@@ -15393,6 +16054,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '528',
     seed: {
       startValue: 275.68,
       annualDrift: 0.058,
@@ -15416,6 +16078,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '056',
     seed: {
       startValue: 51.92,
       annualDrift: 0.052,
@@ -15439,6 +16102,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '056',
     seed: {
       startValue: 335.05,
       annualDrift: 0.085,
@@ -15462,6 +16126,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '442',
     seed: {
       startValue: 113.25,
       annualDrift: 0.055,
@@ -15485,6 +16150,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '442',
     seed: {
       startValue: 224.8,
       annualDrift: 0.07,
@@ -15508,6 +16174,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medien',
+    sitzland: '442',
     seed: {
       startValue: 135.89,
       annualDrift: 0.059,
@@ -15532,6 +16199,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '442',
     seed: {
       startValue: 119.52,
       annualDrift: 0.042,
@@ -15556,6 +16224,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '756',
     seed: {
       startValue: 240.75,
       annualDrift: 0.095,
@@ -15579,6 +16248,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '756',
     seed: {
       startValue: 263.41,
       annualDrift: 0.031,
@@ -15602,6 +16272,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '756',
     seed: {
       startValue: 271.99,
       annualDrift: 0.039,
@@ -15625,6 +16296,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '756',
     seed: {
       startValue: 65.32,
       annualDrift: 0.112,
@@ -15648,6 +16320,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '756',
     seed: {
       startValue: 336.24,
       annualDrift: 0.064,
@@ -15671,6 +16344,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '756',
     seed: {
       startValue: 166.67,
       annualDrift: 0.077,
@@ -15694,6 +16368,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '756',
     seed: {
       startValue: 275.36,
       annualDrift: 0.076,
@@ -15717,6 +16392,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '756',
     seed: {
       startValue: 377.36,
       annualDrift: 0.086,
@@ -15740,6 +16416,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '756',
     seed: {
       startValue: 129.27,
       annualDrift: 0.107,
@@ -15763,6 +16440,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '756',
     seed: {
       startValue: 27.35,
       annualDrift: 0.055,
@@ -15786,6 +16464,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '756',
     seed: {
       startValue: 33.78,
       annualDrift: 0.048,
@@ -15810,6 +16489,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Verpackung',
+    sitzland: '756',
     seed: {
       startValue: 223.57,
       annualDrift: 0.087,
@@ -15833,6 +16513,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '040',
     seed: {
       startValue: 383.75,
       annualDrift: 0.065,
@@ -15856,6 +16537,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '040',
     seed: {
       startValue: 167.92,
       annualDrift: 0.112,
@@ -15879,6 +16561,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '380',
     seed: {
       startValue: 66.32,
       annualDrift: 0.082,
@@ -15902,6 +16585,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '380',
     seed: {
       startValue: 373.71,
       annualDrift: 0.071,
@@ -15925,6 +16609,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '724',
     seed: {
       startValue: 344.6,
       annualDrift: 0.08,
@@ -15948,6 +16633,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '724',
     seed: {
       startValue: 311.05,
       annualDrift: 0.075,
@@ -15971,6 +16657,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '620',
     seed: {
       startValue: 264.27,
       annualDrift: 0.087,
@@ -15994,6 +16681,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '372',
     seed: {
       startValue: 216.9,
       annualDrift: 0.11,
@@ -16017,6 +16705,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '372',
     seed: {
       startValue: 273.41,
       annualDrift: 0.101,
@@ -16040,6 +16729,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '372',
     seed: {
       startValue: 40.47,
       annualDrift: 0.057,
@@ -16063,6 +16753,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '372',
     seed: {
       startValue: 313.45,
       annualDrift: 0.045,
@@ -16086,6 +16777,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Verpackung',
+    sitzland: '372',
     seed: {
       startValue: 271.26,
       annualDrift: 0.066,
@@ -16109,6 +16801,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '300',
     seed: {
       startValue: 25.57,
       annualDrift: 0.117,
@@ -16132,6 +16825,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '300',
     seed: {
       startValue: 366.18,
       annualDrift: 0.098,
@@ -16155,6 +16849,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '752',
     seed: {
       startValue: 112.01,
       annualDrift: 0.031,
@@ -16178,6 +16873,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '752',
     seed: {
       startValue: 284.42,
       annualDrift: 0.082,
@@ -16201,6 +16897,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '752',
     seed: {
       startValue: 111.58,
       annualDrift: 0.088,
@@ -16224,6 +16921,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '752',
     seed: {
       startValue: 250.84,
       annualDrift: 0.084,
@@ -16247,6 +16945,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '752',
     seed: {
       startValue: 194.98,
       annualDrift: 0.078,
@@ -16270,6 +16969,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '752',
     seed: {
       startValue: 71.83,
       annualDrift: 0.063,
@@ -16293,6 +16993,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Glücksspiel',
+    sitzland: '752',
     seed: {
       startValue: 25.06,
       annualDrift: 0.046,
@@ -16316,6 +17017,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '208',
     seed: {
       startValue: 220.1,
       annualDrift: 0.03,
@@ -16339,6 +17041,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '578',
     seed: {
       startValue: 362.99,
       annualDrift: 0.049,
@@ -16362,6 +17065,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '578',
     seed: {
       startValue: 266.82,
       annualDrift: 0.062,
@@ -16385,6 +17089,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '578',
     seed: {
       startValue: 260.13,
       annualDrift: 0.113,
@@ -16408,6 +17113,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Papier',
+    sitzland: '246',
     seed: {
       startValue: 190.12,
       annualDrift: 0.082,
@@ -16431,6 +17137,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '246',
     seed: {
       startValue: 315.88,
       annualDrift: 0.068,
@@ -16454,6 +17161,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '616',
     seed: {
       startValue: 174.03,
       annualDrift: 0.043,
@@ -16477,6 +17185,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '616',
     seed: {
       startValue: 347.46,
       annualDrift: 0.066,
@@ -16500,6 +17209,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '348',
     seed: {
       startValue: 214.55,
       annualDrift: 0.115,
@@ -16523,6 +17233,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '348',
     seed: {
       startValue: 129.73,
       annualDrift: 0.043,
@@ -16546,6 +17257,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '203',
     seed: {
       startValue: 351.41,
       annualDrift: 0.061,
@@ -16569,6 +17281,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '203',
     seed: {
       startValue: 126.25,
       annualDrift: 0.095,
@@ -16592,6 +17305,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '792',
     seed: {
       startValue: 64.63,
       annualDrift: 0.033,
@@ -16615,6 +17329,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '792',
     seed: {
       startValue: 203.35,
       annualDrift: 0.085,
@@ -16638,6 +17353,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '792',
     seed: {
       startValue: 333.79,
       annualDrift: 0.069,
@@ -16661,6 +17377,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '792',
     seed: {
       startValue: 156.43,
       annualDrift: 0.113,
@@ -16685,6 +17402,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '792',
     seed: {
       startValue: 229.81,
       annualDrift: 0.061,
@@ -16709,6 +17427,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Mischkonzern',
+    sitzland: '792',
     seed: {
       startValue: 274.06,
       annualDrift: 0.036,
@@ -16732,6 +17451,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '392',
     seed: {
       startValue: 326.74,
       annualDrift: 0.034,
@@ -16755,6 +17475,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '392',
     seed: {
       startValue: 369.36,
       annualDrift: 0.046,
@@ -16778,6 +17499,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '392',
     seed: {
       startValue: 192.5,
       annualDrift: 0.1,
@@ -16801,6 +17523,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '392',
     seed: {
       startValue: 361.7,
       annualDrift: 0.07,
@@ -16824,6 +17547,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '392',
     seed: {
       startValue: 342.09,
       annualDrift: 0.059,
@@ -16847,6 +17571,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '392',
     seed: {
       startValue: 50.84,
       annualDrift: 0.034,
@@ -16870,6 +17595,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '392',
     seed: {
       startValue: 82.07,
       annualDrift: 0.067,
@@ -16893,6 +17619,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '392',
     seed: {
       startValue: 352.72,
       annualDrift: 0.072,
@@ -16916,6 +17643,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '392',
     seed: {
       startValue: 198.61,
       annualDrift: 0.101,
@@ -16939,6 +17667,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '392',
     seed: {
       startValue: 89.46,
       annualDrift: 0.116,
@@ -16962,6 +17691,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '392',
     seed: {
       startValue: 147.96,
       annualDrift: 0.086,
@@ -16985,6 +17715,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '392',
     seed: {
       startValue: 222.78,
       annualDrift: 0.038,
@@ -17008,6 +17739,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '392',
     seed: {
       startValue: 345.99,
       annualDrift: 0.089,
@@ -17031,6 +17763,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '392',
     seed: {
       startValue: 325.04,
       annualDrift: 0.064,
@@ -17054,6 +17787,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '392',
     seed: {
       startValue: 263.41,
       annualDrift: 0.051,
@@ -17077,6 +17811,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '392',
     seed: {
       startValue: 238.06,
       annualDrift: 0.066,
@@ -17100,6 +17835,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '392',
     seed: {
       startValue: 272.43,
       annualDrift: 0.053,
@@ -17124,6 +17860,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '392',
     seed: {
       startValue: 394.42,
       annualDrift: 0.092,
@@ -17147,6 +17884,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '392',
     seed: {
       startValue: 157.56,
       annualDrift: 0.106,
@@ -17170,6 +17908,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 371.68,
       annualDrift: 0.078,
@@ -17193,6 +17932,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 107.98,
       annualDrift: 0.098,
@@ -17216,6 +17956,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '392',
     seed: {
       startValue: 376.77,
       annualDrift: 0.067,
@@ -17239,6 +17980,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '392',
     seed: {
       startValue: 368.01,
       annualDrift: 0.091,
@@ -17262,6 +18004,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '392',
     seed: {
       startValue: 18.6,
       annualDrift: 0.1,
@@ -17285,6 +18028,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '392',
     seed: {
       startValue: 164.46,
       annualDrift: 0.076,
@@ -17308,6 +18052,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '392',
     seed: {
       startValue: 228.53,
       annualDrift: 0.113,
@@ -17331,6 +18076,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '392',
     seed: {
       startValue: 84.77,
       annualDrift: 0.067,
@@ -17354,6 +18100,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '392',
     seed: {
       startValue: 395.29,
       annualDrift: 0.079,
@@ -17377,6 +18124,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Unterhaltung',
+    sitzland: '392',
     seed: {
       startValue: 63.35,
       annualDrift: 0.085,
@@ -17400,6 +18148,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '392',
     seed: {
       startValue: 311.65,
       annualDrift: 0.115,
@@ -17423,6 +18172,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '392',
     seed: {
       startValue: 165.39,
       annualDrift: 0.049,
@@ -17446,6 +18196,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '392',
     seed: {
       startValue: 53.27,
       annualDrift: 0.087,
@@ -17469,6 +18220,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '392',
     seed: {
       startValue: 89.41,
       annualDrift: 0.081,
@@ -17492,6 +18244,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '392',
     seed: {
       startValue: 100.73,
       annualDrift: 0.063,
@@ -17515,6 +18268,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '156',
     seed: {
       startValue: 365.57,
       annualDrift: 0.087,
@@ -17538,6 +18292,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '156',
     seed: {
       startValue: 116.05,
       annualDrift: 0.095,
@@ -17561,6 +18316,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '156',
     seed: {
       startValue: 209.35,
       annualDrift: 0.035,
@@ -17585,6 +18341,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '156',
     seed: {
       startValue: 371.15,
       annualDrift: 0.085,
@@ -17608,6 +18365,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '156',
     seed: {
       startValue: 109.01,
       annualDrift: 0.051,
@@ -17631,6 +18389,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '156',
     seed: {
       startValue: 64.67,
       annualDrift: 0.097,
@@ -17654,6 +18413,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '156',
     seed: {
       startValue: 351.48,
       annualDrift: 0.108,
@@ -17677,6 +18437,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '156',
     seed: {
       startValue: 257.42,
       annualDrift: 0.032,
@@ -17700,6 +18461,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '156',
     seed: {
       startValue: 327.31,
       annualDrift: 0.111,
@@ -17723,6 +18485,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Halbleiter',
+    sitzland: '156',
     seed: {
       startValue: 256.14,
       annualDrift: 0.114,
@@ -17746,6 +18509,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '156',
     seed: {
       startValue: 42.35,
       annualDrift: 0.045,
@@ -17770,6 +18534,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '156',
     seed: {
       startValue: 158.21,
       annualDrift: 0.051,
@@ -17793,6 +18558,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '156',
     seed: {
       startValue: 116.3,
       annualDrift: 0.11,
@@ -17816,6 +18582,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '156',
     seed: {
       startValue: 290.82,
       annualDrift: 0.052,
@@ -17839,6 +18606,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '156',
     seed: {
       startValue: 270.45,
       annualDrift: 0.055,
@@ -17862,6 +18630,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '156',
     seed: {
       startValue: 300.66,
       annualDrift: 0.066,
@@ -17885,6 +18654,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '156',
     seed: {
       startValue: 256.97,
       annualDrift: 0.087,
@@ -17908,6 +18678,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '156',
     seed: {
       startValue: 183.72,
       annualDrift: 0.072,
@@ -17931,6 +18702,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '156',
     seed: {
       startValue: 222.88,
       annualDrift: 0.038,
@@ -17955,6 +18727,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '156',
     seed: {
       startValue: 81.51,
       annualDrift: 0.051,
@@ -17978,6 +18751,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '156',
     seed: {
       startValue: 26.03,
       annualDrift: 0.053,
@@ -18001,6 +18775,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '156',
     seed: {
       startValue: 195.66,
       annualDrift: 0.086,
@@ -18024,6 +18799,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '156',
     seed: {
       startValue: 266.12,
       annualDrift: 0.082,
@@ -18047,6 +18823,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '156',
     seed: {
       startValue: 131.17,
       annualDrift: 0.117,
@@ -18070,6 +18847,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '344',
     seed: {
       startValue: 253.34,
       annualDrift: 0.064,
@@ -18093,6 +18871,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '344',
     seed: {
       startValue: 222.24,
       annualDrift: 0.054,
@@ -18116,6 +18895,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '344',
     seed: {
       startValue: 30.74,
       annualDrift: 0.074,
@@ -18139,6 +18919,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Glücksspiel',
+    sitzland: '344',
     seed: {
       startValue: 156.62,
       annualDrift: 0.102,
@@ -18162,6 +18943,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Glücksspiel',
+    sitzland: '344',
     seed: {
       startValue: 380.82,
       annualDrift: 0.052,
@@ -18185,6 +18967,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '344',
     seed: {
       startValue: 262.38,
       annualDrift: 0.088,
@@ -18208,6 +18991,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '344',
     seed: {
       startValue: 280.93,
       annualDrift: 0.083,
@@ -18231,6 +19015,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Elektronik',
+    sitzland: '410',
     seed: {
       startValue: 137.54,
       annualDrift: 0.114,
@@ -18254,6 +19039,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '410',
     seed: {
       startValue: 44.63,
       annualDrift: 0.063,
@@ -18277,6 +19063,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '410',
     seed: {
       startValue: 390.25,
       annualDrift: 0.095,
@@ -18300,6 +19087,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '410',
     seed: {
       startValue: 364.22,
       annualDrift: 0.072,
@@ -18323,6 +19111,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '410',
     seed: {
       startValue: 263.19,
       annualDrift: 0.119,
@@ -18346,6 +19135,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '158',
     seed: {
       startValue: 126.21,
       annualDrift: 0.081,
@@ -18369,6 +19159,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '158',
     seed: {
       startValue: 377.5,
       annualDrift: 0.05,
@@ -18392,6 +19183,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '356',
     seed: {
       startValue: 340.89,
       annualDrift: 0.059,
@@ -18416,6 +19208,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '356',
     seed: {
       startValue: 350.88,
       annualDrift: 0.098,
@@ -18439,6 +19232,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '356',
     seed: {
       startValue: 85.03,
       annualDrift: 0.113,
@@ -18462,6 +19256,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '356',
     seed: {
       startValue: 299.06,
       annualDrift: 0.106,
@@ -18485,6 +19280,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '356',
     seed: {
       startValue: 302.38,
       annualDrift: 0.038,
@@ -18508,6 +19304,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '356',
     seed: {
       startValue: 187.83,
       annualDrift: 0.103,
@@ -18531,6 +19328,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '356',
     seed: {
       startValue: 181.06,
       annualDrift: 0.056,
@@ -18554,6 +19352,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '356',
     seed: {
       startValue: 361.25,
       annualDrift: 0.095,
@@ -18577,6 +19376,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '356',
     seed: {
       startValue: 344.61,
       annualDrift: 0.061,
@@ -18600,6 +19400,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '356',
     seed: {
       startValue: 193.79,
       annualDrift: 0.039,
@@ -18623,6 +19424,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '356',
     seed: {
       startValue: 69.64,
       annualDrift: 0.104,
@@ -18646,6 +19448,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '356',
     seed: {
       startValue: 59.53,
       annualDrift: 0.043,
@@ -18669,6 +19472,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '356',
     seed: {
       startValue: 169.71,
       annualDrift: 0.091,
@@ -18692,6 +19496,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '356',
     seed: {
       startValue: 338.87,
       annualDrift: 0.117,
@@ -18715,6 +19520,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '356',
     seed: {
       startValue: 372.87,
       annualDrift: 0.117,
@@ -18738,6 +19544,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '356',
     seed: {
       startValue: 203.38,
       annualDrift: 0.068,
@@ -18762,6 +19569,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '356',
     seed: {
       startValue: 149.14,
       annualDrift: 0.034,
@@ -18785,6 +19593,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '356',
     seed: {
       startValue: 307.15,
       annualDrift: 0.075,
@@ -18808,6 +19617,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '356',
     seed: {
       startValue: 98.2,
       annualDrift: 0.07,
@@ -18831,6 +19641,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '356',
     seed: {
       startValue: 334.62,
       annualDrift: 0.042,
@@ -18854,6 +19665,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '356',
     seed: {
       startValue: 209.79,
       annualDrift: 0.039,
@@ -18877,6 +19689,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '356',
     seed: {
       startValue: 257.08,
       annualDrift: 0.088,
@@ -18900,6 +19713,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Pharma',
+    sitzland: '356',
     seed: {
       startValue: 26.65,
       annualDrift: 0.105,
@@ -18923,6 +19737,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '356',
     seed: {
       startValue: 41.84,
       annualDrift: 0.084,
@@ -18946,6 +19761,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Konsum',
+    sitzland: '356',
     seed: {
       startValue: 62.09,
       annualDrift: 0.079,
@@ -18969,6 +19785,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '356',
     seed: {
       startValue: 224.78,
       annualDrift: 0.088,
@@ -18992,6 +19809,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '356',
     seed: {
       startValue: 318.11,
       annualDrift: 0.051,
@@ -19015,6 +19833,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '356',
     seed: {
       startValue: 197.24,
       annualDrift: 0.034,
@@ -19038,6 +19857,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '356',
     seed: {
       startValue: 192.98,
       annualDrift: 0.088,
@@ -19061,6 +19881,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '356',
     seed: {
       startValue: 289.95,
       annualDrift: 0.065,
@@ -19084,6 +19905,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '356',
     seed: {
       startValue: 184.95,
       annualDrift: 0.105,
@@ -19107,6 +19929,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '356',
     seed: {
       startValue: 25.15,
       annualDrift: 0.095,
@@ -19130,6 +19953,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '356',
     seed: {
       startValue: 276.52,
       annualDrift: 0.042,
@@ -19153,6 +19977,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '356',
     seed: {
       startValue: 393.86,
       annualDrift: 0.036,
@@ -19176,6 +20001,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Immobilien',
+    sitzland: '702',
     seed: {
       startValue: 76.26,
       annualDrift: 0.066,
@@ -19199,6 +20025,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Technologie',
+    sitzland: '702',
     seed: {
       startValue: 350.47,
       annualDrift: 0.067,
@@ -19222,6 +20049,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '458',
     seed: {
       startValue: 173.52,
       annualDrift: 0.052,
@@ -19245,6 +20073,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '458',
     seed: {
       startValue: 93.09,
       annualDrift: 0.069,
@@ -19268,6 +20097,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '458',
     seed: {
       startValue: 51.71,
       annualDrift: 0.061,
@@ -19291,6 +20121,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '458',
     seed: {
       startValue: 335.35,
       annualDrift: 0.115,
@@ -19314,6 +20145,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '458',
     seed: {
       startValue: 125.16,
       annualDrift: 0.056,
@@ -19337,6 +20169,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '764',
     seed: {
       startValue: 31.11,
       annualDrift: 0.091,
@@ -19360,6 +20193,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '764',
     seed: {
       startValue: 339.82,
       annualDrift: 0.042,
@@ -19383,6 +20217,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '764',
     seed: {
       startValue: 365.61,
       annualDrift: 0.101,
@@ -19406,6 +20241,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '764',
     seed: {
       startValue: 361.71,
       annualDrift: 0.061,
@@ -19429,6 +20265,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '764',
     seed: {
       startValue: 49.12,
       annualDrift: 0.032,
@@ -19452,6 +20289,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Baustoffe',
+    sitzland: '764',
     seed: {
       startValue: 182.54,
       annualDrift: 0.104,
@@ -19475,6 +20313,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '360',
     seed: {
       startValue: 346.16,
       annualDrift: 0.046,
@@ -19498,6 +20337,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '360',
     seed: {
       startValue: 345.52,
       annualDrift: 0.092,
@@ -19521,6 +20361,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '360',
     seed: {
       startValue: 175.5,
       annualDrift: 0.06,
@@ -19544,6 +20385,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '360',
     seed: {
       startValue: 304.12,
       annualDrift: 0.092,
@@ -19567,6 +20409,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Mischkonzern',
+    sitzland: '360',
     seed: {
       startValue: 51.11,
       annualDrift: 0.081,
@@ -19590,6 +20433,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '360',
     seed: {
       startValue: 377.14,
       annualDrift: 0.094,
@@ -19614,6 +20458,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Börsen',
+    sitzland: '702',
     seed: {
       startValue: 181.99,
       annualDrift: 0.099,
@@ -19637,6 +20482,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Industrie',
+    sitzland: '702',
     seed: {
       startValue: 199.64,
       annualDrift: 0.044,
@@ -19660,6 +20506,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '702',
     seed: {
       startValue: 35.34,
       annualDrift: 0.094,
@@ -19683,6 +20530,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '036',
     seed: {
       startValue: 300.27,
       annualDrift: 0.037,
@@ -19706,6 +20554,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '036',
     seed: {
       startValue: 367.65,
       annualDrift: 0.115,
@@ -19729,6 +20578,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '036',
     seed: {
       startValue: 237.09,
       annualDrift: 0.069,
@@ -19752,6 +20602,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '036',
     seed: {
       startValue: 278.66,
       annualDrift: 0.096,
@@ -19775,6 +20626,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '036',
     seed: {
       startValue: 27.86,
       annualDrift: 0.046,
@@ -19798,6 +20650,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '036',
     seed: {
       startValue: 139.73,
       annualDrift: 0.093,
@@ -19821,6 +20674,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '036',
     seed: {
       startValue: 194.31,
       annualDrift: 0.111,
@@ -19844,6 +20698,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '036',
     seed: {
       startValue: 240.55,
       annualDrift: 0.075,
@@ -19867,6 +20722,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Luftfahrt',
+    sitzland: '036',
     seed: {
       startValue: 106.43,
       annualDrift: 0.043,
@@ -19890,6 +20746,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Glücksspiel',
+    sitzland: '036',
     seed: {
       startValue: 150.19,
       annualDrift: 0.109,
@@ -19913,6 +20770,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '036',
     seed: {
       startValue: 201.87,
       annualDrift: 0.117,
@@ -19936,6 +20794,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '036',
     seed: {
       startValue: 81.6,
       annualDrift: 0.1,
@@ -19959,6 +20818,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Gesundheit',
+    sitzland: '036',
     seed: {
       startValue: 297.95,
       annualDrift: 0.115,
@@ -19982,6 +20842,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Medizintechnik',
+    sitzland: '554',
     seed: {
       startValue: 104.45,
       annualDrift: 0.045,
@@ -20005,6 +20866,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '554',
     seed: {
       startValue: 55.9,
       annualDrift: 0.09,
@@ -20028,6 +20890,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versorger',
+    sitzland: '554',
     seed: {
       startValue: 97.81,
       annualDrift: 0.041,
@@ -20051,6 +20914,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '554',
     seed: {
       startValue: 109.77,
       annualDrift: 0.067,
@@ -20074,6 +20938,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '124',
     seed: {
       startValue: 219.1,
       annualDrift: 0.06,
@@ -20097,6 +20962,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '124',
     seed: {
       startValue: 338.84,
       annualDrift: 0.064,
@@ -20120,6 +20986,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '124',
     seed: {
       startValue: 80.9,
       annualDrift: 0.09,
@@ -20143,6 +21010,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '124',
     seed: {
       startValue: 192.04,
       annualDrift: 0.104,
@@ -20166,6 +21034,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '124',
     seed: {
       startValue: 202.99,
       annualDrift: 0.079,
@@ -20189,6 +21058,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '124',
     seed: {
       startValue: 22.03,
       annualDrift: 0.103,
@@ -20212,6 +21082,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '124',
     seed: {
       startValue: 233.29,
       annualDrift: 0.079,
@@ -20235,6 +21106,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '124',
     seed: {
       startValue: 333.51,
       annualDrift: 0.061,
@@ -20258,6 +21130,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '124',
     seed: {
       startValue: 306.8,
       annualDrift: 0.05,
@@ -20281,6 +21154,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '124',
     seed: {
       startValue: 259.34,
       annualDrift: 0.084,
@@ -20304,6 +21178,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '124',
     seed: {
       startValue: 224.2,
       annualDrift: 0.05,
@@ -20327,6 +21202,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '124',
     seed: {
       startValue: 69.12,
       annualDrift: 0.042,
@@ -20350,6 +21226,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '124',
     seed: {
       startValue: 72.34,
       annualDrift: 0.034,
@@ -20373,6 +21250,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '124',
     seed: {
       startValue: 198.48,
       annualDrift: 0.058,
@@ -20396,6 +21274,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Telekommunikation',
+    sitzland: '124',
     seed: {
       startValue: 149.73,
       annualDrift: 0.073,
@@ -20419,6 +21298,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Entsorgung',
+    sitzland: '124',
     seed: {
       startValue: 310.39,
       annualDrift: 0.079,
@@ -20442,6 +21322,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Automobil',
+    sitzland: '124',
     seed: {
       startValue: 265.87,
       annualDrift: 0.067,
@@ -20465,6 +21346,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '076',
     seed: {
       startValue: 328.14,
       annualDrift: 0.064,
@@ -20488,6 +21370,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '076',
     seed: {
       startValue: 288.37,
       annualDrift: 0.047,
@@ -20512,6 +21395,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Finanzdienste',
+    sitzland: '076',
     seed: {
       startValue: 195.31,
       annualDrift: 0.071,
@@ -20535,6 +21419,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Stahl',
+    sitzland: '076',
     seed: {
       startValue: 31.63,
       annualDrift: 0.083,
@@ -20558,6 +21443,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Papier',
+    sitzland: '076',
     seed: {
       startValue: 160.54,
       annualDrift: 0.094,
@@ -20581,6 +21467,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '076',
     seed: {
       startValue: 70.96,
       annualDrift: 0.036,
@@ -20604,6 +21491,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '076',
     seed: {
       startValue: 60.67,
       annualDrift: 0.067,
@@ -20627,6 +21515,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Dienstleistung',
+    sitzland: '076',
     seed: {
       startValue: 119.26,
       annualDrift: 0.086,
@@ -20650,6 +21539,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '076',
     seed: {
       startValue: 20.25,
       annualDrift: 0.055,
@@ -20673,6 +21563,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '076',
     seed: {
       startValue: 220.96,
       annualDrift: 0.116,
@@ -20696,6 +21587,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '076',
     seed: {
       startValue: 132.8,
       annualDrift: 0.07,
@@ -20719,6 +21611,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Getränke',
+    sitzland: '484',
     seed: {
       startValue: 147.86,
       annualDrift: 0.046,
@@ -20742,6 +21635,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Transport',
+    sitzland: '484',
     seed: {
       startValue: 186.31,
       annualDrift: 0.051,
@@ -20765,6 +21659,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Lebensmittel',
+    sitzland: '484',
     seed: {
       startValue: 178.28,
       annualDrift: 0.078,
@@ -20788,6 +21683,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '152',
     seed: {
       startValue: 63.73,
       annualDrift: 0.063,
@@ -20811,6 +21707,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '152',
     seed: {
       startValue: 325.52,
       annualDrift: 0.032,
@@ -20834,6 +21731,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '152',
     seed: {
       startValue: 165.77,
       annualDrift: 0.047,
@@ -20857,6 +21755,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '152',
     seed: {
       startValue: 317.24,
       annualDrift: 0.064,
@@ -20880,6 +21779,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '032',
     seed: {
       startValue: 328.7,
       annualDrift: 0.1,
@@ -20903,6 +21803,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '032',
     seed: {
       startValue: 93.91,
       annualDrift: 0.111,
@@ -20926,6 +21827,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '604',
     seed: {
       startValue: 336.16,
       annualDrift: 0.036,
@@ -20949,6 +21851,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '604',
     seed: {
       startValue: 324.25,
       annualDrift: 0.095,
@@ -20973,6 +21876,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Beteiligungen',
+    sitzland: '710',
     seed: {
       startValue: 234.95,
       annualDrift: 0.035,
@@ -20996,6 +21900,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '710',
     seed: {
       startValue: 354.5,
       annualDrift: 0.08,
@@ -21019,6 +21924,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '710',
     seed: {
       startValue: 301.33,
       annualDrift: 0.103,
@@ -21042,6 +21948,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Versicherungen',
+    sitzland: '710',
     seed: {
       startValue: 365.11,
       annualDrift: 0.061,
@@ -21065,6 +21972,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Handel',
+    sitzland: '710',
     seed: {
       startValue: 229.23,
       annualDrift: 0.073,
@@ -21088,6 +21996,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '710',
     seed: {
       startValue: 22.57,
       annualDrift: 0.067,
@@ -21111,6 +22020,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Bergbau',
+    sitzland: '710',
     seed: {
       startValue: 260.52,
       annualDrift: 0.072,
@@ -21134,6 +22044,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Energie',
+    sitzland: '682',
     seed: {
       startValue: 87.85,
       annualDrift: 0.075,
@@ -21157,6 +22068,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '682',
     seed: {
       startValue: 364.92,
       annualDrift: 0.112,
@@ -21180,6 +22092,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '682',
     seed: {
       startValue: 371.77,
       annualDrift: 0.047,
@@ -21203,6 +22116,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '682',
     seed: {
       startValue: 298.17,
       annualDrift: 0.077,
@@ -21226,6 +22140,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '634',
     seed: {
       startValue: 23.08,
       annualDrift: 0.098,
@@ -21249,6 +22164,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Chemie',
+    sitzland: '634',
     seed: {
       startValue: 134.99,
       annualDrift: 0.099,
@@ -21272,6 +22188,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '376',
     seed: {
       startValue: 312.5,
       annualDrift: 0.07,
@@ -21295,6 +22212,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Banken',
+    sitzland: '376',
     seed: {
       startValue: 177.53,
       annualDrift: 0.033,
@@ -21318,6 +22236,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Rüstung',
+    sitzland: '376',
     seed: {
       startValue: 301.88,
       annualDrift: 0.098,
@@ -21341,6 +22260,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '376',
     seed: {
       startValue: 97.67,
       annualDrift: 0.097,
@@ -21364,6 +22284,7 @@ export const weitereAktien: MarketDefinition[] = [
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: 'Software',
+    sitzland: '376',
     seed: {
       startValue: 301.61,
       annualDrift: 0.061,

@@ -105,6 +105,7 @@ function baueEintrag(zeile: Zeile): string {
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
     branche: ${anfuehrung(zeile.branche)},
+    sitzland: '${zeile.land}',
     seed: {
       startValue: ${start.toFixed(2)},
       annualDrift: ${drift.toFixed(3)},

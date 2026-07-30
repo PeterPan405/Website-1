@@ -11,6 +11,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
+import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -28,7 +29,9 @@ import {
   formatPercentSigned,
 } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
+import { laendernamen } from '@/data/laender/namen'
 import { getBrancheVon } from '@/lib/branchen'
+import { getQuellensteuer } from '@/lib/quellensteuer'
 import { inEuro, lohntEuroAngabe } from '@/lib/euro'
 import {
   dividendenQuelle,
@@ -109,6 +112,15 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
   const dividende = getDividendenbefund(symbol)
   const dividendenverlauf = getDividendenverlauf(symbol)
   const branche = getBrancheVon(symbol)
+  /*
+    Die Quellensteuer nur, wo sie eine Rolle spielt: bei Aktien, die auch
+    Dividende zahlen. Bei einem Titel ohne Ausschüttung wäre die Tafel eine
+    Antwort auf eine Frage, die sich nicht stellt.
+  */
+  const quellensteuerbefund = dividende ? getQuellensteuer(instrument.sitzland) : null
+  const sitzlandName = instrument.sitzland
+    ? (laendernamen[instrument.sitzland] ?? instrument.sitzland)
+    : null
   /*
     Der Euro-Betrag nur, wo er etwas hinzufügt: nicht bei Titeln, die ohnehin
     in Euro notieren, und nicht bei Indizes – ein Indexstand ist kein
@@ -395,6 +407,14 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 name={instrument.name}
                 quelle={dividendenQuelle}
                 verlauf={dividendenverlauf}
+                className="mt-12"
+              />
+            )}
+
+            {quellensteuerbefund && sitzlandName && (
+              <Quellensteuertafel
+                befund={quellensteuerbefund}
+                land={sitzlandName}
                 className="mt-12"
               />
             )}
