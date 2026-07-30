@@ -47,6 +47,7 @@ export type IconName =
   | 'search'
   | 'youtube'
   | 'instagram'
+  | 'spotify'
 
 const paths: Record<IconName, ReactNode> = {
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
@@ -221,6 +222,24 @@ const paths: Record<IconName, ReactNode> = {
         arbeitet.
       */}
       <path d="M16.9 7.1h.01" />
+    </>
+  ),
+  /*
+    Spotify im selben Strichstil wie die übrigen Plattformen: ein Kreis und
+    drei Bögen, von unten nach oben kürzer werdend.
+
+    Die Vorlage ist flächig – ein grüner Kreis mit ausgesparten Wellen. So
+    gezeichnet stünde sie hier als einziges gefülltes Symbol zwischen lauter
+    Umrissen; die Fußzeile setzt alle Marken in derselben Strichstärke und
+    derselben Farbe. Erkennbar bleibt es trotzdem, denn die drei Bögen sind
+    das Merkmal, nicht die Füllung.
+  */
+  spotify: (
+    <>
+      <circle cx="12" cy="12" r="9.25" />
+      <path d="M7.4 9.3a11 11 0 0 1 9.2 1.6" />
+      <path d="M8.1 12.6a8.5 8.5 0 0 1 7 1.3" />
+      <path d="M8.8 15.7a6 6 0 0 1 4.9 1" />
     </>
   ),
 }

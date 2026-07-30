@@ -71,6 +71,18 @@ export const siteConfig = {
       href: 'https://www.instagram.com/im_invests',
       icon: 'instagram',
     },
+    /*
+      Der Podcast. Geteilt wurde er als
+      `…/show/033YxQviNJXETJpW2ezG3y?si=…&utm_source=copy-link` – beide
+      Anhängsel stammen aus dem Teilen-Knopf der App und verfolgen genau diese
+      eine Weitergabe. In einer dauerhaften Verlinkung haben sie nichts zu
+      suchen, und in `sameAs` schon gar nicht.
+    */
+    {
+      label: 'Spotify',
+      href: 'https://open.spotify.com/show/033YxQviNJXETJpW2ezG3y',
+      icon: 'spotify',
+    },
   ],
   /**
    * Der Bewertungslink bei Google.
