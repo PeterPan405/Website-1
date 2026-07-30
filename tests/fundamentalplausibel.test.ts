@@ -222,12 +222,34 @@ console.log('\n— Börsenwert gegen Eigenkapital —')
   Das Kurs-Buchwert-Verhältnis braucht nur Eigenkapital und Aktienzahl. Es
   deckt damit auch die Datensätze ab, die noch keine Erfolgsrechnung haben.
 
-  Die Obergrenze ist bewusst weit: Es gibt Unternehmen, deren Börsenwert das
-  Fünfzigfache ihres Buchwerts beträgt – wer kaum Sachanlagen braucht, hat
-  wenig Eigenkapital. Ein Faktor tausend kommt nicht vor.
+  ## Warum die Obergrenze davon abhängt, ob ein Umsatz vorliegt
+
+  Eine einzige Obergrenze für alle war zu grob, und das hat die Erweiterung
+  der Aktienauswahl gezeigt: Colgate kam auf ein KBV von 516, Gartner auf 175,
+  Alnylam auf 163, Seagate auf 157 – und in keinem der vier Fälle lag ein
+  Datenfehler vor. Colgate kauft seit Jahrzehnten eigene Aktien zurück und hat
+  deshalb ein Eigenkapital von 145 Millionen Dollar bei 20 Milliarden Umsatz;
+  Alnylam trägt Verlustvorträge. Ein KBV in den Hundertern ist dort die
+  Wahrheit über die Bilanz, keine Fehlmessung.
+
+  Belegt ist das über die anderen beiden Kennzahlen: Alle drei entstehen aus
+  demselben Kurs und derselben Aktienzahl. Wäre eine davon um den Faktor
+  tausend falsch, wären alle drei es. Colgates Kurs-Umsatz-Verhältnis von 3,7
+  und sein Kurs-Gewinn-Verhältnis von 35 sind unauffällig – also stimmen Kurs
+  und Aktienzahl, und allein das Eigenkapital ist klein.
+
+  Daraus folgt die Zweiteilung. Liegt ein Umsatz vor, prüft ihn schon die
+  vorige Prüfung mit einer engen Grenze; das KBV darf dann weit sein, ohne
+  dass ein Faktor tausend durchkäme – der müsste sich dort zeigen. Fehlt der
+  Umsatz – der Fall der Börse Taipeh in den ersten drei Quartalen, wegen dem
+  diese Prüfung überhaupt entstand –, ist das KBV die einzige Sicherung und
+  bleibt streng.
 */
 const KBV_MIN = 0.02
-const KBV_MAX = 150
+/** Ohne Umsatz zur Gegenprobe: streng, wie bisher. */
+const KBV_MAX_OHNE_UMSATZ = 150
+/** Mit Umsatz: weit, aber weit unter dem Faktor tausend, der gesucht wird. */
+const KBV_MAX_MIT_UMSATZ = 800
 
 const auffaelligKbv: string[] = []
 let geprueftKbv = 0
@@ -247,17 +269,21 @@ for (const [ticker, zahlen] of eintraege) {
   geprueftKbv += 1
   const kurs = inHauptwaehrung(roh, eintrag.waehrung)
   const kbv = (kurs.wert * zahlen.aktien) / zahlen.eigenkapital
-  if (kbv < KBV_MIN || kbv > KBV_MAX) {
+  const grenze =
+    zahlen.umsatz && zahlen.umsatz > 0 ? KBV_MAX_MIT_UMSATZ : KBV_MAX_OHNE_UMSATZ
+  if (kbv < KBV_MIN || kbv > grenze) {
     auffaelligKbv.push(
       `${ticker} (${eintrag.symbol}): KBV ${kbv < 1 ? kbv.toFixed(3) : Math.round(kbv)} ` +
-        `aus Kurs ${kurs.wert} ${kurs.waehrung} × ${zahlen.aktien} Aktien / Eigenkapital ${zahlen.eigenkapital}`
+        `aus Kurs ${kurs.wert} ${kurs.waehrung} × ${zahlen.aktien} Aktien / Eigenkapital ${zahlen.eigenkapital}` +
+        ` (Grenze ${grenze})`
     )
   }
 }
 
 pruefe(`es wurden überhaupt Buchwerte gerechnet (${geprueftKbv})`, geprueftKbv > 50)
 pruefe(
-  `jedes Kurs-Buchwert-Verhältnis liegt zwischen ${KBV_MIN} und ${KBV_MAX}`,
+  `jedes Kurs-Buchwert-Verhältnis liegt zwischen ${KBV_MIN} und ${KBV_MAX_OHNE_UMSATZ} ` +
+    `beziehungsweise ${KBV_MAX_MIT_UMSATZ}, wo ein Umsatz gegenprüft`,
   auffaelligKbv.length === 0,
   `\n       ${auffaelligKbv.join('\n       ')}`
 )
