@@ -28,7 +28,7 @@ on:
         description: 'Welche Quellen abrufen'
         type: choice
         default: alle
-        options: [alle, sec, esef, taiwan]
+        options: [alle, sec, esef, taiwan, dart, edinet]
 
 concurrency:
   group: fundamentaldaten
@@ -69,6 +69,24 @@ jobs:
       - name: Börse Taipeh ergänzen
         if: inputs.quellen == '' || inputs.quellen == 'alle' || inputs.quellen == 'taiwan'
         run: npm run taiwan
+
+      # Vierter Weg: die koreanische Aufsicht. Braucht einen kostenlosen
+      # Schlüssel; ohne `DART_API_KEY` meldet das Skript das und endet
+      # erfolgreich – eine fehlende Zugangsdatei ist kein Fehlschlag.
+      - name: Korea (DART) ergänzen
+        if: inputs.quellen == '' || inputs.quellen == 'alle' || inputs.quellen == 'dart'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: npm run dart
+
+      # Japan: bisher nur eine Abfrage, ob sich der Weg lohnt. EDINET liefert
+      # Dokumente statt Zahlen – der Abschluss steckt in einem ZIP mit
+      # XBRL-Instanz. Dieses Skript schreibt deshalb nichts, es berichtet nur.
+      - name: Japan (EDINET) abklopfen
+        if: inputs.quellen == 'alle' || inputs.quellen == 'edinet'
+        env:
+          EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+        run: npm run edinet
 
       - name: Momentaufnahme committen
         run: |

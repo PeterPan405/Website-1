@@ -1,14 +1,16 @@
-# Einrichtung: die vier Zugangsdaten
+# Einrichtung: die Zugangsdaten
 
-Alles in diesem Projekt baut und prüft ohne einen einzigen Zugang. Drei Dinge
+Alles in diesem Projekt baut und prüft ohne einen einzigen Zugang. Einige Dinge
 brauchen trotzdem Zugangsdaten, weil sie nach außen wirken:
 
 | Was                               | Secrets                                                         | Ohne sie passiert                                         |
 | --------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------- |
 | Website ausliefern                | `HOSTINGER_SSH_HOST`, `HOSTINGER_SSH_USER`, `HOSTINGER_SSH_KEY` | Das Paket wird gebaut und geprüft, aber nicht hochgeladen |
 | Quartalstermine außerhalb der USA | `TWELVEDATA_API_KEY`                                            | Es bleibt bei den Unternehmen, die bei der SEC melden     |
+| Unternehmenszahlen aus Korea      | `DART_API_KEY`                                                  | Die 15 koreanischen Titel bleiben ohne Kennzahlen         |
+| Unternehmenszahlen aus Japan      | `EDINET_API_KEY`                                                | Die Abfrage, ob sich der Weg lohnt, unterbleibt           |
 
-Alle vier gehören an **eine** Stelle:
+Alle gehören an **eine** Stelle:
 
 ```
 https://github.com/PeterPan405/Website-1/settings/secrets/actions
@@ -141,6 +143,32 @@ Workflow hat 120 Minuten Zeitbudget.
 | Name                 | Wert                                                                           |
 | -------------------- | ------------------------------------------------------------------------------ |
 | `TWELVEDATA_API_KEY` | die Zeichenkette, ohne Anführungszeichen, ohne Leerzeichen davor oder dahinter |
+
+### 2.3a Die beiden asiatischen Schlüssel
+
+Beide sind kostenlos und beide bei der jeweiligen Aufsicht direkt zu bekommen:
+
+| Name             | Woher                                                         |
+| ---------------- | ------------------------------------------------------------- |
+| `DART_API_KEY`   | Registrierung bei `opendart.fss.or.kr` (Finanzaufsicht Korea) |
+| `EDINET_API_KEY` | Registrierung bei EDINET (Finanzaufsicht Japan)               |
+
+Sie gehören an dieselbe Stelle wie die übrigen: **Settings → Secrets and
+variables → Actions → New repository secret.** Nicht in eine Datei im
+Repository und **nicht in den Chat** – Workflow-Protokolle sind lesbar, und
+ein einmal veröffentlichter Schlüssel muss zurückgezogen werden.
+
+Ohne sie passiert nichts Schlimmes: Beide Skripte melden die fehlende
+Einstellung und enden erfolgreich. Eine fehlende Zugangsdatei ist ein Zustand
+und kein Fehlschlag.
+
+**Was danach kommt, ist bei beiden verschieden.** Korea liefert den fertigen
+Abschluss als JSON; `npm run dart` liest ihn und ergänzt die Kennzahlen. Japan
+liefert Dokumente: Der Abschluss steckt in einem ZIP mit einer XBRL-Instanz
+darin, und der Weg dorthin ist deutlich länger. `npm run edinet` klopft
+deshalb vorerst nur ab, ob die Schnittstelle antwortet und ob unter den
+Jahresberichten Titel dieses Katalogs vorkommen. Es schreibt keine Datei. Erst
+wenn diese Abfrage trägt, lohnt der zweite Schritt.
 
 ### 2.4 Auslösen und ablesen
 
