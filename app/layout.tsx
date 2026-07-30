@@ -54,6 +54,21 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
+  /*
+    Der Nachrichten-Feed, für Newsreader auffindbar.
+
+    Er steht im Wurzel-Layout und damit auf jeder Seite: Wer eine Website
+    abonnieren will, klickt selten ausgerechnet auf der Nachrichtenübersicht
+    auf das Symbol seines Newsreaders.
+  */
+  alternates: {
+    types: {
+      'application/rss+xml': [
+        { url: '/feed.xml', title: `${siteConfig.name} – Nachrichten` },
+      ],
+    },
+  },
+
   // Deutsche Telefonnummern und Datumsangaben nicht automatisch verlinken.
   formatDetection: { telephone: false, address: false, date: false },
 

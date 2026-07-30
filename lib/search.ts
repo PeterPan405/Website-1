@@ -23,6 +23,7 @@ import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getNewsArticles } from '@/lib/news'
 import { folgenAdresse, getFolgen, kurzfassung } from '@/lib/podcast'
+import { rubriken } from '@/lib/rubriken'
 import { getBranchen } from '@/lib/branchen'
 import type { SearchEntry } from '@/lib/search-match'
 import { areas } from '@/lib/site'
@@ -426,6 +427,16 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Podcastfolge',
       hint: folge.beschreibung ? kurzfassung(folge.beschreibung) : folge.datum,
       keywords: ['podcast', 'folge', folge.datum],
+    })
+  }
+
+  for (const rubrik of rubriken) {
+    eintraege.push({
+      title: `${rubrik.name} – Nachrichten`,
+      href: `/news/rubrik/${rubrik.slug}`,
+      kind: 'Bereich',
+      hint: rubrik.beschreibung,
+      keywords: ['rubrik', 'kategorie', rubrik.slug],
     })
   }
 

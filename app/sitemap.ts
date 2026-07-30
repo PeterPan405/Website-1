@@ -11,6 +11,7 @@ import { getEditionDates } from '@/lib/editions'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
 import { getFolgen } from '@/lib/podcast'
+import { rubriken } from '@/lib/rubriken'
 import { absoluteUrl } from '@/lib/site'
 
 /**
@@ -116,6 +117,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: absoluteUrl(`/news/${article.slug}`),
     lastModified: new Date(article.updatedAt ?? article.publishedAt),
     changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  /*
+    Die Rubriken. Fünf Seiten, aus derselben Liste wie die Seiten selbst –
+    eine hier abgetippte Aufzählung wäre nach der ersten neuen Rubrik falsch.
+  */
+  const rubrikPages: MetadataRoute.Sitemap = rubriken.map((rubrik) => ({
+    url: absoluteUrl(`/news/rubrik/${rubrik.slug}`),
+    lastModified: new Date(latestNewsDate),
+    changeFrequency: 'daily',
     priority: 0.6,
   }))
 
@@ -233,6 +245,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...branchenPages,
     ...stimmungsPages,
     ...newsPages,
+    ...rubrikPages,
     ...editionPages,
   ].map((entry) => ({ lastModified: buildDate, ...entry }))
 }

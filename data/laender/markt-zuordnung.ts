@@ -39,6 +39,20 @@ export const marktLand: Record<string, string> = {
   'nikkei-225': '392',
   kospi: '410',
   'hang-seng': '156',
+  /*
+    Die deutschen Nebenwerte-Indizes und drei europäische Leitindizes.
+
+    Der TecDAX steht bei Deutschland, obwohl er Technologie und nicht ein Land
+    abbildet: Seine Mitglieder notieren sämtlich in Frankfurt. Ein
+    Branchenindex mit Mitgliedern aus einem Land bleibt ein Landesindex – der
+    Unterschied liegt in der Auswahl, nicht in der Herkunft.
+  */
+  mdax: '276',
+  tecdax: '276',
+  sdax: '276',
+  smi: '756',
+  'cac-40': '250',
+  'ftse-100': '826',
 
   // ------------------------------------------------ Vereinigte Staaten
   nvidia: '840',
@@ -173,6 +187,29 @@ export const marktLand: Record<string, string> = {
 export const uebernational: Record<string, string> = {
   'euro-stoxx-50': 'Die 50 größten Unternehmen der Eurozone – mehrere Länder.',
   'msci-world': 'Rund 1.400 Unternehmen aus 23 Industrieländern.',
+
+  /*
+    Die ETFs stehen sämtlich hier, auch die, die einen nationalen Index
+    abbilden.
+
+    Der naheliegende Griff wäre, den DAX-ETF Deutschland zuzuordnen wie den
+    DAX selbst. Er wäre falsch: Ein Fonds ist kein Markt, sondern ein Papier,
+    das einen Markt nachbildet – aufgelegt in Irland oder Luxemburg, gehandelt
+    in Frankfurt, gehalten von Anlegern überall. Auf einem Globus, der zeigt,
+    woher die Wirtschaftsleistung kommt, hätte er an keiner Stelle etwas zu
+    suchen, und ihn auf eine zu legen hieße, ein Land doppelt zu zählen: einmal
+    über seinen Index und einmal über den Fonds darauf.
+  */
+  'etf-msci-world': 'Ein Fonds auf rund 1.400 Unternehmen aus 23 Industrieländern.',
+  'etf-ftse-all-world':
+    'Ein Fonds auf rund 4.000 Unternehmen aus Industrie- und Schwellenländern.',
+  'etf-sp500':
+    'Ein Fonds auf die 500 größten US-Unternehmen – das Papier, nicht der Markt.',
+  'etf-em-imi': 'Ein Fonds auf rund 3.000 Unternehmen aus Schwellenländern.',
+  'etf-dax': 'Ein Fonds auf den DAX – das Papier, nicht der deutsche Markt.',
+  'etf-stoxx-600': 'Ein Fonds auf 600 Unternehmen aus siebzehn europäischen Ländern.',
+  'etf-world-small-cap': 'Ein Fonds auf kleinere Unternehmen der Industrieländer.',
+  'etf-geldmarkt': 'Ein Fonds auf den Tagesgeldsatz des Euroraums – kein Aktienmarkt.',
 }
 
 /**

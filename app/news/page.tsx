@@ -14,6 +14,7 @@ import {
   getNewsArticles,
   getNewsCategories,
 } from '@/lib/news'
+import { rubriken } from '@/lib/rubriken'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
@@ -105,18 +106,39 @@ export default async function NewsOverviewPage() {
           </section>
         )}
 
-        {/* Rubriken als Orientierung; eine echte Filterung folgt mit dem CMS. */}
+        {/*
+          Die Rubriken, jetzt anklickbar.
+
+          Hier stand: „eine echte Filterung folgt mit dem CMS“. Ein CMS gibt es
+          nicht und wird es nicht geben, weil die Website statisch ausgeliefert
+          wird – fünf gebaute Seiten leisten dasselbe und kosten nichts.
+        */}
         <section aria-labelledby="rubriken" className="mt-10">
           <h2 id="rubriken" className="sr-only">
             Rubriken
           </h2>
           <ul className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <li key={category} className="fk-chip bg-news-soft text-news">
-                {category}
+            {rubriken.map((rubrik) => (
+              <li key={rubrik.slug}>
+                <Link
+                  href={`/news/rubrik/${rubrik.slug}`}
+                  className="fk-chip bg-news-soft text-news hover:bg-news transition-colors hover:text-white"
+                >
+                  {rubrik.name}
+                </Link>
               </li>
             ))}
           </ul>
+          <p className="text-fg-subtle mt-3 text-sm leading-relaxed">
+            Zum Mitverfolgen ohne Anmeldung:{' '}
+            <a
+              href="/feed.xml"
+              className="text-news font-medium underline underline-offset-2"
+            >
+              der Nachrichten-Feed
+            </a>{' '}
+            – lesbar in jedem Newsreader, ohne dass diese Website etwas über dich erfährt.
+          </p>
         </section>
 
         {featured && (

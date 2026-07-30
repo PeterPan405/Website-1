@@ -299,6 +299,29 @@ async function main(): Promise<void> {
     }
   }
 
+  console.log('\nLaufende Kosten der ETFs')
+  console.log('────────────────────────')
+  const { etfKosten } = await import('../data/etf-kosten.ts')
+  const { marketDefinitions: alleInstrumente } = await import('../data/markets.ts')
+  const fonds = alleInstrumente.filter((eintrag) => eintrag.kind === 'etf')
+  const ohneKosten = fonds.filter((eintrag) => !etfKosten[eintrag.symbol])
+  console.log(`  ${fonds.length - ohneKosten.length} von ${fonds.length} hinterlegt.`)
+  for (const eintrag of ohneKosten) {
+    console.log(`  fehlt: ${eintrag.symbol.padEnd(22)} ISIN ${eintrag.isin ?? '—'}`)
+  }
+  /*
+    Anbieter senken ihre Kosten regelmäßig. Eine zu hohe Angabe ist genauso
+    falsch wie eine zu niedrige – nach zwei Jahren gehört jeder Wert erneut
+    im Basisinformationsblatt nachgesehen.
+  */
+  const zweiJahre = new Date()
+  zweiJahre.setFullYear(zweiJahre.getFullYear() - 2)
+  for (const [symbol, kosten] of Object.entries(etfKosten)) {
+    if (Date.parse(kosten.stand) < zweiJahre.getTime()) {
+      console.log(`  alt:   ${symbol.padEnd(22)} Stand ${kosten.stand}`)
+    }
+  }
+
   console.log('\nMomentaufnahmen')
   console.log('───────────────')
   for (const { datei, tage, stand } of pruefeMomentaufnahmen()) {

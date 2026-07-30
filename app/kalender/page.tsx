@@ -78,6 +78,24 @@ export default async function KalenderPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
+        {/*
+          Der Verweis aufs Abo steht oben und nicht unten: Wer einen Kalender
+          liest, will die Termine meistens dorthin haben, wo seine übrigen
+          stehen – und nicht erst nach tausend Zeilen davon erfahren.
+        */}
+        <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+          Diese Termine im eigenen Kalender:{' '}
+          <a
+            href="/kalender/termine.ics"
+            className="text-calendar font-medium underline underline-offset-2"
+          >
+            termine.ics abonnieren
+          </a>{' '}
+          – die Datei wird bei jedem Bau der Website neu erzeugt, neue Termine kommen also
+          von selbst dazu. Die geschätzten Dividendentermine sind nicht enthalten; alles
+          Abgeleitete trägt im Titel ein „(erwartet)“.
+        </p>
+
         <div className="max-w-3xl">
           <KalenderAnsicht
             gruppen={gruppen}

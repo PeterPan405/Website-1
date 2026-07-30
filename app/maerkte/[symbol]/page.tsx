@@ -11,6 +11,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
+import { Fondstafel } from '@/components/markets/Fondstafel'
 import { Merkschalter } from '@/components/markets/Merkschalter'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
@@ -425,6 +426,42 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 name={instrument.name}
                 quelle={dividendenQuelle}
                 verlauf={dividendenverlauf}
+                className="mt-12"
+              />
+            )}
+
+            {/*
+              Bei einem Fonds stehen andere Angaben im Vordergrund als bei
+              einer Aktie: Kennnummer, Umgang mit den Erträgen und vor allem
+              die laufenden Kosten. Sie stehen weit oben, weil sie die Frage
+              sind, mit der jemand eine ETF-Seite öffnet.
+            */}
+            {/*
+              Die Rohdaten zum Nachrechnen.
+
+              Wer seine Quellen offenlegt, kann auch die Zahlen herausgeben –
+              alles andere wäre eine Offenheit, die an der bequemsten Stelle
+              endet. Für den Lernbereich ist es obendrein die stärkste Übung:
+              Eine Rendite selbst in einer Tabelle nachzurechnen lehrt mehr
+              über Rendite als jeder Text darüber.
+            */}
+            <p className="text-fg-subtle mt-12 text-sm leading-relaxed">
+              Die Kursreihe zum Selbernachrechnen:{' '}
+              <a
+                href={`/maerkte/${instrument.symbol}/kurse.csv`}
+                className="text-markets font-medium underline underline-offset-2"
+              >
+                {instrument.symbol}-kurse.csv
+              </a>{' '}
+              – Schlusskurse je Handelstag über fünf Jahre, mit Quelle und Stand im Kopf
+              der Datei.
+            </p>
+
+            {instrument.kind === 'etf' && (
+              <Fondstafel
+                symbol={instrument.symbol}
+                isin={instrument.isin}
+                ertragsverwendung={instrument.ertragsverwendung}
                 className="mt-12"
               />
             )}
