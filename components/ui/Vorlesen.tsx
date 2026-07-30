@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
-import { bevorzugteStimme, klingtNatuerlich } from '@/lib/vorlese-text'
+import { bevorzugteStimme, klingtMaennlich, klingtNatuerlich } from '@/lib/vorlese-text'
 
 /**
  * Liest die Abschnitte einer Seite mit der Stimme des Browsers vor.
@@ -31,8 +31,18 @@ import { bevorzugteStimme, klingtNatuerlich } from '@/lib/vorlese-text'
  * über einen Text, der längst nicht mehr zu sehen ist.
  */
 
-/** Wo die gewählte Stimme liegt – ein Gerät, eine Wahl, alle Seiten. */
-const STIMMWAHL_SCHLUESSEL = 'fk-vorlesen-stimme'
+/**
+ * Wo die gewählte Stimme liegt – ein Gerät, eine Wahl, alle Seiten.
+ *
+ * Der Schlüssel trägt eine „-2“, und das ist kein Versionsschmuck: Eine früher
+ * von Hand gewählte Stimme überstimmt die Automatik dauerhaft. Wer vor der
+ * Umstellung auf „männlich und tief“ einmal eine Stimme angeklickt hatte,
+ * hörte deshalb weiter die alte – jede Änderung an der Rangfolge lief ins
+ * Leere. Der neue Schlüssel setzt alle Geräte einmalig auf die Automatik
+ * zurück; wer danach wieder von Hand wählt, dessen Wahl gilt wie gehabt.
+ */
+const STIMMWAHL_SCHLUESSEL = 'fk-vorlesen-stimme-2'
+const STIMMWAHL_ALT = 'fk-vorlesen-stimme'
 
 /** Nichts zu beobachten – die Fähigkeit des Browsers ändert sich nicht. */
 function nieWieder() {
@@ -111,6 +121,12 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
 
   /* Beim Verlassen der Seite verstummen – siehe Kopfkommentar. */
   useEffect(() => {
+    /* Die Wahl aus der Zeit vor dem Zurücksetzen räumt sich hier weg. */
+    try {
+      window.localStorage?.removeItem(STIMMWAHL_ALT)
+    } catch {
+      // Ohne Speicherzugriff gibt es auch keine Altlast zu entfernen.
+    }
     return () => {
       laueftRef.current = false
       window.speechSynthesis?.cancel()
@@ -129,6 +145,8 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     .sort((a, b) => Number(klingtNatuerlich(b)) - Number(klingtNatuerlich(a)))
   const wahlVorhanden = zurAuswahl.some((stimme) => stimme.voiceURI === stimmwahl)
   const automatik = bevorzugteStimme(stimmen)
+  /* Was tatsächlich sprechen wird: die Handwahl, sonst die Automatik. */
+  const wirksam = zurAuswahl.find((stimme) => stimme.voiceURI === stimmwahl) ?? automatik
 
   /**
    * Die gewählte Stimme – oder die Voreinstellung: männlich, lokal, deutsch.
@@ -156,15 +174,17 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     const auftrag = new SpeechSynthesisUtterance(abschnitte[ab])
     auftrag.lang = 'de-DE'
     auftrag.rate = tempoRef.current
-    /*
-      Tonlage unter der Mitte – gewünscht ist eine tiefe Stimme. 0,85 macht
-      lokale Stimmen dunkler, ohne blechern zu werden; die neuronalen
-      Netzstimmen ignorieren die Tonhöhe größtenteils und bleiben, wie sie
-      sind. Der Regler kostet dort also nichts.
-    */
-    auftrag.pitch = 0.85
     const stimme = stimmeFuerAuftrag()
     if (stimme) auftrag.voice = stimme
+    /*
+      Tonlage unter der Mitte – gewünscht ist eine tiefe Stimme. Eine als
+      männlich erkannte Stimme wird nur leicht abgedunkelt (0,85); muss
+      mangels Männerstimme eine andere sprechen, übernimmt die Tonlage die
+      ganze Arbeit und geht deutlich tiefer (0,7). Netzstimmen ignorieren
+      die Tonhöhe teils – dort hilft nur eine andere Stimme, siehe der
+      Hinweis unter der Leiste.
+    */
+    auftrag.pitch = stimme && klingtMaennlich(stimme) ? 0.85 : 0.7
     auftrag.onend = () => sprich(ab + 1)
     /*
       Ein Fehler beendet das Vorlesen, statt still hängen zu bleiben. Der
@@ -321,6 +341,21 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
             </option>
           ))}
         </select>
+      )}
+
+      {/*
+        Der Browser kann nur Stimmen nutzen, die das Gerät mitbringt. Findet
+        sich darunter keine männliche deutsche, kann keine Rangfolge der Welt
+        eine herbeizaubern – dann hilft nur, im Betriebssystem eine zu
+        installieren. Das sagt die Leiste offen, statt es still zu versuchen.
+      */}
+      {bereit && stimmen.length > 0 && (!wirksam || !klingtMaennlich(wirksam)) && (
+        <p className="text-fg-subtle w-full text-xs leading-relaxed">
+          Auf diesem Gerät ist keine männliche deutsche Stimme zu finden – gesprochen wird
+          mit abgesenkter Tonlage. Abhilfe: In den Systemeinstellungen (Windows:
+          „Sprache“, Android: „Sprachausgabe“, iOS: „Gesprochene Inhalte“) eine männliche
+          deutsche Stimme installieren; sie erscheint danach hier in der Auswahl.
+        </p>
       )}
     </div>
   )
