@@ -53,8 +53,8 @@ jobs:
             fi
 
             echo "— Zertifikat"
-            if timeout 20 openssl s_client -connect "$HOST:443" -servername "$HOST" \
-                 </dev/null 2>/dev/null | openssl x509 -noout \
+            if timeout 15 openssl s_client -connect "$HOST:443" -servername "$HOST" \
+                 <<<'Q' 2>/dev/null | openssl x509 -noout \
                  -subject -issuer -dates -ext subjectAltName 2>/dev/null | sed 's/^/  /'; then
               :
             else
@@ -88,8 +88,8 @@ jobs:
             #    sprechen teils nur TLS 1.2. Bietet der Server das nicht an,
             #    bricht die Verbindung genau hinter so einer Firewall ab.
             echo "— Zertifikatskette"
-            KETTE=$(timeout 20 openssl s_client -connect "$HOST:443" -servername "$HOST" \
-              -showcerts </dev/null 2>/dev/null | grep -c 'BEGIN CERTIFICATE' || echo 0)
+            KETTE=$(timeout 15 openssl s_client -connect "$HOST:443" -servername "$HOST" \
+              -showcerts <<<'Q' 2>/dev/null | grep -c 'BEGIN CERTIFICATE' || echo 0)
             echo "  Vom Server gesendete Zertifikate: $KETTE"
             if [ "$KETTE" -le 1 ]; then
               echo "  ACHTUNG: nur das eigene Zertifikat. Das Zwischenzertifikat fehlt –"
@@ -97,14 +97,14 @@ jobs:
             else
               echo "  Kette vollständig ausgeliefert."
             fi
-            timeout 20 openssl s_client -connect "$HOST:443" -servername "$HOST" \
-              </dev/null 2>/dev/null | grep -E 'Verify return code|Verification' \
+            timeout 15 openssl s_client -connect "$HOST:443" -servername "$HOST" \
+              <<<'Q' 2>/dev/null | grep -E 'Verify return code|Verification' \
               | sed 's/^/  /' || true
 
             echo "— Angebotene TLS-Fassungen"
             for FASSUNG in tls1_2 tls1_3; do
-              if timeout 15 openssl s_client "-$FASSUNG" -connect "$HOST:443" \
-                   -servername "$HOST" </dev/null >/dev/null 2>&1; then
+              if timeout 12 openssl s_client "-$FASSUNG" -connect "$HOST:443" \
+                   -servername "$HOST" <<<'Q' >/dev/null 2>&1; then
                 echo "  $FASSUNG: ja"
               else
                 echo "  $FASSUNG: NEIN"
@@ -124,7 +124,7 @@ jobs:
 
           echo ""
           echo "=== Startseite ==="
-          curl -sS -A "$UA" -o seite.html -D kopf.txt -w \
+          curl -sS --max-time 30 -A "$UA" -o seite.html -D kopf.txt -w \
             'Status: %{http_code}\nTyp:    %{content_type}\nGröße:  %{size_download} Bytes\n' \
             "$URL/" || echo "(Abruf fehlgeschlagen)"
 
@@ -150,7 +150,7 @@ jobs:
             echo "In der Seite ist kein Stylesheet verlinkt – dann ist das HTML selbst veraltet."
           else
             echo "Verlinkt: $CSS"
-            curl -sS -A "$UA" -o /dev/null -w \
+            curl -sS --max-time 20 -A "$UA" -o /dev/null -w \
               'Status: %{http_code}\nTyp:    %{content_type}\nGröße:  %{size_download} Bytes\n' \
               "$URL$CSS" || echo "(Abruf fehlgeschlagen)"
           fi
@@ -158,7 +158,7 @@ jobs:
           echo ""
           echo "=== Inhalt des Stylesheets ==="
           if [ -n "$CSS" ]; then
-            curl -sS -A "$UA" -o stil.css "$URL$CSS" || true
+            curl -sS --max-time 20 -A "$UA" -o stil.css "$URL$CSS" || true
             echo "Regeln mit .fk-: $(grep -c -o '\.fk-' stil.css || echo 0)"
             echo "Erste 200 Zeichen:"
             head -c 200 stil.css
@@ -172,7 +172,7 @@ jobs:
           # 200 liefert, dann zeigt der Browser eine zwischengespeicherte,
           # veraltete Seite – und der Server ist in Ordnung.
           printf '%-48s ' "/_next/static/chunks/22vr61z768k05.css"
-          curl -sS -A "$UA" -o /dev/null -w '%{http_code}\n' \
+          curl -sS --max-time 20 -A "$UA" -o /dev/null -w '%{http_code}\n' \
             "$URL/_next/static/chunks/22vr61z768k05.css" || echo "Fehler"
 
           echo ""
@@ -180,5 +180,5 @@ jobs:
           for p in /news/ /news/tag/ /news/tag/2026-07-25/ /news/tag/2026-07-27/ \
                    /lernen/aktie/beginner/ /rechner/ /staatsverschuldung/ /sitemap.xml; do
             printf '%-32s ' "$p"
-            curl -sS -A "$UA" -o /dev/null -w '%{http_code}\n' "$URL$p" || echo "Fehler"
+            curl -sS --max-time 20 -A "$UA" -o /dev/null -w '%{http_code}\n' "$URL$p" || echo "Fehler"
           done
