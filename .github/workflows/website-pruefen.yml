@@ -10,12 +10,109 @@ name: Website prüfen
 
 on:
   workflow_dispatch:
+    inputs:
+      hosts:
+        description: 'Zu prüfende Namen, durch Leerzeichen getrennt'
+        required: false
+        default: 'iminvests.de www.iminvests.de'
 
 jobs:
   pruefen:
     name: Seite abrufen
     runs-on: ubuntu-latest
     steps:
+      # Chrome hat gemeldet: „Diese Website unterstützt keine sichere
+      # Verbindung“. Diese Meldung erscheint, wenn der Browser die Adresse auf
+      # HTTPS hochstufen will und die Gegenstelle auf Port 443 nicht oder mit
+      # einem unbrauchbaren Zertifikat antwortet. Ob das an der Domain, am
+      # www-Namen oder am Zertifikat liegt, lässt sich nur von außen
+      # feststellen – und nur mit den Einzelheiten kann man es abstellen.
+      #
+      # Geprüft wird beides, Domain mit und ohne www: Ein Zertifikat, das nur
+      # einen der beiden Namen abdeckt, ist die häufigste Ursache.
+      #
+      # Die Namen sind einstellbar, weil die zweite häufige Ursache eine ganz
+      # andere Adresse ist: eine alte Schreibweise, eine Nebendomain, ein
+      # Tippfehler im Lesezeichen. Für die gilt das Zertifikat der Hauptdomain
+      # nicht, und der Browser meldet genau dann, was hier gemeldet wurde.
+      - name: Sichere Verbindung prüfen
+        env:
+          HOSTS: ${{ inputs.hosts || 'iminvests.de www.iminvests.de' }}
+        run: |
+          for HOST in $HOSTS; do
+            echo "═══════════════════════════════════════ $HOST"
+
+            echo "— Namensauflösung"
+            getent ahostsv4 "$HOST" | awk '{print "  " $1}' | sort -u || echo "  (kein A-Eintrag)"
+
+            echo "— Port 443 offen?"
+            if timeout 10 bash -c "true > /dev/tcp/$HOST/443" 2>/dev/null; then
+              echo "  ja"
+            else
+              echo "  NEIN – auf Port 443 antwortet nichts. Genau das zeigt der Browser an."
+            fi
+
+            echo "— Zertifikat"
+            if timeout 15 openssl s_client -connect "$HOST:443" -servername "$HOST" \
+                 <<<'Q' 2>/dev/null | openssl x509 -noout \
+                 -subject -issuer -dates -ext subjectAltName 2>/dev/null | sed 's/^/  /'; then
+              :
+            else
+              echo "  kein Zertifikat abrufbar – es ist keines installiert oder der Handschlag scheitert."
+            fi
+
+            echo "— Abruf über HTTPS"
+            curl -sSI --max-time 25 "https://$HOST/" \
+              -o /dev/null -w '  Status: %{http_code}  Zertifikatsprüfung: %{ssl_verify_result} (0 = in Ordnung)\n' \
+              || echo "  HTTPS-Abruf fehlgeschlagen"
+
+            echo "— Abruf über HTTP und Weiterleitung"
+            curl -sSI --max-time 25 "http://$HOST/" \
+              -o /dev/null -w '  Status: %{http_code}  Weiterleitung: %{redirect_url}\n' \
+              || echo "  HTTP-Abruf fehlgeschlagen"
+
+            # Ab hier die Fragen, die nur ein einzelner Rechner stellt.
+            #
+            # Wenn eine Seite überall funktioniert und auf genau einem Rechner
+            # nicht, gibt es zwei Ursachen, die am Server liegen und behoben
+            # werden können – alle übrigen liegen im Netz davor:
+            #
+            # 1. Eine unvollständige Kette. Sendet der Server nur sein eigenes
+            #    Zertifikat und nicht das Zwischenzertifikat darüber, gelingt
+            #    der Handschlag überall, wo dieses Zwischenzertifikat schon
+            #    einmal gesehen und behalten wurde – und scheitert auf einem
+            #    frisch aufgesetzten oder abgeschotteten Rechner, der es nicht
+            #    nachladen darf. Genau dieses Muster: „nur auf diesem PC“.
+            #
+            # 2. Nur TLS 1.3. Firmen-Firewalls, die den Verkehr aufbrechen,
+            #    sprechen teils nur TLS 1.2. Bietet der Server das nicht an,
+            #    bricht die Verbindung genau hinter so einer Firewall ab.
+            echo "— Zertifikatskette"
+            KETTE=$(timeout 15 openssl s_client -connect "$HOST:443" -servername "$HOST" \
+              -showcerts <<<'Q' 2>/dev/null | grep -c 'BEGIN CERTIFICATE' || echo 0)
+            echo "  Vom Server gesendete Zertifikate: $KETTE"
+            if [ "$KETTE" -le 1 ]; then
+              echo "  ACHTUNG: nur das eigene Zertifikat. Das Zwischenzertifikat fehlt –"
+              echo "  auf Rechnern ohne zwischengespeicherte Kette scheitert der Handschlag."
+            else
+              echo "  Kette vollständig ausgeliefert."
+            fi
+            timeout 15 openssl s_client -connect "$HOST:443" -servername "$HOST" \
+              <<<'Q' 2>/dev/null | grep -E 'Verify return code|Verification' \
+              | sed 's/^/  /' || true
+
+            echo "— Angebotene TLS-Fassungen"
+            for FASSUNG in tls1_2 tls1_3; do
+              if timeout 12 openssl s_client "-$FASSUNG" -connect "$HOST:443" \
+                   -servername "$HOST" <<<'Q' >/dev/null 2>&1; then
+                echo "  $FASSUNG: ja"
+              else
+                echo "  $FASSUNG: NEIN"
+              fi
+            done
+            echo ""
+          done
+
       - name: Startseite und Stylesheet prüfen
         run: |
           URL="${{ vars.NEXT_PUBLIC_SITE_URL }}"
@@ -27,7 +124,7 @@ jobs:
 
           echo ""
           echo "=== Startseite ==="
-          curl -sS -A "$UA" -o seite.html -D kopf.txt -w \
+          curl -sS --max-time 30 -A "$UA" -o seite.html -D kopf.txt -w \
             'Status: %{http_code}\nTyp:    %{content_type}\nGröße:  %{size_download} Bytes\n' \
             "$URL/" || echo "(Abruf fehlgeschlagen)"
 
@@ -53,7 +150,7 @@ jobs:
             echo "In der Seite ist kein Stylesheet verlinkt – dann ist das HTML selbst veraltet."
           else
             echo "Verlinkt: $CSS"
-            curl -sS -A "$UA" -o /dev/null -w \
+            curl -sS --max-time 20 -A "$UA" -o /dev/null -w \
               'Status: %{http_code}\nTyp:    %{content_type}\nGröße:  %{size_download} Bytes\n' \
               "$URL$CSS" || echo "(Abruf fehlgeschlagen)"
           fi
@@ -61,7 +158,7 @@ jobs:
           echo ""
           echo "=== Inhalt des Stylesheets ==="
           if [ -n "$CSS" ]; then
-            curl -sS -A "$UA" -o stil.css "$URL$CSS" || true
+            curl -sS --max-time 20 -A "$UA" -o stil.css "$URL$CSS" || true
             echo "Regeln mit .fk-: $(grep -c -o '\.fk-' stil.css || echo 0)"
             echo "Erste 200 Zeichen:"
             head -c 200 stil.css
@@ -75,7 +172,7 @@ jobs:
           # 200 liefert, dann zeigt der Browser eine zwischengespeicherte,
           # veraltete Seite – und der Server ist in Ordnung.
           printf '%-48s ' "/_next/static/chunks/22vr61z768k05.css"
-          curl -sS -A "$UA" -o /dev/null -w '%{http_code}\n' \
+          curl -sS --max-time 20 -A "$UA" -o /dev/null -w '%{http_code}\n' \
             "$URL/_next/static/chunks/22vr61z768k05.css" || echo "Fehler"
 
           echo ""
@@ -83,5 +180,5 @@ jobs:
           for p in /news/ /news/tag/ /news/tag/2026-07-25/ /news/tag/2026-07-27/ \
                    /lernen/aktie/beginner/ /rechner/ /staatsverschuldung/ /sitemap.xml; do
             printf '%-32s ' "$p"
-            curl -sS -A "$UA" -o /dev/null -w '%{http_code}\n' "$URL$p" || echo "Fehler"
+            curl -sS --max-time 20 -A "$UA" -o /dev/null -w '%{http_code}\n' "$URL$p" || echo "Fehler"
           done

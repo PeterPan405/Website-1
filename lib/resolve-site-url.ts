@@ -52,7 +52,7 @@ export function resolveSiteUrl(raw: string | undefined): string {
   } catch {
     throw new Error(
       `NEXT_PUBLIC_SITE_URL ist keine gültige URL: „${value}“. ` +
-        'Erwartet wird eine absolute Adresse mit Schema, z. B. https://www.im-invests.de'
+        `Erwartet wird eine absolute Adresse mit Schema, z. B. ${FALLBACK_SITE_URL}`
     )
   }
 
