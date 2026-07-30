@@ -21,6 +21,7 @@
  */
 
 import { marketDefinitions, marketSources } from '../data/markets.ts'
+import { vereinigeZahlungen } from '../lib/dividenden.ts'
 import { fetchEcbHistoryFull, seriesForCurrency } from '../lib/providers/ecb.ts'
 import {
   EMPTY_KURSSTAND,
@@ -315,7 +316,16 @@ async function main(): Promise<void> {
         über den Rückfallweg lief.
       */
       if (ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
-        dividenden.titel[symbol] = ergebnis.dividenden
+        /*
+          Zusammenführen, nicht ersetzen – siehe `vereinigeZahlungen`. Kurz:
+          Yahoo rechnet Auslandsdividenden zum Kurs des Abrufzeitpunkts um, und
+          dieselbe zwei Jahre alte Zahlung kommt deshalb bei jedem Lauf mit
+          einer anderen siebten Nachkommastelle zurück.
+        */
+        dividenden.titel[symbol] = vereinigeZahlungen(
+          dividenden.titel[symbol] ?? [],
+          ergebnis.dividenden
+        )
       }
     }
 

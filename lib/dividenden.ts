@@ -239,6 +239,59 @@ export function werteDividenden(
   }
 }
 
+/**
+ * Ab welcher relativen Abweichung ein gespeicherter Betrag überschrieben wird.
+ *
+ * Ein halbes Prozent. Darunter liegt Wechselkursrauschen, darüber eine
+ * Korrektur.
+ */
+const ZAHLUNG_TOLERANZ = 0.005
+
+/**
+ * Führt eine neu abgerufene Zahlungsreihe mit der gespeicherten zusammen.
+ *
+ * ## Warum nicht einfach ersetzen
+ *
+ * Weil dieselbe Zahlung bei jedem Abruf einen minimal anderen Betrag hat.
+ * Qiagen schüttet in einer Währung aus und notiert in einer anderen; Yahoo
+ * rechnet um, und zwar mit dem Kurs des Abrufzeitpunkts. Die Zahlung vom
+ * 30.01.2024 kam deshalb einmal als 1,2023765 und eine halbe Stunde später als
+ * 1,2020993 zurück – bei einer Zahlung, die vor zwei Jahren stattgefunden hat.
+ *
+ * Folge: `dividenden.json` änderte sich bei jedem der zweiundvierzig Läufe am
+ * Tag, achthundert Kilobyte, wegen der siebten Nachkommastelle. Das ist
+ * dasselbe stille Wachstum, das die Trennung von Kursstand und Historie
+ * beheben sollte – nur eine Größenordnung kleiner und deshalb länger
+ * unbemerkt.
+ *
+ * ## Was trotzdem durchkommt
+ *
+ * Neue Zahlungen, weggefallene Zahlungen und echte Korrekturen. Nur wenn
+ * derselbe Tag mit einem Betrag zurückkommt, der um weniger als ein halbes
+ * Prozent abweicht, behält der gespeicherte Wert seinen Platz. Eine
+ * Dividende, die tatsächlich um mehr als ein halbes Prozent korrigiert wird,
+ * ist eine Nachricht und keine Rundung.
+ *
+ * Die **neue** Liste bestimmt, welche Zahlungen es gibt – gespeicherte
+ * Beträge werden nur übernommen, nicht wiederbelebt. Sonst stünde eine
+ * zurückgezogene Zahlung für immer im Bestand.
+ */
+export function vereinigeZahlungen(
+  bisher: readonly Zahlung[],
+  neu: readonly Zahlung[]
+): Zahlung[] {
+  const gespeichert = new Map(bisher.map((z) => [z.date, z.amount]))
+
+  return neu
+    .map((zahlung) => {
+      const alt = gespeichert.get(zahlung.date)
+      if (alt === undefined || alt <= 0) return zahlung
+      const abweichung = Math.abs(zahlung.amount - alt) / alt
+      return abweichung < ZAHLUNG_TOLERANZ ? { date: zahlung.date, amount: alt } : zahlung
+    })
+    .sort((a, b) => a.date.localeCompare(b.date))
+}
+
 /** Was ein Kalenderjahr an Dividende gebracht hat. */
 export interface Dividendenjahr {
   jahr: number

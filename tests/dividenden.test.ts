@@ -11,6 +11,7 @@
 import {
   jahresSummen,
   rhythmusLabel,
+  vereinigeZahlungen,
   werteDividenden,
   type Zahlung,
 } from '../lib/dividenden.ts'
@@ -364,6 +365,67 @@ pruefe(
 pruefe(
   'ohne Zahlungen bleibt die Reihe leer',
   jahresSummen([], null, HEUTE).jahre.length === 0
+)
+
+console.log('\n— Zahlungen zusammenfuehren —')
+
+/*
+  Der Anlass: Qiagen. Die Firma schuettet in einer Waehrung aus und notiert in
+  einer anderen; Yahoo rechnet zum Kurs des Abrufzeitpunkts um. Dieselbe
+  Zahlung vom 30.01.2024 kam einmal als 1,2023765 und eine halbe Stunde spaeter
+  als 1,2020993 zurueck – und `dividenden.json` aenderte sich deshalb bei jedem
+  der zweiundvierzig Laeufe am Tag.
+*/
+const gespeichert: Zahlung[] = [
+  { date: '2024-01-30', amount: 1.2023765 },
+  { date: '2025-01-29', amount: 1.1835895 },
+]
+const wackelig: Zahlung[] = [
+  { date: '2024-01-30', amount: 1.2020993 },
+  { date: '2025-01-29', amount: 1.1833166 },
+]
+
+pruefe(
+  'Wechselkursrauschen laesst den gespeicherten Betrag stehen',
+  JSON.stringify(vereinigeZahlungen(gespeichert, wackelig)) ===
+    JSON.stringify(gespeichert),
+  JSON.stringify(vereinigeZahlungen(gespeichert, wackelig))
+)
+
+pruefe(
+  'eine echte Korrektur kommt durch',
+  vereinigeZahlungen(gespeichert, [{ date: '2024-01-30', amount: 1.35 }])[0].amount ===
+    1.35
+)
+
+pruefe(
+  'eine neue Zahlung kommt dazu',
+  vereinigeZahlungen(gespeichert, [...wackelig, { date: '2026-01-28', amount: 1.2 }])
+    .length === 3
+)
+
+/*
+  Die neue Liste bestimmt, welche Zahlungen es gibt. Sonst stuende eine
+  zurueckgezogene Zahlung fuer immer im Bestand.
+*/
+pruefe(
+  'eine weggefallene Zahlung wird nicht wiederbelebt',
+  vereinigeZahlungen(gespeichert, [wackelig[1]]).length === 1
+)
+
+pruefe(
+  'das Ergebnis ist aufsteigend sortiert',
+  vereinigeZahlungen(gespeichert, [
+    { date: '2026-01-28', amount: 1.2 },
+    { date: '2024-01-30', amount: 1.2020993 },
+  ])
+    .map((z) => z.date)
+    .join(',') === '2024-01-30,2026-01-28'
+)
+
+pruefe(
+  'ohne gespeicherten Stand kommt die neue Liste unveraendert zurueck',
+  JSON.stringify(vereinigeZahlungen([], wackelig)) === JSON.stringify(wackelig)
 )
 
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert.`)
