@@ -245,6 +245,13 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     einen Umweg – sie heißt nicht wie eine Branche.
   */
   eintraege.push({
+    title: 'Das Tagesbild',
+    href: '/maerkte/tagesbild',
+    kind: 'Bereich',
+    hint: 'Wie viele Aktien heute steigen, welche Branche vorn liegt, wie breit die Bewegung ist',
+    keywords: ['tagesbild', 'marktbericht', 'breite', 'gewinner', 'verlierer', 'heute'],
+  })
+  eintraege.push({
     title: 'Merkliste',
     href: '/maerkte/merkliste',
     kind: 'Bereich',

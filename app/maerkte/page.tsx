@@ -168,6 +168,23 @@ export default async function MarketsOverviewPage() {
           className="text-fg-subtle text-sm leading-relaxed"
         />
 
+        {/*
+          Der Verweis aufs Tagesbild steht ganz oben, weil er die Frage
+          beantwortet, mit der die meisten auf diese Seite kommen: Wie steht es
+          heute? Ein Blick auf einzelne Kacheln beantwortet sie nicht.
+        */}
+        <p className="text-fg-muted mt-4 leading-relaxed">
+          Wie breit sich der Markt heute bewegt – gezählt über alle{' '}
+          {magSevenQuotes.length + stockQuotes.length} Einzelaktien:{' '}
+          <Link
+            href="/maerkte/tagesbild"
+            className="text-markets font-medium underline underline-offset-2"
+          >
+            das Tagesbild
+          </Link>
+          .
+        </p>
+
         <section aria-labelledby="indizes" className="mt-12">
           <h2 id="indizes" className="text-fg text-2xl font-bold">
             Aktienindizes
