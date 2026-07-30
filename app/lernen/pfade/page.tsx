@@ -51,7 +51,16 @@ export default async function LernpfadeSeite() {
           {pfade.map((pfad, index) => (
             <li key={pfad.slug}>
               <Reveal delay={index * 0.05}>
-                <article className="fk-card flex h-full flex-col p-6 sm:p-7">
+                {/*
+                  `relative` gehört zum gestreckten Link im Titel: Sein
+                  after-Element füllt den nächstpositionierten Vorfahren. Ohne
+                  `relative` war das – sobald die Einblendanimation ihre
+                  Transformation abgelegt hatte – nicht mehr die Karte, sondern
+                  die Seite: Fünf Klickflächen übereinander, nur die oberste
+                  gewann, die übrigen Pfade waren von hier nicht mehr zu
+                  öffnen.
+                */}
+                <article className="fk-card relative flex h-full flex-col p-6 sm:p-7">
                   <h2 className="text-fg text-xl font-bold">
                     <Link
                       href={`/lernen/pfade/${pfad.slug}`}

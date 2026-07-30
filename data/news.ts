@@ -70,6 +70,541 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'fed-haelt-zinsen-drei-stimmen-fuer-erhoehung',
+    title: 'Fed hält die Zinsen – aber drei Stimmen wollten die Erhöhung',
+    teaser:
+      'Die Fed beließ den Leitzins bei 3,50 bis 3,75 Prozent – mit neun zu drei Stimmen. Drei Mitglieder wollten erhöhen: Das Stimmenverhältnis ist die Nachricht.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-30T06:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Leitzins', 'Kevin Warsh', 'Abweichler'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt', 'inflation'],
+    relatedSymbols: ['sp500', 'dow-jones', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'CNBC: Fed meeting recap – Warsh says Fed won’t hesitate to stop inflation (29.07.2026)',
+        url: 'https://www.cnbc.com/2026/07/29/fed-meeting-today-live-updates.html',
+      },
+      {
+        label:
+          'CNN Business: Two key takeaways from the Fed’s unusually unpredictable meeting (29.07.2026)',
+        url: 'https://www.cnn.com/2026/07/29/economy/fed-rate-decision-july',
+      },
+      {
+        label: 'Trading Economics: Fed hält Zinssätze stabil (29.07.2026)',
+        url: 'https://de.tradingeconomics.com/united-states/interest-rate/news/463954',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank hat am Mittwochabend den Leitzins in der Spanne von 3,50 bis 3,75 Prozent belassen – so, wie es nach dem FedWatch-Instrument der CME Group 77,7 Prozent des Marktes erwartet hatten. Und trotzdem folgte der schwerste US-Börsentag seit April 2025. Wie passt das zusammen?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Antwort steht nicht im Zinssatz, sondern im Abstimmungsergebnis: **neun zu drei**. Beth Hammack (Cleveland), Neel Kashkari (Minneapolis) und Lorie Logan (Dallas) stimmten gegen das Stillhalten – sie wollten eine Erhöhung um einen Viertelpunkt. Drei Abweichler in dieselbe Richtung gab es zuletzt im September 2016.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein erwarteter Entscheid trotzdem bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gestern früh stand an dieser Stelle: Was drei Viertel des Marktes erwarten, steht bereits in jedem Kurs – Bewegung entsteht nur durch die Abweichung. Genau das ist eingetreten, nur saß die Abweichung nicht im Zinssatz. Eingepreist war ein ruhiges Stillhalten. Gekommen ist ein Stillhalten, bei dem ein Viertel des Ausschusses die Zinsen lieber angehoben hätte.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Drei Signale, die nicht im Zinssatz standen',
+        items: [
+          'Die Richtung des Widerspruchs: Alle drei Abweichler wollten erhöhen, keiner senken. Der Ausschuss ringt also nicht mit der Frage, wann gelockert wird, sondern ob gestrafft werden muss.',
+          'Der neue Vorsitzende Kevin Warsh erklärte, die Fed sei unter ihm „nicht im Prognosegeschäft“ – Hinweise auf den weiteren Zinspfad gibt es nicht mehr. Ein Anker der Erwartungsbildung fällt weg.',
+          'Zugleich versprach Warsh, gegen die Inflation notfalls zu handeln. Zusammen las der Markt das als: Die nächste Bewegung ist eher eine Erhöhung als eine Senkung.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass ein Abstimmungsergebnis Kurse bewegt, ist kein Kuriosum, sondern Lehrbuch: Der Ausschuss besteht aus zwölf Stimmberechtigten, und die Verteilung der Stimmen verrät, wie nah die nächste Zinsänderung ist. Ein 12-zu-0-Stillhalten und ein 9-zu-3-Stillhalten ergeben denselben Zinssatz – aber zwei verschiedene Wahrscheinlichkeiten für die übernächste Sitzung. Gehandelt wird die zweite.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Notenbankentscheide liest, sollte drei Zeilen prüfen, nicht eine – den Satz, das Stimmenverhältnis und die Begründung der Abweichler. Der Satz ist fast immer eingepreist. Die anderen beiden Zeilen sind es oft nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-schwerster-tag-seit-april-2025',
+    title: 'Schwerster Tag seit April 2025: die Wall Street nach der Fed',
+    teaser:
+      'Der Dow verlor 1.153 Punkte, die Rendite dreißigjähriger US-Anleihen stieg auf den höchsten Stand seit 2007 – nach einem erwarteten Zinsentscheid.',
+    category: 'Märkte',
+    publishedAt: '2026-07-30T06:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Wall Street', 'Dow Jones', 'Anleiherenditen', 'Fed'],
+    relatedTopics: [
+      'wie-funktioniert-der-markt',
+      'staatsanleihe',
+      'notenbanken-geldpolitik',
+    ],
+    relatedSymbols: ['dow-jones', 'sp500', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'CNBC: Dow drops 1,100 points for worst day since April 2025 (29.07.2026)',
+        url: 'https://www.cnbc.com/2026/07/28/stock-market-today-live-updates.html',
+      },
+      {
+        label:
+          'BBN Times: DJIA Plunges to 51,594.14 in Its Worst Session Since April 2025',
+        url: 'https://www.bbntimes.com/global-economy/dow-jones-djia-plunges-to-51-594-14-in-its-worst-session-since-april-2025',
+      },
+      {
+        label:
+          'The Motley Fool: Stocks Slide on Hawkish Fed and Increased Middle East Tensions (29.07.2026)',
+        url: 'https://www.fool.com/coverage/stock-market-today/2026/07/29/stock-market-today-july-29-stocks-slide-on-hawkish-fed-and-increased-middle-east-tensions/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones verlor am Mittwoch 1.153 Punkte oder 2,19 Prozent und schloss bei 51.594,14 – der größte Tagesverlust seit April 2025. Der S&P 500 gab 1,52 Prozent ab, der Nasdaq 1,74 Prozent. Auslöser war der Fed-Entscheid vom Abend: unveränderte Zinsen, aber drei Stimmen für eine Erhöhung und ein Vorsitzender, der keine Zinsprognosen mehr geben will.',
+      },
+      {
+        type: 'keyfacts',
+        items: [
+          { label: 'Dow Jones', value: '51.594,14 Punkte, minus 2,19 Prozent' },
+          { label: 'S&P 500', value: 'minus 1,52 Prozent' },
+          { label: 'Nasdaq', value: 'minus 1,74 Prozent' },
+          {
+            label: 'Rendite 10-jährige US-Anleihe',
+            value: 'über 4,67 Prozent, plus 7 Basispunkte',
+          },
+          {
+            label: 'Rendite 30-jährige US-Anleihe',
+            value: 'über 5,2 Prozent – höchster Stand seit 2007',
+          },
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Anleihen übersetzen, was die Aktien fühlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die aufschlussreichste Zeile des Tages steht nicht bei den Aktien, sondern bei den Anleihen. Die Rendite der zehnjährigen US-Staatsanleihe stieg um 7 Basispunkte über 4,67 Prozent, die der dreißigjährigen um 10 Basispunkte über 5,2 Prozent – den höchsten Stand seit 2007. Steigende Renditen nach einer Notenbanksitzung heißen übersetzt: Der Anleihemarkt glaubt nicht, dass die Inflation unter Kontrolle ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Aktien wirkt das über zwei Wege. Erstens konkurrieren Anleihen mit Aktien um dasselbe Geld – je mehr Zins die sichere Anlage zahlt, desto weniger ist man bereit, für unsichere Gewinne zu bezahlen. Zweitens werden künftige Unternehmensgewinne mit dem Zins abgezinst: Steigt er, sind dieselben Gewinne heute weniger wert. Beides trifft hoch bewertete Aktien am stärksten – deshalb verlor der Nasdaq zeitweise mehr als der breite Markt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass der Absturz auf einen Entscheid folgte, den fast alle erwartet hatten, ist dabei kein Widerspruch, sondern der Kernbefund: Eingepreist war der Zinssatz. Nicht eingepreist waren das 9-zu-3-Stimmenverhältnis, der Verzicht auf jede Orientierung zum weiteren Pfad – und ein Ölpreis, der am selben Tag um fast acht Prozent sprang.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer verstehen will, warum Aktien auf eine Notenbank reagieren, schaut auf die Anleiherenditen desselben Tages. Sie sind die Messlatte, an der alle anderen Anlagen hängen – und sie sagen nüchterner als jeder Kommentar, was der Markt aus der Sitzung mitgenommen hat.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-springt-auf-90-dollar-risikopraemie',
+    title: 'Öl springt 7,9 Prozent: was eine Risikoprämie ist',
+    teaser:
+      'Brent schloss 7,9 Prozent höher bei 90,74 Dollar – nach 16 Prozent Verlust in drei Tagen. Gehandelt wird die Wahrscheinlichkeit, nicht der Ausfall.',
+    category: 'Märkte',
+    publishedAt: '2026-07-30T06:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Ölpreis', 'Brent', 'Iran', 'Risikoprämie'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt', 'inflation'],
+    relatedSymbols: ['brent', 'wti', 'gold'],
+    sources: [
+      {
+        label:
+          'CNBC: Brent oil jumps back above $90 after Trump threatens to hit Iran hard (29.07.2026)',
+        url: 'https://www.cnbc.com/2026/07/29/oil-prices-today-brent-wti-iran-us-hormuz.html',
+      },
+      {
+        label:
+          'Bloomberg: Oil Surges After Three-Day Drop as US Repels Iran Attack on Base (29.07.2026)',
+        url: 'https://www.bloomberg.com/news/articles/2026-07-28/latest-oil-market-news-and-analysis-for-july-29',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Barrel Brent kostete zum Handelsschluss am Mittwoch 90,74 US-Dollar – 7,9 Prozent mehr als am Vortag. Die US-Sorte WTI stieg um 6,6 Prozent auf 84,46 Dollar. Auslöser: Irans Revolutionsgarden feuerten ballistische Raketen auf US-Stellungen, die nach US-Angaben abgefangen wurden; Präsident Trump kündigte an, „hart zurückzuschlagen“. Zudem reklamierten die Revolutionsgarden Angriffe auf drei Tanker für sich.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist die Vorgeschichte: In den drei Handelstagen davor hatte Brent 16 Prozent verloren – der größte Drei-Tage-Verlust seit 2020 –, weil eine Verhandlungslösung möglich schien. Erst am Dienstag stand der Preis noch bei rund 84 Dollar. Binnen einer Woche also: steiler Absturz, steiler Sprung. Und in dieser ganzen Zeit ist die physische Ölversorgung nicht zusammengebrochen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Preis handelt Wahrscheinlichkeiten, nicht Lieferungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was sich hier bewegt, heißt Risikoprämie: der Aufschlag, den der Markt dafür verlangt, dass eine Störung eintreten **könnte**. Durch die Straße von Hormus läuft rund ein Fünftel des weltweit gehandelten Öls. Steigt die geschätzte Wahrscheinlichkeit einer Blockade von, sagen wir, fünf auf fünfzehn Prozent, verteuert sich jedes Barrel – obwohl weiter jedes Barrel geliefert wird. Fällt die Schätzung zurück, verschwindet der Aufschlag ebenso schnell.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Woran man eine Risikoprämie erkennt',
+        items: [
+          'Der Preis bewegt sich auf Nachrichten hin, nicht auf Lieferdaten – Raketen und Verhandlungssignale, nicht Lagerbestände.',
+          'Die Bewegungen sind abrupt und symmetrisch: 16 Prozent runter in drei Tagen, 7,9 Prozent rauf an einem – je nachdem, welches Szenario gerade wahrscheinlicher wirkt.',
+          'Sie kann sich in Luft auflösen: Eine Entspannungsnachricht genügt, und der Aufschlag ist weg, ohne dass sich an Angebot oder Nachfrage etwas geändert hätte.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Rohstoffe solche Ausschläge zeigen und Aktien seltener, hat einen strukturellen Grund, der hier schon einmal stand: Ein Rohstoff hat keinen Gewinn, keine Dividende, kein Eigenkapital – nichts, was seinen Preis von unten stützt oder nach oben verankert. Er ist genau das wert, was der Markt für das nächste Barrel zu zahlen bereit ist. Deshalb schlägt eine geänderte Wahrscheinlichkeit voll durch.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Ölpreis als Konjunktursignal liest, muss die Risikoprämie herausrechnen. 90 Dollar wegen brummender Nachfrage und 90 Dollar wegen Kriegsangst sind zwei verschiedene Botschaften – mit derselben Zahl.',
+      },
+    ],
+  },
+  {
+    slug: 'microsoft-uebertrifft-nach-30-prozent-kursverlust',
+    title: 'Microsoft überzeugt – die Aktie war zuvor 30 Prozent gefallen',
+    teaser:
+      'Umsatz 90,0 statt erwarteter 87,7 Milliarden Dollar, Gewinn je Aktie 4,81 statt 4,25 – die Aktie sprang. Leichter fiel das nach zuvor 30 Prozent Kursverlust.',
+    category: 'Märkte',
+    publishedAt: '2026-07-30T06:55:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Microsoft', 'Quartalszahlen', 'Azure', 'Erwartungen'],
+    relatedTopics: ['aktie', 'wann-kaufen-verkaufen', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['microsoft', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'Finanzmarktwelt: Microsoft-Quartalszahlen überzeugen auf den ersten Blick (29.07.2026)',
+        url: 'https://finanzmarktwelt.de/microsoft-quartalszahlen-10-396841/',
+      },
+      {
+        label:
+          'BÖRSE ONLINE: Microsoft-Aktie nach 30 Prozent Crash – bringen die Zahlen die Wende?',
+        url: 'https://www.boerse-online.de/nachrichten/aktien/microsoft-aktie-nach-30-prozent-crash-bringen-die-zahlen-jetzt-die-wende-20405554.html',
+      },
+      {
+        label:
+          'Goldesel: Microsoft-Aktie springt nach Quartalszahlen – Umsatzbeat durch Azure',
+        url: 'https://goldesel.de/aktien/news/microsoft-aktie-springt-nach-quartalszahlen-umsatzbeat-durch-azure-capex-passt-copilot-impulse',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Microsoft meldete am Mittwoch nach US-Börsenschluss die Zahlen zum vierten Geschäftsquartal: 90,01 Milliarden Dollar Umsatz, erwartet waren 87,7 Milliarden. Der Gewinn je Aktie lag bei 4,81 Dollar statt der geschätzten 4,25. Die Cloud-Sparte Azure wuchs um 43 Prozent zum Vorjahr und damit ebenfalls stärker als erwartet. Die Aktie legte nachbörslich deutlich zu.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Interessant ist weniger der Beat als der Ausgangspunkt. Die Microsoft-Aktie hatte vor den Zahlen rund 30 Prozent unter ihrem Hoch notiert – abverkauft im Sog der Zweifel, ob sich die Milliarden für KI-Rechenzentren je verzinsen, zuletzt verschärft durch den Chip-Ausverkauf der Vortage. Ein Kurs, der so weit gefallen ist, preist gedämpfte Erwartungen ein. Genau daran wird ein Bericht gemessen – nicht an der Vergangenheit und nicht am Hoch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Messlatte liegt dort, wo der Kurs sie hingelegt hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Derselbe Bericht hätte im Januar, am Hoch, womöglich Enttäuschung ausgelöst – als Bestätigung dessen, was ohnehin jeder unterstellte. Nach 30 Prozent Kursverlust ist er eine positive Überraschung. Der Bericht ist derselbe; verschoben hat sich die Erwartung, gegen die er antritt. Wenige Stunden später zeigte Meta die Gegenrichtung: Umsatz über den Schätzungen, Aktie dennoch deutlich im Minus – dazu mehr im nächsten Artikel.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Gute Zahlen“ und „steigender Kurs“ sind zwei verschiedene Aussagen, verbunden nur über die Erwartung. Wer Quartalszahlen liest, sollte deshalb immer zwei Dinge kennen: die Schätzungen der Analysten – und wo der Kurs relativ zu seiner eigenen Geschichte steht.',
+      },
+    ],
+  },
+  {
+    slug: 'meta-umsatz-ueber-erwartung-gewinn-darunter',
+    title: 'Meta: Umsatz über Erwartung, Gewinn deutlich darunter',
+    teaser:
+      'Der Umsatz lag mit 60,8 Milliarden Dollar über den Schätzungen – die Aktie fiel trotzdem um acht Prozent. Der Grund steht in der Kostenzeile: plus 55 Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-07-30T07:00:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Meta', 'Quartalszahlen', 'Investitionen', 'Kosten'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['meta', 'nasdaq-100', 'microsoft'],
+    sources: [
+      {
+        label:
+          'Investing.com: Meta misses EPS in Q2 2026 as stock sinks after hours (29.07.2026)',
+        url: 'https://www.investing.com/news/transcripts/earnings-call-transcript-meta-misses-eps-in-q2-2026-as-stock-sinks-after-hours-93CH-4821910',
+      },
+      {
+        label:
+          'Seeking Alpha: Meta raises lower end of capex range, sees increased legal expenses (29.07.2026)',
+        url: 'https://seekingalpha.com/news/4620908-meta-platforms-raises-lower-end-of-capex-range-sees-increased-legal-expenses-in-fy26',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Meta meldete am Mittwochabend für das zweite Quartal 60,8 Milliarden Dollar Umsatz – etwas mehr, als Analysten geschätzt hatten. Der Gewinn je Aktie verfehlte dagegen deutlich: 6,18 Dollar statt erwarteter 7,14, rund 13 Prozent darunter. Die Aktie verlor nachbörslich etwa acht Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie beides zugleich stimmen kann, zeigt der Weg vom Umsatz zum Gewinn: Die betrieblichen Kosten stiegen um 55 Prozent zum Vorjahr – getrieben vom Aufbau der KI-Rechenzentren und von gestiegenen Rechtskosten. Das Betriebsergebnis fiel dadurch um acht Prozent, obwohl oben mehr hereinkam. Zusätzlich hob Meta die Untergrenze der geplanten Investitionen an: 135 bis 145 Milliarden Dollar sollen es im Gesamtjahr werden, fast ausschließlich für Rechenzentren und KI-Infrastruktur.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wohin der Umsatz verschwindet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Gewinn- und Verlustrechnung ist eine Kette: Umsatz minus Kosten gleich Betriebsergebnis, daraus nach Steuern der Gewinn, geteilt durch die Aktienzahl der Gewinn je Aktie. Ein Beat ganz oben sagt nichts darüber, was unten ankommt – jede Zwischenzeile kann ihn aufzehren. Bei Meta taten das zwei Posten: laufende Kosten für Personal und Rechenzentren, die sofort in der Rechnung stehen, und die Investitionen, die als Abschreibungen die Gewinne der **kommenden** Jahre belasten werden.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Zwei Berichte, ein Abend – ein Lehrstück',
+        items: [
+          'Microsoft: Umsatz und Gewinn über den Schätzungen, Aktie nachbörslich deutlich im Plus – nach 30 Prozent Kursverlust im Vorfeld.',
+          'Meta: Umsatz über den Schätzungen, Gewinn 13 Prozent darunter, Aktie rund acht Prozent im Minus.',
+          'Beide Unternehmen investieren Milliarden in KI. Der Unterschied an diesem Abend: wo die Erwartung lag und was unten in der Rechnung ankam.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Umsatzzeile beantwortet die Frage „wächst das Geschäft?“. Die Gewinnzeile beantwortet „bleibt davon etwas übrig?“. Wer nur eine der beiden liest, kennt die halbe Geschichte – und die Kursreaktion richtet sich regelmäßig nach der anderen Hälfte.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-drei-quellen-drei-kurse-uhrzeit',
+    title: 'Bitcoin: drei Quellen, drei Kurse – alle richtig',
+    teaser:
+      'Eine Quelle meldete 62.850 Dollar, eine zweite 64.378, eine dritte 64.400. Kein Widerspruch: Ein Markt ohne Schlussglocke hat nur Kurse zu Uhrzeiten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-07-30T07:05:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Kryptowährungen', 'Kursdaten', 'Fed'],
+    relatedTopics: ['bitcoin-krypto', 'boerse', 'anlegerpsychologie'],
+    relatedSymbols: ['bitcoin', 'ethereum'],
+    sources: [
+      {
+        label:
+          'finanzen.net: Kryptomarkt am Nachmittag – Bitcoin erholt sich auf 64.378 Dollar (29.07.2026)',
+        url: 'https://www.finanzen.net/nachricht/devisen/kryptomarkt-bitcoin-erholt-sich-auf-64-400-dollar-citadel-wettet-gegen-den-markt-fomc-entscheid-in-wenigen-stunden-00-15830848',
+      },
+      {
+        label:
+          'wallstreetONLINE: Bitcoin bei 64.000 Dollar – warum die Fed-Sitzung über den Sommer entscheidet (29.07.2026)',
+        url: 'https://www.wallstreet-online.de/nachricht/21167150-bitcoin-kurs-64-000-dollar-fed-sitzung-sommer-entscheidet',
+      },
+      {
+        label:
+          'Bitcoin.com News: Händler treiben den Kurs nach dem Fed-Entscheid zurück auf 64.400 Dollar',
+        url: 'https://news.bitcoin.com/de/market-updates/bitcoin-haendler-treiben-den-kurs-wieder-auf-64-400-us-dollar-nachdem-die-entscheidung-der-fed-die-nervositaet-am-markt-gemildert-hat/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer am Mittwoch den Bitcoin-Kurs nachschlug, fand je nach Quelle und Stunde verschiedene Zahlen: ein Tagestief bei 62.850 Dollar, am Nachmittag 64.378 Dollar – 1,55 Prozent im Plus –, nach dem Fed-Entscheid am Abend rund 64.400 Dollar. Am Dienstag hatten nach fast drei Prozent Tagesverlust noch Zwangsverkäufe über 670 Millionen Dollar den Markt geprägt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Alle diese Zahlen sind richtig. Sie beschreiben nur verschiedene Uhrzeiten – und genau das ist die Eigenheit, an der Krypto-Berichterstattung regelmäßig schief wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Markt ohne Schlussglocke',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einer Aktie ist „der Kurs von Mittwoch“ eine definierte Zahl: der Schlusskurs der Heimatbörse, festgestellt in der Schlussauktion, für den DAX um 17:30 Uhr. Bitcoin handelt dagegen an hunderten Plätzen gleichzeitig, 24 Stunden am Tag, 365 Tage im Jahr. Es gibt keine Schlussauktion, keinen amtlichen Schlusskurs, keinen gemeinsamen Bezugspunkt. „Bitcoin fiel am Mittwoch“ und „Bitcoin stieg am Mittwoch“ können deshalb beide stimmen – je nachdem, welche zwei Zeitpunkte man vergleicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dieselbe Falle steckt in Wochenvergleichen: Ein Aktienindex hat rund 252 Handelstage im Jahr, Bitcoin 365. Wer „Wochenperformance“ vergleicht, vergleicht bei der Aktie fünf Handelstage mit sieben bei Bitcoin – inklusive des Wochenendes, an dem dünner Handel die Ausschläge vergrößert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei Kursangaben ohne Uhrzeit ist Skepsis der richtige Reflex – nicht, weil eine Quelle lügt, sondern weil ohne Zeitstempel nicht feststeht, was verglichen wird. Seriöse Angaben zu einem Markt ohne Schlusskurs nennen den Zeitpunkt mit. Das gilt für Nachrichten wie für diese Seite.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-hat-den-fed-abend-noch-nicht-gehandelt',
+    title: 'Der DAX hat den Fed-Abend noch nicht gehandelt',
+    teaser:
+      'Xetra schloss um 17:30 Uhr – zweieinhalb Stunden vor der Fed. Den schwersten US-Tag seit April 2025 preist der DAX erst heute früh ein: als Kurslücke.',
+    category: 'Märkte',
+    publishedAt: '2026-07-30T07:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Kurslücke', 'Handelszeiten', 'Fed'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt', 'wann-kaufen-verkaufen'],
+    relatedSymbols: ['dax', 'dow-jones', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'aktiencheck: X-Sequentials Daytrading DAX-Index – Mittwoch, 29. Juli 2026',
+        url: 'https://www.aktiencheck.de/kolumnen/Artikel-X_Sequentials_Daytrading_DAX_Index_Mittwoch_29_Juli_2026-19968797',
+      },
+      {
+        label: 'CNBC: Stock futures rise as Microsoft jumps after earnings (30.07.2026)',
+        url: 'https://www.cnbc.com/2026/07/29/stock-market-today-live-updates.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX beendete den Mittwoch bei 25.489,73 Punkten. Um 17:30 Uhr, als die Xetra-Schlussauktion lief, war die Welt noch eine andere: Der Fed-Entscheid kam erst um 20 Uhr, der Einbruch an der Wall Street folgte danach, die Quartalszahlen von Microsoft und Meta noch später, und der Ölpreis beendete seinen Sprung um 7,9 Prozent erst zum US-Schluss. Nichts davon steckt im DAX-Schlusskurs von gestern.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute früh um 9 Uhr holt die Eröffnungsauktion das alles auf einmal nach. Der erste Kurs des Tages kann deutlich vom letzten Kurs des Vortags abweichen – dazwischen liegt kein einziger Handel. Diese Lücke im Kursverlauf heißt Kurslücke, im Börsenenglisch „Gap“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Lücke niemandem gehört',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kurslücke ist der sichtbarste Beleg gegen die Vorstellung, man könne auf Nachrichten „reagieren“: Zwischen 17:30 Uhr gestern und 9 Uhr heute konnte kein Privatanleger auf Xetra einen DAX-Wert handeln. Wer verkaufen will, weil die Fed straffer klang, bekommt nicht den Kurs von gestern Abend, sondern den von heute früh – in dem die Nachricht bereits steckt. Die Bewegung findet in der Auktion statt, nicht danach.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie groß die Lücke ausfällt, ist dabei offen – die Signale der Nacht sind gemischt. Nach dem US-Schluss meldete Microsoft starke Zahlen, die US-Futures erholten sich. Ein schwacher Wall-Street-Tag heißt außerdem nicht automatisch einen schwachen DAX-Tag: Erst am Dienstag stieg der DAX gegen fallende US-Kurse, getragen vom damals fallenden Ölpreis. Heute wirkt derselbe Kanal andersherum – Öl bei 90 Dollar verteuert Energie für die europäische Industrie.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer abends Nachrichten liest und morgens handelt, handelt immer **nach** der Lücke. Das ist kein Fehler im System, sondern dessen Kern – der Preis springt dorthin, wo Angebot und Nachfrage sich nach der Nachricht treffen. Markttiming über Nacht scheitert nicht an der Disziplin, sondern an der Mechanik.',
+      },
+    ],
+  },
+  {
+    slug: 'bank-of-england-super-thursday-heute',
+    title: 'Bank of England: was ein „Super Thursday“ ist',
+    teaser:
+      'Um 13 Uhr gibt die Bank of England Zinsentscheid, Protokoll und Inflationsbericht gleichzeitig heraus. Erwartet wird Stillhalten bei 3,75 Prozent.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-30T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bank of England', 'Leitzins', 'Super Thursday', 'Erwartungen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-gbp', 'eur-usd'],
+    sources: [
+      {
+        label: 'Bank of England: Monetary Policy Summary and minutes – July 2026',
+        url: 'https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/july-2026',
+      },
+      {
+        label:
+          'Tech Times: Bank of England Super Thursday – Hold Expected, but Services Inflation Keeps Hike Risk Live (27.07.2026)',
+        url: 'https://www.techtimes.com/articles/321682/20260727/bank-england-super-thursday-hold-expected-services-inflation-keeps-hike-risk-live.htm',
+      },
+      {
+        label:
+          'FXStreet: Bank of England – Higher bar seen for rate hikes (ING, 27.07.2026)',
+        url: 'https://www.fxstreet.com/news/bank-of-england-higher-bar-seen-for-rate-hikes-ing-202607271451',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute um 13 Uhr deutscher Zeit – 12 Uhr in London – gibt die Bank of England ihren Zinsentscheid bekannt. Erwartet wird, dass der Leitzins bei 3,75 Prozent bleibt; die hartnäckige Teuerung bei Dienstleistungen hält die Möglichkeit einer Erhöhung allerdings im Spiel. Die Terminmärkte preisen bis März 2027 zwei Erhöhungen ein, während etwa die ING-Volkswirte die Hürde dafür höher hängen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Termin trägt im Londoner Finanzviertel einen eigenen Namen: „Super Thursday“. Gemeint ist, dass die Bank dreierlei zur selben Minute veröffentlicht – die Entscheidung, das Sitzungsprotokoll mit dem Stimmenverhältnis und viermal im Jahr zusätzlich den Geldpolitischen Bericht mit den neuen Inflations- und Wachstumsprognosen. Heute ist ein solcher Berichtstermin.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum alles auf einmal kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bis 2015 erschien das Protokoll zwei Wochen nach dem Entscheid. Zwei Wochen lang handelte der Markt also auf halber Information – und wer das Protokoll früher deuten konnte, hatte einen Vorsprung. Die Bündelung beseitigt diese Stufung: Seither bewertet der Markt Entscheidung, Begründung und Stimmenverhältnis in einem einzigen Moment. Was gestern Abend die Fed lehrte, gilt hier genauso – bewegen wird nicht der erwartete Satz, sondern die Abstimmung und der Ton des Berichts.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger im Euroraum läuft die Wirkung vor allem über den Wechselkurs: Klingt die Bank strenger als erwartet, stützt das tendenziell das Pfund – der Kurs des Euro in Pfund fällt. Britische Aktien in einem weltweiten Depot sind darüber doppelt betroffen: über die Kurse in London und über die Umrechnung in Euro.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei Notenbankterminen lohnt der Blick auf das Veröffentlichungsformat. Wo Entscheid, Protokoll und Prognosen gebündelt kommen, steckt die Überraschung häufig nicht in der Schlagzeile der ersten Minute, sondern im Stimmenverhältnis und in den Prognosetabellen dahinter.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-zahlen-heute-vom-rekordhoch-aus',
+    title: 'Apple meldet heute Abend – vom Rekordhoch aus',
+    teaser:
+      'Um 22:30 Uhr legt Apple die Zahlen zum dritten Geschäftsquartal vor – vom Rekordhoch aus. Gestern zeigte Meta, was ein hoher Startpunkt aus guten Zahlen macht.',
+    category: 'Märkte',
+    publishedAt: '2026-07-30T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Apple', 'Quartalszahlen', 'Geschäftsjahr', 'Erwartungen'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt', 'worauf-achten-einsteiger'],
+    relatedSymbols: ['apple', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'finanzen.ch: Ausblick – Apple informiert über die jüngsten Quartalsergebnisse (29.07.2026)',
+        url: 'https://www.finanzen.ch/nachrichten/aktien/ausblick-apple-informiert-ueber-die-juengsten-quartalsergebnisse-1036376532',
+      },
+      {
+        label: 'macprime: Nächste Quartalszahlen von Apple am 30. Juli 2026',
+        url: 'https://www.macprime.ch/a/news/naechste-quartalszahlen-von-apple-am-30-juli-2026',
+      },
+      {
+        label:
+          'AVR Online: Apple-Aktie auf Rekordkurs – der große Test für iPhone, KI und Quartalszahlen',
+        url: 'https://www.avronline.de/nachrichten/news-views-markets/apple-aktie-allzeithoch-quartalszahlen-ki-2026/25314/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute nach US-Börsenschluss, um 22:30 Uhr deutscher Zeit, legt Apple die Zahlen zum abgelaufenen Quartal vor, anschließend folgt die Telefonkonferenz mit Analysten. Die Aktie geht von einem Rekordniveau in den Termin – und damit mit der anspruchsvollsten Messlatte, die es gibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Begriffsklärung vorweg, weil sie regelmäßig Verwirrung stiftet: Apple meldet heute das **dritte** Quartal seines Geschäftsjahres 2026 – gemeint sind die Monate April bis Juni, also das zweite Kalenderquartal. Apples Geschäftsjahr endet im September, es läuft dem Kalender um ein Quartal voraus. Microsoft wiederum meldete gestern sein **viertes** Geschäftsquartal für denselben Zeitraum, Meta schlicht das zweite Kalenderquartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Unternehmen, derselbe Zeitraum, drei Quartalsnummern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Geschäftsjahr darf beginnen, wann das Unternehmen will – Apple wählt den Oktober, Microsoft den Juli, Meta den Januar. Für den Vergleich zählt deshalb nie die Quartalsnummer, sondern der abgedeckte Zeitraum. Wer „Q3 von Apple“ mit „Q2 von Meta“ vergleicht, vergleicht exakt dieselben Monate. Wer dagegen Wachstumsraten über Firmen hinweg vergleicht, ohne die Zeiträume zu prüfen, kann um ein volles Quartal danebenliegen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur Messlatte des Abends: Der Mittwoch hat in beide Richtungen vorgeführt, wie Ausgangslage und Reaktion zusammenhängen. Microsoft übertraf die Schätzungen nach einem 30-Prozent-Kursrutsch – die Aktie sprang. Meta übertraf beim Umsatz von einem hohen Niveau aus, verfehlte beim Gewinn – die Aktie fiel um rund acht Prozent. Apple tritt heute vom Rekordhoch an: Ein Kurs auf Allzeithoch enthält die Annahme, dass es gut läuft. Zahlen, die das nur bestätigen, sind dann keine Neuigkeit mehr.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Vor Quartalszahlen sind zwei Fragen nützlicher als jede Prognose – welchen Zeitraum deckt der Bericht wirklich ab, und was hat der Kurs bereits vorweggenommen? Die erste schützt vor schiefen Vergleichen, die zweite vor Überraschung über die Reaktion.',
+      },
+    ],
+  },
+  {
     slug: 'fed-entscheid-was-eingepreist-ist-bewegt-nichts',
     title: 'Fed entscheidet heute – warum das Erwartete kaum etwas bewegt',
     teaser:
