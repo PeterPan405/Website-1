@@ -124,6 +124,42 @@ Getrennt schreibt der halbstündliche Lauf nur noch `kurse-aktuell.json` mit
 rund siebzig Kilobyte. `lib/market-live.ts` führt beide Dateien wieder
 zusammen, sodass der Rest der Website davon nichts merkt.
 
+### Wie vollständig die Daten sind
+
+`npm run abdeckung` rechnet es aus – aus denselben Dateien, die auch die
+Website liest, ohne Netz und ohne etwas zu verändern:
+
+```
+Kursverlauf         1029 von 1029 (100 %)
+Dividendenhistorie   919 von 1029 (89 %)
+Unternehmenszahlen   495 von 1029 (48 %)
+Quartalstermine      158 von 1029 (15 %)
+```
+
+Die Zahlen stehen hier bewusst nicht als Fließtext, sondern als Befehl: Eine
+abgetippte Abdeckung ist nach einer Woche falsch, ohne dass es jemandem
+auffiele.
+
+Zu den beiden Lücken:
+
+**Quartalstermine** liegen bei 158, weil das genau die Unternehmen sind, die
+bei der SEC ein 8-K einreichen. Der zweite Weg über Twelve Data ist gebaut und
+braucht einen Schlüssel; danach füllt er das Feld über zwei Wochenläufe.
+Warum zwei und nicht einer, steht in `EINRICHTUNG.md`.
+
+**Unternehmenszahlen** liegen bei 48 %, und der größte einzelne Block ist
+Deutschland mit 86 Titeln – Allianz, Münchener Rück, Siemens. Das ist der
+ärgerlichste, denn deutsche Emittenten melden nach ESEF wie alle anderen an
+einem geregelten EU-Markt, und dieses Projekt liest ESEF bereits. Die
+Zuordnungsliste in `scripts/esef-abrufen.ts` enthält aber 26 französische und
+13 britische Titel und keinen einzigen deutschen.
+
+Sie ist von Hand geführt, und das aus gutem Grund: Ein Namenstreffer ist keine
+Zuordnung. Nestlé traf einmal die US-Finanzierungstochter mit 31 Milliarden
+Umsatz statt der Gruppe mit 91. Was fehlt, ist also nicht die Quelle, sondern
+die geprüfte Zeile je Unternehmen – und die Kandidaten dafür liefert
+`scripts/quellen-probe-esef.ts` über den Workflow „Quellen abklopfen“.
+
 ### Warum zwei Anbieter für Indizes
 
 Der erste Versuch lief über Stooq und scheiterte vollständig: Statt der
