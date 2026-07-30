@@ -46,6 +46,7 @@
  */
 
 import { readFile, writeFile } from 'node:fs/promises'
+import { pathToFileURL } from 'node:url'
 
 const SCHLUESSEL = process.env.DART_API_KEY?.trim() || undefined
 const ZIEL = 'data/snapshots/fundamentaldaten.json'
@@ -307,4 +308,15 @@ async function main(): Promise<void> {
   )
 }
 
-await main()
+/*
+  Nur ausführen, wenn dieses Skript direkt aufgerufen wurde.
+
+  Ohne diese Wache lief `main()` auch beim Importieren – und `tests/dart.test.ts`
+  importiert die Datei, um das Lesen der Beträge zu prüfen. Ohne Schlüssel war
+  das folgenlos, weil `main()` sofort zurückkehrt. Mit gesetztem `DART_API_KEY`
+  hätte ein Testlauf dagegen die Aufsicht angefragt und den Kennzahlenbestand
+  überschrieben: ein Test, der Daten verändert.
+*/
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  await main()
+}

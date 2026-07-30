@@ -49,7 +49,8 @@
  * Aufruf: `npm run quartalstermine`
  */
 
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
+import { pathToFileURL } from 'node:url'
 
 import { marketDefinitions, marketSources } from '../data/markets.ts'
 import {
@@ -67,6 +68,33 @@ const KOPFZEILEN: Record<string, string> = {
 const TICKER_URL = 'https://www.sec.gov/files/company_tickers.json'
 const SUBMISSIONS_BASIS = 'https://data.sec.gov/submissions'
 const ZIEL = 'data/snapshots/quartalstermine.json'
+
+/**
+ * In welcher Reihenfolge der zweite Weg die offenen Kürzel abarbeitet.
+ *
+ * Wer noch nie versucht wurde, steht vorn; danach die mit dem ältesten
+ * Versuch, zuletzt die zuletzt versuchten. Bei gleichem Datum entscheidet das
+ * Kürzel – ohne diesen zweiten Schlüssel hinge die Reihenfolge an der
+ * Aufzählung des Katalogs und änderte sich still, sobald eine Aktie dazukommt.
+ *
+ * ## Warum das überhaupt zählt
+ *
+ * Ein Lauf schafft das Feld nicht in einem Stück: 817 erreichbare Titel bei
+ * 8,5 Sekunden Pause sind mehr als zwei Stunden, der Workflow hat zwei. Ohne
+ * Reihenfolge fragte jeder Lauf dieselben ersten Kürzel ab, und die hinteren
+ * kämen nie an die Reihe – die Abdeckung bliebe stehen, obwohl jede Woche
+ * zwei Stunden abgerufen werden.
+ */
+export function reihenfolgeFuerZweitenWeg(
+  offen: readonly string[],
+  zuletztVersucht: Readonly<Record<string, string>>
+): string[] {
+  return [...offen].sort((a, b) => {
+    const alterA = zuletztVersucht[a] ?? ''
+    const alterB = zuletztVersucht[b] ?? ''
+    return alterA.localeCompare(alterB) || a.localeCompare(b)
+  })
+}
 
 /** Kürzel, die hier anders heißen als bei der SEC. */
 const KUERZELBRUECKE: Record<string, string> = {
@@ -92,6 +120,40 @@ const PAUSE_MS = 200
  * offene Aktien sind das gut fünfzig Minuten, einmal die Woche.
  */
 const TWELVEDATA_PAUSE_MS = 8_500
+
+/**
+ * Wie lange der zweite Weg höchstens laufen darf.
+ *
+ * ## Warum es diese Grenze braucht
+ *
+ * 817 der 871 offenen Aktien sind über Twelve Data abfragbar. Bei 8,5 Sekunden
+ * Pause je Abfrage – nötig, um unter dem Minutenlimit des kostenlosen Tarifs zu
+ * bleiben – sind das 116 Minuten. Der Workflow hat 120.
+ *
+ * Vier Minuten Puffer sind keine. Eine einzige langsame Antwort, ein Neuversuch,
+ * ein träger Runner – und GitHub bricht den Auftrag bei 120 Minuten ab. Dann ist
+ * nicht etwa weniger geschrieben worden, sondern **gar nichts**: Der Prozess
+ * stirbt vor `writeFile`, und zwei Stunden Abrufe sind weg.
+ *
+ * Mit dieser Grenze hört der Lauf von sich aus auf, schreibt, was er hat, und
+ * macht beim nächsten Mal dort weiter. Der Kalender füllt sich dann über zwei
+ * Wochenläufe statt in einem – und das ist auch die richtige Reihenfolge der
+ * Wichtigkeit: Ein Termin, der eine Woche später erscheint, ist unerheblich; ein
+ * Lauf, der nie etwas schreibt, ist nutzlos.
+ *
+ * ## Warum 75 Minuten
+ *
+ * Der erste Weg über die SEC braucht bei 200 Millisekunden Pause nur wenige
+ * Minuten. Bleiben von den 120 des Workflows gut 110; 75 lassen also reichlich
+ * Puffer und decken rund 529 Abfragen ab – zwei Läufe genügen damit für alle
+ * 817 erreichbaren Titel.
+ *
+ * Nach oben begrenzt das ohnehin der kostenlose Tarif: Er erlaubt acht Anfragen
+ * je Minute, daher die 8,5 Sekunden, und rund 800 am Tag. Ein Budget, das über
+ * diese 800 hinausginge, brächte nichts – die Quelle hörte vorher auf zu
+ * antworten, und dafür gibt es den Zweig um `KontingentErschoepft`.
+ */
+const ZWEITER_WEG_BUDGET_MS = 75 * 60 * 1_000
 
 /** Vier Quartale, ein Jahr – so viele Termine werden vorausgerechnet. */
 const VORHERSAGEN = 4
@@ -426,7 +488,38 @@ async function main(): Promise<void> {
   console.log(`${gesucht.length} davon sind bei der SEC registriert.`)
 
   // ------------------------------------------------------------- abrufen
+  /*
+    Der bisherige Stand ist die Grundlage, nicht ein leeres Blatt.
+
+    Vorher begann jeder Lauf bei null. Das war solange harmlos, wie eine
+    einzige Quelle in wenigen Minuten alles lieferte – seit der zweite Weg
+    über Stunden geht und in Scheiben arbeitet, wäre es fatal: Ein Lauf, der
+    nur die Hälfte schafft, hätte die andere Hälfte gelöscht.
+
+    Übernommen wird nur, was noch im Katalog steht. Ein Titel, der aus der
+    Auswahl geflogen ist, verschwindet damit auch hier.
+  */
   const unternehmen: Record<string, Eintrag> = {}
+  /** Wann ein Kürzel zuletzt über den zweiten Weg versucht wurde. */
+  const zuletztVersucht: Record<string, string> = {}
+
+  try {
+    const bisher = JSON.parse(await readFile(ZIEL, 'utf8')) as {
+      unternehmen?: Record<string, Eintrag>
+      zuletztVersucht?: Record<string, string>
+    }
+    for (const [kuerzel, eintrag] of Object.entries(bisher.unternehmen ?? {})) {
+      if (gefuehrt.has(kuerzel)) unternehmen[kuerzel] = eintrag
+    }
+    for (const [kuerzel, tag] of Object.entries(bisher.zuletztVersucht ?? {})) {
+      if (gefuehrt.has(kuerzel)) zuletztVersucht[kuerzel] = tag
+    }
+    console.log(
+      `${Object.keys(unternehmen).length} Unternehmen aus dem bisherigen Stand übernommen.`
+    )
+  } catch {
+    console.log('Kein bisheriger Stand – der Lauf beginnt bei null.')
+  }
 
   /*
     Wer herausfällt, wird namentlich festgehalten.
@@ -487,12 +580,42 @@ async function main(): Promise<void> {
         'Ohne ihn bleibt es bei den Unternehmen, die bei der SEC melden.'
     )
   } else {
-    const offen = [...gefuehrt].filter((kuerzel) => !unternehmen[kuerzel])
-    console.log(`\n${offen.length} Aktien ohne Termin – zweiter Anlauf über Twelve Data.`)
+    /*
+      Die am längsten nicht versuchten zuerst.
 
+      Ein Lauf schafft das Feld nicht in einem Stück, also entscheidet die
+      Reihenfolge darüber, ob sich die Abdeckung füllt oder ob dieselben
+      zweihundert Kürzel jede Woche erneut abgefragt werden. Wer noch nie dran
+      war, steht vorn; danach die mit dem ältesten Versuch.
+
+      Nebenwirkung, und eine erwünschte: Ist alles einmal durch, hält sich der
+      Bestand von selbst frisch, weil immer die ältesten Einträge nachgezogen
+      werden.
+    */
+    const offen = reihenfolgeFuerZweitenWeg(
+      [...gefuehrt].filter((kuerzel) => !unternehmen[kuerzel]),
+      zuletztVersucht
+    )
+    console.log(`\n${offen.length} Aktien ohne Termin – zweiter Anlauf über Twelve Data.`)
+    console.log(
+      `  Zeitbudget: ${Math.round(ZWEITER_WEG_BUDGET_MS / 60_000)} Minuten, ` +
+        `das reicht für rund ${Math.floor(ZWEITER_WEG_BUDGET_MS / TWELVEDATA_PAUSE_MS)} Abfragen.`
+    )
+
+    const beginn = Date.now()
     let kontingentWeg = false
+    let zeitWeg = false
     for (const [index, kuerzel] of offen.entries()) {
       if (kontingentWeg) break
+      if (Date.now() - beginn > ZWEITER_WEG_BUDGET_MS) {
+        console.log(
+          `\nZeitbudget nach ${index} Abfragen aufgebraucht.\n` +
+            'Der Rest bleibt für den nächsten Lauf liegen – was bis hierher\n' +
+            'zusammengekommen ist, wird geschrieben.'
+        )
+        zeitWeg = true
+        break
+      }
 
       const quelle = kursquellen.get(kuerzel)
       if (!quelle || !istAbfragbar(quelle.yahoo)) continue
@@ -527,10 +650,22 @@ async function main(): Promise<void> {
         }
       }
 
+      /*
+        Der Versuch wird vermerkt, nicht der Erfolg. Ein Kürzel, das die Quelle
+        nicht kennt, soll nicht jede Woche erneut acht Sekunden kosten – es
+        rutscht ans Ende der Reihe und kommt erst wieder dran, wenn alle
+        anderen durch sind.
+      */
+      zuletztVersucht[kuerzel] = heute
+
       if ((index + 1) % 25 === 0) {
         console.log(`  … ${index + 1} von ${offen.length}`)
       }
       await new Promise((weiter) => setTimeout(weiter, TWELVEDATA_PAUSE_MS))
+    }
+
+    if (!kontingentWeg && !zeitWeg) {
+      console.log('  Alle offenen Kürzel abgefragt.')
     }
   }
 
@@ -543,6 +678,7 @@ async function main(): Promise<void> {
         'Die Termine sind aus dem bisherigen Meldemuster jedes Unternehmens abgeleitet und keine Ankündigung. Den genauen Tag gibt jedes Unternehmen wenige Wochen vorher selbst bekannt. Erfasst sind nur Unternehmen, die bei der SEC ein 8-K einreichen – überwiegend US-Emittenten.',
     },
     unternehmen,
+    zuletztVersucht,
   }
 
   await writeFile(ZIEL, `${JSON.stringify(momentaufnahme, null, 2)}\n`, 'utf8')
@@ -587,7 +723,12 @@ async function main(): Promise<void> {
   console.log(`\nGeschrieben nach ${ZIEL}.`)
 }
 
-main().catch((fehler) => {
-  console.error(fehler)
-  process.exit(1)
-})
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  // Nur beim direkten Aufruf – siehe dieselbe Wache in `dart-abrufen.ts`:
+  // Ein Test, der die Reihenfolge prüft, importiert diese Datei und darf
+  // dabei keine zwei Stunden Abrufe auslösen.
+  main().catch((fehler) => {
+    console.error(fehler)
+    process.exit(1)
+  })
+}
