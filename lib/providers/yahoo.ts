@@ -34,9 +34,26 @@ interface YahooChartAntwort {
       meta?: { regularMarketPrice?: number; regularMarketTime?: number }
       timestamp?: number[]
       indicators?: { quote?: { close?: (number | null)[] }[] }
+      /*
+        Dividenden kommen nur, wenn `events=div` mit angefragt wird. Der
+        Schlüssel ist der Zeitstempel als Zeichenkette, der Wert enthält ihn
+        noch einmal als Zahl – gelesen wird die Zahl, weil der Schlüssel bei
+        manchen Titeln von der Uhrzeit im Wert abweicht.
+      */
+      events?: {
+        dividends?: Record<string, { amount?: number; date?: number }>
+      }
     }[]
     error?: { code?: string; description?: string } | null
   }
+}
+
+/** Eine gezahlte Dividende, wie Yahoo sie meldet. */
+export interface YahooDividende {
+  /** Der Tag, ab dem die Aktie ohne Dividendenanspruch handelt. */
+  date: string
+  /** Betrag je Aktie, in derselben Einheit wie der Kurs. */
+  amount: number
 }
 
 /** Der zuletzt gehandelte Preis mit seinem Zeitpunkt. */
@@ -49,6 +66,19 @@ export interface YahooLatest {
 export interface YahooSeries {
   /** Tagesschlusskurse, aufsteigend sortiert. */
   days: YahooDay[]
+  /**
+   * Die gemeldeten Dividenden, aufsteigend sortiert.
+   *
+   * Leer, wenn der Titel keine zahlt – oder wenn `events=div` nicht angefragt
+   * wurde. Beides ist von hier aus nicht zu unterscheiden, deshalb fragt der
+   * Abruf die Ereignisse immer mit.
+   *
+   * Die Beträge stehen in der Einheit des Kurses. Für die Londoner Börse also
+   * in Pence, für Johannesburg in Cent. Das ist kein Problem, solange nur
+   * Dividende durch Kurs gerechnet wird – dabei kürzt sich die Einheit heraus.
+   * Wer den Betrag einzeln anzeigt, muss die Einheit dazuschreiben.
+   */
+  dividends: YahooDividende[]
   /**
    * Der zuletzt gehandelte Preis, wenn die Antwort einen enthält.
    *
@@ -114,12 +144,35 @@ export function parseYahooChart(text: string): YahooSeries | null {
       ? { value: preis, at: new Date(zeit * 1000).toISOString() }
       : null
 
-  return { days: tage, latest }
+  /*
+    Die Dividenden stehen außerhalb der Kursreihe und sind unabhängig von ihr:
+    Ein Titel ohne Dividenden liefert hier eine leere Liste, keinen Fehler.
+  */
+  const dividenden: YahooDividende[] = []
+  for (const eintrag of Object.values(ergebnis?.events?.dividends ?? {})) {
+    const betrag = eintrag?.amount
+    const sekunden = eintrag?.date
+    if (typeof betrag !== 'number' || !Number.isFinite(betrag) || betrag <= 0) continue
+    if (typeof sekunden !== 'number' || !Number.isFinite(sekunden)) continue
+    dividenden.push({
+      date: new Date(sekunden * 1000).toISOString().slice(0, 10),
+      amount: betrag,
+    })
+  }
+  dividenden.sort((a, b) => a.date.localeCompare(b.date))
+
+  return { days: tage, latest, dividends: dividenden }
 }
 
 /** Baut die Abrufadresse für ein Yahoo-Symbol, z. B. `^GDAXI`. */
 export function yahooUrl(symbol: string, range = '5y'): string {
-  return `${YAHOO_CHART_BASE}${encodeURIComponent(symbol)}?range=${range}&interval=1d`
+  /*
+    `events=div` kostet nichts – dieselbe Anfrage, ein Feld mehr in der
+    Antwort. Ein zweiter Abruf nur für Dividenden hieße, jeden der über
+    tausend Titel ein zweites Mal anzufragen; das wäre die Verdopplung der
+    Last für Daten, die hier ohnehin mitkommen.
+  */
+  return `${YAHOO_CHART_BASE}${encodeURIComponent(symbol)}?range=${range}&interval=1d&events=div`
 }
 
 /**

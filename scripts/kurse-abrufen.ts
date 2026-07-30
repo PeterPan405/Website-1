@@ -39,6 +39,16 @@ import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname } from 'node:path'
 
 const ZIEL = 'data/snapshots/markets.json'
+/*
+  Die Dividenden stehen in einer eigenen Datei, nicht im Kursbestand.
+
+  Zwei Gründe. Erstens ändern sie sich selten – ein Titel zahlt vier Mal im
+  Jahr, die Kurse ändern sich alle dreißig Minuten. In derselben Datei stünde
+  bei jedem Lauf ein Diff über beides, und die eine Änderung, auf die es
+  ankommt, wäre nicht zu finden. Zweitens ist der Kursbestand mit zehn
+  Megabyte schon groß genug.
+*/
+const ZIEL_DIVIDENDEN = 'data/snapshots/dividenden.json'
 
 const QUELLEN = {
   ecb: {
@@ -70,6 +80,13 @@ async function holeMarktkurs(
 ): Promise<{
   punkte: SnapshotPoint[]
   latest: { value: number; at: string } | null
+  /*
+    Dividenden kommen nur über Yahoo, und zwar aus derselben Antwort wie die
+    Kursreihe. Über Twelve Data gibt es sie an dieser Stelle nicht – dann
+    bleibt die Liste leer, und der bisherige Stand im Dividendenbestand
+    bleibt unangetastet.
+  */
+  dividenden: { date: string; amount: number }[]
   quelle: 'yahoo' | 'twelvedata'
 } | null> {
   if (TWELVEDATA_KEY) {
@@ -81,6 +98,7 @@ async function holeMarktkurs(
         // gäbe es eine eigene Abfrage. Solange das der Rückfallweg ist, bleibt
         // es beim Schlusskurs.
         latest: null,
+        dividenden: [],
         quelle: 'twelvedata',
       }
     }
@@ -92,7 +110,30 @@ async function holeMarktkurs(
   return {
     punkte: reihe.days.map((tag) => ({ d: tag.date, c: tag.close })),
     latest: reihe.latest,
+    dividenden: reihe.dividends,
     quelle: 'yahoo',
+  }
+}
+
+/** Der Dividendenbestand: Symbol auf Zahlungsliste. */
+interface Dividendenbestand {
+  abgerufenAm: string
+  quelle: { label: string; url: string }
+  titel: Record<string, { date: string; amount: number }[]>
+}
+
+function ladeDividenden(): Dividendenbestand {
+  try {
+    return JSON.parse(readFileSync(ZIEL_DIVIDENDEN, 'utf8')) as Dividendenbestand
+  } catch {
+    return {
+      abgerufenAm: '',
+      quelle: {
+        label: 'Yahoo Finance: Dividendenereignisse der Kurshistorie',
+        url: 'https://finance.yahoo.com/',
+      },
+      titel: {},
+    }
   }
 }
 
@@ -184,6 +225,7 @@ async function main(): Promise<void> {
   const uebernommen: string[] = []
   const behalten: string[] = []
 
+  const dividenden = ladeDividenden()
   const { reihen: devisen, tabelle: devisentabelle } = await holeDevisen()
 
   for (const [symbol, quelle] of Object.entries(marketSources)) {
@@ -205,6 +247,17 @@ async function main(): Promise<void> {
       roh = ergebnis?.punkte ?? null
       latest = ergebnis?.latest ?? null
       quellenId = ergebnis?.quelle ?? 'yahoo'
+      /*
+        Nur überschreiben, wenn die Antwort Zahlungen enthielt. Eine leere
+        Liste heißt „dieser Titel zahlt keine Dividende“ – oder „die Antwort
+        kam von Twelve Data“. Beides ist von hier aus nicht unterscheidbar,
+        also bleibt bei leerer Liste der bisherige Stand stehen. Andernfalls
+        verlöre ein Titel seine Zahlungshistorie, sobald ein einzelner Abruf
+        über den Rückfallweg lief.
+      */
+      if (ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
+        dividenden.titel[symbol] = ergebnis.dividenden
+      }
     }
 
     if (!roh) {
@@ -353,6 +406,35 @@ async function main(): Promise<void> {
     (summe, eintrag) => summe + eintrag.points.length,
     0
   )
+
+  /*
+    Der Dividendenbestand wird nur geschrieben, wenn sich etwas geändert hat –
+    sonst stünde bei jedem der zweiundvierzig Läufe am Tag ein Commit mit
+    neuem Zeitstempel und identischem Inhalt in der Historie.
+  */
+  // Beim ersten Lauf gibt es die Datei noch nicht – dann ist jeder Inhalt neu.
+  let dividendenVorher = ''
+  try {
+    dividendenVorher = readFileSync(ZIEL_DIVIDENDEN, 'utf8').replace(
+      /"abgerufenAm": "[^"]*"/,
+      '"abgerufenAm": ""'
+    )
+  } catch {
+    dividendenVorher = ''
+  }
+  const dividendenNachher = JSON.stringify({ ...dividenden, abgerufenAm: '' }, null, 2)
+  if (dividendenVorher.trim() !== dividendenNachher.trim()) {
+    writeFileSync(
+      ZIEL_DIVIDENDEN,
+      `${JSON.stringify({ ...dividenden, abgerufenAm: new Date().toISOString() }, null, 2)}\n`
+    )
+    const zahlungen = Object.values(dividenden.titel).reduce((s, l) => s + l.length, 0)
+    console.log(
+      `[kurse] ${zahlungen} Dividendenzahlungen für ${Object.keys(dividenden.titel).length} Titel in ${ZIEL_DIVIDENDEN}`
+    )
+  } else {
+    console.log('[kurse] Keine neuen Dividenden – Datei bleibt unberührt.')
+  }
 
   console.log(`[kurse] ${punkteGesamt} Kurswerte in ${ZIEL}`)
   for (const [symbol, eintrag] of Object.entries(instrumente)) {
