@@ -37,6 +37,7 @@ import {
   type SnapshotInstrument,
   type SnapshotPoint,
 } from '../lib/providers/snapshot.ts'
+import { fuegeEin, serialisiereBreite, type Breitenpunkt } from '../lib/marktbreite.ts'
 import { fetchTwelveDataDaily } from '../lib/providers/twelvedata.ts'
 import { fetchYahooDaily } from '../lib/providers/yahoo.ts'
 
@@ -56,6 +57,17 @@ const ZIEL = 'data/snapshots/markets.json'
 const ZIEL_DIVIDENDEN = 'data/snapshots/dividenden.json'
 /** Die kleine Datei mit den aktuellen Kursen – siehe `Kursstand`. */
 const ZIEL_STAND = 'data/snapshots/kurse-aktuell.json'
+
+/*
+  Die Marktbreite je Handelstag.
+
+  Eine dritte Datei und nicht ein Feld im Kursstand: Sie wächst um eine Zeile
+  je Handelstag und ändert sich sonst nicht, während der Kursstand alle
+  dreißig Minuten neu geschrieben wird. In derselben Datei hinge die
+  Aufzeichnung an dessen Takt – und die Historie zeigte zweiundvierzig
+  identische Fassungen am Tag.
+*/
+const ZIEL_BREITE = 'data/snapshots/marktbreite.json'
 
 const QUELLEN = {
   ecb: {
@@ -260,6 +272,98 @@ const NUR_ARTEN = (process.env.NUR_ARTEN ?? '')
   .split(',')
   .map((eintrag) => eintrag.trim())
   .filter((eintrag) => eintrag.length > 0)
+
+/**
+ * Zeichnet die Marktbreite des Tages auf.
+ *
+ * ## Warum hier und nicht auf der Seite
+ *
+ * Weil die Seite beim Bauen entsteht und danach nichts mehr rechnet. Sie kann
+ * die Breite von heute zeigen; aufheben kann sie sie nicht. Aufgezeichnet wird
+ * deshalb dort, wo ohnehin geschrieben wird – beim Kursabruf.
+ *
+ * ## Warum die Tagesveränderung hier noch einmal gerechnet wird
+ *
+ * `lib/market-quote.ts` tut dasselbe für die Anzeige, greift dabei aber auf die
+ * zusammengeführten Daten der Service-Schicht zu, die es in diesem Skript nicht
+ * gibt. Nachgebaut ist nur die eine Regel, auf die es ankommt: Verglichen wird
+ * gegen den letzten Schlusskurs **vor** dem Bezugstag. Ohne diese Bedingung
+ * verglich sich der Wert nach Handelsschluss mit sich selbst, und die
+ * Veränderung wäre null – derselbe Fehler, der dort schon einmal auftrat.
+ */
+function zeichneBreiteAuf(instrumente: Record<string, SnapshotInstrument>): void {
+  const aktien = marketDefinitions.filter((eintrag) => eintrag.kind === 'stock')
+
+  let steigend = 0
+  let fallend = 0
+  let unveraendert = 0
+  const veraenderungen: number[] = []
+  let bezugstag = ''
+
+  for (const definition of aktien) {
+    const eintrag = instrumente[definition.symbol]
+    if (!eintrag || eintrag.points.length < 2) continue
+
+    const letzter = eintrag.points[eintrag.points.length - 1]
+    const wert = eintrag.latest?.value ?? letzter.c
+    const tag = eintrag.latest ? eintrag.latest.at.slice(0, 10) : letzter.d
+    if (tag > bezugstag) bezugstag = tag
+
+    const vergleich =
+      [...eintrag.points].reverse().find((punkt) => punkt.d < tag)?.c ??
+      eintrag.points[eintrag.points.length - 2]?.c
+    if (!vergleich) continue
+
+    const prozent = ((wert - vergleich) / vergleich) * 100
+    veraenderungen.push(prozent)
+    if (prozent > 0) steigend += 1
+    else if (prozent < 0) fallend += 1
+    else unveraendert += 1
+  }
+
+  if (veraenderungen.length === 0 || !bezugstag) {
+    console.log('[kurse] Keine Tagesveränderungen – Marktbreite nicht aufgezeichnet.')
+    return
+  }
+
+  const schnitt =
+    veraenderungen.reduce((summe, wert) => summe + wert, 0) / veraenderungen.length
+  const bewegt = steigend + fallend
+  const mitDerRichtung = schnitt >= 0 ? steigend : fallend
+  const breite = bewegt > 0 ? (mitDerRichtung / bewegt) * 100 : 0
+
+  /*
+    Gerundet, bevor es in den Bestand geht. Angezeigt wird ohnehin auf eine
+    Stelle; ungerundet stünde in jeder Zeile ein Dutzend Nachkommastellen, die
+    niemand sieht und die jede Zeile im Diff aufblähen.
+  */
+  const punkt: Breitenpunkt = {
+    d: bezugstag,
+    steigend,
+    fallend,
+    unveraendert,
+    schnitt: Math.round(schnitt * 100) / 100,
+    breite: Math.round(breite * 10) / 10,
+  }
+
+  let bestand: { abgerufenAm: string | null; reihe: Breitenpunkt[] }
+  try {
+    bestand = JSON.parse(readFileSync(ZIEL_BREITE, 'utf8'))
+  } catch {
+    bestand = { abgerufenAm: null, reihe: [] }
+  }
+
+  const reihe = fuegeEin(bestand.reihe, punkt)
+  mkdirSync(dirname(ZIEL_BREITE), { recursive: true })
+  writeFileSync(
+    ZIEL_BREITE,
+    serialisiereBreite({ abgerufenAm: new Date().toISOString(), reihe })
+  )
+  console.log(
+    `[kurse] Marktbreite ${bezugstag}: ${steigend} im Plus, ${fallend} im Minus, ` +
+      `Breite ${punkt.breite} % – ${reihe.length} Handelstage im Bestand.`
+  )
+}
 
 async function main(): Promise<void> {
   const bisher = ladeBisherige()
@@ -589,6 +693,8 @@ async function main(): Promise<void> {
   } else {
     console.log('[kurse] Keine neuen Dividenden – Datei bleibt unberührt.')
   }
+
+  zeichneBreiteAuf(instrumente)
 
   console.log(`[kurse] ${punkteGesamt} Kurswerte in ${ZIEL}`)
   for (const [symbol, eintrag] of Object.entries(instrumente)) {

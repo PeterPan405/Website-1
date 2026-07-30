@@ -19,7 +19,7 @@ import type { QuizQuestion } from '@/data/learn/types'
  *    dass sie es ist.
  * 4. Die Position der richtigen Antwort wechselt. Stehen alle richtigen Antworten
  *    an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen – die aktuell
- *    396 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
+ *    408 Fragen verteilen sich deshalb über alle vier Positionen. Bei neuen
  *    Fragen bitte darauf achten und die bisher seltenste Position bevorzugen.
  */
 export const learnQuizzes: Record<string, QuizQuestion[]> = {

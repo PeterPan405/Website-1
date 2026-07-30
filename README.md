@@ -1,6 +1,6 @@
 # IM Invests
 
-Deutschsprachige Finanzbildungs-Plattform: 33 Themen in je drei Lernstufen, fünf
+Deutschsprachige Finanzbildungs-Plattform: 34 Lernthemen in je drei Stufen, acht
 Rechner mit offengelegter Methodik, Marktdaten mit Erklärung, eingeordnete News und
 ein interaktiver Staatsverschuldungs-Vergleich.
 
@@ -255,7 +255,7 @@ auch zeigt; das allein hat die Seite von 772 auf 666 Kilobyte gebracht
 
 ## Reihenfolge der Lernthemen
 
-Die 33 Themen stehen nicht alphabetisch und nicht nach Beliebtheit, sondern in der
+Die 34 Lernthemen stehen nicht alphabetisch und nicht nach Beliebtheit, sondern in der
 Reihenfolge, in der sie aufeinander aufbauen – in sechs Abschnitten:
 
 | #     | Abschnitt                | Worum es geht                                            |
@@ -286,7 +286,7 @@ Antwort, denn dort liegt der Lernwert. Am Ende folgt eine Auswertung; ab 60 Proz
 richtiger Antworten kann die Stufe als erledigt markiert werden.
 
 - Fragen liegen zentral in `data/learn/quizzes.ts`, Schlüssel `themen-slug:stufe`.
-- 396 Fragen zu allen 99 Stufen – jede Stufe hat vier.
+- 408 Fragen zu allen 102 Stufen – jede Stufe hat vier.
 - **Regel bei neuen Fragen:** Die Position der richtigen Antwort muss wechseln. Liegt sie
   immer an derselben Stelle, lässt sich das Quiz ohne Lesen bestehen. Die Verteilung ist
   nicht gleichmäßig, aber ohne Muster (95 / 126 / 104 / 71); bei neuen Fragen bitte die
@@ -358,7 +358,7 @@ Tabelle im HTML – ohne JavaScript lesbar und von Suchmaschinen erfassbar.
 
 ## Erklärgrafiken
 
-100 Diagramme, verteilt auf 103 Stellen – jede der 99 Lernstufen hat mindestens eines,
+100 Diagramme, verteilt auf 103 Stellen – jede der 102 Lernstufen hat mindestens eines,
 dazu `/maerkte/msci-world`. Alle als **handgeschriebenes SVG im HTML**, nicht als
 Bilddateien. Verzeichnis in `data/figures.ts`, Zeichnungen unter
 `components/content/figures/`, eingesetzt über den Inhaltsblock
@@ -558,7 +558,7 @@ Drei Entscheidungen, die nicht offensichtlich sind:
 ## Suche
 
 Die Lupe in der Kopfzeile öffnet eine Suche über alle Inhalte – Bereichsseiten,
-33 Lernthemen mit ihren 99 Stufen, fünf Rechner, alle Kurse, Nachrichten,
+34 Lernthemen mit ihren 102 Stufen, acht Rechner, alle Kurse, Nachrichten,
 Tagesausgaben und die festen Seiten. Tastenkürzel: `Strg`/`Cmd` + `K`.
 
 Sie läuft vollständig im Browser, weil die Website statisch ausgeliefert wird
@@ -660,7 +660,7 @@ Seitenkopf. Welcher Stand ausgeliefert wird, darf keine Detektivarbeit sein.
 ## SEO
 
 - **Eigene Seite je Inhalt**, keine Anker auf einer Monolith-Seite: rund 300
-  indexierbare URLs, davon 99 Lernstufen-Seiten (33 Themen × 3 Stufen) und 134
+  indexierbare URLs, davon 102 Lernstufen-Seiten (34 Lernthemen × 3 Stufen) und 134
   Kursseiten.
 - **`lib/seo.ts`** erzeugt Title, Description, canonical, Open Graph und Twitter-Card
   zentral. Im Entwicklungsmodus warnt es, wenn Title (30–62 Zeichen) oder Description
@@ -717,8 +717,15 @@ auf `/ueber-uns` über `getLearnStats()` und `getCompleteTopics()`, im Lernberei
 sonst ins Browser-Bundle zöge, steht die Zahl einmal als Konstante und wird beim
 Bauen gegen die Wirklichkeit geprüft (`LEARN_TOPIC_COUNT`).
 
-Was strukturell feststeht – „drei Stufen“, „fünf Rechner“ – darf im Text stehen.
-Was mit den Daten wächst, nicht.
+Was strukturell feststeht – „drei Stufen“, „vier Fragen je Stufe“ – darf im Text
+stehen. Was mit den Daten wächst, nicht: Genau hier stand bis Juli 2026 „fünf
+Rechner“, während es acht waren. Der Satz über die Regel verstieß gegen die
+Regel.
+
+Seit `npm run frische` wird das geprüft. Das Skript hält die Zahlen im Fließtext
+gegen die tatsächlichen und meldet jede Abweichung mit Datei und Zeile – beim
+ersten Lauf waren es sechs, darunter eine überholte Themenzahl an drei Stellen dieser
+Datei.
 
 ## Was noch fehlt
 
@@ -776,10 +783,10 @@ hier einen Punkt erledigt, streicht ihn hier.**
 
 ### Erledigt, hier nur noch als Beleg
 
-- **Fließtext:** alle 99 Stufen stehen auf `status: 'complete'`; den Status `outline`
+- **Fließtext:** alle 102 Stufen stehen auf `status: 'complete'`; den Status `outline`
   gibt es in `data/learn/topics/` nicht mehr.
-- **Quizfragen:** 396 Fragen, vier je Stufe, alle 99 Stufen abgedeckt.
-- **Erklärgrafiken:** 100 Zeichnungen an 103 Stellen, jede Stufe hat mindestens eine.
+- **Quizfragen:** 408 Fragen, vier je Stufe, alle 102 Stufen abgedeckt.
+- **Erklärgrafiken:** 109 Zeichnungen an 103 Stellen, jede Stufe hat mindestens eine.
 - **Unternehmensphilosophie:** `PHILOSOPHY_PUBLISHED` steht auf `true`, die Seite ist
   in der Sitemap.
 

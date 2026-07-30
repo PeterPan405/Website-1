@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { Breitenverlauf } from '@/components/markets/Breitenverlauf'
 import { QuoteRow } from '@/components/markets/QuoteRow'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -9,6 +10,7 @@ import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { brancheSlug } from '@/lib/branche-slug'
+import { getBreiteneinordnung, getBreitenverlauf } from '@/lib/breitenverlauf'
 import { formatDateTime, formatNumber, formatPercentSigned } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { baueMarktbericht, lagesatz } from '@/lib/marktbericht'
@@ -40,6 +42,19 @@ export default async function TagesbildSeite() {
 
   const nachSymbol = new Map(aktien.map((quote) => [quote.symbol, quote]))
   const stand = aktien[0]?.asOf
+
+  /*
+    Die Einordnung der heutigen Breite in den bisherigen Verlauf.
+
+    Sie ist der eigentliche Zweck der Aufzeichnung: „49 Prozent“ bedeutet für
+    sich genommen nichts. Solange zu wenig Geschichte da ist, sagt der Satz
+    genau das, statt aus drei Tagen einen Maßstab zu machen.
+  */
+  const verlauf = getBreitenverlauf()
+  const { einordnung, satz } = getBreiteneinordnung(
+    bericht.breiteProzent,
+    stand?.slice(0, 10)
+  )
 
   return (
     <>
@@ -107,7 +122,30 @@ export default async function TagesbildSeite() {
           <p>
             Hier gilt: <strong>{lagesatz(bericht)}</strong>
           </p>
+          {/*
+            Der Vergleich mit den bisherigen Tagen. Er steht in derselben Box
+            wie die Erklärung, weil er dieselbe Frage beantwortet: Was heißt
+            diese Zahl?
+          */}
+          <p>{satz}</p>
         </Callout>
+
+        {verlauf.length >= 2 && (
+          <section aria-labelledby="breitenverlauf" className="mt-12">
+            <h2 id="breitenverlauf" className="text-fg text-2xl font-bold">
+              Wie breit der Markt zuletzt war
+            </h2>
+            <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+              Aufgezeichnet wird beim Kursabruf, ein Wert je Handelstag. Die Reihe beginnt
+              an dem Tag, an dem diese Aufzeichnung eingeführt wurde – sie reicht also
+              nicht weiter zurück, als hier zu sehen ist, und das ist keine Aussage über
+              den Markt vor dieser Zeit.
+              {einordnung &&
+                ` Über die bisherigen ${einordnung.tage} Tage liegt der Median bei ${Math.round(einordnung.median)} Prozent.`}
+            </p>
+            <Breitenverlauf reihe={verlauf} />
+          </section>
+        )}
 
         {bericht.starkeBranchen.length > 0 && (
           <section aria-labelledby="branchen" className="mt-12">

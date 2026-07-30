@@ -7,8 +7,8 @@
  * ## Warum keine zweite Fassung der Website
  *
  * Der naheliegende Weg wäre ein zweiter Routenbaum unter `/en` mit übersetzten
- * Inhalten. Dagegen spricht der Umfang: Unter `data/` stehen 99 Lernstufen,
- * 396 Quizfragen, über 500 Aktienbeschreibungen und die Tagesausgaben – rund
+ * Inhalten. Dagegen spricht der Umfang: Unter `data/` stehen 102 Lernstufen,
+ * 408 Quizfragen, über 500 Aktienbeschreibungen und die Tagesausgaben – rund
  * eine Viertelmillion Wörter. Eine Maschinenübersetzung davon ungelesen zu
  * veröffentlichen wäre bei Finanzthemen unverantwortlich, und eine geprüfte
  * Übersetzung ist Monatsarbeit, keine Funktion.
@@ -17,7 +17,7 @@
  * für Text, und zwar mit dem Übersetzer, den moderne Browser eingebaut haben.
  * Der läuft auf dem Gerät – es verlässt kein Text die Maschine des Besuchers.
  * Das ist nicht nur datenschutzrechtlich der saubere Weg, es funktioniert auch
- * auf allen 741 Seiten gleich gut, ohne dass eine einzige davon doppelt
+ * auf allen 1.395 Seiten gleich gut, ohne dass eine einzige davon doppelt
  * gepflegt werden muss.
  *
  * ## Was passiert, wenn der Browser das nicht kann
