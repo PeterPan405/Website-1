@@ -418,7 +418,15 @@ export default async function MarketsOverviewPage() {
             >
               Vergleich
             </Link>{' '}
-            nebeneinander.
+            nebeneinander. Wen vor allem interessiert, was ausgeschüttet wird, findet das
+            gesammelt bei den{' '}
+            <Link
+              href="/maerkte/dividenden"
+              className="text-markets font-medium underline underline-offset-2"
+            >
+              Dividenden
+            </Link>
+            .
           </p>
           <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
             {stockQuotes.map((quote) => (

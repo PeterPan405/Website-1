@@ -138,11 +138,27 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
   })
 
   eintraege.push({
+    title: 'Korrekturen',
+    href: '/news/korrekturen',
+    kind: 'Bereich',
+    hint: 'Was nach der Veröffentlichung an Artikeln geändert wurde und warum.',
+    keywords: ['korrektur', 'fehler', 'berichtigung', 'aktualisiert', 'transparenz'],
+  })
+
+  eintraege.push({
     title: 'Startseite',
     href: '/',
     kind: 'Bereich',
     hint: 'Der Einstieg: Kurse, Nachrichten, Lernbereich, Akademie, Rechner und der Globus auf einen Blick.',
     keywords: ['start', 'startseite', 'home', 'uebersicht', 'im invests'],
+  })
+
+  eintraege.push({
+    title: 'Alle Erklärgrafiken',
+    href: '/lernen/grafiken',
+    kind: 'Bereich',
+    hint: 'Über hundert eigene Zeichnungen an einer Stelle – zum Wiederfinden und zum Durchsehen.',
+    keywords: ['grafik', 'grafiken', 'zeichnung', 'bild', 'schaubild', 'erklaergrafik'],
   })
 
   eintraege.push({
@@ -265,6 +281,21 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       'besser',
       'welche aktie',
       'duell',
+    ],
+  })
+  eintraege.push({
+    title: 'Dividenden im Überblick',
+    href: '/maerkte/dividenden',
+    kind: 'Bereich',
+    hint: 'Wer zahlt wie viel, in welchem Rhythmus und seit wann ohne Kürzung',
+    keywords: [
+      'dividende',
+      'dividenden',
+      'ausschuettung',
+      'rendite',
+      'dividendenrendite',
+      'quartalsdividende',
+      'auszahlung',
     ],
   })
   eintraege.push({

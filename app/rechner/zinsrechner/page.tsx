@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { CalculatorPage } from '@/components/calculators/CalculatorPage'
+import { Sequenztafel } from '@/components/calculators/Sequenztafel'
 import { Zinsstand } from '@/components/calculators/Zinsstand'
 import { CompoundInterestCalculator } from '@/components/calculators/CompoundInterestCalculator'
 import { getCalculatorDefinition } from '@/data/calculators'
@@ -26,6 +27,14 @@ export default function ZinsrechnerPage() {
         hängen, und ohne ihn steht jede eingestellte Prozentzahl im luftleeren
         Raum.
       */}
+      {/*
+        Das Sequenzrisiko am echten Verlauf. `lib/sequenzrisiko.ts` war gebaut
+        und geprüft und wurde an genau einer Stelle benutzt: für eine Zeichnung
+        mit ausgedachten Zahlen. Hier steht es an dem Ort, an dem es zählt –
+        neben einem Rechner, der mit einer konstanten Rendite arbeitet.
+      */}
+      <Sequenztafel className="mt-12" />
+
       <Zinsstand
         reihen={['leitzins', 'inflation']}
         titel="Wo die Zinsen gerade stehen"

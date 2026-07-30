@@ -52,6 +52,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/'), changeFrequency: 'daily', priority: 1 },
     { url: absoluteUrl('/lernen'), changeFrequency: 'weekly', priority: 0.9 },
+    // Das Schaufenster aller Erklärgrafiken.
+    { url: absoluteUrl('/lernen/grafiken'), changeFrequency: 'monthly', priority: 0.6 },
     { url: absoluteUrl('/rechner'), changeFrequency: 'monthly', priority: 0.9 },
     { url: absoluteUrl('/maerkte'), changeFrequency: 'hourly', priority: 0.8 },
     {
@@ -59,6 +61,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(latestNewsDate),
       changeFrequency: 'daily',
       priority: 0.8,
+    },
+    {
+      // Die Korrektursammlung – sie steht auch dann, wenn sie leer ist.
+      url: absoluteUrl('/news/korrekturen'),
+      changeFrequency: 'monthly',
+      priority: 0.4,
     },
     {
       // Das Archiv wächst mit jeder Ausgabe – der jüngste Tag ist der Änderungsstand.
@@ -157,6 +165,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl('/maerkte/branchen'), changeFrequency: 'weekly', priority: 0.7 },
     // Der Vergleich rechnet mit denselben Kursen und ändert sich mit ihnen.
     { url: absoluteUrl('/maerkte/vergleich'), changeFrequency: 'daily', priority: 0.7 },
+    /*
+      Die Dividendenrendite ist ein Bruch mit dem Kurs im Nenner – sie ändert
+      sich mit jedem Abruf, auch wenn keine Ausschüttung dazukam.
+    */
+    { url: absoluteUrl('/maerkte/dividenden'), changeFrequency: 'daily', priority: 0.7 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,

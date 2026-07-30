@@ -2,7 +2,16 @@ import type { Metadata } from 'next'
 
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { formatDate } from '@/lib/format'
+import { laendernamen } from '@/data/laender/namen'
+import {
+  aktienGesamt,
+  fehlendeNachLand,
+  fundamentalAbdeckung,
+  quellenlage,
+} from '@/lib/abdeckung'
+import { getDividendenAbdeckung } from '@/lib/dividendentermine'
+import { formatDate, formatPercent } from '@/lib/format'
+import { getQuartalsterminAbdeckung } from '@/lib/quartalstermine'
 import { getQuellengruppen, type Quelleneintrag } from '@/lib/quellen'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
@@ -37,8 +46,57 @@ export const metadata: Metadata = buildMetadata({
  * nicht mehr zuordnen lässt, worauf sich ein bestimmter Satz stützt – und weil
  * genau diese Zuordnung eine Zusammenfassung von einer Behauptung unterscheidet.
  */
+/**
+ * Die Abdeckung, aus denselben Beständen gezählt, aus denen die Seiten lesen.
+ *
+ * Abgeleitet und nicht abgetippt: Eine hier eingetragene Prozentzahl wäre nach
+ * dem nächsten Datenlauf falsch, ohne dass es jemandem auffiele.
+ */
+async function baueAbdeckung() {
+  const gesamt = aktienGesamt()
+  const fundamental = fundamentalAbdeckung()
+  const dividenden = getDividendenAbdeckung()
+  const quartale = getQuartalsterminAbdeckung()
+
+  return {
+    aktien: gesamt,
+    felder: [
+      {
+        feld: 'Kursverlauf',
+        belegt: gesamt,
+        gesamt,
+        erlaeuterung:
+          'Jede geführte Aktie – ohne Kursreihe stünde sie gar nicht erst im Katalog.',
+      },
+      {
+        feld: 'Dividendenhistorie',
+        belegt: dividenden.mitZahlungen,
+        gesamt: dividenden.aktien,
+        erlaeuterung:
+          'Wo keine steht, zahlt das Unternehmen entweder nichts oder die Quelle meldet es nicht.',
+      },
+      {
+        feld: 'Unternehmenszahlen',
+        belegt: fundamental.belegt,
+        gesamt: fundamental.gesamt,
+        erlaeuterung:
+          'Umsatz, Gewinn, Eigenkapital und Aktienzahl aus den Pflichtmeldungen der Börsenaufsichten.',
+      },
+      {
+        feld: 'Quartalstermine',
+        belegt: quartale.unternehmen,
+        gesamt: quartale.aktienGesamt,
+        erlaeuterung:
+          'Aus dem bisherigen Meldemuster abgeleitet – möglich nur, wo es überhaupt veröffentlichte Meldungen gibt.',
+      },
+    ],
+    fehlend: fehlendeNachLand(laendernamen).slice(0, 10),
+  }
+}
+
 export default async function QuellenPage() {
   const gruppen = await getQuellengruppen()
+  const abdeckung = await baueAbdeckung()
   const anzahl = gruppen.reduce((summe, gruppe) => summe + gruppe.eintraege.length, 0)
   const nachLizenz = gruppen
     .flatMap((gruppe) => gruppe.eintraege)
@@ -110,6 +168,73 @@ export default async function QuellenPage() {
               </ul>
             </section>
           ))}
+
+          {/*
+            Die Abdeckung – wie vollständig die Daten tatsächlich sind.
+
+            Sie gehört auf diese Seite und nirgendwo sonst hin: Wer sagt, woher
+            seine Zahlen kommen, sollte auch sagen, zu wie vielen Titeln er
+            keine hat. Bis Juli 2026 stand diese Auskunft ausschließlich im
+            Projektverzeichnis, also an einem Ort, den ein Besucher nicht
+            erreicht.
+          */}
+          <section aria-labelledby="abdeckung" className="mt-14">
+            <h2 id="abdeckung" className="text-fg text-2xl font-bold tracking-tight">
+              Wie vollständig diese Daten sind
+            </h2>
+            <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+              Nicht jede der {abdeckung.aktien} geführten Aktien hat jede Angabe. Die
+              Lücke ist keine gleichmäßige Ausdünnung, sondern hängt an den Meldepflichten
+              einzelner Länder – und deshalb steht hier, wo sie sitzt.
+            </p>
+
+            <dl className="border-border mt-6 border-t">
+              {abdeckung.felder.map((feld) => (
+                <div
+                  key={feld.feld}
+                  className="border-border flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b py-3"
+                >
+                  <dt className="text-fg text-sm font-medium">
+                    {feld.feld}
+                    <span className="text-fg-subtle block text-xs font-normal">
+                      {feld.erlaeuterung}
+                    </span>
+                  </dt>
+                  <dd className="text-fg font-medium tabular-nums">
+                    {feld.belegt} von {feld.gesamt}
+                    <span className="text-fg-subtle ml-2 text-sm font-normal">
+                      {formatPercent((feld.belegt / feld.gesamt) * 100, 0)}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <h3 className="text-fg mt-8 text-base font-semibold">
+              Wo die Unternehmenszahlen fehlen
+            </h3>
+            <p className="text-fg-muted mt-1 max-w-2xl text-sm leading-relaxed">
+              Die zehn größten Blöcke, nach Sitzland des Unternehmens. Dahinter steht,
+              woran es liegt – meistens an einer Meldepflicht, die es nicht gibt, oder an
+              einer Quelle, die einen Zugangsschlüssel verlangt.
+            </p>
+            <ul className="border-border mt-3 border-t text-sm">
+              {abdeckung.fehlend.map((eintrag) => (
+                <li
+                  key={eintrag.land}
+                  className="border-border flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b py-2.5"
+                >
+                  <span className="text-fg font-medium">
+                    {eintrag.land}
+                    <span className="text-fg-subtle ml-2 font-normal">
+                      {quellenlage[eintrag.land] ?? 'nicht untersucht'}
+                    </span>
+                  </span>
+                  <span className="text-fg-muted tabular-nums">{eintrag.anzahl}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           <section aria-labelledby="rechtliches" className="mt-14">
             <h2 id="rechtliches" className="text-fg text-2xl font-bold tracking-tight">

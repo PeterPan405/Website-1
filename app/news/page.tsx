@@ -138,6 +138,14 @@ export default async function NewsOverviewPage() {
               der Nachrichten-Feed
             </a>{' '}
             – lesbar in jedem Newsreader, ohne dass diese Website etwas über dich erfährt.
+            Was nach der Veröffentlichung an einem Artikel geändert wurde, steht bei den{' '}
+            <Link
+              href="/news/korrekturen"
+              className="text-news font-medium underline underline-offset-2"
+            >
+              Korrekturen
+            </Link>
+            .
           </p>
         </section>
 

@@ -142,3 +142,37 @@ export function entferneAusMerkliste(symbol: string) {
 export function leereMerkliste() {
   write(EMPTY)
 }
+
+/**
+ * Fügt Symbole hinzu, ohne vorhandene zu verlieren.
+ *
+ * ## Warum ergänzt und nicht ersetzt
+ *
+ * Weil ein Code eingelesen wird, um Listen zusammenzuführen – vom Telefon auf
+ * den Rechner. Wer dabei die vorhandene Liste überschreibt, hat zwei Geräte
+ * mit derselben Liste und eine gelöschte dazwischen. Ersetzen ist die
+ * gefährlichere Voreinstellung, und sie lässt sich mit einem Klick auf
+ * „Leeren“ auch herstellen.
+ *
+ * Der Zeitpunkt des Merkens kommt nicht aus dem Code, sondern von jetzt: Wann
+ * jemand einen Titel ins Auge gefasst hat, ist eine Angabe über den Menschen
+ * und gehört nicht in etwas, das weitergegeben wird.
+ *
+ * @returns Wie viele tatsächlich neu dazugekommen sind.
+ */
+export function ergaenzeMerkliste(symbole: readonly string[]): number {
+  const jetzt = read()
+  const vorhanden = new Set(jetzt.map((eintrag) => eintrag.symbol))
+  const neue = symbole.filter((symbol) => !vorhanden.has(symbol))
+  if (neue.length === 0) return 0
+
+  const zeitpunkt = new Date().toISOString()
+  const ergaenzt = [...jetzt, ...neue.map((symbol) => ({ symbol, at: zeitpunkt }))]
+  write(ergaenzt.slice(0, HOECHSTZAHL))
+  /*
+    Gemeldet wird, was tatsächlich in der Liste gelandet ist. Bei Überschreiten
+    der Höchstzahl fällt der Rest heraus – „zwölf hinzugefügt“ zu melden und
+    dann acht anzuzeigen wäre eine Unwahrheit an der unauffälligsten Stelle.
+  */
+  return Math.max(0, read().length - jetzt.length)
+}
