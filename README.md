@@ -479,6 +479,52 @@ existieren. Stimmt etwas nicht, bricht der Build ab, statt eine fehlerhafte
 Ausgabe zu veröffentlichen – die Ausgaben entstehen automatisch, also darf ein
 Fehler darin nicht still durchgehen.
 
+## Podcast
+
+Unter `/podcast` stehen die Folgen des Podcasts, jede mit eigener Adresse unter
+`/podcast#<slug>`. Sie kommen aus dem **RSS-Feed** des Podcast-Hosters, nicht
+aus der Spotify-Schnittstelle: Die verlangt eine Registrierung als Anwendung
+samt Geheimnis und gibt Folgen nur nach OAuth heraus, während der Feed ohne
+Zugangsdaten lesbar ist und beim Hoster liegt – zieht der Podcast auf eine
+andere Plattform, bleibt er derselbe.
+
+| Datei                           | Aufgabe                                                         |
+| ------------------------------- | --------------------------------------------------------------- |
+| `lib/podcast-feed.ts`           | zerlegt den Feed, ohne Importe und daher unter `tests/` prüfbar |
+| `scripts/podcast-abrufen.ts`    | holt den Feed und schreibt die Momentaufnahme                   |
+| `lib/podcast.ts`                | die Service-Schicht für die Seiten                              |
+| `.github/workflows/podcast.yml` | ruft täglich ab und committet bei Änderung                      |
+
+**Damit Folgen erscheinen, muss die Feed-Adresse hinterlegt werden.** Sie steht
+im Verwaltungsbereich des Hosters (bei „Spotify for Creators" unter
+_Settings → Distribution_) und gehört unter _GitHub → Settings → Secrets and
+variables → Actions_ in die **Variablen** unter dem Namen `PODCAST_RSS_URL` –
+nicht in die Secrets: Ein Podcast-Feed ist öffentlich, jeder Abspieler liest
+ihn. Aus der Spotify-Adresse allein lässt sie sich nicht ableiten, und geraten
+wird sie nicht: Ein falscher Feed brächte fremde Folgen unter unserem Namen auf
+die Seite.
+
+Ohne diese Angabe bleibt die Liste leer. Das ist ein gültiger Zustand: Die
+Seite steht trotzdem und verweist auf Spotify.
+
+Drei Entscheidungen, die nicht offensichtlich sind:
+
+- **Eine Seite mit Sprungmarken, nicht eine Seite je Folge.** Erst der zwingende
+  Grund: Ein `[slug]`-Verzeichnis, dessen `generateStaticParams()` eine leere
+  Liste zurückgibt, bricht den Build ab – `output: export` verlangt mindestens
+  eine vorgerenderte Adresse, und genau dieser Zustand liegt ohne Feed-Adresse
+  vor. Der Fehler kam erst im Build, nicht in `tsc` oder `lint`. Dann der
+  inhaltliche: Was ein Feed je Folge hergibt, sind ein Titel, ein Datum und ein
+  Ankündigungsabsatz – daraus entstünden dünne Seiten. Eine eigene Adresse hat
+  jede Folge trotzdem, genau wie jeder Glossarbegriff unter `/glossar#<slug>`.
+- **Kein eingebetteter Abspieler.** Er lädt beim bloßen Seitenaufruf die Skripte
+  seines Anbieters nach und setzt Kennungen, bevor jemand auf „Play" gedrückt
+  hat. Verlinkt wird die Folge, gehört wird sie beim Anbieter.
+- **Was einmal im Bestand war, bleibt darin.** Viele Hoster liefern nur die
+  letzten fünfzig oder hundert Folgen aus. Wer den Feed eins zu eins übernimmt,
+  löscht die älteren aus dem Bestand – und jede Sprungmarke, die je
+  weitergegeben wurde, zeigt ins Leere.
+
 ## Suche
 
 Die Lupe in der Kopfzeile öffnet eine Suche über alle Inhalte – Bereichsseiten,

@@ -272,6 +272,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },
+      { label: 'Podcast', href: '/podcast' },
       { label: 'Globus', href: '/globus' },
       { label: 'Kalender', href: '/kalender' },
       { label: 'Staatsverschuldung', href: '/staatsverschuldung' },
