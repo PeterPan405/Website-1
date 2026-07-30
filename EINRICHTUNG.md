@@ -159,7 +159,7 @@ Am Ende des Protokolls stehen die Zeilen, auf die es ankommt:
 ```
 Davon über Twelve Data nachgeholt: …
 
-Stand: … von 529 Aktien mit Terminen, … ohne.
+Stand: … von 1.029 Aktien mit Terminen, … ohne.
 ```
 
 Ab dann läuft der Abruf montags um 05:00 UTC von allein.

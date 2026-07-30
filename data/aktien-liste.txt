@@ -483,3 +483,543 @@ check-point|CHKP|Check Point Software|376|USD|Software|Verkauft Firewalls und So
 cyberark|CYBR|CyberArk Software|376|USD|Software|Sichert Zugänge mit erweiterten Rechten in Unternehmensnetzen
 nice-ltd|NICE|NICE|376|USD|Software|Liefert Software für Kundendienstzentren und Betrugserkennung
 teva|TEVA|Teva Pharmaceutical|376|USD|Pharma|Stellt Nachahmermedikamente in sehr großem Umfang her
+
+# ===========================================================================
+# Erweiterung um 500 Werte – zweite Ausbaustufe
+#
+# Die erste Fassung dieser Liste deckte 29 Länder ab, mit deutlichem
+# Schwerpunkt auf den Vereinigten Staaten, Deutschland und Japan. Dieser
+# Abschnitt verdoppelt den Umfang und schließt vor allem die weißen Flecken:
+# Türkei, Südafrika, Saudi-Arabien, Katar, Thailand, Malaysia, Indonesien,
+# die Philippinen, Chile, Argentinien, Peru, Griechenland, Ungarn,
+# Tschechien, Neuseeland und Luxemburg standen vorher gar nicht darin.
+#
+# Zu den Untereinheiten: Johannesburg notiert in Cent (ZAc), Tel Aviv in
+# Agorot (ILA) – wie London in Pence. Beide sind in lib/waehrungseinheit.ts
+# eingetragen, sonst lägen die Kennzahlen dieser Werte um den Faktor 100
+# daneben.
+# ===========================================================================
+
+# ----------------------------------------------------- Vereinigte Staaten
+walt-disney|DIS|Walt Disney|840|USD|Medien|Betreibt Filmstudios, Freizeitparks und den Streamingdienst Disney+
+comcast|CMCSA|Comcast|840|USD|Medien|Verkauft Kabelanschlüsse, betreibt NBCUniversal und Freizeitparks
+verizon|VZ|Verizon Communications|840|USD|Telekommunikation|Betreibt das größte Mobilfunknetz der USA nach Umsatz
+att|T|AT&T|840|USD|Telekommunikation|Verkauft Mobilfunk- und Glasfaseranschlüsse in den USA
+t-mobile-us|TMUS|T-Mobile US|840|USD|Telekommunikation|Betreibt das drittgrößte US-Mobilfunknetz, Mehrheitseigner ist die Deutsche Telekom
+philip-morris|PM|Philip Morris International|840|USD|Konsum|Verkauft Zigaretten und Tabakerhitzer außerhalb der USA
+altria|MO|Altria Group|840|USD|Konsum|Verkauft Marlboro und andere Tabakmarken innerhalb der USA
+mondelez|MDLZ|Mondelez International|840|USD|Lebensmittel|Stellt Kekse und Schokolade her, darunter Oreo und Milka
+kraft-heinz|KHC|Kraft Heinz|840|USD|Lebensmittel|Stellt Ketchup, Käseprodukte und Fertiggerichte her
+general-mills|GIS|General Mills|840|USD|Lebensmittel|Stellt Frühstücksflocken, Joghurt und Tierfutter her
+hershey|HSY|Hershey|840|USD|Lebensmittel|Stellt Schokolade und Süßwaren vor allem für den US-Markt her
+kimberly-clark|KMB|Kimberly-Clark|840|USD|Konsum|Stellt Papiertaschentücher, Windeln und Hygieneartikel her
+colgate|CL|Colgate-Palmolive|840|USD|Konsum|Verkauft Zahnpasta, Seifen und Tierfutter weltweit
+estee-lauder|EL|Estée Lauder|840|USD|Konsum|Verkauft Kosmetik und Parfüm über Kaufhäuser und Reisehandel
+clorox|CLX|Clorox|840|USD|Konsum|Stellt Reinigungsmittel, Bleiche und Haushaltsartikel her
+sysco|SYY|Sysco|840|USD|Handel|Beliefert Restaurants und Kantinen mit Lebensmitteln
+kroger|KR|Kroger|840|USD|Handel|Betreibt eine der größten Supermarktketten der USA
+target|TGT|Target|840|USD|Handel|Betreibt Kaufhäuser mit Schwerpunkt auf Kleidung und Haushaltswaren
+dollar-general|DG|Dollar General|840|USD|Handel|Betreibt Kleinpreisläden vor allem in ländlichen Gegenden
+tjx|TJX|TJX Companies|840|USD|Handel|Verkauft Restposten von Markenkleidung über TK Maxx und Marshalls
+lowes|LOW|Lowe's|840|USD|Handel|Betreibt Baumärkte für Heimwerker und Handwerksbetriebe
+autozone|AZO|AutoZone|840|USD|Handel|Verkauft Autoersatzteile über eigene Filialen
+oreilly|ORLY|O'Reilly Automotive|840|USD|Handel|Verkauft Autoersatzteile an Werkstätten und Privatkunden
+starbucks|SBUX|Starbucks|840|USD|Konsum|Betreibt Kaffeehäuser in Eigenregie und über Lizenznehmer
+chipotle|CMG|Chipotle Mexican Grill|840|USD|Konsum|Betreibt Schnellrestaurants ohne Franchise-Modell
+yum-brands|YUM|Yum! Brands|840|USD|Konsum|Vergibt Lizenzen für KFC, Pizza Hut und Taco Bell
+marriott|MAR|Marriott International|840|USD|Gastgewerbe|Führt Hotelmarken und betreibt Häuser überwiegend über Verträge statt Eigentum
+hilton|HLT|Hilton Worldwide|840|USD|Gastgewerbe|Vergibt Hotellizenzen und führt Buchungssysteme und Treueprogramme
+booking|BKNG|Booking Holdings|840|USD|Reise|Vermittelt Hotelübernachtungen über Booking.com und Priceline
+royal-caribbean|RCL|Royal Caribbean|840|USD|Reise|Betreibt Kreuzfahrtschiffe und eigene Inselziele
+carnival|CCL|Carnival|840|USD|Reise|Betreibt die größte Kreuzfahrtflotte der Welt unter mehreren Marken
+las-vegas-sands|LVS|Las Vegas Sands|840|USD|Glücksspiel|Betreibt Kasinoresorts in Macau und Singapur
+mgm-resorts|MGM|MGM Resorts|840|USD|Glücksspiel|Betreibt Kasinos am Las Vegas Strip und in Macau
+draftkings|DKNG|DraftKings|840|USD|Glücksspiel|Nimmt Sportwetten über eine App in einzelnen US-Bundesstaaten an
+cintas|CTAS|Cintas|840|USD|Dienstleistung|Vermietet und reinigt Arbeitskleidung für Betriebe
+paychex|PAYX|Paychex|840|USD|Dienstleistung|Rechnet Löhne für kleine und mittlere Unternehmen ab
+adp|ADP|Automatic Data Processing|840|USD|Dienstleistung|Rechnet Löhne ab und verwaltet Personaldaten für Großkunden
+global-payments|GPN|Global Payments|840|USD|Zahlungsverkehr|Rechnet Kartenzahlungen für Händler ab
+fis|FIS|Fidelity National Information Services|840|USD|Zahlungsverkehr|Betreibt Kernbanksysteme und Zahlungsabwicklung für Banken
+fico|FICO|Fair Isaac|840|USD|Finanzdienste|Berechnet die in den USA verbreitetste Kreditwürdigkeitsnote
+moodys|MCO|Moody's|840|USD|Finanzdienste|Bewertet die Kreditwürdigkeit von Staaten und Unternehmen
+sp-global|SPGI|S&P Global|840|USD|Finanzdienste|Bewertet Kreditwürdigkeit und betreibt die S&P-Indexfamilie
+msci-inc|MSCI|MSCI|840|USD|Finanzdienste|Baut und lizenziert Aktienindizes, darunter den MSCI World
+nasdaq-inc|NDAQ|Nasdaq|840|USD|Börsen|Betreibt die Nasdaq-Börse und verkauft Handelstechnik
+cme-group|CME|CME Group|840|USD|Börsen|Betreibt die größte Terminbörse der Welt
+ice|ICE|Intercontinental Exchange|840|USD|Börsen|Betreibt die New York Stock Exchange und Rohstoffterminmärkte
+t-rowe-price|TROW|T. Rowe Price|840|USD|Beteiligungen|Verwaltet aktiv gemanagte Fonds und Altersvorsorgedepots
+capital-one|COF|Capital One Financial|840|USD|Banken|Vergibt Kreditkarten und Autokredite an breite Kundenschichten
+discover|DFS|Discover Financial|840|USD|Banken|Gibt Kreditkarten aus und betreibt ein eigenes Kartennetz
+allstate|ALL|Allstate|840|USD|Versicherungen|Versichert Autos und Wohngebäude in den USA
+travelers|TRV|Travelers|840|USD|Versicherungen|Versichert Gewerbe- und Privatrisiken in Nordamerika
+aig|AIG|American International Group|840|USD|Versicherungen|Zeichnet gewerbliche Sach- und Haftungsrisiken weltweit
+humana|HUM|Humana|840|USD|Gesundheit|Führt Krankenversicherungen für ältere Menschen im Medicare-Programm
+centene|CNC|Centene|840|USD|Gesundheit|Verwaltet staatlich finanzierte Krankenversicherungen für Geringverdiener
+labcorp|LH|Labcorp|840|USD|Gesundheit|Betreibt medizinische Labore und führt Studien für Pharmafirmen durch
+edwards|EW|Edwards Lifesciences|840|USD|Medizintechnik|Stellt künstliche Herzklappen und Überwachungssysteme her
+zimmer-biomet|ZBH|Zimmer Biomet|840|USD|Medizintechnik|Stellt künstliche Hüft- und Kniegelenke her
+resmed|RMD|ResMed|840|USD|Medizintechnik|Stellt Geräte gegen Schlafapnoe und Beatmungshilfen her
+dexcom|DXCM|Dexcom|840|USD|Medizintechnik|Stellt Sensoren zur laufenden Blutzuckermessung her
+agilent|A|Agilent Technologies|840|USD|Medizintechnik|Baut Messgeräte für Labore in Chemie und Biotechnik
+iqvia|IQV|IQVIA|840|USD|Gesundheit|Führt klinische Studien durch und verkauft Gesundheitsdaten
+alnylam|ALNY|Alnylam Pharmaceuticals|840|USD|Pharma|Entwickelt Medikamente, die gezielt Gene stumm schalten
+corteva|CTVA|Corteva|840|USD|Chemie|Verkauft Saatgut und Pflanzenschutzmittel an Landwirte
+mosaic|MOS|Mosaic|840|USD|Chemie|Fördert Phosphat und Kali für Düngemittel
+albemarle|ALB|Albemarle|840|USD|Chemie|Gewinnt Lithium für Batterien und stellt Spezialchemikalien her
+ppg|PPG|PPG Industries|840|USD|Chemie|Stellt Farben und Lacke für Industrie und Bau her
+international-paper|IP|International Paper|840|USD|Papier|Stellt Wellpappe und Verpackungspapier her
+ball|BALL|Ball Corporation|840|USD|Verpackung|Stellt Getränkedosen aus Aluminium her
+crown-holdings|CCK|Crown Holdings|840|USD|Verpackung|Stellt Getränke- und Konservendosen weltweit her
+steel-dynamics|STLD|Steel Dynamics|840|USD|Stahl|Erzeugt Stahl aus Schrott in Elektrolichtbogenöfen
+alcoa|AA|Alcoa|840|USD|Bergbau|Fördert Bauxit und erzeugt Aluminium
+rockwell|ROK|Rockwell Automation|840|USD|Industrie|Baut Steuerungen für Fabriken und Fertigungsanlagen
+trane|TT|Trane Technologies|840|USD|Industrie|Baut Klima- und Kühlanlagen für Gebäude und Transport
+carrier|CARR|Carrier Global|840|USD|Industrie|Baut Klimaanlagen, Wärmepumpen und Kühltechnik
+otis|OTIS|Otis Worldwide|840|USD|Industrie|Baut Aufzüge und verdient vor allem an deren Wartung
+grainger|GWW|W.W. Grainger|840|USD|Handel|Liefert Betriebsbedarf und Werkzeuge an Industriekunden
+textron|TXT|Textron|840|USD|Luftfahrt|Baut Geschäftsflugzeuge, Hubschrauber und Rüstungsgüter
+howmet|HWM|Howmet Aerospace|840|USD|Luftfahrt|Gießt Turbinenschaufeln und Strukturteile für Flugzeuge
+huntington-ingalls|HII|Huntington Ingalls Industries|840|USD|Rüstung|Baut Flugzeugträger und U-Boote für die US-Marine
+leidos|LDOS|Leidos|840|USD|Rüstung|Erbringt Technikdienste für US-Behörden und das Militär
+quanta-services|PWR|Quanta Services|840|USD|Bau|Baut Stromnetze und Leitungen für Versorger
+prologis|PLD|Prologis|840|USD|Immobilien|Vermietet Logistikhallen an Händler und Speditionen
+american-tower|AMT|American Tower|840|USD|Immobilien|Vermietet Funkmasten an Mobilfunkbetreiber
+equinix|EQIX|Equinix|840|USD|Immobilien|Vermietet Stellplätze in Rechenzentren und verbindet Netze
+digital-realty|DLR|Digital Realty|840|USD|Immobilien|Vermietet Rechenzentrumsflächen an Cloud-Anbieter
+realty-income|O|Realty Income|840|USD|Immobilien|Vermietet Einzelhandelsflächen mit langen Laufzeiten und zahlt monatlich Dividende
+dr-horton|DHI|D.R. Horton|840|USD|Bau|Baut und verkauft Einfamilienhäuser in den USA
+lennar|LEN|Lennar|840|USD|Bau|Baut Wohnsiedlungen und vermittelt die Finanzierung mit
+occidental|OXY|Occidental Petroleum|840|USD|Energie|Fördert Öl in Texas und betreibt Anlagen zur CO2-Abscheidung
+marathon-petroleum|MPC|Marathon Petroleum|840|USD|Energie|Betreibt die größte Raffineriekapazität der USA
+valero|VLO|Valero Energy|840|USD|Energie|Verarbeitet Rohöl zu Benzin, Diesel und Ethanol
+phillips-66|PSX|Phillips 66|840|USD|Energie|Betreibt Raffinerien, Tankstellen und Pipelines
+halliburton|HAL|Halliburton|840|USD|Energie|Erbringt Bohr- und Fracking-Dienste für Ölkonzerne
+baker-hughes|BKR|Baker Hughes|840|USD|Energie|Liefert Bohrtechnik und Anlagen für Flüssigerdgas
+oneok|OKE|ONEOK|840|USD|Energie|Betreibt Pipelines und Verarbeitungsanlagen für Erdgas
+cheniere|LNG|Cheniere Energy|840|USD|Energie|Verflüssigt US-Erdgas und verschifft es nach Europa und Asien
+diamondback|FANG|Diamondback Energy|840|USD|Energie|Fördert Öl im Permischen Becken in Texas
+first-solar|FSLR|First Solar|840|USD|Energie|Stellt Dünnschicht-Solarmodule in eigenen Werken her
+ge-vernova|GEV|GE Vernova|840|USD|Energie|Baut Gasturbinen, Windräder und Netztechnik
+dominion|D|Dominion Energy|840|USD|Versorger|Versorgt Virginia und die Carolinas mit Strom
+american-water|AWK|American Water Works|840|USD|Versorger|Betreibt Wasser- und Abwassernetze in vielen US-Bundesstaaten
+microchip|MCHP|Microchip Technology|840|USD|Halbleiter|Stellt Mikrocontroller für Industrie und Autos her
+on-semiconductor|ON|ON Semiconductor|840|USD|Halbleiter|Stellt Leistungshalbleiter für Elektroautos und Solaranlagen her
+skyworks|SWKS|Skyworks Solutions|840|USD|Halbleiter|Stellt Funkchips für Mobiltelefone her
+teradyne|TER|Teradyne|840|USD|Halbleiter|Baut Prüfanlagen, mit denen fertige Chips getestet werden
+entegris|ENTG|Entegris|840|USD|Halbleiter|Liefert Reinstchemikalien und Filter für die Chipfertigung
+western-digital|WDC|Western Digital|840|USD|Elektronik|Stellt Festplatten für Rechenzentren her
+seagate|STX|Seagate Technology|840|USD|Elektronik|Stellt Festplatten mit hoher Speicherdichte her
+corning|GLW|Corning|840|USD|Elektronik|Stellt Spezialglas für Bildschirme und Glasfaser her
+keysight|KEYS|Keysight Technologies|840|USD|Elektronik|Baut Messgeräte für Funktechnik und Halbleiterentwicklung
+motorola-solutions|MSI|Motorola Solutions|840|USD|Sicherheit|Liefert Funksysteme und Videoüberwachung für Behörden
+arista|ANET|Arista Networks|840|USD|Technologie|Baut Netzwerkschalter für Rechenzentren
+dell|DELL|Dell Technologies|840|USD|Technologie|Verkauft Rechner und Serversysteme für Unternehmen
+hp-inc|HPQ|HP Inc.|840|USD|Technologie|Verkauft Drucker und Rechner und verdient an Tinte und Toner
+super-micro|SMCI|Super Micro Computer|840|USD|Technologie|Baut Server für KI-Rechenzentren nach Kundenwunsch
+cloudflare|NET|Cloudflare|840|USD|Software|Beschleunigt Websites und wehrt Angriffe über ein weltweites Netz
+autodesk|ADSK|Autodesk|840|USD|Software|Vermietet Konstruktionssoftware an Architekten und Ingenieure
+roper|ROP|Roper Technologies|840|USD|Software|Kauft Nischensoftware für einzelne Branchen und führt sie weiter
+veeva|VEEV|Veeva Systems|840|USD|Software|Liefert Software für Pharmaunternehmen und klinische Studien
+gartner|IT|Gartner|840|USD|Dienstleistung|Verkauft Marktanalysen und Beratung zu Technikeinkäufen
+cognizant|CTSH|Cognizant Technology Solutions|840|USD|Dienstleistung|Betreibt IT-Systeme für Konzerne, überwiegend aus Indien heraus
+electronic-arts|EA|Electronic Arts|840|USD|Unterhaltung|Entwickelt Sportspiele und verkauft Inhalte innerhalb der Spiele
+take-two|TTWO|Take-Two Interactive|840|USD|Unterhaltung|Entwickelt Grand Theft Auto und Sportspiele
+warner-bros-discovery|WBD|Warner Bros. Discovery|840|USD|Medien|Produziert Filme und Serien und betreibt den Streamingdienst HBO Max
+ebay|EBAY|eBay|840|USD|Handel|Betreibt einen Marktplatz für gebrauchte und neue Waren
+etsy|ETSY|Etsy|840|USD|Handel|Betreibt einen Marktplatz für handgemachte und alte Waren
+chewy|CHWY|Chewy|840|USD|Handel|Verkauft Tierfutter und Zubehör im Abonnement
+ulta-beauty|ULTA|Ulta Beauty|840|USD|Handel|Verkauft Kosmetik in eigenen Läden mit Friseursalon
+lululemon|LULU|Lululemon Athletica|840|USD|Konsum|Verkauft Sportkleidung über eigene Läden
+deckers|DECK|Deckers Outdoor|840|USD|Konsum|Verkauft Schuhe der Marken Ugg und Hoka
+pinterest|PINS|Pinterest|840|USD|Technologie|Verkauft Werbung neben Bildersammlungen der Nutzer
+snap|SNAP|Snap|840|USD|Technologie|Verkauft Werbung in der Foto-App Snapchat
+reddit|RDDT|Reddit|840|USD|Technologie|Verkauft Werbung in Diskussionsforen und lizenziert Daten für KI
+doordash|DASH|DoorDash|840|USD|Technologie|Liefert Essen und Waren über selbstständige Fahrer aus
+coinbase|COIN|Coinbase Global|840|USD|Finanzdienste|Betreibt einen Handelsplatz für Kryptowährungen
+robinhood|HOOD|Robinhood Markets|840|USD|Finanzdienste|Vermittelt Wertpapier- und Kryptohandel ohne Ordergebühr
+tyson-foods|TSN|Tyson Foods|840|USD|Lebensmittel|Verarbeitet Hühner-, Rind- und Schweinefleisch
+adm|ADM|Archer-Daniels-Midland|840|USD|Lebensmittel|Verarbeitet Ölsaaten und Mais zu Futter und Zutaten
+constellation-brands|STZ|Constellation Brands|840|USD|Getränke|Verkauft mexikanisches Bier und Wein in den USA
+monster-beverage|MNST|Monster Beverage|840|USD|Getränke|Verkauft Energiegetränke über das Netz von Coca-Cola
+keurig-dr-pepper|KDP|Keurig Dr Pepper|840|USD|Getränke|Verkauft Limonaden und Kaffeekapselsysteme
+wabtec|WAB|Westinghouse Air Brake|840|USD|Transport|Baut Lokomotiven und Bremssysteme für Züge
+carmax|KMX|CarMax|840|USD|Handel|Kauft und verkauft Gebrauchtwagen zu festen Preisen
+borgwarner|BWA|BorgWarner|840|USD|Automobil|Liefert Antriebsteile für Verbrenner und Elektroautos
+aptiv|APTV|Aptiv|840|USD|Automobil|Liefert Kabelsysteme und Fahrassistenztechnik an Autohersteller
+rivian|RIVN|Rivian Automotive|840|USD|Automobil|Baut Elektro-Pick-ups und Lieferwagen für Amazon
+duolingo|DUOL|Duolingo|840|USD|Bildung|Vermittelt Sprachunterricht über eine App mit Abonnement
+vertiv|VRT|Vertiv Holdings|840|USD|Industrie|Baut Kühlung und Stromversorgung für Rechenzentren
+
+# ----------------------------------------------------- Deutschland
+biontech|BNTX|BioNTech|276|USD|Pharma|Entwickelt Impfstoffe und Krebsmittel auf Basis von Boten-RNA
+deutsche-boerse|DB1.DE|Deutsche Börse|276|EUR|Börsen|Betreibt die Frankfurter Börse, Eurex und den Abwickler Clearstream
+hochtief|HOT.DE|Hochtief|276|EUR|Bau|Baut Verkehrswege und Rechenzentren, überwiegend außerhalb Deutschlands
+bilfinger|GBF.DE|Bilfinger|276|EUR|Industrie|Wartet und baut Anlagen für Chemie, Energie und Pharma um
+aurubis|NDA.DE|Aurubis|276|EUR|Bergbau|Schmilzt Kupfer aus Erz und Schrott und liefert Walzprodukte
+salzgitter|SZG.DE|Salzgitter|276|EUR|Stahl|Erzeugt Stahl und stellt Rohre und Grobblech her
+thyssenkrupp|TKA.DE|Thyssenkrupp|276|EUR|Industrie|Führt Stahl-, Anlagenbau- und Werftgeschäfte in einem Konzern
+k-s|SDF.DE|K+S|276|EUR|Chemie|Fördert Kali und Salz und verkauft Düngemittel
+wacker-chemie|WCH.DE|Wacker Chemie|276|EUR|Chemie|Stellt Polysilizium für Solarzellen und Silikone her
+siltronic|WAF.DE|Siltronic|276|EUR|Halbleiter|Fertigt Siliziumscheiben, auf denen Chips entstehen
+aixtron|AIXA.DE|Aixtron|276|EUR|Halbleiter|Baut Anlagen, die Halbleiterschichten aufwachsen lassen
+elmos|ELG.DE|Elmos Semiconductor|276|EUR|Halbleiter|Stellt Chips für Fahrzeugelektronik her
+jenoptik|JEN.DE|Jenoptik|276|EUR|Elektronik|Baut optische Messtechnik und Lasersysteme
+fraport|FRA.DE|Fraport|276|EUR|Transport|Betreibt den Frankfurter Flughafen und Beteiligungen im Ausland
+sixt|SIX2.DE|Sixt|276|EUR|Dienstleistung|Vermietet Autos und Transporter in Europa und Nordamerika
+cts-eventim|EVD.DE|CTS Eventim|276|EUR|Unterhaltung|Verkauft Veranstaltungskarten und betreibt eigene Arenen
+prosiebensat1|PSM.DE|ProSiebenSat.1 Media|276|EUR|Medien|Betreibt Fernsehsender und verkauft Werbezeit in Deutschland
+leg-immobilien|LEG.DE|LEG Immobilien|276|EUR|Immobilien|Vermietet Wohnungen in Nordrhein-Westfalen
+tag-immobilien|TEG.DE|TAG Immobilien|276|EUR|Immobilien|Vermietet Wohnungen in Ostdeutschland und Polen
+gerresheimer|GXI.DE|Gerresheimer|276|EUR|Medizintechnik|Stellt Glasfläschchen und Spritzen für Medikamente her
+stabilus|STM.DE|Stabilus|276|EUR|Industrie|Baut Gasdruckfedern und Dämpfer für Fahrzeuge und Möbel
+bechtle|BC8.DE|Bechtle|276|EUR|Technologie|Beschafft und betreut IT für Mittelstand und Behörden
+cancom|COK.DE|Cancom|276|EUR|Technologie|Richtet Cloud-Arbeitsplätze für Unternehmen ein
+teamviewer|TMV.DE|TeamViewer|276|EUR|Software|Vermietet Software für Fernzugriff und Fernwartung
+hensoldt|HAG.DE|Hensoldt|276|EUR|Rüstung|Baut Radar- und Sensortechnik für Militär und Grenzschutz
+renk|R3NK.DE|Renk|276|EUR|Rüstung|Baut Getriebe für Panzer und Schiffe
+traton|8TRA.DE|Traton|276|EUR|Automobil|Führt die Lastwagenmarken MAN, Scania und Navistar
+suedzucker|SZU.DE|Südzucker|276|EUR|Lebensmittel|Verarbeitet Zuckerrüben und stellt Fertigprodukte her
+nagarro|NA9.DE|Nagarro|276|EUR|Technologie|Entwickelt Software im Auftrag, überwiegend mit Teams in Indien
+ionos|IOS.DE|Ionos|276|EUR|Technologie|Vermietet Webspeicher und Cloud-Dienste an kleine Firmen
+# ----------------------------------------------------- Frankreich
+edenred|EDEN.PA|Edenred|250|EUR|Zahlungsverkehr|Gibt Essensgutscheine und Firmenkarten heraus
+eiffage|FGR.PA|Eiffage|250|EUR|Bau|Baut Infrastruktur und betreibt Autobahnen als Konzessionär
+alstom|ALO.PA|Alstom|250|EUR|Transport|Baut Züge, Straßenbahnen und Signaltechnik
+arkema|AKE.PA|Arkema|250|EUR|Chemie|Stellt Klebstoffe und Hochleistungskunststoffe her
+air-france-klm|AF.PA|Air France-KLM|250|EUR|Luftfahrt|Betreibt zwei Netzfluglinien mit Drehkreuzen in Paris und Amsterdam
+teleperformance|TEP.PA|Teleperformance|250|EUR|Dienstleistung|Betreibt Kundendienstzentren für andere Unternehmen
+worldline|WLN.PA|Worldline|250|EUR|Zahlungsverkehr|Rechnet Kartenzahlungen für Händler in Europa ab
+amundi|AMUN.PA|Amundi|250|EUR|Beteiligungen|Verwaltet als größter europäischer Vermögensverwalter Fonds und ETFs
+gecina|GFC.PA|Gecina|250|EUR|Immobilien|Vermietet Büros und Wohnungen im Großraum Paris
+# ----------------------------------------------------- Vereinigtes Königreich
+standard-chartered|STAN.L|Standard Chartered|826|GBp|Banken|Betreibt Handelsfinanzierung in Asien, Afrika und dem Nahen Osten
+schroders|SDR.L|Schroders|826|GBp|Beteiligungen|Verwaltet Vermögen für Institutionen und reiche Privatkunden
+m-g|MNG.L|M&G|826|GBp|Versicherungen|Verwaltet Rentenverträge und Fonds britischer Sparer
+admiral|ADM.L|Admiral Group|826|GBp|Versicherungen|Versichert Autos in Großbritannien über eigene Marken
+beazley|BEZ.L|Beazley|826|GBp|Versicherungen|Zeichnet Spezialrisiken bei Lloyd's, darunter Cyberschäden
+hiscox|HSX.L|Hiscox|826|GBp|Versicherungen|Versichert Kunst, Häuser und gewerbliche Spezialrisiken
+smith-nephew|SN.L|Smith & Nephew|826|GBp|Medizintechnik|Stellt künstliche Gelenke und Wundversorgung her
+croda|CRDA.L|Croda International|826|GBp|Chemie|Stellt Spezialstoffe für Kosmetik und Pharma her
+johnson-matthey|JMAT.L|Johnson Matthey|826|GBp|Chemie|Baut Katalysatoren und verarbeitet Platinmetalle
+bunzl|BNZL.L|Bunzl|826|GBp|Handel|Liefert Verpackungen und Hygieneartikel an Handel und Gastronomie
+whitbread|WTB.L|Whitbread|826|GBp|Gastgewerbe|Betreibt die Hotelkette Premier Inn in Eigentum
+intercontinental-hotels|IHG.L|InterContinental Hotels|826|GBp|Gastgewerbe|Vergibt Hotellizenzen für Marken wie Holiday Inn
+easyjet|EZJ.L|easyJet|826|GBp|Luftfahrt|Fliegt Kurzstrecken in Europa mit einheitlicher Flotte
+wise|WISE.L|Wise|826|GBp|Zahlungsverkehr|Überweist Geld ins Ausland zu offengelegten Gebühren
+halma|HLMA.L|Halma|826|GBp|Sicherheit|Kauft Nischenhersteller für Sicherheits- und Messtechnik
+spirax|SPX.L|Spirax Group|826|GBp|Industrie|Baut Dampfsysteme und Dosierpumpen für Fabriken
+melrose|MRO.L|Melrose Industries|826|GBp|Luftfahrt|Fertigt Triebwerksteile und Strukturen für Flugzeugbauer
+weir|WEIR.L|Weir Group|826|GBp|Bergbau|Baut Pumpen und Mühlen für Erzaufbereitung
+antofagasta|ANTO.L|Antofagasta|826|GBp|Bergbau|Fördert Kupfer in Chile, notiert aber in London
+dassault-aviation|AM.PA|Dassault Aviation|250|EUR|Luftfahrt|Baut Kampfjets vom Typ Rafale und Geschäftsflugzeuge
+bureau-veritas|BVI.PA|Bureau Veritas|250|EUR|Dienstleistung|Prüft und zertifiziert Anlagen, Schiffe und Lieferketten
+rexel|RXL.PA|Rexel|250|EUR|Handel|Liefert Elektromaterial an Installationsbetriebe
+sopra-steria|SOP.PA|Sopra Steria|250|EUR|Technologie|Entwickelt und betreibt IT-Systeme für Behörden und Banken
+ubisoft|UBI.PA|Ubisoft Entertainment|250|EUR|Unterhaltung|Entwickelt Spielereihen wie Assassin's Creed
+eurofins|ERF.PA|Eurofins Scientific|250|EUR|Gesundheit|Betreibt Labore für Lebensmittel-, Umwelt- und Arzneimittelprüfung
+ipsen|IPN.PA|Ipsen|250|EUR|Pharma|Entwickelt Krebsmedikamente und Mittel gegen neurologische Leiden
+nexans|NEX.PA|Nexans|250|EUR|Industrie|Stellt Hochspannungskabel für Netze und Windparks her
+unibail|URW.PA|Unibail-Rodamco-Westfield|250|EUR|Immobilien|Betreibt große Einkaufszentren in Europa und den USA
+klepierre|LI.PA|Klépierre|250|EUR|Immobilien|Vermietet Einkaufszentren in Kontinentaleuropa
+vallourec|VK.PA|Vallourec|250|EUR|Stahl|Fertigt nahtlose Rohre für Öl- und Gasbohrungen
+ashtead|AHT.L|Ashtead Group|826|GBp|Dienstleistung|Vermietet Baumaschinen, überwiegend in den USA
+rentokil|RTO.L|Rentokil Initial|826|GBp|Dienstleistung|Bekämpft Schädlinge und betreibt Hygienedienste
+informa|INF.L|Informa|826|GBp|Medien|Veranstaltet Fachmessen und verlegt Wissenschaftsjournale
+pearson|PSON.L|Pearson|826|GBp|Bildung|Verlegt Lehrmaterial und betreibt Prüfungszentren
+wpp|WPP.L|WPP|826|GBp|Medien|Plant und kauft Werbung für Großkunden
+segro|SGRO.L|Segro|826|GBp|Immobilien|Vermietet Logistik- und Gewerbehallen in Europa
+next|NXT.L|Next|826|GBp|Handel|Verkauft Kleidung über Filialen und einen großen Onlinehandel
+marks-spencer|MKS.L|Marks & Spencer|826|GBp|Handel|Verkauft Lebensmittel und Kleidung in eigenen Häusern
+imperial-brands|IMB.L|Imperial Brands|826|GBp|Konsum|Verkauft Zigaretten und Tabakalternativen
+bt-group|BT-A.L|BT Group|826|GBp|Telekommunikation|Betreibt das britische Festnetz und baut Glasfaser aus
+severn-trent|SVT.L|Severn Trent|826|GBp|Versorger|Versorgt Mittelengland mit Wasser und reinigt Abwasser
+united-utilities|UU.L|United Utilities|826|GBp|Versorger|Versorgt Nordwestengland mit Wasser
+smiths-group|SMIN.L|Smiths Group|826|GBp|Industrie|Baut Sicherheitsscanner und Spezialtechnik für Energie und Medizin
+qinetiq|QQ.L|QinetiQ|826|GBp|Rüstung|Betreibt Testgelände und entwickelt Wehrtechnik für Großbritannien
+games-workshop|GAW.L|Games Workshop|826|GBp|Unterhaltung|Stellt Tabletop-Figuren der Welt von Warhammer her
+
+# ----------------------------------------------------- Niederlande, Belgien, Luxemburg
+asr-nederland|ASRNL.AS|ASR Nederland|528|EUR|Versicherungen|Versichert Leben und Sachwerte niederländischer Kunden
+abn-amro|ABN.AS|ABN Amro|528|EUR|Banken|Betreibt eine Universalbank mit Schwerpunkt Niederlande
+nn-group|NN.AS|NN Group|528|EUR|Versicherungen|Verwaltet Renten- und Lebensversicherungen in Europa
+aegon|AGN.AS|Aegon|528|EUR|Versicherungen|Verkauft Renten- und Lebensversicherungen, vor allem in den USA
+kpn|KPN.AS|KPN|528|EUR|Telekommunikation|Betreibt das niederländische Fest- und Mobilfunknetz
+signify|LIGHT.AS|Signify|528|EUR|Elektronik|Stellt Leuchten und Lichtsysteme her, früher Philips Lighting
+arcadis|ARCAD.AS|Arcadis|528|EUR|Bau|Plant Infrastruktur und Wasserbau als Ingenieurbüro
+euronext|ENX.PA|Euronext|528|EUR|Börsen|Betreibt die Börsen in Amsterdam, Paris, Mailand und Oslo
+jde-peets|JDEP.AS|JDE Peet's|528|EUR|Getränke|Röstet Kaffee für Marken wie Jacobs und Douwe Egberts
+argenx|ARGX.BR|argenx|056|EUR|Pharma|Entwickelt Antikörper gegen Autoimmunkrankheiten
+lotus-bakeries|LOTB.BR|Lotus Bakeries|056|EUR|Lebensmittel|Backt Karamellkekse und kauft Marken für Riegel zu
+spotify|SPOT|Spotify Technology|442|USD|Unterhaltung|Vermietet Musik im Abonnement und verteilt Podcasts
+arcelormittal|MT.AS|ArcelorMittal|442|EUR|Stahl|Erzeugt Stahl an Standorten in Europa, Amerika und Indien
+rtl-group|RRTL.DE|RTL Group|442|EUR|Medien|Betreibt Fernsehsender in Deutschland und den Niederlanden
+aroundtown|AT1.DE|Aroundtown|442|EUR|Immobilien|Vermietet Büros und Hotels in Deutschland und den Niederlanden
+# ----------------------------------------------------- Schweiz und Österreich
+swiss-life|SLHN.SW|Swiss Life|756|CHF|Versicherungen|Verwaltet Lebensversicherungen und Immobilien für Vorsorgekunden
+baloise|BALN.SW|Baloise|756|CHF|Versicherungen|Versichert Sach- und Lebensrisiken in der Schweiz und Belgien
+helvetia|HELN.SW|Helvetia|756|CHF|Versicherungen|Versichert Privat- und Gewerberisiken im Alpenraum
+julius-baer|BAER.SW|Julius Bär|756|CHF|Banken|Verwaltet Vermögen reicher Privatkunden weltweit
+straumann|STMN.SW|Straumann|756|CHF|Medizintechnik|Stellt Zahnimplantate und Zahnschienen her
+sonova|SOON.SW|Sonova|756|CHF|Medizintechnik|Stellt Hörgeräte und Hörimplantate her
+tecan|TECN.SW|Tecan|756|CHF|Medizintechnik|Baut Laborroboter, die Proben automatisch verarbeiten
+ems-chemie|EMSN.SW|EMS-Chemie|756|CHF|Chemie|Stellt Hochleistungskunststoffe für den Leichtbau her
+barry-callebaut|BARN.SW|Barry Callebaut|756|CHF|Lebensmittel|Verarbeitet Kakao zu Schokolade für Industriekunden
+garmin|GRMN|Garmin|756|USD|Elektronik|Baut Navigationsgeräte und Sportuhren mit Satellitenempfang
+bunge|BG|Bunge Global|756|USD|Lebensmittel|Handelt und verarbeitet Ölsaaten und Getreide weltweit
+amcor|AMCR|Amcor|756|USD|Verpackung|Stellt Kunststoff- und Papierverpackungen für Lebensmittel her
+andritz|ANDR.VI|Andritz|040|EUR|Industrie|Baut Anlagen für Papier, Wasserkraft und Metallverarbeitung
+wienerberger|WIE.VI|Wienerberger|040|EUR|Baustoffe|Stellt Ziegel und Rohre für den Hochbau her
+# ----------------------------------------------------- Italien, Spanien, Portugal, Irland, Griechenland
+recordati|REC.MI|Recordati|380|EUR|Pharma|Verkauft Medikamente gegen seltene Krankheiten in Europa
+telecom-italia|TIT.MI|Telecom Italia|380|EUR|Telekommunikation|Betreibt das italienische Fest- und Mobilfunknetz
+cellnex|CLNX.MC|Cellnex Telecom|724|EUR|Telekommunikation|Vermietet Funkmasten an europäische Mobilfunkbetreiber
+grifols|GRF.MC|Grifols|724|EUR|Pharma|Gewinnt Blutplasma und stellt daraus Arzneimittel her
+jeronimo-martins|JMT.LS|Jerónimo Martins|620|EUR|Handel|Betreibt Supermärkte in Portugal, Polen und Kolumbien
+kingspan|KRX.IR|Kingspan|372|EUR|Baustoffe|Stellt Dämmplatten und Fassadensysteme her
+accenture|ACN|Accenture|372|USD|Dienstleistung|Berät Konzerne und betreibt deren IT-Systeme
+johnson-controls|JCI|Johnson Controls|372|USD|Industrie|Baut Gebäudetechnik für Klima, Brandschutz und Sicherheit
+willis-towers-watson|WTW|WTW|372|USD|Versicherungen|Vermittelt Versicherungen und berät zu Pensionsplänen
+smurfit-westrock|SW|Smurfit Westrock|372|USD|Verpackung|Stellt Wellpappe in Europa und Nordamerika her
+opap|OPAP.AT|OPAP|300|EUR|Glücksspiel|Betreibt Lotterien und Sportwetten in Griechenland
+alpha-services|ALPHA.AT|Alpha Services and Holdings|300|EUR|Banken|Betreibt eine der vier großen griechischen Banken
+# ----------------------------------------------------- Nordeuropa
+skf|SKF-B.ST|SKF|752|SEK|Industrie|Stellt Kugellager und Dichtungen für Maschinen her
+alfa-laval|ALFA.ST|Alfa Laval|752|SEK|Industrie|Baut Wärmetauscher und Separatoren für Schiffe und Industrie
+essity|ESSITY-B.ST|Essity|752|SEK|Konsum|Stellt Hygienepapier und Inkontinenzprodukte her
+electrolux|ELUX-B.ST|Electrolux|752|SEK|Konsum|Stellt Waschmaschinen und Kühlschränke her
+saab|SAAB-B.ST|Saab|752|SEK|Rüstung|Baut Kampfjets, Radar und U-Boote für Schweden und Exportkunden
+autoliv|ALV|Autoliv|752|USD|Automobil|Stellt Airbags und Sicherheitsgurte für Autohersteller her
+evolution|EVO.ST|Evolution|752|SEK|Glücksspiel|Betreibt Live-Kasinospiele als Zulieferer für Wettanbieter
+demant|DEMANT.CO|Demant|208|DKK|Medizintechnik|Stellt Hörgeräte und Diagnosegeräte her
+mowi|MOWI.OL|Mowi|578|NOK|Lebensmittel|Züchtet Lachs in Norwegen, Schottland und Chile
+yara|YAR.OL|Yara International|578|NOK|Chemie|Stellt Stickstoffdünger aus Erdgas her
+kongsberg|KOG.OL|Kongsberg Gruppen|578|NOK|Rüstung|Baut Raketen, Marinetechnik und Fernwaffenstationen
+stora-enso|STERV.HE|Stora Enso|246|EUR|Papier|Stellt Verpackungskarton und Zellstoff aus nordischem Holz her
+wartsila|WRT1V.HE|Wärtsilä|246|EUR|Industrie|Baut Schiffsmotoren und Kraftwerksmotoren
+# ----------------------------------------------------- Mittel- und Osteuropa, Türkei
+lpp|LPP.WA|LPP|616|PLN|Handel|Verkauft Kleidung über Marken wie Reserved in Mitteleuropa
+cd-projekt|CDR.WA|CD Projekt|616|PLN|Unterhaltung|Entwickelt Spiele wie The Witcher und Cyberpunk
+otp-bank|OTP.BD|OTP Bank|348|HUF|Banken|Betreibt Banken in Ungarn und Südosteuropa
+richter|RICHT.BD|Richter Gedeon|348|HUF|Pharma|Stellt Nachahmermedikamente und Frauenheilmittel her
+cez|CEZ.PR|CEZ|203|CZK|Versorger|Erzeugt Strom aus Kernkraft und Kohle in Tschechien
+komercni-banka|KOMB.PR|Komercní banka|203|CZK|Banken|Betreibt eine der großen tschechischen Banken
+turkiye-is-bankasi|ISCTR.IS|Türkiye Is Bankasi|792|TRY|Banken|Betreibt eine der größten Privatbanken der Türkei
+akbank|AKBNK.IS|Akbank|792|TRY|Banken|Vergibt Firmen- und Privatkredite in der Türkei
+bim|BIMAS.IS|BIM Birlesik Magazalar|792|TRY|Handel|Betreibt Kleinpreis-Supermärkte in der Türkei
+ford-otosan|FROTO.IS|Ford Otosan|792|TRY|Automobil|Baut Transporter für Ford in der Türkei
+turkish-airlines|THYAO.IS|Turkish Airlines|792|TRY|Luftfahrt|Fliegt von Istanbul aus als Drehkreuz zwischen Europa und Asien
+koc-holding|KCHOL.IS|Koç Holding|792|TRY|Mischkonzern|Hält Beteiligungen an Autobau, Banken und Energie in der Türkei
+
+# ----------------------------------------------------- Japan
+astellas|4503.T|Astellas Pharma|392|JPY|Pharma|Entwickelt Krebs- und Urologiemedikamente
+chugai|4519.T|Chugai Pharmaceutical|392|JPY|Pharma|Entwickelt Biotech-Medikamente, mehrheitlich im Besitz von Roche
+eisai|4523.T|Eisai|392|JPY|Pharma|Entwickelt Alzheimer- und Krebsmedikamente
+otsuka|4578.T|Otsuka Holdings|392|JPY|Pharma|Verkauft Medikamente und Nährstoffgetränke
+asahi-kasei|3407.T|Asahi Kasei|392|JPY|Chemie|Stellt Fasern, Kunststoffe und Batteriefolien her
+mitsui-chemicals|4183.T|Mitsui Chemicals|392|JPY|Chemie|Stellt Kunststoffe für Autobau und Verpackung her
+nitto-denko|6988.T|Nitto Denko|392|JPY|Chemie|Stellt Klebebänder und Folien für Bildschirme her
+toray|3402.T|Toray Industries|392|JPY|Chemie|Stellt Kohlefasern für Flugzeuge und Fasern für Textilien her
+shiseido|4911.T|Shiseido|392|JPY|Konsum|Verkauft Kosmetik in Japan, China und Nordamerika
+kao|4452.T|Kao|392|JPY|Konsum|Stellt Waschmittel, Windeln und Kosmetik her
+unicharm|8113.T|Unicharm|392|JPY|Konsum|Stellt Windeln und Hygieneartikel für Asien her
+kirin|2503.T|Kirin Holdings|392|JPY|Getränke|Braut Bier und stellt Gesundheitsprodukte her
+suntory-beverage|2587.T|Suntory Beverage & Food|392|JPY|Getränke|Verkauft Erfrischungsgetränke in Japan und Asien
+suzuki|7269.T|Suzuki Motor|392|JPY|Automobil|Baut Kleinwagen, überwiegend für den indischen Markt
+subaru|7270.T|Subaru|392|JPY|Automobil|Baut Allradautos vor allem für den US-Markt
+tdk|6762.T|TDK|392|JPY|Elektronik|Stellt Batterien für Mobiltelefone und Sensoren her
+kyocera|6971.T|Kyocera|392|JPY|Elektronik|Stellt Keramikbauteile und Bürotechnik her
+hoya|7741.T|Hoya|392|JPY|Medizintechnik|Stellt Brillengläser und Masken für die Chipbelichtung her
+sysmex|6869.T|Sysmex|392|JPY|Medizintechnik|Baut Geräte zur Blutbildanalyse für Labore
+yaskawa|6506.T|Yaskawa Electric|392|JPY|Industrie|Baut Roboter und Antriebsregler für Fabriken
+smc|6273.T|SMC|392|JPY|Industrie|Baut Pneumatikteile für Fertigungsanlagen
+kubota|6326.T|Kubota|392|JPY|Industrie|Baut Traktoren und Baumaschinen für Asien und Nordamerika
+disco|6146.T|Disco|392|JPY|Halbleiter|Baut Sägen und Schleifer, die Chips aus Scheiben trennen
+lasertec|6920.T|Lasertec|392|JPY|Halbleiter|Baut Prüfgeräte für Belichtungsmasken
+renesas|6723.T|Renesas Electronics|392|JPY|Halbleiter|Stellt Mikrocontroller für Autos und Industrie her
+rohm|6963.T|Rohm|392|JPY|Halbleiter|Stellt Leistungshalbleiter aus Siliziumkarbid her
+nomura|8604.T|Nomura Holdings|392|JPY|Finanzdienste|Betreibt Japans größtes Wertpapierhaus
+japan-post-bank|7182.T|Japan Post Bank|392|JPY|Banken|Verwaltet Spareinlagen über Postfilialen
+oriental-land|4661.T|Oriental Land|392|JPY|Unterhaltung|Betreibt Tokyo Disneyland unter Lizenz
+japan-tobacco|2914.T|Japan Tobacco|392|JPY|Konsum|Verkauft Zigaretten in Japan und im Ausland
+central-japan-railway|9022.T|Central Japan Railway|392|JPY|Transport|Betreibt den Shinkansen zwischen Tokio und Osaka
+east-japan-railway|9020.T|East Japan Railway|392|JPY|Transport|Betreibt Bahnstrecken im Großraum Tokio
+ana|9202.T|ANA Holdings|392|JPY|Luftfahrt|Fliegt als größte japanische Fluglinie
+mitsui-fudosan|8801.T|Mitsui Fudosan|392|JPY|Immobilien|Entwickelt und vermietet Büros und Einkaufszentren in Tokio
+# ----------------------------------------------------- China und Hongkong
+nio|9866.HK|Nio|156|HKD|Automobil|Baut Elektroautos und betreibt Wechselstationen für Batterien
+geely|0175.HK|Geely Automobile|156|HKD|Automobil|Baut Autos und hält Anteile an Volvo und Polestar
+great-wall|2333.HK|Great Wall Motor|156|HKD|Automobil|Baut Geländewagen und Pick-ups für China und Export
+bank-of-china|3988.HK|Bank of China|156|HKD|Banken|Betreibt das internationalste Geschäft der chinesischen Staatsbanken
+agricultural-bank|1288.HK|Agricultural Bank of China|156|HKD|Banken|Versorgt ländliche Regionen Chinas mit Krediten
+china-merchants-bank|3968.HK|China Merchants Bank|156|HKD|Banken|Betreibt das Privatkundengeschäft mit dem besten Ruf in China
+china-telecom|0728.HK|China Telecom|156|HKD|Telekommunikation|Betreibt Festnetz und Mobilfunk in China
+lenovo|0992.HK|Lenovo Group|156|HKD|Technologie|Verkauft die meisten Personalcomputer weltweit
+smic|0981.HK|SMIC|156|HKD|Halbleiter|Fertigt Chips im Auftrag für chinesische Kunden
+hua-hong|1347.HK|Hua Hong Semiconductor|156|HKD|Halbleiter|Fertigt Chips in älteren Fertigungsstufen
+sunny-optical|2382.HK|Sunny Optical|156|HKD|Elektronik|Stellt Kameramodule für Mobiltelefone und Autos her
+aac-technologies|2018.HK|AAC Technologies|156|HKD|Elektronik|Stellt Lautsprecher und Vibrationsmotoren für Mobiltelefone her
+wuxi-biologics|2269.HK|WuXi Biologics|156|HKD|Pharma|Entwickelt und fertigt Biotech-Medikamente im Auftrag
+hansoh|3692.HK|Hansoh Pharmaceutical|156|HKD|Pharma|Entwickelt Krebs- und Diabetesmedikamente für China
+li-ning|2331.HK|Li Ning|156|HKD|Konsum|Verkauft Sportkleidung unter einer chinesischen Marke
+haidilao|6862.HK|Haidilao|156|HKD|Konsum|Betreibt Hot-Pot-Restaurants in China
+china-resources-beer|0291.HK|China Resources Beer|156|HKD|Getränke|Braut Snow, das meistverkaufte Bier der Welt
+kweichow-moutai|600519.SS|Kweichow Moutai|156|CNY|Getränke|Brennt Baijiu und ist Chinas wertvollste Konsummarke
+wuliangye|000858.SZ|Wuliangye Yibin|156|CNY|Getränke|Brennt Baijiu für den chinesischen Markt
+catl|300750.SZ|CATL|156|CNY|Industrie|Stellt die meisten Batteriezellen für Elektroautos weltweit her
+midea|000333.SZ|Midea Group|156|CNY|Konsum|Stellt Klimageräte und Haushaltsgeräte her
+gree|000651.SZ|Gree Electric|156|CNY|Konsum|Stellt Klimaanlagen für China und Export her
+ping-an-bank|000001.SZ|Ping An Bank|156|CNY|Banken|Betreibt eine Privatkundenbank innerhalb der Ping-An-Gruppe
+byd-electronic|0285.HK|BYD Electronic|156|HKD|Elektronik|Fertigt Gehäuse und Baugruppen für Mobiltelefone
+sun-hung-kai|0016.HK|Sun Hung Kai Properties|344|HKD|Immobilien|Entwickelt und vermietet Immobilien in Hongkong
+link-reit|0823.HK|Link REIT|344|HKD|Immobilien|Vermietet Einkaufszentren und Märkte in Hongkong
+techtronic|0669.HK|Techtronic Industries|344|HKD|Industrie|Stellt Elektrowerkzeuge der Marken Milwaukee und Ryobi her
+galaxy-entertainment|0027.HK|Galaxy Entertainment|344|HKD|Glücksspiel|Betreibt Kasinoresorts in Macau
+sands-china|1928.HK|Sands China|344|HKD|Glücksspiel|Betreibt Kasinos und Hotels in Macau
+hang-seng-bank|0011.HK|Hang Seng Bank|344|HKD|Banken|Betreibt eine Hongkonger Bank innerhalb der HSBC-Gruppe
+clp-holdings|0002.HK|CLP Holdings|344|HKD|Versorger|Versorgt Hongkong mit Strom und investiert in Australien
+# ----------------------------------------------------- Südkorea und Taiwan
+lg-electronics|066570.KS|LG Electronics|410|KRW|Elektronik|Stellt Haushaltsgeräte, Fernseher und Autoteile her
+sk-innovation|096770.KS|SK Innovation|410|KRW|Energie|Betreibt Raffinerien und stellt Batterien für Elektroautos her
+korea-electric-power|015760.KS|Korea Electric Power|410|KRW|Versorger|Versorgt Südkorea mit Strom als Staatsunternehmen
+hanwha-aerospace|012450.KS|Hanwha Aerospace|410|KRW|Rüstung|Baut Panzerhaubitzen und Triebwerksteile
+hmm|011200.KS|HMM|410|KRW|Transport|Betreibt Containerschiffe auf Fernostrouten
+fubon-financial|2881.TW|Fubon Financial|158|TWD|Versicherungen|Betreibt Versicherung und Bank in Taiwan
+formosa-plastics|1301.TW|Formosa Plastics|158|TWD|Chemie|Stellt Kunststoffe und Grundchemikalien her
+
+# ----------------------------------------------------- Indien
+hdfc-life|HDFCLIFE.NS|HDFC Life Insurance|356|INR|Versicherungen|Verkauft Lebensversicherungen an indische Haushalte
+sbi-life|SBILIFE.NS|SBI Life Insurance|356|INR|Versicherungen|Verkauft Lebensversicherungen über das Filialnetz der State Bank
+axis-bank|AXISBANK.NS|Axis Bank|356|INR|Banken|Betreibt eine der großen indischen Privatbanken
+kotak-bank|KOTAKBANK.NS|Kotak Mahindra Bank|356|INR|Banken|Vergibt Kredite und verwaltet Vermögen in Indien
+bajaj-finance|BAJFINANCE.NS|Bajaj Finance|356|INR|Finanzdienste|Vergibt Konsumkredite an indische Haushalte
+hcl-technologies|HCLTECH.NS|HCL Technologies|356|INR|Technologie|Betreibt IT-Systeme und entwickelt Software im Auftrag
+tech-mahindra|TECHM.NS|Tech Mahindra|356|INR|Technologie|Erbringt IT-Dienste mit Schwerpunkt Telekommunikation
+mahindra|M&M.NS|Mahindra & Mahindra|356|INR|Automobil|Baut Traktoren und Geländewagen für Indien
+bajaj-auto|BAJAJ-AUTO.NS|Bajaj Auto|356|INR|Automobil|Baut Motorräder und Dreiräder für Indien und Afrika
+hero-motocorp|HEROMOTOCO.NS|Hero MotoCorp|356|INR|Automobil|Baut die meisten Motorräder der Welt nach Stückzahl
+eicher-motors|EICHERMOT.NS|Eicher Motors|356|INR|Automobil|Baut Royal-Enfield-Motorräder und Lastwagen
+tata-steel|TATASTEEL.NS|Tata Steel|356|INR|Stahl|Erzeugt Stahl in Indien, Großbritannien und den Niederlanden
+jsw-steel|JSWSTEEL.NS|JSW Steel|356|INR|Stahl|Erzeugt Stahl für den indischen Bau- und Autobedarf
+hindalco|HINDALCO.NS|Hindalco Industries|356|INR|Bergbau|Erzeugt Aluminium und Kupfer, hält Novelis in den USA
+ultratech|ULTRACEMCO.NS|UltraTech Cement|356|INR|Baustoffe|Stellt den meisten Zement Indiens her
+grasim|GRASIM.NS|Grasim Industries|356|INR|Chemie|Stellt Viskosefasern und Chemikalien her, hält Zement und Farben
+ntpc|NTPC.NS|NTPC|356|INR|Versorger|Erzeugt den größten Teil des indischen Kohlestroms und baut Solarparks
+power-grid|POWERGRID.NS|Power Grid Corporation|356|INR|Versorger|Betreibt das indische Hochspannungsnetz
+coal-india|COALINDIA.NS|Coal India|356|INR|Bergbau|Fördert fast die gesamte indische Kohle
+ongc|ONGC.NS|Oil and Natural Gas Corporation|356|INR|Energie|Fördert Öl und Gas in Indien als Staatsunternehmen
+dr-reddys|DRREDDY.NS|Dr. Reddy's Laboratories|356|INR|Pharma|Stellt Nachahmermedikamente für die USA und Indien her
+cipla|CIPLA.NS|Cipla|356|INR|Pharma|Stellt Atemwegs- und HIV-Medikamente her
+divis-labs|DIVISLAB.NS|Divi's Laboratories|356|INR|Pharma|Stellt Wirkstoffe für andere Pharmafirmen her
+apollo-hospitals|APOLLOHOSP.NS|Apollo Hospitals|356|INR|Gesundheit|Betreibt private Kliniken und Apotheken in Indien
+titan|TITAN.NS|Titan Company|356|INR|Konsum|Verkauft Schmuck und Uhren über eigene Läden
+nestle-india|NESTLEIND.NS|Nestlé India|356|INR|Lebensmittel|Verkauft Maggi und Milchprodukte in Indien
+britannia|BRITANNIA.NS|Britannia Industries|356|INR|Lebensmittel|Backt Kekse und Brot für den indischen Markt
+tata-consumer|TATACONSUM.NS|Tata Consumer Products|356|INR|Lebensmittel|Verkauft Tee, Salz und Kaffee unter Tata-Marken
+avenue-supermarts|DMART.NS|Avenue Supermarts|356|INR|Handel|Betreibt die Supermarktkette DMart in Indien
+indigo|INDIGO.NS|InterGlobe Aviation|356|INR|Luftfahrt|Fliegt als IndiGo den größten Teil des indischen Luftverkehrs
+adani-ports|ADANIPORTS.NS|Adani Ports|356|INR|Transport|Betreibt Häfen und Logistikflächen an Indiens Küsten
+bharat-electronics|BEL.NS|Bharat Electronics|356|INR|Rüstung|Baut Radar und Elektronik für Indiens Streitkräfte
+hindustan-aeronautics|HAL.NS|Hindustan Aeronautics|356|INR|Rüstung|Baut Kampfjets und Hubschrauber für Indien
+berger-paints|BERGEPAINT.NS|Berger Paints India|356|INR|Chemie|Stellt Farben und Lacke für den indischen Bau her
+# ----------------------------------------------------- Südostasien
+capitaland-investment|9CI.SI|CapitaLand Investment|702|SGD|Immobilien|Verwaltet Immobilienfonds und Einkaufszentren in Asien
+sea-limited|SE|Sea|702|USD|Technologie|Betreibt Shopee, Garena und den Bezahldienst SeaMoney
+maybank|1155.KL|Malayan Banking|458|MYR|Banken|Betreibt Malaysias größte Bank
+public-bank|1295.KL|Public Bank|458|MYR|Banken|Vergibt Hypotheken und Firmenkredite in Malaysia
+tenaga|5347.KL|Tenaga Nasional|458|MYR|Versorger|Versorgt Malaysia mit Strom
+petronas-chemicals|5183.KL|Petronas Chemicals|458|MYR|Chemie|Stellt Kunststoffe und Dünger aus malaysischem Erdgas her
+top-glove|7113.KL|Top Glove|458|MYR|Medizintechnik|Stellt Einweghandschuhe für Kliniken her
+ptt|PTT.BK|PTT|764|THB|Energie|Fördert Gas und betreibt Tankstellen in Thailand
+scb-x|SCB.BK|SCB X|764|THB|Banken|Betreibt eine der großen thailändischen Banken
+kasikornbank|KBANK.BK|Kasikornbank|764|THB|Banken|Vergibt Kredite an thailändische Mittelständler
+airports-of-thailand|AOT.BK|Airports of Thailand|764|THB|Transport|Betreibt die thailändischen Flughäfen samt Bangkok
+cp-all|CPALL.BK|CP All|764|THB|Handel|Betreibt die 7-Eleven-Läden in Thailand
+siam-cement|SCC.BK|Siam Cement Group|764|THB|Baustoffe|Stellt Zement, Verpackung und Chemie in Südostasien her
+bank-central-asia|BBCA.JK|Bank Central Asia|360|IDR|Banken|Betreibt Indonesiens größte Privatbank
+bank-mandiri|BMRI.JK|Bank Mandiri|360|IDR|Banken|Betreibt eine der größten Staatsbanken Indonesiens
+bank-rakyat|BBRI.JK|Bank Rakyat Indonesia|360|IDR|Banken|Vergibt Kleinkredite an indonesische Händler
+telkom-indonesia|TLKM.JK|Telkom Indonesia|360|IDR|Telekommunikation|Betreibt Festnetz und Mobilfunk in Indonesien
+astra-international|ASII.JK|Astra International|360|IDR|Mischkonzern|Verkauft Autos, Maschinen und betreibt Finanzdienste
+barito-pacific|BRPT.JK|Barito Pacific|360|IDR|Chemie|Stellt Petrochemie her und betreibt Geothermiekraftwerke
+sm-investments|SM.PS|SM Investments|608|PHP|Mischkonzern|Betreibt Einkaufszentren, Banken und Immobilien auf den Philippinen
+bdo-unibank|BDO.PS|BDO Unibank|608|PHP|Banken|Betreibt die größte Bank der Philippinen
+ayala|AC.PS|Ayala Corporation|608|PHP|Mischkonzern|Hält Beteiligungen an Telekommunikation, Banken und Wasser
+# ----------------------------------------------------- Australien und Neuseeland
+woodside|WDS.AX|Woodside Energy|036|AUD|Energie|Fördert Erdgas und verflüssigt es für den Export nach Asien
+santos|STO.AX|Santos|036|AUD|Energie|Fördert Gas in Australien und Papua-Neuguinea
+south32|S32.AX|South32|036|AUD|Bergbau|Fördert Mangan, Aluminium und Silber auf mehreren Kontinenten
+northern-star|NST.AX|Northern Star Resources|036|AUD|Bergbau|Fördert Gold in Australien und Alaska
+pilbara-minerals|PLS.AX|Pilbara Minerals|036|AUD|Bergbau|Fördert Lithium in Westaustralien
+coles|COL.AX|Coles Group|036|AUD|Handel|Betreibt die zweitgrößte Supermarktkette Australiens
+brambles|BXB.AX|Brambles|036|AUD|Transport|Vermietet Paletten und Behälter im Kreislauf
+transurban|TCL.AX|Transurban Group|036|AUD|Transport|Betreibt Mautstraßen in Australien und Nordamerika
+qantas|QAN.AX|Qantas Airways|036|AUD|Luftfahrt|Fliegt als größte australische Fluglinie
+aristocrat|ALL.AX|Aristocrat Leisure|036|AUD|Glücksspiel|Stellt Spielautomaten und Handyspiele her
+computershare|CPU.AX|Computershare|036|AUD|Finanzdienste|Führt Aktienregister für Unternehmen weltweit
+cochlear|COH.AX|Cochlear|036|AUD|Medizintechnik|Stellt Hörimplantate für Gehörlose her
+ramsay-health|RHC.AX|Ramsay Health Care|036|AUD|Gesundheit|Betreibt Privatkliniken in Australien und Europa
+fisher-paykel|FPH.NZ|Fisher & Paykel Healthcare|554|NZD|Medizintechnik|Stellt Atemhilfen und Beatmungszubehör her
+auckland-airport|AIA.NZ|Auckland International Airport|554|NZD|Transport|Betreibt Neuseelands größten Flughafen
+mercury-nz|MCY.NZ|Mercury NZ|554|NZD|Versorger|Erzeugt Strom aus Wasser, Wind und Erdwärme
+xero|XRO.AX|Xero|554|AUD|Software|Vermietet Buchhaltungssoftware an kleine Firmen
+
+# ----------------------------------------------------- Kanada
+canadian-imperial|CM.TO|Canadian Imperial Bank of Commerce|124|CAD|Banken|Betreibt eine der fünf großen kanadischen Banken
+manulife|MFC.TO|Manulife Financial|124|CAD|Versicherungen|Verkauft Lebensversicherungen in Kanada und Asien
+sun-life|SLF.TO|Sun Life Financial|124|CAD|Versicherungen|Verwaltet Vorsorgeverträge in Kanada und Asien
+intact-financial|IFC.TO|Intact Financial|124|CAD|Versicherungen|Versichert Autos und Häuser in Kanada
+brookfield-asset|BAM.TO|Brookfield Asset Management|124|CAD|Beteiligungen|Verwaltet Infrastruktur-, Immobilien- und Energiefonds
+tc-energy|TRP.TO|TC Energy|124|CAD|Energie|Betreibt Gaspipelines in Nordamerika
+pembina|PPL.TO|Pembina Pipeline|124|CAD|Energie|Transportiert Öl und Gas in Westkanada
+imperial-oil|IMO.TO|Imperial Oil|124|CAD|Energie|Fördert Ölsande und betreibt Raffinerien in Kanada
+cenovus|CVE.TO|Cenovus Energy|124|CAD|Energie|Fördert Ölsande und verarbeitet sie in eigenen Raffinerien
+wheaton-precious|WPM.TO|Wheaton Precious Metals|124|CAD|Bergbau|Kauft Anteile an künftiger Gold- und Silberförderung
+franco-nevada|FNV.TO|Franco-Nevada|124|CAD|Bergbau|Hält Förderabgaben an Gold- und Ölprojekten
+teck|TECK-B.TO|Teck Resources|124|CAD|Bergbau|Fördert Kupfer und Zink in Nord- und Südamerika
+loblaw|L.TO|Loblaw Companies|124|CAD|Handel|Betreibt Kanadas größte Supermarktkette und Apotheken
+alimentation-couche-tard|ATD.TO|Alimentation Couche-Tard|124|CAD|Handel|Betreibt Tankstellenläden in Nordamerika und Europa
+bce|BCE.TO|BCE|124|CAD|Telekommunikation|Betreibt Netze und Fernsehsender in Kanada
+waste-connections|WCN.TO|Waste Connections|124|CAD|Entsorgung|Sammelt Abfall in ländlichen Gebieten Nordamerikas
+magna|MG.TO|Magna International|124|CAD|Automobil|Fertigt Fahrzeugteile und komplette Autos im Auftrag
+# ----------------------------------------------------- Mittel- und Südamerika
+itausa|ITSA4.SA|Itaúsa|076|BRL|Beteiligungen|Hält die Kontrollmehrheit an der Itaú-Bank
+banco-santander-brasil|SANB11.SA|Banco Santander Brasil|076|BRL|Banken|Betreibt das brasilianische Geschäft der Santander-Gruppe
+btg-pactual|BPAC11.SA|BTG Pactual|076|BRL|Finanzdienste|Betreibt Investmentbank und Vermögensverwaltung in Brasilien
+gerdau|GGBR4.SA|Gerdau|076|BRL|Stahl|Erzeugt Stahl aus Schrott in Brasilien und Nordamerika
+klabin|KLBN11.SA|Klabin|076|BRL|Papier|Stellt Verpackungspapier und Zellstoff aus Eukalyptus her
+raizen|RAIZ4.SA|Raízen|076|BRL|Energie|Verarbeitet Zuckerrohr zu Ethanol und betreibt Tankstellen
+eletrobras|ELET3.SA|Eletrobras|076|BRL|Versorger|Erzeugt Strom überwiegend aus Wasserkraft in Brasilien
+localiza|RENT3.SA|Localiza|076|BRL|Dienstleistung|Vermietet Autos und verkauft sie danach weiter
+natura|NTCO3.SA|Natura|076|BRL|Konsum|Verkauft Kosmetik über Beraterinnen in Lateinamerika
+embraer|EMBR3.SA|Embraer|076|BRL|Luftfahrt|Baut Regionalflugzeuge und Militärtransporter
+rumo|RAIL3.SA|Rumo|076|BRL|Transport|Betreibt Güterbahnen zu brasilianischen Häfen
+arca-continental|AC.MX|Arca Continental|484|MXN|Getränke|Füllt Coca-Cola für Mexiko und Südamerika ab
+grupo-aeroportuario|ASUR.MX|Grupo Aeroportuario del Sureste|484|MXN|Transport|Betreibt Flughäfen in Cancún und Mittelamerika
+alfa|ALFAA.MX|Alfa|484|MXN|Mischkonzern|Hält Beteiligungen an Lebensmitteln und Petrochemie
+falabella|FALABELLA.SN|Falabella|152|CLP|Handel|Betreibt Kaufhäuser und Baumärkte in Südamerika
+banco-de-chile|CHILE.SN|Banco de Chile|152|CLP|Banken|Betreibt eine der größten Banken Chiles
+copec|COPEC.SN|Empresas Copec|152|CLP|Energie|Betreibt Tankstellen und stellt Zellstoff her
+sqm|SQM|Sociedad Química y Minera|152|USD|Chemie|Gewinnt Lithium und Jod aus der Atacama-Wüste
+ypf|YPF|YPF|032|USD|Energie|Fördert Öl und Gas in Argentinien als Staatskonzern
+grupo-galicia|GGAL|Grupo Financiero Galicia|032|USD|Banken|Betreibt eine der größten Privatbanken Argentiniens
+credicorp|BAP|Credicorp|604|USD|Banken|Betreibt die größte Bank Perus
+southern-copper|SCCO|Southern Copper|604|USD|Bergbau|Fördert Kupfer in Peru und Mexiko
+# ----------------------------------------------------- Afrika und Nahost
+naspers|NPN.JO|Naspers|710|ZAc|Beteiligungen|Hält über Prosus den Anteil an Tencent und weitere Internetfirmen
+firstrand|FSR.JO|FirstRand|710|ZAc|Banken|Betreibt eine der größten Bankengruppen Südafrikas
+standard-bank|SBK.JO|Standard Bank Group|710|ZAc|Banken|Vergibt Kredite in Südafrika und dem übrigen Afrika
+sanlam|SLM.JO|Sanlam|710|ZAc|Versicherungen|Verkauft Lebens- und Sachversicherungen in Afrika
+shoprite|SHP.JO|Shoprite Holdings|710|ZAc|Handel|Betreibt Supermärkte in Südafrika und Nachbarländern
+gold-fields|GFI|Gold Fields|710|USD|Bergbau|Fördert Gold in Südafrika, Ghana und Australien
+sibanye|SBSW|Sibanye Stillwater|710|USD|Bergbau|Fördert Platin, Palladium und Gold
+saudi-aramco|2222.SR|Saudi Aramco|682|SAR|Energie|Fördert das meiste Öl der Welt zu den niedrigsten Kosten
+al-rajhi-bank|1120.SR|Al Rajhi Bank|682|SAR|Banken|Betreibt die größte islamische Bank der Welt
+saudi-national-bank|1180.SR|Saudi National Bank|682|SAR|Banken|Betreibt Saudi-Arabiens größte Bank
+sabic|2010.SR|Sabic|682|SAR|Chemie|Stellt Kunststoffe und Dünger aus Erdgas her
+qatar-national-bank|QNBK.QA|Qatar National Bank|634|QAR|Banken|Betreibt die größte Bank der Golfregion
+industries-qatar|IQCD.QA|Industries Qatar|634|QAR|Chemie|Stellt Dünger, Stahl und Petrochemie in Katar her
+bank-leumi|LUMI.TA|Bank Leumi|376|ILA|Banken|Betreibt eine der beiden größten Banken Israels
+bank-hapoalim|POLI.TA|Bank Hapoalim|376|ILA|Banken|Vergibt Kredite an israelische Firmen und Haushalte
+elbit-systems|ESLT|Elbit Systems|376|USD|Rüstung|Baut Drohnen, Nachtsicht und Artilleriesysteme
+wix|WIX|Wix.com|376|USD|Software|Vermietet einen Baukasten für Websites im Abonnement
+monday|MNDY|monday.com|376|USD|Software|Vermietet Software zur Arbeitsorganisation in Teams
