@@ -1,7 +1,12 @@
+import { Dividendenverlauf } from '@/components/markets/Dividendenverlauf'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { cn } from '@/lib/cn'
-import { rhythmusLabel, type Dividendenbefund } from '@/lib/dividenden'
+import {
+  rhythmusLabel,
+  type Dividendenbefund,
+  type Dividendenjahre,
+} from '@/lib/dividenden'
 import { formatDateShort, formatNumber, formatPercent } from '@/lib/format'
 
 /**
@@ -46,6 +51,7 @@ export function Dividendentafel({
   einheit,
   name,
   quelle,
+  verlauf,
   className,
 }: {
   befund: Dividendenbefund
@@ -53,6 +59,8 @@ export function Dividendentafel({
   einheit: string
   name: string
   quelle: { label: string; url: string }
+  /** Die Jahressummen für die Verlaufsgrafik, falls es genug davon gibt. */
+  verlauf?: Dividendenjahre | null
   className?: string
 }) {
   return (
@@ -105,6 +113,22 @@ export function Dividendentafel({
           }
         />
       </StatGrid>
+
+      {/*
+        Der Verlauf steht zwischen den Kennzahlen und dem erwarteten Termin.
+
+        Die Kennzahlen oben beantworten „wie viel“, der Verlauf „wohin“ – und
+        das ist bei einer Dividende oft die wichtigere Frage. Eine Rendite von
+        drei Prozent bedeutet etwas anderes, wenn die Ausschüttung seit vier
+        Jahren steigt, als wenn sie seit vier Jahren fällt. Die Zahl allein
+        zeigt diesen Unterschied nicht.
+      */}
+      {verlauf && verlauf.jahre.length >= 2 && (
+        <div className="mt-8">
+          <h3 className="text-fg text-lg font-semibold">Verlauf je Jahr</h3>
+          <Dividendenverlauf verlauf={verlauf} einheit={einheit} className="mt-3" />
+        </div>
+      )}
 
       {befund.naechsterErwartet && befund.schaetzungBasis && (
         <div className="mt-6">

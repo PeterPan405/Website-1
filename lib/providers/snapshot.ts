@@ -163,6 +163,46 @@ export function serializeKursstand(stand: Kursstand): string {
 }
 
 /**
+ * Entfernt den angefangenen Tag aus einer Kursreihe.
+ *
+ * ## Warum das nötig ist
+ *
+ * Yahoo liefert im Tagesraster auch den laufenden Tag – als Kerze, deren
+ * Schlusskurs der aktuelle Preis ist. Dieser Punkt bewegt sich also mit dem
+ * Kurs. Solange er in der Historie steht, ändert sich `markets.json` bei
+ * **jedem** Lauf, und die Trennung von Historie und Kursstand wäre wirkungslos:
+ * neunzehn Megabyte, zweiundvierzig Mal am Tag, wegen einer einzigen Zahl.
+ *
+ * Aufgefallen ist es erst am fertigen Ergebnis. Der erste Lauf nach der
+ * Trennung schrieb erwartungsgemäß beide Dateien – der zweite hätte nur noch
+ * die kleine schreiben dürfen. Dass er es nicht getan hätte, stand nirgends im
+ * Code, sondern nur im letzten Punkt der Reihe: `2026-07-30`, an einem 30. Juli
+ * um halb vier nachmittags.
+ *
+ * ## Warum das auch inhaltlich richtig ist
+ *
+ * Die Reihe heißt auf der Website „Tagesschlusskurse“, und der laufende Tag hat
+ * keinen. Der aktuelle Preis steht ohnehin daneben – aus `kurse-aktuell.json`
+ * und mit Uhrzeit. Ein Zwischenstand in der Schlusskursreihe wäre an dieser
+ * Stelle die falsche Auskunft und im Chart nicht als solcher zu erkennen.
+ *
+ * Der Preis dafür: Ein Schlusskurs erscheint erst am Folgetag in der Reihe. Für
+ * einen Verlauf über fünf Jahre ist das ohne Belang.
+ *
+ * Verworfen wird auch, was **nach** dem Stichtag datiert ist: In Tokio ist der
+ * Handelstag zu Ende, während in Europa noch derselbe Tag läuft. Ein Punkt mit
+ * morgigem Datum stünde sonst im Chart.
+ *
+ * @param today Bezugstag, Format YYYY-MM-DD. Vorgabe ist der heutige Tag.
+ */
+export function ohneHeute(
+  points: readonly SnapshotPoint[],
+  today = new Date().toISOString().slice(0, 10)
+): SnapshotPoint[] {
+  return points.filter((punkt) => punkt.d < today)
+}
+
+/**
  * Wie viele Tage am Ende in voller Auflösung erhalten bleiben.
  *
  * 400 Kalendertage decken die Zeiträume bis „ein Jahr“ vollständig mit

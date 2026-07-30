@@ -26,6 +26,7 @@ import {
   EMPTY_KURSSTAND,
   EMPTY_SNAPSHOT,
   checkPoints,
+  ohneHeute,
   serializeKursstand,
   serializeSnapshot,
   thinPoints,
@@ -325,7 +326,7 @@ async function main(): Promise<void> {
 
     const stellen =
       marketDefinitions.find((definition) => definition.symbol === symbol)?.decimals ?? 4
-    const punkte = thinPoints(roh).map((punkt) => ({
+    const punkte = thinPoints(ohneHeute(roh)).map((punkt) => ({
       d: punkt.d,
       c: runde(punkt.c, stellen),
     }))

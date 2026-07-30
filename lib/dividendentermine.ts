@@ -26,9 +26,11 @@ import momentaufnahme from '@/data/snapshots/dividenden.json'
 import { marketDefinitions } from '@/data/markets'
 import type { Termin } from '@/data/kalender/typen'
 import {
+  jahresSummen,
   rhythmusLabel,
   werteDividenden,
   type Dividendenbefund,
+  type Dividendenjahre,
   type Zahlung,
 } from '@/lib/dividenden'
 import { getLiveSeries } from '@/lib/market-live'
@@ -84,6 +86,25 @@ export function getDividendenbefund(symbol: string): Dividendenbefund | null {
   const zahlungen = daten.titel[symbol]
   if (!zahlungen || zahlungen.length === 0) return null
   return werteDividenden(zahlungen, rohkurs(symbol), heute())
+}
+
+/**
+ * Die Dividende je Kalenderjahr für die Verlaufsgrafik.
+ *
+ * Der Fensterbeginn kommt aus der **Kursreihe** desselben Titels, und das ist
+ * kein Umweg: Kurse und Dividenden stammen aus derselben Antwort derselben
+ * Anfrage über fünf Jahre. Wo die Kursreihe anfängt, fangen auch die
+ * Dividendendaten an – und nur damit lässt sich sagen, ob ein Kalenderjahr
+ * vollständig erfasst ist oder bloß angebrochen.
+ *
+ * Ohne diese Angabe verwirft `jahresSummen` das erste Jahr vorsichtshalber.
+ * Bei einem Jahreszahler kostete das einen von vier Balken.
+ */
+export function getDividendenverlauf(symbol: string): Dividendenjahre | null {
+  const zahlungen = daten.titel[symbol]
+  if (!zahlungen || zahlungen.length === 0) return null
+  const reihe = getLiveSeries(symbol)
+  return jahresSummen(zahlungen, reihe?.daily[0]?.t ?? null, heute())
 }
 
 /** Wie viele der geführten Aktien Dividenden melden. */

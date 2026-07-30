@@ -15,6 +15,7 @@ import { parseYahooChart, yahooUrl } from '../lib/providers/yahoo.ts'
 import { parseTwelveData, twelveDataUrl } from '../lib/providers/twelvedata.ts'
 import {
   checkPoints,
+  ohneHeute,
   serializeKursstand,
   thinPoints,
   type Kursstand,
@@ -211,6 +212,36 @@ check(
   ),
   []
 )
+
+// ------------------------------------------------------- Der laufende Tag
+
+/*
+  Der teuerste Punkt der ganzen Reihe: Yahoos Kerze des angefangenen Tages.
+  Ihr Schluss ist der aktuelle Preis und bewegt sich alle dreißig Minuten –
+  in der Historie stehend hätte sie die Trennung von Kursstand und Historie
+  vollständig wirkungslos gemacht.
+*/
+const mitHeute = [
+  { d: '2026-07-28', c: 100 },
+  { d: '2026-07-29', c: 101 },
+  { d: '2026-07-30', c: 102 },
+]
+
+check('wirft den angefangenen Tag weg', ohneHeute(mitHeute, '2026-07-30'), [
+  { d: '2026-07-28', c: 100 },
+  { d: '2026-07-29', c: 101 },
+])
+check(
+  'wirft auch weg, was nach dem Stichtag datiert ist',
+  ohneHeute(mitHeute, '2026-07-29').map((p) => p.d),
+  ['2026-07-28']
+)
+check(
+  'laesst eine abgeschlossene Reihe unberuehrt',
+  ohneHeute(mitHeute, '2026-07-31'),
+  mitHeute
+)
+check('kommt mit einer leeren Reihe klar', ohneHeute([], '2026-07-30'), [])
 
 // ---------------------------------------------------------------- Kursstand
 

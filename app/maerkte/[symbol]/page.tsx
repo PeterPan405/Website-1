@@ -27,7 +27,11 @@ import {
   formatPercentSigned,
 } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
-import { dividendenQuelle, getDividendenbefund } from '@/lib/dividendentermine'
+import {
+  dividendenQuelle,
+  getDividendenbefund,
+  getDividendenverlauf,
+} from '@/lib/dividendentermine'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { getNewsForSymbol } from '@/lib/news'
 import {
@@ -100,6 +104,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
     Netz – deshalb synchron und nicht in `Promise.all` darüber.
   */
   const dividende = getDividendenbefund(symbol)
+  const dividendenverlauf = getDividendenverlauf(symbol)
 
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
@@ -340,6 +345,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 einheit={instrument.unit}
                 name={instrument.name}
                 quelle={dividendenQuelle}
+                verlauf={dividendenverlauf}
                 className="mt-12"
               />
             )}
