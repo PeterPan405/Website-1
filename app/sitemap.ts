@@ -54,6 +54,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl('/lernen'), changeFrequency: 'weekly', priority: 0.9 },
     // Das Schaufenster aller Erklärgrafiken.
     { url: absoluteUrl('/lernen/grafiken'), changeFrequency: 'monthly', priority: 0.6 },
+    /*
+      Lernstand und Wiederholung ändern sich als Seite selten – was sich ändert,
+      steht im Browser des Besuchers und nicht in der ausgelieferten Datei.
+    */
+    { url: absoluteUrl('/lernen/stand'), changeFrequency: 'monthly', priority: 0.7 },
+    {
+      url: absoluteUrl('/lernen/wiederholen'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     { url: absoluteUrl('/rechner'), changeFrequency: 'monthly', priority: 0.9 },
     { url: absoluteUrl('/maerkte'), changeFrequency: 'hourly', priority: 0.8 },
     {

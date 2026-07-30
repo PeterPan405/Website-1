@@ -4,7 +4,12 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
-import { bevorzugteStimme, klingtMaennlich, klingtNatuerlich } from '@/lib/vorlese-text'
+import {
+  bevorzugteStimme,
+  gruppiereStimmen,
+  klingtMaennlich,
+  tonlageFuer,
+} from '@/lib/vorlese-text'
 
 /**
  * Liest die Abschnitte einer Seite mit der Stimme des Browsers vor.
@@ -51,17 +56,6 @@ function nieWieder() {
 
 /** Stabile leere Referenz für das Server-Rendering. */
 const KEINE_STIMMEN: readonly SpeechSynthesisVoice[] = []
-
-/**
- * Tonlage unter der Mitte – gewünscht ist eine tiefe Stimme. Eine als
- * männlich erkannte Stimme wird nur leicht abgedunkelt (0,85); muss mangels
- * Männerstimme eine andere sprechen, übernimmt die Tonlage die ganze Arbeit
- * und geht deutlich tiefer (0,7). Netzstimmen ignorieren die Tonhöhe teils –
- * dort hilft nur eine andere Stimme, siehe der Hinweis unter der Leiste.
- */
-function tonlageFuer(stimme: SpeechSynthesisVoice | null): number {
-  return stimme && klingtMaennlich(stimme) ? 0.85 : 0.7
-}
 
 /*
   Die Stimmen des Geräts als beobachtbarer Bestand.
@@ -149,11 +143,8 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     Netzstimmen schicken den Text zum Hersteller des Browsers – sie sind
     gekennzeichnet, damit die Wahl eine informierte ist.
   */
-  const deutsche = stimmen.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
-  /* Die natürlichen Stimmen zuerst – wer wechselt, sucht fast immer eine. */
-  const zurAuswahl = (deutsche.length > 0 ? deutsche : stimmen)
-    .slice()
-    .sort((a, b) => Number(klingtNatuerlich(b)) - Number(klingtNatuerlich(a)))
+  const gruppen = gruppiereStimmen(stimmen)
+  const zurAuswahl = [...gruppen.maennlich, ...gruppen.weitere]
   const wahlVorhanden = zurAuswahl.some((stimme) => stimme.voiceURI === stimmwahl)
   const automatik = bevorzugteStimme(stimmen)
   /* Was tatsächlich sprechen wird: die Handwahl, sonst die Automatik. */
@@ -357,12 +348,34 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
           <option value="">
             {automatik ? `Automatisch: ${automatik.name}` : 'Stimme: automatisch'}
           </option>
-          {zurAuswahl.map((stimme) => (
-            <option key={stimme.voiceURI} value={stimme.voiceURI}>
-              {stimme.name}
-              {stimme.localService ? '' : ' (online)'}
-            </option>
-          ))}
+          {/*
+            Zwei Gruppen statt einer Liste. Erkennt die Automatik eine
+            Männerstimme nicht – die Namensliste kann nicht vollständig sein –,
+            muss von Hand gewählt werden, und dann steht man sonst vor
+            „Katja“, „Hedda“, „Stefan“, „Google Deutsch“ und rät.
+          */}
+          {gruppen.maennlich.length > 0 && (
+            <optgroup label="Männliche Stimmen">
+              {gruppen.maennlich.map((stimme) => (
+                <option key={stimme.voiceURI} value={stimme.voiceURI}>
+                  {stimme.name}
+                  {stimme.localService ? '' : ' (online)'}
+                </option>
+              ))}
+            </optgroup>
+          )}
+          {gruppen.weitere.length > 0 && (
+            <optgroup
+              label={gruppen.maennlich.length > 0 ? 'Weitere Stimmen' : 'Stimmen'}
+            >
+              {gruppen.weitere.map((stimme) => (
+                <option key={stimme.voiceURI} value={stimme.voiceURI}>
+                  {stimme.name}
+                  {stimme.localService ? '' : ' (online)'}
+                </option>
+              ))}
+            </optgroup>
+          )}
         </select>
       )}
 

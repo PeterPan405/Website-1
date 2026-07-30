@@ -102,7 +102,13 @@ test('Über das höchste Fach hinaus geht es nicht', () => {
 })
 
 test('Eine falsche Antwort wirft auf Fach 1 zurück, nicht ein Fach herunter', () => {
-  const karte: Karte = { id: 'a', fach: 4, faellig: '2026-07-30', versuche: 3, richtig: 3 }
+  const karte: Karte = {
+    id: 'a',
+    fach: 4,
+    faellig: '2026-07-30',
+    versuche: 3,
+    richtig: 3,
+  }
   const danach = beantworte(karte, false, '2026-07-30')
   assert.equal(danach.fach, 1)
   assert.equal(danach.faellig, '2026-07-31')
@@ -209,7 +215,12 @@ test('Bereits bekannte Fragen kommen nicht als neu zurück', () => {
 })
 
 test('Neue Fragen behalten die Reihenfolge der Lernstufen', () => {
-  const ergebnis = runde([], ['aktie:beginner#0', 'aktie:beginner#1', 'etf:beginner#0'], '2026-07-30', 3)
+  const ergebnis = runde(
+    [],
+    ['aktie:beginner#0', 'aktie:beginner#1', 'etf:beginner#0'],
+    '2026-07-30',
+    3
+  )
   assert.deepEqual(ergebnis.neu, [
     'aktie:beginner#0',
     'aktie:beginner#1',

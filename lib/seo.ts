@@ -85,6 +85,45 @@ const OG_IMAGE = {
   alt: `${siteConfig.name} – ${siteConfig.slogan}`,
 } as const
 
+/**
+ * Bereiche mit eigenem Vorschaubild, samt Bildbeschreibung.
+ *
+ * Zu jedem Eintrag gehört eine Datei `app/<bereich>/opengraph-image.tsx`. Die
+ * beiden gehören zusammen und stehen leider an zwei Stellen – der Grund steht
+ * bei `ogBildFuer`.
+ */
+const BEREICHSBILDER: Record<string, string> = {
+  lernen: 'Lernen bei IM Invests – Finanzwissen in drei Stufen',
+  maerkte: 'Märkte bei IM Invests – Kurse, Kennzahlen und Termine',
+  rechner: 'Rechner bei IM Invests – nachrechnen statt schätzen',
+  news: 'News bei IM Invests – die Meldung als Anlass, nicht als Inhalt',
+  akademie: 'Akademie bei IM Invests – Verfahren statt Grundlagen',
+  glossar: 'Glossar bei IM Invests – Begriffe in einem Satz',
+  podcast: 'Der Podcast von IM Invests',
+}
+
+/**
+ * Das Vorschaubild, das zu einem Pfad gehört.
+ *
+ * ## Warum das hier entschieden wird und nicht je Seite
+ *
+ * Next legt das Bild aus `app/<bereich>/opengraph-image.tsx` von selbst an alle
+ * Seiten des Bereichs – aber nur, solange die Seite kein eigenes
+ * `openGraph`-Objekt exportiert. Genau das tut hier jede Seite, weil
+ * `buildMetadata` Titel und Beschreibung setzt; das Objekt ersetzt das der
+ * Layouts vollständig, und das Bereichsbild fiele stillschweigend heraus.
+ *
+ * Die Zuordnung aus dem Pfad zu holen ist die einzige Fassung, die keine 1.400
+ * Seitendateien anfasst und bei der niemand etwas vergessen kann: Wer eine
+ * Seite unter `/maerkte/` anlegt, bekommt das Marktbild, ohne davon zu wissen.
+ */
+export function ogBildFuer(path: string) {
+  const bereich = path.split('/').filter(Boolean)[0]
+  const alt = bereich ? BEREICHSBILDER[bereich] : undefined
+  if (!bereich || !alt) return OG_IMAGE
+  return { url: `/${bereich}/opengraph-image`, width: 1200, height: 630, alt } as const
+}
+
 export function buildMetadata(input: SeoInput): Metadata {
   const {
     title,
@@ -105,6 +144,7 @@ export function buildMetadata(input: SeoInput): Metadata {
   const url = absoluteUrl(path)
   const socialTitle = ogTitle ?? title
   const socialDescription = ogDescription ?? description
+  const bild = ogBildFuer(path)
 
   return {
     title: { absolute: title },
@@ -123,8 +163,8 @@ export function buildMetadata(input: SeoInput): Metadata {
       // Das Bild muss hier ausdrücklich stehen: Sobald eine Seite ein eigenes
       // openGraph-Objekt exportiert, ersetzt es das des Layouts vollständig –
       // das von app/opengraph-image.tsx erzeugte Bild würde dann auf allen
-      // Unterseiten fehlen.
-      images: [OG_IMAGE],
+      // Unterseiten fehlen. Welches es ist, entscheidet `ogBildFuer`.
+      images: [bild],
       ...(type === 'article'
         ? {
             publishedTime,
@@ -138,7 +178,7 @@ export function buildMetadata(input: SeoInput): Metadata {
       site: siteConfig.twitterHandle,
       title: socialTitle,
       description: socialDescription,
-      images: [OG_IMAGE],
+      images: [bild],
     },
     ...(noIndex ? { robots: { index: false, follow: true } } : {}),
   }

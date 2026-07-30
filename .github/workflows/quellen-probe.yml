@@ -188,7 +188,7 @@ on:
         description: 'Welche Sonde laufen soll'
         type: choice
         default: alle
-        options: [alle, sec, asien, nordisch, esef]
+        options: [alle, sec, asien, nordisch, esef, esef-de]
 
 jobs:
   abklopfen:
@@ -234,6 +234,17 @@ jobs:
         if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'esef')
         run: node --experimental-strip-types scripts/quellen-probe-esef-werte.ts
 
+      # Dritte Runde: die deutsche Luecke. In der Zuordnung in
+      # `scripts/esef-abrufen.ts` steht kein einziger `.DE`-Ticker, obwohl
+      # Allianz, BMW, SAP und zwanzig weitere derselben ESEF-Pflicht
+      # unterliegen. Die Sonde klaert, ob die Abschluesse im Verzeichnis
+      # fehlen oder nur der Namensabgleich sie nicht trifft – ein Unterschied,
+      # der sich nicht erraten laesst und ohne den keine Zuordnung entstehen
+      # darf.
+      - name: Deutsche Abschlüsse im ESEF-Verzeichnis suchen
+        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'esef' || inputs.sonde == 'esef-de')
+        run: node --experimental-strip-types scripts/quellen-probe-esef-de.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -242,5 +253,6 @@ jobs:
           path: |
             sec-kandidaten.json
             esef-kandidaten.json
+            esef-kandidaten-de.json
             esef-werte.json
           if-no-files-found: warn

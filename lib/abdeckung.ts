@@ -87,7 +87,14 @@ export function fehlendeNachLand(
  * sich die Quellenlage ändert.
  */
 export const quellenlage: Readonly<Record<string, string>> = {
-  Deutschland: 'ESEF – die Zuordnung der Kennungen fehlt noch',
+  /*
+    Präziser als „die Zuordnung fehlt noch“: Der Abgleich gegen das
+    ESEF-Verzeichnis hat 98 Unternehmen gefunden, darunter kein einziges
+    deutsches. Ob die Abschlüsse dort fehlen oder nur unter Namen stehen, die
+    der Abgleich nicht trifft, klärt `scripts/quellen-probe-esef-de.ts` – bis
+    dahin wird hier nichts behauptet, was noch niemand gesehen hat.
+  */
+  Deutschland: 'ESEF – im offenen Verzeichnis bisher kein deutscher Abschluss gefunden',
   Japan: 'EDINET – Schlüssel nötig, der Abschluss steckt in einem ZIP-Archiv',
   Indien: 'keine geprüfte offene Quelle',
   China: 'keine geprüfte offene Quelle',

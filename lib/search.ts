@@ -162,6 +162,39 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
   })
 
   eintraege.push({
+    title: 'Dein Lernstand',
+    href: '/lernen/stand',
+    kind: 'Bereich',
+    hint: 'Welche Stufen erledigt sind – und ein Einstufungstest für alle, die nicht bei null anfangen.',
+    keywords: [
+      'lernstand',
+      'fortschritt',
+      'einstufung',
+      'einstufungstest',
+      'test',
+      'wo anfangen',
+      'niveau',
+    ],
+  })
+
+  eintraege.push({
+    title: 'Wiederholen',
+    href: '/lernen/wiederholen',
+    kind: 'Bereich',
+    hint: 'Die Fragen aus allen Lernthemen in wachsenden Abständen – gegen das Vergessen.',
+    keywords: [
+      'wiederholen',
+      'wiederholung',
+      'karteikarten',
+      'leitner',
+      'spaced repetition',
+      'behalten',
+      'vergessen',
+      'ueben',
+    ],
+  })
+
+  eintraege.push({
     title: 'Lernpfade',
     href: '/lernen/pfade',
     kind: 'Bereich',
