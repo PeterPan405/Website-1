@@ -19,6 +19,7 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { cn } from '@/lib/cn'
 import {
+  formatCurrency,
   formatDateShort,
   formatDate,
   formatDateTime,
@@ -28,6 +29,7 @@ import {
 } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
 import { getBrancheVon } from '@/lib/branchen'
+import { inEuro, lohntEuroAngabe } from '@/lib/euro'
 import {
   dividendenQuelle,
   getDividendenbefund,
@@ -107,6 +109,14 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
   const dividende = getDividendenbefund(symbol)
   const dividendenverlauf = getDividendenverlauf(symbol)
   const branche = getBrancheVon(symbol)
+  /*
+    Der Euro-Betrag nur, wo er etwas hinzufügt: nicht bei Titeln, die ohnehin
+    in Euro notieren, und nicht bei Indizes – ein Indexstand ist kein
+    Geldbetrag, und „7.374 Punkte, rund 6.480 €“ wäre schlicht falsch.
+  */
+  const euroKurs = lohntEuroAngabe(instrument.unit)
+    ? inEuro(quote.value, instrument.unit)
+    : null
 
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
@@ -137,6 +147,11 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             <span className="text-fg text-lg font-bold tabular-nums">
               {formatNumber(quote.value, quote.decimals)} {instrument.unit}
             </span>
+            {euroKurs && (
+              <span className="tabular-nums">
+                rund {formatCurrency(euroKurs.euro, euroKurs.euro < 10 ? 2 : 0)}
+              </span>
+            )}
             <span
               className={cn(
                 'flex items-center gap-1 font-semibold tabular-nums',
@@ -183,7 +198,20 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 <Stat
                   label="Aktueller Stand"
                   value={`${formatNumber(quote.value, quote.decimals)}`}
-                  hint={`${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`}
+                  /*
+                    Der Euro-Betrag steht im Hinweis, nicht im Wert.
+
+                    Er ist eine Umrechnung und keine Notierung: Gehandelt wird
+                    dieser Titel in seiner Heimatwährung, und die große Zahl
+                    soll die sein, die auch im Depotauszug steht. Im Hinweis
+                    beantwortet er trotzdem die Frage, die sich beim Anschauen
+                    zuerst stellt – was ist das in Euro?
+                  */
+                  hint={
+                    euroKurs
+                      ? `${instrument.unit} · rund ${formatCurrency(euroKurs.euro, euroKurs.euro < 10 ? 2 : 0)} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
+                      : `${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
+                  }
                   tone={positive ? 'positive' : 'negative'}
                 />
                 <Stat
@@ -391,6 +419,22 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 {formatDateShort(coverage.to)}; ältere Abschnitte auf einen Wert je Woche
                 verdichtet.
               </p>
+              {/*
+                Der Euro-Betrag braucht seine eigene Herkunftsangabe.
+
+                Er entsteht aus zwei verschieden alten Zahlen: einem Kurs von
+                vor höchstens einer halben Stunde und einem Wechselkurs, den die
+                EZB einmal am Tag feststellt. „Rund“ allein sagt das nicht – erst
+                das Datum daneben macht sichtbar, worauf die Umrechnung beruht.
+              */}
+              {euroKurs && (
+                <p className="text-fg-subtle mt-1 text-xs">
+                  Der Euro-Betrag ist mit dem Referenzkurs der EZB vom{' '}
+                  {formatDateShort(euroKurs.stand)} gerechnet (1 € ={' '}
+                  {formatNumber(euroKurs.jeEuro, 4)} {euroKurs.ausWaehrung}). Beim Kauf
+                  gilt der Kurs deiner Bank samt Aufschlag, nicht dieser.
+                </p>
+              )}
             </div>
           </div>
 
