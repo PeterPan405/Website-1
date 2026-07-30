@@ -9,6 +9,18 @@ name: Website prüfen
 # Der Workflow verändert nichts und braucht keine Zugangsdaten.
 
 on:
+  schedule:
+    # Täglich um 06:30 UTC – nach dem nächtlichen Bau um 04:15 und vor dem
+    # ersten Kursabruf des Tages um 07:00.
+    #
+    # Bis Juli 2026 lief dieser Workflow nur von Hand, und damit fiel ein
+    # Ausfall erst auf, wenn jemand nachsah. Genau das ist passiert: Ein
+    # Kursabruf scheiterte still am Commit, sieben Minuten Laufzeit ohne
+    # Ergebnis – gefunden nicht von der Website, sondern beim Nachfragen.
+    #
+    # Der Lauf verändert nichts. Er ruft die veröffentlichte Seite ab und
+    # schlägt an, wenn sie nicht antwortet oder ihre Daten veraltet sind.
+    - cron: '30 6 * * *'
   workflow_dispatch:
     inputs:
       hosts:
@@ -174,6 +186,34 @@ jobs:
           printf '%-48s ' "/_next/static/chunks/22vr61z768k05.css"
           curl -sS --max-time 20 -A "$UA" -o /dev/null -w '%{http_code}\n' \
             "$URL/_next/static/chunks/22vr61z768k05.css" || echo "Fehler"
+
+          echo ""
+          echo "=== Frische der Daten ==="
+          # Der Zeitstempel des Kursabrufs steht maschinenlesbar in
+          # /version.txt – dieselbe Datei, die auch Commit und Bauzeit trägt.
+          # Auf der Marktseite steht er als deutscher Satz; den aus HTML zu
+          # klauben wäre der falsche Weg für eine Prüfung.
+          #
+          # Warum das hier steht: Ein Kursabruf ist schon einmal still am
+          # Commit gescheitert – sieben Minuten Laufzeit, kein Ergebnis, und
+          # die Website zeigte weiter alte Zahlen. Aufgefallen ist es beim
+          # Nachfragen, nicht durch eine Prüfung.
+          stand=$(curl -sS --max-time 20 -A "$UA" "$URL/version.txt" \
+            | grep -oE '^kurse: *[^ ]+' | awk '{print $2}')
+          if [ -n "$stand" ] && [ "$stand" != "unbekannt" ]; then
+            echo "Kursabruf zuletzt: $stand"
+            alter=$(( ( $(date -u +%s) - $(date -u -d "$stand" +%s) ) / 3600 ))
+            echo "Alter: $alter Stunden"
+            # Dreißig Stunden lassen ein Wochenende und einen Feiertag zu; alles
+            # darüber heißt, dass mehrere Läufe ausgefallen sind.
+            if [ "$alter" -gt 30 ]; then
+              echo "::warning::Der Kursstand ist $alter Stunden alt – der Abruf liefert nicht mehr."
+            else
+              echo "Im Rahmen."
+            fi
+          else
+            echo "::warning::In /version.txt steht kein Kursstand – läuft dort noch eine alte Fassung?"
+          fi
 
           echo ""
           echo "=== Weitere Seiten ==="

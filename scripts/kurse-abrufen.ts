@@ -217,6 +217,35 @@ function warte(ms: number): Promise<void> {
 /** Pause zwischen zwei Marktabrufen in Millisekunden. */
 const ABSTAND_MS = 250
 
+/**
+ * Auf welche Instrumentenarten sich ein Lauf beschränkt.
+ *
+ * Leer heißt: alle. Gesetzt wird das vom Wochenendlauf mit `crypto,fx`.
+ *
+ * ## Warum ein Teilabruf gefahrlos ist
+ *
+ * Der Lauf beginnt mit `{ ...bisher.instruments }` und überschreibt nur, was
+ * er tatsächlich geholt hat. Was er überspringt, behält seinen Stand – es
+ * verschwindet nicht und wird nicht auf null gesetzt.
+ *
+ * ## Warum es diesen Schalter überhaupt gibt
+ *
+ * Aktien und Indizes werden am Wochenende nicht gehandelt; ein Abruf am
+ * Sonntag liefert für sie denselben Freitagsschluss wie am Freitagabend.
+ * Kryptowährungen und Devisen laufen dagegen weiter – Bitcoin handelt an 365
+ * Tagen, und genau das erklärt diese Website an anderer Stelle. Bis Juli 2026
+ * stand am Wochenende trotzdem der Freitagskurs auf der Seite.
+ *
+ * Alle tausend Titel dafür abzufragen wäre die falsche Antwort: sieben
+ * Minuten Laufzeit und über tausend Anfragen bei einer Schnittstelle ohne
+ * Registrierung, um fünf Zahlen zu aktualisieren. Mit dem Schalter sind es
+ * fünf Anfragen und ein paar Sekunden.
+ */
+const NUR_ARTEN = (process.env.NUR_ARTEN ?? '')
+  .split(',')
+  .map((eintrag) => eintrag.trim())
+  .filter((eintrag) => eintrag.length > 0)
+
 async function main(): Promise<void> {
   const bisher = ladeBisherige()
   const instrumente: Record<string, SnapshotInstrument> = { ...bisher.instruments }
@@ -228,10 +257,26 @@ async function main(): Promise<void> {
   const dividenden = ladeDividenden()
   const { reihen: devisen, tabelle: devisentabelle } = await holeDevisen()
 
+  if (NUR_ARTEN.length > 0) {
+    console.log(
+      `[kurse] Beschränkt auf: ${NUR_ARTEN.join(', ')} – alles andere behält seinen Stand.`
+    )
+  }
+
+  let uebersprungen = 0
+
   for (const [symbol, quelle] of Object.entries(marketSources)) {
     if (!bekannt.has(symbol)) {
       console.warn(`[kurse] ${symbol} steht in marketSources, aber in keiner Definition.`)
       continue
+    }
+
+    if (NUR_ARTEN.length > 0) {
+      const art = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)?.kind
+      if (!art || !NUR_ARTEN.includes(art)) {
+        uebersprungen += 1
+        continue
+      }
     }
 
     let roh: SnapshotPoint[] | null
@@ -332,6 +377,18 @@ async function main(): Promise<void> {
         `::warning title=Ältere Stände als ${juengster}::${hinterher.join(', ')}`
       )
     }
+  }
+
+  /*
+    Die Bilanz der Beschränkung gehört unmittelbar hinter die Schleife, nicht
+    ans Ende des Laufs: Bei einem erfolglosen Abruf kehrt die Funktion vorher
+    zurück, und dann fehlte im Protokoll gerade die Zeile, die erklärt, warum
+    so wenige Titel angefragt wurden.
+  */
+  if (uebersprungen > 0) {
+    console.log(
+      `[kurse] ${uebersprungen} Instrumente übersprungen (Beschränkung auf ${NUR_ARTEN.join(', ')}).`
+    )
   }
 
   if (uebernommen.length === 0) {

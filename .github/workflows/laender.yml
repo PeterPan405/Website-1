@@ -29,7 +29,15 @@ name: Länderdaten aktualisieren
 
 on:
   schedule:
-    - cron: '0 5 1 * *'
+    # Monatlich am Ersten, um 04:40 UTC.
+    #
+    # Die Weltbank aktualisiert ihre Reihen in Abständen von Monaten; öfter
+    # abzurufen bringt dieselben Zahlen. Die zwanzig Minuten Abstand zu den
+    # Quartalsterminen um 05:20 sind Absicht: Fällt der Erste auf einen
+    # Montag, liefen beide Läufe gleichzeitig und schrieben auf denselben
+    # Zweig. Der Rebase-Versuch fängt das ab, aber ein Zusammenstoß, den man
+    # verhindern kann, gehört verhindert.
+    - cron: '40 4 1 * *'
   # Von Hand auslösbar – zum Prüfen und für den ersten Lauf nach einer Änderung.
   workflow_dispatch:
 

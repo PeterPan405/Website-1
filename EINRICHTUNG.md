@@ -166,6 +166,43 @@ Ab dann läuft der Abruf montags um 05:00 UTC von allein.
 
 ---
 
+## Der Zeitplan: was von selbst läuft
+
+Alle Daten dieser Website werden von GitHub Actions abgerufen, in das
+Repository geschrieben und ausgeliefert – ohne Zutun. Ein Datencommit auf
+`main` löst „Paket bauen" aus, das bei Erfolg „Veröffentlichen" auslöst, und
+das lädt auf den Webspace. Von der neuen Zahl bis zur Website sind es etwa
+elf Minuten.
+
+| Was                               | Wann (UTC)                                          | Warum dieser Abstand                                                                                                                                                    |
+| --------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Kurse** (und Dividenden)        | werktags alle 30 Min., 07:00–21:30                  | Handelszeit von Tokio bis New York. Das Ende deckt die Schlussglocke in New York auch im Winterhalbjahr ab – dort schließt sie um 21:00 UTC.                            |
+| **Kurse**, nur Krypto und Devisen | Sa/So alle 3 Std.                                   | Bitcoin handelt an 365 Tagen, Aktien nicht. Der Wochenendlauf holt deshalb nur, was sich bewegt: fünf Anfragen statt tausend.                                           |
+| **Quartalstermine**               | montags 05:20                                       | Unternehmen geben ihre Meldetermine laufend bekannt; eine Woche ist der Abstand, in dem eine Ankündigung spätestens ankommt.                                            |
+| **Unternehmenszahlen**            | samstags 06:00                                      | Die Meldungen kommen in Wellen – Ende Januar, April, Juli und Oktober legen hunderte Firmen innerhalb weniger Tage vor. Monatlich hieße bis zu vier Wochen alte Zahlen. |
+| **Länderdaten**                   | am 1. um 04:40                                      | Weltbank, IWF und OECD aktualisieren ihre Reihen in Abständen von Monaten. Öfter abzurufen liefert dieselben Zahlen.                                                    |
+| **Paket bauen**                   | bei jedem Push auf `main`, zusätzlich täglich 04:15 | Der tägliche Lauf ist die Rückversicherung: Er baut auch dann, wenn einen Tag lang niemand etwas geändert hat.                                                          |
+| **Website prüfen**                | täglich 06:30                                       | Ruft die veröffentlichte Seite von außen ab und schlägt an, wenn sie nicht antwortet oder der Kursstand in `/version.txt` älter als 30 Stunden ist.                     |
+
+Die Zeiten sind bewusst gegeneinander versetzt. Fiele der Monatserste auf
+einen Montag, liefen Länderdaten und Quartalstermine sonst gleichzeitig und
+schrieben auf denselben Zweig; der Rebase-Versuch fängt das ab, aber ein
+Zusammenstoß, den man verhindern kann, gehört verhindert.
+
+**„Quellen abklopfen" hat bewusst keinen Zeitplan.** Der Workflow probiert
+Datenquellen durch und schreibt das Ergebnis in sein eigenes Protokoll; er
+verändert nichts. Ein wöchentlicher Lauf erzeugte Meldungen, auf die niemand
+reagiert – und eine Prüfung, die man nicht mehr ansieht, ist keine. Ob eine
+Quelle noch liefert, beantwortet die Frischeprüfung in „Website prüfen", und
+die schlägt nur an, wenn tatsächlich etwas fehlt.
+
+### Was den Zeitplan stillschweigend anhält
+
+GitHub schaltet geplante Workflows in einem Repository ab, in dem **60 Tage**
+lang niemand etwas ändert. Es gibt dann keine Fehlermeldung – die Läufe hören
+einfach auf. Wer die Website längere Zeit unbeaufsichtigt lässt, sollte das
+wissen: Ein einzelner Commit genügt, um die Zeitpläne wieder zu aktivieren.
+
 ## Was hier bewusst nicht steht
 
 Klickpfade in hPanel und im Twelve-Data-Dashboard. Beide Oberflächen ändern sich,

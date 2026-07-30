@@ -19,7 +19,32 @@
  */
 
 import { execFileSync } from 'node:child_process'
-import { writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
+
+/**
+ * Der Zeitpunkt, zu dem die Kurse zuletzt abgerufen wurden.
+ *
+ * Er steht auf der Marktseite als deutscher Satz – „Stand 30. Juli 2026 um
+ * 13:33 Uhr“. Für einen Menschen ist das die richtige Form, für eine Prüfung
+ * von außen die falsche: Niemand soll deutsche Datumsangaben aus HTML klauben
+ * müssen, um festzustellen, ob der Abruf noch läuft.
+ *
+ * Deshalb steht der Zeitstempel hier zusätzlich maschinenlesbar. Der
+ * tägliche Prüflauf liest ihn und schlägt an, wenn er zu alt ist – ein still
+ * ausgefallener Abruf fällt sonst erst auf, wenn jemand nachsieht. Genau das
+ * ist schon passiert.
+ */
+function datenstand() {
+  try {
+    const roh = readFileSync('data/snapshots/markets.json', 'utf8')
+    // Nur den Kopf lesen: Die Datei ist zehn Megabyte groß, der Zeitstempel
+    // steht im ersten Feld. JSON.parse darüber wäre Verschwendung.
+    const treffer = roh.slice(0, 400).match(/"fetchedAt":\s*"([^"]+)"/)
+    return treffer ? treffer[1] : 'unbekannt'
+  } catch {
+    return 'unbekannt'
+  }
+}
 
 /**
  * Ermittelt den Commit.
@@ -46,6 +71,7 @@ function commit() {
 const zeilen = [
   `commit:  ${commit()}`,
   `gebaut:  ${new Date().toISOString().replace('T', ' ').slice(0, 19)} UTC`,
+  `kurse:   ${datenstand()}`,
 ]
 
 if (process.env.GITHUB_RUN_NUMBER) {

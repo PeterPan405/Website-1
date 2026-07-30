@@ -41,7 +41,23 @@ name: Kurse aktualisieren
 
 on:
   schedule:
-    - cron: '0,30 7-20 * * 1-5'
+    # Werktags alle dreißig Minuten, 07:00 bis 21:30 UTC.
+    #
+    # Das Ende lag bis Juli 2026 bei 20:30 und schnitt damit im Winterhalbjahr
+    # den wichtigsten Kurs des Tages ab: Die New Yorker Börse schließt um
+    # 16 Uhr Ortszeit, das sind von November bis März 21:00 UTC. Der letzte
+    # Lauf davor lief also vor dem Schluss, und der Schlusskurs von 500
+    # US-Aktien erschien erst am nächsten Morgen auf der Seite.
+    - cron: '0,30 7-21 * * 1-5'
+    # Am Wochenende alle drei Stunden, aber nur Krypto und Devisen.
+    #
+    # Aktien und Indizes werden nicht gehandelt – ein Abruf liefert für sie
+    # denselben Freitagsschluss. Bitcoin, Ethereum und XRP laufen dagegen
+    # weiter, und dass Krypto an 365 Tagen handelt, erklärt diese Website an
+    # anderer Stelle ausdrücklich. Bis hierher stand am Wochenende trotzdem
+    # der Freitagskurs. Die Beschränkung macht aus sieben Minuten und tausend
+    # Anfragen ein paar Sekunden und eine Handvoll.
+    - cron: '0 */3 * * 6,0'
   # Von Hand auslösbar – zum Prüfen und für den allerersten Lauf.
   workflow_dispatch:
 
@@ -77,6 +93,10 @@ jobs:
         # hinterlegt, wird Twelve Data bevorzugt.
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          # Am Wochenende nur, was am Wochenende handelt. `github.event.schedule`
+          # enthält den Ausdruck, der den Lauf ausgelöst hat – bei einem Start
+          # von Hand ist er leer, dann wird alles geholt.
+          NUR_ARTEN: ${{ github.event.schedule == '0 */3 * * 6,0' && 'crypto,fx' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen
