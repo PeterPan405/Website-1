@@ -70,6 +70,15 @@ import {
 const WEITERE_SPALTEN = 5
 
 /**
+ * Die Adresse für die Fußzeile des Bogens – ohne Schema, wie man sie sagt.
+ *
+ * Aus `siteConfig.url` und nicht als Text daneben: Ein ausgedruckter Bogen
+ * bleibt jahrelang in einem Ordner liegen, und die Adresse darauf ist die
+ * einzige Spur zurück zur Website. Sie muss stimmen.
+ */
+const pdfAdresse = new URL(siteConfig.url).host.replace(/^www\./, '')
+
+/**
  * Eine Datei im Browser erzeugen und herunterladen.
  *
  * ## Warum die Adresse erst später freigegeben wird
@@ -139,8 +148,14 @@ export function NetWorthSheet() {
         ? `Stichtag ${tag.split('-').reverse().join('.')}`
         : `Zum Ausfüllen · Stichtag ${tag.split('-').reverse().join('.')}`,
       marke: siteConfig.name,
-      fusszeile:
-        'im-invests.de · Vermögensübersicht · im Browser erstellt, nichts gesendet',
+      /*
+        Die Adresse kommt aus der Konfiguration und steht nicht mehr im Text.
+        Hier stand `im-invests.de` – eine Domain mit Bindestrich, die es nicht
+        gibt und nie gab; sie löst nicht einmal auf. Jeder ausgedruckte Bogen
+        verwies damit auf eine Adresse, unter der niemand die Website findet.
+        Aus `siteConfig.url` abgeleitet kann das nicht wieder auseinanderlaufen.
+      */
+      fusszeile: `${pdfAdresse} · Vermögensübersicht · im Browser erstellt, nichts gesendet`,
       zeilen: alsPdfZeilen({
         werte: ausgefuellt ? werte : undefined,
         stichtag: tag,

@@ -30,6 +30,13 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 
+/*
+  Über den relativen Pfad und nicht über `@/lib/site`: Dieses Skript läuft
+  ohne Next.js, der Alias existiert dort nicht. `resolve-site-url.ts` ist
+  bewusst importfrei und lässt sich deshalb direkt laden.
+*/
+import { resolveSiteUrl } from '../lib/resolve-site-url.ts'
+
 const PAKET = 'out'
 
 /** Diese Dateien müssen im Paket liegen, sonst ist es unbrauchbar. */
@@ -466,6 +473,32 @@ function pruefen(): string[] {
   }
   for (const pfad of gelistet) {
     if (!erreichbar.has(pfad)) fehler.push(`Suchindex zeigt ins Leere: ${pfad}`)
+  }
+
+  /*
+    ------------------------------------------------- Adressen, die es nicht gibt
+
+    In der Fußzeile der herunterladbaren Vermögensübersicht stand über Monate
+    `im-invests.de` – mit Bindestrich. Diese Domain existiert nicht und löst
+    nicht einmal auf; wer den ausgedruckten Bogen später zur Hand nahm und die
+    Adresse eintippte, landete im Nichts.
+
+    Der Fehler ist von der gebauten Seite aus unsichtbar: Die Zeile entsteht
+    erst im Browser beim Erzeugen der PDF-Datei. Sichtbar ist sie nur als Text
+    im JavaScript-Paket – und genau dort wird jetzt nachgesehen. Geprüft werden
+    HTML und JavaScript, weil eine falsche Adresse in beiden landen kann.
+  */
+  const falscheAdressen = ['im-invests.de', 'im-invests.example', 'iminvests.com']
+  for (const datei of [...seiten, ...alleDateien(join(PAKET, '_next'), '.js')]) {
+    const inhalt = readFileSync(datei, 'utf8')
+    for (const falsch of falscheAdressen) {
+      if (inhalt.includes(falsch)) {
+        fehler.push(
+          `Adresse „${falsch}“ steht in ${adresse(datei)} – die Website heißt ` +
+            `${new URL(resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL)).host}.`
+        )
+      }
+    }
   }
 
   return fehler
