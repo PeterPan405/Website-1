@@ -13,7 +13,15 @@ name: Fundamentaldaten aktualisieren
 
 on:
   schedule:
-    - cron: '0 6 5 * *'
+    # Samstags früh, wöchentlich statt monatlich.
+    #
+    # Monatlich am Fünften klang sparsam und war es auch – nur kommen die
+    # Meldungen nicht monatlich, sondern in Wellen: Ende Januar, April, Juli
+    # und Oktober legen innerhalb weniger Tage hunderte Unternehmen ihre
+    # Zahlen vor. Wer dann am Fünften abruft, zeigt vier Wochen lang die
+    # vorletzten Zahlen. Samstag, weil der Lauf mit dem ESEF-Teil zehn
+    # Minuten dauert und am Wochenende niemandem in die Quere kommt.
+    - cron: '0 6 * * 6'
   workflow_dispatch:
     inputs:
       quellen:

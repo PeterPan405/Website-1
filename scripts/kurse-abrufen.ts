@@ -39,6 +39,16 @@ import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname } from 'node:path'
 
 const ZIEL = 'data/snapshots/markets.json'
+/*
+  Die Dividenden stehen in einer eigenen Datei, nicht im Kursbestand.
+
+  Zwei Gründe. Erstens ändern sie sich selten – ein Titel zahlt vier Mal im
+  Jahr, die Kurse ändern sich alle dreißig Minuten. In derselben Datei stünde
+  bei jedem Lauf ein Diff über beides, und die eine Änderung, auf die es
+  ankommt, wäre nicht zu finden. Zweitens ist der Kursbestand mit zehn
+  Megabyte schon groß genug.
+*/
+const ZIEL_DIVIDENDEN = 'data/snapshots/dividenden.json'
 
 const QUELLEN = {
   ecb: {
@@ -70,6 +80,13 @@ async function holeMarktkurs(
 ): Promise<{
   punkte: SnapshotPoint[]
   latest: { value: number; at: string } | null
+  /*
+    Dividenden kommen nur über Yahoo, und zwar aus derselben Antwort wie die
+    Kursreihe. Über Twelve Data gibt es sie an dieser Stelle nicht – dann
+    bleibt die Liste leer, und der bisherige Stand im Dividendenbestand
+    bleibt unangetastet.
+  */
+  dividenden: { date: string; amount: number }[]
   quelle: 'yahoo' | 'twelvedata'
 } | null> {
   if (TWELVEDATA_KEY) {
@@ -81,6 +98,7 @@ async function holeMarktkurs(
         // gäbe es eine eigene Abfrage. Solange das der Rückfallweg ist, bleibt
         // es beim Schlusskurs.
         latest: null,
+        dividenden: [],
         quelle: 'twelvedata',
       }
     }
@@ -92,7 +110,30 @@ async function holeMarktkurs(
   return {
     punkte: reihe.days.map((tag) => ({ d: tag.date, c: tag.close })),
     latest: reihe.latest,
+    dividenden: reihe.dividends,
     quelle: 'yahoo',
+  }
+}
+
+/** Der Dividendenbestand: Symbol auf Zahlungsliste. */
+interface Dividendenbestand {
+  abgerufenAm: string
+  quelle: { label: string; url: string }
+  titel: Record<string, { date: string; amount: number }[]>
+}
+
+function ladeDividenden(): Dividendenbestand {
+  try {
+    return JSON.parse(readFileSync(ZIEL_DIVIDENDEN, 'utf8')) as Dividendenbestand
+  } catch {
+    return {
+      abgerufenAm: '',
+      quelle: {
+        label: 'Yahoo Finance: Dividendenereignisse der Kurshistorie',
+        url: 'https://finance.yahoo.com/',
+      },
+      titel: {},
+    }
   }
 }
 
@@ -176,6 +217,35 @@ function warte(ms: number): Promise<void> {
 /** Pause zwischen zwei Marktabrufen in Millisekunden. */
 const ABSTAND_MS = 250
 
+/**
+ * Auf welche Instrumentenarten sich ein Lauf beschränkt.
+ *
+ * Leer heißt: alle. Gesetzt wird das vom Wochenendlauf mit `crypto,fx`.
+ *
+ * ## Warum ein Teilabruf gefahrlos ist
+ *
+ * Der Lauf beginnt mit `{ ...bisher.instruments }` und überschreibt nur, was
+ * er tatsächlich geholt hat. Was er überspringt, behält seinen Stand – es
+ * verschwindet nicht und wird nicht auf null gesetzt.
+ *
+ * ## Warum es diesen Schalter überhaupt gibt
+ *
+ * Aktien und Indizes werden am Wochenende nicht gehandelt; ein Abruf am
+ * Sonntag liefert für sie denselben Freitagsschluss wie am Freitagabend.
+ * Kryptowährungen und Devisen laufen dagegen weiter – Bitcoin handelt an 365
+ * Tagen, und genau das erklärt diese Website an anderer Stelle. Bis Juli 2026
+ * stand am Wochenende trotzdem der Freitagskurs auf der Seite.
+ *
+ * Alle tausend Titel dafür abzufragen wäre die falsche Antwort: sieben
+ * Minuten Laufzeit und über tausend Anfragen bei einer Schnittstelle ohne
+ * Registrierung, um fünf Zahlen zu aktualisieren. Mit dem Schalter sind es
+ * fünf Anfragen und ein paar Sekunden.
+ */
+const NUR_ARTEN = (process.env.NUR_ARTEN ?? '')
+  .split(',')
+  .map((eintrag) => eintrag.trim())
+  .filter((eintrag) => eintrag.length > 0)
+
 async function main(): Promise<void> {
   const bisher = ladeBisherige()
   const instrumente: Record<string, SnapshotInstrument> = { ...bisher.instruments }
@@ -184,12 +254,29 @@ async function main(): Promise<void> {
   const uebernommen: string[] = []
   const behalten: string[] = []
 
+  const dividenden = ladeDividenden()
   const { reihen: devisen, tabelle: devisentabelle } = await holeDevisen()
+
+  if (NUR_ARTEN.length > 0) {
+    console.log(
+      `[kurse] Beschränkt auf: ${NUR_ARTEN.join(', ')} – alles andere behält seinen Stand.`
+    )
+  }
+
+  let uebersprungen = 0
 
   for (const [symbol, quelle] of Object.entries(marketSources)) {
     if (!bekannt.has(symbol)) {
       console.warn(`[kurse] ${symbol} steht in marketSources, aber in keiner Definition.`)
       continue
+    }
+
+    if (NUR_ARTEN.length > 0) {
+      const art = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)?.kind
+      if (!art || !NUR_ARTEN.includes(art)) {
+        uebersprungen += 1
+        continue
+      }
     }
 
     let roh: SnapshotPoint[] | null
@@ -205,6 +292,17 @@ async function main(): Promise<void> {
       roh = ergebnis?.punkte ?? null
       latest = ergebnis?.latest ?? null
       quellenId = ergebnis?.quelle ?? 'yahoo'
+      /*
+        Nur überschreiben, wenn die Antwort Zahlungen enthielt. Eine leere
+        Liste heißt „dieser Titel zahlt keine Dividende“ – oder „die Antwort
+        kam von Twelve Data“. Beides ist von hier aus nicht unterscheidbar,
+        also bleibt bei leerer Liste der bisherige Stand stehen. Andernfalls
+        verlöre ein Titel seine Zahlungshistorie, sobald ein einzelner Abruf
+        über den Rückfallweg lief.
+      */
+      if (ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
+        dividenden.titel[symbol] = ergebnis.dividenden
+      }
     }
 
     if (!roh) {
@@ -281,6 +379,18 @@ async function main(): Promise<void> {
     }
   }
 
+  /*
+    Die Bilanz der Beschränkung gehört unmittelbar hinter die Schleife, nicht
+    ans Ende des Laufs: Bei einem erfolglosen Abruf kehrt die Funktion vorher
+    zurück, und dann fehlte im Protokoll gerade die Zeile, die erklärt, warum
+    so wenige Titel angefragt wurden.
+  */
+  if (uebersprungen > 0) {
+    console.log(
+      `[kurse] ${uebersprungen} Instrumente übersprungen (Beschränkung auf ${NUR_ARTEN.join(', ')}).`
+    )
+  }
+
   if (uebernommen.length === 0) {
     console.error('[kurse] Kein einziger Abruf war erfolgreich – Datei bleibt unberührt.')
     process.exitCode = 1
@@ -353,6 +463,35 @@ async function main(): Promise<void> {
     (summe, eintrag) => summe + eintrag.points.length,
     0
   )
+
+  /*
+    Der Dividendenbestand wird nur geschrieben, wenn sich etwas geändert hat –
+    sonst stünde bei jedem der zweiundvierzig Läufe am Tag ein Commit mit
+    neuem Zeitstempel und identischem Inhalt in der Historie.
+  */
+  // Beim ersten Lauf gibt es die Datei noch nicht – dann ist jeder Inhalt neu.
+  let dividendenVorher = ''
+  try {
+    dividendenVorher = readFileSync(ZIEL_DIVIDENDEN, 'utf8').replace(
+      /"abgerufenAm": "[^"]*"/,
+      '"abgerufenAm": ""'
+    )
+  } catch {
+    dividendenVorher = ''
+  }
+  const dividendenNachher = JSON.stringify({ ...dividenden, abgerufenAm: '' }, null, 2)
+  if (dividendenVorher.trim() !== dividendenNachher.trim()) {
+    writeFileSync(
+      ZIEL_DIVIDENDEN,
+      `${JSON.stringify({ ...dividenden, abgerufenAm: new Date().toISOString() }, null, 2)}\n`
+    )
+    const zahlungen = Object.values(dividenden.titel).reduce((s, l) => s + l.length, 0)
+    console.log(
+      `[kurse] ${zahlungen} Dividendenzahlungen für ${Object.keys(dividenden.titel).length} Titel in ${ZIEL_DIVIDENDEN}`
+    )
+  } else {
+    console.log('[kurse] Keine neuen Dividenden – Datei bleibt unberührt.')
+  }
 
   console.log(`[kurse] ${punkteGesamt} Kurswerte in ${ZIEL}`)
   for (const [symbol, eintrag] of Object.entries(instrumente)) {

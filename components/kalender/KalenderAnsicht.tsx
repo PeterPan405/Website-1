@@ -29,6 +29,7 @@ const ARTFARBEN: Record<TerminArt, string> = {
   boersenfeiertag: 'bg-tools-soft text-tools',
   wahl: 'bg-debt-soft text-debt',
   konjunktur: 'bg-news-soft text-news',
+  dividende: 'bg-learn-soft text-learn',
 }
 
 export interface AnsichtGruppe {
@@ -106,6 +107,7 @@ export function KalenderAnsicht({
   gruppen,
   artMeta,
   reihenfolge,
+  nurAufWunsch,
   anzahl,
   themennamen,
   kursnamen,
@@ -113,6 +115,8 @@ export function KalenderAnsicht({
   gruppen: AnsichtGruppe[]
   artMeta: Record<TerminArt, { label: string; erklaerung: string }>
   reihenfolge: TerminArt[]
+  /** Arten, die erst auf Wunsch erscheinen – siehe `data/kalender/typen.ts`. */
+  nurAufWunsch: TerminArt[]
   anzahl: Record<TerminArt, number>
   /** Slug auf lesbaren Themennamen – sonst stünde „waehrungen wechselkurse“ da. */
   themennamen: Record<string, string>
@@ -161,6 +165,18 @@ export function KalenderAnsicht({
         monat: gruppe.monat,
         zeilen: zuZeilen(
           gruppe.termine.filter((termin) => {
+            /*
+              Zwei verschiedene Regeln, und der Unterschied ist der Kern
+              dieses Filters.
+
+              Die gewöhnlichen Arten sind ohne Auswahl alle sichtbar – wer
+              nichts anklickt, sieht den ganzen Kalender. Die Arten aus
+              `nurAufWunsch` verhalten sich umgekehrt: Sie erscheinen erst,
+              wenn ihr Schalter an ist. Bei mehreren Tausend
+              Dividendenterminen wäre die andere Voreinstellung ein Kalender,
+              in dem die Zinsentscheide nicht mehr zu finden sind.
+            */
+            if (nurAufWunsch.includes(termin.art) && !aktiv.has(termin.art)) return false
             if (aktiv.size > 0 && !aktiv.has(termin.art)) return false
             if (!zeigeVergangenes && istVorbei(termin)) return false
             return true
@@ -230,6 +246,12 @@ export function KalenderAnsicht({
               >
                 {artMeta[art].label}{' '}
                 <span className="tabular-nums opacity-60">{anzahl[art]}</span>
+                {/* Ein Plus sagt: Das ist nicht dabei, das kommt dazu. */}
+                {nurAufWunsch.includes(art) && !aktiv.has(art) && (
+                  <span className="text-learn ml-1 font-bold" aria-hidden="true">
+                    +
+                  </span>
+                )}
               </button>
             ))}
           {aktiv.size > 0 && (
@@ -243,6 +265,21 @@ export function KalenderAnsicht({
           )}
         </div>
       </fieldset>
+
+      {/*
+        Der Hinweis steht nur da, solange die Dividenden aus sind. Ist der
+        Schalter an, sieht man sie – dann braucht es keine Erklärung mehr.
+      */}
+      {nurAufWunsch.some((art) => anzahl[art] > 0 && !aktiv.has(art)) && (
+        <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
+          Nicht enthalten, bis eingeschaltet:{' '}
+          {nurAufWunsch
+            .filter((art) => anzahl[art] > 0 && !aktiv.has(art))
+            .map((art) => `${artMeta[art].label} (${anzahl[art]})`)
+            .join(', ')}
+          . Es sind zu viele, um sie voreingestellt neben die übrigen Termine zu stellen.
+        </p>
+      )}
 
       {vergangene > 0 && (
         <label className="text-fg-muted mt-4 flex items-center gap-2 text-sm">

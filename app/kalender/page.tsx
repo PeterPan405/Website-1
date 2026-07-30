@@ -9,6 +9,7 @@ import {
   getKalenderZeitraum,
   getTerminAnzahl,
   getTermineNachMonat,
+  nurAufWunsch,
   terminArtMeta,
   terminArtReihenfolge,
 } from '@/lib/kalender'
@@ -82,6 +83,7 @@ export default async function KalenderPage() {
             gruppen={gruppen}
             artMeta={terminArtMeta}
             reihenfolge={terminArtReihenfolge}
+            nurAufWunsch={nurAufWunsch}
             anzahl={anzahl}
             themennamen={themennamen}
             kursnamen={kursnamen}

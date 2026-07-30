@@ -11,8 +11,56 @@ import { Reveal } from '@/components/ui/Reveal'
 import { magnificentSeven } from '@/data/markets'
 import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { getMarktstimmung, getQuotes, getSparkline } from '@/lib/markets'
+import {
+  getFundamentalkennzahlen,
+  getMarktstimmung,
+  getQuotes,
+  getSparkline,
+} from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
+
+/**
+ * Sortiert Aktien nach ihrem Börsenwert, den größten zuerst.
+ *
+ * ## Warum gerechnet und nicht aufgeschrieben
+ *
+ * Die Rangfolge der schwersten Werte ändert sich, und eine aufgeschriebene
+ * veraltet still: In `data/markets.ts` stand Nvidia an erster Stelle und
+ * Microsoft vor Alphabet. Beides war einmal richtig. Aufgefallen ist es erst,
+ * als ein Leser es gemeldet hat – nicht der Website.
+ *
+ * Der Börsenwert liegt ohnehin vor: Er entsteht aus dem Kurs, der alle
+ * dreißig Minuten neu abgerufen wird, und der Aktienzahl aus den
+ * Pflichtmeldungen. Damit stimmt die Reihenfolge nach jedem Kursabruf von
+ * selbst.
+ *
+ * ## Was passiert, wenn eine Zahl fehlt
+ *
+ * Wer keinen Börsenwert hat, steht hinten statt zu verschwinden – eine Aktie
+ * ohne gemeldete Aktienzahl gehört trotzdem in die Übersicht. Untereinander
+ * bleiben diese in der übergebenen Reihenfolge.
+ *
+ * ## Grenze: nur innerhalb einer Währung
+ *
+ * Der Börsenwert steht in der Währung des Unternehmensberichts. Ein Vergleich
+ * über Währungen hinweg wäre damit schief – 4 Billionen Yen sind nicht mehr
+ * als 3 Billionen Dollar. Für die sieben, um die es hier geht, melden alle in
+ * Dollar. Wer diese Funktion auf eine gemischte Liste anwendet, muss vorher
+ * umrechnen.
+ */
+async function sortiereNachBoersenwert<T extends { symbol: string }>(
+  aktien: readonly T[]
+): Promise<T[]> {
+  const werte = await Promise.all(
+    aktien.map(async (aktie) => {
+      const befund = await getFundamentalkennzahlen(aktie.symbol)
+      const wert =
+        befund?.art === 'zahlen' ? befund.kennzahlen.marktkapitalisierung.wert : null
+      return { aktie, wert: wert ?? -1 }
+    })
+  )
+  return werte.sort((a, b) => b.wert - a.wert).map((eintrag) => eintrag.aktie)
+}
 
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Märkte: Wechselkurse und Indizes'),
@@ -41,9 +89,11 @@ export default async function MarketsOverviewPage() {
     andere Zeilen zu setzen, hieße genau die Konzentration zu verstecken, um
     die es geht.
   */
-  const magSevenQuotes = magnificentSeven
-    .map((symbol) => quotes.find((quote) => quote.symbol === symbol))
-    .filter((quote): quote is (typeof quotes)[number] => Boolean(quote))
+  const magSevenQuotes = await sortiereNachBoersenwert(
+    magnificentSeven
+      .map((symbol) => quotes.find((quote) => quote.symbol === symbol))
+      .filter((quote): quote is (typeof quotes)[number] => Boolean(quote))
+  )
   const stockQuotes = quotes.filter(
     (quote) =>
       quote.kind === 'stock' &&
@@ -161,10 +211,11 @@ export default async function MarketsOverviewPage() {
             Magnificent Seven
           </h2>
           <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-            Die sieben schwersten Werte im S&amp;P 500. Zusammen machen sie einen
-            erheblichen Teil des Index aus – und damit auch eines weltweit streuenden ETF.
-            Wer breit gestreut anlegt, hält von diesen sieben Unternehmen meist deutlich
-            mehr, als die Zahl der enthaltenen Titel vermuten lässt.
+            Die sieben schwersten Werte im S&amp;P 500, sortiert nach ihrem Börsenwert –
+            Kurs mal Aktienzahl, gerechnet aus den aktuellen Kursen. Zusammen machen sie
+            einen erheblichen Teil des Index aus und damit auch eines weltweit streuenden
+            ETF. Wer breit gestreut anlegt, hält von diesen sieben Unternehmen meist
+            deutlich mehr, als die Zahl der enthaltenen Titel vermuten lässt.
           </p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {magSevenQuotes.map((quote, index) => (

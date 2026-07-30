@@ -2955,15 +2955,29 @@ export const marketDefinitions: MarketDefinition[] = [
  * anlegt, hält von ihnen mehr, als die Zahl der enthaltenen Titel vermuten
  * lässt – und genau das ist der Punkt, den ein eigener Abschnitt sichtbar macht.
  *
- * Die Reihenfolge folgt der üblichen Nennung nach Börsenwert.
+ * ## Diese Liste bestimmt die Zugehörigkeit, nicht die Reihenfolge
+ *
+ * Welche sieben dazugehören, ist eine Festlegung und ändert sich selten.
+ * **In welcher Reihenfolge sie stehen, ist dagegen eine Tatsache, die sich
+ * täglich ändert** – und deshalb steht sie nicht mehr hier. Die Marktseite
+ * sortiert nach dem Börsenwert, den sie aus dem aktuellen Kurs und der
+ * gemeldeten Aktienzahl selbst rechnet.
+ *
+ * Der Grund ist ein konkreter Fehler: Hier stand Nvidia an erster Stelle und
+ * Microsoft vor Alphabet – beides war irgendwann richtig und beides war
+ * irgendwann falsch, ohne dass es auffiel. Eine abgeschriebene Rangfolge
+ * veraltet still; eine gerechnete kann es nicht.
+ *
+ * Die Reihenfolge hier ist deshalb bedeutungslos und alphabetisch, damit
+ * niemand sie für eine Rangfolge hält.
  */
 export const magnificentSeven = [
-  'nvidia',
-  'apple',
-  'microsoft',
   'alphabet',
   'amazon',
+  'apple',
   'meta',
+  'microsoft',
+  'nvidia',
   'tesla',
 ] as const
 

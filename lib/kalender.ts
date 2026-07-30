@@ -1,6 +1,7 @@
 import { termine as gepflegteTermine } from '@/data/kalender/termine'
 import { terminArtReihenfolge, type Termin, type TerminArt } from '@/data/kalender/typen'
 import { assertTermineValid } from '@/lib/kalender-validate'
+import { getDividendentermine } from '@/lib/dividendentermine'
 import { getQuartalstermine } from '@/lib/quartalstermine'
 
 /**
@@ -20,7 +21,7 @@ import { getQuartalstermine } from '@/lib/quartalstermine'
  */
 
 export type { Termin, TerminArt } from '@/data/kalender/typen'
-export { terminArtMeta, terminArtReihenfolge } from '@/data/kalender/typen'
+export { nurAufWunsch, terminArtMeta, terminArtReihenfolge } from '@/data/kalender/typen'
 
 /*
   Prüfung beim Laden des Moduls und damit bei jedem Build.
@@ -44,7 +45,17 @@ export { terminArtMeta, terminArtReihenfolge } from '@/data/kalender/typen'
   Unternehmen, das plötzlich zwei Termine im selben Quartal meldet, ist im
   ersten Lauf tatsächlich vorgekommen.
 */
-const termine: Termin[] = [...gepflegteTermine, ...getQuartalstermine()]
+/*
+  Die Dividendentermine kommen aus derselben Art Quelle wie die
+  Quartalstermine: hochgerechnet aus einem Muster, deshalb als `geschaetzt`
+  gekennzeichnet. Sie sind aber ein Vielfaches an Zahl – siehe `nurAufWunsch`
+  in den Typen, das sie in der Ansicht ausschaltet, bis jemand sie einschaltet.
+*/
+const termine: Termin[] = [
+  ...gepflegteTermine,
+  ...getQuartalstermine(),
+  ...getDividendentermine(),
+]
 
 assertTermineValid(termine)
 

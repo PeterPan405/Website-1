@@ -14,7 +14,13 @@ name: Quartalstermine aktualisieren
 
 on:
   schedule:
-    - cron: '0 5 * * 1'
+    # Montags um 05:20 UTC.
+    #
+    # Wöchentlich, weil Unternehmen ihre Meldetermine laufend bekannt geben –
+    # eine Woche ist der Abstand, in dem eine neue Ankündigung spätestens
+    # ankommt. Zur zwanzigminütigen Verschiebung siehe den Länderabruf: Am
+    # Montag, dem Ersten, liefen sonst beide gleichzeitig.
+    - cron: '20 5 * * 1'
   workflow_dispatch:
 
 concurrency:
