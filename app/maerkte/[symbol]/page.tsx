@@ -10,6 +10,7 @@ import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
+import { Dividendentafel } from '@/components/markets/Dividendentafel'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -26,6 +27,7 @@ import {
   formatPercentSigned,
 } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
+import { dividendenQuelle, getDividendenbefund } from '@/lib/dividendentermine'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { getNewsForSymbol } from '@/lib/news'
 import {
@@ -92,6 +94,12 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
       getKennzahlen(symbol),
       getFundamentalkennzahlen(symbol),
     ])
+
+  /*
+    Der Dividendenbefund kommt aus einem Bestand im Repository, nicht über das
+    Netz – deshalb synchron und nicht in `Promise.all` darüber.
+  */
+  const dividende = getDividendenbefund(symbol)
 
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
@@ -319,6 +327,21 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                   ))}
                 </ul>
               </section>
+            )}
+
+            {/*
+              Die Dividende steht vor den Unternehmenszahlen: Sie ist die
+              Frage, die zuerst kommt, wenn jemand eine Aktienseite öffnet und
+              wissen will, was sie abwirft.
+            */}
+            {dividende && (
+              <Dividendentafel
+                befund={dividende}
+                einheit={instrument.unit}
+                name={instrument.name}
+                quelle={dividendenQuelle}
+                className="mt-12"
+              />
             )}
 
             {fundamental && (

@@ -37,6 +37,16 @@ export type TerminArt =
   | 'verfallstag'
   /** Konjunkturdaten mit fest angekündigtem Veröffentlichungstermin. */
   | 'konjunktur'
+  /**
+   * Erwarteter Dividendenabschlag einer Aktie.
+   *
+   * Diese Art ist **nicht voreingestellt sichtbar**, und das ist Absicht:
+   * Über tausend Aktien mit vier Zahlungen im Jahr wären mehrere Tausend
+   * Einträge – der Kalender bestünde aus nichts anderem mehr, und die
+   * Zinsentscheide, um die es hier eigentlich geht, gingen darin unter. Wer
+   * Dividenden sehen will, schaltet sie oben ein.
+   */
+  | 'dividende'
 
 export interface TerminArtMeta {
   label: string
@@ -75,6 +85,11 @@ export const terminArtMeta: Record<TerminArt, TerminArtMeta> = {
     erklaerung:
       'Fest angekündigte Veröffentlichungen wie Inflationsraten oder Stimmungsindizes.',
   },
+  dividende: {
+    label: 'Dividenden',
+    erklaerung:
+      'Erwartete Abschlagstage der geführten Aktien, hochgerechnet aus dem bisherigen Zahlungsmuster. Standardmäßig ausgeschaltet, weil es mehrere Tausend sind.',
+  },
 }
 
 /** Reihenfolge der Filterschalter – nach Bedeutung, nicht alphabetisch. */
@@ -85,7 +100,22 @@ export const terminArtReihenfolge: TerminArt[] = [
   'boersenfeiertag',
   'wahl',
   'konjunktur',
+  'dividende',
 ]
+
+/**
+ * Arten, die erst auf Wunsch erscheinen.
+ *
+ * Der Kalender zeigt ohne Auswahl alles – bei sechs Arten mit zusammen
+ * einigen Dutzend Terminen ist das die richtige Voreinstellung. Die
+ * Dividenden sprengen diese Rechnung: Es sind mehrere Tausend, und sie
+ * würden alles andere verdrängen. Deshalb sind sie kein normaler Filter,
+ * sondern einer, der eingeschaltet werden muss.
+ *
+ * Der Unterschied steht hier und nicht in der Ansicht, damit er beim
+ * Hinzufügen einer weiteren Art nicht übersehen wird.
+ */
+export const nurAufWunsch: TerminArt[] = ['dividende']
 
 export interface Termin {
   /** Beginn im Format `JJJJ-MM-TT`. */

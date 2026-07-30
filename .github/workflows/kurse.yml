@@ -81,14 +81,26 @@ jobs:
 
       - name: Momentaufnahme committen
         run: |
-          if git diff --quiet -- data/snapshots/markets.json; then
+          # Beide Dateien, die der Abruf schreibt: Kurse und Dividenden.
+          #
+          # Die zweite kam später dazu, und der erste Lauf danach ist genau
+          # daran gescheitert: Der Commit nahm nur die Kursdatei, die
+          # geänderte Dividendendatei blieb ungestaged – und `git pull
+          # --rebase` bricht mit „You have unstaged changes“ ab. Ein Abruf,
+          # der sieben Minuten läuft und dann nichts ablegt.
+          #
+          # Deshalb steht die Liste an einer Stelle und wird an beiden
+          # Stellen benutzt: bei der Prüfung auf Änderungen und beim Staging.
+          dateien="data/snapshots/markets.json data/snapshots/dividenden.json"
+
+          if git diff --quiet -- $dateien; then
             echo "Keine Änderung – kein Commit, keine Bereitstellung."
             exit 0
           fi
 
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/snapshots/markets.json
+          git add $dateien
           git commit -m "Kurse: Stand $(date -u +%Y-%m-%d)"
 
           # Zwischen Prüfung und Push kann jemand anders gepusht haben.
