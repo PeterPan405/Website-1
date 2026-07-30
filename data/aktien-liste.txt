@@ -187,7 +187,7 @@ publicis|PUB.PA|Publicis|250|EUR|Medien|Plant und schaltet Werbung für internat
 orange|ORA.PA|Orange|250|EUR|Telekommunikation|Betreibt Mobilfunk- und Festnetze in Frankreich und Afrika
 engie|ENGI.PA|Engie|250|EUR|Versorger|Erzeugt Strom und betreibt Gasnetze und Fernwärme
 veolia|VIE.PA|Veolia|250|EUR|Versorger|Betreibt Wasserversorgung, Abfallentsorgung und Energiedienste
-sodexo|SW.PA|Sodexo|250|EUR|Dienstleistungen|Betreibt Kantinen und Gebäudedienste für Unternehmen, Schulen und Krankenhäuser
+sodexo|SW.PA|Sodexo|250|EUR|Dienstleistung|Betreibt Kantinen und Gebäudedienste für Unternehmen, Schulen und Krankenhäuser
 carrefour|CA.PA|Carrefour|250|EUR|Handel|Betreibt Supermärkte und Verbrauchermärkte in Europa und Südamerika
 accor|AC.PA|Accor|250|EUR|Konsum|Betreibt Hotelmarken vom Budget- bis zum Luxussegment
 

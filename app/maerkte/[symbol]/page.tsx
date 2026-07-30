@@ -27,6 +27,7 @@ import {
   formatPercentSigned,
 } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
+import { getBrancheVon } from '@/lib/branchen'
 import {
   dividendenQuelle,
   getDividendenbefund,
@@ -105,6 +106,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
   */
   const dividende = getDividendenbefund(symbol)
   const dividendenverlauf = getDividendenverlauf(symbol)
+  const branche = getBrancheVon(symbol)
 
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
@@ -245,6 +247,25 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 {instrument.description.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
                 ))}
+                {/*
+                  Der Verweis auf die Branche steht hier und nicht in der
+                  Kopfzeile: Er beantwortet keine Frage über diese Aktie,
+                  sondern führt weiter zu den vergleichbaren – und das ist eine
+                  Bewegung, die nach dem Lesen kommt, nicht davor.
+                */}
+                {branche && (
+                  <p>
+                    Diese Aktie führen wir unter{' '}
+                    <Link
+                      href={`/maerkte/branchen/${branche.slug}`}
+                      className="text-markets font-medium underline underline-offset-2"
+                    >
+                      {branche.name}
+                    </Link>
+                    . Dort stehen die übrigen Titel derselben Branche – nützlich, um eine
+                    Bewegung einzuordnen: Fällt nur dieser Kurs oder das ganze Feld?
+                  </p>
+                )}
               </div>
             </section>
 

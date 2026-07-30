@@ -100,6 +100,23 @@ export interface MarketInstrument {
   description: string[]
   /** Passende Lernthemen (Slugs aus `data/learn`). */
   relatedTopics: string[]
+  /**
+   * Branche einer Aktie, z. B. `Halbleiter`.
+   *
+   * Nur bei `kind: 'stock'` gesetzt – ein Währungspaar hat keine Branche, und
+   * ein leerer String wäre dort eine Aussage, die niemand gemeint hat.
+   *
+   * Die Einteilung ist die dieser Website und keine amtliche: Es gibt mit GICS
+   * und ICB zwei etablierte Systeme, beide sind lizenzpflichtig und beide
+   * ordnen dieselbe Firma gelegentlich verschieden ein. Amazon ist Handel oder
+   * Technologie, je nachdem, wen man fragt. Die Zuordnung hier ist deshalb als
+   * Suchhilfe gedacht und wird auf den Branchenseiten ausdrücklich so genannt.
+   *
+   * Geschrieben wird sie an zwei Stellen: für die breite Auswahl von
+   * `scripts/aktien-erzeugen.ts` aus `data/aktien-liste.txt`, für die hier von
+   * Hand geführten Titel im Eintrag selbst.
+   */
+  branche?: string
 }
 
 /** Parameter der deterministischen Kursgenerierung. */
@@ -840,6 +857,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Die Bewertung hängt an Erwartungen über Jahre hinaus. Wird die Nachfrage nach KI-Rechenleistung so weiterwachsen? Gelingt es Wettbewerbern, den Vorsprung aufzuholen? Beides sind Annahmen, keine Tatsachen. Kursstürze von 50 Prozent und mehr hat die Aktie mehrfach hinter sich – nach jeweils vorangegangenen Vervielfachungen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'anlegerpsychologie'],
+    branche: 'Halbleiter',
     seed: { startValue: 49.2, annualDrift: 0.52, annualVolatility: 0.55, seed: 22401 },
   },
   {
@@ -859,6 +877,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Die Risiken liegen weniger im Wettbewerb als in der Regulierung. Kartellverfahren in Europa und den USA zielen genau auf die geschlossenen Teile des Systems, etwa den App Store. Eine Auflage kann eine Ertragsquelle über Nacht verändern – ein Risiko, das sich aus keiner Kennzahl ablesen lässt.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'wie-funktioniert-der-markt'],
+    branche: 'Elektronik',
     seed: { startValue: 148.6, annualDrift: 0.16, annualVolatility: 0.28, seed: 22402 },
   },
   {
@@ -878,6 +897,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Der Konzern ist zugleich einer der schwersten Werte in nahezu jedem breiten Aktienindex. Zusammen mit den übrigen großen Technologiewerten bestimmt er die Entwicklung von S&P 500 und MSCI World in einem Maß, das mit dem Wort „gestreut“ nur noch bedingt zu vereinbaren ist.',
     ],
     relatedTopics: ['aktie', 'etf', 'aktien-laender-branchen'],
+    branche: 'Software',
     seed: { startValue: 288.4, annualDrift: 0.21, annualVolatility: 0.26, seed: 22403 },
   },
   {
@@ -897,6 +917,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Hinzu kommt eine Frage, die es vor wenigen Jahren nicht gab: Wenn Antworten künftig direkt von einem Sprachmodell kommen statt aus einer Liste von Verweisen, was wird dann aus dem Anzeigenplatz neben dieser Liste? Alphabet baut die eigene Suche entsprechend um – ob das Geschäftsmodell den Umbau unbeschadet übersteht, ist offen.',
     ],
     relatedTopics: ['aktie', 'risiko-und-rendite', 'aktien-laender-branchen'],
+    branche: 'Technologie',
     seed: { startValue: 118.9, annualDrift: 0.18, annualVolatility: 0.3, seed: 22404 },
   },
   {
@@ -916,6 +937,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Über viele Jahre wies Amazon bewusst kaum Gewinn aus und investierte stattdessen in Lager, Logistik und Rechenzentren. Ein Kurs-Gewinn-Verhältnis war in dieser Zeit praktisch nicht zu bilden – ein gutes Beispiel dafür, dass eine gebräuchliche Kennzahl nicht auf jedes Unternehmen anwendbar ist.',
     ],
     relatedTopics: ['aktie', 'wie-funktioniert-der-markt', 'aktien-laender-branchen'],
+    branche: 'Handel',
     seed: { startValue: 132.7, annualDrift: 0.19, annualVolatility: 0.32, seed: 22405 },
   },
   {
@@ -935,6 +957,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Für Anleger ist daran zweierlei interessant. Erstens: Ein Kurssturz dieser Größenordnung bei einem hochprofitablen Unternehmen ist keine Anomalie, sondern kommt regelmäßig vor. Zweitens: Wer eine einzelne Aktie hält, muss solche Phasen aushalten können – bei einem breit gestreuten Index verteilt sich derselbe Rückgang auf hunderte Werte.',
     ],
     relatedTopics: ['aktie', 'anlegerpsychologie', 'groesste-crashes'],
+    branche: 'Technologie',
     seed: { startValue: 341.2, annualDrift: 0.22, annualVolatility: 0.42, seed: 22406 },
   },
   {
@@ -954,6 +977,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Hinzu kommt ein Faktor, den es bei anderen Konzernen dieser Größe kaum gibt: Die Person an der Spitze bewegt den Kurs durch öffentliche Äußerungen messbar. Wer die Aktie hält, trägt dieses Risiko mit, und es lässt sich weder aus Bilanzen noch aus Absatzzahlen ableiten.',
     ],
     relatedTopics: ['aktie', 'risiko-und-rendite', 'anlegerpsychologie'],
+    branche: 'Automobil',
     seed: { startValue: 214.8, annualDrift: 0.12, annualVolatility: 0.58, seed: 22407 },
   },
   {
@@ -1011,6 +1035,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: { startValue: 440.64, annualDrift: 0.082, annualVolatility: 0.42, seed: 23000 },
   },
   {
@@ -1030,6 +1055,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: { startValue: 85.248, annualDrift: 0.082, annualVolatility: 0.42, seed: 23001 },
   },
   {
@@ -1049,6 +1075,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: { startValue: 23.688, annualDrift: 0.082, annualVolatility: 0.42, seed: 23002 },
   },
   {
@@ -1068,6 +1095,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: {
       startValue: 120.384,
       annualDrift: 0.082,
@@ -1092,6 +1120,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: {
       startValue: 135.792,
       annualDrift: 0.082,
@@ -1116,6 +1145,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Software',
     seed: {
       startValue: 110.016,
       annualDrift: 0.082,
@@ -1139,6 +1169,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Software',
     seed: {
       startValue: 193.176,
       annualDrift: 0.082,
@@ -1163,6 +1194,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Software',
     seed: {
       startValue: 368.928,
       annualDrift: 0.082,
@@ -1187,6 +1219,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Software',
     seed: {
       startValue: 124.488,
       annualDrift: 0.082,
@@ -1211,6 +1244,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: { startValue: 502.92, annualDrift: 0.082, annualVolatility: 0.42, seed: 23009 },
   },
   {
@@ -1229,6 +1263,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: {
       startValue: 102.744,
       annualDrift: 0.082,
@@ -1253,6 +1288,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Technologie',
     seed: { startValue: 40.392, annualDrift: 0.082, annualVolatility: 0.3, seed: 23011 },
   },
   {
@@ -1272,6 +1308,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Technologie',
     seed: { startValue: 164.448, annualDrift: 0.082, annualVolatility: 0.3, seed: 23012 },
   },
   {
@@ -1290,6 +1327,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Software',
     seed: { startValue: 30.816, annualDrift: 0.082, annualVolatility: 0.32, seed: 23013 },
   },
   {
@@ -1308,6 +1346,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Unterhaltung',
     seed: { startValue: 513.072, annualDrift: 0.082, annualVolatility: 0.3, seed: 23014 },
   },
   {
@@ -1326,6 +1365,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Transport',
     seed: { startValue: 56.808, annualDrift: 0.082, annualVolatility: 0.3, seed: 23015 },
   },
   {
@@ -1344,6 +1384,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Reise',
     seed: { startValue: 95.4, annualDrift: 0.082, annualVolatility: 0.3, seed: 23016 },
   },
   {
@@ -1363,6 +1404,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Zahlungsverkehr',
     seed: { startValue: 49.104, annualDrift: 0.082, annualVolatility: 0.3, seed: 23017 },
   },
   {
@@ -1382,6 +1424,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Zahlungsverkehr',
     seed: { startValue: 208.584, annualDrift: 0.082, annualVolatility: 0.3, seed: 23018 },
   },
   {
@@ -1400,6 +1443,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Zahlungsverkehr',
     seed: { startValue: 337.176, annualDrift: 0.082, annualVolatility: 0.3, seed: 23019 },
   },
   {
@@ -1419,6 +1463,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: {
       startValue: 606.312,
       annualDrift: 0.082,
@@ -1442,6 +1487,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: {
       startValue: 116.928,
       annualDrift: 0.082,
@@ -1466,6 +1512,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Gesundheit',
     seed: { startValue: 380.808, annualDrift: 0.082, annualVolatility: 0.3, seed: 23022 },
   },
   {
@@ -1484,6 +1531,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: {
       startValue: 132.912,
       annualDrift: 0.082,
@@ -1508,6 +1556,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: { startValue: 81.216, annualDrift: 0.082, annualVolatility: 0.26, seed: 23024 },
   },
   {
@@ -1526,6 +1575,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: { startValue: 20.448, annualDrift: 0.082, annualVolatility: 0.26, seed: 23025 },
   },
   {
@@ -1544,6 +1594,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Medizintechnik',
     seed: { startValue: 416.304, annualDrift: 0.082, annualVolatility: 0.3, seed: 23026 },
   },
   {
@@ -1562,6 +1613,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: { startValue: 66.672, annualDrift: 0.082, annualVolatility: 0.26, seed: 23027 },
   },
   {
@@ -1581,6 +1633,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: {
       startValue: 200.448,
       annualDrift: 0.082,
@@ -1604,6 +1657,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: { startValue: 71.064, annualDrift: 0.082, annualVolatility: 0.26, seed: 23029 },
   },
   {
@@ -1622,6 +1676,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Banken',
     seed: {
       startValue: 167.616,
       annualDrift: 0.082,
@@ -1645,6 +1700,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Banken',
     seed: { startValue: 31.824, annualDrift: 0.082, annualVolatility: 0.34, seed: 23031 },
   },
   {
@@ -1664,6 +1720,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Banken',
     seed: { startValue: 429.408, annualDrift: 0.082, annualVolatility: 0.3, seed: 23032 },
   },
   {
@@ -1683,6 +1740,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Beteiligungen',
     seed: { startValue: 337.608, annualDrift: 0.082, annualVolatility: 0.3, seed: 23033 },
   },
   {
@@ -1702,6 +1760,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Finanzdienste',
     seed: { startValue: 697.104, annualDrift: 0.082, annualVolatility: 0.3, seed: 23034 },
   },
   {
@@ -1721,6 +1780,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Versicherungen',
     seed: { startValue: 225.072, annualDrift: 0.082, annualVolatility: 0.3, seed: 23035 },
   },
   {
@@ -1739,6 +1799,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Versicherungen',
     seed: { startValue: 369.216, annualDrift: 0.082, annualVolatility: 0.3, seed: 23036 },
   },
   {
@@ -1757,6 +1818,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Banken',
     seed: { startValue: 13.248, annualDrift: 0.082, annualVolatility: 0.34, seed: 23037 },
   },
   {
@@ -1775,6 +1837,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Banken',
     seed: { startValue: 21.456, annualDrift: 0.082, annualVolatility: 0.34, seed: 23038 },
   },
   {
@@ -1793,6 +1856,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Banken',
     seed: { startValue: 5.3424, annualDrift: 0.082, annualVolatility: 0.34, seed: 23039 },
   },
   {
@@ -1812,6 +1876,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Handel',
     seed: { startValue: 66.528, annualDrift: 0.082, annualVolatility: 0.3, seed: 23040 },
   },
   {
@@ -1830,6 +1895,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Handel',
     seed: { startValue: 642.672, annualDrift: 0.082, annualVolatility: 0.3, seed: 23041 },
   },
   {
@@ -1848,6 +1914,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: {
       startValue: 118.656,
       annualDrift: 0.082,
@@ -1871,6 +1938,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Getränke',
     seed: { startValue: 49.104, annualDrift: 0.082, annualVolatility: 0.3, seed: 23043 },
   },
   {
@@ -1889,6 +1957,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Getränke',
     seed: { startValue: 106.992, annualDrift: 0.082, annualVolatility: 0.3, seed: 23044 },
   },
   {
@@ -1907,6 +1976,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Gastgewerbe',
     seed: { startValue: 214.848, annualDrift: 0.082, annualVolatility: 0.3, seed: 23045 },
   },
   {
@@ -1925,6 +1995,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 55.296, annualDrift: 0.082, annualVolatility: 0.3, seed: 23046 },
   },
   {
@@ -1943,6 +2014,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Handel',
     seed: { startValue: 278.064, annualDrift: 0.082, annualVolatility: 0.3, seed: 23047 },
   },
   {
@@ -1961,6 +2033,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Luftfahrt',
     seed: { startValue: 128.448, annualDrift: 0.082, annualVolatility: 0.3, seed: 23048 },
   },
   {
@@ -1979,6 +2052,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Industrie',
     seed: { startValue: 265.608, annualDrift: 0.082, annualVolatility: 0.3, seed: 23049 },
   },
   {
@@ -1997,6 +2071,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Industrie',
     seed: { startValue: 297.072, annualDrift: 0.082, annualVolatility: 0.3, seed: 23050 },
   },
   {
@@ -2015,6 +2090,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Luftfahrt',
     seed: { startValue: 128.304, annualDrift: 0.082, annualVolatility: 0.3, seed: 23051 },
   },
   {
@@ -2033,6 +2109,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Rüstung',
     seed: {
       startValue: 337.248,
       annualDrift: 0.082,
@@ -2057,6 +2134,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Rüstung',
     seed: { startValue: 89.712, annualDrift: 0.082, annualVolatility: 0.3, seed: 23053 },
   },
   {
@@ -2075,6 +2153,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Transport',
     seed: { startValue: 167.616, annualDrift: 0.082, annualVolatility: 0.3, seed: 23054 },
   },
   {
@@ -2093,6 +2172,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Transport',
     seed: { startValue: 92.448, annualDrift: 0.082, annualVolatility: 0.3, seed: 23055 },
   },
   {
@@ -2111,6 +2191,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Energie',
     seed: { startValue: 85.392, annualDrift: 0.082, annualVolatility: 0.3, seed: 23056 },
   },
   {
@@ -2129,6 +2210,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Energie',
     seed: { startValue: 113.904, annualDrift: 0.082, annualVolatility: 0.3, seed: 23057 },
   },
   {
@@ -2147,6 +2229,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Energie',
     seed: { startValue: 20.592, annualDrift: 0.082, annualVolatility: 0.3, seed: 23058 },
   },
   {
@@ -2166,6 +2249,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Versorger',
     seed: { startValue: 52.128, annualDrift: 0.082, annualVolatility: 0.22, seed: 23059 },
   },
   {
@@ -2185,6 +2269,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Chemie',
     seed: { startValue: 337.104, annualDrift: 0.082, annualVolatility: 0.3, seed: 23060 },
   },
   {
@@ -2204,6 +2289,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Industrie',
     seed: { startValue: 155.808, annualDrift: 0.082, annualVolatility: 0.3, seed: 23061 },
   },
   {
@@ -2222,6 +2308,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Industrie',
     seed: { startValue: 45.216, annualDrift: 0.082, annualVolatility: 0.3, seed: 23062 },
   },
   {
@@ -2240,6 +2327,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Automobil',
     seed: { startValue: 39.024, annualDrift: 0.082, annualVolatility: 0.36, seed: 23063 },
   },
   {
@@ -2258,6 +2346,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Automobil',
     seed: { startValue: 59.472, annualDrift: 0.082, annualVolatility: 0.36, seed: 23064 },
   },
   {
@@ -2277,6 +2366,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Automobil',
     seed: { startValue: 66.816, annualDrift: 0.082, annualVolatility: 0.36, seed: 23065 },
   },
   {
@@ -2295,6 +2385,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Automobil',
     seed: { startValue: 49.248, annualDrift: 0.082, annualVolatility: 0.36, seed: 23066 },
   },
   {
@@ -2313,6 +2404,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Chemie',
     seed: { startValue: 33.696, annualDrift: 0.082, annualVolatility: 0.3, seed: 23067 },
   },
   {
@@ -2332,6 +2424,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: { startValue: 19.008, annualDrift: 0.082, annualVolatility: 0.3, seed: 23068 },
   },
   {
@@ -2351,6 +2444,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Telekommunikation',
     seed: { startValue: 24.912, annualDrift: 0.082, annualVolatility: 0.3, seed: 23069 },
   },
   {
@@ -2369,6 +2463,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 164.592, annualDrift: 0.082, annualVolatility: 0.3, seed: 23070 },
   },
   {
@@ -2387,6 +2482,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Luftfahrt',
     seed: { startValue: 124.128, annualDrift: 0.082, annualVolatility: 0.3, seed: 23071 },
   },
   {
@@ -2405,6 +2501,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: { startValue: 25.056, annualDrift: 0.082, annualVolatility: 0.42, seed: 23072 },
   },
   {
@@ -2423,6 +2520,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Rüstung',
     seed: {
       startValue: 422.208,
       annualDrift: 0.082,
@@ -2446,6 +2544,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Transport',
     seed: { startValue: 27.504, annualDrift: 0.082, annualVolatility: 0.3, seed: 23074 },
   },
   {
@@ -2465,6 +2564,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: { startValue: 106.992, annualDrift: 0.082, annualVolatility: 0.3, seed: 23075 },
   },
   {
@@ -2484,6 +2584,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 92.448, annualDrift: 0.082, annualVolatility: 0.19, seed: 23076 },
   },
   {
@@ -2503,6 +2604,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 56.592, annualDrift: 0.082, annualVolatility: 0.3, seed: 23077 },
   },
   {
@@ -2521,6 +2623,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Versorger',
     seed: { startValue: 9.936, annualDrift: 0.082, annualVolatility: 0.22, seed: 23078 },
   },
   {
@@ -2539,6 +2642,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Versicherungen',
     seed: { startValue: 193.248, annualDrift: 0.082, annualVolatility: 0.3, seed: 23079 },
   },
   {
@@ -2557,6 +2661,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Immobilien',
     seed: { startValue: 20.448, annualDrift: 0.082, annualVolatility: 0.3, seed: 23080 },
   },
   {
@@ -2576,6 +2681,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 452.448, annualDrift: 0.082, annualVolatility: 0.3, seed: 23081 },
   },
   {
@@ -2595,6 +2701,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 1572.48, annualDrift: 0.082, annualVolatility: 0.3, seed: 23082 },
   },
   {
@@ -2613,6 +2720,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Lebensmittel',
     seed: { startValue: 60.912, annualDrift: 0.082, annualVolatility: 0.3, seed: 23083 },
   },
   {
@@ -2631,6 +2739,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Pharma',
     seed: { startValue: 85.248, annualDrift: 0.082, annualVolatility: 0.26, seed: 23084 },
   },
   {
@@ -2650,6 +2759,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 34.704, annualDrift: 0.082, annualVolatility: 0.19, seed: 23085 },
   },
   {
@@ -2669,6 +2779,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Energie',
     seed: { startValue: 45.216, annualDrift: 0.082, annualVolatility: 0.3, seed: 23086 },
   },
   {
@@ -2687,6 +2798,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Elektronik',
     seed: { startValue: 164.592, annualDrift: 0.082, annualVolatility: 0.3, seed: 23087 },
   },
   {
@@ -2705,6 +2817,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Konsum',
     seed: { startValue: 275.328, annualDrift: 0.082, annualVolatility: 0.3, seed: 23088 },
   },
   {
@@ -2723,6 +2836,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Luftfahrt',
     seed: { startValue: 153.216, annualDrift: 0.082, annualVolatility: 0.3, seed: 23089 },
   },
   {
@@ -2742,6 +2856,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Automobil',
     seed: { startValue: 8.928, annualDrift: 0.082, annualVolatility: 0.36, seed: 23090 },
   },
   {
@@ -2760,6 +2875,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Automobil',
     seed: {
       startValue: 308.592,
       annualDrift: 0.082,
@@ -2784,6 +2900,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Versorger',
     seed: { startValue: 9.216, annualDrift: 0.082, annualVolatility: 0.22, seed: 23092 },
   },
   {
@@ -2802,6 +2919,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Banken',
     seed: { startValue: 4.4928, annualDrift: 0.082, annualVolatility: 0.34, seed: 23093 },
   },
   {
@@ -2820,6 +2938,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Elektronik',
     seed: { startValue: 56448.0, annualDrift: 0.082, annualVolatility: 0.3, seed: 23094 },
   },
   {
@@ -2838,6 +2957,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Automobil',
     seed: { startValue: 2059.2, annualDrift: 0.082, annualVolatility: 0.36, seed: 23095 },
   },
   {
@@ -2857,6 +2977,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Elektronik',
     seed: { startValue: 2246.4, annualDrift: 0.082, annualVolatility: 0.3, seed: 23096 },
   },
   {
@@ -2875,6 +2996,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Handel',
     seed: { startValue: 60.912, annualDrift: 0.082, annualVolatility: 0.3, seed: 23097 },
   },
   {
@@ -2893,6 +3015,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Technologie',
     seed: { startValue: 278.208, annualDrift: 0.082, annualVolatility: 0.3, seed: 23098 },
   },
   {
@@ -2912,6 +3035,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: { startValue: 5.6592, annualDrift: 0.082, annualVolatility: 0.42, seed: 23099 },
   },
   {
@@ -2931,6 +3055,7 @@ export const marketDefinitions: MarketDefinition[] = [
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: 'Halbleiter',
     seed: { startValue: 92.448, annualDrift: 0.082, annualVolatility: 0.42, seed: 23100 },
   },
   /*
