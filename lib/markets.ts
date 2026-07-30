@@ -70,6 +70,10 @@ export interface MarketQuote {
   low52w: number
   /** Veränderung seit dem letzten Schlusskurs des Vorjahres, in Prozent. */
   ytdPercent: number
+  /** Branche einer Aktie, sofern hinterlegt. */
+  branche?: string
+  /** Sitzland einer Aktie als ISO-3166-Zahl, sofern hinterlegt. */
+  sitzland?: string
   /**
    * Datenstand.
    *
@@ -202,6 +206,18 @@ function buildQuote(definition: MarketDefinition): MarketQuote {
     intraday: zahlen.intraday,
     source,
     sourcePlanned: definition.symbol in marketSources,
+    /*
+      Branche und Sitzland reichen bis hierher durch – dieselben zwei Felder,
+      die `toInstrument` schon einmal stillschweigend fallen ließ.
+
+      Beide Funktionen zählen jedes Feld einzeln auf, und weil die Felder
+      optional sind, meldet der Typprüfer nichts, wenn sie fehlen. Dort war die
+      Folge eine Quellensteuertafel, die auf tausend Seiten nicht erschien;
+      hier wäre es eine Streuungsprüfung, die für jeden Titel „keine Branche“
+      meldet, obwohl an jedem eine steht.
+    */
+    ...(definition.branche ? { branche: definition.branche } : {}),
+    ...(definition.sitzland ? { sitzland: definition.sitzland } : {}),
   }
 }
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { laendernamen } from '@/data/laender/namen'
 import { Merklistentafel, type Merkdaten } from '@/components/markets/Merklistentafel'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
@@ -77,6 +78,8 @@ async function baueDaten(): Promise<Merkdaten[]> {
         wert: quote.value,
         veraenderung: quote.changePercent,
         rendite: dividende?.renditeProzent ?? null,
+        branche: quote.branche ?? null,
+        sitzland: quote.sitzland ?? null,
         termin: naechster?.tag ?? null,
         terminArt: naechster?.art ?? null,
       }
@@ -102,7 +105,7 @@ export default async function MerklisteSeite() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <Merklistentafel daten={daten} />
+        <Merklistentafel daten={daten} laendernamen={laendernamen} />
 
         <Callout variant="info" title="Was das ohne Konto bedeutet" className="mt-10">
           <p>

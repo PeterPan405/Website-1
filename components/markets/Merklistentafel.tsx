@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 
+import { Streutafel } from '@/components/markets/Streutafel'
 import { Icon } from '@/components/ui/Icon'
 import {
   entferneAusMerkliste,
@@ -34,6 +35,10 @@ export interface Merkdaten {
   termin: string | null
   /** Was für ein Termin das ist – „Dividende“ oder „Quartalszahlen“. */
   terminArt: string | null
+  /** Branche, für die Streuungsprüfung. */
+  branche: string | null
+  /** Sitzland als ISO-3166-Zahl, für dieselbe. */
+  sitzland: string | null
 }
 
 /**
@@ -54,7 +59,14 @@ export interface Merkdaten {
  * Grund. Ein geschätzter Termin, der aussieht wie ein feststehender, ist
  * schlechter als gar keiner.
  */
-export function Merklistentafel({ daten }: { daten: readonly Merkdaten[] }) {
+export function Merklistentafel({
+  daten,
+  laendernamen,
+}: {
+  daten: readonly Merkdaten[]
+  /** ISO-Zahl auf deutschen Ländernamen, für die Streuungsprüfung. */
+  laendernamen: Readonly<Record<string, string>>
+}) {
   const liste = useMerkliste()
   const nachSymbol = new Map(daten.map((eintrag) => [eintrag.symbol, eintrag]))
 
@@ -203,6 +215,22 @@ export function Merklistentafel({ daten }: { daten: readonly Merkdaten[] }) {
           </ul>
         </section>
       )}
+
+      {/*
+        Die Streuung steht unter den Terminen, nicht darüber.
+
+        Oben beantwortet die Liste „was habe ich im Blick“ und „was steht an“ –
+        beides Fragen mit einer Zahl als Antwort. Die Streuung ist die Frage
+        danach: Was sagt diese Auswahl über sich selbst? Wer sie zuerst liest,
+        hat die Liste noch nicht gesehen, auf die sie sich bezieht.
+      */}
+      <Streutafel
+        posten={zeilen.map((zeile) => ({
+          branche: zeile.branche,
+          sitzland: zeile.sitzland,
+        }))}
+        laendernamen={laendernamen}
+      />
     </div>
   )
 }
