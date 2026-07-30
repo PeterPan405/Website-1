@@ -41,6 +41,7 @@ export type IconName =
   | 'mail'
   | 'clock'
   | 'layers'
+  | 'bookmark'
   | 'download'
   | 'phone'
   | 'search'
@@ -178,6 +179,10 @@ const paths: Record<IconName, ReactNode> = {
     </>
   ),
   layers: <path d="m12 3 9 5-9 5-9-5 9-5Zm9 9-9 5-9-5m18 4-9 5-9-5" />,
+  // Lesezeichen für die Merkliste – gefüllt wirkt es nur über `fill` am Aufruf.
+  bookmark: (
+    <path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-4.2L6 21V4.5Z" />
+  ),
   download: (
     <>
       <path d="M12 4v11m0 0 4-4m-4 4-4-4" />

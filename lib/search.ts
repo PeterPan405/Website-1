@@ -245,6 +245,13 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     einen Umweg – sie heißt nicht wie eine Branche.
   */
   eintraege.push({
+    title: 'Merkliste',
+    href: '/maerkte/merkliste',
+    kind: 'Bereich',
+    hint: 'Titel im Blick behalten – gespeichert allein in diesem Browser',
+    keywords: ['merkliste', 'merken', 'watchlist', 'beobachten', 'favoriten'],
+  })
+  eintraege.push({
     title: 'Aktien nach Branchen',
     href: '/maerkte/branchen',
     kind: 'Bereich',

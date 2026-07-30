@@ -11,6 +11,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
+import { Merkschalter } from '@/components/markets/Merkschalter'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
@@ -183,6 +184,12 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 ? `Stand ${formatDateTime(quote.asOf)}`
                 : `Schluss ${formatDate(quote.asOf)}`}
             </span>
+            {/*
+              Der Merkknopf steht in der Kopfzeile und nicht am Seitenende: Wer
+              ihn drückt, hat sich nach den ersten Zahlen entschieden – nicht
+              nach dem letzten Absatz.
+            */}
+            <Merkschalter symbol={instrument.symbol} name={instrument.name} />
           </>
         }
       />

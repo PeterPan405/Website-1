@@ -348,7 +348,15 @@ export default async function MarketsOverviewPage() {
             >
               die Aktien nach Branchen
             </Link>{' '}
-            – {branchenZahl} Gruppen von Banken bis Versorger.
+            – {branchenZahl} Gruppen von Banken bis Versorger. Wer nur ein paar Titel
+            verfolgt, legt sie auf die{' '}
+            <Link
+              href="/maerkte/merkliste"
+              className="text-markets font-medium underline underline-offset-2"
+            >
+              Merkliste
+            </Link>{' '}
+            – sie bleibt im Browser und braucht kein Konto.
           </p>
           <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
             {stockQuotes.map((quote) => (
