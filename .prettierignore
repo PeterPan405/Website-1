@@ -10,6 +10,12 @@ next-env.d.ts
 # Workflow-Lauf als fehlerhaft formatiert melden.
 data/snapshots/markets.json
 
+# Der Kursstand, aus derselben Feder und aus demselben Grund: `serializeKursstand`
+# schreibt eine Zeile je Instrument. Dass er hier gefehlt hat, hat der Paketbau
+# gemeldet und nicht der Rechner daneben – `npm run lint` und `npm test` prüfen
+# die Formatierung nicht, das tut allein `npm run format:check`.
+data/snapshots/kurse-aktuell.json
+
 # Die Kartengeometrie ist unverändert kopiertes Fremdmaterial – Natural Earth
 # über das Paket `world-atlas`, hergestellt von `npm run globus-geometrie`.
 #

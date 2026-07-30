@@ -1,7 +1,12 @@
+import kursstand from '@/data/snapshots/kurse-aktuell.json'
 import snapshot from '@/data/snapshots/markets.json'
 
 import type { SeriesPoint } from '@/data/markets'
-import type { MarketSnapshot, SnapshotInstrument } from '@/lib/providers/snapshot'
+import type {
+  Kursstand,
+  MarketSnapshot,
+  SnapshotInstrument,
+} from '@/lib/providers/snapshot'
 
 /**
  * Zugriff auf die abgerufenen Kurse.
@@ -16,10 +21,29 @@ import type { MarketSnapshot, SnapshotInstrument } from '@/lib/providers/snapsho
  * Zustand ist dauerhaft vorgesehen, nicht bloß ein Übergang.
  */
 
-const daten = snapshot as MarketSnapshot
+/*
+  Zwei Dateien, eine Sicht nach außen.
 
-/** Wann der Abruf zuletzt lief – `null`, solange noch keiner lief. */
-export const snapshotFetchedAt: string | null = daten.fetchedAt
+  `markets.json` trägt die Tagesreihen und wächst einmal je Börsentag;
+  `kurse-aktuell.json` trägt den zuletzt gehandelten Preis und die
+  Devisenkurse und wird alle dreißig Minuten geschrieben. Der Grund für die
+  Trennung steht am Typ `Kursstand` – kurz: eine Datei von neunzehn Megabyte
+  zweiundvierzig Mal am Tag neu zu schreiben, lässt das Repository wachsen,
+  ohne dass es jemandem auffällt.
+
+  Zusammengeführt wird hier, damit der Rest der Website davon nichts merkt.
+*/
+const daten = snapshot as MarketSnapshot
+const stand = kursstand as Kursstand
+
+/**
+ * Wann der Abruf zuletzt lief – `null`, solange noch keiner lief.
+ *
+ * Aus dem Kursstand, nicht aus der Historie: Er ist der jüngere von beiden,
+ * und die Zeile „Stand …“ auf der Marktseite soll sagen, wie alt die Kurse
+ * sind, nicht wann zuletzt ein Handelstag dazukam.
+ */
+export const snapshotFetchedAt: string | null = stand.fetchedAt ?? daten.fetchedAt
 
 /**
  * Die Euro-Referenzkurse der EZB vom jüngsten Handelstag.
@@ -32,7 +56,9 @@ export function getDevisenkurse(): {
   stand: string
   jeEuro: Record<string, number>
 } | null {
-  const tabelle = daten.devisen
+  // Zuerst der Kursstand, ersatzweise die Historie – Letzteres nur, damit
+  // eine Momentaufnahme von vor der Trennung noch gelesen werden kann.
+  const tabelle = stand.devisen ?? daten.devisen
   if (!tabelle?.stand || !tabelle.jeEuro) return null
   return tabelle
 }
@@ -75,7 +101,12 @@ export function getLiveSeries(symbol: string): LiveSeries | null {
     daily: eintrag.points.map((punkt) => ({ t: punkt.d, value: punkt.c })),
     source: { label: eintrag.sourceLabel, url: eintrag.sourceUrl },
     asOf: eintrag.asOf,
-    latest: eintrag.latest ?? null,
+    /*
+      Der aktuelle Preis kommt aus der zweiten Datei. `eintrag.latest` steht
+      ersatzweise dahinter: Eine Momentaufnahme aus der Zeit vor der Trennung
+      trägt ihn noch mit, und die soll lesbar bleiben.
+    */
+    latest: stand.latest[symbol] ?? eintrag.latest ?? null,
   }
 }
 

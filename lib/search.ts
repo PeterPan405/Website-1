@@ -22,6 +22,7 @@ import { calculators } from '@/data/calculators'
 import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getNewsArticles } from '@/lib/news'
+import { getBranchen } from '@/lib/branchen'
 import type { SearchEntry } from '@/lib/search-match'
 import { areas } from '@/lib/site'
 
@@ -232,6 +233,41 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Rechner',
       hint: rechner.summary,
       keywords: [rechner.slug, ...rechner.relatedTopics],
+    })
+  }
+
+  /*
+    3a2. Branchen.
+
+    Der häufigste Weg zu einer Branchenseite dürfte die Suche sein: Wer
+    „Halbleiter“ eintippt, meint keine einzelne Aktie, sondern die Gruppe. Die
+    Übersicht steht als eigener Eintrag daneben, sonst fände man sie nur über
+    einen Umweg – sie heißt nicht wie eine Branche.
+  */
+  eintraege.push({
+    title: 'Merkliste',
+    href: '/maerkte/merkliste',
+    kind: 'Bereich',
+    hint: 'Titel im Blick behalten – gespeichert allein in diesem Browser',
+    keywords: ['merkliste', 'merken', 'watchlist', 'beobachten', 'favoriten'],
+  })
+  eintraege.push({
+    title: 'Aktien nach Branchen',
+    href: '/maerkte/branchen',
+    kind: 'Bereich',
+    hint: `${getBranchen().length} Branchen, in denen die hier geführten Aktien zusammengefasst sind`,
+    keywords: ['branche', 'branchen', 'sektor', 'sektoren', 'industrie'],
+  })
+  for (const branche of getBranchen()) {
+    eintraege.push({
+      title: branche.name,
+      href: `/maerkte/branchen/${branche.slug}`,
+      kind: 'Branche',
+      hint: `${branche.aktien.length} Aktien · ${branche.aktien
+        .slice(0, 3)
+        .map((aktie) => aktie.name)
+        .join(', ')} und weitere`,
+      keywords: ['branche', 'sektor', branche.slug],
     })
   }
 

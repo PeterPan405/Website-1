@@ -115,8 +115,8 @@ export function SourceSummary({
 
   return (
     <p className={klasse}>
-      Kurse werden während der Börsenzeit stündlich abgerufen, der Verlauf zeigt
-      Tagesschlusskurse. Keine Echtzeitdaten – der angezeigte Stand kann bis zu einer
+      Kurse werden während der Börsenzeit alle dreißig Minuten abgerufen, der Verlauf
+      zeigt Tagesschlusskurse. Keine Echtzeitdaten – der angezeigte Stand kann eine halbe
       Stunde alt sein. Quellen: {quellen.join(' und ')}.
       {ohneQuelle.length > 0 && (
         <>

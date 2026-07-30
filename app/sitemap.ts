@@ -5,6 +5,7 @@ import { calculators } from '@/data/calculators'
 import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
 
 import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
+import { getBranchen } from '@/lib/branchen'
 import { getLernpfadSlugs } from '@/lib/lernpfade'
 import { getEditionDates } from '@/lib/editions'
 import { getInstrumentSymbols } from '@/lib/markets'
@@ -121,6 +122,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   /*
+    Die Branchenseiten ändern sich mit jedem Kursabruf – die Reihenfolge der
+    Titel hängt an der Tagesveränderung. Der Bestand an Titeln dagegen ändert
+    sich selten, deshalb `daily` und nicht `hourly`: Für eine Suchmaschine ist
+    das die ehrlichere Angabe.
+  */
+  const branchenPages: MetadataRoute.Sitemap = [
+    { url: absoluteUrl('/maerkte/branchen'), changeFrequency: 'weekly', priority: 0.7 },
+    ...getBranchen().map((branche) => ({
+      url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
+      changeFrequency: 'daily' as const,
+      priority: 0.6,
+    })),
+  ]
+
+  /*
     Die beiden Stimmungsseiten stehen fest und nicht in `symbols`.
 
     Sie hängen nicht an einem Instrument, sondern an einem Marktbereich –
@@ -198,6 +214,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...levelPages,
     ...calculatorPages,
     ...marketPages,
+    ...branchenPages,
     ...stimmungsPages,
     ...newsPages,
     ...editionPages,

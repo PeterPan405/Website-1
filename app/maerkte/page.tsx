@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 import { QuoteCard } from '@/components/markets/QuoteCard'
 import { QuoteRow } from '@/components/markets/QuoteRow'
@@ -9,6 +10,7 @@ import { SourceSummary } from '@/components/markets/SourceNote'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { magnificentSeven } from '@/data/markets'
+import { getBranchen } from '@/lib/branchen'
 import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import {
@@ -76,6 +78,8 @@ export default async function MarketsOverviewPage() {
     getMarktstimmung('aktien'),
     getMarktstimmung('krypto'),
   ])
+
+  const branchenZahl = getBranchen().length
 
   const fxQuotes = quotes.filter((quote) => quote.kind === 'fx')
   const indexQuotes = quotes.filter((quote) => quote.kind === 'index')
@@ -328,6 +332,31 @@ export default async function MarketsOverviewPage() {
             einzelne Aktie das Risiko genau dieses Unternehmens – dafür lässt sich an ihr
             nachvollziehen, was ein Geschäftsmodell für den Kurs bedeutet. Notiert wird in
             der Währung der jeweiligen Heimatbörse.
+          </p>
+          {/*
+            Der Verweis auf die Branchen steht über der Liste, nicht darunter:
+            Wer hier ankommt und über tausend Zeilen vor sich hat, sucht meistens
+            keinen bestimmten Titel, sondern eine Gruppe. Unter der Liste hätte
+            er den Hinweis erst nach dem Scrollen gefunden – also dann, wenn er
+            ihn nicht mehr braucht.
+          */}
+          <p className="text-fg-muted mt-3 max-w-2xl leading-relaxed">
+            Sortiert nach Geschäft statt nach Alphabet:{' '}
+            <Link
+              href="/maerkte/branchen"
+              className="text-markets font-medium underline underline-offset-2"
+            >
+              die Aktien nach Branchen
+            </Link>{' '}
+            – {branchenZahl} Gruppen von Banken bis Versorger. Wer nur ein paar Titel
+            verfolgt, legt sie auf die{' '}
+            <Link
+              href="/maerkte/merkliste"
+              className="text-markets font-medium underline underline-offset-2"
+            >
+              Merkliste
+            </Link>{' '}
+            – sie bleibt im Browser und braucht kein Konto.
           </p>
           <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
             {stockQuotes.map((quote) => (

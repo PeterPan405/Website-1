@@ -8,7 +8,13 @@
  * der Website nicht auf.
  */
 
-import { rhythmusLabel, werteDividenden, type Zahlung } from '../lib/dividenden.ts'
+import {
+  jahresSummen,
+  rhythmusLabel,
+  vereinigeZahlungen,
+  werteDividenden,
+  type Zahlung,
+} from '../lib/dividenden.ts'
 
 let bestanden = 0
 let gescheitert = 0
@@ -178,6 +184,248 @@ pruefe(
 pruefe(
   'jeder Rhythmus hat eine deutsche Beschriftung',
   Object.values(rhythmusLabel).every((l) => l.length > 3)
+)
+
+console.log('\n— Jahressummen für die Verlaufsgrafik —')
+
+/*
+  Der eigentliche Fehler, gegen den diese Gruppe schützt: ein zu niedriger
+  erster Balken. Das Abrufefenster beginnt Ende Juli; wer das angebrochene
+  Jahr mitzählt, zeigt bei einem Quartalszahler zwei statt vier Zahlungen –
+  und das sieht aus wie eine halbierte Dividende.
+*/
+const quartalsweise: Zahlung[] = []
+for (let jahr = 2021; jahr <= 2026; jahr += 1) {
+  for (const monat of ['02', '05', '08', '11']) {
+    // Das Fenster beginnt am 30.07.2021 – davor gibt es keine Daten.
+    if (jahr === 2021 && monat < '08') continue
+    if (jahr === 2026 && monat > '05') continue
+    quartalsweise.push({ date: `${jahr}-${monat}-15`, amount: 1 })
+  }
+}
+
+const ohneFenster = jahresSummen(quartalsweise, null, HEUTE)
+pruefe(
+  'ohne bekanntes Fenster faellt das angebrochene erste Jahr weg',
+  ohneFenster.jahre[0]?.jahr === 2022,
+  String(ohneFenster.jahre[0]?.jahr)
+)
+
+const mitFenster = jahresSummen(quartalsweise, '2021-07-30', HEUTE)
+pruefe(
+  'mit bekanntem Fenster beginnt die Reihe im ersten vollen Jahr',
+  mitFenster.jahre[0]?.jahr === 2022,
+  String(mitFenster.jahre[0]?.jahr)
+)
+pruefe(
+  'ein volles Jahr traegt alle vier Zahlungen',
+  mitFenster.jahre[0]?.zahlungen === 4,
+  String(mitFenster.jahre[0]?.zahlungen)
+)
+pruefe(
+  'das laufende Jahr ist gekennzeichnet',
+  mitFenster.jahre.at(-1)?.jahr === 2026 && mitFenster.jahre.at(-1)?.laufend === true
+)
+pruefe(
+  'nur das laufende Jahr ist gekennzeichnet',
+  mitFenster.jahre.filter((eintrag) => eintrag.laufend).length === 1
+)
+
+/*
+  Allianz: ein Jahreszahler, dessen erste bekannte Zahlung im Mai 2022 liegt.
+  Das Fenster beginnt aber im Juli 2021 – 2022 ist damit vollstaendig erfasst.
+  Ohne den Fensterbeginn ginge dieser Balken verloren.
+*/
+const jaehrlich: Zahlung[] = [
+  { date: '2022-05-05', amount: 10 },
+  { date: '2023-05-08', amount: 11 },
+  { date: '2024-05-13', amount: 13 },
+  { date: '2025-05-12', amount: 15 },
+  { date: '2026-05-08', amount: 17 },
+]
+pruefe(
+  'beim Jahreszahler rettet der Fensterbeginn das erste volle Jahr',
+  jahresSummen(jaehrlich, '2021-07-30', HEUTE).jahre[0]?.jahr === 2022,
+  String(jahresSummen(jaehrlich, '2021-07-30', HEUTE).jahre[0]?.jahr)
+)
+pruefe(
+  'ohne Fensterbeginn wird dasselbe Jahr vorsichtshalber verworfen',
+  jahresSummen(jaehrlich, null, HEUTE).jahre[0]?.jahr === 2023
+)
+pruefe(
+  'ein Fenster, das am 1. Januar beginnt, macht dieses Jahr vollstaendig',
+  jahresSummen(jaehrlich, '2022-01-01', HEUTE).jahre[0]?.jahr === 2022
+)
+
+/*
+  Eine ausgesetzte Dividende ist eine Aussage, keine Luecke: Das Jahr gehoert
+  als Null in die Reihe, sonst wird aus der Aussetzung eine ununterbrochene
+  Zahlungsreihe.
+*/
+const ausgesetzt: Zahlung[] = [
+  { date: '2022-05-05', amount: 10 },
+  { date: '2023-05-08', amount: 11 },
+  // 2024 nichts – die Dividende wurde gestrichen.
+  { date: '2025-05-12', amount: 5 },
+  { date: '2026-05-08', amount: 6 },
+]
+const mitLuecke = jahresSummen(ausgesetzt, '2021-07-30', HEUTE)
+pruefe(
+  'ein ausgesetztes Jahr steht als Null in der Reihe',
+  mitLuecke.jahre.some((eintrag) => eintrag.jahr === 2024 && eintrag.summe === 0)
+)
+pruefe(
+  'die Reihe hat keine Luecke',
+  mitLuecke.jahre.every(
+    (eintrag, i) => i === 0 || eintrag.jahr === mitLuecke.jahre[i - 1].jahr + 1
+  )
+)
+
+/*
+  Ein Unternehmen, das erst spaeter mit der Ausschuettung beginnt, hat die
+  Dividende in den Jahren davor nicht ausgesetzt – dort gab es keine. Fuehrende
+  Nullen waeren eine Behauptung ueber eine Entscheidung, die niemand traf.
+*/
+const spaetStarter: Zahlung[] = [
+  { date: '2025-03-10', amount: 2 },
+  { date: '2026-03-09', amount: 3 },
+]
+pruefe(
+  'fuehrende Nulljahre stehen nicht in der Reihe',
+  jahresSummen(spaetStarter, '2021-07-30', HEUTE).jahre[0]?.jahr === 2025
+)
+
+/*
+  „Laufend“ heisst „es fehlt noch etwas“, nicht „das Kalenderjahr ist nicht
+  vorbei“. Bei Allianz stand sonst der hoechste Balken gestrichelt da: einmal
+  im Jahr gezahlt, im Mai erledigt – und der Umriss behauptete trotzdem, es
+  komme noch etwas.
+*/
+pruefe(
+  'ein Jahreszahler ist nach seiner Zahlung fertig',
+  jahresSummen(jaehrlich, '2021-07-30', HEUTE).jahre.at(-1)?.laufend === false
+)
+pruefe(
+  'ein Quartalszahler mitten im Jahr dagegen nicht',
+  mitFenster.jahre.at(-1)?.laufend === true
+)
+pruefe(
+  'und dessen abgeschlossene Jahre gehen alle ins Wachstum ein',
+  Math.abs((jahresSummen(jaehrlich, '2021-07-30', HEUTE).wachstumProzent ?? 0) - 14.2) <
+    0.2,
+  String(jahresSummen(jaehrlich, '2021-07-30', HEUTE).wachstumProzent)
+)
+pruefe(
+  'das unfertige Jahr geht nicht ins Wachstum ein',
+  jahresSummen(quartalsweise, '2021-07-30', HEUTE).wachstumProzent === 0,
+  String(jahresSummen(quartalsweise, '2021-07-30', HEUTE).wachstumProzent)
+)
+/*
+  Eine gestrichene Dividende ergibt minus hundert Prozent, nicht `null`. Das
+  ist der Fall, in dem die Zahl am meisten zaehlt – wer sie hier verschweigt,
+  verschweigt genau die schlechte Nachricht.
+*/
+const gestrichen = jahresSummen(
+  [
+    { date: '2022-05-05', amount: 10 },
+    { date: '2023-05-08', amount: 11 },
+    { date: '2024-05-13', amount: 6 },
+    // 2025 gestrichen, 2026 ebenfalls nichts.
+  ],
+  '2021-07-30',
+  HEUTE
+)
+pruefe(
+  'eine gestrichene Dividende ergibt minus hundert Prozent',
+  gestrichen.wachstumProzent === -100,
+  String(gestrichen.wachstumProzent)
+)
+pruefe(
+  'und das gestrichene Jahr steht als Null in der Reihe',
+  gestrichen.jahre.some((eintrag) => eintrag.jahr === 2025 && eintrag.summe === 0)
+)
+/*
+  Ein Quartalszahler, der 2025 angefangen hat: ein abgeschlossenes Jahr und ein
+  laufendes. Aus einem einzigen Wert laesst sich keine Veraenderung bilden –
+  eine Zahl waere hier erfunden.
+*/
+const einJahr: Zahlung[] = [
+  { date: '2025-02-14', amount: 1 },
+  { date: '2025-05-15', amount: 1 },
+  { date: '2025-08-15', amount: 1 },
+  { date: '2025-11-14', amount: 1 },
+  { date: '2026-02-13', amount: 1 },
+  { date: '2026-05-15', amount: 1 },
+]
+pruefe(
+  'ein einziges abgeschlossenes Jahr ergibt keine Wachstumsrate',
+  jahresSummen(einJahr, '2021-07-30', HEUTE).wachstumProzent === null,
+  String(jahresSummen(einJahr, '2021-07-30', HEUTE).wachstumProzent)
+)
+pruefe(
+  'ohne Zahlungen bleibt die Reihe leer',
+  jahresSummen([], null, HEUTE).jahre.length === 0
+)
+
+console.log('\n— Zahlungen zusammenfuehren —')
+
+/*
+  Der Anlass: Qiagen. Die Firma schuettet in einer Waehrung aus und notiert in
+  einer anderen; Yahoo rechnet zum Kurs des Abrufzeitpunkts um. Dieselbe
+  Zahlung vom 30.01.2024 kam einmal als 1,2023765 und eine halbe Stunde spaeter
+  als 1,2020993 zurueck – und `dividenden.json` aenderte sich deshalb bei jedem
+  der zweiundvierzig Laeufe am Tag.
+*/
+const gespeichert: Zahlung[] = [
+  { date: '2024-01-30', amount: 1.2023765 },
+  { date: '2025-01-29', amount: 1.1835895 },
+]
+const wackelig: Zahlung[] = [
+  { date: '2024-01-30', amount: 1.2020993 },
+  { date: '2025-01-29', amount: 1.1833166 },
+]
+
+pruefe(
+  'Wechselkursrauschen laesst den gespeicherten Betrag stehen',
+  JSON.stringify(vereinigeZahlungen(gespeichert, wackelig)) ===
+    JSON.stringify(gespeichert),
+  JSON.stringify(vereinigeZahlungen(gespeichert, wackelig))
+)
+
+pruefe(
+  'eine echte Korrektur kommt durch',
+  vereinigeZahlungen(gespeichert, [{ date: '2024-01-30', amount: 1.35 }])[0].amount ===
+    1.35
+)
+
+pruefe(
+  'eine neue Zahlung kommt dazu',
+  vereinigeZahlungen(gespeichert, [...wackelig, { date: '2026-01-28', amount: 1.2 }])
+    .length === 3
+)
+
+/*
+  Die neue Liste bestimmt, welche Zahlungen es gibt. Sonst stuende eine
+  zurueckgezogene Zahlung fuer immer im Bestand.
+*/
+pruefe(
+  'eine weggefallene Zahlung wird nicht wiederbelebt',
+  vereinigeZahlungen(gespeichert, [wackelig[1]]).length === 1
+)
+
+pruefe(
+  'das Ergebnis ist aufsteigend sortiert',
+  vereinigeZahlungen(gespeichert, [
+    { date: '2026-01-28', amount: 1.2 },
+    { date: '2024-01-30', amount: 1.2020993 },
+  ])
+    .map((z) => z.date)
+    .join(',') === '2024-01-30,2026-01-28'
+)
+
+pruefe(
+  'ohne gespeicherten Stand kommt die neue Liste unveraendert zurueck',
+  JSON.stringify(vereinigeZahlungen([], wackelig)) === JSON.stringify(wackelig)
 )
 
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert.`)

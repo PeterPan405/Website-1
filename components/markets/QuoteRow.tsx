@@ -31,9 +31,19 @@ export function QuoteRow({ quote }: { quote: MarketQuote }) {
       <span className="text-fg shrink-0 text-sm tabular-nums">
         {formatNumber(quote.value, quote.decimals)}
       </span>
+      {/*
+        `w-24` und `whitespace-nowrap`, nicht `w-20`.
+
+        Bei zweistelligen Prozentzahlen brach „+19,50 %“ hinter dem Pfeil um,
+        und die Zeile wurde doppelt so hoch – bei einem Dutzend Titeln
+        nebeneinander sah die Liste aus, als sei sie kaputt. Aufgefallen ist es
+        an einem Tag, an dem der ganze Halbleiterbereich zweistellig zulegte:
+        Auf der Marktübersicht steht eine solche Zahl selten, auf einer
+        Branchenseite stehen an so einem Tag vierzig davon untereinander.
+      */}
       <span
         className={cn(
-          'flex w-20 shrink-0 items-center justify-end gap-0.5 text-sm font-medium tabular-nums',
+          'flex w-24 shrink-0 items-center justify-end gap-0.5 text-sm font-medium whitespace-nowrap tabular-nums',
           positive ? 'text-success' : 'text-danger'
         )}
       >

@@ -21,13 +21,18 @@
  */
 
 import { marketDefinitions, marketSources } from '../data/markets.ts'
+import { vereinigeZahlungen } from '../lib/dividenden.ts'
 import { fetchEcbHistoryFull, seriesForCurrency } from '../lib/providers/ecb.ts'
 import {
-  checkPoints,
+  EMPTY_KURSSTAND,
   EMPTY_SNAPSHOT,
+  checkPoints,
+  ohneHeute,
+  serializeKursstand,
   serializeSnapshot,
   thinPoints,
   type Devisenkurse,
+  type Kursstand,
   type MarketSnapshot,
   type SnapshotInstrument,
   type SnapshotPoint,
@@ -49,6 +54,8 @@ const ZIEL = 'data/snapshots/markets.json'
   Megabyte schon groß genug.
 */
 const ZIEL_DIVIDENDEN = 'data/snapshots/dividenden.json'
+/** Die kleine Datei mit den aktuellen Kursen – siehe `Kursstand`. */
+const ZIEL_STAND = 'data/snapshots/kurse-aktuell.json'
 
 const QUELLEN = {
   ecb: {
@@ -134,6 +141,14 @@ function ladeDividenden(): Dividendenbestand {
       },
       titel: {},
     }
+  }
+}
+
+function ladeKursstand(): Kursstand {
+  try {
+    return JSON.parse(readFileSync(ZIEL_STAND, 'utf8')) as Kursstand
+  } catch {
+    return EMPTY_KURSSTAND
   }
 }
 
@@ -301,7 +316,16 @@ async function main(): Promise<void> {
         über den Rückfallweg lief.
       */
       if (ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
-        dividenden.titel[symbol] = ergebnis.dividenden
+        /*
+          Zusammenführen, nicht ersetzen – siehe `vereinigeZahlungen`. Kurz:
+          Yahoo rechnet Auslandsdividenden zum Kurs des Abrufzeitpunkts um, und
+          dieselbe zwei Jahre alte Zahlung kommt deshalb bei jedem Lauf mit
+          einer anderen siebten Nachkommastelle zurück.
+        */
+        dividenden.titel[symbol] = vereinigeZahlungen(
+          dividenden.titel[symbol] ?? [],
+          ergebnis.dividenden
+        )
       }
     }
 
@@ -312,7 +336,7 @@ async function main(): Promise<void> {
 
     const stellen =
       marketDefinitions.find((definition) => definition.symbol === symbol)?.decimals ?? 4
-    const punkte = thinPoints(roh).map((punkt) => ({
+    const punkte = thinPoints(ohneHeute(roh)).map((punkt) => ({
       d: punkt.d,
       c: runde(punkt.c, stellen),
     }))
@@ -435,29 +459,102 @@ async function main(): Promise<void> {
     2026-07-27“ hintereinander, drei Bereitstellungen, kein einziger neuer Kurs.
   */
   const tabelle = devisentabelle ?? bisher.devisen
-  const vorher = serializeSnapshot({
+  /*
+    Zwei Dateien, zwei Vergleiche – und das ist der Kern dieses Umbaus.
+
+    Die Tagesreihen wachsen einmal je Börsentag um einen Punkt, der zuletzt
+    gehandelte Preis ändert sich alle dreißig Minuten. Solange beides in einer
+    Datei stand, wurde bei jedem Lauf eine Datei von neunzehn Megabyte
+    vollständig neu geschrieben – zweiundvierzig Mal am Tag. Fünfzehn
+    gespeicherte Fassungen wogen zusammen 179 Megabyte.
+
+    Jetzt entscheidet jede Datei für sich, ob sie sich geändert hat. Der
+    Kursstand wird fast immer geschrieben und ist ein paar hundert Kilobyte
+    groß; die Historie nur dann, wenn tatsächlich ein Schlusskurs hinzugekommen
+    ist – in der Regel einmal je Handelstag.
+  */
+  const historieOhneKurse = (
+    quelle: Record<string, SnapshotInstrument>
+  ): Record<string, SnapshotInstrument> =>
+    Object.fromEntries(
+      Object.entries(quelle).map(([symbol, eintrag]) => [
+        symbol,
+        {
+          sourceLabel: eintrag.sourceLabel,
+          sourceUrl: eintrag.sourceUrl,
+          asOf: eintrag.asOf,
+          points: eintrag.points,
+        },
+      ])
+    )
+
+  const historieVorher = serializeSnapshot({
     fetchedAt: null,
-    instruments: bisher.instruments,
-    devisen: bisher.devisen,
+    instruments: historieOhneKurse(bisher.instruments),
   })
-  const nachher = serializeSnapshot({
+  const historieNachher = serializeSnapshot({
     fetchedAt: null,
-    instruments: instrumente,
+    instruments: historieOhneKurse(instrumente),
+  })
+  const historieGleich = historieVorher === historieNachher
+
+  /*
+    Der bisherige Kursstand ist die Rückfallebene für alles, was dieser Lauf
+    nicht geholt hat – und das ist keine Feinheit, sondern der Unterschied
+    zwischen einer vollständigen und einer fast leeren Datei.
+
+    Der Wochenendlauf fragt nur `crypto,fx` ab. Bei den übrigen Instrumenten
+    steht der laufende Kurs deshalb nicht in `instrumente`: Die Historie führt
+    ihn seit dieser Trennung nicht mehr mit, und `{ ...bisher.instruments }`
+    kann folglich nichts mitbringen. Ohne diese Rückfallebene hätte der Sonntag
+    fünf aktuelle Kurse geschrieben und tausend gelöscht.
+
+    Geschrieben wird aber nur, was noch im Katalog steht: `instrumente` gibt die
+    Schlüssel vor, damit ein aufgegebener Titel nicht ewig weitergereicht wird.
+  */
+  const standVorher = ladeKursstand()
+  const standNeu: Kursstand = {
+    fetchedAt: new Date().toISOString(),
+    latest: Object.fromEntries(
+      Object.entries(instrumente).flatMap(([symbol, eintrag]) => {
+        const wert = eintrag.latest ?? standVorher.latest[symbol]
+        return wert ? [[symbol, wert] as const] : []
+      })
+    ),
     devisen: tabelle,
-  })
-  if (vorher === nachher) {
-    console.log('[kurse] Keine Kursänderung – Datei bleibt unberührt.')
+  }
+  const standGleich =
+    serializeKursstand({ ...standVorher, fetchedAt: null }) ===
+    serializeKursstand({ ...standNeu, fetchedAt: null })
+
+  if (historieGleich && standGleich) {
+    console.log('[kurse] Keine Kursänderung – beide Dateien bleiben unberührt.')
     return
   }
 
-  const neu: MarketSnapshot = {
-    fetchedAt: new Date().toISOString(),
-    instruments: instrumente,
-    devisen: tabelle,
+  if (historieGleich) {
+    console.log('[kurse] Keine neue Tagesreihe – die Historie bleibt unberührt.')
+  } else {
+    mkdirSync(dirname(ZIEL), { recursive: true })
+    writeFileSync(
+      ZIEL,
+      serializeSnapshot({
+        fetchedAt: new Date().toISOString(),
+        instruments: historieOhneKurse(instrumente),
+      })
+    )
+    console.log(`[kurse] Historie erneuert: ${ZIEL}`)
   }
 
-  mkdirSync(dirname(ZIEL), { recursive: true })
-  writeFileSync(ZIEL, serializeSnapshot(neu))
+  if (standGleich) {
+    console.log('[kurse] Unveränderte Kurse – der Kursstand bleibt unberührt.')
+  } else {
+    mkdirSync(dirname(ZIEL_STAND), { recursive: true })
+    writeFileSync(ZIEL_STAND, serializeKursstand(standNeu))
+    console.log(
+      `[kurse] ${Object.keys(standNeu.latest).length} aktuelle Kurse in ${ZIEL_STAND}`
+    )
+  }
 
   const punkteGesamt = Object.values(instrumente).reduce(
     (summe, eintrag) => summe + eintrag.points.length,

@@ -104,6 +104,8 @@ function baueEintrag(zeile: Zeile): string {
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    branche: ${anfuehrung(zeile.branche)},
+    sitzland: '${zeile.land}',
     seed: {
       startValue: ${start.toFixed(2)},
       annualDrift: ${drift.toFixed(3)},

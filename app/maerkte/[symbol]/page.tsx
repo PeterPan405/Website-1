@@ -11,6 +11,8 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
+import { Merkschalter } from '@/components/markets/Merkschalter'
+import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -19,6 +21,7 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { cn } from '@/lib/cn'
 import {
+  formatCurrency,
   formatDateShort,
   formatDate,
   formatDateTime,
@@ -27,7 +30,15 @@ import {
   formatPercentSigned,
 } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
-import { dividendenQuelle, getDividendenbefund } from '@/lib/dividendentermine'
+import { laendernamen } from '@/data/laender/namen'
+import { getBrancheVon } from '@/lib/branchen'
+import { getQuellensteuer } from '@/lib/quellensteuer'
+import { inEuro, lohntEuroAngabe } from '@/lib/euro'
+import {
+  dividendenQuelle,
+  getDividendenbefund,
+  getDividendenverlauf,
+} from '@/lib/dividendentermine'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { getNewsForSymbol } from '@/lib/news'
 import {
@@ -100,6 +111,25 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
     Netz – deshalb synchron und nicht in `Promise.all` darüber.
   */
   const dividende = getDividendenbefund(symbol)
+  const dividendenverlauf = getDividendenverlauf(symbol)
+  const branche = getBrancheVon(symbol)
+  /*
+    Die Quellensteuer nur, wo sie eine Rolle spielt: bei Aktien, die auch
+    Dividende zahlen. Bei einem Titel ohne Ausschüttung wäre die Tafel eine
+    Antwort auf eine Frage, die sich nicht stellt.
+  */
+  const quellensteuerbefund = dividende ? getQuellensteuer(instrument.sitzland) : null
+  const sitzlandName = instrument.sitzland
+    ? (laendernamen[instrument.sitzland] ?? instrument.sitzland)
+    : null
+  /*
+    Der Euro-Betrag nur, wo er etwas hinzufügt: nicht bei Titeln, die ohnehin
+    in Euro notieren, und nicht bei Indizes – ein Indexstand ist kein
+    Geldbetrag, und „7.374 Punkte, rund 6.480 €“ wäre schlicht falsch.
+  */
+  const euroKurs = lohntEuroAngabe(instrument.unit)
+    ? inEuro(quote.value, instrument.unit)
+    : null
 
   const positive = quote.changePercent >= 0
   const otherQuotes = allQuotes.filter((entry) => entry.symbol !== symbol).slice(0, 6)
@@ -130,6 +160,11 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             <span className="text-fg text-lg font-bold tabular-nums">
               {formatNumber(quote.value, quote.decimals)} {instrument.unit}
             </span>
+            {euroKurs && (
+              <span className="tabular-nums">
+                rund {formatCurrency(euroKurs.euro, euroKurs.euro < 10 ? 2 : 0)}
+              </span>
+            )}
             <span
               className={cn(
                 'flex items-center gap-1 font-semibold tabular-nums',
@@ -149,6 +184,12 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 ? `Stand ${formatDateTime(quote.asOf)}`
                 : `Schluss ${formatDate(quote.asOf)}`}
             </span>
+            {/*
+              Der Merkknopf steht in der Kopfzeile und nicht am Seitenende: Wer
+              ihn drückt, hat sich nach den ersten Zahlen entschieden – nicht
+              nach dem letzten Absatz.
+            */}
+            <Merkschalter symbol={instrument.symbol} name={instrument.name} />
           </>
         }
       />
@@ -176,7 +217,20 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 <Stat
                   label="Aktueller Stand"
                   value={`${formatNumber(quote.value, quote.decimals)}`}
-                  hint={`${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`}
+                  /*
+                    Der Euro-Betrag steht im Hinweis, nicht im Wert.
+
+                    Er ist eine Umrechnung und keine Notierung: Gehandelt wird
+                    dieser Titel in seiner Heimatwährung, und die große Zahl
+                    soll die sein, die auch im Depotauszug steht. Im Hinweis
+                    beantwortet er trotzdem die Frage, die sich beim Anschauen
+                    zuerst stellt – was ist das in Euro?
+                  */
+                  hint={
+                    euroKurs
+                      ? `${instrument.unit} · rund ${formatCurrency(euroKurs.euro, euroKurs.euro < 10 ? 2 : 0)} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
+                      : `${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
+                  }
                   tone={positive ? 'positive' : 'negative'}
                 />
                 <Stat
@@ -240,6 +294,25 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 {instrument.description.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
                 ))}
+                {/*
+                  Der Verweis auf die Branche steht hier und nicht in der
+                  Kopfzeile: Er beantwortet keine Frage über diese Aktie,
+                  sondern führt weiter zu den vergleichbaren – und das ist eine
+                  Bewegung, die nach dem Lesen kommt, nicht davor.
+                */}
+                {branche && (
+                  <p>
+                    Diese Aktie führen wir unter{' '}
+                    <Link
+                      href={`/maerkte/branchen/${branche.slug}`}
+                      className="text-markets font-medium underline underline-offset-2"
+                    >
+                      {branche.name}
+                    </Link>
+                    . Dort stehen die übrigen Titel derselben Branche – nützlich, um eine
+                    Bewegung einzuordnen: Fällt nur dieser Kurs oder das ganze Feld?
+                  </p>
+                )}
               </div>
             </section>
 
@@ -340,6 +413,15 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 einheit={instrument.unit}
                 name={instrument.name}
                 quelle={dividendenQuelle}
+                verlauf={dividendenverlauf}
+                className="mt-12"
+              />
+            )}
+
+            {quellensteuerbefund && sitzlandName && (
+              <Quellensteuertafel
+                befund={quellensteuerbefund}
+                land={sitzlandName}
                 className="mt-12"
               />
             )}
@@ -364,6 +446,22 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 {formatDateShort(coverage.to)}; ältere Abschnitte auf einen Wert je Woche
                 verdichtet.
               </p>
+              {/*
+                Der Euro-Betrag braucht seine eigene Herkunftsangabe.
+
+                Er entsteht aus zwei verschieden alten Zahlen: einem Kurs von
+                vor höchstens einer halben Stunde und einem Wechselkurs, den die
+                EZB einmal am Tag feststellt. „Rund“ allein sagt das nicht – erst
+                das Datum daneben macht sichtbar, worauf die Umrechnung beruht.
+              */}
+              {euroKurs && (
+                <p className="text-fg-subtle mt-1 text-xs">
+                  Der Euro-Betrag ist mit dem Referenzkurs der EZB vom{' '}
+                  {formatDateShort(euroKurs.stand)} gerechnet (1 € ={' '}
+                  {formatNumber(euroKurs.jeEuro, 4)} {euroKurs.ausWaehrung}). Beim Kauf
+                  gilt der Kurs deiner Bank samt Aufschlag, nicht dieser.
+                </p>
+              )}
             </div>
           </div>
 

@@ -92,6 +92,117 @@ export interface MarketSnapshot {
 export const EMPTY_SNAPSHOT: MarketSnapshot = { fetchedAt: null, instruments: {} }
 
 /**
+ * Der schnelle Teil der Momentaufnahme: aktuelle Kurse und Devisen.
+ *
+ * ## Warum das getrennt liegt
+ *
+ * Die Historie und der aktuelle Kurs ändern sich verschieden schnell. Die
+ * Tagesreihe wächst einmal je Börsentag um einen Punkt; der zuletzt gehandelte
+ * Preis ändert sich alle dreißig Minuten. Beides in einer Datei hieß: eine
+ * Datei von neunzehn Megabyte, zweiundvierzig Mal am Tag vollständig neu
+ * geschrieben.
+ *
+ * Gemessen an fünfzehn gespeicherten Fassungen waren das 179 Megabyte roh, und
+ * das Repository lag bei über hundert Megabyte, bevor der neue Zeitplan die
+ * Schreibhäufigkeit noch einmal erhöht hätte. Ein Wachstum, das niemand bemerkt,
+ * bis GitHub es meldet.
+ *
+ * Getrennt schreibt der Abruf nur noch ein paar hundert Kilobyte je Lauf. Die
+ * Historie kommt einmal je Handelstag dazu, wenn tatsächlich ein Schlusskurs
+ * hinzugekommen ist.
+ */
+export interface Kursstand {
+  /** Wann der Abruf lief (ISO 8601), `null` vor dem ersten Lauf. */
+  fetchedAt: string | null
+  /** Zuletzt gehandelter Preis je Instrument, wo die Quelle einen liefert. */
+  latest: Record<string, { value: number; at: string }>
+  /** Die Euro-Referenzkurse der EZB. */
+  devisen?: Devisenkurse
+}
+
+/** Ein leerer Kursstand – der Zustand vor dem ersten Lauf. */
+export const EMPTY_KURSSTAND: Kursstand = { fetchedAt: null, latest: {} }
+
+/**
+ * Schreibt den Kursstand – eine Zeile je Instrument.
+ *
+ * Dieselbe Überlegung wie bei der Historie: `JSON.stringify(…, null, 2)` würde
+ * jeden Eintrag auf vier Zeilen verteilen, ohne Einrückung wäre es eine
+ * endlose Zeile. Eine Zeile je Instrument ist im Diff lesbar.
+ */
+export function serializeKursstand(stand: Kursstand): string {
+  const eintraege = Object.entries(stand.latest)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([symbol, wert]) => `    ${JSON.stringify(symbol)}: ${JSON.stringify(wert)}`)
+
+  const devisen = stand.devisen
+    ? [
+        '  "devisen": {',
+        `    "stand": ${JSON.stringify(stand.devisen.stand)},`,
+        '    "jeEuro": {',
+        Object.entries(stand.devisen.jeEuro)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([code, kurs]) => `      ${JSON.stringify(code)}: ${kurs}`)
+          .join(',\n'),
+        '    }',
+        '  }',
+      ].join('\n')
+    : null
+
+  return (
+    [
+      '{',
+      `  "fetchedAt": ${JSON.stringify(stand.fetchedAt)},`,
+      '  "latest": {',
+      eintraege.join(',\n'),
+      devisen ? '  },' : '  }',
+      ...(devisen ? [devisen] : []),
+      '}',
+    ].join('\n') + '\n'
+  )
+}
+
+/**
+ * Entfernt den angefangenen Tag aus einer Kursreihe.
+ *
+ * ## Warum das nötig ist
+ *
+ * Yahoo liefert im Tagesraster auch den laufenden Tag – als Kerze, deren
+ * Schlusskurs der aktuelle Preis ist. Dieser Punkt bewegt sich also mit dem
+ * Kurs. Solange er in der Historie steht, ändert sich `markets.json` bei
+ * **jedem** Lauf, und die Trennung von Historie und Kursstand wäre wirkungslos:
+ * neunzehn Megabyte, zweiundvierzig Mal am Tag, wegen einer einzigen Zahl.
+ *
+ * Aufgefallen ist es erst am fertigen Ergebnis. Der erste Lauf nach der
+ * Trennung schrieb erwartungsgemäß beide Dateien – der zweite hätte nur noch
+ * die kleine schreiben dürfen. Dass er es nicht getan hätte, stand nirgends im
+ * Code, sondern nur im letzten Punkt der Reihe: `2026-07-30`, an einem 30. Juli
+ * um halb vier nachmittags.
+ *
+ * ## Warum das auch inhaltlich richtig ist
+ *
+ * Die Reihe heißt auf der Website „Tagesschlusskurse“, und der laufende Tag hat
+ * keinen. Der aktuelle Preis steht ohnehin daneben – aus `kurse-aktuell.json`
+ * und mit Uhrzeit. Ein Zwischenstand in der Schlusskursreihe wäre an dieser
+ * Stelle die falsche Auskunft und im Chart nicht als solcher zu erkennen.
+ *
+ * Der Preis dafür: Ein Schlusskurs erscheint erst am Folgetag in der Reihe. Für
+ * einen Verlauf über fünf Jahre ist das ohne Belang.
+ *
+ * Verworfen wird auch, was **nach** dem Stichtag datiert ist: In Tokio ist der
+ * Handelstag zu Ende, während in Europa noch derselbe Tag läuft. Ein Punkt mit
+ * morgigem Datum stünde sonst im Chart.
+ *
+ * @param today Bezugstag, Format YYYY-MM-DD. Vorgabe ist der heutige Tag.
+ */
+export function ohneHeute(
+  points: readonly SnapshotPoint[],
+  today = new Date().toISOString().slice(0, 10)
+): SnapshotPoint[] {
+  return points.filter((punkt) => punkt.d < today)
+}
+
+/**
  * Wie viele Tage am Ende in voller Auflösung erhalten bleiben.
  *
  * 400 Kalendertage decken die Zeiträume bis „ein Jahr“ vollständig mit

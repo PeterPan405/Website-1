@@ -35,15 +35,31 @@ import { readFileSync, writeFileSync } from 'node:fs'
  * ist schon passiert.
  */
 function datenstand() {
-  try {
-    const roh = readFileSync('data/snapshots/markets.json', 'utf8')
-    // Nur den Kopf lesen: Die Datei ist zehn Megabyte groß, der Zeitstempel
-    // steht im ersten Feld. JSON.parse darüber wäre Verschwendung.
-    const treffer = roh.slice(0, 400).match(/"fetchedAt":\s*"([^"]+)"/)
-    return treffer ? treffer[1] : 'unbekannt'
-  } catch {
-    return 'unbekannt'
+  /*
+    Zuerst der Kursstand, erst danach die Historie.
+
+    Seit die Momentaufnahme geteilt ist, tragen beide Dateien ein `fetchedAt` –
+    aber nur `kurse-aktuell.json` wird alle dreißig Minuten neu geschrieben.
+    `markets.json` wächst einmal je Handelstag, und übers Wochenende gar nicht.
+    Wer den Zeitstempel von dort läse, meldete montags um sieben einen
+    zweiundsiebzig Stunden alten Abruf – der Prüflauf schlägt ab dreißig Stunden
+    an, und die Warnung wäre jedes Wochenende falsch.
+  */
+  for (const datei of [
+    'data/snapshots/kurse-aktuell.json',
+    'data/snapshots/markets.json',
+  ]) {
+    try {
+      const roh = readFileSync(datei, 'utf8')
+      // Nur den Kopf lesen: Die Historie ist neunzehn Megabyte groß, der
+      // Zeitstempel steht im ersten Feld. JSON.parse darüber wäre Verschwendung.
+      const treffer = roh.slice(0, 400).match(/"fetchedAt":\s*"([^"]+)"/)
+      if (treffer) return treffer[1]
+    } catch {
+      // Datei fehlt oder ist unlesbar – die nächste versuchen.
+    }
   }
+  return 'unbekannt'
 }
 
 /**

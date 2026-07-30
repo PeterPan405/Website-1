@@ -13,7 +13,13 @@
 
 import { parseYahooChart, yahooUrl } from '../lib/providers/yahoo.ts'
 import { parseTwelveData, twelveDataUrl } from '../lib/providers/twelvedata.ts'
-import { checkPoints, thinPoints } from '../lib/providers/snapshot.ts'
+import {
+  checkPoints,
+  ohneHeute,
+  serializeKursstand,
+  thinPoints,
+  type Kursstand,
+} from '../lib/providers/snapshot.ts'
 
 let failed = 0
 
@@ -205,6 +211,112 @@ check(
     [{ d: '2026-07-22', c: 1.075 }]
   ),
   []
+)
+
+// ------------------------------------------------------- Der laufende Tag
+
+/*
+  Der teuerste Punkt der ganzen Reihe: Yahoos Kerze des angefangenen Tages.
+  Ihr Schluss ist der aktuelle Preis und bewegt sich alle dreißig Minuten –
+  in der Historie stehend hätte sie die Trennung von Kursstand und Historie
+  vollständig wirkungslos gemacht.
+*/
+const mitHeute = [
+  { d: '2026-07-28', c: 100 },
+  { d: '2026-07-29', c: 101 },
+  { d: '2026-07-30', c: 102 },
+]
+
+check('wirft den angefangenen Tag weg', ohneHeute(mitHeute, '2026-07-30'), [
+  { d: '2026-07-28', c: 100 },
+  { d: '2026-07-29', c: 101 },
+])
+check(
+  'wirft auch weg, was nach dem Stichtag datiert ist',
+  ohneHeute(mitHeute, '2026-07-29').map((p) => p.d),
+  ['2026-07-28']
+)
+check(
+  'laesst eine abgeschlossene Reihe unberuehrt',
+  ohneHeute(mitHeute, '2026-07-31'),
+  mitHeute
+)
+check('kommt mit einer leeren Reihe klar', ohneHeute([], '2026-07-30'), [])
+
+// ---------------------------------------------------------------- Kursstand
+
+/*
+  Der Kursstand ist die kleine Datei, die alle dreißig Minuten geschrieben
+  wird. Zwei Eigenschaften entscheiden darüber, ob die Trennung ihren Zweck
+  erfüllt, und beide lassen sich hier festhalten:
+
+  1. Gleicher Inhalt ergibt gleichen Text. Sonst entstünde bei jedem Lauf ein
+     Commit, obwohl sich kein Kurs geändert hat – genau der Fehler, den der
+     Vergleich im Abrufskript verhindern soll.
+  2. Das Ergebnis ist gültiges JSON. Die Datei wird beim Bauen importiert; ein
+     Formatfehler bräche nicht den Abruf, sondern die ganze Website.
+*/
+
+const standA: Kursstand = {
+  fetchedAt: '2026-07-30T11:49:24.416Z',
+  latest: {
+    zalando: { value: 31.2, at: '2026-07-30T15:35:00.000Z' },
+    apple: { value: 338.19, at: '2026-07-30T15:35:00.000Z' },
+  },
+  devisen: { stand: '2026-07-29', jeEuro: { USD: 1.138, CHF: 0.9312 } },
+}
+
+/*
+  Verglichen wird über den geparsten Baum, nicht über den Text: Der Serialisierer
+  sortiert die Schlüssel, `JSON.stringify` behält die Einfügereihenfolge. Ein
+  Textvergleich schlüge hier fehl, obwohl der Inhalt derselbe ist.
+*/
+const gelesen = JSON.parse(serializeKursstand(standA)) as Kursstand
+check('schreibt gueltiges JSON: Zeitstempel', gelesen.fetchedAt, standA.fetchedAt)
+check('schreibt gueltiges JSON: Kurse', gelesen.latest, {
+  apple: standA.latest.apple,
+  zalando: standA.latest.zalando,
+})
+check('schreibt gueltiges JSON: Devisen', gelesen.devisen?.jeEuro, {
+  CHF: 0.9312,
+  USD: 1.138,
+})
+
+check(
+  'sortiert die Instrumente, damit die Reihenfolge des Abrufs egal ist',
+  serializeKursstand(standA) ===
+    serializeKursstand({
+      ...standA,
+      latest: {
+        apple: standA.latest.apple,
+        zalando: standA.latest.zalando,
+      },
+    }),
+  true
+)
+
+check(
+  'setzt eine Zeile je Instrument',
+  serializeKursstand(standA)
+    .split('\n')
+    .filter((zeile) => zeile.includes('"at"')).length,
+  2
+)
+
+check(
+  'kommt ohne Devisen aus',
+  JSON.parse(serializeKursstand({ fetchedAt: null, latest: {} })),
+  { fetchedAt: null, latest: {} }
+)
+
+check(
+  'meldet eine Kursaenderung als Textunterschied',
+  serializeKursstand(standA) ===
+    serializeKursstand({
+      ...standA,
+      latest: { ...standA.latest, apple: { value: 339, at: standA.latest.apple.at } },
+    }),
+  false
 )
 
 console.log(

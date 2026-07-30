@@ -242,6 +242,20 @@ function pruefen(): string[] {
   }
 
   const erreichbar = new Set(seiten.map(adresse))
+  /*
+    Seiten mit `noindex` gehören nicht in die Sitemap.
+
+    Eine Sitemap ist eine Einladung an Suchmaschinen, genau diese Adressen zu
+    indexieren. Eine Adresse dort einzutragen und der Seite gleichzeitig
+    `noindex` mitzugeben, sind zwei einander widersprechende Anweisungen – und
+    die Search Console meldet es als Fehler.
+
+    Die Merkliste ist der erste solche Fall: Sie hat für jeden Besucher einen
+    anderen Inhalt und ist für eine Suchmaschine immer leer. Sie muss trotzdem
+    im Suchindex dieser Website stehen, denn die eigene Lupe soll sie finden –
+    die beiden Prüfungen unterscheiden sich hier also bewusst.
+  */
+  const nichtIndexiert = new Set<string>()
   const titel = new Map<string, string[]>()
   const beschreibungen = new Map<string, string[]>()
   const grafikGemeldet = new Set<string>()
@@ -262,6 +276,9 @@ function pruefen(): string[] {
     }
 
     // ------------------------------------------------------------ Meta-Angaben
+    if (/<meta name="robots" content="[^"]*noindex/.test(html)) {
+      nichtIndexiert.add(pfad)
+    }
     const t = html.match(/<title>([^<]*)<\/title>/)?.[1]
     const d = html.match(/<meta name="description" content="([^"]*)"/)?.[1]
 
@@ -438,6 +455,15 @@ function pruefen(): string[] {
   )
   for (const pfad of erreichbar) {
     if (FEHLERSEITEN.test(pfad)) continue
+    if (nichtIndexiert.has(pfad)) {
+      // Umgekehrt geprüft: Eine noindex-Seite darf dort gerade nicht stehen.
+      if (eingetragen.has(pfad)) {
+        fehler.push(
+          `In der Sitemap, obwohl noindex: ${pfad} – beides zusammen ist ein Widerspruch.`
+        )
+      }
+      continue
+    }
     if (!eingetragen.has(pfad)) fehler.push(`Nicht in der Sitemap: ${pfad}`)
   }
   for (const pfad of eingetragen) {
