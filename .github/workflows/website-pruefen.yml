@@ -16,6 +16,51 @@ jobs:
     name: Seite abrufen
     runs-on: ubuntu-latest
     steps:
+      # Chrome hat gemeldet: „Diese Website unterstützt keine sichere
+      # Verbindung“. Diese Meldung erscheint, wenn der Browser die Adresse auf
+      # HTTPS hochstufen will und die Gegenstelle auf Port 443 nicht oder mit
+      # einem unbrauchbaren Zertifikat antwortet. Ob das an der Domain, am
+      # www-Namen oder am Zertifikat liegt, lässt sich nur von außen
+      # feststellen – und nur mit den Einzelheiten kann man es abstellen.
+      #
+      # Geprüft wird beides, Domain mit und ohne www: Ein Zertifikat, das nur
+      # einen der beiden Namen abdeckt, ist die häufigste Ursache.
+      - name: Sichere Verbindung prüfen
+        run: |
+          for HOST in iminvests.de www.iminvests.de; do
+            echo "═══════════════════════════════════════ $HOST"
+
+            echo "— Namensauflösung"
+            getent ahostsv4 "$HOST" | awk '{print "  " $1}' | sort -u || echo "  (kein A-Eintrag)"
+
+            echo "— Port 443 offen?"
+            if timeout 10 bash -c "true > /dev/tcp/$HOST/443" 2>/dev/null; then
+              echo "  ja"
+            else
+              echo "  NEIN – auf Port 443 antwortet nichts. Genau das zeigt der Browser an."
+            fi
+
+            echo "— Zertifikat"
+            if timeout 20 openssl s_client -connect "$HOST:443" -servername "$HOST" \
+                 </dev/null 2>/dev/null | openssl x509 -noout \
+                 -subject -issuer -dates -ext subjectAltName 2>/dev/null | sed 's/^/  /'; then
+              :
+            else
+              echo "  kein Zertifikat abrufbar – es ist keines installiert oder der Handschlag scheitert."
+            fi
+
+            echo "— Abruf über HTTPS"
+            curl -sSI --max-time 25 "https://$HOST/" \
+              -o /dev/null -w '  Status: %{http_code}  Zertifikatsprüfung: %{ssl_verify_result} (0 = in Ordnung)\n' \
+              || echo "  HTTPS-Abruf fehlgeschlagen"
+
+            echo "— Abruf über HTTP und Weiterleitung"
+            curl -sSI --max-time 25 "http://$HOST/" \
+              -o /dev/null -w '  Status: %{http_code}  Weiterleitung: %{redirect_url}\n' \
+              || echo "  HTTP-Abruf fehlgeschlagen"
+            echo ""
+          done
+
       - name: Startseite und Stylesheet prüfen
         run: |
           URL="${{ vars.NEXT_PUBLIC_SITE_URL }}"
