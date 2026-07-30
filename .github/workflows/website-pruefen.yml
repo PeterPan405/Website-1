@@ -10,6 +10,11 @@ name: Website prüfen
 
 on:
   workflow_dispatch:
+    inputs:
+      hosts:
+        description: 'Zu prüfende Namen, durch Leerzeichen getrennt'
+        required: false
+        default: 'iminvests.de www.iminvests.de'
 
 jobs:
   pruefen:
@@ -25,9 +30,16 @@ jobs:
       #
       # Geprüft wird beides, Domain mit und ohne www: Ein Zertifikat, das nur
       # einen der beiden Namen abdeckt, ist die häufigste Ursache.
+      #
+      # Die Namen sind einstellbar, weil die zweite häufige Ursache eine ganz
+      # andere Adresse ist: eine alte Schreibweise, eine Nebendomain, ein
+      # Tippfehler im Lesezeichen. Für die gilt das Zertifikat der Hauptdomain
+      # nicht, und der Browser meldet genau dann, was hier gemeldet wurde.
       - name: Sichere Verbindung prüfen
+        env:
+          HOSTS: ${{ inputs.hosts || 'iminvests.de www.iminvests.de' }}
         run: |
-          for HOST in iminvests.de www.iminvests.de; do
+          for HOST in $HOSTS; do
             echo "═══════════════════════════════════════ $HOST"
 
             echo "— Namensauflösung"
