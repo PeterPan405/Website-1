@@ -7,9 +7,9 @@ name: Fundamentaldaten aktualisieren
 # Quartalsberichten, also viermal im Jahr – monatlich fängt jede Meldesaison
 # sicher ein und kostet zwölf Läufe.
 #
-# Warum nicht im Kursabruf mit: Kurse kommen stündlich, diese Zahlen viermal
-# jährlich. Sie im selben Lauf zu holen hieße, zehnmal am Tag zwanzig große
-# Dateien herunterzuladen, in denen sich nichts geändert hat.
+# Warum nicht im Kursabruf mit: Kurse kommen halbstündlich, diese Zahlen viermal
+# jährlich. Sie im selben Lauf zu holen hieße, zweiundvierzig Mal am Tag zwanzig
+# große Dateien herunterzuladen, in denen sich nichts geändert hat.
 
 on:
   schedule:

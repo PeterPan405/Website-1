@@ -198,19 +198,21 @@ die schlägt nur an, wenn tatsächlich etwas fehlt.
 
 ### Warum der Abruf nicht auf einem Arbeitszweig laufen sollte
 
-Der Kursabruf schreibt `data/snapshots/markets.json` – eine Datei von zehn
-Megabyte, die er alle dreißig Minuten neu erzeugt. Läuft er sowohl planmäßig
-auf `main` als auch von Hand auf einem Arbeitszweig, ändern beide Seiten
-dieselbe Datei, und der Pull Request lässt sich nicht mehr zusammenführen:
-GitHub meldet „unable to merge", obwohl am Code nichts fehlt.
+Der Kursabruf schreibt drei Dateien unter `data/snapshots/`: den Kursstand
+`kurse-aktuell.json` alle dreißig Minuten, die Historie `markets.json` einmal
+je Handelstag und `dividenden.json` nur bei einer neuen Zahlung. Läuft er
+sowohl planmäßig auf `main` als auch von Hand auf einem Arbeitszweig, ändern
+beide Seiten dieselben Dateien, und der Pull Request lässt sich nicht mehr
+zusammenführen: GitHub meldet „unable to merge", obwohl am Code nichts fehlt.
 
 Das ist genau zweimal passiert und beide Male auf dieselbe Weise gelöst:
 
 ```bash
 git fetch origin main
-git merge origin/main            # Konflikt nur in markets.json
-git checkout --ours data/snapshots/markets.json   # oder --theirs
-git add data/snapshots/markets.json && git commit --no-edit
+git merge origin/main            # Konflikt nur in den Momentaufnahmen
+git checkout --ours data/snapshots/kurse-aktuell.json   # oder --theirs
+git checkout --ours data/snapshots/markets.json         # oder --theirs
+git add data/snapshots && git commit --no-edit
 ```
 
 Welche Seite die richtige ist, entscheidet nicht die Reihenfolge, sondern der
@@ -218,8 +220,12 @@ Inhalt: die mit **mehr Instrumenten**, bei gleicher Zahl die **neuere**. Beide
 Angaben stehen im Kopf der Datei beziehungsweise lassen sich zählen:
 
 ```bash
-git show HEAD:data/snapshots/markets.json | head -c 200
+git show HEAD:data/snapshots/kurse-aktuell.json | head -c 200
 ```
+
+Seit der Trennung ist der Konflikt seltener und harmloser: Betroffen ist meist
+nur die kleine Datei, und die lässt sich notfalls in einer Sekunde neu erzeugen,
+indem man den Abruf noch einmal laufen lässt.
 
 Vermeiden lässt sich der Konflikt ganz: Seit die Zeitpläne stehen, holt `main`
 die Kurse von selbst. Ein Abruf von Hand auf einem Arbeitszweig ist damit nur

@@ -64,7 +64,7 @@ export const philosophySections: PhilosophySection[] = [
       '**Jede Zahl nennt ihre Herkunft.** Kurse tragen ihre Quelle und ihren Stand direkt an der Angabe. Nachrichten sind selbst zusammengefasst und verlinken die Quelle, aus der sie stammen; fremde Texte werden nicht gespiegelt. Wo Werte zur Veranschaulichung erzeugt sind und keinen realen Markt abbilden, steht das an derselben Stelle und nicht in einer Fußnote.',
       '**Was nicht stimmen kann, soll gar nicht erst online gehen.** Ein Teil der Prüfung ist automatisiert: Fehlt einer Meldung die Quelle, verweist ein Thema auf einen Kurs, den es nicht gibt, oder liegt eine Zahl außerhalb des Plausiblen, bricht der Build ab, statt die Seite auszuliefern. Ein sichtbarer Fehler wird behoben, ein stiller nicht.',
       '**Fehler werden benannt.** Wenn etwas falsch war, wird es korrigiert und die Korrektur steht dabei – nicht stillschweigend überschrieben. Bei Finanzthemen ist der Umgang mit dem eigenen Irrtum ein Teil der Glaubwürdigkeit und keine Randnotiz.',
-      '**Aktualität dort, wo sie zählt.** Kurse werden während der Börsenzeit stündlich neu geholt, Nachrichten täglich gepflegt. Die Lerninhalte dagegen ändern sich selten – sie beschreiben Mechanismen, und die halten länger als jede Meldung.',
+      '**Aktualität dort, wo sie zählt.** Kurse werden während der Börsenzeit alle dreißig Minuten neu geholt, Nachrichten täglich gepflegt. Die Lerninhalte dagegen ändern sich selten – sie beschreiben Mechanismen, und die halten länger als jede Meldung.',
     ],
   },
   {

@@ -3,7 +3,7 @@
  *
  * ## Warum diese Zahlen nicht aus dem Kursabruf kommen
  *
- * Kurse holt `scripts/kurse-abrufen.ts` stündlich. Die Zusammensetzung eines
+ * Kurse holt `scripts/kurse-abrufen.ts` halbstündlich. Die Zusammensetzung eines
  * Index ist etwas anderes: Sie steht in einem PDF des Anbieters, wird monatlich
  * fortgeschrieben und ist über keine offene Schnittstelle abrufbar. Sie wird
  * deshalb von Hand gepflegt – und trägt aus genau diesem Grund ein sichtbares

@@ -97,17 +97,32 @@ Bereitstellung rot.
 Stattdessen:
 
 ```
-.github/workflows/kurse.yml   werktags stündlich, 07:00–16:00 UTC
+.github/workflows/kurse.yml   werktags alle 30 Min., 07:00–21:00 UTC
   └─ npm run kurse            holt EZB und Yahoo Finance
-  └─ data/snapshots/markets.json   nur bei Änderung committet
-       └─ Push nach main → Hostinger baut
-            └─ next build liest die Datei, ohne Netz
+  ├─ data/snapshots/kurse-aktuell.json   ~70 kB, ändert sich fast jeden Lauf
+  ├─ data/snapshots/markets.json         ~19 MB, wächst je Handelstag
+  └─ data/snapshots/dividenden.json      nur bei neuer Zahlung
+       └─ jede Datei nur bei Änderung committet
+            └─ Push nach main → Hostinger baut
+                 └─ next build liest die Dateien, ohne Netz
 ```
 
 Ein Fehlschlag bleibt damit folgenlos: Es wird nichts committet, und die Website
 zeigt weiter den letzten guten Stand. Der Push nach `main` ist zugleich der
 einzige Weg auf den Webspace – der Workflow ist also nicht nur Datenpflege,
 sondern der Takt, in dem die Website neu gebaut wird.
+
+### Warum die Kurse in zwei Dateien liegen
+
+Weil sich die beiden Hälften verschieden schnell ändern. Die Tagesreihe wächst
+einmal je Börsentag um einen Punkt; der zuletzt gehandelte Preis ändert sich
+alle dreißig Minuten. Solange beides in `markets.json` stand, wurden bei jedem
+Lauf neunzehn Megabyte vollständig neu geschrieben – zweiundvierzig Mal am Tag,
+und Git speichert jede Fassung. Fünfzehn davon wogen zusammen 179 Megabyte.
+
+Getrennt schreibt der halbstündliche Lauf nur noch `kurse-aktuell.json` mit
+rund siebzig Kilobyte. `lib/market-live.ts` führt beide Dateien wieder
+zusammen, sodass der Rest der Website davon nichts merkt.
 
 ### Warum zwei Anbieter für Indizes
 
