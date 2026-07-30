@@ -196,6 +196,38 @@ reagiert – und eine Prüfung, die man nicht mehr ansieht, ist keine. Ob eine
 Quelle noch liefert, beantwortet die Frischeprüfung in „Website prüfen", und
 die schlägt nur an, wenn tatsächlich etwas fehlt.
 
+### Warum der Abruf nicht auf einem Arbeitszweig laufen sollte
+
+Der Kursabruf schreibt `data/snapshots/markets.json` – eine Datei von zehn
+Megabyte, die er alle dreißig Minuten neu erzeugt. Läuft er sowohl planmäßig
+auf `main` als auch von Hand auf einem Arbeitszweig, ändern beide Seiten
+dieselbe Datei, und der Pull Request lässt sich nicht mehr zusammenführen:
+GitHub meldet „unable to merge", obwohl am Code nichts fehlt.
+
+Das ist genau zweimal passiert und beide Male auf dieselbe Weise gelöst:
+
+```bash
+git fetch origin main
+git merge origin/main            # Konflikt nur in markets.json
+git checkout --ours data/snapshots/markets.json   # oder --theirs
+git add data/snapshots/markets.json && git commit --no-edit
+```
+
+Welche Seite die richtige ist, entscheidet nicht die Reihenfolge, sondern der
+Inhalt: die mit **mehr Instrumenten**, bei gleicher Zahl die **neuere**. Beide
+Angaben stehen im Kopf der Datei beziehungsweise lassen sich zählen:
+
+```bash
+git show HEAD:data/snapshots/markets.json | head -c 200
+```
+
+Vermeiden lässt sich der Konflikt ganz: Seit die Zeitpläne stehen, holt `main`
+die Kurse von selbst. Ein Abruf von Hand auf einem Arbeitszweig ist damit nur
+noch nötig, wenn neue Instrumente dazugekommen sind und ihre Kurse sofort
+gebraucht werden – etwa um sie vor dem Zusammenführen zu prüfen. Danach gehört
+der Zweig zusammengeführt, bevor der nächste planmäßige Lauf auf `main` daran
+vorbeizieht.
+
 ### Was den Zeitplan stillschweigend anhält
 
 GitHub schaltet geplante Workflows in einem Repository ab, in dem **60 Tage**
