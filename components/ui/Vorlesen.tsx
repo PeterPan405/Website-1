@@ -52,6 +52,17 @@ function nieWieder() {
 /** Stabile leere Referenz für das Server-Rendering. */
 const KEINE_STIMMEN: readonly SpeechSynthesisVoice[] = []
 
+/**
+ * Tonlage unter der Mitte – gewünscht ist eine tiefe Stimme. Eine als
+ * männlich erkannte Stimme wird nur leicht abgedunkelt (0,85); muss mangels
+ * Männerstimme eine andere sprechen, übernimmt die Tonlage die ganze Arbeit
+ * und geht deutlich tiefer (0,7). Netzstimmen ignorieren die Tonhöhe teils –
+ * dort hilft nur eine andere Stimme, siehe der Hinweis unter der Leiste.
+ */
+function tonlageFuer(stimme: SpeechSynthesisVoice | null): number {
+  return stimme && klingtMaennlich(stimme) ? 0.85 : 0.7
+}
+
 /*
   Die Stimmen des Geräts als beobachtbarer Bestand.
 
@@ -176,15 +187,7 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     auftrag.rate = tempoRef.current
     const stimme = stimmeFuerAuftrag()
     if (stimme) auftrag.voice = stimme
-    /*
-      Tonlage unter der Mitte – gewünscht ist eine tiefe Stimme. Eine als
-      männlich erkannte Stimme wird nur leicht abgedunkelt (0,85); muss
-      mangels Männerstimme eine andere sprechen, übernimmt die Tonlage die
-      ganze Arbeit und geht deutlich tiefer (0,7). Netzstimmen ignorieren
-      die Tonhöhe teils – dort hilft nur eine andere Stimme, siehe der
-      Hinweis unter der Leiste.
-    */
-    auftrag.pitch = stimme && klingtMaennlich(stimme) ? 0.85 : 0.7
+    auftrag.pitch = tonlageFuer(stimme)
     auftrag.onend = () => sprich(ab + 1)
     /*
       Ein Fehler beendet das Vorlesen, statt still hängen zu bleiben. Der
@@ -257,7 +260,27 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     } catch {
       // Privater Modus oder voller Speicher: Die Wahl gilt dann nur hier.
     }
-    neuAnsetzen()
+    if (laueftRef.current && zustand === 'laeuft') {
+      neuAnsetzen()
+      return
+    }
+    /*
+      Probehören: Wer die Stimme wechselt, ohne dass gerade gelesen wird,
+      hört sofort einen Satz mit der neuen Stimme. Ohne die Probe müsste man
+      erst das Vorlesen starten, um zu erfahren, was man gewählt hat – und
+      auf Geräten, deren Browser die Stimmwahl stillschweigend übergeht,
+      merkte man es gar nicht. Klingt jede Probe gleich, liegt es am Gerät,
+      nicht an der Auswahl; der Hinweis unter der Leiste sagt, was dann hilft.
+    */
+    const alle = window.speechSynthesis.getVoices()
+    const stimme =
+      alle.find((eintrag) => eintrag.voiceURI === voiceURI) ?? bevorzugteStimme(alle)
+    const probe = new SpeechSynthesisUtterance('So klingt diese Stimme.')
+    probe.lang = 'de-DE'
+    if (stimme) probe.voice = stimme
+    probe.pitch = tonlageFuer(stimme)
+    window.speechSynthesis.cancel()
+    window.speechSynthesis.speak(probe)
   }
 
   if (abschnitte.length === 0) return null
@@ -354,7 +377,10 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
           Auf diesem Gerät ist keine männliche deutsche Stimme zu finden – gesprochen wird
           mit abgesenkter Tonlage. Abhilfe: In den Systemeinstellungen (Windows:
           „Sprache“, Android: „Sprachausgabe“, iOS: „Gesprochene Inhalte“) eine männliche
-          deutsche Stimme installieren; sie erscheint danach hier in der Auswahl.
+          deutsche Stimme installieren; sie erscheint danach hier in der Auswahl. Klingt
+          jede Stimme aus der Auswahl gleich, spricht der Browser mit der Systemstimme des
+          Geräts – dann greift nur ein Wechsel der Standardstimme in den
+          Geräte-Einstellungen unter „Sprachausgabe“.
         </p>
       )}
     </div>

@@ -83,6 +83,11 @@ const calculatorTiles = [
     label: 'Haushaltsrechner',
     hint: 'Einnahmen, Ausgaben und deine tatsächliche Sparquote.',
   },
+  {
+    href: '/rechner/vermoegensuebersicht',
+    label: 'Vermögensübersicht',
+    hint: 'Besitz und Schulden erfassen, Nettovermögen ausrechnen – als PDF zum Abheften.',
+  },
 ]
 
 export default async function HomePage() {
