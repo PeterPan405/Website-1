@@ -3,7 +3,7 @@
  *
  * ## Was nach SEC und ESEF noch fehlt
  *
- * Rund 190 der 529 Aktien. Der Block verteilt sich auf fünf Länder, und jedes
+ * Rund 190 der 1.029 Aktien. Der Block verteilt sich auf fünf Länder, und jedes
  * hat seine eigene Aufsicht mit eigenem Format:
  *
  * - **Deutschland** – Allianz, BMW, BASF, Bayer, die Telekom. Sie melden an den

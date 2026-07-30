@@ -45,6 +45,35 @@ pruefe(
   pfund.wert === 5.26 && pfund.waehrung === 'GBP'
 )
 
+/*
+  Johannesburg und Tel Aviv kamen mit der Erweiterung der Aktienauswahl dazu.
+  Dieselbe Falle wie in London, nur mit anderen Kürzeln – und diesmal geprüft,
+  bevor sie zuschlägt: `ZAR` und `ILS` sind die Hauptwährungen und dürfen nicht
+  geteilt werden, `ZAc` und `ILA` müssen es.
+*/
+const rand = inHauptwaehrung(400000, 'ZAc')
+pruefe(
+  '400.000 Cent sind 4.000 Rand',
+  rand.wert === 4000 && rand.waehrung === 'ZAR',
+  `${rand.wert} ${rand.waehrung}`
+)
+const schekel = inHauptwaehrung(3250, 'ILA')
+pruefe(
+  '3.250 Agorot sind 32,50 Schekel',
+  schekel.wert === 32.5 && schekel.waehrung === 'ILS',
+  `${schekel.wert} ${schekel.waehrung}`
+)
+pruefe(
+  'ZAR bleibt unangetastet',
+  inHauptwaehrung(4000, 'ZAR').wert === 4000 &&
+    inHauptwaehrung(4000, 'ZAR').waehrung === 'ZAR'
+)
+pruefe(
+  'ILS bleibt unangetastet',
+  inHauptwaehrung(32.5, 'ILS').wert === 32.5 &&
+    inHauptwaehrung(32.5, 'ILS').waehrung === 'ILS'
+)
+
 console.log('\n— Gleichheit zweier Währungsangaben —')
 
 pruefe('GBp und GBP meinen dieselbe Währung', gleicheWaehrung('GBp', 'GBP'))
@@ -53,6 +82,10 @@ pruefe('GBp mit sich selbst', gleicheWaehrung('GBp', 'GBp'))
 pruefe('USD und EUR nicht', !gleicheWaehrung('USD', 'EUR'))
 pruefe('GBP und USD nicht', !gleicheWaehrung('GBP', 'USD'))
 pruefe('GBp und USD nicht', !gleicheWaehrung('GBp', 'USD'))
+pruefe('ZAc und ZAR meinen dieselbe Währung', gleicheWaehrung('ZAc', 'ZAR'))
+pruefe('ILA und ILS meinen dieselbe Währung', gleicheWaehrung('ILA', 'ILS'))
+pruefe('ZAc und ILA nicht', !gleicheWaehrung('ZAc', 'ILA'))
+pruefe('ZAc und GBp nicht', !gleicheWaehrung('ZAc', 'GBp'))
 
 /*
   Die Gegenprobe zur Gegenprobe: Ein Vergleich ohne Rücksicht auf Gross- und

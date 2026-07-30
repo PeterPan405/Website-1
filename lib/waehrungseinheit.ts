@@ -25,12 +25,22 @@
 /**
  * Die bekannten Untereinheiten.
  *
- * Nur eine, aber die Tabelle ist der Ort, an dem die nächste stünde – die
- * Johannesburger Börse notiert in Cent (`ZAc`), die Tel Aviver in Agorot
- * (`ILA`). Beide führt diese Website derzeit nicht.
+ * London war die erste, Johannesburg und Tel Aviv kamen mit der Erweiterung
+ * der Aktienauswahl dazu: Die Johannesburger Börse notiert in Cent (`ZAc`),
+ * die Tel Aviver in Agorot (`ILA`) – beide im Verhältnis 100 zu 1, genau wie
+ * Pence zum Pfund. Naspers steht in Johannesburg mit rund 400.000, gemeint
+ * sind 4.000 Rand.
+ *
+ * Der Eintrag ist keine Kosmetik. Ohne ihn hielte `gleicheWaehrung` den
+ * Kurs in `ZAc` für eine andere Währung als die Bilanz in `ZAR`, und die
+ * Kennzahlen dieser Werte fielen entweder aus oder – schlimmer – kämen um
+ * den Faktor 100 falsch heraus. Was bei sechs britischen Werten schon
+ * einmal passiert ist, muss bei sieben weiteren nicht wiederholt werden.
  */
 const UNTEREINHEITEN: Record<string, { waehrung: string; jeEinheit: number }> = {
   GBp: { waehrung: 'GBP', jeEinheit: 100 },
+  ZAc: { waehrung: 'ZAR', jeEinheit: 100 },
+  ILA: { waehrung: 'ILS', jeEinheit: 100 },
 }
 
 export interface Betrag {

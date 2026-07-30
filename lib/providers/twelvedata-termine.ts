@@ -6,7 +6,7 @@
  * Die Quartalstermine dieser Website werden aus dem bisherigen Meldemuster
  * jedes Unternehmens abgeleitet. Die Vergangenheit dafür stammt bisher aus den
  * 8-K-Meldungen bei der US-Börsenaufsicht – und deckt damit ausschließlich
- * US-Emittenten ab: 158 der 529 geführten Aktien.
+ * US-Emittenten ab: 158 der 1.029 geführten Aktien.
  *
  * Für die übrigen ist keine frei zugängliche Quelle gefunden worden. Sechs
  * wurden geprüft; die Befunde stehen im Kopf von
