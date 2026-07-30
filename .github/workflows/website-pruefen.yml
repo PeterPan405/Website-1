@@ -177,7 +177,13 @@ jobs:
 
           echo ""
           echo "=== Weitere Seiten ==="
-          for p in /news/ /news/tag/ /news/tag/2026-07-25/ /news/tag/2026-07-27/ \
+          # Die Liste enthält bewusst auch die jeweils neuesten Inhalte: Nur so
+          # zeigt der Abruf, ob der Hoster den aktuellen Stand ausliefert oder
+          # noch den vorigen. Eine Startseite mit 200 beweist das nicht.
+          for p in /news/ /news/tag/ /news/tag/2026-07-30/ \
+                   /maerkte/naspers/ /maerkte/saudi-aramco/ /maerkte/walt-disney/ \
+                   /akademie/anlegerverhalten/ /lernen/geldsystem/ \
+                   /rechner/vermoegensuebersicht/ \
                    /lernen/aktie/beginner/ /rechner/ /staatsverschuldung/ /sitemap.xml; do
             printf '%-32s ' "$p"
             curl -sS --max-time 20 -A "$UA" -o /dev/null -w '%{http_code}\n' "$URL$p" || echo "Fehler"
