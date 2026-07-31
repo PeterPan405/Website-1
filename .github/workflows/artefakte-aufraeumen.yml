@@ -1,0 +1,111 @@
+name: Artefakte aufräumen
+
+# Löscht alte Bau-Pakete, damit der Actions-Speicher nicht volläuft.
+#
+# ## Warum es diesen Workflow gibt
+#
+# Am 31. Juli 2026 um 23:25 UTC meldete GitHub: „You have used 100% of the
+# Actions storage" – 0,5 GB von 0,5 GB. In derselben Nachricht steht der Satz,
+# auf den es ankommt: Über die enthaltene Menge hinaus wird abgerechnet, „unless
+# a $0 budget is set for Actions, which blocks further usage until it resets".
+# Ein Budget von 0 $ ist die Voreinstellung. Erreicht der Speicher die Grenze,
+# laufen also **keine Workflows mehr** – auch nicht die Kursabrufe. Auf der
+# Website bleibt dann der Stand stehen, ohne dass irgendwo ein roter Haken
+# erscheint. Es sieht nicht nach Fehler aus, es sieht nach Stillstand aus.
+#
+# Die Rechnung dahinter: `paket-bauen.yml` legt ein Paket von 138 MB ab. Der
+# Kursabruf pusht werktags rund elf Mal nach `main`, und jeder Push startet
+# einen Bau. Bei 30 Tagen Aufbewahrung sind das etwa 1,5 GB am Tag gegen ein
+# Monatskontingent von 0,5 GB – die Grenze ist nach dem vierten Bau erreicht,
+# nicht nach dem vierten Tag.
+#
+# Zwei Dinge waren nötig: dass weniger entsteht (das regelt der Upload in
+# `paket-bauen.yml`, der nur noch auf Anforderung läuft) und dass Vorhandenes
+# wieder verschwindet, ohne dass jemand daran denkt. Das ist dieser Workflow.
+#
+# ## Was er tut
+#
+# Er behält von jeder Sorte die zwei neuesten Artefakte und löscht alle übrigen.
+# Nicht nach Alter, sondern nach Anzahl: Ein Kontingent ist eine Menge, keine
+# Frist. Zwei bleiben stehen, weil das Paket der Weg von Hand auf den Webspace
+# ist – wer es braucht, braucht das letzte, und das vorletzte als Rückfallebene.
+#
+# „Von jeder Sorte" ist der Unterschied, auf den es ankommt. Über alle Namen
+# hinweg gezählt hätten zwei Nachweislisten aus `quellen-probe.yml` – zusammen
+# ein paar Kilobyte – gereicht, um das einzige Bau-Paket zu verdrängen, weil sie
+# täglich entstehen und es nur noch auf Anforderung. Gruppiert nach `name`
+# verdrängt nur Gleiches Gleiches.
+
+on:
+  # Täglich um 03:50 UTC, eine knappe halbe Stunde vor „Paket bauen".
+  # Erst aufräumen, dann bauen: So trifft ein angefordertes Paket auf freien
+  # Platz statt auf einen vollen Speicher.
+  schedule:
+    - cron: '50 3 * * *'
+
+  workflow_dispatch:
+    inputs:
+      behalten:
+        description: 'Wie viele der neuesten Artefakte stehen bleiben'
+        type: string
+        default: '2'
+
+# Mehr als das Löschen von Artefakten braucht dieser Lauf nicht. Der Inhalt des
+# Repositories wird nicht einmal ausgecheckt.
+permissions:
+  actions: write
+
+jobs:
+  aufraeumen:
+    name: Alte Pakete löschen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bestand aufnehmen und kürzen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEHALTEN: ${{ inputs.behalten || '2' }}
+        run: |
+          set -euo pipefail
+
+          # Abgelaufene Artefakte zählen nicht mehr gegen den Speicher und
+          # lassen sich auch nicht löschen – sie fliegen hier raus, sonst
+          # verzerren sie jede Zahl im Protokoll.
+          gh api --paginate "/repos/$GITHUB_REPOSITORY/actions/artifacts" \
+            --jq '.artifacts[] | select(.expired | not)
+                  | [.id, .size_in_bytes, .created_at, .name] | @tsv' \
+            > alle.tsv || true
+
+          anzahl=$(wc -l < alle.tsv)
+          gesamt=$(awk -F'\t' '{s += $2} END {printf "%.0f", s + 0}' alle.tsv)
+          echo "Vorhanden: $anzahl Artefakte, zusammen $((gesamt / 1024 / 1024)) MB"
+          echo "Behalten werden je Name die $BEHALTEN neuesten."
+
+          # Erst nach Name, dann nach Erstellungszeitpunkt absteigend – die
+          # ISO-Zeitstempel sortieren sich als Text richtig, ein Datumsvergleich
+          # ist nicht nötig. Danach zählt awk je Name mit und gibt alles aus,
+          # was über die zu behaltenden hinausgeht.
+          sort -t"$(printf '\t')" -k4,4 -k3,3r alle.tsv \
+            | awk -F'\t' -v k="$BEHALTEN" '{ gesehen[$4]++; if (gesehen[$4] > k) print }' \
+            > weg.tsv
+
+          if [ ! -s weg.tsv ]; then
+            echo "Nichts zu tun."
+            exit 0
+          fi
+
+          frei=0
+          fehler=0
+          while IFS="$(printf '\t')" read -r id groesse datum name; do
+            [ -n "${id:-}" ] || continue
+            printf '  lösche %s – %s MB, %s\n' "$name" "$((groesse / 1024 / 1024))" "$datum"
+            if gh api -X DELETE "/repos/$GITHUB_REPOSITORY/actions/artifacts/$id" --silent; then
+              frei=$((frei + groesse))
+            else
+              # Ein Artefakt, das zwischen Auflistung und Löschung abgelaufen
+              # ist, ist kein Grund zum Abbruch – der Rest soll trotzdem weg.
+              echo "    ging nicht, übersprungen"
+              fehler=$((fehler + 1))
+            fi
+          done < weg.tsv
+
+          echo "Freigegeben: $((frei / 1024 / 1024)) MB, übersprungen: $fehler"
