@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-31T04:38:31.953Z",
+  "abgerufenAm": "2026-07-31T12:00:23.990Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -8884,19 +8884,19 @@
       },
       {
         "date": "2023-04-14",
-        "amount": 5.150528
+        "amount": 5.1808
       },
       {
         "date": "2024-04-16",
-        "amount": 5.472436
+        "amount": 5.5046
       },
       {
         "date": "2025-04-15",
-        "amount": 5.9150596
+        "amount": 5.949825
       },
       {
         "date": "2026-04-14",
-        "amount": 6.43816
+        "amount": 6.476
       }
     ],
     "abb": [
@@ -42036,23 +42036,23 @@
     "ubs": [
       {
         "date": "2022-04-12",
-        "amount": 0.402585
+        "amount": 0.40487
       },
       {
         "date": "2023-04-12",
-        "amount": 0.4428435
+        "amount": 0.44535702
       },
       {
         "date": "2024-04-30",
-        "amount": 0.563619
+        "amount": 0.566818
       },
       {
         "date": "2025-04-15",
-        "amount": 0.724653
+        "amount": 0.72876596
       },
       {
         "date": "2026-04-21",
-        "amount": 0.885687
+        "amount": 0.89071405
       }
     ],
     "hsbc": [
