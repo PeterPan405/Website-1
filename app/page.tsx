@@ -8,9 +8,11 @@ import { Icon, type IconName } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { cn } from '@/lib/cn'
+import { formatDate } from '@/lib/format'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { getMarketOverview } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
+import { folgenAdresse, folgenDauer, getFolgen, kurzfassung } from '@/lib/podcast'
 import { buildMetadata } from '@/lib/seo'
 import {
   areas,
@@ -98,6 +100,9 @@ export default async function HomePage() {
     getLearnStats(),
     getCompleteTopics(),
   ])
+
+  // Die drei jüngsten Folgen; alles Weitere steht unter /podcast.
+  const podcastfolgen = getFolgen().slice(0, 3)
 
   return (
     <>
@@ -385,6 +390,65 @@ export default async function HomePage() {
           )}
         </div>
       </section>
+
+      {/* ------------------------------------------------------- Podcast */}
+      {/*
+        Der Podcast stand auf der Startseite nur in der Fußzeile – ein Verweis
+        unter siebzig. Gezählt: Lernen 42, News 14, Rechner 11, Märkte 10,
+        Podcast 1. Wenn er auf der Website stattfinden soll, gehört die
+        jüngste Folge hierher.
+
+        Ohne Folgen im Bestand entfällt der Abschnitt vollständig. Ein Kasten
+        mit „bald mehr“ wäre eine leere Versprechung.
+      */}
+      {podcastfolgen.length > 0 && (
+        <section aria-labelledby="podcast" className="fk-container py-14 sm:py-20">
+          <SectionHeading
+            id="podcast"
+            eyebrow="Podcast"
+            title="Dieselben Themen, zum Hören"
+            lead="Wer lieber hört als liest, findet hier die Folgen – mit Titel, Datum und Inhalt zum Nachlesen."
+          />
+          <ul className="border-border mt-8 border-t">
+            {podcastfolgen.map((folge, index) => (
+              <li key={folge.slug}>
+                <Reveal delay={index * 0.04}>
+                  <Link
+                    href={folgenAdresse(folge)}
+                    className="border-border hover:bg-surface-subtle group block border-b px-2 py-4 transition-colors"
+                  >
+                    <div className="text-fg-subtle flex flex-wrap items-center gap-x-2 text-xs">
+                      {folge.datum && <span>{formatDate(folge.datum)}</span>}
+                      {folgenDauer(folge) && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span>{folgenDauer(folge)}</span>
+                        </>
+                      )}
+                    </div>
+                    <span className="text-fg group-hover:text-news mt-1 block font-semibold">
+                      {folge.titel}
+                    </span>
+                    {folge.beschreibung && (
+                      <span className="text-fg-muted mt-1 block max-w-3xl text-sm leading-relaxed">
+                        {kurzfassung(folge.beschreibung, 180)}
+                      </span>
+                    )}
+                  </Link>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6">
+            <Link
+              href="/podcast"
+              className="text-news font-medium underline underline-offset-2"
+            >
+              Alle Folgen im Überblick
+            </Link>
+          </p>
+        </section>
+      )}
 
       {/* ----------------------------------------------- Abschluss-Hinweis */}
       <section className="fk-container py-14 sm:py-20">

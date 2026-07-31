@@ -285,3 +285,67 @@ export function bevorzugteStimme<T extends Stimmprofil>(stimmen: readonly T[]): 
     null
   )
 }
+
+/**
+ * Die Tonlage einer als männlich erkannten Stimme.
+ *
+ * Unter der Mitte, aber nicht weit darunter: Gewünscht ist eine tiefe Stimme,
+ * und `pitch` erreicht sie nicht durch Übertreibung. Die Sprachausgabe
+ * verschiebt beim Absenken den ganzen Spektralverlauf mit – unter etwa 0,75
+ * klingt eine Männerstimme nicht tiefer, sondern verlangsamt und blechern.
+ * Der Klang einer wirklich tiefen Stimme steckt in der Stimme selbst, nicht
+ * in diesem Regler.
+ */
+export const TONLAGE_MAENNLICH = 0.8
+
+/**
+ * Die Tonlage, wenn keine Männerstimme zu finden war.
+ *
+ * Dann muss der Regler die Arbeit allein machen und geht deutlich weiter
+ * herunter. Das Ergebnis ist hörbar künstlich – aber näher an dem, was
+ * gewünscht ist, als eine unveränderte Frauenstimme.
+ */
+export const TONLAGE_ERSATZ = 0.7
+
+/** Die Tonlage für eine Stimme; `null` heißt: keine Stimme zugeordnet. */
+export function tonlageFuer(stimme: Stimmprofil | null): number {
+  return stimme && klingtMaennlich(stimme) ? TONLAGE_MAENNLICH : TONLAGE_ERSATZ
+}
+
+export interface Stimmgruppen<T> {
+  /** Was nach einer Männerstimme klingt – die erste ist die beste Wahl. */
+  maennlich: T[]
+  /** Alles Übrige, in derselben Ordnung. */
+  weitere: T[]
+}
+
+/**
+ * Teilt die Stimmen für die Auswahlliste in zwei Gruppen.
+ *
+ * ## Warum überhaupt gruppieren
+ *
+ * Die Automatik nimmt die beste Männerstimme, die sie findet. Erkennt sie eine
+ * nicht – die Namensliste kann nicht vollständig sein –, muss von Hand gewählt
+ * werden, und dann steht man vor einer Liste aus „Microsoft Katja“, „Hedda“,
+ * „Stefan“, „Google Deutsch“ und rät. Die Gruppe „Männlich“ nimmt das Raten aus
+ * dem häufigsten Fall heraus, ohne die anderen Stimmen zu verstecken.
+ *
+ * Innerhalb der Gruppen stehen die natürlich klingenden vorn: Wer die Stimme
+ * von Hand wechselt, sucht fast immer eine, die weniger nach Ansage klingt.
+ */
+export function gruppiereStimmen<T extends Stimmprofil>(
+  stimmen: readonly T[]
+): Stimmgruppen<T> {
+  const deutsche = stimmen.filter((stimme) => stimme.lang.toLowerCase().startsWith('de'))
+  /* Kein Gerät ohne deutsche Stimme aussperren – dann eben alle. */
+  const auswahl = deutsche.length > 0 ? deutsche : stimmen
+
+  const sortiert = auswahl
+    .slice()
+    .sort((a, b) => Number(klingtNatuerlich(b)) - Number(klingtNatuerlich(a)))
+
+  return {
+    maennlich: sortiert.filter((stimme) => klingtMaennlich(stimme)),
+    weitere: sortiert.filter((stimme) => !klingtMaennlich(stimme)),
+  }
+}

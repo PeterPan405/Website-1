@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { laendernamen } from '@/data/laender/namen'
+import { Merkaustausch } from '@/components/markets/Merkaustausch'
 import { Merklistentafel, type Merkdaten } from '@/components/markets/Merklistentafel'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
@@ -106,6 +107,8 @@ export default async function MerklisteSeite() {
 
       <div className="fk-container py-12 sm:py-16">
         <Merklistentafel daten={daten} laendernamen={laendernamen} />
+
+        <Merkaustausch bekannteSymbole={daten.map((eintrag) => eintrag.symbol)} />
 
         <Callout variant="info" title="Was das ohne Konto bedeutet" className="mt-10">
           <p>

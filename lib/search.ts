@@ -23,6 +23,7 @@ import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getNewsArticles } from '@/lib/news'
 import { folgenAdresse, getFolgen, kurzfassung } from '@/lib/podcast'
+import { rubriken } from '@/lib/rubriken'
 import { getBranchen } from '@/lib/branchen'
 import type { SearchEntry } from '@/lib/search-match'
 import { areas } from '@/lib/site'
@@ -137,11 +138,60 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
   })
 
   eintraege.push({
+    title: 'Korrekturen',
+    href: '/news/korrekturen',
+    kind: 'Bereich',
+    hint: 'Was nach der Veröffentlichung an Artikeln geändert wurde und warum.',
+    keywords: ['korrektur', 'fehler', 'berichtigung', 'aktualisiert', 'transparenz'],
+  })
+
+  eintraege.push({
     title: 'Startseite',
     href: '/',
     kind: 'Bereich',
     hint: 'Der Einstieg: Kurse, Nachrichten, Lernbereich, Akademie, Rechner und der Globus auf einen Blick.',
     keywords: ['start', 'startseite', 'home', 'uebersicht', 'im invests'],
+  })
+
+  eintraege.push({
+    title: 'Alle Erklärgrafiken',
+    href: '/lernen/grafiken',
+    kind: 'Bereich',
+    hint: 'Über hundert eigene Zeichnungen an einer Stelle – zum Wiederfinden und zum Durchsehen.',
+    keywords: ['grafik', 'grafiken', 'zeichnung', 'bild', 'schaubild', 'erklaergrafik'],
+  })
+
+  eintraege.push({
+    title: 'Dein Lernstand',
+    href: '/lernen/stand',
+    kind: 'Bereich',
+    hint: 'Welche Stufen erledigt sind – und ein Einstufungstest für alle, die nicht bei null anfangen.',
+    keywords: [
+      'lernstand',
+      'fortschritt',
+      'einstufung',
+      'einstufungstest',
+      'test',
+      'wo anfangen',
+      'niveau',
+    ],
+  })
+
+  eintraege.push({
+    title: 'Wiederholen',
+    href: '/lernen/wiederholen',
+    kind: 'Bereich',
+    hint: 'Die Fragen aus allen Lernthemen in wachsenden Abständen – gegen das Vergessen.',
+    keywords: [
+      'wiederholen',
+      'wiederholung',
+      'karteikarten',
+      'leitner',
+      'spaced repetition',
+      'behalten',
+      'vergessen',
+      'ueben',
+    ],
   })
 
   eintraege.push({
@@ -264,6 +314,21 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       'besser',
       'welche aktie',
       'duell',
+    ],
+  })
+  eintraege.push({
+    title: 'Dividenden im Überblick',
+    href: '/maerkte/dividenden',
+    kind: 'Bereich',
+    hint: 'Wer zahlt wie viel, in welchem Rhythmus und seit wann ohne Kürzung',
+    keywords: [
+      'dividende',
+      'dividenden',
+      'ausschuettung',
+      'rendite',
+      'dividendenrendite',
+      'quartalsdividende',
+      'auszahlung',
     ],
   })
   eintraege.push({
@@ -426,6 +491,16 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Podcastfolge',
       hint: folge.beschreibung ? kurzfassung(folge.beschreibung) : folge.datum,
       keywords: ['podcast', 'folge', folge.datum],
+    })
+  }
+
+  for (const rubrik of rubriken) {
+    eintraege.push({
+      title: `${rubrik.name} – Nachrichten`,
+      href: `/news/rubrik/${rubrik.slug}`,
+      kind: 'Bereich',
+      hint: rubrik.beschreibung,
+      keywords: ['rubrik', 'kategorie', rubrik.slug],
     })
   }
 

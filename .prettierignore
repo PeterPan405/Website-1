@@ -25,3 +25,4 @@ data/snapshots/kurse-aktuell.json
 # wäre sie danach nicht mehr identisch mit der Quelle – ein kopiertes Fremdstück
 # umzuformatieren nimmt ihm genau die Eigenschaft, die es überprüfbar macht.
 public/globus/*.json
+data/snapshots/marktbreite.json

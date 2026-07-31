@@ -12,6 +12,7 @@ import {
 import { NumberField } from '@/components/calculators/NumberField'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
+import { stichtagswert } from '@/data/stichtagswerte'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
 import {
   berechneSteuer,
@@ -22,6 +23,7 @@ import {
   TEILFREISTELLUNG,
   type Fondsart,
 } from '@/lib/kapitalertragsteuer'
+import { geltungssatz } from '@/lib/stichtag'
 
 /**
  * Steuer auf Kapitalerträge, einschließlich Vorabpauschale.
@@ -70,6 +72,18 @@ const fondsarten: { id: Fondsart; label: string; hinweis: string }[] = [
   },
 ]
 
+/*
+  Der Basiszins kommt aus dem Stichtagsverzeichnis und nicht aus einer Zahl an
+  dieser Stelle.
+
+  Hier stand er zweimal: einmal als Vorbelegung und einmal ausgeschrieben im
+  Hinweistext darunter („Für 2025 lag er bei 2,53 Prozent“). Zwei Stellen für
+  eine Zahl, die jeden Januar wechselt – die zweite wäre beim ersten Nachtragen
+  stehengeblieben. Jetzt kommen beide aus `data/stichtagswerte.ts`, und
+  `npm run frische` meldet im Januar, dass der neue Wert fehlt.
+*/
+const BASISZINS = stichtagswert('basiszins')
+
 const voreinstellung = {
   fondsertrag: 2000,
   zinsen: 300,
@@ -79,8 +93,24 @@ const voreinstellung = {
   wertBeginn: 30_000,
   wertEnde: 33_000,
   ausschuettung: 0,
-  basiszins: 2.53,
+  basiszins: BASISZINS?.wert ?? 0,
 }
+
+/**
+ * Der Hinweis unter dem Feld, abgeleitet statt getippt.
+ *
+ * Steht der Wert noch für das laufende Jahr, sagt der Satz das. Ist er
+ * überholt, sagt er auch das – und zwar dem Besucher, nicht nur einem
+ * Prüfskript. Wer mit einer Vorjahreszahl rechnet, soll es wissen.
+ */
+const basiszinsHinweis = BASISZINS
+  ? `${geltungssatz(
+      'Wird jährlich vom Bundesfinanzministerium bekanntgegeben',
+      BASISZINS.gilt,
+      `${BASISZINS.wert.toLocaleString('de-DE')} Prozent`,
+      new Date().getFullYear()
+    )}`
+  : 'Wird jährlich vom Bundesfinanzministerium bekanntgegeben.'
 
 export function TaxCalculator() {
   const [fondsertrag, setFondsertrag] = useState(voreinstellung.fondsertrag)
@@ -291,7 +321,7 @@ export function TaxCalculator() {
           max={10}
           step={0.01}
           suffix="%"
-          hint="Wird jährlich vom Bundesfinanzministerium bekanntgegeben. Für 2025 lag er bei 2,53 Prozent."
+          hint={basiszinsHinweis}
         />
       </InputPanel>
 

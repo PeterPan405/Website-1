@@ -64,6 +64,21 @@ export default async function LearnOverviewPage() {
       <div className="fk-container py-12 sm:py-16">
         <OverallProgress topicSlugs={topicSlugs} />
 
+        {/*
+          Zwei Wege, die neben dem Fortschrittsbalken stehen müssen und nicht
+          irgendwo unten: Wer nicht bei null anfängt, will nicht scrollen, um
+          das zu sagen – und wer alles abgehakt hat, hat die interessantere
+          Frage noch vor sich, nämlich ob es in vier Wochen noch sitzt.
+        */}
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link href="/lernen/stand" className="fk-btn-secondary">
+            Lernstand und Einstufungstest
+          </Link>
+          <Link href="/lernen/wiederholen" className="fk-btn-secondary">
+            Wiederholen
+          </Link>
+        </div>
+
         {/* ------------------------------------------------- Lernpfade */}
         {/*
           Steht bewusst vor den Stufen und weit vor dem Themen-Grid: Wer mit

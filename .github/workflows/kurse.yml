@@ -113,7 +113,7 @@ jobs:
           #
           # Deshalb steht die Liste an einer Stelle und wird an beiden
           # Stellen benutzt: bei der Prüfung auf Änderungen und beim Staging.
-          dateien="data/snapshots/kurse-aktuell.json data/snapshots/markets.json data/snapshots/dividenden.json"
+          dateien="data/snapshots/kurse-aktuell.json data/snapshots/markets.json data/snapshots/dividenden.json data/snapshots/marktbreite.json"
 
           if git diff --quiet -- $dateien; then
             echo "Keine Änderung – kein Commit, keine Bereitstellung."

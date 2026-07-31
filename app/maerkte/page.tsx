@@ -85,6 +85,7 @@ export default async function MarketsOverviewPage() {
   const indexQuotes = quotes.filter((quote) => quote.kind === 'index')
   const commodityQuotes = quotes.filter((quote) => quote.kind === 'commodity')
   const cryptoQuotes = quotes.filter((quote) => quote.kind === 'crypto')
+  const etfQuotes = quotes.filter((quote) => quote.kind === 'etf')
   /*
     Die Magnificent Seven stehen getrennt von den übrigen Aktien.
 
@@ -138,6 +139,8 @@ export default async function MarketsOverviewPage() {
         meta={
           <>
             <span>{indexQuotes.length} Indizes</span>
+            <span aria-hidden="true">·</span>
+            <span>{etfQuotes.length} ETFs</span>
             <span aria-hidden="true">·</span>
             <span>{commodityQuotes.length} Rohstoffe</span>
             <span aria-hidden="true">·</span>
@@ -240,6 +243,40 @@ export default async function MarketsOverviewPage() {
           </p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {magSevenQuotes.map((quote, index) => (
+              <li key={quote.symbol}>
+                <Reveal delay={index * 0.04} className="h-full">
+                  <QuoteCard
+                    quote={quote}
+                    sparkline={sparklineBySymbol.get(quote.symbol)}
+                  />
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/*
+          Die ETFs stehen vor den Rohstoffen und nach den Indizes.
+
+          Nicht alphabetisch, sondern nach dem Weg, den jemand nimmt: Wer den
+          Lernbereich gelesen hat, kommt mit der Frage hierher, wie man einen
+          Index tatsächlich kauft. Genau das beantwortet dieser Abschnitt, und
+          er gehört deshalb direkt hinter die Indizes.
+        */}
+        <section aria-labelledby="etfs" className="mt-16">
+          <h2 id="etfs" className="text-fg text-2xl font-bold">
+            Indexfonds (ETFs)
+          </h2>
+          <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+            Ein Index ist eine Rechenvorschrift und nicht kaufbar. Ein ETF ist das Papier,
+            mit dem man ihn kauft: ein Fonds, der den Index nachbildet und selbst an der
+            Börse gehandelt wird. Die hier geführten acht sind eine Auswahl breit
+            gestreuter Fonds –{' '}
+            <strong className="text-fg font-semibold">keine Empfehlung</strong>, sondern
+            das, was die Begriffe des Lernbereichs in der Wirklichkeit bedeuten.
+          </p>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {etfQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">
                   <QuoteCard
@@ -381,7 +418,15 @@ export default async function MarketsOverviewPage() {
             >
               Vergleich
             </Link>{' '}
-            nebeneinander.
+            nebeneinander. Wen vor allem interessiert, was ausgeschüttet wird, findet das
+            gesammelt bei den{' '}
+            <Link
+              href="/maerkte/dividenden"
+              className="text-markets font-medium underline underline-offset-2"
+            >
+              Dividenden
+            </Link>
+            .
           </p>
           <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
             {stockQuotes.map((quote) => (

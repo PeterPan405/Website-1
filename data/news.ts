@@ -56,6 +56,37 @@ export interface NewsArticle {
   /** ISO-8601 mit Zeitzone. */
   publishedAt: string
   updatedAt?: string
+  /**
+   * Was nach der Veröffentlichung geändert wurde.
+   *
+   * ## Warum das ein eigenes Feld ist und kein Satz im Text
+   *
+   * Weil eine stillschweigend korrigierte Zahl schlimmer ist als die falsche:
+   * Wer den Artikel vorher gelesen hat, trägt die alte Zahl weiter mit sich
+   * und erfährt nie, dass sie überholt ist. Ein Änderungsvermerk am Fuß des
+   * Artikels ist die einzige Stelle, an der er es erfahren kann.
+   *
+   * Das ist das Gegenstück zum ersten Grundsatz dieser Website. „Keine
+   * erfundenen Zahlen, keine Quelle, die du nicht gesehen hast“ ist eine
+   * Aussage darüber, wie sorgfältig gearbeitet wird. Wie mit dem Irrtum
+   * umgegangen wird, der trotzdem passiert, ist die zweite Hälfte davon – und
+   * die unterscheidet eine Redaktion von einem Textgenerator.
+   *
+   * ## Was hineingehört
+   *
+   * Was geändert wurde und warum, in einem Satz. Nicht: „redaktionell
+   * überarbeitet“. Sondern: „Die Inflationsrate lag bei 2,4 statt 2,8 Prozent;
+   * verwechselt worden waren Euroraum und Deutschland.“
+   *
+   * Reine Tippfehler brauchen keinen Eintrag. Alles, was eine Zahl, eine
+   * Aussage oder eine Quelle betrifft, schon.
+   */
+  korrekturen?: {
+    /** Wann geändert wurde, ISO 8601 mit Zeitzone. */
+    am: string
+    /** Was geändert wurde und warum – in einem Satz. */
+    was: string
+  }[]
   author: string
   readingMinutes: number
   tags: string[]

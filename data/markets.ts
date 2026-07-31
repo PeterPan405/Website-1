@@ -21,7 +21,7 @@ import { weitereAktien, weitereAktienQuellen } from './markets-aktien.ts'
  * werden – die Signaturen dort sind bereits asynchron.
  */
 
-export type MarketKind = 'fx' | 'index' | 'stock' | 'commodity' | 'crypto'
+export type MarketKind = 'fx' | 'index' | 'stock' | 'commodity' | 'crypto' | 'etf'
 
 /**
  * Bezeichnungen je Gattung.
@@ -44,6 +44,7 @@ export const marketKindMeta: Record<
     long: 'Kryptowährung',
     plural: 'Kryptowährungen',
   },
+  etf: { short: 'ETF', long: 'Indexfonds (ETF)', plural: 'ETFs' },
 }
 
 /** Auswählbare Zeiträume auf den Detailseiten. */
@@ -131,6 +132,26 @@ export interface MarketInstrument {
    * `data/aktien-liste.txt`, für die hier geführten Titel steht er im Eintrag.
    */
   sitzland?: string
+  /**
+   * Kennnummer eines Fonds (ISIN), z. B. `IE00B4L5Y983`.
+   *
+   * Nur bei `kind: 'etf'`. Sie ist die einzige Angabe, unter der sich ein Fonds
+   * zweifelsfrei nachschlagen lässt: Ein Fonds kann an mehreren Börsen unter
+   * verschiedenen Kürzeln gehandelt werden, und derselbe Anbieter führt
+   * Varianten mit gleichem Namen, die Erträge einmal ausschütten und einmal
+   * ansammeln.
+   */
+  isin?: string
+  /**
+   * Wie der Fonds mit seinen Erträgen umgeht.
+   *
+   * `ansammelnd` legt Dividenden und Zinsen automatisch wieder an,
+   * `ausschüttend` überweist sie. Steuerlich macht das in Deutschland weniger
+   * Unterschied, als oft angenommen wird – die Vorabpauschale sorgt dafür,
+   * dass auch beim ansammelnden Fonds jährlich etwas fällig wird. Für die
+   * Handhabung macht es sehr wohl einen Unterschied.
+   */
+  ertragsverwendung?: 'ansammelnd' | 'ausschüttend'
 }
 
 /** Parameter der deterministischen Kursgenerierung. */
@@ -200,6 +221,41 @@ export const marketSources: Record<string, MarketSourceRef> = {
   'nasdaq-100': { provider: 'market', yahoo: '^NDX', twelvedata: 'NDX' },
   'dow-jones': { provider: 'market', yahoo: '^DJI', twelvedata: 'DJI' },
   'russell-2000': { provider: 'market', yahoo: '^RUT', twelvedata: 'RUT' },
+  /*
+    Die deutschen Nebenwerte-Indizes und drei europäische Leitindizes.
+
+    Sie fehlten bis Juli 2026, und die Lücke war bei einer deutschsprachigen
+    Seite die auffälligste: Unter den geführten Aktien stehen deutsche
+    Mittelständler, aber der Index, in dem sie notieren, gab es hier nicht –
+    für den Russell 2000 mit US-Nebenwerten dagegen schon.
+  */
+  /*
+    Die ETFs.
+
+    Sie werden über ihr Xetra-Kürzel abgefragt – dieselbe Notierung, unter der
+    sie in Deutschland gehandelt werden, und damit in Euro. Ein Fonds ist an
+    mehreren Börsen unter verschiedenen Kürzeln zu haben; genommen wird die
+    Heimatbörse der Leser dieser Seite.
+
+    Ob ein Kürzel stimmt, zeigt der erste Abruf: Trifft es ins Leere, kommen
+    keine Kurse, und das steht im Protokoll des Workflows. Genau deshalb steht
+    hier ein Kürzel und keine geratene Kennzahl.
+  */
+  'etf-msci-world': { provider: 'market', yahoo: 'EUNL.DE', twelvedata: 'EUNL' },
+  'etf-ftse-all-world': { provider: 'market', yahoo: 'VWCE.DE', twelvedata: 'VWCE' },
+  'etf-sp500': { provider: 'market', yahoo: 'SXR8.DE', twelvedata: 'SXR8' },
+  'etf-em-imi': { provider: 'market', yahoo: 'IS3N.DE', twelvedata: 'IS3N' },
+  'etf-dax': { provider: 'market', yahoo: 'EXS1.DE', twelvedata: 'EXS1' },
+  'etf-stoxx-600': { provider: 'market', yahoo: 'EXSA.DE', twelvedata: 'EXSA' },
+  'etf-world-small-cap': { provider: 'market', yahoo: 'WSML.DE', twelvedata: 'WSML' },
+  'etf-geldmarkt': { provider: 'market', yahoo: 'XEON.DE', twelvedata: 'XEON' },
+
+  mdax: { provider: 'market', yahoo: '^MDAXI', twelvedata: 'MDAXI' },
+  tecdax: { provider: 'market', yahoo: '^TECDAX', twelvedata: 'TECDAX' },
+  sdax: { provider: 'market', yahoo: '^SDAXI', twelvedata: 'SDAXI' },
+  smi: { provider: 'market', yahoo: '^SSMI', twelvedata: 'SSMI' },
+  'cac-40': { provider: 'market', yahoo: '^FCHI', twelvedata: 'FCHI' },
+  'ftse-100': { provider: 'market', yahoo: '^FTSE', twelvedata: 'FTSE' },
   'nikkei-225': { provider: 'market', yahoo: '^N225', twelvedata: 'N225' },
   kospi: { provider: 'market', yahoo: '^KS11', twelvedata: 'KS11' },
   'hang-seng': { provider: 'market', yahoo: '^HSI', twelvedata: 'HSI' },
@@ -578,6 +634,316 @@ export const marketDefinitions: MarketDefinition[] = [
     ],
     relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite', 'aktie'],
     seed: { startValue: 1980, annualDrift: 0.062, annualVolatility: 0.21, seed: 22302 },
+  },
+  /*
+    Die ETFs.
+
+    ## Warum sie hier bis Juli 2026 fehlten – und warum das ein Problem war
+
+    Der Lernbereich erwähnt ETFs an über hundert Stellen, das Glossar führt
+    einen eigenen Eintrag, der Kostenrechner rechnet mit ihrer Kostenquote –
+    und im Katalog dieser Website stand kein einziger. Wer den Lernbereich
+    gelesen hatte und nachsehen wollte, was ein MSCI-World-ETF kostet und wie
+    er gelaufen ist, landete bei tausend Einzelaktien, also bei genau dem,
+    wovon der Lernbereich abrät.
+
+    ## Was hier bewusst nicht steht
+
+    **Die laufenden Kosten.** Sie sind die wichtigste Zahl eines ETF und
+    stehen trotzdem nicht in diesem Katalog, weil es keine frei zugängliche
+    Schnittstelle dafür gibt und eine aus dem Gedächtnis geschriebene
+    Kostenquote schlimmer wäre als keine: Sie sähe aus wie eine belegte
+    Angabe. Der Ort dafür ist `data/etf-kosten.ts` – eine von Hand geführte
+    Liste mit Quellenangabe je Fonds, so wie es die ESEF-Zuordnung bei den
+    Unternehmenszahlen auch ist. Was dort fehlt, fehlt sichtbar.
+
+    Ausgewählt sind acht breit gestreute Fonds, keine achtzig. Diese Website
+    empfiehlt keine Produkte; sie zeigt, was die Begriffe des Lernbereichs in
+    der Wirklichkeit bedeuten. Dafür reichen ein Welt-ETF, ein
+    Schwellenländer-ETF, zwei Regionen, ein Nebenwerte- und ein Geldmarktfonds.
+  */
+  {
+    symbol: 'etf-msci-world',
+    ticker: 'MSCI World ETF',
+    name: 'iShares Core MSCI World UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'IE00B4L5Y983',
+    ertragsverwendung: 'ansammelnd',
+    summary:
+      'Rund 1.400 Unternehmen aus den Industrieländern in einem Papier – der meistgekaufte Sparplan-ETF in Deutschland.',
+    metaDescription:
+      'Der iShares Core MSCI World: Kurs in Euro, Verlauf über fünf Jahre und was „Industrieländer“ bei diesem Index tatsächlich heißt.',
+    description: [
+      'Dieser Fonds bildet den MSCI World nach – rund 1.400 große und mittelgroße Unternehmen aus 23 Industrieländern. Er ist der Fonds, den die meisten meinen, wenn sie „ich spare in einen Welt-ETF“ sagen.',
+      'Der Name führt in die Irre: „World“ heißt Industrieländer, nicht Welt. China, Indien, Brasilien und alle übrigen Schwellenländer fehlen vollständig – zusammen ein erheblicher Teil der Weltbevölkerung und der Wirtschaftsleistung. Wer sie mit abdecken will, braucht einen zweiten Fonds oder einen Index, der beides enthält.',
+      'Das zweite, was oft übersehen wird, ist die Gewichtung nach Börsenwert. Die Vereinigten Staaten machen deutlich über die Hälfte des Index aus, und die zehn größten Positionen wiegen zusammen schwerer als ganze Länder. „Weltweit gestreut“ ist deshalb eine ungenaue Beschreibung: Gestreut ist die Zahl der Titel, nicht das Gewicht.',
+      'Der Fonds sammelt Erträge an, statt sie auszuschütten. In Deutschland heißt das nicht, dass keine Steuer anfällt – die Vorabpauschale sorgt dafür, dass jährlich ein Teil versteuert wird, auch ohne Ausschüttung. Wie das gerechnet wird, steht im Steuerrechner.',
+    ],
+    relatedTopics: ['etf', 'fonds', 'portfolio-aufbau'],
+    seed: { startValue: 78, annualDrift: 0.09, annualVolatility: 0.16, seed: 51001 },
+  },
+  {
+    symbol: 'etf-ftse-all-world',
+    ticker: 'FTSE All-World ETF',
+    name: 'Vanguard FTSE All-World UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'IE00BK5BQT80',
+    ertragsverwendung: 'ansammelnd',
+    summary:
+      'Industrie- und Schwellenländer in einem Papier – der Fonds für alle, die es bei einem belassen wollen.',
+    metaDescription:
+      'Der Vanguard FTSE All-World: Kurs in Euro, Verlauf über fünf Jahre und der Unterschied zum MSCI World.',
+    description: [
+      'Der FTSE All-World enthält, anders als der MSCI World, auch die Schwellenländer – rund viertausend Unternehmen aus Industrie- und Schwellenländern zusammen. Für alle, die genau einen Fonds halten wollen, ist das der naheliegende Zuschnitt.',
+      'Der Unterschied zum MSCI World fällt in der Rendite geringer aus, als die Namen vermuten lassen. Die Schwellenländer machen nach Börsenwert rund ein Zehntel des Index aus; sie verschieben das Bild, aber sie bestimmen es nicht. Wer eine deutlich andere Entwicklung erwartet, erwartet zu viel.',
+      'Was er dagegen ändert, ist die Abhängigkeit von einem einzigen Land. Der US-Anteil liegt spürbar niedriger als beim MSCI World – nicht weil weniger amerikanische Firmen drin wären, sondern weil mehr andere dazukommen.',
+    ],
+    relatedTopics: ['etf', 'portfolio-aufbau', 'aktien-laender-branchen'],
+    seed: { startValue: 92, annualDrift: 0.085, annualVolatility: 0.16, seed: 51002 },
+  },
+  {
+    symbol: 'etf-sp500',
+    ticker: 'S&P 500 ETF',
+    name: 'iShares Core S&P 500 UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'IE00B5BMR087',
+    ertragsverwendung: 'ansammelnd',
+    summary:
+      'Die 500 größten US-Unternehmen – der Index, an dem sich alle anderen messen lassen müssen.',
+    metaDescription:
+      'Der iShares Core S&P 500: Kurs in Euro, Verlauf über fünf Jahre und warum ein US-Index für Euro-Anleger zwei Risiken trägt.',
+    description: [
+      'Dieser Fonds bildet den S&P 500 nach, also die 500 größten börsennotierten Unternehmen der Vereinigten Staaten. Über die vergangenen Jahrzehnte hat kaum ein aktiv verwalteter Fonds ihn dauerhaft geschlagen – das ist das stärkste Argument, das für Indexfonds überhaupt vorgebracht wird.',
+      'Für Anleger im Euroraum trägt er zwei Risiken statt einem. Der Kurs in Euro hängt am Index **und** am Dollar. Ein Jahr, in dem der S&P 500 zehn Prozent zulegt und der Dollar zehn Prozent nachgibt, endet für einen Euro-Anleger ungefähr bei null. Beides zusammen steht in der Prozentzahl, die dieser Fonds ausweist.',
+      'Wer bereits einen Welt-ETF hält, hat einen großen Teil davon schon: Die USA machen dort den größten Block aus. Beides nebeneinander ist keine Streuung, sondern eine Verdopplung – ein Fehler, der häufiger gemacht wird als jeder andere beim Aufbau eines Depots.',
+    ],
+    relatedTopics: ['etf', 'aktien-laender-branchen', 'waehrungen-wechselkurse'],
+    seed: { startValue: 380, annualDrift: 0.11, annualVolatility: 0.17, seed: 51003 },
+  },
+  {
+    symbol: 'etf-em-imi',
+    ticker: 'Schwellenländer-ETF',
+    name: 'iShares Core MSCI EM IMI UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'IE00BKM4GZ66',
+    ertragsverwendung: 'ansammelnd',
+    summary:
+      'Rund 3.000 Unternehmen aus Schwellenländern – das, was im MSCI World fehlt.',
+    metaDescription:
+      'Der iShares Core MSCI EM IMI: Kurs in Euro, Verlauf über fünf Jahre und warum Schwellenländer nicht automatisch mehr Rendite bringen.',
+    description: [
+      'Dieser Fonds deckt ab, was im MSCI World fehlt: Unternehmen aus Schwellenländern, von China und Taiwan über Indien bis Brasilien und Südafrika. Das „IMI“ im Namen heißt, dass auch mittlere und kleine Unternehmen enthalten sind, nicht nur die großen.',
+      'Der übliche Gedanke dahinter lautet: Diese Volkswirtschaften wachsen schneller, also bringen ihre Aktien mehr. Der Zusammenhang ist schwächer, als er klingt. Über die vergangenen fünfzehn Jahre sind Schwellenländeraktien deutlich hinter den Industrieländern zurückgeblieben, obwohl die Wirtschaft dort schneller gewachsen ist. Wachstum eines Landes und Rendite seiner Aktien sind zwei verschiedene Dinge.',
+      'Was er sicher bringt, ist ein anderes Risikoprofil: politische Eingriffe, weniger verlässliche Rechnungslegung, Währungen, die stärker schwanken. Wer ihn beimischt, tut das für die Streuung, nicht für eine sichere Mehrrendite.',
+    ],
+    relatedTopics: ['etf', 'aktien-laender-branchen', 'risiko-und-rendite'],
+    seed: { startValue: 27, annualDrift: 0.04, annualVolatility: 0.19, seed: 51004 },
+  },
+  {
+    symbol: 'etf-dax',
+    ticker: 'DAX-ETF',
+    name: 'iShares Core DAX UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'DE0005933931',
+    ertragsverwendung: 'ansammelnd',
+    summary:
+      'Die 40 DAX-Unternehmen in einem Papier – und ein Lehrstück über Klumpenrisiko im eigenen Land.',
+    metaDescription:
+      'Der iShares Core DAX: Kurs in Euro, Verlauf über fünf Jahre und warum ein Heimatindex allein keine Streuung ist.',
+    description: [
+      'Der Fonds bildet den DAX nach. Weil der DAX ein Performance-Index ist, stecken die Dividenden bereits in seinem Stand – anders als bei den meisten anderen Indizes dieser Art.',
+      'Als einziger Baustein eines Depots ist er ein Musterfall für das, was in der Lehre **Home Bias** heißt: die Neigung, überwiegend im eigenen Land anzulegen, weil einem die Namen vertraut sind. Deutschland macht an der Weltwirtschaft einen einstelligen Prozentsatz aus. Vierzig deutsche Unternehmen sind vierzig Titel, aber eine einzige Volkswirtschaft, eine Rechtsordnung und ein Exportmodell.',
+      'Als Ergänzung ist er etwas anderes: Wer bewusst mehr Gewicht auf den Heimatmarkt legen will, weil er dort ausgibt und verdient, hat dafür ein Argument. Der Unterschied liegt darin, ob die Entscheidung getroffen oder nur nicht bemerkt wurde.',
+    ],
+    relatedTopics: ['etf', 'aktien-laender-branchen', 'portfolio-aufbau'],
+    seed: { startValue: 130, annualDrift: 0.07, annualVolatility: 0.18, seed: 51005 },
+  },
+  {
+    symbol: 'etf-stoxx-600',
+    ticker: 'Europa-ETF',
+    name: 'iShares STOXX Europe 600 UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'DE0002635307',
+    ertragsverwendung: 'ausschüttend',
+    summary:
+      '600 europäische Unternehmen aus 17 Ländern – breiter als jeder nationale Leitindex.',
+    metaDescription:
+      'Der iShares STOXX Europe 600: Kurs in Euro, Verlauf über fünf Jahre und warum Europa im Welt-ETF untergewichtet wirkt.',
+    description: [
+      'Der STOXX Europe 600 enthält 600 große, mittlere und kleine Unternehmen aus siebzehn europäischen Ländern – auch aus solchen außerhalb der Eurozone wie der Schweiz, dem Vereinigten Königreich und Skandinavien. Er ist damit deutlich breiter als jeder einzelne nationale Leitindex.',
+      'Für Anleger im Euroraum hat er einen praktischen Vorzug: Ein großer Teil der enthaltenen Unternehmen bilanziert in Euro, das Währungsrisiko ist geringer als bei einem Welt- oder US-Fonds. Ganz verschwunden ist es nicht, denn Franken, Pfund und Krone sind mit dabei.',
+      'Dieser Fonds schüttet seine Erträge aus, statt sie anzusammeln. Für die Steuer ist das in Deutschland weniger entscheidend, als oft gedacht wird; für die Handhabung schon: Wer die Ausschüttungen wieder anlegen will, muss es selbst tun – und zahlt dabei unter Umständen erneut Ordergebühren.',
+    ],
+    relatedTopics: ['etf', 'aktien-laender-branchen', 'dividende'],
+    seed: { startValue: 41, annualDrift: 0.06, annualVolatility: 0.15, seed: 51006 },
+  },
+  {
+    symbol: 'etf-world-small-cap',
+    ticker: 'Welt-Nebenwerte-ETF',
+    name: 'iShares MSCI World Small Cap UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'IE00BF4RFH31',
+    ertragsverwendung: 'ansammelnd',
+    summary:
+      'Kleinere Unternehmen der Industrieländer – die Ergänzung, die im MSCI World fehlt.',
+    metaDescription:
+      'Der iShares MSCI World Small Cap: Kurs in Euro, Verlauf über fünf Jahre und was die Nebenwerteprämie taugt.',
+    description: [
+      'Der MSCI World enthält große und mittelgroße Unternehmen. Die kleinen fehlen – und das sind nach Zahl der Firmen die meisten. Dieser Fonds deckt genau diesen Bereich ab.',
+      'Das Argument dafür heißt **Size-Prämie**: Über sehr lange Zeiträume haben kleinere Unternehmen etwas höhere Renditen gebracht als große. Ob die Prämie fortbesteht, ist unter Fachleuten umstritten; in den vergangenen fünfzehn Jahren war davon wenig zu sehen. Belegt ist nur die Kehrseite – mehr Schwankung und tiefere Einbrüche in Krisen.',
+      'Wer ihn beimischt, sollte wissen, dass er dafür bezahlt: Nebenwerte-Fonds haben durchweg höhere laufende Kosten als Standardfonds, weil ihre Bestandteile teurer zu handeln sind.',
+    ],
+    relatedTopics: ['etf', 'risiko-und-rendite', 'portfolio-aufbau'],
+    seed: { startValue: 5.6, annualDrift: 0.06, annualVolatility: 0.19, seed: 51007 },
+  },
+  {
+    symbol: 'etf-geldmarkt',
+    ticker: 'Geldmarkt-ETF',
+    name: 'Xtrackers II EUR Overnight Rate Swap UCITS ETF',
+    kind: 'etf',
+    unit: 'EUR',
+    decimals: 2,
+    isin: 'LU0290358497',
+    ertragsverwendung: 'ansammelnd',
+    summary:
+      'Der Tagesgeldsatz des Euroraums als Fonds – kein Wachstumsbaustein, sondern ein Parkplatz.',
+    metaDescription:
+      'Der Xtrackers Overnight Rate ETF: Kurs in Euro, Verlauf über fünf Jahre und wofür ein Geldmarktfonds taugt – und wofür nicht.',
+    description: [
+      'Dieser Fonds bildet den Zinssatz nach, zu dem sich Banken im Euroraum über Nacht Geld leihen. Sein Kurs steigt in kleinen, gleichmäßigen Schritten, solange dieser Zins positiv ist – und er stand jahrelang still oder sank leicht, als der Zins bei null oder darunter lag.',
+      'Er gehört hierher, weil er zeigt, was ein Zinssatz mit einem Kurs macht. Der Verlauf über fünf Jahre ist das beste Anschauungsstück für die Zinswende, das dieser Katalog hergibt: eine waagerechte Linie, die ab 2022 zu steigen beginnt.',
+      'Was er nicht ist: ein Ersatz für Tagesgeld. Es gibt keine Einlagensicherung – ein Fonds ist Sondervermögen, was etwas anderes und in mancher Hinsicht Besseres ist, aber eben nicht dasselbe. Und es fallen Ordergebühren an, die bei kleinen Beträgen den Zinsvorteil auffressen.',
+    ],
+    relatedTopics: ['etf', 'tagesgeld', 'einlagensicherung'],
+    seed: { startValue: 139, annualDrift: 0.025, annualVolatility: 0.004, seed: 51008 },
+  },
+  {
+    symbol: 'mdax',
+    ticker: 'MDAX',
+    name: 'MDAX (deutsche Mittelwerte)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 50 Unternehmen unterhalb des DAX – der Index, an dem die deutsche Binnenwirtschaft am besten abzulesen ist.',
+    metaDescription:
+      'Der MDAX mit 50 mittelgroßen deutschen Unternehmen: Stand, Chart über fünf Jahre und warum er anders läuft als der DAX.',
+    description: [
+      'Der MDAX enthält die 50 Unternehmen, die nach Börsenwert und Handelsumsatz auf die 40 DAX-Werte folgen. Er ist damit kein Index zweiter Wahl, sondern ein anderer Ausschnitt derselben Volkswirtschaft – mit Maschinenbauern, Zulieferern, Immobiliengesellschaften und Handelsketten, die im DAX kaum vertreten sind.',
+      'Der entscheidende Unterschied zum DAX liegt im Auslandsanteil. Die vierzig größten deutschen Konzerne erwirtschaften den Löwenanteil ihrer Umsätze außerhalb Deutschlands; der MDAX hängt spürbar stärker am Geschäft im Inland und in Europa. Wer wissen will, wie es der deutschen Wirtschaft geht und nicht dem Weltgeschäft deutscher Konzerne, sieht hier genauer hin.',
+      'Wie der DAX wird auch der MDAX standardmäßig als Performance-Index geführt: Dividenden werden rechnerisch wieder angelegt. Ein Vergleich mit einem Kursindex wie dem CAC 40 fällt deshalb zwangsläufig zugunsten des MDAX aus, ohne dass die Unternehmen dahinter besser gelaufen wären.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'aktie', 'risiko-und-rendite'],
+    seed: { startValue: 26800, annualDrift: 0.055, annualVolatility: 0.19, seed: 41207 },
+  },
+  {
+    symbol: 'tecdax',
+    ticker: 'TecDAX',
+    name: 'TecDAX (deutsche Technologiewerte)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 30 größten Technologieunternehmen an der deutschen Börse – mit erheblichen Überschneidungen zum DAX.',
+    metaDescription:
+      'Der TecDAX mit 30 deutschen Technologiewerten: Stand, Chart über fünf Jahre und warum er sich mit DAX und MDAX überschneidet.',
+    description: [
+      'Der TecDAX bündelt die 30 größten Technologieunternehmen der deutschen Börse. Anders als bei DAX, MDAX und SDAX entscheidet hier nicht allein die Größe, sondern die Branchenzuordnung – ein Unternehmen kann deshalb gleichzeitig im DAX und im TecDAX stehen.',
+      'Genau das ist beim Lesen wichtig: Wer DAX und TecDAX nebeneinanderlegt, vergleicht keine getrennten Körbe. Schwergewichte wie SAP oder Infineon wirken in beiden, und ein guter Tag für sie hebt beide Indizes gleichzeitig.',
+      '„Technologie“ ist dabei weiter gefasst als in der Alltagssprache: Neben Software und Halbleitern zählen auch Medizintechnik und Biotechnologie dazu. Ein TecDAX-Stand sagt deshalb weniger über die Digitalwirtschaft aus, als der Name nahelegt.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'aktie'],
+    seed: { startValue: 3400, annualDrift: 0.06, annualVolatility: 0.24, seed: 41208 },
+  },
+  {
+    symbol: 'sdax',
+    ticker: 'SDAX',
+    name: 'SDAX (deutsche Nebenwerte)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 70 Unternehmen unterhalb des MDAX – die kleinste der vier Stufen der deutschen Indexfamilie.',
+    metaDescription:
+      'Der SDAX mit 70 kleineren deutschen Unternehmen: Stand, Chart über fünf Jahre und warum Nebenwerte anders schwanken.',
+    description: [
+      'Der SDAX führt die 70 Unternehmen, die nach DAX und MDAX folgen. Zusammen bilden die drei eine Rangfolge nach Größe, keine nach Qualität: Ein Unternehmen steigt auf und ab, wenn sich Börsenwert und Handelsumsatz ändern.',
+      'Nebenwerte werden seltener gehandelt als Standardwerte. Das hat zwei Folgen, die sich im Chart zeigen: Einzelne größere Aufträge bewegen den Kurs stärker, und in nervösen Phasen fällt der Index tiefer, weil weniger Käufer bereitstehen. Wer Nebenwerte hält, kauft eine höhere Schwankung mit.',
+      'Dafür sind kleinere Unternehmen weniger im Blick der großen Analysehäuser. Ob daraus ein Vorteil erwächst, ist umstritten – belegt ist nur, dass der Weg dorthin über mehr Schwankung führt.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite', 'aktie'],
+    seed: { startValue: 13900, annualDrift: 0.05, annualVolatility: 0.2, seed: 41209 },
+  },
+  {
+    symbol: 'smi',
+    ticker: 'SMI',
+    name: 'SMI (Swiss Market Index)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 20 größten Schweizer Unternehmen – ein Index, der zu weiten Teilen an drei Namen hängt.',
+    metaDescription:
+      'Der Swiss Market Index mit den 20 größten Schweizer Unternehmen: Stand, Chart über fünf Jahre und was die starke Konzentration bedeutet.',
+    description: [
+      'Der SMI enthält die 20 größten und meistgehandelten Schweizer Aktien. Er gilt als defensiver Index, weil Pharma und Basiskonsum schwer wiegen – Geschäfte, deren Nachfrage weniger am Konjunkturzyklus hängt als Industrie oder Autobau.',
+      'Die Kehrseite ist die Konzentration: Nestlé, Roche und Novartis machen zusammen einen erheblichen Teil des Index aus. Eine Nachricht aus einem dieser drei Häuser bewegt den SMI stärker als eine Nachricht aus den übrigen siebzehn zusammen. Ein „Schweizer Markt“ ist er insofern nur bedingt.',
+      'Für Anleger aus dem Euroraum kommt der Franken hinzu. Er gilt als sicherer Hafen und wertet in Krisen häufig auf – der Kurs in Euro kann dann steigen, obwohl der Index in Franken fällt. Wer die Prozentzahlen des SMI liest, liest sie in Franken.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'waehrungen-wechselkurse', 'aktie'],
+    seed: { startValue: 11200, annualDrift: 0.045, annualVolatility: 0.14, seed: 41210 },
+  },
+  {
+    symbol: 'cac-40',
+    ticker: 'CAC 40',
+    name: 'CAC 40 (Frankreich)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 40 größten französischen Unternehmen – mit einem für Europa ungewöhnlich hohen Anteil an Luxusgütern.',
+    metaDescription:
+      'Der CAC 40 mit den 40 größten französischen Unternehmen: Stand, Chart über fünf Jahre und warum er ohne Dividenden gerechnet wird.',
+    description: [
+      'Der CAC 40 führt die 40 größten an der Pariser Börse notierten Unternehmen. Was ihn von anderen europäischen Leitindizes unterscheidet, ist sein Schwerpunkt: Luxusgüter, Kosmetik und Konsummarken wiegen hier so schwer wie nirgends sonst in Europa.',
+      'Das macht ihn empfindlich für eine Größe, die sonst kaum eine Rolle spielt – die Nachfrage aus China. Ein schwaches Konsumklima dort schlägt auf den CAC 40 stärker durch als auf DAX oder FTSE 100.',
+      'Wichtig beim Vergleichen: Der CAC 40 wird üblicherweise als **Kursindex** dargestellt, ohne Dividenden. Der DAX wird standardmäßig als Performance-Index geführt, mit Dividenden. Die Prozentzahlen der beiden nebeneinanderzulegen bevorteilt den DAX systematisch, ohne dass ein Unternehmen dahinter besser gewirtschaftet hätte.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'aktie'],
+    seed: { startValue: 7500, annualDrift: 0.05, annualVolatility: 0.17, seed: 41211 },
+  },
+  {
+    symbol: 'ftse-100',
+    ticker: 'FTSE 100',
+    name: 'FTSE 100 (Vereinigtes Königreich)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 100 größten Unternehmen an der Londoner Börse – ein britischer Index, der kaum von Großbritannien lebt.',
+    metaDescription:
+      'Der FTSE 100 mit den 100 größten Unternehmen der Londoner Börse: Stand, Chart über fünf Jahre und warum er kein Spiegel der britischen Wirtschaft ist.',
+    description: [
+      'Der FTSE 100 enthält die 100 nach Börsenwert größten Unternehmen an der Londoner Börse. Der naheliegende Schluss, er zeige die Lage der britischen Wirtschaft, ist falsch: Die Mitglieder erwirtschaften den überwiegenden Teil ihrer Umsätze im Ausland, und viele bilanzieren in Dollar.',
+      'Daraus folgt ein Zusammenhang, der Neulinge regelmäßig verwirrt: Ein schwaches Pfund lässt den FTSE 100 oft **steigen**, weil die im Ausland verdienten Erträge in Pfund umgerechnet mehr wert sind. Wer den Index als Stimmungsbarometer für die Insel liest, liest ihn falsch.',
+      'Sein Schwerpunkt liegt auf Öl, Bergbau, Banken und Basiskonsum – klassische Dividendenzahler. Die Dividendenrendite des FTSE 100 liegt deshalb regelmäßig über der anderer Leitindizes, während der reine Kursverlauf schwächer aussieht als etwa der des S&P 500.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'waehrungen-wechselkurse', 'aktie'],
+    seed: { startValue: 8100, annualDrift: 0.04, annualVolatility: 0.15, seed: 41212 },
   },
   {
     symbol: 'gold',

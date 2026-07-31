@@ -1,4 +1,4 @@
-import { countryDebtRecords, DEBT_REFERENCE_YEAR } from '@/data/debt'
+import { countryDebtRecords, DEBT_QUOTE_YEAR } from '@/lib/debt'
 import type { LearnTopic } from '@/data/learn/types'
 import { zinsschock } from '@/lib/anleihen'
 import { formatNumber, formatPercent } from '@/lib/format'
@@ -279,7 +279,7 @@ export const staatsanleihe: LearnTopic = {
           variant: 'info',
           title: 'Die Zahlen dazu auf dieser Seite',
           items: [
-            `Der Vergleich unter /staatsverschuldung führt die Schuldenquoten aller größeren Industrieländer für ${DEBT_REFERENCE_YEAR}.`,
+            `Der Vergleich unter /staatsverschuldung führt die Schuldenquoten aller größeren Industrieländer für ${DEBT_QUOTE_YEAR}.`,
             'Er zeigt auch, wie wenig die Quote allein aussagt: Japan liegt weit vor jedem europäischen Land und zahlt trotzdem die niedrigsten Zinsen.',
             'Warum das so ist, rechnet die Profi-Stufe durch.',
           ],
@@ -398,7 +398,7 @@ export const staatsanleihe: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: `Wie viel Überschuss nötig wäre, hängt an der Schuldenquote selbst – je höher sie ist, desto stärker wirkt jede Differenz. Gerechnet mit den Quoten von ${DEBT_REFERENCE_YEAR} und einem angenommenen nominalen Wachstum von ${formatPercent(NOMINALES_WACHSTUM, 0)}:`,
+          text: `Wie viel Überschuss nötig wäre, hängt an der Schuldenquote selbst – je höher sie ist, desto stärker wirkt jede Differenz. Gerechnet mit den Quoten von ${DEBT_QUOTE_YEAR} und einem angenommenen nominalen Wachstum von ${formatPercent(NOMINALES_WACHSTUM, 0)}:`,
         },
         {
           type: 'table',

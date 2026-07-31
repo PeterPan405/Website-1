@@ -7,16 +7,22 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Stat, StatGrid } from '@/components/ui/Stat'
-import { formatCurrencyRounded, formatPercent } from '@/lib/format'
+import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
 import { datasetSchema } from '@/lib/jsonld'
-import { getCountryDebts, getDebtRegions, getDebtSummary } from '@/lib/debt'
+import {
+  DEBT_EUR_USD,
+  DEBT_QUELLEN,
+  getCountryDebts,
+  getDebtRegions,
+  getDebtSummary,
+} from '@/lib/debt'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Staatsverschuldung im Ländervergleich'),
   description:
-    'Schulden absolut, pro Kopf und in Prozent des BIP – sortierbar und filterbar für 18 Länder, mit Erklärung, warum die Quote allein wenig aussagt.',
+    'Schulden absolut, pro Kopf und in Prozent des BIP – für alle Länder mit belegten Zahlen, sortierbar und filterbar, mit Erklärung zur Aussagekraft der Quote.',
   path: '/staatsverschuldung',
   ogTitle: 'Staatsverschuldung im Ländervergleich',
 })
@@ -46,7 +52,9 @@ export default async function DebtPage() {
           <>
             <span>{summary.countryCount} Länder</span>
             <span aria-hidden="true">·</span>
-            <span>Bezugsjahr {summary.referenceYear}</span>
+            <span>
+              Quoten {summary.debtYear}, Wirtschaftsleistung {summary.referenceYear}
+            </span>
             <span aria-hidden="true">·</span>
             <span>Sortierbar und filterbar</span>
           </>
@@ -54,19 +62,47 @@ export default async function DebtPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <div className="text-fg-subtle text-sm leading-relaxed">
+        {/*
+          Bis Juli 2026 stand hier ein Hinweis auf „gerundete Näherungswerte zu
+          Demonstrationszwecken“. Er ist entfallen, weil er nicht mehr stimmt:
+          Die Zahlen kommen aus denselben Quellen, die dort als die richtigen
+          benannt waren. Was bleibt, sind die Einschränkungen, die auch für
+          echte Zahlen gelten – und die sind wichtiger als der alte Vorbehalt.
+        */}
+        <div className="text-fg-subtle space-y-2 text-sm leading-relaxed">
           <p>
-            Die Zahlen sind{' '}
-            <strong className="text-fg font-semibold">gerundete Näherungswerte</strong> zu
-            Demonstrationszwecken. Für belastbare Angaben sind Eurostat, der
-            Internationale Währungsfonds und die nationalen Statistikämter die richtigen
-            Quellen.
+            Die Schuldenquote kommt vom{' '}
+            <a
+              href={DEBT_QUELLEN.schulden.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2"
+            >
+              Internationalen Währungsfonds
+            </a>{' '}
+            ({summary.debtYear}), Wirtschaftsleistung und Einwohnerzahl von der Weltbank (
+            {summary.referenceYear}). Gespeichert sind nur diese drei Größen; der absolute
+            Schuldenstand und die Schulden pro Kopf werden daraus berechnet, damit sie
+            nicht auseinanderlaufen können.
           </p>
           <p>
-            Gespeichert sind nur BIP und Schuldenquote; der absolute Schuldenstand und die
-            Schulden pro Kopf werden daraus berechnet. So können die drei Werte nicht
-            auseinanderlaufen.
+            <strong className="text-fg font-semibold">
+              Die beiden Jahre sind nicht dieselben
+            </strong>{' '}
+            – der Währungsfonds schreibt die Quote fort, die Weltbank braucht für das
+            Bruttoinlandsprodukt länger. Die Quote selbst ist davon unberührt; der daraus
+            gerechnete Betrag in Euro ist eine Größenordnung, keine Kassenlage.
+            {DEBT_EUR_USD !== null && (
+              <>
+                {' '}
+                Umgerechnet wird mit dem Durchschnittskurs des Bezugsjahres von{' '}
+                {formatNumber(DEBT_EUR_USD, 4)} Dollar je Euro – nicht mit dem heutigen,
+                sonst änderten sich die Schulden eines Landes rückwirkend, sobald der Euro
+                schwankt.
+              </>
+            )}
           </p>
+          <p>{DEBT_QUELLEN.schulden.abgrenzung}</p>
         </div>
 
         {/* -------------------------------------------------- Kennzahlen */}
@@ -87,10 +123,17 @@ export default async function DebtPage() {
               tone="positive"
               hint={summary.lowest.name}
             />
+            {/*
+              Median statt Durchschnitt an dieser Stelle: Bei fast zweihundert
+              Ländern ziehen eine Handvoll Quoten über 200 Prozent den
+              Mittelwert nach oben, während die meisten deutlich darunter
+              liegen. Der Durchschnitt steht im Hinweis daneben, damit beide
+              Zahlen vergleichbar bleiben.
+            */}
             <Stat
-              label="Durchschnitt"
-              value={formatPercent(summary.averageDebtToGdpPercent, 0)}
-              hint="Ungewichteter Mittelwert der angezeigten Länder"
+              label="Mittleres Land"
+              value={formatPercent(summary.medianDebtToGdpPercent, 0)}
+              hint={`Median aller Länder – der Durchschnitt liegt bei ${formatPercent(summary.averageDebtToGdpPercent, 0)}`}
             />
             <Stat
               label="Höchste Schulden pro Kopf"
@@ -209,9 +252,8 @@ export default async function DebtPage() {
 
       <JsonLd
         data={datasetSchema({
-          name: 'Staatsverschuldung im Ländervergleich (Näherungswerte)',
-          description:
-            'Schuldenstand in Prozent des BIP, absolut und pro Kopf für 18 Länder als Näherungswerte zu Bildungszwecken.',
+          name: 'Staatsverschuldung im Ländervergleich',
+          description: `Schuldenstand in Prozent des BIP, absolut und pro Kopf für ${summary.countryCount} Länder – Quoten vom Internationalen Währungsfonds, Wirtschaftsleistung von der Weltbank.`,
           path: '/staatsverschuldung',
           temporalCoverage: String(summary.referenceYear),
           keywords: [

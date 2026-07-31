@@ -10,9 +10,13 @@
 import { technischeAnalyseLektionen } from '../data/akademie/technische-analyse.ts'
 import { figureMeta } from '../data/figures.ts'
 import {
+  TONLAGE_ERSATZ,
+  TONLAGE_MAENNLICH,
   bevorzugteStimme,
+  gruppiereStimmen,
   klingtMaennlich,
   klingtNatuerlich,
+  tonlageFuer,
   vorleseAbschnitte,
 } from '../lib/vorlese-text.ts'
 
@@ -197,6 +201,59 @@ pruefe(
 pruefe(
   'die natürliche „Daniela“ schlägt die männliche „Stefan“ nicht',
   bevorzugteStimme([daniela, stefan])?.voiceURI === 'stefan'
+)
+
+console.log('\n— Tonlage —')
+
+/*
+  Die Tonlage ist der zweite Teil der Antwort auf „tiefe Männerstimme“: Die
+  Stimmwahl besorgt das Geschlecht, der Regler die Tiefe. Beide Werte liegen
+  unter der Mitte, und der Ersatzwert liegt tiefer – dort muss der Regler die
+  Arbeit allein machen.
+*/
+pruefe('eine Männerstimme wird abgesenkt', tonlageFuer(stefan) === TONLAGE_MAENNLICH)
+pruefe('eine andere Stimme geht tiefer', tonlageFuer(anna) === TONLAGE_ERSATZ)
+pruefe('ohne Stimme gilt der Ersatzwert', tonlageFuer(null) === TONLAGE_ERSATZ)
+pruefe('beide Werte liegen unter der Mitte', TONLAGE_MAENNLICH < 1 && TONLAGE_ERSATZ < 1)
+pruefe('der Ersatz liegt tiefer als die Männerstimme', TONLAGE_ERSATZ < TONLAGE_MAENNLICH)
+/*
+  Nach unten begrenzt: Unter etwa 0,6 klingt die Sprachausgabe nicht tiefer,
+  sondern verlangsamt und blechern. Eine Zahl, die niemand mehr hören will,
+  gehört nicht in die Voreinstellung.
+*/
+pruefe('keiner der Werte ist unhörbar tief', TONLAGE_ERSATZ >= 0.6)
+
+console.log('\n— Gruppierung der Auswahlliste —')
+
+{
+  const gruppen = gruppiereStimmen([anna, conrad, stefan, googleDeutsch, englisch])
+  pruefe(
+    'die Männerstimmen stehen in der eigenen Gruppe',
+    gruppen.maennlich.map((stimme) => stimme.voiceURI).join(',') === 'conrad-netz,stefan'
+  )
+  pruefe(
+    'die übrigen deutschen Stimmen in der anderen',
+    gruppen.weitere.map((stimme) => stimme.voiceURI).join(',') === 'google-de,anna'
+  )
+  pruefe(
+    'eine englische Stimme taucht nicht auf, solange es deutsche gibt',
+    !gruppen.maennlich.concat(gruppen.weitere).includes(englisch)
+  )
+  pruefe(
+    'zusammen ergeben beide Gruppen wieder alle deutschen Stimmen',
+    gruppen.maennlich.length + gruppen.weitere.length === 4
+  )
+}
+
+pruefe(
+  'ohne deutsche Stimme wird nicht ausgesperrt, sondern alles gezeigt',
+  gruppiereStimmen([englisch]).maennlich.length +
+    gruppiereStimmen([englisch]).weitere.length ===
+    1
+)
+pruefe(
+  'ohne jede Stimme bleiben beide Gruppen leer',
+  gruppiereStimmen([]).maennlich.length === 0
 )
 
 console.log('\n— Über die echten Lektionen —')

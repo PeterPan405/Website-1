@@ -151,6 +151,40 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
               </p>
             </div>
 
+            {/*
+              Der Änderungsvermerk, wenn es einen gibt.
+
+              Er steht unter den Quellen und über den Schlagwörtern: nach dem,
+              was den Artikel belegt, und vor dem, was ihn einordnet. Wer eine
+              korrigierte Zahl im Kopf hat, soll sie an derselben Stelle
+              wiederfinden, an der er die Quelle nachschlägt.
+
+              Stillschweigend zu korrigieren wäre schlimmer als der Fehler
+              selbst: Wer den Artikel vorher gelesen hat, trüge die alte Zahl
+              weiter mit sich und erführe nie, dass sie überholt ist.
+            */}
+            {article.korrekturen && article.korrekturen.length > 0 && (
+              <div className="border-border mt-10 border-t pt-6">
+                <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                  Was nach der Veröffentlichung geändert wurde
+                </h2>
+                <ul className="mt-3 space-y-2">
+                  {article.korrekturen.map((korrektur) => (
+                    <li
+                      key={korrektur.am}
+                      className="text-fg-muted text-sm leading-relaxed"
+                    >
+                      <time dateTime={korrektur.am} className="text-fg font-medium">
+                        {formatDate(korrektur.am)}
+                      </time>
+                      {' – '}
+                      {korrektur.was}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {article.tags.length > 0 && (
               <div className="border-border mt-10 border-t pt-6">
                 <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import {
@@ -10,7 +10,9 @@ import {
   formatPercent,
   formatPercentSigned,
 } from '@/lib/format'
+import { leseKursCsv, type Kurspunkt } from '@/lib/normierung'
 import { vergleiche, vorbehalte, type Vergleichsposten } from '@/lib/vergleich'
+import { Vergleichskurve } from '@/components/markets/Vergleichskurve'
 
 /**
  * Die Auswahl der beiden Titel und die Tabelle darunter.
@@ -45,6 +47,47 @@ export function Vergleichstafel({
     () => new Map(posten.map((eintrag) => [eintrag.symbol, eintrag])),
     [posten]
   )
+
+  /*
+    Die beiden Kursreihen werden nachgeladen, nicht mitgeliefert.
+
+    Sie ins Seitenpaket zu legen hieße, für über tausend Aktien Reihen
+    auszuliefern, von denen jeder Besucher zwei braucht. Stattdessen holt der
+    Browser genau die beiden CSV-Dateien, die ohnehin zum Herunterladen
+    dastehen – eine Datei, zwei Zwecke.
+
+    Schlägt der Abruf fehl, bleibt die Kurve weg und die Tabelle steht
+    trotzdem. Sie ist der Inhalt dieser Seite; die Kurve ist die Zugabe.
+  */
+  const [kurven, setzeKurven] = useState<{
+    links: Kurspunkt[]
+    rechts: Kurspunkt[]
+    fuer: string
+  } | null>(null)
+
+  useEffect(() => {
+    if (linksSymbol === rechtsSymbol) return
+    const kennung = `${linksSymbol}|${rechtsSymbol}`
+    let abgebrochen = false
+
+    async function holen() {
+      try {
+        const [a, b] = await Promise.all([
+          fetch(`/maerkte/${linksSymbol}/kurse.csv`).then((antwort) => antwort.text()),
+          fetch(`/maerkte/${rechtsSymbol}/kurse.csv`).then((antwort) => antwort.text()),
+        ])
+        if (abgebrochen) return
+        setzeKurven({ links: leseKursCsv(a), rechts: leseKursCsv(b), fuer: kennung })
+      } catch {
+        if (!abgebrochen) setzeKurven(null)
+      }
+    }
+
+    void holen()
+    return () => {
+      abgebrochen = true
+    }
+  }, [linksSymbol, rechtsSymbol])
 
   const links = nachSymbol.get(linksSymbol) ?? posten[0]
   const rechts = nachSymbol.get(rechtsSymbol) ?? posten[1]
@@ -111,6 +154,15 @@ export function Vergleichstafel({
                 ))}
               </ul>
             </div>
+          )}
+
+          {kurven?.fuer === `${linksSymbol}|${rechtsSymbol}` && (
+            <Vergleichskurve
+              links={kurven.links}
+              rechts={kurven.rechts}
+              namelinks={links.name}
+              namerechts={rechts.name}
+            />
           )}
 
           <div className="mt-8 overflow-x-auto">

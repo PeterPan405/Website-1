@@ -1,0 +1,69 @@
+name: Zinsen und Inflation aktualisieren
+
+# Holt Leitzins und Inflationsrate bei der Europäischen Zentralbank.
+#
+# Beide Reihen ändern sich monatlich beziehungsweise nach einer Sitzung des
+# EZB-Rats – täglich abzufragen wäre unhöflich gegenüber einer kostenlosen,
+# unbeaufsichtigten Schnittstelle und brächte an 27 von 30 Tagen dasselbe
+# Ergebnis.
+#
+# Der Abruf braucht keinen Schlüssel. Aus der Entwicklungsumgebung dieses
+# Projekts ist die EZB nicht erreichbar; auf einem GitHub-Läufer schon. Dieser
+# Workflow ist deshalb zugleich die einzige Stelle, an der sich der Abruf
+# überhaupt erproben lässt.
+
+on:
+  schedule:
+    # Wöchentlich, mittwochs um 06:10 UTC.
+    #
+    # Der HVPI erscheint als Schnellschätzung am Monatsende und endgültig Mitte
+    # des Folgemonats; der EZB-Rat tagt alle sechs bis acht Wochen. Ein
+    # wöchentlicher Lauf holt beides binnen Tagen ein.
+    - cron: '10 6 * * 3'
+  workflow_dispatch:
+
+concurrency:
+  group: zinsen
+  cancel-in-progress: false
+
+jobs:
+  abrufen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Zinsen und Inflation abrufen
+        run: npm run zinsen
+
+      - name: Momentaufnahme committen
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Erst vormerken, dann vergleichen – `git diff` allein sieht eine noch
+          # nicht versionierte Datei nicht und meldete „keine Änderung“.
+          git add data/snapshots/zinsen.json
+          if git diff --cached --quiet -- data/snapshots/zinsen.json; then
+            echo "Keine Änderung – kein Commit."
+            exit 0
+          fi
+
+          git commit -m "Zinsen: Stand $(date -u +%Y-%m-%d)"
+
+          zweig="${{ github.ref_name }}"
+          for versuch in 1 2 3; do
+            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
+            echo "Push fehlgeschlagen, Versuch $versuch"
+            sleep $((versuch * 5))
+          done
+          exit 1
