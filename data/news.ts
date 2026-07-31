@@ -101,6 +101,117 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'inflation-juli-2026-vorlaeufig-2-8-prozent',
+    title: 'Inflation im Juli: 2,8 Prozent – und warum „voraussichtlich“ dabeisteht',
+    metaTitle: 'Inflation Juli 2026: vorläufig 2,8 Prozent',
+    teaser:
+      'Das Bundesamt meldet für Juli vorläufig 2,8 Prozent. „Voraussichtlich“ steht nicht aus Höflichkeit – die endgültige Zahl kommt erst am 12. August.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-07-31T07:05:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Destatis', 'Verbraucherpreise', 'Schnellschätzung'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'Statistisches Bundesamt: Inflationsrate im Juli 2026 voraussichtlich +2,8 % (Pressemitteilung Nr. 270)',
+        url: 'https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/07/PD26_270_611.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das Statistische Bundesamt hat die Verbraucherpreise für Juli veröffentlicht: Die Inflationsrate liegt **voraussichtlich bei 2,8 Prozent** gegenüber dem Vorjahresmonat. Das Wort „voraussichtlich“ steht nicht aus Vorsicht in der Überschrift – es ist eine Aussage über die Zahl selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine vorläufige Zahl von einer endgültigen unterscheidet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den Verbraucherpreisindex werden monatlich mehrere hunderttausend Einzelpreise erhoben – in Geschäften, im Internet, aus Verwaltungsdaten. Bis zum Monatsende liegt davon nicht alles vor. Für die Schnellschätzung rechnet das Amt deshalb mit dem, was bis dahin eingetroffen ist, und schließt auf den Rest.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die **endgültigen Ergebnisse für Juli 2026 erscheinen am 12. August**. Erst dann ist jede Erhebung eingearbeitet. In aller Regel bleibt die Zahl gleich oder verschiebt sich um ein Zehntel – aber sie *kann* sich verschieben, und wer sie als feststehend zitiert, zitiert etwas, das noch nicht feststeht.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum es die Schnellschätzung trotzdem gibt',
+        items: [
+          'Geldpolitik arbeitet mit Vorlauf. Eine Notenbank, die zwei Wochen auf die endgültige Zahl wartet, entscheidet zwei Wochen später.',
+          'Märkte preisen ohnehin, was sie erwarten. Ohne offizielle Vorabzahl entstünde der Preis aus Gerüchten statt aus einer Erhebung.',
+          'Der Preis dafür ist die Unschärfe – und die ist benannt, nicht versteckt. Genau dafür steht das Wort „voraussichtlich“.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Wirtschaftszahlen liest, sollte auf zwei Wörter achten – „vorläufig“ und „endgültig“. Sie stehen fast immer da, werden fast immer überlesen, und sie unterscheiden eine Schätzung von einem Ergebnis. Das gilt für die Inflation genauso wie für Wachstum, Arbeitsmarkt und Außenhandel.',
+      },
+    ],
+  },
+  {
+    slug: 'arbeitslosenquote-und-unterbeschaeftigung-zwei-zahlen',
+    title: 'Zwei Zahlen zum Arbeitsmarkt – und beide stimmen',
+    teaser:
+      'Die Bundesagentur nennt 2.936.000 Arbeitslose und 3.605.000 Unterbeschäftigte – in derselben Meldung. Beide Zahlen stimmen, sie messen Verschiedenes.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Arbeitsmarkt', 'Bundesagentur für Arbeit', 'Unterbeschäftigung'],
+    relatedTopics: ['budget-und-sparquote', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – „Verhaltener Ausklang der Frühjahrsbelebung“ (30.06.2026)',
+        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im zuletzt veröffentlichten Monatsbericht der Bundesagentur für Arbeit stehen zwei Zahlen dicht beieinander: **2.936.000 Arbeitslose** und **3.605.000 Unterbeschäftigte**. Der Abstand beträgt fast siebenhunderttausend Menschen. Keine der beiden Zahlen ist falsch – sie zählen Verschiedenes, und der Unterschied ist der eigentliche Inhalt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer als arbeitslos gilt – und wer nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als arbeitslos zählt, wer keine Beschäftigung hat, dem Arbeitsmarkt zur Verfügung steht und bei der Agentur gemeldet ist. Wer in einer Fortbildung sitzt, in einer Maßnahme steckt oder vorübergehend krankgeschrieben ist, fällt aus dieser Zählung heraus – er sucht in diesem Moment keine Arbeit im Sinne der Statistik.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die **Unterbeschäftigung** nimmt genau diese Menschen wieder hinzu. Sie beantwortet nicht die Frage „wer ist gemeldet arbeitslos?“, sondern „für wie viele Menschen fehlt eine reguläre Stelle?“. Deshalb liegt sie höher, und deshalb ist sie die robustere Größe: Sie lässt sich nicht dadurch senken, dass mehr Maßnahmen beginnen.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Drei Zahlen, die zusammen ein Bild ergeben',
+        items: [
+          'Arbeitslosenquote 6,2 Prozent – die Schlagzeilenzahl, gemeldet und amtlich abgegrenzt.',
+          'Unterbeschäftigung 3.605.000 – dieselbe Lage ohne den Effekt der Arbeitsmarktpolitik.',
+          'Sozialversicherungspflichtige Beschäftigung 34,84 Millionen, rund 71.000 weniger als ein Jahr zuvor – die Gegenprobe von der anderen Seite.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die dritte Zahl ist die unbequemste. Arbeitslosigkeit kann sinken, während zugleich die Zahl der regulären Stellen zurückgeht – dann sind Menschen aus der Zählung gefallen, ohne dass Arbeit entstanden ist. Genau das steht im Bericht: Die Arbeitslosigkeit ging um 15.000 zurück, die Beschäftigung lag trotzdem unter dem Vorjahr.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Arbeitsmarktzahl trägt keine Aussage über die Lage. Wer wissen will, wie es steht, liest die Quote gegen die Unterbeschäftigung und beide gegen die Zahl der Beschäftigten. Stimmen die drei nicht überein, ist der Widerspruch die Nachricht – nicht die Zahl, die am besten aussieht.',
+      },
+    ],
+  },
+  {
     slug: 'fed-haelt-zinsen-drei-stimmen-fuer-erhoehung',
     title: 'Fed hält die Zinsen – aber drei Stimmen wollten die Erhöhung',
     teaser:
