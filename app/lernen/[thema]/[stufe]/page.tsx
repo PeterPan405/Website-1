@@ -7,6 +7,8 @@ import { Vorlesen } from '@/components/ui/Vorlesen'
 import { LevelComplete } from '@/components/learn/LevelComplete'
 import { LevelNav, type LevelNavEntry } from '@/components/learn/LevelNav'
 import { Quiz } from '@/components/learn/Quiz'
+import { Druckknopf } from '@/components/ui/Druckknopf'
+import { Druckquelle } from '@/components/ui/Druckquelle'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { TopicProgress } from '@/components/learn/TopicProgress'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -15,7 +17,7 @@ import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
-import { learningResourceSchema } from '@/lib/jsonld'
+import { learningResourceSchema, quizSchema } from '@/lib/jsonld'
 import { getLearnLevel, getLearnLevelParams, getRelatedTopics } from '@/lib/learn'
 import { begriffeZumThema, getBegriffsindex, kurzerklaerung } from '@/lib/glossar'
 import { getPfadeMitStufe } from '@/lib/lernpfade'
@@ -161,10 +163,15 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
               </Callout>
             )}
 
-            {/* Vorlesen: dieselben Blöcke, als gesprochene Abschnitte. */}
+            {/*
+              Vorlesen und Drucken nebeneinander: zwei Wege, denselben Text
+              außerhalb des Bildschirms zu haben. Beide verschwinden im
+              Ausdruck – ein Abspielknopf auf Papier ist keiner.
+            */}
             {!isOutline && (
-              <div className="mb-8">
+              <div data-drucken="aus" className="mb-8 flex flex-wrap items-center gap-3">
                 <Vorlesen abschnitte={vorleseAbschnitte(level.blocks, figureMeta)} />
+                <Druckknopf />
               </div>
             )}
 
@@ -173,7 +180,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             </div>
 
             {/* ------------------------------------------------ Wissenscheck */}
-            <div className="mt-14">
+            <div className="mt-14" data-drucken="aus">
               {level.quiz && level.quiz.length > 0 ? (
                 <Quiz
                   topicSlug={topic.slug}
@@ -210,7 +217,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             </div>
 
             {/* --------------------------------------- Abschluss und Weiter */}
-            <div className="mt-8">
+            <div className="mt-8" data-drucken="aus">
               <LevelComplete
                 topicSlug={topic.slug}
                 topicTitle={topic.title}
@@ -221,6 +228,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
 
             {/* Vorherige/nächste Stufe als klassische Blätternavigation. */}
             <nav
+              data-drucken="aus"
               aria-label="Weitere Stufen dieses Themas"
               className="border-border mt-8 flex flex-col gap-3 border-t pt-6 sm:flex-row sm:justify-between"
             >
@@ -252,10 +260,23 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
                 </Link>
               )}
             </nav>
+
+            {/* Steht nur auf Papier – damit das Blatt seinen Absender kennt. */}
+            <Druckquelle pfad={`/lernen/${topic.slug}/${levelId}`} />
           </article>
 
           {/* ------------------------------------------------ Seitenleiste */}
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+          {/*
+            Nicht auf Papier. Zwei Gründe: Die Stufenliste und die verwandten
+            Themen sind Wege woandershin, und der Fortschrittsbalken darüber
+            zeigt einen Stand, den der Browser dieses einen Lesers gespeichert
+            hat. Auf dem Blatt stünde er für immer – „0 von 3 Stufen“ bei
+            jemandem, der die Seite gerade zum ersten Mal geöffnet hat.
+          */}
+          <aside
+            data-drucken="aus"
+            className="space-y-6 lg:sticky lg:top-24 lg:self-start"
+          >
             <section aria-labelledby="stufen-nav" className="fk-card p-6">
               <h2 id="stufen-nav" className="text-fg text-base font-semibold">
                 {topic.title}
@@ -326,6 +347,28 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
           keywords: topic.keywords,
         })}
       />
+      {/*
+        Das Quiz nur, wo es eines gibt.
+
+        Stufen ohne ausgeschriebenen Text tragen kein Quiz – Fragen zu einem
+        ungeschriebenen Abschnitt wären nicht beantwortbar. Ein leeres
+        `Quiz`-Objekt auszugeben hieße, eine Prüfung zu behaupten, die es
+        nicht gibt.
+      */}
+      {level.quiz && level.quiz.length > 0 && (
+        <JsonLd
+          data={quizSchema({
+            name: level.title,
+            path: `/lernen/${topic.slug}/${levelId}`,
+            fragen: level.quiz.map((frage) => ({
+              frage: frage.question,
+              antworten: frage.options,
+              richtigerIndex: frage.correctIndex,
+              erklaerung: frage.explanation,
+            })),
+          })}
+        />
+      )}
     </>
   )
 }

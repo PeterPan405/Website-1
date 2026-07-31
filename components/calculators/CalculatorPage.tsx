@@ -1,15 +1,20 @@
 import Link from 'next/link'
+import { Callout } from '@/components/ui/Callout'
 import type { ReactNode } from 'react'
 
 import { ContentBlocks } from '@/components/content/ContentBlocks'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import {
+  ErgebnisAnbieter,
+  ErgebnisDownload,
+} from '@/components/calculators/ErgebnisDownload'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import type { CalculatorDefinition } from '@/data/calculators'
 import { calculators } from '@/data/calculators'
-import { webApplicationSchema } from '@/lib/jsonld'
+import { howToSchema, webApplicationSchema } from '@/lib/jsonld'
 import { getTopicsBySlugs } from '@/lib/learn'
 
 /**
@@ -48,7 +53,16 @@ export async function CalculatorPage({
       />
 
       <div className="fk-container py-12 sm:py-16">
-        {children}
+        {/*
+          Der Anbieter umschließt den Rechner **und** den Knopf darunter: Der
+          Rechner meldet sein Ergebnis von innen an, der Knopf liest es von
+          außen. Ohne gemeinsame Klammer sähe der eine nicht, was der andere
+          meldet.
+        */}
+        <ErgebnisAnbieter>
+          {children}
+          <ErgebnisDownload />
+        </ErgebnisAnbieter>
 
         {/* ------------------------------------------------------- Methodik */}
         <section aria-labelledby="methodik" className="mt-16 max-w-3xl">
@@ -64,6 +78,28 @@ export async function CalculatorPage({
               <ContentBlocks blocks={definition.methodology} />
             </div>
           </div>
+        </section>
+
+        {/* ------------------------------------------- Was er nicht sagt */}
+        {/*
+          Steht als eigener Kasten und nicht als Absatz in der Methodik.
+
+          Wer eine Rechnerseite überfliegt, liest die Zahl und die
+          Überschriften. Die Grenzen in einen Fließtext zu schreiben hieße, sie
+          genau den Lesern vorzuenthalten, die sie am nötigsten haben. Derselbe
+          Text steht auf dem heruntergeladenen PDF – aus derselben Quelle.
+        */}
+        <section aria-labelledby="grenzen" className="mt-8 max-w-3xl">
+          <Callout variant="warning" title="Was dieser Rechner nicht sagt">
+            <ul className="space-y-2">
+              {definition.grenzen.map((satz) => (
+                <li key={satz}>{satz}</li>
+              ))}
+            </ul>
+          </Callout>
+          <h2 id="grenzen" className="sr-only">
+            Grenzen dieses Rechners
+          </h2>
         </section>
 
         {/* ---------------------------------------------------- Querverweise */}
@@ -104,12 +140,26 @@ export async function CalculatorPage({
         </div>
       </div>
 
+      {/*
+        Zwei Auszeichnungen: `WebApplication` sagt, was die Seite ist,
+        `HowTo`, wie man sie bedient. Die Schritte stehen in
+        `data/calculators.ts` und beschreiben ausschließlich Felder, die es
+        auf dieser Seite gibt.
+      */}
       <JsonLd
         data={webApplicationSchema({
           name: definition.title,
           description: definition.metaDescription,
           path: `/rechner/${definition.slug}`,
           featureList: definition.featureList,
+        })}
+      />
+      <JsonLd
+        data={howToSchema({
+          name: definition.headline,
+          description: definition.lead,
+          path: `/rechner/${definition.slug}`,
+          schritte: definition.schritte,
         })}
       />
     </>

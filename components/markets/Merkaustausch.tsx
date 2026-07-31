@@ -145,7 +145,7 @@ export function Merkaustausch({
             onChange={(event) => setzeEingabe(event.target.value)}
             rows={3}
             placeholder="IMI1:…"
-            className="border-border bg-surface text-fg focus:border-markets mt-1.5 w-full rounded-lg border px-3 py-2.5 font-mono text-xs outline-none"
+            className="border-border bg-surface text-fg focus:border-markets focus-visible:ring-ring mt-1.5 w-full rounded-lg border px-3 py-2.5 font-mono text-xs focus-visible:ring-2 focus-visible:outline-none"
           />
           <button
             type="button"

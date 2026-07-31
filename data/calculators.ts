@@ -28,6 +28,30 @@ export interface CalculatorDefinition {
   featureList: string[]
   /** Erklärung der Methodik unter dem Rechner. */
   methodology: ContentBlock[]
+  /**
+   * Was dieser Rechner **nicht** sagt.
+   *
+   * Steht unter dem Rechner als Kasten und noch einmal auf dem
+   * heruntergeladenen PDF. Eine Quelle für beides – die Grenzen standen
+   * zwischenzeitlich in den Komponenten, und damit hätte auf dem Ausdruck
+   * etwas anderes stehen können als auf der Seite.
+   *
+   * Pflichtfeld, kein optionales. Ein Rechner, der seine Grenzen nicht nennt,
+   * behauptet, keine zu haben – und das stimmt bei keinem von ihnen.
+   */
+  grenzen: string[]
+  /**
+   * Die Bedienschritte, für die `HowTo`-Auszeichnung.
+   *
+   * Nur, was auf der Seite tatsächlich zu tun ist: die Eingabefelder in ihrer
+   * Reihenfolge und das, was danach abzulesen ist. Keine Ratschläge, keine
+   * Verweise auf andere Seiten.
+   *
+   * Pflichtfeld aus demselben Grund wie `grenzen`: Wer einen Rechner baut und
+   * nicht in drei Sätzen sagen kann, was daran zu tun ist, hat ein Problem an
+   * der Oberfläche und nicht bei den strukturierten Daten.
+   */
+  schritte: string[]
   /** Slugs passender Lernthemen. */
   relatedTopics: string[]
 }
@@ -48,6 +72,17 @@ export const calculators: CalculatorDefinition[] = [
       'Sparplan mit monatlichem, vierteljährlichem oder jährlichem Intervall',
       'Jahresverlauf als Tabelle und Diagramm',
       'Verdopplungszeit nach der 72er-Regel',
+    ],
+    grenzen: [
+      'Eine Modellrechnung, keine Prognose. Die Rendite gibst du selbst vor – das Ergebnis ist genau so verlässlich wie diese Annahme.',
+      'Für Aktienanlagen liefert eine konstante Rendite systematisch zu glatte Ergebnisse. Schwankungen kosten zusätzlich Rendite (Volatilitätsbremse).',
+      'Ohne Kosten, Steuern und Inflation. Alle drei senken das reale Ergebnis.',
+    ],
+    schritte: [
+      'Startkapital eintragen – der Betrag, der zu Beginn angelegt wird. Null ist erlaubt.',
+      'Sparrate und Einzahlungsintervall wählen: monatlich, vierteljährlich oder jährlich.',
+      'Zinssatz je Jahr und Laufzeit in Jahren angeben.',
+      'Endkapital ablesen und daneben die Aufteilung in Einzahlungen und Erträge; der Jahresverlauf steht als Tabelle und Diagramm darunter.',
     ],
     relatedTopics: ['zinseszins', 'cost-average-sparplan', 'etf', 'tagesgeld'],
     methodology: [
@@ -76,15 +111,6 @@ export const calculators: CalculatorDefinition[] = [
           '**Keine Inflation.** Das Ergebnis ist ein nominaler Betrag. Um in heutiger Kaufkraft zu rechnen, setze den Realzins ein – der Inflationsrechner nennt ihn.',
         ],
       },
-      {
-        type: 'callout',
-        variant: 'warning',
-        title: 'Was dieser Rechner nicht ist',
-        items: [
-          'Eine Modellrechnung, keine Prognose. Die Rendite gibst du selbst vor – das Ergebnis ist genau so verlässlich wie diese Annahme.',
-          'Für Aktienanlagen liefert eine konstante Rendite systematisch zu glatte Ergebnisse. Schwankungen kosten zusätzlich Rendite (Volatilitätsbremse).',
-        ],
-      },
     ],
   },
   {
@@ -101,6 +127,17 @@ export const calculators: CalculatorDefinition[] = [
       'Unterschied in Euro und als Anteil am Vermögen',
       'Nettorendite nach laufenden Kosten',
       'Gesamte Gebührenlast samt entgangenem Zinsertrag',
+    ],
+    grenzen: [
+      'Eine Modellrechnung bei konstanter Rendite. Die Bruttorendite gibst du selbst vor.',
+      'Gerechnet werden nur die laufenden Kosten. Ausgabeaufschläge, Transaktionskosten und Depotgebühren kommen gegebenenfalls hinzu.',
+      'Ohne Steuern und ohne Inflation.',
+    ],
+    schritte: [
+      'Anlagebetrag und Sparrate eintragen.',
+      'Bruttorendite je Jahr und Laufzeit angeben.',
+      'Zwei Kostenquoten gegenüberstellen – etwa 0,2 Prozent für einen Indexfonds und 1,5 Prozent für einen gemanagten Fonds.',
+      'Den Unterschied der beiden Endvermögen ablesen; er ist der Betrag, den die höhere Gebühr über die Laufzeit gekostet hat.',
     ],
     relatedTopics: ['etf', 'kosten-und-gebuehren', 'fonds', 'zinseszins'],
     methodology: [
@@ -159,6 +196,18 @@ export const calculators: CalculatorDefinition[] = [
       'Teilfreistellung nach Fondsart',
       'Sparerpauschbetrag für Einzel- und Zusammenveranlagung',
       'Vorabpauschale aus Basiszins, Wertzuwachs und Ausschüttungen',
+    ],
+    grenzen: [
+      'Keine geschäftsmäßige Hilfeleistung in Steuersachen. Die Rechnung erläutert die Systematik; maßgeblich ist der Steuerbescheid.',
+      'Nur Abgeltungsteuer auf Kapitalerträge im Privatvermögen. Die Günstigerprüfung, Verlustverrechnungstöpfe, ausländische Quellensteuer und die Anlage KAP sind nicht abgebildet.',
+      'Der Basiszins wird jährlich neu bekanntgegeben; die Rechnung nutzt den oben genannten Stand.',
+      'Teilfreistellungen richten sich nach der tatsächlichen Aktienquote des Fonds, nicht nach seiner Bezeichnung.',
+    ],
+    schritte: [
+      'Art der Erträge wählen: Zinsen, Dividenden oder Kursgewinne aus Fondsanteilen.',
+      'Ertragshöhe eintragen und angeben, wie viel vom Sparerpauschbetrag noch frei ist.',
+      'Kirchensteuerpflicht angeben, falls zutreffend.',
+      'Steuerlast und Nettoertrag ablesen; die Aufschlüsselung zeigt, was Teilfreistellung und Pauschbetrag abgezogen haben.',
     ],
     relatedTopics: ['sparerpauschbetrag', 'etf', 'fonds', 'depot-und-broker'],
     methodology: [
@@ -232,6 +281,18 @@ export const calculators: CalculatorDefinition[] = [
       'Download als PDF – ausgefüllt oder leer zum Ausdrucken',
       'Zusätzlich als Tabelle zum Weiterrechnen',
       'Eingaben bleiben im Browser, ohne Anmeldung',
+    ],
+    grenzen: [
+      'Eine Momentaufnahme zum Stichtag, keine Bewertung. Was ein Gegenstand tatsächlich einbringt, zeigt erst ein Verkauf.',
+      'Immobilien, Fahrzeuge und Hausrat werden mit dem Wert angesetzt, den du selbst einträgst. Für Immobilien ist das die unsicherste Zahl der Aufstellung.',
+      'Ohne Steuern auf stille Reserven. Wer Wertpapiere mit Gewinn verkauft, hat danach weniger als hier steht.',
+      'Ansprüche aus der gesetzlichen Rente und aus Betriebsrenten sind kein Vermögen im Sinne dieser Aufstellung und fehlen deshalb.',
+    ],
+    schritte: [
+      'Besitzpositionen eintragen: Konten, Wertpapiere, Immobilien, Sachwerte.',
+      'Verbindlichkeiten eintragen: Kredite, Darlehen, offene Rechnungen.',
+      'Nettovermögen als Differenz ablesen.',
+      'Den Bogen als PDF herunterladen – ausgefüllt oder leer zum Ausdrucken.',
     ],
     relatedTopics: ['worauf-achten-einsteiger', 'tagesgeld', 'immobilien', 'rente'],
     methodology: [
@@ -332,6 +393,16 @@ export const calculators: CalculatorDefinition[] = [
       'Halbierungszeit der Kaufkraft',
       'Realzins aus Nominalzins und Inflationsrate',
     ],
+    grenzen: [
+      'Eine gleichbleibende Inflationsrate ist eine Annahme. Tatsächlich schwankt sie von Jahr zu Jahr erheblich.',
+      'Die amtliche Rate misst einen Durchschnittswarenkorb. Der persönliche Warenkorb weicht davon ab – wer viel Miete zahlt, erlebt eine andere Inflation als wer viel tankt.',
+    ],
+    schritte: [
+      'Betrag eintragen, dessen Kaufkraft betrachtet werden soll.',
+      'Angenommene Inflationsrate je Jahr und den Zeitraum in Jahren angeben.',
+      'Wahlweise die nominale Rendite einer Anlage eintragen, um den Realzins zu sehen.',
+      'Beide Richtungen ablesen: was der Betrag später noch wert ist und welcher Betrag später dieselbe Kaufkraft hat.',
+    ],
     relatedTopics: ['zinseszins', 'tagesgeld', 'staatsanleihe', 'immobilien'],
     methodology: [
       { type: 'heading', level: 2, text: 'So wird gerechnet' },
@@ -387,6 +458,17 @@ export const calculators: CalculatorDefinition[] = [
       'Geschätzte Steuerlast und Nettorente',
       'Berücksichtigung betrieblicher und privater Zusatzrenten',
     ],
+    grenzen: [
+      'Eine Überschlagsrechnung, keine Rentenauskunft. Verbindlich ist allein die Renteninformation der Deutschen Rentenversicherung.',
+      'Gerechnet wird mit gleichbleibendem Einkommen und gleichbleibendem Rentenwert. Beide ändern sich über die Jahre.',
+      'Der Steuerabzug ist geschätzt. Die tatsächliche Steuer hängt vom Gesamteinkommen im Ruhestand ab.',
+      'Zeiten für Kindererziehung, Arbeitslosigkeit, Ausbildung und Abschläge für einen vorzeitigen Beginn sind nicht enthalten.',
+    ],
+    schritte: [
+      'Bisherige Rentenpunkte und das aktuelle Bruttoeinkommen eintragen.',
+      'Alter und geplanten Renteneintritt angeben.',
+      'Bruttorente ablesen und darunter, was nach Kranken- und Pflegeversicherung sowie Steuern bleibt.',
+    ],
     relatedTopics: ['rente', 'zinseszins', 'cost-average-sparplan'],
     methodology: [
       { type: 'heading', level: 2, text: 'So wird gerechnet' },
@@ -441,6 +523,18 @@ export const calculators: CalculatorDefinition[] = [
       'Erforderliche monatliche Sparrate',
       'Rechnung in heutiger Kaufkraft über den Realzins',
       'Berücksichtigung vorhandenen Vorsorgevermögens',
+    ],
+    grenzen: [
+      'Die erwartete gesetzliche Rente gibst du selbst vor. Verlässlicher ist die Renteninformation der Deutschen Rentenversicherung.',
+      'Eine konstante Rendite und eine konstante Inflationsrate über Jahrzehnte sind Annahmen, keine Erwartungswerte.',
+      'Ohne Steuern auf Kapitalerträge und ohne Kranken- und Pflegeversicherungsbeiträge im Ruhestand.',
+      'Ein längeres Leben als angenommen verlängert den Bedarf. Die Dauer des Ruhestands ist die unsicherste Größe der Rechnung.',
+    ],
+    schritte: [
+      'Gewünschtes monatliches Alterseinkommen in heutiger Kaufkraft eintragen.',
+      'Erwartete gesetzliche Rente und vorhandenes Vorsorgevermögen angeben.',
+      'Jahre bis zum Renteneintritt und angenommene Rendite eintragen.',
+      'Die Lücke und die Sparrate ablesen, die sie bis zum Renteneintritt schließt.',
     ],
     relatedTopics: ['rente', 'zinseszins', 'cost-average-sparplan', 'etf'],
     methodology: [
@@ -506,6 +600,15 @@ export const calculators: CalculatorDefinition[] = [
       'Verteilung der Ausgaben als Diagramm',
       'Empfohlener Notgroschen und Dauer des Aufbaus',
     ],
+    grenzen: [
+      'Eine Momentaufnahme eines Monats. Jährliche Posten – Versicherungen, Urlaub, Reparaturen – verzerren das Bild, wenn sie nicht anteilig eingerechnet sind.',
+      'Gerechnet wird nur, was eingetragen wurde. Der häufigste Fehler ist eine vergessene Ausgabe, nicht eine falsche Zahl.',
+    ],
+    schritte: [
+      'Monatliche Einnahmen eintragen.',
+      'Ausgaben nach Posten eintragen: Wohnen, Lebensmittel, Mobilität, Versicherungen, Sonstiges.',
+      'Sparquote ablesen und daneben, wie viele Monate der Notgroschen bis zur gewünschten Höhe braucht.',
+    ],
     relatedTopics: ['worauf-achten-einsteiger', 'tagesgeld', 'cost-average-sparplan'],
     methodology: [
       { type: 'heading', level: 2, text: 'So wird gerechnet' },
@@ -539,6 +642,67 @@ export const calculators: CalculatorDefinition[] = [
         title: 'Deine Daten bleiben bei dir',
         items: [
           'Die Eingaben werden ausschließlich im Browser verarbeitet. Es findet keine Übertragung an einen Server und keine Speicherung statt – nach dem Neuladen der Seite sind die Werte wieder auf die Vorbelegung zurückgesetzt.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'sparplanverlauf',
+    title: 'Sparplan am echten Verlauf',
+    headline: 'Sparplan am tatsächlichen Kursverlauf',
+    metaTitle: 'Sparplan-Rechner mit echten Kursen statt fester Rendite',
+    metaDescription:
+      'Was ein Sparplan an echten Kursen ergeben hätte – und was dieselbe Gesamtentwicklung ohne Schwankung ergeben hätte. Der Unterschied ist die Wirkung der Reihenfolge.',
+    lead: 'Ein Zinsrechner nimmt eine feste Rendite an und liefert eine glatte Kurve. Ein echter Kursverlauf tut das nie. Dieser Rechner stellt beides nebeneinander – bei derselben Gesamtentwicklung.',
+    summary: 'Sparplan an echten Kursen gegen dieselbe Rendite ohne Schwankung.',
+    featureList: [
+      'Sparplan über die abgerufene Kursreihe eines Titels',
+      'Vergleichsrechnung mit gleichmäßiger Rendite bei gleicher Gesamtentwicklung',
+      'Mittlerer Einstand gegen Durchschnitt der Kurse',
+      'Über tausend Titel zur Auswahl',
+    ],
+    grenzen: [
+      'Der Zeitraum ist so lang wie die gespeicherte Kursreihe – derzeit fünf Jahre. Für eine Aussage über Sparpläne ist das kurz, und es steht überall dabei.',
+      'Ohne Dividenden. Die Kursreihe ist eine Kursreihe; bei einem Titel mit vier Prozent Ausschüttung fehlen über den Zeitraum entsprechend viele Prozentpunkte.',
+      'Ohne Kosten und Steuern. Ordergebühren, Spread und Abgeltungsteuer sind nicht enthalten.',
+      'Ein Rückblick auf **einen** Titel und **einen** Zeitraum. Dass der echte Verlauf hier besser abgeschnitten hat, sagt nichts über den nächsten.',
+    ],
+    schritte: [
+      'Titel über das Suchfeld auswählen – Aktie, ETF, Index, Rohstoff oder Kryptowährung.',
+      'Rate je Monat eintragen; gekauft wird am ersten Handelstag jedes Monats.',
+      'Beide Endwerte nebeneinander ablesen: am echten Kursverlauf und bei gleichmäßiger Rendite.',
+      'Den mittleren Einstand mit dem Durchschnitt der Kurse vergleichen – er liegt immer darunter.',
+    ],
+    relatedTopics: ['cost-average-sparplan', 'zinseszins', 'risiko-und-rendite', 'etf'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Der Rechner nimmt die gespeicherte Kursreihe des Titels und kauft an jedem ersten Handelstag eines Monats für die eingegebene Rate. Wie viele Anteile das sind, entscheidet der Kurs an genau diesem Tag.',
+      },
+      {
+        type: 'formula',
+        expression: 'Anteile = Σ ( Rate / Kursₘ )   ·   Endwert = Anteile × letzter Kurs',
+        description:
+          'Bei niedrigem Kurs bringt dieselbe Rate mehr Anteile. Genau daher kommt der Unterschied zur gleichmäßigen Rechnung.',
+      },
+      { type: 'heading', level: 2, text: 'Womit verglichen wird' },
+      {
+        type: 'paragraph',
+        text: 'Die Vergleichsrechnung setzt **nicht** sieben Prozent an oder irgendeine andere Annahme, sondern die Rendite, die der Titel im selben Zeitraum tatsächlich erzielt hat. Beide Wege beginnen und enden damit beim selben Kurs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist der Punkt: Was übrig bleibt, ist allein die Wirkung der **Reihenfolge**. Eine geratene Vergleichsrendite würde zwei Dinge auf einmal ändern, und aus dem Ergebnis ließe sich nichts mehr ablesen.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum der Einstand unter dem Durchschnitt liegt',
+        items: [
+          'Der **mittlere Einstand** ist Einzahlung geteilt durch Anteile. Der **Durchschnittskurs** ist der Mittelwert der Kurse an den Kauftagen. Beide sind verschieden, sobald die Kurse schwanken – und der Einstand liegt dann immer darunter.',
+          'Das ist kein Trick und kein Vorteil, sondern eine Eigenschaft des harmonischen Mittels: Bei niedrigem Kurs fließt dieselbe Rate in mehr Anteile, sie wiegt also schwerer.',
+          'Daraus folgt **nicht**, dass ein Sparplan eine Einmalanlage schlägt. Bei durchweg steigenden Kursen tut er das nicht – dann war die Einmalanlage länger investiert.',
         ],
       },
     ],
@@ -591,20 +755,20 @@ export const calculators: CalculatorDefinition[] = [
         text: 'Zu ETFs und Rohstoffen ist keine Branche hinterlegt, weil sie keine einzelne haben. Sie erscheinen als „nicht zugeordnet" – die Branchenaufteilung beschreibt dann ausdrücklich nur den Rest und nicht das Ganze.',
       },
       {
-        type: 'callout',
-        variant: 'warning',
-        title: 'Was diese Seite nicht sagt',
-        items: [
-          'Nichts über Risiko. Es wird keine Schwankungsbreite gerechnet und keine Korrelation – zwei Titel aus verschiedenen Branchen können sich trotzdem im Gleichschritt bewegen.',
-          'Nichts über Ihr tatsächliches Depot. Gerechnet wird, was eingetragen wurde; ein vergessener Posten fehlt in jeder Aufteilung.',
-          'Nichts darüber, ob eine Aufteilung passt. Das hängt an Zielen, Zeitraum und Belastbarkeit – und die kennt diese Seite nicht.',
-          'Keine Steuern und keine Transaktionskosten. Die gewichtete Kostenquote bezieht sich nur auf den Teil, für den eine hinterlegt ist; wie groß dieser Teil ist, steht daneben.',
-        ],
-      },
-      {
         type: 'paragraph',
         text: 'Die Eingaben bleiben im Browser. Die Seite ist ein statisches Dokument ohne Gegenstelle – es gibt keinen Server, an den etwas gehen könnte.',
       },
+    ],
+    grenzen: [
+      'Kein Risikomaß. Es wird keine Schwankungsbreite und keine Korrelation gerechnet – zwei Titel aus verschiedenen Branchen können sich trotzdem im Gleichschritt bewegen.',
+      'Nur was eingetragen wurde. Ein vergessener Posten fehlt in jeder Aufteilung.',
+      'Zu ETFs und Rohstoffen ist keine Branche hinterlegt; die Branchenaufteilung beschreibt nur den zugeordneten Teil.',
+      'Keine Steuern, keine Transaktionskosten.',
+    ],
+    schritte: [
+      'Positionen über das Suchfeld auswählen und ihren Wert eintragen.',
+      'Aufteilung nach Anlageart, Branche, Land und Währung ablesen.',
+      'Die Beobachtungen darunter lesen – sie nennen Klumpen, die einer Liste nicht anzusehen sind.',
     ],
     relatedTopics: ['portfolio-aufbau', 'risiko-und-rendite', 'aktien-laender-branchen'],
   },

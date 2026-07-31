@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -9,12 +10,26 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
-import { BudgetChart } from '@/components/charts/BudgetChart'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
+import { nachgeladen } from '@/components/charts/nachladen'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { calculateBudget, type BudgetEntry } from '@/lib/finance'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+
+/*
+  Nachgeladen statt mitgeliefert: `recharts` wiegt 338 Kilobyte und lag bis
+  Juli 2026 im ersten Laden jeder Rechnerseite. Die Höhe hält den Platz frei,
+  damit beim Eintreffen nichts springt.
+*/
+const BudgetChart = nachgeladen<
+  React.ComponentProps<typeof import('@/components/charts/BudgetChart').BudgetChart>
+>(
+  () =>
+    import('@/components/charts/BudgetChart').then((m) => ({ default: m.BudgetChart })),
+  300
+)
 
 /**
  * Vorbelegte Kategorien.
@@ -45,6 +60,46 @@ export function BudgetCalculator() {
   const [expenses, setExpenses] = useState(initialExpenses)
 
   const result = useMemo(() => calculateBudget(incomes, expenses), [incomes, expenses])
+
+  useErgebnisbericht({
+    titel: 'Haushaltsrechner',
+    pfad: '/rechner/haushaltsrechner',
+    annahmen: [
+      ...incomes
+        .filter((e) => e.amount !== 0)
+        .map((e) => ({
+          bezeichnung: `Einnahme: ${e.label}`,
+          wert: formatCurrency(e.amount),
+        })),
+      ...expenses
+        .filter((e) => e.amount !== 0)
+        .map((e) => ({
+          bezeichnung: `Ausgabe: ${e.label}`,
+          wert: formatCurrency(e.amount),
+        })),
+    ],
+    ergebnisse: [
+      { bezeichnung: 'Bleibt übrig im Monat', wert: formatCurrency(result.balance) },
+      { bezeichnung: 'Einnahmen', wert: formatCurrency(result.totalIncome) },
+      { bezeichnung: 'Ausgaben', wert: formatCurrency(result.totalExpenses) },
+      { bezeichnung: 'Sparquote', wert: formatPercent(result.savingsRatePercent, 1) },
+      {
+        bezeichnung: 'Empfohlener Notgroschen',
+        wert: `${formatCurrency(result.emergencyFundRange.min)} bis ${formatCurrency(result.emergencyFundRange.max)}`,
+        hinweis: 'Drei bis sechs Monatsausgaben.',
+      },
+    ],
+    bloecke: [
+      {
+        titel: 'Anteil der Ausgaben',
+        zeilen: result.expenseShares.map((a) => ({
+          bezeichnung: a.label,
+          wert: `${formatPercent(a.sharePercent, 1)} · ${formatCurrency(a.amount)}`,
+        })),
+      },
+    ],
+    grenzen: getCalculatorDefinition('haushaltsrechner')!.grenzen,
+  })
 
   function updateEntry(
     setter: typeof setIncomes,

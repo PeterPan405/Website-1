@@ -57,6 +57,11 @@ export const mainNav: NavItem[] = [
         href: '/maerkte/msci-world',
         hint: 'Industrieländer weltweit',
       },
+      {
+        label: 'Anleihen',
+        href: '/anleihen',
+        hint: 'Warum der Kurs fällt, wenn der Zins steigt – mit Rechner',
+      },
     ],
     footerLink: { label: 'Alle Kurse ansehen', href: '/maerkte' },
   },
@@ -276,6 +281,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Globus', href: '/globus' },
       { label: 'Kalender', href: '/kalender' },
       { label: 'Staatsverschuldung', href: '/staatsverschuldung' },
+      { label: 'Anleihen', href: '/anleihen' },
     ],
   },
   {

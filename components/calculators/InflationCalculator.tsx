@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -10,11 +11,29 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
-import { InflationChart } from '@/components/charts/InflationChart'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
+import { useVorbelegung } from '@/components/calculators/vorbelegung'
+import { leseZahl } from '@/lib/rechner-vorbelegung'
+import { nachgeladen } from '@/components/charts/nachladen'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { calculateInflation, realRatePercent } from '@/lib/finance'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+
+/*
+  Nachgeladen statt mitgeliefert: `recharts` wiegt 338 Kilobyte und lag bis
+  Juli 2026 im ersten Laden jeder Rechnerseite. Die Höhe hält den Platz frei,
+  damit beim Eintreffen nichts springt.
+*/
+const InflationChart = nachgeladen<
+  React.ComponentProps<typeof import('@/components/charts/InflationChart').InflationChart>
+>(
+  () =>
+    import('@/components/charts/InflationChart').then((m) => ({
+      default: m.InflationChart,
+    })),
+  300
+)
 
 const defaults = {
   amount: 10_000,
@@ -29,10 +48,43 @@ export function InflationCalculator() {
   const [years, setYears] = useState(defaults.years)
   const [nominalReturn, setNominalReturn] = useState(defaults.nominalReturn)
 
+  /* Vorbelegung aus einem Lerntext: `#betrag=10000&rate=2&jahre=20`. */
+  useVorbelegung((werte) => {
+    setAmount(leseZahl(werte.betrag, defaults.amount, { min: 1, max: 100_000_000 }))
+    setRate(leseZahl(werte.rate, defaults.rate, { min: 0, max: 20 }))
+    setYears(leseZahl(werte.jahre, defaults.years, { min: 1, max: 60, ganzzahl: true }))
+    setNominalReturn(leseZahl(werte.rendite, defaults.nominalReturn, { min: 0, max: 20 }))
+  })
+
   const result = useMemo(
     () => calculateInflation({ amount, annualRatePercent: rate, years }),
     [amount, rate, years]
   )
+
+  useErgebnisbericht({
+    titel: 'Inflationsrechner',
+    pfad: '/rechner/inflationsrechner',
+    annahmen: [
+      { bezeichnung: 'Betrag heute', wert: formatCurrency(amount) },
+      { bezeichnung: 'Inflationsrate je Jahr', wert: formatPercent(rate, 2) },
+      { bezeichnung: 'Zeitraum', wert: `${formatNumber(years)} Jahre` },
+      { bezeichnung: 'Nominale Rendite je Jahr', wert: formatPercent(nominalReturn, 2) },
+    ],
+    ergebnisse: [
+      {
+        bezeichnung: 'Kaufkraft nach dem Zeitraum',
+        wert: formatCurrency(result.purchasingPower),
+        hinweis: 'Was der Betrag dann noch wert ist, in heutiger Kaufkraft gerechnet.',
+      },
+      {
+        bezeichnung: 'Nötiger Betrag für gleiche Kaufkraft',
+        wert: formatCurrency(result.requiredAmount),
+      },
+      { bezeichnung: 'Kaufkraftverlust', wert: formatCurrency(result.absoluteLoss) },
+      { bezeichnung: 'Verlust in Prozent', wert: formatPercent(result.lossPercent, 1) },
+    ],
+    grenzen: getCalculatorDefinition('inflationsrechner')!.grenzen,
+  })
 
   const real = realRatePercent(nominalReturn, rate)
   const approximation = nominalReturn - rate

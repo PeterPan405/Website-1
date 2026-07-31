@@ -9,6 +9,7 @@ import { IndexLaendergewichtung } from '@/components/content/figures/index-laend
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { Indexvergleichstafel } from '@/components/markets/Indexvergleichstafel'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
 import { Fondstafel } from '@/components/markets/Fondstafel'
@@ -50,6 +51,8 @@ import {
   getInstrument,
   getInstrumentSymbols,
   getFundamentalkennzahlen,
+  getIndexvergleich,
+  getIndexvergleichsreihen,
   getKennzahlen,
   getQuote,
   getQuotes,
@@ -99,15 +102,32 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
 
   if (!instrument || !quote || !ranges) notFound()
 
-  const [relatedTopics, allQuotes, coverage, meldungen, kennzahlen, fundamental] =
-    await Promise.all([
-      getTopicsBySlugs(instrument.relatedTopics),
-      getQuotes(),
-      getDataCoverage(),
-      getNewsForSymbol(symbol),
-      getKennzahlen(symbol),
-      getFundamentalkennzahlen(symbol),
-    ])
+  const [
+    relatedTopics,
+    allQuotes,
+    coverage,
+    meldungen,
+    kennzahlen,
+    fundamental,
+    indexvergleich,
+  ] = await Promise.all([
+    getTopicsBySlugs(instrument.relatedTopics),
+    getQuotes(),
+    getDataCoverage(),
+    getNewsForSymbol(symbol),
+    getKennzahlen(symbol),
+    getFundamentalkennzahlen(symbol),
+    getIndexvergleich(symbol),
+  ])
+
+  /*
+    Die beiden Kurven erst holen, wenn feststeht, dass es einen Vergleich gibt –
+    sonst lüde jede der tausend Aktienseiten eine Indexreihe, die auf zwei
+    Dritteln von ihnen nie gezeichnet wird.
+  */
+  const vergleichsreihen = indexvergleich
+    ? await getIndexvergleichsreihen(symbol, indexvergleich.index.symbol)
+    : null
 
   /*
     Der Dividendenbefund kommt aus einem Bestand im Repository, nicht über das
@@ -191,7 +211,8 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               {formatPercentSigned(quote.changePercent)})
             </span>
             <span aria-hidden="true">·</span>
-            <span>
+            {/* Ändert sich bei jedem Abruf – siehe scripts/referenzbilder.mjs. */}
+            <span data-fliesst="">
               {quote.intraday || !quote.source
                 ? `Stand ${formatDateTime(quote.asOf)}`
                 : `Schluss ${formatDate(quote.asOf)}`}
@@ -243,6 +264,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                       ? `${instrument.unit} · rund ${formatCurrency(euroKurs.euro, euroKurs.euro < 10 ? 2 : 0)} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
                       : `${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
                   }
+                  hinweisFliesst
                   tone={positive ? 'positive' : 'negative'}
                 />
                 <Stat
@@ -480,6 +502,16 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 plan={monatsplan}
                 einheit={instrument.unit}
                 name={instrument.name}
+                className="mt-12"
+              />
+            )}
+
+            {indexvergleich && (
+              <Indexvergleichstafel
+                vergleich={indexvergleich}
+                name={instrument.name}
+                ticker={instrument.ticker}
+                reihen={vergleichsreihen}
                 className="mt-12"
               />
             )}

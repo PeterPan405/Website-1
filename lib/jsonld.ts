@@ -227,3 +227,178 @@ export function datasetSchema(input: DatasetSchemaInput): JsonLdObject {
     isAccessibleForFree: true,
   }
 }
+
+export interface CourseSchemaInput {
+  name: string
+  description: string
+  path: string
+  /** Die Lektionen in der vorgesehenen Reihenfolge. */
+  lektionen: readonly { name: string; path: string; minuten: number }[]
+}
+
+/**
+ * Ein Akademie-Bereich als Kurs.
+ *
+ * ## Warum hier `Course` richtig ist und bei `/lernen` nicht
+ *
+ * Weil ein Bereich der Akademie eine **Reihenfolge** hat. `bereich.reihenfolge`
+ * ist ausdrücklich „aufbauend, nicht alphabetisch“, und genau das unterscheidet
+ * einen Kurs von einer Sammlung: Lektion vier setzt Lektion drei voraus. Die
+ * Lernthemen unter `/lernen` sind dagegen nebeneinander lesbar – dort ist
+ * `CollectionPage` die ehrlichere Auszeichnung und steht auch schon da.
+ *
+ * ## Warum keine `hasCourseInstance`
+ *
+ * Weil es keinen Termin, keinen Ort und keine Anmeldung gibt. `Course` ohne
+ * Instanz beschreibt genau das: einen Lehrstoff, den man jederzeit lesen kann.
+ * Eine erfundene Instanz mit `courseMode: online` und einem ausgedachten
+ * Startdatum wäre eine Angabe über etwas, das nicht stattfindet.
+ */
+export function courseSchema(input: CourseSchemaInput): JsonLdObject {
+  const url = absoluteUrl(input.path)
+  const minuten = input.lektionen.reduce((summe, l) => summe + l.minuten, 0)
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    '@id': url,
+    url,
+    name: input.name,
+    description: input.description,
+    inLanguage: 'de-DE',
+    provider: { '@id': organizationId },
+    isAccessibleForFree: true,
+    /*
+      `educationalLevel` bleibt weg. Die Akademie kennt keine Stufen – anders
+      als `/lernen`, wo jede Seite ausdrücklich Beginner, Fortgeschritten oder
+      Profi ist. Ein geratenes „advanced“ wäre eine Behauptung über den Leser.
+    */
+    timeRequired: `PT${minuten}M`,
+    numberOfCredits: input.lektionen.length,
+    hasPart: input.lektionen.map((lektion, stelle) => ({
+      '@type': 'LearningResource',
+      position: stelle + 1,
+      name: lektion.name,
+      url: absoluteUrl(lektion.path),
+      timeRequired: `PT${lektion.minuten}M`,
+      isAccessibleForFree: true,
+    })),
+  }
+}
+
+export interface QuizSchemaInput {
+  name: string
+  path: string
+  fragen: readonly {
+    frage: string
+    antworten: readonly string[]
+    richtigerIndex: number
+    erklaerung: string
+  }[]
+}
+
+/**
+ * Die Verständnisfragen einer Lernstufe.
+ *
+ * ## Warum `Quiz` und ausdrücklich **nicht** `FAQPage`
+ *
+ * Weil es keine häufig gestellten Fragen sind. Eine FAQ beantwortet, was Leser
+ * von sich aus fragen; ein Quiz prüft, ob jemand den Text darüber verstanden
+ * hat. „Was passiert mit der Kaufkraft bei 2 Prozent Inflation über 20 Jahre?“
+ * mit vier Antwortmöglichkeiten und einer richtigen ist keine FAQ, sondern eine
+ * Prüfungsfrage – und schema.org hat dafür einen eigenen Typ.
+ *
+ * Der Unterschied ist keine Wortklauberei. `FAQPage` löst bei Suchmaschinen
+ * eine eigene Darstellung aus, und wer Quizfragen so auszeichnet, holt sich
+ * eine Darstellung, die dem Leser die **Antwort** zeigt, bevor er die Frage
+ * beantwortet hat. Das ist genau das Gegenteil dessen, wofür das Quiz da ist.
+ *
+ * `suggestedAnswer` trägt deshalb die falschen Antworten, `acceptedAnswer` die
+ * richtige samt Begründung – so, wie es der Typ vorsieht.
+ */
+export function quizSchema(input: QuizSchemaInput): JsonLdObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Quiz',
+    url: absoluteUrl(input.path),
+    name: input.name,
+    inLanguage: 'de-DE',
+    isAccessibleForFree: true,
+    educationalUse: 'Selbsteinschätzung',
+    assesses: input.name,
+    provider: { '@id': organizationId },
+    hasPart: input.fragen.map((frage) => ({
+      '@type': 'Question',
+      eduQuestionType: 'Multiple choice',
+      text: frage.frage,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: frage.antworten[frage.richtigerIndex] ?? '',
+        comment: { '@type': 'Comment', text: frage.erklaerung },
+      },
+      suggestedAnswer: frage.antworten
+        .map((antwort, stelle) =>
+          stelle === frage.richtigerIndex
+            ? null
+            : { '@type': 'Answer' as const, text: antwort }
+        )
+        .filter(Boolean),
+    })),
+  }
+}
+
+export interface HowToSchemaInput {
+  name: string
+  description: string
+  path: string
+  /** Die Bedienschritte in der Reihenfolge der Eingabefelder. */
+  schritte: readonly string[]
+}
+
+/**
+ * Ein Rechner als Handlungsanweisung.
+ *
+ * ## Warum zusätzlich zu `WebApplication`
+ *
+ * `WebApplication` sagt, **was** die Seite ist – ein Werkzeug, kostenlos, im
+ * Browser. `HowTo` sagt, **wie** man es benutzt. Beides zusammen beschreibt
+ * eine Rechnerseite vollständiger als eines von beidem.
+ *
+ * ## Was ein Schritt sein darf und was nicht
+ *
+ * Nur, was auf der Seite tatsächlich zu tun ist – die Eingabefelder in ihrer
+ * Reihenfolge und das, was danach abzulesen ist. Keine Ratschläge („wähle
+ * einen realistischen Zinssatz“), keine Werbung für andere Seiten. Eine
+ * Anleitung, die etwas beschreibt, das der Leser auf der Seite nicht findet,
+ * ist eine falsche Angabe über die Seite – und sie fällt niemandem auf, weil
+ * strukturierte Daten unsichtbar sind.
+ *
+ * ## Was `HowTo` hier nicht bringt
+ *
+ * Eine eigene Darstellung in der Google-Suche: Die ist 2023 abgeschafft
+ * worden. Die Auszeichnung bleibt trotzdem richtig und wird von anderen
+ * Auswertern gelesen; sie ist nur kein Grund, Schritte zu erfinden, damit
+ * etwas dasteht.
+ */
+export function howToSchema(input: HowToSchemaInput): JsonLdObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    url: absoluteUrl(input.path),
+    name: input.name,
+    description: input.description,
+    inLanguage: 'de-DE',
+    /*
+      Kein `totalTime`. Wie lange jemand an einem Rechner sitzt, hängt daran,
+      wie viele Zahlen er nachsieht – eine Minutenangabe wäre geraten.
+    */
+    tool: { '@type': 'HowToTool', name: 'Webbrowser' },
+    supply: [],
+    step: input.schritte.map((schritt, stelle) => ({
+      '@type': 'HowToStep',
+      position: stelle + 1,
+      name: schritt.split(/[.:]/)[0],
+      text: schritt,
+      url: `${absoluteUrl(input.path)}#schritt-${stelle + 1}`,
+    })),
+  }
+}

@@ -45,3 +45,8 @@ next-env.d.ts
 
 # Wird bei jedem Build erzeugt (scripts/version.mjs), gehoert nicht ins Repository.
 /public/version.txt
+
+# Abweichungsbilder aus `npm run bilder`. Sie entstehen nur, wenn ein
+# Referenzbild nicht mehr passt, und gehören zur Fehlersuche – nicht ins
+# Repository. Die Referenzbilder selbst unter tests/referenzbilder/ schon.
+/tests/referenzbilder/abweichungen/

@@ -118,6 +118,9 @@ const SEITEN = [
   ['/rechner/zinsrechner/', 'Rechner – Eingabefelder und Ergebnis'],
   ['/globus/', 'Globus – SVG in voller Breite'],
   ['/staatsverschuldung/', 'Staatsverschuldung – Ländertabelle'],
+  ['/anleihen/', 'Anleihen – Rechner mit Laufzeitentabelle'],
+  /* Die breiteste Tabelle der Website: sieben Spalten mal zwölf Zeilen. */
+  ['/news/jahr/2026/', 'Jahresrückblick – siebenspaltige Tabelle'],
 ]
 
 const basis = (process.argv[2] ?? 'http://127.0.0.1:4173').replace(/\/$/, '')

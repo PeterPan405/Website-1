@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -10,7 +11,10 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField, SelectField } from '@/components/calculators/NumberField'
-import { CompoundChart } from '@/components/charts/CompoundChart'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
+import { useVorbelegung } from '@/components/calculators/vorbelegung'
+import { leseAuswahl, leseZahl } from '@/lib/rechner-vorbelegung'
+import { nachgeladen } from '@/components/charts/nachladen'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import {
   calculateCompoundInterest,
@@ -20,6 +24,21 @@ import {
   type ContributionInterval,
 } from '@/lib/finance'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+
+/*
+  Nachgeladen statt mitgeliefert: `recharts` wiegt 338 Kilobyte und lag bis
+  Juli 2026 im ersten Laden jeder Rechnerseite. Die Höhe hält den Platz frei,
+  damit beim Eintreffen nichts springt.
+*/
+const CompoundChart = nachgeladen<
+  React.ComponentProps<typeof import('@/components/charts/CompoundChart').CompoundChart>
+>(
+  () =>
+    import('@/components/charts/CompoundChart').then((m) => ({
+      default: m.CompoundChart,
+    })),
+  300
+)
 
 const defaults = {
   principal: 5000,
@@ -38,6 +57,29 @@ export function CompoundInterestCalculator() {
   const [years, setYears] = useState(defaults.years)
   const [timing, setTiming] = useState<'start' | 'end'>(defaults.timing)
 
+  /*
+    Werte aus der Adresse übernehmen, wenn ein Lerntext hierher verweist.
+
+    Die Namen sind kurz und deutsch, weil sie in einer sichtbaren Adresse
+    stehen: `#start=5000&rate=200&zins=6&jahre=25`. Die Grenzen sind dieselben
+    wie an den Feldern darunter – sie stehen bewusst zweimal, weil ein
+    `NumberField` seine Grenzen als Anzeige führt und die Adresse sie als
+    Schutz braucht. Wer eine ändert, ändert beide.
+  */
+  useVorbelegung((werte) => {
+    setPrincipal(leseZahl(werte.start, defaults.principal, { min: 0, max: 10_000_000 }))
+    setContribution(leseZahl(werte.rate, defaults.contribution, { min: 0, max: 100_000 }))
+    setRate(leseZahl(werte.zins, defaults.rate, { min: 0, max: 20 }))
+    setYears(leseZahl(werte.jahre, defaults.years, { min: 1, max: 60, ganzzahl: true }))
+    setInterval(
+      leseAuswahl(werte.intervall, defaults.interval, [
+        'monthly',
+        'quarterly',
+        'yearly',
+      ] as const)
+    )
+  })
+
   const result = useMemo(
     () =>
       calculateCompoundInterest({
@@ -50,6 +92,43 @@ export function CompoundInterestCalculator() {
       }),
     [principal, rate, years, contribution, interval, timing]
   )
+
+  useErgebnisbericht({
+    titel: 'Zinsrechner',
+    pfad: '/rechner/zinsrechner',
+    annahmen: [
+      { bezeichnung: 'Startkapital', wert: formatCurrency(principal) },
+      {
+        bezeichnung: `Sparrate (${contributionIntervalLabels[interval]})`,
+        wert: formatCurrency(contribution),
+      },
+      { bezeichnung: 'Zinssatz je Jahr', wert: formatPercent(rate, 2) },
+      { bezeichnung: 'Laufzeit', wert: `${formatNumber(years)} Jahre` },
+      {
+        bezeichnung: 'Einzahlung',
+        wert: timing === 'start' ? 'zu Periodenbeginn' : 'zum Periodenende',
+      },
+    ],
+    ergebnisse: [
+      { bezeichnung: 'Endkapital', wert: formatCurrency(result.finalBalance) },
+      { bezeichnung: 'davon Einzahlungen', wert: formatCurrency(result.totalDeposits) },
+      { bezeichnung: 'davon Zinsen', wert: formatCurrency(result.totalInterest) },
+      {
+        bezeichnung: 'Zinsanteil am Endkapital',
+        wert: formatPercent(result.interestSharePercent, 1),
+      },
+    ],
+    bloecke: [
+      {
+        titel: 'Jahresverlauf',
+        zeilen: result.years.map((j) => ({
+          bezeichnung: `Jahr ${j.year}`,
+          wert: formatCurrency(j.endBalance),
+        })),
+      },
+    ],
+    grenzen: getCalculatorDefinition('zinsrechner')!.grenzen,
+  })
 
   const approximateDoubling = doublingTimeYears(rate)
   const exactDoubling = exactDoublingTimeYears(rate)

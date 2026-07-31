@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -10,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { calculateRetirementGap } from '@/lib/finance'
@@ -59,6 +61,47 @@ export function RetirementGapCalculator() {
       existingCapital,
     ]
   )
+
+  useErgebnisbericht({
+    titel: 'Rentenlücke',
+    pfad: '/rechner/rentenluecke',
+    annahmen: [
+      {
+        bezeichnung: 'Gewünschtes Nettoeinkommen monatlich',
+        wert: formatCurrency(desired),
+      },
+      {
+        bezeichnung: 'Erwartete gesetzliche Nettorente',
+        wert: formatCurrency(statutory),
+      },
+      { bezeichnung: 'Weitere Einkünfte monatlich', wert: formatCurrency(other) },
+      { bezeichnung: 'Jahre bis zur Rente', wert: `${formatNumber(yearsUntil)} Jahre` },
+      { bezeichnung: 'Dauer des Ruhestands', wert: `${formatNumber(yearsIn)} Jahre` },
+      { bezeichnung: 'Rendite je Jahr', wert: formatPercent(returnRate, 2) },
+      { bezeichnung: 'Inflationsrate je Jahr', wert: formatPercent(inflation, 2) },
+      { bezeichnung: 'Vorhandenes Kapital', wert: formatCurrency(existingCapital) },
+    ],
+    ergebnisse: [
+      {
+        bezeichnung: 'Nötige Sparrate monatlich',
+        wert: formatCurrency(result.requiredMonthlySaving),
+        hinweis: 'In heutiger Kaufkraft.',
+      },
+      {
+        bezeichnung: 'Monatliche Lücke heute',
+        wert: formatCurrency(result.monthlyGapToday),
+      },
+      {
+        bezeichnung: 'Benötigtes Kapital bei Rentenbeginn',
+        wert: formatCurrency(result.requiredCapitalToday),
+      },
+      {
+        bezeichnung: 'Verbleibende Kapitallücke',
+        wert: formatCurrency(result.remainingCapitalToday),
+      },
+    ],
+    grenzen: getCalculatorDefinition('rentenluecke')!.grenzen,
+  })
 
   const hasGap = result.monthlyGapToday > 0
 

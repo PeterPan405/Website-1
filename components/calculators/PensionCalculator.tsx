@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -10,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { calculatePension, pensionDefaults } from '@/lib/finance'
@@ -65,6 +67,50 @@ export function PensionCalculator() {
       personalTaxPercent,
     ]
   )
+
+  useErgebnisbericht({
+    titel: 'Rentenrechner',
+    pfad: '/rechner/rentenrechner',
+    annahmen: [
+      { bezeichnung: 'Bruttojahreseinkommen', wert: formatCurrency(grossAnnualIncome) },
+      { bezeichnung: 'Beitragsjahre bisher', wert: `${formatNumber(yearsWorked)} Jahre` },
+      {
+        bezeichnung: 'Beitragsjahre bis zur Rente',
+        wert: `${formatNumber(yearsRemaining)} Jahre`,
+      },
+      { bezeichnung: 'Zusätzliche Rente monatlich', wert: formatCurrency(additional) },
+      { bezeichnung: 'Durchschnittsentgelt', wert: formatCurrency(averageIncome) },
+      { bezeichnung: 'Rentenwert je Punkt', wert: formatCurrency(pointValue) },
+      {
+        bezeichnung: 'Kranken- und Pflegeversicherung',
+        wert: formatPercent(healthPercent, 2),
+      },
+      { bezeichnung: 'Steuerpflichtiger Anteil', wert: formatPercent(taxablePercent, 1) },
+    ],
+    ergebnisse: [
+      {
+        bezeichnung: 'Gesamte Nettorente monatlich',
+        wert: formatCurrency(result.totalNetMonthly),
+      },
+      {
+        bezeichnung: 'Gesetzliche Bruttorente',
+        wert: formatCurrency(result.grossStatutoryMonthly),
+      },
+      {
+        bezeichnung: 'Gesetzliche Nettorente',
+        wert: formatCurrency(result.netStatutoryMonthly),
+      },
+      {
+        bezeichnung: 'Rentenpunkte insgesamt',
+        wert: formatNumber(result.totalPoints, 2),
+      },
+      {
+        bezeichnung: 'Ersatzquote',
+        wert: formatPercent(result.replacementRatePercent, 1),
+      },
+    ],
+    grenzen: getCalculatorDefinition('rentenrechner')!.grenzen,
+  })
 
   function reset() {
     setGrossAnnualIncome(defaults.grossAnnualIncome)

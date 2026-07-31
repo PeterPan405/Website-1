@@ -13,6 +13,7 @@ import {
   berechneFundamentalkennzahlen,
   type Fundamentalkennzahlen,
 } from '@/lib/fundamentalkennzahlen'
+import { leitindexFuer, vergleiche, type Indexvergleich } from '@/lib/indexvergleich'
 import { berechneKennzahlen, type Kennzahlen } from '@/lib/kennzahlen'
 import { rechneUm } from '@/lib/devisen'
 import { gleicheWaehrung, inHauptwaehrung } from '@/lib/waehrungseinheit'
@@ -46,6 +47,7 @@ import {
 export type { MarketInstrument, MarketRange, SeriesPoint } from '@/data/markets'
 export { fundamentalQuelle, fundamentalStand } from '@/lib/fundamentaldaten'
 export type { Fundamentalkennzahlen } from '@/lib/fundamentalkennzahlen'
+export type { Indexvergleich, Leitindex } from '@/lib/indexvergleich'
 export type { Bestandteil, Stimmung, Stimmungsstufe } from '@/lib/stimmungsindex'
 export { STUFEN_TEXT } from '@/lib/stimmungsindex'
 
@@ -417,6 +419,58 @@ export async function getAllSeries(
     '1M': sliceRange(series, '1M'),
     '1J': sliceRange(series, '1J'),
     '5J': sliceRange(series, '5J'),
+  }
+}
+
+/**
+ * Der Vergleich einer Aktie mit dem Leitindex ihres Handelsplatzes.
+ *
+ * `null` heißt eines von dreien, und alle drei sind vorgesehene Zustände:
+ * Der Wert ist keine Aktie, für seinen Handelsplatz führt die Website keinen
+ * Index (Indien, Kanada, Australien und weitere), oder eine der beiden Reihen
+ * liegt nicht als abgerufener Kurs vor.
+ *
+ * Ausdrücklich **ohne** die erzeugten Demo-Reihen: `getLiveSeries` statt
+ * `basisFor`. Ein Vergleich, bei dem eine Seite gewürfelt ist, sähe aus wie
+ * eine Messung – und die Prozentzahl daneben ließe sich nicht von einer echten
+ * unterscheiden. Wo keine echten Kurse liegen, entfällt der Abschnitt.
+ */
+export async function getIndexvergleich(symbol: string): Promise<Indexvergleich | null> {
+  const definition = findDefinition(symbol)
+  if (!definition || definition.kind !== 'stock') return null
+
+  const leitindex = leitindexFuer(definition.unit, definition.sitzland)
+  if (!leitindex || leitindex.symbol === symbol) return null
+
+  const reihe = getLiveSeries(symbol)
+  const indexreihe = getLiveSeries(leitindex.symbol)
+  if (!reihe || !indexreihe) return null
+
+  return vergleiche(
+    reihe.daily.map((punkt) => ({ d: punkt.t.slice(0, 10), c: punkt.value })),
+    indexreihe.daily.map((punkt) => ({ d: punkt.t.slice(0, 10), c: punkt.value })),
+    leitindex
+  )
+}
+
+/**
+ * Die beiden Reihen des Indexvergleichs für die normierte Kurve.
+ *
+ * Getrennt von `getIndexvergleich`, weil die Zahlen und das Bild verschiedene
+ * Dinge brauchen: Die Tabelle will drei Stichtage, die Kurve will jeden Punkt
+ * der letzten fünf Jahre. Beides in einem Rückgabewert zu bündeln hieße, die
+ * gesamte Reihe auch dort mitzuschleppen, wo nur drei Zahlen gebraucht werden.
+ */
+export async function getIndexvergleichsreihen(
+  symbol: string,
+  leitindexSymbol: string
+): Promise<{ wert: SeriesPoint[]; index: SeriesPoint[] } | null> {
+  const wert = getLiveSeries(symbol)
+  const index = getLiveSeries(leitindexSymbol)
+  if (!wert || !index) return null
+  return {
+    wert: sliceRange(wert.daily, '5J'),
+    index: sliceRange(index.daily, '5J'),
   }
 }
 

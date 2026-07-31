@@ -21,6 +21,7 @@ import { getInstruments, STIMMUNG_SEITEN } from '@/lib/markets'
 import { calculators } from '@/data/calculators'
 import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
+import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
 import { getNewsArticles } from '@/lib/news'
 import { folgenAdresse, getFolgen, kurzfassung } from '@/lib/podcast'
 import { rubriken } from '@/lib/rubriken'
@@ -109,13 +110,16 @@ const seiten: SearchEntry[] = [
 ]
 
 export async function buildSearchIndex(): Promise<SearchEntry[]> {
-  const [themen, instrumente, artikel, ausgaben, laender] = await Promise.all([
-    getLearnTopics(),
-    getInstruments(),
-    getNewsArticles(),
-    getEditions(),
-    getLaender(),
-  ])
+  const [themen, instrumente, artikel, ausgaben, laender, jahrgaenge] = await Promise.all(
+    [
+      getLearnTopics(),
+      getInstruments(),
+      getNewsArticles(),
+      getEditions(),
+      getLaender(),
+      getRueckblickJahre(),
+    ]
+  )
 
   const eintraege: SearchEntry[] = []
 
@@ -135,6 +139,14 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     kind: 'Bereich',
     hint: 'Alle bisherigen Ausgaben, nach Monaten gruppiert.',
     keywords: ['ausgabe', 'archiv', 'morgen'],
+  })
+
+  eintraege.push({
+    title: 'Jahresrückblick',
+    href: '/news/jahr',
+    kind: 'Bereich',
+    hint: 'Was jedes Jahr an den Märkten brachte – gerechnet aus den Kursreihen.',
+    keywords: ['jahr', 'jahresbilanz', 'bilanz', 'rueckblick', 'jahresrendite'],
   })
 
   eintraege.push({
@@ -339,6 +351,39 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     keywords: ['merkliste', 'merken', 'watchlist', 'beobachten', 'favoriten'],
   })
   eintraege.push({
+    title: 'Was du gesucht und nicht gefunden hast',
+    href: '/suche/luecken',
+    kind: 'Bereich',
+    hint: 'Erfolglose Suchen, notiert in diesem Browser – sichtbar, löschbar, nicht übertragen',
+    keywords: [
+      'suche',
+      'suchen',
+      'luecken',
+      'nichts gefunden',
+      'fehlt',
+      'themenwunsch',
+      'protokoll',
+    ],
+  })
+  eintraege.push({
+    title: 'Anleihen',
+    href: '/anleihen',
+    kind: 'Bereich',
+    hint: 'Warum der Kurs fällt, wenn der Zins steigt – mit Rechner für Duration und Konvexität',
+    keywords: [
+      'anleihe',
+      'anleihen',
+      'bond',
+      'kupon',
+      'duration',
+      'konvexitaet',
+      'rendite',
+      'zinsaenderungsrisiko',
+      'rentenfonds',
+      'staatsanleihe',
+    ],
+  })
+  eintraege.push({
     title: 'Aktien nach Branchen',
     href: '/maerkte/branchen',
     kind: 'Bereich',
@@ -462,6 +507,21 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Tagesüberblick',
       hint: ausgabe.intro,
       keywords: [ausgabe.date],
+    })
+  }
+
+  /*
+    Jeder Jahrgang einzeln: Gesucht wird nach der Jahreszahl, nicht nach dem
+    Wort „Jahresrückblick“ – „2025“ ist die Eingabe, die auf diese Seite führen
+    soll.
+  */
+  for (const jahr of jahrgaenge) {
+    eintraege.push({
+      title: `Das Marktjahr ${jahr}`,
+      href: `/news/jahr/${jahr}`,
+      kind: 'Jahresrückblick',
+      hint: `Veränderung, Hoch, Tief und größter Rückschlag von zwölf Märkten im Jahr ${jahr}.`,
+      keywords: [String(jahr), 'jahresrueckblick', 'jahresbilanz'],
     })
   }
 

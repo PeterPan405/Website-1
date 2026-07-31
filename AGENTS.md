@@ -97,6 +97,25 @@ Was im Protokoll steht, ist eine gelesene Quelle — mit Statuscode, Datum und
 Adresse daneben. Genau das verlangt `.claude/skills/newsupdate/SKILL.md`, und
 ohne diesen Umweg ist die Anforderung hier nicht erfüllbar.
 
+## Davor: welcher Kanal ist heute überhaupt offen?
+
+**`.github/workflows/quellen-pruefen.yml`** klopft die gepflegte Quellenliste
+(`data/nachrichtenquellen.ts`) ab und sagt je Rubrik, welche Adresse heute Text
+liefert. Er läuft täglich um 05:30 UTC, eine halbe Stunde vor der
+Nachrichten-Routine, und lässt sich von Hand starten.
+
+Der Grund ist ein Ausfall, der nicht auffällt: Eine Seite antwortet mit **200**
+und liefert trotzdem nichts – ein Gerüst aus Menü und Fußzeile, weil der Inhalt
+per JavaScript nachkommt. Das führt nicht zum Abbruch, sondern zu einer
+dünneren Ausgabe. `lib/quellenprobe.ts` trennt deshalb fünf Zustände:
+`brauchbar`, `alt` (kein Datum von heute oder gestern), `leer` (Gerüst),
+`gesperrt` (Zustimmungs- oder Bot-Sperre) und `stumm` (antwortet nicht).
+
+**Eine Adresse, die niemand abgerufen hat, gehört nicht in die Liste.** Beim
+ersten Entwurf waren sieben von siebzehn tot – 404 oder 403, alle plausibel
+aussehend. Der Beleg steht als Prüfstand im Kopf von
+`data/nachrichtenquellen.ts`.
+
 **Suchergebnisse sind kein Ersatz.** `WebSearch` funktioniert und ist gut, um
 Adressen zu finden — aber es liefert Zusammenfassungen fremder Seiten, keine
 Seiten. Am 31. Juli 2026 kamen daraus zum Goldpreis zwei Zahlen, die einander

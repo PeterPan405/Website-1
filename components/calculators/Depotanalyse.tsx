@@ -1,8 +1,12 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import { InputPanel } from '@/components/calculators/CalculatorPanels'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
+import { Depotverlauf } from '@/components/calculators/Depotverlauf'
+import { InstrumentSuche } from '@/components/calculators/InstrumentSuche'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -104,6 +108,110 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
 
   const funde = useMemo(() => beobachtungen(analyse), [analyse])
 
+  /*
+    Die Gewichtung für den Rückblick – Symbol und Anteil in Prozent.
+
+    Abgeleitet aus denselben Zeilen wie die Analyse und nicht aus ihr: Die
+    Analyse gruppiert bereits nach Art, Branche und Land; die einzelnen
+    Positionen stehen darin nicht mehr getrennt. Zwei Wege zu derselben
+    Angabe, und dieser ist der kürzere.
+  */
+  const verlaufsanteile = useMemo(
+    () =>
+      zeilen
+        .map((z) => ({
+          symbol: z.symbol,
+          anteil: Number.parseFloat(z.betrag.replace(/\./g, '').replace(',', '.')),
+        }))
+        .filter((p) => p.symbol && Number.isFinite(p.anteil) && p.anteil > 0),
+    [zeilen]
+  )
+
+  const anzeigenamen = useMemo(
+    () => new Map(katalog.map((e) => [e.symbol, e.name])),
+    [katalog]
+  )
+
+  /*
+    Das Ergebnis zum Mitnehmen anmelden.
+
+    Die Positionen sind hier die Annahmen – ohne sie ist jede Aufteilung eine
+    Zahl ohne Herkunft. Ist nichts eingetragen, wird `null` gemeldet und der
+    Knopf verschwindet, statt ein Blatt mit Nullen anzubieten.
+  */
+  useErgebnisbericht(
+    analyse.anzahl === 0
+      ? null
+      : {
+          titel: 'Depotanalyse',
+          pfad: '/rechner/depotanalyse',
+          annahmen: analyse.positionen.map((p) => ({
+            bezeichnung: p.stammdaten?.name ?? p.symbol,
+            wert: formatCurrency(p.betrag),
+          })),
+          ergebnisse: [
+            { bezeichnung: 'Summe', wert: formatCurrency(analyse.summe) },
+            {
+              bezeichnung: 'Größte Position',
+              wert: formatPercent(analyse.konzentration.groessterPosten * 100, 1),
+            },
+            {
+              bezeichnung: 'Drei größte zusammen',
+              wert: formatPercent(analyse.konzentration.dreiGroessten * 100, 1),
+            },
+            {
+              bezeichnung: 'Wirksame Positionszahl',
+              wert: formatNumber(analyse.konzentration.wirksameAnzahl, 1),
+              hinweis:
+                'Wie vielen gleich großen Positionen die Verteilung entspricht – der ' +
+                'Kehrwert des Herfindahl-Index.',
+            },
+            ...(analyse.kostenquote !== null
+              ? [
+                  {
+                    bezeichnung: 'Laufende Kosten (gewichtet)',
+                    wert: formatPercent(analyse.kostenquote, 2),
+                    hinweis: `Bezogen auf ${formatPercent(analyse.kostenAbdeckung * 100, 0)} der Summe; nur dort ist eine Kostenquote hinterlegt.`,
+                  },
+                ]
+              : []),
+          ],
+          bloecke: [
+            {
+              titel: 'Nach Anlageart',
+              zeilen: alsBerichtszeilen(analyse.nachArt, analyse.summe),
+            },
+            {
+              titel: 'Nach Branche',
+              zeilen: alsBerichtszeilen(analyse.nachBranche, analyse.summe),
+            },
+            {
+              titel: 'Nach Sitzland',
+              zeilen: alsBerichtszeilen(
+                analyse.nachLand.map((l) => ({
+                  ...l,
+                  gruppe: l.gruppe === null ? null : (laender.get(l.gruppe) ?? l.gruppe),
+                })),
+                analyse.summe
+              ),
+            },
+            {
+              titel: 'Nach Währung',
+              zeilen: alsBerichtszeilen(analyse.nachWaehrung, analyse.summe),
+            },
+            ...(funde.length > 0
+              ? [
+                  {
+                    titel: 'Was an der Verteilung auffällt',
+                    zeilen: funde.map((f) => ({ bezeichnung: f.text, wert: '' })),
+                  },
+                ]
+              : []),
+          ],
+          grenzen: getCalculatorDefinition('depotanalyse')!.grenzen,
+        }
+  )
+
   function aendere(id: number, feld: 'symbol' | 'betrag', wert: string) {
     setZeilen((alt) => alt.map((z) => (z.id === id ? { ...z, [feld]: wert } : z)))
   }
@@ -114,21 +222,12 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
         <div className="space-y-2">
           {zeilen.map((zeile) => (
             <div key={zeile.id} className="flex flex-wrap items-end gap-2">
-              <label className="min-w-0 flex-1">
-                <span className="sr-only">Instrument</span>
-                <select
-                  value={zeile.symbol}
-                  onChange={(e) => aendere(zeile.id, 'symbol', e.target.value)}
-                  className="fk-input w-full"
-                >
-                  <option value="">– wählen –</option>
-                  {katalog.map((e) => (
-                    <option key={e.symbol} value={e.symbol}>
-                      {e.name} ({e.ticker})
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <InstrumentSuche
+                eintraege={katalog}
+                wert={zeile.symbol}
+                onWaehle={(symbol) => aendere(zeile.id, 'symbol', symbol)}
+                label="Instrument suchen"
+              />
               <label className="w-32">
                 <span className="sr-only">Betrag in Euro</span>
                 <input
@@ -270,6 +369,18 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
               </p>
             </Callout>
           )}
+
+          {/*
+            Der Rückblick steht ganz unten, nach den Beobachtungen.
+
+            Die Reihenfolge ist die der Fragen: erst „wie ist das gebaut“, dann
+            „was fällt daran auf“, dann „wie hätte sich das angefühlt“. Wer den
+            Verlauf zuerst sieht, liest eine Rendite und hat die Aufteilung
+            noch nicht angesehen, auf die sie sich bezieht.
+          */}
+          <Abschnitt titel="Was daraus geworden wäre">
+            <Depotverlauf positionen={verlaufsanteile} namen={anzeigenamen} />
+          </Abschnitt>
         </>
       )}
     </div>
@@ -329,4 +440,13 @@ function Abschnitt({ titel, children }: { titel: string; children: React.ReactNo
       <div className="mt-4">{children}</div>
     </section>
   )
+}
+
+/** Eine Aufteilung als Berichtszeilen – Anteil und Betrag nebeneinander. */
+function alsBerichtszeilen(eintraege: Anteil[], summe: number) {
+  if (summe <= 0) return []
+  return eintraege.map((e) => ({
+    bezeichnung: e.gruppe ?? 'nicht zugeordnet',
+    wert: `${formatPercent(e.anteil * 100, 1)} · ${formatCurrency(e.betrag)}`,
+  }))
 }

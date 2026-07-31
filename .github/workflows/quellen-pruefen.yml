@@ -1,0 +1,69 @@
+name: Quellen vorab prüfen
+
+# Klopft vor einem Nachrichtenlauf ab, welche Quellen heute Text liefern.
+#
+# ## Warum es diesen Workflow gibt
+#
+# Weil eine Quelle auf drei Arten ausfallen kann und nur eine davon auffällt:
+# Sie antwortet nicht (Statuscode – sieht jeder), sie antwortet mit 200 und
+# liefert ein Gerüst aus Menü und Fußzeile (der Inhalt kommt per JavaScript
+# nach), oder sie antwortet mit 200 und liefert etwas von vorgestern.
+#
+# Fall zwei und drei führen nicht zu einem Abbruch, sondern zu einer dünneren
+# Ausgabe: sechs Artikel statt neun, alle aus den zwei Quellen, die noch gingen,
+# und niemand merkt, dass drei ausgefallen sind. Diese Prüfung macht den
+# Ausfall sichtbar, **bevor** jemand schreibt.
+#
+# ## Warum ein Läufer
+#
+# Aus derselben Not wie bei `quellen-holen.yml`: Die Entwicklungsumgebung
+# erreicht nur GitHub und npm, jede andere Adresse endet am Egress-Proxy mit
+# 403. Ein Läufer hat vollen Netzzugang.
+#
+# ## Was hier nicht passiert
+#
+# Es wird nichts ins Repository geschrieben und kein fremder Text ausgegeben.
+# Gemessen werden Zeichen und Urteile; wer eine Quelle **lesen** will, nimmt
+# danach `quellen-holen.yml` mit den Adressen, die dieser Lauf am Ende auflistet.
+#
+# ## Warum morgens vor sechs
+#
+# Damit das Ergebnis dasteht, wenn der Nachrichtenlauf beginnt. Ein rotes
+# Ergebnis ist kein Grund, den Lauf abzusagen – es ist die Ansage, welche
+# Rubrik heute eine Ausweichquelle braucht.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Stichtag JJJJ-MM-TT (leer = heute)'
+        required: false
+        type: string
+  schedule:
+    # 05:30 UTC – eine halbe Stunde vor der Nachrichten-Routine, damit das
+    # Ergebnis fertig ist, wenn sie anläuft.
+    - cron: '30 5 * * *'
+
+concurrency:
+  group: quellen-pruefen
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Quellen abklopfen
+    runs-on: ubuntu-latest
+    # Ein rotes Ergebnis ist eine Aussage über die Quellenlage, kein Defekt
+    # dieses Workflows. Es soll im Protokoll stehen und den Lauf kennzeichnen,
+    # aber niemanden daran hindern, die Ausgabe trotzdem zu schreiben.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Quellen abklopfen
+        run: node --experimental-strip-types scripts/quellen-pruefen.ts ${{ inputs.tag }}

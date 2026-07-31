@@ -152,7 +152,8 @@ export default async function MarketsOverviewPage() {
             {asOf && (
               <>
                 <span aria-hidden="true">·</span>
-                <span>
+                {/* Ändert sich bei jedem Abruf – siehe scripts/referenzbilder.mjs. */}
+                <span data-fliesst="">
                   {quotes[0]?.intraday
                     ? `Stand ${formatDateTime(asOf)}`
                     : `Stand ${formatDate(asOf)}`}

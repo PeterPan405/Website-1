@@ -19,6 +19,37 @@ ersatzlos entfernt, und dorthin geht es nicht zurück. Jede Zahl im Text muss
 Belastbares finden lässt, schreibe lieber acht Artikel als neun mit einem
 geratenen.
 
+## 0. Vorabprüfung: welcher Kanal ist heute offen?
+
+**Bevor du irgendetwas suchst.** Eine Quelle fällt auf drei Arten aus, und nur
+eine davon fällt auf: Sie antwortet nicht (Statuscode — sieht jeder), sie
+antwortet mit 200 und liefert ein Gerüst aus Menü und Fußzeile (der Inhalt kommt
+per JavaScript nach), oder sie antwortet mit 200 und liefert etwas von
+vorgestern.
+
+Die letzten beiden führen nicht zum Abbruch, sondern zu einer **dünneren
+Ausgabe**: sechs Artikel statt neun, alle aus den zwei Quellen, die noch gingen.
+Genau so ist es passiert, und deshalb steht dieser Schritt jetzt hier.
+
+```
+1. mcp__github__actions_run_trigger   method: run_workflow
+                                      workflow_id: quellen-pruefen.yml
+                                      ref: main
+2. etwa 60 Sekunden warten
+3. mcp__github__actions_list          method: list_workflow_jobs
+4. mcp__github__get_job_logs          return_content: true
+```
+
+Am Ende des Protokolls steht je Rubrik, welche Adressen heute Text liefern —
+und eine Zeile, die sich unverändert als `urls` in `quellen-holen.yml` einsetzen
+lässt. Die Quellen samt Ausweichliste stehen in `data/nachrichtenquellen.ts`;
+wer eine dauerhaft ausgefallene ersetzt, ändert sie **dort** und nicht im Lauf.
+
+Meldet die Prüfung eine **Rubrik ohne brauchbare Quelle**, ist das kein Grund
+abzubrechen — es ist die Ansage, dass zu diesem Thema heute nichts Belegtes
+entsteht. Schreib das in den Abschlussbericht, statt die Lücke mit einem
+schwächeren Artikel zu füllen.
+
 ## 1. Recherche
 
 **Erst der Zugang, dann die Themen.** `WebFetch` erreicht aus dieser Umgebung
@@ -189,5 +220,7 @@ weiterhin die alte Ausgabe — dieser Punkt geht am häufigsten unter.
 
 - Welche neun Meldungen, mit Datum und Quelle
 - Was ins Archiv gerutscht ist (Anzahl, nicht Aufzählung)
+- **Welche Rubriken die Vorabprüfung als ausgefallen gemeldet hat** — und ob
+  eine davon dauerhaft ersetzt gehört
 - Ob eine Recherche ergebnislos blieb und warum
 - Der Merge-Hinweis aus Schritt 6

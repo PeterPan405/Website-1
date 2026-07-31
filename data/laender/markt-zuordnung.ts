@@ -53,6 +53,19 @@ export const marktLand: Record<string, string> = {
   smi: '756',
   'cac-40': '250',
   'ftse-100': '826',
+  /*
+    Die sechs Leitindizes, die mit dem Indexvergleich dazukamen.
+
+    Beim Ibovespa und beim TAIEX ist die Zuordnung eindeutig, beim S&P/TSX und
+    beim OMXS30 ebenso. Der NIFTY 50 und der S&P/ASX 200 bilden ebenfalls
+    jeweils genau einen Markt ab – keiner der sechs ist übernational.
+  */
+  'nifty-50': '356',
+  'tsx-composite': '124',
+  'asx-200': '036',
+  ibovespa: '076',
+  'omx-stockholm-30': '752',
+  taiex: '158',
 
   // ------------------------------------------------ Vereinigte Staaten
   nvidia: '840',

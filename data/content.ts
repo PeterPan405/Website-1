@@ -25,7 +25,47 @@ export type ContentBlock =
   | { type: 'quote'; text: string; source?: string }
   | { type: 'table'; caption?: string; head: string[]; rows: string[][] }
   /** Formel mit Erläuterung – für Zins-, Inflations- und Rentenrechnungen. */
-  | { type: 'formula'; expression: string; description: string }
+  | {
+      type: 'formula'
+      expression: string
+      description: string
+      /**
+       * Ein Rechner, der mit **genau diesem Beispiel** öffnet.
+       *
+       * Optional, und das ist die Hauptaussage: Zu den meisten Formeln auf
+       * dieser Website gibt es keinen Rechner – für MACD, True Range oder den
+       * Herfindahl-Index wäre einer auch sinnlos. Wo es aber einen gibt, ist
+       * der Weg vom gelesenen Beispiel zum leeren Eingabefeld genau die
+       * Stelle, an der die meisten aufhören: Wer die drei Zahlen aus dem Text
+       * abtippen müsste, tippt sie nicht ab.
+       *
+       * `werte` wird über `rechnerlink()` in die Raute geschrieben. Welche
+       * Schlüssel ein Rechner kennt, steht bei ihm im `useVorbelegung`-Aufruf;
+       * unbekannte werden dort stillschweigend übergangen.
+       *
+       * ## Nur verlinken, wo der Rechner rechnet, was die Formel sagt
+       *
+       * Das ist die eigentliche Regel, und sie ist beim Einbauen sofort
+       * aufgefallen: An der Grundformel `Endkapital = Startkapital ×
+       * (1 + Zinssatz)^Jahre` stand ein Verweis mit 10.000 € zu 5 Prozent über
+       * 10 Jahre. Die Formel ergibt 16.289 €, der Zinsrechner zeigte 16.470 € –
+       * er verzinst **monatlich**, nicht jährlich.
+       *
+       * Beide Zahlen sind richtig, und ein Leser, der sie nebeneinander sieht,
+       * hält eine davon für falsch. Der Verweis steht deshalb nur noch an der
+       * Sparplanformel, wo die monatliche Verzinsung genau das ist, was die
+       * Formel beschreibt. Ein vorbelegter Rechner, der etwas anderes ausrechnet
+       * als der Text darüber, ist schlechter als kein Verweis.
+       */
+      rechner?: {
+        /** Pfad ohne Raute, z. B. `/rechner/zinsrechner`. */
+        pfad: string
+        /** Die Werte des Beispiels aus dem Text darüber. */
+        werte: Record<string, string | number>
+        /** Beschriftung des Verweises – sagt, was den Leser dort erwartet. */
+        text: string
+      }
+    }
   /** Kompakte Faktenliste, z. B. „Risiko: hoch“. */
   | { type: 'keyfacts'; items: { label: string; value: string }[] }
   /**
