@@ -176,7 +176,17 @@ for (const [pfad, was] of SEITEN) {
           Fehlalarme, und eine Prüfung mit Fehlalarmen wird abgeschaltet.
         */
         scrollBreite: document.body.scrollWidth,
-        schuldige: schuldige.slice(0, 5).map(({ el: _weg, ...rest }) => rest),
+        /*
+          Ohne `el`: Ein DOM-Knoten überlebt den Weg aus dem Browser heraus
+          nicht. Gebraucht wurde er nur für `contains()` weiter oben.
+        */
+        schuldige: schuldige.slice(0, 5).map((s) => ({
+          tag: s.tag,
+          klasse: s.klasse,
+          text: s.text,
+          links: s.links,
+          rechts: s.rechts,
+        })),
       }
     }, TOLERANZ)
   } catch (fehler) {

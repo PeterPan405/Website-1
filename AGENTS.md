@@ -34,6 +34,16 @@ Wer eine weitere Stelle anlegt, an der Artikel als aktuell erscheinen, filtert
 über denselben Tag. `CURRENT_NEWS_COUNT` ist **nur noch** eine Obergrenze für
 die Anzeige, keine Grenze zwischen aktuell und Archiv.
 
+## Das Archiv ist zugeklappt – **jeder** Tag, auch der jüngste
+
+In `app/news/page.tsx` trägt kein `<details>` des Archivs ein `open`. Bis Juli
+2026 stand der oberste Tag offen; auf dem Telefon lief das Archiv damit über
+den halben Bildschirm, und der Unterschied zu „Aktuelles" darüber verschwand –
+zwei Listen mit vollen Anrissen untereinander sehen aus wie eine.
+
+Der Vortag ist eine Kachel mit Datum und Anzahl. Wer ihn sehen will, klickt ihn
+auf.
+
 ## Was eine Tagesausgabe braucht
 
 Zu jedem Tag gehört eine Datei `data/editions/JJJJ-MM-TT.ts`, eingetragen in
