@@ -101,6 +101,68 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'gold-zwei-marken-zwei-waehrungen',
+    title: 'Gold: 4.100 Dollar und 3.600 Euro – zwei Marken für ein Metall',
+    teaser:
+      'Der Goldpreis startet schwächer in den Freitag. Dass die Analyse zwei Schwellen nennt, eine in Dollar und eine in Euro, ist die eigentliche Lektion.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T09:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Wechselkurs', 'Charttechnik'],
+    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'Goldreporter: „Goldpreis am Freitag schwächer: Wichtige 4.100-Dollar-Marke im Fokus“ und „Goldpreis: 4.100 USD und 3.600 EUR sind der Schlüssel zum Trendwechsel“ (31. Juli 2026)',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold startet schwächer in den Freitag. Auf dem Tagesprogramm stehen laut Goldreporter die **Inflationsdaten aus der Eurozone** und die Verteidigung der charttechnisch relevanten Marke von **4.100 US-Dollar**. Schon am Donnerstag hatte das Metall nachgegeben – genannt wurden die Fed und steigende Renditen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum in derselben Analyse zwei Zahlen stehen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig ist nicht die Richtung, sondern die Schreibweise: Als Schlüssel für einen Trendwechsel nennt dieselbe Quelle **4.100 USD und 3.600 EUR**. Das sind nicht zwei Meinungen über einen Preis, sondern zwei Preise – und wer nur einen davon verfolgt, sieht die halbe Bewegung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wird international in Dollar je Feinunze gehandelt. Was ein Anleger im Euroraum bezahlt, entsteht erst durch eine zweite Rechnung: Dollarpreis geteilt durch den Wechselkurs Euro/Dollar. **Ein Euro-Goldpreis hat deshalb immer zwei Ursachen.**',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Was daraus für die Betrachtung folgt',
+        items: [
+          'Fällt Gold in Dollar und fällt gleichzeitig der Euro, kann der Euro-Preis unverändert bleiben – oder sogar steigen.',
+          'Steigt Gold in Dollar und steigt der Euro stärker, steht im Depot ein Verlust, obwohl die Schlagzeile ein Plus meldet.',
+          'Wer Gold als Absicherung hält, sichert damit im Euroraum immer auch eine Währungsposition ab, ob gewollt oder nicht.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und was eine „Marke“ ist – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine charttechnisch relevante Marke ist keine Aussage über den Wert einer Feinunze. Sie ist eine Zahl, an der in der Vergangenheit auffällig viele Aufträge lagen, und sie wirkt vor allem, **weil viele Marktteilnehmer sie beobachten**. Das macht sie nicht wertlos – aber es macht sie zu einer Aussage über das Verhalten der Beteiligten, nicht über das Metall.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Meldung über den Goldpreis liest, prüft zuerst die Währung. Ohne sie ist die Zahl unvollständig – und zwei Berichte, die sich zu widersprechen scheinen, meinen oft schlicht zwei verschiedene Preise.',
+      },
+    ],
+  },
+  {
     slug: 'amazon-neun-prozent-nachboerslich',
     title: 'Amazon springt neun Prozent – nach Börsenschluss',
     teaser:

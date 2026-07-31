@@ -5,6 +5,64 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
+# Nachrichten: „Aktuell" heißt der jüngste Erscheinungstag
+
+Was von heute ist, steht vorn. **Alles Ältere gehört ins Archiv** – nach Tagen
+gruppiert, zugeklappt, aufzuklappen von dem, der es sehen will.
+
+Die Grenze verläuft am **Erscheinungstag**, nicht an einer Anzahl. Bis Juli 2026
+nahm sie schlicht die neuesten neun Artikel nach Rang, und das ging so lange
+gut, wie jeder Tag genau neun lieferte. Hatte einer weniger, füllte die Liste
+mit dem Vortag auf – aufgeklappt, mit vollem Anriss, mitten unter den heutigen.
+
+Maßgeblich ist `tagVon()` in `lib/news.ts`: die ersten zehn Zeichen von
+`publishedAt`, also der Kalendertag in der Zone, in der der Artikel erschienen
+ist. Kein Umweg über `new Date`, der nach UTC verschiebt.
+
+## Die Regel gilt an **jeder** Stelle, die Artikel als „aktuell" zeigt
+
+Das wurde zweimal übersehen, und beide Male fiel es nur auf, weil ein Foto vom
+Handy kam:
+
+- `getCurrentNews()` – die Nachrichtenseite. Beim ersten Mal umgestellt.
+- `getNewsHeadlines()` – **das Karussell der Startseite.** Beim ersten Mal
+  vergessen; am 31. Juli stand dort um halb neun noch eine Meldung vom 30.
+- `getFurtherNews()` und `getFurtherNewsByDay()` – das Archiv, die Gegenseite
+  derselben Grenze.
+
+Wer eine weitere Stelle anlegt, an der Artikel als aktuell erscheinen, filtert
+über denselben Tag. `CURRENT_NEWS_COUNT` ist **nur noch** eine Obergrenze für
+die Anzeige, keine Grenze zwischen aktuell und Archiv.
+
+## Das Archiv ist zugeklappt – **jeder** Tag, auch der jüngste
+
+In `app/news/page.tsx` trägt kein `<details>` des Archivs ein `open`. Bis Juli
+2026 stand der oberste Tag offen; auf dem Telefon lief das Archiv damit über
+den halben Bildschirm, und der Unterschied zu „Aktuelles" darüber verschwand –
+zwei Listen mit vollen Anrissen untereinander sehen aus wie eine.
+
+Der Vortag ist eine Kachel mit Datum und Anzahl. Wer ihn sehen will, klickt ihn
+auf.
+
+## Was eine Tagesausgabe braucht
+
+Zu jedem Tag gehört eine Datei `data/editions/JJJJ-MM-TT.ts`, eingetragen in
+`data/editions/index.ts` – Import **und** Array. Ohne sie fehlt der Tag unter
+`/news/tag/<datum>` und damit in der Bibliothek. Mindestens eine Top-Meldung,
+mindestens drei insgesamt, `intro` zwischen 110 und 165 Zeichen.
+
+## Umfang und Mischung
+
+Die Vortage sind der Maßstab: **fünf bis zehn Artikel aus mehreren Quellen zu
+mehreren Themen.** Am 29. und 30. Juli waren es je neun aus sieben bis acht
+Quellen – Notenbank, Öl, Halbleiter, Krypto, Gold, Stimmungsindex, Bilanzen,
+Indizes.
+
+Sechs Artikel, von denen fünf aus einem einzigen Bericht stammen und alle
+dasselbe Thema haben, erfüllen die Zahl und verfehlen die Sache. Wenn eine
+Quelle mehrere Lehrwinkel hergibt, ist das ein Gewinn – aber kein Ersatz dafür,
+mehrere Quellen zu lesen.
+
 # Diese Umgebung erreicht nur GitHub
 
 `WebFetch` und `curl` scheitern hier an jeder Adresse außerhalb von GitHub und

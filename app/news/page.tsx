@@ -191,20 +191,21 @@ export default async function NewsOverviewPage() {
             </p>
 
             {/*
-              Aufgeklappt ist nur der jüngste Tag.
+              Jeder Tag zugeklappt – auch der jüngste.
 
-              Ohne das stünde hier eine Liste, die mit jedem Tag länger wird und
-              nie wieder kürzer. Mit `<details>` statt eines Schalters bleibt es
-              ohne JavaScript bedienbar, und die Browsersuche findet auch
-              zugeklappte Einträge.
+              Bis Juli 2026 stand der oberste offen. Auf dem Telefon lief das
+              Archiv damit über den halben Bildschirm, bevor der zweite Tag
+              überhaupt zu sehen war, und der Unterschied zu „Aktuelles"
+              darüber verschwamm: zwei Listen mit vollen Anrissen
+              untereinander. Was hier steht, ist vorbei – wer es sehen will,
+              klickt es auf.
+
+              Mit `<details>` statt eines Schalters bleibt es ohne JavaScript
+              bedienbar, und die Browsersuche findet auch zugeklappte Einträge.
             */}
             <div className="mt-5 space-y-3">
-              {archivtage.map((tag, tagIndex) => (
-                <details
-                  key={tag.datum}
-                  open={tagIndex === 0}
-                  className="fk-card group px-5 py-4 sm:px-6"
-                >
+              {archivtage.map((tag) => (
+                <details key={tag.datum} className="fk-card group px-5 py-4 sm:px-6">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                     <span className="text-fg font-semibold">
                       {formatEditionDate(tag.datum)}
