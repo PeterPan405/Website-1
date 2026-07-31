@@ -71,6 +71,7 @@ const SEITEN = [
   ['/staatsverschuldung/', 'Staatsverschuldung'],
   ['/glossar/', 'Glossar'],
   ['/anleihen/', 'Anleihen'],
+  ['/news/jahr/2026/', 'Jahresrückblick'],
 ]
 
 const basis = (process.argv[2] ?? 'http://127.0.0.1:4173').replace(/\/$/, '')

@@ -8,6 +8,7 @@ import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
 import { getBranchen } from '@/lib/branchen'
 import { getLernpfadSlugs } from '@/lib/lernpfade'
 import { getEditionDates } from '@/lib/editions'
+import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
 import { getFolgen } from '@/lib/podcast'
@@ -39,6 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     levelParams,
     editionDates,
     pfadSlugs,
+    rueckblickJahre,
   ] = await Promise.all([
     getNewsArticles(),
     getLatestNewsDate(),
@@ -47,6 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getLearnLevelParams(),
     getEditionDates(),
     getLernpfadSlugs(),
+    getRueckblickJahre(),
   ])
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -84,6 +87,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: editionDates[0] ? new Date(editionDates[0]) : buildDate,
       changeFrequency: 'daily',
       priority: 0.8,
+    },
+    {
+      /*
+        Der Jahresrückblick. Der laufende Jahrgang ändert sich mit jedem
+        Kursabruf, die abgeschlossenen nicht mehr – die Übersicht erbt deshalb
+        die häufigere Frequenz und die Jahrgangsseiten unten die seltenere.
+      */
+      url: absoluteUrl('/news/jahr'),
+      changeFrequency: 'weekly',
+      priority: 0.6,
     },
     {
       url: absoluteUrl('/globus'),
@@ -161,6 +174,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Eine erschienene Ausgabe wird nicht mehr geändert.
     changeFrequency: 'never',
     priority: 0.6,
+  }))
+
+  const jahrgangsPages: MetadataRoute.Sitemap = rueckblickJahre.map((jahr) => ({
+    url: absoluteUrl(`/news/jahr/${jahr}`),
+    changeFrequency: 'weekly',
+    priority: 0.5,
   }))
 
   const marketPages: MetadataRoute.Sitemap = symbols.map((symbol) => ({
@@ -276,5 +295,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...newsPages,
     ...rubrikPages,
     ...editionPages,
+    ...jahrgangsPages,
   ].map((entry) => ({ lastModified: buildDate, ...entry }))
 }

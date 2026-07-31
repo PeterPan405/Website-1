@@ -101,6 +101,15 @@ export default async function NewsOverviewPage() {
                   Archiv ({editions.length}{' '}
                   {editions.length === 1 ? 'Ausgabe' : 'Ausgaben'})
                 </Link>
+                {/*
+                  Die dritte Zeitebene neben Artikel und Tagesausgabe: das
+                  Jahr. Sie steht hier und nicht in der Hauptnavigation, weil
+                  sie zur selben Sache gehört – dasselbe Archiv, nur weiter
+                  weggezoomt.
+                */}
+                <Link href="/news/jahr" className="fk-btn-ghost">
+                  Jahresrückblick
+                </Link>
               </div>
             </div>
           </section>
