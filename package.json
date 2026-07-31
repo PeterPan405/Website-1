@@ -34,7 +34,8 @@
     "breite": "node scripts/breite-pruefen.mjs",
     "kontrast": "node scripts/kontrast-pruefen.mjs",
     "verwaist": "node --experimental-strip-types scripts/verwaist-pruefen.ts",
-    "gewicht": "node scripts/gewicht-pruefen.mjs"
+    "gewicht": "node scripts/gewicht-pruefen.mjs",
+    "tastatur": "node scripts/tastatur-pruefen.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

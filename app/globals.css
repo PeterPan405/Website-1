@@ -522,7 +522,17 @@
 @utility fk-input {
   @apply border-border bg-surface w-full rounded-xl border px-3 py-2.5 text-sm;
   @apply text-fg placeholder:text-fg-subtle transition;
-  @apply focus:border-brand focus:outline-none;
+  /*
+    `focus:outline-none` stand hier allein – und schaltete damit die globale
+    `:focus-visible`-Regel für **jedes** Eingabefeld der Website ab. Übrig
+    blieb der Wechsel der Rahmenfarbe, ein Pixel breit; wer den Fokus mit der
+    Tastatur sucht, findet ihn daran nicht zuverlässig.
+
+    Jetzt mit Ring, wie ihn die übrigen Felder des Projekts schon tragen. Der
+    Rahmenwechsel bleibt, er ist die ruhigere Hälfte der Anzeige.
+  */
+  @apply focus:border-brand;
+  @apply focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none;
 }
 
 @utility fk-chip {

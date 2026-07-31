@@ -115,7 +115,7 @@ export function Vergleichstafel({
               id={feld.id}
               value={feld.wert}
               onChange={(event) => feld.setzen(event.target.value)}
-              className="border-border bg-surface text-fg focus:border-markets mt-1.5 w-full rounded-lg border px-3 py-2.5 text-sm outline-none"
+              className="border-border bg-surface text-fg focus:border-markets focus-visible:ring-ring mt-1.5 w-full rounded-lg border px-3 py-2.5 text-sm focus-visible:ring-2 focus-visible:outline-none"
             >
               {posten.map((eintrag) => (
                 <option key={eintrag.symbol} value={eintrag.symbol}>
