@@ -101,6 +101,232 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'amazon-neun-prozent-nachboerslich',
+    title: 'Amazon springt neun Prozent – nach Börsenschluss',
+    teaser:
+      'Amazon legt nachbörslich über neun Prozent zu, getragen von der Cloud-Sparte. Warum das außerhalb der Handelszeit geschieht, ist selbst die Lektion.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Amazon', 'Quartalszahlen', 'Nachbörse'],
+    relatedTopics: ['aktie', 'boerse', 'wann-kaufen-verkaufen'],
+    relatedSymbols: ['amazon', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+        url: 'https://de.tradingeconomics.com/united-states/stock-market',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Amazon stieg im nachbörslichen Handel um **mehr als neun Prozent**. Das Unternehmen hatte einen Quartalsumsatz gemeldet, der über den Prognosen lag – getragen vom Cloud-Geschäft und von der Erwartung weiter steigender Ausgaben für künstliche Intelligenz.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die größte Bewegung außerhalb der Öffnungszeit liegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Große US-Unternehmen berichten fast immer **nach** Handelsschluss. Das ist kein Zufall, sondern Absicht: Eine Meldung mitten im Handel träfe auf einen laufenden Markt und erzeugte Sprünge, bevor irgendjemand die Zahlen gelesen hat. Nach Börsenschluss haben alle dieselben Stunden Zeit.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gehandelt wird trotzdem – im nachbörslichen Handel, aber mit viel weniger Beteiligten. Weniger Beteiligte heißt größere Ausschläge bei kleineren Aufträgen. Ein Plus von neun Prozent nach Börsenschluss ist deshalb ein **Signal**, keine feststehende Bewertung.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was das für Privatanleger heißt',
+        items: [
+          'Der nachbörsliche Kurs ist selten der Eröffnungskurs des nächsten Tages. Dazwischen liegt eine Nacht mit Analysen und weiteren Meldungen.',
+          'Wer hier mit einer Bestens-Order hineingeht, kauft in einen dünnen Markt – die Spanne zwischen Geld und Brief ist dort deutlich größer.',
+          'Die Zahl in der Schlagzeile stammt fast immer aus diesem dünnen Handel.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Quartalsmeldung als Anlass für eine Entscheidung nimmt, hat es selten eilig. Der reguläre Handel am nächsten Tag zeigt, was der Markt wirklich davon hält – und er ist der erste Kurs, zu dem man vernünftig handeln kann.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-faellt-trotz-iphone-plus',
+    title: 'Apple verliert sechs Prozent – trotz 22 Prozent mehr iPhones',
+    teaser:
+      'Der iPhone-Absatz stieg um 22 Prozent, der Umsatz übertraf die Schätzungen – und die Aktie fiel über sechs Prozent. Der Grund steckt in einer einzigen Sparte.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Apple', 'Quartalszahlen', 'Erwartungen'],
+    relatedTopics: ['aktie', 'wann-kaufen-verkaufen', 'anlegerpsychologie'],
+    relatedSymbols: ['apple', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+        url: 'https://de.tradingeconomics.com/united-states/stock-market',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple fiel nachbörslich um **mehr als sechs Prozent**. Dabei übertraf der Quartalsumsatz die Schätzungen, und die iPhone-Verkäufe legten um **22 Prozent** zu. Verfehlt wurden die Erwartungen an einer Stelle: bei den Umsätzen im Dienstleistungsbereich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ausgerechnet diese Sparte den Kurs bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kurs bildet nicht ab, was ein Unternehmen verdient, sondern was der Markt künftig erwartet. Hardware-Verkäufe sind einmalig und schwanken mit dem Produktzyklus. Dienstleistungen – App Store, Abonnements, Cloud – kommen wiederkehrend, mit höherer Marge und besser planbar. Genau deshalb wiegt eine Enttäuschung dort schwerer als ein guter Hardware-Monat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dazu kommt der Bezugspunkt. Die Erwartung ist bereits im Kurs enthalten, bevor die Zahlen erscheinen. Wer eine Aktie kauft, zahlt schon für das erwartete Wachstum. Erfüllt sich die Erwartung nur, ist das keine gute Nachricht – es ist keine Nachricht. Bewegung entsteht allein durch die **Abweichung**.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die drei Fragen bei jeder Quartalsmeldung',
+        items: [
+          'Welche Zahl wurde erwartet? Ohne den Vergleichsmaßstab sagt eine Rekordzahl nichts.',
+          'Welcher Teil des Geschäfts hat abgewichen – der wiederkehrende oder der einmalige?',
+          'Was sagt das Unternehmen über die kommenden Quartale? Der Ausblick bewegt oft mehr als das Ergebnis.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Gute Zahlen, fallender Kurs“ ist kein Widerspruch und keine Unvernunft des Marktes. Es heißt, dass die Zahlen gut waren – aber weniger gut als eingepreist. Wer das einmal verstanden hat, liest Quartalsberichte anders.',
+      },
+    ],
+  },
+  {
+    slug: 'drei-indizes-drei-zahlen',
+    title: 'Nasdaq +2,8, Dow +1,2 – ein Tag, drei verschiedene Zahlen',
+    teaser:
+      'Der Nasdaq stieg um 2,78 Prozent, der S&P 500 um 1,66, der Dow um 1,19. Derselbe Markt, dieselben Stunden – der Unterschied liegt im Bauplan.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Indizes', 'Nasdaq', 'Dow Jones'],
+    relatedTopics: ['boerse', 'etf', 'aktien-laender-branchen'],
+    relatedSymbols: ['nasdaq-100', 'sp500', 'dow-jones'],
+    sources: [
+      {
+        label: 'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+        url: 'https://de.tradingeconomics.com/united-states/stock-market',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Handelstag am Donnerstag brachte drei Zahlen für einen Markt: Der technologielastige **Nasdaq Composite stieg um 2,78 Prozent**, der **S&P 500 um 1,66**, der **Dow um 1,19**. Vorn lagen Technologie-, Konsumgüter- und Industriewerte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Baupläne, drei Ergebnisse',
+      },
+      {
+        type: 'table',
+        caption: 'Was die drei Indizes voneinander unterscheidet.',
+        head: ['Index', 'Gewichtung', 'Folge'],
+        rows: [
+          [
+            'Dow Jones',
+            'nach Kurs je Aktie, 30 Werte',
+            'Eine teure Aktie zählt mehr als ein großes Unternehmen',
+          ],
+          [
+            'S&P 500',
+            'nach Marktwert, 500 Werte',
+            'Die größten Konzerne bestimmen den Ausschlag',
+          ],
+          [
+            'Nasdaq Composite',
+            'nach Marktwert, Schwerpunkt Technologie',
+            'Ein Technologietag schlägt hier am stärksten durch',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'An einem Tag, an dem Technologiewerte vorn liegen, muss der Nasdaq stärker steigen als der Dow – nicht weil er „besser“ ist, sondern weil mehr von dem darin steckt, was gerade steigt. An einem Tag mit starken Industriewerten kehrt sich das um.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Für die eigene Anlage',
+        items: [
+          'Wer „den amerikanischen Markt“ abbilden will, meint fast immer den S&P 500 – der Dow ist ein Ausschnitt aus dreißig Werten mit einer eigentümlichen Gewichtung.',
+          'Ein Welt-ETF enthält typischerweise über sechzig Prozent USA. Wer ihn hält, hat den S&P 500 bereits weitgehend im Depot.',
+          'Vergleiche über verschiedene Indizes hinweg sagen wenig, solange die Baupläne verschieden sind.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Die Börse ist gestiegen“ ist eine unvollständige Aussage, solange nicht dabeisteht, welche. Der Unterschied von 2,78 zu 1,19 Prozent an einem einzigen Tag ist kein Messfehler – er ist die Bauart.',
+      },
+    ],
+  },
+  {
+    slug: 'chipwerte-setzen-rally-fort',
+    title: 'Chipwerte legen weiter zu – fünf Namen, fünf verschiedene Zahlen',
+    teaser:
+      'Micron, Sandisk, AMD, Intel und Nvidia stiegen im erweiterten Handel zwischen 0,7 und 5,4 Prozent. Die Spanne zeigt, was „die Halbleiterbranche“ verdeckt.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Halbleiter', 'Branche', 'Streuung'],
+    relatedTopics: ['aktien-laender-branchen', 'portfolio-aufbau', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia', 'amd', 'intel'],
+    sources: [
+      {
+        label: 'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+        url: 'https://de.tradingeconomics.com/united-states/stock-market',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Chiphersteller setzten ihre Aufwärtsbewegung im erweiterten Handel fort. Die Zahlen dazu: **Sandisk 5,4 Prozent**, **Intel 4,3**, **Micron 3**, **AMD 3** – und **Nvidia 0,7**.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in einer Branchenmeldung untergeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Schlagzeile lautet „Chipwerte steigen“, und sie stimmt. Aber zwischen 0,7 und 5,4 Prozent liegt ein Faktor von fast acht. Wer nur die Richtung liest, hält die Branche für einen Block, der sich gemeinsam bewegt. Sie ist keiner.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Speicherhersteller, Auftragsfertiger, Entwickler von Grafikprozessoren und integrierte Konzerne verdienen an verschiedenen Dingen. Sie liegen im selben Sammelbegriff und in derselben Nachricht – aber nicht im selben Geschäft.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum das für die Streuung zählt',
+        items: [
+          'Fünf Halbleiterwerte im Depot sind nicht fünffach gestreut. Sie hängen an derselben Nachfrage und derselben Lieferkette.',
+          'An schlechten Tagen zeigt sich das umgekehrt: Dann fallen sie gemeinsam, und die Spanne wird kleiner statt größer.',
+          'Wer eine Branche für aussichtsreich hält, sollte trotzdem wissen, welchen Anteil am Gesamtdepot sie ausmacht.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Branchenmeldung nennt eine Richtung, keine Größe. Die Größe steht bei den einzelnen Werten – und dort steht auch, ob die Bewegung breit getragen ist oder von zwei Namen kommt.',
+      },
+    ],
+  },
+  {
     slug: 'saisonbereinigung-15000-oder-1000',
     title: 'Minus 15.000 oder minus 1.000? Was Saisonbereinigung wirklich tut',
     teaser:
@@ -150,165 +376,6 @@ export const newsArticles: NewsArticle[] = [
       {
         type: 'paragraph',
         text: '**Was daraus folgt:** Bei jeder Monatszahl – Arbeitsmarkt, Auftragseingang, Einzelhandelsumsatz – lohnt der Blick auf das Wort „saisonbereinigt“. Es steht fast immer da. Es ist fast immer die ehrlichere Zahl. Und es ist fast nie die, die in der Überschrift landet.',
-      },
-    ],
-  },
-  {
-    slug: 'mehr-arbeitslose-gleiche-quote',
-    title: '22.000 mehr Arbeitslose – und die Quote bleibt gleich',
-    teaser:
-      'Gegenüber dem Vorjahr gibt es 22.000 Arbeitslose mehr, die Quote liegt trotzdem unverändert bei 6,2 Prozent. Das ist kein Rechenfehler, sondern ein Bruch.',
-    category: 'Märkte',
-    publishedAt: '2026-07-31T07:20:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Arbeitsmarkt', 'Quote', 'Statistik'],
-    relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
-    relatedSymbols: ['dax'],
-    sources: [
-      {
-        label:
-          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
-        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Im Vorjahresvergleich nennt der Bericht der Bundesagentur **22.000 Arbeitslose mehr** – und stellt zugleich fest, dass sich die Arbeitslosenquote gegenüber dem Vorjahr **nicht verändert** hat. Sie liegt bei 6,2 Prozent. Beides zugleich klingt nach einem Fehler und ist keiner.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Eine Quote hat zwei bewegliche Teile',
-      },
-      {
-        type: 'paragraph',
-        text: 'Die Arbeitslosenquote ist ein Bruch: Arbeitslose geteilt durch alle Erwerbspersonen. Im Zähler stehen die Arbeitslosen, im Nenner alle, die dem Arbeitsmarkt zur Verfügung stehen. **Beide Seiten bewegen sich.** Wächst der Nenner im selben Verhältnis wie der Zähler, bleibt der Bruch gleich – obwohl die absolute Zahl gestiegen ist.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Bei 22.000 auf knapp drei Millionen sind das rund 0,7 Prozent mehr Arbeitslose. Eine Quote, die auf ein Zehntelprozent gerundet ausgewiesen wird, muss sich davon nicht bewegen. Die Rundung verschluckt den Unterschied.',
-      },
-      {
-        type: 'callout',
-        variant: 'info',
-        title: 'Dieselbe Falle an anderer Stelle',
-        items: [
-          'Dividendenrendite: steigt auch dann, wenn nicht mehr ausgeschüttet wird – sondern der Kurs im Nenner fällt.',
-          'Schuldenquote: sinkt auch dann, wenn nicht getilgt wird – sondern die Wirtschaftsleistung im Nenner wächst.',
-          'Sparquote: steigt auch dann, wenn nicht mehr gespart wird – sondern das Einkommen im Nenner sinkt.',
-        ],
-      },
-      {
-        type: 'paragraph',
-        text: '**Was daraus folgt:** Bei jeder Quote lohnt die Frage, welche der beiden Seiten sich bewegt hat. Eine unveränderte Quote heißt nicht, dass nichts passiert ist – sie heißt, dass sich Zähler und Nenner im Gleichschritt bewegt haben. Das ist eine eigene Information, und oft die interessantere.',
-      },
-    ],
-  },
-  {
-    slug: 'kurzarbeit-daten-mit-verzoegerung',
-    title: 'Kurzarbeit: 133.000 – aber die Zahl ist drei Monate alt',
-    teaser:
-      'Der Bericht von Ende Juni nennt Kurzarbeiterzahlen für April. Diese Verzögerung ist kein Versäumnis, sondern liegt im Verfahren – und man sollte sie kennen.',
-    category: 'Märkte',
-    publishedAt: '2026-07-31T07:25:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Kurzarbeit', 'Arbeitsmarkt', 'Konjunktur'],
-    relatedTopics: ['budget-und-sparquote', 'notenbanken-geldpolitik'],
-    relatedSymbols: ['dax'],
-    sources: [
-      {
-        label:
-          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
-        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Im Monatsbericht der Bundesagentur steht zur Kurzarbeit eine Zahl und ein Hinweis: **133.000 Beschäftigte** erhielten konjunkturelles Kurzarbeitergeld – **im April**. Der Bericht selbst stammt von Ende Juni. Zwischen Sachverhalt und Meldung liegen also gut zwei Monate.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Warum diese Zahl nachhinkt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Arbeitslosigkeit wird gezählt, Kurzarbeit wird abgerechnet. Ein Betrieb meldet Kurzarbeit an, führt sie durch und reicht danach die Abrechnung ein. Erst daraus ergibt sich, für wie viele Beschäftigte tatsächlich gezahlt wurde – und nicht, für wie viele es angezeigt war. Der Bericht weist die Zahl deshalb als vorläufig hochgerechnet aus.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Die Richtung ist trotzdem lesbar: 17.000 weniger als im Vormonat und **101.000 weniger als ein Jahr zuvor**. Kurzarbeit ist das Instrument, mit dem Betriebe Beschäftigung durch eine Schwäche hindurchtragen. Dass sie deutlich zurückgeht, ist für sich genommen eine gute Nachricht.',
-      },
-      {
-        type: 'callout',
-        variant: 'warning',
-        title: 'Der Kurzschluss, den man vermeiden sollte',
-        items: [
-          'Weniger Kurzarbeit heißt nicht zwingend mehr Arbeit. Sie endet auch, wenn Betriebe stattdessen entlassen.',
-          'Die Zahl ist zwei Monate alt. Wer sie als Aussage über den heutigen Monat liest, liest sie falsch.',
-          'Sie ist vorläufig hochgerechnet und kann sich mit den endgültigen Abrechnungen noch verschieben.',
-        ],
-      },
-      {
-        type: 'paragraph',
-        text: '**Was daraus folgt:** Konjunkturzahlen tragen ein Datum – und zwar zwei: das der Meldung und das des Zeitraums. Sie fallen fast nie zusammen. Wer beide auseinanderhält, vermeidet die häufigste Fehldeutung überhaupt: eine alte Zahl für einen aktuellen Zustand zu halten.',
-      },
-    ],
-  },
-  {
-    slug: 'beschaeftigung-sinkt-arbeitslosigkeit-auch',
-    title: 'Beide sinken: Arbeitslosigkeit und Beschäftigung zugleich',
-    teaser:
-      'Die Arbeitslosigkeit ging zurück – und die Zahl der Beschäftigten liegt 71.000 unter dem Vorjahr. Das passt schlechter zusammen, als es klingt.',
-    category: 'Märkte',
-    publishedAt: '2026-07-31T07:30:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 5,
-    tags: ['Arbeitsmarkt', 'Beschäftigung', 'Erwerbspersonen'],
-    relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
-    relatedSymbols: ['dax'],
-    sources: [
-      {
-        label:
-          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
-        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Zwei Bewegungen im selben Bericht, die in dieselbe Richtung zeigen und Gegensätzliches bedeuten: Die Arbeitslosigkeit **sank** um 15.000. Die Zahl der sozialversicherungspflichtig Beschäftigten lag mit **34,84 Millionen** rund **71.000 unter dem Vorjahr** – und ging von März auf April saisonbereinigt um weitere 5.000 zurück.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Wie beides gleichzeitig gehen kann',
-      },
-      {
-        type: 'paragraph',
-        text: 'Zwischen „nicht arbeitslos“ und „beschäftigt“ liegt ein drittes Feld: Wer sich aus der Erwerbsbeteiligung zurückzieht, ist beides nicht. Menschen gehen in Rente, beginnen eine Ausbildung, pflegen Angehörige oder melden sich schlicht nicht mehr. Sie verschwinden aus der Arbeitslosenzählung, ohne in die Beschäftigungszählung einzutreten.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Der demografische Anteil daran ist groß: Die geburtenstarken Jahrgänge erreichen das Rentenalter. Wenn mehr Menschen den Arbeitsmarkt verlassen als eintreten, sinkt die Beschäftigung, ohne dass eine einzige Stelle gestrichen wurde – und die Arbeitslosigkeit sinkt mit.',
-      },
-      {
-        type: 'callout',
-        variant: 'info',
-        title: 'Drei Zahlen, drei Fragen',
-        items: [
-          'Arbeitslosigkeit: Wie viele suchen gemeldet Arbeit? Sie kann sinken, weil Menschen Arbeit finden – oder weil sie aufhören zu suchen.',
-          'Beschäftigung: Wie viele arbeiten regulär? Diese Zahl lässt sich nicht durch Abgrenzung schönen.',
-          'Erwerbspersonen: Wie viele stehen überhaupt zur Verfügung? Der stille Nenner unter allem.',
-        ],
-      },
-      {
-        type: 'paragraph',
-        text: '**Was daraus folgt:** Eine sinkende Arbeitslosigkeit ist für sich genommen keine gute Nachricht und keine schlechte – sie ist eine unvollständige. Erst zusammen mit der Beschäftigung ergibt sie ein Bild. Gehen beide zurück, schrumpft nicht die Arbeitslosigkeit, sondern der Arbeitsmarkt.',
       },
     ],
   },

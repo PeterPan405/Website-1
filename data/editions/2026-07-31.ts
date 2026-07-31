@@ -17,7 +17,7 @@ import type { DailyEdition } from './types'
 export const edition: DailyEdition = {
   date: '2026-07-31',
   intro:
-    'Die Inflation liegt im Juli vorläufig bei 2,8 Prozent, und der Arbeitsmarktbericht nennt zwei Zahlen, die beide stimmen und Verschiedenes messen.',
+    'Inflation vorläufig 2,8 Prozent, zwei Zahlen zum Arbeitsmarkt – und an der Wall Street fällt Apple, während Amazon neun Prozent zulegt.',
   top: [
     {
       headline: 'Inflation im Juli: vorläufig 2,8 Prozent',
@@ -61,78 +61,82 @@ export const edition: DailyEdition = {
   ],
   further: [
     {
-      headline: 'Minus 15.000 oder minus 1.000? Was Saisonbereinigung tut',
+      headline: 'Apple verliert sechs Prozent – trotz 22 Prozent mehr iPhones',
       summary: [
-        'Derselbe Rückgang steht zweimal im Bericht: Die Arbeitslosigkeit sank um 15.000 – saisonbereinigt um 1.000. Der Arbeitsmarkt atmet im Jahresrhythmus, und die Bereinigung rechnet dieses regelmäßige Muster heraus.',
-        'Übrig bleibt, was darüber hinaus geschah. Von fünfzehn Teilen des Rückgangs waren vierzehn Jahreszeit und einer Bewegung.',
+        'Der iPhone-Absatz stieg um 22 Prozent, der Quartalsumsatz übertraf die Schätzungen – und die Aktie fiel nachbörslich um mehr als sechs Prozent. Verfehlt wurden die Erwartungen bei den Umsätzen im Dienstleistungsbereich.',
+        'Hardware verkauft sich einmalig und schwankt mit dem Produktzyklus. Dienstleistungen kommen wiederkehrend und mit höherer Marge – eine Enttäuschung dort wiegt schwerer als ein guter Hardware-Monat.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Unbereinigt beschreibt die Lage, saisonbereinigt die Richtung. Das Wort steht bei fast jeder Monatszahl dabei – Arbeitsmarkt, Auftragseingang, Einzelhandel – und ist fast nie das, was in der Überschrift landet.',
-      relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
-      relatedSymbols: ['dax'],
+        'Ein Kurs enthält die Erwartung bereits, bevor die Zahlen erscheinen. Erfüllt sie sich nur, ist das keine Nachricht. Bewegung entsteht allein durch die Abweichung – deshalb ist „gute Zahlen, fallender Kurs“ kein Widerspruch.',
+      relatedTopics: ['aktie', 'wann-kaufen-verkaufen', 'anlegerpsychologie'],
+      relatedSymbols: ['apple', 'nasdaq-100'],
       sources: [
         {
           label:
-            'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
-          url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+            'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+          url: 'https://de.tradingeconomics.com/united-states/stock-market',
         },
       ],
     },
     {
-      headline: '22.000 mehr Arbeitslose – und die Quote bleibt gleich',
+      headline: 'Amazon springt neun Prozent – nach Börsenschluss',
       summary: [
-        'Gegenüber dem Vorjahr zählt der Bericht 22.000 Arbeitslose mehr und stellt zugleich fest, dass sich die Quote nicht verändert hat. Sie liegt bei 6,2 Prozent.',
-        'Eine Quote ist ein Bruch, und beide Seiten bewegen sich: Arbeitslose im Zähler, Erwerbspersonen im Nenner. Rund 0,7 Prozent mehr Arbeitslose verschwinden in der Rundung auf ein Zehntelprozent.',
+        'Amazon stieg im nachbörslichen Handel um mehr als neun Prozent, nach einem Quartalsumsatz über den Prognosen. Getragen hat ihn das Cloud-Geschäft und die Erwartung weiter steigender Ausgaben für künstliche Intelligenz.',
+        'Große US-Unternehmen berichten fast immer nach Handelsschluss – damit alle dieselbe Zeit zum Lesen haben. Gehandelt wird trotzdem, nur mit sehr viel weniger Beteiligten.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Dieselbe Falle steckt in der Dividendenrendite, der Schuldenquote und der Sparquote: Jede von ihnen bewegt sich auch dann, wenn sich nur der Nenner ändert. Bei jeder Quote lohnt die Frage, welche Seite gewandert ist.',
-      relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
-      relatedSymbols: ['dax'],
+        'Weniger Beteiligte heißen größere Ausschläge bei kleineren Aufträgen. Der nachbörsliche Kurs ist ein Signal, keine feststehende Bewertung – und selten der Eröffnungskurs des nächsten Tages.',
+      relatedTopics: ['aktie', 'boerse', 'wann-kaufen-verkaufen'],
+      relatedSymbols: ['amazon', 'nasdaq-100'],
       sources: [
         {
           label:
-            'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
-          url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+            'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+          url: 'https://de.tradingeconomics.com/united-states/stock-market',
         },
       ],
     },
     {
-      headline: 'Kurzarbeit: 133.000 – aber die Zahl ist zwei Monate alt',
+      headline: 'Nasdaq +2,8, Dow +1,2 – ein Tag, drei verschiedene Zahlen',
       summary: [
-        'Der Bericht von Ende Juni nennt die Kurzarbeiterzahlen für April: 133.000 Beschäftigte, 17.000 weniger als im Vormonat und 101.000 weniger als ein Jahr zuvor. Ausgewiesen sind sie als vorläufig hochgerechnet.',
-        'Arbeitslosigkeit wird gezählt, Kurzarbeit wird abgerechnet. Erst aus der Abrechnung ergibt sich, für wie viele Beschäftigte tatsächlich gezahlt wurde – daher der Nachlauf.',
+        'Am Donnerstag stieg der Nasdaq Composite um 2,78 Prozent, der S&P 500 um 1,66 und der Dow um 1,19. Vorn lagen Technologie-, Konsumgüter- und Industriewerte.',
+        'Der Dow gewichtet nach Kurs je Aktie über dreißig Werte, der S&P 500 nach Marktwert über fünfhundert, der Nasdaq nach Marktwert mit Technologieschwerpunkt. Drei Baupläne, drei Ergebnisse.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Konjunkturzahlen tragen zwei Daten: das der Meldung und das des Zeitraums. Sie fallen fast nie zusammen. Eine alte Zahl für einen aktuellen Zustand zu halten ist die häufigste Fehldeutung überhaupt.',
-      relatedTopics: ['budget-und-sparquote', 'notenbanken-geldpolitik'],
-      relatedSymbols: ['dax'],
+        '„Die Börse ist gestiegen“ ist unvollständig, solange nicht dabeisteht, welche. Der Abstand von 2,78 zu 1,19 Prozent an einem einzigen Tag ist kein Messfehler, sondern die Bauart.',
+      relatedTopics: ['boerse', 'etf', 'aktien-laender-branchen'],
+      relatedSymbols: ['nasdaq-100', 'sp500', 'dow-jones'],
       sources: [
         {
           label:
-            'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
-          url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+            'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+          url: 'https://de.tradingeconomics.com/united-states/stock-market',
         },
       ],
     },
     {
-      headline: 'Weniger Arbeitslose – und trotzdem weniger Beschäftigte',
+      headline: 'Chipwerte legen weiter zu – fünf Namen, fünf verschiedene Zahlen',
       summary: [
-        'Derselbe Bericht nennt eine dritte Zahl: 34,84 Millionen sozialversicherungspflichtig Beschäftigte, rund 71.000 weniger als ein Jahr zuvor. Die Arbeitslosigkeit ging im Berichtsmonat um 15.000 zurück, saisonbereinigt um 1.000.',
-        'Beim konjunkturellen Kurzarbeitergeld setzt sich der Rückgang fort: 133.000 Beschäftigte im April, 17.000 weniger als im Vormonat und 101.000 weniger als ein Jahr zuvor.',
+        'Im erweiterten Handel stiegen Sandisk um 5,4 Prozent, Intel um 4,3, Micron und AMD um je 3 – und Nvidia um 0,7. Die Schlagzeile lautet „Chipwerte steigen“, und sie stimmt.',
+        'Zwischen 0,7 und 5,4 Prozent liegt aber ein Faktor von fast acht. Speicherhersteller, Auftragsfertiger und Entwickler von Grafikprozessoren liegen im selben Sammelbegriff, aber nicht im selben Geschäft.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Sinkende Arbeitslosigkeit bei gleichzeitig sinkender Beschäftigung heißt, dass Menschen aus der Zählung gefallen sind, ohne dass Arbeit entstanden ist. Der Widerspruch zwischen zwei Zahlen ist hier die Nachricht – nicht die Zahl, die besser aussieht.',
-      relatedTopics: ['budget-und-sparquote'],
-      relatedSymbols: ['dax'],
+        'Fünf Halbleiterwerte im Depot sind nicht fünffach gestreut: Sie hängen an derselben Nachfrage und derselben Lieferkette. An schlechten Tagen fallen sie gemeinsam, und die Spanne wird kleiner statt größer.',
+      relatedTopics: [
+        'aktien-laender-branchen',
+        'portfolio-aufbau',
+        'risiko-und-rendite',
+      ],
+      relatedSymbols: ['nvidia', 'amd', 'intel'],
       sources: [
         {
           label:
-            'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
-          url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+            'Trading Economics: US-Aktienmarktindex – Marktbericht vom 31. Juli 2026',
+          url: 'https://de.tradingeconomics.com/united-states/stock-market',
         },
       ],
     },
