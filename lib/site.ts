@@ -148,7 +148,7 @@ export const LEARN_TOPIC_COUNT = 34
  * für sich wirbt, ist der harmlosere Fall; dieselbe Nachlässigkeit an einer
  * Kennzahl wäre keiner.
  */
-export const RECHNER_ANZAHL = 8
+export const RECHNER_ANZAHL = 9
 
 /**
  * Dieselbe Zahl als Wort – für Fließtext, in dem eine Ziffer stört.
@@ -156,7 +156,7 @@ export const RECHNER_ANZAHL = 8
  * Steht bewusst daneben statt in einer Umrechnungstabelle: Es sind zwei
  * Stellen, und wer die eine ändert, sieht die andere.
  */
-export const RECHNER_ANZAHL_WORT = 'acht'
+export const RECHNER_ANZAHL_WORT = 'neun'
 
 export const areas: Record<AreaId, Area> = {
   learn: {
@@ -197,7 +197,7 @@ export const areas: Record<AreaId, Area> = {
     id: 'tools',
     label: 'Rechner',
     href: '/rechner',
-    description: `${RECHNER_ANZAHL} Rechner für Zinsen, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke und Haushaltsbudget – jeweils mit offengelegter Methodik.`,
+    description: `${RECHNER_ANZAHL} Rechner für Zinsen, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke, Haushaltsbudget und Depotaufteilung – jeweils mit offengelegter Methodik.`,
   },
   news: {
     id: 'news',

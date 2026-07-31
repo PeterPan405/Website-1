@@ -543,6 +543,71 @@ export const calculators: CalculatorDefinition[] = [
       },
     ],
   },
+  {
+    slug: 'depotanalyse',
+    title: 'Depotanalyse',
+    headline: 'Depotanalyse: wie sich das Geld tatsächlich verteilt',
+    metaTitle: 'Depotanalyse: Gewichtung, Branchen, Länder, Währungen',
+    metaDescription:
+      'Positionen eintragen und sehen, wie sich die Summe auf Anlagearten, Branchen, Länder und Währungen verteilt – mit Klumpenrisiko und wirksamer Positionszahl.',
+    lead: 'Zehn Positionen fühlen sich nach Streuung an. Sind sechs davon aus einer Branche und macht eine allein die Hälfte aus, ist es keine – einer Liste sieht man das nicht an. Trag deine Positionen mit ihrem Wert ein; die Aufteilung rechnet der Browser.',
+    summary: 'Gewichtung nach Anlageart, Branche, Land und Währung – samt Klumpenrisiko.',
+    featureList: [
+      'Gewichtung je Position als Balken',
+      'Aufteilung nach Anlageart, Branche, Sitzland und Währung',
+      'Größte Position, drei größte und wirksame Positionszahl',
+      'Gewichtete Kostenquote und Ausschüttungsrendite mit Angabe der Abdeckung',
+      'Rechnet im Browser; nichts wird gespeichert oder gesendet',
+    ],
+    methodology: [
+      {
+        type: 'paragraph',
+        text: 'Gerechnet wird nur mit Anteilen. Jeder eingetragene Betrag wird durch die Summe geteilt – daraus ergeben sich alle Aufteilungen. Ob jemand 300 oder 30.000 Euro angelegt hat, ändert nichts daran, ob die Hälfte davon in einer Branche steckt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die wirksame Positionszahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sie beantwortet die Frage, wie vielen **gleich großen** Positionen die Aufteilung entspricht. Gerechnet als Kehrwert der Summe aller quadrierten Anteile – dem Herfindahl-Index, der in der Wettbewerbsökonomie Marktkonzentration misst und hier dasselbe für ein Depot tut.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Beispiel: fünf Positionen, davon eine mit 60 Prozent und vier mit je 10. Die wirksame Zahl ist 2,5. Es sind fünf Zeilen, aber die Verteilung verhält sich wie zweieinhalb gleich große. Genau diesen Unterschied verdeckt eine Liste.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher die Zuordnungen kommen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Branche, Sitzland und Währung stehen an den Instrumenten dieser Website. Die Brancheneinteilung ist die eigene und keine amtliche – GICS und ICB sind lizenzpflichtig und ordnen dieselbe Firma gelegentlich verschieden ein.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu ETFs und Rohstoffen ist keine Branche hinterlegt, weil sie keine einzelne haben. Sie erscheinen als „nicht zugeordnet" – die Branchenaufteilung beschreibt dann ausdrücklich nur den Rest und nicht das Ganze.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was diese Seite nicht sagt',
+        items: [
+          'Nichts über Risiko. Es wird keine Schwankungsbreite gerechnet und keine Korrelation – zwei Titel aus verschiedenen Branchen können sich trotzdem im Gleichschritt bewegen.',
+          'Nichts über Ihr tatsächliches Depot. Gerechnet wird, was eingetragen wurde; ein vergessener Posten fehlt in jeder Aufteilung.',
+          'Nichts darüber, ob eine Aufteilung passt. Das hängt an Zielen, Zeitraum und Belastbarkeit – und die kennt diese Seite nicht.',
+          'Keine Steuern und keine Transaktionskosten. Die gewichtete Kostenquote bezieht sich nur auf den Teil, für den eine hinterlegt ist; wie groß dieser Teil ist, steht daneben.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Eingaben bleiben im Browser. Die Seite ist ein statisches Dokument ohne Gegenstelle – es gibt keinen Server, an den etwas gehen könnte.',
+      },
+    ],
+    relatedTopics: ['portfolio-aufbau', 'risiko-und-rendite', 'aktien-laender-branchen'],
+  },
 ]
 
 /*
