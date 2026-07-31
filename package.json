@@ -34,6 +34,7 @@
     "zinsen": "node --experimental-strip-types scripts/zinsen-abrufen.ts",
     "breite": "node scripts/breite-pruefen.mjs",
     "kontrast": "node scripts/kontrast-pruefen.mjs",
+    "druck": "node scripts/druck-pruefen.mjs",
     "verwaist": "node --experimental-strip-types scripts/verwaist-pruefen.ts",
     "gewicht": "node scripts/gewicht-pruefen.mjs",
     "tastatur": "node scripts/tastatur-pruefen.mjs"

@@ -43,9 +43,16 @@ export function PageHeader({
 
   return (
     <div className="border-border bg-surface relative overflow-hidden border-b">
-      {/* Dekorativer Farbverlauf in der Bereichsfarbe. */}
+      {/*
+        Dekorativer Farbverlauf in der Bereichsfarbe.
+
+        Auf Papier hat er nichts verloren: Dort wird daraus ein grauer Balken
+        quer über den Anfang des Textes – und bei eingeschalteten
+        Hintergründen ein Streifen Toner für nichts.
+      */}
       <div
         aria-hidden="true"
+        data-drucken="aus"
         className={cn(
           'pointer-events-none absolute inset-x-0 -top-32 h-64 bg-gradient-to-b blur-2xl',
           style.gradient

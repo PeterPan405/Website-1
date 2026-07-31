@@ -176,115 +176,131 @@
     0 2px 4px rgb(15 23 42 / 0.06), 0 18px 40px -16px rgb(15 23 42 / 0.22);
 }
 
-[data-theme='dark'] {
-  /*
-    Im Dunkeln läuft die Treppe von gedämpft nach hell.
+/*
+  Der dunkle Satz gilt am Bildschirm – **nicht auf Papier**.
 
-    Auf dunklem Grund liest sich „mehr Farbe“ als „mehr Wert“ – dieselbe
-    Richtung wie im Hellen, aber mit umgekehrter Helligkeit. Die Stufen des
-    hellen Themes wären hier fast unsichtbar.
-  */
-  --c-globus-1: #2b3a63;
-  --c-globus-2: #3d5199;
-  --c-globus-3: #5a6ec6;
-  --c-globus-4: #8496e2;
-  --c-globus-5: #bcc7f6;
-  --c-globus-ozean: #080d18;
-  --c-globus-leer: #414859;
-  --c-globus-kante: #35405a;
+  Deshalb steht der ganze Block in `@media not print` statt in einer eigenen
+  Druckregel, die die hellen Werte noch einmal aufschreibt. Eine solche Kopie
+  müsste jeden neuen Farbwert zweimal mitbekommen, und beim ersten Vergessen
+  druckt ein Hinweiskasten dunkelblaue Fläche mit dunkelblauer Schrift – genau
+  das stand hier, solange die Druckregel nur `--c-fg` und `--c-surface`
+  zurücksetzte und die Akzentfarben vergaß.
 
-  color-scheme: dark;
+  So bleibt für den Druck einfach der helle Satz aus `:root` stehen – der
+  ganze, mit allen Akzent- und Flächenfarben, ohne dass hier eine Zeile davon
+  wiederholt wird.
+*/
+@media not print {
+  [data-theme='dark'] {
+    /*
+      Im Dunkeln läuft die Treppe von gedämpft nach hell.
 
-  --c-canvas: #060911;
-  --c-surface: #0f1523;
-  --c-surface-muted: #161e2f;
-  --c-border: #232d43;
-  --c-border-strong: #35415d;
+      Auf dunklem Grund liest sich „mehr Farbe“ als „mehr Wert“ – dieselbe
+      Richtung wie im Hellen, aber mit umgekehrter Helligkeit. Die Stufen des
+      hellen Themes wären hier fast unsichtbar.
+    */
+    --c-globus-1: #2b3a63;
+    --c-globus-2: #3d5199;
+    --c-globus-3: #5a6ec6;
+    --c-globus-4: #8496e2;
+    --c-globus-5: #bcc7f6;
+    --c-globus-ozean: #080d18;
+    --c-globus-leer: #414859;
+    --c-globus-kante: #35405a;
 
-  --c-fg: #e9edf7;
-  --c-fg-muted: #9ba6be;
-  /*
-    Dasselbe Problem spiegelbildlich: #79839a erreichte auf der Markenfläche
-    #1a2242 nur 4,09:1 und auf dem Petrol-Ton #0c2a2d 3,99:1. Auf der reinen
-    Oberfläche reichte es knapp – und genau deshalb fiel es nie auf, denn dort
-    schaut man hin.
+    color-scheme: dark;
 
-    #8992a6 hält auf allen Flächen mindestens 4,86:1 und bleibt dunkler als
-    `--c-fg-muted`, die Abstufung stimmt also weiterhin.
-  */
-  --c-fg-subtle: #8992a6;
+    --c-canvas: #060911;
+    --c-surface: #0f1523;
+    --c-surface-muted: #161e2f;
+    --c-border: #232d43;
+    --c-border-strong: #35415d;
 
-  /*
-    Aufgehellte Logo-Variante für dunkle Flächen.
+    --c-fg: #e9edf7;
+    --c-fg-muted: #9ba6be;
+    /*
+      Dasselbe Problem spiegelbildlich: #79839a erreichte auf der Markenfläche
+      #1a2242 nur 4,09:1 und auf dem Petrol-Ton #0c2a2d 3,99:1. Auf der reinen
+      Oberfläche reichte es knapp – und genau deshalb fiel es nie auf, denn dort
+      schaut man hin.
 
-    Die Originalfarben sind dafür zu dunkel: das Navy #17296F erreicht auf
-    der dunklen Fläche nur 1,37:1 und wäre praktisch unsichtbar. Die Tints
-    behalten den Farbton, liegen aber alle bei etwa 6:1 – dadurch bleibt der
-    Ring erkennbar und die vier Figuren wirken weiterhin gleich gewichtet.
-    Das Volllogo in public/logo.svg behält die Originalfarben, weil es für
-    Downloads und strukturierte Daten auf Weiß verwendet wird.
-  */
-  --c-logo-navy: #7e8fd8;
-  --c-logo-grey: #9aa0ab;
-  --c-logo-green: #56a878;
-  --c-logo-red: #d47b7e;
+      #8992a6 hält auf allen Flächen mindestens 4,86:1 und bleibt dunkler als
+      `--c-fg-muted`, die Abstufung stimmt also weiterhin.
+    */
+    --c-fg-subtle: #8992a6;
 
-  --c-brand: #93a0ea;
-  --c-brand-strong: #b0baf2;
-  --c-brand-contrast: #0a0f1f;
-  --c-brand-soft: #1a2242;
+    /*
+      Aufgehellte Logo-Variante für dunkle Flächen.
 
-  --c-accent: #4fc4cc;
-  --c-accent-soft: #0c2a2d;
+      Die Originalfarben sind dafür zu dunkel: das Navy #17296F erreicht auf
+      der dunklen Fläche nur 1,37:1 und wäre praktisch unsichtbar. Die Tints
+      behalten den Farbton, liegen aber alle bei etwa 6:1 – dadurch bleibt der
+      Ring erkennbar und die vier Figuren wirken weiterhin gleich gewichtet.
+      Das Volllogo in public/logo.svg behält die Originalfarben, weil es für
+      Downloads und strukturierte Daten auf Weiß verwendet wird.
+    */
+    --c-logo-navy: #7e8fd8;
+    --c-logo-grey: #9aa0ab;
+    --c-logo-green: #56a878;
+    --c-logo-red: #d47b7e;
 
-  --c-success: #4fbe86;
-  --c-success-soft: #0d2a1d;
-  --c-warning: #e0a649;
-  --c-warning-soft: #2c2109;
-  --c-danger: #f08a8d;
-  --c-danger-soft: #2c1214;
-  /* Auf dunklem Grund heller und weniger gesättigt – wie die übrige Palette. */
-  --c-stimmung-angst: #e09a5a;
-  --c-stimmung-neutral: #d6c05a;
-  --c-stimmung-gier: #93cf72;
+    --c-brand: #93a0ea;
+    --c-brand-strong: #b0baf2;
+    --c-brand-contrast: #0a0f1f;
+    --c-brand-soft: #1a2242;
 
-  --c-news: #8da4f0;
-  --c-news-soft: #141f3e;
-  --c-markets: #4fbe86;
-  --c-markets-soft: #0d2a1d;
-  --c-tools: #aab0bc;
-  --c-tools-soft: #1b202b;
-  --c-learn: #e0a649;
-  --c-learn-soft: #2c2109;
-  --c-akademie: #f195c6;
-  --c-akademie-soft: #2e1122;
-  --c-debt: #f08a8d;
-  --c-debt-soft: #2c1214;
-  /*
-    Globus und Kalender – hier fehlten sie, und das war ein echter Fehler.
+    --c-accent: #4fc4cc;
+    --c-accent-soft: #0c2a2d;
 
-    Die aufgehellten Töne standen versehentlich im **hellen** Block und wurden
-    dort vier Zeilen später von den hellen Werten überschrieben. Folge: Im
-    dunklen Thema blieben `--c-globe` und `--c-calendar` auf ihren hellen
-    Werten stehen – #155e63 kam damit auf 2,44:1 gegen die dunkle Oberfläche,
-    #6d4694 auf 2,56:1. Beides war auf dem Bildschirm kaum zu lesen, und keine
-    Prüfung hat es je gesehen, weil `tests/farbvariablen.test.ts` nur fragt, ob
-    eine Variable existiert – nicht, welchen Wert sie im jeweiligen Thema hat.
+    --c-success: #4fbe86;
+    --c-success-soft: #0d2a1d;
+    --c-warning: #e0a649;
+    --c-warning-soft: #2c2109;
+    --c-danger: #f08a8d;
+    --c-danger-soft: #2c1214;
+    /* Auf dunklem Grund heller und weniger gesättigt – wie die übrige Palette. */
+    --c-stimmung-angst: #e09a5a;
+    --c-stimmung-neutral: #d6c05a;
+    --c-stimmung-gier: #93cf72;
 
-    Aufgefallen ist es erst `npm run kontrast`. Jetzt: 8,77:1 und 7,49:1.
-  */
-  --c-globe: #4fc4cc;
-  --c-globe-soft: #0c2a2d;
-  --c-calendar: #b998e0;
-  --c-calendar-soft: #241a33;
+    --c-news: #8da4f0;
+    --c-news-soft: #141f3e;
+    --c-markets: #4fbe86;
+    --c-markets-soft: #0d2a1d;
+    --c-tools: #aab0bc;
+    --c-tools-soft: #1b202b;
+    --c-learn: #e0a649;
+    --c-learn-soft: #2c2109;
+    --c-akademie: #f195c6;
+    --c-akademie-soft: #2e1122;
+    --c-debt: #f08a8d;
+    --c-debt-soft: #2c1214;
+    /*
+      Globus und Kalender – hier fehlten sie, und das war ein echter Fehler.
 
-  /* Dunkle Schrift auf den aufgehellten Flächen – 7,86 bis 9,20:1. */
-  --c-on-fill: #0a0f1c;
+      Die aufgehellten Töne standen versehentlich im **hellen** Block und wurden
+      dort vier Zeilen später von den hellen Werten überschrieben. Folge: Im
+      dunklen Thema blieben `--c-globe` und `--c-calendar` auf ihren hellen
+      Werten stehen – #155e63 kam damit auf 2,44:1 gegen die dunkle Oberfläche,
+      #6d4694 auf 2,56:1. Beides war auf dem Bildschirm kaum zu lesen, und keine
+      Prüfung hat es je gesehen, weil `tests/farbvariablen.test.ts` nur fragt, ob
+      eine Variable existiert – nicht, welchen Wert sie im jeweiligen Thema hat.
 
-  --c-ring: #8da4f0;
+      Aufgefallen ist es erst `npm run kontrast`. Jetzt: 8,77:1 und 7,49:1.
+    */
+    --c-globe: #4fc4cc;
+    --c-globe-soft: #0c2a2d;
+    --c-calendar: #b998e0;
+    --c-calendar-soft: #241a33;
 
-  --fk-shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
-  --fk-shadow-lift: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -16px rgb(0 0 0 / 0.75);
+    /* Dunkle Schrift auf den aufgehellten Flächen – 7,86 bis 9,20:1. */
+    --c-on-fill: #0a0f1c;
+
+    --c-ring: #8da4f0;
+
+    --fk-shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+    --fk-shadow-lift: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -16px rgb(0 0 0 / 0.75);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -538,4 +554,133 @@
 @utility fk-chip {
   @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1;
   @apply text-xs font-semibold tracking-wide uppercase;
+}
+
+/* ---------------------------------------------------------------- Drucken */
+
+/**
+ * Was auf Papier bleibt und was nicht.
+ *
+ * ## Warum ein Stylesheet und kein gebautes PDF
+ *
+ * Weil ein Lerntext etwas anderes ist als die Vermögensübersicht. Die ist ein
+ * Formular zum Ausfüllen und Abheften; dafür wird das PDF in `lib/pdf.ts` Zeile
+ * für Zeile gesetzt, weil es genau so aussehen muss. Ein Lerntext dagegen ist
+ * Fließtext mit Zeichnungen, Tabellen und Hinweiskästen – und jeder Browser
+ * bietet im Druckdialog „Als PDF speichern“ an.
+ *
+ * Der Unterschied ist nicht Bequemlichkeit. Ein handgesetztes PDF wäre ein
+ * zweiter Satz derselben Inhalte und liefe auseinander, sobald jemand einen
+ * Absatz ändert. Der Ausdruck der Seite kann das nicht: Er ist die Seite.
+ *
+ * ## Was verschwindet
+ *
+ * Alles, was man auf Papier nicht bedienen kann – Kopfzeile, Fußzeile,
+ * Sprungmarke, Vorlesefunktion, Quiz, Merkknöpfe. Was bleibt, ist der Text mit
+ * seinen Zeichnungen.
+ */
+
+/*
+  Umgekehrt: Die Herkunftszeile am Fuß eines Ausdrucks ist am Bildschirm
+  überflüssig – dort steht die Adresse in der Adresszeile. Sie wird deshalb
+  hier ausgeblendet und im Druckblock wieder eingeschaltet.
+*/
+[data-drucken='nur'] {
+  display: none;
+}
+
+@media print {
+  /*
+    Der helle Satz gilt hier ohnehin – der dunkle steht in `@media not print`
+    und ist auf Papier gar nicht erst da. Bleibt der Seitengrund: Er ist im
+    Hellen ein leicht bläuliches #f6f8fc und soll auf Papier schlicht weiß
+    sein.
+  */
+  :root {
+    color-scheme: light;
+    --c-canvas: #ffffff;
+  }
+
+  body {
+    background: #ffffff;
+  }
+
+  /* Bedienelemente, die auf Papier keine sind. */
+  header,
+  footer,
+  [data-drucken='aus'] {
+    display: none !important;
+  }
+
+  /* Und die Gegenrichtung: die Herkunftszeile gibt es nur auf Papier. */
+  [data-drucken='nur'] {
+    display: block !important;
+  }
+
+  /*
+    Der Inhalt bekommt die volle Breite. Die Behälter der Website halten den
+    Text bei 1.280 Pixel; auf A4 wäre das eine Spalte mit fingerbreiten
+    Rändern.
+  */
+  main {
+    max-width: none !important;
+  }
+  .fk-container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    /*
+      Am Bildschirm sind das 64 Pixel oben und unten – Luft, die eine Seite
+      atmen lässt, die sonst bis zum Bildschirmrand liefe. Auf Papier kommen
+      die 18 mm Blattrand aus `@page` schon dazu, und zusammen stünde der
+      Textanfang gut drei Zentimeter tief. Ein Blatt braucht keine zwei Ränder.
+    */
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /*
+    Keine Überschrift allein am Seitenende, keine Zeichnung über zwei Seiten,
+    keine Einzelzeile eines Absatzes.
+  */
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+  }
+  figure,
+  table,
+  pre,
+  li {
+    break-inside: avoid-page;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /*
+    Verweise sind auf Papier tot. Die Adresse dahinterzuschreiben macht sie
+    nachvollziehbar – aber nur bei Verweisen nach außen: Ein „/glossar#aktie“
+    hinter jedem zweiten Wort im Fließtext wäre unlesbar.
+  */
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.75em;
+    color: #55607a;
+    word-break: break-all;
+  }
+
+  /*
+    Karten ohne Schatten und mit dünnem Rahmen: Ein Schatten wird auf Papier
+    zu einem grauen Fleck.
+  */
+  .fk-card {
+    box-shadow: none !important;
+    border: 1px solid #c9ced9 !important;
+  }
+
+  @page {
+    margin: 18mm 16mm;
+  }
 }

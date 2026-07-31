@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 
 import { LektionAbschluss } from '@/components/akademie/LektionAbschluss'
 import { ContentBlocks } from '@/components/content/ContentBlocks'
+import { Druckknopf } from '@/components/ui/Druckknopf'
+import { Druckquelle } from '@/components/ui/Druckquelle'
 import { Vorlesen } from '@/components/ui/Vorlesen'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
@@ -134,13 +136,14 @@ export default async function LektionPage({ params }: Props) {
               Seite – die Kernaussage zuerst, dann der Inhalt. Grafiken werden
               über ihre Vorlesefassung aus data/figures.ts gesprochen.
             */}
-            <div className="mt-6">
+            <div data-drucken="aus" className="mt-6 flex flex-wrap items-center gap-3">
               <Vorlesen
                 abschnitte={vorleseAbschnitte(
                   [{ type: 'paragraph', text: gefunden.kernaussage }, ...gefunden.inhalt],
                   figureMeta
                 )}
               />
+              <Druckknopf />
             </div>
 
             <div className="mt-8">
@@ -163,15 +166,25 @@ export default async function LektionPage({ params }: Props) {
               deshalb an diese Stelle und nicht in die Seitenleiste, wo er beim
               Ankommen längst aus dem Bild wäre.
             */}
-            <LektionAbschluss
-              bereich={bereich}
-              lektionSlug={gefunden.slug}
-              lektionTitel={gefunden.titel}
-              naechste={nachher && { slug: nachher.slug, titel: nachher.titel }}
-            />
+            {/*
+              Der Haken im Behälter, nicht am Bauteil.
+
+              `LektionAbschluss` reicht unbekannte Eigenschaften nicht durch;
+              ein `data-drucken` daran wäre stillschweigend verschwunden – und
+              stünde dann auf jedem Ausdruck.
+            */}
+            <div data-drucken="aus">
+              <LektionAbschluss
+                bereich={bereich}
+                lektionSlug={gefunden.slug}
+                lektionTitel={gefunden.titel}
+                naechste={nachher && { slug: nachher.slug, titel: nachher.titel }}
+              />
+            </div>
 
             {/* Vor und zurück innerhalb des Bereichs */}
             <nav
+              data-drucken="aus"
               aria-label="Weitere Lektionen"
               className="border-border mt-10 grid gap-3 border-t pt-6 sm:grid-cols-2"
             >
@@ -218,9 +231,21 @@ export default async function LektionPage({ params }: Props) {
                 </Link>
               )}
             </nav>
+
+            {/* Steht nur auf Papier – damit das Blatt seinen Absender kennt. */}
+            <Druckquelle pfad={`/akademie/${bereich}/${lektion}`} />
           </article>
 
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+          {/*
+            Die Seitenleiste ist auf Papier nichts als eine Liste toter
+            Verweise: Voraussetzungen, Grundlagen, Rechner, Stichworte – alles
+            Wege woandershin. Sie stünde außerdem hinter der Herkunftszeile und
+            damit hinter dem Schluss des Blattes.
+          */}
+          <aside
+            data-drucken="aus"
+            className="space-y-6 lg:sticky lg:top-24 lg:self-start"
+          >
             {voraussetzungen.length > 0 && (
               <section className="fk-card p-5">
                 <h2 className="text-fg text-sm font-semibold">Setzt voraus</h2>
