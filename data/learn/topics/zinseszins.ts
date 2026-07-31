@@ -244,6 +244,11 @@ export const zinseszins: LearnTopic = {
           expression: 'Endkapital = Rate × ((1 + i)^n − 1) / i',
           description:
             'i ist der Zinssatz **je Periode**, n die Anzahl der Perioden. Bei monatlichen Raten und 6 Prozent Jahreszins ist i = 0,06 / 12 = 0,005 und n = Jahre × 12. Ein vorhandenes Startkapital wird separat mit der Grundformel gerechnet und addiert.',
+          rechner: {
+            pfad: '/rechner/zinsrechner',
+            werte: { start: 0, rate: 200, intervall: 'monthly', zins: 6, jahre: 30 },
+            text: '200 € monatlich zu 6 Prozent über 30 Jahre im Zinsrechner öffnen',
+          },
         },
         {
           type: 'paragraph',

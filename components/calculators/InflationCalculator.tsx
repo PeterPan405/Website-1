@@ -12,6 +12,8 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
+import { useVorbelegung } from '@/components/calculators/vorbelegung'
+import { leseZahl } from '@/lib/rechner-vorbelegung'
 import { nachgeladen } from '@/components/charts/nachladen'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -45,6 +47,14 @@ export function InflationCalculator() {
   const [rate, setRate] = useState(defaults.rate)
   const [years, setYears] = useState(defaults.years)
   const [nominalReturn, setNominalReturn] = useState(defaults.nominalReturn)
+
+  /* Vorbelegung aus einem Lerntext: `#betrag=10000&rate=2&jahre=20`. */
+  useVorbelegung((werte) => {
+    setAmount(leseZahl(werte.betrag, defaults.amount, { min: 1, max: 100_000_000 }))
+    setRate(leseZahl(werte.rate, defaults.rate, { min: 0, max: 20 }))
+    setYears(leseZahl(werte.jahre, defaults.years, { min: 1, max: 60, ganzzahl: true }))
+    setNominalReturn(leseZahl(werte.rendite, defaults.nominalReturn, { min: 0, max: 20 }))
+  })
 
   const result = useMemo(
     () => calculateInflation({ amount, annualRatePercent: rate, years }),

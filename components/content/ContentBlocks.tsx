@@ -2,9 +2,11 @@ import type { ReactNode } from 'react'
 import Link from 'next/link'
 
 import { ContentFigure } from '@/components/content/ContentFigure'
+import { Icon } from '@/components/ui/Icon'
 import { Callout } from '@/components/ui/Callout'
 import { slugifyHeading, type ContentBlock } from '@/data/content'
 import { zerlege, type Begriffsindex } from '@/lib/glossar-text'
+import { rechnerlink } from '@/lib/rechner-vorbelegung'
 
 /**
  * Rendert das Blockmodell aus `data/content.ts` als semantisches HTML.
@@ -244,6 +246,22 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
           <p className="text-fg-muted mt-2.5 text-sm leading-relaxed">
             {renderInline(block.description, glossar)}
           </p>
+          {/*
+            Der Verweis auf den Rechner steht **im** Formelkasten und nicht
+            darunter als eigener Absatz: Er gehört zu diesem Beispiel und zu
+            keinem anderen. Ein Satz weiter unten im Fließtext läse sich wie
+            ein allgemeiner Hinweis auf die Rechnerseite – und davon gibt es
+            am Ende jeder Lernstufe ohnehin einen.
+          */}
+          {block.rechner && (
+            <Link
+              href={rechnerlink(block.rechner.pfad, block.rechner.werte)}
+              className="text-brand mt-4 inline-flex items-center gap-1.5 text-sm font-medium hover:underline"
+            >
+              <Icon name="calculator" className="size-4" aria-hidden="true" />
+              {block.rechner.text}
+            </Link>
+          )}
         </div>
       )
 

@@ -175,6 +175,11 @@ export const inflation: LearnTopic = {
           expression: 'Realzins = (1 + Nominalzins) ÷ (1 + Inflationsrate) − 1',
           description:
             'Genau genommen ein Quotient, nicht eine Differenz. Bei kleinen Raten ist der Unterschied zur einfachen Subtraktion gering; bei hohen Raten wird er spürbar.',
+          rechner: {
+            pfad: '/rechner/inflationsrechner',
+            werte: { betrag: 10000, rate: 2.5, jahre: 20, rendite: 6 },
+            text: '10.000 € bei 2,5 Prozent Inflation und 6 Prozent Rendite über 20 Jahre',
+          },
         },
         {
           type: 'callout',

@@ -12,6 +12,8 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField, SelectField } from '@/components/calculators/NumberField'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
+import { useVorbelegung } from '@/components/calculators/vorbelegung'
+import { leseAuswahl, leseZahl } from '@/lib/rechner-vorbelegung'
 import { nachgeladen } from '@/components/charts/nachladen'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import {
@@ -54,6 +56,29 @@ export function CompoundInterestCalculator() {
   const [rate, setRate] = useState(defaults.rate)
   const [years, setYears] = useState(defaults.years)
   const [timing, setTiming] = useState<'start' | 'end'>(defaults.timing)
+
+  /*
+    Werte aus der Adresse übernehmen, wenn ein Lerntext hierher verweist.
+
+    Die Namen sind kurz und deutsch, weil sie in einer sichtbaren Adresse
+    stehen: `#start=5000&rate=200&zins=6&jahre=25`. Die Grenzen sind dieselben
+    wie an den Feldern darunter – sie stehen bewusst zweimal, weil ein
+    `NumberField` seine Grenzen als Anzeige führt und die Adresse sie als
+    Schutz braucht. Wer eine ändert, ändert beide.
+  */
+  useVorbelegung((werte) => {
+    setPrincipal(leseZahl(werte.start, defaults.principal, { min: 0, max: 10_000_000 }))
+    setContribution(leseZahl(werte.rate, defaults.contribution, { min: 0, max: 100_000 }))
+    setRate(leseZahl(werte.zins, defaults.rate, { min: 0, max: 20 }))
+    setYears(leseZahl(werte.jahre, defaults.years, { min: 1, max: 60, ganzzahl: true }))
+    setInterval(
+      leseAuswahl(werte.intervall, defaults.interval, [
+        'monthly',
+        'quarterly',
+        'yearly',
+      ] as const)
+    )
+  })
 
   const result = useMemo(
     () =>
