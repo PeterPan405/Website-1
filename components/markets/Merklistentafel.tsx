@@ -21,6 +21,14 @@ import { formatDateShort, formatNumber, formatPercentSigned } from '@/lib/format
  * Felder sind deshalb kurzgehalten: Was hier steht, steht tausendfach im
  * Seitenpaket.
  */
+/** Ein erwarteter Termin zu einem Titel. */
+export interface Merktermin {
+  /** Tag als `JJJJ-MM-TT`. */
+  tag: string
+  /** „Dividende“ oder „Quartalszahlen“. */
+  art: string
+}
+
 export interface Merkdaten {
   symbol: string
   ticker: string
@@ -31,10 +39,14 @@ export interface Merkdaten {
   veraenderung: number
   /** Dividendenrendite in Prozent, wo sie gebildet werden konnte. */
   rendite: number | null
-  /** Nächster erwarteter Termin, `JJJJ-MM-TT`. */
-  termin: string | null
-  /** Was für ein Termin das ist – „Dividende“ oder „Quartalszahlen“. */
-  terminArt: string | null
+  /**
+   * Die nächsten erwarteten Termine, aufsteigend nach Datum.
+   *
+   * Mehrere statt nur des nächsten, seit es den Kalender zum Herunterladen
+   * gibt: Ein Kalender mit einem Eintrag je Titel ist nach dem ersten Termin
+   * leer, und niemand lädt ihn ein zweites Mal herunter.
+   */
+  termine: Merktermin[]
   /** Branche, für die Streuungsprüfung. */
   branche: string | null
   /** Sitzland als ISO-3166-Zahl, für dieselbe. */
@@ -104,9 +116,15 @@ export function Merklistentafel({
     )
   }
 
+  /*
+    Alle künftigen Termine der gemerkten Titel, nach Datum sortiert – nicht
+    mehr nur der jeweils nächste je Titel. Wer vier Titel merkt, deren Termine
+    in derselben Woche liegen, sieht sonst vier Zeilen und danach ein
+    Vierteljahr nichts.
+  */
   const mitTermin = zeilen
-    .filter((zeile) => zeile.termin)
-    .sort((a, b) => (a.termin ?? '').localeCompare(b.termin ?? ''))
+    .flatMap((zeile) => zeile.termine.map((termin) => ({ zeile, termin })))
+    .sort((a, b) => a.termin.tag.localeCompare(b.termin.tag))
 
   return (
     <div>
@@ -160,7 +178,7 @@ export function Merklistentafel({
                 {zeile.rendite !== null ? `${formatNumber(zeile.rendite, 2)} %` : '–'}
               </span>
               <span className="text-fg-subtle w-28 shrink-0 text-right text-xs">
-                {zeile.termin ? formatDateShort(zeile.termin) : '–'}
+                {zeile.termine[0] ? formatDateShort(zeile.termine[0].tag) : '–'}
               </span>
               <button
                 type="button"
@@ -193,13 +211,13 @@ export function Merklistentafel({
             Unternehmen selbst, meist wenige Wochen vorher.
           </p>
           <ul className="border-border mt-4 border-t">
-            {mitTermin.slice(0, 12).map((zeile) => (
+            {mitTermin.slice(0, 12).map(({ zeile, termin }) => (
               <li
-                key={`${zeile.symbol}-termin`}
+                key={`${zeile.symbol}-${termin.tag}-${termin.art}`}
                 className="border-border flex items-baseline gap-3 border-b py-2.5"
               >
                 <span className="text-fg-subtle w-24 shrink-0 text-sm tabular-nums">
-                  {formatDateShort(zeile.termin ?? '')}
+                  {formatDateShort(termin.tag)}
                 </span>
                 <Link
                   href={`/maerkte/${zeile.symbol}`}
@@ -208,7 +226,7 @@ export function Merklistentafel({
                   {zeile.name}
                 </Link>
                 <span className="text-fg-subtle shrink-0 text-xs">
-                  {zeile.terminArt} · geschätzt
+                  {termin.art} · geschätzt
                 </span>
               </li>
             ))}

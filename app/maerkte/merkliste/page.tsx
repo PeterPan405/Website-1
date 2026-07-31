@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { laendernamen } from '@/data/laender/namen'
 import { Merkaustausch } from '@/components/markets/Merkaustausch'
+import { Merkkalender } from '@/components/markets/Merkkalender'
 import { Merklistentafel, type Merkdaten } from '@/components/markets/Merklistentafel'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
@@ -37,18 +38,22 @@ async function baueDaten(): Promise<Merkdaten[]> {
   const termine = getQuartalstermine()
 
   /*
-    Je Symbol der nächste Quartalstermin. Die Dividendentermine kommen nicht
-    aus derselben Liste, sondern aus dem Befund – dort steht der nächste
-    erwartete Abschlag ohnehin schon, und er ist für eine Merkliste der
-    nähere Anlass.
+    Je Symbol **alle** künftigen Quartalstermine, nicht nur der nächste. Die
+    Dividendentermine kommen nicht aus derselben Liste, sondern aus dem Befund
+    – dort steht der nächste erwartete Abschlag ohnehin schon.
+
+    Der Grund für „alle“ ist der Kalender zum Herunterladen: Eine Datei mit
+    einem Eintrag je Titel ist nach dem ersten Termin leer, und niemand lädt
+    sie ein zweites Mal.
   */
   const heute = new Date().toISOString().slice(0, 10)
-  const quartal = new Map<string, string>()
+  const quartal = new Map<string, string[]>()
   for (const termin of termine) {
     if (termin.datum < heute) continue
     for (const symbol of termin.symbole ?? []) {
       const bisher = quartal.get(symbol)
-      if (!bisher || termin.datum < bisher) quartal.set(symbol, termin.datum)
+      if (bisher) bisher.push(termin.datum)
+      else quartal.set(symbol, [termin.datum])
     }
   }
 
@@ -57,18 +62,26 @@ async function baueDaten(): Promise<Merkdaten[]> {
     .map((quote) => {
       const dividende = getDividendenbefund(quote.symbol)
       const dividendentag = dividende?.naechsterErwartet ?? null
-      const quartalstag = quartal.get(quote.symbol) ?? null
 
       /*
-        Der nähere der beiden Termine gewinnt. Beide anzuzeigen wäre in einer
-        Zeile nicht unterzubringen, und die Frage lautet „was kommt als
-        Nächstes“ – nicht „was kommt alles“.
+        Beide Arten zusammen, nach Datum sortiert. Die Tabelle zeigt davon nur
+        den ersten – die Frage in einer Zeile lautet „was kommt als Nächstes“.
+        Der Kalender nimmt alle.
+
+        Die Obergrenze ist keine Kosmetik: Diese Daten reisen für **alle**
+        1.029 Aktien im Seitenpaket mit, weil der Server nicht weiß, welche
+        gemerkt sind. Vier Termine je Titel decken ein Jahr ab und sind das,
+        was die Vorhersage überhaupt hergibt.
       */
-      const beide = [
-        dividendentag ? { tag: dividendentag, art: 'Dividende' } : null,
-        quartalstag ? { tag: quartalstag, art: 'Quartalszahlen' } : null,
-      ].filter((eintrag): eintrag is { tag: string; art: string } => Boolean(eintrag))
-      const naechster = beide.sort((a, b) => a.tag.localeCompare(b.tag))[0] ?? null
+      const alleTermine = [
+        ...(dividendentag ? [{ tag: dividendentag, art: 'Dividende' }] : []),
+        ...(quartal.get(quote.symbol) ?? []).map((tag) => ({
+          tag,
+          art: 'Quartalszahlen',
+        })),
+      ]
+        .sort((a, b) => a.tag.localeCompare(b.tag))
+        .slice(0, 4)
 
       return {
         symbol: quote.symbol,
@@ -81,8 +94,7 @@ async function baueDaten(): Promise<Merkdaten[]> {
         rendite: dividende?.renditeProzent ?? null,
         branche: quote.branche ?? null,
         sitzland: quote.sitzland ?? null,
-        termin: naechster?.tag ?? null,
-        terminArt: naechster?.art ?? null,
+        termine: alleTermine,
       }
     })
 }
@@ -107,6 +119,8 @@ export default async function MerklisteSeite() {
 
       <div className="fk-container py-12 sm:py-16">
         <Merklistentafel daten={daten} laendernamen={laendernamen} />
+
+        <Merkkalender daten={daten} />
 
         <Merkaustausch bekannteSymbole={daten.map((eintrag) => eintrag.symbol)} />
 

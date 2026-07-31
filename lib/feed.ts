@@ -120,9 +120,19 @@ export function icsText(roh: string): string {
  * Fortsetzungszeilen beginnen mit einem Leerzeichen. Gezählt wird in Bytes und
  * nicht in Zeichen: Ein Umlaut belegt in UTF-8 zwei, und eine Umbruchstelle
  * mitten in seinen Bytes macht aus dem Umlaut zwei kaputte Zeichen.
+ *
+ * Gezählt wird mit `TextEncoder` und nicht mit `Buffer`. Der Unterschied ist
+ * kein Geschmack: `Buffer` gibt es nur in Node. Seit die Merkliste ihren
+ * Kalender im Browser erzeugt, läuft dieselbe Funktion auch dort, und mit
+ * `Buffer` wäre sie beim ersten Umlaut mit „Buffer is not defined“
+ * stehengeblieben – auf einer Seite, die statisch ausgeliefert wird und
+ * niemandem eine Fehlermeldung schickt.
  */
+const KODIERER = new TextEncoder()
+const DEKODIERER = new TextDecoder()
+
 export function falte(zeile: string): string[] {
-  const bytes = Buffer.from(zeile, 'utf8')
+  const bytes = KODIERER.encode(zeile)
   if (bytes.length <= 75) return [zeile]
 
   const teile: string[] = []
@@ -138,7 +148,9 @@ export function falte(zeile: string): string[] {
     ) {
       ende -= 1
     }
-    teile.push((anfang === 0 ? '' : ' ') + bytes.subarray(anfang, ende).toString('utf8'))
+    teile.push(
+      (anfang === 0 ? '' : ' ') + DEKODIERER.decode(bytes.subarray(anfang, ende))
+    )
     anfang = ende
     // Fortsetzungszeilen tragen ein führendes Leerzeichen und dürfen deshalb
     // nur 74 weitere Oktette aufnehmen.
