@@ -37,7 +37,8 @@
     "druck": "node scripts/druck-pruefen.mjs",
     "verwaist": "node --experimental-strip-types scripts/verwaist-pruefen.ts",
     "gewicht": "node scripts/gewicht-pruefen.mjs",
-    "tastatur": "node scripts/tastatur-pruefen.mjs"
+    "tastatur": "node scripts/tastatur-pruefen.mjs",
+    "bilder": "node scripts/referenzbilder.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

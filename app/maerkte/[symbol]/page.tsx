@@ -211,7 +211,8 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               {formatPercentSigned(quote.changePercent)})
             </span>
             <span aria-hidden="true">·</span>
-            <span>
+            {/* Ändert sich bei jedem Abruf – siehe scripts/referenzbilder.mjs. */}
+            <span data-fliesst="">
               {quote.intraday || !quote.source
                 ? `Stand ${formatDateTime(quote.asOf)}`
                 : `Schluss ${formatDate(quote.asOf)}`}
@@ -263,6 +264,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                       ? `${instrument.unit} · rund ${formatCurrency(euroKurs.euro, euroKurs.euro < 10 ? 2 : 0)} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
                       : `${instrument.unit} · ${formatPercentSigned(quote.changePercent)} gegenüber dem Vortag`
                   }
+                  hinweisFliesst
                   tone={positive ? 'positive' : 'negative'}
                 />
                 <Stat

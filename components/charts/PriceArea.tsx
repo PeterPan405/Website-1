@@ -62,7 +62,8 @@ export function PriceArea({
   const MINDESTABSTAND = 30
 
   return (
-    <div style={{ height }} className="w-full">
+    /* Zeichnet Kurse – vor dem Einfrieren abgedeckt, siehe Sparkline.tsx. */
+    <div style={{ height }} className="w-full" data-fliesst="">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={points as SeriesPoint[]}

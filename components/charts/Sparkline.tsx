@@ -44,6 +44,12 @@ export function Sparkline({
   // Eindeutige ID, damit mehrere Sparklines auf einer Seite nicht kollidieren.
   const gradientId = `spark-${positive ? 'up' : 'down'}-${points[0].t}-${points.length}`
 
+  /*
+    `data-fliesst` markiert eine Zeichnung, die Kurse zeigt und sich damit bei
+    jedem Abruf ändert. `scripts/referenzbilder.mjs` deckt solche Stellen vor
+    dem Einfrieren ab – ohne das wäre jedes Referenzbild binnen einer halben
+    Stunde veraltet und die Prüfung nach einem Tag abgeschaltet.
+  */
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
@@ -51,6 +57,7 @@ export function Sparkline({
       preserveAspectRatio="none"
       aria-hidden="true"
       focusable="false"
+      data-fliesst=""
     >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">

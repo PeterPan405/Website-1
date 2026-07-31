@@ -13,12 +13,23 @@ export function Stat({
   label,
   value,
   hint,
+  hinweisFliesst = false,
   tone = 'neutral',
   className,
 }: {
   label: string
   value: ReactNode
   hint?: string
+  /**
+   * Ob im Hinweis laufende Daten stehen – ein Kurs, ein Stand, eine
+   * Tagesveränderung.
+   *
+   * Der Wert oben trägt `tabular-nums` und wird davon schon erfasst; der
+   * Hinweis ist Fließtext und sieht statisch aus. Steht dort trotzdem eine
+   * Zahl, die sich alle dreißig Minuten ändert, muss sie vor dem Einfrieren
+   * abgedeckt werden – sonst schlägt `npm run bilder` bei jedem Kursabruf an.
+   */
+  hinweisFliesst?: boolean
   tone?: 'neutral' | 'positive' | 'negative' | 'brand'
   className?: string
 }) {
@@ -39,7 +50,14 @@ export function Stat({
       <dd className={cn('mt-1.5 text-xl font-bold tabular-nums sm:text-2xl', toneClass)}>
         {value}
       </dd>
-      {hint && <p className="text-fg-subtle mt-1 text-xs leading-relaxed">{hint}</p>}
+      {hint && (
+        <p
+          className="text-fg-subtle mt-1 text-xs leading-relaxed"
+          data-fliesst={hinweisFliesst ? '' : undefined}
+        >
+          {hint}
+        </p>
+      )}
     </div>
   )
 }
