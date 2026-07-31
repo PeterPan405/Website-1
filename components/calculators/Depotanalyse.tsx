@@ -5,6 +5,7 @@ import { getCalculatorDefinition } from '@/data/calculators'
 
 import { InputPanel } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
+import { Depotverlauf } from '@/components/calculators/Depotverlauf'
 import { InstrumentSuche } from '@/components/calculators/InstrumentSuche'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
@@ -106,6 +107,30 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
   }, [zeilen, stammdaten])
 
   const funde = useMemo(() => beobachtungen(analyse), [analyse])
+
+  /*
+    Die Gewichtung für den Rückblick – Symbol und Anteil in Prozent.
+
+    Abgeleitet aus denselben Zeilen wie die Analyse und nicht aus ihr: Die
+    Analyse gruppiert bereits nach Art, Branche und Land; die einzelnen
+    Positionen stehen darin nicht mehr getrennt. Zwei Wege zu derselben
+    Angabe, und dieser ist der kürzere.
+  */
+  const verlaufsanteile = useMemo(
+    () =>
+      zeilen
+        .map((z) => ({
+          symbol: z.symbol,
+          anteil: Number.parseFloat(z.betrag.replace(/\./g, '').replace(',', '.')),
+        }))
+        .filter((p) => p.symbol && Number.isFinite(p.anteil) && p.anteil > 0),
+    [zeilen]
+  )
+
+  const anzeigenamen = useMemo(
+    () => new Map(katalog.map((e) => [e.symbol, e.name])),
+    [katalog]
+  )
 
   /*
     Das Ergebnis zum Mitnehmen anmelden.
@@ -344,6 +369,18 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
               </p>
             </Callout>
           )}
+
+          {/*
+            Der Rückblick steht ganz unten, nach den Beobachtungen.
+
+            Die Reihenfolge ist die der Fragen: erst „wie ist das gebaut“, dann
+            „was fällt daran auf“, dann „wie hätte sich das angefühlt“. Wer den
+            Verlauf zuerst sieht, liest eine Rendite und hat die Aufteilung
+            noch nicht angesehen, auf die sie sich bezieht.
+          */}
+          <Abschnitt titel="Was daraus geworden wäre">
+            <Depotverlauf positionen={verlaufsanteile} namen={anzeigenamen} />
+          </Abschnitt>
         </>
       )}
     </div>
