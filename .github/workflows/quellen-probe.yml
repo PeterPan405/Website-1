@@ -283,3 +283,6 @@ jobs:
             esef-kandidaten-de.json
             esef-werte.json
           if-no-files-found: warn
+          # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
+          # Zwischenstände einer Suche und nach einer Woche wertlos.
+          retention-days: 7
