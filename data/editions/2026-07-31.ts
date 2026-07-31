@@ -17,7 +17,7 @@ import type { DailyEdition } from './types'
 export const edition: DailyEdition = {
   date: '2026-07-31',
   intro:
-    'Inflation vorläufig 2,8 Prozent, zwei Zahlen zum Arbeitsmarkt – und an der Wall Street fällt Apple, während Amazon neun Prozent zulegt.',
+    'Inflation vorläufig 2,8 Prozent, zwei Zahlen zum Arbeitsmarkt, Gold mit zwei Marken – und an der Wall Street fällt Apple, während Amazon zulegt.',
   top: [
     {
       headline: 'Inflation im Juli: vorläufig 2,8 Prozent',
@@ -60,6 +60,25 @@ export const edition: DailyEdition = {
     },
   ],
   further: [
+    {
+      headline: 'Gold: 4.100 Dollar und 3.600 Euro – zwei Marken für ein Metall',
+      summary: [
+        'Gold startet schwächer in den Freitag. Als Schlüssel für einen Trendwechsel nennt die Analyse zwei Schwellen: 4.100 US-Dollar und 3.600 Euro. Auf dem Tagesprogramm stehen die Inflationsdaten aus der Eurozone.',
+        'Das sind nicht zwei Meinungen über einen Preis, sondern zwei Preise. Gold wird in Dollar gehandelt; was im Euroraum zu zahlen ist, entsteht erst durch die Division mit dem Wechselkurs.',
+      ],
+      category: 'Märkte',
+      whyItMatters:
+        'Ein Euro-Goldpreis hat zwei Ursachen. Fällt das Metall in Dollar und fällt gleichzeitig der Euro, bleibt der Preis hier stehen – wer Gold als Absicherung hält, sichert im Euroraum immer auch eine Währungsposition ab.',
+      relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse', 'risiko-und-rendite'],
+      relatedSymbols: ['gold', 'eur-usd'],
+      sources: [
+        {
+          label:
+            'Goldreporter: „Goldpreis am Freitag schwächer: Wichtige 4.100-Dollar-Marke im Fokus“ (31. Juli 2026)',
+          url: 'https://www.goldreporter.de/',
+        },
+      ],
+    },
     {
       headline: 'Apple verliert sechs Prozent – trotz 22 Prozent mehr iPhones',
       summary: [
