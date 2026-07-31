@@ -551,7 +551,22 @@ async function main(): Promise<void> {
         verlöre ein Titel seine Zahlungshistorie, sobald ein einzelner Abruf
         über den Rückfallweg lief.
       */
-      if (ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
+      /*
+        Im Preis-Modus bleiben die Dividenden unangetastet – ohne Ausnahme.
+
+        `vereinigeZahlungen()` gibt **die neue Liste** zurück und übernimmt aus
+        der alten nur die Beträge, damit Yahoos Umrechnungsrundung nicht bei
+        jedem Lauf die siebte Nachkommastelle ändert. Das ist richtig, solange
+        die neue Liste fünf Jahre umfasst – und Datenverlust, sobald sie einen
+        Tag umfasst.
+
+        Genau das ist am 31. Juli 2026 passiert: Der erste Probelauf im
+        Preis-Modus fragte `range=1d`, Yahoo meldete für Singtel ein
+        Dividendenereignis von diesem Tag, und die Bedingung `length > 0` griff.
+        Aus vierzehn gespeicherten Zahlungen wurde eine. Aufgefallen ist es nur,
+        weil im Commit „3 files changed“ stand, wo zwei erwartet waren.
+      */
+      if (!NUR_PREIS && ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
         /*
           Zusammenführen, nicht ersetzen – siehe `vereinigeZahlungen`. Kurz:
           Yahoo rechnet Auslandsdividenden zum Kurs des Abrufzeitpunkts um, und
