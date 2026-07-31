@@ -49,6 +49,16 @@ on:
     # Lauf davor lief also vor dem Schluss, und der Schlusskurs von 500
     # US-Aktien erschien erst am nächsten Morgen auf der Seite.
     - cron: '0,30 7-21 * * 1-5'
+    # Und einmal nach Börsenschluss der volle Lauf.
+    #
+    # Er schreibt die Historie fort und holt die Dividenden – beides ändert
+    # sich einmal je Handelstag, und beides brauchte bis August 2026 trotzdem
+    # jeden halbstündlichen Lauf: `range=5y` für tausend Titel, um daraus den
+    # laufenden Preis zu lesen. Das war der Grund für sieben Minuten Laufzeit.
+    #
+    # 21:45 UTC liegt nach dem Schluss in New York (21:00 UTC im Winter,
+    # 20:00 im Sommer) und damit nach dem letzten Kurs des Tages.
+    - cron: '45 21 * * 1-5'
     # Am Wochenende alle drei Stunden, aber nur Krypto und Devisen.
     #
     # Aktien und Indizes werden nicht gehandelt – ein Abruf liefert für sie
@@ -60,6 +70,11 @@ on:
     - cron: '0 */3 * * 6,0'
   # Von Hand auslösbar – zum Prüfen und für den allerersten Lauf.
   workflow_dispatch:
+    inputs:
+      nur_preis:
+        description: 'Nur den laufenden Preis holen – schnell, ohne Historie'
+        type: boolean
+        default: false
 
 # Nur ein Lauf gleichzeitig: Zwei Läufe würden auf denselben Zweig schreiben.
 concurrency:
@@ -97,6 +112,13 @@ jobs:
           # enthält den Ausdruck, der den Lauf ausgelöst hat – bei einem Start
           # von Hand ist er leer, dann wird alles geholt.
           NUR_ARTEN: ${{ github.event.schedule == '0 */3 * * 6,0' && 'crypto,fx' || '' }}
+          # Nur der laufende Preis – gesetzt allein vom halbstündlichen Lauf.
+          #
+          # Dann fragt der Abruf `range=1d` statt `range=5y` und schreibt
+          # ausschließlich `kurse-aktuell.json`. Bei einem Start von Hand ist
+          # `github.event.schedule` leer, dann läuft der volle Abruf – das ist
+          # die richtige Voreinstellung für „ich will nachsehen, ob es geht“.
+          NUR_PREIS: ${{ (github.event.schedule == '0,30 7-21 * * 1-5' || inputs.nur_preis) && '1' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen

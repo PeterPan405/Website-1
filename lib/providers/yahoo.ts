@@ -200,8 +200,23 @@ export function describeResponse(text: string, maxLength = 300): string {
  * bisherigen Stand. Was genau zurückkam, steht im Protokoll – ohne diese
  * Ausgabe war beim Vorgänger tagelang nicht zu klären, woran es lag.
  */
-export async function fetchYahooDaily(symbol: string): Promise<YahooSeries | null> {
-  const url = yahooUrl(symbol)
+export async function fetchYahooDaily(
+  symbol: string,
+  /**
+   * Wie weit die Reihe zurückreicht.
+   *
+   * `5y` für den täglichen Lauf, der die Historie fortschreibt. `1d` für den
+   * halbstündlichen, der nur den laufenden Preis braucht: Die Antwort schrumpft
+   * damit von rund 1.250 Tageskerzen auf eine – bei über tausend Instrumenten
+   * ist das der Unterschied zwischen Minuten und Sekunden Übertragungszeit.
+   *
+   * `meta.regularMarketPrice` steht in beiden Antworten; daran hängt der
+   * laufende Kurs. Was bei `1d` fehlt, ist die Historie – und die ändert sich
+   * ohnehin nur einmal je Handelstag.
+   */
+  range = '5y'
+): Promise<YahooSeries | null> {
+  const url = yahooUrl(symbol, range)
 
   try {
     const response = await fetch(url, {

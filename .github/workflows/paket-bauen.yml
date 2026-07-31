@@ -37,6 +37,21 @@ on:
 
   workflow_dispatch:
 
+# Ein Lauf je Zweig – ältere werden abgebrochen.
+#
+# Auf einem Arbeitszweig entstehen Commits im Minutentakt, und jeder startete
+# bisher einen vollen Bau, den niemand mehr abbrach: 18 Läufe am Tag, von denen
+# die meisten schon veraltet waren, bevor sie fertig wurden. Geprüft werden
+# soll der Stand, der am Ende dasteht.
+#
+# `main` ist ausgenommen: Dort ist jeder Commit ein Stand, der ausgeliefert
+# wird, und ein abgebrochener Bau hieße, dass `veroeffentlichen.yml` nicht
+# anspringt. Deshalb bekommt jeder Lauf auf main seine eigene Gruppe.
+concurrency:
+  group: >-
+    paket-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || 'zweig' }}
+  cancel-in-progress: true
+
 jobs:
   bauen:
     name: Bauen und prüfen
