@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -108,12 +109,7 @@ export function PensionCalculator() {
         wert: formatPercent(result.replacementRatePercent, 1),
       },
     ],
-    grenzen: [
-      'Eine Überschlagsrechnung, keine Rentenauskunft. Verbindlich ist allein die Renteninformation der Deutschen Rentenversicherung.',
-      'Gerechnet wird mit gleichbleibendem Einkommen und gleichbleibendem Rentenwert. Beide ändern sich über die Jahre.',
-      'Der Steuerabzug ist geschätzt. Die tatsächliche Steuer hängt vom Gesamteinkommen im Ruhestand ab.',
-      'Zeiten für Kindererziehung, Arbeitslosigkeit, Ausbildung und Abschläge für einen vorzeitigen Beginn sind nicht enthalten.',
-    ],
+    grenzen: getCalculatorDefinition('rentenrechner')!.grenzen,
   })
 
   function reset() {

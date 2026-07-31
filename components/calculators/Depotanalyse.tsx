@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import { InputPanel } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
@@ -182,12 +183,7 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
                 ]
               : []),
           ],
-          grenzen: [
-            'Kein Risikomaß. Es wird keine Schwankungsbreite und keine Korrelation gerechnet – zwei Titel aus verschiedenen Branchen können sich trotzdem im Gleichschritt bewegen.',
-            'Nur was eingetragen wurde. Ein vergessener Posten fehlt in jeder Aufteilung.',
-            'Zu ETFs und Rohstoffen ist keine Branche hinterlegt; die Branchenaufteilung beschreibt nur den zugeordneten Teil.',
-            'Keine Steuern, keine Transaktionskosten.',
-          ],
+          grenzen: getCalculatorDefinition('depotanalyse')!.grenzen,
         }
   )
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -87,11 +88,7 @@ export function CostCalculator() {
       { bezeichnung: 'Endwert teuer', wert: formatCurrency(ergebnis.teuer.endwert) },
       { bezeichnung: 'Eingezahlt', wert: formatCurrency(ergebnis.guenstig.eingezahlt) },
     ],
-    grenzen: [
-      'Eine Modellrechnung bei konstanter Rendite. Die Bruttorendite gibst du selbst vor.',
-      'Gerechnet werden nur die laufenden Kosten. Ausgabeaufschläge, Transaktionskosten und Depotgebühren kommen gegebenenfalls hinzu.',
-      'Ohne Steuern und ohne Inflation.',
-    ],
+    grenzen: getCalculatorDefinition('kostenrechner')!.grenzen,
   })
 
   function zuruecksetzen() {

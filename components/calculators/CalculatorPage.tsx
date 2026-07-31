@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Callout } from '@/components/ui/Callout'
 import type { ReactNode } from 'react'
 
 import { ContentBlocks } from '@/components/content/ContentBlocks'
@@ -77,6 +78,28 @@ export async function CalculatorPage({
               <ContentBlocks blocks={definition.methodology} />
             </div>
           </div>
+        </section>
+
+        {/* ------------------------------------------- Was er nicht sagt */}
+        {/*
+          Steht als eigener Kasten und nicht als Absatz in der Methodik.
+
+          Wer eine Rechnerseite überfliegt, liest die Zahl und die
+          Überschriften. Die Grenzen in einen Fließtext zu schreiben hieße, sie
+          genau den Lesern vorzuenthalten, die sie am nötigsten haben. Derselbe
+          Text steht auf dem heruntergeladenen PDF – aus derselben Quelle.
+        */}
+        <section aria-labelledby="grenzen" className="mt-8 max-w-3xl">
+          <Callout variant="warning" title="Was dieser Rechner nicht sagt">
+            <ul className="space-y-2">
+              {definition.grenzen.map((satz) => (
+                <li key={satz}>{satz}</li>
+              ))}
+            </ul>
+          </Callout>
+          <h2 id="grenzen" className="sr-only">
+            Grenzen dieses Rechners
+          </h2>
         </section>
 
         {/* ---------------------------------------------------- Querverweise */}

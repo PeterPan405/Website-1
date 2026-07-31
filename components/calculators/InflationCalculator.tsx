@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -57,10 +58,7 @@ export function InflationCalculator() {
       { bezeichnung: 'Kaufkraftverlust', wert: formatCurrency(result.absoluteLoss) },
       { bezeichnung: 'Verlust in Prozent', wert: formatPercent(result.lossPercent, 1) },
     ],
-    grenzen: [
-      'Eine gleichbleibende Inflationsrate ist eine Annahme. Tatsächlich schwankt sie von Jahr zu Jahr erheblich.',
-      'Die amtliche Rate misst einen Durchschnittswarenkorb. Der persönliche Warenkorb weicht davon ab – wer viel Miete zahlt, erlebt eine andere Inflation als wer viel tankt.',
-    ],
+    grenzen: getCalculatorDefinition('inflationsrechner')!.grenzen,
   })
 
   const real = realRatePercent(nominalReturn, rate)

@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -99,12 +100,7 @@ export function RetirementGapCalculator() {
         wert: formatCurrency(result.remainingCapitalToday),
       },
     ],
-    grenzen: [
-      'Die erwartete gesetzliche Rente gibst du selbst vor. Verlässlicher ist die Renteninformation der Deutschen Rentenversicherung.',
-      'Eine konstante Rendite und eine konstante Inflationsrate über Jahrzehnte sind Annahmen, keine Erwartungswerte.',
-      'Ohne Steuern auf Kapitalerträge und ohne Kranken- und Pflegeversicherungsbeiträge im Ruhestand.',
-      'Ein längeres Leben als angenommen verlängert den Bedarf. Die Dauer des Ruhestands ist die unsicherste Größe der Rechnung.',
-    ],
+    grenzen: getCalculatorDefinition('rentenluecke')!.grenzen,
   })
 
   const hasGap = result.monthlyGapToday > 0

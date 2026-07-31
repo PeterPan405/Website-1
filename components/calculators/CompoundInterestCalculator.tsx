@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -86,11 +87,7 @@ export function CompoundInterestCalculator() {
         })),
       },
     ],
-    grenzen: [
-      'Eine Modellrechnung, keine Prognose. Die Rendite gibst du selbst vor – das Ergebnis ist genau so verlässlich wie diese Annahme.',
-      'Für Aktienanlagen liefert eine konstante Rendite systematisch zu glatte Ergebnisse. Schwankungen kosten zusätzlich Rendite (Volatilitätsbremse).',
-      'Ohne Kosten, Steuern und Inflation. Alle drei senken das reale Ergebnis.',
-    ],
+    grenzen: getCalculatorDefinition('zinsrechner')!.grenzen,
   })
 
   const approximateDoubling = doublingTimeYears(rate)

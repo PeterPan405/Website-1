@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -204,12 +205,7 @@ export function TaxCalculator() {
       },
       { bezeichnung: 'Steuer auf Zinsen', wert: formatCurrency(zins.steuerGesamt) },
     ],
-    grenzen: [
-      'Keine geschäftsmäßige Hilfeleistung in Steuersachen. Die Rechnung erläutert die Systematik; maßgeblich ist der Steuerbescheid.',
-      'Nur Abgeltungsteuer auf Kapitalerträge im Privatvermögen. Die Günstigerprüfung, Verlustverrechnungstöpfe, ausländische Quellensteuer und die Anlage KAP sind nicht abgebildet.',
-      'Der Basiszins wird jährlich neu bekanntgegeben; die Rechnung nutzt den oben genannten Stand.',
-      'Teilfreistellungen richten sich nach der tatsächlichen Aktienquote des Fonds, nicht nach seiner Bezeichnung.',
-    ],
+    grenzen: getCalculatorDefinition('steuerrechner')!.grenzen,
   })
   const effektiv = ertragGesamt > 0 ? steuerGesamt / ertragGesamt : 0
 

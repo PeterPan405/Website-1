@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { getCalculatorDefinition } from '@/data/calculators'
 
 import {
   CalculatorGrid,
@@ -84,10 +85,7 @@ export function BudgetCalculator() {
         })),
       },
     ],
-    grenzen: [
-      'Eine Momentaufnahme eines Monats. Jährliche Posten – Versicherungen, Urlaub, Reparaturen – verzerren das Bild, wenn sie nicht anteilig eingerechnet sind.',
-      'Gerechnet wird nur, was eingetragen wurde. Der häufigste Fehler ist eine vergessene Ausgabe, nicht eine falsche Zahl.',
-    ],
+    grenzen: getCalculatorDefinition('haushaltsrechner')!.grenzen,
   })
 
   function updateEntry(
