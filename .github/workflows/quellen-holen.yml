@@ -1,0 +1,135 @@
+name: Quellen holen
+
+# Holt Webseiten und schreibt ihren Text ins Protokoll.
+#
+# ## Warum es diesen Workflow gibt
+#
+# Die Entwicklungsumgebung dieses Projekts erreicht nur GitHub. Jede
+# Nachrichtenquelle – destatis, Eurostat, Bundesbank, jedes Finanzportal – ist
+# durch die Egress-Regel gesperrt (CONNECT 403). Für Kurse, Zinsen und ESEF ist
+# das seit Langem gelöst: Ein Läufer holt die Daten, ein Skript wertet sie aus.
+#
+# Für die Nachrichtenredaktion fehlte dieses Gegenstück. Und ohne es bleibt nur
+# die Suchmaschine, die Zusammenfassungen liefert statt Seiten – am 31. Juli
+# 2026 lieferte sie zum Goldpreis zwei Zahlen, die einander widersprachen. Auf
+# so etwas lässt sich kein Artikel bauen; die Anleitung in
+# `.claude/skills/newsupdate/SKILL.md` verlangt ausdrücklich eine Quelle, die
+# gelesen wurde.
+#
+# Dieser Workflow schließt die Lücke: Der Läufer holt die angegebenen Adressen,
+# entfernt das Markup und schreibt den Text ins Protokoll. Was dort steht, ist
+# gelesen – wörtlich, mit Datum und Adresse daneben.
+#
+# ## Was hier nicht passiert
+#
+# Nichts wird ins Repository geschrieben. Der Text ist Arbeitsmaterial für einen
+# Rechercheschritt, kein Datenbestand – er landet im Protokoll und verfällt mit
+# ihm. Fremde Texte gehören nicht in dieses Repository, und die Anleitung sagt
+# aus demselben Grund: zusammenfassen, nie spiegeln.
+#
+# Je Seite werden höchstens `zeichen` Zeichen ausgegeben. Das reicht für
+# Kennzahlen, Überschriften und die ersten Absätze – also für das, was geprüft
+# werden muss – und bleibt weit von einer Vervielfältigung entfernt.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Adressen, durch Leerzeichen oder Zeilenumbruch getrennt'
+        required: true
+        type: string
+      zeichen:
+        description: 'Höchstzahl ausgegebener Zeichen je Seite'
+        required: false
+        default: '12000'
+        type: string
+
+# Zwei gleichzeitige Läufe stören einander nicht, aber sie machen das Protokoll
+# unübersichtlich. Der laufende wird nicht abgebrochen.
+concurrency:
+  group: quellen-holen
+  cancel-in-progress: false
+
+jobs:
+  holen:
+    name: Seiten abrufen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Abrufen und lesbar machen
+        env:
+          URLS: ${{ inputs.urls }}
+          ZEICHEN: ${{ inputs.zeichen }}
+        run: |
+          python3 - <<'ENDE'
+          import html
+          import os
+          import re
+          import urllib.error
+          import urllib.request
+
+          grenze = int(os.environ.get("ZEICHEN") or "12000")
+          adressen = [a for a in os.environ["URLS"].split() if a.startswith("http")]
+
+          if not adressen:
+              raise SystemExit("Keine brauchbare Adresse übergeben.")
+
+          # Ein Browser-Kennzeichen. Viele Redaktionsseiten weisen den
+          # Standard-Agenten von urllib ab, und ein 403 wäre hier eine Aussage
+          # über das Werkzeug statt über die Quelle.
+          KOPF = {
+              "User-Agent": (
+                  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+              ),
+              "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
+          }
+
+          def zu_text(roh: str) -> str:
+              """Markup heraus, Text behalten – ohne Fremdbibliothek."""
+              # Skripte und Stile samt Inhalt weg, sonst steht CSS im Protokoll.
+              ohne = re.sub(
+                  r"(?is)<(script|style|noscript|svg)\b.*?</\1>", " ", roh
+              )
+              # Blockenden zu Zeilenumbrüchen, damit Absätze erhalten bleiben.
+              ohne = re.sub(
+                  r"(?i)</(p|div|li|tr|h[1-6]|section|article|br)\s*/?>", "\n", ohne
+              )
+              ohne = re.sub(r"(?s)<[^>]+>", " ", ohne)
+              ohne = html.unescape(ohne)
+              # Leerraum zusammenfassen, Leerzeilenketten auf eine kürzen.
+              ohne = re.sub(r"[ \t\r\f\v]+", " ", ohne)
+              ohne = re.sub(r"\n\s*\n\s*", "\n\n", ohne)
+              return ohne.strip()
+
+          for adresse in adressen:
+              print("\n" + "=" * 78)
+              print(f"QUELLE: {adresse}")
+              print("=" * 78)
+              try:
+                  anfrage = urllib.request.Request(adresse, headers=KOPF)
+                  with urllib.request.urlopen(anfrage, timeout=45) as antwort:
+                      roh = antwort.read()
+                      zeichensatz = antwort.headers.get_content_charset() or "utf-8"
+                      print(f"STATUS: {antwort.status}")
+                      print(f"TYP:    {antwort.headers.get('Content-Type', '?')}")
+                      print(f"DATUM:  {antwort.headers.get('Date', '?')}")
+                      print(f"STAND:  {antwort.headers.get('Last-Modified', '—')}")
+                      print("-" * 78)
+                      text = roh.decode(zeichensatz, errors="replace")
+              except urllib.error.HTTPError as fehler:
+                  print(f"STATUS: {fehler.code} – nicht abrufbar")
+                  continue
+              except Exception as fehler:  # noqa: BLE001
+                  print(f"FEHLER: {type(fehler).__name__}: {fehler}")
+                  continue
+
+              # JSON, CSV und reiner Text bleiben, wie sie sind.
+              lesbar = text if adresse.endswith((".json", ".txt", ".csv")) else zu_text(text)
+              gekuerzt = lesbar[:grenze]
+              print(gekuerzt)
+              if len(lesbar) > grenze:
+                  print(
+                      f"\n[… gekürzt: {len(lesbar) - grenze} weitere Zeichen. "
+                      f"Mit größerem Wert für 'zeichen' erneut abrufen.]"
+                  )
+          ENDE
