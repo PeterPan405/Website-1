@@ -221,6 +221,20 @@ jobs:
         if: always()
         run: rm -f ~/.ssh/id_deploy
 
+      # Drei Fragen, nicht eine.
+      #
+      # Bisher stand hier nur „antwortet die Startseite?“. Das reicht nicht: Am
+      # 31. Juli 2026 meldete der Lauf 200 und den richtigen Commit in
+      # `version.txt`, und trotzdem sah die Website nach dem alten Stand aus.
+      # Aufgelöst hat es sich als Zwischenspeicher im Browser – aber genau so
+      # sähe auch ein hängender CDN aus, und der wäre ein echter Fehler.
+      #
+      # Unterscheiden lassen sich die beiden an einer Stelle: Die Dateinamen
+      # unter `_next/static` tragen eine Prüfsumme und ändern sich mit jedem
+      # Build. Nennt die ausgelieferte Startseite das Stylesheet dieses Builds,
+      # ist das HTML frisch. Nennt sie ein anderes, liegt irgendwo altes HTML –
+      # und zwar auf dem Weg zwischen Server und Läufer, nicht im Browser eines
+      # Besuchers.
       - name: Ergebnis von außen prüfen
         if: steps.zugang.outputs.vorhanden == 'ja'
         run: |
@@ -230,12 +244,33 @@ jobs:
 
           # Kurz warten – der Server braucht einen Moment nach dem Umhängen.
           sleep 5
+
+          # 1. Antwortet die Startseite?
           code=$(curl -sS -A "$UA" -o /dev/null -w '%{http_code}' "$URL/" || echo 000)
           echo "Startseite: $code"
+          if [ "$code" != "200" ]; then
+            echo "::warning::Die Startseite antwortet mit $code. Übertragen wurde trotzdem – prüfe, ob eine Schicht davor blockt (etwa der Hostinger-CDN)."
+          fi
+
+          # 2. Welchen Stand meldet der Server?
           stand=$(curl -sS -A "$UA" "$URL/version.txt" || echo "(nicht abrufbar)")
           echo "Stand auf dem Server:"
           echo "$stand"
+          if ! printf '%s' "$stand" | grep -q "$GITHUB_SHA"; then
+            echo "::warning::version.txt nennt nicht den Commit dieses Laufs ($GITHUB_SHA). Entweder war ein anderer Lauf schneller, oder eine Zwischenschicht liefert eine alte Fassung aus."
+          fi
 
-          if [ "$code" != "200" ]; then
-            echo "::warning::Die Startseite antwortet mit $code. Übertragen wurde trotzdem – prüfe, ob eine Schicht davor blockt (etwa der Hostinger-CDN)."
+          # 3. Ist auch das ausgelieferte HTML von diesem Build?
+          stylesheet=$(find out/_next -name '*.css' -printf '%f\n' | sort | head -1)
+          if [ -z "$stylesheet" ]; then
+            echo "::warning::Im Paket steckt kein Stylesheet – Schritt 3 übersprungen."
+          else
+            echo "Stylesheet dieses Builds: $stylesheet"
+            if curl -sS -A "$UA" "$URL/" | grep -q "$stylesheet"; then
+              echo "Die ausgelieferte Startseite verweist darauf. Das HTML ist frisch."
+            else
+              echo "::warning::Die Startseite nennt ein anderes Stylesheet – es wird altes HTML ausgeliefert. Übertragen wurde korrekt; leere den Zwischenspeicher in hPanel (Cache-Manager, und falls aktiv das CDN)."
+              echo "Gefunden wurde stattdessen:"
+              curl -sS -A "$UA" "$URL/" | grep -o '_next/static/[^"]*\.css' | sort -u | head -3
+            fi
           fi
