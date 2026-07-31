@@ -18,12 +18,12 @@
  *
  * Deshalb ist `annahmen` im Bericht **nicht optional**.
  *
- * ## Zwei Formate, zwei Zwecke
+ * ## Warum nur PDF
  *
- * PDF zum Lesen, Abheften und Weitergeben – mit allen Hinweisen, gestaltet.
- * CSV zum Weiterrechnen in einer Tabellenkalkulation. Die Hinweise stehen auch
- * dort, als Zeilen am Ende: Eine Datei, die man weitergibt, muss sich selbst
- * erklären, und ein CSV ohne Kontext ist eine Spalte Zahlen ohne Herkunft.
+ * Weil ein Ergebnis, das man mitnimmt, gelesen und nicht weitergerechnet wird.
+ * Eine Tabelle lädt zum Weiterrechnen ein – und was dabei herauskommt, trägt
+ * die Hinweise nicht mehr, auf die es hier ankommt. Ein PDF nimmt sie mit,
+ * bleibt so, wie es erzeugt wurde, und lässt sich ausdrucken.
  *
  * Ohne Laufzeitimporte außer den Rechtshinweisen, damit `tests/` das Modul
  * direkt laden kann.
@@ -199,61 +199,4 @@ export function alsPdfZeilen(
   zeilen.push({ art: 'hinweis', text: erstelltAm(jetzt) })
 
   return zeilen
-}
-
-/** Ein CSV-Feld: Anführungszeichen verdoppeln, alles einpacken. */
-function feld(wert: string): string {
-  return `"${wert.replaceAll('"', '""')}"`
-}
-
-/**
- * Derselbe Bericht als CSV.
- *
- * Trennzeichen ist das Semikolon, nicht das Komma: Eine deutsche
- * Tabellenkalkulation erwartet es so, weil das Komma hier das Dezimalzeichen
- * ist. Mit einem Komma getrennt landet „1.234,56“ in zwei Spalten.
- */
-export function alsCsv(bericht: Ergebnisbericht, jetzt: Date): string {
-  const zeilen: string[] = []
-  const paar = (a: string, b = '') => zeilen.push(`${feld(a)};${feld(b)}`)
-
-  paar(bericht.titel, erstelltAm(jetzt))
-  paar('')
-  paar('Womit gerechnet wurde')
-  for (const a of bericht.annahmen) paar(a.bezeichnung, a.wert)
-
-  paar('')
-  paar('Ergebnis')
-  for (const e of bericht.ergebnisse) paar(e.bezeichnung, e.wert)
-
-  for (const block of bericht.bloecke ?? []) {
-    if (block.zeilen.length === 0) continue
-    paar('')
-    paar(block.titel)
-    for (const z of block.zeilen) paar(z.bezeichnung, z.wert)
-  }
-
-  if (bericht.datenstand && bericht.datenstand.length > 0) {
-    paar('')
-    paar('Verwendete Daten')
-    for (const q of bericht.datenstand) paar(q)
-  }
-
-  /*
-    Die Hinweise stehen auch im CSV. Eine Tabelle wird weitergereicht wie ein
-    PDF, und dann ist sie das einzige, was der Nächste sieht.
-  */
-  paar('')
-  paar(RECHTSHINWEIS_TITEL)
-  paar(RECHTSHINWEIS_KERN)
-  if (bericht.grenzen && bericht.grenzen.length > 0) {
-    paar('')
-    paar('Was dieser Rechner nicht sagt')
-    for (const g of bericht.grenzen) paar(g)
-  }
-  paar('')
-  paar('Zu diesem Dokument')
-  for (const h of DOKUMENT_HINWEISE) paar(h)
-
-  return zeilen.join('\r\n')
 }

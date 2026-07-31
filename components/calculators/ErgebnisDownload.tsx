@@ -3,12 +3,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
-import {
-  alsCsv,
-  alsPdfZeilen,
-  dateiname,
-  type Ergebnisbericht,
-} from '@/lib/ergebnis-bericht'
+import { alsPdfZeilen, dateiname, type Ergebnisbericht } from '@/lib/ergebnis-bericht'
 import { erzeugePdf, type PdfZeile } from '@/lib/pdf'
 import { dokumentFusszeile, erstelltAm } from '@/lib/rechtshinweis'
 import { siteConfig } from '@/lib/site'
@@ -113,19 +108,6 @@ export function ErgebnisDownload() {
     )
   }
 
-  function ladeCsv() {
-    if (!bericht) return
-    const jetzt = new Date()
-    /*
-      Das Byte-Order-Mark davor, sonst liest eine deutsche Tabellenkalkulation
-      die Datei als Windows-1252 und macht aus jedem Umlaut ein Fragezeichen.
-    */
-    herunterladen(
-      new Blob(['﻿', alsCsv(bericht, jetzt)], { type: 'text/csv;charset=utf-8' }),
-      dateiname(bericht.titel, jetzt, 'csv')
-    )
-  }
-
   return (
     <section className="fk-card mt-8 p-5 sm:p-6">
       <h2 className="text-fg text-lg font-semibold">Ergebnis mitnehmen</h2>
@@ -134,14 +116,10 @@ export function ErgebnisDownload() {
         Zahl auch in einem Jahr noch einzuordnen ist. Erstellt wird es im Browser; es
         werden keine Daten übertragen.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-4">
         <button type="button" onClick={ladePdf} className="fk-btn-secondary">
           <Icon name="download" className="size-4" />
-          Als PDF
-        </button>
-        <button type="button" onClick={ladeCsv} className="fk-btn-ghost">
-          <Icon name="download" className="size-4" />
-          Als Tabelle (CSV)
+          Als PDF herunterladen
         </button>
       </div>
       <p className="text-fg-subtle mt-3 text-xs leading-relaxed">

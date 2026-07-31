@@ -8,12 +8,7 @@
  * auf das PDF auf; ein fehlender Hinweis fällt niemandem auf – bis er fehlt.
  */
 
-import {
-  alsCsv,
-  alsPdfZeilen,
-  dateiname,
-  type Ergebnisbericht,
-} from '../lib/ergebnis-bericht.ts'
+import { alsPdfZeilen, dateiname, type Ergebnisbericht } from '../lib/ergebnis-bericht.ts'
 import { DOKUMENT_HINWEISE, RECHTSHINWEIS_KERN } from '../lib/rechtshinweis.ts'
 
 let failed = 0
@@ -99,36 +94,6 @@ check('ohne Annahmen wird nicht ausgegeben, sondern geworfen', geworfen, true)
 const abschluesse = zeilen.filter((z) => z.art === 'abschluss')
 check('genau ein Ergebnis ist hervorgehoben', abschluesse.length, 1)
 check('und zwar das erste', abschluesse[0].text, 'Endkapital')
-
-// -------------------------------------------------------------------- CSV
-
-const csv = alsCsv(bericht, JETZT)
-check('CSV trennt mit Semikolon', csv.split('\r\n')[0].includes('";"'), true)
-check('CSV enthält die Annahmen', csv.includes('Sparrate monatlich'), true)
-check('CSV enthält den Kernhinweis', csv.includes(RECHTSHINWEIS_KERN), true)
-check(
-  'CSV enthält jeden Dokumenthinweis',
-  DOKUMENT_HINWEISE.every((h) => csv.includes(h)),
-  true
-)
-/*
-  Anführungszeichen im Text dürfen die Datei nicht zerlegen. „Was dieser
-  Rechner nicht ist“ enthält typografische Zeichen, ein Nutzertext könnte
-  gerade Anführungszeichen enthalten.
-*/
-const mitZitat = alsCsv(
-  {
-    ...bericht,
-    annahmen: [{ bezeichnung: 'Mit "Zitat" drin', wert: '1;2' }],
-  },
-  JETZT
-)
-check(
-  'Anführungszeichen werden verdoppelt',
-  mitZitat.includes('"Mit ""Zitat"" drin"'),
-  true
-)
-check('Semikolon im Wert bleibt im Feld', mitZitat.includes('"1;2"'), true)
 
 // ------------------------------------------------------- Fließtext im Block
 
