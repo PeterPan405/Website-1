@@ -196,11 +196,31 @@ export async function getNewsSlugs(): Promise<string[]> {
   return sortedArticles().map((article) => article.slug)
 }
 
-/** Kurzfassungen für Karussell und Teaser-Listen. */
+/**
+ * Kurzfassungen für Karussell und Teaser-Listen.
+ *
+ * **Nur der jüngste Erscheinungstag**, wie auf der Nachrichtenseite auch.
+ *
+ * Das war zunächst übersehen: Die Umstellung von „neueste neun nach Rang“ auf
+ * „alles vom jüngsten Tag“ traf nur `getCurrentNews`. Das Karussell der
+ * Startseite holt seine Schlagzeilen über diese Funktion und zeigte deshalb
+ * weiter den Vortag mit – am 31. Juli stand dort um halb neun eine Meldung
+ * vom 30. mit dem Datum darunter.
+ *
+ * Die Regel gilt für jede Stelle, an der Artikel als „aktuell“ erscheinen:
+ * Was von heute ist, steht vorn; alles Ältere gehört ins Archiv. `limit`
+ * begrenzt danach nur noch, wie viele davon gezeigt werden.
+ */
 export async function getNewsHeadlines(
   limit = CURRENT_NEWS_COUNT
 ): Promise<NewsHeadline[]> {
-  return sortedArticles().slice(0, limit).map(toHeadline)
+  const alle = sortedArticles()
+  const juengster = alle[0] ? tagVon(alle[0]) : null
+  if (!juengster) return []
+  return alle
+    .filter((artikel) => tagVon(artikel) === juengster)
+    .slice(0, limit)
+    .map(toHeadline)
 }
 
 /** Vorhandene Kategorien in der Reihenfolge ihres ersten Auftretens. */
