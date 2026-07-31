@@ -10,6 +10,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
@@ -65,6 +66,33 @@ export function CostCalculator() {
       ),
     [einmalanlage, sparrate, jahre, rendite, guenstig, teuer]
   )
+
+  useErgebnisbericht({
+    titel: 'Kostenrechner',
+    pfad: '/rechner/kostenrechner',
+    annahmen: [
+      { bezeichnung: 'Einmalanlage', wert: formatCurrency(einmalanlage) },
+      { bezeichnung: 'Sparrate monatlich', wert: formatCurrency(sparrate) },
+      { bezeichnung: 'Laufzeit', wert: `${formatNumber(jahre)} Jahre` },
+      { bezeichnung: 'Bruttorendite je Jahr', wert: formatPercent(rendite, 2) },
+      { bezeichnung: 'Kostenquote günstig', wert: formatPercent(guenstig, 2) },
+      { bezeichnung: 'Kostenquote teuer', wert: formatPercent(teuer, 2) },
+    ],
+    ergebnisse: [
+      {
+        bezeichnung: 'Unterschied im Endvermögen',
+        wert: formatCurrency(ergebnis.guenstig.endwert - ergebnis.teuer.endwert),
+      },
+      { bezeichnung: 'Endwert günstig', wert: formatCurrency(ergebnis.guenstig.endwert) },
+      { bezeichnung: 'Endwert teuer', wert: formatCurrency(ergebnis.teuer.endwert) },
+      { bezeichnung: 'Eingezahlt', wert: formatCurrency(ergebnis.guenstig.eingezahlt) },
+    ],
+    grenzen: [
+      'Eine Modellrechnung bei konstanter Rendite. Die Bruttorendite gibst du selbst vor.',
+      'Gerechnet werden nur die laufenden Kosten. Ausgabeaufschläge, Transaktionskosten und Depotgebühren kommen gegebenenfalls hinzu.',
+      'Ohne Steuern und ohne Inflation.',
+    ],
+  })
 
   function zuruecksetzen() {
     setEinmalanlage(voreinstellung.einmalanlage)

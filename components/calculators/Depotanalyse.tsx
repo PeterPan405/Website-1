@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 
 import { InputPanel } from '@/components/calculators/CalculatorPanels'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { InstrumentSuche } from '@/components/calculators/InstrumentSuche'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
@@ -104,6 +105,91 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
   }, [zeilen, stammdaten])
 
   const funde = useMemo(() => beobachtungen(analyse), [analyse])
+
+  /*
+    Das Ergebnis zum Mitnehmen anmelden.
+
+    Die Positionen sind hier die Annahmen – ohne sie ist jede Aufteilung eine
+    Zahl ohne Herkunft. Ist nichts eingetragen, wird `null` gemeldet und der
+    Knopf verschwindet, statt ein Blatt mit Nullen anzubieten.
+  */
+  useErgebnisbericht(
+    analyse.anzahl === 0
+      ? null
+      : {
+          titel: 'Depotanalyse',
+          pfad: '/rechner/depotanalyse',
+          annahmen: analyse.positionen.map((p) => ({
+            bezeichnung: p.stammdaten?.name ?? p.symbol,
+            wert: formatCurrency(p.betrag),
+          })),
+          ergebnisse: [
+            { bezeichnung: 'Summe', wert: formatCurrency(analyse.summe) },
+            {
+              bezeichnung: 'Größte Position',
+              wert: formatPercent(analyse.konzentration.groessterPosten * 100, 1),
+            },
+            {
+              bezeichnung: 'Drei größte zusammen',
+              wert: formatPercent(analyse.konzentration.dreiGroessten * 100, 1),
+            },
+            {
+              bezeichnung: 'Wirksame Positionszahl',
+              wert: formatNumber(analyse.konzentration.wirksameAnzahl, 1),
+              hinweis:
+                'Wie vielen gleich großen Positionen die Verteilung entspricht – der ' +
+                'Kehrwert des Herfindahl-Index.',
+            },
+            ...(analyse.kostenquote !== null
+              ? [
+                  {
+                    bezeichnung: 'Laufende Kosten (gewichtet)',
+                    wert: formatPercent(analyse.kostenquote, 2),
+                    hinweis: `Bezogen auf ${formatPercent(analyse.kostenAbdeckung * 100, 0)} der Summe; nur dort ist eine Kostenquote hinterlegt.`,
+                  },
+                ]
+              : []),
+          ],
+          bloecke: [
+            {
+              titel: 'Nach Anlageart',
+              zeilen: alsBerichtszeilen(analyse.nachArt, analyse.summe),
+            },
+            {
+              titel: 'Nach Branche',
+              zeilen: alsBerichtszeilen(analyse.nachBranche, analyse.summe),
+            },
+            {
+              titel: 'Nach Sitzland',
+              zeilen: alsBerichtszeilen(
+                analyse.nachLand.map((l) => ({
+                  ...l,
+                  gruppe: l.gruppe === null ? null : (laender.get(l.gruppe) ?? l.gruppe),
+                })),
+                analyse.summe
+              ),
+            },
+            {
+              titel: 'Nach Währung',
+              zeilen: alsBerichtszeilen(analyse.nachWaehrung, analyse.summe),
+            },
+            ...(funde.length > 0
+              ? [
+                  {
+                    titel: 'Was an der Verteilung auffällt',
+                    zeilen: funde.map((f) => ({ bezeichnung: f.text, wert: '' })),
+                  },
+                ]
+              : []),
+          ],
+          grenzen: [
+            'Kein Risikomaß. Es wird keine Schwankungsbreite und keine Korrelation gerechnet – zwei Titel aus verschiedenen Branchen können sich trotzdem im Gleichschritt bewegen.',
+            'Nur was eingetragen wurde. Ein vergessener Posten fehlt in jeder Aufteilung.',
+            'Zu ETFs und Rohstoffen ist keine Branche hinterlegt; die Branchenaufteilung beschreibt nur den zugeordneten Teil.',
+            'Keine Steuern, keine Transaktionskosten.',
+          ],
+        }
+  )
 
   function aendere(id: number, feld: 'symbol' | 'betrag', wert: string) {
     setZeilen((alt) => alt.map((z) => (z.id === id ? { ...z, [feld]: wert } : z)))
@@ -321,4 +407,13 @@ function Abschnitt({ titel, children }: { titel: string; children: React.ReactNo
       <div className="mt-4">{children}</div>
     </section>
   )
+}
+
+/** Eine Aufteilung als Berichtszeilen – Anteil und Betrag nebeneinander. */
+function alsBerichtszeilen(eintraege: Anteil[], summe: number) {
+  if (summe <= 0) return []
+  return eintraege.map((e) => ({
+    bezeichnung: e.gruppe ?? 'nicht zugeordnet',
+    wert: `${formatPercent(e.anteil * 100, 1)} · ${formatCurrency(e.betrag)}`,
+  }))
 }

@@ -10,6 +10,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField, SelectField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { CompoundChart } from '@/components/charts/CompoundChart'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import {
@@ -50,6 +51,47 @@ export function CompoundInterestCalculator() {
       }),
     [principal, rate, years, contribution, interval, timing]
   )
+
+  useErgebnisbericht({
+    titel: 'Zinsrechner',
+    pfad: '/rechner/zinsrechner',
+    annahmen: [
+      { bezeichnung: 'Startkapital', wert: formatCurrency(principal) },
+      {
+        bezeichnung: `Sparrate (${contributionIntervalLabels[interval]})`,
+        wert: formatCurrency(contribution),
+      },
+      { bezeichnung: 'Zinssatz je Jahr', wert: formatPercent(rate, 2) },
+      { bezeichnung: 'Laufzeit', wert: `${formatNumber(years)} Jahre` },
+      {
+        bezeichnung: 'Einzahlung',
+        wert: timing === 'start' ? 'zu Periodenbeginn' : 'zum Periodenende',
+      },
+    ],
+    ergebnisse: [
+      { bezeichnung: 'Endkapital', wert: formatCurrency(result.finalBalance) },
+      { bezeichnung: 'davon Einzahlungen', wert: formatCurrency(result.totalDeposits) },
+      { bezeichnung: 'davon Zinsen', wert: formatCurrency(result.totalInterest) },
+      {
+        bezeichnung: 'Zinsanteil am Endkapital',
+        wert: formatPercent(result.interestSharePercent, 1),
+      },
+    ],
+    bloecke: [
+      {
+        titel: 'Jahresverlauf',
+        zeilen: result.years.map((j) => ({
+          bezeichnung: `Jahr ${j.year}`,
+          wert: formatCurrency(j.endBalance),
+        })),
+      },
+    ],
+    grenzen: [
+      'Eine Modellrechnung, keine Prognose. Die Rendite gibst du selbst vor – das Ergebnis ist genau so verlässlich wie diese Annahme.',
+      'Für Aktienanlagen liefert eine konstante Rendite systematisch zu glatte Ergebnisse. Schwankungen kosten zusätzlich Rendite (Volatilitätsbremse).',
+      'Ohne Kosten, Steuern und Inflation. Alle drei senken das reale Ergebnis.',
+    ],
+  })
 
   const approximateDoubling = doublingTimeYears(rate)
   const exactDoubling = exactDoublingTimeYears(rate)

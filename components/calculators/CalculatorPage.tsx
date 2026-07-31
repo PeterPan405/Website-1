@@ -5,6 +5,10 @@ import { ContentBlocks } from '@/components/content/ContentBlocks'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import {
+  ErgebnisAnbieter,
+  ErgebnisDownload,
+} from '@/components/calculators/ErgebnisDownload'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import type { CalculatorDefinition } from '@/data/calculators'
@@ -48,7 +52,16 @@ export async function CalculatorPage({
       />
 
       <div className="fk-container py-12 sm:py-16">
-        {children}
+        {/*
+          Der Anbieter umschließt den Rechner **und** den Knopf darunter: Der
+          Rechner meldet sein Ergebnis von innen an, der Knopf liest es von
+          außen. Ohne gemeinsame Klammer sähe der eine nicht, was der andere
+          meldet.
+        */}
+        <ErgebnisAnbieter>
+          {children}
+          <ErgebnisDownload />
+        </ErgebnisAnbieter>
 
         {/* ------------------------------------------------------- Methodik */}
         <section aria-labelledby="methodik" className="mt-16 max-w-3xl">

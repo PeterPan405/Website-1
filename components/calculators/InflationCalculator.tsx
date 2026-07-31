@@ -10,6 +10,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { InflationChart } from '@/components/charts/InflationChart'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -33,6 +34,34 @@ export function InflationCalculator() {
     () => calculateInflation({ amount, annualRatePercent: rate, years }),
     [amount, rate, years]
   )
+
+  useErgebnisbericht({
+    titel: 'Inflationsrechner',
+    pfad: '/rechner/inflationsrechner',
+    annahmen: [
+      { bezeichnung: 'Betrag heute', wert: formatCurrency(amount) },
+      { bezeichnung: 'Inflationsrate je Jahr', wert: formatPercent(rate, 2) },
+      { bezeichnung: 'Zeitraum', wert: `${formatNumber(years)} Jahre` },
+      { bezeichnung: 'Nominale Rendite je Jahr', wert: formatPercent(nominalReturn, 2) },
+    ],
+    ergebnisse: [
+      {
+        bezeichnung: 'Kaufkraft nach dem Zeitraum',
+        wert: formatCurrency(result.purchasingPower),
+        hinweis: 'Was der Betrag dann noch wert ist, in heutiger Kaufkraft gerechnet.',
+      },
+      {
+        bezeichnung: 'Nötiger Betrag für gleiche Kaufkraft',
+        wert: formatCurrency(result.requiredAmount),
+      },
+      { bezeichnung: 'Kaufkraftverlust', wert: formatCurrency(result.absoluteLoss) },
+      { bezeichnung: 'Verlust in Prozent', wert: formatPercent(result.lossPercent, 1) },
+    ],
+    grenzen: [
+      'Eine gleichbleibende Inflationsrate ist eine Annahme. Tatsächlich schwankt sie von Jahr zu Jahr erheblich.',
+      'Die amtliche Rate misst einen Durchschnittswarenkorb. Der persönliche Warenkorb weicht davon ab – wer viel Miete zahlt, erlebt eine andere Inflation als wer viel tankt.',
+    ],
+  })
 
   const real = realRatePercent(nominalReturn, rate)
   const approximation = nominalReturn - rate

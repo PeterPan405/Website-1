@@ -10,6 +10,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { stichtagswert } from '@/data/stichtagswerte'
@@ -167,6 +168,49 @@ export function TaxCalculator() {
 
   const ertragGesamt = fondsertrag + vorab.vorabpauschale + zinsen
   const steuerGesamt = fonds.steuerGesamt + zins.steuerGesamt
+
+  useErgebnisbericht({
+    titel: 'Steuerrechner',
+    pfad: '/rechner/steuerrechner',
+    annahmen: [
+      {
+        bezeichnung: 'Ausschüttungen und Gewinne aus Fonds',
+        wert: formatCurrency(fondsertrag),
+      },
+      { bezeichnung: 'Zinsen und sonstige Erträge', wert: formatCurrency(zinsen) },
+      {
+        bezeichnung: 'Fondsart',
+        wert: fondsarten.find((a) => a.id === fondsart)?.label ?? fondsart,
+      },
+      { bezeichnung: 'Veranlagung', wert: zusammen ? 'zusammen' : 'einzeln' },
+      { bezeichnung: 'Sparer-Pauschbetrag', wert: formatCurrency(freibetrag) },
+      { bezeichnung: 'Kirchensteuersatz', wert: formatPercent(kirchensteuer, 1) },
+      { bezeichnung: 'Fondswert am Jahresanfang', wert: formatCurrency(wertBeginn) },
+      { bezeichnung: 'Fondswert am Jahresende', wert: formatCurrency(wertEnde) },
+      { bezeichnung: 'Ausschüttung im Jahr', wert: formatCurrency(ausschuettung) },
+      {
+        bezeichnung: 'Basiszins',
+        wert: formatPercent(basiszins, 2),
+        hinweis: basiszinsHinweis ?? undefined,
+      },
+    ],
+    ergebnisse: [
+      { bezeichnung: 'Steuer insgesamt', wert: formatCurrency(steuerGesamt) },
+      { bezeichnung: 'Erträge insgesamt', wert: formatCurrency(ertragGesamt) },
+      { bezeichnung: 'Vorabpauschale', wert: formatCurrency(vorab.vorabpauschale) },
+      {
+        bezeichnung: 'Steuer auf Fondserträge',
+        wert: formatCurrency(fonds.steuerGesamt),
+      },
+      { bezeichnung: 'Steuer auf Zinsen', wert: formatCurrency(zins.steuerGesamt) },
+    ],
+    grenzen: [
+      'Keine geschäftsmäßige Hilfeleistung in Steuersachen. Die Rechnung erläutert die Systematik; maßgeblich ist der Steuerbescheid.',
+      'Nur Abgeltungsteuer auf Kapitalerträge im Privatvermögen. Die Günstigerprüfung, Verlustverrechnungstöpfe, ausländische Quellensteuer und die Anlage KAP sind nicht abgebildet.',
+      'Der Basiszins wird jährlich neu bekanntgegeben; die Rechnung nutzt den oben genannten Stand.',
+      'Teilfreistellungen richten sich nach der tatsächlichen Aktienquote des Fonds, nicht nach seiner Bezeichnung.',
+    ],
+  })
   const effektiv = ertragGesamt > 0 ? steuerGesamt / ertragGesamt : 0
 
   function zuruecksetzen() {

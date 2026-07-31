@@ -9,6 +9,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { BudgetChart } from '@/components/charts/BudgetChart'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
@@ -45,6 +46,49 @@ export function BudgetCalculator() {
   const [expenses, setExpenses] = useState(initialExpenses)
 
   const result = useMemo(() => calculateBudget(incomes, expenses), [incomes, expenses])
+
+  useErgebnisbericht({
+    titel: 'Haushaltsrechner',
+    pfad: '/rechner/haushaltsrechner',
+    annahmen: [
+      ...incomes
+        .filter((e) => e.amount !== 0)
+        .map((e) => ({
+          bezeichnung: `Einnahme: ${e.label}`,
+          wert: formatCurrency(e.amount),
+        })),
+      ...expenses
+        .filter((e) => e.amount !== 0)
+        .map((e) => ({
+          bezeichnung: `Ausgabe: ${e.label}`,
+          wert: formatCurrency(e.amount),
+        })),
+    ],
+    ergebnisse: [
+      { bezeichnung: 'Bleibt übrig im Monat', wert: formatCurrency(result.balance) },
+      { bezeichnung: 'Einnahmen', wert: formatCurrency(result.totalIncome) },
+      { bezeichnung: 'Ausgaben', wert: formatCurrency(result.totalExpenses) },
+      { bezeichnung: 'Sparquote', wert: formatPercent(result.savingsRatePercent, 1) },
+      {
+        bezeichnung: 'Empfohlener Notgroschen',
+        wert: `${formatCurrency(result.emergencyFundRange.min)} bis ${formatCurrency(result.emergencyFundRange.max)}`,
+        hinweis: 'Drei bis sechs Monatsausgaben.',
+      },
+    ],
+    bloecke: [
+      {
+        titel: 'Anteil der Ausgaben',
+        zeilen: result.expenseShares.map((a) => ({
+          bezeichnung: a.label,
+          wert: `${formatPercent(a.sharePercent, 1)} · ${formatCurrency(a.amount)}`,
+        })),
+      },
+    ],
+    grenzen: [
+      'Eine Momentaufnahme eines Monats. Jährliche Posten – Versicherungen, Urlaub, Reparaturen – verzerren das Bild, wenn sie nicht anteilig eingerechnet sind.',
+      'Gerechnet wird nur, was eingetragen wurde. Der häufigste Fehler ist eine vergessene Ausgabe, nicht eine falsche Zahl.',
+    ],
+  })
 
   function updateEntry(
     setter: typeof setIncomes,

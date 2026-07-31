@@ -11,10 +11,10 @@ import { cn } from '@/lib/cn'
  *
  * ## Warum
  *
- * Weil ein `<select>` mit 130 Einträgen keine Auswahl ist, sondern eine
- * Zumutung. Auf dem iPad öffnet es eine Liste, die bei „3M“ anfängt und bei
- * „Zurich“ aufhört, und wer SAP sucht, wischt sich durch das halbe Alphabet.
- * Genau darüber kam die Rückmeldung – zu Recht.
+ * Weil ein `<select>` mit über tausend Einträgen keine Auswahl ist, sondern
+ * eine Zumutung. Auf dem iPad öffnet es eine Liste, die bei „3M“ anfängt und
+ * bei „Zurich“ aufhört, und wer SAP sucht, wischt sich durch das halbe
+ * Alphabet. Genau darüber kam die Rückmeldung – zu Recht.
  *
  * Ein Textfeld mit gefilterter Liste dreht das um: drei Buchstaben statt
  * dreißig Wischbewegungen. Gesucht wird über Name, Kürzel und Branche.

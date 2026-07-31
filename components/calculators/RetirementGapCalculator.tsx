@@ -10,6 +10,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { calculateRetirementGap } from '@/lib/finance'
@@ -59,6 +60,52 @@ export function RetirementGapCalculator() {
       existingCapital,
     ]
   )
+
+  useErgebnisbericht({
+    titel: 'Rentenlücke',
+    pfad: '/rechner/rentenluecke',
+    annahmen: [
+      {
+        bezeichnung: 'Gewünschtes Nettoeinkommen monatlich',
+        wert: formatCurrency(desired),
+      },
+      {
+        bezeichnung: 'Erwartete gesetzliche Nettorente',
+        wert: formatCurrency(statutory),
+      },
+      { bezeichnung: 'Weitere Einkünfte monatlich', wert: formatCurrency(other) },
+      { bezeichnung: 'Jahre bis zur Rente', wert: `${formatNumber(yearsUntil)} Jahre` },
+      { bezeichnung: 'Dauer des Ruhestands', wert: `${formatNumber(yearsIn)} Jahre` },
+      { bezeichnung: 'Rendite je Jahr', wert: formatPercent(returnRate, 2) },
+      { bezeichnung: 'Inflationsrate je Jahr', wert: formatPercent(inflation, 2) },
+      { bezeichnung: 'Vorhandenes Kapital', wert: formatCurrency(existingCapital) },
+    ],
+    ergebnisse: [
+      {
+        bezeichnung: 'Nötige Sparrate monatlich',
+        wert: formatCurrency(result.requiredMonthlySaving),
+        hinweis: 'In heutiger Kaufkraft.',
+      },
+      {
+        bezeichnung: 'Monatliche Lücke heute',
+        wert: formatCurrency(result.monthlyGapToday),
+      },
+      {
+        bezeichnung: 'Benötigtes Kapital bei Rentenbeginn',
+        wert: formatCurrency(result.requiredCapitalToday),
+      },
+      {
+        bezeichnung: 'Verbleibende Kapitallücke',
+        wert: formatCurrency(result.remainingCapitalToday),
+      },
+    ],
+    grenzen: [
+      'Die erwartete gesetzliche Rente gibst du selbst vor. Verlässlicher ist die Renteninformation der Deutschen Rentenversicherung.',
+      'Eine konstante Rendite und eine konstante Inflationsrate über Jahrzehnte sind Annahmen, keine Erwartungswerte.',
+      'Ohne Steuern auf Kapitalerträge und ohne Kranken- und Pflegeversicherungsbeiträge im Ruhestand.',
+      'Ein längeres Leben als angenommen verlängert den Bedarf. Die Dauer des Ruhestands ist die unsicherste Größe der Rechnung.',
+    ],
+  })
 
   const hasGap = result.monthlyGapToday > 0
 
