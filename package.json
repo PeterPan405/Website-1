@@ -32,7 +32,8 @@
     "marktbreite": "node --experimental-strip-types scripts/marktbreite-nachtragen.ts",
     "zinsen": "node --experimental-strip-types scripts/zinsen-abrufen.ts",
     "breite": "node scripts/breite-pruefen.mjs",
-    "kontrast": "node scripts/kontrast-pruefen.mjs"
+    "kontrast": "node scripts/kontrast-pruefen.mjs",
+    "verwaist": "node --experimental-strip-types scripts/verwaist-pruefen.ts"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

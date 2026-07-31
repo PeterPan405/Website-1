@@ -77,6 +77,18 @@ export default async function LearnOverviewPage() {
           <Link href="/lernen/wiederholen" className="fk-btn-secondary">
             Wiederholen
           </Link>
+          {/*
+            Das Schaufenster der Erklärgrafiken.
+
+            Es war gebaut, es stand in der Sitemap – und kein einziger Verweis
+            führte dorthin. Aufgefallen ist das keinem Auge, sondern
+            `npm run verwaist`. Hier gehört es hin: Wer sich einen Überblick
+            über den Lernbereich verschafft, sucht auch nach den Bildern
+            darin.
+          */}
+          <Link href="/lernen/grafiken" className="fk-btn-secondary">
+            Alle Erklärgrafiken
+          </Link>
         </div>
 
         {/* ------------------------------------------------- Lernpfade */}
