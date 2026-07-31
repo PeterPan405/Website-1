@@ -105,6 +105,37 @@ const KOPFZEILEN = {
  * Quelle: Ihr jüngster Verzeichniseintrag ist ein Halbjahresbericht, und
  * daraus wird zu Recht kein Jahresumsatz gelesen. Seit der Abruf die drei
  * jüngsten Meldungen durchgeht, sind sie dabei.
+ *
+ * ## Warum hier fast kein deutscher Wert steht
+ *
+ * Die Frage lag lange offen: In dieser Tabelle fehlten Allianz, BMW, Siemens
+ * und 85 weitere deutsche Aktien, obwohl sie derselben ESEF-Pflicht
+ * unterliegen wie ein französischer Emittent. Zwei Erklärungen waren möglich –
+ * die Abschlüsse fehlen im Verzeichnis, oder der Namensabgleich trifft sie
+ * nicht –, und sie führen zu gegensätzlichen Schlüssen.
+ *
+ * `scripts/quellen-probe-esef-de.ts` hat es am 31. Juli 2026 beantwortet:
+ * **Von den geführten Abschlüssen trägt kein einziger das Land `DE`.** Die
+ * Verteilung reicht von FI, SE und IT über HR, MT und LT bis CZ mit 29 – und
+ * Deutschland kommt darin nicht vor. Der Grund liegt im Meldeweg: Deutsche
+ * Emittenten reichen beim Unternehmensregister ein, und dessen Bestand fließt
+ * nicht in dieses Verzeichnis.
+ *
+ * Damit ist die Lücke keine Nachlässigkeit dieser Tabelle, sondern eine
+ * Eigenschaft der Quelle. Sie wird auf `/quellen` als solche ausgewiesen.
+ *
+ * Die Sonde meldete vier Namenstreffer. Drei davon sind Verwechslungen der
+ * bekannten Art und stehen deshalb **nicht** in der Tabelle:
+ *
+ * - **Siemens** (`SIE.DE`) traf `SIEMENS GAMESA RENEWABLE ENERGY SA` – die
+ *   spanische Windkrafttochter, die zu Siemens Energy gehört.
+ * - **Deutsche Telekom** (`DTE.DE`) traf `Telekom Austria Aktiengesellschaft` –
+ *   ein eigenständig notiertes Unternehmen, an dem die Telekom lediglich
+ *   beteiligt ist.
+ * - **Sartorius** (`SRT3.DE`) traf erneut `Sartorius Stedim Biotech`, die
+ *   französische Mehrheitsbeteiligung.
+ *
+ * Der vierte ist echt und steht unten: Aroundtown.
  */
 const ZUORDNUNG: Record<string, string> = {
   // Frankreich
@@ -204,6 +235,21 @@ const ZUORDNUNG: Record<string, string> = {
 
   // Australien
   'NAB.AX': 'NATIONAL AUSTRALIA BANK LIMITED',
+
+  /*
+    In Frankfurt notiert, aber anderswo einreichend.
+
+    Aroundtown ist eine luxemburgische Aktiengesellschaft mit Notierung im
+    Frankfurter Prime Standard; der Katalog führt sie mit Sitzland Luxemburg
+    (`sitzland: '442'`). Ihr Abschluss geht deshalb an die luxemburgische
+    Sammelstelle und steht im Verzeichnis unter `[LU]` – keine Namensgleichheit,
+    sondern dieselbe Gesellschaft.
+
+    Sie ist damit der einzige `.DE`-Ticker in dieser Tabelle, und das bleibt
+    voraussichtlich so: Deutschland selbst liefert nichts an dieses Verzeichnis,
+    siehe die Notiz oben.
+  */
+  'AT1.DE': 'Aroundtown SA',
 }
 
 /** Die gesuchten Größen nach IFRS, in der Rangfolge ihrer Bezeichner. */

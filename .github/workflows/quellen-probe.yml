@@ -143,6 +143,33 @@ name: Quellen abklopfen
 # Hexagon Purus, Sartorius die Sartorius Stedim Biotech, Macquarie Group die
 # Macquarie Bank. Alle sieben stehen deshalb nicht in der Zuordnung.
 #
+# ## ESEF, dritte Runde: die deutsche Luecke
+#
+# In der Zuordnung in `scripts/esef-abrufen.ts` stand kein einziger
+# `.DE`-Ticker, obwohl Allianz, BMW, Siemens und 85 weitere derselben
+# ESEF-Pflicht unterliegen.
+#
+# **Ergebnis vom 31. Juli 2026 mit `quellen-probe-esef-de.ts`: Von den
+# gefuehrten Abschluessen traegt kein einziger das Land `DE`.** Die Verteilung
+# reicht von FI, SE und IT ueber HR, MT und LT bis CZ mit 29 Abschluessen –
+# Deutschland kommt darin nicht vor. Der Grund liegt im Meldeweg: Deutsche
+# Emittenten reichen beim Unternehmensregister ein, und dessen Bestand fliesst
+# nicht in dieses Verzeichnis.
+#
+# Die Sonde meldete vier Namenstreffer unter 88 deutschen Aktien ohne Zahlen.
+# Drei sind Verwechslungen der bekannten Art und wurden verworfen: Siemens traf
+# Siemens Gamesa (die spanische Windkrafttochter von Siemens Energy), Deutsche
+# Telekom traf Telekom Austria, Sartorius erneut Sartorius Stedim Biotech.
+#
+# Der vierte ist echt: **Aroundtown** (`AT1.DE`) ist eine luxemburgische
+# Aktiengesellschaft mit Notierung in Frankfurt und reicht deshalb in Luxemburg
+# ein. Sie steht jetzt in der Zuordnung – als einziger `.DE`-Ticker.
+#
+# Damit ist die Luecke geklaert und keine offene Aufgabe mehr: Sie liegt an der
+# Quelle. Wer die 87 uebrigen deutschen Werte will, braucht das
+# Unternehmensregister, und ob das ohne Anmeldung maschinenlesbar antwortet,
+# prueft die Sonde im selben Lauf mit.
+#
 # ## Ergebnis der Runde ausserhalb von USA und EU
 #
 # Geprueft am 29. Juli 2026 mit `quellen-probe-asien.ts`. Genau eine Stelle
