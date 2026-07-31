@@ -33,6 +33,7 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { alterInTagen, pruefeReihenalter, REIHENGRENZEN } from '../lib/reihen-alter.ts'
 import { ueberholt } from '../lib/stichtag.ts'
 import { stichtagswerte } from '../data/stichtagswerte.ts'
 
@@ -322,20 +323,76 @@ async function main(): Promise<void> {
     }
   }
 
-  console.log('\nMomentaufnahmen')
-  console.log('───────────────')
+  console.log('\nMomentaufnahmen: wann zuletzt abgerufen')
+  console.log('──────────────────────────────────────')
   for (const { datei, tage, stand } of pruefeMomentaufnahmen()) {
     console.log(`  ${datei.padEnd(26)} ${stand}  (${tage} Tage)`)
   }
 
+  /*
+    Und jetzt die andere Frage, die lange niemand gestellt hat.
+
+    Oben steht, wann zuletzt **gefragt** wurde. Das sagt nichts darüber, wie alt
+    die **Antwort** war: Die Inflationsreihe wurde bis Juli 2026 wöchentlich
+    frisch abgerufen und lieferte dabei Werte vom Dezember 2025, weil die EZB
+    den Datensatz eingestellt hatte, ohne ihn abzuschalten. Beide Zeilen sahen
+    gesund aus, die Zahl auf der Website war ein halbes Jahr alt.
+  */
+  console.log('\nMomentaufnahmen: wie alt der jüngste Wert darin ist')
+  console.log('──────────────────────────────────────────────────')
+  const bestaende = new Map<string, unknown>()
+  for (const grenze of REIHENGRENZEN) {
+    if (bestaende.has(grenze.datei)) continue
+    try {
+      bestaende.set(
+        grenze.datei,
+        JSON.parse(readFileSync(join('data/snapshots', grenze.datei), 'utf8'))
+      )
+    } catch {
+      /* Fehlt die Datei, wird die Reihe übergangen – so ist es gedacht. */
+    }
+  }
+  for (const grenze of REIHENGRENZEN) {
+    const bestand = bestaende.get(grenze.datei)
+    const stand = bestand === undefined ? null : grenze.neuester(bestand)
+    const alter = stand === null ? null : alterInTagen(stand, new Date())
+    const anzeige =
+      stand === null
+        ? 'nicht gefunden'
+        : `${stand}  (${alter ?? '?'} Tage, max ${grenze.hoechstalterTage})`
+    console.log(`  ${grenze.reihe.padEnd(34)} ${anzeige}`)
+  }
+
+  const veraltet = pruefeReihenalter(bestaende)
+  if (veraltet.length > 0) {
+    console.log('')
+    for (const befund of veraltet) {
+      console.log(
+        `  VERALTET  ${befund.reihe} (${befund.datei})\n` +
+          `    jüngster Wert ${befund.stand}, das sind ${befund.alterTage} Tage – ` +
+          `erlaubt sind ${befund.hoechstalterTage} bei einem Takt von ${befund.takt}.\n` +
+          `    ${befund.begruendung}`
+      )
+    }
+    console.log(
+      '\n  Ein frischer Abruf ist kein frischer Wert. Wenn die Quelle mit Status 200\n' +
+        '  antwortet und trotzdem nichts Neues liefert, ist der Datensatz vermutlich\n' +
+        '  eingestellt oder umbenannt worden. Schlüssel gegen die Schnittstelle prüfen:\n' +
+        '  npm run vertraege'
+    )
+  }
+
   console.log('')
   /*
-    Nur die Zahlen im Fließtext lassen den Lauf scheitern. Ein überholter
-    Stichtagswert ist eine Pflegeaufgabe, die von einer Bekanntmachung
-    abhängt, und eine alte Momentaufnahme kann an einem Wochenende liegen –
-    beides gehört gemeldet, aber nichts davon ist ein Fehler im Bestand.
+    Was den Lauf scheitern lässt: Zahlen im Fließtext und tote Reihen.
+
+    Ein überholter Stichtagswert ist eine Pflegeaufgabe, die von einer
+    Bekanntmachung abhängt, und ein alter *Abruf* kann an einem Wochenende
+    liegen – beides gehört gemeldet, aber keines ist ein Fehler im Bestand.
+    Eine Reihe, die ihr Höchstalter überschreitet, ist einer: Dann steht auf der
+    Website eine Zahl, die niemand mehr pflegt.
   */
-  if (beanstandet.length > 0) process.exitCode = 1
+  if (beanstandet.length > 0 || veraltet.length > 0) process.exitCode = 1
 }
 
 await main()

@@ -1,0 +1,58 @@
+name: Verträge mit fremden Schnittstellen prüfen
+
+# Fragt wöchentlich jede fremde Quelle, ob sie noch liefert, was der Abruf von
+# ihr erwartet – und schlägt fehl, wenn nicht.
+#
+# Der Anlass: Die EZB hat den Datensatz `ICP` zum 4. Februar 2026 eingestellt,
+# ohne ihn abzuschalten. Er antwortete weiter mit Statuscode 200 und lieferte
+# weiter Zahlen, nur endete die Reihe im Dezember 2025. Fünf Monate lang lief
+# jeder Abruf grün durch, und auf der Website stand eine halbjährig alte
+# Inflationsrate. Erst ein Blick von Hand brachte es ans Licht.
+#
+# Diese Prüfung fragt früher als die Frischeprüfung: nicht „ist der Bestand
+# alt?“, sondern „hält die Quelle noch, was der Abruf annimmt?“.
+
+on:
+  schedule:
+    # Montags um 05:20 UTC – vor der Arbeitswoche, damit ein Bruch am Montag
+    # auffällt und nicht am Freitagabend.
+    - cron: '20 5 * * 1'
+  workflow_dispatch:
+  # Auch bei Änderungen an der Prüfung selbst, auf jedem Zweig.
+  #
+  # Sonst ließe sie sich vor dem Merge überhaupt nicht erproben: `workflow_dispatch`
+  # startet nur, was auf der Standardverzweigung liegt, und eine Vertragsprüfung,
+  # die zum ersten Mal wöchentlich um 05:20 Uhr läuft, ist ungetesteter Code an
+  # der Stelle, an der er am wenigsten auffällt.
+  push:
+    branches: ['**']
+    paths:
+      - 'lib/vertraege.ts'
+      - 'lib/reihen-alter.ts'
+      - 'scripts/vertraege-pruefen.ts'
+      - '.github/workflows/vertraege.yml'
+
+concurrency:
+  group: vertraege
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verträge prüfen
+        # Die Schlüssel kommen als Umgebungsvariablen herein und werden vom
+        # Skript nie ausgegeben – auch nicht im Fehlerfall. Protokolle sind
+        # öffentlich. Fehlt ein Schlüssel, wird die Quelle übersprungen statt
+        # beanstandet.
+        env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+        run: npm run vertraege
