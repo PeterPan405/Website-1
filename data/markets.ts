@@ -258,6 +258,22 @@ export const marketSources: Record<string, MarketSourceRef> = {
   'ftse-100': { provider: 'market', yahoo: '^FTSE', twelvedata: 'FTSE' },
   'nikkei-225': { provider: 'market', yahoo: '^N225', twelvedata: 'N225' },
   kospi: { provider: 'market', yahoo: '^KS11', twelvedata: 'KS11' },
+  /*
+    Die sechs Leitindizes für den Indexvergleich auf den Aktienseiten.
+
+    Jedes Kürzel ist am 31. Juli 2026 über den Läufer geprüft worden – Yahoo
+    antwortete für alle sechs mit Status 200, der erwarteten Währung und dem
+    ausgeschriebenen Namen (`quellen-holen.yml`). Geraten ist hier keines: Ein
+    falsches Kürzel liefert stillschweigend keine Kurse, der Index fiele auf
+    Demo-Daten zurück, und der Vergleich verschwände wortlos von 158
+    Aktienseiten.
+  */
+  'nifty-50': { provider: 'market', yahoo: '^NSEI', twelvedata: 'NSEI' },
+  'tsx-composite': { provider: 'market', yahoo: '^GSPTSE', twelvedata: 'GSPTSE' },
+  'asx-200': { provider: 'market', yahoo: '^AXJO', twelvedata: 'AXJO' },
+  ibovespa: { provider: 'market', yahoo: '^BVSP', twelvedata: 'BVSP' },
+  'omx-stockholm-30': { provider: 'market', yahoo: '^OMX', twelvedata: 'OMX' },
+  taiex: { provider: 'market', yahoo: '^TWII', twelvedata: 'TWII' },
   'hang-seng': { provider: 'market', yahoo: '^HSI', twelvedata: 'HSI' },
 
   /*
@@ -944,6 +960,129 @@ export const marketDefinitions: MarketDefinition[] = [
     ],
     relatedTopics: ['aktien-laender-branchen', 'waehrungen-wechselkurse', 'aktie'],
     seed: { startValue: 8100, annualDrift: 0.04, annualVolatility: 0.15, seed: 41212 },
+  },
+  /*
+    Sechs Leitindizes außerhalb der üblichen Verdächtigen.
+
+    Sie kamen mit dem Indexvergleich auf den Aktienseiten dazu (`lib/indexvergleich.ts`).
+    Der Vergleich misst eine Aktie am Leitindex ihres Handelsplatzes, und für
+    Indien, Kanada, Australien, Brasilien, Schweden und Taiwan gab es hier
+    keinen – 158 der geführten Aktien standen damit ohne Bezugspunkt da,
+    obwohl sie zu den größten Unternehmen ihres Landes gehören.
+  */
+  {
+    symbol: 'nifty-50',
+    ticker: 'NIFTY 50',
+    name: 'NIFTY 50 (Indien)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 50 größten Werte der National Stock Exchange in Mumbai – der meistbeachtete Index eines Marktes mit hohem Anteil privater Anleger.',
+    metaDescription:
+      'Der NIFTY 50 mit den 50 größten indischen Aktien: Stand, Chart über fünf Jahre und warum der Rupienkurs für Anleger aus dem Euroraum mitzählt.',
+    description: [
+      'Der NIFTY 50 führt die 50 nach Börsenwert und Handelsumsatz größten Unternehmen der National Stock Exchange in Mumbai. Banken und Finanzdienstleister wiegen darin besonders schwer, dazu Software-Dienstleister und Konsumgüter – die Schwerpunkte einer Volkswirtschaft, die stärker vom Binnenmarkt lebt als von Exporten.',
+      'Für Anleger aus dem Euroraum kommt eine zweite Bewegung hinzu: die Rupie. Sie hat gegenüber Euro und Dollar über lange Zeiträume an Wert verloren; ein zweistelliger Zuwachs des Index in Rupien konnte in Euro gerechnet deutlich kleiner ausfallen. Die Prozentzahlen hier sind in Rupien gerechnet.',
+      'Der indische Markt hat außerdem eine Eigenheit, die in den Zahlen nicht steht: Ein großer Teil des Handels geht auf inländische Privatanleger zurück, viele davon über monatliche Sparpläne. Das stützt die Kurse in Phasen, in denen ausländisches Kapital abfließt – und ändert nichts daran, dass ein einzelner Ländermarkt eine Wette auf ein Land ist.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'waehrungen-wechselkurse', 'aktie'],
+    seed: { startValue: 15500, annualDrift: 0.09, annualVolatility: 0.18, seed: 41213 },
+  },
+  {
+    symbol: 'tsx-composite',
+    ticker: 'S&P/TSX',
+    name: 'S&P/TSX Composite (Kanada)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Der breite Index der Börse in Toronto – Banken, Energie und Rohstoffe machen den Großteil aus.',
+    metaDescription:
+      'Der S&P/TSX Composite der Börse Toronto: Stand, Chart über fünf Jahre und warum er stärker an Rohstoffpreisen hängt als an der Konjunktur.',
+    description: [
+      'Der S&P/TSX Composite umfasst den weit überwiegenden Teil des an der Börse in Toronto gehandelten Werts – deutlich mehr Titel als die Leitindizes anderer Länder, die sich auf 30 bis 100 Namen beschränken. „Composite“ heißt genau das: kein Auszug der Größten, sondern ein Querschnitt.',
+      'Drei Blöcke bestimmen ihn: Banken, Energie und Bergbau. Damit hängt er stärker an den Preisen für Öl, Erdgas und Metalle als an der Binnenkonjunktur. Ein steigender Ölpreis hebt den Index oft an einem Tag, an dem der S&P 500 aus demselben Grund fällt – dieselbe Nachricht, entgegengesetzte Wirkung.',
+      'Die kanadischen Großbanken gelten zudem als besonders stark reguliert und ausschüttungsfreudig. Wer den Index kauft, kauft deshalb ein Übergewicht in zwei Branchen und sollte wissen, wie es zum Rest des eigenen Bestandes steht.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite', 'aktie'],
+    seed: { startValue: 20200, annualDrift: 0.07, annualVolatility: 0.15, seed: 41214 },
+  },
+  {
+    symbol: 'asx-200',
+    ticker: 'S&P/ASX 200',
+    name: 'S&P/ASX 200 (Australien)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 200 größten Werte der australischen Börse – zwei Branchen, Banken und Bergbau, tragen den Index.',
+    metaDescription:
+      'Der S&P/ASX 200 mit den 200 größten australischen Aktien: Stand, Chart über fünf Jahre und warum er an der Nachfrage aus China hängt.',
+    description: [
+      'Der S&P/ASX 200 enthält die 200 größten und liquidesten Unternehmen der australischen Börse. Seine Zusammensetzung ist ungewöhnlich schmal für einen Index mit 200 Mitgliedern: Die vier großen Banken und die großen Bergbaukonzerne machen zusammen einen erheblichen Teil des Gewichts aus.',
+      'Daraus folgt eine Abhängigkeit, die im Namen nicht steht – die von der Nachfrage aus China. Eisenerz und Kohle gehen zum großen Teil dorthin; eine schwächere chinesische Bauwirtschaft trifft den australischen Index deshalb schneller als die australische Konjunktur.',
+      'Eine australische Besonderheit betrifft die Dividenden: Das dortige Steuersystem rechnet inländischen Anlegern die Körperschaftsteuer auf die Ausschüttung an. Ausländische Anleger bekommen diese Anrechnung nicht – die oft genannte hohe Dividendenrendite des Marktes ist für sie also weniger wert, als sie aussieht.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite', 'aktie'],
+    seed: { startValue: 7400, annualDrift: 0.055, annualVolatility: 0.15, seed: 41215 },
+  },
+  {
+    symbol: 'ibovespa',
+    ticker: 'Ibovespa',
+    name: 'Ibovespa (Brasilien)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Der Leitindex der Börse in São Paulo – hohe Ausschläge, hohe Zinsen und eine Währung, die vieles überlagert.',
+    metaDescription:
+      'Der Ibovespa der Börse São Paulo: Stand, Chart über fünf Jahre und warum sein Verlauf in Real etwas anderes zeigt als in Euro.',
+    description: [
+      'Der Ibovespa bildet die meistgehandelten Aktien der Börse in São Paulo ab. Rohstoffkonzerne und Banken bestimmen ihn; ein einzelner Bergbau- und ein einzelner Ölwert wiegen zusammen mehr als ganze Branchen anderswo.',
+      'Wichtiger als die Zusammensetzung ist hier die Währung. Der Real hat gegenüber Euro und Dollar über Jahre erheblich an Wert verloren. Ein Index, der in Real deutlich zulegt, kann in Euro gerechnet auf der Stelle stehen – der Verlauf auf dieser Seite ist in Real gerechnet und sagt über das Ergebnis eines Anlegers aus dem Euroraum nur die halbe Wahrheit.',
+      'Dazu kommen Leitzinsen, die über lange Strecken zweistellig lagen. Hohe Zinsen machen festverzinsliche Anlagen im Inland attraktiv und Aktien vergleichsweise unattraktiv; der brasilianische Aktienmarkt reagiert deshalb auf Zinsentscheidungen der eigenen Notenbank ungewöhnlich stark.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'waehrungen-wechselkurse', 'aktie'],
+    seed: { startValue: 121000, annualDrift: 0.075, annualVolatility: 0.24, seed: 41216 },
+  },
+  {
+    symbol: 'omx-stockholm-30',
+    ticker: 'OMXS30',
+    name: 'OMX Stockholm 30 (Schweden)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Die 30 meistgehandelten Werte der Stockholmer Börse – Industrie und Maschinenbau prägen ihn.',
+    metaDescription:
+      'Der OMX Stockholm 30 mit den 30 meistgehandelten schwedischen Aktien: Stand, Chart über fünf Jahre und was die Krone damit zu tun hat.',
+    description: [
+      'Der OMX Stockholm 30 führt die 30 meistgehandelten Aktien der Stockholmer Börse. Anders als bei den meisten Leitindizes entscheidet hier nicht der Börsenwert allein, sondern der Handelsumsatz – ein großes, aber selten gehandeltes Unternehmen steht deshalb nicht zwangsläufig darin.',
+      'Sein Schwerpunkt liegt auf Industrie, Maschinenbau und Telekommunikationstechnik: Unternehmen, die den überwiegenden Teil ihres Geschäfts außerhalb Schwedens machen. Der Index reagiert entsprechend auf die Weltkonjunktur, nicht auf die schwedische.',
+      'Schweden gehört zur EU, aber nicht zum Euro. Wer aus dem Euroraum hier anlegt, trägt deshalb das Wechselkursrisiko der Krone mit – eine Bewegung, die in den Prozentzahlen des Index nicht auftaucht, im eigenen Depotauszug aber sehr wohl.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'waehrungen-wechselkurse', 'aktie'],
+    seed: { startValue: 2280, annualDrift: 0.06, annualVolatility: 0.18, seed: 41217 },
+  },
+  {
+    symbol: 'taiex',
+    ticker: 'TAIEX',
+    name: 'TAIEX (Taiwan)',
+    kind: 'index',
+    unit: 'Punkte',
+    decimals: 2,
+    summary:
+      'Der Gesamtindex der Börse in Taipeh – ein Markt, dessen Verlauf zu einem großen Teil an einem einzigen Unternehmen hängt.',
+    metaDescription:
+      'Der TAIEX der Börse Taipeh: Stand, Chart über fünf Jahre und warum ein einzelner Halbleiterhersteller den ganzen Index bewegt.',
+    description: [
+      'Der TAIEX – ausgeschrieben TWSE Capitalization Weighted Stock Index – umfasst praktisch alle an der Börse in Taipeh notierten Stammaktien. Trotz dieser Breite ist er einer der konzentriertesten Indizes überhaupt: Der größte Halbleiterhersteller der Insel macht allein einen erheblichen Teil des Gewichts aus.',
+      'Wer den TAIEX liest, liest deshalb zu einem guten Teil den Kurs eines einzelnen Unternehmens. Ein starker Quartalsbericht von dort hebt den Index eines ganzen Landes; das ist der Grund, warum ein „breiter Ländermarkt“ nicht automatisch eine breite Streuung bedeutet.',
+      'Dazu kommt ein Risiko, das sich nicht in Kennzahlen fassen lässt: die politische Lage in der Straße von Taiwan. Es taucht in keinem Kurs-Gewinn-Verhältnis auf, ist aber der Grund, warum taiwanische Werte gemessen an ihren Gewinnen häufig niedriger bewertet sind als vergleichbare amerikanische.',
+    ],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite', 'aktie'],
+    seed: { startValue: 17300, annualDrift: 0.11, annualVolatility: 0.23, seed: 41218 },
   },
   {
     symbol: 'gold',
