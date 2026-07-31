@@ -26,7 +26,20 @@
   /* Text */
   --c-fg: #0f172a;
   --c-fg-muted: #525e77;
-  --c-fg-subtle: #78839a;
+  /*
+    Der leiseste Ton – und lange zu leise.
+
+    Bis Juli 2026 stand hier #78839a. Das sind auf Weiß 3,81:1 und auf der
+    Markenfläche #e9ecf9 nur 3,24:1; WCAG AA verlangt 4,5:1 für Text dieser
+    Größe. Betroffen war nicht eine Ecke, sondern jede Bildunterschrift, jedes
+    Tabellenetikett und jede „Stand …“-Zeile der Website.
+
+    #606b81 hält auf **allen** Flächen dieser Darstellung mindestens 4,55:1 –
+    geprüft gegen Weiß, Canvas, Surface-Muted und alle vier Soft-Töne. Die
+    Abstufung fg → muted → subtle bleibt dabei erhalten, sie wird nur enger.
+    Nachzurechnen mit `npm run kontrast`.
+  */
+  --c-fg-subtle: #606b81;
 
   /*
     Logo-Farben unverändert wie im Signet.
@@ -100,14 +113,25 @@
   --c-akademie-soft: #fbe9f3;
   --c-debt: #8b2225;
   --c-debt-soft: #faeaea;
-  --c-globe: #4fc4cc;
-  --c-globe-soft: #0c2a2d;
-  --c-calendar: #b998e0;
-  --c-calendar-soft: #241a33;
   --c-globe: #155e63;
   --c-globe-soft: #e3f1f2;
   --c-calendar: #6d4694;
   --c-calendar-soft: #f0e9f7;
+
+  /*
+    Die Schrift auf einer gefüllten Bereichs- oder Statusfläche.
+
+    Bis Juli 2026 stand an all diesen Stellen `text-white`. Im hellen Thema ist
+    das richtig – die Bereichsfarben sind dort dunkel, Weiß kommt auf 6,3 bis
+    8,9:1. Im dunklen Thema sind dieselben Bereiche **aufgehellt**, und Weiß
+    darauf ergibt 2,08 bis 2,43:1. Bei allen acht, nicht bei einem.
+
+    Gefunden wurde zunächst nur der Lernchip, weil das der einzige gefüllte
+    Chip auf den geprüften Seiten ist. Eine Farbe, die je Thema kippt, löst das
+    an allen Stellen gleichzeitig – so wie es `--c-brand-contrast` für die
+    Marke längst tut.
+  */
+  --c-on-fill: #ffffff;
 
   /* Fokus */
   /*
@@ -179,7 +203,16 @@
 
   --c-fg: #e9edf7;
   --c-fg-muted: #9ba6be;
-  --c-fg-subtle: #79839a;
+  /*
+    Dasselbe Problem spiegelbildlich: #79839a erreichte auf der Markenfläche
+    #1a2242 nur 4,09:1 und auf dem Petrol-Ton #0c2a2d 3,99:1. Auf der reinen
+    Oberfläche reichte es knapp – und genau deshalb fiel es nie auf, denn dort
+    schaut man hin.
+
+    #8992a6 hält auf allen Flächen mindestens 4,86:1 und bleibt dunkler als
+    `--c-fg-muted`, die Abstufung stimmt also weiterhin.
+  */
+  --c-fg-subtle: #8992a6;
 
   /*
     Aufgehellte Logo-Variante für dunkle Flächen.
@@ -227,6 +260,26 @@
   --c-akademie-soft: #2e1122;
   --c-debt: #f08a8d;
   --c-debt-soft: #2c1214;
+  /*
+    Globus und Kalender – hier fehlten sie, und das war ein echter Fehler.
+
+    Die aufgehellten Töne standen versehentlich im **hellen** Block und wurden
+    dort vier Zeilen später von den hellen Werten überschrieben. Folge: Im
+    dunklen Thema blieben `--c-globe` und `--c-calendar` auf ihren hellen
+    Werten stehen – #155e63 kam damit auf 2,44:1 gegen die dunkle Oberfläche,
+    #6d4694 auf 2,56:1. Beides war auf dem Bildschirm kaum zu lesen, und keine
+    Prüfung hat es je gesehen, weil `tests/farbvariablen.test.ts` nur fragt, ob
+    eine Variable existiert – nicht, welchen Wert sie im jeweiligen Thema hat.
+
+    Aufgefallen ist es erst `npm run kontrast`. Jetzt: 8,77:1 und 7,49:1.
+  */
+  --c-globe: #4fc4cc;
+  --c-globe-soft: #0c2a2d;
+  --c-calendar: #b998e0;
+  --c-calendar-soft: #241a33;
+
+  /* Dunkle Schrift auf den aufgehellten Flächen – 7,86 bis 9,20:1. */
+  --c-on-fill: #0a0f1c;
 
   --c-ring: #8da4f0;
 
@@ -281,6 +334,7 @@
   --color-globe-soft: var(--c-globe-soft);
   --color-calendar: var(--c-calendar);
   --color-calendar-soft: var(--c-calendar-soft);
+  --color-on-fill: var(--c-on-fill);
 
   --color-ring: var(--c-ring);
 

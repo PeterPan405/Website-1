@@ -57,7 +57,7 @@ export function LevelNav({
                   <span
                     className={cn(
                       'flex size-9 items-center justify-center rounded-full text-sm font-bold',
-                      done ? 'bg-success text-white' : 'bg-learn-soft text-learn'
+                      done ? 'bg-success text-on-fill' : 'bg-learn-soft text-learn'
                     )}
                   >
                     {done ? <Icon name="check" className="size-4" /> : index + 1}
@@ -131,9 +131,9 @@ export function LevelNav({
                   className={cn(
                     'flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-bold',
                     done
-                      ? 'bg-success text-white'
+                      ? 'bg-success text-on-fill'
                       : active
-                        ? 'bg-learn text-white'
+                        ? 'bg-learn text-on-fill'
                         : 'bg-surface-muted text-fg-subtle'
                   )}
                 >

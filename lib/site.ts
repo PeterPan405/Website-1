@@ -148,7 +148,7 @@ export const LEARN_TOPIC_COUNT = 34
  * für sich wirbt, ist der harmlosere Fall; dieselbe Nachlässigkeit an einer
  * Kennzahl wäre keiner.
  */
-export const RECHNER_ANZAHL = 8
+export const RECHNER_ANZAHL = 9
 
 /**
  * Dieselbe Zahl als Wort – für Fließtext, in dem eine Ziffer stört.
@@ -156,7 +156,7 @@ export const RECHNER_ANZAHL = 8
  * Steht bewusst daneben statt in einer Umrechnungstabelle: Es sind zwei
  * Stellen, und wer die eine ändert, sieht die andere.
  */
-export const RECHNER_ANZAHL_WORT = 'acht'
+export const RECHNER_ANZAHL_WORT = 'neun'
 
 export const areas: Record<AreaId, Area> = {
   learn: {
@@ -197,7 +197,7 @@ export const areas: Record<AreaId, Area> = {
     id: 'tools',
     label: 'Rechner',
     href: '/rechner',
-    description: `${RECHNER_ANZAHL} Rechner für Zinsen, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke und Haushaltsbudget – jeweils mit offengelegter Methodik.`,
+    description: `${RECHNER_ANZAHL} Rechner für Zinsen, Kosten, Steuern, Vermögen, Inflation, Rente, Rentenlücke, Haushaltsbudget und Depotaufteilung – jeweils mit offengelegter Methodik.`,
   },
   news: {
     id: 'news',
@@ -241,7 +241,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   learn: {
     text: 'text-learn',
     soft: 'bg-learn-soft text-learn',
-    solid: 'bg-learn text-white',
+    solid: 'bg-learn text-on-fill',
     border: 'border-learn/30',
     dot: 'bg-learn',
     gradient: 'from-learn/18 to-learn/0',
@@ -249,7 +249,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   markets: {
     text: 'text-markets',
     soft: 'bg-markets-soft text-markets',
-    solid: 'bg-markets text-white',
+    solid: 'bg-markets text-on-fill',
     border: 'border-markets/30',
     dot: 'bg-markets',
     gradient: 'from-markets/18 to-markets/0',
@@ -257,7 +257,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   tools: {
     text: 'text-tools',
     soft: 'bg-tools-soft text-tools',
-    solid: 'bg-tools text-white',
+    solid: 'bg-tools text-on-fill',
     border: 'border-tools/30',
     dot: 'bg-tools',
     gradient: 'from-tools/18 to-tools/0',
@@ -265,7 +265,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   news: {
     text: 'text-news',
     soft: 'bg-news-soft text-news',
-    solid: 'bg-news text-white',
+    solid: 'bg-news text-on-fill',
     border: 'border-news/30',
     dot: 'bg-news',
     gradient: 'from-news/18 to-news/0',
@@ -273,7 +273,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   akademie: {
     text: 'text-akademie',
     soft: 'bg-akademie-soft text-akademie',
-    solid: 'bg-akademie text-white',
+    solid: 'bg-akademie text-on-fill',
     border: 'border-akademie/30',
     dot: 'bg-akademie',
     gradient: 'from-akademie/18 to-akademie/0',
@@ -281,7 +281,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   globe: {
     text: 'text-globe',
     soft: 'bg-globe-soft text-globe',
-    solid: 'bg-globe text-white',
+    solid: 'bg-globe text-on-fill',
     border: 'border-globe/30',
     dot: 'bg-globe',
     gradient: 'from-globe/18 to-globe/0',
@@ -289,7 +289,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   calendar: {
     text: 'text-calendar',
     soft: 'bg-calendar-soft text-calendar',
-    solid: 'bg-calendar text-white',
+    solid: 'bg-calendar text-on-fill',
     border: 'border-calendar/30',
     dot: 'bg-calendar',
     gradient: 'from-calendar/18 to-calendar/0',
@@ -297,7 +297,7 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
   debt: {
     text: 'text-debt',
     soft: 'bg-debt-soft text-debt',
-    solid: 'bg-debt text-white',
+    solid: 'bg-debt text-on-fill',
     border: 'border-debt/30',
     dot: 'bg-debt',
     gradient: 'from-debt/18 to-debt/0',

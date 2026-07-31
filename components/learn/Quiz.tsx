@@ -105,7 +105,7 @@ export function Quiz({
         aria-labelledby={`${groupId}-titel`}
         className="rounded-card border-learn/30 bg-learn-soft border p-6 sm:p-7"
       >
-        <p className="fk-chip bg-learn text-white">
+        <p className="fk-chip bg-learn text-on-fill">
           <Icon name="target" className="size-3.5" />
           Wissenscheck
         </p>
