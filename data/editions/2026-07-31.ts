@@ -61,6 +61,63 @@ export const edition: DailyEdition = {
   ],
   further: [
     {
+      headline: 'Minus 15.000 oder minus 1.000? Was Saisonbereinigung tut',
+      summary: [
+        'Derselbe Rückgang steht zweimal im Bericht: Die Arbeitslosigkeit sank um 15.000 – saisonbereinigt um 1.000. Der Arbeitsmarkt atmet im Jahresrhythmus, und die Bereinigung rechnet dieses regelmäßige Muster heraus.',
+        'Übrig bleibt, was darüber hinaus geschah. Von fünfzehn Teilen des Rückgangs waren vierzehn Jahreszeit und einer Bewegung.',
+      ],
+      category: 'Märkte',
+      whyItMatters:
+        'Unbereinigt beschreibt die Lage, saisonbereinigt die Richtung. Das Wort steht bei fast jeder Monatszahl dabei – Arbeitsmarkt, Auftragseingang, Einzelhandel – und ist fast nie das, was in der Überschrift landet.',
+      relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
+      relatedSymbols: ['dax'],
+      sources: [
+        {
+          label:
+            'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
+          url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+        },
+      ],
+    },
+    {
+      headline: '22.000 mehr Arbeitslose – und die Quote bleibt gleich',
+      summary: [
+        'Gegenüber dem Vorjahr zählt der Bericht 22.000 Arbeitslose mehr und stellt zugleich fest, dass sich die Quote nicht verändert hat. Sie liegt bei 6,2 Prozent.',
+        'Eine Quote ist ein Bruch, und beide Seiten bewegen sich: Arbeitslose im Zähler, Erwerbspersonen im Nenner. Rund 0,7 Prozent mehr Arbeitslose verschwinden in der Rundung auf ein Zehntelprozent.',
+      ],
+      category: 'Märkte',
+      whyItMatters:
+        'Dieselbe Falle steckt in der Dividendenrendite, der Schuldenquote und der Sparquote: Jede von ihnen bewegt sich auch dann, wenn sich nur der Nenner ändert. Bei jeder Quote lohnt die Frage, welche Seite gewandert ist.',
+      relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
+      relatedSymbols: ['dax'],
+      sources: [
+        {
+          label:
+            'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
+          url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+        },
+      ],
+    },
+    {
+      headline: 'Kurzarbeit: 133.000 – aber die Zahl ist zwei Monate alt',
+      summary: [
+        'Der Bericht von Ende Juni nennt die Kurzarbeiterzahlen für April: 133.000 Beschäftigte, 17.000 weniger als im Vormonat und 101.000 weniger als ein Jahr zuvor. Ausgewiesen sind sie als vorläufig hochgerechnet.',
+        'Arbeitslosigkeit wird gezählt, Kurzarbeit wird abgerechnet. Erst aus der Abrechnung ergibt sich, für wie viele Beschäftigte tatsächlich gezahlt wurde – daher der Nachlauf.',
+      ],
+      category: 'Märkte',
+      whyItMatters:
+        'Konjunkturzahlen tragen zwei Daten: das der Meldung und das des Zeitraums. Sie fallen fast nie zusammen. Eine alte Zahl für einen aktuellen Zustand zu halten ist die häufigste Fehldeutung überhaupt.',
+      relatedTopics: ['budget-und-sparquote', 'notenbanken-geldpolitik'],
+      relatedSymbols: ['dax'],
+      sources: [
+        {
+          label:
+            'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
+          url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+        },
+      ],
+    },
+    {
       headline: 'Weniger Arbeitslose – und trotzdem weniger Beschäftigte',
       summary: [
         'Derselbe Bericht nennt eine dritte Zahl: 34,84 Millionen sozialversicherungspflichtig Beschäftigte, rund 71.000 weniger als ein Jahr zuvor. Die Arbeitslosigkeit ging im Berichtsmonat um 15.000 zurück, saisonbereinigt um 1.000.',

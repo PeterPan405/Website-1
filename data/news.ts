@@ -101,6 +101,218 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'saisonbereinigung-15000-oder-1000',
+    title: 'Minus 15.000 oder minus 1.000? Was Saisonbereinigung wirklich tut',
+    teaser:
+      'Die Arbeitslosigkeit sank um 15.000 – saisonbereinigt nur um 1.000. Beide Zahlen stehen in derselben Meldung, und der Unterschied ist die eigentliche Aussage.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Arbeitsmarkt', 'Saisonbereinigung', 'Statistik'],
+    relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
+        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Monatsbericht der Bundesagentur für Arbeit stehen zwei Rückgänge nebeneinander: Die Arbeitslosigkeit sank um **15.000** – und **saisonbereinigt um 1.000**. Wer nur die erste Zahl liest, hält den Monat für deutlich besser, als er war.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum es zwei Zahlen braucht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Arbeitsmarkt atmet im Jahresrhythmus. Im Frühjahr beginnt die Bausaison, im Sommer enden Ausbildungen, im Winter ruhen Außenberufe. Diese Bewegungen wiederholen sich Jahr für Jahr und haben mit der Konjunktur nichts zu tun. Ein Rückgang im Frühsommer ist deshalb erst einmal nur eines: normal.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Saisonbereinigung rechnet dieses regelmäßige Muster heraus. Übrig bleibt, was **darüber hinaus** geschah. Wenn von 15.000 nach der Bereinigung 1.000 übrig sind, heißt das: Vierzehn Fünfzehntel des Rückgangs waren Jahreszeit, ein Fünfzehntel war Bewegung.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Die Faustregel',
+        items: [
+          'Unbereinigt sagt: Wie viele Menschen sind aktuell arbeitslos gemeldet? Das ist die Zahl für die Lage.',
+          'Saisonbereinigt sagt: Hat sich etwas verändert, das nicht am Kalender liegt? Das ist die Zahl für die Richtung.',
+          'Wer beide vergleicht, sieht sofort, wie viel von einer Schlagzeile Substanz ist.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei jeder Monatszahl – Arbeitsmarkt, Auftragseingang, Einzelhandelsumsatz – lohnt der Blick auf das Wort „saisonbereinigt“. Es steht fast immer da. Es ist fast immer die ehrlichere Zahl. Und es ist fast nie die, die in der Überschrift landet.',
+      },
+    ],
+  },
+  {
+    slug: 'mehr-arbeitslose-gleiche-quote',
+    title: '22.000 mehr Arbeitslose – und die Quote bleibt gleich',
+    teaser:
+      'Gegenüber dem Vorjahr gibt es 22.000 Arbeitslose mehr, die Quote liegt trotzdem unverändert bei 6,2 Prozent. Das ist kein Rechenfehler, sondern ein Bruch.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Arbeitsmarkt', 'Quote', 'Statistik'],
+    relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
+        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Vorjahresvergleich nennt der Bericht der Bundesagentur **22.000 Arbeitslose mehr** – und stellt zugleich fest, dass sich die Arbeitslosenquote gegenüber dem Vorjahr **nicht verändert** hat. Sie liegt bei 6,2 Prozent. Beides zugleich klingt nach einem Fehler und ist keiner.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Quote hat zwei bewegliche Teile',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Arbeitslosenquote ist ein Bruch: Arbeitslose geteilt durch alle Erwerbspersonen. Im Zähler stehen die Arbeitslosen, im Nenner alle, die dem Arbeitsmarkt zur Verfügung stehen. **Beide Seiten bewegen sich.** Wächst der Nenner im selben Verhältnis wie der Zähler, bleibt der Bruch gleich – obwohl die absolute Zahl gestiegen ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei 22.000 auf knapp drei Millionen sind das rund 0,7 Prozent mehr Arbeitslose. Eine Quote, die auf ein Zehntelprozent gerundet ausgewiesen wird, muss sich davon nicht bewegen. Die Rundung verschluckt den Unterschied.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Dieselbe Falle an anderer Stelle',
+        items: [
+          'Dividendenrendite: steigt auch dann, wenn nicht mehr ausgeschüttet wird – sondern der Kurs im Nenner fällt.',
+          'Schuldenquote: sinkt auch dann, wenn nicht getilgt wird – sondern die Wirtschaftsleistung im Nenner wächst.',
+          'Sparquote: steigt auch dann, wenn nicht mehr gespart wird – sondern das Einkommen im Nenner sinkt.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei jeder Quote lohnt die Frage, welche der beiden Seiten sich bewegt hat. Eine unveränderte Quote heißt nicht, dass nichts passiert ist – sie heißt, dass sich Zähler und Nenner im Gleichschritt bewegt haben. Das ist eine eigene Information, und oft die interessantere.',
+      },
+    ],
+  },
+  {
+    slug: 'kurzarbeit-daten-mit-verzoegerung',
+    title: 'Kurzarbeit: 133.000 – aber die Zahl ist drei Monate alt',
+    teaser:
+      'Der Bericht von Ende Juni nennt Kurzarbeiterzahlen für April. Diese Verzögerung ist kein Versäumnis, sondern liegt im Verfahren – und man sollte sie kennen.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Kurzarbeit', 'Arbeitsmarkt', 'Konjunktur'],
+    relatedTopics: ['budget-und-sparquote', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
+        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Monatsbericht der Bundesagentur steht zur Kurzarbeit eine Zahl und ein Hinweis: **133.000 Beschäftigte** erhielten konjunkturelles Kurzarbeitergeld – **im April**. Der Bericht selbst stammt von Ende Juni. Zwischen Sachverhalt und Meldung liegen also gut zwei Monate.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum diese Zahl nachhinkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Arbeitslosigkeit wird gezählt, Kurzarbeit wird abgerechnet. Ein Betrieb meldet Kurzarbeit an, führt sie durch und reicht danach die Abrechnung ein. Erst daraus ergibt sich, für wie viele Beschäftigte tatsächlich gezahlt wurde – und nicht, für wie viele es angezeigt war. Der Bericht weist die Zahl deshalb als vorläufig hochgerechnet aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Richtung ist trotzdem lesbar: 17.000 weniger als im Vormonat und **101.000 weniger als ein Jahr zuvor**. Kurzarbeit ist das Instrument, mit dem Betriebe Beschäftigung durch eine Schwäche hindurchtragen. Dass sie deutlich zurückgeht, ist für sich genommen eine gute Nachricht.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Der Kurzschluss, den man vermeiden sollte',
+        items: [
+          'Weniger Kurzarbeit heißt nicht zwingend mehr Arbeit. Sie endet auch, wenn Betriebe stattdessen entlassen.',
+          'Die Zahl ist zwei Monate alt. Wer sie als Aussage über den heutigen Monat liest, liest sie falsch.',
+          'Sie ist vorläufig hochgerechnet und kann sich mit den endgültigen Abrechnungen noch verschieben.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Konjunkturzahlen tragen ein Datum – und zwar zwei: das der Meldung und das des Zeitraums. Sie fallen fast nie zusammen. Wer beide auseinanderhält, vermeidet die häufigste Fehldeutung überhaupt: eine alte Zahl für einen aktuellen Zustand zu halten.',
+      },
+    ],
+  },
+  {
+    slug: 'beschaeftigung-sinkt-arbeitslosigkeit-auch',
+    title: 'Beide sinken: Arbeitslosigkeit und Beschäftigung zugleich',
+    teaser:
+      'Die Arbeitslosigkeit ging zurück – und die Zahl der Beschäftigten liegt 71.000 unter dem Vorjahr. Das passt schlechter zusammen, als es klingt.',
+    category: 'Märkte',
+    publishedAt: '2026-07-31T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Arbeitsmarkt', 'Beschäftigung', 'Erwerbspersonen'],
+    relatedTopics: ['budget-und-sparquote', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'Bundesagentur für Arbeit: Arbeitsmarkt im Juni 2026 – Monatsbericht (30.06.2026)',
+        url: 'https://www.arbeitsagentur.de/news/arbeitsmarkt',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Bewegungen im selben Bericht, die in dieselbe Richtung zeigen und Gegensätzliches bedeuten: Die Arbeitslosigkeit **sank** um 15.000. Die Zahl der sozialversicherungspflichtig Beschäftigten lag mit **34,84 Millionen** rund **71.000 unter dem Vorjahr** – und ging von März auf April saisonbereinigt um weitere 5.000 zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie beides gleichzeitig gehen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen „nicht arbeitslos“ und „beschäftigt“ liegt ein drittes Feld: Wer sich aus der Erwerbsbeteiligung zurückzieht, ist beides nicht. Menschen gehen in Rente, beginnen eine Ausbildung, pflegen Angehörige oder melden sich schlicht nicht mehr. Sie verschwinden aus der Arbeitslosenzählung, ohne in die Beschäftigungszählung einzutreten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der demografische Anteil daran ist groß: Die geburtenstarken Jahrgänge erreichen das Rentenalter. Wenn mehr Menschen den Arbeitsmarkt verlassen als eintreten, sinkt die Beschäftigung, ohne dass eine einzige Stelle gestrichen wurde – und die Arbeitslosigkeit sinkt mit.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Drei Zahlen, drei Fragen',
+        items: [
+          'Arbeitslosigkeit: Wie viele suchen gemeldet Arbeit? Sie kann sinken, weil Menschen Arbeit finden – oder weil sie aufhören zu suchen.',
+          'Beschäftigung: Wie viele arbeiten regulär? Diese Zahl lässt sich nicht durch Abgrenzung schönen.',
+          'Erwerbspersonen: Wie viele stehen überhaupt zur Verfügung? Der stille Nenner unter allem.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine sinkende Arbeitslosigkeit ist für sich genommen keine gute Nachricht und keine schlechte – sie ist eine unvollständige. Erst zusammen mit der Beschäftigung ergibt sie ein Bild. Gehen beide zurück, schrumpft nicht die Arbeitslosigkeit, sondern der Arbeitsmarkt.',
+      },
+    ],
+  },
+  {
     slug: 'inflation-juli-2026-vorlaeufig-2-8-prozent',
     title: 'Inflation im Juli: 2,8 Prozent – und warum „voraussichtlich“ dabeisteht',
     metaTitle: 'Inflation Juli 2026: vorläufig 2,8 Prozent',
