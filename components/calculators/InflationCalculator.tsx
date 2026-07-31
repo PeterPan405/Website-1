@@ -12,11 +12,26 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
-import { InflationChart } from '@/components/charts/InflationChart'
+import { nachgeladen } from '@/components/charts/nachladen'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { calculateInflation, realRatePercent } from '@/lib/finance'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+
+/*
+  Nachgeladen statt mitgeliefert: `recharts` wiegt 338 Kilobyte und lag bis
+  Juli 2026 im ersten Laden jeder Rechnerseite. Die Höhe hält den Platz frei,
+  damit beim Eintreffen nichts springt.
+*/
+const InflationChart = nachgeladen<
+  React.ComponentProps<typeof import('@/components/charts/InflationChart').InflationChart>
+>(
+  () =>
+    import('@/components/charts/InflationChart').then((m) => ({
+      default: m.InflationChart,
+    })),
+  300
+)
 
 const defaults = {
   amount: 10_000,

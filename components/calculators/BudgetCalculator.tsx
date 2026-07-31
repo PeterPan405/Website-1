@@ -11,12 +11,25 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
-import { BudgetChart } from '@/components/charts/BudgetChart'
+import { nachgeladen } from '@/components/charts/nachladen'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { calculateBudget, type BudgetEntry } from '@/lib/finance'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+
+/*
+  Nachgeladen statt mitgeliefert: `recharts` wiegt 338 Kilobyte und lag bis
+  Juli 2026 im ersten Laden jeder Rechnerseite. Die Höhe hält den Platz frei,
+  damit beim Eintreffen nichts springt.
+*/
+const BudgetChart = nachgeladen<
+  React.ComponentProps<typeof import('@/components/charts/BudgetChart').BudgetChart>
+>(
+  () =>
+    import('@/components/charts/BudgetChart').then((m) => ({ default: m.BudgetChart })),
+  300
+)
 
 /**
  * Vorbelegte Kategorien.

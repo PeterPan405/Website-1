@@ -12,7 +12,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField, SelectField } from '@/components/calculators/NumberField'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
-import { CompoundChart } from '@/components/charts/CompoundChart'
+import { nachgeladen } from '@/components/charts/nachladen'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import {
   calculateCompoundInterest,
@@ -22,6 +22,21 @@ import {
   type ContributionInterval,
 } from '@/lib/finance'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
+
+/*
+  Nachgeladen statt mitgeliefert: `recharts` wiegt 338 Kilobyte und lag bis
+  Juli 2026 im ersten Laden jeder Rechnerseite. Die Höhe hält den Platz frei,
+  damit beim Eintreffen nichts springt.
+*/
+const CompoundChart = nachgeladen<
+  React.ComponentProps<typeof import('@/components/charts/CompoundChart').CompoundChart>
+>(
+  () =>
+    import('@/components/charts/CompoundChart').then((m) => ({
+      default: m.CompoundChart,
+    })),
+  300
+)
 
 const defaults = {
   principal: 5000,
