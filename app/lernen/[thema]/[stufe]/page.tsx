@@ -15,7 +15,7 @@ import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
-import { learningResourceSchema } from '@/lib/jsonld'
+import { learningResourceSchema, quizSchema } from '@/lib/jsonld'
 import { getLearnLevel, getLearnLevelParams, getRelatedTopics } from '@/lib/learn'
 import { begriffeZumThema, getBegriffsindex, kurzerklaerung } from '@/lib/glossar'
 import { getPfadeMitStufe } from '@/lib/lernpfade'
@@ -326,6 +326,28 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
           keywords: topic.keywords,
         })}
       />
+      {/*
+        Das Quiz nur, wo es eines gibt.
+
+        Stufen ohne ausgeschriebenen Text tragen kein Quiz – Fragen zu einem
+        ungeschriebenen Abschnitt wären nicht beantwortbar. Ein leeres
+        `Quiz`-Objekt auszugeben hieße, eine Prüfung zu behaupten, die es
+        nicht gibt.
+      */}
+      {level.quiz && level.quiz.length > 0 && (
+        <JsonLd
+          data={quizSchema({
+            name: level.title,
+            path: `/lernen/${topic.slug}/${levelId}`,
+            fragen: level.quiz.map((frage) => ({
+              frage: frage.question,
+              antworten: frage.options,
+              richtigerIndex: frage.correctIndex,
+              erklaerung: frage.explanation,
+            })),
+          })}
+        />
+      )}
     </>
   )
 }

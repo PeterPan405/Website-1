@@ -40,6 +40,18 @@ export interface CalculatorDefinition {
    * behauptet, keine zu haben – und das stimmt bei keinem von ihnen.
    */
   grenzen: string[]
+  /**
+   * Die Bedienschritte, für die `HowTo`-Auszeichnung.
+   *
+   * Nur, was auf der Seite tatsächlich zu tun ist: die Eingabefelder in ihrer
+   * Reihenfolge und das, was danach abzulesen ist. Keine Ratschläge, keine
+   * Verweise auf andere Seiten.
+   *
+   * Pflichtfeld aus demselben Grund wie `grenzen`: Wer einen Rechner baut und
+   * nicht in drei Sätzen sagen kann, was daran zu tun ist, hat ein Problem an
+   * der Oberfläche und nicht bei den strukturierten Daten.
+   */
+  schritte: string[]
   /** Slugs passender Lernthemen. */
   relatedTopics: string[]
 }
@@ -65,6 +77,12 @@ export const calculators: CalculatorDefinition[] = [
       'Eine Modellrechnung, keine Prognose. Die Rendite gibst du selbst vor – das Ergebnis ist genau so verlässlich wie diese Annahme.',
       'Für Aktienanlagen liefert eine konstante Rendite systematisch zu glatte Ergebnisse. Schwankungen kosten zusätzlich Rendite (Volatilitätsbremse).',
       'Ohne Kosten, Steuern und Inflation. Alle drei senken das reale Ergebnis.',
+    ],
+    schritte: [
+      'Startkapital eintragen – der Betrag, der zu Beginn angelegt wird. Null ist erlaubt.',
+      'Sparrate und Einzahlungsintervall wählen: monatlich, vierteljährlich oder jährlich.',
+      'Zinssatz je Jahr und Laufzeit in Jahren angeben.',
+      'Endkapital ablesen und daneben die Aufteilung in Einzahlungen und Erträge; der Jahresverlauf steht als Tabelle und Diagramm darunter.',
     ],
     relatedTopics: ['zinseszins', 'cost-average-sparplan', 'etf', 'tagesgeld'],
     methodology: [
@@ -114,6 +132,12 @@ export const calculators: CalculatorDefinition[] = [
       'Eine Modellrechnung bei konstanter Rendite. Die Bruttorendite gibst du selbst vor.',
       'Gerechnet werden nur die laufenden Kosten. Ausgabeaufschläge, Transaktionskosten und Depotgebühren kommen gegebenenfalls hinzu.',
       'Ohne Steuern und ohne Inflation.',
+    ],
+    schritte: [
+      'Anlagebetrag und Sparrate eintragen.',
+      'Bruttorendite je Jahr und Laufzeit angeben.',
+      'Zwei Kostenquoten gegenüberstellen – etwa 0,2 Prozent für einen Indexfonds und 1,5 Prozent für einen gemanagten Fonds.',
+      'Den Unterschied der beiden Endvermögen ablesen; er ist der Betrag, den die höhere Gebühr über die Laufzeit gekostet hat.',
     ],
     relatedTopics: ['etf', 'kosten-und-gebuehren', 'fonds', 'zinseszins'],
     methodology: [
@@ -178,6 +202,12 @@ export const calculators: CalculatorDefinition[] = [
       'Nur Abgeltungsteuer auf Kapitalerträge im Privatvermögen. Die Günstigerprüfung, Verlustverrechnungstöpfe, ausländische Quellensteuer und die Anlage KAP sind nicht abgebildet.',
       'Der Basiszins wird jährlich neu bekanntgegeben; die Rechnung nutzt den oben genannten Stand.',
       'Teilfreistellungen richten sich nach der tatsächlichen Aktienquote des Fonds, nicht nach seiner Bezeichnung.',
+    ],
+    schritte: [
+      'Art der Erträge wählen: Zinsen, Dividenden oder Kursgewinne aus Fondsanteilen.',
+      'Ertragshöhe eintragen und angeben, wie viel vom Sparerpauschbetrag noch frei ist.',
+      'Kirchensteuerpflicht angeben, falls zutreffend.',
+      'Steuerlast und Nettoertrag ablesen; die Aufschlüsselung zeigt, was Teilfreistellung und Pauschbetrag abgezogen haben.',
     ],
     relatedTopics: ['sparerpauschbetrag', 'etf', 'fonds', 'depot-und-broker'],
     methodology: [
@@ -257,6 +287,12 @@ export const calculators: CalculatorDefinition[] = [
       'Immobilien, Fahrzeuge und Hausrat werden mit dem Wert angesetzt, den du selbst einträgst. Für Immobilien ist das die unsicherste Zahl der Aufstellung.',
       'Ohne Steuern auf stille Reserven. Wer Wertpapiere mit Gewinn verkauft, hat danach weniger als hier steht.',
       'Ansprüche aus der gesetzlichen Rente und aus Betriebsrenten sind kein Vermögen im Sinne dieser Aufstellung und fehlen deshalb.',
+    ],
+    schritte: [
+      'Besitzpositionen eintragen: Konten, Wertpapiere, Immobilien, Sachwerte.',
+      'Verbindlichkeiten eintragen: Kredite, Darlehen, offene Rechnungen.',
+      'Nettovermögen als Differenz ablesen.',
+      'Den Bogen als PDF herunterladen – ausgefüllt oder leer zum Ausdrucken.',
     ],
     relatedTopics: ['worauf-achten-einsteiger', 'tagesgeld', 'immobilien', 'rente'],
     methodology: [
@@ -361,6 +397,12 @@ export const calculators: CalculatorDefinition[] = [
       'Eine gleichbleibende Inflationsrate ist eine Annahme. Tatsächlich schwankt sie von Jahr zu Jahr erheblich.',
       'Die amtliche Rate misst einen Durchschnittswarenkorb. Der persönliche Warenkorb weicht davon ab – wer viel Miete zahlt, erlebt eine andere Inflation als wer viel tankt.',
     ],
+    schritte: [
+      'Betrag eintragen, dessen Kaufkraft betrachtet werden soll.',
+      'Angenommene Inflationsrate je Jahr und den Zeitraum in Jahren angeben.',
+      'Wahlweise die nominale Rendite einer Anlage eintragen, um den Realzins zu sehen.',
+      'Beide Richtungen ablesen: was der Betrag später noch wert ist und welcher Betrag später dieselbe Kaufkraft hat.',
+    ],
     relatedTopics: ['zinseszins', 'tagesgeld', 'staatsanleihe', 'immobilien'],
     methodology: [
       { type: 'heading', level: 2, text: 'So wird gerechnet' },
@@ -422,6 +464,11 @@ export const calculators: CalculatorDefinition[] = [
       'Der Steuerabzug ist geschätzt. Die tatsächliche Steuer hängt vom Gesamteinkommen im Ruhestand ab.',
       'Zeiten für Kindererziehung, Arbeitslosigkeit, Ausbildung und Abschläge für einen vorzeitigen Beginn sind nicht enthalten.',
     ],
+    schritte: [
+      'Bisherige Rentenpunkte und das aktuelle Bruttoeinkommen eintragen.',
+      'Alter und geplanten Renteneintritt angeben.',
+      'Bruttorente ablesen und darunter, was nach Kranken- und Pflegeversicherung sowie Steuern bleibt.',
+    ],
     relatedTopics: ['rente', 'zinseszins', 'cost-average-sparplan'],
     methodology: [
       { type: 'heading', level: 2, text: 'So wird gerechnet' },
@@ -482,6 +529,12 @@ export const calculators: CalculatorDefinition[] = [
       'Eine konstante Rendite und eine konstante Inflationsrate über Jahrzehnte sind Annahmen, keine Erwartungswerte.',
       'Ohne Steuern auf Kapitalerträge und ohne Kranken- und Pflegeversicherungsbeiträge im Ruhestand.',
       'Ein längeres Leben als angenommen verlängert den Bedarf. Die Dauer des Ruhestands ist die unsicherste Größe der Rechnung.',
+    ],
+    schritte: [
+      'Gewünschtes monatliches Alterseinkommen in heutiger Kaufkraft eintragen.',
+      'Erwartete gesetzliche Rente und vorhandenes Vorsorgevermögen angeben.',
+      'Jahre bis zum Renteneintritt und angenommene Rendite eintragen.',
+      'Die Lücke und die Sparrate ablesen, die sie bis zum Renteneintritt schließt.',
     ],
     relatedTopics: ['rente', 'zinseszins', 'cost-average-sparplan', 'etf'],
     methodology: [
@@ -550,6 +603,11 @@ export const calculators: CalculatorDefinition[] = [
     grenzen: [
       'Eine Momentaufnahme eines Monats. Jährliche Posten – Versicherungen, Urlaub, Reparaturen – verzerren das Bild, wenn sie nicht anteilig eingerechnet sind.',
       'Gerechnet wird nur, was eingetragen wurde. Der häufigste Fehler ist eine vergessene Ausgabe, nicht eine falsche Zahl.',
+    ],
+    schritte: [
+      'Monatliche Einnahmen eintragen.',
+      'Ausgaben nach Posten eintragen: Wohnen, Lebensmittel, Mobilität, Versicherungen, Sonstiges.',
+      'Sparquote ablesen und daneben, wie viele Monate der Notgroschen bis zur gewünschten Höhe braucht.',
     ],
     relatedTopics: ['worauf-achten-einsteiger', 'tagesgeld', 'cost-average-sparplan'],
     methodology: [
@@ -645,6 +703,11 @@ export const calculators: CalculatorDefinition[] = [
       'Nur was eingetragen wurde. Ein vergessener Posten fehlt in jeder Aufteilung.',
       'Zu ETFs und Rohstoffen ist keine Branche hinterlegt; die Branchenaufteilung beschreibt nur den zugeordneten Teil.',
       'Keine Steuern, keine Transaktionskosten.',
+    ],
+    schritte: [
+      'Positionen über das Suchfeld auswählen und ihren Wert eintragen.',
+      'Aufteilung nach Anlageart, Branche, Land und Währung ablesen.',
+      'Die Beobachtungen darunter lesen – sie nennen Klumpen, die einer Liste nicht anzusehen sind.',
     ],
     relatedTopics: ['portfolio-aufbau', 'risiko-und-rendite', 'aktien-laender-branchen'],
   },

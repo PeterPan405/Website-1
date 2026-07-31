@@ -14,7 +14,7 @@ import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import type { CalculatorDefinition } from '@/data/calculators'
 import { calculators } from '@/data/calculators'
-import { webApplicationSchema } from '@/lib/jsonld'
+import { howToSchema, webApplicationSchema } from '@/lib/jsonld'
 import { getTopicsBySlugs } from '@/lib/learn'
 
 /**
@@ -140,12 +140,26 @@ export async function CalculatorPage({
         </div>
       </div>
 
+      {/*
+        Zwei Auszeichnungen: `WebApplication` sagt, was die Seite ist,
+        `HowTo`, wie man sie bedient. Die Schritte stehen in
+        `data/calculators.ts` und beschreiben ausschließlich Felder, die es
+        auf dieser Seite gibt.
+      */}
       <JsonLd
         data={webApplicationSchema({
           name: definition.title,
           description: definition.metaDescription,
           path: `/rechner/${definition.slug}`,
           featureList: definition.featureList,
+        })}
+      />
+      <JsonLd
+        data={howToSchema({
+          name: definition.headline,
+          description: definition.lead,
+          path: `/rechner/${definition.slug}`,
+          schritte: definition.schritte,
         })}
       />
     </>

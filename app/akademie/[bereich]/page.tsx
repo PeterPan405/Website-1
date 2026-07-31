@@ -8,7 +8,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { belegarten, getBereich, getBereiche, getLektionen } from '@/lib/akademie'
-import { collectionPageSchema } from '@/lib/jsonld'
+import { collectionPageSchema, courseSchema } from '@/lib/jsonld'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
 type Props = { params: Promise<{ bereich: string }> }
@@ -122,6 +122,15 @@ export default async function BereichPage({ params }: Props) {
         </div>
       </div>
 
+      {/*
+        Zwei Auszeichnungen, weil die Seite zwei Dinge ist.
+
+        `CollectionPage` beschreibt, was darauf steht: eine Liste von
+        Lektionen. `Course` beschreibt, was sie **bedeutet**: einen
+        aufbauenden Lehrgang, dessen Reihenfolge nicht beliebig ist. Die
+        Reihenfolge steht ausdrücklich als solche in `bereich.reihenfolge`,
+        und ohne `Course` ginge genau diese Angabe verloren.
+      */}
       <JsonLd
         data={collectionPageSchema({
           name: gefunden.titel,
@@ -130,6 +139,18 @@ export default async function BereichPage({ params }: Props) {
           items: lektionen.map((lektion) => ({
             name: lektion.titel,
             path: `/akademie/${gefunden.id}/${lektion.slug}`,
+          })),
+        })}
+      />
+      <JsonLd
+        data={courseSchema({
+          name: gefunden.titel,
+          description: gefunden.einleitung,
+          path: `/akademie/${gefunden.id}`,
+          lektionen: lektionen.map((lektion) => ({
+            name: lektion.titel,
+            path: `/akademie/${gefunden.id}/${lektion.slug}`,
+            minuten: lektion.dauer,
           })),
         })}
       />
