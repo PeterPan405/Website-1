@@ -29,7 +29,8 @@
     "edinet": "node --experimental-strip-types scripts/edinet-abrufen.ts",
     "podcast": "node --experimental-strip-types scripts/podcast-abrufen.ts",
     "marktbreite": "node --experimental-strip-types scripts/marktbreite-nachtragen.ts",
-    "zinsen": "node --experimental-strip-types scripts/zinsen-abrufen.ts"
+    "zinsen": "node --experimental-strip-types scripts/zinsen-abrufen.ts",
+    "breite": "node scripts/breite-pruefen.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

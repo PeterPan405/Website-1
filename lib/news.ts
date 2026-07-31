@@ -21,22 +21,16 @@ export type { NewsArticle, NewsCategory, NewsSource } from '@/data/news'
 assertNewsValid(newsArticles)
 
 /**
- * Wie viele Artikel unter „Aktuelles“ stehen.
+ * Wie viele Schlagzeilen das Karussell der Startseite höchstens zeigt.
  *
- * Das ist die ganze Mechanik des rollierenden Systems: Die neun jüngsten
- * Artikel stehen vorne, alles Ältere rutscht in „Weitere Artikel“. Kommt eine
- * neue Meldung dazu, verschiebt sich die Grenze von selbst.
+ * **Nicht mehr die Grenze zwischen „Aktuelles“ und Archiv.** Die zog bis Juli
+ * 2026 diese Zahl, und das war der Fehler: Lieferte ein Tag weniger als neun
+ * Artikel, füllte „Aktuelles“ mit dem Vortag auf – aufgeklappt, mitten unter
+ * den heutigen. Die Grenze verläuft jetzt am Erscheinungstag, siehe
+ * `getCurrentNews`.
  *
- * Neun statt vorher fünf, weil eine Tagesausgabe so groß ist: An einem Tag mit
- * einem beherrschenden Thema – Geopolitik, Notenbank – gehören die Meldungen
- * zusammen gelesen. Fünf hätten die Hälfte davon sofort ins Archiv geschoben.
- *
- * Bewusst nach Rang und nicht nach Uhrzeit („alles aus den letzten 48
- * Stunden“): Die Website wird statisch gebaut, das „jetzt“ wäre also der
- * Zeitpunkt des letzten Builds. Nach ein paar Tagen ohne neue Ausgabe wäre der
- * Bereich „Aktuelles“ dann leer – und eine leere Startseite ist schlimmer als
- * eine mit Meldungen von vorgestern. Die 48 Stunden sind die redaktionelle
- * Vorgabe für die Recherche, nicht die technische Anzeigelogik.
+ * Als Obergrenze fürs Karussell bleibt die Neun sinnvoll: Sie ist die Länge
+ * einer vollen Tagesausgabe, und mehr als das durchzublättern tut niemand.
  */
 export const CURRENT_NEWS_COUNT = 9
 
@@ -82,21 +76,59 @@ export async function getNewsArticles(limit?: number): Promise<NewsArticle[]> {
 }
 
 /**
- * Die aktuellen Meldungen – der vordere Teil des rollierenden Systems.
+ * Der Erscheinungstag eines Artikels, in seiner eigenen Zeitzone.
  *
- * Dieselbe Auswahl steht auf der Startseite und oben auf der News-Übersicht.
+ * Die ersten zehn Zeichen von `publishedAt`. Ein Umweg über `new Date` und
+ * `toISOString` verschöbe nach UTC – ein Artikel von 00:30 Uhr deutscher Zeit
+ * landete dann auf dem Vortag.
+ */
+function tagVon(artikel: NewsArticle): string {
+  return artikel.publishedAt.slice(0, 10)
+}
+
+/**
+ * Die aktuellen Meldungen: **alles vom jüngsten Erscheinungstag, sonst nichts.**
+ *
+ * ## Warum nach Tag und nicht nach Anzahl
+ *
+ * Bis Juli 2026 standen hier schlicht die neuesten `CURRENT_NEWS_COUNT`
+ * Artikel. Das geht gut, solange jeder Tag genau neun liefert – und schief,
+ * sobald einer weniger hat: Dann füllte die Liste mit Artikeln des Vortags
+ * auf, und die standen oben aufgeklappt zwischen den heutigen, mit vollem
+ * Anriss. Wer die Seite öffnete, konnte nicht sehen, wo der heutige Tag endet.
+ *
+ * Der Tag ist die Einheit, in der diese Nachrichten entstehen – eine Ausgabe
+ * gehört zusammen gelesen. Also ist er auch die Einheit der Anzeige: Was von
+ * heute ist, steht offen da; alles Ältere liegt im Archiv, nach Tagen
+ * gruppiert und zugeklappt, und wird aufgemacht, wer es sehen will.
+ *
+ * ## Was das für leere Tage bedeutet
+ *
+ * Nichts. „Jüngster Tag“ heißt der jüngste Tag **mit Artikeln**, nicht heute:
+ * Die Website wird statisch gebaut, und nach ein paar Tagen ohne neue Ausgabe
+ * wäre „Aktuelles“ sonst leer. Ein Kalenderfilter stünde hier also falsch.
  */
 export async function getCurrentNews(): Promise<NewsArticle[]> {
-  return sortedArticles().slice(0, CURRENT_NEWS_COUNT)
+  const alle = sortedArticles()
+  const juengster = alle[0] ? tagVon(alle[0]) : null
+  if (!juengster) return []
+  return alle.filter((artikel) => tagVon(artikel) === juengster)
+}
+
+/** Alles außer dem jüngsten Erscheinungstag – die Grundlage des Archivs. */
+function aeltereAlsHeute(): NewsArticle[] {
+  const alle = sortedArticles()
+  const juengster = alle[0] ? tagVon(alle[0]) : null
+  if (!juengster) return []
+  return alle.filter((artikel) => tagVon(artikel) !== juengster)
 }
 
 /**
  * Alles, was aus „Aktuelles“ herausgerutscht ist.
  *
  * Kein eigenes Kennzeichen in den Daten: Was hier landet, ergibt sich allein
- * aus der Reihenfolge. Ein Artikel wandert also von selbst nach hinten, sobald
- * `CURRENT_NEWS_COUNT` neuere existieren – und bleibt dort vollständig
- * abrufbar.
+ * aus dem Erscheinungstag. Ein Artikel wandert also von selbst nach hinten,
+ * sobald ein neuerer Tag erscheint – und bleibt dort vollständig abrufbar.
  *
  * **Das Archiv hat keine Verfallszeit.** Hier steht bewusst kein Datumsfilter
  * und kein `slice` mit Obergrenze: Ein Artikel bleibt, solange es die Website
@@ -107,7 +139,7 @@ export async function getCurrentNews(): Promise<NewsArticle[]> {
  * ausdrücklich gefallen; sie gehört nicht nebenbei rückgängig gemacht.
  */
 export async function getFurtherNews(): Promise<NewsArticle[]> {
-  return sortedArticles().slice(CURRENT_NEWS_COUNT)
+  return aeltereAlsHeute()
 }
 
 /** Ein Tag im Archiv mit den Artikeln, die an ihm erschienen sind. */
@@ -134,7 +166,7 @@ export interface Archivtag {
 export async function getFurtherNewsByDay(): Promise<Archivtag[]> {
   const tage = new Map<string, NewsArticle[]>()
 
-  for (const artikel of sortedArticles().slice(CURRENT_NEWS_COUNT)) {
+  for (const artikel of aeltereAlsHeute()) {
     /*
       Der Tag kommt aus `publishedAt`, nicht aus einem eigenen Feld.
 

@@ -27,7 +27,27 @@ export function QuoteRow({ quote }: { quote: MarketQuote }) {
       <span className="text-fg w-20 shrink-0 truncate text-sm font-semibold">
         {quote.ticker}
       </span>
-      <span className="text-fg-muted min-w-0 flex-1 truncate text-sm">{quote.name}</span>
+      {/*
+        `line-clamp-1` und nicht `truncate`.
+
+        Beide kürzen auf eine Zeile. `truncate` tut es über
+        `white-space: nowrap`, und damit ist die **kleinste** Breite dieses
+        Textes für den Browser seine volle Breite – gemessen 250 Pixel bei
+        „Advanced Micro Devices“. Auf der Marktübersicht steht diese Liste in
+        einem Raster, und ein Rasterfeld schrumpft nicht unter die kleinste
+        Breite seines Inhalts: Die Seite wurde 527 Pixel breit bei 375 Pixel
+        Fenster und ließ sich seitlich schieben.
+
+        `line-clamp-1` kommt ohne `nowrap` aus – die kleinste Breite ist das
+        längste Wort. Das `min-w-0` bleibt: Es regelt das Schrumpfen im Flex,
+        `line-clamp` die Mindestbreite im Raster. Beide werden gebraucht.
+
+        Auf den Branchenseiten fiel nichts auf, weil die Liste dort einspaltig
+        und kein Raster ist. Geprüft wird es jetzt von `npm run breite`.
+      */}
+      <span className="text-fg-muted line-clamp-1 min-w-0 flex-1 text-sm">
+        {quote.name}
+      </span>
       <span className="text-fg shrink-0 text-sm tabular-nums">
         {formatNumber(quote.value, quote.decimals)}
       </span>
