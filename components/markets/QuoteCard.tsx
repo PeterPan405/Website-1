@@ -26,14 +26,38 @@ export function QuoteCard({
   const positive = quote.changePercent >= 0
 
   return (
+    /*
+      `min-w-0` ist hier kein Feinschliff, sondern trägt das Layout auf dem
+      Telefon.
+
+      Die Kachel steht in einem Raster, und ein Rasterfeld hat von sich aus
+      `min-width: auto` – es schrumpft also **nicht** unter die kleinste Breite
+      seines Inhalts. Der Name darin trägt `truncate`, und das heißt
+      `white-space: nowrap`: Für die Rechnung des Browsers ist die kleinste
+      Breite dieses Textes seine **volle** Breite, Auslassungspunkte hin oder
+      her. Das Feld wird so breit wie der längste Name, das Raster wird breiter
+      als der Bildschirm, und die ganze Seite lässt sich seitlich schieben.
+
+      Bei „DAX“ oder „Brent“ fällt das nie auf. Mit den ETFs kam
+      „iShares Core MSCI World UCITS ETF USD (Acc)“ dazu – gemessen: 527 Pixel
+      Seitenbreite bei 390 Pixel Fenster.
+
+      Behoben wird es deshalb an der Wurzel: Der Name trägt `line-clamp-1`
+      statt `truncate`. Beide kürzen auf eine Zeile, aber `line-clamp` kommt
+      ohne `nowrap` aus – die Mindestbreite bleibt klein, und das Rasterfeld
+      darf schrumpfen. Das `min-w-0` an der Kachel bleibt als zweiter Riegel.
+
+      Bewusst hier und nicht an den sechs Rasterlisten in `app/maerkte/page.tsx`:
+      Wer die siebte anlegt, denkt nicht daran. Die Kachel bringt es mit.
+    */
     <Link
       href={`/maerkte/${quote.symbol}`}
-      className="fk-card-interactive group block overflow-hidden p-5"
+      className="fk-card-interactive group block min-w-0 overflow-hidden p-5"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-display text-fg text-base font-semibold">{quote.ticker}</p>
-          <p className="text-fg-muted mt-0.5 truncate text-xs">{quote.name}</p>
+          <p className="text-fg-muted mt-0.5 line-clamp-1 text-xs">{quote.name}</p>
         </div>
         <span
           className={cn(
