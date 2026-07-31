@@ -107,7 +107,24 @@ export function Header() {
         scrolled ? 'border-border shadow-card' : 'border-transparent'
       )}
     >
-      <div className="fk-container flex h-16 items-center justify-between gap-4">
+      {/*
+        Der Kopf bekommt ab `xl` eine breitere Spalte als der Seiteninhalt.
+
+        Sieben Menüpunkte mit Untermenü brauchen 779 Pixel, dazu Wortmarke,
+        Suche, Sprache, Thema und „Jetzt lernen“ – zusammen rund 1.230. In die
+        1.088 Pixel Innenbreite von `max-w-6xl` passt das nicht, und weil in
+        `fk-btn` ein `whitespace-nowrap` steckt, schrumpft nichts: Der Knopf
+        wanderte einfach nach rechts aus der Spalte heraus. Auf breiten
+        Schirmen fiel das kaum auf, unterhalb von etwa 1.390 Pixeln schob es
+        die ganze Seite zur Seite.
+
+        Der schmalere Innenabstand ab `xl` ist kein Schönheitsentscheid,
+        sondern Puffer: Bei genau 1.280 Pixeln bleiben sonst nur zwölf Pixel
+        übrig. Das reicht in Chromium und kippt in einem Browser, dessen
+        Schrift ein Prozent breiter läuft – gemessen wurde hier mit Chromium,
+        gelesen wird die Seite auch mit Safari.
+      */}
+      <div className="fk-container flex h-16 items-center justify-between gap-4 xl:max-w-7xl xl:px-6">
         <Link
           href="/"
           className="text-fg hover:text-brand rounded-lg transition"
@@ -117,7 +134,7 @@ export function Header() {
         </Link>
 
         {/* ---------------- Desktop-Navigation ---------------- */}
-        <nav aria-label="Hauptnavigation" className="hidden lg:block">
+        <nav aria-label="Hauptnavigation" className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <NavEntry
@@ -146,13 +163,13 @@ export function Header() {
           </button>
           <SprachUmschalter />
           <ThemeToggle />
-          <Link href="/lernen" className="fk-btn-primary hidden lg:inline-flex">
+          <Link href="/lernen" className="fk-btn-primary hidden xl:inline-flex">
             Jetzt lernen
             <Icon name="arrow-right" className="size-4" />
           </Link>
           <button
             type="button"
-            className="fk-btn-ghost size-10 rounded-full p-0 lg:hidden"
+            className="fk-btn-ghost size-10 rounded-full p-0 xl:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
             onClick={() => setMobileOpen((open) => !open)}
@@ -174,7 +191,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
-            className="border-border bg-canvas border-t lg:hidden"
+            className="border-border bg-canvas border-t xl:hidden"
           >
             <nav
               aria-label="Hauptnavigation (mobil)"

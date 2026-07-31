@@ -70,8 +70,26 @@ const chromium = await ladeChromium()
  * Voreinstellung ist ein lokaler Server auf Port 4173 über `out/`.
  */
 
-/** Das schmalste Fenster, das ernsthaft vorkommt: iPhone SE. */
-const BREITE = 375
+/**
+ * Die geprüften Fensterbreiten.
+ *
+ * Bis Juli 2026 stand hier nur 375. Der Fehler, der dann kam, lag bei 1.080:
+ * Auf dem iPad im Querformat zeigte die Kopfzeile ab 1.024 Pixeln die volle
+ * Schreibtisch-Navigation, und die brauchte 1.268. Die Seite ließ sich seitlich
+ * schieben – auf jedem Gerät zwischen 1.024 und rund 1.390 Pixeln, also auch
+ * auf verbreiteten Notebooks mit 1.280 und 1.366.
+ *
+ * Eine Prüfung, die nur das schmalste Fenster kennt, findet so etwas nie. Also
+ * beide Enden und die Mitte:
+ *
+ * - 375   iPhone SE, das schmalste Fenster, das ernsthaft vorkommt
+ * - 768   iPad im Hochformat
+ * - 1024  der Umschaltpunkt `lg` selbst – Fehler sitzen gern genau darauf
+ * - 1080  iPad 10,2" im Querformat (der gemeldete Fall)
+ * - 1280  Umschaltpunkt `xl` und die häufigste Notebook-Breite
+ * - 1440  breiter Schreibtisch
+ */
+const BREITEN = [375, 768, 1024, 1080, 1280, 1440]
 const HOEHE = 812
 
 /**
@@ -107,27 +125,32 @@ const basis = (process.argv[2] ?? 'http://127.0.0.1:4173').replace(/\/$/, '')
 const browser = await chromium.launch({
   executablePath: '/opt/pw-browsers/chromium',
 })
-const seite = await browser.newPage({ viewport: { width: BREITE, height: HOEHE } })
 
 let beanstandungen = 0
+let geprueft = 0
 
-for (const [pfad, was] of SEITEN) {
-  let befund
-  try {
-    const antwort = await seite.goto(basis + pfad, { waitUntil: 'networkidle' })
-    if (!antwort || !antwort.ok()) {
-      console.error(`FEHL ${pfad} – ${antwort ? antwort.status() : 'keine Antwort'}`)
-      beanstandungen += 1
-      continue
-    }
-    befund = await seite.evaluate((toleranz) => {
-      const fenster = document.documentElement.clientWidth
-      const schuldige = []
-      for (const el of document.querySelectorAll('body *')) {
-        const r = el.getBoundingClientRect()
-        if (r.width === 0 || r.height === 0) continue
-        if (r.right <= fenster + toleranz && r.left >= -toleranz) continue
-        /*
+for (const BREITE of BREITEN) {
+  const seite = await browser.newPage({ viewport: { width: BREITE, height: HOEHE } })
+  console.log(`\n─── ${BREITE} Pixel ───`)
+
+  for (const [pfad, was] of SEITEN) {
+    geprueft += 1
+    let befund
+    try {
+      const antwort = await seite.goto(basis + pfad, { waitUntil: 'networkidle' })
+      if (!antwort || !antwort.ok()) {
+        console.error(`FEHL ${pfad} – ${antwort ? antwort.status() : 'keine Antwort'}`)
+        beanstandungen += 1
+        continue
+      }
+      befund = await seite.evaluate((toleranz) => {
+        const fenster = document.documentElement.clientWidth
+        const schuldige = []
+        for (const el of document.querySelectorAll('body *')) {
+          const r = el.getBoundingClientRect()
+          if (r.width === 0 || r.height === 0) continue
+          if (r.right <= fenster + toleranz && r.left >= -toleranz) continue
+          /*
           Was in einem scrollbaren Kasten steht, ist kein Fehler.
 
           Eine Vergleichstabelle mit `min-w-[38rem]` in einem
@@ -137,33 +160,33 @@ for (const [pfad, was] of SEITEN) {
           das Fenster. Ohne diese Unterscheidung meldete die Prüfung jede
           absichtlich breite Tabelle und wäre nach einer Woche abgeschaltet.
         */
-        let gefangen = false
-        for (let v = el.parentElement; v && v !== document.body; v = v.parentElement) {
-          const stil = getComputedStyle(v)
-          if (stil.overflowX === 'auto' || stil.overflowX === 'scroll') {
-            gefangen = true
-            break
+          let gefangen = false
+          for (let v = el.parentElement; v && v !== document.body; v = v.parentElement) {
+            const stil = getComputedStyle(v)
+            if (stil.overflowX === 'auto' || stil.overflowX === 'scroll') {
+              gefangen = true
+              break
+            }
           }
-        }
-        if (gefangen) continue
-        /*
+          if (gefangen) continue
+          /*
           Nur das äußerste Element je Kette melden. Ein zu breiter Container
           macht jedes Kind darin ebenfalls zu breit – gemeldet gehört der, der
           es verursacht, nicht seine dreißig Nachkommen.
         */
-        if (schuldige.some((s) => s.el.contains(el))) continue
-        schuldige.push({
-          el,
-          tag: el.tagName.toLowerCase(),
-          klasse: (el.className?.toString?.() ?? '').slice(0, 80),
-          text: (el.textContent ?? '').replace(/\s+/g, ' ').trim().slice(0, 50),
-          links: Math.round(r.left),
-          rechts: Math.round(r.right),
-        })
-      }
-      return {
-        fenster,
-        /*
+          if (schuldige.some((s) => s.el.contains(el))) continue
+          schuldige.push({
+            el,
+            tag: el.tagName.toLowerCase(),
+            klasse: (el.className?.toString?.() ?? '').slice(0, 80),
+            text: (el.textContent ?? '').replace(/\s+/g, ' ').trim().slice(0, 50),
+            links: Math.round(r.left),
+            rechts: Math.round(r.right),
+          })
+        }
+        return {
+          fenster,
+          /*
           `body.scrollWidth`, nicht `documentElement.scrollWidth`.
 
           Der Wurzelknoten zählt in Chromium Überstand mit, den ein Scroller
@@ -175,54 +198,57 @@ for (const [pfad, was] of SEITEN) {
           Gemessen wird, was der Nutzer schieben kann. Alles andere erzeugt
           Fehlalarme, und eine Prüfung mit Fehlalarmen wird abgeschaltet.
         */
-        scrollBreite: document.body.scrollWidth,
-        /*
+          scrollBreite: document.body.scrollWidth,
+          /*
           Ohne `el`: Ein DOM-Knoten überlebt den Weg aus dem Browser heraus
           nicht. Gebraucht wurde er nur für `contains()` weiter oben.
         */
-        schuldige: schuldige.slice(0, 5).map((s) => ({
-          tag: s.tag,
-          klasse: s.klasse,
-          text: s.text,
-          links: s.links,
-          rechts: s.rechts,
-        })),
-      }
-    }, TOLERANZ)
-  } catch (fehler) {
-    console.error(`FEHL ${pfad} – ${fehler.message}`)
+          schuldige: schuldige.slice(0, 5).map((s) => ({
+            tag: s.tag,
+            klasse: s.klasse,
+            text: s.text,
+            links: s.links,
+            rechts: s.rechts,
+          })),
+        }
+      }, TOLERANZ)
+    } catch (fehler) {
+      console.error(`FEHL ${pfad} – ${fehler.message}`)
+      beanstandungen += 1
+      continue
+    }
+
+    const ueberstand = befund.scrollBreite - befund.fenster
+    if (ueberstand <= TOLERANZ) {
+      console.log(`OK   ${pfad}`)
+      continue
+    }
+
     beanstandungen += 1
-    continue
+    console.error(
+      `\nFEHL ${pfad} – ${befund.scrollBreite} statt ${befund.fenster} Pixel breit ` +
+        `(${ueberstand} zu viel)\n     ${was}`
+    )
+    for (const s of befund.schuldige) {
+      console.error(`     ${s.tag} [${s.links}…${s.rechts}]  ${s.klasse}`)
+      console.error(`         „${s.text}"`)
+    }
+    console.error(
+      '     Häufigste Ursache: ein Rasterfeld ohne `min-w-0` mit `truncate` darin,\n' +
+        '     oder eine Kopfzeile, die für das Fenster zu viele Menüpunkte zeigt.'
+    )
   }
 
-  const ueberstand = befund.scrollBreite - befund.fenster
-  if (ueberstand <= TOLERANZ) {
-    console.log(`OK   ${pfad}`)
-    continue
-  }
-
-  beanstandungen += 1
-  console.error(
-    `\nFEHL ${pfad} – ${befund.scrollBreite} statt ${befund.fenster} Pixel breit ` +
-      `(${ueberstand} zu viel)\n     ${was}`
-  )
-  for (const s of befund.schuldige) {
-    console.error(`     ${s.tag} [${s.links}…${s.rechts}]  ${s.klasse}`)
-    console.error(`         „${s.text}"`)
-  }
-  console.error(
-    '     Häufigste Ursache: ein Rasterfeld ohne `min-w-0` mit `truncate` darin.'
-  )
+  await seite.close()
 }
 
 await browser.close()
 
 console.log(
-  `\n${SEITEN.length - beanstandungen} von ${SEITEN.length} Seiten passen in ${BREITE} Pixel.`
+  `\n${geprueft - beanstandungen} von ${geprueft} Prüfungen bestanden ` +
+    `(${SEITEN.length} Seiten × ${BREITEN.length} Breiten).`
 )
 if (beanstandungen > 0) {
-  console.error(
-    'Die Seite lässt sich auf dem Telefon seitlich schieben. Das gehört behoben.'
-  )
+  console.error('Die Seite lässt sich seitlich schieben. Das gehört behoben.')
   process.exit(1)
 }
