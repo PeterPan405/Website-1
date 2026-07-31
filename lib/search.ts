@@ -354,6 +354,24 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Anleihen',
+    href: '/anleihen',
+    kind: 'Bereich',
+    hint: 'Warum der Kurs fällt, wenn der Zins steigt – mit Rechner für Duration und Konvexität',
+    keywords: [
+      'anleihe',
+      'anleihen',
+      'bond',
+      'kupon',
+      'duration',
+      'konvexitaet',
+      'rendite',
+      'zinsaenderungsrisiko',
+      'rentenfonds',
+      'staatsanleihe',
+    ],
+  })
+  eintraege.push({
     title: 'Aktien nach Branchen',
     href: '/maerkte/branchen',
     kind: 'Bereich',

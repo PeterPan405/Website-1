@@ -101,6 +101,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+
+    {
+      url: absoluteUrl('/anleihen'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     {
       /*
         Der Podcast steht auf einer Seite, mit einer Sprungmarke je Folge –
