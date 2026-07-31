@@ -1,9 +1,11 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { merkeLuecke, meldeTreffer } from '@/components/layout/suchluecken-speicher'
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
 import { searchEntries, type SearchEntry } from '@/lib/search-match'
@@ -100,6 +102,34 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
     const element = liste.current?.children[aktiv] as HTMLElement | undefined
     element?.scrollIntoView({ block: 'nearest' })
   }, [aktiv])
+
+  /*
+    Erfolglose Suchen aufzeichnen – auf diesem Gerät, ohne Übertragung.
+
+    ## Warum nicht bei jedem Tastendruck
+
+    Weil beim Tippen von „nestle“ unterwegs „nes“, „nest“ und „nestl“ erfolglos
+    sind. Zwei Vorkehrungen dagegen: Hier wird erst aufgezeichnet, wenn eine
+    Eingabe **eine Sekunde lang stehen geblieben** ist – wer weitertippt,
+    erzeugt keinen Eintrag. Und findet eine spätere, längere Eingabe doch
+    etwas, verschwinden ihre protokollierten Vorsilben wieder; das erledigt
+    `meldeTreffer`.
+
+    Ohne die zweite Vorkehrung reichte die erste nicht: Wer beim Tippen kurz
+    nachdenkt, hinterlässt sonst genau das Bruchstück im Protokoll, an dem er
+    innegehalten hat.
+  */
+  useEffect(() => {
+    if (!open || !index) return
+    const eingabe = query.trim()
+    if (eingabe === '') return
+
+    const zeit = setTimeout(() => {
+      if (treffer.length === 0) merkeLuecke(eingabe)
+      else meldeTreffer(eingabe)
+    }, 1000)
+    return () => clearTimeout(zeit)
+  }, [open, index, query, treffer.length])
 
   function oeffnen(entry: SearchEntry) {
     onClose()
@@ -199,10 +229,32 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
             ) : !index ? (
               <p className="text-fg-muted px-4 py-6 text-sm">Suche wird geladen …</p>
             ) : treffer.length === 0 ? (
-              <p className="text-fg-muted px-4 py-6 text-sm">
-                Nichts gefunden zu <span className="text-fg font-medium">„{query}“</span>.
-                Vielleicht hilft ein einzelnes Stichwort statt eines ganzen Satzes.
-              </p>
+              <div className="px-4 py-6 text-sm">
+                <p className="text-fg-muted">
+                  Nichts gefunden zu{' '}
+                  <span className="text-fg font-medium">„{query}“</span>. Vielleicht hilft
+                  ein einzelnes Stichwort statt eines ganzen Satzes.
+                </p>
+                {/*
+                  Der Verweis auf das Protokoll gehört hierher und nicht in eine
+                  Fußzeile: Hier ist der Moment, in dem jemand merkt, dass etwas
+                  fehlt. Dass die Suche mitgeschrieben wird, steht dabei – sonst
+                  wäre es heimlich, und heimlich ist es nirgends auf dieser Seite.
+                */}
+                <p className="text-fg-subtle mt-3 text-xs leading-relaxed">
+                  Erfolglose Suchen werden{' '}
+                  <strong className="font-semibold">in diesem Browser</strong> notiert und
+                  nicht übertragen.{' '}
+                  <Link
+                    href="/suche/luecken"
+                    onClick={onClose}
+                    className="text-brand underline underline-offset-2"
+                  >
+                    Was dabei zusammenkommt, kannst du ansehen
+                  </Link>{' '}
+                  – und uns schicken, wenn du magst.
+                </p>
+              </div>
             ) : (
               <ul
                 ref={liste}

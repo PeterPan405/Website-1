@@ -115,6 +115,25 @@ export default function ContactPage() {
                     </span>
                   </li>
                 ))}
+                {/*
+                  Der vierte Punkt steht außerhalb der Liste oben, weil er als
+                  Einziger auf eine Seite führt statt eine Bitte auszusprechen.
+                */}
+                <li className="flex gap-3 leading-relaxed">
+                  <Icon name="search" className="text-brand mt-1 size-4 shrink-0" />
+                  <span>
+                    <strong className="text-fg font-semibold">
+                      Wenn du etwas gesucht und nicht gefunden hast:
+                    </strong>{' '}
+                    Erfolglose Suchen notiert dein Browser für dich – sichtbar und
+                    löschbar unter{' '}
+                    <Link href="/suche/luecken" className="text-brand hover:underline">
+                      Was du gesucht und nicht gefunden hast
+                    </Link>
+                    . Diese Liste zu schicken ist der direkteste Themenwunsch, den es
+                    gibt. Übertragen wird sie nur, wenn du sie selbst kopierst.
+                  </span>
+                </li>
               </ul>
             </section>
 

@@ -339,6 +339,21 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     keywords: ['merkliste', 'merken', 'watchlist', 'beobachten', 'favoriten'],
   })
   eintraege.push({
+    title: 'Was du gesucht und nicht gefunden hast',
+    href: '/suche/luecken',
+    kind: 'Bereich',
+    hint: 'Erfolglose Suchen, notiert in diesem Browser – sichtbar, löschbar, nicht übertragen',
+    keywords: [
+      'suche',
+      'suchen',
+      'luecken',
+      'nichts gefunden',
+      'fehlt',
+      'themenwunsch',
+      'protokoll',
+    ],
+  })
+  eintraege.push({
     title: 'Aktien nach Branchen',
     href: '/maerkte/branchen',
     kind: 'Bereich',
