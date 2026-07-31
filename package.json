@@ -31,7 +31,8 @@
     "podcast": "node --experimental-strip-types scripts/podcast-abrufen.ts",
     "marktbreite": "node --experimental-strip-types scripts/marktbreite-nachtragen.ts",
     "zinsen": "node --experimental-strip-types scripts/zinsen-abrufen.ts",
-    "breite": "node scripts/breite-pruefen.mjs"
+    "breite": "node scripts/breite-pruefen.mjs",
+    "kontrast": "node scripts/kontrast-pruefen.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

@@ -87,7 +87,7 @@ export default async function RubrikSeite({
                   aria-current={eintrag.slug === rubrik.slug ? 'page' : undefined}
                   className={
                     eintrag.slug === rubrik.slug
-                      ? 'fk-chip bg-news text-white'
+                      ? 'fk-chip bg-news text-on-fill'
                       : 'fk-chip bg-news-soft text-news hover:bg-news transition-colors hover:text-white'
                   }
                 >

@@ -120,7 +120,7 @@ export function Einstufungstest({
         aria-live="polite"
         className="rounded-card border-learn/30 bg-learn-soft border p-6 sm:p-7"
       >
-        <p className="fk-chip bg-learn text-white">
+        <p className="fk-chip bg-learn text-on-fill">
           <Icon name="sparkles" className="size-3.5" />
           Einstufung
         </p>
@@ -295,7 +295,7 @@ export function Einstufungstest({
   // --------------------------------------------------------------- Auftakt
   return (
     <div className="rounded-card border-learn/30 bg-learn-soft border p-6 sm:p-7">
-      <p className="fk-chip bg-learn text-white">
+      <p className="fk-chip bg-learn text-on-fill">
         <Icon name="target" className="size-3.5" />
         Einstufungstest
       </p>

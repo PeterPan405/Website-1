@@ -72,7 +72,9 @@ export function LektionKacheln({
                   <span
                     className={cn(
                       'flex size-9 shrink-0 items-center justify-center rounded-full text-sm font-bold tabular-nums transition-colors',
-                      fertig ? 'bg-success text-white' : 'bg-akademie-soft text-akademie'
+                      fertig
+                        ? 'bg-success text-on-fill'
+                        : 'bg-akademie-soft text-akademie'
                     )}
                   >
                     {fertig ? <Icon name="check" className="size-4" /> : nummer + 1}
