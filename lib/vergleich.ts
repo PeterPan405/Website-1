@@ -27,10 +27,61 @@
  * Ohne Laufzeitimporte, damit `tests/` das Modul direkt laden kann.
  */
 
+/**
+ * Die Gattung eines Instruments.
+ *
+ * Bis August 2026 gab es sie hier nicht, weil die Seite nur Aktien kannte.
+ * Seit auch Rohstoffe, Indizes, ETFs, Devisen und Kryptowährungen vergleichbar
+ * sind, entscheidet sie über zwei Dinge: welche Gruppen überhaupt erscheinen
+ * und welcher Vorbehalt über der Tabelle steht. Eine Unze Gold hat kein
+ * Kurs-Gewinn-Verhältnis – nicht, weil die Zahl fehlt, sondern weil es die
+ * Frage nicht gibt.
+ */
+export type Anlageart = 'stock' | 'index' | 'etf' | 'commodity' | 'fx' | 'crypto'
+
+/** Wie die Gattungen im Fließtext heißen. */
+export const ARTNAMEN: Record<Anlageart, string> = {
+  stock: 'Aktie',
+  index: 'Index',
+  etf: 'ETF',
+  commodity: 'Rohstoff',
+  fx: 'Währungspaar',
+  crypto: 'Kryptowährung',
+}
+
+/**
+ * Was hinter einer Gattung steht – in einem Halbsatz.
+ *
+ * Der Vorbehalt über der Tabelle setzt daraus einen Satz zusammen. Zuerst
+ * stand dort ein fester Text über Aktien und Rohstoffe, und der erschien dann
+ * auch bei „Kryptowährung gegen Index“ – ein Beispiel über zwei Gattungen, von
+ * denen keine beteiligt war.
+ */
+const WAS_DAHINTER: Record<Anlageart, string> = {
+  stock: 'ein Unternehmen, das arbeitet und Gewinne erzeugt',
+  index: 'ein Korb aus vielen Titeln, nach festen Regeln zusammengesetzt',
+  etf: 'ein Fonds, der einen Index nachbildet – mit laufenden Kosten',
+  commodity: 'ein Preis, den Angebot und Nachfrage machen',
+  fx: 'das Verhältnis zweier Währungen zueinander',
+  crypto: 'ein Netzwerk ohne Gewinn, ohne Bilanz und ohne Anspruch auf etwas',
+}
+
+/**
+ * Ob für diese Gattung Bewertungszahlen überhaupt eine Frage sind.
+ *
+ * Nur bei Aktien. Ein Index hat kein Eigenkapital, eine Unze Gold keinen
+ * Gewinn – und der Unterschied zwischen „nicht erfasst“ und „gibt es nicht“
+ * ist genau der, den eine leere Tabellenzeile verwischt.
+ */
+function hatBewertung(art: Anlageart): boolean {
+  return art === 'stock'
+}
+
 export interface Vergleichsposten {
   symbol: string
   ticker: string
   name: string
+  art: Anlageart
   /** Kurswährung nach der Umrechnung von Pence & Co. in die Hauptwährung. */
   waehrung: string
   branche: string | null
@@ -155,6 +206,40 @@ const ZEITRAUMNAMEN: Record<'1J' | '3J' | '5J', string> = {
  * `links` und `rechts` sind die beiden gewählten Titel; die Reihenfolge ist
  * die der Auswahl und bedeutet nichts.
  */
+/**
+ * Ob eine Zeile überhaupt etwas enthält.
+ *
+ * Eine Zahl, ein Text – irgendetwas auf einer der beiden Seiten. Zeilen, auf
+ * die das für keine Seite zutrifft, verschwinden mitsamt ihrer Gruppe.
+ */
+function traegtEtwas(zeile: Vergleichszeile): boolean {
+  return (
+    zeile.links !== null ||
+    zeile.rechts !== null ||
+    Boolean(zeile.linksText) ||
+    Boolean(zeile.rechtsText)
+  )
+}
+
+/**
+ * Wirft Gruppen weg, in denen auf beiden Seiten nichts steht.
+ *
+ * Der Grund ist eine Unterscheidung, die eine leere Tabellenzeile nicht
+ * treffen kann: **fehlt** gegen **gibt es nicht**. Vier leere Zeilen unter
+ * „Bewertung“ lesen sich bei Gold gegen Bitcoin wie eine Lücke im Bestand.
+ * Tatsächlich hat weder eine Unze noch eine Kryptowährung einen Gewinn, an dem
+ * sich ein Kurs-Gewinn-Verhältnis bilden ließe.
+ *
+ * Bei zwei Aktien ändert das nichts: Dort trägt die Gruppe Werte, sobald einer
+ * der beiden welche hat, und die halbleere Tabelle steht weiterhin da – dort
+ * heißt leer nämlich wirklich „nicht erfasst“.
+ */
+function ohneLeere(gruppen: Vergleichsgruppe[]): Vergleichsgruppe[] {
+  return gruppen
+    .map((gruppe) => ({ ...gruppe, zeilen: gruppe.zeilen.filter(traegtEtwas) }))
+    .filter((gruppe) => gruppe.zeilen.length > 0)
+}
+
 export function vergleiche(
   links: Vergleichsposten,
   rechts: Vergleichsposten
@@ -217,7 +302,7 @@ export function vergleiche(
     return begruendung(vorn, a, b, satz)
   }
 
-  return [
+  return ohneLeere([
     {
       titel: 'Wertentwicklung',
       einleitung:
@@ -286,67 +371,80 @@ export function vergleiche(
         },
       ],
     },
-    {
-      titel: 'Bewertung',
-      einleitung:
-        'Was der Markt für einen Euro Gewinn, Umsatz oder Eigenkapital verlangt. Aussagekräftig nur innerhalb derselben Branche.',
-      zeilen: [
-        {
-          feld: 'Kurs-Gewinn-Verhältnis',
-          einheit: 'faktor',
-          links: links.kgv,
-          rechts: rechts.kgv,
-          vorn: kgvVorn,
-          hinweis: bewertungsHinweis(
-            kgvVorn,
-            links.kgv,
-            rechts.kgv,
-            'Günstiger gemessen am Gewinn. Günstig ist nicht dasselbe wie gut – oft ist es der Preis für schwächere Aussichten.'
-          ),
-        },
-        {
-          feld: 'Kurs-Umsatz-Verhältnis',
-          einheit: 'faktor',
-          links: links.kuv,
-          rechts: rechts.kuv,
-          vorn: kuvVorn,
-          hinweis: bewertungsHinweis(
-            kuvVorn,
-            links.kuv,
-            rechts.kuv,
-            'Günstiger gemessen am Umsatz.'
-          ),
-        },
-        {
-          feld: 'Kurs-Buchwert-Verhältnis',
-          einheit: 'faktor',
-          links: links.kbv,
-          rechts: rechts.kbv,
-          vorn: kbvVorn,
-          hinweis: bewertungsHinweis(
-            kbvVorn,
-            links.kbv,
-            rechts.kbv,
-            'Günstiger gemessen am Eigenkapital.'
-          ),
-        },
-        {
-          feld: 'Börsenwert',
-          einheit: 'geld',
-          links: links.marktkapitalisierung,
-          rechts: rechts.marktkapitalisierung,
-          /*
+    /*
+      Die Bewertungsgruppe gibt es nur, wenn beide Seiten Aktien sind.
+
+      `ohneLeere` allein genügt hier nicht: Bei Gold gegen NVIDIA trägt die
+      rechte Spalte echte Zahlen, also blieben die Zeilen stehen – mit einem
+      Strich für Gold. Das läse sich als „für Gold nicht erfasst“, und richtig
+      ist „für Gold nicht definiert“. Ein Vergleich braucht zwei Seiten; eine
+      Zahl gegen einen Strich ist keiner.
+    */
+    ...(hatBewertung(links.art) && hatBewertung(rechts.art)
+      ? ([
+          {
+            titel: 'Bewertung',
+            einleitung:
+              'Was der Markt für einen Euro Gewinn, Umsatz oder Eigenkapital verlangt. Aussagekräftig nur innerhalb derselben Branche.',
+            zeilen: [
+              {
+                feld: 'Kurs-Gewinn-Verhältnis',
+                einheit: 'faktor',
+                links: links.kgv,
+                rechts: rechts.kgv,
+                vorn: kgvVorn,
+                hinweis: bewertungsHinweis(
+                  kgvVorn,
+                  links.kgv,
+                  rechts.kgv,
+                  'Günstiger gemessen am Gewinn. Günstig ist nicht dasselbe wie gut – oft ist es der Preis für schwächere Aussichten.'
+                ),
+              },
+              {
+                feld: 'Kurs-Umsatz-Verhältnis',
+                einheit: 'faktor',
+                links: links.kuv,
+                rechts: rechts.kuv,
+                vorn: kuvVorn,
+                hinweis: bewertungsHinweis(
+                  kuvVorn,
+                  links.kuv,
+                  rechts.kuv,
+                  'Günstiger gemessen am Umsatz.'
+                ),
+              },
+              {
+                feld: 'Kurs-Buchwert-Verhältnis',
+                einheit: 'faktor',
+                links: links.kbv,
+                rechts: rechts.kbv,
+                vorn: kbvVorn,
+                hinweis: bewertungsHinweis(
+                  kbvVorn,
+                  links.kbv,
+                  rechts.kbv,
+                  'Günstiger gemessen am Eigenkapital.'
+                ),
+              },
+              {
+                feld: 'Börsenwert',
+                einheit: 'geld',
+                links: links.marktkapitalisierung,
+                rechts: rechts.marktkapitalisierung,
+                /*
             Größe ist kein Vorzug, und der Vergleich trägt ohnehin nur bei
             gleicher Bilanzwährung: 400 Milliarden Yen sind nicht mehr als 40
             Milliarden Dollar, obwohl die Zahl größer ist.
           */
-          vorn: null,
-          hinweis: gleicheBilanzwaehrung
-            ? 'Größe ist weder ein Vorzug noch ein Mangel – sie sagt, wie viel Geld in dem Unternehmen steckt.'
-            : 'Die beiden melden in verschiedenen Währungen. Die Beträge stehen nebeneinander, vergleichbar sind sie nicht.',
-        },
-      ],
-    },
+                vorn: null,
+                hinweis: gleicheBilanzwaehrung
+                  ? 'Größe ist weder ein Vorzug noch ein Mangel – sie sagt, wie viel Geld in dem Unternehmen steckt.'
+                  : 'Die beiden melden in verschiedenen Währungen. Die Beträge stehen nebeneinander, vergleichbar sind sie nicht.',
+              },
+            ],
+          },
+        ] satisfies Vergleichsgruppe[])
+      : []),
     {
       titel: 'Einordnung',
       einleitung:
@@ -383,7 +481,7 @@ export function vergleiche(
         },
       ],
     },
-  ]
+  ])
 }
 
 /**
@@ -395,6 +493,41 @@ export function vergleiche(
 export function vorbehalte(links: Vergleichsposten, rechts: Vergleichsposten): string[] {
   const gesammelt: string[] = []
 
+  /*
+    Der Gattungsunterschied steht ganz oben, vor der Währung.
+
+    Er ist der schwerste: Wer eine Aktie gegen einen Rohstoff hält, vergleicht
+    zwei verschiedene Dinge. Hinter der Aktie steht ein Unternehmen, das
+    arbeitet und Gewinne erzeugt; hinter dem Rohstoff steht ein Preis, den
+    Angebot und Nachfrage machen. Beide haben eine Kurve, und die Kurven sehen
+    gleich aus – das ist genau die Verwechslung, gegen die dieser Satz steht.
+  */
+  if (links.art !== rechts.art) {
+    gesammelt.push(
+      `${ARTNAMEN[links.art]} gegen ${ARTNAMEN[rechts.art]}: zwei verschiedene Gattungen. ` +
+        `Hinter dem einen steht ${WAS_DAHINTER[links.art]}, hinter dem anderen ` +
+        `${WAS_DAHINTER[rechts.art]}. Die Kurven lassen sich nebeneinanderlegen, die Sache ` +
+        'dahinter nicht.'
+    )
+  }
+
+  /*
+    Krypto handelt an 365 Tagen, eine Aktie an rund 252.
+
+    Die Schwankung wird über Handelstage gerechnet. Bei einem Titel mit sieben
+    Handelstagen je Woche steckt in derselben Zahl ein anderer Zeitraum – das
+    erklärt diese Website an anderer Stelle ausdrücklich, und hier ist die
+    Stelle, an der es jemanden trifft.
+  */
+  const kryptoDabei = links.art === 'crypto' || rechts.art === 'crypto'
+  if (kryptoDabei && links.art !== rechts.art) {
+    gesammelt.push(
+      'Kryptowährungen handeln an 365 Tagen im Jahr, Börsen an rund 252. Schwankung und ' +
+        'größter Rückgang decken damit verschieden lange Zeiträume ab, obwohl dieselbe ' +
+        'Anzahl Handelstage dahintersteht.'
+    )
+  }
+
   if (links.waehrung !== rechts.waehrung) {
     gesammelt.push(
       `Die beiden notieren in verschiedenen Währungen (${links.waehrung} und ${rechts.waehrung}). ` +
@@ -403,6 +536,7 @@ export function vorbehalte(links: Vergleichsposten, rechts: Vergleichsposten): s
     )
   }
 
+  /* Nur unter Aktien: Bei einer Aktie gegen einen Index gibt es keine zwei Branchen. */
   if (links.branche !== rechts.branche && links.branche && rechts.branche) {
     gesammelt.push(
       `${links.branche} gegen ${rechts.branche}: verschiedene Branchen. ` +

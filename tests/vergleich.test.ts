@@ -33,6 +33,7 @@ function posten(teil: Partial<Vergleichsposten> = {}): Vergleichsposten {
     symbol: 'aaa',
     ticker: 'AAA',
     name: 'Aaa AG',
+    art: 'stock',
     waehrung: 'EUR',
     branche: 'Halbleiter',
     sitzland: '276',
@@ -276,6 +277,117 @@ pruefe(
   'gleich kurze Kursreihen dagegen nicht',
   vorbehalte(posten({ performance: { '1J': 5 } }), posten({ performance: { '1J': 8 } }))
     .length === 0
+)
+
+/* ------------------------------------------- Gattungen jenseits der Aktie */
+
+/*
+  Ein Rohstoff hat keinen Gewinn, keinen Umsatz und kein Eigenkapital. Die
+  Gruppe „Bewertung“ darf deshalb nicht mit vier leeren Zeilen dastehen – das
+  läse sich als Lücke im Bestand statt als Frage, die es nicht gibt.
+*/
+const gold = posten({
+  symbol: 'gold',
+  ticker: 'XAU',
+  name: 'Gold',
+  art: 'commodity',
+  branche: null,
+  sitzland: null,
+  rendite: null,
+  kgv: null,
+  kuv: null,
+  kbv: null,
+  marktkapitalisierung: null,
+  bilanzwaehrung: null,
+})
+const silber = posten({ ...gold, symbol: 'silber', ticker: 'XAG', name: 'Silber' })
+
+const rohstoffe = vergleiche(gold, silber).map((g) => g.titel)
+pruefe(
+  'zwei Rohstoffe: keine Gruppe „Bewertung“',
+  !rohstoffe.includes('Bewertung'),
+  `erhalten: ${rohstoffe.join(', ')}`
+)
+pruefe(
+  'die Wertentwicklung bleibt',
+  rohstoffe.includes('Wertentwicklung'),
+  `erhalten: ${rohstoffe.join(', ')}`
+)
+
+/* Bei zwei Aktien bleibt alles, wie es war – auch mit Lücken. */
+const mitLuecke = vergleiche(posten(), posten({ kgv: null, kuv: null, kbv: null })).map(
+  (g) => g.titel
+)
+pruefe(
+  'zwei Aktien behalten die Bewertungsgruppe, auch wenn eine Seite fehlt',
+  mitLuecke.includes('Bewertung')
+)
+
+pruefe(
+  'Aktie gegen Rohstoff wird als Gattungsunterschied benannt',
+  vorbehalte(posten(), gold).some(
+    (satz) => satz.includes('Aktie gegen Rohstoff') && satz.includes('Gattungen')
+  )
+)
+
+/*
+  Der Erklärsatz muss zu den beiden tatsächlich gewählten Gattungen passen.
+  Er nannte zuerst immer Aktie und Rohstoff – auch bei „Kryptowährung gegen
+  Index“, wo keine der beiden beteiligt ist.
+*/
+const kryptoGegenIndex = vorbehalte(
+  posten({ art: 'crypto' }),
+  posten({ symbol: 'dax', art: 'index' })
+).join(' ')
+pruefe(
+  'der Erklärsatz nennt die beteiligten Gattungen',
+  kryptoGegenIndex.includes('Netzwerk') && kryptoGegenIndex.includes('Korb')
+)
+pruefe(
+  '… und keine unbeteiligte',
+  !kryptoGegenIndex.includes('Angebot und Nachfrage'),
+  kryptoGegenIndex
+)
+
+/*
+  Eine Zahl gegen einen Strich ist kein Vergleich: Bei Gold gegen NVIDIA trägt
+  die Aktienseite echte Bewertungszahlen, die Rohstoffseite kann keine haben.
+  Die Gruppe gehört deshalb ganz weg – sonst läse sich der Strich als „nicht
+  erfasst“ statt als „nicht definiert“.
+*/
+const gemischt = vergleiche(gold, posten()).map((g) => g.titel)
+pruefe(
+  'Rohstoff gegen Aktie: keine Bewertungsgruppe, obwohl eine Seite Zahlen hat',
+  !gemischt.includes('Bewertung'),
+  `erhalten: ${gemischt.join(', ')}`
+)
+
+pruefe(
+  'zwei Aktien bekommen keinen Gattungshinweis',
+  !vorbehalte(posten(), posten({ symbol: 'bbb' })).some((satz) =>
+    satz.includes('Gattungen')
+  )
+)
+
+/*
+  Der Handelskalender: 365 gegen 252 Tage. Er gehört dazu, sobald eine der
+  beiden Seiten Krypto ist – aber nicht, wenn beide es sind.
+*/
+const bitcoin = posten({
+  symbol: 'bitcoin',
+  ticker: 'BTC',
+  name: 'Bitcoin',
+  art: 'crypto',
+})
+pruefe(
+  'Aktie gegen Krypto nennt die 365 Handelstage',
+  vorbehalte(posten(), bitcoin).some((satz) => satz.includes('365'))
+)
+pruefe(
+  'zwei Kryptowährungen nicht – dort ist der Kalender derselbe',
+  !vorbehalte(bitcoin, posten({ ...bitcoin, symbol: 'ethereum' })).some((satz) =>
+    satz.includes('365')
+  )
 )
 
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert.`)
