@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 
 import { InputPanel } from '@/components/calculators/CalculatorPanels'
+import { InstrumentSuche } from '@/components/calculators/InstrumentSuche'
 import { Callout } from '@/components/ui/Callout'
 import { Icon } from '@/components/ui/Icon'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -114,21 +115,12 @@ export function Depotanalyse({ katalog }: { katalog: Auswahleintrag[] }) {
         <div className="space-y-2">
           {zeilen.map((zeile) => (
             <div key={zeile.id} className="flex flex-wrap items-end gap-2">
-              <label className="min-w-0 flex-1">
-                <span className="sr-only">Instrument</span>
-                <select
-                  value={zeile.symbol}
-                  onChange={(e) => aendere(zeile.id, 'symbol', e.target.value)}
-                  className="fk-input w-full"
-                >
-                  <option value="">– wählen –</option>
-                  {katalog.map((e) => (
-                    <option key={e.symbol} value={e.symbol}>
-                      {e.name} ({e.ticker})
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <InstrumentSuche
+                eintraege={katalog}
+                wert={zeile.symbol}
+                onWaehle={(symbol) => aendere(zeile.id, 'symbol', symbol)}
+                label="Instrument suchen"
+              />
               <label className="w-32">
                 <span className="sr-only">Betrag in Euro</span>
                 <input
