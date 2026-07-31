@@ -1,4 +1,779 @@
 {
-  "abgerufenAm": null,
-  "reihen": {}
+  "abgerufenAm": "2026-07-31T07:16:00.071Z",
+  "reihen": {
+    "leitzins": {
+      "bezeichnung": "Leitzins der EZB (Hauptrefinanzierungsgeschäfte)",
+      "einheit": "prozent",
+      "aktuell": {
+        "t": "2026-07-31",
+        "wert": 2.4
+      },
+      "vorEinemJahr": null,
+      "verlauf": [
+        {
+          "t": "2026-06-02",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-03",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-04",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-05",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-06",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-07",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-08",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-09",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-10",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-11",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-12",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-13",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-14",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-15",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-16",
+          "wert": 2.15
+        },
+        {
+          "t": "2026-06-17",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-18",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-19",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-20",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-21",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-22",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-23",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-24",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-25",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-26",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-27",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-28",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-29",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-06-30",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-01",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-02",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-03",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-04",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-05",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-06",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-07",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-08",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-09",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-10",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-11",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-12",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-13",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-14",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-15",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-16",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-17",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-18",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-19",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-20",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-21",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-22",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-23",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-24",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-25",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-26",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-27",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-28",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-29",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-30",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-07-31",
+          "wert": 2.4
+        }
+      ],
+      "quelle": {
+        "label": "Europäische Zentralbank, Leitzinssätze",
+        "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html"
+      },
+      "abgrenzung": "Der Zinssatz für Hauptrefinanzierungsgeschäfte – der Satz, zu dem sich Banken Geld bei der Zentralbank leihen. Nicht der Zins, den eine Bank ihren Kunden zahlt oder berechnet; der liegt darüber beziehungsweise darunter."
+    },
+    "inflation": {
+      "bezeichnung": "Inflationsrate im Euroraum (HVPI, Vorjahresvergleich)",
+      "einheit": "prozent",
+      "aktuell": {
+        "t": "2025-12",
+        "wert": 1.9
+      },
+      "vorEinemJahr": {
+        "t": "2024-12",
+        "wert": 2.4
+      },
+      "verlauf": [
+        {
+          "t": "2021-01",
+          "wert": 0.9
+        },
+        {
+          "t": "2021-02",
+          "wert": 0.9
+        },
+        {
+          "t": "2021-03",
+          "wert": 1.3
+        },
+        {
+          "t": "2021-04",
+          "wert": 1.6
+        },
+        {
+          "t": "2021-05",
+          "wert": 2
+        },
+        {
+          "t": "2021-06",
+          "wert": 1.9
+        },
+        {
+          "t": "2021-07",
+          "wert": 2.2
+        },
+        {
+          "t": "2021-08",
+          "wert": 3
+        },
+        {
+          "t": "2021-09",
+          "wert": 3.4
+        },
+        {
+          "t": "2021-10",
+          "wert": 4.1
+        },
+        {
+          "t": "2021-11",
+          "wert": 4.9
+        },
+        {
+          "t": "2021-12",
+          "wert": 5
+        },
+        {
+          "t": "2022-01",
+          "wert": 5.1
+        },
+        {
+          "t": "2022-02",
+          "wert": 5.9
+        },
+        {
+          "t": "2022-03",
+          "wert": 7.4
+        },
+        {
+          "t": "2022-04",
+          "wert": 7.4
+        },
+        {
+          "t": "2022-05",
+          "wert": 8.1
+        },
+        {
+          "t": "2022-06",
+          "wert": 8.6
+        },
+        {
+          "t": "2022-07",
+          "wert": 8.9
+        },
+        {
+          "t": "2022-08",
+          "wert": 9.1
+        },
+        {
+          "t": "2022-09",
+          "wert": 9.9
+        },
+        {
+          "t": "2022-10",
+          "wert": 10.6
+        },
+        {
+          "t": "2022-11",
+          "wert": 10.1
+        },
+        {
+          "t": "2022-12",
+          "wert": 9.2
+        },
+        {
+          "t": "2023-01",
+          "wert": 8.6
+        },
+        {
+          "t": "2023-02",
+          "wert": 8.5
+        },
+        {
+          "t": "2023-03",
+          "wert": 6.9
+        },
+        {
+          "t": "2023-04",
+          "wert": 7
+        },
+        {
+          "t": "2023-05",
+          "wert": 6.1
+        },
+        {
+          "t": "2023-06",
+          "wert": 5.5
+        },
+        {
+          "t": "2023-07",
+          "wert": 5.3
+        },
+        {
+          "t": "2023-08",
+          "wert": 5.2
+        },
+        {
+          "t": "2023-09",
+          "wert": 4.3
+        },
+        {
+          "t": "2023-10",
+          "wert": 2.9
+        },
+        {
+          "t": "2023-11",
+          "wert": 2.4
+        },
+        {
+          "t": "2023-12",
+          "wert": 2.9
+        },
+        {
+          "t": "2024-01",
+          "wert": 2.8
+        },
+        {
+          "t": "2024-02",
+          "wert": 2.6
+        },
+        {
+          "t": "2024-03",
+          "wert": 2.4
+        },
+        {
+          "t": "2024-04",
+          "wert": 2.4
+        },
+        {
+          "t": "2024-05",
+          "wert": 2.6
+        },
+        {
+          "t": "2024-06",
+          "wert": 2.5
+        },
+        {
+          "t": "2024-07",
+          "wert": 2.6
+        },
+        {
+          "t": "2024-08",
+          "wert": 2.2
+        },
+        {
+          "t": "2024-09",
+          "wert": 1.7
+        },
+        {
+          "t": "2024-10",
+          "wert": 2
+        },
+        {
+          "t": "2024-11",
+          "wert": 2.2
+        },
+        {
+          "t": "2024-12",
+          "wert": 2.4
+        },
+        {
+          "t": "2025-01",
+          "wert": 2.5
+        },
+        {
+          "t": "2025-02",
+          "wert": 2.3
+        },
+        {
+          "t": "2025-03",
+          "wert": 2.2
+        },
+        {
+          "t": "2025-04",
+          "wert": 2.2
+        },
+        {
+          "t": "2025-05",
+          "wert": 1.9
+        },
+        {
+          "t": "2025-06",
+          "wert": 2
+        },
+        {
+          "t": "2025-07",
+          "wert": 2
+        },
+        {
+          "t": "2025-08",
+          "wert": 2
+        },
+        {
+          "t": "2025-09",
+          "wert": 2.2
+        },
+        {
+          "t": "2025-10",
+          "wert": 2.1
+        },
+        {
+          "t": "2025-11",
+          "wert": 2.1
+        },
+        {
+          "t": "2025-12",
+          "wert": 1.9
+        }
+      ],
+      "quelle": {
+        "label": "Eurostat über die Europäische Zentralbank, harmonisierter Verbraucherpreisindex",
+        "url": "https://www.ecb.europa.eu/stats/macroeconomic_and_sectoral/hicp/html/index.en.html"
+      },
+      "abgrenzung": "Die Veränderung des harmonisierten Verbraucherpreisindex gegenüber demselben Monat des Vorjahres, für den gesamten Euroraum. Für Deutschland allein weicht der Wert ab, und der persönliche Warenkorb weicht von beiden ab."
+    },
+    "inflation-de": {
+      "bezeichnung": "Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)",
+      "einheit": "prozent",
+      "aktuell": {
+        "t": "2025-12",
+        "wert": 2
+      },
+      "vorEinemJahr": {
+        "t": "2024-12",
+        "wert": 2.8
+      },
+      "verlauf": [
+        {
+          "t": "2021-01",
+          "wert": 1.6
+        },
+        {
+          "t": "2021-02",
+          "wert": 1.6
+        },
+        {
+          "t": "2021-03",
+          "wert": 2
+        },
+        {
+          "t": "2021-04",
+          "wert": 2.1
+        },
+        {
+          "t": "2021-05",
+          "wert": 2.4
+        },
+        {
+          "t": "2021-06",
+          "wert": 2.1
+        },
+        {
+          "t": "2021-07",
+          "wert": 3.1
+        },
+        {
+          "t": "2021-08",
+          "wert": 3.4
+        },
+        {
+          "t": "2021-09",
+          "wert": 4.1
+        },
+        {
+          "t": "2021-10",
+          "wert": 4.6
+        },
+        {
+          "t": "2021-11",
+          "wert": 6
+        },
+        {
+          "t": "2021-12",
+          "wert": 5.7
+        },
+        {
+          "t": "2022-01",
+          "wert": 5.1
+        },
+        {
+          "t": "2022-02",
+          "wert": 5.5
+        },
+        {
+          "t": "2022-03",
+          "wert": 7.6
+        },
+        {
+          "t": "2022-04",
+          "wert": 7.8
+        },
+        {
+          "t": "2022-05",
+          "wert": 8.7
+        },
+        {
+          "t": "2022-06",
+          "wert": 8.2
+        },
+        {
+          "t": "2022-07",
+          "wert": 8.5
+        },
+        {
+          "t": "2022-08",
+          "wert": 8.8
+        },
+        {
+          "t": "2022-09",
+          "wert": 10.9
+        },
+        {
+          "t": "2022-10",
+          "wert": 11.6
+        },
+        {
+          "t": "2022-11",
+          "wert": 11.3
+        },
+        {
+          "t": "2022-12",
+          "wert": 9.6
+        },
+        {
+          "t": "2023-01",
+          "wert": 9.2
+        },
+        {
+          "t": "2023-02",
+          "wert": 9.3
+        },
+        {
+          "t": "2023-03",
+          "wert": 7.8
+        },
+        {
+          "t": "2023-04",
+          "wert": 7.6
+        },
+        {
+          "t": "2023-05",
+          "wert": 6.3
+        },
+        {
+          "t": "2023-06",
+          "wert": 6.8
+        },
+        {
+          "t": "2023-07",
+          "wert": 6.5
+        },
+        {
+          "t": "2023-08",
+          "wert": 6.4
+        },
+        {
+          "t": "2023-09",
+          "wert": 4.3
+        },
+        {
+          "t": "2023-10",
+          "wert": 3
+        },
+        {
+          "t": "2023-11",
+          "wert": 2.3
+        },
+        {
+          "t": "2023-12",
+          "wert": 3.8
+        },
+        {
+          "t": "2024-01",
+          "wert": 3.1
+        },
+        {
+          "t": "2024-02",
+          "wert": 2.7
+        },
+        {
+          "t": "2024-03",
+          "wert": 2.3
+        },
+        {
+          "t": "2024-04",
+          "wert": 2.4
+        },
+        {
+          "t": "2024-05",
+          "wert": 2.8
+        },
+        {
+          "t": "2024-06",
+          "wert": 2.5
+        },
+        {
+          "t": "2024-07",
+          "wert": 2.6
+        },
+        {
+          "t": "2024-08",
+          "wert": 2
+        },
+        {
+          "t": "2024-09",
+          "wert": 1.8
+        },
+        {
+          "t": "2024-10",
+          "wert": 2.4
+        },
+        {
+          "t": "2024-11",
+          "wert": 2.4
+        },
+        {
+          "t": "2024-12",
+          "wert": 2.8
+        },
+        {
+          "t": "2025-01",
+          "wert": 2.8
+        },
+        {
+          "t": "2025-02",
+          "wert": 2.6
+        },
+        {
+          "t": "2025-03",
+          "wert": 2.3
+        },
+        {
+          "t": "2025-04",
+          "wert": 2.2
+        },
+        {
+          "t": "2025-05",
+          "wert": 2.1
+        },
+        {
+          "t": "2025-06",
+          "wert": 2
+        },
+        {
+          "t": "2025-07",
+          "wert": 1.8
+        },
+        {
+          "t": "2025-08",
+          "wert": 2.1
+        },
+        {
+          "t": "2025-09",
+          "wert": 2.4
+        },
+        {
+          "t": "2025-10",
+          "wert": 2.3
+        },
+        {
+          "t": "2025-11",
+          "wert": 2.6
+        },
+        {
+          "t": "2025-12",
+          "wert": 2
+        }
+      ],
+      "quelle": {
+        "label": "Eurostat über die Europäische Zentralbank, harmonisierter Verbraucherpreisindex",
+        "url": "https://www.ecb.europa.eu/stats/macroeconomic_and_sectoral/hicp/html/index.en.html"
+      },
+      "abgrenzung": "Dieselbe Rechnung wie für den Euroraum, aber nur für Deutschland. Der harmonisierte Index ist nicht deckungsgleich mit dem Verbraucherpreisindex des Statistischen Bundesamtes – die Warenkörbe unterscheiden sich."
+    }
+  }
 }
