@@ -189,8 +189,17 @@ export const VERTRAEGE: Vertrag[] = [
   {
     name: 'Weltbank · Länderdaten',
     zweck: 'Bevölkerung, Wirtschaftsleistung und Schuldenstand auf dem Globus.',
+    /*
+      Ein einzelnes Land und kein `mrnev`.
+
+      Der erste Versuch fragte `country/all` mit `mrnev=1` ab und bekam
+      Statuscode 400 – die Weltbank nimmt „jüngster verfügbarer Wert“ nicht
+      zusammen mit der Sammelabfrage über alle Länder. Für eine Vertragsprüfung
+      ist ein Land ohnehin die bessere Frage: Es geht darum, ob die Struktur
+      der Antwort noch stimmt, nicht darum, Daten zu holen.
+    */
     adresse:
-      'https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&per_page=2&mrnev=1',
+      'https://api.worldbank.org/v2/country/DEU/indicator/NY.GDP.MKTP.CD?format=json&per_page=1',
     pruefe: (text) => {
       let wurzel: unknown
       try {

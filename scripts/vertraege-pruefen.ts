@@ -28,9 +28,25 @@ import { VERTRAEGE, type Vertrag } from '../lib/vertraege.ts'
 /** Wie lange auf eine Antwort gewartet wird. */
 const GEDULD_MS = 30_000
 
+/**
+ * Der Zustand eines Vertrags.
+ *
+ * `gestört` ist die wichtige Unterscheidung und kam nach dem ersten Lauf dazu:
+ * Twelve Data antwortete mit 429, weil das Minutenkontingent erschöpft war.
+ * Das sagt nichts darüber, ob der Vertrag noch hält – der Schlüssel stimmt,
+ * das Format stimmt, es war nur gerade zu viel los. Solche Antworten als Bruch
+ * zu melden, hieße den Montagmorgen mit einer roten Meldung zu beginnen, die
+ * sich von selbst erledigt. Nach der dritten liest niemand mehr hin.
+ *
+ * Gebrochen ist ein Vertrag, wenn die Anfrage **abgelehnt** wird (4xx außer
+ * 429) oder die Antwort nicht mehr das enthält, worauf der Abruf baut. Beides
+ * geht nicht von allein weg.
+ */
+type Zustand = 'hält' | 'gebrochen' | 'gestört' | 'übersprungen'
+
 interface Ergebnis {
   vertrag: Vertrag
-  zustand: 'hält' | 'gebrochen' | 'übersprungen'
+  zustand: Zustand
   hinweis: string
 }
 
@@ -60,14 +76,22 @@ async function pruefe(vertrag: Vertrag): Promise<Ergebnis> {
     antwort = await fetch(adresse, { headers: vertrag.kopf ?? {}, signal: abbruch })
   } catch (fehler) {
     const grund = fehler instanceof Error ? fehler.message : 'unbekannt'
-    return { vertrag, zustand: 'gebrochen', hinweis: `Nicht erreichbar: ${grund}` }
+    // Netz weg oder Zeitüberschreitung: eine Störung, keine Vertragsänderung.
+    return { vertrag, zustand: 'gestört', hinweis: `Nicht erreichbar: ${grund}` }
   }
 
   if (!antwort.ok) {
+    const voruebergehend = antwort.status === 429 || antwort.status >= 500
     return {
       vertrag,
-      zustand: 'gebrochen',
-      hinweis: `Statuscode ${antwort.status}.`,
+      zustand: voruebergehend ? 'gestört' : 'gebrochen',
+      hinweis:
+        `Statuscode ${antwort.status}` +
+        (antwort.status === 429
+          ? ' – Kontingent erschöpft, nicht der Vertrag verletzt.'
+          : antwort.status >= 500
+            ? ' – Störung beim Anbieter.'
+            : ' – die Anfrage wird abgelehnt. So gestellt kommt sie nicht mehr durch.'),
     }
   }
 
@@ -87,12 +111,12 @@ async function main(): Promise<void> {
     const ergebnis = await pruefe(vertrag)
     ergebnisse.push(ergebnis)
 
-    const zeichen =
-      ergebnis.zustand === 'hält'
-        ? 'OK  '
-        : ergebnis.zustand === 'gebrochen'
-          ? 'FEHL'
-          : '––  '
+    const zeichen = {
+      hält: 'OK  ',
+      gebrochen: 'FEHL',
+      gestört: 'HAKT',
+      übersprungen: '––  ',
+    }[ergebnis.zustand]
     console.log(`${zeichen} ${ergebnis.vertrag.name}`)
     if (ergebnis.hinweis) console.log(`     ${ergebnis.hinweis}`)
 
@@ -101,15 +125,26 @@ async function main(): Promise<void> {
   }
 
   const gebrochen = ergebnisse.filter((e) => e.zustand === 'gebrochen')
+  const gestoert = ergebnisse.filter((e) => e.zustand === 'gestört')
   const uebersprungen = ergebnisse.filter((e) => e.zustand === 'übersprungen')
+  const halten = ergebnisse.filter((e) => e.zustand === 'hält')
 
   console.log(
-    `\n${ergebnisse.length - gebrochen.length - uebersprungen.length} von ` +
-      `${ergebnisse.length} Verträgen halten.` +
+    `\n${halten.length} von ${ergebnisse.length} Verträgen halten.` +
+      (gestoert.length > 0 ? ` ${gestoert.length} gerade gestört.` : '') +
       (uebersprungen.length > 0
         ? ` ${uebersprungen.length} ohne Schlüssel übersprungen.`
         : '')
   )
+
+  if (gestoert.length > 0) {
+    console.log(
+      '\n  Gestört heißt: nicht jetzt, aber vermutlich morgen wieder. Ein erschöpftes\n' +
+        '  Kontingent und eine Störung beim Anbieter sagen nichts darüber, ob der\n' +
+        '  Vertrag noch hält – deshalb wird der Lauf davon nicht rot. Wiederholt sich\n' +
+        '  dasselbe über Wochen, ist es keine Störung mehr und gehört nachgesehen.'
+    )
+  }
 
   if (gebrochen.length > 0) {
     console.log('\nWas jetzt zu tun ist')
