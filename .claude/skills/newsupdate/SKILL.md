@@ -21,7 +21,23 @@ geratenen.
 
 ## 1. Recherche
 
-Nutze `WebSearch`, notfalls `WebFetch`. Was gebraucht wird:
+**Erst der Zugang, dann die Themen.** `WebFetch` erreicht aus dieser Umgebung
+keine einzige Nachrichtenquelle — der Egress-Proxy antwortet mit 403. Das ist
+kein Grund abzubrechen, sondern der Grund für
+`.github/workflows/quellen-holen.yml`: Ein GitHub-Läufer holt die Seiten und
+schreibt ihren Text ins Protokoll, das du lesen kannst. Der Ablauf steht in
+`AGENTS.md` unter „Diese Umgebung erreicht nur GitHub“.
+
+Damit gilt die Arbeitsteilung:
+
+- **`WebSearch` findet Adressen.** Seine Zusammenfassungen sind **kein Beleg** —
+  sie haben zum selben Goldpreis schon zwei einander widersprechende Zahlen
+  geliefert. Nimm daraus die Links, nicht die Werte.
+- **`quellen-holen.yml` liefert den Text**, der im Artikel belegt wird.
+- Primärquellen bevorzugen; Portale mit viel Navigationsbeiwerk (finanzen.net,
+  boerse.de) kommen fast nur als Menüleisten heraus.
+
+Was gebraucht wird:
 
 - **Neun Meldungen aus den letzten 24 Stunden.** Prüfe das Datum, nicht nur die
   Überschrift — Suchmaschinen liefern gerne Evergreens und Ratgeberseiten aus.
