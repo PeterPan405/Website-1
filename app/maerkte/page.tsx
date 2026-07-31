@@ -428,7 +428,21 @@ export default async function MarketsOverviewPage() {
             </Link>
             .
           </p>
-          <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3">
+          {/*
+            `[&>li]:min-w-0` – ohne das schiebt sich die Seite auf dem Telefon.
+
+            Ein Rasterfeld hat von sich aus `min-width: auto` und schrumpft
+            nicht unter die kleinste Breite seines Inhalts. Eine Kurszeile
+            besteht aus Kürzel (feste 5rem), Name, Kurs und Prozentspalte
+            (feste 6rem) – zusammen ergibt das eine Mindestbreite von 389
+            Pixeln, gemessen bei 375 Pixeln Fensterbreite. Das Feld gibt nicht
+            nach, das Raster wird breiter als der Bildschirm, und die ganze
+            Seite lässt sich seitlich schieben.
+
+            Auf den Branchenseiten fällt es nicht auf: Dort ist die Liste
+            einspaltig und kein Raster. Geprüft wird es von `npm run breite`.
+          */}
+          <ul className="border-border mt-6 grid gap-x-6 border-t sm:grid-cols-2 xl:grid-cols-3 [&>li]:min-w-0">
             {stockQuotes.map((quote) => (
               <li key={quote.symbol}>
                 <QuoteRow quote={quote} />

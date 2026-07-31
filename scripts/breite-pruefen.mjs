@@ -163,7 +163,19 @@ for (const [pfad, was] of SEITEN) {
       }
       return {
         fenster,
-        scrollBreite: document.documentElement.scrollWidth,
+        /*
+          `body.scrollWidth`, nicht `documentElement.scrollWidth`.
+
+          Der Wurzelknoten zählt in Chromium Überstand mit, den ein Scroller
+          dazwischen längst abschneidet: Auf /maerkte/vergleich meldete er 624
+          Pixel für eine Tabelle in einem `overflow-x-auto`-Kasten – und
+          `window.scrollTo(500, 0)` bewegte die Seite trotzdem um keinen Pixel.
+          Der Body meldet dort 375 und hat recht.
+
+          Gemessen wird, was der Nutzer schieben kann. Alles andere erzeugt
+          Fehlalarme, und eine Prüfung mit Fehlalarmen wird abgeschaltet.
+        */
+        scrollBreite: document.body.scrollWidth,
         schuldige: schuldige.slice(0, 5).map(({ el: _weg, ...rest }) => rest),
       }
     }, TOLERANZ)
