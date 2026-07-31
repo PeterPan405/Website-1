@@ -652,7 +652,7 @@ export const calculators: CalculatorDefinition[] = [
     headline: 'Sparplan am tatsächlichen Kursverlauf',
     metaTitle: 'Sparplan-Rechner mit echten Kursen statt fester Rendite',
     metaDescription:
-      'Was ein Sparplan an echten Kursen ergeben hätte – und was dieselbe Gesamtentwicklung ohne Schwankung ergeben hätte. Der Unterschied ist die Wirkung der Reihenfolge.',
+      'Was ein Sparplan an echten Kursen ergeben hätte – und was dieselbe Rendite ohne Schwankung gebracht hätte. Der Unterschied ist die Wirkung der Reihenfolge.',
     lead: 'Ein Zinsrechner nimmt eine feste Rendite an und liefert eine glatte Kurve. Ein echter Kursverlauf tut das nie. Dieser Rechner stellt beides nebeneinander – bei derselben Gesamtentwicklung.',
     summary: 'Sparplan an echten Kursen gegen dieselbe Rendite ohne Schwankung.',
     featureList: [

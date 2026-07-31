@@ -32,35 +32,74 @@ export const mainNav: NavItem[] = [
     href: '/maerkte',
     area: 'markets',
     /*
-      Nach Bedeutung sortiert, nicht nach Gattung.
+      Rubriken, keine Einzeltitel.
 
-      Vorher standen die drei Währungspaare vorn – beim Aufklappen war also
-      EUR/CNY das Zweite, was jemand sah, und der DAX kam an vierter Stelle.
-      Das Menü zeigt einen Ausschnitt; welcher das ist, entscheidet, wofür die
-      Rubrik gehalten wird.
+      Bis August 2026 standen hier neun Kurse namentlich: DAX, S&P 500,
+      Nasdaq 100, Gold, Bitcoin, Brent, Magnificent Seven, EUR/USD, MSCI World.
+      Zwei Dinge stimmten daran nicht.
+
+      Erstens war es eine Auswahl aus über tausend Kursen, die niemand
+      begründen konnte – warum Brent und nicht Silber, warum der Nasdaq und
+      nicht der Nikkei. Wer den Nikkei suchte, fand im Menü keinen Hinweis
+      darauf, dass es ihn gibt.
+
+      Zweitens beantwortet ein Menü die Frage „was gibt es hier?“, nicht „was
+      ist heute wichtig?“. Neun Namen sagen: Das ist der Bestand. Sieben
+      Rubriken sagen: Das sind die Gattungen, und in jeder stehen mehrere.
+
+      Die Anker entsprechen den Überschriften auf `/maerkte` – wer eine Rubrik
+      wählt, landet bei ihrer Liste und nicht auf einem einzelnen Kurs.
     */
     children: [
-      { label: 'DAX', href: '/maerkte/dax', hint: '40 große deutsche Unternehmen' },
-      { label: 'S&P 500', href: '/maerkte/sp500', hint: '500 US-Unternehmen' },
-      { label: 'Nasdaq 100', href: '/maerkte/nasdaq-100', hint: 'US-Technologiewerte' },
-      { label: 'Gold', href: '/maerkte/gold', hint: 'Feinunze in US-Dollar' },
-      { label: 'Bitcoin', href: '/maerkte/bitcoin', hint: 'Kryptowährung in US-Dollar' },
-      { label: 'Brent', href: '/maerkte/brent', hint: 'Rohöl je Fass' },
       {
-        label: 'Magnificent Seven',
-        href: '/maerkte#magnificent-seven',
-        hint: 'Die sieben schwersten Werte im S&P 500',
+        label: 'Aktienindizes',
+        href: '/maerkte#indizes',
+        hint: 'DAX, S&P 500, Nikkei und die übrigen Leitindizes',
       },
-      { label: 'EUR/USD', href: '/maerkte/eur-usd', hint: 'Euro zu US-Dollar' },
       {
-        label: 'MSCI World',
-        href: '/maerkte/msci-world',
-        hint: 'Industrieländer weltweit',
+        label: 'Einzelaktien',
+        href: '/maerkte#aktien',
+        hint: 'Werte aus Europa, Nordamerika und Asien',
+      },
+      {
+        label: 'Branchen',
+        href: '/maerkte/branchen',
+        hint: 'Nach Geschäftsfeld sortiert statt nach Herkunft',
+      },
+      {
+        label: 'ETFs',
+        href: '/maerkte#etfs',
+        hint: 'Indexfonds mit Kosten und Abbildung',
+      },
+      {
+        label: 'Rohstoffe',
+        href: '/maerkte#rohstoffe',
+        hint: 'Edelmetalle, Energie und Agrarrohstoffe',
+      },
+      {
+        label: 'Währungen',
+        href: '/maerkte#waehrungen',
+        hint: 'Euro-Referenzkurse der EZB',
+      },
+      {
+        label: 'Krypto',
+        href: '/maerkte#krypto',
+        hint: 'Bitcoin, Ethereum und was daran anders ist',
       },
       {
         label: 'Anleihen',
         href: '/anleihen',
         hint: 'Warum der Kurs fällt, wenn der Zins steigt – mit Rechner',
+      },
+      {
+        label: 'Dividenden',
+        href: '/maerkte/dividenden',
+        hint: 'Rendite, Historie und Ausschüttungstermine',
+      },
+      {
+        label: 'Vergleich',
+        href: '/maerkte/vergleich',
+        hint: 'Zwei Titel nebeneinander, mit Kurve',
       },
     ],
     footerLink: { label: 'Alle Kurse ansehen', href: '/maerkte' },
