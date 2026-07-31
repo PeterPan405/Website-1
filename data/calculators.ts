@@ -647,6 +647,67 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'sparplanverlauf',
+    title: 'Sparplan am echten Verlauf',
+    headline: 'Sparplan am tatsächlichen Kursverlauf',
+    metaTitle: 'Sparplan-Rechner mit echten Kursen statt fester Rendite',
+    metaDescription:
+      'Was ein Sparplan an echten Kursen ergeben hätte – und was dieselbe Gesamtentwicklung ohne Schwankung ergeben hätte. Der Unterschied ist die Wirkung der Reihenfolge.',
+    lead: 'Ein Zinsrechner nimmt eine feste Rendite an und liefert eine glatte Kurve. Ein echter Kursverlauf tut das nie. Dieser Rechner stellt beides nebeneinander – bei derselben Gesamtentwicklung.',
+    summary: 'Sparplan an echten Kursen gegen dieselbe Rendite ohne Schwankung.',
+    featureList: [
+      'Sparplan über die abgerufene Kursreihe eines Titels',
+      'Vergleichsrechnung mit gleichmäßiger Rendite bei gleicher Gesamtentwicklung',
+      'Mittlerer Einstand gegen Durchschnitt der Kurse',
+      'Über tausend Titel zur Auswahl',
+    ],
+    grenzen: [
+      'Der Zeitraum ist so lang wie die gespeicherte Kursreihe – derzeit fünf Jahre. Für eine Aussage über Sparpläne ist das kurz, und es steht überall dabei.',
+      'Ohne Dividenden. Die Kursreihe ist eine Kursreihe; bei einem Titel mit vier Prozent Ausschüttung fehlen über den Zeitraum entsprechend viele Prozentpunkte.',
+      'Ohne Kosten und Steuern. Ordergebühren, Spread und Abgeltungsteuer sind nicht enthalten.',
+      'Ein Rückblick auf **einen** Titel und **einen** Zeitraum. Dass der echte Verlauf hier besser abgeschnitten hat, sagt nichts über den nächsten.',
+    ],
+    schritte: [
+      'Titel über das Suchfeld auswählen – Aktie, ETF, Index, Rohstoff oder Kryptowährung.',
+      'Rate je Monat eintragen; gekauft wird am ersten Handelstag jedes Monats.',
+      'Beide Endwerte nebeneinander ablesen: am echten Kursverlauf und bei gleichmäßiger Rendite.',
+      'Den mittleren Einstand mit dem Durchschnitt der Kurse vergleichen – er liegt immer darunter.',
+    ],
+    relatedTopics: ['cost-average-sparplan', 'zinseszins', 'risiko-und-rendite', 'etf'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Der Rechner nimmt die gespeicherte Kursreihe des Titels und kauft an jedem ersten Handelstag eines Monats für die eingegebene Rate. Wie viele Anteile das sind, entscheidet der Kurs an genau diesem Tag.',
+      },
+      {
+        type: 'formula',
+        expression: 'Anteile = Σ ( Rate / Kursₘ )   ·   Endwert = Anteile × letzter Kurs',
+        description:
+          'Bei niedrigem Kurs bringt dieselbe Rate mehr Anteile. Genau daher kommt der Unterschied zur gleichmäßigen Rechnung.',
+      },
+      { type: 'heading', level: 2, text: 'Womit verglichen wird' },
+      {
+        type: 'paragraph',
+        text: 'Die Vergleichsrechnung setzt **nicht** sieben Prozent an oder irgendeine andere Annahme, sondern die Rendite, die der Titel im selben Zeitraum tatsächlich erzielt hat. Beide Wege beginnen und enden damit beim selben Kurs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist der Punkt: Was übrig bleibt, ist allein die Wirkung der **Reihenfolge**. Eine geratene Vergleichsrendite würde zwei Dinge auf einmal ändern, und aus dem Ergebnis ließe sich nichts mehr ablesen.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum der Einstand unter dem Durchschnitt liegt',
+        items: [
+          'Der **mittlere Einstand** ist Einzahlung geteilt durch Anteile. Der **Durchschnittskurs** ist der Mittelwert der Kurse an den Kauftagen. Beide sind verschieden, sobald die Kurse schwanken – und der Einstand liegt dann immer darunter.',
+          'Das ist kein Trick und kein Vorteil, sondern eine Eigenschaft des harmonischen Mittels: Bei niedrigem Kurs fließt dieselbe Rate in mehr Anteile, sie wiegt also schwerer.',
+          'Daraus folgt **nicht**, dass ein Sparplan eine Einmalanlage schlägt. Bei durchweg steigenden Kursen tut er das nicht – dann war die Einmalanlage länger investiert.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'depotanalyse',
     title: 'Depotanalyse',
     headline: 'Depotanalyse: wie sich das Geld tatsächlich verteilt',
