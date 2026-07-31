@@ -66,6 +66,18 @@ interface Abfrage {
   einheit: 'prozent'
   quelle: { label: string; url: string }
   abgrenzung: string
+  /**
+   * Wie viele Beobachtungen geholt werden – nicht, wie viele bleiben.
+   *
+   * Bei Monatsreihen sind sechzig Punkte fünf Jahre; der Wert von vor einem
+   * Jahr liegt darin. Bei der **täglichen** Leitzinsreihe sind sechzig Punkte
+   * zwei Monate, und `vorEinemJahr` blieb deshalb leer – auf der Seite fehlte
+   * dann genau die Angabe, die aus einer Zahl eine Richtung macht.
+   *
+   * Also breit holen, schmal ablegen: `verlauf` behält in jedem Fall nur die
+   * letzten `VERLAUFSPUNKTE`.
+   */
+  punkte?: number
 }
 
 /**
@@ -74,6 +86,30 @@ interface Abfrage {
  * Drei Reihen, nicht dreißig. Was hier steht, muss auf einer Seite erklärt
  * werden können – eine Sammlung von Zeitreihen ohne Verwendung wäre Ballast,
  * der bei jedem Lauf mitgeschleppt wird.
+ *
+ * ## `HICP` und nicht mehr `ICP`
+ *
+ * Eurostat hat die Berechnung des harmonisierten Verbraucherpreisindex zum
+ * **4. Februar 2026** methodisch umgestellt. Die EZB hat denselben Tag genutzt,
+ * um den Datensatz `ICP` einzustellen und durch `HICP` zu ersetzen.
+ *
+ * Eingestellt heißt hier nicht abgeschaltet: `ICP` antwortet weiter mit
+ * Statuscode 200 und liefert Werte – nur endet die Reihe im Dezember 2025. Ein
+ * Abruf, der nach dem jüngsten Wert fragt, bekommt also eine gültige Antwort
+ * mit einer sieben Monate alten Zahl und meldet keinen Fehler. Aufgefallen ist
+ * es erst, weil die Momentaufnahme „Stand Dezember 2025“ neben einem
+ * Julidatum stehen hatte.
+ *
+ * Der Schlüssel ist fast derselbe. Die fünfte Dimension heißt jetzt
+ * `DATA_PROVIDER` statt `STS_INSTITUTION`, und Eurostat trägt darin `4D0`
+ * statt `4`:
+ *
+ *     alt:  ICP/M.U2.N.000000.4.ANR      → endet 2025-12
+ *     neu:  HICP/M.U2.N.000000.4D0.ANR   → laufend
+ *
+ * Wer die Reihen erweitert, prüft den Datensatznamen mit
+ * `.github/workflows/quellen-holen.yml` gegen die Schnittstelle, statt ihn aus
+ * einer älteren Datei zu übernehmen.
  */
 const ABFRAGEN: Abfrage[] = [
   {
@@ -89,11 +125,13 @@ const ABFRAGEN: Abfrage[] = [
       'Der Zinssatz für Hauptrefinanzierungsgeschäfte – der Satz, zu dem sich Banken ' +
       'Geld bei der Zentralbank leihen. Nicht der Zins, den eine Bank ihren Kunden zahlt ' +
       'oder berechnet; der liegt darüber beziehungsweise darunter.',
+    // Tagesreihe: gut dreizehn Monate, damit der Vorjahreswert enthalten ist.
+    punkte: 400,
   },
   {
     id: 'inflation',
     bezeichnung: 'Inflationsrate im Euroraum (HVPI, Vorjahresvergleich)',
-    pfad: 'ICP/M.U2.N.000000.4.ANR',
+    pfad: 'HICP/M.U2.N.000000.4D0.ANR',
     einheit: 'prozent',
     quelle: {
       label:
@@ -108,7 +146,7 @@ const ABFRAGEN: Abfrage[] = [
   {
     id: 'inflation-de',
     bezeichnung: 'Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)',
-    pfad: 'ICP/M.DE.N.000000.4.ANR',
+    pfad: 'HICP/M.DE.N.000000.4D0.ANR',
     einheit: 'prozent',
     quelle: {
       label:
@@ -141,9 +179,9 @@ interface Momentaufnahme {
 /** Wie viele Punkte je Reihe aufbewahrt werden. */
 const VERLAUFSPUNKTE = 60
 
-async function hole(pfad: string): Promise<unknown | null> {
+async function hole(pfad: string, punkte: number): Promise<unknown | null> {
   for (const host of HOSTS) {
-    const adresse = `${host}/${pfad}?lastNObservations=${VERLAUFSPUNKTE}&format=jsondata`
+    const adresse = `${host}/${pfad}?lastNObservations=${punkte}&format=jsondata`
     try {
       const antwort = await fetch(adresse, {
         headers: {
@@ -178,7 +216,7 @@ async function main(): Promise<void> {
   let geholt = 0
 
   for (const abfrage of ABFRAGEN) {
-    const roh = await hole(abfrage.pfad)
+    const roh = await hole(abfrage.pfad, abfrage.punkte ?? VERLAUFSPUNKTE)
     if (!roh) {
       console.error(
         `[zinsen] ${abfrage.id}: keine Antwort – bisheriger Wert bleibt stehen.`
