@@ -3,24 +3,31 @@ name: Quartalstermine aktualisieren
 # Leitet die Termine der Quartalszahlen aus dem bisherigen Meldemuster jedes
 # Unternehmens ab – aus den 8-K-Meldungen mit Punkt 2.02 bei der SEC.
 #
-# Zeitplan: wöchentlich, montags. Häufiger als bei den Fundamentaldaten, weil
-# hier nicht nur neue Zahlen einlaufen: Sobald ein Unternehmen tatsächlich
-# gemeldet hat, rückt die ganze Reihe eine Position weiter, und der bisher
-# erwartete Termin muss durch den nächsten ersetzt werden. Ein Kalender, der
-# einen Termin von letzter Woche als „erwartet“ führt, ist schlimmer als
-# einer ohne Angabe.
+# Zeitplan: täglich. Der Grund steht unten beim cron-Eintrag.
+#
+# Sobald ein Unternehmen tatsächlich gemeldet hat, rückt die ganze Reihe eine
+# Position weiter, und der bisher erwartete Termin muss durch den nächsten
+# ersetzt werden. Ein Kalender, der einen Termin von letzter Woche als
+# „erwartet“ führt, ist schlimmer als einer ohne Angabe.
 #
 # Der Abruf dauert wegen der Schonfrist zwischen den Anfragen einige Minuten.
 
 on:
   schedule:
-    # Montags um 05:20 UTC.
+    # Täglich um 05:20 UTC – knapp vor dem Paketbau um 04:15 des Folgetages
+    # und deutlich vor der Nachrichtenroutine.
     #
-    # Wöchentlich, weil Unternehmen ihre Meldetermine laufend bekannt geben –
-    # eine Woche ist der Abstand, in dem eine neue Ankündigung spätestens
-    # ankommt. Zur zwanzigminütigen Verschiebung siehe den Länderabruf: Am
-    # Montag, dem Ersten, liefen sonst beide gleichzeitig.
-    - cron: '20 5 * * 1'
+    # Bis August 2026 lief das wöchentlich, montags, mit der Begründung, eine
+    # Woche sei der Abstand, in dem eine Ankündigung spätestens ankommt. Das
+    # stimmt für die Ankündigung und nicht für ihr Gegenteil: In der
+    # Berichtssaison meldet an jedem Werktag ein Dutzend Unternehmen, und mit
+    # jeder Meldung wird ein erwarteter Termin zu einem vergangenen. Sieben Tage
+    # Abstand heißen dann bis zu sieben Tage lang eine falsche Zeile.
+    #
+    # Aufgefallen ist es am 1. August: Der Kalender führte einen Meldetag vom
+    # 30. Juli, die Momentaufnahme stammte vom 29. Ein täglicher Lauf kostet
+    # wenige Minuten und ist neben dreißig Kursabrufen am Tag nicht messbar.
+    - cron: '20 5 * * *'
   workflow_dispatch:
 
 concurrency:

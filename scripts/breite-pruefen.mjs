@@ -139,6 +139,17 @@ const SEITEN = [
   ['/globus/', 'Globus – SVG in voller Breite'],
   ['/staatsverschuldung/', 'Staatsverschuldung – Ländertabelle'],
   ['/anleihen/', 'Anleihen – Rechner mit Laufzeitentabelle'],
+  /*
+    Der Kalender kam im August 2026 dazu – nach einem Foto vom Telefon, auf dem
+    er falsch aussah. Er ist die einzige Seite, die ihre Gestalt erst im Browser
+    bekommt: Was kommend, laufend und vorbei ist, entscheidet das Datum, nicht
+    der Build. Genau solche Seiten gehören in eine Prüfung mit echtem Browser.
+
+    In die Referenzbilder gehört er dagegen **nicht**: Sein Inhalt ändert sich
+    an jedem Tag von selbst, und ein Vergleichsbild, das täglich rot wird, wird
+    nach einer Woche ignoriert.
+  */
+  ['/kalender/', 'Kalender – Zeiträume, Filter und Vergangenheitsmarkierung'],
   /* Die breiteste Tabelle der Website: sieben Spalten mal zwölf Zeilen. */
   ['/news/jahr/2026/', 'Jahresrückblick – siebenspaltige Tabelle'],
 ]
