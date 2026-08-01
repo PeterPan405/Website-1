@@ -108,6 +108,13 @@ const seiten: SearchEntry[] = [
     keywords: ['dsgvo', 'daten', 'rechtliches'],
   },
   {
+    title: 'Glossar-Karteikarten',
+    href: '/glossar/karteikarten',
+    kind: 'Lernwerkzeug',
+    hint: 'Die Fachbegriffe als Karteikasten mit wachsenden Abständen.',
+    keywords: ['karteikarten', 'karteikasten', 'vokabeln', 'wiederholen', 'leitner'],
+  },
+  {
     title: 'Keine Cookies, kein Tracking',
     href: '/keine-cookies',
     kind: 'Rechtliches',
