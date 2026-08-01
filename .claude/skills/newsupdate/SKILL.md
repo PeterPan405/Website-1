@@ -50,6 +50,16 @@ abzubrechen — es ist die Ansage, dass zu diesem Thema heute nichts Belegtes
 entsteht. Schreib das in den Abschlussbericht, statt die Lücke mit einem
 schwächeren Artikel zu füllen.
 
+Melden **alle** Rubriken Ausfall, ist die Liste das Problem und nicht der
+Tag: Am 1. August 2026 kamen alle achtzehn Rubrikseiten als Gerüst oder alt
+zurück, während einzeln gesuchte **Artikelseiten** derselben Portale
+(onvista, finanzen.at/.ch, Energynewsmagazine) sauber lasen. Rubrikseiten
+laden ihre Listen per JavaScript nach, Artikelseiten liefern ihren Text im
+HTML. Der Weg ist dann: `WebSearch` nach konkreten Artikeln, deren Adressen
+über `quellen-holen.yml` holen. Die dauerhafte Abhilfe wäre eine Umstellung
+von `data/nachrichtenquellen.ts` auf RSS-Feeds – die sind statisch und
+genau für diesen Zweck gebaut.
+
 ## 1. Recherche
 
 **Erst der Zugang, dann die Themen.** `WebFetch` erreicht aus dieser Umgebung
@@ -138,7 +148,10 @@ Pflichtfelder je Artikel siehe `interface NewsArticle`. Was `lib/news-validate.t
 beim Bauen erzwingt — daran scheitert der Build, nicht nur eine Warnung:
 
 - `slug`: nur Kleinbuchstaben, Ziffern, Bindestriche; eindeutig
-- `teaser`: **100 bis 200 Zeichen** (er ist zugleich die Meta-Description)
+- `teaser`: **100 bis 160 Zeichen** (er ist zugleich die Meta-Description).
+  Nicht 200: Am 1. August 2026 hat der Build sechs Teaser mit 161 bis 171
+  Zeichen abgewiesen, die nach der alten Angabe hier richtig waren. Die harte
+  Grenze zieht `lib/news-validate.ts`, und sie liegt bei 160.
 - `title` über 65 Zeichen ⇒ zusätzlich `metaTitle`
 - `publishedAt`: ISO 8601 **mit Zeitzone** (`+02:00`), unser Erscheinungsdatum
 - `sources`: mindestens eine, `https://`, mit lesbarer Beschriftung
@@ -188,6 +201,21 @@ npx tsc --noEmit
 npm run lint
 npm test
 npm run build
+npm run pruefen
+```
+
+`npm run pruefen` gehört dazu, obwohl es langsamer ist als der Rest: Es ist
+die Prüfung, an der der Bau auf `main` scheitert, und sie prüft Dinge, die
+keiner der anderen Schritte sieht – Meta-Längen im gebauten HTML, tote
+Links, Sitemap-Deckung. Zweimal ist ein Nachrichtenlauf grün durch alle
+übrigen Prüfungen gegangen und erst nach dem Merge rot geworden, weil dieser
+Schritt fehlte.
+
+Danach die Referenzbilder erneuern – Startseite und Nachrichtenseite zeigen
+nach jeder Ausgabe andere Artikel, das ist eine erwartete Abweichung:
+
+```bash
+npm run bilder -- --neu
 ```
 
 Der Build ist die scharfe Prüfung: `assertNewsValid` und
