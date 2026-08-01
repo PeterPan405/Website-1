@@ -43,7 +43,7 @@ zscaler|ZS|Zscaler|840|USD|Sicherheit|Prüft den Internetverkehr von Unternehmen
 atlassian|TEAM|Atlassian|840|USD|Software|Bietet Werkzeuge für die Zusammenarbeit in Software-Teams
 shopify|SHOP|Shopify|124|USD|Software|Stellt Händlern die Technik für eigene Online-Shops bereit
 block|XYZ|Block|840|USD|Zahlungsverkehr|Betreibt Kassensysteme für Händler und die Bezahl-App Cash App
-fiserv|FI|Fiserv|840|USD|Zahlungsverkehr|Wickelt Zahlungen und Kontoführung für Banken und Händler ab
+fiserv|FISV|Fiserv|840|USD|Zahlungsverkehr|Wickelt Zahlungen und Kontoführung für Banken und Händler ab; seit dem Wechsel an die Nasdaq im November 2025 wieder unter dem alten Kürzel FISV
 american-express|AXP|American Express|840|USD|Zahlungsverkehr|Gibt eigene Kreditkarten aus und betreibt zugleich das Kartennetz
 morgan-stanley|MS|Morgan Stanley|840|USD|Banken|Betreibt Investmentbanking und verwaltet Vermögen wohlhabender Kunden
 charles-schwab|SCHW|Charles Schwab|840|USD|Banken|Führt Wertpapierdepots für Privatanleger und verwahrt deren Guthaben
@@ -51,11 +51,11 @@ citigroup|C|Citigroup|840|USD|Banken|Betreibt eine global tätige Geschäfts- un
 wells-fargo|WFC|Wells Fargo|840|USD|Banken|Führt eines der größten Filialnetze im US-Privatkundengeschäft
 us-bancorp|USB|U.S. Bancorp|840|USD|Banken|Betreibt eine regionale Großbank im Mittleren Westen der USA
 pnc|PNC|PNC Financial Services|840|USD|Banken|Bietet Firmen- und Privatkundengeschäft im Osten der USA
-bny-mellon|BK|BNY Mellon|840|USD|Banken|Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab
+bny-mellon|BNY|BNY Mellon|840|USD|Banken|Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab; das Kürzel wechselte im Mai 2026 von BK zu BNY
 state-street|STT|State Street|840|USD|Banken|Verwahrt Fondsvermögen und legt eigene Indexfonds auf
 progressive|PGR|Progressive|840|USD|Versicherungen|Versichert überwiegend Autos und verkauft direkt an Privatkunden
 chubb|CB|Chubb|840|USD|Versicherungen|Versichert Industrieanlagen und große Sachrisiken weltweit
-marsh-mclennan|MMC|Marsh & McLennan|840|USD|Versicherungen|Vermittelt Versicherungen für Unternehmen und berät zu Risiken
+marsh-mclennan|MRSH|Marsh & McLennan|840|USD|Versicherungen|Vermittelt Versicherungen für Unternehmen und berät zu Risiken; das Kürzel wechselte im Januar 2026 von MMC zu MRSH
 aon|AON|Aon|840|USD|Versicherungen|Berät Unternehmen zu Risiken und vermittelt deren Versicherungsschutz
 metlife|MET|MetLife|840|USD|Versicherungen|Bietet Lebens- und Krankenversicherungen für Privat- und Firmenkunden
 prudential-financial|PRU|Prudential Financial|840|USD|Versicherungen|Verkauft Lebensversicherungen und verwaltet Altersvorsorgevermögen
@@ -309,7 +309,7 @@ voestalpine|VOE.VI|voestalpine|040|EUR|Stahl|Erzeugt Stahl und verarbeitet ihn z
 crh|CRH|CRH|372|USD|Baustoffe|Stellt Zement, Asphalt und Baustoffe für Nordamerika und Europa her
 ryanair|RYAAY|Ryanair|372|USD|Transport|Betreibt die größte Billigfluggesellschaft Europas
 flutter|FLUT|Flutter Entertainment|372|USD|Konsum|Betreibt Sportwetten- und Glücksspielplattformen
-kerry-group|KYGA.IR|Kerry Group|372|EUR|Konsum|Stellt Zutaten und Geschmackssysteme für Lebensmittelhersteller her
+kerry-group|KRZ.IR|Kerry Group|372|EUR|Konsum|Stellt Zutaten und Geschmackssysteme für Lebensmittelhersteller her
 
 # ------------------------------------------------------ Portugal und Polen
 edp|EDP.LS|EDP|620|EUR|Versorger|Erzeugt Strom und betreibt Netze in Portugal, Spanien und Brasilien
@@ -413,7 +413,7 @@ itc|ITC.NS|ITC|356|INR|Konsum|Stellt Tabakwaren, Lebensmittel und Hygieneartikel
 hindustan-unilever|HINDUNILVR.NS|Hindustan Unilever|356|INR|Konsum|Verkauft Wasch-, Pflege- und Lebensmittelmarken in Indien
 larsen-toubro|LT.NS|Larsen & Toubro|356|INR|Bau|Baut Infrastruktur, Kraftwerke und Industrieanlagen
 maruti|MARUTI.NS|Maruti Suzuki|356|INR|Automobil|Baut Klein- und Kompaktwagen für den indischen Markt
-tata-motors|TATAMOTORS.NS|Tata Motors|356|INR|Automobil|Baut Nutzfahrzeuge in Indien und besitzt Jaguar Land Rover
+tata-motors|TMPV.NS|Tata Motors PV|356|INR|Automobil|Baut Pkw in Indien und besitzt Jaguar Land Rover; die Nutzfahrzeugsparte wurde im Oktober 2025 abgespalten, seither notiert das Unternehmen als TMPV
 asian-paints|ASIANPAINT.NS|Asian Paints|356|INR|Chemie|Stellt Farben und Lacke für Gebäude her
 sun-pharma|SUNPHARMA.NS|Sun Pharmaceutical|356|INR|Pharma|Fertigt Nachahmermedikamente für Indien, die USA und Europa
 adani-enterprises|ADANIENT.NS|Adani Enterprises|356|INR|Mischkonzern|Entwickelt Häfen, Flughäfen und Energieprojekte in Indien
@@ -459,7 +459,7 @@ bradesco|BBDC4.SA|Banco Bradesco|076|BRL|Banken|Betreibt Filialgeschäft und ein
 banco-do-brasil|BBAS3.SA|Banco do Brasil|076|BRL|Banken|Staatlich beherrschte Bank mit Schwerpunkt Agrarfinanzierung
 b3|B3SA3.SA|B3|076|BRL|Börsen|Betreibt die Wertpapier- und Terminbörse in São Paulo
 ambev|ABEV3.SA|Ambev|076|BRL|Getränke|Braut Bier und füllt Erfrischungsgetränke für ganz Lateinamerika ab
-jbs|JBSS3.SA|JBS|076|BRL|Lebensmittel|Größter Fleischverarbeiter der Welt nach Umsatz
+jbs|JBS|JBS|076|USD|Lebensmittel|Größter Fleischverarbeiter der Welt nach Umsatz; die Hauptnotierung liegt seit 2025 an der New Yorker Börse in US-Dollar
 weg|WEGE3.SA|WEG|076|BRL|Industrie|Stellt Elektromotoren, Generatoren und Antriebstechnik her
 suzano|SUZB3.SA|Suzano|076|BRL|Papier|Größter Hersteller von Zellstoff aus Eukalyptus
 

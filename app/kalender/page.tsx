@@ -92,8 +92,17 @@ export default async function KalenderPage() {
             termine.ics abonnieren
           </a>{' '}
           – die Datei wird bei jedem Bau der Website neu erzeugt, neue Termine kommen also
-          von selbst dazu. Die geschätzten Dividendentermine sind nicht enthalten; alles
-          Abgeleitete trägt im Titel ein „(erwartet)“.
+          von selbst dazu. Alles Abgeleitete trägt im Titel ein „(erwartet)“. Die
+          geschätzten Dividendentermine sind nicht enthalten – wer sie will, abonniert sie
+          als eigenen Kalender:{' '}
+          <a
+            href="/kalender/dividenden.ics"
+            className="text-calendar font-medium underline underline-offset-2"
+          >
+            dividenden.ics
+          </a>
+          . Getrennt, damit achthundert Ex-Tage nicht zwischen den Zinsentscheiden stehen,
+          wenn man nur diese wollte.
         </p>
 
         <div className="max-w-3xl">

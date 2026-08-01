@@ -261,14 +261,29 @@ function warte(ms: number): Promise<void> {
  * die Rechnung hat niemand nachgezogen.
  *
  * Jetzt ist der Abstand ein **Takt** und keine Pause: `imTakt` startet alle
- * 150 ms einen Abruf und lässt bis zu `GLEICHZEITIG` davon nebeneinander
+ * `ABSTAND_MS` einen Abruf und lässt bis zu `GLEICHZEITIG` davon nebeneinander
  * laufen. Die Last bei Yahoo hängt an der Startrate, nicht an der Frage, ob
  * die Antworten überlappen – und weil der halbstündliche Lauf seit demselben
  * Umbau `range=1d` statt `range=5y` anfragt, ist jede einzelne Antwort rund
  * vierzigmal kleiner als vorher. In Summe liegt weniger Last bei Yahoo als
  * vorher, nicht mehr.
+ *
+ * ## Warum 80 und nicht mehr 150
+ *
+ * Das Repository ist privat, und private Repositories haben 2.000
+ * Actions-Minuten im Monat. Mit 150 ms dauerte der Preislauf knapp drei
+ * Minuten, und dreißig Läufe je Werktag summierten sich auf rund 2.400 bis
+ * 2.600 Minuten – über dem Kontingent, also wäre der Abruf Mitte des Monats
+ * einfach stehengeblieben. Mit 80 ms bleibt der Monat bei grob 1.200 Minuten.
+ *
+ * Das Risiko ist begrenzt und der Schaden gutmütig: Weist Yahoo eine Anfrage
+ * ab, kommt `null` zurück und der Titel behält seinen vorigen Stand – er
+ * verpasst schlimmstenfalls einen Halbstundentakt. Gemessen am 1. August 2026
+ * auf dem Läufer: Preislauf in 1:30 statt 2:55, im Protokoll kein einziges
+ * 429. Die sechs 404 dort sind Symbole, die Yahoo nicht kennt – das ist ein
+ * Zuordnungsproblem und keine Frage des Takts.
  */
-const ABSTAND_MS = 150
+const ABSTAND_MS = 80
 
 /**
  * Wie viele Abrufe gleichzeitig unterwegs sein dürfen.

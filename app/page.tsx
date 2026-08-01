@@ -7,10 +7,11 @@ import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
+import { findeGeschichte, geschichtssatz } from '@/lib/boersengeschichte'
 import { cn } from '@/lib/cn'
 import { formatDate } from '@/lib/format'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
-import { getMarketOverview } from '@/lib/markets'
+import { getInstrument, getMarketOverview, getSeries } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
 import { folgenAdresse, folgenDauer, getFolgen, kurzfassung } from '@/lib/podcast'
 import { buildMetadata } from '@/lib/seo'
@@ -92,6 +93,24 @@ const calculatorTiles = [
   },
 ]
 
+/**
+ * Die Instrumente, in deren Reihen nach dem Jahrestag gesucht wird.
+ *
+ * Breit gestreute Indizes, Gold, Öl und Bitcoin – Werte, deren Tagesbewegung
+ * für sich spricht. Einzelaktien bleiben draußen: Ein Kurssprung nach
+ * Quartalszahlen ist keine Marktgeschichte, sondern eine Unternehmensmeldung.
+ */
+const GESCHICHTS_SYMBOLE = [
+  'dax',
+  'sp500',
+  'nasdaq-100',
+  'euro-stoxx-50',
+  'nikkei-225',
+  'gold',
+  'brent',
+  'bitcoin',
+] as const
+
 export default async function HomePage() {
   const [headlines, marketPreviews, learnStats, completeTopics] = await Promise.all([
     // Ohne Angabe: genau die Meldungen, die auch unter „Aktuelles“ stehen.
@@ -103,6 +122,27 @@ export default async function HomePage() {
 
   // Die drei jüngsten Folgen; alles Weitere steht unter /podcast.
   const podcastfolgen = getFolgen().slice(0, 3)
+
+  /*
+    „Heute“ ist der Tag des Baus – und das ist hier richtig so: Die Website
+    wird täglich neu gebaut (Paketbau 04:15 UTC), die Kachel wandert also
+    jeden Tag von selbst weiter. Beim Kalender wäre dieselbe Annahme falsch,
+    weil dort Zukunft von Vergangenheit zu trennen ist; hier geht es um den
+    Kalendertag, und der stimmt nach jedem Bau.
+  */
+  const geschichtsquellen = await Promise.all(
+    GESCHICHTS_SYMBOLE.map(async (symbol) => {
+      const [instrument, punkte] = await Promise.all([
+        getInstrument(symbol),
+        getSeries(symbol, '5J'),
+      ])
+      return { symbol, name: instrument?.name ?? symbol, punkte }
+    })
+  )
+  const geschichte = findeGeschichte(
+    geschichtsquellen,
+    new Date().toISOString().slice(0, 10)
+  )
 
   return (
     <>
@@ -268,6 +308,48 @@ export default async function HomePage() {
             quotes={marketPreviews.map((preview) => preview.quote)}
             className="text-fg-subtle mt-6 text-sm leading-relaxed"
           />
+
+          {/*
+            Heute vor X Jahren – der auffälligste Handelstag zum Kalendertag,
+            gerechnet aus den Reihen, die ohnehin im Bestand liegen. Die
+            Kachel ändert sich täglich von selbst; `data-fliesst` nimmt sie
+            deshalb aus dem Bildvergleich, wie jede andere Stelle mit
+            beweglichen Zahlen.
+          */}
+          {geschichte && (
+            <div
+              data-fliesst=""
+              className="rounded-card border-border bg-surface-muted mt-6 border p-5 sm:p-6"
+            >
+              <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+                Heute vor{' '}
+                {geschichte.jahre === 1 ? 'einem Jahr' : `${geschichte.jahre} Jahren`}
+              </p>
+              <p className="text-fg mt-2 leading-relaxed">
+                {geschichtssatz(geschichte)}{' '}
+                <span className="text-fg-muted">
+                  Am {formatDate(geschichte.datum)} – angekündigt hatte das niemand.
+                  Solche Tage ballen sich, und wer sie mit Markttiming umgehen will,
+                  verpasst regelmäßig auch die besten.
+                </span>
+              </p>
+              <p className="mt-3 text-sm">
+                <Link
+                  href={`/maerkte/${geschichte.symbol}`}
+                  className="text-markets font-medium underline underline-offset-4"
+                >
+                  Den Verlauf von {geschichte.name} ansehen
+                </Link>
+                <span className="text-fg-subtle"> · </span>
+                <Link
+                  href="/lernen/wann-kaufen-verkaufen"
+                  className="text-fg-muted hover:text-fg underline underline-offset-4"
+                >
+                  Warum Markttiming daran scheitert
+                </Link>
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

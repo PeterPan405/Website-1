@@ -585,17 +585,17 @@ export const weitereAktien: MarketDefinition[] = [
   },
   {
     symbol: 'fiserv',
-    ticker: 'FI',
+    ticker: 'FISV',
     name: 'Fiserv',
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
     summary:
-      'Zahlungsverkehr: Wickelt Zahlungen und Kontoführung für Banken und Händler ab.',
+      'Zahlungsverkehr: Wickelt Zahlungen und Kontoführung für Banken und Händler ab; seit dem Wechsel an die Nasdaq im November 2025 wieder unter dem alten Kürzel FISV.',
     metaDescription:
       'Die Aktie von Fiserv in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
-      'Fiserv – Wickelt Zahlungen und Kontoführung für Banken und Händler ab. Notiert wird die Aktie in USD unter dem Kürzel FI.',
+      'Fiserv – Wickelt Zahlungen und Kontoführung für Banken und Händler ab; seit dem Wechsel an die Nasdaq im November 2025 wieder unter dem alten Kürzel FISV. Notiert wird die Aktie in USD unter dem Kürzel FISV.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
@@ -781,17 +781,17 @@ export const weitereAktien: MarketDefinition[] = [
   },
   {
     symbol: 'bny-mellon',
-    ticker: 'BK',
+    ticker: 'BNY',
     name: 'BNY Mellon',
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
     summary:
-      'Banken: Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab.',
+      'Banken: Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab; das Kürzel wechselte im Mai 2026 von BK zu BNY.',
     metaDescription:
       'Die Aktie von BNY Mellon in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
-      'BNY Mellon – Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab. Notiert wird die Aktie in USD unter dem Kürzel BK.',
+      'BNY Mellon – Verwahrt Wertpapiere für institutionelle Anleger und wickelt deren Geschäfte ab; das Kürzel wechselte im Mai 2026 von BK zu BNY. Notiert wird die Aktie in USD unter dem Kürzel BNY.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
@@ -880,17 +880,17 @@ export const weitereAktien: MarketDefinition[] = [
   },
   {
     symbol: 'marsh-mclennan',
-    ticker: 'MMC',
+    ticker: 'MRSH',
     name: 'Marsh & McLennan',
     kind: 'stock',
     unit: 'USD',
     decimals: 2,
     summary:
-      'Versicherungen: Vermittelt Versicherungen für Unternehmen und berät zu Risiken.',
+      'Versicherungen: Vermittelt Versicherungen für Unternehmen und berät zu Risiken; das Kürzel wechselte im Januar 2026 von MMC zu MRSH.',
     metaDescription:
       'Die Aktie von Marsh & McLennan in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
-      'Marsh & McLennan – Vermittelt Versicherungen für Unternehmen und berät zu Risiken. Notiert wird die Aktie in USD unter dem Kürzel MMC.',
+      'Marsh & McLennan – Vermittelt Versicherungen für Unternehmen und berät zu Risiken; das Kürzel wechselte im Januar 2026 von MMC zu MRSH. Notiert wird die Aktie in USD unter dem Kürzel MRSH.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
@@ -6597,7 +6597,7 @@ export const weitereAktien: MarketDefinition[] = [
   },
   {
     symbol: 'kerry-group',
-    ticker: 'KYGA.IR',
+    ticker: 'KRZ.IR',
     name: 'Kerry Group',
     kind: 'stock',
     unit: 'EUR',
@@ -6607,7 +6607,7 @@ export const weitereAktien: MarketDefinition[] = [
     metaDescription:
       'Die Aktie von Kerry Group in EUR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
-      'Kerry Group – Stellt Zutaten und Geschmackssysteme für Lebensmittelhersteller her. Notiert wird die Aktie in EUR unter dem Kürzel KYGA.IR.',
+      'Kerry Group – Stellt Zutaten und Geschmackssysteme für Lebensmittelhersteller her. Notiert wird die Aktie in EUR unter dem Kürzel KRZ.IR.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
@@ -8835,16 +8835,17 @@ export const weitereAktien: MarketDefinition[] = [
   },
   {
     symbol: 'tata-motors',
-    ticker: 'TATAMOTORS.NS',
-    name: 'Tata Motors',
+    ticker: 'TMPV.NS',
+    name: 'Tata Motors PV',
     kind: 'stock',
     unit: 'INR',
     decimals: 2,
-    summary: 'Automobil: Baut Nutzfahrzeuge in Indien und besitzt Jaguar Land Rover.',
+    summary:
+      'Automobil: Baut Pkw in Indien und besitzt Jaguar Land Rover; die Nutzfahrzeugsparte wurde im Oktober 2025 abgespalten, seither notiert das Unternehmen als TMPV.',
     metaDescription:
-      'Die Aktie von Tata Motors in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+      'Die Aktie von Tata Motors PV in INR: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
-      'Tata Motors – Baut Nutzfahrzeuge in Indien und besitzt Jaguar Land Rover. Notiert wird die Aktie in INR unter dem Kürzel TATAMOTORS.NS.',
+      'Tata Motors PV – Baut Pkw in Indien und besitzt Jaguar Land Rover; die Nutzfahrzeugsparte wurde im Oktober 2025 abgespalten, seither notiert das Unternehmen als TMPV. Notiert wird die Aktie in INR unter dem Kürzel TMPV.NS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
@@ -9809,16 +9810,17 @@ export const weitereAktien: MarketDefinition[] = [
   },
   {
     symbol: 'jbs',
-    ticker: 'JBSS3.SA',
+    ticker: 'JBS',
     name: 'JBS',
     kind: 'stock',
-    unit: 'BRL',
+    unit: 'USD',
     decimals: 2,
-    summary: 'Lebensmittel: Größter Fleischverarbeiter der Welt nach Umsatz.',
+    summary:
+      'Lebensmittel: Größter Fleischverarbeiter der Welt nach Umsatz; die Hauptnotierung liegt seit 2025 an der New Yorker Börse in US-Dollar.',
     metaDescription:
-      'Die Aktie von JBS in BRL: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
+      'Die Aktie von JBS in USD: aktueller Stand, Chart über fünf Jahre und eine kurze Einordnung des Geschäftsmodells.',
     description: [
-      'JBS – Größter Fleischverarbeiter der Welt nach Umsatz. Notiert wird die Aktie in BRL unter dem Kürzel JBSS3.SA.',
+      'JBS – Größter Fleischverarbeiter der Welt nach Umsatz; die Hauptnotierung liegt seit 2025 an der New Yorker Börse in US-Dollar. Notiert wird die Aktie in USD unter dem Kürzel JBS.',
       'Eine einzelne Aktie trägt immer das Risiko genau dieses Unternehmens – anders als ein Index, in dem sich ein Ausfall auf viele Werte verteilt. Wer einzelne Titel hält, sollte das bewusst tun und wissen, welchen Anteil am eigenen Vermögen sie ausmachen.',
     ],
     relatedTopics: ['aktie', 'aktien-laender-branchen', 'risiko-und-rendite'],
@@ -22319,7 +22321,7 @@ export const weitereAktienQuellen: Record<string, MarketSourceRef> = {
   atlassian: { provider: 'market', yahoo: 'TEAM', twelvedata: 'TEAM' },
   shopify: { provider: 'market', yahoo: 'SHOP', twelvedata: 'SHOP' },
   block: { provider: 'market', yahoo: 'XYZ', twelvedata: 'XYZ' },
-  fiserv: { provider: 'market', yahoo: 'FI', twelvedata: 'FI' },
+  fiserv: { provider: 'market', yahoo: 'FISV', twelvedata: 'FISV' },
   'american-express': { provider: 'market', yahoo: 'AXP', twelvedata: 'AXP' },
   'morgan-stanley': { provider: 'market', yahoo: 'MS', twelvedata: 'MS' },
   'charles-schwab': { provider: 'market', yahoo: 'SCHW', twelvedata: 'SCHW' },
@@ -22327,11 +22329,11 @@ export const weitereAktienQuellen: Record<string, MarketSourceRef> = {
   'wells-fargo': { provider: 'market', yahoo: 'WFC', twelvedata: 'WFC' },
   'us-bancorp': { provider: 'market', yahoo: 'USB', twelvedata: 'USB' },
   pnc: { provider: 'market', yahoo: 'PNC', twelvedata: 'PNC' },
-  'bny-mellon': { provider: 'market', yahoo: 'BK', twelvedata: 'BK' },
+  'bny-mellon': { provider: 'market', yahoo: 'BNY', twelvedata: 'BNY' },
   'state-street': { provider: 'market', yahoo: 'STT', twelvedata: 'STT' },
   progressive: { provider: 'market', yahoo: 'PGR', twelvedata: 'PGR' },
   chubb: { provider: 'market', yahoo: 'CB', twelvedata: 'CB' },
-  'marsh-mclennan': { provider: 'market', yahoo: 'MMC', twelvedata: 'MMC' },
+  'marsh-mclennan': { provider: 'market', yahoo: 'MRSH', twelvedata: 'MRSH' },
   aon: { provider: 'market', yahoo: 'AON', twelvedata: 'AON' },
   metlife: { provider: 'market', yahoo: 'MET', twelvedata: 'MET' },
   'prudential-financial': { provider: 'market', yahoo: 'PRU', twelvedata: 'PRU' },
@@ -22567,7 +22569,7 @@ export const weitereAktienQuellen: Record<string, MarketSourceRef> = {
   crh: { provider: 'market', yahoo: 'CRH', twelvedata: 'CRH' },
   ryanair: { provider: 'market', yahoo: 'RYAAY', twelvedata: 'RYAAY' },
   flutter: { provider: 'market', yahoo: 'FLUT', twelvedata: 'FLUT' },
-  'kerry-group': { provider: 'market', yahoo: 'KYGA.IR', twelvedata: 'KYGA' },
+  'kerry-group': { provider: 'market', yahoo: 'KRZ.IR', twelvedata: 'KRZ' },
   edp: { provider: 'market', yahoo: 'EDP.LS', twelvedata: 'EDP' },
   galp: { provider: 'market', yahoo: 'GALP.LS', twelvedata: 'GALP' },
   pko: { provider: 'market', yahoo: 'PKO.WA', twelvedata: 'PKO' },
@@ -22667,7 +22669,7 @@ export const weitereAktienQuellen: Record<string, MarketSourceRef> = {
   },
   'larsen-toubro': { provider: 'market', yahoo: 'LT.NS', twelvedata: 'LT' },
   maruti: { provider: 'market', yahoo: 'MARUTI.NS', twelvedata: 'MARUTI' },
-  'tata-motors': { provider: 'market', yahoo: 'TATAMOTORS.NS', twelvedata: 'TATAMOTORS' },
+  'tata-motors': { provider: 'market', yahoo: 'TMPV.NS', twelvedata: 'TMPV' },
   'asian-paints': {
     provider: 'market',
     yahoo: 'ASIANPAINT.NS',
@@ -22715,7 +22717,7 @@ export const weitereAktienQuellen: Record<string, MarketSourceRef> = {
   'banco-do-brasil': { provider: 'market', yahoo: 'BBAS3.SA', twelvedata: 'BBAS3' },
   b3: { provider: 'market', yahoo: 'B3SA3.SA', twelvedata: 'B3SA3' },
   ambev: { provider: 'market', yahoo: 'ABEV3.SA', twelvedata: 'ABEV3' },
-  jbs: { provider: 'market', yahoo: 'JBSS3.SA', twelvedata: 'JBSS3' },
+  jbs: { provider: 'market', yahoo: 'JBS', twelvedata: 'JBS' },
   weg: { provider: 'market', yahoo: 'WEGE3.SA', twelvedata: 'WEGE3' },
   suzano: { provider: 'market', yahoo: 'SUZB3.SA', twelvedata: 'SUZB3' },
   'america-movil': { provider: 'market', yahoo: 'AMXB.MX', twelvedata: 'AMXB' },

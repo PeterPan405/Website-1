@@ -26,3 +26,12 @@ data/snapshots/kurse-aktuell.json
 # umzuformatieren nimmt ihm genau die Eigenschaft, die es überprüfbar macht.
 public/globus/*.json
 data/snapshots/marktbreite.json
+
+# Die Fundamentaldaten, maschinell geschrieben wie die drei darüber – nur mit
+# JSON.stringify statt eigenem Format. Stringify bricht jedes Array mehrzeilig
+# um, Prettier zieht kurze auf eine Zeile zusammen: Solange kein Array kurz
+# genug war, stimmten beide zufällig überein. Am 1. August 2026 schrieb der
+# Samstagslauf erstmals eines mit drei Einträgen, und ab da war jede
+# Formatprüfung rot, die diesen Stand enthielt – einschließlich aller
+# PR-Bauten, die über die Merge-Vorschau main einbeziehen.
+data/snapshots/fundamentaldaten.json
