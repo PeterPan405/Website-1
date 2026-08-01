@@ -21,6 +21,13 @@ import { getQuartalstermine } from '@/lib/quartalstermine'
  */
 
 export type { Termin, TerminArt } from '@/data/kalender/typen'
+/*
+  Die zeitliche Einordnung liegt in einem eigenen Modul ohne Datenimporte.
+  Sie wird von der Client-Komponente gebraucht, und dieses Modul hier zieht
+  den gesamten Terminbestand nach sich – der gehört nicht in das Bündel für
+  den Browser.
+*/
+export { anzeigemonat, istVorbei, laeuftNoch } from '@/lib/kalender-zeit'
 export { nurAufWunsch, terminArtMeta, terminArtReihenfolge } from '@/data/kalender/typen'
 
 /*

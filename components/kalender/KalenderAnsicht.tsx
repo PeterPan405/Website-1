@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useMemo, useState, useSyncExternalStore } from 'react'
 
 import { cn } from '@/lib/cn'
+import { anzeigemonat, istVorbei as istVorbeiAm, laeuftNoch } from '@/lib/kalender-zeit'
 import type { Termin, TerminArt } from '@/data/kalender/typen'
 
 /**
@@ -153,14 +154,32 @@ export function KalenderAnsicht({
     })
   }
 
-  const istVorbei = (termin: Termin): boolean => {
-    if (!heute) return false
-    // Ein Zeitraum ist erst vorbei, wenn auch sein Ende vorbei ist.
-    return (termin.bis ?? termin.datum) < heute
-  }
+  const istVorbei = (termin: Termin): boolean => istVorbeiAm(termin, heute)
 
   const gefiltert = useMemo(() => {
-    return gruppen
+    /*
+      Erst filtern, dann **neu** nach Monat gruppieren.
+
+      Die Gruppen kommen fertig aus dem Build, und dort gibt es kein „heute“.
+      Ein Zeitraum, der am 30. Juli beginnt und am 5. August endet, liegt darin
+      also unter „Juli“. Am 1. August ist das falsch – er läuft, und er gehört
+      in den laufenden Monat. Weil erst der Browser das Datum kennt, kann diese
+      Zuordnung auch erst hier entstehen.
+    */
+    const umsortiert = new Map<string, Termin[]>()
+    for (const gruppe of gruppen) {
+      for (const termin of gruppe.termine) {
+        const monat = anzeigemonat(termin, heute)
+        const liste = umsortiert.get(monat) ?? []
+        liste.push(termin)
+        umsortiert.set(monat, liste)
+      }
+    }
+    const sortiert = [...umsortiert.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([monat, termine]) => ({ monat, termine }))
+
+    return sortiert
       .map((gruppe) => ({
         monat: gruppe.monat,
         zeilen: zuZeilen(
@@ -211,10 +230,23 @@ export function KalenderAnsicht({
             {/* Auch hier: erst kennzeichnen, dann datieren. Der hervorgehobene
                 Kasten ist die Stelle, an der eine Hochrechnung am ehesten für
                 eine Tatsache gehalten würde. */}
-            {naechster.geschaetzt && (
-              <span className="text-fg-subtle">erwartet um den </span>
+            {laeuftNoch(naechster, heute) && naechster.bis ? (
+              <>
+                {/* Läuft der Zeitraum schon, ist sein Anfangstag keine
+                    Information mehr. Was zählt, ist die Frist. */}
+                <span className="text-fg-subtle">
+                  {naechster.geschaetzt ? 'erwartet noch bis ' : 'noch bis '}
+                </span>
+                {langesDatum(naechster.bis)}
+              </>
+            ) : (
+              <>
+                {naechster.geschaetzt && (
+                  <span className="text-fg-subtle">erwartet um den </span>
+                )}
+                {langesDatum(naechster.datum)}
+              </>
             )}
-            {langesDatum(naechster.datum)}
             {naechster.uhrzeit && ` · ${naechster.uhrzeit}`}
             {naechster.ort && ` · ${naechster.ort}`}
           </p>
@@ -319,10 +351,7 @@ export function KalenderAnsicht({
                       )}
                     >
                       <div className="sm:text-right">
-                        <p className="text-fg text-sm font-semibold tabular-nums">
-                          <span className="text-fg-subtle font-normal">um den </span>
-                          {kurzesDatum(zeile.datum)}
-                        </p>
+                        <Datumsspalte termine={zeile.termine} heute={heute} geschaetzt />
                       </div>
 
                       <div className="min-w-0">
@@ -382,6 +411,7 @@ export function KalenderAnsicht({
                     <ZeileEinzeln
                       key={zeile.schluessel}
                       termin={zeile.termin}
+                      heute={heute}
                       vorbei={istVorbei(zeile.termin)}
                       artMeta={artMeta}
                       themennamen={themennamen}
@@ -398,14 +428,72 @@ export function KalenderAnsicht({
   )
 }
 
+/**
+ * Die linke Spalte einer Terminzeile: wann.
+ *
+ * ## Warum das eine eigene Komponente ist
+ *
+ * Weil es dieselbe Angabe an zwei Stellen gab und nur eine davon vollständig
+ * war. Die Einzelzeile zeigte den Zeitraum („30. Jul. bis 5. Aug.“), die
+ * zusammengefasste Zeile für einen ganzen Meldetag nur den Anfang („um den
+ * 30. Jul.“). Am 1. August stand dort deshalb ein Datum aus dem Vormonat, ohne
+ * jeden Hinweis darauf, dass der Zeitraum noch läuft.
+ *
+ * Ein laufender Zeitraum wird jetzt als solcher benannt. Das ist die ehrlichere
+ * Angabe: Der Anfangstag ist vorbei und interessiert niemanden mehr – was zählt,
+ * ist, bis wann die Meldung noch kommen kann.
+ *
+ * Bei einer Sammelzeile teilen sich alle Einträge denselben Anfangstag, können
+ * aber verschieden weit reichen. Genannt wird deshalb das **späteste** Ende:
+ * Bis dahin steht der Tag offen.
+ */
+function Datumsspalte({
+  termine,
+  heute,
+  geschaetzt,
+}: {
+  termine: readonly Termin[]
+  heute: string | null
+  geschaetzt: boolean
+}) {
+  const beginn = termine[0].datum
+  const enden = termine.map((t) => t.bis).filter((b): b is string => Boolean(b))
+  const ende = enden.length > 0 ? enden.reduce((a, b) => (a > b ? a : b)) : null
+  const laufend = termine.some((t) => laeuftNoch(t, heute))
+
+  if (laufend && ende) {
+    return (
+      <p className="text-fg text-sm font-semibold tabular-nums">
+        <span className="text-fg-subtle font-normal">noch bis </span>
+        {kurzesDatum(ende)}
+      </p>
+    )
+  }
+
+  return (
+    <p className="text-fg text-sm font-semibold tabular-nums">
+      {geschaetzt && <span className="text-fg-subtle font-normal">um den </span>}
+      {kurzesDatum(beginn)}
+      {ende && (
+        <>
+          <span className="text-fg-subtle"> bis </span>
+          {kurzesDatum(ende)}
+        </>
+      )}
+    </p>
+  )
+}
+
 function ZeileEinzeln({
   termin,
+  heute,
   vorbei,
   artMeta,
   themennamen,
   kursnamen,
 }: {
   termin: Termin
+  heute: string | null
   vorbei: boolean
   artMeta: Record<TerminArt, { label: string; erklaerung: string }>
   themennamen: Record<string, string>
@@ -419,18 +507,11 @@ function ZeileEinzeln({
       )}
     >
       <div className="sm:text-right">
-        <p className="text-fg text-sm font-semibold tabular-nums">
-          {termin.geschaetzt && (
-            <span className="text-fg-subtle font-normal">um den </span>
-          )}
-          {kurzesDatum(termin.datum)}
-          {termin.bis && (
-            <>
-              <span className="text-fg-subtle"> bis </span>
-              {kurzesDatum(termin.bis)}
-            </>
-          )}
-        </p>
+        <Datumsspalte
+          termine={[termin]}
+          heute={heute}
+          geschaetzt={Boolean(termin.geschaetzt)}
+        />
         {termin.uhrzeit && (
           <p className="text-fg-subtle mt-0.5 text-xs">{termin.uhrzeit}</p>
         )}
