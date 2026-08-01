@@ -169,6 +169,11 @@ export function formatMonthYear(iso: string): string {
   return dateFormatter({ month: 'short', year: '2-digit' }).format(new Date(iso))
 }
 
+/** `März 2026` – wo der Monat die Überschrift ist, nicht die Achsenmarke. */
+export function formatMonthYearLong(iso: string): string {
+  return dateFormatter({ month: 'long', year: 'numeric' }).format(new Date(iso))
+}
+
 /** Wandelt Minuten in eine Lesedauer-Angabe um. */
 export function formatReadingTime(minutes: number): string {
   return `${minutes} Min. Lesezeit`

@@ -187,6 +187,39 @@ export async function getFurtherNewsByDay(): Promise<Archivtag[]> {
   return [...tage].map(([datum, artikel]) => ({ datum, artikel }))
 }
 
+/** Ein Monat im Archiv mit allen Artikeln, die in ihm erschienen sind. */
+export interface Archivmonat {
+  /** `JJJJ-MM`, zugleich der Pfadteil unter `/news/monat/`. */
+  monat: string
+  artikel: NewsArticle[]
+}
+
+/**
+ * Alle Artikel nach Erscheinungsmonat gruppiert, jüngster Monat zuerst.
+ *
+ * Der Monat kommt wie der Tag aus `publishedAt` (die ersten sieben Zeichen),
+ * nicht über `new Date` – dieselbe Verschiebungsfalle wie bei `tagVon`.
+ *
+ * Anders als das Tages-Archiv nimmt der Monat **alle** Artikel, auch die vom
+ * jüngsten Tag: Eine Monatsseite ist keine Grenze zwischen aktuell und
+ * Archiv, sondern ein Register – der laufende Monat ohne seine neuesten
+ * Artikel wäre schlicht unvollständig.
+ */
+export async function getNewsByMonth(): Promise<Archivmonat[]> {
+  const monate = new Map<string, NewsArticle[]>()
+
+  for (const artikel of sortedArticles()) {
+    const monat = artikel.publishedAt.slice(0, 7)
+    const bisher = monate.get(monat)
+    if (bisher) bisher.push(artikel)
+    else monate.set(monat, [artikel])
+  }
+
+  // `sortedArticles` liefert absteigend; die Einfügereihenfolge der Map
+  // ordnet damit auch die Monate vom jüngsten zum ältesten.
+  return [...monate].map(([monat, artikel]) => ({ monat, artikel }))
+}
+
 export async function getNewsArticle(slug: string): Promise<NewsArticle | null> {
   return newsArticles.find((article) => article.slug === slug) ?? null
 }

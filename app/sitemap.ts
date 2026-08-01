@@ -10,7 +10,7 @@ import { getLernpfadSlugs } from '@/lib/lernpfade'
 import { getEditionDates } from '@/lib/editions'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
 import { getInstrumentSymbols } from '@/lib/markets'
-import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
+import { getLatestNewsDate, getNewsArticles, getNewsByMonth } from '@/lib/news'
 import { getFolgen } from '@/lib/podcast'
 import { rubriken } from '@/lib/rubriken'
 import { absoluteUrl } from '@/lib/site'
@@ -41,6 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     editionDates,
     pfadSlugs,
     rueckblickJahre,
+    archivMonate,
   ] = await Promise.all([
     getNewsArticles(),
     getLatestNewsDate(),
@@ -50,6 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getEditionDates(),
     getLernpfadSlugs(),
     getRueckblickJahre(),
+    getNewsByMonth(),
   ])
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -178,6 +180,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  /*
+    Die Monatsseiten. Der jüngste Monat wächst noch täglich, die
+    abgeschlossenen ändern sich nie wieder – die Frequenz unterscheidet das.
+  */
+  const monatsPages: MetadataRoute.Sitemap = [
+    {
+      url: absoluteUrl('/news/monat'),
+      lastModified: new Date(latestNewsDate),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    },
+    ...archivMonate.map(({ monat }, index) => ({
+      url: absoluteUrl(`/news/monat/${monat}`),
+      changeFrequency: (index === 0 ? 'daily' : 'never') as 'daily' | 'never',
+      priority: 0.5,
+    })),
+  ]
+
   const editionPages: MetadataRoute.Sitemap = editionDates.map((date) => ({
     url: absoluteUrl(`/news/tag/${date}`),
     lastModified: new Date(date),
@@ -304,6 +324,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...stimmungsPages,
     ...newsPages,
     ...rubrikPages,
+    ...monatsPages,
     ...editionPages,
     ...jahrgangsPages,
   ].map((entry) => ({ lastModified: buildDate, ...entry }))
