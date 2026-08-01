@@ -1,0 +1,101 @@
+name: Kontingent-Wächter
+
+# Meldet, wie voll Minuten- und Speicherkontingent der Actions sind – bevor
+# GitHub es per Mail tut.
+#
+# ## Warum es diesen Workflow gibt
+#
+# In der Woche zum 1. August 2026 sind beide Kontingente kommentarlos
+# vollgelaufen, und beide Male kam die Nachricht erst bei hundert Prozent:
+# Der Speicher war nach drei Bauläufen voll (138-MB-Pakete, 0,5 GB Kontingent),
+# und die Minuten hätten bei altem Kurstakt Mitte des Monats geendet – der
+# Abruf wäre einfach stehengeblieben, ohne roten Haken, ohne Fehler. Ein
+# volles Kontingent sieht nicht nach Defekt aus, sondern nach Stillstand.
+#
+# Dieser Lauf stellt die eine Frage, die dann zu spät kommt: **Wie voll sind
+# wir jetzt, und reicht es bis zum Monatsende?**
+#
+# ## Was er tut – und was bewusst nicht
+#
+# Er liest die Abrechnungsdaten des Kontos, rechnet den Stand gegen den
+# anteilig vergangenen Monat und schreibt das Ergebnis ins Protokoll. Liegt
+# der Verbrauch über dem Zeitanteil, endet der Lauf mit Fehler – dann steht
+# im Actions-Reiter ein rotes Kreuz neben „Kontingent-Wächter", und genau das
+# ist die Meldung. Keine Issues, keine Mails: Wer die Actions nutzt, sieht den
+# Reiter ohnehin, und ein Wächter, der Lärm macht, wird abgestellt.
+#
+# Die Billing-Endpunkte verlangen ein Token mit Kontorechten; das eingebaute
+# GITHUB_TOKEN eines Workflows hat die nicht unbedingt. Deshalb prüft der Lauf
+# zuerst, was er lesen darf, und sagt es ehrlich, statt mit einem nackten 403
+# zu enden.
+
+on:
+  schedule:
+    # Montags und donnerstags um 06:40 UTC – zweimal die Woche reicht, um
+    # einen Trend zu sehen, und liegt nach den Morgenläufen des Tages.
+    - cron: '40 6 * * 1,4'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  messen:
+    name: Minuten und Speicher gegen den Monat
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kontingente abfragen und einordnen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KONTO: ${{ github.repository_owner }}
+        run: |
+          set -uo pipefail
+
+          minuten=$(gh api "/users/$KONTO/settings/billing/actions" 2>/dev/null) || minuten=""
+          speicher=$(gh api "/users/$KONTO/settings/billing/shared-storage" 2>/dev/null) || speicher=""
+
+          if [ -z "$minuten" ] && [ -z "$speicher" ]; then
+            echo "Die Abrechnungsdaten sind mit dem eingebauten Token nicht lesbar (403)."
+            echo "Das ist eine Rechtefrage, kein Fehler dieses Laufs: Die Endpunkte"
+            echo "verlangen ein persönliches Token mit dem Geltungsbereich 'user'."
+            echo
+            echo "Abhilfe, wenn der Wächter messen soll: Unter Settings → Developer"
+            echo "settings ein Fein-Token mit 'Plan: read-only' anlegen und als"
+            echo "Secret KONTINGENT_TOKEN hinterlegen – dann hier GH_TOKEN darauf"
+            echo "umstellen. Bis dahin bleibt der Blick von Hand:"
+            echo "https://github.com/settings/billing"
+            exit 0
+          fi
+
+          tag=$(date -u +%-d)
+          tage=$(date -u -d "$(date -u +%Y-%m-01) +1 month -1 day" +%-d)
+          anteil=$((tag * 100 / tage))
+          echo "Monatsfortschritt: Tag $tag von $tage ($anteil %)"
+          echo
+
+          rot=0
+
+          if [ -n "$minuten" ]; then
+            benutzt=$(echo "$minuten" | jq -r '.total_minutes_used')
+            frei=$(echo "$minuten" | jq -r '.included_minutes')
+            prozent=$((benutzt * 100 / frei))
+            echo "Minuten:  $benutzt von $frei ($prozent %)"
+            if [ "$prozent" -gt "$anteil" ]; then
+              echo "  → Verbrauch läuft dem Monat voraus. Bei diesem Tempo ist das"
+              echo "    Kontingent vor dem Zurücksetzen erschöpft, und die Läufe"
+              echo "    bleiben stehen wie am 31. Juli der Speicher."
+              rot=1
+            fi
+          fi
+
+          if [ -n "$speicher" ]; then
+            gb=$(echo "$speicher" | jq -r '.estimated_storage_for_month // .estimated_paid_storage_for_month // 0')
+            echo "Speicher: geschätzt $gb GB gegen 0,5 GB Kontingent"
+            ueber=$(echo "$gb" | jq -r '. > 0.4')
+            if [ "$ueber" = "true" ]; then
+              echo "  → Über 80 Prozent. Prüfen, ob der Artefakte-Aufräumer läuft"
+              echo "    und ob ein Workflow wieder ungewollt Pakete ablegt."
+              rot=1
+            fi
+          fi
+
+          exit $rot
