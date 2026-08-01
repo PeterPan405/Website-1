@@ -62,9 +62,29 @@ const chromium = await ladeChromium()
  *
  * ## Was geprüft wird
  *
- * `scrollWidth` des Dokuments gegen die Fensterbreite. Ist die Seite breiter,
- * werden die schuldigen Elemente genannt – mit Position, Breite und
- * Klassennamen, damit die Meldung zur Ursache führt und nicht nur zum Symptom.
+ * **Zwei** Breiten, weil es zwei verschiedene Fehler sind:
+ *
+ * 1. `body.scrollWidth` – die Seite lässt sich seitlich schieben.
+ * 2. `documentElement.scrollWidth` – Safari auf dem iPhone zoomt heraus.
+ *
+ * Der zweite Fall stand hier bis August 2026 als ausdrückliche Ausnahme: Der
+ * Wurzelknoten meldete auf `/maerkte/vergleich` 624 Pixel, `window.scrollTo`
+ * bewegte die Seite aber um keinen Pixel, und daraus wurde geschlossen, der
+ * Wert sei ein Chromium-Artefakt. Der Schluss war falsch. Auf dem iPhone kam
+ * ein Foto: die ganze Seite auf 62 Prozent herausgezoomt, rechts ein Drittel
+ * leer. 375/608 = 0,617 – genau das Verhältnis aus der gemeldeten Breite.
+ *
+ * Safari nimmt für den Anfangsmaßstab den Wurzelknoten, nicht den Body. Was
+ * sich am Rechner nicht schieben lässt, kann auf dem Telefon trotzdem die
+ * ganze Seite verkleinern, und dann ist jede Schrift zu klein, nicht nur die
+ * in der Tabelle.
+ *
+ * Die Ursache dort war kein zu breiter Kasten, sondern ein aus dem Fluss
+ * genommenes Kind: `sr-only` ist `position: absolute`. Ohne positionierten
+ * Vorfahren bezieht es sich auf den Wurzelblock – es liegt dann gar nicht im
+ * Scrollkasten, und der schneidet es folglich auch nicht ab. Abhilfe ist ein
+ * `relative` am Kasten. Deshalb nennt die Meldung unten zu jedem Schuldigen
+ * seine `position` und ob sein Scrollkasten positioniert ist.
  *
  * Aufruf: `node scripts/breite-pruefen.mjs [URL-Basis]`
  * Voreinstellung ist ein lokaler Server auf Port 4173 über `out/`.
@@ -131,6 +151,8 @@ const browser = await chromium.launch({
 
 let beanstandungen = 0
 let geprueft = 0
+let schiebbare = 0
+let herausgezoomte = 0
 
 for (const BREITE of BREITEN) {
   const seite = await browser.newPage({ viewport: { width: BREITE, height: HOEHE } })
@@ -187,21 +209,61 @@ for (const BREITE of BREITEN) {
             rechts: Math.round(r.right),
           })
         }
+        /*
+          Die Schuldigen für den zweiten Fall werden getrennt gesucht.
+
+          Oben werden Elemente in einem Scrollkasten übersprungen – zu Recht,
+          denn für das seitliche Schieben zählen sie nicht. Für den
+          Anfangsmaßstab von Safari zählen sie sehr wohl, sobald sie aus dem
+          Fluss genommen sind und den Kasten deshalb gar nicht als Bezugsrahmen
+          haben. Also hier: die am weitesten rechts liegenden Kästen, ohne
+          Rücksicht auf Beschnitt, dafür mit `position` und mit der Angabe, ob
+          ihr Scrollkasten positioniert ist.
+        */
+        const weit = []
+        for (const el of document.querySelectorAll('body *')) {
+          const r = el.getBoundingClientRect()
+          if (r.right <= fenster + toleranz) continue
+          let kasten = null
+          for (let v = el.parentElement; v && v !== document.body; v = v.parentElement) {
+            const stil = getComputedStyle(v)
+            if (['auto', 'scroll', 'hidden', 'clip'].includes(stil.overflowX)) {
+              kasten = stil.position
+              break
+            }
+          }
+          weit.push({
+            tag: el.tagName.toLowerCase(),
+            klasse: (el.className?.toString?.() ?? '').slice(0, 60),
+            text: (el.textContent ?? '').replace(/\s+/g, ' ').trim().slice(0, 40),
+            rechts: Math.round(r.right),
+            position: getComputedStyle(el).position,
+            kasten: kasten ?? '(keiner)',
+          })
+        }
+        /*
+          Gleich weit rechts stehen viele – die Tabelle, ihr Kopf, jede Zelle
+          darin. Genannt gehört der, der dort *nicht hingehört*: das aus dem
+          Fluss genommene Kind. Also erst nach rechter Kante, und bei gleicher
+          Kante das nicht-statische zuerst. Sonst führt die Meldung zur
+          Tabelle, und die ist unschuldig.
+        */
+        weit.sort(
+          (a, b) =>
+            b.rechts - a.rechts ||
+            (a.position === 'static' ? 1 : 0) - (b.position === 'static' ? 1 : 0)
+        )
+
         return {
           fenster,
           /*
-          `body.scrollWidth`, nicht `documentElement.scrollWidth`.
-
-          Der Wurzelknoten zählt in Chromium Überstand mit, den ein Scroller
-          dazwischen längst abschneidet: Auf /maerkte/vergleich meldete er 624
-          Pixel für eine Tabelle in einem `overflow-x-auto`-Kasten – und
-          `window.scrollTo(500, 0)` bewegte die Seite trotzdem um keinen Pixel.
-          Der Body meldet dort 375 und hat recht.
-
-          Gemessen wird, was der Nutzer schieben kann. Alles andere erzeugt
-          Fehlalarme, und eine Prüfung mit Fehlalarmen wird abgeschaltet.
+          Beide Werte, und sie messen Verschiedenes: `body.scrollWidth` sagt,
+          ob sich die Seite schieben lässt; `documentElement.scrollWidth` sagt,
+          mit welchem Maßstab Safari sie überhaupt erst anzeigt.
         */
           scrollBreite: document.body.scrollWidth,
+          wurzelBreite: document.documentElement.scrollWidth,
+          weit: weit.slice(0, 5),
           /*
           Ohne `el`: Ein DOM-Knoten überlebt den Weg aus dem Browser heraus
           nicht. Gebraucht wurde er nur für `contains()` weiter oben.
@@ -222,24 +284,61 @@ for (const BREITE of BREITEN) {
     }
 
     const ueberstand = befund.scrollBreite - befund.fenster
-    if (ueberstand <= TOLERANZ) {
+    const wurzelUeberstand = befund.wurzelBreite - befund.fenster
+
+    if (ueberstand <= TOLERANZ && wurzelUeberstand <= TOLERANZ) {
       console.log(`OK   ${pfad}`)
       continue
     }
 
     beanstandungen += 1
-    console.error(
-      `\nFEHL ${pfad} – ${befund.scrollBreite} statt ${befund.fenster} Pixel breit ` +
-        `(${ueberstand} zu viel)\n     ${was}`
-    )
-    for (const s of befund.schuldige) {
-      console.error(`     ${s.tag} [${s.links}…${s.rechts}]  ${s.klasse}`)
-      console.error(`         „${s.text}"`)
+
+    if (ueberstand > TOLERANZ) {
+      schiebbare += 1
+      console.error(
+        `\nFEHL ${pfad} – ${befund.scrollBreite} statt ${befund.fenster} Pixel breit ` +
+          `(${ueberstand} zu viel), die Seite lässt sich schieben\n     ${was}`
+      )
+      for (const s of befund.schuldige) {
+        console.error(`     ${s.tag} [${s.links}…${s.rechts}]  ${s.klasse}`)
+        console.error(`         „${s.text}"`)
+      }
+      console.error(
+        '     Häufigste Ursache: ein Rasterfeld ohne `min-w-0` mit `truncate` darin,\n' +
+          '     oder eine Kopfzeile, die für das Fenster zu viele Menüpunkte zeigt.'
+      )
     }
-    console.error(
-      '     Häufigste Ursache: ein Rasterfeld ohne `min-w-0` mit `truncate` darin,\n' +
-        '     oder eine Kopfzeile, die für das Fenster zu viele Menüpunkte zeigt.'
-    )
+
+    if (wurzelUeberstand > TOLERANZ) {
+      herausgezoomte += 1
+      /*
+        Getrennte Meldung, weil es eine andere Ursache und eine andere Abhilfe
+        ist. „Lässt sich schieben" führt zu `min-w-0`; „zoomt heraus" führt
+        fast immer zu einem Scrollkasten ohne `relative`.
+      */
+      const maszstab = (befund.fenster / befund.wurzelBreite).toLocaleString('de-DE', {
+        style: 'percent',
+        maximumFractionDigits: 0,
+      })
+      console.error(
+        `\nFEHL ${pfad} – Wurzelknoten ${befund.wurzelBreite} statt ${befund.fenster} ` +
+          `Pixel breit\n     Safari zeigt die Seite dann auf ${maszstab} verkleinert.` +
+          `\n     ${was}`
+      )
+      for (const s of befund.weit) {
+        console.error(
+          `     ${s.tag} bis x=${s.rechts}  position: ${s.position}  ` +
+            `Scrollkasten: ${s.kasten}`
+        )
+        console.error(`         ${s.klasse}`)
+        console.error(`         „${s.text}"`)
+      }
+      console.error(
+        '     Häufigste Ursache: ein `overflow-x-auto`-Kasten ohne `relative`.\n' +
+          '     Was darin `position: absolute` trägt – jedes `sr-only` –, hängt sonst\n' +
+          '     am Wurzelblock statt im Kasten und wird nicht abgeschnitten.'
+      )
+    }
   }
 
   await seite.close()
@@ -252,6 +351,12 @@ console.log(
     `(${SEITEN.length} Seiten × ${BREITEN.length} Breiten).`
 )
 if (beanstandungen > 0) {
-  console.error('Die Seite lässt sich seitlich schieben. Das gehört behoben.')
+  if (schiebbare > 0) {
+    console.error(`${schiebbare} × lässt sich die Seite seitlich schieben.`)
+  }
+  if (herausgezoomte > 0) {
+    console.error(`${herausgezoomte} × zoomt Safari die Seite auf dem Telefon heraus.`)
+  }
+  console.error('Das gehört behoben.')
   process.exit(1)
 }

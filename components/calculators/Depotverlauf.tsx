@@ -258,7 +258,7 @@ export function Depotverlauf({
         </figcaption>
       </figure>
 
-      <div className="mt-8 overflow-x-auto">
+      <div className="relative mt-8 overflow-x-auto">
         <table className="w-full min-w-[26rem] text-sm">
           <caption className="text-fg-subtle py-2 text-left">
             Wie sich die Gewichte ohne Umschichten verschoben haben

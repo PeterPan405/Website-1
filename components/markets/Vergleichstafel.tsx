@@ -162,7 +162,29 @@ export function Vergleichstafel({
             />
           )}
 
-          <div className="mt-8 overflow-x-auto">
+          {/*
+            `relative` ist hier kein Layoutwunsch, sondern die Reparatur eines
+            Fehlers, den man am Schreibtisch nicht sieht.
+
+            In den Zellen steht `<span className="sr-only"> – liegt hier vorn</span>`,
+            und `sr-only` heißt `position: absolute`. Ein absolut positioniertes
+            Element sucht sich den nächsten **positionierten** Vorfahren als
+            Bezugsrahmen. Gab es keinen, war das der Wurzelblock – die Spanne hing
+            also nicht im Scrollkasten, sondern an der Seite, bei x = 623. Der
+            Kasten mit `overflow-x-auto` schneidet sie dann auch nicht ab: Was
+            außerhalb seines Bezugsrahmens liegt, beschneidet er nicht.
+
+            Die Folge sah niemand am Rechner: Die Seite ließ sich nicht schieben,
+            `body.scrollWidth` blieb bei 375 – aber `documentElement.scrollWidth`
+            stand bei 624. Safari auf dem iPhone nimmt genau diesen Wert für den
+            Anfangsmaßstab und zoomte die **ganze** Seite auf 375/608 = 62 %
+            heraus. Rechts blieb ein Drittel leer, weil dort nur die
+            abgeschnittene Tabelle lag.
+
+            Mit `relative` ist der Kasten der Bezugsrahmen, die Spannen liegen
+            innerhalb, und die Tabelle bleibt seitlich schiebbar wie vorher.
+          */}
+          <div className="relative mt-8 overflow-x-auto">
             <table className="w-full min-w-[38rem] text-sm">
               <caption className="sr-only">
                 {links.name} und {rechts.name} im Vergleich

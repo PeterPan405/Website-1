@@ -101,6 +101,628 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'juli-tag-gruen-monat-rot',
+    title: 'Der Freitag war grün, der Juli war rot – beim selben Index',
+    teaser:
+      'Der S&P 500 legt am Freitag 0,7 Prozent zu und schließt den Juli 0,1 Prozent im Minus. Dass beides zugleich stimmt, ist die Lektion des Monatswechsels.',
+    category: 'Märkte',
+    publishedAt: '2026-08-01T09:05:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Indizes', 'Monatsbilanz', 'Bezugszeitraum'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt', 'risiko-und-rendite'],
+    relatedSymbols: ['sp500', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'CNBC: „S&P 500 closes higher Friday as Amazon surges; Dow posts fourth straight winning month“ (Live-Blog, 31. Juli 2026)',
+        url: 'https://www.cnbc.com/2026/07/30/stock-market-today-live-updates.html',
+      },
+      {
+        label:
+          'The Associated Press / The Epoch Times: „How Major US Stock Indexes Fared July 31“ (31. Juli 2026)',
+        url: 'https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-july-31-post-6070080',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am letzten Handelstag des Juli schlossen die drei großen US-Indizes im Plus: der **S&P 500 mit 0,7 Prozent auf 7.489,72 Punkte**, der Dow Jones Industrial mit 0,53 Prozent oder 276,97 Punkten auf 52.485,03 und der **Nasdaq Composite mit 1 Prozent auf 25.373,85**. Amazon sprang nach Quartalszahlen um 15 Prozent, Apple gab über 7 Prozent nach.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und trotzdem war der Monat kein guter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den Juli insgesamt steht beim S&P 500 ein **Minus von 0,1 Prozent**, beim Nasdaq Composite ein **Minus von 3,2 Prozent**. Nur der Dow schloss den Monat mit **plus 0,3 Prozent** – sein vierter Plusmonat in Folge.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist kein Widerspruch und keine Ungenauigkeit. Es sind schlicht zwei verschiedene Fragen: Was hat sich seit gestern getan, und was seit dem 30. Juni? Ein starker Schlusstag kann einen schwachen Monat nicht heilen, er kann ihn nur abmildern.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Dieselben Indizes, vier Zeiträume',
+        items: [
+          'Freitag: S&P 500 plus 0,7 Prozent, Nasdaq plus 1 Prozent, Dow plus 0,53 Prozent.',
+          'Woche: Dow und S&P 500 je rund plus 1 Prozent, Nasdaq plus 1,6 Prozent.',
+          'Juli: S&P 500 minus 0,1 Prozent, Nasdaq minus 3,2 Prozent, Dow plus 0,3 Prozent.',
+          'Seit Jahresbeginn: S&P 500 plus 9,4 Prozent, Dow plus 9,2 Prozent, Nasdaq plus 9,2 Prozent.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das mehr ist als eine Formalie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Schlagzeile nennt fast immer nur einen dieser Zeiträume, und meistens den, der am meisten hergibt. „Wall Street beendet den Monat mit Gewinnen“ ist zum Freitag richtig und zum Juli falsch – je nachdem, worauf sich das Wort „Monat“ bezieht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer eine Zahl liest, prüft deshalb zuerst den **Anfangspunkt**. Ohne ihn ist eine Prozentangabe unvollständig: Sie beschreibt eine Strecke, und eine Strecke braucht zwei Enden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die eigene Anlage misst man an dem Zeitraum, in dem man sie hält – nicht an dem, der gerade in der Überschrift steht. Wer seit Januar dabei ist, sieht beim S&P 500 rund neun Prozent Plus und hat den Juli kaum bemerkt.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-plus-nasdaq-minus-im-selben-monat',
+    title: 'Dow plus 0,3, Nasdaq minus 3,2 – im selben Monat',
+    teaser:
+      'Ein Monat, ein Markt, zwei Vorzeichen: Der Dow gewinnt im Juli 0,3 Prozent, der Nasdaq Composite verliert 3,2 Prozent. Der Unterschied liegt nicht an der Börse.',
+    category: 'Märkte',
+    publishedAt: '2026-08-01T09:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Indizes', 'Gewichtung', 'Nebenwerte'],
+    relatedTopics: ['boerse', 'etf', 'portfolio-aufbau'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100', 'russell-2000'],
+    sources: [
+      {
+        label:
+          'CNBC: „S&P 500 closes higher Friday as Amazon surges; Dow posts fourth straight winning month“ (Live-Blog, 31. Juli 2026)',
+        url: 'https://www.cnbc.com/2026/07/30/stock-market-today-live-updates.html',
+      },
+      {
+        label:
+          'The Associated Press / The Epoch Times: „How Major US Stock Indexes Fared July 31“ (31. Juli 2026)',
+        url: 'https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-july-31-post-6070080',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Juli 2026 gewann der Dow Jones Industrial **0,3 Prozent**, der Nasdaq Composite verlor **3,2 Prozent**, der S&P 500 verlor **0,1 Prozent**. Der Nasdaq-100 fiel im selben Monat um **6,95 Prozent** – der stärkste Monatsverlust seit März 2025, als es 7,69 Prozent waren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Alle vier messen dieselbe Börse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Unterschied entsteht nicht am Markt, sondern in der Rechenvorschrift. Ein Index ist kein Thermometer, das eine vorhandene Temperatur abliest, sondern eine **Auswahl plus eine Gewichtung** – und beide sind gemacht, nicht gefunden.',
+      },
+      {
+        type: 'table',
+        head: ['Index', 'Was drin ist', 'Juli 2026'],
+        rows: [
+          [
+            'Dow Jones Industrial',
+            '30 Werte, gewichtet nach Kurshöhe',
+            'plus 0,3 Prozent',
+          ],
+          ['S&P 500', '500 Werte, gewichtet nach Marktwert', 'minus 0,1 Prozent'],
+          ['Nasdaq Composite', 'alle Nasdaq-Notierungen', 'minus 3,2 Prozent'],
+          [
+            'Nasdaq-100',
+            '100 grösste Nasdaq-Werte ohne Finanzsektor',
+            'minus 6,95 Prozent',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow enthält dreißig Werte und gewichtet sie nach dem **Kurs** der einzelnen Aktie – eine Eigenheit aus dem Jahr 1896, als man Kurse noch von Hand addierte. Der Nasdaq Composite enthält alles, was an der Nasdaq notiert, und ist damit weit stärker von Technologie geprägt. Wenn Halbleiterwerte einen schlechten Monat haben, trifft es diese beiden Indizes völlig verschieden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und die kleinen Werte gehen noch einmal eigene Wege',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitag selbst fiel der **Russell 2000**, der Index der kleineren US-Unternehmen, um 14,76 Punkte oder 0,5 Prozent auf 2.931,34 – während die drei großen Indizes stiegen. Seit Jahresbeginn steht er mit **18,1 Prozent** im Plus, gegenüber 9,4 Prozent beim S&P 500.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Was das für die eigene Auswahl heißt',
+        items: [
+          'Wer „den US-Markt“ kaufen will, kauft immer eine bestimmte Auswahl davon.',
+          'Zwei ETFs auf „USA“ können in einem Monat mehrere Prozentpunkte auseinanderliegen, ohne dass einer davon schlecht gemacht wäre.',
+          'Der Blick in die Indexregel – Anzahl, Gewichtung, Ausschlüsse – erklärt fast jede Abweichung, die zunächst rätselhaft aussieht.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Index ist eine Antwort auf eine Frage, die jemand vorher gestellt hat. Wer die Frage nicht kennt, kann die Antwort nicht einordnen – und vergleicht sonst Zahlen, die nie dasselbe gemeint haben.',
+      },
+    ],
+  },
+  {
+    slug: 'halbleiter-schwaechster-monat-microsoft-staerkster',
+    title: 'Chips: schwächster Monat seit 2008, Microsoft: stärkster seit 2007',
+    metaTitle: 'Halbleiter minus 16,9 Prozent, Microsoft plus 20 Prozent',
+    teaser:
+      'Der Halbleiter-ETF SMH verliert im Juli 16,9 Prozent, Microsoft gewinnt über 20 Prozent. Beides in derselben Branche, im selben Monat, an derselben Börse.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-01T09:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Halbleiter', 'Streuung', 'Einzelwerte'],
+    relatedTopics: ['aktie', 'etf', 'portfolio-aufbau', 'risiko-und-rendite'],
+    relatedSymbols: ['microsoft', 'nvidia', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC: „S&P 500 closes higher Friday as Amazon surges; Dow posts fourth straight winning month“ (Live-Blog, 31. Juli 2026)',
+        url: 'https://www.cnbc.com/2026/07/30/stock-market-today-live-updates.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Zahlen aus demselben Juli, beide von CNBC am Freitag gemeldet: Der Halbleiter-ETF **VanEck Semiconductor (SMH) lag im Monat 16,9 Prozent im Minus** – der schwächste Monat seit 2008. Und **Microsoft steuerte auf ein Plus von über 20 Prozent zu** – den stärksten Monat seit Oktober 2007, also seit fast neunzehn Jahren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Beide gehören zur selben Erzählung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Halbleiter und Microsoft werden seit Jahren unter demselben Stichwort gehandelt: künstliche Intelligenz. Wer im Juli auf „KI“ gesetzt hat, konnte damit ein Sechstel verlieren oder ein Fünftel gewinnen. Das Thema war dasselbe, das Ergebnis nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei Microsoft lag der Grund in einem Bericht: Nach den Quartalszahlen vom Donnerstag legte die Aktie an einem Tag rund 15 Prozent zu, am Freitag weitere 2,5 Prozent. Vor dem Bericht, am Mittwoch, stand sie im Monat nur gut 1,5 Prozent im Plus. **Der ganze Monatsgewinn entstand in zwei Handelstagen.**',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das über Streuung sagt – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der übliche Schluss lautet: also breit streuen. Der ist richtig, aber er ist nur die halbe Lehre. Die andere Hälfte ist, dass **eine Branche keine Einheit ist**. „Halbleiter“ und „Software“ hängen an denselben Investitionen und reagieren trotzdem gegensätzlich, weil der eine Teil die Ausgaben trägt und der andere sie einnimmt.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Woran man sich hier leicht täuscht',
+        items: [
+          'Ein Branchen-ETF ist keine Wette auf ein Thema, sondern auf eine bestimmte Stelle der Wertschöpfungskette.',
+          'Ein Monatsgewinn, der an zwei Tagen entsteht, ist mit Markttiming nicht einzufangen – wer die zwei Tage verpasst, hat den Monat verpasst.',
+          'Rekordvergleiche wie „schwächster Monat seit 2008“ sagen etwas über die Seltenheit aus, nichts über die Richtung danach.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer zwei Positionen hält, die derselben Geschichte folgen, hält nicht zwangsläufig zweimal dasselbe – und wer eine Branche kauft, sollte wissen, welchen Teil von ihr er kauft.',
+      },
+    ],
+  },
+  {
+    slug: 'brent-88-oder-90-dollar-zwei-quellen',
+    title: 'Brent bei 88,14 oder 90,12 Dollar? Beide Zahlen stimmen',
+    teaser:
+      'Zum selben Tag nennen zwei Quellen 88,14 und 90,12 Dollar je Barrel Brent. Keine irrt sich – sie messen zu anderen Zeiten und für andere Kontrakte.',
+    category: 'Märkte',
+    publishedAt: '2026-08-01T09:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Terminkontrakt', 'Quellenkritik'],
+    relatedTopics: ['rohstoffe', 'derivat', 'boerse'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'APA/dpa-AFX über Energynewsmagazine: „Ölpreise geben weiter nach“ (31. Juli 2026)',
+        url: 'https://www.energynewsmagazine.at/2026/07/31/oelpreise-geben-weiter-nach/',
+      },
+      {
+        label:
+          'CNBC: „S&P 500 closes higher Friday as Amazon surges; Dow posts fourth straight winning month“ (Live-Blog, 31. Juli 2026)',
+        url: 'https://www.cnbc.com/2026/07/30/stock-market-today-live-updates.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zum Freitag, dem 31. Juli 2026, stehen zwei Angaben nebeneinander. Die Nachrichtenagentur APA/dpa-AFX meldete: Ein Barrel Brent **zur Lieferung im September kostete 88,14 US-Dollar**, ein Prozent weniger als am Vortag. CNBC meldete zum selben Tag: **Brent legte 1,2 Prozent auf 90,12 Dollar zu**, WTI stieg 1,3 Prozent auf einen Abrechnungspreis von 84,67 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht nur die Zahlen unterscheiden sich, sondern auch das Vorzeichen. Trotzdem ist keine der beiden Meldungen falsch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Ölpreis braucht drei Angaben, nicht eine',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Was eine Preisangabe vollständig macht',
+        items: [
+          'Welche Sorte: Brent aus der Nordsee oder WTI aus den USA – zwischen beiden liegen an diesem Tag über fünf Dollar.',
+          'Welcher Liefermonat: Der Handel läuft in Terminkontrakten. Der September-Kontrakt ist ein anderes Papier als der Oktober-Kontrakt.',
+          'Welcher Zeitpunkt: Eine europäische Redaktion schreibt am späten Nachmittag, eine amerikanische nach dem Handelsschluss in New York. Dazwischen liegen Stunden.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Öl wird nicht als Fass gehandelt, sondern als **Terminkontrakt** – ein Vertrag über eine Lieferung zu einem festen Monat. Es gibt deshalb zu jedem Zeitpunkt viele Ölpreise gleichzeitig, und sie können sich unterschiedlich bewegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das kein Randthema ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer zwei Meldungen nebeneinanderlegt und einen Widerspruch sieht, zieht schnell den Schluss, eine Quelle sei unzuverlässig. Meistens ist die Wahrheit langweiliger: Die eine misst um 17 Uhr mitteleuropäischer Zeit, die andere um 22 Uhr, und dazwischen ist etwas passiert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei Rohstoffpreisen gehört die Uhrzeit zur Zahl. Wer sie weglässt, hat nicht gekürzt, sondern die Angabe unbrauchbar gemacht – und wer zwei Quellen vergleichen will, vergleicht zuerst die Zeitpunkte.',
+      },
+    ],
+  },
+  {
+    slug: 'oel-im-juli-von-70-ueber-100-auf-88',
+    title: 'Öl im Juli: von 70 über 100 und zurück auf 88 Dollar',
+    teaser:
+      'Brent startete den Juli bei rund 70 Dollar, stand zeitweise über 100 und schloss bei 88,14. Die Monatsbilanz verschweigt genau das, was dazwischen lag.',
+    category: 'Märkte',
+    publishedAt: '2026-08-01T09:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Volatilität', 'Geopolitik'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite', 'groesste-crashes'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'APA/dpa-AFX über Energynewsmagazine: „Ölpreise geben weiter nach“ (31. Juli 2026)',
+        url: 'https://www.energynewsmagazine.at/2026/07/31/oelpreise-geben-weiter-nach/',
+      },
+      {
+        label:
+          'RohstoffWelt nach Reuters: „Ölpreise geben nach, während Tanker weiterhin Konfliktzonen im Nahen Osten befahren“ (30. Juli 2026)',
+        url: 'https://www.rohstoff-welt.de/news/742477--Oelpreise-geben-nach-waehrend-Tanker-weiterhin-Konfliktzonen-im-Nahen-Osten-befahren.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Juli 2026 war für den Ölmarkt kein ruhiger Monat. Nach Angaben von APA/dpa-AFX **startete Brent bei etwa 70 Dollar je Barrel**, stieg zeitweise **über die Marke von 100 Dollar** und stand am Monatsende bei **88,14 Dollar** für den September-Kontrakt – ein Prozent unter dem Vortag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Monatsbilanz nicht zeigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Von 70 auf 88 sind rund 26 Prozent. Diese eine Zahl beschreibt den Monat korrekt und beschreibt ihn zugleich falsch: Zwischen Anfang und Ende lagen ein Anstieg um über 40 Prozent und ein Rückgang um mehr als zehn. Wer im Juli zu- oder verkauft hat, hat den Unterschied erlebt; die Monatsbilanz kennt ihn nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Fachausdruck dafür ist **Spannweite** – der Abstand zwischen Höchst- und Tiefstkurs eines Zeitraums. Sie steht selten in der Schlagzeile, weil sie keine Richtung hat, aber sie sagt mehr über das Risiko als jede Anfangs-Ende-Rechnung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Grund lag nicht in Angebot und Nachfrage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Getrieben wurde der Markt von der Lage im Nahen Osten. Nach Reuters-Angaben passierten am Dienstag **39 Frachtschiffe die Meerenge Bab al-Mandab** – der höchste Wert seit dem 19. Juli; die Straße von Hormus blieb weitgehend blockiert. Rohstoffexperten der Commerzbank verwiesen auf Bloomberg-Daten, wonach in dieser Woche täglich rund **6,5 Millionen Barrel** über die drei wichtigen Handelsrouten flossen.',
+      },
+      {
+        type: 'quote',
+        text: 'Das ist jedoch keine Entwarnung. Die regionale Ausweitung des Nahost-Konflikts belastet den globalen Ölmarkt zusätzlich.',
+        source: 'Rohstoffanalyse der Commerzbank, zitiert nach APA/dpa-AFX',
+      },
+      {
+        type: 'paragraph',
+        text: 'Preisbewegungen dieser Art entstehen nicht daraus, dass mehr oder weniger Öl gefördert wird, sondern daraus, dass sich die **Einschätzung des Risikos** ändert, es könnte künftig weniger fließen. Das erklärt, warum ein Preis an einem Tag sieben Prozent springen und wenige Tage später ebenso schnell zurückkommen kann.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Rohstoffe im Depot hat, hält keine Ware, sondern eine Erwartung über eine Ware. Und Erwartungen ändern sich schneller als Förderquoten.',
+      },
+    ],
+  },
+  {
+    slug: 'us-anleihen-fuenf-komma-zwei-fuenf-prozent',
+    title: 'US-Anleihen bei 5,25 Prozent – so viel wie zuletzt 2007',
+    teaser:
+      'Die Rendite dreißigjähriger US-Anleihen erreicht 5,25 Prozent – Höchststand seit 2007. Warum das die Aktienkurse angeht und was mit den Anleihekursen passiert.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-01T09:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Anleihen', 'Rendite', 'Bewertung'],
+    relatedTopics: [
+      'staatsanleihe',
+      'schuldverschreibung',
+      'zinseszins',
+      'risiko-und-rendite',
+    ],
+    relatedSymbols: ['sp500', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'CNBC: „S&P 500 closes higher Friday as Amazon surges; Dow posts fourth straight winning month“ (Live-Blog, 31. Juli 2026)',
+        url: 'https://www.cnbc.com/2026/07/30/stock-market-today-live-updates.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Rendite **dreißigjähriger US-Staatsanleihen stieg in dieser Woche auf den höchsten Stand seit 2007** und lag am Freitag rund vier Basispunkte höher bei **5,25 Prozent**. Die zehnjährige Anleihe überschritt **4,7 Prozent** – der höchste Stand seit Januar 2025.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rendite hoch heißt Kurs runter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Anleihe zahlt einen festen Betrag. Steigt die Marktrendite, kann dieser feste Betrag nur dadurch attraktiver werden, dass man weniger für das Papier bezahlt. **Kurs und Rendite bewegen sich deshalb immer gegeneinander** – ein Anleiheinhaber, der bei niedrigeren Renditen gekauft hat, sieht in diesen Wochen Verluste, obwohl der Zinsschein unverändert gezahlt wird.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Zwei Wege, dieselbe Anleihe zu betrachten',
+        items: [
+          'Wer bis zur Fälligkeit hält, bekommt genau das, was beim Kauf feststand – Kursbewegungen dazwischen ändern daran nichts.',
+          'Wer vorher verkaufen muss oder einen Anleihe-ETF hält, der laufend umschichtet, realisiert die Kursänderung sehr wohl.',
+          'Je länger die Restlaufzeit, desto stärker schlägt eine Renditeänderung auf den Kurs durch. Deshalb bewegen sich dreißigjährige Papiere heftiger als zweijährige.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und warum Aktienanleger darauf schauen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine steigende Anleiherendite ist der Zins, den man ohne Unternehmensrisiko bekommt. Je höher er ist, desto mehr muss eine Aktie bieten, um noch zu überzeugen – und desto weniger ist ein Gewinn wert, der erst in vielen Jahren anfällt. Das trifft besonders Unternehmen, deren Bewertung vor allem auf künftigem Wachstum beruht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'CNBC zitiert dazu Terry Sandven von US Bancorp Asset Management mit der Einschätzung, dass eine Bewegung der zehnjährigen Rendite in Richtung fünf Prozent Bewertungen unter Druck setzen dürfte. Als Ursache für den Renditeanstieg nennt der Bericht Zweifel der Anleger an der Entschlossenheit der US-Notenbank im Kampf gegen die Inflation; deren Vorsitzender Kevin Warsh sagte in dieser Woche, man habe keinen Zauberstab.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Anleihen sind kein Nebenschauplatz der Aktienmärkte, sondern deren Maßstab. Wer wissen will, warum Kurse fallen, obwohl die Gewinne stimmen, findet die Antwort oft nicht im Unternehmen, sondern in der Zinskurve.',
+      },
+    ],
+  },
+  {
+    slug: 'bank-of-japan-haelt-yen-steigt-trotzdem',
+    title: 'Bank of Japan hält bei 1,0 Prozent – der Yen steigt trotzdem',
+    teaser:
+      'Die Bank of Japan lässt den Leitzins bei 1,0 Prozent, dem höchsten Stand seit 31 Jahren. Der Yen steigt trotzdem – dahinter steckt vermutlich der Staat.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-01T09:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Japan', 'Devisen', 'Intervention'],
+    relatedTopics: ['waehrungen-wechselkurse', 'notenbanken-geldpolitik', 'geldsystem'],
+    relatedSymbols: ['eur-jpy', 'nikkei-225'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista: „Überblick: KONJUNKTUR vom 31.07.2026 – 17.15 Uhr“ (31. Juli 2026)',
+        url: 'https://www.onvista.de/news/2026/07-31-dpa-afx-ueberblick-konjunktur-vom-31-07-2026-17-15-uhr-0-10-26538472',
+      },
+      {
+        label:
+          'CNBC: „S&P 500 closes higher Friday as Amazon surges; Dow posts fourth straight winning month“ (Live-Blog, 31. Juli 2026)',
+        url: 'https://www.cnbc.com/2026/07/30/stock-market-today-live-updates.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die japanische Zentralbank hat ihren Leitzins am Freitag **unverändert bei 1,0 Prozent** belassen – dem **höchsten Stand seit 31 Jahren**. Ökonomen hatten das erwartet. Zugleich lieferte die Notenbank laut dpa-AFX Hinweise auf eine weitere Erhöhung im Kampf gegen die erhöhte Inflation.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bewegt hat sich trotzdem etwas – beim Wechselkurs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dollar notierte am Freitag nahe dem Tagestief bei **158,15 Yen**; das Tief vom Donnerstag bei 157,96 war der niedrigste Stand seit dem 14. Mai. **In der Woche verlor der Dollar 3,3 Prozent gegenüber dem Yen** – der stärkste Wochenrückgang seit Juli 2024.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Grund dafür ist mutmaßlich nicht die Zinsentscheidung, sondern ein direkter Eingriff. Nach Einschätzung des UBS-Ökonomen Paul Donovan hat das japanische Finanzministerium in dieser Woche am Devisenmarkt interveniert, um den Yen zu stützen – wobei es weniger um ein bestimmtes Niveau gegangen sein dürfte als um das Tempo der Abwertung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Devisenintervention ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Intervention ist ein Kauf oder Verkauf der eigenen Währung durch den Staat mit dem Ziel, den Kurs zu beeinflussen. Sie wird in Japan üblicherweise **nicht sofort bestätigt** – die Ungewissheit ist Teil der Wirkung, weil sie den Überraschungseffekt erhält.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum Zins und Wechselkurs zusammenhängen',
+        items: [
+          'Kapital fließt tendenziell dorthin, wo es höher verzinst wird. Ein niedriger Zins in Japan gegenüber hohen Zinsen in den USA schwächt den Yen.',
+          'Deshalb bewegt nicht der Zinsentscheid selbst den Kurs, sondern der Abstand zu den anderen Notenbanken – und dessen erwartete Entwicklung.',
+          'Eine Intervention kann diesen Abstand nicht ändern. Sie kauft Zeit, nicht Richtung.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer japanische Aktien oder einen Welt-ETF hält, hält immer auch eine Yen-Position. Ein Kursgewinn in Tokio kann im Euro-Depot verschwinden – und ein fester Yen kann ein Minus in einen Gewinn verwandeln, ohne dass ein einziges Unternehmen etwas dafür getan hätte.',
+      },
+    ],
+  },
+  {
+    slug: 'eurozone-und-italien-gleiche-zahl-andere-richtung',
+    title: 'Eurozone 2,9, Italien 2,9 – gleiche Zahl, andere Richtung',
+    teaser:
+      'Euroraum 2,9 Prozent, Italien 2,9 Prozent – am selben Tag gemeldet. Die eine Rate ist gestiegen, die andere gefallen. Wie das zusammengeht und was daraus folgt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-01T09:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Inflation', 'Eurostat', 'Kernrate'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik', 'geldsystem'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista: „Überblick: KONJUNKTUR vom 31.07.2026 – 17.15 Uhr“ (31. Juli 2026)',
+        url: 'https://www.onvista.de/news/2026/07-31-dpa-afx-ueberblick-konjunktur-vom-31-07-2026-17-15-uhr-0-10-26538472',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Freitag meldete das Statistikamt **Eurostat** in einer ersten Schätzung: Die Verbraucherpreise im Euroraum lagen im Juli **2,9 Prozent** über dem Vorjahresmonat, nach **2,8 Prozent** im Juni. Volkswirte hatten den Anstieg im Schnitt erwartet. Treiber waren vor allem die wieder höheren Energiepreise.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag meldete das italienische Statistikamt **Istat**: Die nach europäischem Standard erhobenen Verbraucherpreise legten in Italien im Juli um **2,9 Prozent** zu – nach **3,0 Prozent** im Juni. Auch dieser Rückgang war erwartet worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei gleiche Zahlen, zwei entgegengesetzte Bewegungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Italien liegt im Juli exakt auf dem Durchschnitt des Euroraums – aber es kommt von oben, während der Euroraum von unten kommt. Wer nur die aktuelle Rate liest, sieht zweimal 2,9 und hält beide Länder für gleich. Wer die Vormonate danebenlegt, sieht zwei verschiedene Entwicklungen.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Drei Angaben gehören zu jeder Inflationsrate',
+        items: [
+          'Der Wert selbst – hier 2,9 Prozent.',
+          'Der Vormonatswert, also die Richtung – hier 2,8 im Euroraum, 3,0 in Italien.',
+          'Die Erwartung der Volkswirte. Märkte reagieren nicht auf die Zahl, sondern auf die Abweichung von der Erwartung. Hier gab es keine – beide Werte lagen im Rahmen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Währungsraum viele Inflationsraten hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Euroraum ist eine Währungsunion, keine Preisunion. Energie, Mieten, Dienstleistungen und Lebensmittel haben in jedem Land ein anderes Gewicht im Warenkorb, und die Preise selbst entwickeln sich unterschiedlich. Die Rate für den Euroraum ist ein **gewichteter Durchschnitt** – kein Land muss sie treffen, und die meisten tun es nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Europäische Zentralbank zählt trotzdem der Durchschnitt: Ihr Ziel ist eine Rate von zwei Prozent auf mittlere Sicht für den gesamten Währungsraum. Ein einzelnes Land kann deshalb eine Geldpolitik bekommen, die zu seiner eigenen Lage nicht passt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die eigene Kaufkraft hängt am nationalen Warenkorb, die Zinsen am europäischen Durchschnitt. Diese beiden Zahlen fallen regelmäßig auseinander – und das ist kein Fehler der Statistik, sondern die Bauart der Währungsunion.',
+      },
+    ],
+  },
+  {
+    slug: 'michigan-konsumklima-zweite-schaetzung',
+    title: 'Konsumklima 54,4, dann 55,2: was eine zweite Schätzung ist',
+    teaser:
+      'Das Konsumklima der Universität Michigan steht bei 55,2 statt erwarteten 54,0 Punkten. Erst- und Zweitschätzung sind zwei Dinge, nicht zwei Meinungen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-01T09:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Stimmungsindex', 'USA', 'Revision'],
+    relatedTopics: ['anlegerpsychologie', 'wie-funktioniert-der-markt', 'inflation'],
+    relatedSymbols: ['sp500', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista: „Überblick: KONJUNKTUR vom 31.07.2026 – 17.15 Uhr“ (31. Juli 2026)',
+        url: 'https://www.onvista.de/news/2026/07-31-dpa-afx-ueberblick-konjunktur-vom-31-07-2026-17-15-uhr-0-10-26538472',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Stimmung der US-Verbraucher hat sich im Juli stärker verbessert als erwartet. Das von der **Universität Michigan** erhobene Konsumklima stieg laut der am Freitag veröffentlichten **zweiten Schätzung um 5,7 Punkte auf 55,2 Punkte**. Volkswirte hatten mit einer Revision auf 54,0 Punkte gerechnet; in der ersten Schätzung waren **54,4 Punkte** ermittelt worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Zahlen, die leicht durcheinandergeraten',
+      },
+      {
+        type: 'table',
+        head: ['Angabe', 'Wert', 'Was sie bedeutet'],
+        rows: [
+          [
+            'Erste Schätzung',
+            '54,4 Punkte',
+            'Ergebnis der zuerst eingegangenen Antworten, meist Mitte des Monats',
+          ],
+          [
+            'Erwartung',
+            '54,0 Punkte',
+            'Was Volkswirte für die Revision vorhergesagt hatten',
+          ],
+          ['Zweite Schätzung', '55,2 Punkte', 'Ergebnis nach vollständiger Erhebung'],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Revision ist keine Korrektur eines Fehlers. Die erste Schätzung beruht auf einem Teil der Befragten, die zweite auf allen. Dass sich der Wert dabei verschiebt, ist der Normalfall und kein Anzeichen für Schlamperei.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index ohne Einheit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die 55,2 Punkte sind kein Preis, kein Prozentsatz und keine Menge. Der Index ist auf ein Basisjahr normiert; sein Wert bedeutet für sich genommen nichts. Aussagekraft bekommt er erst **im Vergleich** – zum Vormonat, zum Vorjahr, zur Erwartung. Der Bericht hält denn auch fest, dass die Stimmung trotz der Verbesserung trüber ist als vor einem Jahr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Und noch etwas unterscheidet einen Stimmungsindex von einer Konjunkturzahl: Er misst, was Menschen sagen, nicht was sie tun. Zwischen beidem liegt regelmäßig eine Lücke – gefragt wird nach der Einschätzung, gezählt wird später der Umsatz.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei jeder Stimmungszahl lohnt die Frage, ob es die erste oder die zweite Fassung ist und woran sie gemessen wird. Ohne diese beiden Angaben ist ein Punktwert eine Zahl ohne Bedeutung.',
+      },
+    ],
+  },
+  {
     slug: 'gold-zwei-marken-zwei-waehrungen',
     title: 'Gold: 4.100 Dollar und 3.600 Euro – zwei Marken für ein Metall',
     teaser:

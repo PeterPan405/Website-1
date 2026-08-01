@@ -195,7 +195,7 @@ export function DebtComparison({
 
       {/* --------------------------------------------------------- Tabelle */}
       <div className="fk-card mt-6 overflow-hidden">
-        <div className="overflow-x-auto">
+        <div className="relative overflow-x-auto">
           <table className="w-full min-w-[46rem] border-collapse text-sm">
             <caption className="border-border bg-surface-muted text-fg-muted border-b px-4 py-3 text-left text-xs">
               Staatsverschuldung im Ländervergleich. Auf die Spaltenköpfe klicken, um zu

@@ -188,7 +188,7 @@ export function Anleihenrechner() {
             Kupon und Marktzins bleiben, nur die Restlaufzeit ändert sich. Der Ausschlag
             hängt fast ausschließlich daran.
           </p>
-          <div className="mt-4 overflow-x-auto">
+          <div className="relative mt-4 overflow-x-auto">
             <table className="w-full min-w-[26rem] text-sm">
               <thead>
                 <tr className="border-border border-b">

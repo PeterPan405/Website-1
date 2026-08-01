@@ -84,7 +84,7 @@ export function Dividendenverlauf({
         Telefonbildschirm wären sonst je 40 Pixel breit, und die Jahreszahlen
         überlappten. Lieber schieben als unlesbar.
       */}
-      <div className="overflow-x-auto">
+      <div className="relative overflow-x-auto">
         <svg
           viewBox={`0 0 ${BREITE} ${HOEHE}`}
           role="img"

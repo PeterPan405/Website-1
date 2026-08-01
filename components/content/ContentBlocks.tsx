@@ -185,7 +185,7 @@ function Block({ block, glossar }: { block: ContentBlock; glossar?: Glossarlage 
       return (
         // Breite Tabellen dürfen nur in ihrem eigenen Container scrollen,
         // nicht die ganze Seite horizontal verschieben.
-        <div className="rounded-card border-border mt-6 overflow-x-auto border">
+        <div className="rounded-card border-border relative mt-6 overflow-x-auto border">
           <table className="w-full min-w-[32rem] border-collapse text-sm">
             {block.caption && (
               <caption className="border-border bg-surface-muted text-fg-muted border-b px-4 py-2.5 text-left text-xs font-medium">

@@ -292,7 +292,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
           <h2 id="maerkte" className="text-xl font-semibold sm:text-2xl">
             Was die Märkte machten
           </h2>
-          <div className="fk-card mt-5 overflow-x-auto p-4 sm:p-6">
+          <div className="fk-card relative mt-5 overflow-x-auto p-4 sm:p-6">
             <table className="w-full min-w-[46rem] text-sm">
               <caption className="text-fg-subtle pb-3 text-left text-xs">
                 Schlusskurse aus der gespeicherten Kursreihe. „Jahresanfang“ ist der
