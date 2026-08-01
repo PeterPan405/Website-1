@@ -1,0 +1,55 @@
+name: Ticker prüfen
+
+# Klopft einmal im Monat jedes Yahoo-Kürzel des Katalogs an der
+# Chart-Schnittstelle ab und wird rot, wenn eines mit 404 antwortet.
+#
+# ## Warum es diesen Workflow gibt
+#
+# Am 1. August 2026 stellte sich per Zufallsbefund heraus, dass sechs Titel
+# seit Wochen bis Monaten keine Kurse mehr bekamen – ihre Kürzel waren
+# umgezogen: Fiserv an die Nasdaq (FI → FISV), BNY Mellon umbenannt
+# (BK → BNY), Marsh & McLennan umbenannt (MMC → MRSH), Kerry Group
+# (KYGA.IR → KRZ.IR), Tata Motors nach der Abspaltung (TATAMOTORS.NS →
+# TMPV.NS), JBS an die NYSE (JBSS3.SA → JBS). Der Kursabruf warnt bei jedem
+# 404 – aber eine Warnzeile in Lauf 30 von 30 am Tag liest niemand, und die
+# Titel standen still unter „erster Abruf steht aus".
+#
+# Kürzelwechsel kommen ein paar Mal im Jahr vor; ein Monatslauf findet sie
+# nach höchstens vier Wochen statt nach Monaten. Das rote Kreuz im
+# Actions-Reiter ist die Meldung; im Protokoll steht je totem Kürzel das
+# betroffene Katalogsymbol und der Weg zur Abhilfe.
+#
+# Die Prüfregeln stehen in `scripts/ticker-pruefen.ts`: nur 404/410 zählen
+# als tot, Ratengrenzen und Zeitüberschreitungen nur als unklar.
+
+on:
+  schedule:
+    # Am Dritten des Monats um 06:20 UTC – nach den Morgenläufen, und nicht
+    # am Ersten, wo schon der Länderabruf liegt.
+    - cron: '20 6 3 * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ticker-pruefen
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  pruefen:
+    name: Alle Kürzel abklopfen
+    runs-on: ubuntu-latest
+    # 1.069 Kürzel im 80-ms-Takt sind gut zwei Minuten reine Abfragezeit.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      # Wie die übrigen Datenläufe ohne `npm ci`: Das Skript importiert nur
+      # eigene Dateien.
+      - name: Kürzel prüfen
+        run: node --experimental-strip-types scripts/ticker-pruefen.ts
