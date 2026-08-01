@@ -196,6 +196,11 @@ export function Footer() {
             <Link href="/datenschutz" className="hover:text-brand transition">
               Datenschutz
             </Link>
+            <span aria-hidden="true"> · </span>
+            <Link href="/keine-cookies" className="hover:text-brand transition">
+              Keine Cookies
+            </Link>
+            <span aria-hidden="true"> · </span>
             <Link href="/barrierefreiheit" className="hover:text-brand transition">
               Barrierefreiheit
             </Link>

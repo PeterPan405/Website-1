@@ -149,6 +149,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },
     {
+      url: absoluteUrl('/keine-cookies'),
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
+    {
       url: absoluteUrl('/barrierefreiheit'),
       changeFrequency: 'yearly',
       priority: 0.2,

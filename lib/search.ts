@@ -108,6 +108,13 @@ const seiten: SearchEntry[] = [
     keywords: ['dsgvo', 'daten', 'rechtliches'],
   },
   {
+    title: 'Keine Cookies, kein Tracking',
+    href: '/keine-cookies',
+    kind: 'Rechtliches',
+    hint: 'Warum es hier kein Zustimmungsbanner gibt – und wie du das nachprüfst.',
+    keywords: ['cookies', 'tracking', 'privatsphäre', 'banner', 'analyse', 'daten'],
+  },
+  {
     title: 'Barrierefreiheit',
     href: '/barrierefreiheit',
     kind: 'Rechtliches',
