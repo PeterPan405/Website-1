@@ -151,7 +151,7 @@ export function Lernstand({ themen }: { themen: Themenstand[] }) {
         </p>
       )}
 
-      <div className="mt-10 overflow-x-auto">
+      <div className="relative mt-10 overflow-x-auto">
         <table className="w-full min-w-[34rem] text-sm">
           <caption className="sr-only">
             Lernstand je Thema: erledigte Stufen und bestes Quiz-Ergebnis

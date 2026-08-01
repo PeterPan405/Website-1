@@ -56,7 +56,7 @@ export function Indexvergleichstafel({
         keine Wechselkursbewegung.
       </p>
 
-      <div className="mt-6 overflow-x-auto">
+      <div className="relative mt-6 overflow-x-auto">
         <table className="w-full min-w-[34rem] text-sm">
           <caption className="sr-only">
             {name} und {index.name} über ein, drei und fünf Jahre

@@ -282,7 +282,7 @@ export function CompoundInterestCalculator() {
           <summary className="text-fg cursor-pointer list-none px-5 py-4 font-semibold sm:px-6">
             Jahr-für-Jahr-Tabelle anzeigen
           </summary>
-          <div className="border-border overflow-x-auto border-t">
+          <div className="border-border relative overflow-x-auto border-t">
             <table className="w-full min-w-[36rem] border-collapse text-sm">
               <caption className="sr-only">
                 Entwicklung des Kapitals je Jahr mit Einzahlungen und Erträgen

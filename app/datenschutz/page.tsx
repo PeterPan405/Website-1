@@ -129,7 +129,7 @@ export default function PrivacyPage() {
               Diese Daten verlassen dein Gerät nicht und werden zu keinem Zeitpunkt an
               einen Server übertragen:
             </p>
-            <div className="rounded-card border-border mt-5 overflow-x-auto border">
+            <div className="rounded-card border-border relative mt-5 overflow-x-auto border">
               <table className="w-full min-w-[32rem] border-collapse text-sm">
                 <thead className="bg-surface-muted">
                   <tr>

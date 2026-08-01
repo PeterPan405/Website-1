@@ -22,7 +22,7 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
   })
 
   return (
-    <div className="rounded-card border-border mt-6 overflow-x-auto border">
+    <div className="rounded-card border-border relative mt-6 overflow-x-auto border">
       <table className="w-full min-w-[52rem] border-collapse text-sm">
         <caption className="border-border bg-surface-muted text-fg-muted border-b px-4 py-2.5 text-left text-xs font-medium">
           Alle {laender.length} Länder der Karte. Leere Zellen bedeuten „keine Angabe
