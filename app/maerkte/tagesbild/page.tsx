@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { BranchenHeatmap } from '@/components/markets/BranchenHeatmap'
 import { Breitenverlauf } from '@/components/markets/Breitenverlauf'
 import { QuoteRow } from '@/components/markets/QuoteRow'
 import { SourceSummary } from '@/components/markets/SourceNote'
@@ -147,52 +148,20 @@ export default async function TagesbildSeite() {
           </section>
         )}
 
-        {bericht.starkeBranchen.length > 0 && (
+        {bericht.branchen.length > 0 && (
           <section aria-labelledby="branchen" className="mt-12">
             <h2 id="branchen" className="text-fg text-2xl font-bold">
-              Branchen: vorn und hinten
+              Branchen des Tages
             </h2>
             <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-              Der ungewichtete Schnitt je Branche, nur für Branchen mit mindestens vier
-              Titeln. Eine Branche mit einem einzigen Titel ist keine Branchenbewegung,
-              sondern eine Aktie.
+              Der ungewichtete Schnitt je Branche als Farbfeld, stärkste zuerst – nur für
+              Branchen mit mindestens vier Titeln. Eine Branche mit einem einzigen Titel
+              ist keine Branchenbewegung, sondern eine Aktie. Die Tönung skaliert mit dem
+              stärksten Ausschlag des Tages: An einem ruhigen Tag bleiben alle Felder
+              blass.
             </p>
-            <div className="mt-6 grid gap-8 sm:grid-cols-2">
-              {[
-                { titel: 'Stärkste', liste: bericht.starkeBranchen },
-                { titel: 'Schwächste', liste: bericht.schwacheBranchen },
-              ].map((block) => (
-                <div key={block.titel}>
-                  <h3 className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
-                    {block.titel}
-                  </h3>
-                  <ul className="border-border mt-3 border-t">
-                    {block.liste.map((branche) => (
-                      <li
-                        key={branche.name}
-                        className="border-border flex items-baseline justify-between gap-3 border-b py-2.5"
-                      >
-                        <Link
-                          href={`/maerkte/branchen/${brancheSlug(branche.name)}`}
-                          className="text-fg hover:text-markets min-w-0 flex-1 truncate text-sm font-medium"
-                        >
-                          {branche.name}
-                        </Link>
-                        <span className="text-fg-subtle shrink-0 text-xs">
-                          {branche.titel} Titel
-                        </span>
-                        <span
-                          className={`shrink-0 text-sm font-medium tabular-nums ${
-                            branche.schnitt >= 0 ? 'text-success' : 'text-danger'
-                          }`}
-                        >
-                          {formatPercentSigned(branche.schnitt)}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="mt-6">
+              <BranchenHeatmap branchen={bericht.branchen} />
             </div>
           </section>
         )}
