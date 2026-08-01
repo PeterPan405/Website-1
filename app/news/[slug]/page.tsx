@@ -8,6 +8,9 @@ import { ArticleCard } from '@/components/news/ArticleCard'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Icon } from '@/components/ui/Icon'
+import { Druckknopf } from '@/components/ui/Druckknopf'
+import { Druckquelle } from '@/components/ui/Druckquelle'
+import { Leseleiste } from '@/components/ui/Leseleiste'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { TagLinks } from '@/components/ui/TagLinks'
 import { formatDate, formatDateTime, formatNumber } from '@/lib/format'
@@ -119,6 +122,17 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
             wenn ihm jemand eine Grenze setzt, und das ist diese Zeile.
           */}
           <article className="min-w-0">
+            {/*
+              Der Fortschrittsbalken misst das Artikel-Element selbst, nicht
+              die Seite: Quellen, Schlagwörter und die Seitenleiste zählen
+              nicht zum Lesefortschritt. Der Druckknopf steht daneben – beide
+              verschwinden im Ausdruck, der Balken über sein eigenes
+              data-drucken, der Knopf über seines.
+            */}
+            <Leseleiste />
+            <div className="mb-6 flex justify-end" data-drucken="aus">
+              <Druckknopf />
+            </div>
             <ContentBlocks blocks={article.body} />
 
             {/*
@@ -221,10 +235,14 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
                 Alle News
               </Link>
             </p>
+            <Druckquelle pfad={`/news/${article.slug}`} />
           </article>
 
           {/* ------------------------------------------------------ Seitenleiste */}
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+          <aside
+            className="space-y-6 lg:sticky lg:top-24 lg:self-start"
+            data-drucken="aus"
+          >
             <TopicLinkList
               topics={relatedTopics}
               description="Die Mechanismen hinter dieser Meldung – ausführlich erklärt."
