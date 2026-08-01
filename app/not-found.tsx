@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { SucheOeffnenKnopf } from '@/components/layout/SucheOeffnenKnopf'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { areas, areaStyles, type AreaId } from '@/lib/site'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -34,12 +35,18 @@ export default function NotFound() {
           Möglicherweise hat sich die Adresse geändert oder es hat sich ein Tippfehler
           eingeschlichen. Über die Bereiche unten findest du zurück in die Inhalte.
         </p>
-        <p className="mt-8">
+        {/*
+          Die Suche zuerst: Wer hier landet, hat meist etwas Bestimmtes
+          gesucht – eine veraltete Adresse aus einem Lesezeichen, ein Tippfehler.
+          Die Startseite ist der Rückzug, die Suche der kürzere Weg zum Ziel.
+        */}
+        <div className="mt-8 flex flex-wrap gap-3">
+          <SucheOeffnenKnopf />
           <Link href="/" className="fk-btn-primary">
             <Icon name="arrow-left" className="size-4" />
             Zur Startseite
           </Link>
-        </p>
+        </div>
       </div>
 
       <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
