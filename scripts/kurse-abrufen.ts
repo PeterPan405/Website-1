@@ -279,7 +279,9 @@ function warte(ms: number): Promise<void> {
  * Das Risiko ist begrenzt und der Schaden gutmütig: Weist Yahoo eine Anfrage
  * ab, kommt `null` zurück und der Titel behält seinen vorigen Stand – er
  * verpasst schlimmstenfalls einen Halbstundentakt. Gemessen am 1. August 2026
- * auf dem Läufer: voller Preislauf ohne eine einzige Abweisung.
+ * auf dem Läufer: Preislauf in 1:30 statt 2:55, im Protokoll kein einziges
+ * 429. Die sechs 404 dort sind Symbole, die Yahoo nicht kennt – das ist ein
+ * Zuordnungsproblem und keine Frage des Takts.
  */
 const ABSTAND_MS = 80
 
