@@ -107,6 +107,17 @@ jobs:
       - name: Paket prüfen
         run: npm run pruefen
 
+      # Das Leistungsbudget lief bisher nur von Hand – also praktisch nie.
+      #
+      # Es liest nur den fertigen `out/`-Ordner und braucht weder Browser noch
+      # Netz; hier kostet es Sekunden. Der Fall, den es fängt, ist derselbe wie
+      # bei den Meta-Längen: Eine schleichende Vergrößerung ist lokal grün und
+      # fällt erst auf, wenn jemand auf einem alten Telefon eine Sekunde
+      # wartet. `recharts` mit 338 KB auf jeder Rechnerseite hat genau so
+      # niemand bemerkt, bis die erste Messung lief.
+      - name: Leistungsbudget
+        run: npm run gewicht
+
       # Das Paket entsteht nur noch auf Anforderung.
       #
       # Es wiegt 138 MB, und der Tarif enthält 500 MB Actions-Speicher im
