@@ -23,7 +23,12 @@ export interface Suchbar {
   symbol: string
   name: string
   ticker: string
-  branche?: string
+  /**
+   * `null` ist ein eigener Zustand und kein fehlender Wert: Ein Rohstoff, ein
+   * Währungspaar und ein Index haben keine Branche. `bewerte` behandelt beides
+   * gleich – die Branchenstufe entfällt dann einfach.
+   */
+  branche?: string | null
 }
 
 /**

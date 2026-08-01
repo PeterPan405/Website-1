@@ -40,6 +40,7 @@ export function InstrumentSuche<T extends Suchbar>({
   onWaehle,
   platzhalter = 'Name oder Kürzel …',
   label,
+  labelSichtbar = false,
 }: {
   eintraege: readonly T[]
   /** Das gewählte Symbol, oder leer. */
@@ -47,6 +48,16 @@ export function InstrumentSuche<T extends Suchbar>({
   onWaehle: (symbol: string) => void
   platzhalter?: string
   label: string
+  /**
+   * Ob die Beschriftung dasteht oder nur vorgelesen wird.
+   *
+   * In der Depotanalyse steht das Feld in einer Zeile mit Betrag und
+   * Löschknopf; dort trägt die Tabellenüberschrift die Bedeutung, und eine
+   * zweite Beschriftung wäre Rauschen. Stehen dagegen zwei Suchfelder
+   * nebeneinander – „1. Wert“ und „2. Wert“ im Vergleich –, muss man ihnen
+   * ansehen, welches welches ist, sobald beide gefüllt sind.
+   */
+  labelSichtbar?: boolean
 }) {
   const id = useId()
   const gewaehlt = useMemo(
@@ -115,7 +126,14 @@ export function InstrumentSuche<T extends Suchbar>({
 
   return (
     <div ref={huelle} className="relative min-w-0 flex-1">
-      <label htmlFor={id} className="sr-only">
+      <label
+        htmlFor={id}
+        className={
+          labelSichtbar
+            ? 'text-fg-subtle mb-1.5 block text-xs font-medium tracking-wide uppercase'
+            : 'sr-only'
+        }
+      >
         {label}
       </label>
       <div className="relative">

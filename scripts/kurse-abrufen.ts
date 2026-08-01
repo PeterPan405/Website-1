@@ -108,7 +108,14 @@ async function holeMarktkurs(
   dividenden: { date: string; amount: number }[]
   quelle: 'yahoo' | 'twelvedata'
 } | null> {
-  if (TWELVEDATA_KEY) {
+  /*
+    Im Preis-Modus führt kein Weg über Twelve Data.
+
+    Dessen Zeitreihe enthält keinen laufenden Kurs – das steht zwei Zeilen
+    weiter unten und gilt hier doppelt: Ein Lauf, der nur den laufenden Kurs
+    will, bekäme von dort nichts und hätte den Abruf umsonst gemacht.
+  */
+  if (TWELVEDATA_KEY && !NUR_PREIS) {
     const tage = await fetchTwelveDataDaily(twelveSymbol, TWELVEDATA_KEY)
     if (tage) {
       return {
@@ -124,7 +131,7 @@ async function holeMarktkurs(
     console.warn(`[kurse] ${twelveSymbol}: Twelve Data ohne Ergebnis, versuche Yahoo.`)
   }
 
-  const reihe = await fetchYahooDaily(yahooSymbol)
+  const reihe = await fetchYahooDaily(yahooSymbol, NUR_PREIS ? '1d' : '5y')
   if (!reihe) return null
   return {
     punkte: reihe.days.map((tag) => ({ d: tag.date, c: tag.close })),
@@ -241,8 +248,93 @@ function warte(ms: number): Promise<void> {
   return new Promise((fertig) => setTimeout(fertig, ms))
 }
 
-/** Pause zwischen zwei Marktabrufen in Millisekunden. */
-const ABSTAND_MS = 250
+/**
+ * Abstand zwischen zwei **gestarteten** Abrufen in Millisekunden.
+ *
+ * Bis August 2026 stand hier 250, und die Pause lag seriell vor jedem Abruf:
+ * warten, fragen, warten, fragen. Bei 1.053 Instrumenten waren das 250 ms mal
+ * 1.053 gleich 4 Minuten 23 reine Wartezeit, plus die Antwortzeiten obendrauf –
+ * gemessene 7 Minuten 22 für einen Lauf, von dem 98 Prozent im Abruf steckten.
+ *
+ * Der Kommentar darüber schätzte „etwa eine halbe Minute“. Das stimmte, als es
+ * rund 120 Instrumente waren. Die Zahl ist seither auf das Neunfache gewachsen,
+ * die Rechnung hat niemand nachgezogen.
+ *
+ * Jetzt ist der Abstand ein **Takt** und keine Pause: `imTakt` startet alle
+ * 150 ms einen Abruf und lässt bis zu `GLEICHZEITIG` davon nebeneinander
+ * laufen. Die Last bei Yahoo hängt an der Startrate, nicht an der Frage, ob
+ * die Antworten überlappen – und weil der halbstündliche Lauf seit demselben
+ * Umbau `range=1d` statt `range=5y` anfragt, ist jede einzelne Antwort rund
+ * vierzigmal kleiner als vorher. In Summe liegt weniger Last bei Yahoo als
+ * vorher, nicht mehr.
+ */
+const ABSTAND_MS = 150
+
+/**
+ * Wie viele Abrufe gleichzeitig unterwegs sein dürfen.
+ *
+ * Sechs, damit die Antwortzeit (rund 170 ms) hinter dem Takt verschwindet:
+ * 150 ms Abstand und 170 ms Wartezeit bedeuten, dass zu jedem Zeitpunkt knapp
+ * zwei Anfragen offen sind. Sechs ist Luft nach oben für langsame Antworten,
+ * ohne dass sich je ein Stau von Dutzenden bildet.
+ */
+const GLEICHZEITIG = 6
+
+/**
+ * Führt `aufgabe` für jeden Eintrag aus – im festen Takt, mit mehreren Arbeitern.
+ *
+ * Genau ein Start je `abstandMs`, egal wie viele Arbeiter frei sind. Damit ist
+ * die Rate nach außen dieselbe wie bei einer seriellen Schleife mit Pause; was
+ * wegfällt, ist die Wartezeit auf die Antwort.
+ *
+ * Die Reihenfolge der **Ergebnisse** ist Sache des Aufrufers: Diese Funktion
+ * gibt nichts zurück und garantiert nichts über die Abarbeitungsreihenfolge.
+ * Der Aufrufer sammelt in eine Map und geht danach die Symbole in ihrer
+ * ursprünglichen Reihenfolge durch – sonst stünden die Schlüssel in
+ * `markets.json` nach jedem Lauf anders und der Unterschied im Repository wäre
+ * die ganze Datei.
+ */
+async function imTakt<T>(
+  eintraege: readonly T[],
+  aufgabe: (eintrag: T) => Promise<void>
+): Promise<void> {
+  let naechster = 0
+  let fruehestens = Date.now()
+
+  async function arbeiter(): Promise<void> {
+    for (;;) {
+      const index = naechster
+      naechster += 1
+      if (index >= eintraege.length) return
+
+      const jetzt = Date.now()
+      const start = Math.max(jetzt, fruehestens)
+      fruehestens = start + ABSTAND_MS
+      if (start > jetzt) await warte(start - jetzt)
+
+      await aufgabe(eintraege[index])
+    }
+  }
+
+  await Promise.all(
+    Array.from({ length: Math.min(GLEICHZEITIG, eintraege.length) }, () => arbeiter())
+  )
+}
+
+/**
+ * Ob dieser Lauf nur den laufenden Preis holt.
+ *
+ * Gesetzt vom halbstündlichen Lauf über `NUR_PREIS=1`. Dann wird `range=1d`
+ * angefragt, und geschrieben wird ausschließlich `kurse-aktuell.json`.
+ * Historie und Dividenden bleiben unangetastet – sie ändern sich einmal je
+ * Handelstag, und dafür gibt es den Lauf nach Börsenschluss.
+ *
+ * Die Aufteilung gab es bei den **Dateien** längst (`kurse-aktuell.json` neben
+ * `markets.json`); nur der **Abruf** kannte sie nicht und lud alle dreißig
+ * Minuten fünf Jahre Tageskerzen für tausend Titel, um daraus eine Zahl zu
+ * lesen.
+ */
+const NUR_PREIS = process.env.NUR_PREIS === '1'
 
 /**
  * Auf welche Instrumentenarten sich ein Lauf beschränkt.
@@ -384,19 +476,60 @@ async function main(): Promise<void> {
 
   let uebersprungen = 0
 
+  /** Gehört dieses Symbol in diesen Lauf? */
+  const gemeint = (symbol: string): boolean => {
+    if (!bekannt.has(symbol)) return false
+    if (NUR_ARTEN.length === 0) return true
+    const art = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)?.kind
+    return Boolean(art && NUR_ARTEN.includes(art))
+  }
+
+  /*
+    Die Abrufe laufen vorweg und im Takt – die Auswertung danach der Reihe nach.
+
+    Die Trennung ist nicht bloß Umbau: Solange die Schleife selbst abrief, war
+    Reihenfolge gleich Reihenfolge. Mit sechs Arbeitern kommen die Antworten
+    durcheinander zurück, und wer in dieser Reihenfolge in `instrumente`
+    schriebe, bekäme bei jedem neuen Titel eine andere Schlüsselreihenfolge in
+    `markets.json` – neunzehn Megabyte Unterschied für nichts.
+
+    Also: erst sammeln, dann in der Reihenfolge von `marketSources` auswerten.
+  */
+  const zuHolen = Object.entries(marketSources)
+    .filter(([symbol, quelle]) => quelle.provider !== 'ecb' && gemeint(symbol))
+    .map(([symbol, quelle]) => ({ symbol, quelle }))
+
+  const abrufe = new Map<string, Awaited<ReturnType<typeof holeMarktkurs>>>()
+  const begonnen = Date.now()
+  await imTakt(zuHolen, async ({ symbol, quelle }) => {
+    if (quelle.provider === 'ecb') return
+    abrufe.set(symbol, await holeMarktkurs(quelle.yahoo, quelle.twelvedata))
+  })
+  console.log(
+    `[kurse] ${zuHolen.length} Abrufe in ${Math.round((Date.now() - begonnen) / 1000)} s` +
+      `${NUR_PREIS ? ' (nur laufender Preis, range=1d)' : ''}.`
+  )
+
   for (const [symbol, quelle] of Object.entries(marketSources)) {
     if (!bekannt.has(symbol)) {
       console.warn(`[kurse] ${symbol} steht in marketSources, aber in keiner Definition.`)
       continue
     }
 
-    if (NUR_ARTEN.length > 0) {
-      const art = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)?.kind
-      if (!art || !NUR_ARTEN.includes(art)) {
-        uebersprungen += 1
-        continue
-      }
+    if (!gemeint(symbol)) {
+      uebersprungen += 1
+      continue
     }
+
+    /*
+      Devisen im Preis-Modus: nichts zu tun.
+
+      Die EZB veröffentlicht einen Referenzkurs je Tag, keinen laufenden. Ein
+      halbstündlicher Lauf hätte für sie nichts Neues und würde sie sonst als
+      „kein laufender Kurs“ ins Protokoll schreiben – fünf Zeilen Rauschen,
+      achtundvierzig Mal am Tag.
+    */
+    if (NUR_PREIS && quelle.provider === 'ecb') continue
 
     let roh: SnapshotPoint[] | null
     let latest: { value: number; at: string } | null = null
@@ -406,8 +539,7 @@ async function main(): Promise<void> {
       roh = devisen.get(symbol) ?? null
       quellenId = 'ecb'
     } else {
-      await warte(ABSTAND_MS)
-      const ergebnis = await holeMarktkurs(quelle.yahoo, quelle.twelvedata)
+      const ergebnis = abrufe.get(symbol) ?? null
       roh = ergebnis?.punkte ?? null
       latest = ergebnis?.latest ?? null
       quellenId = ergebnis?.quelle ?? 'yahoo'
@@ -419,7 +551,22 @@ async function main(): Promise<void> {
         verlöre ein Titel seine Zahlungshistorie, sobald ein einzelner Abruf
         über den Rückfallweg lief.
       */
-      if (ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
+      /*
+        Im Preis-Modus bleiben die Dividenden unangetastet – ohne Ausnahme.
+
+        `vereinigeZahlungen()` gibt **die neue Liste** zurück und übernimmt aus
+        der alten nur die Beträge, damit Yahoos Umrechnungsrundung nicht bei
+        jedem Lauf die siebte Nachkommastelle ändert. Das ist richtig, solange
+        die neue Liste fünf Jahre umfasst – und Datenverlust, sobald sie einen
+        Tag umfasst.
+
+        Genau das ist am 31. Juli 2026 passiert: Der erste Probelauf im
+        Preis-Modus fragte `range=1d`, Yahoo meldete für Singtel ein
+        Dividendenereignis von diesem Tag, und die Bedingung `length > 0` griff.
+        Aus vierzehn gespeicherten Zahlungen wurde eine. Aufgefallen ist es nur,
+        weil im Commit „3 files changed“ stand, wo zwei erwartet waren.
+      */
+      if (!NUR_PREIS && ergebnis?.dividenden && ergebnis.dividenden.length > 0) {
         /*
           Zusammenführen, nicht ersetzen – siehe `vereinigeZahlungen`. Kurz:
           Yahoo rechnet Auslandsdividenden zum Kurs des Abrufzeitpunkts um, und
@@ -435,6 +582,47 @@ async function main(): Promise<void> {
 
     if (!roh) {
       behalten.push(`${symbol} (Abruf fehlgeschlagen)`)
+      continue
+    }
+
+    /*
+      Im Preis-Modus endet die Auswertung hier.
+
+      `range=1d` liefert genau eine Kerze – die von heute. `ohneHeute()` würde
+      sie entfernen und eine leere Reihe hinterlassen; alles Weitere rechnet
+      mit `punkte[punkte.length - 1]` und liefe ins Leere. Die Historie ist in
+      diesem Lauf ohnehin nicht gemeint: Sie steht schon da, und der laufende
+      Kurs wird gegen ihren letzten Schlusskurs geprüft – gegen dieselbe
+      35-Prozent-Grenze wie im vollen Lauf.
+
+      Geschrieben wird nur `latest`. Weil `historieOhneKurse()` genau dieses
+      Feld beim Vergleich wegwirft, bleibt `markets.json` unberührt, ohne dass
+      es hier eine zweite Fallunterscheidung braucht.
+    */
+    if (NUR_PREIS) {
+      const vorhanden = instrumente[symbol]
+      if (!vorhanden || vorhanden.points.length === 0) {
+        behalten.push(`${symbol} (noch keine Historie)`)
+        continue
+      }
+      const nachkommastellen =
+        marketDefinitions.find((definition) => definition.symbol === symbol)?.decimals ??
+        4
+      const schluss = vorhanden.points[vorhanden.points.length - 1].c
+      if (!latest || Math.abs(latest.value - schluss) / schluss > 0.35) {
+        if (latest) {
+          console.warn(
+            `[kurse] ${symbol}: laufender Kurs ${latest.value} weicht zu stark vom Schluss ${schluss} ab – verworfen.`
+          )
+        }
+        behalten.push(`${symbol} (kein brauchbarer laufender Kurs)`)
+        continue
+      }
+      instrumente[symbol] = {
+        ...vorhanden,
+        latest: { value: runde(latest.value, nachkommastellen), at: latest.at },
+      }
+      uebernommen.push(symbol)
       continue
     }
 

@@ -18,9 +18,9 @@ import { inHauptwaehrung } from '@/lib/waehrungseinheit'
 import type { Vergleichsposten } from '@/lib/vergleich'
 
 export const metadata: Metadata = buildMetadata({
-  title: withBrand('Zwei Aktien vergleichen'),
+  title: withBrand('Zwei Werte vergleichen'),
   description:
-    'Zwei Titel nebeneinander: Wertentwicklung, Schwankung, Bewertung und Herkunft – mit der Angabe, welche der Gegenüberstellungen etwas bedeutet und welche nicht.',
+    'Zwei Werte nebeneinander – Aktien, Indizes, ETFs, Rohstoffe, Devisen, Krypto: Entwicklung, Schwankung und Bewertung, samt Angabe, was der Vergleich hergibt.',
   path: '/maerkte/vergleich',
   ogTitle: 'Welche der beiden – und was der Vergleich überhaupt hergibt',
 })
@@ -47,11 +47,22 @@ const ANFANG_RECHTS = 'amd'
  * Seitenpaket. Ausgeschrieben werden nur Zahlen, keine Kursreihen – die
  * Wertentwicklung ist hier schon zu drei Zahlen verdichtet.
  */
+/**
+ * Alle Instrumente, nicht nur Aktien.
+ *
+ * Bis August 2026 stand hier `filter(kind === 'stock')`, und die Seite hieß
+ * „Zwei Aktien vergleichen“. Die Einschränkung hatte keinen Grund in der
+ * Sache: Wer wissen will, ob Gold in fünf Jahren mehr gebracht hat als der
+ * DAX, stellt genau diese Frage – und die Zeilen, die dabei sinnlos wären,
+ * lässt `ohneLeere()` in `lib/vergleich.ts` inzwischen weg.
+ *
+ * Es kommen rund fünfzig Einträge dazu: 22 Indizes, neun ETFs, acht Rohstoffe,
+ * fünf Währungspaare, drei Kryptowährungen. Neben den 1.029 Aktien fällt das
+ * im Seitenpaket nicht auf.
+ */
 async function baueDaten(): Promise<Vergleichsposten[]> {
   const quotes = await getQuotes()
-  const aktien = quotes.filter((quote) => quote.kind === 'stock')
-
-  return Promise.all(aktien.map((quote) => baueEinen(quote)))
+  return Promise.all(quotes.map((quote) => baueEinen(quote)))
 }
 
 /**
@@ -99,6 +110,7 @@ async function baueEinen(quote: MarketQuote): Promise<Vergleichsposten> {
     symbol: quote.symbol,
     ticker: quote.ticker,
     name: quote.name,
+    art: quote.kind,
     waehrung: kurs.waehrung,
     branche: quote.branche ?? null,
     sitzland: quote.sitzland ?? null,
@@ -134,7 +146,7 @@ export default async function VergleichSeite() {
         eyebrow="Vergleich"
         eyebrowIcon="scale"
         title="Welche der beiden?"
-        lead="Zwei Aktien nebeneinander – und dazu die Angabe, welche Gegenüberstellung überhaupt etwas bedeutet. Denn die meisten Zahlen, die man nebeneinanderlegen kann, vergleichen sich nicht."
+        lead="Zwei Werte nebeneinander – Aktien, Indizes, ETFs, Rohstoffe, Devisen oder Krypto – und dazu die Angabe, welche Gegenüberstellung überhaupt etwas bedeutet. Denn die meisten Zahlen, die man nebeneinanderlegen kann, vergleichen sich nicht."
         breadcrumbs={
           <Breadcrumbs
             items={[{ name: 'Märkte', path: '/maerkte' }, { name: 'Vergleich' }]}
@@ -142,7 +154,7 @@ export default async function VergleichSeite() {
         }
         meta={
           <>
-            <span>{posten.length} Aktien zur Auswahl</span>
+            <span>{posten.length} Werte zur Auswahl</span>
             <span aria-hidden="true">·</span>
             <span>Kein Sieger ohne Grund</span>
           </>

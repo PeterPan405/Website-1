@@ -12,6 +12,7 @@ import {
 } from '@/lib/format'
 import { leseKursCsv, type Kurspunkt } from '@/lib/normierung'
 import { vergleiche, vorbehalte, type Vergleichsposten } from '@/lib/vergleich'
+import { InstrumentSuche } from '@/components/calculators/InstrumentSuche'
 import { Vergleichskurve } from '@/components/markets/Vergleichskurve'
 
 /**
@@ -24,12 +25,18 @@ import { Vergleichskurve } from '@/components/markets/Vergleichskurve'
  * Seite je Paarung wäre die Alternative – bei 1.029 Aktien sind das über eine
  * halbe Million Seiten für einen Anlass, den kaum jemand zweimal hat.
  *
- * ## Warum ein einfaches Auswahlfeld
+ * ## Warum ein Suchfeld und kein Auswahlfeld
  *
- * Ein natives `<select>` bringt die Tastatursuche mit, funktioniert ohne
- * JavaScript-Bibliothek und ist auf dem Telefon das, was das Gerät ohnehin
- * anbietet. Eine selbstgebaute Auswahlliste sähe moderner aus und wäre in
- * jeder Hinsicht schlechter bedienbar.
+ * Hier stand bis August 2026 das Gegenteil: Ein natives `<select>` bringe die
+ * Tastatursuche mit und sei auf dem Telefon das, was das Gerät ohnehin
+ * anbietet. Das stimmt – und geht an der Zahl vorbei. Die Liste hat über
+ * tausend Einträge. Auf dem Telefon öffnet sie sich als Walze, die bei „3M“
+ * anfängt und bei „Zurich“ aufhört; die Tastatursuche eines `<select>` springt
+ * nur an den Anfang eines Namens und kennt weder Kürzel noch Branche.
+ *
+ * Für dieselbe Rückmeldung wurde die Depotanalyse schon umgestellt. Dort waren
+ * es 130 Einträge – hier sind es das Achtfache, und das Argument war dasselbe.
+ * `InstrumentSuche` ist die Komponente von dort, unverändert übernommen.
  */
 export function Vergleichstafel({
   posten,
@@ -105,24 +112,14 @@ export function Vergleichstafel({
           { id: 'vergleich-rechts', wert: rechtsSymbol, setzen: setzeRechts, nummer: 2 },
         ].map((feld) => (
           <div key={feld.id}>
-            <label
-              htmlFor={feld.id}
-              className="text-fg-subtle text-xs font-medium tracking-wide uppercase"
-            >
-              {feld.nummer}. Aktie
-            </label>
-            <select
-              id={feld.id}
-              value={feld.wert}
-              onChange={(event) => feld.setzen(event.target.value)}
-              className="border-border bg-surface text-fg focus:border-markets focus-visible:ring-ring mt-1.5 w-full rounded-lg border px-3 py-2.5 text-sm focus-visible:ring-2 focus-visible:outline-none"
-            >
-              {posten.map((eintrag) => (
-                <option key={eintrag.symbol} value={eintrag.symbol}>
-                  {eintrag.name} ({eintrag.ticker})
-                </option>
-              ))}
-            </select>
+            <InstrumentSuche
+              eintraege={posten}
+              wert={feld.wert}
+              onWaehle={feld.setzen}
+              label={`${feld.nummer}. Wert`}
+              labelSichtbar
+              platzhalter="Name, Kürzel oder Branche …"
+            />
           </div>
         ))}
       </div>

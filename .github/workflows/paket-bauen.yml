@@ -37,6 +37,21 @@ on:
 
   workflow_dispatch:
 
+# Ein Lauf je Zweig – ältere werden abgebrochen.
+#
+# Auf einem Arbeitszweig entstehen Commits im Minutentakt, und jeder startete
+# bisher einen vollen Bau, den niemand mehr abbrach: 18 Läufe am Tag, von denen
+# die meisten schon veraltet waren, bevor sie fertig wurden. Geprüft werden
+# soll der Stand, der am Ende dasteht.
+#
+# `main` ist ausgenommen: Dort ist jeder Commit ein Stand, der ausgeliefert
+# wird, und ein abgebrochener Bau hieße, dass `veroeffentlichen.yml` nicht
+# anspringt. Deshalb bekommt jeder Lauf auf main seine eigene Gruppe.
+concurrency:
+  group: >-
+    paket-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || 'zweig' }}
+  cancel-in-progress: true
+
 jobs:
   bauen:
     name: Bauen und prüfen
@@ -92,7 +107,22 @@ jobs:
       - name: Paket prüfen
         run: npm run pruefen
 
+      # Das Paket entsteht nur noch auf Anforderung.
+      #
+      # Es wiegt 138 MB, und der Tarif enthält 500 MB Actions-Speicher im
+      # Monat. Bei einem Paket nach jedem Push, jedem Pull Request und jeder
+      # Nacht war der Speicher nach drei Bauläufen zu neunzig Prozent voll –
+      # gemeldet am 31. Juli 2026, einen Tag vor dem Zurücksetzen.
+      #
+      # Gebraucht hat es in dieser Zeit niemand: `veroeffentlichen.yml` lädt
+      # das Artefakt nicht herunter, sondern baut selbst neu. Das Paket ist der
+      # Weg von Hand für den Fall, dass die Übertragung über SSH nicht geht –
+      # und für einen Notweg ist „auf Knopfdruck" die richtige Bedingung.
+      #
+      # Wer es braucht: Actions → „Paket bauen" → „Run workflow". Der Lauf
+      # dauert dieselben paar Minuten wie der automatische.
       - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch'
         with:
           name: website
           path: out
@@ -100,4 +130,7 @@ jobs:
           # Ohne diese Zeile fehlten sie im Paket, obwohl die Prüfung oben
           # durchlief – die misst den Ordner, nicht das Artefakt.
           include-hidden-files: true
-          retention-days: 30
+          # Sieben Tage statt dreißig: Wer das Paket anfordert, lädt es am
+          # selben Tag herunter. Ein Monat Aufbewahrung kostet Speicher für
+          # einen Stand, der längst überholt ist.
+          retention-days: 7

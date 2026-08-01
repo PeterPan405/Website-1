@@ -25,15 +25,24 @@ export function SourceNote({
 
   if (!quote.source) {
     return (
-      <p className={klasse}>
+      <p className={klasse} data-fliesst="">
         Demo-Kurs, rechnerisch erzeugt – keine echten Marktdaten. Stand des
         Beispieldatensatzes: {formatDateTime(quote.asOf)}.
       </p>
     )
   }
 
+  /*
+    Der ganze Absatz ist laufender Datenstand, nicht nur die Zeitangabe darin.
+
+    Er zählt auf, welche Werte noch auf ihren ersten Abruf warten – und diese
+    Liste schrumpft mit jedem Kursabruf. `npm run bilder` hat das gemeldet:
+    4,3 Prozent Abweichung auf der Marktübersicht, weil aus „16 Werte“ zwölf
+    geworden waren und der Absatz eine Zeile kürzer umbrach. Kein Layoutfehler,
+    sondern genau die Sorte Stelle, für die es `data-fliesst` gibt.
+  */
   return (
-    <p className={klasse}>
+    <p className={klasse} data-fliesst="">
       {quote.intraday
         ? `Stand ${formatDateTime(quote.asOf)}`
         : `Schlusskurs vom ${formatDate(quote.asOf)}`}{' '}

@@ -398,6 +398,26 @@ pruefe(
     1.35
 )
 
+/*
+  Und hier steht, was diese Funktion **nicht** kann – als Warnung an der
+  Stelle, an der sie zuerst gelesen wird.
+
+  `vereinigeZahlungen` gibt die neue Liste zurück und holt aus der alten nur
+  die Beträge. Wer sie mit einem Ausschnitt füttert, bekommt einen Ausschnitt –
+  die übrigen Zahlungen sind weg.
+
+  Das ist kein Fehler der Funktion, sondern ihr Vertrag: Sie ist für den vollen
+  Fünfjahresabruf gedacht, bei dem die neue Liste die alte immer enthält. Am
+  31. Juli 2026 hat ein Probelauf sie mit einem Eintagesabruf aufgerufen und
+  Singtel zehn von zehn Zahlungen gekostet. Aufgerufen wird sie deshalb nur
+  noch im vollen Lauf – siehe `NUR_PREIS` in `scripts/kurse-abrufen.ts`.
+*/
+pruefe(
+  'ein Ausschnitt ersetzt die Liste – die Funktion vereinigt nicht, sie stabilisiert',
+  vereinigeZahlungen(gespeichert, [{ date: '2025-01-29', amount: 1.1835895 }]).length ===
+    1
+)
+
 pruefe(
   'eine neue Zahlung kommt dazu',
   vereinigeZahlungen(gespeichert, [...wackelig, { date: '2026-01-28', amount: 1.2 }])
