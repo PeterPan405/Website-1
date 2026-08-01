@@ -1,0 +1,51 @@
+name: Quellen-Links im Archiv prüfen
+
+# Ruft wöchentlich jeden Quellen-Link des Nachrichtenarchivs ab und meldet,
+# was mit 404 oder 410 antwortet.
+#
+# ## Warum es diesen Workflow gibt
+#
+# Das Archiv ist dauerhaft, seine Belege sind es nicht: Sie zeigen auf fremde
+# Portale, und fremde Adressen sterben still. Der Artikel verspricht dann
+# weiter „nachprüfbar über diese Quelle", und der Klick endet im Nichts –
+# ausgerechnet an dem Versprechen, das die Zusammenfassungen redaktionell wie
+# rechtlich trägt.
+#
+# Die Prüfung selbst liegt in `scripts/quellenlinks-pruefen.ts`, samt der
+# Abgrenzung, was als verfallen gilt (404/410) und was nur als unklar
+# (Bot-Sperren, Zeitüberschreitungen). Der Lauf hier ist nur der Ort mit
+# Netzzugang – die Entwicklungsumgebung erreicht ausschließlich GitHub.
+#
+# Wird der Lauf rot, steht im Protokoll je toter Adresse, welche Artikel sie
+# verwenden. Der Ersatz gehört in den Artikel samt Vermerk im
+# `korrekturen`-Feld – nicht als stille Änderung.
+
+on:
+  schedule:
+    # Sonntags um 06:50 UTC – das Archiv ändert sich am Wochenende nicht,
+    # und die Werktagsläufe bleiben ungestört.
+    - cron: '50 6 * * 0'
+  workflow_dispatch:
+
+concurrency:
+  group: quellenlinks
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  pruefen:
+    name: Archiv-Belege abrufen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Wie bei den übrigen Datenläufen ohne `npm ci`: Das Skript importiert
+      # nur eigene Dateien und braucht nichts aus node_modules.
+      - name: Links prüfen
+        run: node --experimental-strip-types scripts/quellenlinks-pruefen.ts
