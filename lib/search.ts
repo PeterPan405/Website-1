@@ -107,6 +107,13 @@ const seiten: SearchEntry[] = [
     hint: 'Wie mit Daten umgegangen wird.',
     keywords: ['dsgvo', 'daten', 'rechtliches'],
   },
+  {
+    title: 'Barrierefreiheit',
+    href: '/barrierefreiheit',
+    kind: 'Rechtliches',
+    hint: 'Wie Zugänglichkeit geprüft wird und wohin man Barrieren meldet.',
+    keywords: ['barriere', 'zugänglich', 'wcag', 'vorlesen', 'tastatur', 'kontrast'],
+  },
 ]
 
 export async function buildSearchIndex(): Promise<SearchEntry[]> {

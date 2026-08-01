@@ -148,6 +148,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl('/quellen'), changeFrequency: 'monthly', priority: 0.3 },
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },
+    {
+      url: absoluteUrl('/barrierefreiheit'),
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
   ]
 
   const newsPages: MetadataRoute.Sitemap = newsArticles.map((article) => ({

@@ -196,6 +196,9 @@ export function Footer() {
             <Link href="/datenschutz" className="hover:text-brand transition">
               Datenschutz
             </Link>
+            <Link href="/barrierefreiheit" className="hover:text-brand transition">
+              Barrierefreiheit
+            </Link>
           </p>
         </div>
       </div>
