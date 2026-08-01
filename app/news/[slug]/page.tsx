@@ -13,6 +13,7 @@ import { TagLinks } from '@/components/ui/TagLinks'
 import { formatDate, formatDateTime, formatNumber } from '@/lib/format'
 import { newsArticleSchema } from '@/lib/jsonld'
 import { getTopicsBySlugs } from '@/lib/learn'
+import { absoluteUrl, siteConfig } from '@/lib/site'
 import { getQuotes } from '@/lib/markets'
 import { getNewsArticle, getNewsSlugs, getRelatedArticles } from '@/lib/news'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -147,7 +148,24 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
               </ul>
               <p className="text-fg-subtle mt-3 text-xs">
                 Die Zusammenfassung ist redaktionell verfasst. Für die Inhalte verlinkter
-                Seiten sind deren Betreiber verantwortlich.
+                Seiten sind deren Betreiber verantwortlich.{' '}
+                {/*
+                  Der Meldeweg steht bei den Quellen, weil beides zusammen ein
+                  Versprechen ist: Jede Zahl ist nachprüfbar – und wer beim
+                  Nachprüfen einen Fehler findet, kann ihn ohne Umweg melden.
+                  Betreff und Verweis sind vorausgefüllt; die Korrektur landet
+                  dann als Vermerk am Artikel, nicht in einer stillen Änderung.
+                */}
+                <a
+                  className="hover:text-fg underline underline-offset-4"
+                  href={`mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(
+                    `Fehler im Artikel: ${article.title}`
+                  )}&body=${encodeURIComponent(
+                    `Artikel: ${absoluteUrl(`/news/${article.slug}`)}\n\nWas ist falsch (Zahl, Aussage oder Quelle), und woran sieht man es?\n\n`
+                  )}`}
+                >
+                  Fehler in diesem Artikel melden
+                </a>
               </p>
             </div>
 
