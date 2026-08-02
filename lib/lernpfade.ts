@@ -63,6 +63,17 @@ export interface AufgeloesterPfad extends Lernpfad {
   stufenkennungen: string[]
 }
 
+/**
+ * Löst einen Verweis-Schritt in alles Anzeigbare auf.
+ *
+ * Exportiert, weil das 30-Tage-Programm dieselben Schritte verwendet: ein
+ * Verweis auf Thema+Stufe oder Rechner, aufgelöst gegen denselben Bestand.
+ * Ein unbekannter Slug wirft – beim Laden des Moduls, also beim Bauen.
+ */
+export function loeseSchrittAuf(schritt: Pfadschritt): AufgeloesterSchritt {
+  return loeseAuf(schritt)
+}
+
 function loeseAuf(schritt: Pfadschritt): AufgeloesterSchritt {
   if (schritt.art === 'rechner') {
     const rechner = calculators.find((eintrag) => eintrag.slug === schritt.rechner)

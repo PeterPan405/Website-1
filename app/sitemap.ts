@@ -305,6 +305,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const pfadPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/lernen/pfade'), changeFrequency: 'monthly', priority: 0.8 },
+    { url: absoluteUrl('/lernen/30-tage'), changeFrequency: 'monthly', priority: 0.7 },
     ...pfadSlugs.map((slug) => ({
       url: absoluteUrl(`/lernen/pfade/${slug}`),
       changeFrequency: 'monthly' as const,

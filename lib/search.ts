@@ -108,6 +108,13 @@ const seiten: SearchEntry[] = [
     keywords: ['dsgvo', 'daten', 'rechtliches'],
   },
   {
+    title: 'Das 30-Tage-Programm',
+    href: '/lernen/30-tage',
+    kind: 'Lernwerkzeug',
+    hint: 'Eine Tagesportion Finanzwissen, vier Wochen lang – aus Lernstufen und Rechnern.',
+    keywords: ['30 tage', 'programm', 'einsteiger', 'plan', 'rhythmus', 'kurs'],
+  },
+  {
     title: 'Glossar-Karteikarten',
     href: '/glossar/karteikarten',
     kind: 'Lernwerkzeug',
