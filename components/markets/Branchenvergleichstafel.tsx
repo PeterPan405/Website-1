@@ -135,6 +135,21 @@ export function Branchenvergleichstafel({
         Sortierung, keine Empfehlung: Ein hohes KGV kann teuer bezahlt oder gut begründet
         sein – das steht in keiner Tabelle.
       </p>
+      {/*
+        Der Absprung in die Rückwärtsrechnung – nur, wenn es ein KGV gibt.
+        Die Raute trägt den Wert, damit der Rechner mit genau dieser Aktie
+        öffnet; sie geht nicht an den Server (siehe lib/rechner-vorbelegung).
+      */}
+      {vergleich.kgv.eigener !== null && (
+        <p className="mt-4">
+          <Link
+            href={`/rechner/bewertungsrechner#kgv=${vergleich.kgv.eigener.toFixed(1)}`}
+            className="fk-btn-secondary text-sm"
+          >
+            Was bezahlt dieses KGV? Im Bewertungsrechner nachrechnen
+          </Link>
+        </p>
+      )}
     </section>
   )
 }

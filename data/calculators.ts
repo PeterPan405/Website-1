@@ -108,6 +108,56 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'bewertungsrechner',
+    title: 'Bewertungsrechner',
+    headline: 'Bewertungsrechner: Welches Gewinnwachstum ist im Kurs eingepreist?',
+    metaTitle: 'Bewertungsrechner: eingepreistes Gewinnwachstum aus dem KGV',
+    metaDescription:
+      'Die Bewertung rückwärts gerechnet: Aus KGV, Abzinsung und End-KGV zeigt der Rechner, welches jährliche Gewinnwachstum der heutige Kurs bereits bezahlt – kein Kursziel, sondern eine Messlatte.',
+    lead: 'Statt eines Kursziels rechnet dieser Rechner rückwärts: Welches Gewinnwachstum müsste ein Unternehmen liefern, damit sich der heutige Kurs lohnt? Aus dem KGV wird die Wette sichtbar, die im Preis steckt.',
+    summary: 'Rückwärts gerechnet: das im KGV eingepreiste Gewinnwachstum.',
+    featureList: [
+      'Eingepreistes jährliches Gewinnwachstum aus dem KGV',
+      'Vergleichswert: das KGV, das ganz ohne Wachstum gerechtfertigt wäre',
+      'Empfindlichkeitstafel über Abzinsung und End-KGV',
+      'Vorbelegbar mit dem KGV jeder Aktienseite',
+    ],
+    grenzen: [
+      'Ein Modell mit konstantem Wachstum über den ganzen Zeitraum – das liefert kein Unternehmen. Die Rechnung ist eine Messlatte für den Preis, kein Abbild der Zukunft.',
+      'Das Ergebnis hängt spürbar an Abzinsung und End-KGV; genau dafür steht die Empfindlichkeitstafel daneben. Wer nur eine Zelle liest, liest zu wenig.',
+      'Kein Kursziel und keine Kauf- oder Verkaufsempfehlung: Ob ein bezahltes Wachstum realistisch ist, beantwortet die Geschäftslage des Unternehmens, nicht diese Formel.',
+      'Bei Verlustunternehmen gibt es kein KGV und damit keine Rechnung – das ist eine Eigenschaft der Kennzahl, keine Lücke des Rechners.',
+    ],
+    schritte: [
+      'Kurs-Gewinn-Verhältnis eingeben – es steht auf jeder Aktienseite dieser Website.',
+      'Betrachtungszeitraum, Abzinsung und End-KGV setzen oder bei den Voreinstellungen lassen.',
+      'Das eingepreiste Gewinnwachstum ablesen und mit der Empfindlichkeitstafel gegenprüfen.',
+    ],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'wann-kaufen-verkaufen'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Das Modell nimmt an, dass der Gewinn je Aktie über den gewählten Zeitraum mit **konstanter Rate** wächst. Jeder Jahresgewinn wird mit der Abzinsung auf heute umgerechnet; am Ende wird das erreichte Gewinnniveau zum End-KGV bewertet und ebenfalls abgezinst. Die Summe ist das KGV, das ein solches Wachstum rechtfertigen würde.',
+      },
+      {
+        type: 'formula',
+        expression:
+          'gerechtfertigtes KGV = Σ (1+g)ᵗ ÷ (1+r)ᵗ  +  End-KGV × (1+g)ⁿ ÷ (1+r)ⁿ',
+        description:
+          'g ist das jährliche Gewinnwachstum, r die Abzinsung, n der Zeitraum. Kurs und Gewinn kürzen sich zum KGV – deshalb braucht die Rechnung keine Währung und keinen Einzelkurs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rechner läuft **rückwärts**: Er sucht per Intervallhalbierung das Wachstum g, bei dem das gerechtfertigte KGV genau dem eingegebenen entspricht. Weil mehr Wachstum immer ein höheres KGV rechtfertigt, gibt es höchstens eine Lösung. Liegt sie außerhalb von −50 bis +60 Prozent je Jahr, meldet der Rechner das, statt eine Zahl zu erfinden.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum kein Kursziel? Vorwärts gerechnet hinge das Ergebnis an denselben weichen Annahmen, sähe aber wie eine Präzisionsangabe aus. Rückwärts wird aus den Annahmen eine überprüfbare Aussage über den Preis: „Dieses KGV bezahlt so viel Wachstum.“ Ob das Unternehmen es liefern kann, ist die eigentliche Frage – und sie gehört dir, nicht dem Rechner.',
+      },
+    ],
+  },
+  {
     slug: 'zinsrechner',
     title: 'Zinsrechner',
     headline: 'Zinsrechner mit Zinseszins und Sparplan',
