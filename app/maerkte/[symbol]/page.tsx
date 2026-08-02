@@ -17,6 +17,7 @@ import { Merkschalter } from '@/components/markets/Merkschalter'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
 import { Branchenvergleichstafel } from '@/components/markets/Branchenvergleichstafel'
+import { EingepreistKarte } from '@/components/markets/EingepreistKarte'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { getBranchenvergleich } from '@/lib/branchenvergleich'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
@@ -535,6 +536,18 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 className="mt-12"
               />
             )}
+            {/*
+              Die vorgerechnete Bewertung direkt am Titel – unabhängig vom
+              Branchenvergleich, denn ein KGV kann es auch geben, wenn die
+              Branche zu klein für einen Median ist.
+            */}
+            {fundamental?.art === 'zahlen' &&
+              fundamental.kennzahlen.kgv.wert !== null && (
+                <EingepreistKarte
+                  kgv={fundamental.kennzahlen.kgv.wert}
+                  className="mt-12"
+                />
+              )}
             {kennzahlen && <Kennzahlentafel kennzahlen={kennzahlen} className="mt-12" />}
 
             <div className="border-border mt-10 border-t pt-5">
