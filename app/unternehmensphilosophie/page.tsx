@@ -27,6 +27,24 @@ function hasText(section: PhilosophySection): boolean {
   return Boolean(section.paragraphs && section.paragraphs.length > 0)
 }
 
+/**
+ * Setzt `**fett**` in <strong> um – dieselbe schlanke Regel wie in den
+ * Inhaltsblöcken. Ohne sie standen die Sternchen wörtlich auf der Seite:
+ * Die Absätze hier laufen nicht durch die ContentBlocks, sondern werden
+ * direkt gerendert.
+ */
+function mitFettdruck(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((segment, index) =>
+    segment.startsWith('**') && segment.endsWith('**') && segment.length > 4 ? (
+      <strong key={index} className="text-fg font-semibold">
+        {segment.slice(2, -2)}
+      </strong>
+    ) : (
+      segment
+    )
+  )
+}
+
 export default function PhilosophyPage() {
   const written = philosophySections.filter(hasText).length
   const total = philosophySections.length
@@ -82,7 +100,7 @@ export default function PhilosophyPage() {
                 {hasText(section) ? (
                   <div className="text-fg-muted mt-4 space-y-4 leading-relaxed">
                     {section.paragraphs!.map((paragraph, paragraphIndex) => (
-                      <p key={paragraphIndex}>{paragraph}</p>
+                      <p key={paragraphIndex}>{mitFettdruck(paragraph)}</p>
                     ))}
                   </div>
                 ) : (

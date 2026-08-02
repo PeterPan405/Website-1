@@ -13,6 +13,7 @@ import { NumberField } from '@/components/calculators/NumberField'
 import { useVorbelegung } from '@/components/calculators/vorbelegung'
 import { getCalculatorDefinition } from '@/data/calculators'
 import {
+  STANDARDANNAHMEN,
   WACHSTUM_MAX,
   WACHSTUM_MIN,
   gerechtfertigtesKgv,
@@ -35,9 +36,7 @@ import { formatNumber, formatPercentSigned } from '@/lib/format'
 
 const voreinstellung = {
   kgv: 25,
-  jahre: 10,
-  abzinsungProzent: 8,
-  endKgv: 15,
+  ...STANDARDANNAHMEN,
 }
 
 /** Die Achsen der Empfindlichkeitstafel. */

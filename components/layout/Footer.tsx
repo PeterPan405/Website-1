@@ -134,6 +134,24 @@ export function Footer() {
             Stelle ihre Herkunft nennt. Welche Kurse noch Beispielwerte sind,
             steht dort, wo sie stehen, statt hier in einer Pauschale.
           */}
+          {/*
+            Dieser Absatz stand als eigene Kachel oben auf der Rechnerseite.
+            Auf Wunsch hierher verlegt: Die Aufklärung gehört gesammelt ans
+            Seitenende, nicht als Kasten zwischen die Inhalte – inhaltlich
+            ändert sich nichts, jeder Rechner behält zudem seinen eigenen
+            Methodik- und Grenzen-Abschnitt.
+          */}
+          <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+            <strong className="text-fg font-semibold">
+              Modellrechnungen, keine Prognosen:
+            </strong>{' '}
+            Alle Rechner arbeiten mit Annahmen, die du selbst vorgibst – vor allem Rendite
+            und Inflationsrate. Das Ergebnis ist genau so verlässlich wie diese Annahmen;
+            Steuern und Produktkosten sind nicht vollständig berücksichtigt (Näheres im
+            Methodik-Abschnitt der jeweiligen Seite). Rechne bei langen Zeiträumen mehrere
+            Szenarien – die Spannweite der Ergebnisse ist die eigentliche Information,
+            nicht die einzelne Zahl.
+          </p>
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">
             <strong className="text-fg font-semibold">Hinweis zu den Daten:</strong> Kurse
             werden als Tagesschlusskurse dargestellt und sind keine Echtzeitdaten. Sie

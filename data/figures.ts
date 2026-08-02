@@ -598,7 +598,7 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
   'tagesgeld-aktionszins': {
     title: 'Beworben und tatsächlich',
     caption:
-      'Beworben wird die erste Säule, gutgeschrieben die dritte. Wer die Frist im Kalender hat, bekommt den Aktionszins wirklich – darauf ist das Angebot allerdings nicht gerechnet.',
+      'Beworben wird die erste Säule, gutgeschrieben die dritte. Wer die Frist im Kalender hat, bekommt den Aktionszins wirklich – in der Praxis wechseln viele nicht rechtzeitig, und dann ergibt sich die Mischrate.',
   },
   'einlagensicherung-kaskade': {
     title: 'Die Haftungskaskade',

@@ -27,6 +27,10 @@ Handy kam:
 - `getCurrentNews()` – die Nachrichtenseite. Beim ersten Mal umgestellt.
 - `getNewsHeadlines()` – **das Karussell der Startseite.** Beim ersten Mal
   vergessen; am 31. Juli stand dort um halb neun noch eine Meldung vom 30.
+  **Seit dem 2. August gilt hier eine bewusste Ausnahme:** Das Karussell
+  zeigt die **zwei** jüngsten Erscheinungstage (heutige zuerst, das Datum
+  steht an jeder Schlagzeile). Nutzerwunsch – an einem dünnen Sonntag soll
+  der Samstag auf der Startseite sichtbar bleiben. Nicht „zurückreparieren“.
 - `getFurtherNews()` und `getFurtherNewsByDay()` – das Archiv, die Gegenseite
   derselben Grenze.
 

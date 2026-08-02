@@ -694,7 +694,7 @@ export const glossar: Glossareintrag[] = [
     slug: 'tagesgeld',
     begriff: 'Tagesgeld',
     kurz: 'Ein verzinstes Konto, von dem täglich abgehoben werden kann – der übliche Ort für den Notgroschen.',
-    lang: 'Der Zins ist variabel: Die Bank darf ihn jederzeit ändern, nach oben wie nach unten. Ein Lockangebot für Neukunden sagt deshalb wenig darüber aus, was in einem Jahr gezahlt wird.',
+    lang: 'Der Zins ist variabel: Die Bank darf ihn jederzeit ändern, nach oben wie nach unten. Ein Aktionsangebot für Neukunden sagt deshalb wenig darüber aus, was in einem Jahr gezahlt wird.',
     siehe: ['festgeld', 'einlagensicherung', 'geldmarkt'],
     thema: 'tagesgeld',
   },

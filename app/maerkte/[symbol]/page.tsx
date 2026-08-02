@@ -9,6 +9,7 @@ import { IndexLaendergewichtung } from '@/components/content/figures/index-laend
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { Klappabschnitt } from '@/components/ui/Klappabschnitt'
 import { Indexvergleichstafel } from '@/components/markets/Indexvergleichstafel'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
@@ -17,6 +18,7 @@ import { Merkschalter } from '@/components/markets/Merkschalter'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
 import { Branchenvergleichstafel } from '@/components/markets/Branchenvergleichstafel'
+import { EingepreistKarte } from '@/components/markets/EingepreistKarte'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
 import { getBranchenvergleich } from '@/lib/branchenvergleich'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
@@ -324,71 +326,85 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             </section>
 
             {/* ----------------------------------------------- Erklärung */}
-            <section aria-labelledby="erklaerung" className="mt-12">
-              <h2 id="erklaerung" className="text-fg text-2xl font-bold">
-                Was {instrument.ticker} eigentlich abbildet
-              </h2>
-              <div className="text-fg-muted mt-4 space-y-4 leading-relaxed">
-                {instrument.description.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-                {/*
+            {/*
+              Ab hier ist jedes Unterthema eine zugeklappte Kachel – dasselbe
+              Muster wie die Archivtage der Nachrichtenseite. Offen bleiben
+              nur Kopf, Kennzahlenleiste und Kursverlauf: Sie sind der Grund,
+              aus dem jemand die Seite öffnet. Begründung im Klappabschnitt.
+            */}
+            <Klappabschnitt
+              titel={`Was ${instrument.ticker} eigentlich abbildet`}
+              className="mt-12"
+            >
+              <section aria-labelledby="erklaerung">
+                <h2 id="erklaerung" className="text-fg text-2xl font-bold">
+                  Was {instrument.ticker} eigentlich abbildet
+                </h2>
+                <div className="text-fg-muted mt-4 space-y-4 leading-relaxed">
+                  {instrument.description.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                  {/*
                   Der Verweis auf die Branche steht hier und nicht in der
                   Kopfzeile: Er beantwortet keine Frage über diese Aktie,
                   sondern führt weiter zu den vergleichbaren – und das ist eine
                   Bewegung, die nach dem Lesen kommt, nicht davor.
                 */}
-                {branche && (
-                  <p>
-                    Diese Aktie führen wir unter{' '}
-                    <Link
-                      href={`/maerkte/branchen/${branche.slug}`}
-                      className="text-markets font-medium underline underline-offset-2"
-                    >
-                      {branche.name}
-                    </Link>
-                    . Dort stehen die übrigen Titel derselben Branche – nützlich, um eine
-                    Bewegung einzuordnen: Fällt nur dieser Kurs oder das ganze Feld?
-                  </p>
-                )}
-              </div>
-            </section>
+                  {branche && (
+                    <p>
+                      Diese Aktie führen wir unter{' '}
+                      <Link
+                        href={`/maerkte/branchen/${branche.slug}`}
+                        className="text-markets font-medium underline underline-offset-2"
+                      >
+                        {branche.name}
+                      </Link>
+                      . Dort stehen die übrigen Titel derselben Branche – nützlich, um
+                      eine Bewegung einzuordnen: Fällt nur dieser Kurs oder das ganze
+                      Feld?
+                    </p>
+                  )}
+                </div>
+              </section>
+            </Klappabschnitt>
 
             {zusammensetzung && (
-              <section aria-labelledby="zusammensetzung" className="mt-12">
-                <h2 id="zusammensetzung" className="text-fg text-2xl font-bold">
-                  Woher das Gewicht kommt
-                </h2>
-                <p className="text-fg-muted mt-4 leading-relaxed">
-                  Gewichtet wird nach Börsenwert: Je mehr ein Unternehmen an der Börse
-                  wert ist, desto stärker zählt es im Index. Nicht die Zahl der
-                  enthaltenen Länder entscheidet also über die Aufteilung, sondern der
-                  Marktwert der Unternehmen in ihnen.
-                </p>
-                <figure className="mt-6">
-                  <div className="rounded-card border-border bg-surface-muted border p-4 sm:p-6">
-                    <IndexLaendergewichtung symbol={instrument.symbol} />
-                  </div>
-                  <figcaption className="text-fg-subtle mt-2.5 text-sm leading-relaxed">
-                    {zusammensetzung.hinweis}
-                  </figcaption>
-                </figure>
-                {/* Die Gewichtung wird von Hand gepflegt, nicht stündlich abgerufen.
+              <Klappabschnitt titel="Woher das Gewicht kommt" className="mt-6">
+                <section aria-labelledby="zusammensetzung">
+                  <h2 id="zusammensetzung" className="text-fg text-2xl font-bold">
+                    Woher das Gewicht kommt
+                  </h2>
+                  <p className="text-fg-muted mt-4 leading-relaxed">
+                    Gewichtet wird nach Börsenwert: Je mehr ein Unternehmen an der Börse
+                    wert ist, desto stärker zählt es im Index. Nicht die Zahl der
+                    enthaltenen Länder entscheidet also über die Aufteilung, sondern der
+                    Marktwert der Unternehmen in ihnen.
+                  </p>
+                  <figure className="mt-6">
+                    <div className="rounded-card border-border bg-surface-muted border p-4 sm:p-6">
+                      <IndexLaendergewichtung symbol={instrument.symbol} />
+                    </div>
+                    <figcaption className="text-fg-subtle mt-2.5 text-sm leading-relaxed">
+                      {zusammensetzung.hinweis}
+                    </figcaption>
+                  </figure>
+                  {/* Die Gewichtung wird von Hand gepflegt, nicht stündlich abgerufen.
                     Ohne sichtbares Datum wäre sie eine Behauptung. */}
-                <p className="text-fg-subtle mt-4 text-sm leading-relaxed">
-                  Stand der Gewichtung: {formatDate(zusammensetzung.stand)}. Quelle:{' '}
-                  <a
-                    href={zusammensetzung.quelle.url}
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                    className="text-brand underline underline-offset-2"
-                  >
-                    {zusammensetzung.quelle.label}
-                  </a>
-                  . Anders als der Kurs wird dieser Datensatz nicht automatisch
-                  aktualisiert.
-                </p>
-              </section>
+                  <p className="text-fg-subtle mt-4 text-sm leading-relaxed">
+                    Stand der Gewichtung: {formatDate(zusammensetzung.stand)}. Quelle:{' '}
+                    <a
+                      href={zusammensetzung.quelle.url}
+                      rel="noopener noreferrer nofollow"
+                      target="_blank"
+                      className="text-brand underline underline-offset-2"
+                    >
+                      {zusammensetzung.quelle.label}
+                    </a>
+                    . Anders als der Kurs wird dieser Datensatz nicht automatisch
+                    aktualisiert.
+                  </p>
+                </section>
+              </Klappabschnitt>
             )}
 
             {/*
@@ -401,43 +417,49 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               zweiten Seite behauptet mehr, als da ist.
             */}
             {meldungen.length > 0 && (
-              <section aria-labelledby="meldungen" className="mt-12">
-                <h2 id="meldungen" className="text-fg text-2xl font-bold">
-                  Nachrichten zu {instrument.name}
-                </h2>
-                <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
-                  Was zuletzt über diesen Kurs geschrieben wurde – mit der Einordnung,
-                  warum es ihn bewegt.
-                </p>
-                <ul className="mt-5 space-y-3">
-                  {meldungen.map((meldung) => (
-                    <li key={meldung.slug}>
-                      <Link
-                        href={`/news/${meldung.slug}`}
-                        className="fk-card hover:border-border-strong block p-5 transition-colors"
-                      >
-                        <span className="text-fg-subtle flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
-                          <span className="font-semibold tracking-wide uppercase">
-                            {meldung.category}
+              <Klappabschnitt
+                titel={`Nachrichten zu ${instrument.name}`}
+                hinweis={`${meldungen.length} ${meldungen.length === 1 ? 'Meldung' : 'Meldungen'}`}
+                className="mt-6"
+              >
+                <section aria-labelledby="meldungen">
+                  <h2 id="meldungen" className="text-fg text-2xl font-bold">
+                    Nachrichten zu {instrument.name}
+                  </h2>
+                  <p className="text-fg-muted mt-2 max-w-2xl leading-relaxed">
+                    Was zuletzt über diesen Kurs geschrieben wurde – mit der Einordnung,
+                    warum es ihn bewegt.
+                  </p>
+                  <ul className="mt-5 space-y-3">
+                    {meldungen.map((meldung) => (
+                      <li key={meldung.slug}>
+                        <Link
+                          href={`/news/${meldung.slug}`}
+                          className="fk-card hover:border-border-strong block p-5 transition-colors"
+                        >
+                          <span className="text-fg-subtle flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                            <span className="font-semibold tracking-wide uppercase">
+                              {meldung.category}
+                            </span>
+                            <span aria-hidden="true">·</span>
+                            <time dateTime={meldung.publishedAt}>
+                              {formatDate(meldung.publishedAt)}
+                            </time>
+                            <span aria-hidden="true">·</span>
+                            <span>{meldung.readingMinutes} Min. Lesezeit</span>
                           </span>
-                          <span aria-hidden="true">·</span>
-                          <time dateTime={meldung.publishedAt}>
-                            {formatDate(meldung.publishedAt)}
-                          </time>
-                          <span aria-hidden="true">·</span>
-                          <span>{meldung.readingMinutes} Min. Lesezeit</span>
-                        </span>
-                        <span className="text-fg mt-1.5 block text-lg font-semibold">
-                          {meldung.title}
-                        </span>
-                        <span className="text-fg-muted mt-1.5 block text-sm leading-relaxed">
-                          {meldung.teaser}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+                          <span className="text-fg mt-1.5 block text-lg font-semibold">
+                            {meldung.title}
+                          </span>
+                          <span className="text-fg-muted mt-1.5 block text-sm leading-relaxed">
+                            {meldung.teaser}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </Klappabschnitt>
             )}
 
             {/*
@@ -446,14 +468,15 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               wissen will, was sie abwirft.
             */}
             {dividende && (
-              <Dividendentafel
-                befund={dividende}
-                einheit={instrument.unit}
-                name={instrument.name}
-                quelle={dividendenQuelle}
-                verlauf={dividendenverlauf}
-                className="mt-12"
-              />
+              <Klappabschnitt titel="Dividende" className="mt-6">
+                <Dividendentafel
+                  befund={dividende}
+                  einheit={instrument.unit}
+                  name={instrument.name}
+                  quelle={dividendenQuelle}
+                  verlauf={dividendenverlauf}
+                />
+              </Klappabschnitt>
             )}
 
             {/*
@@ -484,58 +507,87 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
             </p>
 
             {instrument.kind === 'etf' && (
-              <Fondstafel
-                symbol={instrument.symbol}
-                isin={instrument.isin}
-                ertragsverwendung={instrument.ertragsverwendung}
-                className="mt-12"
-              />
+              <Klappabschnitt titel="Was dieser Fonds ist" className="mt-6">
+                <Fondstafel
+                  symbol={instrument.symbol}
+                  isin={instrument.isin}
+                  ertragsverwendung={instrument.ertragsverwendung}
+                />
+              </Klappabschnitt>
             )}
 
             {quellensteuerbefund && sitzlandName && (
-              <Quellensteuertafel
-                befund={quellensteuerbefund}
-                land={sitzlandName}
-                className="mt-12"
-              />
+              <Klappabschnitt titel="Quellensteuer" className="mt-6">
+                <Quellensteuertafel befund={quellensteuerbefund} land={sitzlandName} />
+              </Klappabschnitt>
             )}
 
             {einmal && (
-              <Rueckblicktafel
-                einmal={einmal}
-                plan={monatsplan}
-                einheit={instrument.unit}
-                name={instrument.name}
-                className="mt-12"
-              />
+              <Klappabschnitt
+                titel="Was daraus geworden wäre"
+                hinweis="Rückblick: 1.000 € über echte Kursreihen"
+                className="mt-6"
+              >
+                <Rueckblicktafel
+                  einmal={einmal}
+                  plan={monatsplan}
+                  einheit={instrument.unit}
+                  name={instrument.name}
+                />
+              </Klappabschnitt>
             )}
 
             {indexvergleich && (
-              <Indexvergleichstafel
-                vergleich={indexvergleich}
-                name={instrument.name}
-                ticker={instrument.ticker}
-                reihen={vergleichsreihen}
-                className="mt-12"
-              />
+              <Klappabschnitt
+                titel={`Gegen den ${indexvergleich?.index.name ?? 'Index'}`}
+                className="mt-6"
+              >
+                <Indexvergleichstafel
+                  vergleich={indexvergleich}
+                  name={instrument.name}
+                  ticker={instrument.ticker}
+                  reihen={vergleichsreihen}
+                />
+              </Klappabschnitt>
             )}
 
             {fundamental && (
-              <Unternehmenszahlen
-                befund={fundamental}
-                name={instrument.name}
-                quelle={getFundamentalquelle(instrument.ticker)}
-                className="mt-12"
-              />
+              <Klappabschnitt titel="Unternehmenszahlen" className="mt-6">
+                <Unternehmenszahlen
+                  befund={fundamental}
+                  name={instrument.name}
+                  quelle={getFundamentalquelle(instrument.ticker)}
+                />
+              </Klappabschnitt>
             )}
             {branchenvergleich && (
-              <Branchenvergleichstafel
-                vergleich={branchenvergleich}
-                name={instrument.name}
-                className="mt-12"
-              />
+              <Klappabschnitt titel="Im Branchenvergleich" className="mt-6">
+                <Branchenvergleichstafel
+                  vergleich={branchenvergleich}
+                  name={instrument.name}
+                />
+              </Klappabschnitt>
             )}
-            {kennzahlen && <Kennzahlentafel kennzahlen={kennzahlen} className="mt-12" />}
+            {/*
+              Die vorgerechnete Bewertung direkt am Titel – unabhängig vom
+              Branchenvergleich, denn ein KGV kann es auch geben, wenn die
+              Branche zu klein für einen Median ist.
+            */}
+            {fundamental?.art === 'zahlen' &&
+              fundamental.kennzahlen.kgv.wert !== null && (
+                <Klappabschnitt
+                  titel="Was der Kurs schon verspricht"
+                  hinweis="Die Bewertung, bereits durchgerechnet"
+                  className="mt-6"
+                >
+                  <EingepreistKarte kgv={fundamental.kennzahlen.kgv.wert} />
+                </Klappabschnitt>
+              )}
+            {kennzahlen && (
+              <Klappabschnitt titel="Wertentwicklung und Risiko" className="mt-6">
+                <Kennzahlentafel kennzahlen={kennzahlen} />
+              </Klappabschnitt>
+            )}
 
             <div className="border-border mt-10 border-t pt-5">
               <SourceSummary

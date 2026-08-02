@@ -42,6 +42,24 @@ export interface Modellannahmen {
 }
 
 /**
+ * Die Standardannahmen – eine Stelle, zwei Verwender.
+ *
+ * Der Rechner öffnet mit ihnen, und die vorgerechnete Karte auf jeder
+ * Aktienseite rechnet mit denselben. Stünden sie doppelt, zeigten Karte
+ * und Rechner irgendwann verschiedene Zahlen für dieselbe Aktie – der
+ * eine Fehler, den dieses Werkzeug nicht haben darf.
+ *
+ * Zehn Jahre sind der übliche Rahmen solcher Modelle, acht Prozent grob
+ * die langfristige Aktienmarktrendite, 15 der historische
+ * Durchschnitts-Marktmultiplikator.
+ */
+export const STANDARDANNAHMEN: Modellannahmen = {
+  jahre: 10,
+  abzinsungProzent: 8,
+  endKgv: 15,
+}
+
+/**
  * Das gerechtfertigte KGV bei gegebenem Wachstum: der Barwert aller
  * Jahresgewinne plus abgezinster Endwert, je Einheit heutigen Gewinns.
  */

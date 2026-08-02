@@ -90,22 +90,6 @@ export default function CalculatorsOverviewPage() {
             </li>
           ))}
         </ul>
-
-        <div className="mt-10 max-w-3xl">
-          <Callout variant="info" title="Modellrechnungen, keine Prognosen">
-            <p>
-              Alle Rechner arbeiten mit Annahmen, die du selbst vorgibst – vor allem
-              Rendite und Inflationsrate. Das Ergebnis ist genau so verlässlich wie diese
-              Annahmen. Keiner der Rechner berücksichtigt Steuern und Produktkosten
-              vollständig; wo etwas fehlt, steht es im Methodik-Abschnitt der jeweiligen
-              Seite.
-            </p>
-            <p>
-              Rechne bei langen Zeiträumen immer mehrere Szenarien. Die Spannweite der
-              Ergebnisse ist die eigentliche Information – nicht die einzelne Zahl.
-            </p>
-          </Callout>
-        </div>
       </div>
 
       <JsonLd

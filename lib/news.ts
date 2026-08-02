@@ -232,26 +232,31 @@ export async function getNewsSlugs(): Promise<string[]> {
 /**
  * Kurzfassungen für Karussell und Teaser-Listen.
  *
- * **Nur der jüngste Erscheinungstag**, wie auf der Nachrichtenseite auch.
+ * **Die zwei jüngsten Erscheinungstage**, jüngster zuerst – anders als die
+ * Nachrichtenseite, und mit Absicht.
  *
- * Das war zunächst übersehen: Die Umstellung von „neueste neun nach Rang“ auf
- * „alles vom jüngsten Tag“ traf nur `getCurrentNews`. Das Karussell der
- * Startseite holt seine Schlagzeilen über diese Funktion und zeigte deshalb
- * weiter den Vortag mit – am 31. Juli stand dort um halb neun eine Meldung
- * vom 30. mit dem Datum darunter.
+ * Die Nachrichtenseite trennt scharf: aktuell ist der jüngste Tag, alles
+ * Ältere liegt zugeklappt im Archiv. Für das Karussell der Startseite war
+ * diese Schärfe zu viel des Guten: An einem Sonntag mit drei Meldungen
+ * rotierte es dreimal, und die neun Meldungen vom Samstag – für jeden, der
+ * am Wochenende vorbeischaut, noch vollkommen aktuell – waren von der
+ * Startseite verschwunden. Seit August 2026 nimmt das Karussell deshalb
+ * zwei Tage: erst alles von heute, dahinter der Vortag. Das Datum steht an
+ * jeder Schlagzeile, es wird also nichts als heutig ausgegeben, was es
+ * nicht ist.
  *
- * Die Regel gilt für jede Stelle, an der Artikel als „aktuell“ erscheinen:
- * Was von heute ist, steht vorn; alles Ältere gehört ins Archiv. `limit`
- * begrenzt danach nur noch, wie viele davon gezeigt werden.
+ * Für alle anderen Stellen gilt weiter die scharfe Regel aus
+ * `getCurrentNews`; `limit` begrenzt nur, wie viele Schlagzeilen gezeigt
+ * werden.
  */
 export async function getNewsHeadlines(
   limit = CURRENT_NEWS_COUNT
 ): Promise<NewsHeadline[]> {
   const alle = sortedArticles()
-  const juengster = alle[0] ? tagVon(alle[0]) : null
-  if (!juengster) return []
+  if (alle.length === 0) return []
+  const tage = [...new Set(alle.map(tagVon))].slice(0, 2)
   return alle
-    .filter((artikel) => tagVon(artikel) === juengster)
+    .filter((artikel) => tage.includes(tagVon(artikel)))
     .slice(0, limit)
     .map(toHeadline)
 }
