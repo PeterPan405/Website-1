@@ -107,6 +107,9 @@ export default async function NewsOverviewPage() {
                   sie zur selben Sache gehört – dasselbe Archiv, nur weiter
                   weggezoomt.
                 */}
+                <Link href="/news/woche" className="fk-btn-ghost">
+                  Wochenrückblick
+                </Link>
                 <Link href="/news/monat" className="fk-btn-ghost">
                   Nach Monaten
                 </Link>

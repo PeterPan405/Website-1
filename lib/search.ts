@@ -108,6 +108,13 @@ const seiten: SearchEntry[] = [
     keywords: ['dsgvo', 'daten', 'rechtliches'],
   },
   {
+    title: 'Wochenrückblick der Märkte',
+    href: '/news/woche',
+    kind: 'News',
+    hint: 'Die letzte Handelswoche in Zahlen samt Zahl der Woche – gerechnet, nicht geschrieben.',
+    keywords: ['woche', 'wochenrückblick', 'rückblick', 'zahl der woche'],
+  },
+  {
     title: 'Das 30-Tage-Programm',
     href: '/lernen/30-tage',
     kind: 'Lernwerkzeug',

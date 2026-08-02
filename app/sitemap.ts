@@ -186,6 +186,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   */
   const monatsPages: MetadataRoute.Sitemap = [
     {
+      // Der Wochenrückblick rechnet bei jedem Bau die letzte volle Woche.
+      url: absoluteUrl('/news/woche'),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
       url: absoluteUrl('/news/monat'),
       lastModified: new Date(latestNewsDate),
       changeFrequency: 'daily',
