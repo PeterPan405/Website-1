@@ -101,6 +101,218 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'opec-plus-quote-papier-fass',
+    title: 'OPEC+ berät heute über mehr Öl – doch die Quote ist Papier',
+    teaser:
+      'Sieben Staaten beraten heute online über 188.000 Barrel mehr ab September. Doch etliche Mitglieder können ihre Ziele gar nicht fördern.',
+    category: 'Märkte',
+    publishedAt: '2026-08-02T10:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['OPEC', 'Ölpreis', 'Rohstoffe', 'Geopolitik'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'Al-Monitor / AFP: „OPEC+ tipped to raise production again but new quotas loom“ (1. August 2026)',
+        url: 'https://www.al-monitor.com/originals/2026/08/opec-tipped-raise-production-again-new-quotas-loom',
+      },
+      {
+        label:
+          'Free Malaysia Today / AFP: „Opec+ tipped to raise production again but new quotas loom“ (2. August 2026)',
+        url: 'https://www.freemalaysiatoday.com/category/business/2026/08/02/opec-tipped-to-raise-production-again-but-new-quotas-loom',
+      },
+      {
+        label:
+          'finanzmarktwelt.de: „Aktienmärkte vor Schicksalswoche: Vier Tage, fünf Risiken“ (28. Juli 2026)',
+        url: 'https://finanzmarktwelt.de/aktienmaerkte-vor-schicksalswoche-vier-tage-fuenf-risiken-396636/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Saudi-Arabien, Russland und fünf weitere OPEC+-Staaten beraten **heute in einer Online-Sitzung** über die Förderquoten für September. Erwartet wird laut AFP eine Anhebung um **188.000 Barrel pro Tag** – die gleiche Schrittgröße wie in den Vormonaten. Es dürfte die letzte Erhöhung der laufenden Serie sein, sagt Jorge Leon vom Analysehaus Rystad Energy.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Hintergrund: Zwischen Ende 2022 und 2023 hatte die erweiterte OPEC ihre Förderung in drei Runden um zusammen fast **sechs Millionen Barrel pro Tag** gekürzt, weil sie fallende Preise fürchtete. Seit 2025 wird das schrittweise zurückgedreht; mit dem September-Schritt wäre das zweite der drei Kürzungspakete vollständig abgewickelt.',
+      },
+      { type: 'heading', level: 2, text: 'Warum mehr Quote nicht mehr Öl heißt' },
+      {
+        type: 'paragraph',
+        text: 'Das Bemerkenswerte an dieser Runde: Viele Mitglieder **können ihre erlaubte Menge gar nicht fördern**. Russlands Produktion liegt laut AFP bei rund neun Millionen Barrel pro Tag – das Ziel wären 9,8 Millionen; ukrainische Drohnenangriffe treffen immer wieder die Infrastruktur. Die Golfstaaten wiederum bekommen ihr Öl schwer aus der Region, weil die Straße von Hormus im Nahostkrieg weitgehend lahmgelegt ist – trotz einer kurzen Belebung nach der amerikanisch-iranischen Absichtserklärung im Juni. „Die Ziele zu erhöhen ist damit weniger aussagekräftig geworden“, so UBS-Analyst Giovanni Staunovo.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Papierquote und lieferbares Fass',
+        items: [
+          'Eine Quote ist eine Erlaubnis, kein Öl. Der Preis richtet sich nach Fässern, die wirklich verladen werden.',
+          'Deshalb kann eine „Erhöhung“ den Preis kaltlassen – wenn niemand die zusätzliche Menge liefern kann.',
+          'Brent schloss am Freitagabend bei gut 90 Dollar; Mitte der Woche lag der Preis laut finanzmarktwelt zeitweise über 100. Ohne Zeitangabe wären beide Zahlen „der Ölpreis“ – und eine davon irreführend.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Die erste Quotenrunde ohne die Emirate' },
+      {
+        type: 'paragraph',
+        text: 'Es ist zugleich die erste September-Entscheidung, seit die **Vereinigten Arabischen Emirate die Gruppe zum 1. Mai verlassen** haben. Abu Dhabi begründete den Schritt damit, er diene „unseren nationalen Interessen und langfristigen strategischen Zielen“ – das Land hatte zuletzt massiv in zusätzliche Förderkapazität investiert und wollte sich enge Quoten nicht länger anrechnen lassen. Rystad-Analyst Leon sieht den Zusammenhalt „im Moment nicht gefährdet“, nennt den Austritt aber eine sichtbar gewordene Schwachstelle. Ab 2027 stehen laut DNB Carnegie ohnehin „möglicherweise schwierige Gespräche“ über ganz neue Quoten an.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kartell wirkt nur, solange die großen Förderer mitmachen und ihre Zusagen physisch einlösen können. Wer Ölpreis-Schlagzeilen liest, sollte zwei Fragen trennen: Was wurde beschlossen – und was davon kommt tatsächlich auf den Markt?',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-wochenende-62766',
+    title: 'Bitcoin fällt am Wochenende weiter – während die Börse zu hat',
+    teaser:
+      'Freitag 63.744 Dollar, in der Nacht zum Sonntag 62.766: Bitcoin handelt durch, wenn Aktien pausieren. Was das für den Montagsblick bedeutet.',
+    category: 'Märkte',
+    publishedAt: '2026-08-02T10:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Ethereum', 'Wochenende', 'Handelszeiten'],
+    relatedTopics: ['bitcoin-krypto', 'boerse'],
+    relatedSymbols: ['bitcoin', 'ethereum'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE: „Bitcoin vor Wochenende schwächer: Kurs fällt auf 63.744 USD“ (31. Juli 2026)',
+        url: 'https://www.wallstreet-online.de/nachricht/21178403-bitcoin-kurs-aktuell-bitcoin-wochenende-schwaecher-kurs-faellt-63-744-usd-alarm-31-07-26',
+      },
+      {
+        label:
+          'Bitcoin-Kursseite dieser Website (Yahoo-Tagesdaten, Stand 2. August, 0:01 Uhr MESZ)',
+        url: 'https://iminvests.de/maerkte/bitcoin',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin ist bereits **vor dem Wochenende schwächer** aus der Woche gegangen: Am Freitag fiel der Kurs laut wallstreetONLINE auf **63.744 US-Dollar**, ein Minus von gut anderthalb Prozent binnen 24 Stunden. Und anders als an der Börse war damit nicht Schluss: In der Nacht zum Sonntag stand der Kurs nach den auf dieser Website geführten Yahoo-Daten bei **62.766 Dollar**, Ethereum bei rund 1.845 Dollar.',
+      },
+      { type: 'heading', level: 2, text: '365 gegen 252' },
+      {
+        type: 'paragraph',
+        text: 'Aktienbörsen handeln an rund **252 Tagen im Jahr**, Kryptowährungen an allen **365**. Was banal klingt, verändert den Blick auf jeden Chart: Während der DAX von Freitagabend bis Montagmorgen schlicht nicht existiert, läuft der Bitcoin-Preis durch – mit dünner Liquidität, denn am Wochenende sind weniger Käufer und Verkäufer unterwegs. Kleine Orders bewegen dann mehr als unter der Woche.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Daraus folgen zwei Dinge. Erstens: **Der Montagsblick täuscht.** Eine Aktie „springt“ am Montag scheinbar, dabei hat sich nur über zwei geschlossene Tage Nachrichtenlage angesammelt – die Kurslücke ist das nachgeholte Wochenende. Bitcoin hat diese Lücke nicht, dafür passiert sein Wochenendweg oft in kleinen, nervösen Schritten. Zweitens: **Wochenvergleiche hinken**, wenn man ein 365-Tage-Instrument gegen ein 252-Tage-Instrument stellt – die Zeiträume sind schlicht nicht dieselben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Krypto- und Aktienbewegungen vergleicht, sollte auf denselben Zeitraum und dieselbe Uhrzeit achten – und Wochenendbewegungen bei Bitcoin nicht überinterpretieren: Sie entstehen in einem Markt, der gerade besonders dünn besetzt ist.',
+      },
+    ],
+  },
+  {
+    slug: 'woche-voraus-berkshire-bis-lilly',
+    title: 'Die Woche voraus: 31 erwartete Quartalstermine, von Berkshire bis Lilly',
+    metaTitle: 'Wochenausblick: 31 erwartete Quartalstermine',
+    teaser:
+      'Montag Berkshire und Palantir, Dienstag AMD und Caterpillar, Donnerstag Eli Lilly: Unser Kalender erwartet 31 Meldungen – gerechnet, nicht bestätigt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-02T10:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Quartalszahlen', 'Wochenausblick', 'Berichtssaison'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: [
+      'berkshire',
+      'palantir',
+      'amd',
+      'caterpillar',
+      'eli-lilly',
+      'mcdonalds',
+      'uber',
+      'pfizer',
+    ],
+    sources: [
+      {
+        label:
+          'finanzmarktwelt.de: „Aktienmärkte vor Schicksalswoche: Vier Tage, fünf Risiken“ (28. Juli 2026)',
+        url: 'https://finanzmarktwelt.de/aktienmaerkte-vor-schicksalswoche-vier-tage-fuenf-risiken-396636/',
+      },
+      {
+        label:
+          'Terminkalender dieser Website: erwartete Meldetermine, gerechnet aus den 8-K-Mustern der SEC',
+        url: 'https://iminvests.de/kalender',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach der Woche mit Fed-Entscheid und den Zahlen von vier der „Magnificent Seven“ reißt der Takt nicht ab. Unser Terminkalender erwartet für die kommenden Handelstage **31 Quartalsmeldungen** aus dem hier geführten Aktienbestand – gerechnet aus den Meldemustern der Vorjahre, nicht von den Unternehmen bestätigt.',
+      },
+      {
+        type: 'table',
+        head: ['Tag', 'Erwartete Meldungen (Auswahl)'],
+        rows: [
+          ['Montag, 3. August', 'Berkshire Hathaway, Palantir, Vertex, IDEXX'],
+          ['Dienstag, 4. August', 'AMD, Caterpillar, Pfizer, Amgen, Cummins'],
+          ['Mittwoch, 5. August', 'McDonald’s, Uber, Airbnb, MetLife, Fortinet'],
+          ['Donnerstag, 6. August', 'Eli Lilly, Gilead, ConocoPhillips, Datadog'],
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Worauf der Markt dabei schaut' },
+      {
+        type: 'paragraph',
+        text: 'Die Messlatte der Berichtssaison hat sich verschoben: Nicht mehr das Umsatzwachstum steht im Mittelpunkt, sondern die Frage, **wann sich die milliardenschweren KI-Investitionen auszahlen**. Wie ernst es der Markt damit meint, zeigte laut finanzmarktwelt das Beispiel Alphabet in der vergangenen Woche: Trotz starker Quartalszahlen verlor die Aktie rund sieben Prozent, nachdem der Konzern seine Investitionspläne für KI-Rechenzentren erneut ausgeweitet hatte.',
+      },
+      { type: 'heading', level: 2, text: '„Erwartet“ ist nicht „bestätigt“' },
+      {
+        type: 'paragraph',
+        text: 'Ein Wort zur Ehrlichkeit dieser Vorschau: Unsere Termine sind **Vorhersagen aus dem bisherigen Meldeverhalten** – meldet ein Unternehmen seit Jahren Ende der ersten August-Woche, erwarten wir das auch diesmal, mit der historischen Streuung als Unsicherheitsmaß. Verbindlich ist allein die Ankündigung des Unternehmens auf seiner Investor-Relations-Seite. Genau deshalb steht an jedem Termin im Kalender das Wort „erwartet“.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Termine sind selbst Kurstreiber – vor Zahlen steigt oft die Schwankung, danach entlädt sie sich. Wer weiß, wann seine Titel melden, wird von Bewegungen seltener überrascht. Der Kalender auf dieser Website führt alle erwarteten Termine je Titel.',
+      },
+    ],
+  },
+  {
+    slug: 'eingepreist-renditen-vier-sieben',
+    title: 'Voll eingepreist: Warum eine erwartete Zinserhöhung kaum bewegt',
+    teaser:
+      'Der Terminmarkt preist die September-Erhöhung der Fed komplett ein, zehnjährige US-Anleihen rentieren bei 4,7 Prozent. Was „eingepreist“ heißt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-02T10:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Anleiherenditen', 'Erwartungen', 'Abzinsung'],
+    relatedTopics: ['notenbanken-geldpolitik', 'schuldverschreibung'],
+    relatedSymbols: ['sp500', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanzmarktwelt.de: „Aktienmärkte vor Schicksalswoche: Vier Tage, fünf Risiken“ (28. Juli 2026)',
+        url: 'https://finanzmarktwelt.de/aktienmaerkte-vor-schicksalswoche-vier-tage-fuenf-risiken-396636/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Zahlen aus der vergangenen Woche lohnen den zweiten Blick. Erstens: Der Terminmarkt preist laut finanzmarktwelt (Stand 28. Juli, vor dem Fed-Entscheid) eine **Zinserhöhung im September vollständig ein** – und bis Jahresende sogar einen zweiten Schritt. Zweitens: Die Rendite zehnjähriger US-Staatsanleihen stieg auf **4,7 Prozent**, den höchsten Stand seit Monaten. Die Fed selbst hielt die Spanne am Mittwoch still – wie hier am Donnerstag berichtet, mit drei Gegenstimmen, die lieber erhöht hätten.',
+      },
+      { type: 'heading', level: 2, text: 'Eingepreist heißt: schon bezahlt' },
+      {
+        type: 'paragraph',
+        text: 'Wenn eine Zinserhöhung „vollständig eingepreist“ ist, haben Käufer und Verkäufer sie in ihren heutigen Preisen bereits verarbeitet. Tritt sie ein, passiert – wenig. **Bewegung entsteht aus der Abweichung**: aus der Erhöhung, die nicht kommt, oder der, die größer ausfällt als gedacht. Das erklärt das scheinbare Paradox, dass Märkte auf „gute“ Nachrichten fallen und auf „schlechte“ steigen können – gemessen wird immer gegen das, was erwartet wurde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die 4,7 Prozent sind dabei mehr als eine Anleihe-Notiz. Der Zins ist die **Schwerkraft jeder Bewertung**: Je höher die sichere Alternative verzinst, desto strenger wird jeder künftige Unternehmensgewinn abgezinst – und desto schwerer lassen sich hohe Bewertungen rechtfertigen. Wer nachvollziehen will, wie stark dieser Hebel wirkt, kann im Bewertungsrechner dieser Website die Abzinsung von 8 auf 10 Prozent stellen und zusehen, was mit dem gerechtfertigten Kurs-Gewinn-Verhältnis passiert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Nicht die Nachricht bewegt den Kurs, sondern ihr Abstand zur Erwartung. Wer Zinstermine liest, sollte deshalb immer zwei Dinge kennen: was beschlossen wurde – und was der Markt vorher eingepreist hatte.',
+      },
+    ],
+  },
+  {
     slug: 'juli-tag-gruen-monat-rot',
     title: 'Der Freitag war grün, der Juli war rot – beim selben Index',
     teaser:
