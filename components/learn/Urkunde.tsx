@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 
 import { useCompletedLevels } from '@/components/learn/progress-store'
@@ -40,6 +40,46 @@ import { siteConfig } from '@/lib/site'
  * Drucken (`beforeprint`): Die Website ist statisch gebaut, ein Datum vom
  * Bautag wäre auf einem später gedruckten Blatt falsch.
  */
+/*
+ * Der Name gilt für alle Pfade – wer die zweite Urkunde druckt, muss ihn
+ * nicht noch einmal eintippen. Er bleibt wie aller Lernstand im Gerät und
+ * wird nach dem Muster der `…-speicher.ts`-Module gehalten: Der Server
+ * kennt den localStorage nicht, deshalb liefert der Server-Schnappschuss
+ * die leere Zeichenkette, und erst der Browser liest den Bestand.
+ */
+const NAME_SCHLUESSEL = 'fk-urkunde-name'
+
+let nameCache: string | null = null
+const nameListeners = new Set<() => void>()
+
+function liesName(): string {
+  if (nameCache !== null) return nameCache
+  try {
+    nameCache = window.localStorage.getItem(NAME_SCHLUESSEL) ?? ''
+  } catch {
+    // Ohne localStorage (Privatmodus mancher Browser) bleibt das Feld leer.
+    nameCache = ''
+  }
+  return nameCache
+}
+
+function schreibeName(wert: string) {
+  nameCache = wert
+  try {
+    window.localStorage.setItem(NAME_SCHLUESSEL, wert)
+  } catch {
+    // Nicht speichern können heißt nur: beim nächsten Mal neu eintippen.
+  }
+  nameListeners.forEach((eintrag) => eintrag())
+}
+
+function abonniereName(listener: () => void): () => void {
+  nameListeners.add(listener)
+  return () => {
+    nameListeners.delete(listener)
+  }
+}
+
 export function Urkunde({
   pfadTitel,
   pfadSlug,
@@ -53,19 +93,8 @@ export function Urkunde({
   const fertig = stufenkennungen.filter((kennung) => erledigt.includes(kennung)).length
   const komplett = fertig === stufenkennungen.length && stufenkennungen.length > 0
 
-  const [name, setzeName] = useState('')
+  const name = useSyncExternalStore(abonniereName, liesName, () => '')
   const [datum, setzeDatum] = useState('')
-
-  // Der Name gilt für alle Pfade – wer die zweite Urkunde druckt, muss ihn
-  // nicht noch einmal eintippen. Er bleibt wie aller Lernstand im Gerät.
-  useEffect(() => {
-    try {
-      const gespeichert = window.localStorage.getItem('fk-urkunde-name')
-      if (gespeichert) setzeName(gespeichert)
-    } catch {
-      // Ohne localStorage (Privatmodus mancher Browser) bleibt das Feld leer.
-    }
-  }, [])
 
   useEffect(() => {
     const heute = () =>
@@ -80,15 +109,6 @@ export function Urkunde({
     window.addEventListener('beforeprint', heute)
     return () => window.removeEventListener('beforeprint', heute)
   }, [])
-
-  function beiEingabe(wert: string) {
-    setzeName(wert)
-    try {
-      window.localStorage.setItem('fk-urkunde-name', wert)
-    } catch {
-      // Nicht speichern können heißt nur: beim nächsten Mal neu eintippen.
-    }
-  }
 
   if (!komplett) {
     return (
@@ -155,7 +175,7 @@ export function Urkunde({
             <input
               type="text"
               value={name}
-              onChange={(ereignis) => beiEingabe(ereignis.target.value)}
+              onChange={(ereignis) => schreibeName(ereignis.target.value)}
               placeholder="Name eintragen – oder später von Hand"
               aria-label="Name für die Urkunde"
               className="border-fg/40 text-fg placeholder:text-fg-subtle w-full border-b bg-transparent pb-1 text-center text-xl focus:outline-none print:placeholder:text-transparent"
