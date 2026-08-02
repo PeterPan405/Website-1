@@ -288,7 +288,7 @@ export const kostenUndGebuehren: LearnTopic = {
           items: [
             'Kleines Depot, monatlicher Sparplan: Auf kostenfreie Sparplanausführung achten. Die Fondskostenquote ist zweitrangig, solange sie im üblichen Rahmen liegt.',
             'Großes Depot, seltene Käufe: Auf die Fondskostenquote und die Tracking-Differenz achten. Ein Euro mehr je Order ist bedeutungslos.',
-            'In beiden Fällen: Der Ausgabeaufschlag gehört vermieden, und die Depotgebühr sollte null sein.',
+            'In beiden Fällen gilt: Beim Kauf über die Börse entfällt der Ausgabeaufschlag, und viele Anbieter erheben keine Depotgebühr.',
           ],
         },
         {

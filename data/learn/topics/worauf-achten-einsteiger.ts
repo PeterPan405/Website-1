@@ -267,7 +267,7 @@ export const woraufAchtenEinsteiger: LearnTopic = {
           ordered: true,
           items: [
             '**Was ist der Basiswert?** Worauf bezieht sich das Produkt tatsächlich? „Zertifikat auf einen Nachhaltigkeitsindex“ – welcher Index, wer stellt ihn zusammen, nach welchen Regeln?',
-            '**Wer ist der Emittent, und was passiert bei seiner Insolvenz?** Bei einem Fonds: Sondervermögen, geschützt. Bei einem Zertifikat: Schuldverschreibung, im Insolvenzfall verloren. Das ist der größte Unterschied überhaupt und steht selten in der Werbung.',
+            '**Wer ist der Emittent, und was passiert bei seiner Insolvenz?** Bei einem Fonds: Sondervermögen, geschützt. Bei einem Zertifikat: Schuldverschreibung, im Insolvenzfall verloren. Das ist der größte Unterschied überhaupt; er steht im Basisinformationsblatt und wird in Produktunterlagen leicht übersehen.',
             '**Was kostet es im Jahr, alles zusammen?** Das Blatt weist Gesamtkosten für verschiedene Haltedauern aus. Diese Zahl nehmen, nicht einzelne Gebührenposten.',
             '**Wie komme ich wieder raus?** Empfohlene Haltedauer, Mindestlaufzeit, Kosten bei vorzeitigem Ausstieg.',
             '**Was steht in den Szenarien?** Vier Verläufe – pessimistisch bis optimistisch. Interessant ist der pessimistische; den überliest man sonst.',

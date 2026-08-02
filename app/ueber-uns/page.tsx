@@ -81,10 +81,10 @@ export default async function AboutPage() {
         <div className="max-w-3xl">
           <h2 className="text-fg text-2xl font-bold">Warum diese Plattform existiert</h2>
           <p className="text-fg-muted mt-4 leading-relaxed">
-            Finanzinformationen sind reichlich vorhanden – aber selten neutral. Wer
-            erklärt, hat meistens etwas zu verkaufen: einen Fonds, eine Versicherung, ein
-            Depot, ein Abonnement. Das macht Inhalte nicht automatisch falsch, aber es
-            verschiebt, was betont und was weggelassen wird.
+            Finanzinformationen sind reichlich vorhanden. Viele davon entstehen im Umfeld
+            eines Produktangebots – ein Fonds, eine Versicherung, ein Depot, ein
+            Abonnement. Das macht Inhalte nicht automatisch falsch, aber es prägt, was
+            betont und was weggelassen wird.
           </p>
           <p className="text-fg-muted mt-4 leading-relaxed">
             Diese Plattform verkauft nichts. Daraus folgt eine andere Gewichtung: Kosten

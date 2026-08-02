@@ -290,7 +290,7 @@ export const rente: LearnTopic = {
           items: [
             '**Sie rechnet sich, wenn der Arbeitgeber deutlich zuschießt.** Ein Zuschuss ist eine sofortige, sichere Rendite, die keine Anlage erreicht. Seit einigen Jahren ist ein Mindestzuschuss bei Entgeltumwandlung ohnehin vorgeschrieben.',
             '**Sie rechnet sich schlechter ohne nennenswerten Zuschuss.** Dem Steuervorteil heute stehen die volle Steuer- und Beitragspflicht später gegenüber – der Vorteil schrumpft auf die Differenz der Steuersätze und die gesparten Sozialabgaben, abzüglich der verlorenen Rentenpunkte.',
-            '**Die Kosten des Produkts entscheiden mit.** Eine Direktversicherung mit hohen Abschluss- und Verwaltungskosten kann den gesamten steuerlichen Vorteil aufzehren. Diese Kosten stehen im Vertrag und sind selten prominent.',
+            '**Die Kosten des Produkts entscheiden mit.** Eine Direktversicherung mit hohen Abschluss- und Verwaltungskosten kann den gesamten steuerlichen Vorteil aufzehren. Diese Kosten stehen im Vertrag und sollten vor Abschluss gezielt geprüft werden.',
             '**Beim Jobwechsel** ist die Frage der Übertragbarkeit zu klären. Zusagen sind nach einer Frist unverfallbar, aber nicht jeder Vertrag lässt sich mitnehmen – beitragsfrei gestellte Verträge laufen mit weiterlaufenden Kosten leer.',
           ],
         },

@@ -1840,7 +1840,7 @@ export const learnQuizzes: Record<string, QuizQuestion[]> = {
       ],
       correctIndex: 1,
       explanation:
-        'Ein Fonds ist Sondervermögen und übersteht die Insolvenz des Anbieters. Ein Zertifikat ist eine Schuldverschreibung – geht der Emittent pleite, ist das Geld weg, unabhängig davon, wie sich der Basiswert entwickelt hat. Dieser Unterschied steht selten in der Werbung.',
+        'Ein Fonds ist Sondervermögen und übersteht die Insolvenz des Anbieters. Ein Zertifikat ist eine Schuldverschreibung – geht der Emittent pleite, ist das Geld weg, unabhängig davon, wie sich der Basiswert entwickelt hat. Dieser Unterschied steht im Basisinformationsblatt – und wird leicht übersehen.',
     },
     {
       question:

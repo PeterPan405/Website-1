@@ -385,7 +385,7 @@ export const option: LearnTopic = {
           items: [
             'Jede Position eines Spreads verursacht Gebühren, und beim Schließen noch einmal – bei einem Vertical Spread also vier Transaktionen.',
             'Dazu kommt der Spread zwischen Geld- und Briefkurs, der bei Optionen deutlich breiter ist als bei Aktien.',
-            'Bei kleinen Beträgen frisst das die kalkulierte Gewinnspanne vollständig auf. Optionsstrategien haben eine Mindestgröße, unterhalb derer sie rechnerisch nicht aufgehen – das steht in keinem Werbetext.',
+            'Bei kleinen Beträgen frisst das die kalkulierte Gewinnspanne vollständig auf. Optionsstrategien haben eine Mindestgröße, unterhalb derer sie rechnerisch nicht aufgehen – das gehört vor dem ersten Einsatz nachgerechnet.',
           ],
         },
         {

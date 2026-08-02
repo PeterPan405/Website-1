@@ -6,7 +6,7 @@ import { formatPercent } from '@/lib/format'
  * Vollständig ausgearbeitetes Thema.
  *
  * Stufenaufbau: Beginner klärt Funktionsweise, Zweck und Einlagensicherung.
- * Fortgeschritten behandelt die Zinsmechanik, Lockangebote und Steuern. Profi
+ * Fortgeschritten behandelt die Zinsmechanik, Aktionsangebote und Steuern. Profi
  * geht auf Sicherungssysteme, Auslandseinlagen und den Vergleich mit
  * Geldmarktfonds ein.
  *
@@ -29,7 +29,7 @@ export const tagesgeld: LearnTopic = {
   overview: [
     'Ein Tagesgeldkonto ist ein verzinstes Konto ohne festgelegte Laufzeit. Das Geld ist arbeitstäglich verfügbar, der Zinssatz variabel.',
     'Tagesgeld erfüllt genau zwei Aufgaben gut: den Notgroschen aufbewahren und Geld parken, das in den nächsten Jahren gebraucht wird. Für alles Weitere ist es das falsche Werkzeug.',
-    'Die Stufen behandeln Funktionsweise und Einlagensicherung, dann Zinsmechanik, Lockangebote und Steuern, schließlich Bankbonität, Auslandseinlagen und die reale Rendite.',
+    'Die Stufen behandeln Funktionsweise und Einlagensicherung, dann Zinsmechanik, Aktionsangebote und Steuern, schließlich Bankbonität, Auslandseinlagen und die reale Rendite.',
   ],
   keywords: ['Tagesgeld', 'Zinsen', 'Einlagensicherung', 'Notgroschen', 'Realzins'],
   related: ['einlagensicherung', 'zinseszins', 'sparerpauschbetrag'],
@@ -152,9 +152,9 @@ export const tagesgeld: LearnTopic = {
     fortgeschritten: {
       metaTitle: 'Tagesgeld fortgeschritten: Zinsmechanik und Steuern',
       metaDescription:
-        'Wie der Einlagenzins der Notenbank auf Tagesgeld durchschlägt, wie Lockzinsen kalkuliert sind und wie Zinserträge in Deutschland besteuert werden.',
+        'Wie der Einlagenzins der Notenbank auf Tagesgeld durchschlägt, wie Aktionszinsen aufgebaut sind und wie Zinserträge in Deutschland besteuert werden.',
       title: 'Zinsmechanik, Angebote und Steuern',
-      lead: 'Woher der Zins kommt, wie Lockangebote kalkuliert sind und welche Zahl nach Steuern übrig bleibt.',
+      lead: 'Woher der Zins kommt, wie Aktionsangebote aufgebaut sind und welche Zahl nach Steuern übrig bleibt.',
       readingMinutes: 9,
       status: 'complete',
       blocks: [
@@ -169,7 +169,7 @@ export const tagesgeld: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Deshalb bewegt sich der Tagesgeldzins des Marktes ungefähr mit dem Einlagenzins – aber nicht symmetrisch. Sinkt der Leitzins, sinken die Tagesgeldzinsen meist binnen Wochen. Steigt er, dauert die Weitergabe oft Monate. Der Grund ist simpel: Wer sein Geld nicht bewegt, merkt es nicht, und die meisten bewegen es nicht.',
+          text: 'Deshalb bewegt sich der Tagesgeldzins des Marktes ungefähr mit dem Einlagenzins – aber nicht symmetrisch. Sinkt der Leitzins, sinken die Tagesgeldzinsen meist binnen Wochen. Steigt er, dauert die Weitergabe oft Monate. In der Praxis reagieren viele Kunden auf Zinsänderungen erst verzögert – entsprechend träge folgt der Marktdurchschnitt.',
         },
         {
           type: 'callout',

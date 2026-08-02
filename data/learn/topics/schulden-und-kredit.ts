@@ -171,7 +171,7 @@ export const schuldenUndKredit: LearnTopic = {
         },
         {
           type: 'paragraph',
-          text: 'Zu Beginn geht also deutlich mehr als die Hälfte der Rate an die Bank und nicht an die Schuld. Das dreht sich mit der Zeit um – aber langsam, und wie langsam, hängt an einer einzigen Stellschraube.',
+          text: 'Zu Beginn entfällt also deutlich mehr als die Hälfte der Rate auf Zinsen und nicht auf die Tilgung. Das dreht sich mit der Zeit um – aber langsam, und wie langsam, hängt an einer einzigen Stellschraube.',
         },
         {
           type: 'heading',
@@ -201,10 +201,10 @@ export const schuldenUndKredit: LearnTopic = {
         {
           type: 'callout',
           variant: 'warning',
-          title: 'Die Rechnung, die in keinem Werbetext steht',
+          title: 'Rate und Gesamtkosten im Vergleich',
           items: [
             `Von ${kurzeLaufzeit.jahre} auf ${langeLaufzeit.jahre} Jahre sinkt die Rate um ${formatPercent(ratenersparnis, 0)} – und die Zinssumme steigt auf das ${formatNumber(zinsfaktor, 1)}-Fache.`,
-            'Beworben wird immer die Rate, weil sie in den Monatshaushalt passen muss. Bezahlt wird die letzte Spalte.',
+            'Im Vordergrund steht meist die Rate, weil sie in den Monatshaushalt passen muss. Bezahlt wird die letzte Spalte.',
             'Die Laufzeit ist der Hebel mit der größten Wirkung. Wer sie verkürzen kann, spart mehr als durch jede Zinsverhandlung.',
           ],
         },
@@ -225,7 +225,7 @@ export const schuldenUndKredit: LearnTopic = {
           type: 'list',
           items: [
             '**„Ab 2,9 Prozent“ ist kein Angebot.** Bonitätsabhängige Zinsen bedeuten, dass dieser Satz an die beste Bonitätsklasse geht. Was für dich gilt, steht erst im individuellen Angebot – und liegt oft deutlich darüber. Der Gesetzgeber verlangt deshalb die Angabe eines repräsentativen Beispiels; das ist die aussagekräftigere Zahl.',
-            '**Restschuldversicherungen** werden häufig mitverkauft und erhöhen die tatsächlichen Kosten erheblich. Ist sie nicht zwingend Bedingung des Kredits, muss sie auch nicht im Effektivzins stehen – und genau deshalb steht sie oft nicht darin.',
+            '**Restschuldversicherungen** werden häufig mitverkauft und erhöhen die tatsächlichen Kosten erheblich. Ist sie nicht zwingend Bedingung des Kredits, muss sie auch nicht im Effektivzins stehen – beim Vergleich muss sie deshalb separat mitgerechnet werden.',
             '**Konditionsanfrage statt Kreditanfrage.** Eine echte Kreditanfrage wird bei der Auskunftei vermerkt und kann die Bewertung verschlechtern. Seriöse Vergleichsportale stellen eine reine Konditionsanfrage, die keinen Eintrag hinterlässt – wer vergleicht, sollte darauf ausdrücklich achten.',
           ],
         },
