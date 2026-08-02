@@ -41,4 +41,4 @@ export const supervisoryAuthority = {
  * jede Neuveröffentlichung eine inhaltliche Überarbeitung, die es nicht gab.
  * Bei einer echten Änderung des Textes hier mit anpassen.
  */
-export const privacyPolicyDate = '26. Juli 2026'
+export const privacyPolicyDate = '2. August 2026'
