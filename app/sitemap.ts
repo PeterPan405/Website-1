@@ -150,6 +150,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl('/quellen'), changeFrequency: 'monthly', priority: 0.3 },
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },
+    { url: absoluteUrl('/umzug'), changeFrequency: 'yearly', priority: 0.3 },
     {
       url: absoluteUrl('/keine-cookies'),
       changeFrequency: 'yearly',

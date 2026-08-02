@@ -152,6 +152,7 @@ const SEITEN = [
   ['/kalender/', 'Kalender – Zeiträume, Filter und Vergangenheitsmarkierung'],
   /* Die breiteste Tabelle der Website: sieben Spalten mal zwölf Zeilen. */
   ['/news/jahr/2026/', 'Jahresrückblick – siebenspaltige Tabelle'],
+  ['/umzug/', 'Datenumzug – zweispaltige Karten mit Dateiwahl'],
 ]
 
 const basis = (process.argv[2] ?? 'http://127.0.0.1:4173').replace(/\/$/, '')

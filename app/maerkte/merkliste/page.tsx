@@ -3,12 +3,15 @@ import type { Metadata } from 'next'
 import { laendernamen } from '@/data/laender/namen'
 import { Merkaustausch } from '@/components/markets/Merkaustausch'
 import { Merkkalender } from '@/components/markets/Merkkalender'
+import { Merkbericht, type Merkmeldung } from '@/components/markets/Merkbericht'
 import { Merklistentafel, type Merkdaten } from '@/components/markets/Merklistentafel'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { getDividendenbefund } from '@/lib/dividendentermine'
-import { getQuotes } from '@/lib/markets'
+import { getQuotes, getSeries } from '@/lib/markets'
+import { getNewsArticles } from '@/lib/news'
+import { letzteAbgeschlosseneWoche, wochenveraenderung } from '@/lib/wochenrechnung'
 import { getQuartalstermine } from '@/lib/quartalstermine'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
@@ -99,8 +102,52 @@ async function baueDaten(): Promise<Merkdaten[]> {
     })
 }
 
+/**
+ * Die Zutaten des Wochenberichts, für alle Titel vorgerechnet.
+ *
+ * Wie bei den Merkdaten gilt: Der Server weiß nicht, welche Titel gemerkt
+ * sind, also rechnet er alle – dieselbe Wochenrechnung wie /news/woche.
+ * Übertragen wird je Titel nur eine Zahl.
+ */
+async function baueWochen(
+  daten: Merkdaten[]
+): Promise<{
+  wochen: Record<string, number | null>
+  spanne: ReturnType<typeof letzteAbgeschlosseneWoche>
+}> {
+  const spanne = letzteAbgeschlosseneWoche(new Date().toISOString().slice(0, 10))
+  const wochen: Record<string, number | null> = {}
+  for (const eintrag of daten) {
+    const reihe = await getSeries(eintrag.symbol, '1M')
+    wochen[eintrag.symbol] = wochenveraenderung(reihe, spanne)?.prozent ?? null
+  }
+  return { wochen, spanne }
+}
+
+/** Die jüngste Meldung je Symbol – nur für Symbole, zu denen es eine gibt. */
+async function baueMeldungen(): Promise<Record<string, Merkmeldung>> {
+  const meldungen: Record<string, Merkmeldung> = {}
+  // Artikel kommen absteigend sortiert – der erste Treffer je Symbol ist der jüngste.
+  for (const artikel of await getNewsArticles()) {
+    for (const symbol of artikel.relatedSymbols) {
+      if (!(symbol in meldungen)) {
+        meldungen[symbol] = {
+          slug: artikel.slug,
+          titel: artikel.title,
+          datum: artikel.publishedAt.slice(0, 10),
+        }
+      }
+    }
+  }
+  return meldungen
+}
+
 export default async function MerklisteSeite() {
   const daten = await baueDaten()
+  const [{ wochen, spanne }, meldungen] = await Promise.all([
+    baueWochen(daten),
+    baueMeldungen(),
+  ])
 
   return (
     <>
@@ -119,6 +166,13 @@ export default async function MerklisteSeite() {
 
       <div className="fk-container py-12 sm:py-16">
         <Merklistentafel daten={daten} laendernamen={laendernamen} />
+
+        <Merkbericht
+          daten={daten}
+          wochen={wochen}
+          meldungen={meldungen}
+          spanne={spanne}
+        />
 
         <Merkkalender daten={daten} />
 

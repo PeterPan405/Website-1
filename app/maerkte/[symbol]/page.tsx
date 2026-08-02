@@ -16,7 +16,9 @@ import { Fondstafel } from '@/components/markets/Fondstafel'
 import { Merkschalter } from '@/components/markets/Merkschalter'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
+import { Branchenvergleichstafel } from '@/components/markets/Branchenvergleichstafel'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
+import { getBranchenvergleich } from '@/lib/branchenvergleich'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon } from '@/components/ui/Icon'
@@ -110,6 +112,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
     kennzahlen,
     fundamental,
     indexvergleich,
+    branchenvergleich,
   ] = await Promise.all([
     getTopicsBySlugs(instrument.relatedTopics),
     getQuotes(),
@@ -118,6 +121,7 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
     getKennzahlen(symbol),
     getFundamentalkennzahlen(symbol),
     getIndexvergleich(symbol),
+    getBranchenvergleich(symbol),
   ])
 
   /*
@@ -521,6 +525,13 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 befund={fundamental}
                 name={instrument.name}
                 quelle={getFundamentalquelle(instrument.ticker)}
+                className="mt-12"
+              />
+            )}
+            {branchenvergleich && (
+              <Branchenvergleichstafel
+                vergleich={branchenvergleich}
+                name={instrument.name}
                 className="mt-12"
               />
             )}

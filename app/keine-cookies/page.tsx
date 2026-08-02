@@ -96,7 +96,11 @@ export default function KeineCookiesPage() {
               Lernfortschritt, die Merkliste, die Vermögensübersicht. Diese Daten
               verlassen dein Gerät nie; wir können sie nicht lesen, nicht zählen und nicht
               verknüpfen. Du löschst sie jederzeit selbst über die Browserdaten – verloren
-              geht dann nur dein eigener Stand. Die rechtliche Einordnung steht in der{' '}
+              geht dann nur dein eigener Stand. Auf ein neues Gerät kommt er per{' '}
+              <Link href="/umzug" className="hover:text-brand underline">
+                Umzugsdatei
+              </Link>
+              , nicht per Konto. Die rechtliche Einordnung steht in der{' '}
               <Link href="/datenschutz" className="hover:text-brand underline">
                 Datenschutzerklärung
               </Link>
