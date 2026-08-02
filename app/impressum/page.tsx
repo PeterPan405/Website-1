@@ -113,6 +113,38 @@ export default function ImprintPage() {
             </p>
           </section>
 
+          {/*
+            Transparenz nach Art. 50 Abs. 4 der KI-Verordnung (EU) 2024/1689,
+            anwendbar seit dem 2. August 2026. Die Kennzeichnungspflicht für
+            KI-erzeugte Texte von öffentlichem Interesse entfällt zwar, wenn
+            ein Mensch die Inhalte prüft und eine benannte Person die
+            redaktionelle Verantwortung trägt – genau so arbeitet diese
+            Website. Der Abschnitt sagt beides trotzdem ausdrücklich: den
+            KI-Einsatz und die Prüfung. So hängt nichts an der Auslegung der
+            Ausnahme, und der Leser erfährt, wie die Inhalte entstehen.
+          */}
+          <section aria-labelledby="ki-einsatz" className="mt-12">
+            <h2 id="ki-einsatz" className="text-fg text-2xl font-bold">
+              Einsatz künstlicher Intelligenz
+            </h2>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Texte und Erklärgrafiken dieser Website entstehen mit Unterstützung von
+              künstlicher Intelligenz. Jeder Inhalt wird vor der Veröffentlichung von
+              einem Menschen inhaltlich geprüft und freigegeben; die redaktionelle
+              Verantwortung trägt die unter „Redaktionell verantwortlich“ genannte Person.
+              Dieser Hinweis erfolgt mit Blick auf die Transparenzpflichten der Verordnung
+              (EU) 2024/1689 (KI-Verordnung, Art. 50).
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Kurse, Kennzahlen und Wirtschaftsdaten werden nicht von einer KI erzeugt,
+              sondern stammen unverändert aus den jeweils an der Angabe genannten Quellen.
+              Die Rechner arbeiten mit festen, auf der jeweiligen Seite offengelegten
+              Formeln. Beim Besuch der Website selbst läuft keine künstliche Intelligenz:
+              Es gibt keinen Chatbot, und es findet keine automatisierte
+              Entscheidungsfindung über Besucherinnen und Besucher statt.
+            </p>
+          </section>
+
           <section aria-labelledby="anbieter" className="mt-12">
             <h2 id="anbieter" className="text-fg text-2xl font-bold">
               Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)
