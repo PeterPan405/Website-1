@@ -103,7 +103,12 @@ export function Merkaustausch({
         Die Liste liegt in diesem Browser. Damit steht am Telefon eine andere als am
         Rechner – und wer die Browserdaten löscht, löscht sie mit. Dieser Code ist der Weg
         dazwischen: kopieren, am anderen Gerät einfügen, fertig. Er entsteht hier im
-        Browser und wird nirgendwohin gesendet.
+        Browser und wird nirgendwohin gesendet. Wer gleich alles mitnehmen will –
+        Lernstand, Vermögensübersicht, Einstellungen –, nimmt den{' '}
+        <a href="/umzug" className="hover:text-markets underline">
+          Datenumzug
+        </a>
+        .
       </p>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">

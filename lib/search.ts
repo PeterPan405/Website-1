@@ -108,6 +108,13 @@ const seiten: SearchEntry[] = [
     keywords: ['dsgvo', 'daten', 'rechtliches'],
   },
   {
+    title: 'Datenumzug: deinen Stand mitnehmen',
+    href: '/umzug',
+    kind: 'Plattform',
+    hint: 'Lernstand, Merkliste und Vermögensübersicht als Datei aufs nächste Gerät – ohne Konto.',
+    keywords: ['umzug', 'sichern', 'übertragen', 'backup', 'export', 'gerät', 'konto'],
+  },
+  {
     title: 'Wochenrückblick der Märkte',
     href: '/news/woche',
     kind: 'News',
