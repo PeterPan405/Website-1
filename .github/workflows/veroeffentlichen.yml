@@ -23,6 +23,19 @@ name: Veröffentlichen
 # Deshalb wird vollständig in einen Nebenordner entpackt und erst danach
 # umgehängt. Die Umschaltung sind zwei `mv`-Aufrufe und dauert Millisekunden.
 #
+# ## Warum (noch) nicht inkrementell
+#
+# Ein rsync-Spiegel mit `--checksum` würde je Lauf nur die geänderten Dateien
+# übertragen statt des ganzen Archivs. Geprüft und bewusst zurückgestellt:
+# Das Muster braucht einen dauerhaften Spiegelordner auf dem Server, einen
+# Hardlink-Abzug (`cp -al`) für den atomaren Tausch und die Gewissheit, dass
+# rsync auf dem Hostinger-Webspace vorhanden ist – nichts davon lässt sich
+# von außen testen, nur am lebenden System. Der heutige Weg überträgt zwar
+# mehr Bytes, ist aber eine Verbindung, ein geprüftes Archiv, ein Tausch in
+# Millisekunden – und er hat sich nach dem FTP-Fehlschlag bewährt. Erst
+# umbauen, wenn die Übertragungszeit tatsächlich drückt, und dann zuerst von
+# Hand per SSH prüfen: `which rsync`, Hardlinks im Home erlaubt?
+#
 # ## Was hinterlegt sein muss
 #
 # Unter Settings > Secrets and variables > Actions:
@@ -67,14 +80,29 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: main
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
+
+      # Der Next-Build-Cache zwischen den Läufen.
+      #
+      # Rund ein Dutzend Bauten am Tag, jeder von null – dabei ändert sich
+      # zwischen zwei Kurs-Commits fast nichts außer einer JSON-Datei. Mit
+      # gefülltem Cache überspringt Next die unveränderten Übersetzungen und
+      # der Bau wird um Minuten kürzer; bei 2.000 Actions-Minuten im Monat ist
+      # das bares Kontingent. Der Schlüssel hängt an den Quelldateien: Ändern
+      # sie sich, wird der Cache aktualisiert, sonst nur wiederverwendet.
+      - uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.css') }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
 
       - name: Zugangsdaten prüfen
         id: zugang

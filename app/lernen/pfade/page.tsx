@@ -106,6 +106,30 @@ export default async function LernpfadeSeite() {
           ))}
         </ul>
 
+        {/*
+          Das 30-Tage-Programm neben den Pfaden: Pfade beantworten eine Frage,
+          das Programm gibt einen Rhythmus – wer keins von beiden sucht, ist
+          mit der Themenübersicht darunter richtig.
+        */}
+        <section
+          aria-labelledby="programm"
+          className="fk-card mt-12 flex flex-wrap items-center justify-between gap-4 p-6"
+        >
+          <div className="min-w-0">
+            <h2 id="programm" className="text-fg text-lg font-semibold">
+              Lieber ein fester Rhythmus?
+            </h2>
+            <p className="text-fg-muted mt-1 max-w-2xl text-sm leading-relaxed">
+              Das 30-Tage-Programm ordnet dieselben Stufen und Rechner als eine Portion
+              pro Tag – vier Wochen vom Budget bis zum Portfolio.
+            </p>
+          </div>
+          <Link href="/lernen/30-tage" className="fk-btn-primary">
+            Zum Programm
+            <Icon name="arrow-right" className="size-4" />
+          </Link>
+        </section>
+
         <section
           aria-labelledby="wozu"
           className="rounded-card border-border bg-surface-muted mt-12 border p-6 sm:p-8"

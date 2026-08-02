@@ -200,6 +200,18 @@ export default async function LernpfadSeite({
                 gilt hier als gelesen. Rechner zählen nicht mit – ob jemand gerechnet hat,
                 weiß niemand.
               </p>
+              {/*
+                Der Verweis steht immer da, nicht erst am Ende: Zu wissen, dass
+                am Ziel etwas wartet, gehört zum Weg. Die Seite selbst zeigt die
+                Urkunde erst, wenn alle Stufen abgehakt sind.
+              */}
+              <Link
+                href={`/lernen/pfade/${pfad.slug}/urkunde`}
+                className="fk-btn-ghost mt-4 text-sm"
+              >
+                Zur Abschluss-Urkunde
+                <Icon name="arrow-right" className="size-4" />
+              </Link>
             </div>
 
             <div className="fk-card mt-4 p-5">

@@ -57,12 +57,27 @@ jobs:
     name: Bauen und prüfen
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
+
+      # Der Next-Build-Cache zwischen den Läufen.
+      #
+      # Rund ein Dutzend Bauten am Tag, jeder von null – dabei ändert sich
+      # zwischen zwei Kurs-Commits fast nichts außer einer JSON-Datei. Mit
+      # gefülltem Cache überspringt Next die unveränderten Übersetzungen und
+      # der Bau wird um Minuten kürzer; bei 2.000 Actions-Minuten im Monat ist
+      # das bares Kontingent. Der Schlüssel hängt an den Quelldateien: Ändern
+      # sie sich, wird der Cache aktualisiert, sonst nur wiederverwendet.
+      - uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.css') }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
 
       # `npm ci` statt `npm install`: installiert exakt die Versionen aus der
       # package-lock.json. Ein Build, der sich je nach Tagesform andere Pakete

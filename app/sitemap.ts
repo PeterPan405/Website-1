@@ -10,7 +10,7 @@ import { getLernpfadSlugs } from '@/lib/lernpfade'
 import { getEditionDates } from '@/lib/editions'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
 import { getInstrumentSymbols } from '@/lib/markets'
-import { getLatestNewsDate, getNewsArticles } from '@/lib/news'
+import { getLatestNewsDate, getNewsArticles, getNewsByMonth } from '@/lib/news'
 import { getFolgen } from '@/lib/podcast'
 import { rubriken } from '@/lib/rubriken'
 import { absoluteUrl } from '@/lib/site'
@@ -41,6 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     editionDates,
     pfadSlugs,
     rueckblickJahre,
+    archivMonate,
   ] = await Promise.all([
     getNewsArticles(),
     getLatestNewsDate(),
@@ -50,6 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getEditionDates(),
     getLernpfadSlugs(),
     getRueckblickJahre(),
+    getNewsByMonth(),
   ])
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -148,6 +150,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl('/quellen'), changeFrequency: 'monthly', priority: 0.3 },
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },
+    {
+      url: absoluteUrl('/keine-cookies'),
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
+    {
+      url: absoluteUrl('/barrierefreiheit'),
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
   ]
 
   const newsPages: MetadataRoute.Sitemap = newsArticles.map((article) => ({
@@ -167,6 +179,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'daily',
     priority: 0.6,
   }))
+
+  /*
+    Die Monatsseiten. Der jüngste Monat wächst noch täglich, die
+    abgeschlossenen ändern sich nie wieder – die Frequenz unterscheidet das.
+  */
+  const monatsPages: MetadataRoute.Sitemap = [
+    {
+      // Der Wochenrückblick rechnet bei jedem Bau die letzte volle Woche.
+      url: absoluteUrl('/news/woche'),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
+      url: absoluteUrl('/news/monat'),
+      lastModified: new Date(latestNewsDate),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    },
+    ...archivMonate.map(({ monat }, index) => ({
+      url: absoluteUrl(`/news/monat/${monat}`),
+      changeFrequency: (index === 0 ? 'daily' : 'never') as 'daily' | 'never',
+      priority: 0.5,
+    })),
+  ]
 
   const editionPages: MetadataRoute.Sitemap = editionDates.map((date) => ({
     url: absoluteUrl(`/news/tag/${date}`),
@@ -275,6 +311,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const pfadPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/lernen/pfade'), changeFrequency: 'monthly', priority: 0.8 },
+    { url: absoluteUrl('/lernen/30-tage'), changeFrequency: 'monthly', priority: 0.7 },
     ...pfadSlugs.map((slug) => ({
       url: absoluteUrl(`/lernen/pfade/${slug}`),
       changeFrequency: 'monthly' as const,
@@ -294,6 +331,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...stimmungsPages,
     ...newsPages,
     ...rubrikPages,
+    ...monatsPages,
     ...editionPages,
     ...jahrgangsPages,
   ].map((entry) => ({ lastModified: buildDate, ...entry }))

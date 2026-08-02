@@ -107,6 +107,41 @@ const seiten: SearchEntry[] = [
     hint: 'Wie mit Daten umgegangen wird.',
     keywords: ['dsgvo', 'daten', 'rechtliches'],
   },
+  {
+    title: 'Wochenrückblick der Märkte',
+    href: '/news/woche',
+    kind: 'News',
+    hint: 'Die letzte Handelswoche in Zahlen samt Zahl der Woche – gerechnet, nicht geschrieben.',
+    keywords: ['woche', 'wochenrückblick', 'rückblick', 'zahl der woche'],
+  },
+  {
+    title: 'Das 30-Tage-Programm',
+    href: '/lernen/30-tage',
+    kind: 'Lernwerkzeug',
+    hint: 'Eine Tagesportion Finanzwissen, vier Wochen lang – aus Lernstufen und Rechnern.',
+    keywords: ['30 tage', 'programm', 'einsteiger', 'plan', 'rhythmus', 'kurs'],
+  },
+  {
+    title: 'Glossar-Karteikarten',
+    href: '/glossar/karteikarten',
+    kind: 'Lernwerkzeug',
+    hint: 'Die Fachbegriffe als Karteikasten mit wachsenden Abständen.',
+    keywords: ['karteikarten', 'karteikasten', 'vokabeln', 'wiederholen', 'leitner'],
+  },
+  {
+    title: 'Keine Cookies, kein Tracking',
+    href: '/keine-cookies',
+    kind: 'Rechtliches',
+    hint: 'Warum es hier kein Zustimmungsbanner gibt – und wie du das nachprüfst.',
+    keywords: ['cookies', 'tracking', 'privatsphäre', 'banner', 'analyse', 'daten'],
+  },
+  {
+    title: 'Barrierefreiheit',
+    href: '/barrierefreiheit',
+    kind: 'Rechtliches',
+    hint: 'Wie Zugänglichkeit geprüft wird und wohin man Barrieren meldet.',
+    keywords: ['barriere', 'zugänglich', 'wcag', 'vorlesen', 'tastatur', 'kontrast'],
+  },
 ]
 
 export async function buildSearchIndex(): Promise<SearchEntry[]> {

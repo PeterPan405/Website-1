@@ -58,11 +58,11 @@ jobs:
       # gegen den veröffentlichten Stand, und eine Änderung am Abrufskript ließ
       # sich erst nach dem Zusammenführen ausprobieren. Bei zwei Minuten je Lauf
       # ist das der Unterschied zwischen Messen und Raten.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref_name }}
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
 

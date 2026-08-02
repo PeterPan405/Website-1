@@ -200,6 +200,21 @@ export function describeResponse(text: string, maxLength = 300): string {
  * bisherigen Stand. Was genau zurückkam, steht im Protokoll – ohne diese
  * Ausgabe war beim Vorgänger tagelang nicht zu klären, woran es lag.
  */
+/**
+ * HTTP-Status der letzten Antwort, je Yahoo-Symbol.
+ *
+ * `fetchYahooDaily` gibt bei jedem Fehlschlag `null` zurück – damit kann der
+ * Aufrufer ein 404 (Yahoo kennt das Symbol nicht mehr, meist eine
+ * Umbenennung) nicht von 429 oder einer Zeitüberschreitung unterscheiden
+ * (vorübergehende Störung, heilt von selbst). Für den Ausfall-Sammler des
+ * Kurslaufs ist genau dieser Unterschied die Information: Nur das 404 gehört
+ * gezählt und gemeldet.
+ *
+ * Netzfehler ohne Antwort hinterlassen keinen Eintrag – kein Status ist dann
+ * die richtige Auskunft.
+ */
+export const letzterAntwortstatus = new Map<string, number>()
+
 export async function fetchYahooDaily(
   symbol: string,
   /**
@@ -225,6 +240,7 @@ export async function fetchYahooDaily(
     })
 
     const text = await response.text()
+    letzterAntwortstatus.set(symbol, response.status)
     if (!response.ok) {
       console.warn(
         `[yahoo] ${symbol} antwortete mit ${response.status}.` +

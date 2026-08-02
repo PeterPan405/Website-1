@@ -5,6 +5,7 @@ import './globals.css'
 
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
+import { OfflineLernen } from '@/components/layout/OfflineLernen'
 import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
@@ -162,6 +163,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Direkt zum Inhalt springen
         </a>
 
+        <OfflineLernen />
         <Header />
 
         <main id="inhalt" className="flex-1">

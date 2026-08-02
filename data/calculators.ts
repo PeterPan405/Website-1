@@ -58,6 +58,56 @@ export interface CalculatorDefinition {
 
 export const calculators: CalculatorDefinition[] = [
   {
+    slug: 'kreditrechner',
+    title: 'Kreditrechner',
+    headline: 'Kreditrechner: Rate, Laufzeit und Restschuld eines Annuitätendarlehens',
+    metaTitle: 'Kreditrechner: Annuitätendarlehen mit Restschuld',
+    metaDescription:
+      'Annuitätendarlehen durchrechnen: monatliche Rate, Laufzeit, Zinskosten und die Restschuld am Ende der Zinsbindung – der Wert, den die Ratenanzeige verschweigt.',
+    lead: 'Darlehenssumme, Zins und Rate eingeben – der Rechner zeigt Laufzeit, gesamte Zinskosten und die Restschuld am Ende der Zinsbindung. Auf sie kommt es bei Immobilienkrediten an, nicht auf die Rate.',
+    summary: 'Annuitätendarlehen: Rate, Laufzeit, Zinskosten und Restschuld.',
+    featureList: [
+      'Monatliche Rate aus Zins und anfänglicher Tilgung',
+      'Laufzeit bis zur vollständigen Tilgung',
+      'Gesamte Zinskosten über die Laufzeit',
+      'Restschuld am Ende der Zinsbindung',
+    ],
+    grenzen: [
+      'Eine Modellrechnung mit konstantem Zins über die gesamte Laufzeit. Was nach der Zinsbindung gilt, weiß heute niemand – genau deshalb wird die Restschuld ausgewiesen.',
+      'Ohne Nebenkosten: Bereitstellungszinsen, Notar, Grunderwerbsteuer und Gebühren kommen hinzu.',
+      'Sondertilgungen sind nicht berücksichtigt. Wer sie nutzen kann, ist schneller fertig als hier gerechnet.',
+      'Der Rechner vergleicht keine Angebote und ersetzt keine Beratung – er macht die Mechanik nachvollziehbar.',
+    ],
+    schritte: [
+      'Darlehenssumme und nominalen Jahreszins eintragen.',
+      'Die monatliche Rate angeben oder über die anfängliche Tilgung bestimmen.',
+      'Die Dauer der Zinsbindung wählen.',
+      'Laufzeit, Zinskosten und die Restschuld am Ende der Bindung ablesen.',
+    ],
+    relatedTopics: ['schulden-und-kredit', 'immobilien', 'zinseszins'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Ein Annuitätendarlehen hat eine feste Rate. In ihr stecken **Zins und Tilgung**, und ihr Verhältnis verschiebt sich mit jedem Monat: Der Zins wird auf die Restschuld berechnet, und weil die sinkt, bleibt von derselben Rate immer mehr für die Tilgung übrig.',
+      },
+      {
+        type: 'formula',
+        expression: 'Zins im Monat = Restschuld × Jahreszins ÷ 12',
+        description:
+          'Was von der Rate nach dem Zins übrig bleibt, tilgt. Der Rechner führt diese Rechnung Monat für Monat, bis die Restschuld null ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rate aus der anfänglichen Tilgung folgt der üblichen Angebotsform „Zins plus Anfangstilgung“: Bei 3,8 Prozent Zins und 2 Prozent Tilgung sind das 5,8 Prozent der Darlehenssumme im Jahr, geteilt durch zwölf.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deckt die Rate nicht einmal den Monatszins, wird die Schuld nie kleiner. Der Rechner sagt das dann, statt einen Plan über tausend Jahre auszugeben – es ist derselbe Mechanismus, aus dem ein dauerhaft überzogenes Konto nie herauskommt.',
+      },
+    ],
+  },
+  {
     slug: 'zinsrechner',
     title: 'Zinsrechner',
     headline: 'Zinsrechner mit Zinseszins und Sparplan',

@@ -79,8 +79,22 @@ export function Header() {
       setOpenMenu(null)
       setMobileOpen(false)
     }
+    /*
+      Andere Seiten können die Suche über ein Ereignis öffnen – die 404-Seite
+      tut das. Ein Ereignis statt eines geteilten Zustands, weil die Kopfzeile
+      die einzige Besitzerin des Dialogs bleiben soll.
+    */
+    function beiSuchwunsch() {
+      setOpenMenu(null)
+      setMobileOpen(false)
+      setSearchOpen(true)
+    }
     document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
+    window.addEventListener('fk-suche-oeffnen', beiSuchwunsch)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('fk-suche-oeffnen', beiSuchwunsch)
+    }
   }, [])
 
   useEffect(() => {

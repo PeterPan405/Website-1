@@ -61,6 +61,8 @@ export interface Marktbericht {
   breiteProzent: number
   /** Ungewichteter Mittelwert über alle Titel, in Prozent. */
   schnitt: number
+  /** Alle Branchen mit genug Titeln, stärkste zuerst – für die Heatmap. */
+  branchen: Branchenbewegung[]
   /** Die drei stärksten Branchen, beste zuerst. */
   starkeBranchen: Branchenbewegung[]
   /** Die drei schwächsten, schlechteste zuerst. */
@@ -134,6 +136,7 @@ export function baueMarktbericht(posten: readonly Berichtsposten[]): Marktberich
     unveraendert: gueltig.length - bewegt,
     breiteProzent: bewegt > 0 ? (mitDerRichtung / bewegt) * 100 : 0,
     schnitt,
+    branchen,
     starkeBranchen: branchen.slice(0, 3),
     schwacheBranchen: branchen.slice(-3).reverse(),
     gewinner: sortiert.slice(0, 5),

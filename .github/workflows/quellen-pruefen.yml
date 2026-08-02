@@ -57,11 +57,11 @@ jobs:
     # aber niemanden daran hindern, die Ausgabe trotzdem zu schreiben.
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref_name }}
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
 

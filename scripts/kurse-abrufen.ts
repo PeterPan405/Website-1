@@ -38,8 +38,14 @@ import {
   type SnapshotPoint,
 } from '../lib/providers/snapshot.ts'
 import { fuegeEin, serialisiereBreite, type Breitenpunkt } from '../lib/marktbreite.ts'
+import {
+  auffaelligeAusfaelle,
+  schreibeAusfaelleFort,
+  type Ausfalleintrag,
+  type Beobachtung,
+} from '../lib/kursausfaelle.ts'
 import { fetchTwelveDataDaily } from '../lib/providers/twelvedata.ts'
-import { fetchYahooDaily } from '../lib/providers/yahoo.ts'
+import { fetchYahooDaily, letzterAntwortstatus } from '../lib/providers/yahoo.ts'
 
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname } from 'node:path'
@@ -68,6 +74,15 @@ const ZIEL_STAND = 'data/snapshots/kurse-aktuell.json'
   identische Fassungen am Tag.
 */
 const ZIEL_BREITE = 'data/snapshots/marktbreite.json'
+
+/*
+  Der 404-Sammler – Begründung und Regeln in `lib/kursausfaelle.ts`.
+
+  Eine vierte Datei aus demselben Grund wie die Marktbreite: Sie ändert sich
+  höchstens einmal am Tag je betroffenem Symbol und darf nicht am
+  Halbstundentakt des Kursstands hängen.
+*/
+const ZIEL_AUSFAELLE = 'data/snapshots/kursausfaelle.json'
 
 const QUELLEN = {
   ecb: {
@@ -479,6 +494,8 @@ async function main(): Promise<void> {
   const bekannt = new Set(marketDefinitions.map((definition) => definition.symbol))
   const uebernommen: string[] = []
   const behalten: string[] = []
+  /** Für den 404-Sammler: was dieser Lauf über jedes Yahoo-Symbol gelernt hat. */
+  const beobachtungen = new Map<string, Beobachtung>()
 
   const dividenden = ladeDividenden()
   const { reihen: devisen, tabelle: devisentabelle } = await holeDevisen()
@@ -595,6 +612,18 @@ async function main(): Promise<void> {
       }
     }
 
+    /*
+      Beobachtung für den 404-Sammler – bewusst an der Rohantwort, nicht am
+      Endergebnis: Ein Titel, dessen Reihe später als unplausibel verworfen
+      wird, hat trotzdem geantwortet und ist kein 404-Fall.
+    */
+    if (quelle.provider !== 'ecb') {
+      beobachtungen.set(
+        symbol,
+        roh ? 'ok' : letzterAntwortstatus.get(quelle.yahoo) === 404 ? '404' : 'stoerung'
+      )
+    }
+
     if (!roh) {
       behalten.push(`${symbol} (Abruf fehlgeschlagen)`)
       continue
@@ -708,6 +737,65 @@ async function main(): Promise<void> {
         `::warning title=Ältere Stände als ${juengster}::${hinterher.join(', ')}`
       )
     }
+  }
+
+  /*
+    Den 404-Sammler fortschreiben – hier, vor den frühen Rückwegen.
+
+    Weiter unten kehrt die Funktion zurück, wenn sich kein Kurs geändert hat.
+    Ein Symbol, das nur noch 404 liefert, ändert aber nie wieder einen Kurs –
+    stünde der Sammler hinter jenem Rückweg, würde genau der Dauerausfall nie
+    fortgeschrieben, den er melden soll.
+  */
+  const heute = new Date().toISOString().slice(0, 10)
+  let ausfaelleBisher: Record<string, Ausfalleintrag> = {}
+  try {
+    ausfaelleBisher =
+      (
+        JSON.parse(readFileSync(ZIEL_AUSFAELLE, 'utf8')) as {
+          symbole?: Record<string, Ausfalleintrag>
+        }
+      ).symbole ?? {}
+  } catch {
+    // Erster Lauf – die Datei gibt es noch nicht.
+  }
+  const ausfaelle = schreibeAusfaelleFort(ausfaelleBisher, beobachtungen, heute)
+  const ausfallInhalt = `${JSON.stringify(
+    {
+      hinweis:
+        'Symbole, deren Yahoo-Abruf mit 404 endet, gezählt je Kalendertag. Schreibt scripts/kurse-abrufen.ts; die Regeln stehen in lib/kursausfaelle.ts.',
+      symbole: Object.fromEntries(
+        Object.entries(ausfaelle).sort(([a], [b]) => a.localeCompare(b))
+      ),
+    },
+    null,
+    2
+  )}\n`
+  let ausfaelleVorher = ''
+  try {
+    ausfaelleVorher = readFileSync(ZIEL_AUSFAELLE, 'utf8')
+  } catch {
+    ausfaelleVorher = ''
+  }
+  if (ausfaelleVorher !== ausfallInhalt) {
+    mkdirSync(dirname(ZIEL_AUSFAELLE), { recursive: true })
+    writeFileSync(ZIEL_AUSFAELLE, ausfallInhalt)
+    console.log(
+      `[kurse] 404-Stand fortgeschrieben: ${Object.keys(ausfaelle).length} Symbole in ${ZIEL_AUSFAELLE}`
+    )
+  }
+  const auffaellig = auffaelligeAusfaelle(ausfaelle)
+  if (auffaellig.length > 0) {
+    console.log(
+      `::warning title=${auffaellig.length} Symbole antworten seit Tagen nur noch mit 404::` +
+        auffaellig
+          .map(
+            ({ symbol, eintrag }) =>
+              `${symbol} (seit ${eintrag.seit}, an ${eintrag.tage} Tagen)`
+          )
+          .join(', ') +
+        ' – vermutlich umbenannt oder vom Handel genommen: Kürzel in data/aktien-liste.txt prüfen; der Monatslauf ticker-pruefen.yml hilft, den Nachfolger zu finden.'
+    )
   }
 
   /*

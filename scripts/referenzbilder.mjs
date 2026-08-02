@@ -115,13 +115,15 @@ const SEITEN = [
  * Die Ansichten.
  *
  * 375 ist das schmalste Fenster, das ernsthaft vorkommt; 1.080 die Breite des
- * gemeldeten Fehlers; 1.440 der breite Schreibtisch. Das dunkle Thema nur
- * einmal – seine Fehler sind Farbfehler, und dafür gibt es `npm run kontrast`.
- * Was hier zusätzlich auffallen soll, ist ein Kasten, den nur das dunkle Thema
- * verschiebt.
+ * gemeldeten Fehlers; 1.440 der breite Schreibtisch. Das dunkle Thema an den
+ * beiden Rändern – seine Farbfehler fängt `npm run kontrast`, hier geht es um
+ * Kästen, die nur das dunkle Thema verschiebt. 375 dunkel ist dabei kein
+ * Sonderfall, sondern der Regelfall: Das Telefon am Abend ist die häufigste
+ * dunkle Ansicht, und bis August 2026 war sie die einzige ungeprüfte.
  */
 const ANSICHTEN = [
   { name: '375', breite: 375, thema: 'light' },
+  { name: '375-dunkel', breite: 375, thema: 'dark' },
   { name: '1080', breite: 1080, thema: 'light' },
   { name: '1440', breite: 1440, thema: 'light' },
   { name: '1440-dunkel', breite: 1440, thema: 'dark' },

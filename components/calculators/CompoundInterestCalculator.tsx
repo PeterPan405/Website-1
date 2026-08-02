@@ -173,15 +173,24 @@ export function CompoundInterestCalculator() {
             { value: 'yearly', label: contributionIntervalLabels.yearly },
           ]}
         />
+        {/*
+          Obergrenze 100 statt 20. Die alte Grenze sollte vor unrealistischen
+          Annahmen schützen, hat aber vor allem Fragen abgeschnitten, die der
+          Rechner gut beantworten kann: Was, wenn ich die 25 Prozent aus der
+          Werbung wirklich bekäme? Was macht der Zinseszins bei Wucherzinsen
+          auf Kreditkartenschulden? Wer so etwas eintippt, will die Wirkung
+          sehen – der Hinweis darunter ordnet ein, was realistisch ist, und
+          das ist die bessere Leitplanke als ein hartes Feldlimit.
+        */}
         <NumberField
           label="Zinssatz pro Jahr"
           value={rate}
           onChange={setRate}
           min={0}
-          max={20}
+          max={100}
           step={0.1}
           suffix="%"
-          hint="Deine Annahme. Für breite Aktienmärkte werden langfristig oft 6 bis 8 Prozent nominal angesetzt – das ist keine Zusage."
+          hint="Deine Annahme. Für breite Aktienmärkte werden langfristig oft 6 bis 8 Prozent nominal angesetzt – das ist keine Zusage. Werte weit darüber eignen sich zum Ausprobieren, nicht zum Planen."
         />
         <NumberField
           label="Laufzeit"

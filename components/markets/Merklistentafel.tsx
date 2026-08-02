@@ -11,6 +11,7 @@ import {
   useMerkliste,
 } from '@/components/markets/merkliste-speicher'
 import { cn } from '@/lib/cn'
+import { baueMerklisteCsv } from '@/lib/merkliste-csv'
 import { formatDateShort, formatNumber, formatPercentSigned } from '@/lib/format'
 
 /**
@@ -132,13 +133,37 @@ export function Merklistentafel({
         <p className="text-fg-muted text-sm">
           {zeilen.length} von höchstens {HOECHSTZAHL} Titeln
         </p>
-        <button
-          type="button"
-          onClick={leereMerkliste}
-          className="text-fg-subtle hover:text-danger text-sm underline underline-offset-2"
-        >
-          Liste leeren
-        </button>
+        <div className="flex items-baseline gap-4">
+          {/*
+            Der Export entsteht im Browser, weil die Liste nur dort existiert.
+            Format und Begründungen wie bei kurse.csv – eine Konvention für
+            beide Dateien. Die Bauregeln liegen getestet in lib/merkliste-csv.
+          */}
+          <button
+            type="button"
+            onClick={() => {
+              const stand = new Date().toISOString().slice(0, 10)
+              const csv = baueMerklisteCsv(zeilen, stand)
+              const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+              const adresse = URL.createObjectURL(blob)
+              const anker = document.createElement('a')
+              anker.href = adresse
+              anker.download = `merkliste-${stand}.csv`
+              anker.click()
+              URL.revokeObjectURL(adresse)
+            }}
+            className="text-fg-subtle hover:text-fg text-sm underline underline-offset-2"
+          >
+            Als CSV herunterladen
+          </button>
+          <button
+            type="button"
+            onClick={leereMerkliste}
+            className="text-fg-subtle hover:text-danger text-sm underline underline-offset-2"
+          >
+            Liste leeren
+          </button>
+        </div>
       </div>
 
       <ul className="border-border mt-4 border-t">

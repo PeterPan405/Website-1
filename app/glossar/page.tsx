@@ -41,6 +41,20 @@ export default async function GlossarSeite() {
       />
 
       <div className="fk-container py-12 sm:py-16">
+        {/*
+          Der Karteikasten als erster Hinweis, nicht als Fußnote: Nachschlagen
+          beantwortet die Frage von eben, Abfragen die vom nächsten Monat.
+        */}
+        <div className="fk-card mb-8 flex flex-wrap items-center justify-between gap-4 p-5">
+          <p className="text-fg-muted text-sm leading-relaxed">
+            Nachschlagen ist die halbe Arbeit – ob die Begriffe sitzen, zeigt der
+            Karteikasten mit wachsenden Abständen.
+          </p>
+          <Link href="/glossar/karteikarten" className="fk-btn-secondary text-sm">
+            Karteikarten üben
+          </Link>
+        </div>
+
         {/* ------------------------------------------------ Buchstabenleiste */}
         <nav
           aria-label="Nach Anfangsbuchstaben springen"

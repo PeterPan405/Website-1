@@ -86,11 +86,28 @@ const fondsarten: { id: Fondsart; label: string; hinweis: string }[] = [
 */
 const BASISZINS = stichtagswert('basiszins')
 
+/**
+ * Die drei Fälle beim Sparerpauschbetrag.
+ *
+ * „Keiner“ ist dazugekommen, weil er der Alltag vieler Depots ist: Wer bei
+ * seiner Bank keinen Freistellungsauftrag hinterlegt hat, bekommt den
+ * Pauschbetrag dort schlicht nicht angerechnet – die Bank behält die volle
+ * Steuer ein, und zurück gibt es sie erst über die Steuererklärung. Der
+ * Rechner soll auch diese Lage zeigen können, nicht nur die beiden guten.
+ */
+type Pauschbetragswahl = 'keiner' | 'einzeln' | 'zusammen'
+
+const PAUSCHBETRAG: Record<Pauschbetragswahl, number> = {
+  keiner: 0,
+  einzeln: SPARERPAUSCHBETRAG_EINZELN,
+  zusammen: SPARERPAUSCHBETRAG_ZUSAMMEN,
+}
+
 const voreinstellung = {
   fondsertrag: 2000,
   zinsen: 300,
   fondsart: 'aktienfonds' as Fondsart,
-  zusammen: false,
+  pauschbetrag: 'einzeln' as Pauschbetragswahl,
   kirchensteuer: 0,
   wertBeginn: 30_000,
   wertEnde: 33_000,
@@ -118,14 +135,16 @@ export function TaxCalculator() {
   const [fondsertrag, setFondsertrag] = useState(voreinstellung.fondsertrag)
   const [zinsen, setZinsen] = useState(voreinstellung.zinsen)
   const [fondsart, setFondsart] = useState<Fondsart>(voreinstellung.fondsart)
-  const [zusammen, setZusammen] = useState(voreinstellung.zusammen)
+  const [pauschbetrag, setPauschbetrag] = useState<Pauschbetragswahl>(
+    voreinstellung.pauschbetrag
+  )
   const [kirchensteuer, setKirchensteuer] = useState(voreinstellung.kirchensteuer)
   const [wertBeginn, setWertBeginn] = useState(voreinstellung.wertBeginn)
   const [wertEnde, setWertEnde] = useState(voreinstellung.wertEnde)
   const [ausschuettung, setAusschuettung] = useState(voreinstellung.ausschuettung)
   const [basiszins, setBasiszins] = useState(voreinstellung.basiszins)
 
-  const freibetrag = zusammen ? SPARERPAUSCHBETRAG_ZUSAMMEN : SPARERPAUSCHBETRAG_EINZELN
+  const freibetrag = PAUSCHBETRAG[pauschbetrag]
 
   const vorab = useMemo(
     () =>
@@ -183,7 +202,15 @@ export function TaxCalculator() {
         bezeichnung: 'Fondsart',
         wert: fondsarten.find((a) => a.id === fondsart)?.label ?? fondsart,
       },
-      { bezeichnung: 'Veranlagung', wert: zusammen ? 'zusammen' : 'einzeln' },
+      {
+        bezeichnung: 'Freistellungsauftrag',
+        wert:
+          pauschbetrag === 'keiner'
+            ? 'keiner erteilt'
+            : pauschbetrag === 'zusammen'
+              ? 'zusammen veranlagt'
+              : 'einzeln',
+      },
       { bezeichnung: 'Sparer-Pauschbetrag', wert: formatCurrency(freibetrag) },
       { bezeichnung: 'Kirchensteuersatz', wert: formatPercent(kirchensteuer, 1) },
       { bezeichnung: 'Fondswert am Jahresanfang', wert: formatCurrency(wertBeginn) },
@@ -213,7 +240,7 @@ export function TaxCalculator() {
     setFondsertrag(voreinstellung.fondsertrag)
     setZinsen(voreinstellung.zinsen)
     setFondsart(voreinstellung.fondsart)
-    setZusammen(voreinstellung.zusammen)
+    setPauschbetrag(voreinstellung.pauschbetrag)
     setKirchensteuer(voreinstellung.kirchensteuer)
     setWertBeginn(voreinstellung.wertBeginn)
     setWertEnde(voreinstellung.wertEnde)
@@ -264,24 +291,27 @@ export function TaxCalculator() {
 
         <div className="border-border border-t pt-5">
           <span className="text-fg text-sm font-medium">Sparerpauschbetrag</span>
-          <div className="mt-2 flex gap-2">
-            {[
-              {
-                wert: false,
-                text: `Einzeln (${formatCurrency(SPARERPAUSCHBETRAG_EINZELN, 0)})`,
-              },
-              {
-                wert: true,
-                text: `Zusammen (${formatCurrency(SPARERPAUSCHBETRAG_ZUSAMMEN, 0)})`,
-              },
-            ].map((wahl) => (
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            {(
+              [
+                { wert: 'keiner', text: `Keiner (${formatCurrency(0, 0)})` },
+                {
+                  wert: 'einzeln',
+                  text: `Einzeln (${formatCurrency(SPARERPAUSCHBETRAG_EINZELN, 0)})`,
+                },
+                {
+                  wert: 'zusammen',
+                  text: `Zusammen (${formatCurrency(SPARERPAUSCHBETRAG_ZUSAMMEN, 0)})`,
+                },
+              ] as const
+            ).map((wahl) => (
               <button
-                key={String(wahl.wert)}
+                key={wahl.wert}
                 type="button"
-                onClick={() => setZusammen(wahl.wert)}
-                aria-pressed={zusammen === wahl.wert}
-                className={`flex-1 rounded-lg border px-3 py-2 text-xs font-medium transition ${
-                  zusammen === wahl.wert
+                onClick={() => setPauschbetrag(wahl.wert)}
+                aria-pressed={pauschbetrag === wahl.wert}
+                className={`rounded-lg border px-3 py-2 text-xs font-medium transition ${
+                  pauschbetrag === wahl.wert
                     ? 'border-brand bg-brand text-brand-contrast'
                     : 'border-border text-fg-muted hover:text-fg'
                 }`}
@@ -291,8 +321,9 @@ export function TaxCalculator() {
             ))}
           </div>
           <span className="text-fg-subtle mt-1.5 block text-xs leading-relaxed">
-            Er wirkt nur, wenn bei der Bank ein Freistellungsauftrag vorliegt. Sonst
-            behält sie die Steuer ein, und man holt sie über die Steuererklärung zurück.
+            {pauschbetrag === 'keiner'
+              ? 'Ohne Freistellungsauftrag rechnet die Bank den Pauschbetrag nicht an: Sie behält die volle Steuer ein, und zurück gibt es sie erst über die Steuererklärung. So rechnet dieser Fall.'
+              : 'Er wirkt nur, wenn bei der Bank ein Freistellungsauftrag vorliegt. Sonst behält sie die Steuer ein, und man holt sie über die Steuererklärung zurück – der Fall „Keiner“ zeigt diese Rechnung.'}
           </span>
         </div>
 

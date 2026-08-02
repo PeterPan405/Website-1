@@ -35,3 +35,9 @@ data/snapshots/marktbreite.json
 # Formatprüfung rot, die diesen Stand enthielt – einschließlich aller
 # PR-Bauten, die über die Merge-Vorschau main einbeziehen.
 data/snapshots/fundamentaldaten.json
+
+# Der 404-Stand des Kurslaufs – geschrieben von scripts/kurse-abrufen.ts mit
+# JSON.stringify, aus demselben Grund ausgenommen wie die Fundamentaldaten:
+# Prettier zöge kurze Objekte auf eine Zeile zusammen, und die Datei wäre bei
+# jedem Lauf ein Formatstreit zwischen Maschine und Prüfung.
+data/snapshots/kursausfaelle.json
