@@ -6,6 +6,48 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { privacyPolicyDate, provider, supervisoryAuthority } from '@/lib/provider'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
+import { BESTAENDE } from '@/lib/umzug'
+
+/*
+ * Was jeder Browser-Bestand enthält – für die Tabelle in Abschnitt 3.
+ *
+ * Die Schlüssel kommen aus dem Umzugsregister in `lib/umzug.ts`: Wer dort
+ * einen Bestand einträgt, bekommt hier einen Typfehler, bis auch die
+ * Beschreibung steht. So kann die Datenschutzerklärung nicht wieder still
+ * hinter der Website zurückbleiben – bis August 2026 nannte sie zwei
+ * Einträge, während die Website längst zehn führte.
+ */
+const speicherInhalte: Record<(typeof BESTAENDE)[number]['schluessel'], string> = {
+  'fk-learn-progress': 'Liste der als erledigt markierten Lernstufen und Lektionen',
+  'fk-quiz-results': 'Bestleistungen bei den Wissensfragen der Lernstufen',
+  'fk-wiederholung-1': 'Fälligkeiten der Wiederholungsfragen (Lernen mit Abstand)',
+  'fk-glossar-karten-1': 'Stand des Karteikastens im Glossar',
+  'fk-merkliste': 'Die selbst gemerkten Wertpapiere',
+  'fk-vermoegen': 'Selbst eingetragene Positionen der Vermögensübersicht',
+  'fk-urkunde-name': 'Der selbst eingetragene Name für die Lernpfad-Urkunden',
+  'fk-theme': 'Gewählte Farbdarstellung (hell oder dunkel)',
+  'fk-sprache': 'Gewählte Sprache der Oberfläche',
+  'fk-vorlesen-stimme-2': 'Gewählte Vorlesestimme',
+}
+
+/*
+ * Das Suchprotokoll steht bewusst nicht im Umzugsregister (es beschreibt
+ * dieses Gerät, nicht die Person) – in dieser Tabelle gehört es trotzdem
+ * genannt, denn gespeichert wird es.
+ */
+const speicherZeilen = [
+  ...BESTAENDE.map(({ schluessel, name }) => ({
+    schluessel,
+    name,
+    inhalt: speicherInhalte[schluessel],
+  })),
+  {
+    schluessel: 'fk-suchluecken',
+    name: 'Suchanfragen ohne Treffer',
+    inhalt:
+      'Eigene Suchbegriffe, zu denen die Suche nichts fand – nur einsehbar unter /suche/luecken',
+  },
+]
 
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Datenschutzerklärung'),
@@ -27,48 +69,16 @@ export default function PrivacyPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <section aria-labelledby="verantwortlicher" className="mt-12">
-            <h2 id="verantwortlicher" className="text-fg text-2xl font-bold">
-              1. Verantwortlicher
-            </h2>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne von
-              Art. 4 Nr. 7 DSGVO ist:
-            </p>
-            <address className="text-fg-muted mt-3 leading-relaxed not-italic">
-              {provider.name}
-              <br />
-              {provider.street}
-              <br />
-              {provider.city}
-              <br />
-              {provider.country}
-              <br />
-              <a
-                href={`mailto:${siteConfig.contactEmail}`}
-                className="hover:text-brand underline"
-              >
-                {siteConfig.contactEmail}
-              </a>
-              <br />
-              <a
-                href={`tel:${siteConfig.contactPhoneLink}`}
-                className="hover:text-brand underline"
-              >
-                {siteConfig.contactPhone}
-              </a>
-            </address>
-            {/*
-              Kein Abschnitt zur datenschutzbeauftragten Person: Die Bestellung
-              ist nach § 38 BDSG erst ab zwanzig ständig mit der Verarbeitung
-              beschäftigten Personen Pflicht. Ein Satz „nicht erforderlich“
-              brächte niemandem etwas.
-            */}
-          </section>
-
-          <section aria-labelledby="ueberblick" className="mt-12">
+          {/*
+            Der Verantwortliche mit Anschrift steht als letzter Abschnitt, wie
+            im Impressum: Art. 13 DSGVO verlangt die Angaben in der Erklärung,
+            eine Reihenfolge innerhalb der Seite schreibt er nicht vor. Wer nur
+            kurz hineinklickt, sieht so nicht als Erstes die Privatadresse.
+            Nicht wieder nach oben ziehen.
+          */}
+          <section aria-labelledby="ueberblick">
             <h2 id="ueberblick" className="text-fg text-2xl font-bold">
-              2. Überblick: Was diese Website nicht tut
+              1. Überblick: Was diese Website nicht tut
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Der Aufbau der Anwendung ist datensparsam. Konkret bedeutet das:
@@ -79,8 +89,8 @@ export default function PrivacyPage() {
                 'Es sind keine Analyse- oder Statistik-Werkzeuge eingebunden.',
                 'Es gibt keine Nutzerkonten und keine Anmeldung.',
                 'Es sind keine Inhalte Dritter eingebettet – keine Karten, keine Videos, keine Social-Media-Widgets.',
-                'Schriftarten werden nicht von einem externen Server geladen (siehe Abschnitt 5).',
-                'Eingaben in die Rechner werden nicht an einen Server übertragen (siehe Abschnitt 4).',
+                'Schriftarten werden nicht von einem externen Server geladen (siehe Abschnitt 4).',
+                'Eingaben in die Rechner werden nicht an einen Server übertragen (siehe Abschnitt 3).',
               ].map((item) => (
                 <li key={item} className="flex gap-3 leading-relaxed">
                   <span
@@ -95,7 +105,7 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="server-logs" className="mt-12">
             <h2 id="server-logs" className="text-fg text-2xl font-bold">
-              3. Aufruf der Website und Server-Protokolle
+              2. Aufruf der Website und Server-Protokolle
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Beim Aufruf dieser Website übermittelt dein Browser technisch notwendige
@@ -122,18 +132,20 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="local-storage" className="mt-12">
             <h2 id="local-storage" className="text-fg text-2xl font-bold">
-              4. Speicherung im Browser (localStorage)
+              3. Speicherung im Browser (localStorage)
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Diese Website speichert zwei Dinge im lokalen Speicher deines Browsers.
-              Diese Daten verlassen dein Gerät nicht und werden zu keinem Zeitpunkt an
-              einen Server übertragen:
+              Diese Website speichert die folgenden Bestände im lokalen Speicher deines
+              Browsers. Jeder Eintrag entsteht ausschließlich durch dein eigenes Handeln –
+              durch das Umschalten der Darstellung, das Abhaken einer Lernstufe, das
+              Merken eines Wertpapiers. Die Daten verlassen dein Gerät nicht und werden zu
+              keinem Zeitpunkt an einen Server übertragen:
             </p>
             <div className="rounded-card border-border relative mt-5 overflow-x-auto border">
               <table className="w-full min-w-[32rem] border-collapse text-sm">
                 <thead className="bg-surface-muted">
                   <tr>
-                    {['Schlüssel', 'Inhalt', 'Zweck'].map((head) => (
+                    {['Schlüssel', 'Bestand', 'Inhalt'].map((head) => (
                       <th
                         key={head}
                         scope="col"
@@ -145,47 +157,44 @@ export default function PrivacyPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-border border-t">
-                    <th
-                      scope="row"
-                      className="text-fg px-4 py-3 text-left font-mono text-xs"
-                    >
-                      fk-theme
-                    </th>
-                    <td className="text-fg-muted px-4 py-3">
-                      Der Wert <code className="font-mono text-xs">light</code> oder{' '}
-                      <code className="font-mono text-xs">dark</code>
-                    </td>
-                    <td className="text-fg-muted px-4 py-3">
-                      Merkt sich die gewählte Farbdarstellung
-                    </td>
-                  </tr>
-                  <tr className="border-border border-t">
-                    <th
-                      scope="row"
-                      className="text-fg px-4 py-3 text-left font-mono text-xs"
-                    >
-                      fk-learn-progress
-                    </th>
-                    <td className="text-fg-muted px-4 py-3">
-                      Liste der als erledigt markierten Lernstufen
-                    </td>
-                    <td className="text-fg-muted px-4 py-3">
-                      Zeigt den Lernfortschritt ohne Nutzerkonto
-                    </td>
-                  </tr>
+                  {speicherZeilen.map((zeile) => (
+                    <tr key={zeile.schluessel} className="border-border border-t">
+                      <th
+                        scope="row"
+                        className="text-fg px-4 py-3 text-left font-mono text-xs"
+                      >
+                        {zeile.schluessel}
+                      </th>
+                      <td className="text-fg-muted px-4 py-3">{zeile.name}</td>
+                      <td className="text-fg-muted px-4 py-3">{zeile.inhalt}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Beide Einträge werden ausschließlich durch dein eigenes Handeln erzeugt –
-              durch das Umschalten der Darstellung beziehungsweise das Markieren einer
-              Lernstufe. Du kannst sie jederzeit über die Einstellungen deines Browsers
+              Das Ablegen und Auslesen dieser Einträge ist nach § 25 Abs. 2 Nr. 2 TDDDG
+              ohne Einwilligung zulässig: Gespeichert wird nur, was für die jeweils von
+              dir ausdrücklich genutzte Funktion erforderlich ist – und nichts davon wird
+              zu einem anderen Zweck verwendet.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Du kannst alle Einträge jederzeit über die Einstellungen deines Browsers
               löschen; der Lernfortschritt lässt sich zusätzlich direkt im{' '}
               <Link href="/lernen" className="text-brand font-semibold underline">
                 Lernbereich
               </Link>{' '}
-              zurücksetzen.
+              zurücksetzen. Für den Wechsel auf ein anderes Gerät gibt es die{' '}
+              <Link href="/umzug" className="text-brand font-semibold underline">
+                Umzugsdatei
+              </Link>{' '}
+              – auch sie entsteht nur im Browser und wird nirgendwohin gesendet.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Besuchte Seiten des Lernbereichs, der Akademie und des Glossars legt der
+              Browser zusätzlich in seinem eigenen Zwischenspeicher ab, damit sie ohne
+              Internetverbindung lesbar bleiben. Auch dieser Speicher bleibt auf deinem
+              Gerät und lässt sich über die Browsereinstellungen leeren.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Die Eingaben in die Rechner werden ausschließlich im Arbeitsspeicher des
@@ -196,7 +205,7 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="schriften" className="mt-12">
             <h2 id="schriften" className="text-fg text-2xl font-bold">
-              5. Schriftarten
+              4. Schriftarten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Website verwendet die Schriftarten Inter und Sora. Sie werden nicht
@@ -212,7 +221,7 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="externe-daten" className="mt-12">
             <h2 id="externe-daten" className="text-fg text-2xl font-bold">
-              6. Marktdaten und Nachrichten
+              5. Marktdaten und Nachrichten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Kurse und Nachrichten stammen aus externen Quellen, werden aber nicht beim
@@ -232,7 +241,7 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="kontaktaufnahme" className="mt-12">
             <h2 id="kontaktaufnahme" className="text-fg text-2xl font-bold">
-              7. Kontaktaufnahme per E-Mail
+              6. Kontaktaufnahme per E-Mail
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Wenn du uns per E-Mail schreibst, verarbeiten wir die übermittelten Daten
@@ -246,10 +255,11 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="rechte" className="mt-12">
             <h2 id="rechte" className="text-fg text-2xl font-bold">
-              8. Deine Rechte
+              7. Deine Rechte
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Dir stehen gegenüber dem Verantwortlichen die folgenden Rechte zu:
+              Dir stehen gegenüber dem Verantwortlichen (Abschnitt 9) die folgenden Rechte
+              zu:
             </p>
             <ul className="text-fg-muted mt-4 space-y-2.5">
               {[
@@ -294,13 +304,52 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="aenderungen" className="mt-12">
             <h2 id="aenderungen" className="text-fg text-2xl font-bold">
-              9. Änderungen dieser Erklärung
+              8. Änderungen dieser Erklärung
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Datenschutzerklärung wird angepasst, sobald sich die Verarbeitung
               ändert – etwa durch neue Funktionen oder eingebundene Dienste. Stand dieser
               Fassung: {privacyPolicyDate}.
             </p>
+          </section>
+
+          <section aria-labelledby="verantwortlicher" className="mt-12">
+            <h2 id="verantwortlicher" className="text-fg text-2xl font-bold">
+              9. Verantwortlicher
+            </h2>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne von
+              Art. 4 Nr. 7 DSGVO ist:
+            </p>
+            <address className="text-fg-muted mt-3 leading-relaxed not-italic">
+              {provider.name}
+              <br />
+              {provider.street}
+              <br />
+              {provider.city}
+              <br />
+              {provider.country}
+              <br />
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="hover:text-brand underline"
+              >
+                {siteConfig.contactEmail}
+              </a>
+              <br />
+              <a
+                href={`tel:${siteConfig.contactPhoneLink}`}
+                className="hover:text-brand underline"
+              >
+                {siteConfig.contactPhone}
+              </a>
+            </address>
+            {/*
+              Kein Abschnitt zur datenschutzbeauftragten Person: Die Bestellung
+              ist nach § 38 BDSG erst ab zwanzig ständig mit der Verarbeitung
+              beschäftigten Personen Pflicht. Ein Satz „nicht erforderlich“
+              brächte niemandem etwas.
+            */}
           </section>
         </div>
       </div>

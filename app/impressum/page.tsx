@@ -27,7 +27,93 @@ export default function ImprintPage() {
 
       <div className="fk-container py-12 sm:py-16">
         <div className="max-w-3xl">
-          <section aria-labelledby="anbieter">
+          {/*
+            Die Anschrift steht am Seitenende, nicht am Anfang. § 5 DDG
+            verlangt die Angaben leicht erkennbar auf der Impressumsseite –
+            eine Reihenfolge innerhalb der Seite schreibt er nicht vor. Wer
+            nur kurz hineinklickt, sieht so nicht als Erstes die
+            Privatadresse; wer sie sucht, findet sie unter ihrer eigenen
+            Überschrift. Nicht wieder nach oben ziehen.
+          */}
+          <section aria-labelledby="haftung">
+            <h2 id="haftung" className="text-fg text-2xl font-bold">
+              Haftung für Inhalte und Links
+            </h2>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Die Inhalte dieser Website werden mit Sorgfalt erstellt. Für die
+              Richtigkeit, Vollständigkeit und Aktualität kann jedoch keine Gewähr
+              übernommen werden. Als Diensteanbieter sind wir für eigene Inhalte
+              verantwortlich, jedoch nicht verpflichtet, übermittelte oder gespeicherte
+              fremde Informationen zu überwachen.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
+              wir keinen Einfluss haben. Für diese fremden Inhalte kann keine Gewähr
+              übernommen werden. Zum Zeitpunkt der Verlinkung waren keine rechtswidrigen
+              Inhalte erkennbar. Bei Bekanntwerden von Rechtsverstößen werden
+              entsprechende Links unverzüglich entfernt.
+            </p>
+          </section>
+
+          <section aria-labelledby="urheberrecht" className="mt-12">
+            <h2 id="urheberrecht" className="text-fg text-2xl font-bold">
+              Urheberrecht
+            </h2>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Die auf dieser Website erstellten Inhalte und Werke unterliegen dem
+              deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede
+              Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der
+              schriftlichen Zustimmung des jeweiligen Rechteinhabers.
+            </p>
+          </section>
+
+          <section aria-labelledby="kein-rat" className="mt-12">
+            <h2 id="kein-rat" className="text-fg text-2xl font-bold">
+              Hinweis zu Finanzinhalten
+            </h2>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Alle Inhalte dieser Website dienen ausschließlich der allgemeinen
+              Information und Bildung. Sie stellen keine Anlageberatung, Anlageempfehlung,
+              Steuer- oder Rechtsberatung dar und berücksichtigen die persönlichen
+              Verhältnisse einzelner Leserinnen und Leser nicht. Jede Kapitalanlage ist
+              mit Risiken verbunden, bis zum vollständigen Verlust des eingesetzten
+              Kapitals.
+            </p>
+            {/*
+              Derselbe Absatz wie in der Fußzeile, und das mit Absicht: Ein
+              Impressum, das weniger sagt als der Kasten auf jeder Seite, wäre die
+              schwächere von zwei Fassungen – und im Zweifel wird die schwächere
+              gelesen. Die Fassungen müssen deshalb zusammen gepflegt werden.
+            */}
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Steuerliche Erläuterungen, Beispielrechnungen und die Ergebnisse der Rechner
+              sind allgemeine und unverbindliche Information. Sie stellen{' '}
+              <strong className="text-fg font-semibold">
+                keine geschäftsmäßige Hilfeleistung in Steuersachen
+              </strong>{' '}
+              im Sinne des Steuerberatungsgesetzes dar und ersetzen nicht die Beratung
+              durch eine Steuerberaterin, einen Steuerberater oder eine andere zur
+              Hilfeleistung in Steuersachen befugte Person. Wie ein Sachverhalt
+              tatsächlich besteuert wird, hängt von den persönlichen Verhältnissen ab und
+              kann sich durch Gesetzgebung und Rechtsprechung ändern, unter Umständen auch
+              rückwirkend. Verbindliche Auskunft erteilen allein das zuständige Finanzamt
+              und die Angehörigen der steuerberatenden Berufe. Für Entscheidungen, die auf
+              steuerliche Angaben dieser Website gestützt werden, wird keine Haftung
+              übernommen.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Kurse werden als Tagesschlusskurse und zuletzt gehandelte Preise dargestellt
+              und sind{' '}
+              <strong className="text-fg font-semibold">keine Echtzeitdaten</strong>. Sie
+              können von den Angaben anderer Anbieter abweichen und sind nicht für
+              Handelszwecke bestimmt. Die Verschuldungszahlen sind Näherungswerte und
+              keine amtliche Statistik. Für Aktualität, Richtigkeit und Vollständigkeit
+              wird keine Gewähr übernommen; Herkunft und Stand stehen jeweils direkt an
+              der Angabe.
+            </p>
+          </section>
+
+          <section aria-labelledby="anbieter" className="mt-12">
             <h2 id="anbieter" className="text-fg text-2xl font-bold">
               Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)
             </h2>
@@ -121,84 +207,6 @@ export default function ImprintPage() {
             Nach § 36 VSBG trifft die Hinweispflicht ohnehin erst Unternehmen mit
             mehr als zehn Beschäftigten.
           */}
-
-          <section aria-labelledby="haftung" className="mt-12">
-            <h2 id="haftung" className="text-fg text-2xl font-bold">
-              Haftung für Inhalte und Links
-            </h2>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Die Inhalte dieser Website werden mit Sorgfalt erstellt. Für die
-              Richtigkeit, Vollständigkeit und Aktualität kann jedoch keine Gewähr
-              übernommen werden. Als Diensteanbieter sind wir für eigene Inhalte
-              verantwortlich, jedoch nicht verpflichtet, übermittelte oder gespeicherte
-              fremde Informationen zu überwachen.
-            </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
-              wir keinen Einfluss haben. Für diese fremden Inhalte kann keine Gewähr
-              übernommen werden. Zum Zeitpunkt der Verlinkung waren keine rechtswidrigen
-              Inhalte erkennbar. Bei Bekanntwerden von Rechtsverstößen werden
-              entsprechende Links unverzüglich entfernt.
-            </p>
-          </section>
-
-          <section aria-labelledby="urheberrecht" className="mt-12">
-            <h2 id="urheberrecht" className="text-fg text-2xl font-bold">
-              Urheberrecht
-            </h2>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Die auf dieser Website erstellten Inhalte und Werke unterliegen dem
-              deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede
-              Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der
-              schriftlichen Zustimmung des jeweiligen Rechteinhabers.
-            </p>
-          </section>
-
-          <section aria-labelledby="kein-rat" className="mt-12">
-            <h2 id="kein-rat" className="text-fg text-2xl font-bold">
-              Hinweis zu Finanzinhalten
-            </h2>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Alle Inhalte dieser Website dienen ausschließlich der allgemeinen
-              Information und Bildung. Sie stellen keine Anlageberatung, Anlageempfehlung,
-              Steuer- oder Rechtsberatung dar und berücksichtigen die persönlichen
-              Verhältnisse einzelner Leserinnen und Leser nicht. Jede Kapitalanlage ist
-              mit Risiken verbunden, bis zum vollständigen Verlust des eingesetzten
-              Kapitals.
-            </p>
-            {/*
-              Derselbe Absatz wie in der Fußzeile, und das mit Absicht: Ein
-              Impressum, das weniger sagt als der Kasten auf jeder Seite, wäre die
-              schwächere von zwei Fassungen – und im Zweifel wird die schwächere
-              gelesen. Die Fassungen müssen deshalb zusammen gepflegt werden.
-            */}
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Steuerliche Erläuterungen, Beispielrechnungen und die Ergebnisse der Rechner
-              sind allgemeine und unverbindliche Information. Sie stellen{' '}
-              <strong className="text-fg font-semibold">
-                keine geschäftsmäßige Hilfeleistung in Steuersachen
-              </strong>{' '}
-              im Sinne des Steuerberatungsgesetzes dar und ersetzen nicht die Beratung
-              durch eine Steuerberaterin, einen Steuerberater oder eine andere zur
-              Hilfeleistung in Steuersachen befugte Person. Wie ein Sachverhalt
-              tatsächlich besteuert wird, hängt von den persönlichen Verhältnissen ab und
-              kann sich durch Gesetzgebung und Rechtsprechung ändern, unter Umständen auch
-              rückwirkend. Verbindliche Auskunft erteilen allein das zuständige Finanzamt
-              und die Angehörigen der steuerberatenden Berufe. Für Entscheidungen, die auf
-              steuerliche Angaben dieser Website gestützt werden, wird keine Haftung
-              übernommen.
-            </p>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Kurse werden als Tagesschlusskurse und zuletzt gehandelte Preise dargestellt
-              und sind{' '}
-              <strong className="text-fg font-semibold">keine Echtzeitdaten</strong>. Sie
-              können von den Angaben anderer Anbieter abweichen und sind nicht für
-              Handelszwecke bestimmt. Die Verschuldungszahlen sind Näherungswerte und
-              keine amtliche Statistik. Für Aktualität, Richtigkeit und Vollständigkeit
-              wird keine Gewähr übernommen; Herkunft und Stand stehen jeweils direkt an
-              der Angabe.
-            </p>
-          </section>
         </div>
       </div>
     </>

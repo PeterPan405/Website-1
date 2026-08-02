@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState, useSyncExternalStore } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import {
@@ -10,6 +10,51 @@ import {
   zaehleEintraege,
   type Umzugsinhalt,
 } from '@/lib/umzug'
+
+type Bestandzeile = { schluessel: string; name: string; anzahl: number | null }
+
+const KEIN_BESTAND: readonly Bestandzeile[] = []
+
+/*
+ * Was auf diesem Gerät gerade vorhanden ist – als kleiner Speicher nach dem
+ * Muster der zehn `…-speicher.ts`-Module: Der Server kennt den localStorage
+ * nicht, deshalb liefert der Server-Schnappschuss die leere Liste, und erst
+ * der Browser liest die Bestände. Ein `setState` im Effekt täte dasselbe,
+ * stößt aber eine zweite Renderrunde an und ist hier nicht das Hausmuster.
+ */
+let bestandCache: readonly Bestandzeile[] | null = null
+const bestandListeners = new Set<() => void>()
+
+function liesVorhanden(): readonly Bestandzeile[] {
+  if (bestandCache) return bestandCache
+  bestandCache = BESTAENDE.flatMap(({ schluessel, name }) => {
+    let wert: string | null = null
+    try {
+      wert = window.localStorage.getItem(schluessel)
+    } catch {
+      wert = null
+    }
+    if (wert === null) return []
+    return [{ schluessel, name, anzahl: zaehleEintraege(wert) }]
+  })
+  return bestandCache
+}
+
+function abonniereVorhanden(listener: () => void): () => void {
+  bestandListeners.add(listener)
+
+  // Schreibt ein anderes Tab, ist die Übersicht hier veraltet.
+  function onStorage() {
+    bestandCache = null
+    bestandListeners.forEach((eintrag) => eintrag())
+  }
+  window.addEventListener('storage', onStorage)
+
+  return () => {
+    bestandListeners.delete(listener)
+    window.removeEventListener('storage', onStorage)
+  }
+}
 
 /**
  * Herunterladen und Einlesen der Umzugsdatei.
@@ -34,30 +79,11 @@ export function Umzugskoffer() {
   const [fehler, setzeFehler] = useState<string | null>(null)
   const [uebernommen, setzeUebernommen] = useState(false)
 
-  /**
-   * Was auf diesem Gerät gerade vorhanden ist – für die Übersicht.
-   *
-   * Erst nach der Übernahme durch den Browser gelesen: Der Server kennt den
-   * localStorage nicht, und ein Lesen beim Rendern ergäbe zwei verschiedene
-   * erste Bilder.
-   */
-  const [vorhanden, setzeVorhanden] = useState<
-    { schluessel: string; name: string; anzahl: number | null }[]
-  >([])
-  useEffect(() => {
-    setzeVorhanden(
-      BESTAENDE.flatMap(({ schluessel, name }) => {
-        let wert: string | null = null
-        try {
-          wert = window.localStorage.getItem(schluessel)
-        } catch {
-          wert = null
-        }
-        if (wert === null) return []
-        return [{ schluessel, name, anzahl: zaehleEintraege(wert) }]
-      })
-    )
-  }, [])
+  const vorhanden = useSyncExternalStore(
+    abonniereVorhanden,
+    liesVorhanden,
+    () => KEIN_BESTAND
+  )
 
   function herunterladen() {
     const datei = baueUmzug(
