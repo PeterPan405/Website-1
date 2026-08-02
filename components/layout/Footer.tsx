@@ -152,6 +152,29 @@ export function Footer() {
             Szenarien – die Spannweite der Ergebnisse ist die eigentliche Information,
             nicht die einzelne Zahl.
           </p>
+          {/*
+            Kennzeichnung nach Art. 50 Abs. 4 der KI-Verordnung (EU) 2024/1689,
+            anwendbar seit dem 2. August 2026. Streng genommen greift die
+            Ausnahme für redaktionell geprüfte Inhalte mit benanntem
+            Verantwortlichen – der Hinweis steht trotzdem hier, weil er wahr
+            ist und die Ausnahme nicht erst vor einer Behörde begründet werden
+            soll. Ausführlich im Impressum unter „Einsatz künstlicher
+            Intelligenz“.
+          */}
+          <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+            <strong className="text-fg font-semibold">
+              Einsatz künstlicher Intelligenz:
+            </strong>{' '}
+            Texte und Erklärgrafiken dieser Website entstehen mit Unterstützung von
+            KI-Werkzeugen und werden vor der Veröffentlichung von einem Menschen
+            inhaltlich geprüft; die redaktionelle Verantwortung liegt beim Betreiber
+            (siehe{' '}
+            <Link href="/impressum" className="hover:text-brand underline">
+              Impressum
+            </Link>
+            ). Beim Besuch der Website läuft keine KI – es gibt keinen Chatbot, und die
+            Rechner arbeiten mit festen, offengelegten Formeln.
+          </p>
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">
             <strong className="text-fg font-semibold">Hinweis zu den Daten:</strong> Kurse
             werden als Tagesschlusskurse dargestellt und sind keine Echtzeitdaten. Sie
