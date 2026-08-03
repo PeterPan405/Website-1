@@ -22,7 +22,7 @@ import { buildMetadata, withBrand } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Das 30-Tage-Programm'),
   description:
-    'Eine Tagesportion Finanzwissen, vier Wochen lang: von Budget und Zinseszins über Aktien und ETFs bis zu Steuern und Portfolio – aus den Lernstufen und Rechnern dieser Website.',
+    'Eine Tagesportion Finanzwissen, vier Wochen lang: von Budget und Zinseszins über Aktien und ETFs bis zu Steuern und Portfolio – aus Lernstufen und Rechnern.',
   path: '/lernen/30-tage',
   ogTitle: 'Das 30-Tage-Programm',
 })

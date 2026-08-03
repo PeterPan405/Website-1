@@ -109,9 +109,7 @@ async function baueDaten(): Promise<Merkdaten[]> {
  * sind, also rechnet er alle – dieselbe Wochenrechnung wie /news/woche.
  * Übertragen wird je Titel nur eine Zahl.
  */
-async function baueWochen(
-  daten: Merkdaten[]
-): Promise<{
+async function baueWochen(daten: Merkdaten[]): Promise<{
   wochen: Record<string, number | null>
   spanne: ReturnType<typeof letzteAbgeschlosseneWoche>
 }> {

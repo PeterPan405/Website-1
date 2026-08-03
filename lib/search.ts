@@ -13,7 +13,7 @@
 
 import { getAlleLektionen, getBereiche } from '@/lib/akademie'
 import { getEditions } from '@/lib/editions'
-import { formatDate, formatNumber } from '@/lib/format'
+import { formatDate, formatMonthYearLong, formatNumber } from '@/lib/format'
 import { getLaender } from '@/lib/laender'
 import { getLearnTopics } from '@/lib/learn'
 import { learnLevelIds, learnLevelMeta } from '@/lib/learn'
@@ -22,7 +22,7 @@ import { calculators } from '@/data/calculators'
 import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
-import { getNewsArticles } from '@/lib/news'
+import { getNewsArticles, getNewsByMonth } from '@/lib/news'
 import { folgenAdresse, getFolgen, kurzfassung } from '@/lib/podcast'
 import { rubriken } from '@/lib/rubriken'
 import { getBranchen } from '@/lib/branchen'
@@ -182,6 +182,32 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     hint: 'Alle bisherigen Ausgaben, nach Monaten gruppiert.',
     keywords: ['ausgabe', 'archiv', 'morgen'],
   })
+
+  eintraege.push({
+    title: 'Monatsarchiv der Nachrichten',
+    href: '/news/monat',
+    kind: 'Bereich',
+    hint: 'Alle Monate, in denen Artikel erschienen sind – von heute rückwärts.',
+    keywords: ['monat', 'archiv', 'monatsarchiv'],
+  })
+
+  /*
+    Jeder Monat einzeln.
+
+    Wie bei den Jahrgängen des Rückblicks ist die Eingabe das Datum, nicht das
+    Wort: Wer „August 2026" tippt, sucht diesen Monat. Die Seiten entstehen
+    ohnehin je Monat – ohne Eintrag hier wären sie gebaut, verlinkt und
+    unauffindbar, und die Paketprüfung meldet genau das.
+  */
+  for (const { monat, artikel } of await getNewsByMonth()) {
+    eintraege.push({
+      title: `Nachrichten aus ${formatMonthYearLong(`${monat}-01`)}`,
+      href: `/news/monat/${monat}`,
+      kind: 'News',
+      hint: `${artikel.length} ${artikel.length === 1 ? 'Artikel' : 'Artikel'} aus diesem Monat.`,
+      keywords: [monat, 'monat', 'archiv'],
+    })
+  }
 
   eintraege.push({
     title: 'Jahresrückblick',
@@ -453,6 +479,21 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Lernpfad',
       hint: pfad.kurz,
       keywords: ['lernpfad', 'pfad', pfad.slug],
+    })
+    /*
+      Die Urkundenseite jedes Pfads.
+
+      Sie ist eine eigene Seite und muss deshalb auffindbar sein – die
+      Paketprüfung besteht zu Recht darauf. Wer „Urkunde" sucht, will nicht
+      erst den Pfad finden und dort weiterklicken; und wer die Seite ohne
+      abgeschlossenen Pfad öffnet, sieht seinen Stand statt eines Blattes.
+    */
+    eintraege.push({
+      title: `Urkunde: ${pfad.titel}`,
+      href: `/lernen/pfade/${pfad.slug}/urkunde`,
+      kind: 'Lernpfad',
+      hint: 'Das Blatt zum Ausdrucken, sobald alle Stufen dieses Pfads abgehakt sind.',
+      keywords: ['urkunde', 'zertifikat', 'abschluss', 'drucken', pfad.slug],
     })
   }
 

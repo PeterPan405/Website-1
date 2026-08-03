@@ -113,7 +113,7 @@ export const calculators: CalculatorDefinition[] = [
     headline: 'Bewertungsrechner: Welches Gewinnwachstum ist im Kurs eingepreist?',
     metaTitle: 'Bewertungsrechner: eingepreistes Gewinnwachstum aus dem KGV',
     metaDescription:
-      'Die Bewertung rückwärts gerechnet: Aus KGV, Abzinsung und End-KGV zeigt der Rechner, welches jährliche Gewinnwachstum der heutige Kurs bereits bezahlt – kein Kursziel, sondern eine Messlatte.',
+      'Rückwärts gerechnet: Aus KGV, Abzinsung und End-KGV zeigt der Rechner, welches Gewinnwachstum der heutige Kurs bereits bezahlt – kein Kursziel, eine Messlatte.',
     lead: 'Statt eines Kursziels rechnet dieser Rechner rückwärts: Welches Gewinnwachstum müsste ein Unternehmen liefern, damit sich der heutige Kurs lohnt? Aus dem KGV wird die Wette sichtbar, die im Preis steckt.',
     summary: 'Rückwärts gerechnet: das im KGV eingepreiste Gewinnwachstum.',
     featureList: [

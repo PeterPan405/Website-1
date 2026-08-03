@@ -18,7 +18,7 @@ import { buildMetadata, withBrand } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Datenumzug: deinen Stand mitnehmen'),
   description:
-    'Lernfortschritt, Merkliste, Vermögensübersicht und Einstellungen als Datei mitnehmen und am anderen Gerät einlesen – ohne Konto, ohne Server, alles bleibt bei dir.',
+    'Lernfortschritt, Merkliste, Vermögensübersicht und Einstellungen als Datei mitnehmen und am anderen Gerät einlesen – ohne Konto, alles bleibt bei dir.',
   path: '/umzug',
   ogTitle: 'Datenumzug ohne Konto',
 })
