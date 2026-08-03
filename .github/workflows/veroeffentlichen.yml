@@ -47,14 +47,24 @@ name: Veröffentlichen
 # Hinweis, statt fehlzuschlagen – ein Repository ohne Zugangsdaten soll bauen
 # können, ohne dass jeder Lauf rot wird.
 
+# ## Nur noch von Hand – der Regelweg läuft in `paket-bauen.yml`
+#
+# Bis zum 3. August 2026 startete dieser Workflow automatisch nach jedem
+# erfolgreichen Paketbau (`workflow_run`) und baute die Seite dafür ein
+# zweites Mal. Beides zusammen kostete 12,8 Minuten je Kurs-Commit; bei
+# fünfzehn am Werktag war das der Grund, warum GitHub die geplanten Läufe
+# verworfen hat und die Charts tagelang stillstanden.
+#
+# Der Regelweg ist deshalb in `paket-bauen.yml` umgezogen: Dort liegt der
+# fertige Bau bereits im Arbeitsordner, es wird nur noch gepackt und
+# übertragen.
+#
+# Dieser Workflow bleibt als **Notweg** bestehen, mit denselben Schritten,
+# aber eigenem Bau: für den Fall, dass ohne neuen Commit übertragen werden
+# soll – etwa nachdem auf dem Server etwas verstellt wurde, oder wenn eine
+# Auslieferung nachgeholt werden muss. Aufrufbar unter
+# Actions → „Veröffentlichen" → „Run workflow".
 on:
-  # Nach jedem erfolgreichen Paketbau – der prüft Lint, Typen, Tests,
-  # Formatierung und Build. Was hier ankommt, ist also schon geprüft.
-  workflow_run:
-    workflows: ['Paket bauen']
-    types: [completed]
-    branches: [main]
-
   workflow_dispatch:
 
 concurrency:
