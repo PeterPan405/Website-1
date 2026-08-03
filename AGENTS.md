@@ -123,6 +123,36 @@ Workflows, deren **Abstand** die eigentliche Vorschrift ist:
 Die Routine **„Zeitumstellung"** zieht alle drei zweimal im Jahr gemeinsam um
 eine Stunde nach. Wer eine Zeit ändert, ändert alle drei.
 
+## Geplante Läufe sind eine Bitte, keine Zusage
+
+**GitHub verwirft `schedule`-Läufe, wenn zu viele gleichzeitig anstehen** – ohne
+Fehler, ohne Eintrag, ohne Mail. Ein verworfener Lauf hinterlässt nur eine
+Lücke, und die sieht aus wie „hat nichts gefunden".
+
+Am 3. August 2026 hat es dieses Projekt an einem Vormittag dreifach getroffen:
+Der Paketbau (`15 4`) startete um **07:48** – dreieinhalb Stunden zu spät –,
+die Quellenprobe (`30 5`) und **jeder** der vier Kursläufe des Vormittags
+fielen ersatzlos aus. Auf der Website standen die Charts von Freitagabend bis
+Montagmittag still. Aufgefallen ist es dem Betreiber, nicht der Technik.
+
+Am dichtesten belegt sind die vollen und halben Stunden. Deshalb stehen die
+Minuten aller Zeitpläne dieses Projekts seither auf **krummen Werten** – `7,37`
+statt `0,30`, `9` statt `0`, `3` statt `0`. Das kostet nichts und ist der
+einzige Hebel, den man von außen hat.
+
+Zwei Dinge folgen daraus:
+
+- **Runde Minuten nicht wieder einführen.** Wer einen neuen Workflow anlegt,
+  sucht sich eine Minute, die noch keiner hat.
+- **`kurse.yml` koppelt seine Crons an Zeichenketten-Vergleiche** (`NUR_ARTEN`,
+  `NUR_PREIS`). Ein geänderter Cron-Ausdruck ohne angepassten Vergleich
+  schaltet stillschweigend den vollen Abruf ein: sieben Minuten statt Sekunden,
+  dreißigmal am Tag.
+
+Bleibt eine Datenreihe stehen, ist die erste Frage deshalb nicht „ist der Lauf
+gescheitert?", sondern **„hat er überhaupt stattgefunden?"** – und der
+Handstart über `workflow_dispatch` ist das Mittel, das sofort hilft.
+
 Bis zum 3. August 2026 liefen **zwei** Nachrichten-Routinen parallel (02:15 und
 04:00 UTC) und feuerten beide, ohne voneinander zu wissen. Die ältere ist
 stillgelegt; es gibt genau eine.

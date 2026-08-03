@@ -16,7 +16,7 @@ on:
   schedule:
     # Montags um 05:20 UTC – vor der Arbeitswoche, damit ein Bruch am Montag
     # auffällt und nicht am Freitagabend.
-    - cron: '20 5 * * 1'
+    - cron: '27 5 * * 1'
   workflow_dispatch:
   # Auch bei Änderungen an der Prüfung selbst, auf jedem Zweig.
   #

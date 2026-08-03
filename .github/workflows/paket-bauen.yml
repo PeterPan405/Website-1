@@ -39,7 +39,7 @@ on:
   # hier „15 Minuten nach der Routine“ – dieser Bau fiel also regelmäßig
   # mitten in den Lauf und paketierte den Stand von gestern.
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '9 5 * * *'
 
   workflow_dispatch:
 

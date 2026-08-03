@@ -41,7 +41,7 @@ on:
   # Erst aufräumen, dann bauen: So trifft ein angefordertes Paket auf freien
   # Platz statt auf einen vollen Speicher.
   schedule:
-    - cron: '50 3 * * *'
+    - cron: '52 3 * * *'
 
   workflow_dispatch:
     inputs:

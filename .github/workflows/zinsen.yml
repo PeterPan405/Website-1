@@ -19,7 +19,7 @@ on:
     # Der HVPI erscheint als Schnellschätzung am Monatsende und endgültig Mitte
     # des Folgemonats; der EZB-Rat tagt alle sechs bis acht Wochen. Ein
     # wöchentlicher Lauf holt beides binnen Tagen ein.
-    - cron: '10 6 * * 3'
+    - cron: '13 6 * * 3'
   workflow_dispatch:
 
 concurrency:

@@ -39,16 +39,38 @@ name: Kurse aktualisieren
 # und der Grund, warum ohne Kursänderung nichts committet wird: An
 # Feiertagen und ausserhalb der Handelszeiten bleibt es still.
 
+# ## Warum die Minuten so krumm sind
+#
+# Weil GitHub geplante Läufe verwirft, wenn zu viele gleichzeitig anstehen.
+# Der Zeitplan ist eine Bitte, keine Zusage – das steht so in der
+# Dokumentation, und am 3. August 2026 hat es dieses Projekt getroffen:
+# Der Paketbau (`15 4`) startete um 07:48, dreieinhalb Stunden zu spät, die
+# Quellenprobe (`30 5`) und **jeder** Kurslauf des Tages fielen ganz aus.
+# Die Charts standen von Freitag bis Montagmittag still, und in den
+# Protokollen war nichts zu sehen: Ein verworfener Lauf hinterlässt keinen
+# Fehler, nur eine Lücke.
+#
+# Am dichtesten belegt sind die vollen und halben Stunden – dorthin legt
+# alle Welt ihre Zeitpläne. Deshalb stehen die Minuten hier auf krummen
+# Werten. Das kostet nichts und ist der einzige Hebel, den man von außen
+# hat.
+#
+# **Wer eine dieser Zeiten ändert, ändert auch die Vergleiche unter
+# `NUR_ARTEN` und `NUR_PREIS` weiter unten.** Sie prüfen den Cron-Ausdruck
+# als Zeichenkette; ein geänderter Ausdruck ohne angepassten Vergleich
+# schaltet stillschweigend den vollen Abruf ein – sieben Minuten statt
+# Sekunden, dreißigmal am Tag.
+
 on:
   schedule:
-    # Werktags alle dreißig Minuten, 07:00 bis 21:30 UTC.
+    # Werktags alle dreißig Minuten, 07:07 bis 21:37 UTC.
     #
     # Das Ende lag bis Juli 2026 bei 20:30 und schnitt damit im Winterhalbjahr
     # den wichtigsten Kurs des Tages ab: Die New Yorker Börse schließt um
     # 16 Uhr Ortszeit, das sind von November bis März 21:00 UTC. Der letzte
     # Lauf davor lief also vor dem Schluss, und der Schlusskurs von 500
     # US-Aktien erschien erst am nächsten Morgen auf der Seite.
-    - cron: '0,30 7-21 * * 1-5'
+    - cron: '7,37 7-21 * * 1-5'
     # Und einmal nach Börsenschluss der volle Lauf.
     #
     # Er schreibt die Historie fort und holt die Dividenden – beides ändert
@@ -56,9 +78,9 @@ on:
     # jeden halbstündlichen Lauf: `range=5y` für tausend Titel, um daraus den
     # laufenden Preis zu lesen. Das war der Grund für sieben Minuten Laufzeit.
     #
-    # 21:45 UTC liegt nach dem Schluss in New York (21:00 UTC im Winter,
+    # 21:47 UTC liegt nach dem Schluss in New York (21:00 UTC im Winter,
     # 20:00 im Sommer) und damit nach dem letzten Kurs des Tages.
-    - cron: '45 21 * * 1-5'
+    - cron: '47 21 * * 1-5'
     # Am Wochenende alle drei Stunden, aber nur Krypto und Devisen.
     #
     # Aktien und Indizes werden nicht gehandelt – ein Abruf liefert für sie
@@ -67,7 +89,7 @@ on:
     # anderer Stelle ausdrücklich. Bis hierher stand am Wochenende trotzdem
     # der Freitagskurs. Die Beschränkung macht aus sieben Minuten und tausend
     # Anfragen ein paar Sekunden und eine Handvoll.
-    - cron: '0 */3 * * 6,0'
+    - cron: '8 */3 * * 6,0'
   # Von Hand auslösbar – zum Prüfen und für den allerersten Lauf.
   workflow_dispatch:
     inputs:
@@ -111,7 +133,7 @@ jobs:
           # Am Wochenende nur, was am Wochenende handelt. `github.event.schedule`
           # enthält den Ausdruck, der den Lauf ausgelöst hat – bei einem Start
           # von Hand ist er leer, dann wird alles geholt.
-          NUR_ARTEN: ${{ github.event.schedule == '0 */3 * * 6,0' && 'crypto,fx' || '' }}
+          NUR_ARTEN: ${{ github.event.schedule == '8 */3 * * 6,0' && 'crypto,fx' || '' }}
           # Nur der laufende Preis – gesetzt vom halbstündlichen Lauf **und vom
           # Wochenendlauf**.
           #
@@ -131,7 +153,7 @@ jobs:
           # alle 30 Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
           # holt der volle Lauf am Montag um 21:45 nach – `range=5y` bringt
           # alle abgeschlossenen Tage mit.
-          NUR_PREIS: ${{ (github.event.schedule == '0,30 7-21 * * 1-5' || github.event.schedule == '0 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
+          NUR_PREIS: ${{ (github.event.schedule == '7,37 7-21 * * 1-5' || github.event.schedule == '8 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen

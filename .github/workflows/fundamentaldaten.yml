@@ -21,7 +21,7 @@ on:
     # Zahlen vor. Wer dann am Fünften abruft, zeigt vier Wochen lang die
     # vorletzten Zahlen. Samstag, weil der Lauf mit dem ESEF-Teil zehn
     # Minuten dauert und am Wochenende niemandem in die Quere kommt.
-    - cron: '0 6 * * 6'
+    - cron: '6 6 * * 6'
   workflow_dispatch:
     inputs:
       quellen:

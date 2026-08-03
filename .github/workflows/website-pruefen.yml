@@ -20,7 +20,7 @@ on:
     #
     # Der Lauf verändert nichts. Er ruft die veröffentlichte Seite ab und
     # schlägt an, wenn sie nicht antwortet oder ihre Daten veraltet sind.
-    - cron: '30 6 * * *'
+    - cron: '34 6 * * *'
   workflow_dispatch:
     inputs:
       hosts:
