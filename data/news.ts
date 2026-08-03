@@ -101,6 +101,356 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelpreis-fuenf-prozent-trump-iran',
+    title: 'Ölpreis bricht um fünf Prozent ein – nach einem abgesagten Angriff',
+    metaTitle: 'Ölpreis bricht um fünf Prozent ein',
+    teaser:
+      'Trump sagt Angriffe auf den Iran ab und spricht von einer nahen Einigung. Brent fällt am Morgen um fünf Prozent auf 83,87 Dollar – Freitag waren es gut 90.',
+    category: 'Märkte',
+    publishedAt: '2026-08-03T07:05:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Iran', 'Geopolitik', 'Risikoprämie'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'AP (via WSLS): „Asian stocks are mixed as yen jumps against the dollar, while oil prices slip“ (3. August 2026)',
+        url: 'https://www.wsls.com/business/2026/08/03/asian-stocks-are-mixed-as-yen-jumps-against-the-dollar-while-oil-prices/',
+      },
+      {
+        label: 'Brent-Kursseite dieser Website (Yahoo-Tagesdaten, Stand 31. Juli)',
+        url: 'https://iminvests.de/maerkte/brent',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist am Montagmorgen eingebrochen: **Brent fiel um fünf Prozent auf 83,87 Dollar** je Fass, die US-Sorte WTI um 4,8 Prozent auf 80,58 Dollar – so die Stände aus dem frühen asiatischen Handel laut AP. Auslöser war kein Fass Öl, sondern ein Satz: US-Präsident Trump erklärte, er werde die US-Streitkräfte anweisen, **auf Angriffe gegen den Iran zu verzichten** – eine Vereinbarung zur Beendigung der Kämpfe im Nahen Osten sei nah.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur Einordnung: Am Freitagabend hatte Brent nach den auf dieser Website geführten Tagesdaten noch bei **gut 90 Dollar** notiert. Der Preis hatte sich seit der faktischen Schließung der Straße von Hormus Ende Februar deutlich über seinem Vorkriegsniveau gehalten – zeitweise über der 100-Dollar-Marke.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Risikoprämie – ein Preis für Wahrscheinlichkeiten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum bewegt eine Ankündigung den Preis um fünf Prozent, obwohl sich am physischen Markt an diesem Morgen nichts geändert hat? Weil im Ölpreis eine **Risikoprämie** steckt: ein Aufschlag dafür, dass Lieferungen ausfallen *könnten*. Diese Prämie handelt nicht Fässer, sondern Wahrscheinlichkeiten. Sinkt die Wahrscheinlichkeit einer Eskalation – etwa weil ein angekündigter Angriff abgesagt wird –, schrumpft der Aufschlag sofort, ganz ohne dass ein Tanker mehr fährt.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Dieselbe Logik, zwei Richtungen',
+        items: [
+          'Eskalation: Der Preis steigt, bevor auch nur ein Barrel fehlt – die Möglichkeit wird eingepreist.',
+          'Entspannung: Der Preis fällt, bevor zusätzliche Lieferungen fließen – die Möglichkeit wird ausgepreist.',
+          'Beides sind Erwartungspreise. Die physische Knappheit zeigt sich erst später in Lagerbeständen und Frachtraten.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ölpreis-Schlagzeilen an Tagen wie diesem beschreiben Politik, nicht Produktion. Wer die Bewegung verstehen will, fragt nicht „wo ist das Öl hin?“, sondern „welche Wahrscheinlichkeit wurde gerade neu bewertet?“ – und rechnet damit, dass dieselbe Prämie zurückkommt, wenn die Einigung ausbleibt.',
+      },
+    ],
+  },
+  {
+    slug: 'yen-intervention-usa-japan-155',
+    title: 'USA und Japan stützen den Yen – die Intervention ist offiziell',
+    teaser:
+      'Washington und Tokio bestätigen den gemeinsamen Eingriff am Devisenmarkt. Der Dollar fällt von fast 164 auf zeitweise 155,20 Yen – und Japans Börse gibt nach.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-03T07:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Yen', 'Devisenmarkt', 'Intervention', 'Japan'],
+    relatedTopics: ['waehrungen-wechselkurse', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['nikkei-225'],
+    sources: [
+      {
+        label:
+          'AP (via WSLS): „Asian stocks are mixed as yen jumps against the dollar, while oil prices slip“ (3. August 2026)',
+        url: 'https://www.wsls.com/business/2026/08/03/asian-stocks-are-mixed-as-yen-jumps-against-the-dollar-while-oil-prices/',
+      },
+      {
+        label:
+          'Business Recorder: Schlagzeile „Japan confirms joint yen intervention with US, signals readiness for more action“ (3. August 2026; steht in der Meldungsleiste der verlinkten Seite)',
+        url: 'https://www.brecorder.com/news/40432965/opec-agrees-september-oil-hike-completing-rollback-of-voluntary-cuts',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die USA und Japan haben bestätigt, dass sie **in der vergangenen Woche gemeinsam am Devisenmarkt eingegriffen** haben, um den Yen zu stützen. Der Dollar war zuvor auf ein **40-Jahres-Hoch** gegenüber der japanischen Währung gestiegen und notierte zuletzt nahe 164 Yen; nach der Bestätigung fiel er laut AP zeitweise auf **155,20 Yen**. Der Yen steht damit so hoch wie seit Ende vergangenen Jahres nicht mehr – und Tokio signalisiert die Bereitschaft zu weiteren Eingriffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Intervention ist – und was sie besonders macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einer **Devisenmarktintervention** kauft oder verkauft ein Staat gezielt die eigene Währung, um ihren Kurs zu bewegen – hier: Yen kaufen, Dollar verkaufen. Japan hat das in den vergangenen Jahren mehrfach allein versucht, mit begrenzter Wirkung: Der Markt ist riesig, und gegen einen anhaltenden Trend verpufft einzelnes Kaufen schnell. **Gemeinsame** Interventionen zweier großer Währungsräume sind selten – und gerade deshalb wirksamer, weil sie dem Markt signalisieren, dass beide Seiten den Kurs für falsch halten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum überhaupt eingreifen? Ein schwacher Yen hat zwei Gesichter. Er **polstert die Gewinne** japanischer Konzerne mit großem Auslandsgeschäft, weil Dollar-Erlöse in mehr Yen getauscht werden – und er lockt Touristen ins Land. Zugleich **verteuert er alle Importe**, allen voran Öl und Rohstoffe, die Japan fast vollständig einführen muss. Bei 164 Yen je Dollar hatte die zweite Seite die Oberhand gewonnen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Börsenreaktion zeigt die erste Seite: Der **Nikkei 225 verlor am Montagmorgen 1,9 Prozent auf 63.140 Punkte** – ein stärkerer Yen schmälert die künftigen Auslandsgewinne der Exportwerte, die den Index prägen. Dass eine steigende Währung fallende Aktienkurse auslöst, ist kein Widerspruch, sondern derselbe Mechanismus von der anderen Seite betrachtet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wechselkurse sind kein Randthema für Weltenbummler – sie verschieben Gewinne zwischen Exporteuren und Importeuren, und damit ganze Indizes. Wer japanische Aktien oder einen Welt-ETF hält, hält immer auch eine Währungswette mit, ob er will oder nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'opec-plus-beschluss-serie-beendet',
+    title: 'OPEC+ beschließt die 188.000 Barrel – und beendet damit eine Serie',
+    metaTitle: 'OPEC+ beschließt 188.000 Barrel mehr',
+    teaser:
+      'Die sieben Kernstaaten heben die September-Quote wie erwartet an. Die 2023er-Kürzungen sind damit zurückgenommen – ab Oktober beginnt das Verhandeln.',
+    category: 'Märkte',
+    publishedAt: '2026-08-03T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['OPEC', 'Ölpreis', 'Rohstoffe', 'Erdgas'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'erdgas'],
+    sources: [
+      {
+        label:
+          'WirtschaftsWoche / dpa: „Opec+ erhöht Ölförderziele für September“ (2. August 2026)',
+        url: 'https://www.wiwo.de/politik/ausland/opec-kartell-opec-erhoeht-oelfoerderziele-fuer-september/100244518.html',
+      },
+      {
+        label:
+          'Business Recorder / Reuters: „OPEC agrees September oil hike, completing rollback of voluntary cuts“ (2. August 2026)',
+        url: 'https://www.brecorder.com/news/40432965/opec-agrees-september-oil-hike-completing-rollback-of-voluntary-cuts',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Entscheidung, über die an dieser Stelle gestern vorab berichtet wurde, ist gefallen: Die sieben Kernstaaten der OPEC+ – Saudi-Arabien, Russland, Irak, Kuwait, Algerien, Kasachstan und Oman – haben am Sonntag beschlossen, ihre **Förderquote für September um rund 188.000 Barrel pro Tag** anzuheben. Damit ist die schrittweise Rücknahme der 2023 vereinbarten Kürzung von 1,65 Millionen Barrel **vollständig abgeschlossen**.',
+      },
+      { type: 'heading', level: 2, text: 'Was jetzt anders wird' },
+      {
+        type: 'paragraph',
+        text: 'Zum weiteren Vorgehen ab Oktober sagte die Gruppe **nichts** – und genau das ist die Nachricht. Bisher folgte die Politik einem Fahrplan: Monat für Monat wurde ein Stück der alten Kürzung zurückgenommen, die Entscheidung war im Grunde Verwaltung. Ab jetzt muss neu verhandelt werden. Rystad-Analyst Jorge Leon hält eine **Pause im vierten Quartal** für das wahrscheinlichste Szenario: Die Gruppe habe wenig Anreiz zu weiteren Schritten, solange sie sich auf die Quotengespräche für 2027 vorbereitet. Ein älteres Kürzungspaket von rund **zwei Millionen Barrel aus dem Jahr 2022** bleibt ohnehin bis Jahresende in Kraft.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Verhandlungen ab 2027 dürften schwierig werden: Die OPEC+ prüft derzeit die **tatsächlichen Förderkapazitäten** ihrer Mitglieder als Grundlage für neue Quoten – und einige, allen voran der Irak, drängen auf höhere Anteile. Es ist derselbe Streitpunkt, an dem im Mai der Austritt der Emirate sichtbar wurde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kuwait liefert wieder – ein Signal aus Hormus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist eine Zahl am Rande: **Kuwait förderte im Juli durchschnittlich 1,971 Millionen Barrel pro Tag**, nach rund 1,65 Millionen im Juni und nur 580.000 im Mai, wie eine mit der Sache vertraute Person Reuters sagte. Vor der faktischen Schließung der Straße von Hormus Ende Februar waren es 2,5 Millionen. Die Erholung deutet darauf hin, dass wieder mehr Öl durch die Meerenge kommt – teils auf Tankern mit abgeschalteten Ortungssignalen. Die Papierquoten der Vormonate blieben ja gerade deshalb folgenlos, weil die Kriege im Iran und in der Ukraine die realen Exporte drückten.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Nebenschauplatz Gas',
+        items: [
+          'Der Gaspreis ist seit der erneuten Iran-Eskalation um mehr als elf Prozent gestiegen, berichtet die WirtschaftsWoche.',
+          'Der Großproduzent QatarEnergy setzt Pläne zum Hochfahren seiner Produktion aus.',
+          'Gas hat keine OPEC: Es gibt kein Kartell, das Kapazität zurückhält und bei Knappheit freigeben könnte – Ausfälle schlagen direkter durch.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Ölmarkt wechselt das Regime – von planmäßigen Erhöhungen zu offenen Verhandlungen, während zugleich die Kriegsprämie schwankt. Beschlüsse, Kapazitäten und tatsächliche Lieferungen sind drei verschiedene Zahlen; wer sie auseinanderhält, versteht die Schlagzeilen der nächsten Monate.',
+      },
+    ],
+  },
+  {
+    slug: 'kospi-achterbahn-samsung-hynix',
+    title: 'Südkoreas Kospi: erst bester Tag der Geschichte, dann minus 4,5 Prozent',
+    metaTitle: 'Kospi: Rekordtag, dann minus 4,5 Prozent',
+    teaser:
+      'Freitag plus 17,9 Prozent, Montag minus 4,5: Südkoreas Leitindex hängt an zwei Chipkonzernen. Was ein kopflastiger Index über Streuung lehrt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-03T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Kospi', 'Samsung', 'Halbleiter', 'Konzentrationsrisiko'],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: ['kospi', 'samsung', 'nikkei-225'],
+    sources: [
+      {
+        label:
+          'AP (via WSLS): „Asian stocks are mixed as yen jumps against the dollar, while oil prices slip“ (3. August 2026)',
+        url: 'https://www.wsls.com/business/2026/08/03/asian-stocks-are-mixed-as-yen-jumps-against-the-dollar-while-oil-prices/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der südkoreanische Leitindex Kospi hat einen bemerkenswerten Wochenwechsel hinter sich: Am Freitag sprang er um **17,9 Prozent – der beste Tag seiner Geschichte**, nachdem er in den Tagen zuvor noch mehr verloren hatte. Am Montagmorgen ging es dann wieder **4,5 Prozent abwärts auf 6.298,75 Punkte**, so die AP aus dem frühen Handel.',
+      },
+      { type: 'heading', level: 2, text: 'Zwei Konzerne, ein Landesindex' },
+      {
+        type: 'paragraph',
+        text: 'Hinter beiden Bewegungen stehen im Kern **zwei Namen**: Samsung Electronics und der Speicherhersteller SK Hynix dominieren den Index. Am Freitag gewannen beide Aktien **mehr als 25 Prozent**, am Montagmorgen lag Samsung rund **8 Prozent im Minus** und SK Hynix 7,8 Prozent. Wer „Südkorea“ im Depot hat – etwa über einen Länder-ETF –, hat damit vor allem eine Wette auf den Speicherchip-Zyklus, ob es ihm bewusst ist oder nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Muster ist kein koreanisches Sonderphänomen, nur ein besonders deutliches: Viele Landesindizes tragen ein oder zwei Schwergewichte, deren Branchenzyklus dann den ganzen Index prägt. Die Schwankung der letzten Tage – zweistellig rauf, zweistellig runter – ist genau das, was **Konzentrationsrisiko** in Zahlen bedeutet: Die Streuung über einen Index schützt nur so weit, wie der Index selbst gestreut ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Blick auf die Nachbarschaft zeigt zugleich, wie unterschiedlich „Asien“ an einem Morgen aussehen kann: Japans Nikkei verlor 1,9 Prozent – aus einem ganz anderen Grund, nämlich dem stärkeren Yen –, Hongkongs Hang Seng **gewann** 0,6 Prozent auf 26.038 Punkte, Shanghai gab 0,5 Prozent nach, Australiens ASX 200 0,2 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Vor dem Kauf eines Länder-ETF lohnt ein Blick auf die zehn größten Positionen und ihr Gewicht. Ein Index mit zwei dominanten Titeln ist kein „breiter Markt“, sondern ein konzentriertes Branchenportfolio mit langem Anhang – und schwankt entsprechend.',
+      },
+    ],
+  },
+  {
+    slug: 'amazon-apple-erwartung-freitag',
+    title: 'Amazon plus 15 Prozent, Apple minus 7 – beide hatten „gute“ Zahlen',
+    metaTitle: 'Amazon +15 %, Apple −7 %: der Unterschied',
+    teaser:
+      'Beide meldeten mehr Gewinn als erwartet – die Kurse liefen trotzdem auseinander. Der Unterschied lag nicht in den Zahlen, sondern im Ausblick.',
+    category: 'Märkte',
+    publishedAt: '2026-08-03T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Amazon', 'Apple', 'Quartalszahlen', 'Erwartungen'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['amazon', 'apple', 'sp500'],
+    sources: [
+      {
+        label:
+          'AP (via WSLS): „Asian stocks are mixed as yen jumps against the dollar, while oil prices slip“ (3. August 2026)',
+        url: 'https://www.wsls.com/business/2026/08/03/asian-stocks-are-mixed-as-yen-jumps-against-the-dollar-while-oil-prices/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der US-Börsenfreitag lieferte ein Lehrstück in zwei Akten. **Amazon sprang um 15,3 Prozent**: Der Konzern hatte einen Quartalsgewinn gemeldet, der sich gegenüber dem Vorjahr **mehr als verdreifachte**, getragen von wieder beschleunigtem Wachstum im Cloud-Geschäft – für Analysten ein Signal, dass sich die massiven KI-Investitionen auszuzahlen beginnen. **Apple dagegen fiel um 7,4 Prozent** – obwohl auch hier der Gewinn über den Erwartungen lag. Enttäuscht hat der Ausblick: Die Umsatzprognose fürs laufende Quartal blieb hinter den Schätzungen zurück, begründet mit Engpässen bei Komponenten, die der KI-Boom aufsaugt.',
+      },
+      { type: 'heading', level: 2, text: 'Nicht die Zahl bewegt, sondern der Abstand' },
+      {
+        type: 'paragraph',
+        text: 'Beide Reaktionen folgen derselben Regel: Ein Kurs bewegt sich nicht an der gemeldeten Zahl, sondern am **Abstand zwischen Meldung und Erwartung** – und zwar über alle Zeitebenen. Bei Amazon überraschte die Gegenwart *und* die Zukunft positiv (der Konzern erhöhte sogar seine Investitionspläne). Bei Apple war die Gegenwart gut, aber die Zukunft schwächer als gedacht – und Kurse sind Preise für Zukunft, nicht für Vergangenheit.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie nervös der Markt bei allem rund um KI derzeit ist, zeigte der Chipwert Micron am selben Tag: erst **plus 6,4 Prozent, dann minus 6,5, Schlussstand minus 5,9** – eine Spanne von über zwölf Prozentpunkten binnen Stunden, ganz ohne eigene Nachrichten. Insgesamt schloss der S&P 500 den Freitag 0,7 Prozent fester und beendete damit seine **erste Gewinnwoche nach zwei Verlustwochen**; der Nasdaq gewann 1 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Gute Zahlen“ ist keine Kursprognose. Wer auf Quartalszahlen schaut, sollte drei Fragen stellen: Was wurde erwartet? Was wurde gemeldet? Und was sagt der Ausblick? Die Kursreaktion entsteht aus den Differenzen – nicht aus den absoluten Werten.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-zwei-schlusskurse-allzeithoch',
+    title: 'DAX vor dem Wochenstart: zwei Quellen, zwei Schlusskurse',
+    teaser:
+      'Plus 2,1 Prozent in der Woche, das Allzeithoch in Reichweite – und je nach Quelle ein anderer Freitagsschluss: 25.650 oder 25.629 Punkte. Beide sind richtig.',
+    category: 'Märkte',
+    publishedAt: '2026-08-03T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Allzeithoch', 'ifo', 'Datenquellen'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'XTB Marktanalysen: „DAX Aktuell: Allzeithoch wieder im Blick – Wochenausblick KW 32“ (2. August 2026)',
+        url: 'https://www.xtb.com/de/Marktanalysen/Trading-News/dax-allzeithoch-wieder-im-blick-chartanalyse-prognose-wochenausblick',
+      },
+      {
+        label:
+          'DAX-Kursseite dieser Website (Yahoo-Tagesdaten, Stand 31. Juli, 18:00 Uhr MESZ)',
+        url: 'https://iminvests.de/maerkte/dax',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX geht mit Rückenwind in die neue Woche: **rund 2,1 Prozent Wochenplus**, der erste Zuwachs nach drei Verlustwochen, und das Allzeithoch in Sichtweite. Den Freitagsschluss gibt der Broker XTB mit **25.650 Punkten** an; die auf dieser Website geführten Yahoo-Tagesdaten nennen **25.629 Punkte** (Stand 18:00 Uhr MESZ). Gestützt wurde die Stimmung vom ifo-Geschäftsklima, das im Juli zum dritten Mal in Folge stieg – auf 86,6 Punkte, mehr als die erwarteten 86,0.',
+      },
+      { type: 'heading', level: 2, text: 'Warum zwei Quellen zwei Schlusskurse nennen' },
+      {
+        type: 'paragraph',
+        text: 'Die 21 Punkte Unterschied sind kein Fehler, sondern **Definitionssache**. „Der Schlusskurs“ des DAX existiert mehrfach: Der Xetra-Handel endet um 17:30 Uhr mit einer Schlussauktion, danach wird der Index aus späten Umsätzen nachberechnet, und auf Derivate gestützte Kursreihen (etwa CFD-Anbieter wie XTB) laufen noch Stunden weiter. Je nachdem, welchen Zeitpunkt und welche Berechnungsgrundlage ein Datenanbieter festhält, steht eine leicht andere Zahl im Archiv.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Einordnung einer Tagesbewegung ist das egal – 0,08 Prozent Abstand ändern kein Bild. Wichtig wird es, wenn **Schwellen** im Spiel sind: „Allzeithoch erreicht“ oder „nicht erreicht“ kann an genau solchen Definitionsfragen hängen. Seriös ist deshalb nicht die Quelle mit der schöneren Zahl, sondern die, die dazuschreibt, **wann und wie** gemessen wurde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Impulse für den Wochenstart gibt es reichlich: Die Entspannungssignale im Iran-Konflikt drückten den Ölpreis am Morgen um fünf Prozent – für den DAX als Index einer energieimportierenden Volkswirtschaft eher eine Stütze –, dazu kommen am Nachmittag der ISM-Index aus den USA und im Wochenverlauf eine dichte Reihe an Quartalszahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Kurse vergleicht, vergleicht immer auch Messmethoden. Zwei abweichende Zahlen aus zwei Quellen sind meist beide richtig – sie beantworten nur leicht verschiedene Fragen. Misstrauisch werden sollte man erst, wenn eine Quelle den Messzeitpunkt verschweigt.',
+      },
+    ],
+  },
+  {
+    slug: 'ism-palantir-termine-montag',
+    title: 'Der Montag im Kalender: ISM, Einzelhandel, Palantir',
+    teaser:
+      'Um 8 Uhr der deutsche Einzelhandelsumsatz, um 16 Uhr der ISM-Index, nach US-Schluss Palantir: die Termine des Tages – und warum die 50er-Marke des ISM zählt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-03T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Termine', 'ISM', 'Palantir', 'Konjunktur'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['palantir', 'sp500'],
+    sources: [
+      {
+        label:
+          'dpa-AFX (via ARIVA): „Tagesvorschau: Termine am 3. August 2026“ (31. Juli 2026)',
+        url: 'https://www.ariva.de/news/tagesvorschau-termine-am-3-august-2026-12088514',
+      },
+      {
+        label:
+          'Terminkalender dieser Website: erwartete Meldetermine aus den 8-K-Mustern der SEC',
+        url: 'https://iminvests.de/kalender',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Terminkalender des Tages, nach dpa-AFX: Um **8:00 Uhr** meldet Deutschland den Einzelhandelsumsatz für Juni samt erstem Halbjahr, um **8:30 Uhr** folgen Schweizer Verbraucherpreise. Über den Vormittag verteilt kommen die **zweiten Veröffentlichungen der Einkaufsmanagerindizes** (PMI) für Spanien, Italien, Frankreich, Deutschland, den Euroraum und Großbritannien. Um **16:00 Uhr** dann der wichtigste Wert des Tages: der **ISM-Index für das verarbeitende Gewerbe** der USA, dazu die US-Bauinvestitionen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei den Unternehmen meldet früh der Autozulieferer Stabilus, aus Japan Nissan, am Nachmittag der Hotelkonzern Marriott – und um **22:05 Uhr MESZ**, nach US-Börsenschluss, **Palantir**. Berkshire Hathaway, das der Terminkalender dieser Website aus den Meldemustern der Vorjahre für heute erwartet hatte, steht in der dpa-Liste nicht – erwartete Termine bleiben Schätzungen, verbindlich ist allein die Ankündigung des Unternehmens.',
+      },
+      { type: 'heading', level: 2, text: 'Warum die 50 beim ISM eine Grenze ist' },
+      {
+        type: 'paragraph',
+        text: 'Der ISM ist eine **Umfrage unter Einkaufsmanagern**: Läuft es besser, gleich oder schlechter als im Vormonat? Die Antworten werden zu einer Zahl verdichtet, bei der **50 die Wachstumsschwelle** markiert – darüber expandiert die Industrie, darunter schrumpft sie. Der Index misst also Richtung, nicht Niveau, und gilt als Frühindikator, weil Einkäufer bestellen, bevor produziert wird. Die PMI-Zweitveröffentlichungen am Vormittag bewegen dagegen selten etwas: Ihre erste Schätzung ist längst bekannt, die Erwartung also schon gesetzt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Terminkalender ist eine Landkarte der möglichen Überraschungen. Kursrelevant ist ein Termin in dem Maß, in dem sein Ergebnis von der Erwartung abweichen kann – deshalb zählt der ISM um 16 Uhr mehr als sechs PMI-Bestätigungen am Vormittag zusammen.',
+      },
+    ],
+  },
+  {
     slug: 'opec-plus-quote-papier-fass',
     title: 'OPEC+ berät heute über mehr Öl – doch die Quote ist Papier',
     teaser:
