@@ -64,6 +64,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          # Fünfzig Commits statt einem.
+          #
+          # Der Schritt „Was hat sich geändert?" vergleicht gegen
+          # `github.event.before`. Bei der Voreinstellung (`fetch-depth: 1`)
+          # liegt dieser Commit gar nicht im Arbeitsverzeichnis, der
+          # Vergleich scheitert und der Lauf fällt jedes Mal auf die volle
+          # Prüfkette zurück – die Ersparnis wäre null, ohne dass es
+          # auffiele. Fünfzig deckt jeden normalen Push ab und kostet
+          # Sekundenbruchteile; darüber hinaus greift die Rückfallebene.
+          fetch-depth: 50
 
       - uses: actions/setup-node@v5
         with:
@@ -90,18 +101,62 @@ jobs:
       # zieht, ist kein reproduzierbarer Build.
       - run: npm ci
 
+      # Hat dieser Commit überhaupt Code angefasst?
+      #
+      # Die Kursläufe schreiben ausschließlich JSON unter `data/snapshots/`.
+      # Für einen solchen Commit sind ESLint, TypeScript und die Tests
+      # nachweislich dasselbe Ergebnis wie beim letzten Mal – der geprüfte
+      # Code ist Byte für Byte derselbe. Sie trotzdem zu fahren kostet gut
+      # zwei Minuten je Lauf, und bei fünfzehn Kurs-Commits am Werktag ist
+      # das eine halbe Stunde täglich für eine Antwort, die feststeht.
+      #
+      # Gebaut und geprüft wird trotzdem immer: `npm run build` liest die
+      # Momentaufnahmen ein (`assertNewsValid` und Geschwister laufen dabei),
+      # und `npm run pruefen` misst das Ergebnis. Eine kaputte JSON-Datei
+      # fällt also weiterhin auf – nur eben dort, wo sie auffallen kann.
+      #
+      # Bei Pull Requests und bei allem, was Code berührt, läuft die volle
+      # Kette. Im Zweifel (kein Vergleichsstand, erster Commit) ebenfalls.
+      - name: Was hat sich geändert?
+        id: umfang
+        run: |
+          vorher="${{ github.event.before }}"
+          if [ "${{ github.event_name }}" != "push" ] || [ -z "$vorher" ] || \
+             [ "$vorher" = "0000000000000000000000000000000000000000" ] || \
+             ! git cat-file -e "$vorher^{commit}" 2>/dev/null; then
+            echo "nur_daten=nein" >> "$GITHUB_OUTPUT"
+            echo "Voller Umfang: kein Push oder kein Vergleichsstand."
+            exit 0
+          fi
+          geaendert=$(git diff --name-only "$vorher" "${{ github.sha }}")
+          echo "Geänderte Dateien:"; echo "$geaendert" | sed 's/^/  /'
+          if [ -n "$geaendert" ] && ! echo "$geaendert" | grep -qv '^data/snapshots/'; then
+            echo "nur_daten=ja" >> "$GITHUB_OUTPUT"
+            echo "→ Nur Momentaufnahmen. Lint, Typen und Tests werden übersprungen."
+          else
+            echo "nur_daten=nein" >> "$GITHUB_OUTPUT"
+            echo "→ Code betroffen. Volle Prüfkette."
+          fi
+
       # Die Prüfungen laufen vor dem Build. Fällt eine durch, entsteht kein
       # Paket – dann kann auch niemand versehentlich einen kaputten Stand
       # hochladen.
       - name: ESLint
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm run lint
 
       - name: TypeScript
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm run typecheck
 
       - name: Tests
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm test
 
+      # Die Formatierung bleibt auch bei reinen Datencommits stehen: Sie
+      # prüft ausdrücklich auch JSON, und genau eine unformatierte Datei hat
+      # am 2. August die Auslieferung zwei Tage lang blockiert. Fünfzehn
+      # Sekunden sind der Preis dafür, dass das nicht wiederkommt.
       - name: Formatierung
         run: npm run format:check
 

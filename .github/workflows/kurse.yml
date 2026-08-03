@@ -63,14 +63,26 @@ name: Kurse aktualisieren
 
 on:
   schedule:
-    # Werktags alle dreißig Minuten, 07:07 bis 21:37 UTC.
+    # Werktags **stündlich zur ungeraden Stunde**: nur die Leitwerte.
     #
-    # Das Ende lag bis Juli 2026 bei 20:30 und schnitt damit im Winterhalbjahr
-    # den wichtigsten Kurs des Tages ab: Die New Yorker Börse schließt um
-    # 16 Uhr Ortszeit, das sind von November bis März 21:00 UTC. Der letzte
-    # Lauf davor lief also vor dem Schluss, und der Schlusskurs von 500
-    # US-Aktien erschien erst am nächsten Morgen auf der Seite.
-    - cron: '7,37 7-21 * * 1-5'
+    # Bis August 2026 stand hier „alle dreißig Minuten, alle tausend
+    # Instrumente". Das war nicht haltbar – nicht wegen des Abrufs, der
+    # dauert Sekunden, sondern wegen des Neubaus danach: Jeder Kurs-Commit
+    # baut 1.484 Seiten neu und überträgt sie. Gemessen am 3. August 2026
+    # kostet ein Zyklus 13,4 Minuten; dreißig am Tag wären über 8.000
+    # Minuten im Monat bei 2.000 enthaltenen.
+    #
+    # Die Folge war nicht ein teurer Betrieb, sondern gar keiner: GitHub
+    # verwarf die Läufe. Am 31. Juli kamen acht von dreißig durch, am
+    # 3. August keiner.
+    #
+    # Welche Symbole gemeint sind, steht in `lib/leitwerte.ts`.
+    - cron: '7 7,9,11,13,15,17,19,21 * * 1-5'
+    # Werktags **alle zwei Stunden**: der volle Bestand.
+    #
+    # Die geraden Stunden, damit sich die beiden Läufe nie überschneiden –
+    # die Gruppe `kurse` ließe den zweiten sonst warten.
+    - cron: '7 8,10,12,14,16,18,20 * * 1-5'
     # Und einmal nach Börsenschluss der volle Lauf.
     #
     # Er schreibt die Historie fort und holt die Dividenden – beides ändert
@@ -153,7 +165,10 @@ jobs:
           # alle 30 Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
           # holt der volle Lauf am Montag um 21:45 nach – `range=5y` bringt
           # alle abgeschlossenen Tage mit.
-          NUR_PREIS: ${{ (github.event.schedule == '7,37 7-21 * * 1-5' || github.event.schedule == '8 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
+          NUR_PREIS: ${{ (github.event.schedule == '7 7,9,11,13,15,17,19,21 * * 1-5' || github.event.schedule == '7 8,10,12,14,16,18,20 * * 1-5' || github.event.schedule == '8 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
+          # Der Stundenlauf holt nur die Leitwerte – siehe `lib/leitwerte.ts`.
+          # Alles andere behält seinen Stand und zieht zwei Stunden später nach.
+          NUR_LEITWERTE: ${{ github.event.schedule == '7 7,9,11,13,15,17,19,21 * * 1-5' && '1' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen

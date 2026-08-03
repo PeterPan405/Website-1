@@ -22,6 +22,7 @@
 
 import { marketDefinitions, marketSources } from '../data/markets.ts'
 import { vereinigeZahlungen } from '../lib/dividenden.ts'
+import { LEITWERTE, istLeitwert } from '../lib/leitwerte.ts'
 import { fetchEcbHistoryFull, seriesForCurrency } from '../lib/providers/ecb.ts'
 import {
   EMPTY_KURSSTAND,
@@ -396,6 +397,19 @@ const NUR_ARTEN = (process.env.NUR_ARTEN ?? '')
   .filter((eintrag) => eintrag.length > 0)
 
 /**
+ * Beschränkung auf die Leitwerte – der Stundenlauf.
+ *
+ * Dieselbe Mechanik wie `NUR_ARTEN`, nur nach Symbolliste statt nach Art:
+ * Was der Lauf überspringt, behält seinen Stand. Welche Symbole gemeint sind
+ * und warum es die Aufteilung gibt, steht in `lib/leitwerte.ts`.
+ *
+ * Kurz: Der Abruf ist billig, der Neubau danach ist teuer. Ein Lauf über
+ * dreizehn Leitwerte kostet dieselben Sekunden wie einer über tausend Titel
+ * – aber er soll seltener einen Commit auslösen, als der volle es täte.
+ */
+const NUR_LEITWERTE = process.env.NUR_LEITWERTE === '1'
+
+/**
  * Zeichnet die Marktbreite des Tages auf.
  *
  * ## Warum hier und nicht auf der Seite
@@ -505,12 +519,18 @@ async function main(): Promise<void> {
       `[kurse] Beschränkt auf: ${NUR_ARTEN.join(', ')} – alles andere behält seinen Stand.`
     )
   }
+  if (NUR_LEITWERTE) {
+    console.log(
+      `[kurse] Beschränkt auf die ${LEITWERTE.length} Leitwerte – alles andere behält seinen Stand.`
+    )
+  }
 
   let uebersprungen = 0
 
   /** Gehört dieses Symbol in diesen Lauf? */
   const gemeint = (symbol: string): boolean => {
     if (!bekannt.has(symbol)) return false
+    if (NUR_LEITWERTE && !istLeitwert(symbol)) return false
     if (NUR_ARTEN.length === 0) return true
     const art = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)?.kind
     return Boolean(art && NUR_ARTEN.includes(art))
@@ -806,7 +826,7 @@ async function main(): Promise<void> {
   */
   if (uebersprungen > 0) {
     console.log(
-      `[kurse] ${uebersprungen} Instrumente übersprungen (Beschränkung auf ${NUR_ARTEN.join(', ')}).`
+      `[kurse] ${uebersprungen} Instrumente übersprungen (Beschränkung auf ${NUR_LEITWERTE ? 'die Leitwerte' : NUR_ARTEN.join(', ')}).`
     )
   }
 
