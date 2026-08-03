@@ -112,13 +112,26 @@ jobs:
           # enthält den Ausdruck, der den Lauf ausgelöst hat – bei einem Start
           # von Hand ist er leer, dann wird alles geholt.
           NUR_ARTEN: ${{ github.event.schedule == '0 */3 * * 6,0' && 'crypto,fx' || '' }}
-          # Nur der laufende Preis – gesetzt allein vom halbstündlichen Lauf.
+          # Nur der laufende Preis – gesetzt vom halbstündlichen Lauf **und vom
+          # Wochenendlauf**.
           #
           # Dann fragt der Abruf `range=1d` statt `range=5y` und schreibt
           # ausschließlich `kurse-aktuell.json`. Bei einem Start von Hand ist
           # `github.event.schedule` leer, dann läuft der volle Abruf – das ist
           # die richtige Voreinstellung für „ich will nachsehen, ob es geht“.
-          NUR_PREIS: ${{ (github.event.schedule == '0,30 7-21 * * 1-5' || inputs.nur_preis) && '1' || '' }}
+          #
+          # Der Wochenendlauf stand hier bis zum 3. August 2026 **nicht** – und
+          # genau daran ist er gescheitert: Als voller Lauf holte er die Reihe
+          # bevorzugt über Twelve Data, und dieser Weg liefert bewusst keinen
+          # laufenden Kurs (`latest: null` in `kurse-abrufen.ts`). Der Stand
+          # fiel auf den alten zurück, der Commit-Schritt sah „keine Änderung“,
+          # und Bitcoin stand das ganze Wochenende auf dem Freitags- bzw.
+          # Samstagswert – alle acht Sonntagsläufe grün, keiner mit Wirkung.
+          # Der Preis-Modus schreibt den laufenden Kurs nachweislich (werktags
+          # alle 30 Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
+          # holt der volle Lauf am Montag um 21:45 nach – `range=5y` bringt
+          # alle abgeschlossenen Tage mit.
+          NUR_PREIS: ${{ (github.event.schedule == '0,30 7-21 * * 1-5' || github.event.schedule == '0 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen
