@@ -1,0 +1,20 @@
+{
+  "hinweis": "Symbole, deren Yahoo-Abruf mit 404 endet, gezählt je Kalendertag. Schreibt scripts/kurse-abrufen.ts; die Regeln stehen in lib/kursausfaelle.ts.",
+  "symbole": {
+    "cyberark": {
+      "seit": "2026-08-03",
+      "zuletzt": "2026-08-03",
+      "tage": 1
+    },
+    "etf-world-small-cap": {
+      "seit": "2026-08-03",
+      "zuletzt": "2026-08-03",
+      "tage": 1
+    },
+    "roche": {
+      "seit": "2026-08-03",
+      "zuletzt": "2026-08-03",
+      "tage": 1
+    }
+  }
+}
