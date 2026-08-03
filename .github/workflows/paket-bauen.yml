@@ -1,19 +1,35 @@
 name: Paket bauen
 
-# Baut die Website und legt sie als fertiges Paket zum Herunterladen ab.
+# Baut die Website, prüft sie – und überträgt sie bei einem Push auf `main`
+# gleich per SSH auf den Webspace.
 #
-# Warum nicht direkt hochladen: Der Hoster hat den FTP-Zugang gesperrt. Nach drei
-# vollständigen Uploads mit zusammen rund 4.500 Zugriffen kommt die Verbindung
-# zum Port 21 nicht mehr zustande – belegt durch sieben Abfragen mit demselben
-# Ergebnis ("Failed to connect ... Timeout was reached"). FTP ist für 1.230
-# Einzeldateien das falsche Werkzeug.
+# ## Warum bauen und übertragen zusammengehören
 #
-# Der Upload einer einzelnen Datei über den Dateimanager im Browser funktioniert
-# dagegen. Deshalb entsteht hier ein Paket, das genau dafür gedacht ist: einmal
-# herunterladen, einmal hochladen, entpacken.
+# Bis zum 3. August 2026 waren das zwei Workflows: Dieser baute, und
+# `veroeffentlichen.yml` startete danach über `workflow_run` – und baute die
+# Seite dafür **ein zweites Mal**. Gemessen: 7,1 Minuten bauen, dann noch
+# einmal 5,7 Minuten bauen und übertragen, für ein Ergebnis, das schon
+# fertig im Arbeitsordner lag.
 #
-# Sobald ein Weg ohne 1.230 Einzelverbindungen zur Verfügung steht – Git-Anbindung
-# oder SSH beim Hoster –, kann die Übertragung wieder automatisch laufen.
+# Bei fünfzehn Kurs-Commits am Werktag sind das über achtzig Minuten täglich
+# – bei 2.000 enthaltenen Minuten im Monat der Unterschied zwischen „läuft"
+# und „GitHub verwirft die Läufe". Genau das ist am 3. August passiert: Kein
+# einziger geplanter Kurslauf kam durch, die Charts standen von Freitagabend
+# bis Montagmittag still.
+#
+# Der Umweg über ein Artefakt wäre die andere Lösung gewesen und scheitert am
+# Speicher: Das Paket wiegt 138 MB, enthalten sind 500 MB im Monat.
+#
+# ## Der Weg auf den Server
+#
+# Ein Archiv, eine Verbindung, entpackt wird auf dem Server – nicht 6.700
+# Einzeldateien per FTP. Der Hoster hatte Port 21 nach rund 4.500 Zugriffen
+# gesperrt; FTP ist für diese Aufgabe das falsche Werkzeug.
+#
+# Entpackt wird in einen Nebenordner und erst danach umgehängt. Würde man in
+# den laufenden Ordner hineinkopieren, gäbe es Minuten, in denen neues HTML
+# auf altes CSS zeigt – die Seite käme ohne Formatierung heraus. Dieser
+# Fehler ist hier schon einmal aufgetreten.
 
 on:
   # Nach jedem Push auf main, damit immer ein aktuelles Paket bereitliegt.
@@ -50,20 +66,43 @@ on:
 # die meisten schon veraltet waren, bevor sie fertig wurden. Geprüft werden
 # soll der Stand, der am Ende dasteht.
 #
-# `main` ist ausgenommen: Dort ist jeder Commit ein Stand, der ausgeliefert
-# wird, und ein abgebrochener Bau hieße, dass `veroeffentlichen.yml` nicht
-# anspringt. Deshalb bekommt jeder Lauf auf main seine eigene Gruppe.
+# `main` wird nicht abgebrochen, sondern **gereiht**.
+#
+# Seit dieser Lauf auch überträgt, ist die Reihung keine Feinheit mehr: Zwei
+# gleichzeitige Läufe würden beide auf dem Server umhängen – und der Tausch
+# ist ein `mv` auf denselben Ordner. Bis zum 3. August bekam jeder Lauf auf
+# main wegen `github.sha` seine eigene Gruppe und lief damit parallel; das
+# ging gut, solange das Übertragen in einem eigenen Workflow mit eigener
+# Gruppe steckte. Jetzt nicht mehr.
+#
+# Deshalb: eine Gruppe je Zweig. Auf Arbeitszweigen wird der ältere Lauf
+# abgebrochen (dort zählt nur der letzte Stand), auf main wartet er – kein
+# Commit auf main darf verlorengehen.
 concurrency:
-  group: >-
-    paket-${{ github.ref }}-${{ github.ref == 'refs/heads/main' && github.sha || 'zweig' }}
-  cancel-in-progress: true
+  group: paket-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   bauen:
     name: Bauen und prüfen
     runs-on: ubuntu-latest
+    env:
+      SSH_PORT: '65002'
+      # Der Pfad ist bei Hostinger relativ zum Benutzerverzeichnis.
+      ZIELPFAD: domains/iminvests.de/public_html
     steps:
       - uses: actions/checkout@v5
+        with:
+          # Fünfzig Commits statt einem.
+          #
+          # Der Schritt „Was hat sich geändert?" vergleicht gegen
+          # `github.event.before`. Bei der Voreinstellung (`fetch-depth: 1`)
+          # liegt dieser Commit gar nicht im Arbeitsverzeichnis, der
+          # Vergleich scheitert und der Lauf fällt jedes Mal auf die volle
+          # Prüfkette zurück – die Ersparnis wäre null, ohne dass es
+          # auffiele. Fünfzig deckt jeden normalen Push ab und kostet
+          # Sekundenbruchteile; darüber hinaus greift die Rückfallebene.
+          fetch-depth: 50
 
       - uses: actions/setup-node@v5
         with:
@@ -90,18 +129,62 @@ jobs:
       # zieht, ist kein reproduzierbarer Build.
       - run: npm ci
 
+      # Hat dieser Commit überhaupt Code angefasst?
+      #
+      # Die Kursläufe schreiben ausschließlich JSON unter `data/snapshots/`.
+      # Für einen solchen Commit sind ESLint, TypeScript und die Tests
+      # nachweislich dasselbe Ergebnis wie beim letzten Mal – der geprüfte
+      # Code ist Byte für Byte derselbe. Sie trotzdem zu fahren kostet gut
+      # zwei Minuten je Lauf, und bei fünfzehn Kurs-Commits am Werktag ist
+      # das eine halbe Stunde täglich für eine Antwort, die feststeht.
+      #
+      # Gebaut und geprüft wird trotzdem immer: `npm run build` liest die
+      # Momentaufnahmen ein (`assertNewsValid` und Geschwister laufen dabei),
+      # und `npm run pruefen` misst das Ergebnis. Eine kaputte JSON-Datei
+      # fällt also weiterhin auf – nur eben dort, wo sie auffallen kann.
+      #
+      # Bei Pull Requests und bei allem, was Code berührt, läuft die volle
+      # Kette. Im Zweifel (kein Vergleichsstand, erster Commit) ebenfalls.
+      - name: Was hat sich geändert?
+        id: umfang
+        run: |
+          vorher="${{ github.event.before }}"
+          if [ "${{ github.event_name }}" != "push" ] || [ -z "$vorher" ] || \
+             [ "$vorher" = "0000000000000000000000000000000000000000" ] || \
+             ! git cat-file -e "$vorher^{commit}" 2>/dev/null; then
+            echo "nur_daten=nein" >> "$GITHUB_OUTPUT"
+            echo "Voller Umfang: kein Push oder kein Vergleichsstand."
+            exit 0
+          fi
+          geaendert=$(git diff --name-only "$vorher" "${{ github.sha }}")
+          echo "Geänderte Dateien:"; echo "$geaendert" | sed 's/^/  /'
+          if [ -n "$geaendert" ] && ! echo "$geaendert" | grep -qv '^data/snapshots/'; then
+            echo "nur_daten=ja" >> "$GITHUB_OUTPUT"
+            echo "→ Nur Momentaufnahmen. Lint, Typen und Tests werden übersprungen."
+          else
+            echo "nur_daten=nein" >> "$GITHUB_OUTPUT"
+            echo "→ Code betroffen. Volle Prüfkette."
+          fi
+
       # Die Prüfungen laufen vor dem Build. Fällt eine durch, entsteht kein
       # Paket – dann kann auch niemand versehentlich einen kaputten Stand
       # hochladen.
       - name: ESLint
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm run lint
 
       - name: TypeScript
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm run typecheck
 
       - name: Tests
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm test
 
+      # Die Formatierung bleibt auch bei reinen Datencommits stehen: Sie
+      # prüft ausdrücklich auch JSON, und genau eine unformatierte Datei hat
+      # am 2. August die Auslieferung zwei Tage lang blockiert. Fünfzehn
+      # Sekunden sind der Preis dafür, dass das nicht wiederkommt.
       - name: Formatierung
         run: npm run format:check
 
@@ -125,7 +208,19 @@ jobs:
       # Der Umzug ins Skript hat einen zweiten Grund: So lässt sich dieselbe
       # Prüfung mit `npm run pruefen` auch lokal ausführen, bevor überhaupt
       # ein Commit entsteht.
+      # Bei reinen Kurs-Commits übersprungen – aus demselben Grund wie Lint
+      # und Tests, und mit einer zweiten Absicherung dahinter.
+      #
+      # `pruefen` misst Meta-Längen, Sitemap, Suchindex, tote Links und
+      # Überschriftenstruktur. Nichts davon ändert sich, wenn eine Zahl in
+      # `data/snapshots/` eine andere wird. Und was tatsächlich schiefgehen
+      # könnte – ein unvollständiger Export, ein fehlendes Stylesheet –,
+      # prüft der Schritt „Ergebnis prüfen" weiter unten vor jeder
+      # Übertragung noch einmal: index.html, 404.html, .htaccess,
+      # version.txt, mindestens ein Stylesheet, mindestens hundert Seiten.
+      # Ein kaputter Bau kommt also auch dann nicht auf den Server.
       - name: Paket prüfen
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm run pruefen
 
       # Das Leistungsbudget lief bisher nur von Hand – also praktisch nie.
@@ -137,6 +232,7 @@ jobs:
       # wartet. `recharts` mit 338 KB auf jeder Rechnerseite hat genau so
       # niemand bemerkt, bis die erste Messung lief.
       - name: Leistungsbudget
+        if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm run gewicht
 
       # Das Paket entsteht nur noch auf Anforderung.
@@ -166,3 +262,221 @@ jobs:
           # selben Tag herunter. Ein Monat Aufbewahrung kostet Speicher für
           # einen Stand, der längst überholt ist.
           retention-days: 7
+
+      # ----------------------------------------------------- Veröffentlichen
+      #
+      # Ab hier wird übertragen – im **selben** Lauf, der eben gebaut hat.
+      #
+      # Bis zum 3. August 2026 war das ein eigener Workflow, der über
+      # `workflow_run` startete und die Seite dafür ein zweites Mal baute:
+      # 7,1 Minuten bauen, dann noch einmal 5,7 Minuten bauen und übertragen.
+      # Bei fünfzehn Kurs-Commits am Werktag waren das allein über achtzig
+      # Minuten täglich für ein Ergebnis, das schon fertig im Arbeitsordner
+      # lag.
+      #
+      # Der Umweg über ein Artefakt wäre die andere Lösung gewesen und
+      # scheitert am Speicher: Das Paket wiegt 138 MB, enthalten sind 500 MB
+      # im Monat.
+      #
+      # `veroeffentlichen.yml` gibt es weiterhin – von Hand startbar, für den
+      # Fall, dass ohne neuen Commit übertragen werden soll.
+      - name: Wird dieser Stand veröffentlicht?
+        id: veroeffentlichen
+        run: |
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "ja=ja" >> "$GITHUB_OUTPUT"
+            echo "Push auf main – dieser Stand geht auf den Webspace."
+          else
+            echo "ja=nein" >> "$GITHUB_OUTPUT"
+            echo "Kein Push auf main (${{ github.event_name }}, ${{ github.ref }}) – nur bauen und prüfen."
+          fi
+
+      - name: Zugangsdaten prüfen
+        id: zugang
+        if: steps.veroeffentlichen.outputs.ja == 'ja'
+        run: |
+          if [ -z "${{ secrets.HOSTINGER_SSH_KEY }}" ] \
+            || [ -z "${{ secrets.HOSTINGER_SSH_HOST }}" ] \
+            || [ -z "${{ secrets.HOSTINGER_SSH_USER }}" ]; then
+            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
+            echo "::notice::Keine SSH-Zugangsdaten hinterlegt – es wird nichts übertragen."
+          else
+            echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Dieselben Prüfungen wie im Paketbau. Doppelt, aber billig: Ein Build
+      # ohne Stylesheet oder ohne .htaccess darf den funktionierenden Stand auf
+      # dem Server nicht ersetzen.
+      - name: Ergebnis prüfen
+        if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
+        run: |
+          test -f out/index.html   || { echo "out/index.html fehlt";  exit 1; }
+          test -f out/404.html     || { echo "out/404.html fehlt";    exit 1; }
+          test -f out/.htaccess    || { echo "out/.htaccess fehlt";   exit 1; }
+          test -f out/version.txt  || { echo "out/version.txt fehlt"; exit 1; }
+
+          if [ "$(find out/_next -name '*.css' | wc -l)" -lt 1 ]; then
+            echo "Kein Stylesheet im Paket – die Seite käme ohne Formatierung heraus."
+            exit 1
+          fi
+          seiten=$(find out -name index.html | wc -l)
+          if [ "$seiten" -lt 100 ]; then
+            echo "Nur $seiten Seiten – der Export ist unvollständig."
+            exit 1
+          fi
+          echo "Seiten: $seiten, Dateien: $(find out -type f | wc -l)"
+
+      - name: Archiv packen
+        if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
+        run: |
+          # Aus dem Ordner heraus, damit im Archiv kein `out/` steckt.
+          # `.htaccess` ist versteckt und muss ausdrücklich mit.
+          tar -czf website.tar.gz -C out .
+          ls -lh website.tar.gz
+
+      # Drei Prüfungen, die jede für sich sagen, was fehlt.
+      #
+      # Beim ersten Lauf ist dieser Schritt fehlgeschlagen, und im Protokoll
+      # stand nur „exit code 1“ – weil die Fehlerausgabe von `ssh-keyscan` nach
+      # /dev/null ging. Eine Diagnose, die ihre eigene Begründung wegwirft, ist
+      # keine. Deshalb wird jetzt einzeln geprüft und jede Stufe benannt.
+      - name: SSH einrichten
+        if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+        run: |
+          set -uo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.HOSTINGER_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+
+          # 1. Ist der hinterlegte Schlüssel überhaupt ein Schlüssel?
+          echo "— Schlüssel prüfen"
+          if ssh-keygen -y -f ~/.ssh/id_deploy > /tmp/abgeleitet.pub 2>/tmp/keyfehler; then
+            echo "  Format in Ordnung. Öffentlicher Teil dazu:"
+            cat /tmp/abgeleitet.pub
+            echo "  ↑ Genau diese Zeile muss in hPanel unter SSH-Schlüssel stehen."
+          else
+            echo "::error::Der Wert in HOSTINGER_SSH_KEY ist kein gültiger privater Schlüssel."
+            sed 's/^/  /' /tmp/keyfehler
+            echo "  Erwartet wird der komplette Inhalt der Datei ohne .pub –"
+            echo "  von '-----BEGIN OPENSSH PRIVATE KEY-----' bis '-----END OPENSSH PRIVATE KEY-----'."
+            exit 1
+          fi
+
+          # 2. Antwortet der Port überhaupt?
+          echo "— Erreichbarkeit von Port $SSH_PORT"
+          if timeout 15 bash -c "true > /dev/tcp/$HOST/$SSH_PORT" 2>/dev/null; then
+            echo "  Port offen."
+          else
+            echo "::error::Port $SSH_PORT antwortet nicht."
+            echo "  Häufigste Ursache: SSH steht in hPanel noch auf INACTIVE."
+            echo "  hPanel > Erweitert > SSH-Zugang > rechts in der Box auf 'Aktivieren'."
+            exit 1
+          fi
+
+          # 3. Hostschlüssel holen – statt die Prüfung abzuschalten.
+          # `StrictHostKeyChecking=no` würde jede Gegenstelle akzeptieren.
+          echo "— Hostschlüssel holen"
+          if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts; then
+            echo "  Hostschlüssel hinterlegt."
+          else
+            echo "::error::ssh-keyscan ist fehlgeschlagen, obwohl der Port antwortet."
+            exit 1
+          fi
+
+      - name: Übertragen und umhängen
+        if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+        run: |
+          set -euo pipefail
+
+          echo "Archiv übertragen …"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            website.tar.gz "$USER@$HOST:~/website-neu.tar.gz"
+
+          echo "Auf dem Server entpacken und umhängen …"
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "ZIEL='$ZIELPFAD'" 'bash -s' <<'ENDE'
+            set -euo pipefail
+
+            NEU="$HOME/website-neu"
+            ALT="$HOME/website-alt"
+
+            rm -rf "$NEU" "$ALT"
+            mkdir -p "$NEU"
+            tar -xzf "$HOME/website-neu.tar.gz" -C "$NEU"
+
+            # Erst prüfen, dann tauschen. Ein halb entpacktes Archiv darf den
+            # laufenden Stand nicht ersetzen.
+            test -f "$NEU/index.html"
+            test -f "$NEU/.htaccess"
+
+            mkdir -p "$(dirname "$ZIEL")"
+            if [ -d "$ZIEL" ]; then mv "$ZIEL" "$ALT"; fi
+            mv "$NEU" "$ZIEL"
+            rm -rf "$ALT" "$HOME/website-neu.tar.gz"
+
+            echo "Übertragen. Stand:"
+            cat "$ZIEL/version.txt" 2>/dev/null || echo "(version.txt fehlt)"
+          ENDE
+
+      - name: Aufräumen
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
+
+      # Drei Fragen, nicht eine.
+      #
+      # Bisher stand hier nur „antwortet die Startseite?“. Das reicht nicht: Am
+      # 31. Juli 2026 meldete der Lauf 200 und den richtigen Commit in
+      # `version.txt`, und trotzdem sah die Website nach dem alten Stand aus.
+      # Aufgelöst hat es sich als Zwischenspeicher im Browser – aber genau so
+      # sähe auch ein hängender CDN aus, und der wäre ein echter Fehler.
+      #
+      # Unterscheiden lassen sich die beiden an einer Stelle: Die Dateinamen
+      # unter `_next/static` tragen eine Prüfsumme und ändern sich mit jedem
+      # Build. Nennt die ausgelieferte Startseite das Stylesheet dieses Builds,
+      # ist das HTML frisch. Nennt sie ein anderes, liegt irgendwo altes HTML –
+      # und zwar auf dem Weg zwischen Server und Läufer, nicht im Browser eines
+      # Besuchers.
+      - name: Ergebnis von außen prüfen
+        if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
+        run: |
+          URL="${{ vars.NEXT_PUBLIC_SITE_URL }}"
+          if [ -z "$URL" ]; then URL="https://iminvests.de"; fi
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+
+          # Kurz warten – der Server braucht einen Moment nach dem Umhängen.
+          sleep 5
+
+          # 1. Antwortet die Startseite?
+          code=$(curl -sS -A "$UA" -o /dev/null -w '%{http_code}' "$URL/" || echo 000)
+          echo "Startseite: $code"
+          if [ "$code" != "200" ]; then
+            echo "::warning::Die Startseite antwortet mit $code. Übertragen wurde trotzdem – prüfe, ob eine Schicht davor blockt (etwa der Hostinger-CDN)."
+          fi
+
+          # 2. Welchen Stand meldet der Server?
+          stand=$(curl -sS -A "$UA" "$URL/version.txt" || echo "(nicht abrufbar)")
+          echo "Stand auf dem Server:"
+          echo "$stand"
+          if ! printf '%s' "$stand" | grep -q "$GITHUB_SHA"; then
+            echo "::warning::version.txt nennt nicht den Commit dieses Laufs ($GITHUB_SHA). Entweder war ein anderer Lauf schneller, oder eine Zwischenschicht liefert eine alte Fassung aus."
+          fi
+
+          # 3. Ist auch das ausgelieferte HTML von diesem Build?
+          stylesheet=$(find out/_next -name '*.css' -printf '%f\n' | sort | head -1)
+          if [ -z "$stylesheet" ]; then
+            echo "::warning::Im Paket steckt kein Stylesheet – Schritt 3 übersprungen."
+          else
+            echo "Stylesheet dieses Builds: $stylesheet"
+            if curl -sS -A "$UA" "$URL/" | grep -q "$stylesheet"; then
+              echo "Die ausgelieferte Startseite verweist darauf. Das HTML ist frisch."
+            else
+              echo "::warning::Die Startseite nennt ein anderes Stylesheet – es wird altes HTML ausgeliefert. Übertragen wurde korrekt; leere den Zwischenspeicher in hPanel (Cache-Manager, und falls aktiv das CDN)."
+              echo "Gefunden wurde stattdessen:"
+              curl -sS -A "$UA" "$URL/" | grep -o '_next/static/[^"]*\.css' | sort -u | head -3
+            fi
+          fi
