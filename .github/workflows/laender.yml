@@ -37,7 +37,7 @@ on:
     # Montag, liefen beide Läufe gleichzeitig und schrieben auf denselben
     # Zweig. Der Rebase-Versuch fängt das ab, aber ein Zusammenstoß, den man
     # verhindern kann, gehört verhindert.
-    - cron: '40 4 1 * *'
+    - cron: '43 4 1 * *'
   # Von Hand auslösbar – zum Prüfen und für den ersten Lauf nach einer Änderung.
   workflow_dispatch:
 

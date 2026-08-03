@@ -20,7 +20,7 @@ import { getWochenrueckblick } from '@/lib/wochenrueckblick'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Wochenrückblick der Märkte'),
   description:
-    'Die abgelaufene Handelswoche in Zahlen: Indizes, Gold, Öl, Bitcoin und Euro im Wochenvergleich, dazu die Tagesausgaben der Woche – gerechnet aus den Kursreihen, nicht geschrieben.',
+    'Die abgelaufene Handelswoche in Zahlen: Indizes, Gold, Öl, Bitcoin und Euro im Vergleich, dazu die Tagesausgaben – gerechnet aus den Kursreihen.',
   path: '/news/woche',
   ogTitle: 'Wochenrückblick der Märkte',
 })

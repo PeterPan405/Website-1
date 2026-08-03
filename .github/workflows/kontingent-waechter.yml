@@ -33,7 +33,7 @@ on:
   schedule:
     # Montags und donnerstags um 06:40 UTC – zweimal die Woche reicht, um
     # einen Trend zu sehen, und liegt nach den Morgenläufen des Tages.
-    - cron: '40 6 * * 1,4'
+    - cron: '44 6 * * 1,4'
   workflow_dispatch:
 
 permissions: {}

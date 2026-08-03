@@ -31,7 +31,7 @@ import { siteConfig } from '@/lib/site'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Keine Cookies, kein Tracking'),
   description:
-    'Diese Website setzt keine Cookies, bindet keine Analyse-Werkzeuge ein und lädt nichts von fremden Servern. Was das konkret heißt – und wie du es selbst nachprüfst.',
+    'Diese Website setzt keine Cookies, bindet keine Analyse-Werkzeuge ein und lädt nichts von fremden Servern. Was das heißt – und wie du es selbst nachprüfst.',
   path: '/keine-cookies',
   ogTitle: 'Keine Cookies, kein Tracking',
 })

@@ -147,6 +147,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       : []),
     { url: absoluteUrl('/kontakt'), changeFrequency: 'yearly', priority: 0.4 },
     { url: absoluteUrl('/glossar'), changeFrequency: 'monthly', priority: 0.7 },
+    // Der Karteikasten zum Glossar – eine eigene Seite, also ein eigener
+    // Eintrag. Er fehlte bis zum 3. August 2026 und fiel erst der
+    // Paketprüfung auf, nicht dem Auge.
+    {
+      url: absoluteUrl('/glossar/karteikarten'),
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
     { url: absoluteUrl('/quellen'), changeFrequency: 'monthly', priority: 0.3 },
     { url: absoluteUrl('/impressum'), changeFrequency: 'yearly', priority: 0.2 },
     { url: absoluteUrl('/datenschutz'), changeFrequency: 'yearly', priority: 0.2 },

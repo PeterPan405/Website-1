@@ -14,7 +14,7 @@ name: Podcastfolgen aktualisieren
 on:
   schedule:
     # Täglich um 04:40 UTC – vor dem Kursabruf und nach den nächtlichen Läufen.
-    - cron: '40 4 * * *'
+    - cron: '41 4 * * *'
   workflow_dispatch:
 
 concurrency:

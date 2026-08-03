@@ -27,7 +27,7 @@ on:
     # Aufgefallen ist es am 1. August: Der Kalender führte einen Meldetag vom
     # 30. Juli, die Momentaufnahme stammte vom 29. Ein täglicher Lauf kostet
     # wenige Minuten und ist neben dreißig Kursabrufen am Tag nicht messbar.
-    - cron: '20 5 * * *'
+    - cron: '23 5 * * *'
   workflow_dispatch:
 
 concurrency:

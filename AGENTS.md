@@ -105,8 +105,57 @@ ohne diesen Umweg ist die Anforderung hier nicht erfüllbar.
 
 **`.github/workflows/quellen-pruefen.yml`** klopft die gepflegte Quellenliste
 (`data/nachrichtenquellen.ts`) ab und sagt je Rubrik, welche Adresse heute Text
-liefert. Er läuft täglich um 05:30 UTC, eine halbe Stunde vor der
+liefert. Er läuft täglich um 03:00 UTC, eine halbe Stunde vor der
 Nachrichten-Routine, und lässt sich von Hand starten.
+
+## Wann die Nachrichten entstehen
+
+Die Routine **„Nachrichten IM Invests – täglich 5:30 Uhr"** läuft um **03:30
+UTC** – das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen zwei
+Workflows, deren **Abstand** die eigentliche Vorschrift ist:
+
+| Zeit (UTC) | Was                                                    |
+| ---------- | ------------------------------------------------------ |
+| 03:00      | `quellen-pruefen.yml` – welcher Kanal ist heute offen? |
+| 03:30      | Nachrichten-Routine, 45–70 Minuten Laufzeit            |
+| 05:00      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein |
+
+Die Routine **„Zeitumstellung"** zieht alle drei zweimal im Jahr gemeinsam um
+eine Stunde nach. Wer eine Zeit ändert, ändert alle drei.
+
+## Geplante Läufe sind eine Bitte, keine Zusage
+
+**GitHub verwirft `schedule`-Läufe, wenn zu viele gleichzeitig anstehen** – ohne
+Fehler, ohne Eintrag, ohne Mail. Ein verworfener Lauf hinterlässt nur eine
+Lücke, und die sieht aus wie „hat nichts gefunden".
+
+Am 3. August 2026 hat es dieses Projekt an einem Vormittag dreifach getroffen:
+Der Paketbau (`15 4`) startete um **07:48** – dreieinhalb Stunden zu spät –,
+die Quellenprobe (`30 5`) und **jeder** der vier Kursläufe des Vormittags
+fielen ersatzlos aus. Auf der Website standen die Charts von Freitagabend bis
+Montagmittag still. Aufgefallen ist es dem Betreiber, nicht der Technik.
+
+Am dichtesten belegt sind die vollen und halben Stunden. Deshalb stehen die
+Minuten aller Zeitpläne dieses Projekts seither auf **krummen Werten** – `7,37`
+statt `0,30`, `9` statt `0`, `3` statt `0`. Das kostet nichts und ist der
+einzige Hebel, den man von außen hat.
+
+Zwei Dinge folgen daraus:
+
+- **Runde Minuten nicht wieder einführen.** Wer einen neuen Workflow anlegt,
+  sucht sich eine Minute, die noch keiner hat.
+- **`kurse.yml` koppelt seine Crons an Zeichenketten-Vergleiche** (`NUR_ARTEN`,
+  `NUR_PREIS`). Ein geänderter Cron-Ausdruck ohne angepassten Vergleich
+  schaltet stillschweigend den vollen Abruf ein: sieben Minuten statt Sekunden,
+  dreißigmal am Tag.
+
+Bleibt eine Datenreihe stehen, ist die erste Frage deshalb nicht „ist der Lauf
+gescheitert?", sondern **„hat er überhaupt stattgefunden?"** – und der
+Handstart über `workflow_dispatch` ist das Mittel, das sofort hilft.
+
+Bis zum 3. August 2026 liefen **zwei** Nachrichten-Routinen parallel (02:15 und
+04:00 UTC) und feuerten beide, ohne voneinander zu wissen. Die ältere ist
+stillgelegt; es gibt genau eine.
 
 Der Grund ist ein Ausfall, der nicht auffällt: Eine Seite antwortet mit **200**
 und liefert trotzdem nichts – ein Gerüst aus Menü und Fußzeile, weil der Inhalt

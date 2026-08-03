@@ -17,7 +17,7 @@ import { buildMetadata, withBrand } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: withBrand('Glossar-Karteikarten'),
   description:
-    'Die Fachbegriffe des Glossars als Karteikarten: Begriff lesen, Erklärung im Kopf formulieren, umdrehen, einordnen – mit wachsenden Abständen nach dem Leitner-Prinzip.',
+    'Die Fachbegriffe des Glossars als Karteikarten: Begriff lesen, Erklärung im Kopf formulieren, umdrehen, einordnen – mit wachsenden Abständen nach Leitner.',
   path: '/glossar/karteikarten',
   ogTitle: 'Glossar-Karteikarten',
 })
