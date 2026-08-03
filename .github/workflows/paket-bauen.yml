@@ -29,11 +29,17 @@ on:
   # nichts extra und verschiebt den Befund vor den Merge.
   pull_request:
 
-  # Täglich um 04:15 UTC, kurz nach der Routine für den Tagesüberblick.
-  # Cron rechnet in UTC: 04:15 UTC sind in der Sommerzeit 06:15 Uhr deutscher
-  # Zeit, in der Winterzeit 05:15 Uhr.
+  # Täglich um 05:00 UTC – nach der Nachrichten-Routine, die um 03:30 UTC
+  # beginnt (5:30 Uhr deutscher Sommerzeit; in der Winterzeit 04:30 UTC,
+  # dann läuft dieser Bau um 06:00 UTC).
+  #
+  # Der Abstand von anderthalb Stunden ist kein Sicherheitspuffer, sondern
+  # die gemessene Laufzeit: Ein Nachrichtenlauf ist zu drei Vierteln
+  # Recherche und braucht 45 bis 70 Minuten. Bis zum 3. August 2026 stand
+  # hier „15 Minuten nach der Routine“ – dieser Bau fiel also regelmäßig
+  # mitten in den Lauf und paketierte den Stand von gestern.
   schedule:
-    - cron: '15 4 * * *'
+    - cron: '0 5 * * *'
 
   workflow_dispatch:
 

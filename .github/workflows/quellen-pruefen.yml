@@ -26,11 +26,15 @@ name: Quellen vorab prüfen
 # Gemessen werden Zeichen und Urteile; wer eine Quelle **lesen** will, nimmt
 # danach `quellen-holen.yml` mit den Adressen, die dieser Lauf am Ende auflistet.
 #
-# ## Warum morgens vor sechs
+# ## Warum eine halbe Stunde vor der Nachrichten-Routine
 #
 # Damit das Ergebnis dasteht, wenn der Nachrichtenlauf beginnt. Ein rotes
 # Ergebnis ist kein Grund, den Lauf abzusagen – es ist die Ansage, welche
 # Rubrik heute eine Ausweichquelle braucht.
+#
+# Der Abstand ist das Einzige, was hier zählt: Verschiebt sich die Routine,
+# verschiebt sich dieser Lauf mit. Beides zieht die Routine „Zeitumstellung“
+# zweimal im Jahr gemeinsam nach.
 
 on:
   workflow_dispatch:
@@ -40,9 +44,15 @@ on:
         required: false
         type: string
   schedule:
-    # 05:30 UTC – eine halbe Stunde vor der Nachrichten-Routine, damit das
-    # Ergebnis fertig ist, wenn sie anläuft.
-    - cron: '30 5 * * *'
+    # 03:00 UTC – eine halbe Stunde vor der Nachrichten-Routine (03:30 UTC,
+    # also 5:30 Uhr deutscher Sommerzeit), damit das Ergebnis fertig ist,
+    # wenn sie anläuft. In der Winterzeit: 04:00 UTC.
+    #
+    # Bis zum 3. August 2026 stand hier 05:30 UTC. Das passte zur damaligen
+    # Routine um 06:00 UTC; seit sie auf 5:30 Uhr deutscher Zeit vorgezogen
+    # wurde, wäre die Probe zwei Stunden **nach** dem Lauf gekommen – also
+    # genau dann, wenn ihr Ergebnis niemandem mehr nützt.
+    - cron: '0 3 * * *'
 
 concurrency:
   group: quellen-pruefen

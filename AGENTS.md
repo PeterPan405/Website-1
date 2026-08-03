@@ -105,8 +105,27 @@ ohne diesen Umweg ist die Anforderung hier nicht erfüllbar.
 
 **`.github/workflows/quellen-pruefen.yml`** klopft die gepflegte Quellenliste
 (`data/nachrichtenquellen.ts`) ab und sagt je Rubrik, welche Adresse heute Text
-liefert. Er läuft täglich um 05:30 UTC, eine halbe Stunde vor der
+liefert. Er läuft täglich um 03:00 UTC, eine halbe Stunde vor der
 Nachrichten-Routine, und lässt sich von Hand starten.
+
+## Wann die Nachrichten entstehen
+
+Die Routine **„Nachrichten IM Invests – täglich 5:30 Uhr"** läuft um **03:30
+UTC** – das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen zwei
+Workflows, deren **Abstand** die eigentliche Vorschrift ist:
+
+| Zeit (UTC) | Was                                                    |
+| ---------- | ------------------------------------------------------ |
+| 03:00      | `quellen-pruefen.yml` – welcher Kanal ist heute offen? |
+| 03:30      | Nachrichten-Routine, 45–70 Minuten Laufzeit            |
+| 05:00      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein |
+
+Die Routine **„Zeitumstellung"** zieht alle drei zweimal im Jahr gemeinsam um
+eine Stunde nach. Wer eine Zeit ändert, ändert alle drei.
+
+Bis zum 3. August 2026 liefen **zwei** Nachrichten-Routinen parallel (02:15 und
+04:00 UTC) und feuerten beide, ohne voneinander zu wissen. Die ältere ist
+stillgelegt; es gibt genau eine.
 
 Der Grund ist ein Ausfall, der nicht auffällt: Eine Seite antwortet mit **200**
 und liefert trotzdem nichts – ein Gerüst aus Menü und Fußzeile, weil der Inhalt
