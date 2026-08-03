@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-03T08:32:38.476Z",
+  "abgerufenAm": "2026-08-03T22:43:35.515Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -16797,10 +16797,6 @@
     ],
     "itau": [
       {
-        "date": "2021-08-02",
-        "amount": 0.013239
-      },
-      {
         "date": "2021-08-16",
         "amount": 0.09165
       },
@@ -17114,6 +17110,10 @@
       },
       {
         "date": "2026-07-01",
+        "amount": 0.018182
+      },
+      {
+        "date": "2026-08-03",
         "amount": 0.018182
       }
     ],
@@ -17669,10 +17669,6 @@
         "amount": 0.128
       },
       {
-        "date": "2025-08-08",
-        "amount": 0.1283
-      },
-      {
         "date": "2025-12-19",
         "amount": 0.7302
       },
@@ -17682,10 +17678,6 @@
       }
     ],
     "weg": [
-      {
-        "date": "2021-08-02",
-        "amount": 0.158175
-      },
       {
         "date": "2021-09-27",
         "amount": 0.020705
