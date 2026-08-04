@@ -101,6 +101,569 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'lufthansa-gewinnausblick-kassiert',
+    title: 'Lufthansa kassiert den Gewinnausblick – das wiegt schwerer als das Quartal',
+    metaTitle: 'Lufthansa kassiert den Gewinnausblick',
+    teaser:
+      'Der Flugkonzern verdient im zweiten Quartal weniger als erwartet und nimmt zugleich die Gewinnprognose zurück. Für den Kurs zählt meist der zweite Teil.',
+    category: 'Märkte',
+    publishedAt: '2026-08-04T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Lufthansa', 'Prognose', 'Berichtssaison', 'Erwartung'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 4. August 2026, 7:21 Uhr: „Lufthansa verdient im 2. Quartal weniger als erwartet“ und 7:38 Uhr: „Lufthansa-Aktie: Flugkonzern kassiert Gewinn-Ausblick“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Meldungen aus derselben Viertelstunde: Um 7:21 Uhr steht im Nachrichtenticker, die **Lufthansa habe im zweiten Quartal weniger verdient als erwartet**. Um 7:38 Uhr folgt die zweite, gewichtigere – der Konzern **kassiert seinen Gewinnausblick**. Beide Meldungen betreffen dasselbe Unternehmen am selben Morgen, aber sie sagen etwas grundlegend Verschiedenes.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Quartal ist Vergangenheit, der Ausblick ist Gegenwart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Quartalsergebnis beschreibt drei Monate, die vorbei sind. Der Markt hatte diese drei Monate über Wochen beobachtet: Ölpreis, Buchungslage, Streiks, Wechselkurse – vieles davon war bereits bekannt und in den Kurs eingeflossen. Ein Ergebnis „unter Erwartung" korrigiert eine Schätzung um eine Zahl, die niemand mehr ändern kann.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein **Ausblick** – im Fachjargon die *Guidance* – ist etwas anderes. Er ist die Aussage des Unternehmens darüber, was es für das laufende Jahr erwartet. Wer eine Aktie hält, hält keinen Anspruch auf vergangene Gewinne, sondern auf künftige. Nimmt die Geschäftsleitung ihre eigene Erwartung zurück, ändert sich damit die Grundlage jeder Bewertung, die auf dieser Erwartung aufbaute.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Drei Stufen, die oft verwechselt werden',
+        items: [
+          'Ist-Zahlen: Was im abgelaufenen Quartal tatsächlich verdient wurde. Historie.',
+          'Analystenschätzung: Was der Markt für dieses Quartal erwartet hatte. Der Vergleichsmaßstab für „besser" oder „schlechter".',
+          'Guidance: Was das Unternehmen selbst für die kommenden Quartale in Aussicht stellt. Der Teil, der die Zukunft betrifft – und deshalb meist den Kurs bewegt.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Prognose überhaupt zurückgenommen wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Guidance ist keine Werbeaussage, sondern eine kapitalmarktrechtlich heikle Angabe. Wer erkennt, dass sie nicht mehr zu halten ist, muss das mitteilen – und zwar zügig. Deshalb kommen solche Korrekturen fast immer zusammen mit Quartalszahlen oder als eigene Meldung vor Handelsbeginn, nie beiläufig im Laufe des Tages.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was die Lufthansa im Einzelnen zur Begründung angeführt hat, geht aus der Ticker-Überschrift nicht hervor; die vollständige Mitteilung nennt die Gründe. Für das Verständnis des Musters ist das nachrangig – die Reihenfolge bleibt dieselbe.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer an einem Berichtstag nur auf „übertroffen" oder „verfehlt" schaut, liest die Hälfte. Die Frage, die den Kurs beantwortet, lautet: Hat sich die Erwartung an das nächste Jahr verändert? Bei der Lufthansa lautet die Antwort an diesem Morgen ja.',
+      },
+    ],
+  },
+  {
+    slug: 'fresenius-medical-care-uebertroffen-aktie-leichter',
+    title:
+      'Fresenius Medical Care übertrifft die Erwartungen – die Aktie gibt trotzdem nach',
+    metaTitle: 'FMC übertrifft – die Aktie gibt trotzdem nach',
+    teaser:
+      'Das Unternehmen liefert im zweiten Quartal mehr, als die Analysten geschätzt hatten. Der Kurs gibt dennoch nach. Kein Widerspruch, sondern die Regel.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-04T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Berichtssaison', 'Erwartung', 'Kursreaktion', 'Bewertung'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 4. August 2026, 7:11 Uhr: „Fresenius Medical Care übertrifft in Q2 die Erwartungen – Aktie dennoch leichter“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Meldung steht um 7:11 Uhr im Ticker und trägt den Widerspruch schon in der Überschrift: **Fresenius Medical Care übertrifft im zweiten Quartal die Erwartungen – die Aktie ist dennoch leichter.** Wer das zum ersten Mal liest, hält es für einen Fehler. Es ist keiner. Es ist eines der zuverlässigsten Muster der gesamten Berichtssaison.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erwartet ist nicht dasselbe wie eingepreist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die veröffentlichte Analystenschätzung – der *Konsens* – ist ein Durchschnitt aus den Modellen mehrerer Häuser, oft Wochen alt. Der Kurs dagegen entsteht laufend aus dem, was Käufer und Verkäufer heute für wahrscheinlich halten. Zwischen beiden liegt regelmäßig eine Lücke.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt eine Aktie in den Tagen vor dem Bericht, weil der Markt starke Zahlen erwartet, dann ist diese Erwartung bereits bezahlt. Kommen die Zahlen dann tatsächlich gut herein, ist nichts Neues passiert – gemessen an dem, was der Kurs schon unterstellt hatte. Es gibt nichts mehr, wofür man nachkaufen müsste; sehr wohl aber Gründe, Gewinne mitzunehmen.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der Bezugspunkt entscheidet, nicht die Zahl',
+        items: [
+          'Gegenüber dem Vorjahr: sagt, wie sich das Geschäft entwickelt hat.',
+          'Gegenüber dem Analystenkonsens: sagt, ob die Schätzer danebenlagen.',
+          'Gegenüber dem, was der Kurs schon unterstellte: sagt, warum er sich bewegt. Diese dritte Zahl steht nirgends – man kann sie nur aus der Reaktion ablesen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was sonst noch mitreden kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neben der eingepreisten Erwartung gibt es weitere übliche Erklärungen: ein Ausblick, der vorsichtiger klingt als das Quartal gut war; eine Sonderbelastung, die das Ergebnis rechnerisch schönt; ein Geschäftsbereich, der schwächer läuft, während der Gesamtwert stimmt. Welche davon hier zutrifft, sagt die Ticker-Überschrift nicht – und deshalb steht sie hier auch nicht als Tatsache.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Besser als erwartet" ist eine Aussage über Analysten, keine über den Kurs. Wer aus Quartalszahlen kurzfristig Kursrichtungen ableiten will, wettet nicht auf das Unternehmen, sondern darauf, wie weit der Markt beim Einpreisen schon gekommen war. Das ist eine deutlich schwerere Wette, als sie in der Überschrift aussieht.',
+      },
+    ],
+  },
+  {
+    slug: 'hsbc-aktienrueckkaeufe-wieder-aufgenommen',
+    title:
+      'HSBC nimmt die Aktienrückkäufe wieder auf – was das für einen Anteil bedeutet',
+    metaTitle: 'HSBC nimmt die Aktienrückkäufe wieder auf',
+    teaser:
+      'Der Quartalsgewinn steigt stärker als erwartet, das Rückkaufprogramm kehrt zurück. Ein Rückkauf zahlt nichts aus – er vergrößert den Anteil, den man hält.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-04T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Aktienrückkauf', 'HSBC', 'Dividende', 'Ausschüttung'],
+    relatedTopics: ['aktie', 'kosten-und-gebuehren'],
+    relatedSymbols: ['hsbc'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 4. August 2026, 7:12 und 7:31 Uhr: „HSBC-Aktie: Quartalsgewinn steigt deutlich – Rückkaufprogramm kehrt zurück“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Agentur-Meldungen vom 4. August 2026, 5:12 Uhr (dpa-AFX): „HSBC nimmt Aktienrückkäufe wieder auf – Gewinn steigt stärker als erwartet“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei unabhängige Ticker melden es an diesem Morgen: **HSBC verdient im Quartal mehr als erwartet und nimmt die Aktienrückkäufe wieder auf.** Der zweite Halbsatz ist der interessantere – und der, bei dem am häufigsten falsche Vorstellungen im Umlauf sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was bei einem Rückkauf tatsächlich passiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Unternehmen kauft eigene Aktien über die Börse zurück und zieht sie in der Regel ein. Danach existieren weniger Anteile. Wer seine Aktien behalten hat, besitzt anschließend **einen größeren Bruchteil desselben Unternehmens** – ohne etwas getan oder etwas erhalten zu haben.',
+      },
+      {
+        type: 'formula',
+        expression: 'Anteil = eigene Aktien ÷ ausstehende Aktien',
+        description:
+          'Der Zähler bleibt gleich, der Nenner schrumpft – der Anteil steigt. Genau deshalb steigen nach einem Rückkauf rechnerisch auch Gewinn und Dividende je Aktie, ohne dass das Unternehmen einen Euro mehr verdient.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rückkauf oder Dividende – der Unterschied für den Anleger',
+      },
+      {
+        type: 'table',
+        caption: 'Zwei Wege, Geld an die Eigentümer zu geben',
+        head: ['', 'Dividende', 'Aktienrückkauf'],
+        rows: [
+          ['Was ankommt', 'Geld auf dem Verrechnungskonto', 'nichts – der Anteil wächst'],
+          [
+            'Wer entscheidet über den Zeitpunkt',
+            'das Unternehmen',
+            'faktisch der Anleger, beim Verkauf',
+          ],
+          [
+            'Deutsche Besteuerung',
+            'sofort bei Zufluss',
+            'erst beim Verkauf, auf den Kursgewinn',
+          ],
+          ['Wirkung auf die Aktienzahl', 'keine', 'sie sinkt'],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Der steuerliche Punkt ist für deutsche Privatanleger der greifbarste: Eine Dividende löst im Zuflussjahr Kapitalertragsteuer aus, auch wenn man das Geld gar nicht braucht. Ein Rückkauf verschiebt den steuerbaren Vorgang auf den Tag, an dem man selbst verkauft. Das ist kein Steuervorteil im engeren Sinne, aber ein **Zeitvorteil** – und Zeit ist bei Zinseszins die entscheidende Größe.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Kein Automatismus',
+        items: [
+          'Ein Rückkauf hebt den Kurs nicht zwangsläufig – er verändert nur die Zahl der Anteile.',
+          'Kauft ein Unternehmen zu teuer zurück, vernichtet es Wert, genau wie ein Anleger, der zu teuer kauft.',
+          'Ein wiederaufgenommenes Programm ist ein Signal über die Kapitalausstattung – bei Banken zusätzlich über die Aufsicht, die solche Ausschüttungen genehmigen muss.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Ausschüttungen vergleicht, sollte Dividendenrendite und Rückkaufvolumen zusammen betrachten. Ein Unternehmen mit niedriger Dividende und großem Rückkaufprogramm gibt seinen Eigentümern womöglich mehr zurück als eines mit hoher Dividendenrendite – es sieht nur auf keiner Dividendenliste danach aus.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-erstmals-ueber-26000-punkten',
+    title:
+      'Der Dax schließt erstmals über 26.000 Punkten – und zwei Quellen nennen zwei Zahlen',
+    metaTitle: 'Dax schließt erstmals über 26.000 Punkten',
+    teaser:
+      'Am Montag stand zum ersten Mal eine 26 vor dem Schlussstand. Warum Anbieter dabei verschiedene Zahlen zeigen – und was der Rekord überhaupt aussagt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-04T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Dax', 'Allzeithoch', 'Performanceindex', 'Kursindex'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'onvista, Dax-Tagesrückblick vom 3. August 2026, 15:55 Uhr: „Dax schließt erstmals über 26.000 Punkten – Autowerte stark“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kurstafel am 4. August 2026 gegen 7:45 Uhr: Dax 26.068,45 Punkte (+1,43 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste am 4. August 2026 gegen 7:45 Uhr: Dax 26.001 (+1,5 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der deutsche Leitindex hat am Montag **zum ersten Mal über 26.000 Punkten geschlossen**; onvista meldete das um 15:55 Uhr im Tagesrückblick und nannte Autowerte als Treiber. Am Dienstagmorgen zeigten die Kurstafeln zwei verschiedene Zahlen für denselben Vorgang: wallstreet-online **26.068,45 Punkte** bei einem Plus von 1,43 Prozent, finanzen.net **26.001 Punkte** bei plus 1,5 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum zwei Anbieter nicht dieselbe Zahl zeigen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Angaben können richtig sein, weil „der Dax" kein einzelner Preis ist, sondern eine Rechnung, die je nach Handelsplatz, Zeitstempel und Rundung anders ausfällt. Der Xetra-Schluss um 17:30 Uhr, der außerbörsliche Späthandel und ein vorbörslicher Indikationswert am nächsten Morgen sind drei verschiedene Dinge – und jede Tafel sagt, welches davon sie zeigt, nur meist im Kleingedruckten.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der Umgang damit ist einfacher als die Ursache',
+        items: [
+          'Bei jeder Indexzahl mitlesen: Welcher Handelsplatz, welche Uhrzeit?',
+          'Zwei abweichende Zahlen sind selten ein Fehler, meist ein anderer Messzeitpunkt.',
+          'Für den eigenen Vergleich immer dieselbe Quelle nehmen – der Trend bleibt derselbe, die Nachkommastellen nicht.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Rekordmarke aussagt – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax ist ein **Performanceindex**: Dividenden werden rechnerisch wieder angelegt und stecken im Punktestand mit drin. Der Kurs-Dax, der ohne Dividenden rechnet, steht deshalb weit tiefer. Wer 26.000 Punkte mit dem Punktestand eines Kursindex wie dem Euro Stoxx 50 oder dem S&P 500 vergleicht, vergleicht zwei verschieden gebaute Zahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Und ein Allzeithoch ist keine Aussage über die Zukunft. Ein Index, der langfristig steigt, verbringt einen erheblichen Teil seiner Zeit in der Nähe seines Hochs – das ist die arithmetische Folge des Steigens, keine Warnung und kein Kaufsignal. Wer auf einen „besseren Einstieg" wartet, wartet in einem steigenden Markt definitionsgemäß oft vergeblich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Runde Marken sind Erzählhilfen, keine Grenzen. Interessanter als der Stand ist die Frage, wie breit er getragen wird – ob viele Werte steigen oder wenige schwere. Am Montag nennt der Rückblick ausdrücklich die Autowerte; das ist ein Hinweis auf eine Branche, nicht auf den ganzen Markt.',
+      },
+    ],
+  },
+  {
+    slug: 'zalando-prognose-angepasst-wachstum-und-ergebnis',
+    title: 'Zalando wächst zweistellig – und passt die Jahresprognose trotzdem an',
+    metaTitle: 'Zalando wächst zweistellig und passt die Prognose an',
+    teaser:
+      'Der Umsatz legt im zweiten Quartal zweistellig zu, das Ergebnis bleibt unter der Erwartung. Umsatz und Gewinn sind zwei Zahlen, die auseinanderlaufen können.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-04T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Zalando', 'Marge', 'Umsatz', 'Berichtssaison'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 4. August 2026, 7:27 Uhr: „Zalando konkretisiert Gewinn- und Umsatzziele – 2Q-Wachstum zweistellig“ und 7:33 Uhr: „Zalando passt Jahresprognose an – Ergebnis unter Erwartung“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Im Ticker stehen zwei Meldungen sechs Minuten auseinander, und sie klingen gegensätzlich: **zweistelliges Wachstum im zweiten Quartal** – und **ein Ergebnis unter Erwartung** bei angepasster Jahresprognose. Wer nur eine der beiden liest, bekommt ein falsches Bild vom selben Unternehmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Umsatz ist, was hereinkommt. Ergebnis ist, was bleibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen beiden liegt die gesamte Kostenseite: Ware, Logistik, Retouren, Marketing, Personal, Abschreibungen, Zinsen, Steuern. Ein Händler kann zweistellig wachsen und trotzdem weniger verdienen – etwa wenn das Wachstum über Rabatte gekauft wurde oder das zusätzliche Volumen teurer zu bewegen ist als das bestehende.',
+      },
+      {
+        type: 'formula',
+        expression: 'Ergebnis = Umsatz × Marge',
+        description:
+          'Steigt der Umsatz um zehn Prozent, während die Marge um ein Fünftel nachgibt, sinkt das Ergebnis – trotz Wachstum. Deshalb steht in Quartalsberichten die Marge oft vor der Umsatzzahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '„Anpassen" ist nicht automatisch „senken"',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Prognose kann nach oben, nach unten oder einfach **enger** gefasst werden. Der zweite Ticker-Eintrag spricht von „konkretisiert" – üblicherweise heißt das, dass aus einer Spanne eine schmalere Spanne wird, weil das Jahr zur Hälfte vorbei ist und weniger offen. Ob die Mitte dieser Spanne über oder unter der alten liegt, entscheidet, wie der Markt es liest. Die Ticker-Überschriften allein beantworten das nicht, und deshalb steht hier keine Richtung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei Handelsunternehmen lohnt der Blick auf die Marge mehr als auf die Wachstumsrate. Wachstum lässt sich einkaufen; Marge muss man verdienen. Wer beides zusammen liest, versteht auch, warum eine gute und eine schlechte Nachricht am selben Morgen aus demselben Bericht stammen können.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-ruhig-vor-us-arbeitsmarktdaten',
+    title: 'Der Goldpreis steht still – weil alle auf dieselbe Zahl warten',
+    teaser:
+      'Vor den US-Arbeitsmarktdaten bewegt sich beim Gold wenig. Diese Ruhe ist kein Desinteresse, sondern das Ergebnis zweier Lager, die sich gegenseitig aufheben.',
+    category: 'Märkte',
+    publishedAt: '2026-08-04T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Arbeitsmarktdaten', 'Erwartung', 'Volatilität'],
+    relatedTopics: ['rohstoffe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Top News vom 4. August 2026, 7:25 Uhr: „Goldpreis: Wenig Bewegung vor US-Arbeitsmarktdaten“, dazu 7:33 Uhr: „Goldpreis vor dem nächsten Sprung? Anleger warten auf US-Daten“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kurstafel am 4. August 2026 gegen 7:45 Uhr: Gold 4.062,42 Dollar (+0,22 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 7:25 Uhr meldet finanzen.net **„wenig Bewegung"** beim Goldpreis vor den US-Arbeitsmarktdaten; die Kurstafel zeigt kurz darauf 4.062,42 Dollar je Unze, ein Plus von 0,22 Prozent. Acht Minuten später steht im selben Ticker die Frage nach dem „nächsten Sprung". Beides zusammen beschreibt einen Markt im Wartezustand.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Stillstand ist keine Abwesenheit von Meinung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Preis bewegt sich, wenn Käufer und Verkäufer ihre Einschätzung ändern. Vor einem angekündigten Termin passiert genau das nicht: Wer auf schwache Arbeitsmarktdaten setzt, hat gekauft; wer auf starke setzt, hat verkauft. Beide sind positioniert, beide warten. Der Preis steht still, obwohl unter der Oberfläche zwei entgegengesetzte Wetten mit vollem Einsatz laufen.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum ausgerechnet der Arbeitsmarkt für Gold zählt',
+        items: [
+          'Gold zahlt keine Zinsen. Sein Nachteil gegenüber Anleihen wächst, wenn die Zinsen steigen.',
+          'Die US-Notenbank orientiert sich stark am Arbeitsmarkt. Schwache Zahlen erhöhen die Erwartung sinkender Zinsen.',
+          'Sinkende Zinserwartung verkleinert also Golds Nachteil – der Umweg läuft über die Notenbank, nicht über Schmuck oder Minen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Bewegung entsteht an der Abweichung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Entscheidend ist nicht, ob die Zahl gut oder schlecht ist, sondern **wie weit sie von der Erwartung abweicht**. Ein erwarteter Wert bewegt nichts, weil er längst im Preis steckt. Genau deshalb ist die Ruhe vor der Veröffentlichung oft der Vorbote einer starken Bewegung danach – nicht ihres Ausbleibens.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer kurz vor einem solchen Termin kauft oder verkauft, handelt nicht Gold, sondern eine Prognose über eine Statistik. Für einen langfristig aufgebauten Bestand ist der Termin dagegen weitgehend belanglos – er verschiebt einen Preis, nicht die Begründung, aus der jemand Gold hält.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-futures-fruehhandel-vorboerslich',
+    title: 'Woher der vorbörsliche Dax kommt, wenn die Börse noch geschlossen ist',
+    metaTitle: 'Woher der vorbörsliche Dax kommt',
+    teaser:
+      'Um 7:33 Uhr meldet der Ticker feste Dax-Futures und einen schwächeren Bund-Future. Gehandelt wird da längst – nur nicht das, was die meisten vermuten.',
+    category: 'Märkte',
+    publishedAt: '2026-08-04T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Futures', 'Eurex', 'Frühhandel', 'Bund-Future'],
+    relatedTopics: ['derivat', 'boerse'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 4. August 2026, 7:33 Uhr: „EUREX/DAX-Futures im Frühhandel etwas fester“ und 7:31 Uhr: „EUREX/Bund-Future im Frühhandel knapp im Minus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 4. August 2026, 7:40 Uhr: „Rekordlauf dürfte sich fortsetzen: DAX vor höherem Start“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Xetra-Handel beginnt um 9:00 Uhr. Trotzdem steht um 7:33 Uhr im Ticker, die **Dax-Futures notierten im Frühhandel etwas fester**, und um 7:40 Uhr, der Dax gehe „vor einem höheren Start" in den Tag. Woher kommt eine Kursaussage über einen Markt, der noch geschlossen ist?',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Future ist ein eigener Markt mit längeren Öffnungszeiten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein **Future** ist ein Vertrag über einen künftigen Zeitpunkt: Der Käufer verpflichtet sich, den Index zu einem heute festgelegten Kurs abzurechnen. Gehandelt werden diese Verträge an der Terminbörse Eurex – und die öffnet deutlich früher als der Aktienhandel. Was dort morgens passiert, ist echter Handel mit echtem Geld, nur eben in einem anderen Instrument.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil Future und Index über Arbitrage eng aneinandergekoppelt sind, ist der Future-Preis die beste verfügbare Schätzung dafür, wo der Index eröffnen wird. „Der Dax steht vorbörslich höher" heißt deshalb genau genommen: Der Future auf den Dax wird höher gehandelt.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was daran unsicher bleibt',
+        items: [
+          'Der Frühhandel ist dünn. Wenige Aufträge bewegen den Kurs stärker als am Nachmittag.',
+          'Eine Indikation ist keine Zusage: Zwischen 7:33 und 9:00 Uhr kann jede Meldung das Bild drehen.',
+          'Der Future bezieht sich auf einen Termin in der Zukunft; kleine Abweichungen zum Index sind normal und kein Fehler.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und der Bund-Future daneben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die zweite Meldung, zwei Minuten früher, betrifft den **Bund-Future** – den Terminkontrakt auf eine idealisierte zehnjährige Bundesanleihe. Er ist das Standardmaß für den deutschen Kapitalmarktzins. Fällt er, steigen die Renditen; steigt er, fallen sie. Anleihepreis und Rendite bewegen sich immer gegenläufig, und der Bund-Future macht diese Bewegung minütlich sichtbar, obwohl der Anleihemarkt selbst weit weniger transparent ist als der Aktienmarkt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Vorbörsliche Angaben sind nützlich, um die Richtung eines Tages einzuordnen, und ungeeignet, um daraus Aufträge abzuleiten. Wer eine Order für die Eröffnung platziert, handelt in genau dem dünnsten Moment des Tages – dem, in dem die Spanne zwischen Kauf- und Verkaufskurs am größten ist.',
+      },
+    ],
+  },
+  {
+    slug: 'nordex-auftraege-480-megawatt-usa',
+    title:
+      'Nordex meldet Aufträge über 480 Megawatt – Auftragseingang ist noch kein Umsatz',
+    metaTitle: 'Nordex: Aufträge über 480 Megawatt aus den USA',
+    teaser:
+      'Neue US-Aufträge über mehr als 480 Megawatt meldet der Windanlagenbauer. Zwischen einer solchen Meldung und dem Geld auf dem Konto liegen mehrere Jahre.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-04T07:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nordex', 'Auftragseingang', 'Auftragsbestand', 'Bilanz'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'EQS-News via finanzen.net, 4. August 2026, 7:30 Uhr: „Die Nordex Group erhält neue Aufträge über mehr als 480 MW aus den USA“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 7:30 Uhr läuft die Unternehmensmitteilung über den EQS-Verteiler: Die **Nordex Group hat neue Aufträge über mehr als 480 Megawatt aus den USA erhalten.** Solche Meldungen sind bei Anlagenbauern der häufigste Nachrichtentyp – und der am leichtesten misszuverstehende.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Zahlen, die nacheinander kommen',
+      },
+      {
+        type: 'table',
+        caption: 'Vom Auftrag zum Gewinn',
+        head: ['Größe', 'Was sie sagt', 'Wann sie in der Bilanz auftaucht'],
+        rows: [
+          [
+            'Auftragseingang',
+            'was in diesem Zeitraum neu bestellt wurde',
+            'gar nicht – er steht im Lagebericht',
+          ],
+          [
+            'Auftragsbestand',
+            'die Summe aller noch nicht abgearbeiteten Aufträge',
+            'gar nicht – aber er trägt die kommenden Jahre',
+          ],
+          [
+            'Umsatz',
+            'was tatsächlich geliefert und abgerechnet wurde',
+            'in der Gewinn- und Verlustrechnung',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen der Bestellung einer Windkraftanlage und ihrer Abrechnung liegen Genehmigungen, Fertigung, Transport, Errichtung und Inbetriebnahme – in aller Regel mehrere Jahre. Ein guter Auftragseingang sagt deshalb etwas über die Umsätze von übermorgen, nicht über die von heute.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Megawatt-Angabe allein nicht reicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Megawatt sind eine technische Größe, kein Preis. Was ein Auftrag wert ist, hängt vom Preis je Megawatt ab – und der schwankt mit Wettbewerb, Stahlpreisen, Frachtkosten und Wechselkursen. Zwei Aufträge über je 480 Megawatt können sich im Ergebnisbeitrag deutlich unterscheiden. Bei einem US-Auftrag kommt hinzu, dass der Erlös in Dollar anfällt, ein Teil der Kosten aber in Euro.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Was man aus solchen Meldungen ablesen kann',
+        items: [
+          'Häufung über mehrere Quartale: ein Hinweis auf die Nachfragelage.',
+          'Regionale Verteilung: ein Hinweis auf Abhängigkeiten von einzelnen Fördersystemen.',
+          'Verhältnis von Auftragseingang zu Umsatz: liegt es über eins, wächst der Bestand – das Unternehmen füllt sein Buch schneller, als es es abarbeitet.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Auftragsmeldung ist ein Datenpunkt, keine Trendwende. Sie wird erst aussagekräftig im Vergleich mit den Vorquartalen – und der steht nicht in der Meldung, sondern im Quartalsbericht.',
+      },
+    ],
+  },
+  {
     slug: 'oelpreis-fuenf-prozent-trump-iran',
     title: 'Ölpreis bricht um fünf Prozent ein – nach einem abgesagten Angriff',
     metaTitle: 'Ölpreis bricht um fünf Prozent ein',
