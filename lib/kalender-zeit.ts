@@ -20,9 +20,16 @@ type Zeitraum = Pick<Termin, 'datum' | 'bis'>
  * „Juli 2026“ und darunter „um den 30. Jul.“ – zwei Tage alt und als kommender
  * Termin ausgewiesen. Das sah nach einem stehengebliebenen Kalender aus, war
  * aber keiner: Drei Unternehmen hatten dort einen **Zeitraum** vom 30. Juli bis
- * zum 5. August, weil ihr Meldemuster um mehrere Tage streut
- * (`FENSTER_AB_TAGEN` in `lib/quartalstermine.ts`). Der Zeitraum lief noch, nur
- * sein Anfang lag hinter uns.
+ * zum 5. August, weil geschätzte Meldetermine damals als Fenster aus erwartetem
+ * Tag plus Streuung ausgewiesen wurden. Der Zeitraum lief noch, nur sein Anfang
+ * lag hinter uns.
+ *
+ * Die geschätzten Meldetermine tragen seit dem 4. August 2026 keinen Zeitraum
+ * mehr – sie stehen auf ihrem erwarteten Tag, die Streuung steht als Satz
+ * daneben (siehe `lib/quartalstermine.ts`). Diese Unterscheidung bleibt
+ * trotzdem nötig: Notenbanksitzungen und Verfallswochen in
+ * `data/kalender/termine.ts` sind **echte** Zeiträume über mehrere Tage, und
+ * für die gilt jedes Wort hier unverändert.
  *
  * Die Ansicht kannte bis dahin nur „kommend“ und „vorbei“ und sortierte alles
  * nach dem Anfangstag. Ein laufender Zeitraum fiel damit in den Vormonat und
