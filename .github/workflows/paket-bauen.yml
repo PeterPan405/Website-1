@@ -403,24 +403,70 @@ jobs:
             exit 1
           fi
 
-          # 2. Antwortet der Port überhaupt?
+          # 2. Antwortet der Port überhaupt? – mit vier Anläufen.
+          #
+          # Der einzelne Versuch war zu streng. Am 4. August 2026 lief der
+          # Lauf um 07:13 sauber durch, der um 07:36 scheiterte hier, und der
+          # um 07:51 lief wieder durch – dieselben Zugangsdaten, derselbe
+          # Host, dreimal binnen vierzig Minuten. SSH stand nicht auf
+          # INACTIVE; der Port antwortete für einen Moment nicht.
+          #
+          # Ein gemeinsam genutzter Webspace begrenzt eingehende Verbindungen,
+          # und mehrere Bereitstellungen kurz hintereinander laufen genau da
+          # hinein. Ein einzelner Fehlversuch ist deshalb keine Aussage über
+          # den Zugang, sondern über den Augenblick – und er kostete einen
+          # roten Lauf samt Fehlermail für etwas, das sich von selbst erledigt.
+          #
+          # Vier Versuche mit wachsendem Abstand (5, 10, 20 Sekunden). Bleibt
+          # der Port über eine gute Minute stumm, ist es die Meldung wert.
           echo "— Erreichbarkeit von Port $SSH_PORT"
-          if timeout 15 bash -c "true > /dev/tcp/$HOST/$SSH_PORT" 2>/dev/null; then
-            echo "  Port offen."
-          else
-            echo "::error::Port $SSH_PORT antwortet nicht."
+          offen=nein
+          for versuch in 1 2 3 4; do
+            if timeout 15 bash -c "true > /dev/tcp/$HOST/$SSH_PORT" 2>/dev/null; then
+              offen=ja
+              echo "  Port offen (Versuch $versuch)."
+              break
+            fi
+            if [ "$versuch" -lt 4 ]; then
+              warte=$((5 * 2 ** (versuch - 1)))
+              echo "  Versuch $versuch: keine Antwort – neuer Anlauf in ${warte}s."
+              sleep "$warte"
+            fi
+          done
+
+          if [ "$offen" = nein ]; then
+            echo "::error::Port $SSH_PORT antwortet nach vier Versuchen nicht."
             echo "  Häufigste Ursache: SSH steht in hPanel noch auf INACTIVE."
             echo "  hPanel > Erweitert > SSH-Zugang > rechts in der Box auf 'Aktivieren'."
+            echo "  Antwortete der Port bei früheren Läufen, ist es eher eine"
+            echo "  Verbindungsgrenze des Hosters – dann hilft Abwarten."
             exit 1
           fi
 
           # 3. Hostschlüssel holen – statt die Prüfung abzuschalten.
           # `StrictHostKeyChecking=no` würde jede Gegenstelle akzeptieren.
+          #
+          # Auch hier drei Anläufe: Wenn der Port gerade erst wieder
+          # antwortet, kann der erste Handshake noch ins Leere laufen.
           echo "— Hostschlüssel holen"
-          if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts; then
-            echo "  Hostschlüssel hinterlegt."
-          else
-            echo "::error::ssh-keyscan ist fehlgeschlagen, obwohl der Port antwortet."
+          geholt=nein
+          for versuch in 1 2 3; do
+            if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/tmp/keyscanfehler; then
+              # `ssh-keyscan` liefert auch dann Rückgabewert 0, wenn es nichts
+              # gefunden hat. Gezählt wird deshalb, was tatsächlich ankam.
+              if [ -s ~/.ssh/known_hosts ]; then
+                geholt=ja
+                echo "  Hostschlüssel hinterlegt (Versuch $versuch)."
+                break
+              fi
+            fi
+            echo "  Versuch $versuch ohne Ergebnis."
+            sed 's/^/    /' /tmp/keyscanfehler
+            [ "$versuch" -lt 3 ] && sleep 10
+          done
+
+          if [ "$geholt" = nein ]; then
+            echo "::error::ssh-keyscan hat nach drei Versuchen keinen Hostschlüssel geliefert."
             exit 1
           fi
 
@@ -432,9 +478,22 @@ jobs:
         run: |
           set -euo pipefail
 
+          # Das Hochladen ist der lange Teil und damit der, den eine
+          # Verbindungsgrenze am ehesten trifft. Drei Anläufe; ein
+          # abgebrochener Upload hinterlässt nur eine unvollständige Datei,
+          # die der nächste Versuch überschreibt.
           echo "Archiv übertragen …"
-          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
-            website.tar.gz "$USER@$HOST:~/website-neu.tar.gz"
+          hoch=nein
+          for versuch in 1 2 3; do
+            if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+                 website.tar.gz "$USER@$HOST:~/website-neu.tar.gz"; then
+              hoch=ja
+              break
+            fi
+            echo "Versuch $versuch fehlgeschlagen – neuer Anlauf in $((versuch * 15))s."
+            sleep $((versuch * 15))
+          done
+          [ "$hoch" = ja ] || { echo "::error::Hochladen nach drei Versuchen fehlgeschlagen."; exit 1; }
 
           echo "Auf dem Server entpacken und umhängen …"
           ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
