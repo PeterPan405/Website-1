@@ -153,6 +153,38 @@ Bleibt eine Datenreihe stehen, ist die erste Frage deshalb nicht „ist der Lauf
 gescheitert?", sondern **„hat er überhaupt stattgefunden?"** – und der
 Handstart über `workflow_dispatch` ist das Mittel, das sofort hilft.
 
+## Ein Commit vom Bot löst nichts aus
+
+Die zweite Hälfte desselben Problems, und die teurere: **Ein Push, den ein
+Workflow mit dem `GITHUB_TOKEN` macht, startet keinen weiteren Workflow.**
+GitHub verhindert damit Endlosschleifen. Es gibt dafür keine Meldung – nur
+einen Commit auf `main`, hinter dem nichts passiert.
+
+Am 4. August 2026 nachgezählt: Von sechzig Läufen des Paketbaus zwischen dem 30. Juli und dem 3. August war **kein einziger** durch einen Kurs-Commit
+ausgelöst. Alle zwölf Push-Läufe stammten von einem Merge durch den Betreiber.
+Neun Kurs-Commits vom 3. August (15:12 bis 22:43 UTC) erzeugten zusammen keinen
+Bau.
+
+Nach außen sah das aus wie „die Charts aktualisieren nicht": Im Repository
+standen die Kurse richtig, auf der Website stand der Stand des letzten Merges.
+Zeitplan, Leitwerte-Aufteilung, Preis-Modus – alles davon war für die
+Sichtbarkeit ohne Wirkung, solange niemand von Hand mergte.
+
+Ausgenommen von der Sperre sind **`workflow_dispatch` und
+`repository_dispatch`**. Deshalb stößt `kurse.yml` den Paketbau jetzt
+ausdrücklich an (`gh workflow run paket-bauen.yml`, dafür `permissions:
+actions: write`), statt sich auf den Push zu verlassen.
+
+**Wer einen Workflow schreibt, der Daten nach `main` committet, muss den
+Neubau selbst anstoßen.** Betroffen sind auch `fundamentaldaten.yml`,
+`laender.yml`, `podcast.yml`, `quartalstermine.yml`, `zinsen.yml` und
+`quellenlinks.yml`; sie kommen bisher über den nächtlichen Bau um 05:09 UTC
+mit, der seit dem 4. August ebenfalls veröffentlicht.
+
+Und in `paket-bauen.yml` hängt die Veröffentlichung seither am **Zweig**, nicht
+am Anlass: `main` und kein Pull Request. Die frühere Bedingung
+`event_name == 'push'` hätte jeden dieser Wege still ins Leere laufen lassen.
+
 Bis zum 3. August 2026 liefen **zwei** Nachrichten-Routinen parallel (02:15 und
 04:00 UTC) und feuerten beide, ohne voneinander zu wissen. Die ältere ist
 stillgelegt; es gibt genau eine.
