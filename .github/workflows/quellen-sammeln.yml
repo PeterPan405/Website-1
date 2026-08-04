@@ -1,0 +1,189 @@
+name: Quellen sammeln
+
+# Legt die Nachrichtenübersichten des Tages dort ab, wo die Routine sie lesen
+# kann – auf einem eigenen Zweig, der nie gebaut und nie veröffentlicht wird.
+#
+# ## Warum es diesen Workflow zusätzlich zu `quellen-holen.yml` gibt
+#
+# Beide holen dasselbe. Der Unterschied ist, **wer das Ergebnis lesen kann.**
+#
+# `quellen-holen.yml` schreibt ins Protokoll. Um dort hineinzusehen, braucht man
+# die GitHub-Werkzeuge (`actions_list`, `get_job_logs`). In einer normalen
+# Sitzung sind die da. **Die Sitzung der Nachrichten-Routine bekommt sie nicht:**
+# Ihre Werkzeugliste steht bei der Anlage fest und enthält weder `mcp__github__*`
+# noch `ToolSearch`; `update_trigger` hat keinen Parameter, mit dem sich das
+# ändern ließe.
+#
+# Damit lief die Routine seit dem 31. Juli 2026 gegen eine Wand: Sie darf
+# recherchieren, erreicht aber keine einzige Nachrichtenseite (Egress-Proxy,
+# CONNECT 403) und kommt auch nicht an den Läufer heran, der es könnte. Am
+# 4. August feuerte sie um 03:34 UTC und legte nichts an – die Ausgabe des Tages
+# entstand von Hand.
+#
+# Wenn die Routine nicht zum Läufer kommt, kommt der Läufer zu ihr. Dieser
+# Workflow läuft um 03:11 UTC, also **19 Minuten vor** der Routine, und legt den
+# gelesenen Text als Datei ab. Die Routine liest sie mit `git` und `Read` –
+# beides hat sie.
+#
+# ## Warum ein eigener Zweig und nicht `main`
+#
+# Im Kopf von `quellen-holen.yml` steht der Satz, dass fremde Texte nicht ins
+# Repository gehören, und er gilt weiter. Deshalb:
+#
+# - **Ein wurzelloser Zweig `quellen-heute`**, der in `main` nie vorkommt, nicht
+#   gebaut und nicht ausgeliefert wird.
+# - **Eine einzige Fassung.** Jeder Lauf ersetzt den Zweig vollständig
+#   (`push --force`), es gibt keine Historie und keine Ansammlung.
+# - **Nur der Kopf jeder Seite.** Was gebraucht wird, sind Schlagzeilen mit
+#   Uhrzeit – nicht die Artikel. Die Grenze steht unten bei `ZEICHEN`.
+#
+# Das ist Arbeitsmaterial für einen Rechercheschritt, kein Datenbestand. Was
+# daraus entsteht, ist wie immer selbst formuliert und verlinkt die Quelle.
+
+on:
+  schedule:
+    # 03:11 UTC – 5:11 Uhr deutscher Sommerzeit, 19 Minuten vor der Routine.
+    #
+    # Die Minute ist krumm, und das ist Absicht: GitHub verwirft geplante Läufe
+    # unter Last, am dichtesten belegt sind die vollen und halben Stunden.
+    # Siehe den Abschnitt „Geplante Läufe sind eine Bitte" in AGENTS.md.
+    #
+    # Zur Zeitumstellung wandert diese Zeile mit den drei anderen um eine
+    # Stunde – im Winter `11 4`.
+    - cron: '11 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: quellen-sammeln
+  cancel-in-progress: false
+
+jobs:
+  sammeln:
+    name: Übersichten holen und ablegen
+    runs-on: ubuntu-latest
+    permissions:
+      # Zum Schreiben des Zweiges `quellen-heute`.
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Übersichten abrufen
+        env:
+          # Die gepflegte Liste steht in `data/nachrichtenquellen.ts`; hier
+          # stehen die Übersichtsseiten, die sich als Einstieg bewährt haben.
+          # Tote Adressen fallen nicht auf, wenn niemand hinsieht – deshalb
+          # schreibt der Lauf den Statuscode je Seite mit, und der Bericht
+          # unten zählt die brauchbaren.
+          ADRESSEN: >-
+            https://www.finanzen.net/nachrichten/
+            https://www.onvista.de/news/
+            https://www.wallstreet-online.de/nachrichten
+            https://www.boerse-frankfurt.de/nachrichten
+            https://www.goldreporter.de/
+            https://www.bundesbank.de/de/presse/pressenotizen
+            https://www.destatis.de/DE/Presse/Pressemitteilungen/_inhalt.html
+            https://www.ecb.europa.eu/press/html/index.en.html
+          # Der Kopf jeder Seite. Schlagzeilen mit Uhrzeit stehen dort; die
+          # Artikel selbst werden nicht gebraucht und nicht abgelegt.
+          ZEICHEN: '20000'
+        run: |
+          python3 - <<'ENDE' > quellen.txt
+          import datetime
+          import html
+          import os
+          import re
+          import urllib.error
+          import urllib.request
+
+          grenze = int(os.environ["ZEICHEN"])
+          adressen = [a for a in os.environ["ADRESSEN"].split() if a.startswith("http")]
+
+          KOPF = {
+              "User-Agent": (
+                  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+              ),
+              "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
+          }
+
+          def zu_text(roh: str) -> str:
+              ohne = re.sub(r"(?is)<(script|style|noscript|svg)\b.*?</\1>", " ", roh)
+              ohne = re.sub(
+                  r"(?i)</(p|div|li|tr|h[1-6]|section|article|br)\s*/?>", "\n", ohne
+              )
+              ohne = re.sub(r"(?s)<[^>]+>", " ", ohne)
+              ohne = html.unescape(ohne)
+              ohne = re.sub(r"[ \t\r\f\v]+", " ", ohne)
+              ohne = re.sub(r"\n\s*\n\s*", "\n\n", ohne)
+              return ohne.strip()
+
+          jetzt = datetime.datetime.now(datetime.timezone.utc)
+          print("# Quellenlage " + jetzt.strftime("%Y-%m-%d %H:%M UTC"))
+          print()
+          print("Gelesen von einem GitHub-Läufer. Je Abschnitt stehen Adresse,")
+          print("Statuscode und der Zeitstempel der Antwort. Was hier steht, ist")
+          print("Arbeitsmaterial – zusammenfassen, nie spiegeln.")
+
+          brauchbar = 0
+          for adresse in adressen:
+              print("\n" + "=" * 78)
+              print(f"QUELLE: {adresse}")
+              print("=" * 78)
+              try:
+                  anfrage = urllib.request.Request(adresse, headers=KOPF)
+                  with urllib.request.urlopen(anfrage, timeout=45) as antwort:
+                      roh = antwort.read()
+                      zeichensatz = antwort.headers.get_content_charset() or "utf-8"
+                      print(f"STATUS: {antwort.status}")
+                      print(f"DATUM:  {antwort.headers.get('Date', '?')}")
+                      print("-" * 78)
+                      text = roh.decode(zeichensatz, errors="replace")
+              except urllib.error.HTTPError as fehler:
+                  print(f"STATUS: {fehler.code} – nicht abrufbar")
+                  continue
+              except Exception as fehler:  # noqa: BLE001
+                  print(f"FEHLER: {type(fehler).__name__}: {fehler}")
+                  continue
+
+              lesbar = zu_text(text)
+              # Eine Seite, die mit 200 antwortet und trotzdem nur Menü und
+              # Fußzeile liefert, ist der Ausfall, der nicht auffällt – der
+              # Inhalt kommt dort per JavaScript nach. Unter 1.500 Zeichen ist
+              # das der wahrscheinlichere Fall.
+              if len(lesbar) < 1500:
+                  print("[Gerüst ohne Inhalt – vermutlich per JavaScript nachgeladen.]")
+                  continue
+              brauchbar += 1
+              print(lesbar[:grenze])
+              if len(lesbar) > grenze:
+                  print(f"\n[… gekürzt: {len(lesbar) - grenze} weitere Zeichen.]")
+
+          print("\n" + "=" * 78)
+          print(f"ERGEBNIS: {brauchbar} von {len(adressen)} Adressen mit Inhalt.")
+          ENDE
+
+          zeilen=$(wc -l < quellen.txt)
+          echo "Gesammelt: $zeilen Zeilen."
+          tail -1 quellen.txt
+
+      - name: Auf den Zweig `quellen-heute` legen
+        run: |
+          # Wurzellos und ohne Historie: Der Zweig hat immer genau einen
+          # Commit. Nichts sammelt sich an, nichts landet je in `main`.
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          inhalt=$(mktemp)
+          cp quellen.txt "$inhalt"
+
+          git checkout --orphan quellen-heute
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" quellen.txt
+
+          git add quellen.txt
+          git commit -m "Quellenlage $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push --force origin quellen-heute
+
+          echo "Liegt bereit: git show origin/quellen-heute:quellen.txt"
