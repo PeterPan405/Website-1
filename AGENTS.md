@@ -108,20 +108,46 @@ ohne diesen Umweg ist die Anforderung hier nicht erfüllbar.
 liefert. Er läuft täglich um 03:00 UTC, eine halbe Stunde vor der
 Nachrichten-Routine, und lässt sich von Hand starten.
 
+## Die Routine kommt nicht an den Läufer heran
+
+Der Weg über `quellen-holen.yml` setzt voraus, dass man **Workflow-Protokolle
+lesen** kann – also `mcp__github__actions_list` und `get_job_logs` hat. In einer
+normalen Sitzung ist das so. **Die Sitzung der Nachrichten-Routine bekommt diese
+Werkzeuge nicht:** Ihre Liste steht bei der Anlage fest (`allowed_tools`) und
+enthält weder `mcp__github__*` noch `ToolSearch`; `update_trigger` hat keinen
+Parameter, mit dem sich das nachträglich ändern ließe.
+
+Damit lief die Routine gegen eine Wand: Sie darf recherchieren, erreicht aber
+keine Nachrichtenseite (403) und nicht den Läufer, der es könnte. Am 4. August
+2026 feuerte sie um 03:34 UTC und legte **nichts** an; die Ausgabe des Tages
+entstand von Hand.
+
+**Also kommt der Läufer zu ihr.** `.github/workflows/quellen-sammeln.yml` holt
+um 03:11 UTC dieselben Übersichten und legt den Text als `quellen.txt` auf einem
+**wurzellosen Zweig `quellen-heute`** ab – nie gebaut, nie veröffentlicht, jeder
+Lauf ersetzt ihn vollständig (`push --force`), keine Historie, keine Ansammlung.
+Die Routine liest ihn mit `git show origin/quellen-heute:quellen.txt`; `git` und
+`Read` hat sie.
+
+Der Satz aus dem Kopf von `quellen-holen.yml` – fremde Texte gehören nicht ins
+Repository – bleibt damit gewahrt: Es ist eine einzige, täglich überschriebene
+Arbeitsdatei außerhalb von `main`, gekürzt auf die Köpfe der Übersichtsseiten.
+
 ## Wann die Nachrichten entstehen
 
 Die Routine **„Nachrichten IM Invests – täglich 5:30 Uhr"** läuft um **03:30
-UTC** – das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen zwei
+UTC** – das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen drei
 Workflows, deren **Abstand** die eigentliche Vorschrift ist:
 
 | Zeit (UTC) | Was                                                    |
 | ---------- | ------------------------------------------------------ |
-| 03:00      | `quellen-pruefen.yml` – welcher Kanal ist heute offen? |
+| 03:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen? |
+| 03:11      | `quellen-sammeln.yml` – legt `quellen-heute` an        |
 | 03:30      | Nachrichten-Routine, 45–70 Minuten Laufzeit            |
-| 05:00      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein |
+| 05:09      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein |
 
-Die Routine **„Zeitumstellung"** zieht alle drei zweimal im Jahr gemeinsam um
-eine Stunde nach. Wer eine Zeit ändert, ändert alle drei.
+Die Routine **„Zeitumstellung"** zieht alle vier zweimal im Jahr gemeinsam um
+eine Stunde nach. Wer eine Zeit ändert, ändert alle vier.
 
 ## Geplante Läufe sind eine Bitte, keine Zusage
 
