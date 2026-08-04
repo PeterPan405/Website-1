@@ -57,7 +57,23 @@ on:
   schedule:
     - cron: '9 5 * * *'
 
+  # Von Hand – und, wichtiger, von `kurse.yml` nach jedem Kurs-Commit.
+  #
+  # Ein Push, den ein Workflow mit dem `GITHUB_TOKEN` macht, löst keinen
+  # weiteren Workflow aus. Der Zeitplan oben und der Push-Auslöser reichen
+  # deshalb nicht: Zwischen zwei Merges lagen am 3. August neun Kurs-Commits,
+  # von denen kein einziger einen Bau erzeugt hat. `workflow_dispatch` ist von
+  # dieser Sperre ausgenommen und damit der Weg, den `kurse.yml` geht.
   workflow_dispatch:
+    inputs:
+      vorher:
+        description: 'Vergleichsstand (Commit-SHA). Leer heißt: volle Prüfkette.'
+        type: string
+        default: ''
+      paket:
+        description: 'Das fertige Verzeichnis als Artefakt anhängen (138 MB)'
+        type: boolean
+        default: true
 
 # Ein Lauf je Zweig – ältere werden abgebrochen.
 #
@@ -148,8 +164,17 @@ jobs:
       - name: Was hat sich geändert?
         id: umfang
         run: |
-          vorher="${{ github.event.before }}"
-          if [ "${{ github.event_name }}" != "push" ] || [ -z "$vorher" ] || \
+          # Beim Push liefert GitHub den Vergleichsstand mit. Beim Start über
+          # `workflow_dispatch` gibt es kein solches Feld – `kurse.yml` reicht
+          # ihn deshalb als Eingabe herein. Von Hand gestartet bleibt er leer,
+          # und dann läuft die volle Kette; das ist für „ich will nachsehen,
+          # ob alles durchgeht" die richtige Voreinstellung.
+          if [ "${{ github.event_name }}" = "push" ]; then
+            vorher="${{ github.event.before }}"
+          else
+            vorher="${{ inputs.vorher }}"
+          fi
+          if [ -z "$vorher" ] || \
              [ "$vorher" = "0000000000000000000000000000000000000000" ] || \
              ! git cat-file -e "$vorher^{commit}" 2>/dev/null; then
             echo "nur_daten=nein" >> "$GITHUB_OUTPUT"
@@ -249,8 +274,13 @@ jobs:
       #
       # Wer es braucht: Actions → „Paket bauen" → „Run workflow". Der Lauf
       # dauert dieselben paar Minuten wie der automatische.
+      #
+      # Seit `kurse.yml` diesen Workflow selbst über `workflow_dispatch`
+      # startet, reicht die Bedingung „von Hand gestartet" nicht mehr: Das
+      # wären fünfzehn Pakete am Werktag. Deshalb die zusätzliche Eingabe
+      # `paket`, die der Kurslauf auf `false` setzt.
       - uses: actions/upload-artifact@v4
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && inputs.paket
         with:
           name: website
           path: out
@@ -280,15 +310,24 @@ jobs:
       #
       # `veroeffentlichen.yml` gibt es weiterhin – von Hand startbar, für den
       # Fall, dass ohne neuen Commit übertragen werden soll.
+      #
+      # Maßgeblich ist der **Zweig**, nicht der Anlass: Was auf `main` steht,
+      # steht auf der Website. Bis zum 4. August 2026 stand hier zusätzlich
+      # `event_name == 'push'`, und daran ist die halbe Automatik gescheitert –
+      # der Kurslauf startet über `workflow_dispatch`, der nächtliche Bau über
+      # `schedule`, und beide hätten gebaut, geprüft und nichts ausgeliefert.
+      #
+      # Ausgenommen bleibt allein der Pull Request: Der baut einen Stand, über
+      # den noch niemand entschieden hat.
       - name: Wird dieser Stand veröffentlicht?
         id: veroeffentlichen
         run: |
-          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
+          if [ "${{ github.ref }}" = "refs/heads/main" ] && [ "${{ github.event_name }}" != "pull_request" ]; then
             echo "ja=ja" >> "$GITHUB_OUTPUT"
-            echo "Push auf main – dieser Stand geht auf den Webspace."
+            echo "Stand auf main (${{ github.event_name }}) – dieser Stand geht auf den Webspace."
           else
             echo "ja=nein" >> "$GITHUB_OUTPUT"
-            echo "Kein Push auf main (${{ github.event_name }}, ${{ github.ref }}) – nur bauen und prüfen."
+            echo "Nicht main oder Pull Request (${{ github.event_name }}, ${{ github.ref }}) – nur bauen und prüfen."
           fi
 
       - name: Zugangsdaten prüfen

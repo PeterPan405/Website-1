@@ -2,10 +2,28 @@ name: Kurse aktualisieren
 
 # Holt die Tagesschlusskurse und legt sie als Momentaufnahme im Repository ab.
 #
-# Der Push nach `main` ist zugleich der Auslöser für die Bereitstellung bei
-# Hostinger – ein anderer Weg auf den Webspace existiert nicht. Deshalb ist
-# dieser Workflow nicht nur Datenpflege, sondern der eigentliche Takt, in dem
-# die Website neu gebaut wird.
+# Nach dem Commit stößt dieser Workflow den Neubau **ausdrücklich** an. Das
+# ist der Kern und war zwei Monate lang falsch gedacht: Hier stand, der Push
+# nach `main` sei zugleich der Auslöser für die Bereitstellung. Er ist es
+# nicht.
+#
+# **Ein Push, der mit dem `GITHUB_TOKEN` gemacht wurde, löst keinen weiteren
+# Workflow aus.** GitHub verhindert damit Endlosschleifen, meldet es aber
+# nirgends – kein Fehler, kein Hinweis, nur ein Commit auf `main`, hinter dem
+# nichts passiert. Nachgezählt am 4. August 2026: Von sechzig Läufen des
+# Paketbaus zwischen dem 30. Juli und dem 3. August war **kein einziger**
+# durch einen Kurs-Commit ausgelöst; alle zwölf Push-Läufe stammten von einem
+# Merge durch den Betreiber. Neun Kurs-Commits vom 3. August (15:12 bis
+# 22:43 UTC) haben zusammen keinen einzigen Bau erzeugt.
+#
+# Nach außen sah das aus wie „die Charts aktualisieren nicht": Die Kurse
+# standen im Repository richtig und aktuell, auf der Website aber stand der
+# Stand des letzten Merges. Alles dazwischen – Zeitplan, Aufteilung in
+# Leitwerte, Preis-Modus – war für die Sichtbarkeit ohne Wirkung.
+#
+# Ausgenommen von der Sperre sind `workflow_dispatch` und
+# `repository_dispatch`. Deshalb startet der letzte Schritt unten den
+# Paketbau über die API, statt sich auf den Push zu verlassen.
 #
 # ## Zeitplan
 #
@@ -121,6 +139,9 @@ jobs:
     permissions:
       # Zum Committen der Momentaufnahme.
       contents: write
+      # Zum Anstoßen des Paketbaus über `gh workflow run` – siehe letzter
+      # Schritt. Ohne dieses Recht antwortet die API mit 403.
+      actions: write
 
     steps:
       - uses: actions/checkout@v5
@@ -172,6 +193,7 @@ jobs:
         run: npm run kurse
 
       - name: Momentaufnahme committen
+        id: commit
         run: |
           # Alle Dateien, die der Abruf schreibt: aktuelle Kurse, Historie,
           # Dividenden. Meist ändert sich nur die erste – sie trägt den
@@ -189,6 +211,7 @@ jobs:
 
           if git diff --quiet -- $dateien; then
             echo "Keine Änderung – kein Commit, keine Bereitstellung."
+            echo "gepusht=nein" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -201,9 +224,42 @@ jobs:
           # Rebase statt Merge, damit die Historie eine Linie bleibt.
           zweig="${{ github.ref_name }}"
           for versuch in 1 2 3; do
-            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
+            if git pull --rebase origin "$zweig" && git push origin "$zweig"; then
+              echo "gepusht=ja" >> "$GITHUB_OUTPUT"
+              # Der Stand **vor** diesem Commit – nach dem Rebase, also der
+              # tatsächliche Vorgänger. Der Paketbau vergleicht dagegen und
+              # erkennt daran, dass nur Momentaufnahmen betroffen sind; ohne
+              # diese Angabe liefe er in die volle Prüfkette und kostete gut
+              # zwei Minuten mehr je Lauf.
+              echo "vorher=$(git rev-parse HEAD~1)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             echo "Push fehlgeschlagen, Versuch $versuch – neuer Anlauf in $((versuch * 5))s"
             sleep $((versuch * 5))
           done
+          echo "gepusht=nein" >> "$GITHUB_OUTPUT"
           echo "Push nach drei Versuchen fehlgeschlagen."
           exit 1
+
+      # Den Neubau anstoßen – der Punkt, an dem die Kurse überhaupt erst
+      # sichtbar werden.
+      #
+      # `workflow_dispatch` ist zusammen mit `repository_dispatch` der
+      # einzige Weg, der dem `GITHUB_TOKEN` offensteht (siehe Kopf dieser
+      # Datei). Ein Push tut es nachweislich nicht.
+      #
+      # `paket=false`: Der Paketbau hängt das fertige Verzeichnis nur bei
+      # einem Start von Hand als Artefakt an. Es wiegt 138 MB, enthalten sind
+      # 500 MB Actions-Speicher im Monat – bei fünfzehn Kursläufen am Tag
+      # wäre das Kontingent vor dem Mittagessen voll.
+      - name: Neubau anstoßen
+        if: steps.commit.outputs.gepusht == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run paket-bauen.yml \
+            --repo "${{ github.repository }}" \
+            --ref "${{ github.ref_name }}" \
+            -f vorher="${{ steps.commit.outputs.vorher }}" \
+            -f paket=false
+          echo "Paketbau für ${{ github.ref_name }} angefordert."
