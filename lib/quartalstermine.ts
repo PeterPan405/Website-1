@@ -33,8 +33,26 @@ import type { Termin } from '@/data/kalender/typen'
 
 const HORIZONT_MONATE = 6
 
-/** Ab dieser Streuung wird aus dem Tag ein Zeitfenster. */
-const FENSTER_AB_TAGEN = 4
+/*
+  Ein erwarteter Meldetermin steht auf **einem** Tag.
+
+  Bis August 2026 wurde daraus bei unsicherem Muster ein Zeitraum: `datum` der
+  erwartete Tag, `bis` der Tag plus die Streuung des Vorjahres. Gedacht war das
+  als Ehrlichkeit über die Genauigkeit – herausgekommen ist das Gegenteil.
+
+  Auf der Kalenderseite fasst die Ansicht alle geschätzten Meldetermine
+  desselben Anfangstags zu einer Zeile zusammen und nennt dazu das **späteste**
+  Ende der Gruppe. Aus elf Unternehmen mit demselben erwarteten Tag und
+  unterschiedlichen Streuungen wurde damit „um den 5. Aug. bis 14. Aug. –
+  11 Unternehmen melden Quartalszahlen": eine Spanne von zehn Tagen, die kein
+  einziges dieser Unternehmen so gemeint hatte, und darunter eine Namensliste,
+  aus der niemand mehr ablesen konnte, wer wann meldet. Daneben stand die
+  nächste Zeile mit „6. Aug. bis 15. Aug." und teilweise denselben Tagen.
+
+  Die Streuung ist damit nicht verschwiegen – sie steht als Satz in der
+  Bedeutung, wie bei den Dividendenterminen auch. Dort gehört sie hin: Sie ist
+  eine Aussage über die Verlässlichkeit der Schätzung, keine über den Kalender.
+*/
 
 interface Vorhersage {
   erwartet: string
@@ -114,26 +132,14 @@ export function getQuartalstermine(): Termin[] {
     for (const vorhersage of eintrag.vorhersagen) {
       if (vorhersage.erwartet > grenze) continue
 
-      const unscharf = vorhersage.streuungTage >= FENSTER_AB_TAGEN
-
       ergebnis.push({
         datum: vorhersage.erwartet,
-        /*
-          Bei unsicherem Muster wird aus dem Tag ein Zeitraum.
-
-          Die Streuung ist die Abweichung, die dasselbe Unternehmen im Vorjahr
-          gegenüber dem Jahr davor hatte. Wer sie kennt, kann den Termin so
-          breit ausweisen, wie er tatsächlich bekannt ist – statt eine
-          Genauigkeit vorzutäuschen, die die Quelle nicht hergibt.
-        */
-        bis: unscharf
-          ? verschiebe(vorhersage.erwartet, vorhersage.streuungTage)
-          : undefined,
         titel: `${katalog.name}: Quartalszahlen erwartet`,
         art: 'berichtssaison',
         bedeutung:
           `Abgeleitet aus dem bisherigen Meldemuster – im Vorjahr meldete das Unternehmen am ` +
-          `${aufDeutsch(vorhersage.basis)}. Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
+          `${aufDeutsch(vorhersage.basis)}. ${streuungssatz(vorhersage.streuungTage)}` +
+          `Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
           `Für den Kurs zählt ohnehin nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`,
         themen: ['aktie', 'wie-funktioniert-der-markt'],
         symbole: [katalog.symbol],
@@ -176,10 +182,20 @@ function aufDeutsch(datum: string): string {
   return `${Number(tag)}. ${MONATE[Number(monat) - 1]} ${jahr}`
 }
 
-function verschiebe(datum: string, tage: number): string {
-  const d = new Date(`${datum}T00:00:00Z`)
-  d.setUTCDate(d.getUTCDate() + tage)
-  return d.toISOString().slice(0, 10)
+/**
+ * Wie verlässlich der geschätzte Tag ist – als Satz, nicht als Zeitspanne.
+ *
+ * Die Streuung ist die Abweichung, die dasselbe Unternehmen im Vorjahr
+ * gegenüber dem Jahr davor hatte. Bei null oder einem Tag lohnt der Hinweis
+ * nicht; er stünde bei den meisten Einträgen und sagte nichts.
+ *
+ * Der abschließende Leerschritt gehört dazu: Der Satz wird mitten in die
+ * Bedeutung eingesetzt, und ein fehlendes Leerzeichen fällt nur auf der
+ * gebauten Seite auf.
+ */
+function streuungssatz(tage: number): string {
+  if (tage < 2) return ''
+  return `Das Muster schwankte dabei um bis zu ${tage} Tage. `
 }
 
 /**
