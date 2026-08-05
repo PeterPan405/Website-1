@@ -135,16 +135,16 @@ Arbeitsdatei außerhalb von `main`, gekürzt auf die Köpfe der Übersichtsseite
 
 ## Wann die Nachrichten entstehen
 
-Die Routine **„Nachrichten IM Invests – täglich 5:30 Uhr"** läuft um **03:30
-UTC** – das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen drei
-Workflows, deren **Abstand** die eigentliche Vorschrift ist:
+**`.github/workflows/nachrichten.yml`** schreibt die Ausgabe um **03:30 UTC** –
+das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen die Läufe, deren
+**Abstand** die eigentliche Vorschrift ist:
 
 | Zeit (UTC) | Was                                                              |
 | ---------- | ---------------------------------------------------------------- |
 | 03:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?           |
 | 03:07      | `quellen-sammeln.yml` – legt `quellen-heute` an                  |
 | 03:17      | `quellen-sammeln.yml` – zweiter Termin                           |
-| 03:30      | Nachrichten-Routine, 45–70 Minuten Laufzeit                      |
+| 03:30      | `nachrichten.yml` – schreibt die Ausgabe, 15–25 Minuten          |
 | 04:13      | Routine **„Auffangnetz"** – legt die Ausgabe an, falls sie fehlt |
 | 04:41      | `ausgabe-waechter.yml` – schlägt Alarm, wenn sie dann noch fehlt |
 | 05:09      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein           |
@@ -152,6 +152,40 @@ Workflows, deren **Abstand** die eigentliche Vorschrift ist:
 
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
+
+## Warum die Ausgabe aus einem Workflow kommt und nicht aus einer Routine
+
+Bis zum 5. August 2026 lag die Aufgabe bei einer Sitzungs-Routine. Nachgezählt:
+Von den fünf Ausgaben zwischen dem 31. Juli und dem 4. August kam **keine
+einzige** aus ihr. Alle fünf entstanden in einer interaktiven Sitzung und
+wurden über einen Pull Request gemergt.
+
+Der Grund ließ sich von hier aus nicht beheben: Die Sitzung einer Routine
+bekommt eine feste Werkzeugliste ohne `mcp__github__*`, erreicht damit weder
+eine Nachrichtenseite (403) noch den Läufer, der es könnte – und **ihre
+Protokolle sind nicht einsehbar.** Was sich nicht diagnostizieren lässt, lässt
+sich nicht reparieren.
+
+`nachrichten.yml` dreht die Abhängigkeit um: Der Läufer holt die Quellen, ruft
+das Modell über die Anthropic-Schnittstelle, prüft das Ergebnis gegen dieselben
+Regeln wie der Build und schreibt die Dateien. Alles steht im Protokoll, jeder
+Fehlschlag ist ein roter Lauf.
+
+**Dafür braucht es das Repository-Secret `ANTHROPIC_API_KEY`.** Ohne ihn bricht
+der Lauf mit einer Meldung ab, die sagt, wo der Schlüssel hingehört. Er gehört
+nie in einen Chat und nie in ein Protokoll.
+
+Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt bewusst die Regeln
+aus `lib/news-validate.ts` **und** `lib/editions-validate.ts` **und**
+`npm run pruefen`. Drei davon sind erst durch die Trockenprobe aufgefallen –
+Mindestlänge von `whyItMatters` und `summary`, und die Eindeutigkeit von Titel,
+Meta-Titel und Anreißer. Wer eine Regel im Build ändert, ändert sie hier mit;
+sonst schreibt der Lauf eine Ausgabe, an der zehn Minuten später der Build
+scheitert.
+
+`ANTWORT_DATEI` ersetzt den Modellaufruf durch eine JSON-Datei. Damit lässt
+sich der ganze Weg bis zum fertigen Build ohne Schnittstelle proben – genau so
+sind die drei fehlenden Regeln gefunden worden.
 
 ## Warum es Auffangnetz und Wächter gibt
 
