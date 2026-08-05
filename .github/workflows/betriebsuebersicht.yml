@@ -1,0 +1,143 @@
+name: Betriebsübersicht
+
+# Sagt in fünf Zeilen, ob die Website noch lebt.
+#
+# ## Warum es das gibt
+#
+# Weil jeder Ausfall dieser Woche dem Betreiber aufgefallen ist und nicht der
+# Technik. Der Nikkei stand einen Tag still, die Nachrichten fehlten zweimal,
+# die Charts hingen fest – jedes Mal war der erste Hinweis ein Foto vom Handy.
+#
+# `ausgabe-waechter.yml` beantwortet eine einzige Frage und wird laut, wenn sie
+# schlecht ausgeht. Dieser Lauf beantwortet **alle** und ist immer grün: Er
+# schreibt eine Übersicht in die Zusammenfassung des Laufs, die sich in zehn
+# Sekunden lesen lässt.
+#
+# Getrennt gehalten, weil beides verschiedene Aufgaben sind. Ein Wächter, der
+# auch berichtet, wird irgendwann wegen einer Nebensache rot; eine Übersicht,
+# die auch alarmiert, wird irgendwann übersehen.
+
+on:
+  schedule:
+    # 05:23 UTC – 7:23 Uhr deutscher Sommerzeit. Nach dem Nachrichtenlauf, nach
+    # dem Auffangnetz, nach dem Wächter und nach dem nächtlichen Paketbau: Wenn
+    # diese Übersicht entsteht, ist der Morgen entschieden.
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: betriebsuebersicht
+  cancel-in-progress: false
+
+jobs:
+  berichten:
+    name: Wie steht es
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Übersicht schreiben
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          heute=$(date -u +%Y-%m-%d)
+          {
+            echo "# Betriebsübersicht $(date -u +'%d.%m.%Y, %H:%M UTC')"
+            echo
+            echo "| | Stand | |"
+            echo "| --- | --- | --- |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          # ------------------------------------------------ 1. Nachrichten
+          juengste=$(ls data/editions/ | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}\.ts$' | sort | tail -1 | sed 's/\.ts$//')
+          artikel=$(grep -c "publishedAt: '$heute" data/news.ts || true)
+          if [ "$juengste" = "$heute" ] && [ "$artikel" -gt 0 ]; then
+            zeichen="✅"
+          else
+            zeichen="❌"
+          fi
+          echo "| Jüngste Ausgabe | $juengste ($artikel Artikel von heute) | $zeichen |" >> "$GITHUB_STEP_SUMMARY"
+
+          # ------------------------------------------------ 2. Kurse
+          node --experimental-strip-types - >> "$GITHUB_STEP_SUMMARY" <<'ENDE'
+          import { readFileSync } from 'node:fs'
+
+          const stand = JSON.parse(readFileSync('data/snapshots/kurse-aktuell.json', 'utf8'))
+          const jetzt = Date.now()
+          const abgerufen = new Date(stand.fetchedAt).getTime()
+          const stunden = (ms) => ((jetzt - ms) / 3_600_000).toFixed(1)
+
+          const werte = Object.entries(stand.latest ?? {})
+            .filter(([, v]) => v?.at)
+            .map(([s, v]) => [s, new Date(v.at).getTime()])
+          werte.sort((a, b) => a[1] - b[1])
+
+          const [aeltesterName, aeltesterZeit] = werte[0] ?? ['—', jetzt]
+          const ohneWert = Object.values(stand.latest ?? {}).filter((v) => !v).length
+
+          // Ein Abruf, der über zwei Stunden her ist, hat einen Termin verpasst –
+          // werktags liegen höchstens zwei Stunden zwischen zwei Läufen.
+          const abrufOk = jetzt - abgerufen < 2.5 * 3_600_000
+          console.log(
+            `| Letzter Kursabruf | vor ${stunden(abgerufen)} h | ${abrufOk ? '✅' : '⚠️'} |`
+          )
+          console.log(
+            `| Ältester Kurs | ${aeltesterName}, vor ${stunden(aeltesterZeit)} h | ${
+              jetzt - aeltesterZeit < 30 * 3_600_000 ? '✅' : '⚠️'
+            } |`
+          )
+          console.log(
+            `| Instrumente ohne Wert | ${ohneWert} von ${Object.keys(stand.latest ?? {}).length} | ${ohneWert === 0 ? '✅' : '⚠️'} |`
+          )
+          ENDE
+
+          # ------------------------------------------------ 3. Quellendatei
+          if git fetch origin quellen-heute --depth 1 -q 2>/dev/null; then
+            kopf=$(git show origin/quellen-heute:quellen.txt 2>/dev/null | head -1)
+            ergebnis=$(git show origin/quellen-heute:quellen.txt 2>/dev/null | tail -1)
+            case "$kopf" in
+              *"$heute"*) z="✅" ;;
+              *) z="❌" ;;
+            esac
+            echo "| Quellendatei | ${kopf#\# Quellenlage } · ${ergebnis#ERGEBNIS: } | $z |" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "| Quellendatei | Zweig fehlt | ❌ |" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          # ------------------------------------------------ 4. Auslieferung
+          UA="Mozilla/5.0 (compatible; IM-Invests-Uebersicht/1.0)"
+          version=$(curl -sS -A "$UA" --max-time 25 https://iminvests.de/version.txt 2>/dev/null || echo "")
+          if [ -n "$version" ]; then
+            commit=$(printf '%s' "$version" | grep -oE '^commit: *[0-9a-f]+' | awk '{print substr($2,1,7)}')
+            gebaut=$(printf '%s' "$version" | grep -oE '^gebaut: *.*' | cut -d' ' -f2-)
+            kopf=$(git rev-parse --short HEAD)
+            [ "$commit" = "$kopf" ] && z="✅" || z="⚠️"
+            echo "| Auf dem Webspace | $commit (gebaut $gebaut) · main steht auf $kopf | $z |" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "| Auf dem Webspace | von hier nicht erreichbar | ℹ️ |" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          # ------------------------------------------------ 5. Rote Läufe
+          rot=$(gh run list --repo "$REPO" --status failure --created "$(date -u -d '24 hours ago' +%Y-%m-%d)" --limit 20 --json name,createdAt \
+                  --jq 'group_by(.name) | map("\(.[0].name) (\(length)×)") | join(", ")' 2>/dev/null || echo "")
+          if [ -z "$rot" ] || [ "$rot" = "null" ]; then
+            echo "| Rote Läufe (24 h) | keine | ✅ |" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "| Rote Läufe (24 h) | $rot | ⚠️ |" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          {
+            echo
+            echo "Ein ❌ heißt: Da fehlt etwas, das heute hätte entstehen sollen."
+            echo "Ein ⚠️ heißt: ansehen, aber es gibt harmlose Erklärungen –"
+            echo "geschlossene Börsen, ein Hoster, der Läufer-Adressen abweist,"
+            echo "ein Paketbau, der noch läuft."
+          } >> "$GITHUB_STEP_SUMMARY"

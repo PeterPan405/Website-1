@@ -148,6 +148,7 @@ Workflows, deren **Abstand** die eigentliche Vorschrift ist:
 | 04:13      | Routine **„Auffangnetz"** – legt die Ausgabe an, falls sie fehlt |
 | 04:41      | `ausgabe-waechter.yml` – schlägt Alarm, wenn sie dann noch fehlt |
 | 05:09      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein           |
+| 05:23      | `betriebsuebersicht.yml` – fünf Zeilen: steht alles?             |
 
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
