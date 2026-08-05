@@ -101,6 +101,559 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'hormus-uebergangsdeal-oel-unter-79-dollar',
+    title: 'Übergangsdeal in der Straße von Hormus – Öl fällt unter 79 Dollar',
+    metaTitle: 'Hormus-Übergangsdeal: Öl unter 79 Dollar',
+    teaser:
+      'Laut Agenturbericht stehen USA und Iran vor einer Übergangslösung für die Meerenge. Brent notiert am Morgen bei rund 79 Dollar – vor zwei Tagen waren es 85.',
+    category: 'Märkte',
+    publishedAt: '2026-08-05T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Ölpreis', 'Hormus', 'Risikoprämie', 'Geopolitik'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'onvista, Agentur-Meldungen vom 5. August 2026, 4:58 Uhr (dpa-AFX): „ROUNDUP/Bericht: USA und Iran vor Übergangsdeal in Straße von Hormus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kurstafel am 5. August 2026 gegen 7:10 Uhr: Brent 78,97 Dollar (+0,22 %); finanzen.net zur selben Zeit 78,86 Dollar (−0,6 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 4:58 Uhr läuft über dpa-AFX ein Bericht, wonach **die USA und der Iran vor einer Übergangslösung für die Straße von Hormus stehen**. Am Ölmarkt ist die Bewegung dazu bereits gelaufen: Brent notiert am Morgen bei knapp 79 Dollar je Fass. Am Montag standen noch rund 85 Dollar auf der Tafel, vor einer Woche über 90.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum diese Meerenge so viel Gewicht hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Straße von Hormus ist die Verbindung zwischen dem Persischen Golf und dem offenen Meer. An ihrer engsten Stelle ist sie gut 30 Kilometer breit, die nutzbaren Fahrrinnen sind deutlich schmaler. Durch dieses Nadelöhr fährt ein erheblicher Teil des seewärts gehandelten Öls – und es gibt für die meisten Golfstaaten keinen zweiten Weg.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Flaschenhals dieser Art wirkt auf den Preis anders als eine Fördermenge. Wird weniger gefördert, fehlt Öl. Wird eine Meerenge unsicher, fehlt zunächst gar nichts – es steigt nur die **Wahrscheinlichkeit**, dass etwas fehlen wird. Genau diese Wahrscheinlichkeit ist es, die im Preis mitschwingt.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die Risikoprämie, in zwei Richtungen',
+        items: [
+          'Eskalation: Der Preis steigt, bevor ein einziges Fass ausfällt – die Möglichkeit wird eingepreist.',
+          'Entspannung: Der Preis fällt, bevor ein zusätzlicher Tanker fährt – die Möglichkeit wird ausgepreist.',
+          'Beides sind Erwartungspreise. Was physisch passiert, zeigt sich erst später in Lagerbeständen und Frachtraten.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '„Übergangsdeal“ ist nicht „Lösung“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Wort in der Meldung ist wichtig. Ein Übergang ist eine Regelung auf Zeit, kein Ende des Konflikts. Der Markt preist damit keine Sicherheit ein, sondern eine geringere Wahrscheinlichkeit für die nächsten Wochen. Bleibt die Einigung aus oder wird sie gebrochen, kommt derselbe Aufschlag zurück – schneller, als er verschwunden ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erwähnenswert ist auch, was **nicht** in der Meldung steht: Über eine tatsächlich veränderte Zahl von Durchfahrten sagt sie nichts. Wer daraus auf Mengen schließt, schließt weiter, als die Quelle trägt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Ölpreis, der binnen zweier Tage von 85 auf 79 Dollar geht, beschreibt eine geänderte Einschätzung, keine geänderte Versorgung. Für den Tank an der Ecke zählt trotzdem der Preis – Erwartungen bezahlt man an der Zapfsäule genauso wie Knappheit.',
+      },
+    ],
+  },
+  {
+    slug: 'amd-prognose-enttaeuscht-nachboerslich',
+    title: 'AMD enttäuscht mit der Prognose – und die Aktie fällt, wenn niemand hinsieht',
+    metaTitle: 'AMD enttäuscht mit der Prognose',
+    teaser:
+      'Der Chiphersteller legt Zahlen vor, der Kurs gibt nachbörslich nach. Warum die wichtigsten Kursbewegungen oft dann passieren, wenn die Börse geschlossen ist.',
+    category: 'Märkte',
+    publishedAt: '2026-08-05T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['AMD', 'Nachbörse', 'Prognose', 'Halbleiter'],
+    relatedTopics: ['aktie', 'boerse'],
+    relatedSymbols: ['amd', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Agentur-Meldungen vom 5. August 2026, 4:53 Uhr (dpa-AFX): „AMD enttäuscht mit Prognose – Aktie verliert nachbörslich“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Meldung steht um 4:53 Uhr deutscher Zeit im Ticker: **AMD enttäuscht mit der Prognose, die Aktie verliert nachbörslich.** Beide Hälften sind lehrreich – die erste, weil es wieder um den Ausblick geht und nicht um das Quartal; die zweite, weil sie beschreibt, wo dieser Kurs gerade gehandelt wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was „nachbörslich“ bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der reguläre Handel an der Nasdaq endet um 16:00 Uhr New Yorker Zeit, also 22:00 Uhr deutscher Sommerzeit. Danach läuft der **nachbörsliche Handel** weiter – über elektronische Handelssysteme, mit denselben Aktien, aber unter anderen Bedingungen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Und genau in dieses Fenster legen amerikanische Unternehmen ihre Quartalszahlen. Das ist Absicht: Die Meldung soll nicht mitten in den laufenden Handel platzen, sondern von allen Marktteilnehmern gelesen werden können, bevor der reguläre Handel wieder beginnt.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum diese Kurse mit Vorsicht zu lesen sind',
+        items: [
+          'Wenig Umsatz: Ein Bruchteil der üblichen Stückzahlen bewegt den Kurs stark.',
+          'Große Spanne: Zwischen Kauf- und Verkaufskurs liegen Welten – wer dort handelt, zahlt das mit.',
+          'Vorläufig: Die Bewegung der Nachbörse setzt sich am nächsten Tag oft nicht fort, sondern korrigiert sich teilweise.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Für deutsche Anleger kommt eine zweite Ebene dazu',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine US-Aktie lässt sich hierzulande über Xetra, Tradegate oder Lang & Schwarz handeln – und diese Plätze bilden den nachbörslichen US-Kurs nur näherungsweise ab, jeder mit eigener Spanne. Wer morgens um neun auf eine amerikanische Aktie sieht, sieht deshalb nicht den Kurs, zu dem sie in New York gehandelt wurde, sondern den, den ein deutscher Handelsplatz daraus macht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Schlagzeile „Aktie verliert nachbörslich“ ist eine Momentaufnahme aus dem dünnsten Markt des Tages. Sie sagt, in welche Richtung die Meldung gelesen wurde – wie weit, entscheidet sich erst, wenn der reguläre Handel wieder öffnet.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-sp500-rekord-nasdaq-erholung',
+    title: 'Rekorde für Dow und S&P 500 – drei Indizes, drei Bauweisen',
+    teaser:
+      'Die Wall Street schloss am Dienstag mit Bestmarken für Dow und S&P 500, die Nasdaq erholte sich kräftig. Was die Zahlen darunter eigentlich messen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-05T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Dow Jones', 'S&P 500', 'Nasdaq', 'Index'],
+    relatedTopics: ['boerse', 'etf'],
+    relatedSymbols: ['dow-jones', 'sp500', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Index-Analysen vom 4. August 2026, 20:31 und 20:37 Uhr (dpa-AFX): „Aktien New York Schluss: Rekorde für Dow und S&P – Nasdaq mit Erholungsrally“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kurstafel am 5. August 2026 gegen 7:10 Uhr: Dow Jones 54.149,39 (+1,78 %), US Tech 100 29.737,32 (+3,40 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dienstag an der Wall Street brachte **Bestmarken für den Dow Jones und den S&P 500** und eine kräftige Erholung der Nasdaq. Die Kurstafel am Mittwochmorgen zeigt den Dow bei 54.149,39 Punkten (+1,78 Prozent) und den Nasdaq-100 bei 29.737,32 (+3,40 Prozent).',
+      },
+      {
+        type: 'paragraph',
+        text: 'Drei Indizes, die im selben Satz genannt werden – und drei völlig verschiedene Rechenwerke. Wer sie nebeneinander liest, sollte wissen, was jede Zahl misst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dow Jones: preisgewichtet, und das ist ungewöhnlich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow enthält 30 Unternehmen und gewichtet sie **nach ihrem Aktienkurs**, nicht nach ihrer Größe. Eine Aktie, die 500 Dollar kostet, zählt zehnmal so viel wie eine für 50 Dollar – unabhängig davon, welches der beiden Unternehmen mehr wert ist. Das ist ein Erbe aus der Zeit, als man Indizes mit Bleistift rechnete, und es hat eine seltsame Folge: Ein Aktiensplit ändert die Gewichtung, obwohl sich am Unternehmen nichts ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'S&P 500: nach Marktkapitalisierung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der S&P 500 gewichtet nach dem **Börsenwert des frei handelbaren Anteils**. Große Unternehmen zählen mehr, kleine weniger – das ist die heute übliche Bauweise und der Grund, warum dieser Index als Maßstab für „den amerikanischen Aktienmarkt" gilt. Er ist deshalb aber auch konzentrierter, als 500 Namen vermuten lassen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nasdaq-100: eine Auswahl, kein Marktabbild',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Nasdaq-100 enthält die 100 größten Nichtfinanzunternehmen der Nasdaq-Börse. Er ist damit weder ein Branchenindex noch ein Marktindex, sondern eine Liste mit zwei Filtern – Handelsplatz und Sektorausschluss. Dass er als „Technologieindex" gilt, ist eine Zuschreibung, keine Regel seiner Konstruktion.',
+      },
+      {
+        type: 'table',
+        caption: 'Dieselbe Schlagzeile, drei Messgeräte',
+        head: ['Index', 'Gewichtung', 'Auswahl'],
+        rows: [
+          ['Dow Jones', 'nach Aktienkurs', '30 Unternehmen, redaktionell bestimmt'],
+          ['S&P 500', 'nach Börsenwert', '500 große US-Unternehmen'],
+          [
+            'Nasdaq-100',
+            'nach Börsenwert, gedeckelt',
+            '100 größte Nichtfinanzwerte der Nasdaq',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Rekord" heißt bei jedem dieser drei etwas anderes. Und wer einen ETF darauf kauft, kauft die Bauweise mit – sie entscheidet über Streuung und Schwankung mehr als der Name des Index.',
+      },
+    ],
+  },
+  {
+    slug: 'dhl-aktienrueckkauf-aus-zoll-rueckzahlungen',
+    title: 'DHL stockt den Rückkauf auf – bezahlt aus Zoll-Rückzahlungen',
+    teaser:
+      'Der Konzern meldet überproportional gestiegene Gewinne und erweitert das Rückkaufprogramm. Woher das Geld kommt, ist die interessantere Hälfte der Meldung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-05T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DHL', 'Aktienrückkauf', 'Cashflow', 'Einmaleffekt'],
+    relatedTopics: ['aktie', 'kosten-und-gebuehren'],
+    relatedSymbols: ['deutsche-post', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 5. August 2026, 7:01 und 7:04 Uhr: „DHL steigert Gewinne überproportional zum Umsatz im 2Q“ / „DHL stockt Aktienrückkaufprogramm auf – Mittelzuflüsse aus US-Zoll-Rückzahlungen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Zeilen, drei Minuten auseinander: Um 7:01 Uhr meldet der Ticker, **DHL habe die Gewinne überproportional zum Umsatz gesteigert**; um 7:04 Uhr, der Konzern **stocke das Aktienrückkaufprogramm auf – mit Mittelzuflüssen aus US-Zoll-Rückzahlungen**.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gestern stand an dieser Stelle HSBC mit demselben Instrument. Heute lohnt die andere Frage: nicht was ein Rückkauf bewirkt, sondern **woher das Geld dafür kommt**.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht jeder Euro ist gleich viel wert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Unternehmen kann eine Ausschüttung aus drei sehr verschiedenen Quellen speisen, und für die Beurteilung macht das den ganzen Unterschied:',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Woher das Geld stammt',
+        items: [
+          'Laufender operativer Cashflow: das Geschäft verdient es Jahr für Jahr. Am tragfähigsten.',
+          'Einmaleffekt: ein Verkauf, eine Rückzahlung, ein Rechtsstreit geht gut aus. Einmal da, dann nie wieder.',
+          'Schulden: der Rückkauf wird finanziert. Er erhöht dann die Rendite je Aktie und zugleich das Risiko.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Zoll-Rückzahlung gehört in die zweite Kategorie. Sie ist echtes Geld und keine Buchung, aber sie wiederholt sich nicht. Ein Rückkauf daraus ist deshalb weder verdächtig noch besonders aussagekräftig – er ist eine sinnvolle Verwendung eines Sondereffekts.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '„Überproportional“ ist die zweite wichtige Vokabel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wenn der Gewinn stärker steigt als der Umsatz, ist die **Marge** gewachsen: Von jedem eingenommenen Euro bleibt mehr übrig. Das kann an Preisen liegen, an Kosten, an einem besseren Geschäftsmix – oder eben an Sondereffekten. Welcher Anteil hier worauf entfällt, sagt die Ticker-Überschrift nicht; das steht im Quartalsbericht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei jeder Ausschüttungsmeldung lohnt eine einzige Rückfrage – ist das Geld verdient oder zugeflossen? Beides ist legitim. Nur die Erwartung für nächstes Jahr sollte man daran unterschiedlich ausrichten.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-steigt-trotz-aktienrekorden',
+    title: 'Gold steigt auf 4.137 Dollar – während die Aktienmärkte Rekorde feiern',
+    metaTitle: 'Gold steigt trotz Rekorden an den Börsen',
+    teaser:
+      'Das Metall legt um rund anderthalb Prozent zu, obwohl Dow und S&P 500 Bestmarken erreichen. Der vermeintliche Widerspruch beruht auf einer falschen Regel.',
+    category: 'Märkte',
+    publishedAt: '2026-08-05T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Korrelation', 'Sicherer Hafen', 'Streuung'],
+    relatedTopics: ['rohstoffe', 'portfolio-aufbau'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kurstafel am 5. August 2026 gegen 7:10 Uhr: Gold 4.137,19 Dollar (+1,46 %); finanzen.net zur selben Zeit 4.136 (+1,4 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Index-Analysen vom 4. August 2026, 20:31 Uhr (dpa-AFX): „Aktien New York Schluss: Rekorde für Dow und S&P“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Mittwochmorgen steht Gold bei **4.137 Dollar je Unze**, ein Plus von rund anderthalb Prozent – am selben Morgen, an dem die Wall Street mit Rekorden für Dow und S&P 500 aus dem Vortag kommt. Nach der landläufigen Regel dürfte das nicht zusammen passieren: Gold gilt als „sicherer Hafen", der steigt, wenn Aktien fallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Regel ist keine Regel, sondern eine Beobachtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold und Aktien laufen nicht systematisch gegeneinander. Ihre **Korrelation** – das Maß dafür, wie stark zwei Kurse gemeinsam schwanken – ist über lange Zeiträume nahe null. Nahe null heißt nicht „gegenläufig", sondern **„ohne festen Zusammenhang"**. Beide können am selben Tag steigen, beide fallen, und das eine steigen, während das andere fällt.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum das für ein Depot der bessere Fall ist',
+        items: [
+          'Ein perfekt gegenläufiger Wert wäre eine Versicherung – und würde langfristig genau so viel kosten.',
+          'Ein Wert ohne festen Zusammenhang glättet den Verlauf, ohne die Rendite abzuschneiden.',
+          'Genau das ist der Kern der Streuung: nicht Gegensätze suchen, sondern Unabhängigkeit.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute Morgen mitspielen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis in Dollar hat zwei Treiber, die sich an einem Tag wie diesem beide melden können: die **Zinserwartung** – sie war gestern Thema, weil die US-Arbeitsmarktdaten anstehen – und der **Dollarkurs** selbst. Der Euro steht bei 1,1536 Dollar und damit leicht fester; ein schwächerer Dollar hebt den Dollarpreis von Gold rechnerisch an, ohne dass sich für einen Käufer im Euroraum etwas ändern muss.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welcher der beiden Treiber hier überwiegt, geht aus den Kurstafeln nicht hervor – und wird hier deshalb nicht behauptet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Gold steigt, wenn es kracht" ist eine Faustregel für Krisentage, keine Beschreibung des Normalfalls. Wer Gold als Beimischung hält, sollte es für die fehlende Kopplung tun – nicht für eine Gegenläufigkeit, auf die kein Verlass ist.',
+      },
+    ],
+  },
+  {
+    slug: 'siemens-energy-windgeschaeft-gewinn',
+    title: 'Siemens Energy: ungebremste Nachfrage – und Gewinn im Windgeschäft',
+    metaTitle: 'Siemens Energy: Gewinn im Windgeschäft',
+    teaser:
+      'Der Konzern meldet anhaltend hohe Nachfrage und einen Gewinn in der Windsparte. Warum ein einzelnes Segment eine ganze Aktie jahrelang bestimmen kann.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-05T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Siemens Energy', 'Segment', 'Turnaround', 'Berichtssaison'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['siemens-energy', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 5. August 2026, 7:04 Uhr: „Siemens Energy verzeichnet ungebremste Nachfrage – Gewinn im Windgeschäft“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Ticker-Zeile von 7:04 Uhr nennt zwei Dinge: **ungebremste Nachfrage** und **Gewinn im Windgeschäft**. Das zweite ist bei diesem Konzern die eigentliche Nachricht – und ein Musterfall dafür, wie ein einzelner Geschäftsbereich eine ganze Aktie bestimmen kann.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Segment ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Große Konzerne berichten nicht nur ein Gesamtergebnis, sondern **Segmente** – abgegrenzte Geschäftsbereiche mit eigenem Umsatz und eigenem Ergebnis. Die Aufteilung folgt dem, wie das Unternehmen tatsächlich gesteuert wird, und steht im Anhang des Geschäftsberichts.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Nutzen für den Leser: Ein Konzernergebnis ist eine Summe, und Summen verstecken. Ein Bereich, der stark verdient, kann einen zweiten tragen, der Geld verliert – von außen sieht man nur, dass unter dem Strich etwas übrigbleibt. Erst die Segmentzahlen zeigen, welcher Teil das Geschäft trägt und welcher daran zieht.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Fragen, die Segmentzahlen beantworten',
+        items: [
+          'Welcher Bereich verdient das Geld – und welcher verbrennt es?',
+          'Wächst der profitable Teil schneller als der schwache schrumpft?',
+          'Hängt die Bewertung an einem Bereich, der gerade erst dreht?',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rückkehr in die Gewinnzone besonders wirkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Bereich, der Verluste schreibt, wird an der Börse meist mit null oder negativ bewertet – er zieht vom Wert des Restkonzerns ab. Kippt er in den Gewinn, ändert sich nicht nur ein Betrag in der Rechnung, sondern das Vorzeichen. Deshalb reagieren Kurse auf ein erstes positives Segmentergebnis oft stärker, als die absolute Zahl vermuten lässt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie hoch dieser Gewinn ausfällt und ob er von Einmaleffekten getragen wird, steht nicht in der Ticker-Zeile – und deshalb auch nicht hier.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei Mischkonzernen führt der Weg zum Verständnis über die Segmenttabelle, nicht über die Schlagzeile. Sie steht im Quartalsbericht, meist auf einer einzigen Seite, und beantwortet in zwei Minuten, was zehn Kommentare nicht klären.',
+      },
+    ],
+  },
+  {
+    slug: 'vonovia-halbjahr-ausblick-bestaetigt',
+    title: 'Vonovia bestätigt den Ausblick – wie man einen Immobilienkonzern liest',
+    metaTitle: 'Vonovia bestätigt den Ausblick',
+    teaser:
+      'Der operative Gewinn steigt leicht, die Jahresprognose bleibt. Bei Immobilienkonzernen zählt eine andere Kennzahl als bei fast allen anderen Unternehmen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-05T07:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Vonovia', 'Immobilien', 'FFO', 'Bewertung'],
+    relatedTopics: ['immobilien', 'aktie'],
+    relatedSymbols: ['vonovia', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 5. August 2026, 7:03 Uhr: „Vonovia steigert operativen Gewinn leicht im 1H – Ausblick bestätigt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 7:03 Uhr meldet der Ticker: **Vonovia steigert den operativen Gewinn im ersten Halbjahr leicht und bestätigt den Ausblick.** Zwei unspektakuläre Halbsätze – und doch der Anlass, eine Besonderheit dieser Branche zu erklären.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Jahresüberschuss hier wenig taugt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Wohnungskonzern hält seinen Bestand in der Bilanz und muss ihn regelmäßig neu bewerten. Steigen die Immobilienpreise, entsteht ein Gewinn, ohne dass eine Wohnung verkauft wurde. Fallen sie, entsteht ein Verlust in Milliardenhöhe, ohne dass eine Miete ausbleibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Bewertungseffekte sind buchhalterisch korrekt und für die Frage, wie das Geschäft läuft, weitgehend unbrauchbar. Ein Konzern kann im selben Jahr einen Rekordverlust ausweisen und trotzdem jeden Monat pünktlich Mieten einnehmen.',
+      },
+      {
+        type: 'formula',
+        expression: 'FFO ≈ Mieteinnahmen − Bewirtschaftung − Zinsen − laufende Steuern',
+        description:
+          'Der operative Gewinn eines Immobilienkonzerns wird deshalb als FFO ausgewiesen – „Funds From Operations". Er lässt Bewertungsänderungen und Verkaufsgewinne bewusst außen vor und zeigt, was das laufende Vermieten einbringt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zinsen sind bei dieser Branche keine Nebenzeile',
+      },
+      {
+        type: 'paragraph',
+        text: 'Immobilien werden zu einem großen Teil mit Fremdkapital gehalten. Der Zinsaufwand steht deshalb mitten im operativen Ergebnis, nicht am Rand. Steigende Zinsen treffen einen Wohnungskonzern doppelt: Die Finanzierung wird teurer, und die Bewertung des Bestands sinkt, weil künftige Mieten stärker abgezinst werden.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Was ein bestätigter Ausblick sagt – und was nicht',
+        items: [
+          'Er sagt: Das Unternehmen sieht keinen Anlass, seine Erwartung zu ändern.',
+          'Er sagt nicht, ob die Erwartung ehrgeizig oder vorsichtig war.',
+          'Erst im Vergleich mit dem, was der Markt unterstellt hatte, wird daraus eine gute oder schlechte Nachricht.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Immobilienaktien anschaut, sucht zuerst den FFO und die durchschnittliche Verzinsung der Schulden – nicht den Gewinn und nicht den Buchwert. Beide Letzteren schwanken mit einer Bewertung, die niemand bezahlt hat.',
+      },
+    ],
+  },
+  {
+    slug: 'spacex-billionen-prognose-aktie-faellt',
+    title: 'Musk stellt Billionen-Umsätze in Aussicht – die Aktie fällt',
+    teaser:
+      'Eine sehr große Zahl für eine sehr ferne Zukunft bewegt den Kurs nach unten. Warum lange Prognosen an der Börse oft weniger wert sind als kurze.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-05T07:05:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['SpaceX', 'Prognose', 'Abzinsung', 'Bewertung'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Agentur-Meldungen vom 5. August 2026, 4:05 Uhr (dpa-AFX): „ROUNDUP: Musk prophezeit Billionen-Umsatz für SpaceX – Aktie fällt“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Meldung von 4:05 Uhr trägt ihren Widerspruch offen: **Musk prophezeit einen Billionen-Umsatz für SpaceX – und die Aktie fällt.** Das ist kein Rätsel, sondern eine Lektion darüber, was der Markt mit weit entfernten Versprechen macht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Geld in der Zukunft ist weniger wert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wert eines Unternehmens ist im Kern die Summe dessen, was es künftig ausschütten kann – und jeder Betrag wird umso stärker **abgezinst**, je weiter er entfernt liegt. Das ist keine Meinung, sondern Arithmetik: Wer heute Geld anlegt, bekommt Zinsen; ein Euro in zwanzig Jahren ist deshalb heute weniger als einen Euro wert.',
+      },
+      {
+        type: 'formula',
+        expression: 'Heutiger Wert = Betrag ÷ (1 + Zins)^Jahre',
+        description:
+          'Bei acht Prozent Kapitalkosten ist ein Betrag in zwanzig Jahren heute noch etwa ein Fünftel wert, in dreißig Jahren ein Zehntel. Eine sehr große Zahl in sehr ferner Zukunft schrumpft in der Rechnung auf etwas Überschaubares zusammen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dazu kommt die Wahrscheinlichkeit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neben der Zeit steht die Frage, wie sicher der Betrag überhaupt eintritt. Je weiter eine Prognose reicht, desto mehr muss dafür gutgehen – Technik, Nachfrage, Regulierung, Wettbewerb, Finanzierung. Der Markt multipliziert die große Zahl also nicht nur mit einem kleinen Abzinsungsfaktor, sondern zusätzlich mit einer Wahrscheinlichkeit, die er selbst schätzt.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum ein Kurs auf große Zahlen fallen kann',
+        items: [
+          'Die Zahl war bereits eingepreist – dann bewegt nur noch, was zusätzlich gesagt wurde.',
+          'Der genannte Zeithorizont ist länger als erwartet: dieselbe Zahl, weiter weg, heute weniger wert.',
+          'Daneben stand womöglich Konkreteres zum laufenden Jahr – und das wiegt schwerer als ein Ausblick auf ein Jahrzehnt.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Welcher dieser Gründe hier zutrifft, geht aus der Ticker-Überschrift nicht hervor. Festhalten lässt sich nur, dass die Größe einer Prognose nichts über ihre Wirkung sagt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei jeder Zukunftszahl gehören zwei Rückfragen dazu – **wann** und **wie sicher**. Ohne sie ist auch eine Billion nur eine Ziffernfolge; mit ihnen wird daraus ein Betrag, den man mit dem heutigen Kurs vergleichen kann.',
+      },
+    ],
+  },
+  {
     slug: 'lufthansa-gewinnausblick-kassiert',
     title: 'Lufthansa kassiert den Gewinnausblick – das wiegt schwerer als das Quartal',
     metaTitle: 'Lufthansa kassiert den Gewinnausblick',
