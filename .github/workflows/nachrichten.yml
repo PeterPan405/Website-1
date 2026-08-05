@@ -54,6 +54,11 @@ on:
         description: 'Modell-Kennung (leer = Voreinstellung)'
         required: false
         type: string
+      probe:
+        description: 'Nur prüfen – Quellen holen, Modell fragen, nichts schreiben'
+        required: false
+        default: false
+        type: boolean
 
 # Zwei Läufe gleichzeitig schrieben zwei Ausgaben zum selben Datum – und das
 # bricht den Build ab. Der laufende wird nicht abgebrochen: Er ist womöglich
@@ -91,7 +96,10 @@ jobs:
           [ -n "$tag" ] || tag=$(date -u +%Y-%m-%d)
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
 
-          if [ -f "data/editions/$tag.ts" ]; then
+          if [ "${{ inputs.probe }}" = "true" ]; then
+            echo "schon=nein" >> "$GITHUB_OUTPUT"
+            echo "Probe – es wird nichts geschrieben, auch wenn die Ausgabe schon steht."
+          elif [ -f "data/editions/$tag.ts" ]; then
             echo "schon=ja" >> "$GITHUB_OUTPUT"
             echo "Die Ausgabe vom $tag steht bereits – dieser Lauf hört hier auf."
           else
@@ -141,12 +149,13 @@ jobs:
           QUELLENDATEI: quellen.txt
           STICHTAG: ${{ steps.vorhanden.outputs.tag }}
           NACHRICHTEN_MODELL: ${{ inputs.modell }}
+          NUR_PRUEFEN: ${{ inputs.probe && '1' || '' }}
         run: node --experimental-strip-types scripts/nachrichten-erzeugen.ts
 
       # Dieselbe Kette wie im Paketbau. Schlägt eine Prüfung fehl, wird nichts
       # veröffentlicht – lieber keine Ausgabe als eine, die den Build bricht.
       - name: Formatieren und prüfen
-        if: steps.vorhanden.outputs.schon == 'nein'
+        if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
         run: |
           npx prettier --write data/ >/dev/null
           npx tsc --noEmit
@@ -159,7 +168,7 @@ jobs:
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
 
       - name: Auf main veröffentlichen
-        if: steps.vorhanden.outputs.schon == 'nein'
+        if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
         id: veroeffentlichen
         run: |
           rm -f quellen.txt

@@ -547,7 +547,18 @@ async function main() {
   const heute = process.env.STICHTAG || new Date().toISOString().slice(0, 10)
   const ausgabedatei = `data/editions/${heute}.ts`
 
-  if (existsSync(ausgabedatei)) {
+  /*
+    Die Probe: alles tun, nichts schreiben.
+
+    Sie beantwortet die Frage, die man vor dem ersten echten Lauf hat – ist der
+    Schlüssel richtig, kommt eine Antwort, hält sie die Regeln ein? – ohne dass
+    eine Ausgabe entsteht, die niemand bestellt hat. Deshalb übergeht sie auch
+    die Prüfung „steht schon": Sonst täte sie an genau den Tagen nichts, an
+    denen man sie braucht.
+  */
+  const probe = process.env.NUR_PRUEFEN === '1'
+
+  if (!probe && existsSync(ausgabedatei)) {
     console.log(`Die Ausgabe vom ${heute} steht bereits – nichts zu tun.`)
     return
   }
@@ -591,6 +602,28 @@ async function main() {
     for (const satz of fehler) console.error(`  – ${satz}`)
     console.error('Es wurde nichts geschrieben.')
     process.exit(1)
+  }
+
+  if (probe) {
+    console.log('')
+    console.log('── Probe bestanden. Es wurde nichts geschrieben. ──')
+    console.log('')
+    console.log(`Anreißer der Ausgabe (${ergebnis.intro.length} Zeichen):`)
+    console.log(`  ${ergebnis.intro}`)
+    console.log('')
+    console.log(`${ergebnis.artikel.length} Artikel:`)
+    for (const a of ergebnis.artikel) {
+      console.log(`  • ${a.title}`)
+      console.log(`    ${a.teaser}`)
+      console.log(`    Quelle: ${a.sources[0]?.label ?? '—'}`)
+    }
+    console.log('')
+    console.log(
+      `Tagesausgabe: ${ergebnis.top.length} Top-Meldungen, ${ergebnis.further.length} weitere.`
+    )
+    for (const m of [...ergebnis.top, ...ergebnis.further])
+      console.log(`  • ${m.headline}`)
+    return
   }
 
   /*
