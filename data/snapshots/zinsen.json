@@ -1,38 +1,18 @@
 {
-  "abgerufenAm": "2026-07-31T07:22:35.708Z",
+  "abgerufenAm": "2026-08-05T09:05:35.051Z",
   "reihen": {
     "leitzins": {
       "bezeichnung": "Leitzins der EZB (Hauptrefinanzierungsgeschäfte)",
       "einheit": "prozent",
       "aktuell": {
-        "t": "2026-07-31",
+        "t": "2026-08-05",
         "wert": 2.4
       },
       "vorEinemJahr": {
-        "t": "2025-07-01",
+        "t": "2025-08-01",
         "wert": 2.15
       },
       "verlauf": [
-        {
-          "t": "2026-06-02",
-          "wert": 2.15
-        },
-        {
-          "t": "2026-06-03",
-          "wert": 2.15
-        },
-        {
-          "t": "2026-06-04",
-          "wert": 2.15
-        },
-        {
-          "t": "2026-06-05",
-          "wert": 2.15
-        },
-        {
-          "t": "2026-06-06",
-          "wert": 2.15
-        },
         {
           "t": "2026-06-07",
           "wert": 2.15
@@ -252,6 +232,26 @@
         {
           "t": "2026-07-31",
           "wert": 2.4
+        },
+        {
+          "t": "2026-08-01",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-08-02",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-08-03",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-08-04",
+          "wert": 2.4
+        },
+        {
+          "t": "2026-08-05",
+          "wert": 2.4
         }
       ],
       "quelle": {
@@ -264,18 +264,14 @@
       "bezeichnung": "Inflationsrate im Euroraum (HVPI, Vorjahresvergleich)",
       "einheit": "prozent",
       "aktuell": {
-        "t": "2026-06",
-        "wert": 2.8
+        "t": "2026-07",
+        "wert": 2.9
       },
       "vorEinemJahr": {
-        "t": "2025-06",
+        "t": "2025-07",
         "wert": 2
       },
       "verlauf": [
-        {
-          "t": "2021-07",
-          "wert": 2.2
-        },
         {
           "t": "2021-08",
           "wert": 3
@@ -511,6 +507,10 @@
         {
           "t": "2026-06",
           "wert": 2.8
+        },
+        {
+          "t": "2026-07",
+          "wert": 2.9
         }
       ],
       "quelle": {
@@ -523,18 +523,14 @@
       "bezeichnung": "Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)",
       "einheit": "prozent",
       "aktuell": {
-        "t": "2026-06",
-        "wert": 2.4
+        "t": "2026-07",
+        "wert": 2.8
       },
       "vorEinemJahr": {
-        "t": "2025-06",
-        "wert": 2
+        "t": "2025-07",
+        "wert": 1.9
       },
       "verlauf": [
-        {
-          "t": "2021-07",
-          "wert": 3.1
-        },
         {
           "t": "2021-08",
           "wert": 3.4
@@ -770,6 +766,10 @@
         {
           "t": "2026-06",
           "wert": 2.4
+        },
+        {
+          "t": "2026-07",
+          "wert": 2.8
         }
       ],
       "quelle": {
