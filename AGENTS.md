@@ -135,22 +135,86 @@ Arbeitsdatei außerhalb von `main`, gekürzt auf die Köpfe der Übersichtsseite
 
 ## Wann die Nachrichten entstehen
 
-Die Routine **„Nachrichten IM Invests – täglich 5:30 Uhr"** läuft um **03:30
-UTC** – das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen drei
-Workflows, deren **Abstand** die eigentliche Vorschrift ist:
+Zwei Wege, hintereinander, und ihr **Abstand** ist die eigentliche Vorschrift:
 
-| Zeit (UTC) | Was                                                              |
-| ---------- | ---------------------------------------------------------------- |
-| 03:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?           |
-| 03:07      | `quellen-sammeln.yml` – legt `quellen-heute` an                  |
-| 03:17      | `quellen-sammeln.yml` – zweiter Termin                           |
-| 03:30      | Nachrichten-Routine, 45–70 Minuten Laufzeit                      |
-| 04:13      | Routine **„Auffangnetz"** – legt die Ausgabe an, falls sie fehlt |
-| 04:41      | `ausgabe-waechter.yml` – schlägt Alarm, wenn sie dann noch fehlt |
-| 05:09      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein           |
+| Zeit (UTC) | Was                                                                 |
+| ---------- | ------------------------------------------------------------------- |
+| 03:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?              |
+| 03:07      | `quellen-sammeln.yml` – legt `quellen-heute` an                     |
+| 03:17      | `quellen-sammeln.yml` – zweiter Termin                              |
+| 03:30      | Routine **„Nachrichten 5:30"** – recherchiert, kostenlos, 45–70 min |
+| 04:47      | `nachrichten.yml` – nur falls die Routine nichts geliefert hat      |
+| 05:19      | `ausgabe-waechter.yml` – schlägt Alarm, wenn sie dann noch fehlt    |
+| 05:41      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein              |
+| 05:51      | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?               |
 
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
+
+**Warum 04:47 und nicht früher:** Ein Nachrichtenlauf in einer Sitzung braucht
+45 bis 70 Minuten. Zwei Wege, die gleichzeitig schreiben, erzeugen zwei
+Ausgaben zum selben Datum – und das bricht den Build ab. Die 77 Minuten Abstand
+sind kein Puffer, sondern die gemessene Obergrenze plus sieben.
+
+**Die Zusage lautet nicht 5:30.** Sie lautet: Die Ausgabe steht, jeden Tag. Im
+Regelfall ist sie gegen 6:15 deutscher Zeit auf der Website, im Rückfall gegen
+7:15. Früher geht nur um den Preis der deutschen Morgenmeldungen — die Ticker
+der Unternehmen laufen erst ab 5 Uhr deutscher Zeit, und sie sind der
+ergiebigste Teil jeder Ausgabe.
+
+## Warum die Ausgabe aus einem Workflow kommt und nicht aus einer Routine
+
+Bis zum 5. August 2026 lag die Aufgabe bei einer Sitzungs-Routine. Nachgezählt:
+Von den fünf Ausgaben zwischen dem 31. Juli und dem 4. August kam **keine
+einzige** aus ihr. Alle fünf entstanden in einer interaktiven Sitzung und
+wurden über einen Pull Request gemergt.
+
+Der Grund ließ sich von hier aus nicht beheben: Die Sitzung einer Routine
+bekommt eine feste Werkzeugliste ohne `mcp__github__*`, erreicht damit weder
+eine Nachrichtenseite (403) noch den Läufer, der es könnte – und **ihre
+Protokolle sind nicht einsehbar.** Was sich nicht diagnostizieren lässt, lässt
+sich nicht reparieren.
+
+`nachrichten.yml` dreht die Abhängigkeit um: Der Läufer holt die Quellen, ruft
+das Modell über die Anthropic-Schnittstelle, prüft das Ergebnis gegen dieselben
+Regeln wie der Build und schreibt die Dateien. Alles steht im Protokoll, jeder
+Fehlschlag ist ein roter Lauf.
+
+## Der Schlüssel ist eine Verbesserung, keine Bedingung
+
+Das Repository-Secret `ANTHROPIC_API_KEY` war bis zum 5. August 2026 die
+Voraussetzung dafür, dass `nachrichten.yml` überhaupt etwas schreiben konnte.
+Damit hing die Zusage „die Nachrichten stehen morgens" an einer laufenden
+Rechnung — bei Opus 5 rund 15 $ im Monat, bei Sonnet 5 rund 6 $.
+
+Das ist aufgelöst. `scripts/nachrichten-aus-bestand.ts` rechnet die Ausgabe aus
+den Momentaufnahmen unter `data/snapshots/`: Leitindizes, Marktbreite, Zins
+gegen Inflation, Gold in zwei Währungen, die Spanne unter den Aktien. Fünf
+Artikel, kein Netzzugang, kein Modell, keine Kosten — und jede Zahl mit
+Stand-Zeitpunkt belegt. Die Ausgabe geht als JSON über `ANTWORT_DATEI` in
+`nachrichten-erzeugen.ts` und durch **dieselbe** Prüfung wie eine recherchierte.
+
+Damit gilt: mit Schlüssel eine bessere Ausgabe an Ausfalltagen (rund 0,20 $ je
+Lauf mit Sonnet, und nur dann), ohne Schlüssel eine schmalere — aber nie mehr
+keine. Wer den Schlüssel hinterlegt, tut es in Settings → Secrets and variables
+→ Actions; er gehört nie in einen Chat und nie in ein Protokoll.
+
+**Was dieser Weg nicht kann:** Er nennt keine Ursachen. Aus einer Kursdatei
+geht hervor, _dass_ sich etwas bewegt hat, nicht _warum_. Jeder Artikel daraus
+sagt das ausdrücklich, statt eine plausible Begründung zu erfinden — das ist
+die Grundregel des Projekts, und sie gilt hier genauso.
+
+Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt bewusst die Regeln
+aus `lib/news-validate.ts` **und** `lib/editions-validate.ts` **und**
+`npm run pruefen`. Drei davon sind erst durch die Trockenprobe aufgefallen –
+Mindestlänge von `whyItMatters` und `summary`, und die Eindeutigkeit von Titel,
+Meta-Titel und Anreißer. Wer eine Regel im Build ändert, ändert sie hier mit;
+sonst schreibt der Lauf eine Ausgabe, an der zehn Minuten später der Build
+scheitert.
+
+`ANTWORT_DATEI` ersetzt den Modellaufruf durch eine JSON-Datei. Damit lässt
+sich der ganze Weg bis zum fertigen Build ohne Schnittstelle proben – genau so
+sind die drei fehlenden Regeln gefunden worden.
 
 ## Warum es Auffangnetz und Wächter gibt
 
@@ -166,11 +230,15 @@ stille. Deshalb liegen jetzt drei Dinge übereinander:
    zwei eigene Termine, und `quellen-pruefen.yml` stößt ihn am Ende zusätzlich
    an. Es müssen drei Wege gleichzeitig ausfallen, damit die Quellendatei
    fehlt. Der Lauf dauert zwanzig Sekunden – Redundanz kostet hier nichts.
-2. **Ein zweiter Anlauf in einer frischen Sitzung** (Routine „Auffangnetz“,
-   04:13 UTC). Sie prüft zuerst, ob die Ausgabe schon steht, und hört dann auf
-   – zwei Ausgaben zum selben Datum brechen den Build ab.
+2. **Ein zweiter Anlauf auf einem Läufer** (`nachrichten.yml`, 04:47 UTC). Er
+   prüft zuerst, ob die Ausgabe schon steht, und hört dann auf – zwei Ausgaben
+   zum selben Datum brechen den Build ab. Kommt er zum Zug, kann er **nicht
+   ergebnislos enden**: Fehlt der Schlüssel oder die Quellendatei, rechnet
+   `nachrichten-aus-bestand.ts` die Ausgabe aus dem eigenen Datenbestand.
+   Die Routine „Auffangnetz“ (04:13 UTC) ist dafür stillgelegt worden – zwei
+   Sitzungen mit überlappender Laufzeit waren ein Risiko ohne Gegenwert.
 3. **Ein Wächter, der aus dem stillen Ausfall einen lauten macht.**
-   `ausgabe-waechter.yml` prüft um 04:41 UTC, ob Ausgabendatei,
+   `ausgabe-waechter.yml` prüft um 05:19 UTC, ob Ausgabendatei,
    Registereintrag und mindestens ein Artikel mit dem heutigen `publishedAt`
    vorhanden sind, und färbt den Lauf sonst rot. Ein roter Lauf schickt eine
    Mail, und die kommt an – über genau diesen Kanal sind die Paketbau-Fehler

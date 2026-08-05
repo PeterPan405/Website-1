@@ -14,6 +14,7 @@ import { Indexvergleichstafel } from '@/components/markets/Indexvergleichstafel'
 import { Kennzahlentafel } from '@/components/markets/Kennzahlentafel'
 import { Dividendentafel } from '@/components/markets/Dividendentafel'
 import { Fondstafel } from '@/components/markets/Fondstafel'
+import { Handelsfenster } from '@/components/markets/Handelsfenster'
 import { Merkschalter } from '@/components/markets/Merkschalter'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
@@ -232,6 +233,20 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
           </>
         }
       />
+
+      {/*
+        Direkt unter dem Kurs, nicht am Seitenende: Wer eine Zahl sieht, die
+        alt aussieht, fragt sofort – und soll die Antwort dort finden, wo die
+        Frage entsteht.
+      */}
+      <div className="fk-container">
+        <Handelsfenster
+          symbol={instrument.symbol}
+          ticker={instrument.ticker}
+          kind={instrument.kind}
+          stand={quote.asOf}
+        />
+      </div>
 
       <div className="fk-container py-12 sm:py-16">
         <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">

@@ -1,0 +1,272 @@
+name: Nachrichten schreiben
+
+# Die Tagesausgabe – auf einem Läufer, nicht in einer Sitzung.
+#
+# ## Was dieser Workflow ist: der dritte Anlauf, nicht der erste
+#
+# Er ist der einzige Lauf dieses Repositorys, der überhaupt Geld kosten kann –
+# alles andere hier (Kurse, Zinsen, Quartalstermine, ESEF, Podcast,
+# Länderdaten) holt öffentliche Daten und ist umsonst. Deshalb steht er
+# **hinter** dem kostenlosen Weg:
+#
+#   03:30  Routine „Nachrichten 5:30" – Sitzung, recherchiert, kostenlos
+#   04:47  dieser Workflow            – nur wenn die Routine nichts geliefert hat
+#
+# Der erste Schritt unten prüft, ob die Ausgabe schon steht. Steht sie, hört
+# der Lauf nach vierzig Sekunden auf und hat **nichts** gekostet – das Modell
+# wird gar nicht erst gefragt.
+#
+# Und kommt er doch zum Zug, hat er zwei Wege: mit hinterlegtem
+# `ANTHROPIC_API_KEY` fragt er das Modell (rund 0,20 $), ohne ihn rechnet
+# `scripts/nachrichten-aus-bestand.ts` die Ausgabe aus den Momentaufnahmen im
+# Repository – ohne Netz, ohne Modell, ohne Kosten.
+#
+# **Der Schlüssel ist damit nirgends Voraussetzung.** Er verbessert die
+# Ausgabe an den Tagen, an denen die Routine ausfällt; er entscheidet nicht
+# mehr darüber, ob überhaupt eine entsteht.
+#
+# ## Warum es ihn trotzdem braucht
+#
+# Weil die Routine zwischen dem 31. Juli und dem 5. August 2026 an **keinem
+# einzigen Tag** eine Ausgabe erzeugt hat. Nachgezählt für jede der fünf
+# Ausgaben dieser Woche: Alle entstanden in einer interaktiven Sitzung und
+# wurden über einen Pull Request gemergt. Die Automatik feuerte jeden Morgen
+# pünktlich, lieferte nichts, und niemand erfuhr davon.
+#
+# Ein Teil davon ist inzwischen erklärt und behoben – am 5. August fiel der
+# Sammellauf aus, die Routine sah in eine Quellendatei vom Vortag. Der Rest ist
+# nicht diagnostizierbar: Die Sitzung einer Routine bekommt eine feste
+# Werkzeugliste ohne `mcp__github__*`, und ihre Protokolle sind nicht einsehbar.
+#
+# Hier dagegen ist alles sichtbar: Der Läufer holt die Quellen, ruft das
+# Modell, prüft das Ergebnis gegen dieselben Regeln wie der Build und schreibt
+# die Dateien. Jeder Schritt steht im Protokoll, jeder Fehlschlag ist ein roter
+# Lauf, und ein roter Lauf schickt eine Mail.
+#
+# ## Was gebraucht wird
+#
+# Nichts, was nicht schon da wäre. Das Repository-Secret
+# **`ANTHROPIC_API_KEY`** ist eine Verbesserung, keine Bedingung: Ohne ihn
+# läuft alles weiter, die Ausgabe wird nur schmaler.
+#
+# Ist er hinterlegt, gehört er nie in einen Chat, nie in eine Datei und nie in
+# ein Protokoll – Workflow-Protokolle sind für jeden lesbar, der Zugriff hat.
+#
+# ## Was ein Lauf kostet
+#
+# Ohne Schlüssel: nichts. Mit Schlüssel und nur an den Tagen, an denen die
+# Routine ausgefallen ist: rund 22.000 Tokens hinein (die Quellenübersichten),
+# rund 14.000 hinaus (acht Artikel plus Ausgabe) – mit Sonnet 5 etwa 0,20 $,
+# mit Opus 5 etwa 0,50 $. Voreingestellt ist Sonnet; das Feld `modell` unten
+# stellt es je Lauf um. Die tatsächlichen Zahlen stehen nach jedem Aufruf im
+# Protokoll – das Skript rechnet sie aus, statt sie schätzen zu lassen.
+
+on:
+  schedule:
+    # 04:47 UTC – 6:47 Uhr deutscher Sommerzeit. **Nicht** die Erscheinungszeit
+    # der Nachrichten, sondern die Rückfallebene: 77 Minuten nach dem Start der
+    # Routine, damit deren Sitzung sicher fertig ist. Ein Nachrichtenlauf in
+    # einer Sitzung braucht 45 bis 70 Minuten, und zwei Wege, die gleichzeitig
+    # schreiben, erzeugen zwei Ausgaben zum selben Datum – das bricht den Build.
+    #
+    # Im Winter 05:47 UTC; die Routine „Zeitumstellung" zieht das nach.
+    - cron: '47 4 * * *'
+  workflow_dispatch:
+    inputs:
+      stichtag:
+        description: 'Datum JJJJ-MM-TT (leer = heute)'
+        required: false
+        type: string
+      modell:
+        description: 'Modell-Kennung (leer = Voreinstellung)'
+        required: false
+        type: string
+      probe:
+        description: 'Nur prüfen – Quellen holen, Modell fragen, nichts schreiben'
+        required: false
+        default: false
+        type: boolean
+
+# Zwei Läufe gleichzeitig schrieben zwei Ausgaben zum selben Datum – und das
+# bricht den Build ab. Der laufende wird nicht abgebrochen: Er ist womöglich
+# schon beim Schreiben.
+concurrency:
+  group: nachrichten
+  cancel-in-progress: false
+
+jobs:
+  schreiben:
+    name: Ausgabe erzeugen und veröffentlichen
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      # Zum Anstoßen des Paketbaus am Ende – ein Push mit dem GITHUB_TOKEN
+      # löst keinen Workflow aus.
+      actions: write
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Steht die Ausgabe schon?
+        id: vorhanden
+        run: |
+          tag="${{ inputs.stichtag }}"
+          [ -n "$tag" ] || tag=$(date -u +%Y-%m-%d)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+          if [ "${{ inputs.probe }}" = "true" ]; then
+            echo "schon=nein" >> "$GITHUB_OUTPUT"
+            echo "Probe – es wird nichts geschrieben, auch wenn die Ausgabe schon steht."
+          elif [ -f "data/editions/$tag.ts" ]; then
+            echo "schon=ja" >> "$GITHUB_OUTPUT"
+            echo "Die Ausgabe vom $tag steht bereits – dieser Lauf hört hier auf."
+            echo "Das Modell wird nicht gefragt. Dieser Lauf kostet nichts." \
+              >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "schon=nein" >> "$GITHUB_OUTPUT"
+            echo "Für den $tag gibt es noch keine Ausgabe."
+            echo "Beide kostenlosen Wege haben nichts geliefert – dieser Lauf fragt das Modell." \
+              >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # Die Quellen. Erst der Zweig, den `quellen-sammeln.yml` schreibt; ist er
+      # nicht von heute, holt dieser Lauf die Übersichten selbst.
+      #
+      # Damit hängt die Ausgabe an keiner Vorbedingung mehr. Am 5. August fiel
+      # der Sammellauf aus, die Routine sah in eine Datei vom Vortag und legte
+      # nichts an – dieser Fall ist hier keiner mehr.
+      - name: Quellen besorgen
+        id: quellen
+        if: steps.vorhanden.outputs.schon == 'nein'
+        env:
+          TAG: ${{ steps.vorhanden.outputs.tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git fetch origin quellen-heute --depth 1 -q 2>/dev/null; then
+            git show origin/quellen-heute:quellen.txt > quellen.txt 2>/dev/null || true
+          fi
+
+          if [ -s quellen.txt ] && head -1 quellen.txt | grep -q "$TAG"; then
+            echo "Quellendatei vom Sammellauf: $(head -1 quellen.txt)"
+          else
+            echo "Keine frische Quellendatei – dieser Lauf holt die Übersichten selbst."
+            gh workflow run quellen-sammeln.yml --repo "${{ github.repository }}" --ref main || true
+            for versuch in 1 2 3 4 5 6; do
+              sleep 20
+              git fetch origin quellen-heute --depth 1 -q 2>/dev/null || true
+              git show origin/quellen-heute:quellen.txt > quellen.txt 2>/dev/null || true
+              if [ -s quellen.txt ] && head -1 quellen.txt | grep -q "$TAG"; then break; fi
+              echo "  Versuch $versuch: noch nichts."
+            done
+          fi
+
+          # Kein Abbruch mehr. Eine fehlende Quellendatei heißt nur, dass das
+          # Modell nichts zu lesen hätte – dann rechnet der Lauf die Ausgabe
+          # unten aus dem eigenen Bestand. Bis zum 5. August war das ein
+          # `exit 1`, und damit hing die ganze Zusage an einem Nebenlauf.
+          if [ ! -s quellen.txt ] || ! head -1 quellen.txt | grep -q "$TAG"; then
+            echo "::warning::Keine Quellendatei von heute – die Ausgabe entsteht aus dem eigenen Bestand."
+            echo "frisch=nein" >> "$GITHUB_OUTPUT"
+            rm -f quellen.txt
+          else
+            echo "frisch=ja" >> "$GITHUB_OUTPUT"
+            tail -1 quellen.txt
+          fi
+
+      # Drei Möglichkeiten, und die letzte kann nicht fehlschlagen:
+      #
+      #   1. Schlüssel da    → das Modell schreibt aus den Quellen. Beste
+      #                        Ausgabe, kostet rund 0,20 $.
+      #   2. Modell scheitert → Netzfehler, Kontingent, Formfehler: egal, es
+      #                        geht mit 3. weiter statt rot zu werden.
+      #   3. Kein Schlüssel  → `nachrichten-aus-bestand.ts` rechnet die Ausgabe
+      #                        aus den Momentaufnahmen im Repository. Kein Netz,
+      #                        kein Modell, keine Kosten, jede Zahl belegt.
+      #
+      # Der dritte Weg ist der Grund, warum hier kein „geht nicht" mehr
+      # herauskommen kann. Er ist schmaler als eine recherchierte Ausgabe – aber
+      # eine schmale Ausgabe um sieben ist besser als gar keine.
+      - name: Ausgabe schreiben
+        if: steps.vorhanden.outputs.schon == 'nein'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          QUELLENDATEI: quellen.txt
+          STICHTAG: ${{ steps.vorhanden.outputs.tag }}
+          NACHRICHTEN_MODELL: ${{ inputs.modell }}
+          NUR_PRUEFEN: ${{ inputs.probe && '1' || '' }}
+        run: |
+          schreibe() { node --experimental-strip-types scripts/nachrichten-erzeugen.ts; }
+
+          if [ -n "$ANTHROPIC_API_KEY" ] && [ "${{ steps.quellen.outputs.frisch }}" = "ja" ]; then
+            if schreibe; then
+              echo "Die Ausgabe kommt aus dem Modell." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            echo "::warning::Der Modellaufruf ist gescheitert – die Ausgabe entsteht aus dem eigenen Bestand."
+          else
+            echo "::warning::Kein ANTHROPIC_API_KEY hinterlegt – die Ausgabe entsteht ohne Modell aus dem eigenen Bestand."
+          fi
+
+          node --experimental-strip-types scripts/nachrichten-aus-bestand.ts
+          ANTWORT_DATEI=antwort-bestand.json schreibe
+          echo "Die Ausgabe wurde ohne Modell aus dem eigenen Datenbestand gerechnet." \
+            >> "$GITHUB_STEP_SUMMARY"
+
+      # Dieselbe Kette wie im Paketbau. Schlägt eine Prüfung fehl, wird nichts
+      # veröffentlicht – lieber keine Ausgabe als eine, die den Build bricht.
+      - name: Formatieren und prüfen
+        if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
+        run: |
+          npx prettier --write data/ >/dev/null
+          npx tsc --noEmit
+          npm run lint
+          npm test
+          npm run build
+          npm run pruefen
+          npm run format:check
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+
+      - name: Auf main veröffentlichen
+        if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
+        id: veroeffentlichen
+        run: |
+          rm -f quellen.txt antwort-bestand.json
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "Nachrichten: Ausgabe vom ${{ steps.vorhanden.outputs.tag }}"
+
+          for versuch in 1 2 3 4; do
+            if git pull --rebase origin main && git push origin main; then
+              echo "vorher=$(git rev-parse HEAD~1)" >> "$GITHUB_OUTPUT"
+              echo "gepusht=ja" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Push fehlgeschlagen, Versuch $versuch – neuer Anlauf in $((versuch * 5))s"
+            sleep $((versuch * 5))
+          done
+          echo "::error::Push nach vier Versuchen fehlgeschlagen."
+          exit 1
+
+      # Ein Push mit dem GITHUB_TOKEN löst keinen Workflow aus – der Paketbau
+      # wird deshalb ausdrücklich angestoßen. Siehe den Kopf von `kurse.yml`.
+      - name: Veröffentlichung anstoßen
+        if: steps.veroeffentlichen.outputs.gepusht == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run paket-bauen.yml \
+            --repo "${{ github.repository }}" --ref main \
+            -f vorher="${{ steps.veroeffentlichen.outputs.vorher }}" \
+            -f paket=false
+          echo "Der Paketbau ist angefordert – die Ausgabe geht damit auf den Webspace."

@@ -54,8 +54,12 @@ on:
   # Recherche und braucht 45 bis 70 Minuten. Bis zum 3. August 2026 stand
   # hier „15 Minuten nach der Routine“ – dieser Bau fiel also regelmäßig
   # mitten in den Lauf und paketierte den Stand von gestern.
+  #
+  # Seit dem 5. August liegt der bezahlte Nachrichtenlauf um 05:03 und braucht
+  # 20 bis 25 Minuten – „9 5“ fiel damit wieder mitten hinein. Jetzt 05:41,
+  # hinter allem.
   schedule:
-    - cron: '9 5 * * *'
+    - cron: '41 5 * * *'
 
   # Von Hand – und, wichtiger, von `kurse.yml` nach jedem Kurs-Commit.
   #
