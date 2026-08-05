@@ -118,6 +118,32 @@ function pflicht(name: string): string {
   return wert
 }
 
+/*
+  Was der Lauf gekostet hat, in Dollar, im Protokoll.
+
+  Nicht der Buchhaltung wegen, sondern damit die Frage „lohnt das?" eine Zahl
+  hat statt einer Schätzung. Die Preise sind Stand 24. Juni 2026 und je Million
+  Tokens; ändert Anthropic sie, stimmt die Zeile nicht mehr — sie ist ein
+  Anhaltspunkt, keine Rechnung.
+*/
+const PREISE: Record<string, { hinein: number; hinaus: number }> = {
+  'claude-opus-5': { hinein: 5, hinaus: 25 },
+  'claude-sonnet-5': { hinein: 3, hinaus: 15 },
+  'claude-haiku-4-5': { hinein: 1, hinaus: 5 },
+}
+
+function preisSatz(
+  modell: string,
+  nutzung: { input_tokens: number; output_tokens: number }
+): string {
+  const preis = PREISE[modell]
+  if (!preis) return 'unbekannt – für dieses Modell ist hier kein Preis hinterlegt.'
+  const dollar =
+    (nutzung.input_tokens * preis.hinein + nutzung.output_tokens * preis.hinaus) /
+    1_000_000
+  return `${dollar.toFixed(3)} $ (rund ${(dollar * 30).toFixed(2)} $ im Monat, wenn jeder Tag so aussieht)`
+}
+
 function erlaubteWerte(datei: string, muster: RegExp): Set<string> {
   const inhalt = readFileSync(datei, 'utf8')
   const treffer = new Set<string>()
@@ -313,7 +339,21 @@ async function frageModell(prompt: string): Promise<Antwort> {
   }
 
   const schluessel = pflicht('ANTHROPIC_API_KEY')
-  const modell = process.env.NACHRICHTEN_MODELL || 'claude-opus-5'
+  /*
+    Sonnet statt Opus, und das ist eine Kostenentscheidung: Opus kostet 5 $ je
+    Million Tokens hinein und 25 $ hinaus, Sonnet 3 $ und 15 $ (bis zum
+    31.08.2026 sogar 2 $ und 10 $). Ein Lauf schickt rund 22.000 Tokens hinein
+    und bekommt rund 14.000 heraus – das sind mit Opus etwa 50 Cent, mit
+    Sonnet etwa 20.
+
+    Die Aufgabe rechtfertigt den Aufpreis nicht: Was hier verlangt wird, ist
+    Zusammenfassen und Erklären entlang einer engen, ausformulierten Vorschrift,
+    kein offenes Problem. Und die Form prüft ohnehin `pruefe()` – ein Modell,
+    das die Längen verfehlt, kommt nicht durch, egal welches.
+
+    Umstellbar ohne Codeänderung: im Handstart das Feld `modell` setzen.
+  */
+  const modell = process.env.NACHRICHTEN_MODELL || 'claude-sonnet-5'
 
   const antwort = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -347,6 +387,7 @@ async function frageModell(prompt: string): Promise<Antwort> {
     console.log(
       `Modell ${modell}: ${daten.usage.input_tokens} Tokens hinein, ${daten.usage.output_tokens} hinaus.`
     )
+    console.log(`Kosten dieses Laufs: ${preisSatz(modell, daten.usage)}`)
   }
 
   const werkzeug = daten.content.find(

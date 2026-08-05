@@ -19,10 +19,13 @@ name: Betriebsübersicht
 
 on:
   schedule:
-    # 05:23 UTC – 7:23 Uhr deutscher Sommerzeit. Nach dem Nachrichtenlauf, nach
-    # dem Auffangnetz, nach dem Wächter und nach dem nächtlichen Paketbau: Wenn
-    # diese Übersicht entsteht, ist der Morgen entschieden.
-    - cron: '23 5 * * *'
+    # 05:51 UTC – 7:51 Uhr deutscher Sommerzeit. Nach der Routine, nach dem
+    # Auffangnetz, nach dem bezahlten Nachrichtenlauf, nach dem Wächter und
+    # nach dem nächtlichen Paketbau: Wenn diese Übersicht entsteht, ist der
+    # Morgen entschieden.
+    #
+    # Die 23 war doppelt vergeben – `quartalstermine.yml` liegt auf `23 5`.
+    - cron: '51 5 * * *'
   workflow_dispatch:
 
 concurrency:

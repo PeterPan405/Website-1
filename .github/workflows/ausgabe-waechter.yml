@@ -27,14 +27,17 @@ name: Ausgabe-Wächter
 
 on:
   schedule:
-    # 04:41 UTC – 6:41 Uhr deutscher Sommerzeit.
+    # 05:19 UTC – 7:19 Uhr deutscher Sommerzeit, und damit hinter **beiden**
+    # Wegen: Routine (03:30, braucht 45 bis 70 Minuten) und `nachrichten.yml`
+    # (04:47, braucht 20 bis 25). Früher zu prüfen hieße, einen laufenden
+    # Vorgang für einen Ausfall zu halten.
     #
-    # Die Routine beginnt um 03:30 UTC und braucht 45 bis 70 Minuten. Um 04:41
-    # ist sie also entweder fertig oder gescheitert; früher zu prüfen hieße,
-    # einen laufenden Vorgang für einen Ausfall zu halten.
+    # Seit `nachrichten.yml` notfalls ohne Modell aus dem eigenen Bestand
+    # schreibt, sollte dieser Lauf nie mehr rot werden. Wird er es doch, ist
+    # etwas kaputt, das niemand vorhergesehen hat – und genau dafür ist er da.
     #
-    # Zur Zeitumstellung: im Winter `41 5`.
-    - cron: '41 4 * * *'
+    # Zur Zeitumstellung: im Winter `19 6`.
+    - cron: '19 5 * * *'
   workflow_dispatch:
     inputs:
       tag:
