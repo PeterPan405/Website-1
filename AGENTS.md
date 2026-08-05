@@ -139,15 +139,46 @@ Die Routine **„Nachrichten IM Invests – täglich 5:30 Uhr"** läuft um **03:
 UTC** – das sind 5:30 Uhr deutscher Sommerzeit. Drumherum liegen drei
 Workflows, deren **Abstand** die eigentliche Vorschrift ist:
 
-| Zeit (UTC) | Was                                                    |
-| ---------- | ------------------------------------------------------ |
-| 03:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen? |
-| 03:11      | `quellen-sammeln.yml` – legt `quellen-heute` an        |
-| 03:30      | Nachrichten-Routine, 45–70 Minuten Laufzeit            |
-| 05:09      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein |
+| Zeit (UTC) | Was                                                              |
+| ---------- | ---------------------------------------------------------------- |
+| 03:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?           |
+| 03:07      | `quellen-sammeln.yml` – legt `quellen-heute` an                  |
+| 03:17      | `quellen-sammeln.yml` – zweiter Termin                           |
+| 03:30      | Nachrichten-Routine, 45–70 Minuten Laufzeit                      |
+| 04:13      | Routine **„Auffangnetz"** – legt die Ausgabe an, falls sie fehlt |
+| 04:41      | `ausgabe-waechter.yml` – schlägt Alarm, wenn sie dann noch fehlt |
+| 05:09      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein           |
 
-Die Routine **„Zeitumstellung"** zieht alle vier zweimal im Jahr gemeinsam um
-eine Stunde nach. Wer eine Zeit ändert, ändert alle vier.
+Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
+Stunde nach. Wer eine Zeit ändert, ändert alle.
+
+## Warum es Auffangnetz und Wächter gibt
+
+Am 5. August 2026 nachgezählt: Von den fünf Ausgaben zwischen dem 31. Juli und
+dem 4. August kam **keine einzige aus der Routine.** Alle fünf entstanden in
+einer interaktiven Sitzung und wurden über einen Pull Request gemergt – die
+Automatik lief jeden Morgen, lieferte nichts, und niemand erfuhr davon.
+
+Der teuerste Fehler dieses Projekts ist nicht der rote Lauf, sondern der
+stille. Deshalb liegen jetzt drei Dinge übereinander:
+
+1. **Mehr als eine Gelegenheit für den Sammler.** `quellen-sammeln.yml` hat
+   zwei eigene Termine, und `quellen-pruefen.yml` stößt ihn am Ende zusätzlich
+   an. Es müssen drei Wege gleichzeitig ausfallen, damit die Quellendatei
+   fehlt. Der Lauf dauert zwanzig Sekunden – Redundanz kostet hier nichts.
+2. **Ein zweiter Anlauf in einer frischen Sitzung** (Routine „Auffangnetz“,
+   04:13 UTC). Sie prüft zuerst, ob die Ausgabe schon steht, und hört dann auf
+   – zwei Ausgaben zum selben Datum brechen den Build ab.
+3. **Ein Wächter, der aus dem stillen Ausfall einen lauten macht.**
+   `ausgabe-waechter.yml` prüft um 04:41 UTC, ob Ausgabendatei,
+   Registereintrag und mindestens ein Artikel mit dem heutigen `publishedAt`
+   vorhanden sind, und färbt den Lauf sonst rot. Ein roter Lauf schickt eine
+   Mail, und die kommt an – über genau diesen Kanal sind die Paketbau-Fehler
+   aufgefallen.
+
+Wer hier etwas ändert, lässt Punkt 3 stehen. Die anderen beiden sind Versuche,
+das Problem zu lösen; der Wächter ist die Zusicherung, dass ein Scheitern
+auffällt.
 
 ## Geplante Läufe sind eine Bitte, keine Zusage
 

@@ -42,15 +42,26 @@ name: Quellen sammeln
 
 on:
   schedule:
-    # 03:11 UTC – 5:11 Uhr deutscher Sommerzeit, 19 Minuten vor der Routine.
+    # **Zwei Termine, nicht einer.**
     #
-    # Die Minute ist krumm, und das ist Absicht: GitHub verwirft geplante Läufe
-    # unter Last, am dichtesten belegt sind die vollen und halben Stunden.
-    # Siehe den Abschnitt „Geplante Läufe sind eine Bitte" in AGENTS.md.
+    # Am 5. August 2026 hat dieser Workflow seinen ersten planmäßigen Termin
+    # (03:11) nicht wahrgenommen – kein Fehler, kein Eintrag, kein Lauf. Die
+    # Routine sah zwanzig Minuten später in eine Datei vom Vortag und legte
+    # nichts an; die Ausgabe des Tages entstand wieder von Hand.
     #
-    # Zur Zeitumstellung wandert diese Zeile mit den drei anderen um eine
-    # Stunde – im Winter `11 4`.
-    - cron: '11 3 * * *'
+    # GitHub verwirft geplante Läufe unter Last, und ein neu hinzugekommener
+    # Zeitplan wird nicht immer sofort aktiv. Dagegen hilft kein besserer
+    # Ausdruck, sondern nur mehr als eine Gelegenheit: Der Lauf dauert
+    # zwanzig Sekunden, zwei Termine kosten also nichts, und wenn beide
+    # durchkommen, wird die Datei einfach zweimal geschrieben.
+    #
+    # Krumme Minuten bleiben Pflicht – am dichtesten belegt sind die vollen
+    # und halben Stunden. Siehe „Geplante Läufe sind eine Bitte" in AGENTS.md.
+    #
+    # Zur Zeitumstellung wandern beide Zeilen mit den anderen Zeitplänen um
+    # eine Stunde – im Winter `7 4` und `17 4`.
+    - cron: '7 3 * * *'
+    - cron: '17 3 * * *'
   workflow_dispatch:
 
 concurrency:

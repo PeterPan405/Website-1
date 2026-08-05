@@ -62,6 +62,10 @@ jobs:
   pruefen:
     name: Quellen abklopfen
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Zum Anstoßen von `quellen-sammeln.yml` im letzten Schritt.
+      actions: write
     # Ein rotes Ergebnis ist eine Aussage über die Quellenlage, kein Defekt
     # dieses Workflows. Es soll im Protokoll stehen und den Lauf kennzeichnen,
     # aber niemanden daran hindern, die Ausgabe trotzdem zu schreiben.
@@ -77,3 +81,27 @@ jobs:
 
       - name: Quellen abklopfen
         run: node --experimental-strip-types scripts/quellen-pruefen.ts ${{ inputs.tag }}
+
+      # Der dritte Weg, den Sammellauf zu starten.
+      #
+      # `quellen-sammeln.yml` hat zwei eigene Termine (03:07 und 03:17). Am
+      # 5. August 2026 hat sein einziger damaliger Termin nicht gefeuert, und
+      # die Routine sah zwanzig Minuten später in eine Datei vom Vortag.
+      #
+      # Dieser Workflow läuft ohnehin um 03:03 – acht Zeilen später ist die
+      # dritte Gelegenheit. Läuft der Sammler ohnehin, kostet der zusätzliche
+      # Start zwanzig Sekunden; fiel er aus, rettet er den Tag.
+      #
+      # `if: always()` steht hier mit Absicht: Der Schritt darüber darf rot
+      # werden – das ist eine Aussage über die Quellenlage, kein Grund, den
+      # Sammler ausfallen zu lassen. Und ein Fehlschlag beim Anstoßen darf
+      # diesen Workflow nicht zusätzlich rot färben, deshalb `|| true`.
+      - name: Sammellauf sicherheitshalber anstoßen
+        if: always() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run quellen-sammeln.yml \
+            --repo "${{ github.repository }}" --ref main \
+            && echo "Sammellauf angefordert." \
+            || echo "::warning::Sammellauf ließ sich nicht anstoßen – die eigenen Termine bleiben."
