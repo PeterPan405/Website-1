@@ -73,11 +73,11 @@ const seiten: SearchEntry[] = [
     keywords: ['redaktion', 'team', 'ueber uns'],
   },
   {
-    title: 'Unternehmensphilosophie',
+    title: 'Unsere Philosophie',
     href: '/unternehmensphilosophie',
     kind: 'Plattform',
     hint: 'Grundsätze der redaktionellen Arbeit.',
-    keywords: ['leitbild', 'werte', 'philosophie'],
+    keywords: ['leitbild', 'werte', 'philosophie', 'unternehmensphilosophie'],
   },
   {
     title: 'Kontakt',
