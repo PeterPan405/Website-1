@@ -186,6 +186,14 @@ export default async function MarketsOverviewPage() {
           >
             das Tagesbild
           </Link>
+          . Wie stark diese Werte gemeinsam schwanken – und ob „breit gestreut“ hier
+          überhaupt zutrifft –, steht unter{' '}
+          <Link
+            href="/maerkte/zusammenhang"
+            className="text-markets font-medium underline underline-offset-2"
+          >
+            Zusammenhang und Schwankung
+          </Link>
           .
         </p>
 

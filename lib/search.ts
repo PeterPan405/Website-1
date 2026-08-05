@@ -383,6 +383,25 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     keywords: ['tagesbild', 'marktbericht', 'breite', 'gewinner', 'verlierer', 'heute'],
   })
   eintraege.push({
+    title: 'Was läuft mit was',
+    href: '/maerkte/zusammenhang',
+    kind: 'Bereich',
+    hint: 'Wie stark elf Leitwerte gemeinsam schwankten – und wie weit ihre Wochen auseinanderlagen',
+    keywords: [
+      'korrelation',
+      'zusammenhang',
+      'gleichlauf',
+      'streuung',
+      'diversifikation',
+      'volatilitaet',
+      'volatilität',
+      'schwankung',
+      'schwankungsbreite',
+      'standardabweichung',
+      'risiko',
+    ],
+  })
+  eintraege.push({
     title: 'Zwei Aktien vergleichen',
     href: '/maerkte/vergleich',
     kind: 'Bereich',
