@@ -14,10 +14,10 @@ import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = buildMetadata({
-  title: withBrand('Unternehmensphilosophie'),
+  title: withBrand('Unsere Philosophie'),
   description: `Wofür ${siteConfig.name} steht: Grundüberzeugungen zur Geldanlage, redaktionelle Grundsätze, klare Abgrenzung und offengelegte Finanzierung.`,
   path: '/unternehmensphilosophie',
-  ogTitle: `Unternehmensphilosophie von ${siteConfig.name}`,
+  ogTitle: `Die Philosophie von ${siteConfig.name}`,
   // Solange der Text aussteht, bleibt die Seite aus dem Index. Sie ist über die
   // Fußzeile erreichbar, taucht aber nicht in Suchergebnissen auf.
   noIndex: !PHILOSOPHY_PUBLISHED,
@@ -53,9 +53,9 @@ export default function PhilosophyPage() {
     <>
       <PageHeader
         area="learn"
-        title="Unternehmensphilosophie"
+        title="Unsere Philosophie"
         lead={`Wofür ${siteConfig.name} steht – und wofür ausdrücklich nicht.`}
-        breadcrumbs={<Breadcrumbs items={[{ name: 'Unternehmensphilosophie' }]} />}
+        breadcrumbs={<Breadcrumbs items={[{ name: 'Unsere Philosophie' }]} />}
       />
 
       <div className="fk-container py-12 sm:py-16">

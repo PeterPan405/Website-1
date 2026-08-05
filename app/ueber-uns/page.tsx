@@ -163,7 +163,7 @@ export default async function AboutPage() {
               Kontakt aufnehmen
             </Link>
             <Link href="/unternehmensphilosophie" className="fk-btn-secondary">
-              Unternehmensphilosophie
+              Unsere Philosophie
               <Icon name="arrow-right" className="size-4" />
             </Link>
             <Link href="/lernen" className="fk-btn-ghost">

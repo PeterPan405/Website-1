@@ -327,7 +327,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: 'Plattform',
     links: [
       { label: 'Über uns', href: '/ueber-uns' },
-      { label: 'Unternehmensphilosophie', href: '/unternehmensphilosophie' },
+      { label: 'Unsere Philosophie', href: '/unternehmensphilosophie' },
       { label: 'Kontakt', href: '/kontakt' },
     ],
   },
