@@ -1,0 +1,145 @@
+name: Ausgabe-Wächter
+
+# Schlägt Alarm, wenn die Ausgabe des Tages fehlt.
+#
+# ## Warum es das braucht
+#
+# Der teuerste Fehler dieses Projekts ist nicht der rote Lauf, sondern der
+# stille. Am 4. und 5. August 2026 hat die Nachrichten-Routine um 03:33 UTC
+# gefeuert und **nichts** angelegt – ohne Fehler, ohne Mail, ohne Eintrag.
+# Aufgefallen ist es beide Male dem Betreiber, Stunden später, weil auf dem
+# Telefon die Meldungen von gestern standen.
+#
+# Nachgezählt am 5. August: Von den fünf Ausgaben zwischen dem 31. Juli und dem
+# 4. August kam **keine einzige** aus der Routine. Alle fünf entstanden in einer
+# Sitzung von Hand und wurden über einen Pull Request gemergt. Die Automatik
+# lief, sie lieferte nur nichts – und niemand erfuhr davon.
+#
+# Dieser Workflow macht daraus einen roten Lauf. Ein roter Lauf schickt eine
+# Mail, und die kommt an: Genau über diesen Kanal hat der Betreiber die
+# Paketbau-Fehler bemerkt.
+#
+# ## Was er nicht kann
+#
+# Er schreibt keine Artikel. Er sagt nur, dass welche fehlen – früh genug, um
+# den Tag noch zu retten, statt am Abend festzustellen, dass die Website seit
+# dem Morgen alt aussieht.
+
+on:
+  schedule:
+    # 04:41 UTC – 6:41 Uhr deutscher Sommerzeit.
+    #
+    # Die Routine beginnt um 03:30 UTC und braucht 45 bis 70 Minuten. Um 04:41
+    # ist sie also entweder fertig oder gescheitert; früher zu prüfen hieße,
+    # einen laufenden Vorgang für einen Ausfall zu halten.
+    #
+    # Zur Zeitumstellung: im Winter `41 5`.
+    - cron: '41 4 * * *'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Stichtag JJJJ-MM-TT (leer = heute)'
+        required: false
+        type: string
+
+concurrency:
+  group: ausgabe-waechter
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Steht die Ausgabe von heute?
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Ausgabe im Repository
+        id: repo
+        run: |
+          tag="${{ inputs.tag }}"
+          [ -n "$tag" ] || tag=$(date -u +%Y-%m-%d)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Stichtag: $tag"
+
+          fehlt=""
+
+          # 1. Die Tagesausgabe als Datei.
+          if [ -f "data/editions/$tag.ts" ]; then
+            echo "  ✓ data/editions/$tag.ts vorhanden"
+          else
+            fehlt="$fehlt Ausgabendatei"
+            echo "  ✗ data/editions/$tag.ts FEHLT"
+          fi
+
+          # 2. Eingetragen in das Register – beides, Import und Array.
+          kurz="edition$(echo "$tag" | tr -d '-')"
+          if grep -q "$kurz" data/editions/index.ts; then
+            echo "  ✓ $kurz steht in data/editions/index.ts"
+          else
+            fehlt="$fehlt Registereintrag"
+            echo "  ✗ $kurz fehlt in data/editions/index.ts"
+          fi
+
+          # 3. Mindestens ein Artikel mit dem heutigen Erscheinungstag.
+          #
+          # Die Ausgabe allein reicht nicht: Der Tagesüberblick und die
+          # Artikelliste sind zwei Bestände, und schon einmal war nur einer
+          # von beiden gepflegt.
+          anzahl=$(grep -c "publishedAt: '$tag" data/news.ts || true)
+          if [ "$anzahl" -gt 0 ]; then
+            echo "  ✓ $anzahl Artikel mit publishedAt vom $tag"
+          else
+            fehlt="$fehlt Artikel"
+            echo "  ✗ kein Artikel mit publishedAt vom $tag"
+          fi
+
+          echo "fehlt=$fehlt" >> "$GITHUB_OUTPUT"
+
+      - name: Ausgabe auf der Website
+        id: live
+        continue-on-error: true
+        run: |
+          tag="${{ steps.repo.outputs.tag }}"
+          URL="https://iminvests.de/news/tag/$tag/"
+          UA="Mozilla/5.0 (compatible; IM-Invests-Waechter/1.0)"
+
+          # Der Hoster weist Rechenzentrums-Adressen zeitweise ab. Ein
+          # Fehlschlag hier ist deshalb kein Beweis – deshalb
+          # `continue-on-error` und ein eigener Ausgabewert.
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -A "$UA" --max-time 25 "$URL" || echo "000")
+          echo "  $URL → $code"
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+
+      - name: Ergebnis
+        run: |
+          tag="${{ steps.repo.outputs.tag }}"
+          fehlt="${{ steps.repo.outputs.fehlt }}"
+          code="${{ steps.live.outputs.code }}"
+
+          if [ -z "$fehlt" ]; then
+            echo "Die Ausgabe vom $tag steht im Repository."
+            case "$code" in
+              200) echo "Und sie wird ausgeliefert. Nichts zu tun." ;;
+              000) echo "::notice::Die Website war von hier aus nicht erreichbar (der Hoster weist Läufer-Adressen zeitweise ab). Das Repository stimmt." ;;
+              *)   echo "::warning::Die Ausgabe steht im Repository, aber $tag antwortet mit $code – vermutlich ist der Paketbau noch nicht durchgelaufen." ;;
+            esac
+            exit 0
+          fi
+
+          echo "::error::Die Ausgabe vom $tag ist unvollständig oder fehlt ganz. Es fehlt:$fehlt"
+          echo ""
+          echo "Was das heißt: Die Nachrichten-Routine hat um 03:30 UTC gefeuert"
+          echo "und kein Ergebnis hinterlassen. Auf der Website stehen weiterhin"
+          echo "die Meldungen von gestern."
+          echo ""
+          echo "Erste Schritte:"
+          echo "  1. Hat 'Quellen sammeln' heute einen Lauf? Ohne ihn hat die"
+          echo "     Routine keine gelesene Quelle."
+          echo "     Von Hand: Actions > Quellen sammeln > Run workflow."
+          echo "  2. Steht auf dem Zweig 'quellen-heute' eine Datei von heute?"
+          echo "     git show origin/quellen-heute:quellen.txt | head -1"
+          echo "  3. Danach die Ausgabe in einer Sitzung nachziehen."
+          exit 1
