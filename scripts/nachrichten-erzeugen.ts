@@ -144,6 +144,20 @@ function preisSatz(
   return `${dollar.toFixed(3)} $ (rund ${(dollar * 30).toFixed(2)} $ im Monat, wenn jeder Tag so aussieht)`
 }
 
+/**
+ * Woher die Ausgabe stammt – ein Satz für den Kopf der Ausgabedatei.
+ *
+ * Ohne Quellendatei darf dort nicht „Quellenlage laut Kopf der Datei:" mit
+ * einem leeren Wert stehen. Das sähe nach einer Angabe aus, wo keine ist –
+ * und eine leere Herkunftsangabe ist schlimmer als eine ehrliche Lücke.
+ */
+function herkunftssatz(kopf: string): string {
+  const sauber = kopf.replace(/^#\s*/, '').trim()
+  return sauber
+    ? `Quellenlage laut Kopf der Datei: ${sauber}`
+    : 'Ohne gesammelte Quellendatei erzeugt – die Herkunft steht an jedem Artikel.'
+}
+
 function erlaubteWerte(datei: string, muster: RegExp): Set<string> {
   const inhalt = readFileSync(datei, 'utf8')
   const treffer = new Set<string>()
@@ -621,9 +635,10 @@ async function main() {
   const ausAntwortdatei = Boolean(process.env.ANTWORT_DATEI)
 
   let quellen = ''
+  let kopf = ''
   if (quellendatei && existsSync(quellendatei)) {
     quellen = readFileSync(quellendatei, 'utf8')
-    const kopf = quellen.split('\n')[0] ?? ''
+    kopf = quellen.split('\n')[0] ?? ''
     if (!kopf.includes(heute)) {
       console.log(
         `::warning::Die Quellendatei ist nicht von heute (${kopf.trim().slice(0, 120)}).`
@@ -726,7 +741,7 @@ async function main() {
  *
  * Erzeugt von \`scripts/nachrichten-erzeugen.ts\` auf einem GitHub-Läufer aus
  * den Quellen, die \`quellen-sammeln.yml\` am selben Morgen abgerufen hat.
- * Quellenlage laut Kopf der Datei: ${kopf.replace(/^#\s*/, '').trim()}
+ * ${herkunftssatz(kopf)}
  */
 export const edition: DailyEdition = {
   date: ${ts(heute)},
