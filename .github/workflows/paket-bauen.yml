@@ -527,6 +527,55 @@ jobs:
             test -f "$NEU/index.html"
             test -f "$NEU/.htaccess"
 
+            # Die Dateien der letzten Tage mitnehmen, statt sie wegzuwerfen.
+            #
+            # ## Warum
+            #
+            # Alles unter `_next/static` trägt eine Prüfsumme im Namen. Beim
+            # Umhängen verschwand die vorige Fassung im selben Augenblick, in
+            # dem die neue erschien – und jeder, der noch das HTML von vorhin
+            # im Zwischenspeicher hatte, fragte nach einem Stylesheet, das es
+            # nicht mehr gab. Ergebnis: die Seite ohne jede Formatierung.
+            #
+            # Am 6. August 2026 ist genau das passiert, auf einem Rechner
+            # hinter einem Firmen-Proxy. Gegen so eine Schicht hilft keine
+            # Kopfzeile: `no-cache` steht in `.htaccess`, und sie hielt sich
+            # nicht daran.
+            #
+            # Also andersherum. Prüfsummen-Dateien sind unveränderlich – zwei
+            # Fassungen nebeneinander widersprechen sich nie. Wer altes HTML
+            # hat, bekommt das dazu passende Stylesheet und sieht eine
+            # vollständige Seite; beim nächsten Abruf holt er das neue HTML.
+            # Das ist es, was jedes CDN an dieser Stelle tut.
+            #
+            # ## Warum drei Tage
+            #
+            # Ohne Grenze wüchse der Ordner unbegrenzt: Jeder Lauf erbt, was
+            # der vorige geerbt hat. Die Zeitstempel bleiben beim Kopieren
+            # erhalten (`cp -p`), damit altern die Dateien tatsächlich und
+            # fallen von selbst heraus. Drei Tage sind großzügig für einen
+            # Zwischenspeicher und knapp genug, dass sich nichts ansammelt.
+            #
+            # Schlägt der Schritt fehl, wird trotzdem veröffentlicht: Eine
+            # Seite ohne Altbestand ist besser als keine.
+            if [ -d "$ZIEL/_next/static" ]; then
+              uebernommen=0
+              while IFS= read -r -d '' datei; do
+                rel="${datei#"$ZIEL/_next/static/"}"
+                nach="$NEU/_next/static/$rel"
+                if [ ! -e "$nach" ]; then
+                  mkdir -p "$(dirname "$nach")"
+                  # Kein `&&`: Unter `set -e` beendete ein fehlgeschlagenes
+                  # `cp` als letzter Befehl der Schleife den ganzen Lauf – und
+                  # damit die Veröffentlichung, wegen einer Altdatei.
+                  if cp -p "$datei" "$nach"; then
+                    uebernommen=$((uebernommen + 1))
+                  fi
+                fi
+              done < <(find "$ZIEL/_next/static" -type f -mtime -3 -print0) || true
+              echo "Aus dem vorigen Stand übernommen: $uebernommen Dateien."
+            fi
+
             mkdir -p "$(dirname "$ZIEL")"
             if [ -d "$ZIEL" ]; then mv "$ZIEL" "$ALT"; fi
             mv "$NEU" "$ZIEL"
