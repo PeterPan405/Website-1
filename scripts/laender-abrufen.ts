@@ -71,6 +71,46 @@ const EINKOMMENSREIHEN = [
 ]
 
 /**
+ * Arbeitslosenquote und Inflation – zwei Reihen, die anders zu lesen sind.
+ *
+ * Bisher zeigte der Globus ausschliesslich Bestandsgroessen: wie gross, wie
+ * reich, wie verschuldet. Diese beiden sind **Raten** und verhalten sich in
+ * drei Punkten anders. Alle drei stehen in der Erklaerung auf der Seite, weil
+ * sie sonst zu falschen Schluessen fuehren.
+ *
+ * - `SL.UEM.TOTL.ZS` – Arbeitslose in Prozent der Erwerbspersonen. **Ein
+ *   Modellwert der ILO**, keine nationale Meldung: Die Laender zaehlen
+ *   verschieden, und die ILO rechnet sie auf eine gemeinsame Abgrenzung um,
+ *   damit ein Vergleich ueberhaupt moeglich ist. Wer die deutsche Zahl der
+ *   Bundesagentur danebenlegt, findet einen Unterschied – und der ist kein
+ *   Fehler, sondern der Preis der Vergleichbarkeit.
+ * - `FP.CPI.TOTL.ZG` – Verbraucherpreise, Veraenderung zum Vorjahr in Prozent.
+ *   Das ist der **Jahresdurchschnitt eines abgeschlossenen Jahres**, nicht die
+ *   Rate von heute. In einer Zeit fallender Inflation steht auf der Karte
+ *   deshalb eine hoehere Zahl als in den Nachrichten.
+ *
+ * ## Warum hier nichts geschaetzt wird
+ *
+ * Bei Lohn und Vermoegen fuellt eine Regression aus der Kaufkraft die Luecken.
+ * Hier waere das falsch: Arbeitslosigkeit und Inflation haengen nicht am
+ * Wohlstand, sondern an Konjunktur, Waehrungsordnung und Politik. Die Schweiz
+ * und Spanien sind aehnlich reich und liegen bei der Arbeitslosigkeit um den
+ * Faktor fuenf auseinander. Eine Schaetzung daraus waere eine erfundene Zahl,
+ * und eine Luecke ist ehrlicher.
+ *
+ * ## Warum die Farbskala das aushaelt
+ *
+ * Inflation kann negativ sein (Deflation) und dreistellig (Venezuela, Simbabwe).
+ * Die Karte teilt nach Quantilen, nicht nach gleich breiten Klassen – Rang
+ * statt Abstand. Ein einzelnes Land mit 400 Prozent verschiebt damit keine
+ * Farbe, und negative Werte sortieren sich von selbst nach unten.
+ */
+const RATENREIHEN = [
+  { feld: 'arbeitslosenquote' as const, indikator: 'SL.UEM.TOTL.ZS' },
+  { feld: 'inflation' as const, indikator: 'FP.CPI.TOTL.ZG' },
+]
+
+/**
  * Schuldenquote aus der Datamapper-Schnittstelle des IWF.
  *
  * `GGXWDG_NGDP` ist die Bruttoschuld des Gesamtstaats in Prozent des BIP – die
@@ -704,18 +744,31 @@ async function ladeVorherigenStand(): Promise<Record<string, unknown> | null> {
 
 async function main() {
   console.log('Lade Weltbank-Reihen …')
-  const [gdpRoh, popRoh, codesRoh, schulden, loehne, kurse, bne, bipKkp, vorher] =
-    await Promise.all([
-      ladeCsv(GDP_URL),
-      ladeCsv(POP_URL),
-      ladeCsv(CODES_URL),
-      ladeSchuldenquoten(),
-      ladeLoehne(),
-      ladeJahresendkurse(),
-      ladeWeltbankreihe(EINKOMMENSREIHEN[0].indikator),
-      ladeWeltbankreihe(EINKOMMENSREIHEN[1].indikator),
-      ladeVorherigenStand(),
-    ])
+  const [
+    gdpRoh,
+    popRoh,
+    codesRoh,
+    schulden,
+    loehne,
+    kurse,
+    bne,
+    bipKkp,
+    arbeitslos,
+    inflation,
+    vorher,
+  ] = await Promise.all([
+    ladeCsv(GDP_URL),
+    ladeCsv(POP_URL),
+    ladeCsv(CODES_URL),
+    ladeSchuldenquoten(),
+    ladeLoehne(),
+    ladeJahresendkurse(),
+    ladeWeltbankreihe(EINKOMMENSREIHEN[0].indikator),
+    ladeWeltbankreihe(EINKOMMENSREIHEN[1].indikator),
+    ladeWeltbankreihe(RATENREIHEN[0].indikator),
+    ladeWeltbankreihe(RATENREIHEN[1].indikator),
+    ladeVorherigenStand(),
+  ])
 
   const gdp = zuReihe(gdpRoh)
   const pop = zuReihe(popRoh)
@@ -765,6 +818,8 @@ async function main() {
       medianvermoegen?: { wert: number; jahr: number }
       bneProKopf?: { wert: number; jahr: number }
       bipProKopfKKP?: { wert: number; jahr: number }
+      arbeitslosenquote?: { wert: number; jahr: number }
+      inflation?: { wert: number; jahr: number }
     }
   > = {}
 
@@ -777,6 +832,8 @@ async function main() {
         medianvermoegen?: { wert: number; jahr: number }
         bneProKopf?: { wert: number; jahr: number }
         bipProKopfKKP?: { wert: number; jahr: number }
+        arbeitslosenquote?: { wert: number; jahr: number }
+        inflation?: { wert: number; jahr: number }
       }
     >) ?? {}
 
@@ -825,6 +882,18 @@ async function main() {
         const gewaehlt = neu ?? alt
         return gewaehlt ? { bipProKopfKKP: gewaehlt } : {}
       })(),
+      ...(() => {
+        const neu = arbeitslos?.get(code.alpha3)
+        const alt = vorherigeLaender[code.alpha3]?.arbeitslosenquote
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { arbeitslosenquote: gewaehlt } : {}
+      })(),
+      ...(() => {
+        const neu = inflation?.get(code.alpha3)
+        const alt = vorherigeLaender[code.alpha3]?.inflation
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { inflation: gewaehlt } : {}
+      })(),
     }
   }
 
@@ -837,8 +906,12 @@ async function main() {
   ).length
   const mitBne = Object.values(laender).filter((land) => land.bneProKopf).length
   const mitKkp = Object.values(laender).filter((land) => land.bipProKopfKKP).length
+  const mitArbeitslos = Object.values(laender).filter(
+    (land) => land.arbeitslosenquote
+  ).length
+  const mitInflation = Object.values(laender).filter((land) => land.inflation).length
   console.log(
-    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn, ${mitVermoegen} mit Medianvermoegen, ${mitBne} mit Einkommen je Kopf und ${mitKkp} mit Kaufkraft je Kopf.`
+    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn, ${mitVermoegen} mit Medianvermoegen, ${mitBne} mit Einkommen je Kopf, ${mitKkp} mit Kaufkraft je Kopf, ${mitArbeitslos} mit Arbeitslosenquote und ${mitInflation} mit Inflation.`
   )
 
   if (mitBip < 150) {
@@ -883,6 +956,18 @@ async function main() {
       url: 'https://data.worldbank.org/indicator/NY.GNP.PCAP.CD',
       abgrenzung:
         'Bruttonationaleinkommen je Kopf in US-Dollar nach der Atlas-Methode sowie Wirtschaftsleistung je Kopf zu Kaufkraftparitaeten. Beides ist kein Lohn: Es umfasst die gesamte Wertschoepfung einschliesslich Unternehmensgewinnen und Staatseinnahmen, geteilt durch die Einwohnerzahl. Genommen wird je Land das juengste Jahr mit Wert; das Jahr steht an jedem Eintrag.',
+    },
+    arbeitslosenQuelle: {
+      label: 'Weltbank, World Development Indicators (SL.UEM.TOTL.ZS)',
+      url: 'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS',
+      abgrenzung:
+        'Arbeitslose in Prozent der Erwerbspersonen, Modellschaetzung der ILO. Keine nationale Meldung: Die Laender zaehlen nach verschiedenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Deshalb weicht der Wert von der Zahl ab, die im jeweiligen Land veroeffentlicht wird – das ist der Preis der Vergleichbarkeit, kein Fehler.',
+    },
+    inflationQuelle: {
+      label: 'Weltbank, World Development Indicators (FP.CPI.TOTL.ZG)',
+      url: 'https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG',
+      abgrenzung:
+        'Verbraucherpreise, Veraenderung gegenueber dem Vorjahr in Prozent. Der Jahresdurchschnitt eines abgeschlossenen Jahres, nicht die Rate von heute – in einer Zeit fallender Inflation steht hier deshalb eine hoehere Zahl als in den Nachrichten. Der Warenkorb wird je Land national festgelegt und ist zwischen Laendern nicht deckungsgleich.',
     },
     laender,
   }
