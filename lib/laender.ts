@@ -83,6 +83,8 @@ export interface Land {
   medianvermoegen?: Kennwert
   bneProKopf?: Kennwert
   bipProKopfKKP?: Kennwert
+  arbeitslosenquote?: Kennwert
+  inflation?: Kennwert
 
   indizes: Landeskurs[]
   aktien: Landeskurs[]
@@ -98,6 +100,8 @@ export type MetrikId =
   | 'medianvermoegen'
   | 'bneProKopf'
   | 'bipProKopfKKP'
+  | 'arbeitslosenquote'
+  | 'inflation'
   | 'kurse'
 
 export interface Metrik {
@@ -192,6 +196,36 @@ export const metriken: Metrik[] = [
     hoherWertIstGross: true,
   },
   {
+    id: 'arbeitslosenquote',
+    label: 'Arbeitslosenquote',
+    /*
+      Der Hinweis auf die Modellschätzung gehört in die Erklärung, nicht ins
+      Kleingedruckte.
+
+      Wer in Deutschland auf die Karte schaut, hat die Zahl der Bundesagentur
+      im Kopf und findet hier eine andere. Ohne den Grund daneben sieht das
+      nach einem Fehler aus – dabei ist es die Bedingung dafür, dass Spanien
+      und Japan überhaupt nebeneinanderstehen dürfen.
+    */
+    erklaerung:
+      'Anteil der Arbeitslosen an allen Erwerbspersonen. Eine Modellschätzung der Internationalen Arbeitsorganisation: Jedes Land zählt nach eigenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Der Wert weicht deshalb von der national veröffentlichten Zahl ab – das ist der Preis dafür, dass sich Länder vergleichen lassen. Gezählt wird nur, wer Arbeit sucht; wer die Suche aufgegeben hat, taucht nicht auf.',
+    einheit: 'Prozent der Erwerbspersonen',
+    hoherWertIstGross: true,
+  },
+  {
+    id: 'inflation',
+    label: 'Inflation',
+    /*
+      Zwei Missverständnisse sind vorprogrammiert, und beide stehen deshalb im
+      ersten und zweiten Satz: Es ist ein Jahresdurchschnitt, kein aktueller
+      Wert, und der Warenkorb ist je Land ein anderer.
+    */
+    erklaerung:
+      'Wie stark die Verbraucherpreise gegenüber dem Vorjahr gestiegen sind. Das ist der Durchschnitt eines abgeschlossenen Jahres, nicht die Rate von heute – wenn die Inflation gerade fällt, steht hier eine höhere Zahl als in den Nachrichten. Welche Waren gemessen werden, legt jedes Land selbst fest; die Körbe sind zwischen Ländern nicht deckungsgleich. Ein negativer Wert bedeutet fallende Preise.',
+    einheit: 'Prozent gegenüber dem Vorjahr',
+    hoherWertIstGross: true,
+  },
+  {
     id: 'kurse',
     label: 'Kurse auf dieser Seite',
     erklaerung:
@@ -237,12 +271,16 @@ type Momentaufnahme = {
       medianvermoegen?: { wert: number; jahr: number }
       bneProKopf?: { wert: number; jahr: number }
       bipProKopfKKP?: { wert: number; jahr: number }
+      arbeitslosenquote?: { wert: number; jahr: number }
+      inflation?: { wert: number; jahr: number }
     }
   >
   schuldenQuelle?: { label: string; url: string; abgrenzung: string }
   lohnQuelle?: { label: string; url: string; abgrenzung: string }
   vermoegenQuelle?: { label: string; url: string; abgrenzung: string }
   einkommenQuelle?: { label: string; url: string; abgrenzung: string }
+  arbeitslosenQuelle?: { label: string; url: string; abgrenzung: string }
+  inflationQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -581,6 +619,34 @@ function baueLaender(): Land[] {
               },
             }
           : {}),
+      /*
+        Arbeitslosenquote und Inflation: gemessen oder gar nicht.
+
+        Bei Lohn und Vermögen füllt eine Regression aus der Kaufkraft die
+        Lücken. Hier wäre das falsch. Beide Raten hängen nicht am Wohlstand,
+        sondern an Konjunktur, Währungsordnung und Politik: Die Schweiz und
+        Spanien sind ähnlich reich und liegen bei der Arbeitslosigkeit um den
+        Faktor fünf auseinander. Eine daraus geschätzte Zahl wäre erfunden,
+        und eine Lücke ist ehrlicher als eine Erfindung.
+      */
+      ...(basis?.arbeitslosenquote
+        ? {
+            arbeitslosenquote: {
+              wert: basis.arbeitslosenquote.wert,
+              zeitraum: String(basis.arbeitslosenquote.jahr),
+              quelle: 'weltbank-arbeitslosigkeit',
+            },
+          }
+        : {}),
+      ...(basis?.inflation
+        ? {
+            inflation: {
+              wert: basis.inflation.wert,
+              zeitraum: String(basis.inflation.jahr),
+              quelle: 'weltbank-inflation',
+            },
+          }
+        : {}),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
     }
@@ -616,6 +682,8 @@ assertLaenderValid({
     'oecd-sdmx',
     'oecd-vermoegen',
     'weltbank-einkommen',
+    'weltbank-arbeitslosigkeit',
+    'weltbank-inflation',
     'geschaetzt-kaufkraft',
     'geschaetzt-vermoegen',
     'geschaetzt-reihe',
@@ -662,6 +730,10 @@ export function wertFuer(land: Land, metrik: MetrikId): number | null {
       return land.bneProKopf?.wert ?? null
     case 'bipProKopfKKP':
       return land.bipProKopfKKP?.wert ?? null
+    case 'arbeitslosenquote':
+      return land.arbeitslosenquote?.wert ?? null
+    case 'inflation':
+      return land.inflation?.wert ?? null
     case 'kurse': {
       const anzahl = land.indizes.length + land.aktien.length
       // Null Kurse ist eine Aussage, kein fehlender Wert – deshalb 0 und nicht

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Globus, type GlobusLand } from '@/components/globus/Globus'
 import { cn } from '@/lib/cn'
 import { quantilsgrenzen, stufeFuer } from '@/lib/globus-geometrie'
-import { formatNumber } from '@/lib/format'
+import { formatNumber, formatNumberSigned } from '@/lib/format'
 
 /**
  * Der Globus mit allem, was ihn bedienbar macht.
@@ -33,6 +33,8 @@ export interface AnsichtLand {
   schuldenquote?: { wert: number; zeitraum: string; quelle: string }
   durchschnittsgehalt?: { wert: number; zeitraum: string; quelle: string }
   medianvermoegen?: { wert: number; zeitraum: string; quelle: string }
+  arbeitslosenquote?: { wert: number; zeitraum: string; quelle: string }
+  inflation?: { wert: number; zeitraum: string; quelle: string }
   indizes: Kurs[]
   aktien: Kurs[]
 }
@@ -128,6 +130,10 @@ export function GlobusAnsicht({
           return land.durchschnittsgehalt?.wert ?? null
         case 'medianvermoegen':
           return land.medianvermoegen?.wert ?? null
+        case 'arbeitslosenquote':
+          return land.arbeitslosenquote?.wert ?? null
+        case 'inflation':
+          return land.inflation?.wert ?? null
         case 'kurse':
           return land.indizes.length + land.aktien.length
         default:
@@ -376,8 +382,19 @@ export function GlobusAnsicht({
  * es der Zahl ansieht.
  *
  * Die übrigen Kennzahlen stehen in ihrer eigenen Einheit und brauchen nichts.
+ *
+ * ## Raten brauchen eine Nachkommastelle
+ *
+ * Arbeitslosenquote und Inflation liegen zwischen etwa −2 und 30. Ohne
+ * Nachkommastelle fielen die Klassengrenzen zusammen: Aus 2,3 · 2,9 · 3,4 · 4,1
+ * würde „2 · 3 · 3 · 4“, und zwei benachbarte Klassen sähen aus, als hätten sie
+ * dieselbe Grenze. Bei Beträgen in Dollar oder Personen spielt die Stelle
+ * keine Rolle, hier ist sie der Unterschied.
  */
+const RATENMETRIKEN = new Set(['arbeitslosenquote', 'inflation', 'schuldenquote'])
+
 function grenzenbeschriftung(wert: number, metrikId: string): string {
+  if (RATENMETRIKEN.has(metrikId)) return formatNumber(wert, 1)
   if (metrikId !== 'bip') return formatNumber(wert)
   // Unterhalb einer Milliarde bliebe von „0,3 Mrd.“ nach dem Runden nichts.
   return wert >= 1000 ? `${formatNumber(wert / 1000)} Mrd.` : `${formatNumber(wert)} Mio.`
@@ -499,6 +516,32 @@ function Landtafel({
         : null,
       fussnote: land.medianvermoegen
         ? `${quellen[land.medianvermoegen.quelle]?.label ?? ''}, ${land.medianvermoegen.zeitraum}`
+        : undefined,
+    },
+    {
+      label: 'Arbeitslosenquote',
+      wert: land.arbeitslosenquote
+        ? `${formatNumber(land.arbeitslosenquote.wert, 1)} % der Erwerbspersonen`
+        : null,
+      fussnote: land.arbeitslosenquote
+        ? `${quellen[land.arbeitslosenquote.quelle]?.label ?? ''}, ${land.arbeitslosenquote.zeitraum}`
+        : undefined,
+    },
+    {
+      /*
+        Das Jahr in der Fußnote ist hier keine Formsache, sondern die
+        Hauptsache: Eine Inflationsrate ohne Bezugsjahr ist wertlos, und die
+        Reihe hinkt dem laufenden Jahr immer hinterher.
+
+        Das Vorzeichen wird ausgeschrieben – bei fallenden Preisen ist es die
+        ganze Aussage, und ein übersehenes Minus dreht sie um.
+      */
+      label: 'Inflation',
+      wert: land.inflation
+        ? `${formatNumberSigned(land.inflation.wert, 1)} % gegenüber Vorjahr`
+        : null,
+      fussnote: land.inflation
+        ? `${quellen[land.inflation.quelle]?.label ?? ''}, ${land.inflation.zeitraum}`
         : undefined,
     },
   ]

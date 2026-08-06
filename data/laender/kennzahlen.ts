@@ -178,6 +178,32 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
     abgrenzung:
       'Bruttonationaleinkommen je Kopf nach der Atlas-Methode (NY.GNP.PCAP.CD) und Wirtschaftsleistung je Kopf zu Kaufkraftparitäten (NY.GDP.PCAP.PP.CD). Je Land das jüngste Jahr mit Wert; das Jahr steht an jedem Eintrag. Wird von scripts/laender-abrufen.ts geholt.',
   },
+
+  /**
+   * Zwei Reihen ohne Schätzung – anders als bei Lohn und Vermögen.
+   *
+   * Dort füllt eine Regression aus der Kaufkraft die Lücken, und die Schätzung
+   * trägt eine eigene Quellenangabe. Hier gibt es diesen Ausweg bewusst nicht:
+   * Arbeitslosigkeit und Inflation hängen nicht am Wohlstand eines Landes,
+   * sondern an Konjunktur, Währungsordnung und Politik. Die Schweiz und
+   * Spanien sind ähnlich reich und liegen bei der Arbeitslosigkeit um den
+   * Faktor fünf auseinander.
+   *
+   * Wo die Weltbank keinen Wert führt, steht deshalb „keine Angabe
+   * hinterlegt“ – eine Lücke ist ehrlicher als eine Erfindung.
+   */
+  'weltbank-arbeitslosigkeit': {
+    label: 'Weltbank / ILO, World Development Indicators',
+    url: 'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS',
+    abgrenzung:
+      'Arbeitslose in Prozent der Erwerbspersonen (SL.UEM.TOTL.ZS), Modellschätzung der Internationalen Arbeitsorganisation. Keine nationale Meldung: Jedes Land zählt nach eigenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Der Wert weicht deshalb von der im jeweiligen Land veröffentlichten Zahl ab. Wird von scripts/laender-abrufen.ts geholt.',
+  },
+  'weltbank-inflation': {
+    label: 'Weltbank, World Development Indicators',
+    url: 'https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG',
+    abgrenzung:
+      'Verbraucherpreise, Veränderung gegenüber dem Vorjahr in Prozent (FP.CPI.TOTL.ZG). Der Durchschnitt eines abgeschlossenen Jahres, nicht die Rate von heute. Der Warenkorb wird je Land national festgelegt und ist zwischen Ländern nicht deckungsgleich. Wird von scripts/laender-abrufen.ts geholt.',
+  },
 }
 
 /**

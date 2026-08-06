@@ -1,4 +1,4 @@
-import { formatNumber } from '@/lib/format'
+import { formatNumber, formatNumberSigned } from '@/lib/format'
 import type { Land } from '@/lib/laender'
 
 /**
@@ -38,6 +38,8 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
               'Schulden (% BIP)',
               'Gehalt (US-$/Jahr)',
               'Medianvermögen (US-$)',
+              'Arbeitslos (%)',
+              'Inflation (%)',
               'Kurse',
             ].map((spalte, index) => (
               <th
@@ -80,6 +82,25 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
                 <Zelle
                   wert={
                     land.medianvermoegen ? formatNumber(land.medianvermoegen.wert) : null
+                  }
+                />
+                <Zelle
+                  wert={
+                    land.arbeitslosenquote
+                      ? formatNumber(land.arbeitslosenquote.wert, 1)
+                      : null
+                  }
+                />
+                {/*
+                  Mit Vorzeichen, anders als die übrigen Spalten.
+
+                  Dreizehn Länder haben fallende Preise. Ein Minus, das beim
+                  Vorlesen untergeht, dreht die Aussage um – und in einer
+                  Zahlenspalte übersieht man es auch beim Lesen leicht.
+                */}
+                <Zelle
+                  wert={
+                    land.inflation ? formatNumberSigned(land.inflation.wert, 1) : null
                   }
                 />
                 <Zelle wert={kurse > 0 ? String(kurse) : null} />
