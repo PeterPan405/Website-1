@@ -421,25 +421,35 @@ jobs:
           # den Zugang, sondern über den Augenblick – und er kostete einen
           # roten Lauf samt Fehlermail für etwas, das sich von selbst erledigt.
           #
-          # Vier Versuche mit wachsendem Abstand (5, 10, 20 Sekunden). Bleibt
-          # der Port über eine gute Minute stumm, ist es die Meldung wert.
+          # **Am 6. August 2026 hat auch das nicht gereicht.** Der Lauf um
+          # 05:38 baute 1509 Seiten sauber, packte das Archiv – und scheiterte
+          # nach 95 Sekunden hier. Die vier Versuche waren aufgebraucht, der
+          # Hoster brauchte länger. Gekostet hat das nicht den Upload, sondern
+          # einen kompletten Neubau von acht Minuten, weil der Bau und die
+          # Übertragung im selben Lauf hängen.
+          #
+          # Jetzt **sechs** Versuche mit gedeckeltem Abstand: 5, 10, 20, 40, 60
+          # Sekunden, zusammen gut zweieinhalb Minuten Geduld. Das ist immer
+          # noch weniger als der Neubau kostet, den ein Fehlversuch auslöst –
+          # und wenn der Port sofort antwortet, kostet es null.
           echo "— Erreichbarkeit von Port $SSH_PORT"
           offen=nein
-          for versuch in 1 2 3 4; do
+          for versuch in 1 2 3 4 5 6; do
             if timeout 15 bash -c "true > /dev/tcp/$HOST/$SSH_PORT" 2>/dev/null; then
               offen=ja
               echo "  Port offen (Versuch $versuch)."
               break
             fi
-            if [ "$versuch" -lt 4 ]; then
+            if [ "$versuch" -lt 6 ]; then
               warte=$((5 * 2 ** (versuch - 1)))
+              [ "$warte" -gt 60 ] && warte=60
               echo "  Versuch $versuch: keine Antwort – neuer Anlauf in ${warte}s."
               sleep "$warte"
             fi
           done
 
           if [ "$offen" = nein ]; then
-            echo "::error::Port $SSH_PORT antwortet nach vier Versuchen nicht."
+            echo "::error::Port $SSH_PORT antwortet nach sechs Versuchen und gut zweieinhalb Minuten nicht."
             echo "  Häufigste Ursache: SSH steht in hPanel noch auf INACTIVE."
             echo "  hPanel > Erweitert > SSH-Zugang > rechts in der Box auf 'Aktivieren'."
             echo "  Antwortete der Port bei früheren Läufen, ist es eher eine"
@@ -450,11 +460,12 @@ jobs:
           # 3. Hostschlüssel holen – statt die Prüfung abzuschalten.
           # `StrictHostKeyChecking=no` würde jede Gegenstelle akzeptieren.
           #
-          # Auch hier drei Anläufe: Wenn der Port gerade erst wieder
-          # antwortet, kann der erste Handshake noch ins Leere laufen.
+          # Auch hier mehrere Anläufe: Wenn der Port gerade erst wieder
+          # antwortet, kann der erste Handshake noch ins Leere laufen. Fünf
+          # statt drei, aus demselben Grund wie oben.
           echo "— Hostschlüssel holen"
           geholt=nein
-          for versuch in 1 2 3; do
+          for versuch in 1 2 3 4 5; do
             if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/tmp/keyscanfehler; then
               # `ssh-keyscan` liefert auch dann Rückgabewert 0, wenn es nichts
               # gefunden hat. Gezählt wird deshalb, was tatsächlich ankam.
@@ -466,7 +477,7 @@ jobs:
             fi
             echo "  Versuch $versuch ohne Ergebnis."
             sed 's/^/    /' /tmp/keyscanfehler
-            [ "$versuch" -lt 3 ] && sleep 10
+            [ "$versuch" -lt 5 ] && sleep 10
           done
 
           if [ "$geholt" = nein ]; then
