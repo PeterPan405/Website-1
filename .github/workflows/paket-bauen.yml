@@ -579,17 +579,113 @@ jobs:
             echo "::warning::version.txt nennt nicht den Commit dieses Laufs ($GITHUB_SHA). Entweder war ein anderer Lauf schneller, oder eine Zwischenschicht liefert eine alte Fassung aus."
           fi
 
+          # Die Startseite einmal holen und für alle weiteren Fragen behalten.
+          # Sie zweimal zu holen hieße, zwei womöglich verschiedene Antworten
+          # miteinander zu vergleichen.
+          startseite=$(curl -sS -A "$UA" "$URL/" || true)
+
           # 3. Ist auch das ausgelieferte HTML von diesem Build?
           stylesheet=$(find out/_next -name '*.css' -printf '%f\n' | sort | head -1)
           if [ -z "$stylesheet" ]; then
             echo "::warning::Im Paket steckt kein Stylesheet – Schritt 3 übersprungen."
           else
             echo "Stylesheet dieses Builds: $stylesheet"
-            if curl -sS -A "$UA" "$URL/" | grep -q "$stylesheet"; then
+            if printf '%s' "$startseite" | grep -q "$stylesheet"; then
               echo "Die ausgelieferte Startseite verweist darauf. Das HTML ist frisch."
             else
               echo "::warning::Die Startseite nennt ein anderes Stylesheet – es wird altes HTML ausgeliefert. Übertragen wurde korrekt; leere den Zwischenspeicher in hPanel (Cache-Manager, und falls aktiv das CDN)."
               echo "Gefunden wurde stattdessen:"
-              curl -sS -A "$UA" "$URL/" | grep -o '_next/static/[^"]*\.css' | sort -u | head -3
+              printf '%s' "$startseite" | grep -o '_next/static/[^"]*\.css' | sort -u | head -3
             fi
+          fi
+
+          # 4. Lässt sich das Stylesheet, auf das die Startseite verweist,
+          #    überhaupt abrufen?
+          #
+          # **Die Frage fehlte, und sie ist die entscheidende.** Schritt 3
+          # prüft nur, ob der richtige Name im HTML steht – nicht, ob unter
+          # diesem Namen etwas liegt. Am 6. August 2026 kam die Startseite ohne
+          # jede Formatierung heraus, während alle drei Prüfungen darüber grün
+          # meldeten: Das HTML nannte das richtige Stylesheet, die Datei dazu
+          # war nicht abrufbar.
+          #
+          # Gefragt wird nach dem Namen aus dem **ausgelieferten HTML**, nicht
+          # nach dem aus dem Paket. Nur so deckt die Prüfung auch den Fall ab,
+          # dass altes HTML auf eine Datei zeigt, die es nicht mehr gibt – die
+          # Ursache, wegen der in `.htaccess` `no-cache` für HTML steht.
+          verwiesen=$(printf '%s' "$startseite" \
+            | grep -o '/_next/static/[^"]*\.css' | head -1)
+
+          if [ -z "$verwiesen" ]; then
+            echo "::error::Die ausgelieferte Startseite verweist auf gar kein Stylesheet."
+            echo "  Ohne CSS erscheint die Seite als unformatierter Text. Prüfe das Paket"
+            echo "  und die Ausgabe von 'npm run build'."
+            exit 1
+          fi
+
+          echo "Die Startseite verweist auf: $verwiesen"
+          css_code=$(curl -sS -A "$UA" -o /dev/null -w '%{http_code}' "$URL$verwiesen" || echo 000)
+          css_typ=$(curl -sSI -A "$UA" "$URL$verwiesen" \
+            | grep -i '^content-type:' | tr -d '\r' | head -1 || true)
+
+          echo "Antwort: $css_code   $css_typ"
+          if [ "$css_code" != "200" ]; then
+            echo "::error::Das Stylesheet der Startseite antwortet mit $css_code."
+            echo "  Genau so sieht die Website aus, wenn sie ohne Formatierung erscheint:"
+            echo "  Das HTML kommt an, die Datei dazu nicht. Zwei Ursachen sind bekannt –"
+            echo "  altes HTML aus einem Zwischenspeicher, das auf eine Datei eines"
+            echo "  früheren Builds zeigt, oder ein unvollständig übertragenes Paket."
+            echo "  Erste Maßnahme: Zwischenspeicher in hPanel leeren, dann diesen"
+            echo "  Workflow von Hand erneut starten."
+            exit 1
+          fi
+
+          case "$css_typ" in
+            *text/css*) : ;;
+            *)
+              echo "::warning::Das Stylesheet kommt nicht als text/css, sondern als:"
+              echo "  $css_typ"
+              echo "  Browser weisen Stylesheets mit falschem Typ zurück – die Seite"
+              echo "  erschiene dann trotz Statuscode 200 ohne Formatierung."
+              ;;
+          esac
+
+          echo "Das Stylesheet ist abrufbar. Die Seite kommt formatiert heraus."
+
+          # 5. Wird das HTML mit `no-cache` ausgeliefert?
+          #
+          # Das ist die Ursache hinter Schritt 4, nicht bloß eine weitere
+          # Prüfung. Die Dateinamen unter `_next/static` tragen eine Prüfsumme
+          # und ändern sich mit jedem Build; beim Umhängen verschwindet die
+          # alte Datei im selben Augenblick. Hält ein Browser altes HTML fest,
+          # fragt er nach einem Stylesheet, das es nicht mehr gibt – und
+          # bekommt 404.
+          #
+          # Dagegen steht in `.htaccess` `Cache-Control: no-cache,
+          # must-revalidate` für HTML. Die Regel hängt aber an `mod_headers`
+          # und ist dort in `IfModule` gekapselt: Fehlt das Modul, fällt sie
+          # **stillschweigend** aus. Genau dann sieht alles grün aus und die
+          # Website erscheint trotzdem unformatiert.
+          #
+          # Deshalb wird hier nicht die Datei geprüft, sondern die Antwort.
+          steuerung=$(curl -sSI -A "$UA" "$URL/" \
+            | grep -i '^cache-control:' | tr -d '\r' | head -1 || true)
+
+          if [ -z "$steuerung" ]; then
+            echo "::warning::Die Startseite kommt ohne Cache-Control-Kopfzeile."
+            echo "  Die Regel aus .htaccess greift nicht – vermutlich fehlt mod_headers,"
+            echo "  oder eine Schicht davor (LiteSpeed, CDN) ersetzt die Kopfzeilen."
+            echo "  Folge: Browser halten altes HTML fest und fragen nach Dateien eines"
+            echo "  früheren Builds. Die Seite erscheint dann ohne jede Formatierung."
+          else
+            echo "Kopfzeile der Startseite: $steuerung"
+            case "$steuerung" in
+              *no-cache*|*no-store*|*max-age=0*) : ;;
+              *)
+                echo "::warning::Das HTML wird zwischenspeicherbar ausgeliefert:"
+                echo "  $steuerung"
+                echo "  Erwartet wird 'no-cache'. Andernfalls hält ein Browser das HTML"
+                echo "  eines früheren Builds fest, dessen Stylesheet es nicht mehr gibt."
+                ;;
+            esac
           fi
