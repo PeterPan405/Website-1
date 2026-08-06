@@ -220,22 +220,16 @@ jobs:
           # Läufer hat den Token ohnehin; das erspart der Action einen Umweg,
           # der beim ersten Versuch der Grund für den Fehlschlag war.
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Die Action verbirgt die Ausgabe des Agenten standardmäßig. Hier ist
-          # sie eingeschaltet, und das bleibt sie bis zum ersten vollständig
-          # gelungenen Lauf.
+          # `show_full_output` ist **absichtlich nicht gesetzt.** Der Agent
+          # liest fremde Seiten, und was er daraus wiedergibt, stünde sonst
+          # vollständig im Protokoll.
           #
-          # Der Grund: Ohne sie endet ein Fehlschlag als `is_error: true` mit
-          # null Kosten und ohne Begründung. Am 6. August war erst mit ihr zu
-          # sehen, dass hinter drei roten Läufen ein `401 Invalid API key`
-          # stand – eine Zeile, die alles erklärte und die vorher schlicht
-          # fehlte. Ein Workflow, der unbeaufsichtigt läuft, muss sagen können,
-          # warum er nicht gelaufen ist.
-          #
-          # Die Kehrseite ist bekannt: Der Agent liest fremde Quellen, und was
-          # er daraus wiedergibt, steht dann im Protokoll. Das Repository ist
-          # privat, die Protokolle sieht nur der Betreiber. Sobald der Weg
-          # steht, gehört die Zeile wieder heraus.
-          show_full_output: true
+          # Am 6. August war sie kurz an – anders war nicht herauszufinden,
+          # warum drei Läufe nach 200 Millisekunden mit `is_error: true` und
+          # null Kosten endeten. Die Antwort war ein `401 Invalid API key`.
+          # Der Schritt „Warum ist der Agent gescheitert?" weiter unten holt
+          # genau diese vier Felder aus dem abgelegten Protokoll, damit die
+          # Frage künftig ohne diesen Schalter zu beantworten ist.
           claude_args: |
             --model claude-sonnet-5
             --max-turns 40
@@ -358,6 +352,52 @@ jobs:
             Ändere nichts unter `data/` und committe nichts – das Ablegen
             übernimmt der Schritt nach dir. Deine einzige Ausgabe ist die Datei
             `entwurf.json`.
+
+      # Ein Fehlschlag der Action ist von außen eine Zahl ohne Begründung:
+      # `is_error: true`, `num_turns: 1`, `total_cost_usd: 0`. Am 6. August
+      # standen drei Läufe so da, und die Ursache – ein `401 Invalid API key` –
+      # war nur zu sehen, wenn man die gesamte Agentenausgabe einschaltete.
+      #
+      # Das ist der falsche Preis für eine Diagnose. Die Action legt ihr
+      # Protokoll ohnehin als JSON ab; hier werden daraus die vier Felder
+      # gezogen, die den Grund nennen. Kein Schlüssel, kein Quellentext, kein
+      # Agentengeschwätz – nur die Absage und ihr Statuscode.
+      - name: Warum ist der Agent gescheitert?
+        if: failure() && steps.pruefung.outputs.weiter == 'ja'
+        run: |
+          protokoll="${RUNNER_TEMP:-/tmp}/claude-execution-output.json"
+          if [ ! -s "$protokoll" ]; then
+            echo "Kein Protokoll unter $protokoll – der Fehlschlag lag vor dem Modellaufruf."
+            exit 0
+          fi
+
+          node -e '
+            const eintraege = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))
+            const liste = Array.isArray(eintraege) ? eintraege : [eintraege]
+            const ergebnis = liste.reverse().find((e) => e && e.type === "result") ?? liste[0]
+            if (!ergebnis) { console.log("Kein Ergebnisblock im Protokoll."); process.exit(0) }
+
+            const zeile = (name, wert) => {
+              if (wert === undefined || wert === null || wert === "") return
+              console.log(`  ${name.padEnd(18)} ${String(wert).slice(0, 300)}`)
+            }
+            console.log("— Was die Schnittstelle geantwortet hat")
+            zeile("Statuscode", ergebnis.api_error_status)
+            zeile("Fehlerart", ergebnis.error ?? ergebnis.terminal_reason)
+            zeile("Züge", ergebnis.num_turns)
+            // Nur im Fehlerfall: dann ist `result` die Absage, nicht der Text
+            // des Agenten.
+            if (ergebnis.is_error) zeile("Meldung", ergebnis.result)
+
+            const status = Number(ergebnis.api_error_status)
+            if (status === 401 || status === 403) {
+              console.log("")
+              console.log("  Das ist eine abgelehnte Anmeldung, keine inhaltliche Störung.")
+              console.log("  Entweder CLAUDE_CODE_OAUTH_TOKEN neu erzeugen (claude setup-token,")
+              console.log("  im Abonnement enthalten) oder einen gültigen ANTHROPIC_API_KEY")
+              console.log("  hinterlegen. Beides unter Settings > Secrets and variables > Actions.")
+            }
+          ' "$protokoll"
 
       # Erst hier wird der Entwurf abgelegt – und nur, wenn er die Probe
       # besteht. Ein Entwurf, den niemand geprüft hat, wäre gefährlicher als
