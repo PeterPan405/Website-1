@@ -101,6 +101,266 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'leitindizes-stand-2026-08-06',
+    title: 'Die Leitindizes am 6.8.2026: was die Zahlen sagen',
+    teaser:
+      'Nasdaq 100 führt mit +3,32 Prozent, Nikkei 225 (Japan) liegt mit +0,32 Prozent hinten. Warum ein Vergleich zweier Indizes fast immer schiefgeht.',
+    category: 'Märkte',
+    publishedAt: '2026-08-06T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Indizes', 'Marktdaten'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'sp500', 'nikkei-225', 'euro-stoxx-50'],
+    sources: [
+      {
+        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
+        url: 'https://iminvests.de/maerkte',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Stand der geführten Leitindizes zum letzten abgerufenen Schluss: **DAX (Deutscher Aktienindex)** +0,77 Prozent (4.8.2026), **S&P 500** +1,79 Prozent (4.8.2026), **Nikkei 225 (Japan)** +0,32 Prozent (4.8.2026), **Euro Stoxx 50** +0,94 Prozent (4.8.2026), **Nasdaq 100** +3,32 Prozent (4.8.2026).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum diese Zahlen nicht vergleichbar sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist ein **Performanceindex**: Dividenden werden rechnerisch wieder angelegt und stecken im Indexstand. Der Euro Stoxx 50, der S&P 500 und der Nikkei 225 sind in ihrer gängigen Fassung **Kursindizes** – dort fehlt die Dividende. Über ein Jahr macht das je nach Markt zwei bis drei Prozentpunkte aus, über zwanzig Jahre den größeren Teil des Unterschieds.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf einen einzelnen Tag wirkt sich das kaum aus – wohl aber auf jeden Langfristvergleich, der zwei solche Indizes nebeneinanderstellt. Wer den DAX über zehn Jahre gegen den Euro Stoxx 50 hält, vergleicht nicht zwei Märkte, sondern zwei Rechenweisen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hier bewusst fehlt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+      },
+    ],
+  },
+  {
+    slug: 'marktbreite-2026-08-06',
+    title: 'Marktbreite am 5.8.2026: wie viele Titel tragen die Bewegung',
+    metaTitle: 'Marktbreite am 5.8.2026',
+    teaser:
+      '541 Titel im Plus, 476 im Minus – die Bewegung ist zu 53,2 Prozent getragen. Was diese Zahl über einen Indexstand hinaus verrät.',
+    category: 'Märkte',
+    publishedAt: '2026-08-06T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Marktbreite', 'Marktdaten'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
+    relatedSymbols: ['dax', 'sp500'],
+    sources: [
+      {
+        label: 'Eigene Marktbreite-Aufzeichnung, Stand 6.8.2026, 04:24 Uhr UTC',
+        url: 'https://iminvests.de/maerkte/tagesbild',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Von den ausgewerteten Titeln standen am 5.8.2026 **541** im Plus und **476** im Minus, 9 unverändert. Der ungewichtete Schnitt über alle lag bei +0,19 Prozent, die Breite bei 53,2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was „Breite" hier misst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Breite ist der Anteil der bewegten Titel, die in dieselbe Richtung laufen wie der Gesamtschnitt. Bei 50 Prozent ist der Markt geteilt; bei 90 zieht fast alles mit. Heute sind es 53,2 Prozent von 1017 bewegten Titeln.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Unterschied ist praktisch. Ein Index kann steigen, weil alle 40 Werte steigen – oder weil drei schwere Werte steigen und 37 fallen. Der Indexstand ist in beiden Fällen derselbe, die Lage nicht. Nach Börsenwert gewichtete Indizes verbergen diesen Unterschied bauartbedingt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb wird hier ungewichtet gerechnet: Jede Aktie zählt gleich. Nach Börsenwert gewichtet wäre der Schnitt der Halbleiter praktisch der Kurs eines einzigen Unternehmens.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hier bewusst fehlt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+      },
+    ],
+  },
+  {
+    slug: 'realzins-2026-08-06',
+    title: 'Leitzins 2,40 Prozent, Inflation 2,8 Prozent – was übrig bleibt',
+    metaTitle: 'Leitzins gegen Inflation: der Realzins',
+    teaser:
+      'Der EZB-Leitzins liegt bei 2,40 Prozent, die deutsche Inflationsrate bei 2,8 Prozent. Die Differenz ist der Realzins – und die einzige Zahl, die zählt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-06T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Zinsen', 'Inflation'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'tagesgeld'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Europäische Zentralbank über die eigene Zinsübersicht, Stand 5.8.2026, 09:05 Uhr UTC',
+        url: 'https://iminvests.de/maerkte/zinsen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '**Leitzins der EZB (Hauptrefinanzierungsgeschäfte)**: 2,40 Prozent, Stand 5.8.2026. **Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)**: 2,8 Prozent für 2026-07.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Realzins',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Differenz beider Zahlen heißt Realzins und liegt derzeit bei rund -0,4 Prozentpunkten. Sie beantwortet die einzige Frage, die für Erspartes zählt: Kann man sich in einem Jahr mehr kaufen als heute, oder weniger?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Tagesgeldkonto mit drei Prozent bei vier Prozent Inflation verliert Kaufkraft, obwohl der Kontostand steigt. Umgekehrt kann ein Prozent Zins bei null Prozent Inflation ein Gewinn sein. Der nominale Zinssatz allein sagt darüber nichts.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwei Einschränkungen: Der Leitzins der EZB ist nicht der Zins, den eine Bank zahlt – er ist die Untergrenze, an der sich der Geldmarkt orientiert. Und die Inflationsrate ist ein Durchschnitt über einen Warenkorb, der niemandes tatsächlichem Einkauf entspricht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hier bewusst fehlt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-in-zwei-waehrungen-2026-08-06',
+    title: 'Ein Goldpreis, zwei Zahlen: warum Dollar und Euro auseinanderlaufen',
+    metaTitle: 'Gold in Dollar und in Euro',
+    teaser:
+      'Gold notiert bei 4.322,70 Dollar, der Euro bei 1,1515 Dollar – in Euro sind das rund 3.753,97. Ein Euro-Preis hat immer zwei Ursachen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-06T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Währungen'],
+    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['gold', 'eur-usd'],
+    sources: [
+      {
+        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
+        url: 'https://iminvests.de/maerkte',
+      },
+      {
+        label: 'Europäische Zentralbank, Referenzkurs vom 4.8.2026',
+        url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold stand zuletzt bei **4.322,70 Dollar** je Feinunze (Stand 6.8.2026, 04:14 Uhr UTC). Der Euro notierte bei **1,1515 Dollar** (Stand 4.8.2026). Umgerechnet sind das rund **3.753,97 Euro**.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Ursachen für eine Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wird international in Dollar gehandelt. Wer den Preis in Euro sehen will, rechnet um – und übernimmt damit den Wechselkurs als zweite bewegliche Größe. Der Euro-Preis kann deshalb steigen, während der Dollar-Preis fällt: Es genügt, dass der Euro gegenüber dem Dollar stärker nachgibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für einen Anleger im Euroraum heißt das: Eine Goldposition ist immer auch eine Dollarposition. Wer „auf Gold setzt", setzt zur Hälfte auf eine Währung. Dasselbe gilt für Öl, für Kupfer und für jeden weltweit in Dollar notierten Rohstoff.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb ist die Frage bei jeder Rohstoffmeldung: in welcher Währung? Zwei Berichte, die scheinbar widersprüchliche Zahlen nennen, meinen oft dieselbe Unze in zwei Währungen – oder zu zwei Uhrzeiten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hier bewusst fehlt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+      },
+    ],
+  },
+  {
+    slug: 'spanne-des-tages-2026-08-06',
+    title: 'Die Spanne des Tages: warum Prozentzahlen einen Bezugspunkt brauchen',
+    metaTitle: 'Die Spanne des Tages',
+    teaser:
+      'Zwischen Palantir mit +29,45 Prozent und Aptiv mit −16,62 Prozent liegen Welten. Was eine Prozentzahl verschweigt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-06T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Aktien', 'Marktdaten'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
+        url: 'https://iminvests.de/maerkte',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Über 1026 geführte Aktien reichte die Tagesveränderung von +29,45 Prozent bis −16,62 Prozent. Vorn: **Palantir** +29,45 Prozent, **Gartner** +22,61 Prozent, **Wix.com** +17,49 Prozent. Hinten: **Aptiv** −16,62 Prozent, **Zalando** −13,36 Prozent, **Chipotle Mexican Grill** −9,72 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prozent von was',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Prozentangabe ist eine Verhältniszahl, und ihr Nenner steht selten dabei. Ein Titel, der von zwei auf drei Euro steigt, legt 50 Prozent zu; einer, der von 200 auf 210 Euro steigt, nur fünf – obwohl der zweite den Anleger um zehn Euro je Stück reicher macht und der erste um einen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb stehen an der Spitze solcher Listen überdurchschnittlich oft kleine und wenig gehandelte Werte. Das ist kein Befund über ihre Qualität, sondern eine Eigenschaft des Bruchs: Bei einem kleinen Nenner erzeugt eine kleine Bewegung eine große Zahl.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Umgekehrt gilt dasselbe für Verluste – und dort mit einer Schieflage, die häufig übersehen wird: Ein Minus von 50 Prozent erfordert ein Plus von 100 Prozent, um wieder am Ausgangspunkt zu stehen. Auf- und Abstieg sind nicht symmetrisch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hier bewusst fehlt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+      },
+    ],
+  },
+  {
     slug: 'hormus-uebergangsdeal-oel-unter-79-dollar',
     title: 'Übergangsdeal in der Straße von Hormus – Öl fällt unter 79 Dollar',
     metaTitle: 'Hormus-Übergangsdeal: Öl unter 79 Dollar',
