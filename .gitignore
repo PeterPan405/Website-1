@@ -50,3 +50,6 @@ next-env.d.ts
 # Referenzbild nicht mehr passt, und gehören zur Fehlersuche – nicht ins
 # Repository. Die Referenzbilder selbst unter tests/referenzbilder/ schon.
 /tests/referenzbilder/abweichungen/
+
+antwort-bestand.json
+quellen.txt
