@@ -293,3 +293,69 @@ jobs:
             -f vorher="${{ steps.commit.outputs.vorher }}" \
             -f paket=false
           echo "Paketbau für ${{ github.ref_name }} angefordert."
+
+      # ------------------------------------------------------------------
+      # Die Nachrichtenausgabe anstoßen, falls sie fehlt.
+      #
+      # ## Warum ausgerechnet hier
+      #
+      # Weil dieser Workflow der einzige ist, der zuverlässig läuft.
+      #
+      # Nachgezählt am 6. August 2026: Von allen geplanten Läufen des Tages
+      # hat GitHub **genau einen** ausgeführt – den Kursabruf um 04:24. Die
+      # Quellenprobe (03:03), das Quellensammeln (03:07 und 03:17), der
+      # Nachrichtenlauf (04:47), der Wächter und der Paketbau wurden ersatzlos
+      # verworfen. Am Vortag liefen sie, aber rund zweidreiviertel Stunden zu
+      # spät: 03:03 wurde 05:49, 03:07 wurde 05:59, 05:09 wurde 07:45.
+      #
+      # `schedule` ist damit für die Zusage „die Nachrichten stehen morgens"
+      # unbrauchbar. `kurse.yml` dagegen feuert fünfzehn- bis zwanzigmal am
+      # Tag; dass **alle** verworfen werden, ist deutlich unwahrscheinlicher
+      # als dass ein einzelner Termin ausfällt.
+      #
+      # Also die Abhängigkeit umdrehen: Nicht die Uhr startet den
+      # Nachrichtenlauf, sondern der erste Kursabruf des Tages, der feststellt,
+      # dass die Ausgabe fehlt.
+      #
+      # ## Warum das nichts kostet
+      #
+      # `nachrichten.yml` prüft als Erstes, ob die Ausgabe schon steht, und
+      # hört dann nach vierzig Sekunden auf, ohne das Modell zu fragen. Ein
+      # überflüssiger Anstoß ist damit eine knappe Minute Läuferzeit, kein
+      # Geld und keine zweite Ausgabe.
+      - name: Nachrichtenausgabe anstoßen, falls sie fehlt
+        # `always()`, weil auch ein Lauf ohne Kursänderung diese Prüfung
+        # machen soll – „nichts hat sich bewegt" heißt nicht „die Nachrichten
+        # stehen".
+        if: always() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Vor 04:00 UTC nicht: Bis dahin darf die Routine um 03:30 in Ruhe
+          # arbeiten. Zwei Wege, die gleichzeitig schreiben, erzeugen zwei
+          # Ausgaben zum selben Datum – und das bricht den Build ab.
+          stunde=$(date -u +%H)
+          if [ "$stunde" -lt 04 ]; then
+            echo "Es ist erst $stunde Uhr UTC – die Routine hat noch Zeit."
+            exit 0
+          fi
+
+          heute=$(date -u +%Y-%m-%d)
+          git fetch origin main --depth 1 -q
+          if git cat-file -e "origin/main:data/editions/$heute.ts" 2>/dev/null; then
+            echo "Die Ausgabe vom $heute steht bereits."
+            exit 0
+          fi
+
+          # Läuft oder wartet schon einer? Dann nicht noch einen anfordern.
+          offen=$(gh run list --repo "${{ github.repository }}" \
+                    --workflow nachrichten.yml --limit 5 \
+                    --json status --jq '[.[] | select(.status != "completed")] | length' 2>/dev/null || echo 0)
+          if [ "${offen:-0}" -gt 0 ]; then
+            echo "Ein Nachrichtenlauf ist bereits unterwegs ($offen offen)."
+            exit 0
+          fi
+
+          echo "::warning::Für den $heute fehlt die Ausgabe – der Nachrichtenlauf wird angestoßen."
+          gh workflow run nachrichten.yml \
+            --repo "${{ github.repository }}" --ref main

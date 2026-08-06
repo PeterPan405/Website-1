@@ -278,6 +278,36 @@ Bleibt eine Datenreihe stehen, ist die erste Frage deshalb nicht „ist der Lauf
 gescheitert?", sondern **„hat er überhaupt stattgefunden?"** – und der
 Handstart über `workflow_dispatch` ist das Mittel, das sofort hilft.
 
+## Geplante Läufe werden hier **regelmäßig** verworfen, nicht gelegentlich
+
+Der Abschnitt oben nennt den 3. August als Einzelfall. Das war zu freundlich.
+Am 6. August 2026 nachgezählt, über alle `schedule`-Läufe des Tages:
+
+**Genau einer wurde ausgeführt** – der Kursabruf um 04:24 UTC. Verworfen
+wurden die Quellenprobe (03:03), beide Termine des Quellensammlers (03:07 und
+03:17), der Nachrichtenlauf (04:47), der Wächter (05:19) und der Paketbau
+(05:41). Am Vortag liefen sie, aber massiv verspätet: 03:03 wurde **05:49**,
+03:07 wurde **05:59**, 05:09 wurde **07:45** – rund zweidreiviertel Stunden.
+
+Krumme Minuten helfen dagegen nicht. Sie waren die richtige Maßnahme gegen
+Läufe, die _zur vollen Stunde_ kollidieren; gegen eine Warteschlange, die
+Stunden lang steht, sind sie wirkungslos.
+
+**Daraus folgt eine Bauregel:** Was zu einer bestimmten Zeit passiert sein
+_muss_, darf nicht an `schedule` hängen. `kurse.yml` läuft fünfzehn- bis
+zwanzigmal am Tag; dass **alle** verworfen werden, ist ungleich
+unwahrscheinlicher als dass ein einzelner Termin ausfällt. Deshalb prüft sein
+letzter Schritt seit dem 6. August, ob die Ausgabe des Tages steht, und stößt
+`nachrichten.yml` sonst über `workflow_dispatch` an.
+
+Die Abhängigkeit ist damit umgedreht: Nicht die Uhr startet den
+Nachrichtenlauf, sondern der erste Kursabruf des Tages, der die Lücke
+bemerkt. Ein überflüssiger Anstoß kostet vierzig Sekunden – `nachrichten.yml`
+prüft als Erstes, ob die Ausgabe schon steht.
+
+Wer einen neuen Lauf anlegt, dessen Ergebnis jemand vermissen würde, hängt
+ihn an dieselbe Kette statt an eine Uhrzeit.
+
 ## Ein Commit vom Bot löst nichts aus
 
 Die zweite Hälfte desselben Problems, und die teurere: **Ein Push, den ein
