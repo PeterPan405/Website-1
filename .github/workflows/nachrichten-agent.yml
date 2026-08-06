@@ -87,6 +87,16 @@ jobs:
       contents: write
       # Zum Anstoßen des Quellensammlers, falls die Datei fehlt.
       actions: write
+      # **Für `claude-code-action` zwingend.** Sie besorgt sich ihren
+      # GitHub-Zugang über OIDC und scheitert ohne dieses Recht schon vor der
+      # ersten Zeile Arbeit:
+      #
+      #   Could not fetch an OIDC token. Did you remember to add
+      #   `id-token: write` to your workflow permissions?
+      #
+      # Gefunden beim ersten Handstart am 6. August 2026 – der Lauf war nach
+      # 18 Sekunden rot, drei Anläufe, immer derselbe Fehler.
+      id-token: write
 
     steps:
       - uses: actions/checkout@v5
@@ -180,6 +190,10 @@ jobs:
           # der Schlüssel darunter.
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Ausdrücklich mitgeben statt über OIDC beziehen zu lassen. Der
+          # Läufer hat den Token ohnehin; das erspart der Action einen Umweg,
+          # der beim ersten Versuch der Grund für den Fehlschlag war.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           claude_args: |
             --model claude-sonnet-5
             --max-turns 40
