@@ -87,6 +87,16 @@ jobs:
       contents: write
       # Zum Anstoßen des Quellensammlers, falls die Datei fehlt.
       actions: write
+      # **Für `claude-code-action` zwingend.** Sie besorgt sich ihren
+      # GitHub-Zugang über OIDC und scheitert ohne dieses Recht schon vor der
+      # ersten Zeile Arbeit:
+      #
+      #   Could not fetch an OIDC token. Did you remember to add
+      #   `id-token: write` to your workflow permissions?
+      #
+      # Gefunden beim ersten Handstart am 6. August 2026 – der Lauf war nach
+      # 18 Sekunden rot, drei Anläufe, immer derselbe Fehler.
+      id-token: write
 
     steps:
       - uses: actions/checkout@v5
@@ -180,6 +190,23 @@ jobs:
           # der Schlüssel darunter.
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Ausdrücklich mitgeben statt über OIDC beziehen zu lassen. Der
+          # Läufer hat den Token ohnehin; das erspart der Action einen Umweg,
+          # der beim ersten Versuch der Grund für den Fehlschlag war.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # **Vorübergehend zur Fehlersuche.**
+          #
+          # Die Action verbirgt die Ausgabe des Agenten standardmäßig. Das ist
+          # richtig – der Agent liest Quellen und könnte Unerwartetes
+          # wiedergeben. Am 6. August war sie aber der einzige Weg, überhaupt
+          # zu erfahren, warum ein Lauf nach 211 Millisekunden mit
+          # `is_error: true` und null Kosten endet: Das ist eine abgelehnte
+          # Anmeldung, und welche, sagt nur die Meldung selbst.
+          #
+          # Eine Fehlermeldung der Schnittstelle nennt den Grund, nicht den
+          # Schlüssel. Sobald die Anmeldung steht, gehört diese Zeile wieder
+          # heraus.
+          show_full_output: true
           claude_args: |
             --model claude-sonnet-5
             --max-turns 40
