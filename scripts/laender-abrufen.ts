@@ -428,15 +428,67 @@ async function ladeSchuldenquoten(): Promise<Map<
  * Seitenzahl, dann die Zeilen. Ohne `per_page` liefert die Schnittstelle nur
  * fuenfzig Zeilen und verteilt den Rest auf Folgeseiten.
  */
+/**
+ * Wie eine Reihe zu behandeln ist.
+ *
+ * Beides ist am 6. August 2026 durch Schaden gelernt worden. Der erste Lauf
+ * mit den Ratenreihen schrieb Arbeitslosenquoten als glatte ganze Zahlen –
+ * 4 · 10 · 32 statt 3,5 · 10,4 · 32,1 – und haette bei Deflation gar nichts
+ * geschrieben.
+ */
+interface Reihenart {
+  /**
+   * Nachkommastellen, auf die gerundet wird.
+   *
+   * Fuer Betraege in Dollar oder Personen ist 0 richtig: Eine
+   * Nachkommastelle bei 43.812 US-Dollar taeuscht eine Genauigkeit vor, die
+   * die Quelle nicht hat. Bei einer Rate zwischen 0 und 30 ist dieselbe
+   * Rundung ein Fehler – aus 3,4 Prozent wird 3, und der Unterschied
+   * zwischen Deutschland und Spanien schrumpft auf ganze Stufen.
+   */
+  stellen?: number
+  /**
+   * Ob null und negative Werte gueltig sind.
+   *
+   * Die Vorgabe verwirft sie, und das ist bei einem Bruttonationaleinkommen
+   * richtig – ein Land mit −2 US-Dollar je Kopf gibt es nicht, so ein Wert
+   * waere ein Fehler in der Quelle. Bei der Inflation ist ein negativer Wert
+   * dagegen die Aussage selbst: fallende Preise.
+   */
+  auchNichtPositiv?: boolean
+}
+
 async function ladeWeltbankreihe(
-  indikator: string
+  indikator: string,
+  art: Reihenart = {}
 ): Promise<Map<string, { wert: number; jahr: number }> | null> {
+  const { stellen = 0, auchNichtPositiv = false } = art
   const url = `${WELTBANK_BASIS}/${indikator}?format=json&per_page=20000&date=2018:2025`
   try {
-    const antwort = await fetch(url, { headers: KOPFZEILEN })
-    if (!antwort.ok) {
+    /*
+      Drei Anlaeufe, nicht einer.
+
+      Beim ersten Lauf mit vier gleichzeitigen Abfragen antwortete die
+      Weltbank auf eine davon mit `400 Request Error` – eine XHTML-Seite, kein
+      JSON. Die uebrigen drei liefen im selben Augenblick durch. Das ist keine
+      falsche Adresse, sondern eine Schnittstelle unter Last, und ein
+      Fehlschlag hiess bisher: die Kennzahl fehlt einen Monat lang ganz.
+    */
+    let antwort: Response | null = null
+    for (const versuch of [1, 2, 3]) {
+      antwort = await fetch(url, { headers: KOPFZEILEN })
+      if (antwort.ok) break
+      if (versuch < 3) {
+        console.log(
+          `Weltbank ${indikator}: Versuch ${versuch} ergab ${antwort.status} – neuer Anlauf in ${versuch * 5}s.`
+        )
+        await new Promise((fertig) => setTimeout(fertig, versuch * 5000))
+      }
+    }
+
+    if (!antwort || !antwort.ok) {
       console.log(
-        `::warning::Weltbank ${indikator} antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – bisheriger Stand bleibt.`
+        `::warning::Weltbank ${indikator} antwortete dreimal mit ${antwort?.status ?? '—'}${antwort ? await fehlerauszug(antwort) : ''} – bisheriger Stand bleibt.`
       )
       return null
     }
@@ -460,10 +512,13 @@ async function ladeWeltbankreihe(
       const wert = zeile.value
       if (!code || code.length !== 3 || KEINE_LAENDER.test(code)) continue
       if (!Number.isFinite(jahr)) continue
-      if (typeof wert !== 'number' || !Number.isFinite(wert) || wert <= 0) continue
+      if (typeof wert !== 'number' || !Number.isFinite(wert)) continue
+      if (!auchNichtPositiv && wert <= 0) continue
 
+      const faktor = 10 ** stellen
+      const gerundet = Math.round(wert * faktor) / faktor
       const bisher = werte.get(code)
-      if (!bisher || jahr > bisher.jahr) werte.set(code, { wert: Math.round(wert), jahr })
+      if (!bisher || jahr > bisher.jahr) werte.set(code, { wert: gerundet, jahr })
     }
 
     if (werte.size === 0) {
@@ -765,8 +820,13 @@ async function main() {
     ladeJahresendkurse(),
     ladeWeltbankreihe(EINKOMMENSREIHEN[0].indikator),
     ladeWeltbankreihe(EINKOMMENSREIHEN[1].indikator),
-    ladeWeltbankreihe(RATENREIHEN[0].indikator),
-    ladeWeltbankreihe(RATENREIHEN[1].indikator),
+    // Eine Nachkommastelle, und bei der Inflation zaehlen negative Werte:
+    // Deflation ist eine Aussage, kein Fehler in der Quelle.
+    ladeWeltbankreihe(RATENREIHEN[0].indikator, { stellen: 1 }),
+    ladeWeltbankreihe(RATENREIHEN[1].indikator, {
+      stellen: 1,
+      auchNichtPositiv: true,
+    }),
     ladeVorherigenStand(),
   ])
 
