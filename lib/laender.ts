@@ -682,6 +682,8 @@ assertLaenderValid({
     'oecd-sdmx',
     'oecd-vermoegen',
     'weltbank-einkommen',
+    'weltbank-arbeitslosigkeit',
+    'weltbank-inflation',
     'geschaetzt-kaufkraft',
     'geschaetzt-vermoegen',
     'geschaetzt-reihe',
