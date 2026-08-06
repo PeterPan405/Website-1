@@ -46,6 +46,12 @@ name: Nachrichten – Entwurf vom Agenten
 # keines von beidem da, hört er auf, ohne rot zu werden – `nachrichten.yml`
 # hat eigene Rückfallebenen.
 #
+# **Sind beide hinterlegt, gilt der Abo-Token, und der Schlüssel wird gar
+# nicht erst mitgegeben.** Am 6. August 2026 wurden beide unbedingt gesetzt;
+# der Schlüssel hat Vorrang, war ungültig, und der Lauf endete nach 291
+# Millisekunden mit `401 Invalid API key` – während der gültige Abo-Token
+# danebenlag und nie gefragt wurde.
+#
 # ## Was er nicht tut
 #
 # Er veröffentlicht nicht. Er legt eine JSON-Datei auf dem wurzellosen Zweig
@@ -131,7 +137,15 @@ jobs:
             exit 0
           fi
 
-          if [ -z "$OAUTH" ] && [ -z "$SCHLUESSEL" ]; then
+          # Welche Anmeldung liegt vor? Nur das Vorhandensein wird gemeldet,
+          # nie ein Wert – Protokolle sind lesbar.
+          if [ -n "$OAUTH" ]; then
+            echo "anmeldung=abo" >> "$GITHUB_OUTPUT"
+            echo "Anmeldung über das Abonnement (CLAUDE_CODE_OAUTH_TOKEN)."
+          elif [ -n "$SCHLUESSEL" ]; then
+            echo "anmeldung=schluessel" >> "$GITHUB_OUTPUT"
+            echo "Anmeldung über den API-Schlüssel (ANTHROPIC_API_KEY) – kostet je Lauf."
+          else
             echo "weiter=nein" >> "$GITHUB_OUTPUT"
             echo "::warning::Weder CLAUDE_CODE_OAUTH_TOKEN noch ANTHROPIC_API_KEY hinterlegt."
             echo "  Ohne Anmeldung kann der Agent nicht schreiben. Anlegen unter"
@@ -185,27 +199,42 @@ jobs:
         if: steps.pruefung.outputs.weiter == 'ja'
         uses: anthropics/claude-code-action@v1
         with:
-          # Der Abo-Weg zuerst. `claude_code_oauth_token` ist laut `action.yml`
-          # die ausdrückliche Alternative zum API-Schlüssel; ist er leer, greift
-          # der Schlüssel darunter.
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # **Genau eine Anmeldung, nie beide.**
+          #
+          # Am 6. August 2026 waren beide Zeilen unbedingt gesetzt. Der Lauf
+          # endete nach 291 Millisekunden mit
+          #
+          #   "api_error_status": 401
+          #   "result": "Invalid API key · Fix external API key"
+          #
+          # obwohl der Abo-Token hinterlegt war: Der API-Schlüssel hat Vorrang,
+          # und der hinterlegte war ungültig. Ein zweiter, unbenutzter Wert hat
+          # den ersten verdeckt – der teuerste Fehler, den eine Rückfallebene
+          # machen kann.
+          #
+          # Deshalb entscheidet der Schritt „Ist etwas zu tun?" **vorher**,
+          # welche Anmeldung gilt, und die andere Zeile bleibt leer.
+          claude_code_oauth_token: ${{ steps.pruefung.outputs.anmeldung == 'abo' && secrets.CLAUDE_CODE_OAUTH_TOKEN || '' }}
+          anthropic_api_key: ${{ steps.pruefung.outputs.anmeldung == 'schluessel' && secrets.ANTHROPIC_API_KEY || '' }}
           # Ausdrücklich mitgeben statt über OIDC beziehen zu lassen. Der
           # Läufer hat den Token ohnehin; das erspart der Action einen Umweg,
           # der beim ersten Versuch der Grund für den Fehlschlag war.
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # **Vorübergehend zur Fehlersuche.**
+          # Die Action verbirgt die Ausgabe des Agenten standardmäßig. Hier ist
+          # sie eingeschaltet, und das bleibt sie bis zum ersten vollständig
+          # gelungenen Lauf.
           #
-          # Die Action verbirgt die Ausgabe des Agenten standardmäßig. Das ist
-          # richtig – der Agent liest Quellen und könnte Unerwartetes
-          # wiedergeben. Am 6. August war sie aber der einzige Weg, überhaupt
-          # zu erfahren, warum ein Lauf nach 211 Millisekunden mit
-          # `is_error: true` und null Kosten endet: Das ist eine abgelehnte
-          # Anmeldung, und welche, sagt nur die Meldung selbst.
+          # Der Grund: Ohne sie endet ein Fehlschlag als `is_error: true` mit
+          # null Kosten und ohne Begründung. Am 6. August war erst mit ihr zu
+          # sehen, dass hinter drei roten Läufen ein `401 Invalid API key`
+          # stand – eine Zeile, die alles erklärte und die vorher schlicht
+          # fehlte. Ein Workflow, der unbeaufsichtigt läuft, muss sagen können,
+          # warum er nicht gelaufen ist.
           #
-          # Eine Fehlermeldung der Schnittstelle nennt den Grund, nicht den
-          # Schlüssel. Sobald die Anmeldung steht, gehört diese Zeile wieder
-          # heraus.
+          # Die Kehrseite ist bekannt: Der Agent liest fremde Quellen, und was
+          # er daraus wiedergibt, steht dann im Protokoll. Das Repository ist
+          # privat, die Protokolle sieht nur der Betreiber. Sobald der Weg
+          # steht, gehört die Zeile wieder heraus.
           show_full_output: true
           claude_args: |
             --model claude-sonnet-5
