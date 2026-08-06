@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-07-28T04:58:31.458Z",
+  "abgerufenAm": "2026-08-06T14:32:09.655Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -33,6 +33,16 @@
     "url": "https://data.worldbank.org/indicator/NY.GNP.PCAP.CD",
     "abgrenzung": "Bruttonationaleinkommen je Kopf in US-Dollar nach der Atlas-Methode sowie Wirtschaftsleistung je Kopf zu Kaufkraftparitaeten. Beides ist kein Lohn: Es umfasst die gesamte Wertschoepfung einschliesslich Unternehmensgewinnen und Staatseinnahmen, geteilt durch die Einwohnerzahl. Genommen wird je Land das juengste Jahr mit Wert; das Jahr steht an jedem Eintrag."
   },
+  "arbeitslosenQuelle": {
+    "label": "Weltbank, World Development Indicators (SL.UEM.TOTL.ZS)",
+    "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS",
+    "abgrenzung": "Arbeitslose in Prozent der Erwerbspersonen, Modellschaetzung der ILO. Keine nationale Meldung: Die Laender zaehlen nach verschiedenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Deshalb weicht der Wert von der Zahl ab, die im jeweiligen Land veroeffentlicht wird – das ist der Preis der Vergleichbarkeit, kein Fehler."
+  },
+  "inflationQuelle": {
+    "label": "Weltbank, World Development Indicators (FP.CPI.TOTL.ZG)",
+    "url": "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG",
+    "abgrenzung": "Verbraucherpreise, Veraenderung gegenueber dem Vorjahr in Prozent. Der Jahresdurchschnitt eines abgeschlossenen Jahres, nicht die Rate von heute – in einer Zeit fallender Inflation steht hier deshalb eine hoehere Zahl als in den Nachrichten. Der Warenkorb wird je Land national festgelegt und ist zwischen Laendern nicht deckungsgleich."
+  },
   "laender": {
     "AFG": {
       "alpha2": "AF",
@@ -52,6 +62,10 @@
       "bipProKopfKKP": {
         "wert": 2236,
         "jahr": 2024
+      },
+      "arbeitslosenquote": {
+        "wert": 13,
+        "jahr": 2025
       }
     },
     "ALA": {
@@ -80,6 +94,10 @@
       "bipProKopfKKP": {
         "wert": 28221,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 11,
+        "jahr": 2025
       }
     },
     "DZA": {
@@ -100,6 +118,10 @@
       },
       "bipProKopfKKP": {
         "wert": 18586,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 12,
         "jahr": 2025
       }
     },
@@ -150,6 +172,10 @@
       },
       "bipProKopfKKP": {
         "wert": 10251,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 14,
         "jahr": 2025
       }
     },
@@ -207,6 +233,10 @@
       "bipProKopfKKP": {
         "wert": 32587,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "ARM": {
@@ -227,6 +257,10 @@
       },
       "bipProKopfKKP": {
         "wert": 24754,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 13,
         "jahr": 2025
       }
     },
@@ -277,6 +311,10 @@
       "bipProKopfKKP": {
         "wert": 71934,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "AUT": {
@@ -306,6 +344,10 @@
       "bipProKopfKKP": {
         "wert": 76778,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "AZE": {
@@ -326,6 +368,10 @@
       },
       "bipProKopfKKP": {
         "wert": 26113,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -348,6 +394,10 @@
       "bipProKopfKKP": {
         "wert": 41258,
         "jahr": 2024
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "BHR": {
@@ -368,6 +418,10 @@
       },
       "bipProKopfKKP": {
         "wert": 70997,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 1,
         "jahr": 2025
       }
     },
@@ -390,6 +444,10 @@
       "bipProKopfKKP": {
         "wert": 10154,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "BRB": {
@@ -411,6 +469,10 @@
       "bipProKopfKKP": {
         "wert": 25894,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "BLR": {
@@ -431,6 +493,10 @@
       },
       "bipProKopfKKP": {
         "wert": 34716,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -461,6 +527,10 @@
       "bipProKopfKKP": {
         "wert": 74676,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "BLZ": {
@@ -482,6 +552,10 @@
       "bipProKopfKKP": {
         "wert": 14966,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "BEN": {
@@ -502,6 +576,10 @@
       },
       "bipProKopfKKP": {
         "wert": 4817,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
         "jahr": 2025
       }
     },
@@ -539,6 +617,10 @@
       "bipProKopfKKP": {
         "wert": 19594,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "BOL": {
@@ -559,6 +641,10 @@
       },
       "bipProKopfKKP": {
         "wert": 12873,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -588,6 +674,10 @@
       "bipProKopfKKP": {
         "wert": 25814,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 11,
+        "jahr": 2025
       }
     },
     "BWA": {
@@ -608,6 +698,10 @@
       },
       "bipProKopfKKP": {
         "wert": 20698,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 24,
         "jahr": 2025
       }
     },
@@ -636,6 +730,10 @@
       },
       "bipProKopfKKP": {
         "wert": 23433,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
         "jahr": 2025
       }
     },
@@ -673,6 +771,10 @@
       "bipProKopfKKP": {
         "wert": 92430,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "BGR": {
@@ -693,6 +795,10 @@
       },
       "bipProKopfKKP": {
         "wert": 44451,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
         "jahr": 2025
       }
     },
@@ -715,6 +821,10 @@
       "bipProKopfKKP": {
         "wert": 3072,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "BDI": {
@@ -735,6 +845,10 @@
       },
       "bipProKopfKKP": {
         "wert": 1248,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 1,
         "jahr": 2025
       }
     },
@@ -757,6 +871,10 @@
       "bipProKopfKKP": {
         "wert": 12165,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 12,
+        "jahr": 2025
       }
     },
     "KHM": {
@@ -778,6 +896,10 @@
       "bipProKopfKKP": {
         "wert": 8543,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 0,
+        "jahr": 2025
       }
     },
     "CMR": {
@@ -798,6 +920,10 @@
       },
       "bipProKopfKKP": {
         "wert": 5788,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
         "jahr": 2025
       }
     },
@@ -827,6 +953,10 @@
       },
       "bipProKopfKKP": {
         "wert": 66746,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
         "jahr": 2025
       }
     },
@@ -865,6 +995,10 @@
       "bipProKopfKKP": {
         "wert": 1314,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "TCD": {
@@ -885,6 +1019,10 @@
       },
       "bipProKopfKKP": {
         "wert": 2903,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 1,
         "jahr": 2025
       }
     },
@@ -911,6 +1049,10 @@
       "bipProKopfKKP": {
         "wert": 37774,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "CHN": {
@@ -931,6 +1073,10 @@
       },
       "bipProKopfKKP": {
         "wert": 29333,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -953,6 +1099,10 @@
       "bipProKopfKKP": {
         "wert": 80423,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "MAC": {
@@ -969,6 +1119,10 @@
       },
       "bipProKopfKKP": {
         "wert": 137031,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
         "jahr": 2025
       }
     },
@@ -1009,6 +1163,10 @@
       "bipProKopfKKP": {
         "wert": 22640,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
+        "jahr": 2025
       }
     },
     "COM": {
@@ -1030,6 +1188,10 @@
       "bipProKopfKKP": {
         "wert": 4238,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "COG": {
@@ -1050,6 +1212,10 @@
       },
       "bipProKopfKKP": {
         "wert": 7248,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 20,
         "jahr": 2025
       }
     },
@@ -1083,6 +1249,10 @@
       "bipProKopfKKP": {
         "wert": 33815,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "HRV": {
@@ -1108,6 +1278,10 @@
       "bipProKopfKKP": {
         "wert": 50946,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "CUB": {
@@ -1120,6 +1294,10 @@
       "bneProKopf": {
         "wert": 9010,
         "jahr": 2019
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "CUW": {
@@ -1157,6 +1335,10 @@
       "bipProKopfKKP": {
         "wert": 64575,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "CZE": {
@@ -1186,6 +1368,10 @@
       "bipProKopfKKP": {
         "wert": 60487,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "PRK": {
@@ -1194,7 +1380,11 @@
       "region": "Asia",
       "subregion": "Eastern Asia",
       "waehrung": "KPW",
-      "einwohner": 26418204
+      "einwohner": 26418204,
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
+      }
     },
     "COD": {
       "alpha2": "CD",
@@ -1214,6 +1404,10 @@
       },
       "bipProKopfKKP": {
         "wert": 1920,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
         "jahr": 2025
       }
     },
@@ -1244,6 +1438,10 @@
       "bipProKopfKKP": {
         "wert": 83218,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "DJI": {
@@ -1264,6 +1462,10 @@
       },
       "bipProKopfKKP": {
         "wert": 8452,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 26,
         "jahr": 2025
       }
     },
@@ -1307,6 +1509,10 @@
       "bipProKopfKKP": {
         "wert": 28721,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "ECU": {
@@ -1327,6 +1533,10 @@
       },
       "bipProKopfKKP": {
         "wert": 16757,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -1349,6 +1559,10 @@
       "bipProKopfKKP": {
         "wert": 20204,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "SLV": {
@@ -1369,6 +1583,10 @@
       },
       "bipProKopfKKP": {
         "wert": 14101,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -1391,6 +1609,10 @@
       "bipProKopfKKP": {
         "wert": 16133,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
+        "jahr": 2025
       }
     },
     "ERI": {
@@ -1403,6 +1625,10 @@
       "schuldenquote": {
         "wert": 260.4,
         "jahr": 2019
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "EST": {
@@ -1432,6 +1658,10 @@
       "bipProKopfKKP": {
         "wert": 52106,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
+        "jahr": 2025
       }
     },
     "SWZ": {
@@ -1453,6 +1683,10 @@
       "bipProKopfKKP": {
         "wert": 12529,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 34,
+        "jahr": 2025
       }
     },
     "ETH": {
@@ -1473,6 +1707,10 @@
       },
       "bipProKopfKKP": {
         "wert": 3622,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -1518,6 +1756,10 @@
       "bipProKopfKKP": {
         "wert": 16338,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "FIN": {
@@ -1546,6 +1788,10 @@
       },
       "bipProKopfKKP": {
         "wert": 65884,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
         "jahr": 2025
       }
     },
@@ -1576,6 +1822,10 @@
       "bipProKopfKKP": {
         "wert": 63975,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
+        "jahr": 2025
       }
     },
     "GUF": {
@@ -1595,6 +1845,10 @@
       "bneProKopf": {
         "wert": 24100,
         "jahr": 2024
+      },
+      "arbeitslosenquote": {
+        "wert": 12,
+        "jahr": 2025
       }
     },
     "ATF": {
@@ -1623,6 +1877,10 @@
       "bipProKopfKKP": {
         "wert": 22218,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 20,
+        "jahr": 2025
       }
     },
     "GMB": {
@@ -1644,6 +1902,10 @@
       "bipProKopfKKP": {
         "wert": 3706,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "GEO": {
@@ -1664,6 +1926,10 @@
       },
       "bipProKopfKKP": {
         "wert": 29414,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 12,
         "jahr": 2025
       }
     },
@@ -1694,6 +1960,10 @@
       "bipProKopfKKP": {
         "wert": 75407,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "GHA": {
@@ -1714,6 +1984,10 @@
       },
       "bipProKopfKKP": {
         "wert": 8610,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -1751,6 +2025,10 @@
       },
       "bipProKopfKKP": {
         "wert": 45264,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
         "jahr": 2025
       }
     },
@@ -1800,7 +2078,11 @@
       "region": "Oceania",
       "subregion": "Micronesia",
       "waehrung": "USD",
-      "einwohner": 166506
+      "einwohner": 166506,
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
+      }
     },
     "GTM": {
       "alpha2": "GT",
@@ -1820,6 +2102,10 @@
       },
       "bipProKopfKKP": {
         "wert": 15197,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -1849,6 +2135,10 @@
       "bipProKopfKKP": {
         "wert": 4935,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "GNB": {
@@ -1869,6 +2159,10 @@
       },
       "bipProKopfKKP": {
         "wert": 3293,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -1891,6 +2185,10 @@
       "bipProKopfKKP": {
         "wert": 97899,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 12,
+        "jahr": 2025
       }
     },
     "HTI": {
@@ -1911,6 +2209,10 @@
       },
       "bipProKopfKKP": {
         "wert": 3134,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 15,
         "jahr": 2025
       }
     },
@@ -1947,6 +2249,10 @@
       "bipProKopfKKP": {
         "wert": 7871,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "HUN": {
@@ -1976,6 +2282,10 @@
       "bipProKopfKKP": {
         "wert": 49838,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "ISL": {
@@ -2001,6 +2311,10 @@
       "bipProKopfKKP": {
         "wert": 83431,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "IND": {
@@ -2021,6 +2335,10 @@
       },
       "bipProKopfKKP": {
         "wert": 11748,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
         "jahr": 2025
       }
     },
@@ -2043,6 +2361,10 @@
       "bipProKopfKKP": {
         "wert": 17660,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "IRN": {
@@ -2064,6 +2386,10 @@
       "bipProKopfKKP": {
         "wert": 19699,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
+        "jahr": 2025
       }
     },
     "IRQ": {
@@ -2084,6 +2410,10 @@
       },
       "bipProKopfKKP": {
         "wert": 14267,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 15,
         "jahr": 2025
       }
     },
@@ -2113,6 +2443,10 @@
       },
       "bipProKopfKKP": {
         "wert": 155089,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -2151,6 +2485,10 @@
       "bipProKopfKKP": {
         "wert": 59717,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "ITA": {
@@ -2180,6 +2518,10 @@
       "bipProKopfKKP": {
         "wert": 62803,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "CIV": {
@@ -2201,6 +2543,10 @@
       "bipProKopfKKP": {
         "wert": 8209,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "JAM": {
@@ -2221,6 +2567,10 @@
       },
       "bipProKopfKKP": {
         "wert": 13291,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -2251,6 +2601,10 @@
       "bipProKopfKKP": {
         "wert": 55422,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "JEY": {
@@ -2279,6 +2633,10 @@
       "bipProKopfKKP": {
         "wert": 12632,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 17,
+        "jahr": 2025
       }
     },
     "KAZ": {
@@ -2300,6 +2658,10 @@
       "bipProKopfKKP": {
         "wert": 44293,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "KEN": {
@@ -2320,6 +2682,10 @@
       },
       "bipProKopfKKP": {
         "wert": 7016,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -2363,6 +2729,10 @@
       "bipProKopfKKP": {
         "wert": 56468,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "KGZ": {
@@ -2384,6 +2754,10 @@
       "bipProKopfKKP": {
         "wert": 9220,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "LAO": {
@@ -2404,6 +2778,10 @@
       },
       "bipProKopfKKP": {
         "wert": 10383,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 1,
         "jahr": 2025
       }
     },
@@ -2434,6 +2812,10 @@
       "bipProKopfKKP": {
         "wert": 46137,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "LBN": {
@@ -2454,6 +2836,10 @@
       "bipProKopfKKP": {
         "wert": 11917,
         "jahr": 2024
+      },
+      "arbeitslosenquote": {
+        "wert": 11,
+        "jahr": 2023
       }
     },
     "LSO": {
@@ -2474,6 +2860,10 @@
       },
       "bipProKopfKKP": {
         "wert": 3184,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 16,
         "jahr": 2025
       }
     },
@@ -2496,6 +2886,10 @@
       "bipProKopfKKP": {
         "wert": 1981,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "LBY": {
@@ -2512,6 +2906,10 @@
       },
       "bipProKopfKKP": {
         "wert": 16521,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 19,
         "jahr": 2025
       }
     },
@@ -2554,6 +2952,10 @@
       "bipProKopfKKP": {
         "wert": 56838,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "LUX": {
@@ -2583,6 +2985,10 @@
       "bipProKopfKKP": {
         "wert": 156542,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "MDG": {
@@ -2603,6 +3009,10 @@
       },
       "bipProKopfKKP": {
         "wert": 1952,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -2625,6 +3035,10 @@
       "bipProKopfKKP": {
         "wert": 1899,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "MYS": {
@@ -2645,6 +3059,10 @@
       },
       "bipProKopfKKP": {
         "wert": 41498,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
         "jahr": 2025
       }
     },
@@ -2667,6 +3085,10 @@
       "bipProKopfKKP": {
         "wert": 28555,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "MLI": {
@@ -2688,6 +3110,10 @@
       "bipProKopfKKP": {
         "wert": 3503,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "MLT": {
@@ -2708,6 +3134,10 @@
       },
       "bipProKopfKKP": {
         "wert": 72210,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -2758,6 +3188,10 @@
       "bipProKopfKKP": {
         "wert": 7676,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 10,
+        "jahr": 2025
       }
     },
     "MUS": {
@@ -2778,6 +3212,10 @@
       },
       "bipProKopfKKP": {
         "wert": 33667,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
         "jahr": 2025
       }
     },
@@ -2810,6 +3248,10 @@
       },
       "bipProKopfKKP": {
         "wert": 25868,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -2861,6 +3303,10 @@
       "bipProKopfKKP": {
         "wert": 20798,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "MNE": {
@@ -2881,6 +3327,10 @@
       },
       "bipProKopfKKP": {
         "wert": 35423,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 14,
         "jahr": 2025
       }
     },
@@ -2910,6 +3360,10 @@
       "bipProKopfKKP": {
         "wert": 11112,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "MOZ": {
@@ -2930,6 +3384,10 @@
       },
       "bipProKopfKKP": {
         "wert": 1698,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
         "jahr": 2025
       }
     },
@@ -2952,6 +3410,10 @@
       "bipProKopfKKP": {
         "wert": 6012,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "NAM": {
@@ -2972,6 +3434,10 @@
       },
       "bipProKopfKKP": {
         "wert": 11986,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 19,
         "jahr": 2025
       }
     },
@@ -3015,6 +3481,10 @@
       "bipProKopfKKP": {
         "wert": 6175,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 10,
+        "jahr": 2025
       }
     },
     "NLD": {
@@ -3034,7 +3504,7 @@
         "jahr": 2025
       },
       "medianvermoegen": {
-        "wert": 147297,
+        "wert": 148733,
         "jahr": 2023
       },
       "bneProKopf": {
@@ -3043,6 +3513,10 @@
       },
       "bipProKopfKKP": {
         "wert": 87320,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
         "jahr": 2025
       }
     },
@@ -3056,6 +3530,10 @@
       "bneProKopf": {
         "wert": 30070,
         "jahr": 2024
+      },
+      "arbeitslosenquote": {
+        "wert": 11,
+        "jahr": 2025
       }
     },
     "NZL": {
@@ -3085,6 +3563,10 @@
       "bipProKopfKKP": {
         "wert": 57350,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "NIC": {
@@ -3105,6 +3587,10 @@
       },
       "bipProKopfKKP": {
         "wert": 9284,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -3127,6 +3613,10 @@
       "bipProKopfKKP": {
         "wert": 2177,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 0,
+        "jahr": 2025
       }
     },
     "NGA": {
@@ -3147,6 +3637,10 @@
       },
       "bipProKopfKKP": {
         "wert": 9532,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -3191,6 +3685,10 @@
       "bipProKopfKKP": {
         "wert": 28029,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 12,
+        "jahr": 2025
       }
     },
     "NOR": {
@@ -3220,6 +3718,10 @@
       "bipProKopfKKP": {
         "wert": 104044,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "OMN": {
@@ -3241,6 +3743,10 @@
       "bipProKopfKKP": {
         "wert": 42295,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "PAK": {
@@ -3261,6 +3767,10 @@
       },
       "bipProKopfKKP": {
         "wert": 6573,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -3304,6 +3814,10 @@
       "bipProKopfKKP": {
         "wert": 43902,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
+        "jahr": 2025
       }
     },
     "PNG": {
@@ -3324,6 +3838,10 @@
       },
       "bipProKopfKKP": {
         "wert": 5215,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -3346,6 +3864,10 @@
       "bipProKopfKKP": {
         "wert": 20181,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "PER": {
@@ -3367,6 +3889,10 @@
       "bipProKopfKKP": {
         "wert": 18816,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "PHL": {
@@ -3387,6 +3913,10 @@
       },
       "bipProKopfKKP": {
         "wert": 12577,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
         "jahr": 2025
       }
     },
@@ -3424,6 +3954,10 @@
       "bipProKopfKKP": {
         "wert": 54262,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "PRT": {
@@ -3453,6 +3987,10 @@
       "bipProKopfKKP": {
         "wert": 53146,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "PRI": {
@@ -3474,6 +4012,10 @@
       "bipProKopfKKP": {
         "wert": 52196,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "QAT": {
@@ -3493,6 +4035,10 @@
       },
       "bipProKopfKKP": {
         "wert": 128883,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 0,
         "jahr": 2025
       }
     },
@@ -3523,6 +4069,10 @@
       "bipProKopfKKP": {
         "wert": 63125,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "MDA": {
@@ -3543,6 +4093,10 @@
       },
       "bipProKopfKKP": {
         "wert": 19996,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
         "jahr": 2025
       }
     },
@@ -3572,6 +4126,10 @@
       "bipProKopfKKP": {
         "wert": 50895,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "RUS": {
@@ -3593,6 +4151,10 @@
       "bipProKopfKKP": {
         "wert": 49568,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "RWA": {
@@ -3613,6 +4175,10 @@
       },
       "bipProKopfKKP": {
         "wert": 4164,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 11,
         "jahr": 2025
       }
     },
@@ -3670,6 +4236,10 @@
       "bipProKopfKKP": {
         "wert": 28674,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "MAF": {
@@ -3706,6 +4276,10 @@
       "bipProKopfKKP": {
         "wert": 22799,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 18,
+        "jahr": 2025
       }
     },
     "WSM": {
@@ -3726,6 +4300,10 @@
       },
       "bipProKopfKKP": {
         "wert": 9319,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -3768,6 +4346,10 @@
       "bipProKopfKKP": {
         "wert": 6388,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "SAU": {
@@ -3788,6 +4370,10 @@
       },
       "bipProKopfKKP": {
         "wert": 73784,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -3810,6 +4396,10 @@
       "bipProKopfKKP": {
         "wert": 5463,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "SRB": {
@@ -3830,6 +4420,10 @@
       },
       "bipProKopfKKP": {
         "wert": 33910,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
         "jahr": 2025
       }
     },
@@ -3873,6 +4467,10 @@
       "bipProKopfKKP": {
         "wert": 3717,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "SGP": {
@@ -3893,6 +4491,10 @@
       },
       "bipProKopfKKP": {
         "wert": 163354,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
         "jahr": 2025
       }
     },
@@ -3940,6 +4542,10 @@
       "bipProKopfKKP": {
         "wert": 49309,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "SVN": {
@@ -3969,6 +4575,10 @@
       "bipProKopfKKP": {
         "wert": 59245,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "SLB": {
@@ -3990,6 +4600,10 @@
       "bipProKopfKKP": {
         "wert": 2788,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 1,
+        "jahr": 2025
       }
     },
     "SOM": {
@@ -4006,6 +4620,10 @@
       },
       "bipProKopfKKP": {
         "wert": 1643,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 19,
         "jahr": 2025
       }
     },
@@ -4028,6 +4646,10 @@
       "bipProKopfKKP": {
         "wert": 15906,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 32,
+        "jahr": 2025
       }
     },
     "SGS": {
@@ -4047,6 +4669,10 @@
       "schuldenquote": {
         "wert": 62.1,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 12,
+        "jahr": 2023
       }
     },
     "ESP": {
@@ -4076,6 +4702,10 @@
       "bipProKopfKKP": {
         "wert": 59868,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 10,
+        "jahr": 2025
       }
     },
     "LKA": {
@@ -4097,6 +4727,10 @@
       "bipProKopfKKP": {
         "wert": 17065,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "PSE": {
@@ -4114,6 +4748,10 @@
       "bipProKopfKKP": {
         "wert": 5000,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 24,
+        "jahr": 2022
       }
     },
     "SDN": {
@@ -4135,6 +4773,10 @@
       "bipProKopfKKP": {
         "wert": 2192,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
+        "jahr": 2022
       }
     },
     "SUR": {
@@ -4155,6 +4797,10 @@
       },
       "bipProKopfKKP": {
         "wert": 22652,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
         "jahr": 2025
       }
     },
@@ -4188,6 +4834,10 @@
       "bipProKopfKKP": {
         "wert": 72529,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "CHE": {
@@ -4213,6 +4863,10 @@
       "bipProKopfKKP": {
         "wert": 102513,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "SYR": {
@@ -4233,6 +4887,10 @@
       "bipProKopfKKP": {
         "wert": 4905,
         "jahr": 2022
+      },
+      "arbeitslosenquote": {
+        "wert": 14,
+        "jahr": 2025
       }
     },
     "TWN": {
@@ -4265,6 +4923,10 @@
       "bipProKopfKKP": {
         "wert": 5923,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 7,
+        "jahr": 2025
       }
     },
     "THA": {
@@ -4285,6 +4947,10 @@
       },
       "bipProKopfKKP": {
         "wert": 26250,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 1,
         "jahr": 2025
       }
     },
@@ -4307,6 +4973,10 @@
       "bipProKopfKKP": {
         "wert": 4809,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "TGO": {
@@ -4327,6 +4997,10 @@
       },
       "bipProKopfKKP": {
         "wert": 4079,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
         "jahr": 2025
       }
     },
@@ -4355,6 +5029,10 @@
       "bipProKopfKKP": {
         "wert": 8675,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "TTO": {
@@ -4376,6 +5054,10 @@
       "bipProKopfKKP": {
         "wert": 37121,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "TUN": {
@@ -4396,6 +5078,10 @@
       },
       "bipProKopfKKP": {
         "wert": 15233,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 15,
         "jahr": 2025
       }
     },
@@ -4422,6 +5108,10 @@
       "bipProKopfKKP": {
         "wert": 45288,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
+        "jahr": 2025
       }
     },
     "TKM": {
@@ -4442,6 +5132,10 @@
       },
       "bipProKopfKKP": {
         "wert": 22602,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
         "jahr": 2025
       }
     },
@@ -4502,6 +5196,10 @@
       "bipProKopfKKP": {
         "wert": 3488,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 3,
+        "jahr": 2025
       }
     },
     "UKR": {
@@ -4523,6 +5221,10 @@
       "bipProKopfKKP": {
         "wert": 18905,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 10,
+        "jahr": 2021
       }
     },
     "ARE": {
@@ -4544,6 +5246,10 @@
       "bipProKopfKKP": {
         "wert": 79344,
         "jahr": 2024
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
+        "jahr": 2025
       }
     },
     "GBR": {
@@ -4573,6 +5279,10 @@
       "bipProKopfKKP": {
         "wert": 64606,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "TZA": {
@@ -4593,6 +5303,10 @@
       },
       "bipProKopfKKP": {
         "wert": 4471,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
         "jahr": 2025
       }
     },
@@ -4630,6 +5344,10 @@
       "bipProKopfKKP": {
         "wert": 90027,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 4,
+        "jahr": 2025
       }
     },
     "VIR": {
@@ -4642,6 +5360,10 @@
       "bipProKopfKKP": {
         "wert": 49785,
         "jahr": 2022
+      },
+      "arbeitslosenquote": {
+        "wert": 11,
+        "jahr": 2025
       }
     },
     "URY": {
@@ -4662,6 +5384,10 @@
       },
       "bipProKopfKKP": {
         "wert": 38315,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 8,
         "jahr": 2025
       }
     },
@@ -4684,6 +5410,10 @@
       "bipProKopfKKP": {
         "wert": 13601,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "VUT": {
@@ -4705,6 +5435,10 @@
       "bipProKopfKKP": {
         "wert": 4525,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
+        "jahr": 2025
       }
     },
     "VEN": {
@@ -4720,6 +5454,10 @@
       },
       "bneProKopf": {
         "wert": 3860,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 5,
         "jahr": 2025
       }
     },
@@ -4741,6 +5479,10 @@
       },
       "bipProKopfKKP": {
         "wert": 18088,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 2,
         "jahr": 2025
       }
     },
@@ -4768,6 +5510,10 @@
       "bneProKopf": {
         "wert": 740,
         "jahr": 2018
+      },
+      "arbeitslosenquote": {
+        "wert": 17,
+        "jahr": 2025
       }
     },
     "ZMB": {
@@ -4789,6 +5535,10 @@
       "bipProKopfKKP": {
         "wert": 4379,
         "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 6,
+        "jahr": 2025
       }
     },
     "ZWE": {
@@ -4809,6 +5559,10 @@
       },
       "bipProKopfKKP": {
         "wert": 6470,
+        "jahr": 2025
+      },
+      "arbeitslosenquote": {
+        "wert": 9,
         "jahr": 2025
       }
     }
