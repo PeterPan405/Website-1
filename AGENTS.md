@@ -142,11 +142,12 @@ Zwei Wege, hintereinander, und ihr **Abstand** ist die eigentliche Vorschrift:
 | 02:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?            |
 | 02:13      | `quellen-sammeln.yml` – legt `quellen-heute` an                   |
 | 02:23      | `quellen-sammeln.yml` – zweiter Termin                            |
-| **02:37**  | `nachrichten.yml`, erster Anlauf → fertig 02:57, live gegen 03:10 |
-| **02:57**  | zweiter Anlauf, falls der erste verworfen wurde                   |
-| **03:17**  | dritter Anlauf – der letzte, der 04:00 noch schafft               |
+| **02:27**  | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf**      |
+| **02:41**  | zweiter Anlauf des Agenten                                        |
+| **02:57**  | `nachrichten.yml` – Entwurf prüfen, bauen, senden → live ab 03:20 |
+| **03:17**  | zweiter Anlauf, falls der erste verworfen wurde                   |
+| **03:47**  | dritter Anlauf – der letzte, der 04:00 noch schafft               |
 | ab 03:07   | `kurse.yml` stößt an, falls alle drei ausfielen                   |
-| 03:53      | Routine – die letzte Gelegenheit, dann eben verspätet             |
 | 04:11      | `ausgabe-waechter.yml` – elf Minuten nach der Frist               |
 | 05:41      | `paket-bauen.yml` – der nächtliche Bau, unabhängig davon          |
 | 05:51      | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?             |
@@ -157,19 +158,68 @@ Stunde nach. Wer eine Zeit ändert, ändert alle.
 **Die Zusage lautet: 6:00 deutscher Zeit, also 04:00 UTC.** Alles darüber ist
 rückwärts gerechnet, nicht gewählt: Der Nachrichtenlauf braucht 20 Minuten,
 der Paketbau samt Übertragung nochmal 10. Der letzte Start, der die Frist noch
-hält, ist damit **03:17 UTC** – daher der dritte Termin genau dort.
+hält, ist damit **03:47 UTC**.
 
-**Warum der Workflow vorn steht und die Routine hinten.** Bis zum 6. August
-2026 war es umgekehrt, um Kosten zu sparen. Eine Sitzungs-Routine braucht aber
-45 bis 70 Minuten und passt damit nicht mehr vor 04:00. Sie steht jetzt um
-03:53 als letzte Gelegenheit – dann eben verspätet, aber am selben Morgen.
-Zwei Wege, die gleichzeitig schreiben, erzeugen zwei Ausgaben zum selben Datum
-und brechen den Build ab; deshalb liegt sie hinter dem dritten Anlauf.
+## Der Agent schreibt, der Läufer veröffentlicht
 
-**Was der frühe Start kostet.** Um 02:37 UTC ist es 4:37 in Deutschland, und
-die Unternehmensticker laufen erst ab 5 Uhr. Die Ausgabe ist damit stärker ein
-Überblick über die Nacht und den Vortag als über den laufenden Morgen. Das ist
-der Preis für 6:00 und eine bewusste Entscheidung, keine Nachlässigkeit.
+Das ist seit dem 6. August 2026 die Arbeitsteilung, und sie ist der Kern des
+Ganzen.
+
+**Was sich nicht rechnen lässt:** aus „07:04 Siemens erzielt
+Rekordauftragseingang" einen Artikel machen. Den Lehrwinkel wählen, selbst
+formulieren, die Begründung weglassen, die in der Meldung nicht steht. Dafür
+muss ein Modell die rund 100.000 Zeichen der Quellendatei lesen.
+`scripts/nachrichten-aus-bestand.ts` kann Zahlen ordnen, aber keine
+Nachrichten schreiben – es ist ein Notbehelf und nichts sonst.
+
+**Wo das Modell läuft, ist die entscheidende Frage.** Drei Antworten wurden
+probiert:
+
+| Weg                         | Kosten       | Protokoll einsehbar | Netzzugang | Bilanz                      |
+| --------------------------- | ------------ | ------------------- | ---------- | --------------------------- |
+| Sitzungs-Routine            | im Abo       | **nein**            | nein (403) | 7 von 7 Tagen ohne Ergebnis |
+| Anthropic-Schnittstelle     | ~0,20 $/Lauf | ja                  | –          | läuft, kostet               |
+| **`nachrichten-agent.yml`** | **im Abo**   | **ja**              | **voll**   | der Weg                     |
+
+`anthropics/claude-code-action` startet den Agenten **auf dem Läufer**. Der
+Eingabewert `claude_code_oauth_token` erlaubt die Anmeldung über ein
+bestehendes Pro- oder Max-Abonnement statt über einen API-Schlüssel – erzeugt
+wird er einmalig mit `claude setup-token` und liegt als Repository-Secret
+`CLAUDE_CODE_OAUTH_TOKEN`.
+
+Damit fallen beide Nachteile der Routine weg: Jeder Schritt steht im
+Protokoll, ein Fehlschlag ist ein roter Lauf mit Mail, und der Läufer kommt
+ins Netz – der Agent kann Quellen selbst nachschlagen statt nur die
+gesammelte Datei zu lesen.
+
+Die Sitzungs-Routine ist deshalb stillgelegt. Sie war derselbe Gedanke ohne
+die Sichtbarkeit.
+
+**Der Agent veröffentlicht nicht.** Er legt `entwurf.json` auf dem
+wurzellosen Zweig `nachrichten-entwurf` ab – aber erst, nachdem ein
+**eigener** Schritt danach die Probe unabhängig wiederholt hat. Ein
+ungeprüfter Entwurf wäre gefährlicher als keiner: `nachrichten.yml` würde ihn
+nehmen, und der Build bräche zwei Stunden später.
+
+`nachrichten.yml` um 02:57 hat damit drei Wege, in dieser Rangfolge:
+
+1. **Entwurf vom Agenten** – recherchiert, im Abo enthalten, der Regelfall
+2. **Modell über die Schnittstelle** – dasselbe Ergebnis, ~0,20 $, braucht
+   `ANTHROPIC_API_KEY`
+3. **Bestand** – Marktzahlen statt Meldungen, ausdrücklich ein Notbehelf
+
+Wer hier etwas ändert, ändert nichts an dieser Reihenfolge. Weg 3 ist der
+Grund, warum nie „gar nichts" dasteht; Weg 1 der Grund, warum er selten
+gebraucht werden sollte.
+
+Zur Selbstprüfung eines Entwurfs dient dieselbe Probe, die beide Workflows
+fahren:
+
+```
+ANTWORT_DATEI=entwurf.json QUELLENDATEI=quellen.txt \
+  STICHTAG=$(date -u +%Y-%m-%d) NUR_PRUEFEN=1 \
+  node --experimental-strip-types scripts/nachrichten-erzeugen.ts
+```
 
 ## Warum die Ausgabe aus einem Workflow kommt und nicht aus einer Routine
 

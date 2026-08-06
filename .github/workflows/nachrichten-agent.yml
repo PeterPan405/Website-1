@@ -1,0 +1,357 @@
+name: Nachrichten – Entwurf vom Agenten
+
+# Der Agent schreibt die Tagesausgabe – auf einem Läufer, mit sichtbarem
+# Protokoll, ohne laufende Rechnung.
+#
+# ## Warum es diesen Workflow gibt
+#
+# Die Zusage lautet: **Die Nachrichten stehen um 6:00 deutscher Zeit auf der
+# Website, und zwar recherchiert.** Nicht aus dem eigenen Kursbestand
+# gerechnet – das ist ein Notbehelf –, sondern aus den Meldungen des Morgens.
+#
+# Dafür braucht es ein Modell, das die rund 100.000 Zeichen der Quellendatei
+# liest. Das lässt sich nicht rechnen: Aus „07:04 Siemens erzielt
+# Rekordauftragseingang" einen Artikel zu machen – den Lehrwinkel wählen,
+# selbst formulieren, die Begründung weglassen, die in der Meldung nicht
+# steht – ist Spracharbeit.
+#
+# Bis zum 6. August 2026 gab es dafür zwei Wege, und beide hatten einen Haken:
+#
+# - **Die Sitzungs-Routine** ist im Abonnement enthalten, hat aber an sieben
+#   Tagen in Folge nichts geliefert. Der Grund war nicht feststellbar:
+#   Sitzungsprotokolle sind von außen nicht einsehbar. Was sich nicht
+#   diagnostizieren lässt, lässt sich nicht reparieren.
+# - **Die Anthropic-Schnittstelle** (`nachrichten.yml`, Weg 2) läuft
+#   zuverlässig und sichtbar, kostet aber je Lauf rund 0,20 $.
+#
+# Dieser Workflow hat die Vorzüge beider. `anthropics/claude-code-action`
+# startet den Agenten **auf dem Läufer**, und der Eingabewert
+# `claude_code_oauth_token` erlaubt die Anmeldung über ein bestehendes
+# Claude-Abonnement statt über einen API-Schlüssel. Damit gilt:
+#
+# - Jeder Schritt steht im Protokoll, jeder Fehlschlag ist ein roter Lauf.
+# - Der Läufer hat **vollen Netzzugang** – der Agent kann Quellen selbst
+#   nachschlagen, nicht nur die gesammelte Datei lesen. Aus dieser Umgebung
+#   heraus geht das nicht (Egress-Proxy, 403 auf jede Nachrichtenseite).
+# - Es entsteht keine zusätzliche Rechnung.
+#
+# ## Was gebraucht wird
+#
+# Ein Repository-Secret **`CLAUDE_CODE_OAUTH_TOKEN`**. Erzeugt wird er einmalig
+# auf dem eigenen Rechner mit `claude setup-token` (setzt ein Pro- oder
+# Max-Abonnement voraus) und hinterlegt unter Settings → Secrets and variables
+# → Actions. Er gehört nie in einen Chat und nie in ein Protokoll.
+#
+# Ist stattdessen `ANTHROPIC_API_KEY` hinterlegt, nimmt der Lauf den. Ist
+# keines von beidem da, hört er auf, ohne rot zu werden – `nachrichten.yml`
+# hat eigene Rückfallebenen.
+#
+# ## Was er nicht tut
+#
+# Er veröffentlicht nicht. Er legt eine JSON-Datei auf dem wurzellosen Zweig
+# `nachrichten-entwurf` ab; `nachrichten.yml` um 02:57 prüft sie mit derselben
+# Kette wie der Build und schreibt daraus die Dateien. Diese Trennung ist
+# Absicht: Der Agent tut nur das, was ein Läufer nicht kann.
+
+on:
+  schedule:
+    # 02:27 UTC – 4:27 deutscher Sommerzeit, vier Minuten nach dem zweiten
+    # Termin des Quellensammlers und dreißig Minuten vor `nachrichten.yml`.
+    #
+    # Der Abstand ist die gemessene Obergrenze für einen Agentenlauf, der nur
+    # schreibt: Quellen lesen, fünf bis acht Artikel formulieren, selbst
+    # prüfen. Siebzig Minuten wie früher braucht das nicht – Bauen, Prüfen
+    # und Veröffentlichen passieren woanders.
+    - cron: '27 2 * * *'
+    # Ein zweiter Anlauf, falls GitHub den ersten verwirft. Am 6. August 2026
+    # wurde von allen geplanten Läufen des Tages genau einer ausgeführt.
+    - cron: '41 2 * * *'
+  workflow_dispatch:
+    inputs:
+      stichtag:
+        description: 'Datum JJJJ-MM-TT (leer = heute)'
+        required: false
+        type: string
+
+# Zwei Agenten gleichzeitig schrieben zwei Entwürfe übereinander. Der laufende
+# wird nicht abgebrochen – er ist womöglich schon beim Formulieren.
+concurrency:
+  group: nachrichten-entwurf
+  cancel-in-progress: false
+
+jobs:
+  entwerfen:
+    name: Entwurf schreiben
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      # Zum Anstoßen des Quellensammlers, falls die Datei fehlt.
+      actions: write
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Erst prüfen, ob es überhaupt etwas zu tun gibt.
+      #
+      # Steht die Ausgabe schon (weil ein früherer Lauf sie geschrieben hat),
+      # ist ein Entwurf sinnlos: `nachrichten.yml` würde ihn ohnehin nicht
+      # verwenden. Und ohne Anmeldung geht es gar nicht weiter.
+      - name: Ist etwas zu tun?
+        id: pruefung
+        env:
+          OAUTH: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          SCHLUESSEL: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          tag="${{ inputs.stichtag }}"
+          [ -n "$tag" ] || tag=$(date -u +%Y-%m-%d)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+          if [ -f "data/editions/$tag.ts" ]; then
+            echo "weiter=nein" >> "$GITHUB_OUTPUT"
+            echo "Die Ausgabe vom $tag steht bereits – nichts zu entwerfen."
+            exit 0
+          fi
+
+          if [ -z "$OAUTH" ] && [ -z "$SCHLUESSEL" ]; then
+            echo "weiter=nein" >> "$GITHUB_OUTPUT"
+            echo "::warning::Weder CLAUDE_CODE_OAUTH_TOKEN noch ANTHROPIC_API_KEY hinterlegt."
+            echo "  Ohne Anmeldung kann der Agent nicht schreiben. Anlegen unter"
+            echo "  Settings > Secrets and variables > Actions."
+            echo "  Den OAuth-Token erzeugt 'claude setup-token' auf dem eigenen Rechner."
+            echo "  nachrichten.yml greift dann auf seine eigenen Rückfallebenen zurück."
+            exit 0
+          fi
+
+          echo "weiter=ja" >> "$GITHUB_OUTPUT"
+          echo "Für den $tag fehlt die Ausgabe – der Agent schreibt den Entwurf."
+
+      # Die Quellendatei, die `quellen-sammeln.yml` um 02:13 und 02:23 anlegt.
+      # Fehlt sie, wird der Sammler angestoßen und kurz gewartet; der Agent
+      # kann notfalls auch ohne sie arbeiten, weil der Läufer ins Netz kommt.
+      - name: Quellen besorgen
+        id: quellen
+        if: steps.pruefung.outputs.weiter == 'ja'
+        env:
+          TAG: ${{ steps.pruefung.outputs.tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          hole() {
+            git fetch origin quellen-heute --depth 1 -q 2>/dev/null || return 1
+            git show origin/quellen-heute:quellen.txt > quellen.txt 2>/dev/null || return 1
+            [ -s quellen.txt ] && head -1 quellen.txt | grep -q "$TAG"
+          }
+
+          if hole; then
+            echo "Quellendatei: $(head -1 quellen.txt) – $(wc -c < quellen.txt) Zeichen."
+            echo "frisch=ja" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Keine frische Quellendatei – der Sammler wird angestoßen."
+          gh workflow run quellen-sammeln.yml --repo "${{ github.repository }}" --ref main || true
+          for versuch in 1 2 3 4 5 6; do
+            sleep 20
+            if hole; then
+              echo "Quellendatei nach Versuch $versuch da."
+              echo "frisch=ja" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+
+          echo "::warning::Keine Quellendatei. Der Agent recherchiert selbst – der Läufer kommt ins Netz."
+          echo "frisch=nein" >> "$GITHUB_OUTPUT"
+          rm -f quellen.txt
+
+      - name: Agent schreibt den Entwurf
+        if: steps.pruefung.outputs.weiter == 'ja'
+        uses: anthropics/claude-code-action@v1
+        with:
+          # Der Abo-Weg zuerst. `claude_code_oauth_token` ist laut `action.yml`
+          # die ausdrückliche Alternative zum API-Schlüssel; ist er leer, greift
+          # der Schlüssel darunter.
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --model claude-sonnet-5
+            --max-turns 40
+            --allowedTools Bash,Read,Write,Edit,Grep,Glob,WebFetch,WebSearch
+          prompt: |
+            Schreibe den Entwurf der heutigen Nachrichtenausgabe für IM Invests
+            und lege ihn als `entwurf.json` im Arbeitsverzeichnis ab.
+
+            Stichtag ist ${{ steps.pruefung.outputs.tag }}.
+
+            ## Der wichtigste Grundsatz
+
+            **Keine erfundenen Meldungen. Keine erfundenen Zahlen. Keine Quelle,
+            die du nicht gesehen hast.** Gesponserte oder als „Anzeige"
+            gekennzeichnete Texte sind keine Quelle.
+
+            Eine Ticker-Zeile ist eine Tatsachenbehauptung mit Zeitstempel:
+            „07:04 Siemens erzielt Rekordauftragseingang – Ergebnisausblick
+            erhöht". Diese Tatsache darfst du wiedergeben. **Die Begründung
+            darfst du nicht ergänzen.** Steht in der Zeile kein Warum, schreibst
+            du kein Warum – sag im Artikel ausdrücklich, dass die Begründung aus
+            der Meldung nicht hervorgeht. Das ist ehrlicher und für einen
+            Lernleser lehrreicher als eine plausible Erfindung.
+
+            Formuliere jede Zusammenfassung selbst. Übernimm keine Sätze aus den
+            Quellen: Tatsachen sind frei, die Formulierung ist geschützt.
+
+            Keine Anlageberatung. „Was daraus folgt" endet mit einer Überlegung,
+            nie mit einer Empfehlung zu kaufen oder zu verkaufen.
+
+            ## Deine Quellen
+
+            ${{ steps.quellen.outputs.frisch == 'ja' && 'Die Datei `quellen.txt` im Arbeitsverzeichnis enthält die Nachrichtenübersichten von heute Morgen, rund 100.000 Zeichen aus mehreren Portalen. Lies sie zuerst. Ergiebig sind die Ticker-Zeilen mit Uhrzeit (`grep -nE "^ *0[5-9]:[0-9]{2} " quellen.txt`), die Kursleisten am Kopf und die Abschnitte „Heute im Fokus", „Top News", „Aktuelle News".' || 'Es liegt keine gesammelte Quellendatei vor. Du hast hier vollen Netzzugang – recherchiere selbst mit WebFetch auf finanzen.net, onvista.de, wallstreet-online.de, boerse-frankfurt.de und der Bundesbank.' }}
+
+            Du darfst zusätzlich `WebFetch` und `WebSearch` nutzen, um eine
+            Meldung zu prüfen oder zu ergänzen. Achte auf das Datum: Suchmaschinen
+            liefern gerne Evergreens. Und übernimm aus Suchergebnissen **keine
+            Zahl** – sie sind Zusammenfassungen fremder Seiten, keine Seiten.
+
+            ## Umfang
+
+            Fünf bis acht Artikel aus **mehreren Quellen zu mehreren Themen**.
+            Lieber fünf belegte als acht mit einem geratenen. Der Lehrwinkel
+            trägt den Artikel, die Meldung ist nur der Anlass. Bewährte Muster:
+            Guidance gegen Ist-Zahlen, Auftragseingang gegen Umsatz, Umsatz gegen
+            Marge, Rückkauf gegen Dividende, Performanceindex gegen Kursindex,
+            nachbörslicher Handel, Abzinsung, Korrelation gegen Gegenläufigkeit.
+
+            ## Die erlaubten Werte
+
+            ```
+            grep -ohE "^  slug: '[a-z0-9-]+'" data/learn/topics/*.ts | sed "s/.*slug: '//;s/'//" | sort
+            grep -oE "^    symbol: '[a-z0-9-]+'" data/markets.ts | sed "s/.*symbol: '//;s/'//"
+            ```
+
+            `relatedTopics` und `relatedSymbols` dürfen **nur** Werte aus diesen
+            Listen enthalten. Die meisten Einzelaktien aus deutschen
+            Tickermeldungen stehen nicht im Katalog – dann nimm den Index (`dax`).
+
+            ## Die Form
+
+            ```json
+            {
+              "stichtag": "${{ steps.pruefung.outputs.tag }}",
+              "intro": "110 bis 165 Zeichen",
+              "artikel": [
+                {
+                  "slug": "nur-kleinbuchstaben-ziffern-bindestriche",
+                  "title": "…",
+                  "metaTitle": "nur nötig, wenn title über 65 Zeichen hat",
+                  "teaser": "100 bis 160 Zeichen",
+                  "category": "Märkte",
+                  "readingMinutes": 4,
+                  "tags": ["…"],
+                  "relatedTopics": ["aktie"],
+                  "relatedSymbols": ["dax"],
+                  "sources": [{ "label": "onvista, News-Ticker vom …, 07:04 Uhr", "url": "https://…" }],
+                  "body": [
+                    { "type": "paragraph", "text": "**fett** geht" },
+                    { "type": "heading", "level": 2, "text": "…" }
+                  ]
+                }
+              ],
+              "top": [
+                {
+                  "headline": "…",
+                  "summary": ["Satz", "Satz"],
+                  "category": "Märkte",
+                  "whyItMatters": "mindestens 40 Zeichen",
+                  "relatedTopics": ["aktie"],
+                  "relatedSymbols": ["dax"],
+                  "sources": [{ "label": "…", "url": "https://…" }]
+                }
+              ],
+              "further": []
+            }
+            ```
+
+            Kategorien: Geldpolitik · Märkte · Vorsorge · Steuern & Recht ·
+            Geldanlage. `top` braucht ein bis sechs Einträge, `top` und
+            `further` zusammen mindestens drei. Titel, Meta-Titel und Anreißer
+            müssen untereinander **und gegen die vorhandenen Artikel in
+            `data/news.ts`** eindeutig sein.
+
+            ## Prüfe dich selbst – das ist der wichtigste Schritt
+
+            ```
+            ANTWORT_DATEI=entwurf.json QUELLENDATEI=quellen.txt \
+              STICHTAG=${{ steps.pruefung.outputs.tag }} NUR_PRUEFEN=1 \
+              node --experimental-strip-types scripts/nachrichten-erzeugen.ts
+            ```
+
+            Das ist dieselbe Prüfung, die gleich der nächste Workflow fährt:
+            Längen, Eindeutigkeit, gültige Themen und Symbole, Mindestlängen von
+            `whyItMatters` und `summary`. **Schreibt sie Fehler, behebe sie und
+            prüfe erneut**, bis „Probe bestanden" dasteht. Ein Entwurf, der hier
+            durchfällt, wird verworfen, und die Website bekommt den Notbehelf aus
+            Kursdaten statt echter Nachrichten.
+
+            Ändere nichts unter `data/` und committe nichts – das Ablegen
+            übernimmt der Schritt nach dir. Deine einzige Ausgabe ist die Datei
+            `entwurf.json`.
+
+      # Erst hier wird der Entwurf abgelegt – und nur, wenn er die Probe
+      # besteht. Ein Entwurf, den niemand geprüft hat, wäre gefährlicher als
+      # keiner: `nachrichten.yml` würde ihn nehmen und der Build bräche später.
+      - name: Entwurf prüfen und ablegen
+        if: steps.pruefung.outputs.weiter == 'ja'
+        env:
+          TAG: ${{ steps.pruefung.outputs.tag }}
+        run: |
+          if [ ! -s entwurf.json ]; then
+            echo "::error::Der Agent hat keine entwurf.json hinterlassen."
+            exit 1
+          fi
+
+          echo "— Gegenprobe, unabhängig vom Agenten"
+          ANTWORT_DATEI=entwurf.json QUELLENDATEI=quellen.txt \
+            STICHTAG="$TAG" NUR_PRUEFEN=1 \
+            node --experimental-strip-types scripts/nachrichten-erzeugen.ts
+
+          # Der Stichtag muss im Entwurf stehen – `nachrichten.yml` prüft ihn,
+          # bevor er einen Entwurf verwendet, und ein Entwurf von gestern wäre
+          # schlimmer als keiner.
+          node -e "
+            const fs = require('node:fs')
+            const d = JSON.parse(fs.readFileSync('entwurf.json', 'utf8'))
+            if (d.stichtag !== process.env.TAG) {
+              d.stichtag = process.env.TAG
+              fs.writeFileSync('entwurf.json', JSON.stringify(d, null, 2))
+              console.log('Stichtag ergänzt.')
+            }
+            console.log(\`\${d.artikel.length} Artikel, \${d.top.length} Top-Meldungen, \${(d.further ?? []).length} weitere.\`)
+            for (const a of d.artikel) console.log('  · ' + a.title)
+          "
+
+          cp entwurf.json "${RUNNER_TEMP:-/tmp}/entwurf.json"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Wurzelloser Zweig: nie gebaut, nie veröffentlicht, jeder Lauf
+          # ersetzt ihn vollständig. Keine Historie, keine Ansammlung.
+          git checkout --orphan nachrichten-entwurf
+          git rm -rf --cached . >/dev/null 2>&1 || true
+          find . -maxdepth 1 ! -name . ! -name .git -exec rm -rf {} + 2>/dev/null || true
+          cp "${RUNNER_TEMP:-/tmp}/entwurf.json" entwurf.json
+          git add -f entwurf.json
+          git commit -q -m "Entwurf vom $TAG"
+          git push -f origin nachrichten-entwurf
+
+          {
+            echo "### Entwurf abgelegt"
+            echo "Auf dem Zweig \`nachrichten-entwurf\`, Stichtag $TAG."
+            echo "\`nachrichten.yml\` übernimmt ihn um 02:57."
+          } >> "$GITHUB_STEP_SUMMARY"

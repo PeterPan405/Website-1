@@ -10,27 +10,41 @@ name: Nachrichten schreiben
 # Routine da nicht mehr hinein: Sie braucht 45 bis 70 Minuten, dieser
 # Workflow 20.
 #
-#   02:13 / 02:23  `quellen-sammeln.yml` – die Übersichten
-#   02:37          dieser Workflow, erster Anlauf   → fertig 02:57, live 03:10
-#   02:57          zweiter Anlauf, falls der erste verworfen wurde
-#   03:17          dritter Anlauf – der letzte, der 04:00 noch schafft
+#   02:13 / 02:23  `quellen-sammeln.yml` – die Ticker-Übersichten des Morgens
+#   02:27          Routine – liest sie und schreibt den **Entwurf**
+#   02:57          dieser Workflow: Entwurf übernehmen, prüfen, bauen, senden
+#   03:17          zweiter Anlauf, falls der erste verworfen wurde
+#   03:47          dritter Anlauf – der letzte, der 04:00 noch schafft
 #   ab 03:07       `kurse.yml` stößt an, falls alle drei ausfielen
-#   03:53          Routine – die letzte Gelegenheit, dann eben verspätet
 #   04:11          `ausgabe-waechter.yml` – elf Minuten nach der Frist
 #
-# Der erste Schritt unten prüft, ob die Ausgabe schon steht. Steht sie, hört
-# der Lauf nach vierzig Sekunden auf und hat **nichts** gekostet – das Modell
-# wird gar nicht erst gefragt. Deshalb sind drei Termine plus der Anstoß über
-# `kurse.yml` fast umsonst: Es zahlt nur der Lauf, der tatsächlich schreibt.
+# ## Die Arbeitsteilung, auf die es ankommt
 #
-# Und kommt er doch zum Zug, hat er zwei Wege: mit hinterlegtem
-# `ANTHROPIC_API_KEY` fragt er das Modell (rund 0,20 $), ohne ihn rechnet
-# `scripts/nachrichten-aus-bestand.ts` die Ausgabe aus den Momentaufnahmen im
-# Repository – ohne Netz, ohne Modell, ohne Kosten.
+# **Die Sitzung schreibt, der Läufer veröffentlicht.**
 #
-# **Der Schlüssel ist damit nirgends Voraussetzung.** Er verbessert die
-# Ausgabe an den Tagen, an denen die Routine ausfällt; er entscheidet nicht
-# mehr darüber, ob überhaupt eine entsteht.
+# Aus einer Ticker-Zeile einen Artikel zu machen – den Lehrwinkel wählen,
+# selbst formulieren, die Begründung weglassen, die in der Meldung nicht
+# steht – ist Spracharbeit. Sie lässt sich nicht rechnen; dafür braucht es
+# ein Modell, das die 100.000 Zeichen der Quellendatei liest.
+#
+# Alles danach ist mechanisch: Längen prüfen, Dateien schreiben, bauen,
+# übertragen. Genau das kann ein Läufer besser, und zwar sichtbar – jeder
+# Schritt steht im Protokoll.
+#
+# Bis zum 6. August 2026 sollte die Sitzung beides tun, von der Recherche bis
+# zum Push auf main. An sieben Tagen in Folge kam nichts dabei heraus, und wo
+# es klemmte, war nicht feststellbar: Sitzungsprotokolle sind nicht einsehbar.
+# Jetzt legt sie nur noch eine JSON-Datei auf dem Zweig `nachrichten-entwurf`
+# ab. Das ist eine Aufgabe von zwanzig Minuten statt siebzig, und wenn sie
+# misslingt, sieht man es hier.
+#
+# ## Was der Schlüssel daran ändert
+#
+# Er ist der **zweite** Weg zum selben Ergebnis: Fehlt der Entwurf, liest der
+# Läufer die Quellendatei selbst und ruft das Modell über die Schnittstelle
+# (rund 0,20 $). Fehlt auch der Schlüssel, rechnet
+# `scripts/nachrichten-aus-bestand.ts` eine Ausgabe aus den Momentaufnahmen –
+# Marktzahlen statt Meldungen, ein Notbehelf, damit nie gar nichts dasteht.
 #
 # ## Warum nicht ein Termin genügt
 #
@@ -88,9 +102,9 @@ on:
     # hört der Lauf nach vierzig Sekunden auf, ohne das Modell zu fragen.
     #
     # Im Winter eine Stunde später; die Routine „Zeitumstellung" zieht nach.
-    - cron: '37 2 * * *'
     - cron: '57 2 * * *'
     - cron: '17 3 * * *'
+    - cron: '47 3 * * *'
   workflow_dispatch:
     inputs:
       stichtag:
@@ -202,19 +216,26 @@ jobs:
             tail -1 quellen.txt
           fi
 
-      # Drei Möglichkeiten, und die letzte kann nicht fehlschlagen:
+      # **Die Rangfolge der Wege – beste zuerst.**
       #
-      #   1. Schlüssel da    → das Modell schreibt aus den Quellen. Beste
-      #                        Ausgabe, kostet rund 0,20 $.
-      #   2. Modell scheitert → Netzfehler, Kontingent, Formfehler: egal, es
-      #                        geht mit 3. weiter statt rot zu werden.
-      #   3. Kein Schlüssel  → `nachrichten-aus-bestand.ts` rechnet die Ausgabe
-      #                        aus den Momentaufnahmen im Repository. Kein Netz,
-      #                        kein Modell, keine Kosten, jede Zahl belegt.
+      #   1. Ein Entwurf auf `nachrichten-entwurf` → eine recherchierte
+      #      Ausgabe aus den Ticker-Meldungen des Morgens, geschrieben von der
+      #      Routine um 02:27, **kostenlos**. Das ist der Regelfall und das,
+      #      was auf dieser Website stehen soll.
+      #   2. Kein Entwurf, aber ein `ANTHROPIC_API_KEY` → derselbe Text, nur
+      #      auf dem Läufer erzeugt statt in einer Sitzung. Rund 0,20 $.
+      #   3. Weder noch → `nachrichten-aus-bestand.ts` rechnet aus den
+      #      Momentaufnahmen. **Marktzahlen statt Meldungen**, und damit
+      #      ausdrücklich ein Notbehelf: Was hier steht, ist belegt, aber es
+      #      sind keine Nachrichten.
       #
-      # Der dritte Weg ist der Grund, warum hier kein „geht nicht" mehr
-      # herauskommen kann. Er ist schmaler als eine recherchierte Ausgabe – aber
-      # eine schmale Ausgabe um sieben ist besser als gar keine.
+      # Weg 3 ist der Grund, warum hier nie mehr „geht nicht" herauskommt.
+      # Weg 1 ist der Grund, warum er selten gebraucht werden sollte.
+      #
+      # Alle drei laufen durch dieselbe Prüfung in `nachrichten-erzeugen.ts`:
+      # Längen, eindeutige Titel, gültige Themen und Symbole. Ein Entwurf, der
+      # die Form verfehlt, wird nicht veröffentlicht, sondern fällt auf den
+      # nächsten Weg zurück.
       - name: Ausgabe schreiben
         if: steps.vorhanden.outputs.schon == 'nein'
         env:
@@ -226,6 +247,43 @@ jobs:
         run: |
           schreibe() { node --experimental-strip-types scripts/nachrichten-erzeugen.ts; }
 
+          # ---------------------------------------------------------------
+          # Weg 1: der Entwurf der Routine.
+          #
+          # Sie liest dieselbe Quellendatei, schreibt daraus die Artikel als
+          # JSON und legt sie auf dem wurzellosen Zweig `nachrichten-entwurf`
+          # ab. Mehr nicht – kein Build, keine Prüfkette, kein Push auf main.
+          #
+          # Diese Arbeitsteilung ist der Kern: Bis zum 6. August 2026 sollte
+          # die Sitzung alles machen, von der Recherche bis zum Push, und hat
+          # das an sieben Tagen in Folge nicht geschafft. Wo genau, war nicht
+          # feststellbar – Sitzungsprotokolle sind nicht einsehbar. Jetzt tut
+          # sie nur noch das, was ein Läufer nicht kann: schreiben. Alles
+          # Mechanische passiert hier, wo jeder Schritt im Protokoll steht.
+          entwurf="${RUNNER_TEMP:-/tmp}/entwurf.json"
+          if git fetch origin nachrichten-entwurf --depth 1 -q 2>/dev/null &&
+             git show origin/nachrichten-entwurf:entwurf.json > "$entwurf" 2>/dev/null &&
+             [ -s "$entwurf" ]; then
+            # Ist er von heute? Ein Entwurf von gestern ist schlimmer als
+            # keiner – er sähe aus wie eine Ausgabe und wäre eine Wiederholung.
+            stichtag=$(node -e "try{process.stdout.write(String(JSON.parse(require('fs').readFileSync('$entwurf','utf8')).stichtag||''))}catch(e){}")
+            if [ "$stichtag" = "$STICHTAG" ]; then
+              echo "Entwurf der Routine gefunden (Stichtag $stichtag)."
+              if ANTWORT_DATEI="$entwurf" schreibe; then
+                echo "Die Ausgabe kommt aus dem Entwurf der Routine – recherchiert und kostenlos." \
+                  >> "$GITHUB_STEP_SUMMARY"
+                exit 0
+              fi
+              echo "::warning::Der Entwurf hat die Prüfung nicht bestanden – weiter mit dem nächsten Weg."
+            else
+              echo "::warning::Der Entwurf trägt den Stichtag '$stichtag', nicht '$STICHTAG' – er wird nicht verwendet."
+            fi
+          else
+            echo "Kein Entwurf auf 'nachrichten-entwurf'."
+          fi
+
+          # ---------------------------------------------------------------
+          # Weg 2: das Modell auf dem Läufer.
           if [ -n "$ANTHROPIC_API_KEY" ] && [ "${{ steps.quellen.outputs.frisch }}" = "ja" ]; then
             if schreibe; then
               echo "Die Ausgabe kommt aus dem Modell." >> "$GITHUB_STEP_SUMMARY"
@@ -233,8 +291,12 @@ jobs:
             fi
             echo "::warning::Der Modellaufruf ist gescheitert – die Ausgabe entsteht aus dem eigenen Bestand."
           else
-            echo "::warning::Kein ANTHROPIC_API_KEY hinterlegt – die Ausgabe entsteht ohne Modell aus dem eigenen Bestand."
+            echo "::warning::Kein Entwurf und kein ANTHROPIC_API_KEY – die Ausgabe wird aus dem eigenen Bestand gerechnet."
+            echo "  Das sind Marktzahlen, keine Meldungen. Ein Notbehelf, keine Ausgabe im eigentlichen Sinn."
           fi
+
+          # ---------------------------------------------------------------
+          # Weg 3: der Notbehelf.
 
           # **Nicht ins Arbeitsverzeichnis.** Am 6. August 2026 lag die Datei
           # als `antwort-bestand.json` neben dem Quelltext, und `prettier
@@ -244,8 +306,11 @@ jobs:
           ziel="${RUNNER_TEMP:-/tmp}/antwort-bestand.json"
           ZIEL="$ziel" node --experimental-strip-types scripts/nachrichten-aus-bestand.ts
           ANTWORT_DATEI="$ziel" schreibe
-          echo "Die Ausgabe wurde ohne Modell aus dem eigenen Datenbestand gerechnet." \
-            >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "⚠️ **Notbehelf:** Die Ausgabe wurde ohne Modell aus dem eigenen"
+            echo "Datenbestand gerechnet – Marktzahlen statt Meldungen. Weder ein"
+            echo "Entwurf der Routine noch ein API-Schlüssel lagen vor."
+          } >> "$GITHUB_STEP_SUMMARY"
 
       # Dieselbe Kette wie im Paketbau. Schlägt eine Prüfung fehl, wird nichts
       # veröffentlicht – lieber keine Ausgabe als eine, die den Build bricht.
