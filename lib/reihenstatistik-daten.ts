@@ -15,6 +15,7 @@ import {
   type Schwankung,
   type Zusammenhang,
 } from '@/lib/reihenstatistik'
+import { saisonalitaet, type Saisonbefund } from '@/lib/saisonalitaet'
 
 /**
  * Ergebnis-Cache pro Prozess.
@@ -42,6 +43,17 @@ export function schwankungVon(symbol: string, ab?: string): Schwankung | null {
 
 export function zusammenhangVon(a: string, b: string, ab?: string): Zusammenhang | null {
   return zusammenhang(reiheVon(a), reiheVon(b), ab)
+}
+
+/**
+ * Der Monatsbefund eines Symbols.
+ *
+ * Steht hier und nicht in einer eigenen Brücke, damit die Saisonalitätsseite
+ * denselben Reihen-Cache nutzt wie die Zusammenhangsseite: Elf Werte zweimal
+ * aus der Momentaufnahme zu holen wäre dieselbe Arbeit doppelt.
+ */
+export function saisonalitaetVon(symbol: string): Saisonbefund | null {
+  return saisonalitaet(reiheVon(symbol))
 }
 
 /**

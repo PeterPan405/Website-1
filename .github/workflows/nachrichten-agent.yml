@@ -46,6 +46,12 @@ name: Nachrichten – Entwurf vom Agenten
 # keines von beidem da, hört er auf, ohne rot zu werden – `nachrichten.yml`
 # hat eigene Rückfallebenen.
 #
+# **Sind beide hinterlegt, gilt der Abo-Token, und der Schlüssel wird gar
+# nicht erst mitgegeben.** Am 6. August 2026 wurden beide unbedingt gesetzt;
+# der Schlüssel hat Vorrang, war ungültig, und der Lauf endete nach 291
+# Millisekunden mit `401 Invalid API key` – während der gültige Abo-Token
+# danebenlag und nie gefragt wurde.
+#
 # ## Was er nicht tut
 #
 # Er veröffentlicht nicht. Er legt eine JSON-Datei auf dem wurzellosen Zweig
@@ -131,7 +137,15 @@ jobs:
             exit 0
           fi
 
-          if [ -z "$OAUTH" ] && [ -z "$SCHLUESSEL" ]; then
+          # Welche Anmeldung liegt vor? Nur das Vorhandensein wird gemeldet,
+          # nie ein Wert – Protokolle sind lesbar.
+          if [ -n "$OAUTH" ]; then
+            echo "anmeldung=abo" >> "$GITHUB_OUTPUT"
+            echo "Anmeldung über das Abonnement (CLAUDE_CODE_OAUTH_TOKEN)."
+          elif [ -n "$SCHLUESSEL" ]; then
+            echo "anmeldung=schluessel" >> "$GITHUB_OUTPUT"
+            echo "Anmeldung über den API-Schlüssel (ANTHROPIC_API_KEY) – kostet je Lauf."
+          else
             echo "weiter=nein" >> "$GITHUB_OUTPUT"
             echo "::warning::Weder CLAUDE_CODE_OAUTH_TOKEN noch ANTHROPIC_API_KEY hinterlegt."
             echo "  Ohne Anmeldung kann der Agent nicht schreiben. Anlegen unter"
@@ -185,28 +199,37 @@ jobs:
         if: steps.pruefung.outputs.weiter == 'ja'
         uses: anthropics/claude-code-action@v1
         with:
-          # Der Abo-Weg zuerst. `claude_code_oauth_token` ist laut `action.yml`
-          # die ausdrückliche Alternative zum API-Schlüssel; ist er leer, greift
-          # der Schlüssel darunter.
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # **Genau eine Anmeldung, nie beide.**
+          #
+          # Am 6. August 2026 waren beide Zeilen unbedingt gesetzt. Der Lauf
+          # endete nach 291 Millisekunden mit
+          #
+          #   "api_error_status": 401
+          #   "result": "Invalid API key · Fix external API key"
+          #
+          # obwohl der Abo-Token hinterlegt war: Der API-Schlüssel hat Vorrang,
+          # und der hinterlegte war ungültig. Ein zweiter, unbenutzter Wert hat
+          # den ersten verdeckt – der teuerste Fehler, den eine Rückfallebene
+          # machen kann.
+          #
+          # Deshalb entscheidet der Schritt „Ist etwas zu tun?" **vorher**,
+          # welche Anmeldung gilt, und die andere Zeile bleibt leer.
+          claude_code_oauth_token: ${{ steps.pruefung.outputs.anmeldung == 'abo' && secrets.CLAUDE_CODE_OAUTH_TOKEN || '' }}
+          anthropic_api_key: ${{ steps.pruefung.outputs.anmeldung == 'schluessel' && secrets.ANTHROPIC_API_KEY || '' }}
           # Ausdrücklich mitgeben statt über OIDC beziehen zu lassen. Der
           # Läufer hat den Token ohnehin; das erspart der Action einen Umweg,
           # der beim ersten Versuch der Grund für den Fehlschlag war.
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # **Vorübergehend zur Fehlersuche.**
+          # `show_full_output` ist **absichtlich nicht gesetzt.** Der Agent
+          # liest fremde Seiten, und was er daraus wiedergibt, stünde sonst
+          # vollständig im Protokoll.
           #
-          # Die Action verbirgt die Ausgabe des Agenten standardmäßig. Das ist
-          # richtig – der Agent liest Quellen und könnte Unerwartetes
-          # wiedergeben. Am 6. August war sie aber der einzige Weg, überhaupt
-          # zu erfahren, warum ein Lauf nach 211 Millisekunden mit
-          # `is_error: true` und null Kosten endet: Das ist eine abgelehnte
-          # Anmeldung, und welche, sagt nur die Meldung selbst.
-          #
-          # Eine Fehlermeldung der Schnittstelle nennt den Grund, nicht den
-          # Schlüssel. Sobald die Anmeldung steht, gehört diese Zeile wieder
-          # heraus.
-          show_full_output: true
+          # Am 6. August war sie kurz an – anders war nicht herauszufinden,
+          # warum drei Läufe nach 200 Millisekunden mit `is_error: true` und
+          # null Kosten endeten. Die Antwort war ein `401 Invalid API key`.
+          # Der Schritt „Warum ist der Agent gescheitert?" weiter unten holt
+          # genau diese vier Felder aus dem abgelegten Protokoll, damit die
+          # Frage künftig ohne diesen Schalter zu beantworten ist.
           claude_args: |
             --model claude-sonnet-5
             --max-turns 40
@@ -329,6 +352,52 @@ jobs:
             Ändere nichts unter `data/` und committe nichts – das Ablegen
             übernimmt der Schritt nach dir. Deine einzige Ausgabe ist die Datei
             `entwurf.json`.
+
+      # Ein Fehlschlag der Action ist von außen eine Zahl ohne Begründung:
+      # `is_error: true`, `num_turns: 1`, `total_cost_usd: 0`. Am 6. August
+      # standen drei Läufe so da, und die Ursache – ein `401 Invalid API key` –
+      # war nur zu sehen, wenn man die gesamte Agentenausgabe einschaltete.
+      #
+      # Das ist der falsche Preis für eine Diagnose. Die Action legt ihr
+      # Protokoll ohnehin als JSON ab; hier werden daraus die vier Felder
+      # gezogen, die den Grund nennen. Kein Schlüssel, kein Quellentext, kein
+      # Agentengeschwätz – nur die Absage und ihr Statuscode.
+      - name: Warum ist der Agent gescheitert?
+        if: failure() && steps.pruefung.outputs.weiter == 'ja'
+        run: |
+          protokoll="${RUNNER_TEMP:-/tmp}/claude-execution-output.json"
+          if [ ! -s "$protokoll" ]; then
+            echo "Kein Protokoll unter $protokoll – der Fehlschlag lag vor dem Modellaufruf."
+            exit 0
+          fi
+
+          node -e '
+            const eintraege = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))
+            const liste = Array.isArray(eintraege) ? eintraege : [eintraege]
+            const ergebnis = liste.reverse().find((e) => e && e.type === "result") ?? liste[0]
+            if (!ergebnis) { console.log("Kein Ergebnisblock im Protokoll."); process.exit(0) }
+
+            const zeile = (name, wert) => {
+              if (wert === undefined || wert === null || wert === "") return
+              console.log(`  ${name.padEnd(18)} ${String(wert).slice(0, 300)}`)
+            }
+            console.log("— Was die Schnittstelle geantwortet hat")
+            zeile("Statuscode", ergebnis.api_error_status)
+            zeile("Fehlerart", ergebnis.error ?? ergebnis.terminal_reason)
+            zeile("Züge", ergebnis.num_turns)
+            // Nur im Fehlerfall: dann ist `result` die Absage, nicht der Text
+            // des Agenten.
+            if (ergebnis.is_error) zeile("Meldung", ergebnis.result)
+
+            const status = Number(ergebnis.api_error_status)
+            if (status === 401 || status === 403) {
+              console.log("")
+              console.log("  Das ist eine abgelehnte Anmeldung, keine inhaltliche Störung.")
+              console.log("  Entweder CLAUDE_CODE_OAUTH_TOKEN neu erzeugen (claude setup-token,")
+              console.log("  im Abonnement enthalten) oder einen gültigen ANTHROPIC_API_KEY")
+              console.log("  hinterlegen. Beides unter Settings > Secrets and variables > Actions.")
+            }
+          ' "$protokoll"
 
       # Erst hier wird der Entwurf abgelegt – und nur, wenn er die Probe
       # besteht. Ein Entwurf, den niemand geprüft hat, wäre gefährlicher als

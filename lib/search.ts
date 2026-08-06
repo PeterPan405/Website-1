@@ -402,6 +402,29 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Gibt es gute und schlechte Börsenmonate?',
+    href: '/maerkte/saisonalitaet',
+    kind: 'Bereich',
+    hint: 'Monatsrenditen elf Leitwerte über fünf Jahre – und die Rechnung, wie viel davon Zufall ist',
+    keywords: [
+      'saisonalitaet',
+      'saisonalität',
+      'saison',
+      'monat',
+      'monate',
+      'monatsrendite',
+      'boersenmonat',
+      'börsenmonat',
+      'sell in may',
+      'jahresendrallye',
+      'santa rally',
+      'september',
+      'bester monat',
+      'schlechtester monat',
+      'zufall',
+    ],
+  })
+  eintraege.push({
     title: 'Zwei Aktien vergleichen',
     href: '/maerkte/vergleich',
     kind: 'Bereich',
