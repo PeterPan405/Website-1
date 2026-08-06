@@ -101,262 +101,378 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
-    slug: 'leitindizes-stand-2026-08-06',
-    title: 'Die Leitindizes am 6.8.2026: was die Zahlen sagen',
+    slug: 'siemens-auftragseingang-2026-08-06',
+    title: 'Siemens meldet Rekordauftragseingang – und warum das kein Umsatz ist',
+    metaTitle: 'Auftragseingang gegen Umsatz',
     teaser:
-      'Nasdaq 100 führt mit +3,32 Prozent, Nikkei 225 (Japan) liegt mit +0,32 Prozent hinten. Warum ein Vergleich zweier Indizes fast immer schiefgeht.',
+      'Siemens hat den höchsten Auftragseingang seiner Geschichte gemeldet und den Ausblick erhöht. Beides sind Versprechen, keine Erlöse.',
     category: 'Märkte',
     publishedAt: '2026-08-06T07:50:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Indizes', 'Marktdaten'],
-    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
-    relatedSymbols: ['dax', 'sp500', 'nikkei-225', 'euro-stoxx-50'],
+    tags: ['Quartalszahlen', 'Industrie'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['siemens', 'dax'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label: 'finanzen.net, Nachrichten-Ticker vom 6. August 2026, 7:03 bis 7:05 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Der Stand der geführten Leitindizes zum letzten abgerufenen Schluss: **DAX (Deutscher Aktienindex)** +0,77 Prozent (4.8.2026), **S&P 500** +1,79 Prozent (4.8.2026), **Nikkei 225 (Japan)** +0,32 Prozent (4.8.2026), **Euro Stoxx 50** +0,94 Prozent (4.8.2026), **Nasdaq 100** +3,32 Prozent (4.8.2026).',
+        text: 'Um 7:04 Uhr lief über den Nachrichtenticker: **Siemens erzielt Rekordauftragseingang – Ergebnisausblick erhöht.** Mehr steht in der Meldung nicht; welche Sparte den Rekord trägt und aus welchen Regionen die Aufträge kommen, geht daraus nicht hervor.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Warum diese Zahlen nicht vergleichbar sind',
+        text: 'Drei Zahlen, die gern verwechselt werden',
       },
       {
         type: 'paragraph',
-        text: 'Der DAX ist ein **Performanceindex**: Dividenden werden rechnerisch wieder angelegt und stecken im Indexstand. Der Euro Stoxx 50, der S&P 500 und der Nikkei 225 sind in ihrer gängigen Fassung **Kursindizes** – dort fehlt die Dividende. Über ein Jahr macht das je nach Markt zwei bis drei Prozentpunkte aus, über zwanzig Jahre den größeren Teil des Unterschieds.',
+        text: '**Auftragseingang** ist die Summe dessen, was Kunden im Quartal bestellt haben. **Umsatz** ist, was im Quartal geliefert und abgerechnet wurde. **Gewinn** ist, was davon nach allen Kosten übrig bleibt. Zwischen der ersten und der zweiten Zahl können bei einem Industriekonzern Jahre liegen – eine Turbine oder eine Zugflotte wird bestellt, gebaut und dann geliefert.',
       },
       {
         type: 'paragraph',
-        text: 'Auf einen einzelnen Tag wirkt sich das kaum aus – wohl aber auf jeden Langfristvergleich, der zwei solche Indizes nebeneinanderstellt. Wer den DAX über zehn Jahre gegen den Euro Stoxx 50 hält, vergleicht nicht zwei Märkte, sondern zwei Rechenweisen.',
+        text: 'Ein Rekord beim Auftragseingang sagt deshalb etwas über die kommenden Jahre und wenig über das vergangene Quartal. Umgekehrt kann ein Unternehmen mit vollen Büchern Umsatz machen und trotzdem am Auftragseingang schrumpfen – dann arbeitet es seinen Bestand ab, ohne ihn nachzufüllen.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Das Verhältnis der beiden hat einen Namen',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Teilt man den Auftragseingang durch den Umsatz derselben Periode, erhält man das Book-to-Bill-Verhältnis. Über eins heißt: Es kommt mehr herein, als abgearbeitet wird, der Bestand wächst. Unter eins heißt das Gegenteil. Die Kennzahl ist in der Industrie und bei Halbleitern gebräuchlich und steht in den Quartalsberichten meist ausdrücklich dabei.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ausblick oft mehr bewegt als die Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Siemens zugleich den Ergebnisausblick erhöht hat, ist die zweite Hälfte der Meldung – und börsentäglich häufig die wichtigere. Ein Quartalsergebnis ist Vergangenheit und war zum Teil erwartet; eine erhöhte Prognose ändert die Erwartung an die Zukunft. Bewegen tut Kurse nicht das Erwartete, sondern die Abweichung davon.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was diese Meldung **nicht** hergibt: ob der Kurs darauf gestiegen ist. Die Ticker-Zeile nennt keine Reaktion, und wir tragen keine nach, die wir nicht gesehen haben.',
       },
     ],
   },
   {
-    slug: 'marktbreite-2026-08-06',
-    title: 'Marktbreite am 5.8.2026: wie viele Titel tragen die Bewegung',
-    metaTitle: 'Marktbreite am 5.8.2026',
+    slug: 'telekom-rueckkauf-statt-dividende-2026-08-06',
+    title: 'Telekom weitet den Aktienrückkauf aus – Rückkauf oder Dividende?',
+    metaTitle: 'Aktienrückkauf gegen Dividende',
     teaser:
-      '541 Titel im Plus, 476 im Minus – die Bewegung ist zu 53,2 Prozent getragen. Was diese Zahl über einen Indexstand hinaus verrät.',
-    category: 'Märkte',
+      'Zwei Meldungen an einem Morgen: Die Telekom verdient operativ mehr und kauft mehr eigene Aktien zurück. Was das anders macht als eine Dividende.',
+    category: 'Geldanlage',
     publishedAt: '2026-08-06T07:45:00+02:00',
     author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Marktbreite', 'Marktdaten'],
-    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
-    relatedSymbols: ['dax', 'sp500'],
-    sources: [
-      {
-        label: 'Eigene Marktbreite-Aufzeichnung, Stand 6.8.2026, 04:24 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/tagesbild',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Von den ausgewerteten Titeln standen am 5.8.2026 **541** im Plus und **476** im Minus, 9 unverändert. Der ungewichtete Schnitt über alle lag bei +0,19 Prozent, die Breite bei 53,2 Prozent.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was „Breite" hier misst',
-      },
-      {
-        type: 'paragraph',
-        text: 'Die Breite ist der Anteil der bewegten Titel, die in dieselbe Richtung laufen wie der Gesamtschnitt. Bei 50 Prozent ist der Markt geteilt; bei 90 zieht fast alles mit. Heute sind es 53,2 Prozent von 1017 bewegten Titeln.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Der Unterschied ist praktisch. Ein Index kann steigen, weil alle 40 Werte steigen – oder weil drei schwere Werte steigen und 37 fallen. Der Indexstand ist in beiden Fällen derselbe, die Lage nicht. Nach Börsenwert gewichtete Indizes verbergen diesen Unterschied bauartbedingt.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb wird hier ungewichtet gerechnet: Jede Aktie zählt gleich. Nach Börsenwert gewichtet wäre der Schnitt der Halbleiter praktisch der Kurs eines einzigen Unternehmens.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was hier bewusst fehlt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
-      },
-    ],
-  },
-  {
-    slug: 'realzins-2026-08-06',
-    title: 'Leitzins 2,40 Prozent, Inflation 2,8 Prozent – was übrig bleibt',
-    metaTitle: 'Leitzins gegen Inflation: der Realzins',
-    teaser:
-      'Der EZB-Leitzins liegt bei 2,40 Prozent, die deutsche Inflationsrate bei 2,8 Prozent. Die Differenz ist der Realzins – und die einzige Zahl, die zählt.',
-    category: 'Geldpolitik',
-    publishedAt: '2026-08-06T07:40:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Zinsen', 'Inflation'],
-    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'tagesgeld'],
-    relatedSymbols: [],
+    readingMinutes: 5,
+    tags: ['Aktienrückkauf', 'Dividende'],
+    relatedTopics: ['aktie', 'kosten-und-gebuehren'],
+    relatedSymbols: ['deutsche-telekom', 'dax'],
     sources: [
       {
         label:
-          'Europäische Zentralbank über die eigene Zinsübersicht, Stand 5.8.2026, 09:05 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/zinsen',
+          'onvista, Agentur-Meldungen (dpa-AFX) vom 6. August 2026, 4:24 bis 4:48 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Nachrichten-Ticker vom 6. August 2026, 7:03 bis 7:05 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: '**Leitzins der EZB (Hauptrefinanzierungsgeschäfte)**: 2,40 Prozent, Stand 5.8.2026. **Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)**: 2,8 Prozent für 2026-07.',
+        text: 'Zwei Meldungen desselben Morgens: Um 4:48 Uhr meldete die Agentur, die **Deutsche Telekom weitet ihr Aktienrückkaufprogramm deutlich aus**. Um 7:04 Uhr folgte im Ticker, sie **verdiene operativ mehr und hebe die Barmittel-Prognose leicht an**. Auch Aumovio kündigte an, überschüssige Mittel für Rückkäufe zu verwenden.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Der Realzins',
+        text: 'Beides gibt Geld an die Eigentümer zurück – auf verschiedenen Wegen',
       },
       {
         type: 'paragraph',
-        text: 'Die Differenz beider Zahlen heißt Realzins und liegt derzeit bei rund -0,4 Prozentpunkten. Sie beantwortet die einzige Frage, die für Erspartes zählt: Kann man sich in einem Jahr mehr kaufen als heute, oder weniger?',
+        text: 'Bei der **Dividende** überweist das Unternehmen Geld an alle Aktionäre. Die Zahl der Aktien bleibt gleich, jeder Anteil wird um den ausgeschütteten Betrag ärmer – deshalb fällt der Kurs am Ausschüttungstag rechnerisch um die Dividende.',
       },
       {
         type: 'paragraph',
-        text: 'Ein Tagesgeldkonto mit drei Prozent bei vier Prozent Inflation verliert Kaufkraft, obwohl der Kontostand steigt. Umgekehrt kann ein Prozent Zins bei null Prozent Inflation ein Gewinn sein. Der nominale Zinssatz allein sagt darüber nichts.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Zwei Einschränkungen: Der Leitzins der EZB ist nicht der Zins, den eine Bank zahlt – er ist die Untergrenze, an der sich der Geldmarkt orientiert. Und die Inflationsrate ist ein Durchschnitt über einen Warenkorb, der niemandes tatsächlichem Einkauf entspricht.',
+        text: 'Beim **Rückkauf** kauft das Unternehmen eigene Aktien am Markt und zieht sie meist ein. Es fließt kein Geld an die Aktionäre, aber der Gewinn verteilt sich danach auf weniger Anteile. Wer nicht verkauft, hält anschließend einen größeren Anteil am selben Unternehmen.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Der Unterschied, den man im Depot merkt',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Eine Dividende ist ein Zufluss und damit in Deutschland ein steuerpflichtiger Kapitalertrag im Jahr der Zahlung – unabhängig davon, ob man das Geld braucht. Beim Rückkauf entsteht kein Zufluss; ein möglicher Vorteil steckt im Kurs und wird erst beim Verkauf steuerlich wirksam. Wer den Zeitpunkt selbst wählen will, hat beim Rückkauf mehr Spielraum.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist kein Urteil über die bessere Form. Es ist der Grund, warum zwei Unternehmen mit gleicher Ertragslage sehr verschieden aussehen können, wenn man nur auf die Dividendenrendite schaut.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Rückkauf nicht ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Er ist kein Wertzuwachs aus sich heraus. Kauft ein Unternehmen eigene Aktien über ihrem inneren Wert zurück, vernichtet es Kapital – es zahlt zu viel für etwas, das es bereits besitzt. Ob ein Rückkauf günstig war, lässt sich erst hinterher sagen, und die Meldung selbst gibt darüber nichts her.',
       },
     ],
   },
   {
-    slug: 'gold-in-zwei-waehrungen-2026-08-06',
-    title: 'Ein Goldpreis, zwei Zahlen: warum Dollar und Euro auseinanderlaufen',
-    metaTitle: 'Gold in Dollar und in Euro',
+    slug: 'prognose-erhoeht-merck-rational-2026-08-06',
+    title: 'Merck und Rational erhöhen die Prognose – zwei Wege zum selben Satz',
+    metaTitle: 'Prognose erhöht: zwei Wege',
     teaser:
-      'Gold notiert bei 4.322,70 Dollar, der Euro bei 1,1515 Dollar – in Euro sind das rund 3.753,97. Ein Euro-Preis hat immer zwei Ursachen.',
-    category: 'Geldanlage',
+      'Beide Unternehmen heben nach dem Quartal ihre Ziele an. Bei einem kommt der Zuwachs aus dem Geschäft, beim anderen aus einer Zoll-Rückzahlung.',
+    category: 'Märkte',
+    publishedAt: '2026-08-06T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Quartalszahlen', 'Prognose'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['merck', 'dax'],
+    sources: [
+      {
+        label: 'finanzen.net, Nachrichten-Ticker vom 6. August 2026, 7:03 bis 7:05 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Zeilen aus demselben Ticker-Fenster: Um 7:03 Uhr **erhöht Merck nach robustem Quartal die Prognose**. Um 7:04 Uhr heißt es, eine **Zoll-Rückzahlung bringt Rational mehr Gewinn – Jahresziele bestätigt**.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Prognose zählt und nicht das Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Quartalsbericht enthält zwei Dinge: die Ist-Zahlen der vergangenen drei Monate und die Erwartung für den Rest des Jahres, die Guidance. Die Ist-Zahlen kannte der Markt in groben Zügen schon – Analysten schätzen sie, das Unternehmen hat auf Konferenzen Hinweise gegeben. Was niemand kennt, ist die neue Guidance.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb kann ein Kurs nach Rekordzahlen fallen: wenn die Zahlen gut sind, die Erwartung aber leicht gesenkt wird. Und deshalb kann er nach einem mittelmäßigen Quartal steigen, wenn die Prognose steigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Unterschied zwischen den beiden Meldungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Merck begründet die Anhebung mit einem robusten Quartal – der Zuwachs stammt also dem Wortlaut nach aus dem laufenden Geschäft. Bei Rational nennt die Meldung ausdrücklich eine **Zoll-Rückzahlung** als Ursache des höheren Gewinns, und die Jahresziele bleiben unverändert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Zoll-Rückzahlung ist ein Einmaleffekt: Sie erhöht den Gewinn dieses Quartals und wiederholt sich im nächsten Jahr nicht. Wer das ausgewiesene Ergebnis ungeprüft in die Zukunft fortschreibt, rechnet mit Geld, das nur einmal kommt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woran man Einmaleffekte erkennt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unternehmen weisen sie meist selbst aus – als bereinigtes Ergebnis, als adjusted EBIT oder in einer Überleitungsrechnung. Der Vergleich zwischen berichtetem und bereinigtem Ergebnis ist eine der lohnendsten Minuten, die man in einen Quartalsbericht stecken kann. Steht dort ein großer Abstand, lohnt die Frage, woher er kommt.',
+      },
+    ],
+  },
+  {
+    slug: 'oel-gold-hormus-2026-08-06',
+    title: 'Öl unter 80 Dollar, Gold über 4.100: eine Nachricht, zwei Richtungen',
+    metaTitle: 'Öl und Gold: eine Nachricht',
+    teaser:
+      'Die Ölpreise verharren unter der 80-Dollar-Marke, Gold sprang zuvor über 4.100 Dollar. Beides hängt an derselben Lage am Persischen Golf.',
+    category: 'Märkte',
     publishedAt: '2026-08-06T07:35:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Gold', 'Währungen'],
+    tags: ['Öl', 'Gold'],
     relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
-    relatedSymbols: ['gold', 'eur-usd'],
+    relatedSymbols: ['brent', 'gold'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'onvista, Agentur-Meldungen (dpa-AFX) vom 6. August 2026, 4:24 bis 4:48 Uhr',
+        url: 'https://www.onvista.de/news/',
       },
       {
-        label: 'Europäische Zentralbank, Referenzkurs vom 4.8.2026',
-        url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+        label: 'Goldreporter, Marktbericht vom 5. August 2026',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, abgerufen am 6. August 2026 um 5:09 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Gold stand zuletzt bei **4.322,70 Dollar** je Feinunze (Stand 6.8.2026, 04:14 Uhr UTC). Der Euro notierte bei **1,1515 Dollar** (Stand 4.8.2026). Umgerechnet sind das rund **3.753,97 Euro**.',
+        text: 'Um 4:41 Uhr meldete die Agentur: **Ölpreise unverändert – Nordseeöl verharrt unter 80-Dollar-Marke.** Um 4:24 Uhr lief eine Zeile über eine Äußerung des US-Präsidenten, er würde lieber einen Deal mit dem Iran schließen. Der Goldreporter hatte am Vortag geschrieben, der Goldpreis sei auf 4.162 Dollar gestiegen, während Fortschritte im Iran-Konflikt Ölpreis und US-Renditen drückten.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Zwei Ursachen für eine Zahl',
+        text: 'Warum zwei Rohstoffe gegenläufig reagieren',
       },
       {
         type: 'paragraph',
-        text: 'Gold wird international in Dollar gehandelt. Wer den Preis in Euro sehen will, rechnet um – und übernimmt damit den Wechselkurs als zweite bewegliche Größe. Der Euro-Preis kann deshalb steigen, während der Dollar-Preis fällt: Es genügt, dass der Euro gegenüber dem Dollar stärker nachgibt.',
+        text: 'Bei Öl schlägt eine Entspannung am Persischen Golf direkt auf die Angebotserwartung: Ein geringeres Risiko für die Straße von Hormus heißt mehr erwartetes Angebot, und mehr Angebot bei gleicher Nachfrage bedeutet einen niedrigeren Preis.',
       },
       {
         type: 'paragraph',
-        text: 'Für einen Anleger im Euroraum heißt das: Eine Goldposition ist immer auch eine Dollarposition. Wer „auf Gold setzt", setzt zur Hälfte auf eine Währung. Dasselbe gilt für Öl, für Kupfer und für jeden weltweit in Dollar notierten Rohstoff.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb ist die Frage bei jeder Rohstoffmeldung: in welcher Währung? Zwei Berichte, die scheinbar widersprüchliche Zahlen nennen, meinen oft dieselbe Unze in zwei Währungen – oder zu zwei Uhrzeiten.',
+        text: 'Gold hat keine solche Verbindung zur Industrie. Sein Preis hängt stärker daran, was die Alternative bringt: Fallen die Renditen von Staatsanleihen, kostet es weniger, statt verzinster Papiere ein zinsloses Metall zu halten. Sinkende Renditen stützen Gold also, während sie auf Öl keine unmittelbare Wirkung haben.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Dass ein Preis stillsteht, ist auch eine Information',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Ein Preis, der sich nicht bewegt, wirkt wie eine Nichtmeldung. Tatsächlich heißt es: Was über Nacht bekannt wurde, war bereits eingepreist. Der Markt hatte die Erwartung schon verarbeitet, bevor die Zeile über den Ticker lief.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nachrichten bewegen Kurse nur, soweit sie **von der Erwartung abweichen**. Genau deshalb fällt ein Kurs manchmal auf gute Nachrichten – wenn die Nachricht gut ist, aber weniger gut als erwartet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hier offen bleibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob die Äußerung zum Iran der Anlass für die Preisentwicklung war, geht aus den Meldungen nicht hervor. Sie standen am selben Morgen nebeneinander; das ist eine zeitliche Nähe und noch keine Ursache.',
       },
     ],
   },
   {
-    slug: 'spanne-des-tages-2026-08-06',
-    title: 'Die Spanne des Tages: warum Prozentzahlen einen Bezugspunkt brauchen',
-    metaTitle: 'Die Spanne des Tages',
+    slug: 'ionq-umsatz-und-verlust-2026-08-06',
+    title: 'IonQ: Umsatz wächst kräftig, Verluste bleiben – geht das zusammen?',
+    metaTitle: 'Umsatzwachstum und Verlust',
     teaser:
-      'Zwischen Palantir mit +29,45 Prozent und Aptiv mit −16,62 Prozent liegen Welten. Was eine Prozentzahl verschweigt.',
-    category: 'Märkte',
+      'Eine Meldung, die man oft liest und selten auflöst: Der Umsatz steigt deutlich, unter dem Strich steht trotzdem ein Minus. Beides kann stimmen.',
+    category: 'Geldanlage',
     publishedAt: '2026-08-06T07:30:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Aktien', 'Marktdaten'],
+    tags: ['Wachstum', 'Bilanz'],
     relatedTopics: ['aktie', 'risiko-und-rendite'],
-    relatedSymbols: [],
+    relatedSymbols: ['nasdaq-100'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label: 'finanzen.net, Nachrichten-Ticker vom 6. August 2026, 7:03 bis 7:05 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Über 1026 geführte Aktien reichte die Tagesveränderung von +29,45 Prozent bis −16,62 Prozent. Vorn: **Palantir** +29,45 Prozent, **Gartner** +22,61 Prozent, **Wix.com** +17,49 Prozent. Hinten: **Aptiv** −16,62 Prozent, **Zalando** −13,36 Prozent, **Chipotle Mexican Grill** −9,72 Prozent.',
+        text: 'Um 7:05 Uhr stand im Ticker: **IonQ-Aktie dreht ins Plus: Umsatz wächst kräftig, doch Verluste bleiben.** Das ist eine Formulierung, die jede Woche irgendwo auftaucht – und ein Satz, an dem sich zwei Kennzahlen sauber trennen lassen.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Prozent von was',
+        text: 'Umsatz steht oben, Gewinn steht unten',
       },
       {
         type: 'paragraph',
-        text: 'Eine Prozentangabe ist eine Verhältniszahl, und ihr Nenner steht selten dabei. Ein Titel, der von zwei auf drei Euro steigt, legt 50 Prozent zu; einer, der von 200 auf 210 Euro steigt, nur fünf – obwohl der zweite den Anleger um zehn Euro je Stück reicher macht und der erste um einen.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb stehen an der Spitze solcher Listen überdurchschnittlich oft kleine und wenig gehandelte Werte. Das ist kein Befund über ihre Qualität, sondern eine Eigenschaft des Bruchs: Bei einem kleinen Nenner erzeugt eine kleine Bewegung eine große Zahl.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Umgekehrt gilt dasselbe für Verluste – und dort mit einer Schieflage, die häufig übersehen wird: Ein Minus von 50 Prozent erfordert ein Plus von 100 Prozent, um wieder am Ausgangspunkt zu stehen. Auf- und Abstieg sind nicht symmetrisch.',
+        text: 'Der Umsatz steht am Anfang der Gewinn- und Verlustrechnung: alles, was das Unternehmen eingenommen hat. Darunter werden Herstellkosten, Forschung, Vertrieb, Verwaltung, Zinsen und Steuern abgezogen. Was übrig bleibt, ist der Gewinn. Ein Unternehmen kann seinen Umsatz verdoppeln und trotzdem tiefer im Minus landen, wenn es die Ausgaben schneller erhöht.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Wann ein Verlust gewollt ist – und wann er zum Problem wird',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Bei einem jungen Technologieunternehmen ist ein Verlust oft eine Entscheidung: Es baut Kapazitäten auf, deren Erträge erst später kommen. Die Frage ist dann nicht, ob ein Minus dasteht, sondern ob der Weg zum Gewinn erkennbar ist – wachsen die Kosten langsamer als der Umsatz, verbessert sich also die Marge?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Problem wird der Verlust, wenn das Geld ausgeht, bevor der Punkt erreicht ist. Deshalb schaut man auf den Kassenbestand und darauf, wie viel davon je Quartal verbraucht wird. Aus dem Verhältnis ergibt sich, wie lange das Unternehmen ohne frisches Kapital durchhält.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung nicht sagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weder Umsatzhöhe noch Verlusthöhe noch Kassenbestand gehen aus der Ticker-Zeile hervor, und auch nicht, warum die Aktie ins Plus drehte. Wer das beurteilen will, braucht den Quartalsbericht selbst – die Schlagzeile reicht dafür nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'kursleiste-am-morgen-2026-08-06',
+    title: 'Was eine Kursleiste um fünf Uhr morgens zeigt – und was nicht',
+    metaTitle: 'Die Kursleiste am Morgen',
+    teaser:
+      'DAX 26.126, Nasdaq 26.363, Gold 4.264: Um 5:09 Uhr standen diese Zahlen auf dem Portal. Nur zwei davon stammen aus laufendem Handel.',
+    category: 'Märkte',
+    publishedAt: '2026-08-06T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Handelszeiten', 'Marktdaten'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'nasdaq-100', 'gold', 'bitcoin'],
+    sources: [
+      {
+        label: 'finanzen.net, Kursleiste, abgerufen am 6. August 2026 um 5:09 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Kursleiste des Portals zeigte am 6. August um 5:09 Uhr UTC unter anderem: **DAX 26.126 (−0,3 %), Euro Stoxx 50 6.477 (−0,2 %), MSCI World 4.343 (−0,1 %), Nasdaq 26.363 (−0,8 %), Bitcoin 55.973 (+0,1 %), Euro 1,1550, Öl 79,10 (−0,4 %), Gold 4.264 (+0,4 %).**',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zu dieser Uhrzeit hat kaum eine dieser Börsen offen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Xetra handelt den DAX von 9:00 bis 17:30 Uhr deutscher Zeit, die US-Börsen von 15:30 bis 22:00 Uhr. Um 7:09 Uhr deutscher Zeit ist beides geschlossen. Der DAX-Stand in der Leiste ist deshalb kein an der Börse gehandelter Kurs, sondern eine Fortschreibung aus dem außerbörslichen Handel; der Nasdaq-Stand ist der Schluss des Vorabends oder ein Terminkontrakt darauf.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders bei Bitcoin und beim Euro-Dollar-Kurs: Krypto handelt an 365 Tagen rund um die Uhr, der Devisenmarkt von Sonntagabend bis Freitagabend durchgehend. Diese beiden Zahlen sind zum Abrufzeitpunkt tatsächlich gehandelt worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für die Prozentangabe wichtig ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Minus von 0,3 Prozent beim DAX bezieht sich auf den Schluss des Vortags. Ein Plus von 0,1 Prozent bei Bitcoin bezieht sich auf einen Zeitpunkt vor 24 Stunden – ein Wert, der nie mit einem Handelsschluss zusammenfällt, weil es keinen gibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vergleicht man beide Prozentzahlen direkt, vergleicht man verschiedene Zeiträume mit verschiedenen Bezugspunkten. Das ist der häufigste stille Fehler beim Blick auf eine Kursleiste.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der praktische Schluss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu jeder Kursangabe gehören zwei Angaben, die oft fehlen: der Zeitpunkt und der Handelsplatz. Fehlt eine davon, ist die Zahl nicht falsch – sie lässt sich nur nicht einordnen.',
       },
     ],
   },

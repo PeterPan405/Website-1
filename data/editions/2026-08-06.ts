@@ -10,101 +10,107 @@ import type { DailyEdition } from './types'
 export const edition: DailyEdition = {
   date: '2026-08-06',
   intro:
-    'Der 6.8.2026 in Zahlen aus dem eigenen Bestand. Was sich bewegt hat, wie breit es getragen war und was die Zahlen nicht verraten.',
+    'Quartalszahlen von Siemens, Telekom und Merck, ein ausgeweiteter Aktienrückkauf und Öl unter 80 Dollar – der Morgen des 6. August in sechs Lehrstücken.',
   top: [
     {
-      headline: 'Leitindizes: Nasdaq 100 vorn, Nikkei 225 (Japan) hinten',
+      headline: 'Siemens meldet den höchsten Auftragseingang seiner Geschichte',
       summary: [
-        'Zum letzten abgerufenen Schluss steht Nasdaq 100 bei +3,32 Prozent, Nikkei 225 (Japan) bei +0,32 Prozent.',
-        'Die Spanne zwischen beiden ist der eigentliche Befund des Tages, nicht der einzelne Indexstand.',
+        'Über den Nachrichtenticker lief um 7:04 Uhr, dass Siemens einen Rekordauftragseingang erzielt und den Ergebnisausblick erhöht hat.',
+        'Welche Sparte den Rekord trägt und wie der Kurs darauf reagierte, geht aus der Meldung nicht hervor.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Ein Indexstand allein ist keine Aussage über einen Markt: Performance- und Kursindizes rechnen verschieden, und ein Vergleich zwischen ihnen misst die Rechenweise mit.',
-      relatedTopics: ['boerse'],
-      relatedSymbols: ['nasdaq-100', 'nikkei-225'],
+        'Auftragseingang ist bestelltes Geschäft, nicht abgerechneter Umsatz. Zwischen beiden liegen in der Industrie oft Jahre – und der erhöhte Ausblick bewegt Kurse meist stärker als das Quartal selbst.',
+      relatedTopics: ['aktie'],
+      relatedSymbols: ['siemens', 'dax'],
       sources: [
         {
-          label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
-          url: 'https://iminvests.de/maerkte',
+          label: 'finanzen.net, Nachrichten-Ticker vom 6. August 2026, 7:03 bis 7:05 Uhr',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
     {
-      headline: '541 Titel im Plus, 476 im Minus',
+      headline: 'Deutsche Telekom weitet den Aktienrückkauf deutlich aus',
       summary: [
-        'Am 5.8.2026 lag der ungewichtete Schnitt über alle ausgewerteten Aktien bei +0,19 Prozent.',
-        'Die Bewegung war zu 53,2 Prozent getragen – so groß ist der Anteil der Titel, die mit dem Gesamtschnitt liefen.',
+        'Die Agenturmeldung von 4:48 Uhr nennt eine deutliche Ausweitung des Rückkaufprogramms; um 7:04 Uhr folgte ein höheres operatives Ergebnis.',
+        'Auch Aumovio kündigte an, überschüssige Mittel für Aktienrückkäufe einzusetzen.',
       ],
-      category: 'Märkte',
+      category: 'Geldanlage',
       whyItMatters:
-        'Ob ein Plus von allen Titeln getragen wird oder von drei schweren Werten, ist am Indexstand nicht ablesbar. Die Breite macht genau diesen Unterschied sichtbar.',
-      relatedTopics: ['wie-funktioniert-der-markt'],
-      relatedSymbols: ['dax'],
+        'Rückkauf und Dividende geben beide Geld an die Eigentümer zurück, aber nur die Dividende löst sofort Kapitalertragsteuer aus. Wer allein auf die Dividendenrendite schaut, übersieht die halbe Ausschüttung.',
+      relatedTopics: ['aktie'],
+      relatedSymbols: ['deutsche-telekom', 'dax'],
       sources: [
         {
-          label: 'Eigene Marktbreite-Aufzeichnung, Stand 6.8.2026, 04:24 Uhr UTC',
-          url: 'https://iminvests.de/maerkte/tagesbild',
+          label:
+            'onvista, Agentur-Meldungen (dpa-AFX) vom 6. August 2026, 4:24 bis 4:48 Uhr',
+          url: 'https://www.onvista.de/news/',
+        },
+        {
+          label: 'finanzen.net, Nachrichten-Ticker vom 6. August 2026, 7:03 bis 7:05 Uhr',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
     {
-      headline: 'Von +29,45 Prozent bis −16,62 Prozent: die Spanne des Tages',
+      headline: 'Zwei erhöhte Prognosen, zwei sehr verschiedene Gründe',
       summary: [
-        'Über 1026 geführte Aktien führte Palantir, am Ende stand Aptiv.',
-        'Aus den Kursdaten geht die Bewegung hervor, nicht ihr Anlass.',
+        'Merck hebt die Prognose nach einem nach eigener Darstellung robusten Quartal an; bei Rational stammt der Mehrgewinn laut Meldung aus einer Zoll-Rückzahlung.',
+        'Die Jahresziele von Rational bleiben nach derselben Meldung ausdrücklich unverändert.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Prozentzahlen ohne Bezugspunkt führen in die Irre: Bei einem niedrigen Kurs erzeugt eine kleine Bewegung eine große Zahl, und ein Minus wiegt schwerer als ein gleich großes Plus.',
-      relatedTopics: ['aktie', 'risiko-und-rendite'],
-      relatedSymbols: [],
+        'Ein Einmaleffekt erhöht den Gewinn dieses Quartals und wiederholt sich nicht. Wer das berichtete Ergebnis ungeprüft fortschreibt, rechnet mit Geld, das nur einmal fließt.',
+      relatedTopics: ['aktie'],
+      relatedSymbols: ['merck', 'dax'],
       sources: [
         {
-          label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
-          url: 'https://iminvests.de/maerkte',
+          label: 'finanzen.net, Nachrichten-Ticker vom 6. August 2026, 7:03 bis 7:05 Uhr',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
   ],
   further: [
     {
-      headline: 'Realzins bei rund -0,4 Prozentpunkten',
+      headline: 'Nordseeöl bleibt unter 80 Dollar, Gold hatte zuvor 4.100 überschritten',
       summary: [
-        'Leitzins 2,40 Prozent (Stand 5.8.2026) gegen eine deutsche Inflationsrate von 2,8 Prozent für 2026-07.',
+        'Die Ölpreise wurden um 4:41 Uhr als unverändert gemeldet; der Goldreporter hatte am Vortag einen Anstieg auf 4.162 Dollar beschrieben.',
+        'Dass ein Preis stillsteht, heißt nicht, dass nichts geschehen ist – es heißt, dass es bereits eingepreist war.',
       ],
-      category: 'Geldpolitik',
+      category: 'Märkte',
       whyItMatters:
-        'Der Kontostand steigt, die Kaufkraft kann trotzdem sinken. Erst die Differenz aus Zins und Inflation sagt, ob Erspartes tatsächlich mehr wert wird.',
-      relatedTopics: ['inflation', 'tagesgeld'],
-      relatedSymbols: [],
+        'Dieselbe geopolitische Lage wirkt auf Öl über das erwartete Angebot und auf Gold über die Anleiherenditen. Deshalb können beide gegenläufig reagieren, ohne dass sich etwas widerspricht.',
+      relatedTopics: ['rohstoffe'],
+      relatedSymbols: ['brent', 'gold'],
       sources: [
         {
           label:
-            'Europäische Zentralbank über die eigene Zinsübersicht, Stand 5.8.2026, 09:05 Uhr UTC',
-          url: 'https://iminvests.de/maerkte/zinsen',
+            'onvista, Agentur-Meldungen (dpa-AFX) vom 6. August 2026, 4:24 bis 4:48 Uhr',
+          url: 'https://www.onvista.de/news/',
+        },
+        {
+          label: 'Goldreporter, Marktbericht vom 5. August 2026',
+          url: 'https://www.goldreporter.de/',
         },
       ],
     },
     {
-      headline: 'Gold bei 4.322,70 Dollar, umgerechnet rund 3.753,97 Euro',
+      headline: 'Kursleiste um 5:09 Uhr: DAX 26.126, Nasdaq 26.363, Gold 4.264',
       summary: [
-        'Der Euro notierte zuletzt bei 1,1515 Dollar (Stand 4.8.2026).',
-        'Der Euro-Preis eines Dollar-Rohstoffs bewegt sich mit zwei Größen zugleich.',
+        'Zu dieser Uhrzeit sind Xetra und die US-Börsen geschlossen; nur Krypto und Devisen wurden zum Abrufzeitpunkt tatsächlich gehandelt.',
+        'Die Prozentangaben beziehen sich damit auf ganz verschiedene Bezugspunkte.',
       ],
-      category: 'Geldanlage',
+      category: 'Märkte',
       whyItMatters:
-        'Wer einen in Dollar notierten Rohstoff hält, hält immer auch eine Währungsposition. Ein steigender Euro-Preis muss nichts über den Rohstoff selbst aussagen.',
-      relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
-      relatedSymbols: ['gold', 'eur-usd'],
+        'Zu jeder Kursangabe gehören Zeitpunkt und Handelsplatz. Fehlt eines davon, ist die Zahl nicht falsch, aber sie lässt sich nicht einordnen – und Prozentwerte daraus sind nicht vergleichbar.',
+      relatedTopics: ['boerse'],
+      relatedSymbols: ['dax', 'bitcoin'],
       sources: [
         {
-          label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 6.8.2026, 04:24 Uhr UTC',
-          url: 'https://iminvests.de/maerkte',
-        },
-        {
-          label: 'Europäische Zentralbank, Referenzkurs vom 4.8.2026',
-          url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+          label: 'finanzen.net, Kursleiste, abgerufen am 6. August 2026 um 5:09 Uhr UTC',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
