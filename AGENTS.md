@@ -142,7 +142,8 @@ Zwei Wege, hintereinander, und ihr **Abstand** ist die eigentliche Vorschrift:
 | 02:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?            |
 | 02:13      | `quellen-sammeln.yml` – legt `quellen-heute` an                   |
 | 02:23      | `quellen-sammeln.yml` – zweiter Termin                            |
-| **02:27**  | Routine – liest die Ticker und schreibt den **Entwurf**           |
+| **02:27**  | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf**      |
+| **02:41**  | zweiter Anlauf des Agenten                                        |
 | **02:57**  | `nachrichten.yml` – Entwurf prüfen, bauen, senden → live ab 03:20 |
 | **03:17**  | zweiter Anlauf, falls der erste verworfen wurde                   |
 | **03:47**  | dritter Anlauf – der letzte, der 04:00 noch schafft               |
@@ -159,41 +160,63 @@ rückwärts gerechnet, nicht gewählt: Der Nachrichtenlauf braucht 20 Minuten,
 der Paketbau samt Übertragung nochmal 10. Der letzte Start, der die Frist noch
 hält, ist damit **03:47 UTC**.
 
-## Die Sitzung schreibt, der Läufer veröffentlicht
+## Der Agent schreibt, der Läufer veröffentlicht
 
 Das ist seit dem 6. August 2026 die Arbeitsteilung, und sie ist der Kern des
 Ganzen.
 
-**Was ein Läufer nicht kann:** aus „07:04 Siemens erzielt Rekordauftragseingang"
-einen Artikel machen. Den Lehrwinkel wählen, selbst formulieren, die
-Begründung weglassen, die in der Meldung nicht steht. Das ist Spracharbeit und
-lässt sich nicht rechnen — dafür muss ein Modell die rund 100.000 Zeichen der
-Quellendatei lesen. `scripts/nachrichten-aus-bestand.ts` kann Zahlen ordnen,
-aber keine Nachrichten schreiben; es ist ein Notbehelf und nichts sonst.
+**Was sich nicht rechnen lässt:** aus „07:04 Siemens erzielt
+Rekordauftragseingang" einen Artikel machen. Den Lehrwinkel wählen, selbst
+formulieren, die Begründung weglassen, die in der Meldung nicht steht. Dafür
+muss ein Modell die rund 100.000 Zeichen der Quellendatei lesen.
+`scripts/nachrichten-aus-bestand.ts` kann Zahlen ordnen, aber keine
+Nachrichten schreiben – es ist ein Notbehelf und nichts sonst.
 
-**Was eine Sitzung nicht gut kann:** siebzig Minuten lang Dateien anlegen,
-Prüfketten fahren, bauen und auf `main` pushen, ohne dass jemand zusieht. An
-sieben Tagen in Folge kam dabei nichts heraus, und wo es klemmte, war nicht
-feststellbar — Sitzungsprotokolle sind nicht einsehbar.
+**Wo das Modell läuft, ist die entscheidende Frage.** Drei Antworten wurden
+probiert:
 
-Also getrennt: Die Routine um 02:27 liest `quellen-heute`, schreibt fünf bis
-acht Artikel als JSON und legt sie auf dem wurzellosen Zweig
-**`nachrichten-entwurf`** ab. Mehr nicht. Zwanzig Minuten statt siebzig, und
-das Ergebnis ist eine Datei, die man ansehen kann.
+| Weg                         | Kosten       | Protokoll einsehbar | Netzzugang | Bilanz                      |
+| --------------------------- | ------------ | ------------------- | ---------- | --------------------------- |
+| Sitzungs-Routine            | im Abo       | **nein**            | nein (403) | 7 von 7 Tagen ohne Ergebnis |
+| Anthropic-Schnittstelle     | ~0,20 $/Lauf | ja                  | –          | läuft, kostet               |
+| **`nachrichten-agent.yml`** | **im Abo**   | **ja**              | **voll**   | der Weg                     |
 
-`nachrichten.yml` um 02:57 nimmt den Entwurf, prüft ihn mit derselben Kette
-wie der Build und veröffentlicht. Fehlt er oder besteht er die Prüfung nicht,
-greift Weg 2 (Modell auf dem Läufer, braucht den Schlüssel) und dann Weg 3
-(Notbehelf aus dem Bestand).
+`anthropics/claude-code-action` startet den Agenten **auf dem Läufer**. Der
+Eingabewert `claude_code_oauth_token` erlaubt die Anmeldung über ein
+bestehendes Pro- oder Max-Abonnement statt über einen API-Schlüssel – erzeugt
+wird er einmalig mit `claude setup-token` und liegt als Repository-Secret
+`CLAUDE_CODE_OAUTH_TOKEN`.
 
-**Die Rangfolge ist Absicht:** Weg 1 ist kostenlos und liefert echte
-Nachrichten. Weg 3 liefert immer etwas, aber keine Nachrichten. Wer hier
-etwas ändert, ändert nichts an dieser Reihenfolge.
+Damit fallen beide Nachteile der Routine weg: Jeder Schritt steht im
+Protokoll, ein Fehlschlag ist ein roter Lauf mit Mail, und der Läufer kommt
+ins Netz – der Agent kann Quellen selbst nachschlagen statt nur die
+gesammelte Datei zu lesen.
 
-Zur Selbstprüfung des Entwurfs dient dieselbe Probe, die der Workflow fährt:
+Die Sitzungs-Routine ist deshalb stillgelegt. Sie war derselbe Gedanke ohne
+die Sichtbarkeit.
+
+**Der Agent veröffentlicht nicht.** Er legt `entwurf.json` auf dem
+wurzellosen Zweig `nachrichten-entwurf` ab – aber erst, nachdem ein
+**eigener** Schritt danach die Probe unabhängig wiederholt hat. Ein
+ungeprüfter Entwurf wäre gefährlicher als keiner: `nachrichten.yml` würde ihn
+nehmen, und der Build bräche zwei Stunden später.
+
+`nachrichten.yml` um 02:57 hat damit drei Wege, in dieser Rangfolge:
+
+1. **Entwurf vom Agenten** – recherchiert, im Abo enthalten, der Regelfall
+2. **Modell über die Schnittstelle** – dasselbe Ergebnis, ~0,20 $, braucht
+   `ANTHROPIC_API_KEY`
+3. **Bestand** – Marktzahlen statt Meldungen, ausdrücklich ein Notbehelf
+
+Wer hier etwas ändert, ändert nichts an dieser Reihenfolge. Weg 3 ist der
+Grund, warum nie „gar nichts" dasteht; Weg 1 der Grund, warum er selten
+gebraucht werden sollte.
+
+Zur Selbstprüfung eines Entwurfs dient dieselbe Probe, die beide Workflows
+fahren:
 
 ```
-ANTWORT_DATEI=/tmp/entwurf.json QUELLENDATEI=/tmp/quellen.txt \
+ANTWORT_DATEI=entwurf.json QUELLENDATEI=quellen.txt \
   STICHTAG=$(date -u +%Y-%m-%d) NUR_PRUEFEN=1 \
   node --experimental-strip-types scripts/nachrichten-erzeugen.ts
 ```
