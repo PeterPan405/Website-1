@@ -137,30 +137,39 @@ Arbeitsdatei außerhalb von `main`, gekürzt auf die Köpfe der Übersichtsseite
 
 Zwei Wege, hintereinander, und ihr **Abstand** ist die eigentliche Vorschrift:
 
-| Zeit (UTC) | Was                                                                 |
-| ---------- | ------------------------------------------------------------------- |
-| 03:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?              |
-| 03:07      | `quellen-sammeln.yml` – legt `quellen-heute` an                     |
-| 03:17      | `quellen-sammeln.yml` – zweiter Termin                              |
-| 03:30      | Routine **„Nachrichten 5:30"** – recherchiert, kostenlos, 45–70 min |
-| 04:47      | `nachrichten.yml` – nur falls die Routine nichts geliefert hat      |
-| 05:19      | `ausgabe-waechter.yml` – schlägt Alarm, wenn sie dann noch fehlt    |
-| 05:41      | `paket-bauen.yml` – nach dem Lauf, nicht mitten hinein              |
-| 05:51      | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?               |
+| Zeit (UTC) | Was                                                               |
+| ---------- | ----------------------------------------------------------------- |
+| 02:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?            |
+| 02:13      | `quellen-sammeln.yml` – legt `quellen-heute` an                   |
+| 02:23      | `quellen-sammeln.yml` – zweiter Termin                            |
+| **02:37**  | `nachrichten.yml`, erster Anlauf → fertig 02:57, live gegen 03:10 |
+| **02:57**  | zweiter Anlauf, falls der erste verworfen wurde                   |
+| **03:17**  | dritter Anlauf – der letzte, der 04:00 noch schafft               |
+| ab 03:07   | `kurse.yml` stößt an, falls alle drei ausfielen                   |
+| 03:53      | Routine – die letzte Gelegenheit, dann eben verspätet             |
+| 04:11      | `ausgabe-waechter.yml` – elf Minuten nach der Frist               |
+| 05:41      | `paket-bauen.yml` – der nächtliche Bau, unabhängig davon          |
+| 05:51      | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?             |
 
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
 
-**Warum 04:47 und nicht früher:** Ein Nachrichtenlauf in einer Sitzung braucht
-45 bis 70 Minuten. Zwei Wege, die gleichzeitig schreiben, erzeugen zwei
-Ausgaben zum selben Datum – und das bricht den Build ab. Die 77 Minuten Abstand
-sind kein Puffer, sondern die gemessene Obergrenze plus sieben.
+**Die Zusage lautet: 6:00 deutscher Zeit, also 04:00 UTC.** Alles darüber ist
+rückwärts gerechnet, nicht gewählt: Der Nachrichtenlauf braucht 20 Minuten,
+der Paketbau samt Übertragung nochmal 10. Der letzte Start, der die Frist noch
+hält, ist damit **03:17 UTC** – daher der dritte Termin genau dort.
 
-**Die Zusage lautet nicht 5:30.** Sie lautet: Die Ausgabe steht, jeden Tag. Im
-Regelfall ist sie gegen 6:15 deutscher Zeit auf der Website, im Rückfall gegen
-7:15. Früher geht nur um den Preis der deutschen Morgenmeldungen — die Ticker
-der Unternehmen laufen erst ab 5 Uhr deutscher Zeit, und sie sind der
-ergiebigste Teil jeder Ausgabe.
+**Warum der Workflow vorn steht und die Routine hinten.** Bis zum 6. August
+2026 war es umgekehrt, um Kosten zu sparen. Eine Sitzungs-Routine braucht aber
+45 bis 70 Minuten und passt damit nicht mehr vor 04:00. Sie steht jetzt um
+03:53 als letzte Gelegenheit – dann eben verspätet, aber am selben Morgen.
+Zwei Wege, die gleichzeitig schreiben, erzeugen zwei Ausgaben zum selben Datum
+und brechen den Build ab; deshalb liegt sie hinter dem dritten Anlauf.
+
+**Was der frühe Start kostet.** Um 02:37 UTC ist es 4:37 in Deutschland, und
+die Unternehmensticker laufen erst ab 5 Uhr. Die Ausgabe ist damit stärker ein
+Überblick über die Nacht und den Vortag als über den laufenden Morgen. Das ist
+der Preis für 6:00 und eine bewusste Entscheidung, keine Nachlässigkeit.
 
 ## Warum die Ausgabe aus einem Workflow kommt und nicht aus einer Routine
 

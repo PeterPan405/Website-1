@@ -41,3 +41,9 @@ data/snapshots/fundamentaldaten.json
 # Prettier zöge kurze Objekte auf eine Zeile zusammen, und die Datei wäre bei
 # jedem Lauf ein Formatstreit zwischen Maschine und Prüfung.
 data/snapshots/kursausfaelle.json
+
+# Arbeitsdateien der Nachrichtenläufe – sie entstehen auf dem Läufer und
+# haben im Repository nichts zu suchen. Am 6. August 2026 hat genau so eine
+# Datei einen kompletten Lauf zu Fall gebracht.
+antwort-bestand.json
+quellen.txt

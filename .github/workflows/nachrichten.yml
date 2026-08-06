@@ -2,19 +2,26 @@ name: Nachrichten schreiben
 
 # Die Tagesausgabe – auf einem Läufer, nicht in einer Sitzung.
 #
-# ## Was dieser Workflow ist: der dritte Anlauf, nicht der erste
+# ## Warum dieser Workflow der Regelweg ist und nicht die Rückfallebene
 #
-# Er ist der einzige Lauf dieses Repositorys, der überhaupt Geld kosten kann –
-# alles andere hier (Kurse, Zinsen, Quartalstermine, ESEF, Podcast,
-# Länderdaten) holt öffentliche Daten und ist umsonst. Deshalb steht er
-# **hinter** dem kostenlosen Weg:
+# Bis zum 6. August 2026 stand er hinter der Sitzungs-Routine, um Kosten zu
+# sparen. Dann kam die Zusage dazu: **Die Ausgabe steht um 6:00 deutscher
+# Zeit auf der Website** – also um 04:00 UTC. Rückwärts gerechnet passt die
+# Routine da nicht mehr hinein: Sie braucht 45 bis 70 Minuten, dieser
+# Workflow 20.
 #
-#   03:30  Routine „Nachrichten 5:30" – Sitzung, recherchiert, kostenlos
-#   04:47  dieser Workflow            – nur wenn die Routine nichts geliefert hat
+#   02:13 / 02:23  `quellen-sammeln.yml` – die Übersichten
+#   02:37          dieser Workflow, erster Anlauf   → fertig 02:57, live 03:10
+#   02:57          zweiter Anlauf, falls der erste verworfen wurde
+#   03:17          dritter Anlauf – der letzte, der 04:00 noch schafft
+#   ab 03:07       `kurse.yml` stößt an, falls alle drei ausfielen
+#   03:53          Routine – die letzte Gelegenheit, dann eben verspätet
+#   04:11          `ausgabe-waechter.yml` – elf Minuten nach der Frist
 #
 # Der erste Schritt unten prüft, ob die Ausgabe schon steht. Steht sie, hört
 # der Lauf nach vierzig Sekunden auf und hat **nichts** gekostet – das Modell
-# wird gar nicht erst gefragt.
+# wird gar nicht erst gefragt. Deshalb sind drei Termine plus der Anstoß über
+# `kurse.yml` fast umsonst: Es zahlt nur der Lauf, der tatsächlich schreibt.
 #
 # Und kommt er doch zum Zug, hat er zwei Wege: mit hinterlegtem
 # `ANTHROPIC_API_KEY` fragt er das Modell (rund 0,20 $), ohne ihn rechnet
@@ -25,10 +32,15 @@ name: Nachrichten schreiben
 # Ausgabe an den Tagen, an denen die Routine ausfällt; er entscheidet nicht
 # mehr darüber, ob überhaupt eine entsteht.
 #
-# ## Warum es ihn trotzdem braucht
+# ## Warum nicht ein Termin genügt
 #
-# Weil die Routine zwischen dem 31. Juli und dem 5. August 2026 an **keinem
-# einzigen Tag** eine Ausgabe erzeugt hat. Nachgezählt für jede der fünf
+# **GitHub verwirft geplante Läufe.** Am 6. August 2026 nachgezählt, über alle
+# `schedule`-Termine des Tages: Genau einer wurde ausgeführt – der Kursabruf
+# um 04:24. Dieser Workflow hatte an dem Morgen null Läufe, nicht einen
+# gescheiterten. Ein einzelner Termin ist damit keine Zusage.
+#
+# Und die Routine ist auch keine: Sie hat zwischen dem 31. Juli und dem
+# 5. August 2026 an **keinem einzigen Tag** eine Ausgabe erzeugt. Nachgezählt für jede der fünf
 # Ausgaben dieser Woche: Alle entstanden in einer interaktiven Sitzung und
 # wurden über einen Pull Request gemergt. Die Automatik feuerte jeden Morgen
 # pünktlich, lieferte nichts, und niemand erfuhr davon.
@@ -63,14 +75,22 @@ name: Nachrichten schreiben
 
 on:
   schedule:
-    # 04:47 UTC – 6:47 Uhr deutscher Sommerzeit. **Nicht** die Erscheinungszeit
-    # der Nachrichten, sondern die Rückfallebene: 77 Minuten nach dem Start der
-    # Routine, damit deren Sitzung sicher fertig ist. Ein Nachrichtenlauf in
-    # einer Sitzung braucht 45 bis 70 Minuten, und zwei Wege, die gleichzeitig
-    # schreiben, erzeugen zwei Ausgaben zum selben Datum – das bricht den Build.
+    # **Drei Anläufe statt einem.** Die Zusage lautet: Die Ausgabe steht um
+    # 6:00 deutscher Zeit auf der Website, also um 04:00 UTC. Rückwärts
+    # gerechnet: Der Lauf braucht 20 Minuten, der Paketbau samt Übertragung
+    # nochmal 10. Der letzte mögliche Start ist damit 03:17 UTC.
     #
-    # Im Winter 05:47 UTC; die Routine „Zeitumstellung" zieht das nach.
-    - cron: '47 4 * * *'
+    # Warum drei: GitHub verwirft geplante Läufe. Am 6. August 2026 wurde von
+    # allen Terminen des Tages **genau einer** ausgeführt. Ein einzelner
+    # Termin ist damit keine Zusage, drei sind eine deutlich bessere.
+    #
+    # Die zusätzlichen Läufe kosten fast nichts: Steht die Ausgabe schon,
+    # hört der Lauf nach vierzig Sekunden auf, ohne das Modell zu fragen.
+    #
+    # Im Winter eine Stunde später; die Routine „Zeitumstellung" zieht nach.
+    - cron: '37 2 * * *'
+    - cron: '57 2 * * *'
+    - cron: '17 3 * * *'
   workflow_dispatch:
     inputs:
       stichtag:
@@ -216,8 +236,14 @@ jobs:
             echo "::warning::Kein ANTHROPIC_API_KEY hinterlegt – die Ausgabe entsteht ohne Modell aus dem eigenen Bestand."
           fi
 
-          node --experimental-strip-types scripts/nachrichten-aus-bestand.ts
-          ANTWORT_DATEI=antwort-bestand.json schreibe
+          # **Nicht ins Arbeitsverzeichnis.** Am 6. August 2026 lag die Datei
+          # als `antwort-bestand.json` neben dem Quelltext, und `prettier
+          # --check .` im nächsten Schritt hat den ganzen Lauf daran scheitern
+          # lassen – nach einem sauberen Build über 1509 Seiten. Aufgeräumt
+          # wurde sie erst beim Veröffentlichen, also zu spät.
+          ziel="${RUNNER_TEMP:-/tmp}/antwort-bestand.json"
+          ZIEL="$ziel" node --experimental-strip-types scripts/nachrichten-aus-bestand.ts
+          ANTWORT_DATEI="$ziel" schreibe
           echo "Die Ausgabe wurde ohne Modell aus dem eigenen Datenbestand gerechnet." \
             >> "$GITHUB_STEP_SUMMARY"
 
@@ -240,7 +266,7 @@ jobs:
         if: steps.vorhanden.outputs.schon == 'nein' && !inputs.probe
         id: veroeffentlichen
         run: |
-          rm -f quellen.txt antwort-bestand.json
+          rm -f quellen.txt
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/
