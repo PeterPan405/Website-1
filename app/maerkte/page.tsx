@@ -194,7 +194,15 @@ export default async function MarketsOverviewPage() {
           >
             Zusammenhang und Schwankung
           </Link>
-          .
+          . Und ob es gute und schlechte Börsenmonate gibt, lässt sich ebenfalls
+          nachrechnen –{' '}
+          <Link
+            href="/maerkte/saisonalitaet"
+            className="text-markets font-medium underline underline-offset-2"
+          >
+            die Saisonalität
+          </Link>{' '}
+          stellt jedes Monatsmuster neben die Spanne, die reiner Zufall erwarten lässt.
         </p>
 
         <section aria-labelledby="indizes" className="mt-12">

@@ -247,6 +247,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.6,
     },
+    /*
+      Monatsbefunde ändern sich erst, wenn ein Monat zu Ende ist – häufiger als
+      monatlich hat die Seite nichts Neues zu sagen.
+    */
+    {
+      url: absoluteUrl('/maerkte/saisonalitaet'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     { url: absoluteUrl('/maerkte/branchen'), changeFrequency: 'weekly', priority: 0.7 },
     // Der Vergleich rechnet mit denselben Kursen und ändert sich mit ihnen.
     { url: absoluteUrl('/maerkte/vergleich'), changeFrequency: 'daily', priority: 0.7 },
