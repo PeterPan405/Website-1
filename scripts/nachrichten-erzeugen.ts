@@ -604,12 +604,39 @@ async function main() {
     return
   }
 
-  const quellen = readFileSync(pflicht('QUELLENDATEI'), 'utf8')
-  const kopf = quellen.split('\n')[0] ?? ''
-  if (!kopf.includes(heute)) {
+  /*
+    Die Quellendatei ist nur nötig, wenn tatsächlich ein Modell gefragt wird.
+
+    Bis zum 6. August 2026 stand hier `pflicht('QUELLENDATEI')` – unbedingt,
+    noch vor dem Ausstieg über `ANTWORT_DATEI`. Damit stürzte ausgerechnet der
+    Notbehelf ab, wenn keine Quellen vorlagen: Fehlen sie, entfernt
+    `nachrichten.yml` die Datei und rechnet die Ausgabe aus dem eigenen
+    Bestand – und dieser Lauf brach dann hier ab, statt zu schreiben.
+
+    Genau der Fall, für den der Notbehelf gebaut wurde, war der einzige, in
+    dem er nicht funktionierte. Aufgefallen ist es beim Durchgehen vor dem
+    ersten Agentenlauf, nicht im Betrieb.
+  */
+  const quellendatei = process.env.QUELLENDATEI
+  const ausAntwortdatei = Boolean(process.env.ANTWORT_DATEI)
+
+  let quellen = ''
+  if (quellendatei && existsSync(quellendatei)) {
+    quellen = readFileSync(quellendatei, 'utf8')
+    const kopf = quellen.split('\n')[0] ?? ''
+    if (!kopf.includes(heute)) {
+      console.log(
+        `::warning::Die Quellendatei ist nicht von heute (${kopf.trim().slice(0, 120)}).`
+      )
+    }
+  } else if (ausAntwortdatei) {
     console.log(
-      `::warning::Die Quellendatei ist nicht von heute (${kopf.trim().slice(0, 120)}).`
+      'Ohne Quellendatei – die Antwort liegt bereits vor, es wird kein Modell gefragt.'
     )
+  } else {
+    console.error('::error::QUELLENDATEI fehlt oder zeigt ins Leere.')
+    console.error('  Ohne gelesene Quelle wird keine Ausgabe geschrieben.')
+    process.exit(1)
   }
 
   const themen = new Set<string>()
