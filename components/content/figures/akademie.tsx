@@ -1952,3 +1952,186 @@ export function TaElliottUmkehrbereiche() {
     </FigureSvg>
   )
 }
+
+/**
+ * Die Umkehrbereiche der Wellen, die nicht im gewöhnlichen Impuls vorkommen.
+ *
+ * ## Warum das eine eigene Grafik braucht
+ *
+ * Die Verhältnisse gelten je Formation, nicht je Wellennummer. Eine Welle 2
+ * im Impuls dreht zwischen 50 und 78,6 Prozent – dieselbe Welle 2 in einer
+ * Diagonale zwischen 66 und 81 Prozent, weil eine Diagonale enger läuft. Wer
+ * die Zahlen aus der Impulstabelle auf eine Diagonale anwendet, misst mit dem
+ * falschen Maßstab.
+ *
+ * ## Warum die Stützstellen so gewählt sind
+ *
+ * Beide Formen leben davon, dass man die Verengung sieht. In der ersten
+ * Fassung lagen die Punkte des Dreiecks so dicht, dass E auf B fiel und die
+ * Form zu einem Knäuel zusammenlief; die Diagonale war ein Splitter statt
+ * eines Keils. Die Ausschläge sind deshalb von Hand gestaffelt – jeder
+ * Abschnitt rund drei Viertel des vorigen, weit genug auseinander, um ihn
+ * einzeln zu erkennen.
+ */
+export function TaElliottUmkehrWeitere() {
+  return (
+    <FigureSvg id="ta-elliott-umkehr-weitere" viewBox="0 0 640 320">
+      {/* --- Kontrahierendes Dreieck --- */}
+      <Beschriftung x={115} y={30} anchor="middle" groesse={13} gewicht="kraeftig">
+        Dreieck
+      </Beschriftung>
+      <path
+        d={pfad([
+          [34, 62],
+          [72, 168],
+          [106, 96],
+          [140, 152],
+          [168, 114],
+          [196, 140],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2}
+      />
+      {/* Begrenzungen, damit die Verengung sichtbar ist */}
+      <path
+        d={pfad([
+          [66, 176],
+          [200, 144],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 3"
+      />
+      <path
+        d={pfad([
+          [100, 88],
+          [200, 132],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 3"
+      />
+      {[
+        [72, 168, 'A'],
+        [106, 96, 'B'],
+        [140, 152, 'C'],
+        [168, 114, 'D'],
+        [196, 140, 'E'],
+      ].map(([x, y, t]) => (
+        <WellenMarke
+          key={String(t)}
+          x={Number(x)}
+          y={Number(y)}
+          text={String(t)}
+          radius={9}
+          farbe={t === 'E' ? AKZENT : MARKE}
+        />
+      ))}
+      <Beschriftung x={115} y={210} anchor="middle" ton="leise" groesse={11.5}>
+        Jeder Abschnitt
+      </Beschriftung>
+      <Beschriftung x={115} y={226} anchor="middle" ton="leise" groesse={11.5}>
+        ≈ 0,618 × des vorigen
+      </Beschriftung>
+
+      {/* --- Kombination W X Y --- */}
+      <Beschriftung x={320} y={30} anchor="middle" groesse={13} gewicht="kraeftig">
+        Kombination
+      </Beschriftung>
+      <path
+        d={pfad([
+          [246, 56],
+          [286, 128],
+          [318, 90],
+          [354, 152],
+          [394, 118],
+          [420, 182],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2}
+      />
+      <WellenMarke x={286} y={128} text="W" radius={10} />
+      <WellenMarke x={318} y={90} text="X" radius={10} farbe={AKZENT} />
+      <WellenMarke x={420} y={182} text="Y" radius={10} />
+      <Beschriftung x={320} y={210} anchor="middle" ton="leise" groesse={11.5}>
+        X: 50 – 78,6 % von W
+      </Beschriftung>
+      <Beschriftung x={320} y={226} anchor="middle" ton="leise" groesse={11.5}>
+        Y: 0,618 – 1,618 × W, meist ≈ 1 ×
+      </Beschriftung>
+
+      {/* --- Endende Diagonale --- */}
+      <Beschriftung x={528} y={30} anchor="middle" groesse={13} gewicht="kraeftig">
+        Diagonale
+      </Beschriftung>
+      <path
+        d={pfad([
+          [450, 192],
+          [500, 112],
+          [476, 152],
+          [552, 82],
+          [524, 120],
+          [602, 58],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2}
+      />
+      <path
+        d={pfad([
+          [496, 116],
+          [606, 54],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 3"
+      />
+      <path
+        d={pfad([
+          [448, 196],
+          [606, 94],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 3"
+      />
+      {[
+        [500, 112, '1'],
+        [476, 152, '2'],
+        [552, 82, '3'],
+        [524, 120, '4'],
+        [602, 58, '5'],
+      ].map(([x, y, t]) => (
+        <WellenMarke
+          key={`d${t}`}
+          x={Number(x)}
+          y={Number(y)}
+          text={String(t)}
+          radius={7.5}
+        />
+      ))}
+      <Beschriftung x={528} y={210} anchor="middle" ton="leise" groesse={11.5}>
+        Wellen 2 und 4: 66 – 81 %
+      </Beschriftung>
+      <Beschriftung x={528} y={226} anchor="middle" ton="leise" groesse={11.5}>
+        tiefer als im Impuls
+      </Beschriftung>
+
+      <Beschriftung x={34} y={266} groesse={12} gewicht="kraeftig">
+        Die Verhältnisse gelten je Formation, nicht je Wellennummer.
+      </Beschriftung>
+      <Beschriftung x={34} y={286} ton="leise" groesse={11.5}>
+        Eine Welle 2 im Impuls dreht zwischen 50 und 78,6 Prozent – dieselbe
+      </Beschriftung>
+      <Beschriftung x={34} y={302} ton="leise" groesse={11.5}>
+        Welle 2 in einer Diagonale zwischen 66 und 81 Prozent.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
