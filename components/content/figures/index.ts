@@ -5,6 +5,16 @@ import {
 } from '@/components/content/figures/geldsystem'
 import {
   TaElliottZyklus,
+  TaElliottExtension,
+  TaElliottVerkuerzung,
+  TaElliottDiagonale,
+  TaElliottZigzag,
+  TaElliottFlat,
+  TaElliottDreieck,
+  TaElliottKombination,
+  TaElliottZiele,
+  TaElliottWechsel,
+  TaElliottGrade,
   TaKerzeAufbau,
   TaMacd,
   TaSmaVsEma,
@@ -266,6 +276,16 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'ta-sma-vs-ema': TaSmaVsEma,
   'ta-macd': TaMacd,
   'ta-elliott-zyklus': TaElliottZyklus,
+  'ta-elliott-extension': TaElliottExtension,
+  'ta-elliott-verkuerzung': TaElliottVerkuerzung,
+  'ta-elliott-diagonale': TaElliottDiagonale,
+  'ta-elliott-zigzag': TaElliottZigzag,
+  'ta-elliott-flat': TaElliottFlat,
+  'ta-elliott-dreieck': TaElliottDreieck,
+  'ta-elliott-kombination': TaElliottKombination,
+  'ta-elliott-ziele': TaElliottZiele,
+  'ta-elliott-wechsel': TaElliottWechsel,
+  'ta-elliott-grade': TaElliottGrade,
 
   /* -------------------------------------------------------- Geldsystem */
   'geldsystem-giralgeld': GeldsystemGiralgeld,

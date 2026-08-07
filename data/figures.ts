@@ -50,6 +50,26 @@ export type FigureId =
   | 'ta-macd'
   /** Der Elliott-Grundzyklus aus fünf Impuls- und drei Korrekturwellen. */
   | 'ta-elliott-zyklus'
+  /** Wo eine Impulswelle gestreckt wird – in 1, in 3 oder in 5. */
+  | 'ta-elliott-extension'
+  /** Die verkürzte fünfte Welle, die das Hoch der dritten nicht überbietet. */
+  | 'ta-elliott-verkuerzung'
+  /** Führende und endende Diagonale nebeneinander. */
+  | 'ta-elliott-diagonale'
+  /** Der Zickzack im 5-3-5-Aufbau. */
+  | 'ta-elliott-zigzag'
+  /** Normale, erweiterte und laufende Flat. */
+  | 'ta-elliott-flat'
+  /** Kontrahierendes, Barrier- und expandierendes Dreieck. */
+  | 'ta-elliott-dreieck'
+  /** Doppelte und dreifache Korrektur: W-X-Y und W-X-Y-X-Z. */
+  | 'ta-elliott-kombination'
+  /** Welche Welle welches Fibonacci-Verhältnis anläuft. */
+  | 'ta-elliott-ziele'
+  /** Der Wechsel zwischen scharfer und flacher Korrektur. */
+  | 'ta-elliott-wechsel'
+  /** Die Wellengrade: dieselbe Form auf jeder Zeitebene. */
+  | 'ta-elliott-grade'
   /** Einfacher Zins gegen Zinseszins über 40 Jahre. */
   | 'zins-gerade-vs-kurve'
   /** Drei Sparer mit gleicher Rate und unterschiedlichem Startalter. */
@@ -877,6 +897,76 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Zwei übereinanderliegende Darstellungen desselben Zeitraums. Oben ein schematischer Kursverlauf mit Anstieg, Gipfel und Rückgang. Unten der daraus abgeleitete MACD: die MACD-Linie als Differenz zweier exponentieller Durchschnitte, die geglättete Signallinie und das Histogramm als Balken um die Nulllinie, das den Abstand zwischen beiden Linien zeigt. Zwei Stellen sind markiert: Wo die MACD-Linie die Signallinie von unten kreuzt, wechseln die Balken von negativ auf positiv – das ist das übliche Signal. Am Gipfel ist zu sehen, dass die Balken bereits schrumpfen, während der Kurs noch steigt: Die Bewegung verliert an Beschleunigung, bevor sie die Richtung wechselt. Genau darin liegt der Nutzen und zugleich die Schwäche des Indikators – dieselbe Beobachtung tritt auch auf, wenn der Kurs anschließend weitersteigt.',
     caption:
       'Der MACD misst die Beschleunigung, nicht die Richtung. Das Histogramm dreht vor den Linien – manchmal zu Recht, oft zu früh.',
+  },
+  'ta-elliott-extension': {
+    title: 'Die gestreckte Impulswelle',
+    description:
+      'Drei schematische Impulsverläufe nebeneinander, jeder aus fünf Wellen. Im ersten ist Welle 3 die weitaus längste und steilste, im zweiten Welle 5, im dritten Welle 1. Die jeweils gestreckte Welle ist farblich hervorgehoben. In jedem Fall bleiben die beiden übrigen Impulswellen einander in der Länge ähnlich. Die Theorie erwartet, dass genau eine der drei Impulswellen gestreckt ist – am häufigsten die dritte. Welche es ist, lässt sich zuverlässig erst im Nachhinein sagen, und genau darin liegt die Schwierigkeit für jede Prognose.',
+    caption:
+      'Eine der drei Impulswellen ist gestreckt, meist die dritte. Welche, steht erst hinterher fest.',
+  },
+  'ta-elliott-verkuerzung': {
+    title: 'Die verkürzte fünfte Welle',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen. Vom Hoch der Welle 3 verläuft eine waagerechte gestrichelte Linie nach rechts. Welle 5 steigt zwar über das Tief der Welle 4 hinaus, bleibt aber unterhalb dieser Linie – sie überbietet das Hoch der dritten Welle nicht. Ein senkrechter Strich markiert den fehlenden Abstand. Diese Form ist zulässig und selten; sie gilt als Hinweis auf ungewöhnliche Schwäche im Trend. Der Impuls gilt trotzdem als vollständig abgeschlossen, und die anschließende Korrektur wird üblicherweise als kräftig erwartet.',
+    caption:
+      'Welle 5 erreicht das Hoch der Welle 3 nicht. Zulässig, selten – und ein Zeichen von Schwäche.',
+  },
+  'ta-elliott-diagonale': {
+    title: 'Führende und endende Diagonale',
+    description:
+      'Zwei keilförmige Verläufe nebeneinander, beide aus fünf Wellen, deren Begrenzungslinien gestrichelt eingezeichnet sind. Links die führende Diagonale, die in Welle 1 oder in Welle A auftritt; rechts die endende Diagonale, die am Schluss einer Bewegung in Welle 5 oder in Welle C steht. Beide verengen sich zum Ende hin. In beiden Formen sind die Teilwellen dreiteilig statt fünfteilig, und in der endenden Diagonale darf Welle 4 in den Kursbereich von Welle 1 hineinreichen – die einzige Stelle, an der die sonst harte dritte Regel ausgesetzt ist.',
+    caption:
+      'Der Keil ist die einzige Impulsform, in der sich Welle 1 und Welle 4 überschneiden dürfen.',
+  },
+  'ta-elliott-zigzag': {
+    title: 'Der Zickzack',
+    description:
+      'Eine dreiteilige Abwärtskorrektur mit den Punkten A, B und C. Von einem Hoch fällt Welle A steil, Welle B holt einen Teil davon zurück, Welle C fällt darunter deutlich weiter. An den drei Abschnitten stehen die Zahlen fünf, drei und fünf: Der Zickzack ist im Aufbau 5-3-5, also sind A und C selbst fünfteilig und B dreiteilig. Eine gestrichelte Linie auf Höhe des Ausgangspunkts zeigt, wie weit die Korrektur insgesamt trägt. Welle B holt üblicherweise nicht mehr als 61,8 Prozent von A zurück; läuft sie weiter, ist es meist keine Zickzack-Formation.',
+    caption:
+      'Die scharfe Korrekturform: 5-3-5, und C läuft klar unter A. Die häufigste Gestalt der Welle 2.',
+  },
+  'ta-elliott-flat': {
+    title: 'Die drei Flat-Formen',
+    description:
+      'Drei seitwärts verlaufende Korrekturen nebeneinander, jeweils mit den Punkten A, B und C und einer gestrichelten Linie auf Höhe des Startpunkts. Bei der normalen Flat endet Welle B ungefähr am Startpunkt und Welle C ungefähr auf Höhe von A. Bei der erweiterten Flat läuft Welle B über den Startpunkt hinaus und Welle C unter das Tief von A. Bei der laufenden Flat läuft Welle B ebenfalls darüber hinaus, Welle C endet aber oberhalb des Tiefs von A – die Korrektur bleibt in Trendrichtung zurück. Alle drei haben denselben Aufbau 3-3-5.',
+    caption:
+      'Alle drei sind 3-3-5. Unterschieden werden sie allein daran, wo B und C relativ zum Startpunkt enden.',
+  },
+  'ta-elliott-dreieck': {
+    title: 'Die Dreiecksformen',
+    description:
+      'Drei Dreiecksformationen nebeneinander, jeweils mit gestrichelten Begrenzungslinien. Links das kontrahierende Dreieck, bei dem obere und untere Begrenzung aufeinander zulaufen. In der Mitte das Barrier-Dreieck, bei dem eine der beiden Begrenzungen waagerecht bleibt. Rechts das expandierende Dreieck, bei dem die Schwankungsbreite zunimmt statt abzunehmen; es ist die seltenste Form. Jedes Dreieck besteht aus fünf Abschnitten A bis E, und jeder dieser Abschnitte ist selbst dreiteilig. Dreiecke stehen fast ausschließlich in Welle 4 oder in Welle B, also unmittelbar vor der letzten Bewegung einer Sequenz.',
+    caption:
+      'Fünf Abschnitte, jeder dreiteilig. Ein Dreieck steht fast immer direkt vor dem letzten Zug.',
+  },
+  'ta-elliott-kombination': {
+    title: 'Doppelte und dreifache Korrektur',
+    description:
+      'Zwei zusammengesetzte Korrekturverläufe. Links die doppelte Korrektur mit den Punkten W, X und Y: Zwei einzelne Korrekturmuster – hier ein Zickzack und eine Flat – sind durch die Verbindungswelle X aneinandergehängt. Rechts die dreifache Korrektur mit W, X, Y, X und Z: drei Korrekturmuster, verbunden durch zwei X-Wellen. Mehr als drei Bestandteile sieht die Theorie nicht vor. Beide Formen verlaufen flacher und deutlich länger als eine einzelne Korrektur und sind der Hauptgrund, warum sich fast jede ausgedehnte Seitwärtsphase regelkonform auszählen lässt.',
+    caption:
+      'W-X-Y und W-X-Y-X-Z hängen fertige Korrekturen aneinander. Damit wird fast jede Seitwärtsphase zählbar.',
+  },
+  'ta-elliott-ziele': {
+    title: 'Welche Welle welches Verhältnis anläuft',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen, bei dem an jeder Welle das ihr zugeordnete Fibonacci-Verhältnis steht. Welle 1 dient als Maßstab und hat selbst kein Verhältnis. Welle 2 holt üblicherweise 50, 61,8 oder 78,6 Prozent der Welle 1 zurück. Welle 3 erreicht das 1,618-fache oder 2,618-fache der Welle 1. Welle 4 korrigiert flacher, meist 23,6 oder 38,2 Prozent der Welle 3. Welle 5 entspricht häufig dem 0,618-fachen der Strecke von Beginn Welle 1 bis Ende Welle 3 oder ungefähr der Länge der Welle 1. Diese Werte sind die in der Literatur üblichen Erwartungswerte, keine gemessenen Häufigkeiten.',
+    caption:
+      'Jede Welle hat ihre eigenen Erwartungswerte. Ein Verhältnis ohne die zugehörige Welle ist keine Aussage.',
+  },
+  'ta-elliott-wechsel': {
+    title: 'Der Wechsel zwischen den Korrekturen',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen, in dem die beiden Korrekturwellen farblich hinterlegt sind. Welle 2 ist ein kurzer, steiler Rücksetzer und schmal markiert. Welle 4 verläuft dagegen flach und über einen längeren Zeitraum und ist entsprechend breit markiert. Die Theorie erwartet diesen Wechsel: Ist die eine Korrektur ein scharfer Zickzack, wird die andere meist eine Flat oder ein Dreieck. Es handelt sich um eine Erwartung und nicht um eine der drei harten Regeln – eine Zählung, die sie verletzt, ist damit nicht ungültig.',
+    caption:
+      'Scharf und flach wechseln sich ab. Die einzige Aussage der Theorie, die eine Zählung im Voraus einschränkt.',
+  },
+  'ta-elliott-grade': {
+    title: 'Die Wellengrade',
+    description:
+      'Ein großer Impulsverlauf aus fünf Wellen, in dem zwei Ausschnitte eine Ebene tiefer aufgelöst sind. Innerhalb der ersten Welle ist gestrichelt ein Rahmen gezogen, in dem derselbe fünfteilige Aufbau noch einmal im Kleinen erscheint. Die zweite Welle ist daneben in ihre drei Bestandteile zerlegt. Damit zeigt die Grafik den fraktalen Aufbau der Theorie: Jede Impulswelle besteht selbst aus fünf Wellen, jede Korrekturwelle aus dreien, und dasselbe wiederholt sich auf jeder Zeitebene. Elliott unterschied neun solcher Grade, vom Grand Supercycle über Jahrhunderte bis zur Subminuette über Minuten.',
+    caption:
+      'Dieselbe Form auf jeder Zeitebene – neun Grade vom Jahrhundert bis zur Minute.',
   },
   'ta-elliott-zyklus': {
     title: 'Der Elliott-Grundzyklus',
