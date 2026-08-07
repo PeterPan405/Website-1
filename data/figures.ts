@@ -70,6 +70,25 @@ export type FigureId =
   | 'ta-elliott-wechsel'
   /** Die Wellengrade: dieselbe Form auf jeder Zeitebene. */
   | 'ta-elliott-grade'
+  /* ------------------------------------- Akademie: übrige Bereiche */
+  /** Wie das Risiko mit der Zahl der Titel fällt – und wo es aufhört. */
+  | 'pt-diversifikation'
+  /** Die Effizienzlinie und die Mischungen darunter. */
+  | 'pt-effizienzlinie'
+  /** Gleichlauf, Unabhängigkeit und Gegenlauf zweier Anlagen. */
+  | 'pt-korrelation'
+  /** Der maximale Rückgang, gemessen vom Hoch zum Tief danach. */
+  | 'pt-maximaler-rueckgang'
+  /** Dieselben Renditen in anderer Reihenfolge – bei Entnahme. */
+  | 'pt-sequenzrisiko'
+  /** Normale, flache und inverse Zinsstrukturkurve. */
+  | 'ma-zinsstruktur'
+  /** Der Konjunkturzyklus in vier Phasen. */
+  | 'ma-konjunkturzyklus'
+  /** Die Wertfunktion: Verluste wiegen schwerer als Gewinne. */
+  | 'av-wertfunktion'
+  /** Wie Gewinnrechnung, Kapitalflussrechnung und Bilanz zusammenhängen. */
+  | 'fa-drei-abschluesse'
   /** Einfacher Zins gegen Zinseszins über 40 Jahre. */
   | 'zins-gerade-vs-kurve'
   /** Drei Sparer mit gleicher Rate und unterschiedlichem Startalter. */
@@ -967,6 +986,69 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Ein großer Impulsverlauf aus fünf Wellen, in dem zwei Ausschnitte eine Ebene tiefer aufgelöst sind. Innerhalb der ersten Welle ist gestrichelt ein Rahmen gezogen, in dem derselbe fünfteilige Aufbau noch einmal im Kleinen erscheint. Die zweite Welle ist daneben in ihre drei Bestandteile zerlegt. Damit zeigt die Grafik den fraktalen Aufbau der Theorie: Jede Impulswelle besteht selbst aus fünf Wellen, jede Korrekturwelle aus dreien, und dasselbe wiederholt sich auf jeder Zeitebene. Elliott unterschied neun solcher Grade, vom Grand Supercycle über Jahrhunderte bis zur Subminuette über Minuten.',
     caption:
       'Dieselbe Form auf jeder Zeitebene – neun Grade vom Jahrhundert bis zur Minute.',
+  },
+  'pt-diversifikation': {
+    title: 'Wie weit Streuung das Risiko senkt',
+    description:
+      'Eine fallende Kurve über einem Achsenkreuz. Waagerecht steht die Zahl der Titel im Depot, senkrecht die Schwankung. Bei wenigen Titeln ist die Schwankung hoch; mit jedem weiteren Titel fällt sie zunächst deutlich, dann immer flacher. Ab etwa zwanzig bis dreißig Titeln verläuft die Kurve nahezu waagerecht – jeder weitere Titel bringt kaum noch eine Verbesserung. Eine gestrichelte Linie darunter markiert das Marktrisiko: den Anteil, der sich durch Streuung nicht beseitigen lässt, weil er alle Titel gemeinsam betrifft. Die Kurve nähert sich dieser Linie an, erreicht die Nulllinie aber nie.',
+    caption:
+      'Streuung senkt das Risiko einzelner Titel, nicht das des Marktes. Nach etwa dreißig Titeln ist der Nutzen ausgereizt.',
+  },
+  'pt-effizienzlinie': {
+    title: 'Die Effizienzlinie',
+    description:
+      'Ein Achsenkreuz mit dem Risiko waagerecht und der erwarteten Rendite senkrecht. Eine getönte Fläche zeigt alle möglichen Mischungen aus den verfügbaren Anlagen. Ihre obere Begrenzung ist die Effizienzlinie: Für jedes Risiko gibt es dort die höchstmögliche Rendite. Drei Punkte sind markiert. Punkt A liegt am linken Ende und hat das geringste Risiko. Punkt C liegt auf der Linie. Punkt B liegt darunter, bei gleichem Risiko wie C, aber mit geringerer Rendite – eine solche Mischung ist ineffizient, weil man ohne zusätzliches Risiko mehr bekommen könnte. Die Aussage gilt nur unter den Annahmen des Modells, insbesondere dass sich Risiko durch Schwankung messen lässt und die Verhältnisse stabil bleiben.',
+    caption:
+      'Alles unterhalb der Linie ist Verschwendung: dasselbe Risiko, weniger Ertrag. Ob die Linie stabil bleibt, ist die offene Frage.',
+  },
+  'pt-korrelation': {
+    title: 'Gleichlauf, Unabhängigkeit, Gegenlauf',
+    description:
+      'Drei kleine Diagramme nebeneinander, in jedem zwei Kursverläufe übereinandergelegt – einer durchgezogen, einer gestrichelt. Links laufen beide Linien nahezu deckungsgleich: Korrelation nahe plus eins. In der Mitte bewegen sie sich ohne erkennbaren Zusammenhang: Korrelation nahe null. Rechts spiegeln sie einander, jeder Anstieg der einen fällt mit einem Rückgang der anderen zusammen: Korrelation nahe minus eins. Nur die beiden rechten Fälle senken das Risiko einer Mischung. Zwei Anlagen, die gleichlaufen, streuen nichts, auch wenn es formal zwei Positionen sind.',
+    caption:
+      'Zwei Positionen sind noch keine Streuung. Entscheidend ist, ob sie sich gemeinsam bewegen.',
+  },
+  'pt-maximaler-rueckgang': {
+    title: 'Der maximale Rückgang',
+    description:
+      'Ein schwankender Depotverlauf über die Zeit. Das höchste Zwischenhoch ist markiert, ebenso der tiefste Punkt, der danach erreicht wird. Zwischen beiden ist der senkrechte Abstand als Pfeil eingezeichnet und als maximaler Rückgang beschriftet. Zwei waagerechte Hilfslinien verlängern Hoch und Tief nach rechts, damit der Abstand ablesbar wird. Wichtig ist die Reihenfolge: Gemessen wird vom Hoch zum tiefsten Punkt, der zeitlich danach liegt – nicht zum tiefsten Punkt des gesamten Zeitraums. Ein früheres, tieferes Tief zählt nicht, weil man dort noch nicht investiert gewesen sein muss.',
+    caption:
+      'Vom Hoch zum tiefsten Punkt danach. Die Kennzahl beschreibt, was man ausgehalten hätte – nicht, was man verloren hat.',
+  },
+  'pt-sequenzrisiko': {
+    title: 'Dieselben Renditen, andere Reihenfolge',
+    description:
+      'Zwei Depotverläufe über dieselbe Zahl von Jahren, beide mit derselben Durchschnittsrendite. Der obere Verlauf hat die guten Jahre am Anfang und steigt trotz laufender Entnahmen deutlich an. Der untere Verlauf hat dieselben Jahre in umgekehrter Reihenfolge, mit den schlechten zuerst; er fällt zunächst und erholt sich danach nur teilweise. Am Ende liegen beide Verläufe weit auseinander. Der Grund ist die Entnahme: Wer in einem schlechten Jahr einen festen Betrag entnimmt, verkauft dafür mehr Anteile, und diese Anteile fehlen bei der späteren Erholung dauerhaft.',
+    caption:
+      'Gleiche Durchschnittsrendite, verschiedenes Ergebnis. Wer entnimmt, für den zählt die Reihenfolge der Jahre.',
+  },
+  'ma-zinsstruktur': {
+    title: 'Die drei Gestalten der Zinsstrukturkurve',
+    description:
+      'Drei kleine Diagramme nebeneinander. In jedem steht waagerecht die Laufzeit von kurz nach lang und senkrecht der Zins. Links die normale Kurve: Sie steigt von links nach rechts an, längere Laufzeiten bringen mehr Zins. In der Mitte die flache Kurve, bei der sich kurze und lange Laufzeiten kaum unterscheiden. Rechts die inverse Kurve, die von links nach rechts fällt – kurze Laufzeiten zahlen mehr als lange. Die inverse Form gilt als der meistbeachtete Vorlaufindikator für eine Rezession, weil sie in der Vergangenheit mehreren Abschwüngen vorausging. Ein Beleg für Ursächlichkeit ist das nicht.',
+    caption:
+      'Fällt die Kurve von links nach rechts, ist sie invers. Das gilt als Warnzeichen – mit langem und unregelmäßigem Vorlauf.',
+  },
+  'ma-konjunkturzyklus': {
+    title: 'Der Konjunkturzyklus',
+    description:
+      'Eine Wellenlinie, die um eine waagerechte Trendlinie schwingt. Vier senkrechte Hilfslinien teilen sie in Phasen: Aufschwung mit anziehendem Wachstum, Hochphase mit Auslastung am Anschlag, Abschwung mit abkühlendem Wachstum und Tiefphase mit Bodenbildung. Danach beginnt der Zyklus von vorn. Die Darstellung ist regelmäßig gezeichnet, tatsächliche Zyklen sind es nicht: Sie unterscheiden sich in Dauer und Ausschlag erheblich. Vor allem lässt sich die aktuelle Phase erst im Rückblick sicher bestimmen – wo man gerade steht, ist die eigentliche Frage und immer strittig.',
+    caption:
+      'Vier Phasen, im Rückblick sauber abgrenzbar. Die Frage, wo man gerade steht, beantwortet die Grafik nicht.',
+  },
+  'av-wertfunktion': {
+    title: 'Die Wertfunktion der Prospect Theory',
+    description:
+      'Ein Achsenkreuz, dessen Ursprung den Bezugspunkt darstellt. Nach rechts sind Gewinne aufgetragen, nach links Verluste; senkrecht der empfundene Wert. Im Gewinnbereich verläuft die Kurve flach ansteigend und wird nach oben hin immer flacher. Im Verlustbereich fällt sie deutlich steiler ab. Zwei gestrichelte Hilfslinien zeigen denselben Betrag in beide Richtungen: Ein Gewinn von hundert Euro hebt die Kurve nur wenig, ein Verlust von hundert Euro drückt sie ungefähr doppelt so weit nach unten. Diese Unwucht ist die Verlustaversion. Sie erklärt, warum Anleger Verlustpositionen halten und Gewinnpositionen zu früh verkaufen.',
+    caption:
+      'Derselbe Betrag, ungefähr die doppelte Wirkung. Die Kurve ist im Verlustbereich steiler – das ist die Verlustaversion.',
+  },
+  'fa-drei-abschluesse': {
+    title: 'Wie die drei Abschlüsse zusammenhängen',
+    description:
+      'Drei nebeneinanderstehende Kästen. Links die Gewinn- und Verlustrechnung mit Umsatz minus Kosten gleich Gewinn. In der Mitte die Kapitalflussrechnung, die beim Gewinn ansetzt, die nicht zahlungswirksamen Posten herausrechnet und den tatsächlichen Mittelzufluss ergibt. Rechts die Bilanz mit Vermögen minus Schulden gleich Eigenkapital. Ein Pfeil führt vom Gewinn in die Kapitalflussrechnung, ein zweiter vom Mittelzufluss in die Bilanz, wo er den Kassenbestand verändert. Eine gestrichelte Rückführung zeigt, dass der Gewinn zugleich das Eigenkapital erhöht und sich der Kreis damit schließt. Wer nur einen der drei Abschlüsse liest, sieht ein Drittel des Bildes.',
+    caption:
+      'Drei Sichten auf dasselbe Unternehmen, über zwei Größen verbunden: den Gewinn und die Kasse.',
   },
   'ta-elliott-zyklus': {
     title: 'Der Elliott-Grundzyklus',

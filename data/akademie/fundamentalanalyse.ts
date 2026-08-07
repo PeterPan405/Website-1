@@ -132,6 +132,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Ein Geschäftsbericht enthält drei Rechnungen. Sie beschreiben dasselbe Unternehmen aus drei Blickwinkeln, und erst zusammen ergeben sie ein Bild.',
       },
+      { type: 'figure', figure: 'fa-drei-abschluesse' },
       {
         type: 'table',
         caption: 'Die drei Rechnungen im Überblick.',

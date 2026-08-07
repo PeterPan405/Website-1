@@ -22,6 +22,17 @@ import {
   TaUnterstuetzungWiderstand,
 } from '@/components/content/figures/akademie'
 import {
+  AvWertfunktion,
+  FaDreiAbschluesse,
+  MaKonjunkturzyklus,
+  MaZinsstruktur,
+  PtDiversifikation,
+  PtEffizienzlinie,
+  PtKorrelation,
+  PtMaximalerRueckgang,
+  PtSequenzrisiko,
+} from '@/components/content/figures/akademie-bereiche'
+import {
   BlockchainZahlung,
   BoerseAbwicklung,
   BoerseVomKlickZurBuchung,
@@ -286,6 +297,15 @@ export const figureDrawings: Record<FigureId, ComponentType> = {
   'ta-elliott-ziele': TaElliottZiele,
   'ta-elliott-wechsel': TaElliottWechsel,
   'ta-elliott-grade': TaElliottGrade,
+  'pt-diversifikation': PtDiversifikation,
+  'pt-effizienzlinie': PtEffizienzlinie,
+  'pt-korrelation': PtKorrelation,
+  'pt-maximaler-rueckgang': PtMaximalerRueckgang,
+  'pt-sequenzrisiko': PtSequenzrisiko,
+  'ma-zinsstruktur': MaZinsstruktur,
+  'ma-konjunkturzyklus': MaKonjunkturzyklus,
+  'av-wertfunktion': AvWertfunktion,
+  'fa-drei-abschluesse': FaDreiAbschluesse,
 
   /* -------------------------------------------------------- Geldsystem */
   'geldsystem-giralgeld': GeldsystemGiralgeld,

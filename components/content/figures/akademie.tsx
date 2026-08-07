@@ -933,10 +933,6 @@ export function TaElliottVerkuerzung() {
       <Beschriftung x={444} y={74} ton="akzent" groesse={12}>
         Welle 5 bleibt darunter
       </Beschriftung>
-      <Beschriftung x={40} y={240} ton="leise" groesse={12}>
-        Zulässig, aber selten – und ein Hinweis auf ungewöhnliche Schwäche im Trend. Der
-        Impuls gilt trotzdem als abgeschlossen.
-      </Beschriftung>
     </FigureSvg>
   )
 }
@@ -1023,12 +1019,6 @@ export function TaElliottDiagonale() {
         strokeWidth={1}
         strokeDasharray="4 4"
       />
-      <Beschriftung x={364} y={228} ton="leise" groesse={12}>
-        Steht am Ende einer Bewegung. Welle 4 darf hier in Welle 1 hineinreichen –
-      </Beschriftung>
-      <Beschriftung x={364} y={246} ton="leise" groesse={12}>
-        die einzige Stelle, an der die dritte Regel ausgesetzt ist.
-      </Beschriftung>
     </FigureSvg>
   )
 }
@@ -1536,11 +1526,6 @@ export function TaElliottWechsel() {
       <Beschriftung x={404} y={134} anchor="middle" groesse={12}>
         flach und lang
       </Beschriftung>
-
-      <Beschriftung x={50} y={252} ton="leise" groesse={12}>
-        Ist die eine Korrektur ein steiler Zickzack, wird die andere meist eine Flat oder
-        ein Dreieck. Eine Erwartung, keine Regel.
-      </Beschriftung>
     </FigureSvg>
   )
 }
@@ -1604,11 +1589,6 @@ export function TaElliottGrade() {
       />
       <Beschriftung x={214} y={206} ton="gefahr" groesse={12}>
         Welle 2: drei
-      </Beschriftung>
-
-      <Beschriftung x={40} y={266} ton="leise" groesse={12}>
-        Elliott zählte neun Ebenen, vom Grand Supercycle über Jahrhunderte bis zur
-        Subminuette über Minuten. Auf jeder gilt dieselbe Form.
       </Beschriftung>
     </FigureSvg>
   )

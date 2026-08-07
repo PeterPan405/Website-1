@@ -233,6 +233,7 @@ export const portfoliotheorieLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Zwei Anlagen können denselben Verlauf haben, gegenläufige Verläufe oder gar keinen erkennbaren Zusammenhang. Die **Korrelation** fasst das in eine Zahl zwischen −1 und +1.',
       },
+      { type: 'figure', figure: 'pt-korrelation' },
       {
         type: 'table',
         caption: 'Was die Werte bedeuten.',
@@ -307,6 +308,7 @@ export const portfoliotheorieLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Das Risiko einer einzelnen Aktie zerfällt in zwei Teile. Der eine gehört zum Unternehmen: schlechte Führung, ein verlorener Prozess, ein Produkt, das niemand will. Der andere gehört zum Markt: Zinsen, Konjunktur, Krieg. Nur der erste lässt sich wegstreuen.',
       },
+      { type: 'figure', figure: 'pt-diversifikation' },
       {
         type: 'formula',
         expression: 'Gesamtrisiko = spezifisches Risiko + Marktrisiko',
@@ -371,6 +373,7 @@ export const portfoliotheorieLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Trägt man alle denkbaren Mischungen aus einem Vorrat von Anlagen in ein Diagramm ein – Risiko waagerecht, erwartete Rendite senkrecht –, entsteht eine Fläche. Ihre obere linke Kante ist die **Effizienzlinie**: Auf ihr liegen die Mischungen, zu denen es keine bessere gibt.',
       },
+      { type: 'figure', figure: 'pt-effizienzlinie' },
       {
         type: 'paragraph',
         text: 'Alles unterhalb der Linie ist ineffizient: Zu jedem dieser Punkte gibt es eine Mischung mit gleichem Risiko und höherer Rendite oder mit gleicher Rendite und geringerem Risiko. Oberhalb der Linie liegt nichts – dort ist mit den vorhandenen Bausteinen nichts zu holen.',
@@ -591,6 +594,7 @@ export const portfoliotheorieLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Der **maximale Rückgang** ist der größte prozentuale Verlust vom höchsten bis zum darauffolgenden tiefsten Stand. Er beantwortet die Frage, die eine Volatilitätszahl nicht beantwortet: Wie schlimm wurde es tatsächlich?',
       },
+      { type: 'figure', figure: 'pt-maximaler-rueckgang' },
       {
         type: 'formula',
         expression:
@@ -833,6 +837,7 @@ export const portfoliotheorieLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Zwei Menschen erleben über zwanzig Jahre exakt dieselben Jahresrenditen – nur in umgekehrter Reihenfolge. Wer nichts entnimmt, landet bei genau demselben Endwert: Multiplikation ist von der Reihenfolge unabhängig. Wer monatlich entnimmt, landet weit auseinander.',
       },
+      { type: 'figure', figure: 'pt-sequenzrisiko' },
       {
         type: 'paragraph',
         text: 'Der Grund ist einfach und unangenehm: Wer in einem schlechten Jahr entnimmt, verkauft Anteile zu niedrigen Kursen. Diese Anteile fehlen dauerhaft und können an der späteren Erholung nicht mehr teilnehmen. Kommen die schlechten Jahre am Anfang, ist die Entnahmephase gefährdet, auch wenn die Durchschnittsrendite stimmt.',
