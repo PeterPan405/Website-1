@@ -13,6 +13,7 @@ import type { DailyEdition } from './types'
 
 export type { DailyEdition, EditionItem } from './types'
 import { edition as edition20260806 } from './2026-08-06'
+import { edition as edition20260807 } from './2026-08-07'
 
 /**
  * Alle veröffentlichten Tagesausgaben.
@@ -28,6 +29,7 @@ import { edition as edition20260806 } from './2026-08-06'
  * auf, statt still zu verschwinden.
  */
 export const editions: DailyEdition[] = [
+  edition20260807,
   edition20260806,
   edition20260725,
   edition20260727,
