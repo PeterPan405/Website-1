@@ -738,3 +738,58 @@ jobs:
                 ;;
             esac
           fi
+
+          # 6. Trägt auch eine Unterseite diesen Build?
+          #
+          # Die Schritte 3 und 4 fragen ausschließlich nach `/`. Das reicht
+          # nicht, und am 7. August 2026 ist es aufgefallen: Diese Prüfung
+          # meldete um 04:57 alles grün, während ein fremder Abruf noch den
+          # Vortagesstand der Nachrichtenseite bekam. Die Ursache lag damals
+          # beim Abrufer und nicht bei uns – aber hätte sie bei uns gelegen,
+          # hätte diese Prüfung es genauso wenig gesehen. Sie fragt `/news/`
+          # nirgends.
+          #
+          # Geprüft wird dieselbe Frage wie bei der Startseite: Nennt die
+          # ausgelieferte Seite das Stylesheet dieses Builds? Das ist der
+          # Fingerabdruck, an dem sich altes von neuem HTML unterscheiden
+          # lässt – unabhängig davon, was an dem Tag inhaltlich daraufsteht.
+          #
+          # Eine Zwischenschicht, die je Pfad zwischenspeichert, sieht man
+          # nur so: Die Startseite ist frisch, die Unterseite nicht.
+          antwort=$(curl -sS -A "$UA" -w '\n%{http_code}' "$URL/news/" || true)
+          n_code=${antwort##*$'\n'}
+          n_html=${antwort%$'\n'*}
+
+          if [ "$n_code" != "200" ]; then
+            echo "::error::Die Nachrichtenseite antwortet mit $n_code."
+            echo "  Die Startseite kam durch, diese Unterseite nicht. Prüfe, ob das"
+            echo "  Paket vollständig übertragen wurde."
+            exit 1
+          fi
+
+          if [ -n "$stylesheet" ] && ! printf '%s' "$n_html" | grep -q "$stylesheet"; then
+            echo "::error::/news/ nennt ein anderes Stylesheet als dieser Build."
+            echo "  Die Startseite ist frisch, diese Unterseite nicht – das ist das"
+            echo "  Muster einer Schicht, die je Pfad zwischenspeichert. Leere den"
+            echo "  Zwischenspeicher in hPanel (Cache-Manager, und falls aktiv das CDN)."
+            echo "Gefunden wurde stattdessen:"
+            printf '%s' "$n_html" | grep -o '_next/static/[^"]*\.css' | sort -u | head -3
+            exit 1
+          fi
+
+          echo "Auch /news/ trägt das Stylesheet dieses Builds."
+
+          # 7. Ist der Feed abrufbar?
+          #
+          # `feed.xml` ist die Adresse, über die andere Programme die
+          # Nachrichten lesen – Zusammenfassungen, Leseprogramme, fremde
+          # Agenten. Fällt sie aus, merkt es kein Besucher und niemand
+          # beschwert sich; die Nachrichten sind dann für Maschinen einfach
+          # nicht mehr da.
+          feed_code=$(curl -sS -A "$UA" -o /dev/null -w '%{http_code}' "$URL/feed.xml" || echo 000)
+          if [ "$feed_code" != "200" ]; then
+            echo "::warning::feed.xml antwortet mit $feed_code statt 200."
+            echo "  Wer die Nachrichten maschinell liest, bekommt nichts."
+          else
+            echo "feed.xml ist abrufbar."
+          fi
