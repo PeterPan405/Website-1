@@ -101,262 +101,589 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
-    slug: 'leitindizes-stand-2026-08-07',
-    title: 'Die Leitindizes am 7.8.2026: was die Zahlen sagen',
+    slug: 'dax-berichtssaison-hoehepunkt-2026-08-07',
+    title: 'Der DAX steht still, während unter ihm viel passiert',
     teaser:
-      'Nikkei 225 (Japan) führt mit +3,66 Prozent, Nasdaq 100 liegt mit −0,39 Prozent hinten. Warum ein Vergleich zweier Indizes fast immer schiefgeht.',
+      'Am Höhepunkt der Berichtssaison schloss der DAX kaum verändert. Warum ein ruhiger Indexstand nicht heißt, dass ein ruhiger Tag war.',
     category: 'Märkte',
     publishedAt: '2026-08-07T07:50:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Indizes', 'Marktdaten'],
-    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
-    relatedSymbols: ['dax', 'sp500', 'nikkei-225', 'euro-stoxx-50'],
-    sources: [
-      {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 7.8.2026, 01:06 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Der Stand der geführten Leitindizes zum letzten abgerufenen Schluss: **DAX (Deutscher Aktienindex)** −0,29 Prozent (5.8.2026), **S&P 500** −0,18 Prozent (6.8.2026), **Nikkei 225 (Japan)** +3,66 Prozent (5.8.2026), **Euro Stoxx 50** −0,15 Prozent (5.8.2026), **Nasdaq 100** −0,39 Prozent (6.8.2026).',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Warum diese Zahlen nicht vergleichbar sind',
-      },
-      {
-        type: 'paragraph',
-        text: 'Der DAX ist ein **Performanceindex**: Dividenden werden rechnerisch wieder angelegt und stecken im Indexstand. Der Euro Stoxx 50, der S&P 500 und der Nikkei 225 sind in ihrer gängigen Fassung **Kursindizes** – dort fehlt die Dividende. Über ein Jahr macht das je nach Markt zwei bis drei Prozentpunkte aus, über zwanzig Jahre den größeren Teil des Unterschieds.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Auf einen einzelnen Tag wirkt sich das kaum aus – wohl aber auf jeden Langfristvergleich, der zwei solche Indizes nebeneinanderstellt. Wer den DAX über zehn Jahre gegen den Euro Stoxx 50 hält, vergleicht nicht zwei Märkte, sondern zwei Rechenweisen.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was hier bewusst fehlt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
-      },
-    ],
-  },
-  {
-    slug: 'marktbreite-2026-08-07',
-    title: 'Marktbreite am 7.8.2026: wie viele Titel tragen die Bewegung',
-    metaTitle: 'Marktbreite am 7.8.2026',
-    teaser:
-      '488 Titel im Plus, 528 im Minus – die Bewegung ist zu 52,0 Prozent getragen. Was diese Zahl über einen Indexstand hinaus verrät.',
-    category: 'Märkte',
-    publishedAt: '2026-08-07T07:45:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Marktbreite', 'Marktdaten'],
-    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
-    relatedSymbols: ['dax', 'sp500'],
-    sources: [
-      {
-        label: 'Eigene Marktbreite-Aufzeichnung, Stand 7.8.2026, 01:06 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/tagesbild',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Von den ausgewerteten Titeln standen am 7.8.2026 **488** im Plus und **528** im Minus, 10 unverändert. Der ungewichtete Schnitt über alle lag bei −0,07 Prozent, die Breite bei 52,0 Prozent.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was „Breite" hier misst',
-      },
-      {
-        type: 'paragraph',
-        text: 'Die Breite ist der Anteil der bewegten Titel, die in dieselbe Richtung laufen wie der Gesamtschnitt. Bei 50 Prozent ist der Markt geteilt; bei 90 zieht fast alles mit. Heute sind es 52,0 Prozent von 1016 bewegten Titeln.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Der Unterschied ist praktisch. Ein Index kann steigen, weil alle 40 Werte steigen – oder weil drei schwere Werte steigen und 37 fallen. Der Indexstand ist in beiden Fällen derselbe, die Lage nicht. Nach Börsenwert gewichtete Indizes verbergen diesen Unterschied bauartbedingt.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb wird hier ungewichtet gerechnet: Jede Aktie zählt gleich. Nach Börsenwert gewichtet wäre der Schnitt der Halbleiter praktisch der Kurs eines einzigen Unternehmens.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was hier bewusst fehlt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
-      },
-    ],
-  },
-  {
-    slug: 'realzins-2026-08-07',
-    title: 'Leitzins 2,40 Prozent, Inflation 2,8 Prozent – was übrig bleibt',
-    metaTitle: 'Leitzins gegen Inflation: der Realzins',
-    teaser:
-      'Der EZB-Leitzins liegt bei 2,40 Prozent, die deutsche Inflationsrate bei 2,8 Prozent. Die Differenz ist der Realzins – und die einzige Zahl, die zählt.',
-    category: 'Geldpolitik',
-    publishedAt: '2026-08-07T07:40:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Zinsen', 'Inflation'],
-    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'tagesgeld'],
-    relatedSymbols: [],
+    tags: ['Indizes', 'Quartalszahlen'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['dax', 'euro-stoxx-50', 'deutsche-telekom'],
     sources: [
       {
         label:
-          'Europäische Zentralbank über die eigene Zinsübersicht, Stand 5.8.2026, 09:05 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/zinsen',
+          'onvista, Index-Analysen und Dax-Tagesrückblick vom 6.8.2026, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, „Heute im Fokus“ vom 6.8.2026, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: '**Leitzins der EZB (Hauptrefinanzierungsgeschäfte)**: 2,40 Prozent, Stand 5.8.2026. **Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)**: 2,8 Prozent für 2026-07.',
+        text: 'Die Agenturmeldungen vom Donnerstagabend lauteten fast gleich: „Dax an Berichtssaison-Höhepunkt kaum verändert“ (dpa-AFX, 16:19 Uhr) und „Leitindex kaum verändert – Telekom mit starkem Quartal“ (onvista, 15:55 Uhr). Ein Tag, an dem eine der größten Meldungssammlungen des Quartals über die Ticker lief – und der Index bewegte sich kaum.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Der Realzins',
+        text: 'Ein Index ist ein Durchschnitt, kein Protokoll',
       },
       {
         type: 'paragraph',
-        text: 'Die Differenz beider Zahlen heißt Realzins und liegt derzeit bei rund -0,4 Prozentpunkten. Sie beantwortet die einzige Frage, die für Erspartes zählt: Kann man sich in einem Jahr mehr kaufen als heute, oder weniger?',
+        text: 'Der DAX fasst 40 Unternehmen zu einer Zahl zusammen, gewichtet nach Börsenwert. Steigt ein Wert kräftig und fällt ein anderer ähnlich schwer, heben sich die beiden im Indexstand auf. Übrig bleibt eine ruhige Zahl über einem unruhigen Tag.',
       },
       {
         type: 'paragraph',
-        text: 'Ein Tagesgeldkonto mit drei Prozent bei vier Prozent Inflation verliert Kaufkraft, obwohl der Kontostand steigt. Umgekehrt kann ein Prozent Zins bei null Prozent Inflation ein Gewinn sein. Der nominale Zinssatz allein sagt darüber nichts.',
+        text: 'Genau das beschreiben die Meldungen desselben Tages: Die **Deutsche Telekom** verdiente laut den Berichten mehr als zuvor, **Rheinmetall** senkte die Umsatzprognose. Zwei Nachrichten, die einzeln jeweils einen deutlichen Kursausschlag rechtfertigen – und die sich im Index gegenseitig auffangen.',
       },
       {
-        type: 'paragraph',
-        text: 'Zwei Einschränkungen: Der Leitzins der EZB ist nicht der Zins, den eine Bank zahlt – er ist die Untergrenze, an der sich der Geldmarkt orientiert. Und die Inflationsrate ist ein Durchschnitt über einen Warenkorb, der niemandes tatsächlichem Einkauf entspricht.',
+        type: 'callout',
+        variant: 'info',
+        title: 'Was der Indexstand verschweigt',
+        items: [
+          'Marktbreite: Wie viele Titel sind gestiegen, wie viele gefallen? Ein Index bei null kann 20 zu 20 bedeuten – oder 35 zu 5 mit einem schweren Verlierer.',
+          'Gewichtung: Im DAX zählt ein Schwergewicht mehr als fünf kleine Werte. Der Durchschnitt ist keiner der beteiligten Kurse.',
+        ],
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Warum das für Anleger zählt',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Wer einen Indexfonds hält, bekommt genau diesen Durchschnitt – und das ist der Zweck. Wer einzelne Aktien hält, bekommt ihn nicht: Für ihn war der Tag entweder gut oder schlecht, je nachdem, welche Seite der Waage er im Depot hat. Der ruhige Indexstand sagt über sein Depot nichts aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist kein Argument für oder gegen eine der beiden Anlageformen. Es ist ein Argument dafür, die richtige Zahl anzusehen: Ein Index misst den Markt, nicht das eigene Depot.',
       },
     ],
   },
   {
-    slug: 'gold-in-zwei-waehrungen-2026-08-07',
-    title: 'Ein Goldpreis, zwei Zahlen: warum Dollar und Euro auseinanderlaufen',
-    metaTitle: 'Gold in Dollar und in Euro',
+    slug: 'wall-street-zinssorgen-2026-08-07',
+    title: 'Wall Street gibt nach – warum Zinsangst zuerst die Kurse trifft',
+    metaTitle: 'Zinssorgen an der Wall Street',
     teaser:
-      'Gold notiert bei 4.290,40 Dollar, der Euro bei 1,1542 Dollar – in Euro sind das rund 3.717,21. Ein Euro-Preis hat immer zwei Ursachen.',
+      'Nach der Rekordjagd schlossen die US-Börsen tiefer, Grund laut Agentur: Zinssorgen. Was steigende Zinsen rechnerisch mit Aktienkursen machen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-07T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Zinsen', 'Wall Street'],
+    relatedTopics: ['notenbanken-geldpolitik', 'aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['sp500', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista, „Aktien New York Schluss: Verluste nach Rekordjagd – Zinssorgen sind zurück“ (dpa-AFX, 6.8.2026, 20:32 Uhr), abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste vom 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die dpa-AFX-Meldung vom Donnerstagabend trug den Titel „Verluste nach Rekordjagd – Zinssorgen sind zurück“. In der Kursleiste von wallstreet-online stand am Freitagmorgen um 03:33 Uhr UTC der **Dow Jones** bei 53.901,32 Punkten (−0,92 Prozent), der **US Tech 100** bei 29.381,54 Punkten (−0,51 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Rechenweg dahinter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Aktie ist rechnerisch nichts anderes als die Summe aller Gewinne, die das Unternehmen künftig ausschüttet – abgezinst auf heute. Abzinsen heißt: Ein Euro in zehn Jahren ist weniger wert als ein Euro heute, und wie viel weniger, bestimmt der Zins.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt der Zins, steigt der Abschlag auf alles Künftige. Der Gewinn des Unternehmens hat sich nicht geändert, der Preis, den man dafür zahlen will, schon. Deshalb fallen Kurse auf eine Zinsmeldung hin, ohne dass ein einziges Unternehmen etwas gemeldet hätte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum es Technologiewerte härter trifft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einem Versorger liegt der Gewinn überwiegend in den nächsten Jahren. Bei einem Wachstumsunternehmen liegt er überwiegend weit in der Zukunft – und je weiter weg ein Betrag liegt, desto stärker wirkt der Abschlag auf ihn. Ein höherer Zins entwertet ferne Gewinne stärker als nahe.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Warum Wachstumswerte stärker ausschlagen',
+        items: [
+          'Naher Gewinn: Ein Betrag in zwei Jahren verliert durch einen höheren Zins nur wenig an heutigem Wert.',
+          'Ferner Gewinn: Derselbe Betrag in fünfzehn Jahren verliert deutlich mehr – der Abschlag wirkt über die ganze Laufzeit.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt, ist keine Handlungsanweisung, sondern eine Einordnung: Wer ein Depot mit Schwerpunkt auf Wachstumswerten hält, hat damit auch eine Wette auf den Zinspfad im Depot – ob er sie so gemeint hat oder nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'zinserwartung-eingepreist-2026-08-07',
+    title: 'Wenn plötzlich Zinserhöhungen im Raum stehen',
+    teaser:
+      'Am Markt kursiert die Erwartung von drei Zinserhöhungen noch 2026. Warum nicht die Entscheidung den Kurs bewegt, sondern die Überraschung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-07T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Zinsen', 'Notenbank'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'staatsanleihe'],
+    relatedSymbols: ['sp500', 'dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Aufmacher „Fed-Hammer für die Börse: Noch 2026: Drei Zinserhöhungen stehen plötzlich im Raum“, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, „Aktien New York Schluss: Verluste nach Rekordjagd – Zinssorgen sind zurück“ (dpa-AFX, 6.8.2026), abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Auf der Nachrichtenseite von wallstreet-online stand am Freitagmorgen ein Aufmacher mit der Zeile „Noch 2026: Drei Zinserhöhungen stehen plötzlich im Raum“. Am Abend zuvor hatte dpa-AFX die Verluste an der Wall Street mit zurückgekehrten Zinssorgen begründet.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Erwartung ist nicht Beschluss',
+        items: [
+          'Die Schlagzeile beschreibt, womit Marktteilnehmer rechnen – nicht, was entschieden wurde.',
+          'Was eine Notenbank tatsächlich tut, steht erst nach ihrer Sitzung fest. Alles davor ist Einschätzung.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der wichtigste Satz über Notenbanken',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was erwartet wird, steckt schon im Kurs.** Wenn alle Marktteilnehmer mit einer Zinserhöhung rechnen, haben sie ihre Käufe und Verkäufe längst danach ausgerichtet. Kommt die Erhöhung dann, passiert wenig – sie war eingepreist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bewegung entsteht nur aus der **Abweichung**: aus einer Erhöhung, mit der niemand gerechnet hat, aus einer ausbleibenden, die alle erwartet hatten, oder aus einem Halbsatz in der Pressekonferenz, der den erwarteten Pfad verschiebt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Schlagzeile schon reicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau deshalb bewegen sich Kurse an einem Tag ohne Notenbanksitzung. Verschiebt sich die Erwartung – etwa von „keine Erhöhung mehr in diesem Jahr“ zu „vielleicht drei“ –, dann ändert sich der Preis heute, obwohl die Entscheidung erst Monate später fällt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den Alltag heißt das: Der Kalender einer Notenbank ist kein Fahrplan für Kursbewegungen. Die Bewegung ist meist längst vorher gelaufen, verteilt über all die Tage, an denen sich die Erwartung Stück für Stück verschoben hat.',
+      },
+    ],
+  },
+  {
+    slug: 'telekom-rheinmetall-prognose-2026-08-07',
+    title: 'Telekom verdient mehr, Rheinmetall senkt die Prognose',
+    teaser:
+      'Zwei Meldungen aus derselben Berichtssaison, zwei Richtungen. Warum eine gesenkte Prognose oft schwerer wiegt als ein gutes Quartal.',
     category: 'Geldanlage',
     publishedAt: '2026-08-07T07:35:00+02:00',
     author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Gold', 'Währungen'],
-    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
-    relatedSymbols: ['gold', 'eur-usd'],
+    readingMinutes: 5,
+    tags: ['Quartalszahlen', 'Prognose'],
+    relatedTopics: ['aktie', 'wann-kaufen-verkaufen', 'anlegerpsychologie'],
+    relatedSymbols: ['deutsche-telekom', 'rheinmetall', 'dax'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 7.8.2026, 01:06 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'finanzen.net, „Heute im Fokus“ vom 6.8.2026: „Rheinmetall senkt Umsatzprognose – Telekom verdient mehr“, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
       {
-        label: 'Europäische Zentralbank, Referenzkurs vom 6.8.2026',
-        url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+        label:
+          'onvista, Dax-Tagesrückblick vom 6.8.2026, 15:55 Uhr, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.onvista.de/news/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Gold stand zuletzt bei **4.290,40 Dollar** je Feinunze (Stand 7.8.2026, 00:55 Uhr UTC). Der Euro notierte bei **1,1542 Dollar** (Stand 6.8.2026). Umgerechnet sind das rund **3.717,21 Euro**.',
+        text: 'Die Übersicht von finanzen.net fasste den 6. August so zusammen: „Rheinmetall senkt Umsatzprognose – Telekom verdient mehr“. Der onvista-Rückblick nannte die Telekom-Zahlen ein „starkes Quartal“.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Zwei Ursachen für eine Zahl',
+        text: 'Vergangenheit gegen Zukunft',
       },
       {
         type: 'paragraph',
-        text: 'Gold wird international in Dollar gehandelt. Wer den Preis in Euro sehen will, rechnet um – und übernimmt damit den Wechselkurs als zweite bewegliche Größe. Der Euro-Preis kann deshalb steigen, während der Dollar-Preis fällt: Es genügt, dass der Euro gegenüber dem Dollar stärker nachgibt.',
+        text: 'Ein Quartalsbericht enthält zwei sehr verschiedene Dinge. Das eine ist die **Bilanz des vergangenen Vierteljahrs** – Umsatz, Gewinn, Kosten. Das andere ist die **Prognose**, also die Erwartung des Unternehmens für die kommenden Monate.',
       },
       {
         type: 'paragraph',
-        text: 'Für einen Anleger im Euroraum heißt das: Eine Goldposition ist immer auch eine Dollarposition. Wer „auf Gold setzt", setzt zur Hälfte auf eine Währung. Dasselbe gilt für Öl, für Kupfer und für jeden weltweit in Dollar notierten Rohstoff.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb ist die Frage bei jeder Rohstoffmeldung: in welcher Währung? Zwei Berichte, die scheinbar widersprüchliche Zahlen nennen, meinen oft dieselbe Unze in zwei Währungen – oder zu zwei Uhrzeiten.',
+        text: 'Die Bilanz beschreibt, was schon passiert ist. Der Kurs einer Aktie aber ist ein Preis für die Zukunft. Deshalb kann eine Aktie nach Rekordzahlen fallen, wenn die Prognose enttäuscht – und nach mittelmäßigen Zahlen steigen, wenn der Ausblick besser ist als befürchtet.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Warum eine Senkung besonders schwer wiegt',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Eine gesenkte Prognose ändert nicht nur eine Zahl, sondern auch etwas Weicheres: Sie verschiebt die Einschätzung, wie verlässlich die Angaben dieses Unternehmens sind. Wer einmal zurückrudert, dem wird die nächste Prognose weniger geglaubt – und dieser Vertrauensabschlag wirkt über das laufende Jahr hinaus.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Zwei Dinge in einem Bericht',
+        items: [
+          'Die Bilanz: Umsatz und Gewinn des vergangenen Quartals – Vergangenheit, bereits geschehen.',
+          'Die Prognose: die eigene Erwartung für die kommenden Monate – der Teil, auf den der Kurs reagiert.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den Leser folgt daraus vor allem eine Lesegewohnheit: Bei jeder Meldung über Quartalszahlen zuerst fragen, ob von der Vergangenheit oder von der Zukunft die Rede ist. Die Überschrift verrät es selten.',
       },
     ],
   },
   {
-    slug: 'spanne-des-tages-2026-08-07',
-    title: 'Die Spanne des Tages: warum Prozentzahlen einen Bezugspunkt brauchen',
-    metaTitle: 'Die Spanne des Tages',
+    slug: 'gold-4268-dollar-etf-bestaende-2026-08-07',
+    title: 'Gold über 4.200 Dollar – und was ETF-Bestände darüber verraten',
+    metaTitle: 'Gold über 4.200 Dollar',
     teaser:
-      'Zwischen Kao mit +12,83 Prozent und Datadog mit −19,03 Prozent liegen Welten. Was eine Prozentzahl verschweigt.',
+      'Der Goldpreis stieg am Donnerstag auf 4.268 Dollar, die Bestände des größten Gold-ETF wachsen die dritte Woche. Was der zweite Wert erklärt.',
     category: 'Märkte',
     publishedAt: '2026-08-07T07:30:00+02:00',
     author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Aktien', 'Marktdaten'],
-    relatedTopics: ['aktie', 'risiko-und-rendite'],
-    relatedSymbols: [],
+    readingMinutes: 5,
+    tags: ['Gold', 'ETF'],
+    relatedTopics: ['rohstoffe', 'etf', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['gold', 'silber', 'eur-usd'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 7.8.2026, 01:06 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'Goldreporter, „Goldpreis aktuell: Gold steigt weiter – Anschlusskäufe nach dem Ausbruch“ vom 6.8.2026, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, „Größter Gold-ETF: Bestände steigen dritte Woche in Folge“ vom 6.8.2026, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.goldreporter.de/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Über 1026 geführte Aktien reichte die Tagesveränderung von +12,83 Prozent bis −19,03 Prozent. Vorn: **Kao** +12,83 Prozent, **Falabella** +9,68 Prozent, **Toray Industries** +9,34 Prozent. Hinten: **Datadog** −19,03 Prozent, **Western Digital** −13,03 Prozent, **SK Hynix** −10,37 Prozent.',
+        text: 'Goldreporter meldete am 6. August: „Der Goldpreis steigt am Donnerstag auf 4.268 USD. Nach dem kräftigen Ausbruch am Vortag sorgen Anschlusskäufe für weiteres positives Momentum.“ Zugleich stiegen laut derselben Quelle die Bestände des größten Gold-ETF die dritte Woche in Folge.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Prozent von was',
+        text: 'Warum die zweite Zahl die interessantere ist',
       },
       {
         type: 'paragraph',
-        text: 'Eine Prozentangabe ist eine Verhältniszahl, und ihr Nenner steht selten dabei. Ein Titel, der von zwei auf drei Euro steigt, legt 50 Prozent zu; einer, der von 200 auf 210 Euro steigt, nur fünf – obwohl der zweite den Anleger um zehn Euro je Stück reicher macht und der erste um einen.',
+        text: 'Ein Preis sagt, was zuletzt bezahlt wurde. Er sagt nicht, wie viel gekauft wurde. Ein Gold-ETF muss aber für jeden zusätzlichen Anteil physisches Gold einlagern – seine Bestandsmenge ist damit eine unmittelbare Spur der Nachfrage.',
       },
       {
         type: 'paragraph',
-        text: 'Deshalb stehen an der Spitze solcher Listen überdurchschnittlich oft kleine und wenig gehandelte Werte. Das ist kein Befund über ihre Qualität, sondern eine Eigenschaft des Bruchs: Bei einem kleinen Nenner erzeugt eine kleine Bewegung eine große Zahl.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Umgekehrt gilt dasselbe für Verluste – und dort mit einer Schieflage, die häufig übersehen wird: Ein Minus von 50 Prozent erfordert ein Plus von 100 Prozent, um wieder am Ausgangspunkt zu stehen. Auf- und Abstieg sind nicht symmetrisch.',
+        text: 'Steigt der Preis und der Bestand zugleich, kommt die Bewegung aus tatsächlichen Käufen. Steigt der Preis, während der Bestand schrumpft, trägt sie sich aus anderen Quellen – und ist damit schwächer unterlegt.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Der Euro-Anleger rechnet anders',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Gold wird in Dollar notiert. Wer in Euro rechnet, hat immer **zwei** Ursachen für seine Rendite: die Bewegung des Goldpreises und die Bewegung des Wechselkurses. Ein steigender Goldpreis bei gleichzeitig stärkerem Euro kann für einen Anleger im Euroraum unter dem Strich ein Nullsummenspiel sein.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Zwei Ursachen für eine Euro-Rendite',
+        items: [
+          'Der Goldpreis in Dollar – die Bewegung, über die berichtet wird.',
+          'Der Wechselkurs Euro zu Dollar – die Bewegung, die im deutschen Bericht meist fehlt.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Was dieser Artikel nicht sagt: warum der Ausbruch stattfand. Die Meldung nennt Anschlusskäufe – das beschreibt das Verhalten, nicht den Anlass. Wo eine Ursache nicht belegt ist, bleibt sie hier offen.',
+      },
+    ],
+  },
+  {
+    slug: 'zentralbanken-goldkaeufe-2026-08-07',
+    title: 'Polen kauft Gold – warum Notenbanken das überhaupt tun',
+    teaser:
+      'Laut Goldreporter kauft Polen kräftig zu, Südkorea erstmals seit 13 Jahren. Was Gold in einer Währungsreserve soll, wenn es keine Zinsen zahlt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-07T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Notenbank'],
+    relatedTopics: ['notenbanken-geldpolitik', 'geldsystem', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, „Goldreserven weltweit: Polen kauft kräftig zu – weitere große Käufer am Markt“ vom 6.8.2026, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, „Südkoreas Zentralbank kauft erstmals seit 13 Jahren wieder Gold“, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Goldreporter berichtete am 6. August über die weltweiten Goldreserven: Polen kaufe kräftig zu, weitere große Käufer seien am Markt. In derselben Beitragsliste steht die Meldung, dass Südkoreas Zentralbank erstmals seit 13 Jahren wieder Gold gekauft habe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Währungsreserve ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank hält Vermögenswerte, mit denen sie im Notfall handlungsfähig bleibt – etwa um die eigene Währung zu stützen oder Auslandsschulden zu bedienen. Der größte Teil davon sind üblicherweise Fremdwährungen, vor allem Staatsanleihen in Dollar und Euro.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold ist in dieser Aufstellung der Sonderfall: Es zahlt **keine Zinsen**. Wer eine Anleihe hält, bekommt laufend etwas dafür; wer Gold hält, bekommt nichts. Rein nach Ertrag betrachtet ist Gold in einer Reserve ein schlechtes Geschäft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum es trotzdem gekauft wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil Gold eine Eigenschaft hat, die keine Anleihe besitzt: Es ist die Verbindlichkeit von niemandem. Eine Staatsanleihe ist immer ein Versprechen eines anderen Staates – und die Erfahrung, dass ein solches Versprechen eingefroren oder gestrichen werden kann, ist für Notenbanken kein theoretischer Gedanke.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Anleihe gegen Gold in einer Reserve',
+        items: [
+          'Staatsanleihe: zahlt Zinsen, ist aber das Versprechen eines anderen Staates.',
+          'Gold: zahlt nichts, ist dafür die Verbindlichkeit von niemandem.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Privatanleger ist die Übertragung heikel: Eine Notenbank denkt in Jahrzehnten und hat kein Renteneintrittsdatum. Wer daraus ableitet, was im eigenen Depot sinnvoll ist, überträgt eine Aufgabenstellung, die mit der eigenen wenig zu tun hat.',
+      },
+    ],
+  },
+  {
+    slug: 'oelvorraete-preisreaktion-2026-08-07',
+    title: 'Volle Öltanks trotz Krise – und zwei Zahlen zum selben Preis',
+    metaTitle: 'Ölvorräte und zwei Prozentzahlen',
+    teaser:
+      'Die Weltvorräte an Öl sind kaum gesunken. Zugleich zeigten zwei Portale fast denselben Ölpreis mit +1,3 und +5,15 Prozent an. Beides stimmt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-07T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, „Ölkrise mit vollen Tanks: Die weltweiten Ölvorräte sind kaum gesunken, trotz Krise“ vom 6.8.2026, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Kursleisten von wallstreet-online (Brent 83,54, +5,15 %) und finanzen.net (Öl 83,56, +1,3 %), beide abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online titelte am 6. August „Ölkrise mit vollen Tanks“ und stellte fest, dass die weltweiten Ölvorräte trotz der Krise kaum gesunken seien.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Lagerbestände den Preis erklären',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Ölpreis entsteht nicht aus Schlagzeilen, sondern aus dem Verhältnis von Angebot und Nachfrage – und die Lagerbestände sind der sichtbarste Teil davon. Sie sind der Puffer: Solange Tanks gefüllt sind, führt eine Störung der Förderung nicht sofort zu einem Mangel.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das erklärt eine Beobachtung, die vielen widersinnig vorkommt: Es gibt eine Krise in einer Förderregion, und der Preis bewegt sich kaum. Der Markt preist nicht die Nachricht, sondern die erwartete Knappheit – und die bleibt aus, solange der Puffer trägt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dieselbe Zahl, zwei Prozentangaben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitagmorgen um 03:33 Uhr UTC zeigte wallstreet-online Brent bei **83,54** und dazu **+5,15 Prozent**. finanzen.net zeigte Öl bei **83,56** und dazu **+1,3 Prozent**. Fast derselbe Preis, ein Unterschied von fast vier Prozentpunkten in der Veränderung.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was eine Prozentangabe offenlassen kann',
+        items: [
+          'Seit wann? Vortagesschluss, Vorwochenschluss oder Handelsbeginn ergeben verschiedene Zahlen.',
+          'Welcher Handelsplatz? Brent und WTI sind zwei Sorten mit eigenen Preisen und eigenen Vortageswerten.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Angaben sind vermutlich richtig und meinen verschiedene Bezugszeitpunkte oder Handelsplätze. Wer zwei Quellen vergleicht, vergleicht deshalb zuerst die Bezugspunkte und erst danach die Zahlen. Wer das überspringt, findet Widersprüche, die keine sind.',
+      },
+    ],
+  },
+  {
+    slug: 'rwe-offshore-stopp-2026-08-07',
+    title: 'RWE stoppt Offshore-Projekte – politisches Risiko im Kurs',
+    teaser:
+      'Laut dpa-AFX stoppt RWE Offshore-Vorhaben nach einer Übereinkunft mit Präsident Trump. Was politisches Risiko für eine Bewertung bedeutet.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-07T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Energie', 'Politik'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'aktien-laender-branchen'],
+    relatedSymbols: ['siemens-energy', 'eon'],
+    sources: [
+      {
+        label:
+          'onvista, „Deal mit Windkraftgegner Trump: RWE stoppt Offshore-Projekte“ (dpa-AFX, 7.8.2026, 01:22 Uhr), abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 01:22 Uhr lief über dpa-AFX die Meldung „Deal mit Windkraftgegner Trump: RWE stoppt Offshore-Projekte“. Mehr als diese Zeile stand in der abgerufenen Übersicht nicht – Umfang und Bedingungen der Übereinkunft gehen daraus nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was politisches Risiko konkret ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Offshore-Windpark ist eine Investition über Jahrzehnte: Planung, Genehmigung, Bau und Betrieb erstrecken sich über zwanzig Jahre und mehr. Die Rechnung dahinter setzt voraus, dass die Rahmenbedingungen über diesen Zeitraum ungefähr bestehen bleiben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau diese Voraussetzung ist der wunde Punkt. Genehmigungen, Förderzusagen und Netzanschlüsse hängen an politischen Entscheidungen, und Wahlperioden sind kürzer als Projektlaufzeiten. Ein Regierungswechsel kann eine Kalkulation entwerten, an der technisch nichts falsch war.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum Laufzeit und Politik hier kollidieren',
+        items: [
+          'Ein Offshore-Projekt rechnet sich über zwanzig Jahre und mehr.',
+          'Eine Wahlperiode dauert vier bis fünf Jahre – die Rahmenbedingungen können sich mehrfach ändern.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus für ein Depot folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer in Energie-Infrastruktur investiert, trägt eine Unsicherheit, die sich nicht aus Bilanzen ablesen lässt. Sie steht in keiner Kennzahl, taucht in keinem Kurs-Gewinn-Verhältnis auf – und entscheidet trotzdem mit über das Ergebnis. Das ist kein Argument gegen die Branche, aber ein Grund, sie nicht als Versorger-Ersatz mit sicherer Rendite zu betrachten.',
+      },
+    ],
+  },
+  {
+    slug: 'd-wave-verlust-umsatz-2026-08-07',
+    title: '48 Millionen Verlust bei 3,1 Millionen Umsatz',
+    teaser:
+      'D-Wave meldete laut wallstreet-online 48 Millionen Dollar Verlust bei 3,1 Millionen Umsatz. Warum Umsatzvielfache bei jungen Firmen in die Irre führen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-07T07:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Quartalszahlen', 'Bewertung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'anlegerpsychologie'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, „Die Aktie zahlt die Rechnung: D-Wave macht 48 Millionen US-Dollar Verlust – bei nur 3,1 Millionen Umsatz“ vom 6.8.2026, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, „Heute im Fokus“ vom 6.8.2026: „D-Wave enttäuscht“, abgerufen 7.8.2026, 03:33 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online meldete am 6. August für den Quantencomputer-Anbieter D-Wave einen Verlust von **48 Millionen US-Dollar** bei einem Umsatz von **3,1 Millionen US-Dollar**. finanzen.net führte den Wert am selben Tag unter „D-Wave enttäuscht“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was diese Relation bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Unternehmen gibt für jeden eingenommenen Dollar ein Vielfaches aus. Bei einem jungen Technologieunternehmen ist das nicht automatisch ein Alarmzeichen – Forschung kostet, bevor sie etwas einbringt. Es bedeutet aber, dass der Betrieb aus eigener Kraft nicht trägt und laufend frisches Geld braucht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Woher dieses Geld kommt, ist die entscheidende Frage. Kommt es aus der Ausgabe neuer Aktien, sinkt der Anteil der bisherigen Eigentümer an allem, was später einmal verdient wird. Der Kurs kann steigen, während der eigene Anteil am Unternehmen schrumpft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das Kurs-Umsatz-Verhältnis hier versagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei Firmen ohne Gewinn greift das Kurs-Gewinn-Verhältnis nicht – man kann nicht durch eine negative Zahl teilen. Ersatzweise wird gern das **Kurs-Umsatz-Verhältnis** genommen. Bei einem Umsatz von 3,1 Millionen ist dieser Nenner aber so klein, dass jede Bewertung ein extremes Vielfaches ergibt.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Wann Bewertungskennzahlen versagen',
+        items: [
+          'Kurs-Gewinn-Verhältnis: nicht berechenbar, solange der Gewinn negativ ist.',
+          'Kurs-Umsatz-Verhältnis: rechnerisch möglich, aber bei winzigem Umsatz nur ein Maß für die Erwartung.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt, ist keine Aussage über die Technik oder die Aussichten dieses Unternehmens – dazu geben die abgerufenen Meldungen nichts her. Es ist eine Aussage über das Werkzeug: Wer eine Firma ohne Gewinn mit Kennzahlen bewertet, die Gewinn voraussetzen, bekommt eine Zahl, die aussieht wie eine Antwort und keine ist.',
       },
     ],
   },
