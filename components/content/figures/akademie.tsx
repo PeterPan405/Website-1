@@ -1593,3 +1593,210 @@ export function TaElliottGrade() {
     </FigureSvg>
   )
 }
+
+/* ------------------------------------ Elliott: Häufigkeit je Welle */
+
+/**
+ * Die beiden folgenden Grafiken zeigen, welche Marke bei welcher Welle als
+ * die übliche gilt.
+ *
+ * ## Warum hier „üblich“ steht und nicht ein Prozentsatz
+ *
+ * Die Wellenliteratur nennt für jede Welle bevorzugte Verhältnisse und
+ * beschreibt sie als häufiger oder seltener. Was sie **nicht** liefert, ist
+ * eine Auszählung: keine Stichprobe, kein Zeitraum, keine Methode. Eine
+ * Angabe wie „Welle 2 korrigiert in 61 Prozent der Fälle auf 61,8 Prozent“
+ * wäre deshalb erfunden, auch wenn sie überall so klänge wie die übrigen
+ * Zahlen dieser Seite.
+ *
+ * Gezeigt wird darum eine **Rangfolge**, keine Wahrscheinlichkeit: kräftig
+ * markiert, was die Literatur als Regelfall nennt, blasser das Übrige. Das
+ * ist die stärkste Aussage, die sich hier belegen lässt.
+ */
+
+/** Eine Skala mit Marken, auf der je Welle ein Bereich hervorgehoben ist. */
+function Skala({
+  y,
+  x0,
+  breite,
+  von,
+  bis,
+  marken,
+  regel,
+  auch,
+  titel,
+  einheit,
+}: {
+  y: number
+  x0: number
+  breite: number
+  von: number
+  bis: number
+  marken: number[]
+  /** Der Wert, den die Literatur als Regelfall nennt. */
+  regel: number
+  /** Weitere gebräuchliche Werte. */
+  auch: number[]
+  titel: string
+  einheit: (wert: number) => string
+}) {
+  const zu = (wert: number) => x0 + ((wert - von) / (bis - von)) * breite
+  return (
+    <g>
+      <Beschriftung x={x0 - 12} y={y + 4} anchor="end" groesse={12.5} gewicht="kraeftig">
+        {titel}
+      </Beschriftung>
+      <line x1={x0} y1={y} x2={x0 + breite} y2={y} stroke={RASTER} strokeWidth={1.4} />
+      {marken.map((m) => {
+        const istRegel = m === regel
+        const istAuch = auch.includes(m)
+        const farbe = istRegel ? MARKE : istAuch ? AKZENT : LEISE
+        return (
+          <g key={m}>
+            <line
+              x1={zu(m)}
+              y1={y - (istRegel ? 11 : istAuch ? 8 : 4)}
+              x2={zu(m)}
+              y2={y + (istRegel ? 11 : istAuch ? 8 : 4)}
+              stroke={farbe}
+              strokeWidth={istRegel ? 3 : istAuch ? 2 : 1}
+            />
+            {(istRegel || istAuch) && (
+              <text
+                x={zu(m)}
+                y={y - 16}
+                textAnchor="middle"
+                fontSize={istRegel ? 12 : 11}
+                fontWeight={istRegel ? 600 : 400}
+                fill={farbe}
+              >
+                {einheit(m)}
+              </text>
+            )}
+          </g>
+        )
+      })}
+    </g>
+  )
+}
+
+/** Wie tief die einzelnen Korrekturwellen üblicherweise zurücklaufen. */
+export function TaElliottRuecklaeufe() {
+  const prozent = (w: number) => `${String(w).replace('.', ',')} %`
+  const alle = [23.6, 38.2, 50, 61.8, 78.6, 90, 100]
+  return (
+    <FigureSvg id="ta-elliott-ruecklaeufe" viewBox="0 0 640 300">
+      <Beschriftung x={175} y={26} groesse={12} ton="leise">
+        Anteil der vorigen Welle, der zurückgeholt wird
+      </Beschriftung>
+
+      <Skala
+        y={64}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={61.8}
+        auch={[50, 78.6]}
+        titel="Welle 2"
+        einheit={prozent}
+      />
+      <Skala
+        y={126}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={38.2}
+        auch={[23.6, 50]}
+        titel="Welle 4"
+        einheit={prozent}
+      />
+      <Skala
+        y={188}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={50}
+        auch={[38.2, 61.8]}
+        titel="Welle B (Zickzack)"
+        einheit={prozent}
+      />
+      <Skala
+        y={250}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={100}
+        auch={[90]}
+        titel="Welle B (Flat)"
+        einheit={prozent}
+      />
+
+      <Legende
+        x={175}
+        y={288}
+        eintraege={[
+          { farbe: MARKE, text: 'Regelfall laut Literatur' },
+          { farbe: AKZENT, text: 'ebenfalls gebräuchlich' },
+        ]}
+      />
+    </FigureSvg>
+  )
+}
+
+/** Wie weit die Impulswellen üblicherweise über die vorige hinauslaufen. */
+export function TaElliottStreckungen() {
+  const faktor = (w: number) => `${String(w).replace('.', ',')} ×`
+  const alle = [0.618, 1.0, 1.618, 2.618, 4.236]
+  return (
+    <FigureSvg id="ta-elliott-streckungen" viewBox="0 0 640 250">
+      <Beschriftung x={190} y={26} groesse={12} ton="leise">
+        Vielfaches der Bezugswelle
+      </Beschriftung>
+
+      <Skala
+        y={70}
+        x0={190}
+        breite={380}
+        von={0.4}
+        bis={4.5}
+        marken={alle}
+        regel={1.618}
+        auch={[2.618, 4.236]}
+        titel="Welle 3 (an Welle 1)"
+        einheit={faktor}
+      />
+      <Skala
+        y={136}
+        x0={190}
+        breite={380}
+        von={0.4}
+        bis={4.5}
+        marken={alle}
+        regel={0.618}
+        auch={[1.0, 1.618]}
+        titel="Welle 5 (an 1 bis 3)"
+        einheit={faktor}
+      />
+      <Skala
+        y={202}
+        x0={190}
+        breite={380}
+        von={0.4}
+        bis={4.5}
+        marken={alle}
+        regel={1.0}
+        auch={[1.618]}
+        titel="Welle C (an Welle A)"
+        einheit={faktor}
+      />
+    </FigureSvg>
+  )
+}

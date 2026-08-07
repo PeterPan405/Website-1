@@ -70,6 +70,10 @@ export type FigureId =
   | 'ta-elliott-wechsel'
   /** Die Wellengrade: dieselbe Form auf jeder Zeitebene. */
   | 'ta-elliott-grade'
+  /** Wie tief die Korrekturwellen üblicherweise zurücklaufen. */
+  | 'ta-elliott-ruecklaeufe'
+  /** Wie weit die Impulswellen üblicherweise über die vorige hinauslaufen. */
+  | 'ta-elliott-streckungen'
   /* ------------------------------------- Akademie: übrige Bereiche */
   /** Wie das Risiko mit der Zahl der Titel fällt – und wo es aufhört. */
   | 'pt-diversifikation'
@@ -986,6 +990,20 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Ein großer Impulsverlauf aus fünf Wellen, in dem zwei Ausschnitte eine Ebene tiefer aufgelöst sind. Innerhalb der ersten Welle ist gestrichelt ein Rahmen gezogen, in dem derselbe fünfteilige Aufbau noch einmal im Kleinen erscheint. Die zweite Welle ist daneben in ihre drei Bestandteile zerlegt. Damit zeigt die Grafik den fraktalen Aufbau der Theorie: Jede Impulswelle besteht selbst aus fünf Wellen, jede Korrekturwelle aus dreien, und dasselbe wiederholt sich auf jeder Zeitebene. Elliott unterschied neun solcher Grade, vom Grand Supercycle über Jahrhunderte bis zur Subminuette über Minuten.',
     caption:
       'Dieselbe Form auf jeder Zeitebene – neun Grade vom Jahrhundert bis zur Minute.',
+  },
+  'ta-elliott-ruecklaeufe': {
+    title: 'Wie tief welche Korrekturwelle zurückläuft',
+    description:
+      'Vier waagerechte Skalen untereinander, je eine für Welle 2, Welle 4, Welle B im Zickzack und Welle B in der Flat. Auf jeder Skala sind die gebräuchlichen Rücklaufmarken eingetragen: 23,6, 38,2, 50, 61,8, 78,6, 90 und 100 Prozent der jeweils vorigen Welle. Kräftig hervorgehoben ist der Wert, den die Wellenliteratur als Regelfall nennt, etwas schwächer die ebenfalls gebräuchlichen. Bei Welle 2 ist das 61,8 Prozent, daneben 50 und 78,6. Bei Welle 4 ist es 38,2 Prozent, daneben 23,6 und 50 – Welle 4 korrigiert also regelmäßig flacher als Welle 2. Bei Welle B im Zickzack liegt der Schwerpunkt bei 50 Prozent, in der Flat dagegen bei 100 Prozent, weil die Flat gerade dadurch definiert ist. Die Darstellung zeigt eine Rangfolge, keine gemessene Häufigkeit: Eine Auszählung mit Stichprobe und Methode liefert die Literatur nicht.',
+    caption:
+      'Welle 2 korrigiert tief, Welle 4 flach – das ist die verlässlichste Aussage der Reihe. Es ist eine Rangfolge, keine gemessene Wahrscheinlichkeit.',
+  },
+  'ta-elliott-streckungen': {
+    title: 'Wie weit welche Impulswelle läuft',
+    description:
+      'Drei waagerechte Skalen untereinander für Welle 3, Welle 5 und Welle C. Eingetragen sind die gebräuchlichen Vielfachen 0,618, 1,0, 1,618, 2,618 und 4,236. Kräftig hervorgehoben ist jeweils der Regelfall der Wellenliteratur. Welle 3 erreicht danach üblicherweise das 1,618-fache der Welle 1, bei starken Bewegungen das 2,618- oder 4,236-fache. Welle 5 wird meist mit dem 0,618-fachen der Strecke von Beginn Welle 1 bis Ende Welle 3 angesetzt, seltener mit dem Einfachen. Welle C entspricht am häufigsten der Länge von Welle A, daneben dem 1,618-fachen. Auch hier ist eine Rangfolge dargestellt und keine gemessene Häufigkeit.',
+    caption:
+      'Welle 3 ist die einzige, für die regelmäßig ein Vielfaches über eins erwartet wird. Welle 5 bleibt meist darunter.',
   },
   'pt-diversifikation': {
     title: 'Wie weit Streuung das Risiko senkt',

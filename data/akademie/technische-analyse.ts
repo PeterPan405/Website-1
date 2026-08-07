@@ -1404,7 +1404,48 @@ export const technischeAnalyseLektionen: Lektion[] = [
         ],
       },
       {
-        type: 'callout',
+        type: 'heading',
+        level: 3,
+        text: 'Die Sonderregeln der Kombinationen',
+      },
+      {
+        type: 'table',
+        caption:
+          'Was innerhalb einer Kombination zulässig ist und was nicht. Diese Regeln grenzen die Bauform ein – ohne sie wäre sie beliebig.',
+        head: ['Regel', 'Was sie besagt'],
+        rows: [
+          [
+            'Höchstens drei Bestandteile',
+            'W-X-Y und W-X-Y-X-Z sind die einzigen Formen. Eine vierte Korrektur anzuhängen ist nicht vorgesehen.',
+          ],
+          [
+            'Kein Zickzack zweimal hintereinander',
+            'Zwei aufeinanderfolgende Zickzacks gelten nicht als Kombination, sondern als doppelter Zickzack – ein eigener Fall mit eigener Zählung.',
+          ],
+          [
+            'Das Dreieck steht am Ende',
+            'Tritt ein Dreieck in einer Kombination auf, dann als letzter Bestandteil – also als Y oder Z, nie als W.',
+          ],
+          [
+            'X ist selbst eine Korrektur',
+            'Die Verbindungswelle ist dreiteilig und kann jede Korrekturform annehmen, meist einen Zickzack.',
+          ],
+          [
+            'X bleibt kürzer als die Nachbarn',
+            'Läuft X weiter zurück als die Korrektur davor, ist es keine Verbindungswelle – dann liegt eine andere Zählung vor.',
+          ],
+          [
+            'Die Bestandteile ähneln sich in der Größe',
+            'W, Y und Z sind üblicherweise etwa gleich lang. Ein deutlich größerer Bestandteil spricht gegen die Kombination.',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die praktisch wichtigste dieser Regeln ist die letzte: **Ähneln sich W, Y und Z nicht in der Größe, stimmt die Zählung vermutlich nicht.** Sie ist die einzige, die sich während der laufenden Bewegung prüfen lässt – alle übrigen setzen voraus, dass die Formen bereits fertig sind.',
+      },
+      {
+type: 'callout',
         variant: 'warning',
         title: 'Hier wird der Haupteinwand greifbar',
         items: [
@@ -1449,6 +1490,35 @@ export const technischeAnalyseLektionen: Lektion[] = [
         text: 'Die Fibonacci-Lektion hat die Marken selbst erklärt – 23,6, 38,2, 50, 61,8 und 78,6 Prozent. Hier geht es um die Zuordnung: **welche** dieser Marken zu **welcher** Welle gehört. Das ist der Teil, der in Darstellungen am häufigsten fehlt, und ohne ihn ist eine Prozentzahl im Chart bedeutungslos.',
       },
       { type: 'figure', figure: 'ta-elliott-ziele' },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Welche Marke bei welcher Welle die übliche ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Wellenliteratur nennt für jede Welle ein bevorzugtes Verhältnis und daneben weitere gebräuchliche. Die folgenden beiden Grafiken zeigen diese Rangfolge – kräftig markiert der Regelfall, schwächer das Übrige.',
+      },
+      { type: 'figure', figure: 'ta-elliott-ruecklaeufe' },
+      {
+        type: 'paragraph',
+        text: 'Die wichtigste Aussage daraus ist der Unterschied zwischen den beiden Korrekturwellen im Impuls: **Welle 2 korrigiert tief, Welle 4 flach.** Welle 2 holt regelmäßig 61,8 Prozent der Welle 1 zurück und mitunter 78,6; Welle 4 bleibt meist bei 38,2 Prozent der Welle 3 und oft schon bei 23,6. Wer eine flache erste Korrektur sieht, zählt vermutlich falsch – und umgekehrt.',
+      },
+      { type: 'figure', figure: 'ta-elliott-streckungen' },
+      {
+        type: 'paragraph',
+        text: 'Bei den Impulswellen ist Welle 3 die einzige, für die regelmäßig ein Vielfaches **über** eins erwartet wird. Welle 5 bleibt in der Regel darunter – das 0,618-fache der Strecke von Beginn Welle 1 bis Ende Welle 3 ist der Regelfall, und genau das ist der rechnerische Ausdruck dafür, dass die letzte Bewegung eines Trends schwächer getragen wird.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum hier keine Prozentzahlen für die Häufigkeit stehen',
+        items: [
+          'Die Literatur beschreibt Verhältnisse als häufiger oder seltener. Eine Auszählung mit Stichprobe, Zeitraum und Methode liefert sie nicht.',
+          'Eine Angabe wie „Welle 2 korrigiert in 61 Prozent der Fälle auf 61,8 Prozent“ wäre deshalb erfunden – auch wenn sie so klänge wie die übrigen Zahlen dieser Seite.',
+          'Gezeigt wird darum eine Rangfolge und keine Wahrscheinlichkeit. Das ist die stärkste Aussage, die sich hier belegen lässt.',
+        ],
+      },
       { type: 'heading', level: 2, text: 'Drei verschiedene Rechenarten' },
       {
         type: 'paragraph',
