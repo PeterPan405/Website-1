@@ -48,6 +48,9 @@ export const technischeAnalyse: Bereich = {
     'kerzenmuster',
     'fibonacci-retracements',
     'elliott-wellen',
+    'elliott-impulse',
+    'elliott-korrekturen',
+    'elliott-wellenziele',
   ],
 }
 
@@ -1083,6 +1086,589 @@ export const technischeAnalyseLektionen: Lektion[] = [
         type: 'quote',
         text: 'Wenn eine Zählung nicht mehr passt, war es die falsche Zählung – nie die falsche Theorie.',
         source: 'Zusammenfassung des Haupteinwands gegen die Wellentheorie',
+      },
+    ],
+  },
+  {
+    slug: 'elliott-impulse',
+    bereich: 'technische-analyse',
+    titel: 'Impulswellen und ihre Sonderformen',
+    kurz: 'Streckung, verkürzte fünfte Welle, führende und endende Diagonale – und was jede Welle im Einzelnen kennzeichnet.',
+    kernaussage:
+      'Der Fünferzug hat drei harte Regeln und vier zugelassene Abweichungen. Wer die Abweichungen kennt, zählt sauberer – und sieht zugleich, warum kaum eine Zählung eindeutig bleibt.',
+    belegart: 'deutung',
+    dauer: 12,
+    stichworte: [
+      'Impulswelle',
+      'Extension',
+      'Streckung',
+      'Truncation',
+      'Diagonale',
+      'Keil',
+      'Elliott',
+    ],
+    setztVoraus: ['elliott-wellen'],
+    lernthemen: ['anlegerpsychologie'],
+    inhalt: [
+      {
+        type: 'paragraph',
+        text: 'Der Fünferzug ist der Baustein, aus dem die Theorie alles Übrige zusammensetzt. Die drei Regeln aus der vorigen Lektion gelten für ihn ausnahmslos – aber sie legen nur fest, was **verboten** ist. Wie ein Impuls aussehen darf, ist damit noch weit offen, und die zugelassenen Formen sind der Grund, warum zwei Anwender denselben Chart verschieden auszählen.',
+      },
+      { type: 'heading', level: 2, text: 'Was jede einzelne Welle kennzeichnet' },
+      {
+        type: 'paragraph',
+        text: 'Die fünf Wellen unterscheiden sich nicht nur in der Richtung, sondern in Charakter, Beteiligung und typischer Länge. Diese Beschreibungen stammen aus der Literatur und sind Erfahrungssätze, keine Messwerte.',
+      },
+      {
+        type: 'table',
+        caption:
+          'Die fünf Impulswellen im Einzelnen. Die Verhältnisse sind Erwartungswerte, keine gemessenen Häufigkeiten.',
+        head: ['Welle', 'Aufbau', 'Übliches Verhältnis', 'Was sie kennzeichnet'],
+        rows: [
+          [
+            '1',
+            'fünfteilig',
+            'Maßstab für alles Weitere',
+            'Wird meist noch für eine Gegenbewegung im alten Trend gehalten. Beteiligung gering, Nachrichtenlage schlecht.',
+          ],
+          [
+            '2',
+            'dreiteilig',
+            '50 / 61,8 / 78,6 % von Welle 1',
+            'Scharf und schnell. Holt oft fast die gesamte Welle 1 zurück – darf ihren Startpunkt aber nie unterschreiten.',
+          ],
+          [
+            '3',
+            'fünfteilig',
+            '1,618 / 2,618 × Welle 1',
+            'Meist die längste und steilste. Hier wird die Wende allgemein erkannt; höchste Beteiligung, deutlichste Kurslücken.',
+          ],
+          [
+            '4',
+            'dreiteilig',
+            '23,6 / 38,2 % von Welle 3',
+            'Flach und zäh, oft ein Dreieck. Darf nicht in den Kursbereich von Welle 1 reichen.',
+          ],
+          [
+            '5',
+            'fünfteilig',
+            '0,618 × (Start 1 bis Ende 3) oder ≈ Welle 1',
+            'Letzter Schub, häufig von schwächerer Beteiligung getragen. Abweichungen zwischen Kurs und Schwungindikatoren sind hier typisch.',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was diese Tabelle nicht ist',
+        items: [
+          'Keine Trefferquote. Es gibt keine belastbare Erhebung darüber, wie oft Welle 3 tatsächlich das 1,618-fache erreicht.',
+          'Keine Reihenfolge der Prüfung. Welche Welle man vor sich hat, entscheidet die Zählung – und die steht meist erst fest, wenn die Bewegung vorbei ist.',
+          'Kein Ersatz für eine Absicherung. Ein verfehltes Ziel widerlegt die Zählung nicht, es verschiebt sie nur.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Die Streckung' },
+      {
+        type: 'paragraph',
+        text: 'Eine der drei Impulswellen 1, 3 oder 5 ist üblicherweise deutlich länger als die beiden anderen – sie ist **gestreckt**. Die beiden übrigen ähneln einander dann in Länge und Dauer. Am häufigsten trifft es Welle 3.',
+      },
+      { type: 'figure', figure: 'ta-elliott-extension' },
+      {
+        type: 'paragraph',
+        text: 'Praktisch bedeutsam ist das, weil eine gestreckte Welle sich beim Auszählen in fünf eigene Unterwellen zerlegen lässt – aus einer Welle werden neun sichtbare Abschnitte. Wer die Streckung übersieht, zählt diese neun als eine eigene Sequenz und liegt eine ganze Ebene daneben.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die Faustregel zur Streckung',
+        items: [
+          'Ist Welle 3 gestreckt, ähneln Welle 1 und Welle 5 einander in der Länge – die häufigste Konstellation.',
+          'War Welle 1 bereits gestreckt, wird Welle 5 selten noch einmal gestreckt.',
+          'Eine gestreckte Welle 5 nach bereits gestreckter Welle 3 gilt als Zeichen von Übertreibung und wird meist rasch und tief korrigiert.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Die verkürzte fünfte Welle' },
+      {
+        type: 'paragraph',
+        text: 'Welle 5 überbietet das Hoch von Welle 3 nicht – der Impuls endet trotzdem. Diese Form heißt **Truncation** oder verkürzte fünfte Welle und ist zulässig, aber selten.',
+      },
+      { type: 'figure', figure: 'ta-elliott-verkuerzung' },
+      {
+        type: 'paragraph',
+        text: 'Voraussetzung ist, dass Welle 5 in sich vollständig fünfteilig ist. Fehlt ihr der fünfte Unterabschnitt, liegt keine Verkürzung vor, sondern eine unfertige Bewegung. Die Verkürzung gilt als Hinweis auf ungewöhnliche Schwäche; die anschließende Korrektur wird üblicherweise als kräftig erwartet.',
+      },
+      { type: 'heading', level: 2, text: 'Die Diagonalen' },
+      {
+        type: 'paragraph',
+        text: 'Ein **Keil**, in dem sich die Begrenzungslinien annähern. Zwei Fassungen gibt es, und sie stehen an genau entgegengesetzten Stellen der Sequenz.',
+      },
+      { type: 'figure', figure: 'ta-elliott-diagonale' },
+      {
+        type: 'list',
+        items: [
+          '**Führende Diagonale** – steht in Welle 1 oder in Welle A, also am Anfang einer Bewegung.',
+          '**Endende Diagonale** – steht in Welle 5 oder in Welle C, also am Schluss.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Die einzige Ausnahme von der dritten Regel',
+        items: [
+          'In der endenden Diagonale darf Welle 4 in den Kursbereich von Welle 1 hineinreichen. Sonst ist genau das ein Ausschlusskriterium.',
+          'Damit fällt für diese Form die am leichtesten prüfbare der drei Regeln weg – und ausgerechnet dort, wo sie am meisten gebraucht würde.',
+          'Wer eine Überlappung sieht, hat zwei Möglichkeiten: Die Zählung ist falsch, oder es ist eine endende Diagonale. Zwischen beidem entscheidet nichts Nachprüfbares.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'In beiden Diagonalen sind die Teilwellen dreiteilig statt fünfteilig. Das unterscheidet sie im Aufbau von jedem gewöhnlichen Impuls und ist beim Auszählen der zuverlässigste Anhaltspunkt – zuverlässiger jedenfalls als die Keilform, die sich in vielen Verläufen einzeichnen lässt.',
+      },
+      { type: 'heading', level: 2, text: 'Der Wechsel' },
+      {
+        type: 'paragraph',
+        text: 'Elliott erwartete, dass sich die beiden Korrekturwellen innerhalb eines Impulses im Charakter unterscheiden: Ist Welle 2 ein scharfer, kurzer Zickzack, wird Welle 4 flach und lang – und umgekehrt.',
+      },
+      { type: 'figure', figure: 'ta-elliott-wechsel' },
+      {
+        type: 'paragraph',
+        text: 'Das ist die einzige Aussage der Theorie, die eine Zählung **im Voraus** einschränkt statt sie nachträglich zu rechtfertigen. Sie ist trotzdem keine der drei Regeln: Eine Zählung, die den Wechsel verletzt, gilt nicht als ungültig.',
+      },
+      {
+        type: 'quote',
+        text: 'Eine Form, die alles zulässt, schließt nichts aus. Der Wechsel ist die eine Stelle, an der die Theorie sich festlegt – und ausgerechnet dort verbindlich ist sie nicht.',
+        source: 'Zur Stellung der Alternation im Regelwerk',
+      },
+    ],
+  },
+  {
+    slug: 'elliott-korrekturen',
+    bereich: 'technische-analyse',
+    titel: 'Korrekturformen: Zickzack, Flat und Dreieck',
+    kurz: 'Zickzack, Flat in drei Fassungen, drei Dreiecksformen – und die zusammengesetzten Korrekturen W-X-Y und W-X-Y-X-Z.',
+    kernaussage:
+      'Die Korrekturen sind der Teil der Theorie mit den meisten zugelassenen Formen. Genau deshalb lässt sich fast jede Seitwärtsphase im Nachhinein regelkonform auszählen.',
+    belegart: 'deutung',
+    dauer: 14,
+    stichworte: [
+      'Korrektur',
+      'Zickzack',
+      'Flat',
+      'Dreieck',
+      'WXY',
+      'WXYXZ',
+      'Kombination',
+      'Elliott',
+    ],
+    setztVoraus: ['elliott-wellen', 'elliott-impulse'],
+    lernthemen: ['anlegerpsychologie'],
+    inhalt: [
+      {
+        type: 'paragraph',
+        text: 'Der Impuls kennt eine Grundform und vier Abweichungen. Die Korrektur kennt drei Grundformen, von denen zwei je drei Fassungen haben – und darüber hinaus die Möglichkeit, zwei oder drei fertige Korrekturen aneinanderzuhängen. Das ist der Teil der Theorie, an dem sich der Haupteinwand am deutlichsten zeigt.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die Kurzschrift des Aufbaus',
+        items: [
+          'Eine Zahlenfolge wie 5-3-5 beschreibt, aus wie vielen Unterwellen die einzelnen Abschnitte bestehen.',
+          '5-3-5 heißt: Welle A ist fünfteilig, Welle B dreiteilig, Welle C fünfteilig. Das ist der Zickzack.',
+          '3-3-5 heißt: A und B je dreiteilig, C fünfteilig. Das ist die Flat.',
+          '3-3-3-3-3 heißt: fünf Abschnitte, jeder dreiteilig. Das ist das Dreieck.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Der Zickzack (5-3-5)' },
+      {
+        type: 'paragraph',
+        text: 'Die scharfe Korrekturform. Welle A fällt deutlich, Welle B holt einen Teil zurück, Welle C läuft klar unter das Tief von A.',
+      },
+      { type: 'figure', figure: 'ta-elliott-zigzag' },
+      {
+        type: 'list',
+        items: [
+          '**Welle B** holt üblicherweise 38,2 bis 61,8 Prozent von A zurück. Läuft sie über 61,8 Prozent hinaus, spricht das gegen einen Zickzack.',
+          '**Welle C** entspricht häufig der Länge von A oder dem 1,618-fachen davon.',
+          'Der Zickzack ist die typische Gestalt der **Welle 2** und der **Welle A**.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Die Flat (3-3-5) in drei Fassungen' },
+      {
+        type: 'paragraph',
+        text: 'Die seitwärts verlaufende Korrekturform. Alle drei Fassungen haben denselben Aufbau; unterschieden werden sie ausschließlich daran, **wo B und C relativ zum Startpunkt enden**.',
+      },
+      { type: 'figure', figure: 'ta-elliott-flat' },
+      {
+        type: 'table',
+        caption:
+          'Die drei Flat-Fassungen. Maßstab ist jeweils der Startpunkt von Welle A.',
+        head: ['Fassung', 'Welle B endet', 'Welle C endet', 'Was daraus folgt'],
+        rows: [
+          [
+            'Normale Flat',
+            'ungefähr am Startpunkt (90 – 105 % von A)',
+            'ungefähr auf Höhe des Tiefs von A',
+            'Gleichgewicht. Der Trend ist weder bestätigt noch gebrochen.',
+          ],
+          [
+            'Erweiterte Flat',
+            'über den Startpunkt hinaus (über 105 % von A)',
+            'unter dem Tief von A',
+            'Die häufigste der drei. Das falsche Ausbrechen in Welle B fängt viele auf dem falschen Fuß.',
+          ],
+          [
+            'Laufende Flat',
+            'über den Startpunkt hinaus',
+            'über dem Tief von A',
+            'Die Korrektur bleibt in Trendrichtung zurück – ein Zeichen für einen sehr starken übergeordneten Trend.',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum die erweiterte Flat so unangenehm ist',
+        items: [
+          'Welle B läuft über den Ausgangspunkt hinaus. Wer nach Ausbrüchen handelt, wird hier planmäßig eingesammelt.',
+          'Erst Welle C zeigt, dass es kein Ausbruch war – dann liegt der Kurs bereits unter dem Tief von A.',
+          'Im Rückblick ist die Form eindeutig. Währenddessen ist sie von einem echten Ausbruch nicht zu unterscheiden.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Das Dreieck (3-3-3-3-3)' },
+      {
+        type: 'paragraph',
+        text: 'Fünf Abschnitte A bis E, jeder dreiteilig. Ein Dreieck steht fast ausschließlich in **Welle 4** oder in **Welle B** – also unmittelbar vor der letzten Bewegung einer Sequenz.',
+      },
+      { type: 'figure', figure: 'ta-elliott-dreieck' },
+      {
+        type: 'table',
+        caption: 'Die Dreiecksformen und wo sie auftreten.',
+        head: ['Form', 'Begrenzungen', 'Häufigkeit'],
+        rows: [
+          [
+            'Kontrahierend',
+            'laufen beide aufeinander zu',
+            'die weitaus häufigste Fassung',
+          ],
+          [
+            'Barrier',
+            'eine Seite bleibt waagerecht',
+            'seltener; im Ergebnis dem kontrahierenden ähnlich',
+          ],
+          [
+            'Expandierend',
+            'laufen auseinander, die Schwankung nimmt zu',
+            'selten und schwer zu handeln',
+          ],
+          [
+            'Laufend',
+            'Welle B überschreitet den Startpunkt von A',
+            'selten; gilt als besonders trendstark',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Position ist der eigentliche Nutzen dieser Form: Wer ein Dreieck sicher erkennt, weiß, dass **noch genau eine Bewegung** in Trendrichtung aussteht. Nach ihr ist die Sequenz abgeschlossen. Das ist eine der wenigen Stellen, an denen die Theorie eine überprüfbare Erwartung liefert.',
+      },
+      { type: 'heading', level: 2, text: 'Die Kombinationen: W-X-Y und W-X-Y-X-Z' },
+      {
+        type: 'paragraph',
+        text: 'Reicht eine einzelne Korrektur nicht aus, um die Zeit zu füllen, hängt die Theorie zwei oder drei davon aneinander. Die Verbindungsstücke heißen **X-Wellen**.',
+      },
+      { type: 'figure', figure: 'ta-elliott-kombination' },
+      {
+        type: 'table',
+        caption: 'Die zusammengesetzten Korrekturen.',
+        head: ['Bezeichnung', 'Aufbau', 'Bestandteile'],
+        rows: [
+          [
+            'Doppelte Korrektur',
+            'W – X – Y',
+            'zwei Korrekturmuster, verbunden durch eine X-Welle',
+          ],
+          [
+            'Dreifache Korrektur',
+            'W – X – Y – X – Z',
+            'drei Korrekturmuster, verbunden durch zwei X-Wellen',
+          ],
+        ],
+      },
+      {
+        type: 'list',
+        items: [
+          '**W, Y und Z** sind jeweils vollständige Korrekturen für sich – ein Zickzack, eine Flat oder ein Dreieck.',
+          '**X** ist die Verbindungswelle. Sie ist selbst dreiteilig und läuft gegen die Richtung der Korrektur.',
+          'Ein Dreieck steht in einer Kombination fast immer an **letzter** Stelle, also als Y oder Z.',
+          'Mehr als drei Bestandteile sieht die Theorie nicht vor. Das ist die einzige Begrenzung dieser Bauform.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Die Sonderregeln der Kombinationen',
+      },
+      {
+        type: 'table',
+        caption:
+          'Was innerhalb einer Kombination zulässig ist und was nicht. Diese Regeln grenzen die Bauform ein – ohne sie wäre sie beliebig.',
+        head: ['Regel', 'Was sie besagt'],
+        rows: [
+          [
+            'Höchstens drei Bestandteile',
+            'W-X-Y und W-X-Y-X-Z sind die einzigen Formen. Eine vierte Korrektur anzuhängen ist nicht vorgesehen.',
+          ],
+          [
+            'Kein Zickzack zweimal hintereinander',
+            'Zwei aufeinanderfolgende Zickzacks gelten nicht als Kombination, sondern als doppelter Zickzack – ein eigener Fall mit eigener Zählung.',
+          ],
+          [
+            'Das Dreieck steht am Ende',
+            'Tritt ein Dreieck in einer Kombination auf, dann als letzter Bestandteil – also als Y oder Z, nie als W.',
+          ],
+          [
+            'X ist selbst eine Korrektur',
+            'Die Verbindungswelle ist dreiteilig und kann jede Korrekturform annehmen, meist einen Zickzack.',
+          ],
+          [
+            'X bleibt kürzer als die Nachbarn',
+            'Läuft X weiter zurück als die Korrektur davor, ist es keine Verbindungswelle – dann liegt eine andere Zählung vor.',
+          ],
+          [
+            'Die Bestandteile ähneln sich in der Größe',
+            'W, Y und Z sind üblicherweise etwa gleich lang. Ein deutlich größerer Bestandteil spricht gegen die Kombination.',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die praktisch wichtigste dieser Regeln ist die letzte: **Ähneln sich W, Y und Z nicht in der Größe, stimmt die Zählung vermutlich nicht.** Sie ist die einzige, die sich während der laufenden Bewegung prüfen lässt – alle übrigen setzen voraus, dass die Formen bereits fertig sind.',
+      },
+      {
+type: 'callout',
+        variant: 'warning',
+        title: 'Hier wird der Haupteinwand greifbar',
+        items: [
+          'Eine Kombination erlaubt es, drei beliebige Korrekturformen in beliebiger Reihenfolge aneinanderzuhängen.',
+          'Bei drei Grundformen mit insgesamt sieben Fassungen ergibt das mehrere hundert regelkonforme Verläufe für dieselbe Seitwärtsphase.',
+          'Damit lässt sich praktisch jede ausgedehnte Seitwärtsbewegung im Nachhinein gültig auszählen – und genau deshalb sagt eine solche Zählung über die Zukunft wenig.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Was sich davon behalten lässt' },
+      {
+        type: 'paragraph',
+        text: 'Zwei Dinge sind auch ohne Zählung brauchbar. Erstens die Beobachtung, dass Korrekturen in **drei** Abschnitten verlaufen, Trendbewegungen dagegen in **fünf** – wer nach einem Rücksetzer die Struktur zählt, hat einen Anhaltspunkt, ob der Trend weiterläuft oder gedreht hat. Zweitens die Erwartung, dass ein Dreieck vor der letzten Bewegung steht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beides sind Erfahrungssätze und keine Gesetzmäßigkeiten. Sie taugen als Erwartungshaltung, nicht als Grundlage für eine Position ohne Absicherung.',
+      },
+    ],
+  },
+  {
+    slug: 'elliott-wellenziele',
+    bereich: 'technische-analyse',
+    titel: 'Wellenziele: welche Welle welches Level anläuft',
+    kurz: 'Die Fibonacci-Verhältnisse je Welle – Rücklauftiefen, Streckungsziele und wie man sie aufträgt.',
+    kernaussage:
+      'Jede Welle hat ihre eigenen Erwartungswerte. Ein Verhältnis ohne die Welle, auf die es sich bezieht, ist keine Aussage – und ein getroffenes Ziel ist kein Beleg.',
+    belegart: 'deutung',
+    dauer: 12,
+    stichworte: [
+      'Fibonacci',
+      'Wellenziel',
+      'Retracement',
+      'Extension',
+      'Projektion',
+      'Elliott',
+    ],
+    setztVoraus: ['fibonacci-retracements', 'elliott-impulse'],
+    lernthemen: ['anlegerpsychologie'],
+    inhalt: [
+      {
+        type: 'paragraph',
+        text: 'Die Fibonacci-Lektion hat die Marken selbst erklärt – 23,6, 38,2, 50, 61,8 und 78,6 Prozent. Hier geht es um die Zuordnung: **welche** dieser Marken zu **welcher** Welle gehört. Das ist der Teil, der in Darstellungen am häufigsten fehlt, und ohne ihn ist eine Prozentzahl im Chart bedeutungslos.',
+      },
+      { type: 'figure', figure: 'ta-elliott-ziele' },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Welche Marke bei welcher Welle die übliche ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Wellenliteratur nennt für jede Welle ein bevorzugtes Verhältnis und daneben weitere gebräuchliche. Die folgenden beiden Grafiken zeigen diese Rangfolge – kräftig markiert der Regelfall, schwächer das Übrige.',
+      },
+      { type: 'figure', figure: 'ta-elliott-ruecklaeufe' },
+      {
+        type: 'paragraph',
+        text: 'Die wichtigste Aussage daraus ist der Unterschied zwischen den beiden Korrekturwellen im Impuls: **Welle 2 korrigiert tief, Welle 4 flach.** Welle 2 holt regelmäßig 61,8 Prozent der Welle 1 zurück und mitunter 78,6; Welle 4 bleibt meist bei 38,2 Prozent der Welle 3 und oft schon bei 23,6. Wer eine flache erste Korrektur sieht, zählt vermutlich falsch – und umgekehrt.',
+      },
+      { type: 'figure', figure: 'ta-elliott-streckungen' },
+      {
+        type: 'paragraph',
+        text: 'Bei den Impulswellen ist Welle 3 die einzige, für die regelmäßig ein Vielfaches **über** eins erwartet wird. Welle 5 bleibt in der Regel darunter – das 0,618-fache der Strecke von Beginn Welle 1 bis Ende Welle 3 ist der Regelfall, und genau das ist der rechnerische Ausdruck dafür, dass die letzte Bewegung eines Trends schwächer getragen wird.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum hier keine Prozentzahlen für die Häufigkeit stehen',
+        items: [
+          'Die Literatur beschreibt Verhältnisse als häufiger oder seltener. Eine Auszählung mit Stichprobe, Zeitraum und Methode liefert sie nicht.',
+          'Eine Angabe wie „Welle 2 korrigiert in 61 Prozent der Fälle auf 61,8 Prozent“ wäre deshalb erfunden – auch wenn sie so klänge wie die übrigen Zahlen dieser Seite.',
+          'Gezeigt wird darum eine Rangfolge und keine Wahrscheinlichkeit. Das ist die stärkste Aussage, die sich hier belegen lässt.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Drei verschiedene Rechenarten' },
+      {
+        type: 'paragraph',
+        text: 'Die Verhältnisse werden nicht alle gleich gebildet. Wer sie durcheinanderbringt, trägt Marken auf, die nichts bedeuten.',
+      },
+      {
+        type: 'table',
+        caption:
+          'Die drei Arten, ein Wellenziel zu bilden. Der Unterschied liegt darin, worauf sich das Verhältnis bezieht.',
+        head: ['Art', 'Bezug', 'Wofür'],
+        rows: [
+          [
+            'Rücklauf (Retracement)',
+            'Anteil der unmittelbar vorigen Welle',
+            'Korrekturwellen: 2, 4, B',
+          ],
+          [
+            'Streckung (Extension)',
+            'Vielfaches der vorigen gleichgerichteten Welle',
+            'Impulswellen: 3, 5, C',
+          ],
+          [
+            'Projektion',
+            'Vielfaches einer früheren Strecke, angetragen an einem späteren Punkt',
+            'Welle 5 aus der Strecke 1 bis 3',
+          ],
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Die Ziele Welle für Welle' },
+      {
+        type: 'table',
+        caption:
+          'Übliche Erwartungswerte je Welle. Die Reihenfolge in der Spalte nennt zuerst den häufigsten Wert.',
+        head: ['Welle', 'Art', 'Werte', 'Gemessen woran'],
+        rows: [
+          [
+            'Welle 2',
+            'Rücklauf',
+            '61,8 % · 50 % · 78,6 %',
+            'an Welle 1, vom Hoch der Welle 1 nach unten',
+          ],
+          [
+            'Welle 3',
+            'Streckung',
+            '1,618 × · 2,618 × · 4,236 ×',
+            'an Welle 1, angetragen ab dem Tief der Welle 2',
+          ],
+          [
+            'Welle 4',
+            'Rücklauf',
+            '38,2 % · 23,6 % · 50 %',
+            'an Welle 3, vom Hoch der Welle 3 nach unten',
+          ],
+          [
+            'Welle 5',
+            'Projektion',
+            '0,618 × · 1,000 × der Strecke Start 1 bis Ende 3',
+            'angetragen ab dem Tief der Welle 4',
+          ],
+          [
+            'Welle 5 (Nebenweg)',
+            'Streckung',
+            '1,000 × · 1,618 × Welle 1',
+            'an Welle 1, angetragen ab dem Tief der Welle 4',
+          ],
+          [
+            'Welle A',
+            'Rücklauf',
+            '38,2 % · 50 % · 61,8 %',
+            'an der gesamten Bewegung 1 bis 5',
+          ],
+          [
+            'Welle B',
+            'Rücklauf',
+            '38,2 % · 50 % · 61,8 % (Flat: über 90 %)',
+            'an Welle A',
+          ],
+          [
+            'Welle C',
+            'Streckung',
+            '1,000 × · 1,618 × Welle A',
+            'an Welle A, angetragen ab dem Hoch der Welle B',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Die Zusammenballung ist aussagekräftiger als der Einzelwert',
+        items: [
+          'Fallen mehrere Ziele aus verschiedenen Rechenarten auf denselben Bereich, gilt dieser als besonders beachtet.',
+          'Beispiel: Welle 4 bei 38,2 Prozent der Welle 3 und zugleich am Hoch der Unterwelle 4 innerhalb von Welle 3 – zwei unabhängige Herleitungen, ein Bereich.',
+          'Das ist ein Argument für einen Bereich, nicht für einen Punkt. Wer auf die zweite Nachkommastelle plant, überdehnt die Methode.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Welche Regel welche Zählung ausschließt' },
+      {
+        type: 'paragraph',
+        text: 'Ein Ziel zu verfehlen widerlegt eine Zählung nicht. Es gibt aber Marken, deren Überschreiten sie tatsächlich beendet – und die sind praktisch wertvoller als jede Zielprojektion, weil sie eine überprüfbare Grenze setzen.',
+      },
+      {
+        type: 'table',
+        caption:
+          'Die Marken, an denen eine Zählung ungültig wird. Sie folgen unmittelbar aus den drei Regeln.',
+        head: ['Wird überschritten', 'Dann gilt'],
+        rows: [
+          [
+            'Welle 2 unterschreitet den Start von Welle 1',
+            'Die Zählung ist falsch. Kein Ermessen, keine Sonderform.',
+          ],
+          [
+            'Welle 4 reicht in den Kursbereich von Welle 1',
+            'Die Zählung ist falsch – es sei denn, es ist eine endende Diagonale.',
+          ],
+          [
+            'Welle 3 ist kürzer als Welle 1 und Welle 5',
+            'Die Zählung ist falsch. Welle 3 darf nie die kürzeste sein.',
+          ],
+          [
+            'Welle B über 105 % von Welle A',
+            'Kein Zickzack. Es kommt nur noch eine erweiterte oder laufende Flat in Frage.',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum ein getroffenes Ziel nichts beweist',
+        items: [
+          'Die genannten Marken liegen dicht beieinander: Zwischen 38,2 und 61,8 Prozent liegt bei einer Bewegung von 100 Punkten ein Korridor von 24 Punkten.',
+          'Legt man Rücklauf-, Streckungs- und Projektionsziele übereinander, ist ein erheblicher Teil des Kursraums von irgendeiner Marke belegt.',
+          'Ein Kurs, der eine davon trifft, bestätigt deshalb wenig. Aussagekräftig wäre erst der Nachweis, dass er sie häufiger trifft als bei zufälliger Verteilung – und dieser Nachweis fehlt.',
+        ],
+      },
+      { type: 'heading', level: 2, text: 'Wie man es praktisch aufträgt' },
+      {
+        type: 'list',
+        ordered: true,
+        items: [
+          'Zuerst die Zählung festlegen und die Punkte markieren: Start von Welle 1, Ende jeder Welle. Ohne diese Punkte gibt es nichts zu messen.',
+          'Für die laufende Welle die passende Rechenart aus der Tabelle oben wählen – Rücklauf, Streckung oder Projektion.',
+          'Alle drei üblichen Werte auftragen, nicht nur den häufigsten. Der Bereich dazwischen ist die Erwartung, nicht die einzelne Linie.',
+          'Die Ausschlussmarke aus der letzten Tabelle daneben eintragen. Sie ist der einzige Wert, der die Zählung tatsächlich beenden kann.',
+          'Bei jeder abgeschlossenen Welle neu messen. Die Ziele der folgenden Welle hängen von der tatsächlichen Länge der vorigen ab, nicht von der erwarteten.',
+        ],
+      },
+      {
+        type: 'quote',
+        text: 'Die Ausschlussmarke ist die nützlichere Zahl. Sie sagt, wann man sich geirrt hat – das Ziel sagt nur, worauf man gehofft hatte.',
+        source: 'Zum praktischen Umgang mit Wellenzielen',
       },
     ],
   },

@@ -184,6 +184,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Die **Prospect Theory** von Kahneman und Tversky (1979) ist die meistzitierte Arbeit ihres Fachs und der Grund für den Wirtschaftsnobelpreis 2002. Sie beschreibt Entscheidungen unter Unsicherheit mit drei Bausteinen, die alle drei der klassischen Theorie widersprechen.',
       },
+      { type: 'figure', figure: 'av-wertfunktion' },
       {
         type: 'list',
         ordered: true,

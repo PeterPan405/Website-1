@@ -50,6 +50,49 @@ export type FigureId =
   | 'ta-macd'
   /** Der Elliott-Grundzyklus aus fünf Impuls- und drei Korrekturwellen. */
   | 'ta-elliott-zyklus'
+  /** Wo eine Impulswelle gestreckt wird – in 1, in 3 oder in 5. */
+  | 'ta-elliott-extension'
+  /** Die verkürzte fünfte Welle, die das Hoch der dritten nicht überbietet. */
+  | 'ta-elliott-verkuerzung'
+  /** Führende und endende Diagonale nebeneinander. */
+  | 'ta-elliott-diagonale'
+  /** Der Zickzack im 5-3-5-Aufbau. */
+  | 'ta-elliott-zigzag'
+  /** Normale, erweiterte und laufende Flat. */
+  | 'ta-elliott-flat'
+  /** Kontrahierendes, Barrier- und expandierendes Dreieck. */
+  | 'ta-elliott-dreieck'
+  /** Doppelte und dreifache Korrektur: W-X-Y und W-X-Y-X-Z. */
+  | 'ta-elliott-kombination'
+  /** Welche Welle welches Fibonacci-Verhältnis anläuft. */
+  | 'ta-elliott-ziele'
+  /** Der Wechsel zwischen scharfer und flacher Korrektur. */
+  | 'ta-elliott-wechsel'
+  /** Die Wellengrade: dieselbe Form auf jeder Zeitebene. */
+  | 'ta-elliott-grade'
+  /** Wie tief die Korrekturwellen üblicherweise zurücklaufen. */
+  | 'ta-elliott-ruecklaeufe'
+  /** Wie weit die Impulswellen üblicherweise über die vorige hinauslaufen. */
+  | 'ta-elliott-streckungen'
+  /* ------------------------------------- Akademie: übrige Bereiche */
+  /** Wie das Risiko mit der Zahl der Titel fällt – und wo es aufhört. */
+  | 'pt-diversifikation'
+  /** Die Effizienzlinie und die Mischungen darunter. */
+  | 'pt-effizienzlinie'
+  /** Gleichlauf, Unabhängigkeit und Gegenlauf zweier Anlagen. */
+  | 'pt-korrelation'
+  /** Der maximale Rückgang, gemessen vom Hoch zum Tief danach. */
+  | 'pt-maximaler-rueckgang'
+  /** Dieselben Renditen in anderer Reihenfolge – bei Entnahme. */
+  | 'pt-sequenzrisiko'
+  /** Normale, flache und inverse Zinsstrukturkurve. */
+  | 'ma-zinsstruktur'
+  /** Der Konjunkturzyklus in vier Phasen. */
+  | 'ma-konjunkturzyklus'
+  /** Die Wertfunktion: Verluste wiegen schwerer als Gewinne. */
+  | 'av-wertfunktion'
+  /** Wie Gewinnrechnung, Kapitalflussrechnung und Bilanz zusammenhängen. */
+  | 'fa-drei-abschluesse'
   /** Einfacher Zins gegen Zinseszins über 40 Jahre. */
   | 'zins-gerade-vs-kurve'
   /** Drei Sparer mit gleicher Rate und unterschiedlichem Startalter. */
@@ -877,6 +920,153 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Zwei übereinanderliegende Darstellungen desselben Zeitraums. Oben ein schematischer Kursverlauf mit Anstieg, Gipfel und Rückgang. Unten der daraus abgeleitete MACD: die MACD-Linie als Differenz zweier exponentieller Durchschnitte, die geglättete Signallinie und das Histogramm als Balken um die Nulllinie, das den Abstand zwischen beiden Linien zeigt. Zwei Stellen sind markiert: Wo die MACD-Linie die Signallinie von unten kreuzt, wechseln die Balken von negativ auf positiv – das ist das übliche Signal. Am Gipfel ist zu sehen, dass die Balken bereits schrumpfen, während der Kurs noch steigt: Die Bewegung verliert an Beschleunigung, bevor sie die Richtung wechselt. Genau darin liegt der Nutzen und zugleich die Schwäche des Indikators – dieselbe Beobachtung tritt auch auf, wenn der Kurs anschließend weitersteigt.',
     caption:
       'Der MACD misst die Beschleunigung, nicht die Richtung. Das Histogramm dreht vor den Linien – manchmal zu Recht, oft zu früh.',
+  },
+  'ta-elliott-extension': {
+    title: 'Die gestreckte Impulswelle',
+    description:
+      'Drei schematische Impulsverläufe nebeneinander, jeder aus fünf Wellen. Im ersten ist Welle 3 die weitaus längste und steilste, im zweiten Welle 5, im dritten Welle 1. Die jeweils gestreckte Welle ist farblich hervorgehoben. In jedem Fall bleiben die beiden übrigen Impulswellen einander in der Länge ähnlich. Die Theorie erwartet, dass genau eine der drei Impulswellen gestreckt ist – am häufigsten die dritte. Welche es ist, lässt sich zuverlässig erst im Nachhinein sagen, und genau darin liegt die Schwierigkeit für jede Prognose.',
+    caption:
+      'Eine der drei Impulswellen ist gestreckt, meist die dritte. Welche, steht erst hinterher fest.',
+  },
+  'ta-elliott-verkuerzung': {
+    title: 'Die verkürzte fünfte Welle',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen. Vom Hoch der Welle 3 verläuft eine waagerechte gestrichelte Linie nach rechts. Welle 5 steigt zwar über das Tief der Welle 4 hinaus, bleibt aber unterhalb dieser Linie – sie überbietet das Hoch der dritten Welle nicht. Ein senkrechter Strich markiert den fehlenden Abstand. Diese Form ist zulässig und selten; sie gilt als Hinweis auf ungewöhnliche Schwäche im Trend. Der Impuls gilt trotzdem als vollständig abgeschlossen, und die anschließende Korrektur wird üblicherweise als kräftig erwartet.',
+    caption:
+      'Welle 5 erreicht das Hoch der Welle 3 nicht. Zulässig, selten – und ein Zeichen von Schwäche.',
+  },
+  'ta-elliott-diagonale': {
+    title: 'Führende und endende Diagonale',
+    description:
+      'Zwei keilförmige Verläufe nebeneinander, beide aus fünf Wellen, deren Begrenzungslinien gestrichelt eingezeichnet sind. Links die führende Diagonale, die in Welle 1 oder in Welle A auftritt; rechts die endende Diagonale, die am Schluss einer Bewegung in Welle 5 oder in Welle C steht. Beide verengen sich zum Ende hin. In beiden Formen sind die Teilwellen dreiteilig statt fünfteilig, und in der endenden Diagonale darf Welle 4 in den Kursbereich von Welle 1 hineinreichen – die einzige Stelle, an der die sonst harte dritte Regel ausgesetzt ist.',
+    caption:
+      'Der Keil ist die einzige Impulsform, in der sich Welle 1 und Welle 4 überschneiden dürfen.',
+  },
+  'ta-elliott-zigzag': {
+    title: 'Der Zickzack',
+    description:
+      'Eine dreiteilige Abwärtskorrektur mit den Punkten A, B und C. Von einem Hoch fällt Welle A steil, Welle B holt einen Teil davon zurück, Welle C fällt darunter deutlich weiter. An den drei Abschnitten stehen die Zahlen fünf, drei und fünf: Der Zickzack ist im Aufbau 5-3-5, also sind A und C selbst fünfteilig und B dreiteilig. Eine gestrichelte Linie auf Höhe des Ausgangspunkts zeigt, wie weit die Korrektur insgesamt trägt. Welle B holt üblicherweise nicht mehr als 61,8 Prozent von A zurück; läuft sie weiter, ist es meist keine Zickzack-Formation.',
+    caption:
+      'Die scharfe Korrekturform: 5-3-5, und C läuft klar unter A. Die häufigste Gestalt der Welle 2.',
+  },
+  'ta-elliott-flat': {
+    title: 'Die drei Flat-Formen',
+    description:
+      'Drei seitwärts verlaufende Korrekturen nebeneinander, jeweils mit den Punkten A, B und C und einer gestrichelten Linie auf Höhe des Startpunkts. Bei der normalen Flat endet Welle B ungefähr am Startpunkt und Welle C ungefähr auf Höhe von A. Bei der erweiterten Flat läuft Welle B über den Startpunkt hinaus und Welle C unter das Tief von A. Bei der laufenden Flat läuft Welle B ebenfalls darüber hinaus, Welle C endet aber oberhalb des Tiefs von A – die Korrektur bleibt in Trendrichtung zurück. Alle drei haben denselben Aufbau 3-3-5.',
+    caption:
+      'Alle drei sind 3-3-5. Unterschieden werden sie allein daran, wo B und C relativ zum Startpunkt enden.',
+  },
+  'ta-elliott-dreieck': {
+    title: 'Die Dreiecksformen',
+    description:
+      'Drei Dreiecksformationen nebeneinander, jeweils mit gestrichelten Begrenzungslinien. Links das kontrahierende Dreieck, bei dem obere und untere Begrenzung aufeinander zulaufen. In der Mitte das Barrier-Dreieck, bei dem eine der beiden Begrenzungen waagerecht bleibt. Rechts das expandierende Dreieck, bei dem die Schwankungsbreite zunimmt statt abzunehmen; es ist die seltenste Form. Jedes Dreieck besteht aus fünf Abschnitten A bis E, und jeder dieser Abschnitte ist selbst dreiteilig. Dreiecke stehen fast ausschließlich in Welle 4 oder in Welle B, also unmittelbar vor der letzten Bewegung einer Sequenz.',
+    caption:
+      'Fünf Abschnitte, jeder dreiteilig. Ein Dreieck steht fast immer direkt vor dem letzten Zug.',
+  },
+  'ta-elliott-kombination': {
+    title: 'Doppelte und dreifache Korrektur',
+    description:
+      'Zwei zusammengesetzte Korrekturverläufe. Links die doppelte Korrektur mit den Punkten W, X und Y: Zwei einzelne Korrekturmuster – hier ein Zickzack und eine Flat – sind durch die Verbindungswelle X aneinandergehängt. Rechts die dreifache Korrektur mit W, X, Y, X und Z: drei Korrekturmuster, verbunden durch zwei X-Wellen. Mehr als drei Bestandteile sieht die Theorie nicht vor. Beide Formen verlaufen flacher und deutlich länger als eine einzelne Korrektur und sind der Hauptgrund, warum sich fast jede ausgedehnte Seitwärtsphase regelkonform auszählen lässt.',
+    caption:
+      'W-X-Y und W-X-Y-X-Z hängen fertige Korrekturen aneinander. Damit wird fast jede Seitwärtsphase zählbar.',
+  },
+  'ta-elliott-ziele': {
+    title: 'Welche Welle welches Verhältnis anläuft',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen, bei dem an jeder Welle das ihr zugeordnete Fibonacci-Verhältnis steht. Welle 1 dient als Maßstab und hat selbst kein Verhältnis. Welle 2 holt üblicherweise 50, 61,8 oder 78,6 Prozent der Welle 1 zurück. Welle 3 erreicht das 1,618-fache oder 2,618-fache der Welle 1. Welle 4 korrigiert flacher, meist 23,6 oder 38,2 Prozent der Welle 3. Welle 5 entspricht häufig dem 0,618-fachen der Strecke von Beginn Welle 1 bis Ende Welle 3 oder ungefähr der Länge der Welle 1. Diese Werte sind die in der Literatur üblichen Erwartungswerte, keine gemessenen Häufigkeiten.',
+    caption:
+      'Jede Welle hat ihre eigenen Erwartungswerte. Ein Verhältnis ohne die zugehörige Welle ist keine Aussage.',
+  },
+  'ta-elliott-wechsel': {
+    title: 'Der Wechsel zwischen den Korrekturen',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen, in dem die beiden Korrekturwellen farblich hinterlegt sind. Welle 2 ist ein kurzer, steiler Rücksetzer und schmal markiert. Welle 4 verläuft dagegen flach und über einen längeren Zeitraum und ist entsprechend breit markiert. Die Theorie erwartet diesen Wechsel: Ist die eine Korrektur ein scharfer Zickzack, wird die andere meist eine Flat oder ein Dreieck. Es handelt sich um eine Erwartung und nicht um eine der drei harten Regeln – eine Zählung, die sie verletzt, ist damit nicht ungültig.',
+    caption:
+      'Scharf und flach wechseln sich ab. Die einzige Aussage der Theorie, die eine Zählung im Voraus einschränkt.',
+  },
+  'ta-elliott-grade': {
+    title: 'Die Wellengrade',
+    description:
+      'Ein großer Impulsverlauf aus fünf Wellen, in dem zwei Ausschnitte eine Ebene tiefer aufgelöst sind. Innerhalb der ersten Welle ist gestrichelt ein Rahmen gezogen, in dem derselbe fünfteilige Aufbau noch einmal im Kleinen erscheint. Die zweite Welle ist daneben in ihre drei Bestandteile zerlegt. Damit zeigt die Grafik den fraktalen Aufbau der Theorie: Jede Impulswelle besteht selbst aus fünf Wellen, jede Korrekturwelle aus dreien, und dasselbe wiederholt sich auf jeder Zeitebene. Elliott unterschied neun solcher Grade, vom Grand Supercycle über Jahrhunderte bis zur Subminuette über Minuten.',
+    caption:
+      'Dieselbe Form auf jeder Zeitebene – neun Grade vom Jahrhundert bis zur Minute.',
+  },
+  'ta-elliott-ruecklaeufe': {
+    title: 'Wie tief welche Korrekturwelle zurückläuft',
+    description:
+      'Vier waagerechte Skalen untereinander, je eine für Welle 2, Welle 4, Welle B im Zickzack und Welle B in der Flat. Auf jeder Skala sind die gebräuchlichen Rücklaufmarken eingetragen: 23,6, 38,2, 50, 61,8, 78,6, 90 und 100 Prozent der jeweils vorigen Welle. Kräftig hervorgehoben ist der Wert, den die Wellenliteratur als Regelfall nennt, etwas schwächer die ebenfalls gebräuchlichen. Bei Welle 2 ist das 61,8 Prozent, daneben 50 und 78,6. Bei Welle 4 ist es 38,2 Prozent, daneben 23,6 und 50 – Welle 4 korrigiert also regelmäßig flacher als Welle 2. Bei Welle B im Zickzack liegt der Schwerpunkt bei 50 Prozent, in der Flat dagegen bei 100 Prozent, weil die Flat gerade dadurch definiert ist. Die Darstellung zeigt eine Rangfolge, keine gemessene Häufigkeit: Eine Auszählung mit Stichprobe und Methode liefert die Literatur nicht.',
+    caption:
+      'Welle 2 korrigiert tief, Welle 4 flach – das ist die verlässlichste Aussage der Reihe. Es ist eine Rangfolge, keine gemessene Wahrscheinlichkeit.',
+  },
+  'ta-elliott-streckungen': {
+    title: 'Wie weit welche Impulswelle läuft',
+    description:
+      'Drei waagerechte Skalen untereinander für Welle 3, Welle 5 und Welle C. Eingetragen sind die gebräuchlichen Vielfachen 0,618, 1,0, 1,618, 2,618 und 4,236. Kräftig hervorgehoben ist jeweils der Regelfall der Wellenliteratur. Welle 3 erreicht danach üblicherweise das 1,618-fache der Welle 1, bei starken Bewegungen das 2,618- oder 4,236-fache. Welle 5 wird meist mit dem 0,618-fachen der Strecke von Beginn Welle 1 bis Ende Welle 3 angesetzt, seltener mit dem Einfachen. Welle C entspricht am häufigsten der Länge von Welle A, daneben dem 1,618-fachen. Auch hier ist eine Rangfolge dargestellt und keine gemessene Häufigkeit.',
+    caption:
+      'Welle 3 ist die einzige, für die regelmäßig ein Vielfaches über eins erwartet wird. Welle 5 bleibt meist darunter.',
+  },
+  'pt-diversifikation': {
+    title: 'Wie weit Streuung das Risiko senkt',
+    description:
+      'Eine fallende Kurve über einem Achsenkreuz. Waagerecht steht die Zahl der Titel im Depot, senkrecht die Schwankung. Bei wenigen Titeln ist die Schwankung hoch; mit jedem weiteren Titel fällt sie zunächst deutlich, dann immer flacher. Ab etwa zwanzig bis dreißig Titeln verläuft die Kurve nahezu waagerecht – jeder weitere Titel bringt kaum noch eine Verbesserung. Eine gestrichelte Linie darunter markiert das Marktrisiko: den Anteil, der sich durch Streuung nicht beseitigen lässt, weil er alle Titel gemeinsam betrifft. Die Kurve nähert sich dieser Linie an, erreicht die Nulllinie aber nie.',
+    caption:
+      'Streuung senkt das Risiko einzelner Titel, nicht das des Marktes. Nach etwa dreißig Titeln ist der Nutzen ausgereizt.',
+  },
+  'pt-effizienzlinie': {
+    title: 'Die Effizienzlinie',
+    description:
+      'Ein Achsenkreuz mit dem Risiko waagerecht und der erwarteten Rendite senkrecht. Eine getönte Fläche zeigt alle möglichen Mischungen aus den verfügbaren Anlagen. Ihre obere Begrenzung ist die Effizienzlinie: Für jedes Risiko gibt es dort die höchstmögliche Rendite. Drei Punkte sind markiert. Punkt A liegt am linken Ende und hat das geringste Risiko. Punkt C liegt auf der Linie. Punkt B liegt darunter, bei gleichem Risiko wie C, aber mit geringerer Rendite – eine solche Mischung ist ineffizient, weil man ohne zusätzliches Risiko mehr bekommen könnte. Die Aussage gilt nur unter den Annahmen des Modells, insbesondere dass sich Risiko durch Schwankung messen lässt und die Verhältnisse stabil bleiben.',
+    caption:
+      'Alles unterhalb der Linie ist Verschwendung: dasselbe Risiko, weniger Ertrag. Ob die Linie stabil bleibt, ist die offene Frage.',
+  },
+  'pt-korrelation': {
+    title: 'Gleichlauf, Unabhängigkeit, Gegenlauf',
+    description:
+      'Drei kleine Diagramme nebeneinander, in jedem zwei Kursverläufe übereinandergelegt – einer durchgezogen, einer gestrichelt. Links laufen beide Linien nahezu deckungsgleich: Korrelation nahe plus eins. In der Mitte bewegen sie sich ohne erkennbaren Zusammenhang: Korrelation nahe null. Rechts spiegeln sie einander, jeder Anstieg der einen fällt mit einem Rückgang der anderen zusammen: Korrelation nahe minus eins. Nur die beiden rechten Fälle senken das Risiko einer Mischung. Zwei Anlagen, die gleichlaufen, streuen nichts, auch wenn es formal zwei Positionen sind.',
+    caption:
+      'Zwei Positionen sind noch keine Streuung. Entscheidend ist, ob sie sich gemeinsam bewegen.',
+  },
+  'pt-maximaler-rueckgang': {
+    title: 'Der maximale Rückgang',
+    description:
+      'Ein schwankender Depotverlauf über die Zeit. Das höchste Zwischenhoch ist markiert, ebenso der tiefste Punkt, der danach erreicht wird. Zwischen beiden ist der senkrechte Abstand als Pfeil eingezeichnet und als maximaler Rückgang beschriftet. Zwei waagerechte Hilfslinien verlängern Hoch und Tief nach rechts, damit der Abstand ablesbar wird. Wichtig ist die Reihenfolge: Gemessen wird vom Hoch zum tiefsten Punkt, der zeitlich danach liegt – nicht zum tiefsten Punkt des gesamten Zeitraums. Ein früheres, tieferes Tief zählt nicht, weil man dort noch nicht investiert gewesen sein muss.',
+    caption:
+      'Vom Hoch zum tiefsten Punkt danach. Die Kennzahl beschreibt, was man ausgehalten hätte – nicht, was man verloren hat.',
+  },
+  'pt-sequenzrisiko': {
+    title: 'Dieselben Renditen, andere Reihenfolge',
+    description:
+      'Zwei Depotverläufe über dieselbe Zahl von Jahren, beide mit derselben Durchschnittsrendite. Der obere Verlauf hat die guten Jahre am Anfang und steigt trotz laufender Entnahmen deutlich an. Der untere Verlauf hat dieselben Jahre in umgekehrter Reihenfolge, mit den schlechten zuerst; er fällt zunächst und erholt sich danach nur teilweise. Am Ende liegen beide Verläufe weit auseinander. Der Grund ist die Entnahme: Wer in einem schlechten Jahr einen festen Betrag entnimmt, verkauft dafür mehr Anteile, und diese Anteile fehlen bei der späteren Erholung dauerhaft.',
+    caption:
+      'Gleiche Durchschnittsrendite, verschiedenes Ergebnis. Wer entnimmt, für den zählt die Reihenfolge der Jahre.',
+  },
+  'ma-zinsstruktur': {
+    title: 'Die drei Gestalten der Zinsstrukturkurve',
+    description:
+      'Drei kleine Diagramme nebeneinander. In jedem steht waagerecht die Laufzeit von kurz nach lang und senkrecht der Zins. Links die normale Kurve: Sie steigt von links nach rechts an, längere Laufzeiten bringen mehr Zins. In der Mitte die flache Kurve, bei der sich kurze und lange Laufzeiten kaum unterscheiden. Rechts die inverse Kurve, die von links nach rechts fällt – kurze Laufzeiten zahlen mehr als lange. Die inverse Form gilt als der meistbeachtete Vorlaufindikator für eine Rezession, weil sie in der Vergangenheit mehreren Abschwüngen vorausging. Ein Beleg für Ursächlichkeit ist das nicht.',
+    caption:
+      'Fällt die Kurve von links nach rechts, ist sie invers. Das gilt als Warnzeichen – mit langem und unregelmäßigem Vorlauf.',
+  },
+  'ma-konjunkturzyklus': {
+    title: 'Der Konjunkturzyklus',
+    description:
+      'Eine Wellenlinie, die um eine waagerechte Trendlinie schwingt. Vier senkrechte Hilfslinien teilen sie in Phasen: Aufschwung mit anziehendem Wachstum, Hochphase mit Auslastung am Anschlag, Abschwung mit abkühlendem Wachstum und Tiefphase mit Bodenbildung. Danach beginnt der Zyklus von vorn. Die Darstellung ist regelmäßig gezeichnet, tatsächliche Zyklen sind es nicht: Sie unterscheiden sich in Dauer und Ausschlag erheblich. Vor allem lässt sich die aktuelle Phase erst im Rückblick sicher bestimmen – wo man gerade steht, ist die eigentliche Frage und immer strittig.',
+    caption:
+      'Vier Phasen, im Rückblick sauber abgrenzbar. Die Frage, wo man gerade steht, beantwortet die Grafik nicht.',
+  },
+  'av-wertfunktion': {
+    title: 'Die Wertfunktion der Prospect Theory',
+    description:
+      'Ein Achsenkreuz, dessen Ursprung den Bezugspunkt darstellt. Nach rechts sind Gewinne aufgetragen, nach links Verluste; senkrecht der empfundene Wert. Im Gewinnbereich verläuft die Kurve flach ansteigend und wird nach oben hin immer flacher. Im Verlustbereich fällt sie deutlich steiler ab. Zwei gestrichelte Hilfslinien zeigen denselben Betrag in beide Richtungen: Ein Gewinn von hundert Euro hebt die Kurve nur wenig, ein Verlust von hundert Euro drückt sie ungefähr doppelt so weit nach unten. Diese Unwucht ist die Verlustaversion. Sie erklärt, warum Anleger Verlustpositionen halten und Gewinnpositionen zu früh verkaufen.',
+    caption:
+      'Derselbe Betrag, ungefähr die doppelte Wirkung. Die Kurve ist im Verlustbereich steiler – das ist die Verlustaversion.',
+  },
+  'fa-drei-abschluesse': {
+    title: 'Wie die drei Abschlüsse zusammenhängen',
+    description:
+      'Drei nebeneinanderstehende Kästen. Links die Gewinn- und Verlustrechnung mit Umsatz minus Kosten gleich Gewinn. In der Mitte die Kapitalflussrechnung, die beim Gewinn ansetzt, die nicht zahlungswirksamen Posten herausrechnet und den tatsächlichen Mittelzufluss ergibt. Rechts die Bilanz mit Vermögen minus Schulden gleich Eigenkapital. Ein Pfeil führt vom Gewinn in die Kapitalflussrechnung, ein zweiter vom Mittelzufluss in die Bilanz, wo er den Kassenbestand verändert. Eine gestrichelte Rückführung zeigt, dass der Gewinn zugleich das Eigenkapital erhöht und sich der Kreis damit schließt. Wer nur einen der drei Abschlüsse liest, sieht ein Drittel des Bildes.',
+    caption:
+      'Drei Sichten auf dasselbe Unternehmen, über zwei Größen verbunden: den Gewinn und die Kasse.',
   },
   'ta-elliott-zyklus': {
     title: 'Der Elliott-Grundzyklus',

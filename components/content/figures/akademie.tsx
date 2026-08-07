@@ -759,3 +759,1044 @@ export function TaElliottZyklus() {
     </FigureSvg>
   )
 }
+
+/* ------------------------------------------------ Elliott: Sonderformen */
+
+/**
+ * Die Zeichnungen ab hier gehören zu den vier Elliott-Lektionen.
+ *
+ * ## Warum so viele
+ *
+ * Weil dieser Stoff ohne Bild nicht vermittelbar ist. „Eine Flat ist eine
+ * 3-3-5-Korrektur, deren Welle B mindestens 90 Prozent von A zurückholt und
+ * bei der erweiterten Form über deren Startpunkt hinausläuft“ – dieser Satz
+ * ist korrekt und für jemanden, der die Form nicht vor Augen hat, nutzlos.
+ * Die Unterschiede zwischen den Korrekturformen sind ausschließlich formal;
+ * sie liegen in Proportionen und Überschneidungen, und beides sieht man.
+ *
+ * ## Warum die Formen schematisch und nicht als Kursverlauf gezeichnet sind
+ *
+ * Ein echter Chart müsste die Zählung bereits enthalten, die er belegen soll.
+ * Genau das ist der Haupteinwand gegen die Theorie: Im Rückblick lässt sich
+ * fast jeder Verlauf regelkonform auszählen. Eine erfundene, klar gezeichnete
+ * Form behauptet nichts über die Wirklichkeit – sie zeigt die Definition.
+ */
+
+/** Ein nummerierter oder beschrifteter Punkt auf einem Wellenzug. */
+function WellenMarke({
+  x,
+  y,
+  text,
+  farbe = MARKE,
+  radius = 10,
+}: {
+  x: number
+  y: number
+  text: string
+  farbe?: string
+  radius?: number
+}) {
+  return (
+    <g>
+      <circle
+        cx={x}
+        cy={y}
+        r={radius}
+        fill="var(--c-surface)"
+        stroke={farbe}
+        strokeWidth={2}
+      />
+      <text
+        x={x}
+        y={y + 4}
+        textAnchor="middle"
+        fontSize={radius > 9 ? 12 : 10}
+        fontWeight={600}
+        fill={farbe}
+      >
+        {text}
+      </text>
+    </g>
+  )
+}
+
+/** Wo eine Impulswelle gestreckt wird – in 1, in 3 oder in 5. */
+export function TaElliottExtension() {
+  const zuege: { titel: string; punkte: [number, number][]; lang: number }[] = [
+    {
+      titel: 'Streckung in Welle 3',
+      punkte: [
+        [0, 130],
+        [22, 96],
+        [36, 112],
+        [104, 34],
+        [124, 62],
+        [150, 38],
+      ],
+      lang: 3,
+    },
+    {
+      titel: 'Streckung in Welle 5',
+      punkte: [
+        [0, 130],
+        [26, 104],
+        [40, 118],
+        [78, 78],
+        [94, 94],
+        [150, 24],
+      ],
+      lang: 5,
+    },
+    {
+      titel: 'Streckung in Welle 1',
+      punkte: [
+        [0, 130],
+        [70, 48],
+        [92, 84],
+        [118, 54],
+        [128, 68],
+        [150, 44],
+      ],
+      lang: 1,
+    },
+  ]
+
+  return (
+    <FigureSvg id="ta-elliott-extension" viewBox="0 0 640 260">
+      {zuege.map((zug, i) => {
+        const dx = 30 + i * 205
+        const verschoben = zug.punkte.map(
+          ([x, y]) => [x + dx, y + 40] as [number, number]
+        )
+        return (
+          <g key={zug.titel}>
+            <Beschriftung x={dx + 75} y={32} anchor="middle" groesse={13}>
+              {zug.titel}
+            </Beschriftung>
+            <path d={pfad(verschoben)} fill="none" stroke={MARKE} strokeWidth={2.2} />
+            {verschoben.slice(1).map((punkt, index) => (
+              <WellenMarke
+                key={index}
+                x={punkt[0]}
+                y={punkt[1]}
+                text={String(index + 1)}
+                radius={9}
+                farbe={index + 1 === zug.lang ? AKZENT : MARKE}
+              />
+            ))}
+          </g>
+        )
+      })}
+      <Beschriftung x={320} y={240} anchor="middle" ton="leise" groesse={12}>
+        Genau eine der drei Impulswellen ist gestreckt – die anderen beiden ähneln
+        einander dann in der Länge.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/** Die verkürzte fünfte Welle: Welle 5 überbietet das Hoch von Welle 3 nicht. */
+export function TaElliottVerkuerzung() {
+  const punkte: [number, number][] = [
+    [40, 210],
+    [110, 140],
+    [150, 172],
+    [300, 60],
+    [360, 108],
+    [430, 76],
+  ]
+  return (
+    <FigureSvg id="ta-elliott-verkuerzung" viewBox="0 0 640 260">
+      <line
+        x1={300}
+        y1={60}
+        x2={600}
+        y2={60}
+        stroke={GEFAHR}
+        strokeWidth={1.2}
+        strokeDasharray="5 4"
+      />
+      <Beschriftung x={462} y={52} ton="gefahr" groesse={12}>
+        Hoch der Welle 3
+      </Beschriftung>
+      <path d={pfad(punkte)} fill="none" stroke={MARKE} strokeWidth={2.4} />
+      {['1', '2', '3', '4', '5'].map((text, i) => (
+        <WellenMarke
+          key={text}
+          x={punkte[i + 1][0]}
+          y={punkte[i + 1][1]}
+          text={text}
+          farbe={text === '5' ? AKZENT : MARKE}
+        />
+      ))}
+      <line x1={430} y1={76} x2={430} y2={60} stroke={AKZENT} strokeWidth={1.4} />
+      <Beschriftung x={444} y={74} ton="akzent" groesse={12}>
+        Welle 5 bleibt darunter
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/** Führende und endende Diagonale im Vergleich. */
+export function TaElliottDiagonale() {
+  return (
+    <FigureSvg id="ta-elliott-diagonale" viewBox="0 0 640 280">
+      {/* Führende Diagonale – in Welle 1 oder A */}
+      <Beschriftung x={160} y={30} anchor="middle" groesse={13}>
+        Führende Diagonale (Welle 1 oder A)
+      </Beschriftung>
+      <path
+        d={pfad([
+          [40, 200],
+          [110, 110],
+          [80, 158],
+          [180, 78],
+          [140, 130],
+          [250, 60],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2.2}
+      />
+      <path
+        d={pfad([
+          [40, 200],
+          [250, 60],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <path
+        d={pfad([
+          [80, 158],
+          [140, 130],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <Beschriftung x={44} y={228} ton="leise" groesse={12}>
+        Keil, der sich verengt. Wellen 1, 3 und 5 sind je dreiteilig.
+      </Beschriftung>
+
+      {/* Endende Diagonale – in Welle 5 oder C */}
+      <Beschriftung x={480} y={30} anchor="middle" groesse={13}>
+        Endende Diagonale (Welle 5 oder C)
+      </Beschriftung>
+      <path
+        d={pfad([
+          [360, 190],
+          [470, 96],
+          [420, 140],
+          [530, 70],
+          [490, 104],
+          [580, 56],
+        ])}
+        fill="none"
+        stroke={AKZENT}
+        strokeWidth={2.2}
+      />
+      <path
+        d={pfad([
+          [360, 190],
+          [580, 56],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <path
+        d={pfad([
+          [420, 140],
+          [490, 104],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+    </FigureSvg>
+  )
+}
+
+/** Zickzack: die scharfe Korrektur im 5-3-5-Aufbau. */
+export function TaElliottZigzag() {
+  const punkte: [number, number][] = [
+    [50, 50],
+    [180, 170],
+    [270, 110],
+    [420, 220],
+  ]
+  return (
+    <FigureSvg id="ta-elliott-zigzag" viewBox="0 0 640 260">
+      <path d={pfad(punkte)} fill="none" stroke={MARKE} strokeWidth={2.4} />
+      <WellenMarke x={180} y={170} text="A" />
+      <WellenMarke x={270} y={110} text="B" />
+      <WellenMarke x={420} y={220} text="C" />
+      <Beschriftung x={104} y={100} ton="leise" groesse={12}>
+        5
+      </Beschriftung>
+      <Beschriftung x={228} y={128} ton="leise" groesse={12}>
+        3
+      </Beschriftung>
+      <Beschriftung x={352} y={158} ton="leise" groesse={12}>
+        5
+      </Beschriftung>
+      <line
+        x1={50}
+        y1={50}
+        x2={600}
+        y2={50}
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <Beschriftung x={452} y={196} ton="akzent" groesse={12}>
+        C läuft klar unter A
+      </Beschriftung>
+      <Legende
+        x={50}
+        y={244}
+        eintraege={[
+          { farbe: MARKE, text: 'A und C fünfteilig, B dreiteilig – daher 5-3-5' },
+          { farbe: AKZENT, text: 'B holt selten mehr als 61,8 % von A zurück' },
+        ]}
+      />
+    </FigureSvg>
+  )
+}
+
+/** Die drei Flat-Formen nebeneinander. */
+export function TaElliottFlat() {
+  const formen: {
+    titel: string
+    punkte: [number, number][]
+    hinweis: string
+  }[] = [
+    {
+      titel: 'Normale Flat',
+      punkte: [
+        [0, 30],
+        [60, 120],
+        [120, 36],
+        [176, 126],
+      ],
+      hinweis: 'B ≈ A, C ≈ A',
+    },
+    {
+      titel: 'Erweiterte Flat',
+      punkte: [
+        [0, 30],
+        [56, 116],
+        [116, 14],
+        [176, 146],
+      ],
+      hinweis: 'B über dem Start, C unter A',
+    },
+    {
+      titel: 'Laufende Flat',
+      punkte: [
+        [0, 30],
+        [58, 112],
+        [118, 12],
+        [176, 88],
+      ],
+      hinweis: 'B über dem Start, C endet über A',
+    },
+  ]
+
+  return (
+    <FigureSvg id="ta-elliott-flat" viewBox="0 0 640 280">
+      {formen.map((form, i) => {
+        const dx = 22 + i * 205
+        const verschoben = form.punkte.map(
+          ([x, y]) => [x + dx, y + 46] as [number, number]
+        )
+        return (
+          <g key={form.titel}>
+            <Beschriftung x={dx + 88} y={30} anchor="middle" groesse={13}>
+              {form.titel}
+            </Beschriftung>
+            {/* Höhe des Startpunktes – daran unterscheiden sich die Formen */}
+            <line
+              x1={dx}
+              y1={76}
+              x2={dx + 176}
+              y2={76}
+              stroke={LEISE}
+              strokeWidth={1}
+              strokeDasharray="4 4"
+            />
+            <path
+              d={pfad(verschoben)}
+              fill="none"
+              stroke={i === 0 ? MARKE : AKZENT}
+              strokeWidth={2.2}
+            />
+            {['A', 'B', 'C'].map((text, index) => (
+              <WellenMarke
+                key={text}
+                x={verschoben[index + 1][0]}
+                y={verschoben[index + 1][1]}
+                text={text}
+                radius={9}
+                farbe={i === 0 ? MARKE : AKZENT}
+              />
+            ))}
+            <Beschriftung x={dx + 88} y={228} anchor="middle" ton="leise" groesse={12}>
+              {form.hinweis}
+            </Beschriftung>
+          </g>
+        )
+      })}
+      <Beschriftung x={320} y={262} anchor="middle" ton="leise" groesse={12}>
+        Alle drei sind 3-3-5: A und B je dreiteilig, C fünfteilig. Die gestrichelte Linie
+        ist der Startpunkt von A.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/** Kontrahierendes, Barrier- und expandierendes Dreieck. */
+export function TaElliottDreieck() {
+  return (
+    <FigureSvg id="ta-elliott-dreieck" viewBox="0 0 640 280">
+      {/* Kontrahierend */}
+      <Beschriftung x={110} y={30} anchor="middle" groesse={13}>
+        Kontrahierend
+      </Beschriftung>
+      <path
+        d={pfad([
+          [30, 60],
+          [190, 180],
+          [50, 96],
+          [180, 152],
+          [78, 120],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2}
+      />
+      <path
+        d={pfad([
+          [30, 60],
+          [110, 118],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <path
+        d={pfad([
+          [190, 180],
+          [110, 126],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <Beschriftung x={110} y={216} anchor="middle" ton="leise" groesse={12}>
+        Beide Begrenzungen laufen aufeinander zu
+      </Beschriftung>
+
+      {/* Barrier */}
+      <Beschriftung x={320} y={30} anchor="middle" groesse={13}>
+        Barrier
+      </Beschriftung>
+      <path
+        d={pfad([
+          [245, 60],
+          [400, 170],
+          [262, 92],
+          [398, 168],
+          [288, 122],
+        ])}
+        fill="none"
+        stroke={AKZENT}
+        strokeWidth={2}
+      />
+      <path
+        d={pfad([
+          [400, 172],
+          [240, 172],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <Beschriftung x={320} y={216} anchor="middle" ton="leise" groesse={12}>
+        Die Unterseite bleibt waagerecht
+      </Beschriftung>
+
+      {/* Expandierend */}
+      <Beschriftung x={530} y={30} anchor="middle" groesse={13}>
+        Expandierend
+      </Beschriftung>
+      <path
+        d={pfad([
+          [470, 110],
+          [520, 148],
+          [500, 84],
+          [560, 176],
+          [530, 60],
+        ])}
+        fill="none"
+        stroke={GEFAHR}
+        strokeWidth={2}
+      />
+      <path
+        d={pfad([
+          [468, 112],
+          [534, 56],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <path
+        d={pfad([
+          [518, 150],
+          [564, 180],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <Beschriftung x={530} y={216} anchor="middle" ton="leise" groesse={12}>
+        Die Schwankung nimmt zu – selten
+      </Beschriftung>
+
+      <Beschriftung x={320} y={258} anchor="middle" ton="leise" groesse={12}>
+        Jedes Dreieck hat fünf Abschnitte A bis E, und jeder davon ist dreiteilig. Es
+        steht fast immer in Welle 4 oder in Welle B.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/** Doppelte und dreifache Kombination: W-X-Y und W-X-Y-X-Z. */
+export function TaElliottKombination() {
+  return (
+    <FigureSvg id="ta-elliott-kombination" viewBox="0 0 640 300">
+      {/* W-X-Y */}
+      <Beschriftung x={160} y={30} anchor="middle" groesse={13}>
+        Doppelte Korrektur: W-X-Y
+      </Beschriftung>
+      <path
+        d={pfad([
+          [36, 56],
+          [70, 118],
+          [100, 88],
+          [128, 132],
+          [168, 84],
+          [206, 148],
+          [240, 116],
+          [280, 176],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2.2}
+      />
+      <WellenMarke x={128} y={132} text="W" radius={11} />
+      <WellenMarke x={168} y={84} text="X" radius={11} farbe={AKZENT} />
+      <WellenMarke x={280} y={176} text="Y" radius={11} />
+      <Beschriftung x={36} y={216} ton="leise" groesse={12}>
+        Zwei Korrekturen, verbunden durch X.
+      </Beschriftung>
+      <Beschriftung x={36} y={234} ton="leise" groesse={12}>
+        Hier: Zickzack – X – Flat.
+      </Beschriftung>
+
+      {/* W-X-Y-X-Z */}
+      <Beschriftung x={470} y={30} anchor="middle" groesse={13}>
+        Dreifache Korrektur: W-X-Y-X-Z
+      </Beschriftung>
+      <path
+        d={pfad([
+          [340, 56],
+          [368, 106],
+          [392, 82],
+          [414, 118],
+          [446, 78],
+          [474, 128],
+          [498, 104],
+          [520, 142],
+          [552, 106],
+          [580, 158],
+          [604, 136],
+          [624, 178],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2.2}
+      />
+      <WellenMarke x={414} y={118} text="W" radius={10} />
+      <WellenMarke x={446} y={78} text="X" radius={10} farbe={AKZENT} />
+      <WellenMarke x={520} y={142} text="Y" radius={10} />
+      <WellenMarke x={552} y={106} text="X" radius={10} farbe={AKZENT} />
+      <WellenMarke x={624} y={178} text="Z" radius={10} />
+      <Beschriftung x={340} y={216} ton="leise" groesse={12}>
+        Drei Korrekturen, zwei X-Wellen dazwischen.
+      </Beschriftung>
+      <Beschriftung x={340} y={234} ton="leise" groesse={12}>
+        Mehr als drei sind nicht vorgesehen.
+      </Beschriftung>
+
+      <Beschriftung x={320} y={276} anchor="middle" ton="leise" groesse={12}>
+        Kombinationen laufen flacher und länger als eine einzelne Korrektur. Sie sind der
+        Grund, warum sich fast jede Seitwärtsphase auszählen lässt.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/**
+ * Welche Welle welches Verhältnis anläuft.
+ *
+ * Die Zahlen sind die in der Literatur üblichen Erwartungswerte, keine
+ * gemessenen Häufigkeiten. Sie stehen hier als Beschriftung an der Welle,
+ * zu der sie gehören – das ist der ganze Zweck der Grafik: Ein Verhältnis
+ * ohne die Welle, auf die es sich bezieht, ist keine Aussage.
+ */
+export function TaElliottZiele() {
+  const punkte: [number, number][] = [
+    [50, 240],
+    [130, 168],
+    [174, 208],
+    [330, 76],
+    [392, 128],
+    [500, 58],
+  ]
+  /*
+    Jede Beschriftung bekommt ihre eigene Höhe und ihren eigenen Anker.
+
+    Der erste Entwurf setzte alle oberen Beschriftungen auf dieselbe Zeile und
+    verankerte sie am Anfang. Ergebnis: Die Texte zu Welle 1, 3 und 5 lagen
+    übereinander, und der letzte lief über den rechten Rand hinaus. Auffallen
+    konnte das keiner Prüfung – der Ankerpunkt lag im Bild, nur das Textende
+    nicht. Deshalb hier von Hand: `zeile` staffelt die Höhe, `anker` zieht die
+    rechte Beschriftung nach innen.
+  */
+  const ziele: {
+    x: number
+    y: number
+    text: string
+    zeile: number
+    anker: 'start' | 'middle' | 'end'
+    ankerX: number
+  }[] = [
+    {
+      x: 130,
+      y: 168,
+      text: 'Welle 1 – kein Verhältnis, sie ist der Maßstab',
+      zeile: 26,
+      anker: 'start',
+      ankerX: 30,
+    },
+    {
+      x: 330,
+      y: 76,
+      text: 'Welle 3 – 1,618 / 2,618 × Welle 1',
+      zeile: 46,
+      anker: 'middle',
+      ankerX: 330,
+    },
+    {
+      x: 500,
+      y: 58,
+      text: 'Welle 5 – 0,618 × (Start 1 bis Ende 3)',
+      zeile: 26,
+      anker: 'end',
+      ankerX: 612,
+    },
+    {
+      x: 174,
+      y: 208,
+      text: 'Welle 2 – 50 / 61,8 / 78,6 % von Welle 1',
+      zeile: 278,
+      anker: 'start',
+      ankerX: 30,
+    },
+    {
+      x: 392,
+      y: 128,
+      text: 'Welle 4 – 23,6 / 38,2 % von Welle 3',
+      zeile: 296,
+      anker: 'start',
+      ankerX: 330,
+    },
+  ]
+
+  return (
+    <FigureSvg id="ta-elliott-ziele" viewBox="0 0 640 310">
+      <path d={pfad(punkte)} fill="none" stroke={MARKE} strokeWidth={2.4} />
+      {['1', '2', '3', '4', '5'].map((text, i) => (
+        <WellenMarke key={text} x={punkte[i + 1][0]} y={punkte[i + 1][1]} text={text} />
+      ))}
+      {ziele.map((ziel) => {
+        const oben = ziel.zeile < 150
+        return (
+          <g key={ziel.text}>
+            <line
+              x1={ziel.x}
+              y1={ziel.y + (oben ? -12 : 12)}
+              x2={ziel.x}
+              y2={oben ? ziel.zeile + 6 : ziel.zeile - 14}
+              stroke={LEISE}
+              strokeWidth={1}
+              strokeDasharray="3 3"
+            />
+            <Beschriftung
+              x={ziel.ankerX}
+              y={ziel.zeile}
+              anchor={ziel.anker}
+              ton="leise"
+              groesse={11.5}
+            >
+              {ziel.text}
+            </Beschriftung>
+          </g>
+        )
+      })}
+    </FigureSvg>
+  )
+}
+
+/**
+ * Der Wechsel: Ist Welle 2 scharf, wird Welle 4 flach – und umgekehrt.
+ *
+ * Elliotts „Alternation“ ist keine Regel, sondern eine Erwartung. Sie steht
+ * hier trotzdem als eigene Grafik, weil sie die einzige Aussage der Theorie
+ * ist, die eine Zählung im Voraus einschränkt statt sie nachträglich zu
+ * rechtfertigen.
+ */
+export function TaElliottWechsel() {
+  return (
+    <FigureSvg id="ta-elliott-wechsel" viewBox="0 0 640 260">
+      <path
+        d={pfad([
+          [50, 210],
+          [150, 130],
+          [186, 196],
+          [340, 70],
+          [400, 96],
+          [430, 82],
+          [460, 100],
+          [560, 40],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2.4}
+      />
+      <WellenMarke x={150} y={130} text="1" />
+      <WellenMarke x={186} y={196} text="2" />
+      <WellenMarke x={340} y={70} text="3" />
+      <WellenMarke x={460} y={100} text="4" />
+      <WellenMarke x={560} y={40} text="5" />
+
+      <rect
+        x={150}
+        y={116}
+        width={44}
+        height={96}
+        fill={AKZENT}
+        fillOpacity={BAND_DECKKRAFT}
+      />
+      <Beschriftung x={172} y={232} anchor="middle" ton="akzent" groesse={12}>
+        scharf und kurz
+      </Beschriftung>
+
+      <rect
+        x={340}
+        y={58}
+        width={128}
+        height={56}
+        fill={MARKE}
+        fillOpacity={BAND_DECKKRAFT}
+      />
+      <Beschriftung x={404} y={134} anchor="middle" groesse={12}>
+        flach und lang
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/** Die neun Wellengrade – dieselbe Form auf jeder Zeitebene. */
+export function TaElliottGrade() {
+  const gross: [number, number][] = [
+    [40, 220],
+    [180, 130],
+    [250, 178],
+    [450, 60],
+    [520, 108],
+    [600, 46],
+  ]
+  return (
+    <FigureSvg id="ta-elliott-grade" viewBox="0 0 640 280">
+      <path d={pfad(gross)} fill="none" stroke={MARKE} strokeWidth={3} />
+      {['1', '2', '3', '4', '5'].map((text, i) => (
+        <WellenMarke key={text} x={gross[i + 1][0]} y={gross[i + 1][1]} text={text} />
+      ))}
+
+      {/* Welle 1 zerfällt selbst in fünf – gezeichnet als Ausschnitt */}
+      <rect
+        x={36}
+        y={116}
+        width={150}
+        height={110}
+        fill="none"
+        stroke={AKZENT}
+        strokeWidth={1.2}
+        strokeDasharray="4 3"
+      />
+      <path
+        d={pfad([
+          [44, 214],
+          [72, 186],
+          [86, 200],
+          [128, 152],
+          [150, 172],
+          [176, 134],
+        ])}
+        fill="none"
+        stroke={AKZENT}
+        strokeWidth={1.6}
+      />
+      <Beschriftung x={44} y={110} ton="akzent" groesse={12}>
+        Welle 1, eine Ebene tiefer: wieder fünf Wellen
+      </Beschriftung>
+
+      {/* Welle 2 zerfällt in drei */}
+      <path
+        d={pfad([
+          [184, 134],
+          [212, 164],
+          [228, 148],
+          [248, 176],
+        ])}
+        fill="none"
+        stroke={GEFAHR}
+        strokeWidth={1.6}
+      />
+      <Beschriftung x={214} y={206} ton="gefahr" groesse={12}>
+        Welle 2: drei
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/* ------------------------------------ Elliott: Häufigkeit je Welle */
+
+/**
+ * Die beiden folgenden Grafiken zeigen, welche Marke bei welcher Welle als
+ * die übliche gilt.
+ *
+ * ## Warum hier „üblich“ steht und nicht ein Prozentsatz
+ *
+ * Die Wellenliteratur nennt für jede Welle bevorzugte Verhältnisse und
+ * beschreibt sie als häufiger oder seltener. Was sie **nicht** liefert, ist
+ * eine Auszählung: keine Stichprobe, kein Zeitraum, keine Methode. Eine
+ * Angabe wie „Welle 2 korrigiert in 61 Prozent der Fälle auf 61,8 Prozent“
+ * wäre deshalb erfunden, auch wenn sie überall so klänge wie die übrigen
+ * Zahlen dieser Seite.
+ *
+ * Gezeigt wird darum eine **Rangfolge**, keine Wahrscheinlichkeit: kräftig
+ * markiert, was die Literatur als Regelfall nennt, blasser das Übrige. Das
+ * ist die stärkste Aussage, die sich hier belegen lässt.
+ */
+
+/** Eine Skala mit Marken, auf der je Welle ein Bereich hervorgehoben ist. */
+function Skala({
+  y,
+  x0,
+  breite,
+  von,
+  bis,
+  marken,
+  regel,
+  auch,
+  titel,
+  einheit,
+}: {
+  y: number
+  x0: number
+  breite: number
+  von: number
+  bis: number
+  marken: number[]
+  /** Der Wert, den die Literatur als Regelfall nennt. */
+  regel: number
+  /** Weitere gebräuchliche Werte. */
+  auch: number[]
+  titel: string
+  einheit: (wert: number) => string
+}) {
+  const zu = (wert: number) => x0 + ((wert - von) / (bis - von)) * breite
+  return (
+    <g>
+      <Beschriftung x={x0 - 12} y={y + 4} anchor="end" groesse={12.5} gewicht="kraeftig">
+        {titel}
+      </Beschriftung>
+      <line x1={x0} y1={y} x2={x0 + breite} y2={y} stroke={RASTER} strokeWidth={1.4} />
+      {marken.map((m) => {
+        const istRegel = m === regel
+        const istAuch = auch.includes(m)
+        const farbe = istRegel ? MARKE : istAuch ? AKZENT : LEISE
+        return (
+          <g key={m}>
+            <line
+              x1={zu(m)}
+              y1={y - (istRegel ? 11 : istAuch ? 8 : 4)}
+              x2={zu(m)}
+              y2={y + (istRegel ? 11 : istAuch ? 8 : 4)}
+              stroke={farbe}
+              strokeWidth={istRegel ? 3 : istAuch ? 2 : 1}
+            />
+            {(istRegel || istAuch) && (
+              <text
+                x={zu(m)}
+                y={y - 16}
+                textAnchor="middle"
+                fontSize={istRegel ? 12 : 11}
+                fontWeight={istRegel ? 600 : 400}
+                fill={farbe}
+              >
+                {einheit(m)}
+              </text>
+            )}
+          </g>
+        )
+      })}
+    </g>
+  )
+}
+
+/** Wie tief die einzelnen Korrekturwellen üblicherweise zurücklaufen. */
+export function TaElliottRuecklaeufe() {
+  const prozent = (w: number) => `${String(w).replace('.', ',')} %`
+  const alle = [23.6, 38.2, 50, 61.8, 78.6, 90, 100]
+  return (
+    <FigureSvg id="ta-elliott-ruecklaeufe" viewBox="0 0 640 300">
+      <Beschriftung x={175} y={26} groesse={12} ton="leise">
+        Anteil der vorigen Welle, der zurückgeholt wird
+      </Beschriftung>
+
+      <Skala
+        y={64}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={61.8}
+        auch={[50, 78.6]}
+        titel="Welle 2"
+        einheit={prozent}
+      />
+      <Skala
+        y={126}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={38.2}
+        auch={[23.6, 50]}
+        titel="Welle 4"
+        einheit={prozent}
+      />
+      <Skala
+        y={188}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={50}
+        auch={[38.2, 61.8]}
+        titel="Welle B (Zickzack)"
+        einheit={prozent}
+      />
+      <Skala
+        y={250}
+        x0={175}
+        breite={400}
+        von={20}
+        bis={104}
+        marken={alle}
+        regel={100}
+        auch={[90]}
+        titel="Welle B (Flat)"
+        einheit={prozent}
+      />
+
+      <Legende
+        x={175}
+        y={288}
+        eintraege={[
+          { farbe: MARKE, text: 'Regelfall laut Literatur' },
+          { farbe: AKZENT, text: 'ebenfalls gebräuchlich' },
+        ]}
+      />
+    </FigureSvg>
+  )
+}
+
+/** Wie weit die Impulswellen üblicherweise über die vorige hinauslaufen. */
+export function TaElliottStreckungen() {
+  const faktor = (w: number) => `${String(w).replace('.', ',')} ×`
+  const alle = [0.618, 1.0, 1.618, 2.618, 4.236]
+  return (
+    <FigureSvg id="ta-elliott-streckungen" viewBox="0 0 640 250">
+      <Beschriftung x={190} y={26} groesse={12} ton="leise">
+        Vielfaches der Bezugswelle
+      </Beschriftung>
+
+      <Skala
+        y={70}
+        x0={190}
+        breite={380}
+        von={0.4}
+        bis={4.5}
+        marken={alle}
+        regel={1.618}
+        auch={[2.618, 4.236]}
+        titel="Welle 3 (an Welle 1)"
+        einheit={faktor}
+      />
+      <Skala
+        y={136}
+        x0={190}
+        breite={380}
+        von={0.4}
+        bis={4.5}
+        marken={alle}
+        regel={0.618}
+        auch={[1.0, 1.618]}
+        titel="Welle 5 (an 1 bis 3)"
+        einheit={faktor}
+      />
+      <Skala
+        y={202}
+        x0={190}
+        breite={380}
+        von={0.4}
+        bis={4.5}
+        marken={alle}
+        regel={1.0}
+        auch={[1.618]}
+        titel="Welle C (an Welle A)"
+        einheit={faktor}
+      />
+    </FigureSvg>
+  )
+}

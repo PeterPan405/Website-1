@@ -135,6 +135,7 @@ export const makroanalyseLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Wirtschaftsleistung wächst nicht gleichmäßig, sondern in Wellen. Die Einteilung in vier Phasen ist alt und hat sich als Beschreibung bewährt: Aufschwung, Hochkonjunktur, Abschwung, Rezession.',
       },
+      { type: 'figure', figure: 'ma-konjunkturzyklus' },
       {
         type: 'table',
         caption: 'Was in den Phasen üblicherweise geschieht.',
@@ -503,6 +504,7 @@ export const makroanalyseLektionen: Lektion[] = [
         type: 'paragraph',
         text: 'Trägt man die Renditen von Staatsanleihen desselben Schuldners nach Laufzeit auf, entsteht eine Kurve: von wenigen Monaten bis dreißig Jahre. Ihre Form enthält mehr Information als jede einzelne Rendite.',
       },
+      { type: 'figure', figure: 'ma-zinsstruktur' },
       {
         type: 'table',
         caption: 'Die drei Grundformen.',
