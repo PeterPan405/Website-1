@@ -1800,3 +1800,155 @@ export function TaElliottStreckungen() {
     </FigureSvg>
   )
 }
+
+/**
+ * Wo jede Welle dreht – der Umkehrbereich als Band, nicht als Linie.
+ *
+ * ## Warum ein Band und kein Strich
+ *
+ * Die vorigen beiden Grafiken zeigen einzelne Marken. Das verleitet zu der
+ * Vorstellung, eine Welle ende auf einem Punkt. Sie endet aber in einem
+ * Bereich, und zwar aus einem rechnerischen Grund: Zwischen 50 und 78,6
+ * Prozent liegen bei einer Bewegung von 100 Punkten 28,6 Punkte. Wer auf den
+ * Punkt plant, plant auf eine Genauigkeit, die die Methode nicht hergibt.
+ *
+ * Die Bänder liegen deshalb dort, wo die Welle laut Literatur endet – und sie
+ * sind absichtlich breit gezeichnet.
+ */
+export function TaElliottUmkehrbereiche() {
+  const punkte: [number, number][] = [
+    [60, 250],
+    [140, 180],
+    [180, 215],
+    [340, 90],
+    [400, 140],
+    [520, 60],
+  ]
+
+  /*
+    Die Bänder sind aus dem Wellenzug gerechnet, nicht geschätzt.
+
+    Welle 1 misst 70 Einheiten (250 → 180). Alles Weitere folgt daraus:
+    Welle 2 dreht zwischen 50 und 78,6 Prozent davon, Welle 4 zwischen 23,6
+    und 38,2 Prozent der Welle 3, und so fort. Läge hier eine geschätzte
+    Zahl, widerspräche die Zeichnung ihrer eigenen Beschriftung – derselbe
+    Fehler wie in der ersten Fassung der Effizienzlinie.
+  */
+  const w1 = 250 - 180
+  const w3 = 215 - 90
+  const eins_bis_drei = 250 - 90
+
+  const baender: {
+    von: number
+    bis: number
+    abX: number
+    text: string
+    farbe: string
+  }[] = [
+    {
+      von: 180 + w1 * 0.5,
+      bis: 180 + w1 * 0.786,
+      abX: 150,
+      text: 'Welle 2 dreht: 50 – 78,6 % von Welle 1',
+      farbe: AKZENT,
+    },
+    {
+      von: 215 - w1 * 2.618,
+      bis: 215 - w1 * 1.618,
+      abX: 200,
+      text: 'Welle 3 dreht: 1,618 – 2,618 × Welle 1',
+      farbe: MARKE,
+    },
+    {
+      von: 90 + w3 * 0.236,
+      bis: 90 + w3 * 0.382,
+      abX: 350,
+      text: 'Welle 4 dreht: 23,6 – 38,2 % von Welle 3',
+      farbe: AKZENT,
+    },
+    {
+      von: 140 - eins_bis_drei * 0.618,
+      bis: 140 - w1 * 1.0,
+      abX: 410,
+      text: 'Welle 5 dreht: 0,618 × (1–3) bis ≈ Welle 1',
+      farbe: MARKE,
+    },
+  ]
+
+  return (
+    <FigureSvg id="ta-elliott-umkehrbereiche" viewBox="0 0 640 330">
+      {baender.map((b) => (
+        <g key={b.text}>
+          <rect
+            x={b.abX}
+            y={Math.min(b.von, b.bis)}
+            width={600 - b.abX}
+            height={Math.abs(b.bis - b.von)}
+            fill={b.farbe}
+            fillOpacity={0.14}
+          />
+          <line
+            x1={b.abX}
+            y1={Math.min(b.von, b.bis)}
+            x2={600}
+            y2={Math.min(b.von, b.bis)}
+            stroke={b.farbe}
+            strokeWidth={1}
+            strokeDasharray="4 3"
+          />
+          <line
+            x1={b.abX}
+            y1={Math.max(b.von, b.bis)}
+            x2={600}
+            y2={Math.max(b.von, b.bis)}
+            stroke={b.farbe}
+            strokeWidth={1}
+            strokeDasharray="4 3"
+          />
+        </g>
+      ))}
+
+      <path d={pfad(punkte)} fill="none" stroke={MARKE} strokeWidth={2.6} />
+      {['1', '2', '3', '4', '5'].map((text, i) => (
+        <g key={text}>
+          <circle
+            cx={punkte[i + 1][0]}
+            cy={punkte[i + 1][1]}
+            r={10}
+            fill="var(--c-surface)"
+            stroke={MARKE}
+            strokeWidth={2}
+          />
+          <text
+            x={punkte[i + 1][0]}
+            y={punkte[i + 1][1] + 4}
+            textAnchor="middle"
+            fontSize={12}
+            fontWeight={600}
+            fill={MARKE}
+          >
+            {text}
+          </text>
+        </g>
+      ))}
+
+      {/* Die Beschriftungen stehen untereinander, nicht an den Bändern:
+          bei vier Bändern über 250 Pixel Höhe kollidieren sie sonst. */}
+      {baender.map((b, i) => (
+        <g key={`t${b.text}`}>
+          <rect
+            x={30}
+            y={272 + i * 14 - 8}
+            width={9}
+            height={9}
+            fill={b.farbe}
+            fillOpacity={0.6}
+          />
+          <Beschriftung x={46} y={272 + i * 14} ton="leise" groesse={11.5}>
+            {b.text}
+          </Beschriftung>
+        </g>
+      ))}
+    </FigureSvg>
+  )
+}

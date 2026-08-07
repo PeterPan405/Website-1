@@ -74,6 +74,8 @@ export type FigureId =
   | 'ta-elliott-ruecklaeufe'
   /** Wie weit die Impulswellen üblicherweise über die vorige hinauslaufen. */
   | 'ta-elliott-streckungen'
+  /** Wo jede Welle dreht – der Umkehrbereich als Band. */
+  | 'ta-elliott-umkehrbereiche'
   /* ------------------------------------- Akademie: übrige Bereiche */
   /** Wie das Risiko mit der Zahl der Titel fällt – und wo es aufhört. */
   | 'pt-diversifikation'
@@ -1004,6 +1006,13 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Drei waagerechte Skalen untereinander für Welle 3, Welle 5 und Welle C. Eingetragen sind die gebräuchlichen Vielfachen 0,618, 1,0, 1,618, 2,618 und 4,236. Kräftig hervorgehoben ist jeweils der Regelfall der Wellenliteratur. Welle 3 erreicht danach üblicherweise das 1,618-fache der Welle 1, bei starken Bewegungen das 2,618- oder 4,236-fache. Welle 5 wird meist mit dem 0,618-fachen der Strecke von Beginn Welle 1 bis Ende Welle 3 angesetzt, seltener mit dem Einfachen. Welle C entspricht am häufigsten der Länge von Welle A, daneben dem 1,618-fachen. Auch hier ist eine Rangfolge dargestellt und keine gemessene Häufigkeit.',
     caption:
       'Welle 3 ist die einzige, für die regelmäßig ein Vielfaches über eins erwartet wird. Welle 5 bleibt meist darunter.',
+  },
+  'ta-elliott-umkehrbereiche': {
+    title: 'Wo jede Welle dreht',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen, über den vier waagerechte Bänder gelegt sind. Jedes Band markiert den Bereich, in dem die zugehörige Welle laut Wellenliteratur endet und die Richtung wechselt. Das Band für Welle 2 reicht von 50 bis 78,6 Prozent der Welle 1. Das Band für Welle 3 liegt zwischen dem 1,618-fachen und dem 2,618-fachen der Welle 1, gemessen ab dem Tief der Welle 2. Für Welle 4 liegt es bei 23,6 bis 38,2 Prozent der Welle 3 und damit deutlich flacher als bei Welle 2. Für Welle 5 reicht es vom 0,618-fachen der Strecke zwischen Beginn Welle 1 und Ende Welle 3 bis ungefähr zur Länge der Welle 1. Die Bänder sind bewusst breit: Zwischen 50 und 78,6 Prozent liegen bei einer Bewegung von hundert Punkten fast dreißig Punkte. Eine Welle endet in einem Bereich, nicht auf einem Punkt.',
+    caption:
+      'Jede Welle dreht in ihrem eigenen Bereich – und der ist breit. Wer auf den Punkt plant, plant genauer, als die Methode hergibt.',
   },
   'pt-diversifikation': {
     title: 'Wie weit Streuung das Risiko senkt',

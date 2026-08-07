@@ -1445,7 +1445,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
         text: 'Die praktisch wichtigste dieser Regeln ist die letzte: **Ähneln sich W, Y und Z nicht in der Größe, stimmt die Zählung vermutlich nicht.** Sie ist die einzige, die sich während der laufenden Bewegung prüfen lässt – alle übrigen setzen voraus, dass die Formen bereits fertig sind.',
       },
       {
-type: 'callout',
+        type: 'callout',
         variant: 'warning',
         title: 'Hier wird der Haupteinwand greifbar',
         items: [
@@ -1505,6 +1505,92 @@ type: 'callout',
         text: 'Die wichtigste Aussage daraus ist der Unterschied zwischen den beiden Korrekturwellen im Impuls: **Welle 2 korrigiert tief, Welle 4 flach.** Welle 2 holt regelmäßig 61,8 Prozent der Welle 1 zurück und mitunter 78,6; Welle 4 bleibt meist bei 38,2 Prozent der Welle 3 und oft schon bei 23,6. Wer eine flache erste Korrektur sieht, zählt vermutlich falsch – und umgekehrt.',
       },
       { type: 'figure', figure: 'ta-elliott-streckungen' },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Umkehrbereich: wo die Welle endet und dreht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die beiden Grafiken oben zeigen einzelne Marken. Das verleitet zu der Vorstellung, eine Welle ende auf einem Punkt. Sie endet in einem **Bereich** – und der ist breiter, als die Zahlen vermuten lassen: Zwischen 50 und 78,6 Prozent liegen bei einer Bewegung von 100 Punkten fast 29 Punkte.',
+      },
+      { type: 'figure', figure: 'ta-elliott-umkehrbereiche' },
+      {
+        type: 'table',
+        caption:
+          'Der Bereich, in dem die jeweilige Welle laut Literatur endet – und was danach beginnt.',
+        head: ['Welle', 'Umkehrbereich', 'Gemessen an', 'Was danach folgt'],
+        rows: [
+          [
+            'Welle 1',
+            'kein Bereich – sie setzt den Maßstab',
+            '—',
+            'Welle 2 beginnt, der Rücklauf',
+          ],
+          [
+            'Welle 2',
+            '50 – 78,6 %',
+            'Welle 1, ab deren Hoch abwärts',
+            'Welle 3 beginnt – meist die längste Bewegung',
+          ],
+          [
+            'Welle 3',
+            '1,618 – 2,618 ×',
+            'Welle 1, ab dem Tief der Welle 2',
+            'Welle 4 beginnt, eine flache Korrektur',
+          ],
+          [
+            'Welle 4',
+            '23,6 – 38,2 %',
+            'Welle 3, ab deren Hoch abwärts',
+            'Welle 5 beginnt, der letzte Schub',
+          ],
+          [
+            'Welle 5',
+            '0,618 × (Start 1 bis Ende 3) bis ≈ Welle 1',
+            'ab dem Tief der Welle 4',
+            'die Korrektur A-B-C beginnt',
+          ],
+          [
+            'Welle A',
+            '38,2 – 61,8 %',
+            'der gesamten Bewegung 1 bis 5',
+            'Welle B beginnt, die Gegenbewegung',
+          ],
+          [
+            'Welle B',
+            '38,2 – 61,8 % (Flat: 90 – 105 %)',
+            'Welle A',
+            'Welle C beginnt, meist der stärkste Teil der Korrektur',
+          ],
+          [
+            'Welle C',
+            '1,0 – 1,618 ×',
+            'Welle A, ab dem Hoch der Welle B',
+            'der Zyklus ist beendet, ein neuer beginnt',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Wie man den Bereich in der Praxis eingrenzt',
+        items: [
+          'Die beiden Ränder auftragen, nicht die Mitte. Der Bereich ist die Erwartung, nicht die einzelne Linie.',
+          'Prüfen, ob eine Marke aus einer anderen Herleitung in denselben Bereich fällt – etwa das Hoch der Unterwelle 4 innerhalb von Welle 3, das als Ziel für Welle 4 gilt. Zwei unabhängige Herleitungen auf einem Bereich sind das stärkste Argument, das die Methode hergibt.',
+          'Die Ausschlussmarke daneben eintragen. Sie liegt außerhalb des Umkehrbereichs und sagt, wann die Zählung erledigt ist.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was „dreht dort“ nicht heißt',
+        items: [
+          'Nicht, dass der Kurs im Bereich zwangsläufig umkehrt. Er läuft regelmäßig hindurch – dann war es die falsche Zählung oder eine der Sonderformen.',
+          'Nicht, dass eine Umkehr im Bereich die Zählung bestätigt. Die Bereiche sind breit und liegen dicht beieinander; ein erheblicher Teil des Kursraums ist von irgendeinem belegt.',
+          'Der Bereich ist eine Stelle, an der man hinsieht – kein Signal, an dem man handelt.',
+        ],
+      },
       {
         type: 'paragraph',
         text: 'Bei den Impulswellen ist Welle 3 die einzige, für die regelmäßig ein Vielfaches **über** eins erwartet wird. Welle 5 bleibt in der Regel darunter – das 0,618-fache der Strecke von Beginn Welle 1 bis Ende Welle 3 ist der Regelfall, und genau das ist der rechnerische Ausdruck dafür, dass die letzte Bewegung eines Trends schwächer getragen wird.',
