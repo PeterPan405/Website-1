@@ -779,6 +779,32 @@ jobs:
 
           echo "Auch /news/ trägt das Stylesheet dieses Builds."
 
+          # 6b. Verbietet die Antwort das Speichern – auch auf einer Unterseite?
+          #
+          # Am 7. August 2026 hing ein fremder Abruf stundenlang auf einer alten
+          # Fassung fest, obwohl der Server die neue lieferte. Ursache war nicht
+          # der Server, sondern eine Kopie, die während einer verspäteten
+          # Auslieferung entstanden war und nie erneuert wurde.
+          #
+          # Dagegen steht seither `no-store` in der .htaccess: Es verbietet das
+          # Speichern, statt nur um Rückfrage zu bitten. Diese Prüfung stellt
+          # sicher, dass die Regel auch tatsächlich ankommt – sie hängt an
+          # `mod_headers` und fiele sonst stillschweigend aus.
+          n_steuerung=$(curl -sSI -A "$UA" "$URL/news/" \
+            | grep -i '^cache-control:' | tr -d '\r' | head -1 || true)
+          case "$n_steuerung" in
+            *no-store*)
+              echo "/news/ verbietet das Zwischenspeichern: $n_steuerung"
+              ;;
+            *)
+              echo "::warning::/news/ erlaubt das Speichern der Seite:"
+              echo "  ${n_steuerung:-(keine Cache-Control-Kopfzeile)}"
+              echo "  Erwartet wird 'no-store'. Ohne das kann ein fremder Abruf"
+              echo "  eine alte Fassung behalten und beliebig lange ausgeben –"
+              echo "  von außen sieht das aus, als aktualisiere die Website nicht."
+              ;;
+          esac
+
           # 7. Ist der Feed abrufbar?
           #
           # `feed.xml` ist die Adresse, über die andere Programme die
