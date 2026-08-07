@@ -42,6 +42,29 @@ ErrorDocument 404 /404.html
 # rückfragen“. Der Server antwortet dann mit 304, solange sich nichts geändert
 # hat; es geht also kaum Geschwindigkeit verloren.
 #
+# ## Warum seit dem 7. August 2026 zusätzlich `no-store` dabeisteht
+#
+# Weil „rückfragen“ eine Bitte ist. Ein Abrufer, der sich nicht daran hält,
+# behält seine Kopie beliebig lange – und genau das ist an diesem Morgen
+# passiert: Die Auslieferung kam wegen einer SSH-Kollision vier Stunden zu spät.
+# In dem Fenster hat ein fremder Abruf die alte Fassung geholt und danach
+# stundenlang ausgegeben, obwohl der Server längst die neue lieferte. Von außen
+# sah das aus, als aktualisiere die Website nicht.
+#
+# `no-store` verbietet das Speichern überhaupt. Damit kann keine Kopie
+# entstehen, die später hängenbleibt. `max-age=0` und die beiden alten Felder
+# `Pragma` und `Expires` stehen daneben, weil ältere Zwischenspeicher nur diese
+# verstehen.
+#
+# ## Warum die Regel zweimal steht
+#
+# `FilesMatch` prüft den Dateinamen. Eine Anfrage auf `/news/` trägt keinen –
+# sie wird erst intern zu `index.html` aufgelöst, und ob die Regel danach noch
+# greift, hängt an der Serverkonfiguration. Die zweite Fassung hängt statt am
+# Namen am **Inhaltstyp der Antwort** und erwischt damit jede HTML-Seite,
+# gleich unter welcher Adresse. Beide zusammen setzen denselben Wert; doppelt
+# gesetzt schadet nicht, gar nicht gesetzt schon.
+#
 # Die Dateien unter _next/static bleiben ausdrücklich unangetastet: Sie tragen
 # ihre Prüfsumme im Namen und dürfen beliebig lange zwischengespeichert werden.
 #
@@ -49,6 +72,29 @@ ErrorDocument 404 /404.html
 # Fehler 500 auslöst – lieber ohne diese Regel als mit einer toten Website.
 <IfModule mod_headers.c>
   <FilesMatch "\.html$">
-    Header set Cache-Control "no-cache, must-revalidate"
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
   </FilesMatch>
+
+  # Dasselbe noch einmal über den Inhaltstyp – für Adressen ohne Dateiendung.
+  Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0" "expr=%{CONTENT_TYPE} =~ m#^text/html#"
+  Header always set Pragma "no-cache" "expr=%{CONTENT_TYPE} =~ m#^text/html#"
+  Header always set Expires "0" "expr=%{CONTENT_TYPE} =~ m#^text/html#"
+
+  # Der Feed ist die Adresse für maschinelles Lesen. Er muss aus demselben
+  # Grund frisch sein und trägt keine Prüfsumme im Namen.
+  <FilesMatch "^(feed\.xml|sitemap\.xml|version\.txt|suchindex\.json)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+  </FilesMatch>
+
+  # LiteSpeed hält einen eigenen Seiten-Zwischenspeicher und entscheidet
+  # selbst, ob er sich an `Cache-Control` bindet. Hostinger fährt darauf.
+  # Diese Kopfzeile spricht ihn unmittelbar an.
+  #
+  # Bewusst als Kopfzeile und nicht über die Direktive `CacheDisable`: Eine
+  # unbekannte Direktive in der .htaccess quittiert der Server mit Fehler 500 –
+  # und zwar für die ganze Website. Eine Kopfzeile kann das nicht. Das ist
+  # dieselbe Vorsicht, aus der der ganze Block in `IfModule` steht.
+  Header always set X-LiteSpeed-Cache-Control "no-cache" "expr=%{CONTENT_TYPE} =~ m#^text/html#"
 </IfModule>
