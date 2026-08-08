@@ -33,7 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
-      contents: read
+      # write: das Folgenregister data/podcast-eigener-feed.json wird nach
+      # jeder veröffentlichten Folge committet – der Feed bleibt damit aus
+      # dem Repository reproduzierbar.
+      contents: write
 
     steps:
       - uses: actions/checkout@v5
@@ -122,6 +125,75 @@ jobs:
           )
           print(marken)
           ENDE
+
+      # ------------------------------------------------------------------
+      # Veröffentlichen: MP3 und Feed auf den Server, Video zu YouTube.
+      #
+      # Die Audiodateien liegen unter ~/podcast-audio, außerhalb des
+      # Ordners, den der Paketbau bei jedem Deploy austauscht – sonst wären
+      # sie nach dem nächsten Bau weg. In den Webpfad kommen sie über einen
+      # Symlink, den auch der Paketbau nach jedem Umhängen neu setzt.
+      - name: Feed und Audio auf den Server
+        if: steps.tag.outputs.erscheint == 'ja'
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+        run: |
+          if [ ! -f podcast-folge/folge.mp3 ]; then
+            echo "Keine Aufnahme – nichts zu veröffentlichen."
+            exit 0
+          fi
+          if [ -z "$HOST" ] || [ -z "$USER" ] || [ -z "$SSH_KEY" ]; then
+            echo "Keine Server-Zugangsdaten – Folge bleibt als Artefakt."
+            exit 0
+          fi
+
+          dauer=$(ffprobe -v error -show_entries format=duration \
+            -of default=noprint_wrappers=1:nokey=1 podcast-folge/folge.mp3)
+          DAUER_SEKUNDEN="$dauer" npm run podcastfeed eintragen
+
+          datum=$(python3 -c "import json;print(json.load(open('podcast-folge/folge.json'))['datum'])")
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "mkdir -p ~/podcast-audio && ln -sfn \$HOME/podcast-audio '$ZIELPFAD/podcast-audio'"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            podcast-folge/folge.mp3 "$USER@$HOST:~/podcast-audio/$datum.mp3"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            assets/podcast-cover.jpg "$USER@$HOST:~/podcast-audio/cover.jpg"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"
+          rm -f ~/.ssh/id_deploy
+          echo "Veröffentlicht: https://iminvests.de/podcast-audio/feed.xml"
+
+          # Das Register committen – der Feed bleibt reproduzierbar.
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/podcast-eigener-feed.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Podcast: Folge $datum im eigenen Feed"
+            for versuch in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}" \
+                && git push origin "${{ github.ref_name }}" && break
+              sleep $((versuch * 5))
+            done
+          fi
+
+      - name: Zu YouTube hochladen
+        if: steps.tag.outputs.erscheint == 'ja'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
+        run: npm run youtube
 
       - name: Folge als Artefakt anhängen
         if: steps.tag.outputs.erscheint == 'ja'

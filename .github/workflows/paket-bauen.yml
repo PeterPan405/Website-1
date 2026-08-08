@@ -605,6 +605,14 @@ jobs:
             mv "$NEU" "$ZIEL"
             rm -rf "$ALT" "$HOME/website-neu.tar.gz"
 
+            # Der Podcast-Feed lebt außerhalb des getauschten Ordners
+            # (~/podcast-audio, gepflegt von podcast-erzeugen.yml) und wird
+            # nach jedem Tausch neu eingehängt – sonst wäre er ab dem
+            # nächsten Deploy nicht mehr erreichbar.
+            if [ -d "$HOME/podcast-audio" ]; then
+              ln -sfn "$HOME/podcast-audio" "$ZIEL/podcast-audio"
+            fi
+
             echo "Übertragen. Stand:"
             cat "$ZIEL/version.txt" 2>/dev/null || echo "(version.txt fehlt)"
           ENDE
