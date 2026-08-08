@@ -4,12 +4,26 @@ name: Podcastfolge erzeugen
 # und, sobald die Vertonung freigeschaltet ist, auch MP3, Video und
 # Kapitelmarken mit echten Zeiten.
 #
-# ## Warum der Lauf auch ohne Stimme grün ist
+# ## Zwei Wege zur Stimme, in dieser Rangfolge
 #
-# Die Vertonung hängt an zwei Secrets (ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID).
-# Solange sie fehlen, endet der Lauf nach dem Text – der liegt dann als
-# Artefakt bereit und wird von Hand vertont. Eine fehlende Einstellung ist
-# ein Zustand, kein Fehler; rot ist nur, was tatsächlich kaputt ist.
+# 1. **Die eigene Stimme, auf dem Läufer gerechnet.** Dasselbe Modell, das
+#    Voicebox unter der Haube lädt, geklont aus `assets/stimme-referenz.wav`
+#    und ihrem Wortlaut daneben. Kostet nichts, klingt nach dem Betreiber,
+#    braucht kein Konto bei niemandem.
+# 2. **ElevenLabs als Rückfall.** Nur, wenn Weg 1 scheitert – und nur, wenn
+#    ELEVENLABS_API_KEY und ELEVENLABS_VOICE_ID hinterlegt sind.
+#
+# Scheitern beide, endet der Lauf nach dem Text: Der liegt als Artefakt
+# bereit und lässt sich von Hand vertonen. Eine fehlende Einstellung ist ein
+# Zustand, kein Fehler; rot ist nur, was tatsächlich kaputt ist.
+#
+# ## Warum der Lauf eine Stunde Zeit bekommt
+#
+# Weil ein Läufer zwei Kerne und keine Grafikkarte hat. Fünf Minuten Sprache
+# aus einem 0,6-Milliarden-Modell dauern dort Minuten, nicht Sekunden – der
+# genaue Wert steht im Protokoll jedes Laufs als Echtzeitfaktor. Die
+# vorherigen zwanzig Minuten waren für den Weg über die Schnittstelle
+# bemessen, bei dem ein fremder Rechner rechnet.
 #
 # ## Zeitplan
 #
@@ -36,7 +50,7 @@ concurrency:
 jobs:
   folge:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
     permissions:
       # write: das Folgenregister data/podcast-eigener-feed.json wird nach
       # jeder veröffentlichten Folge committet – der Feed bleibt damit aus
@@ -93,12 +107,61 @@ jobs:
         if: steps.tag.outputs.erscheint == 'ja'
         run: npm run folge
 
-      - name: Vertonen (falls freigeschaltet)
+      # ------------------------------------------------------------------
+      # Die Stimme. Weg 1: das Modell auf diesem Läufer.
+      - uses: actions/setup-python@v5
+        if: steps.tag.outputs.erscheint == 'ja'
+        with:
+          python-version: '3.12'
+
+      # Über ein Gigabyte Modelldateien. Ohne Zwischenspeicher lädt jeder
+      # Morgen sie neu – das sind Minuten, die von der Frist abgehen.
+      - name: Zwischenspeicher für das Sprachmodell
+        if: steps.tag.outputs.erscheint == 'ja'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-qwen-tts-0.6B
+
+      # torch und torchaudio müssen aus **derselben** Quelle kommen. qwen-tts
+      # zieht sich sonst die Grafikkarten-Fassung von torchaudio nach, und
+      # deren C++-Teil lässt sich neben dem CPU-torch nicht laden:
+      #
+      #     OSError: Could not load this library: …/_torchaudio.abi3.so
+      #
+      # Deshalb beide zuletzt noch einmal aus der CPU-Quelle erzwingen.
+      - name: Sprachmodell einrichten
+        if: steps.tag.outputs.erscheint == 'ja'
+        run: |
+          python -m pip install --upgrade pip
+          pip install "transformers<=4.57.6" soundfile librosa numpy qwen-tts
+          pip install --force-reinstall \
+            --index-url https://download.pytorch.org/whl/cpu torch torchaudio
+
+      # `continue-on-error`, weil danach der Rückfall kommt. Ein Fehlschlag
+      # hier ist im Protokoll sichtbar, beendet den Lauf aber nicht – sonst
+      # gäbe es an einem schlechten Morgen gar keine Folge.
+      - name: Vertonen mit der eigenen Stimme
+        id: eigenestimme
+        if: steps.tag.outputs.erscheint == 'ja'
+        continue-on-error: true
+        run: python scripts/stimme-erzeugen.py
+
+      # Weg 2: die Schnittstelle. Nur, wenn Weg 1 nichts hinterlassen hat –
+      # gefragt wird nach der Datei, nicht nach dem Ergebnis des Schritts:
+      # Was zählt, ist die Aufnahme, nicht wer sie gemacht hat.
+      - name: Vertonen über die Schnittstelle (Rückfall)
         if: steps.tag.outputs.erscheint == 'ja'
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
-        run: npm run vertonen
+        run: |
+          if [ -f podcast-folge/folge.mp3 ]; then
+            echo "Die eigene Stimme hat die Folge gesprochen – kein Rückfall nötig."
+            exit 0
+          fi
+          echo "::warning::Die eigene Stimme hat nichts geliefert – Rückfall auf die Schnittstelle."
+          npm run vertonen
 
       # Video und Kapitelmarken entstehen nur, wenn eine Aufnahme da ist.
       # Der ffmpeg-Aufruf stammt aus der erprobten Arbeitsanweisung:
