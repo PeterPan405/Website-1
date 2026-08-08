@@ -43,14 +43,35 @@ jobs:
           path: ~/.cache/huggingface
           key: hf-qwen-tts-${{ inputs.modellgroesse }}
 
+      # torch und torchaudio müssen aus **derselben** Quelle kommen.
+      #
+      # Erster Versuch am 8. August 2026: torch aus der CPU-Quelle, danach
+      # qwen-tts – das zog sich torchaudio aus der Standardquelle nach, also
+      # die Grafikkarten-Fassung. Deren C++-Teil ließ sich neben dem
+      # CPU-torch nicht laden:
+      #
+      #     OSError: Could not load this library: …/_torchaudio.abi3.so
+      #
+      # Deshalb beide zuletzt noch einmal aus der CPU-Quelle erzwingen –
+      # nach qwen-tts, damit dessen Auflösung sie nicht wieder ersetzt.
       - name: Abhängigkeiten
         run: |
           python -m pip install --upgrade pip
-          # Nur die CPU-Fassung von torch: die volle Ausgabe zieht die
-          # gesamten Grafikkarten-Bibliotheken nach, mehrere Gigabyte, die
-          # auf diesem Läufer nichts zu tun hätten.
-          pip install --index-url https://download.pytorch.org/whl/cpu torch
           pip install "transformers<=4.57.6" soundfile librosa numpy qwen-tts
+          pip install --force-reinstall \
+            --index-url https://download.pytorch.org/whl/cpu torch torchaudio
+
+      # Ein Fehlschlag beim Laden soll hier auffallen, nicht erst nach dem
+      # Modell-Download: Die Bibliotheken sind das Wackelige, nicht das Modell.
+      - name: Lässt sich alles laden?
+        run: |
+          python - <<'ENDE'
+          import torch, torchaudio
+          print(f"torch      {torch.__version__}")
+          print(f"torchaudio {torchaudio.__version__}")
+          import qwen_tts
+          print("qwen_tts geladen.")
+          ENDE
 
       - name: Messen
         run: python scripts/stimme-messen.py assets/stimme-referenz.wav ${{ inputs.modellgroesse }}
