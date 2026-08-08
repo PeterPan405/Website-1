@@ -507,6 +507,39 @@ Löschen oder Überschreiben von Bestand, Zugangsdaten und alles, was sich nicht
 zurücknehmen lässt, fällt weiter **nicht** hierunter. Die Anordnung galt dem
 Mergen.
 
+## Warten und selbst mergen – Auto-Merge greift hier **nicht**
+
+Der Anlass ist ein Fehler vom 9. August 2026: Bei #160 stand im Chat „ich
+merge, sobald der Check grün ist“ – und dann endete der Zug. Der PR lag, bis
+der Betreiber ihn von Hand mergte. Bei #157 bis #159 hatte dieselbe Sitzung
+gewartet und gemergt; es hing an nichts als der Aufmerksamkeit.
+
+Naheliegende Abhilfe: Auto-Merge. Der Betreiber hat ihn noch am selben Abend
+freigeschaltet (Settings → General → Pull Requests → Allow auto-merge).
+**Es funktioniert trotzdem nicht**, und der Grund ist wichtig genug, um ihn
+festzuhalten, damit niemand ein zweites Mal darauf baut:
+
+```
+sofort nach dem Anlegen:   "already in clean status (all checks passed)"
+während der Check läuft:   "unstable status"
+```
+
+Auto-Merge setzt einen **erforderlichen** Status-Check voraus – etwas, worauf
+GitHub warten kann. Auf `main` ist keiner hinterlegt, also gilt ein frischer
+PR sofort als mergefähig, und die Anmeldung wird abgelehnt. Ein PR mit
+Pflichtcheck hieße direkt nach dem Anlegen `blocked`, nicht `clean`.
+
+Damit bleibt es beim Handbetrieb, und der ist eine Regel, keine Absicht:
+
+**Wer einen Pull Request anlegt, beendet den Zug nicht, bevor er gemergt
+ist.** Prüfung abwarten – sie dauert vier bis fünf Minuten –, Ergebnis
+ansehen, mergen. „Ich merge gleich“ ist kein Zustand, den man hinterlässt.
+
+Soll Auto-Merge doch greifen, müsste „Bauen und prüfen“ unter Settings →
+Branches als Required status check für `main` eingetragen werden. Das ist
+eine Entscheidung des Betreibers: Sie sperrt dann auch ihn selbst aus, wenn
+die Prüfung rot ist.
+
 ## Nebenwirkung: `workflow_dispatch` braucht `main`
 
 GitHub startet über `workflow_dispatch` nur Workflows, die auf der
