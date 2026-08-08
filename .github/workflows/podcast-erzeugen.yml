@@ -23,6 +23,11 @@ on:
   schedule:
     - cron: '53 4 * * 1-5'
   workflow_dispatch:
+    inputs:
+      zugang_pruefen:
+        description: 'Nur die Zugänge prüfen, keine Folge bauen'
+        type: boolean
+        default: false
 
 concurrency:
   group: podcast-erzeugen
@@ -53,11 +58,35 @@ jobs:
         id: tag
         run: |
           wochentag=$(date -u +%u)
-          if [ "$wochentag" -ge 6 ]; then
+          if [ "${{ inputs.zugang_pruefen }}" = "true" ]; then
+            echo "erscheint=nein" >> "$GITHUB_OUTPUT"
+            echo "Zugangsprobe angefordert – es wird keine Folge gebaut."
+          elif [ "$wochentag" -ge 6 ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
             echo "Wochenende – keine Folge. (Handstart erzwingt nichts.)"
           else
             echo "erscheint=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Die Zugangsprobe läuft ohne Folge: Sie fragt bei YouTube nur den
+      # Kanalnamen ab und beweist damit, dass Schlüssel und Token stimmen.
+      # Ohne sie stellte sich das erst am ersten echten Morgen heraus – und
+      # dann fehlte die Folge.
+      - name: Zugänge prüfen
+        if: inputs.zugang_pruefen
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+        run: |
+          npm run youtube
+          echo "---"
+          if [ -n "$ELEVENLABS_API_KEY" ]; then
+            echo "[stimme] Schlüssel hinterlegt."
+          else
+            echo "[stimme] Kein ELEVENLABS_API_KEY – ohne ihn entsteht kein Audio."
           fi
 
       - name: Sprechtext, Titel und Beschreibung erzeugen

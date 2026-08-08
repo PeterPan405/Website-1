@@ -41,18 +41,19 @@ if (!CLIENT_ID || !CLIENT_SECRET || !REFRESH_TOKEN) {
   process.exit(0)
 }
 
-let video: Buffer
+/*
+  Kein Video, aber Zugangsdaten? Dann ist das die Gelegenheit, sie zu prüfen.
+
+  Sonst stellt sich erst am ersten echten Morgen heraus, ob Schlüssel und
+  Token stimmen – und dann fehlt die Folge. Die Probe fragt nur den
+  Kanalnamen ab; sie ändert nichts und kostet nichts.
+*/
+let video: Buffer | null = null
 try {
   video = readFileSync(VIDEO)
 } catch {
-  console.log('[youtube] Kein Video unter podcast-folge/ – nichts hochzuladen.')
-  process.exit(0)
+  console.log('[youtube] Kein Video unter podcast-folge/ – stattdessen Zugangsprobe.')
 }
-
-const titelDatei = readFileSync('podcast-folge/titel.txt', 'utf8').split('\n')
-const titel = titelDatei[0].trim()
-const folgennummer = titelDatei[1]?.trim() ?? ''
-const beschreibung = readFileSync('podcast-folge/beschreibung.txt', 'utf8').trim()
 
 /* Zugangs-Token aus dem Refresh-Token – der einzige Schritt, der das
    Client-Secret braucht. */
@@ -74,6 +75,30 @@ if (!tokenAntwort.access_token) {
   process.exit(1)
 }
 const token = tokenAntwort.access_token
+
+if (!video) {
+  const kanal = (await (
+    await fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+  ).json()) as { items?: { snippet?: { title?: string } }[] }
+
+  const name = kanal.items?.[0]?.snippet?.title
+  if (!name) {
+    console.error(
+      '::error::[youtube] Anmeldung ging durch, aber kein Kanal gefunden.\n' +
+        '          Vermutlich wurde bei der Zustimmung das falsche Google-Konto gewählt.'
+    )
+    process.exit(1)
+  }
+  console.log(`[youtube] Zugang geprüft. Hochgeladen würde auf den Kanal: „${name}“`)
+  process.exit(0)
+}
+
+const titelDatei = readFileSync('podcast-folge/titel.txt', 'utf8').split('\n')
+const titel = titelDatei[0].trim()
+const folgennummer = titelDatei[1]?.trim() ?? ''
+const beschreibung = readFileSync('podcast-folge/beschreibung.txt', 'utf8').trim()
 
 /* Schritt 1: Metadaten anmelden, Upload-Adresse entgegennehmen. */
 const start = await fetch(
