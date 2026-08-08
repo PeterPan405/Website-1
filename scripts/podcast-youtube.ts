@@ -3,10 +3,18 @@
  *
  * ## Was beim Hochladen gleich mitgesetzt wird
  *
- * Die drei Häkchen aus der Upload-Checkliste, damit sie nie vergessen werden:
- * nicht für Kinder, KI-Kennzeichnung (`containsSyntheticMedia`), und – falls
- * `YT_PLAYLIST_ID` hinterlegt ist – die Playlist. Der Titel kommt aus
- * `titel.txt`, die Beschreibung samt Kapitelmarken aus `beschreibung.txt`.
+ * Die Häkchen aus der Upload-Checkliste, damit sie nie vergessen werden:
+ * nicht für Kinder, KI-Kennzeichnung (`containsSyntheticMedia`), der
+ * Aufnahmeort Stuttgart und – falls `YT_PLAYLIST_ID` hinterlegt ist – die
+ * Playlist. Der Titel kommt aus `titel.txt`, die Beschreibung samt
+ * Kapitelmarken aus `beschreibung.txt`.
+ *
+ * ## Warum Ort und Playlist erst nach dem Hochladen kommen
+ *
+ * Beides sind Zutaten, nicht Bedingungen. Stünden sie im Anmeldeaufruf,
+ * würde ein abgelehntes Feld den ganzen Upload verhindern – und dann fehlt
+ * die Folge, weil eine Ortsangabe nicht durchging. Nachgereicht ist ein
+ * Fehlschlag eine Warnung: Das Video ist online, nur ohne Fähnchen.
  *
  * ## Ohne Zugangsdaten kein Fehler
  *
@@ -153,6 +161,34 @@ if (!hochladen.ok || !ergebnis.id) {
 }
 
 console.log(`[youtube] Hochgeladen: https://youtu.be/${ergebnis.id}`)
+
+/* Aufnahmeort nachtragen. `recordingDetails` lässt sich beim Anmelden nicht
+   mitgeben, ohne den Teil vollständig zu senden; als eigener Aufruf ist es
+   sowohl kürzer als auch ungefährlicher. */
+const ort = await fetch(
+  'https://www.googleapis.com/youtube/v3/videos?part=recordingDetails',
+  {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      id: ergebnis.id,
+      recordingDetails: {
+        locationDescription: 'Stuttgart, Deutschland',
+        location: { latitude: 48.7758, longitude: 9.1829 },
+      },
+    }),
+  }
+)
+if (ort.ok) {
+  console.log('[youtube] Aufnahmeort auf Stuttgart gesetzt.')
+} else {
+  console.log(
+    `::warning::[youtube] Aufnahmeort fehlgeschlagen (Status ${ort.status}) – Video ist trotzdem online.`
+  )
+}
 
 /* In die Playlist einsortieren – Scheitern ist eine Warnung, kein Abbruch:
    Das Video ist dann trotzdem online. */

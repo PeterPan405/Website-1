@@ -32,6 +32,8 @@
 
 import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 
+import { ohneHashtags } from '../lib/podcast-feed.ts'
+
 const REGISTER = 'data/podcast-eigener-feed.json'
 const BASIS = 'https://iminvests.de/podcast-audio'
 
@@ -61,10 +63,9 @@ if (modus === 'eintragen') {
     datum: string
     nummer: number
   }
-  const beschreibung = readFileSync('podcast-folge/beschreibung.txt', 'utf8')
-    /* Die Hashtag-Zeile ist YouTube-Zubehör; im Feed hat sie keine Funktion. */
-    .replace(/\n#\S[^\n]*\s*$/u, '')
-    .trim()
+  const beschreibung = ohneHashtags(
+    readFileSync('podcast-folge/beschreibung.txt', 'utf8')
+  )
 
   const dauer = Number(process.env.DAUER_SEKUNDEN)
   if (!Number.isFinite(dauer) || dauer < 30) {

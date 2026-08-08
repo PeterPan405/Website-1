@@ -28,7 +28,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
-import { leseFeed } from '../lib/podcast-feed.ts'
+import { leseFeed, ohneHashtags } from '../lib/podcast-feed.ts'
 
 const FEED = process.env.PODCAST_RSS_URL?.trim()
 const REGISTER = 'data/podcast-eigener-feed.json'
@@ -121,7 +121,9 @@ for (const [i, folge] of folgen.entries()) {
     datum: folge.datum,
     titel: folge.titel,
     nummer,
-    beschreibung: folge.beschreibung,
+    /* Auch die übernommenen Folgen tragen die Hashtag-Zeile von damals;
+       im eigenen Feed gilt für sie dieselbe Regel wie für die neuen. */
+    beschreibung: ohneHashtags(folge.beschreibung),
     /* Ohne Längenangabe im alten Feed lieber rechnen als raten: 128 kbit/s
        sind der übliche Wert eines Sprach-Podcasts. */
     dauerSekunden: folge.dauerSekunden ?? Math.round(bytes / 16000),
