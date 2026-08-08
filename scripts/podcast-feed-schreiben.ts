@@ -104,6 +104,7 @@ const eintraege = register.folgen
     const datum = new Date(`${folge.datum}T04:30:00Z`).toUTCString()
     return `    <item>
       <title>${entschaerfen(folge.titel)}</title>
+      <link>${url}</link>
       <guid isPermaLink="false">iminvests-marktupdate-${folge.datum}</guid>
       <pubDate>${datum}</pubDate>
       <enclosure url="${url}" length="${folge.bytes}" type="audio/mpeg"/>

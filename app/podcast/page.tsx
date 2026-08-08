@@ -152,6 +152,15 @@ export default function PodcastSeite() {
                       Der Verweis zur Folge, sonst zur Sendung. Manche Hoster
                       lassen den `link` je Folge weg – dann ist eine Ebene höher
                       immer noch besser als ein Knopf, der ins Leere zeigt.
+
+                      ## Warum das Symbol von der Adresse abhängt
+
+                      Bis zum 8. August 2026 stand hier immer das
+                      Spotify-Zeichen. Seit die Folgen im eigenen Haus liegen,
+                      führt der Verweis auf die Audiodatei dieser Website – und
+                      ein Spotify-Zeichen daneben wäre schlicht falsch. Es
+                      verspricht, wohin es geht, und dieses Versprechen muss
+                      stimmen.
                     */}
                     {(folge.url ?? spotify?.href) && (
                       <a
@@ -160,7 +169,10 @@ export default function PodcastSeite() {
                         rel="noopener noreferrer"
                         className="text-news mt-3 inline-flex items-center gap-1.5 text-sm font-medium underline underline-offset-2"
                       >
-                        <Icon name="spotify" className="size-4" />
+                        <Icon
+                          name={folge.url?.includes('spotify') ? 'spotify' : 'play'}
+                          className="size-4"
+                        />
                         {folge.url ? 'Diese Folge anhören' : 'Podcast anhören'}
                       </a>
                     )}

@@ -230,6 +230,8 @@ jobs:
       # jeder veröffentlichten Folge committet – der Feed bleibt damit aus
       # dem Repository reproduzierbar.
       contents: write
+      # Zum Anstoßen des Paketbaus über `gh workflow run` – siehe unten.
+      actions: write
 
     steps:
       - uses: actions/checkout@v5
@@ -387,18 +389,45 @@ jobs:
           rm -f ~/.ssh/id_deploy
           echo "Veröffentlicht: https://iminvests.de/podcast-audio/feed.xml"
 
+          # Die Website mitziehen – im selben Lauf, aus demselben Register.
+          #
+          # Bis zum 8. August 2026 las `podcast.yml` dafür täglich um 04:41
+          # UTC einen Feed über das Netz. Die Folge entsteht um 04:53, zwölf
+          # Minuten **später**: Auf der Website stand jeden Morgen die Folge
+          # von gestern. Das war kein Fehler im Ablauf, sondern in der
+          # Reihenfolge – gefragt wurde, bevor es etwas zu fragen gab.
+          npm run podcast
+
           # Das Register committen – der Feed bleibt reproduzierbar.
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/podcast-eigener-feed.json
+          git add data/podcast-eigener-feed.json data/snapshots/podcast.json
           if ! git diff --cached --quiet; then
-            git commit -m "Podcast: Folge $datum im eigenen Feed"
+            git commit -m "Podcast: Folge $datum im eigenen Feed und auf der Website"
             for versuch in 1 2 3; do
               git pull --rebase origin "${{ github.ref_name }}" \
                 && git push origin "${{ github.ref_name }}" && break
               sleep $((versuch * 5))
             done
           fi
+
+      # Ein Push mit dem GITHUB_TOKEN löst keinen weiteren Workflow aus –
+      # GitHub verhindert damit Endlosschleifen, und zwar lautlos. Ohne
+      # diesen Anstoß stünde die Folge im Repository und nicht auf der
+      # Website, bis irgendwann jemand anders baut. Genau so ist es diesem
+      # Projekt mit den Kursen zwei Monate lang ergangen.
+      - name: Neubau anstoßen
+        if: needs.text.outputs.veroeffentlichen == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ ! -f podcast-folge/folge.mp3 ]; then
+            echo "Keine Folge veröffentlicht – kein Neubau nötig."
+            exit 0
+          fi
+          gh workflow run paket-bauen.yml \
+            --repo "${{ github.repository }}" --ref main \
+            && echo "Der Paketbau ist angestoßen."
 
       - name: Zu YouTube hochladen
         if: needs.text.outputs.veroeffentlichen == 'ja'
