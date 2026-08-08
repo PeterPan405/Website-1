@@ -164,6 +164,28 @@ anderes kennt; im Sommer sind das zwei Stunden weniger, im Winter eine.
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
 
+### Am Wochenende erscheint keine Folge – außer an einem Probetag
+
+`podcast-erzeugen.yml` läuft werktags. Das ist gewollt: Die Montagsfolge deckt
+Freitag bis Montag ab.
+
+Damit lässt sich der volle Weg **bis zum Upload** an einem Wochenende aber
+nicht prüfen, und ein Lauf mit `nur_proben` überspringt genau die Schritte, auf
+die es ankommt – YouTube und Server. Dafür gibt es
+`data/podcast-probetage.txt`: Steht der heutige Tag dort, gilt er als Werktag,
+und es wird wirklich veröffentlicht.
+
+Zwei Wege stoßen ihn an, wie überall hier: der eigene Sonntags-Cron um 02:53
+UTC und, falls der verworfen wird, der Anstoß aus `kurse.yml` um 03:08. Ohne
+Eintrag endet der Sonntagslauf nach zwanzig Sekunden.
+
+Die Daten tragen das Jahr. Ein stehengebliebener Eintrag kann deshalb nicht
+im nächsten Jahr erneut feuern; alte Zeilen sind Protokoll.
+
+**Soll die Folge später täglich erscheinen**, ist das eine Zeile: `1-5` wird
+`*`, der Sonntags-Cron und der Riegel fallen weg. Bis dahin bleibt es bei
+werktags.
+
 ### Wie sich das rechnet
 
 Gemessen am 8. August 2026, nicht geschätzt:

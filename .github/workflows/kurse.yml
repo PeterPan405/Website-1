@@ -486,8 +486,15 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           wochentag=$(date -u +%u)
-          if [ "$wochentag" -ge 6 ]; then
-            echo "Wochenende – es erscheint keine Folge."
+          heute=$(date -u +%Y-%m-%d)
+
+          # Am Wochenende nur dann, wenn der Tag als Probetag eingetragen
+          # ist – dann soll der volle Weg samt Upload wirklich laufen, und
+          # ein verworfener Termin darf ihn nicht kosten. Die Liste und ihre
+          # Begründung stehen in data/podcast-probetage.txt.
+          if [ "$wochentag" -ge 6 ] \
+             && ! grep -qx "$heute" data/podcast-probetage.txt 2>/dev/null; then
+            echo "Wochenende ohne Probetag – es erscheint keine Folge."
             exit 0
           fi
 

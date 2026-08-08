@@ -54,6 +54,22 @@ name: Podcastfolge erzeugen
 on:
   schedule:
     - cron: '53 2 * * 1-5'
+    # Sonntags derselbe Termin – aber nur für einen Probetag.
+    #
+    # Der Riegel steht weiter unten: Ohne Eintrag in
+    # `data/podcast-probetage.txt` endet dieser Lauf nach zwanzig Sekunden
+    # mit „Wochenende – keine Folge". Er kostet damit an gewöhnlichen
+    # Sonntagen nichts und steht bereit, wenn ein Datum eingetragen wird.
+    #
+    # Warum überhaupt ein eigener Cron und nicht nur der Anstoß aus
+    # `kurse.yml`: Der käme sonntags erst um 03:08 UTC. Das reicht für die
+    # Frist, lässt aber keinen zweiten Versuch mehr zu. So gibt es beides –
+    # 02:53 als Regelweg, 03:08 als Auffangnetz.
+    #
+    # Soll später **täglich** eine Folge erscheinen, ist das hier eine
+    # Zeile: `1-5` wird `*`, dieser zweite Eintrag und der Riegel fallen
+    # weg. Bis dahin bleibt es bei werktags.
+    - cron: '53 2 * * 0'
   workflow_dispatch:
     inputs:
       zugang_pruefen:
@@ -105,22 +121,40 @@ jobs:
         id: tag
         run: |
           wochentag=$(date -u +%u)
+          heute=$(date -u +%Y-%m-%d)
+
+          # Steht der heutige Tag in der Probetagsliste, gilt er als
+          # Werktag – gebaut **und** veröffentlicht. Der Grund steht in
+          # data/podcast-probetage.txt.
+          probetag=nein
+          if grep -qx "$heute" data/podcast-probetage.txt 2>/dev/null; then
+            probetag=ja
+            echo "Der $heute ist als Probetag eingetragen – es wird gebaut."
+          fi
+
           if [ "${{ inputs.zugang_pruefen }}" = "true" ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
             echo "Zugangsprobe angefordert – es wird keine Folge gebaut."
-          elif [ "$wochentag" -ge 6 ] && [ "${{ inputs.trotzdem }}" != "true" ]; then
+          elif [ "$wochentag" -ge 6 ] && [ "${{ inputs.trotzdem }}" != "true" ] \
+               && [ "$probetag" != "ja" ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
             echo "Wochenende – keine Folge."
           else
             echo "erscheint=ja" >> "$GITHUB_OUTPUT"
           fi
 
-          # Eine Probe darf nichts veröffentlichen. Am Wochenende ist das
-          # ohnehin so gemeint; für einen Werktag gibt es den eigenen Haken.
-          if [ "${{ inputs.nur_proben }}" = "true" ] || \
-             { [ "$wochentag" -ge 6 ] && [ "${{ inputs.trotzdem }}" = "true" ]; }; then
+          # Eine Probe darf nichts veröffentlichen.
+          #
+          # `nur_proben` ist der ausdrückliche Haken dafür. Ein Handstart am
+          # Wochenende (`trotzdem`) ist ebenfalls eine Probe – **außer** an
+          # einem Probetag: Der ist genau dafür da, den vollen Weg samt
+          # YouTube und Server einmal wirklich zu gehen.
+          if [ "${{ inputs.nur_proben }}" = "true" ]; then
             echo "veroeffentlichen=nein" >> "$GITHUB_OUTPUT"
             echo "Probelauf – es wird nichts veröffentlicht."
+          elif [ "$wochentag" -ge 6 ] && [ "$probetag" != "ja" ]; then
+            echo "veroeffentlichen=nein" >> "$GITHUB_OUTPUT"
+            echo "Wochenende ohne Probetag – es wird nichts veröffentlicht."
           else
             echo "veroeffentlichen=ja" >> "$GITHUB_OUTPUT"
           fi

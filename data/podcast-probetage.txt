@@ -1,0 +1,27 @@
+# Probetage für die Podcastfolge
+#
+# Ein Datum je Zeile, Form JJJJ-MM-TT. Steht der heutige Tag hier drin,
+# baut und **veröffentlicht** `podcast-erzeugen.yml` eine Folge, auch wenn
+# es ein Samstag oder Sonntag ist.
+#
+# ## Wozu
+#
+# Werktags erscheint die Folge, am Wochenende nicht – das ist so gewollt
+# und bleibt so. Nur: Der volle Weg bis zum Upload lässt sich damit an
+# einem Wochenende nicht prüfen, und ein Probelauf mit `nur_proben`
+# überspringt genau die Schritte, auf die es ankommt: YouTube und Server.
+#
+# Hier steht deshalb das Datum, an dem einmalig durchgezogen werden soll.
+#
+# ## Was daran sicher ist
+#
+# Das Datum trägt das Jahr. Bleibt ein Eintrag stehen, tut er nach seinem
+# Tag nichts mehr – er kann nicht versehentlich jedes Jahr wieder feuern.
+# Alte Zeilen dürfen deshalb stehen bleiben; sie sind Protokoll.
+#
+# Gelesen wird die Datei von `podcast-erzeugen.yml` (der Riegel selbst)
+# und von `kurse.yml` (der Anstoß, falls der Termin verworfen wurde).
+
+# Erster echter Durchlauf mit Upload, auf Wunsch des Betreibers am
+# 9. August 2026 – er wollte den Upload sehen, bevor die Woche beginnt.
+2026-08-09
