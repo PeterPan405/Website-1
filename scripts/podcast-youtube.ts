@@ -106,7 +106,10 @@ if (!video) {
     )
     process.exit(1)
   }
-  console.log(`[youtube] Zugang geprüft. Hochgeladen würde auf den Kanal: „${name}“`)
+  console.log(
+    `[youtube] Zugang geprüft. Hochgeladen würde auf den Kanal: „${name}“ ` +
+      `(${kanal.items?.[0]?.id ?? 'ohne Kennung'})`
+  )
 
   /*
     Was liegt auf dem Kanal schon?
