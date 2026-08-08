@@ -125,8 +125,16 @@ jobs:
           YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_SHOW_ID: ${{ vars.SPOTIFY_SHOW_ID }}
         run: |
           npm run youtube
+          echo "---"
+          # Zählt die Folgen, für die Spotify eine Adresse liefert. Ohne
+          # Zugangsdaten sagt der Lauf das und endet mit null – dann steht
+          # auf der Website bei jeder Folge nur der YouTube-Verweis.
+          npm run spotifylinks
           echo "---"
           if [ -n "$ELEVENLABS_API_KEY" ]; then
             echo "[stimme] Schlüssel hinterlegt."
@@ -406,6 +414,10 @@ jobs:
           SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
           SSH_PORT: '65002'
           ZIELPFAD: domains/iminvests.de/public_html
+          # Für die Adressen der Folgen bei Spotify – siehe weiter unten.
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_SHOW_ID: ${{ vars.SPOTIFY_SHOW_ID }}
         run: |
           if [ ! -f podcast-folge/folge.mp3 ]; then
             echo "Keine Aufnahme – nichts zu veröffentlichen."
@@ -453,12 +465,25 @@ jobs:
           # Minuten **später**: Auf der Website stand jeden Morgen die Folge
           # von gestern. Das war kein Fehler im Ablauf, sondern in der
           # Reihenfolge – gefragt wurde, bevor es etwas zu fragen gab.
+          # Die Spotify-Adressen der Folgen holen, bevor die Momentaufnahme
+          # entsteht – sie stehen in keinem Feed, sondern werden von Spotify
+          # beim Einlesen vergeben.
+          #
+          # Die Folge **dieses** Laufs ist dort naturgemäß noch nicht: Spotify
+          # liest den Feed nach eigenem Takt. Sie bekommt ihren Verweis mit dem
+          # Lauf am nächsten Morgen; bis dahin steht bei ihr nur YouTube. Ein
+          # erfundener Link wäre die schlechtere Antwort.
+          #
+          # Scheitert der Abruf, bleibt es bei den bekannten Adressen – der
+          # Rest der Veröffentlichung hängt nicht daran.
+          npm run spotifylinks || echo "::warning::[spotify] Adressen konnten nicht aufgefrischt werden."
+
           npm run podcast
 
           # Das Register committen – der Feed bleibt reproduzierbar.
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/podcast-eigener-feed.json data/snapshots/podcast.json
+          git add data/podcast-eigener-feed.json data/snapshots/podcast.json data/podcast-spotify.json
           if ! git diff --cached --quiet; then
             git commit -m "Podcast: Folge $datum im eigenen Feed und auf der Website"
             for versuch in 1 2 3; do

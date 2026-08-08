@@ -34,6 +34,7 @@
     "folge": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-folge-erzeugen.ts",
     "vertonen": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-vertonen.ts",
     "youtube": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-youtube.ts",
+    "spotifylinks": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-spotify.ts",
     "podcastfeed": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-feed-schreiben.ts",
     "uebernehmen": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-uebernehmen.ts",
     "marktbreite": "node --experimental-strip-types scripts/marktbreite-nachtragen.ts",
