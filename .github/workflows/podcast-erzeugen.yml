@@ -42,6 +42,18 @@ on:
         description: 'Nur die Zugänge prüfen, keine Folge bauen'
         type: boolean
         default: false
+      trotzdem:
+        description: 'Auch am Wochenende bauen (zum Proben)'
+        type: boolean
+        default: false
+      nur_proben:
+        description: 'Bauen und vertonen, aber nichts veröffentlichen'
+        type: boolean
+        default: false
+      stichtag:
+        description: 'Tagesausgabe eines anderen Tages (JJJJ-MM-TT)'
+        type: string
+        default: ''
 
 concurrency:
   group: podcast-erzeugen
@@ -75,11 +87,21 @@ jobs:
           if [ "${{ inputs.zugang_pruefen }}" = "true" ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
             echo "Zugangsprobe angefordert – es wird keine Folge gebaut."
-          elif [ "$wochentag" -ge 6 ]; then
+          elif [ "$wochentag" -ge 6 ] && [ "${{ inputs.trotzdem }}" != "true" ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
-            echo "Wochenende – keine Folge. (Handstart erzwingt nichts.)"
+            echo "Wochenende – keine Folge."
           else
             echo "erscheint=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+          # Eine Probe darf nichts veröffentlichen. Am Wochenende ist das
+          # ohnehin so gemeint; für einen Werktag gibt es den eigenen Haken.
+          if [ "${{ inputs.nur_proben }}" = "true" ] || \
+             { [ "$wochentag" -ge 6 ] && [ "${{ inputs.trotzdem }}" = "true" ]; }; then
+            echo "veroeffentlichen=nein" >> "$GITHUB_OUTPUT"
+            echo "Probelauf – es wird nichts veröffentlicht."
+          else
+            echo "veroeffentlichen=ja" >> "$GITHUB_OUTPUT"
           fi
 
       # Die Zugangsprobe läuft ohne Folge: Sie fragt bei YouTube nur den
@@ -105,6 +127,8 @@ jobs:
 
       - name: Sprechtext, Titel und Beschreibung erzeugen
         if: steps.tag.outputs.erscheint == 'ja'
+        env:
+          STICHTAG: ${{ inputs.stichtag }}
         run: npm run folge
 
       # ------------------------------------------------------------------
@@ -223,10 +247,10 @@ jobs:
       #
       # Die Audiodateien liegen unter ~/podcast-audio, außerhalb des
       # Ordners, den der Paketbau bei jedem Deploy austauscht – sonst wären
-      # sie nach dem nächsten Bau weg. In den Webpfad kommen sie über einen
-      # Symlink, den auch der Paketbau nach jedem Umhängen neu setzt.
+      # sie nach dem nächsten Bau weg. In den Webpfad kommt eine Kopie, die
+      # auch der Paketbau nach jedem Umhängen neu anlegt.
       - name: Feed und Audio auf den Server
-        if: steps.tag.outputs.erscheint == 'ja'
+        if: steps.tag.outputs.erscheint == 'ja' && steps.tag.outputs.veroeffentlichen == 'ja'
         env:
           HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
           USER: ${{ secrets.HOSTINGER_SSH_USER }}
@@ -255,13 +279,24 @@ jobs:
           ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
           ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
-            "mkdir -p ~/podcast-audio && ln -sfn \$HOME/podcast-audio '$ZIELPFAD/podcast-audio'"
+            "mkdir -p ~/podcast-audio"
           scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
             podcast-folge/folge.mp3 "$USER@$HOST:~/podcast-audio/$datum.mp3"
           scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
             assets/podcast-cover.jpg "$USER@$HOST:~/podcast-audio/cover.jpg"
           scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
             podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"
+
+          # ~/podcast-audio ist der Bestand, der den Deploy überlebt; in den
+          # Webpfad kommt eine **Kopie**, kein Symlink. Am 8. August 2026
+          # lagen alle Dateien richtig, der Link war gesetzt – und der Feed
+          # antwortete mit 404, während version.txt daneben 200 lieferte.
+          # Der Server folgt dem Link nicht.
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "rm -rf '$ZIELPFAD/podcast-audio' \
+             && mkdir -p '$ZIELPFAD/podcast-audio' \
+             && cp -a ~/podcast-audio/. '$ZIELPFAD/podcast-audio/' \
+             && ls -1 '$ZIELPFAD/podcast-audio' | wc -l"
           rm -f ~/.ssh/id_deploy
           echo "Veröffentlicht: https://iminvests.de/podcast-audio/feed.xml"
 
@@ -279,7 +314,7 @@ jobs:
           fi
 
       - name: Zu YouTube hochladen
-        if: steps.tag.outputs.erscheint == 'ja'
+        if: steps.tag.outputs.erscheint == 'ja' && steps.tag.outputs.veroeffentlichen == 'ja'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
