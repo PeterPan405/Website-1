@@ -7,7 +7,11 @@ import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
-import { findeGeschichte, geschichtssatz } from '@/lib/boersengeschichte'
+import {
+  findeGeschichte,
+  geschichtssatz,
+  geschichtsvorspann,
+} from '@/lib/boersengeschichte'
 import { cn } from '@/lib/cn'
 import { formatDate } from '@/lib/format'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
@@ -322,8 +326,7 @@ export default async function HomePage() {
               className="rounded-card border-border bg-surface-muted mt-6 border p-5 sm:p-6"
             >
               <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
-                Heute vor{' '}
-                {geschichte.jahre === 1 ? 'einem Jahr' : `${geschichte.jahre} Jahren`}
+                {geschichtsvorspann(geschichte)}
               </p>
               <p className="text-fg mt-2 leading-relaxed">
                 {geschichtssatz(geschichte)}{' '}

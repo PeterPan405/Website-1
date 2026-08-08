@@ -40,8 +40,23 @@ export interface Geschichtsfund {
   datum: string
   /** Wie viele Jahre der Tag zurückliegt, mindestens 1. */
   jahre: number
-  /** Veränderung zum Vortag in Prozent, gerundet auf eine Nachkommastelle. */
+  /** Veränderung zum vorigen Punkt der Reihe, auf eine Nachkommastelle. */
   prozent: number
+  /**
+   * Kalendertage zwischen dem vorigen Punkt und diesem – die Zeit, über die
+   * die Veränderung tatsächlich entstanden ist.
+   *
+   * Ohne diese Zahl lässt sich der Satz nicht ehrlich bilden; siehe
+   * `TAGESSPANNE_MAX`.
+   */
+  spanneTage: number
+  /**
+   * Kalendertage zwischen dem exakten Jahrestag und dem gefundenen Tag.
+   *
+   * Null heißt: Es ist wirklich „heute vor X Jahren“. Sonst liegt der Tag
+   * daneben, und die Kachel darf nicht „heute“ behaupten.
+   */
+  abstandTage: number
 }
 
 /** Eine Reihe samt Namen, wie die Startseite sie übergibt. */
@@ -54,6 +69,34 @@ export interface Geschichtsquelle {
 /** Höchstabstand zwischen Jahrestag und nächstem Handelstag, in Tagen. */
 const HOECHSTABSTAND_TAGE = 3
 
+/**
+ * Bis zu wie vielen Kalendertagen Abstand zwei Punkte als **aufeinander
+ * folgende Handelstage** gelten.
+ *
+ * Drei deckt Freitag → Montag ab, vier zusätzlich einen Feiertagsmontag.
+ *
+ * ## Warum diese Grenze gebraucht wird
+ *
+ * Am 9. August 2026 gemeldet: Die Kachel behauptete einen Kurssturz „an einem
+ * einzigen Handelstag“, der in Wahrheit eine Woche umfasste. Der Grund liegt
+ * im Bestand, nicht in der Rechnung: Die Fünfjahresreihen sind **nicht
+ * gleichmäßig dicht**. Nachgezählt über die acht Leitwerte der Startseite:
+ *
+ *     Lücke 1–3 Tage   2.271 Paare   jüngerer Teil, echte Handelstage
+ *     Lücke 7 Tage     1.372 Paare   älterer Teil, nur Wochenwerte
+ *
+ * Wer zwei Jahre zurückblickt, landet im wöchentlichen Teil. „Der Punkt
+ * davor“ liegt dann sieben Tage zurück, und aus einer Wochenbewegung wird im
+ * Satz eine Tagesbewegung. Beim Nikkei am 5. August 2024 wurden so aus real
+ * −12,4 Prozent an jenem Tag die −18,2 Prozent der Woche davor.
+ *
+ * Der vorhandene `HOECHSTABSTAND_TAGE` half dagegen nicht: Er bewacht den
+ * Abstand zum **Jahrestag**, nicht den zum Vorpunkt. Der Test von damals
+ * nannte die Gefahr sogar beim Namen („sonst würde ein Wochenschluss als
+ * Tagesbewegung ausgegeben“) und maß trotzdem die falsche Strecke.
+ */
+const TAGESSPANNE_MAX = 4
+
 /** Die ersten zehn Zeichen: der Kalendertag, ohne Umweg über `new Date`. */
 function tagVon(zeitpunkt: string): string {
   return zeitpunkt.slice(0, 10)
@@ -63,6 +106,22 @@ function tagVon(zeitpunkt: string): string {
 function tageAbstand(a: string, b: string): number {
   const ms = Math.abs(Date.parse(`${a}T00:00:00Z`) - Date.parse(`${b}T00:00:00Z`))
   return Math.round(ms / 86_400_000)
+}
+
+/** Ob der Fund ein echter Tagesausschlag ist und keine Wochenbewegung. */
+function istTagesausschlag(fund: Geschichtsfund): boolean {
+  return fund.spanneTage <= TAGESSPANNE_MAX
+}
+
+/** Ob `a` die bessere Geschichte erzählt als `b`. */
+function besser(a: Geschichtsfund, b: Geschichtsfund): boolean {
+  const tagA = istTagesausschlag(a)
+  const tagB = istTagesausschlag(b)
+  if (tagA !== tagB) return tagA
+  if (Math.abs(a.prozent) !== Math.abs(b.prozent)) {
+    return Math.abs(a.prozent) > Math.abs(b.prozent)
+  }
+  return a.jahre > b.jahre
 }
 
 /** Der Jahrestag des Stichtags vor `jahre` Jahren; 29. Februar wird zum 28. */
@@ -125,28 +184,58 @@ export function findeGeschichte(
         datum: tagVon(heute.t),
         jahre,
         prozent,
+        spanneTage: tageAbstand(tagVon(gestern.t), tagVon(heute.t)),
+        abstandTage: abstand,
       }
 
-      if (
-        bester === null ||
-        Math.abs(fund.prozent) > Math.abs(bester.prozent) ||
-        (Math.abs(fund.prozent) === Math.abs(bester.prozent) && fund.jahre > bester.jahre)
-      ) {
-        bester = fund
-      }
+      /*
+        Ein echter Tagesausschlag schlägt jede Wochenbewegung, auch eine
+        größere. Das ist der Lehrwinkel dieser Kachel: dass **einzelne Tage**
+        unangekündigt kommen. Eine Woche mit −19 Prozent erzählt das nicht
+        besser als ein Tag mit −7, sie klingt nur lauter.
+
+        Erst innerhalb derselben Klasse zählt der Betrag, dann das ältere Jahr.
+      */
+      if (bester === null || besser(fund, bester)) bester = fund
     }
   }
 
   return bester
 }
 
-/** Der Satz zur Kachel – eine Stelle, damit Seite und Test dasselbe sagen. */
+/**
+ * Der Satz zur Kachel – eine Stelle, damit Seite und Test dasselbe sagen.
+ *
+ * Der Zeitraum wird **aus den Daten** benannt und nicht behauptet. Liegt
+ * zwischen den beiden Punkten mehr als ein Handelstag, steht das im Satz;
+ * sonst hieße es „an einem einzigen Handelstag“ über einer Wochenbewegung.
+ *
+ * Den Vorspann „Heute vor X Jahren“ trägt die Kachel selbst, damit er dort
+ * abgeschwächt werden kann, wo der Tag neben dem Jahrestag liegt.
+ */
 export function geschichtssatz(fund: Geschichtsfund): string {
   const richtung = fund.prozent > 0 ? 'stieg' : 'fiel'
   const betrag = Math.abs(fund.prozent).toLocaleString('de-DE', {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   })
+  const zeitraum = istTagesausschlag(fund)
+    ? 'an einem einzigen Handelstag'
+    : fund.spanneTage <= 10
+      ? 'binnen einer Woche'
+      : `binnen ${fund.spanneTage} Tagen`
+  return `${fund.name} ${richtung} ${zeitraum} um ${betrag} Prozent.`
+}
+
+/**
+ * Der Vorspann der Kachel.
+ *
+ * „Heute“ nur, wenn der gefundene Tag wirklich der Jahrestag ist. Sonst liegt
+ * er bis zu drei Tage daneben, und die Kachel behauptete einen Kalendertag,
+ * den sie nicht zeigt – gemeldet am 9. August 2026: Überschrift „Heute vor 2
+ * Jahren“, darunter ein Ereignis vom 5. August.
+ */
+export function geschichtsvorspann(fund: Geschichtsfund): string {
   const wann = fund.jahre === 1 ? 'einem Jahr' : `${fund.jahre} Jahren`
-  return `Heute vor ${wann} ${richtung} ${fund.name} an einem einzigen Handelstag um ${betrag} Prozent.`
+  return fund.abstandTage === 0 ? `Heute vor ${wann}` : `Vor ${wann}`
 }
