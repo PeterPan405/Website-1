@@ -106,6 +106,17 @@ jobs:
   bauen:
     name: Bauen und prüfen
     runs-on: ubuntu-latest
+    # Ohne diese Zeile gilt GitHubs Voreinstellung: **sechs Stunden**.
+    #
+    # Am 8. August 2026 blieb der Schritt „Bauen“ hängen – über eine Stunde
+    # für sieben Minuten Arbeit, ohne Ausgabe, ohne Ende. Der Lauf hätte bis
+    # in die Nacht weitergestanden und den Zweig blockiert, und ein Lauf, der
+    # noch läuft, sieht von außen aus wie einer, der gleich fertig wird.
+    #
+    # Eine geplatzte Frist ist ein roter Lauf mit Mail – und das ist genau
+    # das, was dieses Projekt einem stillen Hänger vorzieht. 45 Minuten sind
+    # das Dreifache der gemessenen Laufzeit; wer sie reißt, hat ein Problem.
+    timeout-minutes: 45
     env:
       SSH_PORT: '65002'
       # Der Pfad ist bei Hostinger relativ zum Benutzerverzeichnis.

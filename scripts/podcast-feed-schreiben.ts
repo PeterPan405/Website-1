@@ -114,8 +114,10 @@ const kopfBeschreibung =
   'Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir ' +
   'kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten ' +
   'zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken – immer mit Einordnung, was ' +
-  'das für Privatanleger bedeutet. Die Stimme wird mit künstlicher Intelligenz ' +
-  'erzeugt; Auswahl, Text und Einordnung stammen von IM Invests. Keine Anlageberatung.'
+  'das für Privatanleger bedeutet. Text und Vertonung entstehen mit Unterstützung ' +
+  'von KI-Werkzeugen und werden vor der Veröffentlichung von einem Menschen ' +
+  'inhaltlich geprüft; die redaktionelle Verantwortung liegt beim Betreiber. ' +
+  'Keine Anlageberatung.'
 
 const eintraege = register.folgen
   .map((folge) => {

@@ -119,6 +119,10 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          # Ohne diese Zeile prüfte die Probe alles außer der Playlist – und
+          # gerade die fällt beim echten Upload nicht auf, weil das
+          # Einsortieren dort bewusst nur eine Warnung ist.
+          YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
         run: |
@@ -243,6 +247,22 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install soundfile numpy
+
+      # ffmpeg liegt **nicht** mehr auf dem Läufer.
+      #
+      # Am 8. August 2026 sprachen vier Läufer die Folge fehlerfrei – 19
+      # Stücke, sechs Minuten, lückenlos – und dann scheiterte alles daran:
+      #
+      #     FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+      #
+      # Frühere Ubuntu-Abbilder brachten es mit, das aktuelle nicht mehr.
+      # Der Podcast braucht es an drei Stellen: MP3 aus den Stücken, Video
+      # aus Cover und Ton, und `ffprobe` für die Dauer im Feed.
+      - name: ffmpeg einrichten
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
 
       - uses: actions/download-artifact@v4
         with:

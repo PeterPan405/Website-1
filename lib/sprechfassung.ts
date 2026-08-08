@@ -355,6 +355,26 @@ export interface Podcastfolge {
 const WORTZIEL_MIN = 710
 const WORTZIEL_MAX = 740
 
+/**
+ * Der KI-Hinweis, wie er unter jeder Folge steht.
+ *
+ * Vom Betreiber wörtlich vorgegeben und deshalb hier als Konstante: Er steht
+ * an zwei Stellen – unter der einzelnen Folge und, sinngemäß, in der
+ * Kanalbeschreibung des Feeds (`scripts/podcast-feed-schreiben.ts`). Zwei
+ * verschiedene Angaben zur selben Sache wären schlimmer als gar keine.
+ *
+ * **Der Satz enthält eine Zusage, die die Technik nicht einhalten kann.**
+ * „Vor der Veröffentlichung von einem Menschen inhaltlich geprüft“ trifft auf
+ * die Kette nicht zu: `podcast-erzeugen.yml` schreibt, vertont und
+ * veröffentlicht ohne Halt dazwischen. Wer den Satz stehen lässt, muss die
+ * Folge morgens tatsächlich vor der Freigabe lesen – oder den Halbsatz
+ * streichen. Er ist eine Beschreibung des Verfahrens, kein Schmuck.
+ */
+const KI_HINWEIS =
+  'Hinweis: Text und Vertonung dieser Folge entstehen mit Unterstützung von ' +
+  'KI-Werkzeugen und werden vor der Veröffentlichung von einem Menschen ' +
+  'inhaltlich geprüft; die redaktionelle Verantwortung liegt beim Betreiber.'
+
 function wortzahl(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
 }
@@ -461,7 +481,7 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     `Wir sprechen über ${weitere || spannungsbogen}. Kompakt in rund fünf Minuten.`,
     '[KAPITEL]',
     'Website: iminvests.de',
-    'Hinweis: Die Stimme in dieser Folge wurde mit künstlicher Intelligenz erzeugt. Auswahl, Text und Einordnung stammen von IM Invests.',
+    KI_HINWEIS,
     'Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.',
     hashtags,
   ].join('\n\n')
