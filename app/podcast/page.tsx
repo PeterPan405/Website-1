@@ -10,6 +10,7 @@ import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import {
   folgenDauer,
+  folgenSpotify,
   folgenVideo,
   getFolgen,
   podcastBeschreibung,
@@ -177,40 +178,40 @@ export default function PodcastSeite() {
                       </div>
                     )}
                     {/*
-                      Der Verweis zur Folge, sonst zur Sendung. Manche Hoster
-                      lassen den `link` je Folge weg – dann ist eine Ebene höher
-                      immer noch besser als ein Knopf, der ins Leere zeigt.
+                      Zwei Wege zu **dieser** Folge: hören bei Spotify, sehen
+                      auf YouTube. Beide führen dorthin, wo der Podcast lebt.
 
-                      ## Warum das Symbol von der Adresse abhängt
+                      ## Warum hier keine Audiodatei mehr steht
 
-                      Bis zum 8. August 2026 stand hier immer das
-                      Spotify-Zeichen. Seit die Folgen im eigenen Haus liegen,
-                      führt der Verweis auf die Audiodatei dieser Website – und
-                      ein Spotify-Zeichen daneben wäre schlicht falsch. Es
-                      verspricht, wohin es geht, und dieses Versprechen muss
-                      stimmen.
+                      Bis zum 8. August 2026 verwies der erste Knopf auf die
+                      MP3 dieser Website. Sie ist die Grundlage des Feeds und
+                      bleibt es – aber als Angebot an einen Hörer ist sie das
+                      schlechteste der drei: keine Wiedergabeliste, kein
+                      Fortschritt, kein Abo. Wer den Podcast hört, hört ihn in
+                      seiner App.
+
+                      ## Warum jeder Knopf verschwinden darf
+
+                      Eine Folge, die Spotify noch nicht eingelesen hat, hat
+                      dort keine Adresse; eine Folge vor dem ersten
+                      YouTube-Upload hat kein Video. Dann steht der Knopf
+                      nicht da. Ein Verweis auf die Sendung an der Stelle, an
+                      der „diese Folge" steht, wäre ein gebrochenes
+                      Versprechen – und genau daran ist der frühere Verweis
+                      aufgefallen: Er führte in den Verwaltungsbereich.
                     */}
                     <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
-                      {(folge.url ?? spotify?.href) && (
+                      {folgenSpotify(folge) && (
                         <a
-                          href={folge.url ?? spotify?.href}
+                          href={folgenSpotify(folge)!}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-news inline-flex items-center gap-1.5 text-sm font-medium underline underline-offset-2"
                         >
-                          <Icon
-                            name={folge.url?.includes('spotify') ? 'spotify' : 'play'}
-                            className="size-4"
-                          />
-                          {folge.url ? 'Diese Folge anhören' : 'Podcast anhören'}
+                          <Icon name="spotify" className="size-4" />
+                          Diese Folge bei Spotify
                         </a>
                       )}
-                      {/*
-                        Das Video **dieser** Folge, nicht der Kanal. Ohne die
-                        Kennung steht hier nichts – ein Verweis auf den Kanal
-                        wäre an dieser Stelle irreführend: Er sähe aus wie
-                        „diese Folge auf YouTube" und führte auf eine Liste.
-                      */}
                       {folgenVideo(folge) && (
                         <a
                           href={folgenVideo(folge)!}
@@ -220,6 +221,22 @@ export default function PodcastSeite() {
                         >
                           <Icon name="youtube" className="size-4" />
                           Diese Folge auf YouTube
+                        </a>
+                      )}
+                      {/*
+                        Steht die Folge auf keiner der beiden Plattformen,
+                        bleibt der Verweis auf die Sendung – klar benannt, damit
+                        niemand erwartet, direkt bei dieser Folge zu landen.
+                      */}
+                      {!folgenSpotify(folge) && !folgenVideo(folge) && spotify?.href && (
+                        <a
+                          href={spotify.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-fg-muted inline-flex items-center gap-1.5 text-sm underline underline-offset-2"
+                        >
+                          <Icon name="spotify" className="size-4" />
+                          Zum Podcast bei Spotify
                         </a>
                       )}
                     </div>

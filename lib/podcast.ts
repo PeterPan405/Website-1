@@ -75,6 +75,23 @@ export function folgenVideo(folge: Folge): string | null {
   return folge.youtubeId ? `https://www.youtube.com/watch?v=${folge.youtubeId}` : null
 }
 
+/**
+ * Die Spotify-Adresse einer Folge, oder `null`.
+ *
+ * Sie steht nicht im Feed – Spotify vergibt sie beim Einlesen und niemand
+ * sonst kennt sie. `scripts/podcast-spotify.ts` fragt sie ab; solange keine
+ * Zugangsdaten hinterlegt sind, bleibt sie leer, und die Seite verweist auf
+ * die Sendung statt auf die Folge.
+ *
+ * Was hier ausdrücklich **nicht** zurückkommt, ist die Adresse im
+ * Verwaltungsbereich (`podcasters.spotify.com/pod/show/…`). Sie führt zwar
+ * zur richtigen Folge, aber in den Bereich für Ersteller – ein Hörer, der
+ * dort landet, sieht eine Anmeldemaske statt eines Abspielknopfs.
+ */
+export function folgenSpotify(folge: Folge): string | null {
+  return folge.spotifyUrl ?? null
+}
+
 export type { Folge }
 
 /** Alle Folgen, jüngste zuerst. */

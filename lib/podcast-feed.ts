@@ -28,6 +28,13 @@
 export interface Folge {
   /** Die YouTube-Kennung der Folge, sobald ein Upload sie geliefert hat. */
   youtubeId?: string
+  /**
+   * Die Adresse dieser Folge bei Spotify, sobald sie dort erschienen ist.
+   *
+   * Kommt aus `scripts/podcast-spotify.ts`; im Feed steht sie nicht, weil
+   * Spotify sie erst beim Einlesen vergibt.
+   */
+  spotifyUrl?: string
   /** Adressteil, aus dem Titel gebildet. */
   slug: string
   titel: string

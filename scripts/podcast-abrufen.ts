@@ -38,7 +38,7 @@
  * Aufruf: `npm run podcast`
  */
 
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 
@@ -69,6 +69,31 @@ const REGISTER = 'data/podcast-eigener-feed.json'
 /** Der YouTube-Kanal, sobald ein Upload ihn bestätigt hat. */
 let kanalId: string | null = null
 const AUDIO_BASIS = 'https://iminvests.de/podcast-audio'
+
+/**
+ * Die Spotify-Adressen je Erscheinungstag.
+ *
+ * Geschrieben von `scripts/podcast-spotify.ts`. Fehlt die Datei oder ist sie
+ * leer, bleibt `spotifyUrl` weg – die Seite verweist dann auf die Sendung
+ * statt auf die Folge. Das ist ein Zustand, kein Fehler: Eine Folge, die
+ * Spotify noch nicht eingelesen hat, **hat** dort keine Adresse.
+ */
+const SPOTIFY_KARTE = 'data/podcast-spotify.json'
+
+function spotifyAdressen(): Record<string, string> {
+  try {
+    const datei = JSON.parse(readFileSync(SPOTIFY_KARTE, 'utf8')) as {
+      folgen?: Record<string, { url?: string }>
+    }
+    return Object.fromEntries(
+      Object.entries(datei.folgen ?? {})
+        .filter(([, eintrag]) => Boolean(eintrag?.url))
+        .map(([tag, eintrag]) => [tag, eintrag.url as string])
+    )
+  } catch {
+    return {}
+  }
+}
 
 interface Momentaufnahme {
   abgerufenAm: string | null
@@ -119,6 +144,7 @@ async function ausEigenemRegister(): Promise<Folge[] | null> {
     einem täglichen Marktupdate nicht theoretisch.
   */
   const vergeben = new Set<string>()
+  const spotify = spotifyAdressen()
   return register.folgen
     .map((eintrag) => {
       let slug = folgenSlug(eintrag.titel)
@@ -134,11 +160,13 @@ async function ausEigenemRegister(): Promise<Folge[] | null> {
         beschreibung: eintrag.beschreibung,
         datum: eintrag.datum,
         dauerSekunden: eintrag.dauerSekunden,
-        /* Die Folge selbst, nicht die Sendung: Wer „diese Folge anhören"
-           drückt, soll diese Folge hören und nicht auf einer Übersicht
-           landen, auf der er sie erst suchen muss. */
+        /* Die Audiodatei dieser Website. Sie ist die Grundlage des Feeds und
+           der Rückfall, wenn eine Folge auf keiner Plattform steht – auf der
+           Seite selbst wird sie nicht mehr angeboten. Wer den Podcast hört,
+           will ihn dort hören, wo seine Abos liegen, nicht als lose Datei. */
         url: `${AUDIO_BASIS}/${eintrag.datum}.mp3`,
         ...(eintrag.youtubeId ? { youtubeId: eintrag.youtubeId } : {}),
+        ...(spotify[eintrag.datum] ? { spotifyUrl: spotify[eintrag.datum] } : {}),
       }
     })
     .sort((a, b) => b.datum.localeCompare(a.datum))
