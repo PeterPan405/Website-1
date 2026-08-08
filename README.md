@@ -7,6 +7,21 @@ ein interaktiver Staatsverschuldungs-Vergleich.
 Gebaut mit **Next.js 16** (App Router), **React 19**, **TypeScript**, **Tailwind CSS 4**,
 **Recharts** und **Framer Motion**.
 
+## Rechte
+
+Quelltext und Inhalte sind urheberrechtlich geschützt; alle Rechte vorbehalten. Das
+Repository ist öffentlich, weil eine Website, die Nachvollziehbarkeit zu ihrem
+Grundsatz erklärt, ihre eigene Herstellung nicht verstecken sollte – wer wissen
+will, wie eine Zahl auf iminvests.de zustande kommt, kann es hier nachlesen.
+
+Öffentlich einsehbar ist nicht dasselbe wie frei verwendbar. Es liegt bewusst **keine
+Lizenzdatei** bei: Jede Lizenz würde mehr erlauben, als hier gemeint ist. Die Texte
+unter `data/` – Lernthemen, Akademie, Glossar, Tagesausgaben – sind die Arbeit, nicht
+das Beiwerk.
+
+Für Zitate mit Quellenangabe, zum Lernen und zum Nachbauen einzelner Ideen braucht es
+keine Erlaubnis. Für die Übernahme von Inhalten schon.
+
 ## Schnellstart
 
 ```bash
