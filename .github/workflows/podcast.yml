@@ -27,6 +27,8 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
+      # Zum Anstoßen des Paketbaus über `gh workflow run` – siehe letzter Schritt.
+      actions: write
 
     steps:
       - uses: actions/checkout@v5
@@ -43,9 +45,15 @@ jobs:
         run: npm run podcast
 
       - name: Momentaufnahme committen
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Der Vorgabewert steht zuerst da, damit der Schritt danach in jedem
+          # Ausgang eine Antwort vorfindet – auch wenn hier vorzeitig
+          # ausgestiegen wird. Ein späteres `gepusht=ja` überschreibt ihn.
+          echo "gepusht=nein" >> "$GITHUB_OUTPUT"
 
           # Erst vormerken, dann vergleichen – `git diff` allein sieht eine noch
           # nicht versionierte Datei nicht und meldete „keine Änderung“.
@@ -59,8 +67,35 @@ jobs:
 
           zweig="${{ github.ref_name }}"
           for versuch in 1 2 3; do
-            git pull --rebase origin "$zweig" && git push origin "$zweig" && exit 0
+            if git pull --rebase origin "$zweig" && git push origin "$zweig"; then
+              echo "gepusht=ja" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             echo "Push fehlgeschlagen, Versuch $versuch"
             sleep $((versuch * 5))
           done
           exit 1
+
+      # Den Neubau anstoßen – sonst bleibt der Commit folgenlos.
+      #
+      # Ein Push mit dem `GITHUB_TOKEN` startet keinen weiteren Workflow;
+      # GitHub verhindert damit Endlosschleifen, ohne es zu melden. Bis zum
+      # 8. August 2026 kam dieser Bestand deshalb erst mit dem nächtlichen Bau
+      # auf die Website – eine neue Folge stand bis zu einem Tag lang nicht da,
+      # obwohl sie längst veröffentlicht war.
+      #
+      # `workflow_dispatch` ist von der Sperre ausgenommen. Denselben Weg geht
+      # `kurse.yml`; die Begründung steht dort ausführlich.
+      #
+      # `paket=false`: Das fertige Verzeichnis wiegt 138 MB, und als Artefakt
+      # bräuchte es nur, wer es herunterladen will.
+      - name: Neubau anstoßen
+        if: steps.commit.outputs.gepusht == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run paket-bauen.yml \
+            --repo "${{ github.repository }}" \
+            --ref "${{ github.ref_name }}" \
+            -f paket=false
+          echo "Paketbau für ${{ github.ref_name }} angefordert."

@@ -2347,7 +2347,7 @@ export function TaElliottAnsetzenStreckung() {
   const laenge = start - hoch1
   const ziel = (faktor: number) => tief2 - laenge * faktor
   return (
-    <FigureSvg id="ta-elliott-ansetzen-streckung" viewBox="0 0 640 290">
+    <FigureSvg id="ta-elliott-ansetzen-streckung" viewBox="0 0 640 300">
       <Stufe y={ziel(1.618)} von={200} bis={520} text="1,618 ×" kraeftig />
       <Stufe y={ziel(2.618)} von={200} bis={520} text="2,618 ×" />
       <path
@@ -2399,7 +2399,7 @@ export function TaElliottAnsetzenProjektion() {
   const laenge = start - ende3
   const ziel = (faktor: number) => tief4 - laenge * faktor
   return (
-    <FigureSvg id="ta-elliott-ansetzen-projektion" viewBox="0 0 640 290">
+    <FigureSvg id="ta-elliott-ansetzen-projektion" viewBox="0 0 640 300">
       <Stufe y={ziel(0.618)} von={300} bis={520} text="0,618 ×" kraeftig />
       <Stufe y={ziel(1.0)} von={300} bis={520} text="1,000 ×" />
       <path
