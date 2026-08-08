@@ -74,6 +74,10 @@ export type FigureId =
   | 'ta-elliott-ruecklaeufe'
   /** Wie weit die Impulswellen üblicherweise über die vorige hinauslaufen. */
   | 'ta-elliott-streckungen'
+  /** Wo jede Welle dreht – der Umkehrbereich als Band. */
+  | 'ta-elliott-umkehrbereiche'
+  /** Umkehrbereiche in Dreieck, Kombination und Diagonale. */
+  | 'ta-elliott-umkehr-weitere'
   /* ------------------------------------- Akademie: übrige Bereiche */
   /** Wie das Risiko mit der Zahl der Titel fällt – und wo es aufhört. */
   | 'pt-diversifikation'
@@ -1004,6 +1008,20 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Drei waagerechte Skalen untereinander für Welle 3, Welle 5 und Welle C. Eingetragen sind die gebräuchlichen Vielfachen 0,618, 1,0, 1,618, 2,618 und 4,236. Kräftig hervorgehoben ist jeweils der Regelfall der Wellenliteratur. Welle 3 erreicht danach üblicherweise das 1,618-fache der Welle 1, bei starken Bewegungen das 2,618- oder 4,236-fache. Welle 5 wird meist mit dem 0,618-fachen der Strecke von Beginn Welle 1 bis Ende Welle 3 angesetzt, seltener mit dem Einfachen. Welle C entspricht am häufigsten der Länge von Welle A, daneben dem 1,618-fachen. Auch hier ist eine Rangfolge dargestellt und keine gemessene Häufigkeit.',
     caption:
       'Welle 3 ist die einzige, für die regelmäßig ein Vielfaches über eins erwartet wird. Welle 5 bleibt meist darunter.',
+  },
+  'ta-elliott-umkehrbereiche': {
+    title: 'Wo jede Welle dreht',
+    description:
+      'Ein Impulsverlauf aus fünf Wellen, über den vier waagerechte Bänder gelegt sind. Jedes Band markiert den Bereich, in dem die zugehörige Welle laut Wellenliteratur endet und die Richtung wechselt. Das Band für Welle 2 reicht von 50 bis 78,6 Prozent der Welle 1. Das Band für Welle 3 liegt zwischen dem 1,618-fachen und dem 2,618-fachen der Welle 1, gemessen ab dem Tief der Welle 2. Für Welle 4 liegt es bei 23,6 bis 38,2 Prozent der Welle 3 und damit deutlich flacher als bei Welle 2. Für Welle 5 reicht es vom 0,618-fachen der Strecke zwischen Beginn Welle 1 und Ende Welle 3 bis ungefähr zur Länge der Welle 1. Die Bänder sind bewusst breit: Zwischen 50 und 78,6 Prozent liegen bei einer Bewegung von hundert Punkten fast dreißig Punkte. Eine Welle endet in einem Bereich, nicht auf einem Punkt.',
+    caption:
+      'Jede Welle dreht in ihrem eigenen Bereich – und der ist breit. Wer auf den Punkt plant, plant genauer, als die Methode hergibt.',
+  },
+  'ta-elliott-umkehr-weitere': {
+    title: 'Umkehrbereiche in den Sonderformen',
+    description:
+      'Drei schematische Formationen nebeneinander. Links ein kontrahierendes Dreieck mit den Abschnitten A bis E; jeder Abschnitt misst ungefähr das 0,618-fache des vorigen, weshalb sich die Form zum Ende hin verengt. In der Mitte eine doppelte Korrektur mit W, X und Y: Die Verbindungswelle X läuft 50 bis 78,6 Prozent der Welle W zurück, die zweite Korrektur Y entspricht dem 0,618- bis 1,618-fachen von W und am häufigsten ungefähr deren Länge. Rechts eine endende Diagonale mit ihren gestrichelten Begrenzungslinien; hier laufen die Wellen 2 und 4 mit 66 bis 81 Prozent deutlich tiefer zurück als im gewöhnlichen Impuls. Die Grafik macht damit den Grundsatz sichtbar, dass die Verhältnisse je Formation gelten und nicht je Wellennummer: Wer die Werte aus der Impulstabelle auf eine Diagonale überträgt, misst mit dem falschen Maßstab.',
+    caption:
+      'Die Verhältnisse hängen an der Formation, nicht an der Nummer. Eine Welle 2 in der Diagonale dreht tiefer als eine Welle 2 im Impuls.',
   },
   'pt-diversifikation': {
     title: 'Wie weit Streuung das Risiko senkt',

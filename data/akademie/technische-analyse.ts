@@ -1506,6 +1506,191 @@ export const technischeAnalyseLektionen: Lektion[] = [
       },
       { type: 'figure', figure: 'ta-elliott-streckungen' },
       {
+        type: 'heading',
+        level: 2,
+        text: 'Der Umkehrbereich: wo die Welle endet und dreht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die beiden Grafiken oben zeigen einzelne Marken. Das verleitet zu der Vorstellung, eine Welle ende auf einem Punkt. Sie endet in einem **Bereich** – und der ist breiter, als die Zahlen vermuten lassen: Zwischen 50 und 78,6 Prozent liegen bei einer Bewegung von 100 Punkten fast 29 Punkte.',
+      },
+      { type: 'figure', figure: 'ta-elliott-umkehrbereiche' },
+      {
+        type: 'table',
+        caption:
+          'Der Bereich, in dem die jeweilige Welle laut Literatur endet – und was danach beginnt.',
+        head: ['Welle', 'Umkehrbereich', 'Gemessen an', 'Was danach folgt'],
+        rows: [
+          [
+            'Welle 1',
+            'kein Bereich – sie setzt den Maßstab',
+            '—',
+            'Welle 2 beginnt, der Rücklauf',
+          ],
+          [
+            'Welle 2',
+            '50 – 78,6 %',
+            'Welle 1, ab deren Hoch abwärts',
+            'Welle 3 beginnt – meist die längste Bewegung',
+          ],
+          [
+            'Welle 3',
+            '1,618 – 2,618 ×',
+            'Welle 1, ab dem Tief der Welle 2',
+            'Welle 4 beginnt, eine flache Korrektur',
+          ],
+          [
+            'Welle 4',
+            '23,6 – 38,2 %',
+            'Welle 3, ab deren Hoch abwärts',
+            'Welle 5 beginnt, der letzte Schub',
+          ],
+          [
+            'Welle 5',
+            '0,618 × (Start 1 bis Ende 3) bis ≈ Welle 1',
+            'ab dem Tief der Welle 4',
+            'die Korrektur A-B-C beginnt',
+          ],
+          [
+            'Welle A',
+            '38,2 – 61,8 %',
+            'der gesamten Bewegung 1 bis 5',
+            'Welle B beginnt, die Gegenbewegung',
+          ],
+          [
+            'Welle B',
+            '38,2 – 61,8 % (Flat: 90 – 105 %)',
+            'Welle A',
+            'Welle C beginnt, meist der stärkste Teil der Korrektur',
+          ],
+          [
+            'Welle C',
+            '1,0 – 1,618 ×',
+            'Welle A, ab dem Hoch der Welle B',
+            'der Zyklus ist beendet, ein neuer beginnt',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Wie man den Bereich in der Praxis eingrenzt',
+        items: [
+          'Die beiden Ränder auftragen, nicht die Mitte. Der Bereich ist die Erwartung, nicht die einzelne Linie.',
+          'Prüfen, ob eine Marke aus einer anderen Herleitung in denselben Bereich fällt – etwa das Hoch der Unterwelle 4 innerhalb von Welle 3, das als Ziel für Welle 4 gilt. Zwei unabhängige Herleitungen auf einem Bereich sind das stärkste Argument, das die Methode hergibt.',
+          'Die Ausschlussmarke daneben eintragen. Sie liegt außerhalb des Umkehrbereichs und sagt, wann die Zählung erledigt ist.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was „dreht dort“ nicht heißt',
+        items: [
+          'Nicht, dass der Kurs im Bereich zwangsläufig umkehrt. Er läuft regelmäßig hindurch – dann war es die falsche Zählung oder eine der Sonderformen.',
+          'Nicht, dass eine Umkehr im Bereich die Zählung bestätigt. Die Bereiche sind breit und liegen dicht beieinander; ein erheblicher Teil des Kursraums ist von irgendeinem belegt.',
+          'Der Bereich ist eine Stelle, an der man hinsieht – kein Signal, an dem man handelt.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die übrigen Wellen: Dreieck, Kombination, Diagonale',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Tabelle oben deckt den gewöhnlichen Impuls und die einfache Korrektur ab. Innerhalb der Sonderformen gibt es weitere Wellen, und die haben **eigene** Bereiche. Der Grundsatz dahinter ist der wichtigere Teil dieser Lektion: **Die Verhältnisse gelten je Formation, nicht je Wellennummer.**',
+      },
+      { type: 'figure', figure: 'ta-elliott-umkehr-weitere' },
+      {
+        type: 'table',
+        caption:
+          'Das kontrahierende Dreieck. Jeder Abschnitt bezieht sich auf den unmittelbar vorigen – deshalb verengt sich die Form.',
+        head: ['Abschnitt', 'Umkehrbereich', 'Gemessen an', 'Besonderheit'],
+        rows: [
+          [
+            'Welle A',
+            'setzt den Maßstab',
+            '—',
+            'dreiteilig wie alle Abschnitte des Dreiecks',
+          ],
+          [
+            'Welle B',
+            '0,5 – 0,8 ×, meist 0,618 ×',
+            'Welle A',
+            'beim laufenden Dreieck über den Start von A hinaus',
+          ],
+          ['Welle C', '0,5 – 0,8 ×, meist 0,618 ×', 'Welle B', '—'],
+          [
+            'Welle D',
+            '0,5 – 0,8 ×, meist 0,618 ×',
+            'Welle C',
+            'beim Barrier-Dreieck etwa auf Höhe von B',
+          ],
+          [
+            'Welle E',
+            '0,5 – 0,8 ×, meist 0,618 ×',
+            'Welle D',
+            'endet oft **vor** der Begrenzungslinie – ein Überschießen ist zulässig, aber kein Regelfall',
+          ],
+        ],
+      },
+      {
+        type: 'table',
+        caption:
+          'Die Kombinationen. W, Y und Z sind vollständige Korrekturen, X verbindet sie.',
+        head: ['Welle', 'Umkehrbereich', 'Gemessen an', 'Besonderheit'],
+        rows: [
+          ['Welle W', 'setzt den Maßstab', '—', 'die erste vollständige Korrektur'],
+          [
+            'Welle X',
+            '50 – 78,6 %',
+            'Welle W',
+            'läuft sie weiter zurück, ist es keine Verbindungswelle',
+          ],
+          [
+            'Welle Y',
+            '0,618 – 1,618 ×, meist ≈ 1,0 ×',
+            'Welle W',
+            'ähnelt W in der Größe – tut sie das nicht, stimmt die Zählung vermutlich nicht',
+          ],
+          ['zweite Welle X', '50 – 78,6 %', 'Welle Y', 'nur in der dreifachen Korrektur'],
+          ['Welle Z', '≈ 1,0 ×', 'Welle Y', 'der letzte Bestandteil, oft ein Dreieck'],
+        ],
+      },
+      {
+        type: 'table',
+        caption:
+          'Die Diagonale. Hier laufen die Korrekturwellen tiefer und die Impulswellen kürzer als im gewöhnlichen Impuls.',
+        head: ['Welle', 'Umkehrbereich', 'Gemessen an', 'Unterschied zum Impuls'],
+        rows: [
+          ['Welle 1', 'setzt den Maßstab', '—', 'dreiteilig statt fünfteilig'],
+          [
+            'Welle 2',
+            '66 – 81 %',
+            'Welle 1',
+            'deutlich tiefer als die 50 – 78,6 % im Impuls',
+          ],
+          [
+            'Welle 3',
+            '0,618 – 0,9 ×',
+            'Welle 1',
+            'kürzer als Welle 1 – im Impuls wäre das der Regelfall für die Streckung, hier das Gegenteil',
+          ],
+          ['Welle 4', '66 – 81 %', 'Welle 3', 'darf in den Bereich von Welle 1 reichen'],
+          ['Welle 5', '0,618 – 0,9 ×', 'Welle 3', 'die kürzeste der drei Impulswellen'],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Der häufigste Fehler beim Auftragen',
+        items: [
+          'Die Werte aus der Impulstabelle auf eine Diagonale anzuwenden. Eine Welle 2 dreht dort zwischen 66 und 81 Prozent, nicht zwischen 50 und 78,6 – wer den Impulsmaßstab nimmt, steigt zu früh aus der Zählung aus.',
+          'Im Dreieck jeden Abschnitt an Welle A zu messen statt am unmittelbar vorigen. Die Abschnitte beziehen sich aufeinander, und genau daraus entsteht die Verengung.',
+          'In der Kombination Y an X zu messen statt an W. X ist die Verbindung, nicht der Maßstab.',
+        ],
+      },
+      {
         type: 'paragraph',
         text: 'Bei den Impulswellen ist Welle 3 die einzige, für die regelmäßig ein Vielfaches **über** eins erwartet wird. Welle 5 bleibt in der Regel darunter – das 0,618-fache der Strecke von Beginn Welle 1 bis Ende Welle 3 ist der Regelfall, und genau das ist der rechnerische Ausdruck dafür, dass die letzte Bewegung eines Trends schwächer getragen wird.',
       },
