@@ -370,3 +370,61 @@ jobs:
           echo "::warning::Für den $heute fehlt die Ausgabe – der Nachrichtenlauf wird angestoßen."
           gh workflow run nachrichten.yml \
             --repo "${{ github.repository }}" --ref main
+
+      # Dieselbe Umkehrung für die Podcastfolge.
+      #
+      # `podcast-erzeugen.yml` hängt an einem einzigen `schedule`-Termin
+      # (04:53 UTC). Nach allem, was in diesem Repository nachgezählt wurde,
+      # ist das keine Zusage: Am 6. August 2026 wurde von allen geplanten
+      # Läufen des Tages genau **einer** ausgeführt. Ein verworfener Termin
+      # heißt dann: an diesem Tag erscheint keine Folge, und niemand erfährt
+      # davon.
+      #
+      # ## Warum hier nach dem Lauf gefragt wird und nicht nach der Folge
+      #
+      # Naheliegend wäre, im Folgenregister nachzusehen, ob der heutige Tag
+      # drinsteht. Das wäre falsch: Fehlt die Vertonung, endet der Lauf
+      # ordnungsgemäß ohne Registereintrag – und diese Bedingung wäre dann
+      # den ganzen Tag erfüllt. Bei einem Kursabruf alle zwei Stunden wären
+      # das acht angestoßene Läufe am Tag. Gefragt wird deshalb, ob der Lauf
+      # heute überhaupt **stattgefunden** hat.
+      - name: Podcastfolge anstoßen, falls der Termin ausgefallen ist
+        if: always() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          wochentag=$(date -u +%u)
+          if [ "$wochentag" -ge 6 ]; then
+            echo "Wochenende – es erscheint keine Folge."
+            exit 0
+          fi
+
+          # Nach dem eigenen Termin (04:53 UTC), sonst käme man ihm zuvor.
+          stunde=$(date -u +%H)
+          if [ "$stunde" -lt 05 ]; then
+            echo "Es ist erst $stunde Uhr UTC – der eigene Termin hat noch Zeit."
+            exit 0
+          fi
+
+          # Ohne Tagesausgabe gibt es nichts zu vertonen; der Schritt darüber
+          # kümmert sich darum.
+          heute=$(date -u +%Y-%m-%d)
+          git fetch origin main --depth 1 -q
+          if ! git cat-file -e "origin/main:data/editions/$heute.ts" 2>/dev/null; then
+            echo "Für den $heute fehlt noch die Ausgabe – ohne sie keine Folge."
+            exit 0
+          fi
+
+          heutige=$(gh run list --repo "${{ github.repository }}" \
+                      --workflow podcast-erzeugen.yml --limit 20 \
+                      --json createdAt \
+                      --jq "[.[] | select(.createdAt | startswith(\"$heute\"))] | length" \
+                      2>/dev/null || echo 1)
+          if [ "${heutige:-1}" -gt 0 ]; then
+            echo "Der Podcastlauf hat heute schon stattgefunden ($heutige)."
+            exit 0
+          fi
+
+          echo "::warning::Der Podcasttermin ist heute ausgefallen – der Lauf wird angestoßen."
+          gh workflow run podcast-erzeugen.yml \
+            --repo "${{ github.repository }}" --ref main
