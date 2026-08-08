@@ -258,9 +258,37 @@ jobs:
       # Frühere Ubuntu-Abbilder brachten es mit, das aktuelle nicht mehr.
       # Der Podcast braucht es an drei Stellen: MP3 aus den Stücken, Video
       # aus Cover und Ton, und `ffprobe` für die Dauer im Feed.
+      # ffmpeg liegt seit dem 8. August 2026 nicht mehr auf dem Läufer-Abbild.
+      # Ohne ihn entsteht keine MP3 und kein Video – die Folge bliebe eine
+      # WAV-Datei im Arbeitsverzeichnis.
+      #
+      # ## Warum `apt-get update` scheitern darf
+      #
+      # Der erste Anlauf ist genau daran gescheitert, und **nicht an ffmpeg**:
+      #
+      #   E: Failed to fetch https://packages.microsoft.com/repos/azure-cli/…
+      #      403 Forbidden
+      #   ##[error]Process completed with exit code 100.
+      #
+      # Auf dem Läufer sind fremde Paketquellen eingetragen (Microsofts
+      # Azure-CLI-Repo). Antwortet eine davon mit 403, endet `apt-get update`
+      # mit Code 100 – und `bash -e` reißt den ganzen Schritt mit, obwohl das
+      # Ubuntu-Archiv, aus dem ffmpeg kommt, tadellos erreichbar war.
+      #
+      # Deshalb ist das Auffrischen der Paketlisten hier ausdrücklich
+      # unkritisch. Ob es geklappt hat, entscheidet nicht diese Zeile,
+      # sondern die Installation danach: Die muss gelingen, und `ffmpeg
+      # -version` beweist es.
       - name: ffmpeg einrichten
         run: |
-          sudo apt-get update -qq
+          if command -v ffmpeg >/dev/null 2>&1; then
+            echo "ffmpeg liegt schon bereit."
+            ffmpeg -version | head -1
+            exit 0
+          fi
+
+          sudo apt-get update -qq \
+            || echo "::warning::apt-get update meldet Fehler (fremde Paketquelle) – die Installation wird trotzdem versucht."
           sudo apt-get install -y -qq ffmpeg
           ffmpeg -version | head -1
 
