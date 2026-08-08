@@ -5,7 +5,8 @@
   "description": "IM Invests – deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/version.mjs",
+    "prebuild": "node scripts/version.mjs && npm run kurselive",
+    "kurselive": "node --experimental-strip-types scripts/kurse-live-schreiben.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

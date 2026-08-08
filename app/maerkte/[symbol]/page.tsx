@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { PriceChart } from '@/components/charts/PriceChart'
+import { KursLive } from '@/components/markets/KursLive'
 import { IndexLaendergewichtung } from '@/components/content/figures/index-laender'
 import { TopicLinkList } from '@/components/learn/TopicLinkList'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -196,34 +197,29 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
         }
         meta={
           <>
-            <span className="text-fg text-lg font-bold tabular-nums">
-              {formatNumber(quote.value, quote.decimals)} {instrument.unit}
-            </span>
-            {euroKurs && (
-              <span className="tabular-nums">
-                rund {formatCurrency(euroKurs.euro, euroKurs.euro < 10 ? 2 : 0)}
-              </span>
-            )}
-            <span
-              className={cn(
-                'flex items-center gap-1 font-semibold tabular-nums',
-                positive ? 'text-success' : 'text-danger'
-              )}
-            >
-              <Icon
-                name={positive ? 'trending-up' : 'trending-down'}
-                className="size-4"
-              />
-              {formatNumberSigned(quote.change, quote.decimals)} (
-              {formatPercentSigned(quote.changePercent)})
-            </span>
-            <span aria-hidden="true">·</span>
-            {/* Ändert sich bei jedem Abruf – siehe scripts/referenzbilder.mjs. */}
-            <span data-fliesst="">
-              {quote.intraday || !quote.source
-                ? `Stand ${formatDateTime(quote.asOf)}`
-                : `Schluss ${formatDate(quote.asOf)}`}
-            </span>
+            {/*
+              Der Kurs kommt gebaut heraus und wird im Browser aufgefrischt.
+
+              Bis August 2026 stand er ausschließlich im HTML. Jede
+              Kursänderung hieß damit: 1.524 Seiten neu bauen, rund dreizehn
+              Minuten – für eine Zahl. Jetzt liegt daneben `kurse-live.json`,
+              63 KB, die sich in Sekunden hochladen lässt.
+
+              Ausgeliefert wird trotzdem der gebaute Stand, nicht ein
+              Platzhalter: Die Seite ist vollständig, bevor JavaScript läuft,
+              und bleibt es, wenn keines läuft.
+            */}
+            <KursLive
+              symbol={instrument.symbol}
+              unit={instrument.unit}
+              decimals={quote.decimals}
+              value={quote.value}
+              basis={quote.value - quote.change}
+              asOf={quote.asOf}
+              intraday={quote.intraday}
+              hatQuelle={Boolean(quote.source)}
+              euroFaktor={euroKurs ? euroKurs.euro / quote.value : null}
+            />
             {/*
               Der Merkknopf steht in der Kopfzeile und nicht am Seitenende: Wer
               ihn drückt, hat sich nach den ersten Zahlen entschieden – nicht

@@ -289,6 +289,51 @@ jobs:
       # einem Start von Hand als Artefakt an. Es wiegt 138 MB, enthalten sind
       # 500 MB Actions-Speicher im Monat – bei fünfzehn Kursläufen am Tag
       # wäre das Kontingent vor dem Mittagessen voll.
+      # ------------------------------------------------------------------
+      # Die Kurse ohne Bau auf den Server.
+      #
+      # Das ist der eigentliche Gewinn: Bis August 2026 hieß jede
+      # Kursänderung „1.524 Seiten neu bauen und übertragen", rund dreizehn
+      # Minuten – für eine Zahl in einer Kopfzeile. `kurse-live.json` wiegt
+      # 63 KB und ist in Sekunden oben.
+      #
+      # Der Browser liest sie und ersetzt damit den gebauten Kurs. Das HTML
+      # behält seinen eigenen, damit die Seite ohne JavaScript vollständig
+      # bleibt und Suchmaschinen eine Zahl sehen.
+      #
+      # Der Bau danach bleibt trotzdem – er trägt Reihen, Kennzahlen und
+      # alles Übrige. Nur ist er jetzt eine Frage von Stunden, nicht von
+      # Minuten.
+      - name: Kurse auf den Server
+        if: always() && github.ref_name == 'main'
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+        run: |
+          if [ -z "$HOST" ] || [ -z "$USER" ] || [ -z "$SSH_KEY" ]; then
+            echo "Keine Server-Zugangsdaten – die Kurse warten auf den nächsten Bau."
+            exit 0
+          fi
+          npm run kurselive
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Erst daneben legen, dann umbenennen: Ein Umbenennen ist für den
+          # Webserver ein Augenblick, ein Hochladen dauert. Ohne diesen
+          # Zwischenschritt könnte jemand die Datei halb geschrieben lesen.
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            public/kurse-live.json "$USER@$HOST:$ZIELPFAD/kurse-live.json.neu"
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "mv '$ZIELPFAD/kurse-live.json.neu' '$ZIELPFAD/kurse-live.json'"
+          rm -f ~/.ssh/id_deploy
+          echo "Kurse übertragen: https://iminvests.de/kurse-live.json"
+
       - name: Neubau anstoßen
         if: steps.commit.outputs.gepusht == 'ja'
         env:

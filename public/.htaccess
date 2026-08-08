@@ -84,7 +84,11 @@ ErrorDocument 404 /404.html
 
   # Der Feed ist die Adresse für maschinelles Lesen. Er muss aus demselben
   # Grund frisch sein und trägt keine Prüfsumme im Namen.
-  <FilesMatch "^(feed\.xml|sitemap\.xml|version\.txt|suchindex\.json)$">
+  # `kurse-live.json` steht hier aus einem eigenen Grund: Sie ist der einzige
+  # Teil der Website, der sich ändert, **ohne** dass gebaut wird. Käme sie aus
+  # einem Zwischenspeicher, wäre der ganze Zweck dahin – dann stünde wieder
+  # der Kurs von vorhin da, nur diesmal ohne dass es jemand merkt.
+  <FilesMatch "^(feed\.xml|sitemap\.xml|version\.txt|suchindex\.json|kurse-live\.json)$">
     Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
   </FilesMatch>
 
