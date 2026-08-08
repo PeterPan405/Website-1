@@ -370,7 +370,7 @@ const WORTZIEL_MAX = 740
  * Folge morgens tatsächlich vor der Freigabe lesen – oder den Halbsatz
  * streichen. Er ist eine Beschreibung des Verfahrens, kein Schmuck.
  */
-const KI_HINWEIS =
+export const KI_HINWEIS =
   'Hinweis: Text und Vertonung dieser Folge entstehen mit Unterstützung von ' +
   'KI-Werkzeugen und werden vor der Veröffentlichung von einem Menschen ' +
   'inhaltlich geprüft; die redaktionelle Verantwortung liegt beim Betreiber.'

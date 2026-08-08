@@ -1,0 +1,177 @@
+name: Inhalte prüfen
+
+# Sieht die Inhalte regelmäßig durch: was ist veraltet, was fehlt, was ist
+# fällig.
+#
+# ## Der Anlass
+#
+# Am 9. August 2026 nachgezählt: Der Basiszins für die Vorabpauschale stand
+# seit sieben Monaten auf dem Wert des Vorjahres, und keiner der acht ETFs
+# hatte laufende Kosten hinterlegt – in einem Kostenrechner.
+#
+# Beides meldet `npm run frische` in sieben Sekunden, wortgenau, samt
+# Pflegehinweis. Das Skript stand in `package.json` und in **keinem einzigen
+# Workflow**. Die inhaltliche Aktualität hing daran, dass jemand von Hand
+# einen Befehl tippt.
+#
+# Der teuerste Fehler dieses Projekts ist nicht der rote Lauf, sondern der
+# stille. Ein Inhalt, der still veraltet, ist genau das.
+#
+# ## Die Gliederung folgt dem Alterungstempo, nicht dem Kalender
+#
+#   wöchentlich   Zahlen im Fließtext, Datenstände, Verträge – kostet Sekunden
+#   14 Tage       Werte mit Verfallsdatum: Steuersätze, Freibeträge, TER
+#   28 Tage       Fachtexte, Definitionen, historische Zahlen, Rechtliches
+#
+# Was billig ist, prüft man oft. Was sich nie ändert, seltener – häufiger
+# erzeugt Lärm ohne Ertrag, und Lärm führt dazu, dass man wegsieht.
+#
+# Welcher Bereich in welchem Takt steht, entscheidet **nicht** dieser
+# Workflow, sondern `data/inhalte-turnus.ts`. Dort steht auch, was jeweils zu
+# tun ist. Ein Zeitplan, der die Aufgabe nur nach Datum verteilt, sagt niemandem,
+# was er tun soll.
+#
+# ## Warum wöchentlich, obwohl der Takt zwei oder vier Wochen ist
+#
+# `cron` kennt keinen Zwei-Wochen-Takt. Statt ihn über eine Kalenderwoche
+# nachzubauen – was zweimal im Jahr um den Jahreswechsel schiefgeht – läuft der
+# Lauf wöchentlich und **fragt das Register**, was fällig ist. Die Fälligkeit
+# steht damit an einer Stelle und nicht in einem Cron-Ausdruck verteilt.
+#
+# ## Was rot wird und was nicht
+#
+# Rot wird der Lauf nur bei einem **Mangel**: etwas ist nachweisbar falsch oder
+# fehlt. Eine **fällige** Durchsicht ist eine Erinnerung, kein Fehler – dafür
+# gibt es ein Issue. Wer beides gleich behandelt, bekommt einen Lauf, der
+# immer rot ist, und damit einen, auf den niemand mehr schaut.
+
+on:
+  schedule:
+    # 04:29 UTC – 6:29 Uhr deutscher Sommerzeit, sonntags. Nach dem
+    # Nachrichtenlauf und dem Podcast, damit sich nichts um Läufer streitet.
+    #
+    # Krumme Minute, wie überall hier: Volle und halbe Stunden werden von
+    # GitHub am ehesten verworfen. Zur Zeitumstellung: im Winter `29 5`.
+    - cron: '29 4 * * 0'
+  workflow_dispatch:
+    inputs:
+      stichtag:
+        description: 'Anderer Stichtag zum Proben (JJJJ-MM-TT)'
+        required: false
+        type: string
+
+concurrency:
+  group: inhalte-pruefen
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Was ist veraltet, was fehlt, was ist fällig
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      # Für das Issue mit den fälligen Durchsichten.
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+
+      # Alle drei Prüfungen laufen, auch wenn eine anschlägt: Ein Bericht, der
+      # nach dem ersten Fund abbricht, verschweigt den Rest.
+      - name: Zahlen und Datenstände
+        id: frische
+        continue-on-error: true
+        run: npm run frische 2>&1 | tee frische.txt
+
+      - name: Verträge der Schnittstellen
+        id: vertraege
+        continue-on-error: true
+        run: npm run vertraege 2>&1 | tee vertraege.txt
+
+      - name: Pflichttexte, KI-Hinweise, Widersprüche, Fälligkeiten
+        id: inhalte
+        continue-on-error: true
+        env:
+          STICHTAG: ${{ inputs.stichtag }}
+        run: npm run inhalte 2>&1 | tee inhalte.txt
+
+      - name: Bericht zusammenstellen
+        run: |
+          {
+            echo "# Inhaltliche Durchsicht — $(date -u +%d.%m.%Y)"
+            echo
+            echo "Lauf: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo
+            echo '## Pflichttexte, KI-Hinweise, Fälligkeiten'
+            echo '```'; cat inhalte.txt 2>/dev/null || echo '(kein Ergebnis)'; echo '```'
+            echo
+            echo '## Zahlen und Datenstände'
+            echo '```'; cat frische.txt 2>/dev/null || echo '(kein Ergebnis)'; echo '```'
+            echo
+            echo '## Verträge der Schnittstellen'
+            echo '```'; cat vertraege.txt 2>/dev/null || echo '(kein Ergebnis)'; echo '```'
+          } > bericht.md
+          cat bericht.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: inhalte-bericht-${{ github.run_id }}
+          path: bericht.md
+          retention-days: 90
+
+      # Ein Issue statt einer Mail: Fälligkeiten sind Arbeit, die liegen bleibt,
+      # bis jemand sie erledigt. Eine Mail ist nach zwei Tagen weg, ein Issue
+      # nicht. Ein bestehendes offenes Issue wird ergänzt statt verdoppelt.
+      - name: Issue für die fälligen Durchsichten
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! grep -q 'Durchsicht(en) fällig' inhalte.txt; then
+            echo "Nichts fällig – kein Issue."
+            exit 0
+          fi
+
+          titel="Inhaltliche Durchsicht fällig"
+          offen=$(gh issue list --repo "${{ github.repository }}" \
+                    --state open --search "$titel in:title" \
+                    --json number --jq '.[0].number // empty' 2>/dev/null || true)
+
+          rumpf=$(mktemp)
+          {
+            echo "Stand $(date -u +%d.%m.%Y) – aus Lauf [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."
+            echo
+            sed -n '/Durchsicht(en) fällig/,$p' inhalte.txt
+            echo
+            echo "Nach der Durchsicht \`zuletztGeprueft\` in \`data/inhalte-turnus.ts\` setzen –"
+            echo "auch dann, wenn nichts zu ändern war."
+          } > "$rumpf"
+
+          if [ -n "$offen" ]; then
+            gh issue comment "$offen" --repo "${{ github.repository }}" --body-file "$rumpf"
+            echo "Issue #$offen ergänzt."
+          else
+            gh issue create --repo "${{ github.repository }}" \
+              --title "$titel" --body-file "$rumpf"
+          fi
+
+      # Zum Schluss, damit der Bericht auch bei einem Mangel vollständig ist.
+      - name: Ergebnis
+        run: |
+          schlecht=0
+          grep -q '::error::' inhalte.txt 2>/dev/null && schlecht=1
+          if [ "${{ steps.frische.outcome }}" = "failure" ] \
+             || [ "${{ steps.vertraege.outcome }}" = "failure" ]; then
+            schlecht=1
+          fi
+
+          if [ "$schlecht" = "1" ]; then
+            echo "::error::Die inhaltliche Durchsicht hat Mängel gefunden. Der Bericht liegt als Artefakt bei."
+            exit 1
+          fi
+          echo "Keine Mängel. Fällige Durchsichten stehen im Issue."

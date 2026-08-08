@@ -10,6 +10,7 @@
 import {
   findeGeschichte,
   geschichtssatz,
+  geschichtsvorspann,
   type Geschichtsquelle,
 } from '../lib/boersengeschichte.ts'
 
@@ -48,10 +49,13 @@ const fund = findeGeschichte([einfach], '2026-08-01')
 pruefe('der größte Ausschlag gewinnt', fund?.prozent === -10 && fund.jahre === 1)
 pruefe('das Datum ist der gefundene Handelstag', fund?.datum === '2025-08-01')
 pruefe(
-  'der Satz nennt Richtung, Betrag und Abstand',
+  'der Satz nennt Richtung, Betrag und Zeitraum',
   fund !== null &&
-    geschichtssatz(fund) ===
-      'Heute vor einem Jahr fiel DAX an einem einzigen Handelstag um 10,0 Prozent.'
+    geschichtssatz(fund) === 'DAX fiel an einem einzigen Handelstag um 10,0 Prozent.'
+)
+pruefe(
+  'der Vorspann sagt „heute“, wenn der Tag der Jahrestag ist',
+  fund !== null && geschichtsvorspann(fund) === 'Heute vor einem Jahr'
 )
 
 console.log('\n— Handelspausen —')
@@ -121,6 +125,72 @@ const schalt = reihe('dax', [
 pruefe(
   'der 29. Februar fällt auf den 28. zurück',
   findeGeschichte([schalt], '2028-02-29')?.datum === '2025-02-28'
+)
+
+console.log('\n— Wochenwerte dürfen keine Tagesbewegung sein —')
+
+/*
+  Der Fehler vom 9. August 2026. Die Fünfjahresreihen sind im älteren Teil nur
+  wöchentlich dicht; „der Punkt davor“ liegt dort sieben Tage zurück. Vorher
+  stand darüber „an einem einzigen Handelstag“.
+
+  Die Zahlen sind die echten des Nikkei 225: 38.468,63 am 29. Juli 2024,
+  31.458,42 am 5. August. Das sind −18,2 Prozent in einer Woche – der Verlust
+  jenes einen Handelstags betrug −12,4 Prozent.
+*/
+const wochenluecke = reihe('nikkei-225', [
+  ['2024-07-29', 38468.63],
+  ['2024-08-05', 31458.42],
+])
+const fundWoche = findeGeschichte([wochenluecke], '2026-08-08')
+pruefe(
+  'die Spanne wird aus den Daten übernommen',
+  fundWoche?.spanneTage === 7,
+  `spanneTage=${fundWoche?.spanneTage}`
+)
+pruefe(
+  'eine Wochenbewegung heißt nicht mehr Handelstag',
+  fundWoche !== null &&
+    geschichtssatz(fundWoche) === 'NIKKEI-225 fiel binnen einer Woche um 18,2 Prozent.',
+  fundWoche ? geschichtssatz(fundWoche) : 'kein Fund'
+)
+
+/* Der Tag daneben darf nicht „heute“ heißen: 5. August, Stichtag 8. August. */
+pruefe(
+  'der Vorspann lässt „heute“ weg, wenn der Tag danebenliegt',
+  fundWoche !== null && geschichtsvorspann(fundWoche) === 'Vor 2 Jahren',
+  fundWoche ? geschichtsvorspann(fundWoche) : 'kein Fund'
+)
+
+/* Freitag → Montag sind aufeinanderfolgende Handelstage, keine Woche. */
+const wochenende = reihe('dax', [
+  ['2025-08-01', 100],
+  ['2025-08-04', 94],
+])
+const fundWE = findeGeschichte([wochenende], '2026-08-04')
+pruefe(
+  'Freitag auf Montag bleibt ein Handelstag',
+  fundWE !== null &&
+    geschichtssatz(fundWE) === 'DAX fiel an einem einzigen Handelstag um 6,0 Prozent.',
+  fundWE ? geschichtssatz(fundWE) : 'kein Fund'
+)
+
+/*
+  Der Kern der Rangfolge: Ein echter Tagesausschlag schlägt die größere
+  Wochenbewegung. Sonst zeigte die Kachel dauerhaft Wochenwerte, weil die
+  betragsmäßig fast immer gewinnen.
+*/
+const tagKlein = reihe('dax', [
+  ['2025-08-07', 100],
+  ['2025-08-08', 93],
+])
+const wocheGross = reihe('bitcoin', [
+  ['2025-08-01', 100],
+  ['2025-08-08', 75],
+])
+pruefe(
+  'der echte Tagesausschlag schlägt die größere Wochenbewegung',
+  findeGeschichte([wocheGross, tagKlein], '2026-08-08')?.symbol === 'dax'
 )
 
 console.log(`\n${bestanden} Prüfungen bestanden, ${gescheitert} gescheitert.`)
