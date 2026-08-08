@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="3000" height="3000" viewBox="0 0 3000 3000">
   <rect width="3000" height="3000" fill="#ffffff"/>
-  <g transform="translate(1050,430) scale(4.5)">
+  <g transform="translate(750,330) scale(7.5)">
   
   
   <path
@@ -90,16 +90,16 @@
        111.8 Z"
   />
 </g>
-  <text x="1500" y="1780" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
-        font-size="330" font-weight="800" letter-spacing="18" fill="#17296F">MARKTUPDATE</text>
+  <text x="1500" y="2210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
+        font-size="230" font-weight="800" letter-spacing="26" fill="#232F45">MARKTUPDATE</text>
   <g>
-    <rect x="700" y="1920" width="400" height="52" fill="#17296F"/>
-    <rect x="1100" y="1920" width="400" height="52" fill="#205437"/>
-    <rect x="1500" y="1920" width="400" height="52" fill="#6E6E6E"/>
-    <rect x="1900" y="1920" width="400" height="52" fill="#8B2225"/>
+    <rect x="1290" y="2310" width="90" height="14" fill="#17296F"/>
+    <rect x="1404" y="2310" width="90" height="14" fill="#6E6E6E"/>
+    <rect x="1518" y="2310" width="90" height="14" fill="#205437"/>
+    <rect x="1632" y="2310" width="90" height="14" fill="#8B2225"/>
   </g>
-  <text x="1500" y="2190" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
-        font-size="128" fill="#333f66">B&#246;rse &amp; M&#228;rkte an jedem Morgen</text>
-  <text x="1500" y="2760" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
-        font-size="96" font-weight="700" letter-spacing="30" fill="#8a93b8">WERKT&#196;GLICH</text>
+  <text x="1500" y="2500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
+        font-size="104" letter-spacing="8" fill="#9AA0A6">B&#246;rse &amp; M&#228;rkte an jedem Morgen</text>
+  <text x="1500" y="2810" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
+        font-size="72" font-weight="600" letter-spacing="28" fill="#A8ADB4">WERKT&#196;GLICH</text>
 </svg>
