@@ -99,6 +99,21 @@ const ENTITIES: Record<string, string> = {
  * danach `&lt;` ersetzt, macht daraus ein `<` – und damit aus einem Text über
  * HTML plötzlich HTML.
  */
+/**
+ * Entfernt die abschließende Hashtag-Zeile aus einer Folgenbeschreibung.
+ *
+ * Hashtags sind YouTube-Zubehör: Dort sind sie anklickbar und bringen
+ * Reichweite. In einem Podcast-Abspieler steht dieselbe Zeile als toter
+ * Text unter jeder Folge – und ist das Erste, was ein Hörer im
+ * Beschreibungsfeld sieht, wenn er es aufklappt.
+ *
+ * Entfernt wird nur eine Zeile am **Ende**, die mit `#` beginnt. Ein
+ * Doppelkreuz mitten im Text (etwa in einem Kurskürzel) bleibt stehen.
+ */
+export function ohneHashtags(text: string): string {
+  return text.replace(/\n#\S[^\n]*\s*$/u, '').trim()
+}
+
 export function nurText(roh: string): string {
   return roh
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
