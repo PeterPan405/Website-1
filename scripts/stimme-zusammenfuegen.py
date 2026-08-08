@@ -32,11 +32,12 @@ Aufruf: python scripts/stimme-zusammenfuegen.py
 import glob
 import os
 import re
-import subprocess
 import sys
 
 import numpy as np
 import soundfile as sf
+
+import klangkette
 
 ORDNER = "podcast-folge"
 ROHFASSUNG = f"{ORDNER}/folge.wav"
@@ -74,35 +75,13 @@ melde(f"{dauer / 60:.1f} Minuten.")
 
 sf.write(ROHFASSUNG, gesamt, rate)
 
-# 128 kbit/s mono ist der übliche Wert eines Sprach-Podcasts – mehr hört
-# man bei einer einzelnen Stimme nicht.
+# Die Nachbearbeitung steht in `klangkette.py` und ist dort begründet.
 #
-# Die Klangkette davor ist dieselbe wie im Einzelläufer-Weg und steht
-# dort begründet (`scripts/stimme-erzeugen.py`): Grummeln weg,
-# Rauschen gedämpft, Lautheit auf −16 LUFS. Sie gehört an **diese**
-# Stelle und nicht an die einzelnen Stücke: Eine Normalisierung je
-# Stück würde die Lautstärke innerhalb der Folge springen lassen.
-#
-# Bewusst als Kopie und nicht als Import: `stimme-erzeugen.py` lädt beim
-# Import das Sprachmodell und wiegt Gigabytes. Eine Zeile doppelt zu
-# halten ist billiger als ein Modul, das man nur wegen einer Zeichenkette
-# anfasst – wer sie ändert, ändert sie an beiden Stellen.
-KLANGKETTE = "highpass=f=80,afftdn=nf=-28,loudnorm=I=-16:TP=-1.5:LRA=11"
-
-subprocess.run(
-    [
-        "ffmpeg", "-y", "-loglevel", "error",
-        "-i", ROHFASSUNG,
-        "-af", KLANGKETTE,
-        "-c:a", "libmp3lame", "-b:a", "128k", "-ac", "1", "-ar", "44100",
-        ZIEL,
-    ],
-    check=True,
-)
+# Sie gehört an **diese** Stelle und nicht an die einzelnen Stücke: Eine
+# Normalisierung je Stück würde die Lautstärke innerhalb der Folge
+# springen lassen.
+groesse = klangkette.zu_mp3(ROHFASSUNG, ZIEL, melde)
 os.remove(ROHFASSUNG)
-
-groesse = os.path.getsize(ZIEL)
-melde(f"{ZIEL} geschrieben – {groesse / 1024 / 1024:.1f} MB.")
 
 # Dieselbe Untergrenze wie beim Weg über die Schnittstelle: Was bei fünf
 # Minuten Text unter 100 KB bleibt, ist keine Aufnahme, sondern eine

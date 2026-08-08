@@ -61,9 +61,10 @@ Aufruf: python scripts/stimme-erzeugen.py [modellgroesse]
 import os
 import re
 import signal
-import subprocess
 import sys
 import time
+
+import klangkette
 
 REFERENZ = os.environ.get("STIMME_REFERENZ", "assets/stimme-referenz.wav")
 WORTLAUT = REFERENZ.rsplit(".", 1)[0] + ".txt"
@@ -100,18 +101,10 @@ STUECK_MAX = 240
 PAUSE_SATZ = 0.5
 PAUSE_ABSATZ = 0.95
 
-# Nachbearbeitung der fertigen Aufnahme.
-#
-# `highpass` nimmt das Grummeln unter 80 Hz weg, das kein Sprecher
-# erzeugt und jedes Modell mitliefert. `afftdn` ist die eigentliche
-# Rauschunterdrückung – zurückhaltend eingestellt, weil zu viel davon die
-# Stimme blechern macht. `loudnorm` bringt die Lautheit auf −16 LUFS, den
-# Wert, den Spotify und YouTube für Sprache erwarten; ohne ihn schwankt
-# der Pegel zwischen den Folgen hörbar.
-#
-# Der Betreiber hat nach der ersten Hörprobe „ein paar Störgeräusche im
-# Hintergrund“ gemeldet. Dagegen steht diese Kette.
-KLANGKETTE = "highpass=f=80,afftdn=nf=-28,loudnorm=I=-16:TP=-1.5:LRA=11"
+# Die Nachbearbeitung der fertigen Aufnahme steht in `klangkette.py` –
+# eine Stelle für beide Wege, mit der Begründung dort. Kurz: Grummeln
+# weg, Rauschen mild gedämpft, Lautheit in zwei Durchgängen auf −16 LUFS
+# ohne Dynamikkompression.
 
 
 def melde(text):
@@ -363,22 +356,9 @@ dauer = len(audio) / rate
 sf.write(ROHFASSUNG, audio, rate)
 
 # In MP3 wandeln: Das ist das Format, das der Feed ausweist und jeder
-# Abspieler kann. 128 kbit/s mono ist der übliche Wert eines
-# Sprach-Podcasts – mehr hört man bei einer Stimme nicht.
-subprocess.run(
-    [
-        "ffmpeg", "-y", "-loglevel", "error",
-        "-i", ROHFASSUNG,
-        "-af", KLANGKETTE,
-        "-c:a", "libmp3lame", "-b:a", "128k", "-ac", "1", "-ar", "44100",
-        ZIEL,
-    ],
-    check=True,
-)
+# Abspieler kann.
+groesse = klangkette.zu_mp3(ROHFASSUNG, ZIEL, melde)
 os.remove(ROHFASSUNG)
-
-groesse = os.path.getsize(ZIEL)
-melde(f"{ZIEL} geschrieben – {groesse / 1024 / 1024:.1f} MB.")
 
 # Dieselbe Untergrenze wie beim Weg über die Schnittstelle: Was bei fünf
 # Minuten Text unter 100 KB bleibt, ist keine Aufnahme, sondern eine
