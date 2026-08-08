@@ -78,22 +78,68 @@ import json
 import os
 import subprocess
 
-# Was vor der Lautheit passiert: Grummeln weg, Rauschen mild gedämpft.
-# Zurückhaltend – siehe oben, das Gegenteil war der Fehler.
-FILTER = "highpass=f=65,afftdn=nr=8:nf=-45"
+# Was vor der Lautheit passiert.
+#
+# ## Die dritte Runde: „monoton, stumpf, immer noch ein wenig wie aus der Dose“
+#
+# Urteil des Betreibers vom 9. August 2026, zur Fassung mit `nf=-45`. Drei
+# Wörter, drei verschiedene Ursachen – und nur zwei davon sitzen hier.
+#
+# **„Wie aus der Dose“** ist im Kern eine Betonung um 300 bis 400 Hz. Dort
+# sitzt der Klang eines Sprechers in einem kleinen, harten Raum. Das erste
+# Mal kam er von der Rauschunterdrückung; was jetzt bleibt, ist die Färbung
+# der Aufnahme selbst. Dagegen ein schmaler Schnitt bei 350 Hz.
+#
+# **„Stumpf“** ist das Gegenstück: zu wenig oben. Ein Teil davon war wieder
+# `afftdn` (gemessen −1,1 dB bei 4–8 kHz), der Rest liegt am Modell. Dagegen
+# eine Anhebung ab 3,5 kHz — dort sitzen die Zisch- und Reibelaute, an denen
+# das Ohr Deutlichkeit festmacht.
+#
+# Gemessen am Prüfsignal, Verfärbung gegen die Rohaufnahme:
+#
+#     Band              vorher    nachher
+#     1k–4k              −0,5      +1,0
+#     4k–8k              −1,1      +3,9
+#     8k–12k             −0,6      +4,2
+#
+# Rund fünf Dezibel mehr Präsenz. Die Dämpfung ging zugleich von 8 auf 6 dB
+# und der Störteppich von −45 auf −48 zurück: Wer oben anhebt, hebt auch das
+# Rauschen mit an, also muss davor weniger übrig bleiben.
+#
+# **„Monoton“** sitzt **nicht** hier. Kein Filter macht eine gleichförmige
+# Betonung lebendig; das entsteht beim Sprechen. Siehe `stimme-erzeugen.py`,
+# Abschnitt zu den Pausen.
+FILTER = (
+    "highpass=f=65,"
+    "afftdn=nr=6:nf=-48,"
+    # Der Kasten-Ton eines kleinen Raums. Schmal (Q 1,2), damit die
+    # Bruststimme darunter unberührt bleibt.
+    "equalizer=f=350:t=q:w=1.2:g=-2.5,"
+    # Deutlichkeit statt Schärfe: flaches Regal ab 3,5 kHz, kein Glockenfilter.
+    "treble=g=3:f=3500:width_type=q:w=0.7"
+)
 
 # −16 LUFS ist der Wert für Sprache, den beide Plattformen erwarten.
 ZIEL_LUFS = -16.0
 
-# Grenze des Begrenzers als linearer Betrag: 0,794 ≈ −2,0 dBFS.
+# Grenze des Begrenzers als linearer Betrag: 0,750 ≈ −2,5 dBFS.
 #
 # Warum nicht 0,841 (−1,5 dBFS), wo doch −1,5 dBTP das Ziel ist: Der
 # Begrenzer arbeitet auf den Abtastwerten, gemessen wird aber die **echte**
-# Spitze zwischen ihnen, und die Kodierung nach 44,1 kHz und MP3 hebt sie
-# an. Nachgemessen mit 0,841: ein Signal landete bei −1,90 dBTP, das andere
-# bei −1,38 – also über der Grenze. Mit 0,794 bleiben beide darunter
-# (−2,40 und −1,81). Der halbe Dezibel Vorhalt kostet 0,3 dB Lautheit.
-SPITZE = 0.794
+# Spitze zwischen ihnen, und die Kodierung nach 44,1 kHz und MP3 hebt sie an.
+#
+# Der Vorhalt musste zweimal wachsen, und beide Male fiel es nur beim
+# Nachmessen auf:
+#
+#     0,841 (−1,5 dB)   ein Prüfsignal landete bei −1,38 dBTP   zu hoch
+#     0,794 (−2,0 dB)   reichte, bis die Höhen angehoben wurden
+#     0,750 (−2,5 dB)   hält beide Prüfsignale (−1,84 und −2,87)
+#
+# Der zweite Schritt hat einen Grund, den man kennen sollte: **Wer oben
+# anhebt, erzeugt steilere Flanken, und steilere Flanken haben höhere
+# Zwischenwerte.** Die Präsenzanhebung ab 3,5 kHz kostete 0,5 dB Vorhalt.
+# Wer am Filter dreht, misst die Spitze neu.
+SPITZE = 0.750
 
 # Nur noch für den Rückfall: die Kette von früher, in einem Durchgang.
 RUECKFALL = "loudnorm=I=-16:TP=-1.5:LRA=11"

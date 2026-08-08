@@ -412,8 +412,18 @@ jobs:
           # Mindestabstand 30 Sekunden, sonst wird zusammengefasst – die
           # Regel, mit der die Marken auf YouTube und Spotify zugleich
           # funktionieren.
+          #
+          # 0,78 s und nicht 0,6: Seit dem 9. August hängt die Sprechpause am
+          # Satzzeichen, damit die Folge weniger metronomisch klingt. Eine
+          # Frage bekommt bis zu 0,73 s – mit der alten Schwelle wäre jedes
+          # Fragezeichen ein Kapitelanfang geworden. Absatzpausen liegen bei
+          # 0,88 bis 1,02 s und damit sicher darüber.
+          #
+          # Wer die Pausen in `stimme-erzeugen.py` ändert, prüft diese Zahl
+          # mit: Sie müssen zwischen der längsten Satzpause und der kürzesten
+          # Absatzpause liegen.
           ffmpeg -i podcast-folge/folge.mp3 \
-            -af silencedetect=noise=-35dB:d=0.6 -f null - 2>&1 \
+            -af silencedetect=noise=-35dB:d=0.78 -f null - 2>&1 \
             | grep -o 'silence_end: [0-9.]*' | awk '{print $2}' \
             > podcast-folge/pausen.txt
 
