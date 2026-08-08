@@ -57,3 +57,8 @@ entwurf.json
 podcast-folge/
 podcast-archiv/
 /public/kurse-live.json
+
+# Kompilierter Python-Zwischencode. Am 8. August 2026 zweimal versehentlich
+# mit "git add -A" eingecheckt – er gehoert nicht ins Repository.
+__pycache__/
+*.pyc
