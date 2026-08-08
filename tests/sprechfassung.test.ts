@@ -118,7 +118,7 @@ pruefe('mindestens drei Kapitel', folge.kapitel.length >= 3, true)
 pruefe('erstes Kapitel ist die Begrüßung', folge.kapitel[0], 'Begrüßung und Überblick')
 pruefe(
   'Beschreibung trägt den KI-Hinweis',
-  folge.beschreibung.includes('mit künstlicher Intelligenz erzeugt'),
+  folge.beschreibung.includes('Unterstützung von KI-Werkzeugen'),
   true
 )
 pruefe(
