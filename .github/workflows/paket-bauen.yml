@@ -605,12 +605,29 @@ jobs:
             mv "$NEU" "$ZIEL"
             rm -rf "$ALT" "$HOME/website-neu.tar.gz"
 
-            # Der Podcast-Feed lebt außerhalb des getauschten Ordners
+            # Der Podcast lebt außerhalb des getauschten Ordners
             # (~/podcast-audio, gepflegt von podcast-erzeugen.yml) und wird
-            # nach jedem Tausch neu eingehängt – sonst wäre er ab dem
+            # nach jedem Tausch neu hineingelegt – sonst wäre er ab dem
             # nächsten Deploy nicht mehr erreichbar.
+            #
+            # ## Warum kopiert und nicht verlinkt wird
+            #
+            # Bis zum 8. August 2026 stand hier `ln -sfn`. Der Link wurde
+            # gesetzt, die Dateien lagen richtig – und trotzdem antwortete
+            # `https://iminvests.de/podcast-audio/feed.xml` mit **404**,
+            # während `version.txt` daneben mit 200 kam. Der Server folgt
+            # dem Symlink nicht; auf geteiltem Webspace ist
+            # `FollowSymLinks` üblicherweise abgeschaltet, und daran lässt
+            # sich von außen nichts ändern.
+            #
+            # Eine Kopie kostet auf dem Server einen Augenblick und dreißig
+            # Megabyte. Eine Verlinkung, der niemand folgt, kostet den
+            # ganzen Podcast.
             if [ -d "$HOME/podcast-audio" ]; then
-              ln -sfn "$HOME/podcast-audio" "$ZIEL/podcast-audio"
+              rm -rf "$ZIEL/podcast-audio"
+              mkdir -p "$ZIEL/podcast-audio"
+              cp -a "$HOME/podcast-audio/." "$ZIEL/podcast-audio/"
+              echo "Podcast eingelegt: $(ls -1 "$ZIEL/podcast-audio" | wc -l) Dateien."
             fi
 
             echo "Übertragen. Stand:"

@@ -58,7 +58,7 @@ jobs:
           ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
           ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
-            "mkdir -p ~/podcast-audio && ln -sfn \$HOME/podcast-audio '$ZIELPFAD/podcast-audio'"
+            "mkdir -p ~/podcast-audio"
 
           for datei in podcast-archiv/*.mp3; do
             scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
@@ -70,6 +70,15 @@ jobs:
             assets/podcast-cover.jpg "$USER@$HOST:~/podcast-audio/cover.jpg"
           scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
             podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"
+
+          # ~/podcast-audio ist der Bestand, der den Deploy überlebt; in den
+          # Webpfad kommt eine **Kopie**. Ein Symlink wurde zwar gesetzt,
+          # aber vom Server nicht verfolgt – 404 neben einer 200.
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "rm -rf '$ZIELPFAD/podcast-audio' \
+             && mkdir -p '$ZIELPFAD/podcast-audio' \
+             && cp -a ~/podcast-audio/. '$ZIELPFAD/podcast-audio/' \
+             && ls -1 '$ZIELPFAD/podcast-audio' | wc -l"
           rm -f ~/.ssh/id_deploy
 
           echo ""
