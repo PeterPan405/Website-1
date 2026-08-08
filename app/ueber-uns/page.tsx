@@ -140,7 +140,9 @@ export default async function AboutPage() {
                   </span>
                 ))}{' '}
                 vollständig ausformuliert. Die übrigen {offen}{' '}
-                {offen === 1 ? 'Themen haben eine eigene Seite' : 'Themen haben eigene Seiten'}{' '}
+                {offen === 1
+                  ? 'Themen haben eine eigene Seite'
+                  : 'Themen haben eigene Seiten'}{' '}
                 mit Gliederung; der Text wird Thema für Thema ergänzt. Der Stand ist auf
                 jeder betroffenen Seite gekennzeichnet – wir halten es für ehrlicher, den
                 Bearbeitungsstand zu zeigen, als leere Seiten zu verstecken.
@@ -148,7 +150,9 @@ export default async function AboutPage() {
             ) : (
               <>
                 Alle{' '}
-                <strong className="text-fg font-semibold">{stats.topicCount} Themen</strong>{' '}
+                <strong className="text-fg font-semibold">
+                  {stats.topicCount} Themen
+                </strong>{' '}
                 liegen inzwischen in allen drei Stufen als fertiger Text vor. Solange das
                 nicht galt, stand der Bearbeitungsstand auf jeder betroffenen Seite – wir
                 halten es für ehrlicher, ihn zu zeigen, als leere Seiten zu verstecken.

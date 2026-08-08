@@ -178,8 +178,11 @@ const kanal = (await (
 
 writeFileSync(
   'podcast-folge/youtube.json',
-  JSON.stringify({ videoId: ergebnis.id, kanalId: kanal.items?.[0]?.id ?? null }, null, 2) +
-    '\n'
+  JSON.stringify(
+    { videoId: ergebnis.id, kanalId: kanal.items?.[0]?.id ?? null },
+    null,
+    2
+  ) + '\n'
 )
 
 /* Aufnahmeort nachtragen. `recordingDetails` lässt sich beim Anmelden nicht
