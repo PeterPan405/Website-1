@@ -60,6 +60,7 @@ Aufruf: python scripts/stimme-erzeugen.py [modellgroesse]
 
 import os
 import re
+import signal
 import subprocess
 import sys
 import time
@@ -229,12 +230,69 @@ dem Index im Namen kann das gar nicht erst schiefgehen.
 Die Pause hängt an jedem Stück hinten dran. Am letzten stört sie nicht;
 eine Sonderbehandlung dafür wäre eine Fallunterscheidung ohne Nutzen.
 """
+
+"""
+## Die Reißleine je Stück
+
+Am 8. August 2026 hing ein Läufer **zweiundvierzig Minuten am ersten
+Stück** und meldete in der ganzen Zeit keine einzige Zeile. Erst die
+Frist des Jobs beendete ihn, und damit war die ganze Vertonung hin – ein
+Stück kostete die Folge.
+
+Der Grund steht eine Zeile davor im Protokoll: `open-end generation`.
+Das Modell erzeugt Ton, bis es ein Schlusszeichen setzt. Setzt es keines,
+läuft es bis zum Anschlag. Das passiert selten, aber es passiert, und
+gegen „selten" hilft kein Zureden, sondern nur eine Uhr.
+
+`SIGALRM` unterbricht den Aufruf. Die Erzeugung ist eine Schleife über
+Schritte in Python, und zwischen zwei Schritten kommt der Signalhandler
+zum Zug – ein hängender Aufruf lässt sich damit tatsächlich abbrechen,
+anders als ein einzelner langer C-Aufruf.
+
+Ein zweiter Versuch lohnt sich, weil gewürfelt wird: Derselbe Text
+nimmt beim nächsten Mal einen anderen Weg. Scheitert auch der, endet der
+Läufer mit einem Fehler – dann fehlt ein Stück, und das Zusammenfügen
+bricht ab, statt eine Folge mit einem Loch auszuliefern.
+"""
+FRIST_JE_STUECK = int(os.environ.get("STIMME_FRIST", "240"))
+
+
+class Zeitueberschreitung(Exception):
+    pass
+
+
+def _wecker(signum, rahmen):  # noqa: ARG001
+    raise Zeitueberschreitung()
+
+
+signal.signal(signal.SIGALRM, _wecker)
+
+
+def sprich(stueck: str):
+    """Spricht ein Stück, mit Frist und einem zweiten Versuch."""
+    for versuch in (1, 2):
+        signal.alarm(FRIST_JE_STUECK)
+        try:
+            return modell.generate_voice_clone(
+                text=stueck, voice_clone_prompt=prompt, language="German"
+            )
+        except Zeitueberschreitung:
+            melde(
+                f"  Stück nach {FRIST_JE_STUECK} s abgebrochen "
+                f"(Versuch {versuch}/2) – das Modell fand kein Ende."
+            )
+        finally:
+            signal.alarm(0)
+    raise RuntimeError(
+        "Ein Stück ließ sich zweimal nicht sprechen. Lieber keine Folge als "
+        "eine mit einem Loch."
+    )
+
+
 t0 = time.time()
 gesamtdauer = 0.0
 for lauf, (index, (stueck, ruhe)) in enumerate(meine, start=1):
-    wavs, rate = modell.generate_voice_clone(
-        text=stueck, voice_clone_prompt=prompt, language="German"
-    )
+    wavs, rate = sprich(stueck)
     audio = np.asarray(wavs[0])
     pause = np.zeros(int(rate * ruhe), dtype=audio.dtype)
     sf.write(f"podcast-folge/stueck-{index:03d}.wav", np.concatenate([audio, pause]), rate)
