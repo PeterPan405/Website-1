@@ -30,7 +30,7 @@
  * verlorene Serverdatei ist kein Datenverlust.
  */
 
-import { readFileSync, statSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 
 const REGISTER = 'data/podcast-eigener-feed.json'
 const BASIS = 'https://iminvests.de/podcast-audio'
@@ -137,5 +137,16 @@ ${eintraege}
 </rss>
 `
 
+/*
+  Im täglichen Lauf legt `npm run folge` den Ordner an, bevor dieses Skript
+  drankommt. Beim Umzug gibt es keine Folge – nur das Register –, und dann
+  gab es den Ordner nicht:
+
+      Error: ENOENT: no such file or directory, open 'podcast-folge/feed.xml'
+
+  Ein Feed lässt sich aus dem Register allein schreiben; der Ordner ist eine
+  Ablage, keine Voraussetzung.
+*/
+mkdirSync('podcast-folge', { recursive: true })
 writeFileSync('podcast-folge/feed.xml', feed)
 console.log(`[feed] feed.xml geschrieben – ${register.folgen.length} Folge(n).`)
