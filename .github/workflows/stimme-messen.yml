@@ -1,0 +1,65 @@
+name: Stimme messen
+
+# Prüft einmalig, ob die geklonte Stimme auf einem Läufer ohne Grafikkarte
+# schnell genug ist – die Voraussetzung dafür, die Vertonung von ElevenLabs
+# auf das lokale Modell umzustellen und damit kostenlos zu machen.
+#
+# Läuft nur von Hand. Das Ergebnis ist eine Zahl (Echtzeitfaktor) und ein
+# Urteil, keine Vermutung.
+#
+# Voraussetzung: eine Sprachprobe unter `assets/stimme-referenz.wav` und
+# ihr Wortlaut in der Variablen REFERENZTEXT.
+
+on:
+  workflow_dispatch:
+    inputs:
+      modellgroesse:
+        description: 'Modellgröße'
+        type: choice
+        options: ['0.6B', '1.7B']
+        default: '0.6B'
+
+jobs:
+  messen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Die Modelldateien sind über ein Gigabyte groß. Beim ersten Lauf
+      # dauert das Laden entsprechend; danach hängt es am Zwischenspeicher.
+      # Für die Messung zählt nur die reine Rechenzeit, die das Skript
+      # getrennt ausweist.
+      - name: Zwischenspeicher für Modelle
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-qwen-tts-${{ inputs.modellgroesse }}
+
+      - name: Abhängigkeiten
+        run: |
+          python -m pip install --upgrade pip
+          # Nur die CPU-Fassung von torch: die volle Ausgabe zieht die
+          # gesamten Grafikkarten-Bibliotheken nach, mehrere Gigabyte, die
+          # auf diesem Läufer nichts zu tun hätten.
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install "transformers<=4.57.6" soundfile librosa numpy qwen-tts
+
+      - name: Messen
+        run: python scripts/stimme-messen.py assets/stimme-referenz.wav ${{ inputs.modellgroesse }}
+
+      - name: Hörprobe anhängen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stimmprobe-${{ github.run_id }}
+          path: probe.wav
+          if-no-files-found: ignore
+          retention-days: 7
