@@ -44,10 +44,17 @@ interface Folge {
   beschreibung: string
   dauerSekunden: number
   bytes: number
+  /* Die YouTube-Kennung der Folge, sobald sie hochgeladen ist. Fehlt sie,
+     hat es den Upload an diesem Tag nicht gegeben – kein Fehler, nur ein
+     Verweis weniger auf der Website. */
+  youtubeId?: string
 }
 
 interface Register {
   folgen: Folge[]
+  /* Der Kanal, einmal für alle Folgen. Er ändert sich nicht, wird aber bei
+     jedem Upload neu bestätigt. */
+  youtubeKanalId?: string | null
 }
 
 function entschaerfen(text: string): string {
@@ -73,6 +80,16 @@ if (modus === 'eintragen') {
     process.exit(1)
   }
 
+  /* Die YouTube-Kennungen, falls der Upload vor diesem Schritt lief. Fehlen
+     sie, bleibt alles wie bisher – die Folge erscheint im Feed, nur ohne
+     Verweis auf das Video. */
+  let youtube: { videoId?: string; kanalId?: string | null } = {}
+  try {
+    youtube = JSON.parse(readFileSync('podcast-folge/youtube.json', 'utf8'))
+  } catch {
+    /* kein Upload gelaufen – kein Fehler */
+  }
+
   const eintrag: Folge = {
     datum: meta.datum,
     titel: titelZeilen[0].trim(),
@@ -80,7 +97,9 @@ if (modus === 'eintragen') {
     beschreibung,
     dauerSekunden: Math.round(dauer),
     bytes: statSync('podcast-folge/folge.mp3').size,
+    ...(youtube.videoId ? { youtubeId: youtube.videoId } : {}),
   }
+  if (youtube.kanalId) register.youtubeKanalId = youtube.kanalId
 
   /* Ein zweiter Lauf am selben Tag ersetzt die Folge, statt sie zu doppeln. */
   register.folgen = register.folgen.filter((folge) => folge.datum !== eintrag.datum)
@@ -104,6 +123,7 @@ const eintraege = register.folgen
     const datum = new Date(`${folge.datum}T04:30:00Z`).toUTCString()
     return `    <item>
       <title>${entschaerfen(folge.titel)}</title>
+      <link>${url}</link>
       <guid isPermaLink="false">iminvests-marktupdate-${folge.datum}</guid>
       <pubDate>${datum}</pubDate>
       <enclosure url="${url}" length="${folge.bytes}" type="audio/mpeg"/>

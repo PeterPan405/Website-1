@@ -175,10 +175,10 @@ export default async function LearnOverviewPage() {
           <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">
             {completeTopics.length} von {stats.topicCount} Themen sind in allen drei
             Stufen vollständig ausformuliert ({stats.completeLevelCount} von{' '}
-            {stats.levelCount} Stufen). Alle übrigen Themen haben bereits eigene Seiten
-            mit Meta-Daten, Permalink und einer inhaltlichen Gliederung – der Fließtext
-            wird Thema für Thema ergänzt. Das ist auf jeder betroffenen Seite deutlich
-            gekennzeichnet.
+            {stats.levelCount} Stufen).{' '}
+            {completeTopics.length < stats.topicCount
+              ? 'Alle übrigen Themen haben bereits eigene Seiten mit Meta-Daten, Permalink und einer inhaltlichen Gliederung – der Fließtext wird Thema für Thema ergänzt. Das ist auf jeder betroffenen Seite deutlich gekennzeichnet.'
+              : 'Damit steht zu jedem Thema fertiger Text; solange das nicht galt, war der Bearbeitungsstand auf jeder betroffenen Seite gekennzeichnet.'}
           </p>
           <ul className="mt-5 flex flex-wrap gap-3">
             {completeTopics.map((topic) => (

@@ -38,19 +38,45 @@
  * Aufruf: `npm run podcast`
  */
 
+import { existsSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 
-import { leseFeed, nurText, type Folge } from '../lib/podcast-feed.ts'
+import { folgenSlug, leseFeed, nurText, type Folge } from '../lib/podcast-feed.ts'
 
 const FEED_URL = process.env.PODCAST_RSS_URL?.trim() || undefined
 const ZIEL = 'data/snapshots/podcast.json'
+
+/**
+ * Das eigene Folgenregister – seit dem Umzug die Wahrheit über den Podcast.
+ *
+ * ## Warum von hier und nicht mehr über das Netz
+ *
+ * Bis zum 8. August 2026 las dieses Skript einen fremden Feed über HTTP,
+ * täglich um 04:41 UTC. Die Folge des Tages entsteht um 04:53 – zwölf
+ * Minuten **später**. Auf der Website stand damit jeden Morgen die Folge
+ * von gestern, und das war kein Fehler im Ablauf, sondern in der
+ * Reihenfolge: Die Website fragte, bevor es etwas zu fragen gab.
+ *
+ * Seit der Podcast im eigenen Haus liegt, gibt es nichts mehr zu fragen.
+ * `data/podcast-eigener-feed.json` wird von `podcast-feed-schreiben.ts`
+ * geschrieben, sobald eine Folge veröffentlicht ist. Wer von dort liest,
+ * ist per Bauart aktuell – keine Wartezeit, keine Netzverbindung, kein
+ * Zeitplan, der in der falschen Reihenfolge steht.
+ */
+const REGISTER = 'data/podcast-eigener-feed.json'
+
+/** Der YouTube-Kanal, sobald ein Upload ihn bestätigt hat. */
+let kanalId: string | null = null
+const AUDIO_BASIS = 'https://iminvests.de/podcast-audio'
 
 interface Momentaufnahme {
   abgerufenAm: string | null
   feed: string | null
   titel: string | null
   beschreibung: string | null
+  /* Der YouTube-Kanal – für den Verweis oben auf der Podcastseite. */
+  youtubeKanalId?: string | null
   folgen: Folge[]
 }
 
@@ -64,7 +90,83 @@ function kopffeld(xml: string, name: string): string | null {
   return text || null
 }
 
+/**
+ * Baut die Momentaufnahme aus dem eigenen Register.
+ *
+ * Gibt `null` zurück, wenn das Register fehlt oder leer ist – dann bleibt
+ * der Weg über den Feed als Rückfall.
+ */
+async function ausEigenemRegister(): Promise<Folge[] | null> {
+  if (!existsSync(REGISTER)) return null
+
+  const register = JSON.parse(await readFile(REGISTER, 'utf8')) as {
+    folgen: {
+      datum: string
+      titel: string
+      beschreibung: string
+      dauerSekunden: number
+      youtubeId?: string
+    }[]
+    youtubeKanalId?: string | null
+  }
+  if (register.folgen.length === 0) return null
+  kanalId = register.youtubeKanalId ?? null
+
+  /*
+    Der Slug entsteht aus dem Titel, wie beim Feed auch – die Adressen
+    `/podcast#<slug>` bleiben damit dieselben, die sie vor dem Umzug
+    waren. Doppelte Titel bekommen eine Nummer angehängt; das ist bei
+    einem täglichen Marktupdate nicht theoretisch.
+  */
+  const vergeben = new Set<string>()
+  return register.folgen
+    .map((eintrag) => {
+      let slug = folgenSlug(eintrag.titel)
+      if (vergeben.has(slug)) {
+        let zaehler = 2
+        while (vergeben.has(`${slug}-${zaehler}`)) zaehler += 1
+        slug = `${slug}-${zaehler}`
+      }
+      vergeben.add(slug)
+      return {
+        slug,
+        titel: eintrag.titel,
+        beschreibung: eintrag.beschreibung,
+        datum: eintrag.datum,
+        dauerSekunden: eintrag.dauerSekunden,
+        /* Die Folge selbst, nicht die Sendung: Wer „diese Folge anhören"
+           drückt, soll diese Folge hören und nicht auf einer Übersicht
+           landen, auf der er sie erst suchen muss. */
+        url: `${AUDIO_BASIS}/${eintrag.datum}.mp3`,
+        ...(eintrag.youtubeId ? { youtubeId: eintrag.youtubeId } : {}),
+      }
+    })
+    .sort((a, b) => b.datum.localeCompare(a.datum))
+}
+
 async function main(): Promise<void> {
+  const eigene = await ausEigenemRegister()
+  if (eigene) {
+    const bestand = JSON.parse(await readFile(ZIEL, 'utf8')) as Momentaufnahme
+    const bekannt = new Set(eigene.map((folge) => folge.slug))
+    const behalten = bestand.folgen.filter((folge) => !bekannt.has(folge.slug))
+    const alle = [...eigene, ...behalten].sort((a, b) => b.datum.localeCompare(a.datum))
+
+    const ergebnis: Momentaufnahme = {
+      abgerufenAm: new Date().toISOString(),
+      feed: `${AUDIO_BASIS}/feed.xml`,
+      titel: bestand.titel,
+      beschreibung: bestand.beschreibung,
+      youtubeKanalId: kanalId,
+      folgen: alle,
+    }
+    await writeFile(ZIEL, `${JSON.stringify(ergebnis, null, 2)}\n`)
+    console.log(
+      `[podcast] ${eigene.length} Folgen aus dem eigenen Register, ${alle.length} im Bestand.`
+    )
+    return
+  }
+
   if (!FEED_URL) {
     console.log(
       '[podcast] Keine PODCAST_RSS_URL hinterlegt – nichts zu tun.\n' +

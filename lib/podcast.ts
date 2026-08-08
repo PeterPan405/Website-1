@@ -46,6 +46,7 @@ interface Momentaufnahme {
   feed: string | null
   titel: string | null
   beschreibung: string | null
+  youtubeKanalId?: string | null
   folgen: Folge[]
 }
 
@@ -59,6 +60,20 @@ export const podcastTitel: string | null = daten.titel
 
 /** Die Beschreibung des Podcasts aus dem Feed. */
 export const podcastBeschreibung: string | null = daten.beschreibung
+
+/**
+ * Der YouTube-Kanal – `null`, solange kein Upload ihn bestätigt hat.
+ *
+ * Er wird nicht von Hand eingetragen: `podcast-youtube.ts` fragt ihn beim
+ * Hochladen ab. Eine Kennung, die jemand pflegen muss, ist eine Kennung,
+ * die irgendwann falsch ist.
+ */
+export const podcastYoutubeKanal: string | null = daten.youtubeKanalId ?? null
+
+/** Die YouTube-Adresse einer Folge, oder `null`. */
+export function folgenVideo(folge: Folge): string | null {
+  return folge.youtubeId ? `https://www.youtube.com/watch?v=${folge.youtubeId}` : null
+}
 
 export type { Folge }
 
