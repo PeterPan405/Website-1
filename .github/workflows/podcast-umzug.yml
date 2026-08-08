@@ -1,0 +1,92 @@
+name: Podcast umziehen
+
+# Holt die bestehenden Folgen vom bisherigen Hoster auf den eigenen Server
+# und schreibt den eigenen Feed. Der Schritt **vor** dem Umzug bei Spotify:
+# Nach der Umleitung ist der neue Feed die Wahrheit, und was darin fehlt,
+# verschwindet für jeden Hörer.
+#
+# Läuft nur von Hand, und zwar in aller Regel genau einmal.
+
+on:
+  workflow_dispatch:
+    inputs:
+      wirklich_laden:
+        description: 'Dateien wirklich holen und hochladen (sonst nur Übersicht)'
+        type: boolean
+        default: false
+
+jobs:
+  umziehen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+
+      - name: Folgen holen
+        env:
+          PODCAST_RSS_URL: ${{ vars.PODCAST_RSS_URL }}
+        run: |
+          if [ "${{ inputs.wirklich_laden }}" = "true" ]; then
+            npm run uebernehmen -- --laden
+          else
+            npm run uebernehmen
+          fi
+
+      - name: Feed schreiben
+        if: inputs.wirklich_laden
+        run: npm run podcastfeed schreiben
+
+      - name: Auf den Server
+        if: inputs.wirklich_laden
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "mkdir -p ~/podcast-audio && ln -sfn \$HOME/podcast-audio '$ZIELPFAD/podcast-audio'"
+
+          for datei in podcast-archiv/*.mp3; do
+            scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+              "$datei" "$USER@$HOST:~/podcast-audio/$(basename "$datei")"
+            echo "  $(basename "$datei") übertragen."
+          done
+
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            assets/podcast-cover.jpg "$USER@$HOST:~/podcast-audio/cover.jpg"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"
+          rm -f ~/.ssh/id_deploy
+
+          echo ""
+          echo "Der eigene Feed steht jetzt unter:"
+          echo "  https://iminvests.de/podcast-audio/feed.xml"
+
+      - name: Register committen
+        if: inputs.wirklich_laden
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/podcast-eigener-feed.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Podcast: bestehende Folgen in den eigenen Feed übernommen"
+            for versuch in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}" \
+                && git push origin "${{ github.ref_name }}" && break
+              sleep $((versuch * 5))
+            done
+          fi
