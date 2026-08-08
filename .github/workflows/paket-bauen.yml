@@ -428,19 +428,43 @@ jobs:
           # einen kompletten Neubau von acht Minuten, weil der Bau und die
           # Übertragung im selben Lauf hängen.
           #
-          # Jetzt **sechs** Versuche mit gedeckeltem Abstand: 5, 10, 20, 40, 60
-          # Sekunden, zusammen gut zweieinhalb Minuten Geduld. Das ist immer
-          # noch weniger als der Neubau kostet, den ein Fehlversuch auslöst –
-          # und wenn der Port sofort antwortet, kostet es null.
+          # **Am 8. August 2026 haben auch sechs Versuche nicht gereicht.** Die
+          # Nachrichtenausgabe stand um 04:06 auf `main`, der Bau scheiterte
+          # hier um 04:17:25 nach zweieinhalb Minuten – und der nächste Lauf
+          # kam um 04:23:29 ohne jede Verzögerung durch, mit denselben
+          # Zugangsdaten. Zwischen dem letzten Fehlversuch und dem Erfolg lagen
+          # gut sechs Minuten. Die Ausgabe war dadurch erst um 06:23 statt
+          # 06:00 draußen; gerettet hat es allein der Kurslauf um 04:17, der
+          # zufällig einen neuen Bau anstieß. Das ist Glück, kein Mechanismus.
+          #
+          # Naheliegend war die Vermutung, zwei gleichzeitige Läufe griffen auf
+          # denselben Port. Sie ist falsch: `concurrency` reiht Läufe auf
+          # `main` seit dem 3. August, und die Zeitstempel zeigen es auch – der
+          # gescheiterte Lauf endete um 04:17:25, der erfolgreiche begann um
+          # 04:17:56. Sie liefen nacheinander.
+          #
+          # Was bleibt, ist die zweite Möglichkeit, die schon in der
+          # Fehlermeldung unten steht: eine Verbindungsgrenze des Hosters,
+          # gegen die Abwarten hilft. Also wird gewartet – **zehn** Versuche
+          # mit gedeckeltem Abstand: 5, 10, 20, 40, dann 60 Sekunden,
+          # zusammen gut sechs Minuten. Das deckt den heute beobachteten
+          # Abstand ab.
+          #
+          # Der Preis ist null, solange der Port antwortet: Beim ersten
+          # erfolgreichen Versuch bricht die Schleife ab. Teurer wird nur der
+          # Fall, der ohnehin scheitert – und dort sind sechs Minuten Warten
+          # billiger als ein Neubau von acht Minuten, den ein Fehlversuch
+          # auslöst.
           echo "— Erreichbarkeit von Port $SSH_PORT"
           offen=nein
-          for versuch in 1 2 3 4 5 6; do
+          VERSUCHE=10
+          for versuch in $(seq 1 "$VERSUCHE"); do
             if timeout 15 bash -c "true > /dev/tcp/$HOST/$SSH_PORT" 2>/dev/null; then
               offen=ja
               echo "  Port offen (Versuch $versuch)."
               break
             fi
-            if [ "$versuch" -lt 6 ]; then
+            if [ "$versuch" -lt "$VERSUCHE" ]; then
               warte=$((5 * 2 ** (versuch - 1)))
               [ "$warte" -gt 60 ] && warte=60
               echo "  Versuch $versuch: keine Antwort – neuer Anlauf in ${warte}s."
@@ -449,7 +473,7 @@ jobs:
           done
 
           if [ "$offen" = nein ]; then
-            echo "::error::Port $SSH_PORT antwortet nach sechs Versuchen und gut zweieinhalb Minuten nicht."
+            echo "::error::Port $SSH_PORT antwortet nach zehn Versuchen und gut sechs Minuten nicht."
             echo "  Häufigste Ursache: SSH steht in hPanel noch auf INACTIVE."
             echo "  hPanel > Erweitert > SSH-Zugang > rechts in der Box auf 'Aktivieren'."
             echo "  Antwortete der Port bei früheren Läufen, ist es eher eine"
