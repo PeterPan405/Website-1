@@ -445,9 +445,10 @@ export default async function HomePage() {
             <div className="rounded-card border-border bg-surface-muted mt-10 border p-6 sm:p-8">
               <h3 className="text-fg text-lg font-semibold">Vollständig ausgearbeitet</h3>
               <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
-                Diese Themen liegen in allen drei Stufen als fertiger Text vor. Die
-                übrigen Themen haben bereits eigene Seiten mit Gliederung – der Fließtext
-                wird Thema für Thema ergänzt.
+                Diese Themen liegen in allen drei Stufen als fertiger Text vor.
+                {completeTopics.length < learnStats.topicCount
+                  ? ' Die übrigen Themen haben bereits eigene Seiten mit Gliederung – der Fließtext wird Thema für Thema ergänzt.'
+                  : ' Das gilt inzwischen für jedes Thema der Lernstrecke.'}
               </p>
               <ul className="mt-5 flex flex-wrap gap-3">
                 {completeTopics.map((topic) => (

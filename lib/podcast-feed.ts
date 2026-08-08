@@ -26,6 +26,8 @@
  */
 
 export interface Folge {
+  /** Die YouTube-Kennung der Folge, sobald ein Upload sie geliefert hat. */
+  youtubeId?: string
   /** Adressteil, aus dem Titel gebildet. */
   slug: string
   titel: string

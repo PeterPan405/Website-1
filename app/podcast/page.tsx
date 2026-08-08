@@ -8,7 +8,14 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
-import { folgenDauer, getFolgen, podcastBeschreibung, podcastStand } from '@/lib/podcast'
+import {
+  folgenDauer,
+  folgenVideo,
+  getFolgen,
+  podcastBeschreibung,
+  podcastStand,
+  podcastYoutubeKanal,
+} from '@/lib/podcast'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { siteConfig } from '@/lib/site'
 
@@ -48,17 +55,38 @@ export default function PodcastSeite() {
           </>
         }
         actions={
-          spotify && (
-            <a
-              href={spotify.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="fk-btn fk-btn-primary"
-            >
-              <Icon name="spotify" className="size-4" />
-              Bei Spotify anhören
-            </a>
-          )
+          /*
+            Zwei Wege zur Sendung, weil es zwei gibt. Der Kanal steht nicht
+            im Quelltext: `podcast-youtube.ts` fragt seine Kennung beim
+            Hochladen ab und legt sie ins Register. Eine Kennung, die
+            jemand von Hand pflegen muss, ist eine, die irgendwann falsch
+            dasteht – und zwar unbemerkt, weil ein Verweis auf einen
+            fremden Kanal aussieht wie ein Verweis auf den eigenen.
+          */
+          <>
+            {spotify && (
+              <a
+                href={spotify.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fk-btn fk-btn-primary"
+              >
+                <Icon name="spotify" className="size-4" />
+                Bei Spotify anhören
+              </a>
+            )}
+            {podcastYoutubeKanal && (
+              <a
+                href={`https://www.youtube.com/channel/${podcastYoutubeKanal}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fk-btn fk-btn-secondary"
+              >
+                <Icon name="youtube" className="size-4" />
+                Auf YouTube ansehen
+              </a>
+            )}
+          </>
         }
       />
 
@@ -162,20 +190,39 @@ export default function PodcastSeite() {
                       verspricht, wohin es geht, und dieses Versprechen muss
                       stimmen.
                     */}
-                    {(folge.url ?? spotify?.href) && (
-                      <a
-                        href={folge.url ?? spotify?.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-news mt-3 inline-flex items-center gap-1.5 text-sm font-medium underline underline-offset-2"
-                      >
-                        <Icon
-                          name={folge.url?.includes('spotify') ? 'spotify' : 'play'}
-                          className="size-4"
-                        />
-                        {folge.url ? 'Diese Folge anhören' : 'Podcast anhören'}
-                      </a>
-                    )}
+                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+                      {(folge.url ?? spotify?.href) && (
+                        <a
+                          href={folge.url ?? spotify?.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-news inline-flex items-center gap-1.5 text-sm font-medium underline underline-offset-2"
+                        >
+                          <Icon
+                            name={folge.url?.includes('spotify') ? 'spotify' : 'play'}
+                            className="size-4"
+                          />
+                          {folge.url ? 'Diese Folge anhören' : 'Podcast anhören'}
+                        </a>
+                      )}
+                      {/*
+                        Das Video **dieser** Folge, nicht der Kanal. Ohne die
+                        Kennung steht hier nichts – ein Verweis auf den Kanal
+                        wäre an dieser Stelle irreführend: Er sähe aus wie
+                        „diese Folge auf YouTube" und führte auf eine Liste.
+                      */}
+                      {folgenVideo(folge) && (
+                        <a
+                          href={folgenVideo(folge)!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-news inline-flex items-center gap-1.5 text-sm font-medium underline underline-offset-2"
+                        >
+                          <Icon name="youtube" className="size-4" />
+                          Diese Folge auf YouTube
+                        </a>
+                      )}
+                    </div>
                   </Reveal>
                 </li>
               )

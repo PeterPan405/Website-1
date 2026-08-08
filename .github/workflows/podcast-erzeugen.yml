@@ -334,6 +334,15 @@ jobs:
           print(marken)
           ENDE
 
+      - name: Zu YouTube hochladen
+        if: needs.text.outputs.veroeffentlichen == 'ja'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
+        run: npm run youtube
+
       # ------------------------------------------------------------------
       # Veröffentlichen: MP3 und Feed auf den Server, Video zu YouTube.
       #
@@ -428,15 +437,6 @@ jobs:
           gh workflow run paket-bauen.yml \
             --repo "${{ github.repository }}" --ref main \
             && echo "Der Paketbau ist angestoßen."
-
-      - name: Zu YouTube hochladen
-        if: needs.text.outputs.veroeffentlichen == 'ja'
-        env:
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-          YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
-        run: npm run youtube
 
       # Die Einzelstücke nicht mit anhängen – sie sind Arbeitsmaterial und
       # zusammen größer als die Folge selbst.

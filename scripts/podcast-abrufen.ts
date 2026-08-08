@@ -65,6 +65,9 @@ const ZIEL = 'data/snapshots/podcast.json'
  * Zeitplan, der in der falschen Reihenfolge steht.
  */
 const REGISTER = 'data/podcast-eigener-feed.json'
+
+/** Der YouTube-Kanal, sobald ein Upload ihn bestätigt hat. */
+let kanalId: string | null = null
 const AUDIO_BASIS = 'https://iminvests.de/podcast-audio'
 
 interface Momentaufnahme {
@@ -72,6 +75,8 @@ interface Momentaufnahme {
   feed: string | null
   titel: string | null
   beschreibung: string | null
+  /* Der YouTube-Kanal – für den Verweis oben auf der Podcastseite. */
+  youtubeKanalId?: string | null
   folgen: Folge[]
 }
 
@@ -100,9 +105,12 @@ async function ausEigenemRegister(): Promise<Folge[] | null> {
       titel: string
       beschreibung: string
       dauerSekunden: number
+      youtubeId?: string
     }[]
+    youtubeKanalId?: string | null
   }
   if (register.folgen.length === 0) return null
+  kanalId = register.youtubeKanalId ?? null
 
   /*
     Der Slug entsteht aus dem Titel, wie beim Feed auch – die Adressen
@@ -130,6 +138,7 @@ async function ausEigenemRegister(): Promise<Folge[] | null> {
            drückt, soll diese Folge hören und nicht auf einer Übersicht
            landen, auf der er sie erst suchen muss. */
         url: `${AUDIO_BASIS}/${eintrag.datum}.mp3`,
+        ...(eintrag.youtubeId ? { youtubeId: eintrag.youtubeId } : {}),
       }
     })
     .sort((a, b) => b.datum.localeCompare(a.datum))
@@ -148,6 +157,7 @@ async function main(): Promise<void> {
       feed: `${AUDIO_BASIS}/feed.xml`,
       titel: bestand.titel,
       beschreibung: bestand.beschreibung,
+      youtubeKanalId: kanalId,
       folgen: alle,
     }
     await writeFile(ZIEL, `${JSON.stringify(ergebnis, null, 2)}\n`)

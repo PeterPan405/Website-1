@@ -31,7 +31,7 @@
  * Aufruf: npm run youtube
  */
 
-import { readFileSync, statSync } from 'node:fs'
+import { readFileSync, statSync, writeFileSync } from 'node:fs'
 
 const CLIENT_ID = process.env.YT_CLIENT_ID?.trim()
 const CLIENT_SECRET = process.env.YT_CLIENT_SECRET?.trim()
@@ -161,6 +161,26 @@ if (!hochladen.ok || !ergebnis.id) {
 }
 
 console.log(`[youtube] Hochgeladen: https://youtu.be/${ergebnis.id}`)
+
+/*
+  Die Kennungen festhalten, damit die Website auf die Folge verweisen kann.
+
+  Ohne diesen Schritt wüsste niemand außerhalb dieses Laufs, wo das Video
+  liegt: Die Adresse stand nur im Protokoll, und ein Protokoll wird nach
+  Tagen gelöscht. Die Kanalkennung kommt gleich mit – die Website
+  verlinkt oben den Kanal, und ihn aus dem Video zu erraten geht nicht.
+*/
+const kanal = (await (
+  await fetch('https://www.googleapis.com/youtube/v3/channels?part=id&mine=true', {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+).json()) as { items?: { id?: string }[] }
+
+writeFileSync(
+  'podcast-folge/youtube.json',
+  JSON.stringify({ videoId: ergebnis.id, kanalId: kanal.items?.[0]?.id ?? null }, null, 2) +
+    '\n'
+)
 
 /* Aufnahmeort nachtragen. `recordingDetails` lässt sich beim Anmelden nicht
    mitgeben, ohne den Teil vollständig zu senden; als eigener Aufruf ist es

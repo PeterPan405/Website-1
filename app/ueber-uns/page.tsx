@@ -118,18 +118,42 @@ export default async function AboutPage() {
             der Fließtext. Dadurch ist von Anfang an klar, welche Inhalte auf welcher
             Stufe gehören und was bewusst ausgeklammert bleibt.
           </p>
+          {/*
+            Solange Themen offen sind, werden die fertigen aufgezählt – das war
+            der ehrlichere Weg, als leere Seiten zu verstecken.
+
+            Sind alle fertig, ist die Aufzählung sinnlos geworden: Sie nennt dann
+            jedes Thema der Website und endet auf „die übrigen 0 Themen“. Genau
+            das stand hier bis zum 8. August 2026. Ein Satz, der nur im
+            Zwischenzustand stimmt, muss den Endzustand mitdenken – sonst wird
+            aus einer Offenheit über den Baufortschritt eine Behauptung, die
+            niemand mehr prüft.
+          */}
           <p className="text-fg-muted mt-4 leading-relaxed">
-            Derzeit sind{' '}
-            {completeTopics.map((topic, index) => (
-              <span key={topic.slug}>
-                {index > 0 && (index === completeTopics.length - 1 ? ' und ' : ', ')}
-                <strong className="text-fg font-semibold">{topic.title}</strong>
-              </span>
-            ))}{' '}
-            vollständig ausformuliert. Die übrigen {offen} Themen haben eigene Seiten mit
-            Gliederung; der Text wird Thema für Thema ergänzt. Der Stand ist auf jeder
-            betroffenen Seite gekennzeichnet – wir halten es für ehrlicher, den
-            Bearbeitungsstand zu zeigen, als leere Seiten zu verstecken.
+            {offen > 0 ? (
+              <>
+                Derzeit sind{' '}
+                {completeTopics.map((topic, index) => (
+                  <span key={topic.slug}>
+                    {index > 0 && (index === completeTopics.length - 1 ? ' und ' : ', ')}
+                    <strong className="text-fg font-semibold">{topic.title}</strong>
+                  </span>
+                ))}{' '}
+                vollständig ausformuliert. Die übrigen {offen}{' '}
+                {offen === 1 ? 'Themen haben eine eigene Seite' : 'Themen haben eigene Seiten'}{' '}
+                mit Gliederung; der Text wird Thema für Thema ergänzt. Der Stand ist auf
+                jeder betroffenen Seite gekennzeichnet – wir halten es für ehrlicher, den
+                Bearbeitungsstand zu zeigen, als leere Seiten zu verstecken.
+              </>
+            ) : (
+              <>
+                Alle{' '}
+                <strong className="text-fg font-semibold">{stats.topicCount} Themen</strong>{' '}
+                liegen inzwischen in allen drei Stufen als fertiger Text vor. Solange das
+                nicht galt, stand der Bearbeitungsstand auf jeder betroffenen Seite – wir
+                halten es für ehrlicher, ihn zu zeigen, als leere Seiten zu verstecken.
+              </>
+            )}
           </p>
 
           <div className="mt-8">
