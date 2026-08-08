@@ -820,7 +820,20 @@ function WellenMarke({
   )
 }
 
-/** Wo eine Impulswelle gestreckt wird – in 1, in 3 oder in 5. */
+/**
+ * Wo eine Impulswelle gestreckt wird – in 1, in 3 oder in 5.
+ *
+ * ## Die Zahlen sind nachgerechnet, nicht gezeichnet
+ *
+ * Der erste Entwurf verletzte in zwei von drei Feldern die Regeln, die zwei
+ * Absätze weiter oben auf derselben Seite stehen. Im Feld „Streckung in
+ * Welle 1“ lag das Ende der Welle 3 unter dem Hoch der Welle 1, und Welle 4
+ * reichte in deren Kursbereich hinein – die dritte Regel, wörtlich verletzt.
+ * Im Feld „Streckung in Welle 3“ blieb Welle 5 unter dem Hoch der Welle 3;
+ * das ist eine Verkürzung und gehört in die Grafik daneben, nicht hierher.
+ *
+ * `tests/elliott-regeln.test.ts` rechnet die Koordinaten seither nach.
+ */
 export function TaElliottExtension() {
   const zuege: { titel: string; punkte: [number, number][]; lang: number }[] = [
     {
@@ -831,7 +844,7 @@ export function TaElliottExtension() {
         [36, 112],
         [104, 34],
         [124, 62],
-        [150, 38],
+        [150, 22],
       ],
       lang: 3,
     },
@@ -852,10 +865,10 @@ export function TaElliottExtension() {
       punkte: [
         [0, 130],
         [70, 48],
-        [92, 84],
-        [118, 54],
-        [128, 68],
-        [150, 44],
+        [92, 78],
+        [118, 30],
+        [128, 42],
+        [150, 20],
       ],
       lang: 1,
     },
@@ -937,31 +950,51 @@ export function TaElliottVerkuerzung() {
   )
 }
 
-/** Führende und endende Diagonale im Vergleich. */
+/**
+ * Führende und endende Diagonale im Vergleich.
+ *
+ * ## Die Zeit läuft nach rechts, auch beim Überlappen
+ *
+ * Der erste Entwurf zeichnete die Überlappung von Welle 4 und Welle 1
+ * dadurch, dass er den Tiefpunkt der Welle 4 **nach links** setzte – zurück
+ * unter Welle 1. Das ergibt keinen Keil, sondern ein Gekritzel: Der Stift
+ * fährt über bereits gezeichnete Zeit zurück, und ein Kursverlauf tut das
+ * nie.
+ *
+ * Die Überlappung ist eine Aussage über den **Preis**, nicht über die Zeit.
+ * Also steigt x hier streng an, und Welle 4 fällt schlicht unter das y des
+ * Hochs von Welle 1. `test/figures-zeitachse.test.ts` hält das fest.
+ */
 export function TaElliottDiagonale() {
+  /* 1, 3 und 5 liegen auf der oberen Begrenzung, Start, 2 und 4 auf der
+     unteren. Weil die untere steiler steigt, verengt sich der Keil. */
+  const fuehrend: [number, number][] = [
+    [40, 205],
+    [85, 120],
+    [115, 178],
+    [165, 91],
+    [200, 147],
+    [250, 60],
+  ]
+  const endend: [number, number][] = [
+    [360, 205],
+    [405, 120],
+    [435, 178],
+    [485, 93],
+    [520, 147],
+    [580, 60],
+  ]
   return (
     <FigureSvg id="ta-elliott-diagonale" viewBox="0 0 640 280">
       {/* Führende Diagonale – in Welle 1 oder A */}
-      <Beschriftung x={160} y={30} anchor="middle" groesse={13}>
+      <Beschriftung x={145} y={30} anchor="middle" groesse={13}>
         Führende Diagonale (Welle 1 oder A)
       </Beschriftung>
+      <path d={pfad(fuehrend)} fill="none" stroke={MARKE} strokeWidth={2.2} />
       <path
         d={pfad([
-          [40, 200],
-          [110, 110],
-          [80, 158],
-          [180, 78],
-          [140, 130],
-          [250, 60],
-        ])}
-        fill="none"
-        stroke={MARKE}
-        strokeWidth={2.2}
-      />
-      <path
-        d={pfad([
-          [40, 200],
-          [250, 60],
+          [78, 123],
+          [256, 58],
         ])}
         fill="none"
         stroke={LEISE}
@@ -970,39 +1003,44 @@ export function TaElliottDiagonale() {
       />
       <path
         d={pfad([
-          [80, 158],
-          [140, 130],
+          [36, 207],
+          [256, 127],
         ])}
         fill="none"
         stroke={LEISE}
         strokeWidth={1}
         strokeDasharray="4 4"
       />
-      <Beschriftung x={44} y={228} ton="leise" groesse={12}>
-        Keil, der sich verengt. Wellen 1, 3 und 5 sind je dreiteilig.
+      {/* Das Hoch der Welle 1, waagerecht verlängert: Welle 4 taucht darunter. */}
+      <path
+        d={pfad([
+          [85, 120],
+          [212, 120],
+        ])}
+        fill="none"
+        stroke={GEFAHR}
+        strokeWidth={1}
+        strokeDasharray="3 3"
+      />
+      {fuehrend.slice(1).map(([x, y], i) => (
+        <WellenMarke key={`f${i}`} x={x} y={y} text={String(i + 1)} radius={7.5} />
+      ))}
+      <Beschriftung x={145} y={238} anchor="middle" ton="leise" groesse={12}>
+        Wellen 1, 3 und 5 je dreiteilig
+      </Beschriftung>
+      <Beschriftung x={145} y={256} anchor="middle" ton="leise" groesse={12}>
+        Welle 4 taucht unter das Hoch von 1
       </Beschriftung>
 
       {/* Endende Diagonale – in Welle 5 oder C */}
-      <Beschriftung x={480} y={30} anchor="middle" groesse={13}>
+      <Beschriftung x={470} y={30} anchor="middle" groesse={13}>
         Endende Diagonale (Welle 5 oder C)
       </Beschriftung>
+      <path d={pfad(endend)} fill="none" stroke={AKZENT} strokeWidth={2.2} />
       <path
         d={pfad([
-          [360, 190],
-          [470, 96],
-          [420, 140],
-          [530, 70],
-          [490, 104],
-          [580, 56],
-        ])}
-        fill="none"
-        stroke={AKZENT}
-        strokeWidth={2.2}
-      />
-      <path
-        d={pfad([
-          [360, 190],
-          [580, 56],
+          [398, 123],
+          [586, 58],
         ])}
         fill="none"
         stroke={LEISE}
@@ -1011,14 +1049,40 @@ export function TaElliottDiagonale() {
       />
       <path
         d={pfad([
-          [420, 140],
-          [490, 104],
+          [356, 207],
+          [586, 124],
         ])}
         fill="none"
         stroke={LEISE}
         strokeWidth={1}
         strokeDasharray="4 4"
       />
+      <path
+        d={pfad([
+          [405, 120],
+          [532, 120],
+        ])}
+        fill="none"
+        stroke={GEFAHR}
+        strokeWidth={1}
+        strokeDasharray="3 3"
+      />
+      {endend.slice(1).map(([x, y], i) => (
+        <WellenMarke
+          key={`e${i}`}
+          x={x}
+          y={y}
+          text={String(i + 1)}
+          radius={7.5}
+          farbe={AKZENT}
+        />
+      ))}
+      <Beschriftung x={470} y={238} anchor="middle" ton="leise" groesse={12}>
+        Dieselbe Form am Ende
+      </Beschriftung>
+      <Beschriftung x={470} y={256} anchor="middle" ton="leise" groesse={12}>
+        einer Bewegung statt am Anfang
+      </Beschriftung>
     </FigureSvg>
   )
 }
@@ -1164,18 +1228,19 @@ export function TaElliottFlat() {
 /** Kontrahierendes, Barrier- und expandierendes Dreieck. */
 export function TaElliottDreieck() {
   return (
-    <FigureSvg id="ta-elliott-dreieck" viewBox="0 0 640 280">
-      {/* Kontrahierend */}
+    <FigureSvg id="ta-elliott-dreieck" viewBox="0 0 640 240">
+      {/* Kontrahierend: A, C und E auf der unteren Linie, B und D auf der oberen. */}
       <Beschriftung x={110} y={30} anchor="middle" groesse={13}>
         Kontrahierend
       </Beschriftung>
       <path
         d={pfad([
           [30, 60],
-          [190, 180],
-          [50, 96],
-          [180, 152],
-          [78, 120],
+          [60, 150],
+          [88, 88],
+          [116, 137],
+          [142, 100],
+          [170, 125],
         ])}
         fill="none"
         stroke={MARKE}
@@ -1183,8 +1248,8 @@ export function TaElliottDreieck() {
       />
       <path
         d={pfad([
-          [30, 60],
-          [110, 118],
+          [84, 87],
+          [176, 107],
         ])}
         fill="none"
         stroke={LEISE}
@@ -1193,29 +1258,41 @@ export function TaElliottDreieck() {
       />
       <path
         d={pfad([
-          [190, 180],
-          [110, 126],
+          [56, 151],
+          [176, 124],
         ])}
         fill="none"
         stroke={LEISE}
         strokeWidth={1}
         strokeDasharray="4 4"
       />
-      <Beschriftung x={110} y={216} anchor="middle" ton="leise" groesse={12}>
-        Beide Begrenzungen laufen aufeinander zu
+      {(
+        [
+          [60, 150, 'A'],
+          [88, 88, 'B'],
+          [116, 137, 'C'],
+          [142, 100, 'D'],
+          [170, 125, 'E'],
+        ] as const
+      ).map(([x, y, t]) => (
+        <WellenMarke key={`k${t}`} x={x} y={y} text={t} radius={7.5} />
+      ))}
+      <Beschriftung x={110} y={200} anchor="middle" ton="leise" groesse={12}>
+        Die Linien laufen zusammen
       </Beschriftung>
 
-      {/* Barrier */}
+      {/* Barrier: die Unterseite bleibt auf einer Höhe, nur oben wird es enger. */}
       <Beschriftung x={320} y={30} anchor="middle" groesse={13}>
         Barrier
       </Beschriftung>
       <path
         d={pfad([
           [245, 60],
-          [400, 170],
-          [262, 92],
-          [398, 168],
-          [288, 122],
+          [275, 155],
+          [303, 92],
+          [331, 155],
+          [357, 114],
+          [385, 155],
         ])}
         fill="none"
         stroke={AKZENT}
@@ -1223,29 +1300,40 @@ export function TaElliottDreieck() {
       />
       <path
         d={pfad([
-          [400, 172],
-          [240, 172],
+          [298, 90],
+          [392, 128],
         ])}
         fill="none"
         stroke={LEISE}
         strokeWidth={1}
         strokeDasharray="4 4"
       />
-      <Beschriftung x={320} y={216} anchor="middle" ton="leise" groesse={12}>
-        Die Unterseite bleibt waagerecht
+      <path
+        d={pfad([
+          [268, 155],
+          [396, 155],
+        ])}
+        fill="none"
+        stroke={LEISE}
+        strokeWidth={1}
+        strokeDasharray="4 4"
+      />
+      <Beschriftung x={320} y={200} anchor="middle" ton="leise" groesse={12}>
+        Die Unterseite bleibt flach
       </Beschriftung>
 
-      {/* Expandierend */}
+      {/* Expandierend: dieselben fünf Abschnitte, aber jeder größer als der vorige. */}
       <Beschriftung x={530} y={30} anchor="middle" groesse={13}>
         Expandierend
       </Beschriftung>
       <path
         d={pfad([
-          [470, 110],
-          [520, 148],
-          [500, 84],
-          [560, 176],
-          [530, 60],
+          [450, 110],
+          [478, 138],
+          [504, 88],
+          [532, 158],
+          [558, 66],
+          [590, 180],
         ])}
         fill="none"
         stroke={GEFAHR}
@@ -1253,8 +1341,8 @@ export function TaElliottDreieck() {
       />
       <path
         d={pfad([
-          [468, 112],
-          [534, 56],
+          [496, 91],
+          [596, 50],
         ])}
         fill="none"
         stroke={LEISE}
@@ -1263,21 +1351,16 @@ export function TaElliottDreieck() {
       />
       <path
         d={pfad([
-          [518, 150],
-          [564, 180],
+          [474, 137],
+          [596, 183],
         ])}
         fill="none"
         stroke={LEISE}
         strokeWidth={1}
         strokeDasharray="4 4"
       />
-      <Beschriftung x={530} y={216} anchor="middle" ton="leise" groesse={12}>
-        Die Schwankung nimmt zu – selten
-      </Beschriftung>
-
-      <Beschriftung x={320} y={258} anchor="middle" ton="leise" groesse={12}>
-        Jedes Dreieck hat fünf Abschnitte A bis E, und jeder davon ist dreiteilig. Es
-        steht fast immer in Welle 4 oder in Welle B.
+      <Beschriftung x={530} y={200} anchor="middle" ton="leise" groesse={12}>
+        Die Ausschläge werden größer
       </Beschriftung>
     </FigureSvg>
   )
@@ -2070,12 +2153,12 @@ export function TaElliottUmkehrWeitere() {
       </Beschriftung>
       <path
         d={pfad([
-          [450, 192],
-          [500, 112],
-          [476, 152],
-          [552, 82],
-          [524, 120],
-          [602, 58],
+          [450, 200],
+          [488, 116],
+          [512, 175],
+          [552, 97],
+          [576, 149],
+          [606, 81],
         ])}
         fill="none"
         stroke={MARKE}
@@ -2083,8 +2166,8 @@ export function TaElliottUmkehrWeitere() {
       />
       <path
         d={pfad([
-          [496, 116],
-          [606, 54],
+          [484, 117],
+          [612, 79],
         ])}
         fill="none"
         stroke={LEISE}
@@ -2093,8 +2176,8 @@ export function TaElliottUmkehrWeitere() {
       />
       <path
         d={pfad([
-          [448, 196],
-          [606, 94],
+          [446, 202],
+          [612, 135],
         ])}
         fill="none"
         stroke={LEISE}
@@ -2102,11 +2185,11 @@ export function TaElliottUmkehrWeitere() {
         strokeDasharray="4 3"
       />
       {[
-        [500, 112, '1'],
-        [476, 152, '2'],
-        [552, 82, '3'],
-        [524, 120, '4'],
-        [602, 58, '5'],
+        [488, 116, '1'],
+        [512, 175, '2'],
+        [552, 97, '3'],
+        [576, 149, '4'],
+        [606, 81, '5'],
       ].map(([x, y, t]) => (
         <WellenMarke
           key={`d${t}`}
@@ -2131,6 +2214,236 @@ export function TaElliottUmkehrWeitere() {
       </Beschriftung>
       <Beschriftung x={34} y={302} ton="leise" groesse={11.5}>
         Welle 2 in einer Diagonale zwischen 66 und 81 Prozent.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/* ======================================= Wie das Werkzeug angesetzt wird */
+
+/**
+ * Ein Ankerpunkt: der Punkt, auf den das Werkzeug gesetzt wird.
+ *
+ * Bewusst kein Kreis wie bei `WellenMarke` – sonst sähe ein Anker aus wie
+ * eine Wellennummer, und genau die Verwechslung soll die Grafik ausräumen.
+ * Der Anker ist ein Ort im Chart, keine Welle.
+ */
+function Anker({ x, y, farbe = GEFAHR }: { x: number; y: number; farbe?: string }) {
+  return (
+    <g>
+      <rect
+        x={x - 5}
+        y={y - 5}
+        width={10}
+        height={10}
+        fill="var(--c-surface)"
+        stroke={farbe}
+        strokeWidth={2}
+      />
+      <rect x={x - 1.5} y={y - 1.5} width={3} height={3} fill={farbe} />
+    </g>
+  )
+}
+
+/** Eine waagerechte Marke des Werkzeugs samt Beschriftung am rechten Rand. */
+function Stufe({
+  y,
+  von,
+  bis,
+  text,
+  kraeftig = false,
+}: {
+  y: number
+  von: number
+  bis: number
+  text: string
+  kraeftig?: boolean
+}) {
+  return (
+    <g>
+      <line
+        x1={von}
+        y1={y}
+        x2={bis}
+        y2={y}
+        stroke={kraeftig ? AKZENT : LEISE}
+        strokeWidth={kraeftig ? 1.4 : 1}
+        strokeDasharray={kraeftig ? undefined : '4 4'}
+      />
+      <Beschriftung
+        x={bis + 8}
+        y={y + 4}
+        ton={kraeftig ? 'akzent' : 'leise'}
+        groesse={11.5}
+      >
+        {text}
+      </Beschriftung>
+    </g>
+  )
+}
+
+/**
+ * Den Rücklauf ansetzen: zwei Anker, gemessen an der vorigen Welle.
+ *
+ * Die Zahlen sind aus dem gezeichneten Pfad gerechnet, nicht geschätzt –
+ * die Strecke von Welle 1 ist 150 Einheiten hoch, und 61,8 Prozent davon
+ * landen genau dort, wo Welle 2 endet.
+ */
+export function TaElliottAnsetzenRuecklauf() {
+  const oben = 60
+  const unten = 210
+  const strecke = unten - oben
+  const bei = (anteil: number) => oben + strecke * anteil
+  return (
+    <FigureSvg id="ta-elliott-ansetzen-ruecklauf" viewBox="0 0 640 290">
+      <rect
+        x={200}
+        y={bei(0.5)}
+        width={320}
+        height={bei(0.786) - bei(0.5)}
+        fill={MARKE}
+        opacity={BAND_DECKKRAFT}
+      />
+      <Stufe y={oben} von={200} bis={520} text="0 %" />
+      <Stufe y={bei(0.382)} von={200} bis={520} text="38,2 %" />
+      <Stufe y={bei(0.5)} von={200} bis={520} text="50 %" />
+      <Stufe y={bei(0.618)} von={200} bis={520} text="61,8 %" kraeftig />
+      <Stufe y={bei(0.786)} von={200} bis={520} text="78,6 %" />
+      <Stufe y={unten} von={200} bis={520} text="100 %" />
+      <path
+        d={pfad([
+          [60, unten],
+          [200, oben],
+          [300, bei(0.618)],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2.4}
+      />
+      <Anker x={60} y={unten} />
+      <Anker x={200} y={oben} />
+      <WellenMarke x={300} y={bei(0.618)} text="2" radius={9} />
+      <Beschriftung x={36} y={238} ton="gefahr" groesse={12} gewicht="kraeftig">
+        Anker 1: Start von Welle 1
+      </Beschriftung>
+      <Beschriftung x={150} y={44} ton="gefahr" groesse={12} gewicht="kraeftig">
+        Anker 2: Ende von Welle 1
+      </Beschriftung>
+      <Beschriftung x={36} y={266} groesse={12}>
+        Die 0 % liegen am zweiten Anker – am Ende der gemessenen Welle.
+      </Beschriftung>
+      <Beschriftung x={36} y={284} ton="leise" groesse={11.5}>
+        Umgekehrt angesetzt stehen alle Marken spiegelverkehrt im Chart.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/** Die Streckung ansetzen: gemessen an Welle 1, angetragen ab dem Tief der Welle 2. */
+export function TaElliottAnsetzenStreckung() {
+  const start = 230
+  const hoch1 = 170
+  const tief2 = 206
+  const laenge = start - hoch1
+  const ziel = (faktor: number) => tief2 - laenge * faktor
+  return (
+    <FigureSvg id="ta-elliott-ansetzen-streckung" viewBox="0 0 640 290">
+      <Stufe y={ziel(1.618)} von={200} bis={520} text="1,618 ×" kraeftig />
+      <Stufe y={ziel(2.618)} von={200} bis={520} text="2,618 ×" />
+      <path
+        d={pfad([
+          [50, start],
+          [150, hoch1],
+          [200, tief2],
+          [330, ziel(1.618)],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2.4}
+      />
+      {/* Die gemessene Strecke – und dieselbe Strecke, mal 1,618 angetragen. */}
+      <line x1={38} y1={hoch1} x2={38} y2={start} stroke={GEFAHR} strokeWidth={4} />
+      <line
+        x1={216}
+        y1={tief2}
+        x2={216}
+        y2={ziel(1.618)}
+        stroke={GEFAHR}
+        strokeWidth={4}
+      />
+      <Anker x={50} y={start} />
+      <Anker x={150} y={hoch1} />
+      <WellenMarke x={200} y={tief2} text="2" radius={9} />
+      <WellenMarke x={330} y={ziel(1.618)} text="3" radius={9} />
+      <Beschriftung x={26} y={252} ton="gefahr" groesse={11.5}>
+        gemessen
+      </Beschriftung>
+      <Beschriftung x={228} y={ziel(1.618) - 8} ton="gefahr" groesse={11.5}>
+        1,618 × derselben Strecke
+      </Beschriftung>
+      <Beschriftung x={36} y={272} groesse={12}>
+        Gemessen wird Welle 1. Angetragen wird ab dem Tief der Welle 2.
+      </Beschriftung>
+      <Beschriftung x={36} y={288} ton="leise" groesse={11.5}>
+        Das 4,236-fache liegt weit über dem Bildrand.
+      </Beschriftung>
+    </FigureSvg>
+  )
+}
+
+/** Die Projektion ansetzen: drei Anker – Strecke 1 bis 3, angetragen ab Welle 4. */
+export function TaElliottAnsetzenProjektion() {
+  const start = 230
+  const ende3 = 140
+  const tief4 = 172
+  const laenge = start - ende3
+  const ziel = (faktor: number) => tief4 - laenge * faktor
+  return (
+    <FigureSvg id="ta-elliott-ansetzen-projektion" viewBox="0 0 640 290">
+      <Stufe y={ziel(0.618)} von={300} bis={520} text="0,618 ×" kraeftig />
+      <Stufe y={ziel(1.0)} von={300} bis={520} text="1,000 ×" />
+      <path
+        d={pfad([
+          [50, start],
+          [110, 190],
+          [150, 212],
+          [240, ende3],
+          [300, tief4],
+          [400, ziel(0.618)],
+        ])}
+        fill="none"
+        stroke={MARKE}
+        strokeWidth={2.4}
+      />
+      <line x1={38} y1={ende3} x2={38} y2={start} stroke={GEFAHR} strokeWidth={4} />
+      <line
+        x1={316}
+        y1={tief4}
+        x2={316}
+        y2={ziel(0.618)}
+        stroke={GEFAHR}
+        strokeWidth={4}
+      />
+      <Anker x={50} y={start} />
+      <Anker x={240} y={ende3} />
+      <Anker x={300} y={tief4} />
+      <WellenMarke x={110} y={190} text="1" radius={9} />
+      {/*
+        Kein Kreis auf Welle 3: Dort sitzt schon ein Anker, und der Kreis
+        verdeckte ihn vollständig – die Grafik zeigte zwei Anker statt drei.
+      */}
+      <Beschriftung x={240} y={ende3 - 14} anchor="middle" ton="marke" groesse={13}>
+        3
+      </Beschriftung>
+      <WellenMarke x={400} y={ziel(0.618)} text="5" radius={9} />
+      <Beschriftung x={26} y={252} ton="gefahr" groesse={11.5}>
+        gemessen: 1 bis 3
+      </Beschriftung>
+      <Beschriftung x={36} y={272} groesse={12}>
+        Drei Anker: Start Welle 1, Ende Welle 3 und der Startpunkt am Tief 4.
+      </Beschriftung>
+      <Beschriftung x={36} y={288} ton="leise" groesse={11.5}>
+        Deshalb heißt das Werkzeug in vielen Programmen „Trend-Based Fib Extension“.
       </Beschriftung>
     </FigureSvg>
   )

@@ -70,6 +70,12 @@ export type FigureId =
   | 'ta-elliott-wechsel'
   /** Die Wellengrade: dieselbe Form auf jeder Zeitebene. */
   | 'ta-elliott-grade'
+  /** Den Rücklauf ansetzen: welche zwei Punkte das Werkzeug bekommt. */
+  | 'ta-elliott-ansetzen-ruecklauf'
+  /** Die Streckung ansetzen: gemessen an der einen, angetragen an der anderen Stelle. */
+  | 'ta-elliott-ansetzen-streckung'
+  /** Die Projektion ansetzen: drei Punkte statt zwei. */
+  | 'ta-elliott-ansetzen-projektion'
   /** Wie tief die Korrekturwellen üblicherweise zurücklaufen. */
   | 'ta-elliott-ruecklaeufe'
   /** Wie weit die Impulswellen üblicherweise über die vorige hinauslaufen. */
@@ -973,6 +979,27 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
       'Zwei zusammengesetzte Korrekturverläufe. Links die doppelte Korrektur mit den Punkten W, X und Y: Zwei einzelne Korrekturmuster – hier ein Zickzack und eine Flat – sind durch die Verbindungswelle X aneinandergehängt. Rechts die dreifache Korrektur mit W, X, Y, X und Z: drei Korrekturmuster, verbunden durch zwei X-Wellen. Mehr als drei Bestandteile sieht die Theorie nicht vor. Beide Formen verlaufen flacher und deutlich länger als eine einzelne Korrektur und sind der Hauptgrund, warum sich fast jede ausgedehnte Seitwärtsphase regelkonform auszählen lässt.',
     caption:
       'W-X-Y und W-X-Y-X-Z hängen fertige Korrekturen aneinander. Damit wird fast jede Seitwärtsphase zählbar.',
+  },
+  'ta-elliott-ansetzen-ruecklauf': {
+    title: 'Den Rücklauf ansetzen: zwei Punkte, eine Richtung',
+    description:
+      'Ein Kursverlauf, der von einem Tief zu einem Hoch steigt und danach zurückläuft. Auf den Startpunkt der Aufwärtsbewegung ist der erste Anker gesetzt, auf ihren Endpunkt der zweite. Die waagerechten Marken des Werkzeugs liegen dazwischen: 0 Prozent am Ende der Bewegung, 100 Prozent an ihrem Start, dazwischen 38,2, 50, 61,8 und 78,6 Prozent. Der Bereich zwischen 50 und 78,6 Prozent ist hervorgehoben, weil dort eine Welle 2 üblicherweise dreht. Die abwärts laufende Welle 2 endet in der Zeichnung auf der Marke von 61,8 Prozent. Wird die Reihenfolge der beiden Anker vertauscht, stehen alle Marken spiegelverkehrt.',
+    caption:
+      'Der erste Anker sitzt am Start der gemessenen Welle, der zweite an ihrem Ende. Die 0 Prozent liegen beim zweiten.',
+  },
+  'ta-elliott-ansetzen-streckung': {
+    title: 'Die Streckung ansetzen: gemessen hier, angetragen dort',
+    description:
+      'Ein Kursverlauf aus Welle 1 aufwärts, Welle 2 abwärts und Welle 3 aufwärts. Links neben der Welle 1 steht ein senkrechter Balken, der ihre Länge markiert – das ist die gemessene Strecke. Derselbe Balken erscheint ein zweites Mal, 1,618-fach verlängert, und beginnt dort, wo Welle 2 endet. Sein oberes Ende liegt auf der hervorgehobenen Marke, und genau dort endet Welle 3. Eine zweite, schwächere Marke liegt darüber beim 2,618-fachen. Das 4,236-fache läge außerhalb des Bildes.',
+    caption:
+      'Gemessen wird an Welle 1, angetragen wird ab dem Tief der Welle 2 – zwei verschiedene Stellen.',
+  },
+  'ta-elliott-ansetzen-projektion': {
+    title: 'Die Projektion ansetzen: drei Punkte statt zwei',
+    description:
+      'Ein vollständiger Impulsverlauf aus den Wellen 1 bis 5. Drei Anker sind gesetzt: am Start der Welle 1, am Ende der Welle 3 und am Tief der Welle 4. Die ersten beiden bestimmen die gemessene Strecke, die als senkrechter Balken links markiert ist; der dritte bestimmt, wo diese Strecke angetragen wird. Vom Tief der Welle 4 aus reicht ein zweiter Balken über 0,618 dieser Strecke nach oben, und dort endet Welle 5. Eine schwächere Marke darüber steht beim einfachen Wert.',
+    caption:
+      'Die Projektion braucht drei Punkte: zwei zum Messen, einen als Startpunkt. Deshalb heißt sie in vielen Programmen anders als das Rücklaufwerkzeug.',
   },
   'ta-elliott-ziele': {
     title: 'Welche Welle welches Verhältnis anläuft',
