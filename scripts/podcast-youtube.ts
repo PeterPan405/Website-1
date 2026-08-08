@@ -86,10 +86,17 @@ const token = tokenAntwort.access_token
 
 if (!video) {
   const kanal = (await (
-    await fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-  ).json()) as { items?: { snippet?: { title?: string } }[] }
+    await fetch(
+      'https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&mine=true',
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+  ).json()) as {
+    items?: {
+      id?: string
+      snippet?: { title?: string }
+      contentDetails?: { relatedPlaylists?: { uploads?: string } }
+    }[]
+  }
 
   const name = kanal.items?.[0]?.snippet?.title
   if (!name) {
@@ -99,7 +106,57 @@ if (!video) {
     )
     process.exit(1)
   }
-  console.log(`[youtube] Zugang geprüft. Hochgeladen würde auf den Kanal: „${name}“`)
+  console.log(
+    `[youtube] Zugang geprüft. Hochgeladen würde auf den Kanal: „${name}“ ` +
+      `(${kanal.items?.[0]?.id ?? 'ohne Kennung'})`
+  )
+
+  /*
+    Was liegt auf dem Kanal schon?
+
+    Aus einer konkreten Unklarheit entstanden: Am 8. August 2026 stand die
+    Frage im Raum, ob die bisherigen Folgen bereits als Video auf YouTube
+    liegen – etwa über eine Verteilung des Podcast-Hosters. Von außen ist
+    das nicht zu beantworten: Im Repository steht nur, was **diese**
+    Automatik hochgeladen hat, und das war nichts.
+
+    Der Kanal führt seine Uploads in einer eigenen Playlist. Die
+    aufzuzählen kostet einen Aufruf und beantwortet die Frage endgültig –
+    mit Kennung und Datum, an denen sich jedes Video einer Folge zuordnen
+    lässt.
+  */
+  const uploads = kanal.items?.[0]?.contentDetails?.relatedPlaylists?.uploads
+  if (uploads) {
+    const liste = (await (
+      await fetch(
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=25&playlistId=${encodeURIComponent(uploads)}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+    ).json()) as {
+      items?: {
+        snippet?: {
+          title?: string
+          publishedAt?: string
+          resourceId?: { videoId?: string }
+        }
+      }[]
+    }
+
+    const videos = liste.items ?? []
+    if (videos.length === 0) {
+      console.log('[youtube] Auf dem Kanal liegt bisher kein einziges Video.')
+    } else {
+      console.log(
+        `[youtube] Auf dem Kanal liegen ${videos.length} Videos (jüngste zuerst):`
+      )
+      for (const eintrag of videos) {
+        const tag = eintrag.snippet?.publishedAt?.slice(0, 10) ?? '????-??-??'
+        console.log(
+          `           ${tag}  ${eintrag.snippet?.resourceId?.videoId ?? '???'}  ${eintrag.snippet?.title ?? ''}`
+        )
+      }
+    }
+  }
 
   /*
     Die Playlist gleich mit prüfen.

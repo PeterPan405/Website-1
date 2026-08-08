@@ -22,12 +22,16 @@ Wörtern zu trennen; ohne ihn klont es den Klang der Sätze mit.
 
 Fünf Minuten am Stück sind für ein Zero-Shot-Modell zu viel: Die Stimme
 driftet, der Rhythmus zerfällt, und ein Fehler in der Mitte kostet den
-ganzen Durchgang. Der Text wird deshalb an Satzgrenzen in Stücke von
-höchstens ~350 Zeichen zerlegt. Jedes Stück beginnt wieder beim selben
-Stimmprofil – das hält den Klang über die ganze Folge gleich.
+ganzen Durchgang. Der Text wird deshalb zerlegt: erst an Absätzen, dann
+an Satzgrenzen, in Stücke von höchstens ~240 Zeichen. Jedes Stück beginnt
+wieder beim selben Stimmprofil – das hält den Klang über die ganze Folge
+gleich.
 
-Zwischen den Stücken steht eine kurze Pause. Sie ist nicht Kosmetik: An
-diesen Stellen sucht der Kapitelschritt später die Sprechpausen.
+Zwischen den Stücken steht eine Pause, und zwar zwei verschiedene: eine
+kurze zwischen Sätzen, eine lange am Absatzende. Sie sind nicht Kosmetik.
+An den langen sucht der Kapitelschritt später die Sprechpausen, und die
+Mischung aus beiden ist der Unterschied zwischen gesprochen und
+heruntergelesen.
 
 ## Warum es mehrere Läufer braucht
 
@@ -69,41 +73,83 @@ QUELLE = "podcast-folge/sprechtext.txt"
 ROHFASSUNG = "podcast-folge/folge.wav"
 ZIEL = "podcast-folge/folge.mp3"
 
-# Höchstlänge eines Stücks. 350 Zeichen sind rund 20 Sekunden Sprache –
-# kurz genug, dass die Stimme nicht driftet, lang genug, dass die Pausen
-# zwischen den Stücken nicht als Stocken hörbar werden.
-STUECK_MAX = 350
+# Höchstlänge eines Stücks.
+#
+# Bis zum 8. August 2026 waren es 350 Zeichen. Das Urteil des Betreibers
+# nach der ersten Hörprobe: „klingt ein wenig heruntergerattert“. Der
+# Grund steckt genau hier – innerhalb eines Stücks spricht das Modell
+# mehrere Sätze am Stück durch, und Satzenden bekommen kaum Luft. Je
+# kürzer die Stücke, desto öfter setzt der Sprecher neu an.
+#
+# 240 Zeichen sind rund vierzehn Sekunden. Das kostet Rechenzeit – mehr
+# Stücke, mehr Vorlauf je Stück –, und genau dafür gibt es die vier
+# Läufer.
+STUECK_MAX = 240
 
-# Pause zwischen zwei Stücken, in Sekunden. 0,35 s ist eine Atempause,
-# keine Zäsur – die 0,6 s, nach denen der Kapitelschritt sucht, entstehen
-# an echten Absatzgrenzen im Text.
-PAUSE = 0.35
+# Zwei Pausen statt einer.
+#
+# Vorher stand hier ein einziger Wert von 0,35 s für jede Fuge. Das war
+# zu wenig und außerdem zu gleichförmig: Ein Absatzwechsel klang wie ein
+# Komma. Jetzt trägt jedes Stück seine eigene Pause – die kurze zwischen
+# Sätzen desselben Absatzes, die lange am Absatzende.
+#
+# Die 0,95 s am Absatzende sind zugleich das, wonach der Kapitelschritt
+# sucht (`silencedetect ... d=0.6`): Die Marken sitzen damit auf echten
+# Themenwechseln statt auf zufälligen Satzfugen.
+PAUSE_SATZ = 0.5
+PAUSE_ABSATZ = 0.95
+
+# Nachbearbeitung der fertigen Aufnahme.
+#
+# `highpass` nimmt das Grummeln unter 80 Hz weg, das kein Sprecher
+# erzeugt und jedes Modell mitliefert. `afftdn` ist die eigentliche
+# Rauschunterdrückung – zurückhaltend eingestellt, weil zu viel davon die
+# Stimme blechern macht. `loudnorm` bringt die Lautheit auf −16 LUFS, den
+# Wert, den Spotify und YouTube für Sprache erwarten; ohne ihn schwankt
+# der Pegel zwischen den Folgen hörbar.
+#
+# Der Betreiber hat nach der ersten Hörprobe „ein paar Störgeräusche im
+# Hintergrund“ gemeldet. Dagegen steht diese Kette.
+KLANGKETTE = "highpass=f=80,afftdn=nf=-28,loudnorm=I=-16:TP=-1.5:LRA=11"
 
 
 def melde(text):
     print(f"[stimme] {text}", flush=True)
 
 
-def in_stuecke(text: str) -> list[str]:
-    """Zerlegt an Satzgrenzen, ohne einen Satz zu zerreißen.
+def in_stuecke(text: str) -> list[tuple[str, float]]:
+    """Zerlegt in Stücke und sagt zu jedem, wie lange danach Ruhe ist.
 
-    Ein Satz, der allein länger als die Höchstlänge ist, bleibt ganz. Ihn
-    mitten im Wort zu trennen wäre der einzige Fehler, den man später
-    nicht mehr hört, sondern versteht.
+    Zerlegt wird zuerst an **Absätzen**, dann innerhalb eines Absatzes an
+    Satzgrenzen. Ein Satz, der allein länger als die Höchstlänge ist,
+    bleibt ganz: Ihn mitten im Wort zu trennen wäre der einzige Fehler,
+    den man später nicht mehr hört, sondern versteht.
+
+    Die Absatzgrenze zu kennen ist der ganze Zweck der Umstellung. Vorher
+    ging sie beim Zerlegen verloren – `\\s+` verschluckt die Leerzeile –,
+    und damit klang der Wechsel von einem Thema zum nächsten wie ein
+    beliebiges Komma.
     """
-    saetze = re.split(r"(?<=[.!?])\s+", text.strip())
-    stuecke: list[str] = []
-    laufend = ""
-    for satz in saetze:
-        if not satz:
-            continue
-        if laufend and len(laufend) + 1 + len(satz) > STUECK_MAX:
-            stuecke.append(laufend)
-            laufend = satz
-        else:
-            laufend = f"{laufend} {satz}".strip()
-    if laufend:
-        stuecke.append(laufend)
+    stuecke: list[tuple[str, float]] = []
+    absaetze = [a.strip() for a in re.split(r"\n\s*\n", text.strip()) if a.strip()]
+
+    for absatz in absaetze:
+        saetze = [s for s in re.split(r"(?<=[.!?])\s+", absatz) if s]
+        im_absatz: list[str] = []
+        laufend = ""
+        for satz in saetze:
+            if laufend and len(laufend) + 1 + len(satz) > STUECK_MAX:
+                im_absatz.append(laufend)
+                laufend = satz
+            else:
+                laufend = f"{laufend} {satz}".strip()
+        if laufend:
+            im_absatz.append(laufend)
+
+        for nummer, stueck in enumerate(im_absatz, start=1):
+            letztes = nummer == len(im_absatz)
+            stuecke.append((stueck, PAUSE_ABSATZ if letztes else PAUSE_SATZ))
+
     return stuecke
 
 
@@ -185,12 +231,12 @@ eine Sonderbehandlung dafür wäre eine Fallunterscheidung ohne Nutzen.
 """
 t0 = time.time()
 gesamtdauer = 0.0
-for lauf, (index, stueck) in enumerate(meine, start=1):
+for lauf, (index, (stueck, ruhe)) in enumerate(meine, start=1):
     wavs, rate = modell.generate_voice_clone(
         text=stueck, voice_clone_prompt=prompt, language="German"
     )
     audio = np.asarray(wavs[0])
-    pause = np.zeros(int(rate * PAUSE), dtype=audio.dtype)
+    pause = np.zeros(int(rate * ruhe), dtype=audio.dtype)
     sf.write(f"podcast-folge/stueck-{index:03d}.wav", np.concatenate([audio, pause]), rate)
     gesamtdauer += len(audio) / rate
     melde(f"  Stück {index + 1} ({lauf}/{len(meine)}) – {len(audio) / rate:.1f} s")
@@ -221,6 +267,7 @@ subprocess.run(
     [
         "ffmpeg", "-y", "-loglevel", "error",
         "-i", ROHFASSUNG,
+        "-af", KLANGKETTE,
         "-c:a", "libmp3lame", "-b:a", "128k", "-ac", "1", "-ar", "44100",
         ZIEL,
     ],
