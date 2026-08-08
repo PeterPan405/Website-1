@@ -1,0 +1,204 @@
+name: Podcastfolge erzeugen
+
+# Baut werktäglich die Folge des Tages: Sprechtext, Titel, Beschreibung –
+# und, sobald die Vertonung freigeschaltet ist, auch MP3, Video und
+# Kapitelmarken mit echten Zeiten.
+#
+# ## Warum der Lauf auch ohne Stimme grün ist
+#
+# Die Vertonung hängt an zwei Secrets (ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID).
+# Solange sie fehlen, endet der Lauf nach dem Text – der liegt dann als
+# Artefakt bereit und wird von Hand vertont. Eine fehlende Einstellung ist
+# ein Zustand, kein Fehler; rot ist nur, was tatsächlich kaputt ist.
+#
+# ## Zeitplan
+#
+# 04:53 UTC an Werktagen – nach der Nachrichtenausgabe (Frist 04:00 UTC),
+# mit Puffer für deren Nachzügler. Krumme Minute, wie überall in diesem
+# Projekt: Volle und halbe Stunden werden von GitHub am ehesten verworfen.
+# Und weil geplante Läufe hier regelmäßig ganz ausfallen, lässt sich der
+# Lauf jederzeit von Hand starten – das ist der verlässliche Weg.
+
+on:
+  schedule:
+    - cron: '53 4 * * 1-5'
+  workflow_dispatch:
+
+concurrency:
+  group: podcast-erzeugen
+  cancel-in-progress: false
+
+jobs:
+  folge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      # write: das Folgenregister data/podcast-eigener-feed.json wird nach
+      # jeder veröffentlichten Folge committet – der Feed bleibt damit aus
+      # dem Repository reproduzierbar.
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+
+      # Samstag und Sonntag erscheint keine Folge; der Zeitplan feuert zwar
+      # nur werktags, aber ein Handstart am Wochenende soll nicht stumm eine
+      # Samstagsfolge bauen. Montags deckt die Folge Freitag bis Montag ab –
+      # das regelt das Skript über die Tagesausgaben selbst.
+      - name: Ist heute ein Erscheinungstag?
+        id: tag
+        run: |
+          wochentag=$(date -u +%u)
+          if [ "$wochentag" -ge 6 ]; then
+            echo "erscheint=nein" >> "$GITHUB_OUTPUT"
+            echo "Wochenende – keine Folge. (Handstart erzwingt nichts.)"
+          else
+            echo "erscheint=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Sprechtext, Titel und Beschreibung erzeugen
+        if: steps.tag.outputs.erscheint == 'ja'
+        run: npm run folge
+
+      - name: Vertonen (falls freigeschaltet)
+        if: steps.tag.outputs.erscheint == 'ja'
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+        run: npm run vertonen
+
+      # Video und Kapitelmarken entstehen nur, wenn eine Aufnahme da ist.
+      # Der ffmpeg-Aufruf stammt aus der erprobten Arbeitsanweisung:
+      # -map verhindert, dass ein eingebettetes Coverbild der MP3 zur
+      # zweiten Videospur wird; -g 20 bei 10 fps hält das Springen im
+      # Player sauber; auf -tune stillimage wird bewusst verzichtet.
+      - name: Video bauen und Kapitelzeiten messen
+        if: steps.tag.outputs.erscheint == 'ja'
+        run: |
+          if [ ! -f podcast-folge/folge.mp3 ]; then
+            echo "Keine Aufnahme – Text liegt als Artefakt bereit."
+            exit 0
+          fi
+
+          ffmpeg -y -loglevel error \
+            -loop 1 -framerate 10 -i assets/podcast-cover.jpg \
+            -i podcast-folge/folge.mp3 \
+            -map 0:v:0 -map 1:a:0 \
+            -vf "scale=1080:1080,pad=1920:1080:420:0:white,format=yuv420p" \
+            -c:v libx264 -preset medium -crf 20 -r 10 -g 20 \
+            -c:a aac -b:a 192k -ar 44100 -ac 2 \
+            -movflags +faststart -shortest \
+            "podcast-folge/video.mp4"
+
+          # Sprechpausen finden und den Kapiteln der Reihe nach zuordnen.
+          # Mindestabstand 30 Sekunden, sonst wird zusammengefasst – die
+          # Regel, mit der die Marken auf YouTube und Spotify zugleich
+          # funktionieren.
+          ffmpeg -i podcast-folge/folge.mp3 \
+            -af silencedetect=noise=-35dB:d=0.6 -f null - 2>&1 \
+            | grep -o 'silence_end: [0-9.]*' | awk '{print $2}' \
+            > podcast-folge/pausen.txt
+
+          python3 - <<'ENDE'
+          kapitel = [z.strip() for z in open('podcast-folge/kapitel.txt') if z.strip()]
+          pausen = [float(z) for z in open('podcast-folge/pausen.txt') if z.strip()]
+          zeiten = [0.0]
+          for pause in pausen:
+              if len(zeiten) >= len(kapitel):
+                  break
+              if pause - zeiten[-1] >= 30:
+                  zeiten.append(pause)
+          # Übrige Kapitel ohne eigene Pause an das letzte anhängen
+          namen = kapitel[: len(zeiten)]
+          if len(kapitel) > len(zeiten):
+              namen[-1] = namen[-1] + ' und mehr'
+          marken = '\n'.join(
+              f'({int(t // 60)}:{int(t % 60):02d}) {n}' for t, n in zip(zeiten, namen)
+          )
+          text = open('podcast-folge/beschreibung.txt').read()
+          open('podcast-folge/beschreibung.txt', 'w').write(
+              text.replace('[KAPITEL]', marken)
+          )
+          print(marken)
+          ENDE
+
+      # ------------------------------------------------------------------
+      # Veröffentlichen: MP3 und Feed auf den Server, Video zu YouTube.
+      #
+      # Die Audiodateien liegen unter ~/podcast-audio, außerhalb des
+      # Ordners, den der Paketbau bei jedem Deploy austauscht – sonst wären
+      # sie nach dem nächsten Bau weg. In den Webpfad kommen sie über einen
+      # Symlink, den auch der Paketbau nach jedem Umhängen neu setzt.
+      - name: Feed und Audio auf den Server
+        if: steps.tag.outputs.erscheint == 'ja'
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+        run: |
+          if [ ! -f podcast-folge/folge.mp3 ]; then
+            echo "Keine Aufnahme – nichts zu veröffentlichen."
+            exit 0
+          fi
+          if [ -z "$HOST" ] || [ -z "$USER" ] || [ -z "$SSH_KEY" ]; then
+            echo "Keine Server-Zugangsdaten – Folge bleibt als Artefakt."
+            exit 0
+          fi
+
+          dauer=$(ffprobe -v error -show_entries format=duration \
+            -of default=noprint_wrappers=1:nokey=1 podcast-folge/folge.mp3)
+          DAUER_SEKUNDEN="$dauer" npm run podcastfeed eintragen
+
+          datum=$(python3 -c "import json;print(json.load(open('podcast-folge/folge.json'))['datum'])")
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "mkdir -p ~/podcast-audio && ln -sfn \$HOME/podcast-audio '$ZIELPFAD/podcast-audio'"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            podcast-folge/folge.mp3 "$USER@$HOST:~/podcast-audio/$datum.mp3"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            assets/podcast-cover.jpg "$USER@$HOST:~/podcast-audio/cover.jpg"
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"
+          rm -f ~/.ssh/id_deploy
+          echo "Veröffentlicht: https://iminvests.de/podcast-audio/feed.xml"
+
+          # Das Register committen – der Feed bleibt reproduzierbar.
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/podcast-eigener-feed.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Podcast: Folge $datum im eigenen Feed"
+            for versuch in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}" \
+                && git push origin "${{ github.ref_name }}" && break
+              sleep $((versuch * 5))
+            done
+          fi
+
+      - name: Zu YouTube hochladen
+        if: steps.tag.outputs.erscheint == 'ja'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
+        run: npm run youtube
+
+      - name: Folge als Artefakt anhängen
+        if: steps.tag.outputs.erscheint == 'ja'
+        uses: actions/upload-artifact@v4
+        with:
+          name: podcastfolge-${{ github.run_id }}
+          path: podcast-folge/
+          retention-days: 7
