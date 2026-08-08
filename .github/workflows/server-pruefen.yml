@@ -1,0 +1,83 @@
+name: Server ansehen
+
+# Zeigt, wie es auf dem Webspace tatsächlich aussieht.
+#
+# ## Warum es das gibt
+#
+# Am 8. August 2026 lagen die Podcastdateien nachweislich unter
+# `domains/iminvests.de/public_html/podcast-audio` – der Läufer hat sie
+# gezählt, neun Stück. Über HTTP antwortete dieselbe Adresse mit **404**,
+# während `version.txt` im selben Ordner mit 200 kam.
+#
+# Zwei Erklärungen waren plausibel und beide falsch zu raten. Statt einer
+# dritten Vermutung fragt dieser Lauf den Server: Wo liegt der Ordner
+# wirklich, ist er ein Link, wem gehört er, was steht darin.
+#
+# Er ändert nichts. Er liest nur.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pfad:
+        description: 'Unterordner, den man genauer sehen will'
+        type: string
+        default: 'podcast-audio'
+
+jobs:
+  ansehen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Nachsehen
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+          UNTERORDNER: ${{ inputs.pfad }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" bash -s <<ENDE
+          set -u
+          echo "=== Heimatverzeichnis ==="
+          pwd
+          ls -la ~ | head -30
+
+          echo ""
+          echo "=== Wo liegt public_html wirklich? ==="
+          ls -ld "$ZIELPFAD" || echo "(gibt es nicht)"
+          readlink -f "$ZIELPFAD" || true
+
+          echo ""
+          echo "=== Andere Kandidaten für den Webordner ==="
+          find ~ -maxdepth 3 -name public_html 2>/dev/null | head -10
+
+          echo ""
+          echo "=== Was liegt oben drin? ==="
+          ls -la "$ZIELPFAD" | head -25
+
+          echo ""
+          echo "=== $UNTERORDNER ==="
+          ls -la "$ZIELPFAD/$UNTERORDNER" 2>/dev/null | head -20 || echo "(gibt es nicht)"
+
+          echo ""
+          echo "=== Rechte auf dem Weg dorthin ==="
+          namei -l "$ZIELPFAD/$UNTERORDNER" 2>/dev/null || \
+            stat -c '%A %U:%G %n' "$ZIELPFAD" "$ZIELPFAD/$UNTERORDNER" 2>/dev/null || true
+
+          echo ""
+          echo "=== Eigene .htaccess im Unterordner? ==="
+          ls -la "$ZIELPFAD/$UNTERORDNER/.htaccess" 2>/dev/null || echo "(keine)"
+          ENDE
+
+      - name: Aufräumen
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
