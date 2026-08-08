@@ -38,7 +38,7 @@ on:
     # etwas kaputt, das niemand vorhergesehen hat – und genau dafür ist er da.
     #
     # Zur Zeitumstellung: im Winter `11 5`.
-    - cron: '11 4 * * *'
+    - cron: '11 3 * * *'
   workflow_dispatch:
     inputs:
       tag:

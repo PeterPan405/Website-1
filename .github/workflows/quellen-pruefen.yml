@@ -52,7 +52,7 @@ on:
     # Routine um 06:00 UTC; seit sie auf 5:30 Uhr deutscher Zeit vorgezogen
     # wurde, wäre die Probe zwei Stunden **nach** dem Lauf gekommen – also
     # genau dann, wenn ihr Ergebnis niemandem mehr nützt.
-    - cron: '3 2 * * *'
+    - cron: '3 1 * * *'
 
 concurrency:
   group: quellen-pruefen

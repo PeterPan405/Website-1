@@ -132,7 +132,7 @@ on:
     # Tag der Anstoß des Nachrichtenlaufs am letzten Schritt dieses Workflows –
     # und ohne einen Lauf in diesem Fenster wäre die erste Gelegenheit dazu
     # 06:07 UTC gewesen, also 8:07 deutscher Zeit. Die Zusage lautet 6:00.
-    - cron: '7 1,3,6,7,9,13,15,17,19 * * 1-5'
+    - cron: '7 1,2,3,6,7,9,13,15,17,19 * * 1-5'
     # Werktags **alle zwei Stunden**: der volle Bestand.
     #
     # Die geraden Stunden, damit sich die beiden Läufe nie überschneiden –
@@ -223,10 +223,10 @@ jobs:
           # alle 30 Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
           # holt der volle Lauf am Montag um 21:45 nach – `range=5y` bringt
           # alle abgeschlossenen Tage mit.
-          NUR_PREIS: ${{ (github.event.schedule == '7 1,3,6,7,9,13,15,17,19 * * 1-5' || github.event.schedule == '7 8,10,12,14,16,18,20 * * 1-5' || github.event.schedule == '8 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
+          NUR_PREIS: ${{ (github.event.schedule == '7 1,2,3,6,7,9,13,15,17,19 * * 1-5' || github.event.schedule == '7 8,10,12,14,16,18,20 * * 1-5' || github.event.schedule == '8 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
           # Der Stundenlauf holt nur die Leitwerte – siehe `lib/leitwerte.ts`.
           # Alles andere behält seinen Stand und zieht zwei Stunden später nach.
-          NUR_LEITWERTE: ${{ github.event.schedule == '7 1,3,6,7,9,13,15,17,19 * * 1-5' && '1' || '' }}
+          NUR_LEITWERTE: ${{ github.event.schedule == '7 1,2,3,6,7,9,13,15,17,19 * * 1-5' && '1' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen
@@ -427,16 +427,19 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Vor 04:00 UTC nicht: Bis dahin darf die Routine um 03:30 in Ruhe
-          # arbeiten. Zwei Wege, die gleichzeitig schreiben, erzeugen zwei
-          # Ausgaben zum selben Datum – und das bricht den Build ab.
-          # Ab 03:00 UTC. Früher nicht, weil die Quellen erst um 02:13 und
-          # 02:23 gesammelt werden; später nicht, weil die Ausgabe um 04:00
-          # UTC – 6:00 deutscher Zeit – auf der Website stehen soll und der
-          # Lauf dafür zwanzig Minuten plus Paketbau braucht.
+          # Ab 02:00 UTC – 4:00 Uhr deutscher Zeit. Früher nicht, weil die
+          # Quellen erst um 01:13 und 01:23 gesammelt werden und der eigene
+          # Nachrichtenlauf um 01:57 beginnt; zwei Wege, die gleichzeitig
+          # schreiben, erzeugen zwei Ausgaben zum selben Datum, und das
+          # bricht den Build ab.
+          #
+          # Später auch nicht: Die Ausgabe soll um **6:00 Uhr deutscher
+          # Zeit** stehen (04:00 UTC), der Lauf braucht dafür zwanzig
+          # Minuten plus Paketbau, und der Podcast setzt danach noch einmal
+          # eine gute halbe Stunde drauf.
           stunde=$(date -u +%H)
-          if [ "$stunde" -lt 03 ]; then
-            echo "Es ist erst $stunde Uhr UTC – vor 03:00 wird nichts angestoßen."
+          if [ "$stunde" -lt 02 ]; then
+            echo "Es ist erst $stunde Uhr UTC – vor 02:00 wird nichts angestoßen."
             exit 0
           fi
 
@@ -488,9 +491,9 @@ jobs:
             exit 0
           fi
 
-          # Nach dem eigenen Termin (04:53 UTC), sonst käme man ihm zuvor.
+          # Nach dem eigenen Termin (02:53 UTC), sonst käme man ihm zuvor.
           stunde=$(date -u +%H)
-          if [ "$stunde" -lt 05 ]; then
+          if [ "$stunde" -lt 03 ]; then
             echo "Es ist erst $stunde Uhr UTC – der eigene Termin hat noch Zeit."
             exit 0
           fi

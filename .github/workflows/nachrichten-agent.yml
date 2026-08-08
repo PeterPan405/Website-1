@@ -68,10 +68,10 @@ on:
     # schreibt: Quellen lesen, fünf bis acht Artikel formulieren, selbst
     # prüfen. Siebzig Minuten wie früher braucht das nicht – Bauen, Prüfen
     # und Veröffentlichen passieren woanders.
-    - cron: '27 2 * * *'
+    - cron: '27 1 * * *'
     # Ein zweiter Anlauf, falls GitHub den ersten verwirft. Am 6. August 2026
     # wurde von allen geplanten Läufen des Tages genau einer ausgeführt.
-    - cron: '41 2 * * *'
+    - cron: '41 1 * * *'
   workflow_dispatch:
     inputs:
       stichtag:
