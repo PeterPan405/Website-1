@@ -459,6 +459,32 @@ stehen, die genau dieses Problem lösen. Die richtige Frage ist nicht „komme i
 an die Seite?“, sondern **„wer kommt an die Seite, und wie bekomme ich sein
 Ergebnis?“**
 
+# Selbst mergen, ohne zu fragen
+
+Der Betreiber hat es am 8. August 2026 angeordnet: **„Merge ab jetzt alles von
+selber in Zukunft, das ist schneller und effektiver."** Also nicht mehr den
+Pull Request aufmachen und auf ein „ja“ warten — aufmachen, Prüfungen abwarten,
+mergen, weiterarbeiten.
+
+Der Grund liegt auf der Hand, wenn man die Ausgaben vom 31. Juli bis 4. August
+nachzählt: Alle fünf entstanden in einer Sitzung und lagen dann als Pull
+Request herum, bis jemand von Hand mergte. Der Bau hing nicht am Können,
+sondern am Warten.
+
+**Zwei Grenzen bleiben:**
+
+1. **Nur bei grünen Prüfungen.** „Bauen und prüfen“ muss durch sein. Ein Merge
+   geht hier auf eine öffentliche Website; ein roter Lauf, den man durchwinkt,
+   steht zwanzig Minuten später online.
+2. **Nichts, was man selbst für kaputt hält.** Grün ist eine Bedingung, kein
+   Freibrief. Wer beim Schreiben ein ungutes Gefühl hat, schreibt es in den
+   Pull Request und fragt — das ist keine Rückfrage zum Mergen, sondern zur
+   Sache.
+
+Löschen oder Überschreiben von Bestand, Zugangsdaten und alles, was sich nicht
+zurücknehmen lässt, fällt weiter **nicht** hierunter. Die Anordnung galt dem
+Mergen.
+
 ## Nebenwirkung: `workflow_dispatch` braucht `main`
 
 GitHub startet über `workflow_dispatch` nur Workflows, die auf der
