@@ -507,6 +507,25 @@ Löschen oder Überschreiben von Bestand, Zugangsdaten und alles, was sich nicht
 zurücknehmen lässt, fällt weiter **nicht** hierunter. Die Anordnung galt dem
 Mergen.
 
+## Auto-Merge einschalten, direkt beim Anlegen
+
+**Bei jedem Pull Request `enable_pr_auto_merge` aufrufen, sofort nach
+`create_pull_request`.** Dann mergt GitHub selbst, sobald „Bauen und prüfen“
+grün ist.
+
+Der Grund ist ein Fehler vom 9. August 2026: Bei #160 stand im Chat „ich
+merge, sobald der Check grün ist“ – und dann endete der Zug. Der PR lag, bis
+der Betreiber ihn von Hand mergte. Bei #157 bis #159 hatte dieselbe Sitzung
+gewartet und gemergt; es hing also an nichts als der Aufmerksamkeit.
+
+Auto-Merge nimmt genau diese Abhängigkeit heraus. Der Betreiber hat es am
+9. August im Repository freigeschaltet (Settings → General → Pull Requests →
+Allow auto-merge).
+
+Das ersetzt das Warten nicht, wo es um etwas geht: Bei einer Änderung, deren
+Wirkung man sehen will, bleibt man dran und schaut nach. Es ist ein Netz für
+den Fall, dass man es nicht tut.
+
 ## Nebenwirkung: `workflow_dispatch` braucht `main`
 
 GitHub startet über `workflow_dispatch` nur Workflows, die auf der
