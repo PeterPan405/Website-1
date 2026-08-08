@@ -105,8 +105,8 @@ ohne diesen Umweg ist die Anforderung hier nicht erfüllbar.
 
 **`.github/workflows/quellen-pruefen.yml`** klopft die gepflegte Quellenliste
 (`data/nachrichtenquellen.ts`) ab und sagt je Rubrik, welche Adresse heute Text
-liefert. Er läuft täglich um 03:00 UTC, eine halbe Stunde vor der
-Nachrichten-Routine, und lässt sich von Hand starten.
+liefert. Er läuft täglich um 01:03 UTC – 3:03 Uhr deutscher Zeit, eine gute
+halbe Stunde vor dem Nachrichtenlauf – und lässt sich von Hand starten.
 
 ## Die Routine kommt nicht an den Läufer heran
 
@@ -123,7 +123,7 @@ keine Nachrichtenseite (403) und nicht den Läufer, der es könnte. Am 4. August
 entstand von Hand.
 
 **Also kommt der Läufer zu ihr.** `.github/workflows/quellen-sammeln.yml` holt
-um 03:11 UTC dieselben Übersichten und legt den Text als `quellen.txt` auf einem
+um 01:13 und 01:23 UTC dieselben Übersichten und legt den Text als `quellen.txt` auf einem
 **wurzellosen Zweig `quellen-heute`** ab – nie gebaut, nie veröffentlicht, jeder
 Lauf ersetzt ihn vollständig (`push --force`), keine Historie, keine Ansammlung.
 Die Routine liest ihn mit `git show origin/quellen-heute:quellen.txt`; `git` und
@@ -133,32 +133,61 @@ Der Satz aus dem Kopf von `quellen-holen.yml` – fremde Texte gehören nicht in
 Repository – bleibt damit gewahrt: Es ist eine einzige, täglich überschriebene
 Arbeitsdatei außerhalb von `main`, gekürzt auf die Köpfe der Übersichtsseiten.
 
-## Wann die Nachrichten entstehen
+## Wann die Nachrichten entstehen – und wann der Podcast
 
-Zwei Wege, hintereinander, und ihr **Abstand** ist die eigentliche Vorschrift:
+**Die Zusage lautet: 6:00 Uhr deutscher Zeit. Für beides.** Nicht nur für die
+Nachrichten, auch für die Folge des Tages – so hat der Betreiber es am 8. August 2026 festgelegt, und alles darunter ist rückwärts davon gerechnet,
+nicht gewählt.
 
-| Zeit (UTC) | Was                                                               |
-| ---------- | ----------------------------------------------------------------- |
-| 02:03      | `quellen-pruefen.yml` – welcher Kanal ist heute offen?            |
-| 02:13      | `quellen-sammeln.yml` – legt `quellen-heute` an                   |
-| 02:23      | `quellen-sammeln.yml` – zweiter Termin                            |
-| **02:27**  | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf**      |
-| **02:41**  | zweiter Anlauf des Agenten                                        |
-| **02:57**  | `nachrichten.yml` – Entwurf prüfen, bauen, senden → live ab 03:20 |
-| **03:17**  | zweiter Anlauf, falls der erste verworfen wurde                   |
-| **03:47**  | dritter Anlauf – der letzte, der 04:00 noch schafft               |
-| ab 03:07   | `kurse.yml` stößt an, falls alle drei ausfielen                   |
-| 04:11      | `ausgabe-waechter.yml` – elf Minuten nach der Frist               |
-| 05:41      | `paket-bauen.yml` – der nächtliche Bau, unabhängig davon          |
-| 05:51      | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?             |
+Der Fahrplan steht in **deutscher Zeit**, weil die Zusage in deutscher Zeit
+gegeben ist. Die Crons in den Workflows stehen in UTC, weil GitHub nichts
+anderes kennt; im Sommer sind das zwei Stunden weniger, im Winter eine.
+
+| Deutsche Zeit | UTC   | Was                                                           |
+| ------------- | ----- | ------------------------------------------------------------- |
+| 03:03         | 01:03 | `quellen-pruefen.yml` – welcher Kanal ist heute offen?        |
+| 03:13         | 01:13 | `quellen-sammeln.yml` – legt `quellen-heute` an               |
+| 03:23         | 01:23 | `quellen-sammeln.yml` – zweiter Termin                        |
+| **03:27**     | 01:27 | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf**  |
+| **03:41**     | 01:41 | zweiter Anlauf des Agenten                                    |
+| **03:57**     | 01:57 | `nachrichten.yml` – prüfen, bauen, senden → **live ab 04:30** |
+| **04:17**     | 02:17 | zweiter Anlauf, falls der erste verworfen wurde               |
+| ab 04:07      | 02:07 | `kurse.yml` stößt den Nachrichtenlauf an, falls er ausfiel    |
+| **04:47**     | 02:47 | dritter Anlauf – der letzte, der 6:00 noch schafft            |
+| **04:53**     | 02:53 | `podcast-erzeugen.yml` – Text, Stimme, Video, Upload          |
+| **~05:36**    | 03:36 | **die Folge ist online** – rund 25 Minuten vor der Frist      |
+| ab 05:07      | 03:07 | `kurse.yml` stößt den Podcast an, falls er ausfiel            |
+| 05:11         | 03:11 | `ausgabe-waechter.yml` – der Alarm kommt **vor** der Frist    |
+| 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau, unabhängig davon      |
+| 07:51         | 05:51 | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?         |
 
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
 
-**Die Zusage lautet: 6:00 deutscher Zeit, also 04:00 UTC.** Alles darüber ist
-rückwärts gerechnet, nicht gewählt: Der Nachrichtenlauf braucht 20 Minuten,
-der Paketbau samt Übertragung nochmal 10. Der letzte Start, der die Frist noch
-hält, ist damit **03:47 UTC**.
+### Wie sich das rechnet
+
+Gemessen am 8. August 2026, nicht geschätzt:
+
+- **Nachrichtenlauf** 20–25 Minuten, **Paketbau samt Übertragung** 6 Minuten.
+  Der letzte Start, der 6:00 noch hält, ist damit 04:47 deutscher Zeit.
+- **Podcast**: Text 1 Minute, Stimme rund 25 (vier Läufer gleichzeitig, seit
+  den kürzeren Stücken eher mehr), Video und Upload 5, Paketbau 6. Macht gut
+  37 Minuten – Start 04:53, fertig gegen 05:36.
+
+Der Podcast **muss nach der Nachrichtenausgabe laufen**: Er vertont die
+Tagesausgabe, und ohne sie hat er nichts zu sprechen. Deshalb liegt sein
+Termin hinter dem dritten Anlauf des Nachrichtenlaufs und nicht davor.
+
+### Der Fehler, aus dem diese Tabelle entstanden ist
+
+Bis zum 8. August 2026 stand der Podcast auf 04:53 **UTC** – also 6:53 Uhr
+deutscher Zeit. Online wäre er damit gegen halb acht gewesen, fast zwei
+Stunden nach der Zusage. Die Nachrichten hielten ihre Frist, der Podcast
+konnte sie nie halten, und niemandem war es aufgefallen, weil die Tabelle
+nur UTC nannte und 04:53 neben 04:00 harmlos aussieht.
+
+**Deshalb steht die deutsche Zeit hier vorn.** Eine Frist, die in deutscher
+Zeit gegeben ist, prüft man nicht in UTC.
 
 ## Der Agent schreibt, der Läufer veröffentlicht
 
@@ -289,15 +318,16 @@ stille. Deshalb liegen jetzt drei Dinge übereinander:
    zwei eigene Termine, und `quellen-pruefen.yml` stößt ihn am Ende zusätzlich
    an. Es müssen drei Wege gleichzeitig ausfallen, damit die Quellendatei
    fehlt. Der Lauf dauert zwanzig Sekunden – Redundanz kostet hier nichts.
-2. **Ein zweiter Anlauf auf einem Läufer** (`nachrichten.yml`, 04:47 UTC). Er
+2. **Ein zweiter Anlauf auf einem Läufer** (`nachrichten.yml`, 02:17 UTC). Er
    prüft zuerst, ob die Ausgabe schon steht, und hört dann auf – zwei Ausgaben
    zum selben Datum brechen den Build ab. Kommt er zum Zug, kann er **nicht
    ergebnislos enden**: Fehlt der Schlüssel oder die Quellendatei, rechnet
    `nachrichten-aus-bestand.ts` die Ausgabe aus dem eigenen Datenbestand.
-   Die Routine „Auffangnetz“ (04:13 UTC) ist dafür stillgelegt worden – zwei
+   Die Routine „Auffangnetz“ ist dafür stillgelegt worden – zwei
    Sitzungen mit überlappender Laufzeit waren ein Risiko ohne Gegenwert.
 3. **Ein Wächter, der aus dem stillen Ausfall einen lauten macht.**
-   `ausgabe-waechter.yml` prüft um 05:19 UTC, ob Ausgabendatei,
+   `ausgabe-waechter.yml` prüft um 03:11 UTC – 5:11 Uhr deutscher Zeit, also
+   **vor** der Frist –, ob Ausgabendatei,
    Registereintrag und mindestens ein Artikel mit dem heutigen `publishedAt`
    vorhanden sind, und färbt den Lauf sonst rot. Ein roter Lauf schickt eine
    Mail, und die kommt an – über genau diesen Kanal sind die Paketbau-Fehler

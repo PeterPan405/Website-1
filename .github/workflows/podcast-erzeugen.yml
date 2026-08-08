@@ -30,14 +30,30 @@ name: Podcastfolge erzeugen
 #
 # ## Zeitplan
 #
-# 04:53 UTC an Werktagen – nach der Nachrichtenausgabe (Frist 04:00 UTC).
+# **02:53 UTC an Werktagen – 4:53 Uhr deutscher Zeit.**
+#
+# Die Zusage lautet 6:00 Uhr deutscher Zeit, und zwar für die Folge genauso
+# wie für die Nachrichten. Rückwärts gerechnet mit den gemessenen Zeiten:
+# Text 1 Minute, Stimme rund 25 (vier Läufer gleichzeitig), Video und
+# Upload 5, Paketbau samt Übertragung 6 – macht gut 37 Minuten. Start
+# 04:53, fertig gegen 05:36 deutscher Zeit, rund 25 Minuten Reserve.
+#
+# Bis zum 8. August 2026 stand hier 04:53 **UTC**, also 6:53 Uhr deutscher
+# Zeit. Online wäre die Folge damit gegen halb acht gewesen – fast zwei
+# Stunden nach der Zusage. Neben „Frist 04:00 UTC" sah „04:53" harmlos aus;
+# genau deshalb steht in AGENTS.md die deutsche Zeit jetzt vorn.
+#
+# Der Termin liegt **hinter** dem dritten Anlauf des Nachrichtenlaufs
+# (04:47): Die Folge vertont die Tagesausgabe, und ohne sie hat sie nichts
+# zu sprechen.
+#
 # Krumme Minute, wie überall hier: Volle und halbe Stunden werden von
 # GitHub am ehesten verworfen. Und weil geplante Läufe regelmäßig ganz
 # ausfallen, stößt `kurse.yml` den Lauf an, wenn er heute nicht stattfand.
 
 on:
   schedule:
-    - cron: '53 4 * * 1-5'
+    - cron: '53 2 * * 1-5'
   workflow_dispatch:
     inputs:
       zugang_pruefen:

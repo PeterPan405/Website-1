@@ -102,9 +102,9 @@ on:
     # hört der Lauf nach vierzig Sekunden auf, ohne das Modell zu fragen.
     #
     # Im Winter eine Stunde später; die Routine „Zeitumstellung" zieht nach.
-    - cron: '57 2 * * *'
-    - cron: '17 3 * * *'
-    - cron: '47 3 * * *'
+    - cron: '57 1 * * *'
+    - cron: '17 2 * * *'
+    - cron: '47 2 * * *'
   workflow_dispatch:
     inputs:
       stichtag:
