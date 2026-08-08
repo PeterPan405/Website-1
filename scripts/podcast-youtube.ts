@@ -100,6 +100,43 @@ if (!video) {
     process.exit(1)
   }
   console.log(`[youtube] Zugang geprüft. Hochgeladen würde auf den Kanal: „${name}“`)
+
+  /*
+    Die Playlist gleich mit prüfen.
+
+    Eine falsch abgetippte Kennung fällt sonst erst beim ersten echten
+    Upload auf – und dort ist das Einsortieren bewusst nur eine Warnung,
+    damit ein abgelehntes Feld nie die Folge kostet. Genau deshalb würde
+    sie leise danebenliegen: Das Video wäre online, die Playlist leer, und
+    niemand bekäme davon etwas mit.
+
+    In der Kennung stecken Groß- und Kleinbuchstaben; `I` und `l` sehen in
+    vielen Schriften gleich aus. Das ist kein theoretischer Fehler.
+  */
+  if (!PLAYLIST) {
+    console.log('[youtube] Keine YT_PLAYLIST_ID – Folgen landen in keiner Playlist.')
+    process.exit(0)
+  }
+
+  const liste = (await (
+    await fetch(
+      `https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${encodeURIComponent(PLAYLIST)}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+  ).json()) as { items?: { snippet?: { title?: string; channelTitle?: string } }[] }
+
+  const eintrag = liste.items?.[0]?.snippet
+  if (!eintrag) {
+    console.error(
+      `::error::[youtube] Die Playlist „${PLAYLIST}“ gibt es nicht.\n` +
+        '          Die Kennung steht in der Adresse hinter /playlist/ bzw. list=\n' +
+        '          und unterscheidet Groß- und Kleinschreibung.'
+    )
+    process.exit(1)
+  }
+  console.log(
+    `[youtube] Playlist geprüft: „${eintrag.title}“ auf „${eintrag.channelTitle}“.`
+  )
   process.exit(0)
 }
 
