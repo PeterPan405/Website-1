@@ -74,10 +74,21 @@ modell = Qwen3TTSModel.from_pretrained(REPO, device="cpu", dtype=torch.float32)
 ladezeit = time.time() - t0
 melde(f"Modell geladen in {ladezeit:.0f} s.")
 
+"""
+Der Wortlaut steht neben der Aufnahme im Repository, nicht in einer
+Variablen: Er gehört zur Datei wie die Bildunterschrift zum Bild, und wer
+die Aufnahme austauscht, sieht den Text daneben liegen und zieht ihn mit.
+"""
+WORTLAUT = REFERENZ.rsplit(".", 1)[0] + ".txt"
 referenztext = os.environ.get("REFERENZTEXT", "").strip()
+if not referenztext and os.path.exists(WORTLAUT):
+    with open(WORTLAUT, encoding="utf-8") as datei:
+        referenztext = datei.read().strip()
 if not referenztext:
-    melde("REFERENZTEXT fehlt – das Modell braucht den Wortlaut der Aufnahme.")
+    melde(f"Kein Wortlaut – weder REFERENZTEXT noch {WORTLAUT}.")
+    melde("Das Modell braucht den Text der Aufnahme, um Stimme von Wörtern zu trennen.")
     sys.exit(78)
+melde(f"Wortlaut: {len(referenztext.split())} Wörter.")
 
 t0 = time.time()
 prompt = modell.create_voice_clone_prompt(audio=REFERENZ, text=referenztext)
