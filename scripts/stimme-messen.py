@@ -70,7 +70,18 @@ melde(f"Referenz: {referenzdauer:.1f} s, Modell {REPO}, {os.cpu_count()} Kerne."
 t0 = time.time()
 from qwen_tts import Qwen3TTSModel  # noqa: E402
 
-modell = Qwen3TTSModel.from_pretrained(REPO, device="cpu", dtype=torch.float32)
+"""
+Genau so lädt Voicebox das Modell auf einem Rechner ohne Grafikkarte –
+abgeschrieben aus `backend/backends/pytorch_backend.py`. Der erste
+Versuch benutzte `device=` und `dtype=`; beides kennt die Klasse nicht:
+
+    TypeError: __init__() got an unexpected keyword argument 'device'
+"""
+modell = Qwen3TTSModel.from_pretrained(
+    REPO,
+    torch_dtype=torch.float32,
+    low_cpu_mem_usage=False,
+)
 ladezeit = time.time() - t0
 melde(f"Modell geladen in {ladezeit:.0f} s.")
 
@@ -91,7 +102,11 @@ if not referenztext:
 melde(f"Wortlaut: {len(referenztext.split())} Wörter.")
 
 t0 = time.time()
-prompt = modell.create_voice_clone_prompt(audio=REFERENZ, text=referenztext)
+prompt = modell.create_voice_clone_prompt(
+    ref_audio=REFERENZ,
+    ref_text=referenztext,
+    x_vector_only_mode=False,
+)
 promptzeit = time.time() - t0
 melde(f"Stimmprofil erstellt in {promptzeit:.0f} s.")
 
