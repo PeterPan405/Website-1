@@ -29,6 +29,21 @@ Stimmprofil – das hält den Klang über die ganze Folge gleich.
 Zwischen den Stücken steht eine kurze Pause. Sie ist nicht Kosmetik: An
 diesen Stellen sucht der Kapitelschritt später die Sprechpausen.
 
+## Warum es mehrere Läufer braucht
+
+Am 8. August 2026 gemessen: Echtzeitfaktor 0,13 – 34,7 Sekunden Sprache
+in 265 Sekunden. Daraus gerechnet brauchte eine Folge 38 Minuten. Der
+erste echte Lauf brauchte **über 57** und lief in die Frist: Jedes Stück
+kostet eigenen Vorlauf, den eine Messung an einem einzigen Stück nicht
+zeigt.
+
+Ein Läufer reicht damit nicht. `TEIL` und `TEILE` teilen die Stücke auf
+mehrere Läufer auf, die gleichzeitig sprechen; jeder schreibt seinen
+Abschnitt als WAV, und ein letzter Lauf fügt sie zusammen. Die Aufteilung
+passiert **nach** dem Zerlegen an Satzgrenzen – jeder Läufer rechnet
+dieselbe Liste aus und nimmt nur seinen Teil daraus. Damit gibt es keine
+zweite Stelle, an der sich die Grenzen verschieben könnten.
+
 ## Was passiert, wenn es scheitert
 
 Nichts Stilles. Ohne Aufnahme endet das Skript mit einem Fehler, und der
@@ -36,6 +51,7 @@ Workflow versucht danach die Schnittstelle als Rückfall. Eine halbe Folge
 wäre schlimmer als keine.
 
 Aufruf: python scripts/stimme-erzeugen.py [modellgroesse]
+        TEIL=2 TEILE=4 python scripts/stimme-erzeugen.py
 """
 
 import os
@@ -102,8 +118,31 @@ if not text:
     sys.exit(1)
 
 referenztext = open(WORTLAUT, encoding="utf-8").read().strip()
-stuecke = in_stuecke(text)
-melde(f"{len(text)} Zeichen in {len(stuecke)} Stücken, Modell {REPO}.")
+alle_stuecke = in_stuecke(text)
+
+"""
+Die Aufteilung auf mehrere Läufer. Jeder rechnet dieselbe Stückliste aus
+und nimmt daraus nur jedes n-te – reihum statt blockweise. Das ist kein
+Schönheitsfehler, sondern Absicht: Die Stücke sind unterschiedlich lang,
+und reihum verteilt sich die Rechenzeit gleichmäßiger als in Blöcken, bei
+denen ein Läufer zufällig die langen Abschnitte erwischt.
+"""
+TEIL = int(os.environ.get("TEIL", "0"))
+TEILE = int(os.environ.get("TEILE", "0"))
+
+if TEILE > 0:
+    if not 1 <= TEIL <= TEILE:
+        melde(f"TEIL={TEIL} passt nicht zu TEILE={TEILE}.")
+        sys.exit(1)
+    meine = [(i, s) for i, s in enumerate(alle_stuecke) if i % TEILE == TEIL - 1]
+    melde(f"Läufer {TEIL} von {TEILE}: {len(meine)} von {len(alle_stuecke)} Stücken.")
+else:
+    meine = list(enumerate(alle_stuecke))
+    melde(f"{len(text)} Zeichen in {len(alle_stuecke)} Stücken, Modell {REPO}.")
+
+if not meine:
+    melde("Nichts zu sprechen – mehr Läufer als Stücke.")
+    sys.exit(1)
 
 import numpy as np  # noqa: E402
 import soundfile as sf  # noqa: E402
@@ -132,22 +171,46 @@ prompt = modell.create_voice_clone_prompt(
 )
 melde(f"Stimmprofil erstellt in {time.time() - t0:.0f} s.")
 
+"""
+Jedes Stück kommt als **eigene Datei** heraus, benannt nach seiner Stelle
+im Ganzen: `stueck-000.wav`, `stueck-001.wav`, …
+
+Das ist der Grund, warum das Zusammenfügen später nichts weiß und nichts
+wissen muss: Es sortiert nach Dateinamen, fertig. Wer die Läufer reihum
+verteilt, darf ihre Ergebnisse nicht blockweise aneinanderhängen – mit
+dem Index im Namen kann das gar nicht erst schiefgehen.
+
+Die Pause hängt an jedem Stück hinten dran. Am letzten stört sie nicht;
+eine Sonderbehandlung dafür wäre eine Fallunterscheidung ohne Nutzen.
+"""
 t0 = time.time()
-teile: list = []
-rate = None
-for nummer, stueck in enumerate(stuecke, start=1):
+gesamtdauer = 0.0
+for lauf, (index, stueck) in enumerate(meine, start=1):
     wavs, rate = modell.generate_voice_clone(
         text=stueck, voice_clone_prompt=prompt, language="German"
     )
-    teile.append(np.asarray(wavs[0]))
-    teile.append(np.zeros(int(rate * PAUSE), dtype=teile[-1].dtype))
-    melde(f"  Stück {nummer}/{len(stuecke)} – {len(teile[-2]) / rate:.1f} s")
+    audio = np.asarray(wavs[0])
+    pause = np.zeros(int(rate * PAUSE), dtype=audio.dtype)
+    sf.write(f"podcast-folge/stueck-{index:03d}.wav", np.concatenate([audio, pause]), rate)
+    gesamtdauer += len(audio) / rate
+    melde(f"  Stück {index + 1} ({lauf}/{len(meine)}) – {len(audio) / rate:.1f} s")
 
+rechenzeit = time.time() - t0
+melde(f"{gesamtdauer / 60:.1f} Minuten Sprache in {rechenzeit / 60:.1f} Minuten gerechnet.")
+melde(f"Echtzeitfaktor {gesamtdauer / rechenzeit:.2f}.")
+
+# Bei aufgeteilter Arbeit ist hier Schluss: Die Stücke sind geschrieben,
+# das Zusammenfügen macht ein eigener Lauf, der alle hat.
+if TEILE > 0:
+    melde(f"Teil {TEIL} fertig – {len(meine)} Dateien.")
+    sys.exit(0)
+
+teile = []
+for index in range(len(alle_stuecke)):
+    stueck_audio, rate = sf.read(f"podcast-folge/stueck-{index:03d}.wav")
+    teile.append(stueck_audio)
 audio = np.concatenate(teile)
 dauer = len(audio) / rate
-rechenzeit = time.time() - t0
-melde(f"{dauer / 60:.1f} Minuten Sprache in {rechenzeit / 60:.1f} Minuten gerechnet.")
-melde(f"Echtzeitfaktor {dauer / rechenzeit:.2f}.")
 
 sf.write(ROHFASSUNG, audio, rate)
 

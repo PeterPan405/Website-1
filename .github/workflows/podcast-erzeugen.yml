@@ -1,37 +1,39 @@
 name: Podcastfolge erzeugen
 
-# Baut werktäglich die Folge des Tages: Sprechtext, Titel, Beschreibung –
-# und, sobald die Vertonung freigeschaltet ist, auch MP3, Video und
-# Kapitelmarken mit echten Zeiten.
+# Baut werktäglich die Folge des Tages: Sprechtext, Stimme, MP3, Video,
+# Kapitelmarken – und veröffentlicht sie in den eigenen Feed und zu YouTube.
+#
+# ## Warum drei Stufen und nicht ein Lauf
+#
+# Weil ein Läufer die Stimme nicht schafft. Am 8. August 2026 gemessen:
+# Echtzeitfaktor 0,13, daraus gerechnet 38 Minuten für fünf Minuten Sprache.
+# Der erste echte Lauf brauchte **über 57** und lief in die Frist – jedes
+# Stück kostet eigenen Vorlauf, den eine Messung an einem einzigen Stück
+# nicht zeigt.
+#
+#   1. `text`          – Sprechtext, Titel, Beschreibung, Kapitel
+#   2. `sprechen`      – vier Läufer sprechen gleichzeitig je ein Viertel
+#   3. `veroeffentlichen` – zusammenfügen, Video, Feed, Server, YouTube
+#
+# Das kostet nicht mehr Läuferzeit als vorher – dieselbe Rechenarbeit,
+# nur nebeneinander statt nacheinander –, und es passt in die Frist.
 #
 # ## Zwei Wege zur Stimme, in dieser Rangfolge
 #
-# 1. **Die eigene Stimme, auf dem Läufer gerechnet.** Dasselbe Modell, das
-#    Voicebox unter der Haube lädt, geklont aus `assets/stimme-referenz.wav`
-#    und ihrem Wortlaut daneben. Kostet nichts, klingt nach dem Betreiber,
-#    braucht kein Konto bei niemandem.
-# 2. **ElevenLabs als Rückfall.** Nur, wenn Weg 1 scheitert – und nur, wenn
-#    ELEVENLABS_API_KEY und ELEVENLABS_VOICE_ID hinterlegt sind.
+# 1. **Die eigene Stimme**, geklont aus `assets/stimme-referenz.wav` und
+#    ihrem Wortlaut daneben. Kostet nichts, klingt nach dem Betreiber.
+# 2. **ElevenLabs als Rückfall** – nur, wenn Weg 1 scheitert, und nur mit
+#    hinterlegten Secrets.
 #
 # Scheitern beide, endet der Lauf nach dem Text: Der liegt als Artefakt
-# bereit und lässt sich von Hand vertonen. Eine fehlende Einstellung ist ein
-# Zustand, kein Fehler; rot ist nur, was tatsächlich kaputt ist.
-#
-# ## Warum der Lauf eine Stunde Zeit bekommt
-#
-# Weil ein Läufer zwei Kerne und keine Grafikkarte hat. Fünf Minuten Sprache
-# aus einem 0,6-Milliarden-Modell dauern dort Minuten, nicht Sekunden – der
-# genaue Wert steht im Protokoll jedes Laufs als Echtzeitfaktor. Die
-# vorherigen zwanzig Minuten waren für den Weg über die Schnittstelle
-# bemessen, bei dem ein fremder Rechner rechnet.
+# bereit. Eine fehlende Einstellung ist ein Zustand, kein Fehler.
 #
 # ## Zeitplan
 #
-# 04:53 UTC an Werktagen – nach der Nachrichtenausgabe (Frist 04:00 UTC),
-# mit Puffer für deren Nachzügler. Krumme Minute, wie überall in diesem
-# Projekt: Volle und halbe Stunden werden von GitHub am ehesten verworfen.
-# Und weil geplante Läufe hier regelmäßig ganz ausfallen, lässt sich der
-# Lauf jederzeit von Hand starten – das ist der verlässliche Weg.
+# 04:53 UTC an Werktagen – nach der Nachrichtenausgabe (Frist 04:00 UTC).
+# Krumme Minute, wie überall hier: Volle und halbe Stunden werden von
+# GitHub am ehesten verworfen. Und weil geplante Läufe regelmäßig ganz
+# ausfallen, stößt `kurse.yml` den Lauf an, wenn er heute nicht stattfand.
 
 on:
   schedule:
@@ -60,14 +62,17 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  folge:
+  # ====================================================================
+  # 1. Der Text. Schnell, und ohne ihn hat der Rest nichts zu tun.
+  # ====================================================================
+  text:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 15
     permissions:
-      # write: das Folgenregister data/podcast-eigener-feed.json wird nach
-      # jeder veröffentlichten Folge committet – der Feed bleibt damit aus
-      # dem Repository reproduzierbar.
-      contents: write
+      contents: read
+    outputs:
+      erscheint: ${{ steps.tag.outputs.erscheint }}
+      veroeffentlichen: ${{ steps.tag.outputs.veroeffentlichen }}
 
     steps:
       - uses: actions/checkout@v5
@@ -131,17 +136,51 @@ jobs:
           STICHTAG: ${{ inputs.stichtag }}
         run: npm run folge
 
-      # ------------------------------------------------------------------
-      # Die Stimme. Weg 1: das Modell auf diesem Läufer.
-      - uses: actions/setup-python@v5
+      - name: Text weiterreichen
         if: steps.tag.outputs.erscheint == 'ja'
+        uses: actions/upload-artifact@v4
+        with:
+          name: folge-text
+          path: podcast-folge/
+          retention-days: 1
+
+  # ====================================================================
+  # 2. Die Stimme. Vier Läufer, jeder spricht jedes vierte Stück.
+  #
+  # Reihum statt blockweise: Die Stücke sind unterschiedlich lang, und so
+  # verteilt sich die Rechenzeit gleichmäßiger. Jedes Stück kommt als
+  # eigene Datei mit seiner Nummer heraus – das Zusammenfügen ist dann ein
+  # Sortieren nach Dateinamen und sonst nichts.
+  # ====================================================================
+  sprechen:
+    needs: text
+    if: needs.text.outputs.erscheint == 'ja'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    strategy:
+      # Kein `fail-fast`: Fällt ein Läufer aus, sollen die anderen ihre
+      # Stücke trotzdem fertig sprechen. Ob es reicht, entscheidet der
+      # Schritt danach – der merkt eine Lücke und sagt es.
+      fail-fast: false
+      matrix:
+        teil: [1, 2, 3, 4]
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: folge-text
+          path: podcast-folge/
+
       # Über ein Gigabyte Modelldateien. Ohne Zwischenspeicher lädt jeder
-      # Morgen sie neu – das sind Minuten, die von der Frist abgehen.
+      # Läufer sie jeden Morgen neu.
       - name: Zwischenspeicher für das Sprachmodell
-        if: steps.tag.outputs.erscheint == 'ja'
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
@@ -155,27 +194,79 @@ jobs:
       #
       # Deshalb beide zuletzt noch einmal aus der CPU-Quelle erzwingen.
       - name: Sprachmodell einrichten
-        if: steps.tag.outputs.erscheint == 'ja'
         run: |
           python -m pip install --upgrade pip
           pip install "transformers<=4.57.6" soundfile librosa numpy qwen-tts
           pip install --force-reinstall \
             --index-url https://download.pytorch.org/whl/cpu torch torchaudio
 
+      - name: Sprechen
+        env:
+          TEIL: ${{ matrix.teil }}
+          TEILE: '4'
+        run: python scripts/stimme-erzeugen.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stimme-${{ matrix.teil }}
+          path: podcast-folge/stueck-*.wav
+          retention-days: 1
+          if-no-files-found: error
+
+  # ====================================================================
+  # 3. Zusammenfügen und veröffentlichen.
+  #
+  # `always()`, damit ein ausgefallener Sprechläufer nicht den ganzen Weg
+  # beendet: Fehlt ein Stück, sagt das Zusammenfügen es und der Rückfall
+  # auf die Schnittstelle greift.
+  # ====================================================================
+  veroeffentlichen:
+    needs: [text, sprechen]
+    if: always() && needs.text.outputs.erscheint == 'ja'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      # write: das Folgenregister data/podcast-eigener-feed.json wird nach
+      # jeder veröffentlichten Folge committet – der Feed bleibt damit aus
+      # dem Repository reproduzierbar.
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install soundfile numpy
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: folge-text
+          path: podcast-folge/
+
+      # Alle vier Stimmartefakte in denselben Ordner. `merge-multiple`
+      # legt sie nebeneinander statt in Unterordner – die Nummer im
+      # Dateinamen hält sie auseinander.
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: stimme-*
+          path: podcast-folge/
+          merge-multiple: true
+
       # `continue-on-error`, weil danach der Rückfall kommt. Ein Fehlschlag
       # hier ist im Protokoll sichtbar, beendet den Lauf aber nicht – sonst
       # gäbe es an einem schlechten Morgen gar keine Folge.
-      - name: Vertonen mit der eigenen Stimme
-        id: eigenestimme
-        if: steps.tag.outputs.erscheint == 'ja'
+      - name: Stücke zur Folge zusammenfügen
         continue-on-error: true
-        run: python scripts/stimme-erzeugen.py
+        run: python scripts/stimme-zusammenfuegen.py
 
       # Weg 2: die Schnittstelle. Nur, wenn Weg 1 nichts hinterlassen hat –
       # gefragt wird nach der Datei, nicht nach dem Ergebnis des Schritts:
       # Was zählt, ist die Aufnahme, nicht wer sie gemacht hat.
       - name: Vertonen über die Schnittstelle (Rückfall)
-        if: steps.tag.outputs.erscheint == 'ja'
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
@@ -193,7 +284,6 @@ jobs:
       # zweiten Videospur wird; -g 20 bei 10 fps hält das Springen im
       # Player sauber; auf -tune stillimage wird bewusst verzichtet.
       - name: Video bauen und Kapitelzeiten messen
-        if: steps.tag.outputs.erscheint == 'ja'
         run: |
           if [ ! -f podcast-folge/folge.mp3 ]; then
             echo "Keine Aufnahme – Text liegt als Artefakt bereit."
@@ -250,7 +340,7 @@ jobs:
       # sie nach dem nächsten Bau weg. In den Webpfad kommt eine Kopie, die
       # auch der Paketbau nach jedem Umhängen neu anlegt.
       - name: Feed und Audio auf den Server
-        if: steps.tag.outputs.erscheint == 'ja' && steps.tag.outputs.veroeffentlichen == 'ja'
+        if: needs.text.outputs.veroeffentlichen == 'ja'
         env:
           HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
           USER: ${{ secrets.HOSTINGER_SSH_USER }}
@@ -288,10 +378,7 @@ jobs:
             podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"
 
           # ~/podcast-audio ist der Bestand, der den Deploy überlebt; in den
-          # Webpfad kommt eine **Kopie**, kein Symlink. Am 8. August 2026
-          # lagen alle Dateien richtig, der Link war gesetzt – und der Feed
-          # antwortete mit 404, während version.txt daneben 200 lieferte.
-          # Der Server folgt dem Link nicht.
+          # Webpfad kommt eine **Kopie**, kein Symlink.
           ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
             "rm -rf '$ZIELPFAD/podcast-audio' \
              && mkdir -p '$ZIELPFAD/podcast-audio' \
@@ -314,7 +401,7 @@ jobs:
           fi
 
       - name: Zu YouTube hochladen
-        if: steps.tag.outputs.erscheint == 'ja' && steps.tag.outputs.veroeffentlichen == 'ja'
+        if: needs.text.outputs.veroeffentlichen == 'ja'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
@@ -322,10 +409,14 @@ jobs:
           YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
         run: npm run youtube
 
+      # Die Einzelstücke nicht mit anhängen – sie sind Arbeitsmaterial und
+      # zusammen größer als die Folge selbst.
       - name: Folge als Artefakt anhängen
-        if: steps.tag.outputs.erscheint == 'ja'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: podcastfolge-${{ github.run_id }}
-          path: podcast-folge/
+          path: |
+            podcast-folge/
+            !podcast-folge/stueck-*.wav
           retention-days: 7
