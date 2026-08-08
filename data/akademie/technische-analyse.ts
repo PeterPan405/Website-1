@@ -1445,7 +1445,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
         text: 'Die praktisch wichtigste dieser Regeln ist die letzte: **Ähneln sich W, Y und Z nicht in der Größe, stimmt die Zählung vermutlich nicht.** Sie ist die einzige, die sich während der laufenden Bewegung prüfen lässt – alle übrigen setzen voraus, dass die Formen bereits fertig sind.',
       },
       {
-type: 'callout',
+        type: 'callout',
         variant: 'warning',
         title: 'Hier wird der Haupteinwand greifbar',
         items: [

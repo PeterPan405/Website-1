@@ -101,6 +101,419 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-rekord-schwacher-us-arbeitsmarkt-2026-08-08',
+    title: 'Ein schwacher Jobbericht schickt den DAX auf Rekordkurs',
+    teaser:
+      'Enttäuschende US-Arbeitsmarktdaten ließen DAX, Dow und Nasdaq am Freitag steigen. Warum schlechte Konjunkturzahlen gute Kurse machen können.',
+    category: 'Märkte',
+    publishedAt: '2026-08-08T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Arbeitsmarkt', 'DAX', 'Zinserwartung'],
+    relatedTopics: [
+      'wie-funktioniert-der-markt',
+      'notenbanken-geldpolitik',
+      'risiko-und-rendite',
+    ],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          "wallstreet-online, „ROUNDUP: US-Beschäftigung schrumpft überraschend - 'kalte Dusche'“ (dpa-AFX, 7.8.2026), abgerufen 8.8.2026, 03:47 Uhr UTC",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Aufmacher „DAX mit Wochengewinn: US-Jobdaten als Turbo: Wall Street und DAX steigen, Gold glänzt“ vom 7.8.2026, abgerufen 8.8.2026, 03:47 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: "Am Freitagabend lief über dpa-AFX die Meldung „ROUNDUP: US-Beschäftigung schrumpft überraschend - 'kalte Dusche'“. Der Aufmacher von wallstreet-online fasste die Folgen so zusammen: „Die US-Börsen haben am Freitag mit dem DAX und Europas Börsen zugelegt. Auftrieb gaben enttäuschende Zahlen zum US-Arbeitsmarkt. Öl, Gold und Silber verteuerten sich.“",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum schwache Zahlen die Kurse heben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das klingt zunächst widersprüchlich: weniger Beschäftigung, mehr Kursgewinn. Der Mechanismus dahinter läuft über die Notenbank. Ein schwächerer Arbeitsmarkt erhöht die Wahrscheinlichkeit, dass die US-Notenbank Fed die Zinsen senkt, um die Konjunktur zu stützen. Niedrigere Zinsen bedeuten einen geringeren Abzinsungssatz für künftige Unternehmensgewinne – und ein geringerer Abzinsungssatz bedeutet rechnerisch einen höheren heutigen Kurswert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut der Marktübersicht von wallstreet-online schloss der **DAX** am Freitag bei 26.364,00 Punkten (+0,81 Prozent). In der Kursleiste des Portals standen am Samstagmorgen der **Dow Jones** bei 54.036,10 Punkten (+0,25 Prozent) und der **US Tech 100** bei 29.728,93 Punkten (+1,18 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Betroffen waren mehr als nur Aktien',
+      },
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online nannte in derselben Übersicht als betroffene Werte unter anderem **Gold**, **Silber**, Öl (WTI und Brent), **Bitcoin**, **Allianz**, Münchener Rück, Daimler Truck und Lanxess – ein Hinweis darauf, dass die Zinserwartung an diesem Tag nicht nur den Aktienmarkt, sondern auch Rohstoffe und Devisen bewegte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein Rekordstand, der aus einer schwachen Konjunkturmeldung entsteht, ist kein Beleg für eine starke Wirtschaft – er ist ein Beleg dafür, dass Anleger niedrigere Zinsen erwarten. Wer nur den Indexstand liest, ohne den Auslöser zu kennen, liest nur die Hälfte der Geschichte.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-fed-lisa-cook-entlassung-2026-08-08',
+    title: 'Trump erwägt erneut die Entlassung einer Fed-Gouverneurin',
+    teaser:
+      'US-Medien berichten, Trump denke erneut über die Entlassung von Fed-Gouverneurin Lisa Cook nach. Warum die Unabhängigkeit der Notenbank kein Selbstzweck ist.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-08T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Notenbank', 'Fed', 'Geldpolitik'],
+    relatedTopics: ['notenbanken-geldpolitik', 'staatsanleihe', 'inflation'],
+    relatedSymbols: ['dax', 'sp500', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 7.8.2026: „Fed unter Druck: Trump erwägt erneut Entlassung von Lisa Cook“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Politiknachrichten vom 7.8.2026: „US-Medien: Trump erwägt erneut Entlassung von Fed-Vorständin“ (dpa-AFX), abgerufen 8.8.2026, 03:47 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Portale meldeten am Freitag dieselbe Geschichte: finanzen.net titelte „Fed unter Druck: Trump erwägt erneut Entlassung von Lisa Cook“, wallstreet-online übernahm eine dpa-AFX-Meldung mit der Zeile „US-Medien: Trump erwägt erneut Entlassung von Fed-Vorständin“. Das Wort „erneut“ zeigt: Es ist nicht der erste Vorstoß. Auf welcher Grundlage Trump diesmal argumentiert, geht aus den abgerufenen Übersichten nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Notenbank unabhängig sein soll',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gewählte Regierung hat kurzfristige Anreize: niedrige Zinsen kurbeln die Konjunktur an und kommen bei Wählern gut an, auch wenn sie langfristig die Inflation anheizen. Eine Notenbank, die vor Entlassung geschützt ist, kann Zinsen auch dann erhöhen, wenn das der amtierenden Regierung nicht passt. Genau dieser Schutz vor kurzfristigem politischem Druck ist der Grund, warum Notenbanken in den meisten Industrieländern formal unabhängig gestellt sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Markt aus einem Zweifel macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anleger bewerten nicht nur, was eine Notenbank heute beschließt, sondern auch, wie glaubwürdig sie das in Zukunft tun kann. Wächst der Zweifel an der Unabhängigkeit, verlangen Käufer langlaufender Staatsanleihen einen höheren Zins als Ausgleich für das zusätzliche Risiko – eine Art Risikoprämie für politische Einflussnahme. Auch eine Währung kann unter einem solchen Zweifel leiden, weil Investoren eine lockerere, politisch motivierte Geldpolitik einpreisen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bislang ist der aktuelle Vorstoß laut den vorliegenden Übersichten nur eine Erwägung, keine vollzogene Entlassung. Ob und wie sich das auf Anleiherenditen oder den Dollar auswirkt, lässt sich aus den abgerufenen Meldungen nicht ablesen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Die Unabhängigkeit einer Notenbank ist unsichtbar, solange niemand an ihr rüttelt – und wird erst dann zu einer handfesten Marktfrage, wenn ernsthaft daran gezweifelt wird. Wiederholte Vorstöße, auch erfolglose, verändern diese Wahrnehmung graduell.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-dritter-tag-privatanleger-treu-2026-08-08',
+    title: 'Gold steigt den dritten Tag – und Privatanleger bleiben treu',
+    teaser:
+      'Der Goldpreis legt laut Goldreporter den dritten Tag in Folge zu, während finanzen.net Privatanleger trotz Gewinnmitnahmen als treu beschreibt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-08T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Edelmetalle', 'Anlegerverhalten'],
+    relatedTopics: ['rohstoffe', 'anlegerpsychologie', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'eur-jpy'],
+    sources: [
+      {
+        label:
+          'Goldreporter, „Goldpreis aktuell: Gold steigt dritten Tag in Folge – Japan rückt in den Fokus“ vom 7.8.2026, abgerufen 8.8.2026, 03:47 Uhr UTC',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 8.8.2026, 05:14 Uhr: „Trotz Gewinnmitnahmen: Warum Privatanleger Gold treu bleiben“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Goldreporter meldete am 7. August: Der Goldpreis setze seinen Anstieg fort, dritter Tag in Folge. Als Grund nannte der Bericht „neben dem Iran-Konflikt“ nun auch „die erneute Yen-Schwäche“, die für Unsicherheit an den Finanzmärkten sorge. In der Kursleiste von finanzen.net stand Gold am Samstagmorgen bei 4.342 US-Dollar, ein Plus von 2,4 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn eine Währung schwächelt, gewinnt Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verliert eine große Währung wie der Yen an Stabilität, suchen manche Anleger einen Halt außerhalb jeder Währung. Gold zahlt keine Zinsen und keine Dividende, aber es ist auch die Verbindlichkeit von niemandem – anders als eine Anleihe oder ein Bankguthaben. Genau diese Eigenschaft macht es in Phasen von Währungsunsicherheit gefragt, unabhängig davon, ob die konkrete Ursache Japan, der Iran-Konflikt oder etwas Drittes ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis ist kein Stimmungsbild',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die zweite Meldung des Tages ergänzt ein anderes Bild: finanzen.net berichtete um 05:14 Uhr, Privatanleger blieben Gold trotz Gewinnmitnahmen treu. Das deutet auf zwei Anlegergruppen mit unterschiedlichem Verhalten hin – kurzfristig orientierte Halter, die nach dem Anstieg Gewinne realisieren, und langfristig orientierte Halter, die an ihrer Position festhalten. Wie groß jede Gruppe ist oder welche konkreten Zahlen dahinterstehen, geht aus der Übersicht nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein steigender Preis allein sagt nicht, wer kauft und wer hält. Erst die Gegenüberstellung von Kursbewegung und Anlegerverhalten zeigt, ob ein Trend von neuem Geld getragen wird oder nur davon, dass bestehende Halter nicht verkaufen.',
+      },
+    ],
+  },
+  {
+    slug: 'alphabet-kartellrisiko-ki-anleihen-2026-08-08',
+    title: 'Alphabet zwischen Milliardenklage und Milliardennachfrage',
+    teaser:
+      'Google drohen laut EU-Kartellverfahren neue Klagen, während Anleger sich zugleich um Alphabets KI-Anleihen reißen. Zwei Risiken, zwei Preise.',
+    category: 'Märkte',
+    publishedAt: '2026-08-08T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Alphabet', 'Kartellrecht', 'Anleihen'],
+    relatedTopics: ['aktie', 'schuldverschreibung', 'risiko-und-rendite'],
+    relatedSymbols: ['alphabet'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 8.8.2026, 05:01 Uhr: „Alphabet-Aktie im Blick: Google drohen Milliardenklagen - EU-Kartellstrafe entfacht neue Prozesswelle“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 7.8.2026: „Alphabet braucht Milliarden für KI - Anleger reißen sich um die Anleihen - So reagiert die Aktie“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Meldungen zu Alphabet liefen kurz hintereinander über den News-Ticker von finanzen.net. Am Freitag: „Alphabet braucht Milliarden für KI - Anleger reißen sich um die Anleihen - So reagiert die Aktie“. Am Samstagmorgen um 05:01 Uhr: „Alphabet-Aktie im Blick: Google drohen Milliardenklagen - EU-Kartellstrafe entfacht neue Prozesswelle“. Die genaue Höhe einer möglichen Strafe oder der Anleihen nennt keine der beiden Zeilen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Gläubigergruppen, zwei Fragen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Aktionär und ein Anleihegläubiger stellen bei derselben Firma unterschiedliche Fragen. Der Aktionär fragt: Wie stark schmälert eine Kartellstrafe künftige Gewinne, und drohen daraus dauerhafte Auflagen für das Geschäftsmodell? Der Anleihegläubiger fragt enger: Kann das Unternehmen Zins und Tilgung bedienen? Bei einem Konzern mit Alphabets Cashflow kann eine Milliardenstrafe die Aktie belasten, ohne die Fähigkeit zur Schuldenbedienung ernsthaft infrage zu stellen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Kartellstrafe nicht gleich ein Strukturrisiko ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Geldstrafe ist zunächst ein einmaliger Aufwand. Gefährlicher für ein Geschäftsmodell sind oft nicht die Bußgelder selbst, sondern begleitende Auflagen – etwa Vorgaben, wie ein Konzern seine Marktmacht künftig nutzen darf. Ob eine solche Auflage hier im Raum steht, geht aus der abgerufenen Übersicht nicht hervor; sie berichtet nur von einer „neuen Prozesswelle“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Dass Anleger sich gleichzeitig um Alphabets Anleihen reißen und die Aktie auf Klagerisiken beobachtet wird, ist kein Widerspruch. Es zeigt nur, dass Aktien- und Anleihemarkt unterschiedliche Fragen an dasselbe Unternehmen stellen – und nicht zwingend zur gleichen Zeit dieselbe Antwort geben.',
+      },
+    ],
+  },
+  {
+    slug: 'goldman-jpmorgan-ki-anleihen-handelskoerbe-2026-08-08',
+    title: 'Goldman und JPMorgan verpacken den KI-Boom in Handelskörbe',
+    teaser:
+      'Zwei Großbanken bringen Handelskörbe für KI-Anleihen an den Markt – während eine andere Meldung fragt, wer den KI-Boom eigentlich bezahlen kann.',
+    category: 'Märkte',
+    publishedAt: '2026-08-08T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['KI-Boom', 'Anleihen', 'Kreditmarkt'],
+    relatedTopics: ['schuldverschreibung', 'schulden-und-kredit', 'risiko-und-rendite'],
+    relatedSymbols: ['goldman-sachs', 'jpmorgan', 'amazon'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 8.8.2026, 05:32 Uhr: „Goldman und JPMorgan bringen Handelskörbe für KI-Anleihen an den Markt“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 8.8.2026, 02:37 Uhr: „Cashflow-Schock bei Amazon, SpaceX und Lucid: Wer kann sich den KI-Boom leisten?“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 05:32 Uhr meldete finanzen.net: „Goldman und JPMorgan bringen Handelskörbe für KI-Anleihen an den Markt“. Etwas früher, um 02:37 Uhr, stand dort eine zweite Zeile: „Cashflow-Schock bei Amazon, SpaceX und Lucid: Wer kann sich den KI-Boom leisten?“. Konkrete Zahlen zu Volumen der Handelskörbe oder zur Höhe der Cashflow-Belastung nennt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Handelskorb für Anleihen ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Handelskorb bündelt mehrere einzelne Wertpapiere – hier offenbar Anleihen von Unternehmen mit KI-Bezug – zu einem einzigen handelbaren Produkt, ähnlich wie ein ETF mehrere Aktien bündelt. Für Anleger bedeutet das: statt eine einzelne Anleihe zu bewerten, kaufen sie eine Wette auf ein ganzes Thema. Das senkt das Risiko eines einzelnen Ausfalls, verteilt aber auch die Frage, ob das Thema insgesamt trägt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer bezahlt den Ausbau eigentlich?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Unternehmen kann seine KI-Investitionen aus zwei Quellen finanzieren: aus dem laufenden operativen Cashflow oder über neue Schulden. Die zweite Meldung nennt Amazon, SpaceX und Lucid im Zusammenhang mit einem „Cashflow-Schock“ – ein Hinweis darauf, dass mindestens bei einem Teil der Branche der operative Geldfluss mit dem Investitionstempo nicht mithält. Ob und wie stark das bei den genannten Unternehmen einzeln zutrifft, lässt sich aus der Überschrift allein nicht ablesen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein Handelskorb macht es leichter, auf einen Trend zu setzen – er ändert aber nichts daran, dass am Ende jede einzelne Anleihe darin nur so gut ist wie der Cashflow des Unternehmens, das sie ausgegeben hat. Je mehr Kapital über Schulden statt aus laufenden Einnahmen in den KI-Ausbau fließt, desto mehr hängt vom Tempo künftiger Erträge ab.',
+      },
+    ],
+  },
+  {
+    slug: 'bofa-bull-bear-indikator-extremsignal-2026-08-08',
+    title: 'Bank of America warnt: Der Bull-&-Bear-Indikator schlägt Alarm',
+    metaTitle: 'BofA-Indikator warnt vor Marktphase',
+    teaser:
+      'Bank of America meldet ein Extremsignal ihres Bull-&-Bear-Indikators. Was ein Stimmungsindikator misst – und warum er kein Kaufsignal liefert.',
+    category: 'Märkte',
+    publishedAt: '2026-08-08T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Sentiment', 'Aktienmarkt', 'BofA'],
+    relatedTopics: ['anlegerpsychologie', 'risiko-und-rendite', 'wann-kaufen-verkaufen'],
+    relatedSymbols: ['sp500', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 7.8.2026: „Bank of America warnt vor Euphorie am Aktienmarkt: Bull-&-Bear-Indikator sendet Extrem-Signal“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'finanzen.net meldete am Freitag: „Bank of America warnt vor Euphorie am Aktienmarkt: Bull-&-Bear-Indikator sendet Extrem-Signal“. Den genauen Stand des Indikators nennt die Übersicht nicht, nur die Einstufung als Extremsignal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Stimmungsindikator überhaupt misst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Bull-&-Bear-Indikator wie der von Bank of America fasst typischerweise mehrere Marktkennzahlen zu einer Zahl zusammen – etwa Kapitalflüsse zwischen Anlageklassen, die Positionierung von Fondsmanagern oder die Marktbreite. Er misst also nicht, was ein Unternehmen wert ist, sondern wie einheitlich Marktteilnehmer gerade in dieselbe Richtung positioniert sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Extremwerte als Warnung gelesen werden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die dahinterliegende Logik ist antizyklisch: Wenn praktisch alle Marktteilnehmer bereits optimistisch positioniert sind, gibt es kaum noch neues Kapital, das nachziehen und den Kurs weiter treiben könnte. Historisch fielen extreme Optimismus-Werte häufiger mit Marktphasen zusammen, die anschließend schwächer liefen – ein Zusammenhang, keine Vorhersage für einen bestimmten Tag.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau darin liegt die Grenze eines solchen Indikators: Ein Extremwert kann Wochen oder Monate bestehen bleiben, bevor sich etwas ändert – oder auch gar nicht zu einer Korrektur führen. Er beschreibt die Positionierung der Menge, nicht den nächsten Kursverlauf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein Extremsignal ist ein Hinweis auf die Stimmung im Markt, keine Handlungsanweisung. Wer daraus eine feste Kauf- oder Verkaufsregel ableitet, verwechselt eine Beschreibung der Gegenwart mit einer Prognose der Zukunft.',
+      },
+    ],
+  },
+  {
+    slug: 'warren-buffett-konzentration-apple-2026-08-08',
+    title: 'Warren Buffetts radikale Wette auf fünf Aktien',
+    teaser:
+      'Hunderte Milliarden Dollar, konzentriert auf nur fünf Positionen: Was Warren Buffetts Ansatz von der üblichen Diversifikation unterscheidet.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-08T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Diversifikation', 'Portfolio', 'Warren Buffett'],
+    relatedTopics: ['portfolio-aufbau', 'risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['apple', 'berkshire'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 8.8.2026, 04:13 Uhr: „Hunderte Milliarden US-Dollar, nur fünf Aktien: So radikal setzt Warren Buffett auf Apple-Aktien und Co“, abgerufen 8.8.2026, 03:46 Uhr UTC',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 04:13 Uhr meldete finanzen.net: „Hunderte Milliarden US-Dollar, nur fünf Aktien: So radikal setzt Warren Buffett auf Apple-Aktien und Co“. Buffett führt das Investmentunternehmen Berkshire Hathaway. Wie sich die genannte Summe exakt auf die fünf Positionen verteilt, geht aus der Überschrift nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Konzentration ist das Gegenteil von Diversifikation',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diversifikation bedeutet, Kapital auf viele voneinander unabhängige Positionen zu verteilen, damit der Ausfall einer einzelnen das Gesamtergebnis kaum verändert. Ein Portfolio, das zu großen Teilen auf fünf Aktien konzentriert ist, tut das Gegenteil: Es setzt bewusst darauf, dass wenige, genau geprüfte Entscheidungen mehr wert sind als eine breite Streuung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das nicht ohne Weiteres übertragbar ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konzentration erhöht die Bandbreite möglicher Ergebnisse in beide Richtungen: Trifft die Einschätzung zu, fällt der Gewinn größer aus als bei einem breit gestreuten Depot. Trifft sie nicht zu, fällt auch der Verlust größer aus. Berkshire Hathaway kann solche Positionen mit einem Team aus Analysten und jahrzehntelanger Unternehmenskenntnis eingehen – eine Ausgangslage, die bei einem einzelnen Privatanleger in aller Regel fehlt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Dass eine Strategie für einen der bekanntesten Investoren der Welt funktioniert, ist kein Beleg dafür, dass sie in kleinerem Maßstab genauso funktioniert. Konzentration verlangt genau die Analysetiefe, die eine breite Streuung überflüssig macht – wer die eine ohne die andere übernimmt, übernimmt nur das Risiko.',
+      },
+    ],
+  },
+  {
     slug: 'dax-berichtssaison-hoehepunkt-2026-08-07',
     title: 'Der DAX steht still, während unter ihm viel passiert',
     teaser:
