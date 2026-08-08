@@ -254,7 +254,7 @@ nimmt beim nächsten Mal einen anderen Weg. Scheitert auch der, endet der
 Läufer mit einem Fehler – dann fehlt ein Stück, und das Zusammenfügen
 bricht ab, statt eine Folge mit einem Loch auszuliefern.
 """
-FRIST_JE_STUECK = int(os.environ.get("STIMME_FRIST", "240"))
+FRIST_JE_STUECK = int(os.environ.get("STIMME_FRIST", "180"))
 
 
 class Zeitueberschreitung(Exception):
@@ -268,25 +268,69 @@ def _wecker(signum, rahmen):  # noqa: ARG001
 signal.signal(signal.SIGALRM, _wecker)
 
 
-def sprich(stueck: str):
-    """Spricht ein Stück, mit Frist und einem zweiten Versuch."""
-    for versuch in (1, 2):
-        signal.alarm(FRIST_JE_STUECK)
-        try:
-            return modell.generate_voice_clone(
-                text=stueck, voice_clone_prompt=prompt, language="German"
-            )
-        except Zeitueberschreitung:
-            melde(
-                f"  Stück nach {FRIST_JE_STUECK} s abgebrochen "
-                f"(Versuch {versuch}/2) – das Modell fand kein Ende."
-            )
-        finally:
-            signal.alarm(0)
-    raise RuntimeError(
-        "Ein Stück ließ sich zweimal nicht sprechen. Lieber keine Folge als "
-        "eine mit einem Loch."
+def haelften(stueck: str) -> tuple[str, str] | None:
+    """Teilt ein Stück in der Mitte, an der nächstbesten Sprechgrenze.
+
+    Gesucht wird die Grenze, die der Mitte am nächsten liegt – erst ein
+    Satzende, dann ein Komma, dann notfalls ein Leerzeichen. Mitten im
+    Wort wird nie getrennt: Das hört man, und zwar sofort.
+    """
+    if len(stueck) < 80:
+        return None
+    mitte = len(stueck) // 2
+    for muster in (r"[.!?]\s", r",\s", r"\s"):
+        stellen = [m.end() for m in re.finditer(muster, stueck)]
+        brauchbar = [s for s in stellen if 20 < s < len(stueck) - 20]
+        if brauchbar:
+            schnitt = min(brauchbar, key=lambda s: abs(s - mitte))
+            return stueck[:schnitt].strip(), stueck[schnitt:].strip()
+    return None
+
+
+def sprich(stueck: str, tiefe: int = 0):
+    """Spricht ein Stück. Hängt das Modell, wird geteilt statt aufgegeben.
+
+    ## Warum teilen und nicht nochmal versuchen
+
+    Der zweite Versuch war die erste Idee und hat sich als wertlos
+    erwiesen: Am 8. August 2026 hing **dasselbe** Stück zweimal
+    hintereinander, jedes Mal bis zur Frist. Es liegt also am Text, nicht
+    am Zufall – und dann hilft ein weiterer Anlauf mit demselben Text
+    nicht.
+
+    Was hilft, ist ein **kürzeres** Stück. Das Modell erzeugt Ton, bis es
+    ein Schlusszeichen setzt; je weniger es auf einmal sprechen soll,
+    desto eher findet es eines. Die beiden Hälften werden nahtlos
+    aneinandergehängt – gehört wird davon nichts, weil an einer
+    Sprechgrenze getrennt wurde.
+
+    Drei Ebenen tief, dann ist Schluss: Ein Fetzen von zwanzig Zeichen,
+    der immer noch hängt, ist kein Textproblem mehr.
+    """
+    signal.alarm(FRIST_JE_STUECK)
+    try:
+        return modell.generate_voice_clone(
+            text=stueck, voice_clone_prompt=prompt, language="German"
+        )
+    except Zeitueberschreitung:
+        pass
+    finally:
+        signal.alarm(0)
+
+    teile = haelften(stueck) if tiefe < 3 else None
+    if not teile:
+        raise RuntimeError(
+            f"Ein Stück ließ sich nicht sprechen und nicht mehr teilen: "
+            f"{stueck[:60]!r}. Lieber keine Folge als eine mit einem Loch."
+        )
+
+    melde(
+        f"  Stück hing nach {FRIST_JE_STUECK} s – geteilt in "
+        f"{len(teile[0])} + {len(teile[1])} Zeichen (Ebene {tiefe + 1})."
     )
+    links, rate = sprich(teile[0], tiefe + 1)
+    rechts, _ = sprich(teile[1], tiefe + 1)
+    return [np.concatenate([np.asarray(links[0]), np.asarray(rechts[0])])], rate
 
 
 t0 = time.time()
