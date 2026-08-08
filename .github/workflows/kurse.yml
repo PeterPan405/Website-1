@@ -334,6 +334,50 @@ jobs:
           rm -f ~/.ssh/id_deploy
           echo "Kurse übertragen: https://iminvests.de/kurse-live.json"
 
+      # ------------------------------------------------------------------
+      # Steht die Website überhaupt noch?
+      #
+      # ## Woher das kommt
+      #
+      # Am 8. August 2026 war der Webordner plötzlich leer – bis auf eine
+      # `.htaccess`, die nicht unsere war (6.147 statt 5.687 Byte). Der
+      # Zeitpunkt lässt sich auf zwei Minuten eingrenzen: Um 18:54:14 lag
+      # `kurse-live.json` nachweislich dort, um 18:56 war der Ordner leer.
+      # In dem Fenster hat kein Lauf von uns den Server angefasst.
+      #
+      # Die Ursache lag also außerhalb, und dagegen hilft kein Vorbeugen.
+      # Was hilft: den Ausfall nicht stehen lassen. Aufgefallen ist er dem
+      # Betreiber, nicht der Technik – und da war die Website längst weg.
+      #
+      # ## Warum hier und nicht in einem eigenen Zeitplan
+      #
+      # Aus derselben Überlegung, aus der der Nachrichtenlauf hier hängt:
+      # Geplante Läufe werden in diesem Projekt regelmäßig verworfen. Dieser
+      # Workflow läuft fünfzehn- bis zwanzigmal am Tag; dass **alle**
+      # ausfallen, ist ungleich unwahrscheinlicher. Damit steht eine leere
+      # Website höchstens eine halbe Stunde statt bis zum nächsten Morgen.
+      #
+      # Ein Abruf kostet eine Sekunde. Der Neubau wird nur angefordert,
+      # wenn die Startseite wirklich fehlt – und `paket-bauen.yml` prüft
+      # ohnehin selbst, bevor es überträgt.
+      - name: Steht die Website noch?
+        if: always() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' \
+            -A 'iminvests-watchdog' https://iminvests.de/ || echo 000)
+          if [ "$code" = "200" ]; then
+            echo "Startseite: 200 – die Website steht."
+            exit 0
+          fi
+
+          echo "::warning::Die Startseite antwortet mit $code statt 200."
+          echo "  Der Webordner ist entweder leer oder der Server ist gestört."
+          echo "  Ein Neubau wird angefordert; er legt alles wieder ab."
+          gh workflow run paket-bauen.yml \
+            --repo "${{ github.repository }}" --ref main -f paket=false
+
       - name: Neubau anstoßen
         if: steps.commit.outputs.gepusht == 'ja'
         env:
