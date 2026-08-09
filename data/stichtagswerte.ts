@@ -60,18 +60,39 @@ export const stichtagswerte: readonly Stichtagswert[] = [
   {
     id: 'basiszins',
     bezeichnung: 'Basiszins für die Vorabpauschale',
-    wert: 2.53,
+    /*
+      3,20 Prozent zum 2. Januar 2026, wörtlich aus dem BMF-Schreiben vom
+      13. Januar 2026 (GZ IV C 1 - S 1980/00230/012/001):
+
+        „Die Deutsche Bundesbank hat hierfür auf den 2. Januar 2026 anhand
+        der Zinsstrukturdaten einen Wert von 3,20 Prozent für
+        Bundeswertpapiere mit jährlicher Kuponzahlung und einer Restlaufzeit
+        von 15 Jahren errechnet."
+
+      Bis zum 9. August 2026 stand hier der Wert für 2025 (2,53 %). Er war
+      seit Januar überholt, und `npm run frische` hat es die ganze Zeit
+      gemeldet – nur lief die Prüfung nirgends automatisch. Genau daraus ist
+      der Zwei-Wochen-Turnus entstanden.
+
+      Die Zahl steht **nur in der PDF**; die HTML-Seite daneben nennt bloß
+      Titel und Datum. Deshalb kann `quellen-holen.yml` seit demselben Tag
+      PDFs lesen.
+    */
+    wert: 3.2,
     einheit: 'prozent',
-    gilt: 2025,
+    gilt: 2026,
     turnus: 'jaehrlich',
     quelle: {
-      label: 'Bundesfinanzministerium, Basiszins nach § 18 Absatz 4 InvStG',
-      url: 'https://www.bundesfinanzministerium.de/',
+      label:
+        'Bundesfinanzministerium, BMF-Schreiben vom 13. Januar 2026, ' +
+        'Basiszins zum 2. Januar 2026 nach § 18 Absatz 4 InvStG',
+      url: 'https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Investmentsteuer/2026-01-13-basiszins-berechnung-vorabpauschale.html',
     },
     pflege:
       'Das BMF veröffentlicht den Zins jeweils im Januar im Bundessteuerblatt. ' +
       'Er leitet sich aus der Rendite langfristiger deutscher Staatsanleihen zum ' +
-      'ersten Börsentag des Jahres ab.',
+      'ersten Börsentag des Jahres ab. Der Wert steht nur in der verlinkten PDF – ' +
+      'über `quellen-holen.yml` ist sie lesbar.',
   },
   {
     id: 'sparerpauschbetrag',

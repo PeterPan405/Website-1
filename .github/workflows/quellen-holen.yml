@@ -43,6 +43,11 @@ on:
         required: false
         default: '12000'
         type: string
+      suche:
+        description: 'Nur Zeilen mit diesem Muster zeigen (regulärer Ausdruck)'
+        required: false
+        default: ''
+        type: string
 
 # Zwei gleichzeitige Läufe stören einander nicht, aber sie machen das Protokoll
 # unübersichtlich. Der laufende wird nicht abgebrochen.
@@ -70,6 +75,7 @@ jobs:
         env:
           URLS: ${{ inputs.urls }}
           ZEICHEN: ${{ inputs.zeichen }}
+          SUCHE: ${{ inputs.suche }}
         run: |
           python3 - <<'ENDE'
           import html
@@ -82,6 +88,10 @@ jobs:
 
           grenze = int(os.environ.get("ZEICHEN") or "12000")
           adressen = [a for a in os.environ["URLS"].split() if a.startswith("http")]
+
+          # Ohne `suche` bleibt alles wie bisher: die ersten `zeichen` Zeichen.
+          gesucht = (os.environ.get("SUCHE") or "").strip()
+          muster = re.compile(gesucht, re.IGNORECASE) if gesucht else None
 
           if not adressen:
               raise SystemExit("Keine brauchbare Adresse übergeben.")
@@ -171,6 +181,34 @@ jobs:
                   lesbar = text
               else:
                   lesbar = zu_text(text)
+
+              # Mit `suche` nur die Fundstellen statt der halben Seite.
+              #
+              # Der Anlass: Für die laufenden Kosten eines ETF braucht man
+              # eine Zeile aus einer Fondsseite von 8.000 Zeichen. Ohne
+              # Filter muss man die ganze Seite ausgeben und selbst suchen –
+              # bei acht Fonds achtmal. Mit Filter sind es acht Zeilen.
+              #
+              # Eine Zeile Zusammenhang davor und danach, weil in Tabellen
+              # Bezeichnung und Wert gern auf zwei Zeilen stehen.
+              if muster:
+                  zeilen = lesbar.splitlines()
+                  treffer = [i for i, z in enumerate(zeilen) if muster.search(z)]
+                  if not treffer:
+                      print(f"[keine Zeile passt auf {muster.pattern!r}]")
+                      continue
+                  gezeigt: set[int] = set()
+                  for i in treffer:
+                      gezeigt.update(range(max(0, i - 1), min(len(zeilen), i + 2)))
+                  vorher = -2
+                  for i in sorted(gezeigt):
+                      if i > vorher + 1:
+                          print("  …")
+                      print(f"{i + 1:>5}: {zeilen[i].strip()[:300]}")
+                      vorher = i
+                  print(f"\n[{len(treffer)} Fundstellen in {len(zeilen)} Zeilen.]")
+                  continue
+
               gekuerzt = lesbar[:grenze]
               print(gekuerzt)
               if len(lesbar) > grenze:
