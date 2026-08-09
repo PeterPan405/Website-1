@@ -138,10 +138,58 @@ jobs:
           [ -n "$tag" ] || tag=$(date -u +%Y-%m-%d)
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
 
-          if [ -f "data/editions/$tag.ts" ]; then
-            echo "weiter=nein" >> "$GITHUB_OUTPUT"
-            echo "Die Ausgabe vom $tag steht bereits – nichts zu entwerfen."
-            exit 0
+          # **„Steht schon eine Ausgabe?" ist die falsche Frage.**
+          #
+          # Sie war richtig, solange eine fehlende Ausgabe schlicht fehlte.
+          # Seit `nachrichten-aus-bestand.ts` aus den Kursdaten immer eine
+          # liefert, beantwortet sie nicht mehr, was sie soll.
+          #
+          # Am 9. August 2026 zu besichtigen: Beide Termine dieses Workflows
+          # (01:27 und 01:41 UTC) wurden verspätet ausgeführt – um 03:15 und
+          # 03:19. `nachrichten.yml` lief in derselben Verzögerung um 02:29
+          # und schrieb den Notbehelf. Als der Agent endlich drankam, stand
+          # die Ausgabe da, und er trat ordnungsgemäß ab. Beide Läufe grün,
+          # kein Fehler nirgends – und auf der Website standen aufbereitete
+          # eigene Zahlen statt Meldungen.
+          #
+          # Der Termin des Agenten liegt **vor** dem des Nachrichtenlaufs.
+          # Verlässlich ist das nicht: GitHub verschiebt geplante Läufe
+          # unterschiedlich stark, und dann kippt die Reihenfolge. Ein Riegel,
+          # der auf die Reihenfolge baut, baut auf nichts.
+          #
+          # Gefragt wird deshalb nach der **Herkunft**, mit demselben Maßstab
+          # wie in `ausgabe-waechter.yml`: Zeigt weniger als die Hälfte der
+          # Quellen nach außen, ist es der Notbehelf. Über die Ausgaben vom
+          # 1. bis 9. August lag der Anteil bei den recherchierten zwischen
+          # 80 und 100 Prozent, beim Notbehelf bei 17.
+          datei="data/editions/$tag.ts"
+          if [ -f "$datei" ]; then
+            gesamt=$(grep -c "url: '" "$datei" || true)
+            extern=$(grep "url: '" "$datei" | grep -vc "iminvests.de" || true)
+
+            if [ "$gesamt" -gt 0 ] && [ $((extern * 2)) -ge "$gesamt" ]; then
+              echo "weiter=nein" >> "$GITHUB_OUTPUT"
+              echo "Die Ausgabe vom $tag steht bereits und ist recherchiert"
+              echo "($extern von $gesamt Quellen zeigen nach außen) – nichts zu tun."
+              exit 0
+            fi
+
+            echo "::warning::Für den $tag steht der Notbehelf aus dem eigenen Bestand"
+            echo "  ($extern von $gesamt Quellen zeigen nach außen). Der Agent schreibt"
+            echo "  trotzdem einen Entwurf."
+            echo ""
+            echo "  **Was das heute noch nicht bewirkt:** \`nachrichten.yml\` hört auf,"
+            echo "  sobald eine Ausgabe steht – gleich welcher Herkunft –, und"
+            echo "  \`nachrichten-erzeugen.ts\` weigert sich, eine vorhandene zu"
+            echo "  überschreiben. Der Entwurf liegt also bereit, wird aber nicht"
+            echo "  automatisch übernommen. Ihn einzusetzen hieße, die Artikel des"
+            echo "  Notbehelfs aus data/news.ts zu entfernen, die Ausgabendatei und"
+            echo "  ihren Registereintrag zu ersetzen – ein eigener Weg, den es noch"
+            echo "  nicht gibt."
+            echo ""
+            echo "  Der Entwurf ist trotzdem nicht umsonst: Er belegt, dass der Agent"
+            echo "  an diesem Tag gearbeitet hätte, und lässt sich von Hand übernehmen."
+            echo "notbehelf=ja" >> "$GITHUB_OUTPUT"
           fi
 
           # Welche Anmeldung liegt vor? Nur das Vorhandensein wird gemeldet,
