@@ -192,7 +192,7 @@ meldet (siehe Turnus) — er ist der Beleg dafür, dass die Prüfung greift.
 
 ## Belegt, aber nicht von mir zu entscheiden — Klasse A
 
-### A6 · Der Basiszins für die Vorabpauschale ist ein Jahr alt
+### A6 · Der Basiszins für die Vorabpauschale ist ein Jahr alt — **behoben am 9. August**
 
 **kritisch** · `data/stichtagswerte.ts:61`
 
@@ -204,8 +204,14 @@ Es ist August 2026. Das Bundesfinanzministerium veröffentlicht den Wert jeweils
 im Januar. Der Steuerrechner rechnet damit seit sieben Monaten mit dem Zins des
 Vorjahres.
 
-Der Wert für 2025 (2,53 %) ist korrekt. Der für 2026 ließ sich von hier aus
-nicht beschaffen — **Klasse C**, siehe C1.
+Der Wert für 2025 (2,53 %) ist korrekt. Der für 2026 ließ sich in der Nacht
+nicht beschaffen — er steht **nur in der PDF** des BMF-Schreibens, und
+`quellen-holen.yml` konnte damals keine PDFs lesen.
+
+**Am 9. August nachgetragen:** 3,20 % für 2026, wörtlich aus dem BMF-Schreiben
+vom 13. Januar 2026 (GZ IV C 1 - S 1980/00230/012/001). `npm run frische`
+meldet seither „Alle Werte gelten für 2026." Der Läufer liest jetzt PDFs;
+das war die eigentliche Lücke.
 
 Bemerkenswert: Das Projekt **weiß es bereits**. `npm run frische` meldet es
 wortgenau, samt Pflegehinweis. Nur läuft die Prüfung nirgends automatisch —
@@ -225,6 +231,14 @@ Kostendaten ist der Kern der Sache, nicht ein Randfall.
 
 Die ISINs sind hinterlegt, es fehlen nur die Werte. **Klasse C** für die Zahlen
 selbst, siehe C2.
+
+**Am 9. August versucht und bewusst nicht eingetragen.** fondsweb.com ist
+abrufbar und nennt unter „Summe laufende Kosten" Werte, die systematisch über
+der TER des Anbieters liegen — null bis vier Hundertstel, immer in dieselbe
+Richtung. Das ist eine andere Größe, keine Rundung. Das
+Basisinformationsblatt des Anbieters antwortet mit `text/html` statt mit der
+PDF, weil iShares die Anlegertyp-Abfrage davorschiebt. Der Befund samt
+Messwerten steht im Kopf von `data/etf-kosten.ts`.
 
 ---
 
@@ -297,13 +311,13 @@ des neuen Turnus. **Klasse C.**
 
 ## Nicht geprüft — Klasse C
 
-|        | Was fehlt                                                          | Warum                                                                         | Wer kann es               |
-| ------ | ------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ------------------------- |
-| **C1** | Basiszins 2026                                                     | BMF nicht erreichbar                                                          | `quellen-holen.yml`       |
-| **C2** | TER der acht ETFs                                                  | Anbieterseiten nicht erreichbar                                               | `quellen-holen.yml`       |
-| **C3** | Historische Zahlen in 102 Lernstufen, 34 Themen, Akademie, Glossar | Umfang; keine Quelle erreichbar                                               | Vier-Wochen-Takt          |
-| **C4** | Die 12 Rechner je ein Beispiel von Hand                            | Umfang — nur der Steuerrechner wurde gelesen                                  | Vier-Wochen-Takt          |
-| **C5** | Innere Widersprüche über alle Dateien                              | Teilweise: `npm run frische` deckt Zahlen im Fließtext ab und fand einen (A5) | läuft künftig automatisch |
+|            | Was fehlt                                                          | Warum                                                                         | Wer kann es               |
+| ---------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ------------------------- |
+| ~~**C1**~~ | ~~Basiszins 2026~~                                                 | **erledigt am 9. August** — 3,20 %, belegt aus dem BMF-Schreiben              | `quellen-holen.yml`       |
+| **C2**     | TER der acht ETFs                                                  | Anbieter-PDF hinter Zustimmungssperre; fondsweb nennt eine andere Größe       | ein Mensch mit Browser    |
+| **C3**     | Historische Zahlen in 102 Lernstufen, 34 Themen, Akademie, Glossar | Umfang; keine Quelle erreichbar                                               | Vier-Wochen-Takt          |
+| **C4**     | Die 12 Rechner je ein Beispiel von Hand                            | Umfang — nur der Steuerrechner wurde gelesen                                  | Vier-Wochen-Takt          |
+| **C5**     | Innere Widersprüche über alle Dateien                              | Teilweise: `npm run frische` deckt Zahlen im Fließtext ab und fand einen (A5) | läuft künftig automatisch |
 
 ---
 
