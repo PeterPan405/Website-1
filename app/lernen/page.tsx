@@ -180,19 +180,30 @@ export default async function LearnOverviewPage() {
               ? 'Alle übrigen Themen haben bereits eigene Seiten mit Meta-Daten, Permalink und einer inhaltlichen Gliederung – der Fließtext wird Thema für Thema ergänzt. Das ist auf jeder betroffenen Seite deutlich gekennzeichnet.'
               : 'Damit steht zu jedem Thema fertiger Text; solange das nicht galt, war der Bearbeitungsstand auf jeder betroffenen Seite gekennzeichnet.'}
           </p>
-          <ul className="mt-5 flex flex-wrap gap-3">
-            {completeTopics.map((topic) => (
-              <li key={topic.slug}>
-                <Link
-                  href={`/lernen/${topic.slug}`}
-                  className="fk-btn-secondary border-success/40 hover:border-success hover:text-success"
-                >
-                  <Icon name="check-circle" className="text-success size-4" />
-                  {topic.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {/*
+            Die Liste der fertigen Themen erscheint nur, solange sie etwas
+            aussagt – also solange es unfertige gibt.
+
+            Seit alle 34 vollständig sind, wiederholte sie bloß den Satz
+            darüber („34 von 34“) in Form einer Knopfkolonne über zwei
+            Bildschirmhöhen. Die vollständige Themenliste steht ohnehin
+            zwei Abschnitte tiefer, dort nach Abschnitten geordnet.
+          */}
+          {completeTopics.length < stats.topicCount && (
+            <ul className="mt-5 flex flex-wrap gap-3">
+              {completeTopics.map((topic) => (
+                <li key={topic.slug}>
+                  <Link
+                    href={`/lernen/${topic.slug}`}
+                    className="fk-btn-secondary border-success/40 hover:border-success hover:text-success"
+                  >
+                    <Icon name="check-circle" className="text-success size-4" />
+                    {topic.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
 
           <p className="text-fg-muted mt-6 flex items-start gap-2.5 text-sm leading-relaxed">
             <Icon name="target" className="text-learn mt-0.5 size-4 shrink-0" />

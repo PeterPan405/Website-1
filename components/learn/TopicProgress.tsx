@@ -14,14 +14,27 @@ import { ProgressBar } from '@/components/ui/ProgressBar'
 export function TopicProgress({
   topicSlug,
   className,
+  nurWennBegonnen = false,
 }: {
   topicSlug: string
   className?: string
+  /**
+   * Nichts anzeigen, solange an diesem Thema nichts erledigt ist.
+   *
+   * Für die Themenübersicht: Dort standen 34 Balken untereinander, alle auf
+   * null – eine Fortschrittsanzeige, die nichts anzeigt, ist Rauschen. Wer
+   * begonnen hat, sieht seinen Stand weiterhin genau dort. In der
+   * Seitenleiste eines Themas bleibt der Balken dagegen immer sichtbar: Dort
+   * ist er die Antwort auf eine Frage, die der Besucher gestellt hat.
+   */
+  nurWennBegonnen?: boolean
 }) {
   const completed = useCompletedLevels()
   const done = learnLevelIds.filter((levelId) =>
     completed.includes(levelKey(topicSlug, levelId))
   ).length
+
+  if (nurWennBegonnen && done === 0) return null
 
   return (
     <ProgressBar
