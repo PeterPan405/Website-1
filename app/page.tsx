@@ -476,7 +476,7 @@ export default async function HomePage() {
               },
               {
                 wert: '365',
-                text: 'Ausgaben im Jahr: Nachrichten und Podcast-Folge, jeden Morgen um sechs. Auch sonntags.',
+                text: 'Ausgaben im Jahr: Nachrichten und Podcast-Folge, jeden Morgen um sechs.',
               },
               {
                 wert: '0',
