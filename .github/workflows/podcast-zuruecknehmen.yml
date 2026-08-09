@@ -1,0 +1,173 @@
+name: Podcastfolge zurücknehmen
+
+# Löscht eine veröffentlichte Folge von YouTube und aus dem Register.
+#
+# ## Warum das ein eigener Workflow ist
+#
+# Weil die Umgebung, in der entwickelt wird, YouTube nicht erreicht – wie
+# jede Adresse außerhalb von GitHub und npm. Löschen muss also ein Läufer,
+# der die Zugangsdaten ohnehin hat.
+#
+# Und weil es zwei Hälften sind: das Video auf dem Kanal und der Eintrag im
+# Register. Wer nur das Video in der YouTube-Oberfläche löscht, lässt den
+# Eintrag stehen – der Feed verweist weiter auf die Folge, Spotify zeigt sie
+# noch, und auf der Website steht ein toter Verweis. Beides gehört
+# zusammen, also macht es ein Lauf.
+#
+# ## Der Anlass
+#
+# 9. August 2026: Der Sonntags-Cron des Podcasts wurde nicht verworfen,
+# sondern 72 Minuten zu spät ausgeführt. Ein Handstart hatte die Folge da
+# längst gebaut und hochgeladen; der zweite Lauf lud sie ein zweites Mal
+# hoch und überschrieb den Registereintrag. Im Repository sah alles richtig
+# aus – nur auf dem Kanal lagen zwei Videos desselben Tages, und das
+# erste kannte niemand mehr.
+#
+# Gegen die Ursache steht seither der Riegel in `podcast-erzeugen.yml`:
+# Steht die Folge des Tages schon im Register, endet der Lauf. Dieser
+# Workflow räumt auf, was trotzdem einmal zu viel wird.
+#
+# ## Löschen ist endgültig
+#
+# Die Schnittstelle kennt keinen Papierkorb. Deshalb ist der Lauf
+# ausdrücklich von Hand zu starten, nennt jede Kennung im Protokoll, bevor
+# er sie löscht, und bricht bei einer abgelehnten Löschung ab.
+
+on:
+  workflow_dispatch:
+    inputs:
+      datum:
+        description: 'Folge dieses Tages zurücknehmen (JJJJ-MM-TT)'
+        type: string
+        default: ''
+      videos:
+        description: 'Zusätzliche YouTube-Kennungen, mit Komma getrennt'
+        type: string
+        default: ''
+
+concurrency:
+  group: podcast-zuruecknehmen
+  cancel-in-progress: false
+
+jobs:
+  zuruecknehmen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      # Für den Anstoß des Paketbaus: Ein Push mit dem GITHUB_TOKEN löst
+      # keinen weiteren Workflow aus, `workflow_dispatch` schon.
+      actions: write
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+
+      - name: Folge zurücknehmen
+        env:
+          DATUM: ${{ inputs.datum }}
+          VIDEOS: ${{ inputs.videos }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: npm run zuruecknehmen
+
+      # Der Feed wird aus dem Register neu geschrieben **und auf den Server
+      # gelegt**. Beides gehört zusammen: Der Feed, den Spotify abonniert,
+      # liegt unter `~/podcast-audio/feed.xml` auf dem Webspace, nicht im
+      # Repository. Ein bloß geänderter Registereintrag ändert für einen
+      # Hörer gar nichts – Spotify liest weiter die alte Datei.
+      - name: Feed neu schreiben
+        run: npm run podcastfeed schreiben
+
+      # **Sichern kommt vor Übertragen**, und das ist der wichtigste
+      # Unterschied zu einem gewöhnlichen Veröffentlichungslauf.
+      #
+      # Die YouTube-Löschung ist längst passiert und nicht rückholbar. Was
+      # danach schiefgehen kann, darf deshalb nicht die einzige Spur der
+      # Rücknahme mitreißen. Läge das Committen hinter der Übertragung,
+      # verlöre ein toter SSH-Port die Registeränderung – Video weg, Eintrag
+      # zurück, und der nächste Lauf wüsste von nichts.
+      #
+      # Genau der Fall war am 9. August 2026 zu besichtigen: Port 65002
+      # antwortete zwei Stunden lang nicht, während alles andere lief.
+      - name: Änderung sichern
+        run: |
+          if git diff --quiet; then
+            echo "Nichts geändert – kein Commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/podcast-eigener-feed.json
+          git commit -m "Podcast: Folge zurueckgenommen"
+          git push
+          neu=$(git rev-parse HEAD)
+
+          # Der Push allein baut nichts – deshalb der ausdrückliche Anstoß.
+          #
+          # **Erst warten, bis GitHub den Push kennt.** Beim ersten scharfen
+          # Lauf am 9. August 2026 lagen Push und Anstoß eine Sekunde
+          # auseinander, und `--ref main` löste noch auf den Commit **davor**
+          # auf: Der Bau hätte die zurückgenommene Folge wieder auf die Seite
+          # gestellt. Zu sehen war das nur am `head_sha` des Laufs – der Lauf
+          # selbst wäre grün geworden.
+          for versuch in 1 2 3 4 5 6; do
+            steht=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha 2>/dev/null || echo '')
+            [ "$steht" = "$neu" ] && break
+            echo "  main steht noch auf ${steht:-unbekannt} – warte (Versuch $versuch)."
+            sleep 5
+          done
+
+          if [ "$steht" != "$neu" ]; then
+            echo "::warning::main zeigt noch nicht auf $neu – der Bau könnte den alten Stand nehmen."
+            echo "  Nach dem Lauf prüfen und den Paketbau nötigenfalls von Hand starten."
+          fi
+
+          gh workflow run paket-bauen.yml --ref main || \
+            echo "::warning::Der Paketbau ließ sich nicht anstoßen – von Hand starten."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Feed auf den Server
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+        run: |
+          if [ -z "$SSH_KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "::error::Keine SSH-Zugangsdaten – der Feed bleibt unverändert."
+            echo "  Die Folge ist dann von YouTube weg, bei Spotify aber noch da."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+               podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"; then
+            # Der Webpfad bekommt eine **Kopie**, keinen Symlink – der wurde
+            # vom Server nicht verfolgt (404 neben einer 200). Dieselbe
+            # Begründung wie in `podcast-umzug.yml`.
+            ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+              "cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
+            rm -f ~/.ssh/id_deploy
+            echo "Feed erneuert: https://iminvests.de/podcast-audio/feed.xml"
+          else
+            rm -f ~/.ssh/id_deploy
+            echo "::error::Der Feed ließ sich nicht übertragen – Port $SSH_PORT antwortet nicht."
+            echo "  Register und YouTube sind bereits zurückgenommen; es fehlt nur"
+            echo "  die Datei auf dem Webspace, und bis dahin zeigt Spotify die Folge weiter."
+            echo "  Abhilfe: diesen Lauf später noch einmal starten. Er ist"
+            echo "  wiederholbar – eine gelöschte Kennung antwortet mit 404, und das"
+            echo "  gilt als erledigt."
+            exit 1
+          fi

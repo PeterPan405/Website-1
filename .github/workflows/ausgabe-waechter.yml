@@ -53,9 +53,12 @@ on:
     # arbeiten. Deshalb fragt dieser Wächter nach, ob gerade ein Lauf im Gange
     # ist, bevor er rot wird: Was noch entsteht, ist kein Ausfall.
     #
-    # Seit `nachrichten.yml` notfalls ohne Modell aus dem eigenen Bestand
-    # schreibt, sollte dieser Lauf nie mehr rot werden. Wird er es doch, ist
-    # etwas kaputt, das niemand vorhergesehen hat – und genau dafür ist er da.
+    # Dass die Ausgabe ganz **fehlt**, sollte seit `nachrichten-aus-bestand.ts`
+    # nicht mehr vorkommen: Der Notbehelf rechnet notfalls eine aus dem eigenen
+    # Datenbestand. Genau deshalb reicht „ist sie da?" nicht mehr als Frage –
+    # seit dem 9. August prüft dieser Lauf auch, **woher** sie kommt, und wird
+    # rot, wenn es der Notbehelf war. Die Begründung steht beim Schritt
+    # „Kommt die Ausgabe aus Recherche?".
     #
     # Zur Zeitumstellung: im Winter `11 4`. Die Routine „Zeitumstellung"
     # zieht alle Zeitpläne dieses Projekts gemeinsam um eine Stunde nach.
@@ -192,6 +195,52 @@ jobs:
             echo "fehlt=ja" >> "$GITHUB_OUTPUT"
           fi
 
+      # Steht da eine Ausgabe – oder steht da der Notbehelf?
+      #
+      # Der Anlass ist der 9. August 2026. Die Ausgabe war vollständig, der
+      # Wächter wäre grün geblieben, und trotzdem war sie falsch: Sie kam
+      # aus `nachrichten-aus-bestand.ts`, weil der Agent an einer zu
+      # knappen Zugobergrenze gescheitert war. Auf der Website standen
+      # aufbereitete eigene Kurszahlen statt Meldungen. Aufgefallen ist es
+      # dem Betreiber, nicht der Technik – zum wiederholten Mal.
+      #
+      # `nachrichten.yml` schreibt beim Rückfall zwar ein `::warning::`.
+      # Eine Warnung in einem grünen Lauf ist aber genau der stille Fehler,
+      # den dieser Workflow abschaffen soll: Sie schickt keine Mail.
+      #
+      # **Woran der Notbehelf zu erkennen ist:** an seinen Quellen. Er kann
+      # nur auf den eigenen Bestand verweisen. Nachgezählt über die
+      # Ausgaben vom 1. bis 9. August, Anteil der Verweise, die **nicht**
+      # auf iminvests.de zeigen:
+      #
+      #     recherchiert   8/8  4/5  8/8  9/9  8/8  7/7  10/10  7/7
+      #     Notbehelf                                          1/6
+      #
+      # 80 Prozent im dünnsten recherchierten Fall gegen 17 im Notbehelf.
+      # Die Hälfte liegt sauber dazwischen und ist deshalb die Grenze.
+      - name: Kommt die Ausgabe aus Recherche?
+        id: herkunft
+        run: |
+          tag="${{ steps.repo.outputs.tag }}"
+          datei="data/editions/$tag.ts"
+          [ -f "$datei" ] || exit 0
+
+          gesamt=$(grep -c "url: '" "$datei" || true)
+          [ "$gesamt" -gt 0 ] || exit 0
+          extern=$(grep "url: '" "$datei" | grep -vc "iminvests.de" || true)
+
+          echo "  $extern von $gesamt Quellen zeigen nach außen."
+
+          # Ganzzahlig gerechnet: extern * 2 < gesamt heißt „weniger als die
+          # Hälfte". Kein `bc` nötig, und keine Rundung, über die man
+          # nachdenken muss.
+          if [ $((extern * 2)) -lt "$gesamt" ]; then
+            echo "notbehelf=ja" >> "$GITHUB_OUTPUT"
+            echo "  ✗ Das ist der Notbehelf aus dem eigenen Datenbestand."
+          else
+            echo "  ✓ Recherchierte Ausgabe."
+          fi
+
       - name: Ausgabe auf der Website
         id: live
         continue-on-error: true
@@ -214,10 +263,35 @@ jobs:
           code="${{ steps.live.outputs.code }}"
           offen="${{ steps.laeuft.outputs.offen }}"
           podcast="${{ steps.podcast.outputs.fehlt }}"
+          notbehelf="${{ steps.herkunft.outputs.notbehelf }}"
+
+          schlecht=""
+
+          # Der Notbehelf kippt den Lauf für sich allein. Eine vollständige
+          # Ausgabe aus eigenen Kurszahlen ist kein Ersatz für Nachrichten –
+          # sie sagt, *dass* sich etwas bewegt hat, nie *warum*. Der
+          # Betreiber will Meldungen; dass er stattdessen Zahlen bekommt,
+          # muss er am selben Morgen erfahren und nicht beim Lesen.
+          if [ "$notbehelf" = "ja" ]; then
+            echo "::error::Die Ausgabe vom $tag kommt aus dem eigenen Datenbestand, nicht aus Recherche."
+            echo "  Sie ist vollständig und wird ausgeliefert – aber sie enthält"
+            echo "  aufbereitete Kurszahlen statt Meldungen und nennt keine Ursachen."
+            echo ""
+            echo "  Der Weg dahin führt über drei Stufen, und die ersten beiden"
+            echo "  haben nicht getragen:"
+            echo "    1. Entwurf vom Agenten (nachrichten-agent.yml) – im Abo"
+            echo "    2. Modell über die Schnittstelle – braucht ANTHROPIC_API_KEY"
+            echo "    3. Bestand – dieser hier"
+            echo ""
+            echo "  Nachsehen: Actions > 'Nachrichten – Entwurf vom Agenten',"
+            echo "  Schritt 'Warum ist der Agent gescheitert?'. Er nennt"
+            echo "  Statuscode, Fehlerart und Zahl der Züge."
+            echo ""
+            schlecht="ja"
+          fi
 
           # Der Podcast kippt den Lauf für sich allein: Ohne Lauf gibt es
           # heute keine Folge, auch wenn die Nachrichten tadellos stehen.
-          schlecht=""
           if [ "$podcast" = "ja" ]; then
             echo "::error::Heute gibt es keinen Podcastlauf. Der Zeitplan wurde verworfen und der Anstoß aus kurse.yml blieb aus."
             echo "  Von Hand: Actions > Podcastfolge erzeugen > Run workflow."
@@ -229,7 +303,15 @@ jobs:
           if [ -z "$fehlt" ]; then
             echo "Die Ausgabe vom $tag steht im Repository."
             case "$code" in
-              200) echo "Und sie wird ausgeliefert. Nichts zu tun." ;;
+              # „Nichts zu tun" nur, wenn wirklich nichts zu tun ist. Bei der
+              # Probe am 9. August stand der Satz **unter** der Meldung, dass
+              # die Ausgabe aus dem Notbehelf kommt – ein Alarm, der sich
+              # selbst widerspricht, wird nicht ernst genommen.
+              200) if [ -n "$schlecht" ]; then
+                     echo "Und sie wird ausgeliefert – siehe die Beanstandung oben."
+                   else
+                     echo "Und sie wird ausgeliefert. Nichts zu tun."
+                   fi ;;
               000) echo "::notice::Die Website war von hier aus nicht erreichbar (der Hoster weist Läufer-Adressen zeitweise ab). Das Repository stimmt." ;;
               *)   echo "::warning::Die Ausgabe steht im Repository, aber $tag antwortet mit $code – vermutlich ist der Paketbau noch nicht durchgelaufen." ;;
             esac

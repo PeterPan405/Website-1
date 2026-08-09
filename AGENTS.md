@@ -355,6 +355,20 @@ stille. Deshalb liegen jetzt drei Dinge übereinander:
    Mail, und die kommt an – über genau diesen Kanal sind die Paketbau-Fehler
    aufgefallen.
 
+   **Seit dem 9. August prüft er auch, woher die Ausgabe kommt.** „Ist sie
+   da?" reicht als Frage nicht mehr, seit der Notbehelf aus dem Kursbestand
+   immer eine liefert: An dem Tag war die Ausgabe vollständig, der Wächter
+   wäre grün geblieben, und trotzdem standen auf der Website aufbereitete
+   eigene Zahlen statt Meldungen. `nachrichten.yml` schreibt beim Rückfall
+   zwar ein `::warning::` – aber eine Warnung in einem grünen Lauf schickt
+   keine Mail und ist damit genau der stille Fehler, den der Wächter
+   abschaffen soll.
+
+   Erkannt wird der Notbehelf an seinen Quellen: Er kann nur auf den eigenen
+   Bestand verweisen. Über die Ausgaben vom 1. bis 9. August lag der Anteil
+   externer Verweise bei den recherchierten zwischen 80 und 100 Prozent, beim
+   Notbehelf bei 17 – die Hälfte ist die Grenze.
+
 Wer hier etwas ändert, lässt Punkt 3 stehen. Die anderen beiden sind Versuche,
 das Problem zu lösen; der Wächter ist die Zusicherung, dass ein Scheitern
 auffällt.
@@ -418,6 +432,43 @@ prüft als Erstes, ob die Ausgabe schon steht.
 
 Wer einen neuen Lauf anlegt, dessen Ergebnis jemand vermissen würde, hängt
 ihn an dieselbe Kette statt an eine Uhrzeit.
+
+### Die Kehrseite: ein verspäteter Lauf ist einer zu viel
+
+Der Anstoß aus `kurse.yml` hat einen Preis, und der wurde am 9. August 2026
+fällig. Der Sonntags-Cron des Podcasts wurde **nicht verworfen, sondern 72
+Minuten zu spät ausgeführt**: 04:05 statt 02:53 UTC. Ein Handstart um 03:04
+hatte die Folge da längst gebaut und hochgeladen. Der verspätete Lauf baute
+sie noch einmal – und lud sie noch einmal hoch.
+
+Auf YouTube lagen danach zwei Videos desselben Tages. Im Repository sah alles
+richtig aus: Der zweite Lauf überschrieb den Eintrag im Register, dort stand
+genau eine Folge. Aufgefallen ist es dem Betreiber auf seinem Kanal, nicht
+der Technik.
+
+**Also gehört zu jedem Lauf, der etwas nach außen gibt, die Frage: Steht das
+Ergebnis des Tages schon?** `nachrichten.yml` fragt sie seit dem 5. August,
+`podcast-erzeugen.yml` seit dem 9. Ein doppelter Anstoß ist gewollt und
+billig – ein doppeltes Ergebnis nicht.
+
+Und wenn doch einmal eines zu viel entsteht:
+`.github/workflows/podcast-zuruecknehmen.yml` nimmt eine Folge vollständig
+zurück – Video gelöscht, Registereintrag entfernt, Feed neu geschrieben
+**und auf den Server gelegt.** Die letzte Hälfte ist die, die man vergisst:
+Der Feed, den Spotify abonniert, liegt auf dem Webspace, nicht im
+Repository. Wer nur den Eintrag ändert, ändert für einen Hörer nichts.
+
+### Eine Grenze, die den guten Tag gerade eben trägt, ist eine Wette
+
+Am 8. August 2026 schrieb `nachrichten-agent.yml` seinen Entwurf in 40
+Zügen. Am 9. August endete er nach 3 Minuten 25 mit `max_turns` bei 41 – und
+die Website bekam den Notbehelf aus Kursdaten statt recherchierter
+Nachrichten.
+
+Die Zahl 40 war nie geprüft worden, sie hatte nur nie gestört. Das ist das
+Muster: **Eine Obergrenze, die beim letzten Mal gerade so gereicht hat, ist
+kein Beleg, dass sie reicht.** Züge werden verbraucht, nicht bezahlt; die
+Grenze, die wirklich schützt, ist `timeout-minutes` am Job.
 
 ## Ein Commit vom Bot löst nichts aus
 

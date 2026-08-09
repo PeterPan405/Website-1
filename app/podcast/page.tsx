@@ -173,7 +173,24 @@ export default function PodcastSeite() {
                           Auszeichnung beim Einlesen entfernt wurde.
                         */}
                         {folge.beschreibung.split(/\n\s*\n/).map((absatz, nummer) => (
-                          <p key={nummer}>{absatz}</p>
+                          /*
+                            `whitespace-pre-line`: Einzelne Zeilenumbrüche
+                            bleiben stehen. Seit dem 9. August tragen die
+                            Beschreibungen die Kapitelmarken, und die stehen
+                            Zeile für Zeile. Ohne diese Klasse macht der
+                            Browser Leerzeichen daraus – aus zehn Kapiteln
+                            wird eine durchlaufende Zeile, in der die
+                            Zeitangaben wahllos verteilt scheinen.
+
+                            Gefunden hat es `paket-pruefen.ts`, und zwar
+                            hart: Der Paketbau der ersten automatischen
+                            Folge scheiterte daran, und damit stand die
+                            Website eine halbe Stunde ohne die neuen
+                            Nachrichten da.
+                          */
+                          <p key={nummer} className="whitespace-pre-line">
+                            {absatz}
+                          </p>
                         ))}
                       </div>
                     )}
