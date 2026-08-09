@@ -45,6 +45,22 @@ for (const datei of dateien) {
     [
       '--experimental-strip-types',
       '--disable-warning=MODULE_TYPELESS_PACKAGE_JSON',
+      /*
+        Der Alias `@/` gilt jetzt auch hier.
+
+        Bis zum 9. August 2026 war er das Vorrecht des Bündlers, und die Tests
+        haben sich darum herumgearbeitet: `fortschritt.test.ts` liest die
+        Lernthemen aus den **Dateinamen** unter `data/learn/topics/`, weil sich
+        `data/learn/index.ts` nicht laden ließ. Das prüft nebenbei etwas
+        Nützliches – dass Dateiname und Slug übereinstimmen –, war aber ein
+        Umweg um ein Werkzeugproblem und keine Absicht.
+
+        `alias-hook.mjs` löst den Alias auf. Ein Test darf ab jetzt dieselben
+        Module laden wie die Anwendung; die vorhandenen Umwege dürfen bleiben,
+        wo sie für sich Sinn ergeben.
+      */
+      '--import',
+      join(import.meta.dirname, 'alias-hook.mjs'),
       join(ordner, datei),
     ],
     { stdio: 'inherit' }

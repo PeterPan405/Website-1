@@ -26,6 +26,7 @@ import { begriffeZumThema, getBegriffsindex, kurzerklaerung } from '@/lib/glossa
 import { learningResourceSchema } from '@/lib/jsonld'
 import { getLearnTopic } from '@/lib/learn'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { vorleseaufnahme } from '@/lib/lese-audio'
 import { vorleseAbschnitte } from '@/lib/vorlese-text'
 
 type Props = { params: Promise<{ bereich: string; lektion: string }> }
@@ -141,6 +142,9 @@ export default async function LektionPage({ params }: Props) {
                 abschnitte={vorleseAbschnitte(
                   [{ type: 'paragraph', text: gefunden.kernaussage }, ...gefunden.inhalt],
                   figureMeta
+                )}
+                aufnahme={vorleseaufnahme(
+                  `akademie/${gefunden.bereich}/${gefunden.slug}`
                 )}
               />
               <Druckknopf />

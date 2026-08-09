@@ -680,6 +680,18 @@ jobs:
               echo "Podcast eingelegt: $(ls -1 "$ZIEL/podcast-audio" | wc -l) Dateien."
             fi
 
+            # Dasselbe für die gesprochenen Lernseiten. Sie entstehen in
+            # `lese-stimme.yml`, liegen wie der Podcast außerhalb des
+            # Webordners und überleben damit jeden Tausch – 280 Megabyte in
+            # jedem Paket wären zwanzig Minuten Übertragung für Dateien, die
+            # sich fast nie ändern.
+            if [ -d "$HOME/lese-audio" ]; then
+              rm -rf "$ZIEL/lese-audio"
+              mkdir -p "$ZIEL/lese-audio"
+              cp -a "$HOME/lese-audio/." "$ZIEL/lese-audio/"
+              echo "Vorlesestimme eingelegt: $(find "$ZIEL/lese-audio" -name '*.m4a' | wc -l) Aufnahmen."
+            fi
+
             echo "Übertragen. Stand:"
             cat "$ZIEL/version.txt" 2>/dev/null || echo "(version.txt fehlt)"
           ENDE
