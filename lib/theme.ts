@@ -26,11 +26,14 @@
 export const THEME_STORAGE_KEY = 'fk-theme'
 
 /**
- * Die Farbe der Browserleiste je Modus – dieselben Werte wie `--c-canvas`.
+ * Die Farbe der Browserleiste je Darstellung – dieselben Werte wie `--c-canvas`.
  *
  * Sie stehen als Literale da, weil `<meta name="theme-color">` keine
  * CSS-Variable auflöst: Der Browser liest das Attribut, nicht das Stylesheet.
- * Ändert sich die Canvas-Farbe in `app/globals.css`, gehören diese beiden Werte
+ * Ändert sich eine Canvas-Farbe in `app/globals.css`, gehören diese Werte
  * mitgeändert.
  */
-export const LEISTENFARBE = { light: '#f6f8fc', dark: '#060911' } as const
+export const LEISTENFARBE = {
+  weiss: '#ffffff',
+  dark: '#0a0a0c',
+} as const

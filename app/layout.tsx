@@ -97,7 +97,7 @@ export const viewport: Viewport = {
     nachgereicht; dort ist die Systemvorgabe nicht mehr maßgeblich.
   */
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: LEISTENFARBE.light },
+    { media: '(prefers-color-scheme: light)', color: LEISTENFARBE.weiss },
     { media: '(prefers-color-scheme: dark)', color: LEISTENFARBE.dark },
   ],
   colorScheme: 'light dark',
@@ -116,7 +116,9 @@ export const viewport: Viewport = {
  *    Systemvorgabe. Sie steht im localStorage und wird zuerst gelesen.
  * 2. **Die Systemvorgabe.** Wer sein Gerät auf Dunkel gestellt hat – oft aus
  *    Lichtempfindlichkeit –, bekommt die Seite von Anfang an dunkel.
- * 3. **Hell.** Wer weder das eine noch das andere hat, sieht Weiß.
+ * 3. **Weiß.** Wer weder das eine noch das andere hat, startet auf Weiß – so
+ *    hat es der Betreiber am 9. August 2026 festgelegt. Gespeicherte Werte aus
+ *    früheren Fassungen (`light`, `grau`) zählen als Weiß.
  *
  * `prefers-color-scheme` meldet nur „hell“ oder „dunkel“ und verrät nicht, ob
  * jemand das eingestellt oder nur nie angefasst hat. Für Punkt 2 und 3 ist das
@@ -135,18 +137,18 @@ export const viewport: Viewport = {
  * Rahmen. Aufgefallen erst beim Durchspielen aller vier Fälle.
  */
 const themeScript = `(function(){try{
+var farben=${JSON.stringify(LEISTENFARBE)};
 var s=localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});
-var dark=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);
-document.documentElement.dataset.theme=dark?'dark':'light';
-if(s){var f=dark?${JSON.stringify(LEISTENFARBE.dark)}:${JSON.stringify(LEISTENFARBE.light)};
-document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',f)})}
+var t=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'weiss';
+document.documentElement.dataset.theme=t;
+if(s){document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',farben[t])})}
 }catch(e){}})()`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="de"
-      data-theme="light"
+      data-theme="weiss"
       // Das Inline-Script verändert data-theme vor der Hydration.
       suppressHydrationWarning
       className={`${inter.variable} ${sora.variable} h-full antialiased`}

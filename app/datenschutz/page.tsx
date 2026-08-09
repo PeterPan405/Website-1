@@ -25,7 +25,7 @@ const speicherInhalte: Record<(typeof BESTAENDE)[number]['schluessel'], string> 
   'fk-merkliste': 'Die selbst gemerkten Wertpapiere',
   'fk-vermoegen': 'Selbst eingetragene Positionen der Vermögensübersicht',
   'fk-urkunde-name': 'Der selbst eingetragene Name für die Lernpfad-Urkunden',
-  'fk-theme': 'Gewählte Farbdarstellung (hell oder dunkel)',
+  'fk-theme': 'Gewählte Farbdarstellung (Weiß oder Schwarz)',
   'fk-sprache': 'Gewählte Sprache der Oberfläche',
   'fk-vorlesen-stimme-2': 'Gewählte Vorlesestimme',
 }

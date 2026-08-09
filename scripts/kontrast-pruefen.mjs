@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url'
 
 /**
  * Prüft, ob Text auf seinem Hintergrund tatsächlich lesbar ist – in beiden
- * Darstellungen.
+ * Darstellungen (Weiß und Schwarz).
  *
  * ## Warum das nicht schon geprüft war
  *
@@ -269,9 +269,11 @@ const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromi
 let beanstandungen = 0
 let geprueft = 0
 
-for (const [thema, schema] of [
-  ['hell', 'light'],
-  ['dunkel', 'dark'],
+/* Das dritte Feld ist das Systemschema für den Browser-Kontext;
+   `data-theme` setzt die Schleife selbst. */
+for (const [thema, attribut, schema] of [
+  ['weiss', 'weiss', 'light'],
+  ['dunkel', 'dark', 'dark'],
 ]) {
   const kontext = await browser.newContext({
     viewport: { width: 1280, height: 900 },
@@ -298,7 +300,7 @@ for (const [thema, schema] of [
       */
       await seite.evaluate(
         (s) => document.documentElement.setAttribute('data-theme', s),
-        schema
+        attribut
       )
       funde = await seite.evaluate(IM_BROWSER)
     } catch (fehler) {
