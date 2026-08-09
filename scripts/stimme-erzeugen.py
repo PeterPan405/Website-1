@@ -113,18 +113,58 @@ ZIEL = "podcast-folge/folge.mp3"
 # Läufer.
 STUECK_MAX = 240
 
-# Zwei Pausen statt einer.
+# Die Pausen – und warum sie nicht alle gleich lang sein dürfen.
 #
-# Vorher stand hier ein einziger Wert von 0,35 s für jede Fuge. Das war
-# zu wenig und außerdem zu gleichförmig: Ein Absatzwechsel klang wie ein
-# Komma. Jetzt trägt jedes Stück seine eigene Pause – die kurze zwischen
-# Sätzen desselben Absatzes, die lange am Absatzende.
+# Vorher stand hier ein einziger Wert von 0,35 s für jede Fuge. Das war zu
+# wenig und außerdem zu gleichförmig: Ein Absatzwechsel klang wie ein Komma.
+# Dann wurden es zwei Werte, 0,5 und 0,95.
 #
-# Die 0,95 s am Absatzende sind zugleich das, wonach der Kapitelschritt
-# sucht (`silencedetect ... d=0.6`): Die Marken sitzen damit auf echten
-# Themenwechseln statt auf zufälligen Satzfugen.
-PAUSE_SATZ = 0.5
+# Am 9. August 2026 das nächste Urteil des Betreibers: **„sehr monoton“.**
+#
+# Zwei Werte sind immer noch ein Metronom. Ein Mensch hält nach einer Frage
+# anders inne als nach einer Feststellung, und keine zwei seiner Pausen sind
+# gleich lang. Genau diese Gleichmäßigkeit hört man als Monotonie – nicht die
+# Tonhöhe, die kann das Modell ohnehin, sondern den Takt.
+#
+# Deshalb jetzt: die Pause hängt am **Satzzeichen**, und darauf kommt eine
+# kleine Abweichung.
+#
+# Die 0,95 s am Absatzende sind zugleich das, wonach der Kapitelschritt sucht
+# (`silencedetect ... d=0.6`). Die Abweichung ist deshalb so bemessen, dass
+# eine Absatzpause nie unter 0,8 s fällt – sonst verschöben sich die
+# Kapitelmarken, und die Beschreibung bei YouTube zeigte auf die falsche
+# Stelle.
 PAUSE_ABSATZ = 0.95
+PAUSE_SATZ = 0.5
+#: Nach einer Frage oder einem Ausruf steht der Zuhörer länger an.
+PAUSE_FRAGE = 0.66
+#: Doppelpunkt und Gedankenstrich kündigen an – da geht es zügiger weiter.
+PAUSE_ANKUENDIGUNG = 0.34
+#: Höchste Abweichung nach oben und unten, in Sekunden.
+PAUSE_STREUUNG = 0.07
+
+
+def pause_fuer(stueck: str, absatzende: bool, stelle: int) -> float:
+    """Wie lange es nach diesem Stück still bleibt.
+
+    Die Abweichung ist **nicht zufällig, sondern aus dem Text gerechnet**:
+    Derselbe Sprechtext ergibt dieselbe Aufnahme. Ein `random` an dieser
+    Stelle würde zwei Läufe derselben Folge unterschiedlich klingen lassen,
+    und der Bildvergleich im Bau hätte nichts mehr, woran er sich hält.
+    """
+    schluss = stueck.rstrip()[-1:] if stueck.rstrip() else '.'
+    if absatzende:
+        grund = PAUSE_ABSATZ
+    elif schluss in '?!':
+        grund = PAUSE_FRAGE
+    elif schluss in ':–—':
+        grund = PAUSE_ANKUENDIGUNG
+    else:
+        grund = PAUSE_SATZ
+
+    # Aus Länge und Stelle: gleichmäßig verteilt, aber reproduzierbar.
+    kerbe = (len(stueck) * 7 + stelle * 13) % 11 / 10 - 0.5
+    return round(grund + kerbe * 2 * PAUSE_STREUUNG, 3)
 
 # Die Nachbearbeitung der fertigen Aufnahme steht in `klangkette.py` –
 # eine Stelle für beide Wege, mit der Begründung dort. Kurz: Grummeln
@@ -167,7 +207,7 @@ def in_stuecke(text: str) -> list[tuple[str, float]]:
 
         for nummer, stueck in enumerate(im_absatz, start=1):
             letztes = nummer == len(im_absatz)
-            stuecke.append((stueck, PAUSE_ABSATZ if letztes else PAUSE_SATZ))
+            stuecke.append((stueck, pause_fuer(stueck, letztes, len(stuecke))))
 
     return stuecke
 
