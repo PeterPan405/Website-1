@@ -106,8 +106,28 @@ jobs:
           git add data/podcast-eigener-feed.json
           git commit -m "Podcast: Folge zurueckgenommen"
           git push
+          neu=$(git rev-parse HEAD)
 
           # Der Push allein baut nichts – deshalb der ausdrückliche Anstoß.
+          #
+          # **Erst warten, bis GitHub den Push kennt.** Beim ersten scharfen
+          # Lauf am 9. August 2026 lagen Push und Anstoß eine Sekunde
+          # auseinander, und `--ref main` löste noch auf den Commit **davor**
+          # auf: Der Bau hätte die zurückgenommene Folge wieder auf die Seite
+          # gestellt. Zu sehen war das nur am `head_sha` des Laufs – der Lauf
+          # selbst wäre grün geworden.
+          for versuch in 1 2 3 4 5 6; do
+            steht=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha 2>/dev/null || echo '')
+            [ "$steht" = "$neu" ] && break
+            echo "  main steht noch auf ${steht:-unbekannt} – warte (Versuch $versuch)."
+            sleep 5
+          done
+
+          if [ "$steht" != "$neu" ]; then
+            echo "::warning::main zeigt noch nicht auf $neu – der Bau könnte den alten Stand nehmen."
+            echo "  Nach dem Lauf prüfen und den Paketbau nötigenfalls von Hand starten."
+          fi
+
           gh workflow run paket-bauen.yml --ref main || \
             echo "::warning::Der Paketbau ließ sich nicht anstoßen – von Hand starten."
         env:
