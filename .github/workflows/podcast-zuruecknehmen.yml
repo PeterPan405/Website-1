@@ -83,37 +83,17 @@ jobs:
       - name: Feed neu schreiben
         run: npm run podcastfeed schreiben
 
-      - name: Feed auf den Server
-        env:
-          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
-          USER: ${{ secrets.HOSTINGER_SSH_USER }}
-          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
-          SSH_PORT: '65002'
-          ZIELPFAD: domains/iminvests.de/public_html
-        run: |
-          if [ -z "$SSH_KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
-            echo "::error::Keine SSH-Zugangsdaten – der Feed bliebe unverändert."
-            echo "  Die Folge wäre dann von YouTube weg, bei Spotify aber noch da."
-            exit 1
-          fi
-
-          mkdir -p ~/.ssh
-          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
-          chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
-
-          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
-            podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"
-
-          # Der Webpfad bekommt eine **Kopie**, keinen Symlink – der wurde
-          # vom Server nicht verfolgt (404 neben einer 200). Dieselbe
-          # Begründung wie in `podcast-umzug.yml`.
-          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
-            "cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
-
-          rm -f ~/.ssh/id_deploy
-          echo "Feed erneuert: https://iminvests.de/podcast-audio/feed.xml"
-
+      # **Sichern kommt vor Übertragen**, und das ist der wichtigste
+      # Unterschied zu einem gewöhnlichen Veröffentlichungslauf.
+      #
+      # Die YouTube-Löschung ist längst passiert und nicht rückholbar. Was
+      # danach schiefgehen kann, darf deshalb nicht die einzige Spur der
+      # Rücknahme mitreißen. Läge das Committen hinter der Übertragung,
+      # verlöre ein toter SSH-Port die Registeränderung – Video weg, Eintrag
+      # zurück, und der nächste Lauf wüsste von nichts.
+      #
+      # Genau der Fall war am 9. August 2026 zu besichtigen: Port 65002
+      # antwortete zwei Stunden lang nicht, während alles andere lief.
       - name: Änderung sichern
         run: |
           if git diff --quiet; then
@@ -132,3 +112,42 @@ jobs:
             echo "::warning::Der Paketbau ließ sich nicht anstoßen – von Hand starten."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Feed auf den Server
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+        run: |
+          if [ -z "$SSH_KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "::error::Keine SSH-Zugangsdaten – der Feed bleibt unverändert."
+            echo "  Die Folge ist dann von YouTube weg, bei Spotify aber noch da."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+               podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"; then
+            # Der Webpfad bekommt eine **Kopie**, keinen Symlink – der wurde
+            # vom Server nicht verfolgt (404 neben einer 200). Dieselbe
+            # Begründung wie in `podcast-umzug.yml`.
+            ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+              "cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
+            rm -f ~/.ssh/id_deploy
+            echo "Feed erneuert: https://iminvests.de/podcast-audio/feed.xml"
+          else
+            rm -f ~/.ssh/id_deploy
+            echo "::error::Der Feed ließ sich nicht übertragen – Port $SSH_PORT antwortet nicht."
+            echo "  Register und YouTube sind bereits zurückgenommen; es fehlt nur"
+            echo "  die Datei auf dem Webspace, und bis dahin zeigt Spotify die Folge weiter."
+            echo "  Abhilfe: diesen Lauf später noch einmal starten. Er ist"
+            echo "  wiederholbar – eine gelöschte Kennung antwortet mit 404, und das"
+            echo "  gilt als erledigt."
+            exit 1
+          fi
