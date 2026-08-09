@@ -29,7 +29,7 @@ name: Kurse aktualisieren
 #
 # | Zeit (UTC)               | Was                                          |
 # | ------------------------ | -------------------------------------------- |
-# | :04, :19, :34, :49       | Leitwerte, nur Preis – **ohne Neubau**       |
+# | alle 5 Min. (:04, :09 …) | Leitwerte, nur Preis – **ohne Neubau**       |
 # | 08:07, 10:07 … 20:07     | voller Bestand alle zwei Stunden, mit Neubau |
 # | 21:47                    | voller Lauf nach dem Schluss in New York     |
 # | Wochenende ebenso :04 …  | nur Krypto und Devisen                       |
@@ -37,7 +37,7 @@ name: Kurse aktualisieren
 #
 # Die Arbeitsteilung dahinter: Die sichtbare **Zahl** erreicht den Leser
 # über `kurse-live.json` und den Browser (`KursLive`, fragt jede Minute) –
-# dafür braucht es keinen Bau, nur die 15-Minuten-Läufe. Das gebaute HTML
+# dafür braucht es keinen Bau, nur die Fünf-Minuten-Läufe. Das gebaute HTML
 # (Charts, Vorschluss als Rechenbasis, Leser ohne JavaScript) zieht mit den
 # vollen Läufen nach und ist damit höchstens gut zwei Stunden alt.
 #
@@ -72,7 +72,7 @@ name: Kurse aktualisieren
 
 on:
   schedule:
-    # Werktags **alle 15 Minuten, rund um die Uhr**: nur die Leitwerte,
+    # Werktags **alle fünf Minuten, rund um die Uhr**: nur die Leitwerte,
     # nur der laufende Preis.
     #
     # Seit dem 9. August 2026 – vorher stündlich zu festen Stunden. Was den
@@ -85,11 +85,11 @@ on:
     # Die alte Stundenliste (1,2,3,6,7,9,…) war die Antwort auf die
     # übersprungene Tokioter Sitzung vom 5. August; „alle Stunden" schließt
     # dieses Loch von selbst. Und dass einzelne Termine verworfen werden,
-    # heilt sich hier allein: Der nächste kommt in 15 Minuten.
+    # heilt sich hier allein: Der nächste kommt in fünf Minuten.
     #
     # Welche Symbole gemeint sind, steht in `lib/leitwerte.ts`. Die Minuten
     # sind krumm (siehe oben) und meiden die 30er-Marke.
-    - cron: '4,19,34,49 * * * 1-5'
+    - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * 1-5'
     # Werktags **alle zwei Stunden**: der volle Bestand.
     #
     # Die geraden Stunden, damit sich die beiden Läufe nie überschneiden –
@@ -105,7 +105,7 @@ on:
     # 21:47 UTC liegt nach dem Schluss in New York (21:00 UTC im Winter,
     # 20:00 im Sommer) und damit nach dem letzten Kurs des Tages.
     - cron: '47 21 * * 1-5'
-    # Am Wochenende ebenfalls alle 15 Minuten, aber nur Krypto und Devisen.
+    # Am Wochenende ebenfalls alle fünf Minuten, aber nur Krypto und Devisen.
     #
     # Aktien und Indizes werden nicht gehandelt – ein Abruf liefert für sie
     # denselben Freitagsschluss. Bitcoin, Ethereum und XRP laufen dagegen
@@ -113,7 +113,7 @@ on:
     # anderer Stelle ausdrücklich. Bis hierher stand am Wochenende trotzdem
     # der Freitagskurs. Die Beschränkung macht aus sieben Minuten und tausend
     # Anfragen ein paar Sekunden und eine Handvoll.
-    - cron: '4,19,34,49 * * * 6,0'
+    - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * 6,0'
     # Dazu am Wochenende alle sechs Stunden derselbe Abruf mit Neubau:
     # Ohne ihn stünde das **gebaute** HTML (Stand-Zeile, Vorschluss als
     # Rechenbasis) bis Montag auf dem Freitagsstand. Der Browser wäre
@@ -165,7 +165,7 @@ jobs:
           # Am Wochenende nur, was am Wochenende handelt. `github.event.schedule`
           # enthält den Ausdruck, der den Lauf ausgelöst hat – bei einem Start
           # von Hand ist er leer, dann wird alles geholt.
-          NUR_ARTEN: ${{ (github.event.schedule == '4,19,34,49 * * * 6,0' || github.event.schedule == '9 */6 * * 6,0') && 'crypto,fx' || '' }}
+          NUR_ARTEN: ${{ (github.event.schedule == '4,9,14,19,24,29,34,39,44,49,54,59 * * * 6,0' || github.event.schedule == '9 */6 * * 6,0') && 'crypto,fx' || '' }}
           # Nur der laufende Preis – gesetzt vom halbstündlichen Lauf **und vom
           # Wochenendlauf**.
           #
@@ -182,13 +182,13 @@ jobs:
           # und Bitcoin stand das ganze Wochenende auf dem Freitags- bzw.
           # Samstagswert – alle acht Sonntagsläufe grün, keiner mit Wirkung.
           # Der Preis-Modus schreibt den laufenden Kurs nachweislich (alle
-          # 15 Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
+          # fünf Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
           # holt der volle Lauf am Montag um 21:45 nach – `range=5y` bringt
           # alle abgeschlossenen Tage mit.
-          NUR_PREIS: ${{ (github.event.schedule == '4,19,34,49 * * * 1-5' || github.event.schedule == '7 8,10,12,14,16,18,20 * * 1-5' || github.event.schedule == '4,19,34,49 * * * 6,0' || github.event.schedule == '9 */6 * * 6,0' || inputs.nur_preis) && '1' || '' }}
+          NUR_PREIS: ${{ (github.event.schedule == '4,9,14,19,24,29,34,39,44,49,54,59 * * * 1-5' || github.event.schedule == '7 8,10,12,14,16,18,20 * * 1-5' || github.event.schedule == '4,9,14,19,24,29,34,39,44,49,54,59 * * * 6,0' || github.event.schedule == '9 */6 * * 6,0' || inputs.nur_preis) && '1' || '' }}
           # Der Stundenlauf holt nur die Leitwerte – siehe `lib/leitwerte.ts`.
           # Alles andere behält seinen Stand und zieht zwei Stunden später nach.
-          NUR_LEITWERTE: ${{ github.event.schedule == '4,19,34,49 * * * 1-5' && '1' || '' }}
+          NUR_LEITWERTE: ${{ github.event.schedule == '4,9,14,19,24,29,34,39,44,49,54,59 * * * 1-5' && '1' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen
@@ -421,19 +421,19 @@ jobs:
             --repo "${{ github.repository }}" --ref main -f paket=false
           exit 1
 
-      # **Nicht nach jedem 15-Minuten-Lauf.** Ein Neubau kostet gemessen
-      # 13 Minuten; bei 80 Preis-Läufen am Tag wäre das genau die
+      # **Nicht nach jedem Fünf-Minuten-Lauf.** Ein Neubau kostet gemessen
+      # 13 Minuten; bei fast 300 Preis-Läufen am Tag wäre das genau die
       # Überlastung, an der der alte Halbstundentakt gestorben ist (GitHub
       # verwarf die Läufe, siehe Kopf). Die Preis-Läufe brauchen ihn auch
       # nicht: Ihre Zahl erreicht den Leser über `kurse-live.json` und den
       # Browser. Gebaut wird nach den vollen Läufen (alle zwei Stunden und
       # 21:47) – das gebaute HTML ist damit höchstens gut zwei Stunden alt,
-      # die sichtbare Zahl höchstens rund 16 Minuten.
+      # die sichtbare Zahl höchstens rund sechs Minuten.
       - name: Neubau anstoßen
         if: >-
           steps.commit.outputs.gepusht == 'ja' &&
-          github.event.schedule != '4,19,34,49 * * * 1-5' &&
-          github.event.schedule != '4,19,34,49 * * * 6,0'
+          github.event.schedule != '4,9,14,19,24,29,34,39,44,49,54,59 * * * 1-5' &&
+          github.event.schedule != '4,9,14,19,24,29,34,39,44,49,54,59 * * * 6,0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
