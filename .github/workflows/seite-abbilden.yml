@@ -51,6 +51,11 @@ concurrency:
   group: seite-abbilden
   cancel-in-progress: false
 
+# Ohne dieses Recht endet der Push auf den Zweig mit 403 – der erste Lauf
+# ist genau daran gescheitert: Fotos fertig, Abgabe verweigert.
+permissions:
+  contents: write
+
 jobs:
   abbilden:
     name: Seite fotografieren
