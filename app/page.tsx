@@ -13,7 +13,7 @@ import {
   geschichtsvorspann,
 } from '@/lib/boersengeschichte'
 import { cn } from '@/lib/cn'
-import { formatDate } from '@/lib/format'
+import { formatDate, formatNumber, formatPercentSigned } from '@/lib/format'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import { getInstrument, getMarketOverview, getSeries } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
@@ -21,7 +21,6 @@ import { folgenAdresse, folgenDauer, getFolgen, kurzfassung } from '@/lib/podcas
 import { buildMetadata } from '@/lib/seo'
 import {
   areas,
-  areaStyles,
   LEARN_TOPIC_COUNT,
   RECHNER_ANZAHL,
   RECHNER_ANZAHL_WORT,
@@ -44,15 +43,15 @@ export const metadata: Metadata = buildMetadata({
  * den übrigen. Die Überschrift darüber zählt die Kacheln selbst – wer hier
  * eine ergänzt, muss sie nirgends sonst nachtragen.
  */
-const areaTiles: { area: AreaId; icon: IconName }[] = [
-  { area: 'learn', icon: 'book' },
-  { area: 'tools', icon: 'calculator' },
-  { area: 'markets', icon: 'chart' },
-  { area: 'globe', icon: 'globe' },
+const areaTiles: { area: AreaId }[] = [
+  { area: 'learn' },
+  { area: 'tools' },
+  { area: 'markets' },
+  { area: 'globe' },
   // Zwischen Globus und Kalender – dieselbe Stelle wie in der Kopfzeile.
-  { area: 'akademie', icon: 'scale' },
-  { area: 'calendar', icon: 'clock' },
-  { area: 'news', icon: 'newspaper' },
+  { area: 'akademie' },
+  { area: 'calendar' },
+  { area: 'news' },
 ]
 
 /**
@@ -173,7 +172,12 @@ export default async function HomePage() {
               untereinander stehen und die Anfangsbuchstaben eine Achse bilden –
               bei automatischem Umbruch wäre das von der Fensterbreite abhängig.
             */}
-            <h1 className="text-fg mt-5 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            {/*
+              Halbfett statt fett und enger gesperrt: In dieser Größe wirkt
+              das volle Fettgewicht plump; die Eleganz kommt aus Größe und
+              Laufweite, nicht aus Schwärze.
+            */}
+            <h1 className="text-fg mt-5 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl lg:text-6xl">
               <span className="block">Finanzen verstehen,</span>
               {/*
                 Volle Farbe statt Farbverlauf: Verlaufs-Schrift ist das
@@ -183,7 +187,7 @@ export default async function HomePage() {
               <span className="text-brand block">Fehler vermeiden</span>
             </h1>
 
-            <p className="text-fg-muted mt-5 max-w-xl text-lg leading-relaxed">
+            <p className="text-fg-muted mt-6 max-w-xl text-lg leading-relaxed sm:text-xl">
               {learnStats.topicCount} Finanzthemen, jeweils in den Stufen Beginner,
               Fortgeschritten und Profi. Dazu {RECHNER_ANZAHL_WORT} Rechner mit
               offengelegter Methodik, Marktdaten mit Erklärung und Nachrichten, die
@@ -206,7 +210,7 @@ export default async function HomePage() {
                 <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
                   Themen
                 </dt>
-                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">
+                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
                   {learnStats.topicCount}
                 </dd>
               </div>
@@ -214,7 +218,7 @@ export default async function HomePage() {
                 <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
                   Lernstufen
                 </dt>
-                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">
+                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
                   {learnStats.levelCount}
                 </dd>
               </div>
@@ -222,7 +226,7 @@ export default async function HomePage() {
                 <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
                   Rechner
                 </dt>
-                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">
+                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
                   {RECHNER_ANZAHL}
                 </dd>
               </div>
@@ -231,6 +235,40 @@ export default async function HomePage() {
 
           {/* Die drehende News-Säule. */}
           <NewsCarousel headlines={headlines} />
+        </div>
+
+        {/*
+          Die Ticker-Zeile: die Leitwerte des Tages in einer Haarlinien-Leiste,
+          jede Zahl ein Verweis auf ihre Detailseite. Kein Laufband – die Werte
+          stehen, auf schmalen Schirmen wird die Zeile seitlich geschoben.
+          `data-fliesst`, weil sich die Zahlen mit jedem Bau ändern.
+        */}
+        <div className="border-border border-y" data-fliesst="">
+          <ul className="fk-container flex [scrollbar-width:none] items-center gap-8 overflow-x-auto py-3 whitespace-nowrap [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {marketPreviews.slice(0, 8).map(({ quote }) => (
+              <li key={quote.symbol} className="shrink-0">
+                <Link
+                  href={`/maerkte/${quote.symbol}`}
+                  className="group flex items-baseline gap-2"
+                >
+                  <span className="text-fg-subtle group-hover:text-fg text-[0.7rem] font-semibold tracking-wider uppercase transition">
+                    {quote.ticker}
+                  </span>
+                  <span className="text-fg text-sm font-medium tabular-nums">
+                    {formatNumber(quote.value, quote.decimals)}
+                  </span>
+                  <span
+                    className={cn(
+                      'text-xs font-medium tabular-nums',
+                      quote.changePercent >= 0 ? 'text-success' : 'text-danger'
+                    )}
+                  >
+                    {formatPercentSigned(quote.changePercent)}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -243,53 +281,42 @@ export default async function HomePage() {
           lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
         />
 
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {areaTiles.map(({ area, icon }, index) => {
-            const config = areas[area]
-            const style = areaStyles[area]
-            /*
-              Sieben Kacheln in drei Spalten lassen die letzte allein in
-              ihrer Zeile stehen – das sah aus wie ein Versehen. Die letzte
-              wird deshalb zur breiten Zeile über die volle Rasterbreite,
-              mit dem Sinnbild links statt oben; so endet der Block auf
-              einer vollen Kante.
-            */
-            const breit = index === areaTiles.length - 1 && areaTiles.length % 3 === 1
-            return (
-              <li key={area} className={cn(breit && 'sm:col-span-2 lg:col-span-3')}>
-                <Reveal delay={index * 0.05}>
+        {/*
+          Register statt Kachelraster: Sieben Karten mit Sinnbild oben links
+          waren die vielleicht deutlichste Baukasten-Stelle der Startseite –
+          und bei sieben Einträgen blieb in drei Spalten immer eine Kachel
+          allein. Eine Haarlinien-Liste mit laufender Nummer liest sich wie
+          ein Inhaltsverzeichnis: ruhig, eindeutig, ohne Restzeile.
+        */}
+        <div className="border-border mt-10 border-t">
+          <ul>
+            {areaTiles.map(({ area }, index) => {
+              const config = areas[area]
+              return (
+                <li key={area}>
                   <Link
                     href={config.href}
-                    className={cn(
-                      'fk-card-interactive group flex h-full p-6',
-                      breit ? 'flex-row items-center gap-5' : 'flex-col'
-                    )}
+                    className="group border-border hover:bg-surface flex items-center gap-5 border-b px-1 py-5 transition sm:gap-8 sm:px-3"
                   >
-                    <span
-                      className={cn(
-                        'flex size-11 shrink-0 items-center justify-center rounded-lg',
-                        style.soft
-                      )}
-                    >
-                      <Icon name={icon} className="size-5" />
+                    <span className="text-fg-subtle font-display w-7 shrink-0 text-sm tabular-nums">
+                      {String(index + 1).padStart(2, '0')}
                     </span>
-                    {/*
-                      Ohne „Ansehen →“-Fußzeile: Sie stand siebenmal
-                      untereinander. Die Karte ist der Link, und die
-                      Anhebung beim Überfahren sagt es.
-                    */}
-                    <span className={cn('flex flex-col', !breit && 'mt-4')}>
-                      <h3 className="text-fg text-lg font-semibold">{config.label}</h3>
-                      <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-                        {config.description}
-                      </p>
+                    <span className="text-fg font-display shrink-0 text-lg font-semibold sm:w-64 sm:text-xl">
+                      {config.label}
                     </span>
+                    <span className="text-fg-muted hidden min-w-0 flex-1 truncate text-sm leading-relaxed md:block">
+                      {config.description}
+                    </span>
+                    <Icon
+                      name="arrow-right"
+                      className="text-fg-subtle ml-auto size-4 shrink-0 transition-transform group-hover:translate-x-1"
+                    />
                   </Link>
-                </Reveal>
-              </li>
-            )
-          })}
-        </ul>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </section>
 
       {/* -------------------------------------------------------- Märkte */}

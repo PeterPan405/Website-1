@@ -72,9 +72,10 @@ export function PageHeader({
           Ohne Eyebrow entfällt auch dessen Abstand nach oben – sonst klaffte
           über der Überschrift eine Lücke, wo nichts steht.
         */}
+        {/* Halbfett statt fett: Eleganz aus Größe und Laufweite, nicht aus Schwärze. */}
         <h1
           className={cn(
-            'text-fg max-w-3xl text-4xl font-bold tracking-[-0.025em] sm:text-5xl',
+            'text-fg max-w-3xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl',
             eyebrow && 'mt-4'
           )}
         >
@@ -123,7 +124,10 @@ export function SectionHeading({
             {eyebrow}
           </p>
         )}
-        <h2 id={id} className="text-fg mt-1.5 text-2xl font-bold sm:text-3xl">
+        <h2
+          id={id}
+          className="text-fg mt-1.5 text-2xl font-semibold tracking-[-0.02em] sm:text-3xl"
+        >
           {title}
         </h2>
         {lead && <p className="text-fg-muted mt-3 leading-relaxed">{lead}</p>}
