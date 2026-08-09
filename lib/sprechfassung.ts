@@ -243,6 +243,16 @@ function zerlegeDatum(date: string): {
  *
  * Die Zählung stammt aus der alten Arbeitsanweisung – 30.07. ist Folge 1,
  * 07.08. ist Folge 7 – und genau das ist die Zahl der Werktage im Zeitraum.
+ *
+ * **An einem Probetag stimmt sie nicht.** Ein Wochenendtag zählt nicht mit,
+ * also bekam die Probefolge vom Sonntag, dem 9. August 2026, dieselbe Nummer
+ * wie die vom Freitag: beide 7. Solange werktags erscheint, ist das ohne
+ * Folgen; eine Probe ist ohnehin dazu da, wieder zu verschwinden.
+ *
+ * Wer den Podcast auf **täglich** umstellt (in `podcast-erzeugen.yml` ist das
+ * eine Zeile), muss diese Funktion mit umstellen – sonst tragen Samstag,
+ * Sonntag und Montag dieselbe Nummer. Die Zahl käme dann besser aus dem
+ * Register selbst: die höchste vorhandene plus eins.
  */
 export function folgennummer(date: string): number {
   const start = Date.UTC(2026, 6, 30, 12)
