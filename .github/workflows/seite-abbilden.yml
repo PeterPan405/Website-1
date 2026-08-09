@@ -1,0 +1,124 @@
+name: Seite abbilden
+
+# Öffnet eine fremde Seite in einem echten Browser und legt Bildschirmfotos
+# auf den wurzellosen Zweig `seitenbild`.
+#
+# ## Warum es diesen Workflow gibt
+#
+# Die Entwicklungsumgebung erreicht nur GitHub und npm; `quellen-holen.yml`
+# liefert deshalb den **Text** fremder Seiten. Für Gestaltungsfragen reicht
+# das nicht: Am 9. August 2026 nannte der Betreiber eine Referenzseite für
+# den optischen Umbau, und aus ihrem Text ließ sich Aufbau, aber nicht
+# Aussehen ablesen – Schrift, Farben, Abstände stehen nicht im Fließtext.
+#
+# Der Läufer hat vollen Netzzugang und einen Browser. Er scrollt die Seite
+# einmal komplett durch (viele Seiten blenden Abschnitte erst beim Scrollen
+# ein) und schreibt zwei Bilder: den sichtbaren Anfang und die ganze Seite.
+#
+# ## Warum ein Zweig und kein Artefakt
+#
+# Ein Artefakt ist von der Entwicklungsumgebung aus unerreichbar (Egress
+# 403, siehe AGENTS.md „Ein Artefakt ist kein Ergebnis"). `git` ist der
+# einzige Kanal, der trägt – daher derselbe Bau wie bei `hoerprobe` und
+# `quellen-heute`: nie gebaut, nie veröffentlicht, jeder Lauf ersetzt den
+# Zweig vollständig, keine Historie. Fremde Inhalte landen damit nicht in
+# `main`; das Bild ist eine täglich ersetzbare Arbeitsdatei.
+#
+# Abholen:
+#   git fetch origin seitenbild
+#   git show origin/seitenbild:oben.png > oben.png
+#   git show origin/seitenbild:ganz.png > ganz.png
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Adresse der Seite'
+        required: true
+        type: string
+      breite:
+        description: 'Fensterbreite in Pixeln'
+        required: false
+        default: '1440'
+        type: string
+      dunkel:
+        description: 'Dunkles Farbschema vortäuschen (ja/nein)'
+        required: false
+        default: 'nein'
+        type: string
+
+concurrency:
+  group: seite-abbilden
+  cancel-in-progress: false
+
+jobs:
+  abbilden:
+    name: Seite fotografieren
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Browser bereitstellen
+        run: |
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund playwright@1.54 >/dev/null
+          npx playwright install --with-deps chromium
+
+      - name: Fotografieren
+        env:
+          URL: ${{ inputs.url }}
+          BREITE: ${{ inputs.breite }}
+          DUNKEL: ${{ inputs.dunkel }}
+        run: |
+          cat > foto.mjs <<'ENDE'
+          import { chromium } from 'playwright'
+
+          const url = process.env.URL
+          const breite = Number(process.env.BREITE || '1440')
+          const dunkel = (process.env.DUNKEL || 'nein').toLowerCase() === 'ja'
+
+          const browser = await chromium.launch()
+          const seite = await browser.newPage({
+            viewport: { width: breite, height: 960 },
+            colorScheme: dunkel ? 'dark' : 'light',
+            deviceScaleFactor: 1,
+          })
+          await seite.goto(url, { waitUntil: 'networkidle', timeout: 60_000 })
+
+          /*
+            Einmal in Bildschirmhöhen bis ans Ende scrollen und zurück:
+            Seiten mit Einblend-Animationen zeigen ihre Abschnitte erst,
+            wenn sie im Sichtfenster waren.
+          */
+          await seite.evaluate(async () => {
+            const schritt = window.innerHeight
+            for (let y = 0; y < document.body.scrollHeight; y += schritt) {
+              window.scrollTo(0, y)
+              await new Promise((f) => setTimeout(f, 350))
+            }
+            window.scrollTo(0, 0)
+          })
+          await seite.waitForTimeout(1200)
+
+          await seite.screenshot({ path: 'oben.png' })
+          await seite.screenshot({ path: 'ganz.png', fullPage: true })
+          await browser.close()
+          console.log('Fertig:', url)
+          ENDE
+          node foto.mjs
+
+      - name: Auf den Zweig seitenbild legen
+        run: |
+          git init -q ablage
+          cd ablage
+          git config user.name "seite-abbilden"
+          git config user.email "actions@users.noreply.github.com"
+          cp ../oben.png ../ganz.png .
+          printf '%s\n' "Quelle: $URL" "Stand: $(date -u +%FT%TZ)" > quelle.txt
+          git add .
+          git commit -q -m "Bildschirmfotos von $URL"
+          git push -q --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            HEAD:refs/heads/seitenbild
+        env:
+          URL: ${{ inputs.url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
