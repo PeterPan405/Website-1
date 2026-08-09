@@ -4,7 +4,11 @@ import { Icon } from '@/components/ui/Icon'
 import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
 
 /**
- * Umschalter für Hell-/Dunkelmodus.
+ * Umschalter zwischen Weiß und Schwarz.
+ *
+ * Weiß heißt der helle Modus seit dem 9. August 2026 auch im Wert
+ * (`data-theme='weiss'`): Der Betreiber hat Weiß als Start festgelegt, eine
+ * dritte Darstellung „Grau“ wurde am selben Tag gebaut und wieder verworfen.
  *
  * Die Komponente hält absichtlich keinen React-State: Der aktuelle Modus steht
  * im `data-theme`-Attribut des <html>-Elements, und beide Icons werden immer
@@ -14,7 +18,7 @@ import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
 export function ThemeToggle({ className }: { className?: string }) {
   function toggleTheme() {
     const root = document.documentElement
-    const next = root.dataset.theme === 'dark' ? 'light' : 'dark'
+    const next = root.dataset.theme === 'dark' ? 'weiss' : 'dark'
     root.dataset.theme = next
 
     /*
