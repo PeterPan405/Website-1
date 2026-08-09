@@ -121,6 +121,48 @@ const uhrzeit = (iso: string) =>
   `${datumLang(iso)}, ${new Date(iso).toISOString().slice(11, 16)} Uhr UTC`
 
 /**
+ * Ein Berichtsmonat als Wort: `2026-07` wird zu „Juli 2026“.
+ *
+ * ## Warum das eine eigene Funktion braucht
+ *
+ * Die Inflationsreihe der EZB trägt als Zeitpunkt einen **Monat**, keinen Tag.
+ * Bis zum 9. August 2026 stand er roh im Fließtext: „eine Inflationsrate von
+ * 2,8 Prozent für 2026-07“. Für Leser ist das schon schlecht. Gekippt ist
+ * daran aber der ganze Nachrichtenlauf:
+ *
+ *     FEHL keine Ziffern im Sprechtext
+ *          …flationsrate von zwei Komma acht Prozent für 2026minus sieben…
+ *
+ * Die Sprechfassung macht aus dem Bindestrich „minus“ und lässt die Jahreszahl
+ * stehen. Der Test in `tests/sprechfassung.test.ts` fängt genau das ab – er
+ * baut die Folge aus der **jüngsten** Ausgabedatei, also aus der gerade
+ * geschriebenen. Damit scheiterte der Lauf **nach** dem Schreiben und die
+ * Ausgabe wurde nie committet.
+ *
+ * Der Fehler steckte seit dem 6. August im Notbehelf und ist nie aufgefallen,
+ * weil der Notbehelf bis dahin nie zum Zug kam.
+ */
+const monatLang = (iso: string) => {
+  const monate = [
+    'Januar',
+    'Februar',
+    'März',
+    'April',
+    'Mai',
+    'Juni',
+    'Juli',
+    'August',
+    'September',
+    'Oktober',
+    'November',
+    'Dezember',
+  ]
+  const [j, m] = iso.slice(0, 7).split('-')
+  const name = monate[Number(m) - 1]
+  return name ? `${name} ${j}` : iso
+}
+
+/**
  * Baut einen Text aus wahren Sätzen bis in ein Längenfenster.
  *
  * Nicht kosmetisch: `teaser` muss zwischen 100 und 160 Zeichen liegen, sonst
@@ -370,7 +412,7 @@ if (leitzins && inflationDe) {
     body: [
       {
         type: 'paragraph',
-        text: `**${leitzins.bezeichnung}**: ${zahl(leitzins.aktuell.wert, 2)} Prozent, Stand ${datumLang(leitzins.aktuell.t)}. **${inflationDe.bezeichnung}**: ${zahl(inflationDe.aktuell.wert, 1)} Prozent für ${inflationDe.aktuell.t}.`,
+        text: `**${leitzins.bezeichnung}**: ${zahl(leitzins.aktuell.wert, 2)} Prozent, Stand ${datumLang(leitzins.aktuell.t)}. **${inflationDe.bezeichnung}**: ${zahl(inflationDe.aktuell.wert, 1)} Prozent für ${monatLang(inflationDe.aktuell.t)}.`,
       },
       { type: 'heading', level: 2, text: 'Der Realzins' },
       {
@@ -393,7 +435,7 @@ if (leitzins && inflationDe) {
   further.push({
     headline: `Realzins ${realSatz.replace(/ – .*/, '')}`,
     summary: [
-      `Leitzins ${zahl(leitzins.aktuell.wert, 2)} Prozent (Stand ${datumLang(leitzins.aktuell.t)}) gegen eine deutsche Inflationsrate von ${zahl(inflationDe.aktuell.wert, 1)} Prozent für ${inflationDe.aktuell.t}.`,
+      `Leitzins ${zahl(leitzins.aktuell.wert, 2)} Prozent (Stand ${datumLang(leitzins.aktuell.t)}) gegen eine deutsche Inflationsrate von ${zahl(inflationDe.aktuell.wert, 1)} Prozent für ${monatLang(inflationDe.aktuell.t)}.`,
     ],
     category: 'Geldpolitik',
     whyItMatters:
