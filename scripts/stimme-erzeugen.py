@@ -261,12 +261,52 @@ def _wecker(signum, rahmen):  # noqa: ARG001
 signal.signal(signal.SIGALRM, _wecker)
 
 
+def mit_schlusszeichen(text: str) -> str:
+    """Sorgt dafür, dass ein Stück auf einem Satzzeichen endet.
+
+    **Das ist keine Kosmetik, sondern die Abbruchbedingung des Modells.**
+
+    `open-end generation` heißt: Es erzeugt Ton, bis es ein Schlusszeichen
+    setzt. Ein Fetzen, der auf ein Komma endet, gibt ihm keinen Anlass dazu –
+    also läuft es bis zur Frist.
+
+    Am 9. August 2026 hat das den ersten echten Podcastlauf gekostet. Die
+    Teilung schnitt am Komma, und die linke Hälfte hieß:
+
+        'Was sich bewegt hat,'
+
+    Zwanzig Zeichen, kein Satzende, hing zweimal – und war zu kurz, um noch
+    einmal geteilt zu werden. Der Lauf endete mit „lieber keine Folge als eine
+    mit einem Loch“, und es gab keine Folge.
+
+    Das Komma wird ersetzt, nicht ergänzt: „hat,.“ spräche das Modell als
+    Stocken. Gehört wird der Punkt an dieser Stelle ohnehin kaum – die
+    Sprechpause danach ist dieselbe.
+    """
+    sauber = text.rstrip()
+    if not sauber:
+        return sauber
+    if sauber[-1] in ".!?":
+        return sauber
+    if sauber[-1] in ",;:–—-":
+        return sauber[:-1].rstrip() + "."
+    return sauber + "."
+
+
 def haelften(stueck: str) -> tuple[str, str] | None:
     """Teilt ein Stück in der Mitte, an der nächstbesten Sprechgrenze.
 
     Gesucht wird die Grenze, die der Mitte am nächsten liegt – erst ein
     Satzende, dann ein Komma, dann notfalls ein Leerzeichen. Mitten im
     Wort wird nie getrennt: Das hört man, und zwar sofort.
+
+    Beide Hälften bekommen ein Schlusszeichen; warum, steht bei
+    `mit_schlusszeichen`. Ohne das war die Teilung ein Tausch: ein hängendes
+    Stück gegen zwei, von denen eines garantiert hängt.
+
+    Die Untergrenze von 80 Zeichen gilt nur für das **Teilen**. Ein kürzeres
+    Stück, das hängt, ist damit nicht verloren – es bekommt sein Schlusszeichen
+    und einen weiteren Versuch (siehe `sprich`).
     """
     if len(stueck) < 80:
         return None
@@ -276,7 +316,10 @@ def haelften(stueck: str) -> tuple[str, str] | None:
         brauchbar = [s for s in stellen if 20 < s < len(stueck) - 20]
         if brauchbar:
             schnitt = min(brauchbar, key=lambda s: abs(s - mitte))
-            return stueck[:schnitt].strip(), stueck[schnitt:].strip()
+            return (
+                mit_schlusszeichen(stueck[:schnitt]),
+                mit_schlusszeichen(stueck[schnitt:]),
+            )
     return None
 
 
@@ -299,6 +342,22 @@ def sprich(stueck: str, tiefe: int = 0):
 
     Drei Ebenen tief, dann ist Schluss: Ein Fetzen von zwanzig Zeichen,
     der immer noch hängt, ist kein Textproblem mehr.
+
+    ## Der Fetzen ohne Satzende
+
+    Am 9. August 2026 endete der erste echte Podcastlauf so:
+
+        Stück hing nach 180 s – geteilt in 20 + 60 Zeichen (Ebene 1)
+        RuntimeError: 'Was sich bewegt hat,' ließ sich nicht sprechen
+        und nicht mehr teilen.
+
+    Zwanzig Zeichen, Komma am Ende, zu kurz zum Teilen – und damit war die
+    Folge weg. Die Teilung hatte den Fehler nicht behoben, sondern erzeugt:
+    Sie schnitt am Komma und gab dem Modell eine Hälfte ohne Abbruchbedingung.
+
+    Deshalb zwei Dinge: `haelften` setzt jetzt Schlusszeichen, und ein Stück,
+    das sich **nicht** teilen lässt, bekommt vorher noch einen Versuch mit
+    Schlusszeichen. Erst wenn auch der scheitert, ist Schluss.
     """
     signal.alarm(FRIST_JE_STUECK)
     try:
@@ -312,6 +371,12 @@ def sprich(stueck: str, tiefe: int = 0):
 
     teile = haelften(stueck) if tiefe < 3 else None
     if not teile:
+        # Zu kurz zum Teilen. Fehlt bloß das Schlusszeichen, ist das kein
+        # verlorenes Stück, sondern ein ungestellter Halt.
+        geschlossen = mit_schlusszeichen(stueck)
+        if geschlossen != stueck and tiefe < 4:
+            melde(f"  Stück ohne Satzende – erneut mit Punkt: {geschlossen[:40]!r}")
+            return sprich(geschlossen, tiefe + 1)
         raise RuntimeError(
             f"Ein Stück ließ sich nicht sprechen und nicht mehr teilen: "
             f"{stueck[:60]!r}. Lieber keine Folge als eine mit einem Loch."
