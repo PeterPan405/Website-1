@@ -122,23 +122,21 @@ export function Header() {
       )}
     >
       {/*
-        Der Kopf bekommt ab `xl` eine breitere Spalte als der Seiteninhalt.
+        Über die volle Bildschirmbreite statt in der Inhaltsspalte: Logo ganz
+        links, die Knöpfe ganz rechts, die Navigation bleibt mittig. Umgesetzt
+        über ein Raster mit gleich breiten Außenspalten (`1fr auto 1fr`) – nur
+        so steht das Menü **wirklich** in der Bildschirmmitte und nicht dort,
+        wo der Platz zwischen zwei unterschiedlich breiten Enden übrig bleibt.
+        `justify-self` schiebt die beiden Enden an ihre Kanten.
 
-        Sieben Menüpunkte mit Untermenü brauchen 779 Pixel, dazu Wortmarke,
-        Suche, Sprache, Thema und „Jetzt lernen“ – zusammen rund 1.230. In die
-        1.088 Pixel Innenbreite von `max-w-6xl` passt das nicht, und weil in
-        `fk-btn` ein `whitespace-nowrap` steckt, schrumpft nichts: Der Knopf
-        wanderte einfach nach rechts aus der Spalte heraus. Auf breiten
-        Schirmen fiel das kaum auf, unterhalb von etwa 1.390 Pixeln schob es
-        die ganze Seite zur Seite.
-
-        Der schmalere Innenabstand ab `xl` ist kein Schönheitsentscheid,
-        sondern Puffer: Bei genau 1.280 Pixeln bleiben sonst nur zwölf Pixel
-        übrig. Das reicht in Chromium und kippt in einem Browser, dessen
-        Schrift ein Prozent breiter läuft – gemessen wurde hier mit Chromium,
-        gelesen wird die Seite auch mit Safari.
+        Die Breitenfrage von früher bleibt damit gelöst: Sieben Menüpunkte,
+        Wortmarke und vier Bedienelemente brauchen zusammen rund 1.230 Pixel
+        und passten nie in die 1.088 Pixel der Inhaltsspalte – `fk-btn` trägt
+        ein `whitespace-nowrap`, also schrumpfte nichts, der Knopf wanderte
+        aus der Spalte heraus. Volle Breite ist dafür der großzügigere Weg
+        als eine zweite, etwas breitere Spalte.
       */}
-      <div className="fk-container flex h-16 items-center justify-between gap-4 xl:max-w-7xl xl:px-6">
+      <div className="mx-auto flex h-16 w-full max-w-[120rem] items-center gap-4 px-4 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr]">
         <Link
           href="/"
           className="text-fg hover:text-brand rounded-lg transition"
@@ -148,7 +146,7 @@ export function Header() {
         </Link>
 
         {/* ---------------- Desktop-Navigation ---------------- */}
-        <nav aria-label="Hauptnavigation" className="hidden xl:block">
+        <nav aria-label="Hauptnavigation" className="hidden xl:col-start-2 xl:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <NavEntry
@@ -166,7 +164,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-2 xl:col-start-3 xl:ml-0 xl:justify-self-end">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
@@ -209,7 +207,7 @@ export function Header() {
           >
             <nav
               aria-label="Hauptnavigation (mobil)"
-              className="fk-container max-h-[calc(100dvh-4rem)] overflow-y-auto py-4"
+              className="mx-auto max-h-[calc(100dvh-4rem)] w-full max-w-[120rem] overflow-y-auto px-4 py-4 sm:px-6"
             >
               <ul className="space-y-1">
                 {mainNav.map((item) => (

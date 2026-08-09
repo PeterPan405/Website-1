@@ -19,18 +19,23 @@
   /*
     Flächen – ein dezenter warmer Papierton statt reinem Weiß, vom
     Betreiber am 9. August 2026 anhand einer Vorschau gewählt („das würde
-    es ein wenig hochwertiger aussehen lassen“). Karten liegen einen Hauch
-    heller darüber, die Trennung macht die feine Linie (siehe fk-card);
-    die gedämpfte Fläche und die Ränder sind im selben warmen Register.
+    es ein wenig hochwertiger aussehen lassen“) und noch am selben Abend
+    einen Hauch wärmer nachgezogen.
+
+    **Die Karten liegen im selben Register**, nur eine Spur heller als der
+    Grund – weiße Karten auf beigem Grund wirkten wie ein Fremdkörper. Der
+    Abstand zwischen Grund und Karte ist bewusst klein; die eigentliche
+    Trennung macht die feine Linie (siehe fk-card).
+
     Der interne Name der Darstellung bleibt `weiss` – er steckt im
     localStorage der Besucher, eine Umbenennung würfe gespeicherte
     Entscheidungen weg.
   */
-  --c-canvas: #f8f5ef;
-  --c-surface: #fdfbf7;
-  --c-surface-muted: #f0ebe2;
-  --c-border: #e7e1d5;
-  --c-border-strong: #cdc5b6;
+  --c-canvas: #f6f2ea;
+  --c-surface: #fbf8f2;
+  --c-surface-muted: #eee8dc;
+  --c-border: #e4ddcf;
+  --c-border-strong: #cabfad;
 
   /* Text */
   --c-fg: #0f172a;
@@ -48,7 +53,12 @@
     Abstufung fg → muted → subtle bleibt dabei erhalten, sie wird nur enger.
     Nachzurechnen mit `npm run kontrast`.
   */
-  --c-fg-subtle: #606b81;
+  /*
+    Am 9. August 2026 eine Stufe nachgedunkelt: Auf der warmen gedämpften
+    Fläche #eee8dc erreichte #606b81 nur 4,39:1 – knapp unter AA. #5c6678
+    hält auf allen Flächen dieser Darstellung mindestens 4,75:1.
+  */
+  --c-fg-subtle: #5c6678;
 
   /*
     Logo-Farben unverändert wie im Signet.
