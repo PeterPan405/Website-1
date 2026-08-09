@@ -59,7 +59,7 @@ export function PageHeader({
         {eyebrow && (
           <p
             className={cn(
-              'flex items-center gap-1.5 text-xs font-semibold tracking-[0.16em] uppercase',
+              'flex items-center gap-1.5 font-mono text-xs font-semibold tracking-[0.16em] uppercase',
               style.text
             )}
           >
@@ -120,7 +120,7 @@ export function SectionHeading({
     <div className={cn('flex flex-wrap items-end justify-between gap-4', className)}>
       <div className="max-w-2xl">
         {eyebrow && (
-          <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+          <p className="text-fg-subtle font-mono text-xs font-semibold tracking-wide uppercase">
             {eyebrow}
           </p>
         )}

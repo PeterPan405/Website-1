@@ -365,8 +365,14 @@
   --color-ring: var(--c-ring);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display:
-    var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /*
+    Die Stimme der Seite: eine Serifenschrift für alles Große, gesetzt aus
+    „Fraunces“ – warm, eigenständig, mit optischer Größenanpassung. Der
+    Wechsel weg von der geometrischen Sans (Sora) ist der Kern der
+    Entschablonierung: Sans-Überschrift auf Sans-Fließtext sieht aus wie
+    jede zweite generierte Seite; Serife auf Sans liest sich wie Redaktion.
+  */
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
 
   /*
     18 Pixel, das Kartenmaß von iOS/macOS. Zusammen mit dem Wegfall der
@@ -472,8 +478,9 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-display), var(--font-sans), ui-sans-serif, sans-serif;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    /* Serifen brauchen kaum Unterschneidung – zu eng wirkt gequetscht. */
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
@@ -583,7 +590,7 @@
 */
 @utility fk-chip {
   @apply inline-flex items-center gap-1.5 rounded-[0.3rem] px-2 py-0.5;
-  @apply text-[0.7rem] font-semibold tracking-wider uppercase;
+  @apply font-mono text-[0.7rem] font-semibold tracking-wider uppercase;
 }
 
 /* ---------------------------------------------------------------- Drucken */

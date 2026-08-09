@@ -1,5 +1,14 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Sora } from 'next/font/google'
+import { Inter } from 'next/font/google'
+
+/*
+  Die Display-Schrift kommt als Paket über npm und nicht über next/font:
+  Diese Umgebung erreicht nur GitHub und npm, und next/font/google lädt beim
+  Bauen von Google – das wäre hier ein 403. Die opsz-Fassung, weil Fraunces
+  damit bei großen Graden die Zeichnung wechselt (optical sizing) – genau der
+  Unterschied zwischen einer Textserifen und einer Schaugröße.
+*/
+import '@fontsource-variable/fraunces/opsz.css'
 
 import './globals.css'
 
@@ -13,12 +22,6 @@ import { siteConfig, siteUrl } from '@/lib/site'
 
 const inter = Inter({
   variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const sora = Sora({
-  variable: '--font-sora',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -151,7 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       data-theme="weiss"
       // Das Inline-Script verändert data-theme vor der Hydration.
       suppressHydrationWarning
-      className={`${inter.variable} ${sora.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
