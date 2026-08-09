@@ -38,7 +38,7 @@ REPO = f"Qwen/Qwen3-TTS-12Hz-{GROESSE}-Base"
 # Rund 30 Sekunden Sprache – lang genug für eine belastbare Messung,
 # kurz genug, dass ein aussichtsloser Versuch nicht 20 Minuten kostet.
 STANDARDPROBE = (
-    "Guten Morgen und herzlich willkommen zum Marktupdate von IM Investments. "
+    "Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests. "
     "Heute ist Montag, der zehnte August zweitausendsechsundzwanzig. "
     "Ein schwacher US-Jobbericht schickt den DAX auf Rekordkurs, Gold steigt "
     "den dritten Tag in Folge, und zwei Großbanken verpacken den KI-Boom in "

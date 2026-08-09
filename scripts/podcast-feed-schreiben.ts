@@ -111,7 +111,7 @@ if (modus === 'eintragen') {
 
 /* Der Feed – in beiden Betriebsarten neu geschrieben. */
 const kopfBeschreibung =
-  'Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir ' +
+  'Dein tägliches Marktupdate von IM Invests. Jeden Morgen fassen wir ' +
   'kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten ' +
   'zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken – immer mit Einordnung, was ' +
   'das für Privatanleger bedeutet. Text und Vertonung entstehen mit Unterstützung ' +

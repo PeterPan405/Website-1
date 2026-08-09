@@ -1,0 +1,154 @@
+name: Podcast-Schaufenster auffrischen
+
+# Schreibt den Feed neu und legt ihn samt Titelbild auf den Server – **ohne
+# eine Folge zu erzeugen.**
+#
+# ## Warum es das braucht
+#
+# Was ein Hörer bei Spotify, Apple oder im Browser über die Sendung sieht –
+# Beschreibung, Titelbild, Autor – steht nicht in diesem Repository, sondern
+# in **einer Datei auf dem Webspace**: `podcast-audio/feed.xml`. Spotify
+# liest sie, nicht `main`.
+#
+# Bis heute wurde diese Datei nur bei zwei Gelegenheiten erneuert: wenn eine
+# Folge erschien (`podcast-erzeugen.yml`) und wenn eine zurückgenommen wurde
+# (`podcast-zuruecknehmen.yml`). Beides sind Ereignisse an einer **Folge**.
+# Ändert sich dagegen etwas an der **Sendung** – ein Name, eine Häufigkeit,
+# ein Titelbild –, gab es keinen Weg, das nach draußen zu bringen. Man
+# musste auf die nächste Folge warten oder sie künstlich auslösen.
+#
+# Das ist der stille Fehler in seiner harmlosesten Gestalt: Im Repository
+# steht es richtig, im Bau ist es grün, und bei Spotify steht weiter der
+# alte Text. Am 9. August 2026 war genau das zu besichtigen – die
+# Beschreibung nannte „IM Investments" und „Werktäglich", beides im
+# Repository längst berichtigt.
+#
+# ## Was er anfasst
+#
+#   podcast-audio/feed.xml   die Sendungsbeschreibung, Titel, Autor, Folgen
+#   podcast-audio/cover.jpg  das Titelbild, aus `assets/podcast-cover.jpg`
+#
+# **Keine Folge wird erzeugt, keine gelöscht, nichts hochgeladen zu
+# YouTube.** Der Feed entsteht aus dem Register `podcast-eigener-feed.json`;
+# er enthält danach genau dieselben Folgen wie vorher.
+#
+# ## Er läuft nur von Hand
+#
+# Ein Zeitplan hätte nichts zu melden: Die Beschreibung ändert sich, wenn
+# jemand sie ändert. Gestartet wird er, nachdem so eine Änderung auf `main`
+# steht.
+
+on:
+  workflow_dispatch:
+    inputs:
+      nur_zeigen:
+        description: 'Nur schreiben und anzeigen, nichts übertragen'
+        type: boolean
+        default: false
+
+concurrency:
+  # Derselbe Topf wie die Rücknahme: Beide schreiben `feed.xml`, und zwei
+  # gleichzeitige Läufe würden sich gegenseitig überschreiben.
+  group: podcast-feed
+  cancel-in-progress: false
+
+jobs:
+  auffrischen:
+    name: Feed und Titelbild auf den Server
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+
+      - name: Feed aus dem Register schreiben
+        run: npm run podcastfeed schreiben
+
+      # Vor dem Übertragen zeigen, was gleich draußen steht. Die
+      # Beschreibung ist der Grund, aus dem dieser Lauf gestartet wird –
+      # sie gehört ins Protokoll, damit ein Fehler auffällt, **bevor** er
+      # bei Spotify steht.
+      - name: Was steht drin?
+        run: |
+          echo "— Sendungskopf —"
+          sed -n '1,60p' podcast-folge/feed.xml \
+            | grep -o '<title>[^<]*</title>\|<itunes:author>[^<]*</itunes:author>' \
+            | head -3
+          echo
+          echo "— Beschreibung —"
+          node -e '
+            const xml = require("node:fs").readFileSync("podcast-folge/feed.xml", "utf8")
+            const treffer = xml.match(/<description>([\s\S]*?)<\/description>/)
+            console.log(treffer ? treffer[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim() : "(keine)")
+          '
+          echo
+          echo "— Folgen im Feed —"
+          grep -c '<item>' podcast-folge/feed.xml
+
+      - name: Übertragen
+        if: inputs.nur_zeigen != true
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+        run: |
+          if [ -z "$SSH_KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
+            echo "::error::Keine SSH-Zugangsdaten – draußen ändert sich nichts."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          fehler=0
+
+          if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+               podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"; then
+            # Der Webpfad bekommt eine **Kopie**, keinen Symlink – der wurde
+            # vom Server nicht verfolgt (404 neben einer 200). Dieselbe
+            # Begründung wie in `podcast-umzug.yml`.
+            ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+              "cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
+            echo "Feed erneuert: https://iminvests.de/podcast-audio/feed.xml"
+          else
+            echo "::error::Der Feed ließ sich nicht übertragen – Port $SSH_PORT antwortet nicht."
+            fehler=1
+          fi
+
+          if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+               assets/podcast-cover.jpg "$USER@$HOST:~/podcast-audio/cover.jpg"; then
+            ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+              "cp ~/podcast-audio/cover.jpg '$ZIELPFAD/podcast-audio/cover.jpg'"
+            echo "Titelbild erneuert: https://iminvests.de/podcast-audio/cover.jpg"
+          else
+            echo "::error::Das Titelbild ließ sich nicht übertragen."
+            fehler=1
+          fi
+
+          rm -f ~/.ssh/id_deploy
+          exit "$fehler"
+
+      # Spotify holt den Feed von sich aus – aber nicht sofort.
+      - name: Was jetzt noch passieren muss
+        if: inputs.nur_zeigen != true
+        run: |
+          echo "Die Datei auf dem Server ist neu. Was die Hörer sehen, ist es"
+          echo "noch nicht: Spotify, Apple und die übrigen Verzeichnisse holen"
+          echo "den Feed in eigenem Takt – üblicherweise binnen Stunden, in"
+          echo "Einzelfällen erst am nächsten Tag."
+          echo
+          echo "Wer nicht warten will, stößt es im jeweiligen Portal an:"
+          echo "  Spotify for Creators  →  Einstellungen  →  Feed aktualisieren"
+          echo
+          echo "Ein Titelbild kann länger brauchen als der Text – es wird"
+          echo "zwischengespeichert und in mehreren Größen neu erzeugt."

@@ -6,7 +6,7 @@ import { ImageResponse } from 'next/og'
 import type { DailyEdition, EditionItem } from '@/data/editions/types'
 
 /**
- * Die Kachel, die werktäglich zu Instagram geht.
+ * Die Kachel, die täglich zu Instagram geht.
  *
  * ## Warum dieselbe Technik wie die Vorschaubilder
  *

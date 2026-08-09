@@ -224,7 +224,7 @@ Ab dann läuft der Abruf montags um 05:00 UTC von allein.
 
 ## 3 · Instagram (@im_invests)
 
-Damit die Top-News des Tages werktäglich als Karussell erscheinen.
+Damit die Top-News des Tages täglich als Karussell erscheinen.
 
 **Rechnen Sie mit dreißig bis fünfundvierzig Minuten.** Nicht weil es schwer
 wäre, sondern weil die Oberfläche von Meta an mehreren Stellen anders heißt,

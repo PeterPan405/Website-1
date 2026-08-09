@@ -164,27 +164,49 @@ anderes kennt; im Sommer sind das zwei Stunden weniger, im Winter eine.
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
 
-### Am Wochenende erscheint keine Folge – außer an einem Probetag
+### Die Folge erscheint **täglich** – seit dem 9. August 2026
 
-`podcast-erzeugen.yml` läuft werktags. Das ist gewollt: Die Montagsfolge deckt
-Freitag bis Montag ab.
+Sieben Tage die Woche, 365 Tage im Jahr. So hat der Betreiber es festgelegt.
 
-Damit lässt sich der volle Weg **bis zum Upload** an einem Wochenende aber
-nicht prüfen, und ein Lauf mit `nur_proben` überspringt genau die Schritte, auf
-die es ankommt – YouTube und Server. Dafür gibt es
-`data/podcast-probetage.txt`: Steht der heutige Tag dort, gilt er als Werktag,
-und es wird wirklich veröffentlicht.
+Davor lief `podcast-erzeugen.yml` werktags, und daran hingen vier Dinge, die
+alle mit umgestellt werden mussten. Wer den Takt je wieder ändert, findet
+hier die Liste:
 
-Zwei Wege stoßen ihn an, wie überall hier: der eigene Sonntags-Cron um 02:53
-UTC und, falls der verworfen wird, der Anstoß aus `kurse.yml` um 03:08. Ohne
-Eintrag endet der Sonntagslauf nach zwanzig Sekunden.
+1. **Der Cron** in `podcast-erzeugen.yml` – `1-5` wurde `*`. Der zweite
+   Eintrag für Sonntage und die Eingabe `trotzdem` sind entfallen.
+2. **Der Riegel im selben Workflow** – die Frage „ist heute ein
+   Erscheinungstag?" gibt es nicht mehr. Geblieben ist nur die nach dem
+   doppelten Upload.
+3. **Der Anstoß aus `kurse.yml`** – dort stand derselbe Wochenend-Riegel.
+   Zusammen mit ihm ist `data/podcast-probetage.txt` weggefallen: eine
+   Ausnahmeliste für ein Wochenende, an dem nichts erscheint, hat keinen
+   Gegenstand mehr.
+4. **`folgennummer()` in `lib/sprechfassung.ts`** – siehe unten, das ist die
+   heikelste Stelle.
 
-Die Daten tragen das Jahr. Ein stehengebliebener Eintrag kann deshalb nicht
-im nächsten Jahr erneut feuern; alte Zeilen sind Protokoll.
+Der Nachrichtenlauf lief ohnehin schon täglich; die Tagesausgabe, die der
+Podcast vertont, ist also auch am Samstag da.
 
-**Soll die Folge später täglich erscheinen**, ist das eine Zeile: `1-5` wird
-`*`, der Sonntags-Cron und der Riegel fallen weg. Bis dahin bleibt es bei
-werktags.
+Der Abschlusssatz ist außerdem für alle Tage derselbe. Freitags stand
+„Bis Montag früh, schönes Wochenende" – eine Ankündigung, die jetzt nicht
+mehr einträfe.
+
+#### Die Folgennummer darf keine Lücke bekommen
+
+Die naheliegende Umstellung wäre gewesen, statt Werktagen einfach
+Kalendertage seit dem 30. Juli 2026 zu zählen. Das Ergebnis: Der 10. August
+hätte Folge **12** getragen, obwohl im Register Folge 7 die letzte ist.
+
+Eine Folgennummer ist eine Ordnungszahl. Sie darf nicht springen, nur weil
+sich der Takt ändert. `folgennummer()` zählt deshalb zweiteilig, mit einer
+Naht am 9. August:
+
+    bis 09.08.2026     Werktage seit dem 30.07.        →  7
+    ab  10.08.2026     7 + Kalendertage seit dem 09.08. →  8, 9, 10 …
+
+Die Naht liegt genau dort, weil am 9. August keine Folge im Register steht –
+die des Tages wurde zurückgenommen. Es gibt also keine veröffentlichte
+Nummer, die durch die Umstellung ihren Wert ändert.
 
 ### Wie sich das rechnet
 
@@ -450,6 +472,26 @@ der Technik.
 Ergebnis des Tages schon?** `nachrichten.yml` fragt sie seit dem 5. August,
 `podcast-erzeugen.yml` seit dem 9. Ein doppelter Anstoß ist gewollt und
 billig – ein doppeltes Ergebnis nicht.
+
+### Was die Sendung über sich sagt, steht nicht in `main`
+
+Beschreibung, Titelbild und Autor der Podcast-Sendung stehen in **einer
+Datei auf dem Webspace**: `podcast-audio/feed.xml`. Spotify liest sie, nicht
+das Repository.
+
+Erneuert wurde sie bis zum 9. August 2026 nur bei zwei Gelegenheiten – wenn
+eine Folge erschien und wenn eine zurückgenommen wurde. Beides sind
+Ereignisse an einer **Folge**. Ändert sich etwas an der **Sendung**, gab es
+keinen Weg nach draußen; man musste auf die nächste Folge warten.
+
+Genau so blieb der Name „IM Investments" bei Spotify stehen, nachdem er im
+Repository längst berichtigt war: richtig im Code, grün im Bau, alt beim
+Hörer. **`podcast-schaufenster.yml`** schließt die Lücke – Feed neu
+schreiben, Feed und Titelbild übertragen, keine Folge anfassen.
+
+Dass die Datei liegt, heißt noch nicht, dass jemand sie gelesen hat: Spotify
+und Apple holen den Feed in eigenem Takt, meist binnen Stunden. Das
+Titelbild braucht regelmäßig länger als der Text.
 
 Und wenn doch einmal eines zu viel entsteht:
 `.github/workflows/podcast-zuruecknehmen.yml` nimmt eine Folge vollständig

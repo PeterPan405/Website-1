@@ -240,27 +240,46 @@ function zerlegeDatum(date: string): {
 }
 
 /**
- * Folgennummer: Werktage seit dem 30. Juli 2026, dem Tag der ersten Folge.
+ * Folgennummer – ab dem 10. August 2026 zählt **jeder** Tag.
  *
- * Die Zählung stammt aus der alten Arbeitsanweisung – 30.07. ist Folge 1,
- * 07.08. ist Folge 7 – und genau das ist die Zahl der Werktage im Zeitraum.
+ * Bis dahin erschien die Folge werktags, und die Nummer war die Zahl der
+ * Werktage seit dem 30. Juli 2026, dem Tag der ersten Folge: 30.07. ist
+ * Folge 1, 07.08. ist Folge 7. Sieben Folgen stehen so im Register.
  *
- * **An einem Probetag stimmt sie nicht.** Ein Wochenendtag zählt nicht mit,
- * also bekam die Probefolge vom Sonntag, dem 9. August 2026, dieselbe Nummer
- * wie die vom Freitag: beide 7. Solange werktags erscheint, ist das ohne
- * Folgen; eine Probe ist ohnehin dazu da, wieder zu verschwinden.
+ * Seit dem 9. August 2026 erscheint sie sieben Tage die Woche. Die Zählung
+ * einfach auf Kalendertage umzustellen, wäre falsch gewesen – der 10. August
+ * hätte dann Nummer 12 getragen, ein Sprung von 7 auf 12 mitten in der
+ * laufenden Reihe. Eine Folgennummer ist eine Ordnungszahl; sie darf keine
+ * Lücke bekommen, nur weil sich der Takt ändert.
  *
- * Wer den Podcast auf **täglich** umstellt (in `podcast-erzeugen.yml` ist das
- * eine Zeile), muss diese Funktion mit umstellen – sonst tragen Samstag,
- * Sonntag und Montag dieselbe Nummer. Die Zahl käme dann besser aus dem
- * Register selbst: die höchste vorhandene plus eins.
+ * Deshalb zwei Abschnitte mit einer Naht dazwischen:
+ *
+ *     bis 09.08.2026      Werktage seit dem 30.07.  →  7
+ *     ab  10.08.2026      7 + Kalendertage seit dem 09.08.
+ *
+ * Die Naht liegt auf dem 9. August, weil an diesem Tag keine Folge im
+ * Register steht: Die des Tages wurde zurückgenommen. Es gibt also keine
+ * veröffentlichte Nummer, die durch die Umstellung ihren Wert ändert.
+ *
+ * Bewusst ohne Blick ins Register: Diese Datei kommt ohne Laufzeitimporte
+ * aus, und eine Nummer, die von einer JSON-Datei abhängt, wäre in einem Test
+ * nicht mehr allein aus dem Datum vorhersagbar.
  */
+const TAKTWECHSEL = Date.UTC(2026, 7, 9, 12)
+const FOLGEN_BIS_TAKTWECHSEL = 7
+
 export function folgennummer(date: string): number {
   const start = Date.UTC(2026, 6, 30, 12)
   const ziel = (() => {
     const { jahr, monat, tag } = zerlegeDatum(date)
     return Date.UTC(jahr, monat - 1, tag, 12)
   })()
+
+  if (ziel > TAKTWECHSEL) {
+    const tage = Math.round((ziel - TAKTWECHSEL) / 86_400_000)
+    return FOLGEN_BIS_TAKTWECHSEL + tage
+  }
+
   let nummer = 0
   for (let t = start; t <= ziel; t += 86_400_000) {
     const wt = new Date(t).getUTCDay()
@@ -425,7 +444,7 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     geschrieben wurde.
   */
   const einstieg =
-    `Guten Morgen und herzlich willkommen zum Marktupdate von IM Investments. ` +
+    `Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests. ` +
     `Heute ist ${WOCHENTAGE[wochentag]}, der ${ordnungszahl(tag)} ${MONATE[monat - 1]} ` +
     `${zahlwort(jahr)}. ${sprechbar(edition.intro)}`
 
@@ -437,10 +456,16 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
   const lehre = alle[0]?.whyItMatters ?? ''
   const fazit = `Bleibt das Fazit. ${sprechbar(lehre)}`
 
+  /*
+    Ein Abschluss für alle Tage.
+
+    Bis zum 9. August 2026 stand freitags „Bis Montag früh, schönes
+    Wochenende" – richtig, solange samstags und sonntags nichts erschien.
+    Seither erscheint die Folge täglich, und der Satz wäre eine Ankündigung,
+    die nicht eintrifft: Am Samstag früh steht die nächste da.
+  */
   const abschluss =
-    wochentag === 5
-      ? 'Das war das Marktupdate von IM Investments. Alle Themen ausführlich und mit Einordnung findest du auf iminvests punkt de. Bis Montag früh, schönes Wochenende und viel Erfolg.'
-      : 'Das war das Marktupdate von IM Investments. Alle Themen ausführlich und mit Einordnung findest du auf iminvests punkt de. Bis morgen früh und viel Erfolg.'
+    'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf iminvests punkt de. Bis morgen früh und viel Erfolg.'
 
   /*
     Erst alles mit Einordnung, dann von hinten kürzen: zuerst verlieren die
