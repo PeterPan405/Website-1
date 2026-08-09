@@ -360,23 +360,64 @@ jobs:
       # Ein Abruf kostet eine Sekunde. Der Neubau wird nur angefordert,
       # wenn die Startseite wirklich fehlt – und `paket-bauen.yml` prüft
       # ohnehin selbst, bevor es überträgt.
+      # ## Warum drei Versuche, eine Zeitgrenze und ein roter Lauf
+      #
+      # Am 9. August 2026 war der Server des Hosters von 05:45 bis 07:14 UTC
+      # nicht erreichbar – weder über 443 noch über den SSH-Port. Diese
+      # Prüfung hat es bemerkt und den Neubau angefordert, genau wie
+      # vorgesehen. Und trotzdem hätte niemand davon erfahren, wenn nicht
+      # im selben Lauf zufällig auch die Kursübertragung an demselben
+      # Server gescheitert wäre: **Eine Warnung in einem grünen Lauf
+      # schickt keine Mail.** Derselbe stille Fehler wie beim
+      # Nachrichten-Notbehelf, nur an anderer Stelle.
+      #
+      # Drei Dinge daraus:
+      #
+      # 1. **`--max-time`.** Der Abruf hing an dem Morgen 132 Sekunden.
+      #    Ohne Grenze wartet `curl` auf ein Zeitlimit des Systems, und der
+      #    Lauf steht derweil.
+      # 2. **Drei Versuche.** Eine einzelne Zeitüberschreitung ist ein
+      #    Zucken, kein Ausfall. Erst wenn dreimal in gut einer Minute
+      #    nichts kommt, ist es einer.
+      # 3. **Roter Lauf.** Dass die eigene Website nicht antwortet, ist der
+      #    lauteste Fall, den es hier gibt. `kurse.yml` läuft rund
+      #    siebzehnmal am Tag – ein anhaltender Ausfall meldet sich damit
+      #    etwa stündlich, und er hört von selbst auf, sobald die Seite
+      #    wieder steht.
+      #
+      # Nebenbei: Der frühere Ausdruck `$(curl … || echo 000)` ergab im
+      # Fehlerfall `000000`, weil `-w '%{http_code}'` schon selbst `000`
+      # ausgibt. Im Protokoll stand dann „antwortet mit 000000".
       - name: Steht die Website noch?
         if: always() && github.ref_name == 'main'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          code=$(curl -sS -o /dev/null -w '%{http_code}' \
-            -A 'iminvests-watchdog' https://iminvests.de/ || echo 000)
+          code=000
+          for versuch in 1 2 3; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
+              -A 'iminvests-watchdog' https://iminvests.de/ 2>/dev/null || true)
+            case "$code" in ''|*[!0-9]*) code=000 ;; esac
+            [ "$code" = "200" ] && break
+            echo "  Versuch $versuch: $code"
+            [ "$versuch" -lt 3 ] && sleep 20
+          done
+
           if [ "$code" = "200" ]; then
             echo "Startseite: 200 – die Website steht."
             exit 0
           fi
 
-          echo "::warning::Die Startseite antwortet mit $code statt 200."
-          echo "  Der Webordner ist entweder leer oder der Server ist gestört."
-          echo "  Ein Neubau wird angefordert; er legt alles wieder ab."
+          echo "::error::Die Startseite antwortet dreimal nicht mit 200, zuletzt $code."
+          echo "  Entweder ist der Webordner leer oder der Server ist gestört."
+          echo "  Ein Neubau wird angefordert; er legt alles wieder ab –"
+          echo "  gegen einen Ausfall beim Hoster hilft er allerdings nicht."
+          echo ""
+          echo "  Nachsehen: hPanel > Websites, und ob Port 65002 antwortet."
+          echo "  Hält es an, ist es eine Störung des Hosters und keine unsere."
           gh workflow run paket-bauen.yml \
             --repo "${{ github.repository }}" --ref main -f paket=false
+          exit 1
 
       - name: Neubau anstoßen
         if: steps.commit.outputs.gepusht == 'ja'

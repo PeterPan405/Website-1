@@ -55,6 +55,17 @@ jobs:
     name: Seiten abrufen
     runs-on: ubuntu-latest
     steps:
+      # Amtliche Quellen sind oft PDFs, und die HTML-Seite daneben nennt die
+      # Zahl nicht. Beim Basiszins für die Vorabpauschale ist es genau so:
+      # Die BMF-Seite trägt Datum und Titel des Schreibens und verlinkt dann
+      # „Dokument herunterladen [pdf, 107KB]" – der Wert selbst steht nur
+      # dort. Ohne diesen Schritt endet die Prüfung mit „nicht belegbar",
+      # obwohl die Quelle offen im Netz liegt.
+      #
+      # `poppler-utils` bringt `pdftotext` mit, rund zwei Sekunden Installation.
+      - name: PDF-Leser bereitstellen
+        run: sudo apt-get install -qq -y poppler-utils
+
       - name: Abrufen und lesbar machen
         env:
           URLS: ${{ inputs.urls }}
@@ -64,6 +75,8 @@ jobs:
           import html
           import os
           import re
+          import subprocess
+          import tempfile
           import urllib.error
           import urllib.request
 
@@ -83,6 +96,25 @@ jobs:
               ),
               "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
           }
+
+          def pdf_zu_text(roh: bytes) -> str:
+              """Holt den Text aus einem PDF – über `pdftotext`, sonst nichts.
+
+              `-layout` erhält Spalten und Tabellen halbwegs; ein Basiszins
+              steht bei der Bundesbank in einer Tabelle, und ohne diesen
+              Schalter stünden Zahl und Bezeichnung in verschiedenen Zeilen.
+              """
+              with tempfile.NamedTemporaryFile(suffix=".pdf") as datei:
+                  datei.write(roh)
+                  datei.flush()
+                  fertig = subprocess.run(
+                      ["pdftotext", "-layout", "-enc", "UTF-8", datei.name, "-"],
+                      capture_output=True,
+                      text=True,
+                  )
+              if fertig.returncode != 0:
+                  return f"[PDF nicht lesbar: {fertig.stderr.strip()[:200]}]"
+              return re.sub(r"\n\s*\n\s*", "\n\n", fertig.stdout).strip()
 
           def zu_text(roh: str) -> str:
               """Markup heraus, Text behalten – ohne Fremdbibliothek."""
@@ -109,13 +141,23 @@ jobs:
                   anfrage = urllib.request.Request(adresse, headers=KOPF)
                   with urllib.request.urlopen(anfrage, timeout=45) as antwort:
                       roh = antwort.read()
+                      typ = antwort.headers.get("Content-Type", "?")
                       zeichensatz = antwort.headers.get_content_charset() or "utf-8"
                       print(f"STATUS: {antwort.status}")
-                      print(f"TYP:    {antwort.headers.get('Content-Type', '?')}")
+                      print(f"TYP:    {typ}")
                       print(f"DATUM:  {antwort.headers.get('Date', '?')}")
                       print(f"STAND:  {antwort.headers.get('Last-Modified', '—')}")
                       print("-" * 78)
-                      text = roh.decode(zeichensatz, errors="replace")
+                      # Am Inhaltstyp **und** an der Signatur erkannt: Manche
+                      # Downloads werden als `application/octet-stream`
+                      # ausgeliefert, und `?__blob=publicationFile` am Ende
+                      # macht die Endung unbrauchbar.
+                      ist_pdf = "pdf" in typ.lower() or roh[:5] == b"%PDF-"
+                      text = (
+                          pdf_zu_text(roh)
+                          if ist_pdf
+                          else roh.decode(zeichensatz, errors="replace")
+                      )
               except urllib.error.HTTPError as fehler:
                   print(f"STATUS: {fehler.code} – nicht abrufbar")
                   continue
@@ -123,8 +165,12 @@ jobs:
                   print(f"FEHLER: {type(fehler).__name__}: {fehler}")
                   continue
 
-              # JSON, CSV und reiner Text bleiben, wie sie sind.
-              lesbar = text if adresse.endswith((".json", ".txt", ".csv")) else zu_text(text)
+              # JSON, CSV, reiner Text und bereits ausgelesene PDFs bleiben,
+              # wie sie sind – nur HTML muss noch vom Markup befreit werden.
+              if ist_pdf or adresse.endswith((".json", ".txt", ".csv")):
+                  lesbar = text
+              else:
+                  lesbar = zu_text(text)
               gekuerzt = lesbar[:grenze]
               print(gekuerzt)
               if len(lesbar) > grenze:
