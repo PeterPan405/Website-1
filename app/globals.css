@@ -31,11 +31,11 @@
     localStorage der Besucher, eine Umbenennung würfe gespeicherte
     Entscheidungen weg.
   */
-  --c-canvas: #f6f2ea;
-  --c-surface: #fbf8f2;
-  --c-surface-muted: #eee8dc;
-  --c-border: #e4ddcf;
-  --c-border-strong: #cabfad;
+  --c-canvas: #f2ebdd;
+  --c-surface: #f8f2e6;
+  --c-surface-muted: #ece5d6;
+  --c-border: #e1d9c8;
+  --c-border-strong: #c5bba6;
 
   /* Text */
   --c-fg: #0f172a;

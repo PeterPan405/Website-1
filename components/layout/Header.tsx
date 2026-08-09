@@ -123,11 +123,14 @@ export function Header() {
     >
       {/*
         Über die volle Bildschirmbreite statt in der Inhaltsspalte: Logo ganz
-        links, die Knöpfe ganz rechts, die Navigation bleibt mittig. Umgesetzt
-        über ein Raster mit gleich breiten Außenspalten (`1fr auto 1fr`) – nur
-        so steht das Menü **wirklich** in der Bildschirmmitte und nicht dort,
-        wo der Platz zwischen zwei unterschiedlich breiten Enden übrig bleibt.
-        `justify-self` schiebt die beiden Enden an ihre Kanten.
+        links, die Knöpfe ganz rechts, die Navigation dazwischen.
+
+        `justify-between` und **nicht** ein Raster mit `1fr auto 1fr`: Beim
+        Raster stand das Menü zwar exakt in der Bildschirmmitte, aber die
+        Wortmarke ist schmaler als die vier Bedienelemente rechts – die Lücke
+        links wurde damit sichtbar größer als die rechte. `justify-between`
+        verteilt den Freiraum gleichmäßig auf beide Lücken; das Menü sitzt
+        dadurch optisch mittig, weil beide Abstände gleich sind.
 
         Die Breitenfrage von früher bleibt damit gelöst: Sieben Menüpunkte,
         Wortmarke und vier Bedienelemente brauchen zusammen rund 1.230 Pixel
@@ -136,7 +139,7 @@ export function Header() {
         aus der Spalte heraus. Volle Breite ist dafür der großzügigere Weg
         als eine zweite, etwas breitere Spalte.
       */}
-      <div className="mx-auto flex h-16 w-full max-w-[120rem] items-center gap-4 px-4 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr]">
+      <div className="mx-auto flex h-16 w-full max-w-[120rem] items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
           className="text-fg hover:text-brand rounded-lg transition"
@@ -146,7 +149,7 @@ export function Header() {
         </Link>
 
         {/* ---------------- Desktop-Navigation ---------------- */}
-        <nav aria-label="Hauptnavigation" className="hidden xl:col-start-2 xl:block">
+        <nav aria-label="Hauptnavigation" className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <NavEntry
@@ -164,7 +167,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 xl:col-start-3 xl:ml-0 xl:justify-self-end">
+        <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
