@@ -1,0 +1,48 @@
+name: Instagram-Zugang prüfen
+
+# Sagt, ob die Verbindung zu @im_invests steht – und ändert nichts.
+#
+# ## Warum das ein eigener Lauf ist
+#
+# Weil die Einrichtung bei Meta vier Stellen hat, an denen etwas schieflaufen
+# kann, und ein Fehler an jeder einzelnen von außen gleich aussieht: Es
+# passiert nichts.
+#
+#   1. Instagram ist noch ein privates Konto statt Profi oder Creator
+#   2. Es ist nicht mit einer Facebook-Seite verknüpft
+#   3. Der App fehlt `instagram_basic` oder `instagram_content_publish`
+#   4. Das Token ist abgelaufen – langlebige gelten 60 Tage
+#
+# Dieser Lauf sagt, **welche** der vier klemmt. Beim Podcast gab es dieselbe
+# Probe erst, nachdem der erste echte Morgen sie gebraucht hätte; im Kopf von
+# `scripts/podcast-youtube.ts` steht der Satz dazu.
+#
+# ## Er läuft nur von Hand
+#
+# Ein Zeitplan hätte hier nichts zu melden: Die Zugangsdaten ändern sich,
+# wenn jemand sie ändert. Gestartet wird er nach dem Einrichten und nach
+# jeder Erneuerung des Tokens.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pruefen:
+    name: Steht die Verbindung?
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Zugang prüfen
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: npm run instazugang

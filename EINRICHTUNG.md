@@ -221,6 +221,96 @@ Ab dann läuft der Abruf montags um 05:00 UTC von allein.
 
 ---
 
+## 3 · Instagram (@im_invests)
+
+Damit die Top-News des Tages werktäglich als Karussell erscheinen. Der Weg
+führt zwingend über eine Facebook-Seite – die Instagram-Schnittstelle kennt
+keinen anderen.
+
+**Das dauert etwa zwanzig Minuten und ist einmalig.** Danach gilt nur noch:
+das Token alle 60 Tage erneuern.
+
+### Was am Ende hinterlegt sein muss
+
+| Secret            | Was es ist                                    |
+| ----------------- | --------------------------------------------- |
+| `IG_ACCESS_TOKEN` | Langlebiges Zugangstoken, 60 Tage gültig      |
+| `IG_USER_ID`      | Die Instagram-Business-Kennung (eine Zahl)    |
+| `PEXELS_API_KEY`  | Für die Titelfotos der Deckblätter, kostenlos |
+
+### Schritt für Schritt
+
+**1 · Instagram auf ein Profikonto umstellen**
+
+In der Instagram-App: Einstellungen → Konto → Kontotyp und Tools → Auf
+professionelles Konto umstellen. „Creator" oder „Business", beides geht.
+
+**2 · Mit einer Facebook-Seite verknüpfen**
+
+Ebenfalls in der App unter Einstellungen → Verknüpfte Konten. Gibt es noch
+keine Facebook-Seite, legt man eine an; sie muss nicht gepflegt werden, sie
+ist nur das Scharnier, über das die Schnittstelle arbeitet.
+
+**Ohne diesen Schritt geht gar nichts.** Er ist der häufigste Grund, warum
+die Zugangsprobe später scheitert.
+
+**3 · Eine Meta-App anlegen**
+
+Auf `developers.facebook.com` → Meine Apps → App erstellen → Typ „Business".
+Dann unter Produkte das Produkt **Instagram Graph API** hinzufügen.
+
+Berechtigungen, die die App braucht:
+
+- `instagram_basic` – das Konto lesen
+- `instagram_content_publish` – Beiträge veröffentlichen
+- `pages_show_list` und `pages_read_engagement` – die verknüpfte Seite finden
+
+**4 · Token und Kennung besorgen**
+
+Im **Graph API Explorer** (Tools → Graph API Explorer):
+
+1. Oben die eigene App wählen, dann „Generate Access Token" – das gibt ein
+   kurzlebiges Token, gültig **eine Stunde**.
+2. Abfrage `me/accounts` – liefert die Facebook-Seiten und ihre IDs.
+3. Abfrage `<seiten-id>?fields=instagram_business_account` – die Zahl darin
+   ist `IG_USER_ID`. **Nicht** die Seiten-ID nehmen; das ist der zweite
+   häufige Fehler.
+
+Aus dem kurzlebigen Token wird im **Access Token Debugger** (Tools → Access
+Token Debugger) über „Extend Access Token" ein langlebiges mit 60 Tagen.
+Dieses gehört als `IG_ACCESS_TOKEN` hinterlegt.
+
+**5 · Pexels**
+
+Auf `pexels.com/api` anmelden, Schlüssel abholen, als `PEXELS_API_KEY`
+hinterlegen. Kostenlos, kommerzielle Nutzung erlaubt, keine Namensnennung
+nötig.
+
+**6 · Prüfen, bevor etwas veröffentlicht wird**
+
+Actions → **Instagram-Zugang prüfen** → Run workflow.
+
+Der Lauf ändert nichts. Er sagt, ob das Token gilt, zu welchem Konto es
+führt und ob Pexels antwortet:
+
+```
+[instagram] — Das verbundene Konto —
+[instagram]   Benutzername    @im_invests
+[instagram]   Folgende        …
+[instagram] ✓ Das ist @im_invests – die Verbindung führt zum richtigen Konto.
+```
+
+Steht dort ein anderer Benutzername, führt die Verbindung zum falschen Konto
+– dann stimmt `IG_USER_ID` nicht.
+
+### Das Token läuft ab
+
+Nach 60 Tagen. Passiert nichts, bleibt der Beitrag eines Morgens einfach aus
+– der stille Fehler, den dieses Projekt an allen Ecken abzuschaffen versucht.
+Wer das Token erneuert, startet danach die Zugangsprobe noch einmal.
+
+---
+
 ## Der Zeitplan: was von selbst läuft
 
 Alle Daten dieser Website werden von GitHub Actions abgerufen, in das
