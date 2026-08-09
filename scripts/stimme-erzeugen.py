@@ -12,11 +12,25 @@ einzigen Aufnahme klont.
 
 Die Stimme steckt in zwei Dateien im Repository:
 
-    assets/stimme-referenz.wav   rund 30 Sekunden Sprache
+    assets/stimme-referenz.wav   zwanzig bis dreißig Sekunden Sprache
     assets/stimme-referenz.txt   ihr Wortlaut
 
 Beides gehört zusammen. Das Modell braucht den Text, um Stimme von
 Wörtern zu trennen; ohne ihn klont es den Klang der Sätze mit.
+
+**Der Wortlaut muss wirklich stimmen.** Ein Satz, der so nicht gesprochen
+wurde, verschiebt die Zuordnung von Laut zu Buchstabe für die ganze
+Aufnahme – das ist schlimmer als ein fehlender Text.
+
+Format: WAV, 24 kHz, mono, 16 Bit. Eine Sprachnachricht vom Telefon kommt
+als AAC in Stereo und muss umgerechnet werden:
+
+    ffmpeg -i aufnahme.m4a -ac 1 -ar 24000 -c:a pcm_s16le stimme-referenz.wav
+
+Stille am Anfang und Ende gehört weggeschnitten; sie trägt keine Stimme
+und kostet nur Referenz. Die Lautstärke dagegen bleibt, wie sie ist – die
+Aufnahme vom 9. August 2026 liegt bei −36 LUFS, die vorherige bei −35,
+und das Modell stört das nicht.
 
 ## Warum in Stücken gesprochen wird
 
