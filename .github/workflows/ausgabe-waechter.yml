@@ -53,9 +53,12 @@ on:
     # arbeiten. Deshalb fragt dieser Wächter nach, ob gerade ein Lauf im Gange
     # ist, bevor er rot wird: Was noch entsteht, ist kein Ausfall.
     #
-    # Seit `nachrichten.yml` notfalls ohne Modell aus dem eigenen Bestand
-    # schreibt, sollte dieser Lauf nie mehr rot werden. Wird er es doch, ist
-    # etwas kaputt, das niemand vorhergesehen hat – und genau dafür ist er da.
+    # Dass die Ausgabe ganz **fehlt**, sollte seit `nachrichten-aus-bestand.ts`
+    # nicht mehr vorkommen: Der Notbehelf rechnet notfalls eine aus dem eigenen
+    # Datenbestand. Genau deshalb reicht „ist sie da?" nicht mehr als Frage –
+    # seit dem 9. August prüft dieser Lauf auch, **woher** sie kommt, und wird
+    # rot, wenn es der Notbehelf war. Die Begründung steht beim Schritt
+    # „Kommt die Ausgabe aus Recherche?".
     #
     # Zur Zeitumstellung: im Winter `11 4`. Die Routine „Zeitumstellung"
     # zieht alle Zeitpläne dieses Projekts gemeinsam um eine Stunde nach.
