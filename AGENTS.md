@@ -532,6 +532,32 @@ stehen, die genau dieses Problem lösen. Die richtige Frage ist nicht „komme i
 an die Seite?“, sondern **„wer kommt an die Seite, und wie bekomme ich sein
 Ergebnis?“**
 
+## Ein Artefakt ist kein Ergebnis, das jemand sieht
+
+Der zweite Teil der Frage wird leicht überlesen. Am 9. August 2026 lag eine
+fertige Hörprobe der neuen Stimme als Artefakt an einem Lauf – 32 Sekunden
+Audio, tadellos erzeugt. Gesehen hat sie niemand: Ein Artefakt ist ein ZIP
+hinter einer Anmeldung, und der Egress-Proxy dieser Umgebung lässt weder
+`api.github.com` noch den Artefakt-Speicher durch (`CONNECT tunnel failed,
+response 403`). Beides prüfbar über `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
+
+**`git` ist der einzige Kanal, der von hier aus trägt.** Also legt
+`hoerprobe.yml` die Aufnahme zusätzlich auf einen wurzellosen Zweig
+`hoerprobe` – dieselbe Bauart wie `quellen-heute`: nie gebaut, nie
+veröffentlicht, jeder Lauf ersetzt ihn vollständig, keine Historie.
+
+    git fetch origin hoerprobe
+    git show origin/hoerprobe:probe.wav > probe.wav
+
+Wer einen Lauf baut, dessen Ergebnis eine **Datei** ist, hängt sie nicht nur
+als Artefakt an, sondern legt sie auf einen solchen Zweig. Sonst ist sie
+entstanden und trotzdem nicht da.
+
+Der Lauf war übrigens rot, und das war der zweite Grund, warum die Probe
+unbeachtet blieb. Rot wegen eines veralteten Urteils: Gemessen wurde **ein**
+Läufer, gesprochen wird seit dem 8. August von **vier**. Die Zahl stimmte,
+der Satz daneben nicht – nachgezogen in `scripts/stimme-messen.py`.
+
 # Selbst mergen, ohne zu fragen
 
 Der Betreiber hat es am 8. August 2026 angeordnet: **„Merge ab jetzt alles von

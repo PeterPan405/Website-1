@@ -1,0 +1,135 @@
+name: Hörprobe der Stimme
+
+# Spricht einen beliebigen Text mit der Stimme aus `assets/stimme-referenz.wav`
+# und legt die Aufnahme so ab, dass man sie tatsächlich zu hören bekommt.
+#
+# ## Warum das ein eigener Lauf ist
+#
+# „Stimme messen" erzeugt schon eine Probe – aber nur als Artefakt am Lauf,
+# und ein Artefakt ist ein ZIP hinter einer Anmeldung. Wer die neue Stimme
+# beurteilen soll, will sie abspielen, nicht herunterladen, entpacken und
+# suchen. Am 9. August 2026 lag genau deshalb eine fertige Hörprobe
+# unbeachtet an einem roten Lauf.
+#
+# Rot war der Lauf übrigens wegen eines veralteten Urteils: gemessen wurde
+# **ein** Läufer, gesprochen wird seit dem 8. August von **vier**. Die Zahl
+# stimmte, der Satz daneben nicht.
+#
+# ## Wohin die Aufnahme kommt – zweimal
+#
+# 1. **Als Artefakt** am Lauf, sieben Tage lang. Für den Browser.
+# 2. **Auf den wurzellosen Zweig `hoerprobe`.** Dieselbe Bauart wie
+#    `quellen-heute`: nie gebaut, nie veröffentlicht, jeder Lauf ersetzt ihn
+#    vollständig (`push --force`), keine Historie, keine Ansammlung. Eine
+#    Sitzung ohne Netzzugang kommt so an die Datei:
+#
+#        git fetch origin hoerprobe
+#        git show origin/hoerprobe:probe.wav > probe.wav
+#
+#    Das ist der Grund für den Zweig. Der Egress-Proxy dieser Umgebung lässt
+#    weder `api.github.com` noch den Artefakt-Speicher durch – `git` ist der
+#    einzige Kanal, der trägt.
+#
+# Eine Million Bytes, einmal je Lauf überschrieben. Das ist Arbeitsmaterial
+# außerhalb von `main`, kein Datenbestand.
+#
+# ## Er läuft nur von Hand
+#
+# Ein Zeitplan hätte nichts zu melden: Eine Hörprobe braucht man, wenn sich
+# die Referenzaufnahme geändert hat – und das tut sie, wenn jemand sie ändert.
+
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: 'Was gesprochen werden soll (leer = Standardprobe)'
+        required: false
+        default: ''
+      modellgroesse:
+        description: 'Modellgröße'
+        type: choice
+        options: ['0.6B', '1.7B']
+        default: '0.6B'
+
+jobs:
+  sprechen:
+    name: Wie klingt sie?
+    runs-on: ubuntu-latest
+    # Die Messung vom 9. August: 133 s Rechnen für 32 s Audio, dazu 9 s
+    # Modellladen und rund 3 Minuten für die Bibliotheken. Zwanzig Minuten
+    # sind reichlich – und eine Frist, die greift, statt den Läufer bei einem
+    # Aufhänger eine Stunde blockieren zu lassen.
+    timeout-minutes: 20
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Zwischenspeicher für das Sprachmodell
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-qwen-tts-${{ inputs.modellgroesse }}
+
+      # torch und torchaudio müssen aus **derselben** Quelle kommen. qwen-tts
+      # zieht sich sonst die Grafikkarten-Fassung von torchaudio nach, und
+      # deren C++-Teil lässt sich neben dem CPU-torch nicht laden:
+      #
+      #     OSError: Could not load this library: …/_torchaudio.abi3.so
+      - name: Sprachmodell einrichten
+        run: |
+          python -m pip install --upgrade pip
+          pip install "transformers<=4.57.6" soundfile librosa numpy qwen-tts
+          pip install --force-reinstall \
+            --index-url https://download.pytorch.org/whl/cpu torch torchaudio
+
+      - name: Sprechen
+        env:
+          PROBETEXT: ${{ inputs.text }}
+        run: python scripts/stimme-messen.py assets/stimme-referenz.wav ${{ inputs.modellgroesse }}
+
+      # `always()`: Auch ein „zu langsam"-Urteil lässt eine hörbare Aufnahme
+      # zurück, und genau die ist hier der Zweck. Das Urteil ist Beiwerk.
+      - name: Zum Herunterladen anhängen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hoerprobe-${{ github.run_id }}
+          path: |
+            probe.wav
+            probe.txt
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Auf den Zweig legen
+        if: always()
+        run: |
+          set -e
+          [ -f probe.wav ] || { echo "Keine Aufnahme entstanden."; exit 0; }
+
+          # Der Zweig muss **außerhalb** des Arbeitsbaums entstehen: `git
+          # checkout --orphan` im selben Verzeichnis würde probe.wav mit dem
+          # `rm -rf` gleich wieder wegräumen.
+          mkdir -p /tmp/hoerprobe
+          cp probe.wav probe.txt /tmp/hoerprobe/ 2>/dev/null || cp probe.wav /tmp/hoerprobe/
+
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          git checkout --orphan hoerprobe
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp /tmp/hoerprobe/* .
+
+          git add -A
+          git commit -m "Hörprobe $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push --force origin hoerprobe
+
+          echo "Liegt bereit:"
+          echo "  git fetch origin hoerprobe"
+          echo "  git show origin/hoerprobe:probe.wav > probe.wav"

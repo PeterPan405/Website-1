@@ -37,7 +37,7 @@ REPO = f"Qwen/Qwen3-TTS-12Hz-{GROESSE}-Base"
 
 # Rund 30 Sekunden Sprache – lang genug für eine belastbare Messung,
 # kurz genug, dass ein aussichtsloser Versuch nicht 20 Minuten kostet.
-PROBE = (
+STANDARDPROBE = (
     "Guten Morgen und herzlich willkommen zum Marktupdate von IM Investments. "
     "Heute ist Montag, der zehnte August zweitausendsechsundzwanzig. "
     "Ein schwacher US-Jobbericht schickt den DAX auf Rekordkurs, Gold steigt "
@@ -46,6 +46,17 @@ PROBE = (
     "Notenbankzinsen, und niedrigere Zinsen erhöhen rechnerisch den heutigen "
     "Wert künftiger Unternehmensgewinne."
 )
+
+# Wer die Stimme **hören** will statt sie zu messen, gibt einen eigenen Text
+# vor. Die Messung läuft dabei unverändert weiter – sie kostet nichts extra,
+# und eine Zahl neben der Aufnahme schadet nie.
+PROBE = os.environ.get("PROBETEXT", "").strip() or STANDARDPROBE
+
+# Die Folge wird von **vier Läufern gleichzeitig** gesprochen; jeder nimmt
+# jedes vierte Stück (`TEILE: '4'` in podcast-erzeugen.yml). Das Urteil muss
+# sich auf diese Aufteilung beziehen, sonst misst es eine Anordnung, die es
+# seit dem 8. August 2026 nicht mehr gibt.
+LAEUFER = int(os.environ.get("LAEUFER", "4"))
 
 
 def melde(text):
@@ -122,6 +133,12 @@ faktor = dauer / rechenzeit
 
 sf.write("probe.wav", audio, rate)
 
+# Der gesprochene Wortlaut gehört neben die Aufnahme – aus demselben Grund,
+# aus dem `stimme-referenz.txt` neben `stimme-referenz.wav` liegt: Wer die
+# Datei in einer Woche wiederfindet, soll nicht raten müssen, was sie sagt.
+with open("probe.txt", "w", encoding="utf-8") as datei:
+    datei.write(PROBE.strip() + "\n")
+
 melde("")
 melde(f"Erzeugt:      {dauer:.1f} s Audio")
 melde(f"Gerechnet:    {rechenzeit:.0f} s")
@@ -129,14 +146,27 @@ melde(f"Echtzeitfaktor: {faktor:.2f}   (über 1,0 = schneller als Echtzeit)")
 melde("")
 
 # Hochrechnung auf eine echte Folge von fünf Minuten.
-hochgerechnet = 300 / faktor
-melde(f"Fünf Minuten Folge bräuchten damit rund {hochgerechnet / 60:.0f} Minuten,")
-melde(f"zuzüglich {ladezeit:.0f} s Modellladen. Der Lauf hat 20 Minuten Zeit.")
+#
+# **Ein Läufer allein schafft das nicht** – das war schon am 8. August 2026 so
+# und ist der Grund für die Aufteilung. Maßgeblich ist deshalb nicht diese
+# Zahl, sondern die darunter.
+allein = 300 / faktor
+melde(f"Ein Läufer allein bräuchte für fünf Minuten Folge {allein / 60:.0f} Minuten.")
 
-if hochgerechnet + ladezeit > 900:
+geteilt = allein / LAEUFER + ladezeit
+melde(
+    f"Auf {LAEUFER} Läufer verteilt sind es {geteilt / 60:.0f} Minuten je Läufer, "
+    f"Modellladen eingerechnet."
+)
+melde("Der Sprechlauf hat 45 Minuten Zeit (podcast-erzeugen.yml, Job „sprechen“).")
+
+# 40 Minuten statt 45: Ein Urteil, das die Grenze punktgenau ausreizt, ist
+# kein Urteil. Siehe „Eine Grenze, die den guten Tag gerade eben trägt, ist
+# eine Wette" in AGENTS.md.
+if geteilt > 2400:
     melde("")
-    melde("URTEIL: zu langsam für den täglichen Lauf.")
+    melde("URTEIL: zu langsam – auch verteilt reicht die Zeit nicht.")
     sys.exit(1)
 
 melde("")
-melde("URTEIL: schnell genug.")
+melde("URTEIL: schnell genug für den täglichen Lauf.")
