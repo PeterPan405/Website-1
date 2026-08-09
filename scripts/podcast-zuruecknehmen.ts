@@ -66,7 +66,9 @@ interface Register {
 }
 
 if (!DATUM && VIDEOS.length === 0) {
-  console.error('::error::Weder DATUM noch VIDEOS gesetzt – es gibt nichts zurückzunehmen.')
+  console.error(
+    '::error::Weder DATUM noch VIDEOS gesetzt – es gibt nichts zurückzunehmen.'
+  )
   process.exit(1)
 }
 
@@ -132,7 +134,10 @@ if (zuLoeschen.length > 0) {
   for (const id of zuLoeschen) {
     const antwort = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?id=${encodeURIComponent(id)}`,
-      { method: 'DELETE', headers: { Authorization: `Bearer ${tokenAntwort.access_token}` } }
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${tokenAntwort.access_token}` },
+      }
     )
 
     /* 204 heißt gelöscht, 404 heißt „war schon weg". Beides ist der
