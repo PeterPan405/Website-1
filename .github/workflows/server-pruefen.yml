@@ -116,6 +116,20 @@ jobs:
           echo ""
           echo "=== Eigene .htaccess im Unterordner? ==="
           ls -la "$ZIELPFAD/$UNTERORDNER/.htaccess" 2>/dev/null || echo "(keine)"
+
+          echo ""
+          echo "=== Wie viel Platz ist noch da? ==="
+          # Seit die Lernseiten vertont werden, ist das keine Neugier mehr:
+          # 172 Aufnahmen belegen rund 280 MB, und ob die auf ein geteiltes
+          # Paket passen, weiß nur der Server. `quota` kennt die Grenze des
+          # Tarifs, `df` nur die der Platte darunter – gefragt wird deshalb
+          # beides, und was fehlt, fehlt eben.
+          quota -s 2>/dev/null || echo "(quota sagt nichts)"
+          df -h ~ 2>/dev/null || echo "(df sagt nichts)"
+
+          echo ""
+          echo "=== Was belegt der Platz? ==="
+          du -sh ~/* 2>/dev/null | sort -h | tail -12
           ENDE
 
       - name: Aufräumen
