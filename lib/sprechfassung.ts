@@ -30,6 +30,7 @@
  */
 
 import type { DailyEdition, EditionItem } from '@/data/editions/types'
+import { hashtagZeile } from './social-text.ts'
 
 /* ------------------------------------------------------------- Zahlwörter */
 
@@ -470,17 +471,20 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     'Fazit',
   ]
 
-  const themenHashtags = [...new Set(alle.map((item) => item.category))]
-    .slice(0, 3)
-    .map((kategorie) => `#${kategorie.replaceAll(/[^A-Za-zÄÖÜäöüß]/g, '')}`)
-  const hashtags = [
-    ...themenHashtags,
-    '#Börse',
-    '#Aktien',
-    '#Finanzen',
-    '#Marktupdate',
-    '#Finanzbildung',
-  ].join(' ')
+  /*
+    Die Schlagworte kommen aus dem Tag, nicht aus einer Liste.
+
+    Bis zum 9. August 2026 standen hier die Kategorienamen der Ausgabe plus
+    fünf feste Wörter – „#Märkte #Börse #Aktien #Finanzen #Marktupdate
+    #Finanzbildung". Das ist an jedem Tag richtig und an keinem Tag eine
+    Auskunft: Wer nach Gold sucht, fand die Folge nicht, in der es um Gold
+    ging. Jetzt kommen sie aus den `relatedSymbols` und `relatedTopics` der
+    Meldungen – aus dem also, worüber die Folge wirklich spricht.
+
+    Die Hinweise darunter bleiben unverändert. Sie sind gesetzt und gehen
+    diesen Wechsel nichts an.
+  */
+  const hashtags = hashtagZeile(edition)
 
   const weitere = alle
     .slice(2)

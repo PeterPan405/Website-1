@@ -53,7 +53,26 @@ const VIDEOS = (process.env.VIDEOS ?? '')
   .map((eintrag) => eintrag.trim())
   .filter(Boolean)
 
+/*
+  **Zwei Dateien, nicht eine.** Das ist der Fehler vom 9. August 2026: Die
+  Rücknahme räumte nur das Register auf, und auf `/podcast/` stand die Folge
+  danach weiter – mit einem Knopf „Diese Folge auf YouTube", hinter dem nichts
+  mehr lag. Aufgefallen ist es dem Betreiber auf der Website, nicht der
+  Technik.
+
+  Der Unterschied zwischen beiden:
+
+  - **Das Register** ist die eigene Wahrheit. Aus ihm entsteht der RSS-Feed,
+    den Spotify abonniert.
+  - **Die Momentaufnahme** ist das, was `npm run podcast` von YouTube geholt
+    hat. Sie füllt die Seite `/podcast/`.
+
+  Ein gelöschtes Video verschwindet aus der Momentaufnahme erst beim nächsten
+  Abruf – und der kommt zu spät, wenn er überhaupt kommt. Wer eine Folge
+  zurücknimmt, nimmt sie aus beiden.
+*/
 const REGISTER = 'data/podcast-eigener-feed.json'
+const MOMENTAUFNAHME = 'data/snapshots/podcast.json'
 
 interface Folge {
   datum: string
@@ -98,11 +117,17 @@ for (const id of zuLoeschen) {
   console.log(`[zurücknehmen] YouTube: ${id} wird gelöscht – das ist endgültig.`)
 }
 
-if (zuLoeschen.length === 0 && betroffen.length === 0) {
-  console.log('[zurücknehmen] Nichts gefunden – nichts zu tun.')
-  process.exit(0)
-}
+/*
+  Hier stand bis zum 9. August 2026 ein `process.exit(0)`, sobald das Register
+  nichts Betroffenes enthielt. Genau das war die Falle: Am 9. August war das
+  Register längst sauber und die Momentaufnahme nicht – der Lauf hätte
+  „nichts zu tun" gemeldet und die Folge auf der Website stehengelassen.
 
+  Ein vorzeitiges Aufhören darf sich nur auf **eine** von mehreren Stellen
+  stützen, wenn es alle kennt. Deshalb hört der Lauf hier nicht mehr auf; er
+  überspringt nur die Anmeldung bei YouTube, wenn es dort nichts zu löschen
+  gibt. Aufräumen tut er in jedem Fall.
+*/
 if (zuLoeschen.length > 0) {
   if (!CLIENT_ID || !CLIENT_SECRET || !REFRESH_TOKEN) {
     console.error(
@@ -156,11 +181,50 @@ if (zuLoeschen.length > 0) {
   }
 }
 
-if (betroffen.length > 0) {
-  register.folgen = register.folgen.filter((folge) => folge.datum !== DATUM)
-  writeFileSync(REGISTER, `${JSON.stringify(register, null, 2)}\n`)
+/**
+ * Nimmt die Folge aus einer der beiden Dateien.
+ *
+ * Der Filter fragt **beides** ab – Datum und Videokennung. Nur nach dem
+ * Datum zu gehen reicht nicht: Wer eine Folge über `VIDEOS` zurücknimmt,
+ * ohne dass sie im Register steht (etwa ein Doppel-Upload), bekäme sonst das
+ * Video gelöscht und den Eintrag stehengelassen.
+ */
+function ausmisten(pfad: string, name: string): void {
+  let inhalt: string
+  try {
+    inhalt = readFileSync(pfad, 'utf8')
+  } catch {
+    console.log(`[zurücknehmen] ${name} gibt es nicht – nichts zu tun.`)
+    return
+  }
+
+  const datei = JSON.parse(inhalt) as { folgen?: Folge[] }
+  if (!Array.isArray(datei.folgen)) {
+    console.log(`[zurücknehmen] ${name} führt keine Folgenliste – nichts zu tun.`)
+    return
+  }
+
+  const vorher = datei.folgen.length
+  datei.folgen = datei.folgen.filter(
+    (folge) =>
+      !(
+        (DATUM && folge.datum === DATUM) ||
+        (folge.youtubeId && kennungen.includes(folge.youtubeId))
+      )
+  )
+  const entfernt = vorher - datei.folgen.length
+
+  if (entfernt === 0) {
+    console.log(`[zurücknehmen] In ${name} stand nichts Betroffenes.`)
+    return
+  }
+
+  writeFileSync(pfad, `${JSON.stringify(datei, null, 2)}\n`)
   console.log(
-    `[zurücknehmen] ${betroffen.length} Eintrag/Einträge aus dem Register entfernt – ` +
-      `es bleiben ${register.folgen.length}.`
+    `[zurücknehmen] ${entfernt} Eintrag/Einträge aus ${name} entfernt – ` +
+      `es bleiben ${datei.folgen.length}.`
   )
 }
+
+ausmisten(REGISTER, 'dem Register')
+ausmisten(MOMENTAUFNAHME, 'der Momentaufnahme')
