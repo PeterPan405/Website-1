@@ -89,6 +89,13 @@ jobs:
   entwerfen:
     name: Entwurf schreiben
     runs-on: ubuntu-latest
+    # Der Zeitplan gibt dreißig Minuten her: 01:27 bis 01:57, wo
+    # `nachrichten.yml` übernimmt. Ohne diese Zeile stünde hier GitHubs
+    # Vorgabe von sechs Stunden – ein Agent, der sich festbeißt, liefe dann
+    # bis in den Vormittag und blockierte über die Nebenläufigkeitsgruppe
+    # den zweiten Anlauf. Die Grenze der Züge steht weiter unten und ist die
+    # großzügige; **diese** hier ist die harte.
+    timeout-minutes: 25
     permissions:
       contents: write
       # Zum Anstoßen des Quellensammlers, falls die Datei fehlt.
@@ -230,9 +237,31 @@ jobs:
           # Der Schritt „Warum ist der Agent gescheitert?" weiter unten holt
           # genau diese vier Felder aus dem abgelegten Protokoll, damit die
           # Frage künftig ohne diesen Schalter zu beantworten ist.
+          # `--max-turns 40` war zu knapp, und es hat genau einmal gereicht.
+          #
+          # Am 9. August 2026 endete der Lauf nach 3 Minuten 25 mit
+          # `Fehlerart max_turns`, `Züge 41` – nicht an einer Absage, nicht
+          # am Netz, sondern an dieser Zahl. Die Website bekam deshalb den
+          # Notbehelf aus Kursdaten statt recherchierter Nachrichten, und
+          # dem Betreiber fiel als Erstes auf, dass die Meldungen nur
+          # aufbereitete eigene Zahlen waren.
+          #
+          # Ein Zug ist ein Werkzeugaufruf. Die Arbeit besteht aus vielen
+          # kleinen: `grep` durch 100.000 Zeichen Quellentext, ein Blick in
+          # `data/news.ts` auf Eindeutigkeit, die Listen der erlaubten
+          # Themen und Symbole, dann die Selbstprüfung, die beim ersten Mal
+          # selten durchgeht. Am 8. August ging es in 10 Minuten aus –
+          # innerhalb von 40 Zügen, aber knapp. Eine Obergrenze, die den
+          # guten Tag gerade eben trägt, ist keine Obergrenze, sondern eine
+          # Wette.
+          #
+          # 120 kostet nichts, solange sie nicht gebraucht wird – Züge
+          # werden verbraucht, nicht bezahlt. Was den Lauf wirklich
+          # begrenzt, ist `timeout-minutes` am Job: 25 Minuten, gemessen am
+          # Abstand zu `nachrichten.yml`.
           claude_args: |
             --model claude-sonnet-5
-            --max-turns 40
+            --max-turns 120
             --allowedTools Bash,Read,Write,Edit,Grep,Glob,WebFetch,WebSearch
           prompt: |
             Schreibe den Entwurf der heutigen Nachrichtenausgabe für IM Invests
@@ -277,6 +306,42 @@ jobs:
             Guidance gegen Ist-Zahlen, Auftragseingang gegen Umsatz, Umsatz gegen
             Marge, Rückkauf gegen Dividende, Performanceindex gegen Kursindex,
             nachbörslicher Handel, Abzinsung, Korrelation gegen Gegenläufigkeit.
+
+            ## Der Ton
+
+            Der Betreiber hat ihn am 9. August 2026 beschrieben: Die
+            Nachrichten sollen **spannend und interessant klingen, entspannt,
+            und nicht nach aufbereiteten Zahlen.**
+
+            Der Anlass war eine Ausgabe, die aus dem eigenen Kursbestand
+            gerechnet worden war, weil du an dem Morgen nichts geliefert
+            hast. Sie las sich wie eine Tabelle mit Satzzeichen: „Zum letzten
+            abgerufenen Schluss steht Euro Stoxx 50 bei +0,39 Prozent." Das
+            ist richtig und trotzdem niemandes Lektüre.
+
+            Also:
+
+            - **Fang mit dem Vorgang an, nicht mit dem Wert.** „Siemens hat
+              so viele Aufträge hereingeholt wie nie" – die Zahl kommt im
+              zweiten Satz und belegt den ersten.
+            - **Ein Artikel, ein Gedanke.** Wer beim Lesen zweimal
+              zurückspringen muss, hat einen Absatz zu viel bekommen.
+            - **Sprich den Leser an wie jemanden, der neugierig ist und wenig
+              Zeit hat.** Kurze Hauptsätze, keine Schachtelsätze, keine
+              Beamtensprache. „Das klingt nach viel. Es ist auch viel – aber
+              nicht das, wonach es klingt."
+            - **Die Spannung liegt im Widerspruch**, nicht in Superlativen:
+              Auftragseingang steigt, Umsatz nicht. Zwei Portale nennen
+              denselben Preis mit verschiedenen Prozentzahlen. Öl fällt und
+              Gold steigt auf dieselbe Nachricht.
+            - **Entspannt heißt auch: nicht dramatisieren.** Kein „Crash",
+              kein „Kurssturz", wenn es 1,2 Prozent waren. Übertreibung ist
+              die andere Art, den Leser nicht ernst zu nehmen.
+
+            Ohne Auswirkung auf die Sorgfalt: Der Ton lockert die Sprache,
+            nie die Belege. Eine hübsche Formulierung, die eine Begründung
+            unterstellt, die in der Meldung nicht steht, ist schlechter als
+            ein trockener Satz.
 
             ## Die erlaubten Werte
 

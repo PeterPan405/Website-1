@@ -84,6 +84,10 @@ on:
         description: 'Bauen und vertonen, aber nichts veröffentlichen'
         type: boolean
         default: false
+      nochmal:
+        description: 'Auch bauen, wenn die Folge des Tages schon steht'
+        type: boolean
+        default: false
       stichtag:
         description: 'Tagesausgabe eines anderen Tages (JJJJ-MM-TT)'
         type: string
@@ -132,6 +136,31 @@ jobs:
             echo "Der $heute ist als Probetag eingetragen – es wird gebaut."
           fi
 
+          # Steht die Folge des Tages schon im Feed?
+          #
+          # Der Fehler, aus dem diese Prüfung entstanden ist, ist am
+          # 9. August 2026 passiert: Der Sonntags-Cron wurde nicht
+          # verworfen, sondern **72 Minuten zu spät** ausgeführt – um
+          # 04:05 UTC. Da hatte ein Handstart um 03:04 die Folge längst
+          # gebaut und hochgeladen. Ergebnis: zwei Videos desselben Tages
+          # auf demselben Kanal. Im Repository fiel es nicht auf, weil der
+          # zweite Lauf den Eintrag im Feed überschrieb – dort stand danach
+          # genau eine Folge. Nur YouTube hatte sie doppelt.
+          #
+          # Der Feed ist die richtige Stelle: Er ist die Liste dessen, was
+          # veröffentlicht wurde, und wer eine Folge hochlädt, trägt sie
+          # dort ein. `nachrichten.yml` prüft seit dem 5. August genauso,
+          # ob die Ausgabe schon steht; hier fehlte es schlicht.
+          stichtag="${{ inputs.stichtag }}"
+          [ -n "$stichtag" ] || stichtag="$heute"
+          schon=nein
+          if node -e '
+                const feed = require("./data/podcast-eigener-feed.json")
+                process.exit(feed.folgen.some((f) => f.datum === process.argv[1]) ? 0 : 1)
+              ' "$stichtag" 2>/dev/null; then
+            schon=ja
+          fi
+
           if [ "${{ inputs.zugang_pruefen }}" = "true" ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
             echo "Zugangsprobe angefordert – es wird keine Folge gebaut."
@@ -139,8 +168,19 @@ jobs:
                && [ "$probetag" != "ja" ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
             echo "Wochenende – keine Folge."
+          elif [ "$schon" = "ja" ] && [ "${{ inputs.nochmal }}" != "true" ] \
+               && [ "${{ inputs.nur_proben }}" != "true" ]; then
+            # Kein roter Lauf: Dass die Folge schon steht, ist ein Zustand,
+            # kein Fehler – genau der, den ein verspäteter Zeitplan täglich
+            # erzeugen kann. Wer sie ersetzen will, startet mit `nochmal`.
+            echo "erscheint=nein" >> "$GITHUB_OUTPUT"
+            echo "Für den $stichtag steht bereits eine Folge im Feed."
+            echo "Ein zweiter Lauf würde ein zweites Video hochladen – Ende hier."
           else
             echo "erscheint=ja" >> "$GITHUB_OUTPUT"
+            if [ "$schon" = "ja" ]; then
+              echo "Achtung: Für den $stichtag steht schon eine Folge – sie wird ersetzt."
+            fi
           fi
 
           # Eine Probe darf nichts veröffentlichen.
