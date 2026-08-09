@@ -101,262 +101,407 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
-    slug: 'leitindizes-stand-2026-08-09',
-    title: 'Die Leitindizes am 9.8.2026: was die Zahlen sagen',
+    slug: 'zinswetten-kippen-fed-september-2026-08-09',
+    title: 'Von Erhöhung auf Pause: Ein Jobbericht kippt die Fed-Wetten',
     teaser:
-      'Euro Stoxx 50 führt mit +0,39 Prozent, Nikkei 225 (Japan) liegt mit −0,93 Prozent hinten. Warum ein Vergleich zweier Indizes fast immer schiefgeht.',
-    category: 'Märkte',
-    publishedAt: '2026-08-09T07:50:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Indizes', 'Marktdaten'],
-    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
-    relatedSymbols: ['dax', 'sp500', 'nikkei-225', 'euro-stoxx-50'],
-    sources: [
-      {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 8.8.2026, 21:42 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Der Stand der geführten Leitindizes zum letzten abgerufenen Schluss: **DAX (Deutscher Aktienindex)** +0,05 Prozent (6.8.2026), **S&P 500** −0,18 Prozent (6.8.2026), **Nikkei 225 (Japan)** −0,93 Prozent (6.8.2026), **Euro Stoxx 50** +0,39 Prozent (6.8.2026), **Nasdaq 100** −0,39 Prozent (6.8.2026).',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Warum diese Zahlen nicht vergleichbar sind',
-      },
-      {
-        type: 'paragraph',
-        text: 'Der DAX ist ein **Performanceindex**: Dividenden werden rechnerisch wieder angelegt und stecken im Indexstand. Der Euro Stoxx 50, der S&P 500 und der Nikkei 225 sind in ihrer gängigen Fassung **Kursindizes** – dort fehlt die Dividende. Über ein Jahr macht das je nach Markt zwei bis drei Prozentpunkte aus, über zwanzig Jahre den größeren Teil des Unterschieds.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Auf einen einzelnen Tag wirkt sich das kaum aus – wohl aber auf jeden Langfristvergleich, der zwei solche Indizes nebeneinanderstellt. Wer den DAX über zehn Jahre gegen den Euro Stoxx 50 hält, vergleicht nicht zwei Märkte, sondern zwei Rechenweisen.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was hier bewusst fehlt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
-      },
-    ],
-  },
-  {
-    slug: 'marktbreite-2026-08-09',
-    title: 'Marktbreite am 7.8.2026: wie viele Titel tragen die Bewegung',
-    metaTitle: 'Marktbreite am 7.8.2026',
-    teaser:
-      '566 Titel im Plus, 440 im Minus – die Bewegung ist zu 56,3 Prozent getragen. Was diese Zahl über einen Indexstand hinaus verrät.',
-    category: 'Märkte',
-    publishedAt: '2026-08-09T07:45:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Marktbreite', 'Marktdaten'],
-    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
-    relatedSymbols: ['dax', 'sp500'],
-    sources: [
-      {
-        label: 'Eigene Marktbreite-Aufzeichnung, Stand 8.8.2026, 21:42 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/tagesbild',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Von den ausgewerteten Titeln standen am 7.8.2026 **566** im Plus und **440** im Minus, 20 unverändert. Der ungewichtete Schnitt über alle lag bei +0,56 Prozent, die Breite bei 56,3 Prozent.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was „Breite" hier misst',
-      },
-      {
-        type: 'paragraph',
-        text: 'Die Breite ist der Anteil der bewegten Titel, die in dieselbe Richtung laufen wie der Gesamtschnitt. Bei 50 Prozent ist der Markt geteilt; bei 90 zieht fast alles mit. Heute sind es 56,3 Prozent von 1006 bewegten Titeln.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Der Unterschied ist praktisch. Ein Index kann steigen, weil alle 40 Werte steigen – oder weil drei schwere Werte steigen und 37 fallen. Der Indexstand ist in beiden Fällen derselbe, die Lage nicht. Nach Börsenwert gewichtete Indizes verbergen diesen Unterschied bauartbedingt.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb wird hier ungewichtet gerechnet: Jede Aktie zählt gleich. Nach Börsenwert gewichtet wäre der Schnitt der Halbleiter praktisch der Kurs eines einzigen Unternehmens.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was hier bewusst fehlt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
-      },
-    ],
-  },
-  {
-    slug: 'realzins-2026-08-09',
-    title: 'Leitzins 2,40 Prozent, Inflation 2,8 Prozent – was übrig bleibt',
-    metaTitle: 'Leitzins gegen Inflation: der Realzins',
-    teaser:
-      'Der EZB-Leitzins liegt bei 2,40 Prozent, die deutsche Inflationsrate bei 2,8 Prozent. Die Differenz ist der Realzins – und die einzige Zahl, die zählt.',
+      'Vor dem US-Jobbericht galt eine September-Zinserhöhung als wahrscheinlich, danach die Pause. Was Terminmärkte messen – und warum die erste Reaktion selten hält.',
     category: 'Geldpolitik',
-    publishedAt: '2026-08-09T07:40:00+02:00',
+    publishedAt: '2026-08-09T21:50:00+02:00',
     author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Zinsen', 'Inflation'],
-    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'tagesgeld'],
-    relatedSymbols: [],
+    readingMinutes: 5,
+    tags: ['Fed', 'Zinserwartung', 'Arbeitsmarkt'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['sp500', 'nasdaq-100'],
     sources: [
       {
         label:
-          'Europäische Zentralbank über die eigene Zinsübersicht, Stand 5.8.2026, 09:05 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/zinsen',
+          'FXStreet, „Prognose für die kommende Woche: US-Inflation steht nächste Woche im Mittelpunkt“ vom 7.8.2026, 19:34 Uhr GMT, abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.fxstreet.de.com/news/prognose-fur-die-kommende-woche-us-inflation-steht-nachste-woche-im-mittelpunkt-202608071934',
+      },
+      {
+        label:
+          'finanzmarktwelt.de, „US-Arbeitsmarkt schockt Märkte – Fed-Zinswetten kippen“, abgerufen 9.8.2026, 19:26 Uhr UTC',
+        url: 'https://finanzmarktwelt.de/us-arbeitsmarkt-schockt-maerkte-fed-zinswetten-kippen-397726/',
+      },
+      {
+        label:
+          'Bitcoin.com News (deutsch), „Erwartungen hinsichtlich einer Zinserhöhung durch die Fed schwinden …“ vom 9.8.2026, 13:45 Uhr',
+        url: 'https://news.bitcoin.com/de/finance/erwartungen-hinsichtlich-einer-zinserhoehung-durch-die-fed-schwinden-waehrend-die-wahrscheinlichkeit-einer-pause-im-september-deutlich-an-boden-gewinnt/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: '**Leitzins der EZB (Hauptrefinanzierungsgeschäfte)**: 2,40 Prozent, Stand 5.8.2026. **Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)**: 2,8 Prozent für Juli 2026.',
+        text: 'Der US-Arbeitsmarktbericht vom Freitag hat die Erwartungen an die Notenbanksitzung am 16. September binnen Stunden umgedreht. Statt der prognostizierten 80.000 neuen Stellen meldete die Statistik für Juli einen **Rückgang um 23.000**; der Juni-Wert wurde laut FXStreet zusätzlich auf 20.000 nach unten revidiert, und das Lohnwachstum verlangsamte sich auf 3,2 Prozent zum Vorjahr.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Der Realzins',
+        text: 'Vorher 55 Prozent für die Erhöhung, nachher 56 für die Pause',
       },
       {
         type: 'paragraph',
-        text: 'Die Differenz beider Zahlen heißt Realzins und liegt derzeit bei rund -0,4 Prozentpunkten. Sie beantwortet die einzige Frage, die für Erspartes zählt: Kann man sich in einem Jahr mehr kaufen als heute, oder weniger?',
+        text: 'Wie schnell die Neubewertung lief, hat finanzmarktwelt.de nachgezeichnet: Vor der Veröffentlichung preisten die Terminmärkte eine September-Zinserhöhung mit rund **55 Prozent Wahrscheinlichkeit** ein – kurz danach galten unveränderte Zinsen mit etwa 56 Prozent als wahrscheinlichstes Szenario. Am Sonntag bezifferte der Prognosemarkt Polymarket die Pause laut Bitcoin.com News auf 63 Prozent, Kalshi auf 65 Prozent, das CME-FedWatch-Tool auf knappere 55,6 Prozent. Das Zielband der Fed liegt derzeit bei 3,50 bis 3,75 Prozent.',
       },
       {
-        type: 'paragraph',
-        text: 'Ein Tagesgeldkonto mit drei Prozent bei vier Prozent Inflation verliert Kaufkraft, obwohl der Kontostand steigt. Umgekehrt kann ein Prozent Zins bei null Prozent Inflation ein Gewinn sein. Der nominale Zinssatz allein sagt darüber nichts.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Zwei Einschränkungen: Der Leitzins der EZB ist nicht der Zins, den eine Bank zahlt – er ist die Untergrenze, an der sich der Geldmarkt orientiert. Und die Inflationsrate ist ein Durchschnitt über einen Warenkorb, der niemandes tatsächlichem Einkauf entspricht.',
+        type: 'callout',
+        variant: 'info',
+        items: [
+          'Terminmärkte messen keine Meinung einer Redaktion, sondern Wetten mit echtem Geld: Aus den Preisen der Kontrakte lässt sich ablesen, welche Zinsentscheidung der Markt für wie wahrscheinlich hält. Ändern sich die Daten, ändern sich die Preise – manchmal innerhalb einer Stunde.',
+        ],
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Warum nicht die Zahl zählt, sondern die Abweichung',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Ein Verlust von 23.000 Stellen ist für eine Volkswirtschaft mit über 160 Millionen Beschäftigten für sich genommen klein. Bewegt hat die Märkte nicht die Zahl, sondern der **Abstand zur Erwartung**: Prognostiziert war ein Plus von 80.000. Was alle erwarten, steckt schon in den Kursen – erst die Überraschung erzeugt Bewegung. Deshalb kann dieselbe Meldung an einem Tag ein Beben auslösen und an einem anderen verpuffen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist auch das Kleingedruckte: Die Arbeitslosenquote **fiel** auf 4,1 Prozent – allerdings vor allem, weil weniger Menschen dem Arbeitsmarkt zur Verfügung standen. Eine sinkende Quote kann also ein Schwächesignal sein. Wer nur die Schlagzeile liest, liest das Gegenteil der Geschichte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Entscheidung am 16. September ist offen – die Prognosemärkte streuen zwischen 56 und 65 Prozent für die Pause, ein gutes Drittel setzt weiter auf die Erhöhung. Für Anleger ist weniger der Ausgang die Lehre als der Mechanismus: Zinswetten sind keine Fakten, sondern Momentaufnahmen, und der Verbraucherpreisindex am Mittwoch kann sie erneut drehen.',
       },
     ],
   },
   {
-    slug: 'gold-in-zwei-waehrungen-2026-08-09',
-    title: 'Ein Goldpreis, zwei Zahlen: warum Dollar und Euro auseinanderlaufen',
-    metaTitle: 'Gold in Dollar und in Euro',
+    slug: 'china-inflation-juli-2026-08-09',
+    title: 'China: Inflation halbiert sich auf 0,5 Prozent',
     teaser:
-      'Gold notiert bei 4.401,30 Dollar, der Euro bei 1,1542 Dollar – in Euro sind das rund 3.813,29. Ein Euro-Preis hat immer zwei Ursachen.',
-    category: 'Geldanlage',
-    publishedAt: '2026-08-09T07:35:00+02:00',
+      'Chinas Verbraucherpreise stiegen im Juli nur noch um 0,5 Prozent, halb so schnell wie im Juni. Warum eine sehr niedrige Inflation kein Grund zur Freude ist.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-09T21:45:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Gold', 'Währungen'],
-    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
+    tags: ['China', 'Inflation', 'Konjunktur'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['hang-seng', 'eur-cny'],
+    sources: [
+      {
+        label:
+          'CGTN, „Chinas CPI und PPI im Juli“ vom 9.8.2026 (Daten des Nationalen Statistikamts NBS), abgerufen 9.8.2026, 19:26 Uhr UTC',
+        url: 'https://news.cgtn.com/news/2026-08-09/China-s-CPI-and-PPI-maintain-upward-trend-in-July-1PsKq8Nf3cQ/p.html',
+      },
+      {
+        label:
+          'FXStreet-Wochenausblick vom 7.8.2026 (Markterwartung: +0,8 Prozent), abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.fxstreet.de.com/news/prognose-fur-die-kommende-woche-us-inflation-steht-nachste-woche-im-mittelpunkt-202608071934',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chinas Statistikamt NBS hat am Sonntag die Preisdaten für Juli veröffentlicht: Die Verbraucherpreise stiegen um **0,5 Prozent** zum Vorjahr – nach 1,0 Prozent im Juni und damit nur halb so schnell. Erwartet worden waren laut FXStreet 0,8 Prozent. Zum Vormonat fielen die Preise um 0,1 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kernrate und Gesamtrate erzählen zwei Geschichten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die **Kernrate** – ohne Lebensmittel und Energie – lag mit 0,9 Prozent deutlich über der Gesamtrate. Getragen wurde sie laut NBS von Dienstleistungen: Medizinische Leistungen verteuerten sich um 4,3 Prozent, Haushaltsdienste um 1,3 Prozent, Essen außer Haus um 1,0 Prozent. Gedrückt wurde die Gesamtrate vor allem von langsamer steigenden Benzinpreisen. Die Erzeugerpreise stiegen um 3,5 Prozent zum Vorjahr, fielen aber zum Vormonat um 0,7 Prozent – in der Ölförderung um 11,8 Prozent.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        items: [
+          'Gesamtrate und Kernrate auseinanderzuhalten lohnt sich in jedem Land: Die Gesamtrate schwankt mit Öl und Lebensmitteln, die Kernrate zeigt den zugrunde liegenden Preistrend. Notenbanken schauen deshalb meist zuerst auf die Kernrate.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum „zu niedrig“ auch ein Warnsignal ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Europa wäre eine Inflationsrate von 0,5 Prozent eine Sensationsmeldung – in China ist sie eher ein Symptom: Sehr niedrige Raten können auf schwache Binnennachfrage hindeuten, und ein Rutsch unter null (Deflation) macht Schulden real schwerer und verleitet Käufer zum Abwarten. Die Deutung ist auch unter Beobachtern nicht einheitlich: Der Staatssender CGTN überschreibt dieselben Zahlen mit einem stabilen Aufwärtstrend und verweist auf die anziehenden Erzeugerpreise, westliche Datenanbieter betonen die Abkühlung gegenüber Juni.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wer chinesische Aktien oder einen Schwellenländer-ETF hält, hält immer auch eine Wette auf Chinas Binnennachfrage. Preisdaten wie diese sind dafür ein früher Fühler – und ein Beispiel dafür, dass dieselbe Zahl je nach Blickwinkel als Erfolg oder als Warnung gelesen wird.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-staerkste-woche-seit-januar-2026-08-09',
+    title: 'Gold über 4.300 Dollar: die stärkste Woche seit Januar',
+    teaser:
+      'Gold beendet die Woche über 4.300 Dollar – so stark wie seit Januar nicht. Treiber sind kippende Zinserwartungen, und am Mittwoch folgt der nächste Test.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-09T21:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Zinserwartung', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'notenbanken-geldpolitik', 'risiko-und-rendite'],
     relatedSymbols: ['gold', 'eur-usd'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 8.8.2026, 21:42 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'FXStreet-Wochenausblick vom 7.8.2026 (Gold über 4.300 Dollar, stärkste Rally seit Januar), abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.fxstreet.de.com/news/prognose-fur-die-kommende-woche-us-inflation-steht-nachste-woche-im-mittelpunkt-202608071934',
       },
       {
-        label: 'Europäische Zentralbank, Referenzkurs vom 6.8.2026',
-        url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+        label:
+          'finanzmarktwelt.de, „US-Arbeitsmarkt schockt Märkte“ (Gold in der Spitze 4.371 Dollar), abgerufen 9.8.2026, 19:26 Uhr UTC',
+        url: 'https://finanzmarktwelt.de/us-arbeitsmarkt-schockt-maerkte-fed-zinswetten-kippen-397726/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 9.8.2026 (Gold 4.342,26 Dollar), abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachricht/21220632-bitcoin-prognose-2026-wale-kaufen-btc-1-2-milliarden-dollar-kursziele-liegen-212-000-dollar-auseinander',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Gold stand zuletzt bei **4.401,30 Dollar** je Feinunze (Stand 7.8.2026, 20:59 Uhr UTC). Der Euro notierte bei **1,1542 Dollar** (Stand 6.8.2026). Umgerechnet sind das rund **3.813,29 Euro**.',
+        text: 'Gold hat laut FXStreet die Woche oberhalb von **4.300 Dollar** je Feinunze beendet – nach der stärksten Wochenrally seit Januar. Unmittelbar nach dem schwachen US-Arbeitsmarktbericht am Freitag reichte die Bewegung laut finanzmarktwelt.de in der Spitze bis 4.371 Dollar; am Sonntagabend stand der Preis in der Kursleiste von wallstreet-online bei 4.342,26 Dollar.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Zwei Ursachen für eine Zahl',
+        text: 'Der Treiber heißt nicht „Krise“, sondern „Zinserwartung“',
       },
       {
         type: 'paragraph',
-        text: 'Gold wird international in Dollar gehandelt. Wer den Preis in Euro sehen will, rechnet um – und übernimmt damit den Wechselkurs als zweite bewegliche Größe. Der Euro-Preis kann deshalb steigen, während der Dollar-Preis fällt: Es genügt, dass der Euro gegenüber dem Dollar stärker nachgibt.',
+        text: 'Die naheliegende Erklärung – Gold steigt, weil die Welt unsicher ist – greift diese Woche zu kurz. Der Auslöser war präziser: Nach dem Jobbericht brachen die Erwartungen einer weiteren **Zinserhöhung** der Fed ein. Gold zahlt keine Zinsen; sein größter Konkurrent ist die verzinste Staatsanleihe. Sinken die erwarteten Zinsen, sinken die Opportunitätskosten des Goldhaltens – und der Preis bekommt Rückenwind. FXStreet nennt die einbrechenden Zinserhöhungserwartungen ausdrücklich als Träger der Bewegung.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        items: [
+          'Dieselbe Logik trägt auch in die Gegenrichtung: Fällt der US-Verbraucherpreisindex am Mittwoch höher aus als erwartet, rücken Zinserhöhungen zurück ins Bild – und der Rückenwind für Gold kann sich schnell drehen. FXStreet nennt den Mittwochstermin die mit Abstand wichtigste Veröffentlichung der Woche.',
+        ],
       },
       {
         type: 'paragraph',
-        text: 'Für einen Anleger im Euroraum heißt das: Eine Goldposition ist immer auch eine Dollarposition. Wer „auf Gold setzt", setzt zur Hälfte auf eine Währung. Dasselbe gilt für Öl, für Kupfer und für jeden weltweit in Dollar notierten Rohstoff.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb ist die Frage bei jeder Rohstoffmeldung: in welcher Währung? Zwei Berichte, die scheinbar widersprüchliche Zahlen nennen, meinen oft dieselbe Unze in zwei Währungen – oder zu zwei Uhrzeiten.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was hier bewusst fehlt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Was daraus folgt: Wer Gold im Depot hat, sollte weniger auf Krisenschlagzeilen schauen als auf Realzinsen und Zinserwartungen. Eine Woche wie diese zeigt den Mechanismus in Reinform – der Preis bewegte sich in Stunden, in denen sich an den Krisen der Welt nichts geändert hat, wohl aber an den Zinswetten.',
       },
     ],
   },
   {
-    slug: 'spanne-des-tages-2026-08-09',
-    title: 'Die Spanne des Tages: warum Prozentzahlen einen Bezugspunkt brauchen',
-    metaTitle: 'Die Spanne des Tages',
+    slug: 'euro-dollar-zweimonatshoch-2026-08-09',
+    title: 'Euro über 1,15 Dollar: Warum das eine Dollar-Geschichte ist',
     teaser:
-      'Zwischen WPP mit +28,62 Prozent und Datadog mit −19,03 Prozent liegen Welten. Was eine Prozentzahl verschweigt.',
+      'Der Euro notiert über 1,15 Dollar, der Dollar-Index fiel unter 100. Warum ein Wechselkurs immer zwei Geschichten erzählt – und diesmal die amerikanische zählt.',
     category: 'Märkte',
-    publishedAt: '2026-08-09T07:30:00+02:00',
+    publishedAt: '2026-08-09T21:35:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Aktien', 'Marktdaten'],
-    relatedTopics: ['aktie', 'risiko-und-rendite'],
-    relatedSymbols: [],
+    tags: ['Euro', 'Dollar', 'Wechselkurs'],
+    relatedTopics: ['waehrungen-wechselkurse', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd', 'eur-jpy'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 8.8.2026, 21:42 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'FXStreet-Wochenausblick vom 7.8.2026 (EUR/USD über 1,1550, Dollar-Index unter 100, USD/JPY unter 158), abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.fxstreet.de.com/news/prognose-fur-die-kommende-woche-us-inflation-steht-nachste-woche-im-mittelpunkt-202608071934',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 9.8.2026 (EUR/USD 1,15587), abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachricht/21220632-bitcoin-prognose-2026-wale-kaufen-btc-1-2-milliarden-dollar-kursziele-liegen-212-000-dollar-auseinander',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Über 1026 geführte Aktien reichte die Tagesveränderung von +28,62 Prozent bis −19,03 Prozent. Vorn: **WPP** +28,62 Prozent, **Kao** +12,83 Prozent, **ProSiebenSat.1 Media** +10,00 Prozent. Hinten: **Datadog** −19,03 Prozent, **Western Digital** −13,03 Prozent, **SK Hynix** −10,37 Prozent.',
+        text: 'Das Währungspaar Euro/Dollar hat die Woche laut FXStreet oberhalb von 1,1550 beendet, nahe einem Zweimonatshoch – am Sonntagabend zeigte die Kursleiste von wallstreet-online **1,15587 Dollar** je Euro. Der Dollar-Index, der den Dollar gegen einen Korb großer Währungen misst, fiel unter die Marke von 100.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Prozent von was',
+        text: 'Zwei Währungen, ein Kurs',
       },
       {
         type: 'paragraph',
-        text: 'Eine Prozentangabe ist eine Verhältniszahl, und ihr Nenner steht selten dabei. Ein Titel, der von zwei auf drei Euro steigt, legt 50 Prozent zu; einer, der von 200 auf 210 Euro steigt, nur fünf – obwohl der zweite den Anleger um zehn Euro je Stück reicher macht und der erste um einen.',
+        text: 'Ein Wechselkurs hat immer zwei Seiten: Er kann steigen, weil der Zähler stark ist – oder weil der Nenner schwach ist. Diese Woche spricht fast alles für die zweite Lesart. Der Auslöser war der schwache US-Arbeitsmarktbericht, der die Zinserwartungen an die Fed kippte; der Dollar verlor daraufhin **gegen alle großen Währungen**, zeitweise rund ein Prozent allein gegen den Yen. Aus dem Euroraum selbst kam wenig Neues – die EZB wartet ab, und der Datenkalender der Woche ist laut FXStreet „eher von Bestätigungen als von Überraschungen geprägt“.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        items: [
+          'Der Dollar-Index ist ein nützlicher Schnelltest: Steigt der Euro zum Dollar, während der Index fällt, ist es eine Dollar-Bewegung. Steigt der Euro auch gegen Pfund, Yen und Franken, ist es eine Euro-Bewegung.',
+        ],
       },
       {
         type: 'paragraph',
-        text: 'Deshalb stehen an der Spitze solcher Listen überdurchschnittlich oft kleine und wenig gehandelte Werte. Das ist kein Befund über ihre Qualität, sondern eine Eigenschaft des Bruchs: Bei einem kleinen Nenner erzeugt eine kleine Bewegung eine große Zahl.',
+        text: 'Was daraus folgt: Für Anleger mit weltweit gestreuten Depots ist der Kurs mehr als eine Randnotiz – ein schwächerer Dollar drückt den Euro-Wert von US-Aktien und Dollar-Rohstoffen, ganz ohne dass sich an den Unternehmen etwas ändert. Wer die Ursache kennt, erschrickt nicht über Depotbewegungen, die nur Währung sind.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-prognosespanne-2026-08-09',
+    title: 'Bitcoin: Kursziele liegen 212.000 Dollar auseinander',
+    teaser:
+      'Große Häuser sehen Bitcoin zwischen 38.000 und 250.000 Dollar. Was solche Spannen über Prognosen verraten – und woran man Werbung in Nachrichtenform erkennt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-09T21:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Bitcoin', 'Prognosen', 'Anlegerschutz'],
+    relatedTopics: ['bitcoin-krypto', 'anlegerpsychologie', 'wann-kaufen-verkaufen'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, „Bitcoin Prognose 2026 – Wale kaufen BTC für 1,2 Milliarden Dollar, doch die Kursziele liegen 212.000 Dollar auseinander“ vom 9.8.2026, abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.wallstreet-online.de/nachricht/21220632-bitcoin-prognose-2026-wale-kaufen-btc-1-2-milliarden-dollar-kursziele-liegen-212-000-dollar-auseinander',
       },
       {
+        label:
+          'finanznachrichten.de (Tokenwire), „Bitcoin Kurs Prognose August 2026 – warum die ruhigste Woche seit Mai Anleger nervös macht“ vom 5.8.2026, abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.finanznachrichten.de/nachrichten-2026-08/69228301-bitcoin-kurs-prognose-august-2026-warum-die-ruhigste-woche-seit-mai-anleger-nervoes-macht-712.htm',
+      },
+    ],
+    body: [
+      {
         type: 'paragraph',
-        text: 'Umgekehrt gilt dasselbe für Verluste – und dort mit einer Schieflage, die häufig übersehen wird: Ein Minus von 50 Prozent erfordert ein Plus von 100 Prozent, um wieder am Ausgangspunkt zu stehen. Auf- und Abstieg sind nicht symmetrisch.',
+        text: 'Bitcoin notierte laut einem am Sonntag bei wallstreet-online erschienenen Beitrag am 7. August bei rund **64.970 Dollar** – etwa 48 Prozent unter dem Rekordhoch von 126.080 Dollar. In der ersten Augustwoche flossen demnach 754 Millionen Dollar in die Spot-ETFs, große Adressen kauften Bitcoin im Wert von rund 1,2 Milliarden Dollar. Anfang der Woche war die erwartete Schwankungsbreite laut einem Beitrag auf finanznachrichten.de auf den tiefsten Stand seit Ende Mai gefallen.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: '38.000 oder 250.000 – beides heißt „Prognose“',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Bemerkenswert ist die Spanne der Jahresprognosen großer Häuser, die der Beitrag nennt: Sie reicht von **38.000 bis 250.000 Dollar** – Standard Chartered wird mit 100.000, Bernstein mit 150.000 Dollar zitiert. Zwischen dem niedrigsten und dem höchsten Kursziel liegen 212.000 Dollar, mehr als das Dreifache des aktuellen Kurses. Eine so breite Spanne ist selbst die Information: Sie sagt, dass niemand es weiß. Eine Punktprognose („150.000 bis Jahresende“) klingt präziser, ist aber nur ein Punkt aus genau dieser Spanne.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der zweite Lehrsatz steckt in den Quellen selbst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Beiträge, die diese Marktzahlen liefern, münden im letzten Drittel in Werbung für denselben Token-Vorverkauf – inklusive Preisangabe und Verkaufsargumenten. Das Muster ist verbreitet: Ein Text beginnt als Marktbericht mit echten, nachprüfbaren Zahlen und wechselt dann unmerklich ins Verkaufen. Erkennbar ist es an wiederkehrenden Signalen: Ein konkretes Produkt wird prominenter als das eigentliche Thema, Knappheit wird betont („nur bis zum Listing“), und Risiken kommen nicht mehr vor.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        items: [
+          'Vorverkäufe unregulierter Token sind hochriskant bis Totalverlust. Dieser Artikel zitiert aus den genannten Beiträgen ausschließlich die Marktdaten zu Bitcoin – die dort beworbene Vorverkaufs-Anlage ist ausdrücklich nicht Gegenstand und nicht Empfehlung dieser Seite.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wer Krypto-Nachrichten liest, prüft zweierlei – die Zahl und den Zweck des Textes. Die Zahl kann stimmen, während der Text verkaufen will. Beides gleichzeitig zu sehen ist die eigentliche Kompetenz.',
+      },
+    ],
+  },
+  {
+    slug: 'anleihen-rendite-pendel-2026-08-09',
+    title: '4,67 – 4,61 – 4,63: das Rendite-Pendel nach dem Jobbericht',
+    metaTitle: 'Das Rendite-Pendel nach dem US-Jobbericht',
+    teaser:
+      'Nach dem US-Jobbericht fiel die Zehnjahresrendite von 4,67 auf 4,61 Prozent – und stieg zurück auf 4,63. Was das Pendeln über eingepreiste Erwartungen lehrt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-09T21:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Anleihen', 'Renditen', 'Fed'],
+    relatedTopics: ['staatsanleihe', 'schuldverschreibung', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['sp500', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanzmarktwelt.de, „US-Arbeitsmarkt schockt Märkte – Fed-Zinswetten kippen“ (Renditeverlauf, Marktreaktionen; Beschäftigungsdaten laut Bloomberg), abgerufen 9.8.2026, 19:26 Uhr UTC',
+        url: 'https://finanzmarktwelt.de/us-arbeitsmarkt-schockt-maerkte-fed-zinswetten-kippen-397726/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zehnjähriger US-Staatsanleihen fiel unmittelbar nach dem schwachen Arbeitsmarktbericht von rund **4,668 auf 4,606 Prozent** – und stieg anschließend auf etwa 4,625 Prozent zurück, wie finanzmarktwelt.de nachzeichnet. Bei zweijährigen Papieren, die besonders empfindlich auf Fed-Erwartungen reagieren, gingen die Renditen ebenfalls deutlich zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum fallende Renditen steigende Kurse sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anleihekurs und Rendite bewegen sich spiegelbildlich: Wer eine bestehende Anleihe mit festem Zinsschein kauft, zahlt mehr für sie, wenn neue Anleihen künftig weniger Zins versprechen – der Kurs steigt, die rechnerische Rendite fällt. Ein Renditerutsch von 4,67 auf 4,61 Prozent binnen Minuten heißt also: Anleger griffen zu, weil sie geringere Zinsen erwarteten. Die **zweijährige** Rendite gilt dabei als der direktere Fed-Sensor, weil auf ihrer kurzen Strecke fast nur die Leitzinserwartung zählt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Aktienmärkte pendelten: Nasdaq 100 und S&P 500 zogen laut dem Bericht zunächst deutlich an – die Logik „schwächere Daten, weniger Zinsdruck“ –, gaben dann aber rund um die Börseneröffnung große Teile der Gewinne wieder ab. Denn zu schwache Daten werfen die nächste Frage auf: Wie viel Konjunkturschwäche steckt dahinter?',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        items: [
+          'Das Pendeln ist kein Zeichen von Orientierungslosigkeit, sondern der Preisfindungsprozess selbst: Der Markt probiert nacheinander zwei Deutungen derselben Zahl – erst „gut für Kurse, weil zinssenkend“, dann „schlecht für Kurse, weil konjunkturschwach“ – und landet dazwischen.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Die erste Marktreaktion auf eine Datenveröffentlichung ist eine Hypothese, kein Urteil. Wer auf sie handelt, handelt auf halbem Informationsstand – ein Grund mehr, Datentage als Beobachter statt als Schnellhändler zu verbringen.',
+      },
+    ],
+  },
+  {
+    slug: 'datenwoche-cpi-rba-bip-2026-08-09',
+    title: 'Die Woche voraus: US-Inflation am Mittwoch ist der Haupttermin',
+    metaTitle: 'Woche voraus: US-Inflation am Mittwoch',
+    teaser:
+      'US-Verbraucherpreise am Mittwoch, Notenbank in Australien, BIP aus London und der Eurozone: Warum schon die Prognosewerte selbst die Kurse bewegen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-09T21:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wirtschaftskalender', 'Inflation', 'Notenbanken'],
+    relatedTopics: ['notenbanken-geldpolitik', 'boerse', 'inflation'],
+    relatedSymbols: ['sp500', 'ftse-100', 'asx-200', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'FXStreet, „Prognose für die kommende Woche: US-Inflation steht nächste Woche im Mittelpunkt“ vom 7.8.2026, 19:34 Uhr GMT, abgerufen 9.8.2026, 19:25 Uhr UTC',
+        url: 'https://www.fxstreet.de.com/news/prognose-fur-die-kommende-woche-us-inflation-steht-nachste-woche-im-mittelpunkt-202608071934',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach der Arbeitsmarktwoche kommt die Preiswoche: Am Mittwoch erscheint der **US-Verbraucherpreisindex** für Juli. Die Prognose liegt laut FXStreet bei 3,4 Prozent für die Gesamtrate und 2,5 Prozent für die dort ausgewiesene Kernrate; am Donnerstag folgen mit Hammack und Barkin zwei Fed-Redner, dazu im Wochenverlauf Erzeugerpreise, Einzelhandelsumsätze und das Michigan-Konsumklima.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die zweite Reihe: Australien, London, Brüssel',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Dienstag:** Die australische Notenbank RBA entscheidet über den Leitzins – erwartet wird laut FXStreet, dass sie ihn bei 4,35 Prozent belässt; wichtiger als die Entscheidung dürfte die Begleiterklärung sein.',
+          '**Donnerstag:** Großbritannien meldet das BIP für das zweite Quartal – die Prognose sieht eine Verlangsamung auf 0,4 nach 0,6 Prozent.',
+          '**Freitag:** Die Eurozone legt die erste BIP-Schätzung für das zweite Quartal vor – erwartet werden 0,4 Prozent zum Vorquartal und 1,0 Prozent zum Vorjahr.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Prognose selbst schon ein Kurs ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass ein Kalender voller Zahlen Kurse bewegt, liegt nicht an den Zahlen allein, sondern am Abstand zur Erwartung. Die Prognosewerte – 3,4 Prozent Inflation, 4,35 Prozent Leitzins, 0,4 Prozent Wachstum – sind bereits in den Kursen enthalten, bevor die Daten erscheinen. Ein Ergebnis exakt auf Prognose ist deshalb oft ein Nicht-Ereignis; eine Abweichung um wenige Zehntel kann dagegen Renditen, Währungen und Aktien gleichzeitig bewegen – die vergangene Woche hat es vorgeführt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wer den Wirtschaftskalender liest, sollte neben dem Termin immer die Konsensprognose notieren. Nicht um zu handeln – sondern um am Abend zu verstehen, warum sich das Depot bewegt hat oder eben nicht.',
       },
     ],
   },
