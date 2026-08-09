@@ -38,6 +38,44 @@
  * `npm run frische` meldet Einträge, deren Stand älter als zwei Jahre ist –
  * Anbieter senken die Kosten regelmäßig, und eine zu hohe Angabe ist genauso
  * falsch wie eine zu niedrige.
+ *
+ * ## Was am 9. August 2026 versucht wurde – und woran es lag
+ *
+ * Damit sich niemand dieselbe Stunde noch einmal nimmt.
+ *
+ * **fondsweb.com liefert eine Zahl, aber nicht diese.** Die Seiten sind ohne
+ * JavaScript lesbar und über `quellen-holen.yml` mit `suche=Summe laufende
+ * Kosten` in einem Lauf für alle acht Fonds abzufragen. Nur passen die Werte
+ * nicht:
+ *
+ *     Fonds                       fondsweb   TER des Anbieters
+ *     iShares Core S&P 500          0,07 %   0,07 %
+ *     iShares Core MSCI EM IMI      0,22 %   0,18 %
+ *     iShares Core DAX              0,17 %   0,16 %
+ *     iShares STOXX Europe 600      0,21 %   0,20 %
+ *     iShares MSCI World Small Cap  0,36 %   0,35 %
+ *     Xtrackers EUR Overnight       0,10 %   0,10 %
+ *
+ * Die Abweichung geht immer in dieselbe Richtung und ist mal null, mal vier
+ * Hundertstel. Das ist keine Rundung, sondern eine andere Größe – vermutlich
+ * mit Transaktionskosten. Genau die Verwechslung, vor der Schritt 2 oben
+ * warnt. Eingetragen wurde deshalb **nichts**.
+ *
+ * **Das Basisinformationsblatt kommt nicht durch.** Die Adresse ist
+ * vorhersagbar:
+ *
+ *     https://www.ishares.com/de/privatanleger/de/literature/kiid/
+ *       eu-priips-ishares-core-msci-world-ucits-etf-ie00b4l5y983-de.pdf
+ *
+ * Sie antwortet mit **200 und `text/html`** statt mit der PDF: iShares
+ * schiebt die Anlegertyp-Abfrage davor. Der Läufer kann seit demselben Tag
+ * PDFs lesen – hier bekommt er keine.
+ *
+ * **Der nächste Versuch** braucht also entweder eine Quelle, die das
+ * Basisinformationsblatt ohne Zustimmungssperre ausliefert, oder einen
+ * Menschen, der die acht Dokumente einmal im Browser öffnet und die Werte
+ * hier einträgt. Das ist Arbeit von zwanzig Minuten und danach zwei Jahre
+ * lang erledigt.
  */
 
 export interface EtfKosten {
