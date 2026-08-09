@@ -527,8 +527,50 @@ jobs:
           heute=$(date -u +%Y-%m-%d)
           git fetch origin main --depth 1 -q
           if git cat-file -e "origin/main:data/editions/$heute.ts" 2>/dev/null; then
-            echo "Die Ausgabe vom $heute steht bereits."
-            exit 0
+            # **„Steht bereits" genügt nicht mehr** – der Notbehelf aus dem
+            # Kursbestand liefert immer eine Ausgabe. Steht eine, entscheidet
+            # ihre Herkunft (Maßstab wie im Wächter: weniger als die Hälfte
+            # externer Quellen heißt Notbehelf), ob sich ein weiterer Anstoß
+            # lohnt: `nachrichten.yml` ersetzt einen Notbehelf durch den
+            # recherchierten Entwurf, solange der Podcast ihn nicht vertont
+            # hat. Diese Kette hier ist der Grund, warum das nicht am
+            # einzigen 02:47-Termin hängt.
+            datei="${RUNNER_TEMP:-/tmp}/ausgabe-heute.ts"
+            git show "origin/main:data/editions/$heute.ts" > "$datei"
+            gesamt=$(grep -c "url: '" "$datei" || true)
+            extern=$(grep "url: '" "$datei" | grep -vc "iminvests.de" || true)
+
+            if [ "${gesamt:-0}" -eq 0 ] || [ $((extern * 2)) -ge "$gesamt" ]; then
+              echo "Die Ausgabe vom $heute steht bereits und ist recherchiert."
+              exit 0
+            fi
+
+            # Vertont? Dann ist der Zug abgefahren – Website und Folge
+            # müssen dasselbe erzählen.
+            feed="${RUNNER_TEMP:-/tmp}/feed-heute.json"
+            git show "origin/main:data/podcast-eigener-feed.json" > "$feed" 2>/dev/null || echo '{"folgen":[]}' > "$feed"
+            if node -e '
+                  const feed = require(process.argv[1])
+                  process.exit((feed.folgen||[]).some((f) => f.datum === process.argv[2]) ? 0 : 1)
+                ' "$feed" "$heute" 2>/dev/null; then
+              echo "Für den $heute steht der Notbehelf, aber der Podcast hat ihn vertont – kein Ersetzen mehr."
+              exit 0
+            fi
+
+            # Gibt es überhaupt einen Entwurf von heute? Ohne ihn würde der
+            # angestoßene Lauf sofort wieder aufhören.
+            entwurf="${RUNNER_TEMP:-/tmp}/entwurf-heute.json"
+            if ! git fetch origin nachrichten-entwurf --depth 1 -q 2>/dev/null ||
+               ! git show origin/nachrichten-entwurf:entwurf.json > "$entwurf" 2>/dev/null ||
+               [ "$(node -e "try{process.stdout.write(String(JSON.parse(require('fs').readFileSync('$entwurf','utf8')).stichtag||''))}catch(e){}")" != "$heute" ]; then
+              echo "Für den $heute steht der Notbehelf, aber kein Entwurf von heute – nichts anzustoßen."
+              exit 0
+            fi
+
+            echo "::warning::Für den $heute steht der Notbehelf ($extern von $gesamt Quellen extern),"
+            echo "  und ein recherchierter Entwurf liegt bereit – der Nachrichtenlauf wird zum Ersetzen angestoßen."
+          else
+            echo "::warning::Für den $heute fehlt die Ausgabe."
           fi
 
           # Läuft oder wartet schon einer? Dann nicht noch einen anfordern.
@@ -540,7 +582,9 @@ jobs:
             exit 0
           fi
 
-          echo "::warning::Für den $heute fehlt die Ausgabe – der Nachrichtenlauf wird angestoßen."
+          # Ob die Ausgabe fehlt oder nur der Notbehelf steht, hat der Block
+          # oben bereits gemeldet – hier zählt nur noch der Anstoß selbst.
+          echo "::warning::Der Nachrichtenlauf wird angestoßen."
           gh workflow run nachrichten.yml \
             --repo "${{ github.repository }}" --ref main
 
