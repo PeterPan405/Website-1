@@ -208,10 +208,10 @@ export default function PrivacyPage() {
               4. Schriftarten
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Diese Website verwendet die Schriftarten Inter und Sora. Sie werden nicht
-              zur Laufzeit von einem externen Anbieter geladen, sondern bereits bei der
-              Erstellung der Website heruntergeladen und vom eigenen Server ausgeliefert.
-              Beim Besuch entsteht dadurch{' '}
+              Diese Website verwendet die Schriftarten Inter und Fraunces. Sie werden
+              nicht zur Laufzeit von einem externen Anbieter geladen, sondern bereits bei
+              der Erstellung der Website heruntergeladen und vom eigenen Server
+              ausgeliefert. Beim Besuch entsteht dadurch{' '}
               <strong className="text-fg font-semibold">
                 keine Verbindung zu Google
               </strong>{' '}

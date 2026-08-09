@@ -13,15 +13,19 @@ import {
   geschichtsvorspann,
 } from '@/lib/boersengeschichte'
 import { cn } from '@/lib/cn'
-import { formatDate } from '@/lib/format'
+import { formatDate, formatNumber, formatPercentSigned } from '@/lib/format'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
-import { getInstrument, getMarketOverview, getSeries } from '@/lib/markets'
+import {
+  getInstrument,
+  getInstruments,
+  getMarketOverview,
+  getSeries,
+} from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
 import { folgenAdresse, folgenDauer, getFolgen, kurzfassung } from '@/lib/podcast'
 import { buildMetadata } from '@/lib/seo'
 import {
   areas,
-  areaStyles,
   LEARN_TOPIC_COUNT,
   RECHNER_ANZAHL,
   RECHNER_ANZAHL_WORT,
@@ -44,15 +48,15 @@ export const metadata: Metadata = buildMetadata({
  * den übrigen. Die Überschrift darüber zählt die Kacheln selbst – wer hier
  * eine ergänzt, muss sie nirgends sonst nachtragen.
  */
-const areaTiles: { area: AreaId; icon: IconName }[] = [
-  { area: 'learn', icon: 'book' },
-  { area: 'tools', icon: 'calculator' },
-  { area: 'markets', icon: 'chart' },
-  { area: 'globe', icon: 'globe' },
+const areaTiles: { area: AreaId }[] = [
+  { area: 'learn' },
+  { area: 'tools' },
+  { area: 'markets' },
+  { area: 'globe' },
   // Zwischen Globus und Kalender – dieselbe Stelle wie in der Kopfzeile.
-  { area: 'akademie', icon: 'scale' },
-  { area: 'calendar', icon: 'clock' },
-  { area: 'news', icon: 'newspaper' },
+  { area: 'akademie' },
+  { area: 'calendar' },
+  { area: 'news' },
 ]
 
 /**
@@ -116,13 +120,16 @@ const GESCHICHTS_SYMBOLE = [
 ] as const
 
 export default async function HomePage() {
-  const [headlines, marketPreviews, learnStats, completeTopics] = await Promise.all([
-    // Ohne Angabe: genau die Meldungen, die auch unter „Aktuelles“ stehen.
-    getNewsHeadlines(),
-    getMarketOverview(),
-    getLearnStats(),
-    getCompleteTopics(),
-  ])
+  const [headlines, marketPreviews, learnStats, completeTopics, instrumente] =
+    await Promise.all([
+      // Ohne Angabe: genau die Meldungen, die auch unter „Aktuelles“ stehen.
+      getNewsHeadlines(),
+      getMarketOverview(),
+      getLearnStats(),
+      getCompleteTopics(),
+      // Für die Zahlen-Sektion: die Anzahl folgt dem Bestand, nicht einem Text.
+      getInstruments(),
+    ])
 
   // Die drei jüngsten Folgen; alles Weitere steht unter /podcast.
   const podcastfolgen = getFolgen().slice(0, 3)
@@ -163,7 +170,7 @@ export default async function HomePage() {
               Überschrift ist das erste, was nach Baukasten aussieht – die
               Information trägt auch eine gesperrte Kleinzeile.
             */}
-            <p className="text-brand text-xs font-semibold tracking-[0.16em] uppercase">
+            <p className="text-brand font-mono text-xs font-semibold tracking-[0.16em] uppercase">
               Finanzbildung in drei Stufen
             </p>
 
@@ -173,7 +180,12 @@ export default async function HomePage() {
               untereinander stehen und die Anfangsbuchstaben eine Achse bilden –
               bei automatischem Umbruch wäre das von der Fensterbreite abhängig.
             */}
-            <h1 className="text-fg mt-5 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            {/*
+              Halbfett statt fett und enger gesperrt: In dieser Größe wirkt
+              das volle Fettgewicht plump; die Eleganz kommt aus Größe und
+              Laufweite, nicht aus Schwärze.
+            */}
+            <h1 className="text-fg mt-5 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl lg:text-6xl">
               <span className="block">Finanzen verstehen,</span>
               {/*
                 Volle Farbe statt Farbverlauf: Verlaufs-Schrift ist das
@@ -183,7 +195,7 @@ export default async function HomePage() {
               <span className="text-brand block">Fehler vermeiden</span>
             </h1>
 
-            <p className="text-fg-muted mt-5 max-w-xl text-lg leading-relaxed">
+            <p className="text-fg-muted mt-6 max-w-xl text-lg leading-relaxed sm:text-xl">
               {learnStats.topicCount} Finanzthemen, jeweils in den Stufen Beginner,
               Fortgeschritten und Profi. Dazu {RECHNER_ANZAHL_WORT} Rechner mit
               offengelegter Methodik, Marktdaten mit Erklärung und Nachrichten, die
@@ -203,26 +215,26 @@ export default async function HomePage() {
 
             <dl className="border-border mt-10 grid max-w-lg grid-cols-3 gap-4 border-t pt-6">
               <div>
-                <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
+                <dt className="text-fg-subtle font-mono text-xs font-medium tracking-wide uppercase">
                   Themen
                 </dt>
-                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">
+                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
                   {learnStats.topicCount}
                 </dd>
               </div>
               <div>
-                <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
+                <dt className="text-fg-subtle font-mono text-xs font-medium tracking-wide uppercase">
                   Lernstufen
                 </dt>
-                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">
+                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
                   {learnStats.levelCount}
                 </dd>
               </div>
               <div>
-                <dt className="text-fg-subtle text-xs font-medium tracking-wide uppercase">
+                <dt className="text-fg-subtle font-mono text-xs font-medium tracking-wide uppercase">
                   Rechner
                 </dt>
-                <dd className="text-fg mt-1 text-2xl font-bold tabular-nums">
+                <dd className="text-fg font-display mt-1 text-3xl font-semibold tabular-nums">
                   {RECHNER_ANZAHL}
                 </dd>
               </div>
@@ -231,6 +243,82 @@ export default async function HomePage() {
 
           {/* Die drehende News-Säule. */}
           <NewsCarousel headlines={headlines} />
+        </div>
+
+        {/*
+          Die Ticker-Zeile: die Leitwerte des Tages in einer Haarlinien-Leiste,
+          jede Zahl ein Verweis auf ihre Detailseite. Kein Laufband – die Werte
+          stehen, auf schmalen Schirmen wird die Zeile seitlich geschoben.
+          `data-fliesst`, weil sich die Zahlen mit jedem Bau ändern.
+        */}
+        <div className="border-border border-y" data-fliesst="">
+          <ul className="fk-container flex [scrollbar-width:none] items-center gap-8 overflow-x-auto py-3 whitespace-nowrap [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {marketPreviews.slice(0, 8).map(({ quote }) => (
+              <li key={quote.symbol} className="shrink-0">
+                <Link
+                  href={`/maerkte/${quote.symbol}`}
+                  className="group flex items-baseline gap-2"
+                >
+                  <span className="text-fg-subtle group-hover:text-fg font-mono text-[0.7rem] font-semibold tracking-wider uppercase transition">
+                    {quote.ticker}
+                  </span>
+                  <span className="text-fg text-sm font-medium tabular-nums">
+                    {formatNumber(quote.value, quote.decimals)}
+                  </span>
+                  <span
+                    className={cn(
+                      'text-xs font-medium tabular-nums',
+                      quote.changePercent >= 0 ? 'text-success' : 'text-danger'
+                    )}
+                  >
+                    {formatPercentSigned(quote.changePercent)}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- Manifest */}
+      {/*
+        Ein Absatz Haltung zwischen Hero und Inhalt – nach dem Vorbild
+        (amp.framer.media/company, per seite-abbilden.yml angesehen): dort
+        steht die These groß und **in einer tiefen Warmfarbe** links, die
+        Begründung rechts daneben. Die Warmfarbe haben wir im eigenen Logo:
+        das Bordeaux, als Token `--c-debt` längst kontrastgeprüft.
+      */}
+      <section aria-labelledby="haltung" className="fk-container py-16 sm:py-24">
+        <p className="text-fg-subtle font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+          Warum es diese Seite gibt
+        </p>
+        <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <h2
+            id="haltung"
+            className="text-debt text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl"
+          >
+            Geldanlage ist kein Geheimwissen. Sie ist ein Handwerk – und ein Handwerk kann
+            man lernen.
+          </h2>
+          <div className="text-fg-muted space-y-5 leading-relaxed">
+            <p>
+              Diese Seite verkauft nichts und empfiehlt kein Produkt. Sie erklärt die
+              Mechanismen hinter Kursen, Zinsen und Kennzahlen – in drei Stufen, vom
+              ersten Begriff bis zur Bilanz. Jede Formel liegt offen, jede Zahl nennt ihre
+              Herkunft und ihren Stand.
+            </p>
+            <p>
+              Was hier steht, wird täglich neu gerechnet statt einmal behauptet: Kurse,
+              Nachrichten und die Folge des Tages entstehen jeden Morgen aufs Neue.{' '}
+              <Link
+                href="/ueber-uns"
+                className="text-brand font-medium underline underline-offset-4"
+              >
+                Wer dahintersteht und wie wir arbeiten
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </section>
 
@@ -243,53 +331,42 @@ export default async function HomePage() {
           lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
         />
 
-        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {areaTiles.map(({ area, icon }, index) => {
-            const config = areas[area]
-            const style = areaStyles[area]
-            /*
-              Sieben Kacheln in drei Spalten lassen die letzte allein in
-              ihrer Zeile stehen – das sah aus wie ein Versehen. Die letzte
-              wird deshalb zur breiten Zeile über die volle Rasterbreite,
-              mit dem Sinnbild links statt oben; so endet der Block auf
-              einer vollen Kante.
-            */
-            const breit = index === areaTiles.length - 1 && areaTiles.length % 3 === 1
-            return (
-              <li key={area} className={cn(breit && 'sm:col-span-2 lg:col-span-3')}>
-                <Reveal delay={index * 0.05}>
+        {/*
+          Register statt Kachelraster: Sieben Karten mit Sinnbild oben links
+          waren die vielleicht deutlichste Baukasten-Stelle der Startseite –
+          und bei sieben Einträgen blieb in drei Spalten immer eine Kachel
+          allein. Eine Haarlinien-Liste mit laufender Nummer liest sich wie
+          ein Inhaltsverzeichnis: ruhig, eindeutig, ohne Restzeile.
+        */}
+        <div className="border-border mt-10 border-t">
+          <ul>
+            {areaTiles.map(({ area }, index) => {
+              const config = areas[area]
+              return (
+                <li key={area}>
                   <Link
                     href={config.href}
-                    className={cn(
-                      'fk-card-interactive group flex h-full p-6',
-                      breit ? 'flex-row items-center gap-5' : 'flex-col'
-                    )}
+                    className="group border-border hover:bg-surface-muted flex items-center gap-5 border-b px-1 py-5 transition sm:gap-8 sm:px-3"
                   >
-                    <span
-                      className={cn(
-                        'flex size-11 shrink-0 items-center justify-center rounded-lg',
-                        style.soft
-                      )}
-                    >
-                      <Icon name={icon} className="size-5" />
+                    <span className="text-fg-subtle w-7 shrink-0 font-mono text-sm tabular-nums">
+                      {String(index + 1).padStart(2, '0')}
                     </span>
-                    {/*
-                      Ohne „Ansehen →“-Fußzeile: Sie stand siebenmal
-                      untereinander. Die Karte ist der Link, und die
-                      Anhebung beim Überfahren sagt es.
-                    */}
-                    <span className={cn('flex flex-col', !breit && 'mt-4')}>
-                      <h3 className="text-fg text-lg font-semibold">{config.label}</h3>
-                      <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-                        {config.description}
-                      </p>
+                    <span className="text-fg font-display shrink-0 text-lg font-semibold sm:w-64 sm:text-xl">
+                      {config.label}
                     </span>
+                    <span className="text-fg-muted hidden min-w-0 flex-1 truncate text-sm leading-relaxed md:block">
+                      {config.description}
+                    </span>
+                    <Icon
+                      name="arrow-right"
+                      className="text-fg-subtle ml-auto size-4 shrink-0 transition-transform group-hover:translate-x-1"
+                    />
                   </Link>
-                </Reveal>
-              </li>
-            )
-          })}
-        </ul>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </section>
 
       {/* -------------------------------------------------------- Märkte */}
@@ -365,6 +442,59 @@ export default async function HomePage() {
               </p>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* -------------------------------------------------------- Zahlen */}
+      {/*
+        Drei Zahlen in Schaugröße auf einem **invertierten Band** – das
+        „Impact“-Muster des Vorbilds: Auf dessen heller Seite liegt genau ein
+        schwarzer Block mit weißen Riesenzahlen, mittig gesetzt. `bg-fg` und
+        `text-canvas` drehen die Token-Rollen um; im dunklen Thema wird das
+        Band dadurch von selbst hell – die Umkehrung bleibt in beiden Welten.
+
+        Alle drei Zahlen sind wahr und bleiben es von selbst: Die erste zählt
+        den Instrumentenbestand, die zweite folgt aus dem täglichen Takt seit
+        dem 9. August 2026, die dritte steht unter /keine-cookies.
+      */}
+      <section aria-labelledby="zahlen" className="bg-fg">
+        <div className="fk-container py-16 text-center sm:py-24">
+          <p className="text-canvas/60 font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+            Die Zahlen dahinter
+          </p>
+          <h2
+            id="zahlen"
+            className="text-canvas mx-auto mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl"
+          >
+            Was hier jeden Tag läuft
+          </h2>
+          <div className="mt-12 grid gap-12 sm:grid-cols-3 sm:gap-8">
+            {[
+              {
+                wert: formatNumber(instrumente.length, 0),
+                text: 'Wertpapiere und Kurse im Bestand – jeden Handelstag aktualisiert, jede Zahl mit Herkunft und Stand.',
+              },
+              {
+                wert: '365',
+                text: 'Ausgaben im Jahr: Nachrichten und Podcast-Folge, jeden Morgen um sechs. Auch sonntags.',
+              },
+              {
+                wert: '0',
+                text: 'Cookies, Tracker und Werbeverträge. Nachzuprüfen unter „Keine Cookies“ im Seitenfuß.',
+              },
+            ].map(({ wert, text }, index) => (
+              <Reveal key={wert} delay={index * 0.06}>
+                <div>
+                  <p className="text-canvas font-display text-6xl font-semibold tracking-tight tabular-nums sm:text-7xl">
+                    {wert}
+                  </p>
+                  <p className="text-canvas/70 mx-auto mt-3 max-w-xs text-sm leading-relaxed">
+                    {text}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -510,7 +640,7 @@ export default async function HomePage() {
                 <Reveal delay={index * 0.04}>
                   <Link
                     href={folgenAdresse(folge)}
-                    className="border-border hover:bg-surface-subtle group block border-b px-2 py-4 transition-colors"
+                    className="border-border hover:bg-surface-muted group block border-b px-2 py-4 transition-colors"
                   >
                     <div className="text-fg-subtle flex flex-wrap items-center gap-x-2 text-xs">
                       {folge.datum && <span>{formatDate(folge.datum)}</span>}
@@ -545,33 +675,36 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ----------------------------------------------- Abschluss-Hinweis */}
-      <section className="fk-container py-14 sm:py-20">
-        <div className="fk-card overflow-hidden p-7 sm:p-10">
-          <div className="max-w-2xl">
-            <p className="fk-chip bg-brand-soft text-brand">
-              <Icon name="shield" className="size-3.5" />
-              Unser Anspruch
-            </p>
-            <h2 className="text-fg mt-4 text-2xl font-bold sm:text-3xl">
-              Keine Produktempfehlungen, keine Renditeversprechen
-            </h2>
-            <p className="text-fg-muted mt-4 leading-relaxed">
-              Diese Plattform verkauft nichts. Sie erklärt Mechanismen, legt Formeln offen
-              und benennt Risiken so deutlich wie Chancen. Wo eine Aussage von Annahmen
-              abhängt, stehen die Annahmen dabei – und wo eine Frage steuerlich oder
-              rechtlich wird, steht der Hinweis, dass fachlicher Rat nötig ist.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/ueber-uns" className="fk-btn-secondary">
-                Über uns
-                <Icon name="arrow-right" className="size-4" />
-              </Link>
-              <Link href="/lernen/worauf-achten-einsteiger" className="fk-btn-ghost">
-                Tipps für Einsteiger
-                <Icon name="arrow-right" className="size-4" />
-              </Link>
-            </div>
+      {/* ------------------------------------------------- Schluss-Band */}
+      {/*
+        Das große Schluss-Band statt einer Karte mit Chip: mittig, eine
+        Serifen-These, ein Satz, zwei Knöpfe – wie der Abschluss des
+        Vorbilds. Die Haarlinie darüber trennt es vom Podcast-Abschnitt.
+      */}
+      <section aria-labelledby="anspruch" className="border-border border-t">
+        <div className="fk-container py-20 text-center sm:py-28">
+          <p className="text-fg-subtle font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+            Unser Anspruch
+          </p>
+          <h2
+            id="anspruch"
+            className="text-fg mx-auto mt-5 max-w-3xl text-3xl leading-tight font-semibold sm:text-5xl"
+          >
+            Keine Produktempfehlungen, keine Renditeversprechen.
+          </h2>
+          <p className="text-fg-muted mx-auto mt-6 max-w-2xl leading-relaxed">
+            Diese Plattform verkauft nichts. Sie erklärt Mechanismen, legt Formeln offen
+            und benennt Risiken so deutlich wie Chancen. Wo eine Aussage von Annahmen
+            abhängt, stehen die Annahmen dabei.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <Link href="/lernen" className="fk-btn-primary">
+              Jetzt lernen
+              <Icon name="arrow-right" className="size-4" />
+            </Link>
+            <Link href="/ueber-uns" className="fk-btn-secondary">
+              Über uns
+            </Link>
           </div>
         </div>
       </section>

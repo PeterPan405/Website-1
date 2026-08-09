@@ -106,7 +106,12 @@ export function Footer() {
           Finanzinhalte brauchen einen klaren Hinweis, dass hier keine
           Anlageberatung stattfindet. Der Text steht auf jeder Seite.
         */}
-        <div className="rounded-card border-border bg-surface-muted mt-12 border p-5">
+        {/*
+          Ohne Kasten: Der Rechtsblock stand als umrandete graue Fläche im Fuß
+          – die letzte „Box“ der Seite. Eine Haarlinie darüber trennt genauso,
+          nur leiser.
+        */}
+        <div className="border-border mt-12 border-t pt-8">
           {/*
             „Steuerberatung“ steht jetzt auch in der Überschrift. Wer den Kasten nur
             überfliegt, liest die Überschrift und sonst nichts – und die Rechner zur
