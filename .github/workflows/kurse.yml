@@ -25,36 +25,28 @@ name: Kurse aktualisieren
 # `repository_dispatch`. Deshalb startet der letzte Schritt unten den
 # Paketbau über die API, statt sich auf den Push zu verlassen.
 #
-# ## Zeitplan
+# ## Zeitplan (seit dem 9. August 2026)
 #
-# Werktags sechzehn Läufe, verteilt über **drei** Handelstage – das ist der
-# Punkt, an dem der Zeitplan bis zum 5. August 2026 unvollständig war:
+# | Zeit (UTC)               | Was                                          |
+# | ------------------------ | -------------------------------------------- |
+# | :04, :19, :34, :49       | Leitwerte, nur Preis – **ohne Neubau**       |
+# | 08:07, 10:07 … 20:07     | voller Bestand alle zwei Stunden, mit Neubau |
+# | 21:47                    | voller Lauf nach dem Schluss in New York     |
+# | Wochenende ebenso :04 …  | nur Krypto und Devisen                       |
+# | Wochenende alle 6 Std.   | dito, aber mit Neubau                        |
 #
-# | Zeit (UTC)                  | Was                                    |
-# | --------------------------- | -------------------------------------- |
-# | 01:07, 06:07                | Tokio: mitten in der Sitzung, nach Schluss |
-# | 07:07, 09:07, 13:07 … 19:07 | Leitwerte stündlich, Europa und USA    |
-# | 08:07, 10:07 … 20:07        | voller Bestand alle zwei Stunden       |
-# | 21:47                       | voller Lauf nach dem Schluss in New York |
+# Die Arbeitsteilung dahinter: Die sichtbare **Zahl** erreicht den Leser
+# über `kurse-live.json` und den Browser (`KursLive`, fragt jede Minute) –
+# dafür braucht es keinen Bau, nur die 15-Minuten-Läufe. Das gebaute HTML
+# (Charts, Vorschluss als Rechenbasis, Leser ohne JavaScript) zieht mit den
+# vollen Läufen nach und ist damit höchstens gut zwei Stunden alt.
 #
-# - **Tokio** von 00:00 bis 06:00 UTC. Diese sechs Stunden fehlten ganz; der
-#   Nikkei trug deshalb am Morgen den Schluss vom Vortag.
-# - **Europa** von 07:00 bis 15:30 UTC im Sommer.
-# - **USA** von 13:30 bis 20:00 UTC im Sommer – der Teil mit den meisten hier
-#   geführten Aktien.
+# Der volle Lauf um 16:07 UTC liegt sicher hinter der EZB, die ihre
+# Referenzkurse gegen 16:00 Uhr MEZ veröffentlicht (15:00 UTC im Winter,
+# 14:00 im Sommer) – der Zeitplan übersteht die Zeitumstellung unverändert.
 #
-# Der Lauf um 15:07 UTC liegt sicher hinter der EZB, die ihre Referenzkurse
-# gegen 16:00 Uhr MEZ veröffentlicht (15:00 UTC im Winter, 14:00 im Sommer).
-# Damit muss der Zeitplan zur Zeitumstellung nicht angefasst werden.
-#
-# ## Was der Takt kostet
-#
-# Jeder Lauf mit geänderten Kursen erzeugt einen Commit auf `main`, und der
-# stößt Paketbau und Bereitstellung an. Halbstündlich über vierzehn Stunden
-# sind das an einem Handelstag bis zu 28 Bereitstellungen statt bisher zehn.
-# Das ist der Preis für aktuelle Kurse auf einer statisch gebauten Seite –
-# und der Grund, warum ohne Kursänderung nichts committet wird: An
-# Feiertagen und ausserhalb der Handelszeiten bleibt es still.
+# Ohne Kursänderung wird nichts committet: An Feiertagen und außerhalb der
+# Handelszeiten bleibt es still.
 
 # ## Warum die Minuten so krumm sind
 #
@@ -80,59 +72,24 @@ name: Kurse aktualisieren
 
 on:
   schedule:
-    # Werktags **stündlich zur ungeraden Stunde**: nur die Leitwerte.
+    # Werktags **alle 15 Minuten, rund um die Uhr**: nur die Leitwerte,
+    # nur der laufende Preis.
     #
-    # Bis August 2026 stand hier „alle dreißig Minuten, alle tausend
-    # Instrumente". Das war nicht haltbar – nicht wegen des Abrufs, der
-    # dauert Sekunden, sondern wegen des Neubaus danach: Jeder Kurs-Commit
-    # baut 1.484 Seiten neu und überträgt sie. Gemessen am 3. August 2026
-    # kostet ein Zyklus 13,4 Minuten; dreißig am Tag wären über 8.000
-    # Minuten im Monat bei 2.000 enthaltenen.
+    # Seit dem 9. August 2026 – vorher stündlich zu festen Stunden. Was den
+    # dichteren Takt möglich macht, ist die Arbeitsteilung darunter: Dieser
+    # Lauf holt ein Dutzend Kurse (Sekunden), legt `kurse-live.json` direkt
+    # auf den Server und **stößt keinen Neubau an** – der Browser holt sich
+    # die Zahl selbst (`KursLive`). Ein Lauf kostet damit gut eine Minute
+    # Läuferzeit und keinerlei Bau.
     #
-    # Die Folge war nicht ein teurer Betrieb, sondern gar keiner: GitHub
-    # verwarf die Läufe. Am 31. Juli kamen acht von dreißig durch, am
-    # 3. August keiner.
+    # Die alte Stundenliste (1,2,3,6,7,9,…) war die Antwort auf die
+    # übersprungene Tokioter Sitzung vom 5. August; „alle Stunden" schließt
+    # dieses Loch von selbst. Und dass einzelne Termine verworfen werden,
+    # heilt sich hier allein: Der nächste kommt in 15 Minuten.
     #
-    # Welche Symbole gemeint sind, steht in `lib/leitwerte.ts`.
-    #
-    # ## Warum 01:07 und 06:07 dazugehören
-    #
-    # Weil der Zeitplan bis zum 5. August 2026 **die gesamte asiatische
-    # Sitzung übersprungen** hat. Zwischen dem letzten Lauf um 21:47 und dem
-    # ersten um 07:07 lagen neuneinhalb Stunden – und Tokio handelt von 00:00
-    # bis 06:00 UTC, also mitten in dieser Lücke.
-    #
-    # Die Folge stand am Morgen des 5. August auf der Website: Der Nikkei 225
-    # trug den Stand `2026-08-04T06:45Z` – den Schluss vom **Vortag**, gut
-    # 25 Stunden alt, während DAX und Gold auf dem Stand des Vorabends waren.
-    # Aufgefallen ist es dem Betreiber, nicht der Technik.
-    #
-    # 01:07 liegt mitten in der Tokioter Sitzung, 06:07 kurz nach ihrem
-    # Schluss. Damit steht der japanische Schlusskurs desselben Tages auf der
-    # Seite, bevor Europa öffnet.
-    #
-    # ## Und warum 11 und 21 dafür weichen
-    #
-    # Weil zusätzliche Läufe zusätzlich kosten – jeder Kurs-Commit baut 1.484
-    # Seiten neu und überträgt sie, gemessen knapp sieben Minuten. Der Tausch
-    # hält die Zahl der Läufe gleich:
-    #
-    # - **11:07** war ohnehin nur eine Verfeinerung: Der volle Lauf um 10:07
-    #   und der um 12:07 decken den Vormittag ab, hier wird aus stündlich
-    #   zweistündlich.
-    # - **21:07** lag vierzig Minuten vor dem vollen Schlusslauf um 21:47 und
-    #   war damit fast doppelt gemoppelt.
-    #
-    # Eingetauscht wurden also zwei Verfeinerungen gegen zwei Stellen, an
-    # denen es vorher überhaupt keine Daten gab.
-    #
-    # **03:07 kam am 6. August 2026 dazu.** Zwei Gründe, und beide zählen:
-    # Tokio handelt von 00:00 bis 06:00 UTC, und zwischen 01:07 und 06:07 lag
-    # bis dahin ein Loch von fünf Stunden. Vor allem aber hängt seit demselben
-    # Tag der Anstoß des Nachrichtenlaufs am letzten Schritt dieses Workflows –
-    # und ohne einen Lauf in diesem Fenster wäre die erste Gelegenheit dazu
-    # 06:07 UTC gewesen, also 8:07 deutscher Zeit. Die Zusage lautet 6:00.
-    - cron: '7 1,2,3,6,7,9,13,15,17,19 * * 1-5'
+    # Welche Symbole gemeint sind, steht in `lib/leitwerte.ts`. Die Minuten
+    # sind krumm (siehe oben) und meiden die 30er-Marke.
+    - cron: '4,19,34,49 * * * 1-5'
     # Werktags **alle zwei Stunden**: der volle Bestand.
     #
     # Die geraden Stunden, damit sich die beiden Läufe nie überschneiden –
@@ -148,7 +105,7 @@ on:
     # 21:47 UTC liegt nach dem Schluss in New York (21:00 UTC im Winter,
     # 20:00 im Sommer) und damit nach dem letzten Kurs des Tages.
     - cron: '47 21 * * 1-5'
-    # Am Wochenende alle drei Stunden, aber nur Krypto und Devisen.
+    # Am Wochenende ebenfalls alle 15 Minuten, aber nur Krypto und Devisen.
     #
     # Aktien und Indizes werden nicht gehandelt – ein Abruf liefert für sie
     # denselben Freitagsschluss. Bitcoin, Ethereum und XRP laufen dagegen
@@ -156,7 +113,12 @@ on:
     # anderer Stelle ausdrücklich. Bis hierher stand am Wochenende trotzdem
     # der Freitagskurs. Die Beschränkung macht aus sieben Minuten und tausend
     # Anfragen ein paar Sekunden und eine Handvoll.
-    - cron: '8 */3 * * 6,0'
+    - cron: '4,19,34,49 * * * 6,0'
+    # Dazu am Wochenende alle sechs Stunden derselbe Abruf mit Neubau:
+    # Ohne ihn stünde das **gebaute** HTML (Stand-Zeile, Vorschluss als
+    # Rechenbasis) bis Montag auf dem Freitagsstand. Der Browser wäre
+    # aktuell, die Seite ohne JavaScript nicht.
+    - cron: '9 */6 * * 6,0'
   # Von Hand auslösbar – zum Prüfen und für den allerersten Lauf.
   workflow_dispatch:
     inputs:
@@ -203,7 +165,7 @@ jobs:
           # Am Wochenende nur, was am Wochenende handelt. `github.event.schedule`
           # enthält den Ausdruck, der den Lauf ausgelöst hat – bei einem Start
           # von Hand ist er leer, dann wird alles geholt.
-          NUR_ARTEN: ${{ github.event.schedule == '8 */3 * * 6,0' && 'crypto,fx' || '' }}
+          NUR_ARTEN: ${{ (github.event.schedule == '4,19,34,49 * * * 6,0' || github.event.schedule == '9 */6 * * 6,0') && 'crypto,fx' || '' }}
           # Nur der laufende Preis – gesetzt vom halbstündlichen Lauf **und vom
           # Wochenendlauf**.
           #
@@ -219,14 +181,14 @@ jobs:
           # fiel auf den alten zurück, der Commit-Schritt sah „keine Änderung“,
           # und Bitcoin stand das ganze Wochenende auf dem Freitags- bzw.
           # Samstagswert – alle acht Sonntagsläufe grün, keiner mit Wirkung.
-          # Der Preis-Modus schreibt den laufenden Kurs nachweislich (werktags
-          # alle 30 Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
+          # Der Preis-Modus schreibt den laufenden Kurs nachweislich (alle
+          # 15 Minuten). Die Krypto-Tageskerzen von Samstag und Sonntag
           # holt der volle Lauf am Montag um 21:45 nach – `range=5y` bringt
           # alle abgeschlossenen Tage mit.
-          NUR_PREIS: ${{ (github.event.schedule == '7 1,2,3,6,7,9,13,15,17,19 * * 1-5' || github.event.schedule == '7 8,10,12,14,16,18,20 * * 1-5' || github.event.schedule == '8 */3 * * 6,0' || inputs.nur_preis) && '1' || '' }}
+          NUR_PREIS: ${{ (github.event.schedule == '4,19,34,49 * * * 1-5' || github.event.schedule == '7 8,10,12,14,16,18,20 * * 1-5' || github.event.schedule == '4,19,34,49 * * * 6,0' || github.event.schedule == '9 */6 * * 6,0' || inputs.nur_preis) && '1' || '' }}
           # Der Stundenlauf holt nur die Leitwerte – siehe `lib/leitwerte.ts`.
           # Alles andere behält seinen Stand und zieht zwei Stunden später nach.
-          NUR_LEITWERTE: ${{ github.event.schedule == '7 1,2,3,6,7,9,13,15,17,19 * * 1-5' && '1' || '' }}
+          NUR_LEITWERTE: ${{ github.event.schedule == '4,19,34,49 * * * 1-5' && '1' || '' }}
         run: npm run kurse
 
       - name: Momentaufnahme committen
@@ -459,8 +421,19 @@ jobs:
             --repo "${{ github.repository }}" --ref main -f paket=false
           exit 1
 
+      # **Nicht nach jedem 15-Minuten-Lauf.** Ein Neubau kostet gemessen
+      # 13 Minuten; bei 80 Preis-Läufen am Tag wäre das genau die
+      # Überlastung, an der der alte Halbstundentakt gestorben ist (GitHub
+      # verwarf die Läufe, siehe Kopf). Die Preis-Läufe brauchen ihn auch
+      # nicht: Ihre Zahl erreicht den Leser über `kurse-live.json` und den
+      # Browser. Gebaut wird nach den vollen Läufen (alle zwei Stunden und
+      # 21:47) – das gebaute HTML ist damit höchstens gut zwei Stunden alt,
+      # die sichtbare Zahl höchstens rund 16 Minuten.
       - name: Neubau anstoßen
-        if: steps.commit.outputs.gepusht == 'ja'
+        if: >-
+          steps.commit.outputs.gepusht == 'ja' &&
+          github.event.schedule != '4,19,34,49 * * * 1-5' &&
+          github.event.schedule != '4,19,34,49 * * * 6,0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
