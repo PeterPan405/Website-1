@@ -88,7 +88,7 @@ export default async function EditionLibraryPage() {
               >
                 {month.label}
               </h2>
-              <ul className="mt-5 grid gap-4 md:grid-cols-2">
+              <ul className="mt-5 grid gap-5 md:grid-cols-2">
                 {month.editions.map((edition, index) => (
                   <li key={edition.date}>
                     <Reveal delay={index * 0.04} className="h-full">

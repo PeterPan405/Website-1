@@ -49,7 +49,7 @@ export default function NotFound() {
         </div>
       </div>
 
-      <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {suggestions.map(({ area, icon }) => {
           const config = areas[area]
           const style = areaStyles[area]
@@ -68,20 +68,13 @@ export default function NotFound() {
                   <Icon name={icon} className="size-5" />
                 </span>
                 <span className="text-fg mt-4 font-semibold">{config.label}</span>
+                {/*
+                  Ohne „Öffnen →“-Fußzeile – viermal derselbe Satz mit
+                  demselben Pfeil ist die Schablone, die überall sonst schon
+                  entfernt ist. Die Karte selbst ist der Link.
+                */}
                 <span className="text-fg-muted mt-1.5 flex-1 text-sm leading-relaxed">
                   {config.description}
-                </span>
-                <span
-                  className={cn(
-                    'mt-4 flex items-center gap-1 text-sm font-semibold',
-                    style.text
-                  )}
-                >
-                  Öffnen
-                  <Icon
-                    name="arrow-right"
-                    className="size-4 transition-transform group-hover:translate-x-0.5"
-                  />
                 </span>
               </Link>
             </li>

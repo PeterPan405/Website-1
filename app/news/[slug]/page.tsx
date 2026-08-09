@@ -283,7 +283,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
             <h2 id="weiterlesen" className="text-fg text-2xl font-bold">
               Weiterlesen
             </h2>
-            <ul className="mt-6 grid gap-4 md:grid-cols-3">
+            <ul className="mt-6 grid gap-5 md:grid-cols-3">
               {relatedArticles.map((related) => (
                 <li key={related.slug} className="relative">
                   <ArticleCard article={related} />

@@ -166,7 +166,7 @@ export default function ZusammenhangSeite() {
             <h2 id="einstieg" className="text-fg text-2xl font-bold">
               Die beiden Enden
             </h2>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="mt-4 grid gap-5 sm:grid-cols-2">
               <div className="border-border bg-surface-muted rounded-xl border p-5">
                 <p className="text-fg-muted text-sm">Am stärksten im Gleichschritt</p>
                 <p className="text-fg mt-1 text-lg font-bold">

@@ -42,27 +42,27 @@ export function PageHeader({
   const style = areaStyles[area]
 
   return (
-    <div className="border-border bg-surface relative overflow-hidden border-b">
-      {/*
-        Dekorativer Farbverlauf in der Bereichsfarbe.
-
-        Auf Papier hat er nichts verloren: Dort wird daraus ein grauer Balken
-        quer über den Anfang des Textes – und bei eingeschalteten
-        Hintergründen ein Streifen Toner für nichts.
-      */}
-      <div
-        aria-hidden="true"
-        data-drucken="aus"
-        className={cn(
-          'pointer-events-none absolute inset-x-0 -top-32 h-64 bg-gradient-to-b blur-2xl',
-          style.gradient
-        )}
-      />
-      <div className="fk-container relative py-10 sm:py-14">
+    /*
+      Ohne den weichgezeichneten Farbverlauf, der hier bis August 2026 hinter
+      jedem Seitenkopf lag. Ein verwaschener Farbfleck hinter der Überschrift
+      ist das Erkennungszeichen generierter Seiten; die Bereichsfarbe trägt
+      dieselbe Orientierung leiser – in der Dachzeile.
+    */
+    <div className="border-border bg-surface border-b">
+      <div className="fk-container py-12 sm:py-16">
         {breadcrumbs && <div className="mb-6">{breadcrumbs}</div>}
 
+        {/*
+          Stille Dachzeile statt farbiger Kapsel – dasselbe Register wie im
+          Hero der Startseite: gesperrte Kleinzeile in der Bereichsfarbe.
+        */}
         {eyebrow && (
-          <p className={cn('fk-chip', style.soft)}>
+          <p
+            className={cn(
+              'flex items-center gap-1.5 text-xs font-semibold tracking-[0.16em] uppercase',
+              style.text
+            )}
+          >
             {eyebrowIcon && <Icon name={eyebrowIcon} className="size-3.5" />}
             {eyebrow}
           </p>

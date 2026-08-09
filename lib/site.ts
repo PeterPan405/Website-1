@@ -233,8 +233,6 @@ export interface AreaStyle {
   border: string
   /** Kleiner Farbpunkt, z. B. in Navigationslisten. */
   dot: string
-  /** Dekorativer Verlauf für Hero- und Kachelflächen. */
-  gradient: string
 }
 
 export const areaStyles: Record<AreaId, AreaStyle> = {
@@ -244,7 +242,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-learn text-on-fill',
     border: 'border-learn/30',
     dot: 'bg-learn',
-    gradient: 'from-learn/18 to-learn/0',
   },
   markets: {
     text: 'text-markets',
@@ -252,7 +249,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-markets text-on-fill',
     border: 'border-markets/30',
     dot: 'bg-markets',
-    gradient: 'from-markets/18 to-markets/0',
   },
   tools: {
     text: 'text-tools',
@@ -260,7 +256,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-tools text-on-fill',
     border: 'border-tools/30',
     dot: 'bg-tools',
-    gradient: 'from-tools/18 to-tools/0',
   },
   news: {
     text: 'text-news',
@@ -268,7 +263,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-news text-on-fill',
     border: 'border-news/30',
     dot: 'bg-news',
-    gradient: 'from-news/18 to-news/0',
   },
   akademie: {
     text: 'text-akademie',
@@ -276,7 +270,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-akademie text-on-fill',
     border: 'border-akademie/30',
     dot: 'bg-akademie',
-    gradient: 'from-akademie/18 to-akademie/0',
   },
   globe: {
     text: 'text-globe',
@@ -284,7 +277,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-globe text-on-fill',
     border: 'border-globe/30',
     dot: 'bg-globe',
-    gradient: 'from-globe/18 to-globe/0',
   },
   calendar: {
     text: 'text-calendar',
@@ -292,7 +284,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-calendar text-on-fill',
     border: 'border-calendar/30',
     dot: 'bg-calendar',
-    gradient: 'from-calendar/18 to-calendar/0',
   },
   debt: {
     text: 'text-debt',
@@ -300,7 +291,6 @@ export const areaStyles: Record<AreaId, AreaStyle> = {
     solid: 'bg-debt text-on-fill',
     border: 'border-debt/30',
     dot: 'bg-debt',
-    gradient: 'from-debt/18 to-debt/0',
   },
 }
 

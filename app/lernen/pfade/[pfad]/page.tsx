@@ -85,7 +85,7 @@ export default async function LernpfadSeite({
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <div className="min-w-0">
             {/* ------------------------------------------------ Einordnung */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-5 sm:grid-cols-2">
               <div className="fk-card p-5">
                 <h2 className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
                   Für wen

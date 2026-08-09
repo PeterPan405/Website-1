@@ -143,7 +143,7 @@ export default async function LearnOverviewPage() {
             eyebrow="Aufbau"
             title="Was die drei Stufen unterscheidet"
           />
-          <ul className="mt-6 grid gap-4 md:grid-cols-3">
+          <ul className="mt-6 grid gap-5 md:grid-cols-3">
             {learnLevelIds.map((levelId, index) => (
               <li key={levelId}>
                 <Reveal delay={index * 0.06}>
@@ -236,7 +236,7 @@ export default async function LearnOverviewPage() {
 
               <ul
                 aria-labelledby={`abschnitt-${section.id}`}
-                className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
               >
                 {section.topics.map((topic, index) => (
                   <li key={topic.slug} className="relative">

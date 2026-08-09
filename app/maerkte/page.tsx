@@ -214,7 +214,7 @@ export default async function MarketsOverviewPage() {
             Stand in Punkten ist kein Geldbetrag, sondern ein Vergleichswert gegenüber dem
             Startdatum.
           </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {indexQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">
@@ -258,7 +258,7 @@ export default async function MarketsOverviewPage() {
             ETF. Wer breit gestreut anlegt, hält von diesen sieben Unternehmen meist
             deutlich mehr, als die Zahl der enthaltenen Titel vermuten lässt.
           </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {magSevenQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">
@@ -292,7 +292,7 @@ export default async function MarketsOverviewPage() {
             <strong className="text-fg font-semibold">keine Empfehlung</strong>, sondern
             das, was die Begriffe des Lernbereichs in der Wirklichkeit bedeuten.
           </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {etfQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">
@@ -317,7 +317,7 @@ export default async function MarketsOverviewPage() {
             Anleihen zahlen Rohstoffe keinen laufenden Ertrag – der gesamte Ertrag muss
             aus dem Preis kommen.
           </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {commodityQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">
@@ -339,7 +339,7 @@ export default async function MarketsOverviewPage() {
             Ein Wechselkurs gibt an, wie viel der zweiten Währung eine Einheit der ersten
             kostet. Steigt EUR/USD, wird der Euro gegenüber dem Dollar stärker.
           </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {fxQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">
@@ -363,7 +363,7 @@ export default async function MarketsOverviewPage() {
             herleiten: Der Preis ergibt sich allein daraus, was der nächste Käufer zu
             zahlen bereit ist.
           </p>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {cryptoQuotes.map((quote, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.04} className="h-full">

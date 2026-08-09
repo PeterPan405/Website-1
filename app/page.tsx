@@ -151,12 +151,9 @@ export default async function HomePage() {
   return (
     <>
       {/* ------------------------------------------------------------ Hero */}
-      <section className="border-border bg-surface relative overflow-hidden border-b">
-        <div
-          aria-hidden="true"
-          className="from-brand/18 to-brand/0 pointer-events-none absolute inset-x-0 -top-40 h-80 bg-gradient-to-b blur-3xl"
-        />
-        <div className="fk-container relative grid items-center gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+      {/* Ohne Blur-Fleck hinter dem Hero – siehe PageHeader, gleiche Begründung. */}
+      <section className="border-border bg-surface border-b">
+        <div className="fk-container grid items-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <div>
             {/*
               Stille Dachzeile statt farbiger Pille: Eine Kapsel über der
@@ -243,7 +240,7 @@ export default async function HomePage() {
           lead="Jeder Bereich beantwortet eine andere Frage – vom ersten Begriff bis zur konkreten Rechnung."
         />
 
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {areaTiles.map(({ area, icon }, index) => {
             const config = areas[area]
             const style = areaStyles[area]
@@ -311,7 +308,7 @@ export default async function HomePage() {
             }
           />
 
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {marketPreviews.map(({ quote, sparkline }, index) => (
               <li key={quote.symbol}>
                 <Reveal delay={index * 0.05} className="h-full">
@@ -384,7 +381,7 @@ export default async function HomePage() {
           }
         />
 
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {calculatorTiles.map((tile, index) => (
             <li key={tile.href}>
               <Reveal delay={index * 0.04}>
@@ -425,7 +422,7 @@ export default async function HomePage() {
             lead="Die Profi-Stufe wiederholt nicht die Grundlagen, sondern behandelt Kennzahlen, Sonderfälle, Risiken und Steuern."
           />
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <div className="mt-8 grid gap-5 lg:grid-cols-3">
             {[
               {
                 label: 'Beginner',
