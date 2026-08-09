@@ -355,6 +355,20 @@ stille. Deshalb liegen jetzt drei Dinge übereinander:
    Mail, und die kommt an – über genau diesen Kanal sind die Paketbau-Fehler
    aufgefallen.
 
+   **Seit dem 9. August prüft er auch, woher die Ausgabe kommt.** „Ist sie
+   da?" reicht als Frage nicht mehr, seit der Notbehelf aus dem Kursbestand
+   immer eine liefert: An dem Tag war die Ausgabe vollständig, der Wächter
+   wäre grün geblieben, und trotzdem standen auf der Website aufbereitete
+   eigene Zahlen statt Meldungen. `nachrichten.yml` schreibt beim Rückfall
+   zwar ein `::warning::` – aber eine Warnung in einem grünen Lauf schickt
+   keine Mail und ist damit genau der stille Fehler, den der Wächter
+   abschaffen soll.
+
+   Erkannt wird der Notbehelf an seinen Quellen: Er kann nur auf den eigenen
+   Bestand verweisen. Über die Ausgaben vom 1. bis 9. August lag der Anteil
+   externer Verweise bei den recherchierten zwischen 80 und 100 Prozent, beim
+   Notbehelf bei 17 – die Hälfte ist die Grenze.
+
 Wer hier etwas ändert, lässt Punkt 3 stehen. Die anderen beiden sind Versuche,
 das Problem zu lösen; der Wächter ist die Zusicherung, dass ein Scheitern
 auffällt.
