@@ -158,8 +158,12 @@ export default async function HomePage() {
         />
         <div className="fk-container relative grid items-center gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div>
-            <p className="fk-chip bg-brand-soft text-brand">
-              <Icon name="compass" className="size-3.5" />
+            {/*
+              Stille Dachzeile statt farbiger Pille: Eine Kapsel über der
+              Überschrift ist das erste, was nach Baukasten aussieht – die
+              Information trägt auch eine gesperrte Kleinzeile.
+            */}
+            <p className="text-brand text-xs font-semibold tracking-[0.16em] uppercase">
               Finanzbildung in drei Stufen
             </p>
 
@@ -171,9 +175,12 @@ export default async function HomePage() {
             */}
             <h1 className="text-fg mt-5 text-4xl font-bold sm:text-5xl lg:text-6xl">
               <span className="block">Finanzen verstehen,</span>
-              <span className="from-brand to-accent block bg-gradient-to-r bg-clip-text text-transparent">
-                Fehler vermeiden
-              </span>
+              {/*
+                Volle Farbe statt Farbverlauf: Verlaufs-Schrift ist das
+                Erkennungszeichen generierter Startseiten. Das Navy allein
+                setzt denselben Akzent, nur ruhiger.
+              */}
+              <span className="text-brand block">Fehler vermeiden</span>
             </h1>
 
             <p className="text-fg-muted mt-5 max-w-xl text-lg leading-relaxed">
@@ -240,36 +247,42 @@ export default async function HomePage() {
           {areaTiles.map(({ area, icon }, index) => {
             const config = areas[area]
             const style = areaStyles[area]
+            /*
+              Sieben Kacheln in drei Spalten lassen die letzte allein in
+              ihrer Zeile stehen – das sah aus wie ein Versehen. Die letzte
+              wird deshalb zur breiten Zeile über die volle Rasterbreite,
+              mit dem Sinnbild links statt oben; so endet der Block auf
+              einer vollen Kante.
+            */
+            const breit = index === areaTiles.length - 1 && areaTiles.length % 3 === 1
             return (
-              <li key={area}>
+              <li key={area} className={cn(breit && 'sm:col-span-2 lg:col-span-3')}>
                 <Reveal delay={index * 0.05}>
                   <Link
                     href={config.href}
-                    className="fk-card-interactive group flex h-full flex-col p-6"
+                    className={cn(
+                      'fk-card-interactive group flex h-full p-6',
+                      breit ? 'flex-row items-center gap-5' : 'flex-col'
+                    )}
                   >
                     <span
                       className={cn(
-                        'flex size-11 items-center justify-center rounded-xl',
+                        'flex size-11 shrink-0 items-center justify-center rounded-lg',
                         style.soft
                       )}
                     >
                       <Icon name={icon} className="size-5" />
                     </span>
-                    <h3 className="text-fg mt-4 text-lg font-semibold">{config.label}</h3>
-                    <p className="text-fg-muted mt-2 flex-1 text-sm leading-relaxed">
-                      {config.description}
-                    </p>
-                    <span
-                      className={cn(
-                        'mt-4 flex items-center gap-1 text-sm font-semibold',
-                        style.text
-                      )}
-                    >
-                      Ansehen
-                      <Icon
-                        name="arrow-right"
-                        className="size-4 transition-transform group-hover:translate-x-0.5"
-                      />
+                    {/*
+                      Ohne „Ansehen →“-Fußzeile: Sie stand siebenmal
+                      untereinander. Die Karte ist der Link, und die
+                      Anhebung beim Überfahren sagt es.
+                    */}
+                    <span className={cn('flex flex-col', !breit && 'mt-4')}>
+                      <h3 className="text-fg text-lg font-semibold">{config.label}</h3>
+                      <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                        {config.description}
+                      </p>
                     </span>
                   </Link>
                 </Reveal>
