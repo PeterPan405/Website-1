@@ -55,9 +55,21 @@ export function QuoteCard({
       className="fk-card-interactive group block min-w-0 overflow-hidden p-5"
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
+        {/*
+          `min-h`: Kacheln mit und ohne Namenszeile stehen im selben Raster.
+          Ohne festes Maß säße die Kurszahl mal höher, mal tiefer – eine
+          Reihe aus vier Kacheln bekäme drei Grundlinien.
+        */}
+        <div className="min-h-[2.625rem] min-w-0">
           <p className="font-display text-fg text-base font-semibold">{quote.ticker}</p>
-          <p className="text-fg-muted mt-0.5 line-clamp-1 text-xs">{quote.name}</p>
+          {/*
+            Nur, wenn der Name mehr sagt als der Ticker. „S&P 500" unter
+            „S&P 500" stand auf einem Drittel der Kacheln doppelt – das las
+            sich wie ein Versehen und kostete eine Zeile Platz.
+          */}
+          {quote.name !== quote.ticker && (
+            <p className="text-fg-muted mt-0.5 line-clamp-1 text-xs">{quote.name}</p>
+          )}
         </div>
         <span
           className={cn(
@@ -84,20 +96,19 @@ export function QuoteCard({
         {formatNumberSigned(quote.change, quote.decimals)} zum Vortag
       </p>
 
+      {/*
+        Ohne „Details ansehen →“-Fußzeile und ohne Bildunterschrift.
+
+        Beides stand auf **jeder** Kachel – auf der Marktübersicht 22-mal
+        derselbe Satz mit demselben Pfeil untereinander. Die ganze Kachel ist
+        der Link und sagt das beim Überfahren selbst; was der Verlauf zeigt,
+        erklärt die Einleitung der Seite einmal für alle.
+      */}
       {!compact && sparkline && sparkline.length > 1 && (
         <div className="mt-4">
           <Sparkline points={sparkline} positive={positive} />
-          <p className="text-fg-subtle mt-1.5 text-xs">Verlauf der letzten Monate</p>
         </div>
       )}
-
-      <p className="text-brand mt-4 flex items-center gap-1 text-sm font-semibold">
-        Details ansehen
-        <Icon
-          name="arrow-right"
-          className="size-4 transition-transform group-hover:translate-x-0.5"
-        />
-      </p>
     </Link>
   )
 }

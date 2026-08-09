@@ -171,9 +171,9 @@
   --c-ring: #1f4fb6;
 
   /* Schatten – im Hellmodus weich, im Dunkelmodus fast unsichtbar */
-  --fk-shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.12);
+  --fk-shadow-card: 0 1px 2px rgb(15 23 42 / 0.05);
   --fk-shadow-lift:
-    0 2px 4px rgb(15 23 42 / 0.06), 0 18px 40px -16px rgb(15 23 42 / 0.22);
+    0 1px 2px rgb(15 23 42 / 0.05), 0 10px 24px -16px rgb(15 23 42 / 0.16);
 }
 
 /*
@@ -298,8 +298,8 @@
 
     --c-ring: #8da4f0;
 
-    --fk-shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
-    --fk-shadow-lift: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -16px rgb(0 0 0 / 0.75);
+    --fk-shadow-card: 0 1px 2px rgb(0 0 0 / 0.35);
+    --fk-shadow-lift: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 24px -16px rgb(0 0 0 / 0.6);
   }
 }
 
@@ -358,7 +358,7 @@
   --font-display:
     var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 1rem;
+  --radius-card: 0.625rem;
 
   --shadow-card: var(--fk-shadow-card);
   --shadow-lift: var(--fk-shadow-lift);
@@ -517,7 +517,7 @@
 }
 
 @utility fk-btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5;
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5;
   @apply text-sm font-semibold whitespace-nowrap transition duration-150 ease-out;
   @apply active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
 }
@@ -536,7 +536,7 @@
 }
 
 @utility fk-input {
-  @apply border-border bg-surface w-full rounded-xl border px-3 py-2.5 text-sm;
+  @apply border-border bg-surface w-full rounded-lg border px-3 py-2.5 text-sm;
   @apply text-fg placeholder:text-fg-subtle transition;
   /*
     `focus:outline-none` stand hier allein – und schaltete damit die globale
@@ -551,9 +551,17 @@
   @apply focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none;
 }
 
+/*
+  Etikett statt Pille.
+
+  Bis August 2026 war das eine rounded-full-Pille mit kräftigem Innenabstand –
+  und sie stand über jeder Überschrift, an jeder Karte, in jedem Kopf. Viele
+  bunte Kapseln nebeneinander lesen sich als Baukasten, nicht als Redaktion.
+  Ein kleines, kaum gerundetes Etikett trägt dieselbe Information leiser.
+*/
 @utility fk-chip {
-  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1;
-  @apply text-xs font-semibold tracking-wide uppercase;
+  @apply inline-flex items-center gap-1.5 rounded-[0.3rem] px-2 py-0.5;
+  @apply text-[0.7rem] font-semibold tracking-wider uppercase;
 }
 
 /* ---------------------------------------------------------------- Drucken */

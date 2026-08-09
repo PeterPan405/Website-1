@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
 import { formatDate } from '@/lib/format'
 import type { NewsArticle } from '@/lib/news'
@@ -49,6 +48,12 @@ export function ArticleCard({
         </Link>
       </h3>
 
+      {/*
+        Ohne „Weiterlesen →“-Fußzeile: Sie stand unter jeder Karte und trug
+        nichts, was Titel-Link und Hover-Anhebung nicht längst sagen. Fünfmal
+        derselbe Satz mit demselben Pfeil untereinander liest sich wie eine
+        Schablone, nicht wie eine Redaktion.
+      */}
       <p
         className={cn(
           'text-fg-muted mt-3 flex-1 leading-relaxed',
@@ -56,14 +61,6 @@ export function ArticleCard({
         )}
       >
         {article.teaser}
-      </p>
-
-      <p className="text-news mt-4 flex items-center gap-1 text-sm font-semibold">
-        Weiterlesen
-        <Icon
-          name="arrow-right"
-          className="size-4 transition-transform group-hover:translate-x-0.5"
-        />
       </p>
     </article>
   )
