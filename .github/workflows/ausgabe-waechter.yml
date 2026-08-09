@@ -300,7 +300,15 @@ jobs:
           if [ -z "$fehlt" ]; then
             echo "Die Ausgabe vom $tag steht im Repository."
             case "$code" in
-              200) echo "Und sie wird ausgeliefert. Nichts zu tun." ;;
+              # „Nichts zu tun" nur, wenn wirklich nichts zu tun ist. Bei der
+              # Probe am 9. August stand der Satz **unter** der Meldung, dass
+              # die Ausgabe aus dem Notbehelf kommt – ein Alarm, der sich
+              # selbst widerspricht, wird nicht ernst genommen.
+              200) if [ -n "$schlecht" ]; then
+                     echo "Und sie wird ausgeliefert – siehe die Beanstandung oben."
+                   else
+                     echo "Und sie wird ausgeliefert. Nichts zu tun."
+                   fi ;;
               000) echo "::notice::Die Website war von hier aus nicht erreichbar (der Hoster weist Läufer-Adressen zeitweise ab). Das Repository stimmt." ;;
               *)   echo "::warning::Die Ausgabe steht im Repository, aber $tag antwortet mit $code – vermutlich ist der Paketbau noch nicht durchgelaufen." ;;
             esac
