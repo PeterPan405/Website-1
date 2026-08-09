@@ -108,126 +108,127 @@ export async function instagramBild(edition: DailyEdition): Promise<Buffer> {
   const streifen = [NAVY, GRAU, GRUEN, ROT]
 
   const antwort = new ImageResponse(
-    (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: '#ffffff',
+        padding: '72px 72px 0 72px',
+        fontFamily: 'sans-serif',
+      }}
+    >
+      {/* Kopf: Logo und Datum auf einer Linie. */}
       <div
         style={{
-          width: '100%',
-          height: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: '#ffffff',
-          padding: '72px 72px 0 72px',
-          fontFamily: 'sans-serif',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
-        {/* Kopf: Logo und Datum auf einer Linie. */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoDatenUrl} width={340} height={110} alt="" />
-          <div style={{ display: 'flex', fontSize: 34, color: GRAU, letterSpacing: 1 }}>
-            {datumLang(edition.date)}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: 'flex',
-            marginTop: 56,
-            fontSize: 44,
-            fontWeight: 700,
-            color: NAVY,
-            letterSpacing: 2,
-            textTransform: 'uppercase',
-          }}
-        >
-          Die Meldungen des Tages
-        </div>
-
-        {/* Die Schlagzeilen. Jede mit ihrem eigenen Farbstrich links – das
-            ist der Akzent aus dem Logo, aufgeteilt statt als Balken. */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: 48,
-            flexGrow: 1,
-          }}
-        >
-          {meldungen.map((meldung, nummer) => (
-            <div key={nummer} style={{ display: 'flex', marginBottom: 44 }}>
-              <div
-                style={{
-                  display: 'flex',
-                  width: 10,
-                  backgroundColor: streifen[nummer % streifen.length],
-                  marginRight: 32,
-                  borderRadius: 5,
-                }}
-              />
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  flexGrow: 1,
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    fontSize: 26,
-                    color: streifen[nummer % streifen.length],
-                    letterSpacing: 2,
-                    textTransform: 'uppercase',
-                    marginBottom: 10,
-                  }}
-                >
-                  {meldung.category}
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    fontSize: 50,
-                    lineHeight: 1.22,
-                    color: '#0f172a',
-                    fontWeight: 600,
-                  }}
-                >
-                  {aufsBild(meldung.headline)}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Fuß: Adresse über dem vierfarbigen Streifen. */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            paddingBottom: 34,
-          }}
-        >
-          <div style={{ display: 'flex', fontSize: 40, fontWeight: 700, color: NAVY }}>
-            iminvests.de
-          </div>
-          <div style={{ display: 'flex', fontSize: 26, color: GRAU }}>
-            Keine Anlageberatung
-          </div>
-        </div>
-        <div style={{ display: 'flex', height: 18, marginLeft: -72, marginRight: -72 }}>
-          {streifen.map((farbe) => (
-            <div key={farbe} style={{ display: 'flex', flexGrow: 1, backgroundColor: farbe }} />
-          ))}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logoDatenUrl} width={340} height={110} alt="" />
+        <div style={{ display: 'flex', fontSize: 34, color: GRAU, letterSpacing: 1 }}>
+          {datumLang(edition.date)}
         </div>
       </div>
-    ),
+
+      <div
+        style={{
+          display: 'flex',
+          marginTop: 56,
+          fontSize: 44,
+          fontWeight: 700,
+          color: NAVY,
+          letterSpacing: 2,
+          textTransform: 'uppercase',
+        }}
+      >
+        Die Meldungen des Tages
+      </div>
+
+      {/* Die Schlagzeilen. Jede mit ihrem eigenen Farbstrich links – das
+            ist der Akzent aus dem Logo, aufgeteilt statt als Balken. */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginTop: 48,
+          flexGrow: 1,
+        }}
+      >
+        {meldungen.map((meldung, nummer) => (
+          <div key={nummer} style={{ display: 'flex', marginBottom: 44 }}>
+            <div
+              style={{
+                display: 'flex',
+                width: 10,
+                backgroundColor: streifen[nummer % streifen.length],
+                marginRight: 32,
+                borderRadius: 5,
+              }}
+            />
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: 1,
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: 26,
+                  color: streifen[nummer % streifen.length],
+                  letterSpacing: 2,
+                  textTransform: 'uppercase',
+                  marginBottom: 10,
+                }}
+              >
+                {meldung.category}
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: 50,
+                  lineHeight: 1.22,
+                  color: '#0f172a',
+                  fontWeight: 600,
+                }}
+              >
+                {aufsBild(meldung.headline)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Fuß: Adresse über dem vierfarbigen Streifen. */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          paddingBottom: 34,
+        }}
+      >
+        <div style={{ display: 'flex', fontSize: 40, fontWeight: 700, color: NAVY }}>
+          iminvests.de
+        </div>
+        <div style={{ display: 'flex', fontSize: 26, color: GRAU }}>
+          Keine Anlageberatung
+        </div>
+      </div>
+      <div style={{ display: 'flex', height: 18, marginLeft: -72, marginRight: -72 }}>
+        {streifen.map((farbe) => (
+          <div
+            key={farbe}
+            style={{ display: 'flex', flexGrow: 1, backgroundColor: farbe }}
+          />
+        ))}
+      </div>
+    </div>,
     { width: IG_BREITE, height: IG_HOEHE }
   )
 
