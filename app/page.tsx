@@ -280,51 +280,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------- Manifest */}
-      {/*
-        Ein Absatz Haltung zwischen Hero und Inhalt – nach dem Vorbild
-        (amp.framer.media/company, per seite-abbilden.yml angesehen): dort
-        steht die These groß und farbig links, die Begründung rechts daneben.
-
-        Die Farbe ist das Navy der Marke, nicht das Bordeaux: Der rote Ton
-        war ein Versuch, die Wärme des Vorbilds zu treffen, wirkte hier aber
-        wie eine Warnung. Auf dem warmen Papiergrund trägt das Navy dieselbe
-        Wirkung, ohne fremd zu sein.
-      */}
-      <section aria-labelledby="haltung" className="fk-container py-16 sm:py-24">
-        <p className="text-fg-subtle font-mono text-xs font-semibold tracking-[0.16em] uppercase">
-          Warum es diese Seite gibt
-        </p>
-        <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <h2
-            id="haltung"
-            className="text-brand text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl"
-          >
-            Geldanlage ist kein Geheimwissen. Sie ist ein Handwerk – und ein Handwerk kann
-            man lernen.
-          </h2>
-          <div className="text-fg-muted space-y-5 leading-relaxed">
-            <p>
-              Diese Seite verkauft nichts und empfiehlt kein Produkt. Sie erklärt die
-              Mechanismen hinter Kursen, Zinsen und Kennzahlen – in drei Stufen, vom
-              ersten Begriff bis zur Bilanz. Jede Formel liegt offen, jede Zahl nennt ihre
-              Herkunft und ihren Stand.
-            </p>
-            <p>
-              Was hier steht, wird täglich neu gerechnet statt einmal behauptet: Kurse,
-              Nachrichten und die Folge des Tages entstehen jeden Morgen aufs Neue.{' '}
-              <Link
-                href="/ueber-uns"
-                className="text-brand font-medium underline underline-offset-4"
-              >
-                Wer dahintersteht und wie wir arbeiten
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* -------------------------------------------------- Schnellzugriff */}
       <section aria-labelledby="bereiche" className="fk-container py-14 sm:py-20">
         <SectionHeading
@@ -586,17 +541,26 @@ export default async function HomePage() {
             ))}
           </div>
 
+          {/*
+            Nur der Anfang der Lernstrecke, nicht ihr Inhaltsverzeichnis.
+
+            Hier standen alle Themen als Knopfliste – inzwischen 34 Stück, auf
+            dem Telefon eine Kolonne über zwei Bildschirmhöhen. Eine
+            vollständige Liste ist die Aufgabe von `/lernen`; auf der
+            Startseite ist sie eine Wand. Die ersten sechs Themen stehen in
+            der didaktischen Reihenfolge und sind damit genau die, mit denen
+            man anfängt.
+          */}
           {completeTopics.length > 0 && (
             <div className="fk-card mt-10 p-6 sm:p-8">
-              <h3 className="text-fg text-lg font-semibold">Vollständig ausgearbeitet</h3>
+              <h3 className="text-fg text-lg font-semibold">Womit man anfängt</h3>
               <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
-                Diese Themen liegen in allen drei Stufen als fertiger Text vor.
-                {completeTopics.length < learnStats.topicCount
-                  ? ' Die übrigen Themen haben bereits eigene Seiten mit Gliederung – der Fließtext wird Thema für Thema ergänzt.'
-                  : ' Das gilt inzwischen für jedes Thema der Lernstrecke.'}
+                Die Lernstrecke ist als Reihenfolge gedacht – das sind ihre ersten
+                Stationen. Alle {learnStats.topicCount} Themen liegen in den drei Stufen
+                als fertiger Text vor.
               </p>
               <ul className="mt-5 flex flex-wrap gap-3">
-                {completeTopics.map((topic) => (
+                {completeTopics.slice(0, 6).map((topic) => (
                   <li key={topic.slug}>
                     <Link
                       href={`/lernen/${topic.slug}`}
@@ -708,6 +672,52 @@ export default async function HomePage() {
             <Link href="/ueber-uns" className="fk-btn-secondary">
               Über uns
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- Manifest */}
+      {/*
+        Der Absatz Haltung beschließt die Seite – auf Wunsch des Betreibers
+        vom Seitenanfang hierher verlegt, hinter das Schluss-Band. Aufbau
+        nach dem Vorbild (amp.framer.media/company, per seite-abbilden.yml
+        angesehen): die These groß und farbig links, die Begründung rechts.
+
+        Die Farbe ist das Navy der Marke, nicht das Bordeaux: Der rote Ton
+        war ein Versuch, die Wärme des Vorbilds zu treffen, wirkte hier aber
+        wie eine Warnung. Auf dem warmen Papiergrund trägt das Navy dieselbe
+        Wirkung, ohne fremd zu sein.
+      */}
+      <section aria-labelledby="haltung" className="fk-container py-16 sm:py-24">
+        <p className="text-fg-subtle font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+          Warum es diese Seite gibt
+        </p>
+        <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <h2
+            id="haltung"
+            className="text-brand text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl"
+          >
+            Geldanlage ist kein Geheimwissen. Sie ist ein Handwerk – und ein Handwerk kann
+            man lernen.
+          </h2>
+          <div className="text-fg-muted space-y-5 leading-relaxed">
+            <p>
+              Diese Seite verkauft nichts und empfiehlt kein Produkt. Sie erklärt die
+              Mechanismen hinter Kursen, Zinsen und Kennzahlen – in drei Stufen, vom
+              ersten Begriff bis zur Bilanz. Jede Formel liegt offen, jede Zahl nennt ihre
+              Herkunft und ihren Stand.
+            </p>
+            <p>
+              Was hier steht, wird täglich neu gerechnet statt einmal behauptet: Kurse,
+              Nachrichten und die Folge des Tages entstehen jeden Morgen aufs Neue.{' '}
+              <Link
+                href="/ueber-uns"
+                className="text-brand font-medium underline underline-offset-4"
+              >
+                Wer dahintersteht und wie wir arbeiten
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>
