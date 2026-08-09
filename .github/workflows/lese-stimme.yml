@@ -1,0 +1,291 @@
+name: Lernseiten vertonen
+
+# Spricht Lernstufen und Akademielektionen mit der eigenen Stimme – derselben,
+# die den Podcast spricht.
+#
+# ## Warum ein eigener Lauf und nicht der Bau
+#
+# Weil es dreizehneinhalb Stunden Sprache sind. 172 Seiten, 710.000 Zeichen,
+# bei einem gemessenen Echtzeitfaktor um 0,08 rund 170 Läuferstunden. Das
+# passt in keinen Bau und in keine Nacht.
+#
+# Deshalb arbeitet dieser Lauf sich **vor**: Er nimmt sich jede Nacht so viele
+# Seiten, wie in sein Budget passen, und zwar die, die noch keine gültige
+# Aufnahme haben. Die Reihenfolge steht in `lese-texte-schreiben.ts` –
+# Beginner zuerst, dann die Akademie, dann Fortgeschritten, zuletzt Profi.
+#
+# Eine Seite ohne Aufnahme ist dabei nie ein Loch: Die Vorleseleiste nimmt
+# dort weiter die Stimme des Geräts. Der Unterschied zwischen „schon
+# gesprochen" und „noch nicht" ist besser oder normal, nicht gut oder kaputt.
+#
+# ## Warum die Aufnahmen nicht ins Repository und nicht ins Paket
+#
+# 280 Megabyte. Im Repository wären sie Ballast in jedem Klon, im Paket eine
+# Übertragung von zwanzig Minuten bei jedem der dreißig täglichen Bauten – für
+# Dateien, die sich fast nie ändern.
+#
+# Sie liegen deshalb **direkt auf dem Webspace** unter `~/lese-audio`, genau
+# wie die Podcastdateien, und werden von `paket-bauen.yml` beim Umhängen
+# mitkopiert. Im Repository steht nur das Verzeichnis `data/lese-audio.json`:
+# je Seite ein Fingerabdruck, die Dauer, die Größe und die Marken der
+# Abschnitte.
+#
+# ## Der Fingerabdruck ist die ganze Buchhaltung
+#
+# Ändert sich ein Lerntext, ändert sich sein Fingerabdruck, und die Seite
+# steht beim nächsten Lauf wieder auf der Liste. Ohne ihn müsste man entweder
+# jede Nacht alles neu sprechen oder Änderungen von Hand nachhalten.
+
+on:
+  schedule:
+    # 23:19 UTC – nach dem letzten Bau des Abends und weit vor der Kette, die
+    # ab 01:13 die Nachrichten und den Podcast erzeugt. Krumme Minute aus dem
+    # Grund, der in AGENTS.md steht: Volle Stunden sind am dichtesten belegt.
+    - cron: '19 23 * * *'
+  workflow_dispatch:
+    inputs:
+      teile:
+        description: 'Wie viele Läufer gleichzeitig sprechen'
+        type: choice
+        options: ['4', '8', '12', '16', '20']
+        default: '12'
+      budget:
+        description: 'Rechenminuten je Läufer'
+        type: string
+        default: '240'
+
+concurrency:
+  # Zwei gleichzeitige Läufe sprächen dieselben Seiten doppelt und schrieben
+  # sich beim Verzeichnis gegenseitig um.
+  group: lese-stimme
+  cancel-in-progress: false
+
+jobs:
+  # ====================================================================
+  # 1. Sprechen. Mehrere Läufer, jeder nimmt jede n-te offene Seite.
+  # ====================================================================
+  sprechen:
+    runs-on: ubuntu-latest
+    # Fünf Stunden: vier fürs Sprechen (das Budget), der Rest für Modell
+    # laden, Umwandeln und Hochladen. Die Frist ist die härtere Grenze –
+    # das Budget hört vorher von selbst auf.
+    timeout-minutes: 330
+    permissions:
+      contents: read
+    strategy:
+      # Fällt ein Läufer aus, sollen die anderen ihre Seiten trotzdem fertig
+      # sprechen. Was fehlt, steht beim nächsten Lauf wieder vorn.
+      fail-fast: false
+      matrix:
+        teil: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Arbeitsliste erzeugen
+        run: |
+          npm ci --no-audit --no-fund
+          node --experimental-strip-types \
+               --disable-warning=MODULE_TYPELESS_PACKAGE_JSON \
+               --import ./scripts/alias-hook.mjs \
+               scripts/lese-texte-schreiben.ts
+
+      # Über ein Gigabyte Modelldateien. Derselbe Schlüssel wie beim Podcast –
+      # es ist dasselbe Modell, und zwei Zwischenspeicher wären zwei Gigabyte.
+      - name: Zwischenspeicher für das Sprachmodell
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-qwen-tts-0.6B
+
+      # torch und torchaudio müssen aus derselben Quelle kommen – die
+      # Begründung steht ausführlich in `podcast-erzeugen.yml`.
+      - name: Sprachmodell einrichten
+        run: |
+          python -m pip install --upgrade pip
+          pip install "transformers<=4.57.6" soundfile librosa numpy qwen-tts
+          pip install --force-reinstall \
+            --index-url https://download.pytorch.org/whl/cpu torch torchaudio
+
+      - name: Sprechen
+        env:
+          TEIL: ${{ matrix.teil }}
+          TEILE: ${{ inputs.teile || '12' }}
+          BUDGET_MINUTEN: ${{ inputs.budget || '240' }}
+        run: python scripts/lese-stimme-erzeugen.py
+
+      # Jeder Läufer legt seine eigenen Aufnahmen ab. Sie durch einen
+      # Sammeljob zu schleusen hieße, 280 Megabyte zweimal zu bewegen.
+      - name: Aufnahmen auf den Server
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+        run: |
+          if [ -z "$(find lese-audio -name '*.m4a' 2>/dev/null | head -1)" ]; then
+            echo "Dieser Läufer hat nichts gesprochen – nichts zu übertragen."
+            exit 0
+          fi
+          if [ -z "$HOST" ] || [ -z "$USER" ] || [ -z "$SSH_KEY" ]; then
+            echo "::warning::Keine Server-Zugangsdaten – die Aufnahmen bleiben liegen."
+            exit 0
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+
+          # Derselbe flatternde Port wie überall. Fünf Anläufe, und ein
+          # Fehlschlag ist eine Warnung: Die Aufnahmen sind gesprochen, das
+          # Verzeichnis nimmt sie ohne Datei nicht auf, und der nächste Lauf
+          # spricht sie neu. Ärgerlich, aber nichts, wofür jemand geweckt
+          # werden müsste.
+          geholt=nein
+          for versuch in 1 2 3 4 5; do
+            if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" \
+                 >> ~/.ssh/known_hosts 2>/dev/null && [ -s ~/.ssh/known_hosts ]; then
+              geholt=ja
+              break
+            fi
+            [ "$versuch" -lt 5 ] && sleep 10
+          done
+          if [ "$geholt" = nein ]; then
+            echo "::warning::Port $SSH_PORT antwortet nicht – die Aufnahmen bleiben liegen."
+            rm -f ~/.ssh/id_deploy
+            exit 0
+          fi
+
+          # `~/lese-audio` liegt außerhalb des Webordners und überlebt damit
+          # jeden Deploy; `paket-bauen.yml` kopiert es beim Umhängen hinein –
+          # genau wie `~/podcast-audio`.
+          anzahl=$(find lese-audio -name '*.m4a' | wc -l)
+          echo "Übertrage $anzahl Aufnahmen …"
+          tar -czf aufnahmen.tar.gz -C lese-audio $(cd lese-audio && find . -name '*.m4a')
+          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+            aufnahmen.tar.gz "$USER@$HOST:~/lese-audio-teil.tar.gz"
+          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+            "mkdir -p ~/lese-audio \
+             && tar -xzf ~/lese-audio-teil.tar.gz -C ~/lese-audio \
+             && rm -f ~/lese-audio-teil.tar.gz \
+             && find ~/lese-audio -name '*.m4a' | wc -l"
+          rm -f ~/.ssh/id_deploy
+          echo "Übertragen."
+
+      # Nur das Verzeichnisstück – ein paar Kilobyte, kein Ton.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lese-verzeichnis-${{ matrix.teil }}
+          path: lese-audio/teil-*.json
+          retention-days: 1
+          if-no-files-found: warn
+
+  # ====================================================================
+  # 2. Das Verzeichnis zusammenführen und eintragen.
+  #
+  # `always()`, damit ein ausgefallener Läufer nicht die Arbeit der anderen
+  # verwirft: Was gesprochen und übertragen wurde, gehört ins Verzeichnis.
+  # ====================================================================
+  verzeichnis:
+    needs: sprechen
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      # Zum Anstoßen des Paketbaus – ein Commit vom Bot löst nichts aus.
+      actions: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lese-verzeichnis-*
+          path: teile/
+          merge-multiple: true
+
+      - name: Zusammenführen
+        id: fuehren
+        run: |
+          node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e '
+            const { readFileSync, writeFileSync, readdirSync, existsSync } = require("fs")
+
+            const alt = existsSync("data/lese-audio.json")
+              ? JSON.parse(readFileSync("data/lese-audio.json", "utf8"))
+              : { aufnahmen: {} }
+
+            let neu = 0
+            const dateien = existsSync("teile") ? readdirSync("teile") : []
+            for (const datei of dateien) {
+              if (!datei.endsWith(".json")) continue
+              const stueck = JSON.parse(readFileSync(`teile/${datei}`, "utf8"))
+              for (const [id, eintrag] of Object.entries(stueck)) {
+                alt.aufnahmen[id] = eintrag
+                neu += 1
+              }
+            }
+
+            if (neu === 0) {
+              console.log("Keine neuen Aufnahmen.")
+              process.exit(0)
+            }
+
+            alt.stand = new Date().toISOString().slice(0, 19) + "Z"
+            /* Sortiert, damit der Unterschied zweier Läufe lesbar bleibt. */
+            const sortiert = {}
+            for (const id of Object.keys(alt.aufnahmen).sort()) {
+              sortiert[id] = alt.aufnahmen[id]
+            }
+            alt.aufnahmen = sortiert
+            writeFileSync("data/lese-audio.json", JSON.stringify(alt, null, 2) + "\n")
+
+            const gesamt = Object.keys(alt.aufnahmen).length
+            const sekunden = Object.values(alt.aufnahmen)
+              .reduce((s, e) => s + e.sekunden, 0)
+            const bytes = Object.values(alt.aufnahmen).reduce((s, e) => s + e.bytes, 0)
+            console.log(
+              `${neu} neu, ${gesamt} Seiten gesprochen, ` +
+              `${(sekunden / 3600).toFixed(1)} Stunden, ` +
+              `${(bytes / 1024 / 1024).toFixed(0)} MB auf dem Server.`
+            )
+          '
+
+      - name: Eintragen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- data/lese-audio.json; then
+            echo "Das Verzeichnis ist unverändert – kein Commit."
+            exit 0
+          fi
+
+          gesprochen=$(node -e '
+            const v = require("./data/lese-audio.json")
+            process.stdout.write(String(Object.keys(v.aufnahmen).length))
+          ')
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lese-audio.json
+          git commit -m "Vorlesestimme: $gesprochen Seiten gesprochen"
+
+          for versuch in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              # Ein Commit vom Bot löst keinen Workflow aus – der Bau muss
+              # ausdrücklich angestoßen werden, sonst steht das Verzeichnis
+              # im Repository und nicht auf der Website.
+              gh workflow run paket-bauen.yml \
+                --repo "${{ github.repository }}" --ref main -f paket=false
+              exit 0
+            fi
+            sleep $((versuch * 5))
+          done
+          echo "::error::Das Verzeichnis ließ sich nicht eintragen."
+          exit 1

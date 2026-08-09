@@ -594,6 +594,109 @@ an, wenn Notbehelf + frischer Entwurf + noch kein Podcast zusammenkommen.
 Ein Notbehelf hat damit den ganzen Vormittag Gelegenheiten, ersetzt zu
 werden – bis 04:53 deutscher Zeit, wenn der Podcast ihn festschreibt.
 
+## Die Lernseiten sprechen mit derselben Stimme wie der Podcast
+
+Seit dem 10. August 2026. Vorher las die Leiste über `speechSynthesis` mit der
+Stimme des Geräts – auf jedem Telefon eine andere, auf vielen Rechnern eine
+Computerstimme, und auf etlichen Geräten ist überhaupt keine männliche
+deutsche Stimme installiert.
+
+**Gesprochen wird jetzt vorher.** Ein Modell, das im Browser klont, gibt es
+nicht; ein Vorlesedienst bekäme jeden Absatz zu sehen; einen eigenen Server
+hat diese Website nicht. Bleibt: einmal auf einem Läufer sprechen, als Datei
+ablegen, im Browser abspielen.
+
+    scripts/lese-texte-schreiben.ts   was zu sprechen ist (Arbeitsliste)
+    scripts/sprechstimme.py           wie gesprochen wird (Zerlegung, Pausen)
+    scripts/lese-stimme-erzeugen.py   spricht und wandelt in AAC
+    .github/workflows/lese-stimme.yml der Lauf, nachts um 23:19 UTC
+    data/lese-audio.json              das Verzeichnis – **das Einzige in `main`**
+    components/ui/Aufnahmeleiste.tsx  der Abspieler
+
+### Die Zahlen, an denen alles hängt
+
+Gemessen, nicht geschätzt: **172 Seiten** (102 Lernstufen, 70
+Akademielektionen), **710.000 Zeichen**, **4.889 Abschnitte**. Das sind rund
+**13,6 Stunden** Sprache, als AAC bei 48 kbit/s mono etwa **280 MB**, und bei
+dem am Podcast gemessenen Echtzeitfaktor gut **170 Läuferstunden**.
+
+Daraus folgt alles Übrige:
+
+- **Es passt in keinen Lauf.** Der Workflow hat ein Budget je Läufer und
+  arbeitet sich vor – zwölf Läufer, vier Stunden Rechenzeit, dann ist Schluss
+  und der Rest bleibt für die nächste Nacht liegen.
+- **Die Reihenfolge ist die Zuteilung.** Beginner zuerst, dann die Akademie,
+  dann Fortgeschritten, zuletzt Profi. Wer bei null anfängt, hört die eigene
+  Stimme in der ersten Nacht; die Sonderfälle folgen. Umgekehrt wäre es falsch
+  herum, und ein Test hält die Reihenfolge fest.
+- **Die Aufnahmen liegen nicht im Repository und nicht im Paket.** 280 MB
+  wären Ballast in jedem Klon und zwanzig Minuten Übertragung bei jedem der
+  dreißig täglichen Bauten. Sie liegen unter `~/lese-audio` auf dem Webspace,
+  genau wie die Podcastdateien, und `paket-bauen.yml` kopiert sie beim
+  Umhängen mit.
+
+### Eine Seite ohne Aufnahme ist kein Fehler
+
+Das ist der Grund, warum das Ganze überhaupt schrittweise gehen darf: Findet
+die Leiste kein Verzeichniseintrag, spricht wieder das Gerät. Der Unterschied
+ist **besser oder normal**, nicht gut oder kaputt.
+
+Dasselbe gilt, wenn die Datei fehlt, obwohl das Verzeichnis sie kennt – ein
+halb übertragener Ordner, ein Bau, der neuer ist als die Aufnahmen. Das
+`onError` des `<audio>` fällt dann auf die Gerätestimme zurück, statt einen
+Knopf stehen zu lassen, der nichts tut.
+
+### Der Fingerabdruck ist die ganze Buchhaltung
+
+Jede Aufgabe trägt einen Hash über ihre **gesprochenen Abschnitte**. Ändert
+sich ein Lerntext, ändert sich der Hash, und die Seite steht in der nächsten
+Nacht wieder vorn. Ohne ihn gäbe es nur zwei Möglichkeiten, und beide sind
+schlecht: jede Nacht dreizehn Stunden neu sprechen, oder Änderungen von Hand
+nachhalten.
+
+Deshalb gilt: **Die Abschnitte kommen aus `vorleseAbschnitte()`, nicht aus
+einer zweiten Zerlegung.** Stünde hier eine eigene, spräche die Aufnahme etwas
+anderes als die Ersatzstimme – und es fiele niemandem auf, bis jemand beides
+nacheinander hört.
+
+### Die Marken sind der Grund, warum die Abschnittsanzeige bleibt
+
+Mit der Gerätestimme entstand sie von selbst: Jeder Abschnitt war ein eigener
+Auftrag. Eine einzelne Audiodatei hat diese Fugen nicht mehr, also schreibt
+der Vertoner die Sekunde mit, in der jeder Abschnitt beginnt. Das kostet beim
+Sprechen nichts – die Zeit steht ohnehin da – und trägt „Abschnitt 12 von 40"
+samt Vor- und Zurückspringen.
+
+Ein Test prüft, dass zu jeder **gültigen** Aufnahme so viele Marken gehören
+wie Abschnitte. Ohne ihn zeigte die Leiste irgendwann „Abschnitt 14 von 12".
+
+### `sprechstimme.py` und `stimme-erzeugen.py` stehen doppelt da
+
+Ausdrücklich Absicht, und ausdrücklich vorläufig. Als das Modul entstand, lief
+die nächste Podcastfolge in vier Stunden; ein Umbau des Skripts, das sie
+erzeugt, hätte sie riskiert, ohne dass an ihr etwas besser geworden wäre.
+
+**`stimme-erzeugen.py` wird nachgezogen, sobald eine Folge Abstand dazwischen
+liegt.** Bis dahin: Wer an den Pausen, der Stücklänge oder der Frist etwas
+ändert, ändert es an beiden Stellen.
+
+## Der Alias `@/` gilt jetzt auch außerhalb des Bündlers
+
+`scripts/alias-hook.mjs` löst ihn auf. Eingehängt über `--import`:
+
+    node --experimental-strip-types --import ./scripts/alias-hook.mjs skript.ts
+
+Vorher war der Alias das Vorrecht von Next.js, und beides hat sich darum
+herumgearbeitet: Skripte importierten relativ (`../data/…`), Tests lasen
+Daten aus **Dateinamen** statt aus den Modulen – `fortschritt.test.ts` holt
+die Lernthemen bis heute so. Das geht, solange das geladene Modul selbst
+keinen Alias verwendet, und genau daran endete der Weg, als die Lerndaten
+gebraucht wurden: `data/learn/index.ts` holt seine 34 Themen über `@/`.
+
+Der Testläufer hängt den Haken seit dem 10. August für **alle** Tests ein. Die
+vorhandenen Umwege dürfen bleiben, wo sie für sich Sinn ergeben; neue braucht
+es nicht mehr.
+
 ### Was die Sendung über sich sagt, steht nicht in `main`
 
 Beschreibung, Titelbild und Autor der Podcast-Sendung stehen in **einer

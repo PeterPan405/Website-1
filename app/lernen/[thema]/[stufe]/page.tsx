@@ -22,6 +22,7 @@ import { getLearnLevel, getLearnLevelParams, getRelatedTopics } from '@/lib/lear
 import { begriffeZumThema, getBegriffsindex, kurzerklaerung } from '@/lib/glossar'
 import { getPfadeMitStufe } from '@/lib/lernpfade'
 import { buildMetadata, withBrand } from '@/lib/seo'
+import { vorleseaufnahme } from '@/lib/lese-audio'
 import { vorleseAbschnitte } from '@/lib/vorlese-text'
 import { figureMeta } from '@/data/figures'
 
@@ -170,7 +171,10 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             */}
             {!isOutline && (
               <div data-drucken="aus" className="mb-8 flex flex-wrap items-center gap-3">
-                <Vorlesen abschnitte={vorleseAbschnitte(level.blocks, figureMeta)} />
+                <Vorlesen
+                  abschnitte={vorleseAbschnitte(level.blocks, figureMeta)}
+                  aufnahme={vorleseaufnahme(`lernen/${thema}/${stufe}`)}
+                />
                 <Druckknopf />
               </div>
             )}

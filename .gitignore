@@ -62,3 +62,9 @@ podcast-archiv/
 # mit "git add -A" eingecheckt – er gehoert nicht ins Repository.
 __pycache__/
 *.pyc
+
+# Vertonung der Lernseiten: Arbeitsliste und Aufnahmen entstehen auf dem
+# Läufer. Die Aufnahmen gehen direkt auf den Webspace, ins Repository kommt
+# nur das Verzeichnis `data/lese-audio.json`.
+lese-texte/
+lese-audio/

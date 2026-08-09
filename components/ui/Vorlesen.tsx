@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
+import { Aufnahmeleiste } from '@/components/ui/Aufnahmeleiste'
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
 import {
@@ -79,7 +80,27 @@ function stimmenAbo(melden: () => void) {
   return () => window.speechSynthesis.removeEventListener?.('voiceschanged', laden)
 }
 
-export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
+/**
+ * Was die Leiste über eine fertige Aufnahme wissen muss.
+ *
+ * Liegt eine vor, spricht nicht das Gerät, sondern die eigene Stimme – siehe
+ * `Aufnahmeleiste`. Die Gerätestimme bleibt als Rückfall darunter: Eine Datei
+ * kann fehlen, weil ein Bau neuer ist als die Aufnahmen oder weil der Ordner
+ * auf dem Server halb übertragen wurde.
+ */
+export interface Vorleseaufnahme {
+  adresse: string
+  marken: number[]
+  sekunden: number
+}
+
+export function Vorlesen({
+  abschnitte,
+  aufnahme,
+}: {
+  abschnitte: string[]
+  aufnahme?: Vorleseaufnahme | null
+}) {
   /*
     Ob der Browser vorlesen kann, weiß nur der Browser – der Server rendert
     deshalb „nein“ und der erste Client-Durchlauf die Wahrheit. Über
@@ -98,6 +119,8 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
     () => KEINE_STIMMEN
   )
 
+  /* Gibt es eine Aufnahme, kommt sie aber nicht, spricht wieder das Gerät. */
+  const [aufnahmeGescheitert, setAufnahmeGescheitert] = useState(false)
   const [zustand, setZustand] = useState<'aus' | 'laeuft' | 'pausiert'>('aus')
   const [stelle, setStelle] = useState(0)
   const [tempo, setTempo] = useState(1)
@@ -275,6 +298,26 @@ export function Vorlesen({ abschnitte }: { abschnitte: string[] }) {
   }
 
   if (abschnitte.length === 0) return null
+
+  /*
+    Der Vorzug gilt der Aufnahme, und zwar ohne Wahlmöglichkeit davor.
+
+    Eine Auswahl „echte Stimme oder Gerätestimme?" wäre eine Frage an
+    Besucher, die sie nicht beantworten können, bevor sie beides gehört
+    haben – und die richtige Antwort ist ohnehin immer dieselbe. Erst wenn
+    die Datei nicht kommt, wird die Gerätestimme sichtbar; dann aber ohne
+    Zutun.
+  */
+  if (aufnahme && !aufnahmeGescheitert) {
+    return (
+      <Aufnahmeleiste
+        adresse={aufnahme.adresse}
+        marken={aufnahme.marken}
+        sekunden={aufnahme.sekunden}
+        aufGeraetestimme={() => setAufnahmeGescheitert(true)}
+      />
+    )
+  }
 
   return (
     <div
