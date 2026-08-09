@@ -473,6 +473,26 @@ Ergebnis des Tages schon?** `nachrichten.yml` fragt sie seit dem 5. August,
 `podcast-erzeugen.yml` seit dem 9. Ein doppelter Anstoß ist gewollt und
 billig – ein doppeltes Ergebnis nicht.
 
+### Was die Sendung über sich sagt, steht nicht in `main`
+
+Beschreibung, Titelbild und Autor der Podcast-Sendung stehen in **einer
+Datei auf dem Webspace**: `podcast-audio/feed.xml`. Spotify liest sie, nicht
+das Repository.
+
+Erneuert wurde sie bis zum 9. August 2026 nur bei zwei Gelegenheiten – wenn
+eine Folge erschien und wenn eine zurückgenommen wurde. Beides sind
+Ereignisse an einer **Folge**. Ändert sich etwas an der **Sendung**, gab es
+keinen Weg nach draußen; man musste auf die nächste Folge warten.
+
+Genau so blieb der Name „IM Investments" bei Spotify stehen, nachdem er im
+Repository längst berichtigt war: richtig im Code, grün im Bau, alt beim
+Hörer. **`podcast-schaufenster.yml`** schließt die Lücke – Feed neu
+schreiben, Feed und Titelbild übertragen, keine Folge anfassen.
+
+Dass die Datei liegt, heißt noch nicht, dass jemand sie gelesen hat: Spotify
+und Apple holen den Feed in eigenem Takt, meist binnen Stunden. Das
+Titelbild braucht regelmäßig länger als der Text.
+
 Und wenn doch einmal eines zu viel entsteht:
 `.github/workflows/podcast-zuruecknehmen.yml` nimmt eine Folge vollständig
 zurück – Video gelöscht, Registereintrag entfernt, Feed neu geschrieben
