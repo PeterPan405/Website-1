@@ -43,13 +43,13 @@ export function PageHeader({
 
   return (
     /*
-      Ohne den weichgezeichneten Farbverlauf, der hier bis August 2026 hinter
-      jedem Seitenkopf lag. Ein verwaschener Farbfleck hinter der Überschrift
-      ist das Erkennungszeichen generierter Seiten; die Bereichsfarbe trägt
-      dieselbe Orientierung leiser – in der Dachzeile.
+      Kein weißer Kasten mehr um den Seitenkopf: Er steht direkt auf dem
+      grauen Seitengrund, die Trennung zum Inhalt macht der Weißraum. Der
+      weichgezeichnete Farbverlauf davor und die weiße Fläche danach waren
+      beide Versuche, eine Zone zu markieren, die keine Markierung braucht.
     */
-    <div className="border-border bg-surface border-b">
-      <div className="fk-container py-12 sm:py-16">
+    <div>
+      <div className="fk-container pt-12 pb-10 sm:pt-16 sm:pb-12">
         {breadcrumbs && <div className="mb-6">{breadcrumbs}</div>}
 
         {/*
@@ -74,7 +74,7 @@ export function PageHeader({
         */}
         <h1
           className={cn(
-            'text-fg max-w-3xl text-3xl font-bold sm:text-4xl lg:text-5xl',
+            'text-fg max-w-3xl text-4xl font-bold tracking-[-0.025em] sm:text-5xl',
             eyebrow && 'mt-4'
           )}
         >

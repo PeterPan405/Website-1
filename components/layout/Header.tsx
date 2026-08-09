@@ -217,16 +217,7 @@ export function Header() {
                     {item.children ? (
                       <details className="group open:border-border open:bg-surface rounded-xl border border-transparent">
                         <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl px-3 py-3 font-medium">
-                          <span className="flex items-center gap-2.5">
-                            <span
-                              className={cn(
-                                'size-2 rounded-full',
-                                areaStyles[item.area].dot
-                              )}
-                              aria-hidden="true"
-                            />
-                            {item.label}
-                          </span>
+                          <span>{item.label}</span>
                           <Icon
                             name="chevron-down"
                             className="text-fg-subtle size-5 transition group-open:rotate-180"
@@ -257,7 +248,6 @@ export function Header() {
                         href={item.href}
                         label={item.label}
                         pathname={pathname}
-                        dotClass={areaStyles[item.area].dot}
                       />
                     )}
                   </li>
@@ -309,11 +299,10 @@ function NavEntry({
           href={item.href}
           aria-current={active ? 'page' : undefined}
           className={cn(
-            'flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition',
+            'rounded-full px-3.5 py-2 text-sm font-medium transition',
             active ? 'bg-surface text-fg shadow-card' : 'text-fg-muted hover:text-fg'
           )}
         >
-          <span className={cn('size-1.5 rounded-full', style.dot)} aria-hidden="true" />
           {item.label}
         </Link>
       </li>
@@ -358,9 +347,8 @@ function NavEntry({
         <Link
           href={item.href}
           aria-current={active ? 'page' : undefined}
-          className="flex items-center gap-2 rounded-l-full py-2 pr-1 pl-3.5"
+          className="rounded-l-full py-2 pr-1 pl-3.5"
         >
-          <span className={cn('size-1.5 rounded-full', style.dot)} aria-hidden="true" />
           {item.label}
         </Link>
         <button
@@ -391,7 +379,12 @@ function NavEntry({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.99 }}
             transition={{ duration: 0.16, ease: 'easeOut' }}
-            className="fk-card absolute top-full left-0 mt-2 w-80 origin-top-left overflow-hidden p-2"
+            /*
+              Schwebende Flächen sind die Ausnahme von „randlos“: Sie liegen
+              über fremdem Inhalt und brauchen Kante und Schatten, um sich
+              davon zu lösen – wie jedes Systemmenü.
+            */
+            className="fk-card border-border shadow-lift absolute top-full left-0 mt-2 w-80 origin-top-left overflow-hidden border p-2"
           >
             <p className="text-fg-subtle px-3 pt-2 pb-1 text-xs font-semibold tracking-wide uppercase">
               {item.label}
@@ -404,10 +397,6 @@ function NavEntry({
                     aria-current={pathname === child.href ? 'page' : undefined}
                     className="group hover:bg-surface-muted flex items-start gap-3 rounded-xl px-3 py-2.5 transition"
                   >
-                    <span
-                      className={cn('mt-1.5 size-1.5 shrink-0 rounded-full', style.dot)}
-                      aria-hidden="true"
-                    />
                     <span>
                       <span className="text-fg block text-sm font-medium">
                         {child.label}
@@ -445,13 +434,11 @@ function MobileLink({
   label,
   pathname,
   emphasis = false,
-  dotClass,
 }: {
   href: string
   label: string
   pathname: string
   emphasis?: boolean
-  dotClass?: string
 }) {
   const active = pathname === href
   return (
@@ -464,9 +451,6 @@ function MobileLink({
         emphasis && !active && 'text-fg font-semibold'
       )}
     >
-      {dotClass && (
-        <span className={cn('size-2 rounded-full', dotClass)} aria-hidden="true" />
-      )}
       {label}
     </Link>
   )
