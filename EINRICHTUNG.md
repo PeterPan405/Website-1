@@ -267,43 +267,57 @@ aussieht und keines ist.
 
 ---
 
-### 3.2 Instagram vorbereiten (in der App, 5 Minuten)
+### 3.2 Instagram vorbereiten (5 Minuten)
 
-**a) Auf ein Profikonto umstellen**
+> **Vorbemerkung, aus Schaden klug:** Meta benennt seine Menüs mehrmals im
+> Jahr um, und die Beschriftungen unterscheiden sich zwischen App, Browser,
+> iOS und Android. Diese Anleitung nannte anfangs Menüpfade, die es so nicht
+> gab – das kostet Zeit und sät Zweifel an der Sache selbst.
+>
+> Deshalb steht hier ab jetzt **jeweils das sichtbare Kennzeichen** statt des
+> Klickwegs: woran man erkennt, dass es stimmt. Wo es geht, folgt eine
+> **Abfrage**, die ohne jedes Menü auskommt.
 
-Instagram-App → Profil → Menü oben rechts (drei Striche) → **Einstellungen und
-Privatsphäre** → ganz unten **Kontotyp und Tools** → **Auf professionelles
-Konto umstellen**.
+**a) Profikonto – woran man es erkennt**
 
-Es folgen ein paar Fragen nach der Kategorie. Wählen Sie, was passt – die
-Angabe ist für die Schnittstelle ohne Bedeutung.
+Ein umgestelltes Konto zeigt in den Instagram-Einstellungen einen Abschnitt
+**„Für Profis"** mit dem Eintrag **„Professionelles Konto"** und einer
+Kategorie darunter (etwa „Unternehmer/in"). Im Profil selbst gibt es
+zusätzlich **„Professionelles Dashboard"** und **„Statistiken ansehen"** –
+beides existiert bei einem privaten Konto nicht.
 
-Am Ende fragt Instagram nach **Creator** oder **Business**. **Beides
-funktioniert.** „Business" passt inhaltlich besser zu einer Website mit
-Impressum.
+Steht das da, ist a) erledigt. Ob **Creator** oder **Business** gewählt
+wurde, ist für die Schnittstelle ohne Bedeutung; beides veröffentlicht.
 
-> **Prüfen:** Im Profil steht unter dem Namen jetzt die gewählte Kategorie,
-> und es gibt einen Menüpunkt „Professionelles Dashboard". Fehlt beides, hat
-> die Umstellung nicht gegriffen.
+Fehlt es, führt die Suche in den Instagram-Einstellungen nach dem Wort
+**„professionell"** zur Umstellung – zuverlässiger als jeder Pfad, den man
+aufschreiben könnte.
 
-**b) Mit einer Facebook-Seite verknüpfen**
+**b) Facebook-Seite – und warum sie hier nicht geprüft wird**
 
-Immer noch in der Instagram-App: **Einstellungen und Privatsphäre** →
-**Konten-Center** → **Konten** → **Konten hinzufügen** → Facebook.
+Gebraucht wird eine Facebook-**Seite**, nicht das Facebook-Profil. Eine
+Seite ist ein eigenes Objekt mit eigener Kennung; das persönliche Profil hat
+keine und trägt deshalb auch kein Instagram-Konto.
 
-Dort wird nach einer **Seite** gefragt, nicht nach dem Profil. Gibt es noch
-keine:
+Gibt es noch keine: Facebook im Browser, Bereich **Seiten**, **Neue Seite
+erstellen**, Name (etwa „IM Invests"), Kategorie (etwa
+„Finanzdienstleistung"). Die Seite muss danach **nicht** gepflegt werden –
+kein Bild, kein Beitrag, keine Follower. Sie ist ein Scharnier.
 
-Facebook im Browser → linke Spalte **Seiten** → **Neue Seite erstellen** →
-Name (etwa „IM Invests"), Kategorie (etwa „Finanzdienstleistung") →
-**Seite erstellen**.
+**Ob die Verknüpfung zwischen Seite und Instagram-Konto steht, wird hier
+bewusst nicht über ein Menü geprüft.** Die Verknüpfung lässt sich an drei
+verschiedenen Stellen setzen – im Konten-Center, in den Einstellungen der
+Facebook-Seite, im professionellen Dashboard – und keine davon heißt
+zuverlässig gleich. Auch ein Häkchen an einer dieser Stellen ist kein
+Beweis: Entscheidend ist, was die Schnittstelle sieht.
 
-Die Seite muss **nicht** gepflegt werden. Sie braucht kein Bild, keinen
-Beitrag, keine Follower. Sie ist ein Scharnier.
-
-> **Das ist der Schritt, an dem es am häufigsten hängt.** Ohne verknüpfte
-> Seite liefert die Abfrage in 3.5 später ein leeres Ergebnis, und die
-> Fehlermeldung sagt nicht, warum.
+> **Die verbindliche Probe ist eine einzige Abfrage**, und sie steht in
+> **3.5 a**: `me/accounts` im Graph API Explorer. Kommt dort eine Seite mit
+> `name` und `id` zurück, steht alles. Kommt `{"data": []}`, fehlt die Seite
+> oder die Verknüpfung – dann, und erst dann, lohnt die Suche im Menü.
+>
+> Dafür wird die App aus 3.3 gebraucht. **Also: 3.3 anlegen, dann 3.5 a
+> abfragen.** Wer hier stehenbleibt und sucht, sucht ohne Messgerät.
 
 ---
 
@@ -392,6 +406,11 @@ Knopf **Generate Access Token**. Es öffnet sich ein Fenster von Facebook:
 Im Feld **Access Token** steht jetzt eine sehr lange Zeichenkette. Das ist
 das **kurzlebige** Token – es gilt eine Stunde.
 
+> **Schritt 2 ist nebenbei die erste ehrliche Antwort auf die Frage aus
+> 3.2 b:** Erscheint dort keine einzige Seite zum Anhaken, gibt es keine
+> Facebook-Seite unter diesem Konto. Erscheint eine, existiert sie – ob sie
+> auch mit Instagram verknüpft ist, sagt erst 3.5 b.
+
 **d) Aus kurzlebig wird langlebig**
 
 **Tools** → **Access Token Debugger**. Das Token dort einfügen → **Debug**.
@@ -411,6 +430,10 @@ Dieses Token ist gleich `IG_ACCESS_TOKEN`.
 Zurück in den **Graph API Explorer**, das langlebige Token oben einfügen.
 
 **a) Die Seite finden**
+
+Das ist zugleich die in **3.2 b** angekündigte Probe. Sie funktioniert schon
+mit dem **kurzlebigen** Token aus 3.4 c – wer nur wissen will, ob die
+Facebook-Seite steht, muss 3.4 d nicht abwarten.
 
 In das Abfragefeld (neben `GET` und der API-Fassung) eintragen:
 
