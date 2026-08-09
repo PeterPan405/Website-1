@@ -497,17 +497,31 @@ Das ist derselbe Denkfehler, den der Wächter zwei Tage zuvor abgelegt hatte:
 eine liefert.** Der Agent fragt seither nach der Herkunft, mit demselben
 Maßstab – weniger als die Hälfte externer Quellen heißt Notbehelf.
 
-**Was damit noch nicht gelöst ist**, und das gehört dazu: Der Agent schreibt
-in diesem Fall zwar einen Entwurf, aber niemand nimmt ihn.
-`nachrichten.yml` hört auf, sobald eine Ausgabe steht, und
-`nachrichten-erzeugen.ts` weigert sich, eine vorhandene zu überschreiben.
-Eine Ausgabe zu **ersetzen** hieße: die Artikel des Notbehelfs aus
-`data/news.ts` entfernen, Ausgabendatei und Registereintrag austauschen. Den
-Weg gibt es noch nicht.
+**Und der Entwurf wird auch genommen.** Seit demselben Tag ersetzt
+`nachrichten.yml` einen stehenden Notbehelf durch den recherchierten
+Entwurf – unter zwei Bedingungen, beide im Schritt „Steht die Ausgabe
+schon?" geprüft:
 
-Bis dahin gilt: Der Regelfall – Agent zuerst – funktioniert wie immer. Kippt
-die Reihenfolge, bleibt es beim Notbehelf, aber der Wächter macht daraus
-seit dem 9. August einen roten Lauf statt einer stillen Warnung.
+1. **Ein Entwurf von heute liegt auf `nachrichten-entwurf`.** Ohne ihn gibt
+   es nichts Besseres, und ein Ersetzen ohne Ersatz wäre nur Bewegung.
+2. **Der Podcast hat den Notbehelf noch nicht vertont.** Danach ist der Zug
+   abgefahren: Website und Folge müssen dasselbe erzählen, und eine
+   Website, die andere Nachrichten zeigt als die Folge des Tages, wäre
+   schlimmer als der Notbehelf.
+
+Das Ersetzen selbst ist ein `git revert` des Notbehelf-Commits plus die
+normale Schreibkette, zusammen in **einem** Commit – kein eigenes Skript,
+das Artikel aus `news.ts` schneidet, keine zweite Stelle, die die Struktur
+der Datei kennen muss. Scheitert der Entwurf dabei an der Prüfung, bricht
+der Lauf rot ab und lässt den Notbehelf stehen; ein Rückfall auf Weg 3
+würde denselben Notbehelf noch einmal schreiben, den der Revert gerade
+entfernt hat.
+
+Angestoßen wird das nicht nur vom eigenen Zeitplan: `kurse.yml` prüft bei
+jedem Lauf die Herkunft der stehenden Ausgabe und stößt den Nachrichtenlauf
+an, wenn Notbehelf + frischer Entwurf + noch kein Podcast zusammenkommen.
+Ein Notbehelf hat damit den ganzen Vormittag Gelegenheiten, ersetzt zu
+werden – bis 04:53 deutscher Zeit, wenn der Podcast ihn festschreibt.
 
 ### Was die Sendung über sich sagt, steht nicht in `main`
 

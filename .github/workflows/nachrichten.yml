@@ -157,14 +157,57 @@ jobs:
           [ -n "$tag" ] || tag=$(date -u +%Y-%m-%d)
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
 
+          echo "ersetzen=nein" >> "$GITHUB_OUTPUT"
+
           if [ "${{ inputs.probe }}" = "true" ]; then
             echo "schon=nein" >> "$GITHUB_OUTPUT"
             echo "Probe – es wird nichts geschrieben, auch wenn die Ausgabe schon steht."
           elif [ -f "data/editions/$tag.ts" ]; then
-            echo "schon=ja" >> "$GITHUB_OUTPUT"
-            echo "Die Ausgabe vom $tag steht bereits – dieser Lauf hört hier auf."
-            echo "Das Modell wird nicht gefragt. Dieser Lauf kostet nichts." \
-              >> "$GITHUB_STEP_SUMMARY"
+            # **„Steht schon eine?" reicht als Frage nicht mehr** – seit der
+            # Notbehelf aus dem Kursbestand immer eine liefert, muss hier
+            # stehen, *was* steht. Am 9. August 2026 kippte die Reihenfolge
+            # der verspäteten Läufe: Der Notbehelf kam vor dem Agenten, der
+            # Agent legte seinen recherchierten Entwurf daneben, und dieser
+            # Riegel ließ ihn liegen. Auf der Website standen den ganzen Tag
+            # aufbereitete eigene Zahlen.
+            #
+            # Herkunft mit demselben Maßstab wie im Wächter: Weniger als die
+            # Hälfte externer Quellen heißt Notbehelf.
+            datei="data/editions/$tag.ts"
+            gesamt=$(grep -c "url: '" "$datei" || true)
+            extern=$(grep "url: '" "$datei" | grep -vc "iminvests.de" || true)
+
+            if [ "${gesamt:-0}" -eq 0 ] || [ $((extern * 2)) -ge "$gesamt" ]; then
+              echo "schon=ja" >> "$GITHUB_OUTPUT"
+              echo "Die Ausgabe vom $tag steht bereits und ist recherchiert – Ende hier."
+              echo "Das Modell wird nicht gefragt. Dieser Lauf kostet nichts." \
+                >> "$GITHUB_STEP_SUMMARY"
+            elif node -e '
+                  const feed = require("./data/podcast-eigener-feed.json")
+                  process.exit(feed.folgen.some((f) => f.datum === process.argv[1]) ? 0 : 1)
+                ' "$tag" 2>/dev/null; then
+              # Der Podcast hat den Notbehelf bereits vertont. Jetzt zu
+              # ersetzen hieße: Die Website erzählt andere Nachrichten als
+              # die Folge des Tages – schlimmer als der Notbehelf selbst.
+              echo "schon=ja" >> "$GITHUB_OUTPUT"
+              echo "::warning::Für den $tag steht der Notbehelf ($extern von $gesamt Quellen extern),"
+              echo "  aber der Podcast hat ihn bereits vertont. Ersetzen würde Website und"
+              echo "  Folge auseinanderreißen – es bleibt beim Notbehelf."
+            elif git fetch origin nachrichten-entwurf --depth 1 -q 2>/dev/null &&
+                 git show origin/nachrichten-entwurf:entwurf.json \
+                   > "${RUNNER_TEMP:-/tmp}/entwurf-probe.json" 2>/dev/null &&
+                 [ "$(node -e "try{process.stdout.write(String(JSON.parse(require('fs').readFileSync('${RUNNER_TEMP:-/tmp}/entwurf-probe.json','utf8')).stichtag||''))}catch(e){}")" = "$tag" ]; then
+              echo "schon=nein" >> "$GITHUB_OUTPUT"
+              echo "ersetzen=ja" >> "$GITHUB_OUTPUT"
+              echo "Für den $tag steht der Notbehelf ($extern von $gesamt Quellen extern),"
+              echo "und ein recherchierter Entwurf von heute liegt bereit."
+              echo "Der Notbehelf wird durch die recherchierte Ausgabe ersetzt." \
+                >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "schon=ja" >> "$GITHUB_OUTPUT"
+              echo "::warning::Für den $tag steht der Notbehelf, aber es liegt kein"
+              echo "  Entwurf von heute vor – nichts, womit sich Besseres schreiben ließe."
+            fi
           else
             echo "schon=nein" >> "$GITHUB_OUTPUT"
             echo "Für den $tag gibt es noch keine Ausgabe."
@@ -236,6 +279,48 @@ jobs:
       # Längen, eindeutige Titel, gültige Themen und Symbole. Ein Entwurf, der
       # die Form verfehlt, wird nicht veröffentlicht, sondern fällt auf den
       # nächsten Weg zurück.
+      # Der Notbehelf wird **zurückgenommen wie ein Commit**, nicht von Hand
+      # zerpflückt. Seine Artikel stehen in drei Dateien (news.ts,
+      # Ausgabendatei, Register), und alle drei stammen aus genau einem
+      # Commit – `git revert` nimmt sie in einem Zug und vollständig heraus.
+      # Ein eigenes Skript, das Artikel aus news.ts herausschneidet, wäre
+      # eine zweite Stelle, an der die Struktur der Datei bekannt sein muss.
+      #
+      # Zwischen dem Notbehelf-Commit und jetzt schreibt nur der Kursabruf
+      # auf main, und der fasst news.ts nicht an – der Revert ist konfliktfrei.
+      # Falls doch nicht: abbrechen, nichts pushen, der rote Lauf sagt warum.
+      - name: Notbehelf zurücknehmen
+        if: steps.vorhanden.outputs.ersetzen == 'ja'
+        run: |
+          tag="${{ steps.vorhanden.outputs.tag }}"
+
+          # checkout holt nur die Spitze; für die Datei-Historie braucht es
+          # mehr Tiefe.
+          git fetch origin main --deepen=100 -q 2>/dev/null || git fetch --unshallow -q 2>/dev/null || true
+
+          sha=$(git log --diff-filter=A --format=%H -n 1 -- "data/editions/$tag.ts")
+          if [ -z "$sha" ]; then
+            echo "::error::Der Commit, der die Notbehelf-Ausgabe angelegt hat, ist nicht auffindbar."
+            exit 1
+          fi
+          echo "Notbehelf kam mit $sha – wird zurückgenommen."
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if ! git revert --no-commit "$sha"; then
+            git revert --abort || true
+            echo "::error::Der Revert läuft in einen Konflikt – es wird nichts ersetzt."
+            echo "  Der Notbehelf bleibt stehen; der Wächter meldet ihn als roten Lauf."
+            exit 1
+          fi
+
+          if [ -f "data/editions/$tag.ts" ]; then
+            echo "::error::Nach dem Revert existiert die Ausgabendatei noch – Abbruch."
+            exit 1
+          fi
+          echo "Der Notbehelf ist aus dem Arbeitsstand entfernt; die recherchierte Ausgabe folgt."
+
       - name: Ausgabe schreiben
         if: steps.vorhanden.outputs.schon == 'nein'
         env:
@@ -244,6 +329,7 @@ jobs:
           STICHTAG: ${{ steps.vorhanden.outputs.tag }}
           NACHRICHTEN_MODELL: ${{ inputs.modell }}
           NUR_PRUEFEN: ${{ inputs.probe && '1' || '' }}
+          ERSETZEN: ${{ steps.vorhanden.outputs.ersetzen }}
         run: |
           schreibe() { node --experimental-strip-types scripts/nachrichten-erzeugen.ts; }
 
@@ -280,6 +366,18 @@ jobs:
             fi
           else
             echo "Kein Entwurf auf 'nachrichten-entwurf'."
+          fi
+
+          # Beim Ersetzen gibt es keinen nächsten Weg. Der Riegel oben hat
+          # den Notbehelf nur zurückgenommen, **weil** ein Entwurf von heute
+          # bereitlag – scheitert der jetzt an der Prüfung, wäre jeder
+          # Rückfall absurd: Weg 3 schriebe denselben Notbehelf noch einmal,
+          # den wir gerade entfernt haben. Dann lieber ein roter Lauf, der
+          # den Notbehelf stehen lässt, wie er war.
+          if [ "$ERSETZEN" = "ja" ]; then
+            echo "::error::Der Entwurf, der den Notbehelf ersetzen sollte, hat die Prüfung nicht bestanden."
+            echo "  Es wird nichts gepusht – der Notbehelf bleibt, der Wächter meldet ihn."
+            exit 1
           fi
 
           # ---------------------------------------------------------------
@@ -335,7 +433,13 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/
-          git commit -m "Nachrichten: Ausgabe vom ${{ steps.vorhanden.outputs.tag }}"
+          if [ "${{ steps.vorhanden.outputs.ersetzen }}" = "ja" ]; then
+            # Revert und neue Ausgabe in **einem** Commit: Es gibt keinen
+            # Zwischenstand, in dem der Tag ohne Ausgabe dasteht.
+            git commit -m "Nachrichten: Ausgabe vom ${{ steps.vorhanden.outputs.tag }} ersetzt den Notbehelf"
+          else
+            git commit -m "Nachrichten: Ausgabe vom ${{ steps.vorhanden.outputs.tag }}"
+          fi
 
           for versuch in 1 2 3 4; do
             if git pull --rebase origin main && git push origin main; then
