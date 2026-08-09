@@ -96,7 +96,7 @@ export default async function AboutPage() {
           <h2 className="text-fg mt-12 text-2xl font-bold">Vier Grundsätze</h2>
         </div>
 
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-5 sm:grid-cols-2">
           {principles.map((principle) => (
             <li key={principle.title} className="fk-card h-full p-6">
               <span className="bg-brand-soft text-brand flex size-10 items-center justify-center rounded-xl">

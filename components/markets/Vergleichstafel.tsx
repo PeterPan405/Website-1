@@ -106,7 +106,7 @@ export function Vergleichstafel({
 
   return (
     <div>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         {[
           { id: 'vergleich-links', wert: linksSymbol, setzen: setzeLinks, nummer: 1 },
           { id: 'vergleich-rechts', wert: rechtsSymbol, setzen: setzeRechts, nummer: 2 },

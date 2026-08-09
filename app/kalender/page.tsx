@@ -105,7 +105,13 @@ export default async function KalenderPage() {
           wenn man nur diese wollte.
         </p>
 
-        <div className="max-w-3xl">
+        {/*
+          `max-w-4xl` statt `max-w-3xl`: Die Terminliste hing in einer schmalen
+          linken Spalte, rechts daneben blieb ein Drittel der Seite leer. Ganz
+          ohne Grenze würden die Zeilen auf breiten Schirmen zu lang zum Lesen –
+          eine Stufe breiter füllt die Seite, ohne die Zeile zu überdehnen.
+        */}
+        <div className="max-w-4xl">
           <KalenderAnsicht
             gruppen={gruppen}
             artMeta={terminArtMeta}

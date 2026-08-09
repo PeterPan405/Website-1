@@ -52,7 +52,7 @@ export default async function MonatsRegisterSeite() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {monate.map((eintrag, index) => (
             <li key={eintrag.monat} className="relative">
               <Reveal delay={Math.min(index, 8) * 0.04}>

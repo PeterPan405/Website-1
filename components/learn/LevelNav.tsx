@@ -41,7 +41,7 @@ export function LevelNav({
 
   if (layout === 'cards') {
     return (
-      <ul className="grid gap-4 md:grid-cols-3">
+      <ul className="grid gap-5 md:grid-cols-3">
         {entries.map((entry, index) => {
           const done = completed.includes(levelKey(topicSlug, entry.id))
           return (
@@ -79,26 +79,26 @@ export function LevelNav({
                   {learnLevelMeta[entry.id].promise}
                 </p>
 
-                <span className="mt-4 flex items-center justify-between gap-2 text-sm">
-                  <span className="text-fg-subtle flex items-center gap-1.5">
-                    {entry.readingMinutes} Min.
-                    {entry.hasQuiz && (
-                      <>
-                        <span aria-hidden="true">·</span>
-                        <span className="text-learn flex items-center gap-1 font-medium">
-                          <Icon name="target" className="size-3.5" />
-                          Quiz
-                        </span>
-                      </>
-                    )}
-                  </span>
-                  <span className="text-learn flex items-center gap-1 font-semibold">
-                    {done ? 'Nochmal ansehen' : 'Stufe öffnen'}
-                    <Icon
-                      name="arrow-right"
-                      className="size-4 transition-transform group-hover:translate-x-0.5"
-                    />
-                  </span>
+                {/*
+                  Eine ruhige Fußzeile statt zweier, die um die Breite ringen.
+
+                  Vorher standen links „9 Min. · Quiz“ und rechts „Stufe
+                  öffnen →“ in derselben Zeile – auf Kartenbreite brachen
+                  beide um, und aus einer Zeile wurden vier gequetschte
+                  Halbzeilen. Die Karte ist ohnehin der Link; es bleibt die
+                  Sachinformation.
+                */}
+                <span className="text-fg-subtle mt-4 flex items-center gap-1.5 text-sm">
+                  {entry.readingMinutes} Min.
+                  {entry.hasQuiz && (
+                    <>
+                      <span aria-hidden="true">·</span>
+                      <span className="text-learn flex items-center gap-1 font-medium">
+                        <Icon name="target" className="size-3.5" />
+                        Quiz
+                      </span>
+                    </>
+                  )}
                 </span>
               </Link>
             </li>

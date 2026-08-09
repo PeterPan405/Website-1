@@ -179,7 +179,7 @@ export default async function NewsOverviewPage() {
             </div>
 
             {moreCurrent.length > 0 && (
-              <ul className="mt-4 grid gap-4 md:grid-cols-2">
+              <ul className="mt-4 grid gap-5 md:grid-cols-2">
                 {moreCurrent.map((article, index) => (
                   <li key={article.slug} className="relative">
                     <Reveal delay={index * 0.04} className="h-full">
@@ -239,7 +239,7 @@ export default async function NewsOverviewPage() {
                     </span>
                   </summary>
 
-                  <ul className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  <ul className="mt-4 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                     {tag.artikel.map((article) => (
                       <li key={article.slug} className="relative">
                         <ArticleCard article={article} />

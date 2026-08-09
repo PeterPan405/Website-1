@@ -40,7 +40,7 @@ export function LektionKacheln({
   const erledigt = useCompletedLevels()
 
   return (
-    <ol className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    <ol className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
       {lektionen.map((lektion, nummer) => {
         const fertig = erledigt.includes(lektionKey(bereich, lektion.slug))
 

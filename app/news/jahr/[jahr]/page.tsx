@@ -250,7 +250,7 @@ export default async function JahresrueckblickPage(props: PageProps) {
             <h2 id="raender" className="text-xl font-semibold sm:text-2xl">
               Die drei Ränder des Jahres
             </h2>
-            <div className="mt-5 grid gap-4 sm:grid-cols-3">
+            <div className="mt-5 grid gap-5 sm:grid-cols-3">
               <Randkachel
                 titel="Am weitesten oben"
                 eintrag={finde(rueckblick.raender.staerkste.symbol)}

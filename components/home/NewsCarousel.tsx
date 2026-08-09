@@ -87,12 +87,6 @@ export function NewsCarousel({ headlines }: { headlines: NewsHeadline[] }) {
       onKeyDown={onKeyDown}
       className="fk-card group hover:border-border-strong hover:shadow-lift relative flex flex-col overflow-hidden p-6 transition duration-200 ease-out sm:p-7"
     >
-      {/* Farbakzent in der News-Farbe. */}
-      <div
-        aria-hidden="true"
-        className="from-news/20 to-news/0 pointer-events-none absolute inset-x-0 -top-24 h-48 bg-gradient-to-b blur-2xl"
-      />
-
       {/*
         Die ganze Kachel führt zur Meldung, nicht nur die Überschrift.
 
