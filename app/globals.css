@@ -16,12 +16,19 @@
 :root {
   color-scheme: light;
 
-  /* Flächen */
-  --c-canvas: #f6f8fc;
+  /*
+    Flächen: neutrales Grau statt Blaugrau.
+
+    Der Seitengrund war bis August 2026 ein bläuliches #f6f8fc – zusammen mit
+    umrandeten weißen Karten die Handschrift jedes Tailwind-Baukastens. Ein
+    neutrales Grau als Grund, auf dem randlose weiße Karten liegen, trennt
+    Fläche und Inhalt über Helligkeit statt über Linien.
+  */
+  --c-canvas: #f5f5f7;
   --c-surface: #ffffff;
-  --c-surface-muted: #f1f4fa;
-  --c-border: #e3e8f1;
-  --c-border-strong: #c8d1e0;
+  --c-surface-muted: #ededf0;
+  --c-border: #e3e3e8;
+  --c-border-strong: #c6c6cf;
 
   /* Text */
   --c-fg: #0f172a;
@@ -210,11 +217,12 @@
 
     color-scheme: dark;
 
-    --c-canvas: #060911;
-    --c-surface: #0f1523;
-    --c-surface-muted: #161e2f;
-    --c-border: #232d43;
-    --c-border-strong: #35415d;
+    /* Auch im Dunkeln neutral statt blaustichig – gleiche Begründung wie oben. */
+    --c-canvas: #0a0a0c;
+    --c-surface: #16161a;
+    --c-surface-muted: #1f1f24;
+    --c-border: #2b2b33;
+    --c-border-strong: #40404c;
 
     --c-fg: #e9edf7;
     --c-fg-muted: #9ba6be;
@@ -358,7 +366,11 @@
   --font-display:
     var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 0.625rem;
+  /*
+    18 Pixel, das Kartenmaß von iOS/macOS. Zusammen mit dem Wegfall der
+    Kartenrahmen die halbe Miete des ruhigeren Erscheinungsbilds.
+  */
+  --radius-card: 1.125rem;
 
   --shadow-card: var(--fk-shadow-card);
   --shadow-lift: var(--fk-shadow-lift);
@@ -506,18 +518,26 @@
   @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
 }
 
+/*
+  Randlos: Die Karte trennt sich vom grauen Seitengrund über ihre Helligkeit,
+  nicht über eine Linie. Ein Rahmen um jede Kachel war das zweite
+  Baukasten-Merkmal neben den Farbverläufen. Im Druck bekommt sie ihren
+  dünnen Rahmen zurück (siehe Druckblock unten), weil Papier keine
+  Flächenhelligkeit kennt.
+*/
 @utility fk-card {
-  @apply rounded-card border-border bg-surface shadow-card border;
+  @apply rounded-card bg-surface shadow-card;
 }
 
 /* Karte, die als Ganzes ein Link ist: hebt sich beim Hover leicht an. */
 @utility fk-card-interactive {
   @apply fk-card relative transition duration-200 ease-out;
-  @apply hover:border-border-strong hover:shadow-lift hover:-translate-y-0.5;
+  @apply hover:shadow-lift hover:-translate-y-0.5;
 }
 
+/* Pillenform wie die Systemknöpfe von iOS/macOS. */
 @utility fk-btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5;
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5;
   @apply text-sm font-semibold whitespace-nowrap transition duration-150 ease-out;
   @apply active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
 }

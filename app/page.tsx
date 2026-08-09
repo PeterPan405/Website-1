@@ -151,8 +151,11 @@ export default async function HomePage() {
   return (
     <>
       {/* ------------------------------------------------------------ Hero */}
-      {/* Ohne Blur-Fleck hinter dem Hero – siehe PageHeader, gleiche Begründung. */}
-      <section className="border-border bg-surface border-b">
+      {/*
+        Der Hero steht wie alles andere auf dem grauen Grund – kein weißer
+        Kasten, kein Blur-Fleck. Die Bühne macht der Weißraum.
+      */}
+      <section>
         <div className="fk-container grid items-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <div>
             {/*
@@ -290,10 +293,12 @@ export default async function HomePage() {
       </section>
 
       {/* -------------------------------------------------------- Märkte */}
-      <section
-        aria-labelledby="kurse"
-        className="border-border bg-surface border-y py-14 sm:py-20"
-      >
+      {/*
+        Keine weißen Bänder mehr zwischen den Abschnitten: Auf dem
+        durchgehenden grauen Grund lägen weiße Karten in einem weißen Band
+        unsichtbar. Den Rhythmus machen Abstand und Zwischenüberschriften.
+      */}
+      <section aria-labelledby="kurse" className="py-14 sm:py-20">
         <div className="fk-container">
           <SectionHeading
             id="kurse"
@@ -331,10 +336,7 @@ export default async function HomePage() {
             beweglichen Zahlen.
           */}
           {geschichte && (
-            <div
-              data-fliesst=""
-              className="rounded-card border-border bg-surface-muted mt-6 border p-5 sm:p-6"
-            >
+            <div data-fliesst="" className="fk-card mt-6 p-5 sm:p-6">
               <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
                 {geschichtsvorspann(geschichte)}
               </p>
@@ -410,10 +412,7 @@ export default async function HomePage() {
       </section>
 
       {/* -------------------------------------------------------- Lernen */}
-      <section
-        aria-labelledby="lernen"
-        className="border-border bg-surface border-y py-14 sm:py-20"
-      >
+      <section aria-labelledby="lernen" className="py-14 sm:py-20">
         <div className="fk-container">
           <SectionHeading
             id="lernen"
@@ -455,7 +454,7 @@ export default async function HomePage() {
           </div>
 
           {completeTopics.length > 0 && (
-            <div className="rounded-card border-border bg-surface-muted mt-10 border p-6 sm:p-8">
+            <div className="fk-card mt-10 p-6 sm:p-8">
               <h3 className="text-fg text-lg font-semibold">Vollständig ausgearbeitet</h3>
               <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
                 Diese Themen liegen in allen drei Stufen als fertiger Text vor.

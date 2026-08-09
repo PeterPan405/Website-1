@@ -187,7 +187,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
             exit={{ opacity: 0, y: -8, scale: 0.99 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
             onKeyDown={onKeyDown}
-            className="fk-card relative w-full max-w-xl overflow-hidden"
+            className="fk-card border-border shadow-lift relative w-full max-w-xl overflow-hidden border"
           >
             <div className="border-border flex items-center gap-3 border-b px-4">
               <Icon name="search" className="text-fg-subtle size-5 shrink-0" />
