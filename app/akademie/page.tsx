@@ -97,8 +97,17 @@ export default function AkademiePage() {
                     {bereich.einleitung}
                   </p>
 
+                  {/*
+                    Drei Lektionen als Vorschau statt aller.
+
+                    Fünf Kacheln mit je acht bis zwölf Zeilen ergaben auf dem
+                    Telefon eine Kolonne über mehrere Bildschirmhöhen – und
+                    keine davon war anklickbar, weil das Ziel die Kachel ist.
+                    Drei Titel zeigen, worum es geht; die vollständige Liste
+                    steht einen Klick weiter auf der Bereichsseite.
+                  */}
                   <ol className="mt-5 flex-1 space-y-1.5">
-                    {lektionen.map((lektion, nummer) => (
+                    {lektionen.slice(0, 3).map((lektion, nummer) => (
                       <li
                         key={lektion.slug}
                         className="text-fg-muted flex items-start gap-2.5 text-sm"
@@ -109,10 +118,19 @@ export default function AkademiePage() {
                         <span>{lektion.titel}</span>
                       </li>
                     ))}
+                    {lektionen.length > 3 && (
+                      <li className="text-fg-subtle flex items-start gap-2.5 text-sm">
+                        <span className="w-5 shrink-0 text-right">+</span>
+                        <span>
+                          {lektionen.length - 3} weitere{' '}
+                          {lektionen.length - 3 === 1 ? 'Lektion' : 'Lektionen'}
+                        </span>
+                      </li>
+                    )}
                   </ol>
 
                   <span className="text-akademie mt-6 flex items-center gap-1 text-sm font-semibold">
-                    {bereich.titel} öffnen
+                    Alle {lektionen.length} Lektionen
                     <Icon
                       name="arrow-right"
                       className="size-4 transition-transform group-hover:translate-x-0.5"
