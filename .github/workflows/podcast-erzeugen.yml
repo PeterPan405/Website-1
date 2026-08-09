@@ -1,6 +1,6 @@
 name: Podcastfolge erzeugen
 
-# Baut werktäglich die Folge des Tages: Sprechtext, Stimme, MP3, Video,
+# Baut täglich die Folge des Tages: Sprechtext, Stimme, MP3, Video,
 # Kapitelmarken – und veröffentlicht sie in den eigenen Feed und zu YouTube.
 #
 # ## Warum drei Stufen und nicht ein Lauf
@@ -30,7 +30,7 @@ name: Podcastfolge erzeugen
 #
 # ## Zeitplan
 #
-# **02:53 UTC an Werktagen – 4:53 Uhr deutscher Zeit.**
+# **02:53 UTC, jeden Tag – 4:53 Uhr deutscher Zeit.**
 #
 # Die Zusage lautet 6:00 Uhr deutscher Zeit, und zwar für die Folge genauso
 # wie für die Nachrichten. Rückwärts gerechnet mit den gemessenen Zeiten:
@@ -53,31 +53,22 @@ name: Podcastfolge erzeugen
 
 on:
   schedule:
-    - cron: '53 2 * * 1-5'
-    # Sonntags derselbe Termin – aber nur für einen Probetag.
+    # **Jeden Tag.** Seit dem 9. August 2026 erscheint die Folge sieben Tage
+    # die Woche – Anordnung des Betreibers.
     #
-    # Der Riegel steht weiter unten: Ohne Eintrag in
-    # `data/podcast-probetage.txt` endet dieser Lauf nach zwanzig Sekunden
-    # mit „Wochenende – keine Folge". Er kostet damit an gewöhnlichen
-    # Sonntagen nichts und steht bereit, wenn ein Datum eingetragen wird.
+    # Vorher stand hier `1-5` und daneben ein zweiter Eintrag für Sonntage,
+    # den ein Riegel über `data/podcast-probetage.txt` gewöhnlich sofort
+    # wieder abbrach. Beides ist weg: Ein Wochenende, an dem nichts
+    # erscheint, gibt es nicht mehr, und damit auch keinen Probetag, der
+    # eine Ausnahme davon wäre.
     #
-    # Warum überhaupt ein eigener Cron und nicht nur der Anstoß aus
-    # `kurse.yml`: Der käme sonntags erst um 03:08 UTC. Das reicht für die
-    # Frist, lässt aber keinen zweiten Versuch mehr zu. So gibt es beides –
-    # 02:53 als Regelweg, 03:08 als Auffangnetz.
-    #
-    # Soll später **täglich** eine Folge erscheinen, ist das hier eine
-    # Zeile: `1-5` wird `*`, dieser zweite Eintrag und der Riegel fallen
-    # weg. Bis dahin bleibt es bei werktags.
-    - cron: '53 2 * * 0'
+    # Der Nachrichtenlauf lief ohnehin schon täglich – die Tagesausgabe, die
+    # hier vertont wird, ist also auch am Samstag da.
+    - cron: '53 2 * * *'
   workflow_dispatch:
     inputs:
       zugang_pruefen:
         description: 'Nur die Zugänge prüfen, keine Folge bauen'
-        type: boolean
-        default: false
-      trotzdem:
-        description: 'Auch am Wochenende bauen (zum Proben)'
         type: boolean
         default: false
       nur_proben:
@@ -117,24 +108,12 @@ jobs:
           node-version: 22
       - run: npm ci
 
-      # Samstag und Sonntag erscheint keine Folge; der Zeitplan feuert zwar
-      # nur werktags, aber ein Handstart am Wochenende soll nicht stumm eine
-      # Samstagsfolge bauen. Montags deckt die Folge Freitag bis Montag ab –
-      # das regelt das Skript über die Tagesausgaben selbst.
-      - name: Ist heute ein Erscheinungstag?
+      # **Jeder Tag ist ein Erscheinungstag.** Übrig bleibt hier deshalb nur
+      # noch eine Frage – die nach dem doppelten Upload.
+      - name: Steht die Folge des Tages schon?
         id: tag
         run: |
-          wochentag=$(date -u +%u)
           heute=$(date -u +%Y-%m-%d)
-
-          # Steht der heutige Tag in der Probetagsliste, gilt er als
-          # Werktag – gebaut **und** veröffentlicht. Der Grund steht in
-          # data/podcast-probetage.txt.
-          probetag=nein
-          if grep -qx "$heute" data/podcast-probetage.txt 2>/dev/null; then
-            probetag=ja
-            echo "Der $heute ist als Probetag eingetragen – es wird gebaut."
-          fi
 
           # Steht die Folge des Tages schon im Feed?
           #
@@ -164,10 +143,6 @@ jobs:
           if [ "${{ inputs.zugang_pruefen }}" = "true" ]; then
             echo "erscheint=nein" >> "$GITHUB_OUTPUT"
             echo "Zugangsprobe angefordert – es wird keine Folge gebaut."
-          elif [ "$wochentag" -ge 6 ] && [ "${{ inputs.trotzdem }}" != "true" ] \
-               && [ "$probetag" != "ja" ]; then
-            echo "erscheint=nein" >> "$GITHUB_OUTPUT"
-            echo "Wochenende – keine Folge."
           elif [ "$schon" = "ja" ] && [ "${{ inputs.nochmal }}" != "true" ] \
                && [ "${{ inputs.nur_proben }}" != "true" ]; then
             # Kein roter Lauf: Dass die Folge schon steht, ist ein Zustand,
@@ -183,18 +158,12 @@ jobs:
             fi
           fi
 
-          # Eine Probe darf nichts veröffentlichen.
-          #
-          # `nur_proben` ist der ausdrückliche Haken dafür. Ein Handstart am
-          # Wochenende (`trotzdem`) ist ebenfalls eine Probe – **außer** an
-          # einem Probetag: Der ist genau dafür da, den vollen Weg samt
-          # YouTube und Server einmal wirklich zu gehen.
+          # Eine Probe darf nichts veröffentlichen. `nur_proben` ist der
+          # ausdrückliche Haken dafür – und seit dem Wechsel auf täglich der
+          # einzige Grund, eine Folge zu bauen und nicht zu senden.
           if [ "${{ inputs.nur_proben }}" = "true" ]; then
             echo "veroeffentlichen=nein" >> "$GITHUB_OUTPUT"
             echo "Probelauf – es wird nichts veröffentlicht."
-          elif [ "$wochentag" -ge 6 ] && [ "$probetag" != "ja" ]; then
-            echo "veroeffentlichen=nein" >> "$GITHUB_OUTPUT"
-            echo "Wochenende ohne Probetag – es wird nichts veröffentlicht."
           else
             echo "veroeffentlichen=ja" >> "$GITHUB_OUTPUT"
           fi

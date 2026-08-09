@@ -22,6 +22,17 @@ Wörtern zu trennen; ohne ihn klont es den Klang der Sätze mit.
 wurde, verschiebt die Zuordnung von Laut zu Buchstabe für die ganze
 Aufnahme – das ist schlimmer als ein fehlender Text.
 
+Deshalb steht in `stimme-referenz.txt` bis heute „IM Investments", obwohl
+die Marke **IM Invests** heißt und der Sprechtext seit dem 9. August 2026
+überall korrigiert ist. Der Wortlaut ist kein Skript, sondern eine
+Mitschrift: Er gibt wieder, was auf der Aufnahme gesagt wurde, und das ist
+nun einmal die falsche Form. Wer ihn „berichtigt", verschlechtert die
+Stimme, ohne dass irgendwo etwas besser klänge – gesprochen wird die
+Referenz nie, sie dient nur dem Abgleich.
+
+Richtig wird es erst mit einer **neuen Aufnahme**. Wer eine macht, sagt
+„IM Invests" und trägt genau das hier ein.
+
 Format: WAV, 24 kHz, mono, 16 Bit. Eine Sprachnachricht vom Telefon kommt
 als AAC in Stereo und muss umgerechnet werden:
 

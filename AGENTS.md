@@ -164,27 +164,49 @@ anderes kennt; im Sommer sind das zwei Stunden weniger, im Winter eine.
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
 
-### Am Wochenende erscheint keine Folge – außer an einem Probetag
+### Die Folge erscheint **täglich** – seit dem 9. August 2026
 
-`podcast-erzeugen.yml` läuft werktags. Das ist gewollt: Die Montagsfolge deckt
-Freitag bis Montag ab.
+Sieben Tage die Woche, 365 Tage im Jahr. So hat der Betreiber es festgelegt.
 
-Damit lässt sich der volle Weg **bis zum Upload** an einem Wochenende aber
-nicht prüfen, und ein Lauf mit `nur_proben` überspringt genau die Schritte, auf
-die es ankommt – YouTube und Server. Dafür gibt es
-`data/podcast-probetage.txt`: Steht der heutige Tag dort, gilt er als Werktag,
-und es wird wirklich veröffentlicht.
+Davor lief `podcast-erzeugen.yml` werktags, und daran hingen vier Dinge, die
+alle mit umgestellt werden mussten. Wer den Takt je wieder ändert, findet
+hier die Liste:
 
-Zwei Wege stoßen ihn an, wie überall hier: der eigene Sonntags-Cron um 02:53
-UTC und, falls der verworfen wird, der Anstoß aus `kurse.yml` um 03:08. Ohne
-Eintrag endet der Sonntagslauf nach zwanzig Sekunden.
+1. **Der Cron** in `podcast-erzeugen.yml` – `1-5` wurde `*`. Der zweite
+   Eintrag für Sonntage und die Eingabe `trotzdem` sind entfallen.
+2. **Der Riegel im selben Workflow** – die Frage „ist heute ein
+   Erscheinungstag?" gibt es nicht mehr. Geblieben ist nur die nach dem
+   doppelten Upload.
+3. **Der Anstoß aus `kurse.yml`** – dort stand derselbe Wochenend-Riegel.
+   Zusammen mit ihm ist `data/podcast-probetage.txt` weggefallen: eine
+   Ausnahmeliste für ein Wochenende, an dem nichts erscheint, hat keinen
+   Gegenstand mehr.
+4. **`folgennummer()` in `lib/sprechfassung.ts`** – siehe unten, das ist die
+   heikelste Stelle.
 
-Die Daten tragen das Jahr. Ein stehengebliebener Eintrag kann deshalb nicht
-im nächsten Jahr erneut feuern; alte Zeilen sind Protokoll.
+Der Nachrichtenlauf lief ohnehin schon täglich; die Tagesausgabe, die der
+Podcast vertont, ist also auch am Samstag da.
 
-**Soll die Folge später täglich erscheinen**, ist das eine Zeile: `1-5` wird
-`*`, der Sonntags-Cron und der Riegel fallen weg. Bis dahin bleibt es bei
-werktags.
+Der Abschlusssatz ist außerdem für alle Tage derselbe. Freitags stand
+„Bis Montag früh, schönes Wochenende" – eine Ankündigung, die jetzt nicht
+mehr einträfe.
+
+#### Die Folgennummer darf keine Lücke bekommen
+
+Die naheliegende Umstellung wäre gewesen, statt Werktagen einfach
+Kalendertage seit dem 30. Juli 2026 zu zählen. Das Ergebnis: Der 10. August
+hätte Folge **12** getragen, obwohl im Register Folge 7 die letzte ist.
+
+Eine Folgennummer ist eine Ordnungszahl. Sie darf nicht springen, nur weil
+sich der Takt ändert. `folgennummer()` zählt deshalb zweiteilig, mit einer
+Naht am 9. August:
+
+    bis 09.08.2026     Werktage seit dem 30.07.        →  7
+    ab  10.08.2026     7 + Kalendertage seit dem 09.08. →  8, 9, 10 …
+
+Die Naht liegt genau dort, weil am 9. August keine Folge im Register steht –
+die des Tages wurde zurückgenommen. Es gibt also keine veröffentlichte
+Nummer, die durch die Umstellung ihren Wert ändert.
 
 ### Wie sich das rechnet
 

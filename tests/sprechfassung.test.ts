@@ -98,7 +98,7 @@ const folge = baueFolge(edition)
 pruefe(
   'Sprechtext beginnt mit der festen Begrüßung',
   folge.sprechtext.startsWith(
-    'Guten Morgen und herzlich willkommen zum Marktupdate von IM Investments.'
+    'Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests.'
   ),
   true
 )
@@ -106,6 +106,23 @@ pruefe(
   'Sprechtext endet auf „viel Erfolg.“',
   folge.sprechtext.endsWith('viel Erfolg.'),
   true
+)
+/*
+  Die Marke heißt **IM Invests**, nicht „IM Investments".
+
+  Bis zum 9. August 2026 stand die längere Form an vier Stellen, darunter in
+  Begrüßung und Abschluss jeder Folge – sie wurde also jeden Morgen zweimal
+  laut ausgesprochen. Aufgefallen ist es dem Betreiber beim Hören einer
+  Probe, nicht beim Lesen des Codes: Der falsche Name sieht plausibel aus,
+  weil er wie eine ausgeschriebene Fassung des richtigen wirkt.
+
+  Genau deshalb steht hier eine Prüfung und nicht nur eine Korrektur. Ein
+  Name, der sich von selbst „vervollständigt", kommt zurück.
+*/
+pruefe(
+  'Sprechtext nennt nirgends „IM Investments"',
+  /IM Investments/.test(folge.sprechtext),
+  false
 )
 pruefe('Fazit-Absatz vorhanden', folge.sprechtext.includes('Bleibt das Fazit.'), true)
 pruefe('keine Ziffern im Sprechtext', /\d/.test(folge.sprechtext), false)
