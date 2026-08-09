@@ -150,7 +150,22 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # **`|| true` ist hier keine Nachlässigkeit, sondern der Unterschied
+          # zwischen einer Meldung und keiner.** Der Schritt läuft unter
+          # `bash -e`; ein fehlschlagendes `ssh-keyscan` beendet ihn sofort,
+          # noch bevor irgendeine der sorgfältig formulierten Fehlermeldungen
+          # weiter unten drankommt. Am 9. August 2026 endete der erste Lauf
+          # von `podcast-schaufenster.yml` genau so: fünf Sekunden, „exit
+          # code 1", kein Wort dazu, warum.
+          #
+          # `paket-bauen.yml` und `veroeffentlichen.yml` hatten dieselbe
+          # Erfahrung schon gemacht und behandeln den Fall seither eigens.
+          # Hier stand die nackte Form.
+          #
+          # Und `2>/dev/null` fällt mit: Wer wissen will, warum kein
+          # Hostschlüssel kam, braucht genau diese Zeile.
+          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts \
+            || echo "::warning::ssh-keyscan lieferte keinen Hostschlüssel – Port $SSH_PORT antwortet vermutlich nicht."
 
           if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
                podcast-folge/feed.xml "$USER@$HOST:~/podcast-audio/feed.xml"; then
