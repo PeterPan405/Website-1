@@ -24,7 +24,7 @@ name: Hörprobe der Stimme
 #    Sitzung ohne Netzzugang kommt so an die Datei:
 #
 #        git fetch origin hoerprobe
-#        git show origin/hoerprobe:probe.wav > probe.wav
+#        git show origin/hoerprobe:probe.mp3 > probe.mp3
 #
 #    Das ist der Grund für den Zweig. Der Egress-Proxy dieser Umgebung lässt
 #    weder `api.github.com` noch den Artefakt-Speicher durch – `git` ist der
@@ -93,6 +93,27 @@ jobs:
           PROBETEXT: ${{ inputs.text }}
         run: python scripts/stimme-messen.py assets/stimme-referenz.wav ${{ inputs.modellgroesse }}
 
+      # **Ohne diesen Schritt hört man das Modell, nicht die Folge.**
+      #
+      # `stimme-messen.py` gibt die Rohaufnahme aus. Was auf YouTube und
+      # Spotify landet, ist die Aufnahme **nach** `klangkette.py`: Grummeln
+      # weg, Rauschen gedämpft, der Kasten-Ton bei 350 Hz herausgeschnitten,
+      # Präsenz ab 3,5 kHz angehoben, auf −16 LUFS normiert.
+      #
+      # Eine Hörprobe ohne diese Kette beantwortet die falsche Frage. Beide
+      # Fassungen bleiben liegen – der Unterschied zwischen ihnen ist
+      # aufschlussreich, wenn wieder jemand „klingt wie aus der Dose" sagt.
+      - name: Klangkette anwenden
+        if: always()
+        run: |
+          [ -f probe.wav ] || exit 0
+          python - <<'ENDE'
+          import sys
+          sys.path.insert(0, "scripts")
+          from klangkette import zu_mp3
+          zu_mp3("probe.wav", "probe.mp3", melde=lambda t: print(f"[klang] {t}", flush=True))
+          ENDE
+
       # `always()`: Auch ein „zu langsam"-Urteil lässt eine hörbare Aufnahme
       # zurück, und genau die ist hier der Zweck. Das Urteil ist Beiwerk.
       - name: Zum Herunterladen anhängen
@@ -101,6 +122,7 @@ jobs:
         with:
           name: hoerprobe-${{ github.run_id }}
           path: |
+            probe.mp3
             probe.wav
             probe.txt
           if-no-files-found: ignore
@@ -116,7 +138,13 @@ jobs:
           # checkout --orphan` im selben Verzeichnis würde probe.wav mit dem
           # `rm -rf` gleich wieder wegräumen.
           mkdir -p /tmp/hoerprobe
-          cp probe.wav probe.txt /tmp/hoerprobe/ 2>/dev/null || cp probe.wav /tmp/hoerprobe/
+          for datei in probe.mp3 probe.wav probe.txt; do
+            [ -f "$datei" ] && cp "$datei" /tmp/hoerprobe/
+          done
+          # `set -e` bricht bei einem fehlschlagenden `[ … ] && …` in einer
+          # `for`-Schleife nicht ab – nachgeprüft, nicht angenommen. Die
+          # Schleife läuft also auch dann durch, wenn die MP3 fehlt.
+          true
 
           git config user.name  'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
@@ -132,4 +160,4 @@ jobs:
 
           echo "Liegt bereit:"
           echo "  git fetch origin hoerprobe"
-          echo "  git show origin/hoerprobe:probe.wav > probe.wav"
+          echo "  git show origin/hoerprobe:probe.mp3 > probe.mp3"
