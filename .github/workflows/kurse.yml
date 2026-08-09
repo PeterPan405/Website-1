@@ -320,21 +320,44 @@ jobs:
             [ "$versuch" -lt 5 ] && sleep 10
           done
 
+          # **Eine misslungene Übertragung ist hier keine Meldung wert.**
+          #
+          # Am 9. August 2026 hat der Betreiber gemeldet, dass ihn die
+          # Fehlermails erschlagen. Von diesem Workflow kamen fünf an einem
+          # Tag, alle an dieser Stelle, alle mit demselben Ausgang: Der Port
+          # antwortete ein paar Minuten nicht und danach wieder.
+          #
+          # Was dieser Schritt überträgt, ist der laufende Preis für den
+          # Browser. Fällt er einmal aus, sieht ein Besucher die Zahl aus
+          # dem gebauten HTML – ein paar Minuten älter, sonst nichts. Und
+          # der nächste Lauf kommt in wenigen Minuten; dieser Workflow läuft
+          # rund siebzehnmal am Tag.
+          #
+          # Ein roter Lauf ist in diesem Projekt das Mittel, mit dem sich
+          # ein Ausfall bemerkbar macht. Setzt man es für etwas ein, das
+          # sich von selbst erledigt, ist es hinterher für den Ernstfall
+          # verbraucht: Wer täglich fünf Mails bekommt, liest die sechste
+          # nicht mehr. Der Ernstfall – die Website ist weg oder ihr Stand
+          # veraltet – steht in den beiden Schritten darunter.
           if [ "$geholt" = nein ]; then
-            echo "::error::Nach fünf Versuchen kein Hostschlüssel – Port $SSH_PORT antwortet nicht."
-            echo "  Der Server flattert; ein späterer Lauf hat gute Aussichten."
-            exit 1
+            echo "::warning::Nach fünf Versuchen kein Hostschlüssel – Port $SSH_PORT antwortet nicht."
+            echo "  Der Server flattert; der nächste Lauf trägt die Kurse nach."
+            rm -f ~/.ssh/id_deploy
+            exit 0
           fi
 
           # Erst daneben legen, dann umbenennen: Ein Umbenennen ist für den
           # Webserver ein Augenblick, ein Hochladen dauert. Ohne diesen
           # Zwischenschritt könnte jemand die Datei halb geschrieben lesen.
-          scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
-            public/kurse-live.json "$USER@$HOST:$ZIELPFAD/kurse-live.json.neu"
-          ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
-            "mv '$ZIELPFAD/kurse-live.json.neu' '$ZIELPFAD/kurse-live.json'"
+          if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+               public/kurse-live.json "$USER@$HOST:$ZIELPFAD/kurse-live.json.neu" &&
+             ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+               "mv '$ZIELPFAD/kurse-live.json.neu' '$ZIELPFAD/kurse-live.json'"; then
+            echo "Kurse übertragen: https://iminvests.de/kurse-live.json"
+          else
+            echo "::warning::Die Übertragung ist abgebrochen – der nächste Lauf trägt sie nach."
+          fi
           rm -f ~/.ssh/id_deploy
-          echo "Kurse übertragen: https://iminvests.de/kurse-live.json"
 
       # ------------------------------------------------------------------
       # Steht die Website überhaupt noch?
@@ -378,9 +401,19 @@ jobs:
       # 1. **`--max-time`.** Der Abruf hing an dem Morgen 132 Sekunden.
       #    Ohne Grenze wartet `curl` auf ein Zeitlimit des Systems, und der
       #    Lauf steht derweil.
-      # 2. **Drei Versuche.** Eine einzelne Zeitüberschreitung ist ein
-      #    Zucken, kein Ausfall. Erst wenn dreimal in gut einer Minute
-      #    nichts kommt, ist es einer.
+      # 2. **Fünf Versuche über vier Minuten.** Eine einzelne
+      #    Zeitüberschreitung ist ein Zucken, kein Ausfall.
+      #
+      #    Drei Versuche in gut einer Minute waren zu wenig. Am 9. August
+      #    2026 um 22:05 meldete diese Prüfung dreimal `000` und färbte den
+      #    Lauf rot – zwei Minuten später lief ein vollständiger Paketbau
+      #    gegen denselben Server durch. Die Website war nie weg; sie war
+      #    zwei Minuten lang nicht erreichbar.
+      #
+      #    Vier Minuten sind der Abstand, den dieser Hoster braucht, um sich
+      #    zu fangen (nachgemessen an dem Tag). Wer länger ausfällt, fällt
+      #    wirklich aus – und diese Prüfung läuft rund siebzehnmal am Tag,
+      #    verpasst also nichts.
       # 3. **Roter Lauf.** Dass die eigene Website nicht antwortet, ist der
       #    lauteste Fall, den es hier gibt. `kurse.yml` läuft rund
       #    siebzehnmal am Tag – ein anhaltender Ausfall meldet sich damit
@@ -396,13 +429,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           code=000
-          for versuch in 1 2 3; do
+          for versuch in 1 2 3 4 5; do
             code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
               -A 'iminvests-watchdog' https://iminvests.de/ 2>/dev/null || true)
             case "$code" in ''|*[!0-9]*) code=000 ;; esac
             [ "$code" = "200" ] && break
             echo "  Versuch $versuch: $code"
-            [ "$versuch" -lt 3 ] && sleep 20
+            [ "$versuch" -lt 5 ] && sleep 45
           done
 
           if [ "$code" = "200" ]; then
@@ -410,7 +443,7 @@ jobs:
             exit 0
           fi
 
-          echo "::error::Die Startseite antwortet dreimal nicht mit 200, zuletzt $code."
+          echo "::error::Die Startseite antwortet fünfmal über vier Minuten nicht mit 200, zuletzt $code."
           echo "  Entweder ist der Webordner leer oder der Server ist gestört."
           echo "  Ein Neubau wird angefordert; er legt alles wieder ab –"
           echo "  gegen einen Ausfall beim Hoster hilft er allerdings nicht."
@@ -420,6 +453,95 @@ jobs:
           gh workflow run paket-bauen.yml \
             --repo "${{ github.repository }}" --ref main -f paket=false
           exit 1
+
+      # ------------------------------------------------------------------
+      # Ist der Stand auf dem Server noch aktuell?
+      #
+      # ## Warum es diesen Schritt gibt
+      #
+      # Er ist das Gegengewicht dazu, dass eine misslungene Übertragung seit
+      # dem 9. August 2026 nur noch eine Warnung ist – hier und in
+      # `paket-bauen.yml`. Das war nötig, weil der Port dieses Hosters
+      # flattert und jeder Fehlversuch eine Mail kostete; aber gemildert
+      # gehört das Geräusch, nicht die Aufsicht.
+      #
+      # Denn die Beruhigung stimmt nur, solange sie stimmt: „Der nächste Lauf
+      # trägt es nach" ist richtig, wenn ein Lauf ausfällt, und falsch, wenn
+      # der Server tagelang niemanden heranlässt. Der Unterschied ist von
+      # außen ablesbar, und zwar an genau einer Zahl – dem Bauzeitpunkt in
+      # `version.txt`, den jeder Bau mitschreibt.
+      #
+      # ## Warum zehn und achtzehn Stunden
+      #
+      # Nicht gegriffen, sondern aus dem Fahrplan gerechnet. Der letzte Bau
+      # des Abends und der nächtliche Bau um 05:41 UTC liegen im
+      # ungünstigsten Fall gut acht Stunden auseinander; eine Grenze darunter
+      # schlüge jede Nacht an und wäre nach einer Woche Rauschen. Zehn
+      # Stunden lassen diese Lücke zu und melden alles darüber. Achtzehn
+      # heißt: Es ist nicht nur ein Bau ausgefallen, sondern der ganze
+      # Vormittag samt Nachrichtenausgabe – und dann muss eine Mail kommen.
+      #
+      # Antwortet `version.txt` gar nicht, sagt dieser Schritt nichts: Ob die
+      # Website steht, hat der Schritt darüber schon beantwortet, und zweimal
+      # dieselbe Meldung ist eine zu viel.
+      - name: Ist der Stand auf dem Server noch aktuell?
+        if: always() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          stand=$(curl -s --max-time 20 -A 'iminvests-watchdog' \
+            https://iminvests.de/version.txt 2>/dev/null \
+            | grep -oE '^gebaut: +.*' | sed 's/^gebaut: *//; s/ UTC$//' || true)
+
+          if [ -z "$stand" ]; then
+            echo "version.txt nennt keinen Bauzeitpunkt – hier ist nichts zu entscheiden."
+            exit 0
+          fi
+
+          gebaut=$(date -u -d "$stand UTC" +%s 2>/dev/null || echo 0)
+          if [ "$gebaut" -eq 0 ]; then
+            echo "Der Bauzeitpunkt '$stand' ist nicht lesbar."
+            exit 0
+          fi
+
+          alter=$(( ( $(date -u +%s) - gebaut ) / 3600 ))
+          echo "Der Stand auf dem Server ist vom $stand UTC – $alter Stunden alt."
+
+          # Läuft schon einer? Dann nicht noch einen anfordern.
+          #
+          # Ohne diese Frage stößt jeder Lauf einen Bau an, solange der Stand
+          # alt ist – und `paket-bauen.yml` reiht Läufe auf `main`, statt sie
+          # abzubrechen. Zwanzig gereihte Bauten zu je acht Minuten wären
+          # genau die Überlastung, gegen die der Rest dieser Datei anschreibt.
+          offen=$(gh run list --repo "${{ github.repository }}" \
+                    --workflow paket-bauen.yml --limit 5 \
+                    --json status --jq '[.[] | select(.status != "completed")] | length' \
+                    2>/dev/null || echo 1)
+
+          anstossen() {
+            if [ "${offen:-1}" -gt 0 ]; then
+              echo "  Ein Bau ist bereits unterwegs ($offen offen) – kein weiterer Anstoß."
+            else
+              gh workflow run paket-bauen.yml \
+                --repo "${{ github.repository }}" --ref main -f paket=false
+            fi
+          }
+
+          if [ "$alter" -ge 18 ]; then
+            echo "::error::Seit $alter Stunden ist kein Bau mehr auf dem Server angekommen."
+            echo "  So lange hält keine normale Lücke im Fahrplan. Entweder lässt der"
+            echo "  Server seit dem Vorabend niemanden heran, oder der Paketbau scheitert"
+            echo "  vor der Übertragung. Beides steht im Protokoll von 'Paket bauen'."
+            anstossen
+            exit 1
+          fi
+
+          if [ "$alter" -ge 10 ]; then
+            echo "::warning::Der Stand auf dem Server ist $alter Stunden alt – ein Bau wird angestoßen."
+            anstossen
+          else
+            echo "Im Rahmen."
+          fi
 
       # **Nicht nach jedem Fünf-Minuten-Lauf.** Ein Neubau kostet gemessen
       # 13 Minuten; bei fast 300 Preis-Läufen am Tag wäre das genau die

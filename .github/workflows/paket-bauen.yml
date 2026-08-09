@@ -394,12 +394,40 @@ jobs:
       # stand nur „exit code 1“ – weil die Fehlerausgabe von `ssh-keyscan` nach
       # /dev/null ging. Eine Diagnose, die ihre eigene Begründung wegwirft, ist
       # keine. Deshalb wird jetzt einzeln geprüft und jede Stufe benannt.
+      #
+      # ## Ein flatternder Port ist kein roter Lauf
+      #
+      # Am 9. August 2026 hat der Betreiber gemeldet, dass ihn die
+      # Fehlermails erschlagen. Nachgezählt über diesen Tag: 5 von 30 Läufen
+      # dieses Workflows scheiterten, alle hier, alle am selben Muster – der
+      # Port antwortete für ein paar Minuten nicht. Um 21:09 lief die
+      # Übertragung durch, um 21:14 nicht, um 22:07 wieder. Fünf Mails für
+      # etwas, das sich jedes Mal von selbst erledigt hat.
+      #
+      # **Deshalb ist ein nicht erreichbarer Port ab hier eine Warnung, kein
+      # Fehler.** Nicht weil es egal wäre, sondern weil ein Fehlversuch nichts
+      # über den Zustand der Website aussagt: Auf dem Server liegt weiter der
+      # vorige Build, jeder Besucher sieht eine vollständige Seite, und der
+      # nächste Lauf – dieser Workflow läuft dreißigmal am Tag – trägt
+      # denselben Stand nach.
+      #
+      # Damit das kein Freibrief zum Wegsehen wird, hängt daran eine
+      # Gegenprobe an anderer Stelle: `kurse.yml` fragt bei jedem Lauf die
+      # veröffentlichte `version.txt` ab und schlägt an, wenn der Stand auf
+      # dem Server zu alt wird. Ein einzelner verpasster Upload bleibt damit
+      # still, ein Server, der stundenlang niemanden heranlässt, nicht.
+      #
+      # Was weiter rot bleibt: ein unbrauchbarer Schlüssel (Punkt 1). Das ist
+      # keine Störung, sondern eine falsche Einstellung, und die erledigt
+      # sich durch Abwarten nicht.
       - name: SSH einrichten
+        id: ssh
         if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
         env:
           HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
         run: |
           set -uo pipefail
+          echo "bereit=nein" >> "$GITHUB_OUTPUT"
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.HOSTINGER_SSH_KEY }}" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
@@ -484,12 +512,13 @@ jobs:
           done
 
           if [ "$offen" = nein ]; then
-            echo "::error::Port $SSH_PORT antwortet nach zehn Versuchen und gut sechs Minuten nicht."
+            echo "::warning::Port $SSH_PORT antwortet nach zehn Versuchen und gut sechs Minuten nicht – diese Übertragung entfällt."
             echo "  Häufigste Ursache: SSH steht in hPanel noch auf INACTIVE."
             echo "  hPanel > Erweitert > SSH-Zugang > rechts in der Box auf 'Aktivieren'."
             echo "  Antwortete der Port bei früheren Läufen, ist es eher eine"
-            echo "  Verbindungsgrenze des Hosters – dann hilft Abwarten."
-            exit 1
+            echo "  Verbindungsgrenze des Hosters – dann hilft Abwarten, und der"
+            echo "  nächste Bau trägt denselben Stand nach."
+            exit 0
           fi
 
           # 3. Hostschlüssel holen – statt die Prüfung abzuschalten.
@@ -516,12 +545,14 @@ jobs:
           done
 
           if [ "$geholt" = nein ]; then
-            echo "::error::ssh-keyscan hat nach fünf Versuchen keinen Hostschlüssel geliefert."
-            exit 1
+            echo "::warning::ssh-keyscan hat nach fünf Versuchen keinen Hostschlüssel geliefert – diese Übertragung entfällt."
+            exit 0
           fi
 
+          echo "bereit=ja" >> "$GITHUB_OUTPUT"
+
       - name: Übertragen und umhängen
-        if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
+        if: steps.ssh.outputs.bereit == 'ja'
         env:
           HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
           USER: ${{ secrets.HOSTINGER_SSH_USER }}
@@ -543,7 +574,15 @@ jobs:
             echo "Versuch $versuch fehlgeschlagen – neuer Anlauf in $((versuch * 15))s."
             sleep $((versuch * 15))
           done
-          [ "$hoch" = ja ] || { echo "::error::Hochladen nach drei Versuchen fehlgeschlagen."; exit 1; }
+          # Aus demselben Grund wie beim Port oben nur eine Warnung: Ein
+          # abgebrochener Upload lässt den vorigen Stand unberührt. Was
+          # danach kommt – Entpacken und Umhängen – bleibt dagegen hart:
+          # Dort steht der laufende Stand tatsächlich auf dem Spiel, und ein
+          # halber Tausch ist kein Fall fürs Abwarten.
+          if [ "$hoch" != ja ]; then
+            echo "::warning::Hochladen nach drei Versuchen fehlgeschlagen – der vorige Stand bleibt unberührt."
+            exit 0
+          fi
 
           echo "Auf dem Server entpacken und umhängen …"
           ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
@@ -664,7 +703,7 @@ jobs:
       # und zwar auf dem Weg zwischen Server und Läufer, nicht im Browser eines
       # Besuchers.
       - name: Ergebnis von außen prüfen
-        if: steps.veroeffentlichen.outputs.ja == 'ja' && steps.zugang.outputs.vorhanden == 'ja'
+        if: steps.ssh.outputs.bereit == 'ja'
         run: |
           URL="${{ vars.NEXT_PUBLIC_SITE_URL }}"
           if [ -z "$URL" ]; then URL="https://iminvests.de"; fi
@@ -820,14 +859,22 @@ jobs:
           n_code=${antwort##*$'\n'}
           n_html=${antwort%$'\n'*}
 
-          if [ "$n_code" != "200" ]; then
+          # `000` heißt nicht „die Seite ist kaputt", sondern „es kam gar
+          # keine Antwort" – der Server war in dem Augenblick nicht
+          # erreichbar. Das ist dieselbe Störung wie beim SSH-Port und
+          # verdient dieselbe Behandlung: eine Warnung. Ob die Website
+          # dauerhaft weg ist, beantwortet `kurse.yml` rund um die Uhr.
+          if [ "$n_code" = "000" ]; then
+            echo "::warning::Von /news/ kam keine Antwort – der Server ist gerade nicht erreichbar."
+          elif [ "$n_code" != "200" ]; then
             echo "::error::Die Nachrichtenseite antwortet mit $n_code."
             echo "  Die Startseite kam durch, diese Unterseite nicht. Prüfe, ob das"
             echo "  Paket vollständig übertragen wurde."
             exit 1
           fi
 
-          if [ -n "$stylesheet" ] && ! printf '%s' "$n_html" | grep -q "$stylesheet"; then
+          if [ "$n_code" = "200" ] && [ -n "$stylesheet" ] &&
+             ! printf '%s' "$n_html" | grep -q "$stylesheet"; then
             echo "::error::/news/ nennt ein anderes Stylesheet als dieser Build."
             echo "  Die Startseite ist frisch, diese Unterseite nicht – das ist das"
             echo "  Muster einer Schicht, die je Pfad zwischenspeichert. Leere den"

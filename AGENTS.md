@@ -395,6 +395,77 @@ Wer hier etwas ändert, lässt Punkt 3 stehen. Die anderen beiden sind Versuche,
 das Problem zu lösen; der Wächter ist die Zusicherung, dass ein Scheitern
 auffällt.
 
+## Ein roter Lauf ist ein Vorrat, und er lässt sich aufbrauchen
+
+Der Abschnitt darüber sagt: Der teuerste Fehler ist der stille. Das stimmt –
+und hat einen Zwilling, der am 9. August 2026 fällig wurde. Der Betreiber
+meldete, er bekomme ständig Fehlermails. Nachgezählt über diesen einen Tag:
+
+    17×  Paket bauen          – davon 5 von 30 Läufen allein an diesem Tag
+     5×  Kurse aktualisieren
+
+**Alle an derselben Stelle, alle mit demselben Ausgang.** Der SSH-Port des
+Hosters antwortete ein paar Minuten nicht und danach wieder: 21:09 lief die
+Übertragung durch, 21:14 nicht, 22:07 wieder. Kein Lauf davon hat etwas
+kaputtgemacht, keiner brauchte eine Handlung, jeder schrieb eine Mail.
+
+Damit ist das Warnsystem nicht laut, sondern taub. Wer täglich fünf Mails
+über Störungen bekommt, die sich von selbst erledigen, liest die sechste
+nicht mehr – und die sechste ist die vom Nachrichtenlauf, der wirklich
+ausgefallen ist. Ein roter Lauf ist Aufmerksamkeit, und Aufmerksamkeit ist
+endlich.
+
+### Die Trennlinie: Was sagt der Fehlschlag über den Zustand der Website?
+
+Nicht „ist etwas schiefgegangen?“, sondern **„sieht ein Besucher deshalb
+etwas anderes?“**
+
+- Ein misslungener Upload sagt **nichts**. Auf dem Server liegt weiter der
+  vorige Build, die Seite ist vollständig, und der nächste Lauf trägt den
+  Stand nach – `paket-bauen.yml` läuft dreißigmal am Tag, `kurse.yml`
+  siebzehnmal. → **Warnung.**
+- Ein unbrauchbarer Schlüssel, ein halb getauschtes Verzeichnis, ein
+  zerbrochener Build sagen **alles**. Sie erledigen sich durch Abwarten
+  nicht. → **roter Lauf.**
+
+Danach sind seit dem 9. August umgestellt: der Port und der `ssh-keyscan` in
+`paket-bauen.yml` und `kurse.yml`, das Hochladen des Archivs, die
+Kursübertragung und eine Antwort `000` (also gar keine) bei der Prüfung von
+außen. Hart geblieben ist alles ab dem Augenblick, in dem auf dem Server
+umgehängt wird.
+
+**Die einmal täglich laufenden Workflows bleiben unangetastet.** Bei
+`podcast-erzeugen.yml` heißt ein Fehlschlag: heute gibt es keine Folge. Eine
+Mail dafür ist genau richtig; sie kommt höchstens einmal am Tag.
+
+### Wer aufpasst, wenn niemand mehr schreit
+
+Eine gemilderte Meldung ist nur dann in Ordnung, wenn die Aufsicht bleibt.
+Die Beruhigung „der nächste Lauf trägt es nach“ ist richtig, solange ein Lauf
+ausfällt, und falsch, wenn der Server tagelang niemanden heranlässt. Der
+Unterschied ist von außen ablesbar – am Bauzeitpunkt in `version.txt`, den
+jeder Bau mitschreibt.
+
+`kurse.yml` fragt ihn deshalb bei **jedem** Lauf ab, rund siebzehnmal am Tag:
+
+    ab 10 Stunden   Warnung, und ein Bau wird angestoßen
+    ab 18 Stunden   roter Lauf
+
+Die Grenzen sind aus dem Fahrplan gerechnet, nicht gegriffen: Der letzte Bau
+des Abends und der nächtliche um 05:41 UTC liegen im ungünstigsten Fall gut
+acht Stunden auseinander. Alles darunter schlüge jede Nacht an und wäre nach
+einer Woche wieder Rauschen.
+
+Dazu kommt die Frage, die es vorher schon gab – antwortet die Startseite? –,
+nur mit längerem Atem: **fünf Versuche über vier Minuten** statt drei über
+eine. Drei waren zu wenig; am 9. August um 22:05 meldeten sie dreimal `000`
+und färbten den Lauf rot, während zwei Minuten später ein vollständiger
+Paketbau gegen denselben Server durchlief.
+
+**Wer eine Meldung leiser stellt, baut die Gegenprobe dazu.** Ohne sie ist es
+kein Abwägen, sondern Wegsehen – und dann ist der Abschnitt darüber wieder
+dran.
+
 ## Geplante Läufe sind eine Bitte, keine Zusage
 
 **GitHub verwirft `schedule`-Läufe, wenn zu viele gleichzeitig anstehen** – ohne
