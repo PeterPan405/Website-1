@@ -284,9 +284,12 @@ export default async function HomePage() {
       {/*
         Ein Absatz Haltung zwischen Hero und Inhalt – nach dem Vorbild
         (amp.framer.media/company, per seite-abbilden.yml angesehen): dort
-        steht die These groß und **in einer tiefen Warmfarbe** links, die
-        Begründung rechts daneben. Die Warmfarbe haben wir im eigenen Logo:
-        das Bordeaux, als Token `--c-debt` längst kontrastgeprüft.
+        steht die These groß und farbig links, die Begründung rechts daneben.
+
+        Die Farbe ist das Navy der Marke, nicht das Bordeaux: Der rote Ton
+        war ein Versuch, die Wärme des Vorbilds zu treffen, wirkte hier aber
+        wie eine Warnung. Auf dem warmen Papiergrund trägt das Navy dieselbe
+        Wirkung, ohne fremd zu sein.
       */}
       <section aria-labelledby="haltung" className="fk-container py-16 sm:py-24">
         <p className="text-fg-subtle font-mono text-xs font-semibold tracking-[0.16em] uppercase">
@@ -295,7 +298,7 @@ export default async function HomePage() {
         <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <h2
             id="haltung"
-            className="text-debt text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl"
+            className="text-brand text-3xl leading-tight font-semibold sm:text-4xl lg:text-5xl"
           >
             Geldanlage ist kein Geheimwissen. Sie ist ein Handwerk – und ein Handwerk kann
             man lernen.
