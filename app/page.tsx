@@ -346,7 +346,7 @@ export default async function HomePage() {
                 <li key={area}>
                   <Link
                     href={config.href}
-                    className="group border-border hover:bg-surface flex items-center gap-5 border-b px-1 py-5 transition sm:gap-8 sm:px-3"
+                    className="group border-border hover:bg-surface-muted flex items-center gap-5 border-b px-1 py-5 transition sm:gap-8 sm:px-3"
                   >
                     <span className="text-fg-subtle w-7 shrink-0 font-mono text-sm tabular-nums">
                       {String(index + 1).padStart(2, '0')}
@@ -640,7 +640,7 @@ export default async function HomePage() {
                 <Reveal delay={index * 0.04}>
                   <Link
                     href={folgenAdresse(folge)}
-                    className="border-border hover:bg-surface-subtle group block border-b px-2 py-4 transition-colors"
+                    className="border-border hover:bg-surface-muted group block border-b px-2 py-4 transition-colors"
                   >
                     <div className="text-fg-subtle flex flex-wrap items-center gap-x-2 text-xs">
                       {folge.datum && <span>{formatDate(folge.datum)}</span>}

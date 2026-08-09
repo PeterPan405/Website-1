@@ -17,18 +17,16 @@
   color-scheme: light;
 
   /*
-    Flächen – Weiß, seit dem 9. August 2026 der Standard auf Wunsch des
-    Betreibers: weißer Grund, hellgraue Karten. Eine dritte Darstellung
-    „Grau“ (vertauschter Grund) war am selben Tag kurz gebaut und wurde
-    wieder verworfen – „Schwarz und Weiß passt.“
-
-    `--c-surface-muted` steht bewusst auf #ededf0 und nicht dunkler:
-    `--c-fg-subtle` erreicht auf #e9e9ee nur 4,43:1 und fällt damit unter
-    WCAG AA – gefunden von `npm run kontrast` auf sieben Seiten.
+    Flächen – Weiß heißt **weiß**, seit dem 9. August 2026 zum zweiten Mal
+    nachgeschärft: Die Zwischenfassung mit weißem Grund und hellgrauen
+    Karten las sich auf kartenreichen Seiten als „grau“, und genau das
+    hat der Betreiber gemeldet. Jetzt sind Grund und Karten weiß, die
+    Trennung übernimmt wieder eine feine Linie (siehe fk-card); Grau
+    bleibt nur als gedämpfte Fläche für Schienen und Hervorhebungen.
   */
   --c-canvas: #ffffff;
-  --c-surface: #f5f5f7;
-  --c-surface-muted: #ededf0;
+  --c-surface: #ffffff;
+  --c-surface-muted: #f5f5f7;
   --c-border: #e3e3e8;
   --c-border-strong: #c6c6cf;
 
@@ -528,14 +526,13 @@
 }
 
 /*
-  Randlos: Die Karte trennt sich vom grauen Seitengrund über ihre Helligkeit,
-  nicht über eine Linie. Ein Rahmen um jede Kachel war das zweite
-  Baukasten-Merkmal neben den Farbverläufen. Im Druck bekommt sie ihren
-  dünnen Rahmen zurück (siehe Druckblock unten), weil Papier keine
-  Flächenhelligkeit kennt.
+  Weiße Karte auf weißem Grund: Die Trennung macht eine feine Linie plus
+  ein kaum sichtbarer Schatten. Die randlose Zwischenfassung (graue Karten
+  auf Weiß) ließ die Seite insgesamt grau wirken; im dunklen Thema trägt
+  dieselbe Linie die Kanten auf der fast schattenfreien Fläche.
 */
 @utility fk-card {
-  @apply rounded-card bg-surface shadow-card;
+  @apply rounded-card border-border bg-surface shadow-card border;
 }
 
 /* Karte, die als Ganzes ein Link ist: hebt sich beim Hover leicht an. */

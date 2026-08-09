@@ -215,7 +215,7 @@ export function Header() {
                 {mainNav.map((item) => (
                   <li key={item.label}>
                     {item.children ? (
-                      <details className="group open:border-border open:bg-surface rounded-xl border border-transparent">
+                      <details className="group open:border-border open:bg-surface-muted rounded-xl border border-transparent">
                         <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl px-3 py-3 font-medium">
                           <span>{item.label}</span>
                           <Icon
@@ -300,7 +300,7 @@ function NavEntry({
           aria-current={active ? 'page' : undefined}
           className={cn(
             'rounded-full px-3.5 py-2 text-sm font-medium transition',
-            active ? 'bg-surface text-fg shadow-card' : 'text-fg-muted hover:text-fg'
+            active ? 'bg-surface-muted text-fg' : 'text-fg-muted hover:text-fg'
           )}
         >
           {item.label}
@@ -339,9 +339,7 @@ function NavEntry({
       <div
         className={cn(
           'flex items-center rounded-full text-sm font-medium transition',
-          active || isOpen
-            ? 'bg-surface text-fg shadow-card'
-            : 'text-fg-muted hover:text-fg'
+          active || isOpen ? 'bg-surface-muted text-fg' : 'text-fg-muted hover:text-fg'
         )}
       >
         <Link
