@@ -322,7 +322,47 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -p "$SSH_PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # **Ein Anlauf reicht bei diesem Server nicht.** Am 9. August 2026
+          # nachgemessen, dreimal derselbe Workflow gegen denselben Host:
+          #
+          #     11:46  ssh-keyscan scheitert nach 5 s
+          #     11:49  ssh-keyscan gelingt
+          #     11:53  ssh-keyscan scheitert nach 5 s
+          #
+          # Dazwischen, um 11:50, lief ein vollständiger Deploy durch – weil
+          # `paket-bauen.yml` **fünfmal** anklopft und zwischen den Versuchen
+          # wartet. Der Port flattert; wer einmal fragt, bekommt an guten
+          # Tagen recht und an anderen nicht.
+          #
+          # Zwei Fehler steckten in der nackten Form. Der zweite ist der
+          # teurere: Der Schritt läuft unter `bash -e`, ein fehlschlagendes
+          # `ssh-keyscan` beendet ihn **sofort** – noch vor jeder sorgfältig
+          # formulierten Fehlermeldung weiter unten. Der Lauf endete mit
+          # „exit code 1" und keinem Wort dazu, warum. `2>/dev/null` tat den
+          # Rest und verschluckte auch noch die Begründung.
+          echo "— Hostschlüssel holen"
+          geholt=nein
+          for versuch in 1 2 3 4 5; do
+            if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" \
+                 >> ~/.ssh/known_hosts 2>/tmp/keyscanfehler; then
+              # `ssh-keyscan` liefert auch dann 0, wenn es nichts gefunden
+              # hat. Gezählt wird deshalb, was tatsächlich ankam.
+              if [ -s ~/.ssh/known_hosts ]; then
+                geholt=ja
+                echo "  Hostschlüssel hinterlegt (Versuch $versuch)."
+                break
+              fi
+            fi
+            echo "  Versuch $versuch ohne Ergebnis:"
+            sed 's/^/    /' /tmp/keyscanfehler || true
+            [ "$versuch" -lt 5 ] && sleep 10
+          done
+
+          if [ "$geholt" = nein ]; then
+            echo "::error::Nach fünf Versuchen kein Hostschlüssel – Port $SSH_PORT antwortet nicht."
+            echo "  Der Server flattert; ein späterer Lauf hat gute Aussichten."
+            exit 1
+          fi
 
           # Erst daneben legen, dann umbenennen: Ein Umbenennen ist für den
           # Webserver ein Augenblick, ein Hochladen dauert. Ohne diesen

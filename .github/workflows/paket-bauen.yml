@@ -516,7 +516,7 @@ jobs:
           done
 
           if [ "$geholt" = nein ]; then
-            echo "::error::ssh-keyscan hat nach drei Versuchen keinen Hostschlüssel geliefert."
+            echo "::error::ssh-keyscan hat nach fünf Versuchen keinen Hostschlüssel geliefert."
             exit 1
           fi
 

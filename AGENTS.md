@@ -473,6 +473,42 @@ Ergebnis des Tages schon?** `nachrichten.yml` fragt sie seit dem 5. August,
 `podcast-erzeugen.yml` seit dem 9. Ein doppelter Anstoß ist gewollt und
 billig – ein doppeltes Ergebnis nicht.
 
+### Ein Riegel, der auf die Reihenfolge baut, baut auf nichts
+
+Am 9. August 2026 standen auf der Website aufbereitete eigene Zahlen statt
+Meldungen, obwohl der Agent zweimal grün gelaufen war. Er hatte beide Male
+**nichts getan**, und zwar völlig ordnungsgemäß.
+
+Der Ablauf, in UTC:
+
+    01:27 / 01:41   Termin des Agenten
+    01:57           Termin des Nachrichtenlaufs
+
+    tatsächlich:
+    02:29           nachrichten.yml – schreibt den Notbehelf
+    03:15 / 03:19   der Agent – „Die Ausgabe steht bereits", Ende
+
+Beide Läufe waren verspätet, aber **unterschiedlich stark**, und damit
+kippte die Reihenfolge. Der erste Schritt des Agenten fragte
+`[ -f data/editions/$tag.ts ]` – und die Datei war da.
+
+Das ist derselbe Denkfehler, den der Wächter zwei Tage zuvor abgelegt hatte:
+**„Ist eine Ausgabe da?" ist die falsche Frage, seit der Notbehelf immer
+eine liefert.** Der Agent fragt seither nach der Herkunft, mit demselben
+Maßstab – weniger als die Hälfte externer Quellen heißt Notbehelf.
+
+**Was damit noch nicht gelöst ist**, und das gehört dazu: Der Agent schreibt
+in diesem Fall zwar einen Entwurf, aber niemand nimmt ihn.
+`nachrichten.yml` hört auf, sobald eine Ausgabe steht, und
+`nachrichten-erzeugen.ts` weigert sich, eine vorhandene zu überschreiben.
+Eine Ausgabe zu **ersetzen** hieße: die Artikel des Notbehelfs aus
+`data/news.ts` entfernen, Ausgabendatei und Registereintrag austauschen. Den
+Weg gibt es noch nicht.
+
+Bis dahin gilt: Der Regelfall – Agent zuerst – funktioniert wie immer. Kippt
+die Reihenfolge, bleibt es beim Notbehelf, aber der Wächter macht daraus
+seit dem 9. August einen roten Lauf statt einer stillen Warnung.
+
 ### Was die Sendung über sich sagt, steht nicht in `main`
 
 Beschreibung, Titelbild und Autor der Podcast-Sendung stehen in **einer
