@@ -98,7 +98,7 @@ export const budgetUndSparquote: LearnTopic = {
         'Was eine Sparquote ist, wie du deine echten Ausgaben ermittelst und warum Schätzungen dabei fast immer zu niedrig ausfallen.',
       title: 'Wie viel bleibt tatsächlich übrig?',
       lead: 'Wie du deine Sparquote ermittelst – und warum die geschätzte Zahl fast nie stimmt.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -205,6 +205,58 @@ export const budgetUndSparquote: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Warum drei Konten mehr helfen als jede Sparliste',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die meisten Budgetversuche scheitern nicht am Willen, sondern daran, dass alles Geld an einem Ort liegt. Auf einem Girokonto sieht ein vierstelliger Betrag nach Spielraum aus, auch wenn die Hälfte davon für die Versicherung im Oktober vorgesehen ist. Trennen ist deshalb wirksamer als aufschreiben.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Das Girokonto** – hier kommt das Gehalt an, hier gehen Miete, Strom und Versicherungen ab. Was danach übrig ist, ist das, was tatsächlich zur Verfügung steht.',
+            '**Das Rücklagenkonto** (Tagesgeld) – Notgroschen und Jahreskosten. Der Dauerauftrag dorthin geht am Tag nach dem Gehaltseingang, nicht am Monatsende.',
+            '**Das Alltagskonto oder eine zweite Karte** – der Rest, aus dem gelebt wird. Wer sieht, wie viel für den Monat noch da ist, muss nichts aufschreiben.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Warum das der wirksamste Schritt ist',
+          items: [
+            'Es macht die Entscheidung **einmal** statt dreißigmal im Monat. Ein Dauerauftrag verlangt keine Disziplin, er verlangt fünf Minuten bei der Einrichtung.',
+            'Es macht Jahreskosten sichtbar, bevor sie kommen. Die Autoversicherung im Oktober ist kein Ereignis mehr, wenn seit Januar jeden Monat ein Zwölftel beiseitegelegt wurde.',
+            'Und es beendet die häufigste Selbsttäuschung: „Ich spare, was übrig bleibt." Es bleibt nie etwas übrig – der Betrag passt sich immer an das an, was auf dem Konto steht.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wenn nichts übrig bleibt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Nicht jeder Haushalt hat einen Überschuss, und der ehrliche Umgang damit gehört hierher. Zeigt die Auswertung ein Minus oder eine Null, ist die Reihenfolge eine andere – und Anlegen kommt darin zunächst nicht vor.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Teure Schulden zuerst.** Dispo und Ratenkredite kosten mehr, als jede Anlage erwarten lässt. Sie zu tilgen ist der einzige garantierte Ertrag, den es gibt.',
+            '**Am größten Posten ansetzen.** Wohnen, Mobilität und Lebensmittel machen zusammen den Löwenanteil aus. Zehn Prozent bei der Miete oder ein Auto weniger bewegen mehr als alle Abos zusammen.',
+            '**Verträge prüfen, nicht Verzicht üben.** Strom, Mobilfunk, Versicherungen – einmal im Jahr eine Stunde. Das kostet keinen Lebensstandard und bringt oft dreistellige Beträge im Jahr.',
+            '**Ansprüche prüfen.** Wohngeld, Kinderzuschlag, Bildungspaket, Beratungshilfe der Verbraucherzentralen. Vieles davon wird nicht beantragt, weil es unbekannt ist – nicht, weil es nicht zustünde.',
+            '**Und dann die Einnahmenseite.** Sie wird in Sparratgebern übergangen, obwohl sie nach oben offen ist, während Sparen bei null endet. Gehaltsverhandlung, Wechsel, Zusatzqualifikation – das sind die Hebel mit der größten Wirkung.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Wichtig ist dabei nur eines: Eine Sparquote von null ist eine Lage, kein Charakterfehler. Sie hat Ursachen, die sich benennen lassen – und der erste Schritt ist derselbe wie bei jedem anderen Haushalt: hinsehen, was tatsächlich passiert.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -214,6 +266,8 @@ export const budgetUndSparquote: LearnTopic = {
             'Drei Monate Kontoauszüge auswerten statt schätzen – Schätzungen fallen zu niedrig aus.',
             'Jahreskosten durch zwölf teilen und monatlich einplanen.',
             'Gespart wird zuerst, per Dauerauftrag, und der Notgroschen steht vor der ersten Anlage.',
+            'Drei Konten trennen wirkt besser als jede Liste – die Entscheidung fällt einmal statt täglich.',
+            'Bleibt nichts übrig: teure Schulden, größte Posten, Verträge, Ansprüche – und die Einnahmenseite.',
           ],
         },
       ],

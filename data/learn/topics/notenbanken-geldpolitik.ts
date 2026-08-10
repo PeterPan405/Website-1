@@ -88,7 +88,7 @@ export const notenbankenGeldpolitik: LearnTopic = {
         'Was eine Notenbank tut, welche drei Leitzinsen die EZB setzt, welcher davon für Sparer zählt und wie ein Zinsentscheid abläuft.',
       title: 'Wer den Preis des Geldes setzt',
       lead: 'Auftrag, die drei Leitzinsen – und warum in den Nachrichten meist nur einer davon gemeint ist.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -195,6 +195,75 @@ export const notenbankenGeldpolitik: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie eine Zinsentscheidung bei dir ankommt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zwischen der Sitzung in Frankfurt und dem eigenen Konto liegen mehrere Stationen, und sie brauchen unterschiedlich lange. Das erklärt, warum sich manches sofort ändert und anderes erst in einem Jahr.',
+        },
+        {
+          type: 'table',
+          caption: 'Vom Beschluss bis zur Wirkung',
+          head: ['Station', 'Wie schnell'],
+          rows: [
+            [
+              'Geldmarkt zwischen Banken',
+              'Sofort – oft schon vorher, weil die Erwartung eingepreist ist',
+            ],
+            [
+              'Anleihekurse und Bauzinsen',
+              'Ebenfalls sofort, aber sie folgen den langen Renditen, nicht dem Leitzins selbst',
+            ],
+            [
+              'Kreditzinsen für Neuverträge',
+              'Wochen. Bestehende Verträge mit fester Bindung ändern sich gar nicht',
+            ],
+            [
+              'Sparzinsen',
+              'Nach unten Wochen, nach oben oft Monate – diese Asymmetrie ist verlässlich',
+            ],
+            [
+              'Investitionen, Beschäftigung, Preise',
+              'Ein bis zwei Jahre. Das ist der eigentliche Zweck, und er ist der langsamste Teil',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Warum die Notenbank auf Sicht fahren muss',
+          items: [
+            'Weil die Hauptwirkung erst in ein bis zwei Jahren ankommt, entscheidet sie über eine Lage, die es heute noch nicht gibt.',
+            'Deshalb heißt das Ziel „zwei Prozent **auf mittlere Sicht**“ und nicht „zwei Prozent im nächsten Monat“. Die heutige Inflationsrate ist zum Zeitpunkt der Entscheidung bereits Vergangenheit.',
+            'Und deshalb wirkt Geldpolitik im Rückblick oft zu spät: Wer erst handelt, wenn das Problem sichtbar ist, wirkt zwei Jahre nachdem es begann.',
+            'Das ist keine Ausrede für Fehler – es erklärt nur, warum „die hätten früher handeln müssen“ leicht zu sagen und schwer zu wissen ist.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was Zinsen mit deinem Depot machen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Zins ist der Preis der Zeit, und deshalb betrifft er jede Anlage, deren Wert in der Zukunft liegt. Drei Wirkungen, in der Reihenfolge ihrer Deutlichkeit:',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Anleihen reagieren direkt.** Steigt der Zins, fallen die Kurse bestehender Anleihen – am stärksten die mit langer Laufzeit. Das ist keine Meinung des Marktes, sondern Arithmetik.',
+            '**Aktien reagieren über die Abzinsung.** Der Wert eines Unternehmens ist die Summe seiner künftigen Gewinne, heruntergerechnet auf heute. Ein höherer Zins lässt weit entfernte Gewinne weniger wert erscheinen – das trifft Wachstumsunternehmen härter als solche, die schon heute verdienen.',
+            '**Und es gibt einen Wettbewerber.** Bei null Zinsen ist der Aktienmarkt fast alternativlos. Bei drei oder vier Prozent auf sichere Anleihen wird das Geld, das dort landet, dem Aktienmarkt entzogen. Deshalb bewegen Zinsentscheidungen die Kurse selbst dann, wenn sich an keinem Unternehmen etwas geändert hat.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Was daraus **nicht** folgt: dass man Zinsentscheidungen handeln sollte. Die Erwartung steht im Kurs, bevor die Entscheidung fällt; wer auf die Meldung reagiert, reagiert zuletzt. Der praktische Nutzen dieses Wissens liegt woanders – es macht verständlich, warum das eigene Depot sich bewegt, ohne dass eine der enthaltenen Firmen eine Nachricht hatte.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -204,6 +273,9 @@ export const notenbankenGeldpolitik: LearnTopic = {
             'Mit „dem Leitzins“ ist im Euroraum meist der Einlagesatz gemeint; er steuert das Tagesgeld.',
             'Direkte Staatsfinanzierung ist der EZB untersagt; sie kauft am Sekundärmarkt.',
             'Kurse bewegt nicht die Entscheidung, sondern die Abweichung von der Erwartung.',
+            'Die Hauptwirkung kommt erst in ein bis zwei Jahren an – deshalb „auf mittlere Sicht“.',
+            'Sparzinsen fallen schnell und steigen langsam. Das ist kein Zufall, sondern die Regel.',
+            'Zinsen bewegen Aktienkurse über die Abzinsung – und weil sichere Anlagen wieder Konkurrenz sind.',
           ],
         },
       ],

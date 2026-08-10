@@ -68,7 +68,7 @@ export const inflation: LearnTopic = {
         'Was Inflation bedeutet, wie sie gemessen wird, warum eine sinkende Rate keine sinkenden Preise sind und was Kaufkraftverlust konkret heißt.',
       title: 'Inflation einfach erklärt',
       lead: 'Nach dieser Stufe kannst du die Inflationsrate richtig lesen, den häufigsten Denkfehler vermeiden und ausrechnen, was Inflation mit deinem Ersparten macht.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -194,6 +194,67 @@ export const inflation: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Woher Inflation kommt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Preise steigen nicht von selbst. Es gibt drei Ursachen, und sie verlangen unterschiedliche Antworten – deshalb lohnt die Unterscheidung, auch wenn sie in der Praxis meist gemeinsam auftreten.',
+        },
+        {
+          type: 'table',
+          caption: 'Drei Ursachen, drei Verläufe',
+          head: ['Art', 'Was passiert', 'Woran man sie erkennt'],
+          rows: [
+            [
+              'Nachfrageinflation',
+              'Es wird mehr gekauft, als produziert werden kann – die Preise räumen den Markt',
+              'Wächst mit guter Konjunktur und niedriger Arbeitslosigkeit',
+            ],
+            [
+              'Angebotsinflation',
+              'Etwas wird teurer oder knapp: Energie, Vorprodukte, Transportwege',
+              'Kommt plötzlich, oft von außen, und trifft breite Teile des Warenkorbs zugleich',
+            ],
+            [
+              'Erwartungsinflation',
+              'Alle rechnen mit steigenden Preisen und handeln danach – Löhne und Preise ziehen einander nach',
+              'Die gefährlichste, weil sie sich selbst trägt und ohne Auslöser weiterläuft',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Warum die dritte die schwerste ist',
+          items: [
+            'Die ersten beiden laufen aus, wenn ihre Ursache endet – ein Energiepreisschock ist nach einem Jahr aus der Vorjahresrate heraus.',
+            'Die dritte nicht. Erwartungen sind kein Ereignis, sondern eine Haltung; sie verschwinden erst, wenn jemand sie glaubhaft bricht.',
+            'Genau das ist der Grund für die Unabhängigkeit der Notenbanken und für ihr klares Ziel: Beides dient dazu, dass die Erwartung bei zwei Prozent verankert bleibt.',
+            'Und es erklärt, warum Notenbanken auch dann die Zinsen erhöhen, wenn die Ursache eindeutig beim Angebot lag: Nicht der Energiepreis soll gedämpft werden, sondern die Erwartung, dass es so weitergeht.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was gegen Inflation hilft – und was nicht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es gibt keinen perfekten Schutz. Es gibt Anlagen, die über lange Zeiträume mit den Preisen mitgewachsen sind, und solche, die es nicht getan haben.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Produktivvermögen wächst tendenziell mit.** Unternehmen verkaufen Waren und Dienstleistungen; steigen deren Preise, steigen auf Dauer auch Umsätze und Gewinne. Das ist kein Automatismus und funktioniert kurzfristig schlecht – bei einem Preisschub fallen Aktien zunächst regelmäßig –, aber über Jahrzehnte ist es der verlässlichste Weg.',
+            '**Immobilien** wirken ähnlich, mit einem Zusatz: Ein Kredit in Euro verliert real an Gewicht, wenn das Geld weniger wert wird. Wer Schulden hat, gehört bei Inflation zu den Gewinnern – solange das Einkommen mitzieht und der Zins fest ist.',
+            '**Gold** hat über sehr lange Zeiträume die Kaufkraft ungefähr gehalten. Über zehn oder zwanzig Jahre kann es deutlich daneben liegen; als Versicherung mit schwankendem Preis, nicht als Inflationsausgleich.',
+            '**Inflationsindexierte Anleihen** koppeln Zins und Rückzahlung an den Preisindex. Sie sind das einzige Instrument, das direkt an die Rate gebunden ist – dafür bezahlt man einen Aufschlag, wenn hohe Inflation ohnehin erwartet wird.',
+            '**Nicht hilft:** Tagesgeld über den Notgroschen hinaus, Bargeld und alles mit fester Verzinsung unter der Inflationsrate. Sie verlieren planmäßig, und zwar umso mehr, je länger sie liegen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -202,6 +263,8 @@ export const inflation: LearnTopic = {
             'Die Inflationsrate vergleicht mit dem Vorjahresmonat und misst Geschwindigkeit, nicht Preisniveau.',
             'Eine fallende Rate bedeutet nicht fallende Preise – der Anstieg der Vorjahre bleibt.',
             'Deine persönliche Rate weicht ab, weil dein Warenkorb ein anderer ist.',
+            'Drei Ursachen: Nachfrage, Angebot, Erwartung. Die dritte trägt sich selbst und ist die gefährlichste.',
+            'Produktivvermögen wächst auf Dauer mit; Bargeld und feste Zinsen unter der Rate verlieren planmäßig.',
             'Erst der Realzins sagt, ob du reicher geworden bist. Nominal ist eine Zahl, real ist ein Ergebnis.',
           ],
         },

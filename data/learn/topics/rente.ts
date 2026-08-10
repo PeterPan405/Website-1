@@ -78,7 +78,7 @@ export const rente: LearnTopic = {
         'Wie das Umlageverfahren funktioniert, was Rentenpunkte sind, wie die Rentenformel rechnet und wie die Renteninformation zu lesen ist.',
       title: 'Wie die gesetzliche Rente rechnet',
       lead: 'Die drei Säulen, die Formel mit zwei Faktoren – und warum die Zahl auf der Renteninformation nicht die Zahl ist, mit der man plant.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -204,6 +204,74 @@ export const rente: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die drei Schichten der Altersvorsorge',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die gesetzliche Rente ist eine von drei Ebenen, und die Unterscheidung ist mehr als eine Ordnung: Sie sagt, wer das Geld verwaltet, wie es besteuert wird und wie gut man drankommt.',
+        },
+        {
+          type: 'table',
+          caption: 'Wer verwaltet, wer trägt das Risiko, wer kommt dran',
+          head: ['Schicht', 'Was dazugehört', 'Kern'],
+          rows: [
+            [
+              'Basisversorgung',
+              'Gesetzliche Rente, Rürup, Versorgungswerke',
+              'Lebenslange Zahlung, nicht vererbbar, nicht kündbar, Beiträge steuerlich absetzbar',
+            ],
+            [
+              'Zusatzversorgung',
+              'Betriebsrente, Riester',
+              'Zuschüsse oder Steuervorteil im Erwerbsleben, dafür Bindung bis zum Rentenbeginn',
+            ],
+            [
+              'Privates Vermögen',
+              'Depot, Immobilie, Tagesgeld',
+              'Volle Verfügbarkeit und volle Eigenverantwortung – kein Zuschuss, keine Bindung',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was daraus praktisch folgt',
+          items: [
+            '**Die erste Schicht ist gesetzt.** Wer angestellt ist, zahlt ein, ob er will oder nicht. Sie ist die Grundlage und selten die ganze Antwort.',
+            '**Die zweite lohnt sich, wenn jemand zuschießt.** Eine Betriebsrente mit Arbeitgeberzuschuss ist schwer zu schlagen – das ist Geld, das es ohne den Vertrag nicht gäbe. Ohne Zuschuss ist die Rechnung offener, weil Bindung und Kosten dagegenstehen.',
+            '**Die dritte ist die einzige, die flexibel bleibt.** Ein Depot lässt sich anpassen, pausieren und im Notfall auflösen. Dieser Vorteil ist real und wird bei Vergleichen regelmäßig unterschlagen.',
+            'Ein häufiger Fehler ist, alles in eine Schicht zu legen. Rentenbeginn, Steuerlage und Lebensplanung ändern sich über dreißig Jahre – drei Töpfe geben Spielraum, den ein einziger nicht hat.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was du heute prüfen kannst – in einer halben Stunde',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Renteninformation heraussuchen.** Sie kommt jährlich ab 27 Jahren und sechs Beitragsjahren. Die interessante Zeile ist nicht der Betrag ganz oben, sondern die aktuell erreichte Anwartschaft – das ist der Stand ohne weitere Einzahlung.',
+            '**Versicherungsverlauf prüfen und Lücken klären.** Ausbildung, Studium, Auslandsjahre und Kindererziehungszeiten fehlen häufig. Sie zählen mit, aber nur, wenn sie erfasst sind – das nachzuholen ist kostenlos und wirkt dauerhaft.',
+            '**Beim Arbeitgeber nach der Betriebsrente fragen.** Es gibt einen gesetzlichen Anspruch auf Entgeltumwandlung mit Mindestzuschuss. Viele wissen nicht, ob und in welcher Höhe ihr Betrieb darüber hinausgeht.',
+            '**Alte Verträge einmal ansehen.** Riester- und Lebensversicherungsverträge aus den 2000er Jahren tragen oft Garantiezinsen, die heute unerreichbar sind – und ebenso oft Kosten, die den Vorteil aufzehren. Beides steht in der jährlichen Standmitteilung.',
+            '**Und die eigene Lücke beziffern.** Nettorente aus der Rechnung oben, heutige Ausgaben daneben. Die Differenz ist die Zahl, um die es geht – und sie ist der einzige sinnvolle Ausgangspunkt für alles Weitere.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Vorsicht bei Beratung, die ein Produkt verkauft',
+          items: [
+            'Die Rechnung oben lässt sich leicht dramatisieren – hohe Lücke, dringender Handlungsbedarf, passendes Produkt. Alle drei Schritte können stimmen und trotzdem zum falschen Ergebnis führen.',
+            'Die Prüffrage ist immer dieselbe: Wovon lebt die Person, die mir das erklärt? Eine Provision ist kein Vorwurf, aber sie erklärt die Auswahl.',
+            'Verbindliche und kostenlose Auskunft zur gesetzlichen Rente gibt es bei der Deutschen Rentenversicherung. Für alles Weitere gibt es Beratung gegen Honorar – die kostet Geld und verkauft nichts.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -213,6 +281,9 @@ export const rente: LearnTopic = {
             'Ein Rentenpunkt entspricht einem Jahr mit Durchschnittsverdienst.',
             'Punkte mal Rentenwert ergibt die Bruttorente – netto bleibt deutlich weniger.',
             'Die Renteninformation nennt brutto und unterstellt, dass alles so weitergeht.',
+            'Drei Schichten: gesetzlich, betrieblich, privat. Nur die dritte bleibt flexibel.',
+            'Ein Arbeitgeberzuschuss ist schwer zu schlagen – ohne Zuschuss ist die Rechnung offen.',
+            'Lücken im Versicherungsverlauf zu klären kostet nichts und wirkt lebenslang.',
           ],
         },
       ],
