@@ -544,6 +544,54 @@ Ergebnis des Tages schon?** `nachrichten.yml` fragt sie seit dem 5. August,
 `podcast-erzeugen.yml` seit dem 9. Ein doppelter Anstoß ist gewollt und
 billig – ein doppeltes Ergebnis nicht.
 
+### Wer fragt, ob etwas schon passiert ist, fragt die Gegenwart
+
+Am 10. August 2026 lagen wieder zwei Videos desselben Tages auf dem Kanal –
+obwohl der Riegel von gestern genau dagegen gebaut war und **funktioniert
+hat**. Die Zeitstempel, auf die Sekunde:
+
+    04:15:44   Lauf 1 startet (Anstoß aus kurse.yml)
+    04:18:59   Lauf 2 startet (der verspätete Cron) und wird von
+               `concurrency` in die Warteschlange gestellt
+    04:31:04   Lauf 1 trägt die Folge auf main ein
+    04:31:34   Lauf 2 läuft an, fragt „steht die Folge schon?" – und sagt nein
+    04:45:11   Lauf 2 lädt das zweite Video hoch
+
+**Dreißig Sekunden.** Die Sperre hat ihre Arbeit getan, Lauf 2 hat zwölf
+Minuten gewartet. Nur half das nichts: `actions/checkout` holt den Stand, der
+beim **Auslösen** galt – hier 04:18:59 –, und in dem stand die Folge
+naturgemäß noch nicht.
+
+Ein Riegel, der eine Datei aus der Vergangenheit liest, ist keiner. Gefragt
+wird deshalb seither `origin/main` von jetzt (`git fetch` + `git show`),
+genau wie es `kurse.yml` bei der Nachrichtenausgabe längst tat.
+
+**Wer eine solche Prüfung schreibt, prüft zuerst, woher ihre Daten kommen.**
+Der Arbeitsordner eines Laufs ist eine Momentaufnahme, kein Spiegel.
+
+### Ein Push, der nach der Veröffentlichung scheitert, ist rot
+
+Die zweite Hälfte desselben Vorfalls, und die unangenehmere. Lauf 2 hatte
+hochgeladen, den Feed geschrieben und **auf den Server gelegt** – und
+scheiterte danach am Commit: Konflikt im Register, drei Versuche, alle
+vergebens. Der Lauf blieb **grün**.
+
+Zurück blieb ein Zustand, den man von außen nicht sieht und von innen nicht
+vermutet: Auf dem Webspace lag ein `feed.xml`, das auf eine Folge zeigte, von
+der `main` nichts wusste. Website und Spotify erzählten verschiedene Dinge.
+
+Das ist kein Fall für die Trennlinie oben. Ein misslungener Upload sagt
+nichts über den Zustand der Website – ein misslungener Registereintrag
+**nach** einer Veröffentlichung sagt alles: Zwei Wahrheiten laufen
+auseinander, und keine spätere Wiederholung räumt das auf. Also roter Lauf.
+
+Nebenbei fiel dabei auf, dass die Wiederholschleife gar keine war: Ein
+abgebrochener Rebase lässt ungelöste Konflikte in der Arbeitskopie zurück,
+und die beiden Folgeversuche scheiterten nur noch an
+`Pulling is not possible because you have unmerged files`. Wer eine Schleife
+um `git pull --rebase` legt, räumt zwischen den Runden mit
+`git rebase --abort` auf.
+
 ### Ein Riegel, der auf die Reihenfolge baut, baut auf nichts
 
 Am 9. August 2026 standen auf der Website aufbereitete eigene Zahlen statt
