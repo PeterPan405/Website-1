@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
-import { ProgressBar } from '@/components/ui/ProgressBar'
 
 /**
  * Spielt die gesprochene Fassung einer Seite ab – die eigene Stimme.
@@ -64,6 +63,15 @@ export function Aufnahmeleiste({
   const [laeuft, setLaeuft] = useState(false)
   const [stelle, setStelle] = useState(0)
   const [tempo, setTempo] = useState(1)
+  /*
+    Die Zeitleiste braucht zwei Zahlen, die es vor dem ersten Abspielen noch
+    nicht gibt: den Stand und die Länge. Der Stand beginnt bei null, die Länge
+    kommt aus dem Verzeichnis – bis die Datei geladen ist und ihre eigene
+    nennt. Ohne den Vorrat wäre der Regler bis zum ersten Klick eine Leiste
+    ohne Maßstab.
+  */
+  const [jetzt, setJetzt] = useState(0)
+  const [dauer, setDauer] = useState(sekunden)
 
   /*
     Beim Verlassen der Seite verstummen. Ein `<audio>` gehört zwar der
@@ -137,9 +145,14 @@ export function Aufnahmeleiste({
           setLaeuft(false)
           setStelle(0)
         }}
-        onTimeUpdate={(ereignis) =>
+        onLoadedMetadata={(ereignis) => {
+          const gemessen = ereignis.currentTarget.duration
+          if (Number.isFinite(gemessen) && gemessen > 0) setDauer(gemessen)
+        }}
+        onTimeUpdate={(ereignis) => {
           setStelle(abschnittBei(ereignis.currentTarget.currentTime))
-        }
+          setJetzt(ereignis.currentTarget.currentTime)
+        }}
         /*
           Fehlt die Datei – ein Bau, der neuer ist als die Aufnahmen, oder ein
           halb übertragener Ordner –, verschwindet die Leiste nicht wortlos:
@@ -211,17 +224,40 @@ export function Aufnahmeleiste({
       )}
 
       <span className="text-fg-subtle ml-auto text-xs tabular-nums">
-        {alsZeit(sekunden / tempo)}
+        {alsZeit((dauer - jetzt) / tempo)} übrig
       </span>
 
-      {(laeuft || stelle > 0) && (
-        <ProgressBar
-          value={stelle + 1}
-          max={marken.length}
-          label={`Abschnitt ${stelle + 1} von ${marken.length}`}
-          className="w-full"
+      {/*
+        Die Zeitleiste – wie bei einem Video, und aus demselben Grund.
+
+        Vorher stand hier ein Balken, der nur **zeigte**, wie weit die Aufnahme
+        ist. Wer eine Stelle noch einmal hören wollte, konnte abschnittsweise
+        springen und sonst nichts; eine Passage in der Mitte eines langen
+        Abschnitts war nicht erreichbar.
+
+        Ein `range` kann beides: Er zeigt den Stand und nimmt ihn entgegen. Die
+        Tastatur bekommt das geschenkt – Pfeiltasten bewegen ihn sekundenweise,
+        Pos1 und Ende springen an die Enden.
+      */}
+      <label className="flex w-full items-center gap-2">
+        <span className="sr-only">Stelle in der Aufnahme</span>
+        <span className="text-fg-subtle text-xs tabular-nums">{alsZeit(jetzt)}</span>
+        <input
+          type="range"
+          min={0}
+          max={Math.max(dauer, 1)}
+          step={1}
+          value={Math.min(jetzt, dauer)}
+          onChange={(ereignis) => {
+            const ziel = Number(ereignis.target.value)
+            setJetzt(ziel)
+            if (tonRef.current) tonRef.current.currentTime = ziel
+          }}
+          aria-valuetext={`${alsZeit(jetzt)} von ${alsZeit(dauer)}`}
+          className="accent-brand h-1.5 grow cursor-pointer"
         />
-      )}
+        <span className="text-fg-subtle text-xs tabular-nums">{alsZeit(dauer)}</span>
+      </label>
     </div>
   )
 }
