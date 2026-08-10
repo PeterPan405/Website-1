@@ -39,6 +39,7 @@
     "podcastfeed": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-feed-schreiben.ts",
     "uebernehmen": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-uebernehmen.ts",
     "instazugang": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/instagram-zugang.ts",
+    "videos": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-videos-auflisten.ts",
     "zuruecknehmen": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-zuruecknehmen.ts",
     "marktbreite": "node --experimental-strip-types scripts/marktbreite-nachtragen.ts",
     "zinsen": "node --experimental-strip-types scripts/zinsen-abrufen.ts",
