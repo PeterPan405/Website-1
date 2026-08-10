@@ -132,11 +132,37 @@ jobs:
           # ob die Ausgabe schon steht; hier fehlte es schlicht.
           stichtag="${{ inputs.stichtag }}"
           [ -n "$stichtag" ] || stichtag="$heute"
+
+          # **Gefragt wird `origin/main` von jetzt, nicht der eigene Checkout.**
+          #
+          # Genau daran ist der Riegel am 10. August 2026 vorbeigelaufen, und
+          # zwar um dreißig Sekunden:
+          #
+          #     04:15:44  Lauf 1 startet (Anstoß aus kurse.yml)
+          #     04:18:59  Lauf 2 startet (der verspätete Cron) und wird von
+          #               `concurrency` in die Warteschlange gestellt
+          #     04:31:04  Lauf 1 trägt die Folge auf main ein
+          #     04:31:34  Lauf 2 läuft an und fragt hier – und sagt „nein"
+          #     04:45:11  Lauf 2 lädt ein zweites Video hoch
+          #
+          # Die Sperre hat funktioniert; Lauf 2 hat zwölf Minuten gewartet.
+          # Nur half das nichts: `actions/checkout` holt den Stand, der beim
+          # **Auslösen** galt (hier 04:18:59), und in dem stand die Folge
+          # naturgemäß noch nicht. Ein Riegel, der eine Datei aus der
+          # Vergangenheit liest, ist keiner.
+          #
+          # Dieselbe Lehre wie beim Nachrichtenlauf und beim Wächter: Wer
+          # fragt, ob etwas schon passiert ist, fragt die Gegenwart.
+          git fetch origin main --depth 1 -q || true
+          feed="${RUNNER_TEMP:-/tmp}/feed-stand.json"
+          git show origin/main:data/podcast-eigener-feed.json > "$feed" 2>/dev/null \
+            || cp data/podcast-eigener-feed.json "$feed"
+
           schon=nein
           if node -e '
-                const feed = require("./data/podcast-eigener-feed.json")
-                process.exit(feed.folgen.some((f) => f.datum === process.argv[1]) ? 0 : 1)
-              ' "$stichtag" 2>/dev/null; then
+                const feed = require(process.argv[1])
+                process.exit(feed.folgen.some((f) => f.datum === process.argv[2]) ? 0 : 1)
+              ' "$feed" "$stichtag" 2>/dev/null; then
             schon=ja
           fi
 
@@ -595,11 +621,47 @@ jobs:
           git add data/podcast-eigener-feed.json data/snapshots/podcast.json data/podcast-spotify.json
           if ! git diff --cached --quiet; then
             git commit -m "Podcast: Folge $datum im eigenen Feed und auf der Website"
+            gelungen=nein
             for versuch in 1 2 3; do
-              git pull --rebase origin "${{ github.ref_name }}" \
-                && git push origin "${{ github.ref_name }}" && break
+              if git pull --rebase origin "${{ github.ref_name }}" \
+                 && git push origin "${{ github.ref_name }}"; then
+                gelungen=ja
+                break
+              fi
+              # Ein abgebrochener Rebase lässt die Arbeitskopie mit ungelösten
+              # Konflikten zurück. Ohne Aufräumen scheitert jeder weitere
+              # Versuch an „Pulling is not possible because you have unmerged
+              # files" – dreimal dieselbe Meldung, und der Lauf sieht aus, als
+              # hätte er es ernsthaft noch einmal probiert.
+              git rebase --abort 2>/dev/null || true
               sleep $((versuch * 5))
             done
+
+            # **Hier wird es rot, und zwar mit Ansage.**
+            #
+            # Am 10. August 2026 ist der Push genau hier gescheitert – ein
+            # zweiter Lauf desselben Tages, Konflikt im Register – und der
+            # Lauf blieb trotzdem grün. Die Schleife lief aus, der nächste
+            # Schritt machte weiter, niemand erfuhr etwas.
+            #
+            # Das Ergebnis war ein Zustand, den man von außen nicht sieht und
+            # von innen nicht vermutet: Auf dem Server lag ein `feed.xml`, das
+            # auf ein Video zeigte, von dem das Repository nichts wusste –
+            # Spotify bekam die eine Folge, die Website die andere.
+            #
+            # Bis hierher ist die Folge **veröffentlicht**: Video hochgeladen,
+            # Feed und Audio auf dem Server. Wenn dann das Register nicht
+            # nachkommt, ist das kein „der nächste Lauf trägt es nach",
+            # sondern ein Auseinanderlaufen zweier Wahrheiten. Genau dafür
+            # ist ein roter Lauf da – siehe die Trennlinie in AGENTS.md.
+            if [ "$gelungen" != ja ]; then
+              echo "::error::Die Folge ist veröffentlicht, aber das Register ließ sich nicht eintragen."
+              echo "  Auf dem Server steht jetzt ein Feed, den main nicht kennt."
+              echo "  Nachsehen: Zeigt data/podcast-eigener-feed.json auf dasselbe Video wie"
+              echo "  https://iminvests.de/podcast-audio/feed.xml? Wenn nicht, ist eines zu viel –"
+              echo "  podcast-zuruecknehmen.yml nimmt es samt Feed zurück."
+              exit 1
+            fi
           fi
 
       # Ein Push mit dem GITHUB_TOKEN löst keinen weiteren Workflow aus –
