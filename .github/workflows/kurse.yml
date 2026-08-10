@@ -740,3 +740,76 @@ jobs:
           echo "::warning::Der Podcasttermin ist heute ausgefallen – der Lauf wird angestoßen."
           gh workflow run podcast-erzeugen.yml \
             --repo "${{ github.repository }}" --ref main
+
+      # ------------------------------------------------------------------
+      # Läuft der Dauerlauf noch?
+      #
+      # ## Warum es diesen Schritt gibt
+      #
+      # Weil der Fünf-Minuten-Zeitplan über diesem Job eine Fiktion ist.
+      # Nachgezählt am 10. August 2026 über die 22 Stunden davor: 29 statt
+      # 264 Läufe, mittlerer Abstand 36,7 Minuten, größter 144,6. Nur elf
+      # Prozent der Abstände lagen unter sechs Minuten.
+      #
+      # Die Zusage „höchstens sechs Minuten alt" hält deshalb seither
+      # `kurse-dauerlauf.yml` – ein Läufer, der fünfeinhalb Stunden läuft
+      # und seinen Takt selbst zählt, statt ihn sich von GitHub zuteilen zu
+      # lassen. Er startet am Ende seinen eigenen Nachfolger.
+      #
+      # Diese Kette hat genau eine Schwachstelle: Reißt sie, startet nichts
+      # mehr. Also fragt der Workflow nach, der nachweislich feuert – dieser
+      # hier, fünfzehn- bis zwanzigmal am Tag. Dieselbe Umkehrung wie beim
+      # Nachrichtenlauf und beim Podcast darüber.
+      #
+      # ## Warum nach einem Fehlschlag eine Stunde gewartet wird
+      #
+      # Ein Dauerlauf, der sofort scheitert – falscher Zugang, Yahoo
+      # gesperrt –, würde sonst bei jedem Kurslauf neu gestartet und
+      # scheiterte jedes Mal wieder: zwanzig rote Läufe und zwanzig Mails
+      # am Tag für einen einzigen Defekt. Eine Stunde Abstand macht daraus
+      # eine Mail je Stunde. Laut genug, um aufzufallen, leise genug, um
+      # gelesen zu werden.
+      - name: Läuft der Kurs-Dauerlauf noch?
+        if: always() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          laeuft=$(gh run list --repo "${{ github.repository }}" \
+                     --workflow kurse-dauerlauf.yml --limit 5 \
+                     --json status --jq '[.[] | select(.status != "completed")] | length' \
+                     2>/dev/null || echo fehler)
+
+          if [ "$laeuft" = fehler ]; then
+            echo "Die Laufliste war nicht abrufbar – hier ist nichts zu entscheiden."
+            exit 0
+          fi
+
+          if [ "$laeuft" -gt 0 ]; then
+            echo "Der Dauerlauf läuft ($laeuft offen) – die Kurse sind höchstens drei Minuten alt."
+            exit 0
+          fi
+
+          # Wann endete der letzte, und wie? Ein frischer Fehlschlag heißt
+          # warten, nicht nachschieben (siehe oben).
+          letzter=$(gh run list --repo "${{ github.repository }}" \
+                      --workflow kurse-dauerlauf.yml --limit 1 \
+                      --json conclusion,updatedAt --jq '.[0] | "\(.conclusion) \(.updatedAt)"' \
+                      2>/dev/null || echo "unbekannt -")
+          ausgang=${letzter%% *}
+          endete=${letzter##* }
+
+          if [ "$ausgang" = failure ]; then
+            seit=$(( ( $(date -u +%s) - $(date -u -d "$endete" +%s 2>/dev/null || echo 0) ) / 60 ))
+            if [ "$seit" -ge 0 ] && [ "$seit" -lt 60 ]; then
+              echo "::warning::Der letzte Dauerlauf ist vor $seit Minuten gescheitert."
+              echo "  Kein neuer Anstoß vor Ablauf einer Stunde – sonst gäbe es zwanzig"
+              echo "  gleichlautende Fehlermails am Tag. Die Ursache steht im Protokoll"
+              echo "  von 'Kurse im Dauerlauf'."
+              exit 0
+            fi
+          fi
+
+          echo "::warning::Es läuft kein Dauerlauf (letzter: $ausgang, $endete) – er wird gestartet."
+          echo "  Bis er steht, sind die Kurse so alt, wie dieser Zeitplan sie lässt."
+          gh workflow run kurse-dauerlauf.yml \
+            --repo "${{ github.repository }}" --ref main

@@ -1,0 +1,321 @@
+name: Kurse im Dauerlauf
+
+# Ein Läufer, der stundenlang läuft und alle zwei Minuten die Leitwerte holt.
+#
+# ## Warum es diesen Workflow gibt
+#
+# `kurse.yml` trägt im Kopf einen Zeitplan „alle fünf Minuten" und daneben
+# die Zusage, die sichtbare Zahl sei „höchstens rund sechs Minuten" alt.
+# Der Betreiber hat am 10. August 2026 gemeldet, dass das nicht stimmt:
+# Brent stand um 17:48 auf dem Stand von 17:02.
+#
+# Nachgezählt über die letzten 22 Stunden davor – 29 geplante Läufe statt
+# der 264, die der Zeitplan vorsieht:
+#
+#     Abstand zwischen zwei Läufen   kleinster    2,4 Min.
+#                                    mittlerer   36,7 Min.
+#                                    größter    144,6 Min.
+#     Anteil der Abstände <= 6 Min.              11 %
+#
+# **Der Fünf-Minuten-Takt ist eine Fiktion.** GitHub verwirft geplante
+# Läufe, wenn zu viele gleichzeitig anstehen – ohne Fehler, ohne Eintrag,
+# ohne Mail. Das steht seit dem 6. August in `AGENTS.md`, und dort steht
+# auch die Bauregel, die daraus folgt:
+#
+# > Was zu einer bestimmten Zeit passiert sein *muss*, darf nicht an
+# > `schedule` hängen.
+#
+# Fünf Minuten sind eine bestimmte Zeit. Also hängt es hier nicht mehr
+# daran: **Ein einziger Lauf, der die Uhr selbst mitbringt.** Er startet,
+# und dann zählt seine eigene Schleife die zwei Minuten ab – kein Termin,
+# der verworfen werden könnte, keine Warteschlange, kein Zufall.
+#
+# ## Warum nicht eine Live-Verbindung im Browser
+#
+# Der Betreiber hat sie vorgezogen, und sie wäre auch das Richtige – nur
+# gibt es sie für diese Website nicht:
+#
+# - **Diese Website hat keinen eigenen Server.** Sie ist ein statischer
+#   Export auf einem Webspace. Es gibt keine Stelle, die im Auftrag des
+#   Browsers etwas abrufen könnte.
+# - **Yahoo lässt den Browser nicht heran.** Die Kursschnittstelle schickt
+#   keinen `Access-Control-Allow-Origin`-Kopf; ein `fetch` von
+#   `iminvests.de` aus bricht mit einem CORS-Fehler ab. Das ist keine
+#   Einstellung, die sich hier ändern ließe.
+# - **Wer Zugangsdaten mitschickt, gibt sie preis.** Die Anbieter, deren
+#   Schnittstellen der Browser ansprechen darf, verlangen einen Schlüssel –
+#   und ein Schlüssel in JavaScript steht für jeden lesbar in der Seite.
+#
+# Was bleibt, ist die kürzestmögliche Kette dahinter: Läufer holt, legt
+# `kurse-live.json` auf den Server, Browser liest sie jede Minute. Der
+# Abstand zwischen Börse und Bildschirm ist damit:
+#
+#     Abruf              rund 15 Sekunden für 46 Werte
+#     Schleifentakt      bis zu 2 Minuten
+#     Übertragung        wenige Sekunden
+#     Browser-Takt       bis zu 1 Minute
+#     ------------------------------------------------
+#     zusammen           gut 3 Minuten im ungünstigsten Fall
+#
+# Die Zusage „höchstens sechs Minuten" ist damit eingehalten, und zwar mit
+# Abstand statt auf Kante.
+#
+# **Was dieser Workflow nicht heilt: die Verzögerung an der Quelle.** Yahoo
+# liefert Rohstoff-Terminkurse mit Verzug – am 10. August 2026 nachgemessen:
+# Abruf um 15:43, Brent mit Stand 15:33. Diese zehn Minuten entstehen vor
+# uns. Was hier steht, sorgt dafür, dass wir nichts mehr dazulegen; die Zeile
+# „Stand 15:33" ist danach die Wahrheit über Yahoos Zahl, nicht über unsere
+# Trägheit.
+#
+# ## Was das kostet
+#
+# Nichts. Dieses Repository ist öffentlich, und für öffentliche Repositories
+# sind die Standardläufer bei GitHub Actions unbegrenzt und kostenlos. Die
+# Rechnung im Kopf von `lib/leitwerte.ts` – „8.000 Minuten im Monat bei 2.000
+# enthaltenen" – galt der Bauzeit, und die fällt hier gar nicht an: Dieser
+# Lauf baut nichts. Er holt 46 Kurse und legt eine 63-KB-Datei ab.
+#
+# ## Wie er am Leben bleibt
+#
+# Ein Job darf bei GitHub höchstens sechs Stunden laufen. Deshalb hört
+# dieser nach 5½ Stunden von selbst auf und startet zuvor seinen Nachfolger
+# über `workflow_dispatch` – der einzige Weg, der dem `GITHUB_TOKEN` offen
+# steht (ein Push löst nichts aus, siehe Kopf von `kurse.yml`).
+#
+# Diese Kette ist die einzige, die auch reißen kann. Deshalb sieht
+# `kurse.yml` bei **jedem** seiner Läufe nach, ob hier noch einer läuft, und
+# startet sonst einen neuen. Das ist dieselbe Umkehrung wie beim
+# Nachrichtenlauf und beim Podcast: nicht die Uhr passt auf, sondern der
+# Workflow, der nachweislich feuert.
+on:
+  workflow_dispatch:
+  # Zusätzlich ein paar geplante Termine – ausdrücklich als Gürtel neben den
+  # Hosenträgern. Sie sind nicht der Weg (siehe oben), sie fangen nur den
+  # Fall, dass die Kette **und** der Wächter gleichzeitig aussetzen. Krumme
+  # Minuten, wie überall in diesem Projekt.
+  schedule:
+    - cron: '13 1,7,13,19 * * *'
+
+# Genau einer gleichzeitig, und der neue gewinnt.
+#
+# `cancel-in-progress: true` ist hier richtig herum gedacht: Der Nachfolger
+# startet erst, wenn der Vorgänger ohnehin bei seinem letzten Schritt ist.
+# Und ein Anstoß durch den Wächter soll übernehmen, nicht warten – der
+# Wächter fragt vorher, ob einer läuft, und stößt nur an, wenn keiner läuft.
+concurrency:
+  group: kurse-dauerlauf
+  cancel-in-progress: true
+
+jobs:
+  dauerlauf:
+    runs-on: ubuntu-latest
+    # 5½ Stunden. Die harte Grenze von GitHub liegt bei sechs; die halbe
+    # Stunde Abstand ist der Platz, den der Nachfolger zum Anlaufen braucht.
+    timeout-minutes: 330
+    permissions:
+      # Zum Anstoßen des Nachfolgers über `gh workflow run`.
+      actions: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      # Der Zeitpunkt, an dem dieser Lauf angefangen hat – gebraucht wird er
+      # ganz am Ende, als Bremse gegen eine Startschleife. Siehe dort.
+      - name: Beginn merken
+        id: beginn
+        run: echo "sekunden=$(date -u +%s)" >> "$GITHUB_OUTPUT"
+
+      # Der Hostschlüssel wird **einmal** geholt, nicht bei jeder Runde.
+      #
+      # Der Port dieses Hosters flattert (nachgemessen am 9. August 2026),
+      # und fünf Anläufe über vierzig Sekunden sind die Antwort darauf, die
+      # sich in `paket-bauen.yml` bewährt hat. Bei einer Schleife, die
+      # hundertfünfzigmal läuft, wäre es außerdem Unfug, jedes Mal neu
+      # anzuklopfen.
+      - name: Zugang einrichten
+        id: zugang
+        env:
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_PORT: '65002'
+        run: |
+          if [ -z "$HOST" ] || [ -z "$USER" ] || [ -z "$SSH_KEY" ]; then
+            echo "::error::Keine Server-Zugangsdaten – ohne sie hat ein Dauerlauf keinen Zweck."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+
+          for versuch in 1 2 3 4 5; do
+            if ssh-keyscan -T 15 -p "$SSH_PORT" -H "$HOST" \
+                 >> ~/.ssh/known_hosts 2>/tmp/keyscanfehler && [ -s ~/.ssh/known_hosts ]; then
+              echo "Hostschlüssel hinterlegt (Versuch $versuch)."
+              exit 0
+            fi
+            echo "  Versuch $versuch ohne Ergebnis:"
+            sed 's/^/    /' /tmp/keyscanfehler || true
+            [ "$versuch" -lt 5 ] && sleep 10
+          done
+
+          # Anders als beim Fünf-Minuten-Lauf ist das hier ein roter Lauf.
+          # Dort war die Beruhigung „der nächste Lauf trägt es nach" richtig;
+          # hier gibt es keinen nächsten Lauf – dieser *ist* der nächste, und
+          # ohne Zugang steht er fünfeinhalb Stunden lang für nichts.
+          echo "::error::Nach fünf Versuchen kein Hostschlüssel – Port $SSH_PORT antwortet nicht."
+          exit 1
+
+      # ------------------------------------------------------------------
+      # Die Schleife.
+      #
+      # Der Takt wird **vom Rundenbeginn** gemessen, nicht vom Rundenende.
+      # Sonst summierte sich die Abrufdauer auf: Bei fünfzehn Sekunden Abruf
+      # und zwei Minuten Pause läge der Takt bei 2:15, nach hundertfünfzig
+      # Runden wäre der Lauf eine halbe Stunde hinter seinem eigenen Plan.
+      #
+      # Am Wochenende nur Krypto. Aktien, Indizes und Rohstoffe werden nicht
+      # gehandelt, ein Abruf liefert für sie denselben Freitagsschluss; die
+      # EZB stellt samstags keinen Referenzkurs fest. Bitcoin und die beiden
+      # anderen laufen weiter – dass Krypto an 365 Tagen handelt, erklärt
+      # diese Website an anderer Stelle ausdrücklich, und dann soll die Zahl
+      # auch sonntags stimmen. Der Wochentag wird **in** der Schleife
+      # bestimmt, weil ein Lauf über Mitternacht reicht.
+      - name: Alle zwei Minuten
+        env:
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_PORT: '65002'
+          ZIELPFAD: domains/iminvests.de/public_html
+          TAKT: '120'
+          # 5 Stunden 20 – zehn Minuten vor der Zeitgrenze des Jobs. Wer eine
+          # Schleife bis an die Grenze laufen lässt, verliert den Schritt
+          # danach, und das ist hier ausgerechnet der, der den Nachfolger
+          # startet.
+          LAUFZEIT: '19200'
+        run: |
+          set -u
+          runde=0
+          fehler=0
+          uebertragen=0
+          beginn=$SECONDS
+
+          while [ $((SECONDS - beginn)) -lt "$LAUFZEIT" ]; do
+            rundenbeginn=$SECONDS
+            runde=$((runde + 1))
+
+            wochentag=$(date -u +%u)
+            if [ "$wochentag" -ge 6 ]; then
+              export NUR_ARTEN=crypto
+            else
+              unset NUR_ARTEN || true
+            fi
+
+            # `2>&1 | tail` statt voller Ausgabe: Der Abruf schreibt je
+            # Instrument eine Zeile, und hundertfünfzig Runden davon wären
+            # ein Protokoll, in dem niemand mehr etwas findet. Was zählt,
+            # steht in der Zusammenfassung am Ende jedes Abrufs.
+            if NUR_PREIS=1 NUR_LEITWERTE=1 npm run kurse >/tmp/abruf.log 2>&1 &&
+               npm run kurselive >>/tmp/abruf.log 2>&1; then
+              if scp -q -P "$SSH_PORT" -i ~/.ssh/id_deploy \
+                   public/kurse-live.json "$USER@$HOST:$ZIELPFAD/kurse-live.json.neu" &&
+                 ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
+                   "mv '$ZIELPFAD/kurse-live.json.neu' '$ZIELPFAD/kurse-live.json'"; then
+                uebertragen=$((uebertragen + 1))
+              else
+                fehler=$((fehler + 1))
+                echo "Runde $runde: Übertragung abgebrochen."
+              fi
+            else
+              fehler=$((fehler + 1))
+              echo "Runde $runde: Abruf abgebrochen –"
+              tail -n 5 /tmp/abruf.log | sed 's/^/  /'
+            fi
+
+            # Ein Lebenszeichen alle dreißig Runden – also stündlich. Ohne
+            # es sähe ein Protokoll nach einer Stunde aus wie ein hängender
+            # Lauf; mit ihm steht dort eine Zeile, aus der sich ablesen
+            # lässt, ob die Kette hält.
+            if [ $((runde % 30)) -eq 0 ]; then
+              stand=$(node -e "process.stdout.write(String(JSON.parse(require('fs').readFileSync('public/kurse-live.json','utf8')).fetchedAt))" 2>/dev/null || echo '?')
+              echo "[$(date -u +%H:%M:%S)] Runde $runde – $uebertragen übertragen, $fehler abgebrochen, zuletzt $stand."
+            fi
+
+            # Was von den zwei Minuten nach dem Abruf übrig ist. Ist die
+            # Runde länger gelaufen als der Takt, wird nicht gewartet.
+            rest=$((TAKT - (SECONDS - rundenbeginn)))
+            if [ "$rest" -gt 0 ]; then
+              sleep "$rest"
+            fi
+          done
+
+          echo "Ende nach $runde Runden: $uebertragen übertragen, $fehler abgebrochen."
+          rm -f ~/.ssh/id_deploy
+
+          # **Eine Runde, die scheitert, ist kein Fall für eine Mail.** Der
+          # Port dieses Hosters flattert; die nächste Runde kommt in zwei
+          # Minuten. Ein Lauf, in dem *nichts* durchkam, ist etwas anderes –
+          # dann stimmt entweder der Zugang nicht mehr oder Yahoo lässt
+          # niemanden mehr heran, und beides erledigt sich nicht von selbst.
+          if [ "$uebertragen" -eq 0 ]; then
+            echo "::error::In fünfeinhalb Stunden ist keine einzige Übertragung durchgekommen."
+            exit 1
+          fi
+
+          # Mehr als jede zehnte Runde daneben heißt: Es läuft, aber es
+          # bröckelt. Eine Warnung, kein roter Lauf – die Zahl auf der
+          # Website ist in diesem Fall immer noch wenige Minuten alt.
+          if [ $((fehler * 10)) -gt "$runde" ]; then
+            echo "::warning::$fehler von $runde Runden sind abgebrochen – mehr als jede zehnte."
+          fi
+
+      # Den Nachfolger starten.
+      #
+      # Auch nach einem Fehlschlag – gerade dann. Ein abgebrochener Dauerlauf
+      # ohne Nachfolger heißt: Die Kurse stehen still, bis `kurse.yml` es das
+      # nächste Mal bemerkt, und das kann nach den gemessenen Abständen
+      # anderthalb Stunden dauern.
+      #
+      # Nicht bei `cancelled()`: Dann hat entweder ein Nachfolger diesen Lauf
+      # abgelöst (`concurrency`) oder jemand hat ihn von Hand gestoppt. In
+      # beiden Fällen wäre ein weiterer Start falsch.
+      #
+      # ## Die Bremse
+      #
+      # Ein Workflow, der sich selbst startet, ist eine Schleife – und eine
+      # Schleife ohne Bremse ist ein Fehler, den man nur einmal macht.
+      # Scheiterte dieser Lauf schon beim Einrichten des Zugangs, wäre er
+      # nach vierzig Sekunden wieder da, und übermorgen stünden hunderttausend
+      # rote Läufe im Protokoll, jeder mit einer Mail.
+      #
+      # Deshalb: Ein Nachfolger nur, wenn dieser Lauf mindestens zehn Minuten
+      # gearbeitet hat. Ein Lauf, der früher endet, ist nicht am Ende seiner
+      # Zeit angekommen, sondern gestolpert – und dann soll er liegen bleiben,
+      # bis der Wächter in `kurse.yml` ihn aufhebt. Der fragt höchstens
+      # stündlich nach, und eine Mail je Stunde ist die richtige Lautstärke
+      # für „die Kurse stehen still".
+      - name: Nachfolger starten
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gelaufen=$(( $(date -u +%s) - ${{ steps.beginn.outputs.sekunden }} ))
+          echo "Dieser Lauf hat $((gelaufen / 60)) Minuten gearbeitet."
+
+          if [ "$gelaufen" -lt 600 ]; then
+            echo "::error::Weniger als zehn Minuten – hier ist etwas grundsätzlich kaputt."
+            echo "  Es wird **kein** Nachfolger gestartet; eine Selbststartschleife aus"
+            echo "  Fehlschlägen wäre schlimmer als stehende Kurse. Der Wächter in"
+            echo "  kurse.yml versucht es frühestens in einer Stunde wieder."
+            exit 1
+          fi
+
+          gh workflow run kurse-dauerlauf.yml \
+            --repo "${{ github.repository }}" --ref main
+          echo "Der nächste Dauerlauf ist angefordert."
