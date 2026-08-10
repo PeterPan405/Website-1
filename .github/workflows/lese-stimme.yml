@@ -48,16 +48,24 @@ name: Lernseiten vertonen
 # Lauf Aufnahmen abgelegt hat; die Zeile steht hier fertig und
 # auskommentiert.
 on:
-  schedule:
-    # 23:19 UTC – nach dem letzten Bau des Abends und weit vor der Kette, die
-    # ab 01:13 die Nachrichten und den Podcast erzeugt. Krumme Minute aus dem
-    # Grund, der in AGENTS.md steht: Volle Stunden sind am dichtesten belegt.
-    #
-    # Scharf gestellt am 10. August 2026: Der erste Lauf hat zwölf Seiten
-    # gesprochen und ins Verzeichnis eingetragen. Bis dahin stand hier ein
-    # auskommentierter Zeitplan – ein Lauf, der nichts liefert, soll nicht
-    # jede Nacht vier Läuferstunden verbrauchen.
-    - cron: '19 23 * * *'
+  # Zeitplan vorübergehend still – **nicht, weil er nicht funktioniert.**
+  #
+  # Er lief am 10. August zum ersten Mal erfolgreich und hat zwölf Seiten
+  # gesprochen. Am selben Tag hat der Betreiber entschieden, die Lerntexte
+  # vorher inhaltlich auszubauen und die Vorlesefassungen der Grafiken zu
+  # ergänzen: 74 der 135 Grafiken haben bisher nur ihre Bildunterschrift.
+  #
+  # Der Fingerabdruck einer Aufnahme hängt an den gesprochenen Abschnitten.
+  # Jede Textänderung macht die Aufnahme dieser Seite ungültig, und sie wird
+  # in der nächsten Nacht neu gesprochen. Jetzt zu vertonen hieße, dieselben
+  # Seiten zweimal zu sprechen – rund vier Läuferstunden je Nacht für ein
+  # Ergebnis, das bis zum Morgen überholt ist.
+  #
+  # Wieder scharf stellen, sobald die Inhalte stehen: Kommentar weg, cron
+  # zurück auf '19 23 * * *'.
+  #
+  # schedule:
+  #   - cron: '19 23 * * *'
   workflow_dispatch:
     inputs:
       seiten:

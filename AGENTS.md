@@ -742,6 +742,45 @@ Daraus folgt alles Übrige:
   genau wie die Podcastdateien, und `paket-bauen.yml` kopiert sie beim
   Umhängen mit.
 
+### Der Ausbau läuft über drei Wochen – und die Vertonung wartet
+
+Am 10. August 2026 hat der Betreiber entschieden, die Lerntexte vor der
+Vertonung inhaltlich auszubauen. Der Grund für die Reihenfolge steht eine
+Ebene tiefer: **Der Fingerabdruck hängt an den gesprochenen Abschnitten.**
+Wer erst vertont und dann schreibt, spricht dieselbe Seite zweimal – vier
+Läuferstunden je Nacht für ein Ergebnis, das bis zum Morgen überholt ist.
+
+Deshalb ist der Zeitplan in `lese-stimme.yml` seit demselben Tag wieder
+auskommentiert. **Er ist nicht kaputt**; er wartet. Wieder scharf stellen,
+sobald die Inhalte stehen.
+
+Der Ausbau ist auf drei Wochen verteilt, und zwar auf Wunsch des Betreibers
+gegen den Verbrauch: Alles in einer Woche zu schreiben, frisst das Kontingent.
+
+| Woche | Lernstufe           | Grafiken ohne Vorlesefassung | Akademie      |
+| ----- | ------------------- | ---------------------------- | ------------- |
+| 1     | Beginner, 34        | 21                           | ~23 Lektionen |
+| 2     | Fortgeschritten, 34 | 26                           | ~23 Lektionen |
+| 3     | Profi, 34           | 27                           | ~24 Lektionen |
+
+Die Grafiken sind kein eigenes Paket. Sie stecken in den Stufen, in denen
+sie vorkommen – wer eine Beginner-Stufe ausbaut, schreibt die
+Vorlesefassungen ihrer Grafiken gleich mit.
+
+### Eine Bildunterschrift ist keine Vorlesefassung
+
+Von 135 Erklärgrafiken hatten am 10. August 2026 nur 61 eine eigene
+`description`. Bei den übrigen 74 spricht die Leiste die Bildunterschrift –
+und die ist für jemanden geschrieben, der das Bild **daneben sieht**.
+
+    Bildunterschrift   „Zwei Terminkurven im Vergleich"
+    Vorlesefassung     „Im Contango kosten spätere Liefermonate mehr als
+                        frühere: Beim Weiterrollen wird jedes Mal teurer
+                        gekauft, und genau das kostet Rendite …"
+
+Die vorhandenen 61 liegen zwischen 220 und 1.124 Zeichen, im Mittel bei rund 600. Das ist der Maßstab: Wer eine ergänzt, erklärt, was im Bild zu sehen
+ist und was man daraus abliest – nicht, wie das Bild heißt.
+
 ### Eine Seite ohne Aufnahme ist kein Fehler
 
 Das ist der Grund, warum das Ganze überhaupt schrittweise gehen darf: Findet
