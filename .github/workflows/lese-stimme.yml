@@ -36,14 +36,29 @@ name: Lernseiten vertonen
 # steht beim nächsten Lauf wieder auf der Liste. Ohne ihn müsste man entweder
 # jede Nacht alles neu sprechen oder Änderungen von Hand nachhalten.
 
+# **Der Zeitplan ist stillgelegt, bis der erste Lauf etwas erzeugt hat.**
+#
+# Der Lauf vom 10. August 2026 sprach mit elf Läufern vier Stunden lang und
+# legte **keine einzige** Aufnahme ab: Jede Seite scheiterte, jede erzeugte
+# eine Warnung, und alle elf Läufer endeten grün. Bis feststeht, woran das
+# liegt, wäre eine Wiederholung jede Nacht nur teurer Leerlauf.
+#
+# Gestartet wird deshalb von Hand – mit `seiten: 1` als Probe, die in Minuten
+# statt in Stunden zeigt, ob es geht. Der Zeitplan kommt zurück, sobald ein
+# Lauf Aufnahmen abgelegt hat; die Zeile steht hier fertig und
+# auskommentiert.
 on:
-  schedule:
-    # 23:19 UTC – nach dem letzten Bau des Abends und weit vor der Kette, die
-    # ab 01:13 die Nachrichten und den Podcast erzeugt. Krumme Minute aus dem
-    # Grund, der in AGENTS.md steht: Volle Stunden sind am dichtesten belegt.
-    - cron: '19 23 * * *'
+  # schedule:
+  #   # 23:19 UTC – nach dem letzten Bau des Abends und weit vor der Kette, die
+  #   # ab 01:13 die Nachrichten und den Podcast erzeugt. Krumme Minute aus dem
+  #   # Grund, der in AGENTS.md steht: Volle Stunden sind am dichtesten belegt.
+  #   - cron: '19 23 * * *'
   workflow_dispatch:
     inputs:
+      seiten:
+        description: 'Höchstens so viele Seiten je Läufer (0 = so viele wie ins Budget passen)'
+        type: string
+        default: '0'
       teile:
         description: 'Wie viele Läufer gleichzeitig sprechen'
         type: choice
@@ -118,6 +133,7 @@ jobs:
           TEIL: ${{ matrix.teil }}
           TEILE: ${{ inputs.teile || '12' }}
           BUDGET_MINUTEN: ${{ inputs.budget || '240' }}
+          HOECHSTENS: ${{ inputs.seiten || '0' }}
         run: python scripts/lese-stimme-erzeugen.py
 
       # Jeder Läufer legt seine eigenen Aufnahmen ab. Sie durch einen

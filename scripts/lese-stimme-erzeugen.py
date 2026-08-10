@@ -46,6 +46,7 @@ import os
 import subprocess
 import sys
 import time
+import traceback
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -68,6 +69,14 @@ REPO = f"Qwen/Qwen3-TTS-12Hz-{GROESSE}-Base"
 #: Umwandeln, das Hochladen und das Verzeichnis – und ein Lauf, der in der
 #: Frist stirbt, wirft alles Gesprochene weg.
 BUDGET_MINUTEN = int(os.environ.get("BUDGET_MINUTEN", "240"))
+
+#: Höchstens so viele Seiten je Läufer. `0` heißt: so viele wie ins Budget passen.
+#:
+#: Für die Probe. Ein Defekt, der jede Seite trifft, zeigt sich an der ersten –
+#: aber nur, wenn der Lauf danach aufhört. Am 10. August 2026 hat er es nicht
+#: getan: vier Stunden, 172 Warnungen, und die Ursache stand ganz oben im
+#: Protokoll, wo sie niemand mehr zu fassen bekam.
+HOECHSTENS = int(os.environ.get("HOECHSTENS", "0"))
 
 TEIL = int(os.environ.get("TEIL", "0"))
 TEILE = int(os.environ.get("TEILE", "0"))
@@ -193,6 +202,7 @@ def main() -> int:
     sprecher = sprechstimme.Sprecher(REFERENZ, WORTLAUT, REPO, melde)
 
     ergebnis: dict[str, dict] = {}
+    gescheitert: list[str] = []
     beginn = time.time()
     gesprochen = 0.0
 
@@ -200,6 +210,9 @@ def main() -> int:
         verbraucht = (time.time() - beginn) / 60
         if verbraucht >= BUDGET_MINUTEN:
             melde(f"Budget von {BUDGET_MINUTEN} Minuten aufgebraucht – Rest bleibt liegen.")
+            break
+        if HOECHSTENS and nummer > HOECHSTENS:
+            melde(f"Grenze von {HOECHSTENS} Seiten erreicht – Rest bleibt liegen.")
             break
 
         zeichen = sum(len(a) for a in aufgabe["abschnitte"])
@@ -212,7 +225,15 @@ def main() -> int:
             # Folge. Hier ist es umgekehrt: Die übrigen Aufnahmen sind fertig
             # und nützlich, und die gescheiterte Seite behält die Gerätestimme,
             # bis sie im nächsten Lauf wieder vorn steht.
-            melde(f"::warning::{aufgabe['pfad']} ließ sich nicht sprechen: {fehler}")
+            #
+            # **Mit der ganzen Begründung, nicht nur der letzten Zeile.** Beim
+            # ersten scharfen Lauf am 10. August 2026 scheiterte jede Seite,
+            # und im Protokoll stand je eine Zeile ohne Herkunft – vier Stunden
+            # Rechenzeit, aus denen sich nicht ablesen ließ, woran es lag.
+            gescheitert.append(aufgabe["pfad"])
+            melde(f"::warning::{aufgabe['pfad']} ließ sich nicht sprechen: {fehler!r}")
+            for zeile in traceback.format_exc().strip().splitlines():
+                melde(f"    {zeile}")
             continue
 
         ergebnis[aufgabe["id"]] = eintrag
@@ -231,6 +252,22 @@ def main() -> int:
     os.makedirs(ORDNER, exist_ok=True)
     with open(f"{ORDNER}/teil-{TEIL}.json", "w", encoding="utf-8") as datei:
         json.dump(ergebnis, datei, ensure_ascii=False, indent=1)
+
+    # **Wenn jede Seite scheitert, ist das kein Einzelfall, sondern ein Defekt.**
+    #
+    # Der Absatz oben – „eine Seite darf den Lauf nicht kosten" – stimmt und
+    # war trotzdem der Fehler des ersten scharfen Laufs am 10. August 2026:
+    # Elf Läufer sprachen vier Stunden lang, **jede** Seite scheiterte, jede
+    # erzeugte eine Warnung, und alle elf endeten grün. Der Lauf meldete
+    # Erfolg und hatte nichts erzeugt.
+    #
+    # Genau der stille Fehler, gegen den der Rest dieses Projekts gebaut ist –
+    # nur diesmal selbst eingebaut. Nachsicht mit einer einzelnen Seite ist
+    # richtig; Nachsicht mit allen ist Wegsehen.
+    if not ergebnis and gescheitert:
+        melde(f"::error::Keine einzige von {len(gescheitert)} Seiten ließ sich sprechen.")
+        melde("  Das ist kein Ausreißer, sondern ein Defekt – die Begründungen stehen oben.")
+        return 1
 
     return 0
 
