@@ -213,7 +213,7 @@ export default async function MarketsOverviewPage() {
           stellt jedes Monatsmuster neben die Spanne, die reiner Zufall erwarten lässt.
           Wer nur ein paar Werte im Blick behalten will, sammelt sie in der{' '}
           <Link
-            href="/merkliste"
+            href="/maerkte/merkliste"
             className="text-markets font-medium underline underline-offset-2"
           >
             Merkliste
