@@ -40,7 +40,7 @@ export const fonds: LearnTopic = {
         'Wie ein Investmentfonds funktioniert, was Sondervermögen bedeutet, wie Anteilspreise entstehen und worin sich Fonds von einer Einzelaktie unterscheidet.',
       title: 'Fonds einfach erklärt',
       lead: 'Nach dieser Stufe weißt du, was mit deinem Geld in einem Fonds passiert, wie der Anteilspreis zustande kommt und wovor Sondervermögen schützt – und wovor nicht.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -136,6 +136,77 @@ export const fonds: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Welche Arten es gibt',
+        },
+        {
+          type: 'paragraph',
+          text: '„Fonds“ ist ein Sammelbegriff für sehr verschiedene Dinge. Vier Unterscheidungen genügen, um sich zu orientieren – und alle vier stehen im Namen oder im Basisinformationsblatt.',
+        },
+        {
+          type: 'table',
+          caption: 'Vier Fragen, die einen Fonds einordnen',
+          head: ['Frage', 'Die beiden Antworten', 'Was daraus folgt'],
+          rows: [
+            [
+              'Wer entscheidet, was gekauft wird?',
+              'Ein Fondsmanager (aktiv) oder ein Regelwerk (passiv / Index)',
+              'Der größte Kostenunterschied überhaupt – oft mehr als ein Prozentpunkt im Jahr',
+            ],
+            [
+              'Was liegt drin?',
+              'Aktien, Anleihen, Immobilien, Rohstoffe – oder eine Mischung',
+              'Bestimmt die Schwankung, nicht die Verpackung',
+            ],
+            [
+              'Wohin gehen die Erträge?',
+              'Ausschüttend (aufs Konto) oder thesaurierend (bleibt im Fonds)',
+              'Steuerlich und praktisch verschieden, in der Sache dasselbe Vermögen',
+            ],
+            [
+              'Wie wird gehandelt?',
+              'Einmal täglich über die Gesellschaft oder laufend an der Börse (ETF)',
+              'ETFs sind börsengehandelte Indexfonds – kein eigenes Produkt, nur eine Handelsform',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Ein Sonderfall, der eigene Regeln hat',
+          items: [
+            '**Offene Immobilienfonds** sehen aus wie andere Fonds und verhalten sich nicht so. Ihr Vermögen steckt in Gebäuden, und ein Gebäude lässt sich nicht an einem Nachmittag verkaufen.',
+            'Deshalb gelten dort gesetzliche Fristen: **24 Monate Mindesthaltedauer** und **12 Monate Kündigungsfrist**. Wer heute verkaufen will, bekommt sein Geld in einem Jahr.',
+            'Beides ist keine Schikane, sondern die Lehre aus der Finanzkrise: Damals mussten mehrere solcher Fonds schließen, weil alle gleichzeitig heraus wollten – und die Gebäude nicht so schnell zu verkaufen waren.',
+            'Als Baustein für Geld, das verfügbar bleiben soll, scheiden sie damit aus.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Aktiv oder passiv – was die Zahlen sagen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein aktiver Fonds verspricht, besser zu sein als der Markt. Das ist möglich, und einzelne schaffen es. Die Frage ist, wie viele – und ob man sie **vorher** erkennt. Beides wird seit Jahrzehnten untersucht, und beide Antworten sind ernüchternd: Über Zeiträume von zehn Jahren und länger bleibt regelmäßig nur eine kleine Minderheit der Fonds hinter ihrer eigenen Messlatte nicht zurück, und die Gewinner von gestern sind nicht die von morgen.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Grund ist keine Unfähigkeit, sondern Arithmetik. Alle Anleger zusammen halten den gesamten Markt und erzielen deshalb zwangsläufig die Marktrendite – vor Kosten. Nach Kosten liegt der Durchschnitt darunter, und zwar genau um die Kosten. Ein Fonds mit 1,5 Prozent Gebühren muss den Markt also erst um 1,5 Prozent schlagen, um gleichauf zu sein.',
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Woran man einen aktiven Fonds erkennt, der keiner ist',
+          items: [
+            'Manche Fonds nehmen aktive Gebühren und halten trotzdem im Wesentlichen den Index – im Fachjargon **Indexschmuggler**.',
+            'Das Erkennungszeichen: Die zehn größten Positionen entsprechen weitgehend denen des Vergleichsindex, und die Wertentwicklung weicht Jahr für Jahr nur um Zehntelprozente ab.',
+            'Beides steht im Factsheet und im Jahresbericht. Wer es prüft, braucht dafür fünf Minuten.',
+            'Ein solcher Fonds ist die schlechteste aller Varianten: die Kosten des aktiven Managements ohne dessen mögliche Chance.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -144,6 +215,9 @@ export const fonds: LearnTopic = {
             'Du besitzt Anteile am Ganzen, nicht die einzelnen Wertpapiere.',
             'Der Anteilspreis ist eine tägliche Rechnung: Vermögen geteilt durch Anteile.',
             'Sondervermögen schützt vor der Pleite des Anbieters, nicht vor fallenden Kursen.',
+            'Vier Fragen ordnen jeden Fonds ein: wer entscheidet, was liegt drin, wohin gehen die Erträge, wie wird gehandelt.',
+            'Offene Immobilienfonds haben Haltefrist und Kündigungsfrist – kein Ort für verfügbares Geld.',
+            'Aktiv zu schlagen ist möglich, aber vorher nicht erkennbar; die Kosten sind es dagegen sofort.',
             'Von allen Größen ist nur die Kostenquote im Voraus bekannt.',
           ],
         },

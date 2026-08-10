@@ -76,7 +76,7 @@ export const aktienLaenderBranchen: LearnTopic = {
         'Warum Streuung Risiko senkt ohne Renditeverzicht, wie schnell der Nutzen zusätzlicher Positionen abnimmt und was der Home Bias kostet.',
       title: 'Warum Streuung wirkt',
       lead: 'Das einzige kostenlose Mittel der Geldanlage – und die Falle, in die fast alle tappen.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -169,6 +169,52 @@ export const aktienLaenderBranchen: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was „nach Marktkapitalisierung“ bedeutet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Fast alle breiten Indizes gewichten nach **Marktkapitalisierung**: Ein Unternehmen zählt so viel, wie alle seine Aktien zusammen wert sind. Das klingt technisch und hat zwei Folgen, die man kennen sollte, bevor man sich über die Zusammensetzung wundert.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Index kauft nicht, er spiegelt.** Steigt ein Unternehmen, steigt sein Gewicht automatisch mit – ohne dass jemand eine Order erteilt. Deshalb muss ein Indexfonds nicht ständig umschichten, und deshalb ist er billig.',
+            '**Große werden groß gewichtet.** In einem Weltindex machen die zehn größten Unternehmen einen erheblichen Teil des Ganzen aus, und die Vereinigten Staaten stellen weit über die Hälfte. Das ist kein Konstruktionsfehler, sondern eine Abbildung der Wirklichkeit: Dort sitzt der Großteil des börsennotierten Kapitals.',
+            '**Nur der frei handelbare Teil zählt.** Anteile, die dauerhaft bei Familien, Stiftungen oder Staaten liegen, bleiben außen vor – „Streubesitz“ heißt das Kriterium. Deshalb wiegt ein Unternehmen im Index manchmal weniger, als sein Gesamtwert vermuten ließe.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Ist die Konzentration ein Problem?',
+          items: [
+            'Sie ist jedenfalls kein Widerspruch zur Streuung: Auch mit hohem US-Anteil hält man tausende Unternehmen aus allen Branchen – und viele davon verdienen ihr Geld weltweit, nicht in ihrem Sitzland.',
+            'Der ehrliche Einwand lautet anders: Die Gewichtung folgt dem, was zuletzt gut lief. Wer nach Marktkapitalisierung anlegt, hat immer am meisten von dem, was gerade am teuersten ist.',
+            'Die Gegenposition ist die Gewichtung nach Wirtschaftsleistung – sie hält Europa und Asien höher. Beides ist vertretbar; keine der beiden ist nachweislich überlegen.',
+            'Für den Anfang gilt: Der Weltindex ist eine sehr gute Voreinstellung und keine Glaubensfrage. Wer ihn ändern will, sollte begründen können, was er stattdessen erwartet.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wo Streuung nur so aussieht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine hohe Zahl an Positionen ist kein Beleg für Streuung. Entscheidend ist, ob die enthaltenen Unternehmen von **denselben Ereignissen** getroffen werden. Drei Fälle, in denen ein Depot breiter aussieht, als es ist:',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Mehrere Fonds mit derselben Basis.** Welt-ETF plus Technologie-ETF plus USA-ETF ergeben in Summe vor allem dieselben zwanzig großen Unternehmen – dreimal gekauft, einmal gestreut.',
+            '**Eine Branche über viele Länder.** Zehn Bankaktien aus zehn Ländern sind zehn Positionen und ein Risiko: Eine Bankenkrise trifft sie alle zugleich.',
+            '**Das eigene Einkommen zählt mit.** Wer bei einem Autohersteller arbeitet und Autoaktien hält, hat Gehalt und Depot an dieselbe Branche gekoppelt. Mitarbeiteraktien sind der Extremfall davon – ein einziges Unternehmen trägt dann Einkommen, Vermögen und Altersvorsorge.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -178,6 +224,8 @@ export const aktienLaenderBranchen: LearnTopic = {
             'Nur das Unternehmensrisiko lässt sich wegstreuen, das Marktrisiko bleibt.',
             'Die ersten zwanzig Positionen bringen den größten Teil des Nutzens – wenn sie verschieden genug sind.',
             'Der Heimatmarkt wirkt vertraut und senkt trotzdem kein Risiko.',
+            'Nach Marktkapitalisierung heißt: Der Index spiegelt, er wählt nicht aus – deshalb ist er billig.',
+            'Viele Positionen sind keine Streuung, wenn dieselben Ereignisse sie alle treffen.',
           ],
         },
       ],

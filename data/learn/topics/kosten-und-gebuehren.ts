@@ -80,7 +80,7 @@ export const kostenUndGebuehren: LearnTopic = {
         'Welche Kostenarten es gibt, wo sie anfallen, warum laufende Kosten schwerer wiegen als einmalige und wie stark sie über Jahrzehnte wirken.',
       title: 'Welche Kosten es gibt und was sie anrichten',
       lead: 'Nach dieser Stufe kennst du die sechs Kostenarten, weißt, welche davon auf keiner Abrechnung stehen, und hast ihre Wirkung über dreißig Jahre gesehen.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -187,6 +187,54 @@ export const kostenUndGebuehren: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wo du die Kosten tatsächlich nachliest',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zu jedem Fonds gibt es ein zweiseitiges Pflichtdokument, das **Basisinformationsblatt** – früher hieß es „wesentliche Anlegerinformationen“. Es sieht langweilig aus und ist das einzige Papier, das man vor einem Kauf wirklich braucht. Auf der zweiten Seite steht eine Kostentabelle, und dort stehen die Zahlen, die vergleichbar sind.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Laufende Kosten** in Prozent pro Jahr – das ist die Zahl, die zwischen zwei ähnlichen Fonds entscheidet.',
+            '**Transaktionskosten** – was der Fonds für sein eigenes Handeln zahlt. Sie stehen getrennt, weil sie nicht in der Kostenquote enthalten sind.',
+            '**Einstiegs- und Ausstiegskosten** – der Ausgabeaufschlag, sofern es einen gibt.',
+            '**Wirkung auf die Rendite** – dasselbe noch einmal als Beispielrechnung über eine Halteperiode. Das ist die ehrlichste Darstellung, die es gibt, weil sie in Euro rechnet.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Drei Kosten, die woanders stehen',
+          items: [
+            '**Der Spread** taucht in keinem Dokument auf. Er ist die Differenz zwischen An- und Verkaufskurs und wird nie in Rechnung gestellt – man zahlt ihn, indem man über dem Mittelkurs kauft und darunter verkauft. Bei breiten ETFs zur Haupthandelszeit ist er klein, außerhalb davon und bei Nischenprodukten spürbar.',
+            '**Die Zuwendung an den Vermittler.** Wer über eine Bank oder einen Berater kauft, findet sie im Beratungsprotokoll oder in der jährlichen Kostenaufstellung. Sie ist Teil der laufenden Kosten und fließt an den, der beraten hat – was erklärt, warum manche Produkte häufiger empfohlen werden als andere.',
+            '**Die Steuer.** Sie ist keine Gebühr, wirkt aber wie eine: Was jedes Jahr abgeführt wird, verzinst sich nicht mehr mit. Deshalb ist ein thesaurierender Fonds im Depot einer Ausschüttung, die man ohnehin wieder anlegen würde, meist überlegen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Vergleich, der sich lohnt – und der, der es nicht tut',
+        },
+        {
+          type: 'paragraph',
+          text: 'Kostenvergleiche haben eine natürliche Grenze. Zwischen 1,5 und 0,2 Prozent liegt über dreißig Jahre ein Vermögen; zwischen 0,20 und 0,12 Prozent liegt eine Zahl, die von der Handelsspanne eines einzigen Kaufs überdeckt wird. Wer den zweiten Vergleich wochenlang betreibt, optimiert die dritte Nachkommastelle und übersieht darüber die erste.',
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Die Reihenfolge, in der es sich rechnet',
+          items: [
+            '**Einmal richtig entscheiden:** breiter Indexfonds statt teurem aktivem Fonds. Das ist der ganze Unterschied, alles Weitere sind Feinheiten.',
+            '**Einmal den Anbieter wählen:** keine Depotgebühr, kostenfreie Sparplanausführung. Danach nie wieder darüber nachdenken.',
+            '**Zur Haupthandelszeit kaufen** – vormittags bis nachmittags, wenn die Heimatbörse der enthaltenen Aktien geöffnet ist. Das kostet nichts und spart Spread.',
+            '**Und dann aufhören zu optimieren.** Der teuerste Posten in dieser Liste ist keine Gebühr, sondern die Zeit, die man mit dem Vergleichen der letzten Zehntelprozente verbringt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -196,6 +244,8 @@ export const kostenUndGebuehren: LearnTopic = {
             'Laufende Kosten treffen jedes Jahr das gesamte Vermögen, einmalige nur die Einzahlung.',
             'Über dreißig Jahre entscheidet die Kostenquote über einen erheblichen Teil des Ergebnisses.',
             'Der größte Hebel sind die Fondskosten, der kleinste die einzelne Ordergebühr.',
+            'Nachlesen im Basisinformationsblatt – dort stehen laufende Kosten und Transaktionskosten getrennt.',
+            'Der Sprung von 1,5 auf 0,2 Prozent lohnt jede Mühe. Der von 0,20 auf 0,12 keine.',
           ],
         },
       ],

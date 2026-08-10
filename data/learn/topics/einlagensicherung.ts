@@ -62,7 +62,7 @@ export const einlagensicherung: LearnTopic = {
         'Was die Einlagensicherung abdeckt, bis zu welcher Höhe sie greift, was nicht geschützt ist und warum Wertpapiere anders behandelt werden.',
       title: 'Welche Guthaben geschützt sind',
       lead: 'Die Grenze, was darunterfällt – und warum die größte Position im Depot gar keinen Schutz braucht.',
-      readingMinutes: 7,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -150,6 +150,43 @@ export const einlagensicherung: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wenn vorübergehend viel mehr auf dem Konto liegt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es gibt Wochen, in denen die Grenze offensichtlich nicht passt: nach einem Hausverkauf, einer Erbschaft, einer Abfindung oder einer Versicherungsleistung. Für genau diese Fälle sieht das Gesetz einen **erhöhten Schutz** vor – für sechs Monate ab Gutschrift sind deutlich höhere Beträge gedeckt.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Was dabei zu beachten ist',
+          items: [
+            'Der erhöhte Schutz gilt nur für **bestimmte, im Gesetz genannte Anlässe** – im Kern Immobilienverkauf, Lebensereignisse wie Heirat oder Scheidung, Erbschaft, Abfindung und Versicherungsleistungen.',
+            'Er gilt **sechs Monate**, gerechnet ab der Gutschrift. Danach fällt alles auf die normale Grenze zurück, ohne Erinnerung und ohne Hinweis der Bank.',
+            'Und er kommt nicht von selbst: Im Entschädigungsfall muss der Anlass **nachgewiesen** werden – Kaufvertrag, Erbschein, Abfindungsvereinbarung. Wer die Unterlagen nicht mehr hat, hat den erhöhten Schutz faktisch nicht.',
+            'Praktisch heißt das: Der Puffer ist gut für die Zeit, in der man ohnehin überlegt, wohin das Geld soll – aber kein Ersatz dafür, es innerhalb dieser sechs Monate zu verteilen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Fall Greensill – warum das kein theoretisches Thema ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Im März 2021 wurde die Bremer Greensill Bank geschlossen. Privatanleger bekamen ihr Geld über die gesetzliche Sicherung zurück, im Rahmen der Grenze und binnen der Frist – das System funktionierte genau so, wie es soll. Der Fall ist trotzdem lehrreich, weil er zwei Dinge vorgeführt hat, die vorher als theoretisch galten.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Zins war das Signal.** Die Bank hatte über Zinsplattformen Gelder eingeworben und lag dabei deutlich über dem Markt. Das ist kein Beweis für irgendetwas – aber es ist der Anlass, das Sicherungssystem zu prüfen, statt nur die Zinstabelle zu vergleichen.',
+            '**Kommunen und Institutionelle waren nicht geschützt.** Die gesetzliche Sicherung gilt für Privatpersonen und kleinere Unternehmen. Städte, Kirchen und Verbände verloren dreistellige Millionenbeträge, weil sie von der Sicherung ausgenommen sind.',
+            '**Die freiwillige Sicherung ist kein Rechtsanspruch.** Über die gesetzliche Grenze hinaus sichern viele Institute zusätzlich über Verbandseinrichtungen ab. Diese Systeme haben in der Vergangenheit zuverlässig geleistet – ein einklagbarer Anspruch daraus besteht aber nicht, und die Bedingungen sind seither mehrfach verschärft worden.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -159,6 +196,8 @@ export const einlagensicherung: LearnTopic = {
             'Wertpapiere im Depot sind Sondervermögen und brauchen keine Sicherung.',
             'Zertifikate und Anleihen der eigenen Bank sind Forderungen gegen sie und ausdrücklich nicht gesichert.',
             'Mehrere Marken können ein Institut sein; das ist vor der Verteilung größerer Beträge zu prüfen.',
+            'Nach Hausverkauf oder Erbschaft gilt sechs Monate lang ein höherer Schutz – gegen Nachweis.',
+            'Auffällig hohe Zinsen sind kein Verbot, aber ein Anlass, das Sicherungssystem nachzulesen.',
           ],
         },
       ],
