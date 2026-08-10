@@ -113,7 +113,7 @@ export const wannKaufenVerkaufen: LearnTopic = {
         'Warum ein guter Zeitpunkt erst im Rückblick sichtbar wird, was das Verpassen weniger starker Wochen kostet und warum ein Sparplan die Frage auflöst.',
       title: 'Was Warten kostet',
       lead: 'Die zwei Risiken, eine Rechnung an echten Kursdaten – und der Ausweg, der ohne Prognose auskommt.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -210,6 +210,57 @@ export const wannKaufenVerkaufen: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wann Verkaufen richtig ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Bis hierher ging es ums Kaufen. Die andere Hälfte wird seltener besprochen, und dabei ist sie die schwerere: Es gibt genau vier gute Gründe zu verkaufen, und der Kurs steht in keinem davon.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Das Geld wird gebraucht.** Der Zweck ist erreicht oder hat sich verschoben – Hauskauf, Ausbildung, Ruhestand. Das ist der häufigste und der beste Grund.',
+            '**Die Aufteilung ist verrutscht.** Nach mehreren guten Jahren liegt der Aktienanteil über dem, was man entschieden hat. Verkauft wird dann nicht wegen des Kurses, sondern wegen der Quote.',
+            '**Die Begründung gilt nicht mehr.** Man hat etwas gekauft, weil man von einer Sache überzeugt war, und diese Sache hat sich geändert. Wichtig: geändert hat sich das Geschäft, nicht der Kurs.',
+            '**Der Baustein war ein Fehler.** Zu teuer, zu eng, nicht verstanden. Das gehört korrigiert – und zwar unabhängig davon, ob die Position gerade im Plus oder im Minus steht.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Und die vier Gründe, die keine sind',
+          items: [
+            '**„Ich habe genug Gewinn gemacht."** Was gestiegen ist, kann weiter steigen. Der eigene Einstandskurs ist für die Zukunft ohne Bedeutung – der Markt weiß nicht, was du bezahlt hast.',
+            '**„Ich warte, bis ich wieder bei null bin."** Derselbe Denkfehler in der anderen Richtung. Die Frage lautet nicht, ob du im Minus bist, sondern ob du diese Position heute noch einmal kaufen würdest.',
+            '**„Die Nachrichten sind schlecht."** Sie stehen im Kurs. Wer auf eine Meldung hin verkauft, verkauft zu einem Preis, der sie bereits enthält.',
+            '**„Es ist ein Allzeithoch."** In einem langfristig steigenden Markt sind Höchststände der Normalfall, nicht die Ausnahme.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was ein Verkauf kostet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Verkauf ist nie neutral, auch wenn man sofort wieder einsteigt. Drei Posten fallen an, und der dritte ist der teuerste.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Die Steuer.** Auf den Gewinn wird abgeführt, und dieses Geld fehlt danach dauerhaft im Depot – es kann sich nicht mehr verzinsen. Bei einer über Jahre gewachsenen Position ist das der größte Einzelposten.',
+            '**Spread und Gebühren.** Klein bei breiten ETFs zur Haupthandelszeit, spürbar bei allem anderen. Sie fallen zweimal an, wenn man wieder einsteigt.',
+            '**Die Wiedereinstiegsfrage.** Sie ist die eigentliche Kostenposition. Wer verkauft hat, muss entscheiden, wann er zurückkommt – und diese Entscheidung fällt erfahrungsgemäß erst, wenn es sich wieder gut anfühlt, also nach der Erholung.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Daraus folgt keine Regel „niemals verkaufen“, sondern eine viel praktischere: **Verkaufen ist eine Handlung, die eine Begründung braucht – Halten nicht.** Wer diesen Maßstab anlegt, verkauft seltener, und zwar genau die Male seltener, die im Rückblick unnötig waren.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -219,6 +270,9 @@ export const wannKaufenVerkaufen: LearnTopic = {
             'Wenige Wochen entscheiden über die Rendite ganzer Jahre.',
             'Die besten Wochen folgen unmittelbar auf die schlechtesten; wer die einen meidet, verpasst die anderen.',
             'Der Sparplan beantwortet die Zeitpunktfrage nicht, er löst sie auf.',
+            'Vier gute Verkaufsgründe: Bedarf, Quote, geänderte Begründung, korrigierter Fehler. Der Kurs ist keiner.',
+            'Ein Verkauf kostet Steuer, Spread – und die Frage, wann man zurückkommt.',
+            'Verkaufen braucht eine Begründung. Halten nicht.',
           ],
         },
       ],

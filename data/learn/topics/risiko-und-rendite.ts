@@ -76,7 +76,7 @@ export const risikoUndRendite: LearnTopic = {
         'Warum es keine hohe Rendite ohne Risiko gibt, welche Risikoarten es gibt und was Schwankung im Depot praktisch bedeutet.',
       title: 'Risiko und Rendite einfach erklärt',
       lead: 'Nach dieser Stufe erkennst du, wofür eine Anlage dich eigentlich bezahlt, kennst die vier Risikoarten und weißt, warum Verluste schwerer wiegen als gleich große Gewinne.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -189,6 +189,59 @@ export const risikoUndRendite: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie Risiko gemessen wird – und was die Zahl verschweigt',
+        },
+        {
+          type: 'paragraph',
+          text: 'In Produktunterlagen steht Risiko meist als **Volatilität**: ein Maß dafür, wie stark die Rendite um ihren Durchschnitt streut, angegeben in Prozent pro Jahr. Grob gelesen heißt „15 Prozent Volatilität“, dass Jahresergebnisse zwischen etwa minus 15 und plus 45 Prozent nichts Ungewöhnliches sind, wenn im Mittel 15 Prozent erwartet werden.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Das ist nützlich, um zwei Anlagen zu vergleichen, und es hat drei blinde Flecken, die man kennen sollte.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Sie zählt Ausschläge nach oben mit.** Ein Fonds, der in einem Jahr 40 Prozent gewinnt, gilt als riskant. Das ist rechnerisch richtig und geht am Sprachgebrauch vorbei – Risiko meint für die meisten Menschen nur die eine Richtung.',
+            '**Sie unterstellt, dass Extreme selten sind.** Tatsächlich kommen sehr große Tagesbewegungen an den Märkten deutlich häufiger vor, als die Formel erwarten lässt. Genau in Krisen ist die Zahl also am wenigsten belastbar.',
+            '**Was nicht schwankt, sieht sicher aus.** Eine Immobilie, ein offener Immobilienfonds oder eine unverkäufliche Beteiligung haben eine niedrige gemessene Volatilität – nicht weil sie stabil sind, sondern weil niemand täglich einen Preis feststellt.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Die zweite Zahl, die mehr sagt',
+          items: [
+            'Der **maximale Rückgang** ist die Strecke vom höchsten bis zum tiefsten Stand einer Anlage – also der schlimmste Verlauf, den jemand tatsächlich durchgestanden hat.',
+            'Bei breiten Aktienindizes liegt er historisch bei rund der Hälfte. Diese Zahl ist unangenehmer als jede Volatilität und beantwortet die Frage, die man wirklich hat: Wie tief kann es gehen?',
+            'Für die eigene Entscheidung rechnet man sie in Euro um. „Minus 50 Prozent" und „minus 60.000 Euro" sind dieselbe Aussage und fühlen sich verschieden an – die zweite ist die ehrliche.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Risiko ist nicht überall gleich verteilt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein häufiger Irrtum ist, mehr Risiko bringe zwangsläufig mehr Rendite. Bezahlt wird nur das Risiko, das sich **nicht vermeiden lässt** – alles andere trägt man umsonst.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Vergütetes Risiko:** das Marktrisiko. Es bleibt, egal wie breit gestreut wird, und dafür gibt es auf lange Sicht eine Prämie.',
+            '**Unvergütetes Risiko:** das Risiko einzelner Unternehmen. Es lässt sich durch Streuung beseitigen – wer es trotzdem trägt, bekommt dafür keinen Aufschlag.',
+            '**Selbstgemachtes Risiko:** Hebel, häufiges Handeln, Kauf nach Anstiegen. Es erhöht die Schwankung und die erwartete Rendite gleichzeitig – letztere nach unten.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Daraus folgt eine praktische Regel, die dem Bauchgefühl widerspricht: Ein einzelnes Wertpapier ist nicht deshalb ertragreicher, weil es riskanter ist. Es ist nur riskanter. Die Prämie gibt es für das Marktrisiko – und die bekommt man am billigsten mit breiter Streuung und ohne Hebel.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -198,6 +251,9 @@ export const risikoUndRendite: LearnTopic = {
             'Kurs-, Ausfall-, Liquiditäts- und Zeitpunktrisiko sind vier verschiedene Dinge.',
             'Ein Buchverlust wird erst durch den Verkauf zu einem echten.',
             'Verluste und Gewinne sind nicht symmetrisch – ab 30 Prozent wird es unangenehm.',
+            'Volatilität zählt Ausschläge nach oben mit und unterschätzt Extreme. Der maximale Rückgang sagt mehr.',
+            'Was nicht täglich bepreist wird, sieht sicher aus, ohne es zu sein.',
+            'Bezahlt wird nur unvermeidbares Risiko. Einzelrisiko und Hebel bringen Schwankung ohne Prämie.',
             'Der Anlagehorizont entscheidet über die Anlageform, nicht die erhoffte Rendite.',
           ],
         },
