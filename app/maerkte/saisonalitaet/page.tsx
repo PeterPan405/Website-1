@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { formatNumber } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
@@ -176,26 +175,18 @@ export default function SaisonalitaetSeite() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <Callout variant="warning" title="Fünf Beobachtungen sind kein Muster">
-          <p>
-            Die Kursreihen dieser Website reichen fünf Jahre zurück. Für jeden
-            Kalendermonat sind das <strong>vier bis fünf Zahlen</strong> – fünf Januare,
-            fünf Maie. Aus fünf Zahlen einen Durchschnitt zu bilden ist erlaubt; ihn für
-            eine Regel zu halten, ist der Fehler, um den es hier geht.
-          </p>
-          <p>
-            Denn zwölf Durchschnitte aus je fünf Zahlen liegen <em>immer</em>
-            auseinander, auch wenn jeder Monat derselben Verteilung entstammt. Wie weit,
-            lässt sich ausrechnen: Für zwölf zufällige Werte beträgt der Abstand zwischen
-            dem größten und dem kleinsten im Mittel rund das <strong>
-              3,26-fache
-            </strong>{' '}
-            ihrer Unschärfe. Genau diese Erwartung steht in der letzten Tabellenspalte
-            neben der tatsächlich beobachteten Spanne.
-          </p>
-        </Callout>
+        {/*
+          Hier stand ein Warnkasten – fünf Beobachtungen je Monat, zwölf
+          Durchschnitte liegen immer auseinander, das 3,26-fache der Unschärfe.
 
-        <section aria-labelledby="probe" className="mt-12">
+          Er ist weg, und der Inhalt geht dabei nicht verloren: Genau diese
+          Erwartung steht als eigene Spalte in der Tabelle, direkt neben der
+          beobachteten Spanne, und der Abschnitt „Die Probe: Muster oder
+          Zufall?" gleich darunter sagt in zwei Sätzen, wie man beide liest.
+          Wer die Zahlen nebeneinander sieht, versteht den Einwand; wer ihn
+          vorher als Fließtext liest, hat ihn bis zur Tabelle vergessen.
+        */}
+        <section aria-labelledby="probe">
           <h2 id="probe" className="text-fg text-2xl font-bold">
             Die Probe: Muster oder Zufall?
           </h2>
@@ -600,24 +591,20 @@ export default function SaisonalitaetSeite() {
           )}
         </section>
 
-        <Callout variant="info" title="Was diese Seite nicht sagt" className="mt-12">
-          <p>
-            <strong>Nichts über das kommende Jahr.</strong> Selbst ein Muster, das über
-            Zufall hinausgeht, ist eine Beschreibung der Vergangenheit. Ein bekanntes
-            saisonales Muster wäre zudem genau deshalb keins mehr: Wer es kennt, handelt
-            früher, und damit verschiebt es sich.
-          </p>
-          <p>
-            <strong>Nichts über Ursachen.</strong> Warum ein Monat schwach war, geht aus
-            einer Kursreihe nicht hervor. Wo hier eine Zahl steht, steht keine Begründung.
-          </p>
-          <p>
-            <strong>Und nichts über den ausgewählten Zeitraum hinaus.</strong> Fünf Jahre
-            sind fünf Jahre – ein Fenster, in dem eine Pandemie-Erholung, ein Zinsanstieg
-            und ein Rohstoffschock lagen. Ein anderes Fenster ergäbe andere Monatssieger.
-            Genau das ist der Punkt.
-          </p>
-        </Callout>
+        {/*
+          Und hier stand „Was diese Seite nicht sagt" – nichts über das kommende
+          Jahr, nichts über Ursachen, nichts über das Fenster hinaus.
+
+          Auch weg. Die drei Einwände stehen ohnehin im Text darüber, dort wo
+          sie zu einer Zahl gehören: Der Abschnitt über die Einzeljahre sagt,
+          dass ein Monatsmittel von einem einzigen Jahr getragen sein kann, die
+          Probe sagt, wann eine Spanne über Zufall hinausgeht, und dass eine
+          Kursreihe keine Ursachen kennt, ist die Grundregel dieses Projekts und
+          steht an jeder Stelle, an der sie greift.
+
+          Als Kasten am Seitenende war es eine Zusammenfassung von Vorbehalten
+          für jemanden, der bis dahin schon alles gelesen hat.
+        */}
       </div>
     </>
   )

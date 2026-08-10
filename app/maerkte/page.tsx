@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Fragment } from 'react'
 
 import { QuoteCard } from '@/components/markets/QuoteCard'
 import { QuoteRow } from '@/components/markets/QuoteRow'
@@ -10,7 +11,6 @@ import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { magnificentSeven } from '@/data/markets'
 import { getBranchen } from '@/lib/branchen'
-import { formatDate, formatDateTime } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import {
   getFundamentalkennzahlen,
@@ -124,8 +124,6 @@ export default async function MarketsOverviewPage() {
   )
   const sparklineBySymbol = new Map(sparklines)
 
-  const asOf = quotes[0]?.asOf
-
   return (
     <>
       <PageHeader
@@ -139,30 +137,45 @@ export default async function MarketsOverviewPage() {
           Was gelistet ist, sagt die Zeile darunter in sieben Wörtern.
         */
         breadcrumbs={<Breadcrumbs items={[{ name: 'Märkte' }]} />}
+        /*
+          Die Zählung ist zugleich das Inhaltsverzeichnis.
+
+          Sie stand hier schon, sagte aber nur, wie viel kommt. Auf dem Telefon
+          ist diese Seite mehrere Bildschirmhöhen lang; wer die drei
+          Kryptowährungen sehen will, hat vorher an tausend Aktienzeilen
+          vorbeizuscrollen. Jetzt führt jede Zahl an ihren Abschnitt – dieselben
+          Ziele wie zuvor, nur anklickbar.
+
+          **Ohne Stand-Zeile.** Hier stand „Stand 10. August 2026 um 18:00 Uhr"
+          – der Zeitpunkt des letzten Baus, nicht der der Kurse. Seit die Zahlen
+          aus `kurse-live.json` kommen und wenige Minuten alt sind, war diese
+          Zeile die einzige veraltete Angabe auf der Seite und widersprach genau
+          dem, was daneben stand. Der tatsächliche Stand gehört an den einzelnen
+          Kurs, wo er auch steht.
+        */
         meta={
           <>
-            <span>{indexQuotes.length} Indizes</span>
-            <span aria-hidden="true">·</span>
-            <span>{etfQuotes.length} ETFs</span>
-            <span aria-hidden="true">·</span>
-            <span>{commodityQuotes.length} Rohstoffe</span>
-            <span aria-hidden="true">·</span>
-            <span>{fxQuotes.length} Währungspaare</span>
-            <span aria-hidden="true">·</span>
-            <span>{cryptoQuotes.length} Kryptowährungen</span>
-            <span aria-hidden="true">·</span>
-            <span>{magSevenQuotes.length + stockQuotes.length} Einzelaktien</span>
-            {asOf && (
-              <>
-                <span aria-hidden="true">·</span>
-                {/* Ändert sich bei jedem Abruf – siehe scripts/referenzbilder.mjs. */}
-                <span data-fliesst="">
-                  {quotes[0]?.intraday
-                    ? `Stand ${formatDateTime(asOf)}`
-                    : `Stand ${formatDate(asOf)}`}
-                </span>
-              </>
-            )}
+            {[
+              { ziel: 'indizes', text: `${indexQuotes.length} Indizes` },
+              { ziel: 'etfs', text: `${etfQuotes.length} ETFs` },
+              { ziel: 'rohstoffe', text: `${commodityQuotes.length} Rohstoffe` },
+              { ziel: 'waehrungen', text: `${fxQuotes.length} Währungspaare` },
+              { ziel: 'krypto', text: `${cryptoQuotes.length} Kryptowährungen` },
+              {
+                ziel: 'aktien',
+                text: `${magSevenQuotes.length + stockQuotes.length} Einzelaktien`,
+              },
+            ].map((eintrag, stelle) => (
+              <Fragment key={eintrag.ziel}>
+                {stelle > 0 && <span aria-hidden="true">·</span>}
+                <a
+                  href={`#${eintrag.ziel}`}
+                  className="hover:text-markets underline underline-offset-2 transition"
+                >
+                  {eintrag.text}
+                </a>
+              </Fragment>
+            ))}
           </>
         }
       />
