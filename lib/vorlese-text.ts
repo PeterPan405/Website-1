@@ -18,11 +18,13 @@
  * gestartet werden, haben das Problem nicht und geben nebenbei den Fortschritt
  * her: „Abschnitt 12 von 40“.
  *
- * Ohne Laufzeitimporte, damit `tests/` das Modul direkt laden kann; die
- * Typimporte entfernt das Type-Stripping.
+ * Die Typimporte entfernt das Type-Stripping. Der einzige Laufzeitimport geht
+ * relativ auf `sprechfassung.ts` – ein Modul ohne eigene Datenimporte, das
+ * `tests/` damit mitlädt, ohne dass ein Alias aufgelöst werden muss.
  */
 
 import type { ContentBlock } from '@/data/content'
+import { ordnungszahlenSprechbar } from './sprechfassung.ts'
 
 /** Was die Vorlesefassung über eine Grafik wissen muss. */
 export interface Vorlesegrafik {
@@ -45,9 +47,19 @@ const ORDNUNG = [
   'Zehntens',
 ]
 
-/** Entfernt Auszeichnungen, die nur fürs Auge sind. */
+/**
+ * Entfernt Auszeichnungen, die nur fürs Auge sind, und beugt Ordnungszahlen.
+ *
+ * „Am 9. August“ liest ein Mensch als „am neunten August“ – die Endung steht
+ * nicht da, er ergänzt sie beim Lesen. Eine Stimme tut das nicht; sie sagt
+ * „am neunte August“. Deshalb steht sie hier schon im Text.
+ *
+ * Weiter geht die Umschrift bewusst nicht: Anders als in der Podcastfolge
+ * bleiben Zahlen hier Zahlen. Eine Lernseite zeigt „26.364,45“ auch, und ein
+ * Text, der Ziffern in Wörter tauscht, wäre für das Auge unbrauchbar.
+ */
 function nurText(text: string): string {
-  return text.replaceAll('**', '').replace(/\s+/g, ' ').trim()
+  return ordnungszahlenSprechbar(text.replaceAll('**', '')).replace(/\s+/g, ' ').trim()
 }
 
 /** Sorgt dafür, dass die Stimme am Ende absetzt. */

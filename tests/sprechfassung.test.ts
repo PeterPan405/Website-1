@@ -73,6 +73,40 @@ pruefe(
   'Um ein Uhr zweiundzwanzig lief die Meldung.'
 )
 pruefe('Datum vor der Zahlregel', sprechbar('der 7. August'), 'der siebte August')
+
+/*
+  Die Beugung der Ordnungszahl.
+
+  Geschrieben steht überall „9. August“, und wer liest, ergänzt die Endung im
+  Kopf. Eine Stimme tut das nicht: Bis zum 10. August 2026 sprach die Folge
+  „am neunte August“. Gemeldet hat es der Betreiber, nicht eine Prüfung – die
+  hier steht deshalb.
+*/
+pruefe('Dativ: am → neunten', sprechbar('am 9. August'), 'am neunten August')
+pruefe('Dativ: vom → neunten', sprechbar('vom 9. August'), 'vom neunten August')
+pruefe(
+  'Dativ: seit dem → neunten',
+  sprechbar('seit dem 9. August'),
+  'seit dem neunten August'
+)
+pruefe('Dativ: bis zum → ersten', sprechbar('bis zum 1. August'), 'bis zum ersten August')
+pruefe('Akkusativ: den → dritten', sprechbar('den 3. August'), 'den dritten August')
+pruefe('Genitiv: des → achten', sprechbar('des 8. August'), 'des achten August')
+pruefe('Nominativ: der → neunte', sprechbar('der 9. August'), 'der neunte August')
+pruefe('ohne Artikel: neunter', sprechbar('Stand 9. August'), 'Stand neunter August')
+pruefe(
+  'zwei Tage vor einem Monat gehören zusammen',
+  sprechbar('vom 28. und 29. Juli'),
+  'vom achtundzwanzigsten und neunundzwanzigsten Juli'
+)
+pruefe('Quartal ist sächlich, Dativ', sprechbar('im 2. Quartal'), 'im zweiten Quartal')
+pruefe(
+  'Quartal ist sächlich, Nominativ',
+  sprechbar('das 3. Quartal'),
+  'das dritte Quartal'
+)
+pruefe('Ordnungszahl mit Endung', ordnungszahl(9, 'en'), 'neunten')
+pruefe('Ordnungszahl ohne Artikel', ordnungszahl(9, 'er'), 'neunter')
 pruefe(
   'Klammern werden zu Einschüben',
   sprechbar('bei 100 Punkten (+0,5 %)').includes('('),
