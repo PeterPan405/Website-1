@@ -200,8 +200,133 @@ signal.signal(signal.SIGALRM, _wecker)
 DAUER_UNTEN = 0.45
 DAUER_OBEN = 2.2
 
-#: Ab welchem Anteil übersteuerter Abtastwerte ein Stück verdächtig ist.
-UEBERSTEUERT_ANTEIL = 0.005
+#: Länge und Vorschub des Fensters, in dem der Ton untersucht wird.
+#:
+#: Ein Viertel einer Sekunde ist lang genug, dass ein einzelner Laut darin
+#: aufgeht, und kurz genug, dass eine vier Sekunden lange Störung sechzehnmal
+#: darin auftaucht statt in einem Mittelwert zu verschwinden.
+FENSTER_S = 0.25
+VORSCHUB_S = 0.125
+
+#: Ab wie vielen Nulldurchgängen je Abtastwert ein Fenster nicht mehr wie
+#: Sprache aussieht.
+#:
+#: Stimmhafte deutsche Laute liegen bei 0,02 bis 0,08, Zischlaute erreichen
+#: 0,25 bis 0,5. Ein Pfeifton bei 3 kHz kommt bei 24 kHz Abtastrate auf 0,26 –
+#: also mitten im Bereich der Zischlaute. Die Zahl allein trennt beides nicht;
+#: was sie trennt, ist die **Dauer** (siehe `STOERUNG_MINDESTENS_S`).
+ZISCHGRENZE = 0.22
+
+#: Ab welchem Anteil am Anschlag ein Fenster als übersteuert gilt.
+#:
+#: Absolut gemessen, nicht mehr im Verhältnis zur Spitze des Stücks. Die alte
+#: Fassung verlangte zusätzlich eine Gesamtspitze von 0,99 – damit war die
+#: Prüfung bei einer Störung, die bei 0,97 lag, vollständig abgeschaltet.
+UEBERSTEUERT_ANTEIL = 0.02
+
+#: Wie laut ein Fenster sein muss, damit es überhaupt betrachtet wird.
+#:
+#: Anteil am lauten Teil des Stücks (90. Perzentil). Atem, Raumton und die
+#: Pausen zwischen den Sätzen haben eine hohe Nulldurchgangsrate und sind
+#: trotzdem in Ordnung – sie sind leise.
+LAUT_ANTEIL = 0.4
+
+#: Wie lange eine Auffälligkeit am Stück anhalten muss, damit sie zählt.
+#:
+#: **Das ist die eigentliche Trennlinie.** Ein Zischlaut dauert 40 bis 150
+#: Millisekunden; er kann eine hohe Nulldurchgangsrate haben, aber nicht eine
+#: halbe Sekunde lang. Eine entgleiste Passage dauert Sekunden.
+STOERUNG_MINDESTENS_S = 0.4
+
+
+def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
+    """Findet Stellen im Ton, die nicht wie gesprochene Sprache aussehen.
+
+    Gibt je Fund Anfang und Ende in Sekunden und den Grund zurück.
+
+    ## Warum fensterweise und nicht über das ganze Stück
+
+    Weil der Fehler örtlich ist und die alte Prüfung global war. Am 10. August
+    2026 hatte eine Podcastfolge bei 1:21 vier Sekunden Quietschen; am selben
+    Tag meldete der Betreiber dieselbe Störung in der Aufnahme einer Lernseite
+    bei 1:36. Beide Male lief `brauchbar` vorher darüber und sagte nichts.
+
+    Nachgestellt: Ein dreißig Sekunden langes Stück mit vier Sekunden
+    eingeklebtem Pfeifton und Rauschen kam durch. Zwei Gründe, unabhängig
+    voneinander:
+
+    1. **Die Dauer stimmte.** Vier Sekunden Unsinn *statt* vier Sekunden
+       Sprache ändern an der Gesamtlänge nichts. Die Dauerprüfung fängt das
+       Stück, das entgleist *und* dabei die Länge verliert – nicht das, das
+       mittendrin kippt und sich wieder fängt.
+    2. **Die Übersteuerungsprüfung war abgeschaltet.** Sie verlangte, dass die
+       Spitze des ganzen Stücks bei mindestens 0,99 liegt. Lag die Störung bei
+       0,97, wurde gar nicht erst gezählt. Und selbst darüber wäre ihr Anteil
+       an dreißig Sekunden unter der Schwelle geblieben – vier Sekunden sind
+       ein Achtel des Stücks, aber nur ein Bruchteil davon liegt am Anschlag.
+
+    Ein Mittelwert über ein ganzes Stück kann eine Störung nicht finden, die
+    ein Achtel davon ausmacht. Er verdünnt sie. Also wird jedes Viertel einer
+    Sekunde für sich betrachtet.
+
+    ## Woran eine Störung erkannt wird
+
+    An drei Dingen zusammen, und das Zusammen ist wichtig:
+
+    - **laut** – gemessen am lauten Teil des Stücks selbst. Atemgeräusch und
+      Raumton zwischen den Sätzen sehen sonst aus wie Rauschen.
+    - **rau** – viele Nulldurchgänge (Rauschen, Pfeifen) oder viele Werte am
+      Anschlag (Quietschen).
+    - **anhaltend** – mindestens eine knappe halbe Sekunde am Stück.
+
+    Die dritte Bedingung trägt das Ganze. Ein „sch" hat dieselbe
+    Nulldurchgangsrate wie ein Pfeifton; was es davon unterscheidet, ist, dass
+    es nach einem Zehntel einer Sekunde vorbei ist.
+
+    **Das sind Anzeichen, keine Beweise.** Sie fangen die Form, die dieser
+    Fehler hat, und nicht jeden denkbaren. Die Antwort darauf bleibt deshalb
+    ein neuer Versuch, kein Abbruch.
+    """
+    import numpy as np
+
+    ton = np.asarray(audio, dtype=np.float32).reshape(-1)
+    fenster = max(1, int(FENSTER_S * rate))
+    vorschub = max(1, int(VORSCHUB_S * rate))
+    if len(ton) < fenster:
+        return []
+
+    anfaenge = range(0, len(ton) - fenster + 1, vorschub)
+    stuecke = np.stack([ton[i : i + fenster] for i in anfaenge])
+
+    effektiv = np.sqrt(np.mean(stuecke**2, axis=1))
+    # Nulldurchgänge je Abtastwert.
+    rauheit = np.mean(np.abs(np.diff(np.signbit(stuecke), axis=1)), axis=1)
+    anschlag = np.mean(np.abs(stuecke) >= 0.98, axis=1)
+
+    schwelle = float(np.percentile(effektiv, 90)) * LAUT_ANTEIL
+    laut = effektiv >= max(schwelle, 1e-4)
+
+    verdaechtig = laut & ((rauheit >= ZISCHGRENZE) | (anschlag >= UEBERSTEUERT_ANTEIL))
+
+    funde: list[tuple[float, float, str]] = []
+    lauf_beginn: int | None = None
+    for i, flagge in enumerate([*verdaechtig, False]):
+        if flagge and lauf_beginn is None:
+            lauf_beginn = i
+        elif not flagge and lauf_beginn is not None:
+            von = lauf_beginn * vorschub / rate
+            bis = ((i - 1) * vorschub + fenster) / rate
+            if bis - von >= STOERUNG_MINDESTENS_S:
+                bereich = slice(lauf_beginn, i)
+                grund = (
+                    f"{bis - von:.1f} s rau statt gesprochen "
+                    f"(Nulldurchgänge {float(np.max(rauheit[bereich])):.2f}, "
+                    f"am Anschlag {float(np.max(anschlag[bereich])) * 100:.0f} %)"
+                )
+                funde.append((round(von, 2), round(bis, 2), grund))
+            lauf_beginn = None
+
+    return funde
 
 
 def brauchbar(stueck: str, audio, rate: int) -> str | None:
@@ -212,16 +337,16 @@ def brauchbar(stueck: str, audio, rate: int) -> str | None:
     sauber – gleicher Text, gleiches Modell. Das Modell würfelt, und
     gelegentlich entgleist ein Stück.
 
-    Die Frist in `Sprecher.sprich` fängt nur das Stück, das **hängt**. Eines,
-    das schnell zurückkommt und Unsinn enthält, lief ungeprüft durch.
+    Geprüft wird zweierlei:
 
-    Geprüft wird die Dauer gegen die Textlänge (ein entgleistes Stück ist fast
-    immer deutlich zu lang oder zu kurz) und der Anteil übersteuerter
-    Abtastwerte (Quietschen liegt am Anschlag, Sprache nie über eine ganze
-    Passage). Anzeichen, keine Beweise – die Antwort ist ein neuer Versuch.
+    - die **Dauer** gegen die Textlänge – sie fängt das Stück, das ganz
+      entgleist und dabei zu lang oder zu kurz wird;
+    - der **Verlauf** in Vierteln einer Sekunde – er fängt das Stück, das
+      mittendrin kippt und sich wieder fängt. Warum das nötig ist, steht bei
+      `auffaellige_stellen`.
+
+    Die Frist in `Sprecher.sprich` fängt daneben das Stück, das **hängt**.
     """
-    import numpy as np
-
     dauer = len(audio) / rate
     erwartet = len(stueck) * SEKUNDEN_JE_ZEICHEN
 
@@ -231,11 +356,11 @@ def brauchbar(stueck: str, audio, rate: int) -> str | None:
         if dauer > DAUER_OBEN * erwartet:
             return f"zu lang: {dauer:.1f} s statt rund {erwartet:.1f} s"
 
-    spitze = float(np.max(np.abs(audio))) if len(audio) else 0.0
-    if spitze > 0:
-        anteil = float(np.mean(np.abs(audio) >= 0.999 * spitze))
-        if anteil > UEBERSTEUERT_ANTEIL and spitze >= 0.99:
-            return f"übersteuert: {anteil * 100:.1f} % der Abtastwerte am Anschlag"
+    funde = auffaellige_stellen(audio, rate)
+    if funde:
+        von, bis, grund = funde[0]
+        weitere = f" (und {len(funde) - 1} weitere)" if len(funde) > 1 else ""
+        return f"ab {von:.1f} s bis {bis:.1f} s: {grund}{weitere}"
 
     return None
 
@@ -336,3 +461,107 @@ class Sprecher:
         links, rate = self.sprich(teile[0], tiefe + 1)
         rechts, _ = self.sprich(teile[1], tiefe + 1)
         return [np.concatenate([np.asarray(links[0]), np.asarray(rechts[0])])], rate
+
+
+# ------------------------------------------------------------------ Selbsttest
+
+
+def _probeton(dauer: float, rate: int, keim: int = 0):
+    """Ein sprachähnliches Signal: Grundton mit Obertönen und Zischlauten.
+
+    Kein Sprachmodell, nur ein Signal mit den Eigenschaften, auf die die
+    Prüfung achtet – schwankende Lautstärke, ein Grundton um 110 Hz, und alle
+    1,3 Sekunden ein Zischlaut von 100 Millisekunden. Gerade der Zischlaut ist
+    der Punkt: Er hat dieselbe hohe Nulldurchgangsrate wie eine Störung und
+    darf trotzdem nicht anschlagen.
+    """
+    import numpy as np
+
+    r = np.random.default_rng(keim)
+    t = np.arange(int(dauer * rate)) / rate
+    huelle = 0.5 * (1 + np.sin(2 * np.pi * 3.5 * t)) * 0.35
+    grund = 110 + 8 * np.sin(2 * np.pi * 0.7 * t)
+    phase = 2 * np.pi * np.cumsum(grund) / rate
+    ton = huelle * (np.sin(phase) + 0.5 * np.sin(3 * phase) + 0.3 * np.sin(6 * phase)) / 1.8
+    for start in np.arange(0.4, max(dauer - 0.3, 0.5), 1.3):
+        i0 = int(start * rate)
+        i1 = min(len(ton), i0 + int(0.10 * rate))
+        ton[i0:i1] = 0.30 * r.standard_normal(i1 - i0)
+    return ton.astype(np.float32)
+
+
+def selbsttest(melde=print) -> int:
+    """Prüft die Prüfung – an nachgestellten Fällen, ohne Modell und ohne Netz.
+
+    ## Warum es das gibt
+
+    Weil `brauchbar` bis zum 10. August 2026 aussah, als tue sie ihre Arbeit,
+    und sie nicht tat. Sie war nachweislich vorhanden, lief bei jedem Stück
+    mit, schrieb nie eine Warnung – und ließ dabei zweimal eine Störung durch,
+    die der Betreiber beim Hören sofort bemerkte.
+
+    Eine Absicherung, die nie anschlägt, sieht genauso aus wie eine, die nichts
+    zu beanstanden findet. Der Unterschied wird erst sichtbar, wenn man ihr
+    etwas vorlegt, das sie beanstanden **muss**.
+
+    Läuft in unter einer Sekunde und braucht nur numpy. Deshalb steht er im
+    Workflow vor dem Sprechen und nicht in einer Testliste, die bei einem
+    Vertonungslauf niemand ausführt.
+    """
+    import numpy as np
+
+    rate = 24000
+    r = np.random.default_rng(7)
+
+    def text(dauer: float) -> str:
+        return "x" * int(dauer * (1 / SEKUNDEN_JE_ZEICHEN))
+
+    faelle: list[tuple[str, object, str, bool]] = []
+
+    faelle.append(("saubere 30 s", _probeton(30, rate), text(30), False))
+    faelle.append(("saubere 3 s", _probeton(3, rate, 5), text(3), False))
+    faelle.append(("saubere 60 s", _probeton(60, rate, 9), text(60), False))
+
+    # Die Störung vom 10. August: ein Pfeifton mit Rauschen, laut, aber knapp
+    # unter Vollaussteuerung – genau der Fall, den die alte Prüfung nicht sah.
+    pfeifen = _probeton(30, rate).copy()
+    t4 = np.arange(int(4 * rate)) / rate
+    i0 = int(20 * rate)
+    pfeifen[i0 : i0 + len(t4)] = np.clip(
+        0.9 * np.sin(2 * np.pi * 3100 * t4) + 0.35 * r.standard_normal(len(t4)), -0.97, 0.97
+    )
+    faelle.append(("4 s Pfeifton bei 0,97", pfeifen, text(30), True))
+
+    # Dieselbe Störung am Anschlag.
+    anschlag = _probeton(30, rate).copy()
+    n = int(1.5 * rate)
+    i0 = int(12 * rate)
+    anschlag[i0 : i0 + n] = np.clip(1.6 * r.standard_normal(n), -1.0, 1.0)
+    faelle.append(("1,5 s am Anschlag", anschlag, text(30), True))
+
+    # Und ein Stück, das ganz entgleist – der Fall, den schon die Dauerprüfung
+    # fing. Er steht hier, damit er beim Umbau nicht verlorengeht.
+    faelle.append(("halbe Länge", _probeton(12, rate, 3), text(30), True))
+
+    schief = 0
+    for name, ton, txt, erwartet_fund in faelle:
+        grund = brauchbar(txt, ton, rate)
+        gefunden = grund is not None
+        ok = gefunden == erwartet_fund
+        if not ok:
+            schief += 1
+        zeichen = "OK  " if ok else "FEHL"
+        melde(f"  {zeichen} {name}: {grund or 'nichts zu beanstanden'}")
+
+    if schief:
+        melde(f"::error::{schief} von {len(faelle)} Fällen falsch beurteilt.")
+        return 1
+
+    melde(f"Selbsttest der Tonprüfung: {len(faelle)} von {len(faelle)} richtig.")
+    return 0
+
+
+if __name__ == "__main__":
+    import sys as _sys
+
+    raise SystemExit(selbsttest() if "--selbsttest" in _sys.argv else 0)

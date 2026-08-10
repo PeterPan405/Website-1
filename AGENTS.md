@@ -818,20 +818,85 @@ Die Absicherung, die es gab, fing genau einen Fall: das Stück, das **hängt**
 enthält, lief ungeprüft in die Folge. Es gab keine einzige Frage an das
 Ergebnis, nur an die Laufzeit – und das ist der Denkfehler, nicht die Zahl.
 
-`brauchbar()` fragt seither zweierlei, beides billig:
-
-    Dauer gegen Textlänge    ein entgleistes Stück ist fast immer deutlich
-                             zu lang oder zu kurz (0,45× bis 2,2× erwartet)
-    Anteil am Anschlag       Quietschen liegt am Anschlag, gesprochene
-                             Sprache nie über eine ganze Passage
-
-Beides sind **Anzeichen, keine Beweise**. Sie fangen die Form, die dieser
-Fehler hat, und nicht jeden denkbaren. Deshalb ist die Antwort ein neuer
+`brauchbar()` fragt seither nach dem Ergebnis und nicht nur nach der Laufzeit.
+Beides sind **Anzeichen, keine Beweise**; die Antwort ist deshalb ein neuer
 Versuch – bis zu drei – und kein Abbruch: Gewürfelt wird bei jedem neu, und
 genau das hat die zweite Fassung bewiesen. Nach drei entgleisten Anläufen
 kommt das Stück trotzdem hinein, mit Warnung. Ein Loch bricht das
 Zusammenfügen ab und kostet die ganze Folge; ein schiefes Stück kostet vier
 Sekunden.
+
+### Ein Mittelwert kann nichts finden, was er verdünnt
+
+Der Abschnitt darüber war richtig gedacht und in der Ausführung falsch. Am
+Abend desselben 10. August meldete der Betreiber **dieselbe Störung noch
+einmal** – diesmal in der Vorlesefassung einer Lernseite, bei 1:36. Die
+Prüfung war da, lief mit, schrieb nie eine Warnung.
+
+Nachgestellt und damit belegt: Ein dreißig Sekunden langes Stück mit vier
+Sekunden eingeklebtem Pfeifton kam durch. Zwei Gründe, unabhängig voneinander:
+
+1. **Die Dauer stimmte.** Vier Sekunden Unsinn _statt_ vier Sekunden Sprache
+   ändern an der Gesamtlänge nichts. Die Dauerprüfung fängt das Stück, das
+   entgleist _und dabei die Länge verliert_ – nicht das, das mittendrin kippt
+   und sich wieder fängt.
+2. **Die Übersteuerungsprüfung war abgeschaltet.** Sie verlangte zusätzlich
+   eine Gesamtspitze von 0,99. Lag die Störung bei 0,97, wurde gar nicht erst
+   gezählt – und selbst darüber wäre ihr Anteil an dreißig Sekunden unter der
+   Schwelle geblieben.
+
+**Die Lehre ist allgemeiner als der Fall: Eine Kennzahl über das Ganze findet
+keinen Fehler, der einen Bruchteil davon ausmacht. Sie verdünnt ihn.**
+
+`sprechstimme.auffaellige_stellen()` sieht deshalb jedes Viertel einer Sekunde
+für sich an und meldet, ab welcher Sekunde etwas nicht wie Sprache aussieht:
+
+    laut          gemessen am lauten Teil des Stücks selbst – Atem und
+                  Raumton sehen sonst aus wie Rauschen
+    rau           viele Nulldurchgänge (Rauschen, Pfeifen) oder viele
+                  Werte am Anschlag (Quietschen)
+    anhaltend     mindestens 0,4 s am Stück
+
+**Die dritte Bedingung trägt das Ganze.** Ein „sch" hat dieselbe
+Nulldurchgangsrate wie ein Pfeifton; was es davon unterscheidet, ist, dass es
+nach einem Zehntel einer Sekunde vorbei ist.
+
+### Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe
+
+Das ist der eigentliche Grund, warum es zweimal passieren konnte. Die Prüfung
+war nachweislich vorhanden und meldete nie etwas – und das las sich wie „alles
+in Ordnung" statt wie „diese Prüfung findet nichts".
+
+Deshalb gibt es `python scripts/sprechstimme.py --selbsttest`. Er legt der
+Prüfung sechs Fälle vor, drei saubere und drei kaputte, darunter genau die
+Störung von jenem Tag. Er braucht kein Modell, kein Netz und keine Sekunde –
+und steht in `lese-stimme.yml` und `podcast-erzeugen.yml` **vor** dem
+Sprechen.
+
+Wer eine Schwelle in `sprechstimme.py` anfasst, sieht dort, ob sie noch trägt.
+
+### Die Prüfung gibt es genau einmal
+
+`stimme-erzeugen.py` hatte seine eigene Fassung von `brauchbar()`. Das war als
+Übergang gedacht (siehe „`sprechstimme.py` und `stimme-erzeugen.py` stehen
+doppelt da") und hat sich am selben Abend gerächt: Ein Fehler, der an zwei
+Stellen auftritt, weil die Prüfung an zwei Stellen dieselbe Lücke hat, ist
+nicht behoben, wenn man eine davon repariert.
+
+Der Podcast ruft jetzt `sprechstimme.brauchbar` auf. Der Import steht **in**
+der Funktion, nicht im Kopf der Datei: Beide Module richten beim Laden einen
+`SIGALRM`-Wecker ein, und wer sie in der falschen Reihenfolge lädt, hebelt die
+Zeitgrenze des anderen aus.
+
+### Was schon aufgenommen ist, prüft `aufnahmen-nachpruefen.yml`
+
+Fertige Aufnahmen sind unter der alten Prüfung entstanden. Sie alle anzuhören
+kostet eine Stunde, sie alle neu zu sprechen vier Läuferstunden. Der Lauf legt
+denselben Maßstab nachträglich an und sagt, **an welcher Sekunde** man
+hinhören sollte – unter zwei Minuten, nur ffmpeg und numpy.
+
+Er wird nicht rot. Ein Fund ist ein Hinweis, kein Beweis; ob eine Stelle
+wirklich kaputt ist, entscheidet ein Ohr.
 
 ### Ein Push, der nach der Veröffentlichung scheitert, ist rot
 

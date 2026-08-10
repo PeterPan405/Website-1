@@ -176,6 +176,21 @@ jobs:
           sudo apt-get install -y -qq ffmpeg
           ffmpeg -version | head -1
 
+      # ------------------------------------------------------------------
+      # Prüft die Prüfung, bevor gesprochen wird.
+      #
+      # `brauchbar` in `sprechstimme.py` sah bis zum 10. August 2026 aus, als
+      # tue sie ihre Arbeit. Sie lief bei jedem Stück mit, schrieb nie eine
+      # Warnung – und ließ dabei zweimal eine Störung durch, die der Betreiber
+      # beim Hören sofort bemerkte.
+      #
+      # Eine Absicherung, die nie anschlägt, sieht genauso aus wie eine, die
+      # nichts zu beanstanden findet. Der Selbsttest legt ihr deshalb Fälle
+      # vor, die sie beanstanden **muss** – darunter genau die Störung von
+      # jenem Tag. Er braucht nur numpy und läuft in unter einer Sekunde.
+      - name: Tonprüfung selbst prüfen
+        run: python scripts/sprechstimme.py --selbsttest
+
       - name: Sprechen
         env:
           TEIL: ${{ matrix.teil }}

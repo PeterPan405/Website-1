@@ -456,67 +456,42 @@ def sprich(stueck: str, tiefe: int = 0):
     return [np.concatenate([np.asarray(links[0]), np.asarray(rechts[0])])], rate
 
 
-#: Sekunden Sprache je Zeichen – an den bisherigen Folgen gemessen.
-SEKUNDEN_JE_ZEICHEN = 1 / 14.5
-
-#: Wie weit die Dauer eines Stücks von der erwarteten abweichen darf.
-#:
-#: Großzügig gewählt: Zahlen und Abkürzungen werden ausgesprochen und dehnen
-#: ein Stück, eine Aufzählung rafft es. Gesucht ist nicht die Genauigkeit,
-#: sondern der Ausreißer.
-DAUER_UNTEN = 0.45
-DAUER_OBEN = 2.2
-
-#: Ab welchem Anteil übersteuerter Abtastwerte ein Stück verdächtig ist.
-UEBERSTEUERT_ANTEIL = 0.005
+# Die Maße dazu – Sekunden je Zeichen, erlaubte Abweichung, Fensterlänge –
+# stehen alle in `sprechstimme.py`. Sie hier noch einmal zu setzen, hieße,
+# zwei Zahlen zu pflegen, von denen eine irgendwann die falsche ist.
 
 
 def brauchbar(stueck: str, audio, rate: int) -> str | None:
     """Sagt, warum ein gesprochenes Stück unbrauchbar aussieht – oder nichts.
 
-    ## Warum es diese Prüfung gibt
+    ## Warum das hier nur noch ein Verweis ist
 
-    Am 10. August 2026 lagen zwei Fassungen derselben Folge vor, weil ein
-    verspäteter Zeitplan sie doppelt erzeugt hatte. **Die eine hatte bei 1:21
-    vier Sekunden Quietschen und Rauschen, die andere war sauber** – gleicher
-    Text, gleiches Modell, gleicher Läufer-Aufbau.
+    Diese Prüfung stand am 10. August 2026 zweimal im Repository: einmal hier
+    für die Podcastfolge, einmal in `sprechstimme.py` für die Lernseiten. Das
+    war als Übergang gedacht und hat sich am selben Abend gerächt.
 
-    Damit ist die Sache klar: Das Modell würfelt. Es erzeugt Ton, bis es ein
-    Schlusszeichen setzt, und gelegentlich entgleist ein Stück dabei.
+    Der Betreiber meldete dieselbe Störung zweimal – morgens in der Folge bei
+    Minute 1:21, abends in der Aufnahme einer Lernseite bei 1:36. Ein Fehler,
+    der an zwei Stellen auftritt, weil die Prüfung an zwei Stellen dieselbe
+    Lücke hat, wird nicht dadurch behoben, dass man eine davon repariert.
 
-    Die vorhandene Absicherung – `SIGALRM` in `sprich` – fängt genau einen
-    Fall: das Stück, das **hängt**. Ein Stück, das schnell zurückkommt und
-    Unsinn enthält, lief bisher ungeprüft in die Folge. Es gab keine einzige
-    Frage an das Ergebnis, nur an die Laufzeit.
+    **Also gibt es die Prüfung genau einmal.** Was sie tut und warum sie
+    fensterweise arbeitet, steht bei `sprechstimme.auffaellige_stellen`.
 
-    Geprüft wird deshalb zweierlei, beides billig:
+    Der Rest dieser Datei bleibt vorerst eigenständig – der nächste
+    Podcastlauf ist in wenigen Stunden, und ein Umbau des Skripts, das ihn
+    erzeugt, wäre an diesem Abend das falsche Risiko. Die Prüfung war die
+    Stelle, die nicht warten konnte.
 
-    1. **Die Dauer gegen die Textlänge.** Ein entgleistes Stück ist fast immer
-       deutlich zu lang oder zu kurz – das Modell wiederholt sich oder bricht ab.
-    2. **Der Anteil übersteuerter Abtastwerte.** Quietschen und Rauschen liegen
-       am Anschlag; gesprochene Sprache tut das nie über eine ganze Passage.
-
-    Beides sind Anzeichen, keine Beweise. Sie fangen die Form, die dieser
-    Fehler hat, und nicht jeden denkbaren – deshalb ist die Antwort ein neuer
-    Versuch und kein Abbruch.
+    Der Import steht **in** der Funktion und nicht im Kopf der Datei. Beide
+    Module richten beim Laden einen `SIGALRM`-Wecker ein; wer sie in der
+    falschen Reihenfolge lädt, hebelt die Zeitgrenze des anderen aus. Eine
+    Reihenfolge, auf die man achten muss, ist eine Falle – hier gibt es sie
+    gar nicht erst.
     """
-    dauer = len(audio) / rate
-    erwartet = len(stueck) * SEKUNDEN_JE_ZEICHEN
+    import sprechstimme
 
-    # Unter einer Sekunde Erwartung lässt sich nichts beurteilen.
-    if erwartet >= 1.0:
-        if dauer < DAUER_UNTEN * erwartet:
-            return f"zu kurz: {dauer:.1f} s statt rund {erwartet:.1f} s"
-        if dauer > DAUER_OBEN * erwartet:
-            return f"zu lang: {dauer:.1f} s statt rund {erwartet:.1f} s"
-
-    spitze = float(np.max(np.abs(audio))) if len(audio) else 0.0
-    if spitze > 0:
-        anteil = float(np.mean(np.abs(audio) >= 0.999 * spitze))
-        if anteil > UEBERSTEUERT_ANTEIL and spitze >= 0.99:
-            return f"übersteuert: {anteil * 100:.1f} % der Abtastwerte am Anschlag"
-
-    return None
+    return sprechstimme.brauchbar(stueck, audio, rate)
 
 
 t0 = time.time()
