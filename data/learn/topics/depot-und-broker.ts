@@ -48,7 +48,7 @@ export const depotUndBroker: LearnTopic = {
         'Was ein Depot ist, wie die Eröffnung abläuft, warum Wertpapiere bei einer Brokerinsolvenz sicher sind und was beim ersten Kauf zu beachten ist.',
       title: 'Depot und Broker einfach erklärt',
       lead: 'Nach dieser Stufe weißt du, was ein Depot ist, welche Angaben bei der Eröffnung wichtig sind und wie deine erste Order aussieht.',
-      readingMinutes: 7,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -148,6 +148,73 @@ export const depotUndBroker: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Woran du einen passenden Anbieter erkennst',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Unterschiede zwischen den Anbietern sind kleiner geworden, aber nicht verschwunden. Sechs Punkte entscheiden, und keiner davon ist die Aufmachung der App:',
+        },
+        {
+          type: 'table',
+          caption: 'Was zu prüfen ist – und worauf es hinausläuft',
+          head: ['Punkt', 'Woran es hängt'],
+          rows: [
+            [
+              'Depotgebühr',
+              'Sollte null sein. Eine Gebühr für die reine Verwahrung ist heute nicht mehr üblich',
+            ],
+            [
+              'Sparplanausführung',
+              'Bei kleinen Raten der größte Posten überhaupt. Ein Euro auf 25 Euro Rate sind vier Prozent',
+            ],
+            [
+              'Ordergebühr',
+              'Nur wichtig, wenn du selbst kaufst statt per Sparplan – dann aber pro Kauf',
+            ],
+            [
+              'Auswahl',
+              'Sind die Wertpapiere handelbar, die du willst? Und sind sie sparplanfähig?',
+            ],
+            [
+              'Steuerlicher Sitz',
+              'Ein deutscher Anbieter führt die Steuer automatisch ab. Bei ausländischen musst du sie selbst erklären',
+            ],
+            ['Erreichbarkeit', 'Nur relevant, wenn etwas schiefgeht – dann aber sehr'],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Der fünfte Punkt ist der unterschätzte',
+          items: [
+            'Ein Anbieter mit Sitz im Ausland darf keine deutsche Abgeltungsteuer abführen. Alle Kapitalerträge musst du dann selbst in der Steuererklärung angeben – jedes Jahr, für jedes Wertpapier.',
+            'Das ist erlaubt und für manche in Ordnung. Es ist nur mehr Arbeit, als die günstigeren Gebühren wert sind, wenn man ohnehin nur einen Sparplan laufen lässt.',
+            'Der Freistellungsauftrag funktioniert dort ebenfalls nicht – es gibt niemanden, der ihn anwenden könnte.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wechseln ist einfacher als gedacht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein **Depotübertrag** ist gesetzlich kostenfrei, und er ist kein Verkauf: Die Papiere wandern samt Anschaffungsdaten und Einstandskursen zum neuen Anbieter, es fällt keine Steuer an, und die Haltedauer läuft weiter. Beantragt wird er beim **neuen** Anbieter – der kümmert sich um den Rest. Zwei bis vier Wochen sind normal, in denen die Papiere kurzzeitig nicht handelbar sind.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Drei Dinge, die dabei schiefgehen können',
+          items: [
+            '**Bruchstücke lassen sich meist nicht übertragen.** Sie werden verkauft und ausgezahlt – ein steuerpflichtiger Vorgang, den man beim Wechsel eher unfreiwillig auslöst.',
+            '**Der Verlusttopf bleibt zurück.** Wer Verluste beim alten Anbieter stehen hat, braucht bis zum 15. Dezember eine Verlustbescheinigung, sonst sind sie beim neuen nicht verrechenbar.',
+            '**Der Freistellungsauftrag zieht nicht mit um.** Er muss beim neuen Anbieter erteilt und beim alten gestrichen werden – sonst liegt er dort, wo keine Erträge mehr anfallen.',
+            'Nichts davon spricht gegen einen Wechsel. Es sind drei Handgriffe, die man kennen muss, bevor man ihn macht.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -157,6 +224,8 @@ export const depotUndBroker: LearnTopic = {
             'Freistellungsauftrag und Steuer-ID gleich bei der Eröffnung erledigen.',
             'Die ISIN ist eindeutig, der Name nicht.',
             'Limit statt Market, besonders außerhalb der Haupthandelszeit.',
+            'Beim Vergleich zählen Depotgebühr, Sparplankosten und der steuerliche Sitz – nicht die App.',
+            'Ein Depotübertrag ist kostenfrei und kein Verkauf. Nur Bruchstücke, Verlusttopf und Freistellungsauftrag brauchen Aufmerksamkeit.',
           ],
         },
       ],

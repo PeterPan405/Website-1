@@ -63,7 +63,7 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
         'Warum jeder Kurs zwei Seiten braucht, was der Spread ist, warum Kurse schwanken und weshalb gute Nachrichten den Kurs fallen lassen können.',
       title: 'Wie ein Kurs entsteht',
       lead: 'Warum es keinen richtigen Preis gibt, was zwischen Geld- und Briefkurs liegt – und warum gute Zahlen den Kurs drücken können.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -159,6 +159,51 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Das Orderbuch: wo die Kurse herkommen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Geld- und Briefkurs stehen nicht einfach da – sie sind die beiden innersten Zeilen einer Liste. Im **Orderbuch** sammeln sich alle Kaufaufträge auf der einen und alle Verkaufsaufträge auf der anderen Seite, jeweils nach Preis sortiert. Ganz oben steht auf der Kaufseite das höchste Gebot, auf der Verkaufsseite die niedrigste Forderung. Berühren sich beide, kommt ein Geschäft zustande und beide Zeilen verschwinden.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Eine Limit-Order stellt sich in die Liste.** Sie wartet, bis jemand zu diesem Preis handeln will – und bringt so lange Angebot in den Markt.',
+            '**Eine Market-Order nimmt aus der Liste.** Sie arbeitet sich von oben nach unten durch, bis die gewünschte Stückzahl zusammen ist. Reicht die erste Zeile nicht, wird die zweite mitgenommen – zu einem schlechteren Preis.',
+            '**Deshalb ist Tiefe wichtiger als der Spread allein.** Ein enger Spread über wenigen Stücken hilft nicht, wenn die Order größer ist als das Angebot in der ersten Zeile.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Warum es denselben Wert an mehreren Orten gibt',
+          items: [
+            'Eine Aktie wird nicht nur an einer Börse gehandelt. In Deutschland gibt es den elektronischen Referenzmarkt, mehrere Regionalbörsen und außerbörsliche Handelspartner – jeder mit eigenem Orderbuch und leicht abweichenden Kursen.',
+            'Für Privatanleger heißt das vor allem eins: Der Handelsplatz gehört zur Order dazu, und die Unterschiede sind real. Zur Haupthandelszeit ist der Referenzmarkt fast immer die tiefste und damit engste Wahl.',
+            'Außerbörsliche Angebote werben mit „gebührenfrei“. Bezahlt wird dort über den Spread – nicht unbedingt teurer, aber eben auch nicht umsonst.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wann gehandelt wird – und wann besser nicht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Kurse existieren nicht rund um die Uhr in gleicher Qualität. Die Zeiten, zu denen ein Papier viel gehandelt wird, sind zugleich die Zeiten, zu denen der Spread eng und die Ausführung verlässlich ist. Wer außerhalb davon handelt, zahlt für dieselbe Sache mehr.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Deutsche Werte:** vormittags bis zum frühen Nachmittag. Um 9:00 Uhr ist die Eröffnung noch unruhig, ab 15:30 Uhr kommt der US-Handel dazu und bringt Bewegung.',
+            '**Welt-ETFs mit US-Aktien:** am besten nachmittags, wenn die amerikanische Börse offen ist. Dann kennen die Handelspartner die Preise der enthaltenen Aktien und müssen sie nicht schätzen.',
+            '**Nicht in den ersten und letzten Minuten** eines Handelstags. Dort sind die Spreads am weitesten und die Ausschläge am größten.',
+            '**Nicht direkt nach einer Unternehmensmeldung.** Die Preise sortieren sich in diesen Minuten neu; wer dann eine Market-Order schickt, wird zu einem Preis bedient, der gleich darauf nicht mehr gilt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -166,7 +211,9 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
           items: [
             'Ein Kurs ist der Preis des letzten Abschlusses, nicht der Wert des Unternehmens.',
             'Der Spread ist der Preis dafür, sofort handeln zu können – und bei häufigem Handeln eine erhebliche Kostenposition.',
+            'Geld- und Briefkurs sind die innersten Zeilen des Orderbuchs; Limit stellt sich hinein, Market nimmt heraus.',
             'Bewegt wird der Kurs von der Abweichung zwischen Erwartung und Ergebnis.',
+            'Zur Haupthandelszeit handeln – bei Welt-ETFs also nachmittags, wenn die US-Börse offen ist.',
             'Der Vorteil eines Privatanlegers ist der Zeithorizont, nicht die Prognose.',
           ],
         },

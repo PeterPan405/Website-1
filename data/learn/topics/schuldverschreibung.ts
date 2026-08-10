@@ -92,7 +92,7 @@ export const schuldverschreibung: LearnTopic = {
         'Nennwert, Kupon und Laufzeit verständlich erklärt, der Unterschied zur Aktie und was Emittentenrisiko für dein Geld konkret bedeutet.',
       title: 'Was du kaufst, wenn du Geld verleihst',
       lead: 'Die vier Grundbegriffe, der Unterschied zur Aktie – und das eine Risiko, auf das es ankommt.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -204,6 +204,58 @@ export const schuldverschreibung: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie das Risiko benannt wird: Ratings',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ob ein Schuldner zahlt, kann niemand wissen. Man kann es aber einschätzen, und dafür gibt es Agenturen, die Emittenten mit Buchstaben bewerten. Die Skala läuft von AAA – höchste Bonität – über AA, A und BBB bis hinunter zu D für den bereits eingetretenen Ausfall. Die genaue Schreibweise unterscheidet sich zwischen den Agenturen, die Reihenfolge ist überall dieselbe.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Die eine Grenze, die man kennen muss',
+          items: [
+            'Sie verläuft zwischen **BBB− und BB+**. Alles darüber heißt **Investment Grade**, alles darunter **Hochzins** oder umgangssprachlich Ramsch.',
+            'Diese Grenze ist keine Feinheit: Viele institutionelle Anleger – Versicherungen, Pensionskassen – dürfen unterhalb davon gar nicht kaufen.',
+            'Deshalb hat eine Herabstufung über diese Grenze eine Wirkung, die weit über die veränderte Einschätzung hinausgeht: Es entsteht Verkaufsdruck von Anlegern, die nicht mehr halten dürfen.',
+            'Für Privatanleger folgt daraus die schlichte Faustregel: Unterhalb von Investment Grade ist eine einzelne Anleihe kein Baustein für den sicheren Teil des Depots. Sie verhält sich eher wie eine Aktie.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Wichtig ist zugleich, was ein Rating **nicht** ist: keine Empfehlung, keine Garantie und keine Aussage über den Kurs. Es ist die Meinung einer Agentur zur Ausfallwahrscheinlichkeit – erstellt im Auftrag und bezahlt vom bewerteten Unternehmen. In der Finanzkrise 2008 trugen Papiere Bestnoten, die kurz darauf ausfielen. Ein Rating ist ein Anhaltspunkt, kein Ersatz für die Frage, wem man da eigentlich Geld leiht.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wofür Anleihen im Depot gut sind',
+        },
+        {
+          type: 'paragraph',
+          text: 'Nicht für die Rendite – die ist auf lange Sicht niedriger als am Aktienmarkt, und das ist kein Mangel, sondern der Zweck. Anleihen haben zwei andere Aufgaben, und beide betreffen die Zeit.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Ein bekannter Betrag zu einem bekannten Termin.** Wer weiß, dass er in vier Jahren eine bestimmte Summe braucht, kann eine Anleihe mit passender Laufzeit kaufen und kennt sein Ergebnis am Kauftag. Das kann keine Aktie.',
+            '**Ruhe im Depot.** Ein Anleiheteil schwankt weniger als der Aktienteil und dämpft damit den Ausschlag des Ganzen. Er ist der Grund, warum man den Aktienteil durchhält – dieselbe Aufgabe wie die des Tagesgelds, nur mit etwas mehr Ertrag und etwas mehr Bewegung.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Was 2022 gezeigt hat',
+          items: [
+            'In diesem Jahr fielen Aktien **und** Anleihen zugleich, und lange Anleihen fielen zweistellig – trotz bester Bonität.',
+            'Der Grund war nicht das Ausfallrisiko, sondern der Zinsanstieg: Bei festem Kupon kann sich nur der Kurs anpassen, und je länger die Restlaufzeit, desto stärker.',
+            'Die Lehre daraus ist nicht „Anleihen taugen nichts", sondern: **Die Laufzeit ist die eigentliche Entscheidung.** Kurze Laufzeiten schwanken wenig und erfüllen die Dämpferrolle zuverlässiger als lange.',
+            'Wer die Papiere bis zur Fälligkeit hielt, bekam übrigens Kupon und Nennwert wie vereinbart. Verloren hat nur, wer dazwischen verkaufen musste.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -213,6 +265,9 @@ export const schuldverschreibung: LearnTopic = {
             'Gläubiger stehen vor Aktionären, aber hinter besicherten Gläubigern.',
             'Ein hoher Kupon ist der Preis für ein Risiko, kein Sonderangebot.',
             'Zertifikate sind Schuldverschreibungen der ausgebenden Bank – Fonds sind Sondervermögen.',
+            'Die Ratinggrenze verläuft zwischen BBB− und BB+; darunter verhält sich ein Papier eher wie eine Aktie.',
+            'Anleihen liefern einen bekannten Betrag zu einem bekannten Termin – dafür sind sie da, nicht für Rendite.',
+            'Die Laufzeit entscheidet über die Schwankung. 2022 traf das die langen, nicht die schlechten.',
           ],
         },
       ],

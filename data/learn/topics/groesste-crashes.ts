@@ -168,6 +168,57 @@ export const groessteCrashes: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Der Krisenplan, den man vorher schreibt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Er passt auf eine halbe Seite und ist genau dann etwas wert, wenn er schon existiert. Wer ihn während des Rückgangs aufsetzt, schreibt ihn unter dem Eindruck des Rückgangs – und dann steht darin, was sich in dem Moment gut anfühlt.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Was ich besitze und warum.** Ein Satz je Position. Wenn die Begründung im Rückgang noch gilt, ist der Kurs kein Grund zum Verkaufen.',
+            '**Wann ich das Geld brauche.** Die einzige Zahl, die im Rückgang wirklich zählt. Liegt der Termin zwanzig Jahre entfernt, ist ein Minus von dreißig Prozent heute eine Anzeige und kein Ereignis.',
+            '**Was ich tue, wenn es fällt.** Sparplan weiterlaufen lassen. Punkt. Wer die Rate erhöhen will, legt jetzt fest, ab welchem Rückgang – und woher das Geld kommt.',
+            '**Was ich nicht tue.** Keine Verkäufe ohne 48 Stunden Abstand. Keine neuen Produkte, die ich vorher nicht verstanden hatte. Kein tägliches Nachsehen.',
+            '**Wann ich wieder hinschaue.** Ein fester Termin im Jahr. Nicht dann, wenn die Nachrichten es nahelegen.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Woran man merkt, dass der Plan trägt',
+          items: [
+            'Er kommt ohne Prognose aus. Kein Punkt darin verlangt zu wissen, wie tief es geht oder wann es dreht.',
+            'Er ist im Voraus entschieden. Im Rückgang wird er gelesen, nicht geschrieben.',
+            'Und er ist ehrlich in einer Sache: Wenn Punkt zwei die Antwort „ich brauche das Geld doch früher" ergibt, dann war nicht der Markt das Problem, sondern die Planung. Dann ist Umschichten richtig – aber aus diesem Grund und nicht aus Angst.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum man aus Crashs weniger lernen kann, als man denkt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Jeder große Einbruch wirkt im Rückblick angekündigt. Die Warnzeichen sind aufgeschrieben, die Kritiker werden zitiert, der Auslöser steht in jedem Rückblick. Was in keinem Rückblick steht: die Dutzende Male, in denen dieselben Warnzeichen auftraten und **nichts** passierte.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Rückschaufehler.** Was eingetreten ist, erscheint im Nachhinein als das Wahrscheinliche. Deshalb wirkt jede vergangene Krise vorhersehbar und jede künftige nicht.',
+            '**Die überlebenden Warner.** Wer eine Krise vorhergesagt hat, wird zitiert. Wer dieselbe Vorhersage in den zehn Jahren davor jedes Jahr gemacht hat, wird nicht erwähnt.',
+            '**Die Auslöser wiederholen sich nicht.** Keine der großen Krisen begann so wie die vorige. Wer sich auf die Erkennungszeichen der letzten vorbereitet, ist auf die nächste besonders schlecht vorbereitet.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Was sich stattdessen lernen lässt, ist die Größenordnung: Rückgänge dieser Art gehören dazu, sie kommen unangekündigt, und die Erholung dauert unterschiedlich lang. Das genügt für eine Vorbereitung – und mehr ist ehrlicherweise nicht zu haben.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -177,6 +228,8 @@ export const groessteCrashes: LearnTopic = {
             'Das Ausmaß sagt wenig über die Erholungsdauer – die politische Reaktion sagt mehr.',
             'Wer verkauft hat, verpasste historisch den stärksten Teil der Erholung.',
             'Deshalb gilt: nur Geld anlegen, das lange liegen bleiben kann.',
+            'Der Krisenplan wird vorher geschrieben und im Rückgang nur noch gelesen.',
+            'Jede Krise wirkt im Rückblick angekündigt. Das liegt am Rückblick, nicht an der Krise.',
           ],
         },
       ],
