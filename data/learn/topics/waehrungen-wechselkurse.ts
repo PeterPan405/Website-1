@@ -75,7 +75,7 @@ export const waehrungenWechselkurse: LearnTopic = {
         'Wie ein Währungspaar zu lesen ist, was Kurse bewegt und wie sich eine Wechselkursänderung auf die Rendite einer Auslandsanlage auswirkt.',
       title: 'Einen Kurs lesen und seine Wirkung verstehen',
       lead: 'Was EUR/USD 1,10 bedeutet, was Kurse bewegt – und was mit deiner Rendite passiert, wenn sich nur die Währung ändert.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -179,6 +179,50 @@ export const waehrungenWechselkurse: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Absichern – und warum es meist nicht lohnt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es gibt Fonds, die das Währungsrisiko herausnehmen; sie heißen **währungsgesichert** oder tragen „EUR hedged“ im Namen. Technisch wird dabei laufend ein Termingeschäft abgeschlossen, das die Fremdwährung auf einen festen Kurs festzurrt. Das funktioniert – aber es ist nicht umsonst, und der Preis ist nicht die Gebühr, die im Prospekt steht.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Bezahlt wird die **Zinsdifferenz** zwischen den beiden Währungsräumen. Liegen die US-Zinsen zwei Prozentpunkte über den europäischen, kostet die Absicherung ungefähr diese zwei Prozentpunkte pro Jahr – Jahr für Jahr, unabhängig davon, ob sich der Kurs überhaupt bewegt. Dazu kommt die etwas höhere Kostenquote. Über zwanzig Jahre ist das ein erheblicher Betrag für eine Versicherung gegen etwas, das sich über solche Zeiträume erfahrungsgemäß ohnehin ausgleicht.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Wann Absicherung trotzdem sinnvoll ist',
+          items: [
+            '**Bei Anleihen im Depot.** Dort ist der erwartete Ertrag klein; eine Währungsschwankung von zehn Prozent überdeckt ihn vollständig. Ein Anleiheteil soll beruhigen – ungesichert tut er das Gegenteil.',
+            '**Bei kurzem Horizont.** Wer in drei Jahren einen festen Betrag in Euro braucht, hat keine Zeit, eine ungünstige Währungsphase auszusitzen.',
+            '**Bei Ausgaben in dieser Währung** ist es umgekehrt: Wer später in den USA leben will, braucht Dollar – dann ist die *ungesicherte* Anlage die passende.',
+            'Für den langfristigen Aktienteil eines Depots ist Absicherung dagegen in aller Regel bezahlter Aufwand ohne Gegenwert.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wo Wechselkurse im Alltag auftauchen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Nicht nur im Depot. Wer eine Auslandsüberweisung tätigt, im Urlaub mit Karte zahlt oder online in Dollar bestellt, bezahlt jedes Mal einen Kurs – nur steht er selten daneben. Der Unterschied zwischen dem Devisenkurs und dem, was tatsächlich abgebucht wird, liegt je nach Anbieter zwischen unter einem Prozent und deutlich über fünf.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die Falle heißt „Zahlung in Euro?"',
+          items: [
+            'Fragt ein Geldautomat oder ein Kartenterminal im Ausland, ob du **in Euro** abrechnen möchtest, lautet die richtige Antwort fast immer **nein**.',
+            'Das Verfahren heißt Dynamic Currency Conversion. Der Kurs wird dann vom Automatenbetreiber gesetzt statt von deiner Bank – mit einem Aufschlag, der regelmäßig im hohen einstelligen Prozentbereich liegt.',
+            'In Landeswährung abrechnen zu lassen sieht unsicherer aus und ist billiger: Dann rechnet dein Kartenanbieter um, zu einem Kurs nahe dem Devisenkurs.',
+            'Dieselbe Frage stellt sich beim Bezahlen im Netz. „Preis in Euro anzeigen“ ist bequem und kostet dasselbe wie am Automaten.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -188,6 +232,8 @@ export const waehrungenWechselkurse: LearnTopic = {
             'Zinsdifferenzen wirken kurzfristig am stärksten, Inflationsunterschiede über Jahrzehnte.',
             'Kurs- und Währungseffekt multiplizieren sich; ein starker Euro kann den Kursgewinn aufzehren.',
             'Die Handelswährung eines ETF sagt nichts über sein Währungsrisiko.',
+            'Absicherung kostet die Zinsdifferenz – bei Anleihen sinnvoll, beim langfristigen Aktienteil selten.',
+            'Im Ausland nie „in Euro abrechnen“ wählen. Das ist der teuerste Wechselkurs des Alltags.',
           ],
         },
       ],

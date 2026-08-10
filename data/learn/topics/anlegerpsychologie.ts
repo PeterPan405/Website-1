@@ -97,7 +97,7 @@ export const anlegerpsychologie: LearnTopic = {
         'Die häufigsten psychologischen Fallen bei Anlageentscheidungen, warum sie jeden betreffen und wie sie sich im Depot bemerkbar machen.',
       title: 'Die häufigsten Denkfehler',
       lead: 'Welche Muster bei fast allen auftreten, wie sie konkret Geld kosten – und warum sie nicht verschwinden, wenn man sie kennt.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -172,6 +172,58 @@ export const anlegerpsychologie: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was die Muster tatsächlich kosten',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es gibt dafür eine Messgröße, und sie hat einen unglamourösen Namen: die **Verhaltenslücke**. Man vergleicht die Rendite, die ein Fonds über zehn Jahre erzielt hat, mit der Rendite, die seine Anleger tatsächlich erzielt haben – gewichtet danach, wann sie ein- und ausgestiegen sind. Beide Zahlen sollten gleich sein. Sie sind es nie.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Anleger liegen regelmäßig darunter, und zwar um eine Größenordnung, die jede Diskussion über Kostenquoten in den Schatten stellt. Der Grund ist kein Geheimnis: Geld fließt zu, nachdem es gut lief, und ab, nachdem es schlecht lief. Der Fonds hat seine Rendite gemacht – nur waren zu den falschen Zeitpunkten die falschen Beträge investiert.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Warum das die wichtigste Zahl dieses Themas ist',
+          items: [
+            'Sie übersetzt „Psychologie“ in Prozentpunkte. Ein halber Prozentpunkt Verhaltenslücke kostet über dreißig Jahre mehr als die meisten Gebührenunterschiede.',
+            'Sie betrifft nicht die Ungeduldigen, sondern alle. Auch wer nur einmal in einem schlechten Jahr aussetzt, ist darin enthalten.',
+            'Und sie ist die einzige Renditequelle, die vollständig in der eigenen Hand liegt: Man kann den Markt nicht steuern und die Gebühren nur einmal wählen – das eigene Verhalten aber jeden Monat.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Vier Regeln, die vor der Situation entstehen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wirksam ist nur, was festliegt, bevor es unangenehm wird. Alle vier sind unspektakulär, und genau das ist ihre Stärke – sie funktionieren auch an einem Tag, an dem man nicht klar denkt.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Der Sparplan.** Er kauft weiter, während man selbst zögern würde. Die Entscheidung wurde einmal getroffen und muss nicht monatlich wiederholt werden.',
+            '**Die Wartefrist.** Zwischen dem Entschluss zu verkaufen und dem Verkauf liegen 48 Stunden. Ein guter Grund überlebt zwei Tage; ein Impuls fast nie.',
+            '**Das Anlagetagebuch.** Bei jedem Kauf drei Zeilen: warum, mit welchem Zeitraum, und woran ich merken würde, dass ich falschlag. Später gelesen ist das die einzige ehrliche Auskunft darüber, was man damals wirklich dachte.',
+            '**Der feste Termin.** Einmal im Jahr ins Depot sehen, sonst nicht. Wer täglich schaut, sieht Schwankungen und hält sie für Nachrichten.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Der Satz, der im Rückgang wirklich hilft',
+          items: [
+            '**„Hat sich an meinem Ziel etwas geändert?"** Nicht: Was macht der Markt. Wenn das Geld weiterhin erst in zwanzig Jahren gebraucht wird, ist ein Rückgang heute eine Zahl auf einem Bildschirm und kein Ereignis.',
+            'Diese Frage schlägt jede Marktanalyse, weil sie beantwortbar ist. Die Frage „geht es noch weiter runter?" ist es nicht.',
+            'Und sie hat eine ehrliche Gegenprobe: Wenn die Antwort lautet „ja, ich brauche das Geld doch früher“, dann war nicht der Markt das Problem, sondern die Planung – und dann ist Umschichten richtig, nicht Aussitzen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -180,7 +232,9 @@ export const anlegerpsychologie: LearnTopic = {
             'Verluste wiegen gefühlt schwerer – und rechnerisch sind sie tatsächlich schwerer aufzuholen.',
             'Der Dispositionseffekt verkauft die Gewinner und behält die Verlierer.',
             'Der eigene Einstandskurs ist für die Zukunft bedeutungslos.',
+            'Die Verhaltenslücke ist messbar und kostet oft mehr als jeder Gebührenunterschied.',
             'Gegen die Muster hilft keine Willenskraft, sondern eine vorher festgelegte Regel.',
+            'Im Rückgang zählt nur eine Frage: Hat sich an meinem Ziel etwas geändert?',
           ],
         },
       ],
