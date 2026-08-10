@@ -144,25 +144,19 @@ export default function ZusammenhangSeite() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <Callout variant="info" title="Warum hier Wochen gerechnet werden und keine Tage">
-          <p>
-            Die Kursreihen dieser Website reichen fünf Jahre zurück, aber erst seit Mitte
-            2025 mit einem Punkt je Handelstag – davor mit einem je Woche. Eine
-            „Tagesschwankung über fünf Jahre“ wäre aus diesen Daten keine Näherung,
-            sondern eine falsche Zahl: In den ersten vier Jahren wäre jeder Tagesschritt
-            in Wahrheit eine Woche gewesen.
-          </p>
-          <p>
-            Das Wochenraster ist der einzige Takt, den der ganze Zeitraum hergibt. Es hat
-            nebenbei einen inhaltlichen Vorteil: Tokio schließt um 6 Uhr unserer Zeit, New
-            York um 22. Zwischen zwei „gleichen Tagen“ liegen also sechzehn Stunden
-            Nachrichtenlage. Eine gemeinsame <strong>Woche</strong> haben beide dagegen
-            wirklich.
-          </p>
-        </Callout>
+        {/*
+          Hier stand ein Kasten über das Wochenraster – warum aus fünf Jahren
+          Kursreihe keine Tagesschwankung zu rechnen ist und was Tokio damit zu
+          tun hat.
 
+          Er ist weg. Was er begründete, steht in drei Wörtern in der Kopfzeile
+          darüber: „Wochenschlüsse, nicht Tage". Wer die Zahl liest, weiß damit,
+          worauf sie beruht; wer wissen will, warum, findet es in der
+          Methodenbeschreibung. Zwölf Zeilen Vorrede über einer Auswertung sind
+          eine Hürde, keine Hilfe.
+        */}
         {hoechstes && niedrigstes && (
-          <section aria-labelledby="einstieg" className="mt-12">
+          <section aria-labelledby="einstieg">
             <h2 id="einstieg" className="text-fg text-2xl font-bold">
               Die beiden Enden
             </h2>
