@@ -1,8 +1,6 @@
 import Link from 'next/link'
 
-import { Icon } from '@/components/ui/Icon'
-import { cn } from '@/lib/cn'
-import { formatNumber, formatPercentSigned } from '@/lib/format'
+import { Zeilenzahlen } from '@/components/markets/Zeilenzahlen'
 import type { MarketQuote } from '@/lib/markets'
 
 /**
@@ -17,8 +15,6 @@ import type { MarketQuote } from '@/lib/markets'
  * es wenige Werte, und der Verlauf ist auf einen Blick nützlich.
  */
 export function QuoteRow({ quote }: { quote: MarketQuote }) {
-  const positive = quote.changePercent >= 0
-
   return (
     <Link
       href={`/maerkte/${quote.symbol}`}
@@ -48,32 +44,19 @@ export function QuoteRow({ quote }: { quote: MarketQuote }) {
       <span className="text-fg-muted line-clamp-1 min-w-0 flex-1 text-sm">
         {quote.name}
       </span>
-      <span className="text-fg shrink-0 text-sm tabular-nums">
-        {formatNumber(quote.value, quote.decimals)}
-      </span>
       {/*
-        `w-24` und `whitespace-nowrap`, nicht `w-20`.
-
-        Bei zweistelligen Prozentzahlen brach „+19,50 %“ hinter dem Pfeil um,
-        und die Zeile wurde doppelt so hoch – bei einem Dutzend Titeln
-        nebeneinander sah die Liste aus, als sei sie kaputt. Aufgefallen ist es
-        an einem Tag, an dem der ganze Halbleiterbereich zweistellig zulegte:
-        Auf der Marktübersicht steht eine solche Zahl selten, auf einer
-        Branchenseite stehen an so einem Tag vierzig davon untereinander.
+        Kurs und Veränderung kommen aus `Zeilenzahlen`, weil sie sich im
+        Browser auffrischen. Alles andere an dieser Zeile ist unveränderlich
+        und bleibt damit aus dem Bau – Kürzel, Name und Verweisziel gehören
+        nicht ins Client-Bündel.
       */}
-      <span
-        className={cn(
-          'flex w-24 shrink-0 items-center justify-end gap-0.5 text-sm font-medium whitespace-nowrap tabular-nums',
-          positive ? 'text-success' : 'text-danger'
-        )}
-      >
-        <Icon
-          name={positive ? 'trending-up' : 'trending-down'}
-          className="size-3.5"
-          aria-hidden="true"
-        />
-        {formatPercentSigned(quote.changePercent)}
-      </span>
+      <Zeilenzahlen
+        symbol={quote.symbol}
+        decimals={quote.decimals}
+        value={quote.value}
+        basis={quote.value - quote.change}
+        at={quote.asOf}
+      />
       <span className="sr-only">{quote.unit}</span>
     </Link>
   )

@@ -50,15 +50,16 @@ name: Kurse im Dauerlauf
 # `kurse-live.json` auf den Server, Browser liest sie jede Minute. Der
 # Abstand zwischen Börse und Bildschirm ist damit:
 #
-#     Abruf              rund 15 Sekunden für 46 Werte
-#     Schleifentakt      bis zu 2 Minuten
+#     Abruf              76 Sekunden für den vollen Bestand (1.059 Werte)
+#     Schleifentakt      2 Minuten
 #     Übertragung        wenige Sekunden
 #     Browser-Takt       bis zu 1 Minute
-#     ------------------------------------------------
+#     ------------------------------------------------------------------
 #     zusammen           gut 3 Minuten im ungünstigsten Fall
 #
 # Die Zusage „höchstens sechs Minuten" ist damit eingehalten, und zwar mit
-# Abstand statt auf Kante.
+# Abstand statt auf Kante – und für **jedes** Instrument, nicht nur für die
+# Kacheln der Übersicht. Warum das so sein muss, steht am Schleifenschritt.
 #
 # **Was dieser Workflow nicht heilt: die Verzögerung an der Quelle.** Yahoo
 # liefert Rohstoff-Terminkurse mit Verzug – am 10. August 2026 nachgemessen:
@@ -186,6 +187,39 @@ jobs:
       # diese Website an anderer Stelle ausdrücklich, und dann soll die Zahl
       # auch sonntags stimmen. Der Wochentag wird **in** der Schleife
       # bestimmt, weil ein Lauf über Mitternacht reicht.
+      #
+      # ## Der volle Bestand, nicht nur die Leitwerte
+      #
+      # In der ersten Fassung holte die Schleife `NUR_LEITWERTE=1` – die 46
+      # Werte, die als Kachel auf der Übersicht stehen. Die Einzelaktien
+      # sollten beim Zwei-Stunden-Takt bleiben, mit dem Argument: über tausend
+      # Titel alle zwei Minuten seien 288.000 Abrufe am Tag für Kacheln, die
+      # niemand ansieht.
+      #
+      # Das Argument war falsch, und zwar an der Stelle, an der es zählt.
+      # Am 10. August 2026 um 20:12 deutscher Zeit stand Amazon auf dem Kurs
+      # von 19:05 – **67 Minuten alt**, mitten in der US-Sitzung, auf einer
+      # Seite, die daneben Kurse von vor zwei Minuten zeigt. „Die sieht ja
+      # niemand an" gilt nicht für eine Aktie, deren Seite jemand offen hat.
+      #
+      # Und es kostet auch nicht das, was dort stand. Gemessen am selben Tag
+      # auf dem Läufer (Lauf 31407697704): Der volle Preisabruf über 1.059
+      # Instrumente dauert **76 Sekunden** – er passt in den Takt, ohne ihn zu
+      # dehnen. `range=1d` statt `range=5y` und ein Starttakt von 80 ms machen
+      # den Unterschied; die sieben Minuten von früher galten dem vollen Lauf
+      # mit Historie und Dividenden.
+      #
+      # ## Die Bremse, die dazugehört
+      #
+      # Was bleibt, ist die Last bei Yahoo: knapp neun Anfragen je Sekunde,
+      # rund um die Uhr. Das ist eine freie Schnittstelle ohne Vertrag, und
+      # wer sie überfährt, verliert **alles** – auch die Leitwerte.
+      #
+      # Deshalb hört die Schleife auf das, was zurückkommt. Der Abruf meldet
+      # am Ende „N Instrumente aktualisiert"; bricht diese Zahl ein, weist
+      # Yahoo ab, und der Takt verdoppelt sich, bis sie sich erholt. Das ist
+      # gutmütig: Ein abgewiesener Titel behält seinen vorigen Stand, nichts
+      # geht verloren, es wird nur älter.
       - name: Alle zwei Minuten
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
@@ -194,6 +228,10 @@ jobs:
           SSH_PORT: '65002'
           ZIELPFAD: domains/iminvests.de/public_html
           TAKT: '120'
+          # Der langsamste Takt, auf den die Bremse gehen darf. Acht Minuten
+          # sind über der Zusage von sechs – aber ein Notzustand, der laut im
+          # Protokoll steht, ist besser als ein stiller Totalausfall.
+          TAKT_MAX: '480'
           # 5 Stunden 20 – zehn Minuten vor der Zeitgrenze des Jobs. Wer eine
           # Schleife bis an die Grenze laufen lässt, verliert den Schritt
           # danach, und das ist hier ausgerechnet der, der den Nachfolger
@@ -204,6 +242,9 @@ jobs:
           runde=0
           fehler=0
           uebertragen=0
+          takt=$TAKT
+          gebremst=0
+          bestwert=0
           beginn=$SECONDS
 
           while [ $((SECONDS - beginn)) -lt "$LAUFZEIT" ]; do
@@ -217,11 +258,11 @@ jobs:
               unset NUR_ARTEN || true
             fi
 
-            # `2>&1 | tail` statt voller Ausgabe: Der Abruf schreibt je
-            # Instrument eine Zeile, und hundertfünfzig Runden davon wären
-            # ein Protokoll, in dem niemand mehr etwas findet. Was zählt,
-            # steht in der Zusammenfassung am Ende jedes Abrufs.
-            if NUR_PREIS=1 NUR_LEITWERTE=1 npm run kurse >/tmp/abruf.log 2>&1 &&
+            # Die Ausgabe je Instrument landet in einer Datei statt im
+            # Protokoll: Der Abruf schreibt über tausend Zeilen, und
+            # hundertfünfzig Runden davon wären ein Protokoll, in dem
+            # niemand mehr etwas findet. Was zählt, steht unten.
+            if NUR_PREIS=1 npm run kurse >/tmp/abruf.log 2>&1 &&
                npm run kurselive >>/tmp/abruf.log 2>&1; then
               if scp -q -P "$SSH_PORT" -i ~/.ssh/id_deploy \
                    public/kurse-live.json "$USER@$HOST:$ZIELPFAD/kurse-live.json.neu" &&
@@ -238,24 +279,57 @@ jobs:
               tail -n 5 /tmp/abruf.log | sed 's/^/  /'
             fi
 
+            # ## Hört Yahoo noch zu?
+            #
+            # Der Abruf meldet „[kurse] N Instrumente aktualisiert". Diese
+            # Zahl ist das ehrlichste Maß, das ohne Zusatzaufwand zu haben
+            # ist: Ein abgewiesener Titel taucht darin nicht auf.
+            #
+            # Am Wochenende wird nur Krypto geholt, dann sind drei Werte das
+            # Ganze – die Bremse muss also gegen das messen, was diese Runde
+            # überhaupt vorhatte. Genommen wird der beste je erreichte Wert
+            # der laufenden Betriebsart als Bezug.
+            aktualisiert=$(sed -n 's/^\[kurse\] \([0-9]\+\) Instrumente aktualisiert.*/\1/p' /tmp/abruf.log | head -n 1)
+            aktualisiert=${aktualisiert:-0}
+            if [ "${bestwert:-0}" -lt "$aktualisiert" ]; then
+              bestwert=$aktualisiert
+            fi
+
+            # Weniger als zwei Drittel dessen, was sonst durchkommt: bremsen.
+            # Der Faktor zwei je Runde erreicht die Obergrenze in zwei
+            # Schritten und ist damit schnell genug, um eine Sperre nicht
+            # noch zu füttern.
+            if [ "${bestwert:-0}" -gt 10 ] && [ $((aktualisiert * 3)) -lt $((bestwert * 2)) ]; then
+              if [ "$takt" -lt "$TAKT_MAX" ]; then
+                takt=$((takt * 2))
+                [ "$takt" -gt "$TAKT_MAX" ] && takt=$TAKT_MAX
+                echo "::warning::Runde $runde: nur $aktualisiert von sonst $bestwert Instrumenten aktualisiert."
+                echo "  Yahoo weist ab. Takt auf $takt Sekunden verlangsamt, bis sich das erholt."
+                gebremst=$((gebremst + 1))
+              fi
+            elif [ "$takt" -ne "$TAKT" ] && [ $((aktualisiert * 10)) -ge $((bestwert * 9)) ]; then
+              takt=$TAKT
+              echo "Runde $runde: $aktualisiert Instrumente – wieder im Zwei-Minuten-Takt."
+            fi
+
             # Ein Lebenszeichen alle dreißig Runden – also stündlich. Ohne
             # es sähe ein Protokoll nach einer Stunde aus wie ein hängender
             # Lauf; mit ihm steht dort eine Zeile, aus der sich ablesen
             # lässt, ob die Kette hält.
             if [ $((runde % 30)) -eq 0 ]; then
               stand=$(node -e "process.stdout.write(String(JSON.parse(require('fs').readFileSync('public/kurse-live.json','utf8')).fetchedAt))" 2>/dev/null || echo '?')
-              echo "[$(date -u +%H:%M:%S)] Runde $runde – $uebertragen übertragen, $fehler abgebrochen, zuletzt $stand."
+              echo "[$(date -u +%H:%M:%S)] Runde $runde – $uebertragen übertragen, $fehler abgebrochen, $aktualisiert Instrumente, Takt ${takt}s, zuletzt $stand."
             fi
 
             # Was von den zwei Minuten nach dem Abruf übrig ist. Ist die
             # Runde länger gelaufen als der Takt, wird nicht gewartet.
-            rest=$((TAKT - (SECONDS - rundenbeginn)))
+            rest=$((takt - (SECONDS - rundenbeginn)))
             if [ "$rest" -gt 0 ]; then
               sleep "$rest"
             fi
           done
 
-          echo "Ende nach $runde Runden: $uebertragen übertragen, $fehler abgebrochen."
+          echo "Ende nach $runde Runden: $uebertragen übertragen, $fehler abgebrochen, $gebremst mal gebremst."
           rm -f ~/.ssh/id_deploy
 
           # **Eine Runde, die scheitert, ist kein Fall für eine Mail.** Der
