@@ -6,7 +6,6 @@ import { QuoteRow } from '@/components/markets/QuoteRow'
 import { Stimmungskachel } from '@/components/markets/Stimmungskachel'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { SourceSummary } from '@/components/markets/SourceNote'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { magnificentSeven } from '@/data/markets'
@@ -134,7 +133,11 @@ export default async function MarketsOverviewPage() {
         eyebrow="Märkte"
         eyebrowIcon="chart"
         title="Kurse, die auch erklärt werden"
-        lead="Ein Indexstand von 24.000 Punkten sagt für sich genommen nichts. Auf jeder Detailseite steht deshalb, was der Kurs abbildet, was ihn bewegt und worauf du dabei achten solltest."
+        /*
+          Ohne Vorspann. Er sagte, was auf jeder Detailseite steht – und stand
+          dabei zwischen dem Besucher und dem, weshalb er hier ist: den Kursen.
+          Was gelistet ist, sagt die Zeile darunter in sieben Wörtern.
+        */
         breadcrumbs={<Breadcrumbs items={[{ name: 'Märkte' }]} />}
         meta={
           <>
@@ -165,12 +168,17 @@ export default async function MarketsOverviewPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        {/* Bewusst eine Zeile und kein Kasten: Herkunftsangaben sind Pflicht,
-            aber sie sind nicht die Botschaft der Seite. */}
-        <SourceSummary
-          quotes={quotes}
-          className="text-fg-subtle text-sm leading-relaxed"
-        />
+        {/*
+          Hier stand die Herkunftszeile – Abrufabstand, Quellen, Demo-Kurse. Sie
+          ist ersatzlos weg, und das ist keine Auslassung:
+
+          Der Abrufabstand und die Quellen stehen in der Fußzeile, also auf
+          jeder Seite. Und der Hinweis auf einen Demo-Kurs steht an jedem
+          einzelnen betroffenen Kurs – dort, wo er jemanden erreicht, der die
+          Zahl gerade liest. Als Absatz weit darüber war er eine Vorwarnung auf
+          Vorrat: sechs Zeilen, die vor den Kursen standen und nach dem dritten
+          Besuch niemand mehr las.
+        */}
 
         {/*
           Der Verweis aufs Tagesbild steht ganz oben, weil er die Frage
@@ -203,6 +211,14 @@ export default async function MarketsOverviewPage() {
             die Saisonalität
           </Link>{' '}
           stellt jedes Monatsmuster neben die Spanne, die reiner Zufall erwarten lässt.
+          Wer nur ein paar Werte im Blick behalten will, sammelt sie in der{' '}
+          <Link
+            href="/merkliste"
+            className="text-markets font-medium underline underline-offset-2"
+          >
+            Merkliste
+          </Link>
+          .
         </p>
 
         <section aria-labelledby="indizes" className="mt-12">

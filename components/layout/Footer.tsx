@@ -182,12 +182,14 @@ export function Footer() {
           </p>
           <p className="text-fg-muted mt-2 text-sm leading-relaxed">
             <strong className="text-fg font-semibold">Hinweis zu den Daten:</strong> Kurse
-            werden als Tagesschlusskurse dargestellt und sind keine Echtzeitdaten. Sie
-            können von den Angaben anderer Anbieter abweichen und sind nicht für
-            Handelszwecke bestimmt. Nachrichten geben den Stand ihrer Veröffentlichung
-            wieder; die Verschuldungszahlen sind Näherungswerte und keine amtliche
-            Statistik. Für Aktualität, Richtigkeit und Vollständigkeit wird keine Gewähr
-            übernommen. Herkunft und Stand stehen jeweils direkt an der Angabe.
+            werden während der Börsenzeit alle dreißig Minuten abgerufen, der Verlauf
+            zeigt Tagesschlusskurse; der angezeigte Stand kann eine halbe Stunde alt sein.
+            Quellen sind Yahoo Finance und die Europäische Zentralbank. Es sind keine
+            Echtzeitdaten. Sie können von den Angaben anderer Anbieter abweichen und sind
+            nicht für Handelszwecke bestimmt. Nachrichten geben den Stand ihrer
+            Veröffentlichung wieder; die Verschuldungszahlen sind Näherungswerte und keine
+            amtliche Statistik. Für Aktualität, Richtigkeit und Vollständigkeit wird keine
+            Gewähr übernommen. Herkunft und Stand stehen jeweils direkt an der Angabe.
           </p>
           {/*
             Steuern brauchen einen eigenen Absatz, nicht nur das Wort „Steuerberatung“

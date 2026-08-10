@@ -74,7 +74,20 @@
   --c-brand: #17296f;
   --c-brand-strong: #0f1c50;
   --c-brand-contrast: #ffffff;
-  --c-brand-soft: #e9ecf9;
+  /*
+    Die ruhige Fläche hinter Hinweiskästen – **im Papierton, nicht im Blau.**
+
+    Bis zum 10. August 2026 stand hier #e9ecf9, ein aufgehelltes Navy. Für sich
+    genommen ein feiner Ton; auf dem beigen Grund dieser Website las er sich
+    aber schlicht als weiß. Der Betreiber hat es an einem Kasten auf dem Telefon
+    gemeldet: „die weißen Felder sind immer noch weiß“ – und recht gehabt. Auf
+    Creme wirkt jedes kalte Hellblau wie ein Loch im Papier.
+
+    #f4ecd8 hält die Lesbarkeit auf die Nachkommastelle genau: 4,92 gegen
+    --c-fg-subtle, derselbe Wert wie das alte Blau. Erkennbar bleibt der Kasten
+    über seine Linie und das Zeichen darin, nicht über einen Farbwechsel.
+  */
+  --c-brand-soft: #f4ecd8;
 
   /* Akzent: Petrol, harmoniert mit Navy und Grün des Logos */
   --c-accent: #155e63;
@@ -267,7 +280,10 @@
     --c-brand: #93a0ea;
     --c-brand-strong: #b0baf2;
     --c-brand-contrast: #0a0f1f;
-    --c-brand-soft: #1a2242;
+    /* Das Gegenstück zum Papierton: warmes Dunkel statt Blau, damit ein Kasten
+       hier dieselbe Rolle spielt wie im hellen Thema. 5,07 gegen
+       --c-fg-subtle, zuvor 4,98. */
+    --c-brand-soft: #26221b;
 
     --c-accent: #4fc4cc;
     --c-accent-soft: #0c2a2d;
@@ -475,6 +491,23 @@
     /* Verhindert, dass Sprungziele unter der Sticky-Navigation landen. */
     scroll-padding-top: 6rem;
     -webkit-text-size-adjust: 100%;
+  }
+
+  /*
+    Der Grund steht auf `html` **und** auf `body`.
+
+    Auf `body` allein genügt es nach der Norm: Fehlt dem Wurzelelement ein
+    Hintergrund, erbt die Malfläche den des Körpers. Nur betrifft das den
+    Bereich, den die Seite füllt – nicht immer den Streifen hinter der
+    Statusleiste des Telefons und nicht das Überziehen am Rand. Etliche
+    Browser nehmen dafür den Hintergrund von `html`, und wo keiner steht,
+    ist er weiß.
+
+    Gemeldet wurde genau das am 10. August 2026: Kopfzeile creme, darüber
+    ein weißer Balken.
+  */
+  html {
+    background-color: var(--c-canvas);
   }
 
   body {
