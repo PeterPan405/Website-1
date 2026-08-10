@@ -485,6 +485,8 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Was vor dem ersten Kauf kommt',
     caption:
       'Jeder Schritt vor dem letzten bringt sicher etwas. Der letzte bringt vermutlich mehr – aber nur, wenn die vier davor stehen.',
+    description:
+      'Fünf Stufen hintereinander, von links nach rechts aufsteigend. Die ersten vier – teure Schulden tilgen, Notgroschen anlegen, existenzielle Risiken versichern, Ziele mit Datum festlegen – sind schmal gezeichnet und tragen jeweils einen sicheren Ertrag: getilgte zehn Prozent Dispozins sind zehn Prozent, garantiert. Die fünfte Stufe, der erste Wertpapierkauf, ist die höchste und als einzige gestrichelt umrandet: Ihr Ertrag ist erwartbar, nicht zugesagt. Der Bildaufbau sagt damit das Gegenteil dessen, was die meisten zuerst tun – die niedrigen Stufen sind die verlässlichen, und ohne sie steht die hohe auf nichts.',
   },
   'markt-orderbuch': {
     title: 'Kauf- und Verkaufseite eines Orderbuchs',
