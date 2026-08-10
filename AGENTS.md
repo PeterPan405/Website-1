@@ -787,6 +787,32 @@ erzeugt, hätte sie riskiert, ohne dass an ihr etwas besser geworden wäre.
 liegt.** Bis dahin: Wer an den Pausen, der Stücklänge oder der Frist etwas
 ändert, ändert es an beiden Stellen.
 
+### Gesprochen wird gebeugt
+
+Geschrieben steht „am 9. August“, und das ist vollständig – wer liest, ergänzt
+die Endung im Kopf. Eine Stimme tut das nicht. Sie sagt „am **neunte** August“,
+und im Ohr ist das der Unterschied zwischen Sprache und Vorlesemaschine.
+
+Eine Ordnungszahl ist ein Adjektiv. Welche Endung sie trägt, entscheidet das
+Wort davor:
+
+    der 9. August       der neunte August       Nominativ
+    am 9. August        am neunten August       Dativ
+    den 9. August       den neunten August      Akkusativ
+    Stand 9. August     Stand neunter August    ohne Artikel
+
+`ordnungszahlenSprechbar()` in `lib/sprechfassung.ts` macht das für Monate,
+Quartale und Halbjahre. **Beide Sprechwege benutzen sie** – die Folge über
+`sprechbar()`, die Lernseiten über `nurText()` in `lib/vorlese-text.ts`.
+
+Die Lernseiten nehmen ausdrücklich **nur** diese Regel, nicht die ganze
+Umschrift: In der Folge wird „26.364,45“ zum Wort, auf einer Lernseite bleibt
+es die Zahl, die daneben auch zu sehen ist.
+
+Aufgefallen ist es am 10. August 2026 dem Betreiber beim Hören, keiner
+Prüfung. Wer eine weitere Stelle baut, an der Text gesprochen wird, führt ihn
+durch dieselbe Funktion.
+
 ## Der Alias `@/` gilt jetzt auch außerhalb des Bündlers
 
 `scripts/alias-hook.mjs` löst ihn auf. Eingehängt über `--import`:

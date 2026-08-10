@@ -110,17 +110,131 @@ export function zahlwort(n: number): string {
   return teile.join('').trim()
 }
 
-/** Ordnungszahl für Monatstage: 1 → „erste“, 7 → „siebte“, 21 → „einundzwanzigste“. */
-export function ordnungszahl(tag: number): string {
-  const sonder: Record<number, string> = {
-    1: 'erste',
-    3: 'dritte',
-    7: 'siebte',
-    8: 'achte',
-  }
-  if (sonder[tag]) return sonder[tag]
-  if (tag < 20) return `${zahlwort(tag)}te`
-  return `${zahlwort(tag)}ste`
+/* -------------------------------------------------------- Ordnungszahlen */
+
+/**
+ * Die Endung einer Ordnungszahl. Sie hängt nicht an der Zahl, sondern am
+ * Satz – siehe `ordnungszahl()`.
+ */
+type Endung = 'e' | 'en' | 'er' | 'es'
+
+/**
+ * Ordnungszahl für Monatstage, in der Beugung, die der Satz verlangt.
+ *
+ * **Eine Ordnungszahl ist ein Adjektiv und wird wie eines gebeugt.** Welche
+ * Endung sie trägt, entscheidet das Wort davor:
+ *
+ *     der 9. August       →  der neunte August       Nominativ
+ *     am 9. August        →  am neunten August       Dativ
+ *     den 9. August       →  den neunten August      Akkusativ
+ *     Stand 9. August     →  Stand neunter August    ohne Artikel
+ *
+ * Bis zum 10. August 2026 gab es hier nur die erste Form. Damit sprach die
+ * Folge „am neunte August“, und im Podcast fällt das sofort auf: Geschrieben
+ * steht dort „9.“, und wer liest, beugt selbst mit. Erst die Stimme macht die
+ * fehlende Endung hörbar.
+ */
+export function ordnungszahl(tag: number, endung: Endung = 'e'): string {
+  /* Vier Stämme lassen sich nicht aus dem Zahlwort bilden: „eint“, „dreit“,
+     „siebent“ und „achtt“ gibt es nicht. */
+  const staemme: Record<number, string> = { 1: 'erst', 3: 'dritt', 7: 'siebt', 8: 'acht' }
+  const stamm = staemme[tag] ?? (tag < 20 ? `${zahlwort(tag)}t` : `${zahlwort(tag)}st`)
+  return stamm + endung
+}
+
+/* Wörter, die den Fall der folgenden Ordnungszahl setzen. Dativ, Akkusativ
+   und Genitiv verlangen bei bestimmtem Artikel dieselbe Endung `-en`; sie
+   müssen deshalb nicht auseinandergehalten werden. */
+const GEBEUGT = new Set([
+  'am',
+  'im',
+  'vom',
+  'zum',
+  'beim',
+  'dem',
+  'den',
+  'des',
+  'diesem',
+  'diesen',
+  'dieses',
+  'jenem',
+  'jenen',
+  'jenes',
+  'seinem',
+  'seinen',
+  'ihrem',
+  'ihren',
+  'meinem',
+  'meinen',
+  'unserem',
+  'unseren',
+])
+const NOMINATIV = new Set([
+  'der',
+  'das',
+  'dieser',
+  'diese',
+  'jener',
+  'welcher',
+  'welches',
+])
+
+/** Monatsnamen sind männlich, Quartal und Halbjahr sächlich. */
+const MASKULIN: Record<string, Endung> = { gebeugt: 'en', nominativ: 'e', bloss: 'er' }
+const NEUTRUM: Record<string, Endung> = { gebeugt: 'en', nominativ: 'e', bloss: 'es' }
+
+function fall(davor: string | undefined): 'gebeugt' | 'nominativ' | 'bloss' {
+  const wort = davor?.trim().toLowerCase() ?? ''
+  if (GEBEUGT.has(wort)) return 'gebeugt'
+  if (NOMINATIV.has(wort)) return 'nominativ'
+  /* Kein Artikel, keine Präposition: „Stand 9. August“ heißt „neunter“. */
+  return 'bloss'
+}
+
+const MONATSNAMEN =
+  'Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember'
+
+/*
+  Mehrere Tage vor einem Monatsnamen gehören zusammen: „vom 28. und 29. Juli“.
+  Ohne diese Klammer sähe die Regel nur den 29., und die 28. fiele der
+  Zahlregel zu – „vom achtundzwanzig. und neunundzwanzigsten Juli“.
+*/
+const DATUM = new RegExp(
+  String.raw`([A-Za-zÄÖÜäöüß]+ )?` +
+    String.raw`(\d{1,2}\.(?:\s*(?:und|bis|oder|sowie)\s*\d{1,2}\.)*)` +
+    String.raw`\s*(${MONATSNAMEN})\b`,
+  'g'
+)
+
+/* Quartale und Halbjahre folgen derselben Regel: „im 2. Quartal“ heißt
+   „im zweiten Quartal“, nicht „im zwei. Quartal“. */
+const ZEITRAUM = /([A-Za-zÄÖÜäöüß]+ )?([1-4])\.\s*(Quartal|Halbjahr)\b/g
+
+/**
+ * Schreibt Ordnungszahlen vor Monaten, Quartalen und Halbjahren aus – gebeugt
+ * nach dem Wort davor.
+ *
+ * Steht getrennt von `sprechbar()`, weil die Lernseiten sie brauchen, ohne
+ * dass dort jede Zahl zum Wort wird: In einer Lektion ist „26.364,45“ eine
+ * Zahl zum Anschauen, in der Folge ein Wort zum Hören.
+ */
+export function ordnungszahlenSprechbar(text: string): string {
+  let s = text.replaceAll(
+    DATUM,
+    (_, davor: string | undefined, tage: string, monat: string) => {
+      const endung = MASKULIN[fall(davor)]
+      const gesprochen = tage.replaceAll(/(\d{1,2})\./g, (__, tag: string) =>
+        ordnungszahl(Number(tag), endung)
+      )
+      return `${davor ?? ''}${gesprochen} ${monat}`
+    }
+  )
+  s = s.replaceAll(
+    ZEITRAUM,
+    (_, davor: string | undefined, zahl: string, wort: string) =>
+      `${davor ?? ''}${ordnungszahl(Number(zahl), NEUTRUM[fall(davor)])} ${wort}`
+  )
+  return s
 }
 
 /* ----------------------------------------------------- Text sprechbar machen */
@@ -170,12 +284,9 @@ export function sprechbar(text: string): string {
     return minute === 0 ? `${stunde} Uhr` : `${stunde} Uhr ${zahlwort(minute)}`
   })
 
-  /* Datumsangaben: „der 7. August“ → „der siebte August“ – vor der Zahlregel,
-     die sonst „der sieben. August“ daraus machte. */
-  s = s.replaceAll(
-    /\b(\d{1,2})\.\s*(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)/g,
-    (_, t: string, monat: string) => `${ordnungszahl(Number(t))} ${monat}`
-  )
+  /* Datumsangaben: „am 7. August“ → „am siebten August“ – vor der Zahlregel,
+     die sonst „am sieben. August“ daraus machte. */
+  s = ordnungszahlenSprechbar(s)
 
   /* Klammern sind in der Sprechfassung verboten – sie werden zu Einschüben. */
   s = s.replaceAll(/\s*\(([^)]*)\)/g, ', $1,')

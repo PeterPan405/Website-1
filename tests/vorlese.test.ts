@@ -89,6 +89,30 @@ pruefe(
 )
 pruefe('Faktenzeilen werden als Paar gelesen', probe.includes('Risiko: hoch.'))
 
+/*
+  Ordnungszahlen werden gebeugt, bevor die Stimme sie sieht. Geschrieben ist
+  „9. August“ vollständig; gesprochen fehlt die Endung, und „am neunte August“
+  klingt nach Maschine. Dieselbe Regel wie in der Podcastfolge – sie steht in
+  `sprechfassung.ts` und wird von hier mitbenutzt.
+*/
+const mitDatum = vorleseAbschnitte([
+  {
+    type: 'paragraph',
+    text: 'Am 9. August fiel der Kurs. Der 9. August war ein Sonntag.',
+  },
+])
+pruefe(
+  'Datum im Dativ und im Nominativ',
+  mitDatum[0] === 'Am neunten August fiel der Kurs. Der neunte August war ein Sonntag.',
+  mitDatum.join(' | ')
+)
+pruefe(
+  'Zahlen bleiben in der Lektion Zahlen',
+  vorleseAbschnitte([
+    { type: 'paragraph', text: 'Der Index stand bei 26.364,45 Punkten.' },
+  ])[0] === 'Der Index stand bei 26.364,45 Punkten.'
+)
+
 console.log('\n— Grafiken —')
 
 const mitGrafik = vorleseAbschnitte([{ type: 'figure', figure: 'ta-macd' }], figureMeta)
