@@ -101,262 +101,298 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
-    slug: 'leitindizes-stand-2026-08-10',
-    title: 'Die Leitindizes am 10.8.2026: was die Zahlen sagen',
+    slug: 'rheinmetall-bewerbungsboom-bundeswehr-2026-08-10',
+    title:
+      'Rheinmetall bekommt 23.000 Bewerbungen im Monat – nur der größte Kunde hinkt hinterher',
+    metaTitle: 'Rheinmetall: Bewerbungsboom trifft langsame Bundeswehr',
     teaser:
-      'Euro Stoxx 50 führt mit +0,39 Prozent, Nikkei 225 (Japan) liegt mit −0,93 Prozent hinten. Warum ein Vergleich zweier Indizes fast immer schiefgeht.',
+      '23.000 Bewerbungen im Monat, sagt der Rheinmetall-Chef – die Rüstungsbranche boomt. Nur bei der Bundeswehr komme dieses Tempo nicht an.',
     category: 'Märkte',
     publishedAt: '2026-08-10T07:50:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Indizes', 'Marktdaten'],
-    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
-    relatedSymbols: ['dax', 'sp500', 'nikkei-225', 'euro-stoxx-50'],
+    tags: ['Rüstung', 'Aktien', 'Auftragseingang'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['rheinmetall'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 10.8.2026, 02:27 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'finanzen.net, News-Ticker vom 9. August 2026: „Rheinmetall-Chef: 23.000 Bewerbungen im Monat, Rüstung boomt, Bundeswehr hinkt hinterher“',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Der Stand der geführten Leitindizes zum letzten abgerufenen Schluss: **DAX (Deutscher Aktienindex)** +0,05 Prozent (6.8.2026), **S&P 500** −0,18 Prozent (6.8.2026), **Nikkei 225 (Japan)** −0,93 Prozent (6.8.2026), **Euro Stoxx 50** +0,39 Prozent (6.8.2026), **Nasdaq 100** −0,39 Prozent (6.8.2026).',
+        text: 'Der Rheinmetall-Chef hat einen Satz in die Welt gesetzt, der für sich genommen schon eine Geschichte ist: **23.000 Bewerbungen** gehen im Monat bei dem Rüstungskonzern ein. Die Branche boome, heißt es dazu in einem Ticker-Eintrag von finanzen.net vom 9. August – nur bei der Bundeswehr selbst komme dieses Tempo offenbar nicht an.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Warum diese Zahlen nicht vergleichbar sind',
+        text: 'Ein Bewerbungsrekord ist kein Auftragseingang',
       },
       {
         type: 'paragraph',
-        text: 'Der DAX ist ein **Performanceindex**: Dividenden werden rechnerisch wieder angelegt und stecken im Indexstand. Der Euro Stoxx 50, der S&P 500 und der Nikkei 225 sind in ihrer gängigen Fassung **Kursindizes** – dort fehlt die Dividende. Über ein Jahr macht das je nach Markt zwei bis drei Prozentpunkte aus, über zwanzig Jahre den größeren Teil des Unterschieds.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Auf einen einzelnen Tag wirkt sich das kaum aus – wohl aber auf jeden Langfristvergleich, der zwei solche Indizes nebeneinanderstellt. Wer den DAX über zehn Jahre gegen den Euro Stoxx 50 hält, vergleicht nicht zwei Märkte, sondern zwei Rechenweisen.',
+        text: '23.000 Bewerbungen pro Monat sind ein Signal aus dem Arbeitsmarkt, kein Signal aus der Bilanz. Sie zeigen, wie viele Menschen glauben, dass bei Rheinmetall in den kommenden Jahren Stellen entstehen – nicht, wie viele Aufträge das Unternehmen tatsächlich in den Büchern stehen hat. Zwischen der Erwartung eines Bewerbers und einem unterschriebenen Rüstungsvertrag liegen oft Jahre.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Zwei Geschwindigkeiten in derselben Branche',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Genau diese Lücke benennt der Ticker-Eintrag selbst: Die Rüstungsindustrie boomt, doch die Bundeswehr hinke hinterher. Gemeint ist damit vermutlich das Beschaffungswesen – wie schnell aus einem politischen Beschluss ein unterschriebener Vertrag wird. Ob es um Exportaufträge, andere NATO-Staaten oder tatsächlich verzögerte Bundeswehr-Bestellungen geht, sagt die Meldung nicht; das wäre an dieser Stelle Spekulation.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wer Rheinmetall als Wachstumsgeschichte verfolgt, schaut weniger auf Schlagzeilen über Personalbedarf als auf die tatsächlichen Auftragseingangszahlen der kommenden Quartalsberichte. Der Arbeitsmarkt kann vorauslaufen – die Bilanz folgt erst, wenn Verträge unterschrieben sind.',
       },
     ],
   },
   {
-    slug: 'marktbreite-2026-08-10',
-    title: 'Marktbreite am 7.8.2026: wie viele Titel tragen die Bewegung',
-    metaTitle: 'Marktbreite am 7.8.2026',
+    slug: 'nvidia-milliardeninvestition-lancium-2026-08-10',
+    title: 'Nvidia plant offenbar ein Milliarden-Investment in einen eigenen Kunden',
+    metaTitle: 'Nvidia investiert Milliarden in Stargate-Partner Lancium',
     teaser:
-      '566 Titel im Plus, 440 im Minus – die Bewegung ist zu 56,3 Prozent getragen. Was diese Zahl über einen Indexstand hinaus verrät.',
+      'Nvidia soll Milliarden in Lancium stecken, einen Partner des KI-Projekts Stargate. Wenn ein Zulieferer zum Geldgeber wird, verschwimmt eine Grenze.',
     category: 'Märkte',
     publishedAt: '2026-08-10T07:45:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Marktbreite', 'Marktdaten'],
-    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
-    relatedSymbols: ['dax', 'sp500'],
-    sources: [
-      {
-        label: 'Eigene Marktbreite-Aufzeichnung, Stand 10.8.2026, 02:27 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/tagesbild',
-      },
-    ],
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Von den ausgewerteten Titeln standen am 7.8.2026 **566** im Plus und **440** im Minus, 20 unverändert. Der ungewichtete Schnitt über alle lag bei +0,56 Prozent, die Breite bei 56,3 Prozent.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was „Breite" hier misst',
-      },
-      {
-        type: 'paragraph',
-        text: 'Die Breite ist der Anteil der bewegten Titel, die in dieselbe Richtung laufen wie der Gesamtschnitt. Bei 50 Prozent ist der Markt geteilt; bei 90 zieht fast alles mit. Heute sind es 56,3 Prozent von 1006 bewegten Titeln.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Der Unterschied ist praktisch. Ein Index kann steigen, weil alle 40 Werte steigen – oder weil drei schwere Werte steigen und 37 fallen. Der Indexstand ist in beiden Fällen derselbe, die Lage nicht. Nach Börsenwert gewichtete Indizes verbergen diesen Unterschied bauartbedingt.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb wird hier ungewichtet gerechnet: Jede Aktie zählt gleich. Nach Börsenwert gewichtet wäre der Schnitt der Halbleiter praktisch der Kurs eines einzigen Unternehmens.',
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: 'Was hier bewusst fehlt',
-      },
-      {
-        type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
-      },
-    ],
-  },
-  {
-    slug: 'realzins-2026-08-10',
-    title: 'Leitzins 2,40 Prozent, Inflation 2,8 Prozent – was übrig bleibt',
-    metaTitle: 'Leitzins gegen Inflation: der Realzins',
-    teaser:
-      'Der EZB-Leitzins liegt bei 2,40 Prozent, die deutsche Inflationsrate bei 2,8 Prozent. Die Differenz ist der Realzins – und die einzige Zahl, die zählt.',
-    category: 'Geldpolitik',
-    publishedAt: '2026-08-10T07:40:00+02:00',
-    author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Zinsen', 'Inflation'],
-    relatedTopics: ['notenbanken-geldpolitik', 'inflation', 'tagesgeld'],
-    relatedSymbols: [],
+    tags: ['KI', 'Investitionen', 'Halbleiter'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia'],
     sources: [
       {
         label:
-          'Europäische Zentralbank über die eigene Zinsübersicht, Stand 5.8.2026, 09:05 Uhr UTC',
-        url: 'https://iminvests.de/maerkte/zinsen',
+          'finanzen.net, News-Ticker vom 9. August 2026: „NVIDIA-Aktie vor neuem Schub? KI-Riese plant Milliarden-Investment in Stargate-Partner Lancium“',
+        url: 'https://www.finanzen.net/nachrichten/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: '**Leitzins der EZB (Hauptrefinanzierungsgeschäfte)**: 2,40 Prozent, Stand 5.8.2026. **Inflationsrate in Deutschland (HVPI, Vorjahresvergleich)**: 2,8 Prozent für Juli 2026.',
+        text: 'Ein Ticker-Eintrag von finanzen.net vom 9. August wirft eine ungewöhnliche Frage auf: Nvidia plane ein **Milliarden-Investment** in Lancium, einen Partner des KI-Infrastrukturprojekts Stargate. Wie viele Milliarden es sein sollen und in welcher Form – Eigenkapital, Kredit, Vorauszahlung –, nennt die Meldung nicht.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Der Realzins',
+        text: 'Vom Lieferanten zum Investor',
       },
       {
         type: 'paragraph',
-        text: 'Die Differenz beider Zahlen heißt Realzins und liegt derzeit bei rund -0,4 Prozentpunkten. Sie beantwortet die einzige Frage, die für Erspartes zählt: Kann man sich in einem Jahr mehr kaufen als heute, oder weniger?',
-      },
-      {
-        type: 'paragraph',
-        text: 'Ein Tagesgeldkonto mit drei Prozent bei vier Prozent Inflation verliert Kaufkraft, obwohl der Kontostand steigt. Umgekehrt kann ein Prozent Zins bei null Prozent Inflation ein Gewinn sein. Der nominale Zinssatz allein sagt darüber nichts.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Zwei Einschränkungen: Der Leitzins der EZB ist nicht der Zins, den eine Bank zahlt – er ist die Untergrenze, an der sich der Geldmarkt orientiert. Und die Inflationsrate ist ein Durchschnitt über einen Warenkorb, der niemandes tatsächlichem Einkauf entspricht.',
+        text: 'Normalerweise verkauft ein Chip-Hersteller wie Nvidia seine Prozessoren an Rechenzentrumsbetreiber und überlässt das Baugeschäft anderen. Ein Milliarden-Investment in einen Projektpartner ist ein anderer Schritt: Nvidia würde damit nicht nur Ausrüster, sondern auch Geldgeber der Infrastruktur, die am Ende die eigenen Chips aufnimmt.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Warum Anleger bei solchen Deals zweimal hinschauen',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Investiert ein Zulieferer in einen Kunden, der mit diesem Geld wiederum beim Zulieferer bestellt, verschwimmt die Grenze zwischen echter Nachfrage und finanziertem Umsatz. Das macht die Investition nicht automatisch problematisch – große Technologieprojekte werden häufig so mitfinanziert –, es bedeutet aber, dass ein Teil des künftigen Umsatzwachstums aus dem eigenen Geld stammen könnte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ohne Details zu Höhe und Struktur des Investments lässt sich der Effekt nicht beziffern. Wer die Aktie beobachtet, wartet auf die nächste konkrete Zahl – Investitionssumme, Zeitraum, Gegenleistung – statt aus einer Ticker-Zeile eine Bewertung abzuleiten.',
       },
     ],
   },
   {
-    slug: 'gold-in-zwei-waehrungen-2026-08-10',
-    title: 'Ein Goldpreis, zwei Zahlen: warum Dollar und Euro auseinanderlaufen',
-    metaTitle: 'Gold in Dollar und in Euro',
+    slug: 'oelpreis-saudi-rabatt-china-nachfrage-2026-08-10',
+    title: 'Saudi-Arabien senkt den Ölpreis – China kauft trotzdem verhalten',
     teaser:
-      'Gold notiert bei 4.385,00 Dollar, der Euro bei 1,1542 Dollar – in Euro sind das rund 3.799,17. Ein Euro-Preis hat immer zwei Ursachen.',
+      'Riad senkt den offiziellen Verkaufspreis für Rohöl erneut. Laut einem Analystenkommentar bleibt die chinesische Nachfrage davon fast unbeeindruckt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-10T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Rohstoffe', 'China'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'onvista, Société-Générale-Kommentar vom 7. August 2026, 11:25 Uhr: „Öl: Weitere Preissenkung aus Saudi-Arabien trifft auf verhaltene chinesische Nachfrage“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste vom 9. August 2026 (Brent 82,32 US-Dollar)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Saudi-Arabien hat seinen offiziellen Verkaufspreis für Rohöl weiter gesenkt. Laut einem Kommentar der Société Générale, veröffentlicht am 7. August über onvista, trifft der Schritt auf **verhaltene chinesische Nachfrage** – der wichtigste Käufer zieht also nicht in dem Tempo mit, das der Rabatt erhoffen ließ.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preisnachlass ist kein Nachfragebeweis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Saudi-Arabien senkt seine offiziellen Verkaufspreise regelmäßig im Wettbewerb um Marktanteile in Asien – das allein sagt noch nichts darüber, wie schwach die Nachfrage wirklich ist. Erst die Kombination mit der in der Quelle genannten „verhaltenen“ chinesischen Nachfrage macht daraus ein Signal: Der größte Ölimporteur der Welt lässt sich vom niedrigeren Preis bislang nicht zu spürbar mehr Käufen bewegen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Kursboard zeigte sich davon zuletzt wenig Dramatik: Brent-Rohöl notierte laut der Kursleiste von wallstreet-online am 9. August bei **82,32 US-Dollar**, ein Plus von 0,06 Prozent gegenüber dem Vortag – nahezu unverändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn der Preis fällt, die Nachfrage aber nicht steigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist der eigentliche Lehrpunkt: Ein niedrigerer Preis erhöht die Nachfrage nur, wenn Käufer tatsächlich mehr wollen, sobald es günstiger wird. Bleibt die Nachfrage träge – etwa weil die chinesische Industrie insgesamt schwächelt oder Lager schon gut gefüllt sind –, verpufft der Rabatt wirkungslos, und der Anbieter verkauft am Ende nur billiger, nicht mehr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Der Ölmarkt bleibt ein Fall, bei dem Angebotsseite (Saudi-Arabien) und Nachfrageseite (China) getrennt zu beobachten sind. Ein Rabatt ohne spürbare Reaktion ist selbst eine Information – er zeigt, wie weit sich Angebot und Nachfrage gerade auseinanderbewegt haben.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-drei-signale-2026-08-10',
+    title: 'Gold: drei unabhängige Datenquellen zeigen in dieselbe Richtung',
+    metaTitle: 'Gold: CoT-Daten, ETF-Zuflüsse und ein Kursrätsel',
+    teaser:
+      'CoT-Daten, ETF-Zuflüsse und ein Analystenkommentar deuten bei Gold auf mehr als nur fallende Zinserwartungen hin. Drei Blickwinkel, ein Trend.',
     category: 'Geldanlage',
     publishedAt: '2026-08-10T07:35:00+02:00',
     author: 'Redaktion IM Invests',
-    readingMinutes: 4,
-    tags: ['Gold', 'Währungen'],
-    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
-    relatedSymbols: ['gold', 'eur-usd'],
+    readingMinutes: 5,
+    tags: ['Gold', 'Rohstoffe', 'Positionierung'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 10.8.2026, 02:27 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'Goldreporter, Analyse vom 9. August 2026: „CoT-Daten Gold: Spekulatives Kapital kehrt zurück an den Goldmarkt“',
+        url: 'https://www.goldreporter.de/',
       },
       {
-        label: 'Europäische Zentralbank, Referenzkurs vom 6.8.2026',
-        url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+        label:
+          'Goldreporter, Marktdaten vom 6. August 2026: „Größter Gold-ETF: Bestände steigen dritte Woche in Folge“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'onvista, Société-Générale-Kommentar vom 7. August 2026, 11:20 Uhr: „Gold: Preisanstieg geht über sinkende US-Zinserwartungen hinaus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 10. August 2026, 5:18 Uhr (Gold 4.322,72 US-Dollar)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Gold stand zuletzt bei **4.385,00 Dollar** je Feinunze (Stand 10.8.2026, 02:17 Uhr UTC). Der Euro notierte bei **1,1542 Dollar** (Stand 6.8.2026). Umgerechnet sind das rund **3.799,17 Euro**.',
+        text: 'Gold notierte laut der Kursleiste von wallstreet-online am Morgen des 10. August bei **4.322,72 US-Dollar**, ein Minus von 0,48 Prozent gegenüber dem Vortag – ein kleiner Rücksetzer nach einer starken Woche. Interessanter als der Tageswert sind drei Datenpunkte, die unabhängig voneinander in den vergangenen Tagen veröffentlicht wurden.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Zwei Ursachen für eine Zahl',
+        text: 'Signal eins: Spekulatives Kapital kehrt zurück',
       },
       {
         type: 'paragraph',
-        text: 'Gold wird international in Dollar gehandelt. Wer den Preis in Euro sehen will, rechnet um – und übernimmt damit den Wechselkurs als zweite bewegliche Größe. Der Euro-Preis kann deshalb steigen, während der Dollar-Preis fällt: Es genügt, dass der Euro gegenüber dem Dollar stärker nachgibt.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Für einen Anleger im Euroraum heißt das: Eine Goldposition ist immer auch eine Dollarposition. Wer „auf Gold setzt", setzt zur Hälfte auf eine Währung. Dasselbe gilt für Öl, für Kupfer und für jeden weltweit in Dollar notierten Rohstoff.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb ist die Frage bei jeder Rohstoffmeldung: in welcher Währung? Zwei Berichte, die scheinbar widersprüchliche Zahlen nennen, meinen oft dieselbe Unze in zwei Währungen – oder zu zwei Uhrzeiten.',
+        text: 'Der Goldreporter beschrieb am 9. August neue CoT-Daten – die wöchentliche Meldepflicht großer Terminmarktteilnehmer in den USA. Sie zeigten laut der Analyse **steigende Spekulation und einen deutlichen Kapitalzufluss** am US-Terminmarkt. Wie viele Kontrakte genau dazukamen, nennt die Zusammenfassung nicht.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Signal zwei: Der größte Gold-ETF wächst die dritte Woche in Folge',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Unabhängig davon meldete derselbe Dienst bereits am 6. August, dass die Bestände des größten Gold-ETFs die **dritte Woche in Folge** gestiegen sind. Das ist eine andere Anlegergruppe als die Terminmarkt-Spekulanten: ETF-Käufer sind in der Regel langsamer unterwegs und halten Positionen länger.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Signal drei: Der Zins allein erklärt die Bewegung nicht mehr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kommentar der Société Générale, am 7. August über onvista veröffentlicht, hielt zusätzlich fest, dass der jüngste Preisanstieg **über das hinausgeht**, was sinkende US-Zinserwartungen für sich genommen erklären würden. Was den Rest der Bewegung trägt, benennt die Quelle nicht ausdrücklich – die beiden anderen Signale liefern zumindest einen Anhaltspunkt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Keines dieser drei Signale ist für sich ein Beweis. Zusammengenommen zeichnen sie aber das Bild eines Marktes, in dem schnelles spekulatives Geld und langsameres Anlegerkapital gleichzeitig aufbauen – nicht nur die übliche Zinslogik.',
       },
     ],
   },
   {
-    slug: 'spanne-des-tages-2026-08-10',
-    title: 'Die Spanne des Tages: warum Prozentzahlen einen Bezugspunkt brauchen',
-    metaTitle: 'Die Spanne des Tages',
+    slug: 'silber-ueber-63-dollar-2026-08-10',
+    title: 'Silber schließt über 63 Dollar – der Beweis für die Trendwende fehlt noch',
+    metaTitle: 'Silber über 63 Dollar: Hinweis, kein Beweis',
     teaser:
-      'Zwischen WPP mit +28,62 Prozent und Datadog mit −19,03 Prozent liegen Welten. Was eine Prozentzahl verschweigt.',
-    category: 'Märkte',
+      'Silber beendet die Woche über 63 Dollar – ein möglicher Schritt zur Trendwende. Ob es einer wird, entscheidet sich erst am Mittwoch.',
+    category: 'Geldanlage',
     publishedAt: '2026-08-10T07:30:00+02:00',
     author: 'Redaktion IM Invests',
     readingMinutes: 4,
-    tags: ['Aktien', 'Marktdaten'],
-    relatedTopics: ['aktie', 'risiko-und-rendite'],
-    relatedSymbols: [],
+    tags: ['Silber', 'Rohstoffe', 'Charttechnik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['silber'],
     sources: [
       {
-        label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 10.8.2026, 02:27 Uhr UTC',
-        url: 'https://iminvests.de/maerkte',
+        label:
+          'wallstreet-online Redaktion, 9. August 2026: „Silberpreis: Lösen die US-Inflationsdaten am Mittwoch eine große Rallye aus?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 9. August 2026 (Silber 63,67 US-Dollar)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Société-Générale-Kommentar vom 7. August 2026, 11:15 Uhr: „Silber: Schwächere Nachfrage aus der Solarindustrie zeichnet sich ab“',
+        url: 'https://www.onvista.de/news/',
       },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Über 1026 geführte Aktien reichte die Tagesveränderung von +28,62 Prozent bis −19,03 Prozent. Vorn: **WPP** +28,62 Prozent, **Kao** +12,83 Prozent, **ProSiebenSat.1 Media** +10,00 Prozent. Hinten: **Datadog** −19,03 Prozent, **Western Digital** −13,03 Prozent, **SK Hynix** −10,37 Prozent.',
+        text: 'Silber hat die vergangene Handelswoche laut einem Beitrag von wallstreet-online oberhalb von **63 US-Dollar** beendet – aktuell notiert das Metall laut Kursleiste bei 63,67 US-Dollar, ein Plus von 0,13 Prozent. Der Wochenschluss über dieser Marke gilt in dem Beitrag als möglicher Schritt in Richtung Trendwende.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Prozent von was',
+        text: 'Ein Wochenschluss ist ein Hinweis, kein Beweis',
       },
       {
         type: 'paragraph',
-        text: 'Eine Prozentangabe ist eine Verhältniszahl, und ihr Nenner steht selten dabei. Ein Titel, der von zwei auf drei Euro steigt, legt 50 Prozent zu; einer, der von 200 auf 210 Euro steigt, nur fünf – obwohl der zweite den Anleger um zehn Euro je Stück reicher macht und der erste um einen.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Deshalb stehen an der Spitze solcher Listen überdurchschnittlich oft kleine und wenig gehandelte Werte. Das ist kein Befund über ihre Qualität, sondern eine Eigenschaft des Bruchs: Bei einem kleinen Nenner erzeugt eine kleine Bewegung eine große Zahl.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Umgekehrt gilt dasselbe für Verluste – und dort mit einer Schieflage, die häufig übersehen wird: Ein Minus von 50 Prozent erfordert ein Plus von 100 Prozent, um wieder am Ausgangspunkt zu stehen. Auf- und Abstieg sind nicht symmetrisch.',
+        text: 'Eine einzelne Marke, einmal am Wochenende überschritten, macht noch keine Trendwende. Charttechnisch zählt meist erst der zweite oder dritte Test einer Marke als Bestätigung – und schon der Beitrag selbst formuliert es als offene Frage, nicht als Tatsache: Der nächste Test steht noch bevor.',
       },
       {
         type: 'heading',
         level: 2,
-        text: 'Was hier bewusst fehlt',
+        text: 'Der Termin, der die Antwort liefern könnte',
       },
       {
         type: 'paragraph',
-        text: 'Diese Ausgabe entstand ohne redaktionelle Recherche aus dem eigenen Datenbestand. Sie nennt deshalb Bewegungen und keine Begründungen: Aus Kursdaten geht hervor, dass sich etwas bewegt hat, nicht warum.',
+        text: 'Als möglichen nächsten Auslöser nennt die Quelle die US-Inflationsdaten, die für Mittwoch, den 12. August, erwartet werden. Konkrete Prognosewerte für diese Zahl liegen in den ausgewerteten Quellen nicht vor – nur der Hinweis, dass ein Ergebnis abseits der Erwartung dem Silberpreis in beide Richtungen Schwung geben könnte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Silber ist nicht einfach kleines Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der gleiche Zins-Mechanismus, der Gold zuletzt stützte, wirkt grundsätzlich auch bei Silber. Anders als Gold hat Silber aber einen großen industriellen Nachfrageanteil, unter anderem aus der Solarindustrie – ein Kommentar der Société Générale beschrieb dort erst am 7. August eher **schwächere** Nachfrage. Silber kann sich deshalb auch dann anders bewegen als Gold, wenn beide auf dieselbe Zinserwartung reagieren.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wer aus einem einzelnen Wochenschluss eine Handelsidee macht, verwechselt einen Hinweis mit einer Bestätigung. Der Mittwoch liefert den nächsten echten Test.',
       },
     ],
   },

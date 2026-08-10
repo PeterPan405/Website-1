@@ -5,106 +5,128 @@ import type { DailyEdition } from './types'
  *
  * Erzeugt von `scripts/nachrichten-erzeugen.ts` auf einem GitHub-Läufer aus
  * den Quellen, die `quellen-sammeln.yml` am selben Morgen abgerufen hat.
- * Quellenlage laut Kopf der Datei: Quellenlage 2026-08-10 02:28 UTC
+ * Quellenlage laut Kopf der Datei: Quellenlage 2026-08-10 03:19 UTC
  */
 export const edition: DailyEdition = {
   date: '2026-08-10',
   intro:
-    'Der 10.8.2026 in Zahlen aus dem eigenen Bestand. Was sich bewegt hat, wie breit es getragen war und was die Zahlen nicht verraten.',
+    'Ein Bewerbungsrekord bei Rheinmetall, drei Signale beim Gold, Saudi-Rabatt trifft träge China-Nachfrage: der 10. August in fünf Lehrstücken.',
   top: [
     {
-      headline: 'Leitindizes: Euro Stoxx 50 vorn, Nikkei 225 (Japan) hinten',
+      headline:
+        'Gold: CoT-Daten, ETF-Zuflüsse und ein Kommentar zeigen dieselbe Richtung',
       summary: [
-        'Zum letzten abgerufenen Schluss steht Euro Stoxx 50 bei +0,39 Prozent, Nikkei 225 (Japan) bei −0,93 Prozent.',
-        'Die Spanne zwischen beiden ist der eigentliche Befund des Tages, nicht der einzelne Indexstand.',
+        'Neue Terminmarkt-Daten vom 9. August zeigen laut Goldreporter zurückkehrende Spekulation, während der größte Gold-ETF bereits die dritte Woche in Folge wächst.',
+        'Ein Kommentar der Société Générale vom 7. August hält zusätzlich fest, dass der Preisanstieg über das hinausgeht, was sinkende US-Zinserwartungen allein erklären würden.',
       ],
-      category: 'Märkte',
+      category: 'Geldanlage',
       whyItMatters:
-        'Ein Indexstand allein ist keine Aussage über einen Markt: Performance- und Kursindizes rechnen verschieden, und ein Vergleich zwischen ihnen misst die Rechenweise mit.',
-      relatedTopics: ['boerse'],
-      relatedSymbols: ['euro-stoxx-50', 'nikkei-225'],
+        'Drei unabhängige Datenquellen, die in dieselbe Richtung zeigen, sind ein stärkeres Signal als eine einzelne Kursbewegung – auch wenn keine davon allein eine Ursache beweist.',
+      relatedTopics: ['rohstoffe'],
+      relatedSymbols: ['gold'],
       sources: [
         {
-          label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 10.8.2026, 02:27 Uhr UTC',
-          url: 'https://iminvests.de/maerkte',
+          label: 'Goldreporter, Analyse vom 9. August 2026',
+          url: 'https://www.goldreporter.de/',
+        },
+        {
+          label: 'onvista, Société-Générale-Kommentar vom 7. August 2026, 11:20 Uhr',
+          url: 'https://www.onvista.de/news/',
         },
       ],
     },
     {
-      headline: '566 Titel im Plus, 440 im Minus',
+      headline:
+        'Rheinmetall-Chef: 23.000 Bewerbungen im Monat, aber die Bundeswehr hinkt hinterher',
       summary: [
-        'Am 7.8.2026 lag der ungewichtete Schnitt über alle ausgewerteten Aktien bei +0,56 Prozent.',
-        'Die Bewegung war zu 56,3 Prozent getragen – so groß ist der Anteil der Titel, die mit dem Gesamtschnitt liefen.',
+        'Laut einem Ticker-Eintrag von finanzen.net vom 9. August gehen bei Rheinmetall monatlich 23.000 Bewerbungen ein, während die Rüstungsbranche insgesamt boomt.',
+        'Im selben Atemzug nennt die Meldung die Bundeswehr als Bremse – welche Aufträge konkret verzögert sind, liefert der Ticker nicht.',
       ],
       category: 'Märkte',
       whyItMatters:
-        'Ob ein Plus von allen Titeln getragen wird oder von drei schweren Werten, ist am Indexstand nicht ablesbar. Die Breite macht genau diesen Unterschied sichtbar.',
-      relatedTopics: ['wie-funktioniert-der-markt'],
-      relatedSymbols: ['dax'],
+        'Ein Bewerbungsrekord zeigt Erwartungen auf dem Arbeitsmarkt, keine bestätigten Aufträge – für die Bilanz zählen erst unterschriebene Verträge.',
+      relatedTopics: ['aktie'],
+      relatedSymbols: ['rheinmetall'],
       sources: [
         {
-          label: 'Eigene Marktbreite-Aufzeichnung, Stand 10.8.2026, 02:27 Uhr UTC',
-          url: 'https://iminvests.de/maerkte/tagesbild',
+          label: 'finanzen.net, News-Ticker vom 9. August 2026',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
     {
-      headline: 'Von +28,62 Prozent bis −19,03 Prozent: die Spanne des Tages',
+      headline: 'Bank of America: eigene Ökonomen rügen Fed-Chef Warsh',
       summary: [
-        'Über 1026 geführte Aktien führte WPP, am Ende stand Datadog.',
-        'Aus den Kursdaten geht die Bewegung hervor, nicht ihr Anlass.',
+        'Ein Ticker-Eintrag von finanzen.net vom 9. August meldet scharfe Kritik der volkswirtschaftlichen Abteilung von Bank of America am amtierenden Fed-Vorsitzenden Warsh.',
+        'Woran genau sich die Kritik entzündet, geht aus der kurzen Meldung nicht hervor.',
       ],
-      category: 'Märkte',
+      category: 'Geldpolitik',
       whyItMatters:
-        'Prozentzahlen ohne Bezugspunkt führen in die Irre: Bei einem niedrigen Kurs erzeugt eine kleine Bewegung eine große Zahl, und ein Minus wiegt schwerer als ein gleich großes Plus.',
-      relatedTopics: ['aktie', 'risiko-und-rendite'],
+        'Wenn die eigenen Ökonomen einer Großbank öffentlich vom Kurs der Notenbank abrücken, ist das ein Hinweis auf wachsende Uneinigkeit über die Geldpolitik – unabhängig davon, wer am Ende recht behält.',
+      relatedTopics: ['notenbanken-geldpolitik'],
       relatedSymbols: [],
       sources: [
         {
-          label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 10.8.2026, 02:27 Uhr UTC',
-          url: 'https://iminvests.de/maerkte',
+          label: 'finanzen.net, News-Ticker vom 9. August 2026',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
   ],
   further: [
     {
-      headline: 'Realzins bei rund -0,4 Prozentpunkten',
+      headline: 'SAP: 40 Prozent im Plus seit dem Mehrjahrestief',
       summary: [
-        'Leitzins 2,40 Prozent (Stand 5.8.2026) gegen eine deutsche Inflationsrate von 2,8 Prozent für Juli 2026.',
+        'Ein Ticker-Eintrag von finanzen.net vom 9. August beziffert die Erholung der SAP-Aktie seit ihrem Mehrjahrestief auf 40 Prozent.',
+        'Welchen Zeitraum die Erholung genau umfasst und wie Analysten den weiteren Verlauf einschätzen, führt die kurze Meldung nicht näher aus.',
       ],
-      category: 'Geldpolitik',
+      category: 'Märkte',
       whyItMatters:
-        'Der Kontostand steigt, die Kaufkraft kann trotzdem sinken. Erst die Differenz aus Zins und Inflation sagt, ob Erspartes tatsächlich mehr wert wird.',
-      relatedTopics: ['inflation', 'tagesgeld'],
-      relatedSymbols: [],
+        'Eine Erholungsrate ist nur mit ihrem Ausgangspunkt aussagekräftig: 40 Prozent von einem Tiefstand aus sind etwas anderes als 40 Prozent von einem Hoch aus.',
+      relatedTopics: ['aktie'],
+      relatedSymbols: ['sap'],
       sources: [
         {
-          label:
-            'Europäische Zentralbank über die eigene Zinsübersicht, Stand 5.8.2026, 09:05 Uhr UTC',
-          url: 'https://iminvests.de/maerkte/zinsen',
+          label: 'finanzen.net, News-Ticker vom 9. August 2026',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
     {
-      headline: 'Gold bei 4.385,00 Dollar, umgerechnet rund 3.799,17 Euro',
+      headline:
+        'Wallstreet-online-Kommentar: 2026 sollen plötzlich wieder Zinserhöhungen im Raum stehen',
       summary: [
-        'Der Euro notierte zuletzt bei 1,1542 Dollar (Stand 6.8.2026).',
-        'Der Euro-Preis eines Dollar-Rohstoffs bewegt sich mit zwei Größen zugleich.',
+        'Eine Redaktionsanalyse von wallstreet-online vom 9. August trägt den Titel „Noch 2026: Drei Zinserhöhungen stehen plötzlich im Raum“ – wenige Tage, nachdem ein schwacher US-Jobbericht die Märkte in die Gegenrichtung hatte reagieren lassen.',
+        'Auf welche neuen Daten oder Aussagen sich diese These stützt, geht aus der Überschrift allein nicht hervor.',
       ],
-      category: 'Geldanlage',
+      category: 'Geldpolitik',
       whyItMatters:
-        'Wer einen in Dollar notierten Rohstoff hält, hält immer auch eine Währungsposition. Ein steigender Euro-Preis muss nichts über den Rohstoff selbst aussagen.',
-      relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
-      relatedSymbols: ['gold', 'eur-usd'],
+        'Zwei gegensätzliche Lesarten derselben Woche zeigen, wie schnell sich Zinserwartungen drehen können – und warum eine einzelne Schlagzeile selten die ganze Geschichte ist.',
+      relatedTopics: ['notenbanken-geldpolitik'],
+      relatedSymbols: [],
       sources: [
         {
-          label: 'Eigene Kursübersicht, Yahoo-Tagesdaten, Stand 10.8.2026, 02:27 Uhr UTC',
-          url: 'https://iminvests.de/maerkte',
+          label: 'wallstreet-online Redaktion, 9. August 2026',
+          url: 'https://www.wallstreet-online.de/nachrichten',
         },
+      ],
+    },
+    {
+      headline:
+        'Daimler Truck meldet einen Gewinneinbruch – mitten in der Rekordwoche der Börsen',
+      summary: [
+        'Eine Übersichtsmeldung von finanzen.net vom 7. August nennt neben DAX-Rekorden und höher geschlossenen US-Börsen auch einen Gewinneinbruch bei Daimler Truck.',
+        'Zahlen zum Ausmaß des Rückgangs liefert die Kurzmeldung nicht; sie steht als Gegenpunkt neben den sonst freundlichen Nachrichten des Tages.',
+      ],
+      category: 'Märkte',
+      whyItMatters:
+        'Ein Gewinneinbruch bei einem einzelnen Industriewert erinnert daran, dass ein Rekord im Gesamtindex nicht automatisch heißt, dass es allen Unternehmen darin gut geht.',
+      relatedTopics: ['aktie'],
+      relatedSymbols: ['dax'],
+      sources: [
         {
-          label: 'Europäische Zentralbank, Referenzkurs vom 6.8.2026',
-          url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html',
+          label: 'finanzen.net, Übersicht „Heute im Fokus“ vom 7. August 2026',
+          url: 'https://www.finanzen.net/nachrichten/',
         },
       ],
     },
