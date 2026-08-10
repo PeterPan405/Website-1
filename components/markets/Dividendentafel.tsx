@@ -134,8 +134,14 @@ export function Dividendentafel({
         <div className="mt-6">
           <Callout variant="info" title="Nächster Abschlag: geschätzt, nicht angekündigt">
             <p>
-              Erwartet um den <strong>{formatDateShort(befund.naechsterErwartet)}</strong>
-              . Das ist aus dem bisherigen Muster gerechnet – zuletzt wurde am{' '}
+              {/*
+                „Erwartet am", nicht „erwartet um den" – dieselbe Umstellung wie
+                im Kalender, aus demselben Grund: Der Vorbehalt steht schon in
+                der Überschrift dieses Kastens und im Satz danach. Zweimal
+                dasselbe zu sagen verwischt nur das Datum.
+              */}
+              Erwartet am <strong>{formatDateShort(befund.naechsterErwartet)}</strong>.
+              Das ist aus dem bisherigen Muster gerechnet – zuletzt wurde am{' '}
               {formatDateShort(befund.letzte.date)} gezahlt, im Zyklus davor am{' '}
               {formatDateShort(befund.schaetzungBasis)}.
               {befund.streuungTage > 0 && (
