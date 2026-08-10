@@ -466,6 +466,82 @@ Paketbau gegen denselben Server durchlief.
 kein Abwägen, sondern Wegsehen – und dann ist der Abschnitt darüber wieder
 dran.
 
+# Ein Kurs ist so alt wie die Stelle, die ihn anzeigt
+
+Nicht so alt wie der Abruf. Das klingt selbstverständlich und war es nicht:
+Am 10. August 2026 meldete der Betreiber um 17:48, dass Brent auf dem Stand
+von 17:02 stehe und EUR/USD auf dem Schlusskurs vom 6. August. Beides stimmte,
+und beides hatte eine eigene Ursache.
+
+**Die Zusage lautet seither: höchstens sechs Minuten.** Nicht „alle zwei
+Stunden“, nicht „einmal nach Börsenschluss“.
+
+## Drei Stellen, drei Alter – so war es vorher
+
+    kurse-aktuell.json      15:43 UTC   der Abruf selbst, aktuell
+    /kurse-live.json        15:43 UTC   liegt auf dem Server, wird ersetzt
+    gebautes HTML           letzter Bau bis zu zwei Stunden alt
+
+Gelesen wurde die mittlere Datei von **einer** Stelle: der Kopfzeile einer
+Instrumentseite (`KursLive`). Die Marktübersicht mit ihren vierzig Kacheln las
+sie nicht – dort stand die gebaute Zahl. Wer also eine Kachel ansah, sah den
+Stand des letzten Baus, während zwei Klicks weiter derselbe Kurs frisch war.
+
+Behoben über `lib/kurse-live-speicher.ts`: **ein** Abruf je Seite, alle
+Kacheln hören zu (`components/markets/Kachelzahlen.tsx`). Wer eine neue Stelle
+baut, die einen Kurs zeigt, hängt sie an diesen Speicher – nicht an ein
+eigenes `fetch`.
+
+## Was der Fünf-Minuten-Lauf holt, bestimmt `lib/leitwerte.ts`
+
+Und zwar **alles, was als Kachel auf der Übersicht steht** – 46 Werte:
+Indizes, ETFs, Rohstoffe, Krypto, Devisen. Vorher waren es dreizehn, ausgewählt
+nach „was am meisten gesehen wird“. Das Ergebnis war auf einer Seite
+nebeneinander sichtbar: S&P 500 von 17:43, Kupfer von 17:02 – bei gleich
+aussehenden Kacheln.
+
+Die Sorge hinter der kurzen Liste hat sich erledigt. Teuer war nie der Abruf,
+sondern der Neubau: Der Fünf-Minuten-Lauf baut nicht, er legt
+`kurse-live.json` auf den Server. Dreizehn oder sechsundvierzig Kurse ändern
+daran Sekunden.
+
+Die Einzelaktien bleiben beim Zwei-Stunden-Takt. Über tausend Titel alle fünf
+Minuten wären 288.000 Abrufe am Tag für Kacheln, die niemand ansieht; wer eine
+bestimmte Aktie sucht, landet auf ihrer Seite, und die ist live.
+
+## Die EZB ist eine Tagesquelle – und wurde zweimal darum gebracht
+
+EUR/USD stand am Montagnachmittag auf dem Kurs von Donnerstag. Zwei Fehler,
+beide in `scripts/kurse-abrufen.ts`, beide mit derselben Wurzel: Die
+Sonderbehandlung für „liefert keinen laufenden Kurs“ war zu breit geraten.
+
+1. **Übersprungen.** `if (NUR_PREIS && provider === 'ecb') continue` – und
+   `NUR_PREIS` trägt auch der Zwei-Stunden-Lauf. Damit blieb als einzige
+   Gelegenheit der volle Lauf um 21:47 an Werktagen. Jetzt greift der
+   Riegel nur noch im Fünf-Minuten-Lauf (`NUR_LEITWERTE`), wo er richtig ist.
+2. **Verworfen.** `ohneHeute()` entfernt den heutigen Punkt, weil Yahoo den
+   laufenden Tag als unfertige Kerze mitliefert. Ein EZB-Referenzkurs ist
+   dagegen fertig, sobald er gegen 16:00 Uhr feststeht. Ihn wegzuwerfen hieß,
+   den aktuellsten vorhandenen Wert zu verwerfen.
+
+Zusammen: freitags 21:47 wird die Reihe bis Donnerstag geschrieben, Samstag und
+Sonntag läuft nichts, und der Montag kommt erst um 21:47. Vier Tage.
+
+**Die Lehre ist allgemeiner als der Fall.** Eine Ausnahme für eine Quelle
+gehört an die Bedingung, die sie meint – nicht an die nächstgelegene, die
+gerade zur Hand ist.
+
+## Ein Rohstoffkurs bei einer freien Quelle ist verzögert
+
+Nach all dem bleibt ein Rest, und der lässt sich nicht wegprogrammieren: Yahoo
+liefert Rohstoffe und manche Indizes mit Verzögerung. Am 10. August meldete
+der Abruf um 15:43 UTC für Brent einen Stand von 15:33 – zehn Minuten alt an
+der Quelle, nicht bei uns.
+
+Das ist der Preis einer Quelle ohne Rechnung und gehört nicht wegdiskutiert,
+sondern ausgewiesen: Die Stand-Zeile nennt den Zeitstempel der Quelle, nicht
+den des Abrufs.
+
 ## Geplante Läufe sind eine Bitte, keine Zusage
 
 **GitHub verwirft `schedule`-Läufe, wenn zu viele gleichzeitig anstehen** – ohne

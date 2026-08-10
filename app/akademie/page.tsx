@@ -44,27 +44,17 @@ export default function AkademiePage() {
 
       <div className="fk-container py-12 sm:py-16">
         {/*
-          Die Einordnung steht vor den Bereichen und nicht darunter.
+          Hier stand ein Hinweiskasten über die drei Einstufungen – Rechenweg,
+          Beobachtung, Auslegung – und darüber, dass nichts davon eine
+          Anlageempfehlung ist.
 
-          Wer eine Seite über technische Analyse aufschlägt, soll wissen, woran
-          er ist, bevor er die erste Lektion anklickt – nicht danach.
+          Er ist weg. Die Einstufung steht an jeder Lektion, dort wo sie
+          gebraucht wird; sie vorab zu erklären hieß, den Leser auf etwas
+          vorzubereiten, das ihm zwei Klicks später ohnehin begegnet und sich
+          dann von selbst versteht. „Jede mit benannten Grenzen" steht als
+          drittes Merkmal im Kopf darüber, und der Haftungshinweis steht in der
+          Fußzeile jeder Seite.
         */}
-        <div className="max-w-3xl">
-          <Callout variant="info" title="Was hier erklärt wird und was nicht">
-            <p>
-              Die hier behandelten Verfahren sind in der Praxis verbreitet und in ihrer
-              Aussagekraft sehr unterschiedlich gut belegt. Jede Lektion trägt deshalb
-              eine Einstufung: <strong>Rechenweg</strong> für das, was schlicht Arithmetik
-              ist, <strong>Beobachtung</strong> für Muster, deren Vorhersagekraft
-              umstritten ist, und <strong>Auslegung</strong> für alles, bei dem zwei
-              Fachleute zu verschiedenen Ergebnissen kommen können.
-            </p>
-            <p>
-              Nichts davon ist eine Anlageempfehlung. Die Akademie erklärt Verfahren – sie
-              sagt nicht, was zu kaufen ist.
-            </p>
-          </Callout>
-        </div>
 
         {/*
           Die ganze Kachel ist der Verweis, nicht nur die Zeile darunter.

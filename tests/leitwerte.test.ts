@@ -25,14 +25,22 @@ test('keine Doppelung', () => {
 
 test('die Liste bleibt kurz genug, dass die Aufteilung etwas bringt', () => {
   /*
-    Die Aufteilung in Stunden- und Zweistundentakt lohnt nur, solange der
-    Stundenlauf deutlich kleiner ist als der volle. Bei tausend Instrumenten
-    im Bestand ist zwanzig die Grenze, ab der man auch gleich alles holen
-    könnte.
+    Die Aufteilung in Fünf-Minuten- und Zwei-Stunden-Takt lohnt nur, solange
+    der häufige Lauf deutlich kleiner ist als der volle.
+
+    Die Grenze lag bis zum 10. August 2026 bei zwanzig – aus der Zeit, als
+    jeder Kursabruf einen Neubau auslöste und jeder zusätzliche Wert Bauzeit
+    kostete. Das ist nicht mehr so: Der häufige Lauf baut nicht, er legt
+    `kurse-live.json` auf den Server. Was ihn begrenzt, ist allein die Zahl
+    der Abrufe.
+
+    Der volle Bestand liegt über tausend. Hundert ist damit weit genug weg,
+    um die Aufteilung sinnvoll zu halten, und weit genug oben, um alle
+    Kacheln der Übersicht aufzunehmen – darum geht es.
   */
   assert.ok(
-    LEITWERTE.length <= 20,
-    `LEITWERTE hat ${LEITWERTE.length} Einträge – über zwanzig ist der Unterschied zum vollen Abruf keiner mehr.`
+    LEITWERTE.length <= 100,
+    `LEITWERTE hat ${LEITWERTE.length} Einträge – über hundert ist der Unterschied zum vollen Abruf keiner mehr.`
   )
 })
 

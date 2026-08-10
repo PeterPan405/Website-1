@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
 import { Icon } from '@/components/ui/Icon'
 import {
@@ -12,6 +12,12 @@ import {
   formatPercentSigned,
 } from '@/lib/format'
 import { cn } from '@/lib/cn'
+import {
+  abonniereKurse,
+  juengerer,
+  KEINE_KURSE,
+  leseKurse,
+} from '@/lib/kurse-live-speicher'
 
 /**
  * Der Kurs in der Kopfzeile – gebaut ausgeliefert, im Browser aufgefrischt.
@@ -38,11 +44,12 @@ import { cn } from '@/lib/cn'
  * Deshalb baut die Website weiterhin täglich – nur eben zweimal statt
  * sechzehnmal.
  *
- * ## Warum nur bei sichtbarer Seite nachgefragt wird
+ * ## Der Abruf liegt nicht hier
  *
- * Ein Abruf je Minute über zwanzig offene Tabs hinweg ist Verkehr ohne
- * Gegenwert. `document.hidden` beendet das; beim Zurückkehren wird sofort
- * einmal gefragt, damit niemand auf den nächsten Takt warten muss.
+ * Er steht in `lib/kurse-live-speicher.ts` und gilt für die ganze Seite. Bis
+ * zum 10. August 2026 holte diese Komponente die Datei selbst – solange sie
+ * die einzige Stelle war, die sie las, war das dasselbe. Seit auch jede
+ * Kurskachel sie liest, wäre es ein Abruf je Kachel.
  */
 interface Props {
   symbol: string
@@ -59,13 +66,6 @@ interface Props {
   euroFaktor: number | null
 }
 
-interface LiveDatei {
-  latest?: Record<string, { value: number; at: string }>
-}
-
-/** Wie oft nachgefragt wird, solange die Seite sichtbar ist. */
-const TAKT_MS = 60_000
-
 export function KursLive({
   symbol,
   unit,
@@ -77,39 +77,8 @@ export function KursLive({
   hatQuelle,
   euroFaktor,
 }: Props) {
-  const [kurs, setKurs] = useState({ value, asOf, live: false })
-
-  useEffect(() => {
-    let abgebrochen = false
-
-    async function holen() {
-      if (document.hidden) return
-      try {
-        const antwort = await fetch('/kurse-live.json', { cache: 'no-store' })
-        if (!antwort.ok) return
-        const datei = (await antwort.json()) as LiveDatei
-        const eintrag = datei.latest?.[symbol]
-        if (abgebrochen || !eintrag) return
-
-        /* Nur übernehmen, was neuer ist. Eine ältere Datei – etwa aus einem
-           Zwischenspeicher – darf den gebauten Stand nicht zurückdrehen. */
-        if (new Date(eintrag.at) <= new Date(kurs.asOf)) return
-        setKurs({ value: eintrag.value, asOf: eintrag.at, live: true })
-      } catch {
-        /* Kein Netz, keine Datei, kaputtes JSON: Der gebaute Stand bleibt
-           stehen. Ein Kurs von vorhin ist besser als eine Fehlermeldung. */
-      }
-    }
-
-    void holen()
-    const takt = window.setInterval(holen, TAKT_MS)
-    document.addEventListener('visibilitychange', holen)
-    return () => {
-      abgebrochen = true
-      window.clearInterval(takt)
-      document.removeEventListener('visibilitychange', holen)
-    }
-  }, [symbol, kurs.asOf])
+  const kurse = useSyncExternalStore(abonniereKurse, leseKurse, () => KEINE_KURSE)
+  const kurs = juengerer({ value, at: asOf }, kurse[symbol])
 
   const veraenderung = kurs.value - basis
   const prozent = basis === 0 ? 0 : veraenderung / basis
@@ -139,8 +108,8 @@ export function KursLive({
       {/* Ändert sich bei jedem Abruf – siehe scripts/referenzbilder.mjs. */}
       <span data-fliesst="">
         {intraday || !hatQuelle || kurs.live
-          ? `Stand ${formatDateTime(kurs.asOf)}`
-          : `Schluss ${formatDate(kurs.asOf)}`}
+          ? `Stand ${formatDateTime(kurs.at)}`
+          : `Schluss ${formatDate(kurs.at)}`}
       </span>
     </>
   )
