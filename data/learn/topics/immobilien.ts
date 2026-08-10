@@ -123,7 +123,7 @@ export const immobilien: LearnTopic = {
         'Welche Nebenkosten beim Kauf anfallen, wie sich Brutto- von Nettomietrendite unterscheidet und welcher Aufwand selten erwähnt wird.',
       title: 'Von der beworbenen zur tatsächlichen Rendite',
       lead: 'Die Nebenkosten, die laufenden Kosten und der Aufwand – drei Posten, die im Exposé nicht stehen.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -223,6 +223,52 @@ export const immobilien: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die drei Eigenheiten, die eine Immobilie ausmachen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Warum kaufen trotzdem so viele? Weil eine Immobilie drei Dinge kann, die ein Wertpapierdepot nicht kann – und weil dieselben drei Dinge zugleich ihre Risiken sind.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Sie lässt sich finanzieren.** Für 400.000 Euro Wohnung braucht es 80.000 Euro Eigenkapital; für 400.000 Euro Aktien braucht es 400.000 Euro. Der Kredit vervielfacht die Wirkung des Eigenkapitals – nach oben und nach unten gleichermaßen. Steigt der Wert um zehn Prozent, verdoppelt sich das Eigenkapital fast; fällt er um zwanzig, ist es weg.',
+            '**Sie ist ein Klumpen.** Eine Wohnung ist ein Objekt, in einer Straße, in einer Stadt, mit einem Mieter. Das ist das genaue Gegenteil von Streuung – und es ist bei den meisten Käufern zugleich der weitaus größte Vermögensposten.',
+            '**Sie ist unbeweglich.** Verkaufen dauert Monate und kostet Makler, Notar und Nerven. Ein Teilverkauf ist unmöglich: Man kann nicht ein Zimmer verkaufen, weil das Auto kaputt ist.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Die Unbeweglichkeit ist nicht nur ein Nachteil',
+          items: [
+            'Wer nicht verkaufen kann, verkauft auch nicht in Panik. Der häufigste Fehler am Aktienmarkt ist bei einer Immobilie schlicht nicht durchführbar.',
+            'Dazu kommt der Zwang zur Tilgung: Die monatliche Rate ist Sparen, ob man will oder nicht. Für viele ist das der eigentliche Grund, warum am Ende Vermögen dasteht.',
+            'Und es gibt keinen täglichen Kurs. Was man nicht sieht, regt einen nicht auf – die Wohnung schwankt genauso, nur ohne Anzeige.',
+            'Das sind echte Vorteile. Sie sind nur keine Rendite, sondern Verhaltenshilfen – und man sollte wissen, wofür man zahlt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Immobilien im Depot statt im Grundbuch',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wer an Immobilien beteiligt sein will, ohne eine zu besitzen, hat zwei Wege – und beide sind etwas anderes als eine eigene Wohnung.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Offene Immobilienfonds** halten Bürogebäude, Einkaufszentren und Wohnanlagen. Sie schwanken wenig, weil ihre Bewertung auf Gutachten beruht und nicht auf einem Markt – was Ruhe erzeugt und zugleich bedeutet, dass Preisänderungen erst mit Verzögerung sichtbar werden. Es gelten 24 Monate Mindesthaltedauer und 12 Monate Kündigungsfrist.',
+            '**Immobilienaktien und REITs** sind börsennotierte Gesellschaften, die Immobilien besitzen und vermieten. Sie sind täglich handelbar und schwanken deshalb wie Aktien – oft stärker als der Gesamtmarkt, weil sie hoch verschuldet sind und auf Zinsänderungen empfindlich reagieren.',
+            'Beide streuen über viele Objekte und Standorte. Beide geben dafür das ab, was viele an der eigenen Wohnung schätzen: die Greifbarkeit und die Kontrolle.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -232,6 +278,9 @@ export const immobilien: LearnTopic = {
             'Die Bruttomietrendite ist ein Startwert; netto bleibt regelmäßig weniger als die Hälfte.',
             'Die Instandhaltungsrücklage fehlt in den meisten Rechnungen und fällt in Sprüngen an.',
             'Der eigene Zeitaufwand ist eine echte Kostenposition.',
+            'Der Kredit wirkt in beide Richtungen – er ist der Grund für hohe Gewinne und für Totalverluste.',
+            'Ein Objekt ist ein Klumpen, und meist der größte Posten des Vermögens.',
+            'Die Unbeweglichkeit schützt vor Panikverkäufen. Das ist ein echter Vorteil, aber keine Rendite.',
           ],
         },
       ],

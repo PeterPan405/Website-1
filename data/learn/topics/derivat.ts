@@ -91,7 +91,7 @@ export const derivat: LearnTopic = {
         'Was ein Derivat ist, wie Absicherung und Spekulation zusammenhängen, wie ein Hebel entsteht und warum Verluste das eingesetzte Geld übersteigen können.',
       title: 'Warum es Verträge auf Kurse gibt',
       lead: 'Die Grundidee, der Ursprung im Warenhandel – und was ein Hebel praktisch bedeutet.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -192,6 +192,75 @@ export const derivat: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die vier Grundformen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Hinter den vielen Produktnamen stecken vier Bauformen. Wer sie unterscheiden kann, ordnet jedes Angebot in einer Minute ein – der entscheidende Unterschied liegt darin, ob man **darf** oder **muss**.',
+        },
+        {
+          type: 'table',
+          caption: 'Recht oder Pflicht, und wer wem gegenübersteht',
+          head: ['Form', 'Kern', 'Wichtigste Eigenschaft'],
+          rows: [
+            [
+              'Termingeschäft (Future)',
+              'Beide Seiten **müssen** zum vereinbarten Preis erfüllen',
+              'Symmetrisch – Gewinn und Verlust unbegrenzt; börsengehandelt und standardisiert',
+            ],
+            [
+              'Option',
+              'Der Käufer **darf**, der Verkäufer **muss**',
+              'Asymmetrisch: Der Käufer verliert höchstens die Prämie, der Verkäufer theoretisch unbegrenzt',
+            ],
+            [
+              'Swap',
+              'Zwei Parteien tauschen laufende Zahlungen, etwa fest gegen variabel',
+              'Zwischen Banken und Unternehmen üblich, für Privatanleger ohne Bedeutung',
+            ],
+            [
+              'Zertifikat',
+              'Eine Bank verpackt eine Auszahlungsformel in ein Wertpapier',
+              'Rechtlich eine Schuldverschreibung – geht die Bank unter, ist es wertlos',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die letzte Zeile betrifft die meisten Privatanleger',
+          items: [
+            'Zertifikate, Optionsscheine und Knock-outs sind keine eigenen Anlagen, sondern **Versprechen einer Bank**. Der Basiswert bestimmt die Höhe der Zahlung, die Bank bestimmt, ob sie kommt.',
+            'Das ist der Unterschied zum Fonds: Ein Fonds ist Sondervermögen und übersteht die Pleite seines Anbieters. Ein Zertifikat nicht.',
+            'Dazu kommt die Preisstellung. Bei den meisten dieser Papiere gibt es keinen Markt mit vielen Teilnehmern – der Kurs kommt von der ausgebenden Bank selbst.',
+            'Das macht sie nicht automatisch schlecht. Es heißt nur, dass zwei Risiken zu prüfen sind statt einem, und dass die Gegenseite den Preis kennt und man selbst nicht.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wo Derivate im Alltag vorkommen, ohne so zu heißen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Man begegnet ihnen häufiger, als es scheint – meist auf der nützlichen Seite und ohne dass jemand das Wort benutzt.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der feste Zins für zehn Jahre** in einem Immobilienkredit ist genau das, was der Landwirt macht: Der Preis für die Zukunft wird heute festgelegt. Die Bank sichert das Risiko dahinter ihrerseits mit Zinsderivaten ab.',
+            '**Der währungsgesicherte ETF** hält laufend Devisentermingeschäfte. Sie sind der Grund, warum die Absicherung die Zinsdifferenz kostet.',
+            '**Die Fluggesellschaft, die günstiger fliegt als die Konkurrenz,** hat oft nur ihren Kerosinbedarf früher abgesichert. Dasselbe gilt für Energieversorger und Lebensmittelhersteller.',
+            '**Auch eine Versicherung ist im Kern eine Option:** Man zahlt eine Prämie und hat dafür das Recht, im Schadensfall eine Zahlung zu verlangen.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Das ordnet auch den Ruf ein. Derivate sind ein Werkzeug zur Verschiebung von Risiko, und in der Wirtschaft übernehmen sie diese Aufgabe unauffällig und nützlich. Was gefährlich ist, ist nicht das Werkzeug, sondern seine Verwendung mit hohem Hebel durch jemanden, der das Risiko gar nicht loswerden, sondern aufnehmen will.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -200,6 +269,8 @@ export const derivat: LearnTopic = {
             'Ein Derivat leitet seinen Wert von einem Basiswert ab und hat selbst keinen.',
             'Absicherung und Spekulation benutzen denselben Vertrag – der Unterschied liegt darin, ob man den Basiswert besitzt.',
             'Der Hebel ergibt sich aus der Sicherheitsleistung; bei Hebel 20 kostet eine Bewegung von 5 Prozent den gesamten Einsatz.',
+            'Vier Bauformen: Future und Swap verpflichten beide Seiten, die Option nur den Verkäufer, das Zertifikat ist eine Bankschuld.',
+            'Zertifikate und Optionsscheine tragen zwei Risiken: den Basiswert und die ausgebende Bank.',
             'Ohne konkretes Absicherungsbedürfnis gibt es für Privatanleger keinen Grund, Derivate einzusetzen.',
           ],
         },
