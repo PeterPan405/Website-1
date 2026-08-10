@@ -77,7 +77,7 @@ export const bitcoinKrypto: LearnTopic = {
         'Was Bitcoin ist, wie das Halving die Menge begrenzt, was ein privater Schlüssel bedeutet und welche Risiken tatsächlich zählen.',
       title: 'Was Bitcoin ist – und was nicht',
       lead: 'Das Kassenbuch ohne Bank, die begrenzte Menge, der private Schlüssel – und das eine Risiko, auf das es tatsächlich ankommt.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -184,6 +184,80 @@ export const bitcoinKrypto: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was „Krypto“ alles meint',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Begriff fasst sehr verschiedene Dinge zusammen, und die Unterschiede sind größer als die Gemeinsamkeiten. Vier Gruppen genügen zur Orientierung:',
+        },
+        {
+          type: 'table',
+          caption: 'Vier Gruppen, vier Versprechen',
+          head: ['Gruppe', 'Idee', 'Worauf zu achten ist'],
+          rows: [
+            [
+              'Bitcoin',
+              'Knappes digitales Gut mit festem Emissionsplan',
+              'Kein Zahlungsstrom, kein Ertrag – der Preis ist reines Angebot und Nachfrage',
+            ],
+            [
+              'Plattformen wie Ethereum',
+              'Ein Netz, auf dem Programme laufen; die Münze bezahlt die Rechenzeit',
+              'Näher an einem Nutzungswert – dafür Konkurrenz durch andere Netze',
+            ],
+            [
+              'Stablecoins',
+              'An eine Währung gekoppelt, meist an den Dollar',
+              'Die Kopplung ist ein Versprechen des Herausgebers, kein Naturgesetz. Entscheidend ist, was tatsächlich als Deckung hinterlegt ist',
+            ],
+            [
+              'Alles Übrige',
+              'Tausende Projekte, Token zu Anwendungen, Sammelstücke',
+              'Der weitaus größte Teil ist verschwunden. Hier findet das meiste statt, was diesem Feld seinen Ruf eingebracht hat',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die Muster, an denen man Betrug erkennt',
+          items: [
+            '**Zugesagte Erträge.** „Acht Prozent auf dein Krypto-Guthaben" gibt es nicht risikofrei. Wer sie zusagt, verleiht dein Geld weiter oder zahlt aus Einlagen neuer Kunden.',
+            '**Kontakt über Messenger oder Datingportale.** Wochenlanger freundlicher Austausch, dann eine Anlagegelegenheit, dann eine Plattform, die es nur für dich gibt. Die anfänglichen Auszahlungen sind Teil der Masche.',
+            '**Auszahlung nur gegen Vorkosten.** „Erst Steuer überweisen, dann kommt das Geld." Ab hier ist alles Weitere ebenfalls verloren.',
+            '**Prominente in der Werbung.** Fast durchweg gefälscht. Sie kosten den Betrügern nichts und erzeugen genau das Vertrauen, das die Prüfung ersetzt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Steuerlich gelten eigene Regeln',
+        },
+        {
+          type: 'paragraph',
+          text: 'Kryptowerte sind in Deutschland keine Kapitalanlage im Sinne der Abgeltungsteuer, sondern **andere Wirtschaftsgüter**. Daraus folgen zwei Unterschiede, die man kennen muss, bevor man handelt.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Nach einem Jahr Haltedauer ist ein Gewinn steuerfrei.** Das gilt bei Aktien und Fonds seit langem nicht mehr – hier schon. Der Stichtag zählt taggenau ab Anschaffung.',
+            '**Innerhalb eines Jahres gilt der persönliche Steuersatz**, nicht die pauschalen 25 Prozent. Bei höherem Einkommen kann das deutlich mehr sein. Es gibt eine Freigrenze für solche privaten Veräußerungsgeschäfte – wird sie überschritten, ist der **gesamte** Gewinn steuerpflichtig, nicht nur der Teil darüber.',
+            '**Niemand führt die Steuer für dich ab.** Anders als beim deutschen Broker gibt es keine automatische Abgeltung. Jeder Tausch – auch Coin gegen Coin – ist ein steuerlich relevanter Vorgang und muss selbst erklärt werden.',
+            'Wer viel handelt, braucht deshalb eine lückenlose Aufzeichnung aller Käufe und Verkäufe. Das ist der praktische Grund, warum aus einem Nebenbei-Experiment schnell Buchhaltung wird.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Allgemeine Information, keine Steuerberatung',
+          items: [
+            'Die Regeln haben sich in diesem Feld mehrfach geändert und werden es wieder tun. Was hier steht, ist die Systematik zum Zeitpunkt der Erstellung.',
+            'Vor einer Entscheidung gehört der aktuelle Stand geprüft – und bei größeren Beträgen der Gang zu jemandem, der dafür haftet.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -192,6 +266,9 @@ export const bitcoinKrypto: LearnTopic = {
             'Die Mengenbegrenzung folgt aus dem Halving-Schema – Knappheit allein erzeugt aber keinen Wert.',
             'Wer den privaten Schlüssel hat, verfügt; bei einer Plattform hat man nur eine Forderung.',
             'Ein verlorener Schlüssel bedeutet endgültigen Verlust ohne jede Wiederherstellung.',
+            '„Krypto" meint vier sehr verschiedene Dinge – der weitaus größte Teil der Projekte ist verschwunden.',
+            'Zugesagte Erträge, Messenger-Kontakt und Vorkosten sind die drei verlässlichen Betrugsmerkmale.',
+            'Steuerlich gelten eigene Regeln: ein Jahr Haltedauer, persönlicher Satz davor, und niemand führt ab.',
             'Es gibt keinen Bewertungsanker und keinen Anlegerschutz – daraus folgt die Größe der Position.',
           ],
         },

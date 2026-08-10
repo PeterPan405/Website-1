@@ -204,30 +204,6 @@ export const schuldverschreibung: LearnTopic = {
         {
           type: 'heading',
           level: 2,
-          text: 'Wie das Risiko benannt wird: Ratings',
-        },
-        {
-          type: 'paragraph',
-          text: 'Ob ein Schuldner zahlt, kann niemand wissen. Man kann es aber einschätzen, und dafür gibt es Agenturen, die Emittenten mit Buchstaben bewerten. Die Skala läuft von AAA – höchste Bonität – über AA, A und BBB bis hinunter zu D für den bereits eingetretenen Ausfall. Die genaue Schreibweise unterscheidet sich zwischen den Agenturen, die Reihenfolge ist überall dieselbe.',
-        },
-        {
-          type: 'callout',
-          variant: 'info',
-          title: 'Die eine Grenze, die man kennen muss',
-          items: [
-            'Sie verläuft zwischen **BBB− und BB+**. Alles darüber heißt **Investment Grade**, alles darunter **Hochzins** oder umgangssprachlich Ramsch.',
-            'Diese Grenze ist keine Feinheit: Viele institutionelle Anleger – Versicherungen, Pensionskassen – dürfen unterhalb davon gar nicht kaufen.',
-            'Deshalb hat eine Herabstufung über diese Grenze eine Wirkung, die weit über die veränderte Einschätzung hinausgeht: Es entsteht Verkaufsdruck von Anlegern, die nicht mehr halten dürfen.',
-            'Für Privatanleger folgt daraus die schlichte Faustregel: Unterhalb von Investment Grade ist eine einzelne Anleihe kein Baustein für den sicheren Teil des Depots. Sie verhält sich eher wie eine Aktie.',
-          ],
-        },
-        {
-          type: 'paragraph',
-          text: 'Wichtig ist zugleich, was ein Rating **nicht** ist: keine Empfehlung, keine Garantie und keine Aussage über den Kurs. Es ist die Meinung einer Agentur zur Ausfallwahrscheinlichkeit – erstellt im Auftrag und bezahlt vom bewerteten Unternehmen. In der Finanzkrise 2008 trugen Papiere Bestnoten, die kurz darauf ausfielen. Ein Rating ist ein Anhaltspunkt, kein Ersatz für die Frage, wem man da eigentlich Geld leiht.',
-        },
-        {
-          type: 'heading',
-          level: 2,
           text: 'Wofür Anleihen im Depot gut sind',
         },
         {
@@ -265,7 +241,6 @@ export const schuldverschreibung: LearnTopic = {
             'Gläubiger stehen vor Aktionären, aber hinter besicherten Gläubigern.',
             'Ein hoher Kupon ist der Preis für ein Risiko, kein Sonderangebot.',
             'Zertifikate sind Schuldverschreibungen der ausgebenden Bank – Fonds sind Sondervermögen.',
-            'Die Ratinggrenze verläuft zwischen BBB− und BB+; darunter verhält sich ein Papier eher wie eine Aktie.',
             'Anleihen liefern einen bekannten Betrag zu einem bekannten Termin – dafür sind sie da, nicht für Rendite.',
             'Die Laufzeit entscheidet über die Schwankung. 2022 traf das die langen, nicht die schlechten.',
           ],

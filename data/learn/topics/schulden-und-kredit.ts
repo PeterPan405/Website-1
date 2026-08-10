@@ -111,7 +111,7 @@ export const schuldenUndKredit: LearnTopic = {
         'Welche Kreditarten es gibt, was der Effektivzins bedeutet, warum der Dispo so teuer ist und wie eine Rate sich aus Zins und Tilgung zusammensetzt.',
       title: 'Was ein Kredit tatsächlich kostet',
       lead: 'Die Kreditarten, die Zusammensetzung einer Rate – und die einzige Zahl, mit der sich Angebote vergleichen lassen.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -232,6 +232,38 @@ export const schuldenUndKredit: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Erst tilgen, dann anlegen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Diese Reihenfolge gilt für den Einstieg ohne Ausnahme, und der Grund ist eine Zahl: Eine getilgte Schuld bringt **garantiert** den Kreditzins. Eine Anlage bringt **vielleicht** mehr. Bei zweistelligem Dispozins oder einem Ratenkredit im mittleren einstelligen Bereich ist die Sache damit entschieden – diese Rendite bietet keine Anlage, und schon gar nicht sicher.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Ausnahme gibt es, und sie betrifft nur einen Fall: eine laufende Immobilienfinanzierung mit niedrigem Zins. Dort ist beides vertretbar. Wie man diesen Vergleich sauber aufstellt – nach Steuern und mit dem Risiko auf beiden Seiten –, steht in der Stufe „Profi“; auf der Einstiegsstufe genügt die einfache Regel. Und in jedem Fall zuerst der Notgroschen: Wer alles in die Tilgung steckt und bei der nächsten Autoreparatur wieder im Dispo landet, hat teuer umgeschichtet.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wenn es eng wird',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wer eine Rate nicht mehr bedienen kann, macht fast immer denselben Fehler: warten und hoffen. Beides verschlechtert die Lage, denn Mahnkosten, Verzugszinsen und ein Eintrag bei der Auskunftei kommen zu dem Betrag hinzu, der ohnehin nicht da war.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Früh mit der Bank sprechen.** Eine Ratenstundung oder eine gestreckte Laufzeit ist verhandelbar, solange noch gezahlt wird – nach der Kündigung des Kredits nicht mehr. Banken haben kein Interesse an einem Ausfall.',
+            '**Reihenfolge festlegen.** Zuerst bedient wird, was das Dach über dem Kopf und die Arbeitsfähigkeit sichert: Miete, Strom, Fahrtkosten. Danach das Teuerste. Konsumschulden stehen hinten.',
+            '**Kostenlose Schuldnerberatung nutzen.** Sie ist über Verbraucherzentralen, Wohlfahrtsverbände und Kommunen erreichbar, kostet nichts und verhandelt regelmäßig Vergleiche, die Einzelne nicht erreichen.',
+            '**Und Angebote meiden, die genau hier ansetzen.** „Kredit ohne Schufa", Vorkostenforderungen und teure Umschuldungsvermittlung richten sich an Menschen in dieser Lage. Vorkosten sind ein Ausschlusskriterium: Für die Vermittlung eines Kredits darf im Voraus nichts verlangt werden.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -241,6 +273,8 @@ export const schuldenUndKredit: LearnTopic = {
             'Am Anfang geht der größere Teil der Rate an den Zins, nicht an die Schuld.',
             'Eine niedrigere Rate senkt nicht die Kosten, sie erhöht sie – über die längere Laufzeit.',
             'Vergleichbar ist nur der Effektivzins, und auch der nicht, wenn eine Restschuldversicherung danebensteht.',
+            'Tilgen bringt den Kreditzins garantiert. Garantiert schlägt vielleicht bei gleichem Satz.',
+            'Wird es eng: früh mit der Bank sprechen, Schuldnerberatung ist kostenlos, Vorkosten sind ein Ausschlusskriterium.',
           ],
         },
       ],

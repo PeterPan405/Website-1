@@ -46,7 +46,7 @@ export const rohstoffe: LearnTopic = {
         'Was Rohstoffe als Anlage ausmacht, warum Gold keine Zinsen zahlt und worin sich Silber davon unterscheidet – verständlich erklärt für den Einstieg.',
       title: 'Rohstoffe – die Grundlagen',
       lead: 'Warum ein Goldbarren etwas grundsätzlich anderes ist als eine Aktie, und was daraus folgt.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -189,6 +189,65 @@ export const rohstoffe: LearnTopic = {
           text: 'Auf diese Frage gibt es keine allgemeingültige Antwort, und wer eine nennt, verkauft meist etwas. Was sich sagen lässt: Rohstoffe sind eine **Beimischung**, kein Fundament. Ein Anteil im niedrigen einstelligen bis knapp zweistelligen Prozentbereich ist die verbreitete Größenordnung – nicht, weil sie bewiesen wäre, sondern weil darüber hinaus der fehlende laufende Ertrag zunehmend ins Gewicht fällt.',
         },
         {
+          type: 'heading',
+          level: 2,
+          text: 'Die vier Wege, Gold zu halten',
+        },
+        {
+          type: 'paragraph',
+          text: 'Sie unterscheiden sich in Kosten, Verwahrung und Steuer – und die Unterschiede sind größer als die zwischen zwei Aktienfonds.',
+        },
+        {
+          type: 'table',
+          caption: 'Was jeweils dafür und dagegen spricht',
+          head: ['Weg', 'Vorteil', 'Preis dafür'],
+          rows: [
+            [
+              'Barren und Münzen zu Hause',
+              'Niemandes Verbindlichkeit, jederzeit greifbar',
+              'Diebstahlrisiko, Versicherungsfrage, deutlicher Abstand zwischen An- und Verkaufspreis',
+            ],
+            [
+              'Schließfach oder Händlerlager',
+              'Sicherer verwahrt, größere Mengen möglich',
+              'Laufende Gebühr, und man ist auf den Verwahrer angewiesen',
+            ],
+            [
+              'Wertpapier mit Auslieferungsanspruch',
+              'Handelbar wie eine Aktie, Gewinn nach einem Jahr Haltedauer steuerfrei',
+              'Rechtlich eine Schuldverschreibung – der Emittent zählt, auch wenn Gold hinterlegt ist',
+            ],
+            [
+              'Fonds oder ETC auf den Preis',
+              'Kleine Beträge, sparplanfähig, keine Verwahrfrage',
+              'Laufende Kosten, kein Metall in der Hand, steuerlich wie ein Wertpapier',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die Spanne zwischen Kauf und Verkauf',
+          items: [
+            'Beim physischen Kauf zahlt man den Metallpreis **plus** einen Aufschlag – und beim Verkauf bekommt man ihn **minus** einen Abschlag. Zusammen sind das je nach Stückelung mehrere Prozent.',
+            'Kleine Einheiten sind dabei am teuersten: Eine Ein-Gramm-Prägung kostet anteilig ein Vielfaches einer Unze, weil der Herstellungsaufwand derselbe ist.',
+            'Das heißt praktisch: Gold muss erst um diese Spanne steigen, bevor überhaupt ein Gewinn beginnt. Bei kurzen Haltedauern ist das der größte Kostenblock – größer als jede Fondsgebühr.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum Rohstoff-Fonds nicht den Preis abbilden',
+        },
+        {
+          type: 'paragraph',
+          text: 'Bei Öl, Kupfer oder Weizen gibt es einen Weg, der bei Gold nicht nötig ist: Diese Rohstoffe lassen sich nicht lagern wie Metall – ein Fonds kauft deshalb **Terminkontrakte** statt der Ware. Und ein Terminkontrakt läuft aus. Kurz vor dem Ende wird er verkauft und der nächste gekauft. Dieses Weiterrollen kostet oder bringt Geld, je nachdem, ob der nächste Kontrakt teurer oder billiger ist als der auslaufende.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Deshalb kann ein Rohstofffonds über Jahre verlieren, obwohl der Rohstoffpreis am Ende gleich hoch steht wie am Anfang. Das ist kein Fehler des Fonds, sondern die Bauweise des Marktes – und der Grund, warum die Wertentwicklung solcher Produkte regelmäßig nicht zu dem passt, was in der Zeitung über den Ölpreis steht.',
+        },
+        {
           type: 'keyfacts',
           items: [
             { label: 'Ertragsart', value: 'ausschließlich Preisänderung' },
@@ -197,6 +256,23 @@ export const rohstoffe: LearnTopic = {
             { label: 'Notierung', value: 'meist US-Dollar' },
             { label: 'Zusätzliches Risiko', value: 'Wechselkurs' },
             { label: 'Rolle im Depot', value: 'Beimischung' },
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was du dir merken solltest',
+        },
+        {
+          type: 'list',
+          items: [
+            'Rohstoffe zahlen keinen laufenden Ertrag – der gesamte Gewinn muss aus dem Preis kommen.',
+            'Der Euro-Preis hat zwei Ursachen: das Metall und den Wechselkurs.',
+            'Silber ist kein kleines Gold: halbe Industrienachfrage, kleinerer Markt, Umsatzsteuer beim Kauf.',
+            'Vier Wege, Gold zu halten – sie unterscheiden sich in Kosten, Verwahrung und Steuer erheblich.',
+            'Die Spanne zwischen An- und Verkauf ist bei physischem Gold der größte Kostenblock.',
+            'Fonds auf Öl oder Weizen bilden den Preis nicht ab, weil sie Terminkontrakte weiterrollen müssen.',
+            'Beimischung, kein Fundament.',
           ],
         },
       ],

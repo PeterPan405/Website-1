@@ -40,7 +40,7 @@ export const boerse: LearnTopic = {
         'Welche Aufgabe eine Börse hat, was dort gehandelt wird, wie ein Kauf vom Klick bis zur Buchung abläuft und welche Rolle dein Broker spielt.',
       title: 'Was ist eine Börse?',
       lead: 'Nach dieser Stufe weißt du, wozu eine Börse überhaupt da ist, was zwischen deinem Klick und dem Eintrag im Depot passiert und warum ein Limit fast immer die bessere Wahl ist.',
-      readingMinutes: 7,
+      readingMinutes: 10,
       status: 'complete',
       blocks: [
         {
@@ -158,6 +158,51 @@ export const boerse: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was ein Index ist – und was er nicht ist',
+        },
+        {
+          type: 'paragraph',
+          text: '„Der DAX steht bei 18.000“ klingt wie eine Preisangabe und ist keine. Ein Index ist eine **Rechenvorschrift**: Man wählt eine Gruppe von Unternehmen aus, gewichtet sie nach einer Regel und rechnet daraus eine einzige Zahl. Der Startwert ist willkürlich festgelegt worden – für den DAX 1.000 Punkte am 31. Dezember 1987. Wichtig ist nie der Stand, sondern die Veränderung.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Wer drin ist, entscheidet ein Gremium** nach festen Regeln – meist nach Marktwert und Handelsumsatz. Unternehmen steigen auf und ab; der Index von heute enthält andere Firmen als der vor zwanzig Jahren.',
+            '**Die Gewichtung ist Teil der Regel.** In den meisten Indizes zählt ein Unternehmen nach seinem Börsenwert. Ein großes bewegt den Index also stärker als zehn kleine.',
+            '**Ein Index ist nicht handelbar.** Er ist eine Zahl. Kaufen kann man nur ein Produkt, das ihn nachbildet – einen Indexfonds.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Kursindex oder Performanceindex – der Unterschied ist groß',
+          items: [
+            'Ein **Kursindex** zählt nur die Kurse. Am Tag der Dividendenzahlung fällt er, weil die Aktien um die Ausschüttung fallen – das Geld ist ja aus dem Unternehmen heraus.',
+            'Ein **Performanceindex** rechnet die Dividenden so, als würden sie sofort wieder angelegt. Er steigt deshalb schneller.',
+            'Der DAX wird üblicherweise als Performanceindex genannt, die meisten internationalen Indizes als Kursindex. Wer beide vergleicht, vergleicht ungleiche Dinge – über Jahrzehnte macht das mehrere hundert Prozent aus.',
+            'Beim Vergleich eines Fonds mit „seinem Index" ist das die erste Frage: Welche Variante steht daneben?',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wann welche Börse geöffnet ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der deutsche Parketthandel läuft werktags von 9:00 bis 17:30 Uhr, der elektronische Referenzmarkt in ähnlichem Rahmen. Die amerikanischen Börsen öffnen um 15:30 Uhr deutscher Zeit und schließen um 22:00 Uhr – die Überschneidung am Nachmittag ist deshalb die Zeit mit dem meisten Umsatz und den engsten Spannen.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Außerbörsliche Handelsplätze** bieten oft bis 22 oder 23 Uhr an. Das ist bequem und nicht immer günstig: Je weiter die Heimatbörse geschlossen ist, desto mehr muss der Handelspartner schätzen – und das steht im Spread.',
+            '**Feiertage sind national.** Am 3. Oktober ist Frankfurt zu und New York offen; am Thanksgiving-Donnerstag umgekehrt. Ein ETF auf US-Aktien wird dann in Deutschland trotzdem gehandelt, nur ohne die Preise, auf die er sich bezieht.',
+            '**Zwischen Schluss und Eröffnung passiert trotzdem etwas.** Nachrichten aus der Nacht stecken am nächsten Morgen in der ersten Notierung – deshalb springen Kurse zur Eröffnung manchmal, ohne dass ein einziger Handel dazwischenlag.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -167,6 +212,9 @@ export const boerse: LearnTopic = {
             'Deine Order läuft über den Broker; Zugang zur Börse haben nur zugelassene Teilnehmer.',
             'Wertpapiere im Depot gehören dir, nicht der Bank.',
             'Von drei Kostenarten steht nur eine sichtbar auf der Abrechnung.',
+            'Ein Index ist eine Rechenvorschrift, kein Preis – und nur die Veränderung sagt etwas.',
+            'Kursindex und Performanceindex unterscheiden sich um alle Dividenden. Immer nachsehen, welcher gemeint ist.',
+            'Die umsatzstärkste Zeit ist der Nachmittag, wenn Europa und die USA gleichzeitig handeln.',
           ],
         },
       ],

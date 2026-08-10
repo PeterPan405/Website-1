@@ -219,11 +219,6 @@ export const sparerpauschbetrag: LearnTopic = {
         {
           type: 'heading',
           level: 2,
-          text: 'Was du dir merken solltest',
-        },
-        {
-          type: 'heading',
-          level: 2,
           text: 'Der Verlusttopf: warum Minus etwas wert ist',
         },
         {
@@ -235,15 +230,13 @@ export const sparerpauschbetrag: LearnTopic = {
           text: 'Der Haken steckt in der Trennung: **Verluste aus Aktienverkäufen dürfen nur mit Gewinnen aus Aktienverkäufen verrechnet werden**, nicht mit Zinsen, Dividenden oder Fondsgewinnen. Wer eine Einzelaktie mit Verlust verkauft und ansonsten nur ETFs hält, hat einen Verlusttopf, der jahrelang unbenutzt daliegt. Umgekehrt wandern Verluste aus Fondsanteilen in den allgemeinen Topf und lassen sich mit fast allem verrechnen.',
         },
         {
-          type: 'callout',
-          variant: 'tip',
-          title: 'Und wenn die Verluste bei einer anderen Bank liegen',
-          items: [
-            'Jede Bank verrechnet nur innerhalb ihres eigenen Hauses. Verlust bei Broker A und Gewinn bei Broker B bleiben getrennt – die Steuer wird bei B abgeführt, als gäbe es A nicht.',
-            'Zusammenführen lässt sich das über die Steuererklärung. Dafür brauchst du von der Bank mit dem Verlust eine **Verlustbescheinigung**.',
-            'Sie muss bis zum **15. Dezember** des Jahres beantragt werden – diese Frist ist gesetzlich und lässt sich nachträglich nicht heilen.',
-            'Wer ohnehin nur bei einer Bank handelt, braucht das alles nicht. Wer zwei Depots führt, sollte den Termin kennen.',
-          ],
+          type: 'paragraph',
+          text: 'Eine Einschränkung noch, die vor allem zählt, wenn du mehr als ein Depot hast: **Jede Bank verrechnet nur innerhalb ihres eigenen Hauses.** Verlust bei Broker A und Gewinn bei Broker B bleiben getrennt – die Steuer wird bei B abgeführt, als gäbe es A nicht. Zusammenführen lässt sich das über die Steuererklärung, und dafür gibt es eine Frist, die man kennen muss; sie steht in der Stufe „Fortgeschritten“.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was du dir merken solltest',
         },
         {
           type: 'list',
@@ -254,7 +247,7 @@ export const sparerpauschbetrag: LearnTopic = {
             'Wie weit der Freibetrag reicht, hängt am laufenden Ertrag, nicht am Depotwert allein.',
             'Bei geringem Gesamteinkommen bleibt mit NV-Bescheinigung alles steuerfrei, nicht nur der Freibetrag.',
             'Verluste verfallen nicht – aber Aktienverluste sind nur gegen Aktiengewinne verrechenbar.',
-            'Zwei Depots: Verlustbescheinigung bis zum 15. Dezember beantragen.',
+            'Zwei Depots: Verluste dort werden nicht automatisch gegen Gewinne hier verrechnet.',
             'Was bis zum Jahresende nicht genutzt ist, verfällt.',
           ],
         },

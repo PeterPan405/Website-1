@@ -48,7 +48,7 @@ export const aktie: LearnTopic = {
         'Was eine Aktie ist, wie du mit Kursgewinn und Dividende verdienst und welche vier Missverständnisse Einsteiger am häufigsten teuer bezahlen.',
       title: 'Aktie einfach erklärt',
       lead: 'Nach dieser Stufe weißt du, was du beim Aktienkauf tatsächlich erwirbst, woher eine Rendite kommt und was schiefgehen kann.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -187,6 +187,52 @@ export const aktie: LearnTopic = {
         {
           type: 'paragraph',
           text: 'Die praktische Folgerung ist unspektakulär, aber wirksam: Geld, das du in den nächsten fünf Jahren brauchst, gehört nicht in Aktien. Geld, das 15 Jahre liegen bleiben kann, ist dort gut aufgehoben.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Woher der Wert einer Aktie kommt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Unternehmen erwirtschaftet Gewinn. Was damit geschieht, entscheidet die Führung – und jeder der vier Wege kommt am Ende bei den Eigentümern an, nur unterschiedlich sichtbar.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Dividende.** Ein Teil des Gewinns wird ausgezahlt. Das ist der sichtbarste Weg und der einzige, bei dem Geld auf dem Konto ankommt.',
+            '**Investition.** Der Gewinn bleibt im Unternehmen und finanziert neue Fabriken, Forschung, Zukäufe. Er soll später zu mehr Gewinn führen – ob das gelingt, ist die eigentliche Frage bei jeder Aktie.',
+            '**Schuldenabbau.** Weniger Zinsen heißt mehr Gewinn in den Folgejahren. Unspektakulär und oft der beste Weg.',
+            '**Aktienrückkauf.** Das Unternehmen kauft eigene Aktien und zieht sie ein. Danach gibt es weniger Anteile am selben Gewinn – jeder verbleibende Anteil wird wertvoller. Wirtschaftlich ähnlich einer Dividende, nur ohne sofortige Steuer.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was daraus für die Bewertung folgt',
+          items: [
+            'Der Wert einer Aktie ist nicht das, was das Unternehmen heute besitzt, sondern was es künftig verdienen wird – abgezinst auf heute.',
+            'Deshalb bewegen Kurse sich auf **Erwartungen** hin, nicht auf Nachrichten über die Vergangenheit. Und deshalb reagieren sie auf Zinsen: Ein höherer Zins macht weit entfernte Gewinne heute weniger wert.',
+            'Und deshalb ist ein Unternehmen ohne Dividende nicht ertraglos. Wenn der einbehaltene Gewinn gut angelegt wird, steckt der Ertrag im Kurs statt auf dem Konto.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was du als Aktionär tatsächlich darfst',
+        },
+        {
+          type: 'paragraph',
+          text: 'Miteigentümer zu sein klingt nach Einfluss. In der Praxis sind es drei Rechte, und für Kleinanleger zählt vor allem das dritte.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Stimmrecht** auf der Hauptversammlung – eine Stimme je Aktie. Bei einigen tausend Euro Anteil an einem großen Konzern ist das rechnerisch bedeutungslos, aber es existiert und lässt sich per Vollmacht ausüben.',
+            '**Anspruch auf Anteil am ausgeschütteten Gewinn** – die Dividende. Ob und wie viel ausgeschüttet wird, beschließt die Hauptversammlung auf Vorschlag der Führung.',
+            '**Auskunft und Einsicht.** Jede börsennotierte Gesellschaft muss Geschäftsbericht, Quartalszahlen und wesentliche Ereignisse veröffentlichen. Das ist das mit Abstand nützlichste Recht: Alles, was man zur Beurteilung braucht, ist frei zugänglich – und die meisten sehen nie hinein.',
+          ],
         },
         {
           type: 'callout',
