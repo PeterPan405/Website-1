@@ -128,6 +128,29 @@ jobs:
           pip install --force-reinstall \
             --index-url https://download.pytorch.org/whl/cpu torch torchaudio
 
+      # **Ohne ffmpeg ist jede gesprochene Seite verloren.**
+      #
+      # Der Vertoner spricht erst die ganze Seite – rund siebzehn Minuten – und
+      # ruft danach ffmpeg zweimal: einmal zum Messen der Lautheit, einmal zum
+      # Wandeln in AAC. Fehlt das Programm, scheitert die Seite am Ende, nicht
+      # am Anfang. Genau das ist am 10. August 2026 passiert: vier Stunden
+      # sprechen, jede Seite am Schluss weggeworfen, kein Byte abgelegt.
+      #
+      # `podcast-erzeugen.yml` hat diesen Schritt von Anfang an; hier fehlte er
+      # schlicht.
+      - name: ffmpeg einrichten
+        run: |
+          if command -v ffmpeg >/dev/null 2>&1; then
+            echo "ffmpeg liegt schon bereit."
+            ffmpeg -version | head -1
+            exit 0
+          fi
+
+          sudo apt-get update -qq \
+            || echo "::warning::apt-get update meldet Fehler – die Installation wird trotzdem versucht."
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+
       - name: Sprechen
         env:
           TEIL: ${{ matrix.teil }}
