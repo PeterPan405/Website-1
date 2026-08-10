@@ -542,6 +542,89 @@ Das ist der Preis einer Quelle ohne Rechnung und gehört nicht wegdiskutiert,
 sondern ausgewiesen: Die Stand-Zeile nennt den Zeitstempel der Quelle, nicht
 den des Abrufs.
 
+## Der Fünf-Minuten-Takt hat nie stattgefunden
+
+Alles darüber war richtig und reichte trotzdem nicht. Am selben Abend
+nachgezählt, über die 22 Stunden bis zum 10. August 2026, 15:43 UTC – der
+Zeitplan sieht in diesem Fenster **264** Läufe vor:
+
+    ausgeführt                      29
+    kleinster Abstand              2,4 Minuten
+    mittlerer Abstand             36,7 Minuten
+    größter Abstand              144,6 Minuten
+    Abstände unter sechs Minuten    11 %
+
+**Der Takt, auf dem die Zusage beruhte, existierte nur in der Cron-Zeile.**
+Damit war „höchstens sechs Minuten" keine zu optimistische Schätzung, sondern
+eine Behauptung über etwas, das nicht stattfand – und Brent um 17:48 auf dem
+Stand von 17:02 war nicht die Ausnahme, sondern der Normalfall.
+
+Die Bauregel dagegen stand seit dem 6. August zwei Abschnitte weiter unten:
+_Was zu einer bestimmten Zeit passiert sein muss, darf nicht an `schedule`
+hängen._ Fünf Minuten sind eine bestimmte Zeit.
+
+### Also bringt der Lauf seine Uhr selbst mit
+
+`.github/workflows/kurse-dauerlauf.yml`: **ein** Job, fünfeinhalb Stunden
+lang, der alle zwei Minuten die Leitwerte holt und `kurse-live.json` auf den
+Server legt. Kein Termin, der verworfen werden könnte – die Schleife zählt
+selbst.
+
+    Abruf              rund 15 Sekunden für 46 Werte
+    Schleifentakt      bis zu 2 Minuten
+    Übertragung        wenige Sekunden
+    Browser-Takt       bis zu 1 Minute   (TAKT_MS in kurse-live-speicher.ts)
+    ---------------------------------------------------------------------
+    zusammen           gut 3 Minuten im ungünstigsten Fall
+
+Am Leben bleibt er über zwei Ketten: Er startet am Ende seinen eigenen
+Nachfolger (`workflow_dispatch`, der einzige Weg, der dem `GITHUB_TOKEN`
+offensteht), und `kurse.yml` sieht bei **jedem** Lauf nach, ob noch einer
+läuft. Dieselbe Umkehrung wie beim Nachrichtenlauf und beim Podcast: Nicht
+die Uhr passt auf, sondern der Workflow, der nachweislich feuert.
+
+**Zwei Bremsen gehören dazu und dürfen nicht wegfallen.** Ein Workflow, der
+sich selbst startet, ist eine Schleife:
+
+1. Der Dauerlauf startet **keinen** Nachfolger, wenn er selbst weniger als
+   zehn Minuten gearbeitet hat. Ein Lauf, der früher endet, ist gestolpert –
+   und ein Stolpern, das sich alle vierzig Sekunden wiederholt, wären
+   hunderttausend rote Läufe.
+2. Der Wächter in `kurse.yml` wartet nach einem Fehlschlag eine Stunde. Sonst
+   gäbe derselbe Defekt zwanzig gleichlautende Mails am Tag – und dann ist der
+   Kanal für den nächsten Ernstfall verbraucht (siehe „Ein roter Lauf ist ein
+   Vorrat").
+
+Die Fünf-Minuten-Crons in `kurse.yml` bleiben trotzdem stehen. Sie sind jetzt
+Beiwerk für die Kurse, tragen aber die Aufsicht: Steht die Website noch, ist
+der Bau frisch, fehlt die Nachrichtenausgabe, ist der Podcast gelaufen.
+
+### Warum keine Live-Verbindung im Browser
+
+Der Betreiber hat sie vorgezogen. Sie wäre auch das Richtige – nur gibt es
+sie für diese Website nicht:
+
+- **Kein eigener Server.** Ein statischer Export auf einem Webspace hat keine
+  Stelle, die im Auftrag des Browsers etwas abrufen könnte.
+- **Yahoo lässt den Browser nicht heran.** Keine `Access-Control-Allow-Origin`;
+  ein `fetch` von `iminvests.de` bricht mit einem CORS-Fehler ab. Das ist
+  nichts, was sich hier einstellen ließe.
+- **Ein Schlüssel im Browser ist keiner.** Die Anbieter, die CORS erlauben,
+  verlangen einen – und der stünde für jeden lesbar in der Seite.
+
+Krypto und Devisen ließen sich einzeln direkt anbinden. Für Indizes, ETFs,
+Rohstoffe und Aktien – den weit größeren Teil – gibt es diesen Weg nicht, und
+zwei Bezugswege für dieselbe Kachel wären schlimmer als einer.
+
+### Nachtrag zur Kostenrechnung
+
+Der Kopf von `lib/leitwerte.ts` rechnet mit „8.000 Minuten im Monat bei 2.000
+enthaltenen". Das galt der **Bauzeit** und ist für den Dauerlauf gegenstandslos:
+Er baut nichts. Und dieses Repository ist öffentlich – für öffentliche
+Repositories sind die Standardläufer bei GitHub Actions unbegrenzt und
+kostenlos. Wer die alte Rechnung als Argument gegen einen dichteren Takt
+anführt, führt sie gegen etwas an, das sie nie gemeint hat.
+
 ## Geplante Läufe sind eine Bitte, keine Zusage
 
 **GitHub verwirft `schedule`-Läufe, wenn zu viele gleichzeitig anstehen** – ohne
