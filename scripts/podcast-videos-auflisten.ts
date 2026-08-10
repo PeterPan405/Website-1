@@ -110,7 +110,7 @@ const einzelheiten = (await (
 ).json()) as {
   items?: {
     id: string
-    snippet?: { title?: string; publishedAt?: string }
+    snippet?: { title?: string; publishedAt?: string; description?: string }
     contentDetails?: { duration?: string }
     status?: { privacyStatus?: string }
   }[]
@@ -133,3 +133,40 @@ for (const video of einzelheiten.items ?? []) {
       `${video.status?.privacyStatus ?? '?'}  ${video.snippet?.title ?? ''}`
   )
 }
+
+/*
+  Die Beschreibungen dazu.
+
+  Sie stehen hier, weil das Repository sie **nicht** beantwortet: Was in einer
+  Folgenbeschreibung auf YouTube steht, wurde beim Upload hochgeladen und lebt
+  seitdem dort. Ändert sich der Text im Register, ändert das an den alten
+  Videos nichts – und ob dort noch ein alter Sendungsname steht, ließ sich von
+  außen nur durch Nachsehen im Studio klären.
+
+  Getrennt vom Überblick oben, damit die eine Zeile je Video lesbar bleibt.
+*/
+if (process.env.BESCHREIBUNGEN === '1') {
+  console.log('\n[videos] Beschreibungen:\n')
+  for (const video of einzelheiten.items ?? []) {
+    console.log(`— ${video.id} — ${video.snippet?.title ?? ''}`)
+    console.log(video.snippet?.description?.trim() || '(keine)')
+    console.log()
+  }
+}
+
+/*
+  Und die Sendung selbst: Kanalname und Kanalbeschreibung. Beide sind zuletzt
+  am 9. August aufgefallen – im Repository längst „IM Invests“, beim Zuschauer
+  weiter „IM Investments“. Ein Verweis auf den Kanal ist keine Folge und wird
+  deshalb von keinem Folgenlauf mit erneuert.
+*/
+const kanalkopf = (await (
+  await fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', {
+    headers: kopf,
+  })
+).json()) as { items?: { snippet?: { title?: string; description?: string } }[] }
+
+const sendung = kanalkopf.items?.[0]?.snippet
+console.log('\n[videos] Der Kanal:\n')
+console.log(`  Name: ${sendung?.title ?? '(unbekannt)'}`)
+console.log(`  Beschreibung:\n${sendung?.description?.trim() || '  (keine)'}`)
