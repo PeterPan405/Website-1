@@ -173,37 +173,6 @@ export const etf: LearnTopic = {
         {
           type: 'heading',
           level: 2,
-          text: 'Wie ein ETF den Index tatsächlich nachbaut',
-        },
-        {
-          type: 'paragraph',
-          text: 'Es gibt zwei Bauweisen, und der Unterschied steht im Namen des Fonds selten, im Basisinformationsblatt aber immer.',
-        },
-        {
-          type: 'list',
-          items: [
-            '**Physisch.** Der Fonds kauft die Aktien wirklich – entweder alle oder, bei sehr breiten Indizes, eine repräsentative Auswahl („optimiertes Sampling“). Was drin ist, lässt sich beim Anbieter Position für Position nachlesen.',
-            '**Synthetisch.** Der Fonds hält irgendein Wertpapierbündel und tauscht dessen Ertrag mit einer Bank gegen den Ertrag des Index – ein **Swap**. Das ist präziser und manchmal billiger, bringt aber die Bank als zusätzliche Partei ins Spiel. Der Gesetzgeber begrenzt dieses Gegenparteirisiko, meist zusätzlich über hinterlegte Sicherheiten.',
-          ],
-        },
-        {
-          type: 'paragraph',
-          text: 'Für einen breiten Weltindex ist physisch der Regelfall und die unkompliziertere Wahl. Synthetisch begegnet man vor allem bei Märkten, die schwer direkt zu kaufen sind. Beides ist zulässig und beaufsichtigt – man sollte nur wissen, was man hat.',
-        },
-        {
-          type: 'callout',
-          variant: 'info',
-          title: 'Warum ein ETF nie exakt dem Index folgt',
-          items: [
-            'Kosten, Steuern auf Dividenden und der Handel beim Umschichten kosten jedes Jahr ein paar Zehntel. Diese Differenz heißt **Tracking-Differenz** und ist die ehrlichere Kennzahl als die Kostenquote.',
-            'Sie kann sogar **positiv** sein: Manche Fonds verleihen Wertpapiere gegen Gebühr und verdienen damit einen Teil der Kosten zurück.',
-            'Nachzulesen ist sie im Jahresbericht oder auf der Anbieterseite – als Vergleich zwischen Fondsentwicklung und Indexentwicklung über mehrere Jahre.',
-            'Zwei ETFs auf denselben Index unterscheiden sich fast nur darin. Wer vergleicht, vergleicht diese Zahl, nicht den Namen.',
-          ],
-        },
-        {
-          type: 'heading',
-          level: 2,
           text: 'Der Name verrät fast alles',
         },
         {
@@ -240,8 +209,6 @@ export const etf: LearnTopic = {
             'Ein ETF bildet einen Index nach, statt Werte auszuwählen – daher die niedrigen Kosten.',
             'Das Risiko steckt im zugrunde liegenden Index, nicht in der Fondshülle.',
             'Sondervermögen schützt vor der Pleite des Anbieters, nicht vor Kursverlusten.',
-            'Physisch oder synthetisch: beides zulässig, die Bauweise steht im Basisinformationsblatt.',
-            'Die Tracking-Differenz sagt mehr als die Kostenquote – sie ist das, was tatsächlich fehlt.',
             'Der Name verrät Anbieter, Index, Regulierung, Ertragsverwendung und Absicherung.',
             'Vor dem Kauf: Index, Kosten, Ertragsverwendung und Fondsgröße nachschlagen.',
           ],

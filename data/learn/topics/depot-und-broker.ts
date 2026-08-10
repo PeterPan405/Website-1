@@ -193,23 +193,13 @@ export const depotUndBroker: LearnTopic = {
           ],
         },
         {
-          type: 'heading',
-          level: 2,
-          text: 'Wechseln ist einfacher als gedacht',
-        },
-        {
-          type: 'paragraph',
-          text: 'Ein **Depotübertrag** ist gesetzlich kostenfrei, und er ist kein Verkauf: Die Papiere wandern samt Anschaffungsdaten und Einstandskursen zum neuen Anbieter, es fällt keine Steuer an, und die Haltedauer läuft weiter. Beantragt wird er beim **neuen** Anbieter – der kümmert sich um den Rest. Zwei bis vier Wochen sind normal, in denen die Papiere kurzzeitig nicht handelbar sind.',
-        },
-        {
           type: 'callout',
-          variant: 'warning',
-          title: 'Drei Dinge, die dabei schiefgehen können',
+          variant: 'tip',
+          title: 'Die Wahl bindet dich nicht',
           items: [
-            '**Bruchstücke lassen sich meist nicht übertragen.** Sie werden verkauft und ausgezahlt – ein steuerpflichtiger Vorgang, den man beim Wechsel eher unfreiwillig auslöst.',
-            '**Der Verlusttopf bleibt zurück.** Wer Verluste beim alten Anbieter stehen hat, braucht bis zum 15. Dezember eine Verlustbescheinigung, sonst sind sie beim neuen nicht verrechenbar.',
-            '**Der Freistellungsauftrag zieht nicht mit um.** Er muss beim neuen Anbieter erteilt und beim alten gestrichen werden – sonst liegt er dort, wo keine Erträge mehr anfallen.',
-            'Nichts davon spricht gegen einen Wechsel. Es sind drei Handgriffe, die man kennen muss, bevor man ihn macht.',
+            'Ein Anbieterwechsel ist gesetzlich kostenfrei, und die Papiere werden dabei nicht verkauft – sie wandern samt Kaufdatum und Einstandskurs zum neuen Haus. Es fällt also keine Steuer an.',
+            'Deshalb ist die erste Wahl keine Entscheidung für zwanzig Jahre. Wer unsicher ist, nimmt einen der großen deutschen Anbieter ohne Depotgebühr und sieht in zwei Jahren wieder hin.',
+            'Worauf beim Übertrag zu achten ist, steht in der Stufe „Fortgeschritten“ – dort gibt es genau eine Stelle, an der es schiefgehen kann.',
           ],
         },
         {
@@ -225,7 +215,7 @@ export const depotUndBroker: LearnTopic = {
             'Die ISIN ist eindeutig, der Name nicht.',
             'Limit statt Market, besonders außerhalb der Haupthandelszeit.',
             'Beim Vergleich zählen Depotgebühr, Sparplankosten und der steuerliche Sitz – nicht die App.',
-            'Ein Depotübertrag ist kostenfrei und kein Verkauf. Nur Bruchstücke, Verlusttopf und Freistellungsauftrag brauchen Aufmerksamkeit.',
+            'Der Wechsel ist kostenfrei und löst keine Steuer aus. Die erste Wahl bindet dich nicht.',
           ],
         },
       ],

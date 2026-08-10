@@ -243,33 +243,6 @@ export const option: LearnTopic = {
         {
           type: 'heading',
           level: 2,
-          text: 'Wofür Optionen tatsächlich benutzt werden',
-        },
-        {
-          type: 'paragraph',
-          text: 'In der Werbung stehen Gewinnchancen. In der Praxis werden Optionen überwiegend für zwei andere Zwecke eingesetzt, und beide sind unspektakulär.',
-        },
-        {
-          type: 'list',
-          ordered: true,
-          items: [
-            '**Absicherung eines Bestands.** Wer Aktien hält und einen Rückgang fürchtet, kauft einen Put. Fällt der Kurs, gleicht der Put den Verlust ab dem Basispreis aus. Das ist eine Versicherung mit allem, was dazugehört: Sie kostet eine Prämie, sie läuft ab, und meistens war sie umsonst – genau wie eine Hausratversicherung.',
-            '**Prämie einnehmen auf vorhandenen Bestand.** Wer Aktien besitzt und einen Call darauf verkauft, bekommt die Prämie. Steigt der Kurs über den Basispreis, muss er liefern – er verzichtet also auf den Gewinn oberhalb dieser Marke. Das ist kein Zaubertrick, sondern ein Tausch: sicherer kleiner Ertrag gegen die Chance nach oben.',
-          ],
-        },
-        {
-          type: 'callout',
-          variant: 'info',
-          title: 'Was daran wichtig ist',
-          items: [
-            'In beiden Fällen ist die Option **kein Ersatz** für ein Depot, sondern ein Zusatz zu einem vorhandenen. Wer nichts besitzt, kann nichts absichern und nichts verleihen.',
-            'Beide Anwendungen haben ein begrenztes und im Voraus bekanntes Risiko – anders als der ungedeckte Verkauf.',
-            'Und beide kosten etwas: die eine die Prämie, die andere den Gewinn oberhalb des Basispreises. Kostenlos ist an Optionen nichts.',
-          ],
-        },
-        {
-          type: 'heading',
-          level: 2,
           text: 'Optionsschein ist nicht Option',
         },
         {
@@ -306,7 +279,6 @@ export const option: LearnTopic = {
             'Die Prämie besteht aus innerem Wert und Zeitwert; aus dem Geld ist sie reiner Zeitwert.',
             'Der Zeitwert schmilzt zum Verfall hin immer schneller, auch bei unverändertem Kurs.',
             'Die Gewinnschwelle liegt um die Prämie über dem Basispreis, nicht auf ihm.',
-            'Die beiden ernsthaften Anwendungen setzen einen vorhandenen Bestand voraus.',
             'Ein Optionsschein ist eine Bankschuld mit von der Bank gestelltem Kurs – eine Option ist es nicht.',
             'Ohne konkreten Absicherungsbedarf gibt es keinen Grund, damit anzufangen.',
           ],

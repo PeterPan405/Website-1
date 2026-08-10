@@ -189,32 +189,24 @@ export const risikoUndRendite: LearnTopic = {
         {
           type: 'heading',
           level: 2,
-          text: 'Wie Risiko gemessen wird – und was die Zahl verschweigt',
+          text: 'Was nicht schwankt, sieht sicher aus',
         },
         {
           type: 'paragraph',
-          text: 'In Produktunterlagen steht Risiko meist als **Volatilität**: ein Maß dafür, wie stark die Rendite um ihren Durchschnitt streut, angegeben in Prozent pro Jahr. Grob gelesen heißt „15 Prozent Volatilität“, dass Jahresergebnisse zwischen etwa minus 15 und plus 45 Prozent nichts Ungewöhnliches sind, wenn im Mittel 15 Prozent erwartet werden.',
+          text: 'Risiko wird üblicherweise daran gemessen, wie stark ein Kurs schwankt – wie das genau geht und welche Kennzahlen es dafür gibt, behandelt die Stufe „Fortgeschritten“. Ein Punkt gehört aber schon hierher, weil er zu falschen Entscheidungen führt, bevor man je eine Kennzahl gesehen hat.',
         },
         {
           type: 'paragraph',
-          text: 'Das ist nützlich, um zwei Anlagen zu vergleichen, und es hat drei blinde Flecken, die man kennen sollte.',
-        },
-        {
-          type: 'list',
-          items: [
-            '**Sie zählt Ausschläge nach oben mit.** Ein Fonds, der in einem Jahr 40 Prozent gewinnt, gilt als riskant. Das ist rechnerisch richtig und geht am Sprachgebrauch vorbei – Risiko meint für die meisten Menschen nur die eine Richtung.',
-            '**Sie unterstellt, dass Extreme selten sind.** Tatsächlich kommen sehr große Tagesbewegungen an den Märkten deutlich häufiger vor, als die Formel erwarten lässt. Genau in Krisen ist die Zahl also am wenigsten belastbar.',
-            '**Was nicht schwankt, sieht sicher aus.** Eine Immobilie, ein offener Immobilienfonds oder eine unverkäufliche Beteiligung haben eine niedrige gemessene Volatilität – nicht weil sie stabil sind, sondern weil niemand täglich einen Preis feststellt.',
-          ],
+          text: 'Gemessen werden kann nur, was einen Preis hat. Eine Immobilie, ein offener Immobilienfonds oder eine Unternehmensbeteiligung schwanken deshalb **auf dem Papier** kaum – nicht weil sie stabil wären, sondern weil niemand täglich einen Preis feststellt. Eine Aktie, die dasselbe Geschäft betreibt, sieht dagegen unruhig aus, weil ihr Preis jede Minute neu entsteht.',
         },
         {
           type: 'callout',
-          variant: 'tip',
-          title: 'Die zweite Zahl, die mehr sagt',
+          variant: 'warning',
+          title: 'Was daraus folgt',
           items: [
-            'Der **maximale Rückgang** ist die Strecke vom höchsten bis zum tiefsten Stand einer Anlage – also der schlimmste Verlauf, den jemand tatsächlich durchgestanden hat.',
-            'Bei breiten Aktienindizes liegt er historisch bei rund der Hälfte. Diese Zahl ist unangenehmer als jede Volatilität und beantwortet die Frage, die man wirklich hat: Wie tief kann es gehen?',
-            'Für die eigene Entscheidung rechnet man sie in Euro um. „Minus 50 Prozent" und „minus 60.000 Euro" sind dieselbe Aussage und fühlen sich verschieden an – die zweite ist die ehrliche.',
+            'Ein tägliches Kursband ist eine **Information**, kein Risiko. Wer sie nicht hat, hat nicht weniger Risiko, sondern weniger Auskunft.',
+            'Wo mit „geringer Schwankung“ geworben wird, lohnt die Frage, wie oft und von wem bewertet wird. Ein jährliches Gutachten schwankt zwangsläufig weniger als eine Börse.',
+            'Und umgekehrt: Die tägliche Anzeige im Depot macht Aktien nicht riskanter, als sie sind – sie macht das Risiko nur sichtbar. Wer seltener hinsieht, hat nicht weniger davon, aber weniger Anlass, falsch zu reagieren.',
           ],
         },
         {
@@ -251,7 +243,7 @@ export const risikoUndRendite: LearnTopic = {
             'Kurs-, Ausfall-, Liquiditäts- und Zeitpunktrisiko sind vier verschiedene Dinge.',
             'Ein Buchverlust wird erst durch den Verkauf zu einem echten.',
             'Verluste und Gewinne sind nicht symmetrisch – ab 30 Prozent wird es unangenehm.',
-            'Volatilität zählt Ausschläge nach oben mit und unterschätzt Extreme. Der maximale Rückgang sagt mehr.',
+            'Was selten bepreist wird, schwankt nur auf dem Papier weniger – das ist kein geringeres Risiko.',
             'Was nicht täglich bepreist wird, sieht sicher aus, ohne es zu sein.',
             'Bezahlt wird nur unvermeidbares Risiko. Einzelrisiko und Hebel bringen Schwankung ohne Prämie.',
             'Der Anlagehorizont entscheidet über die Anlageform, nicht die erhoffte Rendite.',

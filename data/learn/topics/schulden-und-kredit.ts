@@ -232,30 +232,15 @@ export const schuldenUndKredit: LearnTopic = {
         {
           type: 'heading',
           level: 2,
-          text: 'Tilgen oder anlegen?',
+          text: 'Erst tilgen, dann anlegen',
         },
         {
           type: 'paragraph',
-          text: 'Die Frage stellt sich bei jedem Überschuss, und sie hat eine erstaunlich klare Antwort: **Vergleiche den Kreditzins mit der erwarteten Rendite – und ziehe den Vorsprung des Sicheren mit ein.** Eine getilgte Schuld bringt garantiert den Kreditzins. Eine Anlage bringt vielleicht mehr. „Garantiert" schlägt „vielleicht" bei gleichem Prozentsatz immer.',
+          text: 'Diese Reihenfolge gilt für den Einstieg ohne Ausnahme, und der Grund ist eine Zahl: Eine getilgte Schuld bringt **garantiert** den Kreditzins. Eine Anlage bringt **vielleicht** mehr. Bei zweistelligem Dispozins oder einem Ratenkredit im mittleren einstelligen Bereich ist die Sache damit entschieden – diese Rendite bietet keine Anlage, und schon gar nicht sicher.',
         },
         {
-          type: 'list',
-          items: [
-            '**Dispo, Rahmenkredit, Kreditkartenschuld:** zweistelliger Zins. Tilgen, ohne zu rechnen – diese Rendite bietet keine Anlage.',
-            '**Ratenkredit im mittleren einstelligen Bereich:** ebenfalls tilgen. Er liegt in der Größenordnung dessen, was Aktien im langjährigen Mittel erwarten lassen – nur eben sicher.',
-            '**Immobilienkredit mit niedrigem Zins:** hier ist beides vertretbar. Wer deutlich unter der erwarteten Anlagerendite finanziert, darf daneben anlegen; wer knapp darunter liegt, entscheidet nach Gefühl und schläft mit der Tilgung meist besser.',
-            '**Und in jedem Fall zuerst:** der Notgroschen. Wer alles in die Tilgung steckt und dann bei der nächsten Autoreparatur wieder in den Dispo rutscht, hat teuer umgeschichtet.',
-          ],
-        },
-        {
-          type: 'callout',
-          variant: 'tip',
-          title: 'Sondertilgung wirkt am Anfang am stärksten',
-          items: [
-            'Zins fällt auf die **Restschuld** an. Jeder Euro, der früh getilgt wird, spart deshalb Zins für die gesamte restliche Laufzeit – ein Euro im letzten Jahr spart fast nichts.',
-            'Die meisten Immobilienverträge erlauben jährliche Sondertilgungen bis zu einem bestimmten Prozentsatz kostenfrei. Ob und wie viel, steht im Vertrag und wird oft nie genutzt.',
-            'Sie verkürzt die Laufzeit, ohne die Rate zu ändern – und die Laufzeit ist bei jedem Kredit der Hebel mit der größten Wirkung.',
-          ],
+          type: 'paragraph',
+          text: 'Eine Ausnahme gibt es, und sie betrifft nur einen Fall: eine laufende Immobilienfinanzierung mit niedrigem Zins. Dort ist beides vertretbar. Wie man diesen Vergleich sauber aufstellt – nach Steuern und mit dem Risiko auf beiden Seiten –, steht in der Stufe „Profi“; auf der Einstiegsstufe genügt die einfache Regel. Und in jedem Fall zuerst der Notgroschen: Wer alles in die Tilgung steckt und bei der nächsten Autoreparatur wieder im Dispo landet, hat teuer umgeschichtet.',
         },
         {
           type: 'heading',
@@ -289,7 +274,6 @@ export const schuldenUndKredit: LearnTopic = {
             'Eine niedrigere Rate senkt nicht die Kosten, sie erhöht sie – über die längere Laufzeit.',
             'Vergleichbar ist nur der Effektivzins, und auch der nicht, wenn eine Restschuldversicherung danebensteht.',
             'Tilgen bringt den Kreditzins garantiert. Garantiert schlägt vielleicht bei gleichem Satz.',
-            'Sondertilgung wirkt am Anfang um ein Vielfaches stärker als am Ende.',
             'Wird es eng: früh mit der Bank sprechen, Schuldnerberatung ist kostenlos, Vorkosten sind ein Ausschlusskriterium.',
           ],
         },
