@@ -492,6 +492,31 @@ Kacheln hören zu (`components/markets/Kachelzahlen.tsx`). Wer eine neue Stelle
 baut, die einen Kurs zeigt, hängt sie an diesen Speicher – nicht an ein
 eigenes `fetch`.
 
+### Und dann fehlten die Zeilen
+
+Derselbe Abend, dieselbe Seite, eine Ebene tiefer. Die Kacheln waren
+umgestellt, die **über tausend Aktienzeilen darunter** nicht – `QuoteRow` war
+eine reine Serverkomponente und zeigte weiter die gebaute Zahl. Um 20:12
+deutscher Zeit stand Amazon auf dem Kurs von 19:05, während `/kurse-live.json`
+zwei Minuten alt war.
+
+Der Satz darüber war schon geschrieben, als es passierte. Er hat nur nicht
+verhindert, dass beim Umbau die eine Stelle angefasst wurde, die im
+Bildausschnitt zu sehen war, und die andere nicht.
+
+**Also ausdrücklich: Es gibt keine Kurse zweiter Klasse.** Kachel, Zeile,
+Kopfzeile, Vergleich – wer eine Zahl zeigt, die sich stündlich ändert, liest
+sie aus dem Speicher. Die drei Stellen heute:
+
+    components/markets/Kachelzahlen.tsx   Kacheln (Indizes, ETFs, Rohstoffe …)
+    components/markets/Zeilenzahlen.tsx   Aktienzeilen, auch auf Branchenseiten
+    components/markets/KursLive.tsx       Kopfzeile der Instrumentseite
+
+Der Aufbau ist bei allen dreien derselbe und hat einen Grund: Nur Kurs und
+Veränderung wandern in den Browser. Kürzel, Name, Verweisziel und der
+Verlaufsgraph bleiben auf dem Server – sonst zöge eine Liste mit tausend
+Zeilen tausend Namen ins Client-Bündel.
+
 ## Was der Fünf-Minuten-Lauf holt, bestimmt `lib/leitwerte.ts`
 
 Und zwar **alles, was als Kachel auf der Übersicht steht** – 46 Werte:
@@ -505,9 +530,11 @@ sondern der Neubau: Der Fünf-Minuten-Lauf baut nicht, er legt
 `kurse-live.json` auf den Server. Dreizehn oder sechsundvierzig Kurse ändern
 daran Sekunden.
 
-Die Einzelaktien bleiben beim Zwei-Stunden-Takt. Über tausend Titel alle fünf
-Minuten wären 288.000 Abrufe am Tag für Kacheln, die niemand ansieht; wer eine
-bestimmte Aktie sucht, landet auf ihrer Seite, und die ist live.
+Hier stand: „Die Einzelaktien bleiben beim Zwei-Stunden-Takt. Über tausend
+Titel alle fünf Minuten wären 288.000 Abrufe am Tag für Kacheln, die niemand
+ansieht." **Beide Hälften waren falsch**, und das kam am selben Abend heraus –
+siehe den Dauerlauf weiter unten. Der Fünf-Minuten-Lauf in `kurse.yml` holt
+weiter nur die Leitwerte; der Dauerlauf holt alles.
 
 ## Die EZB ist eine Tagesquelle – und wurde zweimal darum gebracht
 
@@ -566,16 +593,35 @@ hängen._ Fünf Minuten sind eine bestimmte Zeit.
 ### Also bringt der Lauf seine Uhr selbst mit
 
 `.github/workflows/kurse-dauerlauf.yml`: **ein** Job, fünfeinhalb Stunden
-lang, der alle zwei Minuten die Leitwerte holt und `kurse-live.json` auf den
-Server legt. Kein Termin, der verworfen werden könnte – die Schleife zählt
-selbst.
+lang, der alle zwei Minuten den **vollen Bestand** holt und `kurse-live.json`
+auf den Server legt. Kein Termin, der verworfen werden könnte – die Schleife
+zählt selbst.
 
-    Abruf              rund 15 Sekunden für 46 Werte
-    Schleifentakt      bis zu 2 Minuten
+    Abruf              76 Sekunden für 1.059 Werte  (gemessen, Lauf 31407697704)
+    Schleifentakt      2 Minuten
     Übertragung        wenige Sekunden
     Browser-Takt       bis zu 1 Minute   (TAKT_MS in kurse-live-speicher.ts)
     ---------------------------------------------------------------------
     zusammen           gut 3 Minuten im ungünstigsten Fall
+
+**Der volle Bestand, nicht nur die 46 Leitwerte** – seit dem Abend des
+10. August, und die erste Fassung lag hier daneben. Sie holte `NUR_LEITWERTE`
+mit der Begründung, tausend Titel alle zwei Minuten seien Abrufe „für Kacheln,
+die niemand ansieht". Amazon um 20:12 auf dem Stand von 19:05, mitten in der
+US-Sitzung, hat das widerlegt: Wer eine Aktienseite offen hat, sieht sie an.
+
+Und teuer ist es auch nicht. Der volle **Preis**abruf – `range=1d`, 80 ms
+Starttakt – dauert 76 Sekunden und passt in den Takt, ohne ihn zu dehnen. Die
+sieben Minuten, die in der alten Rechnung steckten, galten dem vollen Lauf
+**mit Historie und Dividenden**; die beiden holt weiter `kurse.yml` alle zwei
+Stunden, denn Tageskerzen ändern sich nicht alle zwei Minuten.
+
+Was bleibt, ist die Last bei Yahoo: knapp neun Anfragen je Sekunde, rund um
+die Uhr, an einer freien Schnittstelle ohne Vertrag. Dagegen hört die Schleife
+auf das, was zurückkommt – der Abruf meldet „N Instrumente aktualisiert", und
+bricht diese Zahl auf unter zwei Drittel ein, verdoppelt sich der Takt bis zur
+Erholung (höchstens acht Minuten). Wer die Zahl 80 in `ABSTAND_MS` anfasst,
+fasst damit auch diesen Dauerbetrieb an.
 
 Am Leben bleibt er über zwei Ketten: Er startet am Ende seinen eigenen
 Nachfolger (`workflow_dispatch`, der einzige Weg, der dem `GITHUB_TOKEN`

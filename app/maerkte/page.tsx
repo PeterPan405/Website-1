@@ -167,7 +167,24 @@ export default async function MarketsOverviewPage() {
         }
       />
 
-      <div className="fk-container py-12 sm:py-16">
+      {/*
+        Oben knapper als unten – und das ist eine Folge davon, dass hier
+        Fließtext weggefallen ist.
+
+        Der Abstand war für einen Absatz gemacht: 48 Pixel Kopfzeilenfuß, 64
+        Pixel Innenabstand und 16 Pixel Rand am Verweis, zusammen gut 128. Mit
+        einem Textblock darin sah das richtig aus. Ohne ihn steht die
+        Verweiszeile allein in der Fläche und wirkt wie ein Rest, der nach
+        oben gerutscht ist – gemeldet vom Betreiber, sichtbar in einem
+        Bildausschnitt, auf dem zwischen „1029 Einzelaktien" und „Tagesbild"
+        nichts ist.
+
+        Die Zeile gehört zum Kopf, nicht zum Inhalt: Sie zählt auf, wohin es
+        von hier aus weitergeht, genau wie die Zeile mit den Stückzahlen
+        darüber. Also rückt sie an ihn heran. Der Innenabstand nach unten
+        bleibt, wie er war – dort steht wieder Inhalt.
+      */}
+      <div className="fk-container pt-2 pb-12 sm:pt-3 sm:pb-16">
         {/*
           Hier stand die Herkunftszeile – Abrufabstand, Quellen, Demo-Kurse. Sie
           ist ersatzlos weg, und das ist keine Auslassung:
@@ -192,7 +209,7 @@ export default async function MarketsOverviewPage() {
           Die Verweise bleiben, weil sie der einzige Weg zu diesen Seiten sind.
           Als Zeile statt als Absatz sind sie außerdem schneller zu erfassen.
         */}
-        <nav aria-label="Auswertungen" className="mt-4">
+        <nav aria-label="Auswertungen">
           <ul className="text-markets flex flex-wrap items-center gap-x-5 gap-y-2 font-medium">
             {[
               { href: '/maerkte/tagesbild', text: 'Tagesbild' },
