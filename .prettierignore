@@ -48,3 +48,13 @@ data/snapshots/kursausfaelle.json
 antwort-bestand.json
 quellen.txt
 entwurf.json
+
+# Das Verzeichnis der Vorlese-Aufnahmen, geschrieben von
+# `scripts/lese-stimme-erzeugen.py` mit `json.dump(indent=2)`. Der dritte Fall
+# desselben Streits nach `fundamentaldaten.json` und `kursausfaelle.json`:
+# Die Marken einer Seite sind ein Array aus Zahlen, und ob Prettier es auf eine
+# Zeile zieht, hängt daran, wie viele Abschnitte die Seite hat.
+#
+# Am 10. August 2026 committete der erste erfolgreiche Lauf zwölf Seiten nach
+# `main` – und ab da war jeder Build rot, der diesen Stand enthielt.
+data/lese-audio.json
