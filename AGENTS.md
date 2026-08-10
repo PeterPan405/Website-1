@@ -604,10 +604,10 @@ zählt selbst.
     ---------------------------------------------------------------------
     zusammen           gut 3 Minuten im ungünstigsten Fall
 
-**Der volle Bestand, nicht nur die 46 Leitwerte** – seit dem Abend des
-10. August 2026. Die erste Fassung lag hier daneben: Sie holte `NUR_LEITWERTE`
-mit der Begründung, tausend Titel alle zwei Minuten seien Abrufe „für Kacheln,
-die niemand ansieht". Amazon um 20:12 auf dem Stand von 19:05, mitten in der
+**Der volle Bestand, nicht nur die 46 Leitwerte** – so seit dem Abend jenes
+Montags, und die erste Fassung lag hier daneben. Sie holte `NUR_LEITWERTE` mit
+der Begründung, tausend Titel alle zwei Minuten seien Abrufe „für Kacheln, die
+niemand ansieht". Amazon um 20:12 auf dem Stand von 19:05, mitten in der
 US-Sitzung, hat das widerlegt: Wer eine Aktienseite offen hat, sieht sie an.
 
 Und teuer ist es auch nicht. Der volle **Preis**abruf – `range=1d`, 80 ms
