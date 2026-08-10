@@ -59,11 +59,6 @@ on:
         description: 'Höchstens so viele Seiten je Läufer (0 = so viele wie ins Budget passen)'
         type: string
         default: '0'
-      teile:
-        description: 'Wie viele Läufer gleichzeitig sprechen'
-        type: choice
-        options: ['4', '8', '12', '16', '20']
-        default: '12'
       budget:
         description: 'Rechenminuten je Läufer'
         type: string
@@ -91,6 +86,23 @@ jobs:
       # Fällt ein Läufer aus, sollen die anderen ihre Seiten trotzdem fertig
       # sprechen. Was fehlt, steht beim nächsten Lauf wieder vorn.
       fail-fast: false
+      # **Diese Zahl und `TEILE` weiter unten müssen übereinstimmen.**
+      #
+      # Sie waren einstellbar, und das war ein Fehler mit zwei Gesichtern. Die
+      # Matrix ist in YAML festgeschrieben, die Zahl der Teile war eine
+      # Eingabe – wer sie auseinanderlaufen ließ, bekam:
+      #
+      #     kleiner als 12   die überzähligen Läufer brechen sofort ab
+      #                      („TEIL=5 passt nicht zu TEILE=4") – laut, aber
+      #                      unnötig
+      #     größer als 12    **die überzähligen Seiten spricht niemand.**
+      #                      Jeder Läufer nimmt `i % TEILE == TEIL - 1`, und
+      #                      TEIL geht nur bis 12: Bei 20 Teilen fällt ein
+      #                      Drittel der Arbeit lautlos unter den Tisch.
+      #
+      # Der zweite Fall ist der gefährliche, weil er wie Erfolg aussieht.
+      # Deshalb gibt es die Eingabe nicht mehr; wer die Zahl ändert, ändert
+      # beide Stellen.
       matrix:
         teil: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
@@ -154,7 +166,8 @@ jobs:
       - name: Sprechen
         env:
           TEIL: ${{ matrix.teil }}
-          TEILE: ${{ inputs.teile || '12' }}
+          # Muss zur Matrix oben passen – die Begründung steht dort.
+          TEILE: '12'
           BUDGET_MINUTEN: ${{ inputs.budget || '240' }}
           HOECHSTENS: ${{ inputs.seiten || '0' }}
         run: python scripts/lese-stimme-erzeugen.py
