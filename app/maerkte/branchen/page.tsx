@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
 import { getBranchen, getBranchenAbdeckung } from '@/lib/branchen'
@@ -47,23 +46,17 @@ export default function BranchenSeite() {
       />
 
       <div className="fk-container py-12 sm:py-16">
-        <Callout variant="info" title="Eine Suchhilfe, keine amtliche Einteilung">
-          <p>
-            Für Branchen gibt es zwei etablierte Systeme, <strong>GICS</strong> und{' '}
-            <strong>ICB</strong>. Beide sind lizenzpflichtig, und beide ordnen dieselbe
-            Firma gelegentlich verschieden ein: Amazon betreibt Handel und Rechenzentren,
-            Tesla baut Autos und verkauft Software. Wer eine solche Firma in genau eine
-            Schublade legt, trifft eine Entscheidung – und keine, die sich beweisen ließe.
-          </p>
-          <p>
-            Die Einteilung hier ist deshalb als <strong>Suchhilfe</strong> gedacht: Sie
-            soll helfen, vergleichbare Titel nebeneinander zu sehen. Für die Frage, wie
-            ein Index zusammengesetzt ist oder wie ein Fonds seine Branchenquote
-            berechnet, ist sie nicht die Grundlage.
-          </p>
-        </Callout>
+        {/*
+          Hier stand ein Hinweiskasten über GICS und ICB und darüber, dass diese
+          Einteilung eine Suchhilfe ist und keine amtliche Klassifikation.
 
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          Er ist weg, weil er den Vorbehalt größer machte als die Sache: acht
+          Zeilen Einschränkung über einer Liste, die niemand für ein
+          Lizenzsystem hält. Dass es die Einteilung dieser Website ist, steht
+          zwei Zeilen darüber im Kopf – dort trifft es jeden Besucher und
+          kostet drei Wörter.
+        */}
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {branchen.map((branche, index) => (
             <li key={branche.slug}>
               <Reveal delay={Math.min(index, 12) * 0.03}>

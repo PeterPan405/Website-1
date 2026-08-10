@@ -40,7 +40,19 @@ export function Sparkline({
 
   const line = `M${coordinates.join(' L')}`
   const area = `${line} L${width},${height} L0,${height} Z`
-  const color = positive ? 'var(--c-success)' : 'var(--c-danger)'
+  /*
+    Die Farbe kommt vom Elternteil, nicht aus dieser Datei.
+
+    Bis August 2026 stand hier `positive ? --c-success : --c-danger`. Das ging,
+    solange die Richtung beim Bauen feststand. Seit die Kacheln ihren Kurs im
+    Browser auffrischen, kann sie sich danach ändern – und eine grüne Zahl über
+    einer roten Kurve sähe nach einem Fehler aus.
+
+    `currentColor` löst das ohne Client-Code: Die Zeichnung entsteht weiter auf
+    dem Server, die Textfarbe setzt der Aufrufer. `positive` bleibt als Vorgabe
+    für alle Stellen, die keine Farbe setzen.
+  */
+  const color = 'currentColor'
   // Eindeutige ID, damit mehrere Sparklines auf einer Seite nicht kollidieren.
   const gradientId = `spark-${positive ? 'up' : 'down'}-${points[0].t}-${points.length}`
 
@@ -57,6 +69,7 @@ export function Sparkline({
       preserveAspectRatio="none"
       aria-hidden="true"
       focusable="false"
+      style={{ color: positive ? 'var(--c-success)' : 'var(--c-danger)' }}
       data-fliesst=""
     >
       <defs>

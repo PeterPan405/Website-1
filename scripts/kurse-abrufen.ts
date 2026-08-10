@@ -574,14 +574,30 @@ async function main(): Promise<void> {
     }
 
     /*
-      Devisen im Preis-Modus: nichts zu tun.
+      Devisen im Fünf-Minuten-Lauf: nichts zu tun.
 
       Die EZB veröffentlicht einen Referenzkurs je Tag, keinen laufenden. Ein
-      halbstündlicher Lauf hätte für sie nichts Neues und würde sie sonst als
+      Lauf alle fünf Minuten hätte für sie nichts Neues und würde sie sonst als
       „kein laufender Kurs“ ins Protokoll schreiben – fünf Zeilen Rauschen,
-      achtundvierzig Mal am Tag.
+      knapp dreihundert Mal am Tag.
+
+      **Nur dieser eine Lauf überspringt sie.** Bis zum 10. August 2026 stand
+      hier `NUR_PREIS`, und das war zu breit: Der Zwei-Stunden-Lauf trägt
+      dieselbe Kennzeichnung, und damit blieb die einzige Gelegenheit, einen
+      Devisenkurs überhaupt fortzuschreiben, der volle Lauf um 21:47 an
+      Werktagen.
+
+      Die Folge war an EUR/USD sichtbar und wurde vom Betreiber gemeldet: Am
+      Montagnachmittag stand dort der Kurs vom vorigen Donnerstag. Der Lauf am
+      Freitagabend schreibt die Reihe bis Donnerstag fort (`ohneHeute`), am
+      Wochenende läuft keiner, und der Montag kommt erst um 21:47. Vier Tage
+      alt – auf einer Kachel, die daneben Kurse von vor fünf Minuten zeigt.
+
+      EUR/USD steht ausdrücklich in `LEITWERTE`, also unter den Werten, die
+      häufig auffrischen sollen. Die Absicht war da, die Umsetzung hat sie
+      genau umgekehrt.
     */
-    if (NUR_PREIS && quelle.provider === 'ecb') continue
+    if (NUR_LEITWERTE && quelle.provider === 'ecb') continue
 
     let roh: SnapshotPoint[] | null
     let latest: { value: number; at: string } | null = null
@@ -662,8 +678,16 @@ async function main(): Promise<void> {
       Geschrieben wird nur `latest`. Weil `historieOhneKurse()` genau dieses
       Feld beim Vergleich wegwirft, bleibt `markets.json` unberührt, ohne dass
       es hier eine zweite Fallunterscheidung braucht.
+
+      **Devisen nehmen diesen Weg nicht.** Sie haben keinen laufenden Kurs,
+      den man in `latest` schreiben könnte – ihr Kurs *ist* der Tagespunkt.
+      Für sie läuft deshalb auch im Preis-Modus die volle Auswertung darunter:
+      Reihe fortschreiben, `asOf` setzen, fertig. Das schreibt `markets.json`
+      neu, aber nur an dem einen Lauf des Tages, an dem die EZB tatsächlich
+      einen neuen Referenzkurs veröffentlicht hat – an allen übrigen ist der
+      Inhalt gleich und die Datei bleibt unangetastet.
     */
-    if (NUR_PREIS) {
+    if (NUR_PREIS && quelle.provider !== 'ecb') {
       const vorhanden = instrumente[symbol]
       if (!vorhanden || vorhanden.points.length === 0) {
         behalten.push(`${symbol} (noch keine Historie)`)
@@ -692,7 +716,24 @@ async function main(): Promise<void> {
 
     const stellen =
       marketDefinitions.find((definition) => definition.symbol === symbol)?.decimals ?? 4
-    const punkte = thinPoints(ohneHeute(roh)).map((punkt) => ({
+    /*
+      Der heutige Punkt fliegt raus – außer bei der EZB.
+
+      `ohneHeute()` gibt es, weil Yahoo den laufenden Tag als Kerze mitliefert,
+      deren Schlusskurs sich noch bewegt. Ein solcher Zwischenstand gehört
+      nicht in eine Reihe, die „Tagesschlusskurse“ heißt.
+
+      Für einen EZB-Referenzkurs gilt das Gegenteil: Er wird einmal am Tag
+      gegen 16:00 Uhr festgestellt und ändert sich danach nicht mehr. Ihn
+      wegzuwerfen hieß, den aktuellsten vorhandenen Wert zu verwerfen und den
+      von gestern zu zeigen – über ein Wochenende den von vorletzter Woche.
+
+      Zusammen mit dem übersprungenen Lauf weiter oben war das der Grund,
+      warum am 10. August um halb sechs der Kurs vom 6. August auf der Kachel
+      stand: einmal nie abgerufen, einmal beim Abruf verworfen.
+    */
+    const roheReihe = quelle.provider === 'ecb' ? roh : ohneHeute(roh)
+    const punkte = thinPoints(roheReihe).map((punkt) => ({
       d: punkt.d,
       c: runde(punkt.c, stellen),
     }))

@@ -1,10 +1,8 @@
 import Link from 'next/link'
 
 import { Sparkline } from '@/components/charts/Sparkline'
-import { Icon } from '@/components/ui/Icon'
+import { Kachelzahlen } from '@/components/markets/Kachelzahlen'
 import type { SeriesPoint } from '@/data/markets'
-import { cn } from '@/lib/cn'
-import { formatNumber, formatNumberSigned, formatPercentSigned } from '@/lib/format'
 import type { MarketQuote } from '@/lib/markets'
 
 /**
@@ -23,8 +21,6 @@ export function QuoteCard({
   /** Kompakte Variante ohne Verlaufsgrafik. */
   compact?: boolean
 }) {
-  const positive = quote.changePercent >= 0
-
   return (
     /*
       `min-w-0` ist hier kein Feinschliff, sondern trägt das Layout auf dem
@@ -54,61 +50,21 @@ export function QuoteCard({
       href={`/maerkte/${quote.symbol}`}
       className="fk-card-interactive group block min-w-0 overflow-hidden p-5"
     >
-      <div className="flex items-start justify-between gap-3">
-        {/*
-          `min-h`: Kacheln mit und ohne Namenszeile stehen im selben Raster.
-          Ohne festes Maß säße die Kurszahl mal höher, mal tiefer – eine
-          Reihe aus vier Kacheln bekäme drei Grundlinien.
-        */}
-        <div className="min-h-[2.625rem] min-w-0">
-          <p className="font-display text-fg text-base font-semibold">{quote.ticker}</p>
-          {/*
-            Nur, wenn der Name mehr sagt als der Ticker. „S&P 500" unter
-            „S&P 500" stand auf einem Drittel der Kacheln doppelt – das las
-            sich wie ein Versehen und kostete eine Zeile Platz.
-          */}
-          {quote.name !== quote.ticker && (
-            <p className="text-fg-muted mt-0.5 line-clamp-1 text-xs">{quote.name}</p>
-          )}
-        </div>
-        <span
-          className={cn(
-            'fk-chip shrink-0',
-            positive ? 'bg-success-soft text-success' : 'bg-danger-soft text-danger'
-          )}
-        >
-          <Icon name={positive ? 'trending-up' : 'trending-down'} className="size-3.5" />
-          {formatPercentSigned(quote.changePercent)}
-        </span>
-      </div>
-
-      <p className="text-fg mt-4 text-2xl font-bold tabular-nums">
-        {formatNumber(quote.value, quote.decimals)}
-        <span className="text-fg-subtle ml-1.5 text-sm font-medium">{quote.unit}</span>
-      </p>
-
-      <p
-        className={cn(
-          'mt-1 text-sm font-medium tabular-nums',
-          positive ? 'text-success' : 'text-danger'
-        )}
+      <Kachelzahlen
+        symbol={quote.symbol}
+        ticker={quote.ticker}
+        name={quote.name}
+        decimals={quote.decimals}
+        unit={quote.unit}
+        value={quote.value}
+        /* Der Schlusskurs davor – Preis minus Veränderung, aus dem Bau. */
+        basis={quote.value - quote.change}
+        at={quote.asOf}
       >
-        {formatNumberSigned(quote.change, quote.decimals)} zum Vortag
-      </p>
-
-      {/*
-        Ohne „Details ansehen →“-Fußzeile und ohne Bildunterschrift.
-
-        Beides stand auf **jeder** Kachel – auf der Marktübersicht 22-mal
-        derselbe Satz mit demselben Pfeil untereinander. Die ganze Kachel ist
-        der Link und sagt das beim Überfahren selbst; was der Verlauf zeigt,
-        erklärt die Einleitung der Seite einmal für alle.
-      */}
-      {!compact && sparkline && sparkline.length > 1 && (
-        <div className="mt-4">
-          <Sparkline points={sparkline} positive={positive} />
-        </div>
-      )}
+        {!compact && sparkline && sparkline.length > 1 ? (
+          <Sparkline points={sparkline} positive={quote.changePercent >= 0} />
+        ) : null}
+      </Kachelzahlen>
     </Link>
   )
 }
