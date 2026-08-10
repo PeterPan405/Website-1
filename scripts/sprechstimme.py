@@ -152,6 +152,9 @@ def haelften(stueck: str) -> tuple[str, str] | None:
 
 # ------------------------------------------------------------------ Sprechen
 
+#: Sekunden Sprache je Zeichen – an den bisherigen Folgen gemessen.
+SEKUNDEN_JE_ZEICHEN = 1 / 14.5
+
 #: Wie lange ein einzelnes Stück höchstens brauchen darf.
 #:
 #: Ohne Uhr hing ein Läufer zweiundvierzig Minuten am ersten Stück und meldete
@@ -159,6 +162,27 @@ def haelften(stueck: str) -> tuple[str, str] | None:
 #: Erzeugungsschritten – anders als bei einem einzelnen langen C-Aufruf geht
 #: das hier tatsächlich.
 FRIST_JE_STUECK = int(os.environ.get("STIMME_FRIST", "180"))
+
+
+def frist_fuer(stueck: str) -> int:
+    """Wie lange dieses Stück brauchen darf – nach seiner Länge bemessen.
+
+    Eine feste Frist von 180 Sekunden ist für ein volles Stück von 240 Zeichen
+    richtig und für einen Satz von 48 Zeichen absurd: Der ist nach fünfzehn
+    Sekunden gesprochen oder gar nicht. Gemessen an einem echten Lauf brauchten
+    volle Stücke zwischen 30 und 100 Sekunden.
+
+    Das ist keine Feinheit, sondern die Voraussetzung dafür, dass sich
+    Wiederholen überhaupt lohnt. Neun Anläufe zu je 180 Sekunden sind
+    siebenundzwanzig Minuten für einen Satz; neun Anläufe an einer Frist, die
+    zur Länge passt, sind neun.
+
+    Der Faktor zwölf über der erwarteten Sprechdauer ist großzügig – das
+    Modell rechnet auf einem Läufer ohne Grafikkarte. Die Untergrenze von
+    sechzig Sekunden fängt den Vorlauf ab, den jedes Stück hat.
+    """
+    erwartet = len(stueck) * SEKUNDEN_JE_ZEICHEN
+    return max(60, min(FRIST_JE_STUECK, int(12 * erwartet)))
 
 
 class Zeitueberschreitung(Exception):
@@ -171,9 +195,6 @@ def _wecker(signum, rahmen):  # noqa: ARG001
 
 signal.signal(signal.SIGALRM, _wecker)
 
-
-#: Sekunden Sprache je Zeichen – an den bisherigen Folgen gemessen.
-SEKUNDEN_JE_ZEICHEN = 1 / 14.5
 
 #: Wie weit die Dauer eines Stücks von der erwarteten abweichen darf.
 DAUER_UNTEN = 0.45
@@ -260,7 +281,8 @@ class Sprecher:
         """
         import numpy as np
 
-        signal.alarm(FRIST_JE_STUECK)
+        frist = frist_fuer(stueck)
+        signal.alarm(frist)
         try:
             return self.modell.generate_voice_clone(
                 text=stueck, voice_clone_prompt=self.prompt, language="German"
@@ -276,12 +298,39 @@ class Sprecher:
             if geschlossen != stueck and tiefe < 4:
                 self.melde(f"  Stück ohne Satzende – erneut mit Punkt: {geschlossen[:40]!r}")
                 return self.sprich(geschlossen, tiefe + 1)
+
+            # **Ein kurzes Stück, das hängt, bekommt weitere Anläufe.**
+            #
+            # Im Podcastskript steht an dieser Stelle die Bemerkung, ein
+            # zweiter Versuch sei wertlos – dasselbe Stück habe zweimal
+            # hintereinander gehangen, es liege also am Text und nicht am
+            # Zufall. Diese Schlussfolgerung war falsch, und der Beleg kam am
+            # 10. August 2026 von zwei Seiten gleichzeitig:
+            #
+            # - Zwei Fassungen derselben Podcastfolge, eine mit vier Sekunden
+            #   Quietschen, die andere sauber. Gleicher Text.
+            # - Der erste Vertonungslauf der Lernseiten scheiterte an
+            #   `'Versichert wird, was ruiniert, nicht was ärgert.'` – 48
+            #   Zeichen, ein gewöhnlicher Satz, nichts Pathologisches.
+            #
+            # Das Modell würfelt. Zweimal dasselbe Ergebnis ist bei einer
+            # Wahrscheinlichkeit um die Hälfte kein Beweis für Determinismus,
+            # sondern ein Münzwurf, der zweimal Kopf zeigt.
+            #
+            # Also: bis zu vier weitere Anläufe, bevor aufgegeben wird. Sie
+            # kosten im schlechtesten Fall Zeit, im besten die ganze Seite.
+            if tiefe < 8:
+                self.melde(
+                    f"  Kurzes Stück hing – Anlauf {tiefe + 2}: {stueck[:50]!r}"
+                )
+                return self.sprich(stueck, tiefe + 1)
+
             raise RuntimeError(
                 f"Ein Stück ließ sich nicht sprechen und nicht mehr teilen: {stueck[:60]!r}."
             )
 
         self.melde(
-            f"  Stück hing nach {FRIST_JE_STUECK} s – geteilt in "
+            f"  Stück hing nach {frist} s – geteilt in "
             f"{len(teile[0])} + {len(teile[1])} Zeichen (Ebene {tiefe + 1})."
         )
         links, rate = self.sprich(teile[0], tiefe + 1)
