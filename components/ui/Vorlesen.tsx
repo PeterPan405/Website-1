@@ -258,6 +258,12 @@ export function Vorlesen({
         adresse={aufnahme.adresse}
         marken={aufnahme.marken}
         sekunden={aufnahme.sekunden}
+        /*
+          Dieselben Abschnitte, aus denen die Aufnahme entstanden ist. Die
+          Leiste macht daraus die Kapitel ihrer Zeitleiste – ohne sie wäre sie
+          ein Balken ohne Gliederung.
+        */
+        abschnitte={abschnitte}
         aufGeraetestimme={() => setAufnahmeGescheitert(true)}
       />
     )

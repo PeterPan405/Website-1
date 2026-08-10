@@ -28,6 +28,16 @@ import { Icon } from '@/components/ui/Icon'
  * Das ist mehr als Buchhaltung: Wer eine Stelle noch einmal hören will,
  * springt einen Abschnitt zurück, statt am Balken zu zielen.
  *
+ * ## Die Zeitleiste ist gegliedert, nicht durchgehend
+ *
+ * Dieselben Marken zeichnen die Kapitel. Ein durchgehender Balken sagt nur,
+ * wie weit es noch ist; ein gegliederter sagt zusätzlich, **wo man ist** –
+ * und macht jeden Anfang anklickbar, statt ihn suchen zu lassen.
+ *
+ * Die Breite eines Kapitels ist seine Dauer. Ein langer Abschnitt ist ein
+ * breites Feld, ein kurzer ein schmales; wer den Balken liest, sieht die
+ * Verteilung des Textes, bevor er ihn gehört hat.
+ *
  * ## Was diese Leiste nicht tut
  *
  * Sie lädt nichts von selbst. `preload="none"` heißt: Erst der Druck auf
@@ -46,16 +56,34 @@ function alsZeit(sekunden: number): string {
   return `${minuten}:${String(ganz % 60).padStart(2, '0')}`
 }
 
+/**
+ * Die Überschrift eines Kapitels – aus dem gesprochenen Abschnitt gewonnen.
+ *
+ * Ein eigenes Feld dafür gibt es nicht, und es wäre auch keine Verbesserung:
+ * Was gesprochen wird, steht schon da. Genommen wird der erste Satz, gekappt
+ * auf eine Länge, die in eine Sprechblase passt. Überschriften sind ohnehin
+ * kurz und kommen damit vollständig durch; ein Absatz wird zum Anreißer.
+ */
+function kapitelname(text: string): string {
+  const sauber = text.replace(/\s+/g, ' ').trim()
+  const satz = sauber.split(/(?<=[.!?:])\s/)[0] ?? sauber
+  const kurz = satz.length > 70 ? `${satz.slice(0, 67).trimEnd()}…` : satz
+  return kurz
+}
+
 export function Aufnahmeleiste({
   adresse,
   marken,
   sekunden,
+  abschnitte,
   aufGeraetestimme,
 }: {
   adresse: string
   /** Startsekunde jedes Abschnitts. */
   marken: number[]
   sekunden: number
+  /** Der gesprochene Text je Abschnitt – gleiche Reihenfolge wie `marken`. */
+  abschnitte?: string[]
   /** Rückfall auf die Stimme des Geräts – etwa wenn die Datei fehlt. */
   aufGeraetestimme?: () => void
 }) {
@@ -84,6 +112,20 @@ export function Aufnahmeleiste({
       ton?.pause()
     }
   }, [])
+
+  /*
+    Die Kapitel der Zeitleiste: Anfang, Dauer und Name je Abschnitt.
+
+    Die Dauer ist der Abstand zur nächsten Marke, beim letzten der Rest bis
+    zum Ende. Sie wird nach unten begrenzt – eine Länge von null wäre ein Feld
+    ohne Breite, und `flexGrow: 0` ließe es unsichtbar verschwinden statt es
+    schmal zu zeichnen.
+  */
+  const kapitel = marken.map((beginn, i) => ({
+    beginn,
+    laenge: Math.max((marken[i + 1] ?? Math.max(dauer, beginn + 1)) - beginn, 0.5),
+    name: abschnitte?.[i] ? kapitelname(abschnitte[i]) : `Abschnitt ${i + 1}`,
+  }))
 
   /** In welchem Abschnitt die Wiedergabe gerade steht. */
   function abschnittBei(zeit: number): number {
@@ -235,29 +277,77 @@ export function Aufnahmeleiste({
         springen und sonst nichts; eine Passage in der Mitte eines langen
         Abschnitts war nicht erreichbar.
 
-        Ein `range` kann beides: Er zeigt den Stand und nimmt ihn entgegen. Die
-        Tastatur bekommt das geschenkt – Pfeiltasten bewegen ihn sekundenweise,
-        Pos1 und Ende springen an die Enden.
+        Sichtbar sind die Kapitel, bedient wird über einen `range` darüber:
+        durchsichtig, deckungsgleich, und damit dasselbe Werkzeug wie zuvor.
+        Der Klick landet auf ihm und nicht auf einem Feld – der Browser rechnet
+        die Stelle aus der Mausposition, auf die Sekunde genau, egal welches
+        Kapitel darunter liegt. Die Tastatur bekommt das geschenkt: Pfeiltasten
+        bewegen sekundenweise, Pos1 und Ende springen an die Enden.
+
+        Die Felder selbst nehmen keine Klicks an (`pointer-events-none`). Zwei
+        Empfänger für dieselbe Geste wären zwei Antworten auf einen Klick.
       */}
       <label className="flex w-full items-center gap-2">
         <span className="sr-only">Stelle in der Aufnahme</span>
         <span className="text-fg-subtle text-xs tabular-nums">{alsZeit(jetzt)}</span>
-        <input
-          type="range"
-          min={0}
-          max={Math.max(dauer, 1)}
-          step={1}
-          value={Math.min(jetzt, dauer)}
-          onChange={(ereignis) => {
-            const ziel = Number(ereignis.target.value)
-            setJetzt(ziel)
-            if (tonRef.current) tonRef.current.currentTime = ziel
-          }}
-          aria-valuetext={`${alsZeit(jetzt)} von ${alsZeit(dauer)}`}
-          className="accent-brand h-1.5 grow cursor-pointer"
-        />
+
+        <span className="relative flex h-4 grow items-center">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 flex h-1.5 items-stretch gap-0.5"
+          >
+            {kapitel.map((kap, i) => (
+              <span
+                key={kap.beginn}
+                title={kap.name}
+                style={{ flexGrow: kap.laenge }}
+                className="bg-border relative overflow-hidden rounded-full"
+              >
+                <span
+                  className="bg-brand absolute inset-y-0 left-0"
+                  style={{
+                    width: `${Math.min(100, Math.max(0, ((jetzt - kap.beginn) / kap.laenge) * 100))}%`,
+                  }}
+                />
+                {i === stelle && (
+                  <span className="ring-brand/40 absolute inset-0 rounded-full ring-2" />
+                )}
+              </span>
+            ))}
+          </span>
+
+          <input
+            type="range"
+            min={0}
+            max={Math.max(dauer, 1)}
+            step={1}
+            value={Math.min(jetzt, dauer)}
+            onChange={(ereignis) => {
+              const ziel = Number(ereignis.target.value)
+              setJetzt(ziel)
+              if (tonRef.current) tonRef.current.currentTime = ziel
+            }}
+            aria-valuetext={
+              `${alsZeit(jetzt)} von ${alsZeit(dauer)}` +
+              (kapitel[stelle] ? `, Kapitel ${stelle + 1}: ${kapitel[stelle].name}` : '')
+            }
+            className="fk-tonleiste relative w-full cursor-pointer bg-transparent"
+          />
+        </span>
+
         <span className="text-fg-subtle text-xs tabular-nums">{alsZeit(dauer)}</span>
       </label>
+
+      {/*
+        Der Name des Kapitels, in dem die Stimme gerade ist. Ein Feld auf einem
+        Balken sagt „hier"; erst der Name sagt, wovon gerade die Rede ist – und
+        auf dem Telefon ist das Zeigen auf ein Feld ohnehin keine Bedienung.
+      */}
+      {kapitel[stelle] && (laeuft || stelle > 0) && (
+        <p className="text-fg-subtle w-full truncate text-xs" aria-hidden>
+          {stelle + 1}. {kapitel[stelle].name}
+        </p>
+      )}
     </div>
   )
 }
