@@ -1,0 +1,56 @@
+name: Podcast-Hinweis angleichen
+
+# Bringt den KI-Hinweis in den YouTube-Beschreibungen auf den heutigen Stand.
+#
+# ## Der Anlass
+#
+# Am 10. August 2026 nachgesehen, acht Videos: Eines trug den aktuellen
+# Hinweis, sechs die Fassung „Die Stimme in dieser Folge wurde mit künstlicher
+# Intelligenz erzeugt. Auswahl, Text und Einordnung stammen von IM Invests“,
+# und eines gar keinen.
+#
+# Die mittlere Fassung sagt sinngemäß, der Text stamme von Menschen. Das war
+# einmal richtig und ist es seit dem 6. August nicht mehr – seither schreibt
+# ein Modell den Entwurf. Ein Hinweis, der die eigene Arbeitsweise falsch
+# beschreibt, ist schlechter als keiner.
+#
+# ## Warum von Hand und mit Trockenlauf
+#
+# Der Lauf ändert veröffentlichte Texte auf einem fremden Dienst. Dafür gibt
+# es keinen Zeitplan: Er läuft, wenn jemand ihn startet, und zeigt ohne
+# `anwenden` nur, was er täte.
+
+on:
+  workflow_dispatch:
+    inputs:
+      anwenden:
+        description: 'Änderungen wirklich schreiben (sonst nur anzeigen)'
+        type: boolean
+        default: false
+
+concurrency:
+  group: podcast-hinweis
+  cancel-in-progress: false
+
+jobs:
+  angleichen:
+    name: Beschreibungen angleichen
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+
+      - name: Angleichen
+        env:
+          ANWENDEN: ${{ inputs.anwenden && '1' || '0' }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: npm run hinweis
