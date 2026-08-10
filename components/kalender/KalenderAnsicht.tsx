@@ -242,7 +242,7 @@ export function KalenderAnsicht({
             ) : (
               <>
                 {naechster.geschaetzt && (
-                  <span className="text-fg-subtle">erwartet um den </span>
+                  <span className="text-fg-subtle">erwartet am </span>
                 )}
                 {langesDatum(naechster.datum)}
               </>
@@ -351,7 +351,7 @@ export function KalenderAnsicht({
                       )}
                     >
                       <div className="sm:text-right">
-                        <Datumsspalte termine={zeile.termine} heute={heute} geschaetzt />
+                        <Datumsspalte termine={zeile.termine} heute={heute} />
                       </div>
 
                       <div className="min-w-0">
@@ -446,15 +446,31 @@ export function KalenderAnsicht({
  * Bei einer Sammelzeile teilen sich alle Einträge denselben Anfangstag, können
  * aber verschieden weit reichen. Genannt wird deshalb das **späteste** Ende:
  * Bis dahin steht der Tag offen.
+ *
+ * ## Warum hier kein „um den" mehr steht
+ *
+ * Vor einem geschätzten Datum stand „um den": „um den 12. Aug.". Gemeint war
+ * Ehrlichkeit über die Genauigkeit, gelesen wurde etwas anderes. Der Betreiber
+ * hat es am 10. August 2026 gemeldet: Eine Liste aus „um den 12. Aug.", „um
+ * den 13. Aug.", „um den 14. Aug." sagt nirgends, wann etwas ist. Sie sagt
+ * dreimal, dass man es nicht genau weiß – und verwischt dabei die Datumsangabe,
+ * die tatsächlich dasteht.
+ *
+ * Der Vorbehalt geht dabei nicht verloren, er steht nur da, wo er hingehört:
+ * Jede geschätzte Zeile trägt daneben die Marke **„erwartet, nicht
+ * bestätigt"**, und darunter den Satz, dass der genaue Tag von den Unternehmen
+ * kommt. Das ist deutlicher als zwei kleingedruckte Wörter vor der Zahl.
+ *
+ * Es ist derselbe Gedanke wie beim Zeitraum, den diese Termine bis zum
+ * 4. August trugen: Eine Unschärfe gehört als Satz ausgesprochen, nicht in die
+ * Datumsangabe hineingerechnet.
  */
 function Datumsspalte({
   termine,
   heute,
-  geschaetzt,
 }: {
   termine: readonly Termin[]
   heute: string | null
-  geschaetzt: boolean
 }) {
   const beginn = termine[0].datum
   const enden = termine.map((t) => t.bis).filter((b): b is string => Boolean(b))
@@ -472,7 +488,6 @@ function Datumsspalte({
 
   return (
     <p className="text-fg text-sm font-semibold tabular-nums">
-      {geschaetzt && <span className="text-fg-subtle font-normal">um den </span>}
       {kurzesDatum(beginn)}
       {ende && (
         <>
@@ -507,11 +522,7 @@ function ZeileEinzeln({
       )}
     >
       <div className="sm:text-right">
-        <Datumsspalte
-          termine={[termin]}
-          heute={heute}
-          geschaetzt={Boolean(termin.geschaetzt)}
-        />
+        <Datumsspalte termine={[termin]} heute={heute} />
         {termin.uhrzeit && (
           <p className="text-fg-subtle mt-0.5 text-xs">{termin.uhrzeit}</p>
         )}
