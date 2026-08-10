@@ -1,0 +1,73 @@
+name: Aufnahmen nachprüfen
+
+# Sucht in den bereits gesprochenen Aufnahmen nach Stellen, die nicht wie
+# Sprache klingen.
+#
+# ## Warum es diesen Lauf gibt
+#
+# Am 10. August 2026 meldete der Betreiber zweimal dieselbe Störung: morgens
+# in der Podcastfolge bei 1:21, abends in der Vorlesefassung einer Lernseite
+# bei 1:36. Beide Male hatte `sprechstimme.brauchbar` vorher darübergesehen
+# und nichts gefunden – sie mittelte über das ganze Stück und verdünnte dabei
+# genau das, was sie finden sollte.
+#
+# Die Prüfung ist behoben. Die zwölf Aufnahmen, die zu dem Zeitpunkt auf dem
+# Server lagen, sind aber unter der alten entstanden. Sie alle anzuhören ist
+# eine Stunde Arbeit; sie alle neu zu sprechen kostet vier Läuferstunden für
+# ein Ergebnis, das vielleicht in Ordnung war.
+#
+# Dieser Lauf legt denselben Maßstab nachträglich an und sagt, **an welcher
+# Sekunde** man hinhören sollte. Er dauert unter zwei Minuten und braucht
+# weder Modell noch Grafikkarte – nur ffmpeg und numpy.
+#
+# ## Warum er nicht rot wird
+#
+# Weil ein Fund ein Hinweis ist und kein Beweis. Was hier gemessen wird, sind
+# drei Anzeichen – laut, rau, anhaltend. Ob eine Stelle wirklich kaputt ist,
+# entscheidet ein Ohr. Ein roter Lauf wäre eine Behauptung, die dieses
+# Verfahren nicht aufstellen kann, und nach der Regel „ein roter Lauf ist ein
+# Vorrat" wäre er außerdem verschwendet.
+on:
+  workflow_dispatch:
+    inputs:
+      adresse:
+        description: 'Eine einzelne Tondatei prüfen (leer = alle aus data/lese-audio.json)'
+        type: string
+        default: ''
+      basis:
+        description: 'Woher die Aufnahmen kommen'
+        type: string
+        default: 'https://iminvests.de'
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: numpy und ffmpeg
+        run: |
+          pip install --quiet numpy
+          sudo apt-get update -qq \
+            || echo "::warning::apt-get update meldet Fehler – Installation wird versucht."
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+
+      # Erst die Prüfung selbst prüfen. Ein Nachprüfer, der nichts findet,
+      # weil er nichts finden kann, wäre schlimmer als keiner – er hieße
+      # „alles in Ordnung".
+      - name: Tonprüfung selbst prüfen
+        run: python scripts/sprechstimme.py --selbsttest
+
+      - name: Aufnahmen durchsehen
+        run: |
+          if [ -n "${{ inputs.adresse }}" ]; then
+            python scripts/aufnahmen-nachpruefen.py "${{ inputs.adresse }}"
+          else
+            python scripts/aufnahmen-nachpruefen.py --verzeichnis "${{ inputs.basis }}"
+          fi
