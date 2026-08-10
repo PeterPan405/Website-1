@@ -64,7 +64,7 @@ export const woraufAchtenEinsteiger: LearnTopic = {
         'Welche Schritte vor dem ersten Wertpapierkauf kommen, wie groß der Notgroschen sein sollte und wie du Ziele und Zeithorizont festlegst.',
       title: 'Die richtige Reihenfolge',
       lead: 'Nach dieser Stufe kennst du die vier Schritte vor dem ersten Kauf – und weißt, warum sie mehr entscheiden als die Wahl des Produkts.',
-      readingMinutes: 7,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -169,6 +169,51 @@ export const woraufAchtenEinsteiger: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die erste Stunde ganz praktisch',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wenn die vier Schritte stehen, ist der Rest weniger Arbeit, als er aussieht. Was tatsächlich zu tun ist, in der Reihenfolge, in der man es tut:',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Depot eröffnen.** Online, mit Ausweis und einem kurzen Videoanruf zur Legitimation. Ein Depot ist kostenlos zu führen; wer eine Depotgebühr zahlen soll, ist beim falschen Anbieter.',
+            '**Verrechnungskonto verstehen.** Zum Depot gehört ein Geldkonto. Dorthin überweist du, von dort wird gekauft, und dort landen später die Ausschüttungen. Das Depot selbst enthält nur Papiere, kein Geld.',
+            '**Freistellungsauftrag erteilen.** Zwei Minuten in der App. Ohne ihn zieht der Broker ab dem ersten Euro Ertrag Steuer ab.',
+            '**Sparplan anlegen.** Wertpapier suchen, Rate eintragen, Termin wählen, fertig. Die Rate lässt sich jederzeit ändern – nichts daran ist eine Entscheidung für zehn Jahre.',
+            '**App vom Startbildschirm nehmen.** Der häufigste Anfängerfehler ist nicht die falsche Auswahl, sondern zu häufiges Nachsehen. Wer täglich schaut, sieht Schwankungen; wer jährlich schaut, sieht Entwicklung.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Woran du ein unseriöses Angebot erkennst',
+        },
+        {
+          type: 'paragraph',
+          text: 'Einsteiger sind die bevorzugte Zielgruppe für Betrug, und die Muster sind seit Jahrzehnten dieselben. Es braucht kein Fachwissen, um sie zu erkennen – nur die Bereitschaft, bei diesen Sätzen misstrauisch zu werden:',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Fünf Sätze, nach denen das Gespräch endet',
+          items: [
+            '**„Garantierte Rendite von X Prozent."** Garantie und Rendite schließen sich oberhalb des Zinsniveaus aus. Wer beides zusagt, sagt eines davon nicht ehrlich.',
+            '**„Nur heute" oder „nur noch drei Plätze frei."** Zeitdruck hat genau einen Zweck: Er soll das Nachdenken verhindern. Eine seriöse Anlage ist morgen auch noch da.',
+            '**„Das versteht man nicht sofort, vertrau mir einfach."** Was sich nicht in drei Sätzen erklären lässt, gehört nicht ins erste Depot – und wer die Erklärung verweigert, hat einen Grund dafür.',
+            '**„Empfehlung von einem Bekannten aus der Gruppe."** Die häufigste Form heute: Kontakt über Messenger oder soziale Netzwerke, freundlicher Ton über Wochen, dann eine „Gelegenheit". Die anfänglichen Auszahlungen sind Teil der Masche.',
+            '**„Erst noch eine Gebühr überweisen, dann kommt die Auszahlung."** Der sichere Schlusspunkt. Ab hier ist das Geld weg; jeder weitere Euro ist ebenfalls weg.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Die eine Prüfung, die fast alles abdeckt: Ist der Anbieter bei der **BaFin** registriert? Das lässt sich in der Unternehmensdatenbank der Aufsicht in einer Minute nachsehen, und sie führt zusätzlich eine Warnliste unerlaubter Angebote. Ein Anbieter ohne Eintrag ist kein Grenzfall, sondern ein Ausschlusskriterium.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -178,6 +223,9 @@ export const woraufAchtenEinsteiger: LearnTopic = {
             'Der Notgroschen ist die Versicherung gegen den Verkauf im falschen Moment.',
             'Versichert wird, was ruiniert, nicht was ärgert.',
             'Jedes Ziel braucht einen Betrag und ein Datum; daraus folgt die Anlageform.',
+            'Ein Basisbaustein reicht. Der zweite bringt Verwaltungsaufwand, keine Verbesserung.',
+            'Zeitdruck, Garantieversprechen und „vertrau mir einfach" sind keine Details, sondern das Erkennungszeichen.',
+            'Kein BaFin-Eintrag, kein Geschäft – die Prüfung dauert eine Minute.',
           ],
         },
       ],

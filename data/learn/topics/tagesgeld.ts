@@ -42,7 +42,7 @@ export const tagesgeld: LearnTopic = {
         'Wie ein Tagesgeldkonto funktioniert, wofür es taugt, was die Einlagensicherung abdeckt und wie groß ein Notgroschen sein sollte.',
       title: 'Tagesgeld einfach erklärt',
       lead: 'Nach dieser Stufe weißt du, wofür Tagesgeld das richtige Werkzeug ist, wofür nicht, und was die Einlagensicherung tatsächlich abdeckt.',
-      readingMinutes: 6,
+      readingMinutes: 10,
       status: 'complete',
       blocks: [
         {
@@ -108,6 +108,43 @@ export const tagesgeld: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie der Zins tatsächlich ankommt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Zinssatz wird immer **pro Jahr** angegeben, auch wenn das Geld nur zwei Monate liegt. Zwei Prozent auf 10.000 Euro sind über zwei Monate also nicht 200 Euro, sondern rund 33. Gutgeschrieben wird meist zum Quartals- oder Jahresende; ab der Gutschrift verzinst sich der Zins mit. Bei Tagesgeld ist dieser Effekt klein – über wenige Jahre und bei niedrigen Sätzen fällt er kaum ins Gewicht –, aber er ist der Grund, warum manche Bank mit „monatlicher Zinsgutschrift“ wirbt.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wichtiger für den Alltag ist das **Referenzkonto**. Ein Tagesgeldkonto ist in aller Regel kein Konto, von dem aus man überweisen kann: Geld kommt hinein und geht wieder heraus – aber nur auf genau ein hinterlegtes Girokonto. Das ist ein Sicherheitsmerkmal und keine Schikane. Wer es nicht weiß, wundert sich im Ernstfall, dass er nicht direkt vom Tagesgeld bezahlen kann.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Der Lockzins und was danach kommt',
+          items: [
+            'Viele Spitzenangebote in Vergleichen gelten **nur für Neukunden** und nur für drei bis zwölf Monate. Danach fällt der Satz auf den Bestandskundenzins zurück, und der liegt oft deutlich unter dem Marktdurchschnitt.',
+            'Manche Angebote begrenzen zusätzlich die verzinste Summe – der beworbene Satz gilt dann etwa nur bis 50.000 Euro, der Rest liegt fast unverzinst daneben.',
+            'Beides steht in den Bedingungen, nicht im Werbebanner. Die zwei Fragen an jedes Angebot lauten deshalb: Wie lange gilt der Satz, und für welchen Betrag?',
+            'Hinterherzuwechseln lohnt sich – aber es ist Arbeit. Wer sie nicht machen will, nimmt lieber ein dauerhaft solides Angebot als das beste Aktionsangebot.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Steuern: was von den Zinsen bleibt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zinsen sind Kapitalerträge und damit steuerpflichtig. Die Bank behält 25 Prozent Abgeltungsteuer plus Solidaritätszuschlag – und, wenn du kirchensteuerpflichtig bist, die Kirchensteuer – automatisch ein und führt sie ab. Du musst dafür nichts tun; der Betrag ist einfach schon weg, wenn die Gutschrift kommt.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Was du tun solltest, ist der **Freistellungsauftrag**. Bis zum Sparerpauschbetrag bleiben Kapitalerträge steuerfrei, aber nur, wenn die Bank davon weiß. Ohne Auftrag zieht sie ab dem ersten Euro ab – zurückholen lässt sich das später über die Steuererklärung, was funktioniert, aber Aufwand ist. Der Auftrag ist in jeder Banking-App in zwei Minuten erteilt und lässt sich auf mehrere Banken aufteilen.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Wie sicher ist das Geld?',
         },
         {
@@ -134,15 +171,38 @@ export const tagesgeld: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Woran du erkennst, ob ein Angebot fair ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es gibt keinen „richtigen“ Tagesgeldzins – es gibt einen, der zum Zinsniveau passt. Der Maßstab dafür ist der **Einlagenzins der Europäischen Zentralbank**: der Satz, zu dem Banken selbst Geld bei der Notenbank parken können. Eine Bank, die dir deutlich weniger zahlt, als sie risikolos bei der EZB bekommt, verdient an deiner Bequemlichkeit.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Deutlich über dem Einlagenzins:** fast immer ein befristetes Neukundenangebot. Nachsehen, wie lange.',
+            '**In der Nähe:** ein normales, faires Angebot – das ist die Größenordnung, in der man landen sollte.',
+            '**Deutlich darunter, oft nahe null:** typisch für Hausbanken und Sparkassen mit vielen Filialen. Das Geld liegt dort sicher, aber es arbeitet nicht.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Fällt der Leitzins, fällt dein Tagesgeldzins mit – meist innerhalb weniger Wochen und ohne Ankündigung, denn „variabel“ heißt genau das. Steigt er, dauert es bei vielen Banken erstaunlich viel länger. Diese Asymmetrie ist kein Zufall und der beste Grund, einmal im Jahr nachzusehen, was auf dem eigenen Konto eigentlich noch gezahlt wird.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
           type: 'list',
           items: [
-            'Der Zins ist variabel – die Bank darf ihn jederzeit ändern.',
+            'Der Zins ist variabel – die Bank darf ihn jederzeit ändern, und nach unten tut sie es schnell.',
             'Zwei gute Zwecke: Notgroschen und Geld mit absehbarem Termin.',
             'Nominal sicher heißt nicht real sicher; die Inflation zieht jedes Jahr ab.',
             'Der Schutz gilt je Person und Institut, nicht je Konto und nicht je Marke.',
+            'Freistellungsauftrag erteilen, sonst zieht die Bank ab dem ersten Euro Steuer ab.',
+            'Beim Vergleich zwei Fragen stellen: Wie lange gilt der Satz, und bis zu welchem Betrag?',
           ],
         },
       ],

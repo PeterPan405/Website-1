@@ -92,7 +92,7 @@ export const portfolioAufbau: LearnTopic = {
         'Warum die Aufteilung wichtiger ist als die Auswahl, wie ein Zwei-Topf-Modell funktioniert und wie du deine Aktienquote bestimmst.',
       title: 'Die Aufteilung ist die Entscheidung',
       lead: 'Nach dieser Stufe weißt du, warum die Aktienquote mehr entscheidet als die Produktwahl – und wie du deine eigene bestimmst.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -188,6 +188,50 @@ export const portfolioAufbau: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie die Quote von selbst verrutscht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine einmal festgelegte Aufteilung bleibt nicht, wo sie ist. Steigen die Aktien drei Jahre lang, wächst ihr Anteil am Gesamtdepot, ohne dass du irgendetwas getan hättest – aus 60 Prozent werden 72, und das Depot schwankt danach spürbar stärker, als du entschieden hattest. Fallen die Aktien, passiert das Gegenteil: Die Quote sinkt, und das Depot ist danach vorsichtiger aufgestellt, als es sein sollte.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Das Gegenmittel heißt **Rebalancing**: die ursprüngliche Aufteilung wiederherstellen. Für den Anfang genügt die einfachste Form – neue Sparraten fließen dorthin, wo zu wenig liegt. Das kostet nichts, löst keine Steuer aus und reicht, solange noch eingezahlt wird. Erst wenn die Abweichung groß ist und keine Raten mehr fließen, wird umgeschichtet, und dann gilt: Ein Verkauf ist ein steuerpflichtiger Vorgang.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Wann nachjustieren – und wann nicht',
+          items: [
+            '**Einmal im Jahr nachsehen** genügt. Häufiger bringt nachweislich nichts außer Kosten und Beschäftigung.',
+            '**Erst ab einer spürbaren Abweichung handeln**, etwa fünf Prozentpunkte. Wer bei jedem Prozentpunkt anfasst, handelt viel und ändert wenig.',
+            '**Rebalancing fühlt sich falsch an** – man verkauft, was gut gelaufen ist, und kauft, was schlecht gelaufen ist. Genau deshalb wirkt es.',
+            'Es ist **keine Renditestrategie**, sondern Risikosteuerung. Wer es macht, um mehr zu verdienen, wird enttäuscht; wer es macht, um seine Quote zu halten, bekommt genau das.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was in den zweiten Topf gehört – und was nicht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein einziger weltweit anlegender Fonds ist keine Notlösung, sondern deckt bereits tausende Unternehmen in dutzenden Ländern ab. Alles, was danach kommt, muss sich die Frage gefallen lassen, was es **zusätzlich** bringt. Drei Antworten sind vertretbar: eine höhere Gewichtung von Regionen, die der Weltindex kaum enthält; ein Anleiheteil, wenn der sichere Topf über Tagesgeld hinauswachsen soll; und Gold als kleine Beimischung, wenn man weiß, dass es keine laufenden Erträge bringt.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Woran man ein überbautes Depot erkennt',
+          items: [
+            '**Mehrere Fonds mit denselben Aktien.** Wer einen Welt-ETF, einen Technologie-ETF und einen USA-ETF hält, hat vor allem dreimal dieselben großen amerikanischen Unternehmen – und keine Streuung dazugewonnen.',
+            '**Positionen unter fünf Prozent.** Sie ändern am Gesamtergebnis nichts Messbares, kosten aber jedes Jahr Aufmerksamkeit und beim Rebalancing echte Arbeit.',
+            '**Ein Baustein, dessen Zweck sich nicht in einem Satz sagen lässt.** Wenn die Begründung „war gerade gut gelaufen“ lautet, ist es keine Struktur, sondern eine Ansammlung.',
+            'Die Gegenprobe ist einfach: Würdest du dieses Depot heute noch einmal genauso zusammenstellen? Wenn nicht, ist es gewachsen und nicht gebaut.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -197,6 +241,8 @@ export const portfolioAufbau: LearnTopic = {
             'Zwei Töpfe genügen für die meisten Fälle – erst Topf eins füllen, dann Topf zwei.',
             'Der sichere Teil ist die Voraussetzung dafür, den riskanten durchzuhalten.',
             'Die beste Quote ist die höchste, die du auch im Rückgang aushältst.',
+            'Die Quote verrutscht von selbst – einmal im Jahr nachsehen, am einfachsten über die Sparraten.',
+            'Jeder zusätzliche Baustein braucht eine Begründung in einem Satz. Sonst gehört er nicht hinein.',
           ],
         },
       ],

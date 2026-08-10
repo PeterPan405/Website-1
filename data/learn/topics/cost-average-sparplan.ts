@@ -64,7 +64,7 @@ export const costAverageSparplan: LearnTopic = {
         'Wie der Durchschnittskosteneffekt entsteht, ein durchgerechnetes Beispiel, wie du einen Sparplan einrichtest und welcher Vorteil der wichtigste ist.',
       title: 'Sparplan einfach erklärt',
       lead: 'Nach dieser Stufe verstehst du den Durchschnittskosteneffekt an einem durchgerechneten Beispiel – und weißt, warum er nicht der eigentliche Grund für einen Sparplan ist.',
-      readingMinutes: 7,
+      readingMinutes: 10,
       status: 'complete',
       blocks: [
         {
@@ -158,6 +158,43 @@ export const costAverageSparplan: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was am Ausführungstag tatsächlich passiert',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Broker bucht die Rate ein oder zwei Tage vorher vom Verrechnungskonto ab und kauft am Ausführungstag. Gekauft wird zu **einem** Kurs, meist einmal am Vormittag – nicht zum Tagesdurchschnitt und nicht zu einem Kurs, den du bestimmst. Ein Limit gibt es bei Sparplänen nicht, und das ist richtig so: Ein Limit, das nicht erreicht wird, hieße Rate nicht ausgeführt, und damit wäre der ganze Zweck dahin.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Weil eine Rate selten genau auf einen ganzen Anteil passt, bekommst du **Bruchstücke** – 0,0731 Anteile eines ETF sind völlig normal. Sie verhalten sich wie ganze Anteile: Sie steigen und fallen mit dem Kurs und bekommen ihren Anteil an den Ausschüttungen. Ein Punkt ist trotzdem zu kennen: Bei einem Depotwechsel zu einem anderen Broker lassen sich Bruchstücke oft nicht übertragen, sondern werden verkauft. Das ist verkraftbar, aber es ist ein steuerpflichtiger Verkauf.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was du unterwegs ändern darfst – und was das kostet',
+          items: [
+            '**Rate ändern:** jederzeit, kostenlos, wirkt ab der nächsten Ausführung. Nach oben, wenn das Gehalt steigt; nach unten, wenn es eng wird.',
+            '**Aussetzen:** ebenfalls jederzeit. Besser als kündigen, denn ein pausierter Sparplan wird eher wieder aufgenommen als ein gelöschter neu angelegt.',
+            '**Wertpapier wechseln:** Der alte Bestand bleibt liegen, die neuen Raten fließen woanders hin. Es entsteht kein Verkauf und damit keine Steuer.',
+            '**Verkaufen:** Das ist der einzige Schritt, der etwas kostet – Steuer auf den Gewinn und, falls die Kurse gerade unten stehen, ein festgeschriebener Verlust.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Fehler, der am meisten kostet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es ist nicht die falsche Rate und nicht der falsche Termin. Es ist das **Aussetzen im Rückgang**. Wer den Sparplan pausiert, weil die Kurse gefallen sind, streicht genau die Monate, in denen die Rate am meisten Anteile kauft – und schaltet damit den einen Effekt ab, wegen dem der Sparplan überhaupt beworben wird. Wieder eingestiegen wird erfahrungsgemäß erst, wenn es sich wieder gut anfühlt, also nach der Erholung und damit teurer.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der praktische Schutz dagegen ist nicht Disziplin, sondern die **Höhe der Rate**. Sie muss so gewählt sein, dass sie auch in einem schlechten Monat nicht wehtut – dann gibt es keinen Anlass, die Ausnahme zu machen. Eine Rate, die man drei Jahre durchhält, schlägt jede Rate, die man nach acht Monaten aussetzt.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -167,6 +204,9 @@ export const costAverageSparplan: LearnTopic = {
             'Der Effekt ist kein Renditevorteil; er setzt fallende Kurse voraus.',
             'Der wirkliche Wert liegt darin, dass keine Zeitpunktentscheidung mehr nötig ist.',
             'Notgroschen vor Sparplan, und eine Rate, die auch in schlechten Monaten trägt.',
+            'Gekauft wird zu einem festen Zeitpunkt und ohne Limit – Bruchstücke sind der Normalfall.',
+            'Rate ändern, aussetzen und das Wertpapier wechseln kosten nichts. Nur Verkaufen kostet.',
+            'Der teuerste Fehler ist das Aussetzen im Rückgang – dort wirkt der Sparplan am stärksten.',
           ],
         },
       ],
