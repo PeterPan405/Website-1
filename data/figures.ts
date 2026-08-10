@@ -435,16 +435,22 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Ergebnis von Kauf- und Verkaufoption bei Verfall',
     caption:
       'Der Knick ist der Basispreis, der waagerechte Teil die bezahlte Prämie. Nach unten ist der Verlust des Käufers begrenzt – für den Verkäufer der Option gilt genau das Gegenteil.',
+    description:
+      'Zwei Linien über einer waagerechten Nulllinie, aufgetragen über den Kurs des Basiswerts bei Verfall. Beide beginnen waagerecht im Minus – so hoch ist die bezahlte Prämie, und mehr kann ein Käufer nicht verlieren. Jede Linie hat einen Knick am Basispreis; danach steigt sie schräg an. Die Kaufoption knickt nach rechts oben und kennt keine Obergrenze, die Verkaufsoption knickt nach links oben und endet bei einem Kurs von null. Die Nulllinie schneiden beide erst hinter dem Basispreis – erst dort ist auch die Prämie wieder verdient. Gezeichnet ist das Ergebnis bei Verfall, nicht der Preis davor: Nur dort gibt es keinen Zeitwert mehr.',
   },
   'option-zeitwertverfall': {
     title: 'Wie die Prämie mit der Restlaufzeit schrumpft',
     caption:
       'Zeit ist bei Optionen ein Preisbestandteil, und sie läuft immer in dieselbe Richtung. Am Ende geht es am schnellsten.',
+    description:
+      'Eine fallende Kurve von zwölf Monaten Restlaufzeit bis null. Sie fällt nicht gleichmäßig, sondern immer steiler – links ist sie fast flach, rechts stürzt sie senkrecht auf die Achse. Elf Monate haben etwa drei Viertel des Anfangswerts gekostet, der letzte Monat allein das restliche Viertel. Deshalb sind die letzten Wochen als eigene Punkte eingetragen: Mit gleichmäßigen Monatsschritten sähe die Kurve aus wie eine Gerade, und die Krümmung, um die es geht, fiele unter den Tisch. Zeit ist bei einer Option kein neutraler Hintergrund, sondern eine laufende Kostenposition.',
   },
   'kredit-zins-und-tilgung': {
     title: 'Zins und Tilgung innerhalb derselben Rate',
     caption:
       'Die Rate bleibt gleich – deshalb sind alle Säulen gleich hoch. Nur was darin steckt, verschiebt sich: erst fast alles Zins, am Ende fast alles Tilgung.',
+    description:
+      'Fünf gleich hohe Säulen für fünf Jahre, über die Laufzeit verteilt: erstes Jahr, fünftes, zehntes, zwanzigstes und das letzte. Gleich hoch sind sie, weil die Rate über die gesamte Laufzeit dieselbe bleibt. Was sich verschiebt, ist ihre Aufteilung: Im ersten Jahr besteht die Säule fast ganz aus Zins und nur zu einem schmalen Teil aus Tilgung; nach hinten dreht sich das Verhältnis um, bis im letzten Jahr fast alles Tilgung ist. Der Grund ist einfach: Zins fällt auf die Restschuld an, und die sinkt. Deshalb wirkt eine Sondertilgung am Anfang um ein Vielfaches stärker als am Ende.',
   },
   'kredit-anfangstilgung': {
     title: 'Anfangstilgung und Laufzeit',
@@ -455,21 +461,29 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Welcher Gewinn einen Verlust ausgleicht',
     caption:
       'Verlust und Erholung sind nicht symmetrisch. Deshalb ist es wichtiger, große Verluste zu vermeiden, als große Gewinne zu treffen.',
+    description:
+      'Waagerechte Balken, oben der kleinste Verlust, unten der größte. Jeder Balken zeigt, wie viel Gewinn nötig ist, um genau diesen Verlust auszugleichen. Oben liegen beide Zahlen dicht beieinander – zehn Prozent Verlust brauchen gut elf Prozent Gewinn. Nach unten laufen sie auseinander, und ab der Hälfte wechselt die Farbe zur Warnung: Fünfzig Prozent Verlust verlangen hundert Prozent Gewinn, neunzig Prozent Verlust eine Verzehnfachung. Die Länge der Balken wächst nicht gleichmäßig, sondern steiler und steiler. Genau darin liegt die Aussage: Verlust und Erholung sind nicht symmetrisch, und deshalb ist es wichtiger, große Verluste zu vermeiden, als große Gewinne zu treffen.',
   },
   'timing-beste-wochen': {
     title: 'Rendite ohne die besten Wochen',
     caption:
       'Die guten Wochen sind wenige und lassen sich nicht ankündigen. Wer sie mitnehmen will, muss die schlechten aushalten – dazwischen liegen oft nur Tage.',
+    description:
+      'Säulen nebeneinander, alle für denselben Index und denselben Zeitraum. Die linke steht für „durchgehend investiert"; jede weitere lässt zusätzlich die besten Handelstage aus. Sie wird von links nach rechts rasch kürzer, und der Absturz kommt früh: Schon wenige ausgelassene Tage kosten einen großen Teil der Gesamtrendite. Diese Tage lassen sich vorher nicht erkennen, und sie liegen fast immer dicht bei den schlechtesten – mitten in der Panik, in der man nicht investiert sein will. Wer aussteigt, um die schlechten zu vermeiden, verpasst die guten gleich mit. Gerechnet wird auf echten Kursen der Website.',
   },
   'rente-luecke': {
     title: 'Heutiges Einkommen und gesetzliche Rente',
     caption:
       'Auf der Renteninformation steht der obere Rand der zweiten Säule. Auf dem Konto landet der untere Abschnitt – die Lücke dazwischen ist kein Betriebsunfall, sondern die Bauart des Systems.',
+    description:
+      'Zwei Säulen. Links das heutige Bruttoeinkommen im Monat, in einem Stück. Rechts die gesetzliche Rente, in drei Abschnitte zerlegt: der Abzug für Kranken- und Pflegeversicherung, der Steueranteil und ganz unten das, was tatsächlich überwiesen wird. Die rechte Säule ist schon als Ganzes deutlich kürzer als die linke – und der bleibende Abschnitt darin noch einmal erheblich kürzer. Der wichtige Punkt liegt in der Aufteilung: Auf der Renteninformation steht die Bruttorente, also die volle rechte Säule. Was ankommt, ist der unterste Abschnitt.',
   },
   'boerse-vom-klick-zur-buchung': {
     title: 'Der Weg einer Order',
     caption:
       'Die ersten drei Schritte dauern Sekundenbruchteile, die letzten beiden Tage. Deshalb steht nach einem Kauf sofort ein Kurs im Depot, aber noch nicht das Papier.',
+    description:
+      'Fünf Kästen nebeneinander, durch Pfeile verbunden: Order, Weiterleitung, Ausführung, Abwicklung, Depot. Die ersten drei sind in der Markenfarbe gezeichnet, die letzten beiden abgesetzt – und dieser Farbwechsel ist die Aussage. Die ersten drei Schritte dauern Sekundenbruchteile: Du erteilst die Order beim Broker, denn zur Börse selbst haben nur zugelassene Teilnehmer Zugang; der Broker leitet sie weiter; findet sich ein passendes Gegenangebot, kommt das Geschäft zustande. Die letzten beiden dauern Tage: Die Abwicklung tauscht Geld gegen Papiere, in der EU zwei Werktage nach dem Geschäft. Deshalb steht nach einem Kauf sofort ein Kurs im Depot – aber noch nicht das Papier.',
   },
   'blockchain-zahlung': {
     title: 'Eine Zahlung im Blockchain-Netz',
@@ -497,26 +511,36 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Zins und Inflation nebeneinander',
     caption:
       'Auf dem Kontoauszug steht nur die linke Säule. Die rechte steht nirgends – und entscheidet trotzdem, ob das Geld mehr oder weniger wert wird.',
+    description:
+      'Drei Säulen. Links der Zins, den das Tagesgeldkonto zahlt. In der Mitte die Inflation – die Säule ist höher, und der untere Teil ist so eingefärbt, dass er dem Zins entspricht: So weit reicht er. Der Rest darüber bleibt ungedeckt. Rechts steht, was daraus folgt: der Realzins, und er ist negativ. Der Kontostand wächst, die Kaufkraft schrumpft – beides gleichzeitig, und beides richtig. Der Realzins ist keine eigene Größe, sondern das, was von der ersten Säule nach Abzug der zweiten übrig bleibt. Auf dem Kontoauszug ist davon nichts zu sehen; dort steht nur die erste Säule.',
   },
   'sparplan-durchschnittspreis': {
     title: 'Was eine gleichbleibende Rate kauft',
     caption:
       'Nicht der Sparplan ist klug, sondern die feste Rate: Sie kauft automatisch mehr, wenn es billig ist, und weniger, wenn es teuer ist.',
+    description:
+      'Sechs Säulen für sechs Monatsraten. Die Rate ist jedes Mal dieselbe, unter jeder Säule steht der Kurs des Monats – die Höhe der Säule ist die Zahl der Anteile, die diese Rate gekauft hat. Sie sind unterschiedlich hoch, und zwar spiegelbildlich zum Kurs: hohe Säule bei niedrigem Kurs, niedrige Säule bei hohem. Am Ende liegt der bezahlte Durchschnittspreis unter dem Durchschnitt der sechs Kurse. Nicht der Sparplan ist klug, sondern die feste Rate: Sie kauft automatisch mehr, wenn es billig ist, und weniger, wenn es teuer ist – ohne dass jemand entscheiden muss.',
   },
   'waehrung-ergebnis': {
     title: 'Dasselbe Geschäft, vier Wechselkurse',
     caption:
       'Bei einer Anlage in fremder Währung wettet man immer auf zwei Dinge zugleich. Der Wechselkurs kann das eine vollständig auffressen.',
+    description:
+      'Mehrere Säulen für dasselbe Geschäft bei unterschiedlichen Wechselkursen zum Verkaufszeitpunkt. Der Einsatz ist jedes Mal derselbe, die Anlage gewinnt jedes Mal gleich viel – aber in Dollar. Was in Euro ankommt, steht über den Säulen, und es reicht von deutlich mehr bis unter den Einsatz. Der Grund: Der Wechselkurs steht zweimal in der Rechnung, einmal beim Tausch hin und einmal beim Tausch zurück. Wertet der Euro dazwischen auf, bleibt vom Kursgewinn wenig bis nichts. Die Währung hat dann mehr über das Ergebnis entschieden als die Anlage selbst.',
   },
   'derivat-hebel': {
     title: 'Sicherheitsleistung, Hebel und Totalverlust',
     caption:
       'Der Hebel ist der Kehrwert der Sicherheitsleistung. Der Preis dafür steht rechts: die Kursbewegung, nach der nichts mehr da ist.',
+    description:
+      'Drei waagerechte Balken, jeder für einen Satz an Sicherheitsleistung. Die Balkenlänge ist der Hebel, und er ist schlicht der Kehrwert: Wer zehn Prozent hinterlegt, bewegt das Zehnfache, wer zwei Prozent hinterlegt, das Fünfzigfache. Rechts an jedem Balken steht der Preis dafür – die Kursbewegung, nach der der Einsatz vollständig weg ist, und sie entspricht genau der Sicherheitsleistung. Bei zwei Prozent Deckung genügen zwei Prozent Kursbewegung gegen die Position. Die langen Balken sind deshalb in der Warnfarbe gezeichnet: Zwei Prozent sind bei einer Aktie ein gewöhnlicher Handelstag.',
   },
   'einlagensicherung-grenze': {
     title: 'Was die Einlagensicherung deckt',
     caption:
       'Die Grenze gilt je Kunde und Bank, nicht je Konto. Zwei Konten bei derselben Bank werden zusammengezählt, zwei Banken verdoppeln den Schutz.',
+    description:
+      'Drei Säulen für drei Guthaben bei derselben Bank, jede zweifarbig geteilt: unten der gesetzlich gesicherte Teil, oben in der Warnfarbe der ungesicherte. Bei sechzigtausend Euro ist die Säule vollständig gesichert. Bei hunderttausend endet sie genau an der Grenze – bis zum letzten Euro gedeckt. Bei hundertachtzigtausend steht ein Warnstreifen von achtzigtausend Euro obenauf; dieser Teil hinge im Insolvenzfall an der Masse. Die Grenze gilt je Kunde und Bank, nicht je Konto: Zwei Konten bei derselben Bank werden zusammengezählt, zwei Banken verdoppeln den Schutz. Vorübergehend, etwa nach einem Hausverkauf, sind höhere Beträge gedeckt.',
   },
   'depot-orderkosten': {
     title: 'Ordergebühr und Spread nach Ordergröße',
@@ -527,6 +551,8 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Endkapital bei fünf Kostenquoten',
     caption:
       'Der graue Sockel ist bei allen gleich – das eingezahlte Geld. Die Kosten zehren ausschließlich am Ertrag darüber, und zwar jedes Jahr erneut.',
+    description:
+      'Fünf Säulen für fünf Kostensätze, von günstig links bis teuer rechts. Jede Säule hat einen grauen Sockel und einen farbigen Teil darüber. Der graue Sockel ist bei allen fünf gleich hoch – das ist das eingezahlte Geld, und daran ändern Kosten nichts. Unterschiedlich ist allein der Ertrag darüber, und der schrumpft von links nach rechts sichtbar zusammen. Ohne den Sockel sähe es aus, als schrumpfte das ganze Vermögen; tatsächlich zehren die Kosten ausschließlich am Ertrag. Der Abstand zwischen der ersten und der letzten Säule entspricht einem erheblichen Teil aller Einzahlungen – abgeflossen für gut anderthalb Prozentpunkte im Jahr.',
   },
   'psychologie-verhaltensluecke': {
     title: 'Was ein Prozentpunkt im Jahr ausmacht',
@@ -547,21 +573,29 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Bis zu welchem Depotwert der Freibetrag reicht',
     caption:
       'Nicht die Depotgröße entscheidet, sondern wie viel laufender Ertrag anfällt. Zwei gleich große Depots können völlig unterschiedlich besteuert werden.',
+    description:
+      'Waagerechte Balken, einer je Ertragshöhe. Die Balkenlänge ist der Depotwert, bis zu dem der Sparerpauschbetrag die steuerpflichtigen Erträge eines Jahres noch vollständig deckt. Oben, bei wenig laufendem Ertrag, ist der Balken lang – da bleibt ein großes Depot steuerfrei. Nach unten, bei hohem laufendem Ertrag, wird er kurz: Der Freibetrag ist dann schon bei einem Bruchteil dieses Depotwerts verbraucht. Die Rechnung betrifft nur laufende Erträge, also Zinsen, Dividenden und die Vorabpauschale. Über Kursgewinne sagt sie nichts – die werden erst beim Verkauf steuerpflichtig.',
   },
   'immobilie-nettorendite': {
     title: 'Von der beworbenen Mietrendite zur tatsächlichen',
     caption:
       'Beworben wird die linke Säule. Übrig bleibt der untere Abschnitt der rechten – und der Kredit ist darin noch nicht einmal enthalten.',
+    description:
+      'Zwei Säulen nebeneinander. Links die volle Jahresmiete in einem Stück – das ist die Zahl, mit der geworben wird, bezogen auf den Kaufpreis. Rechts dieselbe Miete, in vier Abschnitte zerlegt: Verwaltung, Instandhaltung, kalkulierter Mietausfall und ganz unten das, was tatsächlich bleibt. Der bleibende Teil ist deutlich kürzer als die linke Säule. Und die Bezugsgröße ändert sich mit: Gerechnet wird nicht mehr gegen den Kaufpreis, sondern gegen den echten Einsatz samt Kaufnebenkosten. Aus der beworbenen Rendite wird damit weniger als die Hälfte – und der Kredit ist darin noch nicht einmal enthalten.',
   },
   'bitcoin-angebot': {
     title: 'Die Umlaufmenge nach dem Emissionsplan',
     caption:
       'Die Knappheit ist kein Versprechen, sondern eine Regel im Programmcode. Was sie über den Preis aussagt, ist eine andere Frage.',
+    description:
+      'Eine Kurve von 2009 bis 2060, dazu eine gestrichelte Waagerechte bei einundzwanzig Millionen – der Obergrenze. Die Kurve steigt in den ersten Jahren steil an und legt sich dann immer flacher an die Gestrichelte, ohne sie zu erreichen. Der Grund steht im Programmcode: Die Belohnung je Block halbiert sich alle zweihunderzehntausend Blöcke, also etwa alle vier Jahre. Heute sind rund fünfundneunzig Prozent der Menge im Umlauf; der Rest verteilt sich auf mehr als hundert Jahre. Die Knappheit ist damit kein Versprechen, sondern eine Regel. Was sie über den Preis aussagt, ist eine andere Frage – ein knappes Gut ohne Nachfrage ist wertlos.',
   },
   'crashes-erholung': {
     title: 'Tiefe und Dauer der großen Einbrüche',
     caption:
       'Die Balken sind nach der Tiefe sortiert – ihre Länge folgt dieser Reihenfolge nicht. Wie lange eine Erholung dauert, entscheidet sich nach dem Einbruch.',
+    description:
+      'Fünf waagerechte Balken, nach der Tiefe des Einbruchs sortiert: oben der tiefste, unten der flachste. Die Länge der Balken ist aber nicht die Tiefe, sondern die Zeit bis zum Wiedererreichen des alten Stands – und sie folgt der Sortierung gerade nicht. Der Balken ganz oben ist kurz, einer weiter unten ist der längste. Die Pandemie war tiefer als 1987 und schneller vorbei; Dotcom-Einbruch und Finanzkrise waren gleich tief und unterschiedlich lang. Was den Unterschied macht, ist nicht der Auslöser und nicht die Fallhöhe, sondern was danach wirtschaftspolitisch geschah. Alle Angaben sind Größenordnungen für breite Indizes.',
   },
   'fonds-sondervermoegen': {
     title: 'Warum das Fondsvermögen geschützt ist',
@@ -669,6 +703,8 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Wohin das Geld geht',
     caption:
       'Die Reihenfolge ist die Aussage. Zehn Prozent beim größten Posten bringen mehr als der vollständige Verzicht auf die beiden kleinsten.',
+    description:
+      'Waagerechte Balken, nach Größe sortiert: oben der größte Ausgabenposten, darunter die kleineren, ganz unten in der Markenfarbe das, was übrig bleibt. Die Reihenfolge ist die eigentliche Aussage. Die drei obersten Posten – Wohnen, Lebensmittel, Mobilität – machen zusammen mehr aus als alle übrigen zusammengenommen. Die Balken darunter sind so kurz, dass ihr vollständiger Wegfall an der Gesamtlänge kaum etwas ändert. Wer sparen will, fängt deshalb oben an: Zehn Prozent beim größten Posten bringen mehr als der vollständige Verzicht auf die beiden kleinsten.',
   },
   'depot-und-konto': {
     title: 'Depot und Verrechnungskonto',
@@ -681,6 +717,8 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Bundeswertpapiere nach Laufzeit',
     caption:
       'Die Namen sagen nichts über die Sicherheit – dahinter steht überall derselbe Schuldner. Sie sagen etwas darüber, wie stark der Kurs auf Zinsänderungen reagiert.',
+    description:
+      'Ein waagerechter Zeitstrahl mit fünf Markierungen, abwechselnd über und unter der Achse beschriftet: die deutschen Bundeswertpapiere nach ihrer Laufzeit bei Ausgabe, von wenigen Monaten links bis dreißig Jahren rechts. Links steht „folgt der Notenbank", rechts „schwankt am stärksten". Die Achse ist gestaucht, sonst lägen vier der fünf Papiere übereinander. Die Namen sagen nichts über die Sicherheit – hinter allen steht derselbe Schuldner. Sie sagen etwas über die Empfindlichkeit: Je länger die Laufzeit, desto stärker schwankt der Kurs bei einer Zinsänderung, und desto weniger folgt er kurzfristigen Entscheidungen der Notenbank.',
   },
   'blockchain-kette': {
     title: 'Warum sich eine alte Buchung nicht ändern lässt',
@@ -707,6 +745,8 @@ export const figureMeta: Record<FigureId, FigureMeta> = {
     title: 'Was die Aktienquote im Ernstfall bedeutet',
     caption:
       'Fünf Depots mit demselben Startwert. Was sie unterscheidet, ist keine Produktwahl, sondern eine einzige Zahl – und im Rückgang entscheidet sie alles.',
+    description:
+      'Fünf gleich hohe Säulen für fünf Depots, die alle gleich groß starten und sich allein in der Aktienquote unterscheiden – von niedrig links bis hoch rechts. Jede Säule ist zweigeteilt: unten in der Markenfarbe, was im Depot bleibt, oben in der Warnfarbe, was ein Marktrückgang vorübergehend wegnimmt. Der rote Anteil wächst von links nach rechts genau im Verhältnis der Aktienquote. Die Grafik beantwortet nicht, welche Quote richtig ist. Sie zeigt, worüber man überhaupt entscheidet: nicht über eine Rendite, sondern über den Betrag, den man aushalten muss, ohne zu verkaufen.',
   },
   'immobilie-restschuld': {
     title: 'Was nach der Zinsbindung offen bleibt',
