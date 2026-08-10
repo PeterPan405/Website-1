@@ -181,45 +181,33 @@ export default async function MarketsOverviewPage() {
         */}
 
         {/*
-          Der Verweis aufs Tagesbild steht ganz oben, weil er die Frage
-          beantwortet, mit der die meisten auf diese Seite kommen: Wie steht es
-          heute? Ein Blick auf einzelne Kacheln beantwortet sie nicht.
+          Nur noch die Verweise, ohne den Fließtext drumherum.
+
+          Hier standen vier Sätze, die erklärten, was auf den vier Unterseiten
+          zu finden ist. Das ist genau die Arbeit, die eine Seite ihrem
+          Besucher abnehmen soll und nicht aufhalsen: Wer „Saisonalität“ liest,
+          klickt oder klickt nicht – ein Satz davor, was ihn dort erwartet,
+          ändert daran nichts und kostet vier Zeilen über den Kursen.
+
+          Die Verweise bleiben, weil sie der einzige Weg zu diesen Seiten sind.
+          Als Zeile statt als Absatz sind sie außerdem schneller zu erfassen.
         */}
-        <p className="text-fg-muted mt-4 leading-relaxed">
-          Wie breit sich der Markt heute bewegt – gezählt über alle{' '}
-          {magSevenQuotes.length + stockQuotes.length} Einzelaktien:{' '}
-          <Link
-            href="/maerkte/tagesbild"
-            className="text-markets font-medium underline underline-offset-2"
-          >
-            das Tagesbild
-          </Link>
-          . Wie stark diese Werte gemeinsam schwanken – und ob „breit gestreut“ hier
-          überhaupt zutrifft –, steht unter{' '}
-          <Link
-            href="/maerkte/zusammenhang"
-            className="text-markets font-medium underline underline-offset-2"
-          >
-            Zusammenhang und Schwankung
-          </Link>
-          . Und ob es gute und schlechte Börsenmonate gibt, lässt sich ebenfalls
-          nachrechnen –{' '}
-          <Link
-            href="/maerkte/saisonalitaet"
-            className="text-markets font-medium underline underline-offset-2"
-          >
-            die Saisonalität
-          </Link>{' '}
-          stellt jedes Monatsmuster neben die Spanne, die reiner Zufall erwarten lässt.
-          Wer nur ein paar Werte im Blick behalten will, sammelt sie in der{' '}
-          <Link
-            href="/maerkte/merkliste"
-            className="text-markets font-medium underline underline-offset-2"
-          >
-            Merkliste
-          </Link>
-          .
-        </p>
+        <nav aria-label="Auswertungen" className="mt-4">
+          <ul className="text-markets flex flex-wrap items-center gap-x-5 gap-y-2 font-medium">
+            {[
+              { href: '/maerkte/tagesbild', text: 'Tagesbild' },
+              { href: '/maerkte/zusammenhang', text: 'Zusammenhang und Schwankung' },
+              { href: '/maerkte/saisonalitaet', text: 'Saisonalität' },
+              { href: '/maerkte/merkliste', text: 'Merkliste' },
+            ].map((ziel) => (
+              <li key={ziel.href}>
+                <Link href={ziel.href} className="underline underline-offset-2">
+                  {ziel.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <section aria-labelledby="indizes" className="mt-12">
           <h2 id="indizes" className="text-fg text-2xl font-bold">
