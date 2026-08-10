@@ -92,7 +92,7 @@ export const sparerpauschbetrag: LearnTopic = {
         'Welche Erträge unter den Freibetrag fallen, wie ein Freistellungsauftrag funktioniert und warum ungenutzter Freibetrag am Jahresende verfällt.',
       title: 'Welche Erträge steuerfrei bleiben',
       lead: 'Was unter den Freibetrag fällt, was du dafür tun musst – und die vier Fehler, die er am häufigsten kostet.',
-      readingMinutes: 7,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -136,6 +136,30 @@ export const sparerpauschbetrag: LearnTopic = {
         {
           type: 'paragraph',
           text: `Er lässt sich auf beliebig viele Institute verteilen – in der Summe darf er aber ${formatCurrencyRounded(PAUSCHBETRAG)} nicht überschreiten. Die Banken melden die erteilten Aufträge, und eine Überschreitung fällt auf.`,
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was der Freibetrag praktisch bedeutet',
+        },
+        {
+          type: 'paragraph',
+          text: 'In Prozenten klingt ein Freibetrag abstrakt. In Depotwerten wird er greifbar: Es geht um die Frage, ab welchem Vermögen überhaupt Steuer anfällt – und die Antwort hängt daran, wie viel **laufenden** Ertrag das Depot abwirft. Ein weltweiter thesaurierender ETF wirft wenig ab, ein Dividendenfonds oder ein Tagesgeldkonto bei hohen Zinsen deutlich mehr. Deshalb ist der Freibetrag bei zwei gleich großen Depots einmal ausgeschöpft und einmal fast unberührt.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die grobe Rechnung geht so: Freibetrag geteilt durch die erwartete laufende Ertragsquote. Bei einem Prozent laufendem Ertrag deckt der Freibetrag ein sechsstelliges Depot ab, bei vier Prozent nur ein Viertel davon. Kursgewinne stehen in dieser Rechnung nicht – sie werden erst beim Verkauf steuerpflichtig und lassen sich damit zeitlich steuern, laufende Erträge nicht.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Wer nichts oder wenig verdient: die Nichtveranlagungsbescheinigung',
+          items: [
+            'Wer insgesamt so wenig Einkommen hat, dass keine Einkommensteuer anfällt – Studierende, Kinder mit eigenem Depot, Menschen in Elternzeit –, kann beim Finanzamt eine **NV-Bescheinigung** beantragen.',
+            'Bei der Bank hinterlegt, bleiben Kapitalerträge dann **vollständig** steuerfrei, nicht nur bis zum Sparerpauschbetrag.',
+            'Sie gilt drei Jahre und wird nicht automatisch erneuert. Fällt das Einkommen über den Grundfreibetrag, muss man sie zurückgeben.',
+            'Für ein Depot auf den Namen eines Kindes ist das der Regelfall: Dort ist praktisch immer kein zu versteuerndes Einkommen vorhanden.',
+          ],
         },
         {
           type: 'heading',
@@ -198,11 +222,39 @@ export const sparerpauschbetrag: LearnTopic = {
           text: 'Was du dir merken solltest',
         },
         {
+          type: 'heading',
+          level: 2,
+          text: 'Der Verlusttopf: warum Minus etwas wert ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Verkaufst du mit Verlust, ist das Geld weg – steuerlich aber nicht wertlos. Die Bank führt für dich zwei **Verlustverrechnungstöpfe**: einen für Aktienverluste und einen für alles Übrige. Ein Verlust wird dort gutgeschrieben und automatisch mit künftigen Gewinnen verrechnet, bevor Steuer anfällt. Er verfällt nicht am Jahresende, sondern wird ins nächste Jahr vorgetragen – anders als der Freibetrag.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Haken steckt in der Trennung: **Verluste aus Aktienverkäufen dürfen nur mit Gewinnen aus Aktienverkäufen verrechnet werden**, nicht mit Zinsen, Dividenden oder Fondsgewinnen. Wer eine Einzelaktie mit Verlust verkauft und ansonsten nur ETFs hält, hat einen Verlusttopf, der jahrelang unbenutzt daliegt. Umgekehrt wandern Verluste aus Fondsanteilen in den allgemeinen Topf und lassen sich mit fast allem verrechnen.',
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Und wenn die Verluste bei einer anderen Bank liegen',
+          items: [
+            'Jede Bank verrechnet nur innerhalb ihres eigenen Hauses. Verlust bei Broker A und Gewinn bei Broker B bleiben getrennt – die Steuer wird bei B abgeführt, als gäbe es A nicht.',
+            'Zusammenführen lässt sich das über die Steuererklärung. Dafür brauchst du von der Bank mit dem Verlust eine **Verlustbescheinigung**.',
+            'Sie muss bis zum **15. Dezember** des Jahres beantragt werden – diese Frist ist gesetzlich und lässt sich nachträglich nicht heilen.',
+            'Wer ohnehin nur bei einer Bank handelt, braucht das alles nicht. Wer zwei Depots führt, sollte den Termin kennen.',
+          ],
+        },
+        {
           type: 'list',
           items: [
             `${formatCurrencyRounded(PAUSCHBETRAG)} je Person und Jahr, für Ehepaare das Doppelte.`,
             'Ohne Freistellungsauftrag zieht die Bank ab dem ersten Euro ab.',
             'Der Auftrag lässt sich verteilen, in der Summe aber nicht überschreiten.',
+            'Wie weit der Freibetrag reicht, hängt am laufenden Ertrag, nicht am Depotwert allein.',
+            'Bei geringem Gesamteinkommen bleibt mit NV-Bescheinigung alles steuerfrei, nicht nur der Freibetrag.',
+            'Verluste verfallen nicht – aber Aktienverluste sind nur gegen Aktiengewinne verrechenbar.',
+            'Zwei Depots: Verlustbescheinigung bis zum 15. Dezember beantragen.',
             'Was bis zum Jahresende nicht genutzt ist, verfällt.',
           ],
         },

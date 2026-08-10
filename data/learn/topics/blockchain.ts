@@ -53,7 +53,7 @@ export const blockchain: LearnTopic = {
         'Wie Blöcke verkettet werden, was ein Hash ist, welches Problem damit gelöst wird und was eine Blockchain ausdrücklich nicht leistet.',
       title: 'Wie die Kette funktioniert',
       lead: 'Der Aufbau in vier Begriffen, das Problem, das sie löst – und die vier Dinge, die sie nicht kann.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -116,6 +116,47 @@ export const blockchain: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wer die Blöcke schreibt – und warum er das tut',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wenn es keine Bank gibt, muss trotzdem jemand entscheiden, welche Transaktionen in den nächsten Block kommen. Diese Aufgabe ist nicht vergeben, sie wird **gewonnen**. Bei Bitcoin und ähnlichen Netzen suchen Rechner weltweit gleichzeitig nach einer Zahl, mit der der Hash des neuen Blocks eine vorgegebene Bedingung erfüllt. Das lässt sich nur durch Ausprobieren finden – Millionen Versuche pro Sekunde – und ist danach in Millisekunden nachprüfbar. Wer zuerst fündig wird, darf den Block anhängen und bekommt dafür neue Münzen plus die Gebühren der enthaltenen Transaktionen.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Das ist der ganze Trick: Schreiben kostet Strom und Hardware, Prüfen kostet nichts. Ein Angreifer müsste die Rechenleistung aller ehrlichen Teilnehmer zusammen übertreffen und dabei mehr Geld verbrennen, als der Betrug einbringt. **Proof of Work** heißt dieses Verfahren – Arbeitsnachweis. Der oft zitierte Stromverbrauch ist also keine Panne, sondern genau die Kosten, die den Schutz erzeugen.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Neuere Netze wie Ethereum arbeiten stattdessen mit **Proof of Stake**: Wer einen Block vorschlagen darf, wird unter denen ausgelost, die eigene Münzen als Pfand hinterlegt haben. Wer betrügt, verliert das Pfand. Die Idee ist dieselbe – Fehlverhalten muss teurer sein als der mögliche Gewinn –, nur der Einsatz ist Kapital statt Strom.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Bestätigt ist nicht dasselbe wie im Block',
+          items: [
+            'Es kann vorkommen, dass zwei Teilnehmer fast gleichzeitig einen gültigen Block finden. Dann gibt es kurzzeitig zwei Versionen der Kette.',
+            'Das Netz löst das ohne Schiedsrichter: Es gilt die Kette, an der weitergebaut wird. Der andere Block fällt heraus, seine Transaktionen wandern zurück in die Warteschlange.',
+            'Deshalb ist eine Zahlung nicht mit „ihr Block ist da“ sicher, sondern erst, wenn einige Blöcke darauf folgen. Bei Bitcoin gelten sechs als üblich, also rund eine Stunde.',
+            'Eine Überweisung ist damit endgültiger als eine Kartenzahlung – zurückholen kann sie niemand –, aber sie ist auch langsamer endgültig, als es der Blick auf den ersten Block nahelegt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Schlüssel ist das Konto',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es gibt kein Konto im gewohnten Sinn und keine Zugangsdaten, die sich zurücksetzen lassen. Wer über Guthaben verfügt, beweist das mit einem **privaten Schlüssel** – einer sehr langen Zahl, die nur er kennt. Aus ihr wird der öffentliche Schlüssel und daraus die Adresse berechnet; der Weg zurück ist praktisch unmöglich. Eine Unterschrift mit dem privaten Schlüssel kann jeder prüfen, ohne den Schlüssel je zu sehen.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Daraus folgt der wichtigste praktische Satz dieser Stufe: **Wer den Schlüssel hat, hat das Geld.** Es gibt keine Hotline, keine Legitimationsprüfung und kein Zurückbuchen. Ein verlorener Schlüssel bedeutet dauerhaft verlorenes Guthaben – die Münzen sind weiter in der Kette sichtbar, nur kann sie niemand mehr bewegen. Ein gestohlener Schlüssel bedeutet dasselbe für jemand anderen.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was eine Blockchain nicht ist',
         },
         {
@@ -139,6 +180,9 @@ export const blockchain: LearnTopic = {
           items: [
             'Jeder Block enthält den Hash des Vorgängers – deshalb macht jede nachträgliche Änderung alles Folgende ungültig.',
             'Gelöst wird das Double-Spending-Problem ohne zentrale Stelle.',
+            'Schreiben ist teuer, Prüfen ist billig – darin besteht der Schutz, nicht in einer Aufsicht.',
+            'Bestätigt ist eine Zahlung erst mit den Blöcken **nach** ihrem Block, nicht mit ihrem eigenen.',
+            'Wer den privaten Schlüssel hat, hat das Geld. Es gibt kein Zurücksetzen und kein Zurückbuchen.',
             'Garantiert wird Unveränderlichkeit, nicht Richtigkeit.',
             'Wo eine zentrale Stelle zulässig ist, ist eine gewöhnliche Datenbank besser.',
           ],

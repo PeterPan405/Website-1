@@ -92,7 +92,7 @@ export const staatsanleihe: LearnTopic = {
         'Warum Staaten Anleihen ausgeben, wie Bundesanleihen funktionieren, was die Rendite aussagt und weshalb sie als sicherer Zinsmaßstab gilt.',
       title: 'Wie Staaten sich Geld leihen',
       lead: 'Warum es diese Papiere gibt, was ihre Rendite mit deinem Sparzins zu tun hat – und was trotzdem schiefgehen kann.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -134,6 +134,31 @@ export const staatsanleihe: LearnTopic = {
         {
           type: 'figure',
           figure: 'staatsanleihe-laufzeiten',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Die vier Zahlen, die auf jedem Papier stehen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Anleihe sieht kompliziert aus und besteht aus vier Angaben. **Nennwert:** der Betrag, der am Ende zurückgezahlt wird, meist 100 Euro je Stück. **Kupon:** der jährliche Zins, bezogen auf den Nennwert, festgelegt bei der Ausgabe und danach unveränderlich. **Laufzeit:** der Tag der Rückzahlung. **Kurs:** der Preis, zu dem das Papier gerade gehandelt wird – notiert in Prozent des Nennwerts, also „98,40“ statt „98,40 Euro“.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Aus Kurs, Kupon und Restlaufzeit ergibt sich die **Rendite** – und nur sie ist vergleichbar. Ein Papier mit drei Prozent Kupon, das bei 90 notiert und in fünf Jahren zu 100 zurückgezahlt wird, bringt mehr als drei Prozent: Zusätzlich zu den Zinsen kommt der Kursgewinn von zehn Punkten bis zur Fälligkeit dazu. Umgekehrt bringt ein Papier über pari weniger als sein Kupon. Wer zwei Anleihen vergleicht, vergleicht deshalb nie die Kupons.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Warum der Kurs fällt, wenn die Zinsen steigen',
+          items: [
+            'Der Kupon ist festgeschrieben – er kann sich nicht anpassen, wenn neue Papiere mehr bieten.',
+            'Anpassen kann sich nur der Preis. Eine alte Anleihe mit einem Prozent Kupon wird neben einer neuen mit drei Prozent nur gekauft, wenn sie billiger wird.',
+            'Genau so weit fällt der Kurs, bis die Rendite beider Papiere gleich ist. Das ist kein Marktversagen, sondern schlichte Arithmetik.',
+            'Je länger die Restlaufzeit, desto stärker der Ausschlag: Bei einem dreißigjährigen Papier wirkt die Differenz dreißigmal, bei einem zweijährigen zweimal.',
+            'Wer bis zur Fälligkeit hält, bekommt trotzdem Kupon und Nennwert wie vereinbart. Der Kursverlust wird nur für den zum Problem, der vorher verkaufen muss.',
+          ],
         },
         {
           type: 'heading',
@@ -180,14 +205,41 @@ export const staatsanleihe: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Einzelne Anleihe oder Fonds?',
+        },
+        {
+          type: 'paragraph',
+          text: 'Für Privatanleger ist das die einzige Entscheidung, die wirklich ansteht – und sie hat eine klare Trennlinie. Eine **einzelne Anleihe** hat einen Rückzahlungstermin. Wer sie bis dahin hält, kennt seinen Ertrag am Kauftag auf den Euro genau, ganz gleich, was der Kurs dazwischen macht. Das macht sie zum passenden Werkzeug für Geld mit Termin: Studienbeginn in fünf Jahren, Autokauf in drei.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein **Anleihe-ETF** hat diesen Termin nicht. Er hält hunderte Papiere und ersetzt jedes, das zu kurz wird, durch ein längeres – die Restlaufzeit bleibt damit ungefähr konstant, es gibt aber keinen Tag, an dem du dein Geld zum Nennwert zurückbekommst. Dafür ist die Streuung geschenkt, schon kleine Beträge reichen, und du musst nichts wiederanlegen. Der Preis ist, dass ein Kursrückgang bei steigenden Zinsen nicht sicher „ausläuft“, sondern nur durch die höheren Zinsen der neu gekauften Papiere aufgeholt wird.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Zwei Fallen beim Kauf einzelner Anleihen',
+          items: [
+            '**Stückzinsen.** Kaufst du mitten im Jahr, zahlst du dem Verkäufer die bis dahin aufgelaufenen Zinsen zusätzlich zum Kurs. Das ist korrekt und kein Aufschlag – der volle Kupon kommt später an dich –, überrascht aber jeden beim ersten Mal.',
+            '**Mindeststückelung.** Viele Unternehmens- und manche Staatsanleihen werden erst ab 50.000 oder 100.000 Euro gehandelt. Der Kurs sieht dann nach 98 Euro aus und die kleinste Order kostet fünfstellig.',
+            'Dazu kommt die Handelsspanne: Bei selten gehandelten Papieren liegen An- und Verkaufskurs weit auseinander, und diese Differenz zahlt man sofort.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
           type: 'list',
           items: [
             'Bund, Bobl und Schatz unterscheiden sich nur in der Laufzeit.',
+            'Vergleichbar ist die Rendite, nicht der Kupon – der Kurs entscheidet mit.',
+            'Steigende Zinsen drücken den Kurs, und zwar umso stärker, je länger die Restlaufzeit.',
+            'Wer bis zur Fälligkeit hält, bekommt Kupon und Nennwert unabhängig vom Kurs dazwischen.',
             'Die Rendite sicherer Staatsanleihen ist der Bezugspunkt für Kredite, Sparzinsen und Aktienbewertungen.',
             '„Risikofrei“ meint die Rückzahlung, nicht den Kurs und nicht die Kaufkraft.',
+            'Einzelne Anleihe für Geld mit Termin, Anleihe-ETF für dauerhafte Beimischung.',
             'Fremdwährungsanleihen tragen ein zweites Risiko, das den Zinsvorteil übersteigen kann.',
           ],
         },
