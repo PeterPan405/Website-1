@@ -113,6 +113,15 @@ export interface LearnLevelResult {
   /** Vorherige und nächste Stufe für die Weiter-Navigation. */
   previousLevelId: LearnLevelId | null
   nextLevelId: LearnLevelId | null
+  /**
+   * Das folgende Thema in der Lernreihenfolge – am Ende der Liste `null`.
+   *
+   * Für den zweiten Weg nach vorn: Wer sich einen Überblick verschaffen will,
+   * nimmt lieber jedes Thema auf Beginner-Niveau mit, statt sich durch drei
+   * Stufen einer einzigen Frage zu arbeiten. Ohne diesen Ausgang führte vom
+   * Ende einer Stufe nur der Weg tiefer ins selbe Thema.
+   */
+  naechstesThema: { slug: string; title: string } | null
 }
 
 export async function getLearnLevel(
@@ -123,12 +132,16 @@ export async function getLearnLevel(
   if (!topic || !isLearnLevelId(levelId)) return null
 
   const index = learnLevelIds.indexOf(levelId)
+  const themenIndex = learnTopics.findIndex((entry) => entry.slug === topic.slug)
+  const folgend = themenIndex >= 0 ? learnTopics[themenIndex + 1] : undefined
+
   return {
     topic,
     levelId,
     level: topic.levels[levelId],
     previousLevelId: index > 0 ? learnLevelIds[index - 1] : null,
     nextLevelId: index < learnLevelIds.length - 1 ? learnLevelIds[index + 1] : null,
+    naechstesThema: folgend ? { slug: folgend.slug, title: folgend.title } : null,
   }
 }
 

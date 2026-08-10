@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { ContentBlocks } from '@/components/content/ContentBlocks'
 import { Vorlesen } from '@/components/ui/Vorlesen'
-import { LevelComplete } from '@/components/learn/LevelComplete'
+import { StufeWeiter } from '@/components/learn/StufeWeiter'
 import { LevelNav, type LevelNavEntry } from '@/components/learn/LevelNav'
 import { Quiz } from '@/components/learn/Quiz'
 import { Druckknopf } from '@/components/ui/Druckknopf'
@@ -67,7 +67,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
 
   if (!result) notFound()
 
-  const { topic, levelId, level, previousLevelId, nextLevelId } = result
+  const { topic, levelId, level, previousLevelId, nextLevelId, naechstesThema } = result
   const relatedTopics = await getRelatedTopics(thema, 3)
   const pfade = await getPfadeMitStufe(thema, stufe)
 
@@ -220,50 +220,22 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
               )}
             </div>
 
-            {/* --------------------------------------- Abschluss und Weiter */}
-            <div className="mt-8" data-drucken="aus">
-              <LevelComplete
-                topicSlug={topic.slug}
-                topicTitle={topic.title}
-                levelId={levelId}
-                nextLevelId={nextLevelId}
-              />
-            </div>
+            {/*
+              Weiter – und dabei gespeichert.
 
-            {/* Vorherige/nächste Stufe als klassische Blätternavigation. */}
-            <nav
-              data-drucken="aus"
-              aria-label="Weitere Stufen dieses Themas"
-              className="border-border mt-8 flex flex-col gap-3 border-t pt-6 sm:flex-row sm:justify-between"
-            >
-              {previousLevelId ? (
-                <Link
-                  href={`/lernen/${topic.slug}/${previousLevelId}`}
-                  className="fk-btn-ghost justify-start"
-                >
-                  <Icon name="arrow-left" className="size-4" />
-                  {learnLevelMeta[previousLevelId].label}
-                </Link>
-              ) : (
-                <Link
-                  href={`/lernen/${topic.slug}`}
-                  className="fk-btn-ghost justify-start"
-                >
-                  <Icon name="arrow-left" className="size-4" />
-                  Themenübersicht
-                </Link>
-              )}
-
-              {nextLevelId && (
-                <Link
-                  href={`/lernen/${topic.slug}/${nextLevelId}`}
-                  className="fk-btn-ghost justify-end"
-                >
-                  {learnLevelMeta[nextLevelId].label}
-                  <Icon name="arrow-right" className="size-4" />
-                </Link>
-              )}
-            </nav>
+              Hier standen zwei Bausteine: ein Kasten „Stufe abgeschlossen?“
+              mit einem Erledigt-Schalter und darunter eine Blätternavigation.
+              Der Kasten verlangte eine zweite Handlung für etwas, das die
+              erste schon aussagt – wer weiterblättert, ist fertig. Beides
+              macht jetzt `StufeWeiter` in einer Zeile.
+            */}
+            <StufeWeiter
+              topicSlug={topic.slug}
+              levelId={levelId}
+              previousLevelId={previousLevelId}
+              nextLevelId={nextLevelId}
+              naechstesThema={naechstesThema}
+            />
 
             {/* Steht nur auf Papier – damit das Blatt seinen Absender kennt. */}
             <Druckquelle pfad={`/lernen/${topic.slug}/${levelId}`} />
