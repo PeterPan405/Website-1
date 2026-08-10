@@ -111,7 +111,7 @@ export const schuldenUndKredit: LearnTopic = {
         'Welche Kreditarten es gibt, was der Effektivzins bedeutet, warum der Dispo so teuer ist und wie eine Rate sich aus Zins und Tilgung zusammensetzt.',
       title: 'Was ein Kredit tatsächlich kostet',
       lead: 'Die Kreditarten, die Zusammensetzung einer Rate – und die einzige Zahl, mit der sich Angebote vergleichen lassen.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -232,6 +232,53 @@ export const schuldenUndKredit: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Tilgen oder anlegen?',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Frage stellt sich bei jedem Überschuss, und sie hat eine erstaunlich klare Antwort: **Vergleiche den Kreditzins mit der erwarteten Rendite – und ziehe den Vorsprung des Sicheren mit ein.** Eine getilgte Schuld bringt garantiert den Kreditzins. Eine Anlage bringt vielleicht mehr. „Garantiert" schlägt „vielleicht" bei gleichem Prozentsatz immer.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Dispo, Rahmenkredit, Kreditkartenschuld:** zweistelliger Zins. Tilgen, ohne zu rechnen – diese Rendite bietet keine Anlage.',
+            '**Ratenkredit im mittleren einstelligen Bereich:** ebenfalls tilgen. Er liegt in der Größenordnung dessen, was Aktien im langjährigen Mittel erwarten lassen – nur eben sicher.',
+            '**Immobilienkredit mit niedrigem Zins:** hier ist beides vertretbar. Wer deutlich unter der erwarteten Anlagerendite finanziert, darf daneben anlegen; wer knapp darunter liegt, entscheidet nach Gefühl und schläft mit der Tilgung meist besser.',
+            '**Und in jedem Fall zuerst:** der Notgroschen. Wer alles in die Tilgung steckt und dann bei der nächsten Autoreparatur wieder in den Dispo rutscht, hat teuer umgeschichtet.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Sondertilgung wirkt am Anfang am stärksten',
+          items: [
+            'Zins fällt auf die **Restschuld** an. Jeder Euro, der früh getilgt wird, spart deshalb Zins für die gesamte restliche Laufzeit – ein Euro im letzten Jahr spart fast nichts.',
+            'Die meisten Immobilienverträge erlauben jährliche Sondertilgungen bis zu einem bestimmten Prozentsatz kostenfrei. Ob und wie viel, steht im Vertrag und wird oft nie genutzt.',
+            'Sie verkürzt die Laufzeit, ohne die Rate zu ändern – und die Laufzeit ist bei jedem Kredit der Hebel mit der größten Wirkung.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wenn es eng wird',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wer eine Rate nicht mehr bedienen kann, macht fast immer denselben Fehler: warten und hoffen. Beides verschlechtert die Lage, denn Mahnkosten, Verzugszinsen und ein Eintrag bei der Auskunftei kommen zu dem Betrag hinzu, der ohnehin nicht da war.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Früh mit der Bank sprechen.** Eine Ratenstundung oder eine gestreckte Laufzeit ist verhandelbar, solange noch gezahlt wird – nach der Kündigung des Kredits nicht mehr. Banken haben kein Interesse an einem Ausfall.',
+            '**Reihenfolge festlegen.** Zuerst bedient wird, was das Dach über dem Kopf und die Arbeitsfähigkeit sichert: Miete, Strom, Fahrtkosten. Danach das Teuerste. Konsumschulden stehen hinten.',
+            '**Kostenlose Schuldnerberatung nutzen.** Sie ist über Verbraucherzentralen, Wohlfahrtsverbände und Kommunen erreichbar, kostet nichts und verhandelt regelmäßig Vergleiche, die Einzelne nicht erreichen.',
+            '**Und Angebote meiden, die genau hier ansetzen.** „Kredit ohne Schufa", Vorkostenforderungen und teure Umschuldungsvermittlung richten sich an Menschen in dieser Lage. Vorkosten sind ein Ausschlusskriterium: Für die Vermittlung eines Kredits darf im Voraus nichts verlangt werden.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -241,6 +288,9 @@ export const schuldenUndKredit: LearnTopic = {
             'Am Anfang geht der größere Teil der Rate an den Zins, nicht an die Schuld.',
             'Eine niedrigere Rate senkt nicht die Kosten, sie erhöht sie – über die längere Laufzeit.',
             'Vergleichbar ist nur der Effektivzins, und auch der nicht, wenn eine Restschuldversicherung danebensteht.',
+            'Tilgen bringt den Kreditzins garantiert. Garantiert schlägt vielleicht bei gleichem Satz.',
+            'Sondertilgung wirkt am Anfang um ein Vielfaches stärker als am Ende.',
+            'Wird es eng: früh mit der Bank sprechen, Schuldnerberatung ist kostenlos, Vorkosten sind ein Ausschlusskriterium.',
           ],
         },
       ],

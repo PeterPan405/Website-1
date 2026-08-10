@@ -93,7 +93,7 @@ export const option: LearnTopic = {
         'Was Call und Put bedeuten, wie Basispreis und Laufzeit wirken, woraus die Prämie besteht und warum Verkäufer ein anderes Risiko tragen als Käufer.',
       title: 'Call, Put und der Preis eines Rechts',
       lead: 'Die Grundbegriffe an einem durchgerechneten Beispiel – und die Asymmetrie, die Optionen gefährlich macht.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -243,6 +243,60 @@ export const option: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wofür Optionen tatsächlich benutzt werden',
+        },
+        {
+          type: 'paragraph',
+          text: 'In der Werbung stehen Gewinnchancen. In der Praxis werden Optionen überwiegend für zwei andere Zwecke eingesetzt, und beide sind unspektakulär.',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            '**Absicherung eines Bestands.** Wer Aktien hält und einen Rückgang fürchtet, kauft einen Put. Fällt der Kurs, gleicht der Put den Verlust ab dem Basispreis aus. Das ist eine Versicherung mit allem, was dazugehört: Sie kostet eine Prämie, sie läuft ab, und meistens war sie umsonst – genau wie eine Hausratversicherung.',
+            '**Prämie einnehmen auf vorhandenen Bestand.** Wer Aktien besitzt und einen Call darauf verkauft, bekommt die Prämie. Steigt der Kurs über den Basispreis, muss er liefern – er verzichtet also auf den Gewinn oberhalb dieser Marke. Das ist kein Zaubertrick, sondern ein Tausch: sicherer kleiner Ertrag gegen die Chance nach oben.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was daran wichtig ist',
+          items: [
+            'In beiden Fällen ist die Option **kein Ersatz** für ein Depot, sondern ein Zusatz zu einem vorhandenen. Wer nichts besitzt, kann nichts absichern und nichts verleihen.',
+            'Beide Anwendungen haben ein begrenztes und im Voraus bekanntes Risiko – anders als der ungedeckte Verkauf.',
+            'Und beide kosten etwas: die eine die Prämie, die andere den Gewinn oberhalb des Basispreises. Kostenlos ist an Optionen nichts.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Optionsschein ist nicht Option',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Begriffe klingen gleich und bezeichnen zwei verschiedene Dinge. Eine **Option** wird an einer Terminbörse gehandelt, ist standardisiert und hat viele Marktteilnehmer auf beiden Seiten. Ein **Optionsschein** wird von einer Bank ausgegeben – sie legt die Bedingungen fest, stellt den Kurs und ist zugleich die Gegenpartei.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Emittent zählt mit.** Ein Optionsschein ist rechtlich eine Schuldverschreibung. Geht die ausgebende Bank unter, ist er wertlos, egal wie der Basiswert steht.',
+            '**Der Preis kommt von der Gegenseite.** Es gibt kein Orderbuch mit vielen Teilnehmern, sondern eine Bank, die An- und Verkaufskurs stellt. Sie kennt die Bewertung, der Käufer schätzt.',
+            '**Dafür sind sie zugänglich.** Kleine Stückelungen, jedes Depot, keine Freigabe nötig. Genau das erklärt, warum Privatanleger fast immer Optionsscheine kaufen und fast nie Optionen.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Und der wichtigste Satz dieser Stufe',
+          items: [
+            'Für den Vermögensaufbau braucht man von alldem nichts. Optionen lösen ein Problem – die Absicherung eines vorhandenen Bestands –, das die meisten Privatanleger nicht haben.',
+            'Wer keinen konkreten Absicherungsbedarf hat, hat keinen Grund für den Einsatz. Die Werbung für Hebelprodukte richtet sich fast ausschließlich an genau diese Gruppe.',
+            'Das ist kein Verbot, sondern eine Einordnung: Es ist Werkzeug für eine bestimmte Aufgabe, kein Baustein für ein Depot.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -252,6 +306,9 @@ export const option: LearnTopic = {
             'Die Prämie besteht aus innerem Wert und Zeitwert; aus dem Geld ist sie reiner Zeitwert.',
             'Der Zeitwert schmilzt zum Verfall hin immer schneller, auch bei unverändertem Kurs.',
             'Die Gewinnschwelle liegt um die Prämie über dem Basispreis, nicht auf ihm.',
+            'Die beiden ernsthaften Anwendungen setzen einen vorhandenen Bestand voraus.',
+            'Ein Optionsschein ist eine Bankschuld mit von der Bank gestelltem Kurs – eine Option ist es nicht.',
+            'Ohne konkreten Absicherungsbedarf gibt es keinen Grund, damit anzufangen.',
           ],
         },
       ],

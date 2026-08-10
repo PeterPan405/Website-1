@@ -43,7 +43,7 @@ export const etf: LearnTopic = {
         'Was ein ETF ist, wie er einen Index nachbildet, worin er sich von aktiven Fonds unterscheidet und welche vier Angaben du vor dem Kauf prüfst.',
       title: 'ETF einfach erklärt',
       lead: 'Nach dieser Stufe weißt du, was ein ETF tut, warum er so wenig kostet und welche vier Angaben du vor jedem Kauf nachschlägst.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -173,6 +173,65 @@ export const etf: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie ein ETF den Index tatsächlich nachbaut',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es gibt zwei Bauweisen, und der Unterschied steht im Namen des Fonds selten, im Basisinformationsblatt aber immer.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Physisch.** Der Fonds kauft die Aktien wirklich – entweder alle oder, bei sehr breiten Indizes, eine repräsentative Auswahl („optimiertes Sampling“). Was drin ist, lässt sich beim Anbieter Position für Position nachlesen.',
+            '**Synthetisch.** Der Fonds hält irgendein Wertpapierbündel und tauscht dessen Ertrag mit einer Bank gegen den Ertrag des Index – ein **Swap**. Das ist präziser und manchmal billiger, bringt aber die Bank als zusätzliche Partei ins Spiel. Der Gesetzgeber begrenzt dieses Gegenparteirisiko, meist zusätzlich über hinterlegte Sicherheiten.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Für einen breiten Weltindex ist physisch der Regelfall und die unkompliziertere Wahl. Synthetisch begegnet man vor allem bei Märkten, die schwer direkt zu kaufen sind. Beides ist zulässig und beaufsichtigt – man sollte nur wissen, was man hat.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Warum ein ETF nie exakt dem Index folgt',
+          items: [
+            'Kosten, Steuern auf Dividenden und der Handel beim Umschichten kosten jedes Jahr ein paar Zehntel. Diese Differenz heißt **Tracking-Differenz** und ist die ehrlichere Kennzahl als die Kostenquote.',
+            'Sie kann sogar **positiv** sein: Manche Fonds verleihen Wertpapiere gegen Gebühr und verdienen damit einen Teil der Kosten zurück.',
+            'Nachzulesen ist sie im Jahresbericht oder auf der Anbieterseite – als Vergleich zwischen Fondsentwicklung und Indexentwicklung über mehrere Jahre.',
+            'Zwei ETFs auf denselben Index unterscheiden sich fast nur darin. Wer vergleicht, vergleicht diese Zahl, nicht den Namen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Name verrät fast alles',
+        },
+        {
+          type: 'paragraph',
+          text: 'ETF-Namen sehen aus wie Buchstabensuppe und folgen einem festen Muster. Wer es einmal kennt, liest die wichtigsten Eigenschaften direkt aus dem Titel:',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Anbieter** steht vorn – der Fondsgesellschaft, nicht dem Index.',
+            '**Der Index** in der Mitte. Das ist der Teil, der über Rendite und Risiko entscheidet.',
+            '**UCITS** heißt: europäisch reguliert, mit Streuungsvorschriften und Sondervermögen. Bei einem in Deutschland handelbaren Fonds steht es fast immer da.',
+            '**Acc** oder **Dist** – thesaurierend („accumulating“) oder ausschüttend („distributing“). Manchmal auch „C“ und „D“.',
+            '**EUR Hedged** heißt währungsgesichert. Fehlt der Zusatz, ist er es nicht – und die Handelswährung sagt darüber nichts.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Zwei Missverständnisse, die aus dem Namen entstehen',
+          items: [
+            '**„EUR“ im Namen heißt nicht währungsgesichert.** Es bezeichnet meist nur die Handelswährung – das Währungsrisiko der enthaltenen Unternehmen bleibt vollständig bestehen.',
+            '**„Thesaurierend“ heißt nicht steuerfrei.** Auch ohne Ausschüttung fällt jährlich die Vorabpauschale an; sie wird vom Verrechnungskonto eingezogen. Der Vorteil ist die automatische Wiederanlage, nicht die Steuerersparnis.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -181,6 +240,9 @@ export const etf: LearnTopic = {
             'Ein ETF bildet einen Index nach, statt Werte auszuwählen – daher die niedrigen Kosten.',
             'Das Risiko steckt im zugrunde liegenden Index, nicht in der Fondshülle.',
             'Sondervermögen schützt vor der Pleite des Anbieters, nicht vor Kursverlusten.',
+            'Physisch oder synthetisch: beides zulässig, die Bauweise steht im Basisinformationsblatt.',
+            'Die Tracking-Differenz sagt mehr als die Kostenquote – sie ist das, was tatsächlich fehlt.',
+            'Der Name verrät Anbieter, Index, Regulierung, Ertragsverwendung und Absicherung.',
             'Vor dem Kauf: Index, Kosten, Ertragsverwendung und Fondsgröße nachschlagen.',
           ],
         },

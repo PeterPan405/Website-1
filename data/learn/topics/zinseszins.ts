@@ -72,7 +72,7 @@ export const zinseszins: LearnTopic = {
         'Was Zinseszins bedeutet, wie die Formel funktioniert, wie du die Verdopplungszeit im Kopf ausrechnest und warum früh anfangen mehr bringt als viel sparen.',
       title: 'Zinseszins einfach erklärt',
       lead: 'Nach dieser Stufe kannst du die Grundformel anwenden, die Verdopplungszeit im Kopf schätzen und einschätzen, warum Zeit der wichtigste Faktor ist.',
-      readingMinutes: 8,
+      readingMinutes: 11,
       status: 'complete',
       blocks: [
         {
@@ -206,11 +206,53 @@ export const zinseszins: LearnTopic = {
           ],
         },
         {
+          type: 'heading',
+          level: 2,
+          text: 'Warum das Bauchgefühl hier immer danebenliegt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Menschen schätzen exponentielles Wachstum systematisch zu niedrig – und zwar nicht ein bisschen, sondern um ein Vielfaches. Der Grund ist, dass wir in Geraden denken: Wer die ersten drei Jahre gesehen hat, schreibt sie im Kopf fort. Genau das ist bei einer Kurve die falsche Verlängerung.',
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Die Probe, die den Effekt begreifbar macht',
+          items: [
+            'Frage: Ein Seerosenblatt verdoppelt sich täglich und bedeckt nach 30 Tagen den ganzen Teich. Wann war er halb bedeckt?',
+            'Antwort: an Tag 29. Bis dahin sah es aus, als wäre nichts passiert.',
+            'Genau so verläuft der Zinseszins. Die ersten Jahre wirken enttäuschend, weil die absoluten Beträge klein sind – und der größte Zuwachs kommt im letzten Drittel der Laufzeit.',
+            'Wer nach fünf Jahren aufgibt, weil „nicht viel passiert“, steigt an Tag 25 aus.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Nominal, real, nach Steuern',
+        },
+        {
+          type: 'paragraph',
+          text: 'Jede Zinseszinsrechnung ist so gut wie der Zinssatz, den man einsetzt. Drei Abzüge stehen zwischen der beworbenen Zahl und dem, was ankommt – und sie wirken alle über dieselbe Mechanik, nur mit umgekehrtem Vorzeichen.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Kosten** zuerst. Sie werden direkt vom Ertrag abgezogen, jedes Jahr, auf das gesamte Vermögen.',
+            '**Steuern** danach. Was abgeführt wird, verzinst sich nicht mehr mit – deshalb ist ein thesaurierender Fonds einer Ausschüttung überlegen, die man ohnehin wieder anlegen würde.',
+            '**Inflation** zum Schluss. Sie verändert die Zahl auf dem Konto nicht, wohl aber ihren Wert. Erst nach diesem Abzug steht da, wie viel man sich tatsächlich mehr leisten kann.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Aus sechs Prozent Bruttorendite werden nach laufenden Kosten, Steuer und zwei Prozent Inflation schnell zwei bis drei Prozent real. Das ist immer noch eine Verdopplung der Kaufkraft in gut zwei Jahrzehnten – aber es ist eine andere Zahl als die, mit der geworben wird, und die richtige für jede eigene Planung.',
+        },
+        {
           type: 'callout',
           variant: 'info',
           title: 'Selbst ausprobieren',
           items: [
             'Der Zinsrechner rechnet Startkapital, Sparrate, Zinssatz und Laufzeit in beliebiger Kombination durch und zeigt, welcher Anteil des Ergebnisses aus Einzahlungen und welcher aus Erträgen stammt.',
+            'Wer den realen Blick will, setzt dort nicht die Bruttorendite ein, sondern die um Kosten, Steuer und Inflation verminderte.',
           ],
         },
       ],
