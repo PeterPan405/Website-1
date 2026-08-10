@@ -1,0 +1,49 @@
+name: Podcast-Videos auflisten
+
+# Sagt, welche Videos auf dem eigenen Kanal liegen – Kennung, Länge, Titel.
+#
+# ## Warum es das gibt
+#
+# Am 10. August 2026 lagen zwei Videos desselben Tages auf dem Kanal, und eines
+# hatte vier Sekunden Quietschen. Welches gelöscht werden musste, war
+# überraschend schwer herauszufinden: Das Register kennt nur **eine** Kennung,
+# die des doppelten Uploads steht in keiner Datei, und aus dem Protokoll des
+# Laufs war sie nachträglich nicht mehr zu holen.
+#
+# Übrig blieb, den Betreiber danach zu fragen – ihn also eine Kennung aus einer
+# URL abtippen zu lassen, die ein Läufer in einer Sekunde bekommt. Das ist die
+# falsche Arbeitsteilung, und sie ist der eigentliche Anlass für diesen
+# Workflow.
+#
+# Er ändert nichts. Er liest.
+
+on:
+  workflow_dispatch:
+    inputs:
+      anzahl:
+        description: 'Wie viele der jüngsten Videos'
+        type: string
+        default: '10'
+
+jobs:
+  auflisten:
+    name: Videos auflisten
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+
+      - name: Auflisten
+        env:
+          ANZAHL: ${{ inputs.anzahl || '10' }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: npm run videos
