@@ -24,6 +24,10 @@ on:
         description: 'Wie viele der jüngsten Videos'
         type: string
         default: '10'
+      beschreibungen:
+        description: 'Auch die Beschreibungen ausgeben'
+        type: boolean
+        default: false
 
 jobs:
   auflisten:
@@ -43,6 +47,7 @@ jobs:
       - name: Auflisten
         env:
           ANZAHL: ${{ inputs.anzahl || '10' }}
+          BESCHREIBUNGEN: ${{ inputs.beschreibungen && '1' || '0' }}
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
