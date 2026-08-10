@@ -142,22 +142,52 @@ def seite_sprechen(sprecher, aufgabe: dict) -> dict:
     rate = 0
     laenge = 0
 
+    uebersprungen = 0
+
     for abschnitt in aufgabe["abschnitte"]:
         marken.append(round(laenge / rate, 2) if rate else 0.0)
         for stueck, ruhe in sprechstimme.in_stuecke(abschnitt):
-            # Bis zu drei Anläufe, falls das Modell entgleist – die
-            # Begründung steht bei `sprechstimme.brauchbar`.
-            for anlauf in (1, 2, 3):
-                wavs, rate = sprecher.sprich(stueck)
-                ton = np.asarray(wavs[0])
-                grund = sprechstimme.brauchbar(stueck, ton, rate)
-                if grund is None:
-                    break
-                melde(f"    Anlauf {anlauf} verworfen – {grund}")
+            # **Ein Stück, das sich nicht sprechen lässt, kostet den Satz –
+            # nicht die Seite.**
+            #
+            # Das ist der Unterschied zum Podcast, und er ist mit Absicht
+            # gemacht. Dort gilt „lieber keine Folge als eine mit einem Loch":
+            # Die Folge ist ein Stück veröffentlichter Inhalt, und ein
+            # fehlender Satz mitten darin wäre ein Fehler, den ein Hörer hört
+            # und nicht einordnen kann.
+            #
+            # Bei einer Lernseite ist es umgekehrt. Die Aufnahme ist ein
+            # Zusatzangebot neben dem Text, der ohnehin dasteht; wer sie
+            # anhört, hat den Absatz vor Augen. Ein fehlender Satz ist
+            # bedauerlich – **keine Aufnahme ist der viel größere Verlust.**
+            #
+            # Genau daran ist der erste Lauf gescheitert: Eine Lernstufe
+            # besteht aus rund achtundzwanzig Stücken, und ein einziges
+            # hängendes riss die ganze Seite mit. Bei 172 Seiten und einem
+            # Modell, das gelegentlich würfelt, blieb nichts übrig.
+            try:
+                for anlauf in (1, 2, 3):
+                    wavs, rate = sprecher.sprich(stueck)
+                    ton = np.asarray(wavs[0])
+                    grund = sprechstimme.brauchbar(stueck, ton, rate)
+                    if grund is None:
+                        break
+                    melde(f"    Anlauf {anlauf} verworfen – {grund}")
+            except RuntimeError as fehler:
+                uebersprungen += 1
+                melde(f"    übersprungen: {fehler}")
+                continue
+
             pause = np.zeros(int(rate * ruhe), dtype=ton.dtype)
             teile.append(ton)
             teile.append(pause)
             laenge += len(ton) + len(pause)
+
+    if uebersprungen:
+        melde(f"  {uebersprungen} Stück(e) übersprungen – die Aufnahme ist unvollständig.")
+
+    if not teile:
+        raise RuntimeError("Kein einziges Stück dieser Seite ließ sich sprechen.")
 
     audio = np.concatenate(teile)
     roh = f"{ORDNER}/{aufgabe['id']}.wav"
