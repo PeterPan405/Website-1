@@ -569,6 +569,36 @@ genau wie es `kurse.yml` bei der Nachrichtenausgabe längst tat.
 **Wer eine solche Prüfung schreibt, prüft zuerst, woher ihre Daten kommen.**
 Der Arbeitsordner eines Laufs ist eine Momentaufnahme, kein Spiegel.
 
+### Eine Frist prüft die Laufzeit, nicht das Ergebnis
+
+Der doppelte Lauf vom 10. August hatte ein Gutes: Er lieferte **zwei Fassungen
+derselben Folge**, und der Betreiber hat beide gehört. Die erste hatte bei 1:21
+vier Sekunden Quietschen und Rauschen, die zweite war sauber – gleicher Text,
+gleiches Modell, gleicher Aufbau.
+
+Damit ist die Sache entschieden: **Das Modell würfelt.** Es erzeugt Ton, bis es
+ein Schlusszeichen setzt, und gelegentlich entgleist ein Stück dabei.
+
+Die Absicherung, die es gab, fing genau einen Fall: das Stück, das **hängt**
+(`SIGALRM`, siehe `sprich`). Ein Stück, das schnell zurückkommt und Unsinn
+enthält, lief ungeprüft in die Folge. Es gab keine einzige Frage an das
+Ergebnis, nur an die Laufzeit – und das ist der Denkfehler, nicht die Zahl.
+
+`brauchbar()` fragt seither zweierlei, beides billig:
+
+    Dauer gegen Textlänge    ein entgleistes Stück ist fast immer deutlich
+                             zu lang oder zu kurz (0,45× bis 2,2× erwartet)
+    Anteil am Anschlag       Quietschen liegt am Anschlag, gesprochene
+                             Sprache nie über eine ganze Passage
+
+Beides sind **Anzeichen, keine Beweise**. Sie fangen die Form, die dieser
+Fehler hat, und nicht jeden denkbaren. Deshalb ist die Antwort ein neuer
+Versuch – bis zu drei – und kein Abbruch: Gewürfelt wird bei jedem neu, und
+genau das hat die zweite Fassung bewiesen. Nach drei entgleisten Anläufen
+kommt das Stück trotzdem hinein, mit Warnung. Ein Loch bricht das
+Zusammenfügen ab und kostet die ganze Folge; ein schiefes Stück kostet vier
+Sekunden.
+
 ### Ein Push, der nach der Veröffentlichung scheitert, ist rot
 
 Die zweite Hälfte desselben Vorfalls, und die unangenehmere. Lauf 2 hatte

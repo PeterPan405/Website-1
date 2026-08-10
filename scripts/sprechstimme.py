@@ -172,6 +172,53 @@ def _wecker(signum, rahmen):  # noqa: ARG001
 signal.signal(signal.SIGALRM, _wecker)
 
 
+#: Sekunden Sprache je Zeichen – an den bisherigen Folgen gemessen.
+SEKUNDEN_JE_ZEICHEN = 1 / 14.5
+
+#: Wie weit die Dauer eines Stücks von der erwarteten abweichen darf.
+DAUER_UNTEN = 0.45
+DAUER_OBEN = 2.2
+
+#: Ab welchem Anteil übersteuerter Abtastwerte ein Stück verdächtig ist.
+UEBERSTEUERT_ANTEIL = 0.005
+
+
+def brauchbar(stueck: str, audio, rate: int) -> str | None:
+    """Sagt, warum ein gesprochenes Stück unbrauchbar aussieht – oder nichts.
+
+    Am 10. August 2026 lagen zwei Fassungen derselben Podcastfolge vor. Die
+    eine hatte bei 1:21 vier Sekunden Quietschen und Rauschen, die andere war
+    sauber – gleicher Text, gleiches Modell. Das Modell würfelt, und
+    gelegentlich entgleist ein Stück.
+
+    Die Frist in `Sprecher.sprich` fängt nur das Stück, das **hängt**. Eines,
+    das schnell zurückkommt und Unsinn enthält, lief ungeprüft durch.
+
+    Geprüft wird die Dauer gegen die Textlänge (ein entgleistes Stück ist fast
+    immer deutlich zu lang oder zu kurz) und der Anteil übersteuerter
+    Abtastwerte (Quietschen liegt am Anschlag, Sprache nie über eine ganze
+    Passage). Anzeichen, keine Beweise – die Antwort ist ein neuer Versuch.
+    """
+    import numpy as np
+
+    dauer = len(audio) / rate
+    erwartet = len(stueck) * SEKUNDEN_JE_ZEICHEN
+
+    if erwartet >= 1.0:
+        if dauer < DAUER_UNTEN * erwartet:
+            return f"zu kurz: {dauer:.1f} s statt rund {erwartet:.1f} s"
+        if dauer > DAUER_OBEN * erwartet:
+            return f"zu lang: {dauer:.1f} s statt rund {erwartet:.1f} s"
+
+    spitze = float(np.max(np.abs(audio))) if len(audio) else 0.0
+    if spitze > 0:
+        anteil = float(np.mean(np.abs(audio) >= 0.999 * spitze))
+        if anteil > UEBERSTEUERT_ANTEIL and spitze >= 0.99:
+            return f"übersteuert: {anteil * 100:.1f} % der Abtastwerte am Anschlag"
+
+    return None
+
+
 class Sprecher:
     """Hält Modell und Stimmprofil und spricht damit Stücke.
 
