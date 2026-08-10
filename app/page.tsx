@@ -415,14 +415,14 @@ export default async function HomePage() {
         den Instrumentenbestand, die zweite folgt aus dem täglichen Takt seit
         dem 9. August 2026, die dritte steht unter /keine-cookies.
       */}
-      <section aria-labelledby="zahlen" className="bg-fg">
+      <section aria-labelledby="zahlen" className="bg-invert">
         <div className="fk-container py-16 text-center sm:py-24">
-          <p className="text-canvas/60 font-mono text-xs font-semibold tracking-[0.16em] uppercase">
+          <p className="text-on-invert/60 font-mono text-xs font-semibold tracking-[0.16em] uppercase">
             Die Zahlen dahinter
           </p>
           <h2
             id="zahlen"
-            className="text-canvas mx-auto mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl"
+            className="text-on-invert mx-auto mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl"
           >
             Was hier jeden Tag läuft
           </h2>
@@ -443,10 +443,10 @@ export default async function HomePage() {
             ].map(({ wert, text }, index) => (
               <Reveal key={wert} delay={index * 0.06}>
                 <div>
-                  <p className="text-canvas font-display text-6xl font-semibold tracking-tight tabular-nums sm:text-7xl">
+                  <p className="text-on-invert font-display text-6xl font-semibold tracking-tight tabular-nums sm:text-7xl">
                     {wert}
                   </p>
-                  <p className="text-canvas/70 mx-auto mt-3 max-w-xs text-sm leading-relaxed">
+                  <p className="text-on-invert/70 mx-auto mt-3 max-w-xs text-sm leading-relaxed">
                     {text}
                   </p>
                 </div>
