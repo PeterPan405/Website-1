@@ -456,15 +456,98 @@ def sprich(stueck: str, tiefe: int = 0):
     return [np.concatenate([np.asarray(links[0]), np.asarray(rechts[0])])], rate
 
 
+#: Sekunden Sprache je Zeichen – an den bisherigen Folgen gemessen.
+SEKUNDEN_JE_ZEICHEN = 1 / 14.5
+
+#: Wie weit die Dauer eines Stücks von der erwarteten abweichen darf.
+#:
+#: Großzügig gewählt: Zahlen und Abkürzungen werden ausgesprochen und dehnen
+#: ein Stück, eine Aufzählung rafft es. Gesucht ist nicht die Genauigkeit,
+#: sondern der Ausreißer.
+DAUER_UNTEN = 0.45
+DAUER_OBEN = 2.2
+
+#: Ab welchem Anteil übersteuerter Abtastwerte ein Stück verdächtig ist.
+UEBERSTEUERT_ANTEIL = 0.005
+
+
+def brauchbar(stueck: str, audio, rate: int) -> str | None:
+    """Sagt, warum ein gesprochenes Stück unbrauchbar aussieht – oder nichts.
+
+    ## Warum es diese Prüfung gibt
+
+    Am 10. August 2026 lagen zwei Fassungen derselben Folge vor, weil ein
+    verspäteter Zeitplan sie doppelt erzeugt hatte. **Die eine hatte bei 1:21
+    vier Sekunden Quietschen und Rauschen, die andere war sauber** – gleicher
+    Text, gleiches Modell, gleicher Läufer-Aufbau.
+
+    Damit ist die Sache klar: Das Modell würfelt. Es erzeugt Ton, bis es ein
+    Schlusszeichen setzt, und gelegentlich entgleist ein Stück dabei.
+
+    Die vorhandene Absicherung – `SIGALRM` in `sprich` – fängt genau einen
+    Fall: das Stück, das **hängt**. Ein Stück, das schnell zurückkommt und
+    Unsinn enthält, lief bisher ungeprüft in die Folge. Es gab keine einzige
+    Frage an das Ergebnis, nur an die Laufzeit.
+
+    Geprüft wird deshalb zweierlei, beides billig:
+
+    1. **Die Dauer gegen die Textlänge.** Ein entgleistes Stück ist fast immer
+       deutlich zu lang oder zu kurz – das Modell wiederholt sich oder bricht ab.
+    2. **Der Anteil übersteuerter Abtastwerte.** Quietschen und Rauschen liegen
+       am Anschlag; gesprochene Sprache tut das nie über eine ganze Passage.
+
+    Beides sind Anzeichen, keine Beweise. Sie fangen die Form, die dieser
+    Fehler hat, und nicht jeden denkbaren – deshalb ist die Antwort ein neuer
+    Versuch und kein Abbruch.
+    """
+    dauer = len(audio) / rate
+    erwartet = len(stueck) * SEKUNDEN_JE_ZEICHEN
+
+    # Unter einer Sekunde Erwartung lässt sich nichts beurteilen.
+    if erwartet >= 1.0:
+        if dauer < DAUER_UNTEN * erwartet:
+            return f"zu kurz: {dauer:.1f} s statt rund {erwartet:.1f} s"
+        if dauer > DAUER_OBEN * erwartet:
+            return f"zu lang: {dauer:.1f} s statt rund {erwartet:.1f} s"
+
+    spitze = float(np.max(np.abs(audio))) if len(audio) else 0.0
+    if spitze > 0:
+        anteil = float(np.mean(np.abs(audio) >= 0.999 * spitze))
+        if anteil > UEBERSTEUERT_ANTEIL and spitze >= 0.99:
+            return f"übersteuert: {anteil * 100:.1f} % der Abtastwerte am Anschlag"
+
+    return None
+
+
 t0 = time.time()
 gesamtdauer = 0.0
+verworfen = 0
 for lauf, (index, (stueck, ruhe)) in enumerate(meine, start=1):
-    wavs, rate = sprich(stueck)
-    audio = np.asarray(wavs[0])
+    # Bis zu drei Anläufe. Gewürfelt wird bei jedem neu – derselbe Text nimmt
+    # beim nächsten Mal einen anderen Weg, und genau das hat die zweite
+    # Fassung der Folge vom 10. August bewiesen.
+    for anlauf in (1, 2, 3):
+        wavs, rate = sprich(stueck)
+        audio = np.asarray(wavs[0])
+        grund = brauchbar(stueck, audio, rate)
+        if grund is None:
+            break
+        verworfen += 1
+        melde(f"  Stück {index + 1}, Anlauf {anlauf} verworfen – {grund}")
+        melde(f"    {stueck[:70]!r}")
+    else:
+        # Drei entgleiste Anläufe: lieber ein schiefes Stück als ein Loch.
+        # Ein fehlendes Stück bricht das Zusammenfügen ab und kostet die
+        # ganze Folge; ein schiefes kostet vier Sekunden.
+        melde(f"::warning::Stück {index + 1} klingt auch nach drei Anläufen nicht sauber.")
+
     pause = np.zeros(int(rate * ruhe), dtype=audio.dtype)
     sf.write(f"podcast-folge/stueck-{index:03d}.wav", np.concatenate([audio, pause]), rate)
     gesamtdauer += len(audio) / rate
     melde(f"  Stück {index + 1} ({lauf}/{len(meine)}) – {len(audio) / rate:.1f} s")
+
+if verworfen:
+    melde(f"{verworfen} Anläufe verworfen und neu gesprochen.")
 
 rechenzeit = time.time() - t0
 melde(f"{gesamtdauer / 60:.1f} Minuten Sprache in {rechenzeit / 60:.1f} Minuten gerechnet.")

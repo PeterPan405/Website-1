@@ -145,8 +145,15 @@ def seite_sprechen(sprecher, aufgabe: dict) -> dict:
     for abschnitt in aufgabe["abschnitte"]:
         marken.append(round(laenge / rate, 2) if rate else 0.0)
         for stueck, ruhe in sprechstimme.in_stuecke(abschnitt):
-            wavs, rate = sprecher.sprich(stueck)
-            ton = np.asarray(wavs[0])
+            # Bis zu drei Anläufe, falls das Modell entgleist – die
+            # Begründung steht bei `sprechstimme.brauchbar`.
+            for anlauf in (1, 2, 3):
+                wavs, rate = sprecher.sprich(stueck)
+                ton = np.asarray(wavs[0])
+                grund = sprechstimme.brauchbar(stueck, ton, rate)
+                if grund is None:
+                    break
+                melde(f"    Anlauf {anlauf} verworfen – {grund}")
             pause = np.zeros(int(rate * ruhe), dtype=ton.dtype)
             teile.append(ton)
             teile.append(pause)
