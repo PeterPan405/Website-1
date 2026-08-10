@@ -753,7 +753,7 @@ export function Globus({
             <canvas ref={canvasRef} aria-hidden="true" className="block max-w-full" />
 
             {ueberName && (
-              <span className="bg-fg text-canvas pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-semibold">
+              <span className="bg-invert text-on-invert pointer-events-none absolute top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-semibold">
                 {ueberName}
               </span>
             )}

@@ -34,6 +34,26 @@
   --c-canvas: #f2ebdd;
   --c-surface: #f8f2e6;
   --c-surface-muted: #ece5d6;
+
+  /*
+    Das umgekehrte Band – ein eigenes Paar, kein geliehenes.
+
+    Der Zahlenstreifen der Startseite lag auf `bg-fg` mit `text-canvas`: die
+    Rollen der Texttoken vertauscht. Im hellen Thema ergibt das den gewollten
+    schwarzen Block. Im dunklen wird `--c-fg` aber zu #e9edf7, und aus dem
+    Block wurde eine **kalt-weiße Fläche über die ganze Breite** – gemeldet am
+    10. August 2026, und im Bild kaum zu übersehen.
+
+    Geliehene Token halten nur so lange, wie beide Themen dieselbe Absicht
+    haben. Hier tun sie es nicht: Gewollt ist die Umkehrung, nicht die
+    Textfarbe. Also ein eigenes Paar, das in jedem Thema selbst sagt, welche
+    Fläche und welche Schrift gemeint sind.
+
+    Hell bleibt alles, wie es war. Dunkel trägt das Band den Papierton der
+    Website statt eines Blaustichs – dieselbe Helligkeit wie zuvor, nur warm.
+  */
+  --c-invert: #0f172a;
+  --c-on-invert: #f2ebdd;
   --c-border: #e1d9c8;
   --c-border-strong: #c5bba6;
 
@@ -202,8 +222,21 @@
 
   --c-ring: #1f4fb6;
 
-  /* Schatten – im Hellmodus weich, im Dunkelmodus fast unsichtbar */
-  --fk-shadow-card: 0 1px 2px rgb(15 23 42 / 0.05);
+  /*
+    Schatten – im Hellmodus weich, im Dunkelmodus fast unsichtbar.
+
+    Der Kartenschatten war 0,05 Deckkraft auf einer Kante von einem Pixel.
+    Das reicht auf Weiß; auf dem Papierton dieser Website nicht. Karte
+    (#f8f2e6) und Grund (#f2ebdd) liegen bewusst dicht beieinander – die
+    Trennung soll die Linie machen –, und ein Schatten, den man nicht sieht,
+    macht sie eben nicht. Auf dem Bildschirm des Betreibers standen sechs
+    Kurskacheln, die aussahen, als schwämmen sie ohne Rand.
+
+    Jetzt zwei Lagen: eine enge, die die Kante trägt, und eine weite, die die
+    Karte anhebt. Zusammen bleiben sie unter dem, was man als Schatten
+    bemerkt – gesucht war Kontur, nicht Tiefe.
+  */
+  --fk-shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 4px 12px -6px rgb(15 23 42 / 0.1);
   --fk-shadow-lift:
     0 1px 2px rgb(15 23 42 / 0.05), 0 10px 24px -16px rgb(15 23 42 / 0.16);
 }
@@ -246,6 +279,11 @@
     --c-canvas: #0a0a0c;
     --c-surface: #16161a;
     --c-surface-muted: #1f1f24;
+
+    /* Das umgekehrte Band, hier herum: Papier als Fläche, Schrift fast
+       schwarz. Begründung oben beim hellen Paar. */
+    --c-invert: #f2ebdd;
+    --c-on-invert: #0a0a0c;
     --c-border: #2b2b33;
     --c-border-strong: #40404c;
 
@@ -354,6 +392,9 @@
   --color-fg: var(--c-fg);
   --color-fg-muted: var(--c-fg-muted);
   --color-fg-subtle: var(--c-fg-subtle);
+
+  --color-invert: var(--c-invert);
+  --color-on-invert: var(--c-on-invert);
 
   --color-brand: var(--c-brand);
   --color-brand-strong: var(--c-brand-strong);
