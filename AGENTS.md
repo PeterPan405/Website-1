@@ -569,6 +569,35 @@ genau wie es `kurse.yml` bei der Nachrichtenausgabe längst tat.
 **Wer eine solche Prüfung schreibt, prüft zuerst, woher ihre Daten kommen.**
 Der Arbeitsordner eines Laufs ist eine Momentaufnahme, kein Spiegel.
 
+### Eine ausgetauschte Datei erreicht keinen Hörer
+
+Der dritte Teil desselben Vorfalls. Die kaputte Fassung lag bei Spotify, die
+saubere lag auf dem Server – und das blieb sechs Stunden lang so, obwohl unter
+derselben Adresse längst die richtige Datei stand.
+
+**Spotify holt eine Folge genau einmal.** Es erkennt sie an ihrer Kennung im
+Feed, und die hing am Datum: `iminvests-marktupdate-2026-08-10`. Eine
+gleichbleibende Kennung heißt „kenne ich schon"; die MP3 dahinter wird nie
+wieder abgerufen. Wer die Datei auf dem Server ersetzt, ändert damit für einen
+Abonnenten **nichts**. Dasselbe gilt für Apple und jeden anderen Abspieler.
+
+Deshalb trägt eine Folge seither eine `fassung`. Sie fehlt bei der ersten,
+und ab der zweiten hängt sie an der Kennung: `…-2026-08-10-2`. Für Spotify ist
+das eine neue Folge – es lädt sie, und die alte verschwindet mit dem nächsten
+Feedabruf.
+
+Hochgezählt wird sie **von selbst**: `podcast-feed-schreiben.ts eintragen`
+schaut nach, ob der Tag schon im Register steht, und erhöht die Fassung, wenn
+ja. Ein zweiter Lauf am selben Tag ist genau der Fall, in dem eine neue
+Audiodatei entstanden ist – die Handkorrektur vom 10. August war nachgeholte
+Arbeit, keine Ausnahme.
+
+Nach draußen kommt das über `podcast-schaufenster.yml`: Feed neu schreiben,
+Feed übertragen, keine Folge anfassen.
+
+**Wer sparsam damit umgeht, hat recht.** Eine erhöhte Fassung ohne Grund
+erzeugt bei jedem Hörer eine „neue Folge", die er schon kennt.
+
 ### Eine Frist prüft die Laufzeit, nicht das Ergebnis
 
 Der doppelte Lauf vom 10. August hatte ein Gutes: Er lieferte **zwei Fassungen

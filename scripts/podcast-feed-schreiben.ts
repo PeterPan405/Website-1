@@ -48,6 +48,31 @@ interface Folge {
      hat es den Upload an diesem Tag nicht gegeben – kein Fehler, nur ein
      Verweis weniger auf der Website. */
   youtubeId?: string
+  /**
+   * Die wievielte Fassung dieser Folge im Feed steht. Fehlt sie: die erste.
+   *
+   * ## Wozu eine Fassung
+   *
+   * **Spotify holt eine Folge genau einmal.** Es merkt sie sich an ihrer
+   * Kennung im Feed – und die hängt am Datum, ändert sich also nie. Wer die
+   * MP3 auf dem Server austauscht, ändert damit für einen Hörer gar nichts:
+   * Spotify hat die alte Datei längst bei sich liegen und schaut nicht
+   * wieder nach.
+   *
+   * Genau das war am 10. August 2026 der Fall. Ein doppelter Lauf hatte zwei
+   * Fassungen erzeugt, die erste mit vier Sekunden Quietschen bei 1:21. Die
+   * zweite, saubere lag binnen Minuten auf dem Server – und bei den Hörern
+   * blieb die kaputte.
+   *
+   * Eine erhöhte Fassung ändert die Kennung. Für Spotify ist das eine neue
+   * Folge: Es lädt sie herunter, und die alte verschwindet mit dem nächsten
+   * Feedabruf. Der einzige Weg, eine Folge wirklich zu ersetzen, ohne sie
+   * zurückzunehmen und neu zu bauen.
+   *
+   * Sparsam verwenden. Wer sie ohne Grund erhöht, erzeugt bei jedem Hörer
+   * eine „neue Folge", die er schon kennt.
+   */
+  fassung?: number
 }
 
 interface Register {
@@ -90,6 +115,18 @@ if (modus === 'eintragen') {
     /* kein Upload gelaufen – kein Fehler */
   }
 
+  /*
+    Ein zweiter Lauf am selben Tag ersetzt die Folge, statt sie zu doppeln –
+    **und zählt dabei die Fassung hoch.** Wer denselben Tag ein zweites Mal
+    einträgt, hat eine andere Audiodatei erzeugt; ohne neue Kennung im Feed
+    behielte jeder Hörer die alte (siehe `fassung` oben).
+
+    Das ist keine Vorsichtsmaßnahme, sondern nachgeholte Arbeit: Am 10. August
+    2026 lief der Tag zweimal, die zweite Fassung war die brauchbare, und sie
+    zu ersetzen kostete eine Handkorrektur an dieser Datei.
+  */
+  const vorige = register.folgen.find((folge) => folge.datum === meta.datum)
+
   const eintrag: Folge = {
     datum: meta.datum,
     titel: titelZeilen[0].trim(),
@@ -98,10 +135,10 @@ if (modus === 'eintragen') {
     dauerSekunden: Math.round(dauer),
     bytes: statSync('podcast-folge/folge.mp3').size,
     ...(youtube.videoId ? { youtubeId: youtube.videoId } : {}),
+    ...(vorige ? { fassung: (vorige.fassung ?? 1) + 1 } : {}),
   }
   if (youtube.kanalId) register.youtubeKanalId = youtube.kanalId
 
-  /* Ein zweiter Lauf am selben Tag ersetzt die Folge, statt sie zu doppeln. */
   register.folgen = register.folgen.filter((folge) => folge.datum !== eintrag.datum)
   register.folgen.push(eintrag)
   register.folgen.sort((a, b) => (a.datum < b.datum ? 1 : -1))
@@ -126,7 +163,7 @@ const eintraege = register.folgen
     return `    <item>
       <title>${entschaerfen(folge.titel)}</title>
       <link>${url}</link>
-      <guid isPermaLink="false">iminvests-marktupdate-${folge.datum}</guid>
+      <guid isPermaLink="false">iminvests-marktupdate-${folge.datum}${folge.fassung && folge.fassung > 1 ? `-${folge.fassung}` : ''}</guid>
       <pubDate>${datum}</pubDate>
       <enclosure url="${url}" length="${folge.bytes}" type="audio/mpeg"/>
       <itunes:duration>${folge.dauerSekunden}</itunes:duration>
