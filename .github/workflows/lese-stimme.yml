@@ -48,11 +48,16 @@ name: Lernseiten vertonen
 # Lauf Aufnahmen abgelegt hat; die Zeile steht hier fertig und
 # auskommentiert.
 on:
-  # schedule:
-  #   # 23:19 UTC – nach dem letzten Bau des Abends und weit vor der Kette, die
-  #   # ab 01:13 die Nachrichten und den Podcast erzeugt. Krumme Minute aus dem
-  #   # Grund, der in AGENTS.md steht: Volle Stunden sind am dichtesten belegt.
-  #   - cron: '19 23 * * *'
+  schedule:
+    # 23:19 UTC – nach dem letzten Bau des Abends und weit vor der Kette, die
+    # ab 01:13 die Nachrichten und den Podcast erzeugt. Krumme Minute aus dem
+    # Grund, der in AGENTS.md steht: Volle Stunden sind am dichtesten belegt.
+    #
+    # Scharf gestellt am 10. August 2026: Der erste Lauf hat zwölf Seiten
+    # gesprochen und ins Verzeichnis eingetragen. Bis dahin stand hier ein
+    # auskommentierter Zeitplan – ein Lauf, der nichts liefert, soll nicht
+    # jede Nacht vier Läuferstunden verbrauchen.
+    - cron: '19 23 * * *'
   workflow_dispatch:
     inputs:
       seiten:
