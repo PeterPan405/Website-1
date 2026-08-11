@@ -288,6 +288,29 @@ export function sprechbar(text: string): string {
      die sonst „am sieben. August“ daraus machte. */
   s = ordnungszahlenSprechbar(s)
 
+  /*
+    Namen, in denen eine Ziffer klebt: „K3“, „R1“, „GPT5“.
+    Gesprochen wird „K drei“ – der Buchstabe bleibt, die Ziffer wird Wort.
+
+    Am 11. August 2026 hat genau das eine Ausgabe aufgehalten: Der Agent
+    schrieb über „das chinesische Modell Kimi K3", die Zahlregel weiter unten
+    fasst nur **freistehende** Zahlen, und der Test „keine Ziffern im
+    Sprechtext" ließ den ganzen Nachrichtenlauf scheitern. Eine gute Ausgabe,
+    verhindert von zwei Zeichen.
+
+    Die Regel greift nur bei ein bis drei Buchstaben unmittelbar vor ein bis
+    zwei Ziffern und nur am Wortende. Damit bleiben Wörter wie „DAX40“ – die
+    es hier nicht gibt – und alles, was hinter der Ziffer weitergeht,
+    unangetastet, und Kürzel wie „S&P 500“ hat die Regel darüber längst
+    gefasst.
+  */
+  s = s.replaceAll(
+    /\b([A-ZÄÖÜ][A-Za-zÄÖÜäöü]{0,2})(\d{1,2})\b/g,
+    (ganz: string, wort: string, ziffern: string) =>
+      // Reine Jahreszahlen und Ähnliches nicht anfassen – nur Buchstabe+Ziffer.
+      /^\d+$/.test(wort) ? ganz : `${wort} ${zahlwort(Number(ziffern))}`
+  )
+
   /* Klammern sind in der Sprechfassung verboten – sie werden zu Einschüben. */
   s = s.replaceAll(/\s*\(([^)]*)\)/g, ', $1,')
 
@@ -592,6 +615,32 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     if (wortzahl(rumpf()) > WORTZIEL_MAX && absaetze.length > 3) {
       absaetze = absaetze.slice(0, -1)
     }
+  }
+
+  /*
+    Und weiter kürzen, bis es wirklich passt.
+
+    Die Schleife darüber hört auf, wenn `ohneEinordnung` bei null ankommt –
+    also nach so vielen Runden, wie es Themen gibt. Ob der Text danach kurz
+    genug ist, fragt sie nicht mehr. Bei fünf Themen fiel das nie auf; bei
+    sieben schon.
+
+    Am 11. August 2026 hat es zugeschlagen: Der Agent lieferte eine Ausgabe
+    mit sieben Artikeln – deutlich reicher als die fünf, mit denen bis dahin
+    gerechnet wurde –, der Sprechtext lag über 740 Wörtern, und
+    `tests/sprechfassung.test.ts` ließ den ganzen Nachrichtenlauf scheitern.
+    Die Ausgabe war gut, die Folge zu lang, und veröffentlicht wurde nichts.
+
+    **Eine reiche Ausgabe darf die Folge nicht kosten.** Die Website zeigt
+    alle Artikel; die Folge nimmt so viele, wie in ihre fünf Minuten passen.
+    Gekürzt wird weiter von hinten – die Rangfolge der Ausgabe bleibt gewahrt.
+
+    Die Untergrenze von drei Themen steht: Darunter wäre es keine Folge mehr,
+    sondern eine Meldung. Reicht auch das nicht, kommt die Folge etwas zu
+    lang heraus – lieber das als gar keine.
+  */
+  while (wortzahl(rumpf()) > WORTZIEL_MAX && absaetze.length > 3) {
+    absaetze = absaetze.slice(0, -1)
   }
 
   const sprechtext = rumpf()
