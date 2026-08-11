@@ -324,6 +324,20 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bNasdaq\b/gi, 'Nässdack'],
   [/\bFederal Reserve\b/g, 'Fedderel Riserv'],
   [/\bTreasury\b/g, 'Treschery'],
+  [/\bBofA\b/g, 'Bänk of Amerika'],
+  [/\bOpenAI\b/g, 'Ohpen Ej Ei'],
+  [/\bAnthropic\b/g, 'Änthropick'],
+  [/\bMicrosoft\b/g, 'Meikrosoft'],
+  [/\bOracle\b/g, 'Orakl'],
+  [/\bPalantir\b/g, 'Pallantihr'],
+  [/\bGitHub\b/g, 'Gitthabb'],
+  [/\bBig Tech\b/g, 'Bigg Teck'],
+  [/\bFear[- ]and[- ]Greed\b/g, 'Fier and Griedd'],
+  [/\bUnderperform\b/g, 'Anderperform'],
+  [/\bOutperform\b/g, 'Autperform'],
+  [/\bValue\b/g, 'Wällju'],
+  [/\bCash\b/g, 'Käsch'],
+  [/\bNews\b/g, 'Njuhs'],
 ]
 
 /** Setzt die Umschrift der englischen Namen ein – siehe `ENGLISCHE_NAMEN`. */
