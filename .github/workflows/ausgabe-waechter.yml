@@ -152,48 +152,66 @@ jobs:
       # Der Podcast. Die Zusage lautet 6:00 Uhr für die Folge genauso wie für
       # die Nachrichten – also muss auch ihr Ausfall auffallen.
       #
-      # Geprüft wird **nicht**, ob die Folge schon online ist: Um 03:11 UTC
-      # läuft sie noch (Start 02:53, fertig gegen 03:36). Geprüft wird, ob es
-      # heute überhaupt einen Lauf gibt. Fehlt er, wurde der Zeitplan verworfen
-      # **und** der Anstoß aus `kurse.yml` blieb aus – beides zugleich, und
-      # niemand hätte es vor dem Vormittag bemerkt.
+      # **Gefragt wird das Register, nicht die Laufliste.** Bis zum 11. August
+      # 2026 stand hier „hat heute überhaupt ein Lauf begonnen?" – mit der
+      # Begründung, um 03:11 UTC laufe die Folge noch (Start 02:53, fertig
+      # gegen 03:36). Seit demselben Tag stößt `nachrichten.yml` sie an,
+      # sobald die Ausgabe steht; im Regelfall ist sie gegen 02:00 UTC fertig,
+      # gut eine Stunde vor dieser Prüfung.
       #
-      # Ein abgebrochener Lauf meldet sich selbst per Mail. Diese Prüfung gilt
-      # dem stillen Fall: gar kein Lauf.
-      - name: Lief der Podcast heute?
+      # Damit lässt sich das Ergebnis prüfen statt der Absicht – und das ist
+      # dieselbe Lehre wie überall sonst hier: Wer wissen will, ob die Folge
+      # da ist, fragt das Register, nicht die Laufliste. Ein Lauf, der
+      # stattgefunden und nichts hinterlassen hat, ist kein Ergebnis.
+      #
+      # Ein noch laufender Lauf ist kein Fehler, sondern knapp: Er bekommt
+      # eine Notiz und keine Fehlermeldung.
+      #
+      # **Kein Wochenend-Riegel.** Hier stand einer, und er war seit dem
+      # 9. August 2026 falsch: Die Folge erscheint sieben Tage die Woche.
+      # Ausgerechnet an den Tagen, an denen am wenigsten sonst läuft, hätte
+      # der Wächter geschwiegen.
+      - name: Steht die Folge von heute?
         id: podcast
         if: inputs.tag == ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          wochentag=$(date -u +%u)
-          if [ "$wochentag" -ge 6 ]; then
-            echo "Wochenende – es erscheint keine Folge."
+          heute=$(date -u +%Y-%m-%d)
+
+          # Das Register von **jetzt**, nicht aus dem Checkout: Der Lauf hat
+          # womöglich vor zwanzig Minuten eingetragen. Derselbe Fehler hat am
+          # 10. August zwei Videos desselben Tages erzeugt.
+          git fetch origin main --depth 1 -q 2>/dev/null || true
+          if git show origin/main:data/podcast-eigener-feed.json 2>/dev/null \
+               | grep -q "\"datum\": \"$heute\""; then
+            echo "  ✓ die Folge vom $heute steht im Register"
             exit 0
           fi
 
-          heute=$(date -u +%Y-%m-%d)
-          laeufe=$(gh api \
+          laufend=$(gh api \
             "repos/$GITHUB_REPOSITORY/actions/workflows/podcast-erzeugen.yml/runs?created=$heute&per_page=30" \
-            --jq '[.workflow_runs[] | select(.status != "completed" or .conclusion == "success")] | length' \
+            --jq '[.workflow_runs[] | select(.status != "completed")] | length' \
             2>/dev/null || echo "unbekannt")
 
           # Alles, was keine Zahl ist, heißt „nicht abrufbar". Ein Wächter, der
           # an seiner eigenen Abfrage scheitert, meldet einen Ausfall, den es
           # nicht gibt – und das ist schlimmer als eine ausgelassene Prüfung.
-          case "$laeufe" in
+          case "$laufend" in
             ''|*[!0-9]*)
-              echo "::notice::Die Laufliste war nicht abrufbar ($laeufe) – der Podcast wird diesmal nicht bewertet."
+              echo "::notice::Die Laufliste war nicht abrufbar ($laufend) – der Podcast wird diesmal nicht bewertet."
               exit 0
               ;;
           esac
 
-          if [ "$laeufe" -gt 0 ]; then
-            echo "  ✓ $laeufe Podcastlauf/-läufe von heute, laufend oder erfolgreich"
-          else
-            echo "  ✗ heute kein Podcastlauf"
-            echo "fehlt=ja" >> "$GITHUB_OUTPUT"
+          if [ "$laufend" -gt 0 ]; then
+            echo "::notice::Die Folge vom $heute ist noch nicht eingetragen, aber $laufend Lauf/Läufe sind unterwegs."
+            echo "  Das ist knapp: Bis zur Frist um 6:00 deutscher Zeit bleiben rund 49 Minuten."
+            exit 0
           fi
+
+          echo "  ✗ die Folge vom $heute fehlt im Register, und es läuft nichts mehr"
+          echo "fehlt=ja" >> "$GITHUB_OUTPUT"
 
       # Steht da eine Ausgabe – oder steht da der Notbehelf?
       #
@@ -293,7 +311,7 @@ jobs:
           # Der Podcast kippt den Lauf für sich allein: Ohne Lauf gibt es
           # heute keine Folge, auch wenn die Nachrichten tadellos stehen.
           if [ "$podcast" = "ja" ]; then
-            echo "::error::Heute gibt es keinen Podcastlauf. Der Zeitplan wurde verworfen und der Anstoß aus kurse.yml blieb aus."
+            echo "::error::Die Folge von heute steht nicht im Register, und es läuft kein Lauf mehr."
             echo "  Von Hand: Actions > Podcastfolge erzeugen > Run workflow."
             echo "  Gemessen braucht sie rund 37 Minuten von Hand bis online."
             echo ""
