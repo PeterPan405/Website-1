@@ -42,9 +42,13 @@ name: Nachrichten schreiben
 #
 # Er ist der **zweite** Weg zum selben Ergebnis: Fehlt der Entwurf, liest der
 # Läufer die Quellendatei selbst und ruft das Modell über die Schnittstelle
-# (rund 0,20 $). Fehlt auch der Schlüssel, rechnet
-# `scripts/nachrichten-aus-bestand.ts` eine Ausgabe aus den Momentaufnahmen –
-# Marktzahlen statt Meldungen, ein Notbehelf, damit nie gar nichts dasteht.
+# (rund 0,20 $). Fehlt auch der Schlüssel, entsteht **keine Ausgabe** und der
+# Lauf wird rot.
+#
+# Bis zum 11. August 2026 sprang hier ein Notbehelf aus dem eigenen
+# Kursbestand ein. Er ist abgeschafft: Was er lieferte, waren aufbereitete
+# eigene Zahlen, und als Nachrichtenseite gelesen war das eine Enttäuschung –
+# die obendrein den Ausfall verdeckte. Besser keine Nachrichten als solche.
 #
 # ## Warum nicht ein Termin genügt
 #
@@ -102,8 +106,8 @@ on:
     # hört der Lauf nach vierzig Sekunden auf, ohne das Modell zu fragen.
     #
     # Im Winter eine Stunde später; die Routine „Zeitumstellung" zieht nach.
-    - cron: '57 1 * * *'
-    - cron: '17 2 * * *'
+    - cron: '53 1 * * *'
+    - cron: '23 2 * * *'
     - cron: '47 2 * * *'
   workflow_dispatch:
     inputs:
@@ -251,7 +255,7 @@ jobs:
           # unten aus dem eigenen Bestand. Bis zum 5. August war das ein
           # `exit 1`, und damit hing die ganze Zusage an einem Nebenlauf.
           if [ ! -s quellen.txt ] || ! head -1 quellen.txt | grep -q "$TAG"; then
-            echo "::warning::Keine Quellendatei von heute – die Ausgabe entsteht aus dem eigenen Bestand."
+            echo "::warning::Keine Quellendatei von heute – das Modell hätte nichts zu lesen."
             echo "frisch=nein" >> "$GITHUB_OUTPUT"
             rm -f quellen.txt
           else
@@ -267,15 +271,14 @@ jobs:
       #      was auf dieser Website stehen soll.
       #   2. Kein Entwurf, aber ein `ANTHROPIC_API_KEY` → derselbe Text, nur
       #      auf dem Läufer erzeugt statt in einer Sitzung. Rund 0,20 $.
-      #   3. Weder noch → `nachrichten-aus-bestand.ts` rechnet aus den
-      #      Momentaufnahmen. **Marktzahlen statt Meldungen**, und damit
-      #      ausdrücklich ein Notbehelf: Was hier steht, ist belegt, aber es
-      #      sind keine Nachrichten.
+      #   3. Weder noch → **nichts.** Roter Lauf, keine Ausgabe.
       #
-      # Weg 3 ist der Grund, warum hier nie mehr „geht nicht" herauskommt.
-      # Weg 1 ist der Grund, warum er selten gebraucht werden sollte.
+      # Bis zum 11. August 2026 gab es einen dritten Weg: eine Ausgabe aus dem
+      # eigenen Kursbestand. Der Betreiber hat ihn abgeschafft – „besser keine
+      # Nachrichten als solche Nachrichten". Die Begründung steht unten an der
+      # Stelle, an der er stand.
       #
-      # Alle drei laufen durch dieselbe Prüfung in `nachrichten-erzeugen.ts`:
+      # Beide Wege laufen durch dieselbe Prüfung in `nachrichten-erzeugen.ts`:
       # Längen, eindeutige Titel, gültige Themen und Symbole. Ein Entwurf, der
       # die Form verfehlt, wird nicht veröffentlicht, sondern fällt auf den
       # nächsten Weg zurück.
@@ -325,6 +328,9 @@ jobs:
         if: steps.vorhanden.outputs.schon == 'nein'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Zum Nachsehen, ob noch ein Agentenlauf unterwegs ist – siehe die
+          # Warteschleife vor Weg 1.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           QUELLENDATEI: quellen.txt
           STICHTAG: ${{ steps.vorhanden.outputs.tag }}
           NACHRICHTEN_MODELL: ${{ inputs.modell }}
@@ -346,7 +352,56 @@ jobs:
           # feststellbar – Sitzungsprotokolle sind nicht einsehbar. Jetzt tut
           # sie nur noch das, was ein Läufer nicht kann: schreiben. Alles
           # Mechanische passiert hier, wo jeder Schritt im Protokoll steht.
+          # **Auf den Entwurf wird gewartet, nicht an ihm vorbeigelaufen.**
+          #
+          # Am 11. August 2026 war die Reihenfolge auf dem Kopf: Der Agent
+          # sollte um 01:27 und 01:41 laufen und lief um 03:25 und 03:29 –
+          # rund zwei Stunden zu spät, wie GitHub das hier regelmäßig tut.
+          # Dieser Lauf war um 02:21 längst durch, fand keinen Entwurf und
+          # schrieb den Notbehelf. Erst geschrieben, dann recherchiert.
+          #
+          # Der Zeitplan allein löst das nicht: Er ist eine Bitte, keine
+          # Zusage – das steht seit dem 6. August in AGENTS.md. Was hilft, ist
+          # eine Frage, die **wartet**: Ein Entwurf, der in zwanzig Minuten
+          # kommt, ist unendlich viel mehr wert als eine Ausgabe, die es
+          # sofort gibt und die niemand lesen will.
+          #
+          # Zwanzig Minuten sind aus dem Fahrplan gerechnet: Der letzte
+          # Nachrichtenlauf beginnt um 02:47 UTC, der Podcast um 02:53, und
+          # der braucht die Ausgabe. Länger geht nicht, ohne die Zusage von
+          # 6:00 Uhr zu gefährden.
           entwurf="${RUNNER_TEMP:-/tmp}/entwurf.json"
+
+          hat_entwurf() {
+            git fetch origin nachrichten-entwurf --depth 1 -q 2>/dev/null || return 1
+            git show origin/nachrichten-entwurf:entwurf.json > "$entwurf" 2>/dev/null || return 1
+            [ -s "$entwurf" ] || return 1
+            [ "$(node -e "try{process.stdout.write(String(JSON.parse(require('fs').readFileSync('$entwurf','utf8')).stichtag||''))}catch(e){}")" = "$STICHTAG" ]
+          }
+
+          # Nur warten, wenn der Agent überhaupt noch kommen kann. Läuft
+          # keiner mehr und ist auch keiner gelaufen, wäre das Warten
+          # zwanzig verlorene Minuten.
+          if ! hat_entwurf; then
+            offen=$(gh run list --repo "${{ github.repository }}" \
+                      --workflow nachrichten-agent.yml --limit 5 \
+                      --json status --jq '[.[] | select(.status != "completed")] | length' \
+                      2>/dev/null || echo 0)
+            if [ "${offen:-0}" -gt 0 ]; then
+              echo "Ein Agentenlauf ist unterwegs ($offen offen) – es wird bis zu 20 Minuten gewartet."
+              for versuch in $(seq 1 20); do
+                sleep 60
+                if hat_entwurf; then
+                  echo "  Nach $versuch Minute(n) ist der Entwurf da."
+                  break
+                fi
+                echo "  Minute $versuch: noch kein Entwurf von heute."
+              done
+            else
+              echo "Kein Agentenlauf unterwegs – es wird nicht gewartet."
+            fi
+          fi
+
           if git fetch origin nachrichten-entwurf --depth 1 -q 2>/dev/null &&
              git show origin/nachrichten-entwurf:entwurf.json > "$entwurf" 2>/dev/null &&
              [ -s "$entwurf" ]; then
@@ -387,28 +442,49 @@ jobs:
               echo "Die Ausgabe kommt aus dem Modell." >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
-            echo "::warning::Der Modellaufruf ist gescheitert – die Ausgabe entsteht aus dem eigenen Bestand."
+            echo "::warning::Der Modellaufruf ist gescheitert."
           else
-            echo "::warning::Kein Entwurf und kein ANTHROPIC_API_KEY – die Ausgabe wird aus dem eigenen Bestand gerechnet."
-            echo "  Das sind Marktzahlen, keine Meldungen. Ein Notbehelf, keine Ausgabe im eigentlichen Sinn."
+            echo "::warning::Kein Entwurf und kein ANTHROPIC_API_KEY – oder keine Quellendatei von heute."
           fi
 
           # ---------------------------------------------------------------
-          # Weg 3: der Notbehelf.
-
-          # **Nicht ins Arbeitsverzeichnis.** Am 6. August 2026 lag die Datei
-          # als `antwort-bestand.json` neben dem Quelltext, und `prettier
-          # --check .` im nächsten Schritt hat den ganzen Lauf daran scheitern
-          # lassen – nach einem sauberen Build über 1509 Seiten. Aufgeräumt
-          # wurde sie erst beim Veröffentlichen, also zu spät.
-          ziel="${RUNNER_TEMP:-/tmp}/antwort-bestand.json"
-          ZIEL="$ziel" node --experimental-strip-types scripts/nachrichten-aus-bestand.ts
-          ANTWORT_DATEI="$ziel" schreibe
+          # Hier stand Weg 3: die Ausgabe aus dem eigenen Kursbestand.
+          #
+          # **Er ist weg, auf Anweisung des Betreibers vom 11. August 2026:**
+          # „Besser keine Nachrichten als solche Nachrichten."
+          #
+          # Der Gedanke dahinter war, dass nie „gar nichts" dastehen soll. In
+          # der Praxis kam etwas anderes heraus. Am 9. und am 11. August stand
+          # der Notbehelf auf der Startseite – „512 Titel im Plus, 501 im
+          # Minus", „Realzins bei rund −0,4 Prozentpunkten" –, und am
+          # 11. August wäre er beinahe auch noch vertont worden. Das sind
+          # aufbereitete eigene Zahlen. Als Nachrichtenseite gelesen sind sie
+          # eine Enttäuschung, und sie verdrängen dabei die Meldung, die
+          # gefehlt hat.
+          #
+          # Schlimmer noch: Der Notbehelf **verdeckte den Ausfall**. Eine
+          # Ausgabe stand da, der Build lief, die Startseite war voll – und
+          # dass die Recherche nicht stattgefunden hatte, stand nur als
+          # `::warning::` in einem grünen Lauf. Genau der stille Fehler, gegen
+          # den der Rest dieses Repositories anschreibt.
+          #
+          # Ohne ihn ist der Ausfall laut: kein Eintrag, roter Lauf, Mail.
+          # `ausgabe-waechter.yml` schlägt zusätzlich um 03:11 UTC an.
+          echo "::error::Weder ein Entwurf des Agenten noch ein Modellaufruf haben eine Ausgabe geliefert."
+          echo "  Es wird **nichts** geschrieben. Besser keine Nachrichten als"
+          echo "  aufbereitete eigene Kurszahlen, die wie Nachrichten aussehen."
+          echo ""
+          echo "  Nachsehen: das Protokoll von 'Nachrichten-Agent' (Entwurf?),"
+          echo "  der Zweig 'quellen-heute' (Quellen gesammelt?) und ob"
+          echo "  ANTHROPIC_API_KEY hinterlegt ist."
           {
-            echo "⚠️ **Notbehelf:** Die Ausgabe wurde ohne Modell aus dem eigenen"
-            echo "Datenbestand gerechnet – Marktzahlen statt Meldungen. Weder ein"
-            echo "Entwurf der Routine noch ein API-Schlüssel lagen vor."
+            echo "### Keine Ausgabe"
+            echo ""
+            echo "Weder Entwurf noch Modell haben geliefert. Es wurde nichts"
+            echo "geschrieben – der Notbehelf aus dem Kursbestand ist seit dem"
+            echo "11. August 2026 abgeschafft."
           } >> "$GITHUB_STEP_SUMMARY"
+          exit 1
 
       # Dieselbe Kette wie im Paketbau. Schlägt eine Prüfung fehl, wird nichts
       # veröffentlicht – lieber keine Ausgabe als eine, die den Build bricht.
