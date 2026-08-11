@@ -19,7 +19,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
 import type { DailyEdition } from '../data/editions/types.ts'
-import { baueFolge } from '../lib/sprechfassung.ts'
+import { baueFolge, verdaechtigeAnglizismen } from '../lib/sprechfassung.ts'
 
 const stichtag = process.env.STICHTAG?.trim() || new Date().toISOString().slice(0, 10)
 
@@ -52,4 +52,26 @@ if (folge.wortzahl < 710 || folge.wortzahl > 740) {
     `[folge] Hinweis: außerhalb des Zielfensters 710–740. Gekürzt wird nie durch\n` +
       `        Erfinden – eine ${folge.wortzahl < 710 ? 'kürzere' : 'längere'} ehrliche Folge ist gewollt.`
   )
+}
+
+/*
+  Was englisch aussieht und keine Umschrift hat, kommt hier ins Protokoll –
+  **vor** dem Sprechen, nicht nach dem Hören.
+
+  Bis zum 11. August 2026 fiel jeder solche Fall dem Betreiber beim Hören auf:
+  „Alphabet", „Goldman Sachs", zuletzt der eigene Name. Das kostet jedes Mal
+  eine Folge, eine Meldung und einen zweiten Lauf. Eine Warnung im Protokoll
+  kostet nichts.
+
+  Sie bricht nichts ab: Ob ein Wort englisch gesprochen gehört, entscheidet
+  ein Ohr, nicht ein Muster. Siehe `verdaechtigeAnglizismen`.
+*/
+const verdaechtig = verdaechtigeAnglizismen(folge.sprechtext)
+if (verdaechtig.length) {
+  console.log(
+    `::warning::[folge] ${verdaechtig.length} Wort/Wörter sehen englisch aus und haben ` +
+      `keine Umschrift: ${verdaechtig.join(', ')}`
+  )
+  console.log(`        Wenn sie englisch klingen sollen: ENGLISCHE_NAMEN in`)
+  console.log(`        lib/sprechfassung.ts ergänzen. Wenn nicht, hier stehen lassen.`)
 }

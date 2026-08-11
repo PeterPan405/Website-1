@@ -920,7 +920,7 @@ weg ist, und dass eine saubere Aufnahme **Wert für Wert unverändert** bleibt.
 Die zweite Hälfte ist die wichtigere: Ein Eingriff ohne Gegenprobe wäre genau
 das Risiko, das er verhindern soll.
 
-### Englische Namen brauchen eine Umschrift
+### Was englisch ist, wird englisch gesprochen – auch Anglizismen
 
 „Alphabet" und „Goldman Sachs" liest eine deutsche Stimme deutsch, und im Ohr
 ist das der Bruch, den der Betreiber am 11. August meldete. Ein Sprachmodell
@@ -938,6 +938,47 @@ Kaufmannsund umschreibt.
 
 Wer einen Namen vermisst, trägt ihn dort nach. Deutsche Namen gehören nicht
 hinein – „Siemens" und „Allianz" spricht die Stimme richtig.
+
+#### Die Regel gilt nicht nur für Namen
+
+Am 11. August 2026 hat der Betreiber sie ausgeweitet: **auch Anglizismen.**
+Und das ist keine Kleinigkeit – ein Börsentext besteht zur Hälfte aus ihnen.
+Die Stimme las „Boom" als „Bohm", „Rating" als „Ratting", „Cashflow" als
+„Kaschflow", und selbst der Name der Sendung ging als „Marktupdahte" durch.
+
+Die Tabelle deckt deshalb neben den Namen ab, was in Börsentexten ständig
+vorkommt: Rating, Guidance, Outlook, Earnings, Cashflow, Buyback, Spread,
+Leverage, Blue Chips, Private Equity, CEO, IPO und so fort.
+
+**Zusammengesetzte Ausdrücke stehen vor ihren Bestandteilen** – „Cashflow"
+vor „Cash", „Marktupdate" vor „Update". Umgekehrt zerlegte die kürzere Regel
+das längere Wort.
+
+Nicht hinein gehört, was im Deutschen längst deutsch gesprochen wird: „ETF",
+„KI", „Broker", „Bond", „Trend". Wer hier zu viel einträgt, macht aus einer
+Nachrichtensendung eine Karikatur – der Satz aus dem Kopf von
+`lib/sprechfassung.ts` gilt für Anglizismen genauso.
+
+#### Eine Liste ist nie fertig – deshalb meldet der Lauf, was fehlt
+
+Jeder dieser Fälle ist bisher **beim Hören** aufgefallen, nicht beim Bauen.
+Das kostet jedes Mal eine Folge, eine Meldung und einen zweiten Lauf.
+
+`verdaechtigeAnglizismen()` dreht das um: `podcast-folge-erzeugen.ts`
+schreibt vor dem Sprechen ins Protokoll, welche Wörter englisch aussehen und
+keine Umschrift haben. Erkannt wird das an Schreibweisen, die es im Deutschen
+kaum gibt – `-ing` am Ende (außer `-ling`), `tch`, `sh` am Wortende, `y` hinter
+einem Konsonanten, `th` am Wortende.
+
+**Es ist ein Hinweis, kein Urteil**, und nichts wird von selbst ersetzt: Ob
+ein Wort englisch klingen soll, entscheidet ein Ohr. Der Lauf wird davon
+weder rot noch abgebrochen.
+
+Die Gegenprobe ist die wichtigere Hälfte und steht als Test fest: Der Melder
+muss bei „Frühling", „Zwilling", „Lehrling", „Wachstum" und „Mythos"
+schweigen – und **bei allem, was die Tabelle schon umschreibt.** Ein Melder,
+der jeden Tag dieselben Wörter anzeigt, wird nach einer Woche überlesen; das
+ist dieselbe Rechnung wie beim roten Lauf, der zum Rauschen wird.
 
 #### Der eigene Name war der schlimmste Fall
 

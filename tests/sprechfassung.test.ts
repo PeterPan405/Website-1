@@ -16,6 +16,7 @@ import {
   folgennummer,
   ordnungszahl,
   sprechbar,
+  verdaechtigeAnglizismen,
   zahlwort,
 } from '../lib/sprechfassung.ts'
 
@@ -76,7 +77,7 @@ pruefe('Webadresse', sprechbar('auf iminvests.de'), 'auf Ei Emm Inwests punkt de
 pruefe(
   'Der eigene Name wird englisch gesprochen',
   sprechbar('Das Marktupdate von IM Invests.'),
-  'Das Marktupdate von Ei Emm Inwests.'
+  'Das Markt-Appdejt von Ei Emm Inwests.'
 )
 /*
   Und die Umschrift darf kein deutsches „im" anfassen. Ein `\bIM\b` ohne
@@ -87,6 +88,36 @@ pruefe(
   'Das deutsche „im" bleibt unberührt',
   sprechbar('Der Kurs stieg im Handel am Vormittag.'),
   'Der Kurs stieg im Handel am Vormittag.'
+)
+/*
+  Seit dem 11. August 2026 gilt die Regel nicht nur für Namen, sondern für
+  **alle** englischen Wörter – Anordnung des Betreibers, nachdem er „Boom",
+  „Rating" und „Cashflow" deutsch gelesen gehört hatte. Ein Börsentext besteht
+  zur Hälfte aus Anglizismen.
+*/
+pruefe(
+  'Anglizismen: zusammengesetzte zuerst',
+  sprechbar('Der Cashflow und der Cash-Bestand.'),
+  'Der Käschflau und der Käsch-Bestand.'
+)
+pruefe(
+  'Anglizismen im Fließtext',
+  sprechbar('Das Rating fällt auf Hold, der Outlook bleibt schwach.'),
+  'Das Rejting fällt auf Hohld, der Autluck bleibt schwach.'
+)
+pruefe(
+  'Der eigene Sendungsname ist auch ein Anglizismus',
+  sprechbar('Das Marktupdate beginnt.'),
+  'Das Markt-Appdejt beginnt.'
+)
+/*
+  Die Gegenprobe ist hier die wichtigere Hälfte: Eine Umschrift, die deutsche
+  Wörter anfasst, wäre schlimmer als gar keine.
+*/
+pruefe(
+  'Deutsche Wörter mit englisch aussehenden Silben bleiben stehen',
+  sprechbar('Die Chipindustrie meldet Wachstum, der Bootsbau auch.'),
+  'Die Chipindustrie meldet Wachstum, der Bootsbau auch.'
 )
 pruefe(
   'Uhrzeit verbraucht ein folgendes „Uhr“',
@@ -153,7 +184,7 @@ const folge = baueFolge(edition)
 pruefe(
   'Sprechtext beginnt mit der festen Begrüßung',
   folge.sprechtext.startsWith(
-    'Guten Morgen und herzlich willkommen zum Marktupdate von Ei Emm Inwests.'
+    'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei Emm Inwests.'
   ),
   true
 )
@@ -212,3 +243,41 @@ console.log(
     : `\n${gescheitert} Pruefung(en) fehlgeschlagen`
 )
 process.exit(gescheitert === 0 ? 0 : 1)
+
+/*
+  Der Melder für unbehandelte Anglizismen.
+
+  Er ist ausdrücklich ein Hinweis und kein Urteil – deshalb prüft der Test
+  beide Richtungen, und die zweite ist die wichtigere: Ein Melder, der jeden
+  Tag harmlose deutsche Wörter anzeigt, wird nach einer Woche überlesen. Das
+  ist dieselbe Rechnung wie beim roten Lauf, der zum Rauschen wird.
+*/
+pruefe(
+  'Meldet, was englisch aussieht und keine Umschrift hat',
+  verdaechtigeAnglizismen(
+    'Das Onboarding beim Pitch; der Payment-Anbieter meldet Growth.'
+  ),
+  ['Growth', 'Onboarding', 'Payment', 'Pitch']
+)
+pruefe(
+  'Schweigt bei deutschen Wörtern auf -ling',
+  verdaechtigeAnglizismen('Im Frühling kaufte der Zwilling ein Haus, der Lehrling auch.'),
+  []
+)
+pruefe(
+  'Schweigt bei Wachstum, Reichtum und einem Mythos',
+  verdaechtigeAnglizismen('Wachstum, Reichtum und ein Mythos.'),
+  []
+)
+/*
+  Und die Probe, auf die es wirklich ankommt: Was die Tabelle bereits
+  umschreibt, darf der Melder nicht mehr anzeigen – sonst meldet er jeden Tag
+  dieselben Wörter und wird genau dadurch wertlos.
+*/
+pruefe(
+  'Schweigt bei allem, was die Tabelle schon umschreibt',
+  verdaechtigeAnglizismen(
+    sprechbar('Das Rating, der Cashflow, das Marktupdate, der Outlook.')
+  ),
+  []
+)
