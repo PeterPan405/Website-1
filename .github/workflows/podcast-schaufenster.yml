@@ -157,8 +157,14 @@ jobs:
             # Der Webpfad bekommt eine **Kopie**, keinen Symlink – der wurde
             # vom Server nicht verfolgt (404 neben einer 200). Dieselbe
             # Begründung wie in `podcast-umzug.yml`.
+            #
+            # `mkdir -p` davor: Der Paketbau hängt beim Veröffentlichen das
+            # ganze Webverzeichnis um, und wer in diese Sekunde hineinläuft,
+            # findet den Ordner nicht (am 11. August 2026 in
+            # `podcast-zuruecknehmen.yml` passiert).
             ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
-              "cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
+              "mkdir -p '$ZIELPFAD/podcast-audio' \
+               && cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
             echo "Feed erneuert: https://iminvests.de/podcast-audio/feed.xml"
           else
             echo "::error::Der Feed ließ sich nicht übertragen – Port $SSH_PORT antwortet nicht."
@@ -168,7 +174,8 @@ jobs:
           if scp -P "$SSH_PORT" -i ~/.ssh/id_deploy \
                assets/podcast-cover.jpg "$USER@$HOST:~/podcast-audio/cover.jpg"; then
             ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
-              "cp ~/podcast-audio/cover.jpg '$ZIELPFAD/podcast-audio/cover.jpg'"
+              "mkdir -p '$ZIELPFAD/podcast-audio' \
+               && cp ~/podcast-audio/cover.jpg '$ZIELPFAD/podcast-audio/cover.jpg'"
             echo "Titelbild erneuert: https://iminvests.de/podcast-audio/cover.jpg"
           else
             echo "::error::Das Titelbild ließ sich nicht übertragen."

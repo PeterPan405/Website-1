@@ -197,8 +197,16 @@ jobs:
             # Der Webpfad bekommt eine **Kopie**, keinen Symlink – der wurde
             # vom Server nicht verfolgt (404 neben einer 200). Dieselbe
             # Begründung wie in `podcast-umzug.yml`.
+            #
+            # `mkdir -p` davor, und zwar nicht vorsorglich: Am 11. August 2026
+            # scheiterte genau dieses `cp` mit „No such file or directory“.
+            # Der Paketbau hängt beim Veröffentlichen das ganze Webverzeichnis
+            # um (`rm -rf` und neu anlegen) – wer in diese Sekunde hineinläuft,
+            # findet den Ordner nicht. Der Bestand liegt ohnehin unter
+            # `~/podcast-audio`; der Webpfad ist nur die Kopie davon.
             ssh -p "$SSH_PORT" -i ~/.ssh/id_deploy "$USER@$HOST" \
-              "cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
+              "mkdir -p '$ZIELPFAD/podcast-audio' \
+               && cp ~/podcast-audio/feed.xml '$ZIELPFAD/podcast-audio/feed.xml'"
             rm -f ~/.ssh/id_deploy
             echo "Feed erneuert: https://iminvests.de/podcast-audio/feed.xml"
           else
