@@ -100,6 +100,8 @@ jobs:
     outputs:
       erscheint: ${{ steps.tag.outputs.erscheint }}
       veroeffentlichen: ${{ steps.tag.outputs.veroeffentlichen }}
+      # Welcher Tag gemeint ist – gebraucht vom Riegel vor dem Upload.
+      stichtag: ${{ steps.tag.outputs.stichtag }}
 
     steps:
       - uses: actions/checkout@v5
@@ -183,6 +185,8 @@ jobs:
               echo "Achtung: Für den $stichtag steht schon eine Folge – sie wird ersetzt."
             fi
           fi
+
+          echo "stichtag=$stichtag" >> "$GITHUB_OUTPUT"
 
           # Eine Probe darf nichts veröffentlichen. `nur_proben` ist der
           # ausdrückliche Haken dafür – und seit dem Wechsel auf täglich der
@@ -500,6 +504,20 @@ jobs:
           print(marken)
           ENDE
 
+      # Der Riegel gegen das doppelte Video sitzt **im Skript**, unmittelbar
+      # vor dem Upload – nicht hier oben und nicht im Job davor.
+      #
+      # Zweimal hintereinander, am 9. und am 10. August 2026, erschienen zwei
+      # Videos desselben Tages auf dem Kanal. Beide Male gab es einen Riegel,
+      # beide Male fragte er einen Stellvertreter: erst den eigenen Checkout
+      # des Feeds, dann `origin/main` beim Auslösen des Laufs. Und am
+      # 10. August trat obendrein der Fall ein, gegen den kein Feed-Riegel
+      # hilft: Ein Lauf lud hoch, schrieb den Feed – und scheiterte danach am
+      # Commit. Auf dem Kanal lag ein Video, im Register stand keins.
+      #
+      # `PODCAST_STICHTAG` sagt dem Skript, welcher Tag gemeint ist;
+      # `PODCAST_NOCHMAL` ist der ausdrückliche Weg, den Riegel zu übergehen,
+      # wenn eine Folge wirklich ersetzt werden soll.
       - name: Zu YouTube hochladen
         if: needs.text.outputs.veroeffentlichen == 'ja'
         env:
@@ -507,6 +525,8 @@ jobs:
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           YT_PLAYLIST_ID: ${{ vars.YT_PLAYLIST_ID }}
+          PODCAST_STICHTAG: ${{ needs.text.outputs.stichtag }}
+          PODCAST_NOCHMAL: ${{ inputs.nochmal }}
         run: npm run youtube
 
       # ------------------------------------------------------------------

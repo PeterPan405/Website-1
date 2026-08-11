@@ -68,10 +68,15 @@ on:
     # schreibt: Quellen lesen, fünf bis acht Artikel formulieren, selbst
     # prüfen. Siebzig Minuten wie früher braucht das nicht – Bauen, Prüfen
     # und Veröffentlichen passieren woanders.
-    - cron: '27 1 * * *'
+    - cron: '33 0 * * *'
     # Ein zweiter Anlauf, falls GitHub den ersten verwirft. Am 6. August 2026
     # wurde von allen geplanten Läufen des Tages genau einer ausgeführt.
-    - cron: '41 1 * * *'
+    - cron: '3 1 * * *'
+    # Dritter Anlauf. Am 11. August 2026 wurden beide Termine des Agenten um
+    # rund zwei Stunden verspätet ausgeführt – 03:25 und 03:29 statt 01:27 und
+    # 01:41 –, und `nachrichten.yml` war um 02:21 längst durch. Damit lag die
+    # Reihenfolge auf dem Kopf: erst geschrieben, dann recherchiert.
+    - cron: '33 1 * * *'
   workflow_dispatch:
     inputs:
       stichtag:

@@ -898,6 +898,41 @@ hinhören sollte – unter zwei Minuten, nur ffmpeg und numpy.
 Er wird nicht rot. Ein Fund ist ein Hinweis, kein Beweis; ob eine Stelle
 wirklich kaputt ist, entscheidet ein Ohr.
 
+### Wer wissen will, ob ein Video auf dem Kanal liegt, fragt den Kanal
+
+Zweimal hintereinander – am 9. und am 10. August 2026 – lagen zwei Videos
+desselben Tages auf YouTube. Beide Male gab es einen Riegel, beide Male hat er
+nicht getragen, und beide Male aus **demselben Grund**: Er fragte einen
+Stellvertreter.
+
+    9. August    gefragt: der eigene Checkout des Feeds
+                 daneben:  ein Handstart hatte längst hochgeladen
+    10. August   gefragt: origin/main beim Auslösen des Laufs
+                 daneben:  Lauf 1 trug erst dreißig Sekunden später ein
+
+Nach dem zweiten Mal wurde auf `origin/main` von jetzt umgestellt. Das war
+richtig und reicht trotzdem nicht – denn am selben Tag trat der Fall ein,
+gegen den **kein** Feed-Riegel hilft: Ein Lauf lud hoch, schrieb den Feed und
+scheiterte danach am Commit. Auf dem Kanal lag ein Video, im Register stand
+keins. Jede Prüfung, die das Register liest, hätte danach „gibt es noch nicht"
+gesagt.
+
+Seit dem 10. August fragt deshalb `scripts/podcast-youtube.ts` **den Kanal
+selbst**, und zwar unmittelbar vor dem Upload – nicht vierzig Minuten davor in
+einem anderen Job. Erkannt wird die Folge des Tages an zweierlei, eins genügt:
+
+    derselbe Titel               aus der Tagesausgabe gebaut, je Tag eindeutig
+    dasselbe Erscheinungsdatum   eine Sendung, eine Folge je Tag
+
+Kein roter Lauf: Dass die Folge schon oben ist, ist der Zustand, den der
+Riegel herstellen soll. `nochmal: true` setzt ihn außer Kraft, wenn eine Folge
+wirklich ersetzt werden soll.
+
+**Die Lehre gilt über den Fall hinaus.** Ein Riegel ist so gut wie die Quelle,
+die er fragt. Wer prüft, ob etwas veröffentlicht wurde, prüft dort, wo es
+veröffentlicht wird – nicht in der Buchhaltung darüber. Die kann fehlen,
+veraltet sein oder gar nicht erst geschrieben worden sein.
+
 ### Ein Push, der nach der Veröffentlichung scheitert, ist rot
 
 Die zweite Hälfte desselben Vorfalls, und die unangenehmere. Lauf 2 hatte

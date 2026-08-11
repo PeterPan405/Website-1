@@ -201,6 +201,115 @@ const titelDatei = readFileSync('podcast-folge/titel.txt', 'utf8').split('\n')
 const titel = titelDatei[0].trim()
 const folgennummer = titelDatei[1]?.trim() ?? ''
 const beschreibung = readFileSync('podcast-folge/beschreibung.txt', 'utf8').trim()
+const videotitel = folgennummer ? `${titel} | Marktupdate ${folgennummer}` : titel
+
+/*
+  Liegt für heute schon ein Video auf dem Kanal?
+
+  ## Warum diese Frage hier steht und nicht nur im Workflow
+
+  Weil sie an dieser Stelle die **richtige Quelle** hat. Am 9. und am
+  10. August 2026 erschienen zwei Videos desselben Tages auf dem Kanal. Beide
+  Male gab es einen Riegel, beide Male hat er nicht getragen – und beide Male
+  aus demselben Grund: Er fragte einen **Stellvertreter**.
+
+      9. August    gefragt: der eigene Checkout des Feeds
+                   Problem: ein Handstart hatte längst hochgeladen
+      10. August   gefragt: origin/main beim Auslösen des Laufs
+                   Problem: Lauf 1 trug erst dreißig Sekunden später ein
+
+  Nach dem zweiten Mal wurde der Riegel auf `origin/main` von jetzt umgestellt.
+  Das ist richtig und reicht trotzdem nicht, denn der Feed ist immer noch ein
+  Stellvertreter für das, worum es geht. Am 10. August ist genau das schiefe
+  Verhältnis auch aufgetreten: Ein Lauf hatte hochgeladen, den Feed
+  geschrieben – und **scheiterte danach am Commit**. Auf dem Kanal lag ein
+  Video, im Register stand es nicht. Jeder Riegel, der das Register liest,
+  hätte danach „nein, gibt es noch nicht" gesagt.
+
+  **Wer wissen will, ob ein Video auf dem Kanal liegt, fragt den Kanal.**
+  Diese Prüfung sitzt unmittelbar vor dem Upload – nicht vierzig Minuten
+  davor in einem anderen Job – und sie fragt die Stelle, an der die Doppelung
+  sichtbar wird.
+
+  ## Woran „dieselbe Folge" erkannt wird
+
+  An zweierlei, und es genügt eins davon:
+
+  - **derselbe Titel** – er ist aus der Tagesausgabe gebaut und für einen Tag
+    eindeutig;
+  - **dasselbe Veröffentlichungsdatum** – bei einer Sendung mit genau einer
+    Folge je Tag ist ein Video von heute die Folge von heute.
+
+  Der zweite Punkt fängt auch den Fall, in dem ein zweiter Lauf einen
+  abgewandelten Titel erzeugt. Er kann daneben liegen, wenn jemand am selben
+  Tag von Hand ein anderes Video hochlädt – dann sagt der Lauf genau das, und
+  `nochmal: true` setzt ihn außer Kraft.
+*/
+const STICHTAG =
+  process.env.PODCAST_STICHTAG?.trim() || new Date().toISOString().slice(0, 10)
+const NOCHMAL = process.env.PODCAST_NOCHMAL?.trim() === 'true'
+
+async function schonAufDemKanal(): Promise<string | null> {
+  const kanal = (await (
+    await fetch(
+      'https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true',
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+  ).json()) as {
+    items?: { contentDetails?: { relatedPlaylists?: { uploads?: string } } }[]
+  }
+
+  const uploads = kanal.items?.[0]?.contentDetails?.relatedPlaylists?.uploads
+  if (!uploads) {
+    console.log('[youtube] Keine Upload-Playlist gefunden – die Doppelprüfung entfällt.')
+    return null
+  }
+
+  const liste = (await (
+    await fetch(
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=${encodeURIComponent(uploads)}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+  ).json()) as {
+    items?: {
+      snippet?: {
+        title?: string
+        publishedAt?: string
+        resourceId?: { videoId?: string }
+      }
+    }[]
+  }
+
+  for (const eintrag of liste.items ?? []) {
+    const vorhanden = eintrag.snippet?.title?.trim() ?? ''
+    const tag = eintrag.snippet?.publishedAt?.slice(0, 10) ?? ''
+    const kennung = eintrag.snippet?.resourceId?.videoId ?? '???'
+    if (vorhanden === videotitel) return `${kennung} trägt denselben Titel`
+    if (tag && tag === STICHTAG) return `${kennung} wurde am ${tag} veröffentlicht`
+  }
+
+  return null
+}
+
+const doppelt = await schonAufDemKanal()
+if (doppelt) {
+  if (NOCHMAL) {
+    console.log(
+      `::warning::[youtube] Auf dem Kanal liegt bereits ein Video für den ${STICHTAG} ` +
+        `(${doppelt}) – wegen 'nochmal' wird trotzdem hochgeladen.`
+    )
+  } else {
+    // **Kein roter Lauf.** Dass die Folge schon oben ist, ist der Zustand,
+    // den dieser Riegel herstellen soll, kein Fehler. Rot wäre er hier nur
+    // ein Alarm für etwas, das genau richtig gelaufen ist – und nach der
+    // Regel „ein roter Lauf ist ein Vorrat" wäre er verschwendet.
+    console.log(
+      `[youtube] Für den ${STICHTAG} liegt schon ein Video auf dem Kanal (${doppelt}).`
+    )
+    console.log('          Es wird nichts hochgeladen – sonst stünde die Folge doppelt.')
+    process.exit(0)
+  }
+}
 
 /* Schritt 1: Metadaten anmelden, Upload-Adresse entgegennehmen. */
 const start = await fetch(
@@ -215,7 +324,7 @@ const start = await fetch(
     },
     body: JSON.stringify({
       snippet: {
-        title: folgennummer ? `${titel} | Marktupdate ${folgennummer}` : titel,
+        title: videotitel,
         description: beschreibung,
         categoryId: '25',
         defaultLanguage: 'de',
