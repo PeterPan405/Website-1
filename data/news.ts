@@ -101,6 +101,396 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'goldman-schuldenfinanzierter-ki-boom-big-tech',
+    title: 'Goldman Sachs warnt: Der KI-Boom läuft zunehmend auf Kredit',
+    teaser:
+      'Fünf Tech-Konzerne wollen 2027 rund 1,2 Billionen Dollar in KI investieren – Goldman Sachs sieht einen wachsenden Teil davon über Anleihen finanziert.',
+    category: 'Märkte',
+    publishedAt: '2026-08-11T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['KI-Boom', 'Goldman Sachs', 'Big Tech', 'Anleihen'],
+    relatedTopics: ['schulden-und-kredit', 'schuldverschreibung'],
+    relatedSymbols: ['meta', 'alphabet', 'microsoft', 'amazon', 'oracle'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 11.8.2026, 03:33 Uhr: „Schuldenfinanzierter KI-Boom: Goldman Sachs schlägt bei Big Tech-Aktien wie Meta, Alphabet und Microsoft Alarm“',
+        url: 'https://www.finanzen.net/nachricht/aktien/hyperscaler-schuldenfinanzierter-ki-boom-goldman-sachs-schlaegt-bei-big-tech-aktien-wie-meta-alphabet-und-microsoft-alarm-15852734',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Amazon, Alphabet, Meta, Microsoft und Oracle haben 2025 zusammen 405 Milliarden Dollar in Rechenzentren und Chips gesteckt. Für 2026 rechnet Goldman Sachs mit rund 750 Milliarden Dollar, für 2027 mit etwa 1,2 Billionen. Diese Summen übersteigen inzwischen das, was die fünf Konzerne aus dem laufenden Geschäft an Cashflow erwirtschaften – die Lücke wird zunehmend mit Fremdkapital geschlossen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Anteil auf Kredit wächst schneller als die Investitionen selbst',
+      },
+      {
+        type: 'paragraph',
+        text: '2025 kamen 26 Prozent der Investitionsausgaben der fünf Hyperscaler aus Anleiheemissionen. Goldman erwartet für 2026 rund ein Drittel, für 2027 gut 35 Prozent. Nach Berechnungen der Bank wurden 2026 bereits rund 500 Milliarden Dollar an Anleihen und Krediten für KI-Investitionen aufgenommen, dazu kommen geschätzt 200 Milliarden Dollar privates Fremdkapital für den Bau von Rechenzentren seit Anfang 2025.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sichtbar wird das an den Risikoaufschlägen: Die Zinsdifferenz („Spread“) zwischen Anleihen der Hyperscaler und risikofreien Staatsanleihen ist laut Goldman-Analystin Amanda Lynam bereits von 70 auf 85 Basispunkte gestiegen – und könnte bei anhaltend hohem Emissionsvolumen auf 95 Basispunkte klettern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Spread wichtiger ist als eine Schlagzeile',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Risikoaufschlag ist der Preis, den ein Kreditgeber für das eingegangene Risiko verlangt. Steigt er, wird jede künftige Anleihe teurer zu refinanzieren – unabhängig davon, ob das einzelne Unternehmen zahlungsfähig bleibt. Goldmans Sorge gilt deshalb nicht dem Ausfallrisiko von Meta oder Microsoft, sondern der Frage, ob der gesamte Kreditmarkt weitere Emissionen dieser Größenordnung aufnehmen kann.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Damit hängt auch die erwartete Rendite auf das eingesetzte Eigenkapital zusammen: Goldman rechnet für die größten Tech-Konzerne 2026 mit einem Rückgang von durchschnittlich sieben Prozentpunkten. Wer Investitionen mit Fremdkapital statt mit einbehaltenen Gewinnen finanziert, verändert die Rechnung, mit der Anleger die Kapitalrendite eines Unternehmens beurteilen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob der Kreditmarkt diese Summen weiter zu wachsenden Konditionen verdaut, entscheidet sich an der Nachfrage nach Unternehmensanleihen – nicht an einer einzelnen Quartalszahl. Wer Aktien der genannten Konzerne hält, hält damit indirekt auch ein Stück dieser Fremdfinanzierung mit.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-huang-offene-ki-modelle-kimi-k3-wettbewerb',
+    title: 'Jensen Huang wirbt für offene KI – während China vorlegt',
+    teaser:
+      'NVIDIA-Chef Jensen Huang wirbt für offene KI-Modelle – Chinas Kimi K3 mit 2,8 Billionen Parametern zeigt, wie ernst die Konkurrenz das meint.',
+    category: 'Märkte',
+    publishedAt: '2026-08-11T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Künstliche Intelligenz', 'NVIDIA', 'China', 'Open Source'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 11.8.2026, 03:37 Uhr: „NVIDIA-Aktie im Blick: Jensen Huang mit eindringlicher Warnung im Kampf um Amerikas KI-Souveränität“',
+        url: 'https://www.finanzen.net/nachricht/aktien/offener-brief-nvidia-aktie-im-blick-jensen-huang-mit-eindringlicher-warnung-im-kampf-um-amerikas-ki-souveraenitaet-00-15845809',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 11.8.2026, 03:25 Uhr: „US-KI-Giganten unter Druck: Kimi K3 aus China fordert Anthropic und OpenAI heraus“',
+        url: 'https://www.finanzen.net/nachricht/aktien/guenstige-leistung-nach-deepseek-kimi-k3-aus-china-fordert-us-ki-giganten-anthropic-und-openai-heraus-00-15849648',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Vor gut zwei Wochen veröffentlichte NVIDIA-Chef Jensen Huang einen offenen Brief mit dem Titel „Open Weights and American AI Leadership“. Mitunterzeichnet haben unter anderem Meta, Microsoft, IBM und Palantir. Sein Kernargument: Offene KI-Modelle, deren Baupläne frei zugänglich sind, stärken laut Huang Sicherheit, Innovationstempo und am Ende auch die technologische Souveränität der USA.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist, wer nicht unterschrieben hat: OpenAI, Google und Anthropic fehlen auf der Liste. Diese Unternehmen verkaufen ihre führenden Modelle bislang überwiegend als geschlossene Systeme – offene Baupläne wären für sie ein anderes Geschäftsmodell.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Anlass: ein chinesisches Modell mit 2,8 Billionen Parametern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neue Aufmerksamkeit bekommt die Debatte durch Kimi K3 des chinesischen Anbieters Moonshot AI. Das Modell gilt mit 2,8 Billionen Parametern als eines der größten frei verfügbaren KI-Modelle überhaupt und schlägt sich in mehreren Testreihen nahe an den Spitzenmodellen von OpenAI und Anthropic – bei einem Preis deutlich unter dem der US-Konkurrenz. Die Nachfrage war so hoch, dass Moonshot neue Anmeldungen zeitweise sperren musste.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Geschäftsmodelle, ein Wettbewerb',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer ein Modell offenlegt, verzichtet auf Lizenzeinnahmen aus dem Modell selbst und verdient stattdessen an der Infrastruktur darum herum – bei NVIDIA etwa an den Chips, auf denen jedes Modell läuft, offen oder geschlossen. Wer ein Modell geschlossen hält, verkauft den Zugang direkt. Kimi K3 zeigt, dass ein weiteres Land dieses Rennen inzwischen mitbestimmt, unabhängig davon, welches Geschäftsmodell die etablierten US-Anbieter wählen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für Anleger ist der Streit um offene und geschlossene Modelle kein Randthema, sondern eine Frage danach, wo in der KI-Wertschöpfungskette künftig noch Preissetzungsmacht liegt – bei den Modellentwicklern oder bei den Infrastrukturanbietern dahinter.',
+      },
+    ],
+  },
+  {
+    slug: 'bofa-kritik-fed-chef-warsh-glaubwuerdigkeit',
+    title: 'BofA-Ökonomen zweifeln an der Kommunikation von Fed-Chef Warsh',
+    metaTitle: 'BofA-Ökonomen zweifeln an Fed-Chef Warshs Kommunikation',
+    teaser:
+      'BofA-Volkswirte nennen die Kommunikation von Fed-Chef Kevin Warsh nach der jüngsten Zinsentscheidung „taubenhaft und verwirrend“.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-11T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Geldpolitik', 'Zinsen', 'USA'],
+    relatedTopics: ['notenbanken-geldpolitik', 'staatsanleihe'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 11.8.2026, 03:45 Uhr: „Scharfe Kritik von BofA-Ökonomen an Fed-Chef Warsh“',
+        url: 'https://www.finanzen.net/nachricht/zinsen/fed-kritik-trifft-warsh-bank-of-america-eigene-oekonomen-ruegen-fed-chef-warsh-scharf-00-15852963',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Volkswirte der eigenen Bank sind selten die schärfsten Kritiker eines Notenbankchefs – bei Bank of America ist das gerade der Fall. Aditya Bhave und Mark Cabana bezeichnen die Kommunikation von Fed-Chef Kevin Warsh nach der jüngsten Zinsentscheidung als „taubenhaft und verwirrend“.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Offenmarktausschuss hatte den Leitzins bei 3,50 bis 3,75 Prozent belassen – mit einer Abstimmung von 9 zu 3. Drei regionale Notenbankpräsidenten hätten eine Erhöhung um einen Viertelpunkt bevorzugt. Das ist die tiefste Spaltung im Ausschuss seit 2016.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was BofA konkret stört',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf der anschließenden Pressekonferenz habe Warsh laut BofA weder gute noch schlechte Nachrichten geliefert, sondern „lediglich die Unsicherheit geschürt“. Begründet habe er das damit, der Ausschuss wolle die Marktreaktion zunächst ungefiltert beobachten. BofA vergleicht die Reaktion der Märkte mit einem Glaubwürdigkeitsschock, wie ihn sonst Notenbanken in Schwellenländern erleben – mit steilerer Zinskurve, fallenden Aktienkursen und einem schwächeren Dollar als typischen Begleiterscheinungen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rendite 30-jähriger US-Staatsanleihen kletterte im Umfeld der Entscheidung auf 5,2 Prozent – den höchsten Stand seit 19 Jahren. Auch außerhalb von BofA gibt es Kritik: Skanda Amarnath von Employ America und Ökonom Justin Wolfers bemängeln ebenfalls, dass unklar bleibe, an welchen Daten Warsh künftige Zinsentscheidungen festmacht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Kommunikation selbst ein geldpolitisches Werkzeug ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Notenbank steuert nicht nur über den aktuellen Leitzins, sondern auch darüber, wie gut Marktteilnehmer den nächsten Schritt vorhersehen können – das nennt sich „Forward Guidance“. Fehlt diese Orientierung, steigt die Unsicherheit unabhängig vom tatsächlichen Zinsniveau, und genau das spiegelt sich in längerfristigen Renditen wider, die stärker reagieren als der Leitzins selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wie tragfähig die Kritik ist, zeigt sich erst an den kommenden Sitzungen und daran, ob Warsh seine Kommunikation nachschärft. Bis dahin bleibt die Unsicherheit selbst ein Marktfaktor – benannt ausgerechnet von Ökonomen der Bank, die sonst selten öffentlich gegen eine amtierende Fed-Führung Stellung bezieht.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-bitwise-cio-drei-signale-bodenbildung',
+    title: 'Bitwise-Chefanleger nennt drei Signale für eine Bitcoin-Bodenbildung',
+    metaTitle: 'Bitwise-CIO: drei Signale für Bitcoin-Bodenbildung',
+    teaser:
+      'Bitcoin liegt 52 Prozent unter seinem Oktober-Hoch. Bitwise-CIO Matt Hougan nennt drei Anzeichen, an denen er eine Bodenbildung ablesen will.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-11T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Bitcoin', 'Krypto', 'Sentiment'],
+    relatedTopics: ['bitcoin-krypto', 'anlegerpsychologie'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 11.8.2026, 03:31 Uhr: „Bitcoin vor Trendwende? Bitwise-CIO nennt mehrere Anzeichen“',
+        url: 'https://www.finanzen.net/nachricht/devisen/bodenbildung-bitcoin-vor-trendwende-bitwise-cio-nennt-mehrere-anzeichen-00-15856749',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin ist im zweiten Quartal um 13,4 Prozent gefallen und liegt inzwischen rund 52 Prozent unter seinem Oktober-Hoch von 126.080 Dollar. Bitwise-Chefanleger Matt Hougan hält die Stimmung für eine der schlechtesten, die er in acht Jahren in der Branche erlebt hat – und nennt trotzdem drei Anzeichen, an denen er eine nahende Bodenbildung ablesen will.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die drei Signale',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erstens: Der Kurs der Strategy-Aktie (vormals MicroStrategy) sollte unter den Wert ihrer eigenen Bitcoin-Bestände fallen – ein Zeichen, dass Angst die Gier abgelöst hat. Zweitens: Der Fear-and-Greed-Index sollte sich seinen historischen Tiefständen nähern. Drittens: Die Finanzierungssätze am Terminmarkt sollten deutlich negativ werden, weil das zeigt, dass private Anleger mehrheitlich auf fallende Kurse setzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Stimmung als Kontraindikator gilt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Logik dahinter: Wenn praktisch alle Marktteilnehmer bereits pessimistisch positioniert sind, gibt es kaum noch jemanden, der zusätzlich verkaufen könnte – jede neue schlechte Nachricht wirkt dann schwächer auf den Kurs. Hougan verweist zugleich auf eine Gegenbewegung: Wallets mit mindestens 10.000 Bitcoin haben ein Sechsmonatshoch erreicht, während institutionelle Portfolios ihre Bitcoin-Position im Schnitt bereits auf 4 bis 5 statt der klassisch empfohlenen 1 Prozent ausgebaut haben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Sentiment-Indikatoren beschreiben vergangene Extreme, keine Vorhersagen. Dass Hougan einen neuen Bullenmarkt im Herbst für wahrscheinlich hält, bleibt seine Einschätzung – die drei genannten Signale sind ein Werkzeug, um Marktphasen einzuordnen, kein Garant für einen bestimmten Kursverlauf.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-jpmorgan-china-sinkende-renditen',
+    title: 'Gold bekommt gleich drei Rückenwinde auf einmal',
+    teaser:
+      'JPMorgan sieht Gold über 5.000 Dollar, China kauft so viel wie seit 2023 nicht mehr, und US-Anleiherenditen sinken weiter – drei Stützen zugleich.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-11T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Rohstoffe', 'Notenbanken', 'China'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Startseite „Top-News“ vom 10.8.2026: „JPMorgan sieht Goldpreis über 5.000 Dollar“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'goldreporter.de vom 10.8.2026: „China kauft noch mehr Gold – stärkster Zuwachs seit Oktober 2023“',
+        url: 'https://www.goldreporter.de/china-goldreserven-juli-2026/goldreserven/260817/',
+      },
+      {
+        label:
+          'goldreporter.de vom 10.8.2026: „US-Renditen sinken: Was das für den Goldpreis bedeutet“',
+        url: 'https://www.goldreporter.de/us-renditen-sinken-goldpreis-nahost/zinsen/260890/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Selten ziehen drei unabhängige Faktoren gleichzeitig in dieselbe Richtung: JPMorgan rechnet für das vierte Quartal 2026 mit einem Goldpreis über 5.000 Dollar je Feinunze und sieht das Edelmetall weiter als Absicherung gegen Marktrisiken. Zeitgleich meldet Chinas Zentralbank die stärksten monatlichen Goldkäufe seit Oktober 2023, und die Rendite zehnjähriger US-Staatsanleihen gibt weiter nach.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was China konkret gekauft hat',
+      },
+      {
+        type: 'paragraph',
+        text: "Die People's Bank of China stockte ihre Reserven im Juli um rund 19,9 Tonnen (640.000 Unzen) auf – nach 14,9 Tonnen im Juni und 9,95 Tonnen im Mai. Die Kaufmenge hat sich damit drei Monate in Folge beschleunigt. Insgesamt hält die Notenbank nun etwa 2.366,4 Tonnen Gold; seit dem Wiederbeginn der monatlichen Meldungen im November 2022 kamen rund 416 Tonnen hinzu.",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die zweite Stütze: fallende Realzinsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zehnjähriger US-Staatsanleihen sank zuletzt auf 4,67 Prozent, nach 4,69 Prozent in der Vorwoche. Sinkende Renditen verringern die Opportunitätskosten, Gold zu halten – wer statt einer verzinsten Anleihe unverzinstes Gold hält, verzichtet dann auf weniger entgangenen Zins als zuvor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter verweist zugleich auf ein Risiko: Das zugeflossene Spekulationskapital erhöht die Wahrscheinlichkeit kurzfristiger Gewinnmitnahmen – ein schneller Anstieg kann ebenso schnell einen Rücksetzer nach sich ziehen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Drei unabhängige Quellen – eine Bankprognose, Zentralbank-Statistiken und Anleiherenditen – zeigen zurzeit in dieselbe Richtung. Das macht die Geschichte glaubwürdiger als eine einzelne Zahl, ändert aber nichts daran, dass sich jede der drei Größen innerhalb weniger Wochen wieder drehen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'berkshire-hathaway-q2-2026-cash-rueckkaeufe',
+    title: 'Berkshire Hathaway: mehr Umsatz, mehr Gewinn – und mehr Rückkäufe',
+    teaser:
+      'Berkshire steigerte Umsatz und operativen Gewinn im zweiten Quartal und kaufte wieder mehr eigene Aktien zurück – bei weiter riesigem Cash-Berg.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-11T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Berkshire Hathaway', 'Value Investing', 'Quartalszahlen'],
+    relatedTopics: ['portfolio-aufbau', 'risiko-und-rendite'],
+    relatedSymbols: ['berkshire', 'apple', 'alphabet'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 10.8.2026: „Berkshire Hathaway-Aktie in Grün: Ex-Buffett-Konzern mit Gewinn-Hammer und gigantischem Cash-Berg“',
+        url: 'https://www.finanzen.net/nachricht/aktien/2-bilanz-post-buffett-berkshire-hathaway-aktie-in-gruen-ex-buffett-konzern-mit-gewinn-hammer-und-gigantischem-cash-berg-15833502',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Berkshire Hathaway hat im zweiten Quartal 2026 einen operativen Vorsteuergewinn von 14,38 Milliarden Dollar ausgewiesen, ein Plus von rund 7,5 Prozent gegenüber den 13,38 Milliarden Dollar des Vorjahresquartals. Der Gesamtumsatz stieg von 92,52 auf 101,81 Milliarden Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Cash-Berg schrumpft – ein wenig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum 30. Juni hielt der Konzern 359,2 Milliarden Dollar in bar, in Zahlungsmitteläquivalenten und kurzfristigen US-Staatsanleihen. Im ersten Halbjahr 2026 kaufte Berkshire eigene Aktien im Wert von 4,8 Milliarden Dollar zurück, der überwiegende Teil davon im zweiten Quartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wohin das Geld sonst noch fließt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unter CEO Greg Abel tritt Berkshire wieder stärker als Käufer am Aktienmarkt auf. Die fünf größten Positionen im 323,8 Milliarden Dollar schweren Aktienportfolio – American Express, Apple, Bank of America, Coca-Cola und Alphabet – machen zusammen 66 Prozent des Portfoliowerts aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein wachsender Cash-Bestand gilt unter Value-Investoren traditionell als Vorsichtssignal: Wer keine ausreichend günstig bewerteten Gelegenheiten findet, lässt Geld lieber liegen, statt es zu jedem Preis zu investieren. Dass Berkshire nun wieder verstärkt zukauft und zurückkauft, lässt sich als vorsichtige Gegenbewegung lesen – eine Begründung dafür liefert der Konzern selbst nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Aktienrückkauf verändert nicht den Unternehmenswert, sondern nur die Zahl der Anteile, auf die er sich verteilt. Ob 4,8 Milliarden Dollar Rückkäufe bei 359 Milliarden Dollar Cash-Bestand einen Kurswechsel markieren oder eine Randnotiz bleiben, hängt davon ab, ob das Tempo in den kommenden Quartalen anhält.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-jefferies-abstufung-iphone-preisstrategie',
+    title: 'Apple abgestuft: Ein gestrichenes Modell kippt die Preisrechnung',
+    teaser:
+      'Jefferies stuft Apple auf „Underperform“ ab und senkt das Kursziel – weil ein geplantes Glasgehäuse-iPhone offenbar nicht mehr kommt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-11T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Apple', 'Analysten', 'iPhone'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 10.8.2026: „Apple-Aktie gibt nach: Jefferies stuft auf Underperform ab und sieht die iPhone-Preisstrategie in Gefahr“',
+        url: 'https://www.finanzen.net/nachricht/aktien/iphone-strategie-apple-aktie-gibt-nach-jefferies-stuft-auf-underperform-ab-und-sieht-die-iphone-preisstrategie-in-gefahr-00-15862682',
+      },
+      {
+        label:
+          'appleinsider.com vom 10.8.2026: „Jefferies cuts AAPL target to $263.66, downgrades to Underperform“',
+        url: 'https://appleinsider.com/articles/26/08/10/jefferies-cuts-aapl-target-to-26366-downgrades-to-underperform',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Investmentbank Jefferies hat Apple von „Hold“ auf „Underperform“ abgestuft und das Kursziel von 285,56 auf 263,66 Dollar gesenkt. Auslöser ist keine neue Zahl aus dem laufenden Geschäft, sondern eine Änderung an der Produktplanung: Analyst Edison Lee sieht anhand von Lieferkettendaten Anzeichen, dass Apple ein für September 2027 geplantes iPhone mit Glasgehäuse („All-Glass“) nicht mehr verfolgt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein einzelnes Modell die Gewinnschätzung bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein hochpreisiges Sondermodell wäre in einer Phase steigender Speicherchip-Preise ein Hebel gewesen, um den durchschnittlichen Verkaufspreis der iPhone-Reihe anzuheben. Fällt es weg, senkt Jefferies die angenommene jährliche Wachstumsrate des durchschnittlichen iPhone-Preises für die Jahre 2026 bis 2031 von 9 auf 6,8 Prozent – und kürzt die Gewinnschätzung je Aktie für 2028 um 2,1 und für 2029 um 3,4 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was als Preishebel übrig bleibt',
+      },
+      {
+        type: 'paragraph',
+        text: "Nach Jefferies' Einschätzung bleibt nur noch das faltbare iPhone als Mittel, um höhere Preise durchzusetzen – geschätzt 2.199 Dollar für die 256-Gigabyte-Version und 3.099 Dollar für die 2-Terabyte-Version. Ob sich damit dieselbe Stückzahl absetzen lässt wie mit einem regulären Spitzenmodell, ist offen; die Meldung selbst nennt dazu keine Prognose.",
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie schloss am Montag bei 267,65 Euro, ein Minus von 1,31 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Analystenrating ist eine Meinung, kein Fakt – Jefferies bewertet dieselben öffentlich bekannten Lieferketten-Daten anders als Analysten, die Apple weiterhin positiv einstufen. Der Fall zeigt, wie stark Kursziele an Annahmen über Jahre in der Zukunft hängen, nicht nur am aktuellen Quartalsergebnis.',
+      },
+    ],
+  },
+  {
     slug: 'rheinmetall-bewerbungsboom-bundeswehr-2026-08-10',
     title:
       'Rheinmetall bekommt 23.000 Bewerbungen im Monat – nur der größte Kunde hinkt hinterher',
