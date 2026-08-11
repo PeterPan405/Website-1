@@ -190,6 +190,11 @@ def seite_sprechen(sprecher, aufgabe: dict) -> dict:
         raise RuntimeError("Kein einziges Stück dieser Seite ließ sich sprechen.")
 
     audio = np.concatenate(teile)
+
+    # Dieselbe Nachprüfung wie beim Podcast, an derselben Stelle: an dem, was
+    # gehört wird. Sie ändert die Länge nicht und lässt `marken` damit gültig.
+    audio, _ = sprechstimme.nachbessern(audio, rate, melde)
+
     roh = f"{ORDNER}/{aufgabe['id']}.wav"
     ziel = f"{ORDNER}/{aufgabe['id']}.m4a"
     os.makedirs(os.path.dirname(roh), exist_ok=True)

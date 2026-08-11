@@ -875,6 +875,70 @@ Sprechen.
 
 Wer eine Schwelle in `sprechstimme.py` anfasst, sieht dort, ob sie noch trägt.
 
+### Geprüft wird, was gesendet wird – nicht sein Vorprodukt
+
+Am 11. August 2026 hat die neue Prüfung nachweislich gearbeitet: Im Protokoll
+steht „Stück 8, Anlauf 1 verworfen – 0.5 s rau statt gesprochen", und das
+Stück wurde neu gesprochen. Trotzdem meldete der Betreiber wieder
+Störgeräusche, und `aufnahmen-nachpruefen.yml` fand sie in derselben Datei auf
+Anhieb:
+
+    2026-08-11.mp3: 5:28 lang, 1 auffällige Stelle(n):
+      4:08–4:09  0.5 s rau statt gesprochen (Nulldurchgänge 0.28)
+
+**Derselbe Maßstab, dieselbe Aufnahme, ein Fund mehr.** Der Unterschied liegt
+allein daran, worauf er angewandt wurde: beim Sprechen auf ein einzelnes von
+fünfundzwanzig Stücken, hinterher auf die ganze Folge. `auffaellige_stellen`
+misst „laut" am lauten Teil des Betrachteten selbst – in einem leisen Stück
+bleibt eine Störung unter dieser Schwelle, im Ganzen liegt sie darüber.
+
+Das ist dieselbe Lehre wie beim doppelten Video: **Ein Riegel ist so gut wie
+die Quelle, die er fragt.** Wer wissen will, ob die Folge sauber ist, fragt die
+Folge.
+
+Also läuft `sprechstimme.nachbessern()` seither dort, wo die Aufnahme fertig
+ist – in `stimme-zusammenfuegen.py` und in `lese-stimme-erzeugen.py`, jeweils
+unmittelbar nach dem Zusammenfügen.
+
+#### Und sie wird gedämpft, nicht nur gemeldet
+
+Die Prüfung beim Sprechen antwortet mit einem neuen Anlauf, und das ist die
+bessere Antwort: Sie rettet den Text. Am Ende der Kette gibt es kein Modell
+mehr, also bleibt nur der Eingriff in den Ton – die Stelle wird mit einer
+Blende von dreißig Millisekunden auf Stille gezogen.
+
+Das klingt nach Verschlimmbessern und ist es nicht. Wo eine halbe Sekunde
+Pfeifen steht, steht keine halbe Sekunde Wort mehr; das Wort ist bereits
+verloren. Die Wahl ist nicht „Wort oder Stille", sondern **„Quietschen oder
+Pause"**, und eine Pause wirft niemanden aus dem Text.
+
+Die Länge bleibt dabei unverändert – wichtig für die Lernseiten, deren
+Abschnittsmarken an Sekunden hängen.
+
+Der Selbsttest deckt beides ab: dass eine eingebaute Störung nach dem Dämpfen
+weg ist, und dass eine saubere Aufnahme **Wert für Wert unverändert** bleibt.
+Die zweite Hälfte ist die wichtigere: Ein Eingriff ohne Gegenprobe wäre genau
+das Risiko, das er verhindern soll.
+
+### Englische Namen brauchen eine Umschrift
+
+„Alphabet" und „Goldman Sachs" liest eine deutsche Stimme deutsch, und im Ohr
+ist das der Bruch, den der Betreiber am 11. August meldete. Ein Sprachmodell
+für Deutsch kennt keine englische Aussprache; es kennt nur Buchstaben.
+
+`ENGLISCHE_NAMEN` in `lib/sprechfassung.ts` schreibt sie deshalb so, wie sie
+klingen sollen – „Ällfabett", „Goldmänn Sacks", „Berkschir Häthaweh". Das ist
+keine Lautschrift, sondern deutsche Rechtschreibung für einen englischen Klang;
+alles andere spräche das Modell wieder als Buchstaben.
+
+Die Tabelle wird **zuerst** angewandt, vor jeder anderen Regel. „Nasdaq 100"
+muss `Nässdack` heißen, bevor die Regel für Buchstabe-plus-Ziffer oder die
+Zahlregel den Ausdruck anfasst, und „Johnson & Johnson" vor allem, was das
+Kaufmannsund umschreibt.
+
+Wer einen Namen vermisst, trägt ihn dort nach. Deutsche Namen gehören nicht
+hinein – „Siemens" und „Allianz" spricht die Stimme richtig.
+
 ### Die Prüfung gibt es genau einmal
 
 `stimme-erzeugen.py` hatte seine eigene Fassung von `brauchbar()`. Das war als

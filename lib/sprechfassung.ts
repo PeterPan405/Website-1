@@ -258,6 +258,82 @@ function zahlAlsSprechform(ganz: string, nachkomma?: string): string {
 }
 
 /**
+ * Englische Namen in deutscher Lautschrift.
+ *
+ * ## Warum das nötig ist
+ *
+ * Die Stimme ist ein **deutsches** Modell. Es liest, was dasteht, nach
+ * deutschen Regeln – und macht aus „Alphabet" dasselbe Wort wie aus dem ABC
+ * und aus „Goldman Sachs" etwas, das mit dem Unternehmen nur die Buchstaben
+ * teilt. Der Betreiber hat es am 11. August 2026 beim Hören gemeldet: „klingt
+ * komisch."
+ *
+ * Es gibt keinen Schalter dafür. Ein Modell, das mitten im deutschen Satz auf
+ * englische Aussprache umschaltet, müsste die Sprache je Wort erkennen; das
+ * kann dieses nicht. Was bleibt, ist der Weg, den Vorleseprogramme seit jeher
+ * gehen: **den Namen so schreiben, wie er klingen soll.**
+ *
+ * ## Wie die Umschrift gewählt ist
+ *
+ * Nicht nach Lautschrift, sondern nach dem, was ein deutsches Modell daraus
+ * macht. „Ällfabet" trifft es, „ˈælfəbɛt" nicht – das Modell kennt keine
+ * IPA-Zeichen und spräche sie einzeln.
+ *
+ * Doppelvokale und Konsonanten steuern die Länge: „Säx" wird kurz gesprochen,
+ * „Sähx" lang. Wo ein englischer Laut im Deutschen fehlt – das „th" in
+ * „Berkshire Hathaway" –, steht die nächstliegende Näherung; ein „Häthaweh"
+ * ist näher an der Sache als ein deutsches „Hathawai".
+ *
+ * ## Was hier **nicht** hineingehört
+ *
+ * Namen, die im Deutschen ohnehin deutsch gesprochen werden (Siemens, Allianz,
+ * Bayer), und solche, bei denen die deutsche Lesart längst üblich ist
+ * (Microsoft). Wer hier zu viel einträgt, macht aus einer Nachrichtensendung
+ * eine Karikatur.
+ *
+ * Die Liste ist bewusst kurz und wächst nur mit dem, was tatsächlich
+ * auffällt – gehört, nicht vermutet.
+ */
+const ENGLISCHE_NAMEN: [RegExp, string][] = [
+  [/\bAlphabet\b/g, 'Ällfabett'],
+  [/\bGoldman Sachs\b/g, 'Goldmänn Sacks'],
+  [/\bBerkshire Hathaway\b/g, 'Berkschir Häthaweh'],
+  [/\bBerkshire\b/g, 'Berkschir'],
+  [/\bMorgan Stanley\b/g, 'Morgen Stänli'],
+  [/\bJPMorgan\b/g, 'Dschej-Pi-Morgen'],
+  [/\bBank of America\b/g, 'Bänk of Amerika'],
+  [/\bWall Street\b/g, 'Wohl Striet'],
+  [/\bNvidia\b/gi, 'Enwidia'],
+  [/\bTesla\b/g, 'Tessla'],
+  [/\bAmazon\b/g, 'Ämmazon'],
+  [/\bApple\b/g, 'Äppl'],
+  [/\bGoogle\b/g, 'Guhgl'],
+  [/\bNetflix\b/g, 'Nettflix'],
+  [/\bBoeing\b/g, 'Bo-ing'],
+  [/\bCoca-Cola\b/g, 'Koka Kohla'],
+  [/\bJohnson & Johnson\b/g, 'Dschonson und Dschonson'],
+  [/\bGeneral Motors\b/g, 'Dschennerel Motors'],
+  [/\bHome Depot\b/g, 'Hohm Diepoh'],
+  [/\bCharles Schwab\b/g, 'Tscharls Schwobb'],
+  [/\bJensen Huang\b/g, 'Dschensen Huang'],
+  [/\bWarren Buffett\b/g, 'Woren Baffett'],
+  [/\bBuffett\b/g, 'Baffett'],
+  [/\bJefferies\b/g, 'Dschefferis'],
+  [/\bBitwise\b/g, 'Bittweiß'],
+  [/\bDow Jones\b/g, 'Dau Dschons'],
+  [/\bNasdaq\b/gi, 'Nässdack'],
+  [/\bFederal Reserve\b/g, 'Fedderel Riserv'],
+  [/\bTreasury\b/g, 'Treschery'],
+]
+
+/** Setzt die Umschrift der englischen Namen ein – siehe `ENGLISCHE_NAMEN`. */
+export function englischeNamenSprechbar(text: string): string {
+  let s = text
+  for (const [muster, laut] of ENGLISCHE_NAMEN) s = s.replaceAll(muster, laut)
+  return s
+}
+
+/**
  * Macht einen geschriebenen Satz vorlesbar.
  *
  * Die Reihenfolge der Ersetzungen ist Absicht: Erst die festen Wendungen
@@ -267,6 +343,13 @@ function zahlAlsSprechform(ganz: string, nachkomma?: string): string {
  */
 export function sprechbar(text: string): string {
   let s = text
+
+  /*
+    Die Namen zuerst. „Nasdaq 100“ muss `Nässdack` heißen, bevor die Regel für
+    Buchstabe-plus-Ziffer oder die Zahlregel den Ausdruck anfasst – und
+    „Johnson & Johnson“ vor jeder Regel, die das Kaufmannsund umschreibt.
+  */
+  s = englischeNamenSprechbar(s)
 
   s = s.replaceAll(/S&P[  ]?500/g, 'S und P fünfhundert')
   s = s.replaceAll(/\biminvests\.de\b/gi, 'iminvests punkt de')

@@ -38,6 +38,7 @@ import numpy as np
 import soundfile as sf
 
 import klangkette
+import sprechstimme
 
 ORDNER = "podcast-folge"
 ROHFASSUNG = f"{ORDNER}/folge.wav"
@@ -72,6 +73,19 @@ for datei in dateien:
 gesamt = np.concatenate(teile)
 dauer = len(gesamt) / rate
 melde(f"{dauer / 60:.1f} Minuten.")
+
+# Die letzte Gelegenheit, eine Störung zu bemerken, bevor sie ein Hörer
+# bemerkt. Beim Sprechen wird jedes Stück für sich geprüft und im Zweifel neu
+# gesprochen – das ist die bessere Abwehr, weil sie den Text rettet. Sie greift
+# nur nicht immer: Am 11. August 2026 verwarf sie einen Anlauf und ließ
+# trotzdem eine halbe Sekunde Rauschen bei 4:08 durch, die derselbe Maßstab an
+# der fertigen Folge auf Anhieb fand.
+#
+# Hier steht deshalb dasselbe Verfahren noch einmal – an dem, was tatsächlich
+# gesendet wird. Begründet ist es bei `sprechstimme.nachbessern`.
+gesamt, gedaempft = sprechstimme.nachbessern(gesamt, rate, melde)
+if gedaempft:
+    melde(f"{gedaempft} Stelle(n) gedämpft. Der Text an diesen Stellen war ohnehin verloren.")
 
 sf.write(ROHFASSUNG, gesamt, rate)
 
