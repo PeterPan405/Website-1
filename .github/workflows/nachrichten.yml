@@ -10,13 +10,20 @@ name: Nachrichten schreiben
 # Routine da nicht mehr hinein: Sie braucht 45 bis 70 Minuten, dieser
 # Workflow 20.
 #
-#   02:13 / 02:23  `quellen-sammeln.yml` – die Ticker-Übersichten des Morgens
-#   02:27          Routine – liest sie und schreibt den **Entwurf**
-#   02:57          dieser Workflow: Entwurf übernehmen, prüfen, bauen, senden
-#   03:17          zweiter Anlauf, falls der erste verworfen wurde
-#   03:47          dritter Anlauf – der letzte, der 04:00 noch schafft
-#   ab 03:07       `kurse.yml` stößt an, falls alle drei ausfielen
-#   04:11          `ausgabe-waechter.yml` – elf Minuten nach der Frist
+# Alle Zeiten in **deutscher** Zeit – die Zusage ist in deutscher Zeit
+# gegeben. Die Crons darunter stehen in UTC.
+#
+#   02:09 / 02:29  `quellen-sammeln.yml` – die Ticker-Übersichten des Morgens
+#   02:33          `nachrichten-agent.yml` liest sie, schreibt den **Entwurf**
+#                  und stößt diesen Workflow sofort an
+#   03:13          dieser Workflow als Cron, falls der Anstoß ausblieb
+#   03:43 / 04:13  zweiter und dritter Anlauf
+#   04:47          vierter – der letzte, der 6:00 noch schafft
+#   ab 03:00       `kurse.yml` stößt an, falls alle ausfielen
+#   05:11          `ausgabe-waechter.yml` – **vor** der Frist
+#
+# Sobald die Ausgabe steht, stößt der letzte Schritt dieses Workflows den
+# Podcast an. Er wartet nicht auf eine eigene Uhr; warum, steht dort.
 #
 # ## Die Arbeitsteilung, auf die es ankommt
 #
@@ -93,21 +100,28 @@ name: Nachrichten schreiben
 
 on:
   schedule:
-    # **Drei Anläufe statt einem.** Die Zusage lautet: Die Ausgabe steht um
-    # 6:00 deutscher Zeit auf der Website, also um 04:00 UTC. Rückwärts
-    # gerechnet: Der Lauf braucht 20 Minuten, der Paketbau samt Übertragung
-    # nochmal 10. Der letzte mögliche Start ist damit 03:17 UTC.
+    # **Vier Anläufe, und keiner davon ist der Regelweg.**
     #
-    # Warum drei: GitHub verwirft geplante Läufe. Am 6. August 2026 wurde von
-    # allen Terminen des Tages **genau einer** ausgeführt. Ein einzelner
-    # Termin ist damit keine Zusage, drei sind eine deutlich bessere.
+    # Der Regelweg ist der Anstoß aus `nachrichten-agent.yml`, sobald der
+    # Entwurf steht – siehe den Kopf. Diese Termine greifen, wenn er
+    # ausbleibt.
+    #
+    # Warum vier: GitHub verwirft geplante Läufe. Am 6. August 2026 wurde von
+    # allen Terminen des Tages **genau einer** ausgeführt; am 11. August kamen
+    # sie zwei Stunden zu spät. Ein einzelner Termin ist damit keine Zusage.
+    #
+    # Gerechnet gegen die Frist: Der Lauf braucht 20 Minuten, der Paketbau
+    # samt Übertragung 10, die Folge danach 37. Der letzte Start, der 6:00
+    # deutscher Zeit noch hält, ist damit 04:47 deutscher Zeit – der vierte
+    # Termin.
     #
     # Die zusätzlichen Läufe kosten fast nichts: Steht die Ausgabe schon,
     # hört der Lauf nach vierzig Sekunden auf, ohne das Modell zu fragen.
     #
     # Im Winter eine Stunde später; die Routine „Zeitumstellung" zieht nach.
-    - cron: '53 1 * * *'
-    - cron: '23 2 * * *'
+    - cron: '13 1 * * *'
+    - cron: '43 1 * * *'
+    - cron: '13 2 * * *'
     - cron: '47 2 * * *'
   workflow_dispatch:
     inputs:
@@ -541,3 +555,37 @@ jobs:
             -f vorher="${{ steps.veroeffentlichen.outputs.vorher }}" \
             -f paket=false
           echo "Der Paketbau ist angefordert – die Ausgabe geht damit auf den Webspace."
+
+      # ------------------------------------------------------------------
+      # Und die Folge des Tages gleich mit.
+      #
+      # ## Warum der Podcast hier hängt und nicht an einer Uhrzeit
+      #
+      # Weil er ohnehin auf genau dieses Ereignis wartet: Er vertont die
+      # Tagesausgabe, und vorher hat er nichts zu sprechen. Ein eigener Termin
+      # ist deshalb bestenfalls eine Schätzung, wann die Ausgabe fertig sein
+      # könnte – und schlimmstenfalls das, was am 11. August 2026 passierte:
+      #
+      #     02:53 UTC   der Podcasttermin
+      #     04:07 UTC   ausgeführt, 74 Minuten zu spät
+      #     06:20 UTC   die Folge war schließlich oben – 8:20 deutscher Zeit
+      #
+      # Die Zusage lautet 6:00 Uhr deutscher Zeit. Sie hält nicht, wenn das
+      # letzte Glied der Kette auf eine Uhr wartet, die zwei Stunden nachgeht.
+      #
+      # Angestoßen statt terminiert braucht die Folge ab hier rund 37 Minuten.
+      # Selbst wenn dieser Lauf erst um 02:43 UTC zum Zuge käme – dem letzten
+      # Cron –, wäre sie um 03:20 UTC online, also 5:20 deutscher Zeit.
+      #
+      # Doppelt angestoßen schadet nicht: `podcast-erzeugen.yml` fragt als
+      # Erstes `origin/main`, ob die Folge des Tages schon im Register steht,
+      # und der Upload fragt vorher noch einmal den Kanal selbst.
+      - name: Podcastfolge anstoßen
+        if: steps.veroeffentlichen.outputs.gepusht == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run podcast-erzeugen.yml \
+            --repo "${{ github.repository }}" --ref main \
+            && echo "Die Folge des Tages ist angefordert – sie vertont die eben geschriebene Ausgabe." \
+            || echo "::warning::Der Podcastlauf ließ sich nicht anstoßen – Cron und kurse.yml greifen."
