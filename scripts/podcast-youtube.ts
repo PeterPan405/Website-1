@@ -201,7 +201,50 @@ const titelDatei = readFileSync('podcast-folge/titel.txt', 'utf8').split('\n')
 const titel = titelDatei[0].trim()
 const folgennummer = titelDatei[1]?.trim() ?? ''
 const beschreibung = readFileSync('podcast-folge/beschreibung.txt', 'utf8').trim()
-const videotitel = folgennummer ? `${titel} | Marktupdate ${folgennummer}` : titel
+/*
+  YouTube nimmt höchstens 100 Zeichen im Titel.
+
+  Am 11. August 2026 hat das die Folge gekostet. Der Titel entsteht aus den
+  drei ersten Schlagzeilen der Ausgabe und darf dort 110 Zeichen lang sein;
+  mit dem Zusatz „| Marktupdate Folge N" wurden daraus 132. YouTube antwortete
+  mit:
+
+      400  The request metadata specifies an invalid or empty video title.
+           reason: invalidTitle
+
+  Die Folge war zu dem Zeitpunkt fertig gesprochen, geschnitten und mit
+  Kapitelmarken versehen -- verloren ging sie an zweiunddreißig Zeichen.
+
+  Gekürzt wird an einer Wortgrenze, nicht mitten im Wort, und der Zusatz
+  bleibt: Er ist die Kennung, an der die Doppelprüfung unten die Folge des
+  Tages wiedererkennt. Ein Auslassungszeichen sagt, dass es weitergeht.
+*/
+const TITEL_MAX = 100
+
+/**
+ * Kürzt den **vorderen** Teil, damit der Zusatz stehen bleibt.
+ *
+ * Nicht das Ganze von hinten abschneiden: Dabei fiele „| Marktupdate Folge N"
+ * weg – ausgerechnet die Kennung, an der die Doppelprüfung unten die Folge
+ * des Tages wiedererkennt, und die einzige Stelle, an der die Folgennummer
+ * im Titel steht.
+ */
+function passend(kopf: string, zusatz: string): string {
+  const platz = TITEL_MAX - zusatz.length
+  if (kopf.length <= platz) return `${kopf}${zusatz}`
+  const schnitt = kopf.slice(0, platz - 1)
+  const luecke = schnitt.lastIndexOf(' ')
+  const kurz = luecke > platz * 0.6 ? schnitt.slice(0, luecke) : schnitt
+  return `${kurz.trimEnd()}…${zusatz}`
+}
+
+const zusatz = folgennummer ? ` | Marktupdate ${folgennummer}` : ''
+const videotitel = passend(titel, zusatz)
+if (videotitel !== `${titel}${zusatz}`) {
+  console.log(
+    `[youtube] Titel auf ${videotitel.length} Zeichen gekürzt (YouTube nimmt ${TITEL_MAX}).`
+  )
+}
 
 /*
   Liegt für heute schon ein Video auf dem Kanal?
