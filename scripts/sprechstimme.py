@@ -193,7 +193,26 @@ def _wecker(signum, rahmen):  # noqa: ARG001
     raise Zeitueberschreitung()
 
 
-signal.signal(signal.SIGALRM, _wecker)
+# **Kein `signal.signal` beim Import.**
+#
+# Hier stand die Anmeldung des Weckers auf Modulebene, und sie hat am
+# 11. August 2026 die Podcastfolge gekostet.
+#
+# Der Ablauf: `stimme-erzeugen.py` meldet seinen eigenen SIGALRM-Wecker an und
+# fängt seine eigene `Zeitueberschreitung`. Seit demselben Tag ruft es für die
+# Tonprüfung `sprechstimme.brauchbar` auf – und der Import dazu passiert beim
+# **ersten Aufruf**, also nach dem ersten gesprochenen Stück. In dem Augenblick
+# überschrieb dieser Modulkopf den Wecker des Podcastskripts. Jede folgende
+# Zeitüberschreitung warf `sprechstimme.Zeitueberschreitung`, und die fängt
+# dort niemand: Läufer 4 starb mit einem Traceback, die Folge fiel aus.
+#
+# Der Kommentar an der Importstelle sagte sogar, dass die Reihenfolge eine
+# Falle ist – und der Import in der Funktion hat sie garantiert zuschnappen
+# lassen, weil sprechstimme damit immer zuletzt geladen wird.
+#
+# **Ein Import darf den Zustand des Prozesses nicht verändern.** Der Wecker
+# wird deshalb dort angemeldet, wo er auch gestellt wird: in `sprich`, und
+# danach wieder zurückgesetzt.
 
 
 #: Wie weit die Dauer eines Stücks von der erwarteten abweichen darf.
@@ -407,6 +426,10 @@ class Sprecher:
         import numpy as np
 
         frist = frist_fuer(stueck)
+        # Wecker nur für die Dauer dieses Aufrufs – und danach genau der
+        # Zustand, der vorher galt. Wer dieses Modul benutzt, soll seinen
+        # eigenen Wecker behalten dürfen.
+        vorher = signal.signal(signal.SIGALRM, _wecker)
         signal.alarm(frist)
         try:
             return self.modell.generate_voice_clone(
@@ -416,6 +439,7 @@ class Sprecher:
             pass
         finally:
             signal.alarm(0)
+            signal.signal(signal.SIGALRM, vorher)
 
         teile = haelften(stueck) if tiefe < 3 else None
         if not teile:
