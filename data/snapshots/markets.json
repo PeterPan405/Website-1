@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-08-10T22:21:47.739Z",
+  "fetchedAt": "2026-08-11T09:12:15.466Z",
   "instruments": {
     "eur-usd": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-08-10",
       "points": [
-        {"d":"2021-08-10","c":1.1722},
+        {"d":"2021-08-11","c":1.1718},
         {"d":"2021-08-16","c":1.1772},
         {"d":"2021-08-23","c":1.1718},
         {"d":"2021-08-30","c":1.1801},
@@ -497,7 +497,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-08-10",
       "points": [
-        {"d":"2021-08-10","c":7.5975},
+        {"d":"2021-08-11","c":7.5996},
         {"d":"2021-08-16","c":7.6243},
         {"d":"2021-08-23","c":7.599},
         {"d":"2021-08-30","c":7.6347},
@@ -988,7 +988,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-08-10",
       "points": [
-        {"d":"2021-08-10","c":1.0813},
+        {"d":"2021-08-11","c":1.0818},
         {"d":"2021-08-16","c":1.0758},
         {"d":"2021-08-23","c":1.0744},
         {"d":"2021-08-30","c":1.0798},
@@ -1479,7 +1479,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-08-10",
       "points": [
-        {"d":"2021-08-10","c":0.8457},
+        {"d":"2021-08-11","c":0.847},
         {"d":"2021-08-16","c":0.8487},
         {"d":"2021-08-23","c":0.8564},
         {"d":"2021-08-30","c":0.8575},
@@ -1970,7 +1970,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-08-10",
       "points": [
-        {"d":"2021-08-10","c":129.48},
+        {"d":"2021-08-11","c":129.68},
         {"d":"2021-08-16","c":128.75},
         {"d":"2021-08-23","c":129.02},
         {"d":"2021-08-30","c":129.66},
