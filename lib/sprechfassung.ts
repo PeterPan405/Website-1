@@ -365,6 +365,77 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bVanguard\b/g, 'Wängguard'],
   [/\bHold\b/g, 'Hohld'],
   [/\bBuy\b/g, 'Bai'],
+
+  /* ------------------------------------------------------- Anglizismen
+     Bis hierher standen nur Namen. Am 11. August 2026 hat der Betreiber die
+     Regel erweitert: **Was englisch ist, wird englisch gesprochen – auch
+     Anglizismen.** Ein Börsentext besteht zur Hälfte aus ihnen, und die
+     Stimme las sie Buchstabe für Buchstabe deutsch: „Boom" als „Bohm",
+     „Rating" als „Ratting", „Cashflow" als „Kaschflow".
+
+     Zusammengesetzte Wörter zuerst, sonst zerlegt die Einzelregel sie:
+     „Cashflow" vor „Cash", „Marktupdate" vor „Update".
+
+     Die Umschrift folgt derselben Regel wie oben – deutsche Rechtschreibung
+     für einen englischen Klang, keine Lautschrift. */
+  [/\bMarktupdate\b/g, 'Markt-Appdejt'],
+  [/\bCashflow\b/g, 'Käschflau'],
+  [/\bBuyback\b/g, 'Bajbeck'],
+  [/\bSell-?off\b/g, 'Sellof'],
+  [/\bSpin-?off\b/g, 'Spinnof'],
+  [/\bStart-?up\b/g, 'Startapp'],
+  [/\bBlue Chips?\b/g, 'Bluh Tschipps'],
+  [/\bSmall Caps?\b/g, 'Smohl Kepps'],
+  [/\bLarge Caps?\b/g, 'Lahdsch Kepps'],
+  [/\bPrivate Equity\b/g, 'Preiwet Ekwiti'],
+  [/\bVenture Capital\b/g, 'Wentscher Käpitel'],
+  [/\bSupply Chain\b/g, 'Saplei Tschejn'],
+  [/\bShort Squeeze\b/g, 'Schort Skwies'],
+  [/\bHedgefonds?\b/g, 'Hedschfonds'],
+
+  [/\bBoom\b/g, 'Buhm'],
+  [/\bRating\b/g, 'Rejting'],
+  [/\bRanking\b/g, 'Renking'],
+  [/\bReport\b/g, 'Riport'],
+  [/\bResearch\b/g, 'Risörtsch'],
+  [/\bDeal\b/g, 'Diel'],
+  [/\bPerformance\b/g, 'Perförmens'],
+  [/\bHedge\b/g, 'Hedsch'],
+  [/\bSpread\b/g, 'Spredd'],
+  [/\bLeverage\b/g, 'Lewweridsch'],
+  [/\bTrading\b/g, 'Trejding'],
+  [/\bScreening\b/g, 'Skriening'],
+  [/\bEarnings\b/g, 'Örnings'],
+  [/\bGuidance\b/g, 'Geidens'],
+  [/\bOutlook\b/g, 'Autluck'],
+  [/\bUpgrade\b/g, 'Appgrejd'],
+  [/\bDowngrade\b/g, 'Daungrejd'],
+  [/\bUpdate\b/g, 'Appdejt'],
+  [/\bTurnaround\b/g, 'Törnaraund'],
+  [/\bBreakout\b/g, 'Brejkaut'],
+  [/\bMerger\b/g, 'Mördscher'],
+  [/\bTakeover\b/g, 'Tejkohwer'],
+  [/\bShutdown\b/g, 'Schattdaun'],
+  [/\bBailout\b/g, 'Bejlaut'],
+  [/\bDefault\b/g, 'Difohlt'],
+  [/\bYield\b/g, 'Jield'],
+  [/\bRall(?:y|ye)\b/g, 'Räli'],
+  [/\bChips?\b/g, 'Tschipps'],
+  [/\bCloud\b/g, 'Klaud'],
+  [/\bSoftware\b/g, 'Softwer'],
+  [/\bHardware\b/g, 'Hardwer'],
+  [/\bStreaming\b/g, 'Strieming'],
+  [/\bOverweight\b/g, 'Ohwerwejt'],
+  [/\bUnderweight\b/g, 'Anderwejt'],
+  [/\bHighlights?\b/g, 'Heilaits'],
+  [/\bMeetings?\b/g, 'Mietings'],
+
+  /* Abkürzungen, die deutsch buchstabiert falsch klingen. „ETF" und „KI"
+     gehören ausdrücklich **nicht** dazu – die spricht man hierzulande
+     deutsch, und alles andere wäre die Karikatur aus dem Kopf der Datei. */
+  [/\bCEO\b/g, 'Sieh Ie Ou'],
+  [/\bCFO\b/g, 'Sieh Eff Ou'],
+  [/\bIPO\b/g, 'Ei Pie Ou'],
 ]
 
 /** Setzt die Umschrift der englischen Namen ein – siehe `ENGLISCHE_NAMEN`. */
@@ -372,6 +443,74 @@ export function englischeNamenSprechbar(text: string): string {
   let s = text
   for (const [muster, laut] of ENGLISCHE_NAMEN) s = s.replaceAll(muster, laut)
   return s
+}
+
+/*
+  Formen, die im Deutschen praktisch nur bei englischen Wörtern vorkommen.
+  Bewusst wenige und enge Muster: Ein Melder, der jeden Tag zehn harmlose
+  Wörter anzeigt, wird nach einer Woche überlesen – dieselbe Rechnung wie
+  beim roten Lauf.
+*/
+const ENGLISCH_VERDAECHTIG: RegExp[] = [
+  /* „Marketing", „Leasing", „Timing" – aber nicht „Frühling", „Zwilling",
+     „Häuptling": die deutschen Fälle enden fast alle auf „-ling". */
+  /^(?!.*ling$)[A-Za-zÄÖÜäöüß]{6,}ing$/,
+  /* „Match", „Pitch", „Watchlist" – „tch" gibt es im Deutschen nicht. */
+  /tch/,
+  /* „Cash", „Crash", „Flash" am Wortende; deutsches „sch" schreibt sich anders. */
+  /[a-zäöüß]sh$/,
+  /* „Baby", „Handy", „Rally", „Equity" – ein „y" hinter einem Konsonanten
+     am Wortende ist im Deutschen fast immer ein Lehnwort. */
+  /[bcdfghjklmnpqrstvwxz]y$/,
+  /* „Layout", „Payment", „Display". */
+  /ay[a-z]|ay$/,
+  /* „Growth", „Wealth", „Health" – „th" am Wortende. */
+  /th$/,
+]
+
+/* Wörter, die eines der Muster treffen und trotzdem deutsch sind. Die Liste
+   ist der Preis dafür, dass die Muster eng bleiben dürfen. */
+const KEINE_ANGLIZISMEN = new Set([
+  'Mythos',
+  'Wachstum',
+  'Reichtum',
+  'Datum',
+  'Nord',
+  'Süd',
+])
+
+/**
+ * Nennt Wörter, die englisch aussehen und **keine** Umschrift bekommen haben.
+ *
+ * ## Warum es das gibt
+ *
+ * Weil `ENGLISCHE_NAMEN` eine Liste ist und eine Liste immer unvollständig
+ * bleibt. Am 11. August 2026 hat der Betreiber die Regel auf Anglizismen
+ * erweitert – „was englisch ist, wird englisch gesprochen". Diese Regel lässt
+ * sich nicht abschließend in eine Tabelle schreiben: Morgen steht ein Wort in
+ * der Ausgabe, an das heute niemand gedacht hat.
+ *
+ * Aufgefallen ist bisher **jeder** dieser Fälle beim Hören, nicht beim Bauen.
+ * Das ist der teure Weg: Er kostet eine Folge, eine Meldung und einen zweiten
+ * Lauf. Diese Prüfung dreht das um – sie schreibt vor dem Sprechen ins
+ * Protokoll, was ihr englisch vorkommt und keine Umschrift hat.
+ *
+ * **Sie ist ein Hinweis, kein Urteil.** Sie kann nicht wissen, was englisch
+ * ist; sie kennt nur ein paar Schreibweisen, die es im Deutschen kaum gibt.
+ * Deshalb wird nichts abgebrochen und nichts von selbst ersetzt – die
+ * Entscheidung, ob ein Wort in die Tabelle gehört, trifft ein Ohr.
+ */
+export function verdaechtigeAnglizismen(sprechtext: string): string[] {
+  const gefunden = new Set<string>()
+  for (const wort of sprechtext.match(/[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß-]*/g) ?? []) {
+    if (KEINE_ANGLIZISMEN.has(wort)) continue
+    /* Zusammensetzungen am Bindestrich einzeln ansehen: „News-Ticker". */
+    for (const teil of wort.split('-')) {
+      if (teil.length < 3 || KEINE_ANGLIZISMEN.has(teil)) continue
+      if (ENGLISCH_VERDAECHTIG.some((muster) => muster.test(teil))) gefunden.add(teil)
+    }
+  }
+  return [...gefunden].sort()
 }
 
 /**

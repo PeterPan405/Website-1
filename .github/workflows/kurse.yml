@@ -711,10 +711,21 @@ jobs:
           # Folge sieben Tage die Woche. Damit fällt auch die Probetagsliste
           # weg, die hier den Samstag und Sonntag geregelt hat.
 
-          # Nach dem eigenen Termin (02:53 UTC), sonst käme man ihm zuvor.
+          # Ab 01:00 UTC – 3:00 deutscher Zeit.
+          #
+          # Bis zum 11. August 2026 stand hier 03:00 UTC, „nach dem eigenen
+          # Termin, sonst käme man ihm zuvor". Das Argument ist entfallen:
+          # Seit demselben Tag stößt `nachrichten.yml` die Folge an, sobald
+          # die Ausgabe steht – einen eigenen Termin, dem man zuvorkommen
+          # könnte, gibt es nicht mehr.
+          #
+          # Zuvorkommen kann dieser Schritt ohnehin nichts: Ohne Tagesausgabe
+          # bricht er unten ab, und mit ihr ist Vertonen genau richtig.
+          # Drei Stunden Vorlauf vor der Frist um 6:00 sind der Sinn der
+          # Sache – um 5:00 wäre für einen zweiten Anlauf keine Zeit mehr.
           stunde=$(date -u +%H)
-          if [ "$stunde" -lt 03 ]; then
-            echo "Es ist erst $stunde Uhr UTC – der eigene Termin hat noch Zeit."
+          if [ "$stunde" -lt 01 ]; then
+            echo "Es ist erst $stunde Uhr UTC – die Kette läuft gerade erst an."
             exit 0
           fi
 

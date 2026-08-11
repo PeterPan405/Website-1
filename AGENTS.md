@@ -143,23 +143,44 @@ Der Fahrplan steht in **deutscher Zeit**, weil die Zusage in deutscher Zeit
 gegeben ist. Die Crons in den Workflows stehen in UTC, weil GitHub nichts
 anderes kennt; im Sommer sind das zwei Stunden weniger, im Winter eine.
 
-| Deutsche Zeit | UTC   | Was                                                           |
-| ------------- | ----- | ------------------------------------------------------------- |
-| 03:03         | 01:03 | `quellen-pruefen.yml` – welcher Kanal ist heute offen?        |
-| 03:13         | 01:13 | `quellen-sammeln.yml` – legt `quellen-heute` an               |
-| 03:23         | 01:23 | `quellen-sammeln.yml` – zweiter Termin                        |
-| **03:27**     | 01:27 | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf**  |
-| **03:41**     | 01:41 | zweiter Anlauf des Agenten                                    |
-| **03:57**     | 01:57 | `nachrichten.yml` – prüfen, bauen, senden → **live ab 04:30** |
-| **04:17**     | 02:17 | zweiter Anlauf, falls der erste verworfen wurde               |
-| ab 04:07      | 02:07 | `kurse.yml` stößt den Nachrichtenlauf an, falls er ausfiel    |
-| **04:47**     | 02:47 | dritter Anlauf – der letzte, der 6:00 noch schafft            |
-| **04:53**     | 02:53 | `podcast-erzeugen.yml` – Text, Stimme, Video, Upload          |
-| **~05:36**    | 03:36 | **die Folge ist online** – rund 25 Minuten vor der Frist      |
-| ab 05:07      | 03:07 | `kurse.yml` stößt den Podcast an, falls er ausfiel            |
-| 05:11         | 03:11 | `ausgabe-waechter.yml` – der Alarm kommt **vor** der Frist    |
-| 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau, unabhängig davon      |
-| 07:51         | 05:51 | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?         |
+| Deutsche Zeit | UTC   | Was                                                            |
+| ------------- | ----- | -------------------------------------------------------------- |
+| 02:03         | 00:03 | `quellen-pruefen.yml` – welcher Kanal ist heute offen?         |
+| 02:09 / 02:29 | 00:09 | `quellen-sammeln.yml` – legt `quellen-heute` an, zwei Termine  |
+| **02:33**     | 00:33 | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf**   |
+| **↳ sofort**  | –     | der Agent **stößt den Nachrichtenlauf an**                     |
+| 03:03 / 03:33 | 01:03 | zweiter und dritter Anlauf des Agenten                         |
+| **↳ ~03:00**  | 01:00 | `nachrichten.yml` – prüfen, bauen, senden → **live ab ~03:20** |
+| **↳ sofort**  | –     | der Nachrichtenlauf **stößt den Podcast an**                   |
+| **~04:00**    | 02:00 | **die Folge ist online** – zwei Stunden vor der Frist          |
+| 03:13 … 04:47 | 01:13 | `nachrichten.yml` als Cron – vier Rückfalltermine              |
+| 03:53 / 04:33 | 01:53 | `podcast-erzeugen.yml` als Cron – zwei Rückfalltermine         |
+| ab 03:00      | 01:00 | `kurse.yml` stößt an, was fehlt – siebzehnmal am Tag           |
+| 05:11         | 03:11 | `ausgabe-waechter.yml` – der Alarm kommt **vor** der Frist     |
+| 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau, unabhängig davon       |
+| 07:51         | 05:51 | `betriebsuebersicht.yml` – sechs Zeilen: steht alles?          |
+
+### Die Kette hängt aneinander, nicht an der Uhr
+
+**Das ist die Umstellung vom 11. August 2026, und sie ist der Kern der
+Zusage.** Vorher stand jedes Glied auf einem eigenen Cron und hoffte, dass
+das vorige rechtzeitig fertig war. An dem Morgen ging das schief:
+
+    02:53 UTC   Termin des Podcasts
+    04:07 UTC   ausgeführt – 74 Minuten zu spät
+    06:20 UTC   die Folge war oben, 8:20 deutscher Zeit
+
+Seither stößt jedes Glied das nächste an, sobald es fertig ist: der Agent
+den Nachrichtenlauf, der Nachrichtenlauf den Podcast. Die Crons bleiben als
+Rückfall stehen – vier für die Nachrichten, zwei für die Folge –, aber der
+Regelweg wartet auf niemanden.
+
+Gerechnet mit dem ersten Agententermin um 02:33 deutscher Zeit ist die Folge
+gegen 04:00 online. Selbst wenn **alles** danebengeht und erst der letzte
+Rückfalltermin um 04:47 greift, sind es 05:24 – immer noch vor der Frist.
+
+Wer hier etwas ändert, lässt die Anstöße stehen. Ein doppelter Anstoß kostet
+vierzig Sekunden; ein fehlender kostet den Tag.
 
 Die Routine **„Zeitumstellung"** zieht sie zweimal im Jahr gemeinsam um eine
 Stunde nach. Wer eine Zeit ändert, ändert alle.
@@ -920,7 +941,7 @@ weg ist, und dass eine saubere Aufnahme **Wert für Wert unverändert** bleibt.
 Die zweite Hälfte ist die wichtigere: Ein Eingriff ohne Gegenprobe wäre genau
 das Risiko, das er verhindern soll.
 
-### Englische Namen brauchen eine Umschrift
+### Was englisch ist, wird englisch gesprochen – auch Anglizismen
 
 „Alphabet" und „Goldman Sachs" liest eine deutsche Stimme deutsch, und im Ohr
 ist das der Bruch, den der Betreiber am 11. August meldete. Ein Sprachmodell
@@ -938,6 +959,47 @@ Kaufmannsund umschreibt.
 
 Wer einen Namen vermisst, trägt ihn dort nach. Deutsche Namen gehören nicht
 hinein – „Siemens" und „Allianz" spricht die Stimme richtig.
+
+#### Die Regel gilt nicht nur für Namen
+
+Am 11. August 2026 hat der Betreiber sie ausgeweitet: **auch Anglizismen.**
+Und das ist keine Kleinigkeit – ein Börsentext besteht zur Hälfte aus ihnen.
+Die Stimme las „Boom" als „Bohm", „Rating" als „Ratting", „Cashflow" als
+„Kaschflow", und selbst der Name der Sendung ging als „Marktupdahte" durch.
+
+Die Tabelle deckt deshalb neben den Namen ab, was in Börsentexten ständig
+vorkommt: Rating, Guidance, Outlook, Earnings, Cashflow, Buyback, Spread,
+Leverage, Blue Chips, Private Equity, CEO, IPO und so fort.
+
+**Zusammengesetzte Ausdrücke stehen vor ihren Bestandteilen** – „Cashflow"
+vor „Cash", „Marktupdate" vor „Update". Umgekehrt zerlegte die kürzere Regel
+das längere Wort.
+
+Nicht hinein gehört, was im Deutschen längst deutsch gesprochen wird: „ETF",
+„KI", „Broker", „Bond", „Trend". Wer hier zu viel einträgt, macht aus einer
+Nachrichtensendung eine Karikatur – der Satz aus dem Kopf von
+`lib/sprechfassung.ts` gilt für Anglizismen genauso.
+
+#### Eine Liste ist nie fertig – deshalb meldet der Lauf, was fehlt
+
+Jeder dieser Fälle ist bisher **beim Hören** aufgefallen, nicht beim Bauen.
+Das kostet jedes Mal eine Folge, eine Meldung und einen zweiten Lauf.
+
+`verdaechtigeAnglizismen()` dreht das um: `podcast-folge-erzeugen.ts`
+schreibt vor dem Sprechen ins Protokoll, welche Wörter englisch aussehen und
+keine Umschrift haben. Erkannt wird das an Schreibweisen, die es im Deutschen
+kaum gibt – `-ing` am Ende (außer `-ling`), `tch`, `sh` am Wortende, `y` hinter
+einem Konsonanten, `th` am Wortende.
+
+**Es ist ein Hinweis, kein Urteil**, und nichts wird von selbst ersetzt: Ob
+ein Wort englisch klingen soll, entscheidet ein Ohr. Der Lauf wird davon
+weder rot noch abgebrochen.
+
+Die Gegenprobe ist die wichtigere Hälfte und steht als Test fest: Der Melder
+muss bei „Frühling", „Zwilling", „Lehrling", „Wachstum" und „Mythos"
+schweigen – und **bei allem, was die Tabelle schon umschreibt.** Ein Melder,
+der jeden Tag dieselben Wörter anzeigt, wird nach einer Woche überlesen; das
+ist dieselbe Rechnung wie beim roten Lauf, der zum Rauschen wird.
 
 #### Der eigene Name war der schlimmste Fall
 

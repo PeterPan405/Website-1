@@ -64,7 +64,17 @@ on:
     #
     # Der Nachrichtenlauf lief ohnehin schon täglich – die Tagesausgabe, die
     # hier vertont wird, ist also auch am Samstag da.
-    - cron: '53 2 * * *'
+    # **Nur noch Rückfall.** Seit dem 11. August 2026 stößt
+    # `nachrichten.yml` die Folge an, sobald die Tagesausgabe steht – der
+    # Podcast vertont sie, und vorher hat er nichts zu sprechen. Ein fester
+    # Termin war deshalb immer nur eine Schätzung, wann die Ausgabe fertig
+    # sein könnte, und am 11. August ging sie um 74 Minuten daneben.
+    #
+    # Die beiden Termine hier greifen, wenn der Anstoß ausbleibt: 03:53 und
+    # 04:33 deutscher Zeit. Der spätere ist der letzte, der die Frist um
+    # 6:00 noch hält – 37 Minuten braucht die Folge.
+    - cron: '53 1 * * *'
+    - cron: '33 2 * * *'
   workflow_dispatch:
     inputs:
       zugang_pruefen:

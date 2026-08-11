@@ -561,5 +561,31 @@ jobs:
           {
             echo "### Entwurf abgelegt"
             echo "Auf dem Zweig \`nachrichten-entwurf\`, Stichtag $TAG."
-            echo "\`nachrichten.yml\` übernimmt ihn um 02:57."
           } >> "$GITHUB_STEP_SUMMARY"
+
+      # ------------------------------------------------------------------
+      # Der Nachrichtenlauf wartet nicht auf seine Uhr.
+      #
+      # ## Warum das der wichtigste Schritt dieses Workflows ist
+      #
+      # Weil zwischen „Entwurf fertig" und „Ausgabe steht" bisher nichts lag
+      # als ein Cron – und Crons sind hier eine Bitte, keine Zusage. Am
+      # 6. August 2026 wurde von allen geplanten Läufen des Tages **einer**
+      # ausgeführt; am 11. August kamen beide Termine des Agenten zwei
+      # Stunden zu spät, und der Nachrichtenlauf war da längst durch.
+      #
+      # Ein Entwurf, der um 00:50 fertig ist und bis 01:53 auf einen Termin
+      # wartet, verschenkt eine Stunde – und zwar genau die Stunde, die
+      # später zur Frist um 6:00 Uhr fehlt.
+      #
+      # Der Anstoß kostet vierzig Sekunden, wenn er überflüssig ist:
+      # `nachrichten.yml` prüft als Erstes, ob die Ausgabe schon steht.
+      - name: Nachrichtenlauf anstoßen
+        if: steps.pruefung.outputs.weiter == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run nachrichten.yml \
+            --repo "${{ github.repository }}" --ref main \
+            && echo "Der Nachrichtenlauf ist angefordert – er nimmt den Entwurf sofort." \
+            || echo "::warning::Der Nachrichtenlauf ließ sich nicht anstoßen – der Cron greift."
