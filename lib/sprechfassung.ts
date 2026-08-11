@@ -309,7 +309,12 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   */
   [/\bIM Invests\b/g, 'Ei Emm Inwests'],
   [/\bAlphabet\b/g, 'Ällfabett'],
+  /* Wie bei Berkshire steht die Kurzform hinter der langen: Erst „Goldman
+     Sachs", dann das allein stehende „Goldman" – so, wie es der Nachrichten-
+     text oft schreibt („Goldman warnt vor …"). Umgekehrte Reihenfolge
+     zerlegte den Namen und ließe „Sachs" deutsch stehen. */
   [/\bGoldman Sachs\b/g, 'Goldmänn Sacks'],
+  [/\bGoldman\b/g, 'Goldmänn'],
   [/\bBerkshire Hathaway\b/g, 'Berkschir Häthaweh'],
   [/\bBerkshire\b/g, 'Berkschir'],
   [/\bMorgan Stanley\b/g, 'Morgen Stänli'],
@@ -351,6 +356,15 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bValue\b/g, 'Wällju'],
   [/\bCash\b/g, 'Käsch'],
   [/\bNews\b/g, 'Njuhs'],
+  [/\bMeta\b/g, 'Metta'],
+  [/\bBitcoin\b/g, 'Bittkoin'],
+  [/\bStrategy\b/g, 'Strättedschi'],
+  [/\bMicroStrategy\b/g, 'Meikro-Strättedschi'],
+  [/\bCoinbase\b/g, 'Koinbejs'],
+  [/\bBlackRock\b/g, 'Bläck Rock'],
+  [/\bVanguard\b/g, 'Wängguard'],
+  [/\bHold\b/g, 'Hohld'],
+  [/\bBuy\b/g, 'Bai'],
 ]
 
 /** Setzt die Umschrift der englischen Namen ein – siehe `ENGLISCHE_NAMEN`. */
