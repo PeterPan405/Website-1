@@ -939,6 +939,26 @@ Kaufmannsund umschreibt.
 Wer einen Namen vermisst, trägt ihn dort nach. Deutsche Namen gehören nicht
 hinein – „Siemens" und „Allianz" spricht die Stimme richtig.
 
+#### Der eigene Name war der schlimmste Fall
+
+„IM" ist im Deutschen ein Wort. Die Stimme las „das Marktupdate von IM
+Invests" deshalb als „vom **im** Invests" – zwei Buchstaben, die die Marke
+tragen sollen, verschluckt zu einer Präposition. Und „iminvests punkt de" kam
+als ein einziges deutsches Wort heraus.
+
+Beides fiel jeden Morgen zweimal, in Begrüßung und Abschluss, und niemandem
+auf – bis der Betreiber es am 11. August hörte.
+
+Gesprochen wird die Marke jetzt englisch und buchstabiert: **„Ei Emm
+Inwests"**, die Adresse als „Ei Emm Inwests punkt de". Zwei Dinge gehören
+dazu:
+
+- Das Muster steht **groß und ohne `i`-Schalter**. Ein unempfindliches
+  `\bIM\b` träfe jedes deutsche „im" – ein Test hält beides fest.
+- Begrüßung und Abschluss stehen im Code weiter als „IM Invests" und laufen
+  durch `englischeNamenSprechbar()`. Eine fertige Lautschrift an drei Stellen
+  im Quelltext ginge beim nächsten Mal auseinander.
+
 ### Die Prüfung gibt es genau einmal
 
 `stimme-erzeugen.py` hatte seine eigene Fassung von `brauchbar()`. Das war als

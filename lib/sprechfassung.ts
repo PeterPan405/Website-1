@@ -295,6 +295,19 @@ function zahlAlsSprechform(ganz: string, nachkomma?: string): string {
  * auffällt – gehört, nicht vermutet.
  */
 const ENGLISCHE_NAMEN: [RegExp, string][] = [
+  /*
+    Der eigene Name zuerst, und er ist der wichtigste Eintrag der Tabelle:
+    Er fällt in jeder Folge zweimal, in Begrüßung und Abschluss.
+
+    „IM" ist im Deutschen ein Wort. Die Stimme las „das Marktupdate von IM
+    Invests" also als „vom im Invests" – zwei Buchstaben, die eine Marke
+    tragen sollen, verschluckt zu einer Präposition. Gesprochen wird die
+    Marke englisch, Buchstabe für Buchstabe: „Ei Emm Inwests".
+
+    Deshalb steht das Muster **gross** und ohne `i`-Schalter: Ein
+    unempfindliches `\bIM\b` träfe jedes deutsche „im".
+  */
+  [/\bIM Invests\b/g, 'Ei Emm Inwests'],
   [/\bAlphabet\b/g, 'Ällfabett'],
   [/\bGoldman Sachs\b/g, 'Goldmänn Sacks'],
   [/\bBerkshire Hathaway\b/g, 'Berkschir Häthaweh'],
@@ -366,7 +379,9 @@ export function sprechbar(text: string): string {
   s = englischeNamenSprechbar(s)
 
   s = s.replaceAll(/S&P[  ]?500/g, 'S und P fünfhundert')
-  s = s.replaceAll(/\biminvests\.de\b/gi, 'iminvests punkt de')
+  /* Die eigene Adresse ist die Marke plus Endung – siehe `ENGLISCHE_NAMEN`.
+     „iminvests punkt de" las die Stimme als ein einziges deutsches Wort. */
+  s = s.replaceAll(/\biminvests\.de\b/gi, 'Ei Emm Inwests punkt de')
   s = s.replaceAll(/\b(?:www\.)?([a-z0-9-]+)\.(de|com|net)\b/gi, '$1 punkt $2')
 
   /*
@@ -674,8 +689,13 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     mit genau den drei Themen darin. Er passt, weil er für dieselbe Aufgabe
     geschrieben wurde.
   */
+  /* Der Markenname geht durch dieselbe Umschrift wie jeder andere englische
+     Name – nicht als fertige Lautschrift hier hineingeschrieben. Sonst
+     stünde er an zwei Stellen und ginge beim nächsten Mal auseinander. */
   const einstieg =
-    `Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests. ` +
+    englischeNamenSprechbar(
+      `Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests. `
+    ) +
     `Heute ist ${WOCHENTAGE[wochentag]}, der ${ordnungszahl(tag)} ${MONATE[monat - 1]} ` +
     `${zahlwort(jahr)}. ${sprechbar(edition.intro)}`
 
@@ -695,8 +715,9 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     Seither erscheint die Folge täglich, und der Satz wäre eine Ankündigung,
     die nicht eintrifft: Am Samstag früh steht die nächste da.
   */
-  const abschluss =
-    'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf iminvests punkt de. Bis morgen früh und viel Erfolg.'
+  const abschluss = englischeNamenSprechbar(
+    'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf IM Invests punkt de. Bis morgen früh und viel Erfolg.'
+  )
 
   /*
     Erst alles mit Einordnung, dann von hinten kürzen: zuerst verlieren die
