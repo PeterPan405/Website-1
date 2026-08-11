@@ -348,6 +348,93 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     return funde
 
 
+#: Wie lang die Blende ist, mit der eine gedämpfte Stelle ein- und ausgeblendet
+#: wird. Ein harter Schnitt auf null knackt; dreißig Millisekunden hört man als
+#: Pause, nicht als Fehler.
+BLENDE_S = 0.03
+
+
+def stellen_daempfen(audio, rate: int, stellen: list[tuple[float, float, str]]):
+    """Blendet die gefundenen Stellen auf Stille aus – mit weichen Rändern.
+
+    ## Warum eine Störung nicht bleiben darf, nur weil sie klein ist
+
+    Die Stellen, die `auffaellige_stellen` findet, sind keine Sprache: Wo eine
+    halbe Sekunde Pfeifen steht, steht keine halbe Sekunde Wort mehr. Das Wort
+    ist bereits verloren, ob man die Stelle stummschaltet oder nicht.
+
+    Also ist die Wahl nicht „Wort oder Stille", sondern **„Quietschen oder
+    Pause"** – und eine Pause von einer halben Sekunde fällt in einer
+    gesprochenen Folge kaum auf, während ein Pfeifton den Hörer aus dem Text
+    wirft. Genau das hat der Betreiber zweimal an zwei Tagen gemeldet.
+
+    Der Eingriff ist ausdrücklich die **zweite** Verteidigungslinie. Die erste
+    ist, das Stück neu zu sprechen (siehe `Sprecher.sprich`); die ist besser,
+    weil sie den Text rettet. Sie greift nur nicht immer, und was sie
+    durchlässt, darf nicht bis zum Hörer durchlaufen.
+    """
+    import numpy as np
+
+    ton = np.asarray(audio, dtype=np.float32).copy().reshape(-1)
+    blende = max(1, int(BLENDE_S * rate))
+
+    for von, bis, _ in stellen:
+        i0 = max(0, int(von * rate))
+        i1 = min(len(ton), int(bis * rate))
+        if i1 <= i0:
+            continue
+        ton[i0:i1] = 0.0
+        # Ausblenden davor, einblenden danach – nur so weit, wie Ton da ist.
+        vor = min(blende, i0)
+        if vor:
+            ton[i0 - vor : i0] *= np.linspace(1.0, 0.0, vor, dtype=np.float32)
+        nach = min(blende, len(ton) - i1)
+        if nach:
+            ton[i1 : i1 + nach] *= np.linspace(0.0, 1.0, nach, dtype=np.float32)
+
+    return ton
+
+
+def nachbessern(audio, rate: int, melde=print):
+    """Sieht die **fertige** Aufnahme durch und dämpft, was noch stört.
+
+    ## Warum das an der zusammengefügten Folge hängt und nicht am Stück
+
+    Weil das Stück nicht das ist, was jemand hört. Am 11. August 2026 hat die
+    Prüfung beim Sprechen einen Anlauf verworfen und neu gesprochen – sie war
+    also wach und tat ihre Arbeit. In der fertigen Folge stand trotzdem bei
+    4:08 eine halbe Sekunde Rauschen, und derselbe Maßstab fand sie
+    hinterher auf Anhieb.
+
+    Das ist dieselbe Lehre wie beim doppelten Video: **Ein Riegel ist so gut
+    wie die Quelle, die er fragt.** Wer wissen will, ob die Folge sauber ist,
+    fragt die Folge – nicht eines ihrer fünfundzwanzig Vorprodukte.
+
+    Der Unterschied ist nicht bloß theoretisch: `auffaellige_stellen` misst
+    „laut" am lauten Teil des Betrachteten selbst. In einem einzelnen, ohnehin
+    leisen Stück kann eine Störung unter dieser Schwelle bleiben; im Ganzen,
+    gegen den Pegel der ganzen Folge gemessen, liegt sie darüber.
+    """
+    funde = auffaellige_stellen(audio, rate)
+    if not funde:
+        melde("Nachprüfung der fertigen Aufnahme: nichts zu beanstanden.")
+        return audio, 0
+
+    melde(f"::warning::{len(funde)} Stelle(n) klingen nicht nach Sprache – werden gedämpft:")
+    for von, bis, grund in funde:
+        melde(f"  {int(von) // 60}:{int(von) % 60:02d}–{int(bis) // 60}:{int(bis) % 60:02d}  {grund}")
+
+    gebessert = stellen_daempfen(audio, rate, funde)
+
+    # Gegenprobe: Was nach dem Eingriff noch dasteht, ist eine Lücke im
+    # Verfahren und gehört ins Protokoll – nicht verschwiegen.
+    rest = auffaellige_stellen(gebessert, rate)
+    if rest:
+        melde(f"::warning::Nach dem Dämpfen bleiben {len(rest)} Stelle(n) auffällig.")
+
+    return gebessert, len(funde)
+
+
 def brauchbar(stueck: str, audio, rate: int) -> str | None:
     """Sagt, warum ein gesprochenes Stück unbrauchbar aussieht – oder nichts.
 
@@ -577,11 +664,33 @@ def selbsttest(melde=print) -> int:
         zeichen = "OK  " if ok else "FEHL"
         melde(f"  {zeichen} {name}: {grund or 'nichts zu beanstanden'}")
 
+    # Und die Nachbesserung: Was gefunden wird, muss danach weg sein. Eine
+    # Reparatur, die man nicht nachmisst, ist eine Behauptung.
+    gebessert, anzahl = nachbessern(pfeifen, rate, melde=lambda _: None)
+    if anzahl == 0 or auffaellige_stellen(gebessert, rate):
+        schief += 1
+        melde("  FEHL Nachbesserung: die Störung steht nach dem Dämpfen noch da.")
+    else:
+        melde(f"  OK   Nachbesserung: {anzahl} Stelle(n) gedämpft, danach sauber.")
+
+    # Die Nachbesserung darf saubere Aufnahmen nicht anfassen.
+    import numpy as np
+
+    sauber = _probeton(30, rate, 11)
+    unberuehrt, anzahl_sauber = nachbessern(sauber, rate, melde=lambda _: None)
+    if anzahl_sauber or not np.array_equal(np.asarray(unberuehrt), np.asarray(sauber)):
+        schief += 1
+        melde("  FEHL Nachbesserung: eine saubere Aufnahme wurde verändert.")
+    else:
+        melde("  OK   Nachbesserung: saubere Aufnahme bleibt unangetastet.")
+
+    gesamt = len(faelle) + 2
+
     if schief:
-        melde(f"::error::{schief} von {len(faelle)} Fällen falsch beurteilt.")
+        melde(f"::error::{schief} von {gesamt} Fällen falsch beurteilt.")
         return 1
 
-    melde(f"Selbsttest der Tonprüfung: {len(faelle)} von {len(faelle)} richtig.")
+    melde(f"Selbsttest der Tonprüfung: {gesamt} von {gesamt} richtig.")
     return 0
 
 

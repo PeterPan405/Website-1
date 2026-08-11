@@ -66,7 +66,28 @@ pruefe(
   'sechsundzwanzigtausendachtundsechzig Komma vier fünf Punkte'
 )
 pruefe('S&P 500', sprechbar('Der S&P 500 stieg.'), 'Der S und P fünfhundert stieg.')
-pruefe('Webadresse', sprechbar('auf iminvests.de'), 'auf iminvests punkt de')
+/*
+  Die eigene Adresse ist der eigene Name plus Endung, und beides wird
+  englisch gesprochen. „iminvests punkt de" las die Stimme als ein einziges
+  deutsches Wort – gemeldet vom Betreiber am 11. August 2026 beim Hören des
+  Abschlusssatzes, der ihn jeden Morgen enthält.
+*/
+pruefe('Webadresse', sprechbar('auf iminvests.de'), 'auf Ei Emm Inwests punkt de')
+pruefe(
+  'Der eigene Name wird englisch gesprochen',
+  sprechbar('Das Marktupdate von IM Invests.'),
+  'Das Marktupdate von Ei Emm Inwests.'
+)
+/*
+  Und die Umschrift darf kein deutsches „im" anfassen. Ein `\bIM\b` ohne
+  Gross-/Kleinschreibung hätte genau das getan – deshalb steht die Probe hier
+  und nicht nur die Regel dort.
+*/
+pruefe(
+  'Das deutsche „im" bleibt unberührt',
+  sprechbar('Der Kurs stieg im Handel am Vormittag.'),
+  'Der Kurs stieg im Handel am Vormittag.'
+)
 pruefe(
   'Uhrzeit verbraucht ein folgendes „Uhr“',
   sprechbar('Um 01:22 Uhr lief die Meldung.'),
@@ -132,7 +153,7 @@ const folge = baueFolge(edition)
 pruefe(
   'Sprechtext beginnt mit der festen Begrüßung',
   folge.sprechtext.startsWith(
-    'Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests.'
+    'Guten Morgen und herzlich willkommen zum Marktupdate von Ei Emm Inwests.'
   ),
   true
 )
