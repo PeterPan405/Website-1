@@ -234,3 +234,170 @@ export async function instagramBild(edition: DailyEdition): Promise<Buffer> {
 
   return Buffer.from(await antwort.arrayBuffer())
 }
+
+/**
+ * Eine Folgekachel des Karussells – eine Meldung, ausführlich.
+ *
+ * ## Warum das Karussell und nicht ein Bild
+ *
+ * Die Titelkachel nennt drei Schlagzeilen und sonst nichts. Das reicht, um im
+ * Vorbeiscrollen aufzufallen, und nicht, um etwas zu lernen – und Letzteres
+ * ist der Zweck dieser Website. Jede Folgekachel nimmt deshalb **eine**
+ * Meldung und stellt daneben, was der Leser damit anfängt: `whyItMatters`,
+ * derselbe Satz, der auf der Nachrichtenseite die Rubrik trägt.
+ *
+ * ## Warum die Nummer aufs Bild gehört
+ *
+ * Weil ein Karussell von außen nicht zeigt, wie viele Kacheln folgen. „2 von
+ * 4" ist die Einladung weiterzuwischen; ohne sie hört der Leser nach der
+ * ersten auf.
+ */
+export async function instagramMeldungsbild(
+  meldung: EditionItem,
+  nummer: number,
+  gesamt: number
+): Promise<Buffer> {
+  const streifen = [NAVY, GRAU, GRUEN, ROT]
+  const farbe = streifen[(nummer - 1) % streifen.length]
+
+  const antwort = new ImageResponse(
+    <div
+      style={{
+        width: IG_BREITE,
+        height: IG_HOEHE,
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: '#ffffff',
+        padding: '72px 72px 0',
+        fontFamily: 'sans-serif',
+      }}
+    >
+      {/* Kopf: Rubrik links, Zählung rechts. */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingTop: 20,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 28,
+            color: farbe,
+            letterSpacing: 3,
+            textTransform: 'uppercase',
+            fontWeight: 700,
+          }}
+        >
+          {meldung.category}
+        </div>
+        <div style={{ display: 'flex', fontSize: 28, color: GRAU }}>
+          {nummer} von {gesamt}
+        </div>
+      </div>
+
+      {/* Der Farbstrich als Trenner – dasselbe Motiv wie auf der Titelkachel. */}
+      <div
+        style={{
+          display: 'flex',
+          height: 8,
+          width: 160,
+          backgroundColor: farbe,
+          borderRadius: 4,
+          marginTop: 28,
+        }}
+      />
+
+      {/* Die Schlagzeile. Grosszügiger als auf der Titelkachel: Hier steht
+            nur diese eine, also darf sie den Platz haben. */}
+      <div
+        style={{
+          display: 'flex',
+          fontSize: 68,
+          lineHeight: 1.18,
+          color: '#0f172a',
+          fontWeight: 700,
+          marginTop: 44,
+        }}
+      >
+        {aufsBild(meldung.headline, 120)}
+      </div>
+
+      {/* Was der Leser damit anfängt. Der eigentliche Grund für die Kachel. */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginTop: 48,
+          flexGrow: 1,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 24,
+            color: GRAU,
+            letterSpacing: 2,
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}
+        >
+          Was daraus folgt
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 38,
+            lineHeight: 1.42,
+            color: '#334155',
+          }}
+        >
+          {aufsBild(meldung.whyItMatters, 300)}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          paddingBottom: 34,
+        }}
+      >
+        <div style={{ display: 'flex', fontSize: 40, fontWeight: 700, color: NAVY }}>
+          iminvests.de
+        </div>
+        <div style={{ display: 'flex', fontSize: 26, color: GRAU }}>
+          Keine Anlageberatung
+        </div>
+      </div>
+      <div style={{ display: 'flex', height: 18, marginLeft: -72, marginRight: -72 }}>
+        {streifen.map((f) => (
+          <div key={f} style={{ display: 'flex', flexGrow: 1, backgroundColor: f }} />
+        ))}
+      </div>
+    </div>,
+    { width: IG_BREITE, height: IG_HOEHE }
+  )
+
+  return Buffer.from(await antwort.arrayBuffer())
+}
+
+/**
+ * Das ganze Karussell: Titelkachel, dann je eine Kachel pro Meldung.
+ *
+ * Instagram nimmt bis zu zehn Bilder je Beitrag. Die Grenze ist hier nicht
+ * die Zahl, sondern die Geduld: Nach der Titelkachel und drei Meldungen ist
+ * gesagt, was zu sagen ist – der Rest steht auf der Website, und genau
+ * dorthin soll der Beitrag führen.
+ */
+export async function instagramKarussell(edition: DailyEdition): Promise<Buffer[]> {
+  const meldungen = bildmeldungen(edition)
+  const bilder = [await instagramBild(edition)]
+  for (const [i, meldung] of meldungen.entries()) {
+    bilder.push(await instagramMeldungsbild(meldung, i + 1, meldungen.length))
+  }
+  return bilder
+}
