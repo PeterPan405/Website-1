@@ -73,7 +73,16 @@ pruefe('S&P 500', sprechbar('Der S&P 500 stieg.'), 'Der S und P fünfhundert sti
   deutsches Wort – gemeldet vom Betreiber am 11. August 2026 beim Hören des
   Abschlusssatzes, der ihn jeden Morgen enthält.
 */
-pruefe('Webadresse', sprechbar('auf iminvests.de'), 'auf Ei Emm Inwests punkt de')
+pruefe(
+  'Webadresse – die Endung wird buchstabiert',
+  sprechbar('auf iminvests.de'),
+  'auf Ei Emm Inwests punkt Deh Eh'
+)
+pruefe(
+  'Fremde Adressen genauso',
+  sprechbar('Quelle: reuters.com'),
+  'Quelle: reuters punkt Zeh Oh Emm'
+)
 pruefe(
   'Der eigene Name wird englisch gesprochen',
   sprechbar('Das Marktupdate von IM Invests.'),

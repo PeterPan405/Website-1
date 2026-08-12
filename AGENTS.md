@@ -55,6 +55,30 @@ Zu jedem Tag gehört eine Datei `data/editions/JJJJ-MM-TT.ts`, eingetragen in
 `/news/tag/<datum>` und damit in der Bibliothek. Mindestens eine Top-Meldung,
 mindestens drei insgesamt, `intro` zwischen 110 und 165 Zeichen.
 
+## Was heute ansteht, gehört in die Ausgabe
+
+**Mindestens ein Artikel oder Absatz nennt die Termine des Tages** – konkret,
+mit Uhrzeit, wo sie in den Quellen steht:
+
+- **Konjunkturdaten**: Verbraucherpreise, Erzeugerpreise, Arbeitsmarkt,
+  Einkaufsmanagerindizes, BIP, ifo, ZEW
+- **Notenbanken**: Zinsentscheid, Protokolle, Reden mit Marktrelevanz
+- **Quartalszahlen der großen Werte** – DAX-Konzerne und die bekannten
+  US-Namen. Ein Mittelständler ohne Indexgewicht gehört nicht dazu.
+
+Der Betreiber hat das am 11. August 2026 gewünscht, nachdem in der Folge ein
+Hinweis auf die anstehenden Verbraucherpreise stand: **Genau das macht den
+Unterschied zwischen einem Rückblick und etwas, mit dem der Leser in den Tag
+geht.**
+
+Die Anweisung steht an beiden Stellen, an denen geschrieben wird – im Prompt
+von `scripts/nachrichten-erzeugen.ts` und im Agentenprompt in
+`nachrichten-agent.yml`. Wer eine ändert, ändert beide.
+
+**Nur, was in den Quellen steht.** Ein Termin, den niemand gelesen hat, ist
+eine erfundene Zahl mit Datum – der Grundsatz „keine erfundenen Meldungen"
+gilt hier genauso. Findet sich keiner, bleibt er weg.
+
 ## Umfang und Mischung
 
 Die Vortage sind der Maßstab: **fünf bis zehn Artikel aus mehreren Quellen zu
@@ -1000,6 +1024,21 @@ muss bei „Frühling", „Zwilling", „Lehrling", „Wachstum" und „Mythos"
 schweigen – und **bei allem, was die Tabelle schon umschreibt.** Ein Melder,
 der jeden Tag dieselben Wörter anzeigt, wird nach einer Woche überlesen; das
 ist dieselbe Rechnung wie beim roten Lauf, der zum Rauschen wird.
+
+#### Die Endung einer Adresse wird buchstabiert
+
+„punkt de" sprach die Stimme als Silbe – irgendwo zwischen „deh" und „die",
+und im Ohr war es weder Wort noch Endung. Seit dem 11. August 2026 heißt es
+**„punkt D E"**, geschrieben als deutsche Buchstabennamen: `punkt Deh Eh`.
+Ein „DE" läse das Modell wieder als Wort.
+
+Die Tabelle `ENDUNG` in `lib/sprechfassung.ts` deckt `.de`, `.com` und `.net`
+ab und gilt für **jede** Adresse, nicht nur die eigene – auch „reuters punkt
+Zeh Oh Emm".
+
+Der Abschlusssatz trägt die Adresse deshalb als Adresse und nicht als fertige
+Lautschrift; `sprechbar()` macht daraus, was zu sprechen ist. Sonst stünde die
+Aussprache an zwei Stellen und ginge beim nächsten Mal auseinander.
 
 #### Der eigene Name war der schlimmste Fall
 

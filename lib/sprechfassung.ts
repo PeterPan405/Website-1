@@ -446,6 +446,22 @@ export function englischeNamenSprechbar(text: string): string {
 }
 
 /*
+  Die Endung einer Webadresse wird **buchstabiert**, nicht gelesen.
+
+  „punkt de" sprach die Stimme als Silbe – irgendetwas zwischen „deh" und
+  „die", und im Ohr war es kein Wort und keine Endung. Gemeldet hat es der
+  Betreiber am 11. August 2026: gesprochen gehört „punkt D E".
+
+  Geschrieben wird das als die deutschen Buchstabennamen. „Deh Eh" liest das
+  Modell als zwei Laute; ein „DE" läse es als Wort.
+*/
+const ENDUNG = {
+  de: 'punkt Deh Eh',
+  com: 'punkt Zeh Oh Emm',
+  net: 'punkt Enn Eh Teh',
+} as const
+
+/*
   Formen, die im Deutschen praktisch nur bei englischen Wörtern vorkommen.
   Bewusst wenige und enge Muster: Ein Melder, der jeden Tag zehn harmlose
   Wörter anzeigt, wird nach einer Woche überlesen – dieselbe Rechnung wie
@@ -534,8 +550,12 @@ export function sprechbar(text: string): string {
   s = s.replaceAll(/S&P[  ]?500/g, 'S und P fünfhundert')
   /* Die eigene Adresse ist die Marke plus Endung – siehe `ENGLISCHE_NAMEN`.
      „iminvests punkt de" las die Stimme als ein einziges deutsches Wort. */
-  s = s.replaceAll(/\biminvests\.de\b/gi, 'Ei Emm Inwests punkt de')
-  s = s.replaceAll(/\b(?:www\.)?([a-z0-9-]+)\.(de|com|net)\b/gi, '$1 punkt $2')
+  s = s.replaceAll(/\biminvests\.de\b/gi, `Ei Emm Inwests ${ENDUNG.de}`)
+  s = s.replaceAll(
+    /\b(?:www\.)?([a-z0-9-]+)\.(de|com|net)\b/gi,
+    (_, name: string, endung: string) =>
+      `${name} ${ENDUNG[endung.toLowerCase() as keyof typeof ENDUNG]}`
+  )
 
   /*
     Uhrzeiten: „07:04“ → „sieben Uhr vier“, „09:00“ → „neun Uhr“. Ein
@@ -868,8 +888,11 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     Seither erscheint die Folge täglich, und der Satz wäre eine Ankündigung,
     die nicht eintrifft: Am Samstag früh steht die nächste da.
   */
-  const abschluss = englischeNamenSprechbar(
-    'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf IM Invests punkt de. Bis morgen früh und viel Erfolg.'
+  /* Die Adresse steht hier als Adresse und nicht als fertige Lautschrift –
+     `sprechbar` macht daraus „Ei Emm Inwests punkt Deh Eh". Sonst stünde die
+     Aussprache an zwei Stellen und ginge beim nächsten Mal auseinander. */
+  const abschluss = sprechbar(
+    'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf iminvests.de. Bis morgen früh und viel Erfolg.'
   )
 
   /*
