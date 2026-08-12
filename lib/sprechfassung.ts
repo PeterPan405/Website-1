@@ -320,7 +320,24 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bMorgan Stanley\b/g, 'Morgen Stänli'],
   [/\bJPMorgan\b/g, 'Dschej-Pi-Morgen'],
   [/\bBank of America\b/g, 'Bänk of Amerika'],
-  [/\bWall Street\b/g, 'Wohl Striet'],
+  /*
+    Zwei Fallen, die die deutsche Rechtschreibung stellt – und beide sind
+    dem Betreiber am 11. August 2026 im Ohr aufgefallen:
+
+    1. **„st" am Wortanfang ist /scht/.** „Striet" las die Stimme als
+       „Schtriet", „Stoxx" als „Schtox". Mitten im Wort gilt das nicht:
+       In „Fenster" und „Liste" ist es sauberes /st/. Deshalb werden die
+       Bestandteile **zusammengeschrieben** – aus zwei Wörtern wird eines,
+       und die Falle ist weg.
+    2. **„W" am Wortanfang ist /v/.** Aus „Wohl Striet" wurde damit
+       „Vohl Schtriet". Für den englischen /w/-Laut steht „U".
+
+    „Wall Street" hieß deshalb bis dahin „Wohl Striet" und traf beide Fallen
+    auf einmal. Wer hier etwas ergänzt, prüft beide.
+  */
+  [/\bWall Street\b/g, 'Uallstriet'],
+  [/\bEuro[ -]?Sto(?:xx|cks)\b/gi, 'Eurostocks'],
+  [/\bSto(?:xx|cks) Europe\b/gi, 'Stocks Juropp'],
   [/\bNvidia\b/gi, 'Enwidia'],
   [/\bTesla\b/g, 'Tessla'],
   [/\bAmazon\b/g, 'Ämmazon'],
@@ -334,7 +351,7 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bHome Depot\b/g, 'Hohm Diepoh'],
   [/\bCharles Schwab\b/g, 'Tscharls Schwobb'],
   [/\bJensen Huang\b/g, 'Dschensen Huang'],
-  [/\bWarren Buffett\b/g, 'Woren Baffett'],
+  [/\bWarren Buffett\b/g, 'Uoren Baffett'],
   [/\bBuffett\b/g, 'Baffett'],
   [/\bJefferies\b/g, 'Dschefferis'],
   [/\bBitwise\b/g, 'Bittweiß'],
@@ -446,6 +463,22 @@ export function englischeNamenSprechbar(text: string): string {
 }
 
 /*
+  Die Endung einer Webadresse wird **buchstabiert**, nicht gelesen.
+
+  „punkt de" sprach die Stimme als Silbe – irgendetwas zwischen „deh" und
+  „die", und im Ohr war es kein Wort und keine Endung. Gemeldet hat es der
+  Betreiber am 11. August 2026: gesprochen gehört „punkt D E".
+
+  Geschrieben wird das als die deutschen Buchstabennamen. „Deh Eh" liest das
+  Modell als zwei Laute; ein „DE" läse es als Wort.
+*/
+const ENDUNG = {
+  de: 'punkt Deh Eh',
+  com: 'punkt Zeh Oh Emm',
+  net: 'punkt Enn Eh Teh',
+} as const
+
+/*
   Formen, die im Deutschen praktisch nur bei englischen Wörtern vorkommen.
   Bewusst wenige und enge Muster: Ein Melder, der jeden Tag zehn harmlose
   Wörter anzeigt, wird nach einer Woche überlesen – dieselbe Rechnung wie
@@ -534,8 +567,12 @@ export function sprechbar(text: string): string {
   s = s.replaceAll(/S&P[  ]?500/g, 'S und P fünfhundert')
   /* Die eigene Adresse ist die Marke plus Endung – siehe `ENGLISCHE_NAMEN`.
      „iminvests punkt de" las die Stimme als ein einziges deutsches Wort. */
-  s = s.replaceAll(/\biminvests\.de\b/gi, 'Ei Emm Inwests punkt de')
-  s = s.replaceAll(/\b(?:www\.)?([a-z0-9-]+)\.(de|com|net)\b/gi, '$1 punkt $2')
+  s = s.replaceAll(/\biminvests\.de\b/gi, `Ei Emm Inwests ${ENDUNG.de}`)
+  s = s.replaceAll(
+    /\b(?:www\.)?([a-z0-9-]+)\.(de|com|net)\b/gi,
+    (_, name: string, endung: string) =>
+      `${name} ${ENDUNG[endung.toLowerCase() as keyof typeof ENDUNG]}`
+  )
 
   /*
     Uhrzeiten: „07:04“ → „sieben Uhr vier“, „09:00“ → „neun Uhr“. Ein
@@ -868,8 +905,11 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     Seither erscheint die Folge täglich, und der Satz wäre eine Ankündigung,
     die nicht eintrifft: Am Samstag früh steht die nächste da.
   */
-  const abschluss = englischeNamenSprechbar(
-    'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf IM Invests punkt de. Bis morgen früh und viel Erfolg.'
+  /* Die Adresse steht hier als Adresse und nicht als fertige Lautschrift –
+     `sprechbar` macht daraus „Ei Emm Inwests punkt Deh Eh". Sonst stünde die
+     Aussprache an zwei Stellen und ginge beim nächsten Mal auseinander. */
+  const abschluss = sprechbar(
+    'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf iminvests.de. Bis morgen früh und viel Erfolg.'
   )
 
   /*

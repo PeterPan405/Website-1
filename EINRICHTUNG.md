@@ -267,92 +267,149 @@ aussieht und keines ist.
 
 ---
 
-### 3.2 Instagram vorbereiten (5 Minuten)
+### 3.2 Instagram vorbereiten (10 Minuten)
 
-> **Vorbemerkung, aus Schaden klug:** Meta benennt seine Menüs mehrmals im
-> Jahr um, und die Beschriftungen unterscheiden sich zwischen App, Browser,
-> iOS und Android. Diese Anleitung nannte anfangs Menüpfade, die es so nicht
-> gab – das kostet Zeit und sät Zweifel an der Sache selbst.
+> **Zur Vorsicht mit Menünamen.** Meta benennt Menüs mehrmals im Jahr um, und
+> die Beschriftungen unterscheiden sich zwischen App, Browser, iOS und
+> Android. Diese Anleitung nannte deshalb eine Zeit lang **gar keine**
+> Klickwege, nur Erkennungsmerkmale – und war damit an der Stelle unbrauchbar,
+> an der man sie am dringendsten braucht.
 >
-> Deshalb steht hier ab jetzt **jeweils das sichtbare Kennzeichen** statt des
-> Klickwegs: woran man erkennt, dass es stimmt. Wo es geht, folgt eine
-> **Abfrage**, die ohne jedes Menü auskommt.
+> Ab hier steht deshalb beides: **der Klickweg, Stand August 2026**, und
+> daneben **woran man erkennt, dass es geklappt hat**. Weicht das Menü ab,
+> gilt das Erkennungsmerkmal – und die verbindliche Antwort gibt ohnehin erst
+> die Abfrage in 3.5.
 
-**a) Profikonto – woran man es erkennt**
+#### a) Aus dem privaten ein professionelles Konto machen
 
-Ein umgestelltes Konto zeigt in den Instagram-Einstellungen einen Abschnitt
-**„Für Profis"** mit dem Eintrag **„Professionelles Konto"** und einer
-Kategorie darunter (etwa „Unternehmer/in"). Im Profil selbst gibt es
-zusätzlich **„Professionelles Dashboard"** und **„Statistiken ansehen"** –
-beides existiert bei einem privaten Konto nicht.
+**In der Instagram-App** (das geht am Telefon, im Browser nicht zuverlässig):
 
-Steht das da, ist a) erledigt. Ob **Creator** oder **Business** gewählt
-wurde, ist für die Schnittstelle ohne Bedeutung; beides veröffentlicht.
+1. Unten rechts auf Ihr **Profilbild** – Sie sind auf Ihrem Profil.
+2. Oben rechts auf die **drei waagerechten Striche** (☰).
+3. **Einstellungen und Privatsphäre**.
+4. Ganz nach unten scrollen bis zum Abschnitt **Für Profis**.
+5. **Kontotyp und Tools** → **Auf professionelles Konto umstellen**.
+6. Instagram fragt nach einer **Kategorie**. Nehmen Sie
+   **Finanzdienstleistung** oder **Wirtschafts- und Finanzwebsite**. Die
+   Kategorie ist später frei änderbar und für die Schnittstelle bedeutungslos.
+7. Bei der Frage **Unternehmen oder Creator**: **Unternehmen**. Beides
+   funktioniert, aber „Unternehmen" führt direkter zur Seitenverknüpfung.
 
-Fehlt es, führt die Suche in den Instagram-Einstellungen nach dem Wort
-**„professionell"** zur Umstellung – zuverlässiger als jeder Pfad, den man
-aufschreiben könnte.
+> **Wenn Sie den Punkt „Für Profis" nicht finden:** In den Einstellungen gibt
+> es oben ein **Suchfeld**. Tippen Sie dort `professionell` ein – das findet
+> den Eintrag unabhängig davon, wie das Menü gerade heißt.
 
-**b) Facebook-Seite – und warum sie hier nicht geprüft wird**
+**Woran Sie erkennen, dass es geklappt hat:**
 
-Gebraucht wird eine Facebook-**Seite**, nicht das Facebook-Profil. Eine
-Seite ist ein eigenes Objekt mit eigener Kennung; das persönliche Profil hat
-keine und trägt deshalb auch kein Instagram-Konto.
+- Auf Ihrem Profil steht jetzt ein Knopf **Professionelles Dashboard**.
+- In den Einstellungen gibt es **Statistiken** oder **Insights**.
+- Unter Ihrem Namen im Profil steht die gewählte **Kategorie**.
 
-Gibt es noch keine: Facebook im Browser, Bereich **Seiten**, **Neue Seite
-erstellen**, Name (etwa „IM Invests"), Kategorie (etwa
-„Finanzdienstleistung"). Die Seite muss danach **nicht** gepflegt werden –
-kein Bild, kein Beitrag, keine Follower. Sie ist ein Scharnier.
+Alle drei fehlen bei einem privaten Konto.
 
-**Ob die Verknüpfung zwischen Seite und Instagram-Konto steht, wird hier
-bewusst nicht über ein Menü geprüft.** Die Verknüpfung lässt sich an drei
-verschiedenen Stellen setzen – im Konten-Center, in den Einstellungen der
-Facebook-Seite, im professionellen Dashboard – und keine davon heißt
-zuverlässig gleich. Auch ein Häkchen an einer dieser Stellen ist kein
-Beweis: Entscheidend ist, was die Schnittstelle sieht.
+#### b) Eine Facebook-Seite anlegen
 
-> **Die verbindliche Probe ist eine einzige Abfrage**, und sie steht in
-> **3.5 a**: `me/accounts` im Graph API Explorer. Kommt dort eine Seite mit
-> `name` und `id` zurück, steht alles. Kommt `{"data": []}`, fehlt die Seite
-> oder die Verknüpfung – dann, und erst dann, lohnt die Suche im Menü.
->
-> Dafür wird die App aus 3.3 gebraucht. **Also: 3.3 anlegen, dann 3.5 a
-> abfragen.** Wer hier stehenbleibt und sucht, sucht ohne Messgerät.
+Gebraucht wird eine **Seite**, nicht Ihr Facebook-Profil. Der Unterschied ist
+technisch: Eine Seite hat eine eigene Kennung, ein persönliches Profil nicht –
+und nur an einer Kennung kann ein Instagram-Konto hängen.
+
+Direkter Weg, am Rechner:
+
+```
+https://www.facebook.com/pages/create
+```
+
+1. **Name**: `IM Invests`
+2. **Kategorie**: tippen Sie `Finanz` und wählen Sie
+   **Finanzdienstleistung** aus der Vorschlagsliste.
+3. **Seite erstellen**.
+4. Alles Weitere, was Facebook anbietet – Profilbild, Titelbild, Beschreibung,
+   Freunde einladen –, können Sie **überspringen**. Die Seite muss nie
+   gepflegt werden und braucht keinen einzigen Beitrag. Sie ist ein Scharnier.
+
+**Woran Sie erkennen, dass es geklappt hat:** Unter
+`https://www.facebook.com/pages/?category=your_pages` steht Ihre neue Seite
+in der Liste.
+
+#### c) Instagram-Konto mit der Seite verknüpfen
+
+**Das ist der Schritt, an dem es meistens hakt** – und der Grund, warum es
+drei Wege dafür gibt. Nehmen Sie den ersten; klappt er nicht, den zweiten.
+
+**Weg 1 – aus der Instagram-App heraus (der zuverlässigste):**
+
+1. Profil → **Profil bearbeiten**.
+2. Abschnitt **Öffentliche Unternehmensinformationen** → **Seite**.
+3. Es erscheint eine Liste Ihrer Facebook-Seiten. **IM Invests** auswählen.
+4. Facebook fragt nach Ihrem Login und nach Bestätigung.
+
+**Weg 2 – über das Konten-Center:**
+
+1. Instagram → ☰ → **Einstellungen und Privatsphäre**.
+2. Ganz oben **Konten-Center** (Meta-Symbol).
+3. **Konten** → **Konten hinzufügen** → **Facebook**.
+
+**Weg 3 – über die Meta Business Suite, am Rechner:**
+
+```
+https://business.facebook.com/latest/settings/instagram_accounts
+```
+
+**Instagram-Konto hinzufügen** → anmelden → bestätigen.
+
+> **Warum hier kein Erkennungsmerkmal steht:** Weil keines trägt. Ein Häkchen
+> an einer dieser drei Stellen heißt nicht, dass die Schnittstelle die
+> Verknüpfung sieht – das ist mehrfach beobachtet worden. **Die einzige
+> verbindliche Probe ist die Abfrage in 3.5 b.** Wenn Sie hier unsicher sind,
+> machen Sie trotzdem mit 3.3 weiter; dort bekommen Sie das Messgerät.
 
 ---
 
 ### 3.3 Die Meta-App anlegen (im Browser, 10 Minuten)
 
-**a) Entwicklerkonto**
+#### a) Als Entwickler anmelden
 
-`developers.facebook.com` → oben rechts **Anmelden** mit dem
-Facebook-Konto. Beim ersten Mal führt Meta durch eine kurze Registrierung
-als Entwickler (Telefonnummer bestätigen).
+```
+https://developers.facebook.com/
+```
 
-**b) App erstellen**
+Oben rechts **Anmelden** mit demselben Facebook-Konto, dem die Seite aus
+3.2 b gehört. Beim allerersten Mal führt Meta durch eine kurze Registrierung
+(Telefonnummer bestätigen, Nutzungsbedingungen).
 
-**Meine Apps** → **App erstellen**.
+#### b) App erstellen
 
-Meta fragt jetzt nach dem Verwendungszweck. Die Bezeichnungen ändern sich
-mehrmals im Jahr; gesucht ist die Option, die **Instagram** nennt – zuletzt
-hieß sie sinngemäß „Andere" → App-Typ **Business**, in neueren Fassungen
-direkt ein Anwendungsfall **Instagram**.
+```
+https://developers.facebook.com/apps/creation/
+```
 
-> **Wenn Sie unsicher sind, welche Option die richtige ist:** Nehmen Sie die
-> mit „Business" oder „Instagram". Beide führen zum Ziel. Was zählt, sind die
-> Berechtigungen in Schritt d – nicht der Name, den die App-Erstellung trägt.
+Meta fragt in dieser Reihenfolge:
 
-App-Name frei wählbar, etwa `IM Invests Veroeffentlichung`. Der Name ist nur
-für Sie sichtbar, solange die App im Entwicklungsmodus bleibt.
+1. **App-Name**: `IM Invests Veroeffentlichung`. Frei wählbar, aber **ohne
+   die Wörter „Instagram", „Facebook" oder „Meta"** – Namen mit Markenbezug
+   werden abgelehnt, und die Meldung dazu ist unauffällig.
+2. **App-Kontakt-E-Mail**: Ihre Adresse.
+3. **Anwendungsfall**: Hier heißt die Option je nach Fassung anders. Suchen
+   Sie die, die **„Andere"** heißt – nicht „Mit Facebook anmelden", nicht
+   „Spiele". Gibt es stattdessen direkt einen Punkt **Instagram**, nehmen Sie
+   den.
+4. **App-Typ**: **Business**.
+5. **Geschäftsportfolio**: Falls gefragt, dürfen Sie **überspringen** oder
+   ein vorhandenes wählen. Für den Entwicklungsmodus ist es ohne Bedeutung.
 
-**c) Produkt hinzufügen**
+#### c) Instagram als Produkt hinzufügen
 
-In der App links **Produkte hinzufügen** → **Instagram** (in älteren
-Fassungen: **Instagram Graph API**) → **Einrichten**.
+Sie sind jetzt im Dashboard der App. Links in der Spalte oder in der Kachelliste:
 
-**d) Berechtigungen**
+**Produkt hinzufügen** → bei **Instagram** auf **Einrichten**.
 
-Diese vier braucht die App:
+In älteren Fassungen heißt das Produkt **Instagram Graph API**. Beides ist
+dasselbe.
+
+#### d) Die vier Berechtigungen
+
+Diese vier braucht die App – gesetzt werden sie erst in 3.4 b beim Erzeugen
+des Tokens, hier zur Übersicht:
 
 | Berechtigung                | Wofür                                        |
 | --------------------------- | -------------------------------------------- |
@@ -362,12 +419,14 @@ Diese vier braucht die App:
 | `pages_read_engagement`     | die Verknüpfung zum Instagram-Konto auslesen |
 
 Die letzten beiden wirken überflüssig, sind es aber nicht: Ohne sie findet
-Schritt 3.5 die Seite nicht, über die das Instagram-Konto hängt.
+3.5 a die Seite nicht, über die das Instagram-Konto hängt.
 
 > **Eine Prüfung durch Meta ist nicht nötig**, solange die App im
-> **Entwicklungsmodus** bleibt und Sie selbst der Administrator des Kontos
-> sind. Genau das ist hier der Fall. Der Menüpunkt „App-Überprüfung" darf
-> also ignoriert werden.
+> **Entwicklungsmodus** bleibt und Sie selbst Administrator des Kontos sind.
+> Genau das ist hier der Fall. Der Menüpunkt **App-Überprüfung** und alles,
+> was nach „Live schalten" aussieht, darf ignoriert werden – im Gegenteil:
+> Eine live geschaltete App verlangt eine Datenschutzerklärung und eine
+> Prüfung durch Meta, die Wochen dauern kann.
 
 ---
 
@@ -384,14 +443,33 @@ verschiedene Tokens** gibt, die alle gleich aussehen.
 
 **a) Graph API Explorer öffnen**
 
-`developers.facebook.com` → oben **Tools** → **Graph API Explorer**.
+```
+https://developers.facebook.com/tools/explorer/
+```
+
+Sie sehen eine zweigeteilte Seite: links ein Abfragefeld mit einem blauen
+**Submit**-Knopf, rechts eine Spalte mit Auswahlfeldern.
 
 **b) App und Berechtigungen wählen**
 
-Rechts oben unter **Meta App** Ihre App auswählen.
+In der **rechten Spalte**, von oben nach unten:
 
-Darunter unter **Berechtigungen** die vier aus 3.3 d anhaken. Sie stehen in
-einer langen Liste; das Suchfeld darüber hilft.
+1. **Meta App**: Ihre App aus 3.3 b auswählen (`IM Invests Veroeffentlichung`).
+2. **User or Page**: **User Token** stehen lassen.
+3. Darunter die Liste **Permissions**. Sie ist sehr lang und nach Bereichen
+   sortiert. Über der Liste ist ein **Suchfeld** – tippen Sie dort nacheinander
+   ein und setzen Sie jeweils den Haken:
+
+   ```
+   instagram_basic
+   instagram_content_publish
+   pages_show_list
+   pages_read_engagement
+   ```
+
+> **Wenn eine der vier nicht in der Liste auftaucht:** Dann ist das Produkt
+> Instagram in 3.3 c nicht hinzugefügt worden. Zurück dorthin – ohne das
+> Produkt bietet Meta die beiden `instagram_*`-Berechtigungen gar nicht an.
 
 **c) Token erzeugen**
 
@@ -413,13 +491,39 @@ das **kurzlebige** Token – es gilt eine Stunde.
 
 **d) Aus kurzlebig wird langlebig**
 
-**Tools** → **Access Token Debugger**. Das Token dort einfügen → **Debug**.
+Kopieren Sie das Token aus dem Feld **Access Token** (Knopf zum Kopieren
+rechts daneben) und öffnen Sie:
 
-Unten auf der Seite: **Extend Access Token**. Nach dem Klick erscheint
-darunter ein **neues** Token. Das ist das langlebige mit 60 Tagen.
+```
+https://developers.facebook.com/tools/debug/accesstoken/
+```
+
+Token in das große Feld einfügen → blauer Knopf **Debug**.
+
+Sie sehen jetzt eine Tabelle mit Zeilen wie **App-ID**, **Typ**, **Läuft ab**,
+**Gültig**, **Berechtigungen**. Prüfen Sie hier gleich zweierlei:
+
+- **Läuft ab** steht auf etwa einer Stunde – das bestätigt, dass es das
+  kurzlebige ist.
+- **Berechtigungen** listet Ihre vier auf. Fehlt eine, war der Haken in b
+  nicht gesetzt; zurück zu 3.4 b, sonst scheitert erst 3.5.
+
+Ganz **unten auf der Seite**, unterhalb der Tabelle, ein grauer Knopf
+**Extend Access Token** (in deutschen Fassungen **Zugriffsschlüssel
+verlängern**). Klicken.
+
+Darunter erscheint ein **neues Feld mit einem neuen Token**. Das ist das
+langlebige mit 60 Tagen.
 
 > **Nehmen Sie das untere, neue.** Das obere ist das alte. Beide sehen gleich
-> aus, und der Unterschied fällt erst 60 Minuten später auf.
+> aus, und der Unterschied fällt erst 60 Minuten später auf – als Beitrag,
+> der ausbleibt.
+>
+> **Gegenprobe, die eine Minute kostet:** Fügen Sie das neue Token noch
+> einmal oben in den Debugger ein und klicken Sie **Debug**. Steht bei
+> **Läuft ab** jetzt ein Datum rund zwei Monate in der Zukunft, ist es das
+> richtige. Steht dort weiter „in etwa einer Stunde", haben Sie das obere
+> erwischt.
 
 Dieses Token ist gleich `IG_ACCESS_TOKEN`.
 
@@ -427,7 +531,18 @@ Dieses Token ist gleich `IG_ACCESS_TOKEN`.
 
 ### 3.5 Die Instagram-Kennung finden (5 Minuten)
 
-Zurück in den **Graph API Explorer**, das langlebige Token oben einfügen.
+Zurück in den Graph API Explorer:
+
+```
+https://developers.facebook.com/tools/explorer/
+```
+
+Das **langlebige** Token aus 3.4 d oben in das Feld **Access Token** einfügen
+– das ersetzt das kurzlebige, das dort noch steht.
+
+Das Abfragefeld darunter besteht aus drei Teilen: dem Verb (**GET**), der
+API-Fassung (etwa **v21.0**) und dem eigentlichen Pfad. **Nur den Pfad
+ändern**, den Rest stehen lassen.
 
 **a) Die Seite finden**
 

@@ -318,6 +318,27 @@ Fünf bis neun Artikel aus **mehreren Quellen zu mehreren Themen**. Lieber fünf
 
 Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`. \`whyItMatters\` ist der eigentliche Zweck der Rubrik – ein Satz darüber, was der Leser damit anfängt.
 
+# Was heute ansteht, gehört hinein
+
+**Mindestens ein Artikel oder Absatz nennt die Termine des Tages** – und zwar
+konkret, mit Uhrzeit, wo sie in den Übersichten steht:
+
+- **Konjunkturdaten**: Verbraucherpreise, Erzeugerpreise, Arbeitsmarkt,
+  Einkaufsmanagerindizes, BIP, ifo, ZEW.
+- **Notenbanken**: Zinsentscheid, Protokolle, Reden mit Marktrelevanz.
+- **Quartalszahlen** der großen Werte – DAX-Konzerne und die bekannten
+  US-Namen. Ein Mittelständler ohne Indexgewicht gehört nicht dazu.
+
+Der Betreiber hat das am 11. August 2026 ausdrücklich gewünscht, nachdem in
+der Folge ein Hinweis auf die anstehenden Verbraucherpreise stand: Genau das
+macht den Unterschied zwischen einem Rückblick und etwas, mit dem der Leser
+in den Tag geht.
+
+**Nur, was in den Übersichten steht.** Ein Termin, den du nicht gelesen hast,
+ist eine erfundene Zahl mit Datum – der Grundsatz oben gilt hier genauso.
+Findest du keinen, lässt du es weg; eine erfundene Terminvorschau wäre der
+schlimmere Fehler.
+
 # Harte Grenzen
 
 - \`teaser\`: ${TEASER_MIN} bis ${TEASER_MAX} Zeichen. Zähle nach.
