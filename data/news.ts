@@ -101,6 +101,399 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-rekord-wall-street-verluste-nahost',
+    title: 'Rekord in Frankfurt, Minus in New York – derselbe Anlass, zwei Reaktionen',
+    metaTitle: 'Dax-Rekord, Wall-Street-Minus: eine Nachricht, zwei Reaktionen',
+    teaser:
+      'Der Dax klettert erstmals über 26.500 Punkte, der Euro Stoxx 50 markiert ein Rekordhoch – die Wall Street schließt trotz derselben Signale im Minus.',
+    category: 'Märkte',
+    publishedAt: '2026-08-12T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dax', 'Euro Stoxx 50', 'Wall Street', 'Indizes'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'euro-stoxx-50', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 11.8.2026, 16:07 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax steigt erstmals über 26.500 Punkte“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 11.8.2026, 16:16 Uhr: „ROUNDUP/Aktien Europa Schluss: EuroStoxx auf Rekordhoch - Nahost-Entspannung“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 11.8.2026: „DAX nach neuem Rekord letztlich höher -- US-Börsen enden leichter“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 12.8.2026, 05:00 Uhr (Dax 26.376,47, +0,19 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag stand für den Dax ein Rekord zu Buche: Erstmals kletterte der deutsche Leitindex über die Marke von 26.500 Punkten, und auch der Euro Stoxx 50 schloss auf einem neuen Höchststand. Am Mittwochmorgen notiert der Dax laut wallstreet-online bei rund 26.376 Punkten – knapp unter dem Rekord, aber weiter auf hohem Niveau.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dieselbe Nachricht, zwei Börsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Getragen wurde der europäische Rekordlauf von Hoffnungen auf eine Entspannung im Nahen Osten, wie es in den Marktberichten vom Dienstagabend heißt. Genau dieselben positiven Signale rund um den Iran-Konflikt sollten laut dpa-AFX auch die Wall Street stützen – taten es aber nicht: Dow Jones, S&P 500, Nasdaq Composite und Nasdaq 100 schlossen den Dienstagshandel allesamt im Minus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Nachricht nicht überall gleich wirkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist kein Widerspruch, sondern zeigt, wie unterschiedlich Indizes auf dieselbe Information reagieren können. Europäische Indizes hängen stärker an der Risikoprämie für den Nahen Osten – insbesondere über den Ölpreis und die Energieversorgung –, während an der Wall Street zusätzlich hausgemachte Themen wie einzelne Quartalszahlen und die Vorfreude auf die US-Inflationsdaten mitspielen. Wer nur die eine Zahl sieht, den Dax-Rekord, verpasst die zweite Hälfte der Geschichte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rekordhoch ist eine Momentaufnahme, kein Urteil über die Weltlage. Dieselbe Nachricht kann zwei Indizes in entgegengesetzte Richtungen bewegen, weil in ihre Kurse jeweils unterschiedliche Erwartungen eingepreist sind.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-china-spread-westen-schneller',
+    title: 'Warum Gold im Westen gerade schneller steigt als in Shanghai',
+    teaser:
+      'Normalerweise kostet Gold in Shanghai mehr als im Westen. Jetzt ist der Aufschlag ins Minus gerutscht – ein Hinweis darauf, wer den Preisanstieg treibt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-12T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'China', 'Rohstoffe', 'Edelmetalle'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Startseite vom 11.8.2026: „Goldmarkt: China-Spread fällt deutlich ins Minus“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise vom 12.8.2026, 04:59 Uhr (Goldpreis 4.411,20 USD, +0,98 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste vom 12.8.2026, 03:01 Uhr (Gold 4.414, +1,0 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Normalerweise ist Gold in Shanghai teurer als im Westen – ein Aufschlag, der aus der starken chinesischen Nachfrage, lokalen Ein- und Ausfuhrregeln und der Steuer auf Goldimporte entsteht. Genau dieser Aufschlag, der sogenannte China-Spread, ist laut Goldreporter zuletzt auf minus 16 US-Dollar gefallen: negativ statt positiv.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein negativer Spread bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein negativer Spread heißt: Gold ist in Shanghai günstiger zu haben als im Westen. Der Goldpreis steigt in New York und London derzeit schneller, als der chinesische Markt mitzieht – ablesbar auch an der Marke von rund 4.410 bis 4.414 US-Dollar je Feinunze, auf der das Edelmetall am Mittwochmorgen notiert, ein Plus von rund einem Prozent gegenüber dem Vortag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Märkte, ein Preis – aber nicht immer synchron',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger ist das ein Blick hinter die eine Zahl, die meist zitiert wird: den Preis in Dollar. Der Goldmarkt besteht aus mehreren Handelsplätzen mit eigener Nachfrage, eigenen Steuern und eigenem Timing. Wenn sich diese Preise auseinanderbewegen, sagt das etwas über die Herkunft der aktuellen Nachfrage – hier eher westliches Kapital als chinesische Käufer.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein negativer China-Spread ist ein Hinweis darauf, woher ein Preisschub kommt, keine Garantie dafür, wie lange er anhält. Wer den Goldpreis verfolgt, gewinnt mit einem zweiten Markt zur Gegenprobe eine zusätzliche Perspektive – aber keine Vorhersage.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-tankerangriff-hormus-gold-gleichzeitig',
+    title: 'Öl nähert sich 90 Dollar, Gold zieht mit – kein Widerspruch',
+    teaser:
+      'Ein Tankerangriff im Golf von Oman treibt den Ölpreis Richtung 90 Dollar – und ausnahmsweise zieht der Goldpreis nicht gegenläufig, sondern gleich mit.',
+    category: 'Märkte',
+    publishedAt: '2026-08-12T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Gold', 'Rohstoffe', 'Geopolitik'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 11.8.2026: „US-Helikopter beschießt Tanker in Golf von Oman“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 11.8.2026: „ROUNDUP 2: Jemen: Tote nach Huthi-Angriff auf Schiff nahe Rotem Meer“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Rohstoff-Analysen vom 11.8.2026, 10:25 Uhr: „Öl: Schwindende Hoffnungen auf Wiedereröffnung der Straße von Hormus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste vom 12.8.2026, 03:01 Uhr (Öl 89,64 USD, +0,8 %; Gold 4.414 USD, +1,0 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Meldungen vom Dienstag zeigen, wie angespannt die Lage auf zentralen Öl-Handelsrouten weiterhin ist: Ein US-Helikopter beschoss einen Tanker im Golf von Oman, und bei einem Huthi-Angriff auf ein Schiff nahe dem Roten Meer gab es Tote. Der Brent-Ölpreis zog daraufhin an und lag am Dienstag bei 88,96 US-Dollar je Barrel, ein Plus von 1,27 Prozent – am Mittwochmorgen notiert er laut finanzen.net bereits bei 89,64 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Hormus als Nadelöhr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus läuft nach wie vor ein erheblicher Teil der weltweiten Öltransporte. Onvista berichtete bereits am Dienstagvormittag von schwindenden Hoffnungen auf eine Wiedereröffnung – jede neue Eskalation an angrenzenden Wasserstraßen nährt die Sorge, dass Transportwege eingeschränkt werden könnten, unabhängig davon, ob tatsächlich Öl-Tanker direkt betroffen sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Gold nicht gegenläufig reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Lehrbuchmäßig gilt oft: Steigt der Ölpreis wegen einer Krise, spiegelt sich das Risiko auch im Goldpreis – beide gelten als Absicherung gegen dieselbe Unsicherheit, statt sich gegenseitig auszugleichen. Genau das war auch am Mittwochmorgen zu beobachten: Öl legte zu, und mit 4.414 US-Dollar zog auch Gold um rund ein Prozent an. Hier war es vor allem die geopolitische Komponente, die beide Preise gleichzeitig nach oben trieb.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wenn zwei Rohstoffe gemeinsam steigen, lohnt der Blick auf den gemeinsamen Auslöser, statt eine falsche Gegenläufigkeit zu unterstellen. Öl und Gold bewegen sich nicht automatisch entgegengesetzt – sie tun es nur dann, wenn unterschiedliche Kräfte an ihnen ziehen.',
+      },
+    ],
+  },
+  {
+    slug: 'super-micro-computer-ausblick-vs-quartal',
+    title: 'Super Micro Computer: Der Ausblick zieht die Aktie mehr als die Zahlen',
+    metaTitle: 'Super Micro Computer: Ausblick zieht mehr als die Zahlen',
+    teaser:
+      'Super Micro Computer übertrifft die Gewinnerwartungen und legt einen Ausblick vor, der Anleger überzeugt – warum die Prognose oft mehr zählt als das Quartal.',
+    category: 'Märkte',
+    publishedAt: '2026-08-12T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Super Micro Computer', 'KI-Aktien', 'Halbleiter', 'Guidance'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Unternehmens-Meldungen News-Ticker vom 11.8.2026: „Super Micro Computer-Aktie legt kräftig zu: Gewinnerwartungen deutlich übertroffen - Ausblick sorgt für Begeisterung“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Unternehmens-Meldungen News-Ticker vom 11.8.2026: „Super Micro Computer-Aktie springt hoch: Gewinn zieht an - Ausblick überzeugt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Meldungen vom Dienstag zu demselben Unternehmen sagen im Kern dasselbe: Der Server-Hersteller Super Micro Computer hat die Gewinnerwartungen des vergangenen Quartals deutlich übertroffen, und die Aktie sprang daraufhin kräftig nach oben. Konkrete Zahlen zu Umsatz oder Gewinn nennen die Ticker-Meldungen nicht – im Mittelpunkt der Berichterstattung steht der Ausblick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ausblick die Schlagzeile ist, nicht das Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein abgeschlossenes Quartal ist Vergangenheit – die Börse bewertet ein Unternehmen anhand dessen, was sie über die Zukunft erwartet. Übertrifft ein Unternehmen die Erwartungen fürs abgelaufene Quartal, senkt aber gleichzeitig den Ausblick, reagiert der Kurs häufig trotzdem negativ. Umgekehrt kann ein überzeugender Ausblick einen Kurssprung auslösen, selbst wenn das laufende Quartal nur solide war. Bei Super Micro Computer trafen laut den Meldungen offenbar beide Faktoren zusammen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kontext: ein volatiles KI-Zulieferer-Umfeld',
+      },
+      {
+        type: 'paragraph',
+        text: 'Super Micro Computer gilt als einer der Zulieferer für Server-Hardware im Rechenzentrums- und KI-Geschäft – eine Branche, die zuletzt zwischen Euphorie über den KI-Ausbau und Sorgen vor überhöhten Investitionen schwankte. Genau in diesem Umfeld wiegt ein überzeugender Ausblick besonders schwer, weil er signalisiert, dass die Nachfrage nach Server-Kapazität aus Sicht des Unternehmens anhält.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Quartalsmeldung liest, sollte immer zwei Zahlen suchen: das Ergebnis der Vergangenheit und die Erwartung für die Zukunft. Nur die Kombination erklärt, warum eine Aktie nach „guten“ Zahlen fallen und nach durchwachsenen Zahlen steigen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'thyssenkrupp-nucera-verlustprognose-soec',
+    title: 'Thyssenkrupp Nucera erwartet mehr Verlust – wegen eines Rückzugs',
+    teaser:
+      'Thyssenkrupp Nucera rechnet mit einem höheren Verlust – ausgelöst durch den Ausstieg aus einer Wasserstoff-Technologie, nicht durch das laufende Geschäft.',
+    category: 'Märkte',
+    publishedAt: '2026-08-12T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Thyssenkrupp Nucera', 'Wasserstoff', 'Gewinnwarnung', 'Industrie'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen vom 11.8.2026: „Thyssenkrupp Nucera rechnet wegen SOEC-Ausstieg mit noch mehr Verlust“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Unternehmens-Meldungen News-Ticker vom 11.8.2026: „Ausblick: thyssenkrupp nucera informiert über die jüngsten Quartalsergebnisse“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Thyssenkrupp Nucera, spezialisiert auf Anlagen zur Wasserstoff- und Chlor-Elektrolyse, rechnet laut einer Meldung vom Dienstag mit einem höheren Verlust als bisher angenommen. Als Grund nennt die Meldung den Ausstieg aus dem SOEC-Geschäft – einer Technologie zur Hochtemperatur-Elektrolyse. Konkrete Verlustzahlen stehen in der Ticker-Meldung nicht; der Ausblick auf die Quartalsergebnisse wurde für denselben Tag angekündigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was SOEC ist und warum ein Ausstieg Geld kostet',
+      },
+      {
+        type: 'paragraph',
+        text: 'SOEC steht für Solid Oxide Electrolysis Cell, eine Technologie, die Wasser bei hohen Temperaturen in Wasserstoff und Sauerstoff zerlegt und dabei effizienter arbeiten soll als die verbreitetere alkalische Elektrolyse. Steigt ein Unternehmen aus einem Geschäftsfeld aus, das noch nicht profitabel ist, fallen dafür in der Regel einmalige Kosten an – etwa für Abschreibungen auf Entwicklungsarbeit, Anlagen oder laufende Verträge. Diese Einmalkosten belasten den ausgewiesenen Verlust zusätzlich zum laufenden Geschäft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Verlust ist nicht gleich ein Verlust',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Einordnung zählt deshalb, ob ein höherer Verlust aus dem laufenden Geschäft kommt oder aus einer strategischen Entscheidung wie diesem Rückzug. Ein Ausstieg aus einem unrentablen Geschäftsfeld kann kurzfristig die Bilanz belasten und trotzdem langfristig sinnvoll sein, wenn er Ressourcen für aussichtsreichere Bereiche freisetzt. Ob das hier der Fall ist, geht aus der vorliegenden Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Gewinnwarnung oder erhöhte Verlustprognose sagt für sich genommen wenig darüber, ob die Grundgeschäfte eines Unternehmens schwächer werden. Erst der Blick auf die Ursache – laufendes Geschäft oder einmaliger Rückzug – zeigt, wie eine Zahl einzuordnen ist.',
+      },
+    ],
+  },
+  {
+    slug: 'hims-hers-novo-nordisk-umsatz-marge',
+    title: 'Hims & Hers: Umsatz im Milliardenbereich, Marge unter Druck',
+    teaser:
+      'Hims & Hers meldet Umsatz im Milliardenbereich – und die Aktie fällt trotzdem, weil eine Kooperation mit Novo Nordisk auf die Marge drückt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-12T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Hims & Hers', 'Novo Nordisk', 'Marge', 'Gesundheit'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['novo-nordisk'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Unternehmens-Meldungen News-Ticker vom 11.8.2026: „Hims & Hers-Aktie knickt ein: Novo-Nordisk-Deal drückt Marge trotz Milliarden-Umsatz“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Aktie von Hims & Hers gab am Dienstag nach, obwohl der Umsatz des Telemedizin-Anbieters laut einer Ticker-Meldung im Milliardenbereich lag. Als Grund nennt die Meldung eine Kooperation mit Novo Nordisk, die auf die Marge drückt. Genaue Prozent- oder Dollarwerte zu Umsatz oder Marge stehen in der Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie ein Umsatzrekord und ein Kursverlust zusammenpassen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Umsatz und Marge sind zwei unterschiedliche Kennzahlen, und sie können gegenläufig laufen: Der Umsatz zeigt, wie viel ein Unternehmen insgesamt umsetzt, die Marge zeigt, wie viel davon nach Kosten übrig bleibt. Wächst der Umsatz kräftig, weil ein Unternehmen etwa über eine Kooperation mehr Kunden erreicht, kann die Marge trotzdem sinken – wenn die Kooperation selbst teuer ist, etwa durch Abgaben an den Partner oder geringere Preise je Einheit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Novo Nordisk als Partner und Konkurrent zugleich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Novo Nordisk ist einer der großen Hersteller von Abnehmspritzen und zugleich, über Plattformen wie Hims & Hers, auf den Vertrieb an Endkunden angewiesen. Eine solche Kooperation bringt Hims & Hers Zugang zu einem gefragten Produkt – aber offenbar zu Konditionen, die die eigene Marge schmälern. Für Anleger ist das ein Beispiel dafür, dass ein prominenter Partner nicht automatisch bessere Profitabilität bedeutet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Blick allein auf den Umsatz kann in die Irre führen. Wer die Qualität eines Wachstums beurteilen will, muss fragen, wie viel davon am Ende als Gewinn oder freier Cashflow hängen bleibt – und nicht nur, wie groß die Kundenzahl oder der Umsatz gewachsen ist.',
+      },
+    ],
+  },
+  {
+    slug: 'us-inflation-verbraucherpreise-12-august-2026',
+    title: 'Warum heute ein paar Zehntelprozent über die Börsenwoche entscheiden',
+    metaTitle: 'US-Inflation heute: Warum Zehntel über die Woche entscheiden',
+    teaser:
+      'Um 14:30 Uhr kommen die US-Verbraucherpreise für Juli – die Prognosen zeigen einen Wechsel von fallenden zu steigenden Preisen im Monatsvergleich.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-12T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'USA', 'Notenbanken', 'Verbraucherpreise'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['sp500', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender vom 12.8.2026: Consumer Price Index (MoM) und Consumer Price Index ex Food & Energy (MoM), 14:30 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 11.8.2026: „Alle Augen auf den CPI: US-Inflation: Ein paar Zehntel entscheiden morgen über Rallye oder Abverkauf“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 14:30 Uhr deutscher Zeit veröffentlichen die USA heute ihre Verbraucherpreise für Juli. Der Wirtschaftskalender von wallstreet-online nennt für die Kernrate (ohne Nahrungsmittel und Energie) eine Prognose von 0,2 Prozent im Monatsvergleich, nach 0,0 Prozent im Vormonat. Für die Gesamtrate wird ein Anstieg von 0,1 Prozent erwartet, nach minus 0,4 Prozent zuvor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Zehntelprozent die Kurse bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine einzelne Verbraucherpreiszahl wirkt klein, ist für die Märkte aber deshalb wichtig, weil sie mit den Erwartungen verglichen wird, die bereits in den Kursen stecken. Fällt die Kernrate höher aus als die erwarteten 0,2 Prozent, wächst die Sorge, dass die US-Notenbank an ihrem Zinsniveau länger festhalten muss – das würde Anleihen und tendenziell auch Aktien belasten. Fällt sie niedriger aus, nährt das Hoffnungen auf frühere oder stärkere Zinssenkungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Vergleich zum Vormonat verschärft die Spannung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders auffällig ist der Sprung von minus 0,4 Prozent im Vormonat auf die jetzt erwarteten 0,1 Prozent bei der Gesamtrate – ein Wechsel von einem fallenden zu einem steigenden Preisniveau innerhalb eines Monats. Genau ein solcher Umschwung ist es, den Marktbeobachter laut wallstreet-online bereits am Vortag als möglichen Auslöser für „Rallye oder Abverkauf“ bezeichneten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Reaktion der Märkte auf eine Inflationszahl verstehen will, muss weniger auf den absoluten Wert schauen als auf die Abweichung von der Prognose. Ein Wert exakt auf der Erwartung bewegt oft wenig, während schon kleine Abweichungen große Kursausschläge auslösen können.',
+      },
+    ],
+  },
+  {
     slug: 'goldman-schuldenfinanzierter-ki-boom-big-tech',
     title: 'Goldman Sachs warnt: Der KI-Boom läuft zunehmend auf Kredit',
     teaser:
