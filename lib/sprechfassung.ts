@@ -320,7 +320,24 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bMorgan Stanley\b/g, 'Morgen Stänli'],
   [/\bJPMorgan\b/g, 'Dschej-Pi-Morgen'],
   [/\bBank of America\b/g, 'Bänk of Amerika'],
-  [/\bWall Street\b/g, 'Wohl Striet'],
+  /*
+    Zwei Fallen, die die deutsche Rechtschreibung stellt – und beide sind
+    dem Betreiber am 11. August 2026 im Ohr aufgefallen:
+
+    1. **„st" am Wortanfang ist /scht/.** „Striet" las die Stimme als
+       „Schtriet", „Stoxx" als „Schtox". Mitten im Wort gilt das nicht:
+       In „Fenster" und „Liste" ist es sauberes /st/. Deshalb werden die
+       Bestandteile **zusammengeschrieben** – aus zwei Wörtern wird eines,
+       und die Falle ist weg.
+    2. **„W" am Wortanfang ist /v/.** Aus „Wohl Striet" wurde damit
+       „Vohl Schtriet". Für den englischen /w/-Laut steht „U".
+
+    „Wall Street" hieß deshalb bis dahin „Wohl Striet" und traf beide Fallen
+    auf einmal. Wer hier etwas ergänzt, prüft beide.
+  */
+  [/\bWall Street\b/g, 'Uallstriet'],
+  [/\bEuro[ -]?Sto(?:xx|cks)\b/gi, 'Eurostocks'],
+  [/\bSto(?:xx|cks) Europe\b/gi, 'Stocks Juropp'],
   [/\bNvidia\b/gi, 'Enwidia'],
   [/\bTesla\b/g, 'Tessla'],
   [/\bAmazon\b/g, 'Ämmazon'],
@@ -334,7 +351,7 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bHome Depot\b/g, 'Hohm Diepoh'],
   [/\bCharles Schwab\b/g, 'Tscharls Schwobb'],
   [/\bJensen Huang\b/g, 'Dschensen Huang'],
-  [/\bWarren Buffett\b/g, 'Woren Baffett'],
+  [/\bWarren Buffett\b/g, 'Uoren Baffett'],
   [/\bBuffett\b/g, 'Baffett'],
   [/\bJefferies\b/g, 'Dschefferis'],
   [/\bBitwise\b/g, 'Bittweiß'],
