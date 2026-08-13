@@ -10,6 +10,10 @@ import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
  * (`data-theme='weiss'`): Der Betreiber hat Weiß als Start festgelegt, eine
  * dritte Darstellung „Grau“ wurde am selben Tag gebaut und wieder verworfen.
  *
+ * Seit dem 13. August 2026 gilt das ausnahmslos – auch auf einem dunkel
+ * gestellten Gerät. Dieser Knopf ist damit der **einzige** Weg in den dunklen
+ * Modus; die Rangfolge dahinter steht in `startSkript()` in `lib/theme.ts`.
+ *
  * Die Komponente hält absichtlich keinen React-State: Der aktuelle Modus steht
  * im `data-theme`-Attribut des <html>-Elements, und beide Icons werden immer
  * gerendert – sichtbar wird jeweils nur eines per CSS. Damit gibt es weder

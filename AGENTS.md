@@ -1486,6 +1486,41 @@ unbeachtet blieb. Rot wegen eines veralteten Urteils: Gemessen wurde **ein**
 Läufer, gesprochen wird seit dem 8. August von **vier**. Die Zahl stimmte,
 der Satz daneben nicht – nachgezogen in `scripts/stimme-messen.py`.
 
+# Der erste Besuch ist weiß
+
+Wer die Website zum ersten Mal öffnet, sieht sie hell – **auch auf einem Gerät,
+das auf Dunkel gestellt ist.** Der Betreiber hat das am 13. August 2026
+festgelegt.
+
+Die Rangfolge in `startSkript()` (`lib/theme.ts`) hat seither nur noch zwei
+Stufen: gespeicherte Wahl, sonst Weiß. `prefers-color-scheme` kommt darin nicht
+mehr vor – weder im Skript noch in `viewport.themeColor`, das jetzt eine einzige
+helle Farbe nennt statt zweier nach Systemvorgabe.
+
+**Das ist die Stelle, an der der nächste Umbau danebengreift.** Die Fassung mit
+der Systemvorgabe –
+
+    var t = s==='dark' || (!s && matchMedia('(prefers-color-scheme: dark)').matches)
+          ? 'dark' : 'weiss'
+
+– steht in jeder Anleitung, sieht wie eine Verbesserung aus und fällt niemandem
+auf, der auf einem hell gestellten Rechner entwickelt: Dort verhalten sich beide
+Fassungen gleich. Genau deshalb führt `tests/farbschema-start.test.ts` das
+Skript **aus** statt seinen Quelltext zu lesen, in allen vier Kombinationen aus
+gespeicherter Wahl und Systemvorgabe, und schlägt schon beim bloßen Aufruf von
+`matchMedia` an.
+
+Der dunkle Modus ist damit nicht abgeschafft, nur nicht mehr vorgeschlagen: Der
+Umschalter im Kopf ist einen Klick entfernt, und die Wahl überlebt jedes
+Neuladen.
+
+`colorScheme` steht aus demselben Grund auf `'light'` statt `'light dark'`. Die
+Angabe entscheidet, in welcher Farbe der Browser malt, bevor das Stylesheet
+gelesen ist; `light dark` hieße „nimm die Systemvorgabe“ und damit ein dunkles
+Aufblitzen vor einer weißen Seite. Für den dunklen Modus ist das ohne Belang –
+`[data-theme='dark']` in `app/globals.css` setzt `color-scheme: dark`, und die
+CSS-Eigenschaft sticht die Meta-Angabe.
+
 # Selbst mergen, ohne zu fragen
 
 Der Betreiber hat es am 8. August 2026 angeordnet: **„Merge ab jetzt alles von

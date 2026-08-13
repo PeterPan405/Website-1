@@ -15,7 +15,7 @@ import './globals.css'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { OfflineLernen } from '@/components/layout/OfflineLernen'
-import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
+import { LEISTENFARBE, startSkript } from '@/lib/theme'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
 import { siteConfig, siteUrl } from '@/lib/site'
@@ -93,59 +93,45 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   /*
-    Zwei Farben nach Systemvorgabe – für den Fall ohne gespeicherte Wahl.
+    Eine Farbe, und zwar die helle – der Startzustand ohne gespeicherte Wahl.
 
     Das deckt den ersten Besuch ab, und zwar bevor irgendein Script läuft. Wer
     schon einmal umgeschaltet hat, bekommt die passende Farbe vom Startskript
-    nachgereicht; dort ist die Systemvorgabe nicht mehr maßgeblich.
+    nachgereicht.
+
+    Bis zum 13. August 2026 standen hier zwei Farben mit `prefers-color-scheme`.
+    Das war richtig, solange die Systemvorgabe den ersten Besuch bestimmte; seit
+    sie das nicht mehr tut, wäre es eine dunkle Leiste über einer weißen Seite.
   */
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: LEISTENFARBE.weiss },
-    { media: '(prefers-color-scheme: dark)', color: LEISTENFARBE.dark },
-  ],
-  colorScheme: 'light dark',
+  themeColor: LEISTENFARBE.weiss,
+
+  /*
+    `light`, nicht `light dark`.
+
+    Die Angabe entscheidet, in welcher Farbe der Browser die Fläche malt, bevor
+    das Stylesheet gelesen ist. `light dark` hieße „nimm, was der Nutzer
+    eingestellt hat“ – auf einem dunkel gestellten Gerät also ein dunkles
+    Aufblitzen vor einer weißen Seite.
+
+    Für den dunklen Modus ist das ohne Belang: `[data-theme='dark']` in
+    `app/globals.css` setzt `color-scheme: dark`, und die CSS-Eigenschaft sticht
+    die Meta-Angabe.
+  */
+  colorScheme: 'light',
 }
 
-/**
- * Setzt das Farbschema noch während des HTML-Parsings.
- *
- * Ohne dieses Script würde die Seite zuerst im Hellmodus gerendert und erst
- * nach der Hydration umgeschaltet – sichtbar als kurzes weißes Aufblitzen.
- *
- * ## Die Rangfolge
- *
- * 1. **Die eigene Wahl.** Wer den Umschalter benutzt hat, bekommt sie bei jedem
- *    weiteren Besuch auf demselben Gerät zurück – auch entgegen der
- *    Systemvorgabe. Sie steht im localStorage und wird zuerst gelesen.
- * 2. **Die Systemvorgabe.** Wer sein Gerät auf Dunkel gestellt hat – oft aus
- *    Lichtempfindlichkeit –, bekommt die Seite von Anfang an dunkel.
- * 3. **Weiß.** Wer weder das eine noch das andere hat, startet auf Weiß – so
- *    hat es der Betreiber am 9. August 2026 festgelegt. Gespeicherte Werte aus
- *    früheren Fassungen (`light`, `grau`) zählen als Weiß.
- *
- * `prefers-color-scheme` meldet nur „hell“ oder „dunkel“ und verrät nicht, ob
- * jemand das eingestellt oder nur nie angefasst hat. Für Punkt 2 und 3 ist das
- * ohne Belang: Wer nichts ändert, steht auf Hell.
- *
- * ## Warum das Skript auch die Browserleiste setzt
- *
- * Die Farbe im `<head>` folgt der Systemvorgabe. Bei einer gespeicherten Wahl,
- * die davon abweicht, wäre sie falsch – helle Leiste über dunkler Seite. Das
- * Skript korrigiert sie deshalb genau dann, wenn eine Wahl gespeichert ist.
- *
- * Dabei werden **beide** Meta-Angaben gesetzt, nicht nur die erste. Es gibt
- * zwei, je eine mit `media`-Bedingung, und der Browser nimmt die passende. Ein
- * `querySelector` trifft immer die helle; bei dunklem System und gespeicherter
- * Wahl „hell“ blieb dadurch die dunkle Leiste stehen – heller Inhalt, dunkler
- * Rahmen. Aufgefallen erst beim Durchspielen aller vier Fälle.
- */
-const themeScript = `(function(){try{
-var farben=${JSON.stringify(LEISTENFARBE)};
-var s=localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});
-var t=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'weiss';
-document.documentElement.dataset.theme=t;
-if(s){document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',farben[t])})}
-}catch(e){}})()`
+/*
+  Setzt das Farbschema noch während des HTML-Parsings.
+
+  Ohne dieses Script würde die Seite zuerst hell gerendert und erst nach der
+  Hydration umgeschaltet – für den, der dunkel gewählt hat, ein weißes
+  Aufblitzen bei jedem Seitenwechsel.
+
+  Der Rumpf steht in `lib/theme.ts`, samt Begründung der Rangfolge. Dort ist er
+  importierbar und damit prüfbar: `tests/farbschema-start.test.ts` lässt ihn
+  gegen eine nachgebaute Umgebung laufen, in allen vier Fällen.
+*/
+const themeScript = startSkript()
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
