@@ -37,3 +37,45 @@ export const LEISTENFARBE = {
   weiss: '#f2ebdd',
   dark: '#0a0a0c',
 } as const
+
+/**
+ * Das Startskript, das im `<head>` läuft – als Zeichenkette.
+ *
+ * ## Warum es hier steht und nicht im Layout
+ *
+ * Es stand bis zum 13. August 2026 als Literal in `app/layout.tsx`. Dort ließ
+ * es sich nicht prüfen: Ein Test hätte den Quelltext der Layout-Datei einlesen
+ * und das Skript per Regex herausschneiden müssen – eine Prüfung, die schon an
+ * einer umgestellten Zeile scheitert und dann nicht den Fehler meldet, sondern
+ * sich selbst.
+ *
+ * Als Funktion in einer Datei ohne `'use client'` ist es von beiden Seiten
+ * importierbar – vom Layout, das es ausliefert, und von
+ * `tests/farbschema-start.test.ts`, der es gegen eine nachgebaute Umgebung
+ * laufen lässt. Genau deshalb gibt es diese Datei überhaupt (siehe oben).
+ *
+ * ## Was es tut
+ *
+ * 1. **Gespeicherte Wahl.** Nur `dark` schaltet um. Alles andere – `weiss` wie
+ *    auch die Werte früherer Fassungen (`light`, `grau`) – ist Weiß.
+ * 2. **Sonst Weiß.** Ausnahmslos, auch auf einem dunkel gestellten Gerät.
+ *
+ * Die Systemvorgabe stand bis zum 13. August 2026 zwischen beiden. Der
+ * Betreiber hat sie an dem Tag gestrichen: **Der erste Besuch ist weiß.**
+ *
+ * Die Browserleiste wird nur bei gespeicherter Wahl nachgezogen – ohne sie
+ * steht im `<head>` bereits die richtige, helle Farbe.
+ *
+ * `try/catch` um alles: `localStorage` wirft im privaten Modus mancher Browser
+ * beim bloßen Zugriff. Ein Fehler hier bliebe unbehandelt im `<head>` stehen
+ * und die Seite ganz ohne Farbschema.
+ */
+export function startSkript(): string {
+  return `(function(){try{
+var farben=${JSON.stringify(LEISTENFARBE)};
+var s=localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});
+var t=s==='dark'?'dark':'weiss';
+document.documentElement.dataset.theme=t;
+if(s){document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',farben[t])})}
+}catch(e){}})()`
+}
