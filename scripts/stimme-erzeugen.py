@@ -113,58 +113,47 @@ ZIEL = "podcast-folge/folge.mp3"
 # Läufer.
 STUECK_MAX = 240
 
-# Die Pausen – und warum sie nicht alle gleich lang sein dürfen.
+# Die Pausen stehen in `sprechstimme.py` – hier steht nur noch der Aufruf.
 #
-# Vorher stand hier ein einziger Wert von 0,35 s für jede Fuge. Das war zu
-# wenig und außerdem zu gleichförmig: Ein Absatzwechsel klang wie ein Komma.
-# Dann wurden es zwei Werte, 0,5 und 0,95.
+# ## Wie es dazu kam
 #
-# Am 9. August 2026 das nächste Urteil des Betreibers: **„sehr monoton“.**
+# Vorher stand hier ein einziger Wert von 0,35 s für jede Fuge; dann zwei,
+# 0,5 und 0,95. Am 9. August 2026 das Urteil des Betreibers: **„sehr
+# monoton“.** Zwei Werte sind ein Metronom, also wurde die Pause an das
+# **Satzzeichen** gehängt – vier Werte statt zwei.
 #
-# Zwei Werte sind immer noch ein Metronom. Ein Mensch hält nach einer Frage
-# anders inne als nach einer Feststellung, und keine zwei seiner Pausen sind
-# gleich lang. Genau diese Gleichmäßigkeit hört man als Monotonie – nicht die
-# Tonhöhe, die kann das Modell ohnehin, sondern den Takt.
+# Am 13. August 2026 nachgezählt, was davon an einer echten Folge greift:
 #
-# Deshalb jetzt: die Pause hängt am **Satzzeichen**, und darauf kommt eine
-# kleine Abweichung.
+#     0,5  s (Satz)     9 ×
+#     0,95 s (Absatz)   7 ×
+#     0,66 s (Frage)    0 ×
+#     0,34 s (Ankünd.)  0 ×
 #
-# Die 0,95 s am Absatzende sind zugleich das, wonach der Kapitelschritt sucht
-# (`silencedetect ... d=0.6`). Die Abweichung ist deshalb so bemessen, dass
-# eine Absatzpause nie unter 0,8 s fällt – sonst verschöben sich die
-# Kapitelmarken, und die Beschreibung bei YouTube zeigte auf die falsche
-# Stelle.
-PAUSE_ABSATZ = 0.95
-PAUSE_SATZ = 0.5
-#: Nach einer Frage oder einem Ausruf steht der Zuhörer länger an.
-PAUSE_FRAGE = 0.66
-#: Doppelpunkt und Gedankenstrich kündigen an – da geht es zügiger weiter.
-PAUSE_ANKUENDIGUNG = 0.34
-#: Höchste Abweichung nach oben und unten, in Sekunden.
-PAUSE_STREUUNG = 0.07
+# **Wieder zwei Werte.** In 352 Wörtern Nachrichtentext steht kein
+# Fragezeichen, kein Ausrufezeichen und kein Doppelpunkt; eine Meldung
+# besteht aus Aussagesätzen mit Punkt. Die Umstellung sah nach Abhilfe aus
+# und war keine.
+#
+# Seither hängt der gewöhnliche Satzschluss an der **Länge des zuletzt
+# gesprochenen Satzes** – ein Merkmal, das jeder Satz hat. Begründung,
+# Grenzen und Gegenprobe stehen bei `sprechstimme.pause_fuer`.
+#
+# Das Absatzende bleibt fest bei 0,95 s: Danach sucht der Kapitelschritt
+# (`silencedetect ... d=0.6`). Die Abweichung ist so bemessen, dass es nie
+# unter 0,8 s fällt – sonst verschöben sich die Kapitelmarken, und die
+# Beschreibung bei YouTube zeigte auf die falsche Stelle.
 
 
 def pause_fuer(stueck: str, absatzende: bool, stelle: int) -> float:
-    """Wie lange es nach diesem Stück still bleibt.
+    """Wie lange es nach diesem Stück still bleibt – gerechnet in `sprechstimme`.
 
-    Die Abweichung ist **nicht zufällig, sondern aus dem Text gerechnet**:
-    Derselbe Sprechtext ergibt dieselbe Aufnahme. Ein `random` an dieser
-    Stelle würde zwei Läufe derselben Folge unterschiedlich klingen lassen,
-    und der Bildvergleich im Bau hätte nichts mehr, woran er sich hält.
+    Der Import steht **in** der Funktion und nicht im Kopf der Datei, aus
+    demselben Grund wie bei `brauchbar` weiter unten: Die Reihenfolge, in der
+    die beiden Module geladen werden, soll keine Rolle spielen.
     """
-    schluss = stueck.rstrip()[-1:] if stueck.rstrip() else '.'
-    if absatzende:
-        grund = PAUSE_ABSATZ
-    elif schluss in '?!':
-        grund = PAUSE_FRAGE
-    elif schluss in ':–—':
-        grund = PAUSE_ANKUENDIGUNG
-    else:
-        grund = PAUSE_SATZ
+    import sprechstimme
 
-    # Aus Länge und Stelle: gleichmäßig verteilt, aber reproduzierbar.
-    kerbe = (len(stueck) * 7 + stelle * 13) % 11 / 10 - 0.5
-    return round(grund + kerbe * 2 * PAUSE_STREUUNG, 3)
+    return sprechstimme.pause_fuer(stueck, absatzende, stelle)
 
 # Die Nachbearbeitung der fertigen Aufnahme steht in `klangkette.py` –
 # eine Stelle für beide Wege, mit der Begründung dort. Kurz: Grummeln

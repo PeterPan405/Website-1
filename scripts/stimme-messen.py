@@ -121,15 +121,54 @@ prompt = modell.create_voice_clone_prompt(
 promptzeit = time.time() - t0
 melde(f"Stimmprofil erstellt in {promptzeit:.0f} s.")
 
+"""
+Gesprochen wird in **Stücken mit Pausen dazwischen** – so wie die Folge.
+
+## Warum das seit dem 13. August 2026 so ist
+
+Vorher ging der ganze Probetext in **einen** Aufruf. Das misst die Stimme
+richtig und führt in die Irre, sobald jemand die Probe zur Beurteilung
+anhört: Eine echte Folge besteht aus zwanzig bis dreißig Stücken, zwischen
+denen unterschiedlich lange Pausen stehen, und genau dieser Rhythmus ist
+das, was der Betreiber am 9. August „sehr monoton" genannt hat.
+
+Eine Hörprobe, die den Rhythmus nicht enthält, kann zu ihm nichts sagen.
+Sie sah nach einer Antwort aus und war keine – dieselbe Sorte Fehler wie
+die Pausenlogik, die an Satzzeichen hing, die im Text nie vorkommen.
+
+Die Messung bleibt davon unberührt: Gemessen wird die reine Rechenzeit für
+die gesprochenen Stücke, die eingefügte Stille zählt nicht mit.
+"""
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import sprechstimme  # noqa: E402
+
+stuecke = sprechstimme.in_stuecke(PROBE)
+melde(f"Probetext: {len(PROBE)} Zeichen in {len(stuecke)} Stück(en).")
+
 t0 = time.time()
-wavs, rate = modell.generate_voice_clone(
-    text=PROBE, voice_clone_prompt=prompt, language="German"
-)
+teile = []
+rate = 24000
+for nummer, (stueck, pause) in enumerate(stuecke, start=1):
+    wavs, rate = modell.generate_voice_clone(
+        text=stueck, voice_clone_prompt=prompt, language="German"
+    )
+    teile.append(np.asarray(wavs[0]))
+    if nummer < len(stuecke):
+        teile.append(np.zeros(int(pause * rate), dtype=np.float32))
+    melde(f"  Stück {nummer}/{len(stuecke)}: {pause:.2f} s Pause danach.")
 rechenzeit = time.time() - t0
 
-audio = np.asarray(wavs[0])
-dauer = len(audio) / rate
-faktor = dauer / rechenzeit
+audio = np.concatenate(teile) if len(teile) > 1 else teile[0]
+
+# Der Echtzeitfaktor misst **gesprochene** Sekunden je Sekunde Rechenzeit.
+#
+# Die eingefügte Stille kostet keine Rechenzeit und darf deshalb nicht in
+# den Zähler: Sonst sähe die Stimme umso schneller aus, je mehr Pausen man
+# einbaut. Genau das wäre eine Kennzahl, die sich selbst verbessert, ohne
+# dass irgendetwas besser geworden ist.
+gesprochen = sum(len(t) for t in teile[::2]) / rate
+gesamt = len(audio) / rate
+faktor = gesprochen / rechenzeit
 
 sf.write("probe.wav", audio, rate)
 
@@ -140,7 +179,8 @@ with open("probe.txt", "w", encoding="utf-8") as datei:
     datei.write(PROBE.strip() + "\n")
 
 melde("")
-melde(f"Erzeugt:      {dauer:.1f} s Audio")
+melde(f"Erzeugt:      {gesprochen:.1f} s Sprache + {gesamt - gesprochen:.1f} s Pausen")
+melde(f"Aufnahme:     {gesamt:.1f} s")
 melde(f"Gerechnet:    {rechenzeit:.0f} s")
 melde(f"Echtzeitfaktor: {faktor:.2f}   (über 1,0 = schneller als Echtzeit)")
 melde("")
