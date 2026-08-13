@@ -101,6 +101,308 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'applied-materials-wirtschaftskalender-eingepreiste-erwartung',
+    title: 'Nicht die Zahl bewegt den Kurs, sondern der Abstand zur Prognose',
+    teaser:
+      "Die US-Inflation kam gestern wie erwartet herein und bewegte kaum etwas. Heute stehen zwei Konjunkturtermine und Applied Materials' Quartalszahlen an.",
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-13T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Konjunkturdaten', 'Applied Materials', 'Wirtschaftskalender'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['nasdaq-100', 'dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 12.8.2026: „ROUNDUP: US-Inflationsrate gibt wie erwartet etwas nach“ (dpa-AFX)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender-Widget „Wichtige Termine“, abgerufen 13.8.2026, 5:04 Uhr (08:00 Uhr BIP/Industrieproduktion, 09:00 Uhr HVPI)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, „Ihre wichtigsten Termine: Fokus auf: HelloFresh, Thyssenkrupp, Applied Materials, Energiekontor und Sixt“, 13.8.2026, 4:30 Uhr, wallstreetONLINE Redaktion',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gestern Abend war es so weit: Die US-Inflationsrate ist laut einer dpa-AFX-Meldung „wie erwartet etwas“ zurückgegangen. Eine genaue Zahl nennt die Kurzmeldung nicht, nur die Richtung – und dass sie den Erwartungen entsprach. An den Märkten heute Morgen ist davon wenig zu spüren: Der US-Tech-Index notiert laut wallstreet-online rund 0,8 Prozent im Plus, der Dow Jones nahezu unverändert. Genau das ist der Punkt: Wenn eine Zahl trifft, was ohnehin erwartet wurde, hat der Markt sie längst eingepreist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine erwartete Zahl kaum bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kurse reagieren nicht auf eine Zahl an sich, sondern auf den Unterschied zwischen dieser Zahl und dem, was vorher schon in den Kurs eingepreist war. Trifft eine Veröffentlichung die Konsensschätzung, bestätigt sie lediglich eine Annahme, die längst in den Positionen der Anleger steckt. Erst eine Abweichung nach oben oder unten löst eine echte Bewegung aus, weil dann Portfolios angepasst werden müssen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute noch aussteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender bei wallstreet-online zeigt für heute zwei Termine kurz hintereinander: Um 8 Uhr werden mehrere Konjunkturdaten erwartet – Bruttoinlandsprodukt im Monats- und im Jahresvergleich, dazu Industrieproduktion und ein Wert für das verarbeitende Gewerbe. Die Prognosen liegen bei 0,0 Prozent (Monat) beziehungsweise 1,1 Prozent (Jahr) für das BIP, nach zuletzt 0,1 beziehungsweise 0,9 Prozent. Um 9 Uhr folgt die Jahresrate der Verbraucherpreise (HVPI), Prognose 3,8 Prozent – exakt der Vorwert. Welches Land hinter den Zahlen steckt, geht aus der abgerufenen Übersicht nicht hervor; Uhrzeit und Werte sind es, die feststehen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dazu kommt eine Unternehmenszahl mit Indexgewicht: Applied Materials, einer der größten Ausrüster der Chipindustrie, legt laut wallstreet-online heute seine Quartalszahlen vor. Auch hier gilt derselbe Mechanismus wie bei der US-Inflation gestern – nicht der nackte Umsatz oder Gewinn wird über den Kurs entscheiden, sondern ob beide über oder unter dem liegen, was Analysten vorher geschätzt haben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Konjunkturzahl oder einen Quartalsbericht liest, sollte zuerst nach der Prognose suchen, nicht nur nach dem Ergebnis. Der Vorwert zeigt die Richtung, die Prognose zeigt, was der Markt schon für wahrscheinlich hält – und erst der Abstand zwischen Prognose und tatsächlichem Wert erklärt, warum ein Kurs sich bewegt oder eben nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-huang-ki-souveraenitaet-hsbc-sektorrotation',
+    title: 'Vierzehn Minuten in der Nacht: Warnung bei Nvidia, Entwarnung von HSBC',
+    metaTitle: 'Nvidia-Warnung, HSBC-Entwarnung: eine Nacht, zwei Tonlagen',
+    teaser:
+      'Um 3:09 Uhr warnt Nvidia-Chef Jensen Huang, um 3:23 Uhr gibt HSBC Entwarnung für den KI-Boom. Zwei Meldungen derselben Nacht, zwei unterschiedliche Tonlagen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-13T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'HSBC', 'KI-Aktien', 'Sektorrotation'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['nvidia', 'hsbc', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026, 3:09 Uhr: „NVIDIA-Aktie im Fokus: Jensen Huang warnt eindringlich im Ringen um KI-Souveränität“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          "finanzen.net, News-Ticker vom 13.8.2026, 3:23 Uhr: „HSBC: KI-Boom bleibt intakt - Sektorrotation nur 'Gewinnmitnahme', kein Vertrauensverlust“",
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 12.8.2026: „Keine neue Dotcom-Blase? Warum die heutige KI-Aktienrally anders tickt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Meldungen, vierzehn Minuten Abstand, derselbe Themenkomplex – und ein ziemlicher Tonartwechsel. Um 3:09 Uhr heute Nacht meldet der News-Ticker von finanzen.net: „Jensen Huang warnt eindringlich im Ringen um KI-Souveränität.“ Um 3:23 Uhr folgt: „HSBC: KI-Boom bleibt intakt.“ Wer nur die Überschriften liest, könnte meinen, hier widerspreche sich der Markt innerhalb einer Viertelstunde selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der Nvidia-Meldung steht – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ticker-Zeile nennt eine Tatsache: Nvidia-Chef Jensen Huang hat sich eindringlich zum „Ringen um KI-Souveränität“ geäußert – also darum, welche Länder und Unternehmen die Kontrolle über KI-Infrastruktur behalten. Was genau die Warnung auslöste und an wen sie sich richtete, geht aus der Kurzmeldung nicht hervor. Das ist keine Lücke, die sich einfach auffüllen lässt: Wer hier eine Begründung ergänzt, erfindet sie.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'HSBC: Rotation ist nicht dasselbe wie Ausverkauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die zweite Meldung liefert eine Einordnung, keinen Gegenbeweis: Laut HSBC bleibt der KI-Boom „intakt“, und was zuletzt wie eine Abkehr von KI-Aktien aussah, sei nur „Gewinnmitnahme“ – Anleger, die Kursgewinne mitnehmen und in andere Sektoren umschichten, ohne das Grundvertrauen in das Thema zu verlieren. Eine Sektorrotation verschiebt Kapital innerhalb eines Portfolios, ein Vertrauensverlust zieht es ganz ab. Laut HSBC handelt es sich bislang um Ersteres.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass beide Themen in derselben Nacht auftauchen, ist kein Zufall, sondern zeigt, wie umstritten die Bewertung von KI-Aktien gerade ist. Erst gestern fragte eine weitere Meldung im selben Ticker: „Keine neue Dotcom-Blase? Warum die heutige KI-Aktienrally anders tickt“ – dieselbe Debatte, ein Tag früher, noch ohne Antwort.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine warnende und eine beruhigende Stimme aus derselben Nacht heben sich nicht gegenseitig auf. Sie zeigen, dass es zum KI-Thema derzeit keinen Konsens gibt – und dass eine einzelne Meldung, egal welcher Richtung, kein Urteil über den gesamten Sektor ist.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-200-tage-linie-naechste-huerde',
+    title: 'Gold hat die 50-Tage-Linie hinter sich – jetzt kommt die nächste Prüfung',
+    metaTitle: 'Gold nach der 50-Tage-Linie: Die 200-Tage-Linie wartet',
+    teaser:
+      'Der Goldpreis notiert heute Morgen bei rund 4.410 Dollar. Laut Goldreporter hat er die 50-Tage-Linie überwunden, die 200-Tage-Linie ist die nächste Hürde.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-13T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Charttechnik', 'Edelmetalle'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Analyse vom 12. August 2026: „Goldpreis mit neuer Aufwärtsdynamik – 200-Tage-Linie im Fokus“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, 13.8.2026, 5:02 Uhr (Gold 4.410,32 USD, +0,04 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis notiert heute Morgen laut wallstreet-online bei 4.410,32 Dollar je Feinunze, ein Plus von 0,04 Prozent gegenüber dem Vortag – praktisch unverändert. Interessanter als der Punktstand ist, wo dieser Punktstand im Chart liegt: Laut einer Analyse von Goldreporter vom Dienstag hat Gold die Marke von 4.400 Dollar zurückerobert und dabei die 50-Tage-Linie nach oben durchbrochen. Als nächste Hürde nennt die Analyse die 200-Tage-Linie.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine gleitende Durchschnittslinie überhaupt zeigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gleitende Durchschnittslinie – etwa über 50 oder 200 Handelstage – glättet den täglichen Auf und Ab eines Kurses zu einer einzigen Linie. Sie zeigt keine Zukunft, sondern fasst die jüngere Vergangenheit zusammen: Notiert der aktuelle Kurs darüber, überwiegt im Rückblick der Aufwärtstrend, notiert er darunter, der Abwärtstrend. Weil viele Marktteilnehmer dieselben Linien beobachten, werden sie selbst zu einer Art Erwartung – und genau deshalb kommentiert eine Chartanalyse wie die von Goldreporter, wenn eine solche Linie durchbrochen wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vom 50-Tage- zum 200-Tage-Durchschnitt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die 200-Tage-Linie gilt unter Chartanalysten als die deutlich trägere und damit „wichtigere“ der beiden Marken, weil sie ein ganzes Jahr an Handelstagen zusammenfasst statt nur zweieinhalb Monate. Dass Gold sie laut Goldreporter jetzt als Nächstes ansteuert, ist eine Einschätzung dieser einen Quelle – keine Garantie und keine Kaufempfehlung, sondern eine Beobachtung, die andere Analysten anders gewichten können.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer in einem Chart von einer „wichtigen Marke“ liest, weiß jetzt, was damit gemeint ist – ein Durchschnitt vergangener Kurse, an dem sich viele Anleger gleichzeitig orientieren. Ob eine solche Linie tatsächlich hält oder durchbrochen wird, sagt sie selbst nicht voraus.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-clarity-act-huerden-bitwise-trendwende',
+    title: 'Bitcoins 200.000-Dollar-Marke hängt an sieben Hürden im US-Senat',
+    teaser:
+      'Ein Kursziel von 200.000 Dollar für Bitcoin hängt laut einer Meldung an sieben offenen Punkten im Senat. Der Kurs steht heute Morgen bei rund 55.100 Dollar.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-13T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Regulierung', 'CLARITY Act'],
+    relatedTopics: ['bitcoin-krypto'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026, 3:08 Uhr: „CLARITY Act: Bitcoin-Kursziel von 200.000 Dollar an sieben Hürden im Senat gekoppelt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026, 3:21 Uhr: „Bitwise-CIO sieht mehrere Anzeichen für Bitcoin-Trendwende“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste vom 13.8.2026, gegen 5:04 Uhr (Bitcoin 55.115 USD, +0,3 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Kolumne von Alexander Mayer vom 9.8.2026, 6:30 Uhr: „Clarity Act stockt: Das sind die Folgen für Bitcoin“ (decentralist.de)',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin notiert heute Morgen laut finanzen.net bei 55.115 Dollar, ein Plus von 0,3 Prozent. Von einem Kursziel von 200.000 Dollar, wie es eine Ticker-Meldung von 3:08 Uhr heute Nacht nennt, ist das weit entfernt – und laut derselben Meldung hängt dieses Ziel an sieben offenen Punkten im US-Senat, konkret am sogenannten CLARITY Act.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der CLARITY Act ist – und warum er feststeckt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der CLARITY Act ist ein Gesetzentwurf, der in den USA klären soll, welche Behörde für welche Kryptowährungen zuständig ist – bislang ein Streitpunkt zwischen mehreren Aufsichtsbehörden. Dass er im Senat feststeckt, ist keine neue Entwicklung: Bereits am 9. August schrieb eine Kolumne bei onvista, der „Clarity Act stockt“. Welche sieben Hürden die heutige Meldung konkret meint, nennt die Kurzmeldung selbst nicht – das bleibt offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine zweite Stimme: Bitwise sieht eine Trendwende',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dreizehn Minuten später, um 3:21 Uhr, meldet derselbe Ticker, der Chefanlagestratege von Bitwise sehe „mehrere Anzeichen“ für eine Bitcoin-Trendwende. Welche Anzeichen das sind, bleibt in der Kurzmeldung offen. Bemerkenswert ist trotzdem die Gleichzeitigkeit: eine politische Hängepartie in Washington und eine mögliche Trendwende im Kurs, beide in derselben Nacht gemeldet, beide unabhängig voneinander zu bewerten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursziel, das an einen Gesetzgebungsprozess gekoppelt ist, macht sichtbar, wie stark der Bitcoin-Kurs inzwischen von politischen Entscheidungen abhängt – nicht nur von Angebot und Nachfrage am Markt selbst. Das ist ein Risiko wie eine Chance, je nachdem, wie der Prozess ausgeht, und keine Vorhersage in die eine oder andere Richtung.',
+      },
+    ],
+  },
+  {
+    slug: 'cisco-optimistischer-ausblick-euphorie-verpufft',
+    title:
+      'Cisco gibt einen optimistischen Ausblick – die Freude hält nicht den ganzen Handelstag',
+    metaTitle: 'Cisco: Optimistischer Ausblick, schnell verpuffte Freude',
+    teaser:
+      'Cisco überraschte gestern mit einem optimistischen Ausblick. Laut Ticker-Meldung schwand die Begeisterung der Anleger danach jedoch rasch wieder.',
+    category: 'Märkte',
+    publishedAt: '2026-08-13T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Cisco', 'Ausblick', 'Tech-Aktien'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['cisco', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 12.8.2026, 20:42 Uhr: „Cisco überraschend optimistisch - Begeisterung der Anleger schwindet rasch“ (dpa-AFX)',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 12.8.2026, 20:22 Uhr: „ROUNDUP/Aktien New York Schluss: Unternehmensausblicke hieven Tech-Sektor höher“ (dpa-AFX)',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 12.8.2026: „Zurückhaltung in New York: Dow Jones präsentiert sich letztendlich leichter“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Überschrift, zwei Nachrichten in einer: „Cisco überraschend optimistisch - Begeisterung der Anleger schwindet rasch“, meldete onvista gestern um 20:42 Uhr. Cisco hat demnach einen Ausblick gegeben, der besser ausfiel als gedacht – und die anfängliche Freude der Anleger darüber hat sich laut derselben Meldung rasch wieder gelegt. Warum genau, sagt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Ausblick ist ein Versprechen, keine abgeschlossene Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Unterschied zwischen einer Ist-Zahl und einem Ausblick ist wichtig: Die Ist-Zahl beschreibt, was bereits passiert ist, der Ausblick eine Erwartung des Unternehmens für die Zukunft. Genau weil ein Ausblick ein Versprechen ist und kein Fakt, können Anleger ihn zunächst euphorisch aufnehmen und ihn Stunden später wieder infrage stellen, sobald sie die Details genauer durchgehen – ohne dass sich an der eigentlichen Meldung etwas geändert hätte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Rest der Branche lief in eine andere Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Cisco stand damit nicht für die gesamte Branche: Eine weitere Meldung von gestern Abend fasst zusammen, dass Unternehmensausblicke insgesamt den Tech-Sektor nach oben trieben. Gleichzeitig schloss der Dow Jones laut finanzen.net den Tag „letztendlich leichter“ – während der technologielastigere Nasdaq im Plus aus dem Handel ging. Ein optimistischer Ausblick wirkt also nicht bei jedem Unternehmen und an jedem Index gleich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine erste Kursreaktion auf einen Ausblick ist keine endgültige Bewertung. Innerhalb eines einzigen Handelstages kann sich die Stimmung drehen, sobald Anleger die Zahlen hinter dem Versprechen genauer prüfen.',
+      },
+    ],
+  },
+  {
     slug: 'dax-rekord-wall-street-verluste-nahost',
     title: 'Rekord in Frankfurt, Minus in New York – derselbe Anlass, zwei Reaktionen',
     metaTitle: 'Dax-Rekord, Wall-Street-Minus: eine Nachricht, zwei Reaktionen',
