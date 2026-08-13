@@ -920,6 +920,92 @@ Sprechen.
 
 Wer eine Schwelle in `sprechstimme.py` anfasst, sieht dort, ob sie noch trägt.
 
+### Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist keine
+
+Am 13. August 2026 meldete der Betreiber, die Folge brauche „etwas Emotion
+beim Sprechen". Der naheliegende Verdacht – die Stimme sei zu flach – ließ
+sich messen und war **falsch**. Gegenübergestellt wurden die Referenzaufnahme
+und eine Hörprobe des Modells:
+
+    Referenz   Tonhöhe Median 104 Hz   Streuung 4,30 Halbtöne
+    Modell     Tonhöhe Median  92 Hz   Streuung 5,06 Halbtöne
+
+Das Modell bewegt sich also **mehr** als der Mensch, den es klont. An der
+Tonhöhe zu drehen – höhere `temperature`, anderes Sampling – hätte nichts
+verbessert und das Entgleisungsrisiko erhöht, gegen das drei Abschnitte
+weiter oben eine ganze Prüfkette steht.
+
+Der Takt war es. Nachgezählt an der Folge vom 13. August, 352 Wörter,
+16 Stücke:
+
+    0,5  s (Satz)     9 ×
+    0,95 s (Absatz)   7 ×
+    0,66 s (Frage)    0 ×
+    0,34 s (Ankündig.) 0 ×
+
+Am 9. August war die Pause auf das **Satzzeichen** umgestellt worden, genau
+gegen das Metronom aus zwei Werten. Vier Zweige, sauber geschrieben, im
+Protokoll nachlesbar – und in der Praxis wieder zwei: `PAUSE_FRAGE` und
+`PAUSE_ANKUENDIGUNG` verlangen ein `?`, `!`, `:` oder `–` am Satzende, und in
+352 Wörtern Nachrichtentext steht davon **keines**. Eine Meldung besteht aus
+Aussagesätzen mit Punkt.
+
+**Die Abhilfe sah vier Tage lang wie eine aus und war keine.** Wer eine
+Fallunterscheidung baut, zählt nach, wie oft jeder Zweig an echtem Material
+greift – nicht, ob es ihn gibt.
+
+Gehängt wird die Pause seither an etwas, das jeder Satz hat: **seine Länge.**
+Ein kurzer Satz ist eine Pointe und bekommt Raum, ein langer hat dem Ohr
+unterwegs schon Ruhe gegeben. Aus zwei wirksamen Werten werden damit an
+derselben Folge fünfzehn, Spanne 0,30–1,02 s statt zweier Häufchen. Die
+Summe bleibt nahezu gleich (10,8 s gegen 11,1 s) – die Folge wird nicht
+länger, nur ungleichmäßiger, und die Frist um sechs Uhr bleibt unberührt.
+
+Zwei Grenzen stehen fest und dürfen nicht wegfallen:
+
+- **Das Absatzende bleibt bei 0,95 s.** Danach sucht der Kapitelschritt
+  (`silencedetect … d=0.6`); es zu spreizen hieße, Kapitelmarken gegen
+  Sprechrhythmus zu tauschen.
+- **Der Mittelwert der Satzpausen bleibt bei rund einer halben Sekunde.**
+  Sonst verschiebt sich die Fünf-Minuten-Rechnung.
+
+Beides prüft `--selbsttest` mit. Und weil die erste Fassung dieses Tests
+zählte, wie viele **verschiedene** Pausen herauskommen – woran die alte Logik
+nicht scheiterte, weil die Streuung von ±0,07 s aus einem festen Wert schon
+sechs verschiedene Zahlen macht –, misst er jetzt die **Spanne** gegen die
+Streuung. Das ist derselbe Fehler eine Ebene höher: gezählt wurde das
+Rauschen, nicht das Signal.
+
+`stimme-erzeugen.py` rechnet die Pause nicht mehr selbst, sondern ruft
+`sprechstimme.pause_fuer`. Der Import steht **in** der Funktion, aus dem
+Grund, der bei `brauchbar` steht.
+
+#### Eine Hörprobe ohne Rhythmus kann zum Rhythmus nichts sagen
+
+`stimme-messen.py` gab den ganzen Probetext in **einen** Modellaufruf. Für die
+Messung ist das richtig; für das Hören führte es in die Irre, denn eine echte
+Folge besteht aus zwanzig bis dreißig Stücken mit Pausen dazwischen – und
+genau das ist, was „monoton" meint. Seit dem 13. August spricht die Hörprobe
+in Stücken, mit denselben Pausen wie die Folge.
+
+Der Echtzeitfaktor zählt dabei weiter **nur gesprochene** Sekunden. Zählte
+die eingefügte Stille mit, sähe die Stimme umso schneller aus, je mehr Pausen
+man einbaut – eine Kennzahl, die sich selbst verbessert, ohne dass etwas
+besser geworden ist.
+
+#### Was danach noch offen ist
+
+Der Takt ist die eine Hälfte. Die andere ist der **Text**, und die ist nicht
+angefasst: In denselben 352 Wörtern steht kein Fragezeichen, kein
+Ausrufezeichen, kein Doppelpunkt und ein Gedankenstrich; die Sätze liegen im
+Median bei 20 Wörtern, und jeder Themenabsatz beginnt mit „Laut einer …
+Meldung vom …". Ein Mensch, der das vorliest, klingt auch flach.
+
+Das ließe sich ändern – im Agentenprompt, der die Meldungen schreibt. Es
+betrifft dann aber die Website mit, nicht nur die Folge, und die strenge
+Quellenangabe ist Absicht. Deshalb wurde es hier **nicht** mitgemacht,
+sondern liegengelassen, bis der Betreiber die Wirkung des Takts gehört hat.
+
 ### Geprüft wird, was gesendet wird – nicht sein Vorprodukt
 
 Am 11. August 2026 hat die neue Prüfung nachweislich gearbeitet: Im Protokoll

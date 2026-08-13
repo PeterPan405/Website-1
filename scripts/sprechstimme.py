@@ -45,12 +45,62 @@ import time
 STUECK_MAX = 240
 
 #: Die Pausen. Nicht alle gleich lang – zwei Werte sind ein Metronom, und
-#: genau das hört man als Monotonie. Die Pause hängt am Satzzeichen.
+#: genau das hört man als Monotonie.
+#:
+#: ## Warum sie seit dem 13. August 2026 nicht mehr nur am Satzzeichen hängen
+#:
+#: Am 9. August wurde die Pause auf das Satzzeichen umgestellt, gegen genau
+#: dieses Metronom. Der Gedanke war richtig, die Umsetzung lief ins Leere:
+#: **Drei der vier Werte feuerten nie.**
+#:
+#: Nachgezählt an der Folge vom 13. August – 352 Wörter, 16 Stücke:
+#:
+#:     0,5  s (Satz)     9 ×
+#:     0,95 s (Absatz)   7 ×
+#:     0,66 s (Frage)    0 ×
+#:     0,34 s (Ankünd.)  0 ×
+#:
+#: Der Grund steht im Text selbst: In 352 Wörtern kein einziges Fragezeichen,
+#: kein Ausrufezeichen, kein Doppelpunkt, ein Gedankenstrich. Eine
+#: Nachrichtenmeldung besteht aus Aussagesätzen mit Punkt. Die Fallunter-
+#: scheidung war also vorhanden, sah nach Abhilfe aus und ließ in der Praxis
+#: **zwei Werte** übrig – genau so viele wie vorher.
+#:
+#: **Die Lehre ist allgemeiner als der Fall: Eine Fallunterscheidung über
+#: Merkmale, die der Stoff nicht hat, ist keine.** Wer eine baut, zählt nach,
+#: wie oft jeder Zweig an echtem Material greift.
+#:
+#: Gehängt wird sie deshalb an etwas, das jeder Satz hat: **seine Länge.**
+#: Ein kurzer Satz ist eine Pointe und braucht Raum; ein langer hat dem Ohr
+#: unterwegs schon Ruhe gegeben und darf zügiger weitergehen. Das ist keine
+#: Theorie über Sprache, sondern das, was ein Sprecher hörbar tut.
 PAUSE_ABSATZ = 0.95
-PAUSE_SATZ = 0.5
 PAUSE_FRAGE = 0.66
 PAUSE_ANKUENDIGUNG = 0.34
 PAUSE_STREUUNG = 0.07
+
+#: Die Spanne für den gewöhnlichen Satzschluss – vorher ein fester Wert 0,5.
+#:
+#: Die Grenzen sind so gewählt, dass der **Mittelwert** bei rund einer halben
+#: Sekunde bleibt: Die Folge wird dadurch nicht länger, nur ungleichmäßiger.
+#: Das ist der ganze Zweck – und zugleich der Grund, warum die Umstellung die
+#: Fünf-Minuten-Rechnung und die Frist um sechs Uhr nicht anfasst.
+PAUSE_SATZ_KURZ = 0.72
+PAUSE_SATZ_LANG = 0.34
+#: Ab wie vielen Wörtern ein Satz als kurz bzw. lang gilt.
+SATZ_KURZ = 6
+SATZ_LANG = 22
+
+
+def letzter_satz(stueck: str) -> str:
+    """Der Satz, den der Hörer gerade zu Ende gehört hat.
+
+    Ein Stück fasst oft mehrere Sätze zusammen. Für die Pause danach zählt
+    nicht, wie lang das ganze Stück war – das weiß niemand mehr –, sondern
+    wie der **letzte** Satz geendet hat. Genau ihn hat das Ohr noch.
+    """
+    saetze = [s for s in re.split(r"(?<=[.!?])\s+", stueck.strip()) if s.strip()]
+    return saetze[-1] if saetze else stueck
 
 
 def pause_fuer(stueck: str, absatzende: bool, stelle: int) -> float:
@@ -60,6 +110,10 @@ def pause_fuer(stueck: str, absatzende: bool, stelle: int) -> float:
     Derselbe Text ergibt dieselbe Aufnahme. Ein `random` an dieser Stelle
     ließe zwei Läufe unterschiedlich klingen, und nichts hätte mehr einen
     Bezugspunkt.
+
+    Der Absatzschluss bleibt bei seinem festen Wert. Er ist zugleich das,
+    wonach der Kapitelschritt sucht (`silencedetect … d=0.6`); ihn zu
+    spreizen hieße, Kapitelmarken gegen Sprechrhythmus zu tauschen.
     """
     schluss = stueck.rstrip()[-1:] if stueck.rstrip() else "."
     if absatzende:
@@ -69,7 +123,10 @@ def pause_fuer(stueck: str, absatzende: bool, stelle: int) -> float:
     elif schluss in ":–—":
         grund = PAUSE_ANKUENDIGUNG
     else:
-        grund = PAUSE_SATZ
+        woerter = len(letzter_satz(stueck).split())
+        anteil = (woerter - SATZ_KURZ) / (SATZ_LANG - SATZ_KURZ)
+        anteil = min(1.0, max(0.0, anteil))
+        grund = PAUSE_SATZ_KURZ + anteil * (PAUSE_SATZ_LANG - PAUSE_SATZ_KURZ)
 
     kerbe = (len(stueck) * 7 + stelle * 13) % 11 / 10 - 0.5
     return round(grund + kerbe * 2 * PAUSE_STREUUNG, 3)
@@ -691,7 +748,139 @@ def selbsttest(melde=print) -> int:
         return 1
 
     melde(f"Selbsttest der Tonprüfung: {gesamt} von {gesamt} richtig.")
-    return 0
+
+    schief += _selbsttest_pausen(melde)
+    return 1 if schief else 0
+
+
+#: So sieht ein Absatz einer Tagesausgabe aus – Aussagesätze, Punkt am Ende.
+#:
+#: Kein erfundener Prüfsatz, sondern der Anfang der Folge vom 13. August 2026.
+#: Das ist der ganze Punkt: An ausgedachtem Text mit Frage- und Ausrufezeichen
+#: hätte die alte Fassung glänzend ausgesehen.
+_PROBEABSATZ = """\
+Guten Morgen und herzlich willkommen zum Marktupdate. Heute ist Donnerstag, \
+der dreizehnte August. Enwidia warnt, HSBC beruhigt sich selbst, Gold testet \
+die Zweihundert-Tage-Linie, und der Kalender bringt zwei Konjunkturtermine.
+
+Die Orakl-Aktie hat sich laut einer Ticker-Meldung vom Mittwochabend nach \
+vorherigen Verlusten spürbar erholt. Dieselbe Meldung nennt zugleich \
+weiterhin bestehende Sorgen der Anleger über die Höhe der Investitionen in \
+KI-Infrastruktur, ohne diese näher zu beziffern. Eine Erholung trotz offener \
+Sorgen zeigt, dass ein Kurs schon einen Teil einer schlechten Nachricht \
+vorwegnehmen kann.
+
+Laut einer Agenturmeldung vom Mittwoch hat die Ukraine den russischen \
+Schwarzmeerhafen angegriffen. Der Ölpreis notiert heute Morgen dennoch mit \
+einem Minus von rund einem Prozent. Das zeigt, dass der Markt gerade andere \
+Faktoren stärker gewichtet als dieses eine Risiko.
+
+Bis morgen früh und viel Erfolg."""
+
+
+def _selbsttest_pausen(melde=print) -> int:
+    """Zählt nach, wie viele **verschiedene** Pausen an echtem Text entstehen.
+
+    ## Warum die Spanne gemessen wird und nicht die Zahl der Werte
+
+    Vom 9. bis zum 13. August 2026 stand hier eine Fallunterscheidung über
+    vier Pausenlängen, und sie war nachweislich vorhanden. Nur griffen an
+    einer echten Folge zwei davon nie: `PAUSE_FRAGE` und
+    `PAUSE_ANKUENDIGUNG` verlangen ein `?`, `!`, `:` oder `–` am Satzende,
+    und eine Nachrichtenmeldung hat davon keines. Übrig blieben zwei Werte –
+    genau so viele wie vor der Umstellung, die die Monotonie beheben sollte.
+
+    Die erste Fassung dieses Tests zählte, wie viele **verschiedene** Pausen
+    herauskommen, und ist an der alten Logik nicht angeschlagen: Die
+    Streuung von ±0,07 s macht aus einem festen Wert schon sechs
+    unterschiedliche Zahlen. Gezählt wurde damit das Rauschen, nicht das
+    Signal – derselbe Fehler eine Ebene höher.
+
+    Gemessen wird deshalb die **Spanne**, und zwar gegen die Streuung: Eine
+    kurze Sätze folgende Pause muss auch in ihrem ungünstigsten Fall länger
+    sein als die einer langen in ihrem günstigsten. Das lässt sich mit
+    Rauschen nicht vortäuschen.
+    """
+    schief = 0
+
+    melde("")
+    melde("Selbsttest der Pausen:")
+
+    # Die Kernfrage: Trägt die Satzlänge überhaupt? Verglichen wird der
+    # **ungünstigste** Fall der kurzen gegen den **günstigsten** der langen –
+    # die Streuung kann das Ergebnis damit nicht erzeugen, nur verkleinern.
+    kurz = [pause_fuer("Sehr kurz.", False, stelle) for stelle in range(11)]
+    lang = [
+        pause_fuer("Dieser Satz ist bewusst lang gehalten und zieht sich über "
+                   "viele Wörter hin, wie es eine Meldung nun einmal tut.",
+                   False, stelle)
+        for stelle in range(11)
+    ]
+    abstand = min(kurz) - max(lang)
+    melde(f"  kurzer Satz {min(kurz):.2f}–{max(kurz):.2f} s, "
+          f"langer {min(lang):.2f}–{max(lang):.2f} s")
+    if abstand < 0.15:
+        schief += 1
+        melde(
+            f"::error::  FEHL Abstand nur {abstand:.2f} s. Die Satzlänge trägt "
+            "die Pause nicht – übrig bleibt ein fester Wert plus Streuung, "
+            "also ein Metronom. Siehe die Begründung bei pause_fuer."
+        )
+    else:
+        melde(f"  OK   Kurze Sätze bekommen {abstand:.2f} s mehr Raum als lange.")
+
+    stuecke = in_stuecke(_PROBEABSATZ)
+    pausen = [p for _, p in stuecke]
+    satzpausen_alle = [p for p in pausen if p < 0.8]
+    spanne = max(satzpausen_alle) - min(satzpausen_alle) if satzpausen_alle else 0.0
+    melde(f"  an einem echten Absatz: {len(stuecke)} Stücke, "
+          f"Satzpausen {min(satzpausen_alle):.2f}–{max(satzpausen_alle):.2f} s")
+    if spanne < 2 * PAUSE_STREUUNG + 0.05:
+        schief += 1
+        melde(
+            f"::error::  FEHL Spanne {spanne:.2f} s liegt im Bereich der bloßen "
+            f"Streuung (±{PAUSE_STREUUNG} s) – am echten Text greift nichts."
+        )
+    else:
+        melde(f"  OK   Spanne {spanne:.2f} s, deutlich über der Streuung.")
+
+    # Die Absatzpause trägt die Kapitelmarken: `silencedetect ... d=0.6` darf
+    # sie nicht verpassen. Alles unter 0,8 s wäre zu knapp am Schwellwert.
+    #
+    # Gefragt wird `pause_fuer` unmittelbar, über ein breites Feld von Stücken:
+    # Aus `in_stuecke` geht nicht hervor, welche Pause ein Absatzende war, und
+    # sie am Wert zu erraten hieße, die Prüfung an das zu binden, was sie
+    # prüfen soll.
+    absatzpausen = [
+        pause_fuer("Wort " * laenge + "Ende.", True, stelle)
+        for laenge in range(1, 40)
+        for stelle in range(11)
+    ]
+    if min(absatzpausen) < 0.8:
+        schief += 1
+        melde(
+            f"::error::  FEHL Kürzeste Absatzpause {min(absatzpausen):.2f} s – "
+            "unter 0,8 s geraten die Kapitelmarken in Gefahr."
+        )
+    else:
+        melde(f"  OK   Kürzeste Absatzpause {min(absatzpausen):.2f} s, über 0,8 s.")
+
+    # Die Umstellung darf die Folge nicht länger machen: Der Mittelwert der
+    # gewöhnlichen Satzpausen bleibt bei rund einer halben Sekunde, sonst
+    # verschöbe sich die Fünf-Minuten-Rechnung und mit ihr die Frist um sechs.
+    satzpausen = [p for p in pausen if p < 0.8]
+    if satzpausen:
+        mittel = sum(satzpausen) / len(satzpausen)
+        if not 0.42 <= mittel <= 0.58:
+            schief += 1
+            melde(
+                f"::error::  FEHL Mittlere Satzpause {mittel:.2f} s – "
+                "die Folge wird dadurch merklich länger oder kürzer."
+            )
+        else:
+            melde(f"  OK   Mittlere Satzpause {mittel:.2f} s, wie vorher.")
+
+    return schief
 
 
 if __name__ == "__main__":
