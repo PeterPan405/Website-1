@@ -84,15 +84,21 @@ ist eine Regel der Umgebung, kein Fehler; prüfbar mit
 - Eine Adresse, die niemand abgerufen hat, gehört nicht in
   `data/nachrichtenquellen.ts`.
 
-**Die Rangfolge, aus der die Ausgabe entsteht** (in `nachrichten.yml`):
+**Die Rangfolge, aus der die Ausgabe entsteht** (in `nachrichten.yml`) –
+es sind **zwei** Wege, nicht drei:
 
 1. Entwurf vom Agenten (`nachrichten-agent.yml`, im Abo) – der Regelfall
 2. Modell über die Anthropic-Schnittstelle (~0,20 $, braucht `ANTHROPIC_API_KEY`)
-3. `nachrichten-aus-bestand.ts` – Marktzahlen statt Meldungen, ein Notbehelf
 
-An dieser Reihenfolge wird nichts geändert. Der Notbehelf wird durch einen
-frischen Entwurf ersetzt, solange der Podcast ihn noch nicht vertont hat.
-Erkannt wird er an seinen Quellen: unter der Hälfte externer Verweise.
+**Liefert keiner von beiden, wird nichts geschrieben und der Lauf bricht rot
+ab.** Der Notbehelf aus dem Kursbestand ist seit dem 11. August 2026
+abgeschafft: Besser keine Nachrichten als aufbereitete eigene Kurszahlen, die
+wie Nachrichten aussehen. `scripts/nachrichten-aus-bestand.ts` liegt noch
+herum, wird aber von keinem Workflow mehr aufgerufen.
+
+**Ohne Modell gibt es also keine Ausgabe – und ohne Ausgabe keine Folge**
+(`npm run folge` bricht ab). Alles andere läuft weiter: Kurse, Bau,
+Übertragung, Lernseiten.
 
 Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts`,
 `lib/editions-validate.ts` und `npm run pruefen`. **Wer eine Regel im Build
