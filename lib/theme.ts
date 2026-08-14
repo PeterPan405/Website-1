@@ -32,6 +32,15 @@ export const THEME_STORAGE_KEY = 'fk-theme'
  * CSS-Variable auflöst: Der Browser liest das Attribut, nicht das Stylesheet.
  * Ändert sich eine Canvas-Farbe in `app/globals.css`, gehören diese Werte
  * mitgeändert.
+ *
+ * **Und nicht nur sie.** Am `--c-canvas` des hellen Schemas hängt seit dem
+ * 13. August 2026 auch das Symbol auf dem Homescreen:
+ *
+ *     python scripts/app-icon-faerben.py
+ *
+ * Das ist die Stelle, die man vergisst – eine Bilddatei sieht nicht aus wie
+ * etwas, das von einer CSS-Variablen abhängt. `tests/app-icon.test.ts` fragt
+ * deshalb nach.
  */
 export const LEISTENFARBE = {
   weiss: '#f2ebdd',
