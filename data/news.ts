@@ -101,6 +101,407 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'sandisk-cerebras-zwei-prognosen-zwei-reaktionen',
+    title: 'Zwei Chip-Firmen, zwei Prognosen – und zwei entgegengesetzte Kursreaktionen',
+    metaTitle: 'Sandisk und Cerebras: gegensätzliche Kursreaktionen',
+    teaser:
+      'Sandisk schoss nach einer ambitionierten Wachstumsprognose zweistellig hoch. Cerebras brach trotz Umsatzsprung und höherem Jahresziel ein – am selben Tag.',
+    category: 'Märkte',
+    publishedAt: '2026-08-14T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Sandisk', 'Cerebras', 'Halbleiter', 'Prognose'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026: „Sandisk-Aktie schießt zweistellig hoch: Konzern legt langfristiges Wachstumsmodell vor“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026: „Sandisk-Aktie schiesst hoch: Konzern wagt sich mit ambitionierter Prognose vor“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026: „Cerebras-Aktie bricht nach Quartalszahlen trotz Umsatzsprung und angehobenen Jahreszielen ein“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Halbleiter-Firmen, ein Donnerstag, zwei völlig unterschiedliche Kursreaktionen. Laut News-Ticker von finanzen.net schoss die Sandisk-Aktie zweistellig nach oben, nachdem der Speicherchip-Hersteller ein langfristiges Wachstumsmodell vorgelegt und sich laut einer zweiten Meldung „mit ambitionierter Prognose vorgewagt“ hatte. Cerebras dagegen, ein Anbieter von KI-Rechenchips, meldete einen Umsatzsprung und angehobene Jahresziele – und die Aktie brach trotzdem ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in den Kurzmeldungen steht – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Ticker-Zeilen nennen eine Tatsache, aber keine Begründung. Bei Sandisk: eine neue, langfristig angelegte Wachstumsprognose, verbunden mit einem zweistelligen Kurssprung. Bei Cerebras: höhere Jahresziele und ein Umsatzsprung im abgelaufenen Quartal, verbunden mit einem Kurseinbruch. Warum Anleger die eine Ankündigung feiern und die andere abstrafen, geht aus den Meldungen nicht hervor – das wäre eine Erfindung, keine Wiedergabe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Prognose wird gegen das gemessen, was schon erwartet wurde',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was sich aus dem Muster trotzdem lernen lässt: Eine Kurszahl allein erklärt eine Kursreaktion selten. Entscheidend ist, wie eine Prognose zu dem passt, was der Markt vorher schon für wahrscheinlich hielt. Ein „langfristiges Wachstumsmodell“ kann eine Aktie neu bewerten lassen, weil es eine bislang fehlende Orientierung liefert. Höhere Jahresziele dagegen enttäuschen, wenn Anleger im Vorfeld noch mehr erwartet hatten oder wenn Details – etwa zur Marge oder zum Tempo des Anstiegs – hinter den Erwartungen zurückbleiben. Beides ist möglich, ohne dass die Kurzmeldung es verrät.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Firmen, ein Sektor, keine einheitliche Regel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sandisk und Cerebras hängen beide am selben KI-Investitionszyklus – der eine an Speicherchips, der andere an Rechenchips für Trainingsmodelle. Dass ihre Aktien am selben Tag in entgegengesetzte Richtungen liefen, zeigt: Ein Sektortrend erklärt die Richtung, nicht das Ergebnis für ein einzelnes Unternehmen. Wer nur die Branche im Blick hat, übersieht, dass jede Prognose an ihrem eigenen Maßstab gemessen wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine gute Nachricht – mehr Umsatz, höhere Ziele – ist keine Garantie für einen steigenden Kurs, wenn die Latte vorher schon höher lag. Wer eine Kursreaktion verstehen will, muss nach der Erwartung fragen, gegen die eine Zahl gemessen wurde, nicht nur nach der Zahl selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-faellt-trotz-schwaecherer-erzeugerpreise',
+    title:
+      'Schwächere US-Erzeugerpreise sollten Gold eigentlich helfen – stattdessen fällt der Preis',
+    metaTitle: 'Gold fällt trotz schwächerer US-Erzeugerpreise',
+    teaser:
+      'Die US-Erzeugerpreise legten im Juli langsamer zu als erwartet, was Zinssenkungen wahrscheinlicher macht. Der Goldpreis gab trotzdem nach.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-14T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Erzeugerpreise', 'Zinserwartung', 'Edelmetalle'],
+    relatedTopics: ['rohstoffe', 'inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldung vom 13. August 2026: „US-Erzeugerpreise schwächer – Zinsdruck lässt nach“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Meldung vom 13. August 2026: „Goldpreis heute: Zurück unter 4.400 USD – Erzeugerpreise im Fokus“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Meldung vom 13. August 2026: „Größter Gold-ETF: Bestände steigen vierte Woche in Folge“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise, abgerufen 14.8.2026, 5:02 Uhr (Gold 4.315,81 USD, -0,82 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis notiert heute früh laut wallstreet-online bei 4.315,81 Dollar je Feinunze, ein Minus von 0,82 Prozent. Das folgt auf eine Meldung von Goldreporter vom Donnerstag: Die US-Erzeugerpreise sind im Juli „deutlich langsamer“ gestiegen als erwartet, und auch die Arbeitsmarktdaten fielen schwächer aus als erwartet. Beides senkt normalerweise den Druck auf die Notenbank, an hohen Zinsen festzuhalten – und niedrigere Zinserwartungen gelten grundsätzlich als gut für Gold, das selbst keine Zinsen zahlt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum schwächere Inflation eigentlich für Gold spricht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wirft keine laufenden Erträge ab. Je niedriger die Zinsen auf Anleihen und Tagesgeld, desto geringer sind die entgangenen Zinserträge, die ein Anleger für das Halten von Gold in Kauf nimmt – der sogenannte Opportunitätskostenmechanismus. Schwächere Erzeugerpreise und ein schwächerer Arbeitsmarkt erhöhen üblicherweise die Wahrscheinlichkeit von Zinssenkungen und sollten Gold damit tendenziell attraktiver machen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Preis fiel trotzdem – und die ETF-Bestände stiegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau das ist an diesem Donnerstag nicht eingetreten: Laut Goldreporter startete der Goldpreis bereits schwächer in den Tag, noch bevor die Erzeugerpreise vorlagen, und rutschte anschließend unter die Marke von 4.400 Dollar. Eine Erklärung dafür, warum die eigentlich unterstützende Nachricht nicht half, liefert die Quelle nicht – möglich sind etwa Gewinnmitnahmen nach dem vorangegangenen Anstieg oder Bewegungen am Devisenmarkt, die hier aber nicht belegt sind. Auffällig ist der Gegensatz zu einer weiteren Meldung desselben Tages: Der größte Gold-ETF verzeichnete die vierte Woche in Folge steigende Bestände – während der Preis fiel, kauften institutionelle Anleger über den Fonds offenbar weiter zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Korrelation ist eine Tendenz, kein Naturgesetz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Zusammenhang zwischen Zinserwartungen und Goldpreis ist eine Korrelation, die sich über längere Zeiträume statistisch zeigt – kein Mechanismus, der an jedem einzelnen Handelstag greifen muss. An einem bestimmten Tag können andere Kräfte überwiegen: die Dollar-Bewegung, die Positionierung am Terminmarkt oder schlicht, dass ein Teil der guten Nachricht schon vorher im Kurs steckte.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine bekannte Korrelation – hier: niedrigere Zinserwartungen stützen Gold – erklärt eine Richtung über Zeit, nicht jede einzelne Tagesbewegung. Wer aus einem einzigen Tag eine Regel ableitet, verwechselt eine Tendenz mit einer Garantie.',
+      },
+    ],
+  },
+  {
+    slug: 'iran-hormus-maut-oelpreis-faellt-trotzdem',
+    title: 'Der Iran will an jedem Öl-Barrel mitverdienen – der Ölpreis fällt trotzdem',
+    metaTitle: 'Iran fordert Hormus-Maut – Ölpreis fällt trotzdem',
+    teaser:
+      'Der Iran fordert laut einer Meldung 20 Milliarden Dollar für freie Fahrt durch die Straße von Hormus. Brent und WTI gaben am selben Tag trotzdem nach.',
+    category: 'Märkte',
+    publishedAt: '2026-08-14T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Hormus', 'Geopolitik', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 13.8.2026: „‚Reine Erpressung‘: Iran will an jedem Öl-Barrel mitverdienen – 20 Milliarden für freie Fahrt“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Börse Frankfurt, Aktuelle Rohstoffpreise vom 13.8.2026 (Öl Brent 86,98 USD, -1,58 %)',
+        url: 'https://www.boerse-frankfurt.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, Meldung vom 10. August 2026: „Goldpreis bleibt über 4.300 USD – Anleger blicken auf Hormus-Verhandlungen“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Laut einer Meldung von wallstreet-online vom Donnerstag will der Iran aus der Straße von Hormus, der wichtigsten Ölroute der Welt, ein Machtinstrument machen: Er fordert rund 20 Milliarden Dollar dafür, Tanker ungehindert passieren zu lassen. Die Meldung zitiert Experten, die die Forderung für kaum durchsetzbar halten, warnt aber zugleich vor einem Abkommen, das die Route dauerhaft verändern könnte. Trotz dieser Zuspitzung gab der Ölpreis am selben Tag nach: Brent schloss laut Börse Frankfurt bei 86,98 Dollar, ein Minus von 1,58 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Route für den Ölpreis überhaupt zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus, eine Meerenge zwischen dem Iran und der arabischen Halbinsel, läuft nach gängigen Schätzungen ein großer Teil der weltweiten Öltransporte auf dem Seeweg. Jede Drohung, diese Route zu erschweren oder zu bepreisen, gilt Händlern deshalb üblicherweise als Risiko für das weltweite Angebot – und Risiken für das Angebot lassen Preise für gewöhnlich steigen, nicht fallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Forderung kam – der Preis fiel trotzdem',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau umgekehrt lief es an diesem Donnerstag. Eine Erklärung dafür liefert die Quelle nicht; sie hält nur die beiden Tatsachen fest, die Forderung des Iran und den tags darauf gemeldeten Kursstand. Möglich ist, dass Händler die Forderung – wie die zitierten Experten – für wenig durchsetzbar halten und sie deshalb kaum in den Preis einrechnen. Das bleibt an dieser Stelle eine Möglichkeit, keine belegte Begründung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein wiederkehrendes Muster',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schon am 10. August notierte Gold laut Goldreporter über 4.300 Dollar, während Anleger „auf Hormus-Verhandlungen“ blickten – ein Hinweis darauf, dass die Route seit Tagen im Gespräch ist, ohne dass sich der Ölpreis bislang dauerhaft davon hätte beeindrucken lassen. Eine Drohung, die sich wiederholt, ohne dass sich etwas ändert, verliert an den Terminmärkten mit der Zeit an Wirkung – Händler beginnen, sie als Teil des Hintergrundrauschens zu behandeln statt als neue Information.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine geopolitische Drohung bewegt einen Rohstoffpreis nur, solange Marktteilnehmer sie für wahrscheinlich und neu halten. Wie glaubwürdig eine Forderung eingeschätzt wird, sagt am Ende oft mehr über die Kursreaktion als die Forderung selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'thyssenkrupp-rwe-zwei-dax-bilanzen-ein-donnerstag',
+    title:
+      'Marge verfehlt, Kurs auf Mehrjahreshoch: Thyssenkrupp und RWE legen an einem Tag vor',
+    metaTitle: 'Thyssenkrupp und RWE: zwei DAX-Bilanzen im Vergleich',
+    teaser:
+      'Thyssenkrupp verfehlte laut Ticker die Marge und stieg trotzdem auf ein Mehrjahreshoch. RWE überzeugte mit Halbjahreszahlen und Verschuldung im Rahmen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-14T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Thyssenkrupp', 'RWE', 'Quartalszahlen', 'DAX'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026: „thyssenkrupp-Aktie dennoch auch Mehrjahreshoch: Marge unter Erwartungen, Ausblick angepasst“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.8.2026: „RWE-Aktie gewinnt: Halbjahresbilanz überzeugt – Verschuldung bleibt im Rahmen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Übersicht „Heute im Fokus“ vom 13.8.2026: „DAX fällt letztlich ins Minus – … thyssenkrupp verfehlt Erwartungen – … RWE … im Fokus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei DAX-Werte, ein Berichtstag: Laut News-Ticker von finanzen.net verfehlte Thyssenkrupp am Donnerstag bei der Marge die Erwartungen und passte den Ausblick an – die Aktie stieg trotzdem auf ein Mehrjahreshoch. RWE dagegen überzeugte mit seiner Halbjahresbilanz, die Verschuldung blieb im Rahmen, und auch diese Aktie legte zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine verfehlte Marge, ein steigender Kurs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf den ersten Blick wirkt die Thyssenkrupp-Meldung widersprüchlich: eine Marge unter den Erwartungen, ein angepasster – die Meldung nennt nicht, ob nach oben oder unten – Ausblick, und trotzdem ein Kurssprung auf den höchsten Stand seit Jahren. Was genau den Kurs trotz der verfehlten Marge trieb, geht aus der Kurzmeldung nicht hervor. Möglich ist, dass andere Kennzahlen – etwa der Auftragseingang oder der Ausblick selbst – die Erwartungen übertrafen und das stärker wog als die Marge allein; das bleibt hier aber eine Möglichkeit, keine belegte Tatsache.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'RWE: Eine Bilanz ohne offenen Widerspruch',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei RWE liegt der Fall geradliniger: Die Halbjahresbilanz „überzeugte“, und die Verschuldung – für einen kapitalintensiven Energiekonzern mit hohen Investitionen in Kraftwerke und Netze eine zentrale Kennzahl – blieb laut Meldung „im Rahmen“. Ein Energieversorger, der viel investieren muss, finanziert einen Teil davon über Schulden; bleibt die Verschuldung trotzdem kontrollierbar, gilt das unter Anlegern als Stabilitätssignal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Berichte, ein DAX – und ein Tagesschluss mit doppelter Lesart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Tagesübersicht von finanzen.net fasste den Donnerstag mit „DAX fällt letztlich ins Minus“ zusammen und nannte thyssenkrupp als einen der Werte, die die Erwartungen verfehlten. Das zeigt: Einzelne Aktien können sich trotz durchwachsener Zahlen positiv entwickeln, während der Gesamtindex an demselben Tag insgesamt nachgab – der Index ist ein Durchschnitt über viele Werte, kein Abbild jedes einzelnen Titels.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne verfehlte Kennzahl – hier die Marge – entscheidet nicht automatisch über die Kursrichtung. Anleger gewichten mehrere Größen gleichzeitig, und welche davon am Ende den Ausschlag gibt, lässt sich von außen oft erst im Nachhinein und nur unvollständig rekonstruieren.',
+      },
+    ],
+  },
+  {
+    slug: 'was-heute-ansteht-frankreich-eurozone-usa',
+    title: 'Was heute ansteht: Französische Inflation, Eurozone-BIP und US-Einzelhandel',
+    metaTitle: 'Wirtschaftskalender: Frankreich, Eurozone, USA am 14.8.',
+    teaser:
+      'Um 8:45 Uhr kommt die französische Inflation, um 12 Uhr das Eurozone-BIP mit Beschäftigungszahlen, um 14:30 Uhr die US-Einzelhandelsumsätze für Juli.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-14T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wirtschaftskalender', 'Inflation', 'BIP', 'Einzelhandel'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['euro-stoxx-50', 'sp500', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender-Widget „Wichtige Termine“, abgerufen 14.8.2026, 5:04 Uhr (08:45 Verbraucherpreisindex EU-Norm, 12:00 BIP/Beschäftigung, 14:30 Einzelhandelsumsätze)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Investing.com, Wirtschaftskalender für den 14. August 2026, abgerufen per Web-Abruf: listet für diesen Tag französische Verbraucherpreise, Eurozone-BIP/Handelsdaten und US-Einzelhandelsumsätze samt Michigan-Konsumklima',
+        url: 'https://www.investing.com/economic-calendar/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Wirtschaftskalender-Widget von wallstreet-online nennt für heute drei Termine kurz hintereinander: um 8:45 Uhr einen Verbraucherpreisindex nach EU-Norm (Prognose 2,4 Prozent im Jahresvergleich, wie im Vormonat), um 12 Uhr gleich mehrere Werte – Bruttoinlandsprodukt im Jahres- und im Quartalsvergleich sowie eine Beschäftigungsveränderung –, und um 14:30 Uhr Einzelhandelsumsätze samt einer sogenannten Kontrollgruppe. Das Widget selbst nennt keine Länder zu den Terminen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wem die Zahlen zuzuordnen sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Abgleich mit dem Wirtschaftskalender von Investing.com ordnet die drei Termine ein: Um 8:45 Uhr steht die endgültige französische Verbraucherpreis-Lesung für Juli an, um 12 Uhr veröffentlicht Eurostat die zweite Schätzung zum Bruttoinlandsprodukt der Eurozone für das zweite Quartal zusammen mit Beschäftigungsdaten, und um 14:30 Uhr folgen die US-Einzelhandelsumsätze für Juli samt Kernrate ohne Autos.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Kontrollgruppe mehr verrät als die Schlagzeile',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei den US-Einzelhandelsumsätzen lohnt der zweite Blick: Neben der Gesamtzahl (Prognose 0,2 Prozent zum Vormonat, wie im Vormonat) weist die sogenannte Control Group aus, wie sich der Konsum ohne einige schwankungsanfällige Posten wie Autos, Baumaterial und Tankstellen entwickelt – dieser Wert fließt direkter in die amtliche Berechnung des Konsums innerhalb des Bruttoinlandsprodukts ein als die Schlagzeilenzahl. Der Vorwert lag hier bei 0,5 Prozent, eine neue Prognose nennt der Kalender nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein doppelter Blick auf dieselbe Wirtschaftsregion',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist die zeitliche Nähe der beiden europäischen Termine: Erst die nationale Inflation eines einzelnen Landes, dann zwei Stunden später die Wachstums- und Beschäftigungszahlen für die gesamte Eurozone. Wer beide Zahlen zusammen liest, bekommt am selben Vormittag sowohl ein nationales Detail als auch das große Bild – ein Beispiel dafür, wie Konjunkturkalender Länder- und Regionaldaten mischen, ohne dass das auf den ersten Blick auffällt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kalendertermin ist erst dann einzuordnen, wenn klar ist, wofür er steht und wie sein Vorwert lautete. Drei Uhrzeiten allein sagen wenig – Land, Kennzahl und Prognose entscheiden, ob eine Veröffentlichung heute Nachmittag Bewegung in die Kurse bringen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'michael-burry-short-wetten-gegen-chip-hersteller',
+    title:
+      'Michael Burry wettet weiter gegen den Chip-Boom – wie belastbar ist diese Wette?',
+    metaTitle: 'Michael Burry: Short-Wetten gegen Chip-Hersteller',
+    teaser:
+      'Der für seine Wette gegen die Immobilienblase 2008 bekannte Investor hat seine Short-Positionen gegen Halbleiter-Firmen laut einer Meldung weiter aufgestockt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-14T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Michael Burry', 'Leerverkauf', 'Halbleiter', 'Anlegerpsychologie'],
+    relatedTopics: ['anlegerpsychologie', 'risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['oracle'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Meldung vom 13.8.2026: „Hat er Recht? Michael Burry erhöht seine Short-Wetten – Ende des KI-Booms?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Michael Burry, bekannt geworden durch seine Wette gegen den US-Immobilienmarkt vor der Finanzkrise 2008, hat laut einer Meldung von wallstreet-online am Mittwoch aktualisierte Aktienpositionen offengelegt. Demnach hat er seine Short-Wetten gegen Halbleiter-Hersteller weiter aufgestockt, unter anderem gegen die im Text genannten Werte Nebius, Micron Technology und Oracle. Eine genaue Begründung nennt die Meldung nicht, nur die Frage im Titel: „Ende des KI-Booms?“',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Short-Wette überhaupt bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer eine Aktie leerverkauft, leiht sie sich, verkauft sie sofort am Markt und hofft, sie später günstiger zurückzukaufen, um sie zurückzugeben. Der Gewinn entsteht aus dem Kursrückgang – im Unterschied zum Kauf einer Aktie ist der mögliche Verlust dabei theoretisch unbegrenzt, weil ein Kurs unbegrenzt steigen kann. Eine solche Position ist damit eine ausdrückliche Wette gegen den Markt, nicht nur ein Verzicht auf einen Kauf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein bekannter Name ist kein Beweis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass eine Investorenlegende mit einer berühmten Vorhersage aus der Vergangenheit eine bestimmte Position hält, wird in der Berichterstattung oft so behandelt, als spreche das für sich. Tatsächlich sagt eine einzelne Short-Position vor allem etwas über die Einschätzung dieses einen Investors aus – nicht über die künftige Kursentwicklung. Auch bekannte Investoren lagen mit Einzelwetten in der Vergangenheit wiederholt falsch, und ihr Ruf beruht meist auf wenigen richtigen Entscheidungen, nicht auf einer durchgehend hohen Trefferquote.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Positionsmeldungen kommen mit Verzögerung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Offengelegte Positionen wie diese stammen aus periodischen Meldepflichten und zeigen einen Stand von vor einiger Zeit, nicht die aktuelle Positionierung in Echtzeit. Bis eine solche Meldung öffentlich wird, kann sich die tatsächliche Position bereits wieder verändert haben – ein Umstand, den die Kurzmeldung selbst nicht thematisiert, der aber zum Verständnis solcher Veröffentlichungen dazugehört.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Short-Position eines bekannten Investors ist eine Meinung mit Gewicht, kein Beleg. Wer daraus eine eigene Anlageentscheidung ableiten will, sollte sie als einen Datenpunkt unter vielen behandeln – nicht als Vorhersage, die sich zwangsläufig erfüllt.',
+      },
+    ],
+  },
+  {
     slug: 'applied-materials-wirtschaftskalender-eingepreiste-erwartung',
     title: 'Nicht die Zahl bewegt den Kurs, sondern der Abstand zur Prognose',
     teaser:
