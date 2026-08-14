@@ -41,7 +41,7 @@ name: Podcastfolge erzeugen
 # Bis zum 8. August 2026 stand hier 04:53 **UTC**, also 6:53 Uhr deutscher
 # Zeit. Online wäre die Folge damit gegen halb acht gewesen – fast zwei
 # Stunden nach der Zusage. Neben „Frist 04:00 UTC" sah „04:53" harmlos aus;
-# genau deshalb steht in AGENTS.md die deutsche Zeit jetzt vorn.
+# genau deshalb steht der Fahrplan in AGENTS.md in deutscher Zeit.
 #
 # Der Termin liegt **hinter** dem dritten Anlauf des Nachrichtenlaufs
 # (04:47): Die Folge vertont die Tagesausgabe, und ohne sie hat sie nichts
@@ -698,7 +698,7 @@ jobs:
             # Feed und Audio auf dem Server. Wenn dann das Register nicht
             # nachkommt, ist das kein „der nächste Lauf trägt es nach",
             # sondern ein Auseinanderlaufen zweier Wahrheiten. Genau dafür
-            # ist ein roter Lauf da – siehe die Trennlinie in AGENTS.md.
+            # ist ein roter Lauf da – siehe die Trennlinie in ENTSCHEIDUNGEN.md.
             if [ "$gelungen" != ja ]; then
               echo "::error::Die Folge ist veröffentlicht, aber das Register ließ sich nicht eintragen."
               echo "  Auf dem Server steht jetzt ein Feed, den main nicht kennt."
