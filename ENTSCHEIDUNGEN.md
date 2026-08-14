@@ -353,11 +353,29 @@ nehmen, und der Build bräche zwei Stunden später.
 1. **Entwurf vom Agenten** – recherchiert, im Abo enthalten, der Regelfall
 2. **Modell über die Schnittstelle** – dasselbe Ergebnis, ~0,20 $, braucht
    `ANTHROPIC_API_KEY`
-3. **Bestand** – Marktzahlen statt Meldungen, ausdrücklich ein Notbehelf
+3. ~~**Bestand** – Marktzahlen statt Meldungen, ausdrücklich ein Notbehelf~~
 
 Wer hier etwas ändert, ändert nichts an dieser Reihenfolge. Weg 3 ist der
 Grund, warum nie „gar nichts" dasteht; Weg 1 der Grund, warum er selten
 gebraucht werden sollte.
+
+> **Weg 3 gibt es seit dem 11. August 2026 nicht mehr.** Der Absatz darüber
+> steht bewusst so stehen, weil er die Begründung enthält, die damals galt –
+> und weil sie sich als falsch erwiesen hat.
+>
+> Der Gedanke war: lieber eine schmale Ausgabe als keine. Am 9. August kam
+> heraus, was das in der Praxis heißt – auf der Website standen aufbereitete
+> eigene Kurszahlen, die aussahen wie Nachrichten, und der Wächter wäre grün
+> geblieben. Seither gilt das Gegenteil: **Besser keine Nachrichten als
+> welche, die keine sind.** `nachrichten.yml` bricht rot ab, wenn weder
+> Entwurf noch Modell liefern.
+>
+> `scripts/nachrichten-aus-bestand.ts` liegt noch im Repository, wird aber
+> von keinem Workflow mehr aufgerufen.
+>
+> **Die Folge davon, ausgeschrieben:** Ohne Modell gibt es keine Ausgabe, und
+> ohne Ausgabe keine Podcastfolge – `npm run folge` bricht ab. Kurse,
+> Paketbau, Übertragung und Lernseiten laufen davon unberührt weiter.
 
 Zur Selbstprüfung eines Entwurfs dient dieselbe Probe, die beide Workflows
 fahren:
