@@ -121,7 +121,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 | **~04:00**    | 02:00 | **die Folge ist online**                                     |
 | 03:13 … 04:47 | 01:13 | `nachrichten.yml` als Cron – vier Rückfalltermine            |
 | 03:53 / 04:33 | 01:53 | `podcast-erzeugen.yml` als Cron – zwei Rückfalltermine       |
-| ab 03:00      | 01:00 | `kurse.yml` stößt an, was fehlt – siebzehnmal am Tag         |
+| ab 03:00      | 01:00 | `kurse.yml` stößt an, was fehlt – alle 5 Minuten geplant     |
 | 05:11         | 03:11 | `ausgabe-waechter.yml` – der Alarm kommt **vor** der Frist   |
 | 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau                       |
 | 07:51         | 05:51 | `betriebsuebersicht.yml` – steht alles?                      |
