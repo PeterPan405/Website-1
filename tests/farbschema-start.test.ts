@@ -26,7 +26,7 @@
  * die Entscheidung, welches Schema gilt.
  */
 
-import { LEISTENFARBE, THEME_STORAGE_KEY, startSkript } from '@/lib/theme'
+import { LEISTENFARBE, THEME_STORAGE_KEY, leisteFaerben, startSkript } from '@/lib/theme'
 
 const skript = startSkript()
 
@@ -40,13 +40,85 @@ type Ergebnis = {
   leiste: string[]
 }
 
+/** Eine Meta-Angabe, so viel davon, wie angefasst wird. */
+class Angabe {
+  werte: Record<string, string> = {}
+  parentNode: Kopf | null = null
+  setAttribute(name: string, wert: string) {
+    this.werte[name] = wert
+  }
+  getAttribute(name: string) {
+    return this.werte[name] ?? null
+  }
+  remove() {
+    this.parentNode?.removeChild(this)
+  }
+}
+
+/** Der `<head>` mit seinen Kindern. */
+class Kopf {
+  kinder: Angabe[] = []
+  appendChild(kind: Angabe) {
+    kind.parentNode = this
+    this.kinder.push(kind)
+    return kind
+  }
+  removeChild(kind: Angabe) {
+    this.kinder = this.kinder.filter((k) => k !== kind)
+    kind.parentNode = null
+    return kind
+  }
+}
+
+/**
+ * Baut eine Seite mit `anzahl` Farbangaben im Kopf, wie sie ausgeliefert wird.
+ *
+ * Voreingestellt sind **zwei**, obwohl das Layout nur eine ausliefert: Wer
+ * aufräumt, muss alle erwischen. Bliebe eine stehen, gäbe es zwei
+ * widersprüchliche Angaben, und welche gilt, entscheidet dann der Browser.
+ */
+function neueSeite(anzahl = 2) {
+  const kopf = new Kopf()
+  for (let i = 0; i < anzahl; i++) {
+    const angabe = new Angabe()
+    angabe.setAttribute('name', 'theme-color')
+    angabe.setAttribute('content', LEISTENFARBE.weiss)
+    kopf.appendChild(angabe)
+  }
+
+  const dokument = {
+    head: kopf,
+    documentElement: { dataset: {} as { theme?: string } },
+    createElement: (art: string) => {
+      if (art !== 'meta') throw new Error(`Unerwartetes Element: ${art}`)
+      return new Angabe()
+    },
+    querySelectorAll: (wahl: string) => {
+      if (wahl !== 'meta[name="theme-color"]') {
+        throw new Error(`Unerwartete Auswahl: ${wahl}`)
+      }
+      return kopf.kinder.filter((k) => k.getAttribute('name') === 'theme-color')
+    },
+  }
+
+  return { dokument, kopf }
+}
+
+/** Welche Farben nach dem Lauf im Kopf stehen. */
+function leisteAus(kopf: Kopf): string[] {
+  return kopf.kinder
+    .filter((k) => k.getAttribute('name') === 'theme-color')
+    .map((k) => k.getAttribute('content') ?? '')
+}
+
 /**
  * Führt das Startskript gegen eine nachgebaute Seite aus.
  *
  * Nachgebaut ist genau so viel, wie das Skript anfasst: `localStorage`,
- * `matchMedia`, das `<html>`-Element mit seinem `dataset` und die
- * Meta-Angaben. Eine echte DOM-Bibliothek wäre eine Abhängigkeit für fünf
- * Eigenschaften – und würde verdecken, worauf sich das Skript stützt.
+ * `matchMedia`, das `<html>`-Element mit seinem `dataset` und ein `<head>`,
+ * in dem sich Angaben anlegen und entfernen lassen. Eine echte DOM-Bibliothek
+ * wäre eine Abhängigkeit für eine Handvoll Eigenschaften – und würde
+ * verdecken, worauf sich das Skript stützt.
  *
  * `matchMedia` ist **absichtlich noch da**, obwohl das Skript es nicht mehr
  * benutzen darf. Fehlte es, käme ein Rückfall auf die Systemvorgabe als
@@ -59,24 +131,7 @@ function ausfuehren({
   systemDunkel,
 }: Umgebung): Ergebnis & { gefragt: boolean } {
   let gefragt = false
-  const leiste: string[] = []
-
-  // Zwei Meta-Angaben, obwohl das Layout nur noch eine ausliefert: Die Schleife
-  // im Skript muss auch dann alle treffen, wenn jemand eine zweite einführt.
-  const metas = [
-    { setAttribute: (_: string, wert: string) => leiste.push(wert) },
-    { setAttribute: (_: string, wert: string) => leiste.push(wert) },
-  ]
-
-  const dokument = {
-    documentElement: { dataset: {} as { theme?: string } },
-    querySelectorAll: (wahl: string) => {
-      if (wahl !== 'meta[name="theme-color"]') {
-        throw new Error(`Unerwartete Auswahl im Startskript: ${wahl}`)
-      }
-      return metas
-    },
-  }
+  const { dokument, kopf } = neueSeite()
 
   const fenster = {
     matchMedia: (frage: string) => {
@@ -97,7 +152,11 @@ function ausfuehren({
   */
   new Function('document', 'window', 'localStorage', skript)(dokument, fenster, speicher)
 
-  return { theme: dokument.documentElement.dataset.theme, leiste, gefragt }
+  return {
+    theme: dokument.documentElement.dataset.theme,
+    leiste: leisteAus(kopf),
+    gefragt,
+  }
 }
 
 let failed = 0
@@ -140,9 +199,9 @@ pruefen(
 )
 
 pruefen(
-  'Ohne gespeicherte Wahl bleibt die Browserleiste unangetastet',
-  ersterDunkel.leiste.length === 0,
-  `gesetzt auf: ${ersterDunkel.leiste.join(', ')} – im <head> steht bereits die helle Farbe`
+  'Ohne gespeicherte Wahl steht genau eine helle Angabe im Kopf',
+  ersterDunkel.leiste.length === 1 && ersterDunkel.leiste[0] === LEISTENFARBE.weiss,
+  `bekommen: [${ersterDunkel.leiste.join(', ')}] – erwartet genau [${LEISTENFARBE.weiss}]`
 )
 
 /* ------------------------------------------------------------------
@@ -159,10 +218,11 @@ for (const systemDunkel of [false, true]) {
     `bekommen: ${gewaehltDunkel.theme}`
   )
   pruefen(
-    `Wahl „dark", ${lage} → beide Leisten dunkel`,
-    gewaehltDunkel.leiste.length === 2 &&
-      gewaehltDunkel.leiste.every((f) => f === LEISTENFARBE.dark),
-    `gesetzt auf: ${gewaehltDunkel.leiste.join(', ') || '(nichts)'}`
+    `Wahl „dark", ${lage} → genau eine dunkle Angabe`,
+    gewaehltDunkel.leiste.length === 1 && gewaehltDunkel.leiste[0] === LEISTENFARBE.dark,
+    `bekommen: [${gewaehltDunkel.leiste.join(', ') || '(nichts)'}] – erwartet ` +
+      `genau [${LEISTENFARBE.dark}]. Bleibt eine alte Angabe stehen, gibt es zwei, ` +
+      'und welche gilt, entscheidet der Browser.'
   )
 
   const gewaehltWeiss = ausfuehren({ gespeichert: 'weiss', systemDunkel })
@@ -172,10 +232,51 @@ for (const systemDunkel of [false, true]) {
     `bekommen: ${gewaehltWeiss.theme}`
   )
   pruefen(
-    `Wahl „weiss", ${lage} → beide Leisten hell`,
-    gewaehltWeiss.leiste.length === 2 &&
-      gewaehltWeiss.leiste.every((f) => f === LEISTENFARBE.weiss),
-    `gesetzt auf: ${gewaehltWeiss.leiste.join(', ') || '(nichts)'}`
+    `Wahl „weiss", ${lage} → genau eine helle Angabe`,
+    gewaehltWeiss.leiste.length === 1 && gewaehltWeiss.leiste[0] === LEISTENFARBE.weiss,
+    `bekommen: [${gewaehltWeiss.leiste.join(', ') || '(nichts)'}]`
+  )
+}
+
+/* ------------------------------------------------------------------
+   Startskript und Umschalter müssen dasselbe tun.
+
+   Sie können sich keinen Aufruf teilen – das eine ist eine Zeichenkette
+   im <head>, das andere Code in einer React-Komponente. Also werden hier
+   beide über dieselbe nachgebaute Seite geschickt und verglichen.
+
+   Ohne das ist es eine Doppelung, die beim nächsten Anfassen auseinander-
+   geht, und auffallen würde es auf einem Telefon.
+------------------------------------------------------------------- */
+
+for (const [name, farbe] of Object.entries(LEISTENFARBE)) {
+  const ueberSkript = neueSeite()
+  new Function('document', 'window', 'localStorage', skript)(
+    ueberSkript.dokument,
+    {},
+    { getItem: () => (name === 'dark' ? 'dark' : 'weiss') }
+  )
+
+  /*
+    `leisteFaerben` greift auf das globale `document` zu – die nachgebaute
+    Seite wird ihm deshalb untergeschoben und danach wieder entfernt. Ein
+    echtes `document` gibt es in dieser Umgebung nicht.
+  */
+  const ueberFunktion = neueSeite()
+  const vorher = (globalThis as { document?: unknown }).document
+  ;(globalThis as { document?: unknown }).document = ueberFunktion.dokument
+  try {
+    leisteFaerben(farbe)
+  } finally {
+    ;(globalThis as { document?: unknown }).document = vorher
+  }
+
+  const a = leisteAus(ueberSkript.kopf)
+  const b = leisteAus(ueberFunktion.kopf)
+  pruefen(
+    `Startskript und Umschalter erzeugen dasselbe (${name})`,
+    a.length === b.length && a.every((wert, i) => wert === b[i]),
+    `Skript: [${a.join(', ')}]   Umschalter: [${b.join(', ')}]`
   )
 }
 

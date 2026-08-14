@@ -1,7 +1,7 @@
 'use client'
 
 import { Icon } from '@/components/ui/Icon'
-import { LEISTENFARBE, THEME_STORAGE_KEY } from '@/lib/theme'
+import { LEISTENFARBE, THEME_STORAGE_KEY, leisteFaerben } from '@/lib/theme'
 
 /**
  * Umschalter zwischen Weiß und Schwarz.
@@ -28,13 +28,15 @@ export function ThemeToggle({ className }: { className?: string }) {
     /*
       Die Browserleiste mitziehen.
 
-      Auf dem Telefon färbt Safari die Leiste über der Seite nach diesem
-      Attribut. Ohne diese Zeile bliebe sie hell, während die Seite dunkel wird
-      – auf dem Handy der auffälligste Teil der ganzen Umschaltung.
+      Auf dem Telefon färbt Safari die Leiste über der Seite nach dieser
+      Angabe. Ohne sie bliebe sie hell, während die Seite dunkel wird – auf
+      dem Handy der auffälligste Teil der ganzen Umschaltung.
+
+      Die Angabe wird **ersetzt**, nicht geändert: Safari übernimmt ein
+      `setAttribute` auf einer bereits gelesenen `theme-color` nicht
+      verlässlich. Begründung und Vorgeschichte stehen bei `leisteFaerben`.
     */
-    document
-      .querySelectorAll('meta[name="theme-color"]')
-      .forEach((m) => m.setAttribute('content', LEISTENFARBE[next]))
+    leisteFaerben(LEISTENFARBE[next])
 
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, next)

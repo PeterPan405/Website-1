@@ -1607,6 +1607,42 @@ Aufblitzen vor einer weißen Seite. Für den dunklen Modus ist das ohne Belang �
 `[data-theme='dark']` in `app/globals.css` setzt `color-scheme: dark`, und die
 CSS-Eigenschaft sticht die Meta-Angabe.
 
+## Die Browserleiste wird ersetzt, nicht geändert
+
+Am selben 13. August, wenige Stunden später, meldete der Betreiber einen
+**weißen Balken über der dunklen Seite** auf dem Telefon. Eine Regression aus
+genau der Umstellung darüber – und lehrreich genug für einen eigenen Abschnitt.
+
+Vorher standen im `<head>` **zwei** `theme-color`-Angaben mit `media`-Bedingung.
+Auf einem dunkel gestellten Gerät griff die dunkle schon beim Parsen, ohne eine
+Zeile JavaScript. Daneben stand eine JS-Korrektur, die dasselbe noch einmal
+tat – sie war nie nötig und wurde deshalb **nie geprüft**.
+
+Seit der erste Besuch weiß ist, ist die Systemvorgabe bedeutungslos: Eine
+`media`-Bedingung fragt genau das ab, worauf es nicht mehr ankommt. Also blieb
+nur der JS-Weg übrig, und der trug nicht:
+
+    Chromium   setAttribute('content', …)  wirkt      – nachgemessen
+    Safari     setAttribute('content', …)  wirkt nicht verlässlich
+
+**Deshalb wird die Angabe ersetzt, nicht geändert.** Ein neuer Knoten ist für
+den Browser eine neue Angabe; die alten werden vorher entfernt, denn zwei
+widersprüchliche Angaben lassen den Browser entscheiden. `leisteFaerben` in
+`lib/theme.ts` macht das, und `startSkript` setzt die Farbe seither **immer**
+statt nur bei gespeicherter Wahl – ein Zweig, der fast nie durchlaufen wird,
+wird nie geprüft und trägt beim ersten Mal nicht, an dem er zählt.
+
+Die Arbeit gibt es zwangsläufig zweimal: einmal als Zeichenkette fürs
+Startskript, einmal als Funktion für den Umschalter – das eine ist Text im
+`<head>`, das andere eine React-Komponente, sie können sich keinen Aufruf
+teilen. `tests/farbschema-start.test.ts` lässt deshalb **beide** über dieselbe
+nachgebaute Seite laufen und vergleicht das Ergebnis.
+
+**Die allgemeine Lehre:** Wer eine Absicherung entfernt, die etwas anderes
+verdeckt hat, deckt damit den verdeckten Fehler auf – und zwar erst beim
+Nutzer. Beim Streichen einer redundanten Stelle gehört geprüft, ob die
+verbliebene je gearbeitet hat.
+
 # Selbst mergen, ohne zu fragen
 
 Der Betreiber hat es am 8. August 2026 angeordnet: **„Merge ab jetzt alles von
