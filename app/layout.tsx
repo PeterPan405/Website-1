@@ -15,7 +15,7 @@ import './globals.css'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { OfflineLernen } from '@/components/layout/OfflineLernen'
-import { LEISTENFARBE, startSkript } from '@/lib/theme'
+import { startSkript } from '@/lib/theme'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
 import { siteConfig, siteUrl } from '@/lib/site'
@@ -93,17 +93,43 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   /*
-    Eine Farbe, und zwar die helle – der Startzustand ohne gespeicherte Wahl.
+    **Hier steht mit Absicht keine `themeColor`.**
 
-    Das deckt den ersten Besuch ab, und zwar bevor irgendein Script läuft. Wer
-    schon einmal umgeschaltet hat, bekommt die passende Farbe vom Startskript
-    nachgereicht.
+    Sie wird ausschließlich vom Startskript gesetzt (`lib/theme.ts`), und das
+    ist keine Sparsamkeit, sondern der einzige Weg, der auf dem Telefon trägt.
 
-    Bis zum 13. August 2026 standen hier zwei Farben mit `prefers-color-scheme`.
-    Das war richtig, solange die Systemvorgabe den ersten Besuch bestimmte; seit
-    sie das nicht mehr tut, wäre es eine dunkle Leiste über einer weißen Seite.
+    ## Wie es dazu kam
+
+    Am 13. August 2026 stand hier zuerst eine feste helle Farbe. Auf einem
+    Gerät mit gewähltem dunklen Schema blieb der Bereich über der Seite
+    dadurch beige – weißer Balken über schwarzer Seite. Zwei Anläufe, die
+    Farbe nachträglich zu korrigieren, sind gescheitert:
+
+        setAttribute('content', …)   Chromium: wirkt   Safari: wirkt nicht
+        Knoten austauschen           Chromium: wirkt   Safari: wirkt nicht
+
+    Beide Male nachgemessen, das zweite Mal am ausgelieferten Stand auf dem
+    Gerät des Betreibers. Zwischenspeicher ließen sich als Ursache
+    ausschließen: HTML geht mit `no-store` heraus (`public/.htaccess`), und
+    der Dienstarbeiter fasst die Startseite nicht an.
+
+    **Safari liest `theme-color` beim Parsen und danach nicht mehr.** Damit
+    kann kein JavaScript die Angabe retten – ein statischer Export weiß aber
+    nicht, welches Schema der Besucher gewählt hat.
+
+    ## Warum das Weglassen die Lösung ist
+
+    Ohne die Angabe färbt Safari den Bereich nach dem **Seitenhintergrund**,
+    und der steht schon vor dem ersten Malen richtig: Das Startskript setzt
+    `data-theme`, das CSS die Fläche. Hell wird beige, dunkel wird dunkel –
+    ohne dass irgendjemand eine Meta-Angabe nachziehen müsste.
+
+    Chromium bekommt seine Angabe trotzdem: Dort **wirkt** ein per Skript
+    angelegter Knoten, nachgemessen. Beide Browser landen also richtig, jeder
+    auf seinem Weg.
+
+    Wer hier wieder eine `themeColor` einträgt, holt den Balken zurück.
   */
-  themeColor: LEISTENFARBE.weiss,
 
   /*
     `light`, nicht `light dark`.

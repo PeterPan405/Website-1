@@ -50,11 +50,11 @@ export const LEISTENFARBE = {
 /**
  * Setzt die Farbe der Browserleiste – als JavaScript-Ausdruck über `farbe`.
  *
- * ## Warum die Angabe **ersetzt** und nicht geändert wird
+ * ## Die Angabe steht **nur** hier – nicht im ausgelieferten HTML
  *
  * Am 13. August 2026 meldete der Betreiber einen weißen Balken über der
- * dunklen Seite, auf dem Telefon. Die Ursache war eine Regression vom selben
- * Morgen und lehrreich genug, um sie hier festzuhalten.
+ * dunklen Seite, auf dem Telefon. Es hat drei Anläufe gebraucht, und die
+ * ersten beiden sind lehrreich genug, um sie festzuhalten.
  *
  * Vorher standen im `<head>` **zwei** Angaben mit `media`-Bedingung, eine
  * helle und eine dunkle. Auf einem dunkel gestellten Gerät griff die dunkle
@@ -62,16 +62,26 @@ export const LEISTENFARBE = {
  * Fehler verdeckt: Die JS-Korrektur daneben war nie nötig und deshalb nie
  * geprüft.
  *
- * Seit der erste Besuch weiß ist, ist die Systemvorgabe bedeutungslos
- * geworden – eine `media`-Bedingung fragt genau das ab, worauf es nicht mehr
- * ankommt. Übrig blieb also nur noch der JS-Weg, und der trug nicht: Safari
- * übernimmt ein `setAttribute` auf einer bereits gelesenen `theme-color`
- * nicht verlässlich. In Chromium funktioniert es, nachgemessen – deshalb wäre
- * es hier auch nie aufgefallen.
+ * Seit der erste Besuch weiß ist, ist die Systemvorgabe bedeutungslos – eine
+ * `media`-Bedingung fragt genau das ab, worauf es nicht mehr ankommt. Übrig
+ * blieb der JS-Weg, und der trug nicht:
  *
- * Ein **neuer Knoten** dagegen ist für den Browser eine neue Angabe und wird
- * neu ausgewertet. Die alten werden vorher entfernt: Bliebe eine stehen,
- * gäbe es zwei, und welche gilt, entscheidet dann der Browser.
+ *     setAttribute('content', …)   Chromium: wirkt   Safari: wirkt nicht
+ *     Knoten austauschen           Chromium: wirkt   Safari: wirkt nicht
+ *
+ * **Safari liest `theme-color` beim Parsen und danach nicht mehr.** Kein
+ * Skript kann eine Angabe retten, die schon im HTML steht – und ein
+ * statischer Export weiß nicht, welches Schema der Besucher gewählt hat.
+ *
+ * Deshalb liefert `app/layout.tsx` **gar keine** `themeColor` mehr aus, und
+ * diese Funktion legt sie an. Für Safari existiert damit nie eine, und es
+ * färbt den Bereich nach dem Seitenhintergrund – der steht vor dem ersten
+ * Malen richtig, weil das Startskript `data-theme` setzt. Chromium wertet
+ * den angelegten Knoten aus und bekommt die genaue Farbe.
+ *
+ * Vorhandene Angaben werden trotzdem zuerst entfernt: Sollte je wieder eine
+ * im HTML stehen, gäbe es sonst zwei, und welche gilt, entscheidet dann der
+ * Browser.
  *
  * ## Warum es die Arbeit zweimal gibt
  *
