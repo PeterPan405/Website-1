@@ -26,6 +26,8 @@
  * die Entscheidung, welches Schema gilt.
  */
 
+import { readFileSync } from 'node:fs'
+
 import { LEISTENFARBE, THEME_STORAGE_KEY, leisteFaerben, startSkript } from '@/lib/theme'
 
 const skript = startSkript()
@@ -71,13 +73,14 @@ class Kopf {
 }
 
 /**
- * Baut eine Seite mit `anzahl` Farbangaben im Kopf, wie sie ausgeliefert wird.
+ * Baut eine Seite mit `anzahl` Farbangaben im Kopf.
  *
- * Voreingestellt sind **zwei**, obwohl das Layout nur eine ausliefert: Wer
- * aufräumt, muss alle erwischen. Bliebe eine stehen, gäbe es zwei
- * widersprüchliche Angaben, und welche gilt, entscheidet dann der Browser.
+ * Voreingestellt ist **keine** – so wird die Seite seit dem 13. August 2026
+ * ausgeliefert. Der Grund steht bei `leisteFaerben`: Safari liest
+ * `theme-color` beim Parsen und danach nicht mehr, also darf im HTML keine
+ * stehen, die es festhalten könnte.
  */
-function neueSeite(anzahl = 2) {
+function neueSeite(anzahl = 0) {
   const kopf = new Kopf()
   for (let i = 0; i < anzahl; i++) {
     const angabe = new Angabe()
@@ -171,6 +174,32 @@ function pruefen(was: string, bedingung: boolean, hinweis: string): void {
 }
 
 console.log('Startskript des Farbschemas – vier Fälle\n')
+
+/* ------------------------------------------------------------------
+   Das Layout darf keine Farbe für die Browserleiste ausliefern.
+
+   Das ist die eigentliche Lehre des 13. August 2026 und der Grund, warum
+   diese Prüfung den Quelltext liest statt eines Verhaltens: Es geht nicht
+   darum, *welche* Farbe dort steht, sondern **dass dort keine steht.**
+
+   Safari liest `theme-color` beim Parsen und danach nicht mehr. Eine Angabe
+   im HTML ist damit endgültig – und ein statischer Export weiß nicht, welches
+   Schema der Besucher gewählt hat. Zwei Anläufe, sie nachträglich zu
+   korrigieren, sind daran gescheitert.
+------------------------------------------------------------------- */
+
+{
+  const layout = readFileSync('app/layout.tsx', 'utf8')
+  const ausgeliefert = /^\s*themeColor:/m.test(layout)
+  pruefen(
+    'app/layout.tsx liefert keine themeColor aus',
+    !ausgeliefert,
+    'In app/layout.tsx steht wieder eine `themeColor`. Safari hält sie beim ' +
+      'Parsen fest, und kein Skript bekommt sie danach noch geändert – auf ' +
+      'einem Gerät mit gewähltem dunklen Schema ist das ein heller Balken ' +
+      'über schwarzer Seite. Die Farbe setzt `startSkript`, sonst niemand.'
+  )
+}
 
 /* ------------------------------------------------------------------
    Der erste Besuch. Beide Male weiß, das ist der Kern der Sache.
@@ -277,6 +306,29 @@ for (const [name, farbe] of Object.entries(LEISTENFARBE)) {
     `Startskript und Umschalter erzeugen dasselbe (${name})`,
     a.length === b.length && a.every((wert, i) => wert === b[i]),
     `Skript: [${a.join(', ')}]   Umschalter: [${b.join(', ')}]`
+  )
+}
+
+/* ------------------------------------------------------------------
+   Stünden doch einmal Angaben im HTML, müssen alle weichen.
+
+   Heute liefert das Layout keine aus – aber wer eine wieder einträgt, soll
+   nicht zusätzlich zwei widersprüchliche bekommen. Welche dann gilt,
+   entschiede der Browser.
+------------------------------------------------------------------- */
+
+{
+  const { dokument, kopf } = neueSeite(2)
+  new Function('document', 'window', 'localStorage', skript)(
+    dokument,
+    {},
+    { getItem: () => 'dark' }
+  )
+  const heraus = leisteAus(kopf)
+  pruefen(
+    'Vorhandene Angaben werden ersetzt, nicht ergänzt',
+    heraus.length === 1 && heraus[0] === LEISTENFARBE.dark,
+    `bekommen: [${heraus.join(', ')}] – erwartet genau [${LEISTENFARBE.dark}]`
   )
 }
 

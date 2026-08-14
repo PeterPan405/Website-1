@@ -1620,17 +1620,43 @@ tat – sie war nie nötig und wurde deshalb **nie geprüft**.
 
 Seit der erste Besuch weiß ist, ist die Systemvorgabe bedeutungslos: Eine
 `media`-Bedingung fragt genau das ab, worauf es nicht mehr ankommt. Also blieb
-nur der JS-Weg übrig, und der trug nicht:
+nur der JS-Weg übrig, und der trug nicht – **zweimal nicht:**
 
-    Chromium   setAttribute('content', …)  wirkt      – nachgemessen
-    Safari     setAttribute('content', …)  wirkt nicht verlässlich
+    setAttribute('content', …)   Chromium: wirkt   Safari: wirkt nicht
+    Knoten austauschen           Chromium: wirkt   Safari: wirkt nicht
 
-**Deshalb wird die Angabe ersetzt, nicht geändert.** Ein neuer Knoten ist für
-den Browser eine neue Angabe; die alten werden vorher entfernt, denn zwei
-widersprüchliche Angaben lassen den Browser entscheiden. `leisteFaerben` in
-`lib/theme.ts` macht das, und `startSkript` setzt die Farbe seither **immer**
-statt nur bei gespeicherter Wahl – ein Zweig, der fast nie durchlaufen wird,
-wird nie geprüft und trägt beim ersten Mal nicht, an dem er zählt.
+Der zweite Anlauf war der naheliegende Schluss aus dem ersten und ging live,
+bevor jemand ihn auf einem Telefon gesehen hatte. Er half nichts. Vorher
+ausgeschlossen: Zwischenspeicher scheiden aus, HTML geht mit `no-store`
+heraus (`public/.htaccess`), und der Dienstarbeiter fasst die Startseite
+nicht an.
+
+**Safari liest `theme-color` beim Parsen und danach nicht mehr.** Damit kann
+kein Skript eine Angabe retten, die schon im HTML steht – und ein statischer
+Export weiß nicht, welches Schema der Besucher gewählt hat.
+
+### Also steht im HTML gar keine mehr
+
+`app/layout.tsx` liefert **keine `themeColor`** aus; angelegt wird sie
+ausschließlich vom Startskript. Damit landen beide Browser richtig, jeder auf
+seinem Weg:
+
+- **Safari** sieht nie eine und färbt den Bereich nach dem
+  **Seitenhintergrund**. Der steht schon vor dem ersten Malen richtig, weil
+  das Startskript `data-theme` setzt und das CSS die Fläche.
+- **Chromium** wertet den per Skript angelegten Knoten aus und bekommt die
+  genaue Farbe – nachgemessen.
+
+Der Preis ist gering: Ein Browser, der weder das eine noch das andere tut,
+zeigt seine eigene Leistenfarbe statt der gewählten. Falsch ist das nie.
+
+`tests/farbschema-start.test.ts` liest deshalb ausnahmsweise den Quelltext:
+Es geht nicht darum, _welche_ Farbe dort steht, sondern **dass dort keine
+steht.** Wer wieder eine einträgt, holt den Balken zurück.
+
+`startSkript` setzt die Farbe außerdem **immer** statt nur bei gespeicherter
+Wahl – ein Zweig, der fast nie durchlaufen wird, wird nie geprüft und trägt
+beim ersten Mal nicht, an dem er zählt.
 
 Die Arbeit gibt es zwangsläufig zweimal: einmal als Zeichenkette fürs
 Startskript, einmal als Funktion für den Umschalter – das eine ist Text im
@@ -1642,6 +1668,12 @@ nachgebaute Seite laufen und vergleicht das Ergebnis.
 verdeckt hat, deckt damit den verdeckten Fehler auf – und zwar erst beim
 Nutzer. Beim Streichen einer redundanten Stelle gehört geprüft, ob die
 verbliebene je gearbeitet hat.
+
+**Und die zweite:** Der zweite Anlauf ging live, weil er in Chromium grün war
+und plausibel klang. Geprüft war damit nur, was ohnehin schon funktioniert
+hatte. Wo die einzige Umgebung, in der sich etwas prüfen lässt, nicht die ist,
+in der es kaputtgeht, ist ein „müsste jetzt gehen" keine Aussage – dann gehört
+der Weg gewählt, der **ohne** die ungeprüfte Annahme auskommt.
 
 # Selbst mergen, ohne zu fragen
 
