@@ -18,7 +18,7 @@ name: Seite abbilden
 # ## Warum ein Zweig und kein Artefakt
 #
 # Ein Artefakt ist von der Entwicklungsumgebung aus unerreichbar (Egress
-# 403, siehe AGENTS.md „Ein Artefakt ist kein Ergebnis"). `git` ist der
+# 403, siehe ENTSCHEIDUNGEN.md „Ein Artefakt ist kein Ergebnis"). `git` ist der
 # einzige Kanal, der trägt – daher derselbe Bau wie bei `hoerprobe` und
 # `quellen-heute`: nie gebaut, nie veröffentlicht, jeder Lauf ersetzt den
 # Zweig vollständig, keine Historie. Fremde Inhalte landen damit nicht in
