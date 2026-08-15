@@ -101,6 +101,385 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-verpasst-rekord-sap-klettert-wall-street-schwaecher',
+    title: 'DAX verpasst die Bestmarke knapp – SAP klettert, Wall Street rutscht ab',
+    metaTitle: 'DAX knapp am Rekord vorbei, SAP im Plus',
+    teaser:
+      'Drei Agenturmeldungen sagen am Freitagabend übereinstimmend: Der DAX hat seine Bestmarke knapp verpasst. Eine vierte Quelle behauptet das Gegenteil.',
+    category: 'Märkte',
+    publishedAt: '2026-08-15T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'SAP', 'Wall Street', 'Wochenschluss'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, News-Ticker vom 14.8.2026, 16:16 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax-Gewinne reichen nicht für Rekord“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'Reuters über onvista, News-Ticker vom 14.8.2026, 16:35 Uhr: „Börsen zum Wochenschluss stabil - Dax verfehlt Bestmarke“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Dax Tagesrückblick 14.8.2026, 15:55 Uhr: „Dax-Gewinne reichen nicht für Rekord - SAP klettert weiter“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Rubrik „Heute im Fokus“ vom 14.8.2026: „DAX geht fester ins Wochenende“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Dax Chartanalyse vom 14.8.2026, 09:28 Uhr: „Der Dax hat Probleme mit der Marke von 26.500 Punkten“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, News-Ticker vom 14.8.2026, 20:26 Uhr: „ROUNDUP/Aktien New York Schluss: Schwächer - Wirtschaftssorgen im Vordergrund“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste und Wirtschaftskalender-Widget, abgerufen 15.8.2026, 3:53 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist nah an sein Rekordhoch herangekommen – und dann doch, wenn man der Mehrheit der Agenturen glaubt, knapp daran vorbeigelaufen. Drei Meldungen von dpa-AFX und eine von Reuters, alle zwischen 15:51 und 16:35 Uhr am Freitag verschickt, sagen übereinstimmend: Die Bestmarke hat es an diesem Tag nicht gegeben. Eine Meldung von finanzen.net behauptet das Gegenteil.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rekord, über den sich die Quellen nicht einig sind',
+      },
+      {
+        type: 'paragraph',
+        text: '„Dax-Gewinne reichen nicht für Rekord“, titelt dpa-AFX um 16:16 Uhr, „Dax verfehlt Bestmarke“ schreibt Reuters neunzehn Minuten später. Onvista übernimmt die dpa-Formulierung um 15:55 Uhr in seinem Tagesrückblick und ergänzt: SAP klettere weiter. Bei finanzen.net dagegen taucht in der Rubrik „Heute im Fokus“ die Zeile „DAX geht fester ins Wochenende“ auf – für sich genommen kein Widerspruch, aber eben auch keine Bestätigung eines Rekords, den drei andere Agenturmeldungen ausdrücklich verneinen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Marke von 26.500 blieb den ganzen Tag ein Thema',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits am Morgen, um 09:28 Uhr, schrieb onvista in einer Chartanalyse, der Dax „habe Probleme mit der Marke von 26.500 Punkten“. Zum Handelsende notierte der Index laut einer Kursleiste von wallstreet-online bei rund 26.456 bis 26.459 Punkten, ein Plus von etwa 0,17 bis 0,18 Prozent – nah an der Marke, aber nach den drei übereinstimmenden Meldungen eben nicht darüber.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Während Frankfurt zulegt, gibt New York nach',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Wall Street meldete dpa-AFX um 20:22 und 20:26 Uhr einen schwächeren Schlussstand, „Wirtschaftssorgen im Vordergrund“. Laut der Kursleiste von wallstreet-online schloss der Dow Jones bei 53.721,38 Punkten (-0,24 Prozent), der US Tech 100 bei 30.039,12 Punkten (-0,19 Prozent). Einen Grund für die „Wirtschaftssorgen“ nennt keine der ausgewerteten Meldungen genauer – das bleibt an dieser Stelle offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick auf die neue Woche',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Samstag bringt keinen Handel. Das Wirtschaftskalender-Widget von wallstreet-online zeigt für Montag, den 17. August, mehrere Termine ohne Uhrzeitangabe: Werte zu Bruttoinlandsprodukt und BIP-Deflator, einen Verbraucherpreisindex, einen Auftritt von EZB-Chefvolkswirt Philip Lane sowie die kanadische Kernrate der Verbraucherpreise (BoC). Welchem Land die BIP-Zahlen genau zugeordnet sind, geht aus dem Widget nicht eindeutig hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Selbst eine so einfache Tatsache wie „neuer Rekord: ja oder nein“ ist am selben Handelstag nicht bei jeder Quelle gleich zu lesen. Wer sich auf eine einzelne Schlagzeile verlässt, übernimmt auch deren mögliche Ungenauigkeit – ein Blick auf mehrere Agenturmeldungen zur selben Uhrzeit schafft mehr Sicherheit als eine einzelne Überschrift.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-rally-hormus-kupfer-verkauft',
+    title: 'Öl steigt auf eine Hormus-Drohung, Kupfer fällt trotz erwarteter Rallye',
+    metaTitle: 'Öl steigt, Kupfer fällt – gegenläufige Rohstoffe',
+    teaser:
+      'Brent legt nach einer Trump-Drohung zur Straße von Hormus zu, obwohl IEA und OPEC ihre Nachfrageprognosen senkten. Kupfer bewegt sich entgegengesetzt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-15T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Kupfer', 'Hormus', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'kupfer'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, News-Ticker vom 14.8.2026, 20:29 Uhr: „Trump: Werde Straße von Hormus zu US-Territorium machen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'Markt Bote über wallstreet-online, Meldung vom 14.8.2026: „Ölmarkt mit Rally: Brent steigt +1,15 % auf 87,98 USD“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Société Générale über onvista, Analyse vom 14.8.2026, 11:25 Uhr: „Ölmarkt unter Druck: IEA und OPEC senken Nachfrageprognosen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreetONLINE Redaktion, Meldung vom 13.8.2026: „Kupfer: Anleger alarmiert: Kupferrallye abverkauft: Steht der Kupferpreis jetzt vor dem großen Beben?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Börse Frankfurt, Aktuelle Rohstoffpreise, abgerufen 15.8.2026, 3:53 Uhr (Öl Brent 88,55 USD, +1,81 %)',
+        url: 'https://www.boerse-frankfurt.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Industrierohstoffe, eine Woche, zwei entgegengesetzte Bewegungen. Der Ölpreis zog am Freitag an, nachdem laut einem dpa-AFX-Ticker von 20:29 Uhr US-Präsident Trump angekündigt haben soll, die Straße von Hormus zu US-Territorium machen zu wollen. Der Kupferpreis dagegen gab schon am Tag zuvor nach – ausgerechnet dort, wo Charttechniker laut einer Meldung eine Rallye erwartet hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Drohung an einer engen Meerenge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was genau eine Übernahme der Straße von Hormus – einer der wichtigsten Tankerrouten der Welt – durch die USA bedeuten würde und wie realistisch sie ist, sagt die Kurzmeldung nicht. Sie hält nur die Ankündigung fest, keine Einordnung ihrer Tragweite oder Umsetzbarkeit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ölpreis steigt – obwohl die Nachfrageprognosen gerade gesenkt wurden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist der zeitliche Zusammenhang mit einer zweiten Meldung desselben Tages: Um 11:25 Uhr hatte Société Générale über onvista berichtet, IEA und OPEC hätten ihre Nachfrageprognosen für Öl gesenkt – eigentlich ein Preisdämpfer. Laut Markt Bote stieg Brent trotzdem um 1,15 Prozent auf 87,98 Dollar; eine Rohstoffpreisliste der Börse Frankfurt vom frühen Samstagmorgen zeigt Brent sogar bei 88,55 Dollar, ein Plus von 1,81 Prozent. Ein geopolitisches Risiko auf der Angebotsseite hat damit offenbar schwerer gewogen als eine schwächere Nachfrageprognose.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kupfer bewegt sich in die andere Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Kupferpreis lief es umgekehrt: Ein Beitrag der wallstreetONLINE-Redaktion vom 13. August beschreibt, der Kupferpreis (COMEX) sei „zuletzt zurückgekommen“ – und das ausgerechnet, nachdem das Industriemetall aus charttechnischer Sicht „unmittelbar davor“ gestanden habe, „eine große Rallye zu installieren“. Ob daraus tatsächlich ein Einbruch wird, lässt der Beitrag als offene Frage stehen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Industrierohstoffe, zwei unabhängige Erzählungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Öl und Kupfer gelten beide als konjunktursensibel, laufen aber nicht zwangsläufig im Gleichlauf. Der Ölpreis reagierte hier auf ein geopolitisches Risiko an einer Tankerroute, der Kupferpreis auf eine gescheiterte Chartformation – zwei völlig unterschiedliche Auslöser, die zufällig in dieselbe Handelswoche fielen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Rohstoffe“ ist keine einheitliche Anlageklasse mit einer Richtung. Wer aus einem steigenden Ölpreis automatisch auf steigende Industriemetalle schließt, überträgt eine Erklärung, die nur für den einen Markt gilt, auf einen anderen mit eigenen Treibern.',
+      },
+    ],
+  },
+  {
+    slug: 'silber-schiesst-hoch-gold-bleibt-stehen',
+    title:
+      'Silber schießt hoch, Gold bleibt stehen – und selbst der Goldpreis ist je nach Quelle verschieden',
+    metaTitle: 'Silber zieht an, Gold bewegt sich kaum',
+    teaser:
+      'Silber legte am Freitag laut einer Meldung 1,71 Prozent zu. Beim Goldpreis zeigen zwei Kursleisten zur selben Zeit 0,0 und plus 0,6 Prozent.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-15T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Silber', 'Gold', 'Edelmetalle', 'Zinserwartung'],
+    relatedTopics: ['rohstoffe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['silber', 'gold'],
+    sources: [
+      {
+        label:
+          'Markt Bote über wallstreet-online, Meldung vom 14.8.2026: „Silberpreis: Silberpreis schießt um +1,71 % hoch – jetzt 65,58 USD“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Börse Frankfurt, Aktuelle Rohstoffpreise, abgerufen 15.8.2026, 3:53 Uhr (Silber 64,70 USD, +0,35 %; Gold 4.375,60 USD, 0,00 %)',
+        url: 'https://www.boerse-frankfurt.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, abgerufen 15.8.2026, 3:53 Uhr (Gold 4.376, +0,6 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Société Générale über onvista, Analyse vom 14.8.2026, 11:20 Uhr: „Gold: Nachlassende Zinserwartungen treiben den Preis“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Silber hatte am Freitag den deutlich lebhafteren Tag: Laut einer Meldung von Markt Bote sprang der Preis um 1,71 Prozent auf 65,58 Dollar. Gold dagegen wirkt in denselben Stunden fast bewegungslos – wobei schon diese Aussage davon abhängt, welche Kursleiste man ansieht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kursleisten, zwei Prozentzahlen für dasselbe Metall',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Rohstoffpreisliste der Börse Frankfurt zeigt Gold am frühen Samstagmorgen bei 4.375,60 Dollar mit einer Veränderung von 0,00 Prozent. Die Startseiten-Kursleiste von finanzen.net nennt zur selben Zeit 4.376 Dollar, aber ein Plus von 0,6 Prozent. Der Preis selbst liegt also fast identisch – nur die Prozentangabe weicht ab, vermutlich weil beide Anbieter unterschiedliche Vortagesschlusskurse als Bezugspunkt verwenden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Silber gibt einen Teil des Freitagssprungs wieder ab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Silber zeigt sich eine andere Art von Differenz: Nach dem Sprung auf 65,58 Dollar laut Markt Bote notiert das Metall in der frühen Samstags-Kursleiste der Börse Frankfurt bei 64,70 Dollar, nur noch 0,35 Prozent im Plus. Das ist kein Widerspruch zwischen den Quellen, sondern schlicht eine spätere Momentaufnahme – der Kurs hat einen Teil des Freitagssprungs offenbar wieder abgegeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Edelmetalle nicht im Gleichschritt laufen müssen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber gelten als eng verwandt, reagieren laut einer Analyse von Société Générale beide auf nachlassende Zinserwartungen – niedrigere Zinsen senken die Opportunitätskosten des Haltens von Metallen, die selbst keine Zinsen zahlen. Silber hat daneben aber einen deutlich größeren industriellen Nachfrageanteil als Gold, unter anderem aus der Solarindustrie. Ein gemeinsamer Zins-Treiber schließt deshalb nicht aus, dass sich beide Preise an einem einzelnen Tag unterschiedlich stark bewegen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Lehren auf einmal: Erstens bewegen sich selbst eng verwandte Edelmetalle nicht zwangsläufig gleich stark. Zweitens ist eine einzelne Prozentangabe aus einer Live-Kursleiste eine Momentaufnahme, keine amtliche Wahrheit – der Vergleich zweier Quellen zur selben Uhrzeit zeigt das hier unmittelbar.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-will-traton-verkaufen-naechstes-tafelsilber',
+    title: 'VW will laut einer Meldung sein „nächstes Tafelsilber“ verkaufen – Traton',
+    metaTitle: 'VW will offenbar Traton-Anteile verkaufen',
+    teaser:
+      'Ein Bericht spricht von einem „Milliarden-Plan“: Volkswagen wolle sich von seiner Nutzfahrzeugholding Traton trennen. Zahlen nennt er nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-08-15T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Volkswagen', 'Traton', 'Beteiligungsverkauf'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, Meldung vom 14.8.2026: „Volkswagens Milliarden-Plan: VW will sein nächstes Tafelsilber verkaufen: Jetzt ist Traton dran!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Überschrift der wallstreetONLINE-Redaktion vom Freitag lässt aufhorchen: Volkswagen wolle sein „nächstes Tafelsilber“ verkaufen, „jetzt ist Traton dran“. Traton ist die Nutzfahrzeugholding des Konzerns, zu der unter anderem MAN und Scania gehören und an der Volkswagen die Mehrheit hält.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung sagt – und was sie offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkrete Zahlen nennt die ausgewertete Übersicht nicht: weder wie groß der Anteil ist, der zum Verkauf stehen soll, noch zu welchem Preis oder in welchem Zeitraum. Auch ein Grund für den Schritt geht aus der Kurzmeldung nicht hervor – das wäre an dieser Stelle eine Erfindung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Konzerne überhaupt Beteiligungen abgeben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Konzern trennt sich aus verschiedenen Gründen von einer Tochter oder Beteiligung: um Schulden abzubauen, um sich auf das Kerngeschäft zu konzentrieren, oder um Kapital für andere Investitionen freizusetzen. Welcher dieser Gründe – falls überhaupt einer – bei Volkswagen und Traton eine Rolle spielt, lässt sich aus der vorliegenden Meldung nicht ableiten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Signalwort ohne Beleg',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Wort „Tafelsilber“ transportiert selbst schon eine Wertung: Es unterstellt, dass hier etwas Wertvolles abgegeben wird. Ob das eine Einschätzung der Redaktion ist oder auf einer konkreten Bewertung von Traton beruht, bleibt in der ausgewerteten Übersicht offen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine plakative Überschrift ist noch keine Bestätigung eines Deals. Wer diese Meldung weiterverfolgt, sollte auf eine offizielle Mitteilung von Volkswagen oder Traton warten, bevor er von einem beschlossenen Verkauf ausgeht.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-goldman-sachs-amd-ki-finanzierung',
+    title: 'NVIDIA kooperiert offenbar mit Goldman Sachs, AMD holt sich frisches Geld',
+    metaTitle: 'NVIDIA/Goldman Sachs und AMD: zwei KI-Finanzdeals',
+    teaser:
+      'Zwei Kurzmeldungen vom selben Tag: NVIDIA soll mit Goldman Sachs an handelbaren KI-Krediten arbeiten, AMD sichert sich eine Milliarden-Finanzierung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-15T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['NVIDIA', 'AMD', 'Goldman Sachs', 'KI-Finanzierung'],
+    relatedTopics: ['aktie', 'schulden-und-kredit'],
+    relatedSymbols: ['nvidia', 'amd', 'goldman-sachs'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.8.2026: „NVIDIA-Aktie: Neuer Deal mit Goldman Sachs soll wohl KI-Kredite handelbar machen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.8.2026: „AMD-Aktie zieht nach Rekord-Finanzierung an: Milliarden-Deal sichert KI-Expansion“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Kurzmeldungen von finanzen.net, beide vom Freitag, drehen sich um dasselbe Grundthema aus zwei verschiedenen Blickwinkeln: Geld, das in den KI-Ausbau fließt. NVIDIA soll laut einer mit „soll wohl“ vorsichtig formulierten Zeile gemeinsam mit Goldman Sachs daran arbeiten, KI-Kredite handelbar zu machen. AMD wiederum habe sich nach einer „Rekord-Finanzierung“ einen „Milliarden-Deal“ gesichert, der die KI-Expansion absichern soll.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in den Zeilen steht – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie genau ein Handel mit KI-Krediten funktionieren soll, mit welchem Volumen, oder wie hoch die AMD-Finanzierung ausfällt: All das nennt keine der beiden Kurzmeldungen. Das Wort „soll wohl“ in der NVIDIA-Zeile signalisiert zudem selbst schon eine gewisse Unsicherheit über den genauen Inhalt des Deals.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Warnung von vor drei Tagen bekommt ein Beispiel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am 11. August hatte diese Redaktion über eine Warnung von Goldman Sachs berichtet: Der KI-Boom laufe zunehmend auf Kredit statt auf Eigenkapital. Ausgerechnet dieselbe Bank taucht nun als möglicher Partner für handelbare KI-Kredite auf – ein Beispiel für genau den Mechanismus, vor dem eigene Analysten des Hauses gewarnt hatten, auch wenn die aktuelle Meldung das nicht ausdrücklich verknüpft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum handelbare Kredite ein zweischneidiges Werkzeug sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kredite handelbar zu machen – etwa durch Verbriefung – verteilt das Ausfallrisiko auf mehr Gläubiger und kann Kapital günstiger verfügbar machen. Es macht ein System aber auch stärker vernetzt: Gerät ein großer Schuldner in Schwierigkeiten, spüren das mehr Beteiligte gleichzeitig. Ob dieser Mechanismus hier überhaupt zur Anwendung kommt, bleibt wegen der knappen Quellenlage offen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Ein-Zeilen-Meldungen reichen nicht, um zu beurteilen, ob hier ein cleveres Finanzierungsinstrument oder ein zusätzliches Risiko entsteht. Wer mehr wissen will, muss auf ausführlichere Berichterstattung oder offizielle Mitteilungen der Unternehmen warten.',
+      },
+    ],
+  },
+  {
     slug: 'sandisk-cerebras-zwei-prognosen-zwei-reaktionen',
     title: 'Zwei Chip-Firmen, zwei Prognosen – und zwei entgegengesetzte Kursreaktionen',
     metaTitle: 'Sandisk und Cerebras: gegensätzliche Kursreaktionen',
