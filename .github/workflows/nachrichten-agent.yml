@@ -426,7 +426,7 @@ jobs:
             ```json
             {
               "stichtag": "${{ steps.pruefung.outputs.tag }}",
-              "intro": "110 bis 165 Zeichen",
+              "intro": "110 bis 160 Zeichen",
               "artikel": [
                 {
                   "slug": "nur-kleinbuchstaben-ziffern-bindestriche",

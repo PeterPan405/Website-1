@@ -39,7 +39,14 @@ import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 const TEASER_MIN = 100
 const TEASER_MAX = 160
 const INTRO_MIN = 110
-const INTRO_MAX = 165
+/*
+  160, nicht 165 – dieselbe Zahl wie `BESCHREIBUNG_MAX` in
+  `scripts/paket-pruefen.ts`. Die Tagesseite setzt das `intro` unverändert als
+  Meta-Description; alles darüber bricht den Bau. Am 16. August 2026 hat genau
+  das die Ausgabe des Tages gekostet. `tests/intro-grenze.test.ts` hält die
+  drei Stellen zusammen.
+*/
+const INTRO_MAX = 160
 const TITEL_OHNE_META_MAX = 65
 
 /**

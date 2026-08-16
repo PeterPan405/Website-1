@@ -18,6 +18,19 @@ Geld gekostet hat, und ohne ihre Vorgeschichte sieht fast jede nach einer
 willkürlichen Einschränkung aus. Der naheliegende Umbau ist hier oft der, der
 schon einmal danebenging.
 
+## Wie berichtet wird
+
+**Ausführlich arbeiten, kurz berichten.** Der Betreiber hat das am 16. August
+2026 verlangt: **zwei bis drei Zeilen**, so kurz wie möglich.
+
+Das gilt für den Text im Chat – nicht für Commits, Pull Requests und
+Kommentare. Die bleiben ausführlich: Sie sind das Gedächtnis des Projekts, und
+zwischen zwei Sitzungen trägt nichts anderes.
+
+Was in die drei Zeilen gehört: was getan ist, was gefunden wurde, was der
+Betreiber entscheiden muss. Tabellen und Aufzählungen nur, wenn sie kürzer
+sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
+
 ## Arbeitsweise
 
 - **Selbst mergen, ohne zu fragen.** Pull Request anlegen, Prüfung abwarten
@@ -71,7 +84,7 @@ ist eine Regel der Umgebung, kein Fehler; prüfbar mit
   in `app/news/page.tsx` trägt `open`.
 - **Eine Tagesausgabe** braucht `data/editions/JJJJ-MM-TT.ts`, eingetragen in
   `data/editions/index.ts` – Import **und** Array. Mindestens eine
-  Top-Meldung, mindestens drei insgesamt, `intro` 110–165 Zeichen.
+  Top-Meldung, mindestens drei insgesamt, `intro` 110–160 Zeichen.
 - **Die Termine des Tages gehören hinein** – Konjunkturdaten, Notenbanken,
   Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
   Nur was in den Quellen steht. Die Anweisung steht in

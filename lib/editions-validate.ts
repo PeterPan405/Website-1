@@ -34,9 +34,26 @@ export interface Bezuege {
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 
-/** Zielkorridor der Meta-Description aus `lib/seo.ts`. */
+/**
+ * Zielkorridor des `intro` – zugleich der Korridor der Meta-Description.
+ *
+ * `app/news/tag/[datum]/page.tsx` setzt `description: edition.intro`, **ohne
+ * zu kürzen.** Die Obergrenze hier ist damit dieselbe Zahl wie
+ * `BESCHREIBUNG_MAX` in `scripts/paket-pruefen.ts`, und sie darf sie nie
+ * überschreiten.
+ *
+ * Bis zum 16. August 2026 stand hier 165 gegen 160 in der Bauprüfung. Fünf
+ * Zeichen Unterschied, zwei Dateien – zwanzig Ausgaben lang fiel es nicht
+ * auf, weil kein `intro` je über 160 kam. Am 16. August kam eines mit 165
+ * heraus, der Bau brach ab, und die Ausgabe des Tages fehlte:
+ *
+ *     /news/tag/2026-08-16/: Meta-Description ist 165 Zeichen lang (erlaubt 160)
+ *
+ * Der Fehler war nicht die Zahl, sondern dass es zwei gab. Die Kopplung prüft
+ * jetzt `tests/intro-grenze.test.ts`.
+ */
 const INTRO_MIN = 110
-const INTRO_MAX = 165
+const INTRO_MAX = 160
 
 /*
   Der erlaubte Umfang einer Ausgabe.

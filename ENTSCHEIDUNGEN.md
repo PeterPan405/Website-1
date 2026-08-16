@@ -82,7 +82,7 @@ auf.
 Zu jedem Tag gehört eine Datei `data/editions/JJJJ-MM-TT.ts`, eingetragen in
 `data/editions/index.ts` – Import **und** Array. Ohne sie fehlt der Tag unter
 `/news/tag/<datum>` und damit in der Bibliothek. Mindestens eine Top-Meldung,
-mindestens drei insgesamt, `intro` zwischen 110 und 165 Zeichen.
+mindestens drei insgesamt, `intro` zwischen 110 und 160 Zeichen.
 
 ## Was heute ansteht, gehört in die Ausgabe
 
