@@ -51,7 +51,7 @@ export function generateStaticParams() {
   if (!edition) return []
   // Titelkachel plus je eine Kachel pro Top-Meldung.
   const anzahl = 1 + bildmeldungen(edition).length
-  return Array.from({ length: anzahl }, (_, i) => ({ nr: String(i + 1) }))
+  return Array.from({ length: anzahl }, (_, i) => ({ nr: `${i + 1}.png` }))
 }
 
 export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string }> }) {
@@ -59,7 +59,15 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
   const edition = juengste()
   if (!edition) return new Response('Keine Ausgabe.', { status: 404 })
 
-  const stelle = Number(nr)
+  /*
+    Die Endung gehört in den Dateinamen, nicht nur in den Content-Type.
+
+    Meta ruft die Bilder für einen Beitrag **selbst** ab. Ein Abrufer, der nach
+    der Endung geht statt nach dem Kopf der Antwort, sieht bei `/instagram/1`
+    keine Datei, die er verarbeiten will. `/instagram/1.png` ist eindeutig –
+    für Meta, für den Webserver und für jeden, der die Adresse von Hand öffnet.
+  */
+  const stelle = Number(nr.replace(/\.png$/, ''))
   const meldungen = bildmeldungen(edition)
 
   /*

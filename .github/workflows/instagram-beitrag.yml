@@ -1,0 +1,117 @@
+name: Instagram-Beitrag
+
+# Veröffentlicht das Karussell der Tagesausgabe bei @im_invests.
+#
+# ## Warum er von Hand läuft – vorerst
+#
+# Ein Beitrag bei Instagram ist nicht zurückzunehmen, nur zu löschen, und
+# gesehen haben ihn dann schon welche. Solange niemand einen fertigen Beitrag
+# beurteilt hat, gehört der Lauf nicht an die Kette.
+#
+# Wenn er ein paar Tage lang das Richtige tut, kann er an `nachrichten.yml`
+# gehängt werden – dorthin, wo auch der Podcast angestoßen wird. **Nicht an
+# einen eigenen Cron:** Geplante Läufe werden hier regelmäßig verworfen, und
+# ein Beitrag, der an manchen Tagen fehlt, ist schlechter als keiner.
+#
+# ## Warum nicht gebaut, sondern die Website gefragt wird
+#
+# Meta holt die Bilder **selbst** von einer öffentlichen Adresse. Sie müssen
+# also schon draußen liegen, bevor dieser Lauf startet – frisch gebaute
+# Dateien im Arbeitsordner des Läufers nützen nichts.
+#
+# Deshalb prüft der Lauf zuerst, ob die Kacheln unter `iminvests.de` wirklich
+# abrufbar sind, statt sie selbst zu erzeugen. Wer das dreht, schickt Meta auf
+# Adressen, die es noch nicht gibt.
+
+on:
+  workflow_dispatch:
+    inputs:
+      veroeffentlichen:
+        description: 'Wirklich veröffentlichen? (leer = nur Trockenlauf)'
+        type: boolean
+        default: false
+
+jobs:
+  beitrag:
+    name: Karussell veröffentlichen
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      # Die Kacheln kommen aus dem letzten Bau, der auf dem Webspace liegt –
+      # nicht aus diesem Lauf. Sie werden hier nur geholt, damit das Skript
+      # ihre Anzahl kennt und die Beschriftung lesen kann.
+      - name: Kacheln und Beschriftung von der Website holen
+        id: holen
+        run: |
+          basis="${NEXT_PUBLIC_SITE_URL:-https://iminvests.de}"
+          basis="${basis%/}"
+          mkdir -p out/instagram
+
+          # Wie viele Kacheln gibt es? Gezählt wird, bis eine fehlt – die
+          # Anzahl haengt an der Ausgabe des Tages und ist nicht fest.
+          n=1
+          gefunden=0
+          while [ "$n" -le 10 ]; do
+            code=$(curl -s -o "out/instagram/$n.png" -w '%{http_code}' "$basis/instagram/$n.png")
+            if [ "$code" != "200" ]; then
+              rm -f "out/instagram/$n.png"
+              break
+            fi
+            gefunden=$n
+            n=$((n + 1))
+          done
+
+          if [ "$gefunden" -lt 2 ]; then
+            echo "::error::Unter $basis/instagram/ liegen nur $gefunden Kachel(n)."
+            echo "  Ein Karussell braucht mindestens zwei. Steht der letzte Bau?"
+            exit 1
+          fi
+
+          code=$(curl -s -o out/instagram/beschriftung.txt -w '%{http_code}' \
+            "$basis/instagram/beschriftung.txt")
+          [ "$code" = "200" ] || rm -f out/instagram/beschriftung.txt
+
+          echo "$gefunden Kacheln geholt."
+          echo "kacheln=$gefunden" >> "$GITHUB_OUTPUT"
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+
+      # `VEROEFFENTLICHEN` steht nur dann auf `ja`, wenn der Haken gesetzt
+      # wurde. Ohne ihn zaehlt das Skript die Kacheln auf und hoert auf.
+      - name: Veröffentlichen
+        run: npm run instagram
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+          VEROEFFENTLICHEN: ${{ inputs.veroeffentlichen && 'ja' || 'nein' }}
+
+      - name: Was hinausgegangen wäre
+        if: always()
+        run: |
+          {
+            echo "### Instagram-Beitrag"
+            echo ""
+            echo "Kacheln: ${{ steps.holen.outputs.kacheln }}"
+            echo ""
+            if [ "${{ inputs.veroeffentlichen }}" = "true" ]; then
+              echo "Veröffentlicht."
+            else
+              echo "**Trockenlauf** – es ist nichts hinausgegangen."
+              echo "Zum Veröffentlichen den Haken setzen."
+            fi
+            echo ""
+            echo '```'
+            cat out/instagram/beschriftung.txt 2>/dev/null || echo '(keine Beschriftung)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

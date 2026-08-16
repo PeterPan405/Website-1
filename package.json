@@ -33,6 +33,7 @@
     "edinet": "node --experimental-strip-types scripts/edinet-abrufen.ts",
     "podcast": "node --experimental-strip-types scripts/podcast-abrufen.ts",
     "folge": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-folge-erzeugen.ts",
+    "instagram": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/instagram-veroeffentlichen.ts",
     "vertonen": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-vertonen.ts",
     "youtube": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-youtube.ts",
     "spotifylinks": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-spotify.ts",
