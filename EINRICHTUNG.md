@@ -644,11 +644,11 @@ https://github.com/PeterPan405/Website-1/settings/secrets/actions
 
 Jeweils **New repository secret**:
 
-| Name              | Wert                                   | Nötig?              |
-| ----------------- | -------------------------------------- | ------------------- |
-| `IG_ACCESS_TOKEN` | das **langlebige** Token aus 3.4 d     | ja                  |
-| `IG_USER_ID`      | die Zahl aus 3.5 b, beginnt mit `1784` | ja                  |
-| `PEXELS_API_KEY`  | der Schlüssel aus 3.6                  | nein, siehe oben    |
+| Name              | Wert                                   | Nötig?           |
+| ----------------- | -------------------------------------- | ---------------- |
+| `IG_ACCESS_TOKEN` | das **langlebige** Token aus 3.4 d     | ja               |
+| `IG_USER_ID`      | die Zahl aus 3.5 b, beginnt mit `1784` | ja               |
+| `PEXELS_API_KEY`  | der Schlüssel aus 3.6                  | nein, siehe oben |
 
 Beim Einfügen darauf achten, dass **kein Leerzeichen** davor oder dahinter
 steht. Ein Token mit angehängtem Leerzeichen wird abgelehnt, und die
