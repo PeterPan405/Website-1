@@ -616,7 +616,13 @@ Steht dort `"username": "im_invests"`, ist alles richtig.
 
 ---
 
-### 3.6 Pexels (2 Minuten)
+### 3.6 Pexels (2 Minuten) — **optional, für den Beitrag nicht nötig**
+
+> Die Kacheln, die heute hinausgehen, bestehen aus Text: satori setzt sie,
+> resvg rastert sie, ohne Foto und ohne Netz. **Ohne diesen Schlüssel geht
+> genauso ein Beitrag hinaus.** Er ist nur dann nötig, wenn die Deckblätter
+> später ein Foto bekommen sollen — überspringen Sie den Abschnitt, bis es
+> so weit ist.
 
 Für die Fotos auf den Deckblättern.
 
@@ -630,7 +636,7 @@ kommerzielle Nutzung und verlangt keine Namensnennung. Das Limit liegt bei
 
 ---
 
-### 3.7 Die drei Secrets hinterlegen
+### 3.7 Die Secrets hinterlegen
 
 ```
 https://github.com/PeterPan405/Website-1/settings/secrets/actions
@@ -638,11 +644,11 @@ https://github.com/PeterPan405/Website-1/settings/secrets/actions
 
 Jeweils **New repository secret**:
 
-| Name              | Wert                                   |
-| ----------------- | -------------------------------------- |
-| `IG_ACCESS_TOKEN` | das **langlebige** Token aus 3.4 d     |
-| `IG_USER_ID`      | die Zahl aus 3.5 b, beginnt mit `1784` |
-| `PEXELS_API_KEY`  | der Schlüssel aus 3.6                  |
+| Name              | Wert                                   | Nötig?              |
+| ----------------- | -------------------------------------- | ------------------- |
+| `IG_ACCESS_TOKEN` | das **langlebige** Token aus 3.4 d     | ja                  |
+| `IG_USER_ID`      | die Zahl aus 3.5 b, beginnt mit `1784` | ja                  |
+| `PEXELS_API_KEY`  | der Schlüssel aus 3.6                  | nein, siehe oben    |
 
 Beim Einfügen darauf achten, dass **kein Leerzeichen** davor oder dahinter
 steht. Ein Token mit angehängtem Leerzeichen wird abgelehnt, und die
@@ -671,6 +677,41 @@ Der Lauf ändert nichts. Er liest und meldet:
 [instagram]
 [instagram] ✓ Das ist @im_invests – die Verbindung führt zum richtigen Konto.
 ```
+
+### 3.8a Der erste Beitrag — erst ansehen, dann veröffentlichen
+
+Die Zugangsprobe sagt, dass die Verbindung steht. Sie sagt nichts darüber,
+**was** hinausginge. Dafür gibt es zwei Läufe desselben Workflows.
+
+**Zuerst ohne Haken.** **Actions** → **Instagram-Beitrag** → **Run workflow**,
+das Kästchen „Wirklich veröffentlichen?" **leer lassen** → starten.
+
+Der Lauf holt die Kacheln von `iminvests.de`, zählt sie, zeigt die
+Beschriftung in der Zusammenfassung — und hört auf:
+
+```
+[instagram] 4 Kacheln, Basis https://iminvests.de
+[instagram]   https://iminvests.de/instagram/1.png
+[instagram]   …
+[instagram] Trockenlauf – es geht nichts hinaus.
+```
+
+**Sehen Sie sich die vier Adressen im Browser an.** Das ist genau das, was
+Meta abrufen würde; ein schiefes Bild fällt hier auf und nicht im Feed.
+
+**Dann mit Haken.** Derselbe Workflow, Kästchen gesetzt. Am Ende steht die
+Kennung des Beitrags und der Link zum Kanal.
+
+> **Bricht der Lauf mit „Unter … liegen nur 0 Kachel(n)" ab**, ist die
+> Website älter als die Ausgabe: Die Kacheln entstehen beim Bau und liegen
+> erst nach der Übertragung draußen. Dann zuerst **Paket bauen** und
+> **Veröffentlichen** durchlaufen lassen.
+
+An die Kette (also automatisch nach den Nachrichten) kommt der Beitrag erst,
+wenn ein paar davon beurteilt sind. Was bei Instagram einmal draußen war,
+ist nicht zurückzunehmen, nur zu löschen.
+
+---
 
 ### 3.9 Wenn es nicht klappt
 

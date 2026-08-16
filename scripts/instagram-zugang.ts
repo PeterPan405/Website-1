@@ -162,12 +162,26 @@ melde('Ein langlebiges Token gilt 60 Tage ab Ausstellung.')
 melde('Diese Probe kann das Ablaufdatum nicht auslesen – sie sagt nur, dass')
 melde('es **heute** gilt. Wer es erneuert, startet diesen Lauf danach erneut.')
 
-/* ----------------------------------------------- 4. Die Titelbilder */
+/* ----------------------------------------------- 4. Die Titelbilder
+
+   Nachrangig, und das steht hier ausdrücklich: Die Kacheln, die heute
+   hinausgehen, entstehen in `lib/instagram-bild.tsx` – satori setzt den Text,
+   resvg rastert ihn, **ohne Foto und ohne Netz**. Pexels ist für den Beitrag
+   des Tages nicht nötig.
+
+   Deshalb ist dieser Abschnitt seit dem 16. August 2026 nicht mehr rot.
+   Vorher brach die Zugangsprobe bei einem abgelehnten Pexels-Schlüssel ab –
+   also an einer Stelle, die mit dem Veröffentlichen nichts zu tun hat, und
+   hätte jemanden, der wissen will „steht die Instagram-Verbindung?", mit
+   einem roten Lauf über etwas Drittes stehen lassen. Ein Fehlschlag muss
+   die Frage beantworten, die gestellt wurde.
+*/
 
 melde('')
 if (!PEXELS) {
-  melde('Kein PEXELS_API_KEY – die Deckblätter bekämen kein Foto.')
-  melde('  Der Schlüssel ist kostenlos unter pexels.com/api zu bekommen.')
+  melde('Kein PEXELS_API_KEY – für den Beitrag des Tages wird keiner gebraucht.')
+  melde('  Die Kacheln entstehen aus Text, ohne Foto. Der Schlüssel ist nur')
+  melde('  dann nötig, wenn die Deckblätter später Fotos bekommen sollen.')
 } else {
   const pexels = await fetch(
     'https://api.pexels.com/v1/search?query=stock%20exchange&per_page=1',
@@ -185,9 +199,9 @@ if (!PEXELS) {
     )
   } else {
     console.error(
-      `::error::[instagram] Pexels lehnt den Schlüssel ab (${pexels.status}).`
+      `::warning::[instagram] Pexels lehnt den Schlüssel ab (${pexels.status}).` +
+        ' Der Beitrag des Tages ist davon nicht betroffen.'
     )
-    process.exit(1)
   }
 }
 
