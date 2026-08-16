@@ -34,6 +34,15 @@ import type { DailyEdition, EditionItem } from '@/data/editions/types'
 const logo = readFileSync(join(process.cwd(), 'public/logo.svg'), 'utf8')
 const logoDatenUrl = `data:image/svg+xml;base64,${Buffer.from(logo).toString('base64')}`
 
+/**
+ * Kantenlänge des Logos auf der Titelkachel, in Pixeln.
+ *
+ * Eine Zahl, keine zwei: `public/logo.svg` ist quadratisch (`viewBox="0 0 200
+ * 200"`), und zwei getrennte Werte sind genau die Gelegenheit, sie
+ * auseinanderlaufen zu lassen – so ist die Verzerrung entstanden.
+ */
+export const LOGO_KANTE = 132
+
 /** Instagram zeigt Hochkantbilder bis 4:5 in voller Höhe. */
 export const IG_BREITE = 1080
 export const IG_HOEHE = 1350
@@ -127,8 +136,24 @@ export async function instagramBild(edition: DailyEdition): Promise<Buffer> {
           justifyContent: 'space-between',
         }}
       >
+        {/*
+          Quadratisch, weil das Signet quadratisch ist.
+
+          Hier stand `width={340} height={110}` – ein Verhältnis von 3,09 für
+          eine Datei, deren `viewBox` `0 0 200 200` lautet, also 1,00. Das
+          Logo wurde damit auf ein Drittel seiner Höhe gequetscht: der Ring
+          zur Ellipse, der Schriftzug „IMI" unlesbar breit.
+
+          Aufgefallen ist es am 16. August 2026, als die Kacheln **zum ersten
+          Mal überhaupt** gerastert wurden. Der Code lag seit dem 13. August im
+          Repository, von keiner Stelle importiert – geschrieben, gemergt und
+          nie ausgeführt. Ein Bild, das niemand erzeugt, sieht auch niemand an.
+
+          `tests/instagram-bild.test.ts` vergleicht die Maße jetzt gegen die
+          `viewBox` der Datei.
+        */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoDatenUrl} width={340} height={110} alt="" />
+        <img src={logoDatenUrl} width={LOGO_KANTE} height={LOGO_KANTE} alt="" />
         <div style={{ display: 'flex', fontSize: 34, color: GRAU, letterSpacing: 1 }}>
           {datumLang(edition.date)}
         </div>
