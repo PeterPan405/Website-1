@@ -84,7 +84,7 @@ ist eine Regel der Umgebung, kein Fehler; prüfbar mit
   in `app/news/page.tsx` trägt `open`.
 - **Eine Tagesausgabe** braucht `data/editions/JJJJ-MM-TT.ts`, eingetragen in
   `data/editions/index.ts` – Import **und** Array. Mindestens eine
-  Top-Meldung, mindestens drei insgesamt, `intro` 110–165 Zeichen.
+  Top-Meldung, mindestens drei insgesamt, `intro` 110–160 Zeichen.
 - **Die Termine des Tages gehören hinein** – Konjunkturdaten, Notenbanken,
   Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
   Nur was in den Quellen steht. Die Anweisung steht in
