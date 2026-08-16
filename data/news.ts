@@ -101,6 +101,266 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'bundesbank-leistungsbilanz-rentenmarkt-juni-2026',
+    title: 'Deutschlands Leistungsbilanz wächst, der Rentenmarkt kühlt ab',
+    teaser:
+      'Die Bundesbank meldet für Juni einen höheren Leistungsbilanzüberschuss – während sich die Neuemissionen am Rentenmarkt leicht abschwächten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-16T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bundesbank', 'Leistungsbilanz', 'Rentenmarkt', 'EZB'],
+    relatedTopics: ['schuldverschreibung', 'notenbanken-geldpolitik'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilung „Die deutsche Zahlungsbilanz im Juni 2026“, Stand 16.8.2026',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilung „Mäßiger Nettoabsatz von Schuldverschreibungen im Juni 2026“ vom 12.8.2026',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender, abgerufen 16.8.2026 (EZB-Ratsmitglied Lane spricht, 17.8.)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutschland hat im Juni mehr aus dem Ausland eingenommen als ausgegeben – und zwar deutlich mehr als im Mai.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bundesbank beziffert den Überschuss der deutschen Leistungsbilanz auf 19,0 Milliarden Euro, das sind 10,1 Milliarden Euro mehr als im Vormonat. Den größten Anteil daran hatte laut der Mitteilung ein höherer Aktivsaldo im Warenhandel, hinzu kam ein Umschwung ins Plus bei den sogenannten unsichtbaren Leistungstransaktionen – das sind neben Dienstleistungen auch Primär- und Sekundäreinkommen wie Zinsen, Dividenden oder Überweisungen von im Ausland lebenden Beschäftigten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am Rentenmarkt lief es in die andere Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Während der Außenhandel mehr Geld ins Land brachte, gaben deutsche Emittenten am Rentenmarkt etwas kürzer. Die Bruttoemissionen lagen im Juni bei 133,5 Milliarden Euro – leicht unter den 134,5 Milliarden Euro aus dem Mai.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz der niedrigeren Neuausgabe wuchs der Umlauf heimischer Rentenwerte um 14,4 Milliarden Euro – nach Abzug der Tilgungen und unter Berücksichtigung der Eigenbestandsveränderungen der Emittenten. Eine sinkende Bruttoemission bedeutet also nicht automatisch einen schrumpfenden Markt: Solange weniger Anleihen fällig werden, als neue hinzukommen, wächst der Bestand trotzdem.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Start der neuen Handelswoche steht laut Wirtschaftskalender von wallstreet-online am Montag, den 17. August, ein Auftritt von EZB-Ratsmitglied Lane an – ein Termin, den Marktteilnehmer erfahrungsgemäß auf Hinweise zum künftigen Zinskurs abklopfen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine wachsende Leistungsbilanz zeigt, dass Deutschland per saldo weiterhin mehr aus dem Ausland einnimmt, als es dorthin zahlt – für die eigene Geldanlage sagt das allein noch nichts darüber, ob einzelne Branchen oder Unternehmen davon profitieren.',
+      },
+    ],
+  },
+  {
+    slug: 'norma-group-aktienrueckkauf-208-millionen',
+    title: 'NORMA Group startet Aktienrückkauf über 208 Millionen Euro',
+    teaser:
+      'NORMA Group kündigt ein Rückkaufprogramm über 208 Millionen Euro für 9,3 Millionen eigene Aktien an – mehr Details nennt die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-08-16T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['NORMA Group', 'Aktienrückkauf', 'Dividende', 'Ad-hoc'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Newsflash, Ad-hoc-Meldung vom 14.8.2026: „NORMA Group: Vorstand startet Aktienrückkauf über 208 Mio. Euro“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'NORMA Group hat am Freitag ein neues Aktienrückkaufprogramm gestartet – eines der größeren Rückkaufvolumen für ein Unternehmen dieser Größenordnung in diesem Sommer.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Vorstand kündigt laut einer Ad-hoc-Meldung ein Rückkaufvolumen von 208 Millionen Euro an, mit dem bis zu 9,3 Millionen eigene Aktien erworben werden sollen. Zum Zeitplan oder zur genauen Ausgestaltung des Programms macht die Kurzmeldung keine weiteren Angaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Rückkauf etwas anderes ist als eine Dividende',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Aktienrückkauf und eine Dividende erreichen ökonomisch ein ähnliches Ziel – Geld verlässt das Unternehmen und landet bei den Aktionären –, wirken aber unterschiedlich. Eine Dividende zahlt bar aus und lässt die Aktienzahl unverändert. Ein Rückkauf verringert dagegen die Zahl der ausstehenden Aktien: Wer seine Anteile behält, hält danach automatisch einen etwas größeren Teil des verbleibenden Unternehmens.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für viele Anleger ist das auch steuerlich interessant, weil ein Kursgewinn erst bei einem tatsächlichen Verkauf der Aktie anfällt – eine Dividende wird dagegen im Jahr der Auszahlung besteuert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob die eigene Aktie zum Rückkaufzeitpunkt tatsächlich günstig bewertet ist, entscheidet darüber, ob ein Rückkauf den verbleibenden Aktionären nützt oder nur die Kennzahl je Aktie kosmetisch verbessert. Eine Begründung des Vorstands dazu nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein angekündigtes Rückkaufvolumen ist ein Rahmen, kein Versprechen – Unternehmen kaufen Aktien oft über Monate verteilt und mit Unterbrechungen zurück. Wie viel NORMA Group tatsächlich zurückkauft und zu welchen Kursen, zeigt sich erst in den kommenden Quartalsberichten.',
+      },
+    ],
+  },
+  {
+    slug: 'homann-holzwerkstoffe-anleihe-prognose-gesenkt',
+    title: 'Homann Holzwerkstoffe senkt Prognose – was das für Anleihegläubiger heißt',
+    metaTitle: 'Homann-Anleihe: Prognose gesenkt',
+    teaser:
+      'Homann Holzwerkstoffe kappt die Jahresprognose wegen Anlaufverlusten in Litauen. Für Anleihegläubiger zählt dabei eine andere Kennzahl als für Aktionäre.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-16T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Unternehmensanleihe', 'Homann Holzwerkstoffe', 'Risikoprämie', 'Prognose'],
+    relatedTopics: ['schuldverschreibung', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'EQS Group AG über wallstreet-online, Ad-hoc-Meldung vom 14.8.2026: „Homann Holzwerkstoffe GmbH passt Jahresprognose an: Vorläufige Halbjahreszahlen 2026 aufgrund weiterhin hoher Anlaufverluste in Litauen und Nachfrageschwäche unter Vorjahr“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreetONLINE Newsflash, Meldung vom 14.8.2026: „Homann Holzwerkstoffe Unternehmensanleihe 7,50 % bis 06/32: Prognose sinkt“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wenn ein Unternehmen seine Jahresprognose senkt, denken die meisten zuerst an die Aktie. Bei Homann Holzwerkstoffe betrifft die Meldung aber in erster Linie Anleihegläubiger – das Unternehmen ist nicht börsennotiert, wohl aber über eine Anleihe am Kapitalmarkt vertreten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Ad-hoc-Mitteilung passt Homann Holzwerkstoffe die Jahresprognose 2026 an. Grund seien vorläufige Halbjahreszahlen, die wegen weiterhin hoher Anlaufverluste am Standort Litauen und einer Nachfrageschwäche unter dem Vorjahresniveau liegen. Weitere Zahlen zur neuen Prognose nennt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was für Anleihegläubiger zählt – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Betroffen ist die Unternehmensanleihe mit 7,50 Prozent Zins, fällig im Juni 2032. Für Aktionäre wäre eine gesenkte Prognose vor allem über den erwarteten Gewinn relevant. Für Anleihegläubiger zählt dagegen zuerst eine andere Frage: Kann das Unternehmen Zins und Rückzahlung überhaupt noch bedienen – unabhängig davon, ob der Gewinn hoch oder niedrig ausfällt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein hoher Kupon von 7,50 Prozent ist selbst schon ein Hinweis: Anleihen mit so hoher Verzinsung zahlen üblicherweise eine Risikoprämie gegenüber sichereren Anleihen – der Markt verlangt sie, weil das Ausfallrisiko höher eingeschätzt wird als etwa bei einer Staatsanleihe oder einer Anleihe eines DAX-Konzerns.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine gesenkte Prognose macht ein Ausfallrisiko nicht automatisch zur Gewissheit, verändert aber die Wahrscheinlichkeit, mit der Zins und Rückzahlung pünktlich fließen. Wer in Unternehmensanleihen mit hohem Kupon investiert, übernimmt genau dieses Risiko – und sollte Prognoseänderungen des Emittenten entsprechend ernst nehmen.',
+      },
+    ],
+  },
+  {
+    slug: 'boersengaenge-bilanz-2026-186-milliarden-dollar',
+    title: 'Börsengänge 2026: Weltweit bereits 186 Milliarden Dollar eingesammelt',
+    metaTitle: 'Börsengänge 2026: 186 Milliarden Dollar',
+    teaser:
+      'Der weltweite IPO-Markt hat sich 2026 bereits auf 186 Milliarden Dollar summiert. Wer genau davon profitiert, verrät die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-08-16T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Börsengang', 'IPO', 'Aktienmarkt'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 15.8.2026: „Börsengänge-Bilanz 2026: 186 Milliarden Dollar und ein Gewinner, den keiner kennt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Markt für Börsengänge hat sich 2026 kräftig erholt – jedenfalls gemessen am eingesammelten Volumen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Kurzmeldung von finanzen.net summierten sich die weltweiten Börsengänge (IPOs) im laufenden Jahr 2026 bereits auf 186 Milliarden Dollar. Die Überschrift der Meldung spricht zudem von „einem Gewinner, den keiner kennt“ – wer damit gemeint ist, geht aus der reinen Ticker-Zeile nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Summe allein wenig über den einzelnen Börsengang sagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine addierte Jahressumme wie 186 Milliarden Dollar fasst hunderte einzelne Transaktionen zusammen – von milliardenschweren Technologie-Listings bis zu kleinen Nebenwerten. Wie sich das Volumen über Branchen, Länder oder Börsenplätze verteilt, sagt die Gesamtzahl allein nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger, die über einen Fonds oder ETF an Neuemissionen beteiligt sein wollen, zählt ohnehin weniger das globale Gesamtvolumen als die Frage, welche einzelnen Börsengänge im eigenen Depot tatsächlich vertreten sind – und zu welchem Kurs relativ zum operativen Geschäft sie kamen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein hohes IPO-Volumen zeigt, dass Unternehmen und Investmentbanken den Zeitpunkt für günstig halten, an die Börse zu gehen. Ob das auch für die Anleger gilt, die die neuen Aktien danach kaufen, hängt vom Einzelfall ab – dazu sagt eine Jahressumme nichts.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesbank-falschgeld-erstes-halbjahr-2026',
+    title: 'Falschgeld in Deutschland: Weniger Fälschungen im ersten Halbjahr',
+    teaser:
+      'Die Bundesbank zog im ersten Halbjahr rund 30.000 falsche Euro-Banknoten aus dem Verkehr – 4,3 Prozent weniger als im Halbjahr zuvor.',
+    category: 'Vorsorge',
+    publishedAt: '2026-08-16T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Bundesbank', 'Falschgeld', 'Bargeld', 'Verbraucherschutz'],
+    relatedTopics: ['geldsystem'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilung „Weniger Falschgeld im Umlauf – Schadenssumme ebenfalls gesunken“ vom 7.8.2026',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer in Deutschland eine gefälschte Euro-Banknote in die Hand bekommt, hat damit statistisch schon Pech – und laut der Bundesbank inzwischen etwas weniger Pech als vor einem Jahr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im ersten Halbjahr 2026 zog die Bundesbank rund 30.000 falsche Banknoten im Gesamtwert von 1,75 Millionen Euro aus dem Verkehr. Gegenüber dem zweiten Halbjahr 2025 ist die Zahl der Fälschungen damit um 4,3 Prozent gesunken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sieben Blüten auf 10.000 Einwohner',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bundesbank-Vorstand Lutz Lienenkämper fasst die Größenordnung so zusammen: „Es gibt in Deutschland wenig Falschgeld.“ Rein rechnerisch, so Lienenkämper weiter, entfielen sieben falsche Banknoten auf 10.000 Einwohner.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Mitteilung nennt keine Gründe für den Rückgang – ob veränderte Sicherheitsmerkmale, mehr digitale Zahlungen oder schlicht weniger aktive Fälscherwerkstätten dahinterstecken, lässt sich aus den Zahlen allein nicht ablesen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine sinkende Fälschungsquote ändert nichts daran, dass Bargeld grundsätzlich fälschbar bleibt. Wer regelmäßig größere Bargeldbeträge entgegennimmt, ist mit einem Blick auf die eigenen Zahlen der Bundesbank nicht schlechter beraten als mit einem vagen Gefühl von Sicherheit.',
+      },
+    ],
+  },
+  {
     slug: 'dax-verpasst-rekord-sap-klettert-wall-street-schwaecher',
     title: 'DAX verpasst die Bestmarke knapp – SAP klettert, Wall Street rutscht ab',
     metaTitle: 'DAX knapp am Rekord vorbei, SAP im Plus',
