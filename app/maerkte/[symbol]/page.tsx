@@ -38,6 +38,7 @@ import {
   formatNumberSigned,
   formatPercentSigned,
 } from '@/lib/format'
+import { abstandZumHoch } from '@/lib/jahresspanne'
 import { datasetSchema } from '@/lib/jsonld'
 import { laendernamen } from '@/data/laender/namen'
 import { getBrancheVon } from '@/lib/branchen'
@@ -307,11 +308,15 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                   tone={quote.ytdPercent >= 0 ? 'positive' : 'negative'}
                   hint="Gegenüber dem letzten Schlusskurs des Vorjahres"
                 />
+                {/*
+                  Die Rechnung stand bis zum 16. August 2026 hier als Ausdruck.
+                  Seit es die Übersicht unter `/maerkte/52-wochen` gibt, wird
+                  dieselbe Zahl an zwei Stellen gebraucht – und zwei Stellen,
+                  die dasselbe rechnen, laufen irgendwann auseinander.
+                */}
                 <Stat
                   label="Abstand zum 52-Wochen-Hoch"
-                  value={formatPercentSigned(
-                    ((quote.value - quote.high52w) / quote.high52w) * 100
-                  )}
+                  value={formatPercentSigned(abstandZumHoch(quote))}
                   hint="Wie weit der Kurs unter seinem Jahreshoch liegt"
                 />
               </StatGrid>

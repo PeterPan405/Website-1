@@ -477,6 +477,14 @@ export default async function MarketsOverviewPage() {
             >
               Dividenden
             </Link>
+            . Und wer wissen will, wo ein Wert in seinem Jahr steht statt nur, was er
+            heute macht, findet alle nebeneinander unter{' '}
+            <Link
+              href="/maerkte/52-wochen"
+              className="text-markets font-medium underline underline-offset-2"
+            >
+              52 Wochen
+            </Link>
             .
           </p>
           {/*

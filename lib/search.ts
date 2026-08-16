@@ -439,6 +439,25 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: '52 Wochen: Abstand zum Hoch',
+    href: '/maerkte/52-wochen',
+    kind: 'Bereich',
+    hint: 'Wo jeder Wert zwischen Jahrestief und Jahreshoch steht – sortierbar',
+    keywords: [
+      '52 wochen',
+      '52-wochen-hoch',
+      '52-wochen-tief',
+      'jahreshoch',
+      'jahrestief',
+      'hoch',
+      'tief',
+      'abstand zum hoch',
+      'spanne',
+      'jahresspanne',
+      'allzeithoch',
+    ],
+  })
+  eintraege.push({
     title: 'Dividenden im Überblick',
     href: '/maerkte/dividenden',
     kind: 'Bereich',
