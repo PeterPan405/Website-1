@@ -264,6 +264,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       sich mit jedem Abruf, auch wenn keine Ausschüttung dazukam.
     */
     { url: absoluteUrl('/maerkte/dividenden'), changeFrequency: 'daily', priority: 0.7 },
+    /*
+      Der Abstand zum Jahreshoch hat den Kurs im Zähler – er ändert sich mit
+      jedem Abruf, auch wenn Hoch und Tief seit Wochen stehen.
+    */
+    { url: absoluteUrl('/maerkte/52-wochen'), changeFrequency: 'daily', priority: 0.7 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,

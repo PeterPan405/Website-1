@@ -133,6 +133,14 @@ const SEITEN = [
   ['/maerkte/branchen/halbleiter/', 'Branchenseite – lange Kursliste'],
   ['/maerkte/dividenden/', 'Dividenden – zwei Ranglisten nebeneinander'],
   ['/maerkte/vergleich/', 'Vergleich – zwei Kurven und eine Gegenüberstellung'],
+  /*
+    Die breiteste Tabelle der Website: fünf Spalten, `min-w-[44rem]`, über
+    tausend Zeilen. Sie liegt in einem `overflow-x-auto` und darf die Seite
+    deshalb nicht schiebbar machen – aber genau diese Konstruktion ist es, die
+    hier schon zweimal danebenging. Eine Tabelle, die breiter ist als der
+    Bildschirm, gehört in die Prüfliste, nicht in die Hoffnung.
+  */
+  ['/maerkte/52-wochen/', '52 Wochen – breite Tabelle in einem Scrollbereich'],
   ['/news/', 'Nachrichten – Anrisse und Archiv'],
   ['/lernen/stand/', 'Lernstand – Tabelle mit 34 Zeilen'],
   ['/rechner/zinsrechner/', 'Rechner – Eingabefelder und Ergebnis'],

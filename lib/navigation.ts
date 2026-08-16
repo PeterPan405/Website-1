@@ -101,6 +101,11 @@ export const mainNav: NavItem[] = [
         href: '/maerkte/vergleich',
         hint: 'Zwei Titel nebeneinander, mit Kurve',
       },
+      {
+        label: '52 Wochen',
+        href: '/maerkte/52-wochen',
+        hint: 'Wo jeder Wert zwischen Jahrestief und Jahreshoch steht',
+      },
     ],
     footerLink: { label: 'Alle Kurse ansehen', href: '/maerkte' },
   },
