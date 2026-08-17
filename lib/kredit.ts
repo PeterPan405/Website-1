@@ -1,9 +1,9 @@
 /**
  * Kreditrechnung: Annuität, Tilgungsverlauf und Restschuld.
  *
- * Importfrei, damit `tests/kredit.test.ts` die Datei über
- * `node --experimental-strip-types` laden kann – dort löst der `@/`-Alias
- * nicht auf.
+ * Importfrei. Ursprünglich, weil der `@/`-Alias außerhalb des Bündlers nicht
+ * auflöste – das ist seit `scripts/alias-hook.mjs` erledigt. Geblieben ist es,
+ * weil es hier ohnehin nichts zu importieren gibt: reine Rechnung, keine Daten.
  *
  * ## Warum das gerechnet gehört
  *
@@ -39,8 +39,21 @@ export interface Tilgungsmonat {
   monat: number
   zins: number
   tilgung: number
+  /** Zusätzliche Zahlung in diesem Monat, sonst 0. */
+  sondertilgung: number
   restschuld: number
 }
+
+/**
+ * Was die meisten Kreditverträge an Sondertilgung im Jahr erlauben.
+ *
+ * Fünf Prozent der ursprünglichen Darlehenssumme sind der Marktstandard –
+ * mehr ist verhandelbar, kostet aber in aller Regel einen Zinsaufschlag. Die
+ * Zahl steht hier, weil der Rechner sie zum Einordnen der Eingabe braucht:
+ * Eine Sondertilgung, die kein Vertrag hergibt, rechnet einen Vorteil vor, den
+ * es nicht gibt.
+ */
+export const UEBLICHE_SONDERTILGUNG_PROZENT = 5
 
 /**
  * Die monatliche Rate eines Annuitätendarlehens bei fester Laufzeit.
@@ -84,7 +97,8 @@ export function rateBeiTilgungssatz(
 export function tilgungsplan(
   kredit: Kreditparameter,
   rate: number,
-  maxMonate = 12 * 60
+  maxMonate = 12 * 60,
+  sondertilgungProJahr = 0
 ): Tilgungsmonat[] {
   const i = kredit.zinsProzent / 100 / 12
   const plan: Tilgungsmonat[] = []
@@ -108,6 +122,20 @@ export function tilgungsplan(
     let tilgung = Math.min(rate - zins, rest)
     rest -= tilgung
 
+    /*
+      Die Sondertilgung am Ende des Jahres, nach der regulären Rate.
+
+      Nicht zu Jahresbeginn: Die meisten Verträge sehen sie zum Jahresende vor,
+      und es ist die vorsichtigere Annahme – wer früher zahlt, spart mehr, als
+      hier steht. Ein Rechner, der zu viel verspricht, ist an dieser Stelle das
+      größere Problem als einer, der ein paar Euro unterschlägt.
+    */
+    const sondertilgung =
+      sondertilgungProJahr > 0 && monat % 12 === 0
+        ? Math.min(sondertilgungProJahr, rest)
+        : 0
+    rest -= sondertilgung
+
     // Den Rest der letzten Rate zuschlagen, damit die Summe aller Tilgungen
     // exakt die Darlehenssumme ergibt.
     if (rest <= GETILGT) {
@@ -115,7 +143,7 @@ export function tilgungsplan(
       rest = 0
     }
 
-    plan.push({ monat, zins, tilgung, restschuld: rest })
+    plan.push({ monat, zins, tilgung, sondertilgung, restschuld: rest })
   }
 
   return plan
@@ -132,8 +160,12 @@ export interface Kreditergebnis {
 }
 
 /** Laufzeit und Gesamtkosten bei gegebener Rate. */
-export function auswerten(kredit: Kreditparameter, rate: number): Kreditergebnis {
-  const plan = tilgungsplan(kredit, rate)
+export function auswerten(
+  kredit: Kreditparameter,
+  rate: number,
+  sondertilgungProJahr = 0
+): Kreditergebnis {
+  const plan = tilgungsplan(kredit, rate, 12 * 60, sondertilgungProJahr)
   const zinsenGesamt = plan.reduce((summe, monat) => summe + monat.zins, 0)
 
   return {
@@ -141,6 +173,106 @@ export function auswerten(kredit: Kreditparameter, rate: number): Kreditergebnis
     monate: plan.length,
     zinsenGesamt,
     gesamtkosten: kredit.summe + zinsenGesamt,
+  }
+}
+
+/** Was eine Sondertilgung bringt – gegen denselben Kredit ohne sie. */
+export interface Sondertilgungswirkung {
+  /** Zinsen, die durch die Sondertilgung nicht anfallen. */
+  zinsersparnis: number
+  /** Um wie viele Monate der Kredit früher abbezahlt ist. */
+  monateFrueher: number
+  /** Was insgesamt zusätzlich eingezahlt wurde. */
+  eingezahlt: number
+  /**
+   * Was jeder zusätzlich gezahlte Euro an Zinsen erspart hat.
+   *
+   * Die Zahl, die den Vergleich mit einer Anlage erlaubt: Eine Sondertilgung
+   * ist eine Geldanlage zum Kreditzins – steuerfrei und ohne Risiko. Ob sie
+   * sich lohnt, entscheidet sich am Vergleich mit dem, was dasselbe Geld
+   * anderswo nach Steuern gebracht hätte.
+   */
+  ersparnisJeEuro: number
+}
+
+/**
+ * Der Vergleich mit und ohne Sondertilgung.
+ *
+ * Beide Läufe stehen nebeneinander, statt eine Formel für die Ersparnis
+ * aufzustellen: Die gibt es in geschlossener Form nicht, sobald die Zahlung
+ * jährlich statt monatlich erfolgt – und ein zweiter Durchlauf desselben
+ * geprüften Tilgungsplans ist ehrlicher als eine Näherung, die aussieht wie
+ * eine Formel.
+ */
+export function sondertilgungswirkung(
+  kredit: Kreditparameter,
+  rate: number,
+  sondertilgungProJahr: number
+): Sondertilgungswirkung {
+  const ohne = auswerten(kredit, rate)
+  const mit = auswerten(kredit, rate, sondertilgungProJahr)
+
+  const plan = tilgungsplan(kredit, rate, 12 * 60, sondertilgungProJahr)
+  const eingezahlt = plan.reduce((summe, monat) => summe + monat.sondertilgung, 0)
+  const zinsersparnis = ohne.zinsenGesamt - mit.zinsenGesamt
+
+  return {
+    zinsersparnis,
+    monateFrueher: ohne.monate - mit.monate,
+    eingezahlt,
+    ersparnisJeEuro: eingezahlt > 0 ? zinsersparnis / eingezahlt : 0,
+  }
+}
+
+/** Was der Anschluss nach der Zinsbindung kostet. */
+export interface Anschlussvergleich {
+  restschuld: number
+  /** Verbleibende Monate, wenn der ursprüngliche Plan weiterliefe. */
+  restlaufzeitMonate: number
+  /** Die Rate, die dafür beim alten Zins nötig wäre – in aller Regel die bisherige. */
+  rateAlt: number
+  /** Die Rate beim neuen Zins, bei gleicher Restlaufzeit. */
+  rateNeu: number
+  mehrProMonat: number
+  /** Was der Zinsunterschied über die Restlaufzeit insgesamt kostet. */
+  mehrGesamt: number
+}
+
+/**
+ * Was ein höherer Zins beim Anschluss kostet.
+ *
+ * Die Frage, die bei einer Zinsbindung von zehn Jahren wirklich zählt und die
+ * kein Angebot beantwortet: Nach der Bindung wird die Restschuld zu **dann**
+ * geltenden Konditionen weiterfinanziert, und die kennt heute niemand.
+ *
+ * Verglichen wird bei **gleicher Restlaufzeit**, nicht bei gleicher Rate. Wer
+ * die Rate gleich lässt, verschiebt die Mehrkosten nur ans Ende der Laufzeit
+ * und sieht sie nicht – die Verlängerung ist dann der eigentliche Preis, und
+ * sie fällt in keiner Monatsrate auf.
+ */
+export function anschlussvergleich(
+  restschuld: number,
+  zinsAltProzent: number,
+  zinsNeuProzent: number,
+  restlaufzeitMonate: number
+): Anschlussvergleich {
+  const jahre = restlaufzeitMonate / 12
+  const rateAlt = rateBeiLaufzeit(
+    { summe: restschuld, zinsProzent: zinsAltProzent },
+    jahre
+  )
+  const rateNeu = rateBeiLaufzeit(
+    { summe: restschuld, zinsProzent: zinsNeuProzent },
+    jahre
+  )
+
+  return {
+    restschuld,
+    restlaufzeitMonate,
+    rateAlt,
+    rateNeu,
+    mehrProMonat: rateNeu - rateAlt,
+    mehrGesamt: (rateNeu - rateAlt) * restlaufzeitMonate,
   }
 }
 
@@ -154,9 +286,10 @@ export function auswerten(kredit: Kreditparameter, rate: number): Kreditergebnis
 export function restschuldNach(
   kredit: Kreditparameter,
   rate: number,
-  jahre: number
+  jahre: number,
+  sondertilgungProJahr = 0
 ): number {
-  const plan = tilgungsplan(kredit, rate)
+  const plan = tilgungsplan(kredit, rate, 12 * 60, sondertilgungProJahr)
   const monat = Math.round(jahre * 12)
   if (plan.length === 0) return kredit.summe
   if (monat >= plan.length) return 0

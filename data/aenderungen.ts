@@ -59,6 +59,13 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
+    art: 'geaendert',
+    titel: 'Kreditrechner: Sondertilgung, Anschluss und Tilgungsplan zum Mitnehmen',
+    text: 'Der Rechner beantwortet jetzt drei Fragen mehr: Was bringt eine jährliche Sondertilgung – in gesparten Zinsen und in Monaten? Was kostet es, wenn der Zins nach der Bindung einen Prozentpunkt höher liegt? Und der vollständige Tilgungsplan lässt sich als Tabelle herunterladen, um ihn gegen ein Bankangebot zu halten.',
+    ziel: { text: 'Zum Kreditrechner', href: '/rechner/kreditrechner' },
+  },
+  {
+    datum: '2026-08-17',
     art: 'neu',
     titel: 'Notgroschen: eine begründete Zahl statt „drei Monatsgehälter“',
     text: 'Die verbreitete Faustregel gibt einer Beamtin mit zwei Einkommen im Haushalt dieselbe Auskunft wie einem Selbstständigen mit zwei Kindern. Der neue Rechner verschiebt sie anhand von vier Angaben – und schreibt unter das Ergebnis, welcher Zuschlag woher kommt, damit man jedem einzeln widersprechen kann.',

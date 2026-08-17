@@ -17,13 +17,16 @@
  */
 
 import {
+  anschlussvergleich,
   auswerten,
   rateBeiLaufzeit,
   rateBeiTilgungssatz,
   restschuldNach,
+  sondertilgungswirkung,
   tilgungsplan,
   type Kreditparameter,
 } from '../lib/kredit.ts'
+import { baueTilgungsplanCsv } from '../lib/tilgungsplan-csv.ts'
 
 let failed = 0
 
@@ -135,6 +138,171 @@ nahe(
   gepruefte.gesamtkosten,
   kredit.summe + gepruefte.zinsenGesamt,
   1e-9
+)
+
+/* ------------------------------------------------------- Sondertilgung */
+
+/*
+  Die Sondertilgung ist die Stelle, an der ein Rechner am leichtesten zu viel
+  verspricht – und niemand rechnet nach.
+
+  Geprüft wird deshalb gegen den Kredit **ohne** sie: Die Summe aller
+  Zahlungen muss stimmen, die Laufzeit muss kürzer werden, und die Ersparnis
+  darf nicht größer sein als das, was die getilgten Beträge über die
+  Restlaufzeit überhaupt an Zinsen erzeugt hätten.
+*/
+console.log('\n— Sondertilgung —')
+
+const rateStandard = rateBeiTilgungssatz(kredit, 2)
+const mitSonder = tilgungsplan(kredit, rateStandard, 12 * 60, 5_000)
+const ohneSonder = tilgungsplan(kredit, rateStandard)
+
+wahr('mit Sondertilgung ist der Kredit früher weg', mitSonder.length < ohneSonder.length)
+
+nahe(
+  'alle Zahlungen ergeben zusammen die Darlehenssumme',
+  mitSonder.reduce((s, m) => s + m.tilgung + m.sondertilgung, 0),
+  kredit.summe,
+  1e-6
+)
+
+wahr(
+  'gezahlt wird nur im zwölften Monat des Jahres',
+  mitSonder.every((m) => m.sondertilgung === 0 || m.monat % 12 === 0)
+)
+
+wahr(
+  'ohne Sondertilgung steht überall null',
+  ohneSonder.every((m) => m.sondertilgung === 0)
+)
+
+const wirkung = sondertilgungswirkung(kredit, rateStandard, 5_000)
+
+wahr('die Zinsersparnis ist positiv', wirkung.zinsersparnis > 0)
+wahr('der Kredit endet Jahre früher', wirkung.monateFrueher > 12)
+
+/*
+  Die Obergrenze der Ersparnis.
+
+  Jeder sondergetilgte Euro erspart höchstens die Zinsen, die er bis zum
+  regulären Ende erzeugt hätte – über 27 Jahre bei 3,8 % sind das rund 1,80 €
+  je Euro. Liegt die gerechnete Ersparnis darüber, zählt die Rechnung etwas
+  doppelt. Diese Prüfung ist der Grund, warum die Wirkung aus zwei echten
+  Durchläufen kommt und nicht aus einer Näherungsformel.
+*/
+wahr(
+  'jeder Euro erspart weniger, als er über die Restlaufzeit an Zinsen erzeugt hätte',
+  wirkung.ersparnisJeEuro > 0 && wirkung.ersparnisJeEuro < 2
+)
+
+nahe(
+  'eingezahlt wurde, was der Plan ausweist',
+  wirkung.eingezahlt,
+  mitSonder.reduce((s, m) => s + m.sondertilgung, 0),
+  1e-9
+)
+
+wahr(
+  'ohne Sondertilgung ändert sich nichts',
+  sondertilgungswirkung(kredit, rateStandard, 0).zinsersparnis === 0 &&
+    sondertilgungswirkung(kredit, rateStandard, 0).ersparnisJeEuro === 0
+)
+
+wahr(
+  'eine Sondertilgung über der Restschuld tilgt nur, was offen ist',
+  (() => {
+    const plan = tilgungsplan(kredit, rateStandard, 12 * 60, 1_000_000)
+    return (
+      plan.every((m) => m.restschuld >= 0) &&
+      Math.abs(plan.reduce((s, m) => s + m.tilgung + m.sondertilgung, 0) - kredit.summe) <
+        1e-6
+    )
+  })()
+)
+
+wahr(
+  'die Restschuld bei Bindungsende sinkt durch die Sondertilgung',
+  restschuldNach(kredit, rateStandard, 10, 5_000) <
+    restschuldNach(kredit, rateStandard, 10)
+)
+
+/* --------------------------------------------------------- Anschluss */
+
+/*
+  Verglichen wird bei gleicher Restlaufzeit, nicht bei gleicher Rate.
+
+  Wer die Rate gleich lässt, verschiebt die Mehrkosten ans Ende der Laufzeit
+  und sieht sie nicht. Die Prüfung hält deshalb fest, dass ein höherer Zins
+  eine höhere Rate ergibt – und dass ein gleicher Zins keinen Unterschied
+  macht. Ohne den zweiten Teil wäre nicht ausgeschlossen, dass die Rechnung
+  immer etwas findet.
+*/
+console.log('\n— Anschlussfinanzierung —')
+
+const rest10 = restschuldNach(kredit, rateStandard, 10)
+const anschluss = anschlussvergleich(rest10, 3.8, 4.8, 17 * 12)
+
+wahr('ein Prozentpunkt mehr kostet jeden Monat mehr', anschluss.mehrProMonat > 0)
+nahe(
+  'die Gesamtmehrkosten sind die Monatsdifferenz über die Restlaufzeit',
+  anschluss.mehrGesamt,
+  anschluss.mehrProMonat * 17 * 12,
+  1e-6
+)
+nahe(
+  'gleicher Zins, kein Unterschied',
+  anschlussvergleich(rest10, 3.8, 3.8, 17 * 12).mehrProMonat,
+  0,
+  1e-9
+)
+wahr(
+  'ein niedrigerer Anschlusszins entlastet',
+  anschlussvergleich(rest10, 3.8, 2.8, 17 * 12).mehrProMonat < 0
+)
+
+/* --------------------------------------------------------------- CSV */
+
+/*
+  Die Datei entsteht im Browser – ein Fehler fiele in keiner Bauprüfung auf,
+  sondern erst in der Tabellenkalkulation eines Besuchers.
+*/
+console.log('\n— Tilgungsplan als Datei —')
+
+const csv = baueTilgungsplanCsv(mitSonder, {
+  summe: kredit.summe,
+  zinsProzent: kredit.zinsProzent,
+  rate: rateStandard,
+  sondertilgungProJahr: 5_000,
+})
+const zeilen = csv.trimEnd().split('\n')
+const datenzeilen = zeilen.filter((z) => !z.startsWith('#') && !z.startsWith('Monat'))
+
+nahe('je Monat eine Zeile', datenzeilen.length, mitSonder.length, 0)
+wahr('die Kopfzeile nennt alle sechs Spalten', zeilen[3].split(';').length === 6)
+wahr(
+  'jede Zeile hat sechs Felder',
+  datenzeilen.every((z) => z.split(';').length === 6)
+)
+wahr(
+  'Zahlen mit Punkt, damit jede Weiterverarbeitung sie liest',
+  datenzeilen.every((z) => !z.includes(','))
+)
+wahr(
+  'die Annahmen stehen als Kommentar darüber',
+  zeilen[0].startsWith('# Tilgungsplan') && zeilen[1].includes('Sondertilgung')
+)
+wahr(
+  'ohne Sondertilgung sagt der Kopf das auch',
+  baueTilgungsplanCsv(ohneSonder, {
+    summe: kredit.summe,
+    zinsProzent: kredit.zinsProzent,
+    rate: rateStandard,
+    sondertilgungProJahr: 0,
+  }).includes('ohne Sondertilgung')
+)
+wahr(
+  'das Kreditjahr zählt ab eins',
+  datenzeilen[0].split(';')[1] === '1' && datenzeilen[12].split(';')[1] === '2'
 )
 
 console.log(
