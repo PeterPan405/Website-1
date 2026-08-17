@@ -6,6 +6,8 @@ import { Stimmungsverlauf } from '@/components/markets/Stimmungsverlauf'
 import { Tacho } from '@/components/markets/Tacho'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { Datenstandsampel } from '@/components/ui/Datenstandsampel'
+import { taktErwartung } from '@/lib/datenstand'
 import { formatDate } from '@/lib/format'
 import {
   getStimmungsverlauf,
@@ -124,6 +126,20 @@ export default async function StimmungsSeite({ params }: SeitenProps) {
                     größtmögliche Angst, hundert größtmögliche Gier; die Grenzen zwischen
                     den Stufen sind Konvention, keine Messgröße.
                   </p>
+                  {/*
+                    Der Stand stand bisher nur als Datum im Seitenkopf.
+
+                    Bei einer Zahl, die jeden Handelstag neu entsteht, ist ein
+                    Datum ohne Einordnung wertlos: Wer den Takt nicht kennt,
+                    weiß nicht, ob der 12. August alt ist. Die Ampel rechnet im
+                    Browser und kann deshalb auch dann anschlagen, wenn diese
+                    Seite seit Tagen unverändert ausgeliefert wird.
+                  */}
+                  <Datenstandsampel
+                    className="mt-4"
+                    stand={verlauf.stand}
+                    erwartung={taktErwartung('an jedem Handelstag einen neuen Stand', 1)}
+                  />
                 </div>
               </div>
             </section>

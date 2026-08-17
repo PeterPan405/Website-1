@@ -38,6 +38,8 @@ import {
   formatNumberSigned,
   formatPercentSigned,
 } from '@/lib/format'
+import { Datenstandsampel } from '@/components/ui/Datenstandsampel'
+import { taktErwartung } from '@/lib/datenstand'
 import { abstandZumHoch } from '@/lib/jahresspanne'
 import { datasetSchema } from '@/lib/jsonld'
 import { laendernamen } from '@/data/laender/namen'
@@ -404,19 +406,24 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                       {zusammensetzung.hinweis}
                     </figcaption>
                   </figure>
-                  {/* Die Gewichtung wird von Hand gepflegt, nicht stündlich abgerufen.
-                    Ohne sichtbares Datum wäre sie eine Behauptung. */}
-                  <p className="text-fg-subtle mt-4 text-sm leading-relaxed">
-                    Stand der Gewichtung: {formatDate(zusammensetzung.stand)}. Quelle:{' '}
-                    <a
-                      href={zusammensetzung.quelle.url}
-                      rel="noopener noreferrer nofollow"
-                      target="_blank"
-                      className="text-brand underline underline-offset-2"
-                    >
-                      {zusammensetzung.quelle.label}
-                    </a>
-                    . Anders als der Kurs wird dieser Datensatz nicht automatisch
+                  {/*
+                    Die Gewichtung wird von Hand gepflegt, nicht stündlich
+                    abgerufen. Ohne sichtbares Datum wäre sie eine Behauptung.
+
+                    Die Ampel sagt zusätzlich, ob das Datum in Ordnung ist –
+                    ein Datum allein beantwortet die Frage nicht, die jemand
+                    hat. Indizes werden vierteljährlich überprüft; nach dem
+                    Doppelten davon steht die Pflege aus, nach dem Dreifachen
+                    ist sie liegengeblieben.
+                  */}
+                  <Datenstandsampel
+                    className="mt-4"
+                    stand={zusammensetzung.stand}
+                    erwartung={taktErwartung('vierteljährlich neue Gewichtungen', 91)}
+                    quelle={zusammensetzung.quelle}
+                  />
+                  <p className="text-fg-subtle mt-3 text-sm leading-relaxed">
+                    Anders als der Kurs wird dieser Datensatz nicht automatisch
                     aktualisiert.
                   </p>
                 </section>
