@@ -266,20 +266,19 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
   gestellten Gerät. Die Rangfolge in `startSkript()` (`lib/theme.ts`) hat nur
   zwei Stufen: gespeicherte Wahl, sonst Weiß. `prefers-color-scheme` kommt
   nicht mehr vor.
-- **Die Leistenfarbe hängt an `media`, nicht an JavaScript.**
-  `app/layout.tsx` liefert **zwei** `themeColor`-Angaben aus, hell und dunkel
-  nach `prefers-color-scheme`. Der Balken folgt damit dem **Gerät**, nicht der
-  Schaltfläche.
-- **Kein Skript fasst `theme-color` mehr an** – nicht das Startskript, nicht
-  der Umschalter. Vier Messungen am Gerät: ohne Angabe malt Safari schwarz,
-  eine feste Angabe nimmt es, jede nachträgliche Änderung ignoriert es.
-  Safari friert den Wert beim Parsen ein, die gespeicherte Wahl steht erst
-  danach fest – das ist nicht zu lösen, nur zu umgehen.
-  `tests/farbschema-start.test.ts` lässt den Nachbau **werfen**, wenn das
-  Skript den `<head>` anfasst.
-- **Was bleibt:** Wer sein Gerät hell stellt und die Website dunkel schaltet,
-  sieht einen hellen Balken über dunkler Seite. Der Preis ist abgewogen – ohne
-  `media` ist der Balken entweder immer schwarz oder immer hell.
+- **Die Leistenfarbe entsteht per `document.write` im Startskript.** Safari
+  liest `theme-color` beim Parsen; jede spätere DOM-Änderung ist wirkungslos
+  (viermal nachgemessen). `document.write` schiebt den Text in den Token-Strom
+  – der Parser baut das Element selbst, wie bei Quelltext.
+- **Drei Stücke, die zusammengehören:** das `document.write`, seine Stellung
+  im `<head>` **vor** dem Rückfall, und der Rückfall in `<noscript>` (sonst
+  zieht Next ihn nach vorn, und die erste passende Angabe gewinnt). Einzeln
+  entfernt ergibt jedes wieder einen falschen Balken.
+- **Der Umschalter lädt die Seite neu.** Ohne Neuladen wird nicht neu geparst,
+  und der Balken bliebe die ganze Sitzung falsch – die Website navigiert
+  clientseitig.
+- `tests/farbschema-start.test.ts` fängt `document.write` auf und lässt
+  `head`, `createElement`, `querySelectorAll` **werfen**.
 - `colorScheme` steht auf `'light'`, nicht `'light dark'`.
 - Am `--c-canvas` des hellen Schemas hängen `LEISTENFARBE` in `lib/theme.ts`
   **und** das App-Icon (`python scripts/app-icon-faerben.py`).

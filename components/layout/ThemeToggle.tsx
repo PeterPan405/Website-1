@@ -25,26 +25,34 @@ export function ThemeToggle({ className }: { className?: string }) {
     const next = root.dataset.theme === 'dark' ? 'weiss' : 'dark'
     root.dataset.theme = next
 
-    /*
-      Die Browserleiste zieht hier **nicht** mit – und das ist gewollt.
-
-      Bis zum 17. August 2026 stand hier ein Aufruf, der `theme-color`
-      nachzog. In Safari hat er nie gewirkt, viermal nachgemessen: Der Wert
-      wird beim Parsen gelesen und danach nie wieder. Ein Aufruf, der nur in
-      einem von zwei Browsern etwas tut, ist keine Lösung, sondern eine
-      Ungleichheit, die niemand erwartet.
-
-      Die Farbe hängt jetzt an `media`-Bedingungen in `app/layout.tsx`, also
-      an der Systemvorgabe des Geräts. Sie hier anzufassen, würde genau die
-      Angaben zerstören, an denen beide Browser hängen.
-    */
-
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, next)
     } catch {
       // Privater Modus oder blockierter Speicher: Der Wechsel gilt dann nur
-      // für die aktuelle Sitzung.
+      // für die aktuelle Sitzung – und dann trägt auch das Neuladen nicht.
+      return
     }
+
+    /*
+      Neu laden, damit die Browserleiste mitkommt.
+
+      Das sieht nach Holzhammer aus und ist die einzige Möglichkeit. Safari
+      liest `theme-color` **beim Parsen**; jede Änderung danach ist wirkungslos
+      – viermal nachgemessen, jedes Mal am Telefon des Betreibers. Die Farbe
+      entsteht deshalb aus einem `document.write` im Startskript, und das läuft
+      nur, wenn die Seite wirklich neu geparst wird.
+
+      Ohne Neuladen bliebe der Balken bis zum nächsten harten Seitenaufruf in
+      der alten Farbe – und weil diese Website clientseitig navigiert, wäre das
+      die ganze Sitzung lang. Genau der Zustand, den der Betreiber fünfmal
+      gemeldet hat.
+
+      Der Preis ist ein kurzes Neuladen bei einem Klick, den kaum jemand öfter
+      als einmal macht. Was dabei verlorengeht, ist nicht viel: Die Rechner
+      legen ihre Eingaben im `localStorage` ab, die Merkliste ebenso, und das
+      Lesezeichen im Lernbereich auch.
+    */
+    window.location.reload()
   }
 
   return (

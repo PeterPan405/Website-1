@@ -1732,27 +1732,55 @@ danach fest. Drei Anläufe waren Varianten desselben unmöglichen Vorhabens, und
 das war nach dem ersten schon absehbar – es fehlte nur die Bereitschaft, die
 Anforderung selbst infrage zu stellen statt immer neue Umgehungen zu suchen.
 
-### Der fünfte Anlauf: die Farbe hängt nicht mehr an der Wahl
+### Der fünfte Anlauf: `media` – und warum der Betreiber ihn zurückwies
 
-`app/layout.tsx` liefert **zwei** Angaben aus:
+Zwei Angaben nach `prefers-color-scheme`. Damit folgte der Balken dem **Gerät**
+statt der Website. Der Betreiber hat das am selben Tag beanstandet:
 
-    <meta name="theme-color" content="#f2ebdd" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)">
+> Der Balken soll im White Mode Beige sein, an dem Dark Mode dunkel wie die
+> anderen Farben.
 
-`media` wertet der Browser beim Parsen aus – und danach weiter, wenn sich die
-Systemvorgabe ändert. Damit folgt der Balken dem **Gerät** statt der
-Schaltfläche. Beide Browser verhalten sich gleich, und **kein Skript fasst
-`theme-color` mehr an**: weder das Startskript noch der Umschalter. Die
-Funktionen dafür sind ersatzlos entfallen.
+Er will, dass der Balken der **Wahl** folgt. Genau das schien unmöglich – und
+war es auch, solange nur DOM-Wege versucht wurden.
 
-**Was das kostet:** Wer sein Telefon hell stellt und die Website dunkel
-schaltet, sieht einen hellen Balken über dunkler Seite. Das ist gegen die
-Alternativen abgewogen – ohne `media` ist der Balken entweder immer schwarz
-oder immer hell –, und es ist der Normalfall, dass ein dunkel gestelltes Gerät
-und ein dunkel gewähltes Aussehen dieselbe Vorliebe sind.
+### Der sechste Anlauf: `document.write`
 
-Der erste Besuch bleibt **weiß**, auch auf einem dunklen Gerät. Genau dieser
-Fall ist der Preis; er trifft einmal und verschwindet mit der ersten Wahl.
+Alle gescheiterten Wege haben das DOM **nach** dem Parsen verändert:
+`setAttribute`, `appendChild`, Knoten austauschen. `document.write` in einem
+Skript, das während des Parsens läuft, ist etwas anderes: Der Text geht in den
+**Token-Strom des Parsers**, und der baut das Element selbst – wie bei
+Quelltext. Genau daran hängt Safaris Auswertung.
+
+Das Startskript steht im `<head>` und läuft synchron, während der Parser noch
+im `<head>` ist. Es schreibt:
+
+    <meta name="theme-color" content="#f2ebdd">
+
+mit der Farbe, die zur gespeicherten Wahl gehört.
+
+**Drei Stücke tragen das, und einzeln ist keines etwas wert:**
+
+1. das `document.write` statt einer DOM-Änderung,
+2. seine Stellung im `<head>` **vor** dem Rückfall,
+3. der Rückfall in `<noscript>`.
+
+Zu (3): Next zieht jede Meta-Angabe, die es sieht, an den Anfang des `<head>` –
+also vor das Skript. Bei mehreren passenden Angaben nimmt der Browser die
+erste; der Rückfall gewönne dann immer, und der ganze Umbau wäre wirkungslos,
+und zwar lautlos. In `<noscript>` sieht Next ihn nicht. Inhaltlich gehört er
+ohnehin dorthin: Wo das Skript läuft, schreibt es die richtige Farbe; wo es
+nicht läuft, ist die Systemvorgabe die beste verfügbare Schätzung.
+
+### Der Umschalter lädt neu
+
+`document.write` wirkt nur, während geparst wird. Ohne Neuladen bliebe der
+Balken nach einem Umschalten in der alten Farbe – und weil diese Website
+clientseitig navigiert, die ganze Sitzung lang. Genau der Zustand, den der
+Betreiber fünfmal gemeldet hat.
+
+Der Preis ist ein kurzes Neuladen bei einem Klick, den kaum jemand öfter als
+einmal macht. Verloren geht dabei wenig: Rechner, Merkliste und Lesezeichen
+liegen im `localStorage`.
 
 ### Was die Prüfung daraus gelernt hat
 

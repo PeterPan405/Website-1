@@ -48,33 +48,44 @@ export const LEISTENFARBE = {
 } as const
 
 /*
- * ## Die Leistenfarbe steht nicht mehr hier – und das ist der Kern der Sache
+ * ## Die Leistenfarbe: fünf Anläufe, und woran jeder scheiterte
  *
- * Bis zum 17. August 2026 standen an dieser Stelle `leisteFaerben()` und ihr
- * Zwilling als Zeichenkette: zwei Funktionen, die die Farbe der Browserleiste
- * per JavaScript nachzogen. Sie sind ersatzlos entfallen.
- *
- * Gemessen wurde, in vier Anläufen, jeweils am Gerät des Betreibers:
+ * Gemessen, jeweils am Telefon des Betreibers:
  *
  *     keine Angabe im HTML                     Safari malt schwarz
  *     feste Angabe im HTML                     Safari nimmt sie
  *     Skript ändert sie danach (setAttribute)  Safari ignoriert
  *     Skript tauscht den Knoten aus            Safari ignoriert
+ *     Angaben mit `media`                      folgen dem Gerät, nicht der Wahl
  *
- * **Safari friert den Wert beim Parsen ein.** Die gespeicherte Wahl steht erst
- * danach fest. Kein noch so geschickter Umbau ändert daran etwas – die drei
- * Fassungen davor waren Varianten desselben unmöglichen Vorhabens.
+ * **Safari liest `theme-color` beim Parsen.** Die gespeicherte Wahl steht erst
+ * danach fest – das ist der ganze Widerspruch, und drei Anläufe waren
+ * Varianten desselben unmöglichen Vorhabens.
  *
- * Die Farbe hängt seither an `media`-Bedingungen in `app/layout.tsx` und damit
- * an der Systemvorgabe des Geräts, die der Browser beim Parsen kennt. Das ist
- * keine JavaScript-Aufgabe mehr.
+ * ## Warum `document.write` etwas anderes ist als alles davor
  *
- * **Wer hier wieder eine Funktion für `theme-color` einbaut, macht es schlimmer
- * als vorher:** Sie müsste die vorhandenen Angaben anfassen, und die tragen
- * jetzt die `media`-Bedingungen, an denen beide Browser hängen.
+ * Die gescheiterten Wege haben das DOM **nach** dem Parsen verändert:
+ * `setAttribute`, `appendChild`, Knoten austauschen. `document.write` in einem
+ * Skript, das während des Parsens läuft, schiebt den Text dagegen **in den
+ * Token-Strom des Parsers**. Der Parser baut das Element selbst, genau wie bei
+ * Quelltext – und genau daran hängt Safaris Auswertung.
  *
- * Was dieses Skript weiterhin tut, ist das eine, was es tun kann und muss:
- * `data-theme` setzen, bevor gemalt wird.
+ * Der Zeitpunkt stimmt: Dieses Skript steht im `<head>` und läuft synchron,
+ * während der Parser noch im `<head>` ist.
+ *
+ * ## Das Netz darunter
+ *
+ * `app/layout.tsx` liefert **nach** diesem Skript zwei Angaben mit
+ * `media`-Bedingung aus. Die Reihenfolge ist der Punkt: Wenn Safari die
+ * geschriebene Angabe nimmt, steht sie vorn und gewinnt. Nimmt es sie nicht,
+ * greifen die `media`-Angaben und der Balken folgt wenigstens dem Gerät.
+ *
+ * **Schwarz kann er dadurch nicht mehr werden** – das war der Zustand ohne
+ * jede Angabe, und der ist damit ausgeschlossen.
+ *
+ * Wer hier aufräumen will: Die drei Stücke – `document.write`, die Reihenfolge
+ * im `<head>` und die `media`-Angaben – gehören zusammen. Einzeln entfernt
+ * ergibt jedes wieder eine der fünf Zeilen oben.
  */
 
 /**
@@ -117,8 +128,10 @@ export const LEISTENFARBE = {
  */
 export function startSkript(): string {
   return `(function(){try{
+var f=${JSON.stringify(LEISTENFARBE)};
 var s=localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});
 var t=s==='dark'?'dark':'weiss';
 document.documentElement.dataset.theme=t;
+document.write('<meta name="theme-color" content="'+f[t]+'">');
 }catch(e){}})()`
 }

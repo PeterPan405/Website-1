@@ -93,58 +93,6 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   /*
-    Zwei Angaben, nach Systemvorgabe – der einzige Weg, der beim Parsen schon
-    weiß, was zu tun ist.
-
-    ## Was gemessen ist, nach vier Anläufen
-
-    | Lage                                   | Safari          |
-    | -------------------------------------- | --------------- |
-    | keine Angabe im HTML                    | malt schwarz    |
-    | feste Angabe im HTML                    | nimmt sie       |
-    | Skript ändert sie danach (setAttribute) | ignoriert       |
-    | Skript tauscht den Knoten aus           | ignoriert       |
-
-    Alle vier am Gerät des Betreibers nachgesehen, der letzte am 17. August
-    2026: helle Angabe im HTML, Seite auf Dunkel gestellt – beiger Balken über
-    schwarzer Seite, obwohl das Skript den Knoten abgeändert hatte.
-
-    **Safari friert den Wert beim Parsen ein.** Die Wahl des Besuchers steht
-    aber erst danach fest, aus dem `localStorage`. Solange die Farbe von dieser
-    Wahl abhängt, ist sie in Safari nicht zu erreichen – gleich, wie geschickt
-    man es anstellt.
-
-    ## Also hängt sie nicht mehr an der Wahl
-
-    `media` wertet der Browser beim Parsen aus und danach weiter. Die
-    Systemvorgabe des Geräts kennt er zu diesem Zeitpunkt; die gespeicherte
-    Wahl kennt er nie.
-
-    Damit folgt der Balken dem **Gerät**, nicht der Schaltfläche. Beide Browser
-    verhalten sich gleich, und keiner braucht eine Zeile JavaScript dafür –
-    weshalb `lib/theme.ts` die Farbe seither auch nicht mehr anfasst.
-
-    ## Was das kostet
-
-    Wer sein Telefon hell stellt und die Website auf Dunkel schaltet, bekommt
-    einen hellen Balken über dunkler Seite. Umgekehrt ebenso.
-
-    Das ist der Rest, der bleibt, und er ist gegen die Alternativen abgewogen:
-    Ohne `media` ist der Balken entweder **immer** schwarz oder **immer** hell.
-    Mit `media` stimmt er, solange Gerät und Wahl zusammenpassen – und das ist
-    der Normalfall, weil ein dunkel gestelltes Gerät und ein dunkel gewähltes
-    Aussehen dieselbe Vorliebe sind.
-
-    Der erste Besuch bleibt trotzdem **weiß**, auch auf einem dunklen Gerät
-    (`startSkript()`). Genau dieser Fall ist der Preis; er trifft einmal und
-    verschwindet mit der ersten Wahl.
-  */
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: LEISTENFARBE.weiss },
-    { media: '(prefers-color-scheme: dark)', color: LEISTENFARBE.dark },
-  ],
-
-  /*
     `light`, nicht `light dark`.
 
     Die Angabe entscheidet, in welcher Farbe der Browser die Fläche malt, bevor
@@ -182,7 +130,47 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} h-full antialiased`}
     >
       <head>
+        {/*
+          Die Reihenfolge in diesem Block ist die halbe Lösung.
+
+          Das Skript schreibt per `document.write` eine `theme-color` in den
+          Token-Strom des Parsers – an genau dieser Stelle, also **vor** den
+          beiden Angaben darunter. Bei mehreren passenden Angaben nimmt der
+          Browser die erste; die geschriebene gewinnt damit, wenn Safari sie
+          überhaupt auswertet.
+
+          Deshalb stehen die beiden Rückfall-Angaben hier von Hand und nicht
+          in `viewport.themeColor`: Next zieht alles aus den Metadaten-Exporten
+          an den Anfang des `<head>` – vor das Skript. Dann stünden sie vorn
+          und gewännen immer.
+        */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+
+        {/*
+          Der Rückfall für Besucher **ohne JavaScript** – und nur für sie.
+
+          Er steht in `<noscript>`, aus zwei Gründen. Erstens zieht Next jede
+          Meta-Angabe, die es sieht, an den Anfang des `<head>` – also vor das
+          Skript. Dann stünde sie vor der geschriebenen und gewönne immer, denn
+          bei mehreren passenden Angaben nimmt der Browser die erste. Innerhalb
+          von `<noscript>` sieht Next sie nicht.
+
+          Zweitens gehört sie inhaltlich genau dorthin: Wo das Skript läuft,
+          schreibt es die richtige Farbe. Wo es nicht läuft, ist die
+          Systemvorgabe des Geräts die beste verfügbare Schätzung.
+        */}
+        <noscript>
+          <meta
+            name="theme-color"
+            content={LEISTENFARBE.weiss}
+            media="(prefers-color-scheme: light)"
+          />
+          <meta
+            name="theme-color"
+            content={LEISTENFARBE.dark}
+            media="(prefers-color-scheme: dark)"
+          />
+        </noscript>
       </head>
       <body className="flex min-h-full flex-col">
         {/* Erster fokussierbarer Inhalt: Sprungmarke für Tastaturnutzer. */}

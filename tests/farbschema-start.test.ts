@@ -39,35 +39,44 @@ type Umgebung = {
 
 type Ergebnis = {
   theme: string | undefined
+  /** Die Farben, die das Skript in den Parser geschrieben hat. */
+  farben: string[]
 }
 
 /**
- * Eine nachgebaute Seite – und eine Falle für den nächsten Rückfall.
+ * Eine nachgebaute Seite: `document.write` wird aufgefangen, das DOM ist Falle.
  *
- * Das Startskript darf den `<head>` **nicht mehr anfassen**. Die Leistenfarbe
- * hängt seit dem 17. August 2026 an `media`-Bedingungen im HTML; ein Skript,
- * das `theme-color` sucht und ersetzt, würde sie zerstören.
+ * ## Warum diese Trennung der Kern der Sache ist
  *
- * Deshalb sind `createElement`, `querySelectorAll` und `head` hier keine
- * Attrappen mehr, sondern **Fallen**: Sie werfen. Ein Skript, das sie anfasst,
- * bricht ab, und der Test meldet es – statt still eine Angabe zu erzeugen, die
- * niemand mehr liest.
+ * Safari liest `theme-color` beim Parsen. Fünf Anläufe haben gezeigt, was das
+ * heißt: Jede Änderung **nach** dem Parsen wird ignoriert – `setAttribute`,
+ * `appendChild`, Knoten austauschen. `document.write` während des Parsens ist
+ * etwas anderes: Der Text geht in den Token-Strom, der Parser baut das Element
+ * selbst, wie bei Quelltext.
  *
- * Das ist die Lehre aus drei Anläufen: Diese Prüfung hat sie alle abgesegnet,
- * weil sie das Verhalten im Nachbau maß statt der Bauart. Ein Nachbau, der
- * alles mitmacht, bestätigt jede Fassung.
+ * Der Nachbau bildet genau diesen Unterschied ab:
+ *
+ * - `write` wird **aufgefangen** und geprüft – der erlaubte Weg.
+ * - `head`, `createElement`, `querySelectorAll` **werfen** – die vier Wege,
+ *   die gemessen nicht tragen.
+ *
+ * Ein Nachbau, der alles mitmacht, bestätigt jede Fassung. Genau daran hat
+ * diese Prüfung drei kaputte Fassungen durchgewinkt.
  */
 function neueSeite() {
+  const geschrieben: string[] = []
+
   const verboten = (was: string) => () => {
     throw new Error(
-      `Das Startskript hat ${was} aufgerufen. Es darf den <head> nicht mehr ` +
-        'anfassen – die Leistenfarbe hängt an `media` im HTML, und ein Skript, ' +
-        'das `theme-color` ersetzt, macht die Angaben kaputt.'
+      `Das Startskript hat ${was} aufgerufen. Nach dem Parsen ist es zu spät – ` +
+        'Safari hat die Farbe dann längst gelesen. Der einzige Weg, der trägt, ' +
+        'ist `document.write` während des Parsens.'
     )
   }
 
   const dokument = {
     documentElement: { dataset: {} as { theme?: string } },
+    write: (html: string) => geschrieben.push(html),
     get head(): never {
       return verboten('document.head')()
     },
@@ -75,7 +84,14 @@ function neueSeite() {
     querySelectorAll: verboten('document.querySelectorAll'),
   }
 
-  return { dokument }
+  return { dokument, geschrieben }
+}
+
+/** Die `content`-Werte aller geschriebenen `theme-color`-Angaben. */
+function geschriebeneFarben(geschrieben: readonly string[]): string[] {
+  return geschrieben.flatMap((html) =>
+    [...html.matchAll(/<meta name="theme-color" content="([^"]+)"/g)].map((t) => t[1])
+  )
 }
 
 /**
@@ -98,7 +114,7 @@ function ausfuehren({
   systemDunkel,
 }: Umgebung): Ergebnis & { gefragt: boolean } {
   let gefragt = false
-  const { dokument } = neueSeite()
+  const { dokument, geschrieben } = neueSeite()
 
   const fenster = {
     matchMedia: (frage: string) => {
@@ -121,6 +137,7 @@ function ausfuehren({
 
   return {
     theme: dokument.documentElement.dataset.theme,
+    farben: geschriebeneFarben(geschrieben),
     gefragt,
   }
 }
@@ -139,76 +156,88 @@ function pruefen(was: string, bedingung: boolean, hinweis: string): void {
 console.log('Startskript des Farbschemas – vier Fälle\n')
 
 /* ------------------------------------------------------------------
-   Die Leistenfarbe hängt an `media`, nicht an JavaScript.
+   Die Leistenfarbe: geschrieben beim Parsen, nicht geändert danach.
 
-   ## Vier Anläufe, und was jeder gemessen hat
+   ## Fünf Anläufe, und was jeder gemessen hat
 
        keine Angabe im HTML                     Safari malt schwarz
        feste Angabe im HTML                     Safari nimmt sie
        Skript ändert sie danach (setAttribute)  Safari ignoriert
        Skript tauscht den Knoten aus            Safari ignoriert
+       Angaben mit `media`                      folgen dem Gerät, nicht der Wahl
 
-   Safari friert den Wert beim Parsen ein; die gespeicherte Wahl steht erst
-   danach fest. Damit war jede JS-Fassung eine Variante desselben unmöglichen
-   Vorhabens – und diese Prüfung hat sie dreimal in Folge abgesegnet, weil sie
-   das Verhalten in einer nachgebauten Umgebung maß statt der Bauart.
+   Der Betreiber will, dass der Balken der **Website** folgt: beige im hellen
+   Modus, dunkel im dunklen. Dafür muss die Farbe beim Parsen feststehen – und
+   das geht nur mit `document.write`, das den Text in den Token-Strom schiebt,
+   statt das fertige DOM zu verändern.
 
-   ## Was sie jetzt festhält
+   ## Was hier festgehalten wird
 
-   Dass die Farbe **an der Systemvorgabe hängt** und nicht mehr am Skript. Das
-   ist der Punkt, an dem der nächste Umbau danebengreifen wird: „Der Umschalter
-   müsste die Leiste doch mitziehen" ist der naheliegende Gedanke, und er kostet
-   die `media`-Angaben, an denen beide Browser hängen.
+   Die drei Stücke, die zusammen tragen und einzeln nichts wert sind:
+
+   1. das Skript schreibt die Angabe (statt sie nachträglich zu setzen),
+   2. es steht im `<head>` **vor** dem Rückfall,
+   3. der Rückfall liegt in `<noscript>`, damit Next ihn nicht nach vorn zieht.
+
+   Fällt (3) weg, stünde der Rückfall vorn und gewönne immer – bei mehreren
+   passenden Angaben nimmt der Browser die erste. Der ganze Umbau wäre dann
+   wirkungslos, und zwar lautlos.
 ------------------------------------------------------------------- */
 
 {
   const layout = readFileSync('app/layout.tsx', 'utf8')
 
   pruefen(
-    'Das Layout liefert zwei theme-color-Angaben nach Systemvorgabe aus',
-    /prefers-color-scheme: light/.test(layout) &&
-      /prefers-color-scheme: dark/.test(layout),
-    'Ohne `media` kann die Angabe die Systemvorgabe nicht kennen – dann ist der\n' +
-      '     Balken entweder immer hell oder (ohne Angabe) immer schwarz.'
+    'Das Skript steht vor dem Rückfall',
+    layout.indexOf('__html: themeScript') < layout.indexOf('<noscript>'),
+    'Steht der Rückfall vorher, gewinnt er – der Browser nimmt die erste\n' +
+      '     passende Angabe.'
   )
 
   pruefen(
-    'Beide Farben kommen aus LEISTENFARBE',
-    /color:\s*LEISTENFARBE\.weiss/.test(layout) &&
-      /color:\s*LEISTENFARBE\.dark/.test(layout),
-    'Ein zweites Mal `#f2ebdd` hinzuschreiben heißt, zwei Stellen zu pflegen,\n' +
-      '     von denen eine an `--c-canvas` hängt und die andere an nichts.'
+    'Der Rückfall liegt in <noscript> und geht damit nicht durch Next',
+    /<noscript>[\s\S]*?theme-color[\s\S]*?<\/noscript>/.test(layout),
+    'Next zieht jede Meta-Angabe, die es sieht, an den Anfang des <head> –\n' +
+      '     also vor das Skript. In <noscript> sieht es sie nicht.'
+  )
+
+  pruefen(
+    'Der Rückfall deckt beide Systemvorgaben ab',
+    /prefers-color-scheme: light/.test(layout) &&
+      /prefers-color-scheme: dark/.test(layout),
+    'Ohne JavaScript ist die Systemvorgabe die beste verfügbare Schätzung.'
+  )
+
+  pruefen(
+    'Kein viewport.themeColor mehr',
+    !/^\s*themeColor:/m.test(layout),
+    'Was aus den Metadaten-Exporten kommt, zieht Next an den Anfang des <head>\n' +
+      '     – vor das Skript. Genau das soll hier nicht passieren.'
   )
 
   /*
-    Und die Gegenprobe, auf die es ankommt: kein JavaScript mehr an der Farbe.
+    Und die Gegenprobe: kein DOM-Weg mehr, in keiner der drei Dateien.
 
-    Ein Aufruf, der `theme-color` anfasst, würde die `media`-Angaben oben
-    zerstören – er müsste sie ja ersetzen. Geprüft wird deshalb der Quelltext
-    dreier Dateien, nicht ein Verhalten: Es geht darum, **dass es die Stelle
-    nicht mehr gibt.**
+    Die vier gescheiterten Anläufe waren alle DOM-Änderungen nach dem Parsen.
+    Wer einen davon wieder einbaut, bekommt hier Bescheid – und der Nachbau
+    oben wirft zusätzlich, wenn das Skript es zur Laufzeit versucht.
   */
   for (const datei of [
     'lib/theme.ts',
     'app/layout.tsx',
     'components/layout/ThemeToggle.tsx',
   ]) {
-    const inhalt = readFileSync(datei, 'utf8')
-    const ohneKommentare = inhalt
+    const ohneKommentare = readFileSync(datei, 'utf8')
       .replace(/\/\*[\s\S]*?\*\//g, '')
       .replace(/\/\/.*$/gm, '')
+      .replace(/\{\/\*[\s\S]*?\*\/\}/g, '')
     pruefen(
-      `${datei} fasst theme-color nicht per JavaScript an`,
-      !/theme-color/.test(ohneKommentare),
-      'In Safari hat das nie gewirkt – viermal nachgemessen. Und es würde die\n' +
-        '     `media`-Angaben zerstören, an denen jetzt beide Browser hängen.'
+      `${datei} ändert theme-color nicht über das DOM`,
+      !/(querySelectorAll|createElement|appendChild|removeChild)/.test(ohneKommentare),
+      'Nach dem Parsen ist es zu spät – viermal nachgemessen.'
     )
   }
 
-  /*
-    Der Kommentarfilter darf nicht alles wegwerfen, sonst bestünde die Prüfung
-    immer. `lib/theme.ts` ist die Datei mit dem meisten Fließtext.
-  */
   const themeOhneKommentare = readFileSync('lib/theme.ts', 'utf8')
     .replace(/\/\*[\s\S]*?\*\//g, '')
     .replace(/\/\/.*$/gm, '')
@@ -264,6 +293,53 @@ for (const systemDunkel of [false, true]) {
     `Wahl „weiss", ${lage} → weiss`,
     gewaehltWeiss.theme === 'weiss',
     `bekommen: ${gewaehltWeiss.theme}`
+  )
+}
+
+/* ------------------------------------------------------------------
+   Und was das Skript in den Parser schreibt.
+
+   Die Fälle oben prüfen, welches Schema gilt. Hier geht es um die Farbe, die
+   dabei herauskommt – der Punkt, an dem der Betreiber fünfmal einen falschen
+   Balken gesehen hat.
+
+   Genau **eine** Angabe je Lauf: Zwei geschriebene wären zwei im Kopf, und
+   welche gilt, entschiede der Browser.
+------------------------------------------------------------------- */
+
+for (const [wahl, erwartet] of [
+  [null, LEISTENFARBE.weiss],
+  ['weiss', LEISTENFARBE.weiss],
+  ['dark', LEISTENFARBE.dark],
+  ['light', LEISTENFARBE.weiss],
+] as const) {
+  for (const systemDunkel of [false, true]) {
+    const lage = `Gerät ${systemDunkel ? 'dunkel' : 'hell'}`
+    const { farben } = ausfuehren({ gespeichert: wahl, systemDunkel })
+    pruefen(
+      `Wahl ${wahl === null ? '(keine)' : `„${wahl}"`}, ${lage} → schreibt ${erwartet}`,
+      farben.length === 1 && farben[0] === erwartet,
+      `bekommen: [${farben.join(', ') || '(nichts)'}]`
+    )
+  }
+}
+
+/*
+  Die Gegenprobe: Die Farbe hängt an der Wahl und nicht am Gerät.
+
+  Das ist der ganze Unterschied zur Fassung mit `media`, die der Betreiber
+  ausdrücklich nicht wollte. Eine Prüfung, die nur „schreibt irgendeine Farbe"
+  verlangt, ginge auch dann durch.
+*/
+{
+  const dunkelAufHellemGeraet = ausfuehren({ gespeichert: 'dark', systemDunkel: false })
+  const hellAufDunklemGeraet = ausfuehren({ gespeichert: 'weiss', systemDunkel: true })
+  pruefen(
+    'Die Systemvorgabe ändert die geschriebene Farbe nicht',
+    dunkelAufHellemGeraet.farben[0] === LEISTENFARBE.dark &&
+      hellAufDunklemGeraet.farben[0] === LEISTENFARBE.weiss,
+    'Der Balken soll der Website folgen, nicht dem Telefon – ausdrücklicher\n' +
+      '     Wunsch des Betreibers vom 17. August 2026.'
   )
 }
 
