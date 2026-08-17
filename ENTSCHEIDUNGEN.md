@@ -1888,3 +1888,49 @@ Standardverzweigung liegen. Ein neuer Workflow auf einem Nebenzweig antwortet
 mit **404**, und das sieht aus wie „gibt es nicht“ statt wie „noch nicht
 gemergt“. Wer einen Workflow zum Starten von Hand braucht, muss ihn erst nach
 `main` bringen — `zinsen.yml` hing genau daran.
+
+## Ein Wächter, der seinen eigenen Alarm fortschreibt, ist keiner
+
+`lib/website-zahlen.ts` zählt beim Bauen, wie viel auf dieser Website steht –
+Lernstufen, Kurse, Artikel, Quellen. Die Seite `/zahlen` zeigt es, aber der
+Grund für die Zählung ist ein anderer: **Diese Zahlen fallen nicht von selbst.**
+Ein Artikel verschwindet nicht, ein Instrument wird nicht weniger, eine
+Podcastfolge löscht sich nicht.
+
+Fällt trotzdem eine, hat sich ein Bestand geleert – ein Abruf hat eine Datei
+halb geschrieben, ein Import kam leer zurück, ein Verzeichnis ist beim Umbau
+liegengeblieben. Genau der Fehler, gegen den in diesem Repository fast jede
+Regel steht: Der Bau gelingt, die Paketprüfung ist zufrieden, alle Tests sind
+grün — es steht nur weniger da.
+
+`data/zahlen-stand.json` hält den letzten bekannten Stand, `npm run zahlen`
+vergleicht. Zwei Dinge daran sind nicht offensichtlich, und beide sind die
+Antwort auf eine Falle, in die dieses Projekt schon getappt ist:
+
+**Erstens: Der Stand muss fortgeschrieben werden, sonst wird der Wächter
+stumpf.** Bliebe er bei 165 Artikeln stehen, während es 400 werden, wäre ein
+Absturz auf 200 kein Rückgang mehr. Die Absicherung stünde jahrelang auf Grün,
+ohne je etwas gesehen zu haben — _eine Absicherung, die nie anschlägt, sieht
+aus wie Ruhe._ Deshalb schreibt der nächtliche Bau (`paket-bauen.yml`, nur im
+`schedule`-Lauf) den Stand fort und committet ihn.
+
+**Zweitens: Ein Rückgang hält genau dieses Fortschreiben an.** Das ist der
+Punkt, an dem sich der Wächter sonst selbst aufhebt: Fiele eine Zahl in der
+Nacht, würde der gefallene Wert in derselben Nacht zum neuen Maßstab. Die
+Warnung stünde einmal in einem Protokoll, das niemand liest, und am nächsten
+Morgen wäre alles wieder ruhig. Der Stand bleibt deshalb auf dem höheren Wert
+stehen, und die Warnung wiederholt sich bei **jedem** Lauf, bis jemand
+entscheidet: `ANWENDEN=1 TROTZDEM=1 npm run zahlen`, von Hand, nicht in einem
+Workflow.
+
+Ein Rückgang ist eine Warnung und kein roter Lauf. Es gibt legitime: Ein
+Instrument ohne Quelle fliegt raus, zwei Lektionen werden zusammengelegt. Eine
+Prüfung, die dabei rot wird, schaltet jemand ab – und dann fängt sie auch den
+echten Fall nicht mehr.
+
+**Umbenennen ist der dritte Weg, auf dem das kaputtgeht.** Der Abgleich hängt
+allein an `id`. Ein umbenannter Schlüssel meldet einmal einen Sturz auf null –
+sieht also aus wie ein Datenausfall – und ist danach ein neuer Schlüssel ohne
+Vorgeschichte. `tests/website-zahlen.test.ts` prüft deshalb jeden im Stand
+festgehaltenen Schlüssel gegen die Zählung und fängt die Umbenennung im Pull
+Request, statt sie am nächsten Morgen als Fehlalarm auftauchen zu lassen.

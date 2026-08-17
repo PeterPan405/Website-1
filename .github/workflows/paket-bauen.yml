@@ -106,6 +106,14 @@ jobs:
   bauen:
     name: Bauen und prüfen
     runs-on: ubuntu-latest
+    # Schreibrecht nur für eine einzige Datei: `data/zahlen-stand.json`, den
+    # Vergleichsstand des Zahlenwächters (Schritt „Zahlenstand fortschreiben").
+    #
+    # Ausgeschrieben, obwohl die Voreinstellung heute genügt: Wer sie auf
+    # „read" stellt – eine vernünftige Verschärfung –, würde sonst den
+    # Wächter mit abschalten, ohne dass es jemandem auffällt.
+    permissions:
+      contents: write
     # Ohne diese Zeile gilt GitHubs Voreinstellung: **sechs Stunden**.
     #
     # Am 8. August 2026 blieb der Schritt „Bauen“ hängen – über eine Stunde
@@ -274,6 +282,66 @@ jobs:
       - name: Leistungsbudget
         if: steps.umfang.outputs.nur_daten != 'ja'
         run: npm run gewicht
+
+      # Zählt die Website und vergleicht mit dem letzten Stand.
+      #
+      # Der Fall, den nur diese Prüfung findet: der stille Datenausfall. Ein
+      # Artikel verschwindet nicht von selbst, ein Instrument wird nicht
+      # weniger, eine Podcastfolge löscht sich nicht. Fällt eine dieser Zahlen
+      # trotzdem, hat sich ein Bestand geleert – und alles andere hier bleibt
+      # grün: Der Bau gelingt, die Paketprüfung ist zufrieden, es steht nur
+      # weniger da.
+      #
+      # Läuft auch bei `nur_daten`, anders als die Schritte darüber. Genau
+      # dort wäre der Ausfall: `data/snapshots/markets.json` ist eine
+      # Datenänderung, und ein halb geschriebener Abruf ist der wahrscheinlichste
+      # Weg, auf dem 1.075 Kurse zu 300 werden.
+      - name: Zahlen prüfen
+        run: npm run zahlen
+
+      # Und einmal täglich fortschreiben.
+      #
+      # Ohne das ist der Wächter nach zwei Wochen stumpf: Der festgehaltene
+      # Stand bleibt bei 165 Artikeln stehen, während es 400 werden – ein
+      # Absturz auf 200 wäre dann kein Rückgang mehr. Eine Absicherung, die
+      # nie anschlägt, sieht aus wie Ruhe.
+      #
+      # Nur im nächtlichen Lauf, nicht bei jedem Push: Das sind fünfzehn
+      # Kurs-Commits am Werktag, und der Stand wäre trotzdem nie älter als ein
+      # Tag.
+      #
+      # Ein Rückgang hält das Fortschreiben an – das steckt im Lauf selbst
+      # (`scripts/zahlen-pruefen.ts`), damit der Alarm nicht in derselben Nacht
+      # zum neuen Maßstab wird. Der Commit unten bleibt dann einfach aus.
+      - name: Zahlenstand fortschreiben
+        if: github.event_name == 'schedule'
+        run: |
+          set -euo pipefail
+          ANWENDEN=1 npm run zahlen
+
+          if git diff --quiet -- data/zahlen-stand.json; then
+            echo "Keine Änderung am Zahlenstand."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/zahlen-stand.json
+          git commit -m "Zahlen: Stand $(date -u +%Y-%m-%d)"
+
+          # Zwischen Prüfung und Push kann jemand anders gepusht haben.
+          # Rebase statt Merge, damit die Historie eine Linie bleibt; nach
+          # einem gescheiterten Versuch wird aufgeräumt, sonst steckt der
+          # nächste in einem halben Rebase fest.
+          for versuch in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            echo "Push fehlgeschlagen, Versuch $versuch – neuer Anlauf in $((versuch * 5))s"
+            sleep $((versuch * 5))
+          done
+          echo "::warning::[zahlen] Stand konnte nicht gepusht werden."
 
       # Das Paket entsteht nur noch auf Anforderung.
       #

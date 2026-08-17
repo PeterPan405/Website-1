@@ -7,7 +7,7 @@
 
 import { statSync } from 'node:fs'
 import { join } from 'node:path'
-import { pathToFileURL } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 /**
  * Was an den Pfad angehängt wird, in der Reihenfolge von TypeScript.
@@ -67,5 +67,36 @@ export function resolve(spezifizierer, kontext, naechster) {
       }
     }
   }
+  /*
+    Relative Importe ohne Endung – seit dem 17. August 2026.
+
+    `data/editions/index.ts` importiert seine Ausgaben als `'./2026-08-17'`.
+    Der Bündler ergänzt die Endung, Node nicht: Jeder Lauf außerhalb von
+    Next scheiterte an
+
+        ERR_MODULE_NOT_FOUND … /data/editions/2026-07-25
+
+    Damit war der gesamte Ausgabenbestand für Skripte und Prüfungen
+    unerreichbar – und zwar so, dass es wie ein Fehler im aufrufenden Skript
+    aussah und nicht wie eine Lücke im Haken.
+
+    Aufgelöst wird nur, was **ohne Endung** dasteht und als `.ts`/`.tsx`
+    wirklich existiert. Ein Import mit Endung geht unverändert weiter; ein
+    Paketname ebenso, weil er nicht mit einem Punkt beginnt.
+  */
+  if (spezifizierer.startsWith('.') && !/\.[a-z]+$/i.test(spezifizierer)) {
+    const basis = fileURLToPath(new URL(spezifizierer, kontext.parentURL))
+    for (const endung of ENDUNGEN) {
+      const versuch = `${basis}${endung}`
+      if (istDatei(versuch)) {
+        return {
+          url: pathToFileURL(versuch).href,
+          shortCircuit: true,
+          importAttributes: versuch.endsWith('.json') ? { type: 'json' } : undefined,
+        }
+      }
+    }
+  }
+
   return naechster(spezifizierer, kontext)
 }
