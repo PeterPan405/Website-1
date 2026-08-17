@@ -44,15 +44,7 @@
 
 export {}
 
-import { KI_HINWEIS } from '../lib/sprechfassung.ts'
-
-/** Die Fassung, die bis zum 6. August 2026 unter jeder Folge stand. */
-const ALTER_HINWEIS =
-  'Hinweis: Die Stimme in dieser Folge wurde mit künstlicher Intelligenz ' +
-  'erzeugt. Auswahl, Text und Einordnung stammen von IM Invests.'
-
-/** Woran der Haftungshinweis zu erkennen ist – davor gehört der KI-Hinweis. */
-const HAFTUNG_BEGINN = 'Hinweis: Dieser Podcast dient ausschließlich'
+import { angeglichen } from '../lib/podcast-hinweis.ts'
 
 const ANWENDEN = process.env.ANWENDEN === '1'
 const CLIENT_ID = process.env.YT_CLIENT_ID?.trim()
@@ -62,32 +54,6 @@ const REFRESH_TOKEN = process.env.YT_REFRESH_TOKEN?.trim()
 if (!CLIENT_ID || !CLIENT_SECRET || !REFRESH_TOKEN) {
   console.error('::error::[hinweis] Keine YouTube-Zugangsdaten hinterlegt.')
   process.exit(1)
-}
-
-/**
- * Die Beschreibung mit heutigem Hinweis – oder `null`, wenn nichts zu tun ist.
- *
- * Drei Fälle, in dieser Reihenfolge geprüft: Der heutige Hinweis steht schon
- * da; die alte Fassung steht da und wird ersetzt; keiner von beiden steht da
- * und der heutige wird eingesetzt.
- */
-export function angeglichen(beschreibung: string): string | null {
-  if (beschreibung.includes(KI_HINWEIS)) return null
-
-  if (beschreibung.includes(ALTER_HINWEIS)) {
-    return beschreibung.replace(ALTER_HINWEIS, KI_HINWEIS)
-  }
-
-  /*
-    Kein Hinweis vorhanden. Er kommt vor den Haftungshinweis – dort steht er
-    in jeder neueren Folge, und zwei Hinweise gehören zusammen.
-
-    Fehlt auch der Haftungshinweis, wird angehängt statt geraten: Eine Stelle
-    mitten im Fließtext zu erfinden, wäre schlimmer als ein Absatz am Ende.
-  */
-  const stelle = beschreibung.indexOf(HAFTUNG_BEGINN)
-  if (stelle === -1) return `${beschreibung.trimEnd()}\n\n${KI_HINWEIS}\n`
-  return beschreibung.slice(0, stelle) + KI_HINWEIS + '\n\n' + beschreibung.slice(stelle)
 }
 
 const tokenAntwort = (await (

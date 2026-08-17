@@ -151,10 +151,16 @@ const kopfBeschreibung =
   'Dein tägliches Marktupdate von IM Invests. Jeden Morgen fassen wir ' +
   'kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten ' +
   'zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken – immer mit Einordnung, was ' +
-  'das für Privatanleger bedeutet. Text und Vertonung entstehen mit Unterstützung ' +
-  'von KI-Werkzeugen und werden vor der Veröffentlichung von einem Menschen ' +
-  'inhaltlich geprüft; die redaktionelle Verantwortung liegt beim Betreiber. ' +
-  'Keine Anlageberatung.'
+  /*
+    Am 17. August 2026 korrigiert – hier stand „von einem Menschen inhaltlich
+    geprüft". Die Kette veröffentlicht ohne Halt; die Zusage traf nicht zu.
+    Neu ist außerdem die Stimme: Sie ist erzeugt, nicht aufgenommen, und das
+    gehört in die Kanalbeschreibung, wo ein Hörer es vor dem Abonnieren liest.
+  */
+  'das für Privatanleger bedeutet. Text und Vertonung entstehen automatisiert ' +
+  'mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht ' +
+  'die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim ' +
+  'Betreiber. Keine Anlageberatung.'
 
 const eintraege = register.folgen
   .map((folge) => {
