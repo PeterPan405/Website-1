@@ -266,12 +266,18 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
   gestellten Gerät. Die Rangfolge in `startSkript()` (`lib/theme.ts`) hat nur
   zwei Stufen: gespeicherte Wahl, sonst Weiß. `prefers-color-scheme` kommt
   nicht mehr vor.
-- **`app/layout.tsx` liefert keine `themeColor` aus.** Safari liest
-  `theme-color` beim Parsen und danach nie wieder; eine Angabe im HTML wäre
-  endgültig und auf einem Gerät mit dunklem Schema ein heller Balken über
-  schwarzer Seite. Angelegt wird sie nur vom Startskript – Safari färbt dann
-  nach dem Seitenhintergrund, Chromium wertet den Knoten aus.
-  `tests/farbschema-start.test.ts` hält das fest.
+- **`app/layout.tsx` liefert `themeColor: LEISTENFARBE.weiss` aus** – die
+  helle, weil der erste Besuch weiß ist. Ohne Angabe malt Safari den Bereich
+  über der Seite **schwarz**, auch im hellen Modus; der Seitenhintergrund auf
+  `html` rettet das nicht (nachgewiesen am 17. August 2026).
+- **Das Startskript ändert diese Angabe ab, statt sie zu ersetzen.** Safari
+  liest `theme-color` beim Parsen; wird der Knoten gelöscht, ist unklar, was
+  von der Farbe bleibt. Überzählige Angaben fallen weg, die erste bleibt
+  stehen. `tests/farbschema-start.test.ts` prüft die Knotenkennung.
+- **Was bleibt:** Ein zurückkehrender Safari-Besucher mit gewähltem dunklen
+  Schema sieht weiterhin einen hellen Balken. Kein Versehen – ein statischer
+  Export kennt seine Wahl nicht, und beide Wege, sie nachzuziehen, sind
+  gemessen gescheitert.
 - `colorScheme` steht auf `'light'`, nicht `'light dark'`.
 - Am `--c-canvas` des hellen Schemas hängen `LEISTENFARBE` in `lib/theme.ts`
   **und** das App-Icon (`python scripts/app-icon-faerben.py`).

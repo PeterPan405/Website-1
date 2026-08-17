@@ -75,10 +75,11 @@ class Kopf {
 /**
  * Baut eine Seite mit `anzahl` Farbangaben im Kopf.
  *
- * Voreingestellt ist **keine** – so wird die Seite seit dem 13. August 2026
- * ausgeliefert. Der Grund steht bei `leisteFaerben`: Safari liest
- * `theme-color` beim Parsen und danach nicht mehr, also darf im HTML keine
- * stehen, die es festhalten könnte.
+ * Voreingestellt ist **keine**, und das ist hier Absicht, obwohl das HTML
+ * seit dem 17. August 2026 eine mitbringt: Geprüft werden soll, dass das
+ * Skript aus dem Nichts genau eine anlegt. Dass es eine vorhandene **ersetzt**
+ * statt weitere danebenzustellen, prüft weiter unten ein eigener Fall mit
+ * `neueSeite(2)` – das ist die Lage im Browser.
  */
 function neueSeite(anzahl = 0) {
   const kopf = new Kopf()
@@ -176,28 +177,64 @@ function pruefen(was: string, bedingung: boolean, hinweis: string): void {
 console.log('Startskript des Farbschemas – vier Fälle\n')
 
 /* ------------------------------------------------------------------
-   Das Layout darf keine Farbe für die Browserleiste ausliefern.
+   Das Layout liefert die **helle** Leistenfarbe aus – und keine andere.
 
-   Das ist die eigentliche Lehre des 13. August 2026 und der Grund, warum
-   diese Prüfung den Quelltext liest statt eines Verhaltens: Es geht nicht
-   darum, *welche* Farbe dort steht, sondern **dass dort keine steht.**
+   ## Die Prüfung stand bis zum 17. August 2026 auf dem Kopf
 
-   Safari liest `theme-color` beim Parsen und danach nicht mehr. Eine Angabe
-   im HTML ist damit endgültig – und ein statischer Export weiß nicht, welches
-   Schema der Besucher gewählt hat. Zwei Anläufe, sie nachträglich zu
-   korrigieren, sind daran gescheitert.
+   Sie verlangte, dass in `app/layout.tsx` **keine** `themeColor` steht. Das
+   war die Lehre aus dem 13. August: Eine feste Farbe im HTML ist für Safari
+   endgültig, und auf einem dunkel gestellten Gerät stand ein heller Balken
+   über einer schwarzen Seite.
+
+   Der Schluss daraus – Angabe weglassen, Safari nimmt dann den
+   Seitenhintergrund – war falsch. Am 17. August zeigte der Betreiber die
+   Startseite im **hellen** Modus: beige Seite, schwarzer Balken. Ohne
+   `theme-color` malt Safari die Fläche schwarz, egal was auf `html` steht.
+
+   ## Was jetzt geprüft wird
+
+   Nicht mehr „keine Farbe", sondern **die richtige**: die helle aus
+   `LEISTENFARBE`. Sie ist keine Wahl, sondern dieselbe Regel wie in
+   `startSkript()` – der erste Besuch ist weiß, ausnahmslos. Stünde hier die
+   dunkle, widerspräche das HTML dem Skript, das eine Zeile später läuft.
+
+   Gelesen wird der Quelltext und nicht ein Verhalten, weil es um eine
+   Bauentscheidung geht: **dass die Farbe überhaupt im HTML steht** und aus
+   der einen Quelle kommt statt als Zeichenkette danebenzuliegen.
 ------------------------------------------------------------------- */
 
 {
   const layout = readFileSync('app/layout.tsx', 'utf8')
-  const ausgeliefert = /^\s*themeColor:/m.test(layout)
+  const treffer = layout.match(/^\s*themeColor:\s*(.+?),?\s*$/m)
+
   pruefen(
-    'app/layout.tsx liefert keine themeColor aus',
-    !ausgeliefert,
-    'In app/layout.tsx steht wieder eine `themeColor`. Safari hält sie beim ' +
-      'Parsen fest, und kein Skript bekommt sie danach noch geändert – auf ' +
-      'einem Gerät mit gewähltem dunklen Schema ist das ein heller Balken ' +
-      'über schwarzer Seite. Die Farbe setzt `startSkript`, sonst niemand.'
+    'app/layout.tsx liefert eine themeColor aus',
+    treffer !== null,
+    'In `app/layout.tsx` steht keine `themeColor` mehr. Ohne sie malt Safari\n' +
+      '     den Bereich über der Seite schwarz – auch im hellen Modus, nachgewiesen\n' +
+      '     am 17. August 2026. Der Seitenhintergrund rettet das nicht.'
+  )
+
+  pruefen(
+    'Sie kommt aus LEISTENFARBE und nicht als eigene Zeichenkette',
+    treffer?.[1] === 'LEISTENFARBE.weiss',
+    `Dort steht \`${treffer?.[1] ?? '(nichts)'}\`.\n` +
+      '     Ein zweites Mal `#f2ebdd` hinzuschreiben heißt, zwei Stellen zu pflegen,\n' +
+      '     von denen eine an `--c-canvas` hängt und die andere an nichts.'
+  )
+
+  /*
+    Und die Gegenprobe: Es muss die **helle** sein.
+
+    `LEISTENFARBE.dark` wäre ebenfalls „aus der einen Quelle" und bestünde die
+    Prüfung darüber – und stünde trotzdem im Widerspruch zum Startskript, das
+    beim ersten Besuch auf Weiß geht.
+  */
+  pruefen(
+    'Es ist die helle Farbe, wie beim ersten Besuch',
+    !/^\s*themeColor:.*dark/m.test(layout),
+    'Die dunkle Leistenfarbe im HTML widerspricht `startSkript()`: Der erste\n' +
+      '     Besuch ist weiß, ausnahmslos – dann gehört auch der Balken hell.'
   )
 }
 
@@ -310,15 +347,23 @@ for (const [name, farbe] of Object.entries(LEISTENFARBE)) {
 }
 
 /* ------------------------------------------------------------------
-   Stünden doch einmal Angaben im HTML, müssen alle weichen.
+   Zwei Angaben im HTML: Am Ende bleibt genau eine – und zwar **die erste**.
 
-   Heute liefert das Layout keine aus – aber wer eine wieder einträgt, soll
-   nicht zusätzlich zwei widersprüchliche bekommen. Welche dann gilt,
-   entschiede der Browser.
+   Das ist seit dem 17. August 2026 der Kern der Sache und nicht mehr nur
+   Ordnungsliebe. Das Layout liefert wieder eine `themeColor` aus, weil Safari
+   sie beim Parsen liest und ohne sie schwarz malt. Würde das Skript sie
+   löschen und eine neue anlegen, wäre der Knoten weg, den Safari gelesen hat –
+   und ob die Farbe das überlebt, lässt sich von hier aus nicht prüfen.
+
+   Deshalb wird der erste Knoten **abgeändert, nicht ersetzt**, und diese
+   Prüfung sieht ihm dabei zu: Sie merkt sich die Kennung vorher und verlangt
+   sie hinterher zurück. Ein Test, der nur die Farbe zählt, ginge auch dann
+   durch, wenn das Skript wieder löscht und neu anlegt.
 ------------------------------------------------------------------- */
 
 {
   const { dokument, kopf } = neueSeite(2)
+  const ersterVorher = kopf.kinder[0]
   new Function('document', 'window', 'localStorage', skript)(
     dokument,
     {},
@@ -326,9 +371,38 @@ for (const [name, farbe] of Object.entries(LEISTENFARBE)) {
   )
   const heraus = leisteAus(kopf)
   pruefen(
-    'Vorhandene Angaben werden ersetzt, nicht ergänzt',
+    'Von zwei Angaben bleibt genau eine übrig',
     heraus.length === 1 && heraus[0] === LEISTENFARBE.dark,
     `bekommen: [${heraus.join(', ')}] – erwartet genau [${LEISTENFARBE.dark}]`
+  )
+  pruefen(
+    'Es ist derselbe Knoten wie vorher, nur mit neuer Farbe',
+    kopf.kinder[0] === ersterVorher,
+    'Das Skript hat den Knoten aus dem HTML weggeworfen und einen neuen\n' +
+      '     angelegt. Genau den hat Safari beim Parsen gelesen – nimmt man ihn\n' +
+      '     heraus, ist der schwarze Balken vom 17. August 2026 zurück.'
+  )
+}
+
+/*
+  Und der Fall ohne jede Angabe: Dann muss eine entstehen.
+
+  Er kommt im Browser heute nicht mehr vor – aber die Funktion muss ihn
+  können, sonst hinge die ganze Farbgebung daran, dass jemand die `themeColor`
+  im Layout nie entfernt. Zwei Absicherungen, die einander stützen.
+*/
+{
+  const { dokument, kopf } = neueSeite(0)
+  new Function('document', 'window', 'localStorage', skript)(
+    dokument,
+    {},
+    { getItem: () => 'dark' }
+  )
+  const heraus = leisteAus(kopf)
+  pruefen(
+    'Ohne vorhandene Angabe wird eine angelegt',
+    heraus.length === 1 && heraus[0] === LEISTENFARBE.dark,
+    `bekommen: [${heraus.join(', ')}]`
   )
 }
 
