@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
     art: 'neu',
+    titel: 'Entnahmeplan: wie lange das Kapital trägt',
+    text: 'Alle bisherigen Rechner hörten am Tag des Ruhestands auf. Dieser fängt dort an: Kapital und gewünschte monatliche Entnahme ergeben die Reichweite in Jahren – und daneben steht der Betrag, den man dauerhaft entnehmen könnte. Die Entnahme steigt jedes Jahr mit der Inflation, sonst wäre eine Kürzung eingerechnet, die niemand beschlossen hat.',
+    ziel: { text: 'Zum Entnahmeplan', href: '/rechner/entnahmeplan' },
+  },
+  {
+    datum: '2026-08-17',
+    art: 'neu',
     titel: 'Die Website in Zahlen',
     text: 'Eine Seite, die sagt, wie viel hier eigentlich steht: Lernseiten, Kurse, Artikel, Quellen, Rechenwege. Keine dieser Zahlen ist eingetragen – jede wird beim Bauen aus demselben Bestand gezählt, aus dem die Seiten lesen, und kann deshalb nicht veralten.',
     ziel: { text: 'Zu den Zahlen', href: '/zahlen' },

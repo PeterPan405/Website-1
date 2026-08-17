@@ -808,6 +808,81 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'entnahmeplan',
+    title: 'Entnahmeplan',
+    headline: 'Entnahmeplan: wie lange trägt das Kapital',
+    metaTitle: 'Entnahmeplan-Rechner: Reichweite des Kapitals im Ruhestand',
+    metaDescription:
+      'Wie lange ein Kapital trägt, aus dem monatlich entnommen wird – mit Inflationsanpassung der Entnahme, Realzins und dem Betrag, der dauerhaft möglich wäre.',
+    lead: 'Rentenrechner und Rentenlücke rechnen bis zum Ruhestand. Dieser rechnet danach: Ein Kapital, eine monatliche Entnahme – und die Frage, wie lange das gutgeht.',
+    summary: 'Reichweite eines Kapitals bei monatlicher Entnahme, inflationsbereinigt.',
+    featureList: [
+      'Reichweite in Jahren aus Kapital, Entnahme, Rendite und Inflation',
+      'Entnahme steigt jedes Jahr mit der Inflation – reale und nominale Beträge nebeneinander',
+      'Der Betrag, der dauerhaft möglich wäre, ohne das Kapital zu verringern',
+      'Verlauf Jahr für Jahr und das Sequenzrisiko an echten Jahresrenditen',
+    ],
+    grenzen: [
+      'Eine feste Rendite je Jahr. Genau die gibt es nicht – wie sehr die **Reihenfolge** der Jahre zählt, steht unter dem Rechner an echten Jahresrenditen.',
+      'Ohne Steuern. In der Entnahmephase fällt Abgeltungsteuer auf den Gewinnanteil jedes verkauften Anteils an; wie hoch der ist, hängt vom Einstandskurs ab, den dieser Rechner nicht kennt.',
+      'Ohne Produktkosten. Eine Fondsgebühr von 0,5 Prozent senkt die Rendite um genau diesen Betrag und verkürzt die Reichweite spürbar.',
+      'Entnommen wird rechnerisch am Jahresende. Wer monatlich entnimmt, nimmt im Schnitt ein halbes Jahr früher heraus – über dreißig Jahre kostet das etwa ein halbes bis ein Jahr Reichweite.',
+      'Die Dauer ist eine Eingabe, kein Wissen. Wer länger lebt als geplant, hat kein Kapital mehr – das ist das Langlebigkeitsrisiko, und dagegen hilft nur eine niedrigere Entnahme oder eine lebenslange Rente.',
+    ],
+    schritte: [
+      'Vorhandenes Kapital eintragen – alles, woraus entnommen werden soll.',
+      'Gewünschte monatliche Entnahme in heutiger Kaufkraft eingeben.',
+      'Gewünschte Dauer, erwartete Rendite und Inflationsrate setzen.',
+      'Reichweite ablesen und mit den beiden Vergleichsbeträgen daneben abgleichen: was dauerhaft ginge und was die gewünschte Dauer genau ausschöpft.',
+    ],
+    relatedTopics: ['rente', 'inflation', 'zinseszins', 'risiko-und-rendite'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'So wird gerechnet' },
+      {
+        type: 'paragraph',
+        text: 'Jedes Jahr wächst das Kapital um die erwartete Rendite, danach wird die Jahresentnahme abgezogen. Die Reichweite ist das Jahr, in dem nichts mehr übrig ist.',
+      },
+      {
+        type: 'formula',
+        expression: 'Kapitalₜ = Kapitalₜ₋₁ × (1 + realer Zins) − Entnahme',
+        description:
+          'Gerechnet wird durchgehend in heutiger Kaufkraft. Der reale Zins ist nicht die Differenz aus Rendite und Inflation, sondern der Quotient: (1 + Rendite) ÷ (1 + Inflation) − 1.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Entnahme jedes Jahr steigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil sonst eine Kürzung eingerechnet wäre, die niemand beschlossen hat. Wer heute 2.000 € im Monat braucht, braucht in zwanzig Jahren mehr Euro für denselben Warenkorb – bei zwei Prozent Inflation rund 2.970 €.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rechner mit fester Entnahme in Euro liefert deshalb eine zu freundliche Reichweite. Hier steigt der Betrag jedes Jahr mit der Inflationsrate; in der Tabelle stehen beide Spalten nebeneinander, damit sichtbar wird, was daraus wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die beiden Vergleichsbeträge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neben der Reichweite stehen zwei Beträge, die dieselbe Frage von der anderen Seite stellen. Der eine ist die Entnahme, bei der nur der reale Ertrag verbraucht wird – das Kapital behält dann seine Kaufkraft. Der andere ist die Entnahme, die das Kapital über die gewünschte Dauer genau aufbraucht.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Was von der Vier-Prozent-Regel zu halten ist',
+        items: [
+          'Die bekannte Regel stammt aus einer Untersuchung des US-Marktes über dreißig Jahre. Sie sagt: Wer im ersten Jahr vier Prozent entnimmt und den Betrag danach mit der Inflation erhöht, kam historisch über dreißig Jahre.',
+          'Sie ist keine Naturkonstante. Sie hängt am untersuchten Markt, am Zeitraum, an der Aufteilung zwischen Aktien und Anleihen – und an genau dreißig Jahren. Wer vierzig Jahre plant, hat eine andere Zahl.',
+          'Was sie richtig macht: Sie erhöht die Entnahme mit der Inflation. Was sie offenlässt: Steuern, Kosten und die Reihenfolge der Renditejahre.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'depotanalyse',
     title: 'Depotanalyse',
     headline: 'Depotanalyse: wie sich das Geld tatsächlich verteilt',
