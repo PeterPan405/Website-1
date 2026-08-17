@@ -843,6 +843,69 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'kaufkraft',
+    title: 'Kaufkraft und Wechselkurs',
+    headline: 'Kaufkraft und Wechselkurs: was Ihr Geld von damals heute wert ist',
+    metaTitle: 'Kaufkraftrechner: Inflation und Wechselkurs getrennt',
+    metaDescription:
+      // 152 Zeichen. Die Grenze liegt bei 160 (`scripts/paket-pruefen.ts`).
+      'Was 100 Euro von damals heute wert sind – aus gemessenen Verbraucherpreisen und Euro-Referenzkursen, mit beiden Wirkungen getrennt statt vermischt.',
+    lead: '„Was sind 100 € von 2015 heute wert?“ wird meist mit einer Zahl beantwortet, und die vermischt zwei Dinge: dass Waren teurer geworden sind und dass der Euro anders zu anderen Währungen steht. Hier steht jede Wirkung für sich.',
+    summary: 'Kaufkraft und Wechselkurs getrennt, aus gemessenen Jahresreihen.',
+    featureList: [
+      'Kaufkraftvergleich zwischen zwei Jahren aus dem Verbraucherpreisindex',
+      'Umrechnung in Dollar, Franken, Pfund und Yen zu den Kursen des jeweiligen Jahres',
+      'Preis- und Wechselkurswirkung einzeln ausgewiesen, dazu ihre Kombination',
+      'Gemessene Jahresreihen von Eurostat, keine angenommenen Raten',
+    ],
+    grenzen: [
+      'Die Rechnung sagt, wie viele Dollar man **bekommt** – nicht, was man dafür bekommt. Dafür bräuchte es den Preisindex des jeweiligen Landes; sind die Preise dort schneller gestiegen, reicht derselbe Betrag trotzdem für weniger.',
+      'Der Verbraucherpreisindex misst einen durchschnittlichen Warenkorb. Wer überdurchschnittlich viel für Miete oder Energie ausgibt, hat eine andere persönliche Teuerungsrate – nach oben wie nach unten.',
+      'Gerechnet wird mit Jahresdurchschnitten, nicht mit Tagesständen. „100 € von 2015" hat kein Datum, und ein Kurs vom Mai wäre eine Scheingenauigkeit.',
+      'Vor 1999 sind die Wechselkurse Kurse der ECU, der Rechnungseinheit, aus der der Euro hervorgegangen ist. Eurostat führt beide in derselben Reihe.',
+      'Die Reihen enden mit dem letzten vollständigen Jahr. Für das laufende Jahr gibt es keinen Jahresdurchschnitt – und einen halben auszuweisen wäre falsch beschriftet.',
+    ],
+    schritte: [
+      'Betrag eintragen, den Sie umrechnen wollen.',
+      'Ausgangsjahr und Vergleichsjahr wählen.',
+      'Währung auswählen.',
+      'Die beiden Wirkungen einzeln ablesen – Preise in Deutschland, Wechselkurs – und darunter ihre Kombination.',
+    ],
+    relatedTopics: ['inflation', 'waehrungen-wechselkurse', 'zinseszins'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'Warum zwei Zahlen und nicht eine' },
+      {
+        type: 'paragraph',
+        text: 'Weil zwei verschiedene Dinge passiert sind. Die Preise in Deutschland sind gestiegen – das ist Inflation. Und der Euro steht anders zu anderen Währungen als damals – das hat mit Zinsen, Handelsbilanzen und Erwartungen zu tun, nicht mit dem Preis eines Brotes. Beides in eine Zahl zu werfen ergibt eine, die weder das eine noch das andere ist.',
+      },
+      {
+        type: 'formula',
+        expression:
+          'Gleiche Kaufkraft = Betrag × Preisindex(Zieljahr) ÷ Preisindex(Ausgangsjahr)',
+        description:
+          'Der Verbraucherpreisindex ist auf 2015 = 100 normiert. Der Quotient zweier Jahre sagt, um welchen Faktor derselbe Warenkorb teurer geworden ist.',
+      },
+      { type: 'heading', level: 2, text: 'Woher die Zahlen kommen' },
+      {
+        type: 'paragraph',
+        text: 'Beide Reihen stammen von **Eurostat**: der harmonisierte Verbraucherpreisindex für Deutschland als Jahresdurchschnitt und die Jahresdurchschnitte der Euro-Referenzkurse der EZB. Sie stehen als gepflegte Datei im Repository, mit Datensatzkennung, Abrufdatum und dem Datenstand, den Eurostat selbst nennt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Feld „erwartete Inflation" gibt es hier nicht. Andere Rechner dieser Website arbeiten mit Annahmen, weil sie in die Zukunft rechnen – dieser rechnet zurück, und die Vergangenheit ist keine Annahme.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die jährliche Rate ist geometrisch gemittelt',
+        items: [
+          'Aus 21,9 Prozent Teuerung über zehn Jahre werden nicht 2,19 Prozent im Jahr, sondern 2,0. Der Unterschied entsteht durch den Zinseszins der Preise; die Division durch die Jahre liegt immer zu hoch.',
+          'Bei den Sprüngen ab 2022 fällt das stärker ins Gewicht als in den ruhigen Jahren davor.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'notgroschen',
     title: 'Notgroschen',
     headline: 'Notgroschen: wie viele Monatsausgaben du wirklich brauchst',

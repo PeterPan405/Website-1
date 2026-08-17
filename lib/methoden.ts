@@ -1,5 +1,6 @@
 import { taktErwartung, beurteile } from '@/lib/datenstand'
 import { entnahmeplan, MAX_JAHRE } from '@/lib/entnahme'
+import { vergleiche } from '@/lib/kaufkraft'
 import { notgroschen } from '@/lib/notgroschen'
 import { abstandZumHoch, spannenPosition } from '@/lib/jahresspanne'
 import { formatNumber, formatPercent, formatPercentSigned } from '@/lib/format'
@@ -273,6 +274,31 @@ export const METHODEN: Methode[] = [
       return {
         eingabe: '1.000 € bei Kurs 100, heute Kurs 180',
         ergebnis: ergebnis ? formatNumber(ergebnis.endwert, 0) + ' €' : 'keine Angabe',
+      }
+    },
+  },
+  {
+    slug: 'kaufkraft',
+    titel: 'Kaufkraft zweier Jahre',
+    frage: 'Was sind 100 € von damals heute wert – und was davon ist der Wechselkurs?',
+    formel: 'Betrag × Preisindex(Zieljahr) ÷ Preisindex(Ausgangsjahr)',
+    quelle:
+      'Eurostat: Verbraucherpreisindex Deutschland (prc_hicp_aind) und Euro-Referenzkurse (ert_bil_eur_a), beide als Jahresdurchschnitt',
+    stichtag:
+      'Jahresdurchschnitte, keine Tagesstände – „100 € von 2015" hat kein Datum, und ein Kurs vom Mai wäre eine Scheingenauigkeit.',
+    vereinfachungen: [
+      'Ein durchschnittlicher Warenkorb. Wer überdurchschnittlich viel für Miete oder Energie ausgibt, hat eine andere persönliche Teuerungsrate – nach oben wie nach unten.',
+      'Die Umrechnung sagt, wie viele Dollar man bekommt, nicht was man dafür bekommt. Dafür bräuchte es den Preisindex des jeweiligen Landes.',
+      'Vor 1999 sind die Wechselkurse Kurse der ECU, der Rechnungseinheit, aus der der Euro hervorgegangen ist.',
+      'Die Reihen enden mit dem letzten vollständigen Jahr; einen halben Jahresdurchschnitt auszuweisen wäre falsch beschriftet.',
+    ],
+    herkunft: { datei: 'lib/kaufkraft.ts', funktion: 'vergleiche' },
+    zuSehen: { text: 'Kaufkraftrechner', href: '/rechner/kaufkraft' },
+    beispiel: () => {
+      const v = vergleiche(100, 2015, 2025, 'USD')
+      return {
+        eingabe: '100 € von 2015, verglichen mit 2025',
+        ergebnis: v ? `${formatNumber(v.gleicheKaufkraft, 2)} €` : 'keine Angabe',
       }
     },
   },

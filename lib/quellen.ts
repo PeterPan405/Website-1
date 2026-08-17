@@ -1,4 +1,5 @@
 import { newsArticles } from '@/data/news'
+import { ERSTES_JAHR, HERKUNFT, LETZTES_JAHR } from '@/data/preisindex'
 import { kennzahlenQuellen } from '@/data/laender/kennzahlen'
 import { editions } from '@/data/editions'
 import laenderSnapshot from '@/data/snapshots/laender.json'
@@ -236,6 +237,38 @@ export async function getQuellengruppen(): Promise<Quellengruppe[]> {
           url: 'https://github.com/topojson/world-atlas',
           lizenz: 'ISC-Lizenz – der Urhebervermerk muss erhalten bleiben',
           grund: 'lizenz',
+        },
+      ],
+    },
+    {
+      titel: 'Preise und Kaufkraft',
+      einleitung: `Der Kaufkraftrechner arbeitet nicht mit angenommenen Raten, sondern mit gemessenen Jahresreihen. Beide stammen von Eurostat und wurden am ${HERKUNFT.abgerufenAm} über einen Läufer abgerufen – die Entwicklungsumgebung dieses Projekts erreicht keine externen Adressen, und eine Zahl, die niemand abgerufen hat, gehört nicht in dieses Repository. Die Reihen decken ${ERSTES_JAHR} bis ${LETZTES_JAHR} ab.`,
+      eintraege: [
+        {
+          name: `Eurostat, ${HERKUNFT.preise.bezeichnung}`,
+          verwendung:
+            'Kaufkraftvergleiche zwischen zwei Jahren im Kaufkraftrechner. Basis 2015 = 100.',
+          url: `https://ec.europa.eu/eurostat/databrowser/view/${HERKUNFT.preise.datensatz}`,
+          lizenz:
+            'Wiederverwendung gestattet, Quellenangabe verlangt (Eurostat-Urheberrechtshinweis)',
+          grund: 'lizenz',
+          umfang: `${LETZTES_JAHR - ERSTES_JAHR + 1} Jahreswerte`,
+          stand: HERKUNFT.preise.stand,
+          abgrenzung:
+            'Ein durchschnittlicher Warenkorb. Wer überdurchschnittlich viel für Miete oder Energie ausgibt, hat eine andere persönliche Teuerungsrate.',
+        },
+        {
+          name: `Eurostat, ${HERKUNFT.kurse.bezeichnung}`,
+          verwendung:
+            'Umrechnung in Dollar, Franken, Pfund und Yen zu den Kursen des jeweiligen Jahres.',
+          url: `https://ec.europa.eu/eurostat/databrowser/view/${HERKUNFT.kurse.datensatz}`,
+          lizenz:
+            'Wiederverwendung gestattet, Quellenangabe verlangt (Eurostat-Urheberrechtshinweis)',
+          grund: 'lizenz',
+          umfang: `4 Währungen, ${LETZTES_JAHR - ERSTES_JAHR + 1} Jahreswerte`,
+          stand: HERKUNFT.kurse.stand,
+          abgrenzung:
+            'Jahresdurchschnitte, keine Tagesstände. Vor 1999 sind es Kurse der ECU, der Rechnungseinheit, aus der der Euro hervorgegangen ist.',
         },
       ],
     },
