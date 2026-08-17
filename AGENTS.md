@@ -266,18 +266,20 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
   gestellten Gerät. Die Rangfolge in `startSkript()` (`lib/theme.ts`) hat nur
   zwei Stufen: gespeicherte Wahl, sonst Weiß. `prefers-color-scheme` kommt
   nicht mehr vor.
-- **`app/layout.tsx` liefert `themeColor: LEISTENFARBE.weiss` aus** – die
-  helle, weil der erste Besuch weiß ist. Ohne Angabe malt Safari den Bereich
-  über der Seite **schwarz**, auch im hellen Modus; der Seitenhintergrund auf
-  `html` rettet das nicht (nachgewiesen am 17. August 2026).
-- **Das Startskript ändert diese Angabe ab, statt sie zu ersetzen.** Safari
-  liest `theme-color` beim Parsen; wird der Knoten gelöscht, ist unklar, was
-  von der Farbe bleibt. Überzählige Angaben fallen weg, die erste bleibt
-  stehen. `tests/farbschema-start.test.ts` prüft die Knotenkennung.
-- **Was bleibt:** Ein zurückkehrender Safari-Besucher mit gewähltem dunklen
-  Schema sieht weiterhin einen hellen Balken. Kein Versehen – ein statischer
-  Export kennt seine Wahl nicht, und beide Wege, sie nachzuziehen, sind
-  gemessen gescheitert.
+- **Die Leistenfarbe hängt an `media`, nicht an JavaScript.**
+  `app/layout.tsx` liefert **zwei** `themeColor`-Angaben aus, hell und dunkel
+  nach `prefers-color-scheme`. Der Balken folgt damit dem **Gerät**, nicht der
+  Schaltfläche.
+- **Kein Skript fasst `theme-color` mehr an** – nicht das Startskript, nicht
+  der Umschalter. Vier Messungen am Gerät: ohne Angabe malt Safari schwarz,
+  eine feste Angabe nimmt es, jede nachträgliche Änderung ignoriert es.
+  Safari friert den Wert beim Parsen ein, die gespeicherte Wahl steht erst
+  danach fest – das ist nicht zu lösen, nur zu umgehen.
+  `tests/farbschema-start.test.ts` lässt den Nachbau **werfen**, wenn das
+  Skript den `<head>` anfasst.
+- **Was bleibt:** Wer sein Gerät hell stellt und die Website dunkel schaltet,
+  sieht einen hellen Balken über dunkler Seite. Der Preis ist abgewogen – ohne
+  `media` ist der Balken entweder immer schwarz oder immer hell.
 - `colorScheme` steht auf `'light'`, nicht `'light dark'`.
 - Am `--c-canvas` des hellen Schemas hängen `LEISTENFARBE` in `lib/theme.ts`
   **und** das App-Icon (`python scripts/app-icon-faerben.py`).

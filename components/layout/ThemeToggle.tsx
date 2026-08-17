@@ -1,7 +1,7 @@
 'use client'
 
 import { Icon } from '@/components/ui/Icon'
-import { LEISTENFARBE, THEME_STORAGE_KEY, leisteFaerben } from '@/lib/theme'
+import { THEME_STORAGE_KEY } from '@/lib/theme'
 
 /**
  * Umschalter zwischen Weiß und Schwarz.
@@ -26,17 +26,18 @@ export function ThemeToggle({ className }: { className?: string }) {
     root.dataset.theme = next
 
     /*
-      Die Browserleiste mitziehen.
+      Die Browserleiste zieht hier **nicht** mit – und das ist gewollt.
 
-      Auf dem Telefon färbt Safari die Leiste über der Seite nach dieser
-      Angabe. Ohne sie bliebe sie hell, während die Seite dunkel wird – auf
-      dem Handy der auffälligste Teil der ganzen Umschaltung.
+      Bis zum 17. August 2026 stand hier ein Aufruf, der `theme-color`
+      nachzog. In Safari hat er nie gewirkt, viermal nachgemessen: Der Wert
+      wird beim Parsen gelesen und danach nie wieder. Ein Aufruf, der nur in
+      einem von zwei Browsern etwas tut, ist keine Lösung, sondern eine
+      Ungleichheit, die niemand erwartet.
 
-      Die Angabe wird **ersetzt**, nicht geändert: Safari übernimmt ein
-      `setAttribute` auf einer bereits gelesenen `theme-color` nicht
-      verlässlich. Begründung und Vorgeschichte stehen bei `leisteFaerben`.
+      Die Farbe hängt jetzt an `media`-Bedingungen in `app/layout.tsx`, also
+      an der Systemvorgabe des Geräts. Sie hier anzufassen, würde genau die
+      Angaben zerstören, an denen beide Browser hängen.
     */
-    leisteFaerben(LEISTENFARBE[next])
 
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, next)

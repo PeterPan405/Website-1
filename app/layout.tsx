@@ -93,51 +93,56 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   /*
-    Die helle Leistenfarbe – fest, aus `lib/theme.ts`, nicht von Hand.
+    Zwei Angaben, nach Systemvorgabe – der einzige Weg, der beim Parsen schon
+    weiß, was zu tun ist.
 
-    ## Der dritte Anlauf, und warum er anders aussieht als die ersten beiden
+    ## Was gemessen ist, nach vier Anläufen
 
-    Am 13. August 2026 stand hier eine feste helle Farbe. Auf einem Gerät mit
-    dunklem Schema blieb der Bereich über der Seite beige – heller Balken über
-    schwarzer Seite. Zwei Anläufe, das nachträglich zu korrigieren, scheiterten:
+    | Lage                                   | Safari          |
+    | -------------------------------------- | --------------- |
+    | keine Angabe im HTML                    | malt schwarz    |
+    | feste Angabe im HTML                    | nimmt sie       |
+    | Skript ändert sie danach (setAttribute) | ignoriert       |
+    | Skript tauscht den Knoten aus           | ignoriert       |
 
-        setAttribute('content', …)   Chromium: wirkt   Safari: wirkt nicht
-        Knoten austauschen           Chromium: wirkt   Safari: wirkt nicht
+    Alle vier am Gerät des Betreibers nachgesehen, der letzte am 17. August
+    2026: helle Angabe im HTML, Seite auf Dunkel gestellt – beiger Balken über
+    schwarzer Seite, obwohl das Skript den Knoten abgeändert hatte.
 
-    Daraus wurde am 16. August die Angabe **ganz gestrichen**, in der Annahme:
-    „Ohne `theme-color` färbt Safari nach dem Seitenhintergrund." Der stand
-    schon richtig – `html` trägt `background-color: var(--c-canvas)`.
+    **Safari friert den Wert beim Parsen ein.** Die Wahl des Besuchers steht
+    aber erst danach fest, aus dem `localStorage`. Solange die Farbe von dieser
+    Wahl abhängt, ist sie in Safari nicht zu erreichen – gleich, wie geschickt
+    man es anstellt.
 
-    **Diese Annahme ist am 17. August 2026 widerlegt worden.** Der Betreiber
-    hat die Startseite im **hellen** Modus gezeigt: beige Seite, und darüber
-    ein **schwarzer** Balken. Safari nimmt den Seitenhintergrund also nicht.
-    Ohne Angabe malt es die sichere Fläche schwarz, unabhängig vom Schema.
+    ## Also hängt sie nicht mehr an der Wahl
 
-    ## Was daraus folgt
+    `media` wertet der Browser beim Parsen aus und danach weiter. Die
+    Systemvorgabe des Geräts kennt er zu diesem Zeitpunkt; die gespeicherte
+    Wahl kennt er nie.
 
-    Für Safari gibt es genau einen Weg, und der führt über das HTML. Ein
-    statischer Export kann dort **einen** Wert hinterlegen – also den, der für
-    jeden Erstbesuch stimmt.
+    Damit folgt der Balken dem **Gerät**, nicht der Schaltfläche. Beide Browser
+    verhalten sich gleich, und keiner braucht eine Zeile JavaScript dafür –
+    weshalb `lib/theme.ts` die Farbe seither auch nicht mehr anfasst.
 
-    Und das ist der helle: **Der erste Besuch ist weiß, ausnahmslos**, auch auf
-    einem dunkel gestellten Gerät (`startSkript()` in `lib/theme.ts`). Die
-    Farbe hier ist damit nicht geraten, sondern dieselbe Regel noch einmal.
+    ## Was das kostet
 
-    ## Was dieser Weg nicht kann
+    Wer sein Telefon hell stellt und die Website auf Dunkel schaltet, bekommt
+    einen hellen Balken über dunkler Seite. Umgekehrt ebenso.
 
-    Ein Besucher, der in Safari ausdrücklich Dunkel gewählt hat, sieht
-    weiterhin einen hellen Balken. Das ist kein Versehen, sondern der Rest,
-    der bleibt: Safari liest die Angabe beim Parsen, der Export kennt die
-    Wahl nicht, und beide Wege, sie nachzuziehen, sind gemessen gescheitert.
+    Das ist der Rest, der bleibt, und er ist gegen die Alternativen abgewogen:
+    Ohne `media` ist der Balken entweder **immer** schwarz oder **immer** hell.
+    Mit `media` stimmt er, solange Gerät und Wahl zusammenpassen – und das ist
+    der Normalfall, weil ein dunkel gestelltes Gerät und ein dunkel gewähltes
+    Aussehen dieselbe Vorliebe sind.
 
-    Der Tausch ist bewusst: Vorher war der Balken bei **jedem** Besuch falsch,
-    jetzt nur noch bei einem zurückkehrenden Safari-Besucher mit gewähltem
-    dunklen Schema.
-
-    Chromium bekommt beides richtig – dort **wirkt** der Knoten, den
-    `leisteFaerben()` beim Umschalten anlegt.
+    Der erste Besuch bleibt trotzdem **weiß**, auch auf einem dunklen Gerät
+    (`startSkript()`). Genau dieser Fall ist der Preis; er trifft einmal und
+    verschwindet mit der ersten Wahl.
   */
-  themeColor: LEISTENFARBE.weiss,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: LEISTENFARBE.weiss },
+    { media: '(prefers-color-scheme: dark)', color: LEISTENFARBE.dark },
+  ],
 
   /*
     `light`, nicht `light dark`.
