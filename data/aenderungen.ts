@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
     art: 'neu',
+    titel: 'Jeder Rechner zeigt jetzt seinen Rechenweg',
+    text: 'Unter dem Ergebnis lässt sich aufklappen, wie es zustande kommt – Schritt für Schritt, mit den Zahlen, die oben eingetragen sind. Wer will, kann das mit dem Taschenrechner nachvollziehen und muss der Seite an dieser Stelle nicht mehr glauben.',
+    ziel: { text: 'Zu den Rechnern', href: '/rechner' },
+  },
+  {
+    datum: '2026-08-17',
+    art: 'neu',
     titel: 'Kaufen oder mieten – mit den Posten, die sonst fehlen',
     text: '„Die Rate ist so hoch wie die Miete“ beantwortet die Frage nicht: In der Rate steckt Tilgung, in der Miete keine Instandhaltung. Der neue Rechner stellt beide Wege bei gleichem Geldabfluss gegenüber und sagt vor allem eines – wie stark die Immobilie jedes Jahr steigen müsste, damit der Kauf aufgeht.',
     ziel: { text: 'Zum Vergleich', href: '/rechner/kaufen-oder-mieten' },

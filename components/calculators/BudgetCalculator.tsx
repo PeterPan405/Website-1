@@ -10,6 +10,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { nachgeladen } from '@/components/charts/nachladen'
 import { Callout } from '@/components/ui/Callout'
@@ -116,6 +117,47 @@ export function BudgetCalculator() {
   }
 
   const positive = result.balance >= 0
+
+  /*
+    Zwei Divisionen, und beide werden regelmäßig verwechselt.
+
+    Die Sparquote misst am Einkommen, der Notgroschen an den Ausgaben. Wer das
+    vertauscht, bekommt bei hohem Einkommen und niedrigen Ausgaben eine
+    Empfehlung, die um ein Vielfaches danebenliegt.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Was am Monatsende übrig bleibt',
+      formel: 'Einnahmen − Ausgaben',
+      eingesetzt: `${formatCurrency(result.totalIncome, 0)} − ${formatCurrency(result.totalExpenses, 0)}`,
+      ergebnis: formatCurrency(result.balance, 0),
+    },
+    {
+      was: 'Die Sparquote',
+      formel: 'Überschuss ÷ Einnahmen × 100',
+      eingesetzt: `${formatCurrency(result.balance, 0)} ÷ ${formatCurrency(result.totalIncome, 0)}`,
+      ergebnis: formatPercent(result.savingsRatePercent, 1),
+      hinweis:
+        'Am Einkommen gemessen, damit verschiedene Einkommenshöhen vergleichbar bleiben.',
+    },
+    {
+      was: 'Der Notgroschen',
+      formel: 'Ausgaben × 3 bis 6 Monate',
+      eingesetzt: `${formatCurrency(result.totalExpenses, 0)} × 3 bis 6`,
+      ergebnis: `${formatCurrency(result.emergencyFundRange.min, 0)} – ${formatCurrency(result.emergencyFundRange.max, 0)}`,
+      hinweis:
+        'An den Ausgaben, nicht am Einkommen: Entscheidend ist, wie lange man ohne Einkommen zurechtkommt.',
+    },
+    {
+      was: 'Wie lange der Aufbau dauert',
+      formel: 'Untergrenze ÷ monatlicher Überschuss',
+      eingesetzt: `${formatCurrency(result.emergencyFundRange.min, 0)} ÷ ${formatCurrency(result.balance, 0)}`,
+      ergebnis:
+        result.monthsToEmergencyFund === null
+          ? 'ohne Überschuss nicht erreichbar'
+          : `${formatNumber(result.monthsToEmergencyFund, 0)} Monate`,
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -242,6 +284,7 @@ export function BudgetCalculator() {
             keine Übertragung an einen Server und keine Speicherung statt.
           </span>
         </p>
+        <Rechenweg schritte={rechenweg} />
       </ResultPanel>
     </CalculatorGrid>
   )

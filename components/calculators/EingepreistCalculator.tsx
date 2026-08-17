@@ -10,6 +10,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useVorbelegung } from '@/components/calculators/vorbelegung'
 import { getCalculatorDefinition } from '@/data/calculators'
 import {
@@ -21,7 +22,7 @@ import {
 } from '@/lib/eingepreist'
 import { leseZahl } from '@/lib/rechner-vorbelegung'
 import { Callout } from '@/components/ui/Callout'
-import { formatNumber, formatPercentSigned } from '@/lib/format'
+import { formatNumber, formatPercent, formatPercentSigned } from '@/lib/format'
 
 /**
  * Der Bewertungsrechner – rückwärts, mit Absicht.
@@ -100,6 +101,43 @@ export function EingepreistCalculator() {
     ],
     grenzen: getCalculatorDefinition('bewertungsrechner')!.grenzen,
   })
+
+  /*
+    Der Rechenweg macht sichtbar, dass hier rückwärts gerechnet wird.
+
+    Ein Bewertungsrechner, der ein Kursziel ausgibt, tut so, als kenne er die
+    Zukunft. Dieser dreht die Rechnung um: Er nimmt den Preis als gegeben und
+    fragt, welche Erwartung darin steckt.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Das KGV, das ganz ohne Wachstum gerechtfertigt wäre',
+      formel: 'Barwert des heutigen Gewinns über den Zeitraum plus abgezinstes End-KGV',
+      eingesetzt: `${formatNumber(jahre, 0)} Jahre, ${formatPercent(abzinsungProzent, 1)} Abzinsung, End-KGV ${formatNumber(endKgv, 1)}`,
+      ergebnis: formatNumber(kgvOhneWachstum, 1),
+      hinweis:
+        'Das ist die Messlatte: Bis hierher zahlt man für das, was das Unternehmen heute verdient.',
+    },
+    {
+      was: 'Das eingegebene KGV liegt darüber',
+      formel: 'gezahltes KGV − KGV ohne Wachstum',
+      eingesetzt: `${formatNumber(kgv, 1)} − ${formatNumber(kgvOhneWachstum, 1)}`,
+      ergebnis: formatNumber(kgv - kgvOhneWachstum, 1),
+      hinweis:
+        'Dieser Aufschlag ist die Wette – er wird nur durch Wachstum gerechtfertigt.',
+    },
+    {
+      was: 'Welches jährliche Gewinnwachstum das bezahlt',
+      formel: 'gesucht wird die Wachstumsrate, bei der die Rechnung genau aufgeht',
+      eingesetzt: `KGV ${formatNumber(kgv, 1)} bei ${formatPercent(abzinsungProzent, 1)} Abzinsung`,
+      ergebnis:
+        wachstum === null
+          ? 'nicht bestimmbar'
+          : `${formatPercent(wachstum, 1)} je Jahr über ${formatNumber(jahre, 0)} Jahre`,
+      hinweis:
+        'Kein Kursziel, sondern eine Messlatte: Ob das Unternehmen so wachsen kann, beantwortet seine Geschäftslage – nicht diese Formel.',
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -231,6 +269,7 @@ export function EingepreistCalculator() {
             steht.
           </p>
         </div>
+        <Rechenweg schritte={rechenweg} />
       </ResultPanel>
     </CalculatorGrid>
   )

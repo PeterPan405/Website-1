@@ -11,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -123,6 +124,46 @@ export function PensionCalculator() {
     setTaxablePercent(defaults.taxablePercent)
     setPersonalTaxPercent(defaults.personalTaxPercent)
   }
+
+  /*
+    Die gesetzliche Rente ist eine Multiplikation – das weiß nur kaum jemand.
+
+    „Entgeltpunkte mal Rentenwert" klingt nach Verwaltung und ist in
+    Wirklichkeit die ganze Formel. Wer sie einmal mit den eigenen Zahlen sieht,
+    kann seine Renteninformation lesen.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Entgeltpunkte je Jahr',
+      formel: 'eigenes Bruttoeinkommen ÷ Durchschnittseinkommen',
+      eingesetzt: `${formatCurrency(grossAnnualIncome, 0)} ÷ ${formatCurrency(averageIncome, 0)}`,
+      ergebnis: formatNumber(result.pointsPerYear, 4),
+      hinweis:
+        'Wer genau den Durchschnitt verdient, bekommt einen Punkt im Jahr. Mehr als der Durchschnitt bringt mehr – bis zur Beitragsbemessungsgrenze.',
+    },
+    {
+      was: 'Punkte über das ganze Arbeitsleben',
+      formel: 'Punkte je Jahr × (Jahre bisher + Jahre bis zur Rente)',
+      eingesetzt: `${formatNumber(result.pointsPerYear, 4)} × (${formatNumber(yearsWorked, 0)} + ${formatNumber(yearsRemaining, 0)})`,
+      ergebnis: formatNumber(result.totalPoints, 2),
+    },
+    {
+      was: 'Die Bruttorente',
+      formel: 'Entgeltpunkte × aktueller Rentenwert',
+      eingesetzt: `${formatNumber(result.totalPoints, 2)} × ${formatCurrency(pointValue, 2)}`,
+      ergebnis: `${formatCurrency(result.grossStatutoryMonthly, 2)} je Monat`,
+      hinweis:
+        'Der Rentenwert ist der Betrag, den ein Entgeltpunkt im Monat bringt. Er wird jedes Jahr neu festgesetzt.',
+    },
+    {
+      was: 'Was davon netto bleibt',
+      formel: 'brutto − Kranken- und Pflegeversicherung − Steuer',
+      eingesetzt: `${formatCurrency(result.grossStatutoryMonthly, 2)} − ${formatCurrency(result.healthDeduction, 2)} − ${formatCurrency(result.taxDeduction, 2)}`,
+      ergebnis: `${formatCurrency(result.netStatutoryMonthly, 2)} je Monat`,
+      hinweis:
+        'Die Renteninformation nennt den Bruttobetrag. Der Unterschied überrascht viele.',
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -323,6 +364,7 @@ export function PensionCalculator() {
             Die Steuerschätzung ist eine vereinfachte Annahme und keine Steuerberatung.
           </p>
         </Callout>
+        <Rechenweg schritte={rechenweg} />
       </ResultPanel>
     </CalculatorGrid>
   )

@@ -11,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -115,6 +116,45 @@ export function RetirementGapCalculator() {
     setInflation(defaults.inflationRatePercent)
     setExistingCapital(defaults.existingCapital)
   }
+
+  /*
+    Vier Schritte, und der erste ist der, den alle überspringen.
+
+    Die Lücke ist eine Subtraktion – die kann jeder. Interessant wird es beim
+    Realzins und beim Barwert: Dort steckt, warum aus 1.000 € Lücke im Monat
+    kein Vermögen von 1.000 € mal Monate wird.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Die monatliche Lücke heute',
+      formel: 'gewünschtes Einkommen − gesetzliche Rente − weitere Einkünfte',
+      eingesetzt: `${formatCurrency(desired, 0)} − ${formatCurrency(statutory, 0)} − ${formatCurrency(other, 0)}`,
+      ergebnis: `${formatCurrency(result.monthlyGapToday, 0)} je Monat`,
+    },
+    {
+      was: 'Der reale Zins – der Quotient, nicht die Differenz',
+      formel: '(1 + Rendite) ÷ (1 + Inflation) − 1',
+      eingesetzt: `(1 + ${formatNumber(returnRate / 100, 4)}) ÷ (1 + ${formatNumber(inflation / 100, 4)}) − 1`,
+      ergebnis: formatPercent(result.realRatePercent, 2),
+      hinweis:
+        'Gerechnet wird durchgehend in heutiger Kaufkraft. Deshalb der reale Zins und nicht der nominale.',
+    },
+    {
+      was: 'Das nötige Kapital bei Rentenbeginn',
+      formel: 'Barwert der Lücke über die Dauer des Ruhestands',
+      eingesetzt: `${formatCurrency(result.monthlyGapToday, 0)} je Monat über ${formatNumber(yearsIn, 0)} Jahre, abgezinst`,
+      ergebnis: formatCurrency(result.requiredCapitalToday, 0),
+      hinweis:
+        'Weniger als Lücke mal Monate: Was noch im Depot liegt, arbeitet weiter. Genau deshalb ist der Barwert die richtige Größe.',
+    },
+    {
+      was: 'Was davon noch fehlt',
+      formel: 'nötiges Kapital − vorhandenes Vermögen, real fortgeschrieben',
+      eingesetzt: `${formatCurrency(result.requiredCapitalToday, 0)} − ${formatCurrency(result.projectedExistingCapitalToday, 0)}`,
+      ergebnis: formatCurrency(result.remainingCapitalToday, 0),
+      hinweis: `Daraus folgt die Sparrate von ${formatCurrency(result.requiredMonthlySaving, 0)} im Monat.`,
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -293,6 +333,8 @@ export function RetirementGapCalculator() {
             hint="Der Betrag, der dann auf dem Konto stehen müsste."
           />
         </StatGrid>
+
+        <Rechenweg schritte={rechenweg} />
 
         <Callout variant="tip" title="Rechne mehrere Szenarien">
           <p>

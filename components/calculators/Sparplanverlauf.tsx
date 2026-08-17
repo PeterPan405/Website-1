@@ -10,6 +10,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { InstrumentSuche } from '@/components/calculators/InstrumentSuche'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -19,6 +20,7 @@ import {
   formatDateShort,
   formatNumber,
   formatPercent,
+  formatPercentSigned,
 } from '@/lib/format'
 import { leseKursCsv } from '@/lib/normierung'
 import { einordnung, vergleiche, type Kurspunkt } from '@/lib/sparplan-verlauf'
@@ -145,6 +147,48 @@ export function Sparplanverlauf({ katalog }: { katalog: Verlaufseintrag[] }) {
       : null
   )
 
+  /*
+    Der Rechenweg erklärt den mittleren Einstand.
+
+    Er ist die Zahl, die aussieht wie ein Fehler: Warum liegt der Einstand
+    unter dem Durchschnittskurs? Weil dieselbe Rate bei niedrigem Kurs mehr
+    Anteile kauft. Die Division nebeneinanderzustellen sagt das deutlicher als
+    jeder Absatz.
+  */
+  const rechenweg: Rechenschritt[] = ergebnis
+    ? [
+        {
+          was: 'Anteile über den ganzen Zeitraum',
+          formel: 'Summe aus Rate ÷ Kurs des jeweiligen Kauftags',
+          eingesetzt: `${formatCurrency(rate, 0)} an ${formatNumber(ergebnis.raten, 0)} Kauftagen`,
+          ergebnis: `${formatNumber(ergebnis.eingezahlt / ergebnis.mittlererKurs, 4)} Anteile`,
+          hinweis: 'Bei niedrigem Kurs bringt dieselbe Rate mehr Anteile.',
+        },
+        {
+          was: 'Der mittlere Einstand',
+          formel: 'Einzahlung ÷ Anteile',
+          eingesetzt: `${formatCurrency(ergebnis.eingezahlt, 0)} ÷ ${formatNumber(ergebnis.eingezahlt / ergebnis.mittlererKurs, 4)}`,
+          ergebnis: formatNumber(ergebnis.mittlererKurs, 2),
+          hinweis: `Der Durchschnitt der Kurse an den Kauftagen liegt bei ${formatNumber(ergebnis.durchschnittskurs, 2)} – der Einstand darunter. Das ist kein Vorteil, sondern eine Eigenschaft des harmonischen Mittels.`,
+        },
+        {
+          was: 'Der Endwert am echten Kursverlauf',
+          formel: 'Anteile × letzter Kurs',
+          eingesetzt: `${formatNumber(ergebnis.eingezahlt / ergebnis.mittlererKurs, 4)} × letzter Kurs`,
+          ergebnis: formatCurrency(ergebnis.echt, 0),
+        },
+        {
+          was: 'Dieselbe Rendite, aber ohne Schwankung',
+          formel:
+            'gleiche Raten, verzinst mit der tatsächlichen Jahresrendite des Titels',
+          eingesetzt: `${formatCurrency(rate, 0)} je Monat bei ${formatPercentSigned(ergebnis.jahresrenditeProzent, 2)}`,
+          ergebnis: formatCurrency(ergebnis.gleichmaessig, 0),
+          hinweis:
+            'Beide Wege beginnen und enden beim selben Kurs. Was übrig bleibt, ist allein die Wirkung der Reihenfolge.',
+        },
+      ]
+    : []
+
   return (
     <CalculatorGrid>
       <InputPanel
@@ -236,6 +280,7 @@ export function Sparplanverlauf({ katalog }: { katalog: Verlaufseintrag[] }) {
             </div>
           </>
         )}
+        <Rechenweg schritte={rechenweg} />
       </ResultPanel>
     </CalculatorGrid>
   )

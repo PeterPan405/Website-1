@@ -11,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -101,6 +102,43 @@ export function CostCalculator() {
   }
 
   const unterschiedProJahr = jahre > 0 ? ergebnis.unterschied / jahre : 0
+
+  /*
+    Der Rechenweg zeigt, wo der Unterschied herkommt.
+
+    Nicht aus der Gebühr selbst – die ist klein. Sondern daraus, dass sie
+    jedes Jahr auf den ganzen Bestand anfällt und das Fehlende danach nie
+    wieder mitverzinst wird.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Die Rendite nach Kosten',
+      formel: '(1 + Bruttorendite) × (1 − Kostenquote) − 1',
+      eingesetzt: `(1 + ${formatNumber(rendite / 100, 4)}) × (1 − ${formatNumber(guenstig / 100, 4)}) − 1`,
+      ergebnis: `${formatPercent(ergebnis.guenstig.nettorendite * 100, 3)} gegen ${formatPercent(ergebnis.teuer.nettorendite * 100, 3)}`,
+      hinweis:
+        'Kein Abziehen, sondern ein Produkt: Die Gebühr wird vom Fondsvermögen genommen, also vom bereits gewachsenen Betrag. Der Unterschied zur Subtraktion ist klein und über dreißig Jahre trotzdem sichtbar.',
+    },
+    {
+      was: 'Endkapital mit dem günstigen Produkt',
+      formel: 'Einmalanlage und Raten, verzinst mit der Nettorendite',
+      eingesetzt: `${formatCurrency(einmalanlage, 0)} + ${formatCurrency(sparrate, 0)} je Monat über ${formatNumber(jahre, 0)} Jahre bei ${formatPercent(ergebnis.guenstig.nettorendite * 100, 2)}`,
+      ergebnis: formatCurrency(ergebnis.guenstig.endwert, 0),
+    },
+    {
+      was: 'Endkapital mit dem teuren Produkt',
+      formel: 'dieselbe Rechnung, andere Nettorendite',
+      eingesetzt: `dieselben Einzahlungen bei ${formatPercent(ergebnis.teuer.nettorendite * 100, 2)}`,
+      ergebnis: formatCurrency(ergebnis.teuer.endwert, 0),
+    },
+    {
+      was: 'Was der Kostenunterschied ausmacht',
+      formel: 'günstiges Endkapital − teures Endkapital',
+      eingesetzt: `${formatCurrency(ergebnis.guenstig.endwert, 0)} − ${formatCurrency(ergebnis.teuer.endwert, 0)}`,
+      ergebnis: formatCurrency(ergebnis.unterschied, 0),
+      hinweis: `Das sind ${formatPercent(ergebnis.anteil * 100, 1)} des Endkapitals – aus einem Unterschied von ${formatNumber(teuer - guenstig, 2)} Prozentpunkten im Jahr. Die entnommenen Gebühren selbst sind nur ${formatCurrency(ergebnis.teuer.gebuehren - ergebnis.guenstig.gebuehren, 0)}; der Rest ist der Zinsertrag, der ihnen entgangen ist.`,
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -249,6 +287,7 @@ export function CostCalculator() {
             Hürde dafür ist.
           </p>
         </Callout>
+        <Rechenweg schritte={rechenweg} />
       </ResultPanel>
     </CalculatorGrid>
   )

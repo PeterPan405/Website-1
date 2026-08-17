@@ -11,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
@@ -247,6 +248,52 @@ export function TaxCalculator() {
     setAusschuettung(voreinstellung.ausschuettung)
     setBasiszins(voreinstellung.basiszins)
   }
+
+  /*
+    Die Abgeltungsteuer ist eine Kette, kein Prozentsatz.
+
+    „25 Prozent" stimmt für keinen Anleger genau: Erst geht die
+    Teilfreistellung ab, dann der Pauschbetrag, und erst der Rest wird
+    besteuert – samt Zuschlägen. Die Kette einmal mit den eigenen Zahlen zu
+    sehen erklärt, warum der effektive Satz fast immer darunter liegt.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Die Teilfreistellung geht ab',
+      formel: 'Fondsertrag × Teilfreistellungssatz',
+      eingesetzt: `${formatCurrency(fondsertrag + vorab.vorabpauschale, 2)} × ${formatPercent(TEILFREISTELLUNG[fondsart] * 100, 0)}`,
+      ergebnis: formatCurrency(fonds.teilfreigestellt, 2),
+      hinweis:
+        'Sie gleicht die Steuer aus, die der Fonds schon auf Ebene seiner Anlagen gezahlt hat – bei Aktienfonds 30 Prozent.',
+    },
+    {
+      was: 'Der Sparerpauschbetrag geht ab',
+      formel: 'Rest nach Teilfreistellung − Freibetrag',
+      eingesetzt: `${formatCurrency(fondsertrag + vorab.vorabpauschale - fonds.teilfreigestellt, 2)} − ${formatCurrency(fonds.durchFreibetrag, 2)}`,
+      ergebnis: formatCurrency(fonds.bemessungsgrundlage, 2),
+      hinweis:
+        'Der Freibetrag wird zuerst auf den Fondstopf gelegt, weil er dort nach der Teilfreistellung mehr wert ist. Was übrig bleibt, kommt den Zinsen zugute.',
+    },
+    {
+      was: 'Darauf die Steuer',
+      formel: 'Bemessungsgrundlage × (25 % + Soli + gegebenenfalls Kirchensteuer)',
+      eingesetzt: `${formatCurrency(fonds.bemessungsgrundlage + zins.bemessungsgrundlage, 2)} × ${formatPercent(gesamtsteuersatz(kirchensteuer / 100) * 100, 3)}`,
+      ergebnis: formatCurrency(steuerGesamt, 2),
+      hinweis:
+        'Mit Kirchensteuer sinkt die Kapitalertragsteuer selbst leicht – sie ist als Sonderausgabe schon eingerechnet. Deshalb sind es nicht schlicht 25 Prozent plus Zuschläge.',
+    },
+    {
+      was: 'Der Satz, der wirklich gilt',
+      formel: 'Steuer ÷ Ertrag vor Abzügen',
+      eingesetzt: `${formatCurrency(steuerGesamt, 2)} ÷ ${formatCurrency(ertragGesamt, 2)}`,
+      ergebnis: formatPercent(
+        ertragGesamt > 0 ? (steuerGesamt / ertragGesamt) * 100 : 0,
+        2
+      ),
+      hinweis:
+        'Die Zahl, die zählt – und die wegen Teilfreistellung und Pauschbetrag fast immer deutlich unter 25 Prozent liegt.',
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -540,6 +587,7 @@ export function TaxCalculator() {
             Steuerberatung.
           </p>
         </Callout>
+        <Rechenweg schritte={rechenweg} />
       </ResultPanel>
     </CalculatorGrid>
   )

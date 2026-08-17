@@ -11,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField, SelectField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { useVorbelegung } from '@/components/calculators/vorbelegung'
 import { leseAuswahl, leseZahl } from '@/lib/rechner-vorbelegung'
@@ -141,6 +142,35 @@ export function CompoundInterestCalculator() {
     setYears(defaults.years)
     setTiming(defaults.timing)
   }
+
+  /*
+    Der Rechenweg trennt, was der Zinseszins zusammenwirft.
+
+    Die Endsumme allein sagt nicht, wie viel davon eingezahlt und wie viel
+    verdient ist – und genau das ist die Aussage dieses Rechners.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Was eingezahlt wurde',
+      formel: 'Startkapital + alle Raten',
+      eingesetzt: `${formatCurrency(principal, 0)} + Raten über ${formatNumber(years, 0)} Jahre`,
+      ergebnis: formatCurrency(result.totalDeposits, 0),
+      hinweis: 'Dieses Geld hat der Sparer selbst aufgebracht.',
+    },
+    {
+      was: 'Was daraus geworden ist',
+      formel: 'Kapital wächst jede Periode um den Zinssatz, dann kommt die Rate dazu',
+      eingesetzt: `${formatCurrency(principal, 0)} bei ${formatPercent(rate, 2)} über ${formatNumber(years, 0)} Jahre`,
+      ergebnis: formatCurrency(result.finalBalance, 0),
+    },
+    {
+      was: 'Die Erträge sind der Rest',
+      formel: 'Endkapital − Einzahlungen',
+      eingesetzt: `${formatCurrency(result.finalBalance, 0)} − ${formatCurrency(result.totalDeposits, 0)}`,
+      ergebnis: formatCurrency(result.totalInterest, 0),
+      hinweis: `Das sind ${formatPercent(result.interestSharePercent, 1)} der Endsumme. Je länger der Zeitraum, desto größer dieser Anteil – das ist der ganze Zinseszinseffekt.`,
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -285,6 +315,8 @@ export function CompoundInterestCalculator() {
             }
           />
         </StatGrid>
+
+        <Rechenweg schritte={rechenweg} />
 
         {/* Jahrestabelle: für Screenreader und zum genauen Nachlesen. */}
         <details className="fk-card overflow-hidden">

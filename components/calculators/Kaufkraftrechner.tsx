@@ -10,6 +10,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { getCalculatorDefinition } from '@/data/calculators'
@@ -18,6 +19,7 @@ import {
   ERSTES_JAHR,
   HERKUNFT,
   LETZTES_JAHR,
+  PREISINDEX,
   WAEHRUNGEN,
 } from '@/data/preisindex'
 import { formatCurrency, formatNumber, formatPercentSigned } from '@/lib/format'
@@ -132,6 +134,47 @@ export function Kaufkraftrechner() {
         }
       : null
   )
+
+  /*
+    Der Rechenweg macht die Trennung noch einmal an den Zahlen sichtbar.
+
+    Auf der Seite stehen die beiden Wirkungen in getrennten Kästen. Hier steht,
+    dass wirklich zwei verschiedene Rechnungen dahinterstecken – und dass die
+    dritte Zahl nichts weiter ist als ihr Produkt.
+  */
+  const rechenweg: Rechenschritt[] = ergebnis
+    ? [
+        {
+          was: 'Die Preise: was derselbe Einkauf heute kostet',
+          formel: 'Betrag × Preisindex(Vergleichsjahr) ÷ Preisindex(Ausgangsjahr)',
+          eingesetzt: `${formatCurrency(betrag, 0)} × ${formatNumber(PREISINDEX[nach] ?? 0, 1)} ÷ ${formatNumber(PREISINDEX[von] ?? 0, 1)}`,
+          ergebnis: formatCurrency(ergebnis.gleicheKaufkraft, 2),
+          hinweis: `Der Preisindex ist auf ${BASISJAHR} = 100 normiert. Der Quotient zweier Jahre sagt, um welchen Faktor derselbe Warenkorb teurer geworden ist.`,
+        },
+        {
+          was: 'Der Wechselkurs: was der Betrag damals im Ausland war',
+          formel: 'Betrag × Kurs des Ausgangsjahres',
+          eingesetzt: `${formatCurrency(betrag, 0)} × ${formatNumber(ergebnis.kurse.damals, 4)}`,
+          ergebnis: fremd(ergebnis.fremdDamals),
+          hinweis:
+            'Jahresdurchschnitt der Euro-Referenzkurse. Diese Zahl hat mit den Preisen in Deutschland nichts zu tun.',
+        },
+        {
+          was: 'Derselbe Betrag heute im Ausland',
+          formel: 'Betrag × Kurs des Vergleichsjahres',
+          eingesetzt: `${formatCurrency(betrag, 0)} × ${formatNumber(ergebnis.kurse.heute, 4)}`,
+          ergebnis: fremd(ergebnis.fremdHeute),
+        },
+        {
+          was: 'Beides zusammen',
+          formel: 'gleiche Kaufkraft × Kurs des Vergleichsjahres',
+          eingesetzt: `${formatCurrency(ergebnis.gleicheKaufkraft, 2)} × ${formatNumber(ergebnis.kurse.heute, 4)}`,
+          ergebnis: fremd(ergebnis.fremdMitKaufkraft),
+          hinweis:
+            'Erst wenn beide Wirkungen einzeln dastehen, ist ihr Produkt eine Auskunft und keine vermischte Zahl.',
+        },
+      ]
+    : []
 
   function zuruecksetzen() {
     setBetrag(standard.betrag)
@@ -295,6 +338,11 @@ export function Kaufkraftrechner() {
                 – und er setzt sich aus beiden Wirkungen oben zusammen, nicht aus einer.
               </p>
             </div>
+
+            <Rechenweg
+              schritte={rechenweg}
+              fussnote={`Preisindex und Kurse aus ${HERKUNFT.preise.datensatz} und ${HERKUNFT.kurse.datensatz} bei Eurostat, abgerufen am ${HERKUNFT.abgerufenAm}.`}
+            />
 
             <Callout variant="info" title="Was diese Rechnung nicht sagt">
               <p>
