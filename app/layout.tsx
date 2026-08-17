@@ -15,7 +15,7 @@ import './globals.css'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { OfflineLernen } from '@/components/layout/OfflineLernen'
-import { startSkript } from '@/lib/theme'
+import { LEISTENFARBE, startSkript } from '@/lib/theme'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, webSiteSchema } from '@/lib/jsonld'
 import { siteConfig, siteUrl } from '@/lib/site'
@@ -93,43 +93,51 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   /*
-    **Hier steht mit Absicht keine `themeColor`.**
+    Die helle Leistenfarbe – fest, aus `lib/theme.ts`, nicht von Hand.
 
-    Sie wird ausschließlich vom Startskript gesetzt (`lib/theme.ts`), und das
-    ist keine Sparsamkeit, sondern der einzige Weg, der auf dem Telefon trägt.
+    ## Der dritte Anlauf, und warum er anders aussieht als die ersten beiden
 
-    ## Wie es dazu kam
-
-    Am 13. August 2026 stand hier zuerst eine feste helle Farbe. Auf einem
-    Gerät mit gewähltem dunklen Schema blieb der Bereich über der Seite
-    dadurch beige – weißer Balken über schwarzer Seite. Zwei Anläufe, die
-    Farbe nachträglich zu korrigieren, sind gescheitert:
+    Am 13. August 2026 stand hier eine feste helle Farbe. Auf einem Gerät mit
+    dunklem Schema blieb der Bereich über der Seite beige – heller Balken über
+    schwarzer Seite. Zwei Anläufe, das nachträglich zu korrigieren, scheiterten:
 
         setAttribute('content', …)   Chromium: wirkt   Safari: wirkt nicht
         Knoten austauschen           Chromium: wirkt   Safari: wirkt nicht
 
-    Beide Male nachgemessen, das zweite Mal am ausgelieferten Stand auf dem
-    Gerät des Betreibers. Zwischenspeicher ließen sich als Ursache
-    ausschließen: HTML geht mit `no-store` heraus (`public/.htaccess`), und
-    der Dienstarbeiter fasst die Startseite nicht an.
+    Daraus wurde am 16. August die Angabe **ganz gestrichen**, in der Annahme:
+    „Ohne `theme-color` färbt Safari nach dem Seitenhintergrund." Der stand
+    schon richtig – `html` trägt `background-color: var(--c-canvas)`.
 
-    **Safari liest `theme-color` beim Parsen und danach nicht mehr.** Damit
-    kann kein JavaScript die Angabe retten – ein statischer Export weiß aber
-    nicht, welches Schema der Besucher gewählt hat.
+    **Diese Annahme ist am 17. August 2026 widerlegt worden.** Der Betreiber
+    hat die Startseite im **hellen** Modus gezeigt: beige Seite, und darüber
+    ein **schwarzer** Balken. Safari nimmt den Seitenhintergrund also nicht.
+    Ohne Angabe malt es die sichere Fläche schwarz, unabhängig vom Schema.
 
-    ## Warum das Weglassen die Lösung ist
+    ## Was daraus folgt
 
-    Ohne die Angabe färbt Safari den Bereich nach dem **Seitenhintergrund**,
-    und der steht schon vor dem ersten Malen richtig: Das Startskript setzt
-    `data-theme`, das CSS die Fläche. Hell wird beige, dunkel wird dunkel –
-    ohne dass irgendjemand eine Meta-Angabe nachziehen müsste.
+    Für Safari gibt es genau einen Weg, und der führt über das HTML. Ein
+    statischer Export kann dort **einen** Wert hinterlegen – also den, der für
+    jeden Erstbesuch stimmt.
 
-    Chromium bekommt seine Angabe trotzdem: Dort **wirkt** ein per Skript
-    angelegter Knoten, nachgemessen. Beide Browser landen also richtig, jeder
-    auf seinem Weg.
+    Und das ist der helle: **Der erste Besuch ist weiß, ausnahmslos**, auch auf
+    einem dunkel gestellten Gerät (`startSkript()` in `lib/theme.ts`). Die
+    Farbe hier ist damit nicht geraten, sondern dieselbe Regel noch einmal.
 
-    Wer hier wieder eine `themeColor` einträgt, holt den Balken zurück.
+    ## Was dieser Weg nicht kann
+
+    Ein Besucher, der in Safari ausdrücklich Dunkel gewählt hat, sieht
+    weiterhin einen hellen Balken. Das ist kein Versehen, sondern der Rest,
+    der bleibt: Safari liest die Angabe beim Parsen, der Export kennt die
+    Wahl nicht, und beide Wege, sie nachzuziehen, sind gemessen gescheitert.
+
+    Der Tausch ist bewusst: Vorher war der Balken bei **jedem** Besuch falsch,
+    jetzt nur noch bei einem zurückkehrenden Safari-Besucher mit gewähltem
+    dunklen Schema.
+
+    Chromium bekommt beides richtig – dort **wirkt** der Knoten, den
+    `leisteFaerben()` beim Umschalten anlegt.
   */
+  themeColor: LEISTENFARBE.weiss,
 
   /*
     `light`, nicht `light dark`.

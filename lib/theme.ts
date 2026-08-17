@@ -73,15 +73,28 @@ export const LEISTENFARBE = {
  * Skript kann eine Angabe retten, die schon im HTML steht – und ein
  * statischer Export weiß nicht, welches Schema der Besucher gewählt hat.
  *
- * Deshalb liefert `app/layout.tsx` **gar keine** `themeColor` mehr aus, und
- * diese Funktion legt sie an. Für Safari existiert damit nie eine, und es
- * färbt den Bereich nach dem Seitenhintergrund – der steht vor dem ersten
- * Malen richtig, weil das Startskript `data-theme` setzt. Chromium wertet
- * den angelegten Knoten aus und bekommt die genaue Farbe.
+ * Daraus wurde am 16. August: Angabe ganz weglassen, dann färbt Safari nach
+ * dem Seitenhintergrund. **Das stimmt nicht.** Am 17. August zeigte der
+ * Betreiber die Startseite im hellen Modus – beige Seite, schwarzer Balken.
+ * `html` trägt `background-color: var(--c-canvas)`; Safari nimmt ihn trotzdem
+ * nicht, sondern malt ohne Angabe schwarz.
  *
- * Vorhandene Angaben werden trotzdem zuerst entfernt: Sollte je wieder eine
- * im HTML stehen, gäbe es sonst zwei, und welche gilt, entscheidet dann der
- * Browser.
+ * Seither steht die **helle** Farbe wieder im HTML (`app/layout.tsx`). Sie ist
+ * für jeden ersten Besuch richtig, und der erste Besuch ist weiß, ausnahmslos.
+ *
+ * ## Warum hier nichts mehr entfernt wird
+ *
+ * Diese Funktion hat vorhandene Angaben zuerst gelöscht und dann eine neue
+ * angelegt. Mit einer Angabe im HTML wäre das der Schuss ins eigene Knie:
+ * Safari hat sie beim Parsen gelesen, und ob die Farbe eine Löschung des
+ * Knotens überlebt, weiß hier niemand – geprüft werden kann es von hier aus
+ * nicht, und „müsste gehen" ist an dieser Stelle schon zweimal danebengegangen.
+ *
+ * Deshalb wird die erste vorhandene Angabe **abgeändert statt ersetzt**. Der
+ * Knoten aus dem HTML bleibt stehen, was auch immer Safari an ihm festhält.
+ * Chromium wertet die Änderung aus – nachgemessen. Weitere Angaben werden
+ * entfernt, damit es bei genau einer bleibt; welche sonst gälte, entschiede
+ * der Browser.
  *
  * ## Warum es die Arbeit zweimal gibt
  *
@@ -96,13 +109,15 @@ export const LEISTENFARBE = {
  * dort auf – und nicht erst auf einem Telefon.
  */
 export function leisteFaerben(farbe: string): void {
-  const alt = document.querySelectorAll('meta[name="theme-color"]')
-  for (const angabe of alt) angabe.remove()
+  const vorhanden = document.querySelectorAll('meta[name="theme-color"]')
 
-  const neu = document.createElement('meta')
-  neu.setAttribute('name', 'theme-color')
-  neu.setAttribute('content', farbe)
-  document.head.appendChild(neu)
+  // Überzählige zuerst weg – die erste bleibt und wird abgeändert.
+  for (let i = vorhanden.length - 1; i >= 1; i--) vorhanden[i].remove()
+
+  const angabe = vorhanden[0] ?? document.createElement('meta')
+  angabe.setAttribute('name', 'theme-color')
+  angabe.setAttribute('content', farbe)
+  if (!vorhanden[0]) document.head.appendChild(angabe)
 }
 
 /**
@@ -112,12 +127,12 @@ export function leisteFaerben(farbe: string): void {
  */
 export function leisteFaerbenSkript(ausdruck: string): string {
   return `(function(f){
-var alt=document.querySelectorAll('meta[name="theme-color"]');
-for(var i=alt.length-1;i>=0;i--){alt[i].parentNode.removeChild(alt[i])}
-var m=document.createElement('meta');
-m.setAttribute('name','theme-color');
+var a=document.querySelectorAll('meta[name="theme-color"]');
+for(var i=a.length-1;i>=1;i--){a[i].parentNode.removeChild(a[i])}
+var m=a[0];
+if(!m){m=document.createElement('meta');m.setAttribute('name','theme-color');}
 m.setAttribute('content',f);
-(document.head||document.documentElement).appendChild(m);
+if(!a[0]){(document.head||document.documentElement).appendChild(m)}
 })(${ausdruck})`
 }
 

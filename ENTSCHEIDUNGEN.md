@@ -1686,24 +1686,54 @@ nicht an.
 kein Skript eine Angabe retten, die schon im HTML steht – und ein statischer
 Export weiß nicht, welches Schema der Besucher gewählt hat.
 
-### Also steht im HTML gar keine mehr
+### Der dritte Anlauf: gar keine mehr – und warum das schiefging
 
-`app/layout.tsx` liefert **keine `themeColor`** aus; angelegt wird sie
-ausschließlich vom Startskript. Damit landen beide Browser richtig, jeder auf
-seinem Weg:
+Am 16. August 2026 wurde die Angabe **ganz gestrichen**. `app/layout.tsx`
+lieferte keine `themeColor` mehr aus, angelegt wurde sie ausschließlich vom
+Startskript. Die Begründung lautete:
 
-- **Safari** sieht nie eine und färbt den Bereich nach dem
-  **Seitenhintergrund**. Der steht schon vor dem ersten Malen richtig, weil
-  das Startskript `data-theme` setzt und das CSS die Fläche.
-- **Chromium** wertet den per Skript angelegten Knoten aus und bekommt die
-  genaue Farbe – nachgemessen.
+> **Safari** sieht nie eine und färbt den Bereich nach dem
+> **Seitenhintergrund**. Der steht schon vor dem ersten Malen richtig, weil
+> das Startskript `data-theme` setzt und das CSS die Fläche.
 
-Der Preis ist gering: Ein Browser, der weder das eine noch das andere tut,
-zeigt seine eigene Leistenfarbe statt der gewählten. Falsch ist das nie.
+**Das ist falsch.** Am 17. August 2026 hat der Betreiber die Startseite auf
+dem Telefon gezeigt – im **hellen** Modus, beige Seite, und darüber ein
+**schwarzer** Balken. `html` trägt `background-color: var(--c-canvas)`; der
+Seitenhintergrund stand also richtig und wurde trotzdem nicht genommen. Ohne
+`theme-color` malt Safari die Fläche schwarz, unabhängig vom Schema.
 
-`tests/farbschema-start.test.ts` liest deshalb ausnahmsweise den Quelltext:
-Es geht nicht darum, _welche_ Farbe dort steht, sondern **dass dort keine
-steht.** Wer wieder eine einträgt, holt den Balken zurück.
+Bemerkenswert daran ist nicht der Irrtum, sondern **wie er zustande kam**: Er
+war die einzige Erklärung, die zu den beiden gescheiterten JS-Anläufen passte,
+und wurde deshalb für belegt gehalten. Belegt war aber nur, dass die JS-Wege
+nicht tragen – über die Farbgebung ohne Angabe war nie eine Messung gemacht
+worden. Eine Annahme, die eine Lücke füllt, sieht aus wie ein Befund.
+
+### Der vierte Anlauf: die helle Farbe steht wieder im HTML
+
+`app/layout.tsx` liefert `themeColor: LEISTENFARBE.weiss` aus – aus der
+Konstante, nicht als zweite Zeichenkette daneben.
+
+Die Wahl ist keine: **Der erste Besuch ist weiß, ausnahmslos.** Der eine Wert,
+den ein statischer Export hinterlegen kann, ist damit derselbe, den das
+Startskript eine Zeile später setzt.
+
+**Und das Startskript ändert diesen Knoten ab, statt ihn zu ersetzen.** Bis
+hierher löschte es alle vorhandenen Angaben und legte eine neue an – mit einer
+Angabe im HTML wäre das der Schuss ins eigene Knie: Safari hat sie beim Parsen
+gelesen, und ob die Farbe eine Löschung des Knotens überlebt, lässt sich von
+hier aus nicht prüfen. Auf „müsste gehen" ist diese Stelle schon zweimal
+hereingefallen. Überzählige Angaben fallen weg, die erste bleibt stehen und
+bekommt nur neuen Inhalt.
+
+**Was bleibt:** Ein zurückkehrender Safari-Besucher mit gewähltem dunklen
+Schema sieht einen hellen Balken. Der Tausch ist bewusst – vorher war der
+Balken bei **jedem** Besuch falsch, jetzt nur noch in diesem einen Fall.
+
+`tests/farbschema-start.test.ts` liest deshalb weiterhin den Quelltext, prüft
+jetzt aber das Gegenteil von vorher: dass eine `themeColor` dasteht, dass sie
+aus `LEISTENFARBE` kommt und dass es die helle ist. Dazu vergleicht ein Fall
+die **Knotenkennung** vor und nach dem Skriptlauf – ein Test, der nur Farben
+zählt, ginge auch durch, wenn wieder gelöscht und neu angelegt würde.
 
 `startSkript` setzt die Farbe außerdem **immer** statt nur bei gespeicherter
 Wahl – ein Zweig, der fast nie durchlaufen wird, wird nie geprüft und trägt
