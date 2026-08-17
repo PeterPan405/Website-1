@@ -101,6 +101,388 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'sell-america-sorge-fed-yen-ki-boom',
+    title: '„Sell America“ ist zurück: Was Fed, Yen und KI-Boom damit zu tun haben',
+    metaTitle: '„Sell America“ ist zurück – Fed, Yen und KI-Boom',
+    teaser:
+      'Ein Nachrichtenticker warnt vor neuer Nervosität an US-Börsen wegen Fed, Yen und KI-Bewertungen. Was dahintersteckt – und was die Meldung offenlässt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-17T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['USA', 'Yen', 'Fed', 'KI-Aktien'],
+    relatedTopics: ['notenbanken-geldpolitik', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['dax', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 17.8.2026, 3:37 Uhr: „‚Sell America‘ ist zurück: Warum Fed, Yen und KI-Boom die US-Aktienmärkte nervös machen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Goldreporter, Startseite „Letzte Beiträge“, abgerufen 17.8.2026: „Yen-Krise: Japan unterstützt schnellere Zinserhöhung“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreetONLINE Redaktion, Video vom 16.8.2026, 15:00 Uhr: „Yen-Wende mit Folgen: Vorndran warnt vor neuem Zinsregime“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Nachrichtenticker von finanzen.net meldete heute früh um 3:37 Uhr, die Stimmung „Sell America“ sei zurück – ausgelöst durch Sorgen rund um die US-Notenbank Fed, den japanischen Yen und die Bewertungen von KI-Aktien. Mehr als diese drei Stichworte nennt die Kurzmeldung selbst nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Namen, eine Sorge – aber keine ausformulierte Begründung',
+      },
+      {
+        type: 'paragraph',
+        text: '„Sell America“ ist ein an den Finanzmärkten gebräuchlicher Begriff für Phasen, in denen US-Aktien, US-Anleihen und der Dollar gleichzeitig unter Druck geraten – normalerweise laufen diese drei in unterschiedliche Richtungen, weil Anleger bei fallenden Aktienkursen zu Anleihen und zum Dollar als vermeintlich sicheren Häfen wechseln. Fällt das gleichzeitig, deutet das eher auf Zweifel am Standort USA selbst als auf eine gewöhnliche Kurskorrektur. Warum genau die Meldung diesen Begriff heute wieder aufgreift, sagt der Ticker nicht – das bleibt offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Yen taucht in mehreren Quellen gleichzeitig auf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig ist, dass der Yen an diesem Morgen nicht nur bei finanzen.net auftaucht: Goldreporter berichtet parallel, Japan unterstütze eine schnellere Zinserhöhung, und wallstreet-online hat gestern Abend ein Interview veröffentlicht, in dem der Experte Vorndran vor einem „neuen Zinsregime“ in Japan warnt. Bekannt ist allgemein, dass viele Anleger sich in Yen günstig verschulden, um das Geld anderswo anzulegen – steigt der Yen-Zins, wird dieser sogenannte Carry Trade teurer, und ein Teil dieser Positionen wird typischerweise aufgelöst. Ob das heute der konkrete Auslöser ist, geht aus keiner der drei Quellen eindeutig hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Drei unabhängige Quellen greifen am selben Morgen dasselbe Thema auf – ein Indiz dafür, dass etwas in der Luft liegt, aber keine Erklärung dafür, was genau. Wer diese Sorge ernst nimmt, sollte auf konkrete Zahlen warten, statt aus drei Überschriften eine fertige Geschichte zu bauen.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-rekordwetten-als-warnsignal',
+    title: 'Rekord-Wetten auf Bitcoin: Ein Warnsignal statt eines Kaufsignals',
+    teaser:
+      'Ein Ticker meldet Rekord-Wetten auf Bitcoin als Risiko für die laufende Erholung. Was gehebelte Positionen mit Kursschwankungen zu tun haben.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-17T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Krypto', 'Hebel', 'Risiko'],
+    relatedTopics: ['bitcoin-krypto', 'risiko-und-rendite'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 17.8.2026, 3:28 Uhr: „Warnsignal bei Bitcoin: Rekord-Wetten bedrohen die Erholung“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 17.8.2026, ca. 3:59 Uhr: Bitcoin 54.535 US-Dollar, +0,5 %',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ticker von finanzen.net meldete um 3:28 Uhr, Rekord-Wetten auf Bitcoin würden die laufende Erholung des Kurses bedrohen. Zum Zeitpunkt der Meldung notierte Bitcoin laut der Kursleiste derselben Seite bei rund 54.535 US-Dollar, ein Plus von 0,5 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was mit „Wetten“ typischerweise gemeint ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung erklärt nicht, welche Positionen genau gemeint sind. An Krypto-Terminmärkten ist mit „Wetten“ meist von gehebelten Long-Positionen die Rede – Anleger leihen sich zusätzliches Kapital, um mit mehr Einsatz auf steigende Kurse zu setzen, als ihr eigenes Geld hergäbe. Steigt der Kurs, vervielfacht der Hebel den Gewinn; fällt er, vervielfacht derselbe Hebel den Verlust und kann Positionen zwangsweise auflösen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Rekord bei den Wetten ein Warnsignal sein kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein historisch hoher Bestand an gehebelten Long-Positionen bedeutet: Viel Kapital wettet in dieselbe Richtung. Kippt der Kurs auch nur kurz, können reihenweise Zwangsverkäufe ausgelöst werden, die den Rückgang verstärken – ein Mechanismus, der bei Bitcoin in der Vergangenheit wiederholt zu schnellen, scharfen Einbrüchen geführt hat. Ob genau das gerade der Fall ist, lässt sich aus der Kurzmeldung allein nicht ablesen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Warnsignal ist keine Prognose. Es zeigt lediglich, dass die Ausgangslage anfälliger für Übertreibungen in beide Richtungen geworden ist – nicht, wann oder ob sich das entlädt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-etf-bestaende-spekulative-longs-vierte-woche',
+    title:
+      'Gold-ETFs wachsen vier Wochen in Folge – der Preis zieht nicht im gleichen Tempo mit',
+    metaTitle: 'Gold-ETFs wachsen vier Wochen in Folge',
+    teaser:
+      'Gold-ETFs verzeichnen die vierte Woche in Folge steigende Bestände, auch Spekulanten bauen ihre Positionen aus. Drei Messwerte, ein Preis.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-17T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'ETF', 'CoT-Daten', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Startseite „Letzte Beiträge“, abgerufen 17.8.2026: „Größter Gold-ETF: Bestände steigen vierte Woche in Folge“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Analyse vom 15.8.2026: „Goldmarkt: Spekulanten bauen Long-Positionen weiter aus“ (Goldpreis zum Wochenschluss 4.376 US-Dollar)',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 17.8.2026, ca. 3:58 Uhr: Gold 4.395,04 US-Dollar, +0,42 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der größte Gold-ETF verzeichnet laut Goldreporter die vierte Woche in Folge steigende Bestände. Parallel zeigen die aktuellen CoT-Daten (Commitments of Traders), dass Spekulanten am Terminmarkt ihre Long-Positionen weiter ausbauen – der Open Interest steigt, während der Goldpreis die vergangene Handelswoche bei 4.376 US-Dollar je Feinunze beendet hat. Am Morgen des 17. August notiert Gold laut wallstreet-online bei 4.395,04 US-Dollar, ein Plus von 0,42 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei verschiedene Messwerte für denselben Markt',
+      },
+      {
+        type: 'paragraph',
+        text: 'ETF-Bestände, CoT-Positionierung und der Spotpreis messen nicht dasselbe. ETF-Bestände zeigen, wie viel physisches Gold hinter ausgegebenen Fondsanteilen liegt – ein Indikator für längerfristig orientiertes Anlegerkapital. Die CoT-Daten zeigen die Positionierung an Terminbörsen, oft kurzfristiger und stärker gehebelt. Der Spotpreis ist schließlich das Ergebnis von Angebot und Nachfrage aus beidem zusammen, plus allem anderen, was Marktteilnehmer sonst noch bewegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wachsende Bestände heißen nicht automatisch steigende Preise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass zwei Indikatoren für steigenden Optimismus gleichzeitig zulegen – ETF-Zuflüsse und spekulative Long-Positionen – während der Preis selbst zuletzt eher pausiert als weiter steigt, zeigt, dass Positionierung und Preis keine Einbahnstraße sind. Ein Markt kann bereits viel Optimismus eingepreist haben, ohne dass sich das eins zu eins in weiter steigenden Kursen niederschlägt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer aus wachsenden ETF-Beständen oder steigenden CoT-Long-Positionen allein einen weiter steigenden Goldpreis ableitet, verwechselt einen Stimmungsindikator mit einer Kursprognose.',
+      },
+    ],
+  },
+  {
+    slug: 'silberpreis-august-industrienachfrage',
+    title:
+      'Silber im „Schicksalsmonat“ August: Warum der Preis auch an der Industrie hängt',
+    metaTitle: 'Silber im „Schicksalsmonat“ August',
+    teaser:
+      'Eine Prognose nennt den August einen Schicksalsmonat für Silber. Die Begründung bleibt offen – klar ist, warum Silber unruhiger läuft als Gold.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-17T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Silber', 'Rohstoffe', 'Industrienachfrage'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['silber'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, 16.8.2026: „Silber: Schicksalsmonat August: Silberpreis-Prognose: Jetzt entscheidet sich die Trendwende bei Silber“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 17.8.2026, ca. 3:58 Uhr: Silber 64,70 US-Dollar, +0,35 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Prognose von wallstreet-online bezeichnet den August als „Schicksalsmonat“ für Silber und sieht die Trendwende der zuletzt ins Stocken geratenen Erholungsrallye jetzt bevorstehen. Warum ausgerechnet dieser Monat entscheidend sein soll, führt die Überschrift nicht aus – die Begründung dafür gibt die vorliegende Quelle nicht her. Am Morgen des 17. August notiert Silber laut der Kursleiste bei 64,70 US-Dollar, ein Plus von 0,35 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Silber ist nicht einfach das kleine Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein erheblicher Teil der weltweiten Silbernachfrage kommt aus der Industrie – etwa aus Elektronik, Solartechnik und Medizintechnik. Gold wird dagegen kaum industriell verbraucht, sondern überwiegend als Wertanlage und Schmuck gehalten. Dieser Unterschied erklärt, warum Silber stärker auf Konjunkturerwartungen reagiert als Gold und historisch sowohl in Aufschwüngen als auch in Abschwüngen ausgeprägtere Kursbewegungen zeigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Prognose leisten kann – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Trendwende „jetzt“ zu erwarten, ist eine Einschätzung, keine Tatsache. Solche Prognosen beruhen meist auf Chartmustern oder Positionierungsdaten, die auch anders ausgehen können, als die Überschrift suggeriert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob August tatsächlich zum Wendepunkt wird, lässt sich heute nicht überprüfen – nachvollziehbar ist dagegen, warum Silber grundsätzlich unruhiger läuft als Gold: die Industrienachfrage.',
+      },
+    ],
+  },
+  {
+    slug: 'pko-bank-dividendenrendite-doppelt-so-hoch',
+    title:
+      'Polens PKO Bank: Doppelt so viel Dividendenrendite wie die deutsche Konkurrenz',
+    metaTitle: 'PKO Bank: Doppelte Dividendenrendite',
+    teaser:
+      'Die polnische PKO Bank soll mehr Dividendenrendite bieten als Deutsche Bank und Commerzbank zusammen. Warum eine hohe Rendite allein nichts sagt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-17T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dividende', 'Bankaktien', 'Polen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['deutsche-bank'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, Dividenden-Radar vom 16.8.2026: „PKO Bank lockt mit doppelter Rendite gegenüber deutscher Konkurrenz“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Dividenden-Radar von wallstreet-online stellt die polnische PKO Bank Polski heraus: Sie soll so viel Dividendenrendite bieten wie Deutsche Bank und Commerzbank zusammen. Der polnische Staat ist laut der Meldung Großaktionär der Bank, deren Gewinne als stark beschrieben werden. Details zur genauen Rendite in Prozent oder zum Ausschüttungsbetrag nennt die vorliegende Kurzfassung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine hohe Rendite ist eine Rechnung, kein Qualitätssiegel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Dividendenrendite ergibt sich aus der Dividende geteilt durch den Aktienkurs. Sie kann steigen, weil ein Unternehmen mehr ausschüttet – oder weil der Kurs gefallen ist und dieselbe Dividende dadurch rechnerisch mehr Rendite abwirft. Ohne den Kurs und die Ausschüttungsquote zu kennen, lässt sich aus der reinen Meldung nicht sagen, welcher der beiden Fälle hier vorliegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein staatlicher Großaktionär bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ist der Staat Großaktionär, kann das für Stabilität sprechen – es kann aber auch heißen, dass politische statt rein unternehmerische Interessen die Dividendenpolitik mitbestimmen. Hinzu kommt bei einer polnischen Aktie ein Währungsaspekt: Ausschüttungen erfolgen in Zloty, und Anleger im Euroraum tragen zusätzlich ein Wechselkursrisiko, das eine reine Renditezahl nicht abbildet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine doppelt so hohe Dividendenrendite ist ein Ausgangspunkt für eigene Recherche, kein fertiges Urteil über die bessere Aktie.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-rede-kanada-inflation-japan-industrie-17-august',
+    title:
+      'Der Wochenstart im Kalender: EZB-Rede, Kanadas Inflation, Japans Industrieproduktion',
+    metaTitle: 'Termine am 17. August: EZB, Kanada, Japan',
+    teaser:
+      'Am Montag spricht EZB-Ratsmitglied Lane, Kanada meldet seine Inflationsrate, und aus Japan kommen frühe Industriedaten. Der Tag im Überblick.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-17T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wirtschaftskalender', 'EZB', 'Inflation', 'Japan'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine“, abgerufen 17.8.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online zeigt für den heutigen Montag mehrere Termine mit Marktrelevanz. Los geht es früh: Um 6:30 Uhr veröffentlicht Japan seine Kapazitätsauslastung, den Tertiary Industry Index und die Industrieproduktion – bei letzterer lag die Vorjahresrate zuletzt bei 4,2 Prozent, die Prognose für die Monatsrate bei 1,3 Prozent, exakt auf Höhe des Vormonatswerts.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '11:30 Uhr: EZB-Ratsmitglied Lane spricht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 11:30 Uhr tritt EZB-Ratsmitglied Philip Lane auf. Reden von Notenbankern gelten als markrelevant, weil sie Hinweise auf den künftigen Zinskurs liefern können, auch ohne dass an diesem Tag selbst eine Zinsentscheidung ansteht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '14:30 Uhr: Kanadas Inflation im Fokus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Nachmittag folgt Kanadas Verbraucherpreisindex: die Jahresrate lag zuletzt bei 2,8 Prozent, die Monatsrate bei minus 0,4 Prozent. Gleichzeitig veröffentlicht die kanadische Notenbank ihre bevorzugte Kernrate, zuletzt 2,1 Prozent im Jahresvergleich und 0,1 Prozent im Monatsvergleich. Ergänzt wird der Termin um Zahlen zu kanadischen Investitionen in ausländische Wertpapiere, die im Vormonat bei 22,2 Milliarden Dollar lagen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Kein einzelner dieser Termine ist ein Zinsentscheid, doch zusammen zeigen sie, worauf Marktteilnehmer diese Woche zuerst schauen: die Tonlage der EZB und den Preisdruck bei einem wichtigen Rohstoffexporteur.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-vorboerslich-fester-us-futures-schwaecher',
+    title:
+      'DAX vorbörslich fester, US-Futures schwächer – und zwei verschiedene Prozentzahlen',
+    metaTitle: 'DAX fester, US-Futures schwächer am Morgen',
+    teaser:
+      'Zwei Finanzportale zeigen am selben Morgen leicht unterschiedliche DAX-Prozentzahlen. Kein Widerspruch – nur zwei Momentaufnahmen desselben Marktes.',
+    category: 'Märkte',
+    publishedAt: '2026-08-17T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['DAX', 'Vorbörse', 'Kursdaten'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 17.8.2026, ca. 3:59 Uhr: DAX 26.440, +0,5 %; Nasdaq 26.729, −0,3 %',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 17.8.2026, ca. 3:59 Uhr: DAX 26.459,63, +0,18 %; US Tech 100 30.039,12, −0,19 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am frühen Montagmorgen zeigen zwei Finanzportale ein ähnliches, aber nicht identisches Bild: Bei finanzen.net stand der DAX mit 26.440 Punkten 0,5 Prozent im Plus, bei wallstreet-online mit 26.459,63 Punkten nur 0,18 Prozent. Bei den US-Indizes war die Richtung übereinstimmend negativ: Nasdaq beziehungsweise US Tech 100 lagen mit minus 0,3 und minus 0,19 Prozent leicht im Minus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum zwei Portale nicht dieselbe Zahl zeigen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vor Börsenöffnung handelt es sich um vorbörsliche Indikationen und Futures-Notierungen, nicht um Kurse einer geschlossenen Auktion. Solche Kurse aktualisieren sich laufend, stammen teils von unterschiedlichen Handelsplätzen oder Datenanbietern und können schon wenige Sekunden auseinander liegen – genug, um bei der Prozentangabe sichtbar zu werden, obwohl beide Portale denselben Index meinen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Übereinstimmend war die Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz der unterschiedlichen Prozentwerte zeigten beide Quellen dieselbe Grundtendenz: DAX vorbörslich im Plus, US-Technologiewerte im Minus. Die Richtung ist damit belastbarer als die exakte Nachkommastelle.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer morgens zwei verschiedene Prozentzahlen für denselben Index liest, hat keinen Fehler entdeckt, sondern zwei Momentaufnahmen eines Marktes, der sich in diesem Augenblick noch bewegt.',
+      },
+    ],
+  },
+  {
     slug: 'bundesbank-leistungsbilanz-rentenmarkt-juni-2026',
     title: 'Deutschlands Leistungsbilanz wächst, der Rentenmarkt kühlt ab',
     teaser:
