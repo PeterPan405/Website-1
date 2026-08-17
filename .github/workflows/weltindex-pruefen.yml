@@ -1,0 +1,119 @@
+name: Weltindex prüfen
+
+# Holt das Factsheet des Indexanbieters und meldet, wenn die Ländergewichte
+# von denen in `data/weltindex.ts` abweichen.
+#
+# ## Warum ein Wächter und kein Abruf
+#
+# Weil die Zahlen einmal im Monat wechseln und in einem PDF stehen. Ein Abruf
+# bei jedem Bau wäre Aufwand für einen Wert, der vier Wochen steht – und ein
+# Skript, das ein PDF-Layout maschinell ausliest, bricht beim ersten
+# Umformatieren still. Ausgelesen wird deshalb von Hand, und dieser Lauf
+# sorgt dafür, dass das Von-Hand nicht vergessen wird.
+#
+# Das ist dieselbe Bauart wie beim Zahlenwächter: Eine gepflegte Datei ist nur
+# so gut wie die Meldung, die kommt, wenn sie veraltet.
+#
+# ## Warum eine Warnung und kein roter Lauf
+#
+# Die Frage ist nicht „hat sich etwas geändert?", sondern „sieht ein Besucher
+# deshalb etwas Falsches?". Ein Ländergewicht, das um ein Zehntel wandert,
+# ändert an der Aussage der Seite nichts – „fast drei Viertel Dollar" bleibt
+# richtig. Erst ein deutlicher Sprung ist ein Fall zum Nachtragen, und dafür
+# ist eine Warnung im Protokoll die richtige Lautstärke.
+#
+# Wer die Zahlen nachträgt: `data/weltindex.ts`, danach `npm run test` – die
+# Prüfung dort rechnet die Summe nach.
+
+on:
+  # Am dritten jedes Monats um 04:07 UTC. Das Factsheet zum Monatsende steht
+  # erfahrungsgemäß in den ersten Tagen darauf bereit.
+  #
+  # Krumme Minute mit Absicht: Runde Minuten sind am dichtesten belegt, und
+  # GitHub verwirft geplante Läufe ohne Meldung, wenn zu viele zusammenfallen.
+  schedule:
+    - cron: '7 4 3 * *'
+  workflow_dispatch:
+
+concurrency:
+  group: weltindex-pruefen
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Factsheet gegen die Datei halten
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: PDF-Leser bereitstellen
+        run: pip install --quiet pdfminer.six
+
+      - name: Factsheet holen und vergleichen
+        run: |
+          python3 - <<'ENDE'
+          import io, json, re, urllib.request
+          from pdfminer.high_level import extract_text
+
+          URL = "https://www.msci.com/documents/10199/178e6643-6ae6-47b9-82be-e1fc565ededb"
+
+          # Die Datei ist TypeScript; gelesen wird sie mit einem Ausdruck statt
+          # mit einem Parser. Ein Parser für eine Handvoll Zeilen wäre mehr
+          # Angriffsfläche als Nutzen.
+          quelle = open("data/weltindex.ts", encoding="utf-8").read()
+          erwartet = {
+              land: float(wert)
+              for land, wert in re.findall(
+                  r"land: '([^']+)', prozent: ([\d.]+)", quelle
+              )
+          }
+
+          # Die Bezeichnungen im Blatt sind englisch, die in der Datei deutsch.
+          NAMEN = {
+              "United States": "Vereinigte Staaten",
+              "Japan": "Japan",
+              "United Kingdom": "Vereinigtes Königreich",
+              "Canada": "Kanada",
+              "France": "Frankreich",
+              "Other": "Übrige Länder",
+          }
+
+          try:
+              anfrage = urllib.request.Request(URL, headers={"User-Agent": "IM-Invests Datenabruf pm252543@gmail.com"})
+              with urllib.request.urlopen(anfrage, timeout=60) as antwort:
+                  text = extract_text(io.BytesIO(antwort.read()))
+          except Exception as fehler:
+              print(f"::warning::[weltindex] Factsheet nicht abrufbar: {fehler}")
+              print("Die Datei bleibt, wie sie ist – der nächste Lauf versucht es erneut.")
+              raise SystemExit(0)
+
+          gefunden = {}
+          for englisch, deutsch in NAMEN.items():
+              treffer = re.search(re.escape(englisch) + r"\s+([\d.]+)%", text)
+              if treffer:
+                  gefunden[deutsch] = float(treffer.group(1))
+
+          if not gefunden:
+              print("::warning::[weltindex] Im Factsheet keine Ländergewichte gefunden –")
+              print("             vermutlich hat sich das Layout geändert. Von Hand nachsehen.")
+              raise SystemExit(0)
+
+          print(f"{len(gefunden)} von {len(NAMEN)} Ländern im Blatt gefunden\n")
+          abweichungen = []
+          for land, wert in gefunden.items():
+              alt = erwartet.get(land)
+              zeichen = "=" if alt is not None and abs(alt - wert) < 0.005 else "≠"
+              print(f"  {zeichen} {land:24} Datei {alt if alt is not None else '—':>8}   Blatt {wert:>8}")
+              if alt is None or abs(alt - wert) >= 0.5:
+                  abweichungen.append((land, alt, wert))
+
+          if abweichungen:
+              print("")
+              for land, alt, neu in abweichungen:
+                  print(f"::warning::[weltindex] {land}: Datei {alt}, Blatt {neu}.")
+              print("")
+              print("Nachtragen in data/weltindex.ts, danach npm run test.")
+          else:
+              print("\nDie Datei ist auf dem Stand des Blattes.")
+          ENDE

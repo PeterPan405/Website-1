@@ -456,6 +456,26 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Wie viel Dollar in „weltweit" steckt',
+    href: '/maerkte/waehrungen-im-weltindex',
+    kind: 'Bereich',
+    hint: 'Die Währungsaufteilung eines Weltdepots – aus den Ländergewichten des Indexanbieters',
+    keywords: [
+      'waehrung',
+      'währung',
+      'dollar',
+      'dollaranteil',
+      'usd',
+      'weltweit',
+      'weltdepot',
+      'msci world',
+      'klumpenrisiko',
+      'streuung',
+      'waehrungsrisiko',
+      'währungsrisiko',
+    ],
+  })
+  eintraege.push({
     title: 'Begriffe, die ständig verwechselt werden',
     href: '/verwechslungen',
     kind: 'Bereich',

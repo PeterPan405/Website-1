@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
     art: 'neu',
+    titel: 'Wie viel Dollar in „weltweit“ steckt',
+    text: 'Ein weltweit streuender Indexfonds ist zu rund 72 Prozent eine Dollarposition – die neue Seite zeigt die Währungsaufteilung mit den Ländergewichten des Indexanbieters. Und sie sagt dazu, warum wir sie nicht aus unseren eigenen Kursen gerechnet haben: Dabei wären 86 Prozent herausgekommen, und diese Zahl hätte unsere Datenlücke gemessen statt den Markt.',
+    ziel: { text: 'Zur Währungsaufteilung', href: '/maerkte/waehrungen-im-weltindex' },
+  },
+  {
+    datum: '2026-08-17',
+    art: 'neu',
     titel: 'Ein Begriff des Tages auf der Startseite',
     text: 'Jeden Tag ein anderer Fachbegriff aus dem Glossar, mit Erklärung und dem Weg ins passende Lernthema. Welcher es ist, folgt aus dem Datum – für alle derselbe, und über den Verlauf eines Durchgangs kommt jeder Begriff genau einmal an die Reihe.',
     ziel: { text: 'Zur Startseite', href: '/' },
