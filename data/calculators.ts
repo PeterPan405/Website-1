@@ -808,6 +808,72 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'notgroschen',
+    title: 'Notgroschen',
+    headline: 'Notgroschen: wie viele Monatsausgaben du wirklich brauchst',
+    metaTitle: 'Notgroschen berechnen: begründete Spanne statt Faustregel',
+    metaDescription:
+      'Wie hoch der Notgroschen sein muss – aus Beschäftigung, Zahl der Einkommen, Fixkostenanteil und Unterhaltspflichten, mit Begründung für jeden Zu- und Abschlag.',
+    lead: '„Drei bis sechs Monatsgehälter“ ist derselbe Satz für eine Beamtin mit zwei Einkommen und für einen Selbstständigen mit zwei Kindern. Hier steht, was in deinem Fall daraus wird – und warum.',
+    summary: 'Begründete Spanne für den Notgroschen statt pauschaler Faustregel.',
+    featureList: [
+      'Spanne in Monatsausgaben aus vier Angaben zur Haushaltslage',
+      'Jeder Zu- und Abschlag mit Grund und Erklärung',
+      'Fixkostenanteil und Reichweite im Sparmodus',
+      'Gerechnet an den Ausgaben, nicht am Gehalt',
+    ],
+    grenzen: [
+      'Die Zu- und Abschläge sind begründete Größenordnungen, keine Messungen. Es gibt keine Statistik, aus der „selbstständig = plus drei Monate" folgt – die Richtung ist belegbar, die Höhe ist eine Setzung.',
+      'Zwei Einkommen zählen nur dann als zwei, wenn sie nicht am selben Arbeitgeber oder derselben Branche hängen. Sonst fallen sie zusammen aus, und der Abschlag ist keiner.',
+      'Nicht berücksichtigt: bestehende Schulden, absehbare große Ausgaben, Gesundheitszustand, eine selbstgenutzte Immobilie mit Reparaturstau. Jeder dieser Punkte spricht für mehr.',
+      'Die Rechnung sagt nichts darüber, wie schnell sich der Betrag aufbauen lässt. Das steht im Haushaltsrechner.',
+    ],
+    schritte: [
+      'Beschäftigungsart auswählen – sie bestimmt, wie viel Vorwarnzeit es im Ernstfall gibt.',
+      'Zahl der Einkommen im Haushalt und mitversorgte Personen eintragen.',
+      'Monatliche Ausgaben und davon den Fixkostenanteil eintragen.',
+      'Spanne ablesen und die Begründungen darunter durchgehen – jede Zeile lässt sich einzeln prüfen.',
+    ],
+    relatedTopics: ['tagesgeld', 'worauf-achten-einsteiger', 'inflation'],
+    methodology: [
+      { type: 'heading', level: 2, text: 'Warum die Faustregel nicht reicht' },
+      {
+        type: 'paragraph',
+        text: '„Drei bis sechs Monatsgehälter“ ist nicht falsch, sondern unbeantwortet: derselbe Satz für eine Beamtin mit zwei Einkommen im Haushalt und für einen Selbstständigen mit zwei Kindern und achtzig Prozent Fixkosten. Für die eine ist er zu vorsichtig, für den anderen gefährlich zu knapp.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Faustregel bleibt hier der **Ausgangspunkt** und wird um benannte Beiträge verschoben. Jeder steht mit Grund und Erklärung unter dem Ergebnis – wer einem nicht folgt, ändert die zugehörige Angabe und sieht sofort, was sie ausmacht.',
+      },
+      { type: 'heading', level: 2, text: 'Ausgaben, nicht Gehalt' },
+      {
+        type: 'formula',
+        expression: 'Notgroschen = (3 + Summe der Beiträge) × Monatsausgaben',
+        description:
+          'Die Frage lautet: Wie lange kommt dieser Haushalt ohne Einkommen zurecht? Wer 4.000 € verdient und 2.000 € ausgibt, braucht einen halb so großen Puffer wie jemand mit demselben Gehalt und 4.000 € Ausgaben.',
+      },
+      { type: 'heading', level: 2, text: 'Warum der Fixkostenanteil so schwer wiegt' },
+      {
+        type: 'paragraph',
+        text: 'Weil er sagt, wie stark ein Haushalt bremsen kann. Wer die Hälfte seiner Ausgaben kurzfristig streichen kann – Restaurant, Kleidung, Urlaub, Abonnements –, hält mit demselben Betrag fast doppelt so lange durch wie jemand, dessen Geld zu neun Zehnteln in Miete, Kredit und Versicherungen geht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb steht neben der Spanne die **Reichweite im Sparmodus**: dieselbe Summe, aber nur noch die Fixkosten laufen. Das ist die Zahl, die im Ernstfall zählt.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die Zahlen sind Setzungen, und das steht hier',
+        items: [
+          'Es gibt keine Untersuchung, aus der „selbstständig = plus drei Monate" folgt. Die Beiträge sind begründete Größenordnungen und stehen offen da, damit man ihnen widersprechen kann.',
+          'Belegbar ist die **Richtung**: Ohne Anspruch auf Arbeitslosengeld und ohne Kündigungsfrist braucht es mehr Puffer. Ein zweites Einkommen im Haushalt fängt einen Ausfall zum Teil auf. Hohe Fixkosten lassen sich im Ernstfall nicht senken.',
+          'Das ist der Unterschied zu einer Faustregel: Die kann man nur glauben oder nicht.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'entnahmeplan',
     title: 'Entnahmeplan',
     headline: 'Entnahmeplan: wie lange trägt das Kapital',

@@ -1,5 +1,6 @@
 import { taktErwartung, beurteile } from '@/lib/datenstand'
 import { entnahmeplan, MAX_JAHRE } from '@/lib/entnahme'
+import { notgroschen } from '@/lib/notgroschen'
 import { abstandZumHoch, spannenPosition } from '@/lib/jahresspanne'
 import { formatNumber, formatPercent, formatPercentSigned } from '@/lib/format'
 import { aufSkala, gleitenderDurchschnitt, marktbreite } from '@/lib/stimmungsindex'
@@ -272,6 +273,37 @@ export const METHODEN: Methode[] = [
       return {
         eingabe: '1.000 € bei Kurs 100, heute Kurs 180',
         ergebnis: ergebnis ? formatNumber(ergebnis.endwert, 0) + ' €' : 'keine Angabe',
+      }
+    },
+  },
+  {
+    slug: 'notgroschen',
+    titel: 'Höhe des Notgroschens',
+    frage: 'Wie viele Monatsausgaben muss der Puffer tragen?',
+    formel: '(3 + Summe der Beiträge) × Monatsausgaben, gedeckelt auf 2 bis 24 Monate',
+    quelle:
+      'Ausschließlich Eingaben – Beschäftigung, Zahl der Einkommen, Ausgaben, Fixkostenanteil, Unterhaltspflichten',
+    stichtag: 'Kein Stichtag: eine Einschätzung der Lage, keine Messung.',
+    vereinfachungen: [
+      'Die Zu- und Abschläge sind begründete Größenordnungen, keine Messungen. Es gibt keine Untersuchung, aus der „selbstständig = plus drei Monate" folgt – belegbar ist die Richtung, nicht die Höhe.',
+      'Gerechnet wird an den Ausgaben, nicht am Gehalt. „Drei Monatsgehälter" nimmt die falsche Bezugsgröße: Entscheidend ist, wie lange jemand ohne Einkommen zurechtkommt.',
+      'Zwei Einkommen zählen nur als zwei, solange sie nicht am selben Arbeitgeber oder derselben Branche hängen.',
+      'Nicht enthalten: bestehende Schulden, absehbare große Ausgaben, Gesundheitszustand, Reparaturstau an einer eigenen Immobilie. Jeder Punkt spricht für mehr.',
+    ],
+    herkunft: { datei: 'lib/notgroschen.ts', funktion: 'notgroschen' },
+    zuSehen: { text: 'Notgroschen-Rechner', href: '/rechner/notgroschen' },
+    beispiel: () => {
+      const ergebnis = notgroschen({
+        beschaeftigung: 'selbststaendig',
+        einkommen: 1,
+        ausgabenProMonat: 2_400,
+        fixkostenProMonat: 1_800,
+        unterhaltspflichten: 1,
+      })
+      return {
+        eingabe:
+          'selbstständig, ein Einkommen, 2.400 € Ausgaben davon 75 % fix, ein Kind',
+        ergebnis: `${ergebnis.monateVon}–${ergebnis.monateBis} Monatsausgaben`,
       }
     },
   },
