@@ -269,6 +269,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       jedem Abruf, auch wenn Hoch und Tief seit Wochen stehen.
     */
     { url: absoluteUrl('/maerkte/52-wochen'), changeFrequency: 'daily', priority: 0.7 },
+    /*
+      Die Methodenseite ändert sich nur, wenn sich eine Rechnung ändert – also
+      selten. Die Beispiele darauf werden zwar bei jedem Bau neu gerechnet,
+      liefern aber dasselbe Ergebnis, solange die Formel steht.
+    */
+    { url: absoluteUrl('/methoden'), changeFrequency: 'monthly', priority: 0.6 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,

@@ -141,6 +141,12 @@ const SEITEN = [
     Bildschirm, gehört in die Prüfliste, nicht in die Hoffnung.
   */
   ['/maerkte/52-wochen/', '52 Wochen – breite Tabelle in einem Scrollbereich'],
+  /*
+    Lange Formeln und Dateipfade in `<code>`, die nicht umbrechen. Genau die
+    Sorte Inhalt, die eine Seite seitlich schiebbar macht – ein Pfad wie
+    `lib/stimmungsindex.ts` ist ein Wort ohne Trennstelle.
+  */
+  ['/methoden/', 'Methoden – Formeln und Dateipfade ohne Trennstellen'],
   ['/news/', 'Nachrichten – Anrisse und Archiv'],
   ['/lernen/stand/', 'Lernstand – Tabelle mit 34 Zeilen'],
   ['/rechner/zinsrechner/', 'Rechner – Eingabefelder und Ergebnis'],
