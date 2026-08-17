@@ -170,10 +170,16 @@ export function Footer() {
             <strong className="text-fg font-semibold">
               Einsatz künstlicher Intelligenz:
             </strong>{' '}
-            Texte und Erklärgrafiken dieser Website entstehen mit Unterstützung von
-            KI-Werkzeugen und werden vor der Veröffentlichung von einem Menschen
-            inhaltlich geprüft; die redaktionelle Verantwortung liegt beim Betreiber
-            (siehe{' '}
+            {/*
+              Am 17. August 2026 korrigiert. Hier stand „und werden vor der
+              Veröffentlichung von einem Menschen inhaltlich geprüft" – das
+              trifft auf die Nachrichten nicht zu: `nachrichten.yml` baut und
+              überträgt ohne Halt, an dem jemand zustimmen müsste. Ein Hinweis,
+              der mehr zusagt als geschieht, ist schlimmer als keiner.
+            */}
+            Texte und Erklärgrafiken dieser Website entstehen automatisiert mit
+            Unterstützung von KI-Werkzeugen; die redaktionelle Verantwortung liegt beim
+            Betreiber (siehe{' '}
             <Link href="/impressum" className="hover:text-brand underline">
               Impressum
             </Link>

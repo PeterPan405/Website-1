@@ -205,9 +205,22 @@ const { edition } = (await import(pathToFileURL(`data/editions/${juengste}`).hre
 }
 const folge = baueFolge(edition)
 
+/*
+  Der KI-Hinweis steht vor der Begrüßung – seit dem 17. August 2026.
+
+  Diese Prüfung verlangte vorher, dass die Begrüßung das **erste** ist. Sie
+  bleibt so streng, prüft aber jetzt die richtige Reihenfolge: erst der
+  Hinweis, dann die feste Begrüßung. Ein `includes` allein ließe die Begrüßung
+  auch mitten im Text zu.
+*/
 pruefe(
-  'Sprechtext beginnt mit der festen Begrüßung',
-  folge.sprechtext.startsWith(
+  'Sprechtext beginnt mit dem KI-Hinweis',
+  folge.sprechtext.startsWith('Ein Hinweis vorweg:'),
+  true
+)
+pruefe(
+  'Danach folgt die feste Begrüßung',
+  folge.sprechtext.includes(
     'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei Emm Inwests.'
   ),
   true
@@ -245,8 +258,54 @@ pruefe('mindestens drei Kapitel', folge.kapitel.length >= 3, true)
 pruefe('erstes Kapitel ist die Begrüßung', folge.kapitel[0], 'Begrüßung und Überblick')
 pruefe(
   'Beschreibung trägt den KI-Hinweis',
-  folge.beschreibung.includes('Unterstützung von KI-Werkzeugen'),
+  folge.beschreibung.includes('automatisiert mit KI-Werkzeugen'),
   true
+)
+
+/*
+  Der Hinweis muss **gesprochen** werden, nicht nur dastehen.
+
+  Bis zum 17. August 2026 stand er ausschließlich in der Beschreibung. Wer
+  eine Folge in einer Podcast-App hört – im Auto, beim Laufen –, sieht die
+  Beschreibung nie. Genau dort entsteht der Eindruck, ein Mensch spreche, und
+  genau dort war der Hinweis nicht.
+
+  Geprüft wird beides: dass er im Sprechtext steht und dass er **vorn** steht.
+  Ein Hinweis auf eine erzeugte Stimme nach fünf Minuten Zuhören kommt zu
+  spät; bis dahin hat sich jeder eine Meinung gebildet.
+*/
+pruefe(
+  'Sprechtext trägt den KI-Hinweis',
+  folge.sprechtext.includes('KI-Werkzeugen'),
+  true
+)
+pruefe(
+  'Sprechtext nennt die erzeugte Stimme',
+  /Stimme.{0,40}künstlich erzeugt/.test(folge.sprechtext),
+  true
+)
+pruefe(
+  'Der Hinweis steht in den ersten 200 Zeichen',
+  folge.sprechtext.indexOf('KI-Werkzeugen') < 200,
+  true
+)
+
+/*
+  Und die Gegenprobe, die den eigentlichen Fehler festhält.
+
+  Der Hinweis behauptete bis zum 17. August 2026, jede Folge werde „vor der
+  Veröffentlichung von einem Menschen inhaltlich geprüft". `podcast-erzeugen.yml`
+  schreibt, vertont und veröffentlicht ohne Halt dazwischen – die Zusage traf
+  nicht zu, und ein Kommentar im Quelltext hatte das sogar benannt.
+
+  Wer den Halbsatz zurückholt, baut zuerst den Halt in die Kette. Diese
+  Prüfung sorgt dafür, dass die Reihenfolge stimmt.
+*/
+pruefe(
+  'Kein Versprechen einer menschlichen Prüfung vor Veröffentlichung',
+  /vor der Veröffentlichung von einem Menschen/.test(folge.beschreibung) ||
+    /vor der Veröffentlichung von einem Menschen/.test(folge.sprechtext),
+  false
 )
 pruefe(
   'Beschreibung trägt den Haftungshinweis',

@@ -824,22 +824,68 @@ const WORTZIEL_MAX = 740
 /**
  * Der KI-Hinweis, wie er unter jeder Folge steht.
  *
- * Vom Betreiber wörtlich vorgegeben und deshalb hier als Konstante: Er steht
- * an zwei Stellen – unter der einzelnen Folge und, sinngemäß, in der
- * Kanalbeschreibung des Feeds (`scripts/podcast-feed-schreiben.ts`). Zwei
- * verschiedene Angaben zur selben Sache wären schlimmer als gar keine.
+ * Er steht an mehreren Stellen – unter der einzelnen Folge, in der
+ * Kanalbeschreibung des Feeds (`scripts/podcast-feed-schreiben.ts`) und im
+ * Fußbereich der Website (`components/layout/Footer.tsx`). Zwei verschiedene
+ * Angaben zur selben Sache wären schlimmer als gar keine.
  *
- * **Der Satz enthält eine Zusage, die die Technik nicht einhalten kann.**
- * „Vor der Veröffentlichung von einem Menschen inhaltlich geprüft“ trifft auf
- * die Kette nicht zu: `podcast-erzeugen.yml` schreibt, vertont und
- * veröffentlicht ohne Halt dazwischen. Wer den Satz stehen lässt, muss die
- * Folge morgens tatsächlich vor der Freigabe lesen – oder den Halbsatz
- * streichen. Er ist eine Beschreibung des Verfahrens, kein Schmuck.
+ * ## Am 17. August 2026 korrigiert, weil er nicht stimmte
+ *
+ * Bis dahin las er sich so:
+ *
+ * > … und werden **vor der Veröffentlichung von einem Menschen inhaltlich
+ * > geprüft**; die redaktionelle Verantwortung liegt beim Betreiber.
+ *
+ * Diese Zusage hält die Kette nicht ein. `podcast-erzeugen.yml` schreibt,
+ * vertont und veröffentlicht **ohne Halt dazwischen**; es gibt keine Stelle,
+ * an der ein Mensch zustimmen müsste. Der Satz stand seit Wochen da, und ein
+ * Kommentar an dieser Stelle hat den Widerspruch sogar benannt – geändert hat
+ * ihn niemand.
+ *
+ * Ein Hinweis, der mehr behauptet als geschieht, ist schlimmer als keiner: Er
+ * ist genau die Zusicherung, auf die sich ein Hörer verlässt.
+ *
+ * **Wer den Halbsatz zurückholen will, baut zuerst den Halt in die Kette** –
+ * nicht umgekehrt.
+ *
+ * ## Und warum die Stimme ausdrücklich vorkommt
+ *
+ * „Vertonung … mit Unterstützung von KI-Werkzeugen“ ist wahr und zu leise.
+ * Die Stimme ist kein bearbeiteter Mitschnitt, sondern vollständig erzeugt –
+ * ein geklontes Timbre, das wie ein Mensch klingen soll. Wer das hört, soll
+ * es wissen, ohne eine Beschreibung aufklappen zu müssen.
  */
 export const KI_HINWEIS =
-  'Hinweis: Text und Vertonung dieser Folge entstehen mit Unterstützung von ' +
-  'KI-Werkzeugen und werden vor der Veröffentlichung von einem Menschen ' +
-  'inhaltlich geprüft; die redaktionelle Verantwortung liegt beim Betreiber.'
+  'Hinweis: Text und Vertonung dieser Folge entstehen automatisiert mit ' +
+  'KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht ' +
+  'die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim ' +
+  'Betreiber.'
+
+/**
+ * Derselbe Hinweis, gesprochen – und deshalb kürzer.
+ *
+ * ## Warum er in die Aufnahme gehört
+ *
+ * Der Betreiber hat das am 17. August 2026 verlangt, und es ist die
+ * offensichtliche Lücke gewesen: Der Hinweis stand in der Beschreibung. Wer
+ * eine Folge in einer Podcast-App hört, im Auto oder beim Laufen, sieht die
+ * Beschreibung nie. Genau dort entsteht der Eindruck, ein Mensch spreche.
+ *
+ * Er steht am **Anfang**, nicht am Ende. Ein Hinweis auf eine erzeugte Stimme
+ * nach fünf Minuten Zuhören kommt zu spät – bis dahin hat sich jeder eine
+ * Meinung gebildet.
+ *
+ * ## Warum er so kurz ist
+ *
+ * Weil er sonst weggeklickt wird. Zwei Sätze, gesprochen in acht Sekunden,
+ * bleiben stehen; ein Absatz Kleingedrucktes zu Beginn kostet Hörer und
+ * erreicht damit weniger als der kurze Satz.
+ *
+ * Das Ausführliche steht weiter in `KI_HINWEIS` unter jeder Folge.
+ */
+export const KI_HINWEIS_GESPROCHEN =
+  'Ein Hinweis vorweg: Diese Folge entsteht automatisiert mit KI-Werkzeugen. ' +
+  'Auch die Stimme, die du gerade hörst, ist künstlich erzeugt.'
 
 function wortzahl(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
@@ -882,7 +928,16 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
   /* Der Markenname geht durch dieselbe Umschrift wie jeder andere englische
      Name – nicht als fertige Lautschrift hier hineingeschrieben. Sonst
      stünde er an zwei Stellen und ginge beim nächsten Mal auseinander. */
+  /*
+    Der KI-Hinweis steht vor der Begrüßung, nicht dahinter.
+
+    Dahinter wäre er eine Fußnote im Fluss; davor ist er die Bedingung, unter
+    der alles Folgende zu hören ist. Er kostet acht Sekunden und rund zwanzig
+    Wörter vom Budget – die holt die Kürzungsschleife weiter unten wieder
+    herein, notfalls an der Einordnung des letzten Themas.
+  */
   const einstieg =
+    `${KI_HINWEIS_GESPROCHEN} ` +
     englischeNamenSprechbar(
       `Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests. `
     ) +
