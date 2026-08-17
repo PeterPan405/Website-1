@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
@@ -111,11 +112,22 @@ export default async function QuellenPage() {
         title="Woher die Zahlen kommen"
         lead="Diese Website zeigt Kurse, Bilanzzahlen und Länderdaten. Keine davon stammt von uns. Hier steht, wer sie erhoben hat, wann sie zuletzt geholt wurden und was man wissen muss, um sie richtig zu lesen."
         breadcrumbs={<Breadcrumbs items={[{ name: 'Quellen' }]} />}
+        /*
+          Der Verweis auf die Methoden gehört in den Kopf und nicht ans Ende.
+
+          „Woher" und „wie" sind zwei Hälften derselben Frage, und wer hier
+          landet, hat oft die andere gemeint. Ganz unten fände er sie erst nach
+          fünf Bildschirmhöhen Quellenliste.
+        */
         meta={
           <>
             <span>{anzahl} Quellen</span>
             <span aria-hidden="true">·</span>
             <span>{nachLizenz} davon mit Namensnennung als Lizenzbedingung</span>
+            <span aria-hidden="true">·</span>
+            <Link href="/methoden" className="underline underline-offset-2">
+              Wie daraus eine Kennzahl wird
+            </Link>
           </>
         }
       />

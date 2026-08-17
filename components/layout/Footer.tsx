@@ -243,6 +243,15 @@ export function Footer() {
               Quellen
             </Link>
             <span aria-hidden="true"> · </span>
+            {/*
+              Direkt neben den Quellen, weil die beiden zusammengehören: dort
+              steht, woher die Zahlen kommen, hier, wie daraus eine Kennzahl
+              wird. Wer das eine sucht, will oft das andere.
+            */}
+            <Link href="/methoden" className="hover:text-brand transition">
+              Methoden
+            </Link>
+            <span aria-hidden="true"> · </span>
             <Link href="/impressum" className="hover:text-brand transition">
               Impressum
             </Link>

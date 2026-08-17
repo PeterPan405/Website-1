@@ -439,6 +439,25 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Methoden: wie jede Kennzahl gerechnet wird',
+    href: '/methoden',
+    kind: 'Bereich',
+    hint: 'Formel, Datengrundlage, Stichtag und was bewusst weggelassen wird',
+    keywords: [
+      'methode',
+      'methoden',
+      'methodik',
+      'formel',
+      'berechnung',
+      'wie gerechnet',
+      'rechenweg',
+      'nachvollziehbar',
+      'transparenz',
+      'annahmen',
+      'vereinfachung',
+    ],
+  })
+  eintraege.push({
     title: '52 Wochen: Abstand zum Hoch',
     href: '/maerkte/52-wochen',
     kind: 'Bereich',
