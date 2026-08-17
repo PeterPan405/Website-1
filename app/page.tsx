@@ -14,6 +14,8 @@ import {
 } from '@/lib/boersengeschichte'
 import { cn } from '@/lib/cn'
 import { formatDate, formatNumber, formatPercentSigned } from '@/lib/format'
+import { begriffDesTages } from '@/lib/begriff-des-tages'
+import { getGlossar } from '@/lib/glossar'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import {
   getInstrument,
@@ -150,10 +152,18 @@ export default async function HomePage() {
       return { symbol, name: instrument?.name ?? symbol, punkte }
     })
   )
-  const geschichte = findeGeschichte(
-    geschichtsquellen,
-    new Date().toISOString().slice(0, 10)
-  )
+  const heute = new Date().toISOString().slice(0, 10)
+  const geschichte = findeGeschichte(geschichtsquellen, heute)
+
+  /*
+    Der Begriff des Tages – aus demselben „heute" wie die Geschichtskachel.
+
+    Beim Bauen gerechnet und nicht im Browser: Sonst zeigte die ausgelieferte
+    Seite einen Begriff und der Browser einen anderen, und beim Laden blitzte
+    der Wechsel auf. Der Tag des Baus genügt, weil die Website mehrmals täglich
+    neu entsteht.
+  */
+  const begriff = begriffDesTages(await getGlossar(), heute)
 
   return (
     <>
@@ -582,6 +592,56 @@ export default async function HomePage() {
           )}
         </div>
       </section>
+
+      {/* --------------------------------------------- Begriff des Tages */}
+      {/*
+        Eine Karte, kein Abschnitt mit Überschrift und Rand.
+
+        Der Begriff des Tages ist ein Angebot im Vorbeigehen und kein Kapitel
+        der Startseite. Bekäme er dieselbe Bühne wie Lernbereich oder Märkte,
+        stünde ein Glossareintrag neben vier Bereichen – und sähe wichtiger
+        aus, als er ist.
+
+        Ohne Glossar entfällt er ganz. Ein Kasten mit „bald mehr" wäre eine
+        leere Versprechung, wie beim Podcast darunter.
+      */}
+      {begriff && (
+        <section aria-labelledby="begriff" className="fk-container py-6 sm:py-8">
+          <div className="fk-card p-6 sm:p-8">
+            <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+              Begriff des Tages
+            </p>
+            <h2 id="begriff" className="text-fg mt-2 text-2xl font-bold">
+              {begriff.begriff}
+            </h2>
+            <p className="text-fg-muted mt-3 max-w-3xl leading-relaxed">{begriff.kurz}</p>
+            <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <Link
+                href={`/glossar#${begriff.slug}`}
+                className="text-brand font-medium underline underline-offset-2"
+              >
+                Im Glossar nachschlagen
+              </Link>
+              {begriff.thema && begriff.themaTitel && (
+                <Link
+                  href={`/lernen/${begriff.thema}`}
+                  className="text-fg-subtle hover:text-fg underline underline-offset-2"
+                >
+                  Lernthema {begriff.themaTitel}
+                </Link>
+              )}
+              {begriff.rechner && begriff.rechnerTitel && (
+                <Link
+                  href={`/rechner/${begriff.rechner}`}
+                  className="text-fg-subtle hover:text-fg underline underline-offset-2"
+                >
+                  {begriff.rechnerTitel}
+                </Link>
+              )}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* ------------------------------------------------------- Podcast */}
       {/*

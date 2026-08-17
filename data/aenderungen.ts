@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
     art: 'neu',
+    titel: 'Ein Begriff des Tages auf der Startseite',
+    text: 'Jeden Tag ein anderer Fachbegriff aus dem Glossar, mit Erklärung und dem Weg ins passende Lernthema. Welcher es ist, folgt aus dem Datum – für alle derselbe, und über den Verlauf eines Durchgangs kommt jeder Begriff genau einmal an die Reihe.',
+    ziel: { text: 'Zur Startseite', href: '/' },
+  },
+  {
+    datum: '2026-08-17',
+    art: 'neu',
     titel: 'Begriffe, die ständig verwechselt werden',
     text: 'Sechs Paare, die im Alltag durcheinandergehen – ETF und Fonds, Zins und Rendite, Performance- und Kursindex, nominal und real –, zweispaltig gegenübergestellt. Links und rechts beantworten dieselbe Frage, damit man quer liest statt zweimal längs. Darunter jeweils der eine Satz, an dem man die beiden auseinanderhält.',
     ziel: { text: 'Zu den Verwechslungen', href: '/verwechslungen' },
