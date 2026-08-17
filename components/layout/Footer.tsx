@@ -252,6 +252,10 @@ export function Footer() {
               Methoden
             </Link>
             <span aria-hidden="true"> · </span>
+            <Link href="/aenderungen" className="hover:text-brand transition">
+              Änderungen
+            </Link>
+            <span aria-hidden="true"> · </span>
             <Link href="/impressum" className="hover:text-brand transition">
               Impressum
             </Link>

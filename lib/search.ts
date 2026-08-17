@@ -439,6 +439,23 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Was sich geändert hat',
+    href: '/aenderungen',
+    kind: 'Bereich',
+    hint: 'Neue Seiten, geänderte Darstellung und korrigierte Angaben – auch die Fehler',
+    keywords: [
+      'aenderungen',
+      'änderungen',
+      'changelog',
+      'neu',
+      'neuerungen',
+      'was ist neu',
+      'protokoll',
+      'verlauf',
+      'korrektur',
+    ],
+  })
+  eintraege.push({
     title: 'Methoden: wie jede Kennzahl gerechnet wird',
     href: '/methoden',
     kind: 'Bereich',

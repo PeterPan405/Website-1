@@ -275,6 +275,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       liefern aber dasselbe Ergebnis, solange die Formel steht.
     */
     { url: absoluteUrl('/methoden'), changeFrequency: 'monthly', priority: 0.6 },
+    /*
+      Das Änderungsprotokoll wächst mit jedem sichtbaren Umbau – seltener als
+      die Nachrichten, häufiger als die Methoden.
+    */
+    { url: absoluteUrl('/aenderungen'), changeFrequency: 'weekly', priority: 0.4 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,
