@@ -67,6 +67,24 @@ SIGNET = [(0x6E, 0x6E, 0x6E), (0x8B, 0x22, 0x25), (0x17, 0x29, 0x6F), (0x20, 0x5
 
 WEISS = (255, 255, 255)
 
+#: Wie viel der Kachelbreite das Signet einnimmt.
+#:
+#: Die Quelldatei bringt 83,3 % mit (Kasten 15…164 auf 180 Pixeln) – das
+#: Signet stößt damit fast an den Rand. Der Betreiber hat am 17. August 2026
+#: den Vergleich mit dem Symbol „IM Capital" daneben verlangt, und dort ist
+#: der Rand deutlich breiter.
+#:
+#: **Die Zahl ist am Screenshot abgeschätzt, nicht gemessen.** Sie ist absichtlich
+#: eine einzelne Konstante: Wer den Rand ändern will, ändert hier eine Zahl
+#: und lässt das Skript neu laufen – kein Bildbearbeitungsprogramm, keine
+#: Datei, deren Maße niemand mehr nachvollziehen kann.
+#:
+#: Warum nicht die Quelldatei kleiner gezeichnet wird: Sie ist die Urfassung
+#: in voller Auflösung. Aus ihr zu verkleinern verliert nichts; in ihr zu
+#: verkleinern hieße, Rand in die Vorlage einzubacken und beim nächsten
+#: Wunsch wieder von vorn anzufangen.
+SIGNETANTEIL = 0.70
+
 
 def grundton(stildatei: str = STILDATEI) -> tuple[int, int, int]:
     """Liest `--c-canvas` aus dem Stylesheet – die eine Quelle für den Ton.
@@ -112,6 +130,48 @@ def faerben(quelle: str, ton: tuple[int, int, int]):
     return Image.fromarray(neu.reshape(hoehe, breite, 3).round().astype("uint8")), flach, neu
 
 
+def einpassen(bild, ton: tuple[int, int, int]):
+    """Setzt das Signet auf `SIGNETANTEIL` der Kachelbreite, mittig.
+
+    Der Rand entsteht **nachträglich** und nicht durch Skalieren des ganzen
+    Bildes: Gemessen wird der Kasten, in dem das Signet tatsächlich liegt,
+    und nur der wird verkleinert. Sonst hinge das Ergebnis daran, wie viel
+    Rand die Quelldatei zufällig schon mitbringt – und beim nächsten Austausch
+    der Vorlage säße es woanders.
+
+    Verkleinert wird mit Lanczos, nicht mit dem nächsten Nachbarn. Das Signet
+    hat runde Kanten; ein Nachbarverfahren macht daraus Treppen, und die
+    fallen auf einem Homescreen sofort auf.
+    """
+    import numpy as np
+    from PIL import Image
+
+    seite = bild.size[0]
+    abstand = np.abs(np.asarray(bild).astype(int) - np.array(ton)).sum(axis=2)
+    zeilen, spalten = np.nonzero(abstand > 40)
+    if len(spalten) == 0:
+        raise SystemExit("[icon] Kein Signet gefunden – ist die Quelldatei leer?")
+
+    kasten = (spalten.min(), zeilen.min(), spalten.max() + 1, zeilen.max() + 1)
+    breite, hoehe = kasten[2] - kasten[0], kasten[3] - kasten[1]
+
+    """
+    Das Seitenverhältnis bleibt erhalten.
+
+    Der Kasten ist heute quadratisch (150 × 150). Ihn blind auf ein Quadrat zu
+    ziehen ginge deshalb gut – bis jemand eine Vorlage einsetzt, die es nicht
+    ist, und das Signet lautlos verzerrt herauskäme.
+    """
+    laenge = max(breite, hoehe)
+    faktor = (seite * SIGNETANTEIL) / laenge
+    neu = (max(1, round(breite * faktor)), max(1, round(hoehe * faktor)))
+
+    signet = bild.crop(kasten).resize(neu, Image.LANCZOS)
+    leinwand = Image.new("RGB", bild.size, ton)
+    leinwand.paste(signet, ((seite - neu[0]) // 2, (bild.size[1] - neu[1]) // 2))
+    return leinwand
+
+
 def main() -> int:
     import numpy as np
 
@@ -141,6 +201,18 @@ def main() -> int:
         return 1
 
     print(f"[icon] Signet unverändert, Grund auf #{ton[0]:02x}{ton[1]:02x}{ton[2]:02x}.")
+
+    """
+    Erst färben, dann einpassen – nicht umgekehrt.
+
+    Die Farbprüfung oben ruht darauf, dass jedes Pixel entweder eine der vier
+    Signetfarben, reines Weiß oder eine Mischung aus beidem ist. Nach dem
+    Verkleinern stimmt das nicht mehr: Lanczos mischt über mehrere Pixel und
+    schießt an harten Kanten sogar über den Farbraum hinaus. Die Prüfung
+    „Signetfarbe unverändert" fände dann Abweichungen, die keine sind.
+    """
+    bild = einpassen(bild, ton)
+    print(f"[icon] Signet auf {SIGNETANTEIL:.0%} der Kachelbreite eingepasst.")
 
     if "--pruefen" in sys.argv:
         from PIL import Image
