@@ -285,6 +285,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       neue Podcastfolge verschiebt eine Zahl darauf.
     */
     { url: absoluteUrl('/zahlen'), changeFrequency: 'daily', priority: 0.4 },
+    /*
+      Die Verwechslungspaare stehen fest – sie ändern sich, wenn ein Paar
+      dazukommt, und das ist ein seltener Anlass.
+    */
+    { url: absoluteUrl('/verwechslungen'), changeFrequency: 'monthly', priority: 0.6 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,

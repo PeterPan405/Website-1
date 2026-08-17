@@ -456,6 +456,28 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Begriffe, die ständig verwechselt werden',
+    href: '/verwechslungen',
+    kind: 'Bereich',
+    hint: 'ETF und Fonds, Zins und Rendite, nominal und real – zweispaltig, mit dem Satz zum Unterscheiden',
+    keywords: [
+      'verwechslung',
+      'verwechslungen',
+      'unterschied',
+      'unterschiede',
+      'gegen',
+      'versus',
+      'vs',
+      'etf oder fonds',
+      'zins oder rendite',
+      'nominal real',
+      'volatilitaet risiko',
+      'performanceindex',
+      'kursindex',
+      'cashflow',
+    ],
+  })
+  eintraege.push({
     title: 'Die Website in Zahlen',
     href: '/zahlen',
     kind: 'Bereich',

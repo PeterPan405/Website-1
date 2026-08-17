@@ -173,6 +173,11 @@ export const mainNav: NavItem[] = [
         hint: 'Fachbegriffe, in je einem Satz erklärt',
       },
       {
+        label: 'Verwechslungen',
+        href: '/verwechslungen',
+        hint: 'Begriffspaare, die durcheinandergehen – nebeneinander gestellt',
+      },
+      {
         label: 'Aktie',
         href: '/lernen/aktie',
         hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
@@ -318,6 +323,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Lernpfade', href: '/lernen/pfade' },
       { label: 'Akademie', href: '/akademie' },
       { label: 'Glossar', href: '/glossar' },
+      { label: 'Verwechslungen', href: '/verwechslungen' },
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },

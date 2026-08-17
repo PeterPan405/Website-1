@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
     art: 'neu',
+    titel: 'Begriffe, die ständig verwechselt werden',
+    text: 'Sechs Paare, die im Alltag durcheinandergehen – ETF und Fonds, Zins und Rendite, Performance- und Kursindex, nominal und real –, zweispaltig gegenübergestellt. Links und rechts beantworten dieselbe Frage, damit man quer liest statt zweimal längs. Darunter jeweils der eine Satz, an dem man die beiden auseinanderhält.',
+    ziel: { text: 'Zu den Verwechslungen', href: '/verwechslungen' },
+  },
+  {
+    datum: '2026-08-17',
+    art: 'neu',
     titel: 'Jeder Rechner zeigt jetzt seinen Rechenweg',
     text: 'Unter dem Ergebnis lässt sich aufklappen, wie es zustande kommt – Schritt für Schritt, mit den Zahlen, die oben eingetragen sind. Wer will, kann das mit dem Taschenrechner nachvollziehen und muss der Seite an dieser Stelle nicht mehr glauben.',
     ziel: { text: 'Zu den Rechnern', href: '/rechner' },
