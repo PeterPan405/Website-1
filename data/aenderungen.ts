@@ -59,6 +59,13 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
+    art: 'neu',
+    titel: 'Kaufkraft und Wechselkurs – getrennt statt in einer Zahl',
+    text: '„Was sind 100 € von 2015 heute wert?" wird meist mit einer Zahl beantwortet, und die vermischt zwei Dinge: dass Waren teurer geworden sind, und dass der Euro anders zu anderen Währungen steht. Der neue Rechner weist beides einzeln aus und darunter die Kombination. Gerechnet wird mit gemessenen Jahresreihen von Eurostat, nicht mit angenommenen Raten.',
+    ziel: { text: 'Zum Kaufkraftrechner', href: '/rechner/kaufkraft' },
+  },
+  {
+    datum: '2026-08-17',
     art: 'geaendert',
     titel: 'Kreditrechner: Sondertilgung, Anschluss und Tilgungsplan zum Mitnehmen',
     text: 'Der Rechner beantwortet jetzt drei Fragen mehr: Was bringt eine jährliche Sondertilgung – in gesparten Zinsen und in Monaten? Was kostet es, wenn der Zins nach der Bindung einen Prozentpunkt höher liegt? Und der vollständige Tilgungsplan lässt sich als Tabelle herunterladen, um ihn gegen ein Bankangebot zu halten.',
