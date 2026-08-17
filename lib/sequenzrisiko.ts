@@ -43,10 +43,16 @@ export interface Sequenzergebnis {
  * Ein Depot über die gegebenen Jahresrenditen, mit fester Jahresentnahme.
  *
  * Reihenfolge im Jahr: erst die Rendite, dann die Entnahme. Das entspricht
- * einer Entnahme am Jahresende und ist die vorsichtigere der beiden üblichen
- * Konventionen – bei einer Entnahme am Jahresanfang fällt das Ergebnis in
- * jedem Fall schlechter aus, weil der entnommene Betrag ein Jahr weniger
- * arbeitet.
+ * einer Entnahme am **Jahresende** und ist damit die **freundlichere** der
+ * beiden üblichen Konventionen: Bei einer Entnahme am Jahresanfang fällt das
+ * Ergebnis in jedem Fall schlechter aus, weil der entnommene Betrag ein Jahr
+ * weniger arbeitet.
+ *
+ * Hier stand bis zum 17. August 2026 „die vorsichtigere“ – dieselbe
+ * Begründung, das umgekehrte Etikett. Wer sich auf das Wort verlassen und die
+ * Begründung überlesen hätte, hätte ein Ergebnis für konservativ gehalten, das
+ * es nicht ist. `lib/entnahme.ts` benutzt dieselbe Reihenfolge und nennt den
+ * Preis dafür bei seinen Grenzen.
  *
  * Ist das Depot leer, wird nur noch entnommen, was da ist; danach bleibt es
  * bei null. Ein negativer Depotwert wäre eine Rechnung ohne Bezug zur

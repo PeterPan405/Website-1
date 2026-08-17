@@ -1,4 +1,5 @@
 import { taktErwartung, beurteile } from '@/lib/datenstand'
+import { entnahmeplan, MAX_JAHRE } from '@/lib/entnahme'
 import { abstandZumHoch, spannenPosition } from '@/lib/jahresspanne'
 import { formatNumber, formatPercent, formatPercentSigned } from '@/lib/format'
 import { aufSkala, gleitenderDurchschnitt, marktbreite } from '@/lib/stimmungsindex'
@@ -271,6 +272,40 @@ export const METHODEN: Methode[] = [
       return {
         eingabe: '1.000 € bei Kurs 100, heute Kurs 180',
         ergebnis: ergebnis ? formatNumber(ergebnis.endwert, 0) + ' €' : 'keine Angabe',
+      }
+    },
+  },
+  {
+    slug: 'entnahme-reichweite',
+    titel: 'Reichweite eines Entnahmeplans',
+    frage: 'Wie lange trägt ein Kapital, aus dem monatlich entnommen wird?',
+    formel: 'Kapitalₜ = Kapitalₜ₋₁ × (1 + realer Zins) − Entnahme',
+    quelle: 'Ausschließlich Eingaben – Kapital, Entnahme, Rendite, Inflationsrate',
+    stichtag:
+      'Kein Stichtag: eine Vorausrechnung, keine Messung. Gerechnet wird in ganzen Jahren, erst die Rendite, dann die Entnahme.',
+    vereinfachungen: [
+      'Die Entnahme steigt jedes Jahr mit der Inflation – gerechnet wird deshalb mit dem realen Zins, dem Quotienten aus Rendite und Teuerung, nicht ihrer Differenz.',
+      'Eine feste Rendite je Jahr. Genau die gibt es nicht, und für jemanden, der entnimmt, zählt die Reihenfolge der Jahre: Schwache Jahre am Anfang wirken stärker als dieselben Jahre am Ende.',
+      'Entnommen wird rechnerisch am Jahresende. Wer monatlich entnimmt, nimmt im Schnitt ein halbes Jahr früher heraus – über dreißig Jahre etwa ein halbes bis ein Jahr Reichweite.',
+      'Ohne Steuern und Produktkosten. Die Abgeltungsteuer hängt am Einstandskurs, den diese Rechnung nicht kennt.',
+    ],
+    herkunft: { datei: 'lib/entnahme.ts', funktion: 'entnahmeplan' },
+    zuSehen: { text: 'Entnahmeplan', href: '/rechner/entnahmeplan' },
+    beispiel: () => {
+      const plan = entnahmeplan({
+        kapital: 500_000,
+        entnahmeProMonat: 2_000,
+        renditeProzent: 5,
+        inflationProzent: 2,
+        zieldauerJahre: 30,
+      })
+      return {
+        eingabe: '500.000 €, 2.000 €/Monat, 5 % Rendite, 2 % Inflation',
+        ergebnis: plan.dauerhaft
+          ? 'trägt dauerhaft'
+          : plan.reichweiteJahre === null
+            ? `über ${MAX_JAHRE} Jahre`
+            : `${formatNumber(plan.reichweiteJahre)} Jahre`,
       }
     },
   },
