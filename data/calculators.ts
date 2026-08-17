@@ -843,6 +843,79 @@ export const calculators: CalculatorDefinition[] = [
     ],
   },
   {
+    slug: 'kaufen-oder-mieten',
+    title: 'Kaufen oder mieten',
+    headline: 'Kaufen oder mieten: der Vollkostenvergleich',
+    metaTitle: 'Kaufen oder mieten: Vollkostenvergleich über beide Seiten',
+    metaDescription:
+      // 153 Zeichen. Die Grenze liegt bei 160 (`scripts/paket-pruefen.ts`).
+      'Kaufen oder mieten bei gleichem Geldabfluss: Vermögen nach N Jahren auf beiden Seiten – und wie stark die Immobilie steigen müsste, damit es aufgeht.',
+    lead: '„Die Rate ist so hoch wie die Miete“ beantwortet die Frage nicht. In der Rate steckt Tilgung, in der Miete keine Instandhaltung – und beide verschweigen die Nebenkosten und das Eigenkapital, an denen sich die Sache entscheidet.',
+    summary: 'Kaufen gegen Mieten bei gleichem Geldabfluss, über die ganzen Kosten.',
+    featureList: [
+      'Vermögen nach N Jahren auf beiden Seiten, bei gleichem monatlichen Geldabfluss',
+      'Notwendige jährliche Wertsteigerung, damit der Kauf aufgeht',
+      'Kaufnebenkosten, Zinsen und Instandhaltung einzeln ausgewiesen',
+      'Abgeltungsteuer auf den Depotgewinn – die Asymmetrie zur steuerfreien Wertsteigerung',
+    ],
+    grenzen: [
+      'Die Wertsteigerung ist die unsicherste Annahme des Rechners und zugleich die wirksamste. Deshalb steht als Hauptzahl nicht „lohnt sich", sondern wie hoch sie sein müsste, damit es aufgeht.',
+      'Die Nebenkosten werden hier mitfinanziert, soweit das Eigenkapital nicht reicht. In der Wirklichkeit verlangen Banken sie aus Eigenmitteln; wer sie nicht hat, zahlt einen Zinsaufschlag oder bekommt keinen Kredit.',
+      'Ohne Anschlussrisiko: Gerechnet wird mit demselben Zins über den ganzen Zeitraum. Was nach der Zinsbindung gilt, rechnet der Kreditrechner durch.',
+      'Ohne Kaufkosten beim Verkauf, ohne Modernisierungsstau, ohne Sonderumlage der Eigentümergemeinschaft. Jeder dieser Posten spricht gegen den Kauf.',
+      'Die Entscheidung ist keine reine Geldfrage. Eigenbedarfskündigung, Umzugsfreiheit, der Wunsch zu bleiben – dafür gibt es hier keine Zeile, und für viele sind sie ausschlaggebend.',
+    ],
+    schritte: [
+      'Kaufpreis, Nebenkostensatz und Eigenkapital eintragen.',
+      'Kreditzins, anfängliche Tilgung, Instandhaltung und erwartete Wertsteigerung setzen.',
+      'Kaltmiete, Mietsteigerung, Anlagerendite und Zeitraum angeben.',
+      'Oben ablesen, wie stark die Immobilie steigen müsste – und darunter, wie viel Vermögen beide Wege ergeben.',
+    ],
+    relatedTopics: ['immobilien', 'schulden-und-kredit', 'inflation'],
+    methodology: [
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum bei gleichem Geldabfluss verglichen wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil ein Vergleich, in dem eine Seite mehr ausgibt als die andere, sein Ergebnis schon vorher kennt. Der Mieter legt hier in jedem Monat die **Differenz** zu den Ausgaben des Käufers an; ist die Miete höher, entnimmt er sie dem Depot. Beide geben also gleich viel aus, und verglichen wird, was am Ende jedem gehört.',
+      },
+      {
+        type: 'formula',
+        expression:
+          'Vermögen Kauf = Immobilienwert − Restschuld   ·   Vermögen Miete = Depot − Steuer auf den Gewinn',
+        description:
+          'Der Käufer startet mit Immobilie und Schulden, der Mieter mit dem Eigenkapital im Depot. Gerechnet wird monatlich, weil die Kreditrate monatlich anfällt.',
+      },
+      { type: 'heading', level: 2, text: 'Die beiden Posten, an denen es hängt' },
+      {
+        type: 'paragraph',
+        text: 'Die **Kaufnebenkosten** – Grunderwerbsteuer, Notar, Grundbuch, oft Makler – sind am Tag des Kaufs ausgegeben. Sie stecken nicht in der Immobilie: Wer am nächsten Tag zum selben Preis verkauft, hat sie verloren. Bei 400.000 € Kaufpreis sind zehn Prozent 40.000 €, die der Wert erst wieder aufholen muss – und die, wenn sie mitfinanziert werden, zwanzig Jahre lang Zinsen kosten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die **Opportunität des Eigenkapitals** ist der zweite. Wer 100.000 € anzahlt, hat sie nicht mehr angelegt. Was sie in einem Depot geworden wären, fehlt der Kaufseite – diese Zahl steht in keinem Maklerprospekt und in keiner Überschlagsrechnung am Küchentisch.',
+      },
+      { type: 'heading', level: 2, text: 'Die Steuer steht auf einer Seite' },
+      {
+        type: 'paragraph',
+        text: 'Der Gewinn aus dem Depot wird mit Abgeltungsteuer belegt. Der Wertzuwachs einer selbstgenutzten Immobilie nicht – bei Eigennutzung von Anfang an, bei Vermietung nach zehn Jahren. Diese Asymmetrie ist echt, und sie verschiebt das Ergebnis um mehrere zehntausend Euro. Sie wegzulassen wäre bequemer und würde das Mieten besserstellen, als es steht.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum die Hauptzahl eine Frage umdreht',
+        items: [
+          '„Lohnt sich Kaufen?" kann niemand beantworten – es hängt daran, was die Immobilie in zwanzig Jahren wert ist.',
+          'Beantwortbar ist: **Was müsste passieren, damit es sich lohnt?** Die notwendige jährliche Wertsteigerung ist eine Zahl, die man selbst einschätzen kann – anders als eine Prognose, die man glauben müsste.',
+          'Gefunden wird sie durch Intervallhalbierung über den vollständigen Tilgungsplan. Eine geschlossene Formel gibt es dafür nicht.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'kaufkraft',
     title: 'Kaufkraft und Wechselkurs',
     headline: 'Kaufkraft und Wechselkurs: was Ihr Geld von damals heute wert ist',

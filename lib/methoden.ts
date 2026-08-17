@@ -1,6 +1,7 @@
 import { taktErwartung, beurteile } from '@/lib/datenstand'
 import { entnahmeplan, MAX_JAHRE } from '@/lib/entnahme'
 import { vergleiche } from '@/lib/kaufkraft'
+import { vergleicheKaufMiete } from '@/lib/kaufen-mieten'
 import { notgroschen } from '@/lib/notgroschen'
 import { abstandZumHoch, spannenPosition } from '@/lib/jahresspanne'
 import { formatNumber, formatPercent, formatPercentSigned } from '@/lib/format'
@@ -274,6 +275,47 @@ export const METHODEN: Methode[] = [
       return {
         eingabe: '1.000 € bei Kurs 100, heute Kurs 180',
         ergebnis: ergebnis ? formatNumber(ergebnis.endwert, 0) + ' €' : 'keine Angabe',
+      }
+    },
+  },
+  {
+    slug: 'kaufen-mieten',
+    titel: 'Kaufen oder mieten',
+    frage: 'Wie stark müsste die Immobilie steigen, damit der Kauf aufgeht?',
+    formel:
+      'Vermögen Kauf = Immobilienwert − Restschuld; Vermögen Miete = Depot − Steuer, bei gleichem Geldabfluss',
+    quelle: 'Ausschließlich Eingaben – Kaufpreis, Nebenkosten, Zins, Miete, Renditen',
+    stichtag:
+      'Kein Stichtag: eine Vorausrechnung. Gerechnet wird monatlich, weil die Kreditrate monatlich anfällt.',
+    vereinfachungen: [
+      'Der Mieter legt in jedem Monat die Differenz zu den Ausgaben des Käufers an – ohne diese Gleichstellung verglichen man einen Sparer mit einem Nicht-Sparer.',
+      'Die Wertsteigerung ist die unsicherste Annahme und zugleich die wirksamste. Deshalb wird nicht „lohnt sich" ausgegeben, sondern die Wertsteigerung, ab der es aufgeht.',
+      'Der Depotgewinn wird mit Abgeltungsteuer belegt, der Wertzuwachs der selbstgenutzten Immobilie nicht. Diese Asymmetrie ist echt und verschiebt das Ergebnis erheblich.',
+      'Ohne Anschlussrisiko, ohne Verkaufskosten, ohne Sonderumlage – und ohne alles, was keine Geldfrage ist: Eigenbedarf, Umzugsfreiheit, der Wunsch zu bleiben.',
+    ],
+    herkunft: { datei: 'lib/kaufen-mieten.ts', funktion: 'vergleicheKaufMiete' },
+    zuSehen: { text: 'Kaufen oder mieten', href: '/rechner/kaufen-oder-mieten' },
+    beispiel: () => {
+      const v = vergleicheKaufMiete({
+        kaufpreis: 400_000,
+        nebenkostenProzent: 10,
+        eigenkapital: 100_000,
+        zinsProzent: 3.8,
+        tilgungProzent: 2,
+        instandhaltungProzent: 1.2,
+        wertsteigerungProzent: 2,
+        mieteProMonat: 1_200,
+        mietsteigerungProzent: 2,
+        anlagerenditeProzent: 6,
+        jahre: 20,
+        kirchensteuersatz: 0,
+      })
+      return {
+        eingabe: '400.000 € Kaufpreis, 100.000 € Eigenkapital, 1.200 € Miete, 20 Jahre',
+        ergebnis:
+          v.notwendigeWertsteigerungProzent === null
+            ? 'keine Angabe'
+            : `${formatNumber(v.notwendigeWertsteigerungProzent, 2)} % Wertsteigerung nötig`,
       }
     },
   },

@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
     art: 'neu',
+    titel: 'Kaufen oder mieten – mit den Posten, die sonst fehlen',
+    text: '„Die Rate ist so hoch wie die Miete“ beantwortet die Frage nicht: In der Rate steckt Tilgung, in der Miete keine Instandhaltung. Der neue Rechner stellt beide Wege bei gleichem Geldabfluss gegenüber und sagt vor allem eines – wie stark die Immobilie jedes Jahr steigen müsste, damit der Kauf aufgeht.',
+    ziel: { text: 'Zum Vergleich', href: '/rechner/kaufen-oder-mieten' },
+  },
+  {
+    datum: '2026-08-17',
+    art: 'neu',
     titel: 'Kaufkraft und Wechselkurs – getrennt statt in einer Zahl',
     text: '„Was sind 100 € von 2015 heute wert?" wird meist mit einer Zahl beantwortet, und die vermischt zwei Dinge: dass Waren teurer geworden sind, und dass der Euro anders zu anderen Währungen steht. Der neue Rechner weist beides einzeln aus und darunter die Kombination. Gerechnet wird mit gemessenen Jahresreihen von Eurostat, nicht mit angenommenen Raten.',
     ziel: { text: 'Zum Kaufkraftrechner', href: '/rechner/kaufkraft' },
