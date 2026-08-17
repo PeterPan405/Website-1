@@ -11,6 +11,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/format'
@@ -201,6 +202,44 @@ export function KreditCalculator() {
         ],
     grenzen: getCalculatorDefinition('kreditrechner')!.grenzen,
   })
+
+  /*
+    Der Rechenweg zeigt die erste Rate von innen.
+
+    Wer einmal sieht, dass von 1.740 € Rate über 900 € Zins sind, versteht die
+    Aussage des Rechners besser als aus jeder Kennzahl: Am Anfang tilgt man
+    fast nichts, und deshalb steht nach zehn Jahren noch so viel offen.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Die Rate aus Zins und Anfangstilgung',
+      formel: 'Summe × (Zins + Tilgung) ÷ 100 ÷ 12',
+      eingesetzt: `${formatCurrency(summe, 0)} × (${formatNumber(zinsProzent, 2)} + ${formatNumber(tilgungProzent, 2)}) ÷ 100 ÷ 12`,
+      ergebnis: `${formatCurrency(rate, 2)} je Monat`,
+      hinweis: 'So werden Kredite in Deutschland angeboten – die Rate folgt aus beidem.',
+    },
+    {
+      was: 'Der Zinsanteil der ersten Rate',
+      formel: 'Restschuld × Jahreszins ÷ 12',
+      eingesetzt: `${formatCurrency(summe, 0)} × ${formatNumber(zinsProzent / 100, 4)} ÷ 12`,
+      ergebnis: formatCurrency(monatszins, 2),
+      hinweis: `Das sind ${formatPercent(rate > 0 ? monatszins / rate : 0, 0)} der Rate. Getilgt wird nur der Rest – und weil die Restschuld sinkt, verschiebt sich das Verhältnis mit jedem Monat.`,
+    },
+    {
+      was: 'Was die erste Rate tilgt',
+      formel: 'Rate − Zins',
+      eingesetzt: `${formatCurrency(rate, 2)} − ${formatCurrency(monatszins, 2)}`,
+      ergebnis: formatCurrency(Math.max(0, rate - monatszins), 2),
+    },
+    {
+      was: `Was nach ${zinsbindungJahre} Jahren noch offen ist`,
+      formel: 'Summe − alle Tilgungen der Zinsbindung',
+      eingesetzt: `${formatCurrency(summe, 0)} − ${formatCurrency(getilgtBeiBindung, 0)}`,
+      ergebnis: formatCurrency(restschuld, 0),
+      hinweis:
+        'Die Zahl, auf die es ankommt: Sie muss dann zu heute unbekannten Konditionen weiterfinanziert werden.',
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -440,6 +479,7 @@ export function KreditCalculator() {
             </div>
           </>
         )}
+        <Rechenweg schritte={rechenweg} />
       </ResultPanel>
     </CalculatorGrid>
   )

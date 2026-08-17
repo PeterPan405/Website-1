@@ -11,6 +11,7 @@ import {
   ResultPanel,
 } from '@/components/calculators/CalculatorPanels'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { useVorbelegung } from '@/components/calculators/vorbelegung'
 import { leseZahl } from '@/lib/rechner-vorbelegung'
@@ -95,6 +96,36 @@ export function InflationCalculator() {
     setYears(defaults.years)
     setNominalReturn(defaults.nominalReturn)
   }
+
+  /*
+    Zwei Leserichtungen derselben Rechnung.
+
+    „Was ist übrig" und „was bräuchte ich" sind dieselbe Division, einmal von
+    jeder Seite. Nebeneinander gestellt hört die eine auf, die andere zu
+    verdecken.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Der Preisfaktor über den Zeitraum',
+      formel: '(1 + Inflationsrate) hoch Jahre',
+      eingesetzt: `(1 + ${formatNumber(rate / 100, 4)}) ^ ${formatNumber(years, 0)}`,
+      ergebnis: formatNumber((1 + rate / 100) ** years, 4),
+      hinweis: 'Um diesen Faktor sind die Preise am Ende höher.',
+    },
+    {
+      was: 'Was von der Kaufkraft übrig ist',
+      formel: 'Betrag ÷ Preisfaktor',
+      eingesetzt: `${formatCurrency(amount, 0)} ÷ ${formatNumber((1 + rate / 100) ** years, 4)}`,
+      ergebnis: formatCurrency(result.purchasingPower, 0),
+    },
+    {
+      was: 'Was man dann bräuchte',
+      formel: 'Betrag × Preisfaktor',
+      eingesetzt: `${formatCurrency(amount, 0)} × ${formatNumber((1 + rate / 100) ** years, 4)}`,
+      ergebnis: formatCurrency(result.requiredAmount, 0),
+      hinweis: 'Dieselbe Rechnung, andersherum gelesen – für denselben Warenkorb.',
+    },
+  ]
 
   return (
     <CalculatorGrid>
@@ -221,6 +252,8 @@ export function InflationCalculator() {
             hint="Nominalzins minus Inflation – die verbreitete, aber ungenaue Faustformel."
           />
         </StatGrid>
+
+        <Rechenweg schritte={rechenweg} />
 
         <Callout variant="info" title="Warum der Unterschied wichtig ist">
           <p>

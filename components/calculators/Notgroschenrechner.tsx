@@ -10,6 +10,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { getCalculatorDefinition } from '@/data/calculators'
@@ -153,6 +154,52 @@ export function Notgroschenrechner() {
     ],
     grenzen: getCalculatorDefinition('notgroschen')!.grenzen,
   })
+
+  /*
+    Der Rechenweg zeigt die Addition, nicht nur ihr Ergebnis.
+
+    Die Beiträge stehen ohnehin schon einzeln auf der Seite. Was hier
+    dazukommt, ist die Rechnung selbst: dass aus der Faustregel plus vier
+    Zuschlägen genau diese Monatszahl wird und daraus genau dieser Betrag.
+  */
+  const summe = ergebnis.beitraege.reduce((s, b) => s + b.monate, 0)
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Die Zu- und Abschläge zusammenzählen',
+      formel: 'Summe aller Beiträge in Monaten',
+      eingesetzt:
+        ergebnis.beitraege
+          .filter((b) => b.monate !== 0)
+          .map((b) => `${b.monate > 0 ? '+' : '−'}${Math.abs(b.monate)}`)
+          .join(' ') || '0',
+      ergebnis: `${summe > 0 ? '+' : ''}${formatNumber(summe)} Monate`,
+      hinweis: 'Welcher Beitrag woher kommt, steht oben mit Begründung.',
+    },
+    {
+      was: 'Auf die Faustregel aufschlagen',
+      formel: 'Faustregel + Summe der Beiträge',
+      eingesetzt: `${PAUSCHALE.min} bis ${PAUSCHALE.max} ${summe >= 0 ? '+' : '−'} ${Math.abs(summe)}`,
+      ergebnis: `${ergebnis.monateVon} bis ${ergebnis.monateBis} Monatsausgaben`,
+      hinweis:
+        'Beide Enden werden gemeinsam verschoben – die Spannweite der Faustregel bleibt erhalten. Es gibt keine richtige Zahl, es gibt einen Bereich.',
+    },
+    {
+      was: 'In Euro umrechnen',
+      formel: 'Monate × Ausgaben je Monat',
+      eingesetzt: `${ergebnis.monateVon} bis ${ergebnis.monateBis} × ${formatCurrency(ausgaben, 0)}`,
+      ergebnis: `${formatCurrency(ergebnis.euroVon, 0)} – ${formatCurrency(ergebnis.euroBis, 0)}`,
+      hinweis:
+        'An den Ausgaben, nicht am Gehalt. Die Frage ist, wie lange der Haushalt ohne Einkommen zurechtkommt.',
+    },
+    {
+      was: 'Wie lange das im Sparmodus trägt',
+      formel: 'Obergrenze ÷ Fixkosten je Monat',
+      eingesetzt: `${formatCurrency(ergebnis.euroBis, 0)} ÷ ${formatCurrency(fixkostenGedeckelt, 0)}`,
+      ergebnis: `${formatNumber(ergebnis.monateImSparmodus, 1)} Monate`,
+      hinweis:
+        'Wenn alles Streichbare gestrichen ist. Das ist die Zahl, die im Ernstfall zählt.',
+    },
+  ]
 
   function zuruecksetzen() {
     setBeschaeftigung(standard.beschaeftigung)
@@ -308,6 +355,8 @@ export function Notgroschenrechner() {
             hint={`Die verbreitete Regel nennt ${PAUSCHALE.min} bis ${PAUSCHALE.max} Monatsausgaben – für jeden dieselbe Zahl.`}
           />
         </StatGrid>
+
+        <Rechenweg schritte={rechenweg} />
 
         <Callout variant="info" title="Warum an den Ausgaben und nicht am Gehalt">
           <p>

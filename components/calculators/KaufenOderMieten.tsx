@@ -11,6 +11,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { getCalculatorDefinition } from '@/data/calculators'
@@ -161,6 +162,52 @@ export function KaufenOderMieten() {
     ],
     grenzen: getCalculatorDefinition('kaufen-oder-mieten')!.grenzen,
   })
+
+  /*
+    Der Rechenweg zeigt die Posten, die sonst untergehen.
+
+    Nicht die Monatsrate – die kennt jeder. Sondern die drei Zeilen, an denen
+    sich der Vergleich entscheidet: was die Nebenkosten wirklich kosten, womit
+    der Mieter startet, und wie beide Vermögen am Ende zustande kommen.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Die Kaufnebenkosten',
+      formel: 'Kaufpreis × Nebenkostensatz',
+      eingesetzt: `${formatCurrency(kaufpreis, 0)} × ${formatPercent(nebenkosten / 100, 1)}`,
+      ergebnis: formatCurrency(ergebnis.nebenkosten, 0),
+      hinweis:
+        'Am Tag des Kaufs ausgegeben. Wer am nächsten Tag zum selben Preis verkauft, hat diesen Betrag verloren – er steckt nicht in der Immobilie.',
+    },
+    {
+      was: 'Das Darlehen',
+      formel: 'Kaufpreis + Nebenkosten − Eigenkapital',
+      eingesetzt: `${formatCurrency(kaufpreis, 0)} + ${formatCurrency(ergebnis.nebenkosten, 0)} − ${formatCurrency(eigenkapital, 0)}`,
+      ergebnis: formatCurrency(ergebnis.darlehen, 0),
+    },
+    {
+      was: 'Was der Käufer im Monat ausgibt',
+      formel: 'Kreditrate + Instandhaltung je Monat',
+      eingesetzt: `Rate + ${formatCurrency(kaufpreis, 0)} × ${formatPercent(instandhaltung / 100, 2)} ÷ 12`,
+      ergebnis: `${formatCurrency(ergebnis.monatsrateKauf, 0)} je Monat`,
+      hinweis:
+        'An dieser Zahl misst sich der Mieter: Er zahlt Miete und legt die Differenz an. Beide geben also gleich viel aus.',
+    },
+    {
+      was: `Vermögen beim Kaufen nach ${formatNumber(jahre)} Jahren`,
+      formel: 'Immobilienwert − Restschuld',
+      eingesetzt: `${formatCurrency(ergebnis.verlauf.at(-1)?.immobilienwert ?? 0, 0)} − ${formatCurrency(ergebnis.verlauf.at(-1)?.restschuld ?? 0, 0)}`,
+      ergebnis: formatCurrency(ergebnis.vermoegenKauf, 0),
+    },
+    {
+      was: `Vermögen beim Mieten nach ${formatNumber(jahre)} Jahren`,
+      formel: 'Depotwert − Abgeltungsteuer auf den Gewinn',
+      eingesetzt: `${formatCurrency(ergebnis.vermoegenMiete + ergebnis.steuerMieter, 0)} − ${formatCurrency(ergebnis.steuerMieter, 0)}`,
+      ergebnis: formatCurrency(ergebnis.vermoegenMiete, 0),
+      hinweis:
+        'Das Depot beginnt mit dem Eigenkapital, das der Käufer in die Immobilie gesteckt hat, und bekommt jeden Monat die Differenz. Der Gewinn wird versteuert – der Wertzuwachs der selbstgenutzten Immobilie nicht.',
+    },
+  ]
 
   function zuruecksetzen() {
     setKaufpreis(standard.kaufpreis)
@@ -410,6 +457,11 @@ export function KaufenOderMieten() {
             />
           </StatGrid>
         </div>
+
+        <Rechenweg
+          schritte={rechenweg}
+          fussnote="Die notwendige Wertsteigerung oben wird durch Intervallhalbierung gesucht – sie lässt sich nicht in einer Zeile hinschreiben."
+        />
 
         <Callout variant="info" title="Warum „Rate gegen Miete“ nichts beantwortet">
           <p>

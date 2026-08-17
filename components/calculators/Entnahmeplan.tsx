@@ -10,6 +10,7 @@ import {
 } from '@/components/calculators/CalculatorPanels'
 import { useErgebnisbericht } from '@/components/calculators/ErgebnisDownload'
 import { NumberField } from '@/components/calculators/NumberField'
+import { Rechenweg, type Rechenschritt } from '@/components/calculators/Rechenweg'
 import { Callout } from '@/components/ui/Callout'
 import { Stat, StatGrid } from '@/components/ui/Stat'
 import { getCalculatorDefinition } from '@/data/calculators'
@@ -119,6 +120,48 @@ export function Entnahmeplan() {
     ],
     grenzen: getCalculatorDefinition('entnahmeplan')!.grenzen,
   })
+
+  /*
+    Der Rechenweg mit den eingesetzten Zahlen.
+
+    Vier Schritte, weil das der ganze Rechner ist: Realzins, Jahresentnahme,
+    ein Jahr im Verlauf, und was daraus folgt. Wer das erste Jahr nachrechnet,
+    hat verstanden, wie alle folgenden entstehen.
+  */
+  const rechenweg: Rechenschritt[] = [
+    {
+      was: 'Der reale Zins – der Quotient, nicht die Differenz',
+      formel: '(1 + Rendite) ÷ (1 + Inflation) − 1',
+      eingesetzt: `(1 + ${formatNumber(rendite / 100, 4)}) ÷ (1 + ${formatNumber(inflation / 100, 4)}) − 1`,
+      ergebnis: formatPercent(ergebnis.realzinsProzent, 2),
+      hinweis:
+        'Die Differenz wäre etwas zu hoch. Bei kleinen Zahlen fällt der Unterschied kaum auf, über dreißig Jahre schon.',
+    },
+    {
+      was: 'Die Entnahme des Jahres',
+      formel: 'Entnahme je Monat × 12',
+      eingesetzt: `${formatCurrency(entnahme, 0)} × 12`,
+      ergebnis: formatCurrency(entnahme * 12, 0),
+      hinweis:
+        'In heutiger Kaufkraft. Innen wird real gerechnet, deshalb bleibt dieser Betrag über alle Jahre gleich.',
+    },
+    {
+      was: 'Das erste Jahr',
+      formel: 'Kapital × (1 + realer Zins) − Entnahme',
+      eingesetzt: `${formatCurrency(kapital, 0)} × ${formatNumber(1 + ergebnis.realzinsProzent / 100, 4)} − ${formatCurrency(entnahme * 12, 0)}`,
+      ergebnis: formatCurrency(ergebnis.verlauf[0]?.endwert ?? 0, 0),
+      hinweis:
+        'Erst die Rendite, dann die Entnahme. Dieselbe Zeile wiederholt sich Jahr für Jahr, jeweils mit dem Endwert des Vorjahres.',
+    },
+    {
+      was: 'Die Entnahme, die dauerhaft möglich wäre',
+      formel: 'Kapital × realer Zins ÷ 12',
+      eingesetzt: `${formatCurrency(kapital, 0)} × ${formatNumber(ergebnis.realzinsProzent / 100, 4)} ÷ 12`,
+      ergebnis: formatCurrency(ergebnis.dauerhaftProMonat, 0),
+      hinweis:
+        'Nur der reale Ertrag wird entnommen – das Kapital behält seine Kaufkraft. Liegt der reale Zins bei null oder darunter, gibt es diesen Betrag nicht.',
+    },
+  ]
 
   function zuruecksetzen() {
     setKapital(standard.kapital)
@@ -334,6 +377,11 @@ export function Entnahmeplan() {
             </p>
           )}
         </div>
+
+        <Rechenweg
+          schritte={rechenweg}
+          fussnote="Die Formel allgemein, mit Datengrundlage und Vereinfachungen, steht auf der Methodenseite."
+        />
 
         <Callout variant="tip" title="Rechne die schlechte Variante mit">
           <p>
