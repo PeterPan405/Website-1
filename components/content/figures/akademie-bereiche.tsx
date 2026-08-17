@@ -552,7 +552,7 @@ export function MaKonjunkturzyklus() {
         Trend
       </Beschriftung>
       <path d={pfad(welle)} fill="none" stroke={MARKE} strokeWidth={2.6} />
-      {phasen.map((p, i) => (
+      {phasen.map((p) => (
         <g key={p.text}>
           <line
             x1={p.x}

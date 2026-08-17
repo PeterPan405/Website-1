@@ -33,9 +33,7 @@ import {
   formatCurrency,
   formatDateShort,
   formatDate,
-  formatDateTime,
   formatNumber,
-  formatNumberSigned,
   formatPercentSigned,
 } from '@/lib/format'
 import { Datenstandsampel } from '@/components/ui/Datenstandsampel'

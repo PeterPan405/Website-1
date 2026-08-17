@@ -7,7 +7,7 @@
  * in der Vertonung plausibel und ist trotzdem eine falsche Zahl.
  */
 
-import { readdirSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
 import type { DailyEdition } from '../data/editions/types.ts'
@@ -17,6 +17,8 @@ import {
   ordnungszahl,
   sprechbar,
   verdaechtigeAnglizismen,
+  WORTZIEL_MAX,
+  WORTZIEL_MIN,
   zahlwort,
 } from '../lib/sprechfassung.ts'
 
@@ -317,8 +319,71 @@ pruefe(
   folge.beschreibung.includes('[KAPITEL]'),
   true
 )
-pruefe('Wortzahl unter der Obergrenze', folge.wortzahl <= 740, true)
+/*
+  Die Grenze kommt aus `lib/sprechfassung.ts`, nicht als Zahl hierher.
+
+  Hier stand `<= 740`. Wer das Zielfenster verschiebt, ändert die
+  Kürzungsschleife dort – und diese Prüfung schlüge weiter an 740 an, also an
+  einer Grenze, die niemand mehr meint. Dieselbe Bauart hat am 16. August 2026
+  eine Tagesausgabe gekostet.
+*/
+pruefe(
+  `Wortzahl unter der Obergrenze (${WORTZIEL_MAX})`,
+  folge.wortzahl <= WORTZIEL_MAX,
+  true
+)
+
+/*
+  Und die Untergrenze wird **gemeldet, nicht erzwungen**.
+
+  Gekürzt wird durch Weglassen, verlängert würde durch Erfinden. Eine Ausgabe
+  mit wenig Stoff ergibt eine kurze Folge, und das ist gewollt. Die Prüfung
+  sagt es trotzdem – sonst fällt niemandem auf, wenn es zur Regel wird.
+*/
+if (folge.wortzahl < WORTZIEL_MIN) {
+  console.log(
+    `HINW Wortzahl ${folge.wortzahl} unter dem Zielfenster (${WORTZIEL_MIN}). ` +
+      'Kein Fehler – die Ausgabe gab nicht mehr her.'
+  )
+}
+
+/*
+  Die harte Untergrenze, an der etwas kaputt wäre.
+
+  Unter 300 Wörtern ist es keine Folge mehr, sondern eine Meldung – dann hat
+  die Kürzungsschleife zu viel weggenommen oder die Ausgabe ist leer.
+*/
 pruefe('Wortzahl gemeldet und plausibel', folge.wortzahl > 300, true)
+
+/* ------------------------------------------------------------------
+   Die Wortgrenzen stehen an einer Stelle – geprüft, nicht gehofft.
+
+   Bis zum 17. August 2026 standen sie an dreien: als Konstanten in
+   `lib/sprechfassung.ts`, als Zahlen im Erzeugungsskript und als Zahl in
+   dieser Datei. `WORTZIEL_MIN` war dabei gar nicht benutzt – der Linter hat
+   es als unbenutzte Variable gemeldet, und das war der einzige Hinweis.
+
+   Wer das Fenster verschiebt, ändert die Kürzungsschleife und lässt Skript und
+   Prüfung auf den alten Zahlen stehen. Dieselbe Bauart hat am 16. August eine
+   Tagesausgabe gekostet: zwei Grenzen für dieselbe Zeichenkette, 165 gegen 160.
+------------------------------------------------------------------- */
+
+{
+  const skript = readFileSync('scripts/podcast-folge-erzeugen.ts', 'utf8')
+  const ohneKommentare = skript.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '')
+
+  pruefe(
+    'Das Erzeugungsskript nennt die Grenzen nicht als eigene Zahlen',
+    /\b(710|740)\b/.test(ohneKommentare),
+    false
+  )
+  pruefe(
+    'Es bezieht sie aus lib/sprechfassung.ts',
+    ohneKommentare.includes('WORTZIEL_MIN') && ohneKommentare.includes('WORTZIEL_MAX'),
+    true
+  )
+  pruefe('Das Fenster ist nicht leer', WORTZIEL_MIN < WORTZIEL_MAX, true)
+}
 
 console.log(
   gescheitert === 0

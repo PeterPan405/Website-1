@@ -73,7 +73,7 @@ async function netzZuerst(anfrage) {
       stutzen(DOKUMENTE, HOECHSTENS_DOKUMENTE)
     }
     return antwort
-  } catch (fehler) {
+  } catch {
     const gespeichert = await speicher.match(anfrage)
     if (gespeichert) return gespeichert
     return new Response(
