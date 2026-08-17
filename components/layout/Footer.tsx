@@ -256,6 +256,10 @@ export function Footer() {
               Änderungen
             </Link>
             <span aria-hidden="true"> · </span>
+            <Link href="/zahlen" className="hover:text-brand transition">
+              Zahlen
+            </Link>
+            <span aria-hidden="true"> · </span>
             <Link href="/impressum" className="hover:text-brand transition">
               Impressum
             </Link>

@@ -456,6 +456,24 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Die Website in Zahlen',
+    href: '/zahlen',
+    kind: 'Bereich',
+    hint: 'Wie viele Lernseiten, Kurse, Artikel und Quellen es hier gibt – beim Bauen gezählt',
+    keywords: [
+      'zahlen',
+      'umfang',
+      'wie viele',
+      'anzahl',
+      'statistik',
+      'ueberblick',
+      'überblick',
+      'groesse',
+      'größe',
+      'inhalte',
+    ],
+  })
+  eintraege.push({
     title: 'Methoden: wie jede Kennzahl gerechnet wird',
     href: '/methoden',
     kind: 'Bereich',

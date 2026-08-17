@@ -280,6 +280,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       die Nachrichten, häufiger als die Methoden.
     */
     { url: absoluteUrl('/aenderungen'), changeFrequency: 'weekly', priority: 0.4 },
+    /*
+      Die Zahlenseite ändert sich mit jedem Bau – jeder neue Artikel und jede
+      neue Podcastfolge verschiebt eine Zahl darauf.
+    */
+    { url: absoluteUrl('/zahlen'), changeFrequency: 'daily', priority: 0.4 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,

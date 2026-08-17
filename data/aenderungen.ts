@@ -59,6 +59,13 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
+    art: 'neu',
+    titel: 'Die Website in Zahlen',
+    text: 'Eine Seite, die sagt, wie viel hier eigentlich steht: Lernseiten, Kurse, Artikel, Quellen, Rechenwege. Keine dieser Zahlen ist eingetragen – jede wird beim Bauen aus demselben Bestand gezählt, aus dem die Seiten lesen, und kann deshalb nicht veralten.',
+    ziel: { text: 'Zu den Zahlen', href: '/zahlen' },
+  },
+  {
+    datum: '2026-08-17',
     art: 'korrigiert',
     titel: 'Der Podcast sagt jetzt selbst, dass er mit KI entsteht',
     text: 'Bisher stand der Hinweis nur in der Beschreibung – wer eine Folge in einer Podcast-App hört, sieht die nie. Jede Folge beginnt deshalb mit zwei Sätzen: dass sie automatisiert entsteht und dass die Stimme künstlich erzeugt ist.',

@@ -199,6 +199,25 @@ Warnung und ein Bau, ab 18 Stunden rot.
 
 → `ENTSCHEIDUNGEN.md`: „Ein roter Lauf ist ein Vorrat"
 
+## Der Zahlenwächter
+
+`lib/website-zahlen.ts` zählt beim Bauen, wie viel hier steht; `/zahlen` zeigt
+es. Der Zweck ist der stille Datenausfall: **Diese Zahlen fallen nicht von
+selbst.** Fällt eine, hat sich ein Bestand geleert – und alles andere bleibt
+grün.
+
+- **Der Stand wird fortgeschrieben, sonst wird der Wächter stumpf.** Der
+  nächtliche Bau tut das (`paket-bauen.yml`, nur im `schedule`-Lauf).
+- **Ein Rückgang hält das Fortschreiben an**, sonst wird der Alarm in derselben
+  Nacht zum neuen Maßstab. Über einen gewollten Rückgang hinweg nur von Hand:
+  `ANWENDEN=1 TROTZDEM=1 npm run zahlen`.
+- **Ein `id` wird nie umbenannt** – der Abgleich hängt allein daran. Ein neuer
+  Schlüssel meldet einen Sturz auf null und hat danach keine Vorgeschichte
+  mehr.
+
+→ `ENTSCHEIDUNGEN.md`: „Ein Wächter, der seinen eigenen Alarm fortschreibt,
+ist keiner"
+
 ## Kurse
 
 **Ein Kurs ist so alt wie die Stelle, die ihn anzeigt** – nicht wie der Abruf.
