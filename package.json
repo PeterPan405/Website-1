@@ -2,7 +2,7 @@
   "name": "im-invests",
   "version": "0.1.0",
   "private": true,
-  "description": "IM Invests – deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
+  "description": "IM Invests \u2013 deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/version.mjs && npm run kurselive",
@@ -41,7 +41,7 @@
     "uebernehmen": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-uebernehmen.ts",
     "instazugang": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/instagram-zugang.ts",
     "videos": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-videos-auflisten.ts",
-    "hinweis": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-hinweis-angleichen.ts",
+    "hinweis": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-hook.mjs scripts/podcast-hinweis-angleichen.ts",
     "zuruecknehmen": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/podcast-zuruecknehmen.ts",
     "marktbreite": "node --experimental-strip-types scripts/marktbreite-nachtragen.ts",
     "zinsen": "node --experimental-strip-types scripts/zinsen-abrufen.ts",
@@ -51,7 +51,8 @@
     "verwaist": "node --experimental-strip-types scripts/verwaist-pruefen.ts",
     "gewicht": "node scripts/gewicht-pruefen.mjs",
     "tastatur": "node scripts/tastatur-pruefen.mjs",
-    "bilder": "node scripts/referenzbilder.mjs"
+    "bilder": "node scripts/referenzbilder.mjs",
+    "register-hinweis": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-hook.mjs scripts/podcast-register-angleichen.ts"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
