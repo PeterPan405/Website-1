@@ -61,15 +61,17 @@ export function EingepreistCalculator() {
     setzeEndKgv(leseZahl(werte.endkgv, voreinstellung.endKgv, { min: 5, max: 40 }))
   })
 
-  const annahmen = { jahre, abzinsungProzent, endKgv }
-  const wachstum = useMemo(
-    () => implizitesWachstum(kgv, annahmen),
-    [kgv, jahre, abzinsungProzent, endKgv]
-  )
-  const kgvOhneWachstum = useMemo(
-    () => gerechtfertigtesKgv(0, annahmen),
+  /*
+    Als `useMemo`, damit die Abhängigkeitslisten darunter ehrlich sind –
+    dieselbe Begründung wie im Kreditrechner. Das Objekt entstand bei jedem
+    Rendern neu, und die Listen nannten stattdessen seine Felder.
+  */
+  const annahmen = useMemo(
+    () => ({ jahre, abzinsungProzent, endKgv }),
     [jahre, abzinsungProzent, endKgv]
   )
+  const wachstum = useMemo(() => implizitesWachstum(kgv, annahmen), [kgv, annahmen])
+  const kgvOhneWachstum = useMemo(() => gerechtfertigtesKgv(0, annahmen), [annahmen])
 
   useErgebnisbericht({
     titel: 'Bewertungsrechner',

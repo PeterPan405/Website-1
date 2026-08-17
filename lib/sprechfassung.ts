@@ -818,8 +818,38 @@ export interface Podcastfolge {
   hashtags: string
 }
 
-const WORTZIEL_MIN = 710
-const WORTZIEL_MAX = 740
+/**
+ * Das Zielfenster der Folge, in Wörtern – **die eine Quelle dafür.**
+ *
+ * Rund fünf Minuten bei ruhigem Sprechtempo. Die Beschreibung jeder Folge
+ * sagt „Kompakt in rund fünf Minuten"; diese beiden Zahlen sind das, was
+ * dahintersteht.
+ *
+ * ## Warum sie seit dem 17. August 2026 exportiert werden
+ *
+ * Weil sie an drei Stellen standen und nur an einer als Konstante:
+ *
+ *     lib/sprechfassung.ts          WORTZIEL_MIN/MAX   710 / 740
+ *     scripts/podcast-folge-erzeugen.ts   Zahlen im Text   710 / 740
+ *     tests/sprechfassung.test.ts         Zahlen im Test   740, 300
+ *
+ * `WORTZIEL_MIN` war dabei **gar nicht benutzt** – der Linter hat es als
+ * unbenutzte Variable gemeldet, und das war der Hinweis. Wer das Fenster
+ * verschiebt, ändert die Kürzungsschleife hier und lässt Skript und Test auf
+ * den alten Zahlen stehen: Die Folge käme länger heraus, der Hinweis bliebe
+ * still, und die Prüfung schlüge an einer Grenze an, die niemand mehr meint.
+ *
+ * Dieselbe Bauart hat am 16. August 2026 eine Tagesausgabe gekostet – zwei
+ * Grenzen für dieselbe Zeichenkette, 165 gegen 160.
+ *
+ * ## Warum die Untergrenze nur meldet und nicht erzwingt
+ *
+ * Gekürzt wird durch Weglassen, verlängert würde durch Erfinden. Reicht der
+ * Stoff nicht, kommt die Folge kürzer heraus und sagt es – eine kurze
+ * ehrliche Folge schlägt eine gestreckte.
+ */
+export const WORTZIEL_MIN = 710
+export const WORTZIEL_MAX = 740
 
 /**
  * Der KI-Hinweis, wie er unter jeder Folge steht.

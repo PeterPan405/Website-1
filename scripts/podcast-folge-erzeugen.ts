@@ -19,7 +19,12 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
 import type { DailyEdition } from '../data/editions/types.ts'
-import { baueFolge, verdaechtigeAnglizismen } from '../lib/sprechfassung.ts'
+import {
+  baueFolge,
+  verdaechtigeAnglizismen,
+  WORTZIEL_MAX,
+  WORTZIEL_MIN,
+} from '../lib/sprechfassung.ts'
 
 const stichtag = process.env.STICHTAG?.trim() || new Date().toISOString().slice(0, 10)
 
@@ -47,10 +52,11 @@ writeFileSync('podcast-folge/folge.json', JSON.stringify(folge, null, 2) + '\n')
 
 console.log(`[folge] ${folge.datum} – Folge ${folge.nummer}: ${folge.titel}`)
 console.log(`[folge] ${folge.wortzahl} Wörter, ${folge.kapitel.length} Kapitel.`)
-if (folge.wortzahl < 710 || folge.wortzahl > 740) {
+if (folge.wortzahl < WORTZIEL_MIN || folge.wortzahl > WORTZIEL_MAX) {
   console.log(
-    `[folge] Hinweis: außerhalb des Zielfensters 710–740. Gekürzt wird nie durch\n` +
-      `        Erfinden – eine ${folge.wortzahl < 710 ? 'kürzere' : 'längere'} ehrliche Folge ist gewollt.`
+    `[folge] Hinweis: außerhalb des Zielfensters ${WORTZIEL_MIN}–${WORTZIEL_MAX}. ` +
+      `Gekürzt wird nie durch\n        Erfinden – eine ` +
+      `${folge.wortzahl < WORTZIEL_MIN ? 'kürzere' : 'längere'} ehrliche Folge ist gewollt.`
   )
 }
 

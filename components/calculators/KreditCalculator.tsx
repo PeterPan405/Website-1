@@ -67,13 +67,22 @@ export function KreditCalculator() {
   */
   const [eigeneRate, setEigeneRate] = useState<number | null>(null)
 
-  const kredit = { summe, zinsProzent }
+  /*
+    Als `useMemo`, damit die Abhängigkeitslisten darunter ehrlich sind.
+
+    Vorher entstand hier bei jedem Rendern ein neues Objekt, und die
+    Listen nannten stattdessen seine Felder. Das rechnete richtig – der
+    Linter meldete es trotzdem, und er hatte insofern recht, als niemand
+    von außen sehen konnte, dass die Liste vollständig ist. Eine Warnung,
+    die man dauerhaft überliest, verdeckt die nächste, die zählt.
+  */
+  const kredit = useMemo(() => ({ summe, zinsProzent }), [summe, zinsProzent])
   const rate = eigeneRate ?? rateBeiTilgungssatz(kredit, tilgungProzent)
 
-  const ergebnis = useMemo(() => auswerten(kredit, rate), [summe, zinsProzent, rate])
+  const ergebnis = useMemo(() => auswerten(kredit, rate), [kredit, rate])
   const restschuld = useMemo(
     () => restschuldNach(kredit, rate, zinsbindungJahre),
-    [summe, zinsProzent, rate, zinsbindungJahre]
+    [kredit, rate, zinsbindungJahre]
   )
 
   const monatszins = (summe * zinsProzent) / 100 / 12
