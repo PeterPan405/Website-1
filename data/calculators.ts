@@ -64,18 +64,23 @@ export const calculators: CalculatorDefinition[] = [
     metaTitle: 'Kreditrechner: Annuitätendarlehen mit Restschuld',
     metaDescription:
       'Annuitätendarlehen durchrechnen: monatliche Rate, Laufzeit, Zinskosten und die Restschuld am Ende der Zinsbindung – der Wert, den die Ratenanzeige verschweigt.',
-    lead: 'Darlehenssumme, Zins und Rate eingeben – der Rechner zeigt Laufzeit, gesamte Zinskosten und die Restschuld am Ende der Zinsbindung. Auf sie kommt es bei Immobilienkrediten an, nicht auf die Rate.',
+    lead: 'Darlehenssumme, Zins und Rate eingeben – der Rechner zeigt Laufzeit, Zinskosten, die Wirkung einer Sondertilgung und die Restschuld am Ende der Zinsbindung. Auf sie kommt es bei Immobilienkrediten an, nicht auf die Rate.',
     summary: 'Annuitätendarlehen: Rate, Laufzeit, Zinskosten und Restschuld.',
     featureList: [
       'Monatliche Rate aus Zins und anfänglicher Tilgung',
       'Laufzeit bis zur vollständigen Tilgung',
       'Gesamte Zinskosten über die Laufzeit',
       'Restschuld am Ende der Zinsbindung',
+      'Jährliche Sondertilgung mit Zinsersparnis je gezahltem Euro',
+      'Was ein höherer Zins beim Anschluss kostet',
+      'Tilgungsplan als Tabelle zum Herunterladen',
     ],
     grenzen: [
       'Eine Modellrechnung mit konstantem Zins über die gesamte Laufzeit. Was nach der Zinsbindung gilt, weiß heute niemand – genau deshalb wird die Restschuld ausgewiesen.',
       'Ohne Nebenkosten: Bereitstellungszinsen, Notar, Grunderwerbsteuer und Gebühren kommen hinzu.',
-      'Sondertilgungen sind nicht berücksichtigt. Wer sie nutzen kann, ist schneller fertig als hier gerechnet.',
+      'Die Sondertilgung wird jeweils zum Jahresende gerechnet – die vorsichtigere der üblichen Annahmen. Wer früher im Jahr zahlt, spart etwas mehr als hier ausgewiesen.',
+      'Wie viel Sondertilgung ohne Zinsaufschlag möglich ist, steht im Vertrag. Üblich sind fünf Prozent der Darlehenssumme im Jahr; der Rechner weist darauf hin, sobald die Eingabe darüber liegt.',
+      'Der Zinsaufschlag beim Anschluss ist eine Frage, keine Prognose. Niemand weiß, wo die Bauzinsen in zehn Jahren stehen – der Rechner zeigt nur, was ein bestimmter Unterschied kostet.',
       'Der Rechner vergleicht keine Angebote und ersetzt keine Beratung – er macht die Mechanik nachvollziehbar.',
     ],
     schritte: [
@@ -83,6 +88,8 @@ export const calculators: CalculatorDefinition[] = [
       'Die monatliche Rate angeben oder über die anfängliche Tilgung bestimmen.',
       'Die Dauer der Zinsbindung wählen.',
       'Laufzeit, Zinskosten und die Restschuld am Ende der Bindung ablesen.',
+      'Optional eine jährliche Sondertilgung und einen Zinsaufschlag für den Anschluss eintragen.',
+      'Den vollständigen Tilgungsplan als Tabelle herunterladen.',
     ],
     relatedTopics: ['schulden-und-kredit', 'immobilien', 'zinseszins'],
     methodology: [
@@ -104,6 +111,34 @@ export const calculators: CalculatorDefinition[] = [
       {
         type: 'paragraph',
         text: 'Deckt die Rate nicht einmal den Monatszins, wird die Schuld nie kleiner. Der Rechner sagt das dann, statt einen Plan über tausend Jahre auszugeben – es ist derselbe Mechanismus, aus dem ein dauerhaft überzogenes Konto nie herauskommt.',
+      },
+      { type: 'heading', level: 2, text: 'Was die Sondertilgung wirklich bringt' },
+      {
+        type: 'paragraph',
+        text: 'Gerechnet wird nicht mit einer Formel, sondern mit **zwei vollständigen Tilgungsplänen**: einmal mit der zusätzlichen Zahlung, einmal ohne. Die Differenz der Zinssummen ist die Ersparnis. Eine geschlossene Formel dafür gibt es nicht, sobald die Zahlung jährlich statt monatlich erfolgt – und eine Näherung, die aussieht wie eine Formel, wäre an dieser Stelle das Schlechtere.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die aufschlussreichste Zahl ist die **Ersparnis je gezahltem Euro**. Sie macht die Sondertilgung vergleichbar: Sie ist eine Geldanlage zum Kreditzins – steuerfrei und ohne Risiko. Ob sie sich lohnt, entscheidet der Vergleich mit dem, was dasselbe Geld anderswo **nach Steuern** gebracht hätte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Anschluss bei gleicher Laufzeit gerechnet wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil man die Mehrkosten sonst nicht sieht. Wer nach der Zinsbindung die Rate gleich lässt, verschiebt sie ans Ende der Laufzeit: Der Kredit läuft dann einfach länger. Die Verlängerung ist der eigentliche Preis, und sie fällt in keiner Monatsrate auf.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Der Zinsaufschlag ist eine Frage, keine Prognose',
+        items: [
+          'Voreingestellt ist ein Prozentpunkt. Das ist keine Vorhersage – niemand weiß, wo die Bauzinsen in zehn Jahren stehen. Es ist die Größenordnung, in der sich Bauzinsen innerhalb einer Zinsbindung regelmäßig bewegt haben.',
+          'Wer es genauer wissen will, dreht an der Zahl. Der Rechner beantwortet die Frage „was kostet mich das", nicht die Frage „wie kommt es".',
+          'Die zweite Stellschraube ist die Anfangstilgung: Eine höhere Tilgung senkt die Restschuld bei Bindungsende und damit die Angriffsfläche für einen Zinsanstieg. Beide Felder lassen sich nebeneinander ausprobieren.',
+        ],
       },
     ],
   },
