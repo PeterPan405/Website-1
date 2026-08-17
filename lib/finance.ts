@@ -9,6 +9,8 @@
  * Prognosen. Renditen und Inflationsraten sind Annahmen des Nutzers.
  */
 
+import { PAUSCHALE } from '@/lib/notgroschen'
+
 /**
  * Der Gewinn, der einen Verlust genau ausgleicht – beides in Prozent.
  *
@@ -531,7 +533,18 @@ export function calculateBudget(
   const totalExpenses = expenses.reduce((sum, entry) => sum + entry.amount, 0)
   const balance = totalIncome - totalExpenses
 
-  const emergencyFundRange = { min: totalExpenses * 3, max: totalExpenses * 6 }
+  /*
+    Die Faustregel steht in `lib/notgroschen.ts`, nicht hier.
+
+    Dort ist sie der Ausgangspunkt einer begründeten Spanne; hier bleibt sie
+    die grobe Angabe im Haushaltsrechner. Zweimal dieselben Zahlen
+    hinzuschreiben hieße, dass sie auseinanderlaufen können – und dann stünden
+    auf zwei Seiten derselben Website zwei Empfehlungen.
+  */
+  const emergencyFundRange = {
+    min: totalExpenses * PAUSCHALE.min,
+    max: totalExpenses * PAUSCHALE.max,
+  }
 
   return {
     totalIncome,

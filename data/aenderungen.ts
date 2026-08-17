@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-17',
     art: 'neu',
+    titel: 'Notgroschen: eine begründete Zahl statt „drei Monatsgehälter“',
+    text: 'Die verbreitete Faustregel gibt einer Beamtin mit zwei Einkommen im Haushalt dieselbe Auskunft wie einem Selbstständigen mit zwei Kindern. Der neue Rechner verschiebt sie anhand von vier Angaben – und schreibt unter das Ergebnis, welcher Zuschlag woher kommt, damit man jedem einzeln widersprechen kann.',
+    ziel: { text: 'Zum Notgroschen-Rechner', href: '/rechner/notgroschen' },
+  },
+  {
+    datum: '2026-08-17',
+    art: 'neu',
     titel: 'Entnahmeplan: wie lange das Kapital trägt',
     text: 'Alle bisherigen Rechner hörten am Tag des Ruhestands auf. Dieser fängt dort an: Kapital und gewünschte monatliche Entnahme ergeben die Reichweite in Jahren – und daneben steht der Betrag, den man dauerhaft entnehmen könnte. Die Entnahme steigt jedes Jahr mit der Inflation, sonst wäre eine Kürzung eingerechnet, die niemand beschlossen hat.',
     ziel: { text: 'Zum Entnahmeplan', href: '/rechner/entnahmeplan' },
