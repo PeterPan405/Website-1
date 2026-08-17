@@ -28,7 +28,7 @@
 
 import { readFileSync } from 'node:fs'
 
-import { LEISTENFARBE, THEME_STORAGE_KEY, leisteFaerben, startSkript } from '@/lib/theme'
+import { LEISTENFARBE, THEME_STORAGE_KEY, startSkript } from '@/lib/theme'
 
 const skript = startSkript()
 
@@ -39,80 +39,59 @@ type Umgebung = {
 
 type Ergebnis = {
   theme: string | undefined
-  leiste: string[]
-}
-
-/** Eine Meta-Angabe, so viel davon, wie angefasst wird. */
-class Angabe {
-  werte: Record<string, string> = {}
-  parentNode: Kopf | null = null
-  setAttribute(name: string, wert: string) {
-    this.werte[name] = wert
-  }
-  getAttribute(name: string) {
-    return this.werte[name] ?? null
-  }
-  remove() {
-    this.parentNode?.removeChild(this)
-  }
-}
-
-/** Der `<head>` mit seinen Kindern. */
-class Kopf {
-  kinder: Angabe[] = []
-  appendChild(kind: Angabe) {
-    kind.parentNode = this
-    this.kinder.push(kind)
-    return kind
-  }
-  removeChild(kind: Angabe) {
-    this.kinder = this.kinder.filter((k) => k !== kind)
-    kind.parentNode = null
-    return kind
-  }
+  /** Die Farben, die das Skript in den Parser geschrieben hat. */
+  farben: string[]
 }
 
 /**
- * Baut eine Seite mit `anzahl` Farbangaben im Kopf.
+ * Eine nachgebaute Seite: `document.write` wird aufgefangen, das DOM ist Falle.
  *
- * Voreingestellt ist **keine**, und das ist hier Absicht, obwohl das HTML
- * seit dem 17. August 2026 eine mitbringt: Geprüft werden soll, dass das
- * Skript aus dem Nichts genau eine anlegt. Dass es eine vorhandene **ersetzt**
- * statt weitere danebenzustellen, prüft weiter unten ein eigener Fall mit
- * `neueSeite(2)` – das ist die Lage im Browser.
+ * ## Warum diese Trennung der Kern der Sache ist
+ *
+ * Safari liest `theme-color` beim Parsen. Fünf Anläufe haben gezeigt, was das
+ * heißt: Jede Änderung **nach** dem Parsen wird ignoriert – `setAttribute`,
+ * `appendChild`, Knoten austauschen. `document.write` während des Parsens ist
+ * etwas anderes: Der Text geht in den Token-Strom, der Parser baut das Element
+ * selbst, wie bei Quelltext.
+ *
+ * Der Nachbau bildet genau diesen Unterschied ab:
+ *
+ * - `write` wird **aufgefangen** und geprüft – der erlaubte Weg.
+ * - `head`, `createElement`, `querySelectorAll` **werfen** – die vier Wege,
+ *   die gemessen nicht tragen.
+ *
+ * Ein Nachbau, der alles mitmacht, bestätigt jede Fassung. Genau daran hat
+ * diese Prüfung drei kaputte Fassungen durchgewinkt.
  */
-function neueSeite(anzahl = 0) {
-  const kopf = new Kopf()
-  for (let i = 0; i < anzahl; i++) {
-    const angabe = new Angabe()
-    angabe.setAttribute('name', 'theme-color')
-    angabe.setAttribute('content', LEISTENFARBE.weiss)
-    kopf.appendChild(angabe)
+function neueSeite() {
+  const geschrieben: string[] = []
+
+  const verboten = (was: string) => () => {
+    throw new Error(
+      `Das Startskript hat ${was} aufgerufen. Nach dem Parsen ist es zu spät – ` +
+        'Safari hat die Farbe dann längst gelesen. Der einzige Weg, der trägt, ' +
+        'ist `document.write` während des Parsens.'
+    )
   }
 
   const dokument = {
-    head: kopf,
     documentElement: { dataset: {} as { theme?: string } },
-    createElement: (art: string) => {
-      if (art !== 'meta') throw new Error(`Unerwartetes Element: ${art}`)
-      return new Angabe()
+    write: (html: string) => geschrieben.push(html),
+    get head(): never {
+      return verboten('document.head')()
     },
-    querySelectorAll: (wahl: string) => {
-      if (wahl !== 'meta[name="theme-color"]') {
-        throw new Error(`Unerwartete Auswahl: ${wahl}`)
-      }
-      return kopf.kinder.filter((k) => k.getAttribute('name') === 'theme-color')
-    },
+    createElement: verboten('document.createElement'),
+    querySelectorAll: verboten('document.querySelectorAll'),
   }
 
-  return { dokument, kopf }
+  return { dokument, geschrieben }
 }
 
-/** Welche Farben nach dem Lauf im Kopf stehen. */
-function leisteAus(kopf: Kopf): string[] {
-  return kopf.kinder
-    .filter((k) => k.getAttribute('name') === 'theme-color')
-    .map((k) => k.getAttribute('content') ?? '')
+/** Die `content`-Werte aller geschriebenen `theme-color`-Angaben. */
+function geschriebeneFarben(geschrieben: readonly string[]): string[] {
+  return geschrieben.flatMap((html) =>
+    [...html.matchAll(/<meta name="theme-color" content="([^"]+)"/g)].map((t) => t[1])
+  )
 }
 
 /**
@@ -135,7 +114,7 @@ function ausfuehren({
   systemDunkel,
 }: Umgebung): Ergebnis & { gefragt: boolean } {
   let gefragt = false
-  const { dokument, kopf } = neueSeite()
+  const { dokument, geschrieben } = neueSeite()
 
   const fenster = {
     matchMedia: (frage: string) => {
@@ -158,7 +137,7 @@ function ausfuehren({
 
   return {
     theme: dokument.documentElement.dataset.theme,
-    leiste: leisteAus(kopf),
+    farben: geschriebeneFarben(geschrieben),
     gefragt,
   }
 }
@@ -177,64 +156,95 @@ function pruefen(was: string, bedingung: boolean, hinweis: string): void {
 console.log('Startskript des Farbschemas – vier Fälle\n')
 
 /* ------------------------------------------------------------------
-   Das Layout liefert die **helle** Leistenfarbe aus – und keine andere.
+   Die Leistenfarbe: geschrieben beim Parsen, nicht geändert danach.
 
-   ## Die Prüfung stand bis zum 17. August 2026 auf dem Kopf
+   ## Fünf Anläufe, und was jeder gemessen hat
 
-   Sie verlangte, dass in `app/layout.tsx` **keine** `themeColor` steht. Das
-   war die Lehre aus dem 13. August: Eine feste Farbe im HTML ist für Safari
-   endgültig, und auf einem dunkel gestellten Gerät stand ein heller Balken
-   über einer schwarzen Seite.
+       keine Angabe im HTML                     Safari malt schwarz
+       feste Angabe im HTML                     Safari nimmt sie
+       Skript ändert sie danach (setAttribute)  Safari ignoriert
+       Skript tauscht den Knoten aus            Safari ignoriert
+       Angaben mit `media`                      folgen dem Gerät, nicht der Wahl
 
-   Der Schluss daraus – Angabe weglassen, Safari nimmt dann den
-   Seitenhintergrund – war falsch. Am 17. August zeigte der Betreiber die
-   Startseite im **hellen** Modus: beige Seite, schwarzer Balken. Ohne
-   `theme-color` malt Safari die Fläche schwarz, egal was auf `html` steht.
+   Der Betreiber will, dass der Balken der **Website** folgt: beige im hellen
+   Modus, dunkel im dunklen. Dafür muss die Farbe beim Parsen feststehen – und
+   das geht nur mit `document.write`, das den Text in den Token-Strom schiebt,
+   statt das fertige DOM zu verändern.
 
-   ## Was jetzt geprüft wird
+   ## Was hier festgehalten wird
 
-   Nicht mehr „keine Farbe", sondern **die richtige**: die helle aus
-   `LEISTENFARBE`. Sie ist keine Wahl, sondern dieselbe Regel wie in
-   `startSkript()` – der erste Besuch ist weiß, ausnahmslos. Stünde hier die
-   dunkle, widerspräche das HTML dem Skript, das eine Zeile später läuft.
+   Die drei Stücke, die zusammen tragen und einzeln nichts wert sind:
 
-   Gelesen wird der Quelltext und nicht ein Verhalten, weil es um eine
-   Bauentscheidung geht: **dass die Farbe überhaupt im HTML steht** und aus
-   der einen Quelle kommt statt als Zeichenkette danebenzuliegen.
+   1. das Skript schreibt die Angabe (statt sie nachträglich zu setzen),
+   2. es steht im `<head>` **vor** dem Rückfall,
+   3. der Rückfall liegt in `<noscript>`, damit Next ihn nicht nach vorn zieht.
+
+   Fällt (3) weg, stünde der Rückfall vorn und gewönne immer – bei mehreren
+   passenden Angaben nimmt der Browser die erste. Der ganze Umbau wäre dann
+   wirkungslos, und zwar lautlos.
 ------------------------------------------------------------------- */
 
 {
   const layout = readFileSync('app/layout.tsx', 'utf8')
-  const treffer = layout.match(/^\s*themeColor:\s*(.+?),?\s*$/m)
 
   pruefen(
-    'app/layout.tsx liefert eine themeColor aus',
-    treffer !== null,
-    'In `app/layout.tsx` steht keine `themeColor` mehr. Ohne sie malt Safari\n' +
-      '     den Bereich über der Seite schwarz – auch im hellen Modus, nachgewiesen\n' +
-      '     am 17. August 2026. Der Seitenhintergrund rettet das nicht.'
+    'Das Skript steht vor dem Rückfall',
+    layout.indexOf('__html: themeScript') < layout.indexOf('<noscript>'),
+    'Steht der Rückfall vorher, gewinnt er – der Browser nimmt die erste\n' +
+      '     passende Angabe.'
   )
 
   pruefen(
-    'Sie kommt aus LEISTENFARBE und nicht als eigene Zeichenkette',
-    treffer?.[1] === 'LEISTENFARBE.weiss',
-    `Dort steht \`${treffer?.[1] ?? '(nichts)'}\`.\n` +
-      '     Ein zweites Mal `#f2ebdd` hinzuschreiben heißt, zwei Stellen zu pflegen,\n' +
-      '     von denen eine an `--c-canvas` hängt und die andere an nichts.'
+    'Der Rückfall liegt in <noscript> und geht damit nicht durch Next',
+    /<noscript>[\s\S]*?theme-color[\s\S]*?<\/noscript>/.test(layout),
+    'Next zieht jede Meta-Angabe, die es sieht, an den Anfang des <head> –\n' +
+      '     also vor das Skript. In <noscript> sieht es sie nicht.'
+  )
+
+  pruefen(
+    'Der Rückfall deckt beide Systemvorgaben ab',
+    /prefers-color-scheme: light/.test(layout) &&
+      /prefers-color-scheme: dark/.test(layout),
+    'Ohne JavaScript ist die Systemvorgabe die beste verfügbare Schätzung.'
+  )
+
+  pruefen(
+    'Kein viewport.themeColor mehr',
+    !/^\s*themeColor:/m.test(layout),
+    'Was aus den Metadaten-Exporten kommt, zieht Next an den Anfang des <head>\n' +
+      '     – vor das Skript. Genau das soll hier nicht passieren.'
   )
 
   /*
-    Und die Gegenprobe: Es muss die **helle** sein.
+    Und die Gegenprobe: kein DOM-Weg mehr, in keiner der drei Dateien.
 
-    `LEISTENFARBE.dark` wäre ebenfalls „aus der einen Quelle" und bestünde die
-    Prüfung darüber – und stünde trotzdem im Widerspruch zum Startskript, das
-    beim ersten Besuch auf Weiß geht.
+    Die vier gescheiterten Anläufe waren alle DOM-Änderungen nach dem Parsen.
+    Wer einen davon wieder einbaut, bekommt hier Bescheid – und der Nachbau
+    oben wirft zusätzlich, wenn das Skript es zur Laufzeit versucht.
   */
+  for (const datei of [
+    'lib/theme.ts',
+    'app/layout.tsx',
+    'components/layout/ThemeToggle.tsx',
+  ]) {
+    const ohneKommentare = readFileSync(datei, 'utf8')
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\/\/.*$/gm, '')
+      .replace(/\{\/\*[\s\S]*?\*\/\}/g, '')
+    pruefen(
+      `${datei} ändert theme-color nicht über das DOM`,
+      !/(querySelectorAll|createElement|appendChild|removeChild)/.test(ohneKommentare),
+      'Nach dem Parsen ist es zu spät – viermal nachgemessen.'
+    )
+  }
+
+  const themeOhneKommentare = readFileSync('lib/theme.ts', 'utf8')
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\/\/.*$/gm, '')
   pruefen(
-    'Es ist die helle Farbe, wie beim ersten Besuch',
-    !/^\s*themeColor:.*dark/m.test(layout),
-    'Die dunkle Leistenfarbe im HTML widerspricht `startSkript()`: Der erste\n' +
-      '     Besuch ist weiß, ausnahmslos – dann gehört auch der Balken hell.'
+    'Der Kommentarfilter lässt den Code stehen',
+    themeOhneKommentare.includes('export function startSkript'),
+    'Nach dem Entfernen der Kommentare ist zu wenig übrig, um etwas zu prüfen.'
   )
 }
 
@@ -264,12 +274,6 @@ pruefen(
     'ändert, ist der Aufruf die Stelle, an der die alte Rangfolge zurückkommt.'
 )
 
-pruefen(
-  'Ohne gespeicherte Wahl steht genau eine helle Angabe im Kopf',
-  ersterDunkel.leiste.length === 1 && ersterDunkel.leiste[0] === LEISTENFARBE.weiss,
-  `bekommen: [${ersterDunkel.leiste.join(', ')}] – erwartet genau [${LEISTENFARBE.weiss}]`
-)
-
 /* ------------------------------------------------------------------
    Die eigene Wahl. Sie gilt, und zwar gegen jede Systemvorgabe.
 ------------------------------------------------------------------- */
@@ -283,13 +287,6 @@ for (const systemDunkel of [false, true]) {
     gewaehltDunkel.theme === 'dark',
     `bekommen: ${gewaehltDunkel.theme}`
   )
-  pruefen(
-    `Wahl „dark", ${lage} → genau eine dunkle Angabe`,
-    gewaehltDunkel.leiste.length === 1 && gewaehltDunkel.leiste[0] === LEISTENFARBE.dark,
-    `bekommen: [${gewaehltDunkel.leiste.join(', ') || '(nichts)'}] – erwartet ` +
-      `genau [${LEISTENFARBE.dark}]. Bleibt eine alte Angabe stehen, gibt es zwei, ` +
-      'und welche gilt, entscheidet der Browser.'
-  )
 
   const gewaehltWeiss = ausfuehren({ gespeichert: 'weiss', systemDunkel })
   pruefen(
@@ -297,112 +294,52 @@ for (const systemDunkel of [false, true]) {
     gewaehltWeiss.theme === 'weiss',
     `bekommen: ${gewaehltWeiss.theme}`
   )
-  pruefen(
-    `Wahl „weiss", ${lage} → genau eine helle Angabe`,
-    gewaehltWeiss.leiste.length === 1 && gewaehltWeiss.leiste[0] === LEISTENFARBE.weiss,
-    `bekommen: [${gewaehltWeiss.leiste.join(', ') || '(nichts)'}]`
-  )
 }
 
 /* ------------------------------------------------------------------
-   Startskript und Umschalter müssen dasselbe tun.
+   Und was das Skript in den Parser schreibt.
 
-   Sie können sich keinen Aufruf teilen – das eine ist eine Zeichenkette
-   im <head>, das andere Code in einer React-Komponente. Also werden hier
-   beide über dieselbe nachgebaute Seite geschickt und verglichen.
+   Die Fälle oben prüfen, welches Schema gilt. Hier geht es um die Farbe, die
+   dabei herauskommt – der Punkt, an dem der Betreiber fünfmal einen falschen
+   Balken gesehen hat.
 
-   Ohne das ist es eine Doppelung, die beim nächsten Anfassen auseinander-
-   geht, und auffallen würde es auf einem Telefon.
+   Genau **eine** Angabe je Lauf: Zwei geschriebene wären zwei im Kopf, und
+   welche gilt, entschiede der Browser.
 ------------------------------------------------------------------- */
 
-for (const [name, farbe] of Object.entries(LEISTENFARBE)) {
-  const ueberSkript = neueSeite()
-  new Function('document', 'window', 'localStorage', skript)(
-    ueberSkript.dokument,
-    {},
-    { getItem: () => (name === 'dark' ? 'dark' : 'weiss') }
-  )
-
-  /*
-    `leisteFaerben` greift auf das globale `document` zu – die nachgebaute
-    Seite wird ihm deshalb untergeschoben und danach wieder entfernt. Ein
-    echtes `document` gibt es in dieser Umgebung nicht.
-  */
-  const ueberFunktion = neueSeite()
-  const vorher = (globalThis as { document?: unknown }).document
-  ;(globalThis as { document?: unknown }).document = ueberFunktion.dokument
-  try {
-    leisteFaerben(farbe)
-  } finally {
-    ;(globalThis as { document?: unknown }).document = vorher
+for (const [wahl, erwartet] of [
+  [null, LEISTENFARBE.weiss],
+  ['weiss', LEISTENFARBE.weiss],
+  ['dark', LEISTENFARBE.dark],
+  ['light', LEISTENFARBE.weiss],
+] as const) {
+  for (const systemDunkel of [false, true]) {
+    const lage = `Gerät ${systemDunkel ? 'dunkel' : 'hell'}`
+    const { farben } = ausfuehren({ gespeichert: wahl, systemDunkel })
+    pruefen(
+      `Wahl ${wahl === null ? '(keine)' : `„${wahl}"`}, ${lage} → schreibt ${erwartet}`,
+      farben.length === 1 && farben[0] === erwartet,
+      `bekommen: [${farben.join(', ') || '(nichts)'}]`
+    )
   }
-
-  const a = leisteAus(ueberSkript.kopf)
-  const b = leisteAus(ueberFunktion.kopf)
-  pruefen(
-    `Startskript und Umschalter erzeugen dasselbe (${name})`,
-    a.length === b.length && a.every((wert, i) => wert === b[i]),
-    `Skript: [${a.join(', ')}]   Umschalter: [${b.join(', ')}]`
-  )
-}
-
-/* ------------------------------------------------------------------
-   Zwei Angaben im HTML: Am Ende bleibt genau eine – und zwar **die erste**.
-
-   Das ist seit dem 17. August 2026 der Kern der Sache und nicht mehr nur
-   Ordnungsliebe. Das Layout liefert wieder eine `themeColor` aus, weil Safari
-   sie beim Parsen liest und ohne sie schwarz malt. Würde das Skript sie
-   löschen und eine neue anlegen, wäre der Knoten weg, den Safari gelesen hat –
-   und ob die Farbe das überlebt, lässt sich von hier aus nicht prüfen.
-
-   Deshalb wird der erste Knoten **abgeändert, nicht ersetzt**, und diese
-   Prüfung sieht ihm dabei zu: Sie merkt sich die Kennung vorher und verlangt
-   sie hinterher zurück. Ein Test, der nur die Farbe zählt, ginge auch dann
-   durch, wenn das Skript wieder löscht und neu anlegt.
-------------------------------------------------------------------- */
-
-{
-  const { dokument, kopf } = neueSeite(2)
-  const ersterVorher = kopf.kinder[0]
-  new Function('document', 'window', 'localStorage', skript)(
-    dokument,
-    {},
-    { getItem: () => 'dark' }
-  )
-  const heraus = leisteAus(kopf)
-  pruefen(
-    'Von zwei Angaben bleibt genau eine übrig',
-    heraus.length === 1 && heraus[0] === LEISTENFARBE.dark,
-    `bekommen: [${heraus.join(', ')}] – erwartet genau [${LEISTENFARBE.dark}]`
-  )
-  pruefen(
-    'Es ist derselbe Knoten wie vorher, nur mit neuer Farbe',
-    kopf.kinder[0] === ersterVorher,
-    'Das Skript hat den Knoten aus dem HTML weggeworfen und einen neuen\n' +
-      '     angelegt. Genau den hat Safari beim Parsen gelesen – nimmt man ihn\n' +
-      '     heraus, ist der schwarze Balken vom 17. August 2026 zurück.'
-  )
 }
 
 /*
-  Und der Fall ohne jede Angabe: Dann muss eine entstehen.
+  Die Gegenprobe: Die Farbe hängt an der Wahl und nicht am Gerät.
 
-  Er kommt im Browser heute nicht mehr vor – aber die Funktion muss ihn
-  können, sonst hinge die ganze Farbgebung daran, dass jemand die `themeColor`
-  im Layout nie entfernt. Zwei Absicherungen, die einander stützen.
+  Das ist der ganze Unterschied zur Fassung mit `media`, die der Betreiber
+  ausdrücklich nicht wollte. Eine Prüfung, die nur „schreibt irgendeine Farbe"
+  verlangt, ginge auch dann durch.
 */
 {
-  const { dokument, kopf } = neueSeite(0)
-  new Function('document', 'window', 'localStorage', skript)(
-    dokument,
-    {},
-    { getItem: () => 'dark' }
-  )
-  const heraus = leisteAus(kopf)
+  const dunkelAufHellemGeraet = ausfuehren({ gespeichert: 'dark', systemDunkel: false })
+  const hellAufDunklemGeraet = ausfuehren({ gespeichert: 'weiss', systemDunkel: true })
   pruefen(
-    'Ohne vorhandene Angabe wird eine angelegt',
-    heraus.length === 1 && heraus[0] === LEISTENFARBE.dark,
-    `bekommen: [${heraus.join(', ')}]`
+    'Die Systemvorgabe ändert die geschriebene Farbe nicht',
+    dunkelAufHellemGeraet.farben[0] === LEISTENFARBE.dark &&
+      hellAufDunklemGeraet.farben[0] === LEISTENFARBE.weiss,
+    'Der Balken soll der Website folgen, nicht dem Telefon – ausdrücklicher\n' +
+      '     Wunsch des Betreibers vom 17. August 2026.'
   )
 }
 

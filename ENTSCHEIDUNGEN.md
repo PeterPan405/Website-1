@@ -1708,32 +1708,98 @@ und wurde deshalb für belegt gehalten. Belegt war aber nur, dass die JS-Wege
 nicht tragen – über die Farbgebung ohne Angabe war nie eine Messung gemacht
 worden. Eine Annahme, die eine Lücke füllt, sieht aus wie ein Befund.
 
-### Der vierte Anlauf: die helle Farbe steht wieder im HTML
+### Der vierte Anlauf: die helle Farbe stand wieder im HTML – halb richtig
 
-`app/layout.tsx` liefert `themeColor: LEISTENFARBE.weiss` aus – aus der
-Konstante, nicht als zweite Zeichenkette daneben.
+`app/layout.tsx` lieferte `themeColor: LEISTENFARBE.weiss` aus, und das
+Startskript änderte den Knoten ab, statt ihn zu ersetzen.
 
-Die Wahl ist keine: **Der erste Besuch ist weiß, ausnahmslos.** Der eine Wert,
-den ein statischer Export hinterlegen kann, ist damit derselbe, den das
-Startskript eine Zeile später setzt.
+**Ergebnis, am selben Tag gemessen:** Die helle Angabe wird von Safari
+genommen – das war der Fortschritt. Die Änderung durch das Skript wird
+ignoriert – auf einem dunkel geschalteten Telefon stand ein beiger Balken über
+schwarzer Seite. Der alte Fehler, ein viertes Mal.
 
-**Und das Startskript ändert diesen Knoten ab, statt ihn zu ersetzen.** Bis
-hierher löschte es alle vorhandenen Angaben und legte eine neue an – mit einer
-Angabe im HTML wäre das der Schuss ins eigene Knie: Safari hat sie beim Parsen
-gelesen, und ob die Farbe eine Löschung des Knotens überlebt, lässt sich von
-hier aus nicht prüfen. Auf „müsste gehen" ist diese Stelle schon zweimal
-hereingefallen. Überzählige Angaben fallen weg, die erste bleibt stehen und
-bekommt nur neuen Inhalt.
+Damit war die Tabelle vollständig:
 
-**Was bleibt:** Ein zurückkehrender Safari-Besucher mit gewähltem dunklen
-Schema sieht einen hellen Balken. Der Tausch ist bewusst – vorher war der
-Balken bei **jedem** Besuch falsch, jetzt nur noch in diesem einen Fall.
+| Lage                                    | Safari       |
+| --------------------------------------- | ------------ |
+| keine Angabe im HTML                    | malt schwarz |
+| feste Angabe im HTML                    | nimmt sie    |
+| Skript ändert sie danach (setAttribute) | ignoriert    |
+| Skript tauscht den Knoten aus           | ignoriert    |
 
-`tests/farbschema-start.test.ts` liest deshalb weiterhin den Quelltext, prüft
-jetzt aber das Gegenteil von vorher: dass eine `themeColor` dasteht, dass sie
-aus `LEISTENFARBE` kommt und dass es die helle ist. Dazu vergleicht ein Fall
-die **Knotenkennung** vor und nach dem Skriptlauf – ein Test, der nur Farben
-zählt, ginge auch durch, wenn wieder gelöscht und neu angelegt würde.
+**Safari friert den Wert beim Parsen ein.** Die gespeicherte Wahl steht erst
+danach fest. Drei Anläufe waren Varianten desselben unmöglichen Vorhabens, und
+das war nach dem ersten schon absehbar – es fehlte nur die Bereitschaft, die
+Anforderung selbst infrage zu stellen statt immer neue Umgehungen zu suchen.
+
+### Der fünfte Anlauf: `media` – und warum der Betreiber ihn zurückwies
+
+Zwei Angaben nach `prefers-color-scheme`. Damit folgte der Balken dem **Gerät**
+statt der Website. Der Betreiber hat das am selben Tag beanstandet:
+
+> Der Balken soll im White Mode Beige sein, an dem Dark Mode dunkel wie die
+> anderen Farben.
+
+Er will, dass der Balken der **Wahl** folgt. Genau das schien unmöglich – und
+war es auch, solange nur DOM-Wege versucht wurden.
+
+### Der sechste Anlauf: `document.write`
+
+Alle gescheiterten Wege haben das DOM **nach** dem Parsen verändert:
+`setAttribute`, `appendChild`, Knoten austauschen. `document.write` in einem
+Skript, das während des Parsens läuft, ist etwas anderes: Der Text geht in den
+**Token-Strom des Parsers**, und der baut das Element selbst – wie bei
+Quelltext. Genau daran hängt Safaris Auswertung.
+
+Das Startskript steht im `<head>` und läuft synchron, während der Parser noch
+im `<head>` ist. Es schreibt:
+
+    <meta name="theme-color" content="#f2ebdd">
+
+mit der Farbe, die zur gespeicherten Wahl gehört.
+
+**Drei Stücke tragen das, und einzeln ist keines etwas wert:**
+
+1. das `document.write` statt einer DOM-Änderung,
+2. seine Stellung im `<head>` **vor** dem Rückfall,
+3. der Rückfall in `<noscript>`.
+
+Zu (3): Next zieht jede Meta-Angabe, die es sieht, an den Anfang des `<head>` –
+also vor das Skript. Bei mehreren passenden Angaben nimmt der Browser die
+erste; der Rückfall gewönne dann immer, und der ganze Umbau wäre wirkungslos,
+und zwar lautlos. In `<noscript>` sieht Next ihn nicht. Inhaltlich gehört er
+ohnehin dorthin: Wo das Skript läuft, schreibt es die richtige Farbe; wo es
+nicht läuft, ist die Systemvorgabe die beste verfügbare Schätzung.
+
+### Der Umschalter lädt neu
+
+`document.write` wirkt nur, während geparst wird. Ohne Neuladen bliebe der
+Balken nach einem Umschalten in der alten Farbe – und weil diese Website
+clientseitig navigiert, die ganze Sitzung lang. Genau der Zustand, den der
+Betreiber fünfmal gemeldet hat.
+
+Der Preis ist ein kurzes Neuladen bei einem Klick, den kaum jemand öfter als
+einmal macht. Verloren geht dabei wenig: Rechner, Merkliste und Lesezeichen
+liegen im `localStorage`.
+
+### Was die Prüfung daraus gelernt hat
+
+`tests/farbschema-start.test.ts` hat drei kaputte Fassungen abgesegnet. Nicht
+aus Nachlässigkeit: Sie maß das **Verhalten in einem Nachbau**, und der Nachbau
+machte alles mit. Ein `setAttribute` wirkt dort immer.
+
+Sie prüft jetzt die **Bauart**: dass zwei `media`-Angaben ausgeliefert werden,
+dass beide Farben aus `LEISTENFARBE` kommen – und dass in `lib/theme.ts`,
+`app/layout.tsx` und `ThemeToggle.tsx` außerhalb von Kommentaren kein
+`theme-color` mehr vorkommt.
+
+Dazu ist der Nachbau von einer Attrappe zu einer **Falle** geworden:
+`document.head`, `createElement` und `querySelectorAll` werfen. Ein Skript, das
+sie anfasst, bricht ab und meldet sich. Nachgestellt – die Falle schnappt zu.
+
+**Die allgemeine Lehre:** Ein Nachbau, der alles mitmacht, bestätigt jede
+Fassung. Wo die einzige prüfbare Umgebung nicht die ist, in der es kaputtgeht,
+muss die Prüfung an der Bauart ansetzen, nicht am Verhalten.
 
 `startSkript` setzt die Farbe außerdem **immer** statt nur bei gespeicherter
 Wahl – ein Zweig, der fast nie durchlaufen wird, wird nie geprüft und trägt

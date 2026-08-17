@@ -93,53 +93,6 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   /*
-    Die helle Leistenfarbe – fest, aus `lib/theme.ts`, nicht von Hand.
-
-    ## Der dritte Anlauf, und warum er anders aussieht als die ersten beiden
-
-    Am 13. August 2026 stand hier eine feste helle Farbe. Auf einem Gerät mit
-    dunklem Schema blieb der Bereich über der Seite beige – heller Balken über
-    schwarzer Seite. Zwei Anläufe, das nachträglich zu korrigieren, scheiterten:
-
-        setAttribute('content', …)   Chromium: wirkt   Safari: wirkt nicht
-        Knoten austauschen           Chromium: wirkt   Safari: wirkt nicht
-
-    Daraus wurde am 16. August die Angabe **ganz gestrichen**, in der Annahme:
-    „Ohne `theme-color` färbt Safari nach dem Seitenhintergrund." Der stand
-    schon richtig – `html` trägt `background-color: var(--c-canvas)`.
-
-    **Diese Annahme ist am 17. August 2026 widerlegt worden.** Der Betreiber
-    hat die Startseite im **hellen** Modus gezeigt: beige Seite, und darüber
-    ein **schwarzer** Balken. Safari nimmt den Seitenhintergrund also nicht.
-    Ohne Angabe malt es die sichere Fläche schwarz, unabhängig vom Schema.
-
-    ## Was daraus folgt
-
-    Für Safari gibt es genau einen Weg, und der führt über das HTML. Ein
-    statischer Export kann dort **einen** Wert hinterlegen – also den, der für
-    jeden Erstbesuch stimmt.
-
-    Und das ist der helle: **Der erste Besuch ist weiß, ausnahmslos**, auch auf
-    einem dunkel gestellten Gerät (`startSkript()` in `lib/theme.ts`). Die
-    Farbe hier ist damit nicht geraten, sondern dieselbe Regel noch einmal.
-
-    ## Was dieser Weg nicht kann
-
-    Ein Besucher, der in Safari ausdrücklich Dunkel gewählt hat, sieht
-    weiterhin einen hellen Balken. Das ist kein Versehen, sondern der Rest,
-    der bleibt: Safari liest die Angabe beim Parsen, der Export kennt die
-    Wahl nicht, und beide Wege, sie nachzuziehen, sind gemessen gescheitert.
-
-    Der Tausch ist bewusst: Vorher war der Balken bei **jedem** Besuch falsch,
-    jetzt nur noch bei einem zurückkehrenden Safari-Besucher mit gewähltem
-    dunklen Schema.
-
-    Chromium bekommt beides richtig – dort **wirkt** der Knoten, den
-    `leisteFaerben()` beim Umschalten anlegt.
-  */
-  themeColor: LEISTENFARBE.weiss,
-
-  /*
     `light`, nicht `light dark`.
 
     Die Angabe entscheidet, in welcher Farbe der Browser die Fläche malt, bevor
@@ -177,7 +130,47 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} h-full antialiased`}
     >
       <head>
+        {/*
+          Die Reihenfolge in diesem Block ist die halbe Lösung.
+
+          Das Skript schreibt per `document.write` eine `theme-color` in den
+          Token-Strom des Parsers – an genau dieser Stelle, also **vor** den
+          beiden Angaben darunter. Bei mehreren passenden Angaben nimmt der
+          Browser die erste; die geschriebene gewinnt damit, wenn Safari sie
+          überhaupt auswertet.
+
+          Deshalb stehen die beiden Rückfall-Angaben hier von Hand und nicht
+          in `viewport.themeColor`: Next zieht alles aus den Metadaten-Exporten
+          an den Anfang des `<head>` – vor das Skript. Dann stünden sie vorn
+          und gewännen immer.
+        */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+
+        {/*
+          Der Rückfall für Besucher **ohne JavaScript** – und nur für sie.
+
+          Er steht in `<noscript>`, aus zwei Gründen. Erstens zieht Next jede
+          Meta-Angabe, die es sieht, an den Anfang des `<head>` – also vor das
+          Skript. Dann stünde sie vor der geschriebenen und gewönne immer, denn
+          bei mehreren passenden Angaben nimmt der Browser die erste. Innerhalb
+          von `<noscript>` sieht Next sie nicht.
+
+          Zweitens gehört sie inhaltlich genau dorthin: Wo das Skript läuft,
+          schreibt es die richtige Farbe. Wo es nicht läuft, ist die
+          Systemvorgabe des Geräts die beste verfügbare Schätzung.
+        */}
+        <noscript>
+          <meta
+            name="theme-color"
+            content={LEISTENFARBE.weiss}
+            media="(prefers-color-scheme: light)"
+          />
+          <meta
+            name="theme-color"
+            content={LEISTENFARBE.dark}
+            media="(prefers-color-scheme: dark)"
+          />
+        </noscript>
       </head>
       <body className="flex min-h-full flex-col">
         {/* Erster fokussierbarer Inhalt: Sprungmarke für Tastaturnutzer. */}

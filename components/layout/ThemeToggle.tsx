@@ -1,7 +1,7 @@
 'use client'
 
 import { Icon } from '@/components/ui/Icon'
-import { LEISTENFARBE, THEME_STORAGE_KEY, leisteFaerben } from '@/lib/theme'
+import { THEME_STORAGE_KEY } from '@/lib/theme'
 
 /**
  * Umschalter zwischen Weiß und Schwarz.
@@ -25,25 +25,34 @@ export function ThemeToggle({ className }: { className?: string }) {
     const next = root.dataset.theme === 'dark' ? 'weiss' : 'dark'
     root.dataset.theme = next
 
-    /*
-      Die Browserleiste mitziehen.
-
-      Auf dem Telefon färbt Safari die Leiste über der Seite nach dieser
-      Angabe. Ohne sie bliebe sie hell, während die Seite dunkel wird – auf
-      dem Handy der auffälligste Teil der ganzen Umschaltung.
-
-      Die Angabe wird **ersetzt**, nicht geändert: Safari übernimmt ein
-      `setAttribute` auf einer bereits gelesenen `theme-color` nicht
-      verlässlich. Begründung und Vorgeschichte stehen bei `leisteFaerben`.
-    */
-    leisteFaerben(LEISTENFARBE[next])
-
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, next)
     } catch {
       // Privater Modus oder blockierter Speicher: Der Wechsel gilt dann nur
-      // für die aktuelle Sitzung.
+      // für die aktuelle Sitzung – und dann trägt auch das Neuladen nicht.
+      return
     }
+
+    /*
+      Neu laden, damit die Browserleiste mitkommt.
+
+      Das sieht nach Holzhammer aus und ist die einzige Möglichkeit. Safari
+      liest `theme-color` **beim Parsen**; jede Änderung danach ist wirkungslos
+      – viermal nachgemessen, jedes Mal am Telefon des Betreibers. Die Farbe
+      entsteht deshalb aus einem `document.write` im Startskript, und das läuft
+      nur, wenn die Seite wirklich neu geparst wird.
+
+      Ohne Neuladen bliebe der Balken bis zum nächsten harten Seitenaufruf in
+      der alten Farbe – und weil diese Website clientseitig navigiert, wäre das
+      die ganze Sitzung lang. Genau der Zustand, den der Betreiber fünfmal
+      gemeldet hat.
+
+      Der Preis ist ein kurzes Neuladen bei einem Klick, den kaum jemand öfter
+      als einmal macht. Was dabei verlorengeht, ist nicht viel: Die Rechner
+      legen ihre Eingaben im `localStorage` ab, die Merkliste ebenso, und das
+      Lesezeichen im Lernbereich auch.
+    */
+    window.location.reload()
   }
 
   return (

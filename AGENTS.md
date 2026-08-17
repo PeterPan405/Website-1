@@ -266,18 +266,19 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
   gestellten Gerät. Die Rangfolge in `startSkript()` (`lib/theme.ts`) hat nur
   zwei Stufen: gespeicherte Wahl, sonst Weiß. `prefers-color-scheme` kommt
   nicht mehr vor.
-- **`app/layout.tsx` liefert `themeColor: LEISTENFARBE.weiss` aus** – die
-  helle, weil der erste Besuch weiß ist. Ohne Angabe malt Safari den Bereich
-  über der Seite **schwarz**, auch im hellen Modus; der Seitenhintergrund auf
-  `html` rettet das nicht (nachgewiesen am 17. August 2026).
-- **Das Startskript ändert diese Angabe ab, statt sie zu ersetzen.** Safari
-  liest `theme-color` beim Parsen; wird der Knoten gelöscht, ist unklar, was
-  von der Farbe bleibt. Überzählige Angaben fallen weg, die erste bleibt
-  stehen. `tests/farbschema-start.test.ts` prüft die Knotenkennung.
-- **Was bleibt:** Ein zurückkehrender Safari-Besucher mit gewähltem dunklen
-  Schema sieht weiterhin einen hellen Balken. Kein Versehen – ein statischer
-  Export kennt seine Wahl nicht, und beide Wege, sie nachzuziehen, sind
-  gemessen gescheitert.
+- **Die Leistenfarbe entsteht per `document.write` im Startskript.** Safari
+  liest `theme-color` beim Parsen; jede spätere DOM-Änderung ist wirkungslos
+  (viermal nachgemessen). `document.write` schiebt den Text in den Token-Strom
+  – der Parser baut das Element selbst, wie bei Quelltext.
+- **Drei Stücke, die zusammengehören:** das `document.write`, seine Stellung
+  im `<head>` **vor** dem Rückfall, und der Rückfall in `<noscript>` (sonst
+  zieht Next ihn nach vorn, und die erste passende Angabe gewinnt). Einzeln
+  entfernt ergibt jedes wieder einen falschen Balken.
+- **Der Umschalter lädt die Seite neu.** Ohne Neuladen wird nicht neu geparst,
+  und der Balken bliebe die ganze Sitzung falsch – die Website navigiert
+  clientseitig.
+- `tests/farbschema-start.test.ts` fängt `document.write` auf und lässt
+  `head`, `createElement`, `querySelectorAll` **werfen**.
 - `colorScheme` steht auf `'light'`, nicht `'light dark'`.
 - Am `--c-canvas` des hellen Schemas hängen `LEISTENFARBE` in `lib/theme.ts`
   **und** das App-Icon (`python scripts/app-icon-faerben.py`).
