@@ -7,6 +7,7 @@ import { PHILOSOPHY_PUBLISHED } from '@/data/philosophy'
 import { getLearnLevelParams, getLearnTopicSlugs } from '@/lib/learn'
 import { getBranchen } from '@/lib/branchen'
 import { getLernpfadSlugs } from '@/lib/lernpfade'
+import { themenMitKarten } from '@/lib/lernkarten-daten'
 import { getEditionDates } from '@/lib/editions'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
 import { getInstrumentSymbols } from '@/lib/markets'
@@ -397,6 +398,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   /*
+    Die Kartenbögen – je Thema einer, aber nur wo es Karten gibt.
+
+    Abgeleitet aus derselben Funktion, die `generateStaticParams` benutzt.
+    Eine eigene Liste hier wäre die zweite Wahrheit, und sie fiele erst der
+    Paketprüfung auf: eine gebaute Seite ohne Sitemap-Eintrag oder ein
+    Sitemap-Eintrag ohne Seite.
+  */
+  const kartenPages: MetadataRoute.Sitemap = themenMitKarten(topicSlugs).map((slug) => ({
+    url: absoluteUrl(`/lernen/${slug}/karten`),
+    changeFrequency: 'monthly',
+    priority: 0.4,
+  }))
+
+  /*
     Die Akademie: Übersicht, zwei Bereiche, alle Lektionen.
 
     Abgeleitet und nicht abgetippt – aus demselben Grund wie bei den Rechnern
@@ -433,6 +448,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...pfadPages,
     ...topicPages,
     ...levelPages,
+    ...kartenPages,
     ...calculatorPages,
     ...marketPages,
     ...branchenPages,

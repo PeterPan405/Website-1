@@ -32,6 +32,55 @@ export function withBrand(title: string): string {
   return `${title} | ${siteConfig.name}`
 }
 
+/**
+ * Die harte Grenze der Paketprüfung.
+ *
+ * `SEO_DESCRIPTION_RANGE.max` ist der redaktionelle Richtwert;
+ * `scripts/paket-pruefen.ts` beanstandet ab 161 Zeichen. Für eine Beschreibung,
+ * die aus Daten zusammengesetzt wird, zählt die zweite Zahl.
+ */
+export const BESCHREIBUNG_GRENZE = 160
+
+/**
+ * Eine Beschreibung aus Teilsätzen, die die Grenze nicht reißt.
+ *
+ * ## Wofür das da ist
+ *
+ * Für Seiten, deren Beschreibung einen **Namen aus den Daten** enthält – ein
+ * Lernthema, ein Instrument, ein Land. Dort ist die Länge nicht bekannt, wenn
+ * der Satz geschrieben wird: „Wie funktioniert der Markt“ ist vierzehn Zeichen
+ * länger als „ETF“, und die fünf Themen mit den längsten Titeln rissen die
+ * Grenze, während die übrigen neunundzwanzig durchgingen.
+ *
+ * Den Satz gerade so zu kürzen, dass er für die heutigen Titel passt, wäre
+ * eine Wette auf den nächsten Titel. Stattdessen werden hier **Teile**
+ * übergeben, in absteigender Wichtigkeit: Der erste steht immer, jeder weitere
+ * nur, wenn er noch hineinpasst.
+ *
+ * @param teile Satzteile ohne Satzzeichen am Ende, wichtigster zuerst.
+ * @param grenze Höchstlänge, voreingestellt die der Paketprüfung.
+ */
+export function beschreibungAusTeilen(
+  teile: readonly string[],
+  grenze: number = BESCHREIBUNG_GRENZE
+): string {
+  let satz = ''
+
+  for (const teil of teile) {
+    const kandidat = satz ? `${satz} ${teil}` : teil
+    /*
+      Der erste Teil kommt auch dann hinein, wenn er allein zu lang ist.
+
+      Eine leere Beschreibung wäre schlechter als eine zu lange: Die zu lange
+      wird abgeschnitten angezeigt, die leere gar nicht – und die Paketprüfung
+      meldet beides, sodass es niemandem entgeht.
+    */
+    if (!satz || kandidat.length <= grenze) satz = kandidat
+  }
+
+  return satz
+}
+
 export interface SeoInput {
   /**
    * Der vollständige Inhalt des <title>-Tags, inklusive eventueller Marke.
