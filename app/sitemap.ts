@@ -288,6 +288,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
     /*
+      Der Screener zeigt Kurse und Bilanzzahlen. Die Kurse wechseln täglich,
+      die Bilanzzahlen quartalsweise – die Seite folgt der schnelleren.
+    */
+    { url: absoluteUrl('/maerkte/screener'), changeFrequency: 'daily', priority: 0.7 },
+    /*
       Die Methodenseite ändert sich nur, wenn sich eine Rechnung ändert – also
       selten. Die Beispiele darauf werden zwar bei jedem Bau neu gerechnet,
       liefern aber dasselbe Ergebnis, solange die Formel steht.
