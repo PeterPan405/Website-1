@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
     art: 'neu',
+    titel: 'Das Ausgabenarchiv als ein Dokument zum Lesen am Stück',
+    text: 'Bisher war das Archiv eine Seite je Tag – wer die Woche nachlesen wollte, klickte fünfmal. Jetzt gibt es dieselben Ausgaben als eine PDF-Datei: je Monat eine und, sobald ein Jahr Ausgaben aus mehr als einem Monat hat, eine für den ganzen Jahrgang. Nichts daran ist gekürzt: Jede Meldung kommt mit ihrer vollständigen Zusammenfassung, dem „warum es zählt" und ihren Quellen; es fehlen nur die Klicks dazwischen. Jede Ausgabe beginnt auf einer neuen Seite, damit sich der Band durchblättern lässt. Erstellt wird die Datei im Browser, es werden keine Daten übertragen.',
+    ziel: { text: 'Zum Archiv', href: '/news/tag' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
     titel: '„Ich habe fünf Minuten" – Einstieg nach Zeit statt nach Thema',
     text: 'Wer nicht weiß, wo er anfangen soll, fragt selten nach dem Thema, sondern nach der Zeit. Die neue Seite sortiert danach: fünf Minuten, eine Viertelstunde, eine Stunde, ein Abend. Jede Minutenangabe steht so in den Inhalten – die Lesezeit einer Lernstufe, die gemessene Länge einer Podcastfolge, die Summe eines Lernpfads. Im Fünf-Minuten-Fenster steht bewusst keine Lernstufe: Die kürzeste braucht neun Minuten, und das sagt die Seite auch. Wo keine Dauer hinterlegt ist, steht keine geschätzte Zahl, sondern der Hinweis darauf.',
     ziel: { text: 'Zum Einstieg nach Zeit', href: '/lernen/zeit' },

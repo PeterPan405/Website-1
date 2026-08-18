@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { JsonLd } from '@/components/seo/JsonLd'
+import { Bandknopf } from '@/components/news/Bandknopf'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Reveal } from '@/components/ui/Reveal'
@@ -11,6 +12,7 @@ import {
   getEditionStats,
   getEditions,
 } from '@/lib/editions'
+import { baende, type Band } from '@/lib/ausgabenband'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
@@ -36,6 +38,8 @@ export default async function EditionLibraryPage() {
     mehr sind, von selbst eine Spanne. So kann die Zeile nicht falsch werden,
     ohne dass jemand daran denken muss.
   */
+  const gebundene = baende(editions)
+
   const umfang = stats.jeAusgabe
     ? stats.jeAusgabe.min === stats.jeAusgabe.max
       ? `${stats.jeAusgabe.min} je Ausgabe`
@@ -73,6 +77,35 @@ export default async function EditionLibraryPage() {
       />
 
       <div className="fk-container py-12 sm:py-16">
+        {/*
+          Die Bände zum Herunterladen.
+
+          Sie stehen vor der Liste, nicht hinter ihr: Wer die Ausgaben am Stück
+          lesen will, entscheidet das vorher – hinter zwanzig Tageslinks stünde
+          das Angebot für den, der ohnehin schon klickt.
+
+          Einen Jahresband gibt es erst, wenn ein Jahr Ausgaben in mehr als
+          einem Monat hat; solange es einer ist, wäre er Zeichen für Zeichen der
+          Monatsband.
+        */}
+        {gebundene.length > 0 && (
+          <section aria-labelledby="baende" className="mb-12">
+            <h2 id="baende" className="text-fg text-lg font-semibold">
+              Am Stück lesen
+            </h2>
+            <p className="text-fg-muted mt-2 max-w-3xl text-sm leading-relaxed">
+              Dieselben Ausgaben als ein Dokument – vollständig, mit dem „warum es zählt“
+              und den Quellen jeder Meldung. Nichts daran ist gekürzt; es fehlen nur die
+              Klicks dazwischen. Erstellt wird die Datei im Browser.
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {gebundene.map((band: Band) => (
+                <Bandknopf key={`${band.art}-${band.schluessel}`} band={band} />
+              ))}
+            </div>
+          </section>
+        )}
+
         {library.length === 0 ? (
           <p className="text-fg-muted">Es ist noch keine Ausgabe erschienen.</p>
         ) : (

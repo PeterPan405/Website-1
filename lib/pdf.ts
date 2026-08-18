@@ -75,6 +75,14 @@ export type PdfZeile =
   /** Das Ergebnis ganz unten – als ausgefüllter Kasten, damit man es findet. */
   | { art: 'abschluss'; text: string; betrag?: string; schreiblinie?: boolean }
   | { art: 'hinweis'; text: string }
+  /**
+   * Fließtext in Lesegröße, umbrochen.
+   *
+   * Für Dokumente, die man **liest** statt abhakt – das Ausgabenband etwa.
+   * `hinweis` bricht zwar auch um, ist aber acht Punkt groß und grau: eine
+   * Fußnote. Zwei Seiten Fußnote sind unlesbar.
+   */
+  | { art: 'fliesstext'; text: string }
   | { art: 'abstand' }
   | { art: 'linie' }
   | { art: 'seitenumbruch' }
@@ -131,6 +139,7 @@ const MASSE = {
   summe: { groesse: 10, hoehe: 20, fett: true },
   abschluss: { groesse: 12, hoehe: 34, fett: true },
   hinweis: { groesse: 8, hoehe: 11.5, fett: false },
+  fliesstext: { groesse: 9.5, hoehe: 14, fett: false },
 } as const
 
 /* --------------------------------------------------------------------- Maße */
@@ -609,6 +618,23 @@ export function erzeugePdf(dokument: PdfDokument): Uint8Array {
       umbrochen, bevor irgendetwas gesetzt wird – sonst liefe der Satz über den
       rechten Rand hinaus, und beim Drucken wäre er dort abgeschnitten.
     */
+    /*
+      Fließtext wird umbrochen wie ein Hinweis, aber in Lesegröße und in der
+      Textfarbe. Der einzige Unterschied zur Hinweiszeile – und der Grund,
+      warum es beide gibt: Ein Absatz, der wie eine Fußnote aussieht, wird wie
+      eine Fußnote gelesen, nämlich nicht.
+    */
+    if (zeile.art === 'fliesstext') {
+      const links = RAND
+      for (const stueck of umbrich(zeile.text, mass.groesse, RECHTS - links)) {
+        if (!platzFuer(mass.hoehe)) neueSeite()
+        inhalt += text('F3', mass.groesse, links, y, stueck, TEXT)
+        y -= mass.hoehe
+      }
+      y -= 4
+      continue
+    }
+
     if (zeile.art === 'hinweis') {
       const links = RAND + 10
       for (const stueck of umbrich(zeile.text, mass.groesse, RECHTS - links)) {
