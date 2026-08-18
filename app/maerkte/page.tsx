@@ -228,6 +228,17 @@ export default async function MarketsOverviewPage() {
               { href: '/maerkte/tagesbild', text: 'Tagesbild' },
               { href: '/maerkte/zusammenhang', text: 'Zusammenhang und Schwankung' },
               { href: '/maerkte/saisonalitaet', text: 'Saisonalität' },
+              /*
+                Die beiden Seiten zum Weltindex. Sie standen zuerst nicht
+                hier – und waren damit nur über die Suche und einen
+                Querverweis erreichbar, obwohl im Kommentar darüber steht,
+                dass diese Zeile der einzige Weg zu solchen Seiten ist.
+              */
+              {
+                href: '/maerkte/waehrungen-im-weltindex',
+                text: 'Währungen im Weltindex',
+              },
+              { href: '/maerkte/klumpenrisiko', text: 'Klumpenrisiko' },
               { href: '/maerkte/merkliste', text: 'Merkliste' },
             ].map((ziel) => (
               <li key={ziel.href}>
