@@ -219,7 +219,7 @@ export const costAverageSparplan: LearnTopic = {
         'Warum die Einmalanlage im Durchschnitt vorn liegt, wann Stückeln trotzdem sinnvoll ist und wie Kosten und Ausführungstermine das Ergebnis beeinflussen.',
       title: 'Sparplan oder Einmalanlage?',
       lead: 'Was die Untersuchungen tatsächlich zeigen, wann Stückeln trotzdem die bessere Wahl ist und welche Details messbar wirken.',
-      readingMinutes: 9,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -311,6 +311,42 @@ export const costAverageSparplan: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Jede Rate ist ein eigener Kauf',
+        },
+        {
+          type: 'paragraph',
+          text: 'Steuerlich ist ein Sparplan keine einzelne Anlage, sondern eine Reihe von Käufen mit je eigenem Einstandskurs und eigenem Kaufdatum. Beim Verkauf gilt für gleichartige Papiere im selben Depot die Reihenfolge des Erwerbs: Was zuerst gekauft wurde, gilt als zuerst verkauft. Wer nach zwanzig Jahren einen Teil verkauft, verkauft also die ältesten Anteile – und damit die mit dem größten Gewinn und der höchsten Steuer darauf.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Praktisch heißt das: Ein Teilverkauf aus einem lange laufenden Sparplan ist steuerlich teurer als der Blick auf den Depotstand vermuten lässt. Wer die Wahl hat, verkauft besser aus einer Position, die er später aufgebaut hat – dafür muss sie allerdings in einem anderen Depot liegen, denn innerhalb eines Depots lässt sich die Reihenfolge nicht wählen.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was das für die Praxis bedeutet',
+          items: [
+            'Ein zweites Depot für spätere Käufe ist kein Papierkram ohne Zweck, sondern die einzige Möglichkeit, beim Verkauf zwischen alten und neuen Anteilen zu wählen.',
+            'Bei einem Depotübertrag müssen die Anschaffungsdaten mitkommen. Fehlen sie, unterstellt die Bank eine Ersatzbemessungsgrundlage – und die ist fast immer ungünstig.',
+            'Ein Wechsel des Fonds ist steuerlich ein Verkauf, auch wenn er sich wie ein Umschichten anfühlt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Bruchstücke und was beim Aussetzen passiert',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Sparplan kauft für einen Betrag, nicht eine Stückzahl – deshalb entstehen Bruchteile von Anteilen. Für den Wertzuwachs macht das keinen Unterschied, für die Handhabung schon: Bruchstücke lassen sich an der Börse nicht verkaufen, sondern nur über die Fondsgesellschaft oder den Broker zurückgeben, und mancher Depotübertrag scheitert genau daran.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Aussetzung des Sparplans ist dagegen folgenlos: Der Bestand bleibt liegen und arbeitet weiter, es fallen keine Gebühren an, und der Plan lässt sich jederzeit wieder aufnehmen. Wer in einer knappen Phase überlegt, ob er verkaufen soll, hat mit dem Pausieren die deutlich billigere Möglichkeit – sie kostet nur die Raten, die nicht eingezahlt werden.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -319,6 +355,8 @@ export const costAverageSparplan: LearnTopic = {
             'Die Einmalanlage gewinnt im Durchschnitt, weil das Geld länger am Markt ist – nicht durch besseres Timing.',
             'Verteilen über sechs bis zwölf Monate ist eine bezahlte Versicherung gegen die eigene Reaktion.',
             'Kosten je Ausführung und laufende Kosten wirken; der Ausführungstag wirkt nicht.',
+            'Jede Rate ist steuerlich ein eigener Kauf – beim Teilverkauf gehen die ältesten Anteile zuerst.',
+            'Aussetzen kostet nichts außer den ausgelassenen Raten; verkaufen kostet die Steuer und den Wiedereinstieg.',
           ],
         },
       ],

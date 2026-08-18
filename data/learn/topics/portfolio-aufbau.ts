@@ -244,7 +244,7 @@ export const portfolioAufbau: LearnTopic = {
         'Wann und wie Rebalancing sinnvoll ist, wie Kern-Satellit-Strukturen aufgebaut werden und welche Fehler beim Kombinieren von ETFs entstehen.',
       title: 'Rebalancing und Struktur',
       lead: 'Warum ein Depot ohne Eingriff riskanter wird, wie man das zurückdreht und welche Fehler beim Kombinieren mehrerer Bausteine entstehen.',
-      readingMinutes: 10,
+      readingMinutes: 13,
       status: 'complete',
       blocks: [
         {
@@ -335,6 +335,42 @@ export const portfolioAufbau: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Zwei Bausteine, die sich gleich bewegen, sind einer',
+        },
+        {
+          type: 'paragraph',
+          text: 'Streuung entsteht nicht aus der Anzahl, sondern aus der Unabhängigkeit. Wer einen Welt-ETF und einen US-Technologie-ETF hält, hat nicht zwei Bausteine, sondern anderthalb: Der zweite steckt bereits im ersten, und in einem schlechten Quartal fallen beide zusammen. Das Maß dafür ist die Korrelation – und sie ist nicht in Ruhe zu betrachten, sondern in der Krise.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Genau dort ändert sie sich nämlich. Anlagen, die in ruhigen Jahren wenig miteinander zu tun haben, laufen im Einbruch häufig gleich, weil verkauft wird, was sich verkaufen lässt. Eine Aufteilung, die sich auf gemessene Korrelationen der letzten Jahre stützt, verspricht deshalb mehr, als sie halten kann. Was verlässlich bleibt, ist die Unterscheidung nach der Sache: Anleihen guter Bonität und Aktien reagieren auf verschiedene Dinge, zwei Aktienfonds nicht.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Die Frage vor jedem zusätzlichen Baustein',
+          items: [
+            'Was ist darin, das im vorhandenen nicht schon steckt? Wer es nicht in einem Satz sagen kann, braucht ihn nicht.',
+            'Worauf reagiert er anders als der Rest – auf Zinsen, auf Wechselkurse, auf eine andere Volkswirtschaft?',
+            'Wie verhielt er sich im letzten Einbruch? Nicht im Durchschnitt der letzten fünf Jahre, sondern in den drei schlechten Monaten darin.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Nach Kalender oder nach Bandbreite zurücksetzen?',
+        },
+        {
+          type: 'paragraph',
+          text: 'Für das Zurücksetzen der Quote gibt es zwei Verfahren. Das eine geht nach dem Kalender – einmal im Jahr, an einem festen Termin. Das andere nach Bandbreite: Erst wenn die Quote um mehr als einen festgelegten Abstand abgewichen ist, wird eingegriffen. Beide funktionieren; sie unterscheiden sich darin, was sie einem abverlangen.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Kalender ist die anspruchslosere Regel: ein Termin, keine Beobachtung, keine Entscheidung. Die Bandbreite greift dafür dann, wenn es nötig ist, und lässt kleine Abweichungen in Ruhe – sie verlangt allerdings, dass man hinsieht, und genau das tut man in den Wochen, in denen es zählt, am wenigsten gern. Wer sich nicht sicher ist, nimmt den Kalender: Eine Regel, die man befolgt, schlägt die bessere, die man nicht befolgt.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -344,6 +380,8 @@ export const portfolioAufbau: LearnTopic = {
             'Rebalancing steuert Risiko, es erhöht nicht die Rendite.',
             'In der Ansparphase über neue Raten zurücksetzen, nicht über Verkäufe.',
             'Mehr Bausteine sind nicht mehr Streuung; ein zusätzlicher braucht eine Begründung.',
+            'Korrelationen ändern sich in der Krise – die Unterscheidung nach der Sache hält länger als die gemessene Zahl.',
+            'Kalender oder Bandbreite: Eine Regel, die man befolgt, schlägt die bessere, die man nicht befolgt.',
           ],
         },
       ],

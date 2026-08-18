@@ -258,7 +258,7 @@ export const kostenUndGebuehren: LearnTopic = {
         'Was die TER enthält und was nicht, wie die Tracking-Differenz die wahren Kosten eines ETF zeigt und wie sich die Gesamtkostenquote sauber berechnen lässt.',
       title: 'Kosten vollständig erfassen',
       lead: 'Warum die Kostenquote eine Untergrenze ist, welche Zahl stattdessen zählt und wie sich die eigenen Gesamtkosten je Jahr berechnen lassen.',
-      readingMinutes: 10,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -344,6 +344,42 @@ export const kostenUndGebuehren: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Welche Kosten die Steuer mindern – und welche nicht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Bei Kapitalerträgen gilt eine Besonderheit: Werbungskosten sind mit dem Sparerpauschbetrag abgegolten. Depotgebühren, Fachliteratur, Softwarekosten und Beratungshonorare lassen sich also nicht zusätzlich absetzen, auch wenn sie nachweislich angefallen sind. Der Pauschbetrag ist der Abzug, und daneben gibt es keinen zweiten.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Ausnahme gibt es, und sie ist wichtig: Die Kosten, die unmittelbar beim Kauf und Verkauf anfallen – Ordergebühr, Handelsplatzentgelt, Maklercourtage –, gehören zur Anschaffung beziehungsweise mindern den Veräußerungserlös. Sie wirken also über den Gewinn, nicht neben ihm. Der Unterschied klingt nach Buchhaltung und ist keiner: Eine Ordergebühr senkt die Steuer, eine Depotgebühr nicht.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Woran man das im Alltag merkt',
+          items: [
+            'Die Abrechnung der Bank weist Transaktionskosten getrennt aus – sie sind bereits im steuerlichen Ergebnis berücksichtigt.',
+            'Eine Depotgebühr steht auf einer eigenen Rechnung und taucht in keiner Steuerbescheinigung auf. Das ist kein Versehen, sondern die Rechtslage.',
+            'Wer zwischen zwei Anbietern schwankt, sollte die Depotgebühr deshalb voll ansetzen und die Ordergebühr um den Steuereffekt gemindert – bei sonst gleichem Preis ist der Anbieter ohne Depotgebühr im Vorteil.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Spread ist eine Gebühr ohne Rechnung',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zwischen Kauf- und Verkaufskurs liegt jederzeit eine Spanne. Wer kauft, zahlt den höheren, wer verkauft, bekommt den niedrigeren – die Differenz bleibt beim Handelsplatz. Sie steht auf keiner Abrechnung, fällt aber bei jedem Kauf an, und bei wenig gehandelten Papieren übersteigt sie die Ordergebühr um ein Vielfaches.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Beeinflussen lässt sie sich, ohne etwas zu optimieren, was sich nicht optimieren lässt: Sie ist am engsten, wenn der Heimatmarkt des Papiers geöffnet hat. Ein ETF auf US-Aktien handelt sich am frühen Morgen in Deutschland anders als am Nachmittag, wenn die amerikanischen Börsen offen sind – nicht weil der Kurs ein anderer wäre, sondern weil die Spanne enger ist, wenn viele handeln.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -353,6 +389,8 @@ export const kostenUndGebuehren: LearnTopic = {
             'Die Tracking-Differenz misst das Ergebnis statt einer Gebühr – über mehrere Jahre betrachtet.',
             'Gesamtkosten in Euro rechnen, nicht in Prozent addieren.',
             'Welcher Anbieter günstiger ist, hängt von Depotgröße und Handelshäufigkeit ab.',
+            'Ordergebühren mindern den steuerpflichtigen Gewinn, Depotgebühren nicht – bei Kapitalerträgen sind Werbungskosten mit dem Pauschbetrag abgegolten.',
+            'Der Spread steht auf keiner Rechnung und ist bei geöffnetem Heimatmarkt am engsten.',
           ],
         },
       ],

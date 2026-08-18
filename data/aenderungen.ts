@@ -59,6 +59,16 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
+    art: 'geaendert',
+    titel: 'Fünf Fortgeschritten-Stufen deutlich ausgebaut',
+    text: 'Die Fortgeschritten-Stufen waren im Schnitt ein Viertel dünner als die Beginner-Stufen darunter – ein Lernweg, der in der Mitte schmaler wird. Fünf davon sind jetzt nachgezogen: Sparplan, Kosten und Gebühren, Depot und Broker, Portfolio-Aufbau und Rente. Neu sind unter anderem die steuerliche Behandlung eines Sparplans (jede Rate ist ein eigener Kauf), welche Kosten die Steuer mindern und welche nicht, was eine Teilausführung kostet, warum zwei gleichlaufende Bausteine keine zwei sind, und was die gesetzliche Rente außer der Altersrente noch leistet. Die Lesezeiten sind mitgezogen.',
+    ziel: {
+      text: 'Beispiel: Portfolio-Aufbau',
+      href: '/lernen/portfolio-aufbau/fortgeschritten',
+    },
+  },
+  {
+    datum: '2026-08-18',
     art: 'neu',
     titel: 'Das Ausgabenarchiv als ein Dokument zum Lesen am Stück',
     text: 'Bisher war das Archiv eine Seite je Tag – wer die Woche nachlesen wollte, klickte fünfmal. Jetzt gibt es dieselben Ausgaben als eine PDF-Datei: je Monat eine und, sobald ein Jahr Ausgaben aus mehr als einem Monat hat, eine für den ganzen Jahrgang. Nichts daran ist gekürzt: Jede Meldung kommt mit ihrer vollständigen Zusammenfassung, dem „warum es zählt" und ihren Quellen; es fehlen nur die Klicks dazwischen. Jede Ausgabe beginnt auf einer neuen Seite, damit sich der Band durchblättern lässt. Erstellt wird die Datei im Browser, es werden keine Daten übertragen.',
