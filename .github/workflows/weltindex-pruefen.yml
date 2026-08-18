@@ -1,7 +1,7 @@
 name: Weltindex prüfen
 
 # Holt das Factsheet des Indexanbieters und meldet, wenn die Ländergewichte
-# von denen in `data/weltindex.ts` abweichen.
+# von denen in `data/index-zusammensetzung.ts` abweichen.
 #
 # ## Warum ein Wächter und kein Abruf
 #
@@ -22,7 +22,7 @@ name: Weltindex prüfen
 # richtig. Erst ein deutlicher Sprung ist ein Fall zum Nachtragen, und dafür
 # ist eine Warnung im Protokoll die richtige Lautstärke.
 #
-# Wer die Zahlen nachträgt: `data/weltindex.ts`, danach `npm run test` – die
+# Wer die Zahlen nachträgt: `data/index-zusammensetzung.ts`, danach `npm run test` – die
 # Prüfung dort rechnet die Summe nach.
 
 on:
@@ -61,22 +61,22 @@ jobs:
           # Die Datei ist TypeScript; gelesen wird sie mit einem Ausdruck statt
           # mit einem Parser. Ein Parser für eine Handvoll Zeilen wäre mehr
           # Angriffsfläche als Nutzen.
-          quelle = open("data/weltindex.ts", encoding="utf-8").read()
+          quelle = open("data/index-zusammensetzung.ts", encoding="utf-8").read()
           erwartet = {
               land: float(wert)
               for land, wert in re.findall(
-                  r"land: '([^']+)', prozent: ([\d.]+)", quelle
+                  r"land: '([^']+)', anteil: ([\d.]+)", quelle
               )
           }
 
           # Die Bezeichnungen im Blatt sind englisch, die in der Datei deutsch.
           NAMEN = {
-              "United States": "Vereinigte Staaten",
+              "United States": "USA",
               "Japan": "Japan",
-              "United Kingdom": "Vereinigtes Königreich",
+              "United Kingdom": "Großbritannien",
               "Canada": "Kanada",
               "France": "Frankreich",
-              "Other": "Übrige Länder",
+              "Other": "Übrige Industrieländer",
           }
 
           try:
@@ -113,7 +113,7 @@ jobs:
               for land, alt, neu in abweichungen:
                   print(f"::warning::[weltindex] {land}: Datei {alt}, Blatt {neu}.")
               print("")
-              print("Nachtragen in data/weltindex.ts, danach npm run test.")
+              print("Nachtragen in data/index-zusammensetzung.ts, danach npm run test.")
           else:
               print("\nDie Datei ist auf dem Stand des Blattes.")
           ENDE
