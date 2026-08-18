@@ -11,6 +11,7 @@ import { getEditionDates } from '@/lib/editions'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
 import { getInstrumentSymbols } from '@/lib/markets'
 import { getLatestNewsDate, getNewsArticles, getNewsByMonth } from '@/lib/news'
+import { straenge } from '@/lib/nachrichtenstrang'
 import { getFolgen } from '@/lib/podcast'
 import { rubriken } from '@/lib/rubriken'
 import { absoluteUrl } from '@/lib/site'
@@ -169,6 +170,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.2,
     },
+  ]
+
+  /*
+    Die Nachrichtenstränge – je Wert und je Thema eine Seite.
+
+    Sie entstehen aus denselben Artikeln und wachsen mit ihnen. Welche es
+    gibt, entscheidet die Mindestzahl in `lib/nachrichtenstrang.ts`; hier wird
+    nur gelesen, was dort herauskommt. Eine abgetippte Liste wäre nach dem
+    nächsten Artikel unvollständig.
+  */
+  const strangPages: MetadataRoute.Sitemap = [
+    ...straenge(newsArticles, 'symbol').map((strang) => ({
+      url: absoluteUrl(`/news/strang/wert/${strang.schluessel}`),
+      lastModified: new Date(strang.bis),
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    })),
+    ...straenge(newsArticles, 'thema').map((strang) => ({
+      url: absoluteUrl(`/news/strang/thema/${strang.schluessel}`),
+      lastModified: new Date(strang.bis),
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    })),
   ]
 
   const newsPages: MetadataRoute.Sitemap = newsArticles.map((article) => ({
@@ -412,6 +436,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...branchenPages,
     ...stimmungsPages,
     ...newsPages,
+    ...strangPages,
     ...rubrikPages,
     ...monatsPages,
     ...editionPages,

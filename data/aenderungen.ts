@@ -59,6 +59,13 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
+    art: 'neu',
+    titel: 'Alle Meldungen zu einem Wert an einer Stelle',
+    text: 'Das Archiv war bisher nur über den Kalender erreichbar – nach Tag, Monat, Jahr. Wer wissen wollte, was über die Zeit zum Ölpreis geschrieben wurde, musste die Tage durchgehen. Jetzt gibt es je Wert und je Thema einen Strang: alle Meldungen chronologisch, nach Jahrgängen gegliedert. 35 Stränge sind es zum Start, vom DAX mit 43 Meldungen bis zu den kleineren. Werte mit weniger als fünf Meldungen bekommen keinen – ein Strang aus einem Artikel ist ein Umweg zum Artikel.',
+    ziel: { text: 'Beispiel: alles zum DAX', href: '/news/strang/wert/dax' },
+  },
+  {
+    datum: '2026-08-18',
     art: 'korrigiert',
     titel: 'Australische und neuseeländische Kurse standen am falschen Tag',
     text: 'Bei 31 Werten – 27 australischen Aktien, dem ASX 200 und drei neuseeländischen – stand der Kurs am falschen Kalendertag. Der Kurs selbst war richtig, aber das Datum um einen Tag verschoben, weil die Börsenzeit in Sydney der unseren um zehn bis elf Stunden voraus ist und die Sitzung damit in unserer Zeitrechnung schon am Vortag beginnt. Seit dem Beginn der australischen Sommerzeit am 5. Oktober 2025 traf das jede Sitzung. Betroffen war alles, was auf Tagen aufbaut: Zwölfmonatsspanne, Saisonalität, Jahresrenditen. Die gespeicherten Kurse werden mit dem nächsten vollständigen Abruf nachgezogen.',

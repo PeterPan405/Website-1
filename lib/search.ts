@@ -23,6 +23,7 @@ import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
 import { getNewsArticles, getNewsByMonth } from '@/lib/news'
+import { straenge } from '@/lib/nachrichtenstrang'
 import { folgenAdresse, getFolgen, kurzfassung } from '@/lib/podcast'
 import { rubriken } from '@/lib/rubriken'
 import { getBranchen } from '@/lib/branchen'
@@ -498,6 +499,52 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       'gleichgewicht',
     ],
   })
+  /*
+    Die Nachrichtenstränge.
+
+    Aus derselben Quelle wie die Seiten selbst – eine abgetippte Liste wäre
+    nach dem nächsten Artikel unvollständig, und die Paketprüfung meldet
+    genau das (sie hat es bei diesen Seiten auch getan).
+  */
+  for (const strang of straenge(artikel, 'symbol')) {
+    const wert = instrumente.find((eintrag) => eintrag.symbol === strang.schluessel)
+    if (!wert) continue
+    eintraege.push({
+      title: `${wert.name}: alle Meldungen`,
+      href: `/news/strang/wert/${strang.schluessel}`,
+      kind: 'News',
+      hint: `${strang.artikel.length} Meldungen zu ${wert.name}, chronologisch – von der jüngsten zurück bis zur ersten.`,
+      keywords: [
+        strang.schluessel,
+        wert.ticker.toLowerCase(),
+        'strang',
+        'archiv',
+        'alle meldungen',
+        'chronologisch',
+        'verlauf',
+      ],
+    })
+  }
+
+  for (const strang of straenge(artikel, 'thema')) {
+    const thema = themen.find((eintrag) => eintrag.slug === strang.schluessel)
+    if (!thema) continue
+    eintraege.push({
+      title: `${thema.title}: alle Meldungen`,
+      href: `/news/strang/thema/${strang.schluessel}`,
+      kind: 'News',
+      hint: `${strang.artikel.length} Meldungen, die dieses Thema berührt haben – chronologisch.`,
+      keywords: [
+        strang.schluessel,
+        'strang',
+        'archiv',
+        'alle meldungen',
+        'chronologisch',
+        thema.title.toLowerCase(),
+      ],
+    })
+  }
+
   eintraege.push({
     title: 'Aktien nach Kennzahlen filtern',
     href: '/maerkte/screener',
