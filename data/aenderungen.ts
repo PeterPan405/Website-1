@@ -59,6 +59,20 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
+    art: 'korrigiert',
+    titel: 'Australische und neuseeländische Kurse standen am falschen Tag',
+    text: 'Bei 31 Werten – 27 australischen Aktien, dem ASX 200 und drei neuseeländischen – stand der Kurs am falschen Kalendertag. Der Kurs selbst war richtig, aber das Datum um einen Tag verschoben, weil die Börsenzeit in Sydney der unseren um zehn bis elf Stunden voraus ist und die Sitzung damit in unserer Zeitrechnung schon am Vortag beginnt. Seit dem Beginn der australischen Sommerzeit am 5. Oktober 2025 traf das jede Sitzung. Betroffen war alles, was auf Tagen aufbaut: Zwölfmonatsspanne, Saisonalität, Jahresrenditen. Die gespeicherten Kurse werden mit dem nächsten vollständigen Abruf nachgezogen.',
+    ziel: { text: 'Zu den handelsfreien Tagen', href: '/maerkte/handelsfreie-tage' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
+    titel: 'Jeder Wert zeigt jetzt mehrere Zeitfenster nebeneinander',
+    text: 'Auf jeder Kursseite lässt sich ein neuer Abschnitt aufklappen: dieselbe Rendite, gerechnet über die letzten zwölf Monate, die zwölf davor und die fünf abgeschlossenen Kalenderjahre. Beim DAX liegen zwischen dem besten und dem schlechtesten dieser Zeiträume 45 Prozentpunkte – und jede dieser Zahlen ist richtig gerechnet. Das ist der Punkt: Eine Renditeangabe klingt nach einer Eigenschaft des Werts, ist aber vor allem eine Aussage über den Startpunkt. Wo für einen Zeitraum nur Wochenwerte gespeichert sind, steht beim tiefsten Rückgang „zu grob“ statt einer Zahl, die systematisch zu klein wäre.',
+    ziel: { text: 'Beispiel: der DAX', href: '/maerkte/dax' },
+  },
+  {
+    datum: '2026-08-18',
     art: 'neu',
     titel: 'Wann welche Börse geschlossen war',
     text: 'Ein Kurs, der einen Tag lang stehenbleibt, ist meistens kein Fehler – die Börse hatte zu. Die neue Seite zeigt für 17 Handelsplätze, an welchen Werktagen des letzten Jahres dort kein Kurs zustande kam. Die Tage stehen in keiner Liste, die wir pflegen: Sie sind aus den Kursreihen abgelesen. Die veröffentlichten Börsenkalender sind aus unserer Bauumgebung nicht erreichbar, und eine Feiertagsliste aus dem Gedächtnis behauptet irgendwann „Börse geschlossen“ an einem Handelstag. Dafür gilt jede Zeile nur für die Vergangenheit.',

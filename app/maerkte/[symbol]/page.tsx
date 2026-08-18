@@ -22,7 +22,10 @@ import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
 import { Branchenvergleichstafel } from '@/components/markets/Branchenvergleichstafel'
 import { EingepreistKarte } from '@/components/markets/EingepreistKarte'
 import { Unternehmenszahlen } from '@/components/markets/Unternehmenszahlen'
+import { Zeitfenstertafel } from '@/components/markets/Zeitfenstertafel'
 import { getBranchenvergleich } from '@/lib/branchenvergleich'
+import { getLiveSeries } from '@/lib/market-live'
+import { jahresfenster } from '@/lib/zeitfenster'
 import { getFundamentalquelle } from '@/lib/fundamentaldaten'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon } from '@/components/ui/Icon'
@@ -108,6 +111,39 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
   ])
 
   if (!instrument || !quote || !ranges) notFound()
+
+  /*
+    Die volle Tagesreihe für den Zeitfenstervergleich.
+
+    `getLiveSeries` und nicht `getAllSeries`: Letzteres dünnt für die Charts
+    aus, und ein fehlender Tag verschöbe den Anfang eines Kalenderjahres. Und
+    es liefert für Instrumente ohne eingerichtete Quelle erzeugte Reihen –
+    eine Jahresrendite daraus wäre eine erfundene Zahl.
+
+    Fehlt die Reihe, entfällt der Abschnitt. Das betrifft eine Handvoll
+    Instrumente; für alle übrigen liegt sie vor.
+  */
+  const volleReihe = getLiveSeries(symbol)?.daily ?? null
+
+  /*
+    Die Fenster: die fünf abgeschlossenen Kalenderjahre, dazu die letzten
+    zwölf Monate gegen die zwölf davor.
+
+    Das laufende Jahr fehlt mit Absicht – ein halbes Jahr als „2026" neben
+    vollen Jahren zu stellen, wäre der Vergleich, gegen den diese Tafel
+    gebaut ist.
+  */
+  const heute = new Date()
+  const jahr = heute.getUTCFullYear()
+  const tagInMs = 86_400_000
+  const alsTag = (versatz: number) =>
+    new Date(heute.getTime() - versatz * tagInMs).toISOString().slice(0, 10)
+
+  const zeitfenster = [
+    { label: 'Letzte zwölf Monate', von: alsTag(364), bis: alsTag(0) },
+    { label: 'Die zwölf Monate davor', von: alsTag(729), bis: alsTag(365) },
+    ...jahresfenster(jahr - 5, jahr - 1),
+  ]
 
   const [
     relatedTopics,
@@ -383,6 +419,30 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 </div>
               </section>
             </Klappabschnitt>
+
+            {volleReihe && volleReihe.length > 1 && (
+              <Klappabschnitt titel="Dieselbe Zahl, andere Zeitfenster" className="mt-6">
+                <section aria-labelledby="zeitfenster">
+                  <h2 id="zeitfenster" className="text-fg text-2xl font-bold">
+                    Dieselbe Zahl, andere Zeitfenster
+                  </h2>
+                  <p className="text-fg-muted mt-4 leading-relaxed">
+                    Eine Renditeangabe klingt nach einer Eigenschaft des Werts. Sie ist
+                    vor allem eine Aussage über den{' '}
+                    <strong className="text-fg">Startpunkt</strong>: Wer ein Jahr früher
+                    oder später angefangen hat, sieht eine andere Zahl – und beide sind
+                    richtig gerechnet.
+                  </p>
+                  <div className="mt-6">
+                    <Zeitfenstertafel
+                      reihe={volleReihe}
+                      fenster={zeitfenster}
+                      einheit={instrument.unit}
+                    />
+                  </div>
+                </section>
+              </Klappabschnitt>
+            )}
 
             {zusammensetzung && (
               <Klappabschnitt titel="Woher das Gewicht kommt" className="mt-6">
