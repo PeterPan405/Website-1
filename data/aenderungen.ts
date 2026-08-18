@@ -59,6 +59,13 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
+    art: 'neu',
+    titel: 'Sätze, die man ständig hört – und was an ihnen dran ist',
+    text: '„Minus 50 Prozent hole ich mit plus 50 wieder rein“, „ein Prozent Gebühr ist doch nichts“, „bei einem thesaurierenden ETF zahle ich erst beim Verkauf“. Eine neue Seite sammelt 35 solcher Sätze. Bei jedem steht zuerst, was daran richtig ist – die meisten sind verkürzte Wahrheiten, keine Dummheiten –, dann der Einwand und dann die Rechnung. Die Rechnungen sind nicht abgeschrieben: Sie werden beim Prüfen mit denselben Funktionen nachgerechnet, mit denen die Rechner dieser Website rechnen. Wo eine Zahl in die Irre führen würde, steht keine, sondern der Grund dafür.',
+    ziel: { text: 'Zu den Irrtümern', href: '/irrtuemer' },
+  },
+  {
+    datum: '2026-08-18',
     art: 'geaendert',
     titel: 'Die Suche lässt sich jetzt filtern',
     text: 'Mehr als die Hälfte des Suchindex besteht aus Kursen – wer „Gold“ tippte, bekam Instrumente, und das Lernthema stand dahinter. Über der Trefferliste steht jetzt eine Leiste: Kurs, Lernstufe, Begriff, Nachricht, jeweils mit der Zahl der Treffer davor. Bei Lernstufen kommt die Wahl zwischen Beginner, Fortgeschritten und Profi dazu, bei Nachrichten der Filter auf die letzten sieben Tage. Jeder Knopf erscheint nur, wenn er etwas ausrichten kann – und Einträge ohne Datum gelten nicht als „von heute“, sondern bleiben beim Zeitfilter außen vor.',

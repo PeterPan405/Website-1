@@ -19,6 +19,7 @@ import { getLearnTopics } from '@/lib/learn'
 import { learnLevelIds, learnLevelMeta } from '@/lib/learn'
 import { getInstruments, STIMMUNG_SEITEN } from '@/lib/markets'
 import { calculators } from '@/data/calculators'
+import { IRRTUEMER } from '@/data/irrtuemer'
 import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
@@ -616,6 +617,28 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Das stimmt so nicht',
+    href: '/irrtuemer',
+    kind: 'Bereich',
+    hint: 'Verbreitete Irrtümer über Geldanlage – je Satz, was daran richtig ist, was nicht, und die Rechnung',
+    keywords: [
+      'irrtum',
+      'irrtuemer',
+      'irrtümer',
+      'mythos',
+      'mythen',
+      'stimmt nicht',
+      'falsch',
+      'richtigstellung',
+      'missverstaendnis',
+      'missverständnis',
+      'denkfehler',
+      'faustregel',
+      'boersenweisheit',
+      'börsenweisheit',
+    ],
+  })
+  eintraege.push({
     title: 'Die Website in Zahlen',
     href: '/zahlen',
     kind: 'Bereich',
@@ -790,6 +813,25 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
         begriff.slug,
         ...(begriff.formen ?? []).map((form) => form.toLowerCase()),
       ],
+    })
+  }
+
+  /*
+    3d. Die Irrtümer, jeder einzeln.
+
+    Anders als bei den Verwechslungen reicht ein Eintrag für die ganze Seite
+    hier nicht. Wer sucht, tippt nicht „Irrtum“ – er tippt den Satz oder sein
+    Stichwort: „vorabpauschale thesaurierend“, „50 prozent verlust“,
+    „allzeithoch“. Der Satz selbst ist deshalb der Titel, und die Sprungmarke
+    führt an die Stelle statt an den Seitenanfang.
+  */
+  for (const irrtum of IRRTUEMER) {
+    eintraege.push({
+      title: irrtum.satz,
+      href: `/irrtuemer#${irrtum.slug}`,
+      kind: 'Irrtum',
+      hint: irrtum.falsch.slice(0, 140),
+      keywords: [irrtum.slug, ...irrtum.slug.split('-'), ...(irrtum.glossar ?? [])],
     })
   }
 

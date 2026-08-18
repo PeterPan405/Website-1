@@ -178,6 +178,11 @@ export const mainNav: NavItem[] = [
         hint: 'Begriffspaare, die durcheinandergehen – nebeneinander gestellt',
       },
       {
+        label: 'Das stimmt so nicht',
+        href: '/irrtuemer',
+        hint: 'Verbreitete Irrtümer – mit der Rechnung daneben',
+      },
+      {
         label: 'Aktie',
         href: '/lernen/aktie',
         hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
@@ -324,6 +329,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Akademie', href: '/akademie' },
       { label: 'Glossar', href: '/glossar' },
       { label: 'Verwechslungen', href: '/verwechslungen' },
+      { label: 'Das stimmt so nicht', href: '/irrtuemer' },
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },
