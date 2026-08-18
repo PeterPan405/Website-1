@@ -320,6 +320,7 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
         kind: 'Lernstufe',
         hint: learnLevelMeta[stufe].promise,
         keywords: thema.keywords,
+        stufe,
       })
     }
   }
@@ -854,6 +855,7 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       href: `/news/${beitrag.slug}`,
       kind: 'News',
       hint: beitrag.teaser,
+      datum: beitrag.publishedAt.slice(0, 10),
     })
   }
 
@@ -864,6 +866,7 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Tagesüberblick',
       hint: ausgabe.intro,
       keywords: [ausgabe.date],
+      datum: ausgabe.date,
     })
   }
 
@@ -908,6 +911,7 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       kind: 'Podcastfolge',
       hint: folge.beschreibung ? kurzfassung(folge.beschreibung) : folge.datum,
       keywords: ['podcast', 'folge', folge.datum],
+      datum: folge.datum.slice(0, 10),
     })
   }
 

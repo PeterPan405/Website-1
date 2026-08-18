@@ -8,7 +8,16 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { merkeLuecke, meldeTreffer } from '@/components/layout/suchluecken-speicher'
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
+import { learnLevelIds, learnLevelMeta } from '@/data/learn/types'
 import { searchEntries, type SearchEntry } from '@/lib/search-match'
+import {
+  artenMitAnzahl,
+  filtere,
+  filterLohntSich,
+  mitDatum,
+  stufenMitAnzahl,
+  type Suchfilter,
+} from '@/lib/such-filter'
 
 /**
  * Suche über alle Inhalte der Website.
@@ -31,10 +40,45 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
   const eingabe = useRef<HTMLInputElement>(null)
   const liste = useRef<HTMLUListElement>(null)
 
-  const treffer = useMemo(
-    () => (index ? searchEntries(index, query) : []),
+  const [filter, setFilter] = useState<Suchfilter>({})
+
+  /*
+    Erst alles finden, dann filtern, dann kürzen.
+
+    `searchEntries` kürzt sonst auf acht – und dann zählte die Filterleiste
+    acht Treffer, obwohl es vierzig gibt. Die Zahl am Knopf wäre eine Zahl
+    über den Ausschnitt und nicht über das Ergebnis.
+  */
+  const alleTreffer = useMemo(
+    () => (index ? searchEntries(index, query, Number.POSITIVE_INFINITY) : []),
     [index, query]
   )
+
+  const heute = useMemo(() => new Date().toISOString().slice(0, 10), [])
+
+  const gefiltert = useMemo(
+    () => filtere(alleTreffer, filter, heute),
+    [alleTreffer, filter, heute]
+  )
+
+  const treffer = useMemo(() => gefiltert.slice(0, 8), [gefiltert])
+
+  const arten = useMemo(() => artenMitAnzahl(alleTreffer), [alleTreffer])
+  const stufen = useMemo(
+    () =>
+      stufenMitAnzahl(
+        alleTreffer,
+        learnLevelIds.map((id) => ({ id, label: learnLevelMeta[id].label }))
+      ),
+    [alleTreffer]
+  )
+  const datierte = useMemo(() => mitDatum(alleTreffer), [alleTreffer])
+  const zeigeFilter = useMemo(() => filterLohntSich(alleTreffer), [alleTreffer])
+
+  const filterGesetzt =
+    filter.art !== undefined ||
+    filter.stufe !== undefined ||
+    filter.hoechstensTageAlt !== undefined
 
   /*
     Beim Öffnen die vorherige Eingabe verwerfen.
@@ -49,6 +93,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
     if (open) {
       setQuery('')
       setAktiv(0)
+      setFilter({})
     }
   }
 
@@ -125,11 +170,18 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
     if (eingabe === '') return
 
     const zeit = setTimeout(() => {
-      if (treffer.length === 0) merkeLuecke(eingabe)
+      /*
+        Gezählt wird gegen `alleTreffer`, nicht gegen die gefilterte Liste.
+
+        Sonst schriebe jeder Filter, der nichts übrig lässt, eine Suchlücke ins
+        Protokoll – obwohl die Suche funktioniert hat. Das Protokoll soll
+        fehlende Inhalte sammeln, nicht enge Filter.
+      */
+      if (alleTreffer.length === 0) merkeLuecke(eingabe)
       else meldeTreffer(eingabe)
     }, 1000)
     return () => clearTimeout(zeit)
-  }, [open, index, query, treffer.length])
+  }, [open, index, query, alleTreffer.length])
 
   function oeffnen(entry: SearchEntry) {
     onClose()
@@ -199,6 +251,12 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                   setQuery(event.target.value)
                   // Neue Eingabe, neue Trefferliste – wieder oben anfangen.
                   setAktiv(0)
+                  /*
+                    Und ohne Filter. Ein Filter aus der vorigen Suche passt
+                    fast nie auf die neue und erzeugt dann eine leere Liste,
+                    deren Grund oben klein in einer Leiste steht.
+                  */
+                  setFilter({})
                 }}
                 placeholder="Thema, Rechner, Kurs oder Meldung suchen"
                 aria-label="Suchbegriff"
@@ -216,6 +274,112 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
               </button>
             </div>
 
+            {/*
+              Die Filterleiste zwischen Eingabe und Liste.
+
+              Sie erscheint nur, wenn sie etwas ausrichten kann – bei einer
+              einzigen Art wäre jeder Knopf wirkungslos. Und jeder Knopf trägt
+              seine Zahl: Was er wegnimmt, steht dran, bevor man klickt.
+            */}
+            {index && query.trim() !== '' && zeigeFilter && (
+              <div className="border-border flex flex-wrap items-center gap-1.5 border-b px-3 py-2">
+                <button
+                  type="button"
+                  onClick={() => setFilter({})}
+                  aria-pressed={!filterGesetzt}
+                  className={cn(
+                    'rounded-full px-2.5 py-1 text-xs font-medium transition',
+                    filterGesetzt
+                      ? 'text-fg-muted hover:bg-surface-muted'
+                      : 'bg-brand text-on-fill'
+                  )}
+                >
+                  Alle <span className="opacity-60">{alleTreffer.length}</span>
+                </button>
+
+                {arten.map((art) => (
+                  <button
+                    key={art.wert}
+                    type="button"
+                    onClick={() => {
+                      setFilter((bisher) => ({
+                        ...bisher,
+                        art: bisher.art === art.wert ? undefined : art.wert,
+                      }))
+                      setAktiv(0)
+                    }}
+                    aria-pressed={filter.art === art.wert}
+                    className={cn(
+                      'rounded-full px-2.5 py-1 text-xs font-medium transition',
+                      filter.art === art.wert
+                        ? 'bg-brand text-on-fill'
+                        : 'text-fg-muted hover:bg-surface-muted'
+                    )}
+                  >
+                    {art.label} <span className="opacity-60">{art.anzahl}</span>
+                  </button>
+                ))}
+
+                {/*
+                  Die Lernstufe steht nur da, wenn Lernstufen dabei sind – und
+                  in der Reihenfolge des Lernwegs, nicht nach Häufigkeit.
+                */}
+                {stufen.length > 1 &&
+                  stufen.map((stufe) => (
+                    <button
+                      key={stufe.wert}
+                      type="button"
+                      onClick={() => {
+                        setFilter((bisher) => ({
+                          ...bisher,
+                          stufe: bisher.stufe === stufe.wert ? undefined : stufe.wert,
+                        }))
+                        setAktiv(0)
+                      }}
+                      aria-pressed={filter.stufe === stufe.wert}
+                      className={cn(
+                        'rounded-full border px-2.5 py-1 text-xs font-medium transition',
+                        filter.stufe === stufe.wert
+                          ? 'border-learn bg-learn text-on-fill'
+                          : 'border-border text-fg-muted hover:bg-surface-muted'
+                      )}
+                    >
+                      {stufe.label} <span className="opacity-60">{stufe.anzahl}</span>
+                    </button>
+                  ))}
+
+                {/*
+                  Der Altersfilter greift nur auf datierte Einträge. Ein Kurs
+                  ist nicht sieben Tage alt und auch nicht älter – er hat kein
+                  Datum. Damit die Streichung keine stille ist, steht die Zahl
+                  der datierten Treffer im Knopf.
+                */}
+                {datierte > 0 && datierte < alleTreffer.length && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFilter((bisher) => ({
+                        ...bisher,
+                        hoechstensTageAlt:
+                          bisher.hoechstensTageAlt === undefined ? 7 : undefined,
+                      }))
+                      setAktiv(0)
+                    }}
+                    aria-pressed={filter.hoechstensTageAlt !== undefined}
+                    title={`${datierte} der ${alleTreffer.length} Treffer haben ein Datum. Die übrigen sind nicht alt – sie haben keines.`}
+                    className={cn(
+                      'rounded-full border px-2.5 py-1 text-xs font-medium transition',
+                      filter.hoechstensTageAlt !== undefined
+                        ? 'border-news bg-news text-on-fill'
+                        : 'border-border text-fg-muted hover:bg-surface-muted'
+                    )}
+                  >
+                    Letzte 7 Tage <span className="opacity-60">{datierte}</span>
+                  </button>
+                )}
+              </div>
+            )}
+
             {ladefehler ? (
               <p className="text-fg-muted px-4 py-6 text-sm">
                 Der Suchindex konnte nicht geladen werden. Über die Navigation oben kommst
@@ -230,11 +394,33 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
               <p className="text-fg-muted px-4 py-6 text-sm">Suche wird geladen …</p>
             ) : treffer.length === 0 ? (
               <div className="px-4 py-6 text-sm">
-                <p className="text-fg-muted">
-                  Nichts gefunden zu{' '}
-                  <span className="text-fg font-medium">„{query}“</span>. Vielleicht hilft
-                  ein einzelnes Stichwort statt eines ganzen Satzes.
-                </p>
+                {/*
+                  Zwei verschiedene Leeren, zwei verschiedene Sätze.
+
+                  „Nichts gefunden" ist falsch, wenn die Suche 40 Treffer hat
+                  und der Filter sie wegnimmt. Wer das verwechselt, schickt
+                  Leute mit einem funktionierenden Suchbegriff wieder weg.
+                */}
+                {alleTreffer.length > 0 ? (
+                  <p className="text-fg-muted">
+                    {alleTreffer.length} Treffer zu{' '}
+                    <span className="text-fg font-medium">„{query}“</span>, aber keiner
+                    passt zum gewählten Filter.{' '}
+                    <button
+                      type="button"
+                      onClick={() => setFilter({})}
+                      className="text-brand underline underline-offset-2"
+                    >
+                      Filter aufheben
+                    </button>
+                  </p>
+                ) : (
+                  <p className="text-fg-muted">
+                    Nichts gefunden zu{' '}
+                    <span className="text-fg font-medium">„{query}“</span>. Vielleicht
+                    hilft ein einzelnes Stichwort statt eines ganzen Satzes.
+                  </p>
+                )}
                 {/*
                   Der Verweis auf das Protokoll gehört hierher und nicht in eine
                   Fußzeile: Hier ist der Moment, in dem jemand merkt, dass etwas

@@ -16,6 +16,18 @@ export interface SearchEntry {
   hint?: string
   /** Zusätzliche Begriffe, die auf den Eintrag führen sollen. */
   keywords?: string[]
+  /**
+   * Erscheinungstag im Format `JJJJ-MM-TT`, wo es einen gibt.
+   *
+   * Nur datierte Einträge tragen ihn – Nachrichten, Tagesausgaben,
+   * Podcastfolgen, Jahresrückblicke. Ein Kurs oder ein Rechner hat kein
+   * Erscheinungsdatum, und ein erfundenes wäre schlimmer als keines: Der
+   * Altersfilter in `lib/such-filter.ts` behandelt „kein Datum" ausdrücklich
+   * nicht wie „von heute".
+   */
+  datum?: string
+  /** Die Lernstufe, wo es eine gibt – `beginner`, `fortgeschritten`, `profi`. */
+  stufe?: string
 }
 
 /**

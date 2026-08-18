@@ -59,6 +59,13 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
+    art: 'geaendert',
+    titel: 'Die Suche lässt sich jetzt filtern',
+    text: 'Mehr als die Hälfte des Suchindex besteht aus Kursen – wer „Gold“ tippte, bekam Instrumente, und das Lernthema stand dahinter. Über der Trefferliste steht jetzt eine Leiste: Kurs, Lernstufe, Begriff, Nachricht, jeweils mit der Zahl der Treffer davor. Bei Lernstufen kommt die Wahl zwischen Beginner, Fortgeschritten und Profi dazu, bei Nachrichten der Filter auf die letzten sieben Tage. Jeder Knopf erscheint nur, wenn er etwas ausrichten kann – und Einträge ohne Datum gelten nicht als „von heute“, sondern bleiben beim Zeitfilter außen vor.',
+    ziel: { text: 'Zur Startseite', href: '/' },
+  },
+  {
+    datum: '2026-08-18',
     art: 'neu',
     titel: 'Alle Meldungen zu einem Wert an einer Stelle',
     text: 'Das Archiv war bisher nur über den Kalender erreichbar – nach Tag, Monat, Jahr. Wer wissen wollte, was über die Zeit zum Ölpreis geschrieben wurde, musste die Tage durchgehen. Jetzt gibt es je Wert und je Thema einen Strang: alle Meldungen chronologisch, nach Jahrgängen gegliedert. 35 Stränge sind es zum Start, vom DAX mit 43 Meldungen bis zu den kleineren. Werte mit weniger als fünf Meldungen bekommen keinen – ein Strang aus einem Artikel ist ein Umweg zum Artikel.',
