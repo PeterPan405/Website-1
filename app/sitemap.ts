@@ -59,6 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/'), changeFrequency: 'daily', priority: 1 },
     { url: absoluteUrl('/lernen'), changeFrequency: 'weekly', priority: 0.9 },
+    { url: absoluteUrl('/lernen/zeit'), changeFrequency: 'weekly', priority: 0.7 },
     // Das Schaufenster aller Erklärgrafiken.
     { url: absoluteUrl('/lernen/grafiken'), changeFrequency: 'monthly', priority: 0.6 },
     /*

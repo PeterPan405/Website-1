@@ -163,6 +163,11 @@ export const mainNav: NavItem[] = [
     area: 'learn',
     children: [
       {
+        label: 'Ich habe fünf Minuten',
+        href: '/lernen/zeit',
+        hint: 'Sortiert nach der Zeit, die du hast – nicht nach dem Thema',
+      },
+      {
         label: 'Lernpfade',
         href: '/lernen/pfade',
         hint: 'Geführte Wege für einen bestimmten Anlass',
@@ -331,6 +336,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     links: [
       { label: 'Lernbereich', href: '/lernen' },
       { label: 'Lernpfade', href: '/lernen/pfade' },
+      { label: 'Ich habe fünf Minuten', href: '/lernen/zeit' },
       { label: 'Akademie', href: '/akademie' },
       { label: 'Glossar', href: '/glossar' },
       { label: 'Verwechslungen', href: '/verwechslungen' },
