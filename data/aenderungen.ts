@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
     art: 'neu',
+    titel: 'Eine Frage des Tages auf der Startseite',
+    text: 'Vier Werte derselben Gattung, eine Frage, vier Antworten – gerechnet aus denselben Kursen, die auch die Kacheln zeigen: Wer hat am letzten Handelstag am meisten zugelegt, wer liegt seit Jahresbeginn vorn, wer steht seinem Zwölfmonatshoch am nächsten? Nach dem Klick stehen alle vier Zahlen da, nicht nur die richtige – der Sinn der Frage ist der Vergleich. An einem ruhigen Tag, an dem die beiden Besten zu dicht beieinanderliegen, erscheint keine Frage: Eine Frage ohne eindeutige Antwort wäre schlechter als keine.',
+    ziel: { text: 'Zur Startseite', href: '/' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
     titel: 'Lernkarten zum Ausdrucken, je Thema ein Kartenbogen',
     text: 'Zu jedem Lernthema gibt es jetzt einen Bogen mit acht Karten je A4-Blatt: vorn der Begriff oder die Prüffrage, hinten die Erklärung beziehungsweise die richtige Antwort mit Begründung. Der Inhalt kommt aus dem Glossar und den vorhandenen Quizfragen – nichts ist dafür neu geschrieben. Wichtig beim Drucken: beidseitig über die lange Kante und ohne Skalierung. Die Rückseiten stehen auf dem Bildschirm absichtlich seitenverkehrt; beim Wenden tauschen linke und rechte Spalte die Seite, und dadurch landet jede Antwort hinter ihrer eigenen Frage.',
     ziel: { text: 'Beispiel: Karten zum Zinseszins', href: '/lernen/zinseszins/karten' },
