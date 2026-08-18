@@ -240,6 +240,7 @@ export default async function MarketsOverviewPage() {
               },
               { href: '/maerkte/klumpenrisiko', text: 'Klumpenrisiko' },
               { href: '/maerkte/screener', text: 'Screener' },
+              { href: '/maerkte/handelsfreie-tage', text: 'Handelsfreie Tage' },
               { href: '/maerkte/merkliste', text: 'Merkliste' },
             ].map((ziel) => (
               <li key={ziel.href}>
