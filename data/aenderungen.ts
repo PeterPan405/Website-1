@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
     art: 'neu',
+    titel: 'Ein Zeitstrahl von 1694 bis heute',
+    text: 'Wovon das Geld gedeckt war, wer darüber entschied, und was passierte, wenn die Kurse fielen – von der Gründung der Bank of England bis zur Vorabpauschale. Der Lehrsatz der Seite steht nicht als Meinung da, sondern als Auswertung: Nicht die Falltiefe zählt, sondern die Dauer bis zur Erholung. Zwei Einbrüche der Liste fielen gleich tief, brauchten aber unterschiedlich lange – wenn gleiche Tiefe zu ungleicher Dauer führt, kann die Tiefe die Dauer nicht bestimmen. Jeder Punkt zeigt außerdem an, ob er ein nachprüfbares Datum ist oder eine Größenordnung.',
+    ziel: { text: 'Zum Zeitstrahl', href: '/zeitstrahl' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
     titel: 'Sätze, die man ständig hört – und was an ihnen dran ist',
     text: '„Minus 50 Prozent hole ich mit plus 50 wieder rein“, „ein Prozent Gebühr ist doch nichts“, „bei einem thesaurierenden ETF zahle ich erst beim Verkauf“. Eine neue Seite sammelt 35 solcher Sätze. Bei jedem steht zuerst, was daran richtig ist – die meisten sind verkürzte Wahrheiten, keine Dummheiten –, dann der Einwand und dann die Rechnung. Die Rechnungen sind nicht abgeschrieben: Sie werden beim Prüfen mit denselben Funktionen nachgerechnet, mit denen die Rechner dieser Website rechnen. Wo eine Zahl in die Irre führen würde, steht keine, sondern der Grund dafür.',
     ziel: { text: 'Zu den Irrtümern', href: '/irrtuemer' },

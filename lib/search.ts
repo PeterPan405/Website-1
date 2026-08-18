@@ -20,6 +20,7 @@ import { learnLevelIds, learnLevelMeta } from '@/lib/learn'
 import { getInstruments, STIMMUNG_SEITEN } from '@/lib/markets'
 import { calculators } from '@/data/calculators'
 import { IRRTUEMER } from '@/data/irrtuemer'
+import { zeitstrahl } from '@/lib/finanzgeschichte'
 import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
@@ -616,6 +617,47 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       'cashflow',
     ],
   })
+  eintraege.push({
+    title: 'Zeitstrahl der Finanzgeschichte',
+    href: '/zeitstrahl',
+    kind: 'Bereich',
+    hint: 'Währungsordnungen, Notenbanken und Kurseinbrüche in zeitlicher Folge – mit der Dauer bis zur Erholung',
+    keywords: [
+      'zeitstrahl',
+      'geschichte',
+      'finanzgeschichte',
+      'chronik',
+      'historie',
+      'crash',
+      'crashs',
+      'crashes',
+      'bretton woods',
+      'goldstandard',
+      'waehrungsreform',
+      'währungsreform',
+      'nixon',
+      'hyperinflation',
+    ],
+  })
+
+  /*
+    Die Punkte des Zeitstrahls, jeder einzeln.
+
+    Wer „Bretton Woods“ tippt, findet den Glossareintrag – und soll auch die
+    Stelle finden, an der steht, was davor und danach kam. Der Titel trägt das
+    Jahr voran, weil auf einer Trefferliste sonst nicht zu sehen ist, dass es
+    ein Zeitpunkt ist.
+  */
+  for (const punkt of zeitstrahl()) {
+    eintraege.push({
+      title: `${punkt.jahr}: ${punkt.titel}`,
+      href: `/zeitstrahl#${punkt.id}`,
+      kind: 'Zeitpunkt',
+      hint: punkt.was.slice(0, 140),
+      keywords: [punkt.id, ...punkt.id.split('-'), ...(punkt.glossar ?? [])],
+    })
+  }
+
   eintraege.push({
     title: 'Das stimmt so nicht',
     href: '/irrtuemer',
