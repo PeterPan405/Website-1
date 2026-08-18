@@ -279,6 +279,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
     /*
+      Das Klumpenrisiko liest dasselbe Factsheet – dieselbe Frequenz. Beide
+      Seiten wechseln zusammen oder gar nicht.
+    */
+    {
+      url: absoluteUrl('/maerkte/klumpenrisiko'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    /*
       Die Methodenseite ändert sich nur, wenn sich eine Rechnung ändert – also
       selten. Die Beispiele darauf werden zwar bei jedem Bau neu gerechnet,
       liefern aber dasselbe Ergebnis, solange die Formel steht.

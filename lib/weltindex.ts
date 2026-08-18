@@ -119,14 +119,22 @@ export function dollaranteil(
 }
 
 /**
- * Was die größten Einzelwerte zusammen wiegen.
+ * Was die `anzahl` größten Einzelwerte zusammen wiegen.
  *
  * Die zweite Hälfte der Aussage: Nicht nur die Währung ist einseitig, auch die
  * Einzelwerte sind es. Zwei Unternehmen wiegen zusammen mehr als ganz Japan –
  * und das steht in demselben Blatt.
+ *
+ * Die Zahl steht als Argument da und nicht als „alle, die gepflegt werden“.
+ * Anfangs waren nur zwei Werte hinterlegt, und beides fiel zusammen; als für
+ * `/maerkte/klumpenrisiko` die vollen zehn dazukamen, hätte die Währungsseite
+ * stillschweigend 26,41 % neben dem Satz „die zwei größten Unternehmen“
+ * gezeigt. Ein Standardwert, der sich mit dem Datenbestand ändert, ist keiner.
  */
-export function gewichtGroesste(): number {
-  return (weltindex().groesste ?? []).reduce((summe, e) => summe + e.anteil, 0)
+export function gewichtGroesste(anzahl = 2): number {
+  return (weltindex().groesste ?? [])
+    .slice(0, anzahl)
+    .reduce((summe, e) => summe + e.anteil, 0)
 }
 
 /**

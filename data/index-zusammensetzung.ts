@@ -41,6 +41,65 @@ export interface Laendergewicht {
   waehrung?: string
 }
 
+/** Ein Einzelwert aus der Top-Liste des Factsheets. */
+export interface Einzelwert {
+  name: string
+  /** Gewicht im Index in Prozent. */
+  anteil: number
+  /** Branche in der Einteilung des Blattes, deutsch. */
+  branche?: string
+  /** Streubesitz-Marktwert in Milliarden US-Dollar. */
+  marktwertMrdUsd?: number
+  /**
+   * Das Unternehmen dahinter, wenn es nicht der Name ist.
+   *
+   * Alphabet steht mit zwei Aktiengattungen in der Liste. Wer „die zehn
+   * größten Unternehmen“ sagt, zählt in Wahrheit neun – und genau dieser
+   * Unterschied ist auf einer Seite über Klumpenrisiko der Punkt.
+   */
+  unternehmen?: string
+}
+
+/** Ein Branchengewicht in der Einteilung des Blattes. */
+export interface Branchengewicht {
+  /** Deutsche Bezeichnung – die des Blattes ist englisch. */
+  branche: string
+  anteil: number
+}
+
+/**
+ * Die Kennzahlen, die das Blatt zum Index selbst nennt.
+ *
+ * Alle aus derselben Seite des Factsheets („Index Characteristics“ und
+ * „Fundamentals“). Sie sind hier, weil sich mit ihnen nachrechnen lässt, was
+ * „breit gestreut“ heißt: 1.282 Werte klingen nach viel, bis man den größten
+ * gegen den Gleichgewichtsanteil hält.
+ */
+export interface IndexKennzahlen {
+  /** Zahl der Indexwerte. */
+  anzahlWerte: number
+  /** Größter Einzelwert, Streubesitz-Marktwert in Millionen US-Dollar. */
+  groessterMioUsd: number
+  /** Kleinster Einzelwert, ebenso. */
+  kleinsterMioUsd: number
+  /** Arithmetisches Mittel der Marktwerte. */
+  mittelMioUsd: number
+  /** Median der Marktwerte. */
+  medianMioUsd: number
+  /** Dividendenrendite in Prozent. */
+  dividendenrendite?: number
+  /** Kurs-Gewinn-Verhältnis, laufend. */
+  kgv?: number
+  /** Kurs-Gewinn-Verhältnis auf Basis der Gewinnschätzung. */
+  kgvErwartet?: number
+  /** Kurs-Buchwert-Verhältnis. */
+  kbv?: number
+  /** Zahl der abgedeckten Länder. */
+  laender?: number
+  /** Anteil der Marktkapitalisierung je Land, den der Index abdeckt. */
+  abdeckungProzent?: number
+}
+
 export interface IndexZusammensetzung {
   /** Stichtag der Gewichtung im Format `YYYY-MM-DD`. */
   stand: string
@@ -49,9 +108,13 @@ export interface IndexZusammensetzung {
   hinweis: string
   laender: Laendergewicht[]
   /** Die größten Einzelwerte, soweit das Blatt sie nennt. */
-  groesste?: { name: string; anteil: number }[]
+  groesste?: Einzelwert[]
+  /** Die Branchengewichte, soweit das Blatt sie nennt. */
+  branchen?: Branchengewicht[]
   /** Marktwert des Index in Millionen US-Dollar, laut Blatt. */
   marktwertMioUsd?: number
+  /** Was das Blatt sonst über den Index selbst sagt. */
+  kennzahlen?: IndexKennzahlen
 }
 
 export const indexZusammensetzung: Record<string, IndexZusammensetzung> = {
@@ -85,10 +148,101 @@ export const indexZusammensetzung: Record<string, IndexZusammensetzung> = {
       den Stand von vorgestern.
     */
     groesste: [
-      { name: 'NVIDIA', anteil: 5.18 },
-      { name: 'Apple', anteil: 5.07 },
+      {
+        name: 'NVIDIA',
+        anteil: 5.18,
+        branche: 'Informationstechnologie',
+        marktwertMrdUsd: 4634.31,
+      },
+      {
+        name: 'Apple',
+        anteil: 5.07,
+        branche: 'Informationstechnologie',
+        marktwertMrdUsd: 4535.15,
+      },
+      {
+        name: 'Microsoft',
+        anteil: 3.66,
+        branche: 'Informationstechnologie',
+        marktwertMrdUsd: 3278.3,
+      },
+      {
+        name: 'Amazon.com',
+        anteil: 2.94,
+        branche: 'Zyklischer Konsum',
+        marktwertMrdUsd: 2628.58,
+      },
+      {
+        name: 'Alphabet A',
+        anteil: 2.32,
+        branche: 'Kommunikationsdienste',
+        marktwertMrdUsd: 2073.39,
+        unternehmen: 'Alphabet',
+      },
+      {
+        name: 'Broadcom',
+        anteil: 1.96,
+        branche: 'Informationstechnologie',
+        marktwertMrdUsd: 1750.96,
+      },
+      {
+        name: 'Alphabet C',
+        anteil: 1.84,
+        branche: 'Kommunikationsdienste',
+        marktwertMrdUsd: 1648.54,
+        unternehmen: 'Alphabet',
+      },
+      {
+        name: 'Meta Platforms A',
+        anteil: 1.37,
+        branche: 'Kommunikationsdienste',
+        marktwertMrdUsd: 1222.56,
+      },
+      {
+        name: 'JPMorgan Chase',
+        anteil: 1.05,
+        branche: 'Finanzwesen',
+        marktwertMrdUsd: 943.58,
+      },
+      {
+        name: 'Micron Technology',
+        anteil: 1.04,
+        branche: 'Informationstechnologie',
+        marktwertMrdUsd: 928.16,
+      },
+    ],
+    /*
+      Die Branchengewichte in der Einteilung des Blattes (GICS), deutsch
+      benannt. Die Reihenfolge ist die nach Gewicht, nicht die des Blattes –
+      dort stehen sie in der Reihenfolge der Tortenstücke.
+    */
+    branchen: [
+      { branche: 'Informationstechnologie', anteil: 28.87 },
+      { branche: 'Finanzwesen', anteil: 16.81 },
+      { branche: 'Industrie', anteil: 11.45 },
+      { branche: 'Gesundheitswesen', anteil: 9.17 },
+      { branche: 'Zyklischer Konsum', anteil: 9.02 },
+      { branche: 'Kommunikationsdienste', anteil: 8.04 },
+      { branche: 'Basiskonsumgüter', anteil: 5.1 },
+      { branche: 'Energie', anteil: 4.02 },
+      { branche: 'Grundstoffe', anteil: 3.26 },
+      { branche: 'Versorger', anteil: 2.54 },
+      { branche: 'Immobilien', anteil: 1.71 },
     ],
     marktwertMioUsd: 89_526_461.89,
+    kennzahlen: {
+      anzahlWerte: 1282,
+      groessterMioUsd: 4_634_313.75,
+      kleinsterMioUsd: 2753.75,
+      mittelMioUsd: 69_833.43,
+      medianMioUsd: 24_316.69,
+      dividendenrendite: 1.53,
+      kgv: 24.25,
+      kgvErwartet: 18.76,
+      kbv: 4.13,
+      laender: 23,
+      abdeckungProzent: 85,
+    },
   },
 }
 

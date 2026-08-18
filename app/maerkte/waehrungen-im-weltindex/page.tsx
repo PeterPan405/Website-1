@@ -48,7 +48,14 @@ export default function WaehrungenImWeltindexSeite() {
   const anteile = waehrungsanteile()
   const usd = dollaranteil()
   const japan = satz.laender.find((l: Laendergewicht) => l.land === 'Japan')?.anteil ?? 0
-  const groesste = satz.groesste ?? []
+  /*
+    Genau zwei – dieselbe Zahl, die `gewichtGroesste()` summiert.
+
+    Seit `/maerkte/klumpenrisiko` stehen die vollen zehn Werte in der Datei.
+    „Die zwei größten Unternehmen“ mit zehn Namen daneben wäre der stille
+    Fehler, den niemand beim Bauen sieht.
+  */
+  const zweiGroesste = (satz.groesste ?? []).slice(0, 2)
 
   return (
     <>
@@ -92,7 +99,7 @@ export default function WaehrungenImWeltindexSeite() {
             label="Die zwei größten Unternehmen"
             value={formatPercent(gewichtGroesste(), 2)}
             tone="negative"
-            hint={`${groesste.map((e) => e.name).join(' und ')} zusammen – mehr als ganz Japan mit ${formatPercent(japan, 2)}.`}
+            hint={`${zweiGroesste.map((e) => e.name).join(' und ')} zusammen – mehr als ganz Japan mit ${formatPercent(japan, 2)}.`}
           />
         </StatGrid>
 
@@ -230,6 +237,16 @@ export default function WaehrungenImWeltindexSeite() {
               Verwechslungen
             </Link>
             .
+          </p>
+          <p>
+            Dasselbe Blatt beantwortet noch eine zweite Frage: wie ungleich die 1.282
+            Werte des Index gewichtet sind. Das steht unter{' '}
+            <Link
+              href="/maerkte/klumpenrisiko"
+              className="hover:text-markets underline underline-offset-2"
+            >
+              Wie breit ist „breit gestreut“?
+            </Link>
           </p>
         </div>
       </div>
