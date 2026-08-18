@@ -54,7 +54,8 @@ import {
   getDividendenverlauf,
 } from '@/lib/dividendentermine'
 import { getTopicsBySlugs } from '@/lib/learn'
-import { getNewsForSymbol } from '@/lib/news'
+import { getNewsArticles, getNewsForSymbol } from '@/lib/news'
+import { MINDEST_ARTIKEL, strangFuer } from '@/lib/nachrichtenstrang'
 import {
   getAllSeries,
   getDataCoverage,
@@ -133,6 +134,14 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
     vollen Jahren zu stellen, wäre der Vergleich, gegen den diese Tafel
     gebaut ist.
   */
+  /*
+    Wie viele Meldungen es zu diesem Wert insgesamt gibt.
+
+    Der Abschnitt unten zeigt vier. Der Verweis auf den Strang erscheint nur,
+    wenn es mehr gibt – sonst führte er auf eine Seite mit derselben Liste.
+  */
+  const alleMeldungen = strangFuer(await getNewsArticles(), 'symbol', symbol)
+
   const heute = new Date()
   const jahr = heute.getUTCFullYear()
   const tagInMs = 86_400_000
@@ -539,6 +548,19 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                       </li>
                     ))}
                   </ul>
+                  {alleMeldungen.length >= MINDEST_ARTIKEL &&
+                  alleMeldungen.length > meldungen.length ? (
+                    <p className="text-fg-muted mt-5 text-sm leading-relaxed">
+                      Insgesamt gibt es{' '}
+                      <Link
+                        href={`/news/strang/wert/${instrument.symbol}`}
+                        className="text-news font-medium underline underline-offset-2"
+                      >
+                        {alleMeldungen.length} Meldungen zu {instrument.name}
+                      </Link>{' '}
+                      – chronologisch, von der jüngsten zurück bis zur ersten.
+                    </p>
+                  ) : null}
                 </section>
               </Klappabschnitt>
             )}
