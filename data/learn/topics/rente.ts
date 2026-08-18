@@ -296,7 +296,7 @@ export const rente: LearnTopic = {
         'Welche Abzüge auf die Rente anfallen, wie die nachgelagerte Besteuerung funktioniert und wann sich eine Betriebsrente rechnet.',
       title: 'Netto rechnen und die zweite Säule',
       lead: 'Was von der Bruttorente abgeht, wie der Rentenfreibetrag funktioniert – und wann Entgeltumwandlung tatsächlich lohnt.',
-      readingMinutes: 11,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -368,6 +368,42 @@ export const rente: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was die gesetzliche Rente außerdem leistet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wer an die gesetzliche Rente denkt, denkt an die Altersrente. Sie ist der größte, aber nicht der einzige Teil: Aus denselben Beiträgen entsteht auch ein Anspruch auf Erwerbsminderungsrente, wenn jemand aus gesundheitlichen Gründen nicht mehr arbeiten kann, und auf Hinterbliebenenrente für Ehepartner und Kinder. Beides sind Versicherungsleistungen, die eine private Anlage nicht nebenbei mitbringt.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Das ändert den Vergleich mit einer privaten Vorsorge. Wer die eigene Rentenanwartschaft neben ein Depot stellt und nur die Auszahlung im Alter vergleicht, vergleicht zu wenig – auf der einen Seite steht ein Kapitalstock, auf der anderen ein Kapitalstock plus zwei Versicherungen. Umgekehrt gilt: Wer keinen ausreichenden Anspruch auf Erwerbsminderung hat, weil er zu wenige Beitragsjahre hat, sollte diese Lücke gesondert schließen, statt sie im Depot zu übersehen.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Woran der Anspruch hängt',
+          items: [
+            'Die Erwerbsminderungsrente setzt eine Mindestzahl an Beitragsjahren voraus und wird abgestuft gezahlt – je nachdem, wie viele Stunden täglich noch möglich sind.',
+            'Wer lange nicht eingezahlt hat, etwa nach Jahren im Ausland oder in Selbstständigkeit, kann den Anspruch verlieren.',
+            'Was tatsächlich besteht, steht in der Renteninformation – dort unter „Rente wegen voller Erwerbsminderung“ und nicht bei der Altersrente.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Die Renteninformation richtig lesen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Das jährliche Schreiben nennt mehrere Beträge, und sie beantworten verschiedene Fragen. Der erste ist die Rente, die aus den bisher erworbenen Ansprüchen bereits feststeht – er wächst nicht mehr, wenn heute niemand mehr einzahlt. Der zweite rechnet hoch, was daraus wird, wenn man wie bisher weiter einzahlt. Beide sind in heutigen Euro angegeben und damit vor Abzügen und vor Kaufkraftverlust.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Hochrechnung ist die Zahl, die man im Kopf behält, und die vorsichtigere ist die richtige Planungsgrundlage: Sie unterstellt eine Erwerbsbiografie ohne Bruch. Wer in Teilzeit geht, eine Auszeit nimmt oder sich selbstständig macht, landet darunter – und das Schreiben sagt das nicht dazu, weil es die Zukunft nicht kennt.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -377,6 +413,8 @@ export const rente: LearnTopic = {
             'Der Rentenfreibetrag wird einmal als Eurobetrag festgeschrieben und wächst nicht mit.',
             'Entgeltumwandlung senkt heute die Abgaben und morgen die gesetzliche Rente.',
             'Ohne nennenswerten Arbeitgeberzuschuss ist die Rechnung deutlich enger.',
+            'Aus denselben Beiträgen entstehen auch Erwerbsminderungs- und Hinterbliebenenrente – ein Depot leistet das nicht.',
+            'Die Hochrechnung in der Renteninformation unterstellt eine Erwerbsbiografie ohne Bruch.',
           ],
         },
       ],

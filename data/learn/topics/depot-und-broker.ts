@@ -228,7 +228,7 @@ export const depotUndBroker: LearnTopic = {
         'Market, Limit, Stop-Loss und Trailing-Stop im Vergleich, Unterschiede zwischen Handelsplätzen, Spread und Handelszeiten sowie der Depotübertrag.',
       title: 'Ordertypen, Handelsplätze, Wechsel',
       lead: 'Welche Ordertypen es gibt und was sie wirklich tun, wo der Spread mehr kostet als die Gebühr, und wie ein Depotwechsel abläuft.',
-      readingMinutes: 10,
+      readingMinutes: 12,
       status: 'complete',
       blocks: [
         {
@@ -323,6 +323,42 @@ export const depotUndBroker: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die Teilausführung und was sie kostet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Order muss nicht auf einen Schlag zustande kommen. Findet sich nur für einen Teil der Stücke eine Gegenseite, wird der Rest später ausgeführt – möglicherweise zu einem anderen Kurs, möglicherweise gar nicht. Bei liquiden Werten passiert das selten, bei kleinen Nebenwerten und außerhalb der Haupthandelszeit regelmäßig.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Teuer wird es dort, wo je Ausführung abgerechnet wird: Aus einer Order werden drei, und aus einer Gebühr werden drei. Ob ein Broker Teilausführungen desselben Tages zu einer Abrechnung zusammenfasst, steht in seinem Preisverzeichnis – es ist eine der wenigen Bedingungen, die man wirklich nachlesen sollte, weil sie sich zwischen sonst ähnlichen Anbietern unterscheidet.',
+        },
+        {
+          type: 'callout',
+          variant: 'tip',
+          title: 'Wie man das vermeidet',
+          items: [
+            'Während der Haupthandelszeit ordern – dann steht auf der Gegenseite genug Volumen.',
+            'Bei Limitorders eine Gültigkeit wählen, die zum Papier passt: „nur heute“ bei liquiden Werten, länger bei engen.',
+            'Im Preisverzeichnis nachsehen, ob Teilausführungen eines Tages zusammengefasst abgerechnet werden.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Das Verrechnungskonto ist kein Depot',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zu jedem Depot gehört ein Konto, über das Käufe, Verkäufe und Ausschüttungen laufen. Es ist rechtlich etwas völlig anderes als das Depot: Was darauf liegt, ist ein Guthaben bei der Bank und damit im Insolvenzfall eine Forderung – geschützt über die Einlagensicherung bis 100.000 Euro je Kunde und Institut. Die Wertpapiere im Depot sind dagegen Eigentum des Kunden und fallen nicht in die Insolvenzmasse.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Praktisch heißt das: Ein Depot darf beliebig groß sein, ein hoher Kontostand daneben ist die Stelle, an der man hinsehen sollte. Wer nach einem großen Verkauf sechsstellig auf dem Verrechnungskonto liegen lässt, hat für diese Zeit ein Risiko, das er im Depot nicht hatte – und meistens ohne Zins als Gegenleistung.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -332,6 +368,8 @@ export const depotUndBroker: LearnTopic = {
             'Ein Stop-Loss schützt nicht vor Verlusten, er schreibt sie fest.',
             'Der Spread kostet oft mehr als die Gebühr und hängt an Uhrzeit und Handelsplatz.',
             'Der Übertrag ist kostenfrei; achte darauf, dass die Anschaffungsdaten mitkommen.',
+            'Teilausführungen können die Gebühr vervielfachen – ob sie zusammengefasst werden, steht im Preisverzeichnis.',
+            'Das Verrechnungskonto ist eine Bankeinlage mit 100.000-Euro-Grenze, das Depot ist Eigentum ohne Grenze.',
           ],
         },
       ],
