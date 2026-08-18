@@ -21,6 +21,7 @@ import { getInstruments, STIMMUNG_SEITEN } from '@/lib/markets'
 import { calculators } from '@/data/calculators'
 import { IRRTUEMER } from '@/data/irrtuemer'
 import { zeitstrahl } from '@/lib/finanzgeschichte'
+import { themenMitKarten } from '@/lib/lernkarten-daten'
 import { getGlossar } from '@/lib/glossar'
 import { getLernpfade } from '@/lib/lernpfade'
 import { getRueckblickJahre } from '@/lib/jahresrueckblick-daten'
@@ -325,6 +326,34 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
         stufe,
       })
     }
+  }
+
+  /*
+    Die Kartenbögen zum Ausdrucken.
+
+    Ein Eintrag je Thema, aber nur wo es Karten gibt – dieselbe Bedingung wie
+    in Sitemap und `generateStaticParams`, aus derselben Funktion. Wer
+    „karteikarten drucken“ tippt, meint meistens ein bestimmtes Thema; deshalb
+    steht das Thema im Titel und nicht das Wort „Lernkarten“ allein.
+  */
+  for (const slug of themenMitKarten(themen.map((thema) => thema.slug))) {
+    const thema = themen.find((eintrag) => eintrag.slug === slug)
+    if (!thema) continue
+    eintraege.push({
+      title: `Lernkarten: ${thema.title}`,
+      href: `/lernen/${slug}/karten`,
+      kind: 'Lernwerkzeug',
+      hint: 'Begriffe und Prüffragen als Kartenbogen zum Ausdrucken – acht je Blatt.',
+      keywords: [
+        ...thema.keywords,
+        'karten',
+        'lernkarten',
+        'karteikarten',
+        'drucken',
+        'ausdrucken',
+        'papier',
+      ],
+    })
   }
 
   /*

@@ -16,6 +16,7 @@ import { learnLevelIds } from '@/data/learn/types'
 import { lektionenZumThema } from '@/lib/akademie'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { getLearnTopic, getLearnTopicSlugs, getRelatedTopics } from '@/lib/learn'
+import { kartenZumThema } from '@/lib/lernkarten-daten'
 import { getQuotes } from '@/lib/markets'
 import { buildMetadata, withBrand } from '@/lib/seo'
 
@@ -69,6 +70,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
   const akademieLektionen = lektionenZumThema(thema)
   const uebrigeLektionen = akademieLektionen.length - VERTIEFUNG_HOECHSTENS
+  const kartenzahl = kartenZumThema(thema).length
 
   const [relatedTopics, quotes] = await Promise.all([
     getRelatedTopics(thema),
@@ -207,6 +209,33 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 <LevelNav topicSlug={topic.slug} entries={levelEntries} />
               </div>
             </section>
+
+            {/*
+              Die Karten zum Ausdrucken.
+
+              Sie stehen in der Leiste und nicht unter dem Text: Wer sie sucht,
+              sucht sie am Anfang – bevor er liest, nicht danach. Der Kasten
+              erscheint nur, wenn es für dieses Thema Karten gibt; ein Verweis
+              auf eine leere Seite wäre schlimmer als keiner.
+            */}
+            {kartenzahl > 0 && (
+              <section aria-labelledby="karten-thema" className="fk-card p-6">
+                <h2 id="karten-thema" className="text-fg text-base font-semibold">
+                  Zum Ausdrucken
+                </h2>
+                <p className="text-fg-muted mt-2 text-sm leading-relaxed">
+                  {kartenzahl} Lernkarten aus den Begriffen und Prüffragen dieses Themas –
+                  acht je Blatt, Vorder- und Rückseite passend gesetzt.
+                </p>
+                <Link
+                  href={`/lernen/${topic.slug}/karten`}
+                  className="text-learn mt-3 inline-flex items-center gap-2 text-sm font-medium underline underline-offset-2"
+                >
+                  <Icon name="layers" className="size-4" aria-hidden="true" />
+                  Kartenbogen ansehen
+                </Link>
+              </section>
+            )}
 
             {topic.calculators && topic.calculators.length > 0 && (
               <section aria-labelledby="passende-rechner" className="fk-card p-6">

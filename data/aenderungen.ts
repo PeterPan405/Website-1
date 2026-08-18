@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
     art: 'neu',
+    titel: 'Lernkarten zum Ausdrucken, je Thema ein Kartenbogen',
+    text: 'Zu jedem Lernthema gibt es jetzt einen Bogen mit acht Karten je A4-Blatt: vorn der Begriff oder die Prüffrage, hinten die Erklärung beziehungsweise die richtige Antwort mit Begründung. Der Inhalt kommt aus dem Glossar und den vorhandenen Quizfragen – nichts ist dafür neu geschrieben. Wichtig beim Drucken: beidseitig über die lange Kante und ohne Skalierung. Die Rückseiten stehen auf dem Bildschirm absichtlich seitenverkehrt; beim Wenden tauschen linke und rechte Spalte die Seite, und dadurch landet jede Antwort hinter ihrer eigenen Frage.',
+    ziel: { text: 'Beispiel: Karten zum Zinseszins', href: '/lernen/zinseszins/karten' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
     titel: 'Ein Zeitstrahl von 1694 bis heute',
     text: 'Wovon das Geld gedeckt war, wer darüber entschied, und was passierte, wenn die Kurse fielen – von der Gründung der Bank of England bis zur Vorabpauschale. Der Lehrsatz der Seite steht nicht als Meinung da, sondern als Auswertung: Nicht die Falltiefe zählt, sondern die Dauer bis zur Erholung. Zwei Einbrüche der Liste fielen gleich tief, brauchten aber unterschiedlich lange – wenn gleiche Tiefe zu ungleicher Dauer führt, kann die Tiefe die Dauer nicht bestimmen. Jeder Punkt zeigt außerdem an, ob er ein nachprüfbares Datum ist oder eine Größenordnung.',
     ziel: { text: 'Zum Zeitstrahl', href: '/zeitstrahl' },

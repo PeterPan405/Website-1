@@ -2,6 +2,7 @@ import { calculators } from '@/data/calculators'
 import { AENDERUNGEN } from '@/data/aenderungen'
 import { IRRTUEMER } from '@/data/irrtuemer'
 import { zeitstrahl } from '@/lib/finanzgeschichte'
+import { kartenZumThema } from '@/lib/lernkarten-daten'
 import { getAlleLektionen, getBereiche } from '@/lib/akademie'
 import { getEditions } from '@/lib/editions'
 import { getGlossar } from '@/lib/glossar'
@@ -85,6 +86,10 @@ export async function getWebsiteZahlen(): Promise<Zahl[]> {
     plausibel genug, dass es niemandem aufgefallen wäre.
   */
   const begriffe = glossar.length
+  const kartenzahl = themen.reduce(
+    (summe, thema) => summe + kartenZumThema(thema.slug).length,
+    0
+  )
   const quellenzahl = quellen.reduce(
     (summe, gruppe) => summe + gruppe.eintraege.length,
     0
@@ -168,6 +173,13 @@ export async function getWebsiteZahlen(): Promise<Zahl[]> {
       hinweis:
         'Je Satz: was daran richtig ist, was nicht – und die Rechnung, nachgeprüft.',
       ziel: '/irrtuemer',
+    },
+    {
+      id: 'lernkarten',
+      label: 'Lernkarten zum Ausdrucken',
+      wert: kartenzahl,
+      hinweis: 'Aus Glossarbegriffen und Prüffragen – acht je A4-Blatt, beidseitig.',
+      ziel: '/lernen',
     },
     {
       id: 'zeitpunkte',
