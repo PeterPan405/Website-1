@@ -58,6 +58,20 @@ export interface Aenderung {
  */
 export const AENDERUNGEN: Aenderung[] = [
   {
+    datum: '2026-08-18',
+    art: 'neu',
+    titel: 'Wie breit ist „breit gestreut“?',
+    text: 'Der gebräuchlichste Weltindex hält 1.282 Werte – und die zehn größten tragen gut ein Viertel davon. Die neue Seite rechnet die Behauptung „breit gestreut“ mit den Zahlen des Indexanbieters nach: Der größte Einzelwert wiegt das 66-Fache dessen, was er bei Gleichgewicht wöge. Und sie zeigt, was in der Liste leicht übersehen wird – Alphabet steht mit zwei Aktiengattungen darin, die zehn größten Werte sind neun Unternehmen.',
+    ziel: { text: 'Zum Klumpenrisiko', href: '/maerkte/klumpenrisiko' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'korrigiert',
+    titel: 'Größter Einzelwert im Weltindex: NVIDIA, nicht Apple',
+    text: 'Auf der Währungsseite standen Apple und Microsoft als die zwei größten Unternehmen des Weltindex. Das Factsheet nennt seit Juli 2026 NVIDIA an erster Stelle. Beide Zahlen, die dort standen, waren für sich genommen richtig – nur die Rangfolge nicht. Eine Prüfung verlangt jetzt, dass die Einzelwerte absteigend stehen; eine falsche Rangfolge sieht auf keiner Seite falsch aus.',
+    ziel: { text: 'Zur Währungsaufteilung', href: '/maerkte/waehrungen-im-weltindex' },
+  },
+  {
     datum: '2026-08-17',
     art: 'neu',
     titel: 'Wie viel Dollar in „weltweit“ steckt',
