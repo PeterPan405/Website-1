@@ -6,15 +6,16 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Callout } from '@/components/ui/Callout'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Stat, StatGrid } from '@/components/ui/Stat'
-import {
-  WELTINDEX_GROESSTE,
-  WELTINDEX_HERKUNFT,
-  WELTINDEX_LAENDER,
-} from '@/data/weltindex'
+import { type Laendergewicht } from '@/data/index-zusammensetzung'
 import { formatDate, formatNumber, formatPercent } from '@/lib/format'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { buildMetadata, withBrand } from '@/lib/seo'
-import { dollaranteil, gewichtGroesste, waehrungsanteile } from '@/lib/weltindex'
+import {
+  dollaranteil,
+  gewichtGroesste,
+  waehrungsanteile,
+  weltindex,
+} from '@/lib/weltindex'
 
 export const metadata: Metadata = buildMetadata({
   // 154 Zeichen. Die Grenze liegt bei 160 (`scripts/paket-pruefen.ts`).
@@ -43,9 +44,11 @@ export const metadata: Metadata = buildMetadata({
  * verteilt zu werden.
  */
 export default function WaehrungenImWeltindexSeite() {
+  const satz = weltindex()
   const anteile = waehrungsanteile()
   const usd = dollaranteil()
-  const japan = WELTINDEX_LAENDER.find((l) => l.land === 'Japan')?.prozent ?? 0
+  const japan = satz.laender.find((l: Laendergewicht) => l.land === 'Japan')?.anteil ?? 0
+  const groesste = satz.groesste ?? []
 
   return (
     <>
@@ -65,9 +68,9 @@ export default function WaehrungenImWeltindexSeite() {
         }
         meta={
           <>
-            <span>{WELTINDEX_HERKUNFT.index}</span>
+            <span>{satz.quelle.label}</span>
             <span aria-hidden="true">·</span>
-            <span>Stand {formatDate(WELTINDEX_HERKUNFT.stand)}</span>
+            <span>Stand {formatDate(satz.stand)}</span>
           </>
         }
       />
@@ -89,7 +92,7 @@ export default function WaehrungenImWeltindexSeite() {
             label="Die zwei größten Unternehmen"
             value={formatPercent(gewichtGroesste(), 2)}
             tone="negative"
-            hint={`${WELTINDEX_GROESSTE.map((e) => e.name).join(' und ')} zusammen – mehr als ganz Japan mit ${formatPercent(japan, 2)}.`}
+            hint={`${groesste.map((e) => e.name).join(' und ')} zusammen – mehr als ganz Japan mit ${formatPercent(japan, 2)}.`}
           />
         </StatGrid>
 
@@ -110,9 +113,7 @@ export default function WaehrungenImWeltindexSeite() {
           </p>
 
           <table className="mt-6 w-full text-sm">
-            <caption className="sr-only">
-              Währungsanteile im {WELTINDEX_HERKUNFT.index}
-            </caption>
+            <caption className="sr-only">Währungsanteile im {satz.quelle.label}</caption>
             <thead>
               <tr className="text-fg-subtle border-border border-b text-left text-xs uppercase">
                 <th scope="col" className="py-2 pr-4 font-semibold">
@@ -199,14 +200,12 @@ export default function WaehrungenImWeltindexSeite() {
 
         <div className="text-fg-muted mt-12 max-w-3xl space-y-4 text-sm leading-relaxed">
           <p>
-            <strong className="text-fg">Quelle:</strong> {WELTINDEX_HERKUNFT.quelle} zum{' '}
-            {formatDate(WELTINDEX_HERKUNFT.stand)}, abgerufen am{' '}
-            {formatDate(WELTINDEX_HERKUNFT.abgerufenAm)}. Der Index umfasst laut Blatt
-            einen Marktwert von{' '}
-            {formatNumber(WELTINDEX_HERKUNFT.marktwertMioUsd / 1_000_000, 1)} Billionen
+            <strong className="text-fg">Quelle:</strong> {satz.quelle.label} zum{' '}
+            {formatDate(satz.stand)}. Der Index umfasst laut Blatt einen Marktwert von{' '}
+            {formatNumber((satz.marktwertMioUsd ?? 0) / 1_000_000, 1)} Billionen
             US-Dollar.{' '}
             <a
-              href={WELTINDEX_HERKUNFT.url}
+              href={satz.quelle.url}
               target="_blank"
               rel="noreferrer"
               className="hover:text-markets underline underline-offset-2"

@@ -1,6 +1,7 @@
 import { indexZusammensetzung } from '@/data/index-zusammensetzung'
 import type { LearnTopic } from '@/data/learn/types'
 import { formatDate, formatPercent } from '@/lib/format'
+import { WELTINDEX_SYMBOL } from '@/lib/weltindex'
 
 /*
   Die Ländergewichtung kommt aus der gepflegten Zusammensetzung.
@@ -11,8 +12,7 @@ import { formatDate, formatPercent } from '@/lib/format'
   hieße, dieselbe Zahl an zwei Stellen zu pflegen und irgendwann zwei
   verschiedene Zahlen zu haben.
 */
-const WELTINDEX = 'msci-world'
-const zusammensetzung = indexZusammensetzung[WELTINDEX]
+const zusammensetzung = indexZusammensetzung[WELTINDEX_SYMBOL]
 const groessterAnteil = zusammensetzung?.laender.find((l) => !l.sammelposten)
 
 /*

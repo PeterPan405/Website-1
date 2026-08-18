@@ -1,4 +1,8 @@
-import { WELTINDEX_GROESSTE, WELTINDEX_LAENDER, type Landgewicht } from '@/data/weltindex'
+import {
+  indexZusammensetzung,
+  type IndexZusammensetzung,
+  type Laendergewicht,
+} from '@/data/index-zusammensetzung'
 
 /**
  * Was „weltweit gestreut" an Währungen bedeutet.
@@ -23,6 +27,15 @@ import { WELTINDEX_GROESSTE, WELTINDEX_LAENDER, type Landgewicht } from '@/data/
  * verteilt zu werden. Eine geschätzte Aufteilung wäre auf **dieser** Seite
  * besonders verkehrt: Sie handelt davon, dass man Währungsanteile kennen
  * sollte.
+ *
+ * ## Warum die Zahlen aus `data/index-zusammensetzung.ts` kommen
+ *
+ * Weil sie dort schon standen. Beim Bauen dieser Seite ist zuerst eine zweite
+ * Datei mit denselben Ländergewichten entstanden – zwei Wahrheiten über
+ * dieselbe Sache, die beim nächsten Factsheet auseinandergelaufen wären, ohne
+ * dass es jemandem aufgefallen wäre. Die Marktseite und ein Lernthema lesen
+ * ohnehin aus der vorhandenen Datei; sie ist die eine Stelle geblieben, und
+ * die Währungszuordnung ist dort dazugekommen.
  *
  * ## Und Notierungswährung ist nicht gleich Währungsrisiko
  *
@@ -52,20 +65,20 @@ export interface Waehrungsanteil {
  * Top 5 rutschen, muss die Zahl stimmen, ohne dass jemand daran denkt.
  */
 export function waehrungsanteile(
-  laender: readonly Landgewicht[] = WELTINDEX_LAENDER
+  laender: readonly Laendergewicht[] = weltindex().laender
 ): Waehrungsanteil[] {
   const summe = new Map<string, { prozent: number; laender: string[] }>()
   let unbekannt = 0
   const unbekannteLaender: string[] = []
 
   for (const eintrag of laender) {
-    if (eintrag.waehrung === null) {
-      unbekannt += eintrag.prozent
+    if (!eintrag.waehrung) {
+      unbekannt += eintrag.anteil
       unbekannteLaender.push(eintrag.land)
       continue
     }
     const bisher = summe.get(eintrag.waehrung) ?? { prozent: 0, laender: [] }
-    bisher.prozent += eintrag.prozent
+    bisher.prozent += eintrag.anteil
     bisher.laender.push(eintrag.land)
     summe.set(eintrag.waehrung, bisher)
   }
@@ -98,11 +111,11 @@ export function waehrungsanteile(
 
 /** Der Dollaranteil – die Zahl, um die es geht. */
 export function dollaranteil(
-  laender: readonly Landgewicht[] = WELTINDEX_LAENDER
+  laender: readonly Laendergewicht[] = weltindex().laender
 ): number {
   return laender
     .filter((l) => l.waehrung === 'USD')
-    .reduce((summe, l) => summe + l.prozent, 0)
+    .reduce((summe, l) => summe + l.anteil, 0)
 }
 
 /**
@@ -113,5 +126,24 @@ export function dollaranteil(
  * und das steht in demselben Blatt.
  */
 export function gewichtGroesste(): number {
-  return WELTINDEX_GROESSTE.reduce((summe, e) => summe + e.prozent, 0)
+  return (weltindex().groesste ?? []).reduce((summe, e) => summe + e.anteil, 0)
+}
+
+/**
+ * Der Weltindex, wie ihn `data/index-zusammensetzung.ts` führt.
+ *
+ * Als Funktion und nicht als Konstante, damit der Zugriff an einer Stelle
+ * steht: Wer den Index wechselt oder einen zweiten aufnimmt, ändert hier und
+ * nirgends sonst.
+ */
+export const WELTINDEX_SYMBOL = 'msci-world'
+
+export function weltindex(): IndexZusammensetzung {
+  const satz = indexZusammensetzung[WELTINDEX_SYMBOL]
+  if (!satz) {
+    throw new Error(
+      `Keine Zusammensetzung für ${WELTINDEX_SYMBOL} – ohne sie gibt es die Seite nicht.`
+    )
+  }
+  return satz
 }
