@@ -31,7 +31,20 @@ export interface YahooDay {
 interface YahooChartAntwort {
   chart?: {
     result?: {
-      meta?: { regularMarketPrice?: number; regularMarketTime?: number }
+      meta?: {
+        regularMarketPrice?: number
+        regularMarketTime?: number
+        /**
+         * Die Zeitzone der Börse, z. B. `Australia/Sydney`.
+         *
+         * Ohne sie entsteht das Tagesdatum aus dem UTC-Zeitstempel, und für
+         * jede Börse östlich von etwa UTC+10 ist das der falsche Tag –
+         * siehe `sitzungsdatum()`.
+         */
+        exchangeTimezoneName?: string
+        /** Abstand zu UTC in Sekunden, im Moment des Abrufs. */
+        gmtoffset?: number
+      }
       timestamp?: number[]
       indicators?: { quote?: { close?: (number | null)[] }[] }
       /*
@@ -91,6 +104,79 @@ export interface YahooSeries {
 }
 
 /**
+ * Das Datum einer Handelssitzung – in der Zeit der Börse, nicht in UTC.
+ *
+ * ## Der Fehler, den es das ganze Jahr über nicht gab
+ *
+ * Hier stand: „Yahoo liefert den Zeitstempel der Börseneröffnung in UTC. Für
+ * einen Tagesschlusskurs zählt nur der Tag, deshalb wird die Uhrzeit
+ * verworfen." Der erste Satz stimmt, der Schluss daraus nicht.
+ *
+ * Für Frankfurt geht es gut: Handelsbeginn 9:00 Ortszeit sind 7:00 oder 8:00
+ * UTC – derselbe Tag. Für New York auch: 9:30 Ortszeit sind 14:30 UTC. Für
+ * Sydney im Südwinter ebenfalls: 10:00 AEST sind 0:00 UTC, gerade noch
+ * derselbe Tag.
+ *
+ * Und dann beginnt die australische Sommerzeit. 10:00 AEDT sind **23:00 UTC
+ * am Vortag**, und aus jeder Montagssitzung wurde ein Sonntag. Nachweisbar am
+ * Bestand: Bis zum 3. Oktober 2025 liefen die Wochen von Montag bis Freitag,
+ * ab dem 5. Oktober – dem Tag der Umstellung – von Sonntag bis Donnerstag.
+ * Neuseeland (UTC+12/+13) ist ganzjährig verschoben.
+ *
+ * Betroffen waren 31 Titel: 27 australische Aktien, der ASX 200 und drei
+ * neuseeländische. Der Kurs war jeweils richtig, nur der Tag daneben – und
+ * damit jede Auswertung, die auf Tagen aufbaut: Zwölfmonatsspanne,
+ * Saisonalität, Wochenrückblick, Jahresrenditen.
+ *
+ * Aufgefallen ist es beim Bauen von `/maerkte/handelsfreie-tage`, wo Sydney
+ * plötzlich 32 „Feiertage" hatte, jeder zweite davon ein Freitag.
+ *
+ * ## Warum die Zeitzone und nicht der Versatz
+ *
+ * `meta.gmtoffset` gibt es auch, aber er gilt für den Moment des Abrufs. Eine
+ * Fünf-Jahres-Reihe überquert zehn Zeitumstellungen; ein einzelner Versatz
+ * träfe die Hälfte davon nicht. `exchangeTimezoneName` mit `Intl` löst jeden
+ * Zeitstempel einzeln auf und ist damit auch am Umstellungswochenende richtig.
+ *
+ * Der Versatz bleibt als Rückfall: Für ein Tagesdatum reicht er, solange er um
+ * nicht mehr als ein paar Stunden danebenliegt – die Sitzung beginnt um 10 Uhr
+ * Ortszeit, und eine Stunde Fehler ändert den Tag nicht.
+ */
+export function sitzungsdatum(
+  sekunden: number,
+  zeitzone?: string,
+  versatzSekunden?: number
+): string {
+  if (zeitzone) {
+    try {
+      const teile = new Intl.DateTimeFormat('en-CA', {
+        timeZone: zeitzone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }).formatToParts(new Date(sekunden * 1000))
+
+      const jahr = teile.find((teil) => teil.type === 'year')?.value
+      const monat = teile.find((teil) => teil.type === 'month')?.value
+      const tag = teile.find((teil) => teil.type === 'day')?.value
+      if (jahr && monat && tag) return `${jahr}-${monat}-${tag}`
+    } catch {
+      /*
+        Eine unbekannte Zeitzone wirft. Das ist kein Grund, die Reihe
+        wegzuwerfen – der Rückfall darunter ist immer noch besser als nichts.
+      */
+    }
+  }
+
+  if (typeof versatzSekunden === 'number' && Number.isFinite(versatzSekunden)) {
+    return new Date((sekunden + versatzSekunden) * 1000).toISOString().slice(0, 10)
+  }
+
+  // Ohne beides bleibt es beim alten Verhalten: UTC, und für Sydney falsch.
+  return new Date(sekunden * 1000).toISOString().slice(0, 10)
+}
+
+/**
  * Liest die Schlusskurse aus einer Chart-Antwort.
  *
  * Aufbau: `timestamp` enthält je Handelstag einen Unix-Zeitstempel in Sekunden,
@@ -118,15 +204,22 @@ export function parseYahooChart(text: string): YahooSeries | null {
   const kurse = ergebnis?.indicators?.quote?.[0]?.close
   if (!Array.isArray(zeiten) || !Array.isArray(kurse)) return null
 
+  /*
+    Die Zeitzone der Börse, einmal gelesen und für die ganze Reihe benutzt.
+
+    Sie steht in derselben Antwort und kostet nichts. Ohne sie entstünde das
+    Tagesdatum aus dem UTC-Zeitstempel – siehe `sitzungsdatum()`.
+  */
+  const zeitzone = ergebnis?.meta?.exchangeTimezoneName
+  const versatz = ergebnis?.meta?.gmtoffset
+
   const tage: YahooDay[] = []
   for (const [index, sekunden] of zeiten.entries()) {
     const kurs = kurse[index]
     if (typeof kurs !== 'number' || !Number.isFinite(kurs) || kurs <= 0) continue
     if (!Number.isFinite(sekunden)) continue
 
-    // Yahoo liefert den Zeitstempel der Börseneröffnung in UTC. Für einen
-    // Tagesschlusskurs zählt nur der Tag, deshalb wird die Uhrzeit verworfen.
-    tage.push({ date: new Date(sekunden * 1000).toISOString().slice(0, 10), close: kurs })
+    tage.push({ date: sitzungsdatum(sekunden, zeitzone, versatz), close: kurs })
   }
 
   if (tage.length === 0) return null
@@ -154,8 +247,13 @@ export function parseYahooChart(text: string): YahooSeries | null {
     const sekunden = eintrag?.date
     if (typeof betrag !== 'number' || !Number.isFinite(betrag) || betrag <= 0) continue
     if (typeof sekunden !== 'number' || !Number.isFinite(sekunden)) continue
+    /*
+      Auch hier die Börsenzeit: Der Ex-Tag ist ein Tag an dieser Börse. Bei
+      einem australischen Titel läge er sonst einen Tag zu früh, und der
+      Dividendenkalender zeigte den falschen Wochentag.
+    */
     dividenden.push({
-      date: new Date(sekunden * 1000).toISOString().slice(0, 10),
+      date: sitzungsdatum(sekunden, zeitzone, versatz),
       amount: betrag,
     })
   }
