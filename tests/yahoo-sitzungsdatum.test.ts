@@ -38,13 +38,7 @@ function pruefen(was: string, bedingung: boolean, hinweis = ''): void {
 }
 
 /** Sekunden seit 1970 für einen UTC-Zeitpunkt. */
-function utc(
-  jahr: number,
-  monat: number,
-  tag: number,
-  stunde = 0,
-  minute = 0
-): number {
+function utc(jahr: number, monat: number, tag: number, stunde = 0, minute = 0): number {
   return Date.UTC(jahr, monat - 1, tag, stunde, minute) / 1000
 }
 
@@ -111,21 +105,61 @@ console.log('')
 */
 const unveraendert: { was: string; sekunden: number; zone: string; tag: string }[] = [
   // Xetra, 9:00 MESZ = 7:00 UTC
-  { was: 'Xetra im Sommer', sekunden: utc(2026, 6, 15, 7, 0), zone: 'Europe/Berlin', tag: '2026-06-15' },
+  {
+    was: 'Xetra im Sommer',
+    sekunden: utc(2026, 6, 15, 7, 0),
+    zone: 'Europe/Berlin',
+    tag: '2026-06-15',
+  },
   // Xetra, 9:00 MEZ = 8:00 UTC
-  { was: 'Xetra im Winter', sekunden: utc(2026, 1, 15, 8, 0), zone: 'Europe/Berlin', tag: '2026-01-15' },
+  {
+    was: 'Xetra im Winter',
+    sekunden: utc(2026, 1, 15, 8, 0),
+    zone: 'Europe/Berlin',
+    tag: '2026-01-15',
+  },
   // NYSE, 9:30 EDT = 13:30 UTC
-  { was: 'New York im Sommer', sekunden: utc(2026, 6, 15, 13, 30), zone: 'America/New_York', tag: '2026-06-15' },
+  {
+    was: 'New York im Sommer',
+    sekunden: utc(2026, 6, 15, 13, 30),
+    zone: 'America/New_York',
+    tag: '2026-06-15',
+  },
   // NYSE, 9:30 EST = 14:30 UTC
-  { was: 'New York im Winter', sekunden: utc(2026, 1, 15, 14, 30), zone: 'America/New_York', tag: '2026-01-15' },
+  {
+    was: 'New York im Winter',
+    sekunden: utc(2026, 1, 15, 14, 30),
+    zone: 'America/New_York',
+    tag: '2026-01-15',
+  },
   // Tokio, 9:00 JST = 0:00 UTC – der knappste Fall ohne Sommerzeit
-  { was: 'Tokio', sekunden: utc(2026, 6, 15, 0, 0), zone: 'Asia/Tokyo', tag: '2026-06-15' },
+  {
+    was: 'Tokio',
+    sekunden: utc(2026, 6, 15, 0, 0),
+    zone: 'Asia/Tokyo',
+    tag: '2026-06-15',
+  },
   // London, 8:00 BST = 7:00 UTC
-  { was: 'London', sekunden: utc(2026, 6, 15, 7, 0), zone: 'Europe/London', tag: '2026-06-15' },
+  {
+    was: 'London',
+    sekunden: utc(2026, 6, 15, 7, 0),
+    zone: 'Europe/London',
+    tag: '2026-06-15',
+  },
   // Hongkong, 9:30 HKT = 1:30 UTC
-  { was: 'Hongkong', sekunden: utc(2026, 6, 15, 1, 30), zone: 'Asia/Hong_Kong', tag: '2026-06-15' },
+  {
+    was: 'Hongkong',
+    sekunden: utc(2026, 6, 15, 1, 30),
+    zone: 'Asia/Hong_Kong',
+    tag: '2026-06-15',
+  },
   // São Paulo, 10:00 BRT = 13:00 UTC
-  { was: 'São Paulo', sekunden: utc(2026, 6, 15, 13, 0), zone: 'America/Sao_Paulo', tag: '2026-06-15' },
+  {
+    was: 'São Paulo',
+    sekunden: utc(2026, 6, 15, 13, 0),
+    zone: 'America/Sao_Paulo',
+    tag: '2026-06-15',
+  },
 ]
 
 for (const fall of unveraendert) {
