@@ -68,3 +68,13 @@ __pycache__/
 # nur das Verzeichnis `data/lese-audio.json`.
 lese-texte/
 lese-audio/
+
+# Der Wissensgraph von `graphify` (`uv tool install graphifyy`).
+#
+# Ein Arbeitsergebnis, kein Bestand: 6,8 MB, entsteht in Minuten neu aus dem
+# Code und ändert sich bei jeder Codeänderung. Eingecheckt erzeugte er bei
+# jedem Commit einen Unterschied von tausenden Zeilen, den niemand liest –
+# und liefe der Wahrheit hinterher, sobald ihn jemand nicht neu baut.
+#
+# Neu bauen: `graphify update .` (rein lokal, ohne Modell).
+graphify-out/
