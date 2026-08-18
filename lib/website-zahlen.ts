@@ -1,5 +1,6 @@
 import { calculators } from '@/data/calculators'
 import { AENDERUNGEN } from '@/data/aenderungen'
+import { IRRTUEMER } from '@/data/irrtuemer'
 import { getAlleLektionen, getBereiche } from '@/lib/akademie'
 import { getEditions } from '@/lib/editions'
 import { getGlossar } from '@/lib/glossar'
@@ -158,6 +159,14 @@ export async function getWebsiteZahlen(): Promise<Zahl[]> {
       wert: quellenzahl,
       hinweis: 'Herkunft, Abgrenzung und Lizenz jeder einzelnen offengelegt.',
       ziel: '/quellen',
+    },
+    {
+      id: 'irrtuemer',
+      label: 'Richtiggestellte Irrtümer',
+      wert: IRRTUEMER.length,
+      hinweis:
+        'Je Satz: was daran richtig ist, was nicht – und die Rechnung, nachgeprüft.',
+      ziel: '/irrtuemer',
     },
     {
       id: 'methoden',
