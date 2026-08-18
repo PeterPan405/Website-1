@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
     art: 'neu',
+    titel: 'Aktien nach Kennzahlen filtern',
+    text: 'Ein Screener über die hier geführten Aktien: KGV, Kurs-Buchwert, Börsenwert, Branche, Sitzland, Abstand zum Zwölfmonatshoch. Das Ungewöhnliche daran steht direkt über der Trefferliste – zu jeder Abfrage die Auskunft, wie viele Titel der Auswahl die gefragte Kennzahl überhaupt haben, nach Land aufgeschlüsselt. Denn Bilanzzahlen liegen für amerikanische Unternehmen fast vollständig vor und für deutsche so gut wie gar nicht; ohne diese Zeile sähe jede Trefferliste aus wie eine Aussage über den Markt, obwohl sie eine über unsere Quellen ist.',
+    ziel: { text: 'Zum Screener', href: '/maerkte/screener' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
     titel: 'Wie breit ist „breit gestreut“?',
     text: 'Der gebräuchlichste Weltindex hält 1.282 Werte – und die zehn größten tragen gut ein Viertel davon. Die neue Seite rechnet die Behauptung „breit gestreut“ mit den Zahlen des Indexanbieters nach: Der größte Einzelwert wiegt das 66-Fache dessen, was er bei Gleichgewicht wöge. Und sie zeigt, was in der Liste leicht übersehen wird – Alphabet steht mit zwei Aktiengattungen darin, die zehn größten Werte sind neun Unternehmen.',
     ziel: { text: 'Zum Klumpenrisiko', href: '/maerkte/klumpenrisiko' },

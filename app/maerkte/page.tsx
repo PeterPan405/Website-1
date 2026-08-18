@@ -239,6 +239,7 @@ export default async function MarketsOverviewPage() {
                 text: 'Währungen im Weltindex',
               },
               { href: '/maerkte/klumpenrisiko', text: 'Klumpenrisiko' },
+              { href: '/maerkte/screener', text: 'Screener' },
               { href: '/maerkte/merkliste', text: 'Merkliste' },
             ].map((ziel) => (
               <li key={ziel.href}>

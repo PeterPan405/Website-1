@@ -499,6 +499,30 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Aktien nach Kennzahlen filtern',
+    href: '/maerkte/screener',
+    kind: 'Bereich',
+    hint: 'KGV, Kurs-Buchwert, Börsenwert, Branche, Land – mit der Datenlage neben jedem Ergebnis',
+    keywords: [
+      'screener',
+      'filter',
+      'filtern',
+      'kgv',
+      'kurs gewinn verhaeltnis',
+      'kurs-gewinn-verhältnis',
+      'kbv',
+      'kuv',
+      'buchwert',
+      'boersenwert',
+      'börsenwert',
+      'marktkapitalisierung',
+      'guenstige aktien',
+      'günstige aktien',
+      'bewertung',
+      'suchen',
+    ],
+  })
+  eintraege.push({
     title: 'Begriffe, die ständig verwechselt werden',
     href: '/verwechslungen',
     kind: 'Bereich',
