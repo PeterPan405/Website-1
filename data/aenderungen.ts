@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
     art: 'neu',
+    titel: '„Ich habe fünf Minuten" – Einstieg nach Zeit statt nach Thema',
+    text: 'Wer nicht weiß, wo er anfangen soll, fragt selten nach dem Thema, sondern nach der Zeit. Die neue Seite sortiert danach: fünf Minuten, eine Viertelstunde, eine Stunde, ein Abend. Jede Minutenangabe steht so in den Inhalten – die Lesezeit einer Lernstufe, die gemessene Länge einer Podcastfolge, die Summe eines Lernpfads. Im Fünf-Minuten-Fenster steht bewusst keine Lernstufe: Die kürzeste braucht neun Minuten, und das sagt die Seite auch. Wo keine Dauer hinterlegt ist, steht keine geschätzte Zahl, sondern der Hinweis darauf.',
+    ziel: { text: 'Zum Einstieg nach Zeit', href: '/lernen/zeit' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
     titel: 'Eine Frage des Tages auf der Startseite',
     text: 'Vier Werte derselben Gattung, eine Frage, vier Antworten – gerechnet aus denselben Kursen, die auch die Kacheln zeigen: Wer hat am letzten Handelstag am meisten zugelegt, wer liegt seit Jahresbeginn vorn, wer steht seinem Zwölfmonatshoch am nächsten? Nach dem Klick stehen alle vier Zahlen da, nicht nur die richtige – der Sinn der Frage ist der Vergleich. An einem ruhigen Tag, an dem die beiden Besten zu dicht beieinanderliegen, erscheint keine Frage: Eine Frage ohne eindeutige Antwort wäre schlechter als keine.',
     ziel: { text: 'Zur Startseite', href: '/' },

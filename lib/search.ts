@@ -647,6 +647,25 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Ich habe fünf Minuten',
+    href: '/lernen/zeit',
+    kind: 'Lernwerkzeug',
+    hint: 'Einstieg nach verfügbarer Zeit statt nach Thema – fünf Minuten bis ein Abend',
+    keywords: [
+      'zeit',
+      'fuenf minuten',
+      'fünf minuten',
+      'kurz',
+      'schnell',
+      'wo anfangen',
+      'einstieg',
+      'anfangen',
+      'lesezeit',
+      'abend',
+      'viertelstunde',
+    ],
+  })
+  eintraege.push({
     title: 'Zeitstrahl der Finanzgeschichte',
     href: '/zeitstrahl',
     kind: 'Bereich',
