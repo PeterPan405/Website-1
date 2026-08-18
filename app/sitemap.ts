@@ -348,6 +348,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     */
     { url: absoluteUrl('/verwechslungen'), changeFrequency: 'monthly', priority: 0.6 },
     { url: absoluteUrl('/irrtuemer'), changeFrequency: 'monthly', priority: 0.6 },
+    { url: absoluteUrl('/zeitstrahl'), changeFrequency: 'monthly', priority: 0.6 },
     ...getBranchen().map((branche) => ({
       url: absoluteUrl(`/maerkte/branchen/${branche.slug}`),
       changeFrequency: 'daily' as const,

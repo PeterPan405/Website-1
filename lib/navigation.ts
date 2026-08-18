@@ -183,6 +183,11 @@ export const mainNav: NavItem[] = [
         hint: 'Verbreitete Irrtümer – mit der Rechnung daneben',
       },
       {
+        label: 'Zeitstrahl',
+        href: '/zeitstrahl',
+        hint: 'Währungsordnungen, Notenbanken und Kurseinbrüche in zeitlicher Folge',
+      },
+      {
         label: 'Aktie',
         href: '/lernen/aktie',
         hint: 'Anteil am Unternehmen – vollständig ausgearbeitet',
@@ -330,6 +335,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: 'Glossar', href: '/glossar' },
       { label: 'Verwechslungen', href: '/verwechslungen' },
       { label: 'Das stimmt so nicht', href: '/irrtuemer' },
+      { label: 'Zeitstrahl', href: '/zeitstrahl' },
       { label: 'Märkte', href: '/maerkte' },
       { label: 'Rechner', href: '/rechner' },
       { label: 'News', href: '/news' },

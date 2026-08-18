@@ -1,6 +1,7 @@
 import { calculators } from '@/data/calculators'
 import { AENDERUNGEN } from '@/data/aenderungen'
 import { IRRTUEMER } from '@/data/irrtuemer'
+import { zeitstrahl } from '@/lib/finanzgeschichte'
 import { getAlleLektionen, getBereiche } from '@/lib/akademie'
 import { getEditions } from '@/lib/editions'
 import { getGlossar } from '@/lib/glossar'
@@ -167,6 +168,13 @@ export async function getWebsiteZahlen(): Promise<Zahl[]> {
       hinweis:
         'Je Satz: was daran richtig ist, was nicht – und die Rechnung, nachgeprüft.',
       ziel: '/irrtuemer',
+    },
+    {
+      id: 'zeitpunkte',
+      label: 'Punkte auf dem Zeitstrahl',
+      wert: zeitstrahl().length,
+      hinweis: 'Nachprüfbare Daten – Größenordnungen sind als solche gekennzeichnet.',
+      ziel: '/zeitstrahl',
     },
     {
       id: 'methoden',
