@@ -101,6 +101,349 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-in-rekordnaehe-trotz-verlusttag',
+    title: 'DAX in Rekordnähe trotz Verlusttag – wie passt das zusammen?',
+    teaser:
+      'Der DAX schloss am Montag schwächer und wurde trotzdem als in Rekordnähe beschrieben. Das ist kein Widerspruch, sondern zwei verschiedene Maßstäbe.',
+    category: 'Märkte',
+    publishedAt: '2026-08-18T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Wall Street', 'Nahost', 'Rekord'],
+    relatedTopics: ['aktien-laender-branchen', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, News vom 17.8.2026, 16:02 Uhr: ROUNDUP/Aktien Frankfurt Schluss: Dax in Rekordnähe mit schwachem Wochenstart',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News vom 17.8.2026, 15:50 Uhr: Dax Tagesrückblick 17.08.2026 – Schwache Wall Street bremst Dax aus – SDax-Neuling OHB gefragt',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, News vom 17.8.2026, 20:36 Uhr: ROUNDUP/Aktien New York Schluss: Moderate Verluste – Getrübte Nahost-Aussichten',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 18.8.2026, ca. 3:55 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'DAX und Wall Street haben den Wochenstart mit Verlusten beendet. Laut dpa-AFX schloss der DAX am Montag in Rekordnähe mit schwachem Wochenstart – zwei Aussagen, die auf den ersten Blick nicht zusammenpassen, aber beide stimmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei verschiedene Maßstäbe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rekordnähe beschreibt den Abstand zum bisherigen Höchststand – also das Kursniveau. Ein schwacher Wochenstart beschreibt dagegen nur die Veränderung dieses einen Handelstages. Ein Index kann nahe seinem Rekord notieren und trotzdem an einem einzelnen Tag im Minus schließen, wenn er zuvor stark gestiegen ist und nun einen Teil davon abgibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund für die Schwäche nennt onvista in ihrem Tagesrückblick die schwache Wall Street vom Vorabend. Dort schloss der Handel laut dpa-AFX mit moderaten Verlusten bei S&P 500, Dow Jones und Nasdaq Composite – als Begründung wird eine getrübte Nahost-Aussicht genannt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick auf heute früh',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kursleiste von finanzen.net zeigt den DAX heute gegen 3:55 Uhr bei 26.339 Punkten, ein Minus von 0,4 Prozent. Der Euro Stoxx 50 steht bei 6.530 Punkten (-0,1 Prozent), die Nasdaq bei 26.645 Punkten (-0,3 Prozent). Das ist eine vorbörsliche Momentaufnahme, keine Eröffnung – bis der reguläre Handel beginnt, kann sich die Zahl noch verschieben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Tagesprozentzahl liest, übersieht, wo der Index im großen Bild steht – und umgekehrt. Beide Maßstäbe zusammen ergeben ein vollständigeres Bild als jeder für sich.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-drei-portale-drei-prozentzahlen',
+    title: 'Ölpreis zieht wegen Nahost an – drei Portale, drei Prozentzahlen',
+    teaser:
+      'Brent-Öl steigt seit Montag spürbar. Drei Quellen nennen dafür drei unterschiedliche Prozentwerte – kein Fehler, sondern eine Frage des Zeitpunkts.',
+    category: 'Märkte',
+    publishedAt: '2026-08-18T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Nahost', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über wallstreet-online, Rohstoffnachrichten vom 17.8.2026: ROUNDUP 4/Kushner trifft Netanjahu: Ringen um Gaza-Fahrplan und ROUNDUP: Trump droht dem Oman mit Bombardierung',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Markt Bote über wallstreet-online, 17.8.2026: Ölpreis: Brent-Öl schießt um +2,06 % hoch, Kurs nun bei 90,37 USD',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste Aktuelle Rohstoffpreise, Stand 18.8.2026, ca. 3:54 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 18.8.2026, ca. 3:55 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis zieht seit Wochenbeginn an. Laut wallstreet-online sorgen sich Händler um eine Eskalation im Nahen Osten – begleitet von Meldungen wie Kushner trifft Netanjahu: Ringen um Gaza-Fahrplan und Trump droht dem Oman mit Bombardierung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Markt Bote meldete am Montag einen Sprung von 2,06 Prozent auf 90,37 US-Dollar je Barrel Brent-Öl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Quellen, drei Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute früh gegen 3:54 Uhr zeigt die Kursleiste von wallstreet-online für Brent-Öl ein Plus von 2,83 Prozent bei 91,06 US-Dollar. Die Kursleiste von finanzen.net notiert zur selben Zeit nur noch ein Plus von 0,5 Prozent bei 91,35 US-Dollar. Drei unterschiedliche Prozentangaben für dieselbe Ware, fast zur selben Stunde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Grund liegt nicht in falschen Zahlen, sondern in unterschiedlichen Referenzpunkten: Jede Prozentangabe misst gegen einen eigenen Ausgangswert – mal gegen den gestrigen Schlusskurs, mal gegen einen anderen, zeitlich näher liegenden Stand. Der Preis selbst steigt in allen drei Meldungen von 90,37 auf 91,06 auf 91,35 US-Dollar tatsächlich Schritt für Schritt weiter.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei stark schwankenden Rohstoffpreisen sagt der absolute Kurs oft mehr als die Prozentzahl allein – wer zwei Quellen vergleicht, sollte auf Zeitstempel und Vergleichsbasis achten, bevor er die Prozentwerte gegenüberstellt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-kaempft-mit-4400-dollar-marke',
+    title:
+      'Gold kämpft mit der 4.400-Dollar-Marke, obwohl der Ölpreis Nahost-Sorgen zeigt',
+    metaTitle: 'Gold kämpft mit 4.400 Dollar trotz Nahost-Sorgen',
+    teaser:
+      'Während Öl wegen Nahost-Ängsten steigt, tritt Gold auf der Stelle. Grund laut Goldreporter: steigende Marktzinsen bremsen den sonst gefragten sicheren Hafen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-18T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Zinsen', 'sicherer Hafen'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News, abgerufen 18.8.2026: Marktzinsen steigen: Gold kämpft um die Marke von 4.400 USD',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 18.8.2026, ca. 3:55 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste Aktuelle Rohstoffpreise, Stand 18.8.2026, 3:53 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Während der Ölpreis wegen der Sorge um eine Nahost-Eskalation deutlich zulegt, tritt Gold auf der Stelle. Goldreporter titelt dazu in seinen Top-News: Marktzinsen steigen: Gold kämpft um die Marke von 4.400 USD.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kursleisten bestätigen das Bild: finanzen.net zeigt Gold heute früh bei 4.407 US-Dollar, ein Minus von 0,2 Prozent. wallstreet-online notiert 4.405,31 US-Dollar, ein Minus von 0,26 Prozent – zwei Quellen, ein sehr ähnliches Bild.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kräfte, ein Preis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Normalerweise würden geopolitische Sorgen wie im Nahen Osten sowohl Öl als auch Gold als sicheren Hafen nach oben treiben. Goldreporter nennt für den heutigen Gegenwind stattdessen steigende Marktzinsen als Grund: Wer Gold hält, verzichtet auf Zinsen – steigen die Zinsen anderer Anlagen, wird dieser Verzicht teurer, und das drückt auf die Nachfrage nach Gold.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig ist der Unterschied zu Silber: Laut wallstreet-online steigt der Silberpreis heute früh um 1,65 Prozent auf 65,77 US-Dollar – während Gold im Minus liegt. Warum genau Silber sich heute anders bewegt als Gold, geht aus den Quellen nicht hervor; anzumerken ist nur, dass Silber neben seiner Rolle als Wertspeicher auch als Industriemetall gehandelt wird, was grundsätzlich zu stärkeren Ausschlägen führen kann.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold ist kein automatischer Krisenschutz. Wenn mehrere Kräfte gleichzeitig auf den Preis wirken – hier Nahost-Sorgen gegen steigende Zinsen –, kann sich am Ende auch wenig bis gar nichts bewegen.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-aendert-tracking-regeln-nach-kartellamt-streit',
+    title: 'Apple muss nach vier Jahren Streit die Tracking-Regeln fürs iPhone ändern',
+    metaTitle: 'Apple ändert Tracking-Regeln nach Kartellamt-Streit',
+    teaser:
+      'Das Bundeskartellamt hat sich durchgesetzt: Apple passt seine Tracking-Regeln in Deutschland an. Was sich ändert, sagt die Meldung nicht.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-08-18T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Apple', 'Kartellrecht', 'Bundeskartellamt', 'Regulierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rubrik Nachrichten: Aktien & Indizes, abgerufen 18.8.2026: Apple unter Druck: Deutschland erzwingt Änderungen beim iPhone-Tracking',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple muss seine Tracking-Regeln in Deutschland ändern. Laut wallstreet-online endet damit ein Verfahren des Bundeskartellamts, das vier Jahre gedauert hat; die neuen Vorgaben gelten unter Aufsicht der Behörde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was sich an den Tracking-Regeln konkret ändert, geht aus der Meldung nicht hervor. Auch zu möglichen Bußgeldern oder einer Frist für die Umsetzung liefert die Kurzmeldung keine Angaben – nur, dass Apple unter Druck des Bundeskartellamts nachgegeben hat und dass die Aufsicht über die Umsetzung wacht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Verfahren, vier Jahre',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vier Jahre für ein einziges kartellrechtliches Verfahren ist für Beobachter großer Plattformkonzerne keine ungewöhnliche Größenordnung – solche Verfahren durchlaufen oft mehrere Instanzen und Einspruchsmöglichkeiten. Die konkrete Chronologie dieses Falls nennt die Quelle allerdings nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger ist der Fall vor allem ein Beispiel dafür, dass Regulierung bei Plattformkonzernen wie Apple ein eigener, wiederkehrender Risikofaktor neben Umsatz und Marge ist – unabhängig davon, wie ein einzelnes Verfahren am Ende ausgeht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer in einzelne Technologiewerte investiert, investiert auch in deren regulatorisches Umfeld. Das lässt sich nicht wegdiversifizieren, wenn der ganze Sektor ähnlichen Verfahren ausgesetzt ist – nur einordnen.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-ipo-fantasie-treibt-ki-aktien',
+    title: 'Anthropic weckt mit Umsatzsprung IPO-Fantasie – die Größenfrage bleibt offen',
+    metaTitle: 'Anthropic-Umsatzsprung weckt IPO-Fantasie bei KI-Aktien',
+    teaser:
+      'Ein Umsatzsprung bei Anthropic hat KI-Aktien am Montag beflügelt. Ob ein Börsengang größer als SpaceX würde, ist eine offene Frage – keine bestätigte Zahl.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-18T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Anthropic', 'KI-Aktien', 'IPO', 'Erwartungen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['alphabet'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 17.8.2026: Anthropic-Aktie kommt: Umsatzsprung nährt Fantasie und treibt KI-Aktien an – Wird das IPO größer als SpaceX?',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'dpa-AFX über wallstreet-online, Unternehmensmeldungen vom 17.8.2026: AKTIEN IM FOKUS 2: KI-Werte legen nach Anthropic-Äußerungen zu',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreetONLINE Redaktion, 17.8.2026: Anthropic, Micron gefragt: KI-Hoffnung trifft Öl-Sorgen: Märkte schwanken, Öl und Gold steigen',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'KI-Aktien haben am Montag zugelegt, nachdem Anthropic laut finanzen.net mit einem Umsatzsprung für Aufsehen gesorgt hat. Dpa-AFX meldet passend dazu: KI-Werte legen nach Anthropic-Äußerungen zu.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Umsatzsprung selbst ist eine Tatsachenbehauptung der Quelle. Die zweite Hälfte der Schlagzeile – Wird das IPO größer als SpaceX? – ist dagegen ausdrücklich als Frage formuliert. Eine Antwort darauf liefert keine der Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was feststeht – und was offen ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wichtig für die Einordnung: Anthropic ist bislang nicht börsennotiert. Die Formulierung Anthropic-Aktie kommt beschreibt einen erwarteten, aber noch nicht vollzogenen Börsengang – handelbar ist die Aktie noch nicht. Die Kursbewegungen bei bereits gelisteten Unternehmen wie Micron, die laut wallstreetONLINE ebenfalls gefragt waren, sind also eine Reaktion auf Erwartungen rund um Anthropic, nicht auf geprüfte Zahlen eines Börsengangs, der noch gar nicht stattgefunden hat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch bei bereits gelisteten KI-Werten wie Alphabet ordnet dpa-AFX die Kursbewegung ausdrücklich den Anthropic-Äußerungen zu – also Aussagen, nicht testierten Geschäftszahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Umsatzsprung ist eine Zahl, eine Frage in einer Überschrift ist keine. Wer die beiden vermischt, hält am Ende eine Erwartung für eine Tatsache.',
+      },
+    ],
+  },
+  {
+    slug: 'zew-umfrage-lage-schlecht-erwartungen-steigen',
+    title: 'ZEW-Umfrage heute: Die Lage bleibt schlecht, die Erwartungen sollen steigen',
+    metaTitle: 'ZEW heute: schlechte Lage, steigende Erwartungen',
+    teaser:
+      'Der ZEW-Index zerfällt in zwei Teile, die heute unterschiedlich laufen sollen: eine tief negative Lage-Einschätzung neben deutlich steigenden Erwartungen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-18T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['ZEW', 'Konjunktur', 'Arbeitsmarkt', 'EZB'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender TAGESVORSCHAU: Termine am 18. August 2026 und Kommende Termine, abgerufen 18.8.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Terminkalender von wallstreet-online zeigt für heute drei Blöcke: britische Arbeitsmarktdaten um 8:00 Uhr, den ZEW-Index um 11:00 Uhr und eine Rede von EZB-Ratsmitglied Philip Lane um 13:45 Uhr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei den britischen Arbeitsmarktdaten fällt vor allem der Claimant Count Change auf: Erwartet werden 11,2 Tausend neue Arbeitslosenmeldungen, nach zuvor 6,7 Tausend – laut Prognose also ein deutlicher Anstieg. Auch das Verdienstwachstum inklusive Bonus soll laut Prognose von 4,3 auf 4,1 Prozent leicht nachgeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, ein Index, zwei Botschaften',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 11:00 Uhr folgt der ZEW-Index, der aus zwei getrennten Werten besteht. Die ZEW-Umfrage zur Aktuellen Lage für Deutschland soll laut Prognose bei minus 68,8 Punkten liegen, nach zuvor minus 77,6 – eine Verbesserung, aber weiterhin tief im negativen Bereich. Die ZEW-Umfrage zu den Konjunkturerwartungen dagegen soll laut Prognose auf 30 Punkte steigen, nach zuvor 26,3 – klar positives Terrain. Für die Eurozone insgesamt wird beim ZEW Survey Economic Sentiment ein Anstieg von 23,4 auf 25,4 erwartet.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Unterschied erklärt sich aus der Fragestellung: Die Lage bewertet die Gegenwart, die Erwartungen schätzen die Entwicklung der kommenden sechs Monate ein. Beide Werte können deshalb weit auseinanderlaufen, etwa wenn befragte Finanzmarktexperten für die nahe Zukunft eine Wende erwarten, die sich in der Gegenwart noch nicht zeigt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 13:45 Uhr steht zudem eine Rede von EZB-Ratsmitglied Lane an. Ein Thema nennt der Kalender dazu nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Erwartungen-Zahl liest, sieht Optimismus. Wer nur die Lage-Zahl liest, sieht eine Wirtschaft im Minus. Erst beide zusammen zeigen, dass Experten laut Prognose einen Wendepunkt für möglich halten, der noch nicht eingetreten ist.',
+      },
+    ],
+  },
+  {
     slug: 'sell-america-sorge-fed-yen-ki-boom',
     title: '„Sell America“ ist zurück: Was Fed, Yen und KI-Boom damit zu tun haben',
     metaTitle: '„Sell America“ ist zurück – Fed, Yen und KI-Boom',
