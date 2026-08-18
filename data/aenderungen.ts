@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-18',
     art: 'neu',
+    titel: 'Wann welche Börse geschlossen war',
+    text: 'Ein Kurs, der einen Tag lang stehenbleibt, ist meistens kein Fehler – die Börse hatte zu. Die neue Seite zeigt für 17 Handelsplätze, an welchen Werktagen des letzten Jahres dort kein Kurs zustande kam. Die Tage stehen in keiner Liste, die wir pflegen: Sie sind aus den Kursreihen abgelesen. Die veröffentlichten Börsenkalender sind aus unserer Bauumgebung nicht erreichbar, und eine Feiertagsliste aus dem Gedächtnis behauptet irgendwann „Börse geschlossen“ an einem Handelstag. Dafür gilt jede Zeile nur für die Vergangenheit.',
+    ziel: { text: 'Zu den handelsfreien Tagen', href: '/maerkte/handelsfreie-tage' },
+  },
+  {
+    datum: '2026-08-18',
+    art: 'neu',
     titel: 'Aktien nach Kennzahlen filtern',
     text: 'Ein Screener über die hier geführten Aktien: KGV, Kurs-Buchwert, Börsenwert, Branche, Sitzland, Abstand zum Zwölfmonatshoch. Das Ungewöhnliche daran steht direkt über der Trefferliste – zu jeder Abfrage die Auskunft, wie viele Titel der Auswahl die gefragte Kennzahl überhaupt haben, nach Land aufgeschlüsselt. Denn Bilanzzahlen liegen für amerikanische Unternehmen fast vollständig vor und für deutsche so gut wie gar nicht; ohne diese Zeile sähe jede Trefferliste aus wie eine Aussage über den Markt, obwohl sie eine über unsere Quellen ist.',
     ziel: { text: 'Zum Screener', href: '/maerkte/screener' },

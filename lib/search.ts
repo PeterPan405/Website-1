@@ -523,6 +523,29 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
     ],
   })
   eintraege.push({
+    title: 'Wann welche Börse geschlossen war',
+    href: '/maerkte/handelsfreie-tage',
+    kind: 'Bereich',
+    hint: 'Handelsfreie Werktage der Handelsplätze – aus den Kursreihen abgelesen',
+    keywords: [
+      'feiertag',
+      'feiertage',
+      'boersenfeiertage',
+      'börsenfeiertage',
+      'geschlossen',
+      'handelsfrei',
+      'handelstag',
+      'handelstage',
+      'kein handel',
+      'boerse zu',
+      'börse zu',
+      'kurs bleibt stehen',
+      'handelskalender',
+      'xetra',
+      'nyse',
+    ],
+  })
+  eintraege.push({
     title: 'Begriffe, die ständig verwechselt werden',
     href: '/verwechslungen',
     kind: 'Bereich',

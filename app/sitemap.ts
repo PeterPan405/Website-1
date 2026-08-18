@@ -293,6 +293,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     */
     { url: absoluteUrl('/maerkte/screener'), changeFrequency: 'daily', priority: 0.7 },
     /*
+      Die handelsfreien Tage entstehen aus den Kursreihen und wandern deshalb
+      mit jedem Abruf um einen Tag weiter – aber die Aussage ändert sich nur,
+      wenn ein Feiertag hinzukommt.
+    */
+    {
+      url: absoluteUrl('/maerkte/handelsfreie-tage'),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    },
+    /*
       Die Methodenseite ändert sich nur, wenn sich eine Rechnung ändert – also
       selten. Die Beispiele darauf werden zwar bei jedem Bau neu gerechnet,
       liefern aber dasselbe Ergebnis, solange die Formel steht.
