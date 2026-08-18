@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { NewsCarousel } from '@/components/home/NewsCarousel'
 import { QuoteCard } from '@/components/markets/QuoteCard'
+import { Tagesfrage } from '@/components/markets/Tagesfrage'
 import { SourceSummary } from '@/components/markets/SourceNote'
 import { Icon, type IconName } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/PageHeader'
@@ -15,12 +16,14 @@ import {
 import { cn } from '@/lib/cn'
 import { formatDate, formatNumber, formatPercentSigned } from '@/lib/format'
 import { begriffDesTages } from '@/lib/begriff-des-tages'
+import { gleicheGattung, tagesfrage } from '@/lib/tagesfrage'
 import { getGlossar } from '@/lib/glossar'
 import { getCompleteTopics, getLearnStats } from '@/lib/learn'
 import {
   getInstrument,
   getInstruments,
   getMarketOverview,
+  getQuotes,
   getSeries,
 } from '@/lib/markets'
 import { getNewsHeadlines } from '@/lib/news'
@@ -164,6 +167,31 @@ export default async function HomePage() {
     neu entsteht.
   */
   const begriff = begriffDesTages(await getGlossar(), heute)
+
+  /*
+    Die Tagesfrage – aus denselben Kursen, die auch die Kacheln zeigen.
+
+    Vier Indizes, nie gemischt mit Aktien oder Rohstoffen: Sonst wäre die eine
+    Aktie unter drei Indizes die auffällige Antwort. `tagesfrage()` verwirft
+    die Frage, wenn die beiden besten Antworten zu dicht beieinander liegen –
+    an einem ruhigen Tag steht deshalb keine da, und das ist der Punkt.
+  */
+  const frage = tagesfrage(
+    gleicheGattung(
+      (await getQuotes()).map((quote) => ({
+        symbol: quote.symbol,
+        name: quote.name,
+        kind: quote.kind,
+        changePercent: quote.changePercent,
+        ytdPercent: quote.ytdPercent,
+        value: quote.value,
+        high52w: quote.high52w,
+        asOf: quote.asOf,
+      })),
+      'index'
+    ),
+    heute
+  )
 
   return (
     <>
@@ -605,6 +633,31 @@ export default async function HomePage() {
         Ohne Glossar entfällt er ganz. Ein Kasten mit „bald mehr" wäre eine
         leere Versprechung, wie beim Podcast darunter.
       */}
+      {/*
+        Die Tagesfrage.
+
+        Sie steht vor dem Begriff des Tages: Eine Frage zieht mehr als eine
+        Erklärung, und wer sie beantwortet hat, liest die Erklärung darunter
+        mit anderem Blick.
+
+        Erscheint nur, wenn eine eindeutige Frage zustande kam. An einem Tag,
+        an dem vier Indizes innerhalb weniger Zehntel beieinanderliegen, gibt
+        es keine – lieber keine Tagesfrage als eine, die den Falschen tadelt.
+      */}
+      {frage && (
+        <section aria-labelledby="tagesfrage" className="fk-container py-6 sm:py-8">
+          <div className="fk-card p-6 sm:p-8">
+            <p className="text-fg-subtle text-xs font-semibold tracking-wide uppercase">
+              Frage des Tages
+            </p>
+            <h2 id="tagesfrage" className="sr-only">
+              Frage des Tages
+            </h2>
+            <Tagesfrage frage={frage} />
+          </div>
+        </section>
+      )}
+
       {begriff && (
         <section aria-labelledby="begriff" className="fk-container py-6 sm:py-8">
           <div className="fk-card p-6 sm:p-8">
