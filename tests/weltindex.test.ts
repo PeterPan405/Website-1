@@ -167,6 +167,23 @@ pruefen(
   groesste.length > 0 && groesste.every((e) => e.name.length > 1 && e.anteil > 0)
 )
 
+/*
+  Die Rangfolge der Einzelwerte, und warum sie geprüft wird.
+
+  Beim ersten Anlauf stand Apple an erster Stelle – aus dem Gedächtnis
+  geschrieben, weil es das bekanntere Unternehmen ist. Das Blatt sagt seit
+  Juli 2026 NVIDIA. Die Zahlen waren beide richtig, nur die Reihenfolge nicht,
+  und auf der Seite steht „die zwei größten Unternehmen“ mit Namen.
+
+  Eine falsche Rangfolge sieht auf keiner Seite falsch aus. Deshalb hier.
+*/
+pruefen(
+  'Die Einzelwerte stehen absteigend',
+  groesste.every((e, i) => i === 0 || groesste[i - 1].anteil >= e.anteil),
+  `${groesste.map((e) => `${e.name} ${e.anteil}`).join(', ')} – die Reihenfolge ist die\n` +
+    '     des Factsheets. Wer sie aus dem Gedächtnis schreibt, schreibt den Stand von vorgestern.'
+)
+
 /* ------------------------------------------------------- Die Herkunft */
 
 console.log('')

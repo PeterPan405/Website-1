@@ -74,13 +74,19 @@ export const indexZusammensetzung: Record<string, IndexZusammensetzung> = {
     /*
       Die größten Einzelwerte – die zweite Hälfte derselben Aussage.
 
-      „Breit gestreut" heißt nicht nur, dass drei Viertel in einer Währung
+      „Breit gestreut“ heißt nicht nur, dass drei Viertel in einer Währung
       stehen, sondern auch, dass zwei Unternehmen zusammen mehr wiegen als
       Japan. Beides steht in demselben Blatt.
+
+      Die Reihenfolge ist die des Blattes und wird nicht geraten: Beim ersten
+      Anlauf stand hier Apple an erster Stelle, weil es das bekanntere
+      Unternehmen ist. Das Blatt sagt NVIDIA – seit Juli 2026 mit 5,18 % vor
+      Apple mit 5,07 %. Wer die Rangfolge aus dem Gedächtnis schreibt, schreibt
+      den Stand von vorgestern.
     */
     groesste: [
+      { name: 'NVIDIA', anteil: 5.18 },
       { name: 'Apple', anteil: 5.07 },
-      { name: 'Microsoft', anteil: 3.66 },
     ],
     marktwertMioUsd: 89_526_461.89,
   },
