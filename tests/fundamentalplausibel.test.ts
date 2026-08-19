@@ -308,16 +308,51 @@ console.log('\n— Dividendenrendite —')
 
   Eine reguläre Dividendenrendite über 20 Prozent gibt es praktisch nicht.
   Über 15 liegen einige Sonderfälle – geschlossene Fonds, einmalige
-  Sonderausschüttungen –, deshalb ist die Grenze nicht knapp gesetzt. Ein
-  Faktor 100 liegt weit darüber.
+  Sonderausschüttungen –, deshalb ist die Grenze nicht knapp gesetzt.
+
+  ## Warum die Grenze am 19. August 2026 von 25 auf 35 gegangen ist
+
+  Sie hat Johnson Matthey gemeldet: 25,2 Prozent aus 579,17 Pence bei einem
+  Kurs von 2300. Die Zahl ist **richtig** – am 17. August 2026 kam eine
+  einzelne Zahlung von 476,50 Pence zu den regulären 29,33 und 73,33 hinzu.
+  Kein Einheitenfehler: Wären Pence und Pfund vertauscht, stünde der Faktor
+  100 auf **allen** Zahlungen dieses Titels, nicht auf einer.
+
+  Der Versuch, Sonderausschüttungen an ihrer Form zu erkennen, ist an den
+  Daten gescheitert, und zwar zweimal:
+
+  - „Zahlung über dem Dreifachen des Medians" trifft 30 Titel, darunter
+    Nvidia (die Dividende ist gewachsen) und Bradesco (viele kleine
+    Zwischenzahlungen). Das sind keine Sonderausschüttungen.
+  - „Eine Zahlung größer als die Summe der übrigen" trifft über 240 Titel –
+    faktisch jede Aktie mit großer Schluss- und kleiner Zwischendividende,
+    also fast den gesamten britischen und japanischen Bestand.
+
+  In dieser Momentaufnahme steht nicht, ob eine Zahlung einmalig war; das
+  weiß nur, wer die Meldung des Unternehmens gelesen hat. Eine
+  Fallunterscheidung über ein Merkmal, das der Stoff nicht hat, ist keine –
+  deshalb bleibt die Zwölfmonatssumme, wie sie ist, und die Grenze steigt.
+
+  **Die Gegenprobe steht darunter.** Eine Grenze bei 35 Prozent würde einen
+  Faktor 100 nur noch bei Titeln fangen, deren echte Rendite über 0,35
+  Prozent liegt – 46 der 773 lägen darunter und rutschten durch. Genau diese
+  Lücke schließt die Prüfung „gegen die eigene Vergangenheit": Sie sieht den
+  Einheitenfehler unabhängig von der Höhe der Rendite.
 */
-const RENDITE_MAX = 25
+const RENDITE_MAX = 35
 
 const dividenden = JSON.parse(
   readFileSync(join(wurzel, 'data/snapshots/dividenden.json'), 'utf8')
 ) as { titel: Record<string, { date: string; amount: number }[]> }
 
 const heute = new Date().toISOString().slice(0, 10)
+
+/** Ein Kalendertag plus/minus Tage – über `Date.UTC`, ohne Zeitzonenfallen. */
+function plusTageIso(tag: string, tage: number): string {
+  return new Date(Date.parse(`${tag}T00:00:00Z`) + tage * 86400000)
+    .toISOString()
+    .slice(0, 10)
+}
 const auffaelligeRendite: string[] = []
 let geprueftRendite = 0
 
@@ -342,6 +377,114 @@ pruefe(
   auffaelligeRendite.length === 0,
   `\n       ${auffaelligeRendite.join('\n       ')}`
 )
+
+/* ---------------------------------------------------------------------------
+   Der Einheitenfehler, unabhängig von der Höhe der Rendite
+--------------------------------------------------------------------------- */
+
+/*
+  Die Renditegrenze oben fängt einen Faktor 100 nur bei Titeln, deren echte
+  Rendite hoch genug ist. Bei 46 der 773 liegt sie unter 0,35 Prozent – dort
+  ergäbe auch der hundertfache Betrag noch eine Zahl unter der Grenze, und der
+  Fehler ginge durch.
+
+  Diese Prüfung sieht ihn trotzdem, weil sie den Titel **gegen sich selbst**
+  hält: Ein Einheitenfehler multipliziert die ganze Reihe, also auch das
+  Verhältnis zwischen diesem Jahr und den Jahren davor. Eine Sonderausschüttung
+  tut das nicht – sie hebt ein Jahr, nicht die Reihe.
+
+  Gemessen am 19. August 2026 über 849 Titel mit vergleichbarer Vergangenheit:
+
+  | Titel            | Faktor |
+  | ---------------- | -----: |
+  | cellnex          |  16,24 |
+  | nvidia           |  11,91 |
+  | royal-caribbean  |   8,16 |
+  | progressive      |   6,66 |
+  | johnson-matthey  |   5,64 |
+
+  Nichts über 20; die Grenze steht bei 30. Der Abstand zum höchsten echten
+  Wert ist damit fast das Doppelte – eine Grenze, die den guten Tag gerade
+  eben trägt, wäre eine Wette. Ein Faktor 100 liegt weit darüber.
+
+  Titel ohne vier Vergleichsjahre bleiben außen vor: Wer erst seit einem Jahr
+  zahlt, hat kein „vorher", und eine Zahl daraus wäre erfunden.
+*/
+const SPRUNG_MAX = 30
+
+const vorJahren = (n: number) => plusTageIso(heute, -365 * n)
+const auffaelligerSprung: string[] = []
+let geprueftSprung = 0
+
+for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
+  const gueltig = zahlungen.filter((z) => z.amount > 0)
+  const diesesJahr = gueltig
+    .filter((z) => z.date > vorJahren(1))
+    .reduce((summe, z) => summe + z.amount, 0)
+  const davor = gueltig.filter((z) => z.date <= vorJahren(1) && z.date > vorJahren(5))
+  if (diesesJahr <= 0 || davor.length < 4) continue
+
+  const schnitt = davor.reduce((summe, z) => summe + z.amount, 0) / 4
+  if (schnitt <= 0) continue
+
+  geprueftSprung += 1
+  const faktor = diesesJahr / schnitt
+  if (faktor > SPRUNG_MAX) {
+    auffaelligerSprung.push(
+      `${symbol}: Faktor ${faktor.toFixed(1)} – ${diesesJahr.toFixed(2)} in zwölf ` +
+        `Monaten gegen ${schnitt.toFixed(2)} im Jahresschnitt davor`
+    )
+  }
+}
+
+pruefe(`es wurden Sprünge geprüft (${geprueftSprung})`, geprueftSprung > 100)
+pruefe(
+  `keine Zwölfmonatssumme über dem ${SPRUNG_MAX}-fachen des eigenen Schnitts`,
+  auffaelligerSprung.length === 0,
+  `\n       ${auffaelligerSprung.join('\n       ')}`
+)
+
+/*
+  Die Gegenprobe.
+
+  Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe. Hier bekommt sie
+  deshalb genau den Fehler vorgelegt, für den sie gebaut ist: dieselbe Reihe,
+  hundertfach – als stünde der Kurs in Pfund und die Dividende in Pence.
+
+  Genommen wird ein echter Titel aus dem Bestand, nicht eine erfundene Reihe:
+  Eine Prüfung, die nur an ausgedachten Zahlen greift, hat noch nichts über
+  die Daten gesagt.
+*/
+const probeTitel = Object.entries(dividenden.titel).find(([, z]) => {
+  const g = z.filter((x) => x.amount > 0)
+  return (
+    g.filter((x) => x.date > vorJahren(1)).length > 0 &&
+    g.filter((x) => x.date <= vorJahren(1) && x.date > vorJahren(5)).length >= 4
+  )
+})
+
+if (probeTitel) {
+  const [, zahlungen] = probeTitel
+  const hundertfach = zahlungen.map((z) =>
+    z.date > vorJahren(1) ? { ...z, amount: z.amount * 100 } : z
+  )
+  const jahr = hundertfach
+    .filter((z) => z.amount > 0 && z.date > vorJahren(1))
+    .reduce((summe, z) => summe + z.amount, 0)
+  const davor = hundertfach.filter(
+    (z) => z.amount > 0 && z.date <= vorJahren(1) && z.date > vorJahren(5)
+  )
+  const schnitt = davor.reduce((summe, z) => summe + z.amount, 0) / 4
+
+  pruefe(
+    'die Sprungprüfung fängt eine hundertfache Reihe',
+    jahr / schnitt > SPRUNG_MAX,
+    `Faktor ${(jahr / schnitt).toFixed(1)} bei ${probeTitel[0]} – ` +
+      'wenn der durchgeht, prüft die Zeile darüber nichts.'
+  )
+} else {
+  pruefe('die Sprungprüfung fängt eine hundertfache Reihe', false, 'kein Probetitel')
+}
 
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert.`)
 if (gescheitert > 0) process.exit(1)
