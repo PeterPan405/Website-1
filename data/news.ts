@@ -101,6 +101,383 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'anleiherenditen-setzen-technologiewerte-unter-druck',
+    title: 'Anleiherenditen setzen Technologiewerte unter Druck',
+    teaser:
+      'Steigende US-Anleiherenditen haben den Technologiesektor am Dienstag stärker getroffen als den breiten Markt – DAX und Nasdaq gaben nach.',
+    category: 'Märkte',
+    publishedAt: '2026-08-19T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Anleiherenditen', 'Nasdaq', 'DAX', 'Technologiewerte'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'staatsanleihe'],
+    relatedSymbols: ['nasdaq-100', 'dax'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, News vom 18.8.2026, 20:27 Uhr: ROUNDUP/Aktien New York Schluss: Anleiherenditen setzen Techsektor unter Druck',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, News vom 18.8.2026, 16:24 Uhr: ROUNDUP/Aktien Europa Schluss: EuroStoxx im Minus - Halbleiterwerte unter Druck',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, News vom 18.8.2026, 16:13 Uhr: ROUNDUP/Aktien Frankfurt Schluss: Dax unter Druck - Anleiherenditen und Ölpreise',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Dax Tagesrückblick 18.08.2026, 15:55 Uhr: Steigende Anleihezinsen belasten Dax - Rücksetzer bei Gold',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 19.8.2026, ca. 3:57 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 19.8.2026, ca. 3:57 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dienstag an der Wall Street stand laut dpa-AFX ganz im Zeichen steigender Anleiherenditen: „Anleiherenditen setzen Techsektor unter Druck“, meldete die Agentur zum Handelsende. Nasdaq 100, Nasdaq Composite, S&P 500 und Dow Jones schlossen laut den Kurzmeldungen von wallstreet-online alle in der Verlustzone.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Tech-Sektor trifft es härter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch in Europa war die Reaktion nicht überall gleich stark: dpa-AFX titelte zum EuroStoxx-Schluss „EuroStoxx im Minus - Halbleiterwerte unter Druck“ – Chip-Aktien wurden also explizit als besonders betroffen genannt. Das passt zu einem bekannten Mechanismus: Steigen die Zinsen, mit denen künftige Gewinne abgezinst werden, wiegt das bei Unternehmen, deren Gewinne größtenteils erst in der Zukunft liegen, stärker als bei etablierten Geschäftsmodellen mit stabilen laufenden Erträgen. Technologie- und Halbleiterwerte gehören meist zur ersten Gruppe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der DAX zog mit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch der DAX blieb nicht verschont: dpa-AFX meldete um 16:13 Uhr „Dax unter Druck - Anleiherenditen und Ölpreise“, onvista nannte im Tagesrückblick zusätzlich einen „Rücksetzer bei Gold“ als Begleiterscheinung desselben Tages.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Portale, zwei Zahlen zur gleichen Minute',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute früh, gegen 3:57 Uhr, zeigte die Kursleiste von finanzen.net den DAX bei 26.128 Punkten (-0,8 Prozent) und die Nasdaq bei 26.290 Punkten (-1,3 Prozent). Zur selben Minute zeigte wallstreet-online den DAX bei 26.163 Punkten (-0,56 Prozent) und den „US Tech 100“ bei 29.493 Punkten (-1,64 Prozent). Die Richtung stimmt bei beiden Portalen überein – Technologiewerte verlieren spürbar mehr als der breite deutsche Markt –, die genauen Prozentwerte weichen aber je nach Referenzpunkt der Quelle voneinander ab.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer wissen will, wie stark ein Depot auf steigende Zinsen reagiert, kann sich nicht allein am Marktdurchschnitt orientieren – der Anteil zukunftslastiger Wachstumswerte darin macht einen messbaren Unterschied.',
+      },
+    ],
+  },
+  {
+    slug: 'grossbritannien-meldet-heute-drei-preisindizes',
+    title: 'Großbritannien meldet heute drei Preisindizes auf einmal',
+    teaser:
+      'Um 8 Uhr veröffentlicht Großbritannien Erzeuger-, Verbraucher- und Einzelhandelspreise zugleich – die Prognosen zeigen kein einheitliches Bild.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-19T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Großbritannien', 'Inflation', 'Verbraucherpreise', 'Erzeugerpreise'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['ftse-100'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine“, abgerufen 19.8.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 8:00 Uhr veröffentlicht das britische Statistikamt heute laut dem Wirtschaftskalender von wallstreet-online gleich mehrere Preisindizes zur selben Zeit: Erzeugerpreise, Verbraucherpreise und den Einzelhandelspreisindex.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Messlatten für denselben Preisdruck',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Erzeugerpreisindex (Producer Price Index) misst, was Hersteller für ihre Waren am Werkstor bekommen oder zahlen – eine Vorstufe, die sich oft erst mit Verzögerung in den Läden zeigt. Der Consumer Price Index ist die offizielle britische Verbraucherpreisrate. Der Retail Price Index ist ein älterer, breiter gefasster Index, der in Großbritannien unter anderem für inflationsgeschützte Staatsanleihen noch als Referenz dient.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Prognosen laufen auseinander',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kalender nennt für die Verbraucherpreise (Monat) eine Prognose von 0,3 Prozent nach zuvor 0,1 Prozent – ein erwarteter Anstieg des Preisdrucks. Bei den Erzeugerpreisen zeigt die Prognose die Gegenrichtung: Die Vorstufe (Input, Jahr) soll auf 6,6 Prozent fallen, nach zuvor 7,3 Prozent, und auch die Erzeugerpreise auf der Ausgangsseite (Output, Jahr) sollen von 3,5 auf 3,2 Prozent nachgeben. Der Kern-Verbraucherpreisindex, der schwankungsanfällige Posten wie Energie herausrechnet, wird bei 2,5 Prozent erwartet, nach 2,6 Prozent zuvor. Warum die vorgelagerten Erzeugerpreise abkühlen sollen, während die Verbraucherpreise leicht anziehen, sagt der Kalender selbst nicht – er liefert nur die Zahlen, keine Begründung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Inflationswert erzählt selten die ganze Geschichte – erst der Vergleich mehrerer Stufen der Preiskette zeigt, ob sich Preisdruck aufbaut oder gerade durch die Wirtschaft durchläuft.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-in-shanghai-guenstiger-als-in-europa',
+    title: 'Warum eine Feinunze Gold in Shanghai günstiger ist',
+    teaser:
+      'Gold kostet in Shanghai zuletzt 22 US-Dollar je Unze weniger als am europäischen Spotmarkt – der China-Spread hat sich laut Goldreporter erneut ausgeweitet.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-19T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Rohstoffe', 'China', 'Preisbildung'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldungen & Analysen, 18. August 2026: China – Gold kostet in Shanghai zuletzt 22 US-Dollar je Unze weniger als am europäischen Spotmarkt',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 19.8.2026, ca. 3:57 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold kostet in Shanghai zuletzt 22 US-Dollar je Feinunze weniger als am europäischen Spotmarkt, meldet Goldreporter unter Berufung auf Marktdaten vom 18. August 2026. Der sogenannte China-Spread habe sich damit erneut ausgeweitet – ein Hinweis darauf, dass dieser Preisabstand nicht zum ersten Mal auftritt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Weltmarkt, mehrere Preise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold gilt als global gehandelter Rohstoff, dessen Preis überall etwa gleich sein sollte – Käufer würden sonst dort kaufen, wo es billiger ist, und dort verkaufen, wo es teurer ist, bis sich der Abstand schließt. In der Praxis hält dieses Prinzip nur, solange Kapital und physisches Metall ungehindert über Grenzen fließen können. Transportkosten, Einfuhrabgaben, Kapitalverkehrskontrollen oder eine lokal abweichende Nachfrage können dagegen zu Preisunterschieden führen, die eine Weile bestehen bleiben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum genau dieser Spread besteht, sagt die Quelle nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter nennt für den aktuellen Abstand selbst keine Ursache – nur die Zahl und die Feststellung, dass er sich ausgeweitet hat. Die genannten allgemeinen Gründe für Preisunterschiede zwischen Regionen sind deshalb als Hintergrundwissen zu verstehen, nicht als Erklärung für den heutigen Fall. Am frühen Morgen dieses Tages notierte Gold laut wallstreet-online bei rund 4.353 US-Dollar je Feinunze, ein Plus von 0,43 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Gold als „einen“ Weltmarktpreis begreift, übersieht, dass regionale Spreads real existieren und über Zeit schwanken können – für die eigene Anlage zählt meist ohnehin der Preis am Ort des Kaufs oder der ETF-Referenz, nicht der Shanghai-Kurs.',
+      },
+    ],
+  },
+  {
+    slug: 'klarna-bricht-trotz-starkem-quartal-ein',
+    title: 'Klarna bricht trotz starkem Quartal zweistellig ein',
+    teaser:
+      'Die Klarna-Aktie ist laut finanzen.net trotz starkem Quartal zweistellig eingebrochen – der Grund soll eine schwache Umsatzprognose sein.',
+    category: 'Märkte',
+    publishedAt: '2026-08-19T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Klarna', 'Guidance', 'Quartalszahlen'],
+    relatedTopics: ['risiko-und-rendite', 'wann-kaufen-verkaufen'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 18.8.2026: Klarna-Aktie bricht trotz starkem Quartal nach schwacher Umsatzprognose zweistellig ein',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '„Klarna-Aktie bricht trotz starkem Quartal nach schwacher Umsatzprognose zweistellig ein“, meldete finanzen.net am 18. August 2026. Konkrete Prozent- oder Dollarzahlen zum Kursrückgang oder zur Umsatzprognose nennt die Kurzmeldung nicht – nur die Richtung und den genannten Grund.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ist-Zahlen und Ausblick sind zwei verschiedene Dinge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Quartalszahlen beschreiben, was in den vergangenen drei Monaten tatsächlich passiert ist. Die Guidance – der Ausblick des Managements – ist dagegen eine Prognose für die kommenden Monate. Ein Aktienkurs ist im Kern eine Wette auf die Zukunft, nicht auf die Vergangenheit: Deshalb reagieren Märkte häufig stärker auf einen schwachen Ausblick als auf ein starkes, aber bereits bekanntes Quartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was genau schwach war, bleibt offen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kurzmeldung erklärt nicht, welcher Teil des Umsatzausblicks enttäuschte oder wie groß die Lücke zu den Erwartungen der Analysten war. Ohne diese Angaben lässt sich nur die Tatsache selbst wiedergeben: eine starke Vergangenheit traf auf einen schwächeren erwarteten Verlauf, und der Markt gewichtete Letzteres offenbar stärker.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Kursreaktion auf Quartalszahlen einordnen will, sollte zuerst fragen, ob sie sich auf das Berichtete oder auf den Ausblick bezieht – beides steht meist in derselben Meldung, bewegt den Kurs aber aus unterschiedlichen Gründen.',
+      },
+    ],
+  },
+  {
+    slug: 'sap-steigt-trotz-begrenztem-potenzial',
+    title: 'SAP steigt, obwohl Analysten das Potenzial begrenzt sehen',
+    teaser:
+      'SAP legte laut finanzen.net zu, obwohl Analysten dem Kurs überwiegend nur begrenztes weiteres Potenzial zutrauen – Rating und Kursziel sind eben zweierlei.',
+    category: 'Märkte',
+    publishedAt: '2026-08-19T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['SAP', 'Analysten', 'Kursziel', 'DAX'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['sap'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 18.8.2026: SAP-Aktie steigt: Analysten überwiegend für Kauf - doch ist Potenzial begrenzt?',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '„SAP-Aktie steigt: Analysten überwiegend für Kauf - doch ist Potenzial begrenzt?“, titelte finanzen.net am 18. August 2026. Die Aktie legte demnach zu, während die Schlagzeile selbst schon die Frage nach dem verbleibenden Spielraum nach oben stellt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rating und Kursziel sind getrennte Kennzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Analysehäuser geben in der Regel zwei getrennte Urteile ab: eine Einstufung wie Kaufen, Halten oder Verkaufen, und ein Kursziel in Euro oder Dollar, das den als fair angesehenen Wert beziffert. Eine Mehrheit an Kaufempfehlungen sagt für sich genommen nichts darüber aus, wie groß der Abstand zwischen aktuellem Kurs und diesen Kurszielen noch ist – genau diesen Abstand thematisiert die Formulierung „Potenzial begrenzt“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Kurzmeldung nennt keine Zahlen dazu',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie viele Analysten SAP zum Kauf empfehlen, wo die durchschnittlichen Kursziele liegen oder wie groß das rechnerische Potenzial noch ist, steht in der Kurzmeldung nicht – nur die Einordnung „überwiegend“ und die offene Frage im Titel selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Kaufempfehlung allein ist noch keine Aussage über die Höhe der erwarteten Rendite – dafür braucht es das Kursziel und den Abstand zum aktuellen Kurs, nicht nur das Etikett der Einstufung.',
+      },
+    ],
+  },
+  {
+    slug: 'novo-nordisk-aktienrueckkauf-etappenziel',
+    title: 'Novo Nordisk erreicht Etappenziel beim Aktienrückkauf',
+    teaser:
+      'Novo Nordisk hat laut finanzen.net beim laufenden Aktienrückkauf ein weiteres Etappenziel erreicht – ein Anlass, den Mechanismus dahinter zu erklären.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-19T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Novo Nordisk', 'Aktienrückkauf', 'Dividende'],
+    relatedTopics: ['aktie', 'portfolio-aufbau'],
+    relatedSymbols: ['novo-nordisk'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 18.8.2026: Novo Nordisk erreicht beim Aktienrückkauf weiteres Etappenziel - So reagiert die Aktie',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Novo Nordisk hat laut finanzen.net am 18. August 2026 „beim Aktienrückkauf ein weiteres Etappenziel“ erreicht, meldet die Kurzmeldung, ohne das Volumen des Programms oder den genauen Erreichungsgrad zu beziffern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Aktienrückkauf technisch bewirkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einem Aktienrückkauf kauft ein Unternehmen eigene Aktien am Markt zurück und zieht sie meist anschließend ein. Dadurch sinkt die Zahl der ausstehenden Aktien, und derselbe Gewinn verteilt sich rechnerisch auf weniger Anteile – der Gewinn je Aktie steigt, ohne dass das operative Geschäft wachsen muss. Eine Dividende wirkt anders: Sie zahlt sofort Bargeld an alle Aktionäre aus, unabhängig davon, ob diese verkaufen wollen oder nicht, und der Aktienkurs wird um den Ausschüttungsbetrag rechnerisch nach unten korrigiert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Kurzmeldung bleibt bei der Größenordnung vage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weder das Gesamtvolumen des Novo-Nordisk-Rückkaufprogramms noch der Anteil, der bereits umgesetzt wurde, stehen in der Meldung – nur die Formulierung „weiteres Etappenziel“ und der Hinweis auf eine Kursreaktion.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rückkauf steigert den Wert je verbleibender Aktie nur dann tatsächlich, wenn das Unternehmen die eigenen Anteile nicht über ihrem fairen Wert zurückkauft – eine Abwägung, die für jedes Programm einzeln gilt, nicht pauschal für „Rückkäufe“ im Allgemeinen.',
+      },
+    ],
+  },
+  {
+    slug: 'bridgewater-verkauft-cathie-wood-kauft-nvidia',
+    title: 'Bridgewater verkauft Nvidia, Cathie Wood kauft nach',
+    teaser:
+      'Bridgewater hat im zweiten Quartal Nvidia-Aktien verkauft, Cathie Woods ARK gleichzeitig aufgestockt – zwei Star-Investoren, entgegengesetzte Wetten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-19T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Bridgewater', 'Cathie Wood', '13F'],
+    relatedTopics: ['anlegerpsychologie', 'portfolio-aufbau'],
+    relatedSymbols: ['nvidia', 'amd', 'palantir'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.8.2026, 3:08 Uhr: Bridgewater verkauft Aktien von NVIDIA und Co.: Die zehn größten Beteiligungen im zweiten Quartal',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 18.8.2026: Cathie Wood schichtet weiter um: Mehr Aktien von NVIDIA und Cloudflare, weniger AMD und Palantir',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Laut finanzen.net hat Bridgewater im zweiten Quartal Aktien von Nvidia „und Co.“ verkauft – Teil der turnusmäßigen Offenlegung der zehn größten Beteiligungen des Hedgefonds. Zur gleichen Zeit meldet finanzen.net, dass Cathie Woods ARK weiter umschichtet: mehr Nvidia und Cloudflare, weniger AMD und Palantir.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Star-Investoren, entgegengesetzte Wetten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Solche Offenlegungen – in den USA meist als „13F“-Meldungen bekannt – zeigen die Positionen eines Fonds zum Ende des vorigen Quartals, sind also bereits Wochen alt, wenn sie veröffentlicht werden. Dass Bridgewater und ARK beim selben Titel zur selben Zeit entgegengesetzt handeln, heißt nicht, dass einer der beiden „falsch“ liegt: Unterschiedliche Anlagehorizonte, Mandate und Strategien führen aus denselben öffentlich verfügbaren Informationen zu unterschiedlichen Schlüssen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zahlen zur Größenordnung fehlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weder die verkaufte noch die gekaufte Stückzahl oder ein Euro- beziehungsweise Dollarbetrag stehen in den beiden Kurzmeldungen – nur die Richtung der jeweiligen Umschichtung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine 13F-Meldung als Kaufsignal liest, sollte den Zeitverzug von mehreren Wochen und die Uneinigkeit selbst prominenter Adressen mitdenken – eine fremde Positionierung ersetzt keine eigene Einschätzung.',
+      },
+    ],
+  },
+  {
     slug: 'dax-in-rekordnaehe-trotz-verlusttag',
     title: 'DAX in Rekordnähe trotz Verlusttag – wie passt das zusammen?',
     teaser:
