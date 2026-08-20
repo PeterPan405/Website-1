@@ -16,6 +16,13 @@ import type { Quartalsterminbefund } from '@/lib/quartalstermine'
  * sich der Kurs einer einzelnen Aktie sprunghaft ändert – wer über einen Kauf
  * nachdenkt, will wissen, ob der morgen ansteht.
  *
+ * ## Warum die Quelle am Befund hängt und nicht an der Seite
+ *
+ * Weil es zwei sind. Ein angekündigter Termin kommt aus dem Sammelkalender,
+ * ein hochgerechneter aus den Pflichtmeldungen bei der US-Börsenaufsicht. Eine
+ * feste Quellenangabe unter dem Kasten wäre bei jedem zweiten Titel die
+ * falsche – und eine falsche Herkunft ist schlimmer als keine.
+ *
  * ## Warum auch dann etwas steht, wenn nichts bekannt ist
  *
  * Weil eine Leerstelle nicht erklärt, was sie bedeutet. Für 711 der 1.029
@@ -27,14 +34,12 @@ export function Quartalstermin({
   befund,
   luecke,
   name,
-  quelle,
   className,
 }: {
   befund: Quartalsterminbefund | null
   /** Der Satz, warum nichts dasteht – wenn kein Befund vorliegt. */
   luecke: string | null
   name: string
-  quelle: { label: string; url: string }
   className?: string
 }) {
   if (!befund && !luecke) return null
@@ -55,7 +60,7 @@ export function Quartalstermin({
           >
             <p className="text-fg-subtle flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.16em] uppercase">
               <Icon name="calendar" className="size-3.5" aria-hidden="true" />
-              erwartet
+              {befund.angekuendigt ? 'angekündigt' : 'erwartet'}
             </p>
             <p className="text-fg mt-2 text-2xl font-semibold tracking-[-0.02em]">
               {formatDate(befund.erwartet)}
@@ -70,28 +75,47 @@ export function Quartalstermin({
               <p className="text-fg-muted mt-1.5 text-sm">{befund.uhrzeit}</p>
             )}
 
-            <p className="text-fg-muted mt-3 text-sm leading-relaxed">
-              {tageSatz(befund.inTagen)} Der Tag ist{' '}
-              <strong className="text-fg font-semibold">geschätzt</strong>: Er ist aus dem
-              bisherigen Meldemuster hochgerechnet, im Vorjahr meldete {name} am{' '}
-              {formatDate(befund.basis)}
-              {befund.streuungTage >= 2
-                ? `, und das Muster schwankte dabei um bis zu ${befund.streuungTage} Tage`
-                : ''}
-              . Den genauen Termin gibt jedes Unternehmen wenige Wochen vorher selbst
-              bekannt.
-            </p>
+            {/*
+              Zwei Zusagen, zwei Texte.
+
+              Ein angekündigter Tag trägt eine Order, ein hochgerechneter nicht.
+              Beide gleich zu formulieren wäre in der einen Richtung eine
+              Warnung zu viel und in der anderen eine zu wenig – und die zweite
+              Sorte Fehler kostet Geld.
+            */}
+            {befund.angekuendigt ? (
+              <p className="text-fg-muted mt-3 text-sm leading-relaxed">
+                {tageSatz(befund.inTagen)} Diesen Tag hat{' '}
+                <strong className="text-fg font-semibold">
+                  {name} selbst angekündigt
+                </strong>{' '}
+                – er ist nicht hochgerechnet. Kurzfristige Verschiebungen kommen vor;
+                maßgeblich bleibt, was das Unternehmen auf seiner eigenen Seite nennt.
+              </p>
+            ) : (
+              <p className="text-fg-muted mt-3 text-sm leading-relaxed">
+                {tageSatz(befund.inTagen)} Der Tag ist{' '}
+                <strong className="text-fg font-semibold">geschätzt</strong>: Er ist aus
+                dem bisherigen Meldemuster hochgerechnet, im Vorjahr meldete {name} am{' '}
+                {formatDate(befund.basis)}
+                {befund.streuungTage >= 2
+                  ? `, und das Muster schwankte dabei um bis zu ${befund.streuungTage} Tage`
+                  : ''}
+                . Den genauen Termin gibt jedes Unternehmen wenige Wochen vorher selbst
+                bekannt.
+              </p>
+            )}
           </div>
 
           <p className="text-fg-subtle mt-3 text-sm">
             Quelle:{' '}
             <a
-              href={quelle.url}
+              href={befund.quelle.url}
               rel="noopener noreferrer"
               target="_blank"
               className="hover:text-fg underline underline-offset-2"
             >
-              {quelle.label}
+              {befund.quelle.label}
             </a>{' '}
             · Alle Termine im{' '}
             <Link href="/kalender" className="hover:text-fg underline underline-offset-2">

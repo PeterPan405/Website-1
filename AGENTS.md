@@ -227,13 +227,22 @@ ist keiner"
 
 ## Quartalstermine
 
-- **Die Quelle deckt nur die USA ab.** 318 von 1.029 Aktien haben einen
-  Meldetermin, 302 davon amerikanisch. Wer keinen hat, bekommt auf seiner
-  Seite den Satz warum (`quartalsterminLuecke()`) – eine Leerstelle erklärt
-  sich nicht selbst.
-- **Der zweite Weg über Twelve Data ist tarifgesperrt** und hat noch nie etwas
+- **Zwei Quellen, und die angekündigte gewinnt.** Der Sammelkalender
+  (`ALPHAVANTAGE_API_KEY`, ein Abruf für alle) nennt Tage, die die Unternehmen
+  **selbst angekündigt** haben; die SEC-Ableitung rechnet hoch. Wo beide etwas
+  wissen, gilt der angekündigte Tag – er trägt kein `geschaetzt`, heißt auf der
+  Seite „angekündigt" und nennt seine eigene Quelle.
+- **Der Sammelkalender führt, was in New York notiert** – auch die
+  Hinterlegungsscheine ausländischer Emittenten, und damit Alibaba. Von 41
+  europäischen und asiatischen Standardwerten waren drei enthalten. Wer keinen
+  Termin hat, bekommt auf seiner Seite den Satz warum
+  (`quartalsterminLuecke()`) – eine Leerstelle erklärt sich nicht selbst.
+- **Der Weg über Twelve Data ist tarifgesperrt** und hat noch nie etwas
   geliefert. Er bricht seit dem 20. August 2026 nach der ersten Absage ab
   (`TarifSperre`). Nicht „reparieren": Es fehlt ein bezahlter Tarif, nicht Code.
+- **Beide Anbieter antworten auf eine Absage mit Statuscode 200.** Geprüft wird
+  der Inhalt, nicht der Code – sonst landet eine Absage als leere Liste im
+  Bestand, und der Lauf bleibt grün.
 - **Die Uhrzeit ist die New Yorker Wanduhr**, festgehalten in der
   Momentaufnahme; die deutsche entsteht erst in der Anzeige aus dem erwarteten
   Tag. Sechs Stunden zu addieren ist an drei Wochen im Jahr falsch – und genau
@@ -246,8 +255,13 @@ ist keiner"
   Zeichen im Kopf springt hinein, und ein Sprungziel im zugeklappten
   `<details>` führt ins Nichts.
 
+**„Geprüft und nichts gefunden" ist ein Zwischenstand, kein Ergebnis.** Er
+gehört mit Datum und Liste hingeschrieben – und nicht als Beweis gelesen, dass
+es nichts gibt. Der Sammelkalender wurde erst gefunden, als jemand statt nach
+Terminen je Unternehmen nach einer Sammelstelle fragte.
+
 → `ENTSCHEIDUNGEN.md`: „Ein Weg, der nie etwas geliefert hat", „Zwischen New
-York und Berlin liegen nicht immer sechs Stunden"
+York und Berlin liegen nicht immer sechs Stunden", „Der Betreiber hatte recht"
 
 ## Kurse
 

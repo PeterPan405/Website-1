@@ -61,6 +61,11 @@ import {
   TarifSperre,
 } from '../lib/providers/twelvedata-termine.ts'
 import { newYorkerUhrzeit, sitzungslage } from '../lib/zonenzeit.ts'
+import {
+  AlphaVantageGesperrt,
+  holeKalender,
+  type Kalendereintrag,
+} from '../lib/providers/alphavantage-termine.ts'
 
 const KOPFZEILEN: Record<string, string> = {
   'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com',
@@ -194,6 +199,24 @@ interface Vorhersage {
    * Steht nur da, wenn `uhrzeitAus()` sie belegen konnte.
    */
   newYorkerZeit?: string
+  /**
+   * Gesetzt, wenn das Unternehmen den Tag **selbst angekündigt** hat.
+   *
+   * Dann ist `basis` kein Vorjahrestag und `streuungTage` bedeutungslos: Es
+   * wurde nichts hochgerechnet. Der Unterschied gehört auf die Seite, denn
+   * `geschaetzt` und „angekündigt" sind zwei verschiedene Zusagen – und die
+   * zweite ist die, nach der jemand eine Order legen darf.
+   */
+  angekuendigt?: true
+  /**
+   * Die angekündigte Lage zur US-Handelssitzung, wenn die Quelle sie nennt.
+   *
+   * Eigenes Feld neben `newYorkerZeit`: Diese Angabe kommt vom Anbieter und
+   * ist keine Minute, sondern eine Aussage. Sie in eine erfundene Uhrzeit
+   * umzurechnen, nur damit beide durch dieselbe Anzeige laufen, hieße eine
+   * Genauigkeit zu behaupten, die die Quelle nicht hergibt.
+   */
+  lage?: 'vorboerse' | 'nachboerse'
 }
 
 interface Eintrag {
@@ -649,7 +672,112 @@ async function main(): Promise<void> {
   const ohneMuster: string[] = []
   const gescheitert: string[] = []
 
+  /*
+    ------------------------------------ Erster Weg: der angekündigte Termin
+
+    Ein Abruf für alle. Der Sammelkalender von Alpha Vantage nennt die Tage,
+    die die Unternehmen **selbst angekündigt** haben – und der schlägt jede
+    Hochrechnung, egal wie gut das Muster war.
+
+    Er läuft vor der SEC und nicht danach, obwohl er weniger abdeckt: Wo beide
+    etwas wissen, soll der angekündigte Tag gewinnen. Der Ableitung bleibt,
+    was übrig ist.
+
+    Warum überhaupt beide? Weil der Kalender nur trägt, was in New York
+    notiert. Gemessen am 20. August 2026 an 41 europäischen und asiatischen
+    Standardwerten: drei enthalten. Die SEC deckt dafür 318 US-Unternehmen
+    lückenlos ab. Zwei Quellen mit verschiedenen Stärken, und keine ersetzt
+    die andere.
+  */
+  const kalenderSchluessel = process.env.ALPHAVANTAGE_API_KEY
+  const angekuendigt = new Map<string, Kalendereintrag>()
+
+  if (!kalenderSchluessel) {
+    console.log(
+      '\nKein ALPHAVANTAGE_API_KEY hinterlegt – angekündigte Termine bleiben aus.\n' +
+        'Ohne ihn wird jeder Termin aus dem Meldemuster hochgerechnet.'
+    )
+  } else {
+    try {
+      const kalender = await holeKalender(kalenderSchluessel)
+      if (!kalender) {
+        console.warn(
+          '\n::warning::Der Sammelkalender kam ohne verwertbare Zeilen zurück.'
+        )
+      } else {
+        /*
+          Je Kürzel der **nächste** kommende Termin.
+
+          Der Kalender führt drei Monate; bei manchen Unternehmen stehen darin
+          zwei Meldetage. Der spätere gehört nicht auf die Aktienseite, solange
+          der frühere noch aussteht.
+        */
+        for (const eintrag of kalender) {
+          if (eintrag.reportDate < heute) continue
+          const vorhanden = angekuendigt.get(eintrag.symbol)
+          if (!vorhanden || eintrag.reportDate < vorhanden.reportDate) {
+            angekuendigt.set(eintrag.symbol, eintrag)
+          }
+        }
+        console.log(
+          `\n${kalender.length} Zeilen im Sammelkalender, ` +
+            `${angekuendigt.size} Kürzel mit kommendem Termin.`
+        )
+      }
+    } catch (fehler) {
+      if (fehler instanceof AlphaVantageGesperrt) {
+        /*
+          Laut und einmal – die Lehre aus dem Twelve-Data-Weg, der drei Wochen
+          lang grün war und nie etwas lieferte. Es ist ein Abruf für alles;
+          der zweite bekäme dieselbe Antwort wie der erste.
+        */
+        console.warn(
+          `\n::warning::Alpha Vantage gibt den Kalender nicht heraus:\n` +
+            `  ${fehler.message}\n` +
+            '  Der Lauf macht mit der Hochrechnung aus dem Meldemuster weiter.\n' +
+            '  Zu prüfen wäre der Schlüssel – der Endpunkt ist im kostenlosen\n' +
+            '  Tarif enthalten, das Tageskontingent aber klein.'
+        )
+      } else {
+        console.warn(`\n::warning::Sammelkalender: ${(fehler as Error).message}`)
+      }
+    }
+  }
+
+  /** Das Kürzel, unter dem ein Katalogtitel im Sammelkalender steht. */
+  const kalenderkuerzel = (katalog: string) => KUERZELBRUECKE[katalog] ?? katalog
+
+  /*
+    Was der Kalender hergibt, kommt zuerst in den Bestand – auch für Titel,
+    die der SEC-Durchgang danach gar nicht anfasst. Alibaba ist genau so ein
+    Fall: bei der SEC geführt, aber ohne eine einzige Meldung mit Punkt 2.02.
+  */
+  const ausKalender: string[] = []
+  for (const kuerzel of gefuehrt) {
+    const eintrag = angekuendigt.get(kalenderkuerzel(kuerzel))
+    if (!eintrag) continue
+
+    unternehmen[kuerzel] = {
+      name: eintrag.name || kuerzel,
+      bisher: unternehmen[kuerzel]?.bisher ?? [],
+      bisherZeiten: unternehmen[kuerzel]?.bisherZeiten,
+      vorhersagen: [
+        {
+          erwartet: eintrag.reportDate,
+          basis: eintrag.fiscalDateEnding || eintrag.reportDate,
+          streuungTage: 0,
+          angekuendigt: true,
+          ...(eintrag.lage ? { lage: eintrag.lage } : {}),
+        },
+      ],
+    }
+    ausKalender.push(kuerzel)
+  }
+
   for (const [index, { katalog, cik }] of gesucht.entries()) {
+    // Ein angekündigter Termin steht schon – den überschreibt keine Schätzung.
+    if (angekuendigt.has(kalenderkuerzel(katalog))) continue
+
     try {
       const { name, termine, zeiten } = await termineVon(cik)
       const abgeleitet = vorhersagen(termine, heute, zeiten)
@@ -855,6 +983,21 @@ async function main(): Promise<void> {
     zweiterWeg.length > 0
       ? `Davon über Twelve Data nachgeholt: ${zweiterWeg.length}.`
       : 'Über Twelve Data ist nichts dazugekommen.'
+  )
+
+  /*
+    Was der Sammelkalender beigetragen hat, wird gezählt und benannt.
+
+    Nicht „hat geantwortet", sondern „hat *n* Einträge beigesteuert" – das ist
+    die Lehre aus dem Twelve-Data-Weg, der drei Wochen lang antwortete und nie
+    etwas beitrug. Eine Null steht hier genauso da wie eine Zahl, und sie ist
+    dann das, was sie ist: ein Weg, der nichts bringt.
+  */
+  console.log(
+    ausKalender.length > 0
+      ? `\nAngekündigte Termine aus dem Sammelkalender: ${ausKalender.length}` +
+          ` (${ausKalender.slice(0, 12).join(', ')}${ausKalender.length > 12 ? ' …' : ''})`
+      : '\n::warning::Der Sammelkalender hat zu keinem geführten Titel etwas beigetragen.'
   )
 
   const ohneTermin = gefuehrt.size - Object.keys(unternehmen).length

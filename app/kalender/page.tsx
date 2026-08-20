@@ -157,26 +157,37 @@ export default async function KalenderPage() {
               es nur in den USA. Wer an einer europäischen oder asiatischen Börse notiert,
               reicht dort nichts ein – und wer als ausländisches Unternehmen in den USA
               gelistet ist, meldet über ein Formular ohne Punktnummern, aus dem sich eine
-              Ergebnisveröffentlichung nicht zuverlässig herauslesen lässt. Alibaba ist so
-              ein Fall: in New York gelistet, bei der Börsenaufsicht geführt – und ohne
-              eine einzige Meldung der Art, aus der sich hier etwas ableiten ließe.
+              Ergebnisveröffentlichung nicht zuverlässig herauslesen lässt.
             </p>
             {/*
-              Hier stand bis zum 20. August 2026 ein Versprechen: „Für die übrigen Werte
-              kommt eine zweite Quelle hinzu, sobald sie bereitsteht." Sie stand längst
-              bereit und lieferte nichts – der Anbieter gibt die Meldetermine nur in
-              einem kostenpflichtigen Tarif heraus, und das steht in jeder einzelnen
-              seiner Antworten. Ein Satz, der eine Lösung ankündigt, die es nicht gibt,
-              ist schlechter als das Eingeständnis: Er hält die Frage für erledigt.
+              Hier stand bis zum 20. August 2026 zuerst ein Versprechen („eine zweite
+              Quelle kommt hinzu, sobald sie bereitsteht"), dann dessen Widerruf
+              („gesucht und nicht gefunden"). Beides war zu bequem: Das erste kündigte
+              eine Lösung an, die es nicht gab, das zweite erklärte die Suche für
+              beendet. Der Betreiber hat widersprochen – und die Prüfung danach hat
+              tatsächlich noch eine Quelle gefunden. Hier steht jetzt der gemessene
+              Stand, samt dem, was er nicht abdeckt.
             */}
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Eine zweite Quelle für die übrigen Werte ist gesucht und bisher nicht
-              gefunden. Geprüft sind sieben; alle verlangen entweder einen
-              kostenpflichtigen Zugang oder eine Kennung, die nur ein Browser erzeugt –
-              und Letzteres nachzubauen hieße, eine bewusst gesetzte Sperre zu umgehen.
-              Solange das so bleibt, steht bei diesen Aktien kein Termin, und auf ihrer
-              Seite steht, warum. Eine plausibel aussehende Schätzung wäre hier schlechter
-              als eine Lücke.
+              Für einen Teil der Titel gibt es die Termine trotzdem – und zwar nicht
+              hochgerechnet, sondern{' '}
+              <strong className="text-fg">
+                so, wie das Unternehmen sie angekündigt hat
+              </strong>
+              . Sie stammen aus einem Sammelkalender angekündigter Meldetermine und sind
+              hier als „angekündigt“ gekennzeichnet, ohne den Zusatz „erwartet, nicht
+              bestätigt“: Erwartet sind sie nicht, sie stehen fest. Dieser Kalender führt
+              allerdings, was in New York notiert. Das schließt die Hinterlegungsscheine
+              ausländischer Unternehmen ein – Alibaba etwa steht darin – und lässt aus,
+              wer nur an seiner Heimatbörse gehandelt wird.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Für diese bleibt die Lücke. Neun Quellen sind bisher geprüft; die
+              verbliebenen verlangen entweder einen kostenpflichtigen Zugang oder eine
+              Kennung, die nur ein Browser erzeugt – und Letzteres nachzubauen hieße, eine
+              bewusst gesetzte Sperre zu umgehen. Wo kein Termin vorliegt, steht auf der
+              Seite der Aktie, warum. Eine plausibel aussehende Schätzung wäre dort
+              schlechter als eine Lücke.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Termine sind mit{' '}

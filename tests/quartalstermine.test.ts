@@ -192,6 +192,64 @@ pruefen(
   String(satz)
 )
 
+/* ------------------------------------------- Der angekündigte Termin */
+
+/*
+  Zwei Zusagen, die nicht gleich aussehen dürfen.
+
+  Ein angekündigter Tag kommt vom Unternehmen selbst und trägt eine Order. Ein
+  hochgerechneter kommt aus dem Muster der Vorjahre und trägt keine. Der
+  Sammelkalender nennt dazu die Lage – aber **keine Minute**, und dann steht
+  auch keine da: Aus „post-market" 22:20 Uhr zu rechnen hieße eine Genauigkeit
+  zu behaupten, die die Quelle nicht hergibt.
+*/
+pruefen(
+  'Ein angekündigter Termin nennt die Lage ohne Uhrzeit',
+  uhrzeitsatz({
+    erwartet: '2026-08-20',
+    basis: '2026-06-30',
+    streuungTage: 0,
+    angekuendigt: true,
+    lage: 'vorboerse',
+  }) === 'vor der US-Eröffnung',
+  String(
+    uhrzeitsatz({
+      erwartet: '2026-08-20',
+      basis: '2026-06-30',
+      streuungTage: 0,
+      angekuendigt: true,
+      lage: 'vorboerse',
+    })
+  )
+)
+
+pruefen(
+  'Und erfindet keine Minute dazu',
+  !/\d{2}:\d{2}|Vorjahr/.test(
+    uhrzeitsatz({
+      erwartet: '2026-08-20',
+      basis: '2026-06-30',
+      streuungTage: 0,
+      angekuendigt: true,
+      lage: 'nachboerse',
+    }) ?? ''
+  ),
+  'Der Sammelkalender nennt „post-market", nicht 22:20 Uhr.'
+)
+
+pruefen(
+  'Ohne genannte Lage steht auch beim angekündigten Termin nichts',
+  uhrzeitsatz({
+    erwartet: '2026-10-21',
+    basis: '2026-09-30',
+    streuungTage: 0,
+    angekuendigt: true,
+  }) === null,
+  'Die Spalte ist bei einem guten Teil der Zeilen leer.'
+)
+
+console.log('')
+
 /*
   Die Prüfung, die aus einer Zählung entstanden ist.
 
@@ -410,6 +468,38 @@ pruefen(
     .slice(0, 3)
     .map((t) => `${t.titel} am ${t.datum}`)
     .join(', ')}`
+)
+
+/*
+  Und die Prüfung, die den Unterschied festhält, wo er zählt: Ein angekündigter
+  Termin darf im Kalender kein `geschaetzt` tragen. Daran hängt auf der
+  Kalenderseite das „erwartet, nicht bestätigt" – eine Warnung, die an einem
+  Tag, den das Unternehmen selbst genannt hat, dem Leser Sicherheit nimmt, die
+  die Quelle hergibt.
+
+  Solange kein Schlüssel hinterlegt ist, gibt es keine angekündigten Termine im
+  Bestand; die Zahl steht deshalb daneben, damit die leere Menge sichtbar ist
+  statt still.
+*/
+const angekuendigteTermine = termine.filter((t) => t.titel.includes('angekündigt'))
+console.log(
+  `     (${angekuendigteTermine.length} von ${termine.length} Terminen sind angekündigt statt hochgerechnet)`
+)
+
+pruefen(
+  'Ein angekündigter Termin trägt kein „geschätzt“',
+  angekuendigteTermine.every((t) => t.geschaetzt === undefined),
+  angekuendigteTermine
+    .filter((t) => t.geschaetzt)
+    .slice(0, 3)
+    .map((t) => t.titel)
+    .join(', ')
+)
+
+pruefen(
+  'Und ein hochgerechneter trägt es',
+  termine.filter((t) => !t.titel.includes('angekündigt')).every((t) => t.geschaetzt),
+  'Ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.'
 )
 
 pruefen(
