@@ -255,19 +255,58 @@ name: Quellen abklopfen
 #   der übrigen Meldetermine führt, ist **offen** – Taiwan sind rund zehn
 #   Titel, deshalb steht es hinten an.
 #
-# ### Der Stand nach drei Durchgängen
+# ### Euronext verschlüsselt seine eigenen Antworten
+#
+# Am selben Tag, vierter Durchgang, mit einer Gegenprobe: Wenn ein Aufruf
+# fehlschlägt, will man wissen, ob die Familie überhaupt antwortet.
+#
+#     /intraday_chart/getChartData/FR0000120271-XPAR/intraday   200 JSON
+#     /en/ajax/getDetailedQuote/FR0000120271-XPAR               200 JSON
+#     /en/ajax/getFactsheetInfoBlock/.../fs_agenda              200, leer
+#     /en/ajax/getCompanyEvents/FR0000120271-XPAR               404
+#     /en/products/equities/company-calendar                    404
+#
+# Die beiden, die antworten, antworten so:
+#
+#     {"ct":"Dz6KZTGaEtH5\/zVAG3xEjcdJfsmr0gIVkd\/O3mBU…","iv":…,"s":…}
+#
+# Das ist kein Datenformat, das ist ein **Geheimtext**: `ct`, `iv`, `s` sind
+# die Felder, die CryptoJS beim Verschlüsseln schreibt. Euronext gibt seine
+# Kursdaten also verschlüsselt heraus und entschlüsselt sie erst im Browser mit
+# einem Schlüssel, der im ausgelieferten JavaScript steckt.
+#
+# **Damit ist Euronext erledigt, und zwar nicht technisch, sondern
+# grundsätzlich.** Das ist dieselbe Art Sperre wie der Crumb bei Yahoo und die
+# im Browser errechnete Kennung bei der Börse Frankfurt: bewusst gesetzt, um
+# genau diesen Zugriff zu verhindern. Wer sie nachbaut, umgeht sie. Das wird
+# hier nicht gemacht – und der Fall gehört aufgeschrieben, damit ihn niemand
+# in einem halben Jahr für eine ungelöste technische Aufgabe hält.
+#
+# ### Der Stand nach vier Durchgängen
 #
 # Angeschlossen: SEC (318 US-Titel), Sammelkalender (wartet auf einen
 # Schlüssel), JPX (72 japanische Titel, ab der nächsten Berichtssaison).
 #
-# Offen und ohne gefundenen Weg: Europa. Die Börsen führen die Termine, geben
-# sie aber nur an ihre eigene Oberfläche heraus – Euronext, Deutsche Börse und
-# HKEX bauen ihre Seiten im Browser zusammen, SIX und die LSE geben alles außer
-# dem Termin. **Deutschland ist mit 90 Titeln die größte Lücke.**
+# Für Europa ist der Weg über die Börsen **zu**, und die drei Gründe sind
+# verschieden:
 #
-# Das ist ein Zwischenstand und kein Ergebnis. Was noch nicht versucht wurde:
-# die Aufrufe zu finden, die diese Oberflächen selbst benutzen – bei Euronext
-# und der Deutschen Börse gibt es sie, sonst stünde auf ihren Seiten nichts.
+# - **Zürich und London antworten offen und führen den Termin nicht.** Kein
+#   Zugriffsproblem, sondern eine Datenlücke. Hier hilft kein Code.
+# - **Euronext und die Börse Frankfurt sperren bewusst** – verschlüsselte
+#   Antwort dort, browsergerechnete Kennung hier. Das wird nicht umgangen.
+# - **HKEX** setzt seine Seite im Browser zusammen; ob dahinter ein offener
+#   Aufruf liegt, ist noch nicht geprüft.
+#
+# **Deutschland bleibt mit 90 Titeln die größte Lücke**, und für sie gibt es
+# nach vier Durchgängen keinen freien Weg über die Börse. Was bliebe, sind die
+# Finanzkalender der Unternehmen selbst – rund neunzig verschiedene Seiten,
+# jede mit eigenem Aufbau. Das ist machbar und teuer in der Pflege; es ist eine
+# Entscheidung und keine Frage der Technik.
+#
+# Das billigste offene Stück liegt anderswo: **ein kostenloser Schlüssel für
+# den Sammelkalender** (`ALPHAVANTAGE_API_KEY`). Der Code dafür steht seit dem
+# 20. August und liegt ohne Schlüssel still. Er brächte die in New York
+# notierten Auslandswerte – Alibaba und rund 25 weitere.
 #
 #
 # ## Offener Auftrag: Unternehmenszahlen ausserhalb der USA
