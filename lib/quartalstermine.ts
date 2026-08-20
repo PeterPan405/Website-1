@@ -241,18 +241,49 @@ function streuungssatz(tage: number): string {
  * Quelle nicht deckt – dieselbe Überlegung wie beim Tag, der `geschaetzt`
  * trägt.
  *
- * Fehlt die Zeit, steht keine da. Das ist der häufigere Fall, als es scheint:
- * Sie entsteht nur, wenn zwei aufeinanderfolgende Jahre in derselben Lage
- * gemeldet haben.
+ * Fehlt die Zeit, steht keine da. Sie entsteht nur, wenn zwei
+ * aufeinanderfolgende Jahre in derselben Lage gemeldet haben.
+ *
+ * ## Warum die Minute als Eingang bei der Behörde bezeichnet wird
+ *
+ * Weil sie das ist. Gemessen wird, wann die US-Börsenaufsicht die Meldung
+ * angenommen hat – bei den meisten Unternehmen ist das der Augenblick der
+ * Veröffentlichung, bei manchen liegt ein Nachlauf dazwischen. Wer das
+ * dazuschreibt, gibt dem Leser die Möglichkeit, es einzuordnen; wer „um 22:22
+ * Uhr veröffentlicht" schreibt, nimmt sie ihm.
+ *
+ * ## Warum es „während des US-Handels" nicht gibt
+ *
+ * Es steht als Fall in `lib/zonenzeit.ts`, und trotzdem erscheint es nie –
+ * das ist kein Versehen, sondern das Ergebnis einer Zählung.
+ *
+ * Am 20. August 2026 trugen 1.142 der 1.205 vorausgerechneten Termine eine
+ * Zeit. 645 lagen vor der Eröffnung, 467 nach dem Schluss, **30 mitten in der
+ * Sitzung**. Nachgesehen, wer diese 30 sind: Citigroup mit 10:08 Uhr, Ford mit
+ * 12:08, Chubb mit 12:19, Sempra mit 10:51 – lauter Häuser, die ihre Zahlen in
+ * Wahrheit vorbörslich herausgeben. Was hier gemessen wurde, ist nicht ihre
+ * Pressemitteilung, sondern das Formular, das sie Stunden später nachreichen.
+ *
+ * Ein Unternehmen dieser Größe meldet nicht um halb elf am Vormittag. Wenn die
+ * Zahl das behauptet, misst sie etwas anderes als die Veröffentlichung – und
+ * dann ist Schweigen richtiger als eine Uhrzeit, die um vier Stunden daneben
+ * liegt. Die 30 fallen deshalb heraus, und zwar hier und nicht schon beim
+ * Abruf: Der Abruf hält fest, was er gemessen hat; ob daraus eine Aussage
+ * wird, entscheidet die Stelle, die sie trifft.
  */
 export function uhrzeitsatz(vorhersage: Vorhersage): string | null {
   if (!vorhersage.newYorkerZeit) return null
 
   const lage = sitzungslage(vorhersage.newYorkerZeit)
-  const deutsch = berlinerUhrzeit(vorhersage.erwartet, vorhersage.newYorkerZeit)
-  if (!lage || !deutsch) return null
+  if (!lage || lage === 'handel') return null
 
-  return `${sitzungslageLabel[lage]} – im Vorjahr ${deutsch.uhrzeit} Uhr ${deutsch.kuerzel}`
+  const deutsch = berlinerUhrzeit(vorhersage.erwartet, vorhersage.newYorkerZeit)
+  if (!deutsch) return null
+
+  return (
+    `${sitzungslageLabel[lage]} – im Vorjahr ${deutsch.uhrzeit} Uhr ` +
+    `${deutsch.kuerzel} bei der Behörde eingegangen`
+  )
 }
 
 /** Wie weit voraus ein Meldetermin als „bald“ gilt. */

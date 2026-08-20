@@ -497,10 +497,16 @@ jobs:
           fi
 
           # Ab hier: fünfmal `000`. Der Host schweigt.
+          #
+          # Gefiltert wird auf `completed` und nicht auf „nicht dieser Lauf":
+          # Der eigene Lauf ist gerade `in_progress` und fällt damit von selbst
+          # heraus – ohne dass die Laufnummer in den jq-Ausdruck hineingeschrieben
+          # werden müsste. Der Standardwert steht ebenfalls in jq, damit eine
+          # leere Liste nicht als leere Zeichenkette zurückkommt.
           vorher=$(gh run list --repo "${{ github.repository }}" \
-                     --workflow kurse.yml --branch main --limit 5 \
-                     --json databaseId,conclusion \
-                     --jq "[.[] | select(.databaseId != ${GITHUB_RUN_ID})] | .[0].conclusion" \
+                     --workflow kurse.yml --branch main --limit 8 \
+                     --json status,conclusion \
+                     --jq '[.[] | select(.status == "completed")] | .[0].conclusion // "unbekannt"' \
                      2>/dev/null || echo unbekannt)
           [ -n "$vorher" ] || vorher=unbekannt
 

@@ -58,6 +58,20 @@ export interface Aenderung {
  */
 export const AENDERUNGEN: Aenderung[] = [
   {
+    datum: '2026-08-20',
+    art: 'neu',
+    titel: 'Auf jeder Aktienseite steht, wann die nächsten Zahlen kommen',
+    text: 'Unter dem Kursverlauf steht jetzt der erwartete Termin der nächsten Quartalszahlen – und wenn er in den nächsten zwei Wochen liegt, steht oben neben dem Kurs zusätzlich ein Hinweis. Der Kalender nennt dazu die Uhrzeit in deutscher Zeit und ob die Zahlen vor der US-Eröffnung oder nach dem US-Schluss kommen; für den Kurs am selben Tag ist das der ganze Unterschied. Beides ist aus dem bisherigen Meldemuster hochgerechnet und als geschätzt gekennzeichnet.',
+    ziel: { text: 'Beispiel: NVIDIA', href: '/maerkte/nvidia' },
+  },
+  {
+    datum: '2026-08-20',
+    art: 'korrigiert',
+    titel: 'Für 711 Aktien gibt es keinen Meldetermin – und das steht jetzt dort',
+    text: 'Nachgezählt: Nur 318 der 1.029 geführten Aktien haben einen erwarteten Termin für die Quartalszahlen, und 302 davon sind amerikanisch. Der Grund liegt an der Quelle – die Pflichtmeldung, aus der sich der Termin ablesen lässt, gibt es nur in den USA. Bisher stand auf den übrigen Seiten dazu nichts, was sich leicht als „das Unternehmen meldet nicht" lesen ließ; jetzt steht dort der Grund. Auf der Kalenderseite ist außerdem ein Satz entfallen, der eine zweite Quelle ankündigte: Sie ist geprüft und liefert die Termine nur gegen Bezahlung.',
+    ziel: { text: 'Zum Börsenkalender', href: '/kalender' },
+  },
+  {
     datum: '2026-08-18',
     art: 'geaendert',
     titel: 'Fünf Fortgeschritten-Stufen deutlich ausgebaut',

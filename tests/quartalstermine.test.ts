@@ -174,8 +174,46 @@ const satz = uhrzeitsatz({
 
 pruefen(
   'Der Satz nennt zuerst die Lage und dann die Minute',
-  satz === 'nach dem US-Schluss – im Vorjahr 22:20 Uhr MESZ',
+  satz === 'nach dem US-Schluss – im Vorjahr 22:20 Uhr MESZ bei der Behörde eingegangen',
   String(satz)
+)
+
+/*
+  Die Minute wird als das bezeichnet, was sie ist.
+
+  Gemessen wird, wann die Börsenaufsicht die Meldung angenommen hat. Bei den
+  meisten Unternehmen ist das der Augenblick der Veröffentlichung, bei manchen
+  liegt ein Nachlauf dazwischen. Wer „um 22:20 Uhr veröffentlicht" schriebe,
+  nähme dem Leser die Möglichkeit, das einzuordnen.
+*/
+pruefen(
+  'Die Herkunft der Minute steht dabei',
+  (satz ?? '').includes('bei der Behörde eingegangen'),
+  String(satz)
+)
+
+/*
+  Die Prüfung, die aus einer Zählung entstanden ist.
+
+  Am 20. August 2026 lagen 30 der 1.142 gemessenen Zeiten mitten in der
+  Handelssitzung: Citigroup um 10:08 Uhr, Ford um 12:08, Chubb um 12:19,
+  Sempra um 10:51. Nachgesehen, was diese Häuser tatsächlich tun – sie melden
+  vorbörslich. Was dort gemessen wurde, ist nicht die Pressemitteilung, sondern
+  das Formular, das Stunden später nachgereicht wird.
+
+  Ein Unternehmen dieser Größe meldet nicht um halb elf am Vormittag. Behauptet
+  die Zahl das doch, misst sie etwas anderes als die Veröffentlichung – und
+  dann ist Schweigen richtiger als eine Uhrzeit, die vier Stunden danebenliegt.
+*/
+pruefen(
+  'Eine Zeit mitten in der Sitzung ergibt keinen Satz',
+  uhrzeitsatz({
+    erwartet: '2026-10-13',
+    basis: '2025-10-14',
+    streuungTage: 0,
+    newYorkerZeit: '10:08',
+  }) === null,
+  'Citigroup reicht sein 8-K um 10:08 Uhr ein und meldet um 8:00 Uhr.'
 )
 
 /*
@@ -452,6 +490,37 @@ pruefen(
     .slice(0, 3)
     .map((termin) => termin.uhrzeit)
     .join(' | ')
+)
+
+pruefen(
+  'Kein Termin behauptet, mitten in der Sitzung gemeldet zu werden',
+  mitUhrzeit.every(
+    (termin) => !(termin.uhrzeit ?? '').includes('während des US-Handels')
+  ),
+  mitUhrzeit
+    .filter((termin) => (termin.uhrzeit ?? '').includes('während des US-Handels'))
+    .slice(0, 5)
+    .map((termin) => `${termin.titel}: ${termin.uhrzeit}`)
+    .join(' | ')
+)
+
+/*
+  Und die Gegenprobe zur Zusage des Betreibers: „im Kalender soll dann immer
+  stehen, um wie viel Uhr". „Immer" ist bei einer abgeleiteten Angabe nicht zu
+  halten, aber „fast immer" schon – und ohne Zahl wäre das eine Behauptung.
+
+  Gemessen am 20. August 2026: 1.142 von 1.205 Vorhersagen tragen eine Zeit,
+  davon fallen 30 als Sitzungszeiten heraus. Bleiben rund 92 Prozent. Die
+  Grenze steht bei 80: Sie lässt Schwankung zu und schlägt an, wenn die Quelle
+  das Feld eines Tages nicht mehr liefert – dann fiele der Anteil auf null, und
+  das wäre genau der stille Datenausfall, den niemand bemerkt.
+*/
+const anteil = termine.length > 0 ? mitUhrzeit.length / termine.length : 0
+pruefen(
+  'Die große Mehrheit der Termine nennt eine Uhrzeit',
+  anteil >= 0.8,
+  `${mitUhrzeit.length} von ${termine.length} = ${(anteil * 100).toFixed(1)} % – ` +
+    'ein Sturz auf null hieße, die Quelle liefert das Feld nicht mehr.'
 )
 
 console.log(

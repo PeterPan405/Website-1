@@ -197,7 +197,14 @@ deshalb etwas anderes?"**
 prüft deshalb bei jedem Lauf den Bauzeitpunkt aus `version.txt`: ab 10 Stunden
 Warnung und ein Bau, ab 18 Stunden rot.
 
-→ `ENTSCHEIDUNGEN.md`: „Ein roter Lauf ist ein Vorrat"
+**`000` ist der Hoster, `404` sind wir.** Antwortet auf Port 443 niemand, ist
+der Host weg, und dagegen hilft kein Neubau → **Warnung**, und rot erst, wenn
+schon der vorige Lauf rot war. Antwortet der Server mit einem gelesenen Code
+außer 200, läuft er und findet nichts – das ist unser Webordner → **roter
+Lauf** und Neubau.
+
+→ `ENTSCHEIDUNGEN.md`: „Ein roter Lauf ist ein Vorrat", „`000` ist der Hoster,
+`404` sind wir"
 
 ## Der Zahlenwächter
 
@@ -217,6 +224,30 @@ grün.
 
 → `ENTSCHEIDUNGEN.md`: „Ein Wächter, der seinen eigenen Alarm fortschreibt,
 ist keiner"
+
+## Quartalstermine
+
+- **Die Quelle deckt nur die USA ab.** 318 von 1.029 Aktien haben einen
+  Meldetermin, 302 davon amerikanisch. Wer keinen hat, bekommt auf seiner
+  Seite den Satz warum (`quartalsterminLuecke()`) – eine Leerstelle erklärt
+  sich nicht selbst.
+- **Der zweite Weg über Twelve Data ist tarifgesperrt** und hat noch nie etwas
+  geliefert. Er bricht seit dem 20. August 2026 nach der ersten Absage ab
+  (`TarifSperre`). Nicht „reparieren": Es fehlt ein bezahlter Tarif, nicht Code.
+- **Die Uhrzeit ist die New Yorker Wanduhr**, festgehalten in der
+  Momentaufnahme; die deutsche entsteht erst in der Anzeige aus dem erwarteten
+  Tag. Sechs Stunden zu addieren ist an drei Wochen im Jahr falsch – und genau
+  in die fällt die Berichtssaison des ersten Quartals.
+- **Eine Zeit entsteht nur bei zwei Jahren in derselben Sitzungslage**, und
+  „während des US-Handels" wird nie angezeigt: Dort misst der Zeitstempel das
+  nachgereichte Formular und nicht die Meldung.
+- **Zwei Wochen heißt zwei Wochen** – `BALD_TAGE = 14`, die Grenze
+  eingeschlossen. Der Abschnitt auf der Aktienseite bleibt **offen**; das
+  Zeichen im Kopf springt hinein, und ein Sprungziel im zugeklappten
+  `<details>` führt ins Nichts.
+
+→ `ENTSCHEIDUNGEN.md`: „Ein Weg, der nie etwas geliefert hat", „Zwischen New
+York und Berlin liegen nicht immer sechs Stunden"
 
 ## Kurse
 
