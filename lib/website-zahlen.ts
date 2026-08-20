@@ -11,6 +11,7 @@ import { getInstruments } from '@/lib/markets'
 import { METHODEN } from '@/lib/methoden'
 import { getNewsArticles } from '@/lib/news'
 import { getFolgen } from '@/lib/podcast'
+import { getQuartalsterminAbdeckung } from '@/lib/quartalstermine'
 import { getQuellengruppen } from '@/lib/quellen'
 
 /**
@@ -194,6 +195,27 @@ export async function getWebsiteZahlen(): Promise<Zahl[]> {
       wert: METHODEN.length,
       hinweis: 'Mit Formel, Stichtag und dem, was bewusst weggelassen wird.',
       ziel: '/methoden',
+    },
+    /*
+      Die Meldetermine sind der klassische Fall für diesen Wächter.
+
+      Sie kommen aus einer nächtlichen Routine gegen eine fremde Behörde, und
+      wenn die ihr Format ändert, fällt die Zahl auf null – ohne dass irgendwo
+      etwas rot wird. Die Kalenderseite sähe dann aus wie ein Kalender ohne
+      Berichtssaison, und das ist ein Zustand, den man nicht von einem ruhigen
+      August unterscheidet.
+
+      Gezählt werden Unternehmen und nicht Termine: Die Zahl der Termine
+      schwankt mit dem Halbjahresfenster der Anzeige, die Zahl der Unternehmen
+      nicht.
+    */
+    {
+      id: 'quartalstermine',
+      label: 'Unternehmen mit Meldetermin',
+      wert: getQuartalsterminAbdeckung().unternehmen,
+      hinweis:
+        'Erwartete Quartalszahlen, hochgerechnet aus dem bisherigen Meldemuster – nur für Unternehmen, die in den USA melden.',
+      ziel: '/kalender',
     },
     {
       id: 'aenderungen',

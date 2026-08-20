@@ -1988,7 +1988,7 @@ die man erst nach 578 Zeilen liest, ist keine.
 Daraus zwei Regeln:
 
 1. **Wer einen zweiten Weg baut, prüft nach dem ersten Lauf, ob er getragen
-   hat** – nicht ob er lief. „Hat geantwortet" ist keine Aussage; „hat *n*
+   hat** – nicht ob er lief. „Hat geantwortet" ist keine Aussage; „hat _n_
    Einträge beigesteuert" ist eine.
 2. **Ein Fehler, der sich nicht von selbst erledigt, wird beim ersten Mal
    laut und danach nicht mehr wiederholt.** `TarifSperre` in
@@ -2026,8 +2026,7 @@ Unternehmen reicht das `8-K` minutennah zur Pressemitteilung ein.
 Nachgemessen am 20. August 2026: `2026-08-06T20:01:12.000Z`. Das sind 16:01
 Uhr New Yorker Zeit, eine Minute nach Börsenschluss. Das `Z` ist echtes UTC
 und keine Ortszeit mit einem Buchstaben dahinter – geprüft an einem zweiten
-Zeitstempel, `2026-08-11T00:56:26.000Z`, den EDGAR trotz des Datums noch dem
-10. August zurechnet, weil es dort 20:56 Uhr war.
+Zeitstempel, `2026-08-11T00:56:26.000Z`, den EDGAR trotz des Datums noch dem 10. August zurechnet, weil es dort 20:56 Uhr war.
 
 ### Die Falle
 
@@ -2043,14 +2042,14 @@ häufigsten gelesen werden.
 
 ### Deshalb wird die Wanduhr fortgeschrieben und nicht der Zeitpunkt
 
-Ein Unternehmen meldet nach *seinem* Börsenschluss, und der liegt das ganze
+Ein Unternehmen meldet nach _seinem_ Börsenschluss, und der liegt das ganze
 Jahr über um 16:00 Uhr New Yorker Zeit. Festgehalten wird deshalb die **New
 Yorker Wanduhrzeit** der Vorjahresmeldung. Die deutsche Zeit entsteht erst in
 der Anzeige, aus dem erwarteten Tag – über `Intl.DateTimeFormat` und die
 Zeitzonennamen, nicht über eine eigene Umstellungstabelle. Eine Tabelle wäre
 eine Kopie der Regeln, die niemand nachzieht, wenn ein Land seine ändert.
 
-Wer den *Zeitpunkt* um ein Jahr verschöbe, verschöbe die Zonenlage mit: Aus
+Wer den _Zeitpunkt_ um ein Jahr verschöbe, verschöbe die Zonenlage mit: Aus
 16:01 Uhr im August würde im Februar 15:01 Uhr.
 
 ### Warum die Lage vor der Minute steht
