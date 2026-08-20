@@ -2308,6 +2308,58 @@ nicht in der Quelle, sondern nur in ihrem Zeitfenster. Der Satz über die
 US-Börsenaufsicht wäre auf Toyotas Seite schlicht falsch, und eine falsche
 Begründung ist schlechter als gar keine.
 
+### Was der erste Lauf gegen die echte Datei ergeben hat
+
+Grün, 3.209 Zeilen gelesen, **null** Termine beigesteuert. Zwei Befunde
+stecken darin, und der zweite ist der wichtigere.
+
+**Der Kopf steht über zwei Zeilen.** Zeile 5 trägt die japanischen
+Beschriftungen, Zeile 6 die englischen, darüber Titel und Stand. Der erste
+Zerleger nahm eine davon, fand darin `Scheduled Dates` und `コード` – also
+Meldetag und Code an den richtigen Stellen – und ließ Firmenname und
+Geschäftsjahresende still leer. Ein halber Treffer, der von außen wie ein
+ganzer aussieht, weil das, was gefunden wurde, stimmt.
+
+Gelesen wird jetzt der ganze Kopfblock: alle Zeilen vor der ersten Datenzeile,
+Spalte für Spalte zusammengefasst. Und die erste Datenzeile findet sich selbst
+– sie ist die erste mit einem vierstelligen Börsencode **und** einem Datum.
+
+**Die Datei war leer an Zukunft.** „As of 2026/8/6", letzter Termin darin der 6. August. Die japanische Berichtssaison für das erste Quartal war durch.
+Toyota steht mit Code 7203 und dem 4. August darin, Sony mit dem 30. Juli,
+Nintendo mit dem 6. August: Der Abgleich Kürzel → Börsencode hat also
+funktioniert. Es lag bloß kein Tag mehr vor uns.
+
+### Die Lehre daraus: eine Null ist keine Auskunft
+
+„0 Termine beigesteuert" hat drei Ursachen, und sie verlangen entgegengesetzte
+Reaktionen:
+
+1. Die Datei ist unlesbar – Ausfall.
+2. Unsere Kürzel passen nicht auf ihre Codes – Fehler im Abgleich.
+3. Die Berichtssaison ist durch – Normalzustand, nichts zu tun.
+
+Eine einzelne Null unterscheidet die drei nicht, und daraus wird der stille
+Ausfall. Der Lauf zählt deshalb getrennt, wie viele geführte Titel überhaupt in
+der Liste stehen und wie viele davon einen kommenden Tag haben, und nennt
+Zeitraum und Stand der Datei. **Gewarnt wird nur bei Fall 2.** Eine Warnung,
+die dreimal im Jahr wochenlang steht, wird nach der zweiten Woche nicht mehr
+gelesen – und dann auch nicht, wenn sie einmal recht hat.
+
+### Und ein Loch, das dabei aufgefallen ist
+
+`quartalsterminLuecke()` gab `null` zurück, sobald ein Titel im Bestand stand –
+auch wenn alle seine Termine abgelaufen waren. `getQuartalsterminbefund()` gab
+dann ebenfalls `null`, und der Abschnitt auf der Aktienseite verschwand
+**ganz**: kein Termin, keine Erklärung.
+
+Der Test dazu hat den Fall beschrieben und ausdrücklich durchgelassen –
+„selten und heilt beim nächsten Abruf". Er heilt nicht von selbst, solange das
+Unternehmen seinen nächsten Tag nicht angekündigt hat, und für jeden
+japanischen Titel ist das zwischen zwei Saisons der Zustand.
+
+Ein Test, der einen Fall benennt und dann durchwinkt, ist die teuerste Sorte:
+Er beweist, dass jemand hingesehen hat, und verhindert trotzdem nichts.
+
 ### Was offen bleibt
 
 Euronext, LSE, Deutsche Börse, SIX, HKEX, KRX, TWSE, NSE, ASX, TSX, B3. Jede

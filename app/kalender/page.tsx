@@ -180,9 +180,12 @@ export default async function KalenderPage() {
               York notiert – einschließlich der Hinterlegungsscheine ausländischer
               Unternehmen, Alibaba etwa steht darin. Und die{' '}
               <strong className="text-fg">Tokioter Börse</strong> veröffentlicht die
-              geplanten Meldetermine aller dort gelisteten Unternehmen selbst, jeden
-              Handelstag neu; von dort kommen die Termine der japanischen Titel. Zum Tag
-              nennt Tokio keine Uhrzeit, und deshalb steht bei diesen Titeln auch keine.
+              geplanten Meldetermine aller dort gelisteten Unternehmen selbst; von dort
+              kommen die Termine der japanischen Titel. Zwei Dinge gehören dazugesagt:
+              Tokio nennt zum Tag keine Uhrzeit, und deshalb steht bei diesen Titeln auch
+              keine. Und die Liste erscheint je Berichtssaison – zwischen zwei Saisons
+              steht auf der Aktienseite, dass der nächste Tag noch nicht bekannt gegeben
+              ist, statt einer Schätzung.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Wer weder in New York notiert noch an einer Börse, die ihre Termine selbst

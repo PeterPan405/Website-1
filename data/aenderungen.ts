@@ -60,8 +60,8 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-20',
     art: 'neu',
-    titel: 'Die japanischen Aktien haben jetzt ihre Meldetermine',
-    text: 'Für Toyota, Sony, Nintendo und die übrigen 69 japanischen Titel stand bisher kein Termin für die Quartalszahlen da – die bisherige Quelle deckt nur ab, wer in den USA notiert. Die Tokioter Börse veröffentlicht die geplanten Meldetermine aller dort gelisteten Unternehmen selbst und aktualisiert sie an jedem Handelstag; von dort kommen sie jetzt. Es sind keine Schätzungen: Diese Tage haben die Unternehmen angekündigt. Eine Uhrzeit nennt Tokio nicht, und deshalb steht bei diesen Titeln auch keine.',
+    titel: 'Die Tokioter Börse ist als Terminquelle angeschlossen',
+    text: 'Für Toyota, Sony, Nintendo und die übrigen 69 japanischen Titel stand kein Termin für die Quartalszahlen da – die bisherige Quelle deckt nur ab, wer in den USA notiert. Die Tokioter Börse veröffentlicht die geplanten Meldetermine aller dort gelisteten Unternehmen selbst; sie werden jetzt gelesen. Es sind keine Schätzungen, sondern die Tage, die die Unternehmen selbst angekündigt haben. Zwei Einschränkungen stehen dabei: Eine Uhrzeit nennt Tokio nicht, und deshalb steht bei diesen Titeln auch keine. Und die Börse veröffentlicht die Liste je Berichtssaison – zwischen zwei Saisons steht auf der Aktienseite, dass der nächste Tag noch nicht bekannt gegeben ist, statt einer Schätzung.',
     ziel: { text: 'Beispiel: Toyota', href: '/maerkte/toyota' },
   },
   {
