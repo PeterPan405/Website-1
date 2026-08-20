@@ -1,0 +1,44 @@
+
+==============================================================================
+QUELLE: https://live.euronext.com/intraday_chart/getChartData/FR0000120271-XPAR/intraday
+==============================================================================
+STATUS: 200
+TYP:    application/json
+DATUM:  Thu, 20 Aug 2026 12:57:45 GMT
+STAND:  —
+------------------------------------------------------------------------------
+{"ct":"Dz6KZTGaEtH5\/zVAG3xEjcdJfsmr0gIVkd\/O3mBU\/lombOxgvg9bLS7ksWTRsOF3eZU+rB\/vnQfJ6qkIcDiejxYU95D6wIiZ3tYEQN+O33nIy5Ps2Qn0BKNVuVn3a5TfDHkOjBEJzauvoPvQgBtAfr+ANnnj8xiscKsiI\/RmELPTc+EagsWlOKkzYmuHIc4Ck6WrjdK7BngFnUtvT3J1MdZayB3j0UrMujDFD7jdbXFzhVk2maz3rodmoxOCtu5P7vDIXg61KOLIeFsGL3PpkdsnJclaMS8SUMm5pHszG\/VOayhEW62dKsS0KsDNqt9YWXpSkDDAMMZsWGsxyNM1jlUQ5cHTmTGkkUK9VbF2eUd5lf8gCkrC3zIvwc97juNKux0FjBoGWMBV1zn4\/gZBK4YwF2fARYEOjj83YVaBFyK+R717\/5\/+d0qwkZq5pYey3k7LBLBGl910ybljgmXbYD\/NO\/+jvyK\/fEziP++qwII3306Jb2UzxELYHKpEsyHvR80BcuOyslmo\/lt\/xVRqwI+t9NNn9rfhyVSoBg4EpgkH5zLj\/HcTNPrcrqFD5k+q5Ei+GPAwPAFr6i9RU8jahZEJpCsppdWdYNPoVRGsGEwcgm2hLitymSxZT6Ts7cIL2OBZfUyqbeWulOa3yZTgyGxfCatEVDrNYzDVDdYHbax1xnBTPpCP25HdKu0pmyVvzrDzOxNLd79Lhlanj34q0Gk6COuIbKqmlkwsqR9tpzsJZowSOl2rkDaUFI5KDlqjlWR77fKxeYYgb5XGJ9uYP4ZAlCIVT9n\/V50bXRWCMvmRjcrZwF93K4Hfhlq4K+bEbDxoTJX114plm5OY6Y33n4dlFJsZuOCyByh9UpqOElziHm8dibrmV4o2dGtrp+6Y934st6xLkulE\/CF3SH6gg8VO1OyxdMZnv8P\/ANQCgxu\/Y50cuAAt\/WckdgAesjd17uI4fljt9NtpwV26IB3w6fmLodWDL7zoqP4hUXPP5p9GgnsmFHSDVTgzZtUvQlP+SwKB7iVoHcmWkkkzXwmAVQbypHv6WZisWqvlyg8nUUt0LRMJyFTKQMVdmAc4vaRLiCysJA+LGoLk4zjT0AA\/ZkCXLzXTng3P9NJLTIgTksqkF5C3io3tsa8pMqUuvwVRgYNbrAKxWSU1nnCu0QcQFYMzXa8Xg5nNG8qJuh7Ml1r3xd2bcyM\/qX6tgYJC6jqyWJImZiYYZgZXRIw5sNx9JYEV4akmeuCrZtVYrDzqvZ7P4t2wJui1KZZTka2rIQsmbpo37ne\/JT3S+EBiVng7VEyQvUGydOacM25X3\/hAVLyoFytdW7H8\/fCWCdthGxVRlxhbGwBQeDfDCfv1X5H\/PL1Vx0fevTUs76wX3633t0+cZZhBlOM6kiO18KdfiOeqFDphsRgrF\/47BvgMlgORn0DGmA+dDDV4uTn7IEdGEs4tcd5fs+oiZDIyN\
+
+[… gekürzt: 219248 weitere Zeichen. Mit größerem Wert für 'zeichen' erneut abrufen.]
+
+==============================================================================
+QUELLE: https://live.euronext.com/en/ajax/getDetailedQuote/FR0000120271-XPAR
+==============================================================================
+STATUS: 200
+TYP:    application/json
+DATUM:  Thu, 20 Aug 2026 12:57:46 GMT
+STAND:  —
+------------------------------------------------------------------------------
+{"ct":"GQKofIQRSLl+khD\/t+eky3wN9aiKOQn9twrFGv48brcV1rANLsgaSaUnbQurGHVdQnHgnfRFf6YGVDps9mbHFiRECFHogfKQTvM\/8CFTLozRD4ZZR9F1A+9NjYidp+ttlM6z5WPpt\/nbgdmKOgnCrMvJpPsxjqc8MIVliQi1q1hh+Bph\/+ilOKjN0wSD1qtz9DA8FYDP7dvsM6QfzUwpsedjb1cFYFXFoPRXlbWehOlzeyaIh4ox5VbrwhdU88mbLuXrknt4Lz7dD9iuhpMNdLaJNClSjwnc23x4tEhETqczC3vpx13cqNt4wLRdhK\/btAkZ4GE7DWnCNeuyAtGjx6keD3X79MJHOjhbVbGAYEmwd8VdmZ+qbKSH\/1z\/NXgcgF3izCt5E4jB9k\/qVStEk1AlqiZmZeIh0+H8fklSvTgIif5dQl\/z8KrK1xcSLLhwsFCi42HGgFAzOnbNlWQ0WA7YSPfku5rDdeNO8\/FPnQBtlvq7OmxYAtxWvTqvTzBUsKFtaUcut9oIHhA90Tgo+3UaMBxMDGAtVUs2xv5fev4m\/3p\/vsEiFYwbknGRB8nrNSbp5yKpNdbYhsCrXTurxXSl+6tUnY0Yn4gBOU1Dnvt8IKaYqInlKSLsbxIXI1uUkH9Gr8qPDvbEsNgM2MMWz6r888oauqKoOcdTxTiODbtn7rYT4oVWAC7eMNvRSKjB9dYeDsoOCAE4pNZvbe5e2G9O57GSax966ZzTsaac2w99DcpH+F28ucDCuJEtm6g9sP5gxjTxotJ8dg7d1os319ARXGK48xvustgGOElD+fNR+WRaLraNEsNHxXpTLoL9Sybr2pG6HFDENs1W+LYNIecJrCKNUc8JetJebCRD6SS72MLd9PPk4deHk\/qR8y5g6y2Ue8xTrAk4\/gWwzyPWrImkTlu\/9\/ynGG62suBXmkGHrAVIb2\/xRhuWj7zqYLkpoaPxfy30T2KcZhSXBlC+zLeILyFJpikjPyx2sDeQikGA7hip\/L5F0b9btkUj3e0SzIhNC7jTwRPn+1qZeOlzJoa9uzPHMAxE4ay60nnr6MQH9s9KjiHE\/svpDdH4Gsf34PywR6UtUHjR2DkXgrtrg7MIloWRHzE3ffj0R8E3K5nL16XEQQ0PP21xFUOqAZS2GYHdXYfw5SPKJmnqiAIDhHBISD\/lsU7NKnLlpOnJqAvOJRONen\/BB9fqjMUhyd\/6IPWTuwFX\/sIafHyAGVAuufWrCGS0MONcCcKiVgZadXmdC8zNllKSZh9AyvY5++DeVlRp2tR\/Mq6U0FzwupcKUNzdW\/eVZAyHQv2ur7ojQKukQcKJWDt6hn98kx7DJz1XyY+j1TGkh0R+Qxh2SXyL7qTpLIFVgcLMzKssZt2LtXUHrAKQPYwVYGLt1kwzRV9GX7KoG+OFOOAWfcFYskeAPf9mr2hubXXOfB3THAwzeDdCFDfHFYU9DWVPSg7n
+
+[… gekürzt: 13152 weitere Zeichen. Mit größerem Wert für 'zeichen' erneut abrufen.]
+
+==============================================================================
+QUELLE: https://live.euronext.com/en/products/equities/company-calendar
+==============================================================================
+STATUS: 404 – nicht abrufbar
+
+==============================================================================
+QUELLE: https://live.euronext.com/en/ajax/getFactsheetInfoBlock/STOCK/FR0000120271-XPAR/fs_agenda
+==============================================================================
+STATUS: 200
+TYP:    text/html; charset=UTF-8
+DATUM:  Thu, 20 Aug 2026 12:57:47 GMT
+STAND:  —
+------------------------------------------------------------------------------
+
+
+==============================================================================
+QUELLE: https://live.euronext.com/en/ajax/getCompanyEvents/FR0000120271-XPAR
+==============================================================================
+STATUS: 404 – nicht abrufbar
