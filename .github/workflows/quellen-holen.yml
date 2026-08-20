@@ -89,6 +89,7 @@ jobs:
           import re
           import subprocess
           import tempfile
+          import zipfile
           import urllib.error
           import urllib.parse
           import urllib.request
@@ -149,6 +150,73 @@ jobs:
                   return f"[PDF nicht lesbar: {fertig.stderr.strip()[:200]}]"
               return re.sub(r"\n\s*\n\s*", "\n\n", fertig.stdout).strip()
 
+          def tabelle_zu_text(roh: bytes) -> str:
+              """Holt die erste Tabelle aus einer XLSX-Datei.
+
+              Eine XLSX ist ein ZIP aus XML-Dateien, und Python bringt beides
+              mit – `zipfile` und `re` genügen, eine Fremdbibliothek braucht es
+              nicht.
+
+              ## Warum das hier hineingehört
+
+              Amtliche Termin- und Kennzahlenlisten kommen als Tabelle, nicht
+              als JSON. Die Tokioter Börse etwa veröffentlicht die geplanten
+              Meldetermine aller gelisteten Unternehmen als `kessan06_0807.xlsx`
+              und aktualisiert sie börsentäglich. Ohne diesen Zweig sieht man
+              von so einer Datei nur, dass sie 200 sagt.
+
+              ## Die Falle: Zellen zeigen nicht ihren Inhalt
+
+              Text steht in XLSX nicht in der Zelle, sondern in einer
+              gemeinsamen Zeichenkettentabelle; die Zelle trägt nur deren
+              Nummer und das Merkmal `t="s"`. Wer das übersieht, bekommt eine
+              Tabelle voller Zahlen, die wie Daten aussehen und Indizes sind.
+              """
+              try:
+                  with tempfile.NamedTemporaryFile(suffix=".xlsx") as datei:
+                      datei.write(roh)
+                      datei.flush()
+                      with zipfile.ZipFile(datei.name) as archiv:
+                          namen = archiv.namelist()
+                          blatt = next(
+                              (n for n in sorted(namen) if n.startswith("xl/worksheets/sheet")),
+                              None,
+                          )
+                          if not blatt:
+                              return "[XLSX ohne Arbeitsblatt]"
+
+                          texte = []
+                          if "xl/sharedStrings.xml" in namen:
+                              roh_texte = archiv.read("xl/sharedStrings.xml").decode(
+                                  "utf-8", errors="replace"
+                              )
+                              for si in re.findall(r"(?s)<si>(.*?)</si>", roh_texte):
+                                  stueck = re.findall(r"(?s)<t[^>]*>(.*?)</t>", si)
+                                  texte.append(html.unescape("".join(stueck)))
+
+                          inhalt = archiv.read(blatt).decode("utf-8", errors="replace")
+              except Exception as fehler:  # noqa: BLE001
+                  return f"[XLSX nicht lesbar: {type(fehler).__name__}: {fehler}]"
+
+              zeilen = []
+              for roh_zeile in re.findall(r"(?s)<row[^>]*>(.*?)</row>", inhalt):
+                  felder = []
+                  for zelle in re.findall(r"(?s)<c\b([^>]*)>(.*?)</c>", roh_zeile):
+                      merkmale, koerper = zelle
+                      wert = re.search(r"(?s)<v>(.*?)</v>", koerper)
+                      if 't="s"' in merkmale and wert:
+                          nummer = int(wert.group(1))
+                          felder.append(texte[nummer] if nummer < len(texte) else "")
+                      elif 't="inlineStr"' in merkmale:
+                          stueck = re.findall(r"(?s)<t[^>]*>(.*?)</t>", koerper)
+                          felder.append(html.unescape("".join(stueck)))
+                      else:
+                          felder.append(html.unescape(wert.group(1)) if wert else "")
+                  if any(f.strip() for f in felder):
+                      zeilen.append(" | ".join(felder))
+
+              return "\n".join(zeilen) if zeilen else "[XLSX ohne Zeilen]"
+
           def zu_text(roh: str) -> str:
               """Markup heraus, Text behalten – ohne Fremdbibliothek."""
               # Skripte und Stile samt Inhalt weg, sonst steht CSS im Protokoll.
@@ -186,11 +254,20 @@ jobs:
                       # ausgeliefert, und `?__blob=publicationFile` am Ende
                       # macht die Endung unbrauchbar.
                       ist_pdf = "pdf" in typ.lower() or roh[:5] == b"%PDF-"
-                      text = (
-                          pdf_zu_text(roh)
-                          if ist_pdf
-                          else roh.decode(zeichensatz, errors="replace")
+                      # Eine XLSX ist ein ZIP: erkennbar an „PK" und der Endung
+                      # oder am Inhaltstyp. Am Inhaltstyp **und** an der
+                      # Signatur, aus demselben Grund wie beim PDF: Manche
+                      # Server liefern Tabellen als `application/octet-stream`.
+                      ist_tabelle = roh[:2] == b"PK" and (
+                          adresse.lower().endswith((".xlsx", ".xlsm"))
+                          or "spreadsheet" in typ.lower()
                       )
+                      if ist_pdf:
+                          text = pdf_zu_text(roh)
+                      elif ist_tabelle:
+                          text = tabelle_zu_text(roh)
+                      else:
+                          text = roh.decode(zeichensatz, errors="replace")
               except urllib.error.HTTPError as fehler:
                   print(f"STATUS: {fehler.code} – nicht abrufbar")
                   continue
@@ -209,7 +286,7 @@ jobs:
               # gesucht wird, heißt oft nichtssagend (`b7gje6000005mkkr.xls`),
               # und dann ist der Linktext das Einzige, woran sie zu erkennen
               # ist.
-              if verweismuster is not None and not ist_pdf:
+              if verweismuster is not None and not ist_pdf and not ist_tabelle:
                   gesehen = set()
                   treffer = []
                   for gefunden in re.finditer(
@@ -235,7 +312,7 @@ jobs:
 
               # JSON, CSV, reiner Text und bereits ausgelesene PDFs bleiben,
               # wie sie sind – nur HTML muss noch vom Markup befreit werden.
-              if ist_pdf or adresse.endswith((".json", ".txt", ".csv")):
+              if ist_pdf or ist_tabelle or adresse.endswith((".json", ".txt", ".csv")):
                   lesbar = text
               else:
                   lesbar = zu_text(text)
