@@ -189,8 +189,11 @@ export default async function KalenderPage() {
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Wer weder in New York notiert noch an einer Börse, die ihre Termine selbst
-              veröffentlicht, bleibt offen. Zehn Quellen sind bisher geprüft; die
-              verbliebenen Datenhändler verlangen entweder einen kostenpflichtigen Zugang
+              veröffentlicht, bleibt offen – vor allem die europäischen Werte. Sechzehn
+              Quellen sind bisher geprüft, zuletzt die Börsen selbst. Die Zürcher und die
+              Londoner Börse antworten offen und vollständig, führen den Meldetermin aber
+              nicht; Euronext, die Deutsche Börse und Hongkong setzen ihre Seiten erst im
+              Browser zusammen; die Datenhändler verlangen einen kostenpflichtigen Zugang
               oder eine Kennung, die nur ein Browser erzeugt – und Letzteres nachzubauen
               hieße, eine bewusst gesetzte Sperre zu umgehen. Die Suche geht weiter, Börse
               für Börse. Wo kein Termin vorliegt, steht auf der Seite der Aktie, warum.

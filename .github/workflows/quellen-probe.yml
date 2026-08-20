@@ -219,6 +219,57 @@ name: Quellen abklopfen
 # Aufruf, den man finden kann. Gefunden ist er noch nicht.
 #
 #
+# ## Die Börsen, dritter Durchgang am 20. August 2026
+#
+# Diesmal nicht die Übersichtsseiten, sondern die Aufrufe dahinter. Ergebnis
+# über `quellen-holen-heute` gelesen.
+#
+# - **SIX (Zürich): offen, vollständig – und ohne Meldetermine.**
+#   `six-group.com/fqs/ref.json?select=*&where=ValorSymbol=NESN` antwortet mit
+#   200 JSON, ohne Schlüssel, mit einer eigenen Abfragesprache und **334
+#   Feldern**. Durchgesehen auf `event`, `report`, `earn`, `result`, `annual`,
+#   `agenda`, `calend`, `publi`, `next`, `announ`: Was zurückkommt, sind
+#   `CapitalEvent*` (Kapitalmaßnahmen – Splits, Kapitalerhöhungen), ein
+#   `HolidayCalendar` und `MarketCodeOfPublication`. **Kein Feld für den
+#   nächsten Meldetermin.** Die Schnittstelle ist offen, die Angabe steht nicht
+#   drin.
+#
+#   Für andere Fragen ist sie trotzdem notiert: Stammdaten, Kurse,
+#   Indexzugehörigkeiten, ISIN – alles ohne Schlüssel.
+# - **LSE:** `api.londonstockexchange.com/.../alldata/AZN` – 200 JSON, reich an
+#   Kurs- und Stammdaten (ISIN, SEDOL, Sektor, Börsenwert, 52 Wochen), aber
+#   nur `datelastnews` und `subjectnews`: die **letzte** Meldung, kein Termin.
+# - **Euronext:** Der Weg über den Faktenblatt-Block ist zu.
+#   `/en/ajax/getFactsheetInfoBlock/STOCK/FR0000120271-XPAR/fs_agenda_block`
+#   antwortet mit **200 und leerem Rumpf**, ebenso `fs_generalinfo_block`. Die
+#   Seite `/en/product/equities/FR0000120271-XPAR/company-events` liefert 200,
+#   im Text steht das Navigationsmenü. Zusammengesetzt wird im Browser.
+# - **Börse Frankfurt:** `api.boerse-frankfurt.de/v1/data/company_events`
+#   **gibt es** – die Adresse antwortet mit 200 und `{}` statt mit 404. Ohne
+#   die im Browser errechnete Kennung bleibt sie leer. Das ist eine bewusst
+#   gesetzte Sperre, und die wird hier nicht nachgebaut.
+#   `boerse-frankfurt.de/aktie/siemens-ag/termine`: 404.
+# - **TWSE:** `openapi.twse.com.tw/v1/swagger.json` – 200, rund 300 KB, gut
+#   hundert Datensätze in sieben Rubriken. Geprüft ist bisher einer
+#   (`t187ap04_L`, „wesentliche Mitteilungen"), und der ist es nicht. Ob einer
+#   der übrigen Meldetermine führt, ist **offen** – Taiwan sind rund zehn
+#   Titel, deshalb steht es hinten an.
+#
+# ### Der Stand nach drei Durchgängen
+#
+# Angeschlossen: SEC (318 US-Titel), Sammelkalender (wartet auf einen
+# Schlüssel), JPX (72 japanische Titel, ab der nächsten Berichtssaison).
+#
+# Offen und ohne gefundenen Weg: Europa. Die Börsen führen die Termine, geben
+# sie aber nur an ihre eigene Oberfläche heraus – Euronext, Deutsche Börse und
+# HKEX bauen ihre Seiten im Browser zusammen, SIX und die LSE geben alles außer
+# dem Termin. **Deutschland ist mit 90 Titeln die größte Lücke.**
+#
+# Das ist ein Zwischenstand und kein Ergebnis. Was noch nicht versucht wurde:
+# die Aufrufe zu finden, die diese Oberflächen selbst benutzen – bei Euronext
+# und der Deutschen Börse gibt es sie, sonst stünde auf ihren Seiten nichts.
+#
+#
 # ## Offener Auftrag: Unternehmenszahlen ausserhalb der USA
 #
 # 172 der 529 Aktien haben Umsatz, Gewinn, Cashflow, Eigenkapital und
