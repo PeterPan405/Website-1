@@ -18,10 +18,12 @@ import type { Quartalsterminbefund } from '@/lib/quartalstermine'
  *
  * ## Warum die Quelle am Befund hängt und nicht an der Seite
  *
- * Weil es zwei sind. Ein angekündigter Termin kommt aus dem Sammelkalender,
- * ein hochgerechneter aus den Pflichtmeldungen bei der US-Börsenaufsicht. Eine
- * feste Quellenangabe unter dem Kasten wäre bei jedem zweiten Titel die
- * falsche – und eine falsche Herkunft ist schlimmer als keine.
+ * Weil es drei sind. Ein hochgerechneter Termin kommt aus den Pflichtmeldungen
+ * bei der US-Börsenaufsicht, ein angekündigter aus dem Sammelkalender oder von
+ * der Tokioter Börse. Eine feste Quellenangabe unter dem Kasten wäre bei jedem
+ * zweiten Titel die falsche – und eine falsche Herkunft ist schlimmer als
+ * keine: Wer sie nachschlägt und dort nichts findet, hält danach auch den
+ * Termin für erfunden.
  *
  * ## Warum auch dann etwas steht, wenn nichts bekannt ist
  *

@@ -66,6 +66,10 @@ import {
   holeKalender,
   type Kalendereintrag,
 } from '../lib/providers/alphavantage-termine.ts'
+import {
+  holeTermine as holeJpxTermine,
+  JpxOhneTabelle,
+} from '../lib/providers/jpx-termine.ts'
 
 const KOPFZEILEN: Record<string, string> = {
   'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com',
@@ -208,6 +212,15 @@ interface Vorhersage {
    * zweite ist die, nach der jemand eine Order legen darf.
    */
   angekuendigt?: true
+  /**
+   * Welche Quelle den angekündigten Tag genannt hat.
+   *
+   * Solange „angekündigt" nur den Sammelkalender bedeuten konnte, genügte das
+   * `true` darüber. Seit die Tokioter Börse ihre eigenen Termine beisteuert,
+   * stünde unter 72 Titeln die falsche Quelle – und eine falsche
+   * Quellenangabe ist schlimmer als keine.
+   */
+  herkunft?: 'kalender' | 'jpx'
   /**
    * Die angekündigte Lage zur US-Handelssitzung, wenn die Quelle sie nennt.
    *
@@ -767,11 +780,77 @@ async function main(): Promise<void> {
           basis: eintrag.fiscalDateEnding || eintrag.reportDate,
           streuungTage: 0,
           angekuendigt: true,
+          herkunft: 'kalender',
           ...(eintrag.lage ? { lage: eintrag.lage } : {}),
         },
       ],
     }
     ausKalender.push(kuerzel)
+  }
+
+  /*
+    ------------------------------------------ Zweiter Weg: die Börse selbst
+
+    Die Tokioter Börse führt die geplanten Meldetermine **aller** gelisteten
+    Unternehmen und legt sie börsentäglich als Tabelle ins Netz – amtlich,
+    kostenlos, ohne Schlüssel. Für die 72 japanischen Titel dieser Website ist
+    das die beste erreichbare Quelle: keine Hochrechnung, kein Zwischenhändler.
+
+    Ein Abruf für alle, wie beim Sammelkalender. Der Code der Börse ist genau
+    der Teil vor dem Punkt in unserem Kürzel: `7203.T` ist `7203`.
+
+    Was die Datei nicht hergibt, ist die Uhrzeit – dazu steht in
+    `lib/providers/jpx-termine.ts`, warum hier trotzdem keine hingeschrieben
+    wird.
+  */
+  const ausTokio: string[] = []
+  try {
+    const jpx = await holeJpxTermine()
+    const jeCode = new Map(jpx.map((termin) => [termin.code, termin]))
+
+    for (const kuerzel of gefuehrt) {
+      const code = /^([0-9][0-9A-Z]{3})\.T$/.exec(kuerzel)?.[1]
+      if (!code) continue
+
+      const termin = jeCode.get(code)
+      if (!termin) continue
+      // Der Sammelkalender war zuerst da; zwei angekündigte Tage wären einer zu viel.
+      if (angekuendigt.has(kalenderkuerzel(kuerzel))) continue
+      if (termin.termin < heute) continue
+
+      unternehmen[kuerzel] = {
+        name: termin.name || unternehmen[kuerzel]?.name || kuerzel,
+        bisher: unternehmen[kuerzel]?.bisher ?? [],
+        bisherZeiten: unternehmen[kuerzel]?.bisherZeiten,
+        vorhersagen: [
+          {
+            erwartet: termin.termin,
+            basis: termin.periodenende || termin.termin,
+            streuungTage: 0,
+            angekuendigt: true,
+            herkunft: 'jpx',
+          },
+        ],
+      }
+      ausTokio.push(kuerzel)
+    }
+
+    console.log(
+      `\n${jpx.length} Termine aus Tokio, ${ausTokio.length} davon zu geführten Titeln.`
+    )
+  } catch (fehler) {
+    /*
+      Laut, aber nicht tödlich: Die übrigen Wege liefern weiter, und ein Lauf,
+      der wegen Japan abbricht, nähme den 318 amerikanischen Titeln ihren
+      Termin. Beim nächsten Lauf steht der bisherige Stand noch – der Bestand
+      wird fortgeschrieben, nicht neu begonnen.
+    */
+    const grund = fehler instanceof JpxOhneTabelle ? fehler.message : String(fehler)
+    console.warn(
+      `\n::warning::Die Terminliste der Tokioter Börse ist nicht lesbar:\n` +
+        `  ${grund}\n` +
+        '  Die japanischen Titel behalten den Stand des letzten Laufs.'
+    )
   }
 
   for (const [index, { katalog, cik }] of gesucht.entries()) {
@@ -998,6 +1077,18 @@ async function main(): Promise<void> {
       ? `\nAngekündigte Termine aus dem Sammelkalender: ${ausKalender.length}` +
           ` (${ausKalender.slice(0, 12).join(', ')}${ausKalender.length > 12 ? ' …' : ''})`
       : '\n::warning::Der Sammelkalender hat zu keinem geführten Titel etwas beigetragen.'
+  )
+
+  /* Dieselbe Frage an den Weg über die Börse: Was hat er beigetragen? */
+  const japanischGefuehrt = [...gefuehrt].filter((kuerzel) =>
+    /^[0-9][0-9A-Z]{3}\.T$/.test(kuerzel)
+  ).length
+  console.log(
+    ausTokio.length > 0
+      ? `Angekündigte Termine aus Tokio: ${ausTokio.length} von ${japanischGefuehrt}` +
+          ` japanischen Titeln (${ausTokio.slice(0, 12).join(', ')}` +
+          `${ausTokio.length > 12 ? ' …' : ''})`
+      : `::warning::Die Tokioter Liste hat zu keinem der ${japanischGefuehrt} japanischen Titel etwas beigetragen.`
   )
 
   const ohneTermin = gefuehrt.size - Object.keys(unternehmen).length
