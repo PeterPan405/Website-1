@@ -342,6 +342,14 @@ jobs:
         if: steps.vorhanden.outputs.schon == 'nein'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Ein Zwischendienst vor der Anthropic-Schnittstelle, falls einer
+          # gewollt ist. Nicht gesetzt heißt: unverändert direkt dorthin.
+          #
+          # Wer die Variable setzt, gibt einem Dritten den Quelltext der
+          # Meldungen und den API-Schlüssel in die Hand – deshalb ein Secret
+          # und kein `vars`, deshalb nur `https://`, und deshalb schreibt der
+          # Lauf eine Warnzeile, solange sie gesetzt ist.
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
           # Zum Nachsehen, ob noch ein Agentenlauf unterwegs ist – siehe die
           # Warteschleife vor Weg 1.
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

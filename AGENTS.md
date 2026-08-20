@@ -109,6 +109,13 @@ abgeschafft: Besser keine Nachrichten als aufbereitete eigene Kurszahlen, die
 wie Nachrichten aussehen. `scripts/nachrichten-aus-bestand.ts` liegt noch
 herum, wird aber von keinem Workflow mehr aufgerufen.
 
+**Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
+voreingestellt `api.anthropic.com`. Wer einen Zwischendienst davorschaltet,
+gibt ihm den Quelltext der Meldungen **und** den API-Schlüssel; deshalb nur
+`https://`, und deshalb schreibt der Lauf eine Warnzeile, solange die Variable
+gesetzt ist. Ein Dienst, der Prompts unterwegs kürzt, kürzt hier an Zahlen,
+Namen und Uhrzeiten – das verträgt sich nicht mit „keine erfundenen Zahlen".
+
 **Ohne Modell gibt es also keine Ausgabe – und ohne Ausgabe keine Folge**
 (`npm run folge` bricht ab). Alles andere läuft weiter: Kurse, Bau,
 Übertragung, Lernseiten.

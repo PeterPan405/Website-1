@@ -32,6 +32,7 @@
  */
 
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { pathToFileURL } from 'node:url'
 
 // ---------------------------------------------------------------- Regelwerk
 
@@ -123,6 +124,53 @@ function pflicht(name: string): string {
     process.exit(1)
   }
   return wert
+}
+
+/**
+ * Wohin die Anfrage geht – voreingestellt die Anthropic-Schnittstelle.
+ *
+ * ## Warum das einstellbar ist
+ *
+ * Der Betreiber hat am 20. August 2026 nach einem Zwischendienst gefragt, der
+ * Anfragen auf mehrere Anbieter verteilt. Diese Zeile ist die kleinste
+ * Antwort darauf: Wer so etwas davorschalten will, setzt ein Secret und nimmt
+ * es wieder weg. Es steht kein Anbieter im Code, es hängt keine Abhängigkeit
+ * daran, und ohne die Variable ändert sich **nichts**.
+ *
+ * ## Was zu bedenken ist, bevor jemand sie setzt
+ *
+ * Der Prompt dieses Laufs enthält den gelesenen Quelltext der Meldungen, und
+ * das Ergebnis erscheint am nächsten Morgen auf einer öffentlichen Website.
+ * Ein Zwischendienst sieht beides. Und wer unterwegs Prompts kürzt – manche
+ * werben damit –, kürzt hier an Zahlen, Namen und Zeitangaben: genau dem
+ * Material, für das `AGENTS.md` „keine erfundenen Zahlen" verlangt.
+ *
+ * Deshalb Vorgabe ist die Schnittstelle selbst, und die Umleitung ein
+ * ausdrücklicher Handgriff.
+ *
+ * Die Adresse wird ohne abschließenden Schrägstrich geführt; `/v1/messages`
+ * hängt der Aufrufer an. Eine Adresse mit Pfad bleibt erhalten, damit ein
+ * Zwischendienst unter einem Unterpfad liegen darf.
+ */
+export function basisadresse(): string {
+  const gesetzt = (process.env.ANTHROPIC_BASE_URL || '').trim()
+  if (!gesetzt) return 'https://api.anthropic.com'
+
+  /*
+    Nur https, und die Antwort darauf ist keine Förmlichkeit: Über diese
+    Verbindung geht der Schlüssel als `x-api-key` mit. Eine Adresse ohne
+    Verschlüsselung gäbe ihn im Klartext weiter, und das darf keine
+    Umgebungsvariable versehentlich können.
+  */
+  if (!gesetzt.startsWith('https://')) {
+    console.error(
+      `::error::ANTHROPIC_BASE_URL muss mit https:// beginnen – gesetzt ist „${gesetzt}".\n` +
+        '  Über diese Verbindung geht der API-Schlüssel mit.'
+    )
+    process.exit(1)
+  }
+
+  return gesetzt.replace(/\/+$/, '')
 }
 
 /*
@@ -397,7 +445,23 @@ async function frageModell(prompt: string): Promise<Antwort> {
   */
   const modell = process.env.NACHRICHTEN_MODELL || 'claude-sonnet-5'
 
-  const antwort = await fetch('https://api.anthropic.com/v1/messages', {
+  /*
+    Eine Umleitung wird laut gesagt.
+
+    Der Sinn der Variablen ist, dass jemand sie setzt und wieder wegnimmt –
+    und dazwischen soll im Protokoll stehen, wohin der Lauf tatsächlich
+    gegangen ist. Eine stille Umleitung wäre genau der Zustand, den dieses
+    Projekt an allen Ecken abschafft: nicht kaputt, nur anders, und ohne
+    Meldung.
+  */
+  const basis = basisadresse()
+  if (basis !== 'https://api.anthropic.com') {
+    console.log(
+      `::warning::Die Anfrage geht über ${basis} statt an die Anthropic-Schnittstelle.`
+    )
+  }
+
+  const antwort = await fetch(`${basis}/v1/messages`, {
     method: 'POST',
     headers: {
       'x-api-key': schluessel,
@@ -805,7 +869,22 @@ ${ergebnis.further.map(meldungQuelltext).join('\n')}
   for (const a of ergebnis.artikel) console.log(`  – ${a.title}`)
 }
 
-main().catch((fehler) => {
-  console.error(`::error::${fehler instanceof Error ? fehler.message : String(fehler)}`)
-  process.exit(1)
-})
+/*
+  Nur beim direkten Aufruf loslaufen.
+
+  Bis zum 20. August 2026 stand hier ein blankes `main()`. Damit war die Datei
+  nicht importierbar: Wer eine einzelne Funktion daraus prüfen wollte, löste
+  den ganzen Nachrichtenlauf aus – Dateien lesen, an die Schnittstelle gehen,
+  eine Ausgabe schreiben. Aufgefallen ist es, als der erste Test dazu die
+  Zeile „Die Ausgabe vom 2026-08-20 steht bereits" ausgab, die ein Test
+  niemals ausgeben sollte.
+
+  Derselbe Riegel wie in `quartalstermine-abrufen.ts`. Am Aufruf über
+  `node scripts/nachrichten-erzeugen.ts` ändert er nichts.
+*/
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((fehler) => {
+    console.error(`::error::${fehler instanceof Error ? fehler.message : String(fehler)}`)
+    process.exit(1)
+  })
+}
