@@ -155,6 +155,49 @@ function kurzfassung(text: string, hoechstlaenge = 200): string {
 export class KontingentErschoepft extends Error {}
 
 /**
+ * Wird geworfen, wenn `/earnings` im gebuchten Tarif gar nicht enthalten ist.
+ *
+ * ## Der teuerste Fehler ist nicht der rote Lauf, sondern der stille
+ *
+ * Am 20. August 2026 nachgesehen, warum von 1.029 Aktien nur 318 einen
+ * Meldetermin haben – und zwar 302 davon aus den USA. Im Protokoll des
+ * nächtlichen Laufs steht die Antwort 578-mal untereinander:
+ *
+ *     ABBV: 403 – {"code":403,"message":"/earnings is available exclusively
+ *     with grow or pro or ultra or venture or enterprise plans. …"}
+ *
+ * Und darunter, als Zusammenfassung des Laufs: „Über Twelve Data ist nichts
+ * dazugekommen." Nicht wenig – **nichts**, an jedem Tag seit es diesen Weg
+ * gibt. Der Lauf war dabei jedes Mal grün, weil ein 403 hier bisher nur eine
+ * Zeile im Protokoll war, und verbrannte 75 Minuten am Tag dafür, Absagen
+ * einzusammeln.
+ *
+ * Der Schlüssel taugt also, das Kontingent reicht, die Kürzel stimmen – nur
+ * ist `/earnings` im kostenlosen Tarif nicht enthalten. Das ist keine Störung,
+ * die der nächste Lauf nachträgt, sondern eine Eigenschaft des Schlüssels:
+ * Die zweite Abfrage bekäme dieselbe Antwort wie die erste, und die
+ * achthundertste auch.
+ *
+ * Deshalb dieselbe Behandlung wie beim erschöpften Kontingent – abbrechen,
+ * schreiben, was da ist – nur mit einer anderen Folgerung im Protokoll: Beim
+ * Kontingent hilft Warten, hier hilft nur ein anderer Tarif. Ein Fehler, der
+ * sich nicht von selbst erledigt, gehört sichtbar gemacht und nicht 578-mal
+ * wiederholt.
+ */
+export class TarifSperre extends Error {}
+
+/**
+ * Ob eine Antwort sagt: „nicht in deinem Tarif“.
+ *
+ * Geprüft wird der Text und nicht nur der Statuscode. 403 allein wäre zu
+ * grob – es ist auch die Antwort auf einen abgelaufenen Schlüssel, und die
+ * hieße etwas ganz anderes (nämlich: Schlüssel erneuern, Weg bleibt offen).
+ */
+export function istTarifSperre(text: string): boolean {
+  return /available exclusively with|upgrad/i.test(text)
+}
+
+/**
  * Holt die bisherigen Meldetermine eines Symbols.
  *
  * @param apiKey Der Schlüssel aus der Umgebung. Fehlt er, wird nichts
@@ -182,6 +225,10 @@ export async function holeTermine(
       throw new KontingentErschoepft(kurzfassung(text))
     }
 
+    if (istTarifSperre(text)) {
+      throw new TarifSperre(kurzfassung(text))
+    }
+
     if (!antwort.ok) {
       // Der Schlüssel steht in der Adresse – deshalb wird sie nicht
       // ausgegeben. Ein Protokoll eines Workflows ist öffentlich lesbar.
@@ -192,6 +239,7 @@ export async function holeTermine(
     return parseTermine(text)
   } catch (fehler) {
     if (fehler instanceof KontingentErschoepft) throw fehler
+    if (fehler instanceof TarifSperre) throw fehler
     console.warn(`  ${symbol}: ${(fehler as Error).message}`)
     return null
   }

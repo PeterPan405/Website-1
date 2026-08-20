@@ -1934,3 +1934,183 @@ sieht also aus wie ein Datenausfall – und ist danach ein neuer Schlüssel ohne
 Vorgeschichte. `tests/website-zahlen.test.ts` prüft deshalb jeden im Stand
 festgehaltenen Schlüssel gegen die Zählung und fängt die Umbenennung im Pull
 Request, statt sie am nächsten Morgen als Fehlalarm auftauchen zu lassen.
+
+## Ein Weg, der nie etwas geliefert hat, sieht aus wie ein Weg
+
+Am 20. August 2026 wollte der Betreiber wissen, warum Alibaba an dem Tag
+Zahlen vorlegte und weder im Kalender noch auf der Aktienseite etwas davon
+stand. Die Antwort auf diese eine Frage war schnell da – Alibaba ist ein
+ausländischer Emittent und reicht kein `8-K` mit Punkt 2.02 ein. Die Antwort
+auf die Frage dahinter war es nicht.
+
+Nachgezählt: **318 der 1.029 geführten Aktien** haben einen Meldetermin, und
+**302 davon sind amerikanisch.** Acht kommen aus Irland, drei aus der Schweiz,
+je einer aus fünf weiteren Ländern. SAP, Siemens, Allianz, Bayer, LVMH,
+Nestlé, Toyota, Samsung, Alibaba: nichts.
+
+Für genau diese Lücke ist im Juli 2026 ein zweiter Weg gebaut worden, über
+Twelve Data. Er ist seitdem jede Nacht gelaufen, 75 Minuten lang, und hat
+**nie eine einzige Zeile geliefert.**
+
+### Es stand im Protokoll, 578-mal
+
+    ABBV: 403 – {"code":403,"message":"/earnings is available exclusively
+    with grow or pro or ultra or venture or enterprise plans. …"}
+    ABEV3: 403 – {"code":403, …
+    ABI: 403 – {"code":403, …
+
+Und darunter, als Zusammenfassung des Laufs, in einer Zeile:
+
+    Über Twelve Data ist nichts dazugekommen.
+
+Der Lauf war grün. Jeden Tag. Der Endpunkt ist im kostenlosen Tarif nicht
+enthalten – nicht bei europäischen Kürzeln, nicht bei asiatischen, auch nicht
+bei amerikanischen. Der Demo-Schlüssel der ersten Probe konnte `AAPL`
+abrufen; ein echter kostenloser Schlüssel kann es nicht.
+
+Im Kopf von `quellen-probe.yml` stand die Frage sogar wörtlich: „Was ein
+Schlüssel nicht beantwortet, solange keiner hinterlegt ist: ob der kostenlose
+Tarif den Endpunkt `/earnings` überhaupt freischaltet. … Beides zeigt sich
+beim ersten Lauf." Es hat sich beim ersten Lauf gezeigt. Niemand hat
+hingesehen.
+
+### Was daran allgemein ist
+
+_Der teuerste Fehler ist nicht der rote Lauf, sondern der stille._ Das steht
+seit Monaten in `AGENTS.md`, und hier ist die Bauform, in der er sich
+versteckt: **Ein Weg, der scheitert und dabei grün bleibt, ist von einem Weg,
+der funktioniert, nicht zu unterscheiden – außer man zählt nach, was er
+geliefert hat.**
+
+Die Zahl stand da. Sie stand unter 578 Warnzeilen, und eine Zusammenfassung,
+die man erst nach 578 Zeilen liest, ist keine.
+
+Daraus zwei Regeln:
+
+1. **Wer einen zweiten Weg baut, prüft nach dem ersten Lauf, ob er getragen
+   hat** – nicht ob er lief. „Hat geantwortet" ist keine Aussage; „hat _n_
+   Einträge beigesteuert" ist eine.
+2. **Ein Fehler, der sich nicht von selbst erledigt, wird beim ersten Mal
+   laut und danach nicht mehr wiederholt.** `TarifSperre` in
+   `lib/providers/twelvedata-termine.ts` bricht deshalb nach der ersten
+   Antwort dieser Art ab: Die zweite Anfrage bekäme dieselbe Antwort und die
+   achthundertste auch. Aus 75 Minuten werden Sekunden, und aus 578 Zeilen
+   eine.
+
+Der Weg selbst bleibt stehen. Er funktioniert an dem Tag, an dem jemand einen
+Tarif bucht – und das ist eine Geldentscheidung des Betreibers, keine des
+Skripts.
+
+### Und ein Satz, der auf der Website falsch geworden war
+
+Auf der Kalenderseite stand: „Für die übrigen Werte kommt deshalb eine zweite
+Quelle hinzu, sobald sie bereitsteht." Sie stand längst bereit und lieferte
+nichts.
+
+Ein Satz, der eine Lösung ankündigt, die es nicht gibt, ist schlechter als
+das Eingeständnis: **Er hält die Frage für erledigt.** Wer ihn liest, hakt die
+Lücke innerlich ab und fragt nicht weiter. Er ist ersetzt durch das, was gilt
+– sieben Quellen geprüft, keine kostenlose gefunden, die Lücke bleibt und
+steht seitdem nicht nur auf der Kalenderseite, sondern auf jeder betroffenen
+Aktienseite.
+
+## Zwischen New York und Berlin liegen nicht immer sechs Stunden
+
+Derselbe Auftrag verlangte, dass im Kalender steht, „um wie viel Uhr
+europäischer Zeit die Zahlen veröffentlicht werden". Die Quelle gibt das her,
+und zwar besser als erwartet: `acceptanceDateTime` in der submissions-Datei
+der SEC ist die Sekunde, in der die Börsenaufsicht die Meldung angenommen hat.
+Näher kommt eine freie Quelle nicht an den Moment der Veröffentlichung – ein
+Unternehmen reicht das `8-K` minutennah zur Pressemitteilung ein.
+
+Nachgemessen am 20. August 2026: `2026-08-06T20:01:12.000Z`. Das sind 16:01
+Uhr New Yorker Zeit, eine Minute nach Börsenschluss. Das `Z` ist echtes UTC
+und keine Ortszeit mit einem Buchstaben dahinter – geprüft an einem zweiten
+Zeitstempel, `2026-08-11T00:56:26.000Z`, den EDGAR trotz des Datums noch dem 10. August zurechnet, weil es dort 20:56 Uhr war.
+
+### Die Falle
+
+Naheliegend wäre, sechs Stunden zu addieren. Das ist an rund elf Monaten im
+Jahr richtig und an drei Wochen falsch: **Amerika stellt die Uhr am zweiten
+Sonntag im März um, Europa am letzten.** Dazwischen beträgt der Abstand fünf
+Stunden.
+
+Und genau in diese drei Wochen fällt die amerikanische Berichtssaison für das
+erste Quartal. Wer stumpf sechs addiert, schreibt für jeden Termin dieser
+Wochen 22:00 Uhr hin, wo 21:00 Uhr richtig wäre – für die Termine, die am
+häufigsten gelesen werden.
+
+### Deshalb wird die Wanduhr fortgeschrieben und nicht der Zeitpunkt
+
+Ein Unternehmen meldet nach _seinem_ Börsenschluss, und der liegt das ganze
+Jahr über um 16:00 Uhr New Yorker Zeit. Festgehalten wird deshalb die **New
+Yorker Wanduhrzeit** der Vorjahresmeldung. Die deutsche Zeit entsteht erst in
+der Anzeige, aus dem erwarteten Tag – über `Intl.DateTimeFormat` und die
+Zeitzonennamen, nicht über eine eigene Umstellungstabelle. Eine Tabelle wäre
+eine Kopie der Regeln, die niemand nachzieht, wenn ein Land seine ändert.
+
+Wer den _Zeitpunkt_ um ein Jahr verschöbe, verschöbe die Zonenlage mit: Aus
+16:01 Uhr im August würde im Februar 15:01 Uhr.
+
+### Warum die Lage vor der Minute steht
+
+Was feststeht, ist die Lage zur Handelssitzung: Ein Unternehmen, das seit
+Jahren nach dem US-Schluss meldet, meldet auch dieses Mal nach dem
+US-Schluss. Daran hängt die einzige Frage, die ein Anleger hier wirklich hat –
+bewegt sich der Kurs noch heute oder erst morgen früh?
+
+Was schwankt, ist die Minute: 16:01 im einen Jahr, 16:32 im nächsten. Sie
+steht deshalb dahinter und mit dem Wort, das sie einordnet: „im Vorjahr". Eine
+Zeitangabe ohne dieses Wort wäre eine Zusage, die die Quelle nicht deckt –
+dieselbe Überlegung wie beim Tag, der `geschaetzt` trägt.
+
+Eine Uhrzeit entsteht überhaupt nur, wenn **zwei aufeinanderfolgende Jahre in
+derselben Lage** gemeldet haben. Ein einzelner Zeitstempel ist kein Muster,
+und zu einem ohnehin geschätzten Tag käme sonst eine falsche Stunde dazu.
+Verglichen wird die Lage und nicht die Minute: Zwischen 16:01 und 16:35 liegen
+fünfunddreißig Minuten und keine Aussage, zwischen 8:30 und 16:05 liegt ein
+Handelstag.
+
+## `000` ist der Hoster, `404` sind wir
+
+Am Morgen des 20. August 2026 kam die zweite Fehlermail aus `kurse.yml` binnen
+sechs Stunden. Beide Male hatte `iminvests.de` eine gute halbe Stunde nicht
+geantwortet – 23:09 bis 23:43 und noch einmal um 04:58 –, beide Male stand die
+Website danach von selbst wieder. Um 05:19 antwortete sie mit 200, mit einem
+Bau von 05:07 und Kursen von 05:17.
+
+Der Fall steht in `AGENTS.md` unter „Ein roter Lauf ist ein Vorrat": „`000`
+von außen → **Warnung.** Der nächste Lauf trägt es nach." Im Workflow stand
+etwas anderes, mit einer eigenen Begründung: „Dass die eigene Website nicht
+antwortet, ist der lauteste Fall, den es hier gibt."
+
+Beides klingt richtig, und beides ist es – für verschiedene Fälle. **Der
+Unterschied stand im Antwortcode, und zwar in dem, den es schon gab:**
+
+- **`000`** heißt: Auf Port 443 antwortet niemand. Kein TCP, keine
+  TLS-Aushandlung, nichts. Ein leerer oder halb getauschter Webordner sähe
+  anders aus – ein Webserver, der läuft und nichts findet, antwortet mit
+  **403 oder 404**. `000` ist der Host. Und gegen den hilft kein Neubau; das
+  stand sogar in der Meldung, die trotzdem einen anforderte.
+- **Jeder gelesene Code außer 200** heißt: Die Maschine steht, sie liefert nur
+  das Falsche. Das ist unser Fehler, ein Neubau hilft, und dafür ist der rote
+  Lauf da.
+
+### Und warum es trotzdem rot werden kann
+
+_Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe._ Ein Hoster, der
+eine Stunde weg ist, ist kein Zucken mehr – nur merkt man den Unterschied
+nicht an einem einzelnen Lauf, sondern erst am zweiten.
+
+Gefragt wird deshalb, wie der **vorige** Lauf ausging. War der auch schon rot,
+ist es kein Flattern mehr, und dann kommt die Mail. Gefragt wird die Laufliste
+bei GitHub und nicht die eigene Vermutung – _wer wissen will, ob etwas
+passiert ist, fragt die Gegenwart._ Antwortet die Liste nicht, wird rot
+angenommen; im Zweifel lieber eine Mail zu viel.
+
+Nicht gewählt wurde der naheliegende Weg, „seit wann läuft kein erfolgreicher
+Lauf mehr" zu messen. Der Abstand zwischen zwei `kurse.yml`-Läufen schwankte
+in derselben Nacht zwischen 40 und 107 Minuten – geplante Läufe werden hier
+regelmäßig verworfen. Eine Zeitgrenze hätte an einer normalen Lücke
+angeschlagen und an einem echten Ausfall vorbeigemessen. Der vorige Ausgang
+hängt an nichts davon ab.

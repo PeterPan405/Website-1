@@ -157,10 +157,26 @@ export default async function KalenderPage() {
               es nur in den USA. Wer an einer europäischen oder asiatischen Börse notiert,
               reicht dort nichts ein – und wer als ausländisches Unternehmen in den USA
               gelistet ist, meldet über ein Formular ohne Punktnummern, aus dem sich eine
-              Ergebnisveröffentlichung nicht zuverlässig herauslesen lässt. Für die
-              übrigen Werte kommt deshalb eine zweite Quelle hinzu, sobald sie
-              bereitsteht; sie liefert dieselbe Sorte Angabe – vergangene Meldetermine –,
-              aus der hier nach demselben Verfahren hochgerechnet wird.
+              Ergebnisveröffentlichung nicht zuverlässig herauslesen lässt. Alibaba ist so
+              ein Fall: in New York gelistet, bei der Börsenaufsicht geführt – und ohne
+              eine einzige Meldung der Art, aus der sich hier etwas ableiten ließe.
+            </p>
+            {/*
+              Hier stand bis zum 20. August 2026 ein Versprechen: „Für die übrigen Werte
+              kommt eine zweite Quelle hinzu, sobald sie bereitsteht." Sie stand längst
+              bereit und lieferte nichts – der Anbieter gibt die Meldetermine nur in
+              einem kostenpflichtigen Tarif heraus, und das steht in jeder einzelnen
+              seiner Antworten. Ein Satz, der eine Lösung ankündigt, die es nicht gibt,
+              ist schlechter als das Eingeständnis: Er hält die Frage für erledigt.
+            */}
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Eine zweite Quelle für die übrigen Werte ist gesucht und bisher nicht
+              gefunden. Geprüft sind sieben; alle verlangen entweder einen
+              kostenpflichtigen Zugang oder eine Kennung, die nur ein Browser erzeugt –
+              und Letzteres nachzubauen hieße, eine bewusst gesetzte Sperre zu umgehen.
+              Solange das so bleibt, steht bei diesen Aktien kein Termin, und auf ihrer
+              Seite steht, warum. Eine plausibel aussehende Schätzung wäre hier schlechter
+              als eine Lücke.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Termine sind mit{' '}
