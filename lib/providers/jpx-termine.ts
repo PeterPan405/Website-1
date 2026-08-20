@@ -148,6 +148,73 @@ function spalteMit(kopf: string[], namen: string[]): number {
   return -1
 }
 
+/** Ein Börsencode der JPX: vier Zeichen, das erste eine Ziffer. */
+const CODE = /^[0-9][0-9A-Z]{3}$/
+
+/**
+ * Die Spaltenüberschriften – zusammengefasst über **alle** Kopfzeilen.
+ *
+ * ## Warum nicht eine Zeile
+ *
+ * Weil es keine ist. Gemessen an `kessan06_0807.xlsx` am 20. August 2026:
+ * Zeile 5 trägt `決算発表予定日`, Zeile 6 trägt
+ * `Scheduled Dates for Earnings Announcements` und daneben `コード`. Die
+ * japanische und die englische Beschriftung stehen untereinander, und keine
+ * der beiden Zeilen allein beschriftet die Tabelle vollständig.
+ *
+ * Wer eine davon nimmt, findet die eine Hälfte der Spalten und die andere
+ * nicht – und merkt es nicht, weil die gefundenen Spalten stimmen. Genau so
+ * ist der erste Lauf durchgegangen: 3.209 Zeilen gelesen, Meldetag und Code
+ * richtig, Firmenname und Geschäftsjahresende still leer.
+ */
+function kopfBlock(zeilen: string[][], bis: number): string[] {
+  const breite = Math.max(0, ...zeilen.slice(0, bis).map((zeile) => zeile.length))
+  // Dicht gefüllt und nicht über Indexzuweisung: Ein Loch im Array ist beim
+  // Durchlaufen `undefined`, und das hat keine Methoden.
+  const spalten = Array.from({ length: breite }, () => '')
+
+  for (const zeile of zeilen.slice(0, bis)) {
+    zeile.forEach((zelle, i) => {
+      const text = zelle.trim()
+      if (!text) return
+      spalten[i] = spalten[i] ? `${spalten[i]} ${text}` : text
+    })
+  }
+  return spalten
+}
+
+/**
+ * Der Stand, den die Datei selbst nennt.
+ *
+ * Über der Tabelle steht `As of 2026/8/6`. Das ist nicht dasselbe wie der Tag
+ * des Abrufs, und der Unterschied ist die ganze Auskunft: Am 20. August war
+ * die Datei zwei Wochen alt, weil die Berichtssaison vorbei war. Ohne diese
+ * Angabe sähe eine leere Ausbeute nach einem Fehler aus statt nach dem, was
+ * sie ist.
+ */
+function standAus(zeilen: string[][]): string | null {
+  for (const zeile of zeilen.slice(0, 12)) {
+    for (const zelle of zeile) {
+      const treffer =
+        /as of\s*(\d{4})\/(\d{1,2})\/(\d{1,2})/i.exec(zelle) ??
+        /(\d{4})年(\d{1,2})月(\d{1,2})日/.exec(zelle)
+      if (treffer) {
+        return `${treffer[1]}-${treffer[2].padStart(2, '0')}-${treffer[3].padStart(2, '0')}`
+      }
+    }
+  }
+  return null
+}
+
+/** Was aus einer JPX-Datei herauskommt – samt dem, was über sie selbst dasteht. */
+export interface JpxTabelle {
+  /** Der Stand laut Datei, `JJJJ-MM-TT` – oder `null`, wenn sie keinen nennt. */
+  stand: string | null
+  /** Die erkannten Spaltenüberschriften. Gehört ins Protokoll, nicht auf die Seite. */
+  kopf: string[]
+  termine: JpxTermin[]
+}
+
 /**
  * Liest eine JPX-Terminliste.
  *
@@ -159,38 +226,52 @@ function spalteMit(kopf: string[], namen: string[]): number {
  * Sammelkalender: Der Kopf ist die einzige Stelle, an der die Quelle selbst
  * sagt, was wo steht.
  *
+ * ## Warum die Datenzeilen den Kopf finden und nicht umgekehrt
+ *
+ * Weil der Kopf über mehrere Zeilen geht und über der Tabelle noch Titel und
+ * Stand stehen. Eine Datenzeile dagegen ist unverwechselbar: Sie trägt einen
+ * vierstelligen Börsencode **und** eine Zahl aus dem Datumsbereich. Ab der
+ * ersten solchen Zeile beginnen die Daten; alles darüber ist Kopf.
+ *
  * ## Warum ein Fehler statt einer leeren Liste
  *
  * Baut die Börse ihre Datei um, ist das Ergebnis kein „heute keine Termine" –
  * es ist ein Ausfall. Eine leere Liste wäre nicht von einem ruhigen Tag zu
  * unterscheiden, und der Lauf bliebe grün.
  */
-export function parseTabelle(zeilen: string[][]): JpxTermin[] {
-  const kopfIndex = zeilen.findIndex(
+export function parseTabelle(zeilen: string[][]): JpxTabelle {
+  const datenAb = zeilen.findIndex(
     (zeile) =>
-      spalteMit(zeile, SPALTEN.termin) !== -1 && spalteMit(zeile, SPALTEN.code) !== -1
+      zeile.some((zelle) => CODE.test(zelle.trim().toUpperCase())) &&
+      zeile.some((zelle) => alsTag(zelle) !== '')
   )
-  if (kopfIndex === -1) {
+  if (datenAb === -1) {
     throw new JpxOhneTabelle(
-      'Keine Kopfzeile mit Meldetag und Code gefunden – die Datei hat ein anderes Format.'
+      'Keine Zeile mit Börsencode und Datum gefunden – die Datei hat ein anderes Format.'
     )
   }
 
-  const kopf = zeilen[kopfIndex]
+  const kopf = kopfBlock(zeilen, datenAb)
   const iTermin = spalteMit(kopf, SPALTEN.termin)
   const iCode = spalteMit(kopf, SPALTEN.code)
   const iName = spalteMit(kopf, SPALTEN.name)
   const iEnde = spalteMit(kopf, SPALTEN.periodenende)
 
-  const ergebnis: JpxTermin[] = []
-  for (const zeile of zeilen.slice(kopfIndex + 1)) {
+  if (iTermin === -1 || iCode === -1) {
+    throw new JpxOhneTabelle(
+      `Meldetag oder Code sind im Kopf nicht zu finden. Erkannt: ${kopf.join(' | ') || '(nichts)'}`
+    )
+  }
+
+  const termine: JpxTermin[] = []
+  for (const zeile of zeilen.slice(datenAb)) {
     const code = (zeile[iCode] ?? '').trim().toUpperCase()
-    if (!/^[0-9][0-9A-Z]{3}$/.test(code)) continue
+    if (!CODE.test(code)) continue
 
     const termin = alsTag(zeile[iTermin] ?? '')
     if (!termin) continue
 
-    ergebnis.push({
+    termine.push({
       code,
       name: iName === -1 ? '' : (zeile[iName] ?? '').trim(),
       termin,
@@ -198,7 +279,7 @@ export function parseTabelle(zeilen: string[][]): JpxTermin[] {
     })
   }
 
-  return ergebnis
+  return { stand: standAus(zeilen), kopf, termine }
 }
 
 /*
@@ -224,8 +305,14 @@ async function holeRoh(url: string): Promise<Buffer> {
  * Zu einem Code kann in zwei Dateien ein Termin stehen. Genommen wird der
  * **frühere**: Der spätere gehört nicht auf die Aktienseite, solange der
  * frühere noch aussteht.
+ *
+ * Gefiltert wird hier **nicht** nach der Zukunft. Ob ein Termin noch kommt,
+ * entscheidet der Aufrufer – und er soll dabei sehen können, was in der Datei
+ * stand. Eine Quelle, die nur zurückliegende Tage führt, ist etwas anderes als
+ * eine, die zu unseren Titeln nichts sagt, und diese beiden Fälle dürfen nicht
+ * beide als leere Liste ankommen.
  */
-export async function holeTermine(): Promise<JpxTermin[]> {
+export async function holeTermine(): Promise<JpxTabelle> {
   const seite = await (await fetch(JPX_TERMINSEITE, { headers: KOPFZEILEN })).text()
   const adressen = tabellenAdressen(seite)
 
@@ -237,9 +324,16 @@ export async function holeTermine(): Promise<JpxTermin[]> {
   }
 
   const jeCode = new Map<string, JpxTermin>()
+  const koepfe: string[] = []
+  let stand: string | null = null
+
   for (const adresse of adressen) {
-    const termine = parseTabelle(blattZeilen(await holeRoh(adresse)))
-    for (const termin of termine) {
+    const tabelle = parseTabelle(blattZeilen(await holeRoh(adresse)))
+    koepfe.push(tabelle.kopf.join(' | '))
+    // Der älteste genannte Stand – die Liste ist nur so frisch wie ihr ältestes Blatt.
+    if (tabelle.stand && (!stand || tabelle.stand < stand)) stand = tabelle.stand
+
+    for (const termin of tabelle.termine) {
       const vorhanden = jeCode.get(termin.code)
       if (!vorhanden || termin.termin < vorhanden.termin) jeCode.set(termin.code, termin)
     }
@@ -251,5 +345,5 @@ export async function holeTermine(): Promise<JpxTermin[]> {
     )
   }
 
-  return [...jeCode.values()]
+  return { stand, kopf: koepfe, termine: [...jeCode.values()] }
 }

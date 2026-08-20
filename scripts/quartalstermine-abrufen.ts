@@ -803,10 +803,15 @@ async function main(): Promise<void> {
     `lib/providers/jpx-termine.ts`, warum hier trotzdem keine hingeschrieben
     wird.
   */
+  const japanischeKuerzel = [...gefuehrt].filter((kuerzel) =>
+    /^[0-9][0-9A-Z]{3}\.T$/.test(kuerzel)
+  )
   const ausTokio: string[] = []
+  /** Geführte Titel, die in der Tokioter Liste stehen – gleich ob der Tag noch kommt. */
+  const inTokioGefunden: string[] = []
   try {
     const jpx = await holeJpxTermine()
-    const jeCode = new Map(jpx.map((termin) => [termin.code, termin]))
+    const jeCode = new Map(jpx.termine.map((termin) => [termin.code, termin]))
 
     for (const kuerzel of gefuehrt) {
       const code = /^([0-9][0-9A-Z]{3})\.T$/.exec(kuerzel)?.[1]
@@ -814,6 +819,8 @@ async function main(): Promise<void> {
 
       const termin = jeCode.get(code)
       if (!termin) continue
+      inTokioGefunden.push(kuerzel)
+
       // Der Sammelkalender war zuerst da; zwei angekündigte Tage wären einer zu viel.
       if (angekuendigt.has(kalenderkuerzel(kuerzel))) continue
       if (termin.termin < heute) continue
@@ -835,8 +842,28 @@ async function main(): Promise<void> {
       ausTokio.push(kuerzel)
     }
 
+    /*
+      Drei Zahlen statt einer.
+
+      „0 Termine beigesteuert" hat drei verschiedene Ursachen, und sie
+      verlangen entgegengesetzte Reaktionen: Die Datei ist unlesbar (Ausfall),
+      unsere Kürzel passen nicht auf ihre Codes (Fehler im Abgleich), oder die
+      Berichtssaison ist vorbei und in der Liste steht nur Vergangenes
+      (Normalzustand, nichts zu tun). Eine einzelne Null unterscheidet die drei
+      nicht – und genau darin besteht der stille Ausfall.
+
+      Deshalb wird gezählt, wie viele geführte Titel überhaupt in der Liste
+      stehen, und daneben, was die Datei über ihren eigenen Stand sagt.
+    */
+    const tage = jpx.termine.map((t) => t.termin).sort()
     console.log(
-      `\n${jpx.length} Termine aus Tokio, ${ausTokio.length} davon zu geführten Titeln.`
+      `\nTokio: ${jpx.termine.length} Termine, Stand laut Datei ` +
+        `${jpx.stand ?? 'ohne Angabe'}, Zeitraum ${tage[0]} bis ${tage[tage.length - 1]}.`
+    )
+    console.log(`  Erkannte Spalten: ${jpx.kopf.join('  ///  ')}`)
+    console.log(
+      `  ${inTokioGefunden.length} von ${japanischeKuerzel.length} geführten japanischen ` +
+        `Titeln stehen darin, ${ausTokio.length} davon mit noch kommendem Tag.`
     )
   } catch (fehler) {
     /*
@@ -1079,17 +1106,35 @@ async function main(): Promise<void> {
       : '\n::warning::Der Sammelkalender hat zu keinem geführten Titel etwas beigetragen.'
   )
 
-  /* Dieselbe Frage an den Weg über die Börse: Was hat er beigetragen? */
-  const japanischGefuehrt = [...gefuehrt].filter((kuerzel) =>
-    /^[0-9][0-9A-Z]{3}\.T$/.test(kuerzel)
-  ).length
-  console.log(
-    ausTokio.length > 0
-      ? `Angekündigte Termine aus Tokio: ${ausTokio.length} von ${japanischGefuehrt}` +
-          ` japanischen Titeln (${ausTokio.slice(0, 12).join(', ')}` +
-          `${ausTokio.length > 12 ? ' …' : ''})`
-      : `::warning::Die Tokioter Liste hat zu keinem der ${japanischGefuehrt} japanischen Titel etwas beigetragen.`
-  )
+  /*
+    Dieselbe Frage an den Weg über die Börse – aber mit der Unterscheidung, die
+    die Zahl erst zu einer Auskunft macht.
+
+    Gewarnt wird nur, wenn der **Abgleich** nichts findet: Dann passen unsere
+    Kürzel nicht mehr auf die Codes der Börse, und das ist ein Fehler. Steht
+    unser Bestand in der Liste, trägt aber nur zurückliegende Tage, ist die
+    Berichtssaison vorbei – ein Zustand und kein Vorfall. Eine Warnung, die
+    dreimal im Jahr wochenlang steht, wird nach der zweiten Woche nicht mehr
+    gelesen.
+  */
+  if (inTokioGefunden.length === 0) {
+    console.log(
+      `::warning::Kein einziger der ${japanischeKuerzel.length} japanischen Titel steht in ` +
+        'der Tokioter Liste. Zu prüfen wäre der Abgleich Kürzel → Börsencode.'
+    )
+  } else if (ausTokio.length === 0) {
+    console.log(
+      `Tokio: ${inTokioGefunden.length} geführte Titel in der Liste, aber kein Tag mehr ` +
+        'in der Zukunft – die Berichtssaison ist durch. Die nächste Liste erscheint zur\n' +
+        '  kommenden Saison; bis dahin ist das der Normalzustand und kein Ausfall.'
+    )
+  } else {
+    console.log(
+      `Angekündigte Termine aus Tokio: ${ausTokio.length} von ${japanischeKuerzel.length}` +
+        ` japanischen Titeln (${ausTokio.slice(0, 12).join(', ')}` +
+        `${ausTokio.length > 12 ? ' …' : ''})`
+    )
+  }
 
   const ohneTermin = gefuehrt.size - Object.keys(unternehmen).length
   console.log(

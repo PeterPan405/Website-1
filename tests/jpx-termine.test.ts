@@ -81,24 +81,21 @@ pruefen(
   selbst; erfunden ist nur die Toyota-Zeile, und zwar mit Toyotas echtem Code
   und echtem Geschäftsjahresende.
 */
-const KOPF = [
-  '決算発表予定日',
-  'コード',
-  '会社名',
-  'Issue Name',
-  '決算期末',
-  '業種名',
-  'Industry',
-  '種別',
-  'Fiscal Year/Quarter',
-  '市場区分',
-  'Market Segment',
-]
+/*
+  Der Kopf steht über **zwei** Zeilen, so wie in der echten Datei: Zeile 5
+  trägt die japanischen Beschriftungen, Zeile 6 die englischen. Darüber Titel
+  und Stand. Wer nur eine der beiden Zeilen liest, findet die halben Spalten –
+  und merkt es nicht, weil die gefundenen stimmen.
+*/
+const KOPF_JA = ['決算発表予定日', 'コード', '会社名', '', '決算期末']
+const KOPF_EN = ['Scheduled Dates for Earnings Announcements', '', '', 'Issue Name', '']
 
 const ZEILEN = [
-  ['Scheduled Dates for Earnings Announcements'],
+  ['東京証券取引所'],
+  ['As of 2026/8/6'],
   [],
-  KOPF,
+  KOPF_JA,
+  KOPF_EN,
   [
     '46206',
     '2753',
@@ -143,7 +140,8 @@ const ZEILEN = [
   ['※ 予定は変更されることがあります。'],
 ]
 
-const termine = parseTabelle(ZEILEN)
+const tabelle = parseTabelle(ZEILEN)
+const termine = tabelle.termine
 
 pruefen(
   'Zwei Termine, die Zeile ohne Tag fällt heraus',
@@ -179,6 +177,26 @@ pruefen(
   `${toyota?.code}`
 )
 
+pruefen(
+  'Der Stand steht in der Datei und wird gelesen',
+  tabelle.stand === '2026-08-06',
+  `${tabelle.stand}`
+)
+
+/*
+  Der zweizeilige Kopf ist der Punkt, an dem der erste Lauf halb danebengriff:
+  Meldetag und Code kamen aus der englischen Zeile, Firmenname und
+  Geschäftsjahresende standen in der japanischen und blieben leer. Der Lauf war
+  dabei grün und las 3.209 Zeilen.
+*/
+pruefen(
+  'Beide Kopfzeilen zusammen beschriften die Tabelle',
+  tabelle.kopf[0]?.includes('決算発表予定日') &&
+    tabelle.kopf[0]?.includes('Scheduled Dates') &&
+    tabelle.kopf[3] === 'Issue Name',
+  JSON.stringify(tabelle.kopf)
+)
+
 /*
   Die Gegenprobe zur Datumsschranke.
 
@@ -186,22 +204,30 @@ pruefen(
   Zahlen, die keine sind. Geprüft wird an der Stelle, an der es wehtäte: eine
   Terminspalte, in der versehentlich der Code steht.
 */
-const VERTAUSCHT = [KOPF, ['7203', '7203', '', 'TOYOTA', '', '', '', '', '', '', '']]
+const VERTAUSCHT = [
+  KOPF_JA,
+  KOPF_EN,
+  ['46216', '7203', 'トヨタ自動車', 'TOYOTA MOTOR CORPORATION', '46477'],
+  // Dieselbe Zeile, aber im Terminfeld steht der Code. Sie muss herausfallen.
+  ['6758', '6758', 'ソニーグループ', 'SONY GROUP CORPORATION', '46477'],
+]
+const vertauscht = parseTabelle(VERTAUSCHT).termine
 pruefen(
   'Eine Zahl aus dem Codebereich wird nicht zum Meldetag',
-  parseTabelle(VERTAUSCHT).length === 0,
-  JSON.stringify(parseTabelle(VERTAUSCHT))
+  vertauscht.length === 1 && vertauscht[0].code === '7203',
+  JSON.stringify(vertauscht)
 )
 
 /* Textdaten kommen in älteren Fassungen der Datei vor. */
 const ALSTEXT = [
-  KOPF,
+  KOPF_JA,
+  KOPF_EN,
   ['2026/7/13', '7203', '', 'TOYOTA', '2027/3/31', '', '', '', '', '', ''],
 ]
 pruefen(
   'Ein Textdatum wird auch gelesen',
-  parseTabelle(ALSTEXT)[0]?.termin === '2026-07-13',
-  `${parseTabelle(ALSTEXT)[0]?.termin}`
+  parseTabelle(ALSTEXT).termine[0]?.termin === '2026-07-13',
+  `${parseTabelle(ALSTEXT).termine[0]?.termin}`
 )
 
 /*
@@ -218,6 +244,26 @@ try {
   geworfen = fehler instanceof JpxOhneTabelle
 }
 pruefen('Eine umgebaute Datei wird beanstandet statt stillschweigend geleert', geworfen)
+
+/*
+  Der halbe Kopf – und warum er auch ein Ausfall ist.
+
+  Nur die englische Zeile: Der Meldetag stünde da (`Scheduled Dates` passt),
+  die Codespalte nicht (`コード` steht in der japanischen Zeile). Ohne diese
+  Prüfung würde ab hier über feste Positionen geraten. Der Lauf muss stattdessen
+  sagen, was er im Kopf gefunden hat.
+*/
+let halberKopf: Error | null = null
+try {
+  parseTabelle([KOPF_EN, ['46216', '7203', 'トヨタ自動車', 'TOYOTA MOTOR CORPORATION']])
+} catch (fehler) {
+  halberKopf = fehler as Error
+}
+pruefen(
+  'Ein halber Kopf wird beanstandet und nennt, was erkannt wurde',
+  halberKopf instanceof JpxOhneTabelle && halberKopf.message.includes('Scheduled Dates'),
+  `${halberKopf?.message}`
+)
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`

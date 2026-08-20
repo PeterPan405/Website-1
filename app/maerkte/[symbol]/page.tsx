@@ -206,8 +206,9 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
     Der Preis dafür ist ein statisches HTML ohne JavaScript für diese Zeile –
     und der ist es wert.
   */
-  const quartalstermin = getQuartalsterminbefund(symbol, heute.toISOString().slice(0, 10))
-  const quartalsterminfehlt = quartalsterminLuecke(symbol)
+  const heuteTag = heute.toISOString().slice(0, 10)
+  const quartalstermin = getQuartalsterminbefund(symbol, heuteTag)
+  const quartalsterminfehlt = quartalsterminLuecke(symbol, heuteTag)
   /*
     Der Rückblick nutzt die Fünfjahresreihe, die für den Chart ohnehin
     geladen ist. Feste Beträge statt Eingabefeld: Die Antwort ist linear, und

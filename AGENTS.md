@@ -227,16 +227,29 @@ ist keiner"
 
 ## Quartalstermine
 
-- **Zwei Quellen, und die angekündigte gewinnt.** Der Sammelkalender
-  (`ALPHAVANTAGE_API_KEY`, ein Abruf für alle) nennt Tage, die die Unternehmen
-  **selbst angekündigt** haben; die SEC-Ableitung rechnet hoch. Wo beide etwas
-  wissen, gilt der angekündigte Tag – er trägt kein `geschaetzt`, heißt auf der
-  Seite „angekündigt" und nennt seine eigene Quelle.
+- **Drei Quellen, und die angekündigte gewinnt.** Der Sammelkalender
+  (`ALPHAVANTAGE_API_KEY`, ein Abruf für alle) und die Tokioter Börse nennen
+  Tage, die die Unternehmen **selbst angekündigt** haben; die SEC-Ableitung
+  rechnet hoch. Wo mehrere etwas wissen, gilt der angekündigte Tag – er trägt
+  kein `geschaetzt`, heißt auf der Seite „angekündigt" und nennt seine eigene
+  Quelle.
+- **Die Herkunft hängt am Termin, nicht am Code.** `herkunft` in der Vorhersage,
+  aufgelöst über `ANGEKUENDIGTE_QUELLEN` in `herkunftVon()`. Wer eine vierte
+  Quelle anschließt, trägt sie **dort** ein – eine feste Quellenangabe wäre bei
+  jedem zweiten Titel die falsche.
 - **Der Sammelkalender führt, was in New York notiert** – auch die
   Hinterlegungsscheine ausländischer Emittenten, und damit Alibaba. Von 41
   europäischen und asiatischen Standardwerten waren drei enthalten. Wer keinen
   Termin hat, bekommt auf seiner Seite den Satz warum
-  (`quartalsterminLuecke()`) – eine Leerstelle erklärt sich nicht selbst.
+  (`quartalsterminLuecke()`) – eine Leerstelle erklärt sich nicht selbst, und
+  der Satz hängt am Handelsplatz: „fehlt in der Quelle" und „fehlt in ihrem
+  Zeitfenster" sind zwei verschiedene Auskünfte.
+- **Tokio liefert den Tag, nie die Uhrzeit.** Die Liste hat keine Spalte dafür.
+  Dass dort fast alles nach Handelsschluss um 15:00 Uhr Ortszeit gemeldet wird,
+  ist eine Faustregel und keine Angabe – nicht „ergänzen".
+- **Die JPX-Adresse wird gesucht, nicht eingetragen.** Der Dateiname trägt ein
+  Datum (`kessan06_0807.xlsx`), es sind zwei Dateien, und die **englische**
+  Fassung der Übersichtsseite trägt null Verweise. Gelesen wird die japanische.
 - **Der Weg über Twelve Data ist tarifgesperrt** und hat noch nie etwas
   geliefert. Er bricht seit dem 20. August 2026 nach der ersten Absage ab
   (`TarifSperre`). Nicht „reparieren": Es fehlt ein bezahlter Tarif, nicht Code.

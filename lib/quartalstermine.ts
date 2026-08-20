@@ -489,11 +489,39 @@ export function getQuartalsterminbefund(
  * der Seite von Toyota schlicht falsch. Ein japanischer Titel ohne Termin
  * fehlt nicht in der Quelle, sondern nur in ihrem Zeitfenster: Die Börse führt
  * die nächsten Wochen, nicht das ganze Jahr.
+ *
+ * ## Warum `heute` hier gebraucht wird
+ *
+ * Weil „kein Eintrag" nicht dasselbe ist wie „kein kommender Termin". Ein
+ * Unternehmen kann im Bestand stehen und trotzdem keinen Tag mehr vor sich
+ * haben – dann lieferte diese Funktion bisher `null`, `getQuartalsterminbefund`
+ * ebenfalls, und der Abschnitt auf der Aktienseite verschwand **ganz**. Kein
+ * Termin und keine Erklärung: genau die stille Leerstelle, gegen die es diesen
+ * Satz gibt.
  */
-export function quartalsterminLuecke(symbol: string): string | null {
+export function quartalsterminLuecke(symbol: string, heute: string): string | null {
   const definition = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)
   if (!definition || definition.kind !== 'stock') return null
-  if (daten.unternehmen[definition.ticker]) return null
+
+  const eintrag = daten.unternehmen[definition.ticker]
+  if (eintrag) {
+    const kommend = eintrag.vorhersagen.some((vorhersage) => vorhersage.erwartet >= heute)
+    if (kommend) return null
+
+    const letzter = [...eintrag.vorhersagen]
+      .map((vorhersage) => vorhersage.erwartet)
+      .sort()
+      .at(-1)
+
+    return (
+      'Für diesen Titel steht gerade kein Termin an. ' +
+      (letzter
+        ? `Der zuletzt erfasste Meldetag war der ${aufDeutsch(letzter)}; der nächste `
+        : 'Der nächste ') +
+      'ist noch nicht bekannt gegeben. Sobald er vorliegt, steht er hier – eine ' +
+      'Schätzung ohne Grundlage kommt nicht dazwischen.'
+    )
+  }
 
   if (/\.T$/.test(definition.ticker)) {
     return (
