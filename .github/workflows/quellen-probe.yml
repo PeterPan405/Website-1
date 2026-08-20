@@ -69,6 +69,36 @@ name: Quellen abklopfen
 #
 # Nachgesehen am 28. Juli 2026: **kein Schlüssel hinterlegt.** Der zweite Weg
 # im Abrufskript ist gebaut und meldet sich nicht, solange das so bleibt.
+#
+# ### Die Antwort, nachgelesen am 20. August 2026: nein
+#
+# Der Schlüssel ist inzwischen hinterlegt, und der Endpunkt ist im kostenlosen
+# Tarif **nicht** freigeschaltet. Der Anbieter sagt es in jeder einzelnen
+# Antwort:
+#
+#     403 – /earnings is available exclusively with grow or pro or ultra or
+#     venture or enterprise plans.
+#
+# Nicht bei europäischen Kürzeln, nicht bei asiatischen – bei allen, auch bei
+# amerikanischen. Der Demo-Schlüssel der ersten Probe konnte `AAPL` abrufen;
+# ein echter kostenloser Schlüssel kann es nicht.
+#
+# **Das stand seit dem ersten Lauf im Protokoll und hat drei Wochen niemand
+# gelesen.** Der Lauf war grün, die Zeile war eine Warnung unter 578
+# gleichlautenden, und die Zusammenfassung am Ende – „Über Twelve Data ist
+# nichts dazugekommen" – stand darunter. In der Zeit hat der nächtliche Lauf
+# 75 Minuten am Tag damit verbracht, Absagen einzusammeln.
+#
+# Seit dem 20. August 2026 bricht der zweite Weg bei dieser Antwort nach der
+# ersten Abfrage ab und schreibt eine Warnung, die den Fall benennt
+# (`TarifSperre` in `lib/providers/twelvedata-termine.ts`). Der Weg selbst
+# bleibt stehen: Er funktioniert an dem Tag, an dem jemand einen Tarif bucht.
+#
+# Damit ist die Frage endgültig keine technische mehr. Sieben Quellen sind
+# geprüft; für Meldetermine außerhalb der USA gibt es keine kostenlose. Es
+# bleibt die Wahl zwischen einem kostenpflichtigen Tarif und der Lücke – und
+# die Lücke steht seitdem nicht nur auf der Kalenderseite, sondern auf jeder
+# betroffenen Aktienseite.
 
 #
 # ## Offener Auftrag: Unternehmenszahlen ausserhalb der USA

@@ -423,6 +423,49 @@ jobs:
       # Nebenbei: Der frühere Ausdruck `$(curl … || echo 000)` ergab im
       # Fehlerfall `000000`, weil `-w '%{http_code}'` schon selbst `000`
       # ausgibt. Im Protokoll stand dann „antwortet mit 000000".
+      #
+      # ## Warum `000` seit dem 20. August 2026 anders behandelt wird als 404
+      #
+      # Der Betreiber hat an diesem Morgen zum zweiten Mal eine Fehlermail
+      # aus genau diesem Schritt bekommen. Nachgesehen: In der Nacht davor
+      # war der Hoster **zweimal** kurz weg – 23:09 bis 23:43 UTC und noch
+      # einmal um 04:58. Beide Male fünfmal `000`, beide Male ein roter
+      # Lauf, beide Male eine Mail. Und beide Male stand die Website danach
+      # von selbst wieder: um 05:19 antwortete sie mit 200, mit einem Bau
+      # von 05:07 und Kursen von 05:17.
+      #
+      # `AGENTS.md` sagt für diesen Fall etwas anderes, als hier bisher
+      # stand: „`000` von außen → **Warnung.** Der nächste Lauf trägt es
+      # nach." Der rote Lauf war für den Ernstfall gedacht, und wer zwei
+      # Mails am Tag für dasselbe Zucken bekommt, liest die dritte nicht
+      # mehr – dann ist das Mittel verbraucht, wenn es gebraucht wird.
+      #
+      # **Der Unterschied steht im Antwortcode, und zwar in dem, den es
+      # schon gibt.** Er musste nur gelesen werden:
+      #
+      # - **`000`** heißt: Auf Port 443 antwortet niemand. Kein TCP, keine
+      #   TLS-Aushandlung, nichts. Ein leerer oder halb getauschter
+      #   Webordner sähe anders aus – ein Webserver, der läuft und nichts
+      #   findet, antwortet mit **403 oder 404**, nicht mit Schweigen. `000`
+      #   ist also der Host, und gegen den Host hilft kein Neubau; das stand
+      #   sogar schon in der Meldung, die trotzdem einen anforderte.
+      # - **Jeder gelesene Code außer 200** heißt: Die Maschine steht, sie
+      #   liefert nur das Falsche. Das ist unser Fehler, ein Neubau hilft,
+      #   und dafür ist der rote Lauf da.
+      #
+      # ## Und warum es trotzdem rot werden kann
+      #
+      # Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe. Ein
+      # Hoster, der eine Stunde weg ist, ist kein Zucken mehr – nur merkt
+      # man den Unterschied nicht an einem einzelnen Lauf, sondern erst am
+      # zweiten. Deshalb wird gefragt, wie der **vorige** Lauf ausging: War
+      # der auch schon rot, ist es kein Flattern mehr, und dann kommt die
+      # Mail.
+      #
+      # Gefragt wird die Laufliste bei GitHub und nicht die eigene
+      # Vermutung – dieselbe Regel wie überall hier: Wer wissen will, ob
+      # etwas passiert ist, fragt die Gegenwart. Antwortet die Liste nicht,
+      # wird rot angenommen; im Zweifel lieber eine Mail zu viel.
       - name: Steht die Website noch?
         if: always() && github.ref_name == 'main'
         env:
@@ -443,15 +486,39 @@ jobs:
             exit 0
           fi
 
-          echo "::error::Die Startseite antwortet fünfmal über vier Minuten nicht mit 200, zuletzt $code."
-          echo "  Entweder ist der Webordner leer oder der Server ist gestört."
-          echo "  Ein Neubau wird angefordert; er legt alles wieder ab –"
-          echo "  gegen einen Ausfall beim Hoster hilft er allerdings nicht."
+          # Der Server antwortet, aber falsch – das ist unser Webordner.
+          if [ "$code" != "000" ]; then
+            echo "::error::Die Startseite antwortet fünfmal über vier Minuten mit $code statt 200."
+            echo "  Der Webserver läuft und findet nichts: Der Ordner ist leer oder halb getauscht."
+            echo "  Ein Neubau wird angefordert; er legt alles wieder ab."
+            gh workflow run paket-bauen.yml \
+              --repo "${{ github.repository }}" --ref main -f paket=false
+            exit 1
+          fi
+
+          # Ab hier: fünfmal `000`. Der Host schweigt.
+          vorher=$(gh run list --repo "${{ github.repository }}" \
+                     --workflow kurse.yml --branch main --limit 5 \
+                     --json databaseId,conclusion \
+                     --jq "[.[] | select(.databaseId != ${GITHUB_RUN_ID})] | .[0].conclusion" \
+                     2>/dev/null || echo unbekannt)
+          [ -n "$vorher" ] || vorher=unbekannt
+
+          echo "  Auf Port 443 antwortet niemand – kein Webserver, der etwas nicht findet,"
+          echo "  sondern ein Host, der schweigt. Ein Neubau hilft dagegen nicht."
+          echo "  Voriger Lauf dieses Workflows: $vorher"
           echo ""
           echo "  Nachsehen: hPanel > Websites, und ob Port 65002 antwortet."
           echo "  Hält es an, ist es eine Störung des Hosters und keine unsere."
-          gh workflow run paket-bauen.yml \
-            --repo "${{ github.repository }}" --ref main -f paket=false
+
+          if [ "$vorher" = "success" ]; then
+            echo "::warning::Die Startseite antwortet fünfmal über vier Minuten nicht – der Host ist weg."
+            echo "  Der vorige Lauf lief noch durch, also flattert es. Der nächste Lauf sieht nach."
+            exit 0
+          fi
+
+          echo "::error::Die Startseite antwortet seit mindestens zwei Läufen nicht ($vorher davor)."
+          echo "  So lange ist es kein Flattern mehr – hier muss jemand beim Hoster nachsehen."
           exit 1
 
       # ------------------------------------------------------------------

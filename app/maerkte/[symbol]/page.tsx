@@ -17,6 +17,8 @@ import { Dividendentafel } from '@/components/markets/Dividendentafel'
 import { Fondstafel } from '@/components/markets/Fondstafel'
 import { Handelsfenster } from '@/components/markets/Handelsfenster'
 import { Merkschalter } from '@/components/markets/Merkschalter'
+import { Quartalstermin } from '@/components/markets/Quartalstermin'
+import { Zahlenbald } from '@/components/markets/Zahlenbald'
 import { Quellensteuertafel } from '@/components/markets/Quellensteuertafel'
 import { Rueckblicktafel } from '@/components/markets/Rueckblicktafel'
 import { Branchenvergleichstafel } from '@/components/markets/Branchenvergleichstafel'
@@ -53,6 +55,11 @@ import {
   getDividendenbefund,
   getDividendenverlauf,
 } from '@/lib/dividendentermine'
+import {
+  getQuartalsterminbefund,
+  quartalsterminLuecke,
+  quartalstermineQuelle,
+} from '@/lib/quartalstermine'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { getNewsArticles, getNewsForSymbol } from '@/lib/news'
 import { MINDEST_ARTIKEL, strangFuer } from '@/lib/nachrichtenstrang'
@@ -191,6 +198,21 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
   const dividendenverlauf = getDividendenverlauf(symbol)
   const branche = getBrancheVon(symbol)
   /*
+    Der Meldetermin wird beim Bauen gegen den Bautag gerechnet – anders als
+    beim Handelsfenster, das seine Gegenwart im Browser holt.
+
+    Der Unterschied ist beabsichtigt und hängt an der Feinheit der Aussage:
+    „Die Börse hat gerade zu" kippt minütlich, „die Zahlen kommen in zwölf
+    Tagen" nicht. Diese Seiten werden jede Nacht neu gebaut; die Zahl ist damit
+    höchstens einen Tag alt, und ein Tag verschiebt in einem Zwei-Wochen-Fenster
+    nichts, was jemand falsch verstünde.
+
+    Der Preis dafür ist ein statisches HTML ohne JavaScript für diese Zeile –
+    und der ist es wert.
+  */
+  const quartalstermin = getQuartalsterminbefund(symbol, heute.toISOString().slice(0, 10))
+  const quartalsterminfehlt = quartalsterminLuecke(symbol)
+  /*
     Der Rückblick nutzt die Fünfjahresreihe, die für den Chart ohnehin
     geladen ist. Feste Beträge statt Eingabefeld: Die Antwort ist linear, und
     ein Regler auf tausend Seiten kostete JavaScript für eine Multiplikation.
@@ -272,6 +294,12 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               nach dem letzten Absatz.
             */}
             <Merkschalter symbol={instrument.symbol} name={instrument.name} />
+            {/*
+              Das Zeichen für „meldet bald" steht hier oben, weil es eine Frage
+              beantwortet, die sich der Leser nicht gestellt hat – die
+              ausführliche Antwort steht unten, dorthin springt der Verweis.
+            */}
+            <Zahlenbald befund={quartalstermin} />
           </>
         }
       />
@@ -385,6 +413,28 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
                 />
               </div>
             </section>
+
+            {/* -------------------------------------- Nächste Quartalszahlen */}
+            {/*
+              Der vierte offene Abschnitt – und die Ausnahme ist gewollt.
+
+              Der Betreiber hat am 20. August 2026 verlangt, dass bei jeder
+              Aktie „immer noch dran steht, wann sie Zahlen bringt". Zugeklappt
+              stünde es eben nicht dran; wer den Termin sucht, findet ihn dann,
+              und wer ihn nicht sucht, läuft in ihn hinein.
+
+              Dazu kommt ein handfester Grund: Das Zeichen im Seitenkopf springt
+              hierher. Ein Sprungziel in einem `<details>`, das zu ist, führt
+              ins Nichts – der Browser scrollt an eine Stelle, an der nichts
+              steht.
+            */}
+            <Quartalstermin
+              befund={quartalstermin}
+              luecke={quartalsterminfehlt}
+              name={instrument.name}
+              quelle={quartalstermineQuelle}
+              className="mt-12"
+            />
 
             {/* ----------------------------------------------- Erklärung */}
             {/*

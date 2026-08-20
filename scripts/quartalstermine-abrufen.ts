@@ -58,7 +58,9 @@ import {
   istAbfragbar,
   KontingentErschoepft,
   marktcodeAusYahoo,
+  TarifSperre,
 } from '../lib/providers/twelvedata-termine.ts'
+import { newYorkerUhrzeit, sitzungslage } from '../lib/zonenzeit.ts'
 
 const KOPFZEILEN: Record<string, string> = {
   'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com',
@@ -180,12 +182,33 @@ interface Vorhersage {
    * daraus ein Zeitfenster statt eines Datums.
    */
   streuungTage: number
+  /**
+   * Die erwartete New Yorker Wanduhrzeit, `HH:MM` – wenn belegbar.
+   *
+   * Festgehalten wird die New Yorker und nicht die deutsche Zeit, damit es
+   * **eine** Wahrheit gibt: Die deutsche Uhrzeit hängt vom erwarteten Tag ab,
+   * weil Europa und Amerika an verschiedenen Tagen umstellen. Wer sie hier
+   * mitschriebe, hätte sie zweimal – einmal hier und einmal in der Anzeige –
+   * und beim nächsten Umstellungsfenster liefen die beiden auseinander.
+   *
+   * Steht nur da, wenn `uhrzeitAus()` sie belegen konnte.
+   */
+  newYorkerZeit?: string
 }
 
 interface Eintrag {
   name: string
   /** Die letzten tatsächlichen Veröffentlichungen, neueste zuerst. */
   bisher: string[]
+  /**
+   * Zu jedem Tag in `bisher` die New Yorker Uhrzeit der Einreichung.
+   *
+   * Getrennt und nicht als Objekt je Termin: Der bisherige Bestand kennt
+   * `bisher` als Liste von Zeichenketten, und ein Lauf übernimmt, was noch im
+   * Katalog steht. Ein geänderter Aufbau hätte beim ersten Lauf nach dem Umbau
+   * jeden übernommenen Eintrag unlesbar gemacht.
+   */
+  bisherZeiten?: Record<string, string>
   vorhersagen: Vorhersage[]
 }
 
@@ -236,17 +259,48 @@ interface Einreichungen {
   form?: string[]
   filingDate?: string[]
   items?: string[]
+  acceptanceDateTime?: string[]
+}
+
+/** Eine Ergebnismeldung: der Tag und, wenn bekannt, die Stunde. */
+export interface Meldung {
+  /** Der Einreichungstag, `JJJJ-MM-TT`. */
+  datum: string
+  /**
+   * Die New Yorker Wanduhrzeit der Annahme, `HH:MM` – oder `null`.
+   *
+   * ## Warum die Annahmezeit und warum in New Yorker Zeit
+   *
+   * Näher als `acceptanceDateTime` kommt eine freie Quelle nicht an den
+   * Augenblick der Veröffentlichung: Es ist die Sekunde, in der die
+   * US-Börsenaufsicht das 8-K entgegengenommen hat, und ein Unternehmen
+   * reicht diese Meldung minutennah zur Pressemitteilung ein. Nachgemessen am
+   * 20. August 2026: `2026-08-06T20:01:12.000Z` – das sind 16:01 Uhr New
+   * Yorker Zeit, eine Minute nach Börsenschluss.
+   *
+   * Festgehalten wird die **New Yorker** Wanduhr und nicht der Zeitpunkt.
+   * Ein Unternehmen meldet nach *seinem* Börsenschluss um 16:00 Uhr Ortszeit,
+   * und diese Zeit gilt auch im nächsten Jahr. Der Zeitpunkt dagegen läge nach
+   * einem Jahr je nach Zeitumstellung eine Stunde daneben – die Begründung
+   * steht in `lib/zonenzeit.ts`.
+   */
+  newYorkerZeit: string | null
 }
 
 /** Die Ergebnismeldungen aus einem Block von Einreichungen. */
-function ergebnismeldungen(block: Einreichungen | undefined): string[] {
-  const treffer: string[] = []
+function ergebnismeldungen(block: Einreichungen | undefined): Meldung[] {
+  const treffer: Meldung[] = []
   if (!block?.form || !block.filingDate || !block.items) return treffer
 
   for (let i = 0; i < block.form.length; i++) {
     if (block.form[i] !== '8-K') continue
     if (!(block.items[i] ?? '').includes('2.02')) continue
-    treffer.push(block.filingDate[i])
+
+    const angenommen = block.acceptanceDateTime?.[i]
+    treffer.push({
+      datum: block.filingDate[i],
+      newYorkerZeit: angenommen ? newYorkerUhrzeit(angenommen) || null : null,
+    })
   }
   return treffer
 }
@@ -316,7 +370,9 @@ function reichtAus(termine: readonly string[]): boolean {
  * bleibt es bei der Reihenfolge der Datei; dann ist wenigstens etwas besser
  * als nichts.
  */
-async function termineVon(cik: number): Promise<{ name: string; termine: string[] }> {
+async function termineVon(
+  cik: number
+): Promise<{ name: string; termine: string[]; zeiten: Record<string, string> }> {
   const kennung = String(cik).padStart(10, '0')
   const daten = (await hole(`${SUBMISSIONS_BASIS}/CIK${kennung}.json`)) as {
     name?: string
@@ -326,21 +382,21 @@ async function termineVon(cik: number): Promise<{ name: string; termine: string[
     }
   }
 
-  const termine = ergebnismeldungen(daten.filings?.recent)
+  const meldungen = ergebnismeldungen(daten.filings?.recent)
 
   const bloecke = [...(daten.filings?.files ?? [])].sort((a, b) =>
     (b.filingTo ?? '').localeCompare(a.filingTo ?? '')
   )
 
   for (const block of bloecke) {
-    if (reichtAus(termine)) break
+    if (reichtAus(meldungen.map((m) => m.datum))) break
     if (!block.name) continue
 
     try {
       const nachgeladen = (await hole(
         `${SUBMISSIONS_BASIS}/${block.name}`
       )) as Einreichungen
-      termine.push(...ergebnismeldungen(nachgeladen))
+      meldungen.push(...ergebnismeldungen(nachgeladen))
     } catch (fehler) {
       // Ein fehlender Altblock ist kein Grund, das Unternehmen ganz fallen zu
       // lassen – vielleicht reicht schon, was bis hierher zusammengekommen ist.
@@ -349,10 +405,26 @@ async function termineVon(cik: number): Promise<{ name: string; termine: string[
     await new Promise((weiter) => setTimeout(weiter, PAUSE_MS))
   }
 
-  // Absteigend und ohne Dubletten – ein Tag kann mehrfach gemeldet worden sein.
+  /*
+    Absteigend und ohne Dubletten – ein Tag kann mehrfach gemeldet worden sein.
+
+    Bei einer Dublette gewinnt die **frühere** Uhrzeit: Meldet ein Unternehmen
+    seine Zahlen um 16:01 Uhr und reicht um 18:30 Uhr eine Ergänzung nach, ist
+    die erste die Veröffentlichung, um die es hier geht.
+  */
+  const zeiten: Record<string, string> = {}
+  for (const meldung of meldungen) {
+    if (!meldung.newYorkerZeit) continue
+    const bisher = zeiten[meldung.datum]
+    if (!bisher || meldung.newYorkerZeit < bisher) {
+      zeiten[meldung.datum] = meldung.newYorkerZeit
+    }
+  }
+
   return {
     name: daten.name ?? '',
-    termine: [...new Set(termine)].sort((a, b) => (a < b ? 1 : -1)),
+    termine: [...new Set(meldungen.map((m) => m.datum))].sort((a, b) => (a < b ? 1 : -1)),
+    zeiten,
   }
 }
 
@@ -366,7 +438,45 @@ async function termineVon(cik: number): Promise<{ name: string; termine: string[
  * Gibt es kein Vorjahr zum Vergleich, entsteht keine Vorhersage. Lieber eine
  * Lücke als eine Zahl ohne Grundlage.
  */
-function vorhersagen(termine: string[], heute: string): Vorhersage[] {
+/**
+ * Die erwartete Uhrzeit – oder keine.
+ *
+ * ## Warum zwei Jahre übereinstimmen müssen
+ *
+ * Ein einzelner Zeitstempel ist kein Muster. Ein Unternehmen, das vergangenes
+ * Jahr einmalig um 8:30 Uhr statt nach Börsenschluss gemeldet hat, bekäme aus
+ * dieser einen Meldung eine Uhrzeit, die es so nie wieder tut – und weil hier
+ * ohnehin schon der Tag geschätzt ist, käme zur unscharfen Angabe eine falsche
+ * dazu.
+ *
+ * Geprüft wird deshalb an derselben Stelle, an der auch der Tag geprüft wird:
+ * beim Vorjahrespartner. Stimmen beide in der **Lage zur Handelssitzung**
+ * überein – beide vor der Eröffnung, beide nach dem Schluss –, ist das ein
+ * Muster. Und genau diese Lage ist auch die Aussage, die die Website trifft;
+ * die Minute daneben ist der Beleg, nicht die Behauptung.
+ *
+ * Verglichen wird die Lage und nicht die Minute, weil die Minute schwankt und
+ * die Lage nicht: Zwischen 16:01 und 16:35 Uhr liegen fünfunddreißig Minuten
+ * und keine Aussage, zwischen 8:30 und 16:05 Uhr liegt ein Handelstag.
+ */
+function uhrzeitAus(
+  basis: string,
+  vorjahr: string,
+  zeiten: Record<string, string>
+): string | null {
+  const jetzt = zeiten[basis]
+  const davor = zeiten[vorjahr]
+  if (!jetzt || !davor) return null
+  const lage = sitzungslage(jetzt)
+  if (!lage || lage !== sitzungslage(davor)) return null
+  return jetzt
+}
+
+function vorhersagen(
+  termine: string[],
+  heute: string,
+  zeiten: Record<string, string> = {}
+): Vorhersage[] {
   if (termine.length < MINDESTTERMINE) return []
 
   const ergebnis: Vorhersage[] = []
@@ -393,7 +503,13 @@ function vorhersagen(termine: string[], heute: string): Vorhersage[] {
     const erwartet = plusTage(basis, JAHR_IN_TAGEN)
     if (erwartet <= heute) continue
 
-    ergebnis.push({ erwartet, basis, streuungTage: besterAbstand })
+    const newYorkerZeit = uhrzeitAus(basis, vorjahr, zeiten)
+    ergebnis.push({
+      erwartet,
+      basis,
+      streuungTage: besterAbstand,
+      ...(newYorkerZeit ? { newYorkerZeit } : {}),
+    })
   }
 
   ergebnis.sort((a, b) => (a.erwartet < b.erwartet ? -1 : 1))
@@ -535,15 +651,19 @@ async function main(): Promise<void> {
 
   for (const [index, { katalog, cik }] of gesucht.entries()) {
     try {
-      const { name, termine } = await termineVon(cik)
-      const abgeleitet = vorhersagen(termine, heute)
+      const { name, termine, zeiten } = await termineVon(cik)
+      const abgeleitet = vorhersagen(termine, heute, zeiten)
 
       if (abgeleitet.length === 0) {
         ohneMuster.push(`${katalog}/CIK${cik} (${termine.length} Meldungen)`)
       } else {
+        const behalten = termine.slice(0, 8)
         unternehmen[katalog] = {
           name,
-          bisher: termine.slice(0, 8),
+          bisher: behalten,
+          bisherZeiten: Object.fromEntries(
+            behalten.filter((tag) => zeiten[tag]).map((tag) => [tag, zeiten[tag]])
+          ),
           vorhersagen: abgeleitet,
         }
       }
@@ -605,8 +725,9 @@ async function main(): Promise<void> {
     const beginn = Date.now()
     let kontingentWeg = false
     let zeitWeg = false
+    let tarifWeg = false
     for (const [index, kuerzel] of offen.entries()) {
-      if (kontingentWeg) break
+      if (kontingentWeg || tarifWeg) break
       if (Date.now() - beginn > ZWEITER_WEG_BUDGET_MS) {
         console.log(
           `\nZeitbudget nach ${index} Abfragen aufgebraucht.\n` +
@@ -638,7 +759,28 @@ async function main(): Promise<void> {
           }
         }
       } catch (fehler) {
-        if (fehler instanceof KontingentErschoepft) {
+        if (fehler instanceof TarifSperre) {
+          /*
+            Kein Weiterversuchen. Das ist keine Störung, die der nächste Lauf
+            nachträgt, sondern eine Eigenschaft des Schlüssels: Die zweite
+            Anfrage bekäme dieselbe Antwort und die achthundertste auch.
+
+            Bis zum 20. August 2026 war dieser Fall nur eine Warnzeile je
+            Kürzel. Der Lauf sammelte damit 578-mal dieselbe Absage ein, war
+            dabei jedes Mal grün und verbrauchte 75 Minuten am Tag für nichts.
+            Die Zusammenfassung sagte es sogar – „Über Twelve Data ist nichts
+            dazugekommen" –, nur stand sie unter 578 Zeilen, die niemand las.
+          */
+          console.warn(
+            `\n::warning::Twelve Data liefert /earnings in diesem Tarif nicht:\n` +
+              `  ${fehler.message}\n` +
+              `  Abgebrochen nach ${index + 1} Abfragen – jede weitere bekäme dieselbe Antwort.\n` +
+              '  Damit bleibt es bei den Unternehmen, die bei der SEC ein 8-K einreichen.\n' +
+              '  Zu öffnen wäre dieser Weg nur mit einem kostenpflichtigen Tarif; das ist\n' +
+              '  eine Entscheidung des Betreibers und keine des Skripts.'
+          )
+          tarifWeg = true
+        } else if (fehler instanceof KontingentErschoepft) {
           console.warn(
             `\nKontingent aufgebraucht nach ${index} Abfragen: ${fehler.message}\n` +
               'Der Rest bleibt für den nächsten Lauf liegen – was bis hierher\n' +
@@ -664,7 +806,7 @@ async function main(): Promise<void> {
       await new Promise((weiter) => setTimeout(weiter, TWELVEDATA_PAUSE_MS))
     }
 
-    if (!kontingentWeg && !zeitWeg) {
+    if (!kontingentWeg && !zeitWeg && !tarifWeg) {
       console.log('  Alle offenen Kürzel abgefragt.')
     }
   }
