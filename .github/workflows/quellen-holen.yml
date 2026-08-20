@@ -48,6 +48,11 @@ on:
         required: false
         default: ''
         type: string
+      verweise:
+        description: 'Statt Text die Verweise zeigen, die auf dieses Muster passen'
+        required: false
+        default: ''
+        type: string
 
 # Zwei gleichzeitige Läufe stören einander nicht, aber sie machen das Protokoll
 # unübersichtlich. Der laufende wird nicht abgebrochen.
@@ -76,6 +81,7 @@ jobs:
           URLS: ${{ inputs.urls }}
           ZEICHEN: ${{ inputs.zeichen }}
           SUCHE: ${{ inputs.suche }}
+          VERWEISE: ${{ inputs.verweise }}
         run: |
           python3 - <<'ENDE'
           import html
@@ -84,6 +90,7 @@ jobs:
           import subprocess
           import tempfile
           import urllib.error
+          import urllib.parse
           import urllib.request
 
           grenze = int(os.environ.get("ZEICHEN") or "12000")
@@ -92,6 +99,22 @@ jobs:
           # Ohne `suche` bleibt alles wie bisher: die ersten `zeichen` Zeichen.
           gesucht = (os.environ.get("SUCHE") or "").strip()
           muster = re.compile(gesucht, re.IGNORECASE) if gesucht else None
+
+          # Und ohne `verweise` wird kein einziger Link ausgegeben.
+          #
+          # ## Warum es diesen Schalter gibt
+          #
+          # Das Lesbarmachen entfernt jedes Markup – und damit jedes `href`.
+          # Für eine Kennzahl auf einer Fondsseite ist das richtig; für die
+          # Frage „wo liegt die Datei, auf die diese Seite verweist?" ist es
+          # das Gegenteil von hilfreich.
+          #
+          # Aufgefallen am 20. August 2026 bei der Suche nach Meldeterminen:
+          # Die Tokioter Börse führt sichtbar eine Rubrik „Scheduled Dates",
+          # und im lesbar gemachten Text stand die Überschrift – aber nicht,
+          # wohin sie führt. Ohne diesen Schalter bleibt nur Raten.
+          verwiesen = (os.environ.get("VERWEISE") or "").strip()
+          verweismuster = re.compile(verwiesen, re.IGNORECASE) if verwiesen else None
 
           if not adressen:
               raise SystemExit("Keine brauchbare Adresse übergeben.")
@@ -173,6 +196,41 @@ jobs:
                   continue
               except Exception as fehler:  # noqa: BLE001
                   print(f"FEHLER: {type(fehler).__name__}: {fehler}")
+                  continue
+
+              # Die Verweise vor dem Lesbarmachen – danach gibt es keine mehr.
+              #
+              # Ausgegeben wird die **absolute** Adresse: Eine Seite verweist
+              # meist relativ („/listing/…"), und eine relative Adresse in
+              # einem Protokoll ist eine Adresse, die man nicht abrufen kann.
+              # `urljoin` löst sie gegen die Seite auf, von der sie stammt.
+              #
+              # Geprüft wird gegen Ziel **und** Beschriftung. Die Datei, die
+              # gesucht wird, heißt oft nichtssagend (`b7gje6000005mkkr.xls`),
+              # und dann ist der Linktext das Einzige, woran sie zu erkennen
+              # ist.
+              if verweismuster is not None and not ist_pdf:
+                  gesehen = set()
+                  treffer = []
+                  for gefunden in re.finditer(
+                      r'(?is)<a\b[^>]*?href\s*=\s*["\']([^"\']+)["\'][^>]*>(.*?)</a>',
+                      text,
+                  ):
+                      ziel = urllib.parse.urljoin(adresse, gefunden.group(1).strip())
+                      wort = re.sub(r"\s+", " ", zu_text(gefunden.group(2))).strip()
+                      if not (verweismuster.search(ziel) or verweismuster.search(wort)):
+                          continue
+                      if ziel in gesehen:
+                          continue
+                      gesehen.add(ziel)
+                      treffer.append((wort[:70], ziel))
+
+                  if not treffer:
+                      print(f"[kein Verweis passt auf {verweismuster.pattern!r}]")
+                  else:
+                      for wort, ziel in treffer[:60]:
+                          print(f"  {wort or '(ohne Text)'}\n    → {ziel}")
+                      print(f"\n[{len(treffer)} Verweise gefunden.]")
                   continue
 
               # JSON, CSV, reiner Text und bereits ausgelesene PDFs bleiben,
