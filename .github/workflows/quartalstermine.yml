@@ -65,6 +65,12 @@ jobs:
         # Grund für den wöchentlichen statt täglichen Zeitplan.
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          # Der Sammelkalender der **angekündigten** Termine – ein Abruf für
+          # alle, kostenlos, und die einzige Quelle in Reichweite, die
+          # ausländische Emittenten wie Alibaba nennt. Fehlt der Schlüssel,
+          # wird jeder Termin wie bisher aus dem Meldemuster hochgerechnet;
+          # der Lauf sagt es dann in der ersten Zeile.
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
         run: npm run quartalstermine
 
       - name: Momentaufnahme committen

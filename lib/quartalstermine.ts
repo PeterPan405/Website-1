@@ -76,6 +76,17 @@ interface Vorhersage {
    * nach genau dieser Angabe.
    */
   newYorkerZeit?: string
+  /**
+   * Gesetzt, wenn das Unternehmen den Tag **selbst angekündigt** hat.
+   *
+   * Dann wurde nichts hochgerechnet: `basis` ist das Ende des
+   * Berichtszeitraums statt eines Vorjahrestags, und `streuungTage` bedeutet
+   * nichts. Ein solcher Termin trägt kein `geschaetzt` – der Unterschied ist
+   * die ganze Aussage.
+   */
+  angekuendigt?: true
+  /** Die vom Anbieter genannte Lage zur US-Sitzung, ohne Minutenangabe. */
+  lage?: 'vorboerse' | 'nachboerse'
 }
 
 interface Eintrag {
@@ -98,6 +109,18 @@ export const quartalstermineStand: string | null = daten.abgerufenAm
 
 /** Herkunft und Abgrenzung, wie sie unter dem Kalender steht. */
 export const quartalstermineQuelle = daten.quelle
+
+/**
+ * Die Herkunft der **angekündigten** Termine.
+ *
+ * Eine zweite Quelle neben der SEC, und sie muss auch als solche dastehen: Ein
+ * Termin, der aus dem Sammelkalender kommt, ist nicht aus 8-K-Meldungen
+ * abgeleitet, und die Quellenangabe darunter wäre sonst schlicht falsch.
+ */
+export const ANGEKUENDIGT_QUELLE = {
+  label: 'Sammelkalender angekündigter Meldetermine (Alpha Vantage)',
+  url: 'https://www.alphavantage.co/documentation/#earnings-calendar',
+}
 
 /**
  * Der Anzeigename und der Slug eines Kürzels aus dem Katalog.
@@ -153,23 +176,41 @@ export function getQuartalstermine(): Termin[] {
 
       const uhrzeit = uhrzeitsatz(vorhersage)
 
+      /*
+        Ein angekündigter Termin trägt kein `geschaetzt` – und das ist keine
+        Formalie. `geschaetzt` steuert auf der Kalenderseite das „erwartet,
+        nicht bestätigt" und das „um den …". Beides an einem Tag, den das
+        Unternehmen selbst genannt hat, wäre eine Untertreibung: Wer danach
+        plant, plant richtig, und die Warnung nähme ihm die Sicherheit, die
+        die Quelle hergibt.
+      */
       ergebnis.push({
         datum: vorhersage.erwartet,
-        titel: `${katalog.name}: Quartalszahlen erwartet`,
+        titel: vorhersage.angekuendigt
+          ? `${katalog.name}: Quartalszahlen angekündigt`
+          : `${katalog.name}: Quartalszahlen erwartet`,
         art: 'berichtssaison',
         ...(uhrzeit ? { uhrzeit } : {}),
-        bedeutung:
-          `Abgeleitet aus dem bisherigen Meldemuster – im Vorjahr meldete das Unternehmen am ` +
-          `${aufDeutsch(vorhersage.basis)}. ${streuungssatz(vorhersage.streuungTage)}` +
-          `Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
-          `Für den Kurs zählt ohnehin nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`,
+        bedeutung: vorhersage.angekuendigt
+          ? `Das Unternehmen hat diesen Tag selbst angekündigt. ` +
+            `Für den Kurs zählt nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`
+          : `Abgeleitet aus dem bisherigen Meldemuster – im Vorjahr meldete das Unternehmen am ` +
+            `${aufDeutsch(vorhersage.basis)}. ${streuungssatz(vorhersage.streuungTage)}` +
+            `Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
+            `Für den Kurs zählt ohnehin nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`,
         themen: ['aktie', 'wie-funktioniert-der-markt'],
         symbole: [katalog.symbol],
-        geschaetzt: {
-          basis: vorhersage.basis,
-          streuungTage: vorhersage.streuungTage,
-        },
-        quelle: { label: daten.quelle.label, url: daten.quelle.url },
+        ...(vorhersage.angekuendigt
+          ? {}
+          : {
+              geschaetzt: {
+                basis: vorhersage.basis,
+                streuungTage: vorhersage.streuungTage,
+              },
+            }),
+        quelle: vorhersage.angekuendigt
+          ? ANGEKUENDIGT_QUELLE
+          : { label: daten.quelle.label, url: daten.quelle.url },
       })
     }
   }
@@ -272,6 +313,16 @@ function streuungssatz(tage: number): string {
  * wird, entscheidet die Stelle, die sie trifft.
  */
 export function uhrzeitsatz(vorhersage: Vorhersage): string | null {
+  /*
+    Ein angekündigter Termin nennt die Lage, aber keine Minute – und dann steht
+    auch keine da. Aus „post-market" eine Uhrzeit zu rechnen, nur damit beide
+    Quellen durch dieselbe Anzeige laufen, hieße eine Genauigkeit zu behaupten,
+    die die Quelle nicht hergibt.
+  */
+  if (vorhersage.angekuendigt) {
+    return vorhersage.lage ? sitzungslageLabel[vorhersage.lage] : null
+  }
+
   if (!vorhersage.newYorkerZeit) return null
 
   const lage = sitzungslage(vorhersage.newYorkerZeit)
@@ -303,6 +354,16 @@ export interface Quartalsterminbefund {
   bald: boolean
   /** Die erwartete Uhrzeit als Satz in deutscher Zeit, wenn belegbar. */
   uhrzeit: string | null
+  /**
+   * Ob das Unternehmen den Tag selbst angekündigt hat.
+   *
+   * Steuert die Wortwahl auf der Seite: „angekündigt" statt „geschätzt", und
+   * ohne den Absatz über das Meldemuster. Zwei verschiedene Zusagen dürfen
+   * nicht gleich aussehen – die eine trägt eine Order, die andere nicht.
+   */
+  angekuendigt: boolean
+  /** Die Herkunft dieses einen Termins. */
+  quelle: { label: string; url: string }
 }
 
 function tageZwischen(von: string, bis: string): number {
@@ -362,6 +423,10 @@ export function getQuartalsterminbefund(
     inTagen,
     bald: inTagen <= BALD_TAGE,
     uhrzeit: uhrzeitsatz(naechste),
+    angekuendigt: naechste.angekuendigt === true,
+    quelle: naechste.angekuendigt
+      ? ANGEKUENDIGT_QUELLE
+      : { label: daten.quelle.label, url: daten.quelle.url },
   }
 }
 

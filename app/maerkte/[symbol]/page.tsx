@@ -55,11 +55,7 @@ import {
   getDividendenbefund,
   getDividendenverlauf,
 } from '@/lib/dividendentermine'
-import {
-  getQuartalsterminbefund,
-  quartalsterminLuecke,
-  quartalstermineQuelle,
-} from '@/lib/quartalstermine'
+import { getQuartalsterminbefund, quartalsterminLuecke } from '@/lib/quartalstermine'
 import { getTopicsBySlugs } from '@/lib/learn'
 import { getNewsArticles, getNewsForSymbol } from '@/lib/news'
 import { MINDEST_ARTIKEL, strangFuer } from '@/lib/nachrichtenstrang'
@@ -432,7 +428,6 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
               befund={quartalstermin}
               luecke={quartalsterminfehlt}
               name={instrument.name}
-              quelle={quartalstermineQuelle}
               className="mt-12"
             />
 

@@ -2114,3 +2114,91 @@ in derselben Nacht zwischen 40 und 107 Minuten – geplante Läufe werden hier
 regelmäßig verworfen. Eine Zeitgrenze hätte an einer normalen Lücke
 angeschlagen und an einem echten Ausfall vorbeigemessen. Der vorige Ausgang
 hängt an nichts davon ab.
+
+## Der Betreiber hatte recht: es gab noch eine Quelle
+
+Auf den Befund, dass 711 von 1.029 Aktien keinen Meldetermin haben, kam am 20. August 2026 der Widerspruch: „das kann ja nicht sein, diese Daten sind für
+jeden zugänglich."
+
+Er hatte recht, und der Satz davor war zu bequem. „Sieben Quellen geprüft,
+keine gefunden" ist eine Aussage über sieben Quellen und keine über die Welt.
+Ein Unternehmen, das Quartalszahlen vorlegt, kündigt den Tag an – auf seiner
+eigenen Seite, im Finanzkalender, in einer Pflichtmitteilung. Die Frage war nie,
+ob die Angabe öffentlich ist. Sie war, ob es eine **Sammelstelle** gibt, die
+sie maschinenlesbar führt und die man abrufen darf.
+
+### Was der zweite Durchgang gemessen hat
+
+Nicht geraten, sondern über `quellen-holen.yml` von einem Läufer abgerufen:
+
+- **Yahoo**, drei Pfade (`v10`, `v6`, `v7`): **401**. Der Kalender verlangt
+  weiterhin einen Crumb, also Cookie und Einmalkennung aus dem Browser. Das
+  bleibt eine gesetzte Zugangssperre, und die wird nicht nachgebaut.
+- **Financial Modeling Prep**, **Finnhub**: **401** ohne Schlüssel.
+- **Euronext**: Die Seite `/en/financial-calendars` antwortet mit 200 und trägt
+  die Rubrik – die Termine selbst rendert sie erst im Browser nach. Der
+  geratene JSON-Pfad: 404.
+- **London Stock Exchange**: `api.londonstockexchange.com/.../alldata/AZN`
+  antwortet mit **200 JSON**, ohne Schlüssel – aber nur mit Stammdaten
+  (ISIN, SEDOL, Segment), ohne Termine.
+- **Alpha Vantage, `EARNINGS_CALENDAR`: 200, und zwar mit Daten.**
+
+### Die Quelle, die es doch gibt
+
+Ein CSV, ein Abruf, alle angekündigten Termine der nächsten drei Monate.
+Gemessen: 1.706 Zeilen, 95 KB, Spalten
+
+    symbol,name,reportDate,fiscalDateEnding,estimate,currency,timeOfTheDay
+
+Zwei Dinge sind daran besser als alles, was diese Website bisher hatte:
+
+1. **Es sind angekündigte Tage, keine hochgerechneten.** Bisher leitet der
+   Abruf den nächsten Meldetag aus dem Muster der Vorjahre ab und weist ihn als
+   `geschaetzt` aus. Hier steht der Tag, den das Unternehmen selbst genannt hat.
+2. **`timeOfTheDay` sagt `pre-market` oder `post-market`** – dieselbe Aussage,
+   die vorher aus dem Annahmezeitstempel der SEC abgeleitet werden musste, nur
+   direkt von der Quelle.
+
+Und der Fall, der alles ausgelöst hat, steht darin:
+
+    BABA,ALIBABA GROUP HOLDING LIMITED,2026-08-20,2026-06-30,1.77,USD,pre-market
+
+### Was sie nicht kann – gemessen, nicht vermutet
+
+Von 41 europäischen und asiatischen Standardwerten standen **drei** im
+Kalender: Novartis, Banco Santander und TotalEnergies, jeweils unter ihrem
+US-Kürzel. Siemens, Allianz, Bayer, BASF, LVMH, Nestlé, Roche, AstraZeneca,
+Unilever, Toyota, Sony, Samsung: nicht enthalten.
+
+Der Kalender führt also, was in New York notiert – einschließlich der
+Hinterlegungsscheine ausländischer Unternehmen. Das ist genau die Lücke, die
+die SEC-Quelle prinzipiell nicht schließen kann: Ein ausländischer Emittent
+reicht kein `8-K` mit Punkt 2.02 ein und fehlt dort zwangsläufig.
+
+Für Unternehmen, die nur an ihrer Heimatbörse notieren, bleibt die Lücke offen.
+Die beiden Spuren dorthin sind benannt und nicht weiterverfolgt worden:
+Euronext und die LSE führen Termine, geben sie aber nur an ihre eigene
+Oberfläche heraus. Beides nachzubauen wäre dasselbe wie bei Yahoo.
+
+### Warum trotzdem zwei Wege nebeneinander stehen bleiben
+
+Der Kalender läuft **vor** der SEC und gewinnt, wo er etwas weiß: Ein
+angekündigter Tag schlägt jede Hochrechnung. Die Ableitung bekommt, was übrig
+bleibt – und das sind die 318 US-Unternehmen, die sie lückenlos abdeckt.
+
+Zwei Quellen mit verschiedenen Stärken, und keine ersetzt die andere. Auf der
+Seite ist der Unterschied sichtbar: „angekündigt" statt „erwartet", ohne den
+Absatz über das Meldemuster, ohne `geschaetzt` und mit der Quelle, aus der der
+Tag wirklich stammt. Zwei verschiedene Zusagen dürfen nicht gleich aussehen –
+die eine trägt eine Order, die andere nicht.
+
+### Und die Lehre, die über den Fall hinausgeht
+
+**„Geprüft und nichts gefunden" ist ein Zwischenstand, kein Ergebnis.** Er
+gehört mit dem Datum und der Liste des Geprüften hingeschrieben, damit der
+nächste Anlauf dort weitermacht statt von vorn zu beginnen – und er darf nicht
+als Beweis gelesen werden, dass es nichts gibt.
+
+Beim ersten Durchgang wurde nach _Terminen je Unternehmen_ gesucht. Gefunden
+wurde die Quelle erst, als jemand nach einem _Sammelkalender_ fragte. Die
+Antwort hing an der Form der Frage, nicht an der Verfügbarkeit der Daten.
