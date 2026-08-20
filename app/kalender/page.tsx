@@ -189,15 +189,17 @@ export default async function KalenderPage() {
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Wer weder in New York notiert noch an einer Börse, die ihre Termine selbst
-              veröffentlicht, bleibt offen – vor allem die europäischen Werte. Sechzehn
-              Quellen sind bisher geprüft, zuletzt die Börsen selbst. Die Zürcher und die
-              Londoner Börse antworten offen und vollständig, führen den Meldetermin aber
-              nicht; Euronext, die Deutsche Börse und Hongkong setzen ihre Seiten erst im
-              Browser zusammen; die Datenhändler verlangen einen kostenpflichtigen Zugang
-              oder eine Kennung, die nur ein Browser erzeugt – und Letzteres nachzubauen
-              hieße, eine bewusst gesetzte Sperre zu umgehen. Die Suche geht weiter, Börse
-              für Börse. Wo kein Termin vorliegt, steht auf der Seite der Aktie, warum.
-              Eine plausibel aussehende Schätzung wäre dort schlechter als eine Lücke.
+              veröffentlicht, bleibt offen – vor allem die europäischen Werte.
+              Einundzwanzig Quellen sind bisher geprüft, zuletzt die Börsen selbst, und
+              die Gründe sind verschieden: Die Zürcher und die Londoner Börse antworten
+              offen und vollständig, führen den Meldetermin aber schlicht nicht. Euronext
+              und die Börse Frankfurt geben ihre Daten nur an die eigene Oberfläche heraus
+              – verschlüsselt die eine, hinter einer im Browser errechneten Kennung die
+              andere. Beides nachzubauen hieße, eine bewusst gesetzte Sperre zu umgehen,
+              und das wird hier nicht gemacht. Die Datenhändler wiederum verlangen einen
+              kostenpflichtigen Zugang. Die Suche geht weiter. Wo kein Termin vorliegt,
+              steht auf der Seite der Aktie, warum – eine plausibel aussehende Schätzung
+              wäre dort schlechter als eine Lücke.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Termine sind mit{' '}
