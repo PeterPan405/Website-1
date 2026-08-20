@@ -99,6 +99,56 @@ name: Quellen abklopfen
 # bleibt die Wahl zwischen einem kostenpflichtigen Tarif und der Lücke – und
 # die Lücke steht seitdem nicht nur auf der Kalenderseite, sondern auf jeder
 # betroffenen Aktienseite.
+#
+# ## Der Satz oben war zu schnell: Alpha Vantage liefert doch
+#
+# „Sieben Quellen geprüft, keine gefunden" ist eine Aussage über sieben Quellen
+# und keine über die Welt. Der Betreiber hat am 20. August 2026 widersprochen –
+# und der zweite Durchgang hat noch etwas gefunden:
+#
+# - `alphavantage.co/query?function=EARNINGS_CALENDAR&horizon=3month` → **200**,
+#   ein CSV mit 1.706 Zeilen, 95 KB, **ein Abruf für alle**. Spalten:
+#   `symbol,name,reportDate,fiscalDateEnding,estimate,currency,timeOfTheDay`.
+#   Es sind **angekündigte** Termine, nicht hochgerechnete, und `timeOfTheDay`
+#   sagt `pre-market` oder `post-market`. Eingebaut in
+#   `lib/providers/alphavantage-termine.ts`.
+# - Yahoo `v10`/`v6`/`v7` quoteSummary: **401**. Der Crumb bleibt Pflicht.
+# - Financial Modeling Prep, Finnhub: **401** ohne Schlüssel.
+# - Euronext `/en/financial-calendars`: 200, Rubrik vorhanden, Termine erst im
+#   Browser gerendert. Der geratene JSON-Pfad: 404.
+# - LSE `api.londonstockexchange.com/api/gw/lse/instruments/alldata/AZN`:
+#   **200 JSON ohne Schlüssel** – aber nur Stammdaten (ISIN, SEDOL, Segment),
+#   keine Termine.
+#
+# ## Und der naheliegende nächste Versuch, der ebenfalls schon geprüft ist
+#
+# Der Sammelkalender führt neben den NYSE-Notierungen auch OTC-Zeilen: `SAPGF`,
+# `NGGTF`, `VODPF`, `ARHUF`. Daraus entsteht sofort die Idee, für die
+# europäischen Werte eine Brücke auf ihr ADR-Kürzel zu bauen – `SIE.DE` →
+# `SIEGY`, `ALV.DE` → `ALIZY` und so weiter.
+#
+# **Nachgemessen am 20. August 2026: Das trägt nicht.** Von 42 abgefragten
+# ADR- und OTC-Kürzeln der größten europäischen und japanischen Werte standen
+# **drei** im Kalender: `IBDRY` (Iberdrola), `CAJPY` (Canon), `VWAGY`
+# (Volkswagen). Nicht enthalten waren unter anderem SIEGY, ALIZY, LVMUY,
+# NSRGY, BAYRY, BASFY, MBGYY, IFNNY, DTEGY, MURGY, DANOY, RHHBY, ADDYY,
+# SBGSY – und auch die vollwertigen NYSE-Notierungen TM (Toyota), SONY, GSK,
+# RIO, DEO, BCS, SNY fehlen, obwohl ihre Meldetermine in das
+# Dreimonatsfenster fallen müssten.
+#
+# Eine Brücke mit fünfzig handgepflegten Kürzeln brächte also drei Treffer und
+# siebenundvierzig Einträge, die niemand nachzieht. Nicht bauen.
+#
+# ## Was daraus für die Abdeckung folgt
+#
+# Von den 711 Aktien ohne Termin tragen **27** ein US-Kürzel und sind damit
+# überhaupt erreichbar: SAP, ASML, TSM, NVO, XOM, STLA, RACE, BABA, UMC, ARM,
+# RYAAY, JBS, CHKP, CYBR, NICE, BNTX, SPOT, SE, SQM, YPF, GGAL, BAP, GFI,
+# SBSW, ESLT, WIX, MNDY.
+#
+# Die Obergrenze mit Schlüssel liegt damit bei rund **345 von 1.029** statt
+# 318. Die übrigen gut 680 sind reine Heimatnotierungen, und für die ist nach
+# neun geprüften Quellen weiterhin keine freie Sammelstelle in Sicht.
 
 #
 # ## Offener Auftrag: Unternehmenszahlen ausserhalb der USA
