@@ -30,6 +30,23 @@ name: Quellen holen
 # Je Seite werden höchstens `zeichen` Zeichen ausgegeben. Das reicht für
 # Kennzahlen, Überschriften und die ersten Absätze – also für das, was geprüft
 # werden muss – und bleibt weit von einer Vervielfältigung entfernt.
+#
+# ## Warum das Ergebnis zusätzlich auf einem Zweig liegt
+#
+# Weil das Protokoll von der Entwicklungsumgebung dieses Projekts aus teuer zu
+# lesen ist: Es kommt nur über die GitHub-Schnittstelle, in einem Rutsch, mit
+# allem Beiwerk des Laufs. Am 20. August 2026 hat die Suche nach den
+# Meldeterminen der Tokioter Börse mehr Aufwand in das *Lesen* der Protokolle
+# gesteckt als in das Abrufen selbst.
+#
+# `AGENTS.md` schreibt die Lösung längst vor: **Wer einen Lauf baut, dessen
+# Ergebnis eine Datei ist, legt sie auf einen wurzellosen Zweig.** Genau das
+# passiert jetzt auch hier – lesbar mit
+#
+#     git show origin/quellen-holen-heute:quellen.txt
+#
+# Der Zweig ist wurzellos, hat immer genau einen Commit und kommt in `main`
+# nie vor. Nichts sammelt sich an.
 
 on:
   workflow_dispatch:
@@ -64,7 +81,12 @@ jobs:
   holen:
     name: Seiten abrufen
     runs-on: ubuntu-latest
+    permissions:
+      # Zum Schreiben des Zweiges `quellen-holen-heute`.
+      contents: write
     steps:
+      - uses: actions/checkout@v5
+
       # Amtliche Quellen sind oft PDFs, und die HTML-Seite daneben nennt die
       # Zahl nicht. Beim Basiszins für die Vorabpauschale ist es genau so:
       # Die BMF-Seite trägt Datum und Titel des Schreibens und verlinkt dann
@@ -83,7 +105,7 @@ jobs:
           SUCHE: ${{ inputs.suche }}
           VERWEISE: ${{ inputs.verweise }}
         run: |
-          python3 - <<'ENDE'
+          python3 - <<'ENDE' | tee quellen.txt
           import html
           import os
           import re
@@ -352,3 +374,24 @@ jobs:
                       f"Mit größerem Wert für 'zeichen' erneut abrufen.]"
                   )
           ENDE
+
+      - name: Auf den Zweig `quellen-holen-heute` legen
+        run: |
+          # Dieselbe Bauart wie in `quellen-sammeln.yml`: wurzellos, ohne
+          # Historie, immer genau ein Commit.
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          inhalt=$(mktemp)
+          cp quellen.txt "$inhalt"
+
+          git checkout --orphan quellen-holen-heute
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" quellen.txt
+
+          git add quellen.txt
+          git commit -m "Abruf $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push --force origin quellen-holen-heute
+
+          echo "Liegt bereit: git show origin/quellen-holen-heute:quellen.txt"

@@ -174,20 +174,27 @@ export default async function KalenderPage() {
               <strong className="text-fg">
                 so, wie das Unternehmen sie angekündigt hat
               </strong>
-              . Sie stammen aus einem Sammelkalender angekündigter Meldetermine und sind
-              hier als „angekündigt“ gekennzeichnet, ohne den Zusatz „erwartet, nicht
-              bestätigt“: Erwartet sind sie nicht, sie stehen fest. Dieser Kalender führt
-              allerdings, was in New York notiert. Das schließt die Hinterlegungsscheine
-              ausländischer Unternehmen ein – Alibaba etwa steht darin – und lässt aus,
-              wer nur an seiner Heimatbörse gehandelt wird.
+              . Sie sind hier als „angekündigt“ gekennzeichnet, ohne den Zusatz „erwartet,
+              nicht bestätigt“: Erwartet sind sie nicht, sie stehen fest. Zwei Quellen
+              liefern sie. Ein Sammelkalender angekündigter Meldetermine führt, was in New
+              York notiert – einschließlich der Hinterlegungsscheine ausländischer
+              Unternehmen, Alibaba etwa steht darin. Und die{' '}
+              <strong className="text-fg">Tokioter Börse</strong> veröffentlicht die
+              geplanten Meldetermine aller dort gelisteten Unternehmen selbst; von dort
+              kommen die Termine der japanischen Titel. Zwei Dinge gehören dazugesagt:
+              Tokio nennt zum Tag keine Uhrzeit, und deshalb steht bei diesen Titeln auch
+              keine. Und die Liste erscheint je Berichtssaison – zwischen zwei Saisons
+              steht auf der Aktienseite, dass der nächste Tag noch nicht bekannt gegeben
+              ist, statt einer Schätzung.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Für diese bleibt die Lücke. Neun Quellen sind bisher geprüft; die
-              verbliebenen verlangen entweder einen kostenpflichtigen Zugang oder eine
-              Kennung, die nur ein Browser erzeugt – und Letzteres nachzubauen hieße, eine
-              bewusst gesetzte Sperre zu umgehen. Wo kein Termin vorliegt, steht auf der
-              Seite der Aktie, warum. Eine plausibel aussehende Schätzung wäre dort
-              schlechter als eine Lücke.
+              Wer weder in New York notiert noch an einer Börse, die ihre Termine selbst
+              veröffentlicht, bleibt offen. Zehn Quellen sind bisher geprüft; die
+              verbliebenen Datenhändler verlangen entweder einen kostenpflichtigen Zugang
+              oder eine Kennung, die nur ein Browser erzeugt – und Letzteres nachzubauen
+              hieße, eine bewusst gesetzte Sperre zu umgehen. Die Suche geht weiter, Börse
+              für Börse. Wo kein Termin vorliegt, steht auf der Seite der Aktie, warum.
+              Eine plausibel aussehende Schätzung wäre dort schlechter als eine Lücke.
             </p>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Termine sind mit{' '}

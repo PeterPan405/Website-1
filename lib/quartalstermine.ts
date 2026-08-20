@@ -85,6 +85,20 @@ interface Vorhersage {
    * die ganze Aussage.
    */
   angekuendigt?: true
+  /**
+   * Welche Quelle den angekündigten Tag genannt hat.
+   *
+   * Fehlt das Feld, ist es der Sammelkalender – so stand es im Bestand, bevor
+   * es eine zweite Quelle für angekündigte Termine gab, und ein Bestand aus
+   * einem früheren Lauf soll deswegen nicht neu geschrieben werden müssen.
+   *
+   * Warum das Feld überhaupt da ist: Unter jedem Termin steht, woher er
+   * stammt. Solange „angekündigt" und „Alpha Vantage" dasselbe bedeuteten,
+   * genügte ein `true`. Seit die Tokioter Börse ihre eigenen Termine
+   * beisteuert, wäre diese Angabe bei 72 Titeln schlicht falsch – und eine
+   * falsche Quellenangabe ist schlimmer als keine.
+   */
+  herkunft?: 'kalender' | 'jpx'
   /** Die vom Anbieter genannte Lage zur US-Sitzung, ohne Minutenangabe. */
   lage?: 'vorboerse' | 'nachboerse'
 }
@@ -113,13 +127,36 @@ export const quartalstermineQuelle = daten.quelle
 /**
  * Die Herkunft der **angekündigten** Termine.
  *
- * Eine zweite Quelle neben der SEC, und sie muss auch als solche dastehen: Ein
- * Termin, der aus dem Sammelkalender kommt, ist nicht aus 8-K-Meldungen
- * abgeleitet, und die Quellenangabe darunter wäre sonst schlicht falsch.
+ * Zwei Quellen neben der SEC, und beide müssen als solche dastehen: Ein
+ * Termin, der aus dem Sammelkalender oder von der Tokioter Börse kommt, ist
+ * nicht aus 8-K-Meldungen abgeleitet, und die Quellenangabe darunter wäre
+ * sonst schlicht falsch. Ein Leser, der die Angabe nachschlägt, fände an der
+ * genannten Stelle nichts – und hielte danach zu Recht auch den Termin für
+ * erfunden.
  */
-export const ANGEKUENDIGT_QUELLE = {
-  label: 'Sammelkalender angekündigter Meldetermine (Alpha Vantage)',
-  url: 'https://www.alphavantage.co/documentation/#earnings-calendar',
+export const ANGEKUENDIGTE_QUELLEN = {
+  kalender: {
+    label: 'Sammelkalender angekündigter Meldetermine (Alpha Vantage)',
+    url: 'https://www.alphavantage.co/documentation/#earnings-calendar',
+  },
+  jpx: {
+    label: 'Japan Exchange Group – geplante Meldetermine der gelisteten Unternehmen',
+    url: 'https://www.jpx.co.jp/listing/event-schedules/financial-announcement/index.html',
+  },
+} as const
+
+/**
+ * Die Herkunft eines Termins, wie sie unter ihm steht.
+ *
+ * Ein angekündigter Termin nennt seine eigene Quelle, ein hochgerechneter die
+ * der Momentaufnahme. Die Unterscheidung gehört an **eine** Stelle: Sie wurde
+ * an dreien gebraucht, und drei Stellen laufen auseinander.
+ */
+function herkunftVon(vorhersage: Vorhersage): { label: string; url: string } {
+  if (!vorhersage.angekuendigt) {
+    return { label: daten.quelle.label, url: daten.quelle.url }
+  }
+  return ANGEKUENDIGTE_QUELLEN[vorhersage.herkunft ?? 'kalender']
 }
 
 /**
@@ -208,9 +245,7 @@ export function getQuartalstermine(): Termin[] {
                 streuungTage: vorhersage.streuungTage,
               },
             }),
-        quelle: vorhersage.angekuendigt
-          ? ANGEKUENDIGT_QUELLE
-          : { label: daten.quelle.label, url: daten.quelle.url },
+        quelle: herkunftVon(vorhersage),
       })
     }
   }
@@ -424,9 +459,7 @@ export function getQuartalsterminbefund(
     bald: inTagen <= BALD_TAGE,
     uhrzeit: uhrzeitsatz(naechste),
     angekuendigt: naechste.angekuendigt === true,
-    quelle: naechste.angekuendigt
-      ? ANGEKUENDIGT_QUELLE
-      : { label: daten.quelle.label, url: daten.quelle.url },
+    quelle: herkunftVon(naechste),
   }
 }
 
@@ -441,25 +474,70 @@ export function getQuartalsterminbefund(
  * wahre Grund ist eine Eigenschaft der Quelle, und der gehört dorthin, wo die
  * Frage entsteht, statt in eine Methodenseite.
  *
- * Für 711 der 1.029 geführten Aktien ist das der Normalfall, nachgezählt am
- * 20. August 2026. Die Quelle ist die US-Börsenaufsicht, und dort meldet, wer
- * in den USA notiert. Wer nur an seiner Heimatbörse notiert, taucht gar nicht
- * auf; wer als ausländischer Emittent in New York notiert, reicht ein 6-K ein,
- * und das kennt keine Punktnummern, an denen sich eine Ergebnismeldung
- * erkennen ließe. Alibaba ist der Fall, an dem es aufgefallen ist: bei der SEC
- * geführt, aber ohne eine einzige 8-K-Meldung mit Punkt 2.02.
+ * Für 711 der 1.029 geführten Aktien war das der Normalfall, nachgezählt am
+ * 20. August 2026. Die erste Quelle ist die US-Börsenaufsicht, und dort meldet,
+ * wer in den USA notiert. Wer nur an seiner Heimatbörse notiert, taucht gar
+ * nicht auf; wer als ausländischer Emittent in New York notiert, reicht ein
+ * 6-K ein, und das kennt keine Punktnummern, an denen sich eine
+ * Ergebnismeldung erkennen ließe. Alibaba ist der Fall, an dem es aufgefallen
+ * ist: bei der SEC geführt, aber ohne eine einzige 8-K-Meldung mit Punkt 2.02.
+ *
+ * ## Warum der Grund vom Titel abhängt
+ *
+ * Seit die Tokioter Börse dazugekommen ist, gibt es zwei verschiedene Gründe
+ * für dieselbe Leerstelle – und der Satz über die US-Börsenaufsicht wäre auf
+ * der Seite von Toyota schlicht falsch. Ein japanischer Titel ohne Termin
+ * fehlt nicht in der Quelle, sondern nur in ihrem Zeitfenster: Die Börse führt
+ * die nächsten Wochen, nicht das ganze Jahr.
+ *
+ * ## Warum `heute` hier gebraucht wird
+ *
+ * Weil „kein Eintrag" nicht dasselbe ist wie „kein kommender Termin". Ein
+ * Unternehmen kann im Bestand stehen und trotzdem keinen Tag mehr vor sich
+ * haben – dann lieferte diese Funktion bisher `null`, `getQuartalsterminbefund`
+ * ebenfalls, und der Abschnitt auf der Aktienseite verschwand **ganz**. Kein
+ * Termin und keine Erklärung: genau die stille Leerstelle, gegen die es diesen
+ * Satz gibt.
  */
-export function quartalsterminLuecke(symbol: string): string | null {
+export function quartalsterminLuecke(symbol: string, heute: string): string | null {
   const definition = marketDefinitions.find((eintrag) => eintrag.symbol === symbol)
   if (!definition || definition.kind !== 'stock') return null
-  if (daten.unternehmen[definition.ticker]) return null
+
+  const eintrag = daten.unternehmen[definition.ticker]
+  if (eintrag) {
+    const kommend = eintrag.vorhersagen.some((vorhersage) => vorhersage.erwartet >= heute)
+    if (kommend) return null
+
+    const letzter = [...eintrag.vorhersagen]
+      .map((vorhersage) => vorhersage.erwartet)
+      .sort()
+      .at(-1)
+
+    return (
+      'Für diesen Titel steht gerade kein Termin an. ' +
+      (letzter
+        ? `Der zuletzt erfasste Meldetag war der ${aufDeutsch(letzter)}; der nächste `
+        : 'Der nächste ') +
+      'ist noch nicht bekannt gegeben. Sobald er vorliegt, steht er hier – eine ' +
+      'Schätzung ohne Grundlage kommt nicht dazwischen.'
+    )
+  }
+
+  if (/\.T$/.test(definition.ticker)) {
+    return (
+      'Für diesen Titel steht noch kein Termin an. Die Meldetermine japanischer ' +
+      'Unternehmen kommen von der Tokioter Börse, und die veröffentlicht jeweils ' +
+      'die nächsten Wochen – kündigt das Unternehmen seinen Tag an, steht er ' +
+      'hier. Eine geschätzte Zahl stünde ohne Grundlage.'
+    )
+  }
 
   return (
     'Für diesen Titel liegt kein Meldemuster vor. Die Termine dieser Website ' +
-    'stammen aus den Pflichtmeldungen bei der US-Börsenaufsicht, und die ' +
-    'reichen nur Unternehmen ein, die in den USA notieren – ausländische ' +
-    'Emittenten melden in einer Form ohne erkennbare Ergebnisrubrik. Eine ' +
-    'geschätzte Zahl stünde hier ohne Grundlage.'
+    'stammen aus den Pflichtmeldungen bei der US-Börsenaufsicht und von den ' +
+    'Börsen, die ihre Termine selbst veröffentlichen. Ein Unternehmen, das nur ' +
+    'an einer Heimatbörse ohne solche Liste notiert, ist in beiden nicht ' +
+    'enthalten. Eine geschätzte Zahl stünde hier ohne Grundlage.'
   )
 }
 

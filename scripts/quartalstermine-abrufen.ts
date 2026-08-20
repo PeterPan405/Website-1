@@ -66,6 +66,10 @@ import {
   holeKalender,
   type Kalendereintrag,
 } from '../lib/providers/alphavantage-termine.ts'
+import {
+  holeTermine as holeJpxTermine,
+  JpxOhneTabelle,
+} from '../lib/providers/jpx-termine.ts'
 
 const KOPFZEILEN: Record<string, string> = {
   'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com',
@@ -208,6 +212,15 @@ interface Vorhersage {
    * zweite ist die, nach der jemand eine Order legen darf.
    */
   angekuendigt?: true
+  /**
+   * Welche Quelle den angekündigten Tag genannt hat.
+   *
+   * Solange „angekündigt" nur den Sammelkalender bedeuten konnte, genügte das
+   * `true` darüber. Seit die Tokioter Börse ihre eigenen Termine beisteuert,
+   * stünde unter 72 Titeln die falsche Quelle – und eine falsche
+   * Quellenangabe ist schlimmer als keine.
+   */
+  herkunft?: 'kalender' | 'jpx'
   /**
    * Die angekündigte Lage zur US-Handelssitzung, wenn die Quelle sie nennt.
    *
@@ -767,11 +780,166 @@ async function main(): Promise<void> {
           basis: eintrag.fiscalDateEnding || eintrag.reportDate,
           streuungTage: 0,
           angekuendigt: true,
+          herkunft: 'kalender',
           ...(eintrag.lage ? { lage: eintrag.lage } : {}),
         },
       ],
     }
     ausKalender.push(kuerzel)
+  }
+
+  /*
+    ------------------------------------------ Zweiter Weg: die Börse selbst
+
+    Die Tokioter Börse führt die geplanten Meldetermine **aller** gelisteten
+    Unternehmen und legt sie börsentäglich als Tabelle ins Netz – amtlich,
+    kostenlos, ohne Schlüssel. Für die 72 japanischen Titel dieser Website ist
+    das die beste erreichbare Quelle: keine Hochrechnung, kein Zwischenhändler.
+
+    Ein Abruf für alle, wie beim Sammelkalender. Der Code der Börse ist genau
+    der Teil vor dem Punkt in unserem Kürzel: `7203.T` ist `7203`.
+
+    Was die Datei nicht hergibt, ist die Uhrzeit – dazu steht in
+    `lib/providers/jpx-termine.ts`, warum hier trotzdem keine hingeschrieben
+    wird.
+  */
+  const japanischeKuerzel = [...gefuehrt].filter((kuerzel) =>
+    /^[0-9][0-9A-Z]{3}\.T$/.test(kuerzel)
+  )
+
+  /*
+    Was der Weg über die Börse ergeben hat – festgehalten, nicht nur
+    protokolliert.
+
+    Das Protokoll eines Laufs ist von der Entwicklungsumgebung dieses Projekts
+    aus nur mühsam zu lesen, und nach neunzig Tagen ist es weg. Die Frage „hat
+    diese Quelle zuletzt etwas geliefert, und wenn nicht, warum?" ist aber
+    genau die, die man Monate später stellt – bei Twelve Data hat sie drei
+    Wochen lang niemand gestellt.
+
+    Deshalb steht die Antwort in der Momentaufnahme, neben den Daten, die sie
+    erklärt.
+  */
+  let tokioBericht: {
+    stand: string | null
+    von?: string
+    bis?: string
+    zeilen?: number
+    kommendGesamt?: number
+    spalten?: string[]
+    inListe?: number
+    kommend?: number
+    fehler?: string
+  } | null = null
+  const ausTokio: string[] = []
+  /** Geführte Titel, die in der Tokioter Liste stehen – gleich ob der Tag noch kommt. */
+  const inTokioGefunden: string[] = []
+  try {
+    const jpx = await holeJpxTermine()
+
+    /*
+      Je Börsencode alle Zeilen, aufsteigend nach Tag.
+
+      Nicht je Code eine: Die Börse führt zwei Dateien nebeneinander, und ein
+      Unternehmen kann in beiden stehen – mit einem zurückliegenden Tag in der
+      einen und einem kommenden in der anderen. Wer hier den ersten nimmt,
+      nimmt den vergangenen und verliert genau den, um den es geht.
+    */
+    const jeCode = new Map<string, typeof jpx.termine>()
+    for (const termin of jpx.termine) {
+      const bisher = jeCode.get(termin.code)
+      if (bisher) bisher.push(termin)
+      else jeCode.set(termin.code, [termin])
+    }
+    for (const liste of jeCode.values())
+      liste.sort((a, b) => a.termin.localeCompare(b.termin))
+
+    for (const kuerzel of gefuehrt) {
+      const code = /^([0-9][0-9A-Z]{3})\.T$/.exec(kuerzel)?.[1]
+      if (!code) continue
+
+      const zeilen = jeCode.get(code)
+      if (!zeilen) continue
+      inTokioGefunden.push(kuerzel)
+
+      // Der Sammelkalender war zuerst da; zwei angekündigte Tage wären einer zu viel.
+      if (angekuendigt.has(kalenderkuerzel(kuerzel))) continue
+
+      const termin = zeilen.find((eintrag) => eintrag.termin >= heute)
+      if (!termin) continue
+
+      unternehmen[kuerzel] = {
+        name: termin.name || unternehmen[kuerzel]?.name || kuerzel,
+        bisher: unternehmen[kuerzel]?.bisher ?? [],
+        bisherZeiten: unternehmen[kuerzel]?.bisherZeiten,
+        vorhersagen: [
+          {
+            erwartet: termin.termin,
+            basis: termin.periodenende || termin.termin,
+            streuungTage: 0,
+            angekuendigt: true,
+            herkunft: 'jpx',
+          },
+        ],
+      }
+      ausTokio.push(kuerzel)
+    }
+
+    /*
+      Drei Zahlen statt einer.
+
+      „0 Termine beigesteuert" hat drei verschiedene Ursachen, und sie
+      verlangen entgegengesetzte Reaktionen: Die Datei ist unlesbar (Ausfall),
+      unsere Kürzel passen nicht auf ihre Codes (Fehler im Abgleich), oder die
+      Berichtssaison ist vorbei und in der Liste steht nur Vergangenes
+      (Normalzustand, nichts zu tun). Eine einzelne Null unterscheidet die drei
+      nicht – und genau darin besteht der stille Ausfall.
+
+      Deshalb wird gezählt, wie viele geführte Titel überhaupt in der Liste
+      stehen, und daneben, was die Datei über ihren eigenen Stand sagt.
+    */
+    const tage = jpx.termine.map((t) => t.termin).sort()
+    tokioBericht = {
+      stand: jpx.stand,
+      von: tage[0],
+      bis: tage[tage.length - 1],
+      zeilen: jpx.termine.length,
+      /*
+        Wie viele Termine der Datei überhaupt noch kommen.
+
+        Das trennt zwei Dinge, die sonst beide als Null ankämen: „die Liste ist
+        veraltet" und „unsere Titel haben schon gemeldet, andere noch nicht".
+        Am 20. August 2026 war es das Zweite – die Datei reichte bis zum
+        17. September, aber alle 67 geführten japanischen Titel lagen dahinter.
+      */
+      kommendGesamt: jpx.termine.filter((t) => t.termin >= heute).length,
+      spalten: jpx.kopf,
+      inListe: inTokioGefunden.length,
+      kommend: ausTokio.length,
+    }
+    console.log(
+      `\nTokio: ${jpx.termine.length} Termine, Stand laut Datei ` +
+        `${jpx.stand ?? 'ohne Angabe'}, Zeitraum ${tage[0]} bis ${tage[tage.length - 1]}.`
+    )
+    console.log(`  Erkannte Spalten: ${jpx.kopf.join('  ///  ')}`)
+    console.log(
+      `  ${inTokioGefunden.length} von ${japanischeKuerzel.length} geführten japanischen ` +
+        `Titeln stehen darin, ${ausTokio.length} davon mit noch kommendem Tag.`
+    )
+  } catch (fehler) {
+    /*
+      Laut, aber nicht tödlich: Die übrigen Wege liefern weiter, und ein Lauf,
+      der wegen Japan abbricht, nähme den 318 amerikanischen Titeln ihren
+      Termin. Beim nächsten Lauf steht der bisherige Stand noch – der Bestand
+      wird fortgeschrieben, nicht neu begonnen.
+    */
+    const grund = fehler instanceof JpxOhneTabelle ? fehler.message : String(fehler)
+    tokioBericht = { stand: null, fehler: grund }
+    console.warn(
+      `\n::warning::Die Terminliste der Tokioter Börse ist nicht lesbar:\n` +
+        `  ${grund}\n` +
+        '  Die japanischen Titel behalten den Stand des letzten Laufs.'
+    )
   }
 
   for (const [index, { katalog, cik }] of gesucht.entries()) {
@@ -947,6 +1115,20 @@ async function main(): Promise<void> {
       abgrenzung:
         'Die Termine sind aus dem bisherigen Meldemuster jedes Unternehmens abgeleitet und keine Ankündigung. Den genauen Tag gibt jedes Unternehmen wenige Wochen vorher selbst bekannt. Erfasst sind nur Unternehmen, die bei der SEC ein 8-K einreichen – überwiegend US-Emittenten.',
     },
+    /*
+      Was jede Quelle in diesem Lauf beigetragen hat.
+
+      Eine Null hier ist eine Auskunft und kein Schweigen: Wer in drei Monaten
+      wissen will, ob die Tokioter Liste noch gelesen wird, sieht es an
+      `stand` und `zeilen`, und ob sie etwas beigetragen hat an `kommend`.
+    */
+    herkunft: {
+      tokio: tokioBericht,
+      kalender: {
+        kuerzelMitTermin: angekuendigt.size,
+        beigetragen: ausKalender.length,
+      },
+    },
     unternehmen,
     zuletztVersucht,
   }
@@ -999,6 +1181,36 @@ async function main(): Promise<void> {
           ` (${ausKalender.slice(0, 12).join(', ')}${ausKalender.length > 12 ? ' …' : ''})`
       : '\n::warning::Der Sammelkalender hat zu keinem geführten Titel etwas beigetragen.'
   )
+
+  /*
+    Dieselbe Frage an den Weg über die Börse – aber mit der Unterscheidung, die
+    die Zahl erst zu einer Auskunft macht.
+
+    Gewarnt wird nur, wenn der **Abgleich** nichts findet: Dann passen unsere
+    Kürzel nicht mehr auf die Codes der Börse, und das ist ein Fehler. Steht
+    unser Bestand in der Liste, trägt aber nur zurückliegende Tage, ist die
+    Berichtssaison vorbei – ein Zustand und kein Vorfall. Eine Warnung, die
+    dreimal im Jahr wochenlang steht, wird nach der zweiten Woche nicht mehr
+    gelesen.
+  */
+  if (inTokioGefunden.length === 0) {
+    console.log(
+      `::warning::Kein einziger der ${japanischeKuerzel.length} japanischen Titel steht in ` +
+        'der Tokioter Liste. Zu prüfen wäre der Abgleich Kürzel → Börsencode.'
+    )
+  } else if (ausTokio.length === 0) {
+    console.log(
+      `Tokio: ${inTokioGefunden.length} geführte Titel in der Liste, aber kein Tag mehr ` +
+        'in der Zukunft – die Berichtssaison ist durch. Die nächste Liste erscheint zur\n' +
+        '  kommenden Saison; bis dahin ist das der Normalzustand und kein Ausfall.'
+    )
+  } else {
+    console.log(
+      `Angekündigte Termine aus Tokio: ${ausTokio.length} von ${japanischeKuerzel.length}` +
+        ` japanischen Titeln (${ausTokio.slice(0, 12).join(', ')}` +
+        `${ausTokio.length > 12 ? ' …' : ''})`
+    )
+  }
 
   const ohneTermin = gefuehrt.size - Object.keys(unternehmen).length
   console.log(

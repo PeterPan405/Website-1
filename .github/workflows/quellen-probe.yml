@@ -189,6 +189,36 @@ name: Quellen abklopfen
 # plus Dauerpflege und einem Monatsbetrag.
 #
 #
+# ## Die Börsen, zweiter Durchgang am 20. August 2026
+#
+# Abgerufen über `quellen-holen.yml`, diesmal mit dem Ergebnis auf dem Zweig
+# `quellen-holen-heute` statt nur im Protokoll.
+#
+# - **JPX (Tokio): angeschlossen.** `lib/providers/jpx-termine.ts`. Die Börse
+#   veröffentlicht die geplanten Meldetermine aller gelisteten Unternehmen als
+#   XLSX; die Adressen stehen auf der **japanischen** Übersichtsseite, die
+#   englische trägt null Verweise. Gemessen: 3.209 Termine, Stand 2026-08-06,
+#   Zeitraum 3. Juli bis 17. September, **67 der 72** geführten japanischen
+#   Titel darin. Kein Schlüssel, keine Anmeldung, keine Uhrzeit.
+# - **TWSE (Taipeh): 200 JSON ohne Schlüssel.** `openapi.twse.com.tw` antwortet
+#   offen. `t187ap04_L` ist allerdings die Rubrik „wesentliche Mitteilungen"
+#   (Namensänderungen, Nennwertänderungen) und keine Terminliste. Welcher
+#   Datensatz die Meldetermine trägt – falls einer –, steht noch aus;
+#   `openapi.twse.com.tw/v1/swagger.json` listet sie alle.
+# - **HKEX:** `hkexnews.hk` antwortet mit 200, der Inhalt ist eine leere Hülle
+#   mit Navigation. Die Suche läuft im Browser nach.
+# - **Deutsche Börse Cash Market**, Rubrik „Unternehmenstermine": **200, und
+#   im Text steht ausschließlich das Navigationsmenü.** Dieselbe Bauart wie
+#   HKEX. Das ist die größte offene Lücke – 90 der 1.029 Titel sind deutsch.
+# - **Euronext** `/en/markets/paris/equities/financial-events`: **404.**
+# - **ASX** `/asx/v2/statistics/upcomingEvents.do`: **404.**
+#
+# Vier von sechs Börsen liefern also keine lesbare Liste – aber nicht, weil sie
+# etwas verbergen, sondern weil ihre Seiten im Browser zusammengesetzt werden.
+# Das ist keine Sperre, sondern eine Bauart, und dahinter liegt jeweils ein
+# Aufruf, den man finden kann. Gefunden ist er noch nicht.
+#
+#
 # ## Offener Auftrag: Unternehmenszahlen ausserhalb der USA
 #
 # 172 der 529 Aktien haben Umsatz, Gewinn, Cashflow, Eigenkapital und

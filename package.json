@@ -20,7 +20,7 @@
     "globus-geometrie": "node --experimental-strip-types scripts/globus-geometrie.ts",
     "aktien": "node --experimental-strip-types scripts/aktien-erzeugen.ts && prettier --write --log-level warn data/markets-aktien.ts",
     "fundamentaldaten": "node --experimental-strip-types scripts/fundamentaldaten-abrufen.ts",
-    "quartalstermine": "node --experimental-strip-types scripts/quartalstermine-abrufen.ts",
+    "quartalstermine": "node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/quartalstermine-abrufen.ts",
     "pruefen": "node --experimental-strip-types scripts/paket-pruefen.ts",
     "frische": "node --experimental-strip-types scripts/frische-pruefen.ts",
     "inhalte": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/inhalte-pruefen.ts",

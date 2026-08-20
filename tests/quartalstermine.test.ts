@@ -370,32 +370,31 @@ const ohneBefund = aktien.filter(
   (eintrag) => getQuartalsterminbefund(eintrag.symbol, STICHTAG) === null
 )
 
+/*
+  Ausnahmslos jede – und das ist seit dem 20. August 2026 schärfer als vorher.
+
+  Bis dahin galt die Prüfung als bestanden, wenn ein Titel im Bestand stand,
+  auch ohne kommenden Termin. Genau dieser Fall zeigte auf der Aktienseite
+  **gar nichts**: kein Termin, keine Erklärung, der Abschnitt verschwand. Ein
+  Zustand, den niemand sieht und der wie eine fehlende Seite aussieht.
+
+  `quartalsterminLuecke()` bekommt jetzt den Stichtag und antwortet auch für
+  diesen Fall. Damit gibt es nur noch zwei Zustände: ein Termin oder ein Satz,
+  warum keiner dasteht.
+*/
 pruefen(
-  'Jede Aktie ohne Termin bekommt einen Satz dazu',
-  ohneBefund.every((eintrag) => {
-    /*
-      Zwei Fälle sehen von außen gleich aus und sind es nicht: gar kein
-      Meldemuster (dann steht der Lückensatz da) und ein Muster, dessen
-      Vorhersagen alle abgelaufen sind. Der zweite ist selten und heilt beim
-      nächsten Abruf; er darf hier keine Lücke behaupten, die keine ist.
-    */
-    const luecke = quartalsterminLuecke(eintrag.symbol)
-    return luecke !== null || getQuartalstermineFuer(eintrag.symbol).length > 0
-  }),
+  'Jede Aktie ohne Termin bekommt einen Satz dazu – ohne Ausnahme',
+  ohneBefund.every((eintrag) => quartalsterminLuecke(eintrag.symbol, STICHTAG) !== null),
   ohneBefund
-    .filter((eintrag) => quartalsterminLuecke(eintrag.symbol) === null)
+    .filter((eintrag) => quartalsterminLuecke(eintrag.symbol, STICHTAG) === null)
     .slice(0, 5)
     .map((eintrag) => eintrag.symbol)
     .join(', ')
 )
 
-function getQuartalstermineFuer(symbol: string): unknown[] {
-  return getQuartalstermine().filter((termin) => termin.symbole?.includes(symbol))
-}
-
 pruefen(
   'Wo ein Termin steht, steht kein Lückensatz',
-  befunde.every((eintrag) => quartalsterminLuecke(eintrag.symbol) === null),
+  befunde.every((eintrag) => quartalsterminLuecke(eintrag.symbol, STICHTAG) === null),
   'Zwei Antworten auf dieselbe Frage sind eine zu viel.'
 )
 
@@ -411,19 +410,19 @@ pruefen(
 */
 pruefen(
   'Alibaba hat keinen Termin – und sagt warum',
-  quartalsterminLuecke('alibaba') !== null,
+  quartalsterminLuecke('alibaba', STICHTAG) !== null,
   'Wenn das hier fehlschlägt, gibt es endlich eine Quelle für 6-K-Emittenten.'
 )
 
 pruefen(
   'Der Lückensatz nennt den Grund und nicht nur die Tatsache',
-  (quartalsterminLuecke('alibaba') ?? '').includes('US-Börsenaufsicht'),
-  quartalsterminLuecke('alibaba') ?? ''
+  (quartalsterminLuecke('alibaba', STICHTAG) ?? '').includes('US-Börsenaufsicht'),
+  quartalsterminLuecke('alibaba', STICHTAG) ?? ''
 )
 
 pruefen(
   'Ein Index bekommt weder Termin noch Lückensatz',
-  quartalsterminLuecke('dax') === null &&
+  quartalsterminLuecke('dax', STICHTAG) === null &&
     getQuartalsterminbefund('dax', STICHTAG) === null,
   'Ein Index legt keine Quartalszahlen vor.'
 )

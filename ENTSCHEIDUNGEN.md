@@ -2202,3 +2202,166 @@ als Beweis gelesen werden, dass es nichts gibt.
 Beim ersten Durchgang wurde nach _Terminen je Unternehmen_ gesucht. Gefunden
 wurde die Quelle erst, als jemand nach einem _Sammelkalender_ fragte. Die
 Antwort hing an der Form der Frage, nicht an der Verfügbarkeit der Daten.
+
+## Die Börse selbst ist die beste Quelle – man muss sie nur lesen können
+
+Am 20. August 2026, nach dem Fund des Sammelkalenders, kam die nächste
+Ansage des Betreibers: „es muss alles vollständig sein es gibt genug quellen
+und daten." Und auf die Rückfrage, ob es der bezahlte Tarif werden soll:
+„musst du doch wissen / aber free."
+
+Also der freie Weg, und die Reihenfolge nach Ertrag. Der erste Halt war Tokio.
+
+### Was dort liegt
+
+`jpx.co.jp/listing/event-schedules/financial-announcement/` führt „Scheduled
+Dates for Earnings Announcements" – die geplanten Meldetermine **aller**
+gelisteten Unternehmen, als XLSX, börsentäglich gegen 17:00 Uhr Ortszeit neu.
+Kein Schlüssel, keine Anmeldung, kein Kontingent.
+
+Das ist besser als jeder Datenhändler: Zwischen dem Unternehmen und dieser
+Website sitzt genau eine Stelle, und die ist die Börse, bei der das
+Unternehmen den Termin selbst anmeldet.
+
+### Warum es trotzdem drei Anläufe gebraucht hat
+
+Weil das Werkzeug fehlte, nicht die Quelle.
+
+1. Im lesbar gemachten Text der Seite stand die **Überschrift** der Rubrik,
+   aber nicht, wohin sie führt: `quellen-holen.yml` entfernt jedes Markup und
+   damit jedes `href`. Daraus wurde `verweise` (PR #289).
+2. Der gefundene Verweis zeigte auf eine XLSX, und von der sah man nur, dass
+   sie mit 200 antwortet. Daraus wurde der Tabellenzweig im selben Workflow
+   (PR #291).
+3. Erst danach war die Kopfzeile lesbar – und damit die Frage beantwortbar,
+   ob die Codes in der Datei zu unseren Kürzeln passen. Sie tun es: `7203` zu
+   `7203.T`, ohne Brücke.
+
+**Die Lehre**: Eine Quelle, die man nicht lesen kann, ist von einer, die es
+nicht gibt, nicht zu unterscheiden. Wer nach neun Anbietern aufhört, hat
+vielleicht bloß das falsche Werkzeug.
+
+### Warum ein eigener XLSX-Leser
+
+`lib/xlsx.ts`, 250 Zeilen, keine Abhängigkeit. Eine XLSX ist ein ZIP aus XML,
+und Node bringt `zlib` mit – dasselbe Argument wie beim eigenen PDF-Erzeuger
+und beim eigenen CSV-Zerleger. Die verbreitete Bibliothek dafür wiegt
+Hunderttausende Zeilen, von denen dieses Projekt Formeln, Formate und
+Diagramme nie braucht.
+
+Zwei Fallen stecken darin, und beide erzeugen Zahlen, die wie Daten aussehen:
+
+- **Text steht nicht in der Zelle.** Die Zelle trägt `t="s"` und eine Nummer;
+  der Text liegt in `sharedStrings.xml`. Wer das übersieht, bekommt eine
+  Tabelle voller Indizes – und an einer Datumsstelle sieht ein Index aus wie
+  ein Datum.
+- **Die Excel-Epoche ist der 30. Dezember 1899.** Excel hält 1900 für ein
+  Schaltjahr, weil Lotus 1-2-3 das tat und alte Dateien weiter stimmen
+  sollten. Wer vom 31. rechnet, liegt bei jedem Datum nach Februar 1900 um
+  einen Tag daneben. Bei einem Meldetermin ist das kein Schönheitsfehler: Wer
+  am Vortag kauft, kauft in die Zahlen hinein.
+
+Geprüft wird der Leser gegen eine Datei, die **Pythons `zipfile`** geschrieben
+hat und die als Base64 im Test steht. Ein Leser, der gegen seinen eigenen
+Schreiber geprüft wird, prüft nur, ob beide denselben Irrtum teilen.
+
+### Drei Entscheidungen im Anschluss, jede gegen einen stillen Ausfall
+
+- **Die Adresse wird gesucht, nicht eingetragen.** Der Dateiname trägt ein
+  Datum (`kessan06_0807.xlsx`), und es sind zwei Dateien nebeneinander.
+  Fest verdrahtet hielte das ein paar Wochen und lieferte danach still nichts
+  mehr.
+- **Gelesen wird die japanische Seite.** Die englische Fassung trägt **null**
+  XLSX-Verweise – gemessen, nicht vermutet. Sie verweist für die Liste auf die
+  japanische. Wer die englische nähme, bekäme kein Ergebnis und keinen Fehler.
+- **Eine Zahl gilt nur zwischen 32.874 und 73.050 als Seriendatum.** Ohne die
+  Schranke würde Toyotas Börsencode 7203 zum 24. September 1919.
+
+Und ein Umbau der Datei wirft, statt eine leere Liste zurückzugeben: Eine
+leere Liste wäre von „heute meldet niemand" nicht zu unterscheiden.
+
+### Was Tokio nicht hergibt
+
+Die Uhrzeit. Die Tabelle nennt den Tag und sonst nichts, und es gibt keine
+zweite JPX-Datei, die sie hätte.
+
+Die Versuchung, sie zu ergänzen, ist groß: In Tokio meldet fast jedes
+Unternehmen nach Handelsschluss um 15:00 Uhr Ortszeit. Das ist eine
+Faustregel, keine Angabe. Dieses Projekt schreibt keine Zahl hin, die niemand
+gelesen hat – und bei einer Uhrzeit, nach der jemand eine Order legt, am
+wenigsten.
+
+### Die Folge im Code: die Herkunft hängt am Termin
+
+`ANGEKUENDIGT_QUELLE` war fest auf den Sammelkalender gestellt, weil
+„angekündigt" und „Alpha Vantage" bis dahin dasselbe bedeuteten. Mit Tokio
+stünde unter 72 Titeln die falsche Quelle – und wer sie nachschlägt und dort
+nichts findet, hält danach zu Recht auch den Termin für erfunden.
+
+Jetzt: `herkunft` an der Vorhersage, `ANGEKUENDIGTE_QUELLEN` als Verzeichnis,
+`herkunftVon()` als die eine Stelle, die entscheidet. Fehlt das Feld, ist es
+der Sammelkalender – ein Bestand aus einem früheren Lauf muss deswegen nicht
+neu geschrieben werden.
+
+Dasselbe bei `quartalsterminLuecke()`: Ein japanischer Titel ohne Termin fehlt
+nicht in der Quelle, sondern nur in ihrem Zeitfenster. Der Satz über die
+US-Börsenaufsicht wäre auf Toyotas Seite schlicht falsch, und eine falsche
+Begründung ist schlechter als gar keine.
+
+### Was der erste Lauf gegen die echte Datei ergeben hat
+
+Grün, 3.209 Zeilen gelesen, **null** Termine beigesteuert. Zwei Befunde
+stecken darin, und der zweite ist der wichtigere.
+
+**Der Kopf steht über zwei Zeilen.** Zeile 5 trägt die japanischen
+Beschriftungen, Zeile 6 die englischen, darüber Titel und Stand. Der erste
+Zerleger nahm eine davon, fand darin `Scheduled Dates` und `コード` – also
+Meldetag und Code an den richtigen Stellen – und ließ Firmenname und
+Geschäftsjahresende still leer. Ein halber Treffer, der von außen wie ein
+ganzer aussieht, weil das, was gefunden wurde, stimmt.
+
+Gelesen wird jetzt der ganze Kopfblock: alle Zeilen vor der ersten Datenzeile,
+Spalte für Spalte zusammengefasst. Und die erste Datenzeile findet sich selbst
+– sie ist die erste mit einem vierstelligen Börsencode **und** einem Datum.
+
+**Die Datei war leer an Zukunft.** „As of 2026/8/6", letzter Termin darin der 6. August. Die japanische Berichtssaison für das erste Quartal war durch.
+Toyota steht mit Code 7203 und dem 4. August darin, Sony mit dem 30. Juli,
+Nintendo mit dem 6. August: Der Abgleich Kürzel → Börsencode hat also
+funktioniert. Es lag bloß kein Tag mehr vor uns.
+
+### Die Lehre daraus: eine Null ist keine Auskunft
+
+„0 Termine beigesteuert" hat drei Ursachen, und sie verlangen entgegengesetzte
+Reaktionen:
+
+1. Die Datei ist unlesbar – Ausfall.
+2. Unsere Kürzel passen nicht auf ihre Codes – Fehler im Abgleich.
+3. Die Berichtssaison ist durch – Normalzustand, nichts zu tun.
+
+Eine einzelne Null unterscheidet die drei nicht, und daraus wird der stille
+Ausfall. Der Lauf zählt deshalb getrennt, wie viele geführte Titel überhaupt in
+der Liste stehen und wie viele davon einen kommenden Tag haben, und nennt
+Zeitraum und Stand der Datei. **Gewarnt wird nur bei Fall 2.** Eine Warnung,
+die dreimal im Jahr wochenlang steht, wird nach der zweiten Woche nicht mehr
+gelesen – und dann auch nicht, wenn sie einmal recht hat.
+
+### Und ein Loch, das dabei aufgefallen ist
+
+`quartalsterminLuecke()` gab `null` zurück, sobald ein Titel im Bestand stand –
+auch wenn alle seine Termine abgelaufen waren. `getQuartalsterminbefund()` gab
+dann ebenfalls `null`, und der Abschnitt auf der Aktienseite verschwand
+**ganz**: kein Termin, keine Erklärung.
+
+Der Test dazu hat den Fall beschrieben und ausdrücklich durchgelassen –
+„selten und heilt beim nächsten Abruf". Er heilt nicht von selbst, solange das
+Unternehmen seinen nächsten Tag nicht angekündigt hat, und für jeden
+japanischen Titel ist das zwischen zwei Saisons der Zustand.
+
+Ein Test, der einen Fall benennt und dann durchwinkt, ist die teuerste Sorte:
+Er beweist, dass jemand hingesehen hat, und verhindert trotzdem nichts.
+
+### Was offen bleibt
+
+Euronext, LSE, Deutsche Börse, SIX, HKEX, KRX, TWSE, NSE, ASX, TSX, B3. Jede
+mit eigenem Format und eigener Sprache. Tokio war der größte Einzelposten und
+der einzige mit einer fertigen Tabelle; die übrigen kommen einzeln dran.

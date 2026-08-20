@@ -60,6 +60,13 @@ export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-20',
     art: 'neu',
+    titel: 'Die Tokioter Börse ist als Terminquelle angeschlossen',
+    text: 'Für Toyota, Sony, Nintendo und die übrigen 69 japanischen Titel stand kein Termin für die Quartalszahlen da – die bisherige Quelle deckt nur ab, wer in den USA notiert. Die Tokioter Börse veröffentlicht die geplanten Meldetermine aller dort gelisteten Unternehmen selbst; sie werden jetzt gelesen. Es sind keine Schätzungen, sondern die Tage, die die Unternehmen selbst angekündigt haben. Zwei Einschränkungen stehen dabei: Eine Uhrzeit nennt Tokio nicht, und deshalb steht bei diesen Titeln auch keine. Und die Börse veröffentlicht die Liste je Berichtssaison – zwischen zwei Saisons steht auf der Aktienseite, dass der nächste Tag noch nicht bekannt gegeben ist, statt einer Schätzung.',
+    ziel: { text: 'Beispiel: Toyota', href: '/maerkte/toyota' },
+  },
+  {
+    datum: '2026-08-20',
+    art: 'neu',
     titel: 'Auf jeder Aktienseite steht, wann die nächsten Zahlen kommen',
     text: 'Unter dem Kursverlauf steht jetzt der erwartete Termin der nächsten Quartalszahlen – und wenn er in den nächsten zwei Wochen liegt, steht oben neben dem Kurs zusätzlich ein Hinweis. Der Kalender nennt dazu die Uhrzeit in deutscher Zeit und ob die Zahlen vor der US-Eröffnung oder nach dem US-Schluss kommen; für den Kurs am selben Tag ist das der ganze Unterschied. Beides ist aus dem bisherigen Meldemuster hochgerechnet und als geschätzt gekennzeichnet.',
     ziel: { text: 'Beispiel: NVIDIA', href: '/maerkte/nvidia' },
