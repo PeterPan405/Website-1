@@ -806,6 +806,30 @@ async function main(): Promise<void> {
   const japanischeKuerzel = [...gefuehrt].filter((kuerzel) =>
     /^[0-9][0-9A-Z]{3}\.T$/.test(kuerzel)
   )
+
+  /*
+    Was der Weg über die Börse ergeben hat – festgehalten, nicht nur
+    protokolliert.
+
+    Das Protokoll eines Laufs ist von der Entwicklungsumgebung dieses Projekts
+    aus nur mühsam zu lesen, und nach neunzig Tagen ist es weg. Die Frage „hat
+    diese Quelle zuletzt etwas geliefert, und wenn nicht, warum?" ist aber
+    genau die, die man Monate später stellt – bei Twelve Data hat sie drei
+    Wochen lang niemand gestellt.
+
+    Deshalb steht die Antwort in der Momentaufnahme, neben den Daten, die sie
+    erklärt.
+  */
+  let tokioBericht: {
+    stand: string | null
+    von?: string
+    bis?: string
+    zeilen?: number
+    spalten?: string[]
+    inListe?: number
+    kommend?: number
+    fehler?: string
+  } | null = null
   const ausTokio: string[] = []
   /** Geführte Titel, die in der Tokioter Liste stehen – gleich ob der Tag noch kommt. */
   const inTokioGefunden: string[] = []
@@ -856,6 +880,15 @@ async function main(): Promise<void> {
       stehen, und daneben, was die Datei über ihren eigenen Stand sagt.
     */
     const tage = jpx.termine.map((t) => t.termin).sort()
+    tokioBericht = {
+      stand: jpx.stand,
+      von: tage[0],
+      bis: tage[tage.length - 1],
+      zeilen: jpx.termine.length,
+      spalten: jpx.kopf,
+      inListe: inTokioGefunden.length,
+      kommend: ausTokio.length,
+    }
     console.log(
       `\nTokio: ${jpx.termine.length} Termine, Stand laut Datei ` +
         `${jpx.stand ?? 'ohne Angabe'}, Zeitraum ${tage[0]} bis ${tage[tage.length - 1]}.`
@@ -873,6 +906,7 @@ async function main(): Promise<void> {
       wird fortgeschrieben, nicht neu begonnen.
     */
     const grund = fehler instanceof JpxOhneTabelle ? fehler.message : String(fehler)
+    tokioBericht = { stand: null, fehler: grund }
     console.warn(
       `\n::warning::Die Terminliste der Tokioter Börse ist nicht lesbar:\n` +
         `  ${grund}\n` +
@@ -1052,6 +1086,20 @@ async function main(): Promise<void> {
       url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany',
       abgrenzung:
         'Die Termine sind aus dem bisherigen Meldemuster jedes Unternehmens abgeleitet und keine Ankündigung. Den genauen Tag gibt jedes Unternehmen wenige Wochen vorher selbst bekannt. Erfasst sind nur Unternehmen, die bei der SEC ein 8-K einreichen – überwiegend US-Emittenten.',
+    },
+    /*
+      Was jede Quelle in diesem Lauf beigetragen hat.
+
+      Eine Null hier ist eine Auskunft und kein Schweigen: Wer in drei Monaten
+      wissen will, ob die Tokioter Liste noch gelesen wird, sieht es an
+      `stand` und `zeilen`, und ob sie etwas beigetragen hat an `kommend`.
+    */
+    herkunft: {
+      tokio: tokioBericht,
+      kalender: {
+        kuerzelMitTermin: angekuendigt.size,
+        beigetragen: ausKalender.length,
+      },
     },
     unternehmen,
     zuletztVersucht,
