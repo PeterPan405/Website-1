@@ -101,6 +101,384 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'fed-protokoll-drei-notenbanker-fuer-erhoehung',
+    title: 'Fed-Protokoll: Drei Notenbanker wollten die Zinsen erhöhen',
+    teaser:
+      'Das jüngste Fed-Protokoll zeigt drei Befürworter einer Zinserhöhung. Was das bedeutet – und welche Termine heute den Kurs mitbestimmen können.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-20T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Zinsen', 'Notenbank', 'Wirtschaftskalender'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.8.2026: Fed-Protokoll sorgt für Aufsehen: Drei Notenbanker wollten Zinserhöhung',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine“, abgerufen 20.8.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Finanzen.net meldet, das Protokoll der jüngsten Fed-Sitzung sorge für Aufsehen: Drei Mitglieder des Offenmarktausschusses hätten sich für eine Zinserhöhung ausgesprochen. Welche Begründung die drei dafür anführten, nennt die Kurzmeldung nicht – das wird hier deshalb auch nicht ergänzt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Fed-Protokoll erscheint erst rund drei Wochen nach der eigentlichen Sitzung. Nach außen wirkte die Entscheidung des Tages selbst oft einstimmig oder zumindest geräuschlos – erst das Protokoll zeigt, wie umstritten sie hinter verschlossenen Türen tatsächlich war.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zahl allein erklärt noch keine Haltung',
+      },
+      {
+        type: 'paragraph',
+        text: '„Drei von zwölf“ ist eine Information, aber keine vollständige. Ob es sich um drei besonders lautstarke Abweichler oder um eine wachsende Fraktion handelt, die beim nächsten Termin zur Mehrheit werden könnte, lässt sich aus einer einzelnen Meldung nicht ablesen. Dafür bräuchte es die Protokolle mehrerer Sitzungen im Vergleich – nicht nur die aktuelle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für heute mehrere Termine: um 8:00 Uhr deutsche Erzeugerpreise (Prognose 2,7 Prozent im Jahresvergleich, 0,7 Prozent zum Vormonat), um 12:00 Uhr den Monatsbericht der Bundesbank, um 14:30 Uhr die US-Erstanträge auf Arbeitslosenhilfe (Prognose 212.000) sowie den Philadelphia-Fed-Index (Prognose 25), und um 17:10 Uhr eine Rede des Fed-Vertreters Musalem.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gerade die Erzeugerpreise sind eine Vorstufe: Was Unternehmen für Vorleistungen zahlen, taucht mit Verzögerung häufig in den Verbraucherpreisen wieder auf. Ein deutlicher Ausschlag nach oben oder unten liefert damit einen frühen Hinweis auf die Inflationsrichtung der kommenden Monate.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein einzelnes Protokoll und ein einzelner Kalendertag ändern selten eine Anlagestrategie. Wer die Zinsentwicklung im Blick behält, gewinnt trotzdem etwas: ein Gefühl dafür, wie geschlossen oder gespalten die Notenbank gerade tatsächlich ist – und dass diese Spaltung oft früher sichtbar wird, als es die offizielle Entscheidung vermuten lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-rekord-anleihe-rueckkaeufe-dann-daempfer',
+    title:
+      'Gold auf Rekordkurs nach US-Anleihe-Rückkäufen – am Morgen schon wieder schwächer',
+    metaTitle: 'Gold: Rekord nach Anleihe-Rückkäufen, dann ein Dämpfer',
+    teaser:
+      'Verdoppelte US-Anleihekäufe drückten die Renditen und trieben Gold auf ein Rekordhoch. Am Morgen zeigen zwei Portale den Kurs schon wieder leicht schwächer.',
+    category: 'Märkte',
+    publishedAt: '2026-08-20T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Anleihen', 'Renditen', 'US-Dollar'],
+    relatedTopics: ['rohstoffe', 'staatsanleihe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldungen & Analysen, 19. August 2026: USA stützen Anleihemarkt – Goldpreis springt über 4.400 Dollar',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 20.8.2026, ca. 3:55 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Rohstoffkurse, Stand 20.8.2026, 3:55 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Goldreporter meldet: Die USA haben ihre Rückkäufe lang laufender Staatsanleihen verdoppelt. Renditen und Dollar gaben daraufhin nach, während der Goldpreis auf 4.440 US-Dollar je Feinunze stieg – ein Rekord, wie die Quelle schreibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am frühen Morgen dieses Tages zeigen die Kursleisten von finanzen.net und wallstreet-online den Goldpreis oberhalb dieser Marke, aber mit rotem Vorzeichen: finanzen.net nennt 4.492 US-Dollar bei minus 0,7 Prozent, wallstreet-online 4.485,41 US-Dollar bei minus 0,83 Prozent. Beide Angaben stammen von fast derselben Uhrzeit, 3:55 Uhr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen für denselben Moment',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass zwei Portale zur selben Minute leicht unterschiedliche Preise und Prozentzahlen für dasselbe Edelmetall zeigen, ist kein Fehler, sondern normal: Die Anbieter beziehen ihre Kurse von unterschiedlichen Datenlieferanten und referenzieren teils andere Vergleichszeitpunkte für die Prozentrechnung. Wer eine Zahl aus einer App zitiert, zitiert damit auch deren Datenquelle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was Rückkäufe mit dem Goldpreis zu tun haben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kauft ein Staat eigene, bereits ausgegebene langlaufende Anleihen zurück, steigt für diese Papiere die Nachfrage – ihr Kurs zieht an, ihre Rendite sinkt spiegelbildlich. Niedrigere Renditen senken die Opportunitätskosten, Gold zu halten, das selbst keine Zinsen zahlt. Fällt gleichzeitig der Dollar, wird Gold für Käufer in anderen Währungen zusätzlich günstiger. Beide Effekte zusammen erklären, warum ein Anleihe-Programm den Goldpreis bewegen kann, ohne dass Gold selbst betroffen ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rekordhoch am Vortag und ein roter Morgen darauf widersprechen sich nicht – Kurse schwanken auch innerhalb eines übergeordneten Trends. Wer aus einer einzelnen Nacht mit fallenden Notierungen eine Trendwende ableiten will, sollte sich vorher fragen, ob sich an den zugrunde liegenden Renditen und am Dollar tatsächlich schon etwas geändert hat.',
+      },
+    ],
+  },
+  {
+    slug: 'brent-iran-spannung-gold-gibt-nach',
+    title: 'Brent bleibt nach Iran-Spannungen erhöht, während Gold nachgibt',
+    teaser:
+      'Brent legte gestern über ein Prozent zu und bleibt heute erhöht. Gold dagegen gibt zur gleichen Stunde nach – zwei Rohstoffe, zwei verschiedene Signale.',
+    category: 'Märkte',
+    publishedAt: '2026-08-20T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Gold', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 19.8.2026, Markt Bote: Ölpreis: Ölmarkt mit Rally: Brent steigt +1,16 % auf 92,37 USD',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite, Rubrik Politik/Wirtschaft, abgerufen 20.8.2026: Die nächste rote Linie – Iran prüft Angriffe auf US-Ziele in Europa',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net und wallstreet-online, Kursleisten, Stand 20.8.2026, ca. 3:55 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wallstreet-online meldete gestern eine Ölmarkt-Rally: Brent sei um 1,16 Prozent auf 92,37 US-Dollar gestiegen. Heute früh zeigen die Kursleisten die Notierung weiterhin über 91 US-Dollar – finanzen.net nennt 92,00 US-Dollar bei plus 0,4 Prozent, wallstreet-online 91,58 US-Dollar bei plus 0,29 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur gleichen Stunde zeigen dieselben zwei Portale den Goldpreis mit rotem Vorzeichen, nicht mit grünem. Zwei Rohstoffe, die beide gern als „Krisenbarometer“ beschrieben werden, laufen an diesem Morgen also in entgegengesetzte Richtungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Rohstoffe, zwei Treiber',
+      },
+      {
+        type: 'paragraph',
+        text: 'Öl reagiert vor allem auf Angebot, Nachfrage und Risiken für Fördermengen oder Transportwege – etwa Spannungen an wichtigen Wasserstraßen. Gold reagiert stärker auf Realzinsen und den Dollar, wie der Artikel zu den US-Anleihe-Rückkäufen an diesem Tag zeigt. Beide Rohstoffe können deshalb an ein und demselben Morgen aus völlig unterschiedlichen Gründen in unterschiedliche Richtungen laufen, ohne dass das ein Widerspruch wäre.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Meldung ohne belegten Zusammenhang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf derselben Startseite von wallstreet-online steht unter der Rubrik „Die nächste rote Linie“ der Hinweis, der Iran prüfe Angriffe auf US-Ziele in Europa. Die Quelle nennt dazu weder Datum noch Uhrzeit und stellt selbst keine Verbindung zur Ölpreis-Rally her. Genau deshalb wird sie hier auch nicht als Erklärung für den Brent-Anstieg behauptet – beide Fakten stehen nebeneinander, nicht ineinander verschränkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer zwei Kursbewegungen am selben Tag sieht, ist versucht, sie zu einer Geschichte zu verbinden. Belegt ist das nur, wenn eine Quelle den Zusammenhang tatsächlich herstellt. Fehlt dieser Beleg, bleibt es bei zwei getrennten Beobachtungen – das ist weniger befriedigend zu lesen, aber ehrlicher.',
+      },
+    ],
+  },
+  {
+    slug: 'kanada-zoll-pause-und-rekordeuro',
+    title: 'Zoll-Pause für Kanada und ein Rekordeuro – zwei Meldungen',
+    teaser:
+      'Trump pausiert Zölle gegen Kanada für eine Öl-Pipeline, der Euro steigt auf ein Mehrmonatshoch. Zwei Nachrichten, die nicht automatisch zusammengehören.',
+    category: 'Märkte',
+    publishedAt: '2026-08-20T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Devisen', 'Zölle', 'Euro', 'US-Dollar'],
+    relatedTopics: ['waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.8.2026: Kurz vor Deadline-Ende: Trump pausiert Zölle gegen Kanada und will dafür Öl-Pipeline',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Devisennachrichten vom 19.8.2026, dpa-AFX: Devisen: Euro steigt zum US-Dollar auf den höchsten Stand seit Ende Mai',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Forex-Analysen vom 19.8.2026, Société Générale: CAD: US-Zölle um drei Tage verschoben, Deal soll bevorstehen',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Finanzen.net meldet, kurz vor Ablauf einer Deadline habe Trump die Zölle gegen Kanada pausiert und wolle im Gegenzug eine Öl-Pipeline. Details zur Laufzeit der Pause oder zur Pipeline selbst nennt die Kurzmeldung nicht. Onvista ergänzt in einer Analyse vom Vortag, die US-Zölle gegen Kanada seien um drei Tage verschoben worden, ein Deal solle bevorstehen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unabhängig davon meldet wallstreet-online unter Berufung auf dpa-AFX, der Euro sei zum US-Dollar auf den höchsten Stand seit Ende Mai gestiegen. Auch hier bleibt die Begründung offen – die Meldung nennt nur die Tatsache, nicht die Ursache.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Dollar-Geschichten, die nicht zusammenhängen müssen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil beide Meldungen denselben Tag betreffen und beide etwas mit dem US-Dollar zu tun haben, liegt es nahe, sie zu einer Geschichte über einen schwachen Dollar zusammenzufassen. Der kanadische Dollar und der Euro sind aber zwei unterschiedliche Währungspaare mit unterschiedlichen Treibern – Handelspolitik gegenüber einem Nachbarland ist etwas anderes als die breite Erwartung an US-Zinsen und -Inflation, die den Euro-Dollar-Kurs prägt. Beide Bewegungen können denselben Hintergrund teilen oder auch nicht; die vorliegenden Quellen entscheiden das nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am Morgen schon wieder ruhiger',
+      },
+      {
+        type: 'paragraph',
+        text: 'In den aktuellen Kursleisten hat sich die Euro-Rally bereits beruhigt: finanzen.net zeigt den Euro nahezu unverändert bei 1,1676 Dollar, wallstreet-online notiert EUR/USD bei 1,16745 und minus 0,03 Prozent. Der Sprung auf das Mehrmonatshoch liegt damit bereits einen Tag zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Handelspolitik und Wechselkurse hängen oft zusammen, aber nicht immer und nicht sofort. Wer zwei Meldungen vom selben Tag liest, sollte prüfen, ob eine Quelle die Verbindung tatsächlich herstellt – oder ob sie nur zufällig auf denselben Tag fällt.',
+      },
+    ],
+  },
+  {
+    slug: 'palantir-bewertung-nach-dem-quartal',
+    title: 'Palantir nach starkem Quartal: Reicht der Gewinn für die Bewertung?',
+    metaTitle: 'Palantir: Reicht der Gewinn für die Bewertung?',
+    teaser:
+      'Nach einem starken Quartal fragt eine Kurzmeldung selbst, wie tragfähig Palantirs Bewertung nach der Rally noch ist. Ein Anlass, zwei Kennzahlen zu trennen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-20T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Palantir', 'Bewertung', 'Quartalszahlen', 'Kennzahlen'],
+    relatedTopics: ['risiko-und-rendite', 'wann-kaufen-verkaufen'],
+    relatedSymbols: ['palantir'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.8.2026: Palantir-Aktie nach starkem Quartal: Wie tragfähig ist die Bewertung nach der Rally?',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Finanzen.net titelt: Palantir habe ein starkes Quartal vorgelegt, die Aktie sei zuvor gestiegen – und nun stelle sich die Frage, wie tragfähig die Bewertung nach dieser Rally noch sei. Konkrete Umsatz- oder Gewinnzahlen nennt die Kurzmeldung nicht, ebenso wenig, um wie viel die Aktie gestiegen ist. Beides wird hier deshalb auch nicht ergänzt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Frage, die die Überschrift schon mitliefert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist, dass die Meldung die Zweifel selbst formuliert, statt nur das gute Quartal zu vermelden. Das ist ein typisches Muster nach einer längeren Kursrally: Selbst gute, tatsächlich berichtete Zahlen reichen dann nicht mehr automatisch aus, um den bereits gestiegenen Kurs zu rechtfertigen – die Messlatte ist mitgewachsen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie man eine Bewertung von einem Quartal trennt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Quartalsbericht zeigt, was in den vergangenen drei Monaten tatsächlich passiert ist. Die Bewertung – etwa das Verhältnis von Kurs zu Gewinn oder von Kurs zu Umsatz – drückt dagegen aus, wie viel künftiges Wachstum der Markt bereits eingepreist hat. Ein Unternehmen kann ein hervorragendes Quartal liefern und die Aktie trotzdem als „teuer“ gelten, wenn der Kurs schon mehrere weitere starke Quartale vorwegnimmt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer eine Schlagzeile wie diese liest, kann sie als Erinnerung nehmen, selbst nachzuschauen: Wie hoch ist die aktuelle Bewertung im Vergleich zum eigenen Wachstum und zu vergleichbaren Unternehmen? Eine Kaufempfehlung ist das nicht – nur die Frage, die man sich vor jeder Entscheidung ohnehin stellen sollte.',
+      },
+    ],
+  },
+  {
+    slug: 'moderna-177-prozent-eine-studie',
+    title: 'Moderna springt um 177 Prozent – eine Studie, ein Tag',
+    teaser:
+      'Eine erfolgreiche Melanom-Studie schickt Moderna um 177 Prozent nach oben – ein Extrembeispiel, wie stark ein Studienergebnis einen Kurs bewegen kann.',
+    category: 'Märkte',
+    publishedAt: '2026-08-20T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Moderna', 'Biotech', 'Kursschwankung', 'Studienergebnis'],
+    relatedTopics: ['risiko-und-rendite', 'anlegerpsychologie'],
+    relatedSymbols: ['moderna', 'merck'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über finanzen.net, onvista und boerse-frankfurt.de, News vom 19.8.2026, 20:35 Uhr: AKTIEN IM FOKUS 3: Moderna steigen um 177 Prozent - Erfolgreiche Melanom-Studie',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gleich drei Portale – finanzen.net, onvista und die Deutsche Börse – führen am Abend des 19. August dieselbe dpa-AFX-Meldung: Moderna-Aktien seien um 177 Prozent gestiegen, Auslöser eine erfolgreiche Melanom-Studie. Welche konkreten Studiendaten dahinterstehen oder in welcher Handelsphase der Sprung stattfand, geben die Kurzmeldungen nicht her.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur Meldung verknüpft ist zusätzlich der Name Merck & Co. Was genau diese Verbindung ausmacht, bleibt in der vorliegenden Kurzfassung offen – hier wird deshalb nur der Fakt der Verknüpfung wiedergegeben, keine Vermutung über eine mögliche Partnerschaft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Plus von 177 Prozent bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kurssprung dieser Größenordnung an einem einzigen Tag ist für einen breiten Index wie den DAX praktisch ausgeschlossen – dort gleichen sich die Bewegungen vieler Unternehmen gegenseitig aus. Bei einer Einzelaktie, deren Wert stark von einem einzelnen, binären Ereignis abhängt, ist ein solcher Sprung dagegen möglich: Vor der Studie kannte niemand außerhalb des Unternehmens das Ergebnis, danach war es öffentlich – und der Kurs musste die neue Information in Minuten verarbeiten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Binäres Ereignis, binäres Risiko',
+      },
+      {
+        type: 'paragraph',
+        text: 'Studienergebnisse in der Medikamentenentwicklung fallen häufig eindeutig positiv oder eindeutig negativ aus – ein Zwischenergebnis gibt es selten. Wer in ein Unternehmen investiert, dessen Bewertung stark an einer einzelnen Studie hängt, trägt dieses Alles-oder-nichts-Risiko mit. Ein Kursgewinn von 177 Prozent an einem Tag ist die eine Seite dieser Münze; ein ebenso starker Einbruch bei einem gescheiterten Studienergebnis wäre die andere.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Extreme Tagesbewegungen wie diese sind selten repräsentativ für den Rest eines Depots. Sie zeigen aber gut, warum breite Streuung gerade bei Einzelwerten mit binären Ereignissen einen Unterschied macht: Ein einzelner Datenpunkt entscheidet dort über einen sehr großen Teil des Kurses.',
+      },
+    ],
+  },
+  {
     slug: 'anleiherenditen-setzen-technologiewerte-unter-druck',
     title: 'Anleiherenditen setzen Technologiewerte unter Druck',
     teaser:
