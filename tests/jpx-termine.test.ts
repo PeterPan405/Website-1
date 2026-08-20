@@ -77,15 +77,19 @@ pruefen(
 
 /*
   Echte Zeilen, gelesen am 20. August 2026 aus `kessan06_0807.xlsx`. Die
-  Kopfzeile, die Spaltenfolge und die Schreibweise stammen aus der Datei
-  selbst; erfunden ist nur die Toyota-Zeile, und zwar mit Toyotas echtem Code
-  und echtem Geschäftsjahresende.
-*/
-/*
-  Der Kopf steht über **zwei** Zeilen, so wie in der echten Datei: Zeile 5
-  trägt die japanischen Beschriftungen, Zeile 6 die englischen. Darüber Titel
-  und Stand. Wer nur eine der beiden Zeilen liest, findet die halben Spalten –
-  und merkt es nicht, weil die gefundenen stimmen.
+  Spaltenfolge und die Schreibweise stammen aus der Datei selbst; erfunden ist
+  nur die Toyota-Zeile, und zwar mit Toyotas echtem Code und echtem
+  Geschäftsjahresende.
+
+  Der Kopf ist hier auf **zwei Zeilen** verteilt – japanisch oben, englisch
+  darunter. In der echten Datei steht beides in **einer** Zeile, mit einem
+  Zeilenumbruch **innerhalb** der Zelle: `決算発表予定日\r\nScheduled Dates …`.
+  Nachgemessen am selben Tag.
+
+  Geprüft wird trotzdem die aufgeteilte Form, und zwar mit Absicht: Sie ist der
+  härtere Fall. Wer sie besteht, besteht die zusammengefasste auch – und die
+  Börse kann jederzeit von der einen zur anderen wechseln, ohne dass es jemand
+  ankündigt.
 */
 const KOPF_JA = ['決算発表予定日', 'コード', '会社名', '', '決算期末']
 const KOPF_EN = ['Scheduled Dates for Earnings Announcements', '', '', 'Issue Name', '']
@@ -216,6 +220,27 @@ pruefen(
   'Eine Zahl aus dem Codebereich wird nicht zum Meldetag',
   vertauscht.length === 1 && vertauscht[0].code === '7203',
   JSON.stringify(vertauscht)
+)
+
+/*
+  Ein Code kann zweimal vorkommen – und beide Zeilen müssen durchkommen.
+
+  Die Börse führt zwei Dateien nebeneinander. Ein Unternehmen kann in beiden
+  stehen: mit einem zurückliegenden Tag in der einen und einem kommenden in der
+  anderen. Die erste Fassung behielt je Code den früheren und verwarf den Rest –
+  also den vergangenen, und der kommende fiel weg. Genau der, um den es geht.
+*/
+const ZWEIMAL = [
+  KOPF_JA,
+  KOPF_EN,
+  ['46216', '7203', 'トヨタ自動車', 'TOYOTA MOTOR CORPORATION', '46477'],
+  ['46308', '7203', 'トヨタ自動車', 'TOYOTA MOTOR CORPORATION', '46568'],
+]
+const beide = parseTabelle(ZWEIMAL).termine
+pruefen(
+  'Zwei Zeilen zu einem Code bleiben zwei',
+  beide.length === 2 && beide[0].termin < beide[1].termin,
+  JSON.stringify(beide.map((t) => t.termin))
 )
 
 /* Textdaten kommen in älteren Fassungen der Datei vor. */

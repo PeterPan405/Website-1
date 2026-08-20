@@ -825,6 +825,7 @@ async function main(): Promise<void> {
     von?: string
     bis?: string
     zeilen?: number
+    kommendGesamt?: number
     spalten?: string[]
     inListe?: number
     kommend?: number
@@ -835,19 +836,37 @@ async function main(): Promise<void> {
   const inTokioGefunden: string[] = []
   try {
     const jpx = await holeJpxTermine()
-    const jeCode = new Map(jpx.termine.map((termin) => [termin.code, termin]))
+
+    /*
+      Je Börsencode alle Zeilen, aufsteigend nach Tag.
+
+      Nicht je Code eine: Die Börse führt zwei Dateien nebeneinander, und ein
+      Unternehmen kann in beiden stehen – mit einem zurückliegenden Tag in der
+      einen und einem kommenden in der anderen. Wer hier den ersten nimmt,
+      nimmt den vergangenen und verliert genau den, um den es geht.
+    */
+    const jeCode = new Map<string, typeof jpx.termine>()
+    for (const termin of jpx.termine) {
+      const bisher = jeCode.get(termin.code)
+      if (bisher) bisher.push(termin)
+      else jeCode.set(termin.code, [termin])
+    }
+    for (const liste of jeCode.values())
+      liste.sort((a, b) => a.termin.localeCompare(b.termin))
 
     for (const kuerzel of gefuehrt) {
       const code = /^([0-9][0-9A-Z]{3})\.T$/.exec(kuerzel)?.[1]
       if (!code) continue
 
-      const termin = jeCode.get(code)
-      if (!termin) continue
+      const zeilen = jeCode.get(code)
+      if (!zeilen) continue
       inTokioGefunden.push(kuerzel)
 
       // Der Sammelkalender war zuerst da; zwei angekündigte Tage wären einer zu viel.
       if (angekuendigt.has(kalenderkuerzel(kuerzel))) continue
-      if (termin.termin < heute) continue
+
+      const termin = zeilen.find((eintrag) => eintrag.termin >= heute)
+      if (!termin) continue
 
       unternehmen[kuerzel] = {
         name: termin.name || unternehmen[kuerzel]?.name || kuerzel,
@@ -885,6 +904,15 @@ async function main(): Promise<void> {
       von: tage[0],
       bis: tage[tage.length - 1],
       zeilen: jpx.termine.length,
+      /*
+        Wie viele Termine der Datei überhaupt noch kommen.
+
+        Das trennt zwei Dinge, die sonst beide als Null ankämen: „die Liste ist
+        veraltet" und „unsere Titel haben schon gemeldet, andere noch nicht".
+        Am 20. August 2026 war es das Zweite – die Datei reichte bis zum
+        17. September, aber alle 67 geführten japanischen Titel lagen dahinter.
+      */
+      kommendGesamt: jpx.termine.filter((t) => t.termin >= heute).length,
       spalten: jpx.kopf,
       inListe: inTokioGefunden.length,
       kommend: ausTokio.length,

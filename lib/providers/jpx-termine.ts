@@ -156,16 +156,20 @@ const CODE = /^[0-9][0-9A-Z]{3}$/
  *
  * ## Warum nicht eine Zeile
  *
- * Weil es keine ist. Gemessen an `kessan06_0807.xlsx` am 20. August 2026:
- * Zeile 5 trägt `決算発表予定日`, Zeile 6 trägt
- * `Scheduled Dates for Earnings Announcements` und daneben `コード`. Die
- * japanische und die englische Beschriftung stehen untereinander, und keine
- * der beiden Zeilen allein beschriftet die Tabelle vollständig.
+ * Weil über der Tabelle mehr steht als eine Beschriftung. Gemessen an
+ * `kessan06_0807.xlsx` am 20. August 2026 stehen dort vier Dinge: der Titel
+ * der Liste auf Japanisch und Englisch, der Satz `2026年8月6日 現在 As of
+ * 2026/8/6`, und erst dann die Spaltennamen – die ihrerseits zweisprachig
+ * sind, mit einem Zeilenumbruch **innerhalb** der Zelle
+ * (`決算発表予定日\r\nScheduled Dates for Earnings Announcements`).
  *
- * Wer eine davon nimmt, findet die eine Hälfte der Spalten und die andere
- * nicht – und merkt es nicht, weil die gefundenen Spalten stimmen. Genau so
- * ist der erste Lauf durchgegangen: 3.209 Zeilen gelesen, Meldetag und Code
- * richtig, Firmenname und Geschäftsjahresende still leer.
+ * Wer eine einzelne Zeile als Kopf nimmt, findet die eine Hälfte der Spalten
+ * und die andere nicht – und merkt es nicht, weil die gefundenen Spalten
+ * stimmen. Genau so ist der erste Lauf durchgegangen: 3.209 Zeilen gelesen,
+ * Meldetag und Code richtig, Firmenname und Geschäftsjahresende still leer.
+ *
+ * Zusammengefasst über alle Zeilen davor stimmt es unabhängig davon, ob die
+ * Börse den Kopf auf eine Zeile schreibt oder auf zwei.
  */
 function kopfBlock(zeilen: string[][], bis: number): string[] {
   const breite = Math.max(0, ...zeilen.slice(0, bis).map((zeile) => zeile.length))
@@ -302,15 +306,22 @@ async function holeRoh(url: string): Promise<Buffer> {
 /**
  * Holt alle Terminlisten der JPX und führt sie zusammen.
  *
- * Zu einem Code kann in zwei Dateien ein Termin stehen. Genommen wird der
- * **frühere**: Der spätere gehört nicht auf die Aktienseite, solange der
- * frühere noch aussteht.
+ * ## Warum hier nichts zusammengefasst und nichts weggelassen wird
  *
- * Gefiltert wird hier **nicht** nach der Zukunft. Ob ein Termin noch kommt,
- * entscheidet der Aufrufer – und er soll dabei sehen können, was in der Datei
- * stand. Eine Quelle, die nur zurückliegende Tage führt, ist etwas anderes als
- * eine, die zu unseren Titeln nichts sagt, und diese beiden Fälle dürfen nicht
- * beide als leere Liste ankommen.
+ * Die erste Fassung behielt je Börsencode den **frühesten** Termin und
+ * verwarf den Rest. Das klang richtig – „der spätere gehört nicht auf die
+ * Seite, solange der frühere aussteht" – und war es nicht: Die Börse führt
+ * zwei Dateien nebeneinander, und ein Unternehmen kann in beiden stehen, mit
+ * einem zurückliegenden Tag in der einen und einem kommenden in der anderen.
+ * Der frühere ist dann der vergangene, und der kommende fiel weg.
+ *
+ * Aus demselben Grund wird auch nicht nach der Zukunft gefiltert: Ob ein
+ * Termin noch kommt, entscheidet der Aufrufer. Eine Quelle, die nur
+ * zurückliegende Tage führt, ist etwas anderes als eine, die zu unseren
+ * Titeln nichts sagt – und diese beiden Fälle dürfen nicht beide als leere
+ * Liste ankommen.
+ *
+ * Was hier passiert, ist deshalb nur eines: doppelte Zeilen entfernen.
  */
 export async function holeTermine(): Promise<JpxTabelle> {
   const seite = await (await fetch(JPX_TERMINSEITE, { headers: KOPFZEILEN })).text()
@@ -323,7 +334,7 @@ export async function holeTermine(): Promise<JpxTabelle> {
     )
   }
 
-  const jeCode = new Map<string, JpxTermin>()
+  const jeZeile = new Map<string, JpxTermin>()
   const koepfe: string[] = []
   let stand: string | null = null
 
@@ -334,16 +345,15 @@ export async function holeTermine(): Promise<JpxTabelle> {
     if (tabelle.stand && (!stand || tabelle.stand < stand)) stand = tabelle.stand
 
     for (const termin of tabelle.termine) {
-      const vorhanden = jeCode.get(termin.code)
-      if (!vorhanden || termin.termin < vorhanden.termin) jeCode.set(termin.code, termin)
+      jeZeile.set(`${termin.code}|${termin.termin}`, termin)
     }
   }
 
-  if (jeCode.size === 0) {
+  if (jeZeile.size === 0) {
     throw new JpxOhneTabelle(
       `${adressen.length} Datei(en) gelesen, aber kein einziger Termin darin.`
     )
   }
 
-  return { stand, kopf: koepfe, termine: [...jeCode.values()] }
+  return { stand, kopf: koepfe, termine: [...jeZeile.values()] }
 }
