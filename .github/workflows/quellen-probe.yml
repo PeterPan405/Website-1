@@ -151,6 +151,44 @@ name: Quellen abklopfen
 # neun geprüften Quellen weiterhin keine freie Sammelstelle in Sicht.
 
 #
+# ## Die Börsen selbst – erster Durchgang am 20. August 2026
+#
+# Nachdem die Datenhändler durch waren, sind die Börsen drangekommen. Sie
+# führen die Termine amtlich, und mehrere antworten ohne Schlüssel.
+#
+# - **JPX (Tokio): die Quelle gibt es, auf Japanisch.**
+#   `listing/event-schedules/financial-announcement/index.html` führt „Scheduled
+#   Dates for Earnings Announcements", und die Seite sagt selbst: „The schedule
+#   … will be updated at around 5:00 p.m. each business day." Die englische
+#   Fassung verweist für die Liste auf die japanische. Das ist eine tägliche,
+#   amtliche, kostenlose Quelle für die japanischen Werte – erreichbar, aber
+#   noch nicht ausgelesen.
+# - **Euronext:** `/en/ajax/getFactsheetInfoBlock/STOCK/{ISIN}-{MIC}/fs_agenda_block`
+#   antwortet mit **200**, der Block kam allerdings leer zurück. Der Pfad
+#   stimmt, der Blockname wohl noch nicht.
+# - **LSE:** `api.londonstockexchange.com/api/gw/lse/instruments/alldata/{TIDM}`
+#   antwortet mit **200 JSON ohne Schlüssel** – Stammdaten, keine Termine.
+#   `/news/{TIDM}` gibt es nicht (404).
+# - **EODHD:** 403 mit Demo-Schlüssel.
+# - **Nasdaq (`api.nasdaq.com/api/company/{X}/financial-calendar`):** 404.
+#
+# ### Was der Weg über die Börsen kosten würde
+#
+# Für alle 1.029 Aktien wären es rund zehn getrennte Anbindungen: JPX,
+# Euronext, LSE, Deutsche Börse (bereits 403), SIX, Nasdaq Nordic, BME, Borsa
+# Italiana, HKEX, KRX, TWSE, NSE, ASX, TSX, B3 – jede mit eigenem Format,
+# eigener Sprache, eigenem Kürzelschema, und jede bricht still, wenn die Börse
+# ihre Seite umbaut.
+#
+# Dem gegenüber steht **eine** Anbindung: Der Weg über Twelve Data ist
+# fertig gebaut (`lib/providers/twelvedata-termine.ts`) und wartet nur auf
+# einen bezahlten Tarif. Der Anbieter führt die europäischen Werte
+# nachweislich im Verzeichnis (siehe oben, `/stocks?symbol=SAP`).
+#
+# Das ist keine technische Frage mehr, sondern die Wahl zwischen Arbeitszeit
+# plus Dauerpflege und einem Monatsbetrag.
+#
+#
 # ## Offener Auftrag: Unternehmenszahlen ausserhalb der USA
 #
 # 172 der 529 Aktien haben Umsatz, Gewinn, Cashflow, Eigenkapital und
