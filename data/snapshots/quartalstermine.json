@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-20T12:34:54.584Z",
+  "abgerufenAm": "2026-08-21T05:55:00.202Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-07-03",
       "bis": "2026-09-17",
       "zeilen": 3209,
-      "kommendGesamt": 229,
+      "kommendGesamt": 228,
       "spalten": [
         "６月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in June 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -1765,7 +1765,7 @@
         "2024-11-19"
       ],
       "bisherZeiten": {
-        "2026-08-20": "02:59",
+        "2026-08-20": "06:59",
         "2026-05-21": "06:59",
         "2026-02-19": "06:59",
         "2025-11-20": "06:58",
@@ -1797,7 +1797,7 @@
           "erwartet": "2027-08-19",
           "basis": "2026-08-20",
           "streuungTage": 0,
-          "newYorkerZeit": "02:59"
+          "newYorkerZeit": "06:59"
         }
       ]
     },
@@ -2248,7 +2248,7 @@
         "2024-11-21"
       ],
       "bisherZeiten": {
-        "2026-08-20": "02:00",
+        "2026-08-20": "06:00",
         "2026-05-21": "06:00",
         "2026-02-19": "06:03",
         "2025-11-26": "06:00",
@@ -2280,7 +2280,7 @@
           "erwartet": "2027-08-19",
           "basis": "2026-08-20",
           "streuungTage": 7,
-          "newYorkerZeit": "02:00"
+          "newYorkerZeit": "06:00"
         }
       ]
     },
@@ -15536,7 +15536,7 @@
     "KBX.DE": "2026-08-20",
     "KER.PA": "2026-08-20",
     "KGX.DE": "2026-08-20",
-    "KLBN11.SA": "2026-08-18",
+    "KLBN11.SA": "2026-08-21",
     "KNEBV.HE": "2026-08-18",
     "KNIN.SW": "2026-08-18",
     "KOG.OL": "2026-08-18",
