@@ -101,6 +101,416 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oel-iran-sanktionen-brent-93-dollar',
+    title: 'Öl zieht an: USA drohen Iran mit den härtesten Sanktionen aller Zeiten',
+    metaTitle: 'Öl zieht an: härteste Iran-Sanktionen aller Zeiten',
+    teaser:
+      'Washington kündigt neue Iran-Sanktionen an, Brent springt auf über 93 Dollar. Gold legt zur gleichen Stunde nur leicht zu.',
+    category: 'Märkte',
+    publishedAt: '2026-08-21T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Brent', 'Iran', 'Gold'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, abgerufen 21.8.2026, ca. 4:03 Uhr: „Ölpreise schießen hoch – Die USA kündigen die schärfsten Iran-Sanktionen aller Zeiten an. Brent springt auf 93 US-Dollar. Gleichzeitig umgeht Saudi-Aramco Hormus mit Millionenlieferungen an China.“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 21.8.2026, ca. 4:01 Uhr: Öl (Brent) 93,21 USD (+1,77 %), Gold 4.531,19 USD (+0,27 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die USA haben nach Angaben von wallstreet-online die schärfsten Sanktionen gegen Iran angekündigt, die es je gab. Der Ölpreis reagiert prompt: Ein Barrel Brent kostet heute früh 93,21 US-Dollar, ein Plus von 1,77 Prozent. Dieselbe Meldung nennt noch eine zweite Bewegung – Saudi-Aramco soll die Straße von Hormus mit Millionenlieferungen nach China umgehen. Details dazu, etwa auf welchem Weg genau, liefert die Kurzmeldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur gleichen Stunde notiert Gold bei 4.531,19 US-Dollar – ebenfalls im Plus, aber nur um 0,27 Prozent. Zwei Rohstoffe, eine Schlagzeile, zwei sehr unterschiedliche Ausschläge.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Öl stärker reagiert als Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Barrel Öl ist an einen konkreten Lieferweg gebunden: Wird eine Route wie die Straße von Hormus politisch riskanter, steigt der Preis über eine **Risikoprämie** für genau dieses Ausfallrisiko. Gold dagegen wird nicht transportiert, um verbraucht zu werden – es dient als Wertspeicher, dessen Nachfrage sich eher über Wochen als über eine einzelne Schlagzeile verschiebt. Deshalb kann dieselbe geopolitische Meldung beide Preise nach oben bewegen und trotzdem sehr unterschiedlich groß ausfallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kurzmeldung nennt weder ein Datum für die angekündigten Sanktionen noch deren genauen Umfang, und sie erklärt nicht, warum Gold nur moderat zulegt. Wer daraus eine Kausalkette zwischen Iran-Sanktionen und Goldpreis konstruiert, geht über das hinaus, was die Quelle hergibt – die beiden Bewegungen stehen einfach nebeneinander in derselben Übersicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Schlagzeile bewegt selten alle Rohstoffe gleich stark, weil sie unterschiedliche Übertragungswege in den Preis haben. Wer Öl und Gold als gleichartige „Krisenbarometer“ behandelt, übersieht, dass hinter ähnlichen Prozentzahlen oft ganz verschiedene Mechanismen stecken.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-vierter-verlusttag-kalender-freitag',
+    title: 'DAX startet nach dem vierten Verlusttag – das steht heute an',
+    metaTitle: 'DAX nach viertem Verlusttag: der Kalender heute',
+    teaser:
+      'Der DAX schloss gestern zum vierten Mal in Folge im Minus unter 26.000 Punkten. Heute liefert der Kalender britische und französische Konjunkturdaten.',
+    category: 'Märkte',
+    publishedAt: '2026-08-21T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Wirtschaftskalender', 'Wall Street', 'Walmart'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Tagesrückblick 20.08.2026, gestern 15:58 Uhr: „Dax fällt unter 26.000 Punkte – Ölpreise steigen weiter“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 20.8.2026, gestern: „WDH/ROUNDUP/Aktien Frankfurt Schluss: 4. Verlusttag - Dax unter 26.000 Punkten“ und „AKTIEN IM FOKUS 2: Walmart sehr schwach - US-Geschäft bereitet weiterhin Sorgen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen, gestern 17:59 Uhr: „Aktien New York: Dow unter 53.000 Punkte - Renditen, Öl und Walmart belasten“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Wichtige Termine / Kommende Termine, abgerufen 21.8.2026: 08:00 Uhr GBR Retail Sales, 08:45 Uhr FRA Business Climate in Manufacturing, 09:15 Uhr FRA HCOB Manufacturing PMI (Prognose 49,9, Vorherig 49,8)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Vier rote Tage in Folge: Der DAX ist gestern zum vierten Mal hintereinander gefallen und hat die Marke von 26.000 Punkten von oben gerissen, meldet onvista im Tagesrückblick. Heute früh notiert der Index in den Kursleisten von finanzen.net und wallstreet-online bei rund 25.980 Punkten und damit weiterhin unter dieser Marke.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mitgezogen hat die Schwäche aus New York: Walmart-Zahlen belasteten die US-Börsen, der Dow fiel laut onvista unter 53.000 Punkte, gebremst zusätzlich von steigenden Anleiherenditen und Ölpreisen. Heute früh steht der Future auf den Dow bei 52.795 Punkten, ein Minus von 1,23 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für heute drei Termine mit Uhrzeit: um 8 Uhr britische Einzelhandelsumsätze (Prognose −0,5 Prozent zum Vormonat), um 8:45 Uhr das französische Geschäftsklima im verarbeitenden Gewerbe und um 9:15 Uhr den französischen Einkaufsmanagerindex Industrie, für den Analysten einen Wert von 49,9 erwarten – nach 49,8 im Vormonat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Frühindikator ist kein Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die britischen Einzelhandelszahlen messen tatsächlich getätigte Käufe des Vormonats – eine harte, aber verzögerte Zahl. Der Einkaufsmanagerindex dagegen befragt Einkaufsleiter nach ihrer Einschätzung der kommenden Wochen; er ist aktueller, aber eine Stimmungsmessung, keine abgerechnete Größe. Ein Wert knapp unter 50 gilt dabei als Signal für eine leicht schrumpfende Industrieaktivität, nicht als Prognose einer bestimmten Wachstumsrate.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Markt, der viermal in Folge nachgibt, hat noch keinen Trend bewiesen – und ein Frühindikator knapp unter 50 noch keine Rezession. Beide Zahlen sind Bausteine, die erst im Zusammenspiel mit weiteren Daten ein Bild ergeben.',
+      },
+    ],
+  },
+  {
+    slug: 'euro-1-17-dollar-franken-yen',
+    title: 'Euro kratzt an 1,17 Dollar – und pendelt gleich wieder zurück',
+    metaTitle: 'Euro an 1,17 Dollar: kurzer Ausflug, kein Trend',
+    teaser:
+      'Der Euro stieg gestern erstmals seit drei Monaten über 1,17 Dollar. Heute früh liegt er wieder knapp darunter.',
+    category: 'Märkte',
+    publishedAt: '2026-08-21T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Euro', 'Dollar', 'Franken', 'Devisen'],
+    relatedTopics: ['waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-usd', 'eur-chf'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Devisennachrichten vom 20.8.2026, dpa-AFX: „Devisen: Euro erstmals seit drei Monaten über 1,17 US-Dollar“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Devisenpreise, Stand 21.8.2026, 4:02 Uhr: EUR/USD 1,16914 (+0,11 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, abgerufen 21.8.2026: „SNB klatscht Beifall – Schweizer Franken läuft Yen den Rang ab“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gestern meldete dpa-AFX über wallstreet-online einen kleinen Meilenstein: Der Euro stieg erstmals seit drei Monaten über 1,17 US-Dollar. Heute früh, gegen 4:02 Uhr, zeigt dieselbe Quelle das Paar EUR/USD bei 1,16914 Dollar – ein Plus von 0,11 Prozent auf den Vortag, aber wieder knapp unterhalb der Marke von gestern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Marke ist kein Trend',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schlagzeilen greifen gern runde oder historische Marken auf, weil sie sich gut zusammenfassen lassen. Für die Frage, wohin ein Wechselkurs über Wochen tendiert, sagt ein einzelnes kurzes Überschreiten wenig aus – der Kurs kann die Marke streifen und noch am selben Morgen wieder darunter notieren, wie es hier der Fall ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Franken macht dem Yen etwas Ähnliches vor',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine zweite, unabhängige Meldung derselben Übersicht bringt den Schweizer Franken ins Spiel: Er soll dem japanischen Yen im Geschäft mit sogenannten Carry-Trades den Rang ablaufen. Bei einem Carry-Trade leihen sich Anleger Geld in einer Währung mit niedrigem Zins – lange war das der Yen – und legen es in einer höher verzinsten Währung an. Welche konkreten Zahlen hinter der Ablösung stehen, nennt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile über eine überschrittene Marke ist ein Zustand zu einem Zeitpunkt, kein Beweis für eine Richtung. Wer eine Position auf Basis einer einzelnen Kursmarke plant, sollte sich klarmachen, dass der Kurs diese Marke oft noch am selben Tag wieder verlässt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-etf-gld-bestaende-fuenfte-woche',
+    title: 'Warum der größte Gold-ETF fünf Wochen in Folge wächst',
+    metaTitle: 'Gold-ETF GLD: fünfte Woche mit steigenden Beständen',
+    teaser:
+      'Der SPDR Gold Shares, der größte Gold-ETF der Welt, meldet die fünfte Woche in Folge steigende Bestände. Das sagt etwas anderes aus als der Goldpreis selbst.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-21T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'ETF', 'SPDR', 'Kapitalflüsse'],
+    relatedTopics: ['etf', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldungen & Analysen, 20. August 2026: „Größter Gold-ETF: GLD-Bestände steigen fünfte Woche in Folge“ – der GLD hält 1.034,65 Tonnen, so viel wie seit Ende Mai nicht mehr.',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 21.8.2026, 4:01 Uhr: Gold 4.531,19 USD (+0,27 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Goldreporter meldet einen stillen, aber beharrlichen Trend: Der SPDR Gold Shares (GLD), mit Abstand der größte Gold-ETF der Welt, verzeichnet die fünfte Woche in Folge steigende Bestände. Der Fonds hält inzwischen 1.034,65 Tonnen Gold – so viel wie seit Ende Mai nicht mehr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis selbst bewegt sich heute früh moderat: 4.531,19 US-Dollar je Feinunze, ein Plus von 0,27 Prozent gegenüber dem Vortag. Zwischen den beiden Zahlen – Bestand und Preis – liegt ein Unterschied, den es sich zu merken lohnt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bestand ist nicht Kurs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein physisch besicherter Gold-ETF wie der GLD hinterlegt für jeden neu ausgegebenen Anteil zusätzliches Gold bei einer Verwahrstelle. Steigen die Bestände, ist frisches Geld in den Fonds geflossen – Anleger haben netto gekauft. Das ist eine andere Aussage als „der Goldpreis steigt“: Der Preis kann in derselben Woche fallen, während gleichzeitig neue Anteile entstehen, wenn genug neue Käufer zu jedem Kurs bereit sind einzusteigen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was fünf Wochen wirklich zeigen – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fünf Wochen mit wachsenden Beständen sind ein Hinweis auf anhaltendes Anlegerinteresse über einen mittleren Zeitraum, kein Signal für die nächste Kursbewegung. Die Meldung selbst nennt keinen Grund für den Zufluss – ob es Absicherung gegen andere Risiken, ein verändertes Zinsumfeld oder etwas anderes ist, bleibt offen, und genau das sollte man auch offenlassen, statt eine Erklärung nachzuliefern, die die Quelle nicht hergibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Fondsbestände und Kursverlauf sind zwei unterschiedliche Messgrößen für dieselbe Anlageklasse. Wer nur den Kurs verfolgt, übersieht die Nachfrageseite – wer nur die Bestände verfolgt, übersieht, dass Nachfrage sich erst mit Verzögerung im Preis niederschlägt.',
+      },
+    ],
+  },
+  {
+    slug: 'fielmann-prognose-fresenius-fmc-anteil',
+    title: 'Fielmann kappt die Prognose, Fresenius verkleinert eine Beteiligung',
+    metaTitle: 'Fielmann-Prognose vs. Fresenius-Anteilsverkauf',
+    teaser:
+      'Zwei Unternehmensmeldungen am selben Tag, zwei unterschiedliche Vorgänge: eine gesenkte Umsatzprognose bei Fielmann, ein reduzierter Aktienanteil bei Fresenius.',
+    category: 'Märkte',
+    publishedAt: '2026-08-21T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fielmann', 'Fresenius', 'Prognose', 'Beteiligung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen vom 20.8.2026, dpa-AFX: „Maue Nachfrage in Deutschland: Fielmann senkt Prognose“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen vom 20.8.2026, dpa-AFX: „Fresenius senkt Beteiligung an FMC weiter ab“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News zu…, gestern: „Fielmann-Aktie gibt nach: Prognose wegen schwacher Nachfrage in Deutschland gesenkt“ und „FMC-Aktie verliert: Fresenius baut Beteiligung erneut weiter ab“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Meldungen aus derselben Übersicht klingen auf den ersten Blick ähnlich – beide handeln von einem Unternehmen, das etwas verringert. Bei genauerem Hinsehen sind es zwei völlig verschiedene Vorgänge.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fielmann: eine Prognose ist keine Ist-Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX meldet, Fielmann habe seine Prognose wegen schwacher Nachfrage in Deutschland gesenkt. Das ist der genannte Grund – mehr liefert die Kurzmeldung nicht, insbesondere keine konkrete neue Umsatz- oder Gewinnspanne. Eine Prognose ist die eigene Einschätzung eines Unternehmens für die Zukunft; sie kann nach unten oder oben korrigiert werden, ohne dass sich an den bereits erzielten Ergebnissen etwas ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fresenius: eine Beteiligung wird kleiner',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei Fresenius geht es um etwas anderes: Der Konzern baut laut dpa-AFX seine Beteiligung an der eigenen, ebenfalls börsennotierten Tochter Fresenius Medical Care (FMC) weiter ab. Das ist eine Entscheidung über die Kapitalstruktur des Konzerns, keine operative Prognose. Um wie viele Prozentpunkte sich der Anteil verringert, nennt die Meldung nicht – diese Zahl bleibt hier bewusst offen, statt geschätzt zu werden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Ein Unternehmen reduziert etwas“ ist noch keine vollständige Einordnung. Erst die Frage, ob es um eine Prognose, ein Ergebnis oder eine Beteiligung geht, zeigt, welche Art von Risiko eine Meldung tatsächlich beschreibt.',
+      },
+    ],
+  },
+  {
+    slug: 'holcim-fermacell-deag-kapitalerhoehung',
+    title: 'Holcim kauft Fermacell, DEAG will frisches Kapital – zwei Wege zu wachsen',
+    metaTitle: 'Holcim/Fermacell und DEAG: zwei Wege zu wachsen',
+    teaser:
+      'Ein Baustoffkonzern kauft zu, ein Entertainment-Unternehmen gibt neue Aktien aus – zwei verschiedene Wege, an Kapital zu kommen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-21T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Holcim', 'Fermacell', 'DEAG', 'Kapitalerhöhung'],
+    relatedTopics: ['aktie', 'schulden-und-kredit'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc, gestern: wO Newsflash und EQS Group AG: „Holcim übernimmt Fermacell – starker Deal für das Baugeschäft“ / „Holcim to Acquire Fermacell in Major Building Materials Deal“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc, gestern: EQS Group AG: „EQS-Adhoc: DEAG Deutsche Entertainment Aktiengesellschaft: DEAG plant Kapitalerhöhung über 10 Mio. Euro“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Ad-hoc-Rubrik von wallstreet-online stehen gestern zwei Firmenmeldungen nebeneinander, die beide von Wachstum handeln – aber auf entgegengesetzten Wegen dorthin.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Holcim wächst durch Zukauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Baustoffkonzern Holcim übernimmt laut wO Newsflash und einer eigenen EQS-Meldung den Baustoffhersteller Fermacell – ein „starker Deal für das Baugeschäft“, wie es in der Überschrift heißt. Einen Kaufpreis oder Details zur Finanzierung nennt keine der beiden Kurzmeldungen. Ob Holcim dafür eigene Barmittel, neue Schulden oder eigene Aktien einsetzt, bleibt damit offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'DEAG wächst durch neue Aktien',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Entertainment-Unternehmen DEAG läuft es andersherum: Es plant laut einer EQS-Adhoc-Meldung eine Kapitalerhöhung über 10 Millionen Euro. Dabei gibt ein Unternehmen neue Aktien aus und verkauft sie am Markt – es kommt an frisches Geld, ohne sich zu verschulden, doch bestehende Aktionäre halten danach einen kleineren Anteil am Unternehmen, sofern sie nicht selbst neue Aktien dazukaufen. Das nennt sich Verwässerung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wachstum kostet Kapital, aber nicht jedes Unternehmen beschafft es sich auf demselben Weg. Ein Zukauf und eine Kapitalerhöhung wirken auf den ersten Blick beide wie „das Unternehmen tut etwas Großes“ – für Aktionäre bedeuten sie aber sehr unterschiedliche Dinge.',
+      },
+    ],
+  },
+  {
+    slug: 'panamakanal-trockenheit-gasspeicher-rekordtief',
+    title: 'Zu wenig Regen, zu wenig Gas: zwei Engpässe an einem Morgen',
+    metaTitle: 'Panamakanal und Gasspeicher: zwei Engpässe',
+    teaser:
+      'Der Panamakanal fährt wegen Trockenheit weniger Schiffe, deutsche Gasspeicher melden ein Rekordtief – zwei unabhängige Geschichten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-21T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Panamakanal', 'Gasspeicher', 'Rohstoffe', 'Logistik'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['erdgas'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, heute 00:21 Uhr, dpa-AFX: „Zu wenig Regen: Panamakanal senkt Zahl der Schiffspassagen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, heute 01:00 Uhr, dpa-AFX: „Gasspeicherverband: Füllstände auf Rekordtief“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Kurzmeldungen von heute Nacht handeln beide von Wasser – oder eher von dessen Fehlen – und beide betreffen Rohstoff- und Frachtmärkte, ohne dass die eine mit der anderen zu tun hätte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Panamakanal hängt am Regen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wegen zu geringer Niederschläge senkt der Panamakanal laut dpa-AFX die Zahl der Schiffspassagen. Um wie viele Schiffe es konkret geht, nennt die Meldung nicht. Der Grund dafür, dass Regen überhaupt eine Rolle spielt, liegt an der Bauart des Kanals: Seine Schleusen werden nicht mit Meerwasser, sondern mit Süßwasser aus Stauseen betrieben – bei Trockenheit sinkt der Pegel dieser Seen, und die Behörde muss die Zahl der täglichen Durchfahrten begrenzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Deutsche Gasspeicher auf Rekordtief',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fast zeitgleich meldet der Gasspeicherverband laut derselben Quelle ein Rekordtief bei den Füllständen. Auch hier fehlt in der Kurzmeldung die konkrete Prozentzahl, mit der sich der Füllstand sonst beziffern lässt. Niedrige Speicherstände vor der Heizsaison gelten grundsätzlich als ein Faktor, der die Preiserwartung am Gasmarkt beeinflussen kann – ob und wie stark das hier der Fall ist, sagt die Meldung selbst nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Engpassmeldungen am selben Morgen bedeuten nicht automatisch eine gemeinsame Ursache. Der Panamakanal reagiert auf lokale Regenfälle in Mittelamerika, die deutschen Gasspeicher auf europäischen Verbrauch und Einkauf – beide Geschichten verdienen es, einzeln gelesen zu werden.',
+      },
+    ],
+  },
+  {
     slug: 'fed-protokoll-drei-notenbanker-fuer-erhoehung',
     title: 'Fed-Protokoll: Drei Notenbanker wollten die Zinsen erhöhen',
     teaser:
