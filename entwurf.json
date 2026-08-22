@@ -1,0 +1,486 @@
+{
+  "stichtag": "2026-08-22",
+  "intro": "Bitcoin springt über 79.000 Dollar, Gold zeigt zwei Prozentzahlen zum selben Preis, der DAX beendet seine Verlustserie – und US-Schulden erreichen 40 Billionen.",
+  "artikel": [
+    {
+      "slug": "bitcoin-79000-dollar-marke-prozent",
+      "title": "Bitcoin springt über 79.000 Dollar – drei Meldungen, ein Kurssprung",
+      "metaTitle": "Bitcoin über 79.000 Dollar: drei Meldungen dazu",
+      "teaser": "Bitcoin überspringt an einem Tag gleich mehrere runde Marken – 75.000, dann 79.000 Dollar. Was eine Prozentzahl über die Bewegung verrät, was eine Marke nicht.",
+      "category": "Geldanlage",
+      "readingMinutes": 4,
+      "tags": ["Bitcoin", "Kryptowährungen", "Kursmarke"],
+      "relatedTopics": ["bitcoin-krypto"],
+      "relatedSymbols": ["bitcoin"],
+      "sources": [
+        {
+          "label": "finanzen.net, News-Ticker vom 21.8.2026: „Bitcoin steigt über 75.000 US-Dollar-Marke: Top 10 Crypto ETP von finanzen.net profitiert“",
+          "url": "https://www.finanzen.net/nachrichten/"
+        },
+        {
+          "label": "finanzen.net, News-Ticker vom 21.8.2026: „Bitcoin springt über 79.000-Dollar-Marke: Ist das der ersehnte Ausbruch? – Kryptoaktien Strategy und Co. profitieren“",
+          "url": "https://www.finanzen.net/nachrichten/"
+        },
+        {
+          "label": "wallstreet-online, Devisennachrichten, abgerufen 22.8.2026, dpa-AFX: „Bitcoin steigt erstmals seit Mitte Mai über 79.000 US-Dollar“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, Rohstoffnachrichten vom 21.8.2026, wallstreetONLINE Redaktion: „Bitcoin +23 % in 3 Tagen: Wall Street hebt ab: DAX stark, Gold boomt, Bitcoin vor dem Sprung“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Gestern meldete zuerst ein News-Ticker von finanzen.net, Bitcoin sei über die Marke von 75.000 US-Dollar gestiegen. Wenig später folgte die nächste Meldung: Bitcoin sei über 79.000 Dollar gesprungen – „erstmals seit Mitte Mai“, wie es bei wallstreet-online unter Berufung auf dpa-AFX hieß."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Eine Marke ist eine Meldung, keine Erklärung"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keine der beiden Kurzmeldungen nennt einen Grund für den Anstieg. Das ist in Ordnung – eine Ticker-Zeile ist eine Tatsachenbehauptung mit Zeitstempel, keine Analyse. Wer trotzdem eine Erklärung sucht, findet in den Quellen von heute keine, die sich belegen ließe."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "23 Prozent sagen mehr als 79.000 Dollar"
+        },
+        {
+          "type": "paragraph",
+          "text": "wallstreet-online fasst dieselbe Bewegung in einer Überschrift anders zusammen: „Bitcoin +23 % in 3 Tagen“. Eine Prozentzahl über einen definierten Zeitraum ist informativer als eine überschrittene Schwelle, weil sie einen Vergleichspunkt mitliefert. Eine runde Zahl wie 75.000 oder 79.000 ist dagegen vor allem deshalb eine Nachricht wert, weil sie rund ist – nicht, weil an ihr etwas Besonderes passiert."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Wer den Kurs eines Vermögenswerts verfolgt, sollte auf die Prozentzahl über einen genannten Zeitraum achten, nicht auf die Zahl der überschrittenen Tausendermarken an einem Tag. Beide beschreiben unter Umständen dieselbe Bewegung, aber nur eine davon lässt sich mit der Vorwoche vergleichen."
+        }
+      ]
+    },
+    {
+      "slug": "gold-gleicher-preis-zwei-prozentzahlen",
+      "title": "Gold: ein Kurs, zwei völlig verschiedene Prozentzahlen",
+      "teaser": "Zwei Portale zeigen heute früh fast denselben Goldpreis – und völlig unterschiedliche Tagesveränderungen. Das zeigt, wie zerbrechlich Prozentangaben sind.",
+      "category": "Geldanlage",
+      "readingMinutes": 4,
+      "tags": ["Gold", "Rohstoffe", "Kursdaten"],
+      "relatedTopics": ["rohstoffe"],
+      "relatedSymbols": ["gold"],
+      "sources": [
+        {
+          "label": "finanzen.net, Kursleiste der Startseite, Stand 22.8.2026, 3:55 Uhr: Gold 4.608 US-Dollar, +2,0 % zum Vortag",
+          "url": "https://www.finanzen.net/nachrichten/"
+        },
+        {
+          "label": "wallstreet-online, Aktuelle Rohstoffpreise, Stand 22.8.2026, 3:53 Uhr: Gold 4.608,19 US-Dollar, ±0,0 % zum Vortag",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "Société Générale via onvista, Edelmetall-Analysen, 21.8.2026, 11:20 Uhr: „Gold: US-Schulden und Anleihemarkt treiben den Preis“",
+          "url": "https://www.onvista.de/news/"
+        },
+        {
+          "label": "Goldreporter, Startseite, abgerufen 22.8.2026: „Goldpreis aktuell: Momentum treibt Gold über 4.500 USD“",
+          "url": "https://www.goldreporter.de/"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Heute früh, kurz vor 4 Uhr, zeigen zwei Kursleisten fast denselben Goldpreis: finanzen.net nennt 4.608 US-Dollar je Feinunze, wallstreet-online 4.608,19 Dollar – ein Unterschied von wenigen Cent."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Bei der Veränderung hört die Übereinstimmung auf"
+        },
+        {
+          "type": "paragraph",
+          "text": "Bei der Tagesveränderung trennen sich die beiden Angaben deutlich: finanzen.net zeigt ein Plus von 2,0 Prozent, wallstreet-online dagegen unverändert 0,0 Prozent. Beide Seiten beziehen sich auf denselben Preis – aber offenbar nicht auf denselben Vergleichszeitpunkt."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Eine Prozentzahl braucht einen Bezugspunkt"
+        },
+        {
+          "type": "paragraph",
+          "text": "Eine Tagesveränderung ist immer ein Vergleich mit einem vorherigen Schlusskurs. Über ein Wochenende, an dem der Goldhandel anders taktet als an Werktagen, können zwei Anbieter unterschiedliche Zeitpunkte als „Vortag“ heranziehen – und schon ergibt derselbe Preis zwei verschiedene Prozentzahlen. Welchen Vergleichszeitpunkt jede Seite konkret nutzt, verraten die Kursleisten selbst nicht."
+        },
+        {
+          "type": "paragraph",
+          "text": "Unabhängig von der Tagesveränderung bewegt sich Gold in der Nähe seiner bisherigen Rekordstände. Société Générale nennt in einer Analyse von gestern Vormittag die US-Staatsverschuldung und den Anleihemarkt als eine Kraft hinter dem Goldpreis, ohne das an einer konkreten Zahl festzumachen."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Eine Prozentangabe ist nur so aussagekräftig wie der Bezugspunkt, den sie benutzt. Wer zwei Quellen vergleicht und unterschiedliche Tagesveränderungen zum gleichen Preis sieht, hat keinen Fehler gefunden, sondern zwei unterschiedliche Referenzzeitpunkte."
+        }
+      ]
+    },
+    {
+      "slug": "dax-dow-verlustserie-beendet-goldman-merck",
+      "title": "DAX beendet Verlustserie, der Dow hängt an zwei Aktien",
+      "teaser": "Nach vier Verlusttagen in Folge schließt der DAX wieder über 26.000 Punkten. Beim Dow reichten ausgerechnet zwei Aktien, um den ganzen Index zu drehen.",
+      "category": "Märkte",
+      "readingMinutes": 5,
+      "tags": ["DAX", "Dow Jones", "Indizes"],
+      "relatedTopics": ["boerse", "wie-funktioniert-der-markt"],
+      "relatedSymbols": ["dax", "dow-jones"],
+      "sources": [
+        {
+          "label": "wallstreet-online, dpa-AFX, 21.8.2026, 15:51 Uhr: „Aktien Frankfurt Schluss: Dax beendet Verlustserie – Rückkehr über 26.000 Punkte“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, dpa-AFX, 21.8.2026, 16:06 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Verlustserie beendet – Dax über 26.000 Punkten“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, Nachrichten: Aktien & Indizes, abgerufen 22.8.2026: „Dow klettert dank Goldman und Merck. DAX schließt fester. Öl, Gold und Bitcoin legen zum Teil kräftig zu.“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "onvista, Index-Analysen, dpa-AFX, 21.8.2026, 20:19 Uhr: „Aktien New York Schluss: Indizes etwas erholt nach schwacher Woche“",
+          "url": "https://www.onvista.de/news/"
+        },
+        {
+          "label": "wallstreet-online, Wichtige Termine, abgerufen 22.8.2026: ifo-Geschäftsklima am 25.8. (Prognose 87,2, Vorherig 86,6), BIP Deutschland Q2 am 25.8. (Prognose und Vorherig je 0,2 %)",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Gestern Nachmittag meldete dpa-AFX um 15:51 Uhr: „Dax beendet Verlustserie – Rückkehr über 26.000 Punkte.“ Kurz darauf, um 16:06 Uhr, bestätigte eine zweite Meldung: „Verlustserie beendet – Dax über 26.000 Punkten.“ Der deutsche Leitindex war zuvor vier Handelstage in Folge gefallen."
+        },
+        {
+          "type": "paragraph",
+          "text": "In New York beschreibt wallstreet-online den Handelstag mit einem Satz: „Dow klettert dank Goldman und Merck.“ Um 20:19 Uhr meldete dpa-AFX über onvista, die US-Indizes seien „nach schwacher Woche“ insgesamt etwas erholt."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Warum zwei Aktien einen ganzen Index bewegen können"
+        },
+        {
+          "type": "paragraph",
+          "text": "Der Dow Jones ist ein Kursindex: Er gewichtet seine 30 Mitglieder nach ihrem Aktienkurs in Dollar, nicht nach ihrem Börsenwert wie der S&P 500. Eine Aktie mit einem besonders hohen Kurs je Anteil – Goldman Sachs gehört traditionell dazu – bewegt den Dow bei gleicher Prozentveränderung stärker als eine Aktie mit niedrigerem Kurs, selbst wenn beide Unternehmen ähnlich groß sind. Das erklärt, warum eine Meldung zwei einzelne Aktien für die Bewegung eines 30 Werte umfassenden Index verantwortlich machen kann."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Der Kalender bleibt übers Wochenende leer"
+        },
+        {
+          "type": "paragraph",
+          "text": "Für Samstag und Sonntag nennt der Wirtschaftskalender von wallstreet-online keinen Termin – die Börsen bleiben geschlossen. Der nächste dort gelistete Termin ist Dienstag, der 25. August: Das ifo-Institut meldet sein Geschäftsklima (Prognose 87,2 nach zuvor 86,6), und das Statistische Bundesamt legt die detaillierte Wachstumszahl für das zweite Quartal vor (Prognose und Vorwert liegen jeweils bei 0,2 Prozent zum Vorquartal)."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Eine Serie, die endet, ist noch keine neue Richtung – vier Verlusttage werden nicht dadurch widerlegt, dass der fünfte Tag im Plus schließt. Und ein Indexstand allein sagt nichts darüber, ob die Erholung von vielen Aktien getragen wird oder nur von wenigen mit hohem Gewicht."
+        }
+      ]
+    },
+    {
+      "slug": "us-staatsschulden-40-billionen-kapitalflucht-europa",
+      "title": "US-Schulden erreichen 40 Billionen – und Anleger schauen nach Europa",
+      "metaTitle": "US-Schulden: 40 Billionen – Anleger schauen nach Europa",
+      "teaser": "Die US-Staatsschulden haben laut wallstreet-online die Marke von 40 Billionen Dollar erreicht. Zeitgleich soll Kapital Richtung Europa fließen.",
+      "category": "Geldpolitik",
+      "readingMinutes": 4,
+      "tags": ["USA", "Staatsschulden", "Kapitalflucht"],
+      "relatedTopics": ["geldsystem"],
+      "relatedSymbols": [],
+      "sources": [
+        {
+          "label": "wallstreet-online, Neueste Videos, 20.8.2026, 16:58 Uhr: „US-Schulden außer Kontrolle 40 Billionen erreicht: Droht jetzt die große Flucht aus dem US-Dollar?“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, Meistgelesene Nachrichten, 20.8.2026, wallstreetONLINE Redaktion: „Flucht aus den USA: Investoren schichten Milliarden in Europa-Anlagen um – das sind die Gründe“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, Politik Nachrichten, 21.8.2026, wallstreetONLINE Redaktion: „Warnsignale am Finanzmarkt: 'Gefahr globaler Staatsschuldenkrise sehr hoch!' Droht eine neue Finanzkrise?“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "wallstreet-online berichtete: Die Staatsschulden der USA hätten die Marke von 40 Billionen US-Dollar erreicht. Die Redaktion fragt in der Überschrift, ob nun „die große Flucht aus dem US-Dollar“ drohe – eine Frage, keine Feststellung."
+        },
+        {
+          "type": "paragraph",
+          "text": "Dieselbe Redaktion berichtete zudem unter dem Titel „Flucht aus den USA“: Investoren würden Milliarden in Anlagen in Europa umschichten. Konkrete Summen oder Zeiträume nennt die Kurzmeldung nicht."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Eine Schuldenzahl allein erklärt keine Kapitalbewegung"
+        },
+        {
+          "type": "paragraph",
+          "text": "Eine gestiegene Gesamtverschuldung ist eine Bestandsgröße – sie sagt, wie viel ein Staat insgesamt schuldet, nicht, wie sich Anleger deshalb heute verhalten. Ob und wie viel Kapital tatsächlich von den USA nach Europa fließt, wäre eine eigene, separat zu belegende Zahl. Die beiden Meldungen von wallstreet-online erscheinen im selben Umfeld, ohne dass die eine als Beleg für die andere dient."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Eine dritte Meldung nennt eine Sorge, keinen Auslöser"
+        },
+        {
+          "type": "paragraph",
+          "text": "Eine weitere Überschrift warnt: „Gefahr globaler Staatsschuldenkrise sehr hoch!“ Auch hier bleibt offen, welches konkrete Ereignis diese Einschätzung stützt – die Meldung selbst liefert keine Begründung dafür, warum gerade jetzt von einer erhöhten Gefahr die Rede ist."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Drei Schlagzeilen zum selben Themenfeld – Schuldenstand, Kapitalfluss, Krisenwarnung – erzählen zusammen eine Geschichte, ohne dass eine von ihnen die andere beweist. Wer daraus eine Anlageentscheidung ableiten will, sollte sich klarmachen, dass keine der drei Meldungen einen kausalen Zusammenhang belegt."
+        }
+      ]
+    },
+    {
+      "slug": "bundesanleihen-rendite-15-jahre-hoch-sparer",
+      "title": "Höhere Bundrenditen: teuer fürs Haus, gut fürs Sparbuch",
+      "teaser": "Deutsche Staatsanleihen rentieren laut wallstreet-online so hoch wie seit 2011 nicht mehr. Dieselbe Zahl bedeutet für Kreditnehmer und Sparer das Gegenteil.",
+      "category": "Vorsorge",
+      "readingMinutes": 4,
+      "tags": ["Staatsanleihen", "Baufinanzierung", "Sparen"],
+      "relatedTopics": ["staatsanleihe"],
+      "relatedSymbols": [],
+      "sources": [
+        {
+          "label": "wallstreet-online, Private Finanzen, abgerufen 22.8.2026: „Deutschlands Anleiherenditen steigen auf Niveaus wie seit 2011 nicht mehr. Das verteuert einige Lebensbereiche – eröffnet Sparern aber Chancen, die lange undenkbar waren.“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, wallstreetONLINE Redaktion, 21.8.2026: „15-Jahres-Hoch: Was die Rekordzinsen für Hauskäufer, Mieter und Sparer in Deutschland bedeuten“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "onvista, Premium-Artikel, 19.8.2026, 12:05 Uhr: „Bund-Renditen so hoch wie zuletzt 2011: Drei Gründe für den Anleihe-Crash“",
+          "url": "https://www.onvista.de/news/"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "wallstreet-online beschreibt es in einem Satz: „Deutschlands Anleiherenditen steigen auf Niveaus wie seit 2011 nicht mehr. Das verteuert einige Lebensbereiche – eröffnet Sparern aber Chancen, die lange undenkbar waren.“"
+        },
+        {
+          "type": "paragraph",
+          "text": "Eine zweite Überschrift derselben Seite spitzt das zu: „15-Jahres-Hoch: Was die Rekordzinsen für Hauskäufer, Mieter und Sparer in Deutschland bedeuten.“ Welche konkreten Zinssätze oder Beträge dahinterstehen, nennt die Übersicht nicht – dafür wäre der vollständige Artikel nötig."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Dieselbe Rendite, zwei Rollen"
+        },
+        {
+          "type": "paragraph",
+          "text": "Eine Anleiherendite ist der Zins, den der Käufer einer neu ausgegebenen Staatsanleihe über die Laufzeit erhält. Steigt sie, wird es für den Staat teurer, sich zu verschulden – und in der Folge oft auch für private Kreditnehmer, weil sich viele Baukredite an der Rendite langlaufender Bundesanleihen orientieren. Für jemanden, der selbst Anleihen oder Anleihe-ETFs kauft, bedeutet dieselbe höhere Rendite dagegen einen höheren laufenden Ertrag als noch vor einigen Jahren."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Was die Quelle offenlässt"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ein Premium-Artikel von onvista vom Mittwoch trägt den Titel „Bund-Renditen so hoch wie zuletzt 2011: Drei Gründe für den Anleihe-Crash“ und verspricht drei Gründe für die Entwicklung. Welche das sind, zeigt die frei zugängliche Übersicht nicht – das bleibt an dieser Stelle offen, statt es zu erraten."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Eine steigende Anleiherendite ist keine gute oder schlechte Nachricht an sich – sie verteilt Kosten und Chancen nur neu, je nachdem, ob man Geld aufnimmt oder anlegt. Wer nur eine Seite der Meldung liest, sieht nur die halbe Wirkung."
+        }
+      ]
+    },
+    {
+      "slug": "oelpreis-russland-china-hauptlieferant",
+      "title": "Öl zieht an, weil Russland Chinas wichtigster Lieferant bleibt",
+      "teaser": "Brent klettert auf über 94 Dollar. Eine Analyse von Société Générale nennt einen Grund abseits der Schlagzeilen: Russlands Öl-Exporte nach China.",
+      "category": "Märkte",
+      "readingMinutes": 4,
+      "tags": ["Öl", "Rohstoffe", "Geopolitik"],
+      "relatedTopics": ["rohstoffe"],
+      "relatedSymbols": ["brent"],
+      "sources": [
+        {
+          "label": "wallstreet-online, Markt Bote, 21.8.2026: „Ölpreis: Bullen dominieren den Ölmarkt: Brent klettert auf 94,67 USD“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "Société Générale via onvista, Rohstoff- & Rohstoffaktien-Analysen, 21.8.2026, 11:25 Uhr: „Öl: Russland bleibt Chinas wichtigster Lieferant“",
+          "url": "https://www.onvista.de/news/"
+        },
+        {
+          "label": "finanzen.net, Kursleiste der Startseite, Stand 22.8.2026, 3:55 Uhr: Öl 94,39 US-Dollar, +0,7 %",
+          "url": "https://www.finanzen.net/nachrichten/"
+        },
+        {
+          "label": "wallstreet-online, Aktuelle Rohstoffpreise, Stand 22.8.2026: Öl (Brent) 93,90 USD, +0,75 %",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ],
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Der Ölpreis zieht weiter an: Laut Markt Bote kletterte Brent gestern auf 94,67 US-Dollar je Barrel, in den Kursleisten von finanzen.net und wallstreet-online notiert die Sorte heute früh zwischen 93,90 und 94,39 Dollar, jeweils rund 0,7 bis 0,75 Prozent im Plus."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Ein Lieferant, den Sanktionen nicht verdrängt haben"
+        },
+        {
+          "type": "paragraph",
+          "text": "Société Générale schreibt in einer Analyse von gestern Vormittag, Russland bleibe Chinas wichtigster Öl-Lieferant. Die Kurzfassung nennt keine Mengenangabe – sie hält nur fest, dass sich an der Rangfolge nichts geändert hat, trotz der westlichen Sanktionen gegen russisches Öl."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Zwei Preise für dasselbe Fass"
+        },
+        {
+          "type": "paragraph",
+          "text": "Seit den Sanktionen wird oft zwischen dem Brent-Preis, der als Weltmarkt-Referenz gilt, und dem Preis für russisches Öl unterschieden, das mit Abschlag gehandelt wird, weil viele westliche Käufer und Reedereien es meiden. Dass China als großer Abnehmer weiter zugreift, verändert diese Zweiteilung nicht – es zeigt nur, dass für russisches Öl trotz Abschlag Nachfrage besteht."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Was daraus folgt:** Ein Ölpreis wie Brent bildet nicht den gesamten Weltmarkt zu einem einzigen Preis ab. Wer nur den Brent-Kurs verfolgt, übersieht, dass Öl aus verschiedenen Quellen zu unterschiedlichen Preisen den Besitzer wechselt – und dass Sanktionen einen Absatzmarkt verschieben können, ohne ihn zu schließen."
+        }
+      ]
+    }
+  ],
+  "top": [
+    {
+      "headline": "DAX beendet vier Verlusttage in Folge, Dow steigt dank zwei Aktien",
+      "summary": [
+        "Der DAX schloss gestern nach vier Verlusttagen in Folge wieder über 26.000 Punkten, wie dpa-AFX am Nachmittag meldete.",
+        "In New York trieben laut wallstreet-online vor allem Goldman Sachs und Merck den Dow Jones nach oben – ein Hinweis auf die besondere Gewichtung dieses Kursindex."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Zeigt, dass ein Index-Comeback nicht automatisch breit getragen wird und wie stark einzelne Aktien einen Kursindex bewegen können.",
+      "relatedTopics": ["boerse", "wie-funktioniert-der-markt"],
+      "relatedSymbols": ["dax", "dow-jones"],
+      "sources": [
+        {
+          "label": "wallstreet-online, dpa-AFX, 21.8.2026, 16:06 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Verlustserie beendet – Dax über 26.000 Punkten“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, Nachrichten: Aktien & Indizes, abgerufen 22.8.2026: „Dow klettert dank Goldman und Merck“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ]
+    },
+    {
+      "headline": "US-Staatsschulden erreichen 40 Billionen Dollar",
+      "summary": [
+        "wallstreet-online berichtet, die US-Staatsschulden hätten die Marke von 40 Billionen Dollar erreicht, und fragt, ob eine Kapitalflucht aus dem Dollar drohe.",
+        "Eine zweite Meldung derselben Redaktion beschreibt zeitgleich Kapitalumschichtungen von Anlegern Richtung Europa, ohne dies mit der Schuldenzahl zu verknüpfen."
+      ],
+      "category": "Geldpolitik",
+      "whyItMatters": "Eine runde Schuldenmarke und eine gemeldete Kapitalbewegung erscheinen zusammen, ohne dass eine Quelle den Zusammenhang zwischen beiden belegt.",
+      "relatedTopics": ["geldsystem"],
+      "relatedSymbols": [],
+      "sources": [
+        {
+          "label": "wallstreet-online, Neueste Videos, 20.8.2026, 16:58 Uhr: „US-Schulden außer Kontrolle 40 Billionen erreicht“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "wallstreet-online, Meistgelesene Nachrichten, 20.8.2026, wallstreetONLINE Redaktion: „Flucht aus den USA: Investoren schichten Milliarden in Europa-Anlagen um“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ]
+    },
+    {
+      "headline": "Gold: Zwei Portale, ein Preis, zwei Prozentzahlen",
+      "summary": [
+        "finanzen.net und wallstreet-online zeigen heute früh fast denselben Goldpreis von rund 4.608 Dollar je Feinunze.",
+        "Bei der Tagesveränderung weichen beide Seiten stark voneinander ab: 2,0 Prozent Plus bei der einen, unverändert bei der anderen."
+      ],
+      "category": "Geldanlage",
+      "whyItMatters": "Ein anschauliches Beispiel dafür, dass eine Prozentangabe immer von ihrem – oft unsichtbaren – Vergleichszeitpunkt abhängt.",
+      "relatedTopics": ["rohstoffe"],
+      "relatedSymbols": ["gold"],
+      "sources": [
+        {
+          "label": "finanzen.net, Kursleiste der Startseite, Stand 22.8.2026, 3:55 Uhr",
+          "url": "https://www.finanzen.net/nachrichten/"
+        },
+        {
+          "label": "wallstreet-online, Aktuelle Rohstoffpreise, Stand 22.8.2026, 3:53 Uhr",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ]
+    }
+  ],
+  "further": [
+    {
+      "headline": "Bitcoin springt über 79.000 Dollar",
+      "summary": [
+        "Bitcoin überschritt gestern laut mehreren Meldungen erst die Marke von 75.000, dann von 79.000 US-Dollar – den höchsten Stand seit Mitte Mai.",
+        "wallstreet-online fasst dieselbe Bewegung als Plus von 23 Prozent in drei Tagen zusammen – eine Zahl mit mehr Aussagekraft als die reine Marke."
+      ],
+      "category": "Geldanlage",
+      "whyItMatters": "Verdeutlicht den Unterschied zwischen einer plakativen Kursmarke und einer nachvollziehbaren Prozentveränderung über einen Zeitraum.",
+      "relatedTopics": ["bitcoin-krypto"],
+      "relatedSymbols": ["bitcoin"],
+      "sources": [
+        {
+          "label": "finanzen.net, News-Ticker vom 21.8.2026: „Bitcoin springt über 79.000-Dollar-Marke“",
+          "url": "https://www.finanzen.net/nachrichten/"
+        },
+        {
+          "label": "wallstreet-online, Rohstoffnachrichten vom 21.8.2026: „Bitcoin +23 % in 3 Tagen“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        }
+      ]
+    },
+    {
+      "headline": "Deutsche Anleiherenditen so hoch wie seit 2011 nicht mehr",
+      "summary": [
+        "wallstreet-online berichtet, deutsche Staatsanleihen rentierten so hoch wie zuletzt 2011 – mit Folgen für Hauskäufer, Mieter und Sparer gleichermaßen.",
+        "Höhere Kreditkosten für die einen stehen dabei höheren Erträgen für die anderen gegenüber, ohne dass die Übersicht das im Detail beziffert."
+      ],
+      "category": "Vorsorge",
+      "whyItMatters": "Erinnert daran, dass eine einzelne Zinsentwicklung je nach Perspektive – Kreditnehmer oder Sparer – gegensätzlich wirkt.",
+      "relatedTopics": ["staatsanleihe"],
+      "relatedSymbols": [],
+      "sources": [
+        {
+          "label": "wallstreet-online, Private Finanzen, abgerufen 22.8.2026",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "onvista, Premium-Artikel, 19.8.2026, 12:05 Uhr: „Bund-Renditen so hoch wie zuletzt 2011“",
+          "url": "https://www.onvista.de/news/"
+        }
+      ]
+    },
+    {
+      "headline": "Öl zieht an: Russland bleibt Chinas wichtigster Lieferant",
+      "summary": [
+        "Brent kletterte laut Markt Bote gestern auf 94,67 Dollar je Barrel, die Kursleisten zeigen heute Werte zwischen 93,90 und 94,39 Dollar.",
+        "Société Générale nennt in einer Analyse Russlands anhaltende Rolle als größter Öl-Lieferant Chinas als einen Faktor hinter der festen Preistendenz."
+      ],
+      "category": "Märkte",
+      "whyItMatters": "Zeigt, dass Sanktionen einen Absatzmarkt für russisches Öl verschieben, aber nicht schließen konnten – mit Folgen für den Weltmarktpreis.",
+      "relatedTopics": ["rohstoffe"],
+      "relatedSymbols": ["brent"],
+      "sources": [
+        {
+          "label": "wallstreet-online, Markt Bote, 21.8.2026: „Ölpreis: Bullen dominieren den Ölmarkt: Brent klettert auf 94,67 USD“",
+          "url": "https://www.wallstreet-online.de/nachrichten"
+        },
+        {
+          "label": "Société Générale via onvista, Rohstoff-Analysen, 21.8.2026, 11:25 Uhr: „Öl: Russland bleibt Chinas wichtigster Lieferant“",
+          "url": "https://www.onvista.de/news/"
+        }
+      ]
+    }
+  ]
+}
