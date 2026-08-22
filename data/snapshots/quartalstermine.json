@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-21T05:55:00.202Z",
+  "abgerufenAm": "2026-08-22T05:50:23.334Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,11 +10,11 @@
       "stand": "2026-08-06",
       "von": "2026-07-03",
       "bis": "2026-09-17",
-      "zeilen": 3209,
-      "kommendGesamt": 228,
+      "zeilen": 3213,
+      "kommendGesamt": 230,
       "spalten": [
         "６月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in June 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
-        "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
+        "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月20日 現在 As of 2026/8/20 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
       "inListe": 67,
       "kommend": 0
@@ -4198,39 +4198,39 @@
         "2024-10-29"
       ],
       "bisherZeiten": {
-        "2026-07-21": "12:10",
-        "2026-04-21": "12:26",
-        "2026-02-03": "11:17",
-        "2025-10-21": "12:19",
-        "2025-07-22": "12:33",
-        "2025-04-22": "13:22",
-        "2025-01-28": "11:22",
-        "2024-10-29": "12:21"
+        "2026-07-21": "16:10",
+        "2026-04-21": "16:26",
+        "2026-02-03": "16:17",
+        "2025-10-21": "16:19",
+        "2025-07-22": "16:33",
+        "2025-04-22": "17:22",
+        "2025-01-28": "16:22",
+        "2024-10-29": "16:21"
       },
       "vorhersagen": [
         {
           "erwartet": "2026-10-20",
           "basis": "2025-10-21",
           "streuungTage": 7,
-          "newYorkerZeit": "12:19"
+          "newYorkerZeit": "16:19"
         },
         {
           "erwartet": "2027-02-02",
           "basis": "2026-02-03",
           "streuungTage": 7,
-          "newYorkerZeit": "11:17"
+          "newYorkerZeit": "16:17"
         },
         {
           "erwartet": "2027-04-20",
           "basis": "2026-04-21",
           "streuungTage": 0,
-          "newYorkerZeit": "12:26"
+          "newYorkerZeit": "16:26"
         },
         {
           "erwartet": "2027-07-20",
           "basis": "2026-07-21",
           "streuungTage": 0,
-          "newYorkerZeit": "12:10"
+          "newYorkerZeit": "16:10"
         }
       ]
     },
@@ -7208,26 +7208,40 @@
         "2025-02-13",
         "2024-11-06"
       ],
+      "bisherZeiten": {
+        "2026-07-30": "06:59",
+        "2026-05-05": "07:03",
+        "2026-02-12": "07:04",
+        "2025-10-29": "07:02",
+        "2025-07-30": "07:02",
+        "2025-05-06": "07:04",
+        "2025-02-13": "07:00",
+        "2024-11-06": "07:01"
+      },
       "vorhersagen": [
         {
           "erwartet": "2026-10-28",
           "basis": "2025-10-29",
-          "streuungTage": 7
+          "streuungTage": 7,
+          "newYorkerZeit": "07:02"
         },
         {
           "erwartet": "2027-02-11",
           "basis": "2026-02-12",
-          "streuungTage": 0
+          "streuungTage": 0,
+          "newYorkerZeit": "07:04"
         },
         {
           "erwartet": "2027-05-04",
           "basis": "2026-05-05",
-          "streuungTage": 0
+          "streuungTage": 0,
+          "newYorkerZeit": "07:03"
         },
         {
           "erwartet": "2027-07-29",
           "basis": "2026-07-30",
-          "streuungTage": 1
+          "streuungTage": 1,
+          "newYorkerZeit": "06:59"
         }
       ]
     },
@@ -15537,8 +15551,8 @@
     "KER.PA": "2026-08-20",
     "KGX.DE": "2026-08-20",
     "KLBN11.SA": "2026-08-21",
-    "KNEBV.HE": "2026-08-18",
-    "KNIN.SW": "2026-08-18",
+    "KNEBV.HE": "2026-08-22",
+    "KNIN.SW": "2026-08-22",
     "KOG.OL": "2026-08-18",
     "KOTAKBANK.NS": "2026-08-18",
     "KPN.AS": "2026-08-18",
