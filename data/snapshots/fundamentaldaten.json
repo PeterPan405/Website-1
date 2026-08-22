@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-15T07:05:47.263Z",
+  "abgerufenAm": "2026-08-22T07:07:34.170Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -253,8 +253,8 @@
       "umsatz": 11019707000,
       "gewinn": 2267342000,
       "cashflow": 4812202000,
-      "eigenkapital": 33742033000,
-      "aktien": 487087040
+      "eigenkapital": 33550897000,
+      "aktien": 484565465
     },
     "ADM": {
       "umsatz": 24956000000,
@@ -292,6 +292,12 @@
       "eigenkapital": 24742464000,
       "waehrung": "USD",
       "aktien": 500046600
+    },
+    "AEP": {
+      "umsatz": 21702000000,
+      "cashflow": 6944000000,
+      "eigenkapital": 31808000000,
+      "aktien": 544104955
     },
     "AIG": {
       "umsatz": 26775000000,
@@ -348,8 +354,8 @@
       "umsatz": 28368000000,
       "gewinn": 6998000000,
       "cashflow": 7958000000,
-      "eigenkapital": 23909000000,
-      "aktien": 793959430
+      "eigenkapital": 25626000000,
+      "aktien": 793597443
     },
     "AMCR": {
       "umsatz": 15009000000,
@@ -1083,7 +1089,7 @@
       "cashflow": 4297000000,
       "eigenkapital": 13178000000,
       "waehrung": "USD",
-      "aktien": 2432425127
+      "aktien": 2432397125
     },
     "DHI": {
       "umsatz": 34250400000,
@@ -1161,13 +1167,6 @@
       "eigenkapital": 2621400000,
       "aktien": 377360765
     },
-    "EA": {
-      "umsatz": 7531000000,
-      "gewinn": 887000000,
-      "cashflow": 2553000000,
-      "eigenkapital": 7079000000,
-      "aktien": 252383840
-    },
     "EBAY": {
       "umsatz": 11100000000,
       "gewinn": 2031000000,
@@ -1193,7 +1192,7 @@
       "umsatz": 14326000000,
       "cashflow": 1272000000,
       "eigenkapital": 3993000000,
-      "aktien": 362000000
+      "aktien": 362300000
     },
     "EL.PA": {
       "waehrung": "EUR",
@@ -1353,7 +1352,7 @@
     },
     "FDX": {
       "umsatz": 94720000000,
-      "gewinn": 4433000000,
+      "gewinn": 4433,
       "cashflow": 8925000000,
       "eigenkapital": 31647000000,
       "aktien": 236581188
@@ -2040,7 +2039,7 @@
     },
     "MDT": {
       "umsatz": 36364000000,
-      "gewinn": 4801000000,
+      "gewinn": 4801,
       "cashflow": 7330000000,
       "eigenkapital": 49463000000,
       "aktien": 1280045190
@@ -2487,8 +2486,8 @@
       "umsatz": 19850000000,
       "gewinn": 2844215000,
       "cashflow": 3776000000,
-      "eigenkapital": 14609000000,
-      "aktien": 126086389
+      "eigenkapital": 15404000000,
+      "aktien": 126047469
     },
     "PINS": {
       "umsatz": 4221767000,
@@ -3068,11 +3067,11 @@
       "aktien": 383573046
     },
     "SYY": {
-      "umsatz": 81370000000,
-      "gewinn": 1828000000,
-      "cashflow": 2510000000,
-      "eigenkapital": 2297000000,
-      "aktien": 478182608
+      "umsatz": 84553000000,
+      "gewinn": 1757000000,
+      "cashflow": 2638000000,
+      "eigenkapital": 2666000000,
+      "aktien": 479096016
     },
     "T": {
       "umsatz": 125648000000,
