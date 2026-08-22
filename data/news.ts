@@ -101,6 +101,472 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'apple-steuerbericht-deutschland-irland',
+    title: 'Apple zeigt zum ersten Mal, was der Konzern in Deutschland zahlt',
+    metaTitle: 'Apples Steuerbericht: Deutschland gegen Irland',
+    teaser:
+      'Apple veröffentlicht erstmals Land für Land, was der Konzern an Steuern zahlt – in Deutschland unauffällig, in Irland mit einer riesigen Sondersumme.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-08-22T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Apple', 'Steuern', 'EU-Recht', 'Transparenz'],
+    relatedTopics: ['aktie', 'aktien-laender-branchen'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'leinetal24.de, dpa-Meldung, 22.8.2026, 03:01 Uhr: „Apple beziffert Steuerzahlungen in Deutschland und Europa“',
+        url: 'https://www.leinetal24.de/leben/apple-beziffert-steuerzahlungen-in-deutschland-und-europa-zr-94454964.html',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, heute 01:00 Uhr, dpa-AFX: „Apple beziffert Steuerzahlungen in Deutschland und Europa“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple hat nach eigenen Angaben zum ersten Mal offengelegt, wie viel Steuern der Konzern Land für Land zahlt. Für Deutschland weist der Bericht für das Geschäftsjahr bis September 2025 einen Vorsteuergewinn von rund 209 Millionen US-Dollar (178 Millionen Euro) aus, dazu Ertragsteuern von 153,5 Millionen Dollar (131,2 Millionen Euro) bei einem Gesamtumsatz von 2,72 Milliarden Dollar (2,33 Milliarden Euro). In Deutschland beschäftigt Apple laut dem Bericht 4.089 Menschen, mehr als 2.000 davon als Ingenieure am „European Silicon Design Center“ in München.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Irland weist derselbe Bericht eine ganz andere Größenordnung aus: tatsächlich gezahlte Steuern von 17,08 Milliarden Dollar. Diese Summe stammt laut dem Bericht aus der Auflösung eines Treuhandkontos – Folge der 13-Milliarden-Euro-Nachzahlung, zu der der Europäische Gerichtshof Apple im September 2024 in einem Beihilfeverfahren gegen Irland verpflichtet hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ausgerechnet jetzt Zahlen vorliegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Möglich macht diese Offenlegung eine EU-Richtlinie zum sogenannten Public Country-by-Country Reporting: Große, weltweit tätige Konzerne mit einem Umsatz über 750 Millionen Euro müssen ihre Gewinn- und Steuerdaten inzwischen aufgeschlüsselt nach Land veröffentlichen. Bislang mussten solche Zahlen nur vertraulich an Finanzbehörden gemeldet werden – jetzt sind sie öffentlich einsehbar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine große Zahl zeigt einen Sondereffekt, keinen Normalzustand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer die 17,08 Milliarden Dollar aus Irland mit den 153,5 Millionen Dollar aus Deutschland vergleicht, könnte auf den Gedanken kommen, Apple zahle in Irland fast 130-mal so viel Steuern wie hierzulande auf laufende Geschäfte. Der Bericht selbst erklärt aber, dass die irische Summe aus der einmaligen Auflösung eines Treuhandkontos stammt – einer Altlast aus einem jahrelangen Rechtsstreit, nicht aus dem operativen Geschäft eines einzelnen Jahres. Beide Länderzahlen in einen Topf zu werfen, würde einen Sondereffekt mit einem laufenden Steuersatz verwechseln.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine neue EU-Pflicht macht globale Konzerne an dieser Stelle greifbarer, als sie es bisher waren. Wer aus solchen Länderzahlen aber eine einfache Rangliste bauen will, sollte zuerst prüfen, ob eine der Zahlen ein einmaliges Ereignis abbildet – sonst vergleicht man Äpfel mit einem Sonderfall.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-chef-blume-lage-mehr-als-kritisch',
+    title: 'VW-Chef Blume nennt die Lage bei Volkswagen mehr als kritisch',
+    metaTitle: 'VW-Chef Blume: Lage mehr als kritisch',
+    teaser:
+      'Blume spricht von einer mehr als kritischen Lage – bei 3,8 Prozent operativer Rendite und bis zu 50.000 möglicherweise betroffenen Stellen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-22T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'Sparprogramm', 'Automobilindustrie', 'Arbeitsplätze'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          "onvista, ROUNDUP, dpa-AFX, 21.8.2026, 15:44 Uhr: „VW-Chef Blume: 'Die Lage ist mehr als kritisch'“",
+        url: 'https://www.onvista.de/news/2026/08-21-roundup-vw-chef-blume-die-lage-ist-mehr-als-kritisch-0-10-26545350',
+      },
+      {
+        label:
+          "wallstreet-online, Unternehmensmeldungen vom 21.8.2026, dpa-AFX: „ROUNDUP/VW-Chef Blume: 'Die Lage ist mehr als kritisch'“",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen-Chef Oliver Blume hat die Lage des Konzerns vor einer Reihe von Betriebsversammlungen als „mehr als kritisch“ bezeichnet. Als Beleg nennt er die operative Rendite von 3,8 Prozent – nach seinen Worten solide angesichts der schwierigen Umstände, aber „bei Weitem nicht ausreichend“, um genug Geld für neue Technologien, neue Produkte und deren Standorte zu erwirtschaften.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Volkswagen hat die Fabrikkosten in den deutschen Autowerken im Vorjahr bereits im Schnitt um 20 Prozent gesenkt. Blumes Diagnose bleibt trotzdem: „Wir sind überdimensioniert“ – das mache den Konzern zu langsam und zu kompliziert. Bis Ende August sind neun Betriebsversammlungen geplant, unter anderem in Hannover, Braunschweig, Salzgitter, Dresden, Chemnitz und Kassel-Baunatal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine operative Rendite von 3,8 Prozent bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die operative Rendite zeigt, wie viel vom Umsatz nach den laufenden Kosten des Geschäfts übrig bleibt – vor Zinsen und Steuern. 3,8 Prozent klingen nicht dramatisch niedrig, reichen aber bei einem Autobauer kaum, um gleichzeitig neue Werke, neue Antriebe und die Elektrifizierung ganzer Modellreihen zu finanzieren. Genau diesen Zusammenhang meint Blume, wenn er die Zahl als nicht ausreichend beschreibt, obwohl sie formal solide aussieht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine genannte Zahl ist keine beschlossene Zielgröße',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Berichterstattung kursiert die Zahl von bis zu 50.000 möglicherweise betroffenen Stellen, dazu vier als gefährdet geltende Standorte: Emden, Hannover, Zwickau und Neckarsulm. Blume selbst bezeichnete die Stellenzahl ausdrücklich als „keine fixe Zielgröße“, und laut der Meldung ist über konkrete Werksschließungen keine Entscheidung getroffen. Die geplanten Sparmaßnahmen sollen noch 2026 beschlossen werden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine drastische Formulierung wie „mehr als kritisch“ und eine große Zahl wie 50.000 Stellen erzeugen sofort Aufmerksamkeit. Für die Einordnung zählt aber, was tatsächlich beschlossen ist – und das ist an diesem Punkt weniger, als die Schlagzeile vermuten lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'psi-ag-prognose-2026-gesenkt',
+    title: 'PSI Software senkt die Prognose für 2026 deutlich',
+    teaser:
+      'PSI Software kappt die erwartete Marge fürs laufende Jahr fast auf die Hälfte – ein Lehrstück darüber, wie eine Prognose von Ist-Zahlen zu trennen ist.',
+    category: 'Märkte',
+    publishedAt: '2026-08-22T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['PSI Software', 'Gewinnwarnung', 'Prognose', 'Stahlmarkt'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'TradingView News, EQS-Adhoc-Meldung, 21.8.2026: „PSI Adjusts Its Forecast for Fiscal Year 2026 in Light of Economic Uncertainties in Europe“',
+        url: 'https://www.tradingview.com/news/eqs:a6601bafd094b:0-psi-adjusts-its-forecast-for-fiscal-year-2026-in-light-of-economic-uncertainties-in-europe/',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc, 21.8.2026, EQS Group AG: „EQS-Adhoc: PSI passt vor dem Hintergrund der konjunkturellen Unsicherheiten in Europa die Prognose für das Geschäftsjahr 2026 an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Softwarekonzern PSI hat seine Prognose für das Geschäftsjahr 2026 gesenkt. Statt eines Umsatzwachstums von rund 10 Prozent erwartet der Vorstand jetzt nur noch etwa 5 Prozent. Beim Auftragseingang war ein Plus von rund 10 Prozent geplant, jetzt rechnet PSI nur noch mit einer Stabilisierung auf Vorjahresniveau. Die bereinigte EBIT-Marge soll statt der ursprünglich erwarteten rund 4 Prozent nur noch bei etwa 2 Prozent liegen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Hauptgrund nennt PSI die wirtschaftliche Unsicherheit in Europa, insbesondere die Schwäche des europäischen Stahlmarkts. Im Segment Process Industries & Metals rechnet der Konzern für 2026 mit einem Umsatzrückgang von 15 Prozent und einer Marge im einstelligen negativen Bereich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Prognose ist eine Erwartung, keine Abrechnung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Guidance wie die von PSI ist die Einschätzung des Managements, wie sich das laufende Jahr voraussichtlich entwickelt – keine bereits erzielte Ist-Zahl. Ändert sich diese Einschätzung wesentlich, sind börsennotierte Unternehmen verpflichtet, das umgehend über eine Ad-hoc-Meldung öffentlich zu machen, damit alle Anleger gleichzeitig informiert sind. Genau das ist hier der Grund für die Veröffentlichung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht jedes Segment trifft es gleich hart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung nennt ausdrücklich, dass die Segmente Discrete Manufacturing und Logistics trotz eines ebenfalls schwierigen Umfelds nach aktueller Einschätzung ihre Jahresziele für 2026 erreichen sollen. Eine konzernweite Prognosekappung kann also auf ein einzelnes, besonders betroffenes Segment zurückgehen, ohne dass alle Geschäftsbereiche gleich stark leiden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Gewinnwarnung liest, sollte nach der Ursache im Detail suchen, statt sie pauschal auf „das ganze Unternehmen“ zu beziehen. Bei PSI steckt der Einbruch überwiegend in einem einzigen Segment, dessen Kunden aktuell mit einem schwachen Stahlmarkt zu kämpfen haben.',
+      },
+    ],
+  },
+  {
+    slug: 'tiktok-400-millionen-vergleich-us-justiz',
+    title: 'TikTok zahlt 400 Millionen Dollar – die Ermittlungen enden',
+    teaser:
+      'TikTok einigt sich mit der US-Justiz auf 400 Millionen Dollar wegen Konten von Kindern unter 13 Jahren – ohne Schuldeingeständnis und in zwei Raten.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-08-22T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['TikTok', 'USA', 'Datenschutz', 'Vergleich'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Handelsblatt, 21.8.2026: „Video-App: 400-Millionen-Zahlung – US-Justiz stoppt TikTok-Ermittlungen“',
+        url: 'https://www.handelsblatt.com/technik/it-internet/video-app-400millionen-zahlung-us-justiz-stoppt-tiktok-ermittlungen/100248949.html',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, gestern 21:31 Uhr, dpa-AFX: „400-Millionen-Zahlung: US-Justiz stoppt TikTok-Ermittlungen“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'TikTok zahlt 400 Millionen Dollar, um Ermittlungen des US-Justizministeriums beizulegen. Die Behörde hatte TikTok 2024 verklagt mit dem Vorwurf, die Plattform habe es Kindern unter 13 Jahren ermöglicht, ohne Zustimmung ihrer Eltern Accounts anzulegen – ein Verstoß gegen US-Gesetze zum Datenschutz von Kindern.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Zahlung erfolgt in zwei Teilen: 300 Millionen Dollar sofort, weitere 100 Millionen Dollar erst, nachdem ein Gericht eine frühere Unterlassungsverfügung gegen die Vorgängerfirma Musical.ly aufgehoben hat. Das Justizministerium betont ausdrücklich, dass die Zahlung kein Schuldeingeständnis darstellt. Der Vergleich folgt auf einen Eigentümerwechsel: Anfang 2026 ging TikToks US-Geschäft mehrheitlich an neue amerikanische Investoren, weltweit bleibt ByteDance Eigentümer.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Vergleich ist kein Urteil',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein gerichtliches Urteil stellt eine Schuld fest, ein Vergleich beendet einen Streit, ohne dass ein Gericht darüber entscheiden muss. Für ein Unternehmen kann das günstiger sein als ein jahrelanges Verfahren mit ungewissem Ausgang – selbst wenn am Ende eine dreistellige Millionensumme fließt. Genau deshalb betont das Justizministerium hier ausdrücklich, dass mit der Zahlung keine Schuld anerkannt wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Zahlung in zwei Teilen kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die zweite Rate von 100 Millionen Dollar ist an eine Bedingung geknüpft: die Aufhebung einer älteren Verfügung gegen Musical.ly, TikToks Vorgängerunternehmen. Solche gestaffelten, an Bedingungen geknüpften Zahlungen sind bei komplexen Vergleichen üblich – sie verknüpfen einen Teil der Summe mit einem noch ausstehenden rechtlichen Schritt, statt alles auf einmal fällig zu stellen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Zahlung in dreistelliger Millionenhöhe klingt nach einem klaren Schuldspruch, ist rechtlich aber etwas anderes. Wer aus einem Vergleich automatisch auf ein Fehlverhalten schließt, überliest die ausdrückliche Klarstellung, die in solchen Fällen fast immer mitgeliefert wird.',
+      },
+    ],
+  },
+  {
+    slug: 'broadcom-ki-milliarden-goldman-warnung',
+    title: 'Broadcom leiht bis zu 100 Milliarden für die KI-Wette',
+    metaTitle: 'Broadcoms KI-Milliarden und Goldmans Warnung',
+    teaser:
+      'Broadcom verhandelt bis zu 100 Milliarden Dollar Fremdkapital für KI-Chips, während Goldman Sachs vor Verdrängungseffekten in der übrigen Wirtschaft warnt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-22T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Broadcom', 'Künstliche Intelligenz', 'Fremdkapital', 'Goldman Sachs'],
+    relatedTopics: ['aktie', 'schulden-und-kredit'],
+    relatedSymbols: ['broadcom', 'goldman-sachs'],
+    sources: [
+      {
+        label:
+          'Benzinga, 21.8.2026: „Broadcom Steps Up Nvidia Challenge With Potential $100 Billion AI Financing Deal“',
+        url: 'https://www.benzinga.com/markets/tech/26/08/61350252/broadcom-steps-up-nvidia-challenge-with-potential-100-billion-ai-financing-deal',
+      },
+      {
+        label:
+          'Yahoo Finance, 21.8.2026: „Broadcom Eyes Up to $100 Billion AI Financing Deal“',
+        url: 'https://finance.yahoo.com/technology/ai/articles/broadcom-eyes-100-billion-ai-162200783.html',
+      },
+      {
+        label:
+          'finanzen.net, 21.8.2026: „Goldman Sachs warnt vor Verdrängungseffekten durch KI-Investitionen“',
+        url: 'https://www.finanzen.net/nachricht/aktien/ki-boom-kostet-milliarden-goldman-sachs-warnt-vor-verdraengungseffekten-durch-ki-investitionen-00-15868638',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Broadcom verhandelt laut übereinstimmenden Berichten eine Finanzierung von bis zu 100 Milliarden Dollar für den Ausbau von KI-Rechenkapazität. Die Struktur soll aus einer besicherten Senior-Tranche von 60 bis 70 Milliarden Dollar und einer nachrangigen Tranche von rund 30 Milliarden Dollar bestehen, wobei Broadcom selbst einen Teil der Senior-Schulden absichern würde. An dem Geschäft sollen sich auch Blackstone und Apollo Global Management beteiligen, Nutznießer der zusätzlichen Kapazität ist unter anderem Anthropic.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Deal baut auf einer bereits im Juni 2026 angekündigten Vereinbarung über 35 Milliarden Dollar zwischen Broadcom, Blackstone und Apollo auf, die Anthropics Rechenkapazität um ein Gigawatt erweitern sollte. Das gemeinsame Ziel der beteiligten Partner liegt bei mehr als 20 Gigawatt für große KI-Anbieter bis 2028.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn Rechenzentren mit fremdem statt eigenem Geld gebaut werden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Statt Rechenzentren aus eigenen Gewinnen oder über neue Aktien zu finanzieren, holt sich Broadcom hier gezielt Fremdkapital von spezialisierten Investoren wie Blackstone und Apollo. Das hält die Schulden zu großen Teilen außerhalb der eigenen Bilanz und verteilt das Risiko auf die Geldgeber – im Gegenzug verlangen diese für ihr Kapital eine entsprechende Verzinsung. Es ist ein anderer Weg, dieselbe teure Infrastruktur zu bezahlen, als sie direkt aus dem operativen Geschäft zu stemmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Goldman Sachs: fast ein Viertel der Investment-Grade-Anleihen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldman Sachs beziffert die US-KI-Investitionen für 2026 auf etwa 600 Milliarden Dollar – knapp zwei Prozent der US-Wirtschaftsleistung und mehr als zehn Prozent aller unternehmerischen Anlageinvestitionen. Am Kreditmarkt mache KI-Finanzierung inzwischen fast ein Viertel aller Emissionen von Investment-Grade-Anleihen aus. Für 2026 schätzt die Bank den zusätzlichen Verdrängungseffekt auf andere Investitionen auf rund 50 Milliarden Dollar, betont aber zugleich, dass sowohl der Wachstumsbeitrag als auch die Verdrängungseffekte insgesamt kleiner ausfallen als oft angenommen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dieselbe Entwicklung – der KI-Boom braucht enorme Summen – erzeugt zwei gegenläufige Nachrichten: ein einzelner Konzern, der sich für seine Wette so viel Fremdkapital wie möglich sichert, und eine Bank, die die Gesamtwirkung auf den Kreditmarkt beobachtet und einordnet, statt sie zu dramatisieren.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-rekordlauf-zwoelf-prozent-august',
+    title: 'Gold klettert weiter: zwölf Prozent plus allein im August',
+    teaser:
+      'Der Goldpreis steigt am Freitag auf 4.556 Dollar und damit im August bereits um zwölf Prozent. Ein Ticker am Samstagmorgen zeigt sogar 4.608 Dollar.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-22T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Edelmetalle', 'Rekord', 'Silber'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Marktberichte, Wochenschluss vom 21.8.2026: „Der Goldpreis steigt am Freitag auf 4.556 USD und liegt im August bereits 12 Prozent im Plus. Auch Silber legt zum Wochenschluss noch einmal zu.“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste der Startseite, abgerufen 22.8.2026, ca. 3:55 Uhr: Gold 4.608 USD (+2,0 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist am Freitag laut Goldreporter auf 4.556 US-Dollar je Feinunze gestiegen. Damit liegt Gold allein im August bereits rund 12 Prozent im Plus. Auch Silber habe zum Wochenschluss noch einmal zugelegt, meldet Goldreporter, ohne dafür einen genauen Kurswert zu nennen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Samstagmorgen zeigt die Kursleiste von finanzen.net den Goldpreis bereits bei 4.608 US-Dollar, ein Plus von 2,0 Prozent. Der Rekordlauf setzt sich damit über den Wochenschluss hinaus fort – zumindest laut dieser einen Anzeige, die im Wochenendhandel naturgemäß dünner gehandelt wird als an einem regulären Bankarbeitstag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Zufluchtsort in Gold typischerweise bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold gilt unter Anlegern traditionell als sogenannter „sicherer Hafen“ – eine Anlage, in die Kapital tendenziell fließt, wenn Unsicherheit an anderer Stelle zunimmt. Keine der beiden Quellen nennt für diesen konkreten Anstieg einen Grund. Wer dem Kursverlauf trotzdem eine bestimmte Ursache zuschreibt, ergänzt damit etwas, das die Meldungen selbst nicht hergeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwölf Prozent in einem Monat ist ungewöhnlich viel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Plus von 12 Prozent in nur einem Monat ist für den Goldpreis eine außergewöhnlich große Bewegung – über viele Jahre hinweg bewegt sich Gold eher in einstelligen Prozentbereichen pro Monat. Eine so kräftige Bewegung bedeutet zugleich ein höheres Risiko für eine ebenso kräftige Gegenbewegung, sollte sich die zugrunde liegende Nachfrage abschwächen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rekordkurs allein ist keine Erklärung, sondern nur eine Feststellung. Wer eine so ausgeprägte Bewegung in eine Anlageentscheidung übersetzen will, sollte sich bewusst machen, dass eine ungewöhnlich starke Aufwärtsbewegung ebenso ungewöhnlich schnell wieder abflauen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-dax-wochenschluss-neue-woche-ifo',
+    title: 'Dow und DAX schließen die Woche im Plus – das steht nächste Woche an',
+    metaTitle: 'Dow und DAX im Plus – Blick auf die neue Woche',
+    teaser:
+      'Der DAX beendet seine Verlustserie über 26.000 Punkten, der Dow klettert dank Goldman Sachs und Merck. Die neue Woche bringt deutsche BIP-Zahlen und ifo.',
+    category: 'Märkte',
+    publishedAt: '2026-08-22T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Dow Jones', 'Wirtschaftskalender', 'ifo-Index'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, abgerufen 22.8.2026: „Dow klettert dank Goldman und Merck. DAX schließt fester. Öl, Gold und Bitcoin legen zum Teil kräftig zu.“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 21.8.2026, 16:06 Uhr, dpa-AFX: „ROUNDUP/Aktien Frankfurt Schluss: Verlustserie beendet - Dax über 26.000 Punkten“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Wichtige Termine, abgerufen 22.8.2026: 25.08. ifo Geschäftsklima (Prognose 87,2, Vorherig 86,6), 25.08. Bruttoinlandsprodukt s.a. (Prognose 0,2 %, Vorherig 0,2 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX hat seine Verlustserie beendet und ist am Freitag über die Marke von 26.000 Punkten zurückgekehrt, meldet finanzen.net unter Berufung auf dpa-AFX. Die Kursleiste von finanzen.net zeigt den Index am Samstagmorgen bei 26.137 Punkten, ein Plus von 0,6 Prozent. An der Wall Street kletterte der Dow laut wallstreet-online dank Goldman Sachs und Merck, die aktuelle Anzeige für den Dow-Future steht bei 53.294,69 Punkten, ein Plus von 0,95 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dieselbe Übersicht von wallstreet-online meldet, dass auch Öl, Gold und Bitcoin „zum Teil kräftig“ zugelegt hätten. Für Bitcoin passt das zu einer weiteren, eigenständigen Meldung vom Vortag: ein Plus von 23 Prozent binnen drei Tagen. Am Samstagmorgen zeigt die Kursleiste von finanzen.net für Bitcoin dagegen ein kleines Minus von 0,5 Prozent bei 66.650 Dollar – nach dem Sprung der vergangenen Tage offenbar eine kurze Verschnaufpause.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der neuen Woche ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für den 25.8. gleich zwei wichtige deutsche Termine, allerdings ohne genaue Uhrzeit: das deutsche Bruttoinlandsprodukt (saisonbereinigt, Quartal), für das Analysten unverändert 0,2 Prozent erwarten wie im Vorquartal, und den ifo-Geschäftsklimaindex, für den eine Verbesserung auf 87,2 Punkte prognostiziert wird nach 86,6 Punkten zuvor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Frühindikator misst Stimmung, kein Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Bruttoinlandsprodukt ist eine amtliche, aber nachlaufende Zahl – sie fasst zusammen, was im vergangenen Quartal tatsächlich produziert wurde. Der ifo-Index dagegen befragt Tausende Unternehmen nach ihrer aktuellen Lage und ihren Erwartungen für die kommenden Monate; er ist aktueller, bildet aber Stimmung ab und keine abgerechnete Größe. Ein steigender ifo-Wert bei gleichzeitig stagnierendem BIP würde also eher auf einen erwarteten als auf einen bereits eingetretenen Aufschwung hindeuten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner guter Handelstag beendet noch keine Schwächephase, und eine verbesserte Stimmungsumfrage ist noch kein amtlich gemessenes Wachstum. Beide Zahlen der kommenden Woche ergeben erst zusammen mit weiteren Daten ein verlässlicheres Bild.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesanleihen-rendite-15-jahres-hoch',
+    title: 'Bundesanleihen so hoch verzinst wie seit 15 Jahren nicht mehr',
+    teaser:
+      'Die Rendite zehnjähriger Bundesanleihen steigt auf 3,22 Prozent – das teuerste Fremdkapital seit 2011, aber auch die besten Anleihezinsen seit langem.',
+    category: 'Vorsorge',
+    publishedAt: '2026-08-22T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bundesanleihen', 'Zinsen', 'Staatsverschuldung', 'Sparer'],
+    relatedTopics: ['staatsanleihe', 'immobilien'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzmarktwelt.de, 17.8.2026: „Deutsche Anleiherenditen mit 15-Jahreshoch – zwei Hauptfaktoren“',
+        url: 'https://finanzmarktwelt.de/deutsche-anleiherenditen-mit-15-jahreshoch-zwei-hauptfaktoren-398947/',
+      },
+      {
+        label:
+          'wallstreet-online, Private Finanzen, abgerufen 22.8.2026: „Deutschlands Anleiherenditen steigen auf Niveaus wie seit 2011 nicht mehr. Das verteuert einige Lebensbereiche – eröffnet Sparern aber Chancen, die lange undenkbar waren.“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zehnjähriger Bundesanleihen erreichte Mitte August 3,2158 Prozent – laut finanzmarktwelt.de das höchste Niveau seit 15 Jahren. Eine aktuelle Einordnung von wallstreet-online bestätigt: Deutschlands Anleiherenditen liegen weiterhin auf einem Niveau, das es seit 2011 nicht mehr gab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Gründe, die zeitlich zusammenfallen',
+      },
+      {
+        type: 'paragraph',
+        text: 'finanzmarktwelt.de nennt zwei Hauptfaktoren. Erstens nimmt der deutsche Staat über das 500-Milliarden-Euro-Sondervermögen und eine deutlich verstärkte Aufrüstung erheblich mehr neue Schulden auf – diese zusätzliche Nachfrage nach Kapital treibt den Preis dafür, also die Zinsen, nach oben. Zweitens sorgt der seit März 2026 andauernde Iran-Konflikt für Treibstoffknappheit und steigende Öl- und Gaspreise; Deutschlands Jahresinflation stieg dadurch im Juli von 2,3 auf 2,8 Prozent, was Markterwartungen höherer Zentralbankzinsen befeuert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dieselbe Zahl, zwei sehr unterschiedliche Perspektiven',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt die Rendite einer Anleihe, wird es für den Staat teurer, sich neu zu verschulden – und in der Regel auch für private Haushalte, deren Baufinanzierungszinsen sich an solchen Anleiherenditen orientieren. Für alle, die selbst Geld anlegen statt sich zu verschulden, ist genau dieselbe Entwicklung eine gute Nachricht: Neu ausgegebene Bundesanleihen und daran gekoppelte Sparprodukte bieten wieder Zinsen, die es über weite Strecken des vergangenen Jahrzehnts nicht gab.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile über „Rekordrenditen“ ist ohne Kontext unvollständig, weil sie verschweigt, wer davon profitiert und wer dafür mehr bezahlt. Wer eine Immobilie finanzieren will, hat es aktuell schwerer als noch vor einigen Jahren – wer Geld anlegen will, hat es leichter, ohne dafür ins Risiko einer Aktie zu gehen.',
+      },
+    ],
+  },
+  {
     slug: 'oel-iran-sanktionen-brent-93-dollar',
     title: 'Öl zieht an: USA drohen Iran mit den härtesten Sanktionen aller Zeiten',
     metaTitle: 'Öl zieht an: härteste Iran-Sanktionen aller Zeiten',
