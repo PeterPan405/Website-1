@@ -238,7 +238,7 @@ export const aktienLaenderBranchen: LearnTopic = {
         'Wie Indizes gewichtet werden, was die US-Quote bedeutet, wie sich zyklische und defensive Branchen unterscheiden und wo Währungsrisiko tatsächlich entsteht.',
       title: 'Gewichtung, Branchen, Währung',
       lead: 'Welche Gewichtungsmethoden es gibt, was in einem Weltindex tatsächlich drinsteckt – und wo das Währungsrisiko wirklich sitzt.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -359,6 +359,83 @@ export const aktienLaenderBranchen: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Warum Schwellenländer nicht das sind, wofür man sie hält',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Erwartung ist naheliegend: schnelleres Wirtschaftswachstum, also höhere Aktienrenditen. Sie hält empirisch nicht stand, und der Grund dafür ist lehrreich genug, um ihn zu verstehen – er gilt nämlich überall.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Wachstum ist schon eingepreist.** Was alle erwarten, steckt im Kurs. Überrendite entsteht aus dem Unterschied zwischen Erwartung und Eintritt, nicht aus dem Eintritt selbst.',
+            '**Das Wachstum landet nicht beim Altaktionär.** Wachsende Volkswirtschaften finanzieren sich über neue Aktien. Der Gewinn je Anteil wächst dadurch langsamer als die Wirtschaft – manchmal gar nicht.',
+            '**Der Index ist nicht das Land.** Ein Schwellenland-Index besteht zu großen Teilen aus wenigen Staatskonzernen und Technologiewerten. Die Binnenwirtschaft, die tatsächlich wächst, ist oft gar nicht börsennotiert.',
+            '**Währung und Politik kommen dazu.** Abwertungen, Kapitalverkehrskontrollen und Eingriffe in einzelne Branchen sind keine Randerscheinung, sondern Teil der Anlage.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Beitrag von Schwellenländern liegt deshalb in der Streuung, nicht in einer höheren erwarteten Rendite. Das ist ein Argument – nur ein anderes als das, mit dem sie meistens verkauft werden.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Sitzland ist nicht Geschäftsgebiet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Index sortiert nach dem Ort der Notierung oder des Firmensitzes. Wo das Geld verdient wird, steht auf einem anderen Blatt: Große europäische Konzerne machen den überwiegenden Teil ihres Umsatzes außerhalb Europas, und amerikanische Technologiewerte verdienen weltweit.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was daraus folgt',
+          items: [
+            '**Die Länderquote überzeichnet die Konzentration in eine Richtung und unterzeichnet sie in eine andere.** Wer einen Weltindex hält, ist wirtschaftlich breiter aufgestellt, als die Länderliste vermuten lässt – und zugleich stärker von wenigen globalen Geschäftsmodellen abhängig.',
+            '**Ein Heimatmarkt-Anteil bringt weniger Nähe, als er verspricht.** Wer deutsche Standardwerte kauft, kauft überwiegend Weltgeschäft mit deutschem Firmensitz.',
+            '**Umgekehrt schützt Streuung über Länder weniger vor einem globalen Schock**, als die Zahl der Länder nahelegt: Dieselben Kunden, dieselben Lieferketten, dieselben Zinsen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wie viele Bausteine ein Depot braucht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die ehrliche Antwort ist unspektakulär: einer reicht für die meisten. Jeder weitere Baustein muss einen Zweck haben, den der erste nicht erfüllt – sonst erhöht er nur die Zahl der Entscheidungen, und Entscheidungen sind die Stelle, an der Rendite verlorengeht.',
+        },
+        {
+          type: 'table',
+          caption: 'Wann ein zweiter Baustein einen Zweck hat',
+          head: ['Zweck', 'Trägt er?'],
+          rows: [
+            [
+              'Die Gewichtung eines Landes bewusst verändern',
+              'ja – das lässt sich mit einem einzigen Weltindex nicht steuern',
+            ],
+            [
+              'Schwellenländer stärker gewichten, als der Weltindex es tut',
+              'ja, wenn die Begründung Streuung ist und nicht erwartete Mehrrendite',
+            ],
+            [
+              'Kleinere Unternehmen ergänzen, die im Standardindex fehlen',
+              'ja – sie sind eine eigene Gruppe mit eigenem Verlauf',
+            ],
+            [
+              'Eine Branche übergewichten, weil sie zuletzt gut lief',
+              'nein – das ist der Rezenzeffekt mit einem Produkt darauf',
+            ],
+            [
+              '„Mehr Streuung" durch einen zweiten Weltindex',
+              'nein – zwei Indizes mit denselben Titeln streuen nichts, sie verdoppeln nur die Buchhaltung',
+            ],
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -368,6 +445,10 @@ export const aktienLaenderBranchen: LearnTopic = {
             'Marktkapitalisierung ist selbstregulierend, alle Alternativen kosten Umschichtung.',
             'Streuung entsteht durch Verschiedenheit, nicht durch Anzahl.',
             'Das Währungsrisiko steckt in den Umsätzen der Unternehmen, nicht in der Notierung.',
+            'Schnelleres Wirtschaftswachstum bedeutet nicht höhere Aktienrendite – es ist eingepreist und verwässert.',
+            'Ein Index sortiert nach Sitzland, nicht nach dem Ort, an dem das Geld verdient wird.',
+            'Ein Baustein reicht; jeder weitere braucht einen Zweck, den der erste nicht erfüllt.',
+            'Zwei Weltindizes nebeneinander streuen nichts, sie verdoppeln die Buchhaltung.',
           ],
         },
       ],

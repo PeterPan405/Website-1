@@ -296,7 +296,7 @@ export const rente: LearnTopic = {
         'Welche Abzüge auf die Rente anfallen, wie die nachgelagerte Besteuerung funktioniert und wann sich eine Betriebsrente rechnet.',
       title: 'Netto rechnen und die zweite Säule',
       lead: 'Was von der Bruttorente abgeht, wie der Rentenfreibetrag funktioniert – und wann Entgeltumwandlung tatsächlich lohnt.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -404,6 +404,70 @@ export const rente: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die drei Schichten und wofür sie taugen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Das deutsche System sortiert Altersvorsorge in drei Schichten, und die Einordnung entscheidet über Steuer, Zugriff und Pfändungsschutz. Wer nur auf die Rendite sieht, übersieht den eigentlichen Unterschied: **Wie fest ist das Geld gebunden?**',
+        },
+        {
+          type: 'table',
+          caption: 'Was jede Schicht kostet und was sie verlangt',
+          head: ['Schicht', 'Steuerlich', 'Bindung'],
+          rows: [
+            [
+              'Basisversorgung – gesetzliche Rente, Rürup',
+              'Beiträge weitgehend absetzbar, Auszahlung voll steuerpflichtig',
+              'am stärksten: keine Kapitalauszahlung, nicht vererbbar außer über Zusatzbausteine, nicht beleihbar',
+            ],
+            [
+              'Geförderte Vorsorge – Riester, betriebliche Altersversorgung',
+              'Förderung oder Entgeltumwandlung, Auszahlung steuerpflichtig',
+              'stark: Auszahlung frühestens ab einem Mindestalter, Teilkapital begrenzt',
+            ],
+            [
+              'Privates Vermögen – Depot, Immobilie, Versicherung',
+              'Abgeltungsteuer auf Erträge, keine Förderung',
+              'keine: jederzeit verfügbar, jederzeit veränderbar',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Bindung ist beides zugleich. Sie schützt vor dem eigenen Zugriff und im Fall der Basisversorgung weitgehend vor Pfändung – und sie nimmt jede Anpassung an eine geänderte Lebenslage. Wer mit 35 entscheidet, entscheidet für Jahrzehnte, in denen sich fast alles ändern kann.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Was bei geförderten Verträgen zu prüfen ist',
+          items: [
+            '**Die Förderung ist nicht der Ertrag.** Ein Zuschuss von 30 Prozent auf einen Vertrag mit hohen laufenden Kosten kann nach zwanzig Jahren schlechter dastehen als ein einfaches Depot ohne Förderung.',
+            '**Die nachgelagerte Besteuerung ist der Preis.** Was in der Ansparphase gespart wurde, wird in der Auszahlungsphase versteuert – zum dann geltenden persönlichen Satz, der nicht sicher niedriger ist.',
+            '**Bei der Entgeltumwandlung sinken die Beiträge zur gesetzlichen Rente**, weil das umgewandelte Entgelt sozialabgabenfrei bleibt. Der spätere gesetzliche Anspruch fällt entsprechend kleiner aus.',
+            '**Auf Leistungen aus der betrieblichen Versorgung fallen in der Auszahlungsphase Kranken- und Pflegeversicherungsbeiträge an**, und zwar auf den vollen Betrag. Das ist der Posten, der in Beratungsgesprächen am häufigsten fehlt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum die Zahl in der Renteninformation zu hoch wirkt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Brief nennt einen Betrag, und dieser Betrag ist in zwei Richtungen zu korrigieren, bevor er etwas über den späteren Lebensstandard sagt.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Er ist brutto.** Kranken- und Pflegeversicherungsbeiträge gehen ab, und je nach Rentenbeginn ist ein wachsender Anteil steuerpflichtig.',
+            '**Er ist in heutigen Euro genannt.** Die Hochrechnung mit Anpassungen steht daneben, aber die Kaufkraft in dreißig Jahren steht in keiner der beiden Zahlen.',
+            '**Er unterstellt, dass es weitergeht wie bisher.** Teilzeit, Elternzeit, Selbstständigkeit oder Arbeitslosigkeit senken ihn – die Hochrechnung schreibt den Durchschnitt der letzten fünf Jahre fort.',
+            '**Erwerbsminderung ist die Zahl, die niemand liest.** Sie steht im selben Brief und ist die wichtigere: Das Risiko, vor der Rente arbeitsunfähig zu werden, ist deutlich größer als die meisten annehmen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -415,6 +479,10 @@ export const rente: LearnTopic = {
             'Ohne nennenswerten Arbeitgeberzuschuss ist die Rechnung deutlich enger.',
             'Aus denselben Beiträgen entstehen auch Erwerbsminderungs- und Hinterbliebenenrente – ein Depot leistet das nicht.',
             'Die Hochrechnung in der Renteninformation unterstellt eine Erwerbsbiografie ohne Bruch.',
+            'Die Schicht entscheidet über Steuer und Bindung – die Bindung schützt und nimmt jede Anpassung.',
+            'Eine Förderung ist kein Ertrag: Sie kann von laufenden Kosten aufgezehrt werden.',
+            'Entgeltumwandlung senkt den späteren gesetzlichen Anspruch mit.',
+            'Der Betrag in der Renteninformation ist brutto, in heutigen Euro und unter der Annahme, dass alles so weitergeht.',
           ],
         },
       ],

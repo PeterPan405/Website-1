@@ -238,7 +238,7 @@ export const woraufAchtenEinsteiger: LearnTopic = {
         'Die häufigsten Fehler mit Zahlen unterlegt, wie du ein Produkt in zehn Minuten prüfst und wie eine schriftliche Anlagestrategie Fehlentscheidungen verhindert.',
       title: 'Fehler, Prüfung, Strategie',
       lead: 'Was die typischen Fehler tatsächlich kosten, wie sich ein Produkt in zehn Minuten einschätzen lässt und warum ein Blatt Papier mehr bringt als jede Prognose.',
-      readingMinutes: 10,
+      readingMinutes: 16,
       status: 'complete',
       blocks: [
         {
@@ -356,6 +356,74 @@ export const woraufAchtenEinsteiger: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die Reihenfolge, in der die Dinge zu tun sind',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die meisten Fehler am Anfang sind keine falschen Entscheidungen, sondern Entscheidungen in der falschen Reihenfolge. Wer mit der Produktauswahl beginnt, beantwortet die letzte Frage zuerst – und muss danach alles Vorherige an sie anpassen.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**1. Teure Schulden weg.** Ein Dispo oder ein Ratenkredit kostet mehr, als eine Anlage im Mittel bringt. Tilgen ist eine sichere Rendite in Höhe des Zinssatzes – die einzige garantierte, die es gibt.',
+            '**2. Notgroschen aufbauen.** Ohne ihn ist jede Anlage nur geliehen: Der nächste größere Defekt holt sie zurück, und zwar zu einem Kurs, den man sich nicht aussucht.',
+            '**3. Existenzielle Risiken versichern.** Berufsunfähigkeit und Haftpflicht schützen vor Schäden, die kein Depot auffangen kann. Das ist keine Geldanlage, aber es kommt davor.',
+            '**4. Ziel und Zeitraum festlegen.** Wofür, wie lange, wie viel monatlich. Ohne diese drei Zahlen gibt es kein richtiges Produkt, weil es kein Kriterium gibt.',
+            '**5. Erst jetzt: Produkt und Depot.** Es ist der einfachste Schritt und der, der am meisten besprochen wird – weil er sich am leichtesten zu einer Empfehlung verdichten lässt.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Die Ausnahme von der Reihenfolge',
+          items: [
+            'Wer wartet, bis alles davor perfekt ist, fängt nie an. Ein kleiner Sparplan parallel zum Notgroschen ist besser als drei Jahre Vorbereitung – nicht wegen der Rendite, sondern weil die Gewohnheit die eigentliche Leistung ist.',
+            'Die Reihenfolge betrifft die **Beträge**, nicht den Beginn: Solange der Notgroschen nicht steht, gehört der größere Teil des Monatsüberschusses dorthin.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Ausschüttend oder thesaurierend – die Frage hinter der Frage',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es ist die meistgestellte Anfängerfrage, und sie ist kleiner, als sie wirkt: Beide Varianten halten dieselben Unternehmen und haben dieselbe Bruttorendite. Der Unterschied liegt in der Steuerabwicklung und in der eigenen Disziplin.',
+        },
+        {
+          type: 'table',
+          caption: 'Was tatsächlich verschieden ist',
+          head: ['', 'Ausschüttend', 'Thesaurierend'],
+          rows: [
+            [
+              'Was mit den Erträgen passiert',
+              'sie kommen aufs Verrechnungskonto',
+              'sie bleiben im Fonds und werden automatisch wieder angelegt',
+            ],
+            [
+              'Sparerpauschbetrag',
+              'wird durch die Ausschüttung genutzt, ohne dass man etwas tun muss',
+              'wird über die Vorabpauschale genutzt – meist in kleinerem Umfang',
+            ],
+            [
+              'Steuerstundung',
+              'geringer – es wird laufend versteuert',
+              'höher, solange die Vorabpauschale niedrig ist. Über Jahrzehnte ist das der einzige echte Vorteil',
+            ],
+            [
+              'Aufwand',
+              'die Ausschüttung muss selbst wieder angelegt werden, sonst liegt sie herum',
+              'keiner',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Daraus folgt eine praktische Faustregel: Solange der Sparerpauschbetrag nicht ausgeschöpft ist, spricht wenig gegen die ausschüttende Variante – sie nutzt ihn ohne Zutun. Ist er ausgeschöpft, ist thesaurierend die bequemere und steuerlich etwas günstigere Wahl. Die Entscheidung ist in beiden Richtungen klein genug, dass sie kein Grund zum Aufschieben ist.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -365,6 +433,10 @@ export const woraufAchtenEinsteiger: LearnTopic = {
             'Fonds ist Sondervermögen, Zertifikat ist Schuldverschreibung – der wichtigste Unterschied im Basisinformationsblatt.',
             'Arbeitgeberaktien koppeln Einkommen und Vermögen an dasselbe Unternehmen.',
             'Was bei minus 30 Prozent passiert, wird vorher aufgeschrieben.',
+            'Die meisten Anfängerfehler sind Entscheidungen in der falschen Reihenfolge, nicht falsche Entscheidungen.',
+            'Teure Schulden tilgen ist die einzige garantierte Rendite.',
+            'Ausschüttend gegen thesaurierend ist eine Frage von Steuerabwicklung und Disziplin, nicht von Rendite.',
+            'Solange der Sparerpauschbetrag nicht ausgeschöpft ist, nutzt ihn eine Ausschüttung ohne Zutun.',
           ],
         },
       ],

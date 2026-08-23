@@ -261,7 +261,7 @@ export const sparerpauschbetrag: LearnTopic = {
         'Wie du den Freibetrag über mehrere Institute verteilst, wann sich die Anlage KAP lohnt und was bei Kirchensteuer, Kinderdepots und Auslandsdepots gilt.',
       title: 'Verteilen, erklären, Sonderfälle',
       lead: 'Wie der Freibetrag dorthin kommt, wo er wirkt – und wann die Steuererklärung Geld zurückholt.',
-      readingMinutes: 10,
+      readingMinutes: 16,
       status: 'complete',
       blocks: [
         {
@@ -355,6 +355,62 @@ export const sparerpauschbetrag: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Ehepaare: ein Auftrag statt zweier',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zusammen veranlagte Ehepaare können einen **gemeinsamen** Freistellungsauftrag erteilen. Er wirkt anders als zwei einzelne: Der doppelte Betrag steht dann für die Erträge beider zur Verfügung, unabhängig davon, auf wessen Konto sie anfallen.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Zwei einzelne Aufträge verfallen getrennt.** Hat einer der beiden kaum Erträge, bleibt sein Anteil ungenutzt liegen, während beim anderen bereits Steuer anfällt.',
+            '**Ein gemeinsamer Auftrag gleicht das aus** – er gilt für Einzelkonten beider und für Gemeinschaftskonten.',
+            '**Er verlangt beide Unterschriften** und endet, wenn die Voraussetzungen der Zusammenveranlagung entfallen. Nach einer Trennung ist er zu ändern, sonst rechnet die Bank weiter mit dem doppelten Betrag.',
+            '**Ein Gemeinschaftsdepot ohne gemeinsamen Auftrag ist ein häufiger Fehler**: Viele Banken akzeptieren dort ausschließlich den gemeinsamen Auftrag, und ohne ihn wird auf alles Steuer einbehalten.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Kinderdepots: der größte Freibetrag, den kaum jemand nutzt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Kind hat einen eigenen Sparerpauschbetrag – und darüber hinaus den Grundfreibetrag des Einkommensteuerrechts. Wer über eine Nichtveranlagungsbescheinigung verfügt, bekommt Kapitalerträge in erheblicher Höhe steuerfrei, weit über den Pauschbetrag hinaus.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Was dabei zu bedenken ist – und es ist mehr als die Steuer',
+          items: [
+            '**Das Geld gehört dem Kind, endgültig.** Es lässt sich nicht zurückholen und nicht zweckbinden. Mit 18 verfügt es allein darüber.',
+            '**Es zählt beim BAföG mit** und kann Ansprüche mindern oder ausschließen. Das trifft genau die Familien, für die der Steuervorteil am meisten bedeutet hätte.',
+            '**Die Familienversicherung hat eine Einkommensgrenze.** Zu hohe Kapitalerträge können die beitragsfreie Mitversicherung kosten.',
+            '**Eltern dürfen das Depot nur im Interesse des Kindes verwalten.** Umschichten zugunsten der eigenen Steuerlast ist kein solches Interesse.',
+            'Der Steuervorteil ist also echt, aber er ist nicht der einzige Effekt – und die anderen wirken später.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was passiert, wenn man gar nichts tut',
+        },
+        {
+          type: 'paragraph',
+          text: 'Nichts geht verloren – aber es dauert. Ohne Freistellungsauftrag behält die Bank auf jeden Euro Ertrag Steuer ein. Zurückgeholt wird sie über die **Anlage KAP** der Einkommensteuererklärung, und zwar vollständig, soweit der Pauschbetrag reicht.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Nachteil ist die Zeit.** Zwischen Einbehalt und Erstattung liegt bis zu anderthalb Jahre, in denen das Geld beim Finanzamt liegt statt zu arbeiten.',
+            '**Die Steuerbescheinigung der Bank ist der Beleg.** Sie kommt einmal jährlich und listet Erträge, einbehaltene Steuer und genutzten Pauschbetrag – ohne sie wird die Erklärung zur Schätzung.',
+            '**Bei mehreren Instituten lohnt die Erklärung fast immer**, weil sich Verluste des einen mit Gewinnen des anderen erst dort verrechnen lassen. Die Banken tun das untereinander nicht.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -364,6 +420,10 @@ export const sparerpauschbetrag: LearnTopic = {
             'Beim Depotwechsel den alten Auftrag widerrufen, bevor der neue erteilt wird.',
             'Institutsübergreifende Verlustverrechnung geht nur über die Anlage KAP.',
             'Die Verlustbescheinigung muss bis zum 15. Dezember beantragt sein.',
+            'Ein gemeinsamer Freistellungsauftrag verhindert, dass der Anteil des einen Ehepartners ungenutzt verfällt.',
+            'Kinderdepots sparen Steuer und berühren BAföG, Familienversicherung und die Verfügung mit 18.',
+            'Ohne Freistellungsauftrag geht nichts verloren – es dauert nur bis zu anderthalb Jahre.',
+            'Verluste bei einer Bank und Gewinne bei einer anderen verrechnen sich erst über die Steuererklärung.',
           ],
         },
       ],

@@ -212,7 +212,7 @@ export const fonds: LearnTopic = {
         'Aktiv oder passiv, Aktien- Renten- und Mischfonds, thesaurierend oder ausschüttend – und wie du die tatsächlichen Gesamtkosten eines Fonds ermittelst.',
       title: 'Fondsarten und Kostenstruktur',
       lead: 'Welche Fondstypen es gibt, worin sie sich unterscheiden und wie du die tatsächlichen Gesamtkosten ermittelst.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -329,6 +329,64 @@ export const fonds: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie ein ETF seinen Index tatsächlich nachbildet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zwei Fonds auf denselben Index können völlig verschieden gebaut sein, und der Unterschied bestimmt, welches Risiko man neben dem Marktrisiko trägt.',
+        },
+        {
+          type: 'table',
+          caption: 'Drei Bauarten',
+          head: ['Bauart', 'Wie', 'Was man zusätzlich trägt'],
+          rows: [
+            [
+              'Voll replizierend',
+              'kauft alle Indextitel in der Indexgewichtung',
+              'nichts Zusätzliches. Bei sehr breiten Indizes teuer im Handel',
+            ],
+            [
+              'Optimiert (Sampling)',
+              'kauft eine repräsentative Auswahl statt aller Titel',
+              'einen kleinen Nachbildungsfehler – die Abweichung vom Index in beide Richtungen',
+            ],
+            [
+              'Synthetisch (Swap)',
+              'hält einen beliebigen Wertpapierkorb und tauscht dessen Ertrag gegen den Indexertrag',
+              'das Ausfallrisiko des Tauschpartners, begrenzt und besichert – aber vorhanden',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was davon in der Praxis zählt',
+          items: [
+            '**Alle drei sind Sondervermögen.** Auch ein Swap-ETF ist kein Zertifikat – das Vermögen gehört den Anlegern, und der Tausch ist auf einen kleinen Anteil begrenzt.',
+            '**Die Wertpapierleihe kommt bei allen Bauarten vor.** Der Fonds verleiht Titel gegen Gebühr und Sicherheiten; das verbessert das Ergebnis leicht und bringt ein kleines zusätzliches Risiko mit.',
+            '**Entscheidend ist nicht die Bauart, sondern die tatsächliche Abweichung vom Index über mehrere Jahre.** Sie enthält Kosten, Steuern, Leiheerträge und Nachbildungsfehler in einer Zahl – und ist die einzige, die den Vergleich trägt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Fondsgröße, Alter und Schließung',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Fonds kann geschlossen und abgewickelt werden, wenn er sich für die Gesellschaft nicht rechnet. Das ist kein Verlustereignis – das Vermögen wird ausgezahlt –, aber es ist ein **Steuerereignis**: Der Gewinn wird realisiert, ob man will oder nicht, und die Steuerstundung ist weg.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Sehr kleine Fonds werden häufiger geschlossen.** Eine gewisse Mindestgröße und einige Jahre Bestand sind ein praktischer Filter – nicht wegen der Qualität, sondern wegen der Fortführungswahrscheinlichkeit.',
+            '**Bei einem Sparplan über Jahrzehnte wiegt das schwerer als ein Zehntelprozentpunkt Kostenunterschied.** Ein billigerer Fonds, der nach acht Jahren verschmolzen wird, kostet die Stundung des gesamten bis dahin aufgelaufenen Gewinns.',
+            '**Eine Verschmelzung ist die mildere Variante** – dort läuft die Anlage in einem anderen Fonds weiter, und die Anschaffungsdaten wandern regelmäßig mit.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -338,6 +396,10 @@ export const fonds: LearnTopic = {
             'Aktiv gegen passiv ist zuerst eine Kostenfrage; die Marktrendite vor Kosten haben alle gemeinsam.',
             'Vier Kostenblöcke, nicht einer – und Transaktionskosten stehen in keiner TER.',
             'Verglichen wird die Wertentwicklung nach Kosten gegen den passenden Index in der richtigen Variante.',
+            'Voll replizierend, optimiert und synthetisch tragen verschiedene Zusatzrisiken – alle drei sind Sondervermögen.',
+            'Vergleichbar ist nicht die Kostenquote, sondern die tatsächliche Abweichung vom Index über Jahre.',
+            'Eine Fondsschließung ist kein Verlust, aber ein Steuerereignis – die Stundung ist weg.',
+            'Bei einem Sparplan über Jahrzehnte wiegt die Fortführungswahrscheinlichkeit mehr als ein Zehntelprozentpunkt.',
           ],
         },
       ],

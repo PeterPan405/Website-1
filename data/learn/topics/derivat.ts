@@ -284,7 +284,7 @@ export const derivat: LearnTopic = {
         'Wie Futures und Forwards funktionieren, was Margin und Nachschusspflicht bedeuten, wie Swaps eingesetzt werden und was Contango für Rohstoffprodukte heißt.',
       title: 'Futures, Margin und Swaps',
       lead: 'Die wichtigsten Derivatearten, ihre tägliche Abwicklung – und warum Rohstoffprodukte hinter dem Rohstoffpreis zurückbleiben.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -402,6 +402,64 @@ export const derivat: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wozu es Derivate volkswirtschaftlich gibt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Ruf ist schlecht und die Herkunft harmlos: Terminkontrakte entstanden, damit ein Landwirt den Preis seiner Ernte festmachen kann, bevor sie gewachsen ist. Der Kern ist bis heute derselbe – ein Risiko wandert von jemandem, der es nicht tragen will, zu jemandem, der bereit ist, es gegen Bezahlung zu übernehmen.',
+        },
+        {
+          type: 'table',
+          caption: 'Dieselbe Konstruktion, drei verschiedene Absichten',
+          head: ['Wer', 'Was er tut', 'Wozu'],
+          rows: [
+            [
+              'Absichernder',
+              'nimmt die Gegenposition zu einem Risiko, das er ohnehin trägt',
+              'Planbarkeit. Er verzichtet auf die gute Seite, um die schlechte auszuschließen',
+            ],
+            [
+              'Spekulant',
+              'nimmt eine Position ohne zugrunde liegendes Geschäft',
+              'Gewinn. Er ist die Gegenseite, ohne die der Absichernde niemanden fände',
+            ],
+            [
+              'Arbitrageur',
+              'nutzt Preisunterschiede zwischen Termin- und Kassamarkt',
+              'sorgt dafür, dass beide Preise zusammenbleiben – das ist der Grund, warum die Absicherung überhaupt funktioniert',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Die mittlere Zeile ist die, die den schlechten Ruf trägt, und sie ist zugleich die Voraussetzung der ersten: Ohne jemanden, der das Risiko nehmen will, gäbe es keine Absicherung. Gefährlich wird die Sache nicht durch die Absicht, sondern durch den Hebel.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wo der Hebel wirklich entsteht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Derivat ist nicht deshalb riskant, weil es kompliziert ist, sondern weil man mit wenig Kapital eine große Position kontrolliert. Der Hebel steckt nicht im Produkt, sondern im Verhältnis zwischen Positionsgröße und eigenem Kapital – und dieses Verhältnis bestimmt man selbst.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die drei Stellen, an denen es schiefgeht',
+          items: [
+            '**Der Nachschuss.** Bewegt sich der Markt gegen die Position, fordert die Clearingstelle Geld – täglich, unabhängig davon, ob man am Ende recht behält. Wer nicht nachschießen kann, wird glattgestellt und hat den Verlust realisiert, bevor sich die These bewahrheiten konnte.',
+            '**Die Positionsgröße wird am Einsatz gemessen statt am Kontraktwert.** „Ich habe nur 2.000 Euro riskiert" ist falsch, wenn der Kontrakt 50.000 Euro Basiswert bewegt. Maßgeblich ist immer der Kontraktwert.',
+            '**Die Nachschusspflicht kann über den Einsatz hinausgehen.** Für Privatanleger in der EU ist sie bei den gängigen Hebelprodukten seit Jahren ausgeschlossen; an Terminbörsen mit direktem Zugang gilt das nicht.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Der praktische Schluss ist unspektakulär: Wer absichern will, braucht Derivate selten – für ein privates Depot leistet eine niedrigere Aktienquote dasselbe, ohne Nachschuss und ohne Termin. Wer sie zum Hebeln nutzt, sollte die Positionsgröße kennen, nicht den Einsatz.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -411,6 +469,10 @@ export const derivat: LearnTopic = {
             'Die tägliche Abrechnung macht aus einem Verlustrisiko ein Liquiditätsrisiko – man kann herausgeworfen werden, obwohl man recht behält.',
             'Rohstoffprodukte bilden gerollte Terminpositionen ab, nicht den Rohstoffpreis; in Contango kostet das laufend.',
             'Synthetische ETFs benutzen Swaps und tragen dafür ein Kontrahentenrisiko.',
+            'Ein Derivat verschiebt Risiko von jemandem, der es nicht will, zu jemandem, der dafür bezahlt wird.',
+            'Ohne Spekulanten gäbe es keine Gegenseite und damit keine Absicherung.',
+            'Der Hebel steckt nicht im Produkt, sondern im Verhältnis von Positionsgröße zu eigenem Kapital.',
+            'Der Nachschuss kommt täglich – auch wenn man am Ende recht behält.',
           ],
         },
       ],

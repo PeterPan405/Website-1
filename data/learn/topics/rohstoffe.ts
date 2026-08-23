@@ -285,7 +285,7 @@ export const rohstoffe: LearnTopic = {
         'Wie man Gold und Silber tatsächlich kauft: physisch, ETC oder Terminkontrakt. Mit Besicherung, Rollverlusten und dem Zusammenhang zum Realzins.',
       title: 'Rohstoffe – Wege, Produkte und Kennzahlen',
       lead: 'Vier Wege führen zum Rohstoff, und sie unterscheiden sich stärker, als es aussieht.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -416,6 +416,94 @@ export const rohstoffe: LearnTopic = {
             '**Laufende Kosten.** Bei Edelmetall-ETCs üblicherweise 0,1 bis 0,5 Prozent im Jahr. Sie werden aus dem hinterlegten Metall entnommen, der Anteil schrumpft also langsam.',
             '**Währung.** Ein in Euro gehandeltes Produkt ist deshalb noch nicht währungsgesichert. Ohne ausdrückliche Sicherung trägst du das Dollarrisiko.',
             '**Handelsspanne.** Beim physischen Kauf entscheidend: der Abstand zwischen An- und Verkaufspreis. Bei kleinen Stückelungen ist er prozentual am größten.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum Rohstoffe keinen Ertrag abwerfen – und was das bedeutet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Aktie zahlt Dividenden, eine Anleihe Zinsen, eine Immobilie Miete. Ein Barren Gold liegt und tut nichts. Das ist kein Nachteil unter mehreren, sondern der entscheidende Unterschied: Bei Rohstoffen gibt es keinen Zinseszins, weil es keinen Zins gibt. Der gesamte Ertrag muss aus einem höheren Preis kommen, den ein späterer Käufer zu zahlen bereit ist.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Drei Folgen, die daraus unmittelbar entstehen',
+          items: [
+            '**Es gibt keinen inneren Wert, gegen den man rechnen kann.** Ein Unternehmen lässt sich über seine Gewinne bewerten, ein Barren nicht. Jede Aussage über „zu teuer" oder „zu billig" ist bei Rohstoffen ein Vergleich mit der Vergangenheit, keine Bewertung.',
+            '**Die Lagerung kostet, statt zu bringen.** Tresor, Versicherung, Produktgebühr – bei einem ETC laufen sie als jährlicher Abschlag mit. Über zwanzig Jahre summiert sich ein halber Prozentpunkt auf rund ein Zehntel des Bestands.',
+            '**Warten hilft nicht von allein.** Bei Aktien arbeitet die Zeit über die einbehaltenen Gewinne für den Anleger. Hier arbeitet sie über die Kosten gegen ihn.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was der Preis eines Industriemetalls antreibt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Gold folgt dem Realzins; Kupfer, Aluminium und Eisenerz folgen etwas anderem. Sie werden verbraucht, nicht gehortet – und damit hängt ihr Preis an der Industrieproduktion, vor allem an der Bautätigkeit in großen Volkswirtschaften.',
+        },
+        {
+          type: 'table',
+          caption: 'Zwei verschiedene Rohstoffwelten',
+          head: ['', 'Edelmetalle', 'Industriemetalle und Energie'],
+          rows: [
+            [
+              'Wichtigster Treiber',
+              'Realzins, Währung, Krisennachfrage',
+              'Industrieproduktion und Bau, vor allem in China',
+            ],
+            [
+              'Bestand über der Erde',
+              'sehr groß – fast alles je geförderte Gold existiert noch',
+              'gering – was verbraucht ist, ist weg',
+            ],
+            [
+              'Reaktion des Angebots',
+              'träge, die Förderung ändert am Bestand kaum etwas',
+              'ebenfalls träge: Eine neue Mine braucht viele Jahre',
+            ],
+            [
+              'Typischer Verlauf',
+              'lange Seitwärtsphasen, dann sprunghafte Bewegungen',
+              'ausgeprägte Zyklen: hoher Preis → Investition → Überangebot → Preisverfall',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Die letzte Zeile ist der Kern des Rohstoffzyklus, und er erklärt sich selbst: Hohe Preise finanzieren neue Minen, die Jahre später zugleich in Betrieb gehen – regelmäßig dann, wenn die Nachfrage schon nachgelassen hat. Das Angebot kommt systematisch zu spät, und zwar in beide Richtungen.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wie viel gehört ins Depot',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Die übliche Größenordnung liegt im einstelligen Prozentbereich.** Darunter wirkt der Beitrag zur Streuung nicht mehr messbar, darüber bestimmt eine ertraglose Position spürbar das Gesamtergebnis.',
+            '**Die Begründung entscheidet über die Höhe.** Wer Streuung will, braucht wenig. Wer sich gegen einen Extremfall absichern will, braucht mehr – und sollte wissen, dass er dafür laufend Rendite bezahlt.',
+            '**Rebalancing ist hier wichtiger als anderswo**, gerade weil die Position ertraglos ist: Ohne Zurücksetzen wächst sie in guten Rohstoffjahren still über das an, was beschlossen war.',
+            '**Ein Rohstoffkorb ist etwas anderes als Gold.** Der Korb enthält Terminkontrakte und damit Rollkosten; Gold als hinterlegtes Metall hat sie nicht. Beides in einen Topf zu werfen ist der häufigste Fehler bei der Höhe.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was du dir merken solltest',
+        },
+        {
+          type: 'list',
+          items: [
+            'Rohstoffe werfen keinen Ertrag ab – der ganze Gewinn muss aus einem höheren Preis kommen.',
+            'Ohne inneren Wert ist „zu teuer" immer ein Vergleich mit der Vergangenheit, keine Bewertung.',
+            'Edelmetalle folgen dem Realzins, Industriemetalle der Industrieproduktion.',
+            'Das Angebot kommt im Rohstoffzyklus systematisch zu spät – in beide Richtungen.',
+            'Ein Rohstoffkorb hat Rollkosten, hinterlegtes Gold nicht: zwei verschiedene Dinge.',
           ],
         },
         {
