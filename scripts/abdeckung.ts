@@ -21,10 +21,11 @@
  * Aufruf: `npm run abdeckung`
  */
 
+import { readFileSync } from 'node:fs'
+
 import { laendernamen } from '../data/laender/namen.ts'
 import { marketDefinitions } from '../data/markets.ts'
-
-import { readFileSync } from 'node:fs'
+import { quellenlage } from '@/lib/abdeckung'
 
 /** Ein Bestand, so weit er hier gebraucht wird. */
 function lade(pfad: string): Record<string, unknown> {
@@ -38,24 +39,15 @@ function lade(pfad: string): Record<string, unknown> {
 /**
  * Welche offene Quelle für ein Sitzland in Frage kommt.
  *
- * Steht hier nur, wo es belegt ist: entweder weil das Projekt die Quelle
- * bereits nutzt, oder weil eine Sonde sie geprüft hat. Ein „vielleicht gibt es
- * da was“ gehört nicht in eine Tabelle, die als Arbeitsliste dient.
+ * Kommt aus `lib/abdeckung.ts` – derselben Aufstellung, die `/quellen` zeigt.
+ * Hier stand bis zum 23. August 2026 eine zweite, nach Ländernummern statt nach
+ * Namen. Sie war um drei Wochen veraltet und behauptete für Deutschland eine
+ * fehlende Zuordnung, wo die Quelle selbst nichts führt. Die Begründung für die
+ * Doppelung – „ein Skript darf `@/` nicht benutzen“ – gilt seit
+ * `scripts/alias-hook.mjs` nicht mehr.
  */
-const QUELLENLAGE: Record<string, string> = {
-  '276': 'ESEF – Zuordnung fehlt noch',
-  '250': 'ESEF – teilweise zugeordnet',
-  '826': 'ESEF – teilweise zugeordnet',
-  '528': 'ESEF – teilweise zugeordnet',
-  '724': 'ESEF – teilweise zugeordnet',
-  '752': 'ESEF – teilweise zugeordnet',
-  '380': 'ESEF – teilweise zugeordnet',
-  '392': 'EDINET – Schlüssel nötig, Abschluss steckt im ZIP',
-  '410': 'DART – Schlüssel nötig, Skript steht',
-  '158': 'Börse Taipeh – teilweise abgerufen',
-  '756': 'keine offene Quelle (nicht EU, keine US-Notierung)',
-  '356': 'keine geprüfte offene Quelle',
-  '156': 'keine geprüfte offene Quelle',
+function quellenlageZu(land: string): string {
+  return quellenlage[laendernamen[land] ?? land] ?? 'nicht untersucht'
 }
 
 function abschnitt(titel: string) {
@@ -127,9 +119,7 @@ console.log(`${'Anzahl'.padStart(6)}  ${'Sitzland'.padEnd(24)}  Quellenlage`)
 for (const [land, liste] of sortiert) {
   if (liste.length < 5) continue
   console.log(
-    `${String(liste.length).padStart(6)}  ${(laendernamen[land] ?? land).padEnd(24)}  ${
-      QUELLENLAGE[land] ?? 'nicht untersucht'
-    }`
+    `${String(liste.length).padStart(6)}  ${(laendernamen[land] ?? land).padEnd(24)}  ${quellenlageZu(land)}`
   )
 }
 const kleine = sortiert.filter(([, liste]) => liste.length < 5)
@@ -141,17 +131,57 @@ if (kleine.length > 0) {
 }
 
 abschnitt('Woran es liegt')
+
+/*
+  Zusammengefasst und nicht getippt.
+
+  Hier stand ein Absatz über Deutschland: die Zuordnungsliste enthalte keinen
+  deutschen Titel, es fehle also nur „die geprüfte Zeile je Unternehmen“. Am
+  31. Juli 2026 hat eine Sonde das widerlegt – im offenen ESEF-Verzeichnis
+  steht kein einziger deutscher Abschluss –, und der Absatz stand drei Wochen
+  später immer noch da. Ein Satz im Quelltext altert nicht sichtbar.
+
+  Jetzt gruppiert das Skript, was in `quellenlage` steht. Es kann damit nichts
+  anderes behaupten als `/quellen`, und wer eine Quellenlage berichtigt, ändert
+  diesen Abschnitt mit.
+*/
+const nachLage = new Map<string, { name: string; anzahl: number }[]>()
+for (const [land, liste] of sortiert) {
+  const lage = quellenlageZu(land)
+  const eintrag = { name: laendernamen[land] ?? land, anzahl: liste.length }
+  const vorhanden = nachLage.get(lage)
+  if (vorhanden) vorhanden.push(eintrag)
+  else nachLage.set(lage, [eintrag])
+}
+
+const gruppen = [...nachLage.entries()]
+  .map(([lage, laender]) => ({
+    lage,
+    laender,
+    summe: laender.reduce((summe, l) => summe + l.anzahl, 0),
+  }))
+  .sort((a, b) => b.summe - a.summe)
+
+for (const gruppe of gruppen) {
+  console.log(`${String(gruppe.summe).padStart(6)}  ${gruppe.lage}`)
+  console.log(
+    `        ${gruppe.laender
+      .slice(0, 8)
+      .map((l) => `${l.name} ${l.anzahl}`)
+      .join(
+        ', '
+      )}${gruppe.laender.length > 8 ? ` und ${gruppe.laender.length - 8} weitere` : ''}`
+  )
+}
+
 console.log(
-  'Der größte Block ist Deutschland, und das ist der ärgerlichste: Deutsche\n' +
-    'Emittenten melden nach ESEF wie alle anderen an einem geregelten EU-Markt.\n' +
-    'Das Abrufskript nutzt ESEF bereits – aber seine Zuordnungsliste enthält 26\n' +
-    'französische und 13 britische Titel und keinen einzigen deutschen.\n\n' +
-    'Die Liste ist von Hand geführt, und das aus gutem Grund: Ein Namenstreffer\n' +
-    'ist keine Zuordnung. Nestlé traf einmal die US-Finanzierungstochter mit 31\n' +
-    'Milliarden Umsatz statt der Gruppe mit 91. Was fehlt, ist also nicht die\n' +
-    'Quelle, sondern die geprüfte Zeile je Unternehmen.\n\n' +
-    'Die Kandidaten dafür liefert `scripts/quellen-probe-esef.ts` über den\n' +
-    'Workflow „Quellen abklopfen“ – aus der Entwicklungsumgebung ist\n' +
-    'filings.xbrl.org nicht erreichbar.'
+  '\nWo „teilweise zugeordnet“ steht, fehlt die geprüfte Zeile je Unternehmen –\n' +
+    'ein Namenstreffer ist keine Zuordnung. Nestlé traf einmal die\n' +
+    'US-Finanzierungstochter mit 31 Milliarden Umsatz statt der Gruppe mit 91.\n' +
+    'Die Kandidaten liefert `scripts/quellen-probe-esef.ts` über den Workflow\n' +
+    '„Quellen abklopfen“ – aus der Entwicklungsumgebung ist filings.xbrl.org\n' +
+    'nicht erreichbar.\n\n' +
+    'Wo „keine“ oder „Schlüssel nötig“ steht, hilft keine Zuordnung. Dort fehlt\n' +
+    'eine Quelle oder ein Zugang, und das ist eine andere Aufgabe.'
 )
 console.log()

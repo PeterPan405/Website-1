@@ -28,7 +28,7 @@
     "quellenprobe": "node --experimental-strip-types scripts/quellen-pruefen.ts",
     "esef": "node --experimental-strip-types scripts/esef-abrufen.ts",
     "taiwan": "node --experimental-strip-types scripts/taiwan-abrufen.ts",
-    "abdeckung": "node --experimental-strip-types scripts/abdeckung.ts",
+    "abdeckung": "node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/abdeckung.ts",
     "dart": "node --experimental-strip-types scripts/dart-abrufen.ts",
     "edinet": "node --experimental-strip-types scripts/edinet-abrufen.ts",
     "podcast": "node --experimental-strip-types scripts/podcast-abrufen.ts",
