@@ -80,11 +80,27 @@ export function fehlendeNachLand(
 /**
  * Warum die Zahlen zu einem Land fehlen.
  *
- * Dieselbe Aufstellung wie in `scripts/abdeckung.ts`. Sie steht hier ein
- * zweites Mal, und das ist eine bewusste Doppelung: Das Skript läuft ohne
- * Next.js und darf den Alias `@/` nicht benutzen, diese Datei muss ihn
- * benutzen. Was beide teilen, sind die Sätze – und die ändern sich nur, wenn
- * sich die Quellenlage ändert.
+ * ## Warum das hier steht und nicht zweimal
+ *
+ * Diese Aufstellung stand bis zum 23. August 2026 auch in `scripts/abdeckung.ts`,
+ * begründet damit, dass ein Skript den Alias `@/` nicht benutzen dürfe. Das
+ * stimmte einmal und stimmt seit `scripts/alias-hook.mjs` nicht mehr – die
+ * Doppelung blieb trotzdem stehen und lief auseinander:
+ *
+ * Am 31. Juli 2026 klärte `scripts/quellen-probe-esef-de.ts`, dass im offenen
+ * ESEF-Verzeichnis **kein einziger** Abschluss das Land `DE` trägt. Diese Zeile
+ * wurde hier nachgezogen. Im Skript blieb „ESEF – Zuordnung fehlt noch“ stehen,
+ * dazu ein Absatz, der dem Leser erklärte, es fehle nur „die geprüfte Zeile je
+ * Unternehmen“ – also genau die Arbeit, die nichts gebracht hätte.
+ *
+ * Drei Wochen lang gab dieselbe Website auf `/quellen` die richtige und im
+ * Terminal die falsche Auskunft. Beide sahen gepflegt aus. Deshalb gibt es die
+ * Sätze jetzt einmal, und das Skript liest sie hier.
+ *
+ * Der Schlüssel ist der **deutsche Ländername** aus `data/laender/namen.ts` –
+ * derselbe, den `fehlendeNachLand()` ausgibt. Ein Tippfehler darin fällt nicht
+ * auf, sondern zeigt still „nicht untersucht“; `tests/abdeckung.test.ts` prüft
+ * deshalb jeden Schlüssel gegen die Länderliste.
  */
 export const quellenlage: Readonly<Record<string, string>> = {
   /*

@@ -419,3 +419,8 @@ wiederholen. Die Fälle dazu stehen in `ENTSCHEIDUNGEN.md`.
   die ungeprüfte Annahme auskommt.
 - **Die richtige Frage ist nicht „komme ich an die Seite?", sondern „wer kommt
   an sie, und wie bekomme ich sein Ergebnis?"**
+- **Eine Doppelung mit guter Begründung altert trotzdem.** Die Begründung
+  schützt sie beim Anlegen, nicht danach – und kann selbst veralten, ohne dass
+  jemand den Kommentar noch einmal liest. Wer eine zweite Stelle stehen lässt,
+  schuldet ihr eine Prüfung, die beide vergleicht; gibt es die nicht, wird
+  zusammengeführt.

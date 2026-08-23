@@ -2483,3 +2483,90 @@ Der Test prüft weiterhin die **Reihenfolge** und nicht bloß, dass beides
 vorkommt. Die alte Grenze „in den ersten 200 Zeichen" ist entfallen: Sie
 zählte, solange der Hinweis das Erste war, und wäre danach eine Zahl ohne
 Bedeutung gewesen – die Begrüßung ist je nach Tagesausgabe verschieden lang.
+
+## Eine Doppelung mit guter Begründung altert trotzdem
+
+**23. August 2026.** Die Zuordnung „Sitzland → warum fehlen die
+Unternehmenszahlen“ stand zweimal im Projekt: in `lib/abdeckung.ts` für die
+Seite `/quellen`, und in `scripts/abdeckung.ts` für `npm run abdeckung`.
+
+Die Doppelung war begründet, und die Begründung stand als Kommentar daneben:
+Das Skript laufe ohne Next.js und dürfe den Alias `@/` nicht benutzen, die
+Bibliothek müsse ihn benutzen. Was beide teilten, seien nur die Sätze – „und
+die ändern sich nur, wenn sich die Quellenlage ändert“.
+
+Genau das geschah dann.
+
+Am **31. Juli 2026** klärte `scripts/quellen-probe-esef-de.ts` eine lange offene
+Frage: Im offenen ESEF-Verzeichnis auf `filings.xbrl.org` trägt **kein
+einziger** Abschluss das Land `DE`. Deutsche Emittenten reichen beim
+Unternehmensregister ein, dessen Bestand dort nicht einfließt. Die 86 fehlenden
+deutschen Titel liegen also an der Quelle und nicht an einer fehlenden
+Zuordnung – ein Unterschied, der über Tage Arbeit entscheidet.
+
+`lib/abdeckung.ts` wurde berichtigt. Das Skript nicht.
+
+Drei Wochen lang gab dieselbe Website zwei Auskünfte über dieselbe Sache:
+
+| Wo                  | Was dort stand                                            |
+| ------------------- | --------------------------------------------------------- |
+| `/quellen`          | „das offene Verzeichnis führt keine deutschen Abschlüsse“ |
+| `npm run abdeckung` | „ESEF – Zuordnung fehlt noch“                             |
+
+Das Skript schrieb darunter noch einen ganzen Absatz aus: Deutschland sei „der
+ärgerlichste“ Block, die Quelle sei da, es fehle nur „die geprüfte Zeile je
+Unternehmen“. Also eine Arbeitsanweisung für Arbeit, die nichts gebracht hätte.
+Wer sie befolgt hätte, hätte 86 Namen gegen ein Verzeichnis abgeglichen, das
+keinen davon führt – und wäre nach einem halben Tag bei der Frage angekommen,
+die die Sonde drei Wochen vorher schon beantwortet hatte.
+
+### Warum es niemandem auffiel
+
+Weil beide Fassungen gepflegt aussahen. Kein Test verglich sie, keine Prüfung
+konnte es: Sie standen in verschiedenen Modulen, in verschiedenen Formaten
+(die eine nach Ländernummer, die andere nach Ländername) und wurden von
+verschiedenen Zielgruppen gelesen. Der Betreiber liest `/quellen`, ein Agent
+liest das Skript. Beide sahen nur ihre Hälfte.
+
+Und die Begründung im Kommentar stimmte zum Zeitpunkt des Schreibens sogar.
+Sie hörte nur irgendwann auf zu stimmen: Seit `scripts/alias-hook.mjs` gibt es
+den Alias `@/` auch außerhalb des Bündlers – dieselbe Datei, die AGENTS.md seit
+Monaten unter „Der Alias `@/` gilt auch außerhalb des Bündlers“ erklärt.
+
+### Was jetzt gilt
+
+`quellenlage` steht einmal, in `lib/abdeckung.ts`. Das Skript importiert sie
+über den Alias-Hook. Der Absatz „Woran es liegt“ wird nicht mehr getippt,
+sondern aus derselben Tabelle gruppiert – wer eine Quellenlage berichtigt,
+ändert damit auch, was im Terminal steht.
+
+Nebenbei ergibt die Gruppierung eine bessere Arbeitsliste als der alte Absatz.
+Der größte Block, an dem sich etwas ändern lässt, ist nicht Deutschland:
+
+    97  ESEF – teilweise zugeordnet
+        Vereinigtes Königreich 36, Frankreich 25, Niederlande 14,
+        Schweden 10, Spanien 7, Italien 5
+
+Das sind die Titel, bei denen die Quelle nachweislich liefert und nur die
+geprüfte Zeile fehlt. Deutschland mit 86 steht daneben – gleich groß, aber
+nicht dieselbe Aufgabe.
+
+`tests/abdeckung.test.ts` sichert den zweiten stillen Fehler ab, den dieselbe
+Tabelle erlaubt: Ihr Schlüssel ist der deutsche Ländername. Ein Schlüssel, den
+`data/laender/namen.ts` nicht kennt – „Grossbritannien“ statt „Vereinigtes
+Königreich“ –, führt auf `/quellen` still zum Rückfall „nicht untersucht“.
+Nichts bricht, nichts warnt, die Auskunft ist weg. Der Test prüft jeden
+Schlüssel gegen die Länderliste, hält einen erfundenen Schlüssel dagegen, und
+verlangt für jedes „teilweise zugeordnet“, dass wenigstens ein Titel dieses
+Landes tatsächlich Zahlen hat. Deutschland bekommt eine eigene Zeile: Die alte
+Behauptung klingt zu richtig, um nicht zurückzukommen.
+
+### Die Lehre
+
+Eine Doppelung mit guter Begründung ist immer noch eine Doppelung. Die
+Begründung schützt sie beim Anlegen, nicht danach – und sie kann selbst
+veralten, ohne dass jemand den Kommentar noch einmal liest.
+
+Wer eine zweite Stelle stehen lässt, schuldet ihr eine Prüfung, die beide
+vergleicht. Gibt es die nicht, gibt es die zweite Stelle nicht: Dann wird
+zusammengeführt.
