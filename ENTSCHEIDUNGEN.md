@@ -2365,3 +2365,121 @@ Er beweist, dass jemand hingesehen hat, und verhindert trotzdem nichts.
 Euronext, LSE, Deutsche Börse, SIX, HKEX, KRX, TWSE, NSE, ASX, TSX, B3. Jede
 mit eigenem Format und eigener Sprache. Tokio war der größte Einzelposten und
 der einzige mit einer fertigen Tabelle; die übrigen kommen einzeln dran.
+
+## Ein Störgeräusch ist häufiger ein Ton als ein Rauschen
+
+Am 20. August 2026 meldete der Betreiber, es gebe im Podcast **immer noch**
+Störgeräusche. Das war die dritte Meldung dieser Art, und zweimal davor hatte
+die Prüfung danach gegriffen. Also nachgerechnet, statt weiterzuschrauben.
+
+`auffaellige_stellen()` suchte bis dahin nach **rauen** Stellen: viele
+Nulldurchgänge oder viele Werte am Anschlag. Die Nulldurchgangsrate eines
+reinen Tons ist zweimal seine Frequenz geteilt durch die Abtastrate. Bei
+24 kHz heißt das:
+
+     200 Hz  → 0,017     1.000 Hz → 0,083     2.000 Hz → 0,167
+
+Die Grenze stand bei 0,22. **Jeder gehaltene Ton unter rund 2.600 Hz war
+unsichtbar.** Gefunden wurde nur, was zusätzlich rauschte – wie der Pfeifton
+vom 10. August, dem ein Rauschen aufgesetzt war.
+
+Das ist kein Grenzfall. Ein erzeugtes Geräusch ist häufiger ein Ton als ein
+Rauschen; die Prüfung deckte die seltenere Hälfte ab und sah dabei aus wie
+eine ganze.
+
+### Der erste Anlauf war falsch, und warum das lehrreich ist
+
+Der naheliegende Gedanke: Sprache moduliert, ein Ton steht still. Also die
+Schwankung der Lautstärke über eine halbe Sekunde messen.
+
+Beim ersten Durchlauf schlug die Prüfung **achtzehnmal am sauberen
+Probesignal** an. Der Grund steht in der Prüfung selbst: Der Effektivwert wird
+über ein Viertel einer Sekunde gemittelt, und Silben dauern ungefähr so lang.
+Die Mittelung bügelt genau die Schwankung weg, die gemessen werden sollte.
+
+**Eine Fallunterscheidung über ein Merkmal, das der Stoff nicht hergibt, ist
+keine** – dieselbe Lehre wie bei den handelsfreien Tagen, nur andersherum:
+Dort fehlte dem Material das Merkmal, hier zerstört die Vorverarbeitung es.
+
+### Was stattdessen gemessen wird
+
+Nicht, ob der Ton steht, sondern **wie schmal er ist**. Ein Sinus legt seine
+ganze Energie in eine Frequenz; ein gesprochener Laut verteilt sie über eine
+Obertonreihe und ein Formantgebirge, ein Zischlaut über das halbe Band.
+
+Gemessen wird der Anteil der Energie in der stärksten Frequenz samt zwei
+Nachbarplätzen zu jeder Seite. Die Nachbarn sind nicht Großzügigkeit: Das
+Ausschneiden eines Fensters verschmiert jede Frequenz, und ohne sie käme ein
+reiner Sinus je nach Zufall auf 0,6 statt auf 0,99.
+
+Nachgemessen, nicht geschätzt:
+
+     reiner Ton bei 900 Hz   1,00
+     sprachähnliches Signal  0,75
+     Rauschen                0,017
+
+Die Grenze liegt bei 0,90, dazwischen. Echte Sprache liegt eher noch unter
+0,75, weil sie neben der Obertonreihe auch Reibegeräusche trägt.
+
+### Zwei Fälle im Selbsttest, die vorher durchgelaufen wären
+
+Ein gehaltener Ton bei 900 Hz und ein Brummen bei 180 Hz, beide weit unter dem
+Anschlag und weit unter der Zischgrenze. Beide werden jetzt gefunden und
+gedämpft, und beide standen vorher als „nichts zu beanstanden" da.
+
+## Eine Regel im Kommentar ist keine Regel
+
+Am selben Tag beanstandete der Betreiber die Aussprache englischer Wörter.
+Über der Umschrifttabelle in `lib/sprechfassung.ts` stand seit dem 11. August
+ein Kommentar mit den Fallen der deutschen Rechtschreibung – darunter
+ausdrücklich: „Für den englischen /w/-Laut steht ‚U'."
+
+Nachgezählt: **Neun Einträge derselben Tabelle verletzten diesen Kommentar.**
+„Häthaweh", „Schwobb", „Bittweiß", „Ohwerwejt", „Anderwejt", „Softwer",
+„Hardwer" – überall stand „w" für einen englischen /w/-Laut, und deutsches
+„w" ist /v/. Gesprochen wurde daraus „Häthaveh", „Softver", „Bittveiß". Dazu
+„Riserv" für „Reserve": Ein „v" am Wortende ist im Deutschen /f/, wie in
+„aktiv".
+
+Der Kommentar war richtig, ausführlich und begründet – und wirkungslos, weil
+niemand die Tabelle danach durchgesehen hat.
+
+**Was sich mechanisch entscheiden lässt, gehört in einen Test.** Ob ein
+englisches Wort an einer Stelle /v/ oder /w/ hat, ist keine Geschmacksfrage:
+Es steht in der Schreibweise des englischen Wortes. Ein „w" vor einem Vokal
+ist /w/ und braucht in der Umschrift ein „u"; ein „v" ist /v/ und braucht ein
+„w". `tests/sprechfassung-aussprache.test.ts` prüft beides, samt Gegenprobe
+gegen die alten Fassungen.
+
+Nicht geprüft wird die dritte Falle, das „st" am Wortanfang. Sie lässt sich
+nicht überall umgehen – „Stoxx Europe" bleibt „Schtocks", und die deutsche
+Rechtschreibung hat kein Zeichen für ein hartes /st/ an dieser Stelle. Ein
+Test, der eine unvermeidbare Stelle beanstandet, wird abgeschaltet statt
+befolgt; deshalb steht sie als offener Punkt im Kommentar und nicht als
+Prüfung.
+
+## Der KI-Hinweis: nicht das Erste, aber vor der ersten Meldung
+
+Am 17. August kam der gesprochene KI-Hinweis in die Folge, und zwar ganz nach
+vorn – mit der Begründung, er sei „die Bedingung, unter der alles Folgende zu
+hören ist".
+
+Am 20. August hat der Betreiber widersprochen: „Dann schreckt das nicht ganz
+so ab." Er meint die Stelle, nicht den Hinweis.
+
+Er hat recht, und die Begründung ist keine kosmetische. Ein Podcast hat drei
+Sekunden, um jemanden zu halten. Wer in diesen drei Sekunden „automatisiert
+mit KI-Werkzeugen" hört, bevor er weiß, worum es überhaupt geht, hört auf –
+und dann erreicht der Hinweis niemanden, weil niemand mehr da ist. Ein
+Hinweis, der seine Hörer vertreibt, erfüllt seinen Zweck nicht besser als
+keiner.
+
+Ans Ende gehört er trotzdem nicht: Nach fünf Minuten hat sich jeder längst
+eine Meinung gebildet. Die Stelle dazwischen ist die richtige – nach Gruß,
+Datum und dem Satz über den Tag, noch vor der ersten Meldung. Da weiß der
+Hörer, was ihn erwartet, und hat noch nichts geglaubt, was nicht stimmt.
+
+Der Test prüft weiterhin die **Reihenfolge** und nicht bloß, dass beides
+vorkommt. Die alte Grenze „in den ersten 200 Zeichen" ist entfallen: Sie
+zählte, solange der Hinweis das Erste war, und wäre danach eine Zahl ohne
+Bedeutung gewesen – die Begrüßung ist je nach Tagesausgabe verschieden lang.

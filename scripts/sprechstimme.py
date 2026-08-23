@@ -314,6 +314,77 @@ LAUT_ANTEIL = 0.4
 #: halbe Sekunde lang. Eine entgleiste Passage dauert Sekunden.
 STOERUNG_MINDESTENS_S = 0.4
 
+#: Ab welchem Anteil der Energie in **einer** Frequenz ein Fenster ein Ton ist.
+#:
+#: ## Warum dieses Merkmal und nicht die Schwankung der Lautstärke
+#:
+#: Der erste Anlauf am 20. August 2026 maß, wie stark die Lautstärke über eine
+#: halbe Sekunde schwankt – Sprache moduliert, ein Ton nicht. Das klang
+#: richtig und war es nicht: Der Effektivwert wird über ein Viertel einer
+#: Sekunde gemittelt, und Silben dauern ungefähr so lang. Die Mittelung
+#: **bügelt genau die Schwankung weg**, die gemessen werden sollte. Das
+#: saubere Probesignal wurde dadurch achtzehnmal beanstandet.
+#:
+#: Eine Fallunterscheidung über ein Merkmal, das der Stoff nicht hergibt, ist
+#: keine.
+#:
+#: Was einen erzeugten Ton wirklich von Sprache trennt, steht im Spektrum:
+#: Ein Sinus legt seine ganze Energie in eine Frequenz. Ein gesprochener Laut
+#: verteilt sie über eine Oberton­reihe und ein Formantgebirge, ein Zischlaut
+#: über das halbe Band. Gemessen wird deshalb, welcher Anteil der Energie
+#: eines Fensters in seiner stärksten Frequenz samt Nachbarschaft sitzt.
+#:
+#: Nachgemessen am 20. August 2026, nicht geschätzt:
+#:
+#:     reiner Ton bei 900 Hz   1,00
+#:     sprachähnliches Signal  0,75  (Median, 99. Perzentil und Maximum)
+#:     Rauschen                0,017
+#:
+#: Die Grenze bei 0,90 liegt zwischen den beiden oberen. Beim Probesignal ist
+#: der Abstand ein Viertel des Wertebereichs; echte Sprache liegt eher noch
+#: darunter, weil sie neben der Obertonreihe auch Reibegeräusche trägt.
+TONANTEIL_GRENZE = 0.90
+
+#: Wie viele Abtastwerte je Fenster in die Frequenzanalyse gehen.
+#:
+#: 2048 bei 24 kHz sind 85 Millisekunden und ein Frequenzraster von knapp 12
+#: Hertz – fein genug für ein Brummen bei 180 Hz. Das ganze Fenster zu
+#: nehmen wäre genauer und bei einer zehnminütigen Folge ein Vielfaches an
+#: Speicher, ohne dass sich am Ergebnis etwas ändert.
+FFT_LAENGE = 2048
+
+
+def _tonanteil(stuecke):
+    """Je Fenster: welcher Anteil der Energie in der stärksten Frequenz sitzt.
+
+    Gezählt wird die stärkste Frequenz **samt den zwei Nachbarn zu jeder
+    Seite**. Das ist keine Großzügigkeit, sondern nötig: Ein Fenster schneidet
+    den Ton aus, und dieses Ausschneiden verschmiert jede Frequenz über
+    mehrere Rasterplätze. Ohne die Nachbarn käme ein reiner Sinus je nach
+    Zufall auf 0,6 statt auf 0,99 – und die Grenze läge dann mitten in der
+    Sprache.
+
+    Das Hann-Fenster davor gehört zur selben Sache: Es macht die Verschmierung
+    schmal und berechenbar, statt sie dem Zufall der Schnittstelle zu
+    überlassen.
+    """
+    import numpy as np
+
+    laenge = min(FFT_LAENGE, stuecke.shape[1])
+    ausschnitt = stuecke[:, :laenge] * np.hanning(laenge).astype(np.float32)
+    spektrum = np.abs(np.fft.rfft(ausschnitt, axis=1)) ** 2
+
+    gesamt = np.sum(spektrum, axis=1)
+    stark = np.argmax(spektrum, axis=1)
+
+    breite = 2
+    von = np.maximum(stark - breite, 0)
+    bis = np.minimum(stark + breite + 1, spektrum.shape[1])
+    plaetze = np.arange(spektrum.shape[1])[None, :]
+    umgebung = (plaetze >= von[:, None]) & (plaetze < bis[:, None])
+
+    return np.sum(spektrum * umgebung, axis=1) / np.maximum(gesamt, 1e-20)
+
 
 def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     """Findet Stellen im Ton, die nicht wie gesprochene Sprache aussehen.
@@ -353,11 +424,41 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
       Raumton zwischen den Sätzen sehen sonst aus wie Rauschen.
     - **rau** – viele Nulldurchgänge (Rauschen, Pfeifen) oder viele Werte am
       Anschlag (Quietschen).
+    - **oder ein reiner Ton** – die ganze Energie sitzt in einer Frequenz.
+      Siehe unten.
     - **anhaltend** – mindestens eine knappe halbe Sekunde am Stück.
 
-    Die dritte Bedingung trägt das Ganze. Ein „sch" hat dieselbe
+    Die letzte Bedingung trägt das Ganze. Ein „sch" hat dieselbe
     Nulldurchgangsrate wie ein Pfeifton; was es davon unterscheidet, ist, dass
     es nach einem Zehntel einer Sekunde vorbei ist.
+
+    ## Die Lücke, die „rau" offengelassen hat
+
+    Der Betreiber hat am 20. August 2026 gemeldet, es gebe **immer noch**
+    Störgeräusche. Nachgerechnet, warum die Prüfung sie nicht sieht:
+
+    Die Nulldurchgangsrate eines reinen Tons ist zweimal seine Frequenz
+    geteilt durch die Abtastrate. Bei 24 kHz heißt das:
+
+        200 Hz  → 0,017     1.000 Hz → 0,083     2.000 Hz → 0,167
+
+    Die Grenze steht bei 0,22. **Jeder gehaltene Ton unter rund 2.600 Hz war
+    für diese Prüfung unsichtbar** – ein Brummen, ein Summen, ein tiefes
+    Piepen. Gefunden wurde nur, was zusätzlich rauschte, wie der Pfeifton vom
+    10. August mit seinem aufgesetzten Rauschen bei 3.100 Hz.
+
+    Das ist kein Grenzfall, sondern die halbe Sorte: Ein erzeugtes Geräusch
+    ist häufiger ein Ton als ein Rauschen.
+
+    Was einen Ton von Sprache trennt, ist nicht seine Frequenz, sondern **wie
+    schmal er ist**. Ein Sinus legt seine ganze Energie in eine Frequenz; ein
+    gesprochener Laut verteilt sie über eine Obertonreihe und ein
+    Formantgebirge. Gemessen wird deshalb der Anteil der Energie, der in der
+    stärksten Frequenz samt Nachbarschaft sitzt (`TONANTEIL_GRENZE`).
+
+    Der erste Anlauf maß stattdessen die Schwankung der Lautstärke und schlug
+    beim sauberen Probesignal achtzehnmal an – warum, steht bei
+    `TONANTEIL_GRENZE`.
 
     **Das sind Anzeichen, keine Beweise.** Sie fangen die Form, die dieser
     Fehler hat, und nicht jeden denkbaren. Die Antwort darauf bleibt deshalb
@@ -382,7 +483,13 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     schwelle = float(np.percentile(effektiv, 90)) * LAUT_ANTEIL
     laut = effektiv >= max(schwelle, 1e-4)
 
-    verdaechtig = laut & ((rauheit >= ZISCHGRENZE) | (anschlag >= UEBERSTEUERT_ANTEIL))
+    tonanteil = _tonanteil(stuecke)
+
+    verdaechtig = laut & (
+        (rauheit >= ZISCHGRENZE)
+        | (anschlag >= UEBERSTEUERT_ANTEIL)
+        | (tonanteil >= TONANTEIL_GRENZE)
+    )
 
     funde: list[tuple[float, float, str]] = []
     lauf_beginn: int | None = None
@@ -394,10 +501,16 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
             bis = ((i - 1) * vorschub + fenster) / rate
             if bis - von >= STOERUNG_MINDESTENS_S:
                 bereich = slice(lauf_beginn, i)
+                art = (
+                    "ein Ton"
+                    if float(np.min(tonanteil[bereich])) >= TONANTEIL_GRENZE
+                    else "rau"
+                )
                 grund = (
-                    f"{bis - von:.1f} s rau statt gesprochen "
+                    f"{bis - von:.1f} s {art} statt gesprochen "
                     f"(Nulldurchgänge {float(np.max(rauheit[bereich])):.2f}, "
-                    f"am Anschlag {float(np.max(anschlag[bereich])) * 100:.0f} %)"
+                    f"am Anschlag {float(np.max(anschlag[bereich])) * 100:.0f} %, "
+                    f"Tonanteil {float(np.max(tonanteil[bereich])):.2f})"
                 )
                 funde.append((round(von, 2), round(bis, 2), grund))
             lauf_beginn = None
@@ -710,6 +823,26 @@ def selbsttest(melde=print) -> int:
     # Und ein Stück, das ganz entgleist – der Fall, den schon die Dauerprüfung
     # fing. Er steht hier, damit er beim Umbau nicht verlorengeht.
     faelle.append(("halbe Länge", _probeton(12, rate, 3), text(30), True))
+
+    # Der Fall vom 20. August: ein gehaltener Ton, weder rau noch am Anschlag.
+    #
+    # 900 Hz ergeben bei 24 kHz eine Nulldurchgangsrate von 0,075 – weit unter
+    # der Zischgrenze von 0,22 –, und 0,55 Aussteuerung liegt weit unter dem
+    # Anschlag. Für die alte Prüfung war er **unsichtbar**, und er ist die
+    # häufigere Sorte: Ein erzeugtes Geräusch ist öfter ein Ton als ein
+    # Rauschen.
+    brummen = _probeton(30, rate, 13).copy()
+    t3 = np.arange(int(3 * rate)) / rate
+    i0 = int(8 * rate)
+    brummen[i0 : i0 + len(t3)] = 0.55 * np.sin(2 * np.pi * 900 * t3)
+    faelle.append(("3 s gehaltener Ton bei 900 Hz", brummen, text(30), True))
+
+    # Und derselbe Ton tief: ein Brummen bei 180 Hz, Nulldurchgangsrate 0,015.
+    tief = _probeton(30, rate, 17).copy()
+    t2 = np.arange(int(2 * rate)) / rate
+    i0 = int(15 * rate)
+    tief[i0 : i0 + len(t2)] = 0.5 * np.sin(2 * np.pi * 180 * t2)
+    faelle.append(("2 s Brummen bei 180 Hz", tief, text(30), True))
 
     schief = 0
     for name, ton, txt, erwartet_fund in faelle:

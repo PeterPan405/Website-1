@@ -315,25 +315,52 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
      zerlegte den Namen und ließe „Sachs" deutsch stehen. */
   [/\bGoldman Sachs\b/g, 'Goldmänn Sacks'],
   [/\bGoldman\b/g, 'Goldmänn'],
-  [/\bBerkshire Hathaway\b/g, 'Berkschir Häthaweh'],
+  [/\bBerkshire Hathaway\b/g, 'Berkschir Häthauej'],
   [/\bBerkshire\b/g, 'Berkschir'],
   [/\bMorgan Stanley\b/g, 'Morgen Stänli'],
   [/\bJPMorgan\b/g, 'Dschej-Pi-Morgen'],
   [/\bBank of America\b/g, 'Bänk of Amerika'],
   /*
-    Zwei Fallen, die die deutsche Rechtschreibung stellt – und beide sind
-    dem Betreiber am 11. August 2026 im Ohr aufgefallen:
+    Drei Fallen, die die deutsche Rechtschreibung stellt. Die ersten beiden
+    sind dem Betreiber am 11. August 2026 im Ohr aufgefallen, die dritte kam
+    am 20. August dazu:
 
     1. **„st" am Wortanfang ist /scht/.** „Striet" las die Stimme als
        „Schtriet", „Stoxx" als „Schtox". Mitten im Wort gilt das nicht:
        In „Fenster" und „Liste" ist es sauberes /st/. Deshalb werden die
        Bestandteile **zusammengeschrieben** – aus zwei Wörtern wird eines,
        und die Falle ist weg.
-    2. **„W" am Wortanfang ist /v/.** Aus „Wohl Striet" wurde damit
-       „Vohl Schtriet". Für den englischen /w/-Laut steht „U".
+    2. **„w" ist immer /v/.** Aus „Wohl Striet" wurde damit „Vohl Schtriet".
+       Für den englischen /w/-Laut steht **„u"**.
+    3. **„v" am Wortende ist /f/.** „Riserv" für „Reserve" wurde damit zu
+       „Riserf" – wie in „aktiv" und „Genitiv". Für /v/ steht auch dort „w".
 
-    „Wall Street" hieß deshalb bis dahin „Wohl Striet" und traf beide Fallen
-    auf einmal. Wer hier etwas ergänzt, prüft beide.
+    „Wall Street" hieß bis dahin „Wohl Striet" und traf die ersten beiden
+    Fallen auf einmal.
+
+    ## Was der Durchgang vom 20. August ergeben hat
+
+    Der Betreiber hat die Aussprache erneut beanstandet. Nachgezählt: **Neun
+    Einträge verletzten die Regeln, die zwei Absätze weiter oben stehen.**
+    Achtmal stand „w" für einen englischen /w/-Laut – „Häthaweh", „Schwobb",
+    „Bittweiß", „Ohwerwejt", „Anderwejt", „Softwer", „Hardwer" –, und einmal
+    „v" am Wortende. Gesprochen wurde daraus „Häthaveh", „Schvobb",
+    „Bittveiß", „Softver".
+
+    Eine Regel, die in einem Kommentar steht und von der Tabelle darunter
+    verletzt wird, ist keine Regel. Deshalb prüft
+    `tests/sprechfassung-aussprache.test.ts` sie jetzt maschinell, und zwar an
+    zwei Stellen, die sich mechanisch entscheiden lassen: Steht im englischen
+    Wort ein „w" **vor einem Vokal**, gehört in die Umschrift ein „u"; steht
+    dort ein „v", gehört ein „w" hinein.
+
+    ## Was offen bleibt
+
+    Falle 1 lässt sich nicht immer umgehen. „Stoxx Europe" steht als
+    „Stocks Juropp" da und wird „Schtocks" gesprochen; das „st" ist dort
+    unvermeidlich am Wortanfang, und die deutsche Rechtschreibung hat kein
+    Zeichen für ein hartes /st/ an dieser Stelle. Zusammenschreiben hilft nur,
+    wenn ein Wort davorsteht – bei „Wall Street" ging es, hier nicht.
   */
   [/\bWall Street\b/g, 'Uallstriet'],
   [/\bEuro[ -]?Sto(?:xx|cks)\b/gi, 'Eurostocks'],
@@ -349,15 +376,15 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bJohnson & Johnson\b/g, 'Dschonson und Dschonson'],
   [/\bGeneral Motors\b/g, 'Dschennerel Motors'],
   [/\bHome Depot\b/g, 'Hohm Diepoh'],
-  [/\bCharles Schwab\b/g, 'Tscharls Schwobb'],
+  [/\bCharles Schwab\b/g, 'Tscharls Schuobb'],
   [/\bJensen Huang\b/g, 'Dschensen Huang'],
   [/\bWarren Buffett\b/g, 'Uoren Baffett'],
   [/\bBuffett\b/g, 'Baffett'],
   [/\bJefferies\b/g, 'Dschefferis'],
-  [/\bBitwise\b/g, 'Bittweiß'],
+  [/\bBitwise\b/g, 'Bittueiß'],
   [/\bDow Jones\b/g, 'Dau Dschons'],
   [/\bNasdaq\b/gi, 'Nässdack'],
-  [/\bFederal Reserve\b/g, 'Fedderel Riserv'],
+  [/\bFederal Reserve\b/g, 'Fedderel Riserw'],
   [/\bTreasury\b/g, 'Treschery'],
   [/\bBofA\b/g, 'Bänk of Amerika'],
   [/\bOpenAI\b/g, 'Ohpen Ej Ei'],
@@ -376,7 +403,7 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bMeta\b/g, 'Metta'],
   [/\bBitcoin\b/g, 'Bittkoin'],
   [/\bStrategy\b/g, 'Strättedschi'],
-  [/\bMicroStrategy\b/g, 'Meikro-Strättedschi'],
+  [/\bMicroStrategy\b/g, 'Meikrosträttedschi'],
   [/\bCoinbase\b/g, 'Koinbejs'],
   [/\bBlackRock\b/g, 'Bläck Rock'],
   [/\bVanguard\b/g, 'Wängguard'],
@@ -439,11 +466,11 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bRall(?:y|ye)\b/g, 'Räli'],
   [/\bChips?\b/g, 'Tschipps'],
   [/\bCloud\b/g, 'Klaud'],
-  [/\bSoftware\b/g, 'Softwer'],
-  [/\bHardware\b/g, 'Hardwer'],
+  [/\bSoftware\b/g, 'Softuer'],
+  [/\bHardware\b/g, 'Harduer'],
   [/\bStreaming\b/g, 'Strieming'],
-  [/\bOverweight\b/g, 'Ohwerwejt'],
-  [/\bUnderweight\b/g, 'Anderwejt'],
+  [/\bOverweight\b/g, 'Ohweruejt'],
+  [/\bUnderweight\b/g, 'Anderuejt'],
   [/\bHighlights?\b/g, 'Heilaits'],
   [/\bMeetings?\b/g, 'Mietings'],
 
@@ -901,9 +928,21 @@ export const KI_HINWEIS =
  * eine Folge in einer Podcast-App hört, im Auto oder beim Laufen, sieht die
  * Beschreibung nie. Genau dort entsteht der Eindruck, ein Mensch spreche.
  *
- * Er steht am **Anfang**, nicht am Ende. Ein Hinweis auf eine erzeugte Stimme
- * nach fünf Minuten Zuhören kommt zu spät – bis dahin hat sich jeder eine
- * Meinung gebildet.
+ * ## Wo genau er steht – und warum er dorthin gewandert ist
+ *
+ * **Nach der Begrüßung, vor der ersten Meldung.** Bis zum 20. August 2026 war
+ * er das Allererste, was ein Hörer hörte. Der Betreiber hat das beanstandet:
+ * „Dann schreckt das nicht ganz so ab."
+ *
+ * Er hat recht, und die Begründung ist keine kosmetische. Ein Podcast hat drei
+ * Sekunden, um jemanden zu halten. Wer in diesen drei Sekunden „automatisiert
+ * mit KI-Werkzeugen" hört, bevor er weiß, worum es geht, hört auf – und dann
+ * erreicht der Hinweis niemanden mehr, weil niemand mehr da ist.
+ *
+ * Am Ende darf er trotzdem nicht stehen: Nach fünf Minuten hat sich jeder
+ * längst eine Meinung gebildet. Die Stelle dazwischen ist die richtige – nach
+ * Gruß, Datum und dem Satz über den Tag, noch vor der ersten Meldung. Da weiß
+ * der Hörer, was ihn erwartet, und hat noch nichts geglaubt, was nicht stimmt.
  *
  * ## Warum er so kurz ist
  *
@@ -914,8 +953,8 @@ export const KI_HINWEIS =
  * Das Ausführliche steht weiter in `KI_HINWEIS` unter jeder Folge.
  */
 export const KI_HINWEIS_GESPROCHEN =
-  'Ein Hinweis vorweg: Diese Folge entsteht automatisiert mit KI-Werkzeugen. ' +
-  'Auch die Stimme, die du gerade hörst, ist künstlich erzeugt.'
+  'Bevor es losgeht, ein Hinweis: Diese Folge entsteht automatisiert mit ' +
+  'KI-Werkzeugen. Auch die Stimme, die du gerade hörst, ist künstlich erzeugt.'
 
 function wortzahl(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
@@ -959,20 +998,30 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
      Name – nicht als fertige Lautschrift hier hineingeschrieben. Sonst
      stünde er an zwei Stellen und ginge beim nächsten Mal auseinander. */
   /*
-    Der KI-Hinweis steht vor der Begrüßung, nicht dahinter.
+    Der KI-Hinweis steht **hinter** der Begrüßung, als eigener Absatz.
 
-    Dahinter wäre er eine Fußnote im Fluss; davor ist er die Bedingung, unter
-    der alles Folgende zu hören ist. Er kostet acht Sekunden und rund zwanzig
-    Wörter vom Budget – die holt die Kürzungsschleife weiter unten wieder
-    herein, notfalls an der Einordnung des letzten Themas.
+    Bis zum 20. August 2026 war er das Allererste. Der Betreiber hat das
+    beanstandet – „dann schreckt das nicht ganz so ab" –, und der Einwand
+    trifft: Ein Podcast hat drei Sekunden, um jemanden zu halten. Wer in
+    diesen drei Sekunden Kleingedrucktes hört, bevor er weiß, worum es geht,
+    hört auf. Ein Hinweis, den niemand mehr hört, weil niemand mehr da ist,
+    erfüllt seinen Zweck nicht.
+
+    Ans Ende gehört er trotzdem nicht (siehe `KI_HINWEIS_GESPROCHEN`). Die
+    Stelle dazwischen ist die richtige: nach Gruß, Datum und dem Satz über den
+    Tag, noch vor der ersten Meldung.
+
+    Als **eigener Absatz** und nicht angehängt: Die Pause zwischen zwei
+    Absätzen setzt ihn ab, statt ihn in den Begrüßungssatz einzuschleifen.
   */
-  const einstieg =
-    `${KI_HINWEIS_GESPROCHEN} ` +
+  const begruessung =
     englischeNamenSprechbar(
       `Guten Morgen und herzlich willkommen zum Marktupdate von IM Invests. `
     ) +
     `Heute ist ${WOCHENTAGE[wochentag]}, der ${ordnungszahl(tag)} ${MONATE[monat - 1]} ` +
     `${zahlwort(jahr)}. ${sprechbar(edition.intro)}`
+
+  const einstieg = `${begruessung}\n\n${KI_HINWEIS_GESPROCHEN}`
 
   /*
     Das Fazit wiederholt nicht die Begrüßung – dort steht `intro` bereits.

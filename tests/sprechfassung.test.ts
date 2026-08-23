@@ -208,23 +208,41 @@ const { edition } = (await import(pathToFileURL(`data/editions/${juengste}`).hre
 const folge = baueFolge(edition)
 
 /*
-  Der KI-Hinweis steht vor der Begrüßung – seit dem 17. August 2026.
+  Der KI-Hinweis steht **hinter** der Begrüßung – seit dem 20. August 2026.
 
-  Diese Prüfung verlangte vorher, dass die Begrüßung das **erste** ist. Sie
-  bleibt so streng, prüft aber jetzt die richtige Reihenfolge: erst der
-  Hinweis, dann die feste Begrüßung. Ein `includes` allein ließe die Begrüßung
-  auch mitten im Text zu.
+  Vom 17. bis zum 20. August stand er davor, und diese Prüfung verlangte das
+  auch so. Der Betreiber hat es beanstandet: „Dann schreckt das nicht ganz so
+  ab." Ein Podcast hat drei Sekunden, um jemanden zu halten; Kleingedrucktes
+  in diesen drei Sekunden kostet genau die Hörer, die der Hinweis erreichen
+  soll.
+
+  Geprüft wird deshalb weiter die **Reihenfolge** und nicht bloß, dass beides
+  vorkommt – nur andersherum als vorher. Und zusätzlich, dass der Hinweis
+  früh kommt: Ans Ende gehört er ebenso wenig, weil sich bis dahin jeder eine
+  Meinung gebildet hat.
 */
 pruefe(
-  'Sprechtext beginnt mit dem KI-Hinweis',
-  folge.sprechtext.startsWith('Ein Hinweis vorweg:'),
-  true
-)
-pruefe(
-  'Danach folgt die feste Begrüßung',
-  folge.sprechtext.includes(
+  'Sprechtext beginnt mit der Begrüßung',
+  folge.sprechtext.startsWith(
     'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei Emm Inwests.'
   ),
+  true
+)
+
+const hinweisAb = folge.sprechtext.indexOf('Bevor es losgeht, ein Hinweis:')
+pruefe('Der KI-Hinweis steht im Sprechtext', hinweisAb >= 0, true)
+
+/*
+  „Vor der ersten Meldung" wird an der Begrüßung gemessen und nicht an einer
+  Zeichenzahl: Die Begrüßung endet mit dem Satz über den Tag, und der ist mal
+  hundertzehn und mal hundertsechzig Zeichen lang. Eine feste Grenze wäre an
+  manchen Tagen erfüllt und an anderen nicht, ohne dass sich etwas geändert
+  hätte.
+*/
+const ersterAbsatz = folge.sprechtext.split('\n\n')[1] ?? ''
+pruefe(
+  'Der Hinweis ist der zweite Absatz, also vor der ersten Meldung',
+  ersterAbsatz.startsWith('Bevor es losgeht, ein Hinweis:'),
   true
 )
 pruefe(
@@ -272,9 +290,14 @@ pruefe(
   Beschreibung nie. Genau dort entsteht der Eindruck, ein Mensch spreche, und
   genau dort war der Hinweis nicht.
 
-  Geprüft wird beides: dass er im Sprechtext steht und dass er **vorn** steht.
+  Geprüft wird beides: dass er im Sprechtext steht und dass er **früh** steht.
   Ein Hinweis auf eine erzeugte Stimme nach fünf Minuten Zuhören kommt zu
   spät; bis dahin hat sich jeder eine Meinung gebildet.
+
+  „Früh" heißt seit dem 20. August: der zweite Absatz, hinter der Begrüßung
+  (siehe oben). Vorher stand hier eine Grenze von 200 Zeichen – die zählte,
+  solange der Hinweis das Erste war, und wurde mit dem Umzug zu einer Zahl
+  ohne Bedeutung: Die Begrüßung ist je nach Tagesausgabe verschieden lang.
 */
 pruefe(
   'Sprechtext trägt den KI-Hinweis',
@@ -287,8 +310,8 @@ pruefe(
   true
 )
 pruefe(
-  'Der Hinweis steht in den ersten 200 Zeichen',
-  folge.sprechtext.indexOf('KI-Werkzeugen') < 200,
+  'Der Hinweis steht vor jeder Meldung',
+  folge.sprechtext.indexOf('KI-Werkzeugen') < folge.sprechtext.indexOf('\n\n', hinweisAb),
   true
 )
 
