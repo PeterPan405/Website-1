@@ -215,7 +215,7 @@ export const tagesgeld: LearnTopic = {
         'Wie der Einlagenzins der Notenbank auf Tagesgeld durchschlägt, wie Aktionszinsen aufgebaut sind und wie Zinserträge in Deutschland besteuert werden.',
       title: 'Zinsmechanik, Angebote und Steuern',
       lead: 'Woher der Zins kommt, wie Aktionsangebote aufgebaut sind und welche Zahl nach Steuern übrig bleibt.',
-      readingMinutes: 9,
+      readingMinutes: 15,
       status: 'complete',
       blocks: [
         {
@@ -305,6 +305,61 @@ export const tagesgeld: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie viel gehört überhaupt aufs Tagesgeld',
+        },
+        {
+          type: 'paragraph',
+          text: 'Tagesgeld hat genau eine Aufgabe: verfügbar sein. Alles, was darüber hinaus dort liegt, erfüllt keine Aufgabe mehr – es verliert nur langsamer an Kaufkraft als auf dem Girokonto. Die sinnvolle Menge ergibt sich deshalb nicht aus dem Zins, sondern aus dem Zweck.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Notgroschen.** Drei bis sechs Monatsausgaben, je nach Sicherheit des Einkommens. Er gehört ausschließlich hierher, weil er jederzeit vollständig verfügbar sein muss.',
+            '**Absehbare Ausgaben der nächsten zwei bis drei Jahre.** Ein Auto, eine Renovierung, eine Kaution. Was in diesem Zeitraum gebraucht wird, verträgt keine Schwankung – unabhängig davon, wie gut die Aussichten am Aktienmarkt sind.',
+            '**Der Puffer für unregelmäßige Jahreskosten**, wenn er nicht ohnehin auf einem eigenen Konto liegt.',
+            '**Alles andere gehört nicht hierher.** Wer über Jahre größere Beträge auf Tagesgeld hält, hat keine sichere Anlage, sondern eine mit einem anderen Risiko: dem, das nie auf dem Auszug erscheint.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Realzins ist die einzige Zahl, die zählt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Nominal steigt ein Guthaben immer. Ob es **real** wächst, entscheidet der Abstand zwischen Zins und Teuerung – und dieser Abstand war in Deutschland über lange Strecken negativ, auch in Jahren mit auffällig hohen Zinssätzen. Ein Zins von 4 Prozent bei 6 Prozent Teuerung ist ein Verlust, ein Zins von 1 Prozent bei 0 Prozent Teuerung ein Gewinn.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Die Rechnung, die dazugehört',
+          items: [
+            '**Erst die Steuer, dann die Teuerung.** Die Abgeltungsteuer greift auf den nominalen Zins zu. Aus 4 Prozent werden nach Steuer knapp 3 – und erst davon wird die Teuerung abgezogen.',
+            '**Deshalb ist die Reihenfolge nicht beliebig.** Wer die Teuerung zuerst abzieht und dann versteuert, rechnet sich das Ergebnis schön: Der Staat besteuert auch den Teil des Zinses, der nur den Kaufkraftverlust ausgleicht.',
+            '**Der Sparerpauschbetrag ändert das Bild bei kleinen Beträgen deutlich.** Solange die Zinsen darunter bleiben, fällt die Steuer weg – und der Realzins verbessert sich um genau den Steueranteil.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum Lockangebote so verlässlich funktionieren',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Neukundenzins für sechs Monate ist keine Großzügigkeit, sondern eine Rechnung: Die Bank zahlt einmalig einen Aufschlag und behält dafür einen Kunden, der danach mit hoher Wahrscheinlichkeit bleibt. Sie kalkuliert also mit der Trägheit – und sie behält recht.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der Aktionszins gilt für einen befristeten Zeitraum und oft nur bis zu einer Obergrenze.** Was darüber liegt, wird zum Grundzins verzinst, der deutlich niedriger sein kann.',
+            '**Nach Ablauf fällt der Zins ohne Mitteilungspflicht.** Tagesgeld ist täglich änderbar; eine Benachrichtigung ist üblich, aber nicht überall selbstverständlich.',
+            '**Der Vergleich lohnt sich nur mit dem Zins, der nach der Aktion gilt.** Ein Angebot mit hohem Lockzins und schwachem Grundzins ist über zwei Jahre gerechnet oft schlechter als ein durchgehend mittleres.',
+            '**Ein Wechsel kostet Zeit, kein Geld.** Wer ihn nicht macht, zahlt dafür mit dem Zinsunterschied – das ist die einzige Stelle beim Tagesgeld, an der eigenes Zutun messbar etwas bringt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -314,6 +369,10 @@ export const tagesgeld: LearnTopic = {
             'Senkungen werden schnell weitergegeben, Erhöhungen langsam.',
             'Vier Fragen an jedes Angebot: für wen, wie lange, bis zu welchem Betrag, wie oft gutgeschrieben.',
             'Der Freistellungsauftrag ist teilbar, aber insgesamt nur einmal ausschöpfbar.',
+            'Tagesgeld hat eine Aufgabe: verfügbar sein. Was darüber hinaus dort liegt, erfüllt keine.',
+            'Erst Steuer, dann Teuerung – der Staat besteuert auch den Teil des Zinses, der nur den Kaufkraftverlust ausgleicht.',
+            'Ein Aktionszins ist eine Wette der Bank auf die eigene Trägheit des Kunden.',
+            'Verglichen wird der Zins nach der Aktion, nicht der während.',
           ],
         },
       ],

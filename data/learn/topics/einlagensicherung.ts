@@ -210,7 +210,7 @@ export const einlagensicherung: LearnTopic = {
         'Gesetzliche Sicherung, freiwillige Fonds und Institutssicherung im Vergleich, temporär höhere Grenzen und die Lage bei Auslandsbanken.',
       title: 'Die Systeme und ihre Unterschiede',
       lead: 'Welche Systeme es gibt, worin sie sich rechtlich unterscheiden – und warum das im Ernstfall zählt.',
-      readingMinutes: 10,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -289,6 +289,81 @@ export const einlagensicherung: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was gesichert ist – und was gar nicht darunterfällt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Einlagensicherung sichert **Einlagen**. Das klingt selbstverständlich und ist die häufigste Verwechslung überhaupt, denn das meiste, was Anleger bei einer Bank liegen haben, sind gar keine Einlagen – und braucht die Sicherung deshalb auch nicht.',
+        },
+        {
+          type: 'table',
+          caption: 'Drei verschiedene Rechtsverhältnisse bei derselben Bank',
+          head: ['Was', 'Rechtlich', 'Bei Insolvenz der Bank'],
+          rows: [
+            [
+              'Giro-, Tages- und Festgeld',
+              'eine Forderung gegen die Bank',
+              'Einlagensicherung greift bis zur Deckungsgrenze; darüber Insolvenzquote',
+            ],
+            [
+              'Aktien, Anleihen, ETF- und Fondsanteile im Depot',
+              'dein Eigentum, von der Bank nur verwahrt',
+              'nicht betroffen. Die Papiere werden herausgegeben oder auf eine andere Bank übertragen – die Einlagensicherung wird gar nicht gebraucht',
+            ],
+            [
+              'Zertifikate und ETCs',
+              'eine Schuldverschreibung des Emittenten',
+              'weder Sondervermögen noch gesicherte Einlage. Fällt der Emittent aus, ist das Papier eine Forderung wie jede andere',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die Zeile, um die es geht',
+          items: [
+            '**Ein Fonds ist Sondervermögen.** Er gehört rechtlich nicht der Kapitalverwaltungsgesellschaft und nicht der Depotbank. Deren Insolvenz berührt ihn nicht – das ist ein stärkerer Schutz als jede Sicherungsgrenze, weil er nicht bei einem Betrag endet.',
+            '**Ein ETC auf Gold oder ein ETP auf Bitcoin ist es nicht.** Beide sind Schuldverschreibungen. Eine Besicherung mit hinterlegtem Metall verbessert die Lage, ersetzt aber kein Sondervermögen – und die Einlagensicherung greift dort in keinem Fall.',
+            '**Der Unterschied steht nicht im Namen.** „ETF" und „ETC" unterscheiden sich um einen Buchstaben und rechtlich vollständig.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Die Deckungsgrenze gilt je Kunde und Institut – nicht je Konto',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wer drei Konten bei derselben Bank hat, hat nicht dreimal die Deckung, sondern einmal: Alle Guthaben eines Kunden bei einem Institut werden zusammengerechnet. Umgekehrt zählt bei einem Gemeinschaftskonto jeder Inhaber für sich, sodass sich die Deckung dort verdoppelt.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**„Institut" ist nicht dasselbe wie „Marke".** Mehrere Angebote können unter einer gemeinsamen Banklizenz laufen. Dann teilen sie sich eine Deckung, auch wenn die Namen und die Webseiten verschieden aussehen – nachzusehen ist das über die Bankleitzahl beziehungsweise die BIC im Kleingedruckten.',
+            '**Bei einer Bankenfusion gilt eine Übergangsfrist**, in der die Deckungen der beiden Häuser noch getrennt weiterlaufen. Danach werden sie zusammengelegt, und wer beide Institute bespart hatte, liegt plötzlich über der Grenze.',
+            '**Für bestimmte Lebenslagen gibt es zeitlich befristet eine höhere Deckung** – etwa nach dem Verkauf einer selbstgenutzten Wohnung oder bei Abfindungen. Das ist ein Sonderfall mit Nachweispflicht und keine allgemeine Regel.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was im Ernstfall tatsächlich passiert',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Entschädigung ist kein Antragsverfahren, das man selbst anstoßen muss: Nach der Feststellung des Entschädigungsfalls wird der Kunde angeschrieben, und die Auszahlung erfolgt innerhalb einer gesetzlich vorgegebenen Frist von wenigen Arbeitstagen. Wer nichts tut, bekommt trotzdem sein Geld.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Das Konto ist in dieser Zeit gesperrt.** Genau deshalb gehört der Notgroschen nicht vollständig auf ein einziges Institut – nicht weil das Geld verloren wäre, sondern weil es einige Tage nicht erreichbar ist.',
+            '**Kredite werden gegengerechnet**, wenn sie fällig sind. Wer bei derselben Bank Guthaben und Darlehen hat, bekommt nicht beides getrennt behandelt.',
+            '**Zinsen bis zum Stichtag zählen mit.** Entschädigt wird der Stand einschließlich aufgelaufener, noch nicht gutgeschriebener Zinsen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -298,6 +373,10 @@ export const einlagensicherung: LearnTopic = {
             'Die Institutssicherung entschädigt nicht, sondern verhindert den Ausfall – für Einleger meist das bessere Ergebnis.',
             `Nach Immobilienverkauf oder Erbschaft gilt ${ERHOEHT_MONATE} Monate lang eine erhöhte Grenze – gegen Nachweis.`,
             'Im Ausland gilt dieselbe Grenze, aber ein anderes System; dessen Leistungsfähigkeit ist der eigentliche Unterschied.',
+            'Depotpapiere sind dein Eigentum – sie brauchen die Einlagensicherung gar nicht.',
+            'Ein ETF ist Sondervermögen, ein ETC eine Schuldverschreibung: ein Buchstabe, ein völlig anderer Schutz.',
+            'Die Deckung gilt je Kunde und Institut, nicht je Konto – und mehrere Marken können eine Lizenz teilen.',
+            'Im Entschädigungsfall ist das Konto einige Tage gesperrt; deshalb gehört der Notgroschen nicht auf ein einziges Institut.',
           ],
         },
       ],

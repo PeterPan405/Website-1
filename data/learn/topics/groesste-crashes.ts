@@ -242,7 +242,7 @@ export const groessteCrashes: LearnTopic = {
         'Der typische Verlauf einer Blase, die Rolle von Kredit, Margin Calls und Liquiditätsspiralen sowie das Verhalten von Korrelationen im Einbruch.',
       title: 'Die Mechanik von Blase und Absturz',
       lead: 'Wie aus einer plausiblen Geschichte eine Blase wird – und warum der Absturz danach von der Mechanik getragen wird, nicht von Meinungen.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -328,6 +328,77 @@ export const groessteCrashes: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Woran man eine Blase im Nachhinein immer erkennt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die ehrliche Antwort zuerst: **vorher gar nicht zuverlässig.** Wer eine Blase sicher erkennen könnte, könnte sie auch datieren, und genau daran scheitert es – Alan Greenspan sprach 1996 von „irrationalem Überschwang", und der Markt stieg danach noch mehr als drei Jahre weiter. Wer damals ausstieg, hatte recht und verlor trotzdem.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Was sich beschreiben lässt, sind wiederkehrende Begleitumstände. Sie sind Anzeichen und keine Signale: Sie treten in Blasen auf, treten aber auch auf, ohne dass eine folgt.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Die Bewertung löst sich vom Ertrag.** Nicht „teuer", sondern: Die übliche Kennzahl wird durch eine neue ersetzt, weil die alte nicht mehr passt – Klicks statt Umsatz, Nutzer statt Gewinn.',
+            '**Kredit steigt schneller als der Kurs.** Fast jede schwere Krise hatte Fremdkapital im Kern. Eine Blase ohne Schulden platzt und verschwindet; eine mit Schulden reißt Banken mit.',
+            '**Neue Käufer ohne Vorerfahrung strömen zu**, und die Begründung wechselt von „das Unternehmen verdient Geld" zu „das steigt".',
+            '**Der Widerspruch verstummt.** Wer warnt, gilt als jemand, der es nicht verstanden hat. Das ist kein Beleg – aber es ist auffällig regelmäßig.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Warum diese Liste trotzdem nicht zum Handeln taugt',
+          items: [
+            'Alle vier Punkte waren 1997 erfüllt, 1998 und 1999 auch. Wer 1997 danach handelte, verpasste die stärksten zwei Jahre und stieg vermutlich nie zurück ein.',
+            'Sie sind zum **Verstehen** da, nicht zum Timing. Der praktische Nutzen liegt woanders: Wer die Muster kennt, erkennt sie an sich selbst wieder – und das ist die einzige Stelle, an der man tatsächlich etwas ändern kann.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum Erholungsdauern so verschieden ausfallen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Zwei Abstürze mit gleichem Ausmaß können völlig verschieden lange brauchen, und der Unterschied liegt nicht im Kurs, sondern in der Ursache. Entscheidend ist, ob die Ertragskraft selbst beschädigt wurde oder nur ihr Preis.',
+        },
+        {
+          type: 'table',
+          caption: 'Was die Dauer bestimmt',
+          head: ['Frage', 'Kurze Erholung', 'Lange Erholung'],
+          rows: [
+            [
+              'Ist die Ertragskraft beschädigt?',
+              'nein – nur die Bewertung fiel',
+              'ja – Gewinne brechen weg und kommen nicht zurück',
+            ],
+            [
+              'Steckt Fremdkapital im Kern?',
+              'kaum – es gibt keine erzwungenen Verkäufe',
+              'viel – Kredite müssen bedient werden, koste es was es wolle',
+            ],
+            [
+              'Ist das Bankensystem betroffen?',
+              'nein – Kredit fließt weiter',
+              'ja – dann trifft es die ganze Wirtschaft, nicht nur den Markt',
+            ],
+            [
+              'Wie reagiert die Politik?',
+              'schnell und deutlich',
+              'zögernd oder in die falsche Richtung',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Deshalb ist die Frage nach dem Absturz eines einzelnen Titels immer eine andere als die nach einem Index: Ein breiter Index enthält die Nachfolger derer, die untergehen. Ein einzelnes Unternehmen hat keine.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -337,6 +408,10 @@ export const groessteCrashes: LearnTopic = {
             'Kredit in der Spätphase ist der entscheidende Verstärker in beide Richtungen.',
             'Ein Großteil der Verkäufe im Crash geschieht unfreiwillig.',
             'Korrelationen steigen genau dann, wenn Streuung gebraucht würde.',
+            'Eine Blase lässt sich vorher nicht zuverlässig erkennen – wer recht hat, kann sie trotzdem nicht datieren.',
+            'Die Anzeichen sind zum Verstehen da, nicht zum Timing; ihr Nutzen liegt im eigenen Verhalten.',
+            'Eine Blase mit Schulden im Kern reißt Banken mit, eine ohne verschwindet.',
+            'Die Erholungsdauer hängt daran, ob die Ertragskraft beschädigt ist oder nur ihr Preis.',
           ],
         },
       ],
