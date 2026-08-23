@@ -838,7 +838,7 @@ export const technischeAnalyseLektionen: Lektion[] = [
     kernaussage:
       'Ein Kerzenmuster ohne den Verlauf davor ist bedeutungslos. Derselbe Hammer ist am Ende eines Abwärtstrends etwas anderes als mitten in einer Seitwärtsphase.',
     belegart: 'deutung',
-    dauer: 6,
+    dauer: 10,
     stichworte: ['Hammer', 'Engulfing', 'Doji', 'Kerzenmuster'],
     setztVoraus: ['charttypen-und-kerzen'],
     lernthemen: ['anlegerpsychologie'],
@@ -883,6 +883,57 @@ export const technischeAnalyseLektionen: Lektion[] = [
       {
         type: 'paragraph',
         text: 'Der nützliche Kern bleibt trotzdem: Eine Kerze mit langem Docht sagt, dass ein Kursbereich getestet und nicht gehalten wurde. Das ist eine Beobachtung über tatsächliches Verhalten – und sie ist etwas anderes als der Anspruch, daraus den nächsten Tag abzuleiten.',
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Was ein Muster überhaupt behauptet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Kerze ist eine Zusammenfassung: Eröffnung, Hoch, Tief, Schluss eines Zeitraums in einem Bild. Ein Muster behauptet, dass eine bestimmte Abfolge solcher Zusammenfassungen etwas über den nächsten Zeitraum verrät. Das ist eine überprüfbare Behauptung – und sie steht und fällt mit drei Dingen, die in fast keiner Darstellung mitgeliefert werden.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Der Zeitrahmen.** Dasselbe Muster in Minutenkerzen und in Wochenkerzen ist nicht dasselbe Ereignis. Je kürzer der Rahmen, desto mehr davon entstehen zufällig.',
+          '**Der Zusammenhang davor.** Ein Umkehrmuster setzt voraus, dass es etwas umzukehren gibt. Dasselbe Bild mitten in einer Seitwärtsbewegung ist keine Umkehr, sondern Rauschen.',
+          '**Die Bestätigung danach.** Fast alle klassischen Beschreibungen verlangen, dass die folgende Kerze das Muster bestätigt. Wer darauf wartet, hat einen Teil der Bewegung verpasst – wer nicht wartet, handelt auf ein unbestätigtes Bild.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum die Trefferquoten in Büchern höher sind als in der Praxis',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Vier Gründe, und alle vier wirken in dieselbe Richtung',
+        items: [
+          '**Rückblickende Auswahl.** Wer im Chart nach einem Muster sucht, findet es dort, wo es funktioniert hat – die Stellen, an denen es nichts bedeutete, sind unauffällig und werden nicht gezählt.',
+          '**Die Definition ist unscharf.** Wie lang darf der Docht sein, wie klein der Körper? Jede Verschiebung dieser Grenze verändert die Trefferquote, und die Grenze wird meistens so gezogen, dass sie passt.',
+          '**Die Kosten fehlen.** Spread und Gebühren sind bei kurzfristigen Mustern ein erheblicher Anteil des erwarteten Gewinns.',
+          '**Was viele wissen, wirkt nicht mehr.** Ein bekanntes Muster wird von Programmen gehandelt, bevor ein Mensch es erkennt. Was übrig bleibt, ist die Gegenseite.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Wozu Kerzen trotzdem gut sind',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht als Signal, sondern als **Beschreibung**. Eine Kerze mit langem unterem Docht sagt: In diesem Zeitraum wurde deutlich tiefer gehandelt, und die Käufer haben den Kurs zurückgeholt. Das ist eine Tatsache über die Vergangenheit und braucht keine Prognose, um nützlich zu sein.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Sie zeigen, wo es umkämpft war.** Lange Dochte und kleine Körper markieren Zonen, in denen sich Angebot und Nachfrage die Waage hielten.',
+          '**Sie machen Kurslücken sichtbar**, also Bereiche, in denen gar nicht gehandelt wurde – das ist eine echte Information über Liquidität.',
+          '**Sie zeigen Volumen im Verhältnis zur Bewegung.** Eine große Bewegung bei kleinem Volumen ist eine andere Aussage als dieselbe Bewegung bei großem.',
+          'Alles drei sind Beobachtungen. Der Sprung zur Vorhersage ist der Punkt, an dem die Methode ihren Halt verliert.',
+        ],
       },
     ],
   },

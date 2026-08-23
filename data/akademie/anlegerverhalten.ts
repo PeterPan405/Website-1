@@ -358,7 +358,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
     kernaussage:
       'Jede genannte Zahl wird zum Bezugspunkt für die nächste Schätzung, selbst wenn sie erkennbar nichts mit der Sache zu tun hat.',
     belegart: 'beobachtung',
-    dauer: 7,
+    dauer: 11,
     stichworte: ['Ankereffekt', 'Bezugspunkt', 'Schätzung'],
     setztVoraus: ['was-verhaltensoekonomie-ist'],
     lernthemen: ['anlegerpsychologie'],
@@ -398,6 +398,67 @@ export const anlegerverhaltenLektionen: Lektion[] = [
           'Bewusst von der Gegenrichtung her prüfen: Was müsste zutreffen, damit dieser Kurs zu hoch ist? Diese Frage arbeitet gegen den Anker statt mit ihm.',
         ],
       },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die vier Anker, die im Depot am häufigsten wirken',
+      },
+      {
+        type: 'table',
+        caption: 'Woran sich Entscheidungen festmachen',
+        head: ['Anker', 'Der Gedanke dahinter', 'Warum er nichts trägt'],
+        rows: [
+          [
+            'Der eigene Einstiegskurs',
+            '„Bei 100 verkaufe ich, da bin ich wieder bei null"',
+            'eine Zahl, die nur der Käufer kennt. Der Markt weiß nichts davon und richtet sich nicht danach',
+          ],
+          [
+            'Das Zwölfmonatshoch',
+            '„Von 180 auf 120 gefallen – das ist billig"',
+            'das Hoch war ein Preis in einer anderen Lage. Es sagt nichts über den heutigen Wert',
+          ],
+          [
+            'Die runde Zahl',
+            '„Unter 100 Euro greife ich zu"',
+            'unser Zahlensystem hat zehn Finger. Der Markt hat keine',
+          ],
+          [
+            'Das Kursziel aus einer Studie',
+            '„Analysten sehen 150"',
+            'ein Anker mit Briefkopf. Kursziele werden regelmäßig nach dem Kurs angepasst, nicht umgekehrt',
+          ],
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Was die Forschung besonders unbequem gefunden hat',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Der Anker wirkt auch, wenn man ihn durchschaut',
+        items: [
+          '**Zufällige Zahlen wirken.** In klassischen Versuchen beeinflusste eine ausgewürfelte Zahl anschließende Schätzungen, obwohl allen Beteiligten klar war, dass sie zufällig war.',
+          '**Wissen schützt nicht.** Auch Personen, die auf den Effekt hingewiesen wurden, verschoben ihre Schätzungen in Richtung des Ankers – teils genauso stark.',
+          '**Fachleute sind nicht immun.** Der Effekt wurde in Bereichen mit hoher Sachkenntnis gemessen, unter anderem bei der Bewertung von Immobilien durch Fachleute.',
+          'Daraus folgt der einzige brauchbare Umgang: **den Anker nicht bekämpfen, sondern vermeiden** – die eigene Einschätzung bilden, bevor man die fremde Zahl liest.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Die Reihenfolge, die das Problem entschärft',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Erst die Frage, dann die Zahl.** Was müsste dieses Unternehmen verdienen, damit der Preis gerechtfertigt ist? Wer so beginnt, hat eine eigene Größenordnung, bevor eine fremde ins Bild kommt.',
+          '**Den Chart zuletzt ansehen.** Er liefert Hoch, Tief und Einstiegskurs auf einen Blick – drei Anker in einer Grafik.',
+          '**Kaufgründe aufschreiben, bevor man den Kurs prüft.** Der Satz ist später nachlesbar und macht sichtbar, ob die Begründung eine Sache oder eine Zahl war.',
+        ],
+      },
     ],
   },
 
@@ -410,7 +471,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
     kernaussage:
       'Wer eine Meinung hat, sucht bevorzugt nach Bestätigung. Der einzige wirksame Gegenzug ist, gezielt nach dem Gegenteil zu suchen.',
     belegart: 'beobachtung',
-    dauer: 8,
+    dauer: 12,
     stichworte: ['Bestätigungsfehler', 'Confirmation Bias', 'Informationsauswahl'],
     setztVoraus: ['selbstueberschaetzung'],
     lernthemen: ['anlegerpsychologie'],
@@ -443,6 +504,51 @@ export const anlegerverhaltenLektionen: Lektion[] = [
           'Gezielt die bestbegründete Gegenposition suchen – nicht die dümmste. Ein schwaches Gegenargument bestärkt nur.',
           'Bei jeder Bestätigung fragen: Hätte ich diese Quelle auch gelesen, wenn sie das Gegenteil geschrieben hätte?',
         ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Er wirkt an drei Stellen, nicht an einer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Bestätigungsfehler wird meist als Auswahl von Quellen beschrieben. Das ist nur die erste von drei Stufen – und die harmloseste, weil sie am leichtesten auffällt.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Beim Suchen.** Man sucht nach Belegen für die eigene These und nicht nach solchen dagegen. Schon die Formulierung der Suchanfrage entscheidet über das Ergebnis.',
+          '**Beim Bewerten.** Widersprechende Informationen werden strenger geprüft als bestätigende. Wer eine Position hält, findet an einer schlechten Nachricht mehr Schwächen als an einer guten.',
+          '**Beim Erinnern.** Bestätigende Ereignisse bleiben besser haften. Die eigene Trefferquote fühlt sich deshalb rückblickend höher an, als sie war – und das ohne jede Absicht.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Was tatsächlich dagegen hilft',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Drei Verfahren, die man vorher festlegt',
+        items: [
+          '**Die Gegenthese ausformulieren.** Nicht „was spricht dagegen", sondern: Schreibe die beste Begründung dafür auf, dass das Gegenteil richtig ist. Wer sie nicht formulieren kann, kennt seine eigene These nicht gut genug.',
+          '**Die Widerlegungsbedingung vorher festhalten.** Welches konkrete Ereignis würde mich umstimmen? Ohne diesen Satz lässt sich jede Nachricht im Nachhinein in die eigene Geschichte einbauen.',
+          '**Ein Entscheidungstagebuch.** Datum, These, erwartetes Ergebnis. Es ersetzt die Erinnerung durch eine Aufzeichnung – und die Aufzeichnung schreibt sich nicht um.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum er in Anlagefragen besonders teuer ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weil das Feedback verzögert, verrauscht und mehrdeutig kommt. Wer eine falsche These hat, erfährt es nicht am nächsten Tag – und in der Zwischenzeit liefert der Markt in beide Richtungen Material. Anders als bei einer Wettervorhersage, die sich am Abend erledigt, lässt sich eine Anlagethese jahrelang aufrechterhalten, ohne dass sie je geprüft wird.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verstärkt wird das dadurch, dass eine gehaltene Position kein neutraler Beobachtungsgegenstand ist: Man hat bereits bezahlt. Damit kommt zum Bestätigungsfehler der Wunsch, recht behalten zu haben – zwei verschiedene Mechanismen, die in dieselbe Richtung ziehen.',
       },
     ],
   },
@@ -617,7 +723,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
     kernaussage:
       'Geld wird gedanklich in Töpfe sortiert, die verschieden behandelt werden. Für den Kontostand ist es dasselbe Geld.',
     belegart: 'beobachtung',
-    dauer: 7,
+    dauer: 11,
     stichworte: ['Mental Accounting', 'Töpfe', 'Thaler'],
     setztVoraus: ['prospect-theory'],
     lernthemen: ['budget-und-sparquote', 'portfolio-aufbau'],
@@ -662,6 +768,61 @@ export const anlegerverhaltenLektionen: Lektion[] = [
           'Es ist nicht durchgehend schädlich. Ein getrennter Notgroschen, der nicht angetastet wird, funktioniert gerade deshalb, weil er gedanklich abgetrennt ist.',
           'Auch das Sparen für ein bestimmtes Ziel wirkt besser, wenn es ein eigenes Konto hat. Die Trennung ist dann eine Selbstbindung und kein Denkfehler.',
           'Schädlich wird es dort, wo die Töpfe verschiedene Risikoentscheidungen für dasselbe Geld erzeugen – oder wo ein teurer Kredit neben einem Guthaben stehen bleibt.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Wo sie im Depot Geld kostet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Geld ist austauschbar – ein Euro aus einer Erbschaft ist derselbe Euro wie einer aus dem Gehalt. Die mentale Buchführung behandelt ihn trotzdem verschieden, und das führt zu Entscheidungen, die sich einzeln begründen lassen und zusammen widersprechen.',
+      },
+      {
+        type: 'table',
+        caption: 'Vier verbreitete Fälle',
+        head: ['Was passiert', 'Wie es sich anfühlt', 'Was es tatsächlich ist'],
+        rows: [
+          [
+            'Tagesgeld für den Urlaub, gleichzeitig ein Dispo',
+            'zwei getrennte Töpfe',
+            'ein Guthaben zu niedrigem Zins neben einer Schuld zu hohem – der Saldo verliert jeden Monat',
+          ],
+          [
+            '„Hausgeld" nach einem guten Jahr riskanter angelegt',
+            'das ist ja der Gewinn, nicht mein Einsatz',
+            'derselbe Betrag mit demselben Zweck. Der Gewinn ist längst Eigenkapital',
+          ],
+          [
+            'Dividenden ausgeben, Kursgewinne behalten',
+            'Erträge sind zum Verbrauchen da',
+            'eine Ausschüttung senkt den Kurs um denselben Betrag – es ist ein Teilverkauf mit anderem Namen',
+          ],
+          [
+            'Eine Verlustposition getrennt „nachsitzen" lassen',
+            'die läuft auf einem eigenen Konto',
+            'sie ist Teil des Depots und bindet Kapital, das anderswo arbeiten könnte',
+          ],
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Und wo dieselbe Neigung nützt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die mentale Buchführung ist kein reiner Fehler – sie ist auch der Grund, warum getrennte Konten funktionieren. Wer den Notgroschen auf ein eigenes Konto legt, gibt ihn seltener aus, obwohl er rechnerisch dasselbe Geld ist.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die Faustregel, die beides auseinanderhält',
+        items: [
+          '**Töpfe für die Verwendung nutzen** – Notgroschen, Jahreskosten, Ziele. Da hilft die Trennung, weil sie eine Entscheidung im Voraus festhält.',
+          '**Töpfe für die Bewertung vermeiden** – „Gewinn" gegen „Einsatz", „mein Geld" gegen „das der Bank". Da schadet die Trennung, weil sie dasselbe Risiko verschieden aussehen lässt.',
+          '**Der Prüfsatz:** Würde ich mit diesem Betrag genau dasselbe tun, wenn er aus einer anderen Quelle käme? Wenn nein, ist es Buchführung im Kopf und keine Begründung.',
         ],
       },
     ],

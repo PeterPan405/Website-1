@@ -368,7 +368,7 @@ export const makroanalyseLektionen: Lektion[] = [
     kernaussage:
       'Umfragen messen Erwartungen, nicht Zustände. Genau deshalb kommen sie früh, und genau deshalb liegen sie an Wendepunkten häufig daneben.',
     belegart: 'beobachtung',
-    dauer: 7,
+    dauer: 11,
     stichworte: ['Einkaufsmanagerindex', 'PMI', 'ifo', 'Frühindikator'],
     setztVoraus: ['konjunkturzyklus'],
     inhalt: [
@@ -416,6 +416,48 @@ export const makroanalyseLektionen: Lektion[] = [
           '**Der ZEW-Index misst Analysten.** Er sagt etwas darüber, was Finanzleute erwarten – nicht darüber, was Unternehmen tun. Als Konjunkturindikator ist er deshalb der schwächste der vier.',
           '**Falsche Alarme.** Frühindikatoren haben mehr Abschwünge angezeigt, als eingetreten sind. Wer nach ihnen handelt, steigt regelmäßig aus, ohne dass etwas passiert.',
         ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Umfrage oder Verhalten – zwei verschiedene Arten von Stimmung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Stimmungsmaße zerfallen in zwei Gruppen, und der Unterschied entscheidet über ihre Belastbarkeit: Die einen fragen, was jemand denkt, die anderen messen, was er getan hat. Reden ist billig; eine Position kostet Geld.',
+      },
+      {
+        type: 'table',
+        caption: 'Die zwei Gruppen',
+        head: ['Art', 'Beispiele', 'Stärke', 'Schwäche'],
+        rows: [
+          [
+            'Befragung',
+            'Anlegerumfragen, Einkaufsmanagerindizes, Verbrauchervertrauen',
+            'liegt früh vor und deckt Bereiche ab, für die es keine Marktdaten gibt',
+            'Angaben ohne Konsequenz. Wer pessimistisch antwortet, kann trotzdem voll investiert sein',
+          ],
+          [
+            'Verhalten',
+            'Positionsdaten, Mittelzuflüsse, Options-Verhältnisse, Kreditvolumen im Wertpapierhandel',
+            'kostet Geld und ist damit ernst gemeint',
+            'kommt später, ist teils nur wöchentlich verfügbar und schwer von Absicherungsgeschäften zu trennen',
+          ],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Warum „extreme Stimmung" kein Einstiegssignal ist',
+        items: [
+          '**Extreme können extremer werden.** Genau das ist ihre Natur: In einer Panik ist die Stimmung mies, und morgen ist sie mieser. Wer auf das Extrem hin kauft, kauft in der Regel zu früh.',
+          '**Die Schwelle wird rückblickend gesetzt.** „Extrem" heißt fast immer: extrem im Vergleich zu den letzten Jahren. Verschiebt sich das Umfeld dauerhaft, verschiebt sich die Schwelle mit – und zwar erst, nachdem man falsch lag.',
+          '**Die Aussagekraft ist asymmetrisch.** Pessimismus-Extreme fallen mit Tiefpunkten deutlich häufiger zusammen als Optimismus-Extreme mit Hochpunkten. Ein Markt kann sehr lange sehr optimistisch bleiben.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Der brauchbare Umgang ist deshalb nicht der als Signal, sondern als **Kontext**: Eine Nachricht wirkt anders auf einen bereits ängstlichen Markt als auf einen sorglosen. Stimmungsmaße erklären, warum dieselbe Meldung an zwei Tagen zwei verschiedene Kursreaktionen auslöst.',
       },
     ],
   },
@@ -495,7 +537,7 @@ export const makroanalyseLektionen: Lektion[] = [
     kernaussage:
       'Die Kurve zeigt, was der Markt über Zinsen und Preise der nächsten Jahre denkt – lesbarer als jede Umfrage, weil dahinter Geld steht.',
     belegart: 'definition',
-    dauer: 8,
+    dauer: 12,
     stichworte: ['Zinskurve', 'Laufzeit', 'Rendite'],
     setztVoraus: ['leitzins'],
     lernthemen: ['staatsanleihe'],
@@ -547,6 +589,48 @@ export const makroanalyseLektionen: Lektion[] = [
         items: [
           'Die Renditen zehnjähriger Staatsanleihen mehrerer Länder stehen unter den Märkten und lassen sich im Zeitverlauf vergleichen.',
           'Der Abstand zwischen zwei Ländern derselben Laufzeit ist dabei ein eigenes Maß: Er zeigt, welches Ausfallrisiko der Markt dem einen gegenüber dem anderen zurechnet.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum eine Inversion überhaupt etwas bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der lange Zins ist im Kern ein Mittelwert der erwarteten kurzen Zinsen über die Laufzeit, zuzüglich eines Aufschlags für das längere Warten. Liegt er **unter** dem kurzen, sagt der Markt damit etwas Eindeutiges: Er erwartet, dass die Notenbank den Zins senken muss – und Notenbanken senken, wenn die Wirtschaft schwächelt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Inversion ist deshalb keine Ursache und kein Orakel, sondern eine **Zusammenfassung der Erwartung vieler Marktteilnehmer**, ausgedrückt in Geld. Das ist ihre Stärke gegenüber jeder Umfrage – und zugleich der Grund, warum sie irren kann wie jede Erwartung.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Vier Gründe zur Vorsicht',
+        items: [
+          '**Die Vorlaufzeit schwankt stark.** Zwischen Inversion und Rezession lagen historisch Zeiträume von unter einem Jahr bis über zwei. Für eine Anlageentscheidung ist das ein unbrauchbar breites Fenster.',
+          '**Es gab Fehlalarme**, und es gab Rezessionen ohne vorangehende Inversion. Die Trefferquote ist beeindruckend und keineswegs eins.',
+          '**Die Stichprobe ist klein.** Rezessionen sind seltene Ereignisse; über Jahrzehnte kommen einige wenige Beobachtungen zusammen. Aus so wenigen Fällen lässt sich keine belastbare Wahrscheinlichkeit ableiten.',
+          '**Anleihekäufe der Notenbanken verzerren den langen Zins.** Wer große Bestände hält, drückt die Laufzeitprämie – und damit genau den Teil, aus dem das Signal besteht.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Welche zwei Laufzeiten man vergleicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Es gibt keine amtliche Definition, und die gebräuchlichen Paare liefern nicht dasselbe Bild. Wer eine Aussage über die Kurve liest, sollte wissen, welches Paar gemeint ist.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Zehn Jahre gegen zwei Jahre** ist die bekannteste Fassung. Sie reagiert früh, weil das kurze Ende die Zinserwartung der nächsten Sitzungen enthält.',
+          '**Zehn Jahre gegen drei Monate** ist die in der Forschung häufiger geprüfte. Sie invertiert typischerweise später und gilt als das robustere Maß.',
+          '**Beide zeigen dasselbe Grundbild, aber zu verschiedenen Zeitpunkten.** In der Zwischenphase kann eines invertiert sein und das andere nicht – daraus entstehen die widersprüchlichen Schlagzeilen.',
+          '**Und bei allen gilt: Die Inversion endet meist, bevor die Rezession beginnt.** Wer auf die Rückkehr zur normalen Form als Entwarnung wartet, wartet auf das falsche Zeichen.',
         ],
       },
     ],
@@ -773,7 +857,7 @@ export const makroanalyseLektionen: Lektion[] = [
     kernaussage:
       'Rohstoffpreise reagieren früh, weil sie am Anfang jeder Produktionskette stehen – und sie täuschen häufig, weil auch das Angebot sie bewegt.',
     belegart: 'beobachtung',
-    dauer: 7,
+    dauer: 11,
     stichworte: ['Rohstoffe', 'Kupfer', 'Öl', 'Frühindikator'],
     setztVoraus: ['stimmungsindikatoren'],
     lernthemen: ['rohstoffe'],
@@ -822,6 +906,60 @@ export const makroanalyseLektionen: Lektion[] = [
           'Ein großer Teil der weltweiten Kupfernachfrage entfällt auf China. Der Preis misst damit vor allem die chinesische Bautätigkeit und nicht die Weltkonjunktur.',
           'Frachtratenindizes gelten als besonders anfällig: Sie schwanken stark mit dem Schiffsangebot, das über Jahre im Voraus bestellt wird.',
         ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Kupfer der zuverlässigste dieser Indikatoren ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Grund ist nicht Magie, sondern Verwendungsbreite: Kupfer steckt in Gebäuden, Fahrzeugen, Leitungen, Motoren und Elektronik. Es hat kaum eine Anwendung, die von einer einzelnen Branche abhängt – wer es kauft, baut etwas. Deshalb bildet seine Nachfrage die Investitionstätigkeit breiter ab als fast jede andere Größe, und zwar bevor sie in einer Statistik erscheint.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Die drei Einschränkungen, die dazugehören',
+        items: [
+          '**Die Angebotsseite stört das Signal.** Ein Streik, ein Grubenunglück oder ein Exportverbot bewegt den Preis, ohne dass sich an der Nachfrage etwas geändert hätte. Von außen sind beide Ursachen nicht zu unterscheiden.',
+          '**Ein Land dominiert die Nachfrage.** Ein erheblicher Teil des weltweiten Verbrauchs entfällt auf China. Der Kupferpreis ist damit näher an der dortigen Bautätigkeit als an der Weltwirtschaft.',
+          '**Lagerbestände verschieben die Zeitachse.** Wer vorsorglich einkauft, treibt den Preis, ohne zu verbauen – und leert später sein Lager, ohne zu kaufen. Beides erzeugt Bewegungen ohne wirtschaftlichen Inhalt.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Das Verhältnis zweier Metalle als Filter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein einzelner Preis vermischt Nachfrage, Angebot und Geldwert. Ein **Verhältnis** zweier Rohstoffe kürzt einen Teil davon heraus – vor allem den Geldwert, der auf beide gleich wirkt. Übrig bleibt eher das, wonach man sucht.',
+      },
+      {
+        type: 'table',
+        caption: 'Was ein Verhältnis herausrechnet',
+        head: ['Verhältnis', 'Was übrig bleibt', 'Wogegen es blind ist'],
+        rows: [
+          [
+            'Kupfer zu Gold',
+            'Industrienachfrage gegen Krisennachfrage – ein gebräuchlicher Fühler für die Risikobereitschaft',
+            'Angebotsstörungen bei einem der beiden Metalle',
+          ],
+          [
+            'Ölpreis zu Erdgaspreis',
+            'die Verschiebung zwischen zwei Energieträgern',
+            'regionale Unterschiede – Gas ist ein weit weniger globaler Markt als Öl',
+          ],
+          [
+            'Rohstoffindex zu Verbraucherpreisen',
+            'ob die Vorstufe der Teuerung anzieht oder nachlässt',
+            'die Verzögerung: Rohstoffe erreichen den Ladenpreis erst Monate später',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Alle drei sind Fühler und keine Signale. Ihr Wert liegt darin, dass sie sich **bewegen, bevor** eine amtliche Statistik erscheint – und ihr Preis darin, dass sie regelmäßig etwas anzeigen, das nie eintritt.',
       },
     ],
   },
