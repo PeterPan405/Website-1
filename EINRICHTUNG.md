@@ -817,6 +817,32 @@ lang niemand etwas ändert. Es gibt dann keine Fehlermeldung – die Läufe hör
 einfach auf. Wer die Website längere Zeit unbeaufsichtigt lässt, sollte das
 wissen: Ein einzelner Commit genügt, um die Zeitpläne wieder zu aktivieren.
 
+## Werkzeuge daneben – nicht Teil der Website
+
+`werkzeuge/screenshot-to-code.sh` holt und startet
+[Screenshot to Code](https://github.com/abi/screenshot-to-code): Ein Bild
+hinein – Screenshot, Figma-Entwurf, Bildschirmaufnahme –, Code für diese
+Oberfläche heraus (HTML mit Tailwind, React, Vue und weitere).
+
+    ANTHROPIC_API_KEY=… werkzeuge/screenshot-to-code.sh
+
+Danach `http://localhost:5173`. Gebraucht werden Docker und mindestens ein
+Modellschlüssel; das Skript sagt es, wenn etwas fehlt, **bevor** es anfängt.
+
+Drei Dinge, die dazugehören:
+
+- **Es liegt außerhalb dieses Repositorys**, unter `~/.werkzeuge/`. Hier wird
+  nichts einkopiert – ein Update ist ein `git pull` dort statt eines Commits
+  hier. Der Schlüssel landet in `backend/.env` des geholten Ordners, mit
+  Rechten `600`, und kann so gar nicht erst mitcommittet werden.
+- **Es läuft von Hand und in keinem Zeitplan.** Jeder Durchlauf schickt ein
+  Bild an ein Modell, und Bilder sind teuer in Tokens – das ist kein
+  Cent-Betrag wie beim Nachrichtenlauf.
+- **Es holt keine Daten und umgeht keine Sperren.** Das war die Annahme beim
+  Einbauen; nachgelesen in der Anleitung selbst, kommen die Wörter „scrape",
+  „crawl", „bypass", „block", „bot", „captcha" und „anti" dort kein einziges
+  Mal vor. Für fehlende Kurse oder Quartalszahlen ist es das falsche Werkzeug.
+
 ## Was hier bewusst nicht steht
 
 Klickpfade in hPanel und im Twelve-Data-Dashboard. Beide Oberflächen ändern sich,
