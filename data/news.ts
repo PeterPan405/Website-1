@@ -101,6 +101,308 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'sp500-kursziel-8000-drei-banken-eine-linie',
+    title: 'S&P 500 bei 8.000 Punkten: Drei Banken nennen dieselbe Marke',
+    teaser:
+      'JPMorgan, Goldman Sachs und Star-Stratege Tom Lee sehen den S&P 500 laut Ticker unabhängig voneinander bei 8.000 Punkten – getrieben von KI-Investitionen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-23T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['S&P 500', 'Kursziel', 'Analysten', 'Künstliche Intelligenz'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['sp500', 'nvidia', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 23.8.2026, 02:14 Uhr: „JPMorgan sieht S&P-500-Ziel bei 8.000 Punkten: Wie KI-Investitionen US-Aktien antreiben könnten“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 22.8.2026: „Tom Lee sieht S&P 500 bei 8.000 Punkten - JPMorgan und Goldman stimmen zu“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Drei prominente Stimmen an der Wall Street landen unabhängig voneinander auf derselben Zahl: JPMorgan, Goldman Sachs und Fundstrat-Stratege Tom Lee sehen den S&P 500 laut Nachrichtenticker bei 8.000 Punkten – als Begründung nennen die Meldungen KI-Investitionen, die US-Aktien antreiben. Zum Wochenschluss zeigte sich die Rally bereits in anderen US-Indizes: Der Dow Jones legte am Freitag laut Kursleiste um 0,95 Prozent auf 53.294 Punkte zu, der Nasdaq 100 gewann 0,32 Prozent auf 29.311 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kursziel ist eine Rechnung, keine Garantie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kursziel entsteht, indem eine Bank einen erwarteten Unternehmensgewinn mit einem angenommenen Bewertungsmultiplikator (KGV) multipliziert. Beide Größen sind Annahmen: Ändert sich die Gewinnerwartung oder die Risikobereitschaft der Anleger, ändert sich auch das Ziel – oft mehrfach im Jahr. Ein Kursziel beschreibt also, wie eine Bank die Zukunft **heute** einschätzt, nicht, was tatsächlich eintritt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn alle auf dieselbe Zahl schauen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Drei unabhängige Häuser, die auf dieselbe Marke kommen, könnten schlicht denselben sichtbaren Trend – die hohen Investitionen in Rechenzentren und KI-Chips – ähnlich bewerten. Es kann aber auch **Herdenverhalten** sein: Wer vom Konsens abweicht, riskiert im Nachhinein falschzuliegen, während ein Treffer in der Mitte des Feldes selten auffällt. Aus der Meldung selbst geht nicht hervor, wie unabhängig die drei Einschätzungen tatsächlich entstanden sind.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein gemeinsames Kursziel dreier Banken ist eine Beobachtung über die Erwartungshaltung an der Wall Street, keine Vorhersage mit Wahrscheinlichkeit. Wer investiert ist, gewinnt daraus vor allem eine Frage: Ist die eigene Positionierung schon auf ein Szenario ausgerichtet, das der Markt längst für wahrscheinlich hält – und was würde ein Verfehlen dieser Marke für das eigene Depot bedeuten?',
+      },
+    ],
+  },
+  {
+    slug: 'russell-2000-rekordhoch-small-caps-vor-magnificent-7',
+    title: 'Russell 2000 auf Rekordhoch: Kleine Aktien überholen die Riesen',
+    teaser:
+      'Der Russell 2000 markiert laut Ticker ein Rekordhoch und lässt S&P 500 sowie die Magnificent Seven mit Nvidia und Apple hinter sich – ein seltenes Bild.',
+    category: 'Märkte',
+    publishedAt: '2026-08-23T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Russell 2000', 'Small Caps', 'Diversifikation', 'USA'],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: ['russell-2000', 'sp500', 'nvidia', 'apple'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 23.8.2026, 01:41 Uhr: „Russell 2000 auf Rekordhoch: Small Caps lassen S&P 500 und Magnificent 7 mit NVIDIA, Apple & Co. hinter sich“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Russell 2000, der rund 2.000 kleinere US-Unternehmen bündelt, erreicht laut Nachrichtenticker ein Rekordhoch – und läuft damit sowohl dem S&P 500 als auch den sogenannten Magnificent Seven um Nvidia und Apple davon. Einen Grund für diese Rotation nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Klein ist nicht dasselbe wie groß, nur kleiner',
+      },
+      {
+        type: 'paragraph',
+        text: 'Small-Cap-Unternehmen im Russell 2000 erzielen ihren Umsatz überwiegend in den USA selbst, während viele Russell-2000-Werte gleichzeitig ohne den globalen Vertrieb der Mega-Caps auskommen müssen. Das macht den Index empfindlicher für die heimische US-Konjunktur und Zinserwartungen – und weniger abhängig von einzelnen Schwergewichten, wie es bei den Magnificent Seven im S&P 500 der Fall ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gegenläufig statt gleichlaufend',
+      },
+      {
+        type: 'paragraph',
+        text: 'Über lange Strecken bewegen sich kleine und große US-Aktien recht ähnlich – **Korrelation** ist hier die Regel, nicht die Ausnahme. Phasen wie diese, in denen sich die Wege trennen, sind deshalb selten und fallen auf. Häufig wird eine solche Rotation mit sinkenden Zinserwartungen erklärt, weil kleinere Unternehmen öfter variabel verschuldet sind – ob das hier zutrifft, verrät die Meldung allerdings nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rekordhoch bei kleinen Aktien neben einer Verschnaufpause bei den großen zeigt, warum ein Depot, das nur aus den bekanntesten Namen besteht, eben nicht automatisch die ganze US-Börse abbildet. Breiter gestreute Indizes federn genau solche Phasen ab, ohne dass Anleger die Rotation selbst timen müssten.',
+      },
+    ],
+  },
+  {
+    slug: 'geldmarkt-etf-oder-anleihen-etf-der-unterschied',
+    title: 'Geldmarkt-ETF oder Anleihen-ETF: Worauf der Vergleich ankommt',
+    teaser:
+      'Ein Nachrichtenticker fragt, wann Geldmarkt-ETFs die bessere Wahl sind als Anleihen-ETFs. Die Antwort hängt an einem einzigen Begriff: der Duration.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-23T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['ETF', 'Geldmarkt', 'Anleihen', 'Zinsen'],
+    relatedTopics: ['etf', 'staatsanleihe'],
+    relatedSymbols: ['etf-geldmarkt'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 23.8.2026, 03:41 Uhr: „Wann Geldmarkt-ETFs die bessere Wahl sind als Anleihen-ETFs“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Nachrichtenticker wirft heute früh eine Frage auf, die sich viele Sparer stellen, sobald sie Zinsprodukte vergleichen: Wann lohnt sich ein Geldmarkt-ETF mehr als ein Anleihen-ETF? Die Meldung selbst liefert dazu keine Details – Grund genug, den Unterschied einmal grundsätzlich zu klären.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der entscheidende Unterschied heißt Duration',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Geldmarkt-ETF hält Papiere mit sehr kurzer Restlaufzeit, oft nur wenige Wochen oder Monate. Steigen oder fallen die Zinsen, wirkt sich das kaum auf den Kurs aus – die **Duration**, also die Zinssensitivität, ist minimal. Ein Anleihen-ETF mit längeren Laufzeiten reagiert dagegen deutlich stärker: Fallende Zinsen lassen seinen Kurs steigen, steigende Zinsen lassen ihn fallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei verschiedene Wetten auf die Zukunft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer erwartet, dass die Zinsen fallen, kann mit einem länger laufenden Anleihen-ETF von den steigenden Kursen profitieren – trägt dafür aber das Risiko, bei steigenden Zinsen Kursverluste zu erleiden. Wer dagegen kurzfristig Geld parkt oder Schwankungen möglichst vermeiden will, fährt mit einem Geldmarkt-ETF ruhiger: Der Ertrag folgt eng dem aktuellen Leitzins, dafür bleibt die Chance auf zusätzliche Kursgewinne aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Frage „Geldmarkt- oder Anleihen-ETF“ lässt sich nicht pauschal beantworten, sondern nur mit Blick auf den eigenen Anlagehorizont und die eigene Zinserwartung. Wer beides nicht genau kennt, sollte sich vor der Wahl klarmachen, wie viel Kursschwankung er für eine mögliche Zusatzrendite in Kauf nehmen will.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-mercedes-benz-strategien-gegen-die-krise',
+    title: 'VW und Mercedes-Benz: Was eine Rettungsstrategie beweisen muss',
+    teaser:
+      'Ein Ticker verspricht Strategien, die deutsche Autoaktien aus der Krise holen sollen. Bevor man ihnen traut, lohnt der Blick auf vier nachprüfbare Kriterien.',
+    category: 'Märkte',
+    publishedAt: '2026-08-23T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'Mercedes-Benz', 'Automobilindustrie', 'Restrukturierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen', 'mercedes-benz'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 23.8.2026, 01:32 Uhr: „VW und Mercedes-Benz in der Krise: Diese Strategien sollen deutsche Autoaktien retten“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Nachrichtenticker kündigt heute früh Strategien an, mit denen Volkswagen und Mercedes-Benz aus ihrer Krise herauskommen sollen. Welche Maßnahmen genau gemeint sind, geht aus der Überschrift nicht hervor – ein guter Anlass, um zu fragen, woran sich eine Rettungsstrategie überhaupt festmachen lässt, bevor sie ihre Wirkung zeigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ankündigung ist nicht gleich Umsetzung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konzerne in einer schwierigen Lage sprechen fast immer von Effizienzprogrammen, neuen Plattformen oder Kostensenkungen. Der Unterschied zwischen einem Programm, das wirkt, und einem, das nur beruhigen soll, zeigt sich selten in der Ankündigung selbst, sondern in vier Punkten: einem konkreten Zeitplan, einer bezifferten Zielgröße, einem klaren Verantwortlichen und – am wichtigsten – einer nachprüfbaren Zwischenmeldung, bevor das Endziel erreicht ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kostensenkung ist leichter zu messen als Wachstum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Ankündigung, Kosten um eine bestimmte Summe zu senken, lässt sich im nächsten Quartalsbericht nachrechnen. Eine Ankündigung, mit einem neuen Modell oder einer neuen Technologie wieder Marktanteile zu gewinnen, braucht dagegen deutlich länger, bis sich Erfolg oder Misserfolg in Zahlen zeigt. Wer eine Rettungsstrategie beurteilt, sollte deshalb unterscheiden, welcher Teil davon in Monaten und welcher erst in Jahren überprüfbar wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine angekündigte Strategie ist ein Versprechen, kein Ergebnis. Wer die Aktien zweier Konzerne in einer ähnlichen Lage vergleichen will, kommt am nächsten Quartalsbericht nicht vorbei – dort zeigt sich, ob aus der Ankündigung eine nachprüfbare Zahl geworden ist.',
+      },
+    ],
+  },
+  {
+    slug: 'rohstoffwoche-34-gold-oel-und-ein-raetsel-bei-der-prozentzahl',
+    title: 'Rohstoffwoche 34: Gold, Öl – und ein Rätsel bei der Prozentzahl',
+    teaser:
+      'Zwei Portale zeigen für Gold fast denselben Kurs von rund 4.608 US-Dollar, aber völlig unterschiedliche Tagesveränderungen. Woran das liegen kann.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-23T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Öl', 'Silber', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'brent', 'silber'],
+    sources: [
+      {
+        label: 'finanzen.net, Kursleiste vom 23.8.2026, 02:05 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Kursleiste und Rohstoffpreise vom 23.8.2026, 02:06 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 23.8.2026, 03:46 Uhr: „Goldpreis, Ölpreis, Silber, Platin & Co. - Das waren die Tops und Flops der Rohstoffe in KW 34“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ticker fasst am Sonntagmorgen die Rohstoffwoche 34 zusammen: Gold, Öl, Silber und Platin hatten laut finanzen.net ihre eigenen Tops und Flops. Die begleitenden Kursleisten zeigen für Gold rund 4.608 US-Dollar, für Brent-Öl rund 93 bis 94 US-Dollar und für Silber knapp 69 US-Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Derselbe Kurs, zwei verschiedene Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig ist ein Detail beim Gold: finanzen.net zeigt zum Goldpreis von 4.608 US-Dollar eine Tagesveränderung von plus 2,0 Prozent, wallstreet-online zeigt für praktisch denselben Kurs von 4.608,19 US-Dollar eine Veränderung von 0,0 Prozent. Woher der Unterschied stammt, sagt keine der beiden Quellen – vermutlich vergleichen die Portale mit unterschiedlichen Bezugspunkten, etwa dem gestrigen Schluss gegenüber dem Wochenbeginn. Sicher ist nur der Kurs selbst, nicht die Prozentzahl daneben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Prozentzahl ohne Bezugspunkt sagt wenig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Jede Tagesveränderung braucht einen Startpunkt: den Schlusskurs des Vortags, den Kurs vor einer Woche oder den Kurs zu einer bestimmten Uhrzeit. Am Wochenende, wenn die Börsen geschlossen sind, zeigen manche Widgets zusätzlich veraltete Zeitstempel an, ohne das deutlich zu machen. Das erklärt, warum zwei an sich seriöse Quellen für denselben Vermögenswert zur gleichen Zeit unterschiedliche Prozentzahlen anzeigen können, ohne dass eine von beiden falsch rechnet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Prozentzahl zu einem Kurs liest, sollte kurz prüfen, worauf sie sich bezieht, bevor er sie als Tagesbewegung interpretiert. Der nackte Kurs ist meist verlässlicher als die hübsch gerundete Veränderung daneben.',
+      },
+    ],
+  },
+  {
+    slug: 'ifo-index-und-bip-das-steht-in-der-neuen-woche-an',
+    title: 'ifo-Index und deutsches BIP: Das steht in der neuen Woche an',
+    teaser:
+      'Der Wirtschaftskalender nennt für den 25.8. das deutsche BIP und den ifo-Geschäftsklimaindex – zwei Zahlen, die Unterschiedliches über die Konjunktur verraten.',
+    category: 'Märkte',
+    publishedAt: '2026-08-23T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['ifo-Index', 'BIP', 'Konjunktur', 'Wirtschaftskalender'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender, abgerufen am 23.8.2026, 02:06 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für Dienstag, den 25.8., gleich mehrere deutsche Zahlen ohne genannte Uhrzeit: das Bruttoinlandsprodukt für das zweite Quartal, saisonbereinigt mit einer Prognose von 0,2 Prozent (Vorwert ebenfalls 0,2 Prozent), dieselbe Zahl unbereinigt aufs Jahr mit einer Prognose von 0,9 Prozent, sowie drei Teilwerte des ifo-Index: die aktuelle Geschäftslage (Prognose 87, Vorwert 86,5), das Geschäftsklima insgesamt (Prognose 87,2, Vorwert 86,6) und die Geschäftsaussichten (Prognose 87,5, Vorwert 86,7).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das BIP misst die Vergangenheit, der ifo die Stimmung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Bruttoinlandsprodukt fasst zusammen, was in den vergangenen drei Monaten tatsächlich produziert und verkauft wurde – eine harte, aber alte Zahl. Der ifo-Index dagegen basiert auf einer monatlichen Umfrage unter Unternehmen zu ihrer aktuellen Lage und ihren Erwartungen. Er ist aktueller, aber eben eine Stimmungsmessung und keine gemessene Wirtschaftsleistung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wichtiger als der Wert ist die Abweichung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Reaktion an der Börse zählt in der Regel weniger, ob eine Zahl gut oder schlecht aussieht, sondern ob sie über oder unter der genannten Prognose liegt. Die Prognosen selbst – 0,2 Prozent beim BIP, 87,2 Punkte beim Geschäftsklima – sind bereits Erwartungen von Volkswirten, die sich in den aktuellen Kursen von DAX und Euro Stoxx 50 zu einem gewissen Grad schon widerspiegeln können.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die neue Woche verfolgt, gewinnt mehr Einordnung, wenn er BIP und ifo-Index nicht als dieselbe Aussage über die Konjunktur liest, sondern als zwei unterschiedliche Blickwinkel – einen auf das, was war, und einen auf das, was Unternehmen als Nächstes erwarten.',
+      },
+    ],
+  },
+  {
     slug: 'apple-steuerbericht-deutschland-irland',
     title: 'Apple zeigt zum ersten Mal, was der Konzern in Deutschland zahlt',
     metaTitle: 'Apples Steuerbericht: Deutschland gegen Irland',
