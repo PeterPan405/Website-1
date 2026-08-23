@@ -246,7 +246,7 @@ export const waehrungenWechselkurse: LearnTopic = {
         'Wie eine Währungsabsicherung funktioniert, warum sie die Zinsdifferenz kostet und wo im Depot verdeckte Währungspositionen stecken.',
       title: 'Absichern – oder bewusst nicht',
       lead: 'Was eine Absicherung kostet, wann sie sich lohnt und welche Währungspositionen im Depot stecken, ohne dass sie irgendwo stehen.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -330,6 +330,61 @@ export const waehrungenWechselkurse: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was einen Wechselkurs kurzfristig bewegt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Langfristig zieht die Kaufkraft; kurzfristig, also über Monate und Jahre, dominiert etwas anderes – und das ist der Zeitraum, in dem die meisten ihre Depots betrachten.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Die Zinsdifferenz und ihre Erwartung.** Nicht der Zins selbst bewegt, sondern seine Änderung gegenüber dem, was eingepreist war. Kapital fließt dorthin, wo es künftig mehr Zins erwartet.',
+            '**Sichere Häfen in Stressphasen.** Dollar, Schweizer Franken und Yen werten in Krisen regelmäßig auf – unabhängig davon, wo die Krise ihren Ursprung hat. Für einen Anleger im Euroraum ist das ein Dämpfer im Depot, nicht ein zusätzlicher Schaden.',
+            '**Handelsbilanz und Kapitalströme.** Ein dauerhaftes Defizit muss finanziert werden; solange das Kapital gern kommt, stützt es die Währung, und wenn es ausbleibt, kippt sie schnell.',
+            '**Eingriffe der Notenbank.** Sie können einen Kurs über Monate halten und tun es regelmäßig. Auf Dauer scheitern sie, wenn sie gegen die wirtschaftliche Lage arbeiten.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum Währungsrisiko im Aktiendepot meist unbedeutend ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Es ist die häufigste Sorge und der geringste Effekt. Der Grund liegt in der Zeit: Währungsschwankungen sind über lange Strecken **mittelwertsuchend** – sie schwingen um einen Wert, statt sich aufzuaddieren. Aktienrenditen tun das Gegenteil, sie summieren sich.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was daraus folgt',
+          items: [
+            '**Über zwanzig Jahre verschwindet der Währungsbeitrag im Aktienergebnis** – nicht, weil er klein wäre, sondern weil er nicht wächst, während das Ergebnis wächst.',
+            '**Bei Anleihen ist es umgekehrt.** Deren Ertrag ist klein, und die Währungsschwankung ist größer als er. Deshalb ist die übliche Empfehlung, Anleihen in der eigenen Währung zu halten oder abzusichern – und Aktien nicht.',
+            '**Die Absicherung kostet die Zinsdifferenz, jedes Jahr.** Bei einer Währung mit deutlich niedrigerem Zins ist das ein spürbarer, dauerhafter Abschlag für die Beseitigung eines Risikos, das sich über die Zeit ohnehin ausmittelt.',
+            '**Für Geld, das in wenigen Jahren gebraucht wird, gilt das alles nicht.** Dort ist die Schwankung nicht ausgemittelt, sondern genau das Risiko.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Fehler beim Blick auf den eigenen Kurs',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wer einen amerikanischen Fonds in Euro im Depot sieht, sieht zwei Effekte in einer Zahl: die Entwicklung der Aktien und die des Dollars. Ein Minus kann bedeuten, dass die Kurse gefallen sind – oder dass sie gestiegen sind und der Dollar stärker nachgegeben hat. Beides sieht identisch aus und verlangt verschiedene Schlüsse.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Die Fondswährung sagt darüber gar nichts.** Ob ein Weltfonds in Euro oder Dollar notiert, ändert am Währungsrisiko keinen Cent – entscheidend ist, worin die enthaltenen Unternehmen wirtschaften.',
+            '**„EUR-hedged" im Namen ist der einzige Hinweis, der zählt.** Nur er bedeutet, dass tatsächlich abgesichert wird.',
+            '**Wer den Anteil wissen will, sieht in die Währungsaufteilung des Fonds**, nicht auf sein Kürzel.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -339,6 +394,10 @@ export const waehrungenWechselkurse: LearnTopic = {
             'Bei Anleihen ist Absicherung üblich, bei Aktien meist verzichtbar – es kommt auf das Verhältnis der Schwankungen an.',
             'In der Entnahmephase gewinnt Planbarkeit an Gewicht und damit die Absicherung.',
             'Die echte Währungsaufteilung folgt der Umsatzwährung der Unternehmen, nicht der Handelswährung.',
+            'Kurzfristig bewegt die Zinserwartung, langfristig die Kaufkraft.',
+            'Währungen schwingen um einen Wert, Aktienrenditen summieren sich – deshalb verschwindet der Effekt über die Zeit.',
+            'Bei Anleihen ist die Schwankung größer als der Ertrag, deshalb dort absichern und bei Aktien nicht.',
+            'Die Fondswährung sagt nichts über das Währungsrisiko; nur „hedged" tut es.',
           ],
         },
       ],

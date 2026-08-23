@@ -197,7 +197,7 @@ export const blockchain: LearnTopic = {
         'Wie Proof of Work und Proof of Stake funktionieren, was Finalität bedeutet, wozu Smart Contracts taugen und woran Skalierung scheitert.',
       title: 'Konsens, Smart Contracts, Skalierung',
       lead: 'Wie sich Fremde einigen, was programmierte Verträge leisten – und warum Geschwindigkeit immer etwas kostet.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -291,6 +291,70 @@ export const blockchain: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wofür die Technik taugt – und wofür eine Datenbank reicht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Blockchain löst genau ein Problem: Sie erlaubt mehreren Parteien, die einander nicht vertrauen und keine gemeinsame Aufsicht anerkennen, sich auf eine Reihenfolge von Ereignissen zu einigen. Dafür bezahlt sie mit Geschwindigkeit, Kosten und Energie. Wo dieses Problem nicht besteht, ist sie die teurere Lösung für etwas, das eine Datenbank besser kann.',
+        },
+        {
+          type: 'table',
+          caption: 'Der Prüfstein: Wer soll wem nicht vertrauen müssen?',
+          head: ['Frage', 'Wenn ja', 'Wenn nein'],
+          rows: [
+            [
+              'Gibt es mehrere Parteien mit gegensätzlichen Interessen?',
+              'Blockchain kann passen',
+              'eine Datenbank reicht',
+            ],
+            [
+              'Gibt es eine Stelle, der alle ohnehin vertrauen?',
+              'diese Stelle führt die Datenbank – fertig',
+              'Blockchain kann passen',
+            ],
+            [
+              'Muss die Historie unveränderlich sein?',
+              'spricht dafür',
+              'spricht dagegen: Unveränderlichkeit ist ein Nachteil, sobald etwas korrigiert werden muss',
+            ],
+            [
+              'Geht es um Dinge außerhalb der Kette?',
+              'Vorsicht – die Kette kann nur prüfen, was in ihr steht',
+              'unproblematisch',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Das Orakelproblem',
+          items: [
+            'Eine Blockchain kann garantieren, dass ein Eintrag nicht verändert wurde. Sie kann **nicht** garantieren, dass er stimmt.',
+            'Wer einen Diamanten, ein Bio-Zertifikat oder einen Grundbucheintrag auf eine Kette schreibt, hat einen fälschungssicheren Eintrag über eine Angabe, die jemand von außen eingetragen hat – und genau dort sitzt der Betrug, den man verhindern wollte.',
+            'Deshalb funktionieren die Anwendungen, bei denen das Gut selbst digital ist und in der Kette entsteht, und deshalb scheitern die meisten Lieferketten-Projekte.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was „dezentral" praktisch bedeutet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Dezentral heißt nicht gleichmäßig verteilt. Es heißt, dass es keine zentrale Stelle gibt, die abschalten kann – während sich Rechenleistung, Software-Entwicklung und Zugang durchaus konzentrieren, und zwar regelmäßig stark.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Die Rechenleistung liegt bei wenigen Zusammenschlüssen.** Wenige davon zusammen erreichen regelmäßig einen erheblichen Anteil der gesamten Leistung.',
+            '**Die Software schreiben wenige Personen.** Wer die Regeln ändert, entscheidet über die Kette – auch ohne Mehrheitsbesitz.',
+            '**Der Zugang läuft über wenige große Handelsplätze.** Für die meisten Nutzer ist das die eigentliche zentrale Stelle: Sie hält die Schlüssel und kann Auszahlungen anhalten.',
+            '**Was tatsächlich dezentral ist, ist die Regelprüfung.** Jeder kann nachrechnen, ob ein Block gültig ist – und das ist der Teil, der die Sache trägt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -300,6 +364,10 @@ export const blockchain: LearnTopic = {
             'Finalität ist bei Proof of Work eine Wahrscheinlichkeit, bei Proof of Stake erreichbar.',
             'Das Oracle-Problem holt die zentrale Stelle zurück, sobald Daten von außen nötig sind.',
             'Geschwindigkeit geht immer zulasten der Dezentralisierung.',
+            'Eine Blockchain löst Uneinigkeit ohne vertrauenswürdige Mitte – und bezahlt mit Tempo und Kosten.',
+            'Gibt es eine Stelle, der alle vertrauen, ist eine Datenbank die bessere Lösung.',
+            'Die Kette sichert, dass ein Eintrag unverändert ist, nicht dass er stimmt.',
+            'Dezentral heißt „niemand kann abschalten", nicht „gleichmäßig verteilt".',
           ],
         },
       ],

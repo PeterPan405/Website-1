@@ -293,7 +293,7 @@ export const option: LearnTopic = {
         'Was die Prämie bestimmt, wie Covered Call und Cash Secured Put funktionieren und warum die implizite Volatilität der wichtigste Preistreiber ist.',
       title: 'Preistreiber und Strategien',
       lead: 'Warum eine Option vor Quartalszahlen teuer ist, welche Strategien mit Bestand funktionieren – und wo ihre Kosten stecken.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -424,6 +424,46 @@ export const option: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Warum Optionen für die meisten die falsche Antwort sind',
+        },
+        {
+          type: 'paragraph',
+          text: 'Alles auf dieser Seite lässt sich verstehen. Der Grund, warum es trotzdem selten hilft, ist ein anderer: Eine Option verlangt, dass man **gleichzeitig** über Richtung, Ausmaß und Zeitpunkt recht behält. Wer bei einer Aktie die Richtung trifft und beim Zeitpunkt danebenliegt, wartet. Bei einer Option verfällt sie.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Drei Wege, mit richtiger Meinung Geld zu verlieren',
+          items: [
+            '**Der Kurs steigt, aber zu spät.** Die Option ist am Verfallstag wertlos, obwohl die These stimmte. Die Zeit arbeitet bei einem Käufer immer gegen ihn.',
+            '**Der Kurs steigt, aber zu wenig.** Bis zum Basispreis plus Prämie ist nichts gewonnen. Die Schwelle liegt höher, als sie sich anfühlt.',
+            '**Der Kurs steigt, und die Option fällt.** Wenn die erwartete Schwankung nach einem Ereignis zusammenfällt, kann die Prämie sinken, obwohl sich der Basiswert in die richtige Richtung bewegt. Das trifft besonders, wer vor Quartalszahlen kauft.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Der dritte Punkt ist der, der Anfänger am zuverlässigsten überrascht: Man kauft die Erwartung, und die Erwartung ist vor dem Ereignis am teuersten.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Fall, in dem sie wirklich passen',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Eine bestehende Position absichern**, wenn ein Verkauf aus steuerlichen Gründen ungünstig wäre. Hier ist die Option eine Versicherung, und Versicherungen kosten Prämie – das ist kein Nachteil, sondern der Preis.',
+            '**Einen Einstiegskurs festlegen**, den man ohnehin zahlen würde: Wer eine Verkaufsoption schreibt, bekommt eine Prämie und die Verpflichtung, zu einem selbst gewählten Kurs zu kaufen. Das ist nur dann harmlos, wenn man den Kauf tatsächlich will und das Geld dafür bereitliegt.',
+            '**Eine Position begrenzt verkaufen**, indem man eine Kaufoption auf vorhandene Stücke schreibt. Der Ertrag ist die Prämie, der Preis ist die gekappte Aufwärtsbewegung.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Allen drei Fällen ist gemeinsam, dass ein **vorhandener** Bestand oder eine ohnehin gefasste Absicht dahintersteht. Die Option ändert dann die Auszahlung eines Geschäfts, das man ohnehin machen wollte. Sobald sie das Geschäft selbst ist, ist sie eine Wette mit drei Bedingungen.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -433,6 +473,10 @@ export const option: LearnTopic = {
             'Vor angekündigten Terminen ist sie hoch und fällt danach schlagartig; Käufer können bei richtiger Richtung verlieren.',
             'Der Covered Call verkauft ausgerechnet die großen Aufwärtsbewegungen weg.',
             'Spreads begrenzen beide Seiten – und haben wegen der Transaktionskosten eine Mindestgröße.',
+            'Eine Option verlangt Richtung, Ausmaß und Zeitpunkt zugleich – eine Aktie nur die Richtung.',
+            'Man kann mit richtiger Meinung verlieren, wenn die erwartete Schwankung nach dem Ereignis zusammenfällt.',
+            'Sinnvoll sind Optionen dort, wo ein Bestand oder eine feste Absicht schon vorhanden ist.',
+            'Wer eine Verkaufsoption schreibt, muss den Kauf wollen und das Geld bereithalten.',
           ],
         },
       ],

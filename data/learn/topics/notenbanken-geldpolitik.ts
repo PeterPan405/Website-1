@@ -288,7 +288,7 @@ export const notenbankenGeldpolitik: LearnTopic = {
         'Über welche Kanäle ein Zinsschritt wirkt, warum die Wirkung Monate braucht, was Anleihekäufe bewirken und wie Geldpolitik auf Wechselkurse durchschlägt.',
       title: 'Wie ein Zinsschritt ankommt',
       lead: 'Die vier Übertragungswege, die lange Verzögerung – und was Notenbanken tun, wenn der Zins nicht mehr reicht.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -404,6 +404,70 @@ export const notenbankenGeldpolitik: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Warum Notenbanken unabhängig sind',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Unabhängigkeit ist keine Standesfrage, sondern die Antwort auf ein konkretes Problem: **Zeitinkonsistenz.** Eine Regierung, die den Zins setzt, hat vor jeder Wahl einen Anreiz, ihn zu senken – die Wirkung auf die Konjunktur kommt schnell, die auf die Preise langsam und nach der Wahl.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Das Entscheidende passiert dabei, bevor überhaupt jemand handelt: Wenn alle diesen Anreiz kennen, rechnen sie mit höherer Teuerung und verlangen von vornherein höhere Zinsen und Löhne. Die Ankündigung, es nicht zu tun, ist dann wertlos, weil sie jederzeit widerrufen werden kann. Eine unabhängige Notenbank löst genau das – sie kann glaubwürdig etwas zusagen, weil sie nicht wiedergewählt werden muss.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Woran Unabhängigkeit tatsächlich hängt',
+          items: [
+            '**An festen Amtszeiten**, die nicht mit den politischen zusammenfallen, und an der Unabsetzbarkeit während der Amtszeit.',
+            '**Am Verbot der monetären Staatsfinanzierung.** Kauft eine Notenbank Anleihen ihres Staates direkt bei der Emission, ist sie faktisch dessen Kasse.',
+            '**Am gesetzlich verankerten Auftrag.** Die EZB hat vorrangig Preisstabilität, die Fed daneben gleichrangig hohe Beschäftigung – zwei Ziele, die in einem Angebotsschock auseinanderlaufen.',
+            '**An der Bereitschaft, unbequem zu sein.** Die Unabhängigkeit zeigt sich erst in dem Moment, in dem die richtige Entscheidung politisch teuer ist.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wie man eine Sitzung liest',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Zinsentscheid selbst bewegt die Märkte selten – er ist meist erwartet und damit eingepreist. Bewegt wird an dem, was **anders** ist als erwartet, und das steht fast nie in der Schlagzeile.',
+        },
+        {
+          type: 'table',
+          caption: 'Worauf es bei einer Sitzung ankommt',
+          head: ['Teil', 'Was er verrät'],
+          rows: [
+            [
+              'Der Beschluss',
+              'meist erwartet. Interessant nur, wenn er von den eingepreisten Erwartungen abweicht',
+            ],
+            [
+              'Die Erklärung, Wort für Wort',
+              'geänderte Formulierungen sind die eigentliche Botschaft – „angemessen" statt „erforderlich" ist eine Aussage',
+            ],
+            [
+              'Die Projektionen',
+              'wie sich die eigene Erwartung der Notenbank für Teuerung und Wachstum verschoben hat',
+            ],
+            [
+              'Die Pressekonferenz',
+              'Nuancen und Rückfragen. Hier entstehen die meisten Kursbewegungen eines Sitzungstages',
+            ],
+            [
+              'Das Protokoll, Wochen später',
+              'wie einig sich der Rat war. Eine knappe Mehrheit ist ein Hinweis darauf, wie stabil der Kurs ist',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Für ein langfristig angelegtes Depot folgt daraus nichts zu tun. Der Nutzen dieses Wissens liegt darin, Meldungen einordnen zu können – und zu erkennen, dass „die Notenbank hat den Zins gesenkt" als Kaufargument bereits veraltet ist, sobald man es liest.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -413,6 +477,10 @@ export const notenbankenGeldpolitik: LearnTopic = {
             'Bei Anleihen ist die Wirkung exakt berechenbar, bei Aktien nur modellhaft – Wachstumswerte reagieren stärker.',
             'Die volle Wirkung auf die Inflation braucht vier bis sechs Quartale; Notenbanken steuern deshalb nach Prognosen.',
             'Sinkende Zinsen kommen beim Sparer schneller an als steigende.',
+            'Unabhängigkeit löst ein Glaubwürdigkeitsproblem, kein Kompetenzproblem.',
+            'Sie zeigt sich erst, wenn die richtige Entscheidung politisch teuer ist.',
+            'Bewegt wird nicht vom Beschluss, sondern von dem, was anders ist als erwartet.',
+            'Geänderte Formulierungen in der Erklärung sind die eigentliche Botschaft.',
           ],
         },
       ],

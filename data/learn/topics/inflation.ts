@@ -278,7 +278,7 @@ export const inflation: LearnTopic = {
         'Nachfrage- und Angebotsinflation, Zweitrundeneffekte, Kerninflation und warum Inflationserwartungen für Notenbanken wichtiger sind als die aktuelle Rate.',
       title: 'Woher Inflation kommt',
       lead: 'Welche Ursachen unterschieden werden, was Kerninflation aussagt und warum Erwartungen die Rate selbst beeinflussen.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -386,6 +386,71 @@ export const inflation: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Warum die gemessene Rate nicht deine ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Verbraucherpreisindex misst einen Warenkorb, der aus dem Durchschnitt aller Haushalte gebildet wird. Kaum jemand kauft diesen Korb. Die persönliche Teuerung weicht deshalb systematisch ab – und zwar nicht zufällig, sondern in einer Richtung, die sich vorhersagen lässt.',
+        },
+        {
+          type: 'table',
+          caption: 'Wer über und wer unter dem Durchschnitt liegt',
+          head: ['Lage', 'Warum die eigene Rate abweicht'],
+          rows: [
+            [
+              'Zur Miete, in einer teuren Stadt',
+              'Wohnen hat das größte Gewicht im Korb. Wer neu mietet, trägt die Marktmiete – der Index enthält überwiegend Bestandsmieten und steigt langsamer',
+            ],
+            [
+              'Eigentum, abbezahlt',
+              'Der größte Posten des Korbs entfällt weitgehend. Die persönliche Rate liegt regelmäßig deutlich unter der gemessenen',
+            ],
+            [
+              'Kleines Einkommen',
+              'Höherer Anteil für Lebensmittel und Energie – genau die Posten, die bei einem Angebotsschock am stärksten steigen',
+            ],
+            [
+              'Langes Pendeln',
+              'Kraftstoff schlägt voll durch, während er im Durchschnittskorb nur ein kleines Gewicht hat',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Das ist kein Messfehler und keine Beschönigung: Ein Index braucht ein festes Gewicht, sonst wäre er über die Zeit nicht vergleichbar. Für die eigene Planung ist er trotzdem der falsche Maßstab – dort zählt der eigene Korb.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was gegen Teuerung tatsächlich hilft',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Frage wird meistens als Produktfrage gestellt und ist keine. Was schützt, ist die Fähigkeit, Preise weiterzugeben oder an ihnen teilzuhaben – und die hängt nicht am Etikett des Produkts.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Sachwerte mit Preissetzungsmacht.** Unternehmen, die höhere Kosten an ihre Kunden weiterreichen können, verteidigen ihre Marge. Genau das ist der Schutz – nicht dass es „Aktien" sind. Ein Unternehmen im harten Preiswettbewerb schützt nicht.',
+            '**Eigene Immobilie mit Festzinsdarlehen.** Der doppelte Effekt: Der Sachwert bleibt, und die nominale Schuld entwertet sich mit. Das ist der einzige Fall, in dem Teuerung dem Schuldner unmittelbar nützt.',
+            '**Inflationsindexierte Anleihen** sind der direkteste Weg – sie koppeln Zins und Rückzahlung an den Index. Der Preis dafür steckt in der Break-even-Rate: Sie lohnen nur, wenn die tatsächliche Teuerung über der bereits eingepreisten liegt.',
+            '**Gold ist ein sehr langfristiger Erhalt und ein schlechter kurzfristiger Schutz.** Über Jahrzehnte hat es Kaufkraft gehalten; über einzelne Inflationsjahre lief es mehrfach dagegen.',
+            '**Was nicht hilft:** nominal feste Zusagen. Klassische Anleihen, Sparbuch, viele Rentenzusagen – sie versprechen einen Betrag, und der Betrag ist genau das, was entwertet wird.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die kalte Progression – der Teil, der auch ohne Preissteigerung wirkt',
+          items: [
+            'Steigt der Lohn nur im Ausmaß der Teuerung, ist real nichts gewonnen – der Steuersatz auf den höheren Nominallohn steigt aber mit. Real bleibt weniger als vorher.',
+            'Bei Kapitalerträgen wirkt derselbe Mechanismus schärfer: Besteuert wird der **nominale** Gewinn. Wer über zehn Jahre genau die Teuerung erwirtschaftet, hat real nichts verdient und zahlt trotzdem Abgeltungsteuer.',
+            'Deshalb ist die reale Rendite nach Steuern die einzige Größe, die für eine Planung taugt – und sie ist immer kleiner als die beiden Zahlen, die man üblicherweise nennt.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -396,6 +461,10 @@ export const inflation: LearnTopic = {
             'Kerninflation misst die Verfestigung, nicht die Lebenshaltungskosten.',
             'Basiseffekte können eine Rate bewegen, ohne dass sich am Preisniveau etwas ändert.',
             'Erwartungen sind kein Nebenschauplatz, sondern Ursache.',
+            'Der Index misst einen Durchschnittskorb – die eigene Rate weicht vorhersagbar davon ab.',
+            'Schutz kommt von Preissetzungsmacht, nicht vom Etikett des Produkts.',
+            'Ein Festzinsdarlehen auf eine Immobilie ist der Fall, in dem Teuerung dem Schuldner nützt.',
+            'Besteuert wird der nominale Gewinn – wer real nichts verdient, zahlt trotzdem.',
           ],
         },
       ],

@@ -227,7 +227,7 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
         'Wie ein Orderbuch funktioniert, woran sich Liquidität erkennen lässt, was Slippage bedeutet und welche Teilnehmer den Handel prägen.',
       title: 'Orderbuch, Liquidität, Teilnehmer',
       lead: 'Wie eine Order tatsächlich ausgeführt wird, woran gute Handelbarkeit zu erkennen ist – und wer auf der anderen Seite steht.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -343,6 +343,60 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Wie ein Preis überhaupt entsteht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Kurs ist keine Eigenschaft eines Unternehmens, sondern das Protokoll eines Geschäfts: der Preis, zu dem sich zuletzt zwei Parteien geeinigt haben. Er sagt nichts darüber, zu welchem Preis der nächste Abschluss zustande kommt – und schon gar nicht, ob man die eigene Position dazu verkaufen könnte.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Der letzte Kurs kann alt sein.** Bei einem selten gehandelten Wert liegt der letzte Abschluss unter Umständen Stunden zurück, während das Orderbuch längst woanders steht.',
+            '**Er gilt für die damalige Menge.** Wer das Zehnfache handeln will, bekommt einen anderen Preis – und zwar systematisch einen schlechteren.',
+            '**Zwischen Geld- und Briefkurs gibt es keinen „richtigen" Preis.** Kaufen kostet den Briefkurs, verkaufen bringt den Geldkurs. Der Mittelwert, der auf jeder Website steht, ist der einzige Kurs, zu dem niemand handeln kann.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Warum der Markt schwerer zu schlagen ist, als er aussieht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Nicht, weil er immer recht hätte – sondern wegen der Gegenseite. Jedes Geschäft hat zwei Parteien, und die andere ist heute fast nie ein Privatanleger, sondern eine Institution mit besseren Daten, tieferen Taschen und keinem Bedürfnis, recht zu behalten.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Die Frage, die vor jedem Kauf steht',
+          items: [
+            '**Wer verkauft mir das, und warum?** Wenn die Antwort lautet „jemand, der mehr weiß als ich", ist es kein guter Kauf.',
+            '**Bei einem breit gestreuten Indexfonds ist die Frage entschärft**: Man behauptet nichts über einzelne Unternehmen und beansprucht nur den Durchschnitt. Deshalb braucht diese Anlageform keine Meinung über die Gegenseite.',
+            '**Bei einem Einzeltitel behauptet man etwas.** Nämlich, dass der Markt den Wert falsch einschätzt – gegen die Gegenseite, die das Gegenteil behauptet und bezahlte Analysten hat.',
+            'Das ist kein Verbot, Einzeltitel zu kaufen. Es ist die Frage, deren Antwort man kennen sollte, bevor man es tut.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was Kurse zwischen den Handelszeiten machen',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein erheblicher Teil der Kursbewegung entsteht **außerhalb** der Handelszeiten – über Nacht, am Wochenende, in Kurslücken zur Eröffnung. Nachrichten kommen nicht nur zwischen 9 und 17:30 Uhr, und der Markt verarbeitet sie beim nächsten Zusammentreffen von Angebot und Nachfrage auf einmal.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Ein Stop-Kurs schützt darüber nicht.** Er wird bei der Eröffnung ausgelöst, und ausgeführt wird zum dann gültigen Kurs – der weit darunter liegen kann.',
+            '**Wer nur die Tagesbewegung betrachtet, sieht einen Bruchteil.** Ein Wert kann über Monate innerhalb der Handelszeiten fallen und über Nacht steigen; beides zusammen ergibt erst das Ergebnis.',
+            '**Deshalb ist „ich beobachte das und steige rechtzeitig aus" keine Strategie.** Die Bewegungen, auf die es ankommt, finden statt, während niemand handeln kann.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -352,6 +406,10 @@ export const wieFunktioniertDerMarkt: LearnTopic = {
             'Markttiefe ist aussagekräftiger als der Spread allein.',
             'Liquidität ist dann am geringsten, wenn sie gebraucht wird – in Stressphasen limitieren.',
             'Market Maker haben keine Meinung zum Papier; sie verdienen am Spread.',
+            'Ein Kurs ist das Protokoll eines vergangenen Geschäfts, keine Eigenschaft des Unternehmens.',
+            'Der Mittelwert zwischen Geld und Brief ist der einzige Kurs, zu dem niemand handeln kann.',
+            'Vor jedem Einzelkauf steht die Frage, wer verkauft und warum.',
+            'Ein großer Teil der Bewegung entsteht außerhalb der Handelszeiten – dagegen hilft kein Stop.',
           ],
         },
       ],

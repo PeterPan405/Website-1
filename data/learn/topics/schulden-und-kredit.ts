@@ -287,7 +287,7 @@ export const schuldenUndKredit: LearnTopic = {
         'Wie Tilgungspläne funktionieren, welche Restschuld nach der Zinsbindung bleibt und wann sich eine Umschuldung tatsächlich rechnet.',
       title: 'Schulden gezielt abbauen',
       lead: 'Was ein Tilgungssatz über die Laufzeit entscheidet, welche Reihenfolge bei mehreren Schulden gilt – und was nach der Zinsbindung übrig bleibt.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -405,6 +405,62 @@ export const schuldenUndKredit: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Was ein Kredit tatsächlich kostet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Der Nominalzins ist nicht der Preis. Vergleichbar ist allein der **effektive Jahreszins**, weil er Auszahlungszeitpunkte, Verrechnungstermine und einen Teil der Nebenkosten einrechnet. Zwei Angebote mit gleichem Nominalzins können sich im Effektivzins deutlich unterscheiden.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Nicht enthalten sind Kosten, die nicht zwingend sind** – etwa eine freiwillige Restschuldversicherung. Wird sie faktisch zur Bedingung gemacht, gehört sie rechnerisch dazu, auch wenn sie im Effektivzins fehlt.',
+            '**Ein bonitätsabhängiger Zins ist keine Zusage.** Die beworbene Spanne beginnt bei einem Wert, den nur wenige bekommen; maßgeblich ist der Zwei-Drittel-Zins, den die Werbung nennen muss.',
+            '**Bearbeitungsentgelte für Verbraucherdarlehen sind unzulässig.** Wer sie in einer Abrechnung findet, kann sie zurückfordern.',
+            '**Beim Immobiliendarlehen fehlen im Effektivzins die Kosten der Grundschuldbestellung** – Notar und Grundbuch. Sie fallen einmalig an und gehören in den Vergleich zweier Angebote nur, wenn sie sich unterscheiden.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Sondertilgung: die Rechnung, die immer aufgeht',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Sondertilgung wirkt wie eine Anlage zum Kreditzins – **steuerfrei und ohne Risiko**. Das ist die einzige garantierte Rendite, die es gibt, und sie ist bei einem Konsumkredit fast immer höher als das, was eine Anlage im Mittel erwarten lässt.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Der Vergleich, der dabei sauber sein muss',
+          items: [
+            '**Kreditzins gegen Anlagerendite nach Steuern.** Wer 6 Prozent Kreditzins zahlt, müsste nach Abgeltungsteuer über 8 Prozent brutto erwirtschaften, um besser dazustehen – zuverlässig, nicht im guten Fall.',
+            '**Beim Immobiliendarlehen mit niedrigem Zins kippt die Rechnung.** Dort kann eine Anlage über lange Zeiträume vorn liegen, und die Entscheidung wird zur Risikofrage statt zur Rechenfrage.',
+            '**Der Notgroschen kommt vor jeder Sondertilgung.** Getilgtes Geld ist weg; wer es später braucht, nimmt einen neuen und teureren Kredit auf.',
+            '**Vereinbarte Sondertilgungsrechte sind kostenlos, darüber hinaus fällt eine Vorfälligkeitsentschädigung an.** Deshalb gehört das Recht in den Vertrag, auch wenn man es nie nutzt – es kostet in der Regel wenig bis nichts.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was die SCHUFA wirklich tut',
+        },
+        {
+          type: 'paragraph',
+          text: 'Sie speichert keine Einkommen und keine Kontostände, sondern Vertragsverhältnisse und deren Verlauf. Der Score ist ein Vergleich mit Personen ähnlicher Merkmale – keine Aussage über die eigene Zahlungsfähigkeit, sondern über eine Gruppe.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Eine Konditionsanfrage ist unschädlich**, eine Kreditanfrage nicht. Wer bei mehreren Banken Angebote einholt, sollte ausdrücklich auf „Konditionsanfrage" bestehen.',
+            '**Alte Konten schließen kann schaden.** Eine lange, störungsfreie Geschichte wirkt positiv; ein gekündigtes Konto verschwindet daraus.',
+            '**Eine Auskunft steht einem einmal jährlich kostenlos zu.** Fehler sind häufiger, als man denkt, und werden nur auf Widerspruch korrigiert.',
+            '**Erledigte Negativeinträge verschwinden nicht sofort**, sondern nach festen Fristen. Eine bezahlte Forderung wird als erledigt vermerkt – der Eintrag selbst bleibt zunächst bestehen.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -414,6 +470,10 @@ export const schuldenUndKredit: LearnTopic = {
             'Die Restschuld nach der Zinsbindung ist das eigentliche Risiko eines Immobilienkredits.',
             'Nach zehn Jahren kann jeder Immobilienkredit ohne Entschädigung gekündigt werden.',
             'Sparen bei gleichzeitig teuren Schulden ist ein sicherer Verlust – außer beim Notgroschen.',
+            'Vergleichbar ist der effektive Jahreszins, nicht der Nominalzins.',
+            'Eine Sondertilgung ist eine steuerfreie, risikolose Anlage zum Kreditzins.',
+            'Der Notgroschen kommt vor jeder Sondertilgung – getilgtes Geld ist weg.',
+            'Konditionsanfrage statt Kreditanfrage, und einmal jährlich die kostenlose Auskunft prüfen.',
           ],
         },
       ],
