@@ -446,6 +446,21 @@ name: Quellen abklopfen
 # haetten jeweils eine eigene Aufsicht mit eigenem Format und teils
 # Registrierungspflicht. Das sind zusammen rund 190 der 529 Aktien.
 
+# ## Wie dieser Workflow gestartet wird – und warum es zwei Wege gibt
+#
+# Von Hand über `workflow_dispatch`, wie bisher. Der zweite Weg ist für die
+# Entwicklungsumgebung dieses Projekts: Sie darf `workflow_dispatch` **nicht**
+# auslösen (die Schnittstelle antwortet „Resource not accessible by
+# integration“), sie darf aber auf ihren eigenen Arbeitszweig pushen.
+#
+# Deshalb der Anstoß über eine Datei: Wer `.github/sonde-anstoss.txt` auf einem
+# `claude/**`-Zweig ändert, startet den Lauf. Der Inhalt der Datei nennt die
+# Sonde – dieselben Namen wie im Auswahlfeld.
+#
+# Der Pfadfilter ist die ganze Sicherung: Ein gewöhnlicher Commit auf demselben
+# Zweig startet nichts, nur die absichtliche Änderung dieser einen Datei. Und
+# `main` steht nicht in der Liste – beim Mergen läuft die Sonde also nicht
+# noch einmal.
 on:
   workflow_dispatch:
     inputs:
@@ -454,22 +469,51 @@ on:
         type: choice
         default: alle
         options: [alle, sec, asien, nordisch, esef, esef-de]
+  push:
+    branches: ['claude/**']
+    paths: ['.github/sonde-anstoss.txt']
 
 jobs:
   abklopfen:
     name: Kandidaten prüfen
     runs-on: ubuntu-latest
+    permissions:
+      # Zum Schreiben des Zweiges `sonden-ergebnis`.
+      contents: write
     steps:
       - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref_name }}
+
+      # Welche Sonde gemeint ist – aus dem Auswahlfeld oder aus der Datei.
+      #
+      # Die Datei gewinnt nie: Bei `workflow_dispatch` ist `inputs.sonde`
+      # gesetzt und wird genommen. Beim Push ist es leer, und dann zählt die
+      # erste nicht leere, nicht kommentierte Zeile der Datei. Fehlt auch die,
+      # läuft „alle“ – wie bisher der Vorgabewert.
+      - name: Welche Sonde
+        id: wahl
+        run: |
+          wahl="${{ inputs.sonde }}"
+          if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
+            wahl=$(grep -v '^#' .github/sonde-anstoss.txt | grep -v '^[[:space:]]*$' | head -1 | tr -d '[:space:]')
+          fi
+          case "${wahl:-alle}" in
+            alle|sec|asien|nordisch|esef|esef-de) ;;
+            *)
+              echo "::error::Unbekannte Sonde „$wahl“. Erlaubt: alle, sec, asien, nordisch, esef, esef-de."
+              exit 1
+              ;;
+          esac
+          echo "sonde=${wahl:-alle}" >> "$GITHUB_OUTPUT"
+          echo "Sonde: ${wahl:-alle}"
 
       - uses: actions/setup-node@v5
         with:
           node-version: 22
 
       - name: SEC nach den fehlenden Unternehmen absuchen
-        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'sec')
+        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'sec')
         run: node --experimental-strip-types scripts/quellen-probe-fundamentaldaten.ts
 
       # Steht vor den ESEF-Schritten: Diese Sonde dauert Sekunden, jene
@@ -479,24 +523,24 @@ jobs:
       # Was nach SEC und ESEF noch fehlt: Deutschland, Japan, Korea, Taiwan,
       # Hongkong, Indien. Jedes Land mit eigener Aufsicht und eigenem Format.
       - name: Aufsichtsbehörden außerhalb von USA und EU abklopfen
-        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'asien')
+        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'asien')
         run: node --experimental-strip-types scripts/quellen-probe-asien.ts
 
       # Der offene Rest aus dem ESEF-Abruf: drei nordische Werte, die im
       # Verzeichnis stehen und trotzdem nichts hergeben.
       - name: Nordische Abschlüsse untersuchen
-        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'nordisch')
+        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'nordisch')
         run: node --experimental-strip-types scripts/quellen-probe-nordisch.ts
 
       - name: ESEF-Verzeichnis für die europäischen Werte abklopfen
-        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'esef')
+        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef')
         run: node --experimental-strip-types scripts/quellen-probe-esef.ts
 
       # Zweite Runde: nicht nur, ob der Name im Verzeichnis steht, sondern
       # welche Zahlen dahinterstehen. Erst daran lässt sich eine Zuordnung
       # prüfen – ein Namenstreffer allein hat hier schon zweimal danebengelegen.
       - name: ESEF-Abschlüsse auslesen
-        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'esef')
+        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef')
         run: node --experimental-strip-types scripts/quellen-probe-esef-werte.ts
 
       # Dritte Runde: die deutsche Luecke. In der Zuordnung in
@@ -507,7 +551,7 @@ jobs:
       # der sich nicht erraten laesst und ohne den keine Zuordnung entstehen
       # darf.
       - name: Deutsche Abschlüsse im ESEF-Verzeichnis suchen
-        if: always() && (inputs.sonde == '' || inputs.sonde == 'alle' || inputs.sonde == 'esef' || inputs.sonde == 'esef-de')
+        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef' || steps.wahl.outputs.sonde == 'esef-de')
         run: node --experimental-strip-types scripts/quellen-probe-esef-de.ts
 
       - name: Kandidatenlisten sichern
@@ -524,3 +568,67 @@ jobs:
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
           # Zwischenstände einer Suche und nach einer Woche wertlos.
           retention-days: 7
+
+      # Und zusätzlich auf einen wurzellosen Zweig.
+      #
+      # ## Warum das Artefakt allein nicht reicht
+      #
+      # `AGENTS.md` sagt es seit dem 20. August 2026: „Wer einen Lauf baut,
+      # dessen Ergebnis eine Datei ist, legt sie auf einen wurzellosen Zweig –
+      # nicht nur als Artefakt. Ein Artefakt ist ein ZIP hinter einer Anmeldung
+      # und von hier aus unerreichbar."
+      #
+      # Genau dieser Workflow war der Grund für den Satz und hat ihn selbst nie
+      # befolgt. Die Folge: Seine Ergebnisse – die Kandidatenlisten, aus denen
+      # die geprüften Zuordnungen entstehen – waren aus der Entwicklungsumgebung
+      # nur über das Protokoll zu lesen, in einem Rutsch, mit allem Beiwerk.
+      # `esef-werte.json` trägt zu jedem Kandidaten Umsatz, Gewinn, Cashflow,
+      # Eigenkapital und Aktienzahl; im Protokoll steht davon eine gekürzte
+      # Zeile.
+      #
+      #     git show origin/sonden-ergebnis:esef-werte.json
+      #
+      # Der Zweig ist wurzellos, hat immer genau einen Commit und kommt in
+      # `main` nie vor.
+      - name: Auf den Zweig `sonden-ergebnis` legen
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          ordner=$(mktemp -d)
+          gefunden=0
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json; do
+            if [ -f "$datei" ]; then
+              cp "$datei" "$ordner/"
+              gefunden=1
+            fi
+          done
+
+          # Kein Ergebnis heißt kein Zweig. Ein leerer Commit über einem
+          # vollen wäre schlimmer als gar keiner: Er sähe aus wie ein Lauf,
+          # der nichts gefunden hat, und wäre einer, der nichts geschrieben hat.
+          if [ "$gefunden" = "0" ]; then
+            echo "::warning::Keine Kandidatenliste entstanden – der Zweig bleibt, wie er war."
+            exit 0
+          fi
+
+          {
+            echo "Sonde:  ${{ steps.wahl.outputs.sonde }}"
+            echo "Lauf:   $(date -u +'%Y-%m-%d %H:%M UTC')"
+            echo "Commit: ${{ github.sha }}"
+            echo
+            echo "Dateien:"
+            ls -l "$ordner" | tail -n +2
+          } > "$ordner/stand.txt"
+
+          git checkout --orphan sonden-ergebnis
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$ordner"/* .
+
+          git add -A
+          git commit -m "Sonde ${{ steps.wahl.outputs.sonde }} – $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push --force origin sonden-ergebnis
+
+          echo "Liegt bereit: git show origin/sonden-ergebnis:esef-werte.json"

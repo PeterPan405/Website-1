@@ -46,6 +46,12 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
   fällt **nicht** darunter – da wird weiter gefragt.
 - `workflow_dispatch` startet nur Workflows, die auf `main` liegen. Ein neuer
   Workflow auf einem Nebenzweig antwortet mit 404.
+- **Manchmal geht `workflow_dispatch` gar nicht** – die Schnittstelle antwortet
+  dann „Resource not accessible by integration" (403), unabhängig vom Workflow.
+  Ein `push` auf den eigenen Arbeitszweig geht weiterhin. Wer einen Lauf
+  braucht, hängt ihn deshalb an `push` mit **Pfadfilter** auf eine
+  Anstoßdatei – Vorbild: `.github/sonde-anstoss.txt` und der `push`-Auslöser in
+  `quellen-probe.yml`. Ohne Pfadfilter startet jeder Commit den Lauf.
 
 → `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
 
