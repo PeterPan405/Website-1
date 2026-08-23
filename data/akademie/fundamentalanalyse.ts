@@ -505,7 +505,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
     kernaussage:
       'Das KUV funktioniert auch bei Verlusten, weil Umsatz nie negativ wird. Genau deshalb sagt es nichts darüber, ob mit dem Umsatz Geld verdient wird.',
     belegart: 'definition',
-    dauer: 5,
+    dauer: 9,
     stichworte: ['KUV', 'P/S', 'Kurs-Umsatz-Verhältnis'],
     setztVoraus: ['umsatz-und-margen', 'kurs-gewinn-verhaeltnis'],
     lernthemen: ['aktie'],
@@ -537,6 +537,68 @@ export const fundamentalanalyseLektionen: Lektion[] = [
         items: [
           'Auf dieser Website prüft eine automatische Plausibilitätskontrolle unter anderem das KUV jeder Aktie. Liegt es außerhalb einer weiten, aber endlichen Spanne, bricht der Bau ab.',
           'Der Grund ist nicht die Bewertung, sondern die Datenqualität: Ein absurdes KUV heißt fast immer, dass eine Quelle Umsatz oder Aktienzahl in einer anderen Einheit geliefert hat.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Wo das KUV wirklich etwas leistet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kennzahl ist nicht schwach, sie ist eng. Sie beantwortet eine einzige Frage, und zwar gut: **Was zahlt der Markt heute für die Geschäftsgröße von morgen?** Das ist genau die Frage, die sich bei einem Unternehmen stellt, dessen Gewinn noch nicht existiert – und die das KGV dort gar nicht stellen kann.',
+      },
+      {
+        type: 'table',
+        caption: 'Wann welche Kennzahl trägt',
+        head: ['Lage des Unternehmens', 'KGV', 'KUV'],
+        rows: [
+          ['Stabiler Gewinn, reife Branche', 'aussagekräftig', 'überflüssig'],
+          [
+            'Verlust in einem zyklischen Tief',
+            'keine Zahl oder unsinnig hoch',
+            'trägt – der Umsatz bleibt bestehen',
+          ],
+          [
+            'Junges Unternehmen im Aufbau',
+            'keine Zahl',
+            'trägt, aber nur mit der erwarteten Marge zusammen',
+          ],
+          [
+            'Einmalige Sonderbelastung im Gewinn',
+            'verzerrt nach oben',
+            'unbeeindruckt – das ist der eigentliche Nutzen',
+          ],
+          ['Sanierungsfall', 'keine Zahl', 'trägt, sagt aber nichts über das Überleben'],
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Die Rechnung, die aus dem KUV eine Aussage macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein KUV allein ist eine halbe Angabe. Vollständig wird sie erst über den Umweg der Marge – und dieser Umweg führt direkt zurück zum KGV.',
+      },
+      {
+        type: 'formula',
+        expression: 'KUV = KGV × Nettomarge',
+        description:
+          'Ein Unternehmen mit 10 Prozent Nettomarge und einem KGV von 20 hat rechnerisch ein KUV von 2. Die drei Zahlen sind nicht unabhängig voneinander – wer zwei kennt, kennt die dritte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Daraus folgt die einzig sinnvolle Verwendung: Man nimmt das KUV und die **erwartete** Marge des Geschäftsmodells und rechnet aus, welches KGV daraus einmal wird. Ein KUV von 10 ist bei 30 Prozent Zielmarge ein KGV von 33 – ambitioniert, aber denkbar. Dasselbe KUV bei 3 Prozent Zielmarge wäre ein KGV von 333.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Die Annahme, die dabei niemand ausspricht',
+        items: [
+          '**Die Zielmarge ist geraten.** Sie ist der einzige Freiheitsgrad in dieser Rechnung und trägt das ganze Ergebnis. Wer sie um fünf Punkte höher ansetzt, halbiert das rechnerische KGV.',
+          '**Sie wird regelmäßig aus der Branche abgeleitet** – aus den Margen der bereits erfolgreichen Anbieter. Das setzt voraus, dass dieses Unternehmen einer von ihnen wird, und genau das ist die offene Frage.',
+          '**Umsatzwachstum verbessert das KUV automatisch**, ohne dass sich am Geschäft etwas ändert. Deshalb sieht ein schnell wachsendes Unternehmen mit dieser Kennzahl immer besser aus als ein stagnierendes – auch wenn beide dasselbe verdienen.',
         ],
       },
     ],

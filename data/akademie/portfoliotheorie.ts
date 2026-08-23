@@ -585,7 +585,7 @@ export const portfoliotheorieLektionen: Lektion[] = [
     kernaussage:
       'Der maximale Rückgang misst nicht Schwankung, sondern Schmerz: wie tief es ging und wie lange es dauerte, bis es wieder aufgeholt war.',
     belegart: 'definition',
-    dauer: 7,
+    dauer: 11,
     stichworte: ['Maximum Drawdown', 'Rückgang', 'Erholungsdauer'],
     setztVoraus: ['risiko-als-schwankung'],
     lernthemen: ['groesste-crashes', 'anlegerpsychologie'],
@@ -631,6 +631,43 @@ export const portfoliotheorieLektionen: Lektion[] = [
           'Die durchschnittliche Rendite bekommt nur, wer dabeibleibt. Wer bei minus 45 Prozent verkauft, hat die Rendite der Statistik nie erhalten.',
           'Deshalb gehört zur Auswahl einer Aufteilung die Frage, welchen Rückgang man erlebt hat und noch aushalten würde – nicht, welche Rendite man gern hätte.',
         ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Die zwei Zahlen, die immer zusammengehören',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein maximaler Rückgang von 50 Prozent sagt für sich genommen wenig. Erst mit der **Dauer bis zur Erholung** wird daraus eine Aussage darüber, was auszuhalten war – und die Dauer ist regelmäßig die härtere der beiden Zahlen.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Die Tiefe entscheidet über den Schrecken**, die Dauer über das Durchhalten. Ein schneller Absturz mit rascher Erholung ist unangenehm; Jahre unter Wasser sind es länger.',
+          '**Die Erholung braucht mehr, als der Rückgang genommen hat.** Nach minus 50 Prozent sind plus 100 Prozent nötig, um wieder bei null zu sein. Diese Asymmetrie ist der Grund, warum große Rückgänge so viel schwerer wiegen als kleine.',
+          '**Die Zeit zählt ab dem alten Höchststand, nicht ab dem Tief.** Wer erst ab dem Tief rechnet, verkürzt jede Erholungsdauer erheblich – ein häufiger Fehler in Werbematerial.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum die historische Zahl zu klein ist',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title:
+          'Drei Gründe, den größten beobachteten Rückgang nicht für die Obergrenze zu halten',
+        items: [
+          '**Die Stichprobe ist kurz.** Der größte Rückgang der letzten dreißig Jahre ist der größte, der in dreißig Jahren vorkam – nicht der größte, der vorkommen kann.',
+          '**Er hängt am Startzeitpunkt.** Dieselbe Anlage hat je nach Betrachtungsbeginn verschiedene Höchststände und damit verschiedene Rückgänge. Die Zahl ist keine Eigenschaft der Anlage allein.',
+          '**Überlebende verzerren.** Ausgewertet wird, was es noch gibt. Was während des Zeitraums verschwand, taucht in keiner Reihe auf – und hatte einen Rückgang von hundert Prozent.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Planung ist der historische Rückgang deshalb eine **Untergrenze der Erwartung**, kein Grenzwert. Wer prüfen will, ob er sein Depot aushält, rechnet mit spürbar mehr – und mit einer Erholungsdauer, die länger ist als die bisher beobachtete.',
       },
     ],
   },
@@ -765,7 +802,7 @@ export const portfoliotheorieLektionen: Lektion[] = [
     kernaussage:
       'Rebalancing hält das Risiko auf dem gewählten Niveau. Dass es zusätzlich Rendite bringt, ist der seltenere Fall und hängt vom Verlauf ab.',
     belegart: 'beobachtung',
-    dauer: 7,
+    dauer: 12,
     stichworte: ['Rebalancing', 'Umschichten', 'Aufteilung'],
     setztVoraus: ['diversifikation'],
     lernthemen: ['portfolio-aufbau', 'wann-kaufen-verkaufen'],
@@ -814,6 +851,70 @@ export const portfoliotheorieLektionen: Lektion[] = [
           'Bei Anlagen mit dauerhaftem Trend ist es umgekehrt: Man verkauft immer wieder das, was weiter steigt. Über lange Aktienhaussen kostet Rebalancing Rendite.',
           'Wer es also mit Renditeversprechen begründet, begründet es falsch. Die tragfähige Begründung ist das Risiko.',
         ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Kalender oder Bandbreite',
+      },
+      {
+        type: 'paragraph',
+        text: 'Es gibt zwei Auslöser, und die Wahl zwischen ihnen ist die einzige Entscheidung, die man beim Rebalancing überhaupt trifft. Beide funktionieren; sie haben nur verschiedene Schwächen.',
+      },
+      {
+        type: 'table',
+        caption: 'Die beiden Regeln im Vergleich',
+        head: ['', 'Nach Kalender', 'Nach Bandbreite'],
+        rows: [
+          [
+            'Auslöser',
+            'ein fester Termin, etwa einmal jährlich',
+            'eine Abweichung von der Zielquote über eine festgelegte Spanne hinaus',
+          ],
+          [
+            'Stärke',
+            'null Aufwand, null Entscheidungen, kein Blick ins Depot nötig',
+            'greift dann, wenn es etwas zu tun gibt – auch mitten im Jahr',
+          ],
+          [
+            'Schwäche',
+            'ein Absturz im März wird erst im Dezember korrigiert',
+            'verlangt regelmäßiges Nachsehen, und genau das erzeugt Handlungsdruck',
+          ],
+          [
+            'Zahl der Transaktionen',
+            'planbar und niedrig',
+            'in ruhigen Jahren null, in unruhigen mehrere',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die verbreitete Kombination nimmt von beidem das Beste: einmal jährlich nachsehen und **nur dann handeln**, wenn die Abweichung eine Schwelle überschreitet. Damit ist der Aufwand fest und die Zahl der Geschäfte klein.',
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Was Rebalancing wirklich leistet',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Die häufigste Fehlbehauptung',
+        items: [
+          '**Es steigert nicht zuverlässig die Rendite.** Wer eine Anlageklasse hält, die langfristig stärker steigt, verkauft durch Rebalancing regelmäßig die bessere und kauft die schlechtere nach. Über lange Zeiträume kostet das eher Rendite, als es welche bringt.',
+          '**Es hält das Risiko dort, wo es beschlossen wurde.** Das ist der eigentliche Zweck: Ohne Rückführung wächst der Aktienanteil in guten Jahren still an – und der Rückgang trifft dann ein Depot, das riskanter ist als geplant.',
+          '**Der antizyklische Effekt ist ein Nebenprodukt**, kein Ziel. Er wirkt in schwankenden Seitwärtsmärkten am stärksten und in durchlaufenden Aufwärtsphasen gar nicht.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Die billigste Variante: über die Zuflüsse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Jeder Verkauf kostet Gebühren, Spread und meist Steuer. Wer regelmäßig einzahlt, kann die Quote ganz ohne Verkauf zurückführen – indem die nächsten Raten in den zu leichten Baustein fließen. Bei einem noch wachsenden Depot reicht das über viele Jahre vollständig aus, und es ist die einzige Form des Rebalancing, die nichts kostet.',
       },
     ],
   },
