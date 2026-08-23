@@ -58,6 +58,16 @@ export interface Aenderung {
  */
 export const AENDERUNGEN: Aenderung[] = [
   {
+    datum: '2026-08-23',
+    art: 'geaendert',
+    titel: 'Fünf weitere Fortgeschritten-Stufen deutlich ausgebaut',
+    text: 'Die Fortgeschritten-Stufen waren im Schnitt ein Viertel dünner als die Beginner-Stufen darunter. Fünf weitere sind jetzt nachgezogen und liegen bei rund hundert Prozent: Wann kaufen und verkaufen, Risiko und Rendite, Budget und Sparquote, Börse und Bitcoin. Neu sind unter anderem die FIFO-Regel beim Teilverkauf (verkauft wird die älteste und meist am höchsten besteuerte Tranche), die Risiken, für die es keine Kennzahl gibt, warum ein Budget typischerweise im dritten Monat kippt, was die einzelnen Ordnungsarten wirklich zusichern – Preis oder Ausführung, nie beides – und dass Coins in Deutschland als andere Wirtschaftsgüter gelten und nach einem Jahr steuerfrei sind, ein Bitcoin-ETP dagegen nicht. Die Lesezeiten sind mitgezogen.',
+    ziel: {
+      text: 'Beispiel: Risiko und Rendite',
+      href: '/lernen/risiko-und-rendite/fortgeschritten',
+    },
+  },
+  {
     datum: '2026-08-20',
     art: 'geaendert',
     titel: 'Der Podcast: Hinweis später, Aussprache besser, Störgeräusche seltener',

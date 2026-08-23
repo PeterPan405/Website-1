@@ -1,5 +1,6 @@
 import type { LearnTopic } from '@/data/learn/types'
-import { formatDate, formatPercent } from '@/lib/format'
+import { formatCurrencyRounded, formatDate, formatPercent } from '@/lib/format'
+import { SPARERPAUSCHBETRAG_EINZELN } from '@/lib/kapitalertragsteuer'
 import {
   timingAuslassungen as AUSLASSUNGEN,
   timingGewinnJeTreffer as GEWINN_JE_TREFFER,
@@ -285,7 +286,7 @@ export const wannKaufenVerkaufen: LearnTopic = {
         'Welche vier Gründe für einen Verkauf tragen, welche nicht, was Stop-Kurse leisten und warum Regeln besser sind als Entscheidungen.',
       title: 'Wann Verkaufen tatsächlich richtig ist',
       lead: 'Vier tragfähige Gründe, vier Scheingründe – und warum eine vorher aufgeschriebene Regel jede spätere Entscheidung schlägt.',
-      readingMinutes: 11,
+      readingMinutes: 15,
       status: 'complete',
       blocks: [
         {
@@ -371,6 +372,62 @@ export const wannKaufenVerkaufen: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Welche Anteile verkauft werden – und warum das Geld kostet',
+        },
+        {
+          type: 'paragraph',
+          text: 'Wer über Jahre in dieselbe Position gespart hat, besitzt keine Anteile, sondern viele Tranchen zu verschiedenen Kursen. Beim Verkauf gilt in Deutschland **FIFO**: Die zuerst gekauften Anteile gelten als zuerst verkauft. Das ist keine Wahl, sondern eine Vorgabe – und sie greift je Depot.',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Folge kennt jeder, der sie einmal erlebt hat: Die ältesten Anteile sind die mit dem niedrigsten Einstandskurs und damit dem größten Gewinn. Ein Teilverkauf trifft also ausgerechnet die am höchsten besteuerte Tranche. Wer 20 Prozent seiner Position verkauft, realisiert regelmäßig deutlich mehr als 20 Prozent des angesammelten Gewinns.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Was daraus folgt',
+          items: [
+            '**Ein zweites Depot trennt die Tranchen.** Kaufe ich neue Anteile bei einer anderen Bank, hat FIFO dort eine eigene Reihenfolge. Wer absehbar Teile braucht, kann so steuern, welche Tranche er anfasst.',
+            '**Die Reihenfolge lässt sich nicht innerhalb eines Depots wählen.** Anweisungen wie „bitte die teuren Anteile zuerst" gibt es nicht; ein Übertrag einzelner Stücke in ein anderes Depot ist der einzige Weg, und er will vorher geplant sein.',
+            '**Bei einem Depotübertrag müssen die Anschaffungsdaten mitwandern.** Fehlen sie, setzt die neue Bank die Ersatzbemessungsgrundlage an – 30 Prozent des Verkaufserlöses gelten dann als Gewinn, unabhängig davon, was tatsächlich angefallen ist. Zurückholen lässt sich das nur über die Steuererklärung.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Teilverkauf, den niemand plant',
+        },
+        {
+          type: 'paragraph',
+          text: `Zwischen „halten" und „verkaufen" liegt der Teilverkauf, und er löst ein Problem, das die ganze Entscheidung schwer macht: Man muss nicht recht behalten. Wer die Hälfte verkauft, hat bei jedem Ausgang zur Hälfte richtig gelegen – und genau das nimmt der Entscheidung den Druck, unter dem sie sonst gefällt wird.`,
+        },
+        {
+          type: 'paragraph',
+          text: `Er hat aber einen Preis, der selten mitgerechnet wird. Jeder Verkauf realisiert Gewinn, und realisierter Gewinn wird sofort besteuert. Was an das Finanzamt geht, arbeitet nicht weiter. Über zwanzig Jahre ist der Unterschied zwischen einem durchgehaltenen und einem mehrfach umgeschichteten Depot deshalb größer als die Steuer selbst – es fehlt zusätzlich die Rendite auf die vorzeitig gezahlte Steuer.`,
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Der Jahreswechsel als einzige Terminfrage, die zählt',
+        },
+        {
+          type: 'paragraph',
+          text: `Markttiming ist eine schlechte Idee; Steuertiming ist eine Buchhaltungsfrage mit einer festen Antwort. Der Sparerpauschbetrag von ${formatCurrencyRounded(SPARERPAUSCHBETRAG_EINZELN)} je Person und Jahr verfällt am 31. Dezember. Wer ihn nicht ausgeschöpft hat, kann einen Teil seines Buchgewinns bis zu dieser Grenze steuerfrei realisieren – und die Anteile am nächsten Tag zurückkaufen.`,
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Bevor jemand das für einen Trick hält',
+          items: [
+            '**Es ist keiner.** Der Gewinn wird versteuert, nur eben mit null Prozent, weil er unter den Freibetrag fällt. Der Einstandskurs steigt dadurch, und der spätere Verkauf fällt entsprechend kleiner aus.',
+            '**Es kostet zweimal Gebühren und einmal Spread.** Bei kleinen Beträgen frisst das den Vorteil auf. Die Rechnung lohnt erst, wenn der freigestellte Gewinn deutlich über den Handelskosten liegt.',
+            '**Zwischen Verkauf und Rückkauf liegt Marktrisiko.** Wer am selben Tag zurückkauft, hält es klein – aber nicht bei null.',
+            '**Es ersetzt keinen Freistellungsauftrag.** Ohne ihn zieht die Bank die Steuer trotzdem ein, und der Betrag kommt erst über die Steuererklärung zurück.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -380,6 +437,9 @@ export const wannKaufenVerkaufen: LearnTopic = {
             'Der eigene Einstiegskurs ist für die Zukunft bedeutungslos.',
             'Rebalancing nach Bandbreiten wirkt antizyklisch, ohne dass man entscheiden muss.',
             'Stop-Kurse garantieren keinen Preis und stellen dieselbe Rückkehrfrage wie jeder Ausstieg.',
+            'FIFO trifft beim Teilverkauf die älteste und damit meist am höchsten besteuerte Tranche.',
+            'Der Teilverkauf nimmt der Entscheidung den Druck und kostet dafür Steuerstundung.',
+            'Der Sparerpauschbetrag verfällt zum Jahresende – das ist die einzige Terminfrage mit einer klaren Antwort.',
           ],
         },
       ],
