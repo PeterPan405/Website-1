@@ -227,7 +227,7 @@ export const boerse: LearnTopic = {
         'Xetra, Regionalbörsen und außerbörslicher Handel im Vergleich, wie sich Ausführungsqualität messen lässt und welche Aufsicht den Handel überwacht.',
       title: 'Handelsplätze, Ausführung und Aufsicht',
       lead: 'Wo du handeln kannst, woran du gute Ausführung erkennst und was die Aufsicht leistet – und was nicht.',
-      readingMinutes: 10,
+      readingMinutes: 16,
       status: 'complete',
       blocks: [
         {
@@ -341,6 +341,75 @@ export const boerse: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die Ordnungsarten – der Teil, den man tatsächlich in der Hand hat',
+        },
+        {
+          type: 'paragraph',
+          text: 'Handelsplatz und Aufsicht sind Rahmen; die Ordnungsart ist die einzige Stelle, an der man die Ausführung selbst steuert. Sie entscheidet, ob man einen Preis oder eine Ausführung garantiert bekommt – **beides zugleich geht nicht**, und wer das nicht weiß, bekommt regelmäßig das, was er nicht wollte.',
+        },
+        {
+          type: 'table',
+          caption: 'Was welche Ordnungsart zusichert',
+          head: ['Art', 'Zugesichert ist', 'Nicht zugesichert ist', 'Wofür geeignet'],
+          rows: [
+            [
+              'Markt (billigst / bestens)',
+              'die Ausführung, sofort',
+              'der Preis – bei dünnem Buch auch weit entfernt vom letzten Kurs',
+              'sehr liquide Werte zu Haupthandelszeiten',
+            ],
+            [
+              'Limit',
+              'der Preis, höchstens bzw. mindestens',
+              'die Ausführung – die Order kann für immer offen bleiben',
+              'der Normalfall, besonders außerhalb der Haupthandelszeit',
+            ],
+            [
+              'Stop (Markt)',
+              'dass ab der Schwelle eine Marktorder ausgelöst wird',
+              'zu welchem Kurs sie dann ausgeführt wird',
+              'Absicherung einzelner konzentrierter Positionen',
+            ],
+            [
+              'Stop-Limit',
+              'Schwelle und Preisgrenze zugleich',
+              'die Ausführung – genau im Absturz greift das Limit nicht mehr',
+              'wenig, denn es versagt in der Lage, für die es gedacht war',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Die drei Momente, in denen eine Marktorder teuer wird',
+          items: [
+            '**Vor 9 und nach 17:30 Uhr.** Der Referenzmarkt hat zu, im Direkthandel steht ein einzelner Anbieter, und der Spread ist ein Vielfaches des Üblichen.',
+            '**In den ersten Minuten nach der Eröffnung.** Über Nacht angesammelte Orders treffen aufeinander; die ersten Kurse eines Tages sind regelmäßig die unruhigsten.',
+            '**Nach einer Unternehmensmeldung.** Wer um 22:05 Uhr nach den Quartalszahlen kauft, handelt gegen jemanden, der schneller rechnen kann.',
+            'In allen drei Fällen kostet ein Limit nichts außer Geduld – und es ist die einzige Stelle, an der ein Privatanleger einen Nachteil abstellen kann.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was der Handel kostet, jenseits der Ordergebühr',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Gebühr steht in der Abrechnung; die beiden anderen Posten nicht. Der **Spread** – die Spanne zwischen An- und Verkaufskurs – wird beim Kauf bezahlt und beim Verkauf noch einmal, ohne dass er je als Position erscheint. Und wer außerhalb der Handelszeiten kauft, zahlt ihn in seiner breitesten Form.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Ordergebühr.** Steht in der Abrechnung, ist vergleichbar, ist meistens der kleinste Posten.',
+            '**Spread.** Steht nirgends, fällt zweimal an. Bei einem breit gestreuten Standard-ETF zu Haupthandelszeiten ist er klein; bei einem Nebenwert am Abend kann er die Gebühr um ein Vielfaches übersteigen.',
+            '**Marktauswirkung.** Nur bei großen Beträgen in dünnen Werten: Die eigene Order bewegt den Kurs, gegen den sie ausgeführt wird.',
+            '**Fremdkostenpauschale und Börsenentgelt.** Kleine Beträge, aber sie machen bei Sparraten unter fünfzig Euro einen spürbaren Anteil aus.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -350,6 +419,10 @@ export const boerse: LearnTopic = {
             'Beim Direkthandel ist dein Gegenüber ein Unternehmen, das vom Spread lebt – Vergleichskurs prüfen.',
             'Best Execution meint das beste Gesamtergebnis, nicht zwingend den besten Kurs.',
             'Aufsicht sichert die Ordnung des Handels, nicht die Qualität der Anlage.',
+            'Preis oder Ausführung – eine Order kann nur eines von beiden zusichern.',
+            'Ein Stop-Limit versagt genau in der Lage, für die es gedacht ist.',
+            'Vor 9 Uhr, nach 17:30 Uhr und direkt nach einer Meldung ist eine Marktorder am teuersten.',
+            'Der Spread steht in keiner Abrechnung und fällt zweimal an.',
           ],
         },
       ],

@@ -247,7 +247,7 @@ export const anlegerpsychologie: LearnTopic = {
         'Ankereffekt, Rezenzeffekt, Verfügbarkeitsheuristik und mentale Buchführung – wie sie entstehen und welche Gegenmaßnahmen tatsächlich wirken.',
       title: 'Mechanismen und Gegenmittel',
       lead: 'Die feineren Muster, was sie im Depot anrichten – und was die Verhaltenslücke über eine Ansparzeit kostet.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -347,6 +347,64 @@ export const anlegerpsychologie: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Warum Wissen allein nichts ändert',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die unangenehme Erkenntnis dieser Forschung ist, dass Aufklärung kaum wirkt. Wer alle Muster kennt, fällt trotzdem darauf herein – sie entstehen nicht aus Unwissen, sondern aus der Art, wie Menschen unter Unsicherheit entscheiden. Man kann sie deshalb nicht wegdenken, sondern nur umgehen.',
+        },
+        {
+          type: 'table',
+          caption: 'Zwei Wege, mit demselben Muster umzugehen',
+          head: ['Ansatz', 'Was er verlangt', 'Warum er scheitert oder hält'],
+          rows: [
+            [
+              'Sich zusammenreißen',
+              'im Moment der Entscheidung gegen den eigenen Impuls handeln',
+              'scheitert – genau dann ist die Belastung am höchsten und die Urteilskraft am schlechtesten',
+            ],
+            [
+              'Die Entscheidung vorverlegen',
+              'in ruhiger Lage festlegen, was im Ernstfall geschieht',
+              'hält – die Entscheidung ist bereits gefallen, im Ernstfall wird sie nur noch ausgeführt',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Das ist der ganze Trick, und er ist unspektakulär: Man verlegt die Entscheidung an einen Zeitpunkt, an dem man klar denken kann. Alles, was nachweislich hilft – Sparplan, Rebalancing nach Bandbreiten, ein aufgeschriebener Krisenplan –, ist eine Anwendung genau dieses Grundsatzes.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Die Muster, die im Aufschwung wirken',
+        },
+        {
+          type: 'paragraph',
+          text: 'Verhaltensfehler werden fast immer am Absturz erklärt. Die teureren entstehen aber im Anstieg, weil dort niemand nach ihnen sucht – ein Fehler, der Geld einbringt, sieht nicht wie einer aus.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Erfolg wird dem Können zugeschrieben, Misserfolg den Umständen.** Wer in einem steigenden Markt kauft und gewinnt, hält sich für gut. Der Markt war es. Die Folge ist ein wachsendes Risiko bei sinkendem Anlass.',
+            '**Die Kontrollillusion wächst mit der Aktivität.** Wer viel handelt, fühlt sich beteiligt und hält das für Einfluss. Gemessen wird über alle Studien hinweg das Gegenteil: Höhere Handelsfrequenz senkt die Rendite.',
+            '**Der Vergleich mit anderen wird zum Maßstab.** Nicht die eigene Zielrendite entscheidet, sondern was der Bekannte erzählt – und der erzählt von seinen Gewinnern.',
+            '**Neue Risiken wirken vertraut, weil sie sich bewährt haben.** Zwei ruhige Jahre reichen, damit ein Risiko als beherrschbar gilt. Genau darin liegt die Konstruktion jeder Blase.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Der einfachste Test',
+          items: [
+            'Schreibe vor dem nächsten Kauf einen Satz auf: **Warum kaufe ich das, und was müsste passieren, damit ich es wieder verkaufe?**',
+            'Ein Satz reicht. Wer ihn nicht formulieren kann, hat keinen Grund, sondern eine Stimmung – und das ist die Information, um die es geht.',
+            'Der eigentliche Nutzen zeigt sich später: Beim nächsten Rückgang ist nachlesbar, ob der Grund noch gilt. Die Erinnerung allein liefert diese Auskunft nicht, denn sie schreibt sich unbemerkt um.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -356,6 +414,10 @@ export const anlegerpsychologie: LearnTopic = {
             'Vertrautheit wird routinemäßig mit Sicherheit verwechselt – beim Heimatmarkt wie beim Arbeitgeber.',
             'Ein Prozentpunkt Verhaltenslücke kostet über eine Ansparzeit einen erheblichen Teil des Ergebnisses.',
             'Wirksam sind vorher festgelegte Regeln, Automatisierung und weniger Blicke ins Depot.',
+            'Die Muster verschwinden nicht durch Wissen – sie lassen sich nur umgehen.',
+            'Entscheidungen vorverlegen wirkt, Zusammenreißen im Moment nicht.',
+            'Die teureren Fehler entstehen im Aufschwung, weil dort niemand nach ihnen sucht.',
+            'Ein aufgeschriebener Kaufgrund macht später nachprüfbar, ob er noch gilt.',
           ],
         },
       ],

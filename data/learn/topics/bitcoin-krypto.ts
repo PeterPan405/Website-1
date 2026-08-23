@@ -282,7 +282,7 @@ export const bitcoinKrypto: LearnTopic = {
         'Wie der Kryptomarkt aufgebaut ist, was Stablecoins versprechen, welche Zugangswege es in Europa gibt und was Regulierung schützt – und was nicht.',
       title: 'Marktstruktur, Zugang und Regulierung',
       lead: 'Wo gehandelt wird, was hinter Stablecoins steckt, welche Wege es in Europa gibt – und was ein Regelwerk leisten kann.',
-      readingMinutes: 11,
+      readingMinutes: 17,
       status: 'complete',
       blocks: [
         {
@@ -396,6 +396,76 @@ export const bitcoinKrypto: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Verwahrung: der Unterschied, den es sonst nirgends gibt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Bei einer Aktie liegt das Papier im Depot einer Bank, und wer die Zugangsdaten verliert, ruft dort an. Bei einem Coin gibt es niemanden, den man anrufen kann: Wer den privaten Schlüssel hat, verfügt über die Werte – vollständig und endgültig. Das ist der Kern der Sache und nicht eine technische Randnotiz.',
+        },
+        {
+          type: 'table',
+          caption: 'Drei Arten der Verwahrung',
+          head: ['Art', 'Wer den Schlüssel hat', 'Was schiefgehen kann'],
+          rows: [
+            [
+              'Bei einer Handelsplattform',
+              'die Plattform, nicht du',
+              'Insolvenz, Einfrierung von Auszahlungen, Zweckentfremdung der Kundenbestände – 2022 mehrfach eingetreten',
+            ],
+            [
+              'Eigene Verwahrung, Software',
+              'du, auf einem Gerät mit Internetverbindung',
+              'Schadsoftware, Gerätedefekt, verlorene Wiederherstellungswörter',
+            ],
+            [
+              'Eigene Verwahrung, Hardware',
+              'du, auf einem Gerät ohne dauerhafte Verbindung',
+              'Verlust und Zerstörung des Geräts, verlorene Wiederherstellungswörter – die Wörter sind der eigentliche Wert, nicht das Gerät',
+            ],
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Was „endgültig" hier heißt',
+          items: [
+            '**Keine Rückbuchung.** Eine Überweisung an die falsche Adresse ist weg. Es gibt keine Stelle, die sie zurückholt, und keine Frist, innerhalb derer man widerspricht.',
+            '**Kein Passwort-Zurücksetzen.** Die Wiederherstellungswörter *sind* der Zugang. Wer sie verliert, verliert den Bestand; wer sie abfotografiert, hat ihn verschenkt.',
+            '**Kein Erbe ohne Vorbereitung.** Ohne hinterlegte Anweisung ist der Bestand für die Hinterbliebenen nicht auffindbar und nicht zugänglich. Bei einem Depot regelt das die Bank.',
+            'Genau deshalb ist der Zugangsweg hier eine Anlageentscheidung und keine Bedienfrage.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Die deutsche Steuer behandelt Coins anders als alles andere',
+        },
+        {
+          type: 'paragraph',
+          text: 'Kryptowerte gelten in Deutschland als **andere Wirtschaftsgüter**, nicht als Kapitalanlage. Damit greift nicht die Abgeltungsteuer, sondern § 23 EStG – dieselbe Vorschrift wie bei einem verkauften Gemälde. Das dreht mehrere gewohnte Regeln um.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Nach einem Jahr Haltefrist ist der Gewinn steuerfrei.** Bei Aktien gibt es das nicht; hier schon, und das ist der größte Unterschied überhaupt.',
+            '**Innerhalb des Jahres gilt der persönliche Steuersatz**, nicht die pauschalen 25 Prozent. Wer viel verdient, zahlt auf einen kurzfristigen Krypto-Gewinn mehr als auf einen Aktiengewinn.',
+            '**Es gibt eine eigene Freigrenze** für private Veräußerungsgeschäfte, und sie ist eine Grenze und kein Freibetrag: Ein Euro darüber macht den **ganzen** Gewinn steuerpflichtig, nicht nur den Überschuss.',
+            '**Die Bank zieht nichts ein.** Anders als beim Depot gibt es keinen automatischen Abzug – die Angabe in der Steuererklärung ist Pflicht, und die Belege dafür muss man selbst aufbewahren.',
+            '**Ein ETP auf Bitcoin fällt nicht darunter.** Das ist eine Schuldverschreibung und damit Kapitalvermögen: Abgeltungsteuer, keine Haltefrist, dafür automatischer Einbehalt. Derselbe Basiswert, zwei völlig verschiedene Steuerwelten.',
+          ],
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Bevor jemand danach plant',
+          items: [
+            'Diese Seite ist allgemeine Information und keine Steuerberatung. Die Behandlung von Kryptowerten hat sich mehrfach geändert und wird sich wieder ändern.',
+            'Wer Beträge bewegt, bei denen es darauf ankommt, klärt den Einzelfall mit einer steuerberatenden Person – besonders bei Tausch zwischen Coins, bei Staking und bei allem, was Erträge abwirft.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -405,6 +475,10 @@ export const bitcoinKrypto: LearnTopic = {
             'Bei Stablecoins entscheidet die Prüfbarkeit der Deckung – algorithmische Konstruktionen sind 2022 gescheitert.',
             'Europäische Produkte sind ETPs, also Schuldverschreibungen – kein Sondervermögen.',
             'Regulierung schützt den Umgang mit den Werten, nicht ihren Wert.',
+            'Wer den privaten Schlüssel hat, verfügt über die Werte – ohne Stelle, die etwas rückgängig macht.',
+            'Die Wiederherstellungswörter sind der Zugang, nicht das Gerät.',
+            'Coins gelten als andere Wirtschaftsgüter: nach einem Jahr steuerfrei, davor zum persönlichen Satz.',
+            'Ein Bitcoin-ETP ist Kapitalvermögen – derselbe Basiswert, eine völlig andere Steuerwelt.',
           ],
         },
       ],

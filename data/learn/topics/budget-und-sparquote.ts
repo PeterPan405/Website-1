@@ -280,7 +280,7 @@ export const budgetUndSparquote: LearnTopic = {
         'Kontenmodelle im Vergleich, wie unregelmäßige Ausgaben planbar werden und wie eine Sparquote Gehaltssprünge und Einkommensausfälle übersteht.',
       title: 'Ein Budget, das im Alltag hält',
       lead: 'Welche Methoden funktionieren, wie unregelmäßige Ausgaben eingeplant werden und woran Budgets in der Praxis scheitern.',
-      readingMinutes: 10,
+      readingMinutes: 15,
       status: 'complete',
       blocks: [
         {
@@ -381,6 +381,75 @@ export const budgetUndSparquote: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Warum ein Budget im dritten Monat scheitert',
+        },
+        {
+          type: 'paragraph',
+          text: 'Fast jedes Budget hält vier Wochen. Was danach passiert, ist selten Disziplinlosigkeit – es ist ein Konstruktionsfehler: Der erste Monat wird nach einem guten Monat geplant. Wer im Januar aufschreibt, was er im Januar ausgegeben hat, plant ohne Urlaub, ohne Weihnachten, ohne die Autoreparatur. Der Plan ist nicht zu streng, er ist unvollständig.',
+        },
+        {
+          type: 'table',
+          caption: 'Vier Arten, wie ein Budget kippt',
+          head: ['Muster', 'Woran man es erkennt', 'Die Gegenmaßnahme'],
+          rows: [
+            [
+              'Zu fein aufgeteilt',
+              'Zwölf Kategorien, von denen sich neun jeden Monat gegenseitig ausgleichen',
+              'Drei bis fünf Töpfe. Was sich ohnehin ausgleicht, gehört zusammen',
+            ],
+            [
+              'Nach dem besten Monat geplant',
+              'Der Plan geht auf, solange nichts Ungewöhnliches passiert – und das ist nie länger als ein Quartal',
+              'Zwölf Monate rückwärts auswerten, nicht einen',
+            ],
+            [
+              'Kein Puffer',
+              'Jede Abweichung erzwingt eine Umbuchung, und nach der dritten hört man auf zu buchen',
+              'Eine Zeile „unvorhergesehen" mit echtem Betrag statt null',
+            ],
+            [
+              'Es hängt an täglicher Handarbeit',
+              'Der Plan funktioniert nur, solange man jeden Beleg erfasst',
+              'Trennung über Konten statt über Aufzeichnung – die Aufteilung passiert dann von selbst',
+            ],
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Die Sparquote ist eine Bruchrechnung mit zwei Enden',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Quote lässt sich auf zwei Wegen erhöhen: mehr Zähler oder weniger Nenner. Der Ratgebermarkt kümmert sich fast ausschließlich um den Nenner, weil er sofort beeinflussbar ist. Der Zähler hat aber die längere Wirkung – eine Ausgabe lässt sich einmal senken, ein Einkommen mehrfach steigern.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Wo welcher Hebel wirkt',
+          items: [
+            '**Am Anfang wirkt der Nenner.** Bei kleinem Einkommen ist der Anteil fixer Kosten hoch, und jede eingesparte Fixkostenposition wirkt sofort und jeden Monat weiter. Eine gekündigte Versicherung spart zwölfmal im Jahr.',
+            '**Später wirkt der Zähler.** Ist das Offensichtliche gestrichen, kostet jede weitere Kürzung mehr Lebensqualität als sie Geld bringt. Ab dort ist die Frage nach dem Einkommen die ergiebigere.',
+            '**Einmalig gegen dauerhaft** ist der wichtigere Unterschied als groß gegen klein. Ein Vertrag, der monatlich abbucht, ist mehr wert als eine einmalige Anschaffung desselben Betrags.',
+            '**Die Quote misst nicht den Wohlstand.** Wer 40 Prozent von wenig spart, spart weniger als wer 10 Prozent von viel spart. Beides ist ein Erfolg – aber nur einer davon kauft etwas.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was in der Quote nicht auftaucht',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Tilgung ist Sparen.** Wer einen Kredit zurückzahlt, baut Vermögen auf – die Schuld sinkt. In den meisten Quotenrechnungen taucht sie trotzdem als Ausgabe auf, und das macht die eigene Zahl schlechter, als sie ist.',
+            '**Beiträge zur Altersvorsorge sind Sparen**, auch wenn sie vom Bruttolohn abgehen und nie auf dem Konto erscheinen. Wer sie ignoriert, unterschätzt seine Quote systematisch.',
+            '**Ein voller Notgroschen ändert die Bedeutung derselben Quote.** Ohne ihn ist jede gesparte Rate widerruflich – der nächste Defekt holt sie zurück. Die Quote ist dieselbe, der Fortschritt nicht.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -390,6 +459,10 @@ export const budgetUndSparquote: LearnTopic = {
             'Jahreskosten durch zwölf teilen und auf ein eigenes Konto legen – getrennt vom Notgroschen.',
             'Die halbe Gehaltserhöhung sparen, im selben Monat, in dem sie kommt.',
             'Bei schwankendem Einkommen eine Untergrenze statt eines Fixbetrags festlegen.',
+            'Ein Budget scheitert selten an Disziplin, sondern daran, dass es nach einem guten Monat geplant wurde.',
+            'Drei bis fünf Töpfe statt zwölf – und eine echte Zeile für Unvorhergesehenes.',
+            'Am Anfang wirkt die Ausgabenseite, später die Einkommensseite.',
+            'Tilgung und Altersvorsorgebeiträge sind Sparen, tauchen in der Quote aber meist nicht auf.',
           ],
         },
       ],

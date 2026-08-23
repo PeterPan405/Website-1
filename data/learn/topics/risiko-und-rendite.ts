@@ -259,7 +259,7 @@ export const risikoUndRendite: LearnTopic = {
         'Wie Volatilität berechnet wird, was der maximale Drawdown aussagt, wie Korrelation Risiko senkt und warum Standardabweichung nicht alles erfasst.',
       title: 'Risiko messen',
       lead: 'Welche Kennzahlen es gibt, was sie leisten – und an welcher Stelle jede von ihnen in die Irre führt.',
-      readingMinutes: 11,
+      readingMinutes: 16,
       status: 'complete',
       blocks: [
         {
@@ -351,6 +351,79 @@ export const risikoUndRendite: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die Risiken, für die es keine Kennzahl gibt',
+        },
+        {
+          type: 'paragraph',
+          text: 'Jede Zahl auf dieser Seite misst dasselbe: wie stark ein Kurs in der Vergangenheit geschwankt hat. Das ist eine Eigenschaft der Reihe, nicht der Anlage. Die drei Risiken, die Depots tatsächlich beschädigt haben, tauchen in keiner dieser Kennzahlen auf, weil sie sich vorher nicht in Kursen zeigen.',
+        },
+        {
+          type: 'table',
+          caption: 'Was die Kennzahlen nicht sehen',
+          head: ['Risiko', 'Warum keine Zahl es fängt', 'Was stattdessen hilft'],
+          rows: [
+            [
+              'Gegenpartei',
+              'Ein Emittent, ein Broker oder eine Bank kann ausfallen. Bis zum Tag davor sieht die Kursreihe normal aus – Lehman-Zertifikate hatten eine unauffällige Volatilität',
+              'Sondervermögen statt Schuldverschreibung, mehrere Institute, Einlagensicherung kennen',
+            ],
+            [
+              'Liquidität',
+              'Volatilität misst Preise, die zustande kamen. Sie kann nicht messen, dass zeitweise gar kein Preis zustande kommt – bei Nebenwerten, offenen Immobilienfonds und Anleihen kleiner Emittenten',
+              'Auf Handelsvolumen und Spread achten, nicht nur auf die Kursreihe',
+            ],
+            [
+              'Konzentration',
+              'Ein Index mit 1.600 Titeln kann zu einem Drittel aus zehn Unternehmen bestehen. Die Kennzahl des Index sieht breit gestreut aus, die Beteiligung ist es nicht',
+              'In die Zusammensetzung sehen, nicht auf die Zahl der Positionen',
+            ],
+            [
+              'Verhalten',
+              'Das größte Risiko sitzt vor dem Bildschirm und kommt in keiner Zeitreihe vor. Wer im Rückgang verkauft, verwandelt eine Schwankung in einen Verlust',
+              'Regeln vorher aufschreiben, seltener hinsehen, automatisieren',
+            ],
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Nominal ist nicht real',
+        },
+        {
+          type: 'paragraph',
+          text: 'Eine Anlage ohne Schwankung ist nicht risikofrei. Tagesgeld hat eine Volatilität von null und verliert trotzdem Kaufkraft, sobald die Teuerung über dem Zins liegt. Der Verlust ist deshalb so gefährlich, weil er nie auf dem Kontoauszug erscheint: Der Betrag steht unverändert da, nur die Menge Ware dahinter schrumpft.',
+        },
+        {
+          type: 'callout',
+          variant: 'info',
+          title: 'Zwei Betrachtungen desselben Kontos',
+          items: [
+            '**Nominal** heißt: in Euro gerechnet. Ein Guthaben mit 2 Prozent Zins wächst nominal um 2 Prozent, jedes Jahr, ohne Ausnahme.',
+            '**Real** heißt: in Kaufkraft gerechnet. Bei 3 Prozent Teuerung schrumpft dasselbe Guthaben real um rund 1 Prozent – und das über zwanzig Jahre ist kein Rundungsfehler.',
+            'Die Steuer greift auf den **nominalen** Ertrag zu. Wer nominal 2 Prozent verdient und real verliert, zahlt auf den Verlust noch Abgeltungsteuer.',
+            'Für die Planung zählt allein die reale Größe. Die nominale ist die, die auf dem Auszug steht – und deshalb die, die geglaubt wird.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Wie viel Risiko passt – drei Fragen statt eines Fragebogens',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Wann brauche ich das Geld?** Die Antwort setzt die Obergrenze. Was in drei Jahren gebraucht wird, gehört nicht in etwas, das drei Jahre zur Erholung braucht – unabhängig von jeder Risikoneigung.',
+            '**Was passiert, wenn es schiefgeht?** Nicht „wie fühle ich mich dabei", sondern: Muss ich dann verkaufen? Wer verkaufen *muss*, trägt ein anderes Risiko als wer aussitzen kann, bei identischem Depot.',
+            '**Halte ich es aus, ohne etwas zu tun?** Die ehrlichste Antwort ergibt sich aus dem letzten Rückgang, den man selbst erlebt hat – nicht aus einem angekreuzten Kästchen in ruhiger Lage.',
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Die ersten beiden Fragen sind Rechenaufgaben und haben eine überprüfbare Antwort. Die dritte ist eine Erfahrungsfrage, und sie ist die einzige, bei der man sich selbst belügen kann. Deshalb steht sie zuletzt: Wer die ersten beiden sauber beantwortet, braucht bei der dritten oft weniger Mut, als er dachte.',
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -360,6 +433,9 @@ export const risikoUndRendite: LearnTopic = {
             'Der maximale Rückgang samt Erholungsdauer beschreibt besser, was auszuhalten war.',
             'Ein niedriges Beta ist kein Schutz vor einer Insolvenz.',
             'Geringe Korrelation senkt Schwankung ohne Renditeverzicht – hält aber im Ernstfall am wenigsten.',
+            'Gegenpartei, Liquidität, Konzentration und das eigene Verhalten stehen in keiner Kennzahl.',
+            'Null Schwankung ist nicht null Risiko: Kaufkraftverlust erscheint auf keinem Auszug.',
+            'Der Zeitpunkt, zu dem das Geld gebraucht wird, setzt die Obergrenze – vor jeder Risikoneigung.',
           ],
         },
       ],

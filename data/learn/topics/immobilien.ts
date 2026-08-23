@@ -293,7 +293,7 @@ export const immobilien: LearnTopic = {
         'Wie ein Annuitätendarlehen rechnet, welche Restschuld nach der Zinsbindung bleibt und wie der Kredithebel Gewinne und Verluste gleichermaßen verstärkt.',
       title: 'Finanzierung und Hebel',
       lead: 'Was die Finanzierung tatsächlich kostet, was nach der Zinsbindung offen bleibt – und die Tabelle, die in Beratungsgesprächen nur zur Hälfte gezeigt wird.',
-      readingMinutes: 12,
+      readingMinutes: 18,
       status: 'complete',
       blocks: [
         {
@@ -397,6 +397,85 @@ export const immobilien: LearnTopic = {
         {
           type: 'heading',
           level: 2,
+          text: 'Die Kaufnebenkosten – der Verlust am ersten Tag',
+        },
+        {
+          type: 'paragraph',
+          text: 'Ein Kauf beginnt mit einem Minus, und zwar mit einem großen. Grunderwerbsteuer, Notar, Grundbuch und meist eine Maklerprovision summieren sich in Deutschland auf einen zweistelligen Prozentsatz des Kaufpreises – je nach Bundesland und Provision grob zwischen 9 und 15 Prozent. Dieses Geld ist weg: Es steckt nicht im Objekt und kommt beim Verkauf nicht zurück.',
+        },
+        {
+          type: 'callout',
+          variant: 'warning',
+          title: 'Was daraus folgt',
+          items: [
+            '**Die Immobilie muss erst die Nebenkosten aufholen, bevor überhaupt etwas verdient ist.** Bei 12 Prozent Nebenkosten und 2 Prozent jährlichem Wertzuwachs dauert das rund sechs Jahre – ohne dass in dieser Zeit irgendetwas gewonnen wäre.',
+            '**Sie werden fast nie mitfinanziert.** Banken verlangen sie regelmäßig aus Eigenkapital, weil sie im Ernstfall keinen Gegenwert haben, den man verwerten könnte.',
+            '**Sie machen jeden kurzfristigen Kauf teuer.** Wer nach vier Jahren wieder verkauft, hat die Nebenkosten zweimal gezahlt – die eigenen beim Kauf und über den Preis die des Käufers beim Verkauf.',
+            'Deshalb ist die Haltedauer bei Immobilien keine Vorliebe, sondern eine Rechengröße.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Was in der Rate nicht enthalten ist',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Annuität deckt Zins und Tilgung. Alles andere kommt dazu – und wird beim Vergleich mit einer Miete regelmäßig vergessen, weil es in der Miete enthalten war, ohne dass es jemand einzeln gesehen hätte.',
+        },
+        {
+          type: 'table',
+          caption: 'Die Posten neben der Rate',
+          head: ['Posten', 'Wer ihn beim Mieten trägt', 'Größenordnung beim Eigentum'],
+          rows: [
+            [
+              'Instandhaltung',
+              'der Vermieter, vollständig',
+              'die größte Position. Für Rücklagen werden üblicherweise ein bis anderthalb Prozent des Gebäudewerts je Jahr angesetzt',
+            ],
+            [
+              'Nicht umlagefähige Verwaltung',
+              'der Vermieter',
+              'bei Eigentumswohnungen die Verwaltervergütung, jährlich',
+            ],
+            [
+              'Grundsteuer',
+              'wird umgelegt, also der Mieter',
+              'bleibt beim Eigentümer und ändert sich mit der Gemeinde',
+            ],
+            ['Wohngebäudeversicherung', 'wird umgelegt', 'bleibt beim Eigentümer'],
+            [
+              'Das gebundene Eigenkapital',
+              'entfällt – es ist frei angelegt',
+              'die unsichtbarste Position: Was im Objekt steckt, kann nicht zugleich Zinsen bringen',
+            ],
+          ],
+        },
+        {
+          type: 'paragraph',
+          text: 'Der letzte Posten ist der, den fast jede Vergleichsrechnung auslässt. Wer 100.000 Euro Eigenkapital einbringt, verzichtet auf dessen Ertrag – und dieser entgangene Ertrag gehört auf dieselbe Seite der Rechnung wie die Miete, die man spart.',
+        },
+        {
+          type: 'heading',
+          level: 2,
+          text: 'Anschlussfinanzierung: das Risiko mit Datum',
+        },
+        {
+          type: 'paragraph',
+          text: 'Die Zinsbindung endet an einem Tag, der bei Vertragsschluss bereits feststeht – und die Restschuld an diesem Tag steht ebenfalls fest. Unbekannt ist nur der Zins, zu dem es dann weitergeht. Das ist das einzige Risiko der ganzen Finanzierung, dessen Zeitpunkt man exakt kennt, und damit das einzige, für das man sich vollständig vorbereiten kann.',
+        },
+        {
+          type: 'list',
+          items: [
+            '**Ausrechnen, nicht schätzen.** Was kostet die Rate, wenn der Anschlusszins zwei, drei oder vier Prozentpunkte höher liegt? Wer die Zahl kennt, weiß, ob die Finanzierung trägt.',
+            '**Ein Forward-Darlehen sichert den Zins im Voraus**, gegen einen Aufschlag je Monat Vorlaufzeit. Es ist eine Versicherung, kein Schnäppchen – man zahlt dafür, dass der Zins nicht mehr überraschen kann.',
+            '**Höhere Tilgung senkt die Restschuld und damit das Risiko selbst.** Ein Prozentpunkt mehr Anfangstilgung verkürzt die Laufzeit erheblich und drückt genau den Betrag, der am Stichtag neu verhandelt werden muss.',
+            '**Nach zehn Jahren besteht ein Sonderkündigungsrecht** (§ 489 BGB), unabhängig von der vereinbarten Bindung. Wer eine längere Bindung wählt, hat also eine Untergrenze und trotzdem eine Ausstiegsmöglichkeit.',
+          ],
+        },
+        {
+          type: 'heading',
+          level: 2,
           text: 'Was du dir merken solltest',
         },
         {
@@ -406,6 +485,10 @@ export const immobilien: LearnTopic = {
             'Der Hebel verstärkt Gewinne und Verluste gleichermaßen – nur die Darstellung ist einseitig.',
             'Zinsanstieg, Mietausfall und Wertverlust haben eine gemeinsame Ursache und treten gemeinsam auf.',
             'Der Immobilienhebel ist beherrschbarer als ein Wertpapierkredit, weil keine Nachschusspflicht besteht.',
+            'Kaufnebenkosten sind am ersten Tag weg und müssen erst aufgeholt werden – das macht die Haltedauer zur Rechengröße.',
+            'Instandhaltung, Verwaltung und Grundsteuer stecken beim Mieten in der Miete, beim Eigentum nicht.',
+            'Der entgangene Ertrag des gebundenen Eigenkapitals gehört in jede Vergleichsrechnung.',
+            'Die Anschlussfinanzierung ist das einzige Risiko, dessen Zeitpunkt von Anfang an feststeht.',
           ],
         },
       ],
