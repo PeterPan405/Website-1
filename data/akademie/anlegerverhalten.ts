@@ -63,7 +63,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
     kernaussage:
       'Menschen entscheiden nicht falsch im Sinne von zufällig, sondern falsch in eine vorhersagbare Richtung. Genau das macht die Fehler untersuchbar.',
     belegart: 'definition',
-    dauer: 7,
+    dauer: 11,
     stichworte: ['Verhaltensökonomie', 'Kahneman', 'Denkfehler'],
     lernthemen: ['anlegerpsychologie'],
     inhalt: [
@@ -110,6 +110,61 @@ export const anlegerverhaltenLektionen: Lektion[] = [
           'Untersuchungen zur Aufklärung über Denkfehler finden regelmäßig, dass Wissen die Anfälligkeit kaum senkt. Man erkennt die Fehler zuverlässig bei anderen und nicht bei sich.',
           'Was wirkt, sind Entscheidungen, die vorher getroffen und dann nicht mehr angefasst werden: ein Sparplan, eine schriftliche Regel, eine feste Aufteilung. Sie umgehen den Moment, in dem der Fehler passiert.',
         ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum vorhersagbare Fehler etwas anderes sind als Dummheit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Abweichungen, um die es hier geht, sind keine Rechenschwäche. Sie entstehen aus Verfahren, die im Alltag gut funktionieren und in Finanzfragen versagen – und beides hat dieselbe Ursache.',
+      },
+      {
+        type: 'table',
+        caption: 'Dieselbe Regel, zwei Ergebnisse',
+        head: ['Faustregel', 'Wo sie hilft', 'Wo sie schadet'],
+        rows: [
+          [
+            'Was leicht einfällt, ist häufig',
+            'Alltagsgefahren einschätzen – was man oft erlebt hat, kommt oft vor',
+            'Risiken bewerten: Ein Flugzeugabsturz ist präsent und selten, ein schleichender Kaufkraftverlust unauffällig und sicher',
+          ],
+          [
+            'Bei Unsicherheit anderen folgen',
+            'ein unbekanntes Restaurant wählen',
+            'in einen überhitzten Markt kaufen, weil alle kaufen',
+          ],
+          [
+            'Verluste stärker gewichten als Gewinne',
+            'überleben – wer alles verliert, ist raus',
+            'ein Depot: Die Gewichtung führt dazu, Verlierer zu halten und Gewinner zu verkaufen',
+          ],
+          [
+            'Am Bekannten festhalten',
+            'Beziehungen und Handwerk',
+            'Streuung: Der Heimatmarkt und die Aktien des Arbeitgebers wirken sicherer, als sie sind',
+          ],
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Was das Fach für die Praxis ändert',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Drei Folgerungen, die sich durchgesetzt haben',
+        items: [
+          '**Die Voreinstellung entscheidet.** Wo eine Wahl getroffen werden muss, wählen die meisten das, was schon eingestellt ist. Automatische Sparpläne und automatische Beitragserhöhungen wirken deshalb stärker als jede Aufklärung.',
+          '**Aufklärung allein wirkt kaum.** Wissen über einen Denkfehler verhindert ihn nicht. Wirksam sind Verfahren, die die Entscheidung vorverlegen, nicht Vorträge, die sie verbessern sollen.',
+          '**Der Rahmen verändert die Antwort.** Dieselbe Wahl, als Gewinn oder als Verlust formuliert, führt zu verschiedenen Entscheidungen. Wer eine Anlage beurteilt, sollte sie deshalb auch einmal andersherum formulieren.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Grenze des Fachs gehört dazu: Es beschreibt, wie Entscheidungen abweichen – es sagt nicht, wohin ein Kurs läuft. Wer daraus eine Handelsstrategie ableiten will, verlässt das Gebiet, in dem die Befunde belastbar sind.',
       },
     ],
   },
@@ -562,7 +617,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
     kernaussage:
       'Wer das Ergebnis kennt, erinnert seine frühere Einschätzung als treffender, als sie war. Damit fällt die Grundlage weg, aus der man lernen könnte.',
     belegart: 'beobachtung',
-    dauer: 7,
+    dauer: 11,
     stichworte: ['Rückschaufehler', 'Hindsight Bias', 'Erinnerung'],
     setztVoraus: ['bestaetigungsfehler'],
     lernthemen: ['groesste-crashes', 'anlegerpsychologie'],
@@ -601,6 +656,47 @@ export const anlegerverhaltenLektionen: Lektion[] = [
           'Ein Anlagetagebuch. Vor jeder Entscheidung zwei Sätze: was erwartet wird und woran man erkennen würde, dass man falsch lag. Das aufgeschriebene Wort ist die einzige Erinnerung, die sich nicht anpasst.',
           'Nach einem Jahr nachlesen. Der Abstand zwischen dem Notierten und dem Erinnerten ist die eigentliche Lehre.',
         ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum er das Lernen nicht nur erschwert, sondern verhindert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Lernen aus Erfahrung setzt voraus, dass man die frühere Einschätzung mit dem späteren Ergebnis vergleichen kann. Der Rückschaufehler zerstört genau diesen Vergleich – nicht, indem er das Ergebnis verfälscht, sondern indem er die Erinnerung an die Einschätzung still an das Ergebnis angleicht.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Fehler wirken wie Pech.** „Ich wusste ja, dass es riskant war" – wer das im Nachhinein erinnert, sieht keinen Fehler im Vorgehen, sondern nur ein schlechtes Ergebnis.',
+          '**Treffer wirken wie Können.** Aus einer knappen Vermutung wird rückblickend eine Überzeugung. Das nährt genau das Zutrauen, das beim nächsten Mal die Positionsgröße erhöht.',
+          '**Die eigene Trefferquote steigt ohne Zutun.** Wer nur aus der Erinnerung zählt, kommt regelmäßig auf eine Quote deutlich über der tatsächlichen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Das einzige Gegenmittel ist eine Aufzeichnung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gegen einen Fehler der Erinnerung hilft kein besseres Erinnern. Was hilft, ist eine Notiz, die vor dem Ergebnis entstanden ist – und deshalb ist das Entscheidungstagebuch das Werkzeug, das in der Forschung zu diesem Thema am häufigsten empfohlen wird.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Vier Zeilen genügen',
+        items: [
+          '**Datum und Entscheidung.** Was wurde gekauft oder verkauft, in welcher Größe.',
+          '**Die Begründung in einem Satz.** Nicht ausführlich – nachprüfbar.',
+          '**Die Erwartung, mit einer Zahl.** Was soll passieren, bis wann? Ohne Zahl lässt sich später alles als Bestätigung lesen.',
+          '**Die Widerlegungsbedingung.** Was müsste eintreten, damit die These falsch ist? Diese Zeile ist die unbequemste und die wertvollste.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Nutzen zeigt sich nicht bei der einzelnen Entscheidung, sondern nach zwanzig: Dann steht dort eine Trefferquote, die nicht aus der Erinnerung stammt – und das ist die einzige belastbare Auskunft darüber, ob das eigene Vorgehen trägt.',
       },
     ],
   },
@@ -679,7 +775,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
     kernaussage:
       'Anderen zu folgen ist für den Einzelnen oft rational und für den Markt als Ganzes zerstörerisch. Genau daraus entstehen Blasen.',
     belegart: 'deutung',
-    dauer: 8,
+    dauer: 12,
     stichworte: ['Herdenverhalten', 'Blase', 'Informationskaskade'],
     setztVoraus: ['verfuegbarkeit-und-aktualitaet'],
     lernthemen: ['groesste-crashes', 'anlegerpsychologie'],
@@ -709,6 +805,38 @@ export const anlegerverhaltenLektionen: Lektion[] = [
           'Wiederkehrende Anzeichen: Begründungen, warum diesmal andere Maßstäbe gelten; Kredithebel bei Privatanlegern; Berichterstattung außerhalb der Wirtschaftsteile; steile Preisanstiege ohne veränderte Erträge.',
           'Was nicht funktioniert: daraus einen Zeitpunkt abzuleiten. Alle diese Anzeichen waren in den späten 1990er Jahren schon Jahre vor dem Höhepunkt sichtbar, und wer danach ausgestiegen ist, hat eine Verdopplung verpasst.',
           'Der Satz, dass ein Markt länger unvernünftig bleiben kann, als man zahlungsfähig bleibt, wird meist John Maynard Keynes zugeschrieben. Belegt ist die Zuschreibung nicht – zutreffend ist sie trotzdem.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum Mitlaufen für den Einzelnen vernünftig sein kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die übliche Darstellung macht daraus Schwäche. Das trifft es nicht: In mehreren Lagen ist Folgen die rationale Antwort, und genau deshalb ist das Verhalten so stabil.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Informationskaskade.** Wer sieht, dass viele andere kaufen, schließt daraus – oft zu Recht –, dass sie etwas wissen. Ab einem gewissen Punkt wiegt das beobachtete Verhalten schwerer als die eigene, schwache Einschätzung. Das Problem: Die anderen haben genauso geschlossen, und niemand hat die ursprüngliche Information.',
+          '**Verwaltete Gelder.** Wer fremdes Geld anlegt, wird an einer Vergleichsgröße gemessen. Falsch zu liegen wie alle kostet den Ruf nicht; falsch zu liegen allein kostet den Auftrag. Die Anreize belohnen das Mitlaufen.',
+          '**Erzwungene Verkäufe.** Kredithebel, Nachschussforderungen und Rückgaben in Fonds zwingen zum Verkauf, unabhängig von der eigenen Meinung. Das sieht von außen aus wie Panik und ist Mechanik.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Und warum das Gegenteil selten funktioniert',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Antizyklisch ist leichter gesagt als gehalten',
+        items: [
+          '**Die Herde hat oft recht, und zwar lange.** Ein Trend kann Jahre laufen. Wer früh dagegenhält, verliert zuerst und behält vielleicht später recht – für ein Depot ist die Reihenfolge entscheidend.',
+          '**Dagegenhalten verlangt Kapital und Zeit zugleich.** Beides ist begrenzt, und beides wird genau dann knapp, wenn die Position am meisten gegen einen läuft.',
+          '**Was hilft, ist eine Regel statt einer Haltung.** Rebalancing nach Bandbreiten wirkt automatisch antizyklisch – ohne dass man den Wendepunkt erkennen oder eine Meinung gegen die Mehrheit durchhalten müsste.',
         ],
       },
     ],
