@@ -59,6 +59,13 @@ export interface Aenderung {
 export const AENDERUNGEN: Aenderung[] = [
   {
     datum: '2026-08-20',
+    art: 'geaendert',
+    titel: 'Der Podcast: Hinweis später, Aussprache besser, Störgeräusche seltener',
+    text: 'Drei Dinge an der täglichen Folge. Der Hinweis, dass Text und Stimme automatisiert entstehen, steht jetzt hinter der Begrüßung statt ganz am Anfang – er bleibt vor der ersten Meldung, schreckt dort aber niemanden ab, der noch gar nicht weiß, worum es geht. Bei der Aussprache englischer Wörter waren neun Einträge falsch: „Hathaway", „Schwab", „Software" und „Hardware" klangen mit deutschem W, „Reserve" endete auf F. Und die Prüfung, die Störgeräusche aus der fertigen Aufnahme dämpft, war für gehaltene Töne unter 2.600 Hertz blind – ein Brummen oder Piepen lief durch. Sie erkennt jetzt auch, dass die ganze Energie in einer einzigen Frequenz sitzt, und das ist bei einem erzeugten Geräusch der häufigere Fall.',
+    ziel: { text: 'Zum Podcast', href: '/podcast' },
+  },
+  {
+    datum: '2026-08-20',
     art: 'neu',
     titel: 'Die Tokioter Börse ist als Terminquelle angeschlossen',
     text: 'Für Toyota, Sony, Nintendo und die übrigen 69 japanischen Titel stand kein Termin für die Quartalszahlen da – die bisherige Quelle deckt nur ab, wer in den USA notiert. Die Tokioter Börse veröffentlicht die geplanten Meldetermine aller dort gelisteten Unternehmen selbst; sie werden jetzt gelesen. Es sind keine Schätzungen, sondern die Tage, die die Unternehmen selbst angekündigt haben. Zwei Einschränkungen stehen dabei: Eine Uhrzeit nennt Tokio nicht, und deshalb steht bei diesen Titeln auch keine. Und die Börse veröffentlicht die Liste je Berichtssaison – zwischen zwei Saisons steht auf der Aktienseite, dass der nächste Tag noch nicht bekannt gegeben ist, statt einer Schätzung.',
