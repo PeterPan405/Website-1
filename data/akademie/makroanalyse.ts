@@ -689,7 +689,7 @@ export const makroanalyseLektionen: Lektion[] = [
     kernaussage:
       'Die Geldmenge allein sagt wenig über Preise. Entscheidend ist, ob das Geld auch umläuft – und das zeigt sich in der Kreditvergabe.',
     belegart: 'deutung',
-    dauer: 8,
+    dauer: 12,
     stichworte: ['Geldmenge', 'M3', 'Kreditvergabe', 'Umlaufgeschwindigkeit'],
     setztVoraus: ['leitzins'],
     lernthemen: ['geldsystem'],
@@ -743,6 +743,43 @@ export const makroanalyseLektionen: Lektion[] = [
       {
         type: 'paragraph',
         text: 'Praktisch verwertbar sind deshalb weniger die Bestandsgrößen als die Umfragen der Notenbanken zur Kreditvergabe: Wenn Banken ihre Standards straffen und die Nachfrage zugleich fällt, kühlt die Wirtschaft mit einigen Quartalen Verzögerung ab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Geldmenge allein so wenig erklärt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die bekannte Gleichung setzt Geldmenge mal Umlaufgeschwindigkeit gleich Preisniveau mal Handelsvolumen. Sie ist keine Theorie, sondern eine Definition – sie gilt immer, weil die Umlaufgeschwindigkeit als das definiert ist, was übrig bleibt. Eine Vorhersage entsteht daraus erst, wenn man annimmt, dass diese Größe stabil ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau diese Annahme hält nicht. Die Umlaufgeschwindigkeit schwankt erheblich und ist über lange Strecken gefallen. Eine wachsende Geldmenge kann deshalb ohne Wirkung auf die Preise bleiben, wenn das Geld nicht ausgegeben, sondern gehalten wird.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Wo das Geld hängen bleibt',
+        items: [
+          '**In den Reserven der Banken.** Kauft eine Notenbank Anleihen, entsteht Zentralbankgeld. Solange es als Reserve liegt und nicht als Kredit vergeben wird, erreicht es die Realwirtschaft nicht.',
+          '**In Vermögenspreisen.** Was in Anlagen fließt, treibt Kurse und Immobilienpreise – beides steht in keinem Verbraucherpreisindex. Es ist Teuerung, sie wird nur woanders gemessen.',
+          '**In der Ersparnis.** In unsicheren Lagen steigt die Neigung, Geld zu halten. Die Geldmenge wächst, die Umlaufgeschwindigkeit fällt, das Preisniveau bewegt sich kaum.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Woran man erkennt, ob Geld tatsächlich ankommt',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Kreditvergabe an nichtfinanzielle Unternehmen und Haushalte.** Die aussagekräftigste Größe: Sie misst Geld, das für Investitionen und Konsum entsteht, nicht solches, das zwischen Banken liegt.',
+          '**Umfragen zu den Kreditrichtlinien.** Sie kommen früher als die Bestandszahlen und sagen, ob Banken die Vergabe verschärfen oder lockern – die Wirkung zeigt sich erst Quartale später.',
+          '**Das enge gegen das weite Geldmengenmaß.** Wächst das enge Maß schneller, wird Geld eher gehalten; wächst das weite schneller, wird eher angelegt und ausgegeben.',
+          '**Die Kreditvergabe ist zugleich der Kanal, über den Zinsentscheidungen wirken.** Wer wissen will, ob eine Geldpolitik greift, sieht dorthin und nicht auf die Bilanzsumme der Notenbank.',
+        ],
       },
     ],
   },
@@ -811,7 +848,7 @@ export const makroanalyseLektionen: Lektion[] = [
     kernaussage:
       'Ein Leistungsbilanzüberschuss bedeutet, dass ein Land mehr produziert als verbraucht und die Differenz dem Ausland leiht. Ob das gut ist, hängt davon ab, wem es leiht.',
     belegart: 'deutung',
-    dauer: 8,
+    dauer: 12,
     stichworte: ['Handelsbilanz', 'Leistungsbilanz', 'Wechselkurs'],
     setztVoraus: ['bruttoinlandsprodukt'],
     lernthemen: ['waehrungen-wechselkurse', 'geldsystem'],
@@ -843,6 +880,43 @@ export const makroanalyseLektionen: Lektion[] = [
           'Er bedeutet, dass im Inland weniger investiert und verbraucht wird, als produziert wurde. Über Jahrzehnte kann daraus eine Lücke bei Infrastruktur und Ausrüstung werden.',
           'Die Forderungen gegen das Ausland können ausfallen oder durch Abwertungen an Wert verlieren. Ein Teil der deutschen Überschüsse der 2000er Jahre ist in Wertberichtigungen verschwunden.',
           'Umgekehrt ist ein Defizit nicht automatisch schlecht: Ein Land, das Kapital importiert, um damit produktiv zu investieren, tut etwas Sinnvolles. Entscheidend ist, wofür es verwendet wird.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum eine schwache Währung nicht einfach gut für Exporteure ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die verkürzte Fassung lautet: Abwertung macht Ausfuhren billiger, also steigen sie. Der Zusammenhang besteht, ist aber schwächer und langsamer, als er klingt – aus drei Gründen, die sich alle messen lassen.',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Die Einfuhren werden zugleich teurer.** Wer Vorprodukte und Energie in fremder Währung kauft, gibt einen Teil des Vorteils sofort wieder ab. Bei stark verflochtenen Lieferketten bleibt vom Nettoeffekt wenig.',
+          '**Preise sind vertraglich gebunden.** Lieferverträge laufen über Monate bis Jahre. Der Wechselkurs ändert sich heute, der Rechnungsbetrag erst bei der nächsten Verhandlung.',
+          '**Die Nachfrage reagiert träge.** Wer eine Maschine bestellt, wechselt den Lieferanten nicht wegen fünf Prozent Preisunterschied – das erfordert Umbauten, Schulung und Ersatzteilversorgung.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Zusammen ergeben diese drei die sogenannte **J-Kurve**: Nach einer Abwertung verschlechtert sich die Handelsbilanz zunächst, weil die Einfuhren sofort teurer werden und die Ausfuhrmengen noch nicht gestiegen sind. Erst nach Quartalen dreht der Effekt.',
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Was ein Überschuss über ein Land verrät',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Dieselbe Zahl, drei verschiedene Lagen',
+        items: [
+          '**Ein Überschuss aus Wettbewerbsstärke.** Die Ausfuhren sind gefragt, die Beschäftigung hoch. Das ist die Lesart, die meistens gemeint ist – und die seltenste in Reinform.',
+          '**Ein Überschuss aus schwacher Binnennachfrage.** Es wird nicht mehr verkauft, sondern weniger eingeführt. Der Überschuss steigt, während die Wirtschaft schrumpft. Von der Zahl allein ist das nicht zu unterscheiden.',
+          '**Ein Überschuss aus Demografie.** Eine alternde Gesellschaft spart mehr, als sie im Inland investiert. Die Differenz geht ins Ausland – nicht als Erfolg, sondern als Folge der Altersstruktur.',
+          'Für einen Anleger zählt daher nicht die Höhe, sondern **woraus** sie entsteht. Die Zahl selbst ist mehrdeutig.',
         ],
       },
     ],
@@ -973,7 +1047,7 @@ export const makroanalyseLektionen: Lektion[] = [
     kernaussage:
       'Was eine Zahl mit den Kursen macht, hängt an drei Dingen: der Abweichung von der Erwartung, dem Wirkungsweg – und daran, welche Sorge gerade die größere ist.',
     belegart: 'deutung',
-    dauer: 8,
+    dauer: 12,
     stichworte: ['Marktreaktion', 'Erwartung', 'Überraschung'],
     setztVoraus: ['was-makroanalyse-ist', 'leitzins'],
     lernthemen: ['wie-funktioniert-der-markt', 'anlegerpsychologie'],
@@ -1020,6 +1094,52 @@ export const makroanalyseLektionen: Lektion[] = [
         items: [
           'Auf eine Veröffentlichung hin zu handeln, ist ein Wettlauf gegen Systeme, die in Mikrosekunden arbeiten und näher an der Datenquelle sitzen. Dieser Wettlauf ist nicht zu gewinnen.',
           'Der Nutzen dieses Bereichs liegt nicht im Reagieren, sondern im Verstehen: zu wissen, warum ein Markt sich bewegt, verhindert Fehlschlüsse – etwa den, aus einem Kursrutsch auf schlechte Wirtschaftsdaten zu schließen.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Warum dieselbe Zahl mal steigende und mal fallende Kurse auslöst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein starker Arbeitsmarktbericht ist gute Nachricht für die Wirtschaft und schlechte für die Zinserwartung. Welche der beiden den Kurs bewegt, hängt davon ab, **welche Sorge gerade die größere ist** – und die wechselt über die Jahre.',
+      },
+      {
+        type: 'table',
+        caption: 'Zwei Umfelder, entgegengesetzte Reaktion',
+        head: ['Vorherrschende Sorge', 'Starke Konjunkturdaten führen zu', 'Warum'],
+        rows: [
+          [
+            'Teuerung',
+            'fallenden Kursen',
+            'Stärke heißt: Die Notenbank bleibt straff oder wird straffer. Der Abzinsungssatz steigt',
+          ],
+          [
+            'Rezession',
+            'steigenden Kursen',
+            'Stärke heißt: Die Gewinne kommen. Die Zinsfrage tritt zurück',
+          ],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Daraus folgt eine praktische Regel für das Lesen von Marktberichten: Wer erklären will, warum ein Kurs sich bewegt hat, muss zuerst wissen, in welchem der beiden Umfelder er sich befand. Ohne das lässt sich jede Reaktion nachträglich begründen – und genau das passiert in den meisten Kommentaren.',
+      },
+      {
+        type: 'heading',
+        level: 3,
+        text: 'Die Reihenfolge innerhalb einer Minute',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Was in den ersten Sekunden nach einer Veröffentlichung passiert',
+        items: [
+          '**Zuerst reagiert der Anleihemarkt**, weil dort die Zinserwartung unmittelbar hängt. Danach Währungen, danach Aktienindizes, zuletzt einzelne Aktien.',
+          '**Die erste Bewegung ist häufig nicht die endgültige.** Programme handeln die Schlagzeile, Menschen lesen anschließend die Bestandteile – und die erste Reaktion dreht regelmäßig innerhalb von Minuten.',
+          '**Revisionen der Vormonate stehen in derselben Meldung** und werden von der Schlagzeile verdeckt. Eine kräftige Abwärtsrevision kann eine gute aktuelle Zahl vollständig entwerten.',
+          '**Für ein langfristiges Depot ist all das ohne Belang.** Der Wert dieses Wissens liegt darin, Meldungen einzuordnen – und zu erkennen, dass eine Bewegung, über die man liest, längst gehandelt ist.',
         ],
       },
     ],
