@@ -541,7 +541,7 @@ export const fundamentalanalyseLektionen: Lektion[] = [
       },
       {
         type: 'heading',
-        level: 3,
+        level: 2,
         text: 'Wo das KUV wirklich etwas leistet',
       },
       {

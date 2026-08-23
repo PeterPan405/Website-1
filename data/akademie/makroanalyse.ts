@@ -419,7 +419,7 @@ export const makroanalyseLektionen: Lektion[] = [
       },
       {
         type: 'heading',
-        level: 3,
+        level: 2,
         text: 'Umfrage oder Verhalten – zwei verschiedene Arten von Stimmung',
       },
       {
@@ -909,7 +909,7 @@ export const makroanalyseLektionen: Lektion[] = [
       },
       {
         type: 'heading',
-        level: 3,
+        level: 2,
         text: 'Warum Kupfer der zuverlässigste dieser Indikatoren ist',
       },
       {

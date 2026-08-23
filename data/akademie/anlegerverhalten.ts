@@ -400,7 +400,7 @@ export const anlegerverhaltenLektionen: Lektion[] = [
       },
       {
         type: 'heading',
-        level: 3,
+        level: 2,
         text: 'Die vier Anker, die im Depot am häufigsten wirken',
       },
       {
