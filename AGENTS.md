@@ -399,6 +399,9 @@ Diese Sätze sind aus Fehlern entstanden, die sich in anderer Gestalt
 wiederholen. Die Fälle dazu stehen in `ENTSCHEIDUNGEN.md`.
 
 - **Der teuerste Fehler ist nicht der rote Lauf, sondern der stille.**
+- **`npm run pruefen` liest `out/`, nicht deine Änderung.** Ohne vorheriges
+  `npm run build` prüft es den letzten Bau und meldet grün – am 23. August 2026
+  vier Überschriftensprünge glatt durchgelassen, die CI dann fand.
 - **Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe.** Wer eine baut,
   legt ihr etwas vor, das sie beanstanden **muss**.
 - **Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist
