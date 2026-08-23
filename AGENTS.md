@@ -46,6 +46,10 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
   fällt **nicht** darunter – da wird weiter gefragt.
 - `workflow_dispatch` startet nur Workflows, die auf `main` liegen. Ein neuer
   Workflow auf einem Nebenzweig antwortet mit 404.
+- **Manchmal geht `workflow_dispatch` gar nicht** (403, „Resource not
+  accessible by integration") – ein `push` auf den Arbeitszweig aber schon.
+  Dann hängt der Lauf an `push` mit **Pfadfilter** auf eine Anstoßdatei;
+  Vorbild: `.github/sonde-anstoss.txt` in `quellen-probe.yml`.
 
 → `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
 
@@ -419,8 +423,6 @@ wiederholen. Die Fälle dazu stehen in `ENTSCHEIDUNGEN.md`.
   die ungeprüfte Annahme auskommt.
 - **Die richtige Frage ist nicht „komme ich an die Seite?", sondern „wer kommt
   an sie, und wie bekomme ich sein Ergebnis?"**
-- **Eine Doppelung mit guter Begründung altert trotzdem.** Die Begründung
-  schützt sie beim Anlegen, nicht danach – und kann selbst veralten, ohne dass
-  jemand den Kommentar noch einmal liest. Wer eine zweite Stelle stehen lässt,
-  schuldet ihr eine Prüfung, die beide vergleicht; gibt es die nicht, wird
-  zusammengeführt.
+- **Eine Doppelung mit guter Begründung altert trotzdem** – die Begründung
+  schützt sie beim Anlegen, nicht danach. Wer eine zweite Stelle stehen lässt,
+  schuldet ihr eine Prüfung, die beide vergleicht; sonst wird zusammengeführt.

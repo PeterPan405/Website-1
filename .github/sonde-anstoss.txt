@@ -1,0 +1,30 @@
+# Anstoß für „Quellen abklopfen"
+#
+# Diese Datei ändern und auf einen `claude/**`-Zweig pushen startet den
+# Workflow `.github/workflows/quellen-probe.yml`. Die erste nicht leere,
+# nicht mit `#` beginnende Zeile nennt die Sonde:
+#
+#     alle | sec | asien | nordisch | esef | esef-de
+#
+# ## Warum es diesen Umweg gibt
+#
+# Die Entwicklungsumgebung dieses Projekts darf `workflow_dispatch` nicht
+# auslösen – die Schnittstelle antwortet „Resource not accessible by
+# integration“. Sie darf aber auf ihren eigenen Arbeitszweig pushen. Der
+# Pfadfilter im Workflow sorgt dafür, dass nur die absichtliche Änderung
+# dieser einen Datei etwas startet und ein gewöhnlicher Commit nicht.
+#
+# Wer den Lauf noch einmal will, ändert etwas Sichtbares – die Zeile darunter
+# reicht. Ein Push ohne Änderung an dieser Datei tut nichts.
+#
+# ## Was der Lauf kostet
+#
+# `esef` dauert rund zwanzig Minuten (zwei Sonden über gut 500 Abschlüsse),
+# `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
+# teuerste Wahl.
+
+esef
+
+# Lauf vom 23. August 2026: Die 97 europäischen Titel, deren Quellenlage
+# „ESEF – teilweise zugeordnet" lautet – Vereinigtes Königreich 36,
+# Frankreich 25, Niederlande 14, Schweden 10, Spanien 7, Italien 5.
