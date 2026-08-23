@@ -421,6 +421,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   */
   const akademiePages: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/akademie'), changeFrequency: 'monthly', priority: 0.8 },
+    {
+      url: absoluteUrl('/akademie/drei-wochen'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     ...getBereiche().map((bereich) => ({
       url: absoluteUrl(`/akademie/${bereich.id}`),
       changeFrequency: 'monthly' as const,

@@ -133,6 +133,21 @@ const seiten: SearchEntry[] = [
     keywords: ['30 tage', 'programm', 'einsteiger', 'plan', 'rhythmus', 'kurs'],
   },
   {
+    title: 'Die Akademie in drei Wochen',
+    href: '/akademie/drei-wochen',
+    kind: 'Lernwerkzeug',
+    hint: 'Alle Lektionen der Akademie in einer Reihenfolge, die keine Voraussetzung überspringt.',
+    keywords: [
+      'drei wochen',
+      '3 wochen',
+      'akademie',
+      'reihenfolge',
+      'lehrplan',
+      'plan',
+      'kurs',
+    ],
+  },
+  {
     title: 'Glossar-Karteikarten',
     href: '/glossar/karteikarten',
     kind: 'Lernwerkzeug',

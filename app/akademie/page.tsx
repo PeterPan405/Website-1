@@ -147,6 +147,37 @@ export default function AkademiePage() {
               die am meisten kosten und am wenigsten auffallen.
             </p>
           </Callout>
+
+          {/*
+            Der Verweis auf die drei Wochen steht unter dem Hinweiskasten, nicht
+            über den Bereichskacheln.
+
+            Die Bereiche sind der Regelfall: Wer hierherkommt, hat meist eine
+            Frage und will ein Verfahren. Die Wochenreihenfolge ist die Antwort
+            auf die andere Frage – „und in welcher Reihenfolge das alles?" –,
+            und die stellt sich erst, wenn man die fünf Kacheln gesehen hat.
+          */}
+          <Link
+            href="/akademie/drei-wochen"
+            className="fk-card-interactive group mt-6 flex items-center gap-4 p-5"
+          >
+            <span className="bg-akademie-soft text-akademie flex size-11 shrink-0 items-center justify-center rounded-xl">
+              <Icon name="calendar" className="size-5" />
+            </span>
+            <span className="min-w-0">
+              <span className="text-fg group-hover:text-akademie block font-semibold transition">
+                Lieber alles der Reihe nach? Die Akademie in drei Wochen
+              </span>
+              <span className="text-fg-muted mt-1 block text-sm leading-relaxed">
+                Alle {lektionenGesamt()} Lektionen quer durch die Bereiche, in einer
+                Reihenfolge, die keine Voraussetzung überspringt – rund 23 je Woche.
+              </span>
+            </span>
+            <Icon
+              name="arrow-right"
+              className="text-akademie size-5 shrink-0 transition-transform group-hover:translate-x-0.5"
+            />
+          </Link>
         </div>
       </div>
 
