@@ -37,6 +37,16 @@ import { join, relative } from 'node:path'
 */
 import { resolveSiteUrl } from '../lib/resolve-site-url.ts'
 
+import { vorlesegrafiken } from '@/lib/grafik-beschreibungen'
+
+/**
+ * Was die Vorlesefassung zu jeder Grafik sagen würde.
+ *
+ * Einmal gebildet – die Rechnung läuft über alle 135 Grafiken, und
+ * `grafikenPruefen()` wird je Seite aufgerufen.
+ */
+const VORLESEGRAFIKEN = vorlesegrafiken()
+
 const PAKET = 'out'
 
 /** Diese Dateien müssen im Paket liegen, sonst ist es unbrauchbar. */
@@ -146,6 +156,16 @@ function adresse(datei: string): string {
  * Dieselbe Grafik steht auf vielen Seiten. Ohne die Sammlung stünde ein
  * einziger Fehler hundertfach in der Ausgabe und verdeckte alles andere.
  */
+/** Die fünf HTML-Entitäten, die React beim Rendern setzt, zurückübersetzen. */
+function entwerte(text: string): string {
+  return text
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#x27;', "'")
+    .replaceAll('&amp;', '&')
+}
+
 function grafikenPruefen(html: string, gemeldet: Set<string>): string[] {
   const fehler: string[] = []
 
@@ -169,6 +189,34 @@ function grafikenPruefen(html: string, gemeldet: Set<string>): string[] {
 
     if (/(^|["\s])NaN|>NaN</.test(inhalt)) {
       melden('enthält NaN – eine Rechnung darin ist fehlgeschlagen.')
+      continue
+    }
+
+    /*
+      Sagt die Grafik dem Screenreader dasselbe wie der Aufnahme?
+
+      Das `<desc>` hier ist, was ausgeliefert wird. `vorlesegrafiken()` ist,
+      was die Vorleseleiste und `scripts/lese-texte-schreiben.ts` sprechen
+      würden. Bis zum 23. August 2026 waren das zwei getrennte Quellen, und
+      bei 70 von 135 Grafiken sagten sie Verschiedenes – der eine bekam die
+      gerechneten Zahlen, der andere die Bildunterschrift oder eine
+      Formbeschreibung.
+
+      Der Vergleich steht hier und nicht in `tests/`: Er braucht das gebaute
+      Paket, und die Tests laufen in CI **vor** dem Bau. Ein Test, der ohne
+      Material grün meldet, wäre schlimmer als keiner.
+    */
+    const gezeichnet = inhalt.match(
+      new RegExp(`<desc id="${kennung}-beschreibung">([\\s\\S]*?)</desc>`)
+    )?.[1]
+    const gesprochen = VORLESEGRAFIKEN[kennung]?.description
+
+    if (gezeichnet !== undefined && gesprochen !== entwerte(gezeichnet)) {
+      melden(
+        'sagt dem Screenreader etwas anderes als der Vorlesefassung. ' +
+          'Entweder steht die Beschreibung doppelt (in data/figures.ts und in ' +
+          'lib/grafik-beschreibungen.ts), oder eine der beiden ist veraltet.'
+      )
       continue
     }
 

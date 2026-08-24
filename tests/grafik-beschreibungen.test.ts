@@ -16,20 +16,19 @@
  * je nachdem, wer las. Beides sah für sich in Ordnung aus, nichts brach, nichts
  * warnte.
  *
- * ## Wie hier geprüft wird
+ * ## Was hier geprüft wird – und was nicht
  *
- * Gegen das **gebaute Paket**, nicht gegen den Quelltext. Aus `out/` wird jedes
- * `<desc>` gelesen – also das, was wirklich ausgeliefert wird – und mit dem
- * verglichen, was die Vorlesefassung sagen würde. Ein Vergleich der Quelltexte
- * miteinander würde nur beweisen, dass zwei Dateien zueinander passen.
+ * Hier steht, was **ohne Bau** zu prüfen ist: dass jede der 135 Grafiken
+ * überhaupt eine Vorlesefassung hat, und dass keine zwei trägt – eine feste in
+ * `data/figures.ts` und eine gerechnete in `lib/grafik-beschreibungen.ts`
+ * zugleich. Genau diese Doppelung ist die Ursache des Fehlers oben.
  *
- * Daraus folgt: **Ohne `npm run build` kann dieser Test nichts sagen.** Er sagt
- * es dann auch – und geht rot, statt stillschweigend durchzulaufen. Ein Test,
- * der ohne Material grün meldet, ist schlimmer als keiner.
+ * Der eigentliche Vergleich – jedes `<desc>` aus dem gebauten Paket gegen das,
+ * was gesprochen würde – steht in `scripts/paket-pruefen.ts` und läuft mit
+ * `npm run pruefen`. Er gehört dorthin und nicht hierher: Er braucht `out/`,
+ * und in CI laufen die Tests **vor** dem Bau. Hier stünde er entweder ständig
+ * rot oder – schlimmer – überspränge sich selbst und meldete grün.
  */
-
-import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join } from 'node:path'
 
 import { figureMeta } from '@/data/figures'
 import { alleGrafikBeschreibungen, vorlesegrafiken } from '@/lib/grafik-beschreibungen'
@@ -80,93 +79,6 @@ const doppelt = Object.keys(gerechnet).filter((id) =>
 )
 
 pruefe('keine Grafik hat zwei Beschreibungen', doppelt.length === 0, doppelt.join(', '))
-
-/* ------------------------------------------ Und der Vergleich mit `out/` */
-
-/** Alle `<desc>` aus dem gebauten Paket, nach Grafikkennung. */
-function ausDemPaket(): Map<string, string> {
-  const gefunden = new Map<string, string>()
-
-  const durchsuche = (ordner: string) => {
-    for (const eintrag of readdirSync(ordner)) {
-      const pfad = join(ordner, eintrag)
-      if (statSync(pfad).isDirectory()) {
-        durchsuche(pfad)
-        continue
-      }
-      if (!eintrag.endsWith('.html')) continue
-
-      const inhalt = readFileSync(pfad, 'utf8')
-      for (const treffer of inhalt.matchAll(
-        /<desc id="([^"]+)-beschreibung">([\s\S]*?)<\/desc>/g
-      )) {
-        gefunden.set(treffer[1], entwerte(treffer[2]))
-      }
-    }
-  }
-
-  durchsuche('out')
-  return gefunden
-}
-
-/** Die fünf HTML-Entitäten, die React beim Rendern setzt, zurückübersetzen. */
-function entwerte(text: string): string {
-  return text
-    .replaceAll('&lt;', '<')
-    .replaceAll('&gt;', '>')
-    .replaceAll('&quot;', '"')
-    .replaceAll('&#x27;', "'")
-    .replaceAll('&amp;', '&')
-}
-
-let paket: Map<string, string> | null = null
-try {
-  paket = ausDemPaket()
-} catch {
-  paket = null
-}
-
-if (paket === null || paket.size === 0) {
-  console.error(
-    'FEHL out/ enthält keine Grafiken – ohne „npm run build" prüft diese Datei nichts.'
-  )
-  console.error(
-    '     Das ist kein Ausrutscher des Tests, sondern seine Aussage: Der Vergleich\n' +
-      '     läuft gegen das ausgelieferte Paket, und ohne Paket gibt es nichts zu vergleichen.'
-  )
-  gescheitert++
-} else {
-  pruefe(
-    'das Paket enthält alle Grafiken',
-    paket.size === Object.keys(figureMeta).length,
-    `${paket.size} im Paket, ${Object.keys(figureMeta).length} im Verzeichnis`
-  )
-
-  const abweichend: string[] = []
-  for (const [id, gezeichnet] of paket) {
-    const gesprochen = grafiken[id]?.description
-    if (gesprochen !== gezeichnet) abweichend.push(id)
-  }
-
-  pruefe(
-    'gezeichnete und gesprochene Beschreibung sind identisch',
-    abweichend.length === 0,
-    `${abweichend.length} verschieden: ${abweichend.slice(0, 6).join(', ')}`
-  )
-
-  /*
-    Die Gegenprobe: Ein verfälschter Satz muss auffallen.
-
-    Ohne sie wäre nicht gezeigt, dass der Vergleich oben überhaupt vergleicht –
-    er könnte auch zweimal dasselbe Objekt betrachten.
-  */
-  const [ersteId, ersterText] = [...paket][0]
-  pruefe(
-    'ein verfälschter Satz wird beanstandet',
-    `${ersterText} ` !== grafiken[ersteId]?.description,
-    'die Prüfung findet keinen Unterschied, obwohl ein Leerzeichen angehängt wurde'
-  )
-}
 
 console.log(`\n${bestanden} bestanden, ${gescheitert} gescheitert`)
 if (gescheitert > 0) process.exit(1)
