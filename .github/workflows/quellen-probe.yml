@@ -538,6 +538,42 @@ name: Quellen abklopfen
 # 23 bis 43 Tage, Median 34. Daraus entstehen die nächsten vier Termine je
 # Titel – geschätzt, gekennzeichnet, mit gemessener Streuung.
 #
+# ## Zweite Börsenrunde: fünf der 404 waren falsche Adressen, keine Absagen
+#
+# Fünfzehn Adressen für China (42), Kanada (33), Schweiz (27), Australien (26),
+# Brasilien (21), Südkorea (18) und Taiwan (12). Ergebnis: **fünf offene
+# Türen**, wo die erste Runde 404 gemeldet hatte.
+#
+# - **TMX Kanada** – `app-money.tmx.com/graphql` antwortet auf einen POST mit
+#   **200**: Name, Kurs, Kurs-Gewinn-Verhältnis und Dividendenrhythmus der
+#   Royal Bank. Die erste Runde hatte einen GET geschickt, auf den diese
+#   Adresse gar nicht antworten kann – daher der 404.
+# - **ASX Australien** – `asx.api.markitdigital.com` antwortet **ohne
+#   Schlüssel**: Stammdaten (`/header`) und Pflichtmeldungen
+#   (`/announcements`, mit `announcementType: PERIODIC REPORTS`). Nur
+#   `/key-events` gibt es nicht: „Cannot GET /1.0/companies/BHP/key-events".
+# - **TWSE Taiwan** – `openapi.twse.com.tw/v1/swagger.json` ist ein
+#   Verzeichnis von **306 KB**, und ein Datensatz zur Probe liefert echte
+#   Pflichtmitteilungen mit Datum. Die erste Runde hatte die Doku-Startseite
+#   abgefragt.
+# - **SIX Schweiz** – `fqs/ref.json` antwortet auf ein unbekanntes Feld mit
+#   **400 und nennt es beim Namen**: „Invalid name 'NextEventDate' in select
+#   parameter". Eine Schnittstelle, die den falschen Namen benennt, lässt sich
+#   nach dem richtigen fragen. Daneben ist `exchanges/newsboard/api/v1/news`
+#   offen – 325 KB Emittentenmitteilungen.
+# - **KIND Südkorea** – `kind.krx.co.kr` antwortet mit **90 KB**, darin ein
+#   künftiges Datum und koreanische Ergebnisbegriffe.
+#
+# Ohne Ertrag blieben: HKEX (beide Adressen 404), B3 São Paulo (liefert
+# Grundkapital und Aktiengattungen, keine Termine; die Ereignis-Adresse 404),
+# DART Südkorea (antwortet mit der Portalseite statt mit Daten).
+#
+# **Keine dieser fünf liefert schon einen Termin.** Aber „antwortet mit Daten"
+# ist etwas anderes als 403, und bei vier von fünf beantwortet die Quelle die
+# Anschlussfrage selbst: Ein GraphQL-Schema nennt seine Felder, ein Verzeichnis
+# seine Datensätze, eine Fehlermeldung den falschen Namen. Das ist die Sonde
+# `boersen3`.
+#
 on:
   workflow_dispatch:
     inputs:
@@ -546,7 +582,19 @@ on:
         type: choice
         default: alle
         options:
-          [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen, boersen2, nse]
+          [
+            alle,
+            sec,
+            asien,
+            nordisch,
+            esef,
+            esef-de,
+            tokio,
+            boersen,
+            boersen2,
+            boersen3,
+            nse,
+          ]
   push:
     branches: ['claude/**']
     paths: ['.github/sonde-anstoss.txt']
@@ -572,7 +620,7 @@ jobs:
       - name: Welche Sonde
         id: wahl
         run: |
-          ALLE="sec asien nordisch esef esef-de tokio boersen boersen2 nse"
+          ALLE="sec asien nordisch esef esef-de tokio boersen boersen2 boersen3 nse"
 
           wahl="${{ inputs.sonde }}"
           if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
@@ -598,7 +646,7 @@ jobs:
           for name in $wahl; do
             case "$name" in
               alle) liste="$ALLE" ;;
-              sec|asien|nordisch|esef|esef-de|tokio|boersen|boersen2|nse) liste="$liste $name" ;;
+              sec|asien|nordisch|esef|esef-de|tokio|boersen|boersen2|boersen3|nse) liste="$liste $name" ;;
               *)
                 echo "::error::Unbekannte Sonde „$name“. Erlaubt: alle, $ALLE."
                 exit 1
@@ -713,6 +761,17 @@ jobs:
         if: always() && (contains(steps.wahl.outputs.sonde, ' boersen2 '))
         run: node --experimental-strip-types scripts/quellen-probe-boersen2.ts
 
+      # Achte Runde: fünf offene Türen, und hinter jeder die richtige Frage.
+      #
+      # `boersen2` hat fünf Schnittstellen gefunden, die ohne Schlüssel mit
+      # echten Daten antworten – TMX, ASX, TWSE, SIX und KIND. Keine liefert
+      # schon einen Termin, aber bei vier von ihnen beantwortet die Quelle die
+      # Anschlussfrage selbst: Ein GraphQL-Schema nennt seine Felder, ein
+      # Verzeichnis seine Datensätze, eine Fehlermeldung den falschen Namen.
+      - name: Die fünf offenen Türen ausfragen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' boersen3 '))
+        run: node --experimental-strip-types scripts/quellen-probe-boersen3.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -726,6 +785,7 @@ jobs:
             tokio-abstaende.json
             boersen-kalender.json
             boersen2-kalender.json
+            boersen3-kalender.json
             nse-kalender.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
@@ -761,7 +821,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json boersen2-kalender.json nse-kalender.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json boersen2-kalender.json boersen3-kalender.json nse-kalender.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1
