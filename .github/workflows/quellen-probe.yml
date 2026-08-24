@@ -461,6 +461,48 @@ name: Quellen abklopfen
 # Zweig startet nichts, nur die absichtliche Änderung dieser einen Datei. Und
 # `main` steht nicht in der Liste – beim Mergen läuft die Sonde also nicht
 # noch einmal.
+# ## 24. August 2026: die Börsen selbst gefragt – 22 Adressen
+#
+# Sieben **Datenanbieter** waren geprüft, alle mit Schlüssel, Tarif oder
+# Browser-Kennung. Die **Börsen** wurden nie gefragt, außer Tokio. Nachgeholt:
+#
+# **Was antwortet und trägt:**
+#
+# - **NSE Indien**, `nseindia.com/api/event-calendar` → **200 JSON ohne
+#   Schlüssel**, 31 Einträge, Felder `symbol, company, purpose, bm_desc`. Ein
+#   Sammelkalender der Vorstandssitzungen samt Zweck – „Financial Results"
+#   steht als `purpose`. Das ist die Tokio-Bauart, für 50 geführte Titel.
+#   **Der aussichtsreichste offene Punkt.**
+# - **SIX Swiss**, `six-group.com/fqs/ref.json` → **200 JSON ohne Schlüssel**,
+#   mit `colNames`/`rowData`. Eine offene Abfrageschnittstelle; ob sie einen
+#   Termindatensatz führt, ist die nächste Frage. 27 Titel.
+# - **B3 São Paulo**, `listedCompaniesProxy` → **200 JSON**, 3.501
+#   Gesellschaften. Ein Verzeichnis, kein Kalender – aber die Schnittstelle
+#   ist offen, und daneben liegt eine für Unternehmensereignisse. 21 Titel.
+#
+# **Was antwortet und nicht trägt:** Deutsche Börse, Bundesanzeiger, London
+# Stock Exchange, Euronext und BME liefern 200 – aber HTML ohne einen einzigen
+# Verweis auf eine Tabelle. Die Termine entstehen dort erst im Browser;
+# Euronext trägt sogar `antibot` im Markup. Das ist eine gesetzte Sperre und
+# wird nicht nachgebaut.
+#
+# **Was gar nicht antwortet:** EQS 404, FCA-Archiv 403 („Missing
+# Authentication Token"), HKEX 404, SEDAR+ 403, ASX 404, KRX 403, TWSE 404,
+# Borsa Italiana 404, Nasdaq Nordic 404.
+#
+# ## Und was Tokio hergibt, ohne dass jemand danach gefragt hätte
+#
+# Die Spalte `決算期末 / Fiscal Year-end` ist **nicht** das Ende des gemeldeten
+# Quartals, sondern das des Geschäftsjahres. Der erste Versuch, daraus einen
+# Abstand zu rechnen, ergab **minus 245 Tage** – und diese negative Zahl hat
+# den Irrtum aufgedeckt.
+#
+# Richtig gelesen folgt daraus mehr als ein Termin: Aus dem
+# Geschäftsjahresende ergeben sich die vier Quartalsenden, aus dem gemeldeten
+# Tag der Abstand des Unternehmens. Gemessen an unseren 67 japanischen Titeln:
+# 23 bis 43 Tage, Median 34. Daraus entstehen die nächsten vier Termine je
+# Titel – geschätzt, gekennzeichnet, mit gemessener Streuung.
+#
 on:
   workflow_dispatch:
     inputs:
@@ -468,7 +510,7 @@ on:
         description: 'Welche Sonde laufen soll'
         type: choice
         default: alle
-        options: [alle, sec, asien, nordisch, esef, esef-de]
+        options: [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen]
   push:
     branches: ['claude/**']
     paths: ['.github/sonde-anstoss.txt']
@@ -494,26 +536,40 @@ jobs:
       - name: Welche Sonde
         id: wahl
         run: |
+          ALLE="sec asien nordisch esef esef-de tokio boersen"
+
           wahl="${{ inputs.sonde }}"
           if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
-            wahl=$(grep -v '^#' .github/sonde-anstoss.txt | grep -v '^[[:space:]]*$' | head -1 | tr -d '[:space:]')
+            # Mehrere Namen in einer Zeile sind erlaubt, durch Komma oder
+            # Leerzeichen getrennt: „tokio, boersen" startet beide und lässt
+            # die zwanzig Minuten der ESEF-Sonde aus.
+            wahl=$(grep -v '^#' .github/sonde-anstoss.txt | grep -v '^[[:space:]]*$' | head -1 | tr ',' ' ')
           fi
-          case "${wahl:-alle}" in
-            alle|sec|asien|nordisch|esef|esef-de) ;;
-            *)
-              echo "::error::Unbekannte Sonde „$wahl“. Erlaubt: alle, sec, asien, nordisch, esef, esef-de."
-              exit 1
-              ;;
-          esac
-          echo "sonde=${wahl:-alle}" >> "$GITHUB_OUTPUT"
-          echo "Sonde: ${wahl:-alle}"
+          wahl="${wahl:-alle}"
+
+          liste=""
+          for name in $wahl; do
+            case "$name" in
+              alle) liste="$ALLE" ;;
+              sec|asien|nordisch|esef|esef-de|tokio|boersen) liste="$liste $name" ;;
+              *)
+                echo "::error::Unbekannte Sonde „$name“. Erlaubt: alle, $ALLE."
+                exit 1
+                ;;
+            esac
+          done
+
+          # Mit Leerzeichen ringsum, damit `contains` auf ganze Namen prüft:
+          # sonst fände „esef" auch „esef-de".
+          echo "sonde= $(echo $liste) " >> "$GITHUB_OUTPUT"
+          echo "Sonden: $(echo $liste)"
 
       - uses: actions/setup-node@v5
         with:
           node-version: 22
 
       - name: SEC nach den fehlenden Unternehmen absuchen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'sec')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' sec '))
         run: node --experimental-strip-types scripts/quellen-probe-fundamentaldaten.ts
 
       # Steht vor den ESEF-Schritten: Diese Sonde dauert Sekunden, jene
@@ -523,24 +579,24 @@ jobs:
       # Was nach SEC und ESEF noch fehlt: Deutschland, Japan, Korea, Taiwan,
       # Hongkong, Indien. Jedes Land mit eigener Aufsicht und eigenem Format.
       - name: Aufsichtsbehörden außerhalb von USA und EU abklopfen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'asien')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' asien '))
         run: node --experimental-strip-types scripts/quellen-probe-asien.ts
 
       # Der offene Rest aus dem ESEF-Abruf: drei nordische Werte, die im
       # Verzeichnis stehen und trotzdem nichts hergeben.
       - name: Nordische Abschlüsse untersuchen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'nordisch')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' nordisch '))
         run: node --experimental-strip-types scripts/quellen-probe-nordisch.ts
 
       - name: ESEF-Verzeichnis für die europäischen Werte abklopfen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' esef '))
         run: node --experimental-strip-types scripts/quellen-probe-esef.ts
 
       # Zweite Runde: nicht nur, ob der Name im Verzeichnis steht, sondern
       # welche Zahlen dahinterstehen. Erst daran lässt sich eine Zuordnung
       # prüfen – ein Namenstreffer allein hat hier schon zweimal danebengelegen.
       - name: ESEF-Abschlüsse auslesen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' esef '))
         run: node --experimental-strip-types scripts/quellen-probe-esef-werte.ts
 
       # Dritte Runde: die deutsche Luecke. In der Zuordnung in
@@ -551,8 +607,37 @@ jobs:
       # der sich nicht erraten laesst und ohne den keine Zuordnung entstehen
       # darf.
       - name: Deutsche Abschlüsse im ESEF-Verzeichnis suchen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef' || steps.wahl.outputs.sonde == 'esef-de')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' esef ') || contains(steps.wahl.outputs.sonde, ' esef-de '))
         run: node --experimental-strip-types scripts/quellen-probe-esef-de.ts
+
+      # Vierte Runde: Was die Tokioter Liste über den *nächsten* Termin hergibt.
+      #
+      # Sie nennt neben dem Meldetag das Ende des Berichtszeitraums. Ist der
+      # Abstand zwischen beiden stabil, ließe sich der nächste Meldetag daraus
+      # ableiten – und damit die Lücke zwischen zwei Veröffentlichungen der
+      # Börse schließen. Ob er stabil ist, lässt sich nicht raten.
+      #
+      # Mit Alias-Hook: `lib/providers/jpx-termine.ts` importiert über `@/`,
+      # und ohne ihn endet der Lauf mit `ERR_MODULE_NOT_FOUND: Cannot find
+      # package '@/lib'`. Die übrigen Sonden importieren nichts aus `lib/`
+      # und kommen deshalb ohne aus.
+      - name: Tokioter Abstände vermessen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' tokio '))
+        run: |
+          node --experimental-strip-types \
+               --import ./scripts/alias-hook.mjs \
+               scripts/quellen-probe-tokio.ts
+
+      # Fünfte Runde: Führt außer Tokio noch eine Börse einen Sammelkalender?
+      #
+      # Sieben Datenanbieter sind geprüft und dokumentiert – alle verlangen
+      # Schlüssel, Tarif oder eine Browser-Kennung. Die Börsen selbst wurden
+      # nie gefragt, außer Tokio, und dort lag die Antwort. AGENTS.md hält es
+      # als Lehre fest: „Der Sammelkalender wurde erst gefunden, als jemand
+      # statt nach Terminen je Unternehmen nach einer Sammelstelle fragte."
+      - name: Börsenkalender abklopfen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' boersen '))
+        run: node --experimental-strip-types scripts/quellen-probe-boersen.ts
 
       - name: Kandidatenlisten sichern
         if: always()
@@ -564,6 +649,8 @@ jobs:
             esef-kandidaten.json
             esef-kandidaten-de.json
             esef-werte.json
+            tokio-abstaende.json
+            boersen-kalender.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
           # Zwischenstände einer Suche und nach einer Woche wertlos.
@@ -598,7 +685,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1

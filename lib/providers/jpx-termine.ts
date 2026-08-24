@@ -57,7 +57,21 @@ export interface JpxTermin {
   name: string
   /** Der angekündigte Meldetag, `JJJJ-MM-TT`. */
   termin: string
-  /** Ende des Berichtszeitraums, `JJJJ-MM-TT` – oder leer. */
+  /**
+   * Das Ende des **Geschäftsjahres**, `JJJJ-MM-TT` – oder leer.
+   *
+   * Die Spalte heißt `決算期末 / Fiscal Year-end`, und sie meint genau das:
+   * nicht das Ende des gemeldeten Quartals, sondern das Ende des
+   * Geschäftsjahres, in dem es liegt. Ein Unternehmen mit Bilanzstichtag
+   * 31. März, das am 29. Juli 2026 sein erstes Quartal meldet, steht mit
+   * `2027-03-31` da.
+   *
+   * Der Unterschied ist kein Detail. Wer die Spalte für das Periodenende
+   * hält, rechnet einen Abstand von **minus 245 Tagen** aus – die Meldung
+   * läge vor dem Ende des Zeitraums, den sie meldet. Genau so ist es am
+   * 24. August 2026 zuerst gemessen worden, und erst die negative Zahl hat
+   * den Irrtum aufgedeckt.
+   */
   periodenende: string
 }
 
@@ -356,4 +370,286 @@ export async function holeTermine(): Promise<JpxTabelle> {
   }
 
   return { stand, kopf: koepfe, termine: [...jeZeile.values()] }
+}
+
+/* ------------------------------------------------- Der nächste Termin */
+
+/**
+ * Warum aus dieser Liste überhaupt etwas abgeleitet wird.
+ *
+ * Die Börse führt je Datei die Unternehmen, deren Quartal in einem bestimmten
+ * **Monat** endete. Für unsere Titel – fast alle mit Bilanzstichtag 31. März –
+ * heißt das: viermal im Jahr ein paar Wochen Vorlauf, dazwischen nichts. Am
+ * 24. August 2026 stand die Liste voll mit Terminen, und **kein einziger** lag
+ * noch in der Zukunft (`inListe: 67`, `kommend: 0`).
+ *
+ * Dieselbe Zeile sagt aber mehr, als sie auf den ersten Blick hergibt: Aus dem
+ * Geschäftsjahresende folgen die vier Quartalsenden, und aus dem gemeldeten
+ * Tag folgt, wie viele Tage nach einem Quartalsende dieses Unternehmen meldet.
+ * Beides zusammen ergibt die nächsten Termine.
+ *
+ * Gemessen an den 67 geführten japanischen Titeln, Stand 6. August 2026:
+ * 23 bis 43 Tage, Median 34. Das ist kein Streuwert, sondern ein Muster – und
+ * es ist dasselbe Muster, aus dem die SEC-Ableitung ihre Termine bildet.
+ *
+ * **Was hier entsteht, ist eine Schätzung und wird als solche gekennzeichnet.**
+ * Ein angekündigter Tag aus der Liste selbst geht ihr immer vor.
+ */
+
+/** Der letzte Tag des Monats, in dem `jahr`/`monat` liegt. */
+function monatsende(jahr: number, monat: number): string {
+  const naechster = new Date(Date.UTC(monat === 12 ? jahr + 1 : jahr, monat % 12, 1))
+  naechster.setUTCDate(naechster.getUTCDate() - 1)
+  return naechster.toISOString().slice(0, 10)
+}
+
+/**
+ * Die vier Quartalsenden des Geschäftsjahres, das an `gjEnde` endet.
+ *
+ * Aufsteigend, das Geschäftsjahresende zuletzt. Gerechnet wird über
+ * Monatsenden und nicht über Tagesabstände: Ein Geschäftsjahr, das am
+ * 31. März endet, hat sein erstes Quartal am 30. Juni davor – und der
+ * 30. Juni ist kein fester Abstand vom 31. März, sondern das Ende des
+ * Monats drei Quartale vorher.
+ */
+export function quartalsenden(gjEnde: string): string[] {
+  const [jahr, monat] = gjEnde.split('-').map(Number)
+  if (!jahr || !monat) return []
+
+  const enden: string[] = []
+  for (let zurueck = 3; zurueck >= 0; zurueck--) {
+    let m = monat - 3 * zurueck
+    let j = jahr
+    while (m <= 0) {
+      m += 12
+      j -= 1
+    }
+    enden.push(monatsende(j, m))
+  }
+  return enden
+}
+
+/** Tage zwischen zwei ISO-Tagen, `a` minus `b`. */
+function tageZwischen(a: string, b: string): number {
+  return Math.round((Date.parse(a) - Date.parse(b)) / 86_400_000)
+}
+
+/** Ein Tag plus `n` Tage. */
+function plusTage(tag: string, n: number): string {
+  const d = new Date(`${tag}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + n)
+  return d.toISOString().slice(0, 10)
+}
+
+/** Was eine Zeile über das Meldeverhalten ihres Unternehmens sagt. */
+export interface Meldemuster {
+  code: string
+  /** Das Quartalsende, das die gemeldete Zeile betrifft. */
+  quartalsende: string
+  /** Die Stelle dieses Quartals im Geschäftsjahr, 1 bis 4. */
+  stelle: number
+  /** Tage zwischen Quartalsende und Meldung. */
+  abstand: number
+}
+
+/**
+ * Welches Quartal eine Zeile meldet – und wie spät.
+ *
+ * Gesucht wird das Quartalsende **unmittelbar vor** dem gemeldeten Tag. Liegt
+ * die Meldung vor dem ersten Quartalsende des Geschäftsjahres, gehört sie zum
+ * Vorjahr; dann wird dessen letztes Quartal genommen.
+ *
+ * `null`, wenn die Zeile kein Geschäftsjahresende trägt oder der Abstand
+ * unplausibel ist. Eine Meldung ein halbes Jahr nach dem Quartalsende ist
+ * keine Quartalsmeldung, sondern ein Fehler in der Zuordnung – und ein Fehler
+ * gehört verworfen, nicht gemittelt.
+ */
+export function meldemuster(termin: JpxTermin): Meldemuster | null {
+  if (!termin.periodenende || !termin.termin) return null
+
+  const enden = quartalsenden(termin.periodenende)
+  if (enden.length !== 4) return null
+
+  const [jahr, monat] = termin.periodenende.split('-').map(Number)
+  const vorjahr = quartalsenden(monatsende(jahr - 1, monat))
+  const alle = [...vorjahr, ...enden]
+
+  const davor = alle.filter((ende) => ende < termin.termin)
+  if (davor.length === 0) return null
+  const quartal = davor[davor.length - 1]
+
+  const abstand = tageZwischen(termin.termin, quartal)
+
+  /*
+    Die Grenze fängt kein „langsames Unternehmen", sondern ein falsches Datum.
+
+    Quartalsenden liegen drei Monate auseinander; ein Abstand zum
+    *unmittelbar vorangehenden* Ende kann strukturell nie über 92 Tage
+    kommen. Wogegen die Grenze wirklich schützt, ist ein `periodenende`, das
+    beim Lesen der Tabelle verrutscht ist – genau das ist in diesem Projekt
+    schon passiert, als Toyotas Börsencode 7203 als Excel-Datum gelesen wurde
+    und den 24. September 1919 ergab. Ein solcher Wert erzeugt einen Abstand
+    von Zehntausenden Tagen, und ohne diese Zeile liefe er in den Median.
+  */
+  if (abstand < 1 || abstand > 92) return null
+
+  return {
+    code: termin.code,
+    quartalsende: quartal,
+    stelle:
+      (enden.indexOf(quartal) === -1
+        ? vorjahr.indexOf(quartal)
+        : enden.indexOf(quartal)) + 1,
+    abstand,
+  }
+}
+
+/** Der mittlere Wert einer Reihe – robust gegen einzelne Ausreißer. */
+function median(werte: number[]): number {
+  if (werte.length === 0) return 0
+  const sortiert = [...werte].sort((a, b) => a - b)
+  return sortiert[Math.floor(sortiert.length / 2)]
+}
+
+/**
+ * Wie lange der Markt je Quartalsstelle braucht.
+ *
+ * Der Abstand hängt an der Stelle im Geschäftsjahr: Das erste Quartal wird
+ * schneller gemeldet als der Jahresabschluss, weil der geprüft werden muss.
+ * Gemessen am 24. August 2026 lagen die Häufungen bei rund 29, 37, 42 und
+ * 42 Tagen – zwischen dem ersten Quartal und dem Jahresabschluss also knapp
+ * zwei Wochen.
+ *
+ * Wer den Abstand eines Unternehmens aus **einem** Quartal auf alle vier
+ * überträgt, liegt deshalb bei dreien davon systematisch zu früh. Die
+ * Verschiebung wird hier aus derselben Datei gemessen – über alle Zeilen,
+ * nicht nur über unsere – und dann auf den eigenen Abstand angewandt.
+ */
+export function abstandJeStelle(termine: readonly JpxTermin[]): Map<number, number> {
+  const jeStelle = new Map<number, number[]>()
+
+  for (const termin of termine) {
+    const muster = meldemuster(termin)
+    if (!muster) continue
+    const bisher = jeStelle.get(muster.stelle)
+    if (bisher) bisher.push(muster.abstand)
+    else jeStelle.set(muster.stelle, [muster.abstand])
+  }
+
+  return new Map([...jeStelle].map(([stelle, werte]) => [stelle, median(werte)]))
+}
+
+/**
+ * Ein abgeleiteter Tag, der auf ein Wochenende fällt, wird vorgezogen.
+ *
+ * Keine Börse meldet am Samstag. Ein geschätzter Tag, der dort landet, ist
+ * nicht bloß ungenau, sondern erkennbar falsch – und untergräbt das Vertrauen
+ * in die übrigen Schätzungen, die richtig liegen.
+ *
+ * **Vorgezogen und nicht verschoben:** Japanische Unternehmen melden nach
+ * Handelsschluss; der Freitag davor ist die wahrscheinlichere Wahl als der
+ * Montag danach. Feiertage bleiben unberücksichtigt – eine japanische
+ * Feiertagsliste führt dieses Projekt nicht, und eine geratene wäre schlechter
+ * als keine.
+ */
+function aufWerktag(tag: string): string {
+  const wochentag = new Date(`${tag}T00:00:00Z`).getUTCDay()
+  if (wochentag === 6) return plusTage(tag, -1)
+  if (wochentag === 0) return plusTage(tag, -2)
+  return tag
+}
+
+/**
+ * Wie weit die Abstände je Quartalsstelle streuen.
+ *
+ * Ein abgeleiteter Tag ohne Streuungsangabe behauptet eine Genauigkeit, die er
+ * nicht hat. Genommen wird die halbe Spanne zwischen dem 10. und dem 90.
+ * Hundertstel – nicht die volle Spanne, die an einem einzigen Ausreißer hängt,
+ * und nicht die Standardabweichung, die eine Normalverteilung unterstellt, die
+ * hier niemand geprüft hat.
+ */
+export function streuungJeStelle(termine: readonly JpxTermin[]): Map<number, number> {
+  const jeStelle = new Map<number, number[]>()
+
+  for (const termin of termine) {
+    const muster = meldemuster(termin)
+    if (!muster) continue
+    const bisher = jeStelle.get(muster.stelle)
+    if (bisher) bisher.push(muster.abstand)
+    else jeStelle.set(muster.stelle, [muster.abstand])
+  }
+
+  return new Map(
+    [...jeStelle].map(([stelle, werte]) => {
+      const sortiert = [...werte].sort((a, b) => a - b)
+      const unten = sortiert[Math.floor((sortiert.length - 1) * 0.1)]
+      const oben = sortiert[Math.floor((sortiert.length - 1) * 0.9)]
+      return [stelle, Math.max(1, Math.round((oben - unten) / 2))]
+    })
+  )
+}
+
+/** Ein abgeleiteter Termin, mit dem Quartal, auf das er sich bezieht. */
+export interface AbgeleiteterTermin {
+  quartalsende: string
+  erwartet: string
+  stelle: number
+}
+
+/**
+ * Die nächsten Meldetermine eines Unternehmens, abgeleitet.
+ *
+ * Aus dem eigenen beobachteten Abstand, verschoben um das, was der Markt für
+ * die jeweilige Quartalsstelle braucht. Ein Unternehmen, das sein erstes
+ * Quartal nach 23 Tagen meldet, meldet seinen Jahresabschluss nicht nach 23,
+ * sondern nach 23 plus der Differenz der beiden Medianwerte.
+ *
+ * Ausgegeben werden nur Tage nach `heute`, höchstens `anzahl`.
+ */
+export function abgeleiteteTermine(
+  termin: JpxTermin,
+  jeStelle: ReadonlyMap<number, number>,
+  heute: string,
+  anzahl = 4
+): AbgeleiteterTermin[] {
+  const muster = meldemuster(termin)
+  if (!muster) return []
+
+  const eigen = jeStelle.get(muster.stelle)
+  const gefunden: AbgeleiteterTermin[] = []
+
+  /*
+    Zwei Geschäftsjahre durchgehen, nicht eines.
+
+    Wer nur das laufende nimmt, bekommt gegen Jahresende ein oder zwei
+    Termine statt vier – und ausgerechnet dann, wenn der Blick nach vorn am
+    meisten wert ist.
+  */
+  const [jahr, monat] = termin.periodenende.split('-').map(Number)
+  const enden = [
+    ...quartalsenden(termin.periodenende),
+    ...quartalsenden(monatsende(jahr + 1, monat)),
+  ]
+
+  for (const [i, quartal] of enden.entries()) {
+    const stelle = (i % 4) + 1
+    const marktStelle = jeStelle.get(stelle)
+
+    /*
+      Der eigene Abstand, verschoben – oder, wenn der Markt zu einer Stelle
+      nichts hergibt, der eigene unverändert. Geraten wird nichts.
+    */
+    const abstand =
+      marktStelle !== undefined && eigen !== undefined
+        ? muster.abstand + (marktStelle - eigen)
+        : muster.abstand
+
+    const erwartet = aufWerktag(plusTage(quartal, Math.round(abstand)))
+    if (erwartet <= heute) continue
+
+    gefunden.push({ quartalsende: quartal, erwartet, stelle })
+    if (gefunden.length >= anzahl) break
+  }
+
+  return gefunden
 }

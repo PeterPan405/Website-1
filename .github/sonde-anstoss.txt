@@ -4,7 +4,11 @@
 # Workflow `.github/workflows/quellen-probe.yml`. Die erste nicht leere,
 # nicht mit `#` beginnende Zeile nennt die Sonde:
 #
-#     alle | sec | asien | nordisch | esef | esef-de
+#     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen
+#
+# Mehrere Namen in einer Zeile sind erlaubt, durch Komma oder Leerzeichen
+# getrennt: „tokio, boersen" startet beide und lässt die zwanzig Minuten der
+# ESEF-Sonde aus.
 #
 # ## Warum es diesen Umweg gibt
 #
@@ -23,8 +27,21 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-esef
+tokio, boersen
 
-# Lauf vom 23. August 2026: Die 97 europäischen Titel, deren Quellenlage
-# „ESEF – teilweise zugeordnet" lautet – Vereinigtes Königreich 36,
-# Frankreich 25, Niederlande 14, Schweden 10, Spanien 7, Italien 5.
+# Lauf vom 24. August 2026, zweiter Anlauf: `tokio` **und** `boersen`.
+#
+# Der erste Anlauf brach ab – die Tokio-Sonde lief ohne den Alias-Hook, und
+# `lib/providers/jpx-termine.ts` importiert über `@/`. Behoben.
+#
+# Warum der Tokio-Weg null Termine beisteuert.
+#
+# Der Abruf meldet `inListe: 67`, `kommend: 0` – der Abgleich stimmt, aber in
+# der Liste steht nur Vergangenes. Die Sonde misst, ob sich aus dem Abstand
+# zwischen Periodenende und Meldetag der nächste Termin ableiten lässt.
+#
+# Und: Führt außer Tokio noch eine Börse einen Sammelkalender? Zweiundzwanzig
+# Adressen, von Deutschland (90 fehlende Titel) bis Brasilien (21).
+#
+# Vorheriger Lauf (23. August 2026): Sonde `esef`, 114 Namenstreffer, 66
+# geprüfte Zuordnungen daraus eingetragen.
