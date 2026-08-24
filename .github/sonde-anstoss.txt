@@ -31,19 +31,18 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-boersen4
+# (keine Sonde vorgemerkt – die Börsensuche ist abgeschlossen)
 
-# Vierte Runde: zwei offene Fragen, zwei Abrufe.
+# Zuletzt gelaufen: 24. August 2026, Sonde `boersen4` – beide letzten Fragen
+# beantwortet, beide mit Nein. Die Schweizer Abfrage kennt 334 Felder und
+# keines für einen Meldetermin; die kanadische Schnittstelle hat die
+# Introspektion abgeschaltet und ihr Typ `Company` kein Terminfeld.
 #
-# Drei der fünf Türen sind zugefallen – ASX liefert Dividendentermine, TWSE hat
-# unter 143 Datensätzen keinen Kalender, KIND ist eine Suchmaske.
+# **Damit ist die Börsensuche abgeschlossen.** Vier Runden, 55 Adressen,
+# sieben Börsen: Außer Tokio führt keine einen Sammelkalender. Das Fazit steht
+# im Kopf von `quellen-probe.yml`.
 #
-# Zwei Fragen sind offen geblieben, und beide nur, weil die Sonde die Antwort
-# weggeworfen hat, bevor jemand sie lesen konnte: ein Ausschnitt von 600
-# Zeichen bei SIX, ein Filter auf Feldnamen bei TMX. Diesmal wird der ganze
-# Text aufgehoben.
-
-# Zuletzt gelaufen: 24. August 2026, Sonde `boersen3` – drei der fünf Türen
+# Davor am selben Tag, Sonde `boersen3` – drei der fünf Türen
 # fallen zu, mit klarer Auskunft. Nebenbei gefunden: Taipeh führt die
 # Abschlüsse aller gelisteten Gesellschaften offen. Ergebnis im Kopf von
 # `quellen-probe.yml`.

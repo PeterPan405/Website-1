@@ -607,6 +607,52 @@ name: Quellen abklopfen
 # Das ist die Sonde `boersen4`: zwei Fragen, zwei Abrufe, und diesmal wird der
 # ganze Text aufgehoben.
 #
+# ## Vierte Runde: beide Fragen beantwortet, beide mit Nein
+#
+# **SIX Schweiz** – `select=*` liefert **334 Feldnamen**. Siebenundvierzig
+# davon tragen „Date" oder „Event" im Namen, und jeder einzelne meint den
+# Handel oder eine Kapitalmaßnahme: `CapitalEventDates`, `ExRightDate`,
+# `MaturityDate`, `LastTradingDate`, `PaymentDate`, `YearlyHighDate`,
+# `FirstInterestPaymentDate`. **Kein Feld für einen Meldetermin.** `ref.json`
+# ist eine Stammdatenabfrage für Wertpapiere, kein Kalender – und das steht
+# jetzt mit der vollständigen Feldliste belegt da, nicht als Vermutung.
+#
+# **TMX Kanada** – die Absagen sagen es wörtlich:
+#
+#     GraphQL introspection is not allowed by Apollo Server
+#     Cannot query field "nextEarningsDate" on type "Company".
+#
+# Die Gegenprobe – dieselbe Abfrage wie in Runde zwei, nur mit vorhandenen
+# Feldern – kommt mit **200** zurück. Es liegt also am Feldnamen und nicht an
+# der Schnittstelle. Der Typ `Company` kennt keinen Meldetermin, und GraphQL
+# schlägt auch keinen ähnlichen Namen vor. Ohne Introspektion bliebe nur
+# Raten, und Raten ist keine Messung.
+#
+# ## Fazit der Börsensuche, 24. August 2026
+#
+# Vier Runden, 55 Adressen, sieben Börsen. Das Ergebnis in einem Satz: **Außer
+# Tokio führt keine der geprüften Börsen einen Sammelkalender der
+# Meldetermine.**
+#
+# Was es stattdessen gibt, und warum es nicht trägt:
+#
+# - **Nachrichtenströme** (Indien, Taiwan) – die jüngsten Pflichtmitteilungen,
+#   zwei Wochen Reichweite, kein Bestand. Nur durch tägliches Ernten über
+#   Quartale hinweg zu einem Kalender zu machen.
+# - **Dividendenkalender** (Australien, Taiwan, Schweiz) – künftige Daten in
+#   Hülle und Fülle, aber Stichtag, Zahltag und Ex-Tag. Kein Meldetermin.
+# - **Stammdaten** (Schweiz, Kanada, Brasilien, London) – ISIN, Gattung,
+#   Grundkapital, Kurs. Vollständig und nutzlos für diese Frage.
+# - **Suchmasken** (Südkorea) – 90 KB HTML mit einem Formular darin.
+# - **Gesetzte Sperren** (Deutschland, Frankreich, Niederlande, Vereinigtes
+#   Königreich) – `antibot`, CORS-Kennung, Crumb. Wird nicht nachgebaut.
+#
+# Damit ist die Suche nach einer weiteren Börsenquelle abgeschlossen. Die
+# Meldetermine außerhalb der USA und Japans kommen entweder aus dem
+# Sammelkalender von Alpha Vantage (braucht einen kostenlosen Schlüssel) oder
+# aus einem täglichen Ernten der Nachrichtenströme – oder sie bleiben eine
+# Lücke, die auf der Seite steht.
+#
 on:
   workflow_dispatch:
     inputs:
