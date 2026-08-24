@@ -1,0 +1,7 @@
+Sonde:   boersen4 
+Lauf:   2026-08-24 20:17 UTC
+Commit: f0a40790f5edf425b0a6a25655c234c129afa6b8
+
+Dateien:
+-rw-r--r-- 1 runner runner 10846 Aug 24 20:17 boersen4-kalender.json
+-rw-r--r-- 1 runner runner   107 Aug 24 20:17 stand.txt
