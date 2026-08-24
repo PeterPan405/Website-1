@@ -468,7 +468,7 @@ on:
         description: 'Welche Sonde laufen soll'
         type: choice
         default: alle
-        options: [alle, sec, asien, nordisch, esef, esef-de]
+        options: [alle, sec, asien, nordisch, esef, esef-de, tokio]
   push:
     branches: ['claude/**']
     paths: ['.github/sonde-anstoss.txt']
@@ -499,9 +499,9 @@ jobs:
             wahl=$(grep -v '^#' .github/sonde-anstoss.txt | grep -v '^[[:space:]]*$' | head -1 | tr -d '[:space:]')
           fi
           case "${wahl:-alle}" in
-            alle|sec|asien|nordisch|esef|esef-de) ;;
+            alle|sec|asien|nordisch|esef|esef-de|tokio) ;;
             *)
-              echo "::error::Unbekannte Sonde „$wahl“. Erlaubt: alle, sec, asien, nordisch, esef, esef-de."
+              echo "::error::Unbekannte Sonde „$wahl“. Erlaubt: alle, sec, asien, nordisch, esef, esef-de, tokio."
               exit 1
               ;;
           esac
@@ -554,6 +554,16 @@ jobs:
         if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef' || steps.wahl.outputs.sonde == 'esef-de')
         run: node --experimental-strip-types scripts/quellen-probe-esef-de.ts
 
+      # Vierte Runde: Was die Tokioter Liste über den *nächsten* Termin hergibt.
+      #
+      # Sie nennt neben dem Meldetag das Ende des Berichtszeitraums. Ist der
+      # Abstand zwischen beiden stabil, ließe sich der nächste Meldetag daraus
+      # ableiten – und damit die Lücke zwischen zwei Veröffentlichungen der
+      # Börse schließen. Ob er stabil ist, lässt sich nicht raten.
+      - name: Tokioter Abstände vermessen
+        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'tokio')
+        run: node --experimental-strip-types scripts/quellen-probe-tokio.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -564,6 +574,7 @@ jobs:
             esef-kandidaten.json
             esef-kandidaten-de.json
             esef-werte.json
+            tokio-abstaende.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
           # Zwischenstände einer Suche und nach einer Woche wertlos.
@@ -598,7 +609,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1
