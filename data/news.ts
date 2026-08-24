@@ -101,6 +101,323 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'gold-silber-citi-open-interest-oel-gibt-nach',
+    title: 'Gold und Silber ziehen an, Öl gibt nach – ein Morgen mit Gegenrichtung',
+    metaTitle: 'Gold/Silber im Plus, Öl im Minus: Gegenläufige Rohstoffe',
+    teaser:
+      'Citi bleibt bei Silber bullish, bei Gold steigt laut Goldreporter das Open Interest auf ein Sechsmonatshoch – während der Ölpreis am selben Morgen nachgibt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-24T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Öl', 'Rohstoffe', 'Terminmarkt'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'silber', 'brent'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026, 03:54 Uhr: „Silberpreis vor neuem Höhenflug? Warum Citi jetzt bullish bleibt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste vom 24.8.2026, 04:02 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online.de, Kursleiste vom 24.8.2026, 04:02 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, 23. August 2026: „Gold steigt über 4.600 USD. Spekulanten bauen ihre Long-Positionen weiter aus, während der Open Interest am US-Terminmarkt auf den höchsten Stand seit Februar steigt.“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zum Wochenstart zeigt die Kursleiste von finanzen.net Gold mit 4.636 US-Dollar und einem Plus von 0,7 Prozent, während Öl mit 92,54 US-Dollar um 2,0 Prozent nachgibt. Ein Ticker ergänzt: Die Bank Citi bleibe beim Silberpreis „bullish“ – warum genau, sagt die Überschrift nicht dazu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das Open Interest über die Stimmung verrät',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter berichtet für den Vortag, dass Spekulanten am US-Terminmarkt ihre Long-Positionen weiter ausgebaut haben und das sogenannte Open Interest – die Zahl offener Kontrakte – den höchsten Stand seit Februar erreicht hat. Das ist keine Aussage über den künftigen Kurs, sondern über die Positionierung: Je mehr Marktteilnehmer auf steigende Kurse wetten, desto größer auch das Risiko, dass ein enttäuschender Impuls viele davon gleichzeitig zum Verkaufen zwingt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Rohstoffe, zwei Rollen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Gold und Silber steigen, während Öl fällt, ist kein Widerspruch, sondern spiegelt unterschiedliche Rollen wider: Edelmetalle gelten oft als Absicherung gegen Unsicherheit und Inflation, Öl dagegen hängt stärker an der erwarteten Nachfrage der Weltwirtschaft. Beide Signale gleichzeitig zu lesen ist üblich – nur selten zeigen sie exakt in dieselbe Richtung. Am Rande fällt zudem auf, dass finanzen.net den Ölpreis schlicht mit „Öl“ beschriftet, wallstreet-online dagegen ausdrücklich „Öl (Brent)“ zeigt und dabei kaum eine Veränderung ausweist – ein Hinweis darauf, wie wichtig die genaue Bezeichnung einer Notierung ist, bevor man zwei Quellen vergleicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein hohes Open Interest ist ein Stimmungsbarometer, kein Kursversprechen – und eine Bank, die „bullish“ genannt wird, ohne dass die Begründung mitgeliefert wird, bleibt eine Meinung, keine Analyse zum Nachvollziehen.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-cybercab-start-und-ruckruf-china',
+    title: 'Tesla startet Cybercab und ruft gleichzeitig Autos in China zurück',
+    metaTitle: 'Tesla: Cybercab-Start trifft auf China-Rückruf',
+    teaser:
+      'Tesla will den Cybercab-Dienst noch im August starten – zunächst nur für eigene Mitarbeiter. Zuvor stand ein Massenrückruf in China in den Schlagzeilen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-24T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Tesla', 'Cybercab', 'Rückruf', 'Autoindustrie'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026, 03:37 Uhr: „Tesla-Aktie im Fokus: Cybercab-Start noch im August geplant - zunächst nur für Mitarbeiter“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 23.8.2026: „Tesla-Aktie im Blick: Massenrückruf in China“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Tesla-Meldungen aus den vergangenen Stunden zeigen zwei Seiten desselben Unternehmens. Laut einem Ticker soll der autonome Robotaxi-Dienst Cybercab noch im August starten – zunächst aber nur für eigene Mitarbeiter, nicht für zahlende Kunden. Kurz zuvor, am Wochenende, meldete ein anderer Ticker einen Massenrückruf von Tesla-Fahrzeugen in China. Details zu Umfang oder Grund des Rückrufs nennt die vorliegende Kurzmeldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Start ist noch kein Produkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass ein neuer Dienst „zunächst nur für Mitarbeiter“ läuft, ist ein üblicher Zwischenschritt vor einem breiten Marktstart – vergleichbar mit einer geschlossenen Beta-Phase in der Software-Welt. Für Anleger bedeutet das: Der eigentliche Test, ob Cybercab im Alltag funktioniert und Kunden gewinnt, steht noch aus. Eine Ankündigung ist ein Versprechen für die Zukunft, kein Ergebnis, das sich schon in einer Bilanz zeigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wachstumsgeschichte und Qualitätsfrage nebeneinander',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rückruf kostet in der Regel Geld – für Reparaturen, Ersatzteile und mitunter auch Vertrauen –, ohne dass daraus zwingend ein dauerhafter Schaden für die Marke folgt. Rückrufe sind in der Autoindustrie keine Seltenheit, auch bei etablierten Herstellern. Interessant ist hier vor allem die Gleichzeitigkeit: Ein Ticker feiert den nächsten technologischen Schritt, ein anderer erinnert an ein handfestes Qualitätsproblem im wichtigsten Einzelmarkt Chinas.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Aktie anhand einzelner Ticker-Meldungen bewertet, sollte beide Seiten zusammen lesen – die Ankündigung eines neuen Produkts ersetzt keine laufenden operativen Probleme, und umgekehrt macht ein Rückruf ein neues Produkt nicht automatisch wertlos.',
+      },
+    ],
+  },
+  {
+    slug: 'inflation-ki-versprechen-fed-zinskurs',
+    title: 'Inflation trotz KI-Versprechen: Was das für den Fed-Zinskurs bedeuten kann',
+    metaTitle: 'Inflation trotz KI: Was das für die Fed heißt',
+    teaser:
+      'Ein Ticker meldet Inflation „trotz KI-Versprechen“ und fragt nach dem künftigen Fed-Zinskurs – ohne die konkreten Zahlen zu nennen, um die es dabei geht.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-24T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Fed', 'Zinspolitik', 'Künstliche Intelligenz'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['dow-jones', 'sp500'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026, 03:34 Uhr: „Inflation trotz KI-Versprechen: Welcher Zinskurs der Fed jetzt bevorsteht“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender-Auszug vom 24.8.2026: Termine für den 25.8. (ifo-Indizes, US-BIP)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '„Inflation trotz KI-Versprechen“ – so betitelt ein Ticker heute früh eine Meldung zum möglichen künftigen Zinskurs der US-Notenbank Fed. Welche Inflationszahl genau gemeint ist und für welchen Zeitraum, geht aus der Überschrift nicht hervor. Das Versprechen, auf das sie sich bezieht, ist bekannt: Künstliche Intelligenz soll Unternehmen produktiver machen und dadurch mittelfristig helfen, Preisdruck zu dämpfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Produktivität und Inflation zusammenhängen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt die Produktivität – also die Wirtschaftsleistung je Arbeitsstunde –, können Unternehmen theoretisch mehr produzieren, ohne die Preise erhöhen zu müssen. Genau darauf setzt die Erwartung, dass ein KI-getriebener Produktivitätsschub Inflationsdruck lindert. Bleibt die Inflation trotzdem hartnäckig, wie es die Überschrift andeutet, stellt das diese Erwartung infrage – mit Folgen dafür, wie schnell oder langsam die Fed ihre Zinsen senken könnte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was diese Woche noch ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den heutigen Tag selbst nennt keine der ausgewerteten Übersichten einen festen Konjunkturtermin. Der Wirtschaftskalender von wallstreet-online zeigt aber für morgen, den 25.8., mehrere Werte auf einen Schlag: das deutsche Bruttoinlandsprodukt (Prognose 0,2 Prozent zum Vorquartal, 0,9 Prozent zum Vorjahr) sowie drei ifo-Teilindizes – aktuelle Lage (Prognose 87), Geschäftsklima (Prognose 87,2) und Geschäftsaussichten (Prognose 87,5), jeweils leicht über den Vormonatswerten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile mit „trotz“ signalisiert einen Widerspruch zu einer Erwartung – aber ohne die zugrunde liegende Zahl bleibt offen, wie groß dieser Widerspruch tatsächlich ausfällt. Wer den Fed-Zinspfad einschätzen will, kommt an den harten Inflationsdaten selbst nicht vorbei, nicht an der Zusammenfassung einer Zusammenfassung.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-haelt-sich-kryptoindex-faellt-staerker',
+    title: 'Bitcoin hält sich stabiler als der breite Kryptomarkt',
+    metaTitle: 'Bitcoin stabiler als der Kryptoindex',
+    teaser:
+      'Bitcoin gibt heute Morgen 0,5 Prozent nach, der Top-10-Kryptoindex verliert mit 2,0 Prozent viermal so stark – ein Blick auf Index gegen Einzelwert.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-24T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Kryptowährungen', 'Index', 'Volatilität'],
+    relatedTopics: ['bitcoin-krypto', 'risiko-und-rendite'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Kursleiste vom 24.8.2026, 04:02 Uhr (Bitcoin 66.105 US-Dollar, -0,5 %; Top 10 Crypto Index 9,7600, -2,0 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Kursleiste von finanzen.net zeigt heute früh Bitcoin bei 66.105 US-Dollar, ein Minus von 0,5 Prozent. Direkt daneben notiert der finanzen.net Top 10 Crypto Index, der die zehn größten Kryptowährungen bündelt, bei 9,7600 Punkten – ein Minus von 2,0 Prozent, also viermal so stark wie Bitcoin allein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index ist ein Durchschnitt, kein Zwilling',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wenn ein Index aus mehreren Werten stärker fällt als sein größtes Einzelmitglied, heißt das rechnerisch: Die übrigen neun Positionen im Index haben im Schnitt deutlich stärker verloren als Bitcoin. Da Bitcoin allein gut die Hälfte der gesamten Marktkapitalisierung aller Kryptowährungen stellt, drückt ein solcher Unterschied besonders auf sogenannte Altcoins – alle Kryptowährungen außer Bitcoin.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das mehr ist als eine Randnotiz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Tag, an dem Altcoins spürbar stärker fallen als Bitcoin, wird in der Szene oft als Zeichen von „Risk-off“ gelesen: Anleger ziehen sich zuerst aus den spekulativeren, kleineren Werten zurück und halten eher an der größten, etabliertesten Kryptowährung fest. Ob das heute der Fall ist, lässt sich aus einer einzelnen Kursleiste nicht abschließend sagen – die Zahlen selbst zeigen aber genau dieses Muster.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur auf den Bitcoin-Kurs schaut, sieht nicht zwangsläufig, wie es dem restlichen Kryptomarkt geht. Ein Index kann an einem Tag deutlich schwächer aussehen als sein bekanntestes Mitglied – und das ist ein Hinweis auf die Breite einer Bewegung, nicht auf einen Rechenfehler.',
+      },
+    ],
+  },
+  {
+    slug: 'commerzbank-weidmann-bremst-bund-verkaeufe',
+    title: 'Commerzbank: Weidmann fordert Pause bei den Bund-Verkäufen',
+    metaTitle: 'Commerzbank: Weidmann bremst Bund-Verkäufe',
+    teaser:
+      'Laut einem Ticker verlangt Commerzbank-Aufsichtsratschef Weidmann, den Verkauf der Bundesanteile zu stoppen – dazu, warum ein Überhang Kurse drücken kann.',
+    category: 'Märkte',
+    publishedAt: '2026-08-24T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Commerzbank', 'Bund', 'Staatsbeteiligung', 'Bankenaktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 23.8.2026: „Commerzbank-Aktie im Fokus: Weidmann fordert Aussetzen der Staatsanteil-Verkäufe“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ticker meldet, dass Commerzbank-Aufsichtsratschef Jens Weidmann fordert, die Verkäufe der verbliebenen Bundesanteile an der Bank auszusetzen. Der deutsche Staat hält seit der Rettung der Commerzbank in der Finanzkrise 2008/2009 eine Beteiligung, die seit einiger Zeit schrittweise verkleinert wird. Welche konkrete Begründung Weidmann dafür anführt, nennt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Verkaufsüberhang mit dem Kurs macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wenn ein großer Aktionär bekanntermaßen weiter Anteile abgeben will, sprechen Marktteilnehmer von einem Überhang: Käufer kalkulieren ein, dass zusätzliches Angebot auf den Markt kommt, und sind deshalb vorsichtiger mit ihrem eigenen Kaufpreis. Eine Pause bei solchen Verkäufen kann diesen Effekt vorübergehend nehmen – unabhängig davon, ob sich am eigentlichen Geschäft der Bank etwas ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine politische Entscheidung, kein Unternehmenskennzahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als eine Gewinnwarnung oder eine geänderte Umsatzprognose ist die Frage, wie schnell der Bund seine Anteile abbaut, eine politische und keine betriebswirtschaftliche Entscheidung. Sie sagt nichts über Ertragskraft oder Risiken der Commerzbank selbst aus, kann den Kurs aber trotzdem bewegen – ein Beispiel dafür, dass nicht jede kursrelevante Nachricht aus der Bilanz kommt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Forderung ist noch keine Entscheidung. Ob der Bund seine Verkäufe tatsächlich pausiert, ist offen – wer die Aktie deshalb beobachtet, sollte zwischen der Forderung eines Aufsichtsratschefs und einem tatsächlichen Beschluss des Finanzministeriums unterscheiden.',
+      },
+    ],
+  },
+  {
+    slug: 'national-grid-fondsmanager-gegen-ki-hype',
+    title: 'Ein Fondsmanager wettet gegen den KI-Hype – über National Grid & Co.',
+    metaTitle: 'Gegen den KI-Hype: Wette über National Grid & Co.',
+    teaser:
+      'Ein Ticker nennt National Grid und weitere Aktien, mit denen ein Fondsmanager offenbar gegen den KI-Hype setzt – ohne die genaue Strategie dahinter zu erklären.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-24T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Künstliche Intelligenz', 'Fondsmanager', 'Contrarian', 'Portfoliostrategie'],
+    relatedTopics: ['anlegerpsychologie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026, 03:54 Uhr: „National Grid-Aktie & Co. im Fokus: So setzt dieser Fondsmanager gegen den KI-Hype“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ticker kündigt an, dass ein Fondsmanager über die Aktie des britischen Versorgers National Grid und weitere, nicht näher genannte Werte gegen den anhaltenden KI-Hype an den Börsen positioniert sei. Wie genau diese Wette aussieht – etwa über Leerverkäufe, eine reine Untergewichtung von KI-nahen Aktien oder den gezielten Kauf defensiver Titel – nennt die Überschrift nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gegen den Konsens zu setzen ist eine Entscheidung, kein Rezept',
+      },
+      {
+        type: 'paragraph',
+        text: 'Contrarian-Positionen – also Wetten gegen die vorherrschende Marktmeinung – sind ein bekanntes Muster unter Fondsmanagern: Wenn eine Erzählung wie der KI-Boom sehr breit geteilt wird, kann das eine Gelegenheit für Skeptiker sein, aber auch ein Risiko, zu früh gegen einen starken Trend zu stehen. Ohne die Begründung des Managers zu kennen, lässt sich nicht beurteilen, ob es um eine Bewertungsfrage, ein Konjunktursignal oder etwas anderes geht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ausgerechnet ein Versorger',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass ein Ticker gerade einen Energieversorger wie National Grid als Gegenpol zum KI-Hype nennt, passt zu einem verbreiteten Muster: Versorgeraktien gelten wegen ihrer regulierten, planbaren Erträge oft als defensiv – das Gegenteil der hohen, aber unsicheren Wachstumserwartungen an KI-nahe Technologiewerte. Ob genau das die Überlegung hinter der Positionierung ist, lässt die Kurzmeldung offen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Wette gegen einen breiten Markttrend ist eine Meinung von vielen, keine Prognose mit Gewissheit. Wer diese Meldung ernst nehmen will, braucht mehr als die Überschrift – die eigentliche Begründung des Fondsmanagers steht in der Kurzmeldung nicht.',
+      },
+    ],
+  },
+  {
     slug: 'sp500-kursziel-8000-drei-banken-eine-linie',
     title: 'S&P 500 bei 8.000 Punkten: Drei Banken nennen dieselbe Marke',
     teaser:
