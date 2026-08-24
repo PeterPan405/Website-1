@@ -574,6 +574,39 @@ name: Quellen abklopfen
 # seine Datensätze, eine Fehlermeldung den falschen Namen. Das ist die Sonde
 # `boersen3`.
 #
+# ## Dritte Börsenrunde: drei Türen fallen zu, mit klarer Auskunft
+#
+# - **ASX Australien** – `key-statistics` antwortet mit 200 und drei künftigen
+#   Datumsangaben. Beim Hinsehen sind es `dateExDate`, `datePayDate` und
+#   `dateRecordDate`: **Dividendentermine, kein Meldetermin.** Genau der Fall,
+#   vor dem die dritte Frage der zweiten Runde warnt. `events`, `dividends`,
+#   `financial-calendar`, `upcoming-events`, `calendar`, `company-events`:
+#   allesamt 404 oder 400.
+# - **TWSE Taiwan** – das Verzeichnis führt **143 Datensätze**, und keiner ist
+#   ein Terminkalender. Der nächste, `t187ap04_L`, ist der tägliche Strom der
+#   Pflichtmitteilungen – dieselbe Bauart wie der indische Feed. `TWT48U_ALL`
+#   nennt Dividendenstichtage.
+#   **Aber:** dieselbe Schnittstelle führt Gewinn- und Verlustrechnung sowie
+#   Bilanz **aller** börsennotierten Gesellschaften (`t187ap06_L_*`,
+#   `t187ap07_L_*`), offen und ohne Schlüssel. Für die Termine nutzlos, für die
+#   Unternehmenszahlen genau die gesuchte Bauart.
+# - **KIND Südkorea** – 90 KB, aber **2 Tabellenzeilen, 3 Formulare und null
+#   Börsenkürzel**. Eine Suchmaske, keine Liste. Die Zählung allein hätte das
+#   nicht gezeigt; erst der Blick hinein.
+#
+# Offen geblieben sind zwei, und beide nur, weil die Sonde die Antwort
+# weggeworfen hat, bevor jemand sie lesen konnte:
+#
+# - **SIX Schweiz** – `select=*` antwortet mit **200** und liefert `colNames`,
+#   das vollständige Feldverzeichnis. Aufgehoben wurden davon 600 Zeichen; die
+#   Liste bricht mitten in den Namen mit „A" ab.
+# - **TMX Kanada** – alle drei Abfragen kamen mit 400 zurück, auch die
+#   Introspektion. Der **Text** der Absage wurde nicht aufgehoben, sondern nur
+#   nach Feldnamen durchsucht – dabei ist gerade er die Auskunft.
+#
+# Das ist die Sonde `boersen4`: zwei Fragen, zwei Abrufe, und diesmal wird der
+# ganze Text aufgehoben.
+#
 on:
   workflow_dispatch:
     inputs:
@@ -593,6 +626,7 @@ on:
             boersen,
             boersen2,
             boersen3,
+            boersen4,
             nse,
           ]
   push:
@@ -620,7 +654,7 @@ jobs:
       - name: Welche Sonde
         id: wahl
         run: |
-          ALLE="sec asien nordisch esef esef-de tokio boersen boersen2 boersen3 nse"
+          ALLE="sec asien nordisch esef esef-de tokio boersen boersen2 boersen3 boersen4 nse"
 
           wahl="${{ inputs.sonde }}"
           if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
@@ -646,7 +680,7 @@ jobs:
           for name in $wahl; do
             case "$name" in
               alle) liste="$ALLE" ;;
-              sec|asien|nordisch|esef|esef-de|tokio|boersen|boersen2|boersen3|nse) liste="$liste $name" ;;
+              sec|asien|nordisch|esef|esef-de|tokio|boersen|boersen2|boersen3|boersen4|nse) liste="$liste $name" ;;
               *)
                 echo "::error::Unbekannte Sonde „$name“. Erlaubt: alle, $ALLE."
                 exit 1
@@ -772,6 +806,17 @@ jobs:
         if: always() && (contains(steps.wahl.outputs.sonde, ' boersen3 '))
         run: node --experimental-strip-types scripts/quellen-probe-boersen3.ts
 
+      # Neunte Runde: zwei offene Fragen, zwei Abrufe.
+      #
+      # Drei der fünf Türen sind zugefallen – ASX liefert Dividendentermine,
+      # TWSE hat unter 143 Datensätzen keinen Kalender, KIND ist eine
+      # Suchmaske. Zwei Fragen sind offen geblieben, und beide nur, weil die
+      # Sonde die Antwort weggeworfen hat, bevor jemand sie lesen konnte: ein
+      # Ausschnitt von 600 Zeichen bei SIX, ein Filter auf Feldnamen bei TMX.
+      - name: Die beiden letzten Fragen ganz lesen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' boersen4 '))
+        run: node --experimental-strip-types scripts/quellen-probe-boersen4.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -786,6 +831,7 @@ jobs:
             boersen-kalender.json
             boersen2-kalender.json
             boersen3-kalender.json
+            boersen4-kalender.json
             nse-kalender.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
@@ -821,7 +867,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json boersen2-kalender.json boersen3-kalender.json nse-kalender.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json boersen2-kalender.json boersen3-kalender.json boersen4-kalender.json nse-kalender.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1

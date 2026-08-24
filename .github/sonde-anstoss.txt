@@ -5,7 +5,7 @@
 # nicht mit `#` beginnende Zeile nennt die Sonde:
 #
 #     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen |
-#     boersen2 | boersen3 | nse
+#     boersen2 | boersen3 | boersen4 | nse
 #
 # Keine Zeile heißt: nichts anstoßen. Nicht „alles" – `alle` schließt die
 # ESEF-Sonde mit ihren zwanzig Minuten ein.
@@ -31,20 +31,24 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-boersen3
+boersen4
 
-# Dritte Runde: fünf offene Türen, und hinter jeder die richtige Frage.
+# Vierte Runde: zwei offene Fragen, zwei Abrufe.
 #
-# `boersen2` hat fünf Schnittstellen gefunden, die ohne Schlüssel mit echten
-# Daten antworten – TMX Kanada, ASX Australien, TWSE Taiwan, SIX Schweiz und
-# KIND Südkorea. Keine liefert schon einen Termin.
+# Drei der fünf Türen sind zugefallen – ASX liefert Dividendentermine, TWSE hat
+# unter 143 Datensätzen keinen Kalender, KIND ist eine Suchmaske.
 #
-# Bei vier von fünf beantwortet die Quelle die Anschlussfrage aber selbst: Ein
-# GraphQL-Schema nennt seine Felder, ein Verzeichnis seine Datensätze, eine
-# Fehlermeldung den falschen Namen. Nur bei ASX werden Pfade durchprobiert –
-# und auch dort nur die, die die eigene Seite benutzt.
+# Zwei Fragen sind offen geblieben, und beide nur, weil die Sonde die Antwort
+# weggeworfen hat, bevor jemand sie lesen konnte: ein Ausschnitt von 600
+# Zeichen bei SIX, ein Filter auf Feldnamen bei TMX. Diesmal wird der ganze
+# Text aufgehoben.
 
-# Zuletzt gelaufen: 24. August 2026, Sonde `boersen2` – fünf offene Türen, wo
+# Zuletzt gelaufen: 24. August 2026, Sonde `boersen3` – drei der fünf Türen
+# fallen zu, mit klarer Auskunft. Nebenbei gefunden: Taipeh führt die
+# Abschlüsse aller gelisteten Gesellschaften offen. Ergebnis im Kopf von
+# `quellen-probe.yml`.
+#
+# Davor am selben Tag, Sonde `boersen2` – fünf offene Türen, wo
 # die erste Runde 404 gemeldet hatte. Ein Teil dieser 404 waren falsche
 # Adressen, keine Absagen. Ergebnis im Kopf von `quellen-probe.yml`.
 #
