@@ -468,7 +468,7 @@ on:
         description: 'Welche Sonde laufen soll'
         type: choice
         default: alle
-        options: [alle, sec, asien, nordisch, esef, esef-de, tokio]
+        options: [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen]
   push:
     branches: ['claude/**']
     paths: ['.github/sonde-anstoss.txt']
@@ -494,26 +494,40 @@ jobs:
       - name: Welche Sonde
         id: wahl
         run: |
+          ALLE="sec asien nordisch esef esef-de tokio boersen"
+
           wahl="${{ inputs.sonde }}"
           if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
-            wahl=$(grep -v '^#' .github/sonde-anstoss.txt | grep -v '^[[:space:]]*$' | head -1 | tr -d '[:space:]')
+            # Mehrere Namen in einer Zeile sind erlaubt, durch Komma oder
+            # Leerzeichen getrennt: „tokio, boersen" startet beide und lässt
+            # die zwanzig Minuten der ESEF-Sonde aus.
+            wahl=$(grep -v '^#' .github/sonde-anstoss.txt | grep -v '^[[:space:]]*$' | head -1 | tr ',' ' ')
           fi
-          case "${wahl:-alle}" in
-            alle|sec|asien|nordisch|esef|esef-de|tokio) ;;
-            *)
-              echo "::error::Unbekannte Sonde „$wahl“. Erlaubt: alle, sec, asien, nordisch, esef, esef-de, tokio."
-              exit 1
-              ;;
-          esac
-          echo "sonde=${wahl:-alle}" >> "$GITHUB_OUTPUT"
-          echo "Sonde: ${wahl:-alle}"
+          wahl="${wahl:-alle}"
+
+          liste=""
+          for name in $wahl; do
+            case "$name" in
+              alle) liste="$ALLE" ;;
+              sec|asien|nordisch|esef|esef-de|tokio|boersen) liste="$liste $name" ;;
+              *)
+                echo "::error::Unbekannte Sonde „$name“. Erlaubt: alle, $ALLE."
+                exit 1
+                ;;
+            esac
+          done
+
+          # Mit Leerzeichen ringsum, damit `contains` auf ganze Namen prüft:
+          # sonst fände „esef" auch „esef-de".
+          echo "sonde= $(echo $liste) " >> "$GITHUB_OUTPUT"
+          echo "Sonden: $(echo $liste)"
 
       - uses: actions/setup-node@v5
         with:
           node-version: 22
 
       - name: SEC nach den fehlenden Unternehmen absuchen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'sec')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' sec '))
         run: node --experimental-strip-types scripts/quellen-probe-fundamentaldaten.ts
 
       # Steht vor den ESEF-Schritten: Diese Sonde dauert Sekunden, jene
@@ -523,24 +537,24 @@ jobs:
       # Was nach SEC und ESEF noch fehlt: Deutschland, Japan, Korea, Taiwan,
       # Hongkong, Indien. Jedes Land mit eigener Aufsicht und eigenem Format.
       - name: Aufsichtsbehörden außerhalb von USA und EU abklopfen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'asien')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' asien '))
         run: node --experimental-strip-types scripts/quellen-probe-asien.ts
 
       # Der offene Rest aus dem ESEF-Abruf: drei nordische Werte, die im
       # Verzeichnis stehen und trotzdem nichts hergeben.
       - name: Nordische Abschlüsse untersuchen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'nordisch')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' nordisch '))
         run: node --experimental-strip-types scripts/quellen-probe-nordisch.ts
 
       - name: ESEF-Verzeichnis für die europäischen Werte abklopfen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' esef '))
         run: node --experimental-strip-types scripts/quellen-probe-esef.ts
 
       # Zweite Runde: nicht nur, ob der Name im Verzeichnis steht, sondern
       # welche Zahlen dahinterstehen. Erst daran lässt sich eine Zuordnung
       # prüfen – ein Namenstreffer allein hat hier schon zweimal danebengelegen.
       - name: ESEF-Abschlüsse auslesen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' esef '))
         run: node --experimental-strip-types scripts/quellen-probe-esef-werte.ts
 
       # Dritte Runde: die deutsche Luecke. In der Zuordnung in
@@ -551,7 +565,7 @@ jobs:
       # der sich nicht erraten laesst und ohne den keine Zuordnung entstehen
       # darf.
       - name: Deutsche Abschlüsse im ESEF-Verzeichnis suchen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'esef' || steps.wahl.outputs.sonde == 'esef-de')
+        if: always() && (contains(steps.wahl.outputs.sonde, ' esef ') || contains(steps.wahl.outputs.sonde, ' esef-de '))
         run: node --experimental-strip-types scripts/quellen-probe-esef-de.ts
 
       # Vierte Runde: Was die Tokioter Liste über den *nächsten* Termin hergibt.
@@ -560,9 +574,28 @@ jobs:
       # Abstand zwischen beiden stabil, ließe sich der nächste Meldetag daraus
       # ableiten – und damit die Lücke zwischen zwei Veröffentlichungen der
       # Börse schließen. Ob er stabil ist, lässt sich nicht raten.
+      #
+      # Mit Alias-Hook: `lib/providers/jpx-termine.ts` importiert über `@/`,
+      # und ohne ihn endet der Lauf mit `ERR_MODULE_NOT_FOUND: Cannot find
+      # package '@/lib'`. Die übrigen Sonden importieren nichts aus `lib/`
+      # und kommen deshalb ohne aus.
       - name: Tokioter Abstände vermessen
-        if: always() && (steps.wahl.outputs.sonde == 'alle' || steps.wahl.outputs.sonde == 'tokio')
-        run: node --experimental-strip-types scripts/quellen-probe-tokio.ts
+        if: always() && (contains(steps.wahl.outputs.sonde, ' tokio '))
+        run: |
+          node --experimental-strip-types \
+               --import ./scripts/alias-hook.mjs \
+               scripts/quellen-probe-tokio.ts
+
+      # Fünfte Runde: Führt außer Tokio noch eine Börse einen Sammelkalender?
+      #
+      # Sieben Datenanbieter sind geprüft und dokumentiert – alle verlangen
+      # Schlüssel, Tarif oder eine Browser-Kennung. Die Börsen selbst wurden
+      # nie gefragt, außer Tokio, und dort lag die Antwort. AGENTS.md hält es
+      # als Lehre fest: „Der Sammelkalender wurde erst gefunden, als jemand
+      # statt nach Terminen je Unternehmen nach einer Sammelstelle fragte."
+      - name: Börsenkalender abklopfen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' boersen '))
+        run: node --experimental-strip-types scripts/quellen-probe-boersen.ts
 
       - name: Kandidatenlisten sichern
         if: always()
@@ -575,6 +608,7 @@ jobs:
             esef-kandidaten-de.json
             esef-werte.json
             tokio-abstaende.json
+            boersen-kalender.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
           # Zwischenstände einer Suche und nach einer Woche wertlos.
@@ -609,7 +643,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1
