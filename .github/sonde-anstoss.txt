@@ -5,7 +5,7 @@
 # nicht mit `#` beginnende Zeile nennt die Sonde:
 #
 #     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen |
-#     boersen2 | boersen3 | nse
+#     boersen2 | boersen3 | boersen4 | nse
 #
 # Keine Zeile heißt: nichts anstoßen. Nicht „alles" – `alle` schließt die
 # ESEF-Sonde mit ihren zwanzig Minuten ein.
@@ -31,20 +31,23 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-boersen3
+# (keine Sonde vorgemerkt – die Börsensuche ist abgeschlossen)
 
-# Dritte Runde: fünf offene Türen, und hinter jeder die richtige Frage.
+# Zuletzt gelaufen: 24. August 2026, Sonde `boersen4` – beide letzten Fragen
+# beantwortet, beide mit Nein. Die Schweizer Abfrage kennt 334 Felder und
+# keines für einen Meldetermin; die kanadische Schnittstelle hat die
+# Introspektion abgeschaltet und ihr Typ `Company` kein Terminfeld.
 #
-# `boersen2` hat fünf Schnittstellen gefunden, die ohne Schlüssel mit echten
-# Daten antworten – TMX Kanada, ASX Australien, TWSE Taiwan, SIX Schweiz und
-# KIND Südkorea. Keine liefert schon einen Termin.
+# **Damit ist die Börsensuche abgeschlossen.** Vier Runden, 55 Adressen,
+# sieben Börsen: Außer Tokio führt keine einen Sammelkalender. Das Fazit steht
+# im Kopf von `quellen-probe.yml`.
 #
-# Bei vier von fünf beantwortet die Quelle die Anschlussfrage aber selbst: Ein
-# GraphQL-Schema nennt seine Felder, ein Verzeichnis seine Datensätze, eine
-# Fehlermeldung den falschen Namen. Nur bei ASX werden Pfade durchprobiert –
-# und auch dort nur die, die die eigene Seite benutzt.
-
-# Zuletzt gelaufen: 24. August 2026, Sonde `boersen2` – fünf offene Türen, wo
+# Davor am selben Tag, Sonde `boersen3` – drei der fünf Türen
+# fallen zu, mit klarer Auskunft. Nebenbei gefunden: Taipeh führt die
+# Abschlüsse aller gelisteten Gesellschaften offen. Ergebnis im Kopf von
+# `quellen-probe.yml`.
+#
+# Davor am selben Tag, Sonde `boersen2` – fünf offene Türen, wo
 # die erste Runde 404 gemeldet hatte. Ein Teil dieser 404 waren falsche
 # Adressen, keine Absagen. Ergebnis im Kopf von `quellen-probe.yml`.
 #
