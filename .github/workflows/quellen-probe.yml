@@ -545,7 +545,8 @@ on:
         description: 'Welche Sonde laufen soll'
         type: choice
         default: alle
-        options: [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen, nse]
+        options:
+          [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen, boersen2, nse]
   push:
     branches: ['claude/**']
     paths: ['.github/sonde-anstoss.txt']
@@ -571,7 +572,7 @@ jobs:
       - name: Welche Sonde
         id: wahl
         run: |
-          ALLE="sec asien nordisch esef esef-de tokio boersen nse"
+          ALLE="sec asien nordisch esef esef-de tokio boersen boersen2 nse"
 
           wahl="${{ inputs.sonde }}"
           if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
@@ -597,7 +598,7 @@ jobs:
           for name in $wahl; do
             case "$name" in
               alle) liste="$ALLE" ;;
-              sec|asien|nordisch|esef|esef-de|tokio|boersen|nse) liste="$liste $name" ;;
+              sec|asien|nordisch|esef|esef-de|tokio|boersen|boersen2|nse) liste="$liste $name" ;;
               *)
                 echo "::error::Unbekannte Sonde „$name“. Erlaubt: alle, $ALLE."
                 exit 1
@@ -696,6 +697,22 @@ jobs:
         if: always() && (contains(steps.wahl.outputs.sonde, ' nse '))
         run: node --experimental-strip-types scripts/quellen-probe-nse.ts
 
+      # Siebte Runde: dieselben Börsen, andere Adressen.
+      #
+      # Die 404 aus der Sonde `boersen` waren zum Teil keine Absagen, sondern
+      # Fehlgriffe: ASX liefert seine Seite heute aus `markitdigital`, TWSE
+      # führt sein Verzeichnis in `swagger.json`, TMX antwortet nur auf einen
+      # POST, HKEX legt seine Meldungen unter `/ncms/`. Gefragt wird diesmal
+      # zusätzlich, ob die Antwort ein **künftiges Datum mit Ergebnisbezug**
+      # enthält – ein Kalender voller Dividenden sieht aus wie ein Fund.
+      #
+      # Deutschland, Großbritannien, Frankreich und die Niederlande stehen
+      # nicht mehr darin: Dort ist die Antwort eine gesetzte Sperre, und die
+      # wird nicht nachgebaut.
+      - name: Börsen erneut abklopfen, an den richtigen Adressen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' boersen2 '))
+        run: node --experimental-strip-types scripts/quellen-probe-boersen2.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -708,6 +725,7 @@ jobs:
             esef-werte.json
             tokio-abstaende.json
             boersen-kalender.json
+            boersen2-kalender.json
             nse-kalender.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
@@ -743,7 +761,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json nse-kalender.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json boersen2-kalender.json nse-kalender.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1

@@ -4,7 +4,8 @@
 # Workflow `.github/workflows/quellen-probe.yml`. Die erste nicht leere,
 # nicht mit `#` beginnende Zeile nennt die Sonde:
 #
-#     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen | nse
+#     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen |
+#     boersen2 | nse
 #
 # Keine Zeile heißt: nichts anstoßen. Nicht „alles" – `alle` schließt die
 # ESEF-Sonde mit ihren zwanzig Minuten ein.
@@ -30,7 +31,20 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-# (keine Sonde vorgemerkt – diese Zeile leer lassen, bis eine gebraucht wird)
+boersen2
+
+# Zweite Runde an denselben Börsen, an den richtigen Adressen.
+#
+# Die 404 der ersten Runde waren zum Teil keine Absagen, sondern Fehlgriffe:
+# ASX liefert seine Seite heute aus `markitdigital`, TWSE führt sein
+# Verzeichnis in `swagger.json`, TMX antwortet nur auf einen POST, HKEX legt
+# seine Meldungen unter `/ncms/`. Fünfzehn Adressen für China (42), Kanada
+# (33), Schweiz (27), Australien (26), Brasilien (21), Südkorea (18) und
+# Taiwan (12).
+#
+# Gefragt wird diesmal zusätzlich, ob die Antwort ein künftiges Datum **mit
+# Ergebnisbezug** enthält. Ein Kalender voller Dividenden und
+# Hauptversammlungen sieht aus wie ein Fund und trägt keinen Termin.
 
 # Zuletzt gelaufen: 24. August 2026, Sonde `nse` – Ergebnis im Kopf von
 # `quellen-probe.yml`. Offen, aber kein Kalender: 31 Einträge, zwei Wochen
