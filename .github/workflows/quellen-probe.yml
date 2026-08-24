@@ -461,6 +461,48 @@ name: Quellen abklopfen
 # Zweig startet nichts, nur die absichtliche Änderung dieser einen Datei. Und
 # `main` steht nicht in der Liste – beim Mergen läuft die Sonde also nicht
 # noch einmal.
+# ## 24. August 2026: die Börsen selbst gefragt – 22 Adressen
+#
+# Sieben **Datenanbieter** waren geprüft, alle mit Schlüssel, Tarif oder
+# Browser-Kennung. Die **Börsen** wurden nie gefragt, außer Tokio. Nachgeholt:
+#
+# **Was antwortet und trägt:**
+#
+# - **NSE Indien**, `nseindia.com/api/event-calendar` → **200 JSON ohne
+#   Schlüssel**, 31 Einträge, Felder `symbol, company, purpose, bm_desc`. Ein
+#   Sammelkalender der Vorstandssitzungen samt Zweck – „Financial Results"
+#   steht als `purpose`. Das ist die Tokio-Bauart, für 50 geführte Titel.
+#   **Der aussichtsreichste offene Punkt.**
+# - **SIX Swiss**, `six-group.com/fqs/ref.json` → **200 JSON ohne Schlüssel**,
+#   mit `colNames`/`rowData`. Eine offene Abfrageschnittstelle; ob sie einen
+#   Termindatensatz führt, ist die nächste Frage. 27 Titel.
+# - **B3 São Paulo**, `listedCompaniesProxy` → **200 JSON**, 3.501
+#   Gesellschaften. Ein Verzeichnis, kein Kalender – aber die Schnittstelle
+#   ist offen, und daneben liegt eine für Unternehmensereignisse. 21 Titel.
+#
+# **Was antwortet und nicht trägt:** Deutsche Börse, Bundesanzeiger, London
+# Stock Exchange, Euronext und BME liefern 200 – aber HTML ohne einen einzigen
+# Verweis auf eine Tabelle. Die Termine entstehen dort erst im Browser;
+# Euronext trägt sogar `antibot` im Markup. Das ist eine gesetzte Sperre und
+# wird nicht nachgebaut.
+#
+# **Was gar nicht antwortet:** EQS 404, FCA-Archiv 403 („Missing
+# Authentication Token"), HKEX 404, SEDAR+ 403, ASX 404, KRX 403, TWSE 404,
+# Borsa Italiana 404, Nasdaq Nordic 404.
+#
+# ## Und was Tokio hergibt, ohne dass jemand danach gefragt hätte
+#
+# Die Spalte `決算期末 / Fiscal Year-end` ist **nicht** das Ende des gemeldeten
+# Quartals, sondern das des Geschäftsjahres. Der erste Versuch, daraus einen
+# Abstand zu rechnen, ergab **minus 245 Tage** – und diese negative Zahl hat
+# den Irrtum aufgedeckt.
+#
+# Richtig gelesen folgt daraus mehr als ein Termin: Aus dem
+# Geschäftsjahresende ergeben sich die vier Quartalsenden, aus dem gemeldeten
+# Tag der Abstand des Unternehmens. Gemessen an unseren 67 japanischen Titeln:
+# 23 bis 43 Tage, Median 34. Daraus entstehen die nächsten vier Termine je
+# Titel – geschätzt, gekennzeichnet, mit gemessener Streuung.
+#
 on:
   workflow_dispatch:
     inputs:

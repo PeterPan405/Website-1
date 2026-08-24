@@ -69,6 +69,9 @@ import {
 import {
   holeTermine as holeJpxTermine,
   JpxOhneTabelle,
+  abgeleiteteTermine,
+  abstandJeStelle,
+  streuungJeStelle,
 } from '../lib/providers/jpx-termine.ts'
 
 const KOPFZEILEN: Record<string, string> = {
@@ -829,9 +832,17 @@ async function main(): Promise<void> {
     spalten?: string[]
     inListe?: number
     kommend?: number
+    /** Titel mit abgeleitetem statt angekündigtem Termin. */
+    abgeleitet?: number
+    /** Der gemessene Abstand je Quartalsstelle, in Tagen. */
+    abstandJeStelle?: Record<number, number>
+    /** Und wie weit er streut. */
+    streuungJeStelle?: Record<number, number>
     fehler?: string
   } | null = null
   const ausTokio: string[] = []
+  /** Titel, deren Termine aus dem Meldemuster abgeleitet sind statt angekündigt. */
+  const ausTokioAbgeleitet: string[] = []
   /** Geführte Titel, die in der Tokioter Liste stehen – gleich ob der Tag noch kommt. */
   const inTokioGefunden: string[] = []
   try {
@@ -854,6 +865,18 @@ async function main(): Promise<void> {
     for (const liste of jeCode.values())
       liste.sort((a, b) => a.termin.localeCompare(b.termin))
 
+    /*
+      Der Abstand je Quartalsstelle, gemessen an **allen** Zeilen der Datei.
+
+      Nicht an unseren siebenundsechzig: Der Abstand hängt an der Stelle im
+      Geschäftsjahr – das erste Quartal wird schneller gemeldet als der
+      Jahresabschluss, weil der geprüft werden muss –, und eine Stelle, zu der
+      unsere Titel gerade nichts beitragen, hätte sonst gar keinen Wert. Die
+      Datei führt gut dreitausend Zeilen; darüber ist jede Stelle besetzt.
+    */
+    const medianJeStelle = abstandJeStelle(jpx.termine)
+    const streuungenJeStelle = streuungJeStelle(jpx.termine)
+
     for (const kuerzel of gefuehrt) {
       const code = /^([0-9][0-9A-Z]{3})\.T$/.exec(kuerzel)?.[1]
       if (!code) continue
@@ -866,23 +889,56 @@ async function main(): Promise<void> {
       if (angekuendigt.has(kalenderkuerzel(kuerzel))) continue
 
       const termin = zeilen.find((eintrag) => eintrag.termin >= heute)
-      if (!termin) continue
+
+      if (termin) {
+        unternehmen[kuerzel] = {
+          name: termin.name || unternehmen[kuerzel]?.name || kuerzel,
+          bisher: unternehmen[kuerzel]?.bisher ?? [],
+          bisherZeiten: unternehmen[kuerzel]?.bisherZeiten,
+          vorhersagen: [
+            {
+              erwartet: termin.termin,
+              basis: termin.periodenende || termin.termin,
+              streuungTage: 0,
+              angekuendigt: true,
+              herkunft: 'jpx',
+            },
+          ],
+        }
+        ausTokio.push(kuerzel)
+        continue
+      }
+
+      /*
+        Kein angekündigter Tag mehr – dann wird abgeleitet.
+
+        Die Liste ist keine Jahresübersicht: Sie führt je Datei die
+        Unternehmen, deren Quartal in einem bestimmten Monat endete, und hat
+        damit wenige Wochen Vorlauf. Am 24. August 2026 stand sie voll mit
+        Terminen unserer Titel, und **keiner** lag noch in der Zukunft.
+
+        Dieselbe Zeile sagt aber, wann das Geschäftsjahr endet und wie viele
+        Tage nach einem Quartalsende dieses Unternehmen meldet. Daraus folgen
+        die nächsten vier Termine – geschätzt, gekennzeichnet, mit der
+        gemessenen Streuung. Ein angekündigter Tag geht ihnen immer vor; genau
+        deshalb steht dieser Zweig hinter dem anderen.
+      */
+      const juengste = zeilen[zeilen.length - 1]
+      const abgeleitet = abgeleiteteTermine(juengste, medianJeStelle, heute)
+      if (abgeleitet.length === 0) continue
 
       unternehmen[kuerzel] = {
-        name: termin.name || unternehmen[kuerzel]?.name || kuerzel,
+        name: juengste.name || unternehmen[kuerzel]?.name || kuerzel,
         bisher: unternehmen[kuerzel]?.bisher ?? [],
         bisherZeiten: unternehmen[kuerzel]?.bisherZeiten,
-        vorhersagen: [
-          {
-            erwartet: termin.termin,
-            basis: termin.periodenende || termin.termin,
-            streuungTage: 0,
-            angekuendigt: true,
-            herkunft: 'jpx',
-          },
-        ],
+        vorhersagen: abgeleitet.map((eintrag) => ({
+          erwartet: eintrag.erwartet,
+          basis: eintrag.quartalsende,
+          streuungTage: streuungenJeStelle.get(eintrag.stelle) ?? 7,
+          herkunft: 'jpx' as const,
+        })),
       }
-      ausTokio.push(kuerzel)
+      ausTokioAbgeleitet.push(kuerzel)
     }
 
     /*
@@ -916,6 +972,9 @@ async function main(): Promise<void> {
       spalten: jpx.kopf,
       inListe: inTokioGefunden.length,
       kommend: ausTokio.length,
+      abgeleitet: ausTokioAbgeleitet.length,
+      abstandJeStelle: Object.fromEntries(medianJeStelle),
+      streuungJeStelle: Object.fromEntries(streuungenJeStelle),
     }
     console.log(
       `\nTokio: ${jpx.termine.length} Termine, Stand laut Datei ` +
@@ -924,7 +983,8 @@ async function main(): Promise<void> {
     console.log(`  Erkannte Spalten: ${jpx.kopf.join('  ///  ')}`)
     console.log(
       `  ${inTokioGefunden.length} von ${japanischeKuerzel.length} geführten japanischen ` +
-        `Titeln stehen darin, ${ausTokio.length} davon mit noch kommendem Tag.`
+        `Titeln stehen darin, ${ausTokio.length} davon mit noch kommendem Tag, ` +
+        `${ausTokioAbgeleitet.length} weitere mit abgeleitetem.`
     )
   } catch (fehler) {
     /*
