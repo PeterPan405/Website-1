@@ -5,7 +5,7 @@
 # nicht mit `#` beginnende Zeile nennt die Sonde:
 #
 #     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen |
-#     boersen2 | nse
+#     boersen2 | boersen3 | nse
 #
 # Keine Zeile heißt: nichts anstoßen. Nicht „alles" – `alle` schließt die
 # ESEF-Sonde mit ihren zwanzig Minuten ein.
@@ -31,22 +31,24 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-boersen2
+boersen3
 
-# Zweite Runde an denselben Börsen, an den richtigen Adressen.
+# Dritte Runde: fünf offene Türen, und hinter jeder die richtige Frage.
 #
-# Die 404 der ersten Runde waren zum Teil keine Absagen, sondern Fehlgriffe:
-# ASX liefert seine Seite heute aus `markitdigital`, TWSE führt sein
-# Verzeichnis in `swagger.json`, TMX antwortet nur auf einen POST, HKEX legt
-# seine Meldungen unter `/ncms/`. Fünfzehn Adressen für China (42), Kanada
-# (33), Schweiz (27), Australien (26), Brasilien (21), Südkorea (18) und
-# Taiwan (12).
+# `boersen2` hat fünf Schnittstellen gefunden, die ohne Schlüssel mit echten
+# Daten antworten – TMX Kanada, ASX Australien, TWSE Taiwan, SIX Schweiz und
+# KIND Südkorea. Keine liefert schon einen Termin.
 #
-# Gefragt wird diesmal zusätzlich, ob die Antwort ein künftiges Datum **mit
-# Ergebnisbezug** enthält. Ein Kalender voller Dividenden und
-# Hauptversammlungen sieht aus wie ein Fund und trägt keinen Termin.
+# Bei vier von fünf beantwortet die Quelle die Anschlussfrage aber selbst: Ein
+# GraphQL-Schema nennt seine Felder, ein Verzeichnis seine Datensätze, eine
+# Fehlermeldung den falschen Namen. Nur bei ASX werden Pfade durchprobiert –
+# und auch dort nur die, die die eigene Seite benutzt.
 
-# Zuletzt gelaufen: 24. August 2026, Sonde `nse` – Ergebnis im Kopf von
+# Zuletzt gelaufen: 24. August 2026, Sonde `boersen2` – fünf offene Türen, wo
+# die erste Runde 404 gemeldet hatte. Ein Teil dieser 404 waren falsche
+# Adressen, keine Absagen. Ergebnis im Kopf von `quellen-probe.yml`.
+#
+# Davor am selben Tag, Sonde `nse` – Ergebnis im Kopf von
 # `quellen-probe.yml`. Offen, aber kein Kalender: 31 Einträge, zwei Wochen
 # Reichweite, keiner unserer 50 indischen Titel darin.
 #
