@@ -5,7 +5,7 @@ import {
 } from '@/components/content/figures/Diagramme'
 import { formatNumber } from '@/lib/format'
 import { optionBasis, optionMonate } from '@/lib/lernszenarien'
-import { gewinnschwelle, innererWert, preis } from '@/lib/optionen'
+import { innererWert, preis } from '@/lib/optionen'
 
 /**
  * Die Grafiken zum Lernthema Option.
@@ -67,9 +67,6 @@ export function OptionAuszahlung() {
     },
   ]
 
-  const schwelleCall = gewinnschwelle('call', optionBasis)
-  const schwellePut = gewinnschwelle('put', optionBasis)
-
   return (
     <LinienDiagramm
       id="option-auszahlung"
@@ -94,14 +91,6 @@ export function OptionAuszahlung() {
       yFormat={(wert) => formatNumber(wert, 0)}
       nulllinie
       hoehe={310}
-      beschreibung={
-        `Ergebnis zweier Optionen auf einen Basiswert von ${formatNumber(optionBasis.kurs, 0)} Euro ` +
-        `mit Basispreis ${formatNumber(optionBasis.basispreis, 0)} Euro bei Verfall. Beide Linien verlaufen ` +
-        `zunächst waagerecht im Minus – so hoch ist die bezahlte Prämie, und mehr kann der Käufer nicht ` +
-        `verlieren. Ab dem Knick am Basispreis steigt das Ergebnis; die Gewinnschwelle liegt beim Call bei ` +
-        `${formatNumber(schwelleCall, 2)} Euro, beim Put bei ${formatNumber(schwellePut, 2)} Euro. ` +
-        `Der Call kennt nach oben keine Grenze, der Put endet bei einem Kurs von null.`
-      }
     />
   )
 }
@@ -126,14 +115,6 @@ export function OptionZeitwertverfall() {
     y: preis('call', { ...optionBasis, jahre: restMonate / 12 }),
   }))
 
-  const bei = (restMonate: number) =>
-    preis('call', { ...optionBasis, jahre: restMonate / 12 })
-
-  const jahresPraemie = bei(12)
-  const monatsPraemie = bei(1)
-  /** Wie viel vom Anfangswert der letzte Monat allein trägt. */
-  const anteilLetzterMonat = (monatsPraemie / jahresPraemie) * 100
-
   return (
     <LinienDiagramm
       id="option-zeitwertverfall"
@@ -156,13 +137,6 @@ export function OptionZeitwertverfall() {
       yEinheit="Prämie in Euro"
       yFormat={(wert) => formatNumber(wert, 1)}
       hoehe={300}
-      beschreibung={
-        `Die Prämie einer Kaufoption am Geld über die Restlaufzeit. Bei zwölf Monaten kostet sie ` +
-        `${formatNumber(jahresPraemie, 2)} Euro, bei einem Monat noch ${formatNumber(monatsPraemie, 2)} Euro – ` +
-        `${formatNumber(anteilLetzterMonat, 0)} Prozent des Anfangswerts. Elf Monate haben also drei Viertel ` +
-        `des Werts gekostet, der letzte Monat allein das restliche Viertel. Die Kurve fällt zum Verfall hin ` +
-        `immer steiler auf null.`
-      }
     />
   )
 }

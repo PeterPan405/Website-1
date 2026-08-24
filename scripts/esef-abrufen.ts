@@ -250,7 +250,143 @@ const ZUORDNUNG: Record<string, string> = {
     siehe die Notiz oben.
   */
   'AT1.DE': 'Aroundtown SA',
+
+  /* --------------------------------------------------------------------
+     Lauf vom 23. August 2026: die zweite Runde
+
+     Der Workflow „Quellen abklopfen" hat 114 Namenstreffer geliefert, davon
+     89 mit vollständigen Zahlen. Aufgenommen ist davon, was zwei Prüfungen
+     bestanden hat: Der Name im Verzeichnis bezeichnet **dieselbe**
+     Gesellschaft, und die Größenordnung der Zahlen passt zu ihr.
+
+     Die Ergebnisse liegen lesbar auf dem wurzellosen Zweig `sonden-ergebnis`
+     (`git show origin/sonden-ergebnis:esef-werte.json`) – nicht nur als
+     Artefakt, siehe AGENTS.md.
+
+     Was **nicht** aufgenommen wurde, und warum, steht unter der Tabelle.
+     -------------------------------------------------------------------- */
+
+  // Frankreich, zweite Runde
+  'AF.PA': 'AIR FRANCE - KLM',
+  'AKE.PA': 'ARKEMA',
+  'ALO.PA': 'ALSTOM',
+  'BVI.PA': 'BUREAU VERITAS',
+  'EDEN.PA': 'EDENRED',
+  'FGR.PA': 'EIFFAGE',
+  'IPN.PA': 'IPSEN',
+  'NEX.PA': 'NEXANS',
+  'RXL.PA': 'REXEL',
+  'SOP.PA': 'SOPRA STERIA GROUP',
+  'TEP.PA': 'TELEPERFORMANCE SE',
+  'UBI.PA': 'UBISOFT ENTERTAINMENT',
+  'VK.PA': 'VALLOUREC',
+  'WLN.PA': 'WORLDLINE',
+
+  // Vereinigtes Königreich, zweite Runde
+  'ANTO.L': 'ANTOFAGASTA PLC',
+  'BKG.L': 'THE BERKELEY GROUP HOLDINGS PLC',
+  'BNZL.L': 'BUNZL PUBLIC LIMITED COMPANY',
+  'BT-A.L': 'BT GROUP PLC',
+  'CRDA.L': 'CRODA INTERNATIONAL PUBLIC LIMITED COMPANY',
+  'EZJ.L': 'EASYJET PLC',
+  'GAW.L': 'GAMES WORKSHOP GROUP PLC',
+  'HLMA.L': 'HALMA PUBLIC LIMITED COMPANY',
+  'IHG.L': 'INTERCONTINENTAL HOTELS GROUP PLC',
+  'IMB.L': 'IMPERIAL BRANDS PLC',
+  'INF.L': 'INFORMA PLC',
+  'JMAT.L': 'JOHNSON MATTHEY PLC',
+  'MKS.L': 'MARKS AND SPENCER GROUP P.L.C.',
+  'MRO.L': 'MELROSE INDUSTRIES PLC',
+  'NXT.L': 'NEXT PLC',
+  'PSON.L': 'PEARSON PLC',
+  'QQ.L': 'QINETIQ GROUP PLC',
+  'RTO.L': 'RENTOKIL INITIAL PLC',
+  'SDR.L': 'SCHRODERS PLC',
+  'SGRO.L': 'SEGRO PUBLIC LIMITED COMPANY',
+  'SMIN.L': 'SMITHS GROUP PLC',
+  'SN.L': 'SMITH & NEPHEW PLC',
+  'SPX.L': 'SPIRAX GROUP PLC',
+  'SVT.L': 'SEVERN TRENT PLC',
+  'UU.L': 'UNITED UTILITIES GROUP PLC',
+  'WEIR.L': 'WEIR GROUP PLC(THE)',
+  'WPP.L': 'WPP PLC',
+  'WTB.L': 'WHITBREAD PLC',
+
+  // Übriges Europa, zweite Runde
+  'ALFA.ST': 'Alfa Laval AB',
+  'ANDR.VI': 'Andritz AG',
+  'ARCAD.AS': 'ARCADIS N.V.',
+  'ARGX.BR': 'argenx SE',
+  'CDR.WA': 'CD PROJEKT S.A.',
+  'DEMANT.CO': 'DEMANT A/S',
+  'ENX.PA': 'Euronext N.V.',
+  'ERF.PA': 'EUROFINS SCIENTIFIC SE',
+  'ESSITY-B.ST': 'Essity Aktiebolag (publ)',
+  'GRF.MC': 'GRIFOLS S.A.',
+  'JMT.LS': 'JERÓNIMO MARTINS SGPS SA',
+  'KOG.OL': 'KONGSBERG GRUPPEN ASA',
+  'KRX.IR': 'Kingspan Group plc',
+  'LIGHT.AS': 'SIGNIFY N.V.',
+  'LOTB.BR': 'LOTUS BAKERIES',
+  'LPP.WA': 'LPP SA',
+  'MOWI.OL': 'MOWI ASA',
+  'MT.AS': 'ArcelorMittal',
+  'SKF-B.ST': 'SKF Group',
+  'STERV.HE': 'Stora Enso Oyj',
+  'TIT.MI': 'TELECOM ITALIA SPA O TIM S.P.A.',
+  'WIE.VI': 'Wienerberger AG',
+  'WRT1V.HE': 'Wärtsilä Oyj Abp',
+  'YAR.OL': 'YARA INTERNATIONAL ASA',
+
+  /*
+    Heineken Holding – und nur die.
+
+    `HEIA.AS` steht weiter **nicht** in dieser Tabelle: Der Namenstreffer
+    führt auf die Heineken Holding N.V., eine eigenständig notierte
+    Gesellschaft mit anderem Eigenkapital. Für `HEIO.AS` ist genau diese
+    Gesellschaft die richtige – dieselbe Zeile, umgekehrtes Vorzeichen.
+  */
+  'HEIO.AS': 'Heineken Holding N.V.',
+
+  // Australien, zweite Runde – beide mit Londoner Notierung und ESEF-Meldung
+  'S32.AX': 'SOUTH32 LIMITED',
+  'WDS.AX': 'Woodside Energy Group Ltd',
 }
+
+/**
+ * Was der Lauf vom 23. August 2026 sonst noch traf – und warum es draußen
+ * bleibt.
+ *
+ * Steht als Liste da und nicht als Erinnerung: Jeder dieser Treffer sieht bei
+ * der nächsten Sonde wieder wie ein Fund aus, und jeder ergäbe Zahlen, die auf
+ * der Seite tadellos aussehen.
+ *
+ * - **Roche** (`ROG.SW`) traf `ROCHE BOBOIS` – den französischen Möbelhändler.
+ *   403 Millionen Umsatz statt der sechzig Milliarden des Konzerns.
+ * - **Wise** (`WISE.L`), der britische Zahlungsdienst, traf `Wise Group AB` –
+ *   eine schwedische Gesellschaft mit 631 Millionen Kronen Umsatz.
+ * - **Titan Company** (`TITAN.NS`, Indien) traf `Titan Cement International`
+ *   in Belgien. Gemeinsam ist beiden nur das Wort.
+ * - **SK Hynix** (`000660.KS`) und **SK Innovation** (`096770.KS`) trafen
+ *   beide `SK텔레콤`, also SK Telecom – und damit dieselben Zahlen für zwei
+ *   verschiedene Unternehmen. Schon 2026 einmal aufgefallen.
+ * - **Nestlé** (`NESN.SW`) und **Nestlé India** (`NESTLEIND.NS`) trafen beide
+ *   `NESTLE HOLDINGS, INC.`, die US-Finanzierungstochter.
+ * - **Volvo** (`VOLV-B.ST`) traf `Volvo Car AB` – seit 1999 ein anderes
+ *   Unternehmen als die Volvo AB.
+ * - **SEB** (`SEB-A.ST`, Skandinaviska Enskilda Banken) traf `SEB SA`, den
+ *   französischen Haushaltsgerätehersteller.
+ * - **Hexagon** (`HEXA-B.ST`) traf `HEXAGON PURUS ASA`, **Sartorius**
+ *   (`SRT3.DE`) traf `Sartorius Stedim Biotech`, **Siemens** (`SIE.DE`) traf
+ *   `SIEMENS GAMESA RENEWABLE ENERGY SA`.
+ * - **Rio Tinto** (`RIO.L`, `RIO.AX`) und **Carlsberg** (`CARL-B.CO`) bleiben
+ *   aus den strukturellen Gründen draußen, die oben stehen: eine
+ *   Doppelnotierung aus zwei gemeinsam bilanzierenden Gesellschaften, und die
+ *   Betriebstochter statt der börsennotierten Mutter.
+ * - **Heineken** (`HEIA.AS`) traf `Heineken Holding N.V.` Für `HEIA.AS` ist
+ *   das die falsche Gesellschaft – für `HEIO.AS` ist es die richtige, und
+ *   deshalb steht sie oben. Dieselbe Zeile, umgekehrtes Vorzeichen.
+ */
 
 /** Die gesuchten Größen nach IFRS, in der Rangfolge ihrer Bezeichner. */
 const GROESSEN = [

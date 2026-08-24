@@ -9,8 +9,6 @@ import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
 import { ewigeRente, noetigeBruttorendite, schuldenquotenpfad } from '@/lib/bewertung'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
 import {
-  bewertungAenderung,
-  bewertungBasiszins,
   bewertungKapitalkosten,
   bewertungWachstum,
   dynamikJahre,
@@ -62,19 +60,6 @@ export function AktieBarwert() {
     }),
   }))
 
-  /*
-    Die Empfindlichkeit wird gerechnet und nicht behauptet.
-
-    Im Thema stand „verschiebt den Wert leicht um 15 Prozent“. Wie viel es
-    tatsächlich ist, hängt am unterstellten Wachstum – und genau diese
-    Abhängigkeit ist die Aussage. Beide Zahlen stehen deshalb hier.
-  */
-  const wirkung = bewertungWachstum.map((wachstum) => {
-    const basis = ewigeRente(1, bewertungBasiszins, wachstum)!
-    const hoeher = ewigeRente(1, bewertungBasiszins + bewertungAenderung, wachstum)!
-    return { wachstum, abweichung: ((hoeher - basis) / basis) * 100 }
-  })
-
   return (
     <LinienDiagramm
       id="aktie-barwert"
@@ -88,26 +73,6 @@ export function AktieBarwert() {
       yEinheit="Wert je Euro jährlicher Zahlung"
       hoehe={320}
       reihen={reihen}
-      beschreibung={
-        `Der Barwert einer ewig wachsenden Zahlung von einem Euro, aufgetragen über dem ` +
-        `Kapitalkostensatz von ${formatPercent(von, 1)} bis ${formatPercent(bis, 0)}, für zwei ` +
-        `Wachstumsannahmen. Beide Kurven fallen von links nach rechts, und beide tun das nicht ` +
-        `gleichmäßig: Zum unteren Ende hin läuft der Wert davon, weil er durch die Differenz aus ` +
-        `Kapitalkosten und Wachstum geteilt wird und diese Differenz dort klein wird. ` +
-        wirkung
-          .map(
-            (w) =>
-              `Bei ${formatPercent(w.wachstum, 0)} Wachstum kostet ein halber Prozentpunkt mehr ` +
-              `Kapitalkosten – von ${formatPercent(bewertungBasiszins, 0)} auf ` +
-              `${formatPercent(bewertungBasiszins + bewertungAenderung, 1)} – ` +
-              `${formatPercent(Math.abs(w.abweichung), 0)} des Werts`
-          )
-          .join('; ') +
-        `. Beide Größen, Kapitalkosten und ewiges Wachstum, sind Annahmen und keine Beobachtungen. ` +
-        `Deshalb liefert ein Bewertungsmodell keine Zahl, sondern eine Bandbreite – und die ` +
-        `produktivere Frage lautet nicht „was ist die Aktie wert“, sondern „welche Annahmen ` +
-        `unterstellt der heutige Kurs“.`
-      }
     />
   )
 }
@@ -136,8 +101,6 @@ export function KreditTilgenOderAnlegen() {
     noetig: noetigeBruttorendite(zins, effektiverSteuersatz),
   }))
 
-  const mittel = zeilen.find((z) => z.zins === 5)!
-
   return (
     <SaeulenDiagramm
       id="kredit-tilgen-oder-anlegen"
@@ -156,25 +119,6 @@ export function KreditTilgenOderAnlegen() {
         wertText: formatPercent(zeile.noetig, 1),
         hinweis: `+ ${formatPercent(zeile.noetig - zeile.zins, 1)}`,
       }))}
-      beschreibung={
-        `Was eine Anlage vor Steuern bringen müsste, um eine Tilgung gerade auszugleichen – bei ` +
-        `${formatPercent(effektiverSteuersatz, 3)} Abgeltungsteuer samt Solidaritätszuschlag. ` +
-        zeilen
-          .map(
-            (zeile) =>
-              `${formatPercent(zeile.zins, 0)} Kreditzins verlangen ` +
-              `${formatPercent(zeile.noetig, 1)} Bruttorendite`
-          )
-          .join('; ') +
-        `. Der Grund für den Abstand: Der Ertrag einer Tilgung ist der ersparte Zins, und der wird ` +
-        `nicht besteuert – eine ersparte Ausgabe ist kein Ertrag. Wer beide Prozentzahlen ` +
-        `nebeneinanderlegt, vergleicht deshalb eine Nettogröße mit einer Bruttogröße, und zwar ` +
-        `systematisch zugunsten der Anlage. Bei ${formatPercent(mittel.zins, 0)} Kreditzins liegt die ` +
-        `Schwelle schon bei ${formatPercent(mittel.noetig, 1)}. Der zweite Einwand steht in dieser ` +
-        `Grafik nicht und wiegt schwerer: Die Tilgung liefert ihren Ertrag sicher, die Anlage im ` +
-        `Erwartungswert. Der faire Vergleichspartner einer Tilgung ist deshalb eine ebenso sichere ` +
-        `Anlage – und die bringt weit weniger als der Aktienmarkt.`
-      }
     />
   )
 }
@@ -213,9 +157,6 @@ export function StaatsschuldDynamik() {
     }
   })
 
-  const guenstig = reihen[0]
-  const unguenstig = reihen[reihen.length - 1]
-
   return (
     <LinienDiagramm
       id="staatsschuld-dynamik"
@@ -229,19 +170,6 @@ export function StaatsschuldDynamik() {
       hoehe={320}
       rechterRand={52}
       reihen={reihen}
-      beschreibung={
-        `Dieselbe Startquote von ${formatPercent(schuldenStartquote, 0)} des ` +
-        `Bruttoinlandsprodukts, ${schuldenJahre} Jahre fortgeschrieben – bei einem nominalen Wachstum ` +
-        `von ${formatPercent(schuldenWachstum, 0)} und vier verschiedenen Zinssätzen. Gerechnet ist ` +
-        `ohne jeden Primärsaldo: Der Haushalt ist in allen vier Fällen ausgeglichen, Zinszahlungen ` +
-        `nicht gerechnet. Trotzdem laufen die Quoten auseinander. Liegt der Zins einen Prozentpunkt ` +
-        `unter dem Wachstum, sinkt die Quote auf ${guenstig.endText}; liegt er zwei darüber, steigt sie ` +
-        `auf ${unguenstig.endText}. Die Höhe einer Schuldenquote sagt deshalb wenig – entscheidend ist ` +
-        `die Richtung, und die hängt an einer einzigen Differenz. Das erklärt, warum Japan mit einer ` +
-        `weit höheren Quote die niedrigsten Zinsen der Industrieländer zahlt und Argentinien mit einem ` +
-        `Bruchteil davon mehrfach in Zahlungsschwierigkeiten geriet. Was eine Regierung steuern kann, ` +
-        `ist der Primärsaldo – Zins und Wachstum kann sie es nicht.`
-      }
     />
   )
 }
@@ -287,9 +215,6 @@ export function SparplanDynamisierung() {
     letzteRate: dynamikStartrate * (1 + steigerung / 100) ** (dynamikJahre - 1),
   }))
 
-  const ohne = zeilen[0]
-  const staerkste = zeilen[zeilen.length - 1]
-
   return (
     <SaeulenDiagramm
       id="sparplan-dynamisierung"
@@ -311,30 +236,6 @@ export function SparplanDynamisierung() {
         wertText: formatCurrencyRounded(zeile.endkapital),
         hinweis: `zuletzt ${formatCurrencyRounded(zeile.letzteRate)}`,
       }))}
-      beschreibung={
-        `Ein Sparplan über ${dynamikJahre} Jahre, Startrate ` +
-        `${formatCurrencyRounded(dynamikStartrate)} im Monat, ` +
-        `${formatPercent(dynamikRendite, 0)} Rendite im Jahr – einmal mit gleichbleibender Rate und ` +
-        `dreimal mit einer Rate, die jedes Jahr steigt. Ergebnisse: ` +
-        zeilen
-          .map(
-            (zeile) =>
-              `${zeile.steigerung === 0 ? 'ohne Steigerung' : `mit ${formatPercent(zeile.steigerung, 0)} Steigerung`} ` +
-              `${formatCurrencyRounded(zeile.endkapital)}, davon ` +
-              `${formatCurrencyRounded(zeile.eingezahlt)} eingezahlt, letzte Monatsrate ` +
-              `${formatCurrencyRounded(zeile.letzteRate)}`
-          )
-          .join('; ') +
-        `. Der Unterschied zwischen gleichbleibender Rate und ` +
-        `${formatPercent(staerkste.steigerung, 0)} Steigerung beträgt ` +
-        `${formatCurrencyRounded(staerkste.endkapital - ohne.endkapital)}. Er entsteht nicht durch ` +
-        `Rendite, sondern durch Einzahlung: Die letzte Rate liegt bei ` +
-        `${formatCurrencyRounded(staerkste.letzteRate)} statt bei ` +
-        `${formatCurrencyRounded(dynamikStartrate)}. Genau deshalb ist die Dynamisierung die ` +
-        `wirksamste Stellschraube, die keine Prognose braucht – sie folgt dem Einkommen und nicht dem ` +
-        `Markt. Wer sie einrichtet, muss nur darauf achten, dass sie an das eigene Einkommen gekoppelt ` +
-        `bleibt und nicht an eine feste Zusage, die in einem schlechten Jahr zur Belastung wird.`
-      }
     />
   )
 }

@@ -1,4 +1,5 @@
 import { AblaufKette, FARBEN } from '@/components/content/figures/Diagramme'
+import { KASKADE } from '@/components/content/figures/kastenreihen'
 import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
 
 /**
@@ -65,15 +66,6 @@ export function BoerseVomKlickZurBuchung() {
           farbe: FARBEN.akzent,
         },
       ]}
-      beschreibung={
-        'Der Weg einer Wertpapierorder in fünf Schritten. Erstens: Du erteilst die Order bei deinem Broker – ' +
-        'zur Börse selbst haben nur zugelassene Teilnehmer Zugang. Zweitens: Der Broker leitet sie an den ' +
-        'Handelsplatz weiter. Drittens: Findet sich im Orderbuch ein passendes Gegenangebot, kommt das ' +
-        'Geschäft zustande; andernfalls wartet die Order oder verfällt. Diese drei Schritte dauern ' +
-        'Sekundenbruchteile. Viertens: Die Abwicklung tauscht Geld gegen Papiere, in der EU zwei Werktage ' +
-        'nach dem Geschäft, in den USA einen. Fünftens: die Buchung ins Depot. Bis dahin hattest du einen ' +
-        'Anspruch auf die Papiere, nicht die Papiere.'
-      }
     />
   )
 }
@@ -116,15 +108,6 @@ export function BlockchainZahlung() {
           farbe: FARBEN.akzent,
         },
       ]}
-      beschreibung={
-        'Der Weg einer Zahlung durch ein Blockchain-Netz. Der Absender signiert sie mit seinem privaten ' +
-        'Schlüssel – das ist der Nachweis, dass sie von ihm stammt. Die signierte Zahlung wird an alle ' +
-        'Knoten des Netzes verteilt. Wer nach den Regeln des Netzes den nächsten Block bauen darf, nimmt ' +
-        'sie in diesen Block auf. Der Block enthält einen Verweis auf seinen Vorgänger; dadurch entsteht ' +
-        'die Kette. Endgültig ist die Zahlung damit noch nicht: Erst jeder weitere angehängte Block macht ' +
-        'es teurer, sie nachträglich herauszurechnen. Bestätigung ist hier eine Frage des Grades, nicht ' +
-        'ein Zustand.'
-      }
     />
   )
 }
@@ -163,15 +146,6 @@ export function NotenbankTransmission() {
           farbe: FARBEN.akzent,
         },
       ]}
-      beschreibung={
-        'Wie ein Zinsentscheid in der Wirtschaft ankommt. Die Notenbank setzt nur den Satz, zu dem sich ' +
-        'Banken bei ihr Geld beschaffen. Die Banken geben ihn weiter – über den Preis ihrer Kredite und ' +
-        'über die Bereitschaft, überhaupt welche zu vergeben. Erst dadurch ändert sich, was Unternehmen ' +
-        'investieren und was Haushalte auf Kredit kaufen. Und erst wenn sich die Nachfrage geändert hat, ' +
-        'bewegen sich die Preise. Zwischen dem ersten und dem letzten Kasten liegen mehrere Quartale bis ' +
-        'Jahre – der Grund, warum Notenbanken auf eine Lage reagieren müssen, die es beim Wirken ihrer ' +
-        'Entscheidung schon nicht mehr gibt.'
-      }
     />
   )
 }
@@ -215,59 +189,11 @@ export function EinsteigerReihenfolge() {
           farbe: FARBEN.akzent,
         },
       ]}
-      beschreibung={
-        'Die Reihenfolge vor dem ersten Wertpapierkauf. Erstens teure Schulden tilgen: Ein Dispo zu zehn ' +
-        'Prozent zu beenden bringt sicher zehn Prozent, was keine Anlage verspricht. Zweitens den ' +
-        'Notgroschen aufbauen – rund drei Nettogehälter, jederzeit verfügbar, damit die erste kaputte ' +
-        'Waschmaschine nicht zum Verkauf im falschen Moment zwingt. Drittens die Risiken versichern, die ' +
-        'existenzbedrohend wären, und nur diese. Viertens die Ziele mit einem Zeitraum versehen; erst er ' +
-        'entscheidet, was überhaupt in Frage kommt. Der eigentliche Kauf steht am Ende dieser Kette, nicht ' +
-        'am Anfang.'
-      }
     />
   )
 }
 
 // ----------------------------------------------------------- Haftungskaskade
-
-/**
- * In welcher Reihenfolge eine Bank abgewickelt wird.
- *
- * ## Warum als Stapel und nicht als Kette
- *
- * Die übrigen Grafiken dieser Datei zeigen einen Weg – hier geht es um eine
- * Rangfolge. Ein Stapel bildet das ab, was die Sache ausmacht: Jede Stufe muss
- * vollständig aufgezehrt sein, bevor die nächste überhaupt angefasst wird. Wer
- * ganz unten steht, ist nicht ein bisschen sicherer, sondern durch alles
- * darüber geschützt.
- *
- * Die Höhen sind gleich und stellen keine Beträge dar. Das ist Absicht: Die
- * tatsächlichen Größenverhältnisse unterscheiden sich von Bank zu Bank und
- * ändern sich laufend. Was hier steht, ist die Reihenfolge, und die ist
- * gesetzlich festgelegt.
- */
-const KASKADE = [
-  {
-    stufe: 'Eigenkapital der Aktionäre',
-    text: 'Wird zuerst und in voller Höhe aufgezehrt',
-  },
-  {
-    stufe: 'Hybride und Nachranganleihen',
-    text: 'Wandlung oder Abschreibung, oft schon vor der Abwicklung',
-  },
-  {
-    stufe: 'Nicht bevorrechtigte vorrangige Anleihen',
-    text: 'Eigens geschaffen, um den Puffer vor den Einlagen zu bilden',
-  },
-  {
-    stufe: 'Übrige Verbindlichkeiten und Einlagen über der Grenze',
-    text: 'Hier beginnt es Unternehmen und große Vermögen zu treffen',
-  },
-  {
-    stufe: 'Gedeckte Einlagen',
-    text: 'Gesetzlich vom Bail-in ausgenommen – praktisch nie erreicht',
-  },
-] as const
 
 export function EinlagensicherungKaskade() {
   const zeilenhoehe = 52
@@ -277,19 +203,7 @@ export function EinlagensicherungKaskade() {
   const breite = 640 - links * 2
 
   return (
-    <FigureSvg
-      id="einlagensicherung-kaskade"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die gesetzliche Reihenfolge, in der eine Bank abgewickelt wird, von oben nach unten: ' +
-        KASKADE.map((k, index) => `${index + 1}. ${k.stufe} – ${k.text}`).join('; ') +
-        '. Jede Stufe muss vollständig aufgezehrt sein, bevor die nächste angefasst wird. Gedeckte ' +
-        'Einlagen stehen ganz unten und sind damit nicht ein bisschen sicherer als der Rest, sondern ' +
-        'durch alles darüber geschützt. Die Kästen sind gleich hoch und stellen keine Beträge dar: Die ' +
-        'tatsächlichen Größenverhältnisse unterscheiden sich von Bank zu Bank. Was feststeht, ist die ' +
-        'Reihenfolge.'
-      }
-    >
+    <FigureSvg id="einlagensicherung-kaskade" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={links} y={20} ton="leise" groesse={12}>
         wird zuerst herangezogen
       </Beschriftung>
@@ -368,16 +282,6 @@ export function BoerseAbwicklung() {
           text: 'Erst hier gehören die Papiere dir',
         },
       ]}
-      beschreibung={
-        'Was zwischen dem Geschäft und der Buchung im Depot passiert – zwei Werktage, in denen zwei ' +
-        'Einrichtungen arbeiten, von denen Privatanleger nie hören. Erstens der Abschluss: Zwei Aufträge ' +
-        'treffen sich im Orderbuch. Zweitens die zentrale Gegenpartei: Sie schaltet sich dazwischen, und ' +
-        'aus einem Geschäft werden rechtlich zwei – du kaufst von ihr, der Verkäufer verkauft an sie. ' +
-        'Fällt eine Seite aus, trägt sie den Schaden, nicht die andere Seite. Drittens das Netting: Wer an ' +
-        'einem Tag 900 Stück kauft und 850 verkauft, lässt nur 50 liefern; das verkleinert die tatsächlich ' +
-        'bewegten Beträge um ein Vielfaches. Viertens die Lieferung Zug um Zug, damit keine Seite in ' +
-        'Vorleistung geht. Und erst danach die Buchung ins Depot.'
-      }
     />
   )
 }

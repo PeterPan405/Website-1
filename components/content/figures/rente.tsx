@@ -1,6 +1,6 @@
 import { FARBEN, SaeulenDiagramm } from '@/components/content/figures/Diagramme'
 import { calculatePension, pensionDefaults } from '@/lib/finance'
-import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import { formatCurrencyRounded, formatPercent } from '@/lib/format'
 import {
   renteErhoehungProzent,
   renteFreibetragJahre,
@@ -61,17 +61,6 @@ export function RenteLuecke() {
         { farbe: FARBEN.gefahr, text: 'Steuer' },
       ]}
       hoehe={300}
-      beschreibung={
-        `Ein Bruttoeinkommen von ${formatCurrencyRounded(rentenBeispiel.grossAnnualIncome)} im Jahr, ` +
-        `${rentenBeispiel.yearsWorked} Beitragsjahre hinter sich und ${rentenBeispiel.yearsRemaining} vor sich. ` +
-        `Heute sind das ${formatCurrencyRounded(bruttoMonat)} brutto im Monat. Die Bruttorente daraus beträgt ` +
-        `${formatCurrencyRounded(rechnung.grossStatutoryMonthly)} – das ist der Betrag, der auf der ` +
-        `Renteninformation steht. Davon gehen ${formatCurrencyRounded(rechnung.healthDeduction)} für Kranken- ` +
-        `und Pflegeversicherung und rund ${formatCurrencyRounded(rechnung.taxDeduction)} Steuer ab. Es bleiben ` +
-        `${formatCurrencyRounded(rechnung.netStatutoryMonthly)} im Monat, also ` +
-        `${formatPercent(rechnung.replacementRatePercent, 0)} des heutigen Bruttoeinkommens, erreicht mit ` +
-        `${formatNumber(rechnung.totalPoints, 1)} Rentenpunkten.`
-      }
     />
   )
 }
@@ -123,9 +112,6 @@ export function RenteFreibetrag() {
     }
   })
 
-  const erstes = zeilen[0]
-  const letztes = zeilen[zeilen.length - 1]
-
   return (
     <SaeulenDiagramm
       id="rente-freibetrag"
@@ -144,18 +130,6 @@ export function RenteFreibetrag() {
         wertText: formatCurrencyRounded(zeile.rente),
         hinweis: `${formatPercent(zeile.anteil, 0)} steuerpflichtig`,
       }))}
-      beschreibung={
-        `Eine Bruttorente von ${formatCurrencyRounded(start)} im Monat, die jedes Jahr um ` +
-        `${formatPercent(renteErhoehungProzent, 0)} steigt – eine bewusst vorsichtige Annahme. Im ersten ` +
-        `Rentenjahr sind ${formatPercent(100 - pensionDefaults.taxablePercent, 0)} steuerfrei, das sind ` +
-        `${formatCurrencyRounded(freibetrag)} im Monat. Dieser Eurobetrag wird festgeschrieben und bleibt ` +
-        `lebenslang gleich; er ist in jeder Säule gleich hoch. Alles darüber ist steuerpflichtig. Dadurch ` +
-        `steigt der steuerpflichtige Anteil von ${formatPercent(erstes.anteil, 0)} bei Rentenbeginn auf ` +
-        `${formatPercent(letztes.anteil, 0)} nach ${renteFreibetragJahre} Jahren, und die Bruttorente ` +
-        `wächst dabei von ${formatCurrencyRounded(erstes.rente)} auf ` +
-        `${formatCurrencyRounded(letztes.rente)}. Am Steuerrecht muss sich dafür nichts ändern. Wer nur ` +
-        `mit dem Prozentsatz des ersten Jahres plant, rechnet deshalb zu optimistisch.`
-      }
     />
   )
 }

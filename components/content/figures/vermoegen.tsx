@@ -48,24 +48,8 @@ export function SparerpauschbetragGrenze() {
     }
   })
 
-  const niedrig = sparerPauschbetrag / (sparerRenditen[0] / 100)
-  const hoch = sparerPauschbetrag / (sparerRenditen[sparerRenditen.length - 1] / 100)
-
   return (
-    <BalkenDiagramm
-      id="sparerpauschbetrag-grenze"
-      balken={balken}
-      labelBreite={124}
-      beschreibung={
-        `Bis zu welchem Depotwert der Sparerpauschbetrag von ` +
-        `${formatCurrencyRounded(sparerPauschbetrag)} die steuerpflichtigen Erträge eines Jahres deckt – ` +
-        `je nachdem, wie viel Prozent davon als Zins, Dividende oder Vorabpauschale anfallen. ` +
-        balken.map((b) => `bei ${b.label} sind es ${b.wertText}`).join(', ') +
-        `. Wer wenig laufenden Ertrag hat, kommt bis ${formatCurrencyRounded(niedrig)} ohne Steuer aus; ` +
-        `bei hohem laufendem Ertrag ist der Freibetrag schon ab ${formatCurrencyRounded(hoch)} verbraucht. ` +
-        `Die Rechnung sagt nichts über Kursgewinne – die werden erst beim Verkauf steuerpflichtig.`
-      }
-    />
+    <BalkenDiagramm id="sparerpauschbetrag-grenze" balken={balken} labelBreite={124} />
   )
 }
 
@@ -117,17 +101,6 @@ export function ImmobilieNettorendite() {
         { farbe: FARBEN.ruhig, text: 'Verwaltung' },
       ]}
       hoehe={300}
-      beschreibung={
-        `Eine Wohnung für ${formatCurrencyRounded(immobilieKaufpreis)} bringt ` +
-        `${formatCurrencyRounded(jahresmiete)} Miete im Jahr – beworben als ` +
-        `${formatPercent(brutto, 1)} Rendite. Davon gehen ab: ` +
-        `${formatCurrencyRounded(verwaltung)} Verwaltung, ${formatCurrencyRounded(instandhaltung)} ` +
-        `Instandhaltung und ${formatCurrencyRounded(mietausfall)} kalkulierter Mietausfall. Übrig bleiben ` +
-        `${formatCurrencyRounded(nettomiete)}. Bezogen auf den tatsächlichen Einsatz von ` +
-        `${formatCurrencyRounded(einsatz)} – Kaufpreis plus ${formatPercent(immobilieNebenkostenProzent, 0)} ` +
-        `Nebenkosten – sind das ${formatPercent(netto, 1)}. Aus der beworbenen Zahl ist damit weniger als die ` +
-        `Hälfte geworden, und der Kredit ist darin noch nicht enthalten.`
-      }
     />
   )
 }
@@ -166,7 +139,6 @@ export function BitcoinAngebot() {
 
   const bis = 2060
   const gezeigt = punkte.filter((punkt) => punkt.x <= bis)
-  const heute = punkte.find((punkt) => punkt.x >= 2026) ?? punkte[punkte.length - 1]
 
   return (
     <LinienDiagramm
@@ -196,17 +168,6 @@ export function BitcoinAngebot() {
       yEinheit="Münzen in Millionen"
       yFormat={(wert) => formatNumber(wert / 1_000_000, 0)}
       hoehe={290}
-      beschreibung={
-        `Die Umlaufmenge nach dem Emissionsplan des Protokolls: ${BLOCKBELOHNUNG} Münzen je Block, alle ` +
-        `${formatNumber(BLOECKE_JE_EPOCHE, 0)} Blöcke halbiert, ein Block etwa alle ${MINUTEN_JE_BLOCK} ` +
-        `Minuten. Die Kurve steigt anfangs steil und flacht mit jeder Halbierung ab. Um ` +
-        `${formatNumber(Math.round(heute.x), 0)} sind bereits rund ` +
-        `${formatNumber(Math.round(heute.y / 100_000) / 10, 1)} Millionen im Umlauf – über ` +
-        `${formatPercent((heute.y / bitcoinObergrenze) * 100, 0)} der Obergrenze von ` +
-        `${formatNumber(bitcoinObergrenze / 1_000_000, 0)} Millionen. Der Rest verteilt sich auf mehr als ` +
-        `hundert Jahre. Die Knappheit ist damit kein Versprechen, sondern eine Regel im Programmcode – was ` +
-        `sie über den Preis aussagt, ist eine andere Frage: Ein knappes Gut ohne Nachfrage ist wertlos.`
-      }
     />
   )
 }
@@ -233,23 +194,6 @@ export function CrashesErholung() {
         farbe: einbruch.erholungJahre >= 10 ? FARBEN.gefahr : FARBEN.marke,
       }))}
       labelBreite={160}
-      beschreibung={
-        'Fünf große Kurseinbrüche, nach der Tiefe des Rückgangs sortiert, und daneben die Zeit bis zum ' +
-        'Wiedererreichen des alten Stands: ' +
-        sortiert
-          .map(
-            (e) =>
-              `${e.name}, ${formatPercent(e.rueckgangProzent, 0)} Rückgang, ` +
-              (e.erholungJahre < 1
-                ? `${formatNumber(e.erholungJahre * 12, 0)} Monate Erholung`
-                : `${formatNumber(e.erholungJahre, 0)} Jahre Erholung`)
-          )
-          .join('; ') +
-        '. Die Reihenfolge der Balken folgt der Tiefe – ihre Länge tut es nicht. Der Dotcom-Einbruch und ' +
-        'die Finanzkrise waren gleich tief und unterschiedlich lang; die Pandemie war tiefer als 1987 und ' +
-        'schneller vorbei. Was den Unterschied macht, ist nicht der Auslöser, sondern was danach ' +
-        'wirtschaftspolitisch geschah. Alle Angaben sind Größenordnungen für breite Indizes.'
-      }
     />
   )
 }

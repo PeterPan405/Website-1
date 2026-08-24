@@ -40,18 +40,6 @@ export function RisikoErholung() {
         farbe: verlust >= SCHWELLE ? FARBEN.gefahr : FARBEN.marke,
       }))}
       labelBreite={92}
-      beschreibung={
-        'Wie viel Gewinn nötig ist, um einen Verlust wieder auszugleichen: ' +
-        stufen
-          .map(
-            ({ verlust, gewinn }) =>
-              `${formatPercent(verlust, 0)} Verlust brauchen ${formatPercent(gewinn, 0)} Gewinn`
-          )
-          .join(', ') +
-        '. Bis zu einem Fünftel sind beide Zahlen fast gleich groß, ab der Hälfte laufen sie ' +
-        'auseinander: Wer neunzig Prozent verliert, braucht eine Verzehnfachung, nur um wieder bei ' +
-        'null zu sein.'
-      }
     />
   )
 }

@@ -64,9 +64,6 @@ function jahreBisZumZiel(sparquoteProzent: number): number {
 
 export function BudgetSparquoteJahre() {
   const punkte = sparquoten.map((quote) => ({ x: quote, y: jahreBisZumZiel(quote) }))
-  const beiZehn = jahreBisZumZiel(10)
-  const beiZwanzig = jahreBisZumZiel(20)
-  const beiFuenfzig = jahreBisZumZiel(50)
 
   return (
     <LinienDiagramm
@@ -88,17 +85,6 @@ export function BudgetSparquoteJahre() {
       yEinheit="Jahre"
       yFormat={(wert) => formatNumber(wert, 0)}
       hoehe={300}
-      beschreibung={
-        `Wie lange es dauert, bis das Ersparte das ${sparquoteZielvielfaches}-Fache der Jahresausgaben ` +
-        `erreicht – bei ${formatPercent(sparquoteRendite, 0)} realer Rendite. Bei einer Sparquote von ` +
-        `${formatPercent(10, 0)} sind es ${formatNumber(beiZehn, 0)} Jahre, bei ` +
-        `${formatPercent(20, 0)} noch ${formatNumber(beiZwanzig, 0)}, bei ${formatPercent(50, 0)} nur ` +
-        `${formatNumber(beiFuenfzig, 0)}. Die Kurve fällt am Anfang steil und flacht dann ab: Die ersten ` +
-        `zehn Prozentpunkte mehr Sparquote bringen mehr als die letzten zehn. ` +
-        `In dieser Rechnung kommt das Einkommen nicht vor, und das ist kein Versehen – es kürzt sich ` +
-        `heraus, weil sowohl das Ziel als auch die Sparrate daran hängen. Entscheidend ist nicht, wie viel ` +
-        `hereinkommt, sondern der Abstand zwischen Einnehmen und Ausgeben.`
-      }
     />
   )
 }
@@ -159,17 +145,6 @@ export function RisikoKorrelation() {
       yEinheit="Schwankung im Jahr, in Prozent"
       yFormat={(wert) => formatNumber(wert, 0)}
       hoehe={300}
-      beschreibung={
-        `Zwei Anlagen zu gleichen Teilen, jede mit ${formatPercent(streuungEinzelvolatilitaet, 0)} ` +
-        `Schwankung. Laufen sie vollständig gleich – Korrelation eins –, schwankt die Mischung genauso ` +
-        `stark wie jede einzelne: ${formatNumber(mischung(1), 0)} Prozent. Die gestrichelte Linie zeigt ` +
-        `diesen Fall. Bei Korrelation null sind es ${formatNumber(mischung(0), 0)} Prozent, bei ` +
-        `minus 0,5 noch ${formatNumber(mischung(-0.5), 0)}, und bei vollständigem Gegenlauf verschwindet ` +
-        `die Schwankung ganz. Nichts davon kostet Rendite: Die erwartete Rendite der Mischung ist der ` +
-        `Durchschnitt der beiden, gleich wie sie zusammenhängen. Das ist gemeint, wenn von einem ` +
-        `kostenlosen Hebel die Rede ist. Was die Grafik nicht zeigt: Korrelationen sind nicht stabil und ` +
-        `steigen ausgerechnet dann, wenn alles fällt.`
-      }
     />
   )
 }
@@ -187,32 +162,12 @@ export function OptionVolatilitaet() {
     }
   })
 
-  const niedrig = preis('call', {
-    ...optionBasis,
-    volatilitaetProzent: optionVolatilitaeten[0],
-  })
-  const hoch = preis('call', {
-    ...optionBasis,
-    volatilitaetProzent: optionVolatilitaeten[optionVolatilitaeten.length - 1],
-  })
-
   return (
     <SaeulenDiagramm
       id="option-volatilitaet"
       saeulen={saeulen}
       einheit="Prämie in Euro"
       hoehe={280}
-      beschreibung={
-        `Dieselbe Kaufoption – Kurs und Basispreis ${formatNumber(optionBasis.basispreis, 0)}, ` +
-        `${formatNumber(optionBasis.jahre * 12, 0)} Monate Restlaufzeit – bei vier erwarteten ` +
-        `Schwankungen. Bei ${formatPercent(optionVolatilitaeten[0], 0)} kostet sie ` +
-        `${formatCurrency(niedrig)}, bei ` +
-        `${formatPercent(optionVolatilitaeten[optionVolatilitaeten.length - 1], 0)} das ` +
-        `${formatNumber(hoch / niedrig, 1)}-Fache: ${formatCurrency(hoch)}. Am Kurs des Basiswerts hat ` +
-        `sich dabei nichts geändert. Die erwartete Schwankung ist der einzige Preisbestandteil, den man ` +
-        `nicht ablesen kann – Kurs, Basispreis, Laufzeit und Zins stehen fest. Deshalb ist der Kauf einer ` +
-        `Option immer auch eine Meinung darüber, ob diese Erwartung zu hoch oder zu niedrig ist.`
-      }
     />
   )
 }
@@ -272,19 +227,6 @@ export function EtfIndexFassungen() {
       yFormat={(wert) => formatNumber(wert, 0)}
       hoehe={310}
       rechterRand={72}
-      beschreibung={
-        `Derselbe Markt in drei Fassungen, über ${indexJahre} Jahre: ` +
-        `${formatPercent(indexKursrendite, 0)} Kursrendite und ` +
-        `${formatPercent(indexDividendenrendite, 0)} Dividendenrendite, bei ` +
-        `${formatPercent(indexQuellensteuer, 0)} unterstellter Quellensteuer. Der Preisindex zählt nur ` +
-        `die Kurse und steht am Ende bei ${formatNumber(ende(indexKursrendite), 0)}. Der Nettoindex ` +
-        `rechnet Dividenden nach Quellensteuer mit und kommt auf ` +
-        `${formatNumber(ende(netto), 0)}, der Bruttoindex rechnet sie voll mit und erreicht ` +
-        `${formatNumber(ende(brutto), 0)}. Zwischen der obersten und der untersten Linie liegen damit ` +
-        `${formatNumber(ende(brutto) - ende(indexKursrendite), 0)} Punkte – ein Vielfaches jeder ` +
-        `Kostenquote. Welcher Maßstab in einem Werbeblatt steht, entscheidet deshalb über das Urteil, ` +
-        `bevor über den Fonds selbst gesprochen wird. Üblich und richtig ist der Nettoindex.`
-      }
     />
   )
 }
@@ -335,15 +277,6 @@ export function TagesgeldAktionszins() {
       ]}
       einheit="Zins im Jahr, in Prozent"
       hoehe={290}
-      beschreibung={
-        `Ein Angebot mit ${formatPercent(aktionszins, 2)} Aktionszins für ${aktionsmonate} Monate, danach ` +
-        `${formatPercent(folgezins, 2)}. Über das ganze Jahr ergibt das ${formatPercent(gemischt, 2)} – ` +
-        `beworben wird die erste Säule, gutgeschrieben wird die dritte. Ein unspektakuläres Dauerangebot ` +
-        `mit ${formatPercent(dauerzins, 2)} liegt darüber, obwohl es in keinem Vergleichsportal oben ` +
-        `steht. Wer die Frist im Kalender hat und rechtzeitig wechselt, bekommt den Aktionszins wirklich; ` +
-        `wer das nicht tut – und das sind die meisten –, bekommt die Mischung. Genau darauf ist das ` +
-        `Angebot gerechnet.`
-      }
     />
   )
 }

@@ -97,19 +97,6 @@ export function RisikoSequenz() {
       yEinheit="Depotwert in Euro"
       hoehe={310}
       rechterRand={92}
-      beschreibung={
-        `Zwei Ruhestandsdepots über ${jahre} Jahre. Beide starten mit ` +
-        `${formatCurrencyRounded(sequenzStartkapital)}, beide entnehmen jedes Jahr ` +
-        `${formatCurrencyRounded(sequenzEntnahme)}, und beide erleben genau dieselben ` +
-        `${jahre} Jahresrenditen – im Mittel ` +
-        `${formatPercent(vergleich.mittlereRenditeProzent, 1)} im Jahr. Der einzige Unterschied ist die ` +
-        `Reihenfolge. Wer die guten Jahre zuerst hat, steht am Ende bei ` +
-        `${formatCurrencyRounded(vergleich.gutZuerst.endwert)}; wer die schlechten zuerst hat, bei ` +
-        `${formatCurrencyRounded(vergleich.schlechtZuerst.endwert)} – ein Unterschied von ` +
-        `${formatCurrencyRounded(vergleich.unterschied)}. Der Grund ist, dass in einem Rückgangsjahr ` +
-        `Anteile billig verkauft werden müssen; die fehlen bei der späteren Erholung dauerhaft. Ohne ` +
-        `Entnahme wären beide Linien am Ende deckungsgleich.`
-      }
     />
   )
 }
@@ -145,10 +132,6 @@ export function OptionSensitivitaeten() {
 
   const kurzeLaufzeit = 1 / 52
 
-  const amGeld = sensitivitaeten('call', optionBasis)
-  const tiefImGeld = sensitivitaeten('call', { ...optionBasis, kurs: KURS_BIS })
-  const weitAusDemGeld = sensitivitaeten('call', { ...optionBasis, kurs: KURS_VON })
-
   return (
     <LinienDiagramm
       id="option-delta"
@@ -175,16 +158,6 @@ export function OptionSensitivitaeten() {
       yEinheit="Delta"
       yFormat={(wert) => formatNumber(wert, 1)}
       hoehe={310}
-      beschreibung={
-        `Das Delta einer Kaufoption über dem Kurs des Basiswerts, bei einem Basispreis von ` +
-        `${formatNumber(optionBasis.basispreis, 0)}. Weit aus dem Geld liegt es nahe null ` +
-        `(${formatNumber(weitAusDemGeld.delta, 2)} bei einem Kurs von ${KURS_VON}): Die Option reagiert ` +
-        `kaum. Tief im Geld liegt es nahe eins (${formatNumber(tiefImGeld.delta, 2)} bei ${KURS_BIS}): ` +
-        `Sie bewegt sich fast wie die Aktie selbst. Am Geld liegt es bei ` +
-        `${formatNumber(amGeld.delta, 2)}. Die gestrichelte Linie zeigt dieselbe Option eine Woche vor ` +
-        `Verfall – der Übergang wird zur Stufe. Genau diese Verschärfung ist das Gamma, und sie ist der ` +
-        `Grund, warum eine Absicherung kurz vor Verfall dauernd nachjustiert werden muss.`
-      }
     />
   )
 }
@@ -199,9 +172,6 @@ export function AnleiheKonvexitaet() {
     const ergebnis = zinsschock(anleiheBeispiel, anleiheMarktzins, aenderung)
     return { aenderung, ...ergebnis }
   })
-
-  const beiPlusZwei = punkte.find((p) => p.aenderung === 2)!
-  const beiMinusZwei = punkte.find((p) => p.aenderung === -2)!
 
   return (
     <LinienDiagramm
@@ -236,20 +206,6 @@ export function AnleiheKonvexitaet() {
       yFormat={(wert) => `${wert > 0 ? '+' : ''}${formatNumber(wert, 0)}`}
       nulllinie
       hoehe={310}
-      beschreibung={
-        `Für eine Anleihe mit ${formatPercent(anleiheBeispiel.kuponProzent, 0)} Kupon und ` +
-        `${anleiheBeispiel.jahre} Jahren Restlaufzeit: die tatsächliche Kursänderung gegen das, was die ` +
-        `Duration vorhersagt. Die Näherung ist eine Gerade, der wirkliche Verlauf eine Kurve – und die ` +
-        `Kurve liegt auf beiden Seiten über der Geraden. Bei ` +
-        `${formatNumber(2, 0)} Prozentpunkten mehr Zins fällt der Kurs um ` +
-        `${formatNumber(Math.abs(beiPlusZwei.tatsaechlichProzent), 1)} Prozent statt der vorhergesagten ` +
-        `${formatNumber(Math.abs(beiPlusZwei.genaehertProzent), 1)}; bei zwei Punkten weniger steigt er um ` +
-        `${formatNumber(beiMinusZwei.tatsaechlichProzent, 1)} statt ` +
-        `${formatNumber(beiMinusZwei.genaehertProzent, 1)}. Dieser Abstand ist die Konvexität. Sie fällt ` +
-        `immer zugunsten des Anleihebesitzers aus: Es fällt weniger als gedacht und steigt mehr als ` +
-        `gedacht. Die Duration allein ist deshalb keine grobe Schätzung, sondern eine systematisch ` +
-        `vorsichtige.`
-      }
     />
   )
 }
@@ -298,7 +254,6 @@ export function ZinseszinsSteuerstundung() {
     return { x: jahr, y: wert - Math.max(wert - eingezahlt, 0) * satz }
   })
 
-  const endeJaehrlich = jaehrlich[jaehrlich.length - 1].y
   const endeGestundet = gestundet[gestundet.length - 1].y
 
   return (
@@ -327,17 +282,6 @@ export function ZinseszinsSteuerstundung() {
       yEinheit="nach Steuern, in Euro"
       hoehe={300}
       rechterRand={96}
-      beschreibung={
-        `${formatCurrencyRounded(sparfall.rate)} monatlich über ${sparfall.jahre} Jahre bei ` +
-        `${formatPercent(sparfall.brutto, 0)} Bruttorendite und ` +
-        `${formatPercent(effektiverSteuersatz, 2)} Steuer auf Erträge. Wird jedes Jahr versteuert, ` +
-        `bleiben am Ende ${formatCurrencyRounded(endeJaehrlich)}; fällt die Steuer erst beim Verkauf an, ` +
-        `sind es ${formatCurrencyRounded(endeGestundet)} – ` +
-        `${formatCurrencyRounded(endeGestundet - endeJaehrlich)} mehr bei identischem Steuersatz. Der ` +
-        `Unterschied entsteht allein daraus, dass der noch nicht abgeführte Betrag bis zum Verkauf ` +
-        `mitarbeitet. Die deutsche Vorabpauschale verkleinert diesen Vorteil; sie ist hier nicht ` +
-        `eingerechnet, die Grafik zeigt also die Obergrenze.`
-      }
     />
   )
 }
@@ -366,8 +310,6 @@ export function InflationSteuer() {
     }
   })
 
-  const schwelle = inflationsbeispiel.rate / (1 - effektiverSteuersatz / 100)
-
   return (
     <SaeulenDiagramm
       id="inflation-steuer"
@@ -379,21 +321,6 @@ export function InflationSteuer() {
         { farbe: FARBEN.marke, text: 'was real übrig bleibt' },
       ]}
       hoehe={300}
-      beschreibung={
-        `Vier Nominalrenditen bei ${formatPercent(inflationsbeispiel.rate, 1)} Inflation und ` +
-        `${formatPercent(effektiverSteuersatz, 2)} Steuer. Versteuert wird der nominale Ertrag – auch der ` +
-        `Teil, der nur die Geldentwertung ausgleicht. ` +
-        saeulen
-          .map((s, index) =>
-            index === 0
-              ? `Bei ${s.label} nominal bleiben real ${s.wertText}`
-              : `bei ${s.label} nominal ${s.wertText}`
-          )
-          .join(', ') +
-        `. Erst ab ${formatPercent(schwelle, 1)} Nominalrendite steht man nach Steuer und Inflation ` +
-        `überhaupt bei null. Das ist der Grund, warum ein Zinssatz, der die Inflation gerade deckt, real ` +
-        `ein Verlust ist.`
-      }
     />
   )
 }
@@ -421,24 +348,7 @@ export function ImmobilieHebel() {
     })
   })
 
-  const kleinste = immobilieEigenkapitalquoten[immobilieEigenkapitalquoten.length - 1]
-
-  return (
-    <BalkenDiagramm
-      id="immobilie-hebel"
-      balken={balken}
-      labelBreite={186}
-      beschreibung={
-        `Ein Objekt für ${formatCurrencyRounded(immobilieKaufpreis)}, finanziert mit unterschiedlich viel ` +
-        `Eigenkapital. Der Kredit bleibt bei einer Wertänderung in voller Höhe stehen, also trifft die ` +
-        `gesamte Änderung den eigenen Einsatz. ` +
-        balken.map((b) => `${b.label} ergibt ${b.wertText}`).join('; ') +
-        `. Bei ${formatPercent(kleinste, 0)} Eigenkapital wird aus zehn Prozent Wertverlust ein Verlust von ` +
-        `hundert Prozent des Einsatzes – das Eigenkapital ist dann rechnerisch weg, der Kredit läuft weiter. ` +
-        `Der Hebel wirkt in beide Richtungen gleich stark; vorgerechnet wird meist nur die eine.`
-      }
-    />
-  )
+  return <BalkenDiagramm id="immobilie-hebel" balken={balken} labelBreite={186} />
 }
 
 // -------------------------------------------------- Pfadabhängigkeit
@@ -478,26 +388,12 @@ export function DerivatPfadabhaengigkeit() {
     }),
   ]
 
-  const schlimmster = nachZweiTagen(hebelFaktoren[hebelFaktoren.length - 1])
-
   return (
     <SaeulenDiagramm
       id="derivat-pfadabhaengigkeit"
       saeulen={saeulen}
       einheit="Stand nach zwei Tagen, Start = 100"
       hoehe={290}
-      beschreibung={
-        `Zwei Tage: Der Basiswert steigt um ${formatPercent(hebelAnstieg, 0)} und fällt dann um ` +
-        `${formatNumber(Math.abs(rueckgang), 2)} Prozent – womit er wieder genau bei 100 steht. ` +
-        `Produkte mit täglichem Vielfachen stehen danach bei ` +
-        hebelFaktoren
-          .map((f) => `Faktor ${f}: ${formatNumber(nachZweiTagen(f), 1)}`)
-          .join(', ') +
-        `. Keines ist wieder bei 100, und der Rückstand wächst mit dem Faktor: beim höchsten sind es ` +
-        `${formatNumber(100 - schlimmster, 1)} Punkte. Der Grund ist, dass das Vielfache **täglich** ` +
-        `neu angesetzt wird – nach dem ersten Tag arbeitet es auf einer anderen Basis. Über Wochen mit ` +
-        `Seitwärtsbewegung wird daraus ein Verlust, obwohl der Basiswert sich nicht bewegt hat.`
-      }
     />
   )
 }
@@ -558,18 +454,6 @@ export function StreuungTitelzahl() {
       yEinheit="Schwankung im Jahr, in Prozent"
       yFormat={(wert) => formatNumber(wert, 0)}
       hoehe={300}
-      beschreibung={
-        `Ein gleichgewichtetes Depot aus Titeln mit je ` +
-        `${formatPercent(streuungEinzelvolatilitaet, 0)} Schwankung und einer mittleren Korrelation von ` +
-        `${formatNumber(streuungKorrelation, 1)}. Ein einzelner Titel schwankt mit ` +
-        `${formatNumber(volatilitaet(1), 0)} Prozent, fünf Titel mit ${formatNumber(volatilitaet(5), 0)}, ` +
-        `zwanzig mit ${formatNumber(volatilitaet(20), 0)} und hundert mit ` +
-        `${formatNumber(volatilitaet(100), 0)}. Der weitaus größte Teil des Gewinns liegt zwischen einem und ` +
-        `zwanzig Titeln; danach passiert kaum noch etwas. Die gestrichelte Linie bei ` +
-        `${formatNumber(untergrenze, 0)} Prozent ist die Grenze: Sie entsteht daraus, dass alle Aktien ` +
-        `teilweise gemeinsam schwanken, und gegen sie hilft keine Zahl von Titeln. Wer streut, entfernt das ` +
-        `Risiko einzelner Unternehmen – nicht das des Marktes.`
-      }
     />
   )
 }
@@ -603,13 +487,6 @@ export function PortfolioEntnahme() {
     }
   })
 
-  const vier = entnahmeraten.indexOf(4 as (typeof entnahmeraten)[number])
-  const beiVier = reihenfolgevergleich(
-    sequenzStartkapital,
-    sequenzRenditen,
-    (sequenzStartkapital * 4) / 100
-  )
-
   return (
     <SaeulenDiagramm
       id="portfolio-entnahme"
@@ -620,20 +497,6 @@ export function PortfolioEntnahme() {
         { farbe: FARBEN.marke, text: 'zusätzlich, wenn die guten zuerst kamen' },
       ]}
       hoehe={300}
-      beschreibung={
-        `Vier Entnahmeraten auf ${formatCurrencyRounded(sequenzStartkapital)} über ` +
-        `${sequenzRenditen.length} Jahre, gerechnet gegen dieselbe Renditereihe – einmal mit den schlechten ` +
-        `Jahren zuerst, einmal mit den guten. Der untere Teil jeder Säule ist das, was in beiden Fällen ` +
-        `sicher übrig bleibt; der obere ist der Unterschied, den allein die Reihenfolge ausmacht. ` +
-        (vier >= 0
-          ? `Bei der verbreiteten Vier-Prozent-Regel stehen am Ende zwischen ` +
-            `${formatCurrencyRounded(beiVier.schlechtZuerst.endwert)} und ` +
-            `${formatCurrencyRounded(beiVier.gutZuerst.endwert)}. `
-          : '') +
-        `Je höher die Rate, desto größer wird der obere Teil im Verhältnis – die Regel wird also nicht nur ` +
-        `knapper, sondern auch unsicherer. Eine Entnahmerate ist deshalb keine Zahl, sondern eine Zahl mit ` +
-        `einer Spanne.`
-      }
     />
   )
 }
@@ -665,21 +528,6 @@ export function RohstoffeGoldSteuer() {
         { farbe: FARBEN.gefahr, text: 'nur bei Wertpapieren fällig' },
       ]}
       hoehe={290}
-      beschreibung={
-        `${formatCurrencyRounded(goldEinsatz)} Einsatz, drei Wertsteigerungen. Bei physischem Gold ist der ` +
-        `Gewinn nach einem Jahr Haltedauer in Deutschland steuerfrei; bei einem Wertpapier auf denselben ` +
-        `Goldpreis fallen ${formatPercent(effektiverSteuersatz, 2)} an, gleich wie lange gehalten wurde. ` +
-        saeulen
-          .map((s, index) =>
-            index === 0
-              ? `Bei ${formatPercent(goldWertsteigerungen[index], 0)} Wertsteigerung sind das ${s.hinweis}`
-              : `bei ${formatPercent(goldWertsteigerungen[index], 0)} ${s.hinweis}`
-          )
-          .join(', ') +
-        `. Der Unterschied ist kein Detail, sondern bei gleicher Bruttorendite gut ein Viertel des Gewinns. ` +
-        `Dem stehen Kosten gegenüber, die ein Wertpapier nicht hat: Aufschlag beim Kauf, Abschlag beim ` +
-        `Verkauf, Verwahrung. Der Rechtsstand kann sich ändern.`
-      }
     />
   )
 }
@@ -720,26 +568,12 @@ export function RenteRentenbeginn() {
     }
   })
 
-  const frueh = rechnung.netStatutoryMonthly * (1 - (36 * renteAbschlagJeMonat) / 100)
-  const spaet = rechnung.netStatutoryMonthly * (1 + (36 * renteZuschlagJeMonat) / 100)
-
   return (
     <SaeulenDiagramm
       id="rente-rentenbeginn"
       saeulen={saeulen}
       einheit="Nettorente im Monat, in Euro"
       hoehe={300}
-      beschreibung={
-        `Dieselbe erworbene Rente, sieben Zeitpunkte des Beginns. Je vorgezogenem Monat mindert sich die ` +
-        `Rente um ${formatPercent(renteAbschlagJeMonat, 1)}, je aufgeschobenem erhöht sie sich um ` +
-        `${formatPercent(renteZuschlagJeMonat, 1)}. Drei Jahre früher bedeuten ` +
-        `${formatCurrencyRounded(frueh)} im Monat statt ` +
-        `${formatCurrencyRounded(rechnung.netStatutoryMonthly)}, drei Jahre später ` +
-        `${formatCurrencyRounded(spaet)}. Zwischen dem frühesten und dem spätesten Zeitpunkt liegen damit ` +
-        `${formatCurrencyRounded(spaet - frueh)} im Monat – und zwar dauerhaft, nicht bis zum Regelalter. ` +
-        `Der Aufschub bringt zusätzlich weiter erworbene Punkte, wenn man weiterarbeitet; die sind hier ` +
-        `nicht eingerechnet.`
-      }
     />
   )
 }
@@ -773,32 +607,5 @@ export function TimingTrefferquote() {
       farbe: s.quote >= 60 ? FARBEN.gefahr : s.quote > 50 ? FARBEN.warnung : FARBEN.marke,
     }))
 
-  return (
-    <BalkenDiagramm
-      id="timing-trefferquote"
-      balken={balken}
-      labelBreite={128}
-      beschreibung={
-        `Wie oft eine Timing-Strategie richtig liegen müsste, um überhaupt bei null herauszukommen – bei ` +
-        `${formatPercent(timingGewinnJeTreffer, 0)} Gewinn je richtiger Entscheidung. ` +
-        /*
-          Die Beschriftung wird für den Satz neu gebaut, nicht zerschnitten.
-
-          Ein früherer Versuch setzte den ersten Buchstaben um und hängte den
-          Rest an – aus „0,5 % je Runde“ wurde dabei „b,5 % je Runde“. Wer
-          die Grafik nicht sehen kann, bekam genau diesen Satz vorgelesen.
-        */
-        balken
-          .map((b) =>
-            b.kostenText === null
-              ? `Ohne Kosten müssen ${b.anteil} der Entscheidungen sitzen`
-              : `bei ${b.kostenText} Kosten je Runde ${b.anteil}`
-          )
-          .join(', ') +
-        `. Ohne Kosten genügt die Hälfte – das ist der Münzwurf. Jeder Prozentpunkt an Spread, Gebühren ` +
-        `und Steuer auf realisierte Gewinne hebt die Schwelle darüber. Und das ist erst die Frage, ob sich ` +
-        `der Aufwand lohnt; die Frage, ob überhaupt jemand so oft richtig liegt, kommt danach.`
-      }
-    />
-  )
+  return <BalkenDiagramm id="timing-trefferquote" balken={balken} labelBreite={128} />
 }

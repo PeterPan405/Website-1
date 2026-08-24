@@ -352,10 +352,11 @@ Zusage: höchstens sechs Minuten.
   `fassung` – sparsam, sie erzeugt bei jedem Hörer eine „neue Folge".
 - Der Feed der **Sendung** liegt auf dem Webspace, nicht in `main`;
   `podcast-schaufenster.yml` bringt Änderungen daran nach draußen.
-- **Lernseiten:** Die Abschnitte kommen aus `vorleseAbschnitte()`, nicht aus
-  einer zweiten Zerlegung. Der Fingerabdruck hängt an ihnen. Reihenfolge
-  Beginner → Akademie → Fortgeschritten → Profi. Eine Seite ohne Aufnahme ist
-  kein Fehler – dann spricht das Gerät.
+- **Lernseiten:** Die Abschnitte kommen aus `vorleseAbschnitte()`, die
+  Grafiktexte aus `vorlesegrafiken()` – nie aus `figureMeta` allein, sonst
+  fehlen 70 gerechnete Beschreibungen. Der Fingerabdruck hängt an ihnen.
+  Reihenfolge Beginner → Akademie → Fortgeschritten → Profi. Eine Seite ohne
+  Aufnahme ist kein Fehler – dann spricht das Gerät.
 - Der Zeitplan in `lese-stimme.yml` ist **auskommentiert und wartet**, bis die
   Inhalte stehen. Er ist nicht kaputt.
 

@@ -4,6 +4,16 @@ import {
   Feld,
   UmbrochenerText,
 } from '@/components/content/figures/Diagramme'
+import {
+  ANSTECKUNGSWEGE,
+  BEWERTUNGSSTUFEN,
+  ERSATZANSAETZE,
+  KOSTENEBENEN,
+  MESSGROESSEN,
+  PARITAETEN,
+  PARKPLAETZE,
+  type Kasten,
+} from '@/components/content/figures/kastenreihen'
 import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
 
 /**
@@ -15,26 +25,6 @@ import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
  * welcher Reihenfolge ein Angriff abläuft. Für all das wäre eine erfundene
  * Zahl schlechter als keine.
  */
-
-interface Kasten {
-  titel: string
-  text: string
-  farbe: string
-  fuss?: string
-}
-
-/**
- * Die Vorlesefassung einer Kastenreihe, aus denselben Einträgen gebildet.
- *
- * Sie zweimal zu schreiben – einmal für das Auge, einmal für die Vorlesung –
- * hieße, sie zweimal zu pflegen. Der Build bricht ab, wenn eine Grafik keine
- * Beschreibung hat; er kann nicht prüfen, ob eine vorhandene noch stimmt.
- */
-function reiheAlsText(eintraege: readonly Kasten[]): string {
-  return eintraege
-    .map((e) => `${e.titel}: ${e.text}${e.fuss ? ` – ${e.fuss}` : ''}`)
-    .join('. ')
-}
 
 /** Eine Reihe gleich breiter Kästen mit Titel und zwei Textzeilen. */
 function Kastenreihe({
@@ -226,66 +216,18 @@ export function BlockchainReihenfolge() {
           farbe: FARBEN.gefahr,
         },
       ]}
-      beschreibung={
-        'Wie sich aus der Reihenfolge von Transaktionen Geld ziehen lässt, in vier Schritten. Erstens ' +
-        'steht dein Auftrag im offenen Wartebereich des Netzes – sichtbar für alle, aber noch nicht ' +
-        'ausgeführt. Zweitens nutzt das, wer über die Reihenfolge im nächsten Block entscheidet: Er ' +
-        'setzt einen eigenen Kauf davor. Drittens läuft dein Auftrag anschließend zu einem schlechteren ' +
-        'Preis, weil der vorgezogene Kauf ihn bewegt hat. Viertens stellt der Vorläufer glatt und nimmt ' +
-        'die Differenz mit. Bezahlt hast sie du, ohne dass eine Regel verletzt worden wäre. Genau darin ' +
-        'liegt der Punkt: Das Recht, die Reihenfolge zu bestimmen, hat einen Geldwert, und dieser Wert ' +
-        'schafft einen Anreiz zur Zentralisierung – wer ihn abschöpfen kann, kann mehr bieten als wer ' +
-        'nur die Blockbelohnung sucht.'
-      }
     />
   )
 }
 
 // ------------------------------------------------------- Die Bewertungsstufen
 
-/**
- * Wie sicher der Preis ist, den ein Fonds für seine Positionen ansetzt.
- *
- * Die drei Stufen bilden eine Leiter abnehmender Nachprüfbarkeit, und die
- * unterste ist die interessante: Dort entscheidet, wer die Annahmen setzt.
- * Als Liste stehen sie gleichwertig nebeneinander; als Leiter ist zu sehen,
- * dass es ein Gefälle ist.
- */
-const BEWERTUNGSSTUFEN = [
-  {
-    titel: 'Stufe 1',
-    text: 'notierte Preise an einem aktiven Markt',
-    fuss: 'unstrittig',
-    farbe: FARBEN.marke,
-  },
-  {
-    titel: 'Stufe 2',
-    text: 'abgeleitet aus beobachtbaren Größen ähnlicher Papiere',
-    fuss: 'vertretbar – aber eine Schätzung',
-    farbe: FARBEN.warnung,
-  },
-  {
-    titel: 'Stufe 3',
-    text: 'überwiegend aus Modellannahmen',
-    fuss: 'hier entscheidet, wer die Annahmen setzt',
-    farbe: FARBEN.gefahr,
-  },
-] as const
-
 export function FondsBewertungsstufen() {
   const hoehe = 292
   const kastenHoehe = 116
 
   return (
-    <FigureSvg
-      id="fonds-bewertungsstufen"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die drei Bewertungsstufen eines Fonds, von links nach rechts abnehmend nachprüfbar. ' +
-        reiheAlsText(BEWERTUNGSSTUFEN) +
-        '. Für eine Aktie mit Börsenkurs ist die Bewertung trivial. Für eine Unternehmensanleihe, die zuletzt vor drei Wochen gehandelt wurde, gibt es keinen Kurs – bewertet wird dann nach Modell, abgeleitet aus vergleichbaren Papieren, aus Renditekurven, aus Kursstellungen von Händlern. Wie hoch der Anteil der Stufen zwei und drei am Fondsvermögen ist, steht im Jahresbericht: bei einem Aktienfonds nahe null, bei manchen Anleihe- und Mischfonds erheblich. Dort entscheidet, wer die Annahmen setzt – und dort entsteht im Krisenfall der Streit über den richtigen Anteilspreis.'
-      }
-    >
+    <FigureSvg id="fonds-bewertungsstufen" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={24} y={26} ton="leise" groesse={12}>
         nachprüfbar
       </Beschriftung>
@@ -308,49 +250,13 @@ export function FondsBewertungsstufen() {
 
 // ------------------------------------------------------------- Ansteckung
 
-/**
- * Warum manche Einbrüche folgenlos bleiben und andere ein Jahrzehnt kosten.
- *
- * Drei Wege führen vom Kurssturz in die Wirtschaft, und nur einer hat die
- * Wucht. Erkennbar wird das nicht an der Aufzählung, sondern an der
- * Rückkopplung: Der Bankkanal ist der einzige, der zu sich selbst zurückführt.
- */
-const ANSTECKUNGSWEGE = [
-  {
-    titel: 'Vermögenskanal',
-    text: 'Weniger Vermögen, weniger Konsum',
-    fuss: 'real, aber schwach und langsam',
-    farbe: FARBEN.ruhig,
-  },
-  {
-    titel: 'Bankkanal',
-    text: 'Banken verlieren Eigenkapital und vergeben weniger Kredit',
-    fuss: 'Unternehmen scheitern, obwohl ihr Geschäft trägt',
-    farbe: FARBEN.gefahr,
-  },
-  {
-    titel: 'Rückkopplung',
-    text: 'Die schwächere Wirtschaft erzeugt Kreditausfälle',
-    fuss: 'und die treffen wieder die Banken',
-    farbe: FARBEN.gefahr,
-  },
-] as const
-
 export function CrashesAnsteckung() {
   const hoehe = 320
   const oben = 56
   const kastenHoehe = 122
 
   return (
-    <FigureSvg
-      id="crashes-ansteckung"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die drei Wege, auf denen ein Kurssturz die Wirtschaft erreicht. ' +
-        reiheAlsText(ANSTECKUNGSWEGE) +
-        '. Ein gestrichelter Pfeil führt vom dritten Kasten zurück zum zweiten: Die Rückkopplung trifft wieder die Banken. Nur dieser eine Weg schließt sich zu einem Kreis, und nur er hat die Wucht, aus einem Kurssturz eine Krise zu machen. 1987 verlor der Markt an einem Tag rund ein Fünftel, ohne dass eine Rezession folgte – das Bankensystem war nicht betroffen. 2008 begann mit fallenden Immobilienpreisen und endete in einer weltweiten Wirtschaftskrise, weil es betroffen war. Ist der Kreis erst geschlossen, entscheidet nur noch die Reaktion der Politik über die Dauer.'
-      }
-    >
+    <FigureSvg id="crashes-ansteckung" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={320} y={26} anchor="middle" ton="leise" groesse={12}>
         drei Wege vom Kurssturz in die Wirtschaft – einer hat die Wucht
       </Beschriftung>
@@ -394,50 +300,13 @@ export function CrashesAnsteckung() {
 
 // ------------------------------------------------------ Messgrößen der Geldpolitik
 
-/**
- * Zwei der drei zentralen Bezugsgrößen kann niemand messen.
- *
- * Das ist keine Kritik an Notenbanken – sie sagen es selbst. Es ist der Grund,
- * warum Geldpolitik keine Steuerung nach Messwerten ist, sondern Navigation
- * mit unsicherer Position. Und es ist das beste Argument gegen die Gewissheit,
- * mit der über die richtige Zinshöhe gestritten wird.
- */
-const MESSGROESSEN = [
-  {
-    titel: 'Inflation',
-    text: 'Wird laufend erhoben und veröffentlicht',
-    fuss: 'gemessen',
-    farbe: FARBEN.marke,
-  },
-  {
-    titel: 'Natürlicher Zins',
-    text: 'Das Niveau, bei dem die Geldpolitik weder bremst noch stimuliert',
-    fuss: 'nicht beobachtbar – nur geschätzt',
-    farbe: FARBEN.gefahr,
-  },
-  {
-    titel: 'Output-Lücke',
-    text: 'Abstand zwischen tatsächlicher und möglicher Wirtschaftsleistung',
-    fuss: 'nicht messbar – und oft revidiert',
-    farbe: FARBEN.gefahr,
-  },
-] as const
-
 export function NotenbankMessgroessen() {
   const hoehe = 288
   const oben = 58
   const kastenHoehe = 118
 
   return (
-    <FigureSvg
-      id="notenbank-messgroessen"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die drei Größen, aus denen sich der angemessene Leitzins ergeben soll. ' +
-        reiheAlsText(MESSGROESSEN) +
-        '. Zwei der drei sind damit keine Beobachtungen, sondern Schätzungen mit erheblicher Streuung und laufenden Revisionen. Geldpolitik ist deshalb keine Steuerung nach Messwerten, sondern Navigation mit unsicherer Position – Notenbanken sagen das inzwischen selbst. Für Anleger folgt daraus vor allem eines: Wer meint, die richtige Zinshöhe besser zu kennen als der Rat, überschätzt die Genauigkeit der verfügbaren Größen, und zwar aller verfügbaren, auch der eigenen.'
-      }
-    >
+    <FigureSvg id="notenbank-messgroessen" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={320} y={26} anchor="middle" ton="leise" groesse={12}>
         woran sich der angemessene Zins bemisst
       </Beschriftung>
@@ -457,56 +326,13 @@ export function NotenbankMessgroessen() {
 
 // ------------------------------------------------------------- Parkplätze
 
-/**
- * Vier Wege, Geld kurzfristig zu parken – nach dem Kriterium, das zählt.
- *
- * Der Text sagt es ausdrücklich: Das Auswahlkriterium ist nicht die Rendite.
- * Deshalb steht sie hier nicht. Was unterschieden wird, ist die Verfügbarkeit
- * und die Art des Schutzes – die beiden Größen, bei denen die Unterschiede
- * groß sind statt Bruchteile eines Prozentpunkts.
- */
-const PARKPLAETZE = [
-  {
-    titel: 'Tagesgeld',
-    text: 'täglich verfügbar',
-    fuss: 'Einlagensicherung bis zur gesetzlichen Grenze',
-    farbe: FARBEN.marke,
-  },
-  {
-    titel: 'Festgeldleiter',
-    text: 'in Stufen fällig',
-    fuss: 'gesichert – der laufende Teil ist gebunden',
-    farbe: FARBEN.akzent,
-  },
-  {
-    titel: 'Geldmarkt-ETF',
-    text: 'börsentäglich handelbar',
-    fuss: 'kein Einlagenschutz, dafür Sondervermögen',
-    farbe: FARBEN.warnung,
-  },
-  {
-    titel: 'Kurze Anleihen',
-    text: 'börsentäglich handelbar',
-    fuss: 'Bonität des Staates statt einer Bank; Kursrisiko',
-    farbe: FARBEN.warnung,
-  },
-] as const
-
 export function TagesgeldParkplaetze() {
   const hoehe = 300
   const oben = 56
   const kastenHoehe = 130
 
   return (
-    <FigureSvg
-      id="tagesgeld-parkplaetze"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Vier Wege, Geld kurzfristig zu parken, verglichen nach Verfügbarkeit und Art des Schutzes. ' +
-        reiheAlsText(PARKPLAETZE) +
-        '. Die Rendite steht bewusst nicht daran: Der Unterschied zwischen den vier Möglichkeiten beträgt einen Bruchteil eines Prozentpunkts, der Unterschied zwischen „am Tag X verfügbar“ und „nicht verfügbar“ kann teuer werden. Für kurzfristig gebundenes Geld entscheidet deshalb zuerst, wann es verfügbar sein muss, und erst danach, was es einbringt. Wer für den Notgroschen ein halbes Prozent mehr sucht, optimiert die kleinste Stellschraube im ganzen Portfolio.'
-      }
-    >
+    <FigureSvg id="tagesgeld-parkplaetze" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={320} y={26} anchor="middle" ton="leise" groesse={12}>
         das Auswahlkriterium ist nicht die Rendite, sondern die Verfügbarkeit
       </Beschriftung>
@@ -532,49 +358,13 @@ export function TagesgeldParkplaetze() {
 
 // ------------------------------------------------------------- Paritäten
 
-/**
- * Drei Bedingungen, die alle dasselbe verbinden – mit sehr verschiedenem Rang.
- *
- * Die Reihenfolge ist die Aussage: Eine gilt immer, weil sie eine
- * Arbitragebedingung ist; eine gilt langfristig als Tendenz; und eine gilt
- * systematisch nicht. Genau aus der dritten entsteht der Carry-Trade.
- */
-const PARITAETEN = [
-  {
-    titel: 'Gedeckte Zinsparität',
-    text: 'Der Terminkurs entspricht der Zinsdifferenz',
-    fuss: 'Arbitragebedingung, keine Theorie über Verhalten',
-    farbe: FARBEN.marke,
-  },
-  {
-    titel: 'Kaufkraftparität',
-    text: 'Gleiche Güter kosten überall gleich viel',
-    fuss: 'über Jahrzehnte eine Tendenz, über Jahre unbrauchbar',
-    farbe: FARBEN.warnung,
-  },
-  {
-    titel: 'Ungedeckte Zinsparität',
-    text: 'Hochzinswährungen müssten entsprechend abwerten',
-    fuss: 'empirisch widerlegt – daraus lebt der Carry-Trade',
-    farbe: FARBEN.gefahr,
-  },
-] as const
-
 export function WaehrungParitaeten() {
   const hoehe = 296
   const oben = 54
   const kastenHoehe = 132
 
   return (
-    <FigureSvg
-      id="waehrung-paritaeten"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die drei Paritätsbedingungen des Devisenmarkts, geordnet nach ihrem empirischen Rang – links gilt immer, rechts gilt systematisch nicht. ' +
-        reiheAlsText(PARITAETEN) +
-        '. Die Ordnung ist die Aussage: Die gedeckte Zinsparität ist keine Theorie über Verhalten, sondern eine Arbitragebedingung – gälte sie nicht, ließe sich risikolos Geld verdienen. Die Kaufkraftparität ist über Jahrzehnte eine Tendenz und über Jahre unbrauchbar. Die ungedeckte Zinsparität dagegen ist widerlegt: Hochzinswährungen werten im Mittel nicht so ab, wie sie es müsste, teils werten sie sogar auf. Genau darauf beruht der Carry-Trade, der über Monate und Jahre funktioniert und dann abrupt zusammenbricht. Sein Ertragsprofil ist dasselbe wie beim Verkauf von Volatilität: viele kleine Gewinne, selten ein sehr großer Verlust. Das ist vermutlich die beste Erklärung für das Puzzle – die Zinsdifferenz ist keine Anomalie, sondern die Vergütung für ein Risiko, das sich in ruhigen Phasen nicht zeigt.'
-      }
-    >
+    <FigureSvg id="waehrung-paritaeten" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={24} y={26} ton="leise" groesse={12}>
         gilt immer
       </Beschriftung>
@@ -597,55 +387,13 @@ export function WaehrungParitaeten() {
 
 // ---------------------------------------------------------- Kostenebenen
 
-/**
- * Vier Ebenen, und die teuerste ist die unsichtbarste.
- *
- * Die Reihenfolge im Bild ist die der Sichtbarkeit, nicht die der Höhe – und
- * genau darin liegt die Aussage. Wer auf die Ordergebühr schaut, sieht die
- * Ebene mit dem kleinsten Betrag und dem größten Aufhebens.
- */
-const KOSTENEBENEN = [
-  {
-    titel: 'Depotebene',
-    text: 'Depotgebühr, Ordergebühren, Handelsplatzentgelt, Spread',
-    fuss: 'steht auf der Abrechnung',
-    farbe: FARBEN.marke,
-  },
-  {
-    titel: 'Produktebene',
-    text: 'laufende Kosten, Handel im Fonds, Erfolgsvergütung',
-    fuss: 'wird täglich aus dem Fondsvermögen entnommen',
-    farbe: FARBEN.akzent,
-  },
-  {
-    titel: 'Steuerebene',
-    text: 'Abgeltungsteuer, Vorabpauschale, verlorene Quellensteuer',
-    fuss: 'fällt erst beim Abrechnen auf',
-    farbe: FARBEN.warnung,
-  },
-  {
-    titel: 'Beratungsebene',
-    text: 'Ausgabeaufschlag, Bestandsprovision, Verwaltungsgebühr',
-    fuss: 'die teuerste – und die am schlechtesten sichtbare',
-    farbe: FARBEN.gefahr,
-  },
-] as const
-
 export function KostenEbenen() {
   const hoehe = 316
   const oben = 56
   const kastenHoehe = 146
 
   return (
-    <FigureSvg
-      id="kosten-ebenen"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die vier Ebenen, auf denen bei einer Geldanlage Kosten anfallen, geordnet nach ihrer Sichtbarkeit. ' +
-        reiheAlsText(KOSTENEBENEN) +
-        '. Die Reihenfolge ist die der Sichtbarkeit und nicht die der Höhe – darin liegt die Aussage. Vollständig ist eine Kostenbetrachtung erst, wenn alle vier zusammengezählt sind. Die meisten schauen auf die erste Ebene, weil sie auf der Abrechnung steht, und übersehen die anderen drei. Ausgerechnet die letzte ist regelmäßig die teuerste.'
-      }
-    >
+    <FigureSvg id="kosten-ebenen" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={24} y={26} ton="leise" groesse={12}>
         gut sichtbar
       </Beschriftung>
@@ -674,35 +422,6 @@ export function KostenEbenen() {
 
 // ------------------------------------------------------ Bewertung ohne Anker
 
-/**
- * Warum jede Bewertung eines Kryptowerts an derselben Stelle scheitert.
- *
- * Links das Verfahren, das für Aktien, Anleihen und Immobilien funktioniert;
- * rechts die drei Ersatzansätze und woran jeder scheitert. Die Gegenüber-
- * stellung ist nötig, weil der Unterschied regelmäßig verwischt wird: Das
- * Verfahren ist hier nicht ungenau, sondern nicht anwendbar.
- */
-const ERSATZANSAETZE = [
-  {
-    titel: 'Netzwerkgröße',
-    text: 'Der Wert wächst mit der Zahl der Nutzer',
-    fuss: 'bei pseudonymen Adressen nicht messbar',
-    farbe: FARBEN.gefahr,
-  },
-  {
-    titel: 'Erzeugungskosten',
-    text: 'Der Preis kann nicht unter die Miningkosten fallen',
-    fuss: 'die Kausalität läuft umgekehrt',
-    farbe: FARBEN.gefahr,
-  },
-  {
-    titel: 'Knappheit',
-    text: 'Bestand geteilt durch jährlichen Zuwachs',
-    fuss: 'ein Angebotsmaß ohne Aussage über Nachfrage',
-    farbe: FARBEN.gefahr,
-  },
-] as const
-
 export function KryptoBewertung() {
   // Drei Zeilen Fußtext unter der Kastenreihe, samt Unterlängen.
   const hoehe = 350
@@ -710,15 +429,7 @@ export function KryptoBewertung() {
   const obenHoehe = 76
 
   return (
-    <FigureSvg
-      id="krypto-bewertung"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Oben das übliche Bewertungsverfahren: künftige Zahlungen schätzen und abzinsen – so werden Aktien, Anleihen und Immobilien bewertet. Bei einem Kryptowert gibt es keine künftigen Zahlungen; das Verfahren ist damit nicht ungenau, sondern nicht anwendbar. Darunter die drei üblichen Ersatzansätze und woran jeder scheitert. ' +
-        reiheAlsText(ERSATZANSAETZE) +
-        '. Bei den Erzeugungskosten läuft die Kausalität umgekehrt: Der Aufwand richtet sich nach dem Preis, nicht der Preis nach dem Aufwand. Die Knappheitsverhältnisse sind ein reines Angebotsmaß ohne jede Aussage über die Nachfrage; Prognosen auf dieser Grundlage sind mehrfach deutlich verfehlt worden. Ehrlicher ist die Feststellung, dass hier ein Preis ohne Bewertungsanker existiert. Das macht die Anlage nicht illegitim – Gold hat dasselbe Problem und wird seit Jahrtausenden gehalten. Es macht nur jede Aussage der Form „fair bewertet“ oder „unterbewertet“ gegenstandslos.'
-      }
-    >
+    <FigureSvg id="krypto-bewertung" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={320} y={26} anchor="middle" ton="leise" groesse={12}>
         nicht ungenau – nicht anwendbar
       </Beschriftung>

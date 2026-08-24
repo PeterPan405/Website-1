@@ -2570,3 +2570,105 @@ veralten, ohne dass jemand den Kommentar noch einmal liest.
 Wer eine zweite Stelle stehen lässt, schuldet ihr eine Prüfung, die beide
 vergleicht. Gibt es die nicht, gibt es die zweite Stelle nicht: Dann wird
 zusammengeführt.
+
+## Eine Grafik hat zwei Leser, und sie bekamen Verschiedenes
+
+**23. August 2026.** Jede Lerngrafik trägt eine Beschreibung für alle, die sie
+nicht sehen können. Gelesen wird sie auf zwei Wegen, die nie zusammenkamen:
+
+| Wer liest                  | Woher                                   |
+| -------------------------- | --------------------------------------- |
+| Screenreader               | `<desc>` im gezeichneten SVG            |
+| Vorleseleiste und Aufnahme | `vorleseAbschnitte()` über `figureMeta` |
+
+Von 135 Grafiken hatten **70** ihre Beschreibung nicht in `data/figures.ts`,
+sondern in der Zeichnung. Das war kein Versehen, sondern eine bewusste
+Entscheidung, und sie steht auch so dokumentiert: Ihre Zahlen kommen aus einem
+Datensatz, und eine festgeschriebene Beschreibung wäre nach der ersten
+Aktualisierung falsch – „und zwar unbemerkt, weil sie niemand sieht, der die
+Grafik sehen kann“.
+
+Der Satz war richtig. Er beschrieb nur die falsche Gefahr.
+
+### Was tatsächlich passierte
+
+`vorleseAbschnitte(bloecke, figureMeta)` sah diese Sätze nie. Der Rückfall in
+der Funktion lautet `description ?? caption`, also sprach die Aufnahme bei 47
+Grafiken die **Bildunterschrift** statt der Beschreibung.
+
+Bei weiteren 23 war es schlimmer. Dort stand in `data/figures.ts` zusätzlich
+eine **Formbeschreibung**, und die wurde gesprochen:
+
+> Waagerechte Balken, oben der kleinste Verlust, unten der größte. Jeder Balken
+> zeigt, wie viel Gewinn nötig ist, um genau diesen Verlust auszugleichen.
+
+Der Screenreader bekam bei derselben Grafik:
+
+> 10 % Verlust brauchen 11 % Gewinn, 20 % Verlust brauchen 25 % Gewinn,
+> 30 % Verlust brauchen 43 % Gewinn, 50 % Verlust brauchen 100 % Gewinn …
+
+Wer die Grafik nicht sehen kann, erfuhr also, wie sie **aussieht**, statt was
+in ihr steht. Und `data/figures.ts` verlangt in seinem eigenen Kopf das
+Gegenteil: „inhaltlich, nicht formal: ‚Die Kurve verdreifacht sich in vierzig
+Jahren‘ hilft, ‚Ein Liniendiagramm mit zwei Kurven‘ nicht.“
+
+### Warum es niemandem auffiel
+
+`FigureSvg` wirft, wenn **beides** fehlt. Es kann nicht werfen, wenn beides da
+ist und Verschiedenes sagt. Jede der beiden Beschreibungen war für sich
+richtig, gepflegt und plausibel. Der Fehler lag nicht in einer Zeile, sondern
+zwischen zwei Dateien – und dort schaut kein Compiler hin.
+
+Aufgefallen ist es erst, als jemand für einen ganz anderen Zweck – die Frage,
+ob die Vertonung wieder scharf gestellt werden kann – nachzählte, wie viele
+Grafiken keine `description` in `figureMeta` haben.
+
+### Warum der naheliegende Weg nicht ging
+
+Die Beschreibung beim Bauen aus der gezeichneten Grafik zu lesen, wäre die
+sauberste Ableitung. Sie scheitert an einer Kleinigkeit:
+`scripts/lese-texte-schreiben.ts` läuft unter `node --experimental-strip-types`
+und kann keine `.tsx` laden – `ERR_UNKNOWN_FILE_EXTENSION`. Alles, was
+gesprochen werden soll, muss in reinem TypeScript stehen.
+
+Damit war die Richtung vorgegeben: nicht die Vorlesefassung zur Zeichnung
+holen, sondern die Beschreibung aus der Zeichnung heraus.
+
+### Was jetzt gilt
+
+`lib/grafik-beschreibungen.ts` rechnet alle 70 Beschreibungen, aus denselben
+Modulen wie vorher die Zeichnung. `FigureSvg` liest sie, `vorlesegrafiken()`
+führt sie mit `figureMeta` zusammen, und alle drei Vorlese-Wege nehmen diese
+Zusammenführung. Zwei Dinge mussten dafür aus `.tsx` heraus – `FARBEN` nach
+`farben.ts` und die Kastenreihen nach `kastenreihen.ts`.
+
+**Entweder dort oder hier, nie beides.** Die 23 Formbeschreibungen sind
+gestrichen.
+
+### Wie es geprüft wird – und warum nicht als Test
+
+Der Vergleich liest jedes `<desc>` aus `out/` und hält es gegen das, was
+gesprochen würde. Er braucht also das gebaute Paket, und in CI laufen die Tests
+**vor** dem Bau. Als Test wäre er entweder ständig rot oder – schlimmer – er
+überspränge sich selbst und meldete grün.
+
+Er steht deshalb in `scripts/paket-pruefen.ts`, dort wo `out/` ohnehin gelesen
+wird. `tests/grafik-beschreibungen.test.ts` behält, was ohne Bau prüfbar ist:
+dass jede Grafik eine Vorlesefassung hat und dass keine zwei trägt.
+
+Beim Umbau wurden vorher alle 135 `<desc>` gesichert und nach jedem Schritt
+dagegen gehalten. Der fertige Bau liefert 135 von 135 zeichengleich – dieselben
+Sätze, nur an einer Stelle statt an zweien.
+
+### Die Lehre
+
+**Wo eine Angabe zwei Abnehmer hat, die sie auf verschiedenen Wegen holen, ist
+sie zwei Angaben.** Ein Pflichtfeld, das nur die Anwesenheit erzwingt, sichert
+davon nichts: `FigureSvg` hätte auch dann nicht gewarnt, wenn eine der beiden
+Fassungen offenkundiger Unsinn gewesen wäre.
+
+Und: **Eine Entscheidung altert nicht dadurch, dass ihre Begründung falsch
+wird, sondern dadurch, dass ein zweiter Abnehmer dazukommt.** Als die
+gerechneten Beschreibungen entstanden, gab es die Vorlesefassung noch nicht.
+Niemand hat etwas falsch gemacht; es hat nur niemand nachgesehen, was der neue
+Weg eigentlich liest.

@@ -8,7 +8,7 @@ import {
   type Plotflaeche,
 } from '@/lib/figure-geometry'
 import { inflationsbeispiel, kaufkraftreihe } from '@/lib/inflations-beispiele'
-import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import { formatCurrencyRounded, formatNumber } from '@/lib/format'
 
 /**
  * Die Grafiken zum Lernthema Inflation.
@@ -54,11 +54,7 @@ export function InflationKaufkraft() {
   const ende = reihe[reihe.length - 1]
 
   return (
-    <FigureSvg
-      id="inflation-kaufkraft"
-      viewBox="0 0 640 280"
-      beschreibung={`${formatCurrencyRounded(inflationsbeispiel.betrag)} bleiben ${inflationsbeispiel.jahre} Jahre unverzinst liegen, bei ${formatPercent(inflationsbeispiel.rate, 1)} Inflation im Jahr. Die Zahl auf dem Konto bleibt unverändert, die Kaufkraft fällt stetig auf ${formatCurrencyRounded(ende.kaufkraft)} – ein Verlust von ${formatPercent(ende.verlustProzent, 0)}, ohne dass etwas abgebucht worden wäre.`}
-    >
+    <FigureSvg id="inflation-kaufkraft" viewBox="0 0 640 280">
       <Beschriftung x={flaeche.links - 2} y={13} ton="leise" groesse={12}>
         Euro
       </Beschriftung>

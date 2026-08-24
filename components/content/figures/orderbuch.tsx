@@ -44,31 +44,7 @@ export function MarktOrderbuch() {
   const spread = bester.brief.preis - bester.geld.preis
 
   return (
-    <FigureSvg
-      id="markt-orderbuch"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Ein Orderbuch als Leiter, Preise von oben nach unten. Oben stehen die Verkaufsaufträge: ' +
-        brief
-          .map(
-            (lage) =>
-              `${formatNumber(lage.stueck, 0)} Stück zu ${formatNumber(lage.preis, 2)} Euro`
-          )
-          .join(', ') +
-        '. Unten die Kaufaufträge: ' +
-        geld
-          .map(
-            (lage) =>
-              `${formatNumber(lage.stueck, 0)} Stück zu ${formatNumber(lage.preis, 2)} Euro`
-          )
-          .join(', ') +
-        `. Zwischen dem besten Gebot von ${formatNumber(bester.geld.preis, 2)} und der besten Forderung von ` +
-        `${formatNumber(bester.brief.preis, 2)} Euro liegt niemand – diese Lücke von ` +
-        `${formatNumber(spread, 2)} Euro ist der Spread. Wer nur wenige Stücke kauft, bekommt sie zum besten ` +
-        `Briefkurs. Wer ${formatNumber(orderbuchMarktauftrag, 0)} Stück sofort kauft, räumt mehrere Lagen ab ` +
-        `und zahlt im Schnitt mehr – das ist die Slippage.`
-      }
-    >
+    <FigureSvg id="markt-orderbuch" viewBox={`0 0 640 ${hoehe}`}>
       <Legende
         x={MITTE - SPALTE - 24}
         y={20}

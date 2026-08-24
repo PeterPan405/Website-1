@@ -30,11 +30,7 @@ export function TimingBesteWochen() {
 
   if (punkte.length === 0) {
     return (
-      <FigureSvg
-        id="timing-beste-wochen"
-        viewBox="0 0 640 90"
-        beschreibung="Für diesen Index liegen derzeit keine echten Kurse vor. Die Grafik bleibt deshalb leer."
-      >
+      <FigureSvg id="timing-beste-wochen" viewBox="0 0 640 90">
         <UmbrochenerText
           x={320}
           y={48}

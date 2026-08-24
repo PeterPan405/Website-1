@@ -24,7 +24,7 @@ import { getPfadeMitStufe } from '@/lib/lernpfade'
 import { buildMetadata, withBrand } from '@/lib/seo'
 import { vorleseaufnahme } from '@/lib/lese-audio'
 import { vorleseAbschnitte } from '@/lib/vorlese-text'
-import { figureMeta } from '@/data/figures'
+import { vorlesegrafiken } from '@/lib/grafik-beschreibungen'
 
 type LevelPageProps = { params: Promise<{ thema: string; stufe: string }> }
 
@@ -172,7 +172,7 @@ export default async function LearnLevelPage({ params }: LevelPageProps) {
             {!isOutline && (
               <div data-drucken="aus" className="mb-8 flex flex-wrap items-center gap-3">
                 <Vorlesen
-                  abschnitte={vorleseAbschnitte(level.blocks, figureMeta)}
+                  abschnitte={vorleseAbschnitte(level.blocks, vorlesegrafiken())}
                   aufnahme={vorleseaufnahme(`lernen/${thema}/${stufe}`)}
                 />
                 <Druckknopf />

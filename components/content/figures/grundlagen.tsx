@@ -5,6 +5,7 @@ import {
   SaeulenDiagramm,
   UmbrochenerText,
 } from '@/components/content/figures/Diagramme'
+import { BUNDESPAPIERE } from '@/components/content/figures/kastenreihen'
 import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
 import { calculateBudget } from '@/lib/finance'
 import { formatCurrencyRounded, formatPercent } from '@/lib/format'
@@ -44,10 +45,8 @@ import {
  */
 export function BudgetHaushalt() {
   const haushalt = calculateBudget([...haushaltEinnahmen], [...haushaltAusgaben])
-  const einnahmen = haushaltEinnahmen.reduce((summe, e) => summe + e.amount, 0)
 
   const sortiert = [...haushaltAusgaben].sort((a, b) => b.amount - a.amount)
-  const dreiGroesste = sortiert.slice(0, 3).reduce((summe, a) => summe + a.amount, 0)
 
   const balken = [
     ...sortiert.map((posten) => ({
@@ -64,23 +63,7 @@ export function BudgetHaushalt() {
     },
   ]
 
-  return (
-    <BalkenDiagramm
-      id="budget-haushalt"
-      balken={balken}
-      labelBreite={186}
-      beschreibung={
-        `Ein Haushalt mit ${formatCurrencyRounded(einnahmen)} netto im Monat, die Ausgaben nach Größe ` +
-        `sortiert: ` +
-        sortiert.map((p) => `${p.label} ${formatCurrencyRounded(p.amount)}`).join(', ') +
-        `. Übrig bleiben ${formatCurrencyRounded(haushalt.balance)}, also eine Sparquote von ` +
-        `${formatPercent(haushalt.savingsRatePercent, 1)}. Die drei größten Posten machen zusammen ` +
-        `${formatCurrencyRounded(dreiGroesste)} aus – mehr als alle übrigen zusammen. Deshalb ist die ` +
-        `Reihenfolge die eigentliche Aussage: Wer sparen will, fängt oben an. Zehn Prozent bei den ` +
-        `Wohnkosten bringen mehr als der vollständige Verzicht auf die beiden kleinsten Posten.`
-      }
-    />
-  )
+  return <BalkenDiagramm id="budget-haushalt" balken={balken} labelBreite={186} />
 }
 
 // ------------------------------------------ Depot und Verrechnungskonto
@@ -170,15 +153,6 @@ export function DepotUndKonto() {
 
 // ------------------------------------------------ Bundeswertpapiere nach Laufzeit
 
-/** Die vier Bundeswertpapiere, aufgetragen nach ihrer Laufzeit bei Ausgabe. */
-const BUNDESPAPIERE = [
-  { name: 'Bubill', jahre: 1, hinweis: 'unverzinslich, bis 12 Monate' },
-  { name: 'Schatz', jahre: 2, hinweis: 'reagiert am stärksten auf die Notenbank' },
-  { name: 'Bobl', jahre: 5, hinweis: 'mittleres Segment' },
-  { name: 'Bund', jahre: 10, hinweis: 'der Zinsmaßstab der Eurozone' },
-  { name: 'Bund lang', jahre: 30, hinweis: 'die längste Laufzeit' },
-] as const
-
 export function StaatsanleiheLaufzeiten() {
   /*
     Die Höhe hat Platz für zwei Zeilen Fußtext.
@@ -203,21 +177,7 @@ export function StaatsanleiheLaufzeiten() {
   const x = (jahre: number) => links + (Math.log(jahre) / Math.log(30)) * breite
 
   return (
-    <FigureSvg
-      id="staatsanleihe-laufzeiten"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die deutschen Bundeswertpapiere nach ihrer Laufzeit bei Ausgabe: ' +
-        BUNDESPAPIERE.map(
-          (p) =>
-            `${p.name} mit ${p.jahre} ${p.jahre === 1 ? 'Jahr' : 'Jahren'} – ${p.hinweis}`
-        ).join('; ') +
-        '. Die Namen sagen nichts über die Sicherheit: Hinter allen steht derselbe Schuldner. Sie sagen ' +
-        'etwas über die Empfindlichkeit. Je länger die Laufzeit, desto stärker schwankt der Kurs, wenn ' +
-        'sich die Zinsen ändern – und desto weniger folgt er kurzfristigen Entscheidungen der Notenbank. ' +
-        'Die Achse ist gestaucht, weil sonst vier der fünf Papiere übereinanderlägen.'
-      }
-    >
+    <FigureSvg id="staatsanleihe-laufzeiten" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={links - 6} y={30} ton="leise" groesse={12}>
         kurz – folgt der Notenbank
       </Beschriftung>
@@ -810,22 +770,6 @@ export function PortfolioQuoteRueckgang() {
         wertText: `− ${formatCurrencyRounded(zeile.verlust)}`,
         hinweis: `bleiben ${formatCurrencyRounded(zeile.bleibt)}`,
       }))}
-      beschreibung={
-        `Fünf Depots mit jeweils ${formatCurrencyRounded(portfolioDepotwert)}, die sich allein in der ` +
-        `Aktienquote unterscheiden. Der Aktienmarkt fällt um ${formatPercent(portfolioMarktrueckgang, 0)}, ` +
-        `der risikoarme Teil bleibt, wo er ist. Übrig bleiben: ` +
-        zeilen
-          .map(
-            (zeile) =>
-              `bei ${formatPercent(zeile.quote, 0)} Aktienquote ${formatCurrencyRounded(zeile.bleibt)}, ` +
-              `also ${formatCurrencyRounded(zeile.verlust)} oder ${formatPercent(zeile.rueckgang, 0)} weniger`
-          )
-          .join('; ') +
-        `. Jede Säule ist gleich hoch, weil alle fünf Depots gleich groß starten – unterschiedlich ist ` +
-        `allein der rote Anteil. Die Grafik beantwortet nicht, welche Quote richtig ist. Sie zeigt, ` +
-        `worüber man entscheidet: nicht über eine Rendite, sondern über den Betrag, den man aushalten ` +
-        `muss, ohne zu verkaufen.`
-      }
     />
   )
 }
