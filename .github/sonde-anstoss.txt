@@ -27,9 +27,16 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-tokio, boersen
+nse
 
-# Lauf vom 24. August 2026, zweiter Anlauf: `tokio` **und** `boersen`.
+# Lauf vom 24. August 2026, dritter Anlauf: `nse`.
+#
+# Die Sonde `boersen` hat den Sammelkalender der indischen Börse gefunden –
+# 200 JSON ohne Schlüssel, in der Bauart der Tokioter Liste, für 50 geführte
+# Titel. Jetzt wird er vermessen: Reichweite, Trefferquote unserer Kürzel,
+# was in `purpose` steht, und ob es einen Weg mit mehr Vorlauf gibt.
+#
+# Vorheriger Lauf: `tokio` und `boersen`.
 #
 # Der erste Anlauf brach ab – die Tokio-Sonde lief ohne den Alias-Hook, und
 # `lib/providers/jpx-termine.ts` importiert über `@/`. Behoben.

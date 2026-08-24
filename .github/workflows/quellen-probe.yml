@@ -510,7 +510,7 @@ on:
         description: 'Welche Sonde laufen soll'
         type: choice
         default: alle
-        options: [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen]
+        options: [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen, nse]
   push:
     branches: ['claude/**']
     paths: ['.github/sonde-anstoss.txt']
@@ -536,7 +536,7 @@ jobs:
       - name: Welche Sonde
         id: wahl
         run: |
-          ALLE="sec asien nordisch esef esef-de tokio boersen"
+          ALLE="sec asien nordisch esef esef-de tokio boersen nse"
 
           wahl="${{ inputs.sonde }}"
           if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
@@ -551,7 +551,7 @@ jobs:
           for name in $wahl; do
             case "$name" in
               alle) liste="$ALLE" ;;
-              sec|asien|nordisch|esef|esef-de|tokio|boersen) liste="$liste $name" ;;
+              sec|asien|nordisch|esef|esef-de|tokio|boersen|nse) liste="$liste $name" ;;
               *)
                 echo "::error::Unbekannte Sonde „$name“. Erlaubt: alle, $ALLE."
                 exit 1
@@ -639,6 +639,17 @@ jobs:
         if: always() && (contains(steps.wahl.outputs.sonde, ' boersen '))
         run: node --experimental-strip-types scripts/quellen-probe-boersen.ts
 
+      # Sechste Runde: der Sammelkalender der indischen Börse.
+      #
+      # Die Sonde `boersen` hat ihn gefunden – 200 JSON ohne Schlüssel, in der
+      # Bauart der Tokioter Liste, für 50 geführte Titel. Vier Fragen sind
+      # offen, bevor daraus Code wird: Reichweite, Trefferquote unserer
+      # Kürzel, was in `purpose` steht, und ob es einen Weg mit mehr Vorlauf
+      # gibt. Keine davon lässt sich raten.
+      - name: NSE-Kalender vermessen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' nse '))
+        run: node --experimental-strip-types scripts/quellen-probe-nse.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -651,6 +662,7 @@ jobs:
             esef-werte.json
             tokio-abstaende.json
             boersen-kalender.json
+            nse-kalender.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
           # Zwischenstände einer Suche und nach einer Woche wertlos.
@@ -685,7 +697,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json nse-kalender.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1
