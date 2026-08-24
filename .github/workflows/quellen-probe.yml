@@ -490,6 +490,41 @@ name: Quellen abklopfen
 # Authentication Token"), HKEX 404, SEDAR+ 403, ASX 404, KRX 403, TWSE 404,
 # Borsa Italiana 404, Nasdaq Nordic 404.
 #
+# ## NSE Indien, nachgemessen – offen, aber kein Kalender
+#
+# Die Adresse antwortet, und sie antwortet mit echten Daten. Sie ist trotzdem
+# nicht das, wonach gesucht wurde:
+#
+# - `api/event-calendar` → 200, **31 Einträge**, Felder `symbol, company,
+#   purpose, bm_desc, date`. Zeitraum: rund zwei Wochen. Zwecke: „Other
+#   business matters" 16, **„Financial Results" 4**, Fund Raising, Dividend,
+#   Buyback.
+# - `api/corporate-board-meetings` → 200, **20 Einträge**, reichere Felder
+#   (`bm_symbol`, `bm_date`, `bm_purpose`, `proposedMeetingDate`, ISIN).
+# - `api/corporates-financial-results-calendar` → **404**.
+#
+# **Von unseren 50 indischen Titeln steht in beiden Feeds: keiner.**
+#
+# Das ist die eigentliche Auskunft. Einunddreißig Einträge bei über
+# zweitausend gelisteten Gesellschaften sind kein Marktkalender, sondern die
+# jüngsten Meldungen – ein Nachrichtenstrom mit zwei Wochen Reichweite. Die
+# Wahrscheinlichkeit, unsere fünfzig Großwerte darin zu treffen, ist in einer
+# beliebigen Woche klein, und heute ist sie null.
+#
+# Brauchbar wäre die Quelle trotzdem – aber nur **täglich geerntet und
+# aufbewahrt**. SEBI verlangt für Ergebnisbeschlüsse fünf Tage Vorankündigung;
+# wer jeden Tag abholt, sammelt über ein Quartal die angekündigten Tage
+# unserer Titel ein, mit knappem Vorlauf, aber angekündigt statt geschätzt.
+# Über mehrere Quartale entstünde daraus die Historie, aus der sich – wie bei
+# der SEC – ein Muster ableiten ließe.
+#
+# Was **nicht** geht: aus einem Abruf einen Termin ableiten. Anders als die
+# Tokioter Liste nennt der Feed kein Geschäftsjahresende, also gibt es keinen
+# Abstand zu messen. Und die gesetzliche Frist – 45 Tage nach Quartalsende,
+# 60 nach dem Geschäftsjahr – ist eine **Frist**, kein Termin: Unternehmen
+# melden davor, nicht daran. Sie als erwarteten Tag zu zeigen wäre eine
+# erfundene Zahl mit amtlichem Anstrich.
+#
 # ## Und was Tokio hergibt, ohne dass jemand danach gefragt hätte
 #
 # Die Spalte `決算期末 / Fiscal Year-end` ist **nicht** das Ende des gemeldeten
@@ -510,7 +545,7 @@ on:
         description: 'Welche Sonde laufen soll'
         type: choice
         default: alle
-        options: [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen]
+        options: [alle, sec, asien, nordisch, esef, esef-de, tokio, boersen, nse]
   push:
     branches: ['claude/**']
     paths: ['.github/sonde-anstoss.txt']
@@ -532,11 +567,11 @@ jobs:
       # Die Datei gewinnt nie: Bei `workflow_dispatch` ist `inputs.sonde`
       # gesetzt und wird genommen. Beim Push ist es leer, und dann zählt die
       # erste nicht leere, nicht kommentierte Zeile der Datei. Fehlt auch die,
-      # läuft „alle“ – wie bisher der Vorgabewert.
+      # läuft **nichts** – siehe die Begründung im Schritt.
       - name: Welche Sonde
         id: wahl
         run: |
-          ALLE="sec asien nordisch esef esef-de tokio boersen"
+          ALLE="sec asien nordisch esef esef-de tokio boersen nse"
 
           wahl="${{ inputs.sonde }}"
           if [ -z "$wahl" ] && [ -f .github/sonde-anstoss.txt ]; then
@@ -545,13 +580,24 @@ jobs:
             # die zwanzig Minuten der ESEF-Sonde aus.
             wahl=$(grep -v '^#' .github/sonde-anstoss.txt | grep -v '^[[:space:]]*$' | head -1 | tr ',' ' ')
           fi
-          wahl="${wahl:-alle}"
+          # Eine leere Anstoßdatei heißt „nichts anstoßen" und nicht „alles".
+          #
+          # Vorher fiel sie auf `alle` zurück, und `alle` schließt die
+          # ESEF-Sonde mit ihren zwanzig Minuten ein. Wer den letzten Anstoß
+          # herausnimmt, weil die Frage beantwortet ist, hätte damit
+          # versehentlich den teuersten Lauf gestartet. Beim Auslösen von Hand
+          # bleibt es beim Vorgabewert des Auswahlfelds.
+          if [ -z "$(echo $wahl)" ]; then
+            echo "Keine Sonde vorgemerkt – nichts zu tun."
+            echo "sonde=  " >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
           liste=""
           for name in $wahl; do
             case "$name" in
               alle) liste="$ALLE" ;;
-              sec|asien|nordisch|esef|esef-de|tokio|boersen) liste="$liste $name" ;;
+              sec|asien|nordisch|esef|esef-de|tokio|boersen|nse) liste="$liste $name" ;;
               *)
                 echo "::error::Unbekannte Sonde „$name“. Erlaubt: alle, $ALLE."
                 exit 1
@@ -639,6 +685,17 @@ jobs:
         if: always() && (contains(steps.wahl.outputs.sonde, ' boersen '))
         run: node --experimental-strip-types scripts/quellen-probe-boersen.ts
 
+      # Sechste Runde: der Sammelkalender der indischen Börse.
+      #
+      # Die Sonde `boersen` hat ihn gefunden – 200 JSON ohne Schlüssel, in der
+      # Bauart der Tokioter Liste, für 50 geführte Titel. Vier Fragen sind
+      # offen, bevor daraus Code wird: Reichweite, Trefferquote unserer
+      # Kürzel, was in `purpose` steht, und ob es einen Weg mit mehr Vorlauf
+      # gibt. Keine davon lässt sich raten.
+      - name: NSE-Kalender vermessen
+        if: always() && (contains(steps.wahl.outputs.sonde, ' nse '))
+        run: node --experimental-strip-types scripts/quellen-probe-nse.ts
+
       - name: Kandidatenlisten sichern
         if: always()
         uses: actions/upload-artifact@v4
@@ -651,6 +708,7 @@ jobs:
             esef-werte.json
             tokio-abstaende.json
             boersen-kalender.json
+            nse-kalender.json
           if-no-files-found: warn
           # Ohne Angabe hebt GitHub neunzig Tage auf. Diese Listen sind
           # Zwischenstände einer Suche und nach einer Woche wertlos.
@@ -685,7 +743,7 @@ jobs:
 
           ordner=$(mktemp -d)
           gefunden=0
-          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json; do
+          for datei in sec-kandidaten.json esef-kandidaten.json esef-kandidaten-de.json esef-werte.json tokio-abstaende.json boersen-kalender.json nse-kalender.json; do
             if [ -f "$datei" ]; then
               cp "$datei" "$ordner/"
               gefunden=1

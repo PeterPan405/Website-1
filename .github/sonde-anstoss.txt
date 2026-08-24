@@ -4,7 +4,10 @@
 # Workflow `.github/workflows/quellen-probe.yml`. Die erste nicht leere,
 # nicht mit `#` beginnende Zeile nennt die Sonde:
 #
-#     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen
+#     alle | sec | asien | nordisch | esef | esef-de | tokio | boersen | nse
+#
+# Keine Zeile heißt: nichts anstoßen. Nicht „alles" – `alle` schließt die
+# ESEF-Sonde mit ihren zwanzig Minuten ein.
 #
 # Mehrere Namen in einer Zeile sind erlaubt, durch Komma oder Leerzeichen
 # getrennt: „tokio, boersen" startet beide und lässt die zwanzig Minuten der
@@ -27,9 +30,22 @@
 # `sec` und `asien` je Sekunden bis Minuten. `alle` ist entsprechend die
 # teuerste Wahl.
 
-tokio, boersen
+# (keine Sonde vorgemerkt – diese Zeile leer lassen, bis eine gebraucht wird)
 
-# Lauf vom 24. August 2026, zweiter Anlauf: `tokio` **und** `boersen`.
+# Zuletzt gelaufen: 24. August 2026, Sonde `nse` – Ergebnis im Kopf von
+# `quellen-probe.yml`. Offen, aber kein Kalender: 31 Einträge, zwei Wochen
+# Reichweite, keiner unserer 50 indischen Titel darin.
+#
+# Frühere Läufe desselben Tages: `tokio` und `boersen`; davor `esef`.
+#
+# Der Anstoß von damals, als Beispiel für die Schreibweise:
+#
+# Die Sonde `boersen` hat den Sammelkalender der indischen Börse gefunden –
+# 200 JSON ohne Schlüssel, in der Bauart der Tokioter Liste, für 50 geführte
+# Titel. Jetzt wird er vermessen: Reichweite, Trefferquote unserer Kürzel,
+# was in `purpose` steht, und ob es einen Weg mit mehr Vorlauf gibt.
+#
+# Vorheriger Lauf: `tokio` und `boersen`.
 #
 # Der erste Anlauf brach ab – die Tokio-Sonde lief ohne den Alias-Hook, und
 # `lib/providers/jpx-termine.ts` importiert über `@/`. Behoben.
