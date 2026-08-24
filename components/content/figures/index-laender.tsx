@@ -31,22 +31,8 @@ export function IndexLaendergewichtung({ symbol = 'msci-world' }: { symbol?: str
 
   const hoehe = oben + satz.laender.length * (balkenHoehe + abstand) + 4
 
-  /*
-    Die Vorlesefassung entsteht aus denselben Daten wie die Balken.
-
-    Sonst wäre sie nach der ersten Aktualisierung der Gewichtung falsch – und
-    zwar unbemerkt, weil sie nur hört, wer die Grafik nicht sieht.
-  */
-  const beschreibung = `Ländergewichtung zum ${satz.stand}: ${satz.laender
-    .map((land) => `${land.land} ${formatPercent(land.anteil, 2)}`)
-    .join(', ')}.`
-
   return (
-    <FigureSvg
-      id="msci-world-laender"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={beschreibung}
-    >
+    <FigureSvg id="msci-world-laender" viewBox={`0 0 640 ${hoehe}`}>
       {satz.laender.map((land, index) => {
         const y = oben + index * (balkenHoehe + abstand)
         return (

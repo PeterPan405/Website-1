@@ -9,7 +9,7 @@ import {
 import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
 import { calculateCompoundInterest } from '@/lib/finance'
 import { marginverlauf } from '@/lib/margin'
-import { formatCurrencyRounded, formatNumber, formatPercent } from '@/lib/format'
+import { formatCurrencyRounded } from '@/lib/format'
 import {
   einlagensicherungGrenze,
   handelszeiten,
@@ -77,25 +77,7 @@ export function BoerseHandelszeiten() {
   const blindBis = laengster.bis
 
   return (
-    <FigureSvg
-      id="boerse-handelszeiten"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Die Handelszeiten der drei Platzarten übereinander, von 7 bis 24 Uhr: ' +
-        handelszeiten
-          .map(
-            (platz) =>
-              `${platz.name} von ${alsUhrzeit(platz.von)} bis ${alsUhrzeit(platz.bis)} – ${platz.hinweis}`
-          )
-          .join('; ') +
-        `. Der eingefärbte Bereich zwischen ${alsUhrzeit(blindVon)} und ${alsUhrzeit(blindBis)} ` +
-        'ist der Punkt der Grafik: Dort ist der Referenzmarkt geschlossen, der Direkthandel aber offen. ' +
-        'Wer in diesen Stunden ein Angebot bekommt, hat keinen Kurs, an dem er dessen Fairness messen ' +
-        'könnte – und der Anbieter weiß das. Die Spanne ist dann regelmäßig deutlich größer als am ' +
-        'Nachmittag. Bei ausländischen Werten kommt hinzu, dass auch ein Referenzmarkt schätzen muss, ' +
-        'solange der Heimatmarkt geschlossen ist.'
-      }
-    >
+    <FigureSvg id="boerse-handelszeiten" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={links} y={22} ton="leise" groesse={12}>
         Uhrzeit
       </Beschriftung>
@@ -364,16 +346,6 @@ export function SparerpauschbetragReihenfolge() {
           farbe: FARBEN.akzent,
         },
       ]}
-      beschreibung={
-        'Die Reihenfolge, in der der Freistellungsauftrag verteilt wird, in vier Schritten. Zuerst das ' +
-        'Fondsdepot mit thesaurierenden Anteilen: Die Vorabpauschale wird Anfang Januar automatisch ' +
-        'belastet, ohne dass du etwas tust – liegt dort kein Freistellungsauftrag, wird sofort Steuer ' +
-        'abgeführt. Dann die Konten mit planbaren Zinsen, deren Ertrag sich vorab gut abschätzen lässt. ' +
-        'Dann die Depots mit Dividenden, die ebenfalls ungefähr kalkulierbar sind. Zuletzt die ' +
-        'realisierten Kursgewinne, denn die entstehen nur, wenn du verkaufst. Das Gefälle der Kette ist ' +
-        'die Begründung für ihre Reihenfolge: Vorn steht, was ohne dein Zutun passiert, hinten, worüber ' +
-        'du selbst entscheidest.'
-      }
     />
   )
 }
@@ -396,7 +368,6 @@ export function SparerpauschbetragReihenfolge() {
  * dieser Unterschied ist nur zu sehen, wenn beide Linien nebeneinander laufen.
  */
 export function DerivatMargin() {
-  const einschuss = marginKontraktwert * (marginErsteinschussProzent / 100)
   const untergrenze = marginKontraktwert * (marginUntergrenzeProzent / 100)
 
   /*
@@ -416,9 +387,6 @@ export function DerivatMargin() {
   )
 
   const call = margincall ?? tage.length - 1
-  const endkurs = tage[tage.length - 1].kurs
-  const tiefstkurs = Math.min(...tage.map((t) => t.kurs))
-  const beimCall = tage[call]
   const haetteGehabt = tage[tage.length - 1].konto
 
   return (
@@ -451,23 +419,6 @@ export function DerivatMargin() {
           punkte: tage.map((t) => ({ x: t.tag, y: untergrenze })),
         },
       ]}
-      beschreibung={
-        `Ein Future über ${formatCurrencyRounded(marginKontraktwert)} Kontraktwert, hinterlegt mit ` +
-        `${formatPercent(marginErsteinschussProzent, 0)} Ersteinschuss, also ` +
-        `${formatCurrencyRounded(einschuss)}. Jeden Abend wird abgerechnet: Die Kursbewegung des Tages ` +
-        `wird dem Sicherheitskonto gutgeschrieben oder abgebucht. Der Kurs fällt in diesem Beispiel auf ` +
-        `${formatNumber(tiefstkurs, 1)} Prozent des Ausgangswerts und steigt danach auf ` +
-        `${formatNumber(endkurs, 1)} Prozent – also darüber hinaus. Das Sicherheitskonto fällt dabei von ` +
-        `${formatCurrencyRounded(einschuss)} an Handelstag ${call + 1} auf ` +
-        `${formatCurrencyRounded(beimCall.konto)} und damit unter die Untergrenze von ` +
-        `${formatCurrencyRounded(untergrenze)}. Dort endet die durchgezogene Linie, denn dort wird die ` +
-        `Position glattgestellt. Die gestrichelte Fortsetzung ist gerechnet und nicht geschehen: Wer ` +
-        `hätte halten können, stünde am zehnten Tag bei ${formatCurrencyRounded(haetteGehabt)}, also ` +
-        `über dem Ersteinschuss. Die Einschätzung war am Ende richtig; halten ließ sie sich trotzdem ` +
-        `nicht, weil die Sicherheit jeden Abend reichen muss. Genau das ist der Unterschied zwischen ` +
-        `einem Verlustrisiko und einem Liquiditätsrisiko – und Letzteres ist der häufigere Grund für ` +
-        `gescheiterte Positionen.`
-      }
     />
   )
 }
@@ -533,7 +484,6 @@ export function SparplanWartezeit() {
   })
 
   const sofort = zeilen[0].endkapital
-  const letzte = zeilen[zeilen.length - 1]
 
   return (
     <SaeulenDiagramm
@@ -554,24 +504,6 @@ export function SparplanWartezeit() {
             ? 'die Vergleichsgröße'
             : `− ${formatCurrencyRounded(sofort - zeile.endkapital)}`,
       }))}
-      beschreibung={
-        `${formatCurrencyRounded(verteilsumme)}, angelegt über ${verteiljahre} Jahre bei ` +
-        `${formatPercent(verteilrendite, 0)} Rendite im Jahr – einmal sofort, einmal über mehrere ` +
-        `Monate verteilt. Ergebnisse: ` +
-        zeilen
-          .map(
-            (zeile) =>
-              `${zeile.monate === 0 ? 'sofort' : `verteilt über ${zeile.monate} Monate`} ` +
-              `${formatCurrencyRounded(zeile.endkapital)}`
-          )
-          .join('; ') +
-        `. Über ${letzte.monate} Monate verteilt bleiben damit ` +
-        `${formatCurrencyRounded(sofort - letzte.endkapital)} liegen. Gerechnet ist ohne jede ` +
-        `Kursschwankung, und das ist der Punkt: Der Nachteil des Verteilens ist kein Pech, sondern ` +
-        `Arithmetik – ein Teil des Geldes ist schlicht nicht am Markt. Was die Grafik nicht zeigt, ist ` +
-        `der Fall, für den man das Verteilen kauft: der Einbruch kurz nach dem Start. Beides zusammen ` +
-        `ist die Entscheidung – hier steht der Preis, im Text daneben die Versicherung.`
-      }
     />
   )
 }

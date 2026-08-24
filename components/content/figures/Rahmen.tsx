@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 
 import { figureMeta, type FigureId } from '@/data/figures'
+import { grafikBeschreibung } from '@/lib/grafik-beschreibungen'
 
 /**
  * Gemeinsamer Rahmen aller Lerngrafiken.
@@ -25,22 +26,32 @@ export function FigureSvg({
   id: FigureId
   viewBox: string
   /**
-   * Ersetzt die Vorlesefassung aus `data/figures.ts`.
+   * Eine Beschreibung, die nur diese Zeichnung kennt.
    *
-   * Nur für Grafiken, deren Zahlen aus einem Datensatz kommen: Stünde die
-   * Beschreibung dann fest im Verzeichnis, wäre sie nach der ersten
-   * Aktualisierung falsch – und zwar unbemerkt, weil sie niemand sieht, der
-   * die Grafik sehen kann.
+   * ## Wann sie hier steht – und wann nicht
+   *
+   * Seit dem 23. August 2026 fast nie. Vorher gaben 53 Zeichnungen ihre
+   * gerechnete Beschreibung hier herein, weil sie fest in `data/figures.ts`
+   * nach der ersten Aktualisierung falsch gewesen wäre. Für einen Screenreader
+   * war das richtig; die **Vorlesefassung** sah diese Sätze aber nie –
+   * `vorleseAbschnitte()` liest `figureMeta` und fiel für sie auf die
+   * Bildunterschrift zurück.
+   *
+   * Die gerechneten Beschreibungen stehen deshalb jetzt in
+   * `lib/grafik-beschreibungen.ts`, in reinem TypeScript, und beide Wege lesen
+   * dieselbe Quelle. Dieser Parameter bleibt als Ausnahme für den Fall, dass
+   * eine Zeichnung etwas weiß, was außerhalb von ihr nicht zu haben ist.
    */
   beschreibung?: string
   children: ReactNode
 }) {
   const meta = figureMeta[id]
-  const vorlesefassung = beschreibung ?? meta.description
+  const vorlesefassung = beschreibung ?? grafikBeschreibung(id) ?? meta.description
   if (!vorlesefassung) {
     throw new Error(
-      `Die Grafik „${id}“ hat keine Beschreibung – weder in data/figures.ts noch in der Zeichnung. ` +
-        'Ohne sie ist sie für alle, die sie nicht sehen können, ein leerer Kasten.'
+      `Die Grafik „${id}“ hat keine Beschreibung – weder in data/figures.ts noch in ` +
+        'lib/grafik-beschreibungen.ts noch in der Zeichnung. Ohne sie ist sie für alle, ' +
+        'die sie nicht sehen können, ein leerer Kasten.'
     )
   }
 

@@ -34,17 +34,17 @@ import type { FigureId } from '@/data/figures'
  * die geht irgendwann von der ersten ab.
  */
 
-export const FARBEN = {
-  marke: 'var(--c-brand)',
-  akzent: 'var(--c-accent)',
-  gefahr: 'var(--c-danger)',
-  warnung: 'var(--c-warning)',
-  ruhig: 'var(--c-fg-subtle)',
-  raster: 'var(--c-border)',
-  flaeche: 'var(--c-surface-muted)',
-} as const
+/*
+  Die Farben stehen in `farben.ts` und werden hier nur weitergereicht.
 
-export type Farbe = string
+  Grund: Die Vorlesefassungen der Grafiken müssen in reinem TypeScript stehen
+  (`scripts/lese-texte-schreiben.ts` kann keine `.tsx` laden), und eine
+  Kastenreihe, deren Beschriftungen gesprochen werden, trägt auch eine Farbe.
+  Alle bestehenden Importe von `FARBEN` aus dieser Datei funktionieren weiter.
+*/
+import { FARBEN, type Farbe } from '@/components/content/figures/farben'
+
+export { FARBEN, type Farbe }
 
 // ------------------------------------------------------------------ Säulen
 

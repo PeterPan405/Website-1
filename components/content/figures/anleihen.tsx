@@ -6,12 +6,7 @@ import {
 } from '@/components/content/figures/Diagramme'
 import { kurs, zinsschock } from '@/lib/anleihen'
 import { formatNumber, formatPercent } from '@/lib/format'
-import {
-  anleiheBeispiel,
-  anleiheLaufzeiten,
-  anleiheMarktzins,
-  anleiheNeuerZins,
-} from '@/lib/lernszenarien'
+import { anleiheBeispiel, anleiheLaufzeiten, anleiheMarktzins } from '@/lib/lernszenarien'
 
 /**
  * Die Grafiken zu Schuldverschreibung und Staatsanleihe.
@@ -51,11 +46,6 @@ export function AnleiheKursUndZins() {
     }),
   }))
 
-  const beiVier = laufzeiten.map(({ jahre }) => ({
-    jahre,
-    kurs: kurs({ kuponProzent: anleiheBeispiel.kuponProzent, jahre }, anleiheNeuerZins),
-  }))
-
   return (
     <LinienDiagramm
       id="anleihe-kurs-und-zins"
@@ -69,16 +59,6 @@ export function AnleiheKursUndZins() {
       xLabel="Marktzins"
       yEinheit="Kurs in Prozent des Nennwerts"
       hoehe={300}
-      beschreibung={
-        `Der Kurs einer Anleihe mit ${formatPercent(anleiheBeispiel.kuponProzent, 0)} Kupon, ` +
-        `aufgetragen über dem Marktzins. Alle drei Kurven schneiden sich bei ` +
-        `${formatPercent(anleiheMarktzins, 0)} im Kurs von 100 – dort entspricht der Kupon genau dem Marktzins. ` +
-        `Steigt der Marktzins auf ${formatPercent(anleiheNeuerZins, 0)}, fällt der Kurs bei ` +
-        beiVier
-          .map((e) => `${e.jahre} Jahren Restlaufzeit auf ${formatNumber(e.kurs, 1)}`)
-          .join(', bei ') +
-        `. Die kurze Laufzeit verläuft fast waagerecht, die lange fällt steil.`
-      }
     />
   )
 }
@@ -102,22 +82,12 @@ export function StaatsanleiheZinsschock() {
     }
   })
 
-  const kurz = saeulen[0]
-  const lang = saeulen[saeulen.length - 1]
-
   return (
     <SaeulenDiagramm
       id="staatsanleihe-zinsschock"
       saeulen={saeulen}
       einheit="Kursverlust in Prozent"
       hoehe={260}
-      beschreibung={
-        `Vier Anleihen mit gleichem Kupon und unterschiedlicher Restlaufzeit. Steigt der ` +
-        `Marktzins um ${formatNumber(AENDERUNG, 0)} Prozentpunkte, verliert die Anleihe mit ` +
-        `${anleiheLaufzeiten[0]} Jahren Restlaufzeit ${kurz.wertText} an Kurswert, die mit ` +
-        `${anleiheLaufzeiten[anleiheLaufzeiten.length - 1]} Jahren ${lang.wertText}. Der Verlust ` +
-        `wächst mit der Restlaufzeit, aber nicht proportional zu ihr.`
-      }
     />
   )
 }

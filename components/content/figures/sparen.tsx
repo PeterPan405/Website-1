@@ -71,17 +71,6 @@ export function KostenEndkapital() {
     }
   })
 
-  const guenstigste = endkapital(
-    sparfall.rate,
-    sparfall.brutto - kostenstufen[0],
-    sparfall.jahre
-  )
-  const teuerste = endkapital(
-    sparfall.rate,
-    sparfall.brutto - kostenstufen[kostenstufen.length - 1],
-    sparfall.jahre
-  )
-
   return (
     <SaeulenDiagramm
       id="kosten-endkapital"
@@ -92,20 +81,6 @@ export function KostenEndkapital() {
         { farbe: FARBEN.marke, text: 'Ertrag' },
       ]}
       hoehe={300}
-      beschreibung={
-        `${formatCurrencyRounded(sparfall.rate)} monatlich über ${sparfall.jahre} Jahre bei ` +
-        `${formatPercent(sparfall.brutto, 0)} Bruttorendite, belastet mit ` +
-        `${formatPercent(kostenstufen[0], 1)} bis ${formatPercent(kostenstufen[kostenstufen.length - 1], 1)} ` +
-        `laufenden Kosten. Der graue Sockel ist bei allen fünf gleich – das eingezahlte Geld von ` +
-        `${formatCurrencyRounded(eingezahlt)}. Unterschiedlich ist allein der Ertrag darüber: ` +
-        `${formatCurrencyRounded(guenstigste - eingezahlt)} bei der günstigsten Variante, ` +
-        `${formatCurrencyRounded(teuerste - eingezahlt)} bei der teuersten. Am Ende stehen damit ` +
-        `${formatCurrencyRounded(guenstigste)} gegen ${formatCurrencyRounded(teuerste)}. Die Differenz von ` +
-        `${formatCurrencyRounded(guenstigste - teuerste)} entspricht ` +
-        `${formatPercent(((guenstigste - teuerste) / eingezahlt) * 100, 0)} aller Einzahlungen – ` +
-        `abgeflossen für einen Unterschied von ` +
-        `${formatPercent(kostenstufen[kostenstufen.length - 1] - kostenstufen[0], 1)} pro Jahr.`
-      }
     />
   )
 }
@@ -121,7 +96,6 @@ export function PsychologieVerhaltensluecke() {
     jahre.map((jahr) => ({ x: jahr, y: endkapital(sparfall.rate, rendite, jahr) }))
 
   const endeOhne = endkapital(sparfall.rate, ohne, sparfall.jahre)
-  const endeMit = endkapital(sparfall.rate, mit, sparfall.jahre)
 
   return (
     <LinienDiagramm
@@ -149,16 +123,6 @@ export function PsychologieVerhaltensluecke() {
       yEinheit="Depotwert in Euro"
       hoehe={300}
       rechterRand={96}
-      beschreibung={
-        `Zwei Sparpläne über ${formatCurrencyRounded(sparfall.rate)} monatlich und ${sparfall.jahre} Jahre. ` +
-        `Der eine erzielt ${formatPercent(ohne, 0)} im Jahr, der andere ` +
-        `${formatPercent(mit, 0)} – dasselbe Produkt, nur schlechter getroffene Ein- und Ausstiege. ` +
-        `Zwanzig Jahre lang liegen beide Linien fast aufeinander. Am Ende stehen ` +
-        `${formatCurrencyRounded(endeOhne)} gegen ${formatCurrencyRounded(endeMit)}: ` +
-        `${formatCurrencyRounded(endeOhne - endeMit)} Unterschied, ` +
-        `${formatPercent(((endeOhne - endeMit) / endeOhne) * 100, 0)} des Ergebnisses, für einen einzigen ` +
-        `Prozentpunkt im Jahr.`
-      }
     />
   )
 }
@@ -180,16 +144,6 @@ export function BudgetHebel() {
 
   const durchRate = zugewinn('rate')
   const durchRendite = zugewinn('rendite')
-
-  /*
-    Der Wechselpunkt wird gesucht, nicht behauptet.
-
-    „Mehr Rendite schlägt mehr Sparen“ steht in vielen Ratgebern ohne
-    Zeitangabe – und ohne sie ist der Satz nicht wahr oder falsch, sondern
-    leer. Das erste Jahr, in dem der Renditehebel vorn liegt, ist die
-    eigentliche Antwort.
-  */
-  const wechsel = jahre.find((jahr) => durchRendite[jahr].y > durchRate[jahr].y) ?? null
 
   return (
     <LinienDiagramm
@@ -214,20 +168,6 @@ export function BudgetHebel() {
       }))}
       yEinheit="Zugewinn gegenüber dem Ausgangsplan, in Euro"
       hoehe={300}
-      beschreibung={
-        `Ausgangslage: ${formatCurrencyRounded(hebelAusgang.rate)} monatlich bei ` +
-        `${formatPercent(hebelAusgang.rendite, 0)}. Zwei Hebel im Vergleich – ` +
-        `${formatCurrencyRounded(hebelMehrRate)} mehr sparen oder einen Prozentpunkt mehr Rendite erzielen. ` +
-        (wechsel === null
-          ? 'Über vierzig Jahre bleibt der Sparhebel durchgehend vorn.'
-          : `In den ersten ${wechsel - 1} Jahren bringt die höhere Rate mehr; ab Jahr ${wechsel} zieht die ` +
-            `höhere Rendite vorbei und läuft danach immer weiter davon.`) +
-        ` Nach zehn Jahren liegt der Sparhebel bei ${formatCurrencyRounded(durchRate[10].y)} gegen ` +
-        `${formatCurrencyRounded(durchRendite[10].y)}, nach vierzig bei ` +
-        `${formatCurrencyRounded(durchRate[40].y)} gegen ${formatCurrencyRounded(durchRendite[40].y)}. ` +
-        `Die höhere Rate wirkt sofort, die höhere Rendite erst mit der Zeit – und nur die Rate hat man ` +
-        `selbst in der Hand.`
-      }
     />
   )
 }
@@ -244,7 +184,6 @@ export function PortfolioDrift() {
   })
 
   const ende = quote[quote.length - 1].y
-  const nachFuenf = quote[5].y
 
   return (
     <LinienDiagramm
@@ -282,16 +221,6 @@ export function PortfolioDrift() {
       yFormat={(wert) => formatPercent(wert, 0)}
       hoehe={290}
       rechterRand={64}
-      beschreibung={
-        `Ein Depot startet mit ${formatPercent(portfolioStart.aktien, 0)} Aktien und ` +
-        `${formatPercent(portfolioStart.sicher, 0)} sicherem Teil. Angenommen, der Aktienteil wächst über ` +
-        `zehn gute Jahre mit ${formatPercent(portfolioRenditeAktien, 0)} im Jahr, der sichere mit ` +
-        `${formatPercent(portfolioRenditeSicher, 0)}. Ohne dass jemand etwas entscheidet, steigt der ` +
-        `Aktienanteil nach fünf Jahren auf ${formatPercent(nachFuenf, 0)} und nach zehn auf ` +
-        `${formatPercent(ende, 0)}. Das Depot trägt dann mehr Risiko als geplant – und zwar am Ende einer ` +
-        `guten Phase, also genau dann, wenn ein Rückschlag am wahrscheinlichsten ist. Die gestrichelte ` +
-        `Linie ist die geplante Quote, auf die Rebalancing zurücksetzt.`
-      }
     />
   )
 }
@@ -361,27 +290,6 @@ export function KostenWahreQuote() {
         wertText: formatPercent(fall.quote, 2),
         hinweis: `${fall.kaeufeJeJahr} Käufe im Jahr`,
       }))}
-      beschreibung={
-        `Dieselben drei Kostenarten in zwei Depots, jeweils auf ein Jahr gerechnet und durch den ` +
-        `Depotwert geteilt. ` +
-        faelle
-          .map(
-            (fall) =>
-              `Beim ${fall.name} – ${formatCurrencyRounded(fall.depotwert)} Depotwert, ` +
-              `${fall.kaeufeJeJahr} Käufe zu je ${formatCurrencyRounded(fall.kaufbetrag)} – kostet ein ` +
-              `Jahr ${formatCurrencyRounded(fall.summe)}, also ${formatPercent(fall.quote, 2)}: ` +
-              fall.teile
-                .map((teil) => `${teil.name} ${formatCurrencyRounded(teil.euro)}`)
-                .join(', ')
-          )
-          .join('. ') +
-        `. Die Rangfolge dreht sich um: Im kleinen Depot machen Ordergebühr und Spread den größten ` +
-        `Teil aus, im großen sind sie neben den laufenden Fondskosten kaum noch zu sehen. Deshalb hat ` +
-        `die Frage, welcher Anbieter günstiger ist, keine allgemeine Antwort – sie hängt an Depotgröße ` +
-        `und Handelshäufigkeit. Gerechnet ist mit ${formatPercent(kostenFondsquote, 1)} Fondskosten, ` +
-        `${formatCurrencyRounded(ordergebuehrFest)} je Order und ${formatPercent(spreadProzent, 1)} ` +
-        `Spread; eine Depotgebühr fällt bei den üblichen Anbietern nicht an.`
-      }
     />
   )
 }

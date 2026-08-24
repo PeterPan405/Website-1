@@ -42,7 +42,6 @@ const TILGUNG = 2
 export function KreditTilgungsverlauf() {
   const rate = rateBeiTilgungssatz(immobilienkredit, TILGUNG)
   const plan = tilgungsplan(immobilienkredit, rate)
-  const ergebnis = auswerten(immobilienkredit, rate)
 
   /*
     Gezeigt werden fünf Jahre über die Laufzeit verteilt, nicht alle.
@@ -68,9 +67,6 @@ export function KreditTilgungsverlauf() {
     }
   })
 
-  const erstes = saeulen[0]
-  const letztes = saeulen[saeulen.length - 1]
-
   return (
     <SaeulenDiagramm
       id="kredit-zins-und-tilgung"
@@ -81,14 +77,6 @@ export function KreditTilgungsverlauf() {
         { farbe: FARBEN.marke, text: 'Tilgung' },
       ]}
       hoehe={300}
-      beschreibung={
-        `Ein Darlehen über ${formatCurrencyRounded(immobilienkredit.summe)} zu ` +
-        `${formatNumber(immobilienkredit.zinsProzent, 1)} Prozent mit ${TILGUNG} Prozent Anfangstilgung. ` +
-        `Die Jahresrate bleibt über die gesamte Laufzeit gleich hoch – jede Säule ist gleich groß. ` +
-        `Was sich verschiebt, ist ihre Aufteilung: Im ersten Jahr sind ${erstes.hinweis}, im letzten ` +
-        `${letztes.hinweis}. Insgesamt läuft der Kredit ${formatNumber(ergebnis.monate / 12, 0)} Jahre, ` +
-        `und es fallen ${formatCurrencyRounded(ergebnis.zinsenGesamt)} Zinsen an.`
-      }
     />
   )
 }
@@ -107,29 +95,12 @@ export function KreditAnfangstilgung() {
     }
   })
 
-  const langsam = immobilienTilgungssaetze[0]
-  const zuegig = immobilienTilgungssaetze[1]
-  const rateLangsam = rateBeiTilgungssatz(immobilienkredit, langsam)
-  const rateZuegig = rateBeiTilgungssatz(immobilienkredit, zuegig)
-  const jahreLangsam = auswerten(immobilienkredit, rateLangsam).monate / 12
-  const jahreZuegig = auswerten(immobilienkredit, rateZuegig).monate / 12
-  const restLangsam = restschuldNach(immobilienkredit, rateLangsam, immobilienZinsbindung)
-
   return (
     <SaeulenDiagramm
       id="kredit-anfangstilgung"
       saeulen={saeulen}
       einheit="Laufzeit in Jahren"
       hoehe={290}
-      beschreibung={
-        `Dasselbe Darlehen über ${formatCurrencyRounded(immobilienkredit.summe)}, vier Anfangstilgungen. ` +
-        `Mit ${langsam} Prozent dauert die Rückzahlung ${formatNumber(jahreLangsam, 0)} Jahre, mit ` +
-        `${zuegig} Prozent nur ${formatNumber(jahreZuegig, 0)} – bei einer Rate, die um ` +
-        `${formatNumber(((rateZuegig - rateLangsam) / rateLangsam) * 100, 0)} Prozent höher liegt. ` +
-        `Nach ${immobilienZinsbindung} Jahren Zinsbindung stehen bei der langsamsten Variante noch ` +
-        `${formatCurrencyRounded(restLangsam)} offen, die dann zum unbekannten Zins der Zukunft neu ` +
-        `finanziert werden müssen.`
-      }
     />
   )
 }
@@ -178,8 +149,6 @@ export function ImmobilieRestschuld() {
     }
   })
 
-  const beiBindung = zeilen.find((zeile) => zeile.jahr === immobilienZinsbindung)!
-
   return (
     <SaeulenDiagramm
       id="immobilie-restschuld"
@@ -202,22 +171,6 @@ export function ImmobilieRestschuld() {
             ? 'Ende der Zinsbindung'
             : `${formatNumber(100 - zeile.anteil, 0)} % getilgt`,
       }))}
-      beschreibung={
-        `Ein Darlehen über ${formatCurrencyRounded(darlehen.summe)} zu ` +
-        `${formatNumber(darlehen.zinsProzent, 1)} Prozent mit ${immobilieAnfangstilgung} Prozent ` +
-        `Anfangstilgung. Jede Säule zeigt dieselbe Summe, aufgeteilt in bereits getilgt und noch offen: ` +
-        zeilen
-          .map(
-            (zeile) =>
-              `nach ${zeile.jahr} Jahren sind ${formatCurrencyRounded(zeile.getilgt)} getilgt und ` +
-              `${formatCurrencyRounded(zeile.offen)} offen`
-          )
-          .join('; ') +
-        `. Am Ende der üblichen Zinsbindung von ${immobilienZinsbindung} Jahren stehen damit noch ` +
-        `${formatNumber(beiBindung.anteil, 0)} Prozent der ursprünglichen Summe offen. Genau dieser ` +
-        `Betrag muss zu den dann geltenden Konditionen weiterfinanziert werden – und welche das sein ` +
-        `werden, weiß heute niemand. Vollständig getilgt ist das Darlehen erst nach ${laufzeit} Jahren.`
-      }
     />
   )
 }

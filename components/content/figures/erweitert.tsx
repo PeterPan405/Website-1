@@ -5,6 +5,7 @@ import {
   LinienDiagramm,
   UmbrochenerText,
 } from '@/components/content/figures/Diagramme'
+import { VERKAUFSGRUENDE, ZUGANGSWEGE } from '@/components/content/figures/kastenreihen'
 import { Beschriftung, FigureSvg } from '@/components/content/figures/Rahmen'
 import { formatNumber, formatPercent } from '@/lib/format'
 import {
@@ -57,7 +58,6 @@ export function WaehrungAbsicherung() {
 
   const letzteOhne = ohne[ohne.length - 1].y
   const letzteMit = mit[mit.length - 1].y
-  const abstand = ((letzteOhne - letzteMit) / letzteOhne) * 100
 
   return (
     <LinienDiagramm
@@ -85,19 +85,6 @@ export function WaehrungAbsicherung() {
           endText: formatNumber(letzteMit, 0),
         },
       ]}
-      beschreibung={
-        `Dieselbe Anlage über ${absicherungJahre} Jahre, einmal mit und einmal ohne ` +
-        `Währungsabsicherung. Die Wertentwicklung ist in beiden Fällen dieselbe – der Wechselkurs kommt ` +
-        `in dieser Rechnung bewusst nicht vor, weil er für die Kosten der Absicherung keine Rolle ` +
-        `spielt. Die Absicherung kostet die Zinsdifferenz zwischen den beiden Währungsräumen, hier ` +
-        `angenommen mit ${formatPercent(absicherungZinsdifferenz, 0)} im Jahr. Das ist keine Gebühr, die ` +
-        `sich verhandeln ließe, sondern eine Folge der Arbitragefreiheit: Der Terminkurs entspricht dem ` +
-        `Kassakurs, angepasst um genau diese Differenz. Aus 100 werden ohne Absicherung ` +
-        `${formatNumber(letzteOhne, 0)}, mit Absicherung ${formatNumber(letzteMit, 0)} – ein Rückstand ` +
-        `von ${formatPercent(abstand, 0)} nach ${absicherungJahre} Jahren. Kehrt sich die Zinsdifferenz ` +
-        `um, kehrt sich auch das Vorzeichen um: Dann wird die Absicherung zur Einnahme. Beides ist ` +
-        `unabhängig davon, wohin der Wechselkurs tatsächlich läuft.`
-      }
     />
   )
 }
@@ -148,8 +135,6 @@ export function InflationBasiseffekt() {
       y: (niveau(monat) / niveau(monat - 12) - 1) * 100,
     }))
 
-  const letzterMonatMitRate = basiseffektSprungMonat + 11
-
   return (
     <LinienDiagramm
       id="inflation-basiseffekt"
@@ -174,48 +159,11 @@ export function InflationBasiseffekt() {
           punkte: teuerung,
         },
       ]}
-      beschreibung={
-        `Ein einziger Preissprung um ${formatPercent(basiseffektSprungProzent, 0)} im Monat ` +
-        `${basiseffektSprungMonat}; danach ändert sich kein Preis mehr. Die blaue Linie zeigt das ` +
-        `Preisniveau gegenüber dem Ausgangsmonat: Sie springt einmal und bleibt oben. Die rote Linie ` +
-        `zeigt die Teuerungsrate, also den Abstand zum selben Monat des Vorjahres. Sie beginnt erst im ` +
-        `zwölften Monat, weil es vorher keinen Vergleichsmonat gibt, steht dann bis Monat ` +
-        `${letzterMonatMitRate} bei ${formatPercent(basiseffektSprungProzent, 0)} und fällt danach auf ` +
-        `null. Gesunken ist dabei kein einziger Preis – aus der Rechnung ist lediglich der Sprung ` +
-        `herausgefallen, weil er nun auch im Vergleichsmonat steckt. Das ist der Basiseffekt. Er ist der ` +
-        `Grund, warum „die Inflation geht zurück“ und „es wird wieder billiger“ zwei völlig verschiedene ` +
-        `Aussagen sind – und warum eine fallende Rate niemanden entlastet, der die höheren Preise weiter ` +
-        `bezahlt.`
-      }
     />
   )
 }
 
 // ------------------------------------------------------- Verkaufsgründe
-
-/**
- * Woher ein Verkaufsgrund stammt – aus dem eigenen Plan oder aus dem Markt.
- *
- * Die beiden Tabellen im Thema stehen untereinander und tragen die Überschrift
- * „Vier Gründe, die tragen“ und „Vier, die nicht tragen“. Was sie nicht
- * zeigen, ist das Unterscheidungsmerkmal, und genau das ist das Werkzeug: Ein
- * tragfähiger Grund kommt fast immer von innen, ein Scheingrund von außen.
- * Nebeneinandergestellt ist das eine Regel, die man sich merken kann.
- */
-const VERKAUFSGRUENDE = {
-  tragen: [
-    'Das Geld wird gebraucht',
-    'Das Ziel ist erreicht',
-    'Die Anlagethese ist widerlegt',
-    'Die Aufteilung ist verschoben',
-  ],
-  tragenNicht: [
-    'Der eigene Einstiegskurs',
-    'Runde Marken und Chartlinien',
-    'Medienstimmung und Prognosen',
-    'Gewinne „mitnehmen“ wollen',
-  ],
-} as const
 
 export function VerkaufGruende() {
   const spalte = 296
@@ -243,20 +191,7 @@ export function VerkaufGruende() {
   ]
 
   return (
-    <FigureSvg
-      id="verkauf-gruende"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Acht Verkaufsgründe in zwei Spalten, sortiert nach ihrer Herkunft. Links die vier, die tragen, ' +
-        'weil sie aus dem eigenen Plan oder dem eigenen Leben stammen: ' +
-        VERKAUFSGRUENDE.tragen.join(', ') +
-        '. Rechts die vier, die nicht tragen, weil sie aus dem Markt kommen: ' +
-        VERKAUFSGRUENDE.tragenNicht.join(', ') +
-        '. Die Herkunft ist das Erkennungsmerkmal und damit das eigentliche Werkzeug: Wer vor einem ' +
-        'Verkauf nur eine Frage stellen kann, stellt diese – kommt der Grund von innen oder von außen? ' +
-        'Ein Grund von außen ist fast immer eine Reaktion auf etwas, das bereits im Kurs steht.'
-      }
-    >
+    <FigureSvg id="verkauf-gruende" viewBox={`0 0 640 ${hoehe}`}>
       {spalten.map((spalteDaten) => (
         <g key={spalteDaten.titel}>
           <Feld
@@ -314,36 +249,6 @@ export function VerkaufGruende() {
 
 // ------------------------------------------------------- Zugangswege Krypto
 
-/**
- * Drei Wege zu derselben Anlage, drei verschiedene Risiken.
- *
- * Die Tabelle im Thema stellt Merkmal und Preis nebeneinander. Was sie nicht
- * sichtbar macht: Es ist immer dasselbe Risiko, das nur die Stelle wechselt.
- * Wer den Schlüssel selbst hält, trägt das Verwahrrisiko selbst; wer ihn
- * abgibt, tauscht es gegen das Risiko der Gegenstelle. Verschwinden lässt es
- * sich nicht.
- */
-const ZUGANGSWEGE = [
-  {
-    weg: 'Selbst verwahrt',
-    hat: 'Du hältst den Schlüssel',
-    risiko: 'Verlust des Schlüssels – kein Zurücksetzen, keine Hotline',
-    farbe: FARBEN.marke,
-  },
-  {
-    weg: 'Bei der Plattform',
-    hat: 'Die Plattform hält den Schlüssel',
-    risiko: 'Insolvenz und Missbrauch der Plattform',
-    farbe: FARBEN.warnung,
-  },
-  {
-    weg: 'ETP im Depot',
-    hat: 'Ein Wertpapier auf den Kurs',
-    risiko: 'Der Emittent – auch bei hinterlegten Beständen',
-    farbe: FARBEN.gefahr,
-  },
-] as const
-
 export function KryptoZugangswege() {
   const breite = 196
   const abstand = 16
@@ -353,21 +258,7 @@ export function KryptoZugangswege() {
   const hoehe = oben + kastenHoehe + 74
 
   return (
-    <FigureSvg
-      id="krypto-zugangswege"
-      viewBox={`0 0 640 ${hoehe}`}
-      beschreibung={
-        'Drei Wege zu derselben Anlage, nebeneinander, mit dem jeweils verbleibenden Risiko: ' +
-        ZUGANGSWEGE.map((z) => `${z.weg} – ${z.hat}; das Risiko ist ${z.risiko}`).join(
-          '. '
-        ) +
-        '. Die Gegenüberstellung zeigt, dass es immer dasselbe Risiko ist, das nur die Stelle wechselt. ' +
-        'Wer den Schlüssel selbst hält, trägt die Verwahrung selbst – und ein verlorener Schlüssel lässt ' +
-        'sich nicht zurücksetzen. Wer ihn abgibt, tauscht dieses Risiko gegen das der Gegenstelle. ' +
-        'Verschwinden lässt es sich auf keinem der drei Wege. Die Frage lautet deshalb nicht, welcher Weg ' +
-        'sicher ist, sondern welches Risiko man lieber trägt.'
-      }
-    >
+    <FigureSvg id="krypto-zugangswege" viewBox={`0 0 640 ${hoehe}`}>
       <Beschriftung x={320} y={24} anchor="middle" ton="leise" groesse={12}>
         dieselbe Anlage, drei Wege – das Risiko wechselt nur die Stelle
       </Beschriftung>
@@ -462,17 +353,6 @@ export function EinsteigerPruefung() {
           farbe: FARBEN.gefahr,
         },
       ]}
-      beschreibung={
-        'Fünf Fragen an das gesetzlich vorgeschriebene Basisinformationsblatt, in der Reihenfolge, in ' +
-        'der sie am meisten aussortieren. Erstens: Was ist der Basiswert – worauf bezieht sich das ' +
-        'Produkt überhaupt? Zweitens: Was kostet es? Einstieg, laufende Kosten und Ausstieg stehen alle ' +
-        'drei darin. Drittens: Welche Laufzeit hat es, wann kommt man an das Geld, und was kostet ein ' +
-        'vorzeitiger Ausstieg? Viertens: Was steht im ungünstigen Szenario – das ist die Zahl, die man ' +
-        'aushalten muss. Fünftens: Wer haftet? Ein Fonds ist Sondervermögen, ein Zertifikat eine ' +
-        'Forderung gegen die ausgebende Bank. Die Reihenfolge ist der eigentliche Rat: Die ersten beiden ' +
-        'Fragen sortieren die meisten Produkte bereits aus, und wer sie zuerst stellt, spart sich die ' +
-        'übrigen drei.'
-      }
     />
   )
 }

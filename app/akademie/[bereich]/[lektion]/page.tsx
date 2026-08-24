@@ -14,7 +14,7 @@ import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { TagLinks } from '@/components/ui/TagLinks'
 import { getCalculatorDefinition } from '@/data/calculators'
-import { figureMeta } from '@/data/figures'
+import { vorlesegrafiken } from '@/lib/grafik-beschreibungen'
 import {
   belegarten,
   getAlleLektionen,
@@ -141,7 +141,7 @@ export default async function LektionPage({ params }: Props) {
               <Vorlesen
                 abschnitte={vorleseAbschnitte(
                   [{ type: 'paragraph', text: gefunden.kernaussage }, ...gefunden.inhalt],
-                  figureMeta
+                  vorlesegrafiken()
                 )}
                 aufnahme={vorleseaufnahme(
                   `akademie/${gefunden.bereich}/${gefunden.slug}`

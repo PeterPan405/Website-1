@@ -14,9 +14,7 @@ import {
   ordergebuehrFest,
   ordergroessen,
   spreadProzent,
-  derivatEinsatz,
   derivatSicherheitssaetze,
-  einlagensicherungErhoeht,
   einlagensicherungGrenze,
   sparplanKurse,
   sparplanRate,
@@ -75,13 +73,6 @@ export function TagesgeldRealzins() {
         { farbe: FARBEN.gefahr, text: 'nicht gedeckt' },
       ]}
       hoehe={270}
-      beschreibung={
-        `Ein Tagesgeldkonto zu ${formatPercent(realzinsbeispiel.nominal, 1)} Zins bei ` +
-        `${formatPercent(inflationsbeispiel.rate, 1)} Inflation. Der Zins deckt den unteren Teil der ` +
-        `Inflationssäule; der obere Teil von ${formatPercent(fehlbetrag, 1)} bleibt ungedeckt. Der Realzins ` +
-        `beträgt damit ${formatPercent(realzinsbeispiel.real, 2)}: Das Konto wächst, die Kaufkraft schrumpft. ` +
-        `Auf dem Kontoauszug ist davon nichts zu sehen – dort steht nur die erste Säule.`
-      }
     />
   )
 }
@@ -90,11 +81,6 @@ export function TagesgeldRealzins() {
 
 export function SparplanDurchschnittspreis() {
   const kaeufe = sparplanKurse.map((kurs) => ({ kurs, anteile: sparplanRate / kurs }))
-  const anteile = kaeufe.reduce((summe, kauf) => summe + kauf.anteile, 0)
-  const eingezahlt = sparplanRate * sparplanKurse.length
-  const durchschnittspreis = eingezahlt / anteile
-  const kursdurchschnitt =
-    sparplanKurse.reduce((summe, kurs) => summe + kurs, 0) / sparplanKurse.length
 
   return (
     <SaeulenDiagramm
@@ -107,17 +93,6 @@ export function SparplanDurchschnittspreis() {
       }))}
       einheit="gekaufte Anteile je Rate"
       hoehe={280}
-      beschreibung={
-        `Sechs Raten zu je ${formatCurrency(sparplanRate)} bei Kursen von ` +
-        sparplanKurse.map((kurs) => formatCurrency(kurs)).join(', ') +
-        `. Die Rate bleibt gleich, also kauft sie bei niedrigem Kurs mehr Anteile – bei ` +
-        `${formatCurrency(Math.min(...sparplanKurse))} sind es ${formatNumber(sparplanRate / Math.min(...sparplanKurse), 1)}, ` +
-        `bei ${formatCurrency(Math.max(...sparplanKurse))} nur ${formatNumber(sparplanRate / Math.max(...sparplanKurse), 1)}. ` +
-        `Nach ${formatCurrency(eingezahlt)} Einzahlung liegen ${formatNumber(anteile, 1)} Anteile im Depot, ` +
-        `im Schnitt zu ${formatCurrency(durchschnittspreis)} gekauft. Der Durchschnitt der sechs Kurse liegt bei ` +
-        `${formatCurrency(kursdurchschnitt)} – der bezahlte Preis liegt darunter, und zwar allein deshalb, ` +
-        `weil die Rate gleich blieb.`
-      }
     />
   )
 }
@@ -152,26 +127,12 @@ export function WaehrungErgebnis() {
     }
   })
 
-  const schlechtester = waehrungKurse[waehrungKurse.length - 1]
-  const euroSchlecht = dollarEnde / schlechtester
-
   return (
     <SaeulenDiagramm
       id="waehrung-ergebnis"
       saeulen={saeulen}
       einheit="Ergebnis in Euro"
       hoehe={290}
-      beschreibung={
-        `${formatCurrencyRounded(waehrungEinsatz)} werden bei einem Kurs von ` +
-        `${formatNumber(waehrungKursStart, 2)} Dollar je Euro in eine Dollaranlage gesteckt. Die Anlage ` +
-        `gewinnt ${formatPercent(waehrungKursgewinn, 0)} – in Dollar. Was in Euro ankommt, hängt vom Kurs ` +
-        `beim Verkauf ab: ` +
-        saeulen
-          .map((s) => `bei ${s.label} sind es ${s.hinweis} (${s.wertText})`)
-          .join(', ') +
-        `. Wertet der Euro auf ${formatNumber(schlechtester, 2)} auf, bleiben von zehn Prozent Kursgewinn ` +
-        `${formatCurrencyRounded(euroSchlecht)} – der Wechselkurs hat mehr entschieden als die Anlage.`
-      }
     />
   )
 }
@@ -204,20 +165,6 @@ export function DerivatHebel() {
         farbe: hebel >= 10 ? FARBEN.gefahr : FARBEN.marke,
       }))}
       labelBreite={132}
-      beschreibung={
-        `Wie viel Sicherheitsleistung welchen Hebel ergibt, bei ${formatCurrencyRounded(derivatEinsatz)} ` +
-        `Einsatz. ` +
-        stufen
-          .map(
-            ({ satz, hebel, totalverlustBei }) =>
-              `${formatPercent(satz, 0)} Sicherheit bedeuten Hebel ${formatNumber(hebel, 0)}, und der Einsatz ` +
-              `ist bei ${formatPercent(totalverlustBei, 0)} Kursbewegung gegen die Position vollständig weg`
-          )
-          .join('; ') +
-        `. Der Hebel wirkt in beide Richtungen, aber nicht symmetrisch: Nach oben ist der Gewinn offen, ` +
-        `nach unten endet die Position beim Einsatz – und zwar bei einer Bewegung, die bei einer Aktie ein ` +
-        `gewöhnlicher Handelstag wäre.`
-      }
     />
   )
 }
@@ -242,8 +189,6 @@ export function EinlagensicherungGrenze() {
     }
   })
 
-  const groesstes = GUTHABEN[GUTHABEN.length - 1]
-
   return (
     <SaeulenDiagramm
       id="einlagensicherung-grenze"
@@ -254,16 +199,6 @@ export function EinlagensicherungGrenze() {
         { farbe: FARBEN.gefahr, text: 'nicht gesichert' },
       ]}
       hoehe={290}
-      beschreibung={
-        `Die gesetzliche Einlagensicherung deckt ${formatCurrencyRounded(einlagensicherungGrenze)} je Kunde ` +
-        `und Bank. Bei ${formatCurrencyRounded(GUTHABEN[0])} ist damit alles gesichert. Bei ` +
-        `${formatCurrencyRounded(einlagensicherungGrenze)} ebenfalls, genau bis zum letzten Euro. Bei ` +
-        `${formatCurrencyRounded(groesstes)} sind ` +
-        `${formatCurrencyRounded(groesstes - einlagensicherungGrenze)} nicht gedeckt – dieser Teil hinge im ` +
-        `Insolvenzfall an der Masse. Die Grenze gilt je Bank, nicht je Konto: Zwei Konten bei derselben Bank ` +
-        `werden zusammengezählt. Vorübergehend, etwa nach einem Hausverkauf, sind bis zu ` +
-        `${formatCurrencyRounded(einlagensicherungErhoeht)} gedeckt.`
-      }
     />
   )
 }
@@ -285,9 +220,6 @@ export function DepotOrderkosten() {
     }
   })
 
-  const klein = ordergroessen[0]
-  const gross = ordergroessen[ordergroessen.length - 1]
-
   return (
     <SaeulenDiagramm
       id="depot-orderkosten"
@@ -298,16 +230,6 @@ export function DepotOrderkosten() {
         { farbe: FARBEN.warnung, text: 'Spread – steht nirgends' },
       ]}
       hoehe={300}
-      beschreibung={
-        `Was eine Order kostet, aufgeteilt in die beiden Blöcke: einen Festpreis von ` +
-        `${formatCurrency(ordergebuehrFest)} und einen Spread von ${formatPercent(spreadProzent, 1)} des ` +
-        `Volumens. Bei ${formatCurrencyRounded(klein)} überwiegt die Gebühr deutlich, und die Gesamtkosten ` +
-        `betragen ${saeulen[0].wertText} des Einsatzes. Bei ${formatCurrencyRounded(gross)} ist die Gebühr ` +
-        `kaum noch zu sehen; fast alles ist Spread, und die Gesamtkosten sinken auf ` +
-        `${saeulen[saeulen.length - 1].wertText}. Der Block, der auf der Abrechnung steht, ist also der ` +
-        `kleinere – ausgerechnet der andere lässt sich durch die Wahl von Handelsplatz und Uhrzeit ` +
-        `beeinflussen.`
-      }
     />
   )
 }
