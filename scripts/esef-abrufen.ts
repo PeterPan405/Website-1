@@ -353,6 +353,41 @@ const ZUORDNUNG: Record<string, string> = {
   'WDS.AX': 'Woodside Energy Group Ltd',
 }
 
+/**
+ * Was der Lauf vom 23. August 2026 sonst noch traf – und warum es draußen
+ * bleibt.
+ *
+ * Steht als Liste da und nicht als Erinnerung: Jeder dieser Treffer sieht bei
+ * der nächsten Sonde wieder wie ein Fund aus, und jeder ergäbe Zahlen, die auf
+ * der Seite tadellos aussehen.
+ *
+ * - **Roche** (`ROG.SW`) traf `ROCHE BOBOIS` – den französischen Möbelhändler.
+ *   403 Millionen Umsatz statt der sechzig Milliarden des Konzerns.
+ * - **Wise** (`WISE.L`), der britische Zahlungsdienst, traf `Wise Group AB` –
+ *   eine schwedische Gesellschaft mit 631 Millionen Kronen Umsatz.
+ * - **Titan Company** (`TITAN.NS`, Indien) traf `Titan Cement International`
+ *   in Belgien. Gemeinsam ist beiden nur das Wort.
+ * - **SK Hynix** (`000660.KS`) und **SK Innovation** (`096770.KS`) trafen
+ *   beide `SK텔레콤`, also SK Telecom – und damit dieselben Zahlen für zwei
+ *   verschiedene Unternehmen. Schon 2026 einmal aufgefallen.
+ * - **Nestlé** (`NESN.SW`) und **Nestlé India** (`NESTLEIND.NS`) trafen beide
+ *   `NESTLE HOLDINGS, INC.`, die US-Finanzierungstochter.
+ * - **Volvo** (`VOLV-B.ST`) traf `Volvo Car AB` – seit 1999 ein anderes
+ *   Unternehmen als die Volvo AB.
+ * - **SEB** (`SEB-A.ST`, Skandinaviska Enskilda Banken) traf `SEB SA`, den
+ *   französischen Haushaltsgerätehersteller.
+ * - **Hexagon** (`HEXA-B.ST`) traf `HEXAGON PURUS ASA`, **Sartorius**
+ *   (`SRT3.DE`) traf `Sartorius Stedim Biotech`, **Siemens** (`SIE.DE`) traf
+ *   `SIEMENS GAMESA RENEWABLE ENERGY SA`.
+ * - **Rio Tinto** (`RIO.L`, `RIO.AX`) und **Carlsberg** (`CARL-B.CO`) bleiben
+ *   aus den strukturellen Gründen draußen, die oben stehen: eine
+ *   Doppelnotierung aus zwei gemeinsam bilanzierenden Gesellschaften, und die
+ *   Betriebstochter statt der börsennotierten Mutter.
+ * - **Heineken** (`HEIA.AS`) traf `Heineken Holding N.V.` Für `HEIA.AS` ist
+ *   das die falsche Gesellschaft – für `HEIO.AS` ist es die richtige, und
+ *   deshalb steht sie oben. Dieselbe Zeile, umgekehrtes Vorzeichen.
+ */
+
 /** Die gesuchten Größen nach IFRS, in der Rangfolge ihrer Bezeichner. */
 const GROESSEN = [
   {
