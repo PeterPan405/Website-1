@@ -357,8 +357,8 @@ Zusage: höchstens sechs Minuten.
   fehlen 70 gerechnete Beschreibungen. Der Fingerabdruck hängt an ihnen.
   Reihenfolge Beginner → Akademie → Fortgeschritten → Profi. Eine Seite ohne
   Aufnahme ist kein Fehler – dann spricht das Gerät.
-- Der Zeitplan in `lese-stimme.yml` ist **auskommentiert und wartet**, bis die
-  Inhalte stehen. Er ist nicht kaputt.
+- `lese-stimme.yml` läuft seit dem 24. August 2026 wieder nach Zeitplan
+  (23:19 UTC). 12 von 172 Seiten sind gesprochen.
 
 → `ENTSCHEIDUNGEN.md`: „Eine Fallunterscheidung über Merkmale, die der Stoff
 nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",

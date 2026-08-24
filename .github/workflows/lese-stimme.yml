@@ -36,36 +36,34 @@ name: Lernseiten vertonen
 # steht beim nächsten Lauf wieder auf der Liste. Ohne ihn müsste man entweder
 # jede Nacht alles neu sprechen oder Änderungen von Hand nachhalten.
 
-# **Der Zeitplan ist stillgelegt, bis der erste Lauf etwas erzeugt hat.**
+# ## Der Zeitplan war zweimal still – beide Male aus gutem Grund
 #
-# Der Lauf vom 10. August 2026 sprach mit elf Läufern vier Stunden lang und
-# legte **keine einzige** Aufnahme ab: Jede Seite scheiterte, jede erzeugte
-# eine Warnung, und alle elf Läufer endeten grün. Bis feststeht, woran das
-# liegt, wäre eine Wiederholung jede Nacht nur teurer Leerlauf.
+# **Erste Stilllegung, 10. August 2026.** Ein Lauf mit elf Läufern sprach vier
+# Stunden lang und legte **keine einzige** Aufnahme ab: Jede Seite scheiterte,
+# jede erzeugte eine Warnung, und alle elf Läufer endeten grün. Behoben, und
+# derselbe Tag brachte zwölf gesprochene Seiten.
 #
-# Gestartet wird deshalb von Hand – mit `seiten: 1` als Probe, die in Minuten
-# statt in Stunden zeigt, ob es geht. Der Zeitplan kommt zurück, sobald ein
-# Lauf Aufnahmen abgelegt hat; die Zeile steht hier fertig und
-# auskommentiert.
+# **Zweite Stilllegung, ebenfalls 10. August 2026.** Der Betreiber entschied,
+# die Lerntexte vorher auszubauen. Der Fingerabdruck einer Aufnahme hängt an
+# den gesprochenen Abschnitten; jede Textänderung macht sie ungültig. Vertonen
+# hätte geheißen, dieselben Seiten zweimal zu sprechen.
+#
+# **Wieder scharf seit dem 24. August 2026.** Beide Bedingungen sind erfüllt:
+# Alle 102 Lernstufen und 70 Akademie-Lektionen tragen `status: complete`, und
+# die Vorlesefassungen der Grafiken stehen – die 70 gerechneten Beschreibungen
+# liegen seit `lib/grafik-beschreibungen.ts` auf demselben Weg wie die festen.
+#
+# Nachgemessen am 24. August: 12 der 172 Seiten sind gesprochen, und alle zwölf
+# Fingerabdrücke stimmen noch. Es ist also nichts verfallen; es fehlen 160.
 on:
-  # Zeitplan vorübergehend still – **nicht, weil er nicht funktioniert.**
+  # 23:19 UTC, also 1:19 deutscher Sommerzeit – vor der Nachrichtenkette, die
+  # um 00:03 beginnt. Krumme Minute, wie AGENTS.md es für neue Läufe verlangt.
   #
-  # Er lief am 10. August zum ersten Mal erfolgreich und hat zwölf Seiten
-  # gesprochen. Am selben Tag hat der Betreiber entschieden, die Lerntexte
-  # vorher inhaltlich auszubauen und die Vorlesefassungen der Grafiken zu
-  # ergänzen: 74 der 135 Grafiken haben bisher nur ihre Bildunterschrift.
-  #
-  # Der Fingerabdruck einer Aufnahme hängt an den gesprochenen Abschnitten.
-  # Jede Textänderung macht die Aufnahme dieser Seite ungültig, und sie wird
-  # in der nächsten Nacht neu gesprochen. Jetzt zu vertonen hieße, dieselben
-  # Seiten zweimal zu sprechen – rund vier Läuferstunden je Nacht für ein
-  # Ergebnis, das bis zum Morgen überholt ist.
-  #
-  # Wieder scharf stellen, sobald die Inhalte stehen: Kommentar weg, cron
-  # zurück auf '19 23 * * *'.
-  #
-  # schedule:
-  #   - cron: '19 23 * * *'
+  # Was hier gesprochen wird, muss zu keiner Zusage fertig sein: Eine Seite
+  # ohne Aufnahme ist kein Fehler, dann liest das Gerät vor. Der Lauf darf
+  # deshalb an `schedule` hängen, anders als Nachrichten und Folge.
+  schedule:
+    - cron: '19 23 * * *'
   workflow_dispatch:
     inputs:
       seiten:
