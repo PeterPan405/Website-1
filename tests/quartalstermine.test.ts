@@ -603,13 +603,106 @@ pruefen(
   Grenze steht bei 80: Sie lässt Schwankung zu und schlägt an, wenn die Quelle
   das Feld eines Tages nicht mehr liefert – dann fiele der Anteil auf null, und
   das wäre genau der stille Datenausfall, den niemand bemerkt.
+
+  ## Warum seit dem 25. August zwei Bestände getrennt gezählt werden
+
+  An diesem Tag hat der nächtliche Lauf zum ersten Mal die Tokioter Termine
+  eingespielt: 268 Stück, und **keiner** trägt eine Uhrzeit. Das ist kein
+  Ausfall, sondern eine Eigenschaft der Quelle – die JPX-Liste hat keine Spalte
+  dafür, und AGENTS.md verbietet ausdrücklich, eine zu ergänzen.
+
+  Über den ganzen Bestand gemittelt fiel der Anteil damit von 92 auf 75 Prozent
+  und der Wächter schlug an. Die Grenze zu senken wäre der bequeme Weg gewesen
+  und der falsche: Bei 75 Prozent hätte ein echter Ausfall in New York erst
+  auffallen müssen, nachdem er die Hälfte der amerikanischen Termine erwischt
+  hat. AGENTS.md hat den Satz dazu – **ein Mittelwert kann nichts finden, was
+  er verdünnt.**
+
+  Gezählt wird deshalb dort, wo eine Uhrzeit überhaupt möglich ist: außerhalb
+  Tokios. Und für Tokio gilt die umgekehrte Prüfung – dort darf keine stehen.
+  Stünde dort eine, hätte sie jemand erfunden.
 */
-const anteil = termine.length > 0 ? mitUhrzeit.length / termine.length : 0
+const ausTokio = (termin: (typeof termine)[number]): boolean =>
+  termin.quelle.url.includes('jpx.co.jp')
+
+const mitZeitmoeglichkeit = termine.filter((termin) => !ausTokio(termin))
+const tokioter = termine.filter(ausTokio)
+
+const anteil =
+  mitZeitmoeglichkeit.length > 0
+    ? mitZeitmoeglichkeit.filter((termin) => termin.uhrzeit).length /
+      mitZeitmoeglichkeit.length
+    : 0
 pruefen(
-  'Die große Mehrheit der Termine nennt eine Uhrzeit',
+  'Die große Mehrheit der Termine mit möglicher Uhrzeit nennt eine',
   anteil >= 0.8,
-  `${mitUhrzeit.length} von ${termine.length} = ${(anteil * 100).toFixed(1)} % – ` +
+  `${mitZeitmoeglichkeit.filter((t) => t.uhrzeit).length} von ` +
+    `${mitZeitmoeglichkeit.length} = ${(anteil * 100).toFixed(1)} % – ` +
     'ein Sturz auf null hieße, die Quelle liefert das Feld nicht mehr.'
+)
+
+/*
+  Damit die Trennung nicht selbst zur stillen Absicherung wird: Beide Töpfe
+  müssen etwas enthalten. Ein Filter, der versehentlich alles wegwirft, ließe
+  die Prüfung darüber über eine leere Menge wahr werden.
+*/
+console.log(
+  `     (${mitZeitmoeglichkeit.length} Termine mit möglicher Uhrzeit, ` +
+    `${tokioter.length} aus Tokio ohne)`
+)
+pruefen(
+  'Beide Bestände sind besetzt – sonst prüft die Trennung nichts',
+  mitZeitmoeglichkeit.length > 100 && tokioter.length > 0,
+  `${mitZeitmoeglichkeit.length} / ${tokioter.length}`
+)
+
+pruefen(
+  'Kein Tokioter Termin behauptet eine Uhrzeit',
+  tokioter.every((termin) => !termin.uhrzeit),
+  'Die JPX-Liste hat keine Spalte dafür – eine Uhrzeit dort wäre erfunden.'
+)
+
+/* ------------------------------------------ Die Quelle unter dem Termin */
+
+console.log('')
+
+/*
+  Der Fehler, den der 25. August ans Licht gebracht hat.
+
+  `herkunftVon()` fragte zuerst, ob ein Termin **angekündigt** ist, und nur
+  dann nach seiner Herkunft. Solange alle fremden Quellen angekündigte Termine
+  lieferten, stimmte das. Die Tokioter Termine sind abgeleitet, also nicht
+  angekündigt – und fielen damit sämtlich in den Zweig „Quelle der
+  Momentaufnahme", also die SEC.
+
+  Unter Toyota, Sony und Hitachi stand danach „US-Börsenaufsicht SEC –
+  Formular 8-K". Keines dieser Unternehmen reicht ein 8-K ein.
+
+  Das ist keine Formalie: Eine Quellenangabe ist eine Einladung nachzuschlagen.
+  Wer der falschen folgt, findet nichts – und hält danach zu Recht auch den
+  Termin für erfunden.
+*/
+pruefen(
+  'Ein Tokioter Termin nennt die Tokioter Börse und nicht die SEC',
+  tokioter.every((termin) => !/SEC|8-K/.test(termin.quelle.label)),
+  tokioter
+    .filter((termin) => /SEC|8-K/.test(termin.quelle.label))
+    .slice(0, 3)
+    .map((termin) => `${termin.titel}: ${termin.quelle.label}`)
+    .join(' | ')
+)
+
+/*
+  Und die Gegenprobe an einem Namen, den jeder kennt: Toyota meldet in Tokio.
+  Ohne diese Zeile bliebe die Prüfung darüber wahr, wenn der Filter eines Tages
+  nichts mehr findet – und ein leerer Filter beweist nichts.
+*/
+const toyota = termine.filter((termin) => termin.titel.startsWith('Toyota'))
+pruefen(
+  'Toyota steht im Bestand und nennt die Tokioter Börse',
+  toyota.length > 0 && toyota.every((termin) => ausTokio(termin)),
+  `${toyota.length} Toyota-Termine, Quellen: ` +
+    [...new Set(toyota.map((termin) => termin.quelle.label))].join(' | ')
 )
 
 console.log(

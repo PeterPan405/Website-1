@@ -956,6 +956,50 @@ export const KI_HINWEIS_GESPROCHEN =
   'Bevor es losgeht, ein Hinweis: Diese Folge entsteht automatisiert mit ' +
   'KI-Werkzeugen. Auch die Stimme, die du gerade hörst, ist künstlich erzeugt.'
 
+/**
+ * Der Rechtshinweis, gesprochen – unmittelbar hinter dem KI-Hinweis.
+ *
+ * ## Warum er in die Aufnahme gehört
+ *
+ * Dieselbe Lücke wie beim KI-Hinweis, und dieselbe Antwort. Der ausführliche
+ * Satz steht seit Langem unter jeder Folge (siehe `baueFolge`, Beschreibung),
+ * und er steht in `RECHTSHINWEIS_KERN` auf jeder Seite der Website. Wer die
+ * Folge in einer Podcast-App hört, im Auto oder beim Laufen, sieht beides
+ * nie – und hört fünf Minuten lang Kurse, Zahlen und Einordnungen.
+ *
+ * Genau dort entsteht der Eindruck, hier spreche jemand über das, was zu tun
+ * ist. Der Betreiber hat den gesprochenen Hinweis am 25. August 2026 verlangt.
+ *
+ * ## Warum unmittelbar hinter dem KI-Hinweis – und im selben Absatz
+ *
+ * Kleingedrucktes gehört an **eine** Stelle. Zwei getrennte Absätze am Anfang
+ * wären zwei Unterbrechungen statt einer, und die zweite trifft einen Hörer,
+ * der die erste schon überstanden hat. Zusammen sind es vier Sätze in rund
+ * zwanzig Sekunden; danach fängt die Folge an und wird nicht wieder angehalten.
+ *
+ * Die Stelle selbst ist dieselbe wie beim KI-Hinweis und aus denselben
+ * Gründen: nicht davor, nicht am Ende. Siehe `KI_HINWEIS_GESPROCHEN`.
+ *
+ * ## Warum er trotzdem kurz ist
+ *
+ * Weil er sonst weggeklickt wird. Er nennt die drei Dinge, auf die es
+ * ankommt – keine Beratung, keine Empfehlung, keine Haftung – und hört dann
+ * auf. Das Vollständige steht unter jeder Folge, im Impressum und in der
+ * Fußzeile jeder Seite.
+ *
+ * ## Warum „etwas zu kaufen oder zu verkaufen" und nicht „Kauf- oder
+ * Verkaufsempfehlung"
+ *
+ * Weil das hier gesprochen wird. Eine Ergänzungsbindestrich-Konstruktion ist
+ * eine Schreibweise; eine Stimme muss sie auflösen, und welche Stimme das wie
+ * tut, ist nicht vorhersagbar. Ausgeschrieben klingt es außerdem nach einem
+ * Menschen und nicht nach einem Formular.
+ */
+export const RECHTSHINWEIS_GESPROCHEN =
+  'Und noch eins: Das hier ist Finanzbildung und keine Anlageberatung – ' +
+  'keine Empfehlung, etwas zu kaufen oder zu verkaufen. Alle Angaben ohne ' +
+  'Gewähr; für deine Entscheidungen haften wir nicht.'
+
 function wortzahl(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
 }
@@ -1013,6 +1057,16 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
 
     Als **eigener Absatz** und nicht angehängt: Die Pause zwischen zwei
     Absätzen setzt ihn ab, statt ihn in den Begrüßungssatz einzuschleifen.
+
+    Der Rechtshinweis steht seit dem 25. August 2026 unmittelbar dahinter –
+    im **selben** Absatz. Kleingedrucktes gehört an eine Stelle: Zwei eigene
+    Absätze am Anfang wären zwei Unterbrechungen statt einer, und die zweite
+    trifft einen Hörer, der die erste schon überstanden hat.
+
+    Auf die Kapitelmarken wirkt sich das nicht aus. Der Läufer nimmt eine
+    Sprechpause erst dann als Kapitelanfang, wenn sie mindestens dreißig
+    Sekunden nach der vorigen liegt (`podcast-erzeugen.yml`); die Pausen
+    innerhalb der Begrüßung liegen sämtlich davor.
   */
   const begruessung =
     englischeNamenSprechbar(
@@ -1021,7 +1075,7 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     `Heute ist ${WOCHENTAGE[wochentag]}, der ${ordnungszahl(tag)} ${MONATE[monat - 1]} ` +
     `${zahlwort(jahr)}. ${sprechbar(edition.intro)}`
 
-  const einstieg = `${begruessung}\n\n${KI_HINWEIS_GESPROCHEN}`
+  const einstieg = `${begruessung}\n\n${KI_HINWEIS_GESPROCHEN} ${RECHTSHINWEIS_GESPROCHEN}`
 
   /*
     Das Fazit wiederholt nicht die Begrüßung – dort steht `intro` bereits.
