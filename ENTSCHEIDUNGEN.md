@@ -2298,10 +2298,59 @@ wenigsten.
 stünde unter 72 Titeln die falsche Quelle – und wer sie nachschlägt und dort
 nichts findet, hält danach zu Recht auch den Termin für erfunden.
 
-Jetzt: `herkunft` an der Vorhersage, `ANGEKUENDIGTE_QUELLEN` als Verzeichnis,
+Jetzt: `herkunft` an der Vorhersage, `TERMINQUELLEN` als Verzeichnis,
 `herkunftVon()` als die eine Stelle, die entscheidet. Fehlt das Feld, ist es
 der Sammelkalender – ein Bestand aus einem früheren Lauf muss deswegen nicht
 neu geschrieben werden.
+
+### Und genau dort ist es dann doch schiefgegangen – 25. August 2026
+
+Die Tabelle hieß `ANGEKUENDIGTE_QUELLEN`, und der Name war der Fehler.
+
+`herkunftVon()` fragte in dieser Reihenfolge:
+
+    if (!vorhersage.angekuendigt) return daten.quelle   // SEC
+    return ANGEKUENDIGTE_QUELLEN[vorhersage.herkunft ?? 'kalender']
+
+Solange alle fremden Quellen **angekündigte** Termine lieferten, stimmte das.
+Am 25. August hat der nächtliche Lauf zum ersten Mal die abgeleiteten Tokioter
+Termine eingespielt: 268 Stück, `angekuendigt` nicht gesetzt, weil sie
+geschätzt sind – und damit fiel jeder einzelne in den ersten Zweig.
+
+Unter Toyota, Sony und Hitachi stand danach „US-Börsenaufsicht SEC – Formular
+8-K". Keines dieser Unternehmen reicht ein 8-K ein. Genau der Fall, vor dem
+der Kommentar über der Tabelle warnt, drei Absätze weiter oben – eingetreten,
+weil eine **neue Art von Termin durch eine alte Fallunterscheidung lief**.
+
+Die Herkunft wird jetzt zuerst gefragt, und die Tabelle heißt nach dem, was
+sie enthält: Quellen von Terminen, nicht Quellen von Ankündigungen. Ein Name,
+der eine Teilmenge behauptet, lädt dazu ein, genau diese Teilmenge abzufragen.
+
+## Ein Mittelwert kann nichts finden, was er verdünnt – der Fall dazu
+
+**25. August 2026.** Derselbe Lauf hat noch einen Wächter zum Anschlagen
+gebracht, und dieser hatte recht.
+
+`tests/quartalstermine.test.ts` verlangt, dass mindestens 80 Prozent der
+Termine eine Uhrzeit tragen. Der Zweck steht daneben: Fällt das Feld in der
+Quelle aus, stürzt der Anteil auf null, und das wäre der stille Datenausfall,
+den sonst niemand bemerkt.
+
+Mit den 268 Tokioter Terminen fiel der Anteil von 92 auf 75 Prozent. **Kein
+Ausfall** – die JPX-Liste hat schlicht keine Spalte für die Uhrzeit, und
+AGENTS.md verbietet ausdrücklich, eine zu ergänzen.
+
+Die Grenze zu senken wäre der bequeme Weg gewesen und der falsche. Bei 75
+Prozent hätte ein echter Ausfall in New York erst auffallen müssen, nachdem er
+die Hälfte der amerikanischen Termine erwischt hat: Zwei Bestände mit
+verschiedenen Eigenschaften in einem Mittelwert, und der eine verdünnt den
+anderen so weit, dass der Wächter stumpf wird.
+
+Gezählt wird deshalb dort, wo eine Uhrzeit überhaupt möglich ist – außerhalb
+Tokios; dort steht der Anteil wieder bei 92 Prozent. Für Tokio gilt die
+umgekehrte Prüfung: Dort darf **keine** Uhrzeit stehen, denn eine dort wäre
+erfunden. Und weil eine Trennung selbst zur stillen Absicherung werden kann,
+prüft eine dritte Zeile, dass beide Töpfe überhaupt besetzt sind.
 
 Dasselbe bei `quartalsterminLuecke()`: Ein japanischer Titel ohne Termin fehlt
 nicht in der Quelle, sondern nur in ihrem Zeitfenster. Der Satz über die

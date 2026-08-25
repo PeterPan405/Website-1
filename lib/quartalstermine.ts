@@ -125,16 +125,19 @@ export const quartalstermineStand: string | null = daten.abgerufenAm
 export const quartalstermineQuelle = daten.quelle
 
 /**
- * Die Herkunft der **angekündigten** Termine.
+ * Die Quellen neben der SEC – für angekündigte **und** abgeleitete Termine.
  *
- * Zwei Quellen neben der SEC, und beide müssen als solche dastehen: Ein
- * Termin, der aus dem Sammelkalender oder von der Tokioter Börse kommt, ist
- * nicht aus 8-K-Meldungen abgeleitet, und die Quellenangabe darunter wäre
- * sonst schlicht falsch. Ein Leser, der die Angabe nachschlägt, fände an der
- * genannten Stelle nichts – und hielte danach zu Recht auch den Termin für
- * erfunden.
+ * Beide müssen als solche dastehen: Ein Termin, der aus dem Sammelkalender
+ * oder von der Tokioter Börse kommt, ist nicht aus 8-K-Meldungen abgeleitet,
+ * und die Quellenangabe darunter wäre sonst schlicht falsch. Ein Leser, der
+ * die Angabe nachschlägt, fände an der genannten Stelle nichts – und hielte
+ * danach zu Recht auch den Termin für erfunden.
+ *
+ * **Bis zum 25. August 2026 hieß diese Tabelle `ANGEKUENDIGTE_QUELLEN`, und
+ * der Name war der Fehler.** Er hat `herkunftVon()` dazu verleitet, die
+ * Herkunft nur bei angekündigten Terminen zu fragen – siehe dort.
  */
-export const ANGEKUENDIGTE_QUELLEN = {
+export const TERMINQUELLEN = {
   kalender: {
     label: 'Sammelkalender angekündigter Meldetermine (Alpha Vantage)',
     url: 'https://www.alphavantage.co/documentation/#earnings-calendar',
@@ -148,15 +151,34 @@ export const ANGEKUENDIGTE_QUELLEN = {
 /**
  * Die Herkunft eines Termins, wie sie unter ihm steht.
  *
- * Ein angekündigter Termin nennt seine eigene Quelle, ein hochgerechneter die
- * der Momentaufnahme. Die Unterscheidung gehört an **eine** Stelle: Sie wurde
- * an dreien gebraucht, und drei Stellen laufen auseinander.
+ * Gefragt wird **zuerst der Termin selbst**: Trägt die Vorhersage ein
+ * `herkunft`, gilt das – ob sie angekündigt ist oder abgeleitet. Erst wenn sie
+ * keines trägt, gilt die Quelle der Momentaufnahme, also die SEC.
+ *
+ * ## Warum die Reihenfolge zählt
+ *
+ * Bis zum 25. August 2026 stand die Frage nach `angekuendigt` davor:
+ *
+ *     if (!vorhersage.angekuendigt) return daten.quelle   // SEC
+ *     return ANGEKUENDIGTE_QUELLEN[vorhersage.herkunft ?? 'kalender']
+ *
+ * Solange es nur angekündigte Termine aus fremden Quellen gab, stimmte das.
+ * Am 25. August hat der nächtliche Lauf zum ersten Mal die **abgeleiteten**
+ * Tokioter Termine eingespielt: 268 Stück, `angekuendigt` nicht gesetzt, weil
+ * sie geschätzt sind – und damit fiel jeder einzelne in den ersten Zweig.
+ *
+ * Unter Toyota, Sony und Hitachi stand danach „US-Börsenaufsicht SEC –
+ * Formular 8-K". Keines dieser Unternehmen reicht ein 8-K ein. Genau der Fall,
+ * vor dem der Kommentar über `TERMINQUELLEN` warnt, und er ist eingetreten,
+ * weil eine neue Art von Termin durch eine alte Fallunterscheidung lief.
+ *
+ * `tests/quartalstermine.test.ts` prüft das jetzt an echten Terminen und an
+ * einem Gegenbeispiel.
  */
 function herkunftVon(vorhersage: Vorhersage): { label: string; url: string } {
-  if (!vorhersage.angekuendigt) {
-    return { label: daten.quelle.label, url: daten.quelle.url }
-  }
-  return ANGEKUENDIGTE_QUELLEN[vorhersage.herkunft ?? 'kalender']
+  if (vorhersage.herkunft) return TERMINQUELLEN[vorhersage.herkunft]
+  if (vorhersage.angekuendigt) return TERMINQUELLEN.kalender
+  return { label: daten.quelle.label, url: daten.quelle.url }
 }
 
 /**

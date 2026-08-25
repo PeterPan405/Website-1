@@ -245,9 +245,9 @@ ist keiner"
   kein `geschaetzt`, heißt auf der Seite „angekündigt" und nennt seine eigene
   Quelle.
 - **Die Herkunft hängt am Termin, nicht am Code.** `herkunft` in der Vorhersage,
-  aufgelöst über `ANGEKUENDIGTE_QUELLEN` in `herkunftVon()`. Wer eine vierte
-  Quelle anschließt, trägt sie **dort** ein – eine feste Quellenangabe wäre bei
-  jedem zweiten Titel die falsche.
+  aufgelöst über `TERMINQUELLEN` in `herkunftVon()`, und **vor** der Frage nach
+  `angekuendigt` – sonst zitiert ein abgeleiteter Tokio-Termin die SEC. Wer eine
+  vierte Quelle anschließt, trägt sie **dort** ein.
 - **Der Sammelkalender führt, was in New York notiert** – auch die
   Hinterlegungsscheine ausländischer Emittenten, und damit Alibaba. Von 41
   europäischen und asiatischen Standardwerten waren drei enthalten. Wer keinen
@@ -338,8 +338,8 @@ Zusage: höchstens sechs Minuten.
   Vokal, muss in der Umschrift ein „u" stehen, und ein „v" verlangt ein „w".
 - **Kleingedrucktes steht hinter der Begrüßung**, als zweiter Absatz, vor der
   ersten Meldung: erst der KI-Hinweis, dann der Rechtshinweis – eine Stelle,
-  nicht zwei. Nicht davor (drei Sekunden entscheiden, ob jemand dranbleibt)
-  und nicht am Ende. Nutzerwunsch vom 20. und 25. August 2026.
+  nicht zwei. Nicht davor (drei Sekunden halten den Hörer), nicht am Ende.
+  Beides Nutzerwunsch.
 - **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Die Prüfung sah
   bis zum 20. August 2026 nur „rau" – und war damit für jeden gehaltenen Ton
   unter 2.600 Hz blind. Erkannt wird jetzt zusätzlich, dass die Energie in
