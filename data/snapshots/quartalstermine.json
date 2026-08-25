@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-24T06:00:37.725Z",
+  "abgerufenAm": "2026-08-25T05:54:53.464Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -17,7 +17,20 @@
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月20日 現在 As of 2026/8/20 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
       "inListe": 67,
-      "kommend": 0
+      "kommend": 0,
+      "abgeleitet": 67,
+      "abstandJeStelle": {
+        "1": 38,
+        "2": 41,
+        "3": 41,
+        "4": 44
+      },
+      "streuungJeStelle": {
+        "1": 7,
+        "2": 6,
+        "3": 5,
+        "4": 4
+      }
     },
     "kalender": {
       "kuerzelMitTermin": 0,
@@ -6113,14 +6126,14 @@
         "2024-10-22"
       ],
       "bisherZeiten": {
-        "2026-07-23": "04:20",
-        "2026-04-24": "04:05",
-        "2026-01-29": "03:05",
-        "2025-10-23": "12:15",
-        "2025-07-29": "04:10",
-        "2025-04-23": "04:06",
-        "2025-01-29": "03:05",
-        "2024-10-22": "04:03"
+        "2026-07-23": "08:20",
+        "2026-04-24": "08:05",
+        "2026-01-29": "08:05",
+        "2025-10-23": "16:15",
+        "2025-07-29": "08:10",
+        "2025-04-23": "08:06",
+        "2025-01-29": "08:05",
+        "2024-10-22": "08:03"
       },
       "vorhersagen": [
         {
@@ -6132,19 +6145,19 @@
           "erwartet": "2027-01-28",
           "basis": "2026-01-29",
           "streuungTage": 1,
-          "newYorkerZeit": "03:05"
+          "newYorkerZeit": "08:05"
         },
         {
           "erwartet": "2027-04-23",
           "basis": "2026-04-24",
           "streuungTage": 2,
-          "newYorkerZeit": "04:05"
+          "newYorkerZeit": "08:05"
         },
         {
           "erwartet": "2027-07-22",
           "basis": "2026-07-23",
           "streuungTage": 5,
-          "newYorkerZeit": "04:20"
+          "newYorkerZeit": "08:20"
         }
       ]
     },
@@ -15145,6 +15158,2016 @@
           "newYorkerZeit": "20:51"
         }
       ]
+    },
+    "7203.T": {
+      "name": "TOYOTA MOTOR CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-11",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-04",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6758.T": {
+      "name": "SONY GROUP CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7267.T": {
+      "name": "HONDA MOTOR CO.,LTD.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-12",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6902.T": {
+      "name": "DENSO CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "5108.T": {
+      "name": "BRIDGESTONE CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7974.T": {
+      "name": "Nintendo Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-09",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-13",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6861.T": {
+      "name": "KEYENCE CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-28",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6954.T": {
+      "name": "FANUC CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6301.T": {
+      "name": "KOMATSU LTD.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-01",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-29",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6367.T": {
+      "name": "DAIKIN INDUSTRIES,LTD.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-11",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-04",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6501.T": {
+      "name": "Hitachi,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-01",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-29",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8035.T": {
+      "name": "Tokyo Electron Limited",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6857.T": {
+      "name": "ADVANTEST CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-01",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-29",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4063.T": {
+      "name": "Shin-Etsu Chemical Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-30",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-23",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6981.T": {
+      "name": "Murata Manufacturing Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7751.T": {
+      "name": "CANON INC.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-27",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-23",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-27",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6752.T": {
+      "name": "Panasonic Holdings Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8306.T": {
+      "name": "Mitsubishi UFJ Financial Group,Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-10",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-03",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8316.T": {
+      "name": "Sumitomo Mitsui Financial Group,Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8411.T": {
+      "name": "Mizuho Financial Group,Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8766.T": {
+      "name": "Tokio Marine Holdings,Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-13",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-15",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-19",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-12",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8058.T": {
+      "name": "Mitsubishi Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-10",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-03",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8031.T": {
+      "name": "MITSUI & CO.,LTD.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-11",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-04",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8001.T": {
+      "name": "ITOCHU Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-10",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-03",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4502.T": {
+      "name": "Takeda Pharmaceutical Company Limited",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4568.T": {
+      "name": "DAIICHI SANKYO COMPANY,LIMITED",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4543.T": {
+      "name": "TERUMO CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7733.T": {
+      "name": "OLYMPUS CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "9432.T": {
+      "name": "NTT,Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-09",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-13",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "9433.T": {
+      "name": "KDDI CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "9984.T": {
+      "name": "SoftBank Group Corp.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-09",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-13",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6098.T": {
+      "name": "Recruit Holdings Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "2802.T": {
+      "name": "Ajinomoto Co.,Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-09",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-13",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7309.T": {
+      "name": "SHIMANO INC.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-28",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-23",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-28",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4503.T": {
+      "name": "Astellas Pharma Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-12",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4519.T": {
+      "name": "CHUGAI PHARMACEUTICAL CO.,LTD.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-23",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-01-27",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-21",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-23",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4523.T": {
+      "name": "Eisai Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-10",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-03",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4578.T": {
+      "name": "Otsuka Holdings Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "3407.T": {
+      "name": "ASAHI KASEI CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4183.T": {
+      "name": "Mitsui Chemicals,Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-12",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6988.T": {
+      "name": "NITTO DENKO CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-01-29",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-28",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "3402.T": {
+      "name": "TORAY INDUSTRIES,INC.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-09",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-13",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4911.T": {
+      "name": "Shiseido Company,Limited",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-03",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4452.T": {
+      "name": "Kao Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-03",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8113.T": {
+      "name": "UNICHARM CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-05",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-03",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "2503.T": {
+      "name": "Kirin Holdings Company,Limited",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "2587.T": {
+      "name": "Suntory Beverage & Food Limited",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-09",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7269.T": {
+      "name": "SUZUKI MOTOR CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-12",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7270.T": {
+      "name": "SUBARU CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-12",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6762.T": {
+      "name": "TDK Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6971.T": {
+      "name": "KYOCERA CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7741.T": {
+      "name": "HOYA CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6869.T": {
+      "name": "SYSMEX CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6273.T": {
+      "name": "SMC CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6326.T": {
+      "name": "KUBOTA CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-04",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-05",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-30",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-04",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6146.T": {
+      "name": "DISCO CORPORATION",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-26",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-01-26",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-29",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-23",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6920.T": {
+      "name": "Lasertec Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-04",
+          "basis": "2027-03-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6723.T": {
+      "name": "Renesas Electronics Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-28",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6963.T": {
+      "name": "ROHM COMPANY LIMITED",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-08",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-12",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-05",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8604.T": {
+      "name": "Nomura Holdings, Inc.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-01",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-29",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "7182.T": {
+      "name": "JAPAN POST BANK Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "4661.T": {
+      "name": "ORIENTAL LAND CO.,LTD.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-02",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-06",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "2914.T": {
+      "name": "JAPAN TOBACCO INC.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-02",
+          "basis": "2026-12-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-04-27",
+          "basis": "2027-03-31",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "9022.T": {
+      "name": "Central Japan Railway Company",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "9020.T": {
+      "name": "East Japan Railway Company",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-03",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-03",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-07",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-30",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "9202.T": {
+      "name": "ANA HOLDINGS INC.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-30",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-01",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-05",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-07-29",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "8801.T": {
+      "name": "Mitsui Fudosan Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-10",
+          "basis": "2026-09-30",
+          "streuungTage": 6,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-02-10",
+          "basis": "2026-12-31",
+          "streuungTage": 5,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-05-14",
+          "basis": "2027-03-31",
+          "streuungTage": 4,
+          "herkunft": "jpx"
+        },
+        {
+          "erwartet": "2027-08-06",
+          "basis": "2027-06-30",
+          "streuungTage": 7,
+          "herkunft": "jpx"
+        }
+      ]
     }
   },
   "zuletztVersucht": {
@@ -15555,7 +17578,7 @@
     "KNIN.SW": "2026-08-22",
     "KOG.OL": "2026-08-23",
     "KOTAKBANK.NS": "2026-08-24",
-    "KPN.AS": "2026-08-18",
+    "KPN.AS": "2026-08-25",
     "KRN.DE": "2026-08-18",
     "KRX.IR": "2026-08-18",
     "KRZ.IR": "2026-08-18",
