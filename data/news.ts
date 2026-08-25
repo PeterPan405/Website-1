@@ -101,6 +101,342 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'trump-zoll-kanada-eskalation-autoindustrie',
+    title: 'Trump droht Kanada erneut mit Zöllen – diesmal Autos, Lkw und Stahl',
+    metaTitle: 'Neue Trump-Zölle gegen Kanada treffen die Autoindustrie',
+    teaser:
+      'Ein neuer Zoll-Vorstoß der USA gegen Kanada zielt laut Ticker auf 50 Prozent bei Autos, Lastwagen und Stahl – Tage nach einer Zoll-Pause für eine Pipeline.',
+    category: 'Märkte',
+    publishedAt: '2026-08-25T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Zölle', 'Handelskrieg', 'Kanada', 'Autoindustrie'],
+    relatedTopics: ['aktien-laender-branchen', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026: „ROUNDUP 2/Autos, Lkw, Stahl: Trump droht Kanada mit 50-Prozent-Zoll“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, „Heute im Fokus“ vom 24.8.2026: „Kanada antwortet auf US-Zölle“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Startseite vom 25.8.2026: „Handelskrieg mit Kanada: 50-Prozent-Zölle treffen jetzt die Autoindustrie“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ticker meldet einen neuen Vorstoß im Handelsstreit zwischen den USA und Kanada: Laut Meldung droht Präsident Trump Kanada mit 50-Prozent-Zöllen, diesmal auf Autos, Lastwagen und Stahl. Ein zweiter Ticker fasst den Tag zuvor unter „Kanada antwortet auf US-Zölle“ zusammen, ohne die konkrete Antwort zu benennen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erst eine Pause, jetzt eine neue Front',
+      },
+      {
+        type: 'paragraph',
+        text: 'Noch vor wenigen Tagen hatte Trump laut einer früheren Meldung Zölle gegen Kanada ausgesetzt, im Gegenzug für eine Öl-Pipeline. Dass nun eine neue Zoll-Drohung folgt, diesmal in einem anderen Sektor, zeigt: Eine Pause in einem Handelsstreit ist kein Abschluss. Sie kann sich auf einen einzelnen Streitpunkt beziehen, während an anderer Stelle längst der nächste beginnt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum gerade Autos, Lkw und Stahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die drei genannten Branchen haben eines gemeinsam: Sie sind in Nordamerika stark über Grenzen hinweg verflochten. Teile für ein Auto können mehrfach zwischen den USA, Kanada und Mexiko hin- und herwandern, bevor der Wagen fertig ist. Ein Zoll trifft deshalb nicht nur kanadische Hersteller, sondern auch US-Firmen, die kanadische Vorprodukte verarbeiten – warum die Meldung ausgerechnet diese Branchen nennt, sagt sie selbst nicht, die enge Verflechtung ist aber der naheliegende Grund.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Handelsstreit lässt sich nicht an einer einzigen Meldung ablesen. Wer eine Zoll-Pause als Entwarnung liest, sollte bedenken, dass sie sich oft nur auf einen Ausschnitt des Streits bezieht – der Rest kann jederzeit weitergehen, wie diese Meldung zeigt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-behauptet-sich-trotz-steigender-renditen',
+    title: 'Gold hält über 4.650 Dollar, obwohl die Anleiherenditen steigen',
+    metaTitle: 'Gold trotzt steigenden Zinsen – ein Blick auf die Logik dahinter',
+    teaser:
+      'US-Anleihen und Bundesanleihen rentieren laut Goldreporter höher, trotzdem notiert Gold fester über 4.650 Dollar – ein Widerspruch zur üblichen Logik.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-25T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Zinsen', 'Anleihen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'staatsanleihe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, 24. August 2026: „Marktzinsen bleiben hoch – Goldpreis über 4.600 USD“ und Analyse vom selben Tag zu steigenden Anleiherenditen',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Startseite vom 25.8.2026: „Goldpreis heute: Kurs über 4.650 USD – auch Silber steigt weiter“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste vom 25.8.2026, 01:56 Uhr: Gold 4.669 US-Dollar (+0,4 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold notiert laut Goldreporter heute über 4.650 US-Dollar, die Kursleiste von finanzen.net zeigt in der Nacht 4.669 Dollar und ein Plus von 0,4 Prozent. Auch Silber legt laut Goldreporter weiter zu. Das Auffällige dabei: Eine begleitende Analyse von Goldreporter hält fest, dass gleichzeitig die Renditen von US-Staatsanleihen und Bundesanleihen steigen – Gold notiert trotzdem fester.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das eigentlich ein Widerspruch ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt keine Zinsen. Steigen die Renditen sicherer Anleihen, wird das Halten von Gold im Vergleich teurer – wer stattdessen eine Anleihe kauft, bekommt jetzt mehr laufenden Ertrag. Diese Logik lässt normalerweise erwarten, dass Gold unter steigenden Zinsen leidet. Läuft es trotzdem andersherum, deutet das darauf hin, dass andere Motive gerade stärker wiegen als der Zinsvergleich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick richtet sich auf die Fed',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Goldreporter richtet sich der Blick der Anleger derzeit auf ein bevorstehendes Notenbanker-Treffen in den USA. Mehrere Großbanken haben ihre Kursziele für Gold zuletzt angehoben, wie Goldreporter separat berichtet. Eine Erwartung, dass Zinsen künftig eher sinken als weiter steigen, kann ausreichen, um Gold schon heute zu stützen – unabhängig davon, wo die Rendite gerade tatsächlich steht. Wieso das im Einzelnen so eingepreist wird, erklärt keine der Quellen im Detail.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Faustregel wie „steigende Zinsen belasten Gold“ gilt nicht immer und überall. Erwartungen für die Zukunft können eine Gegenwartsbewegung schon vorwegnehmen – wer nur auf die aktuelle Rendite schaut, übersieht leicht, dass der Markt bereits einen Schritt weiter denkt.',
+      },
+    ],
+  },
+  {
+    slug: 'alibaba-aktie-faellt-trotz-ki-kapitalerhoehung',
+    title:
+      'Alibaba bricht ein – ausgerechnet nach einer Milliarden-Kapitalerhöhung für KI',
+    metaTitle: 'Alibaba-Aktie fällt trotz Milliarden für die KI-Offensive',
+    teaser:
+      'Alibaba sammelt laut Ticker milliardenschwer frisches Kapital für die KI-Offensive ein – die Aktie bricht daraufhin ein, statt zu profitieren.',
+    category: 'Märkte',
+    publishedAt: '2026-08-25T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Alibaba', 'China', 'Künstliche Intelligenz', 'Kapitalerhöhung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['alibaba'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026: „Alibaba-Aktie bricht nach milliardenschwerer Kapitalerhöhung für KI-Offensive ein“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Startseite vom 25.8.2026: „Starinvestor Burry verkauft Alibaba: Diese China-Aktie ist sein neuer Favorit“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Alibaba will laut einem Ticker über eine Kapitalerhöhung in Milliardenhöhe frisches Geld für die eigene KI-Offensive einsammeln. Statt zu steigen, bricht die Aktie ein – die Meldung nennt kein genaues Prozentzahl, spricht aber ausdrücklich davon, dass der Kurs „einbricht“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum frisches Kapital nicht automatisch gefeiert wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Kapitalerhöhung verschafft einem Unternehmen zwar zusätzliches Geld, verwässert aber bestehende Aktionäre: Es gibt danach mehr Aktien, die sich denselben Gewinn teilen. Ob Anleger das goutieren, hängt davon ab, ob sie der geplanten Verwendung – hier der KI-Offensive – mehr zutrauen als dem, was die Verwässerung kostet. Läuft der Kurs nach unten, spricht das dafür, dass der Markt diese Rechnung heute eher skeptisch aufmacht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein prominenter Verkäufer im Hintergrund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel berichtet wallstreet-online, dass der als Short-Seller bekannte Investor Michael Burry seine Alibaba-Position verkauft und stattdessen auf eine andere China-Aktie setzt. Welche Aktie das ist, nennt die Überschrift nicht – ein Beleg dafür braucht die vollständige Meldung, die hier nicht vorliegt. Ob Burrys Verkauf und die Kapitalerhöhung ursächlich zusammenhängen, lässt sich aus den vorliegenden Kurzmeldungen nicht ableiten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine strategische Ankündigung – hier Geld für KI – und eine Kursreaktion sind zwei getrennte Dinge. Der Markt bewertet nicht nur, wofür ein Unternehmen investiert, sondern auch, was ihn das kostet und wie sicher der erhoffte Ertrag ist.',
+      },
+    ],
+  },
+  {
+    slug: 'samsung-aktie-faellt-trotz-rekordausschuettung',
+    title: 'Samsung stürzt trotz Rekord-Ausschüttung – Anleger enttäuscht',
+    metaTitle: 'Samsung-Aktie fällt trotz Rekord-Ausschüttung an Aktionäre',
+    teaser:
+      'Samsung kündigt laut Ticker eine Rekord-Ausschüttung an – die Aktie fällt trotzdem, weil Anleger offenbar mehr erwartet hatten.',
+    category: 'Märkte',
+    publishedAt: '2026-08-25T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Samsung', 'Dividende', 'Halbleiter', 'Anlegererwartungen'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['samsung'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026: „Samsung-Aktie stürzt ab: Anleger enttäuscht von Rekord-Ausschüttung“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, „Heute im Fokus“ vom 24.8.2026: Samsung unter den genannten Fokus-Werten',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Samsung stürzt laut Ticker ab – und das, obwohl der Konzern zugleich eine Rekord-Ausschüttung an seine Aktionäre ankündigt. Die Meldung fasst die Reaktion knapp zusammen: Anleger seien „enttäuscht“, ohne zu erklären, wovon genau.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rekord ist relativ',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Rekordzahl klingt zunächst nach einer guten Nachricht. Für die Börse zählt aber meist nicht der absolute Wert, sondern der Vergleich zur Erwartung. Hatten Anleger im Vorfeld mit einer noch höheren Ausschüttung gerechnet, oder mit einem stärkeren Signal für künftiges Wachstum statt einer Auszahlung an Aktionäre, kann selbst ein Rekord als Enttäuschung ankommen. Welche der beiden Lesarten hier zutrifft, sagt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ausschüttung statt Investition – eine mögliche Lesart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine hohe Ausschüttung bedeutet zugleich, dass dieses Geld nicht ins Geschäft zurückfließt – etwa in neue Fabriken oder Forschung. Bei einem Halbleiterkonzern wie Samsung, der im Wettbewerb um KI-Chips steht, kann eine große Auszahlung deshalb auch als Signal gelesen werden, dass dem Management gerade weniger attraktive Investitionsmöglichkeiten vorliegen. Ob das hier der Grund ist, bleibt mangels weiterer Angaben in der Quelle offen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Rekordzahl ist keine Garantie für eine positive Kursreaktion. Entscheidend ist, was der Markt vorher erwartet hatte – und diese Erwartung steht selten in derselben Meldung wie das tatsächliche Ergebnis.',
+      },
+    ],
+  },
+  {
+    slug: 'fda-alzheimer-bluttest-roche-eli-lilly-aktien-rot',
+    title:
+      'FDA genehmigt Alzheimer-Bluttest von Roche und Eli Lilly – Aktien trotzdem rot',
+    metaTitle: 'Alzheimer-Bluttest zugelassen – Roche und Eli Lilly im Minus',
+    teaser:
+      'Die US-Arzneimittelbehörde FDA genehmigt laut Ticker einen Alzheimer-Bluttest von Roche und Eli Lilly – die Aktien beider Konzerne notieren trotzdem im Minus.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-25T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Roche', 'Eli Lilly', 'FDA', 'Gesundheit'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['roche', 'eli-lilly'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026: „FDA genehmigt Alzheimer-Bluttest von Roche und Eli Lilly - Aktien in Rot“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ticker meldet eine Zulassung: Die US-Arzneimittelbehörde FDA genehmigt einen Bluttest zur Alzheimer-Diagnose, entwickelt von Roche und Eli Lilly. Die Überschrift selbst hält direkt den Widerspruch fest – „Aktien in Rot“ – ohne weitere Erklärung, warum eine Zulassung hier nicht zum Kursgewinn führt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Zulassung ist kein Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine behördliche Genehmigung erlaubt den Verkauf eines Produkts – sie sagt aber noch nichts darüber, wie viele Ärzte den Test tatsächlich einsetzen, was Krankenkassen dafür zahlen und wie groß der Markt am Ende wird. Zwischen einer Zulassungsmeldung und nennenswerten Erlösen können Monate oder Jahre liegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn die Erwartung schon eingepreist war',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein bekanntes Muster an Börsen: Wird ein Ereignis lange vorher erwartet, ist die Kursreaktion am Tag selbst oft klein oder sogar negativ – der positive Effekt ist dann schon vorher in den Kurs eingeflossen, „gekauft, bevor es passiert ist“. Ob das hier zutrifft, oder ob andere, an diesem Tag gemeldete Nachrichten die beiden Aktien belasten, lässt sich aus dem vorliegenden Ticker allein nicht feststellen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine positive Meldung und eine negative Kursreaktion schließen sich nicht aus. Der Aktienkurs verarbeitet nicht nur die Nachricht selbst, sondern auch, wie sehr sie schon erwartet worden war – ein Zusammenhang, den eine einzelne Ticker-Zeile selten mitliefert.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-vor-zahlen-marge-entscheidet-herbst',
+    title: 'Vor Nvidias Zahlen: Warum diesmal die Marge zählt, nicht nur der Umsatz',
+    metaTitle: 'Nvidia vor Quartalszahlen: Die Marge im Mittelpunkt',
+    teaser:
+      'Nvidia steht laut Ticker vor dem nächsten Quartalsbericht, die Aktie gerät zuvor unter Verkaufsdruck – im Fokus steht diesmal weniger der Umsatz als die Marge.',
+    category: 'Märkte',
+    publishedAt: '2026-08-25T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Nvidia', 'Quartalszahlen', 'Künstliche Intelligenz', 'Halbleiter'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia', 'microsoft'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026: „NVIDIA-Aktie vor dem Quartalsbericht: Warum die Marge über den Börsenherbst entscheidet“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 24.8.2026: „Besonders beachtet!: NVIDIA Aktie leidet unter Verkäufen - 24.08.2026“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Startseite vom 25.8.2026: „Earnings Preview: Nvidia, Marvell & Salesforce mit Zahlen: Geht der KI-Bullenmarkt jetzt weiter?“ und „Nach Speicherchips: Jetzt einsteigen? Diese Schwachstelle des KI-Booms verspricht hohe Renditen!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia steht laut Ticker vor dem nächsten Quartalsbericht – und die Aktie „leidet unter Verkäufen“, wie eine Meldung vom Vortag festhält, noch bevor die Zahlen überhaupt vorliegen. Ein anderer Ticker bringt es auf den Punkt: Diesmal soll weniger der Umsatz über die Kursreaktion entscheiden als die Marge.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Umsatz wachsen lassen ist nicht dasselbe wie profitabel wachsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidia hat in den vergangenen Quartalen regelmäßig hohe Umsatzsteigerungen gemeldet. Rückt jetzt die Marge in den Fokus, geht es um die Frage, wie viel von jedem verkauften Chip als Gewinn übrig bleibt – etwa weil steigende Produktionskosten, mehr Konkurrenz oder teurere Vorprodukte den Ertrag je Umsatzeinheit schmälern können. Ein Unternehmen kann wachsen und trotzdem eine schrumpfende Marge ausweisen; für die Kursbewertung macht das einen erheblichen Unterschied.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vom Chip-Engpass zum Energie-Engpass',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine weitere Meldung von wallstreet-online beschreibt eine mögliche Verschiebung: Zuletzt galten vor allem Speicherchip-Hersteller als Flaschenhals des KI-Booms. Jetzt könnten laut dieser Meldung Energieversorger wie Constellation Energy an ihre Stelle treten – genannt werden dabei auch Constellation Energy und Microsoft als betroffene Werte. Der Gedanke dahinter: Wenn genug Chips gebaut werden können, wird der nächste Engpass leicht der Strom, der die Rechenzentren betreibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Bei einem Unternehmen, dessen Wachstumsgeschichte bekannt ist, verschiebt sich die eigentliche Frage oft von „wächst es noch?“ zu „was begrenzt das Wachstum als Nächstes?“ – erst Chips, jetzt möglicherweise Energie. Das zu beobachten sagt mehr über die Tragfähigkeit eines Trends als eine einzelne Quartalszahl.',
+      },
+    ],
+  },
+  {
     slug: 'gold-silber-citi-open-interest-oel-gibt-nach',
     title: 'Gold und Silber ziehen an, Öl gibt nach – ein Morgen mit Gegenrichtung',
     metaTitle: 'Gold/Silber im Plus, Öl im Minus: Gegenläufige Rohstoffe',
