@@ -2484,6 +2484,52 @@ vorkommt. Die alte Grenze „in den ersten 200 Zeichen" ist entfallen: Sie
 zählte, solange der Hinweis das Erste war, und wäre danach eine Zahl ohne
 Bedeutung gewesen – die Begrüßung ist je nach Tagesausgabe verschieden lang.
 
+### Und dahinter der Rechtshinweis – 25. August 2026
+
+Der Betreiber hat verlangt, hinter dem KI-Hinweis auch zu sagen, dass es keine
+Anlageberatung ist und dass nicht gehaftet wird.
+
+Das ist dieselbe Lücke, die der KI-Hinweis am 17. August hatte, und aus
+demselben Grund gefährlicher, als sie aussieht. Der ausführliche Satz stand
+längst unter jeder Folge, und `RECHTSHINWEIS_KERN` steht auf jeder Seite der
+Website. Wer die Folge in einer Podcast-App hört, im Auto oder beim Laufen,
+sieht beides nie – und hört fünf Minuten lang Kurse, Zahlen und Einordnungen.
+Genau dort entsteht der Eindruck, hier spreche jemand darüber, was zu tun ist.
+
+**Drei Punkte, nicht einer.** „Keine Anlageberatung" allein lässt weg, wonach
+ausdrücklich gefragt wurde. Gesprochen wird deshalb: keine Beratung, keine
+Empfehlung zu kaufen oder zu verkaufen, keine Haftung. Der Test prüft alle drei
+einzeln – wer den Satz später kürzt, stößt dort an und nicht erst bei jemandem,
+der sich darauf verlassen hat.
+
+**Im selben Absatz wie der KI-Hinweis, nicht in einem eigenen.**
+Kleingedrucktes gehört an eine Stelle. Zwei getrennte Absätze wären zwei
+Unterbrechungen statt einer, und die zweite trifft einen Hörer, der die erste
+schon überstanden hat. Zusammen sind es vier Sätze in rund zwanzig Sekunden;
+danach fängt die Folge an und wird nicht wieder angehalten.
+
+Das ist auch technisch nicht gleichgültig: Ein Absatzumbruch ist im fertigen
+Ton eine Pause von 0,95 s, und die Pausen tragen die Kapitelmarken. Auf die
+Marken wirkt sich der längere Einstieg trotzdem nicht aus – der Läufer nimmt
+eine Pause erst dann als Kapitelanfang, wenn sie mindestens dreißig Sekunden
+nach der vorigen liegt, und die Pausen der Begrüßung liegen sämtlich davor.
+Der Test hält den fehlenden Umbruch fest, damit niemand ihn versehentlich
+einzieht.
+
+**Ausgeschrieben statt mit Ergänzungsbindestrich.** Unter der Folge steht
+„keine Kauf- oder Verkaufsempfehlung"; gesprochen heißt es „keine Empfehlung,
+etwas zu kaufen oder zu verkaufen". Ein Ergänzungsbindestrich ist eine
+Schreibweise – eine Stimme muss ihn auflösen, und welche Stimme das wie tut,
+ist nicht vorhersagbar. Ausgeschrieben klingt es außerdem nach einem Menschen
+und nicht nach einem Formular.
+
+**Was es kostet:** rund dreißig Wörter der 740, also etwa ein halber
+Themenabsatz an einem reichen Tag. Die Kürzungsschleife nimmt sie von hinten,
+die Rangfolge der Ausgabe bleibt gewahrt. Der Einstieg ist damit von acht auf
+rund zwanzig Sekunden gewachsen – die Grenze dessen, was vor der ersten Meldung
+vertretbar ist. Wer hier noch etwas hinzufügen will, streicht zuerst etwas
+anderes.
+
 ## Eine Doppelung mit guter Begründung altert trotzdem
 
 **23. August 2026.** Die Zuordnung „Sitzland → warum fehlen die

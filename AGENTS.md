@@ -336,10 +336,10 @@ Zusage: höchstens sechs Minuten.
   dort steht ebenfalls „w". `tests/sprechfassung-aussprache.test.ts` prüft die
   letzten beiden maschinell – steht im englischen Wort ein „w" vor einem
   Vokal, muss in der Umschrift ein „u" stehen, und ein „v" verlangt ein „w".
-- **Der KI-Hinweis steht hinter der Begrüßung**, als zweiter Absatz, vor der
-  ersten Meldung. Nicht davor (drei Sekunden entscheiden, ob jemand
-  dranbleibt) und nicht am Ende (dann hat sich jeder längst eine Meinung
-  gebildet). Nutzerwunsch vom 20. August 2026.
+- **Kleingedrucktes steht hinter der Begrüßung**, als zweiter Absatz, vor der
+  ersten Meldung: erst der KI-Hinweis, dann der Rechtshinweis – eine Stelle,
+  nicht zwei. Nicht davor (drei Sekunden entscheiden, ob jemand dranbleibt)
+  und nicht am Ende. Nutzerwunsch vom 20. und 25. August 2026.
 - **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Die Prüfung sah
   bis zum 20. August 2026 nur „rau" – und war damit für jeden gehaltenen Ton
   unter 2.600 Hz blind. Erkannt wird jetzt zusätzlich, dass die Energie in

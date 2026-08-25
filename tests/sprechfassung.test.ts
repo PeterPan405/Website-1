@@ -315,6 +315,73 @@ pruefe(
   true
 )
 
+/* ------------------------------------------------------------------
+   Der Rechtshinweis wird gesprochen, nicht nur geschrieben.
+
+   Bis zum 25. August 2026 stand er ausschließlich unter der Folge. Das ist
+   dieselbe Lücke, die der KI-Hinweis am 17. August hatte, und aus demselben
+   Grund gefährlicher als sie aussieht: Wer die Folge in einer App hört, sieht
+   die Beschreibung nie und hört fünf Minuten lang Kurse, Zahlen und
+   Einordnungen. Genau dort entsteht der Eindruck, hier spreche jemand über
+   das, was zu tun ist.
+
+   Geprüft wird deshalb dreierlei – dass er dasteht, dass er die drei Punkte
+   wirklich nennt, und dass er unmittelbar hinter dem KI-Hinweis steht.
+------------------------------------------------------------------- */
+
+const rechtAb = folge.sprechtext.indexOf('Und noch eins:')
+
+pruefe('Sprechtext trägt den Rechtshinweis', rechtAb >= 0, true)
+
+/*
+  Die drei Punkte einzeln – und nicht als ein Vorkommen von „Anlageberatung".
+
+  Ein Hinweis, der nur „keine Anlageberatung" sagt, lässt die beiden Punkte
+  weg, nach denen der Betreiber ausdrücklich gefragt hat: keine Empfehlung und
+  keine Haftung. Wer den Satz später kürzt, soll hier anstoßen und nicht erst
+  bei jemandem, der sich darauf verlassen hat.
+*/
+pruefe(
+  'Er nennt: keine Anlageberatung',
+  /keine Anlageberatung/.test(folge.sprechtext),
+  true
+)
+pruefe(
+  'Er nennt: keine Empfehlung zu kaufen oder zu verkaufen',
+  /keine Empfehlung, etwas zu kaufen oder zu verkaufen/.test(folge.sprechtext),
+  true
+)
+pruefe('Er nennt: keine Haftung', /haften wir nicht/.test(folge.sprechtext), true)
+
+/*
+  Und die Stelle: unmittelbar hinter dem KI-Hinweis, im selben Absatz.
+
+  „Im selben Absatz" wird daran gemessen, dass zwischen beiden **kein**
+  Absatzumbruch liegt. Das ist keine Kosmetik: Ein Absatzumbruch ist im
+  fertigen Ton eine Pause von 0,95 s, und die Pausen tragen die Kapitelmarken
+  (`podcast-erzeugen.yml`). Wer hier einen Umbruch einzieht, ändert die
+  Aufnahme und nicht nur den Quelltext.
+*/
+pruefe('Der Rechtshinweis steht hinter dem KI-Hinweis', rechtAb > hinweisAb, true)
+pruefe(
+  'und im selben Absatz – kein Umbruch dazwischen',
+  folge.sprechtext.slice(hinweisAb, rechtAb).includes('\n\n'),
+  false
+)
+
+/*
+  Die Gegenprobe, die den Sinn der Reihenfolge festhält.
+
+  Beides gehört vor die erste Meldung. Stünde der Rechtshinweis irgendwo im
+  Text – etwa am Ende –, wären alle Prüfungen oben erfüllt und der Zweck
+  verfehlt: Nach fünf Minuten hat sich jeder längst eine Meinung gebildet.
+*/
+pruefe(
+  'Der Rechtshinweis steht noch im zweiten Absatz, also vor der ersten Meldung',
+  rechtAb < folge.sprechtext.indexOf('\n\n', hinweisAb),
+  true
+)
+
 /*
   Und die Gegenprobe, die den eigentlichen Fehler festhält.
 
