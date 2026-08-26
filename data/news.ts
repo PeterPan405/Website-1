@@ -101,6 +101,333 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'nvidia-zahlen-heute',
+    title: 'Nvidia legt heute die Quartalszahlen vor',
+    teaser:
+      'Nvidia berichtet heute über das abgelaufene Quartal. Der Optionsmarkt preist laut Tickern schon vorher eine Kursbewegung im dreistelligen Milliardenbereich ein.',
+    category: 'Märkte',
+    publishedAt: '2026-08-26T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Quartalszahlen', 'Guidance', 'KI-Aktien'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 26.8.2026, 03:00 Uhr: „Ausblick: NVIDIA stellt Quartalsergebnis zum abgelaufenen Jahresviertel vor“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 25.8.2026: „NVIDIA-Aktie vor Quartalszahlen am Mittwoch: Optionen deuten auf Schwankung im dreistelligen Milliardenbereich hin“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Ticker meldet für heute früh: Nvidia stellt sein Quartalsergebnis zum abgelaufenen Jahresviertel vor. Es ist der mit Abstand am meisten beachtete Termin des Tages.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Optionsmarkt hat schon eine Meinung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Meldung von gestern hält fest, dass die Optionspreise auf Nvidia-Aktien schon vor der Veröffentlichung eine Kursbewegung im dreistelligen Milliardenbereich einpreisen – gemessen am Börsenwert, den ein solcher Ausschlag bewegen würde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie groß dieser Betrag ist, wird klarer, wenn man ihn mit Nvidias eigener Marktkapitalisierung vergleicht: Eine Quelle nennt den Konzern in diesem Zusammenhang einen „5-Billionen-US-Dollar-Konzern“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Guidance gegen Ist-Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Entscheidend wird heute weniger sein, ob Umsatz und Gewinn wachsen – das taten sie zuletzt fast immer –, sondern ob sie über der eigenen Prognose vom Vorquartal liegen, der sogenannten Guidance. Ein Unternehmen, das wächst, aber die eigene Ansage verfehlt, wird an der Börse oft schlechter behandelt als eines, das langsamer wächst, aber seine Prognose übertrifft.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hinzu kommt laut den Tickern ein Umfeld aus steigenden Anleiherenditen, einer US-Staatsverschuldung von 40 Billionen Dollar und dem Treffen der Notenbanker in Jackson Hole – Faktoren, die die Reaktion auf die Zahlen zusätzlich verstärken können, unabhängig vom Ergebnis selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Reaktion auf Nvidias Zahlen einordnen will, sollte weniger auf die absoluten Wachstumsraten schauen als auf den Abstand zur eigenen Prognose des Unternehmens – und bedenken, dass ein aufgeheiztes Marktumfeld jede Abweichung davon verstärkt.',
+      },
+    ],
+  },
+  {
+    slug: 'pce-daten-heute',
+    title: 'Heute zählt die PCE-Zahl, nicht die CPI',
+    teaser:
+      'Um 14:30 Uhr veröffentlichen die USA ihren PCE-Preisindex – das Inflationsmaß, dem die Fed selbst den größten Wert beimisst, nicht der bekanntere CPI.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-26T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['PCE', 'Inflation', 'EZB', 'Fed'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender „Kommende Termine“, Abruf 26.8.2026, 02:05 Uhr GMT',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender nennt für heute mehrere Termine mit hoher Marktrelevanz: Um 12:10 Uhr spricht EZB-Mitglied Cipollone, um 14:30 Uhr veröffentlichen die USA gleich mehrere Daten zum sogenannten PCE-Preisindex.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'PCE statt CPI',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer an US-Inflationsdaten denkt, hat meist den Verbraucherpreisindex CPI im Kopf. Die US-Notenbank Fed richtet sich für ihre Zinsentscheidungen aber vor allem nach einem anderen Maß: dem Preisindex der persönlichen Konsumausgaben, kurz PCE. Er misst eine andere Ausgabenstruktur als der CPI und reagiert dadurch mitunter abweichend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Kalender für heute an Zahlen zeigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Kernrate des PCE-Preisindex im Jahresvergleich nennt der Kalender eine Prognose von 3,3 Prozent – exakt der Vorwert. Für die monatliche Kernrate liegt die Prognose bei 0,2 Prozent, nach zuvor 0,1 Prozent. Für den Gesamtindex im Monatsvergleich wird ein Anstieg um 0,1 Prozent erwartet, nach zuvor einem Rückgang um 0,1 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob diese Werte eintreffen, geht aus dem Kalender naturgemäß nicht hervor – er zeigt nur, was im Vorfeld erwartet wird, nicht was tatsächlich gemeldet wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose ist keine Ankündigung. Weicht der tatsächliche Wert am Nachmittag von der hier genannten Erwartung ab, ist genau diese Abweichung es, die Kurse und Zinserwartungen bewegt – nicht die absolute Zahl für sich.',
+      },
+    ],
+  },
+  {
+    slug: 'siemens-energy-spaltet-sparte-ab',
+    title: 'Siemens Energy spaltet eine Sparte ab',
+    teaser:
+      'Siemens Energy will laut mehreren Tickern seine Sparte Transformation of Industry verselbstständigen – ein Lehrstück über Abspaltungen und ihre Wirkung.',
+    category: 'Märkte',
+    publishedAt: '2026-08-26T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Siemens Energy', 'Abspaltung', 'Konzernstruktur', 'Aktie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['siemens-energy'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 25.8.2026: „ROUNDUP: Siemens Energy will Tranformation of Industry verselbstständigen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 25.8.2026: „Siemens Energy bereitet Verselbstständigung von Tranformation of Industries vor“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gleich mehrere Ticker melden übereinstimmend: Siemens Energy will die Sparte Transformation of Industry verselbstständigen – sie soll zu einem eigenen, unabhängigen Unternehmen werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Verselbstständigung für Aktionäre bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einer solchen Abspaltung erhalten bestehende Aktionäre üblicherweise Anteile am neuen, eigenständigen Unternehmen zusätzlich zu ihren bisherigen Aktien. Aus einem Depotposten werden dann zwei – mit jeweils eigenem Kurs, eigenem Geschäftsmodell und eigener Bewertung durch den Markt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Ticker nennen keine Details zu Zeitplan, Bewertung oder Struktur der geplanten Abspaltung – belegt ist bislang nur die Absicht selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Konzerne Sparten abspalten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein häufig genanntes Argument für Abspaltungen ist der sogenannte Konglomeratsabschlag: Der Markt bewertet einen Mischkonzern mit mehreren, unterschiedlich profitablen Geschäftsfeldern oft niedriger, als es die Summe seiner Einzelteile wert wäre. Eine eigenständige Gesellschaft kann von Investoren dagegen gezielter bewertet werden, die genau dieses Geschäftsfeld verstehen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine angekündigte Abspaltung ist noch keine vollzogene – wer eine Aktie deswegen kauft oder hält, sollte den Unterschied zwischen Ankündigung und Umsetzung im Blick behalten.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-china-preisabschlag',
+    title: 'Gold steigt weltweit, in China bleibt es günstiger',
+    teaser:
+      'Der Goldpreis zieht laut Goldreporter in China und Europa an, doch Shanghai hinkt hinterher: Der Preisabschlag zum Weltmarkt wächst auf 31 Dollar je Feinunze.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-26T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Rohstoffe', 'China', 'Weltmarktpreis'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, 25. August 2026: „Goldpreis in China: Abschlag zum Westen steigt auf 31 USD“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis zieht laut Goldreporter in China und Europa kräftig an. Eine Ausnahme bildet ausgerechnet der wichtige chinesische Handelsplatz Shanghai: Dort bleibt der Preis zurück, der sogenannte China-Spread fällt auf minus 31 US-Dollar je Feinunze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rohstoff, mehrere Preise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold gilt als globaler Rohstoff mit einem Weltmarktpreis – tatsächlich bilden sich an unterschiedlichen Handelsplätzen aber unterschiedliche Preise, weil Kapitalverkehrskontrollen, lokale Ein- und Ausfuhrregeln sowie unterschiedliche Nachfrage den Handel zwischen den Märkten begrenzen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein negativer China-Spread bedeutet: Gold ist in China günstiger zu haben als im Rest der Welt – zunächst das Gegenteil dessen, was man bei der oft berichteten hohen chinesischen Nachfrage erwarten würde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Korrelation ist nicht Gleichheit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass sich zwei Preise in dieselbe Richtung bewegen – hier: beide Regionen im Aufwind –, heißt nicht, dass sie gleich stark reagieren oder dauerhaft zusammenbleiben. Genau diese Lücke ist der China-Spread: ein Gradmesser dafür, wie stark sich ein Markt vom Weltmarkt abkoppelt, obwohl beide grundsätzlich demselben Trend folgen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Goldpreis nur als eine einzige Zahl liest, übersieht, dass er sich aus mehreren, nicht immer synchronen Regionalmärkten zusammensetzt – ein Umstand, der sich bei jedem global gehandelten Rohstoff wiederfinden lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'chip-aktien-erholung-amd',
+    title: 'Chip-Aktien erholen sich unterschiedlich stark',
+    teaser:
+      'Der Chip-Sektor erholt sich laut Tickern spürbar. AMD schießt um 4,21 Prozent nach oben, während andere Werte der Branche deutlich verhaltener reagieren.',
+    category: 'Märkte',
+    publishedAt: '2026-08-26T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Chip-Aktien', 'AMD', 'Halbleiter', 'DAX'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['amd', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 25.8.2026: „Erholung im Chip-Sektor: KI-Investitionen laut Experten robust - Aktien von Micron, AIXTRON & Co. im Aufwind“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online.de (Markt Bote), 25.8.2026: „Besonders beachtet!: Advanced Micro Devices - Aktie schießt in die Höhe +4,21 % - 25.08.2026“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Chip-Sektor erholt sich: Ein Ticker führt die Erholung auf laut Experten weiterhin robuste KI-Investitionen zurück und nennt neben AMD auch Aktien von Micron und AIXTRON als Profiteure. Eine weitere Meldung beziffert den Kurssprung von Advanced Micro Devices konkret auf 4,21 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Sektorbewegung ist kein Gleichlauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch der DAX profitierte laut Ticker von der Chip-Erholung und schloss fester, mit AMD, Infineon und weiteren Halbleiterwerten im Fokus. Das zeigt aber nur, dass die Branche insgesamt gefragt war – nicht, dass jede einzelne Aktie im selben Ausmaß stieg.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Streuung wichtiger ist als der Durchschnitt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer nur auf einen Branchenindex oder eine Sammelmeldung wie „Chip-Sektor erholt sich“ schaut, verpasst die Unterschiede zwischen den einzelnen Werten. Ein Konzern mit direktem Bezug zum aktuellen Trend – etwa KI-Beschleuniger – kann deutlich stärker reagieren als ein Zulieferer mit breiterem, aber weniger trendnahem Geschäft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Meldung über „den Chip-Sektor“ sagt wenig über die einzelne Aktie im eigenen Depot – wer das genauer wissen will, muss auf die konkrete Kursbewegung des jeweiligen Unternehmens schauen, nicht auf die Überschrift.',
+      },
+    ],
+  },
+  {
+    slug: 'kaffeepreis-arabica-hoch',
+    title: 'Kaffeepreis erreicht ein 6-Monats-Hoch',
+    teaser:
+      'Arabica-Kaffee klettert laut Ticker auf ein 6-Monats-Hoch. Das trifft nicht nur Kaffeetrinker, sondern früher oder später auch die Margen bekannter Konzerne.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-26T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Kaffee', 'Rohstoffe', 'Margen', 'Konsumgüter'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['nestle', 'mcdonalds'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Marktüberblick, Abruf 26.8.2026, 02:05 Uhr GMT: „Arabica auf 6-Monats-Hoch – Kaffee wird zum Luxusgut? El-Niño-Chaos treibt Preise nach oben“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: "Ein Ticker meldet für Arabica-Kaffee ein 6-Monats-Hoch und nennt als möglichen Hintergrund Ernteprobleme in wichtigen Anbauländern sowie ein drohendes El-Niño-Wetterphänomen. Als mögliche Betroffene werden ausdrücklich Starbucks, Nestlé, McDonald's und Keurig Dr Pepper genannt.",
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vom Rohstoffpreis zur Marge',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt der Preis eines Rohstoffs wie Kaffee, trifft das zunächst die Einkaufskosten der Unternehmen, die ihn verarbeiten. Ob und wie stark das die Marge belastet, hängt davon ab, wie schnell und wie vollständig sich die höheren Kosten an die eigenen Kunden weitergeben lassen – und ob die Konkurrenz mitzieht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Café oder ein Konzern mit starker Marke kann Preiserhöhungen oft leichter durchsetzen als ein Anbieter im umkämpften Massenmarkt. Der reine Rohstoffpreis sagt darüber allein noch nichts.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Wetterprognose ist keine Gewissheit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung nennt das El-Niño-Phänomen als möglichen Auslöser, nicht als feststehende Ursache. Wetterbedingte Ernterisiken lassen sich Monate im Voraus nur als Wahrscheinlichkeit einschätzen, nicht als sichere Vorhersage.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein höherer Rohstoffpreis ist ein Signal, keine automatische Gewinnwarnung für die betroffenen Konzerne – wer die Wirkung auf einzelne Aktien abschätzen will, muss zusätzlich auf deren Preissetzungsmacht schauen.',
+      },
+    ],
+  },
+  {
     slug: 'trump-zoll-kanada-eskalation-autoindustrie',
     title: 'Trump droht Kanada erneut mit Zöllen – diesmal Autos, Lkw und Stahl',
     metaTitle: 'Neue Trump-Zölle gegen Kanada treffen die Autoindustrie',
