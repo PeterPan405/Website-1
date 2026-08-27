@@ -101,6 +101,570 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'nvidia-rekord-aktie-faellt',
+    title: 'Nvidia meldet Rekordzahlen – und die Aktie fällt trotzdem',
+    teaser:
+      'Nvidia meldet 96 Milliarden Dollar Quartalsumsatz und rund 60 Milliarden Gewinn – und die Aktie gibt trotzdem nach. Warum das kein Widerspruch ist.',
+    category: 'Märkte',
+    publishedAt: '2026-08-27T06:10:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Quartalszahlen', 'Erwartung', 'KI-Aktien'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['nvidia', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Index-Analysen vom 26.8.2026, 20:42 Uhr: „Quartalszahlen Q2/2026 – Nvidia schlägt Erwartungen – Aktie leicht im Minus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Agentur-Meldung (dpa-AFX) vom 26.8.2026, 21:29 Uhr: „ROUNDUP/60 Milliarden Dollar Gewinn im Quartal: KI-Boom beflügelt Nvidia weiter“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Nachricht vom 26.8.2026: „96 Milliarden US-Dollar Umsatz: Nvidia knackt erneut Rekorde“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gestern Abend hat Nvidia geliefert, worauf der ganze Handelstag gewartet hatte. Eine Agenturmeldung von 21:29 Uhr nennt **60 Milliarden US-Dollar Gewinn** im Quartal, eine weitere Meldung **96 Milliarden US-Dollar Umsatz** – nach Darstellung der Quelle ein erneuter Rekord. Eine Einordnung von 20:42 Uhr fasst es so zusammen: Nvidia schlägt die Erwartungen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Und die Aktie? Notierte laut derselben Meldung **leicht im Minus**.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs handelt nicht die Zahl, sondern den Abstand zur Erwartung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das wirkt widersprüchlich und ist es nicht. Ein Aktienkurs enthält bereits, was der Markt für wahrscheinlich hält. Wenn alle Beteiligten seit Wochen mit Rekordzahlen rechnen, ist die Erwartung von Rekordzahlen im Kurs schon bezahlt. Bewegen kann sich der Kurs danach nur noch an der **Abweichung** von dieser Erwartung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist derselbe Mechanismus, der eine Notenbanksitzung erklärt: Senkt die Notenbank den Zins um 0,25 Punkte und hatten alle 0,25 Punkte erwartet, passiert an den Märkten wenig. Der Zins ist gesunken, die Erwartung nicht enttäuscht worden.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Warum „besser als erwartet“ nicht reicht',
+        items: [
+          'Bei einem Wert, den der Markt für den Gradmesser einer ganzen Branche hält, liegt die Messlatte selten bei den offiziellen Analystenschätzungen.',
+          'Sie liegt bei dem, was die Käufer der letzten Wochen erhofft haben – und das steht nirgends geschrieben.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für die eigene Beobachtung heißt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer aus einer Kursreaktion auf die Qualität der Zahlen schließt, liest die falsche Größe. Ein Minus nach Rekordzahlen sagt etwas über die Erwartungshaltung vor dem Termin aus, nicht über das Geschäft. Umgekehrt kann ein Kurssprung nach schwachen Zahlen bedeuten, dass die Befürchtungen noch schwächer waren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zahlen und Kursreaktion sind zwei getrennte Informationen. Die Zahlen sagen etwas über das Unternehmen, die Reaktion etwas über die Erwartung der anderen – und wer beides in einen Satz zieht, verwechselt regelmäßig Ursache und Wirkung.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-stabil-wall-street-tiefer',
+    title: 'DAX stabil, Wall Street tiefer – warum das kein Widerspruch ist',
+    teaser:
+      'Der DAX hielt einen kleinen Gewinn, die Wall Street schloss tiefer. Zwei Börsen, ein Tag, zwei Richtungen – und ein Grund, der nichts mit Stimmung zu tun hat.',
+    category: 'Märkte',
+    publishedAt: '2026-08-27T06:14:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['DAX', 'Wall Street', 'Handelszeiten', 'Index'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'finanzen.net, „Heute im Fokus“ vom 26.8.2026: „Tag der NVIDIA-Bilanz: DAX beendet Handel stabil – Wall Street letztlich tiefer“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, „Dax Tagesrückblick 26.08.2026“ vom 26.8.2026, 15:56 Uhr: „Leitindex hält kleinen Gewinn – Warten auf Nvidia“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Kurstafel, Abruf 27.8.2026, 02:12 Uhr GMT: DAX 26.293,36 (+0,08 %), US Tech 100 29.224,19 (+0,06 %), US 30 53.472,15 (−0,21 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Rückblick auf den gestrigen Handel meldet für den DAX einen kleinen Gewinn, überschrieben mit „Warten auf Nvidia“. Ein Ticker desselben Tages fasst zusammen: DAX stabil, Wall Street letztlich tiefer. Am Morgen steht der DAX auf der Kurstafel bei **26.293 Punkten**.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Uhr erklärt mehr als die Stimmung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die naheliegende Deutung – hier Zuversicht, dort Zurückhaltung – greift zu kurz. Der deutsche Handel endet um 17:30 Uhr, der amerikanische um 22:00 Uhr deutscher Zeit. Nvidias Zahlen kamen nach dem US-Schluss. Der DAX hatte also gar keine Gelegenheit mehr, auf irgendetwas zu reagieren, was nach halb sechs geschah.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was an einem solchen Tag gemessen wird, sind zwei verschiedene Zeitfenster desselben Kalendertags. Der Vergleich „DAX plus, Dow minus“ setzt stillschweigend voraus, dass beide dasselbe gesehen haben. Sie haben es nicht.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Der Test',
+        items: [
+          'Wer zwei Indizes vergleichen will, vergleicht sie über denselben Zeitraum – zum Beispiel von Schluss zu Schluss über eine Woche.',
+          'Über einen einzelnen Tag misst man bei zeitversetzten Börsen zwangsläufig Verschiedenes.',
+        ],
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und der Punktestand selbst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Zahl 26.293 sagt für sich genommen nichts. Ein Indexstand ist ein Verhältnis zu einem willkürlich gesetzten Startwert aus der Vergangenheit. Er wird erst zur Information, wenn ein Bezugspunkt danebensteht: Vortag, Jahresanfang, Fünfjahreszeitraum.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Tagesvergleich zwischen europäischen und amerikanischen Indizes ist selten so aussagekräftig, wie er klingt. Wer wissen will, ob eine Börse einer anderen davonläuft, braucht einen längeren gemeinsamen Zeitraum – und einen genannten Bezugspunkt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-ueber-4600-dollar',
+    title: 'Gold über 4.600 Dollar – und was der Euro damit zu tun hat',
+    teaser:
+      'Gold notiert über 4.600 Dollar je Unze. Für Anleger im Euroraum hat dieser Preis zwei Ursachen – und nur eine davon steht in der Schlagzeile.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-27T06:18:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Wechselkurs', 'Rohstoffe', 'Chartanalyse'],
+    relatedTopics: ['rohstoffe', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['gold', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'Goldreporter, 26. August 2026: „Goldpreis: 200-Tage-Linie nach August-Rally erneut im Fokus“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Kurstafel, Abruf 27.8.2026, 02:12 Uhr GMT: Gold 4.641,35 US-Dollar (+1,04 %), EUR/USD 1,16587 (+0,05 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Kurstafel weist den Goldpreis am Morgen mit **4.641,35 US-Dollar** je Feinunze aus, ein Plus von 1,04 Prozent. Eine Analyse vom 26. August spricht von einem kräftigen Kursanstieg im August und rückt die 200-Tage-Linie als Unterstützung erneut in den Blick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, zwei Ursachen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wird international in Dollar gehandelt. Wer in Euro rechnet, hat deshalb immer zwei Größen im Spiel: den Dollarpreis der Unze und den Wechselkurs. Beide können sich unabhängig voneinander bewegen, und beide gehen vollständig in den Euro-Preis ein.',
+      },
+      {
+        type: 'formula',
+        expression: 'Preis in Euro = Preis in Dollar ÷ (EUR/USD)',
+        description:
+          'Bei einem Kurs von 1,16587 Dollar je Euro entspricht eine Unze zu 4.641,35 Dollar rechnerisch rund 3.981 Euro.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Daraus folgt etwas, das viele überrascht: Der Dollarpreis kann steigen und der Euro-Preis gleichzeitig fallen – dann nämlich, wenn der Euro gegenüber dem Dollar stärker zulegt, als Gold in Dollar gewinnt. Wer nur die Schlagzeile liest, hält seinen Bestand dann für gestiegen, obwohl er in seiner eigenen Währung verloren hat.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Was eine 200-Tage-Linie ist – und was nicht',
+        items: [
+          'Sie ist der Durchschnitt der letzten zweihundert Schlusskurse, also eine Zusammenfassung der Vergangenheit.',
+          'Viele Marktteilnehmer beobachten sie, deshalb kann sie sich kurzfristig selbst bestätigen.',
+          'Eine Aussage über die Zukunft enthält sie nicht.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Gold im Depot hat und in Euro lebt, sollte seine Entwicklung in Euro verfolgen – nicht, weil der Dollarpreis falsch wäre, sondern weil er nur die halbe Rechnung ist.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-iran-oman-einigung',
+    title: 'Öl steigt nach einer Einigung – bevor sich die Fördermenge ändert',
+    teaser:
+      'Der Ölpreis zieht nach einer Einigung zwischen Iran und Oman an. Warum Rohstoffpreise auf Nachrichten reagieren, bevor sich die Fördermenge ändert.',
+    category: 'Märkte',
+    publishedAt: '2026-08-27T06:22:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Öl', 'Brent', 'Rohstoffe', 'Terminmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Nachricht vom 26.8.2026: „Ölpreis klettert wieder nach Einigung zwischen Iran und Oman“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online.de, Kurstafel, Abruf 27.8.2026, 02:12 Uhr GMT: Öl (Brent) 86,56 US-Dollar (+0,94 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Meldung vom 26. August führt einen steigenden Ölpreis auf eine Einigung zwischen Iran und Oman zurück. Die Kurstafel weist Brent am Morgen mit **86,56 US-Dollar** aus, ein Plus von 0,94 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gehandelt wird die Erwartung, nicht das Fass',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Tag einer politischen Einigung fließt kein Tropfen mehr oder weniger Öl. Was sich ändert, ist die Einschätzung darüber, wie viel künftig fließen wird und wie sicher der Weg dorthin ist. Genau das ist es, was an einem Terminmarkt gehandelt wird: nicht das Öl von heute, sondern Verträge über künftige Lieferungen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deshalb bewegen Nachrichten aus einer Region den Preis oft stärker und schneller als eine tatsächlich veränderte Fördermenge. Die Nachricht ist sofort da, die Menge braucht Monate.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Brent oder WTI – die Zahl allein reicht nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer Ölpreise vergleicht, stößt regelmäßig auf zwei Zahlen für denselben Tag. Das ist kein Fehler: **Brent** bezeichnet eine Ölsorte aus der Nordsee, **WTI** eine amerikanische. Sie haben verschiedene Eigenschaften, verschiedene Abnehmer und deshalb dauerhaft verschiedene Preise. Eine Ölpreis-Angabe ohne Sortenname ist unvollständig.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Rohstoffkurse sind Preise für Erwartungen. Wer sie als Abbild der heutigen Versorgungslage liest, wundert sich regelmäßig darüber, dass sie sich bewegen, obwohl sich nichts bewegt hat.',
+      },
+    ],
+  },
+  {
+    slug: 'volkswagen-krisengespraeche',
+    title: 'Krisengespräche bei Volkswagen: ein Einzelwert in Reinform',
+    teaser:
+      'Bei Volkswagen laufen Krisengespräche. Was ein Konzern im Umbau für ein Depot bedeutet – und warum ein Index das anders verkraftet als eine Einzelaktie.',
+    category: 'Märkte',
+    publishedAt: '2026-08-27T06:26:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Volkswagen', 'Einzelwertrisiko', 'Streuung', 'DAX'],
+    relatedTopics: ['aktie', 'risiko-und-rendite', 'portfolio-aufbau'],
+    relatedSymbols: ['volkswagen', 'dax'],
+    sources: [
+      {
+        label:
+          'onvista, Agentur-Meldung (dpa-AFX) vom 27.8.2026, 01:30 Uhr: „Krisengespräche bei VW – Forderung nach Zukunftsperspektive“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Agenturmeldung von heute früh, 01:30 Uhr, berichtet über Krisengespräche bei Volkswagen und über die Forderung nach einer Zukunftsperspektive. Mehr gibt die Meldung an dieser Stelle nicht her – über Ergebnisse steht dort nichts, und deshalb steht hier auch nichts darüber.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein solcher Vorgang für ein Depot bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Unternehmen im Umbau trägt ein Risiko, das kein Marktumfeld erklärt und keine Konjunkturzahl vorhersagt: das Risiko genau dieses Unternehmens. Es kann sich lösen, es kann sich verschärfen, und beides hängt an Entscheidungen, die in einem Verhandlungsraum fallen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer die Aktie einzeln hält, trägt dieses Risiko vollständig. Wer sie über einen breiten Index hält, trägt es anteilig – im DAX steht neben Volkswagen noch mehr als drei Dutzend anderer Unternehmen, und was bei einem passiert, verteilt sich auf alle.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Die nüchterne Frage',
+        items: [
+          'Nicht „ist das eine gute Nachricht?“, sondern: Welchen Anteil an meinem Vermögen macht dieser eine Wert aus?',
+          'Diese Zahl entscheidet, ob eine Nachricht wie diese eine Randnotiz ist oder den Schlaf kostet.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Meldung über ein einzelnes Unternehmen ist vor allem ein Anlass, den eigenen Anteil daran nachzusehen. Wer einzelne Titel hält, sollte das bewusst tun und wissen, wie groß der Posten im Verhältnis zum Ganzen ist.',
+      },
+    ],
+  },
+  {
+    slug: 'ubs-stuft-sap-herab',
+    title: 'UBS stuft SAP herab: was ein Analystenurteil ist – und was nicht',
+    teaser:
+      'Die UBS senkt ihr Urteil für SAP. Ein Analystenrating ist eine Meinung mit Kursziel, keine Nachricht über das Unternehmen – und bewegt den Kurs trotzdem.',
+    category: 'Märkte',
+    publishedAt: '2026-08-27T06:29:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['SAP', 'Analysten', 'Kursziel', 'Rating'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['sap', 'dax'],
+    sources: [
+      {
+        label:
+          'onvista, Aktien-Analysen vom 26.8.2026, 15:18 Uhr: „Nach UBS-Downgrade würde ich bei SAP Gewinne sichern“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Analysebeitrag vom 26. August, 15:18 Uhr, nimmt Bezug auf ein Downgrade der UBS für die SAP-Aktie. Der Beitrag selbst ist eine Meinungsäußerung; die darin genannte Tatsache ist die Herabstufung durch die Bank.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Dinge, die oft verwechselt werden',
+      },
+      {
+        type: 'list',
+        ordered: true,
+        items: [
+          '**Eine Nachricht über das Unternehmen** – etwa Quartalszahlen oder ein Großauftrag. Sie kommt vom Unternehmen selbst.',
+          '**Ein Analystenurteil** – eine Einschätzung eines Hauses darüber, ob der aktuelle Kurs die Aussichten richtig abbildet. Sie kommt von außen.',
+          '**Ein Kursziel** – der Preis, den dieses Haus in einem bestimmten Zeitraum für angemessen hält. Es ist eine Rechnung mit Annahmen, keine Vorhersage.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Downgrade ändert also nichts am Geschäft. Es ändert die veröffentlichte Meinung eines Marktteilnehmers – und weil andere Marktteilnehmer darauf reagieren, kann es den Kurs sehr wohl bewegen. Das ist kein Widerspruch, sondern der Unterschied zwischen dem Wert eines Unternehmens und seinem Preis an einem Tag.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Nützlich ist die Begründung, nicht das Urteil',
+        items: [
+          'Die Stufe („kaufen“, „halten“, „verkaufen“) ist die am wenigsten informative Zeile einer Analyse.',
+          'Interessant ist, welche Annahme sich geändert hat – Wachstumstempo, Marge, Zinsumfeld.',
+          'Diese Annahme kann man prüfen, das Urteil nicht.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rating ist ein Datenpunkt über die Meinung anderer, kein Befund über das Unternehmen. Wer seine Entscheidungen daran hängt, übernimmt die Annahmen eines Fremden, ohne sie gesehen zu haben.',
+      },
+    ],
+  },
+  {
+    slug: 'tarifeinigung-einzelhandel-nrw',
+    title: 'Tarifeinigung im Einzelhandel: was davon beim Sparen ankommt',
+    teaser:
+      'Im NRW-Einzelhandel steht eine Tarifeinigung. Für das eigene Sparen zählt nicht der Lohn, sondern was nach der Inflation davon übrig bleibt.',
+    category: 'Vorsorge',
+    publishedAt: '2026-08-27T06:32:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tarif', 'Reallohn', 'Inflation', 'Sparquote'],
+    relatedTopics: ['inflation', 'budget-und-sparquote'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'onvista, Agentur-Meldung (dpa-AFX) vom 26.8.2026, 22:01 Uhr: „Tarifeinigung in NRW – Durchbruch im Einzelhandel“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Agenturmeldung von 22:01 Uhr meldet einen Durchbruch in den Tarifverhandlungen des Einzelhandels in Nordrhein-Westfalen. Zu den Konditionen enthält die Meldung an dieser Stelle keine Angaben – und deshalb steht hier keine Prozentzahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nominallohn und Reallohn',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was in einem Tarifabschluss steht, ist der **Nominallohn**: die Zahl auf der Abrechnung. Was davon an Kaufkraft übrig bleibt, ist der **Reallohn** – der Nominallohn abzüglich der Teuerung im selben Zeitraum.',
+      },
+      {
+        type: 'table',
+        caption: 'Dieselbe Erhöhung, verschiedene Teuerungsraten',
+        head: ['Lohnplus', 'Inflation', 'Reallohn'],
+        rows: [
+          ['3,0 %', '2,0 %', 'rund +1,0 %'],
+          ['3,0 %', '3,0 %', 'rund 0 %'],
+          ['3,0 %', '4,0 %', 'rund −1,0 %'],
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Beispielwerte oben sind Rechenbeispiele und keine Angaben zu diesem Abschluss. Sie zeigen nur die Mechanik: Ein Abschluss ist erst dann eine Erhöhung, wenn er die Teuerung schlägt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das fürs Sparen zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Sparquote ist der Anteil des Einkommens, der nicht ausgegeben wird. Steigen Einkommen und Ausgaben gleich stark, bleibt der gesparte Betrag konstant – er verliert aber an Kaufkraft, weil die Preise gestiegen sind. Wer nach einer Lohnerhöhung dieselbe Rate weiterlaufen lässt, spart real weniger als vorher.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Lohnerhöhung ist ein guter Anlass, die Sparrate anzusehen. Die Frage ist nicht, ob mehr auf dem Konto ankommt, sondern ob der gesparte Anteil derselbe geblieben ist.',
+      },
+    ],
+  },
+  {
+    slug: 'australien-inflation-hartnaeckig',
+    title: 'Australiens Inflation überrascht – und der Wechselkurs reagiert',
+    teaser:
+      'Australiens Inflation bleibt hartnäckiger als erwartet. Warum eine Teuerungsrate am anderen Ende der Welt einen Wechselkurs bewegt – und damit auch ein Depot.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-27T06:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Australien', 'Wechselkurs', 'Notenbank'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['msci-world'],
+    sources: [
+      {
+        label:
+          'onvista, Forex-Analysen (Société Générale) vom 26.8.2026, 11:25 Uhr: „AUD: Inflation hartnäckiger als erwartet“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Devisenanalyse vom 26. August, 11:25 Uhr, hält für den australischen Dollar fest: Die Inflation ist hartnäckiger als erwartet. Das klingt nach einer Randnotiz für Fernreisende. Der Mechanismus dahinter gilt aber für jede Währung – auch für den Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Kette in vier Schritten',
+      },
+      {
+        type: 'list',
+        ordered: true,
+        items: [
+          'Die Inflation fällt höher aus als erwartet.',
+          'Der Markt rechnet daraufhin damit, dass die Notenbank die Zinsen länger hoch hält oder weniger schnell senkt.',
+          'Höhere Zinsen machen Anlagen in dieser Währung für ausländisches Kapital attraktiver.',
+          'Die Nachfrage nach der Währung steigt – und mit ihr ihr Kurs.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Entscheidend ist wieder das Wort **erwartet**. Eine hohe Inflation, mit der alle gerechnet haben, bewegt nichts; sie steckt bereits in den Zinserwartungen und damit im Kurs. Bewegt wird nur die Überraschung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das ein deutsches Depot betrifft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer einen weltweit anlegenden Indexfonds hält, hält damit Unternehmen in vielen Währungen. Der Fonds wird in Euro notiert, seine Bestandteile werden es nicht. Jede Wechselkursbewegung geht deshalb in den Euro-Wert des Depots ein, ohne dass ein einziger Aktienkurs sich bewegt haben müsste.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        title: 'Zwei Renditen, die selten gleich sind',
+        items: [
+          'Ein Weltindex hat eine Wertentwicklung in Lokalwährungen und eine in Euro.',
+          'In Jahren mit starken Währungsbewegungen liegen beide deutlich auseinander – und die Zahl, die für das eigene Vermögen zählt, ist die in Euro.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Notenbankmeldungen aus fernen Ländern sind für ein breit gestreutes Depot keine Auslandsnachrichten. Sie wirken über den Wechselkurs, und dieser Kanal ist in der eigenen Depotübersicht bereits enthalten – nur nicht ausgewiesen.',
+      },
+    ],
+  },
+  {
+    slug: 'grossanleger-depotmeldungen-vergangenheit',
+    title: 'Was Großanleger gekauft haben – und warum das alte Nachrichten sind',
+    metaTitle: 'Depotmeldungen großer Anleger sind alte Nachrichten',
+    teaser:
+      'Ein Bericht zeigt, was ein großer Vermögensverwalter im zweiten Quartal gekauft hat. Solche Meldungen sind eine Momentaufnahme aus der Vergangenheit.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-27T06:38:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Großanleger', 'Depotmeldung', 'Nachahmen', 'Zeitverzug'],
+    relatedTopics: ['aktie', 'anlegerpsychologie', 'wann-kaufen-verkaufen'],
+    relatedSymbols: ['nvidia', 'caterpillar'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Top News vom 27.8.2026, 03:54 Uhr: „Fisher Asset Management-Depot im zweiten Quartal: NVIDIA-Aktie & Co. aufgestockt, Caterpillar sticht heraus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Meldung von heute früh, 03:54 Uhr, berichtet über das Depot eines großen Vermögensverwalters **im zweiten Quartal**: aufgestockt wurde demnach unter anderem bei Nvidia, Caterpillar sticht heraus. Solche Berichte erscheinen regelmäßig, und sie sind interessanter für das Verständnis als für die Nachahmung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Zeitverzug ist eingebaut',
+      },
+      {
+        type: 'paragraph',
+        text: 'Große Verwalter in den USA müssen ihre Bestände nachträglich melden – nach Ablauf eines Quartals und mit einer Frist von mehreren Wochen. Was heute in einer Schlagzeile steht, ist damit ein Bild vom Quartalsende, nicht vom heutigen Tag. Zwischen dem Kauf und der Meldung liegen leicht drei bis vier Monate.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In dieser Zeit kann die Position aufgestockt, halbiert oder vollständig verkauft worden sein. Die Meldung sagt nur, was am Stichtag im Depot lag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und was nicht in der Meldung steht',
+      },
+      {
+        type: 'list',
+        items: [
+          '**Der Einstiegskurs.** Wer nachkauft, tut das zu einem anderen Preis als der Erstkäufer vor Jahren.',
+          '**Der Anteil am Ganzen.** Eine Position von einem Prozent und eine von zwanzig Prozent sehen in einer Liste gleich aus.',
+          '**Der Zweck.** Manche Positionen sichern andere ab; isoliert betrachtet ergeben sie kein Bild.',
+          '**Der Zeithorizont.** Ein Haus mit Jahrzehnten Geduld hält Rückschläge anders aus als ein Privatanleger mit einem Ziel in fünf Jahren.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Depotmeldungen großer Häuser sind Nachrichten über die Vergangenheit. Als Lehrmaterial darüber, wie professionelle Anleger streuen und wie lange sie halten, sind sie nützlich – als Einkaufsliste für heute sind sie es nicht.',
+      },
+    ],
+  },
+  {
     slug: 'nvidia-zahlen-heute',
     title: 'Nvidia legt heute die Quartalszahlen vor',
     teaser:
