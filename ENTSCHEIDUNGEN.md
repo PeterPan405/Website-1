@@ -1889,6 +1889,80 @@ mit **404**, und das sieht aus wie „gibt es nicht“ statt wie „noch nicht
 gemergt“. Wer einen Workflow zum Starten von Hand braucht, muss ihn erst nach
 `main` bringen — `zinsen.yml` hing genau daran.
 
+## Ein Glied, das nur an der Uhr hing – 27. August 2026
+
+An diesem Morgen standen weder Nachrichten noch Podcast auf der Website. Die
+erste Diagnose lautete „GitHub hat die Läufe verworfen" und war falsch: Sie
+entstand um 04:40 UTC, als die Läufe noch nicht da waren. Sie kamen später.
+
+**Verzögert, nicht verworfen** – um rund neuneinhalb Stunden:
+
+| Lauf                 | geplant (UTC)         | tatsächlich           |
+| -------------------- | --------------------- | --------------------- |
+| `quellen-pruefen`    | 00:03                 | 09:24                 |
+| `quellen-sammeln`    | 00:09 / 00:29         | 09:35 / 10:01         |
+| `nachrichten-agent`  | 00:33 / 01:03 / 01:33 | 10:10 / 10:55 / 11:55 |
+| `nachrichten` (Cron) | 01:13 … 02:47         | 11:10 … 13:05         |
+| `ausgabe-waechter`   | 03:11                 | 14:05                 |
+
+Die Kette selbst hat funktioniert. `kurse.yml` läuft alle fünf Minuten und war
+pünktlich; sie stieß um 02:12 `nachrichten.yml` an, das seinerseits den Sammler
+weckte. Beide taten, was sie sollten.
+
+**Nur den Agenten konnte niemand wecken.** Er war das einzige Glied der Kette,
+das ausschließlich an seinen drei Crons hing – und die standen um 02:12 noch in
+GitHubs Warteschlange. `nachrichten.yml` fand deshalb nur den Entwurf von
+gestern und brach richtigerweise rot ab.
+
+AGENTS.md sagt genau das seit Langem:
+
+> Was zu einer bestimmten Zeit passiert sein muss, darf nicht an `schedule`
+> hängen. Wer einen Lauf anlegt, dessen Ergebnis jemand vermissen würde, hängt
+> ihn an die Kette statt an eine Uhrzeit.
+
+Der Agent war die Ausnahme von dieser Regel, und sie ist niemandem aufgefallen,
+solange die Uhr stimmte. Eine Regel, die eine Ausnahme hat, von der niemand
+weiß, ist keine Regel, sondern eine Gewohnheit.
+
+### Die Abhilfe und ihre drei Riegel
+
+`quellen-sammeln.yml` weckt jetzt zum Schluss den Agenten. Damit hängt kein
+Glied mehr allein an der Uhr:
+
+    quellen-pruefen ─┐
+    kurse.yml ───────┼─→ quellen-sammeln ─→ nachrichten-agent
+                     │                            │
+                     └────────────────────────────┴─→ nachrichten ─→ Podcast
+
+Der Agent stößt seinerseits den Sammler an, wenn ihm die Quellen fehlen. Ohne
+Riegel entstünde daraus eine Schaukel, und deshalb sind es drei:
+
+1. **Läuft schon ein Agent?** Dann hat er uns gerufen und wartet gerade auf
+   uns – er pollt selbst auf die Datei.
+2. **Steht der Entwurf von heute?** Dann ist er fertig; sonst weckte ihn der
+   zweite Cron-Termin des Sammlers ein zweites Mal.
+3. **Steht die Ausgabe von heute auf `origin/main`?** Dann ist der Tag
+   erledigt. Gefragt wird `origin/main` von **jetzt**, nicht der Checkout.
+
+Jeder Riegel für sich beendet die Schaukel. Riegel 3 ist an echtem Bestand
+geprüft: Für den 27. August greift er, für einen Tag ohne Ausgabe nicht.
+
+### Was damit **nicht** behoben ist
+
+Verzögert GitHub auch `kurse.yml`, hat die Kette keinen pünktlichen Einstieg
+mehr, und dann hilft kein weiteres Glied. Der Wächter fängt das nicht auf: Er
+hängt selbst an einem Cron und kam an diesem Tag elf Stunden zu spät. Ein
+Alarm, der mit der Störung zusammen ausfällt, ist keiner.
+
+Ein wirklich unabhängiger Wecker müsste **außerhalb** von GitHub Actions
+laufen – eine Überwachung, die morgens die Website abruft und nachsieht, ob die
+Ausgabe des Tages dasteht. Das ist eine Entscheidung des Betreibers über einen
+weiteren Dienst, kein fehlender Code.
+
+Und: Solange `ANTHROPIC_API_KEY` nicht hinterlegt ist, hat die Rangfolge nur
+einen Weg. Der Agent ist jetzt zuverlässiger erreichbar – aber wenn er selbst
+ausfällt, gibt es weiterhin keine Ausgabe.
+
 ## Ein Wächter, der seinen eigenen Alarm fortschreibt, ist keiner
 
 `lib/website-zahlen.ts` zählt beim Bauen, wie viel auf dieser Website steht –
