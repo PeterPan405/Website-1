@@ -970,35 +970,40 @@ export const KI_HINWEIS_GESPROCHEN =
  * Genau dort entsteht der Eindruck, hier spreche jemand über das, was zu tun
  * ist. Der Betreiber hat den gesprochenen Hinweis am 25. August 2026 verlangt.
  *
+ * ## Zwei Punkte, nicht drei – Nutzerwunsch vom 27. August 2026
+ *
+ * Die erste Fassung nannte drei: keine Beratung, keine Empfehlung zu kaufen
+ * oder zu verkaufen, keine Haftung. Der Betreiber hat den mittleren gestrichen:
+ *
+ * > „keine Empfehlung zum Kauf oder Verkauf einer Aktie" lässt Lücken und
+ * > klingt kindisch – sag es wie andere Podcasts: keine Anlageberatung, und
+ * > wir haften nicht.
+ *
+ * Beides trifft zu. **Die Lücke:** Wer „Aktie" aufzählt, hat Anleihen, Fonds
+ * und Zertifikate nicht genannt – eine Aufzählung schließt aus, was in ihr
+ * fehlt. „Keine Anlageberatung" ist der Oberbegriff und deckt die Empfehlung
+ * bereits ab; die Aufzählung machte den Satz länger und die Aussage enger.
+ *
+ * **Der Ton:** Ein Hinweis, der eine Selbstverständlichkeit umständlich
+ * ausbuchstabiert, klingt nach Absicherung statt nach Redaktion. Die
+ * gebräuchliche Formulierung tut es kürzer und wird verstanden.
+ *
  * ## Warum unmittelbar hinter dem KI-Hinweis – und im selben Absatz
  *
  * Kleingedrucktes gehört an **eine** Stelle. Zwei getrennte Absätze am Anfang
  * wären zwei Unterbrechungen statt einer, und die zweite trifft einen Hörer,
- * der die erste schon überstanden hat. Zusammen sind es vier Sätze in rund
- * zwanzig Sekunden; danach fängt die Folge an und wird nicht wieder angehalten.
+ * der die erste schon überstanden hat. Zusammen sind es jetzt drei Sätze in
+ * rund vierzehn Sekunden; danach fängt die Folge an.
  *
  * Die Stelle selbst ist dieselbe wie beim KI-Hinweis und aus denselben
  * Gründen: nicht davor, nicht am Ende. Siehe `KI_HINWEIS_GESPROCHEN`.
  *
- * ## Warum er trotzdem kurz ist
- *
- * Weil er sonst weggeklickt wird. Er nennt die drei Dinge, auf die es
- * ankommt – keine Beratung, keine Empfehlung, keine Haftung – und hört dann
- * auf. Das Vollständige steht unter jeder Folge, im Impressum und in der
- * Fußzeile jeder Seite.
- *
- * ## Warum „etwas zu kaufen oder zu verkaufen" und nicht „Kauf- oder
- * Verkaufsempfehlung"
- *
- * Weil das hier gesprochen wird. Eine Ergänzungsbindestrich-Konstruktion ist
- * eine Schreibweise; eine Stimme muss sie auflösen, und welche Stimme das wie
- * tut, ist nicht vorhersagbar. Ausgeschrieben klingt es außerdem nach einem
- * Menschen und nicht nach einem Formular.
+ * Das Vollständige steht weiterhin unter jeder Folge, im Impressum und in der
+ * Fußzeile jeder Seite – dort ist Platz für den ganzen Satz.
  */
 export const RECHTSHINWEIS_GESPROCHEN =
-  'Und noch eins: Das hier ist Finanzbildung und keine Anlageberatung – ' +
-  'keine Empfehlung, etwas zu kaufen oder zu verkaufen. Alle Angaben ohne ' +
-  'Gewähr; für deine Entscheidungen haften wir nicht.'
+  'Und noch eins: Das ist keine Anlageberatung, und für Anlageentscheidungen ' +
+  'übernehmen wir keine Haftung.'
 
 function wortzahl(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
@@ -1061,7 +1066,8 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     Der Rechtshinweis steht seit dem 25. August 2026 unmittelbar dahinter –
     im **selben** Absatz. Kleingedrucktes gehört an eine Stelle: Zwei eigene
     Absätze am Anfang wären zwei Unterbrechungen statt einer, und die zweite
-    trifft einen Hörer, der die erste schon überstanden hat.
+    trifft einen Hörer, der die erste schon überstanden hat. Seit dem
+    27. August nennt er zwei Punkte statt drei – siehe dort.
 
     Auf die Kapitelmarken wirkt sich das nicht aus. Der Läufer nimmt eine
     Sprechpause erst dann als Kapitelanfang, wenn sie mindestens dreißig
