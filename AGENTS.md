@@ -136,7 +136,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 | Deutsche Zeit | UTC   | Was                                                          |
 | ------------- | ----- | ------------------------------------------------------------ |
 | 02:03         | 00:03 | `quellen-pruefen.yml` – welcher Kanal ist heute offen?       |
-| 02:09 / 02:29 | 00:09 | `quellen-sammeln.yml` – legt `quellen-heute` an              |
+| 02:09 / 02:29 | 00:09 | `quellen-sammeln.yml` – `quellen-heute`, weckt den Agenten   |
 | **02:33**     | 00:33 | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf** |
 | **↳ sofort**  | –     | der Agent **stößt den Nachrichtenlauf an**                   |
 | 03:03 / 03:33 | 01:03 | zweiter und dritter Anlauf des Agenten                       |

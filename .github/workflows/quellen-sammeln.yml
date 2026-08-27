@@ -75,6 +75,8 @@ jobs:
     permissions:
       # Zum Schreiben des Zweiges `quellen-heute`.
       contents: write
+      # Zum Anstoßen des Agenten – siehe den letzten Schritt.
+      actions: write
 
     steps:
       - uses: actions/checkout@v5
@@ -250,3 +252,92 @@ jobs:
           git push --force origin quellen-heute
 
           echo "Liegt bereit: git show origin/quellen-heute:quellen.txt"
+
+      # ------------------------------------------------------------------
+      # Den Agenten anstoßen – das Glied, das bis zum 27. August 2026 fehlte.
+      #
+      # ## Was an diesem Morgen passiert ist
+      #
+      # GitHub hat den ganzen Zeitplan um **neuneinhalb Stunden** verzögert:
+      # `quellen-pruefen` lief statt 00:03 erst um 09:24, der Agent statt
+      # 00:33/01:03/01:33 erst um 10:10/10:55/11:55, der Wächter statt 03:11
+      # um 14:05. Verworfen wurde nichts – alles kam, nur zu spät.
+      #
+      # Die Kette selbst hat funktioniert: `kurse.yml` merkte um 02:12, dass
+      # nichts geschehen war, und stieß an, was fehlte. Nur stand der Agent zu
+      # diesem Zeitpunkt noch in der Warteschlange, und **niemand konnte ihn
+      # anstoßen** – er hing als einziges Glied allein an seinen drei Crons.
+      # `nachrichten.yml` fand deshalb nur den Entwurf von gestern und brach
+      # richtigerweise rot ab. Es gab keine Ausgabe und keine Folge.
+      #
+      # AGENTS.md sagt genau das schon: „Was zu einer bestimmten Zeit passiert
+      # sein muss, darf nicht an `schedule` hängen." Der Agent war die
+      # Ausnahme, die niemandem aufgefallen ist, solange die Uhr stimmte.
+      #
+      # Seitdem schließt dieser Schritt den Kreis:
+      #
+      #   quellen-pruefen ─┐
+      #   kurse.yml ───────┼─→ quellen-sammeln ─→ nachrichten-agent
+      #                    │                            │
+      #                    └────────────────────────────┴─→ nachrichten
+      #                                                        └─→ Podcast
+      #
+      # ## Die drei Riegel – und warum es ohne sie kreist
+      #
+      # Der Agent stößt seinerseits diesen Sammler an, wenn ihm die Quellen
+      # fehlen (siehe `nachrichten-agent.yml`). Ohne Riegel entstünde daraus
+      # eine Schaukel: Sammler weckt Agent weckt Sammler.
+      #
+      # 1. **Läuft schon ein Agent?** Dann ist es genau dieser Fall – der
+      #    Agent hat uns gerufen und wartet gerade auf uns. Er pollt selbst
+      #    auf die Datei; ein zweiter Lauf wäre reine Verschwendung.
+      # 2. **Steht der Entwurf von heute schon?** Dann ist der Agent fertig,
+      #    und der zweite Cron-Termin dieses Sammlers hätte ihn sonst ein
+      #    zweites Mal geweckt.
+      # 3. **Steht die Ausgabe von heute schon?** Dann ist der Tag erledigt.
+      #    Gefragt wird `origin/main` von **jetzt** und nicht der Checkout –
+      #    der ist eine Momentaufnahme vom Auslösen (AGENTS.md: „Ein Riegel
+      #    ist so gut wie die Quelle, die er fragt").
+      #
+      # Jeder Riegel für sich beendet die Schaukel; zusammen tun sie es auch
+      # dann, wenn einer der drei einmal nicht greift.
+      - name: Den Agenten anstoßen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -u
+          TAG=$(date -u +%F)
+
+          # 1. Läuft schon ein Agent?
+          offen=$(gh run list --repo "${{ github.repository }}" \
+                    --workflow nachrichten-agent.yml --limit 5 \
+                    --json status --jq '[.[] | select(.status != "completed")] | length' \
+                    2>/dev/null || echo 0)
+          if [ "${offen:-0}" -gt 0 ]; then
+            echo "Ein Agentenlauf ist unterwegs ($offen offen) – er wartet auf diese Datei."
+            exit 0
+          fi
+
+          # 2. Steht der Entwurf von heute schon?
+          if git fetch origin nachrichten-entwurf --depth 1 -q 2>/dev/null &&
+             git show origin/nachrichten-entwurf:entwurf.json > entwurf.json 2>/dev/null &&
+             [ -s entwurf.json ] &&
+             grep -q "\"stichtag\"[[:space:]]*:[[:space:]]*\"$TAG\"" entwurf.json; then
+            echo "Der Entwurf vom $TAG steht bereits – der Agent wird nicht geweckt."
+            exit 0
+          fi
+
+          # 3. Steht die Ausgabe von heute schon?
+          git fetch origin main --depth 1 -q 2>/dev/null || true
+          if git show "origin/main:data/editions/$TAG.ts" > /dev/null 2>&1; then
+            echo "Die Ausgabe vom $TAG steht bereits auf main – nichts zu tun."
+            exit 0
+          fi
+
+          echo "Kein Entwurf, keine Ausgabe, kein laufender Agent – der Agent wird angestoßen."
+          gh workflow run nachrichten-agent.yml \
+            --repo "${{ github.repository }}" --ref main || {
+              echo "::warning::Der Agent ließ sich nicht anstoßen – die Crons bleiben als Rückfall."
+              exit 0
+            }
+          echo "Angestoßen. Der Agent holt sich die Datei vom Zweig \`quellen-heute\`."
