@@ -2565,12 +2565,43 @@ nach der vorigen liegt, und die Pausen der Begrüßung liegen sämtlich davor.
 Der Test hält den fehlenden Umbruch fest, damit niemand ihn versehentlich
 einzieht.
 
-**Ausgeschrieben statt mit Ergänzungsbindestrich.** Unter der Folge steht
-„keine Kauf- oder Verkaufsempfehlung"; gesprochen heißt es „keine Empfehlung,
-etwas zu kaufen oder zu verkaufen". Ein Ergänzungsbindestrich ist eine
-Schreibweise – eine Stimme muss ihn auflösen, und welche Stimme das wie tut,
-ist nicht vorhersagbar. Ausgeschrieben klingt es außerdem nach einem Menschen
-und nicht nach einem Formular.
+### Zwei Punkte, nicht drei – 27. August 2026
+
+Am Tag darauf hat der Betreiber den mittleren gestrichen:
+
+> „keine Empfehlung zum Kauf oder Verkauf einer Aktie" lässt Lücken und klingt
+> kindisch – sag es wie andere Podcasts: keine Anlageberatung, und wir haften
+> nicht.
+
+Beides trifft zu, und der erste Einwand ist der schwerere.
+
+**Die Lücke.** Wer „Aktie" aufzählt, hat Anleihen, Fonds, ETFs und
+Zertifikate nicht genannt. Eine Aufzählung schließt aus, was in ihr fehlt –
+und ein Hinweis, der weniger abdeckt, als er soll, ist schlechter als der
+Oberbegriff. „Keine Anlageberatung" deckt die Empfehlung bereits ab: Eine
+Empfehlung ist der Kern dessen, was eine Beratung ausmacht. Der dritte Satz
+machte die Aussage länger und enger zugleich.
+
+**Der Ton.** Ein Hinweis, der eine Selbstverständlichkeit umständlich
+ausbuchstabiert, klingt nach Absicherung statt nach Redaktion. Die
+gebräuchliche Formulierung tut es in einem Satz und wird verstanden.
+
+Gesprochen wird jetzt:
+
+> Und noch eins: Das ist keine Anlageberatung, und für Anlageentscheidungen
+> übernehmen wir keine Haftung.
+
+Der Vorspann schrumpft damit von rund zwanzig auf **rund fünfzehn Sekunden**,
+und der Wortbedarf von dreißig auf vierzehn Wörter der 740 – ein knapper
+halber Themenabsatz zurück im Tag.
+
+Der Test prüft weiterhin beide verbliebenen Punkte **einzeln** und zusätzlich,
+dass die gestrichene Aufzählung nicht zurückkommt. Ohne diese Gegenprobe wäre
+das Streichen eine Absicht ohne Halt: Die nächste Erweiterung schriebe sie
+wieder hinein, und niemand merkte es.
+
+Unter der Folge, im Impressum und in der Fußzeile steht der vollständige Satz
+unverändert weiter – dort ist Platz dafür.
 
 **Was es kostet:** rund dreißig Wörter der 740, also etwa ein halber
 Themenabsatz an einem reichen Tag. Die Kürzungsschleife nimmt sie von hinten,

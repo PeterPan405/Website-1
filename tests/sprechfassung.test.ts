@@ -334,12 +334,18 @@ const rechtAb = folge.sprechtext.indexOf('Und noch eins:')
 pruefe('Sprechtext trägt den Rechtshinweis', rechtAb >= 0, true)
 
 /*
-  Die drei Punkte einzeln – und nicht als ein Vorkommen von „Anlageberatung".
+  Die beiden Punkte einzeln – und nicht als ein Vorkommen von „Anlageberatung".
 
-  Ein Hinweis, der nur „keine Anlageberatung" sagt, lässt die beiden Punkte
-  weg, nach denen der Betreiber ausdrücklich gefragt hat: keine Empfehlung und
-  keine Haftung. Wer den Satz später kürzt, soll hier anstoßen und nicht erst
-  bei jemandem, der sich darauf verlassen hat.
+  Bis zum 27. August 2026 waren es drei; der mittlere lautete „keine Empfehlung,
+  etwas zu kaufen oder zu verkaufen". Der Betreiber hat ihn gestrichen: Die
+  Aufzählung ließ Lücken – wer „Aktie" nennt, hat Anleihen und Fonds nicht
+  genannt – und klang umständlich. „Keine Anlageberatung" ist der Oberbegriff
+  und deckt die Empfehlung mit ab.
+
+  Geprüft werden deshalb zwei Aussagen, und zwar **einzeln**: Ein Hinweis, der
+  nur eine von beiden nennt, erfüllt seinen Zweck nicht. Wer den Satz später
+  weiter kürzt, soll hier anstoßen und nicht erst bei jemandem, der sich darauf
+  verlassen hat.
 */
 pruefe(
   'Er nennt: keine Anlageberatung',
@@ -347,11 +353,21 @@ pruefe(
   true
 )
 pruefe(
-  'Er nennt: keine Empfehlung zu kaufen oder zu verkaufen',
-  /keine Empfehlung, etwas zu kaufen oder zu verkaufen/.test(folge.sprechtext),
+  'Er nennt: keine Haftung',
+  /übernehmen wir keine Haftung/.test(folge.sprechtext),
   true
 )
-pruefe('Er nennt: keine Haftung', /haften wir nicht/.test(folge.sprechtext), true)
+
+/*
+  Und die Gegenprobe zur Kürzung selbst: Die alte Aufzählung darf nicht
+  zurückkommen. Ohne diese Zeile wäre das Streichen eine Absicht ohne Halt –
+  die nächste Erweiterung schriebe sie wieder hinein, und niemand merkte es.
+*/
+pruefe(
+  'Die gestrichene Aufzählung ist nicht zurück',
+  /zu kaufen oder zu verkaufen|Kauf- oder Verkaufsempfehlung/.test(folge.sprechtext),
+  false
+)
 
 /*
   Und die Stelle: unmittelbar hinter dem KI-Hinweis, im selben Absatz.
