@@ -101,6 +101,316 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-und-euro-stoxx-50-laufen-auseinander',
+    title: 'DAX legt zu, Euro Stoxx 50 verliert – am selben Morgen',
+    teaser:
+      'Derselbe Nvidia-Bericht lässt den DAX steigen und den Euro Stoxx 50 fallen – zur exakt gleichen Zeit gemessen. Der Grund liegt in der Gewichtung der Indizes.',
+    category: 'Märkte',
+    publishedAt: '2026-08-28T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Euro Stoxx 50', 'Indizes', 'Nvidia'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'euro-stoxx-50', 'nvidia', 'sap'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Kursleiste „Heute im Fokus“, Abruf 28.8.2026, 04:23 Uhr GMT: DAX 26.367 Punkte (+0,3 %), Est50 (Euro Stoxx 50) 6.425 Punkte (-0,7 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Dax Tagesrückblick vom 27.8.2026, 15:59 Uhr: „Nvidia-Zahlen reichen für kleines Plus – SAP an Dax-Spitze“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen vom 27.8.2026, 15:57 Uhr (dpa-AFX): „Aktien Europa Schluss: Verluste trotz Nvidia - Vorsicht vor Jackson Hole“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen vom 27.8.2026, 20:24 Uhr (dpa-AFX): „ROUNDUP/Aktien New York Schluss: Nvidia und andere Tech-Größen beflügeln Nasdaq“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag hat Nvidia nach US-Börsenschluss erneut Rekordzahlen vorgelegt. Am Freitagmorgen zeigte sich die Reaktion in Europa gespalten: Der DAX stand laut Kurstafel von finanzen.net bei 26.367 Punkten im Plus von 0,3 Prozent, der Euro Stoxx 50 zur exakt selben Abrufzeit bei 6.425 Punkten im Minus von 0,7 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Indizes, dieselbe Region, verschiedene Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das wirkt zunächst wie ein Widerspruch, schließlich stammen viele Mitglieder beider Indizes aus denselben europäischen Kernländern. Der Unterschied liegt in der Gewichtung. Der Dax-Tagesrückblick von onvista beschreibt SAP als Spitzenreiter im DAX – ein einzelner stark gestiegener Wert kann einen 40-Werte-Index wie den DAX deutlicher bewegen als den auf 50 Werte aus mehreren Ländern gestreuten Euro Stoxx 50, in dem derselbe Kursgewinn anteilig weniger wiegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Frankfurt gewann, der Rest Europas verlor – am selben Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den Donnerstag selbst meldete dpa-AFX für Frankfurt Gewinne und für Europa insgesamt Verluste trotz Nvidia, mit dem Hinweis auf Vorsicht vor dem Notenbanksymposium in Jackson Hole. Die Wall Street wiederum schloss den Tag laut mehreren dpa-AFX-Meldungen im Plus – bei Nasdaq, Nasdaq Composite, S&P 500 und Dow Jones gleichermaßen. Drei Börsenplätze, dieselbe Nachricht, drei unterschiedliche Tagesergebnisse.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Index ist keine Zusammenfassung „des Marktes“, sondern eine Rechenvorschrift mit einer bestimmten Auswahl und Gewichtung von Werten. Wer zwei Indizes an einem Tag vergleicht, vergleicht auch, wie stark die dort jeweils größten Positionen gerade schwanken – nicht nur, wie die Wirtschaft dahinter läuft.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-falken-und-der-terminkalender-am-freitag',
+    title: 'EZB-Falken drängen auf mehr, während die Bundesagentur zählt',
+    teaser:
+      'Im EZB-Rat wird laut zwei Portalen über eine weitere Zinserhöhung diskutiert. Der Freitag bringt zudem deutsche Arbeitsmarktzahlen und mehrere Konjunkturdaten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-28T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['EZB', 'Zinsen', 'Arbeitsmarkt', 'Konjunkturkalender'],
+    relatedTopics: ['notenbanken-geldpolitik', 'staatsanleihe'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Nachricht vom 27.8.2026: „Falken setzen sich durch: EZB vor Zinserhöhung – doch das könnten erst der Anfang sein“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Rubrik „Private Finanzen“, Abruf 28.8.2026, 04:23 Uhr GMT: „Die EZB steht vor der nächsten Erhöhung. Im Rat wird bereits über restriktive Zinsen diskutiert.“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 28.8.2026, 05:49 Uhr: „Bundesagentur für Arbeit gibt August-Zahlen bekannt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'boerse-frankfurt.de, „Kommende Termine“, Abruf 28.8.2026, 04:23 Uhr GMT: Termine am 28. August 2026 (u. a. 07:00 Uhr Finnland BIP, 08:00 Uhr Deutschland Importpreise, 08:45 Uhr Frankreich BIP und Verbraucherpreise)',
+        url: 'https://www.boerse-frankfurt.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender-Widget, Abruf 28.8.2026, 04:23 Uhr GMT: 09:55 Uhr Arbeitslosenquote s.a. (Prognose 6,4 %, Vorherig 6,4 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 28.8.2026, 05:58/06:00 Uhr: „EUREX/DAX-Futures im Frühhandel etwas fester“ / „EUREX/Bund-Future im Frühhandel im Minus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Meldung von wallstreet-online vom Donnerstag trägt die Überschrift „Falken setzen sich durch: EZB vor Zinserhöhung – doch das könnte erst der Anfang sein“. Auch finanzen.net beschreibt in seiner Rubrik „Private Finanzen“ dieselbe Lage: Im EZB-Rat werde bereits über restriktive Zinsen diskutiert. Eine konkrete neue Zinshöhe oder ein Beschlussdatum nennt keine der beiden Quellen – nur, dass sich offenbar die Stimmen mehren, die für höhere Zinsen eintreten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Falken, Tauben und ein Rat, der gemeinsam abstimmt',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Berichterstattung über Notenbanken heißen Ratsmitglieder, die eher zu höheren Zinsen tendieren, „Falken“ – aus Sorge vor zu hoher Inflation. „Tauben“ gewichten die Konjunktur stärker und scheuen restriktive Zinsen, die Kredite verteuern und Investitionen bremsen können. Beide Lager sitzen im selben Rat und stimmen am Ende gemeinsam ab; welche Fraktion sich durchsetzt, entscheidet sich erst in der Sitzung selbst, nicht in einzelnen Wortmeldungen vorher.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute noch ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bevor die EZB überhaupt wieder tagt, liefert der Freitag selbst mehrere Zahlen, die in eine solche Entscheidung einfließen können. Laut Wirtschaftskalender von boerse-frankfurt.de meldet Finnland um 07:00 Uhr sein vorläufiges Bruttoinlandsprodukt, Deutschland um 08:00 Uhr die Importpreise, und Frankreich um 08:45 Uhr gleich mehrere Werte auf einmal: Verbraucherausgaben, Bruttoinlandsprodukt und die Verbraucherpreise nach EU-Norm. Um 09:55 Uhr folgt laut Ticker die deutsche Arbeitslosenquote – die Bundesagentur für Arbeit kündigte die August-Zahlen bereits um 05:49 Uhr an. Der Wirtschaftskalender nennt dafür eine erwartete Quote von 6,4 Prozent, unverändert zum Vormonat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein kleiner, aber lesbarer Hinweis darauf, wie der Markt Zinserwartungen schon vor einer Sitzung einpreist: Der Bund-Future – ein Terminkontrakt auf deutsche Staatsanleihen – notierte laut Ticker im Frühhandel im Minus, während die DAX-Futures etwas fester tendierten. Fallende Anleihekurse bedeuten steigende Renditen, und steigende Renditen passen zur Erwartung höherer Zinsen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Meldung, dass sich eine Fraktion in einem Gremium durchsetzt, ist noch kein Beschluss. Wer daraus schon eine bestimmte neue Zinshöhe ableitet, geht über das hinaus, was die Quellen hergeben – festhalten lässt sich nur, dass sich die Richtung der Diskussion laut zwei unabhängigen Portalen verschoben hat.',
+      },
+    ],
+  },
+  {
+    slug: 'groesster-gold-etf-zieht-fast-zwei-milliarden-an',
+    title: 'Der größte Gold-ETF zieht fast zwei Milliarden Dollar an',
+    teaser:
+      'Ein Zufluss von fast zwei Milliarden Dollar in den größten Gold-ETF trifft auf einen Goldpreis, der laut Goldreporter gerade einen neuen Boden sucht.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-28T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'ETF', 'Edelmetalle', 'Geldanlage'],
+    relatedTopics: ['etf', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Top-News, Abruf 28.8.2026, 04:23 Uhr GMT: „Größter Gold-ETF meldet fast 2 Milliarden Dollar Zufluss“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'goldreporter.de, Meldungen & Analysen, Rubrik ETF, 27.8.2026: „Der größte Gold-ETF baut seine Bestände kräftig aus und zieht fast 2 Milliarden USD an. Der Goldpreis sucht nach der August-Rally einen neuen Boden.“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online.de, Kurstafel, Abruf 28.8.2026, 04:23 Uhr GMT: Gold 4.583,08 US-Dollar (-0,40 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Goldreporter meldet am 27. August unter der Überschrift „Größter Gold-ETF meldet fast 2 Milliarden Dollar Zufluss“, dass der weltweit größte börsengehandelte Gold-Fonds seine Bestände kräftig ausgebaut hat. Welcher Fonds genau gemeint ist, nennt die Meldung nicht – nur, dass es sich um den größten seiner Art handelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie ein Gold-ETF überhaupt Gold „kauft“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein physisch hinterlegter Gold-ETF hält tatsächliches Gold in einem Tresor; jeder neue Anteilschein, den Anleger kaufen, löst im Prinzip einen zusätzlichen Barrenkauf aus. Ein Zufluss von fast zwei Milliarden Dollar bedeutet deshalb nicht nur mehr Anleger im Fonds, sondern auch zusätzliche physische Nachfrage am Goldmarkt – unabhängig davon, wie sich der Kurs an diesem Tag gerade bewegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Fluss und der Kurs erzählen zwei verschiedene Geschichten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau das zeigt sich hier: Goldreporter schreibt im selben Zusammenhang, der Goldpreis suche „nach der August-Rally einen neuen Boden“ – eher eine Seitwärts- oder Schwächephase also. Am Freitagmorgen notierte Gold laut Kurstafel von wallstreet-online bei 4.583,08 US-Dollar, ein Minus von 0,40 Prozent. Ein Fonds kann also kräftig Geld anziehen, während der Kurs gleichzeitig nachgibt oder pausiert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Mittelzuflüsse in einen ETF sind ein Stimmungssignal, kein Kurssignal. Sie zeigen, wie viele Anleger gerade zusätzliches Geld in ein Anlagethema stecken – nicht, ob der Kurs deshalb morgen steigt. Wer Zuflüsse als Kaufsignal liest, verwechselt Nachfrage der Vergangenheit mit einer Prognose für die Zukunft.',
+      },
+    ],
+  },
+  {
+    slug: 'durch-die-strasse-von-hormus-fliesst-wieder-oel',
+    title: 'Durch die Straße von Hormus fließt wieder Öl – aber zäh',
+    teaser:
+      'Shuttle-Schiffe bringen wieder Rohöl durch die Straße von Hormus. Wie viel, lässt sich kaum zählen – zwei Kurstafeln zeigen entgegengesetzte Vorzeichen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-28T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rohöl', 'Straße von Hormus', 'Brent', 'WTI'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online.de, Nachricht vom 27.8.2026: „Mit Shuttle-Schiffen: Durch die Straße von Hormus fließt wieder Rohöl – aber sehr zäh“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online.de, Kurstafel, Abruf 28.8.2026, 04:23 Uhr GMT: Öl (Brent) 88,53 US-Dollar (+2,28 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste „Heute im Fokus“, Abruf 28.8.2026, 04:23 Uhr GMT: Öl 89,21 US-Dollar (-0,6 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '„Mit sogenannten Shuttle-Schiffen gelangt wieder mehr Rohöl durch die Straße von Hormus“, schreibt wallstreet-online am 27. August. „Wie viel das genau ist, lässt sich schwer sagen, Satellitenbilder liefern aber Aufschluss.“ Die Meldung nennt also keinen genauen Umfang – nur, dass wieder Öl fließt und dass Beobachter auf Satellitenaufnahmen angewiesen sind, um das zu überprüfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum niemand exakt zählt, wie viel Öl durchfährt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Straße von Hormus lässt sich nicht wie ein Grenzübergang mit einer festen Zählstelle überwachen. Schiffsbewegungen werden über Satellitendaten und Funksignale rekonstruiert, und Shuttle-Schiffe – kleinere Tanker, die Ladung zu größeren Schiffen außerhalb der Meerenge umladen – erschweren die Zählung zusätzlich. Genau deshalb bleibt in der Meldung offen, welche Menge tatsächlich wieder fließt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kurstafeln, zwei Prozentzahlen, ein Grund',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Freitagmorgen zeigte wallstreet-online für „Öl (Brent)“ ein Plus von 2,28 Prozent auf 88,53 US-Dollar, während finanzen.net in seiner Kopfzeile für „Öl“ ein Minus von 0,6 Prozent auf 89,21 US-Dollar auswies. Das muss kein Widerspruch in den Daten sein: Rohöl wird an mehreren Referenzpunkten gehandelt, vor allem Brent aus der Nordsee und WTI aus den USA, und dieselbe Quelle listet an anderer Stelle beide Sorten getrennt auf. Welche der beiden Zahlen sich hinter dem unbeschrifteten „Öl“ bei finanzen.net verbirgt, geht aus der Quelle nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Prozentzahl zum „Ölpreis“ ist nur so aussagekräftig wie ihre Beschriftung. Wer zwei Quellen vergleicht, sollte zuerst prüfen, ob beide von derselben Rohölsorte sprechen – sonst vergleicht man am Ende zwei verschiedene Märkte, die zufällig denselben Namen tragen.',
+      },
+    ],
+  },
+  {
+    slug: 'voltatron-hebt-umsatzprognose-senkt-margenziel',
+    title: 'Voltatron erhöht die Umsatzprognose – und senkt die Margenerwartung',
+    metaTitle: 'Voltatron: mehr Umsatz, weniger Marge nach Zukauf',
+    teaser:
+      'Eine Pflichtmitteilung zur Übernahme von Kurz Elektronik zeigt zwei Zahlen: mehr erwarteten Umsatz, aber eine niedrigere Margenerwartung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-28T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Übernahme', 'Guidance', 'Marge', 'Ad-hoc-Meldung'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'EQS Group AG, EQS-Adhoc vom 27.8.2026: „Voltatron übernimmt Kurz Elektronik GmbH gegen Geldleistung und Ausgabe neuer Aktien aus einer Sachkapitalerhöhung – Umsatzprognose erhöht, EBT-Marge aufgrund geplanter Investitionen und Integrationsaufwendungen gesenkt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online.de, wO Newsflash vom 27.8.2026: „Voltatron kauft Kurz Elektronik: Umsatzprognose steigt trotz Investitionen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Voltatron hat laut einer Pflichtmitteilung (EQS-Adhoc) vom 27. August die Übernahme der Kurz Elektronik GmbH bekanntgegeben. Bezahlt wird laut Meldung in bar und mit neuen Aktien aus einer Sachkapitalerhöhung – das Unternehmen gibt also zusätzliche Anteile aus, statt die gesamte Übernahme mit vorhandenem Geld zu bezahlen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Mitteilung, zwei Prognosen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Im selben Atemzug hebt Voltatron laut der Mitteilung seine Umsatzprognose an – der Zukauf soll also zusätzlichen Umsatz bringen. Gleichzeitig senkt das Unternehmen seine Erwartung an die EBT-Marge, also den Gewinn vor Steuern im Verhältnis zum Umsatz, und begründet das mit geplanten Investitionen und Integrationsaufwendungen. Beides steht in derselben Ad-hoc-Meldung, nicht in zwei getrennten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum mehr Umsatz nicht automatisch mehr Gewinn bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein zugekauftes Unternehmen bringt Umsatz von Tag eins an mit, aber die Kosten der Integration – etwa doppelte Verwaltung, Anpassung von Systemen oder Abfindungen – fallen oft vor den erhofften Einsparungen an. Eine steigende Umsatzprognose bei gleichzeitig sinkender Margenerwartung ist deshalb keine widersprüchliche, sondern eine für Übernahmen typische Kombination: Das Geschäft wächst, wird aber vorübergehend weniger profitabel geführt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Meldung über eine „erhöhte Umsatzprognose“ nur in der Überschrift liest, bekommt die halbe Geschichte. Die zweite Zahl – hier die gesenkte Margenerwartung – steht in derselben Mitteilung und verändert, was die erste Zahl tatsächlich für den Gewinn bedeutet.',
+      },
+    ],
+  },
+  {
     slug: 'nvidia-rekord-aktie-faellt',
     title: 'Nvidia meldet Rekordzahlen – und die Aktie fällt trotzdem',
     teaser:
