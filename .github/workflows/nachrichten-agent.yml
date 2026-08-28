@@ -274,6 +274,29 @@ jobs:
           # Läufer hat den Token ohnehin; das erspart der Action einen Umweg,
           # der beim ersten Versuch der Grund für den Fehlschlag war.
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # **Der Agent darf auch von einem Bot geweckt werden.**
+          #
+          # Seit dem 27. August weckt `quellen-sammeln.yml` diesen Workflow,
+          # damit er nicht mehr allein an seinen Crons hängt. Der Anstoß läuft
+          # über `gh workflow run` mit dem `GITHUB_TOKEN` – und damit ist der
+          # auslösende Actor `github-actions[bot]`.
+          #
+          # Am Morgen des 28. August hat die Action genau daran abgebrochen,
+          # noch vor dem Modellaufruf:
+          #
+          #   Actor type: Bot
+          #   Workflow initiated by non-human actor: github-actions (type: Bot).
+          #   Add bot to allowed_bots list or use '*' to allow all bots.
+          #
+          # Solange der Workflow nur per `schedule` lief, war der Actor der
+          # letzte Mensch, der gepusht hatte – deshalb ist es vorher nie
+          # aufgefallen. Die neue Kette hat den Sperrgrund erst erzeugt.
+          #
+          # Erlaubt wird **nur** `github-actions`, nicht `*`: Der Riegel ist
+          # dafür da, dass nicht jeder beliebige Bot einen Agentenlauf auf
+          # Kosten des Abonnements starten kann. Diese eine Kette soll es
+          # dürfen, sonst niemand.
+          allowed_bots: 'github-actions'
           # `show_full_output` ist **absichtlich nicht gesetzt.** Der Agent
           # liest fremde Seiten, und was er daraus wiedergibt, stünde sonst
           # vollständig im Protokoll.
