@@ -44,7 +44,51 @@ export const siteConfig = {
    * Keine erfundenen Varianten: Was hier steht, ist entweder der Name selbst
    * oder die Domain ohne Endung.
    */
-  nameVarianten: ['IM Invests', 'IMInvests', 'iminvests', 'iminvests.de'],
+  nameVarianten: [
+    'IM Invests',
+    'IMInvests',
+    'iminvests',
+    'iminvests.de',
+    /*
+      „IM Investments" steht nicht hier, weil es jemand für hübsch hielt,
+      sondern weil es die Schreibweise ist, unter der dieselbe Marke auf
+      Instagram auftritt: Das Profil `@im_invests` heißt dort „IM Investments".
+      Im Google-Ergebnis vom 28. August 2026 stehen beide Namen untereinander –
+      die Website als „IM Invests", das Profil darunter als „IM Investments".
+
+      Für eine Suchmaschine sind das zwei Marken, solange niemand sagt, dass
+      sie dieselbe sind. `sameAs` verknüpft bereits die Profile; dieser Eintrag
+      verknüpft die **Namen**.
+
+      Die saubere Lösung wäre eine einheitliche Schreibweise auf allen Kanälen.
+      Die liegt beim Betreiber – dies hier ist die Hälfte, die im Code möglich
+      ist.
+    */
+    'IM Investments',
+  ],
+  /**
+   * Bestätigungsschlüssel der Google Search Console.
+   *
+   * ## Wozu
+   *
+   * Ohne angemeldete Domain erfährt Google von den 1.766 Seiten dieser Website
+   * nur, was es zufällig findet – die `sitemap.xml` lässt sich erst dort
+   * einreichen. Die Anmeldung selbst braucht ein Google-Konto und kann deshalb
+   * nur der Betreiber machen.
+   *
+   * ## Was zu tun ist
+   *
+   * 1. `search.google.com/search-console` öffnen, Property „iminvests.de"
+   *    anlegen, als Bestätigungsart **HTML-Tag** wählen.
+   * 2. Google zeigt dann `<meta name="google-site-verification" content="XYZ">`.
+   *    Nur den Wert von `content` hier eintragen, ohne Anführungszeichen.
+   * 3. Nächster Bau, dann in der Search Console auf „Bestätigen" klicken.
+   * 4. Dort `sitemap.xml` einreichen.
+   *
+   * Solange die Zeichenkette leer ist, wird **kein** Meta-Element ausgegeben –
+   * ein leeres `content` wäre eine kaputte Angabe, keine fehlende.
+   */
+  googleSiteVerification: '',
   locale: 'de-DE',
   language: 'de',
   slogan: 'Finanzen verstehen, Fehler vermeiden.',
