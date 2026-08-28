@@ -197,8 +197,8 @@ export default async function TopicPage({ params }: TopicPageProps) {
           </div>
 
           {/* ------------------------------------------------ Seitenleiste */}
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-            <section aria-labelledby="fortschritt-thema" className="fk-card p-6">
+          <aside className="space-y-7 lg:sticky lg:top-24 lg:self-start">
+            <section aria-labelledby="fortschritt-thema" className="fk-block">
               <h2 id="fortschritt-thema" className="text-fg text-base font-semibold">
                 Dein Fortschritt
               </h2>
@@ -219,7 +219,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
               auf eine leere Seite wäre schlimmer als keiner.
             */}
             {kartenzahl > 0 && (
-              <section aria-labelledby="karten-thema" className="fk-card p-6">
+              <section aria-labelledby="karten-thema" className="fk-block">
                 <h2 id="karten-thema" className="text-fg text-base font-semibold">
                   Zum Ausdrucken
                 </h2>
@@ -238,7 +238,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             )}
 
             {topic.calculators && topic.calculators.length > 0 && (
-              <section aria-labelledby="passende-rechner" className="fk-card p-6">
+              <section aria-labelledby="passende-rechner" className="fk-block">
                 <h2 id="passende-rechner" className="text-fg text-base font-semibold">
                   Passende Rechner
                 </h2>
@@ -276,7 +276,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
               worauf sie aufbaut.
             */}
             {akademieLektionen.length > 0 && (
-              <section aria-labelledby="vertiefung" className="fk-card p-6">
+              <section aria-labelledby="vertiefung" className="fk-block">
                 <h2 id="vertiefung" className="text-fg text-base font-semibold">
                   Vertiefung in der Akademie
                 </h2>
@@ -313,7 +313,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             )}
 
             {quotes.length > 0 && (
-              <section aria-labelledby="passende-kurse-thema" className="fk-card p-6">
+              <section aria-labelledby="passende-kurse-thema" className="fk-block">
                 <h2 id="passende-kurse-thema" className="text-fg text-base font-semibold">
                   Dazu passende Kurse
                 </h2>

@@ -22,7 +22,7 @@ export function TopicLinkList({
   if (topics.length === 0) return null
 
   return (
-    <section aria-labelledby="verwandte-themen" className="fk-card p-6">
+    <section aria-labelledby="verwandte-themen" className="fk-block">
       <h2 id="verwandte-themen" className="text-fg text-lg font-semibold">
         {title}
       </h2>

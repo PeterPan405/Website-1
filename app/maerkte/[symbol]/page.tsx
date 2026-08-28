@@ -768,13 +768,13 @@ export default async function MarketDetailPage({ params }: MarketPageProps) {
           </div>
 
           {/* -------------------------------------------------- Seitenleiste */}
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+          <aside className="space-y-7 lg:sticky lg:top-24 lg:self-start">
             <TopicLinkList
               topics={relatedTopics}
               description="Was hinter diesem Kurs steckt – ausführlich erklärt."
             />
 
-            <section aria-labelledby="weitere-kurse" className="fk-card p-6">
+            <section aria-labelledby="weitere-kurse" className="fk-block">
               <h2 id="weitere-kurse" className="text-fg text-lg font-semibold">
                 Weitere Kurse
               </h2>

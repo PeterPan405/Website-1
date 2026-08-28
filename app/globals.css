@@ -616,15 +616,52 @@
   ein kaum sichtbarer Schatten. Die randlose Zwischenfassung (graue Karten
   auf Weiß) ließ die Seite insgesamt grau wirken; im dunklen Thema trägt
   dieselbe Linie die Kanten auf der fast schattenfreien Fläche.
+
+  **Der Schatten ist am 28. August 2026 gefallen.** Er stammt aus der Zeit, in
+  der eine Karte sich von einer *weißen* Fläche abheben musste. Seit die
+  Website auf Papierton steht, hebt schon die Füllung eine Spur ab, und die
+  Linie zieht die Kante – der Schatten macht daraus einen schwebenden Kasten.
+  Wo vier davon untereinander in einer Seitenleiste stehen, sieht die Seite
+  aus wie ein Stapel und nicht wie eine Seite. Liegen statt schweben.
+
+  Bleiben darf er dort, wo etwas wirklich abhebt: unter dem Zeiger
+  (`fk-card-interactive`) und in der Suche, die über der Seite liegt.
 */
 @utility fk-card {
-  @apply rounded-card border-border bg-surface shadow-card border;
+  @apply rounded-card border-border bg-surface border;
 }
 
-/* Karte, die als Ganzes ein Link ist: hebt sich beim Hover leicht an. */
+/*
+  Karte, die als Ganzes ein Link ist: hebt sich beim Hover leicht an.
+
+  Hier ist der Schatten kein Schmuck, sondern die Auskunft „das hier lässt
+  sich anfassen". Deshalb behält diese Karte ihn – aber erst unter dem Zeiger,
+  nicht schon im Ruhezustand.
+*/
 @utility fk-card-interactive {
   @apply fk-card relative transition duration-200 ease-out;
   @apply hover:shadow-lift hover:-translate-y-0.5;
+}
+
+/*
+  Abschnitt einer Seitenleiste – ohne Kasten.
+
+  Eine Seitenleiste besteht aus drei bis fünf Blöcken: Fortschritt, Karten zum
+  Ausdrucken, passende Rechner, Vertiefung. Als Karten übereinander gestapelt
+  ergaben sie am 28. August 2026 genau den Eindruck, den der Betreiber
+  „unübersichtlich" nannte: fünf Rahmen, fünf Füllungen, fünf Radien, und
+  dazwischen jedes Mal ein Rand, der noch einmal betont, dass hier etwas Neues
+  anfängt.
+
+  Das sagt eine Linie über dem Titel auch. Der erste Block braucht nicht
+  einmal die – über ihm steht schon der Rand des Bereichs.
+
+  Verwendet mit `space-y-*` am `<aside>`; die Linie sitzt an jedem Block außer
+  dem ersten (`[&:not(:first-child)]`), damit oben keine doppelte Kante
+  entsteht.
+*/
+@utility fk-block {
+  @apply [&:not(:first-child)]:border-border [&:not(:first-child)]:border-t [&:not(:first-child)]:pt-7;
 }
 
 /* Pillenform wie die Systemknöpfe von iOS/macOS. */
