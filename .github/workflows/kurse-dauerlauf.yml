@@ -253,6 +253,7 @@ jobs:
           # in diesem Lauf geweckt hat und wann zuletzt. Siehe weiter unten.
           weckversuche=0
           letzterweckruf=-1
+          weckgrund='noch nicht gefragt'
 
           while [ $((SECONDS - beginn)) -lt "$LAUFZEIT" ]; do
             rundenbeginn=$SECONDS
@@ -323,9 +324,18 @@ jobs:
             # es sähe ein Protokoll nach einer Stunde aus wie ein hängender
             # Lauf; mit ihm steht dort eine Zeile, aus der sich ablesen
             # lässt, ob die Kette hält.
+            #
+            # **Der Wecker steht mit drin, und zwar mit seiner Begründung.**
+            # Er schweigt an einem guten Tag den ganzen Lauf über, und ein
+            # Riegel, der nur schweigt, ist von einem kaputten nicht zu
+            # unterscheiden – *eine Absicherung, die nie anschlägt, sieht aus
+            # wie Ruhe.* Steht hier stundenlang „blieb unklar", antwortet die
+            # Nachfrage bei GitHub nicht mehr, und das fiele sonst erst an
+            # dem Morgen auf, an dem sie gebraucht wird.
             if [ $((runde % 30)) -eq 0 ]; then
               stand=$(node -e "process.stdout.write(String(JSON.parse(require('fs').readFileSync('public/kurse-live.json','utf8')).fetchedAt))" 2>/dev/null || echo '?')
               echo "[$(date -u +%H:%M:%S)] Runde $runde – $uebertragen übertragen, $fehler abgebrochen, $aktualisiert Instrumente, Takt ${takt}s, zuletzt $stand."
+              echo "  Wecker: $weckgrund"
             fi
 
             # ## Der Wecker für die Tagesausgabe
