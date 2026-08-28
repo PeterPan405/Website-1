@@ -2058,6 +2058,14 @@ kommen die drei Riegel in `quellen-sammeln.yml` selbst (läuft schon ein Agent?
 steht der Entwurf? steht die Ausgabe?) und die `concurrency`-Gruppen aller drei
 beteiligten Workflows.
 
+**Der Wecker steht im stündlichen Lebenszeichen, mit Begründung.** An einem
+guten Tag schweigt er den ganzen Lauf über – und ein Riegel, der nur schweigt,
+ist von einem kaputten nicht zu unterscheiden. Deshalb steht in jeder
+Lebenszeichen-Zeile, was er zuletzt entschieden hat: „außerhalb des Fensters",
+„steht bereits auf main", „blieb unklar". Steht dort stundenlang „blieb
+unklar", antwortet die Nachfrage bei GitHub nicht mehr – das fiele sonst erst
+an dem Morgen auf, an dem sie gebraucht wird.
+
 **Ein gescheiterter Anstoß macht den Lauf nicht rot.** Der Dauerlauf hält die
 Kurse aktuell; ihn wegen der Nachrichten abzubrechen wäre der schlechtere
 Tausch. Es bleibt bei einer Warnung, und der nächste Versuch kommt in einer
