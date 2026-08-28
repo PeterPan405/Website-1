@@ -47,9 +47,9 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
 - `workflow_dispatch` startet nur Workflows, die auf `main` liegen. Ein neuer
   Workflow auf einem Nebenzweig antwortet mit 404.
 - **Manchmal geht `workflow_dispatch` gar nicht** (403, „Resource not
-  accessible by integration") – ein `push` auf den Arbeitszweig aber schon.
-  Dann hängt der Lauf an `push` mit **Pfadfilter** auf eine Anstoßdatei;
-  Vorbild: `.github/sonde-anstoss.txt` in `quellen-probe.yml`.
+  accessible by integration") – ein `push` auf den Arbeitszweig schon. Dann
+  hängt der Lauf an `push` mit **Pfadfilter** auf eine Anstoßdatei; Vorbild:
+  `.github/sonde-anstoss.txt` in `quellen-probe.yml`.
 
 → `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
 
@@ -67,9 +67,9 @@ ist eine Regel der Umgebung, kein Fehler; prüfbar mit
 - `.github/workflows/quellen-sammeln.yml` – legt `quellen.txt` auf den
   wurzellosen Zweig `quellen-heute`; zu lesen mit
   `git show origin/quellen-heute:quellen.txt`.
-- **Wer einen Lauf baut, dessen Ergebnis eine Datei ist, legt sie auf einen
-  wurzellosen Zweig** – nicht nur als Artefakt. Ein Artefakt ist ein ZIP
-  hinter einer Anmeldung und von hier aus unerreichbar.
+- **Ein Lauf, dessen Ergebnis eine Datei ist, legt sie auf einen wurzellosen
+  Zweig** – nicht als Artefakt. Das ist ein ZIP hinter einer Anmeldung und von
+  hier aus unerreichbar.
 
 **Suchergebnisse sind kein Ersatz für eine gelesene Quelle.**
 
@@ -83,17 +83,16 @@ ist eine Regel der Umgebung, kein Fehler; prüfbar mit
   Stelle: `getCurrentNews()`, `getFurtherNews()`, `getFurtherNewsByDay()`.
   `CURRENT_NEWS_COUNT` ist nur noch eine Anzeigegrenze.
 - **Ausnahme Karussell:** `getNewsHeadlines()` zeigt die **zwei** jüngsten
-  Erscheinungstage. Nutzerwunsch – nicht „zurückreparieren".
-- **Das Archiv ist zugeklappt**, jeder Tag, auch der jüngste. Kein `<details>`
-  in `app/news/page.tsx` trägt `open`.
+  Erscheinungstage. Nutzerwunsch, nicht „zurückreparieren".
+- **Das Archiv ist zugeklappt**, jeder Tag, auch der jüngste – kein
+  `<details>` in `app/news/page.tsx` trägt `open`.
 - **Eine Tagesausgabe** braucht `data/editions/JJJJ-MM-TT.ts`, eingetragen in
-  `data/editions/index.ts` – Import **und** Array. Mindestens eine
-  Top-Meldung, mindestens drei insgesamt, `intro` 110–160 Zeichen.
+  `data/editions/index.ts` – Import **und** Array. Mindestens eine Top-Meldung,
+  drei insgesamt, `intro` 110–160 Zeichen.
 - **Die Termine des Tages gehören hinein** – Konjunkturdaten, Notenbanken,
   Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
-  Nur was in den Quellen steht. Die Anweisung steht in
-  `scripts/nachrichten-erzeugen.ts` **und** `nachrichten-agent.yml`; wer eine
-  ändert, ändert beide.
+  Nur was dort steht. Die Anweisung steht in `scripts/nachrichten-erzeugen.ts`
+  **und** `nachrichten-agent.yml`; wer eine ändert, ändert beide.
 - **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen.
 - **Keine erfundenen Meldungen, keine erfundenen Zahlen, keine Quelle, die
   niemand gesehen hat.** Steht in der Meldung kein Warum, schreibst du kein
@@ -116,13 +115,11 @@ mehr auf.
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
 voreingestellt `api.anthropic.com`. Wer einen Zwischendienst davorschaltet,
 gibt ihm den Quelltext der Meldungen **und** den API-Schlüssel; deshalb nur
-`https://`, und deshalb schreibt der Lauf eine Warnzeile, solange die Variable
-gesetzt ist. Ein Dienst, der Prompts unterwegs kürzt, kürzt hier an Zahlen,
-Namen und Uhrzeiten – das verträgt sich nicht mit „keine erfundenen Zahlen".
+`https://`, und deshalb warnt der Lauf, solange die Variable gesetzt ist. Ein
+Dienst, der Prompts kürzt, kürzt an Zahlen, Namen und Uhrzeiten.
 
-**Ohne Modell gibt es also keine Ausgabe – und ohne Ausgabe keine Folge**
-(`npm run folge` bricht ab). Alles andere läuft weiter: Kurse, Bau,
-Übertragung, Lernseiten.
+**Ohne Modell keine Ausgabe – und ohne Ausgabe keine Folge** (`npm run folge`
+bricht ab). Alles andere läuft weiter: Kurse, Bau, Übertragung, Lernseiten.
 
 Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts`,
 `lib/editions-validate.ts` und `npm run pruefen`. **Wer eine Regel im Build
@@ -151,7 +148,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 | 07:51         | 05:51 | `betriebsuebersicht.yml` – steht alles?                      |
 
 - **Die Kette hängt aneinander, nicht an der Uhr.** Jedes Glied stößt das
-  nächste an; die Crons sind nur Rückfall. Wer hier etwas ändert, lässt die
+  nächste an, die Crons sind Rückfall. Wer hier etwas ändert, lässt die
   Anstöße stehen – ein doppelter kostet vierzig Sekunden, ein fehlender den Tag.
 - **Wer eine Zeit ändert, ändert alle.** Die Routine „Zeitumstellung" zieht
   sie zweimal im Jahr gemeinsam nach.
@@ -182,8 +179,7 @@ gelegentlich. Daraus folgt:
   Ergebnis des Tages schon?** Gefragt wird `origin/main` von **jetzt**
   (`git fetch` + `git show`), nicht der Checkout – der ist eine Momentaufnahme
   vom Auslösen.
-- **Ein Riegel ist so gut wie die Quelle, die er fragt.** Wer prüft, ob etwas
-  veröffentlicht wurde, fragt dort nach, wo es veröffentlicht wird – der
+- **Ein Riegel ist so gut wie die Quelle, die er fragt** (siehe „Lehren"): Der
   Upload fragt den YouTube-Kanal, nicht das Register.
 - **Ein Push, der nach der Veröffentlichung scheitert, ist rot.** Sonst laufen
   zwei Wahrheiten auseinander. Wer eine Schleife um `git pull --rebase` legt,
@@ -204,12 +200,12 @@ deshalb etwas anderes?"**
   nächste Lauf trägt es nach.
 - Unbrauchbarer Schlüssel, halb getauschtes Verzeichnis, zerbrochener Bau,
   auseinanderlaufende Wahrheiten → **roter Lauf.**
-- Einmal täglich laufende Workflows bleiben hart: Ein Fehlschlag heißt dort
-  „heute gibt es keine Folge", und dafür ist eine Mail richtig.
+- Täglich laufende Workflows bleiben hart: Ein Fehlschlag heißt dort „heute
+  gibt es keine Folge", und dafür ist eine Mail richtig.
 
 **Wer eine Meldung leiser stellt, baut die Gegenprobe dazu.** `kurse.yml`
-prüft deshalb bei jedem Lauf den Bauzeitpunkt aus `version.txt`: ab 10 Stunden
-Warnung und ein Bau, ab 18 Stunden rot.
+prüft jeden Lauf den Bauzeitpunkt aus `version.txt`: ab 10 Stunden Warnung und
+ein Bau, ab 18 Stunden rot.
 
 **`000` ist der Hoster, `404` sind wir.** Antwortet auf Port 443 niemand, ist
 der Host weg, und dagegen hilft kein Neubau → **Warnung**, und rot erst, wenn
@@ -269,21 +265,21 @@ ist keiner"
 - **Beide Anbieter antworten auf eine Absage mit Statuscode 200.** Geprüft wird
   der Inhalt, nicht der Code – sonst landet eine Absage als leere Liste im
   Bestand, und der Lauf bleibt grün.
-- **Die Uhrzeit ist die New Yorker Wanduhr**, festgehalten in der
-  Momentaufnahme; die deutsche entsteht erst in der Anzeige aus dem erwarteten
-  Tag. Sechs Stunden zu addieren ist an drei Wochen im Jahr falsch – und genau
-  in die fällt die Berichtssaison des ersten Quartals.
+- **Die Uhrzeit ist die New Yorker Wanduhr**, in der Momentaufnahme; die
+  deutsche entsteht erst in der Anzeige aus dem erwarteten Tag. Sechs Stunden
+  zu addieren ist an drei Wochen im Jahr falsch – und genau in die fällt die
+  Berichtssaison des ersten Quartals.
 - **Eine Zeit entsteht nur bei zwei Jahren in derselben Sitzungslage**, und
   „während des US-Handels" wird nie angezeigt: Dort misst der Zeitstempel das
-  nachgereichte Formular und nicht die Meldung.
-- **Zwei Wochen heißt zwei Wochen** – `BALD_TAGE = 14`, die Grenze
-  eingeschlossen. Der Abschnitt auf der Aktienseite bleibt **offen**; das
-  Zeichen im Kopf springt hinein, und ein Sprungziel im zugeklappten
-  `<details>` führt ins Nichts.
+  nachgereichte Formular, nicht die Meldung.
+- **Zwei Wochen heißt zwei Wochen** – `BALD_TAGE = 14`, Grenze eingeschlossen.
+  Der Abschnitt auf der Aktienseite bleibt **offen**; das Zeichen im Kopf
+  springt hinein, und ein Sprungziel im zugeklappten `<details>` führt ins
+  Nichts.
 
 **„Geprüft und nichts gefunden" ist ein Zwischenstand, kein Ergebnis.** Er
-gehört mit Datum und Liste hingeschrieben – und nicht als Beweis gelesen, dass
-es nichts gibt. Der Sammelkalender wurde erst gefunden, als jemand statt nach
+gehört mit Datum und Liste hingeschrieben – nicht als Beweis gelesen, dass es
+nichts gibt. Der Sammelkalender wurde erst gefunden, als jemand statt nach
 Terminen je Unternehmen nach einer Sammelstelle fragte.
 
 → `ENTSCHEIDUNGEN.md`: „Ein Weg, der nie etwas geliefert hat", „Zwischen New
@@ -295,21 +291,24 @@ York und Berlin liegen nicht immer sechs Stunden", „Der Betreiber hatte recht"
 Zusage: höchstens sechs Minuten.
 
 - **Es gibt keine Kurse zweiter Klasse.** Wer eine Zahl zeigt, die sich
-  stündlich ändert, liest sie aus `lib/kurse-live-speicher.ts` – nicht aus
-  einem eigenen `fetch`. Die drei Stellen heute:
-  `components/markets/Kachelzahlen.tsx`, `Zeilenzahlen.tsx`, `KursLive.tsx`.
-- `lib/leitwerte.ts` bestimmt, was der Fünf-Minuten-Lauf holt – alle 46
-  Kacheln der Übersicht.
+  stündlich ändert, liest sie aus `lib/kurse-live-speicher.ts`, nicht aus
+  eigenem `fetch`. Drei Stellen: `components/markets/Kachelzahlen.tsx`,
+  `Zeilenzahlen.tsx`, `KursLive.tsx`.
+- `lib/leitwerte.ts` bestimmt, was der Fünf-Minuten-Lauf holt: alle 46 Kacheln
+  der Übersicht.
 - `.github/workflows/kurse-dauerlauf.yml` bringt seine Uhr selbst mit: ein
   Job, fünfeinhalb Stunden, alle zwei Minuten der volle Bestand. **Zwei
   Bremsen dürfen nicht wegfallen:** kein Nachfolger unter zehn Minuten
   Laufzeit, und der Wächter in `kurse.yml` wartet nach einem Fehlschlag eine
-  Stunde.
+  Stunde. An ihm hängt seit dem 28. August auch der Wecker der Tagesausgabe.
+- **Ihn von Hand anzustoßen tötet den laufenden** (`cancel-in-progress`).
+  Kommt der neue nicht hoch – der SSH-Port flattert –, stehen die Kurse, bis
+  der Wächter greift: eine Stunde statt sechs Minuten. Am 28. August 2026 so
+  passiert. Nur anstoßen, wenn keiner läuft oder der laufende kaputt ist.
 - Wer `ABSTAND_MS` anfasst, fasst den Dauerbetrieb bei Yahoo mit an.
-- **Eine Ausnahme für eine Quelle gehört an die Bedingung, die sie meint** –
-  nicht an die nächstgelegene. Die EZB-Sonderbehandlung greift nur im
-  Fünf-Minuten-Lauf (`NUR_LEITWERTE`), und ihr Referenzkurs wird nicht von
-  `ohneHeute()` verworfen.
+- **Eine Ausnahme gehört an die Bedingung, die sie meint** – nicht an die
+  nächstgelegene. Die EZB-Sonderbehandlung greift nur im Fünf-Minuten-Lauf
+  (`NUR_LEITWERTE`), ihr Referenzkurs überlebt `ohneHeute()`.
 - Rohstoffe kommen bei Yahoo verzögert. Die Stand-Zeile nennt den Zeitstempel
   der **Quelle**, nicht den des Abrufs.
 
@@ -347,7 +346,7 @@ Zusage: höchstens sechs Minuten.
   2.600 Hz blind. Erkannt wird jetzt auch, dass die Energie in **einer**
   Frequenz sitzt (`TONANTEIL_GRENZE`) – wer daran etwas ändert, misst nach.
 - **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()`. Wer eine weitere
-  Stelle baut, an der Text gesprochen wird, führt ihn durch dieselbe Funktion.
+  Stelle baut, an der Text gesprochen wird, führt ihn durch dieselbe.
 - **Eine ausgetauschte Datei erreicht keinen Hörer.** Spotify holt eine Folge
   einmal, erkannt an ihrer Kennung. Eine zweite Fassung braucht eine erhöhte
   `fassung` – sparsam, sie erzeugt bei jedem Hörer eine „neue Folge".
@@ -377,11 +376,10 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
   – der Parser baut das Element selbst, wie bei Quelltext.
 - **Drei Stücke, die zusammengehören:** das `document.write`, seine Stellung
   im `<head>` **vor** dem Rückfall, und der Rückfall in `<noscript>` (sonst
-  zieht Next ihn nach vorn, und die erste passende Angabe gewinnt). Einzeln
-  entfernt ergibt jedes wieder einen falschen Balken.
-- **Der Umschalter lädt die Seite neu.** Ohne Neuladen wird nicht neu geparst,
-  und der Balken bliebe die ganze Sitzung falsch – die Website navigiert
-  clientseitig.
+  zieht Next ihn nach vorn, und die erste Angabe gewinnt). Jedes einzeln
+  entfernt ergibt wieder einen falschen Balken.
+- **Der Umschalter lädt die Seite neu.** Ohne Neuladen wird nicht neu geparst
+  – die Website navigiert clientseitig, der Balken bliebe die Sitzung falsch.
 - `tests/farbschema-start.test.ts` fängt `document.write` auf und lässt
   `head`, `createElement`, `querySelectorAll` **werfen**.
 - `colorScheme` steht auf `'light'`, nicht `'light dark'`.

@@ -26,6 +26,38 @@
  * können sich ändern, aber nicht zu einem Termin, den man vorher kennt – bei
  * ihnen hilft kein Kalender, sondern nur Lesen.
  *
+ * ## Was am 28. August 2026 versucht wurde, die Sätze zu belegen
+ *
+ * Damit sich niemand dieselbe halbe Stunde noch einmal nimmt. Der
+ * Zwei-Wochen-Turnus (`data/inhalte-turnus.ts`, `steuerwerte`) verlangt, die
+ * Sätze „gegen den amtlichen Stand" zu halten. Aus dieser Umgebung heraus geht
+ * das nur über einen Läufer (`quellen-holen.yml`), und der kommt an zwei von
+ * drei Adressen nicht heran:
+ *
+ * - **`gesetze-im-internet.de` antwortet Läufern nicht.** Vier Adressen
+ *   (`estg/__20`, `estg/__32d`, `solzg_1995/__4`, `invstg_2018/__20`), zwei
+ *   Läufe, jedes Mal `urlopen error timed out` – kein 403, keine Antwort.
+ *   Ein Browser-Kennzeichen schickt der Abruf längst mit. Ein stilles
+ *   Fallenlassen ist eine gesetzte Schranke; sie wird nicht umgangen.
+ * - **Die BMF-Themenseite zur Abgeltungsteuer** (`/Web/DE/Themen/Steuern/
+ *   Steuerarten/Abgeltungsteuer/abgeltungsteuer.html`) antwortet mit 200 und
+ *   einer Sperrseite („You reached this page when trying to access … from
+ *   <IP>"). Die Adresse ist geraten und war entweder falsch oder gesperrt.
+ * - **Die BMF-Seite zum Basiszins ist erreichbar** (200) und trägt Titel und
+ *   Datum des Schreibens vom 13.01.2026. Die Zahl steht weiterhin nur in der
+ *   PDF daneben – so, wie es unten beim Eintrag `basiszins` steht.
+ *
+ * Der Basiszins ist damit belegt, so weit er es sein kann: Die Quelle lebt,
+ * das Schreiben gilt für 2026, der nächste Wert kommt im Januar 2027. Die
+ * **Sätze** dagegen – 25 Prozent, 5,5 Prozent, 1.000/2.000 Euro,
+ * Teilfreistellungen 30/15/60/80 Prozent – konnten am 28. August 2026 aus
+ * dieser Umgebung **nicht** gegen eine Primärquelle gehalten werden. Das ist
+ * ein Zwischenstand, kein Ergebnis, und deshalb steht er hier und nicht als
+ * abgehakte Durchsicht in `data/inhalte-turnus.ts`.
+ *
+ * Der nächste Versuch braucht eine amtliche Quelle, die einem Läufer
+ * antwortet – oder einen Menschen mit einem Browser.
+ *
  * Und: **Bewusste Annahmen gehören auch nicht hierher.** Die 2,5 Prozent
  * Inflation im Lernthema sind keine veraltete Zahl, sondern eine gerundete
  * Annahme über dreißig Jahre; das steht in `lib/inflations-beispiele.ts` so

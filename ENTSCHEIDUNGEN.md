@@ -2083,6 +2083,44 @@ Und die Prüfung des Bot-Wegs steht noch aus: Der Anstoß am 28. August lief
 unter einem menschlichen Actor, weil ich ihn von Hand ausgelöst habe.
 `allowed_bots` bekommt seinen ersten echten Test in der Nacht darauf.
 
+## Den Dauerlauf von Hand anzustoßen hält die Kurse an – 28. August 2026
+
+Direkt nach dem Einbau des Weckers wollte ich ihn auf einem echten Läufer
+sehen. Der laufende Dauerlauf trug noch den alten Stand, also habe ich
+`kurse-dauerlauf.yml` von Hand angestoßen. Das war der Fehler.
+
+`concurrency: { group: kurse-dauerlauf, cancel-in-progress: true }` ist für den
+Regelfall richtig gedacht: Der Nachfolger löst den Vorgänger ab, damit nie zwei
+Schleifen gleichzeitig bei Yahoo klopfen. Ein Anstoß von Hand ist für diese
+Gruppe aber nicht von einem Nachfolger zu unterscheiden – er **tötet den
+gesunden Lauf**.
+
+Und der neue kam nicht hoch: `ssh-keyscan` bekam auf Port 65002 fünfmal keine
+Antwort, der Lauf brach ab, und die zweite Bremse („kein Nachfolger unter zehn
+Minuten Laufzeit") verhinderte richtigerweise, dass er sich selbst neu startet.
+Ergebnis: **kein Dauerlauf mehr**, die Live-Kurse standen.
+
+Zwei Minuten später lief `kurse.yml` planmäßig durch – mit demselben Zugang,
+über dieselbe SSH-Verbindung, grün. Der Port war also nicht weg. Wahrscheinlich
+hat der abgelöste Lauf noch Verbindungen offengehalten, während der neue fünf
+`ssh-keyscan` in hundert Sekunden abfeuerte; der Hoster begrenzt so etwas.
+_„Der Port dieses Hosters flattert"_ stand schon vorher hier.
+
+Ein zweiter Anstoß – jetzt, wo wirklich keiner mehr lief – kam sofort hoch. Die
+Kurse standen vierzehn Minuten statt der zugesagten sechs. Kein Besucher hat
+etwas anderes gesehen als eine etwas ältere Zahl, aber die Zusage war gerissen,
+und zwar nicht von GitHub, sondern von mir.
+
+**Die Regel steht jetzt in `AGENTS.md`:** Den Dauerlauf nur anstoßen, wenn
+keiner läuft oder der laufende kaputt ist. Wer die neue Fassung sehen will,
+wartet auf die nächste Übergabe – sie kommt spätestens nach fünfeinhalb
+Stunden.
+
+Die allgemeinere Form davon: **Eine Ablösung ist kein Neustart.** Wo
+`cancel-in-progress` steht, ist jeder Anstoß von außen ein Abbruch mit
+Wiederanlauf – und ein Wiederanlauf kann scheitern, wo der laufende Prozess
+längst über seine eigene Anlaufhürde hinweg war.
+
 ## Ein Wächter, der seinen eigenen Alarm fortschreibt, ist keiner
 
 `lib/website-zahlen.ts` zählt beim Bauen, wie viel auf dieser Website steht –
