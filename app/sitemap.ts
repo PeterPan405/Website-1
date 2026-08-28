@@ -149,6 +149,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ] satisfies MetadataRoute.Sitemap)
       : []),
     { url: absoluteUrl('/kontakt'), changeFrequency: 'yearly', priority: 0.4 },
+    /*
+      Die Suchseite selbst, ohne Suchwort.
+
+      Sie steht hier, weil die `SearchAction` im `WebSite`-Schema auf sie zeigt
+      und eine Suchmaschine die Adresse abrufen können muss, bevor sie die
+      Suchbox anbietet. Ihre Trefferlisten (`/suche?q=…`) gehören ausdrücklich
+      **nicht** hierher: Das wären beliebig viele Adressen mit demselben
+      Gerüst, und was gefunden werden soll, sind die Zielseiten.
+    */
+    { url: absoluteUrl('/suche'), changeFrequency: 'monthly', priority: 0.3 },
     { url: absoluteUrl('/glossar'), changeFrequency: 'monthly', priority: 0.7 },
     // Der Karteikasten zum Glossar – eine eigene Seite, also ein eigener
     // Eintrag. Er fehlte bis zum 3. August 2026 und fiel erst der
