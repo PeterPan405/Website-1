@@ -109,9 +109,9 @@ es sind **zwei** Wege, nicht drei:
 
 **Liefert keiner von beiden, wird nichts geschrieben und der Lauf bricht rot
 ab.** Der Notbehelf aus dem Kursbestand ist seit dem 11. August 2026
-abgeschafft: Besser keine Nachrichten als aufbereitete eigene Kurszahlen, die
-wie Nachrichten aussehen. `scripts/nachrichten-aus-bestand.ts` liegt noch
-herum, wird aber von keinem Workflow mehr aufgerufen.
+abgeschafft – besser keine Nachrichten als eigene Kurszahlen, die wie
+Nachrichten aussehen. `scripts/nachrichten-aus-bestand.ts` ruft kein Workflow
+mehr auf.
 
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
 voreingestellt `api.anthropic.com`. Wer einen Zwischendienst davorschaltet,
@@ -168,8 +168,11 @@ GitHub verwirft `schedule`-Läufe ohne Meldung, und zwar **regelmäßig**, nicht
 gelegentlich. Daraus folgt:
 
 - **Was zu einer bestimmten Zeit passiert sein muss, darf nicht an `schedule`
-  hängen.** Wer einen Lauf anlegt, dessen Ergebnis jemand vermissen würde,
-  hängt ihn an die Kette statt an eine Uhrzeit.
+  hängen** – am 28. August 2026 lieferte GitHub von `kurse.yml` (alle fünf
+  Minuten) zwischen 00:00 und 04:20 UTC **einen** Lauf. Der Einstieg in den Tag
+  hängt deshalb am Dauerlauf: `kurse-dauerlauf.yml` fragt alle zehn Minuten, ob
+  die Ausgabe auf `main` steht, und weckt sonst `quellen-sammeln.yml`
+  (`lib/tageswecker.ts`). Ein laufender Prozess lässt sich nicht verwerfen.
 - **Krumme Minuten.** Wer einen neuen Workflow anlegt, sucht sich eine Minute,
   die noch keiner hat – runde Minuten sind am dichtesten belegt.
 - **Ein Commit vom Bot löst nichts aus.** Ein Push mit dem `GITHUB_TOKEN`
@@ -251,16 +254,15 @@ ist keiner"
 - **Der Sammelkalender führt, was in New York notiert** – auch die
   Hinterlegungsscheine ausländischer Emittenten, und damit Alibaba. Von 41
   europäischen und asiatischen Standardwerten waren drei enthalten. Wer keinen
-  Termin hat, bekommt auf seiner Seite den Satz warum
-  (`quartalsterminLuecke()`) – eine Leerstelle erklärt sich nicht selbst, und
-  der Satz hängt am Handelsplatz: „fehlt in der Quelle" und „fehlt in ihrem
-  Zeitfenster" sind zwei verschiedene Auskünfte.
+  Termin hat, bekommt den Satz warum (`quartalsterminLuecke()`) – eine
+  Leerstelle erklärt sich nicht selbst, und der Satz hängt am Handelsplatz:
+  „fehlt in der Quelle" und „fehlt in ihrem Zeitfenster" sind zweierlei.
 - **Tokio liefert den Tag, nie die Uhrzeit.** Die Liste hat keine Spalte dafür.
   Dass dort fast alles nach Handelsschluss um 15:00 Uhr Ortszeit gemeldet wird,
   ist eine Faustregel und keine Angabe – nicht „ergänzen".
 - **Die JPX-Adresse wird gesucht, nicht eingetragen.** Der Dateiname trägt ein
-  Datum (`kessan06_0807.xlsx`), es sind zwei Dateien, und die **englische**
-  Fassung der Übersichtsseite trägt null Verweise. Gelesen wird die japanische.
+  Datum (`kessan06_0807.xlsx`), es sind zwei Dateien, und gelesen wird die
+  **japanische** Übersichtsseite – die englische trägt null Verweise.
 - **Der Weg über Twelve Data ist tarifgesperrt** und hat noch nie etwas
   geliefert. Er bricht seit dem 20. August 2026 nach der ersten Absage ab
   (`TarifSperre`). Nicht „reparieren": Es fehlt ein bezahlter Tarif, nicht Code.
@@ -319,13 +321,13 @@ Zusage: höchstens sechs Minuten.
   bleibt bei 0,95 s (danach sucht der Kapitelschritt), der Mittelwert der
   Satzpausen bei rund einer halben Sekunde. Beides prüft
   `python scripts/sprechstimme.py --selbsttest`.
-- **Der Selbsttest läuft vor dem Sprechen** – in `podcast-erzeugen.yml`,
+- **Der Selbsttest läuft vor dem Sprechen** – `podcast-erzeugen.yml`,
   `lese-stimme.yml`, `aufnahmen-nachpruefen.yml`.
 - **Geprüft wird die fertige Aufnahme, nicht das einzelne Stück.**
-  `sprechstimme.nachbessern()` läuft nach dem Zusammenfügen und dämpft
-  auffällige Stellen, statt sie nur zu melden.
-- `sprechstimme.py` und `stimme-erzeugen.py` stehen noch doppelt da: **Wer an
-  Pausen, Stücklänge oder Frist etwas ändert, ändert es an beiden Stellen.**
+  `sprechstimme.nachbessern()` läuft nach dem Zusammenfügen und dämpft, statt
+  nur zu melden.
+- `sprechstimme.py` und `stimme-erzeugen.py` stehen doppelt da: **Wer an
+  Pausen, Stücklänge oder Frist etwas ändert, ändert beide Stellen.**
 - **Was englisch ist, wird englisch gesprochen** – `ENGLISCHE_NAMEN` in
   `lib/sprechfassung.ts`, zuerst angewandt, zusammengesetzte Ausdrücke vor
   ihren Bestandteilen. Nicht hinein gehört, was im Deutschen deutsch
@@ -341,10 +343,9 @@ Zusage: höchstens sechs Minuten.
   nicht zwei. Nicht davor (drei Sekunden halten den Hörer), nicht am Ende.
   Beides Nutzerwunsch.
 - **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Die Prüfung sah
-  bis zum 20. August 2026 nur „rau" – und war damit für jeden gehaltenen Ton
-  unter 2.600 Hz blind. Erkannt wird jetzt zusätzlich, dass die Energie in
-  **einer** Frequenz sitzt (`TONANTEIL_GRENZE`). Wer daran etwas ändert, misst
-  nach: `python scripts/sprechstimme.py --selbsttest`.
+  bis zum 20. August 2026 nur „rau" und war für jeden gehaltenen Ton unter
+  2.600 Hz blind. Erkannt wird jetzt auch, dass die Energie in **einer**
+  Frequenz sitzt (`TONANTEIL_GRENZE`) – wer daran etwas ändert, misst nach.
 - **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()`. Wer eine weitere
   Stelle baut, an der Text gesprochen wird, führt ihn durch dieselbe Funktion.
 - **Eine ausgetauschte Datei erreicht keinen Hörer.** Spotify holt eine Folge
@@ -355,10 +356,10 @@ Zusage: höchstens sechs Minuten.
 - **Lernseiten:** Die Abschnitte kommen aus `vorleseAbschnitte()`, die
   Grafiktexte aus `vorlesegrafiken()` – nie aus `figureMeta` allein, sonst
   fehlen 70 gerechnete Beschreibungen. Der Fingerabdruck hängt an ihnen.
-  Reihenfolge Beginner → Akademie → Fortgeschritten → Profi. Eine Seite ohne
-  Aufnahme ist kein Fehler – dann spricht das Gerät.
-- `lese-stimme.yml` läuft seit dem 24. August 2026 wieder nach Zeitplan
-  (23:19 UTC). 12 von 172 Seiten sind gesprochen.
+  Reihenfolge Beginner → Akademie → Fortgeschritten → Profi. Ohne Aufnahme
+  spricht das Gerät – kein Fehler.
+- `lese-stimme.yml` läuft nach Zeitplan (23:19 UTC); 12 von 172 Seiten sind
+  gesprochen.
 
 → `ENTSCHEIDUNGEN.md`: „Eine Fallunterscheidung über Merkmale, die der Stoff
 nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",

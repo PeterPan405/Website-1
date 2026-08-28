@@ -223,6 +223,9 @@ jobs:
       - name: Alle zwei Minuten
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          # Für den Wecker der Tagesausgabe weiter unten: einmal die Nachfrage
+          # bei GitHub, einmal das Anstoßen von `quellen-sammeln.yml`.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
           USER: ${{ secrets.HOSTINGER_SSH_USER }}
           SSH_PORT: '65002'
@@ -246,6 +249,10 @@ jobs:
           gebremst=0
           bestwert=0
           beginn=$SECONDS
+          # Der Wecker für die Tagesausgabe führt zwei Zahlen mit: wie oft er
+          # in diesem Lauf geweckt hat und wann zuletzt. Siehe weiter unten.
+          weckversuche=0
+          letzterweckruf=-1
 
           while [ $((SECONDS - beginn)) -lt "$LAUFZEIT" ]; do
             rundenbeginn=$SECONDS
@@ -319,6 +326,74 @@ jobs:
             if [ $((runde % 30)) -eq 0 ]; then
               stand=$(node -e "process.stdout.write(String(JSON.parse(require('fs').readFileSync('public/kurse-live.json','utf8')).fetchedAt))" 2>/dev/null || echo '?')
               echo "[$(date -u +%H:%M:%S)] Runde $runde – $uebertragen übertragen, $fehler abgebrochen, $aktualisiert Instrumente, Takt ${takt}s, zuletzt $stand."
+            fi
+
+            # ## Der Wecker für die Tagesausgabe
+            #
+            # In der Nacht auf den 28. August 2026 hat GitHub von `kurse.yml`
+            # – einem Workflow mit einem Termin **alle fünf Minuten** –
+            # zwischen 00:00 und 04:20 UTC genau einen Lauf ausgeliefert.
+            # `quellen-pruefen.yml` (00:03) lief gar nicht, der Wächter
+            # (03:11) auch nicht. Die Nachrichten kamen dadurch zum zweiten
+            # Mal in Folge nicht.
+            #
+            # Diese Schleife hier lief die ganze Zeit. Sie ist **ein** Job,
+            # der um 22:56 anfing und um 04:16 seinen Nachfolger startete –
+            # ein laufender Prozess lässt sich nicht verwerfen.
+            #
+            # Deshalb hängt der Einstieg in den Tag jetzt zusätzlich hier
+            # mit dran, und nicht nur an einer Uhrzeit. Die Regel dazu steht
+            # seit langem in `AGENTS.md`: *Was zu einer bestimmten Zeit
+            # passiert sein muss, darf nicht an `schedule` hängen.*
+            #
+            # Alle fünf Runden, also alle zehn Minuten. Die Entscheidung
+            # trifft `lib/tageswecker.ts` – dort und nur dort, damit sie in
+            # `tests/tageswecker.test.ts` mit Fällen geprüft werden kann, die
+            # sie abweisen **muss**. Hier steht nur, was von außen kommt: die
+            # Frage an `origin/main` von **jetzt**, nicht an den Checkout
+            # dieses Laufs, der beim Start gemacht wurde und Stunden alt sein
+            # kann.
+            if [ $((runde % 5)) -eq 0 ]; then
+              tag=$(date -u +%F)
+              steht=$(curl -sS -o /dev/null -w '%{http_code}' \
+                        -H "Authorization: Bearer $GH_TOKEN" \
+                        -H 'Accept: application/vnd.github+json' \
+                        "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/data/editions/$tag.ts?ref=main" \
+                        2>/dev/null || echo 000)
+              case "$steht" in
+                200) weck_steht=1 ;;
+                404) weck_steht=0 ;;
+                *) weck_steht=unklar ;;
+              esac
+
+              if [ "$letzterweckruf" -ge 0 ]; then
+                abstand=$((SECONDS - letzterweckruf))
+              else
+                abstand=-1
+              fi
+
+              weckspruch=$(WECK_AUSGABE_STEHT="$weck_steht" \
+                           WECK_VERSUCHE="$weckversuche" \
+                           WECK_ABSTAND_S="$abstand" \
+                           node --experimental-strip-types \
+                                --import ./scripts/alias-hook.mjs \
+                                scripts/tagesausgabe-wecken.ts 2>/dev/null)
+              weckantwort=$(printf '%s\n' "$weckspruch" | sed -n 's/^WECKEN=//p')
+              weckgrund=$(printf '%s\n' "$weckspruch" | sed -n 's/^GRUND=//p')
+
+              if [ "$weckantwort" = "1" ]; then
+                echo "::warning::Runde $runde: $weckgrund – die Kette wird geweckt."
+                if gh workflow run quellen-sammeln.yml \
+                     --repo "$GITHUB_REPOSITORY" --ref main; then
+                  echo "  quellen-sammeln.yml angestoßen. Der Rest der Kette hängt daran."
+                else
+                  # Kein roter Lauf: Die Kurse laufen weiter, und der nächste
+                  # Versuch kommt in einer halben Stunde.
+                  echo "::warning::Der Anstoß von quellen-sammeln.yml ist gescheitert."
+                fi
+                weckversuche=$((weckversuche + 1))
+                letzterweckruf=$SECONDS
+              fi
             fi
 
             # Was von den zwei Minuten nach dem Abruf übrig ist. Ist die
