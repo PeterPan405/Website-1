@@ -382,14 +382,22 @@ jobs:
                 abstand=-1
               fi
 
+              # `|| true` ist hier nicht Kosmetik. Der Schritt läuft unter
+              # `bash -e`; ein Aufruf, der ungleich null zurückkommt, bricht
+              # ihn ab – und das ist die Kursschleife. Ein kaputter Wecker
+              # würde damit die Kurse anhalten, um die Nachrichten zu retten,
+              # also genau den Tausch machen, den er nicht machen soll. Bleibt
+              # `weckspruch` leer, ist `weckantwort` nicht `1`, und es
+              # passiert schlicht nichts.
               weckspruch=$(WECK_AUSGABE_STEHT="$weck_steht" \
                            WECK_VERSUCHE="$weckversuche" \
                            WECK_ABSTAND_S="$abstand" \
                            node --experimental-strip-types \
                                 --import ./scripts/alias-hook.mjs \
-                                scripts/tagesausgabe-wecken.ts 2>/dev/null)
+                                scripts/tagesausgabe-wecken.ts 2>/dev/null || true)
               weckantwort=$(printf '%s\n' "$weckspruch" | sed -n 's/^WECKEN=//p')
               weckgrund=$(printf '%s\n' "$weckspruch" | sed -n 's/^GRUND=//p')
+              [ -n "$weckgrund" ] || weckgrund='der Wecker hat nicht geantwortet'
 
               if [ "$weckantwort" = "1" ]; then
                 echo "::warning::Runde $runde: $weckgrund – die Kette wird geweckt."
