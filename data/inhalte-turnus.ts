@@ -91,7 +91,10 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Alter der Momentaufnahmen und der Zahlen im Fließtext. Deckt sich mit ' +
       '`npm run frische`; hier steht es, damit es im Bericht auftaucht.',
     taktTage: 14,
-    zuletztGeprueft: '2026-08-09',
+    // 28.08.2026: `npm run frische` durchgesehen, alles innerhalb seiner
+    // Grenzen. Ältester Wert war `laender.json` mit 21 Tagen (ohne Grenze),
+    // die drei Kurs- und Marktwerte 0 bis 1 Tag.
+    zuletztGeprueft: '2026-08-28',
     dateien: ['data/snapshots/', 'data/stichtagswerte.ts'],
   },
 
