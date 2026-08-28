@@ -51,13 +51,45 @@ export function webSiteSchema(): JsonLdObject {
     '@type': 'WebSite',
     '@id': websiteId,
     name: siteConfig.name,
+    /*
+      Der Kurzname für das Suchergebnis.
+
+      Google zeigt unter dem Treffer den Namen der Website, und wo keiner
+      angegeben ist, rät es einen aus Titel und Domain. `alternateName` gibt
+      die Schreibweisen mit, unter denen dieselbe Marke gesucht wird – mit und
+      ohne Leerzeichen, denn beides wird getippt.
+    */
+    alternateName: siteConfig.nameVarianten,
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: 'de-DE',
     publisher: { '@id': organizationId },
-    // Hinweis: Eine SearchAction wird bewusst nicht ausgegeben, solange die
-    // Website keine eigene Suchfunktion hat. Google verlangt für sitelinks
-    // searchbox eine tatsächlich funktionierende Such-URL.
+    /*
+      Die Suchbox im Suchergebnis.
+
+      Hier stand bis zum 28. August 2026 der Hinweis, dass diese Auszeichnung
+      bewusst unterbleibt, „solange die Website keine eigene Suchfunktion hat.
+      Google verlangt für sitelinks searchbox eine tatsächlich funktionierende
+      Such-URL." Der Satz war richtig: Die Suche war ein Dialog ohne Adresse.
+
+      Seit es `/suche?q=…` gibt, ist die Bedingung erfüllt – die Adresse nimmt
+      eine Anfrage entgegen und beantwortet sie. Damit darf die Auszeichnung
+      hier stehen, und nicht früher: Eine `SearchAction` auf eine Adresse, die
+      nichts tut, ist kein Versehen, sondern eine falsche Angabe an eine
+      Suchmaschine.
+
+      **Nicht zu verwechseln mit den Sitelinks** – der Liste von Unterseiten
+      unter einem Treffer. Die stellt Google selbst zusammen; es gibt keine
+      Auszeichnung, die sie anfordert. Siehe `ENTSCHEIDUNGEN.md`.
+    */
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteConfig.url}/suche?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   }
 }
 

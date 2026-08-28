@@ -481,6 +481,24 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                     </button>
                   </li>
                 ))}
+                {/*
+                  Der Weg aus dem Dialog auf die Suchseite.
+
+                  Er steht hier und nicht oben: Wer die Trefferliste schon
+                  gesehen hat, weiß, ob sich eine Seite mit Adresse lohnt. Und
+                  er ist der einzige interne Verweis auf `/suche` – ohne ihn
+                  wäre die Seite von der Website aus nicht erreichbar und
+                  stünde nur im `sitemap.xml`.
+                */}
+                <li className="border-border mt-2 border-t px-3 pt-3 pb-1">
+                  <Link
+                    href={`/suche?q=${encodeURIComponent(query)}`}
+                    onClick={onClose}
+                    className="text-fg-muted hover:text-brand text-xs underline underline-offset-2"
+                  >
+                    Als eigene Seite öffnen – zum Weitergeben oder Merken
+                  </Link>
+                </li>
               </ul>
             )}
           </motion.div>

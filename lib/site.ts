@@ -32,6 +32,19 @@ export const siteConfig = {
   name: 'IM Invests',
   /** Kurzform für Titel-Suffixe. */
   shortName: 'IM Invests',
+  /**
+   * Schreibweisen, unter denen dieselbe Marke gesucht wird.
+   *
+   * Geht als `alternateName` in das `WebSite`-Schema. Der Grund ist banal und
+   * trotzdem folgenreich: Die Domain heißt `iminvests.de`, der Name „IM
+   * Invests" – wer das Wort einmal gelesen hat, tippt es später mal mit und mal
+   * ohne Leerzeichen. Beide Schreibweisen sollen dieselbe Marke meinen, und
+   * eine Suchmaschine erfährt das nicht von allein.
+   *
+   * Keine erfundenen Varianten: Was hier steht, ist entweder der Name selbst
+   * oder die Domain ohne Endung.
+   */
+  nameVarianten: ['IM Invests', 'IMInvests', 'iminvests', 'iminvests.de'],
   locale: 'de-DE',
   language: 'de',
   slogan: 'Finanzen verstehen, Fehler vermeiden.',

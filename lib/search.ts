@@ -38,6 +38,22 @@ export type { SearchEntry }
 /** Feste Seiten ohne eigene Datenquelle. */
 const seiten: SearchEntry[] = [
   {
+    /*
+      Die Suchseite steht in ihrem eigenen Index.
+
+      Das klingt nach einer Schlange, die sich in den Schwanz beißt, ist aber
+      die Regel dieses Projekts: Jede Seite, die es gibt, steht im Index – die
+      Paketprüfung besteht darauf und hat diesen Eintrag auch eingefordert.
+      Wer „Suche" tippt, meint zudem gelegentlich genau diese Seite und nicht
+      den Dialog, aus dem er gerade kommt.
+    */
+    title: 'Suche',
+    href: '/suche',
+    kind: 'Plattform',
+    hint: 'Alles auf einmal durchsucht – mit einer Adresse, die sich weitergeben lässt.',
+    keywords: ['suche', 'suchen', 'finden', 'volltext', 'stichwort'],
+  },
+  {
     title: 'Globus',
     href: '/globus',
     kind: 'Plattform',
