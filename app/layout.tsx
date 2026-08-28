@@ -47,6 +47,20 @@ export const metadata: Metadata = {
     'Altersvorsorge',
     'Finanzrechner',
   ],
+  /*
+    Der Bestätigungsschlüssel der Search Console – aber nur, wenn einer da ist.
+
+    `verification: { google: '' }` würde ein leeres `content=""` ausgeben, und
+    das ist schlechter als gar kein Element: Es sieht nach einer gesetzten
+    Angabe aus, die nicht stimmt. Deshalb der Spread – ohne Schlüssel steht
+    hier nichts.
+
+    Wo der Schlüssel herkommt und was danach zu tun ist, steht bei
+    `googleSiteVerification` in `lib/site.ts`.
+  */
+  ...(siteConfig.googleSiteVerification
+    ? { verification: { google: siteConfig.googleSiteVerification } }
+    : {}),
   robots: {
     index: true,
     follow: true,
