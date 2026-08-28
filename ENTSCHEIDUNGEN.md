@@ -1963,6 +1963,118 @@ Und: Solange `ANTHROPIC_API_KEY` nicht hinterlegt ist, hat die Rangfolge nur
 einen Weg. Der Agent ist jetzt zuverlässiger erreichbar – aber wenn er selbst
 ausfällt, gibt es weiterhin keine Ausgabe.
 
+## Der Einstieg in den Tag hängt jetzt an einem laufenden Prozess – 28. August 2026
+
+Am Morgen danach war es wieder so: keine Nachrichten, keine Folge. Diesmal
+ließ sich die Ursache in zwei Schichten zerlegen, und beide waren neu.
+
+### Erste Schicht: der Riegel, den ich am Vortag selbst eingebaut hatte
+
+Am 27. August war die Lücke, dass `nachrichten-agent.yml` als einziges Glied
+der Kette nur an seiner eigenen Uhr hing – niemand weckte ihn. Der Fix:
+`quellen-sammeln.yml` weckt ihn seither mit `gh workflow run`.
+
+Das funktionierte. Um 04:23 UTC startete der Agentenlauf, wie vorgesehen. Und
+brach sofort ab:
+
+```
+Actor type: Bot
+Workflow initiated by non-human actor: github-actions (type: Bot).
+Add bot to allowed_bots list or use '*' to allow all bots.
+```
+
+`anthropics/claude-code-action` weist Bot-Actors ab, solange nichts anderes
+dasteht. Solange der Workflow **nur** per `schedule` lief, war der Actor der
+letzte Mensch, der auf `main` gepusht hatte – deshalb ist es vorher nie
+aufgefallen. Ein Anstoß mit dem `GITHUB_TOKEN` macht daraus
+`github-actions[bot]`.
+
+Das ist ein Lehrstück für sich: **Wer ein Glied anders auslöst als bisher,
+ändert damit auch, wer es auslöst.** Der Actor war nirgends Teil der Überlegung
+– er stand in keiner Zeile, die ich angefasst hatte. Bemerkt wurde es erst am
+nächsten Morgen, an derselben Stelle, die der Fix hatte retten sollen.
+
+Behoben mit `allowed_bots: 'github-actions'` – ausdrücklich nicht `*`. Die
+Sperre ist dafür da, dass nicht jeder beliebige Bot einen Agentenlauf auf
+Kosten des Abonnements startet.
+
+### Zweite Schicht: die Uhr selbst war weg
+
+Der eigentliche Befund steckte darunter. Von `kurse.yml` – einem Workflow mit
+einem geplanten Termin **alle fünf Minuten** – lieferte GitHub an diesem Tag
+zwischen 00:00 und 04:20 UTC genau **einen** Lauf aus. `quellen-pruefen.yml`
+(00:03) lief gar nicht. `ausgabe-waechter.yml` (03:11) lief gar nicht. Am Tag
+davor war `quellen-pruefen` um 09:24 gekommen, neuneinhalb Stunden zu spät.
+
+Bisher stand in `AGENTS.md` die Regel, aber nicht ihre Anwendung: _Was zu einer
+bestimmten Zeit passiert sein muss, darf nicht an `schedule` hängen._ Nur hing
+jeder Einstieg in den Tag genau daran. Die Kette hängt zwar Glied an Glied –
+aber das erste Glied wurde von einer Uhr gezogen, und die Uhr fiel aus.
+
+### Was tatsächlich lief
+
+Eine Sache lief in dieser Nacht durchgehend: `kurse-dauerlauf.yml`. Der Lauf
+33124431577 begann um 22:56 UTC und übergab um 04:16 an seinen Nachfolger –
+**ein einziger Job**, fünfeinhalb Stunden, alle zwei Minuten eine Runde.
+
+Und das ist der Punkt: **Ein laufender Prozess lässt sich nicht verwerfen.** Er
+steht in keiner Warteschlange, aus der GitHub etwas streichen könnte; er läuft
+bereits. Während jeder geplante Termin der Nacht fiel, holte diese Schleife
+alle zwei Minuten Kurse und lud sie hoch.
+
+Der Einstieg in den Tag hängt deshalb jetzt dort mit dran. Alle fünf Runden –
+also alle zehn Minuten – fragt der Dauerlauf, ob die Ausgabe des Tages auf
+`main` steht, und weckt sonst `quellen-sammeln.yml`. Von dort läuft die Kette
+weiter wie gehabt.
+
+### Was daran absichtlich umständlich ist
+
+**Die Entscheidung steht nicht in der Shell.** Sie steht in
+`lib/tageswecker.ts`, als reine Funktion, und in `tests/tageswecker.test.ts`
+liegt zu jeder einzelnen Bedingung ein Fall, den sie abweisen **muss**, neben
+einem, den sie durchlassen muss. Der Grund ist der Satz, an dem sich dieses
+Projekt schon zweimal die Finger verbrannt hat: _Eine Absicherung, die nie
+anschlägt, sieht aus wie Ruhe._ Ein Wecker, der immer `false` zurückgibt, wäre
+im Protokoll von einem richtigen nicht zu unterscheiden – er stünde nur still.
+
+**Die eine Tatsache von außen holt der Workflow selbst**, mit `curl` gegen die
+GitHub-Schnittstelle: `200` heißt, die Ausgabe steht, `404` heißt, sie fehlt.
+Ein Abruf aus dem Skript heraus wäre ein Weg gewesen, der sich in der
+Arbeitsumgebung hier nicht prüfen lässt – _wo die einzige prüfbare Umgebung
+nicht die ist, in der es kaputtgeht, ist „müsste jetzt gehen" keine Aussage._
+Und gefragt wird die **Gegenwart**, nicht der Checkout des Dauerlaufs: Der ist
+beim Start gemacht worden und kann sechs Stunden alt sein.
+
+**Bei einer unklaren Antwort wird nicht geweckt.** Kein Netz, Fehler 500,
+Gegenstelle stumm – dann steht eine Warnung im Protokoll und sonst nichts. Ein
+Weckruf ins Blaue startet die ganze Kette; eine ausgefallene Nachfrage ist in
+zehn Minuten wieder da.
+
+**Drei Bremsen gegen eine Schleife:** höchstens drei Weckrufe je Dauerlauf,
+eine halbe Stunde Abstand dazwischen, und ein Fenster von 00:10 bis 05:00 UTC.
+Vor 00:10 hat die geplante Kette Vorrang – `quellen-sammeln.yml` ist um 00:09
+selbst an der Reihe, und wer davor weckt, startet denselben Lauf zweimal. Dazu
+kommen die drei Riegel in `quellen-sammeln.yml` selbst (läuft schon ein Agent?
+steht der Entwurf? steht die Ausgabe?) und die `concurrency`-Gruppen aller drei
+beteiligten Workflows.
+
+**Ein gescheiterter Anstoß macht den Lauf nicht rot.** Der Dauerlauf hält die
+Kurse aktuell; ihn wegen der Nachrichten abzubrechen wäre der schlechtere
+Tausch. Es bleibt bei einer Warnung, und der nächste Versuch kommt in einer
+halben Stunde.
+
+### Was das nicht löst
+
+Der Dauerlauf selbst startet aus einem Cron (`13 1,7,13,19 * * *`). Er hält
+sich danach von allein am Leben – jeder Lauf startet seinen Nachfolger –, aber
+wenn die Kette einmal ganz abreißt, muss ein geplanter Termin sie wieder
+anwerfen. Das ist eine deutlich kleinere Angriffsfläche als vorher, aber keine
+Null.
+
+Und die Prüfung des Bot-Wegs steht noch aus: Der Anstoß am 28. August lief
+unter einem menschlichen Actor, weil ich ihn von Hand ausgelöst habe.
+`allowed_bots` bekommt seinen ersten echten Test in der Nacht darauf.
+
 ## Ein Wächter, der seinen eigenen Alarm fortschreibt, ist keiner
 
 `lib/website-zahlen.ts` zählt beim Bauen, wie viel auf dieser Website steht –
