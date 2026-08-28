@@ -65,6 +65,32 @@ export default function ImprintPage() {
               Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der
               schriftlichen Zustimmung des jeweiligen Rechteinhabers.
             </p>
+            {/*
+              Der zweite Absatz ist der wichtigere, und er fehlte bis zum
+              28. August 2026.
+
+              Der erste sagt, dass **unsere** Inhalte geschützt sind – das
+              schreibt jede Website hin. Die Frage, an der es tatsächlich hängt,
+              ist die umgekehrte: Was passiert hier mit **fremdem** Material?
+
+              Die Antwort steht seit jeher im Code (`data/editions/types.ts`:
+              „Die Zusammenfassungen sind selbst geschrieben und keine Übernahme
+              fremder Texte … verlinkt wird stattdessen auf die Quelle"), nur
+              stand sie nirgends, wo ein Leser sie findet. Eine Praxis, die man
+              nicht nachlesen kann, nützt im Streitfall wenig.
+            */}
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Zu fremden Inhalten: Meldungen und Marktberichte werden hier in eigenen
+              Worten zusammengefasst und nicht im Volltext oder in längeren Auszügen
+              übernommen; die Herkunft steht mit Datum und Verweis an jeder
+              Zusammenfassung. Bilder Dritter, Stockfotos und fremde Grafiken werden nicht
+              verwendet – die Erklärgrafiken dieser Website entstehen aus eigenem Code,
+              das einzige Bild ist das eigene Logo. Kurse und Wirtschaftsdaten sind
+              Tatsachenangaben und werden unverändert mit Nennung ihrer Quelle
+              wiedergegeben. Sollte trotzdem eine Angabe fremde Rechte berühren, genügt
+              ein Hinweis an die unten genannte Adresse; die betroffene Stelle wird
+              umgehend entfernt.
+            </p>
           </section>
 
           <section aria-labelledby="kein-rat" className="mt-12">

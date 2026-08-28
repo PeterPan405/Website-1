@@ -91,6 +91,7 @@ export default function PrivacyPage() {
                 'Es sind keine Inhalte Dritter eingebettet – keine Karten, keine Videos, keine Social-Media-Widgets.',
                 'Schriftarten werden nicht von einem externen Server geladen (siehe Abschnitt 4).',
                 'Eingaben in die Rechner werden nicht an einen Server übertragen (siehe Abschnitt 3).',
+                'Es gelangen keine Daten über dich in ein KI-System (siehe Abschnitt 6).',
               ].map((item) => (
                 <li key={item} className="flex gap-3 leading-relaxed">
                   <span
@@ -239,9 +240,59 @@ export default function PrivacyPage() {
             </p>
           </section>
 
+          {/*
+            Künstliche Intelligenz **in der Datenschutzerklärung**, nicht nur im
+            Impressum.
+
+            Bis zum 28. August 2026 stand der KI-Einsatz ausschließlich im
+            Impressum, und zwar unter dem Blickwinkel der Transparenzpflicht
+            (Art. 50 KI-Verordnung): Wie entstehen die Inhalte? Die
+            datenschutzrechtliche Frage ist eine andere und wurde nirgends
+            beantwortet: Gehen **Daten von Besuchern** in ein KI-System?
+
+            Sie tun es nicht, und das lässt sich hier nachlesen, statt dass es
+            jemand voraussetzen muss. Der Abschnitt beschreibt keine neue
+            Praxis, er schreibt die bestehende hin – dieselbe Lücke wie beim
+            Urheberrecht im Impressum.
+          */}
+          <section aria-labelledby="ki" className="mt-12">
+            <h2 id="ki" className="text-fg text-2xl font-bold">
+              6. Künstliche Intelligenz und deine Daten
+            </h2>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Die Texte und Erklärgrafiken dieser Website entstehen mit Unterstützung
+              künstlicher Intelligenz; wie das abläuft und wer die redaktionelle
+              Verantwortung trägt, steht im{' '}
+              <Link href="/impressum#ki-einsatz" className="text-brand underline">
+                Impressum
+              </Link>
+              . Für den Datenschutz zählt eine andere Frage, und die Antwort lautet:{' '}
+              <strong className="text-fg font-semibold">
+                In kein KI-System dieser Website gelangen Daten über dich.
+              </strong>
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Im Einzelnen: Die Inhalte werden{' '}
+              <strong className="text-fg font-semibold">vorab</strong> erzeugt und als
+              fertige Seiten ausgeliefert. Beim Aufruf läuft keine KI mit – es gibt keinen
+              Chatbot, keine Empfehlung, die auf dich zugeschnitten wäre, und keine
+              automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO. Das Modell,
+              das die Texte schreibt, bekommt ausschließlich öffentlich veröffentlichte
+              Quellen zu lesen: Meldungen der genannten Nachrichtenportale, Kurse,
+              amtliche Bekanntmachungen. Weder Server-Protokolle noch deine Eingaben in
+              die Suche noch irgendetwas aus deinem Browser werden dabei verarbeitet.
+            </p>
+            <p className="text-fg-muted mt-4 leading-relaxed">
+              Auch die Suche bleibt bei dir: Sie läuft vollständig in deinem Browser gegen
+              eine mitgelieferte Liste. Was du eingibst, verlässt dein Gerät nicht –
+              erfolglose Suchen werden im Browser notiert und nur dann übermittelt, wenn
+              du sie selbst kopierst und uns schickst.
+            </p>
+          </section>
+
           <section aria-labelledby="kontaktaufnahme" className="mt-12">
             <h2 id="kontaktaufnahme" className="text-fg text-2xl font-bold">
-              6. Kontaktaufnahme per E-Mail
+              7. Kontaktaufnahme per E-Mail
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Wenn du uns per E-Mail schreibst, verarbeiten wir die übermittelten Daten
@@ -255,11 +306,11 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="rechte" className="mt-12">
             <h2 id="rechte" className="text-fg text-2xl font-bold">
-              7. Deine Rechte
+              8. Deine Rechte
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
-              Dir stehen gegenüber dem Verantwortlichen (Abschnitt 9) die folgenden Rechte
-              zu:
+              Dir stehen gegenüber dem Verantwortlichen (Abschnitt 10) die folgenden
+              Rechte zu:
             </p>
             <ul className="text-fg-muted mt-4 space-y-2.5">
               {[
@@ -304,7 +355,7 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="aenderungen" className="mt-12">
             <h2 id="aenderungen" className="text-fg text-2xl font-bold">
-              8. Änderungen dieser Erklärung
+              9. Änderungen dieser Erklärung
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Diese Datenschutzerklärung wird angepasst, sobald sich die Verarbeitung
@@ -315,7 +366,7 @@ export default function PrivacyPage() {
 
           <section aria-labelledby="verantwortlicher" className="mt-12">
             <h2 id="verantwortlicher" className="text-fg text-2xl font-bold">
-              9. Verantwortlicher
+              10. Verantwortlicher
             </h2>
             <p className="text-fg-muted mt-4 leading-relaxed">
               Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne von
