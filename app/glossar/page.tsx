@@ -87,14 +87,30 @@ export default async function GlossarSeite() {
               {gruppe.buchstabe}
             </h2>
 
-            <dl className="mt-4 space-y-4">
+            {/*
+              Ein Glossar ist eine Liste, kein Stapel.
+
+              Bis zum 28. August 2026 stand jeder der 124 Begriffe in einer
+              eigenen Karte mit Rahmen, Füllung und Radius. Untereinander ergab
+              das 124 Kästen – und damit genau die Stelle, an der die
+              Kastenordnung dieser Website am deutlichsten kippte: Wo alles ein
+              Kasten ist, hilft der Kasten beim Finden nicht mehr.
+
+              Die Trennung macht jetzt eine Haarlinie, wie sie eine
+              Definitionsliste seit jeher hat. Der Buchstabe darüber gliedert,
+              der fette Begriff führt die Zeile – gesucht wird ohnehin am
+              Wortanfang und nicht an der Kante.
+            */}
+            <dl className="border-border mt-4 border-t">
               {gruppe.eintraege.map((eintrag) => (
                 <div
                   key={eintrag.slug}
                   id={eintrag.slug}
-                  className="fk-card scroll-mt-32 p-5 sm:p-6"
+                  className="border-border scroll-mt-32 border-b py-5"
                 >
-                  <dt className="text-fg text-lg font-semibold">{eintrag.begriff}</dt>
+                  <dt className="text-fg font-display text-lg font-semibold">
+                    {eintrag.begriff}
+                  </dt>
                   <dd className="mt-1.5">
                     <p className="text-fg-muted leading-relaxed">{eintrag.kurz}</p>
                     {eintrag.lang && (

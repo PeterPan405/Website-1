@@ -5,7 +5,6 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { Icon } from '@/components/ui/Icon'
 import { PageHeader } from '@/components/ui/PageHeader'
-import { Reveal } from '@/components/ui/Reveal'
 import { calculators } from '@/data/calculators'
 import { collectionPageSchema } from '@/lib/jsonld'
 import { buildMetadata, withBrand } from '@/lib/seo'
@@ -42,53 +41,54 @@ export default function CalculatorsOverviewPage() {
         }
       />
 
+      {/*
+        Register statt Kachelraster.
+
+        Bis zum 28. August 2026 stand hier ein Raster aus sechzehn Karten, jede
+        mit Sinnbild, vier Zeilen Beschreibung, drei Häkchenpunkten und einem
+        „Rechner öffnen". Auf dem Telefon füllte **eine** davon den ganzen
+        Schirm: Wer wissen wollte, welche sechzehn es gibt, scrollte sechzehn
+        Bildschirme weit und hatte am Ende trotzdem keine Übersicht.
+
+        Dieselbe Stelle gab es auf der Startseite schon einmal, und dort steht
+        die Begründung seit Juli: „Sieben Karten mit Sinnbild oben links waren
+        die vielleicht deutlichste Baukasten-Stelle der Startseite … Eine
+        Haarlinien-Liste mit laufender Nummer liest sich wie ein
+        Inhaltsverzeichnis: ruhig, eindeutig, ohne Restzeile." Was für sieben
+        galt, gilt für sechzehn doppelt.
+
+        Verloren geht dabei nichts, was diese Seite leisten muss: Die
+        Häkchenliste stand ohnehin vollständig auf der Rechnerseite selbst, und
+        die Beschreibung steht weiter da – nur einzeilig, weil eine Übersicht
+        einordnen und nicht erklären soll.
+      */}
       <div className="fk-container py-12 sm:py-16">
-        <ul className="grid gap-5 md:grid-cols-2">
-          {calculators.map((calculator, index) => (
-            <li key={calculator.slug}>
-              <Reveal delay={index * 0.05} className="h-full">
+        <div className="border-border border-t">
+          <ul>
+            {calculators.map((calculator, index) => (
+              <li key={calculator.slug}>
                 <Link
                   href={`/rechner/${calculator.slug}`}
-                  className="fk-card-interactive group flex h-full flex-col p-6"
+                  className="group border-border hover:bg-surface-muted flex items-center gap-5 border-b px-1 py-5 transition sm:gap-8 sm:px-3"
                 >
-                  <span className="bg-tools-soft text-tools flex size-11 items-center justify-center rounded-xl">
-                    <Icon name="calculator" className="size-5" />
+                  <span className="text-fg-subtle w-7 shrink-0 font-mono text-sm tabular-nums">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
-
-                  <h2 className="text-fg mt-4 text-xl font-semibold">
+                  <span className="text-fg font-display shrink-0 text-lg font-semibold sm:w-72 sm:text-xl">
                     {calculator.title}
-                  </h2>
-                  <p className="text-fg-muted mt-2 text-sm leading-relaxed">
-                    {calculator.lead}
-                  </p>
-
-                  <ul className="mt-4 flex-1 space-y-1.5">
-                    {calculator.featureList.slice(0, 3).map((feature) => (
-                      <li
-                        key={feature}
-                        className="text-fg-subtle flex items-start gap-2 text-xs"
-                      >
-                        <Icon
-                          name="check"
-                          className="text-tools mt-0.5 size-3.5 shrink-0"
-                        />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <span className="text-tools mt-5 flex items-center gap-1 text-sm font-semibold">
-                    Rechner öffnen
-                    <Icon
-                      name="arrow-right"
-                      className="size-4 transition-transform group-hover:translate-x-0.5"
-                    />
                   </span>
+                  <span className="text-fg-muted hidden min-w-0 flex-1 truncate text-sm leading-relaxed md:block">
+                    {calculator.lead}
+                  </span>
+                  <Icon
+                    name="arrow-right"
+                    className="text-fg-subtle ml-auto size-4 shrink-0 transition-transform group-hover:translate-x-1"
+                  />
                 </Link>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <JsonLd
