@@ -38,6 +38,8 @@
 
 import { existsSync, readFileSync } from 'node:fs'
 
+import { datumLang } from '../lib/datum-lang.ts'
+
 const API = 'https://graph.facebook.com/v21.0'
 
 const TOKEN = process.env.IG_ACCESS_TOKEN?.trim() ?? ''
@@ -47,6 +49,30 @@ const BASIS = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://iminvests.de').repla
   /\/+$/,
   ''
 )
+
+/**
+ * Der Tag, für den dieser Lauf gilt – Vorgabe oder heute.
+ *
+ * `STICHTAG` setzt der Workflow nicht; das Feld gibt es für den Fall, dass
+ * jemand einen Beitrag für einen bestimmten Tag nachreichen will, und für die
+ * Prüfung von Hand.
+ */
+const STICHTAG = process.env.STICHTAG?.trim() || new Date().toISOString().slice(0, 10)
+
+/**
+ * Beendet den Lauf, ohne ihn rot zu machen.
+ *
+ * Ein Beitrag, der heute nicht hinausgeht, weil er schon draußen ist oder
+ * weil die Website noch die Ausgabe von gestern zeigt, ist kein Fehler – es
+ * ist der Riegel, der arbeitet. Rot wäre hier eine Mail an jedem Tag, an dem
+ * alles richtig läuft, und nach zwei Wochen sieht sie niemand mehr an.
+ */
+function haltAn(grund: string): never {
+  melde('')
+  melde(grund)
+  melde('Es geht nichts hinaus. Das ist kein Fehler.')
+  process.exit(0)
+}
 
 function melde(text: string): void {
   console.log(`[instagram] ${text}`)
@@ -142,6 +168,42 @@ const adressen = kacheln.map((n) => `${BASIS}/instagram/${n}`)
 melde(`${kacheln.length} Kacheln, Basis ${BASIS}`)
 for (const a of adressen) melde(`  ${a}`)
 
+/*
+  Riegel 1: Zeigt die Website überhaupt schon die Ausgabe von heute?
+
+  Meta holt die Bilder **selbst** von `iminvests.de`. Die Adressen sind jeden
+  Tag dieselben – `/instagram/1.png` und so weiter –, und sie antworten immer.
+  Läuft dieser Schritt, bevor der Paketbau den neuen Stand übertragen hat,
+  liefert der Server die Kacheln von **gestern**, Meta holt sie anstandslos,
+  und der Beitrag geht mit den Schlagzeilen von gestern hinaus.
+
+  Das wäre kein roter Lauf, sondern ein stiller Fehler: Alles meldet Erfolg,
+  und nur die 1.680 Leute im Feed sehen, dass etwas nicht stimmt.
+
+  Geprüft wird deshalb der einzige Zeuge, der den Tag kennt: die erste Zeile
+  der Beschriftung, die derselbe Bau erzeugt hat wie die Kacheln. Steht dort
+  nicht der erwartete Tag, ist die Übertragung noch nicht durch.
+*/
+const erwartet = `${datumLang(STICHTAG)} –`
+const ersteZeile = beschriftung.split('\n')[0]?.trim() ?? ''
+
+if (!beschriftung) {
+  haltAn(
+    'Unter /instagram/beschriftung.txt liegt nichts. Ohne sie lässt sich nicht ' +
+      'feststellen, von welchem Tag die Kacheln sind.'
+  )
+}
+if (!ersteZeile.startsWith(erwartet)) {
+  haltAn(
+    `Die Website zeigt noch nicht den ${STICHTAG}.\n` +
+      `[instagram]   erwartet: ${erwartet} …\n` +
+      `[instagram]   gefunden: ${ersteZeile}\n` +
+      '[instagram] Der Paketbau ist noch nicht übertragen – ein Beitrag jetzt trüge ' +
+      'die Schlagzeilen von gestern.'
+  )
+}
+melde(`Die Website zeigt den ${STICHTAG}: ${ersteZeile}`)
+
 if (!SCHARF) {
   melde('')
   melde('Trockenlauf – es geht nichts hinaus.')
@@ -153,6 +215,56 @@ if (!TOKEN || !KONTO) {
   melde('IG_ACCESS_TOKEN oder IG_USER_ID fehlt – siehe EINRICHTUNG.md, Abschnitt 3.7.')
   process.exit(1)
 }
+
+/*
+  Riegel 2: Steht der Beitrag von heute schon bei Instagram?
+
+  Der Lauf hängt an der Kette und hat daneben einen Rückfalltermin. Beide
+  können am selben Tag greifen; ein Beitrag ist aber nicht zurückzunehmen,
+  nur zu löschen, und gesehen haben ihn dann schon welche.
+
+  **Gefragt wird der Kanal selbst, nicht ein Register im Repository.** Das ist
+  dieselbe Lehre wie beim Podcast-Upload: Ein Riegel ist so gut wie die
+  Quelle, die er fragt. Ein Vermerk in einer Datei sagt, dass wir gepostet zu
+  haben glauben – der Kanal sagt, ob dort etwas steht.
+
+  Verglichen wird der Kalendertag der Zeitstempel. Meta liefert sie mit
+  Zeitzonen-Anhang; die ersten zehn Zeichen sind der Tag in UTC, und in dieser
+  Zeitzone rechnet auch `STICHTAG`. Der Beitrag geht morgens gegen 4 Uhr
+  deutscher Zeit hinaus, also 2 Uhr UTC – von einer Tagesgrenze weit genug
+  entfernt, dass die Umrechnung nichts verschiebt.
+*/
+const bestand = await fetch(
+  `${API}/${KONTO}/media?fields=timestamp,permalink&limit=10` +
+    `&access_token=${encodeURIComponent(TOKEN)}`
+)
+const bestandDaten = (await bestand.json()) as {
+  data?: { timestamp?: string; permalink?: string }[]
+  error?: { message?: string; code?: number }
+}
+
+if (bestandDaten.error) {
+  // Hier **nicht** stillschweigend weiterlaufen: Wer den Bestand nicht lesen
+  // kann, kann auch nicht wissen, ob er doppelt postet. Das ist der Fall, in
+  // dem ein roter Lauf richtig ist – meist ein abgelaufenes Token.
+  melde(
+    `Der Bestand ist nicht lesbar (${bestandDaten.error.code ?? '?'}): ` +
+      `${bestandDaten.error.message ?? 'ohne Grund'}`
+  )
+  melde('Ohne ihn lässt sich ein doppelter Beitrag nicht ausschließen.')
+  process.exit(1)
+}
+
+const schonHeute = (bestandDaten.data ?? []).find(
+  (m) => (m.timestamp ?? '').slice(0, 10) === STICHTAG
+)
+if (schonHeute) {
+  haltAn(
+    `Für den ${STICHTAG} steht schon ein Beitrag im Kanal: ` +
+      `${schonHeute.permalink ?? '(ohne Adresse)'}`
+  )
+}
+melde(`Im Kanal steht für den ${STICHTAG} noch nichts.`)
 
 // ---------------------------------------------------------------- Hochladen
 

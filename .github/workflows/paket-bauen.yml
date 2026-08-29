@@ -114,6 +114,9 @@ jobs:
     # Wächter mit abschalten, ohne dass es jemandem auffällt.
     permissions:
       contents: write
+      # Zum Anstoßen des Instagram-Beitrags am Ende. Ein Push mit dem
+      # GITHUB_TOKEN löst keinen Workflow aus – siehe den Kopf von `kurse.yml`.
+      actions: write
     # Ohne diese Zeile gilt GitHubs Voreinstellung: **sechs Stunden**.
     #
     # Am 8. August 2026 blieb der Schritt „Bauen“ hängen – über eine Stunde
@@ -1005,4 +1008,49 @@ jobs:
             echo "  Wer die Nachrichten maschinell liest, bekommt nichts."
           else
             echo "feed.xml ist abrufbar."
+          fi
+
+      # ------------------------------------------------------------------
+      # Und der Instagram-Beitrag des Tages.
+      #
+      # ## Warum hier und nicht in `nachrichten.yml`
+      #
+      # Weil Meta die Bilder **selbst** von `iminvests.de/instagram/1.png`
+      # holt. Diese Adresse antwortet jeden Tag – vor der Übertragung eben mit
+      # der Kachel von gestern. `nachrichten.yml` endet, während dieser Lauf
+      # hier noch arbeitet; ein Anstoß von dort hätte an vielen Tagen die
+      # Schlagzeilen von gestern gepostet, ohne dass etwas rot geworden wäre.
+      #
+      # Der Podcast darf dort hängen: Er liest die Ausgabe aus dem Repository.
+      # Der Instagram-Beitrag liest sie vom Webspace. Das ist der Unterschied,
+      # und er entscheidet über die Stelle in der Kette.
+      #
+      # Erst **nach** dem Schritt „Ergebnis von außen prüfen": Zu diesem
+      # Zeitpunkt ist nachgewiesen, dass der neue Stand ausgeliefert wird.
+      #
+      # ## Warum doppelt anstoßen nicht schadet
+      #
+      # Der Paketbau läuft mehrmals täglich – Datencommits, Kurse, der
+      # nächtliche Lauf. Jeder davon stößt hier an. Der Beitrag geht trotzdem
+      # höchstens einmal hinaus: `scripts/instagram-veroeffentlichen.ts` fragt
+      # vorher den **Kanal selbst**, ob für heute schon etwas dort steht, und
+      # prüft an der Beschriftung, ob die Website überhaupt schon den heutigen
+      # Tag zeigt. Ein Lauf, der nichts zu tun findet, endet nach Sekunden.
+      #
+      # `|| true`: Ein misslungener Anstoß darf den Paketbau nicht rot machen.
+      # Die Website steht dann bereits – und für den Beitrag gibt es den
+      # Rückfalltermin um 04:52 deutscher Zeit.
+      - name: Instagram-Beitrag anstoßen
+        if: steps.ssh.outputs.bereit == 'ja'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh workflow run instagram-beitrag.yml \
+               --repo "${{ github.repository }}" --ref main \
+               -f veroeffentlichen=true; then
+            echo "Der Instagram-Beitrag ist angefordert."
+            echo "Ob er hinausgeht, entscheiden die Riegel in dem Lauf."
+          else
+            echo "::warning::Der Instagram-Lauf ließ sich nicht anstoßen."
+            echo "  Der Rückfalltermin um 04:52 deutscher Zeit greift."
           fi
