@@ -1,10 +1,18 @@
 {
-  "abgerufenAm": "2026-08-28T15:40:28.077Z",
+  "abgerufenAm": "2026-08-29T08:12:52.477Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "rede-von-fed-chef-warsh-spaltet-dax-und-nasdaq-und-gold-und-bitcoin-fallen-am-ta",
+      "titel": "Rede von Fed-Chef Warsh spaltet DAX und Nasdaq und Gold und Bitcoin fallen am Tag des DAX-Rekords",
+      "beschreibung": "Warsh warnt vor Inflation, der DAX jubelt trotzdem: ein Rückblick auf Rekorde, fallendes Gold, einen Öl-Deal und ein Rating für Frankreich. Kevin Warsh warnt in Jackson Hole vor anhaltend hoher Inflation – ein Hinweis für viele Anleger auf eine mögliche Zinserhöhung statt einer Senkung.\n\nWir sprechen über Venezuela-Deal der USA lässt den Ölpreis kalt, Fitch lässt Frankreich bei A+, Deutschland, Nemetschek. Kompakt in rund fünf Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:33) Rede von Fed-Chef Warsh spaltet DAX\n(1:09) Gold und Bitcoin fallen am Tag\n(1:49) Venezuela-Deal der USA lässt den Ölpreis\n(2:21) Fitch lässt Frankreich bei A+\n(3:00) Deutschland\n(3:42) Nemetschek\n(4:17) Fazit\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-08-29",
+      "dauerSekunden": 307,
+      "url": "https://iminvests.de/podcast-audio/2026-08-29.mp3"
+    },
     {
       "slug": "dax-gewinnt-ezb-falken-draengen-auf-hoehere-zinsen-und-groesster-gold-etf-zieht",
       "titel": "DAX gewinnt, EZB-Falken drängen auf höhere Zinsen und Größter Gold-ETF zieht fast zwei Milliarden Dollar",
