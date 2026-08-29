@@ -2575,6 +2575,57 @@ Der Weg selbst bleibt stehen. Er funktioniert an dem Tag, an dem jemand einen
 Tarif bucht – und das ist eine Geldentscheidung des Betreibers, keine des
 Skripts.
 
+# Der Google-Bewertungslink ist wieder raus – 29. August 2026
+
+Der Betreiber hat entschieden, das Google-Unternehmensprofil aufzugeben. Der
+Textlink „IM Invests bei Google bewerten" in der Fußzeile und der Eintrag
+`googleProfil` in `lib/site.ts` sind damit hinfällig und entfernt.
+
+## Der Anlass stimmte nicht, die Entscheidung steht trotzdem
+
+Auslöser war die Beobachtung, HKCM habe keinen Maps-Eintrag. Das war ein
+Lesefehler: Die Suche nach „HKCM" liefert drei Treffer, und der dritte ist
+„HKCM Engineering Inh. Möller Helmut", Ottestraße 20, 5,0 Sterne aus einer
+Rezension – von Google in die Kategorie **Engineer** einsortiert, was die
+Verwechslung erklärt. Die ersten beiden Treffer sind Namensvettern.
+
+**Nachgesehen wurde dann bei sechs Häusern, und alle sechs hatten einen
+Eintrag:**
+
+| Haus                      | Eintrag                        |
+| ------------------------- | ------------------------------ |
+| HKCM Engineering          | 5,0 (1), Kategorie „Engineer"  |
+| Montega AG                | gepflegt, Fotos, 0 Rezensionen |
+| First Berlin              | 5,0 (1), **nicht beansprucht** |
+| GBC AG                    | 4,8 (**17**)                   |
+| SMC Research (sc-consult) | vorhanden, 0 Rezensionen       |
+| Warburg Research          | **1,0 (1)**                    |
+| BörseGo AG                | 3,4 (10), Inhaberfotos         |
+
+Die Zahlen wurden dem Betreiber vorgelegt; er ist bei seiner Entscheidung
+geblieben. Das ist hier festgehalten, damit niemand später aus dem leeren
+Zustand schließt, es sei nie ein Profil da gewesen oder die Konkurrenz habe
+keines.
+
+## Was daran bemerkenswert ist
+
+**Warburg Research steht bei 1,0 aus einer einzigen Rezension.** Ein Profil,
+um das sich niemand kümmert, verschwindet nicht – es sammelt weiter. Ein
+gelöschtes dagegen nimmt die eigenen Bewertungen mit: Die fünf Rezensionen mit
+Schnitt 5,0 und die 39 Interaktionen kommen bei einer Neuanlage nicht zurück,
+und die Neuanlage braucht wieder eine Bestätigung.
+
+## Die Lehre
+
+**Ein Vergleich mit dem Wettbewerb ist erst eine Grundlage, wenn er über den
+ersten Treffer hinausgeht.** Drei Ergebnisse standen auf dem Schirm; gelesen
+wurde eines. Wer aus „ich sehe nichts" auf „es gibt nichts" schließt, hat
+nicht die Konkurrenz gemessen, sondern die eigene Suchanfrage.
+
+Und: **Löschen ist keine Änderung, sondern das Ende einer Vorgeschichte.** Der
+Link ließ sich in zwei Minuten entfernen und in zwei Minuten wieder einsetzen.
+Die Rezensionen dahinter nicht.
+
 ### Und ein Satz, der auf der Website falsch geworden war
 
 Auf der Kalenderseite stand: „Für die übrigen Werte kommt deshalb eine zweite
