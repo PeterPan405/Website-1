@@ -57,25 +57,6 @@ export function Footer() {
                 ))}
               </ul>
             </nav>
-
-            {/*
-              Der Bewertungslink steht als Text, nicht als Symbol.
-
-              Bei YouTube und Instagram genügt das Zeichen – es ist bekannt und
-              bedeutet nur eines. Ein Google-Symbol beantwortet die Frage nicht,
-              worauf es führt: auf die Suche? auf die Karte? auf ein Formular?
-              Hier führt es auf ein Formular, und das gehört dazugeschrieben.
-            */}
-            <p className="mt-6 text-sm">
-              <a
-                href={siteConfig.googleProfil.bewertung}
-                target="_blank"
-                rel="noreferrer"
-                className="text-fg-muted hover:text-brand transition"
-              >
-                IM Invests bei Google bewerten
-              </a>
-            </p>
           </div>
 
           {footerNav.map((group) => (

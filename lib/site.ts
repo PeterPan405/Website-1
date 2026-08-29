@@ -141,26 +141,16 @@ export const siteConfig = {
       icon: 'spotify',
     },
   ],
-  /**
-   * Der Bewertungslink bei Google.
-   *
-   * ## Warum getrennt von `socialLinks`
-   *
-   * Nicht aus Ordnungsliebe, sondern weil `socialLinks` zusätzlich als `sameAs`
-   * in die strukturierten Daten geht. `sameAs` bedeutet „dasselbe Unternehmen,
-   * anderswo“ – ein Bewertungsformular ist das nicht, sondern eine Handlung. Es
-   * dort einzutragen hieße, einer Suchmaschine zu sagen, ein Eingabeformular sei
-   * das Unternehmen.
-   *
-   * ## Zur Adresse
-   *
-   * Ein Kurzlink von Google. Vertretbar, aber nicht ideal: Er lebt davon, dass
-   * der Weiterleitungsdienst bestehen bleibt. Liegt die ausgeschriebene Adresse
-   * vor, gehört sie hierher.
-   */
-  googleProfil: {
-    bewertung: 'https://share.google/7Af3N45IIocqtDL9i',
-  },
+  /*
+    Hier stand bis zum 29. August 2026 `googleProfil.bewertung` – der Kurzlink
+    auf das Google-Bewertungsformular, ausgegeben als Textlink in der Fußzeile.
+
+    Entfernt auf Anweisung des Betreibers, zusammen mit dem Google-Unternehmens-
+    profil selbst. Wer den Link wieder einbaut, ohne dass es ein Profil gibt,
+    schickt Besucher auf eine tote Weiterleitung.
+
+    → `ENTSCHEIDUNGEN.md`: „Der Google-Bewertungslink ist wieder raus"
+  */
   /** Platzhalter-Handle für Twitter-Cards. */
   twitterHandle: '@iminvests',
   url: siteUrl,
