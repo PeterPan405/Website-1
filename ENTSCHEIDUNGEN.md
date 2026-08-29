@@ -2575,11 +2575,32 @@ Der Weg selbst bleibt stehen. Er funktioniert an dem Tag, an dem jemand einen
 Tarif bucht – und das ist eine Geldentscheidung des Betreibers, keine des
 Skripts.
 
-# Der Google-Bewertungslink ist wieder raus – 29. August 2026
+# Der Google-Bewertungslink: raus und am selben Tag zurück – 29. August 2026
 
-Der Betreiber hat entschieden, das Google-Unternehmensprofil aufzugeben. Der
-Textlink „IM Invests bei Google bewerten" in der Fußzeile und der Eintrag
-`googleProfil` in `lib/site.ts` sind damit hinfällig und entfernt.
+**Ergebnis vorweg: Der Link steht wieder da, wie zuvor.** Entfernt in #329,
+zurückgeholt in derselben Sitzung. Was dazwischen lag, ist der Grund, warum
+dieser Abschnitt trotzdem stehen bleibt – die Recherche darin ist die Arbeit,
+nicht der Umbau.
+
+Der Betreiber hatte entschieden, das Google-Unternehmensprofil aufzugeben, und
+damit war der Textlink „IM Invests bei Google bewerten" hinfällig. Beim
+Löschen des Profils stellte sich heraus: **Es geht nicht.** Google entfernt
+das Profil eines existierenden, bestätigten Unternehmens nicht.
+
+- „Actions → Remove" nimmt es nur aus dem Konto. Der Dialog sagt es selbst:
+  „Some business information (name, address, etc.) will still appear on Google
+  Maps, Search, and elsewhere on Google." Die eigenen Inhalte wären gelöscht,
+  das Profil sichtbar geblieben, niemand hätte es mehr verwaltet.
+- „Als dauerhaft geschlossen markieren" lässt es ebenfalls stehen, nur mit
+  einem Vermerk, der falsch wäre, solange die Website arbeitet.
+- Das Profil hat gar keine Adresse (`No location; deliveries and home services
+only`), ist also ein reines Servicegebiet-Profil ohne Kartenpin. Google
+  lässt dort nicht einmal das Servicegebiet leeren: „Service area can't be
+  removed if the listing doesn't have an address."
+
+Damit war der Grund für die Entfernung weg: Ein Link auf ein Profil, das
+ohnehin bestehen bleibt, zeigt nicht ins Leere. Also zurück in den Zustand
+davor.
 
 ## Der Anlass stimmte nicht, die Entscheidung steht trotzdem
 
@@ -2602,18 +2623,17 @@ Eintrag:**
 | Warburg Research          | **1,0 (1)**                    |
 | BörseGo AG                | 3,4 (10), Inhaberfotos         |
 
-Die Zahlen wurden dem Betreiber vorgelegt; er ist bei seiner Entscheidung
-geblieben. Das ist hier festgehalten, damit niemand später aus dem leeren
-Zustand schließt, es sei nie ein Profil da gewesen oder die Konkurrenz habe
-keines.
+Die Zahlen wurden dem Betreiber vorgelegt; er blieb zunächst bei seiner
+Entscheidung. Sie stehen hier, damit niemand die Frage ein zweites Mal am
+ersten Suchtreffer entscheidet.
 
 ## Was daran bemerkenswert ist
 
 **Warburg Research steht bei 1,0 aus einer einzigen Rezension.** Ein Profil,
-um das sich niemand kümmert, verschwindet nicht – es sammelt weiter. Ein
-gelöschtes dagegen nimmt die eigenen Bewertungen mit: Die fünf Rezensionen mit
-Schnitt 5,0 und die 39 Interaktionen kommen bei einer Neuanlage nicht zurück,
-und die Neuanlage braucht wieder eine Bestätigung.
+um das sich niemand kümmert, verschwindet nicht – es sammelt weiter. Genau das
+wäre der Ausgang gewesen: Die Rezensionen hängen am Eintrag, nicht am Konto,
+und wären mit ihm stehen geblieben. Verloren gegangen wäre nur die
+Möglichkeit, etwas dazu zu sagen.
 
 ## Die Lehre
 
@@ -2622,9 +2642,11 @@ ersten Treffer hinausgeht.** Drei Ergebnisse standen auf dem Schirm; gelesen
 wurde eines. Wer aus „ich sehe nichts" auf „es gibt nichts" schließt, hat
 nicht die Konkurrenz gemessen, sondern die eigene Suchanfrage.
 
-Und: **Löschen ist keine Änderung, sondern das Ende einer Vorgeschichte.** Der
-Link ließ sich in zwei Minuten entfernen und in zwei Minuten wieder einsetzen.
-Die Rezensionen dahinter nicht.
+Und: **Wer etwas entfernt, weil etwas anderes verschwinden soll, sollte zuerst
+prüfen, ob das andere überhaupt verschwinden kann.** Der Link war in zwei
+Minuten draußen. Die Frage, ob das Profil dahinter löschbar ist, wurde erst
+danach gestellt – die Antwort war nein, und damit war der ganze Umbau
+hinfällig. Die Reihenfolge war falsch, nicht die Absicht.
 
 ### Und ein Satz, der auf der Website falsch geworden war
 
