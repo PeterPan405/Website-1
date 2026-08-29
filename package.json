@@ -2,7 +2,7 @@
   "name": "im-invests",
   "version": "0.1.0",
   "private": true,
-  "description": "IM Invests \u2013 deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
+  "description": "IM Invests – deutschsprachige Finanzbildungs-Plattform (Next.js App Router)",
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/version.mjs && npm run kurselive",
@@ -23,6 +23,7 @@
     "quartalstermine": "node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/quartalstermine-abrufen.ts",
     "pruefen": "node --experimental-strip-types --import ./scripts/alias-hook.mjs scripts/paket-pruefen.ts",
     "frische": "node --experimental-strip-types scripts/frische-pruefen.ts",
+    "search-console": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/search-console.ts",
     "inhalte": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/inhalte-pruefen.ts",
     "vertraege": "node --experimental-strip-types scripts/vertraege-pruefen.ts",
     "quellenprobe": "node --experimental-strip-types scripts/quellen-pruefen.ts",

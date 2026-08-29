@@ -11,6 +11,10 @@ brauchen trotzdem Zugangsdaten, weil sie nach außen wirken:
 | Unternehmenszahlen aus Japan      | `EDINET_API_KEY`                                                | Die Abfrage, ob sich der Weg lohnt, unterbleibt           |
 | Instagram-Beitrag des Tages       | `IG_ACCESS_TOKEN`, `IG_USER_ID`, `PEXELS_API_KEY`               | Die Kacheln entstehen, werden aber nicht veröffentlicht   |
 
+Dazu kommt eine Sache, die **kein** Secret braucht, sondern nur einen Eintrag
+im Quelltext: die Anmeldung bei der Google Search Console (Abschnitt 4). Ohne
+sie erfährt Google von den 1.766 Seiten nur, was es zufällig findet.
+
 Alle gehören an **eine** Stelle:
 
 ```
@@ -739,6 +743,108 @@ erzeugen → Access Token Debugger → Extend → das neue in `IG_ACCESS_TOKEN`
 
 Tragen Sie sich den Termin ein. Ein langlebiges Token, das am **9. August**
 erzeugt wurde, gilt bis zum **8. Oktober**.
+
+---
+
+## 4 · Google Search Console
+
+Damit Google alle 1.766 Seiten kennt statt nur der, die es zufällig findet.
+
+**Rechnen Sie mit zehn Minuten**, davon acht Wartezeit. Es ist der kürzeste
+Abschnitt in dieser Datei und der mit dem besten Verhältnis von Aufwand zu
+Wirkung.
+
+### 4.0 Was das bringt – und was nicht
+
+**Was es bringt:** Sie reichen die `sitemap.xml` ein, und Google erfährt in
+einem Zug von allen Seiten. Danach sehen Sie dort, welche davon tatsächlich im
+Index sind, mit welchen Suchwörtern Leute auf die Website kommen und wo etwas
+klemmt. Ohne Anmeldung gibt es keine dieser Auskünfte.
+
+**Was es nicht bringt:** die Liste von Unterseiten unter dem Suchtreffer, nach
+der am 28. August 2026 gefragt wurde. Die heißt Sitelinks, stellt Google selbst
+zusammen, und es gibt keine Auszeichnung dafür – siehe `ENTSCHEIDUNGEN.md`,
+„Sitelinks kann man nicht einbauen". Die Anmeldung ist trotzdem die
+Voraussetzung dafür, dass Google die Website überhaupt vollständig kennt.
+
+### 4.1 Der Teil, der ein Google-Konto braucht
+
+1. `search.google.com/search-console` öffnen, mit einem Google-Konto anmelden.
+2. **Property hinzufügen** → die rechte Kachel **URL-Präfix** →
+   `https://iminvests.de` eintragen.
+3. Google bietet mehrere Bestätigungsarten an. **HTML-Tag** wählen (nicht
+   HTML-Datei – die müsste in `public/` liegen und würde bei jedem Bau
+   mitgeschleppt).
+4. Google zeigt eine Zeile wie:
+
+   ```html
+   <meta name="google-site-verification" content="xPtLm3rQ7yN2kW9vB4hD8sF6" />
+   ```
+
+   Diese Zeile kopieren. **Noch nicht auf „Bestätigen" klicken** – das Element
+   steht noch nicht auf der Website.
+
+### 4.2 Der Teil, den der lokale Chat erledigt
+
+Im Projektordner:
+
+```
+npm run search-console -- '<meta name="google-site-verification" content="…" />'
+```
+
+Das Skript nimmt die ganze Zeile entgegen und löst den Wert selbst heraus; nur
+der Wert geht auch. Es weist ab, was kein Schlüssel sein kann, trägt ihn in
+`lib/site.ts` ein, baut und sieht danach im gebauten HTML nach, ob das Element
+wirklich drinsteht.
+
+Danach wie üblich: Zweig, Pull Request, grüne Prüfung, mergen. Erst wenn
+„Paket bauen" und „Veröffentlichen" durch sind, steht das Element auf
+iminvests.de.
+
+### 4.3 Zurück in der Search Console
+
+1. Auf **Bestätigen** klicken. Klappt es nicht, ist meistens die
+   Veröffentlichung noch nicht durch – fünf Minuten warten, noch einmal.
+2. Links auf **Sitemaps**, dort `sitemap.xml` eintragen und absenden.
+3. Fertig. Die ersten Auswertungen erscheinen nach ein bis drei Tagen, die
+   vollständige Indexierung dauert Wochen.
+
+### 4.4 Zum Kopieren: der Auftrag für den lokalen Chat
+
+Wer den Schlüssel hat und nicht selbst tippen will, gibt das hier weiter:
+
+```text
+Ich habe den Bestätigungsschlüssel der Google Search Console für iminvests.de.
+Bitte trag ihn ein und bring ihn live.
+
+Der Schlüssel (bzw. die ganze Zeile von Google):
+<HIER EINFÜGEN>
+
+So gehst du vor:
+
+1. Lies EINRICHTUNG.md, Abschnitt 4 – dort steht der Zusammenhang.
+2. Zweig anlegen:  git checkout -b claude/search-console
+3. Eintragen und prüfen lassen:
+   npm run search-console -- '<der Schlüssel oder die ganze Zeile>'
+   Das Skript baut und sieht im gebauten HTML nach. Bricht es ab, lies die
+   Meldung – sie sagt, was mit der Eingabe nicht stimmt.
+4. Nur lib/site.ts committen. out/ gehört nicht ins Repository.
+5. Vor dem Pull Request: npm test, npm run pruefen, npx tsc --noEmit,
+   npx prettier --check . – alles muss grün sein.
+6. Pull Request anlegen, Prüfung „Bauen und prüfen" abwarten, bei Grün mergen.
+7. Warten, bis auf main „Paket bauen" und „Veröffentlichen" durch sind, und
+   mir dann Bescheid geben. Erst danach klicke ich in der Search Console auf
+   „Bestätigen".
+
+Wichtig: Melde dich, wenn das Skript abbricht oder die Prüfung rot wird –
+nicht selbst am Schlüssel herumbasteln. Ein falscher Schlüssel sieht in der
+Search Console genauso aus wie gar keiner.
+```
+
+Der Schlüssel ist kein Geheimnis – er steht anschließend im Quelltext jeder
+Seite und ist für jeden lesbar. Er beweist nur, dass jemand mit Zugriff auf
+die Website ihn dort platziert hat. Deshalb gehört er in `lib/site.ts` und
+nicht zu den Secrets.
 
 ---
 
