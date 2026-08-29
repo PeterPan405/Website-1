@@ -33,6 +33,9 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
 
 ## Arbeitsweise
 
+- **Ist etwas offen, wird es abgearbeitet** – ohne Rückfrage, ob. Anordnung
+  des Betreibers vom 29. August 2026. Gilt für rote Läufe, gemeldete Befunde,
+  offene Issues und alles, was eine Sitzung als „bleibt offen" hinterließ.
 - **Selbst mergen, ohne zu fragen.** Pull Request anlegen, Prüfung abwarten
   (vier bis fünf Minuten), Ergebnis ansehen, mergen. Anordnung des Betreibers
   vom 8. August 2026.
@@ -46,10 +49,9 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
   fällt **nicht** darunter – da wird weiter gefragt.
 - `workflow_dispatch` startet nur Workflows, die auf `main` liegen. Ein neuer
   Workflow auf einem Nebenzweig antwortet mit 404.
-- **Manchmal geht `workflow_dispatch` gar nicht** (403, „Resource not
-  accessible by integration") – ein `push` auf den Arbeitszweig schon. Dann
-  hängt der Lauf an `push` mit **Pfadfilter** auf eine Anstoßdatei; Vorbild:
-  `.github/sonde-anstoss.txt` in `quellen-probe.yml`.
+- **Manchmal geht `workflow_dispatch` gar nicht** (403) – ein `push` auf den
+  Arbeitszweig schon. Dann hängt der Lauf an `push` mit **Pfadfilter** auf eine
+  Anstoßdatei; Vorbild: `.github/sonde-anstoss.txt` in `quellen-probe.yml`.
 
 → `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
 
@@ -63,7 +65,7 @@ ist eine Regel der Umgebung, kein Fehler; prüfbar mit
 **Der Ausweg: ein Läufer holt es.** GitHub-Läufer haben vollen Netzzugang.
 
 - `.github/workflows/quellen-holen.yml` – nimmt Adressen, holt sie, schreibt
-  den Text ins Protokoll. Lesbar über `actions_list` + `get_job_logs`.
+  den Text ins Protokoll (`actions_list` + `get_job_logs`).
 - `.github/workflows/quellen-sammeln.yml` – legt `quellen.txt` auf den
   wurzellosen Zweig `quellen-heute`; zu lesen mit
   `git show origin/quellen-heute:quellen.txt`.
@@ -100,23 +102,20 @@ ist eine Regel der Umgebung, kein Fehler; prüfbar mit
 - Eine Adresse, die niemand abgerufen hat, gehört nicht in
   `data/nachrichtenquellen.ts`.
 
-**Die Rangfolge, aus der die Ausgabe entsteht** (in `nachrichten.yml`) –
-es sind **zwei** Wege, nicht drei:
+**Die Rangfolge der Ausgabe** (in `nachrichten.yml`) – **zwei** Wege, nicht
+drei:
 
 1. Entwurf vom Agenten (`nachrichten-agent.yml`, im Abo) – der Regelfall
 2. Modell über die Anthropic-Schnittstelle (~0,20 $, braucht `ANTHROPIC_API_KEY`)
 
-**Liefert keiner von beiden, wird nichts geschrieben und der Lauf bricht rot
-ab.** Der Notbehelf aus dem Kursbestand ist seit dem 11. August 2026
-abgeschafft – besser keine Nachrichten als eigene Kurszahlen, die wie
-Nachrichten aussehen. `scripts/nachrichten-aus-bestand.ts` ruft kein Workflow
-mehr auf.
+**Liefert keiner, wird nichts geschrieben und der Lauf bricht rot ab.** Der
+Notbehelf aus dem Kursbestand ist seit dem 11. August 2026 abgeschafft –
+besser keine Nachrichten als eigene Kurszahlen, die wie Nachrichten aussehen.
 
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
-voreingestellt `api.anthropic.com`. Wer einen Zwischendienst davorschaltet,
-gibt ihm den Quelltext der Meldungen **und** den API-Schlüssel; deshalb nur
-`https://`, und deshalb warnt der Lauf, solange die Variable gesetzt ist. Ein
-Dienst, der Prompts kürzt, kürzt an Zahlen, Namen und Uhrzeiten.
+voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt den Quelltext
+der Meldungen **und** den Schlüssel; deshalb nur `https://`, deshalb warnt der
+Lauf. Wer Prompts kürzt, kürzt an Zahlen, Namen und Uhrzeiten.
 
 **Ohne Modell keine Ausgabe – und ohne Ausgabe keine Folge** (`npm run folge`
 bricht ab). Alles andere läuft weiter: Kurse, Bau, Übertragung, Lernseiten.
