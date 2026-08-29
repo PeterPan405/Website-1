@@ -1015,7 +1015,7 @@ jobs:
       #
       # ## Warum hier und nicht in `nachrichten.yml`
       #
-      # Weil Meta die Bilder **selbst** von `iminvests.de/instagram/1.png`
+      # Weil Meta die Bilder **selbst** von `iminvests.de/instagram/1.jpg`
       # holt. Diese Adresse antwortet jeden Tag – vor der Übertragung eben mit
       # der Kachel von gestern. `nachrichten.yml` endet, während dieser Lauf
       # hier noch arbeitet; ein Anstoß von dort hätte an vielen Tagen die
