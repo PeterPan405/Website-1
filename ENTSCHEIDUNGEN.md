@@ -3459,7 +3459,7 @@ Ziel – dorthin, wo auch der Podcast angestoßen wird. Das wäre falsch gewesen
 und zwar auf die Art, die niemand bemerkt:
 
 **Meta holt die Bilder selbst.** Übergeben wird eine Adresse, keine Datei.
-`iminvests.de/instagram/1.png` antwortet jeden Tag – vor der Übertragung eben
+`iminvests.de/instagram/1.jpg` antwortet jeden Tag – vor der Übertragung eben
 mit der Kachel von gestern. `nachrichten.yml` endet aber, während der Paketbau
 noch läuft; es stößt ihn nur an. Ein Anstoß von dort hätte an vielen Tagen die
 Schlagzeilen von gestern gepostet, **ohne dass ein Lauf rot geworden wäre.**

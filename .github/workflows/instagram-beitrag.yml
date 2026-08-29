@@ -11,7 +11,7 @@ name: Instagram-Beitrag
 # Ziel – dorthin, wo auch der Podcast hängt. Das wäre zu früh gewesen, und
 # zwar auf die unangenehme Art:
 #
-# Meta holt die Bilder **selbst** von `iminvests.de/instagram/1.png`. Diese
+# Meta holt die Bilder **selbst** von `iminvests.de/instagram/1.jpg`. Diese
 # Adresse antwortet jeden Tag, auch bevor der neue Stand übertragen ist – dann
 # eben mit der Kachel von gestern. `nachrichten.yml` endet, während der
 # Paketbau noch läuft. Ein Anstoß von dort hätte an vielen Tagen die
@@ -94,9 +94,9 @@ jobs:
           n=1
           gefunden=0
           while [ "$n" -le 10 ]; do
-            code=$(curl -s -o "out/instagram/$n.png" -w '%{http_code}' "$basis/instagram/$n.png")
+            code=$(curl -s -o "out/instagram/$n.jpg" -w '%{http_code}' "$basis/instagram/$n.jpg")
             if [ "$code" != "200" ]; then
-              rm -f "out/instagram/$n.png"
+              rm -f "out/instagram/$n.jpg"
               break
             fi
             gefunden=$n
@@ -168,8 +168,9 @@ jobs:
             echo "Kacheln: ${{ steps.holen.outputs.kacheln }}"
             echo ""
             if [ "${{ steps.zugang.outputs.vorhanden }}" != "ja" ]; then
-              echo "**Keine Zugangsdaten** – IG_ACCESS_TOKEN oder IG_USER_ID fehlt."
-              echo "Es ist nichts hinausgegangen. Siehe EINRICHTUNG.md, 3.4 und 3.5."
+              echo "**Keine Zugangsdaten** – weder IG_ACCESS_TOKEN/IG_USER_ID noch MAKE_WEBHOOK_URL."
+              echo "Es ist nichts hinausgegangen. Der eine Weg steht in EINRICHTUNG.md 3.4"
+              echo "und 3.5, der andere in 3.11."
             elif [ "${{ github.event_name }}" = "schedule" ] \
               || [ "${{ inputs.veroeffentlichen }}" = "true" ]; then
               echo "Scharf gestellt. Ob der Beitrag hinausging, sagt das Protokoll"

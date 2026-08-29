@@ -695,7 +695,7 @@ Beschriftung in der Zusammenfassung — und hört auf:
 
 ```
 [instagram] 4 Kacheln, Basis https://iminvests.de
-[instagram]   https://iminvests.de/instagram/1.png
+[instagram]   https://iminvests.de/instagram/1.jpg
 [instagram]   …
 [instagram] Trockenlauf – es geht nichts hinaus.
 ```
@@ -765,7 +765,7 @@ Bedingungen, und alle drei sind hier erfüllt:
 | ---------------------------------------------- | ----------------------------------- |
 | Facebook-Konto mit Admin-Rechten auf der Seite | ja, Igor Maier auf `IM Invests`     |
 | Instagram als **Business**-Konto               | ja – Creator wird nicht unterstützt |
-| Bilder unter öffentlicher Adresse              | ja, `iminvests.de/instagram/1.png`  |
+| Bilder unter öffentlicher Adresse              | ja, `iminvests.de/instagram/1.jpg`  |
 
 #### a) Das Szenario anlegen
 

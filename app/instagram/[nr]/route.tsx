@@ -51,7 +51,7 @@ export function generateStaticParams() {
   if (!edition) return []
   // Titelkachel plus je eine Kachel pro Top-Meldung.
   const anzahl = 1 + bildmeldungen(edition).length
-  return Array.from({ length: anzahl }, (_, i) => ({ nr: `${i + 1}.png` }))
+  return Array.from({ length: anzahl }, (_, i) => ({ nr: `${i + 1}.jpg` }))
 }
 
 export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string }> }) {
@@ -64,10 +64,10 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
 
     Meta ruft die Bilder für einen Beitrag **selbst** ab. Ein Abrufer, der nach
     der Endung geht statt nach dem Kopf der Antwort, sieht bei `/instagram/1`
-    keine Datei, die er verarbeiten will. `/instagram/1.png` ist eindeutig –
+    keine Datei, die er verarbeiten will. `/instagram/1.jpg` ist eindeutig –
     für Meta, für den Webserver und für jeden, der die Adresse von Hand öffnet.
   */
-  const stelle = Number(nr.replace(/\.png$/, ''))
+  const stelle = Number(nr.replace(/\.jpg$/, ''))
   const meldungen = bildmeldungen(edition)
 
   /*
@@ -84,9 +84,33 @@ export async function GET(_anfrage: Request, ctx: { params: Promise<{ nr: string
       ? await instagramBild(edition)
       : await instagramMeldungsbild(meldungen[stelle - 2], stelle - 1, meldungen.length)
 
-  return new Response(new Uint8Array(bild), {
+  /*
+    JPEG, nicht PNG – und das ist keine Geschmacksfrage.
+
+    Hier stand bis zum 29. August 2026 PNG, mit der Begründung, Instagram nehme
+    beides. Das ist nicht belegt: Metas eigene Anforderungen an ein Bild für
+    einen Beitrag nennen **„Format: JPEG only"**, und dasselbe steht in der
+    Dokumentation des Dienstes, über den der Beitrag hinausgeht.
+
+    Was PNG gekostet hätte, wäre nicht ein roter Lauf gewesen, sondern ein
+    Morgen ohne Beitrag – und die Fehlersuche hätte beim Token angefangen, wo
+    nichts gewesen wäre.
+
+    `ImageResponse` liefert PNG; `sharp` wandelt es um. Der Umweg passiert beim
+    Bauen, nicht beim Veröffentlichen: Was auf dem Webspace liegt, ist dann
+    schon das, was Meta abholt.
+
+    Qualität 90 statt der Voreinstellung 80: Die Kacheln sind gesetzter Text
+    auf einer Fläche, und dort fallen Artefakte an Buchstabenkanten auf. Bei
+    rund 100 KB je Kachel ist der Platz nicht das Problem – Metas Grenze liegt
+    bei 8 MiB.
+  */
+  const { default: sharp } = await import('sharp')
+  const jpeg = await sharp(bild).jpeg({ quality: 90, mozjpeg: true }).toBuffer()
+
+  return new Response(new Uint8Array(jpeg), {
     headers: {
-      'Content-Type': 'image/png',
+      'Content-Type': 'image/jpeg',
       // Die Kachel gilt für einen Tag; danach steht eine neue Ausgabe.
       'Cache-Control': 'public, max-age=3600',
     },

@@ -22,7 +22,7 @@
  *
  * Übergeben wird eine **Adresse**, keine Datei. Die Bilder müssen also
  * öffentlich erreichbar sein, bevor dieser Lauf startet – sie entstehen beim
- * Bau unter `/instagram/1.png` und liegen nach der Übertragung auf dem
+ * Bau unter `/instagram/1.jpg` und liegen nach der Übertragung auf dem
  * Webspace.
  *
  * Daraus folgt die Reihenfolge im Workflow: **erst bauen und übertragen, dann
@@ -140,7 +140,7 @@ if (!existsSync('out/instagram')) {
 
 const { readdirSync } = await import('node:fs')
 const kacheln = readdirSync('out/instagram')
-  .filter((n) => /^\d+\.png$/.test(n))
+  .filter((n) => /^\d+\.jpg$/.test(n))
   .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
 
 if (kacheln.length < 2) {
@@ -172,7 +172,7 @@ for (const a of adressen) melde(`  ${a}`)
   Riegel 1: Zeigt die Website überhaupt schon die Ausgabe von heute?
 
   Meta holt die Bilder **selbst** von `iminvests.de`. Die Adressen sind jeden
-  Tag dieselben – `/instagram/1.png` und so weiter –, und sie antworten immer.
+  Tag dieselben – `/instagram/1.jpg` und so weiter –, und sie antworten immer.
   Läuft dieser Schritt, bevor der Paketbau den neuen Stand übertragen hat,
   liefert der Server die Kacheln von **gestern**, Meta holt sie anstandslos,
   und der Beitrag geht mit den Schlagzeilen von gestern hinaus.

@@ -100,9 +100,15 @@ export function bildmeldungen(edition: DailyEdition): EditionItem[] {
 /**
  * Setzt die Kachel und gibt sie als PNG zurück.
  *
- * PNG, nicht JPEG: `ImageResponse` liefert PNG, und Instagram nimmt beides.
- * Eine Umwandlung nach JPEG wäre ein weiterer Schritt, der schiefgehen kann,
- * für eine Datei von rund hundert Kilobyte.
+ * Gibt PNG zurück – das liefert `ImageResponse`. Nach JPEG gewandelt wird in
+ * `app/instagram/[nr]/route.tsx`, unmittelbar bevor die Kachel ausgeliefert
+ * wird; die Begründung steht dort.
+ *
+ * Hier stand bis zum 29. August 2026, Instagram nehme beides und die
+ * Umwandlung sei ein Schritt, der schiefgehen kann. Der zweite Teil stimmt,
+ * der erste nicht: Meta verlangt JPEG. Ein Schritt, der schiefgehen kann und
+ * beim Bauen läuft, ist besser als einer, der nicht läuft und beim
+ * Veröffentlichen fehlt.
  */
 export async function instagramBild(edition: DailyEdition): Promise<Buffer> {
   const meldungen = bildmeldungen(edition)
