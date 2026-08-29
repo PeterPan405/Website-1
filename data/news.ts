@@ -101,6 +101,361 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'warsh-rede-dax-rekord-nasdaq-verliert',
+    title: 'Warsh warnt vor Inflation – der DAX jubelt trotzdem',
+    teaser:
+      'Fed-Chef Kevin Warsh hält seine erste große Rede in Jackson Hole. Der DAX schließt danach auf Rekordhoch, die Nasdaq fällt – am selben Nachmittag.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-29T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Kevin Warsh', 'DAX', 'Nasdaq'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 28.8.2026, 15:45 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Fed-Chef Warsh hievt Dax auf weitere Bestmarke“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 28.8.2026, 20:27 Uhr: „ROUNDUP/Aktien New York Schluss: Signale für US-Zinserhöhung belasten Nasdaq“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste „Heute im Fokus“, Abruf 29.8.2026, 09:11 Uhr: DAX 26.570 Punkte (+0,8 %), Nas 26.402 Punkte (-0,5 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein einziger Satz reichte am Freitag, um zwei große Börsen in entgegengesetzte Richtungen zu schicken. Fed-Chef Kevin Warsh sagte bei seiner ersten großen Rede in Jackson Hole, die zugrunde liegende Inflation habe sich nicht wirklich gebessert – für viele Anleger ein Hinweis, dass die US-Notenbank eher an einer Zinserhöhung als an einer Senkung arbeitet. Laut onvista-Ticker schloss der DAX danach auf einem weiteren Rekordhoch. Die New Yorker Technologiebörse Nasdaq schloss zur gleichen Zeit im Minus, belastet von genau denselben Zinssignalen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Redner, zwei Reaktionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das klingt nach einem Widerspruch. Ist es aber nicht: Beide Börsen reagierten auf dieselbe Nachricht – nur ihre Zusammensetzung macht sie unterschiedlich empfindlich dafür. Der DAX wird von Industrie-, Auto- und Versicherungswerten geprägt, deren Gewinne größtenteils schon in den nächsten ein, zwei Jahren anfallen. Die Nasdaq wird stärker von Technologiekonzernen getragen, deren Wert sich zu einem großen Teil aus Gewinnen speist, die erst in vielen Jahren erwartet werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum weit entfernte Gewinne empfindlicher reagieren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer den heutigen Wert eines künftigen Gewinns berechnet, zieht ihn mit einem Zinssatz ab – je höher der Zins, desto weniger ist ein Gewinn wert, der erst in zehn Jahren anfällt. Bei einem Gewinn, der schon nächstes Jahr fließt, ändert ein höherer Zins dagegen kaum etwas. Steigende Zinserwartungen treffen deshalb Wachstumswerte mit weit in der Zukunft liegenden Gewinnen stärker als Unternehmen, deren Gewinne schon kurzfristig anfallen – und genau das erklärt, warum sich DAX und Nasdaq an diesem Freitag auseinanderbewegten, obwohl beide dieselbe Rede gehört hatten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nach einer einzelnen Nachricht nur auf einen Index schaut, sieht bestenfalls die halbe Geschichte. Dieselbe Meldung kann zwei Märkte gleichzeitig bewegen – nur eben in unterschiedliche Richtungen, je nachdem, wie weit die Gewinne der jeweils enthaltenen Unternehmen in der Zukunft liegen.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-und-bitcoin-fallen-trotz-dax-rekord',
+    title: 'Gold und Bitcoin fallen ausgerechnet an einem Rekordtag',
+    teaser:
+      'Während der DAX auf ein neues Hoch klettert, geben Gold und Bitcoin nach. Beide Anlagen reagieren auf dieselbe Zinserwartung – nur in die andere Richtung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-29T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Bitcoin', 'Zinsen', 'Opportunitätskosten'],
+    relatedTopics: ['rohstoffe', 'bitcoin-krypto'],
+    relatedSymbols: ['gold', 'bitcoin'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 28.8.2026: „Goldpreis fällt nach Erholung weiter - zeitnahe US-Zinserhöhung wahrscheinlicher“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Marktbericht vom 27.8.2026: „Der Goldpreis startet unter 4.600 USD in den Freitag. Am Nachmittag richtet sich der Blick auf Fed-Chef Kevin Warsh in Jackson Hole.“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste „Heute im Fokus“, Abruf 29.8.2026, 09:11 Uhr: Gold 4.459 US-Dollar (-3,1 %), Bitcoin 66.873 US-Dollar (-0,3 %), Top 10 Crypto -2,7 %',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX feierte am Freitag einen Rekord – Gold und Bitcoin taten an genau diesem Tag das Gegenteil. Laut finanzen.net-Kursleiste stand Gold am Samstagmorgen bei 4.459 US-Dollar, gut drei Prozent leichter als zuvor, Bitcoin bei 66.873 US-Dollar. Wallstreet-online nennt dafür einen Grund: Eine baldige US-Zinserhöhung sei wahrscheinlicher geworden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was Gold und Bitcoin gemeinsam haben',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt keine Zinsen, Bitcoin auch nicht. Wer eine Unze Gold oder eine Einheit Bitcoin hält, verzichtet auf die Zinsen, die er stattdessen mit einer Anleihe oder einem Tagesgeldkonto verdienen könnte. Steigt der erwartete Zins, steigen diese entgangenen Zinsen – die sogenannten Opportunitätskosten des Haltens. Das macht beide Anlagen tendenziell weniger attraktiv, sobald der Markt eine Zinserhöhung für wahrscheinlicher hält, unabhängig davon, wie unterschiedlich Gold und Bitcoin sonst funktionieren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Nuance in der Kursliste',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Detail aus derselben Kursleiste lohnt einen zweiten Blick: Bitcoin gab nur 0,3 Prozent nach, der breitere „Top 10 Crypto“-Index dagegen 2,7 Prozent. Das legt nahe, dass andere große Kryptowährungen an diesem Morgen deutlicher unter Druck standen als Bitcoin selbst – ein Hinweis darauf, dass ein einzelner Kurswert nie für einen ganzen Markt steht, auch nicht bei Kryptowährungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold und Bitcoin werden oft als Gegenpole zu klassischen Anlagen verkauft, die sich unabhängig von Aktien entwickeln sollen. An diesem Freitag bewegte sie stattdessen derselbe Faktor wie Aktien und Anleihen – die Zinserwartung. Das ist kein Widerspruch zur Diversifikation, aber eine Erinnerung, dass auch vermeintlich unabhängige Anlagen gemeinsame Auslöser haben können.',
+      },
+    ],
+  },
+  {
+    slug: 'usa-venezuela-oel-deal-oelpreis-faellt-trotzdem',
+    title: 'USA sichern sich Venezuelas Öl – der Preis fällt trotzdem',
+    teaser:
+      'Die Trump-Regierung sichert sich laut Agenturmeldungen Zugang zu venezolanischen Ölreserven. Der Ölpreis reagiert darauf nicht mit einem Anstieg, sondern fällt.',
+    category: 'Märkte',
+    publishedAt: '2026-08-29T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Venezuela', 'Risikoprämie', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 29.8.2026, 09:04 Uhr: „ROUNDUP/Trump: USA sichern sich riesige Ölvorkommen in Venezuela“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 29.8.2026, 09:05 Uhr, dpa-AFX: „Regierungsvertreter der Trump-Administration arbeiten an einem Abkommen, das den USA langfristig Zugang zu einem Teil der venezolanischen Ölreserven sichern soll.“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste „Heute im Fokus“, Abruf 29.8.2026, 09:11 Uhr: Öl 89,31 US-Dollar (-0,4 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Regierungsvertreter der Trump-Administration arbeiten laut dpa-AFX an einem Abkommen, das den USA langfristig Zugang zu einem Teil der venezolanischen Ölreserven sichern soll – einer der größten der Welt. Wer daraus einen steigenden Ölpreis erwartet hätte, läge falsch: Laut finanzen.net-Kursleiste stand Öl am Samstagmorgen bei 89,31 US-Dollar, ein Minus von 0,4 Prozent. Eine Begründung für den Rückgang selbst liefert der Ticker nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Öl-Deal den Ölpreis nicht automatisch bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis setzt sich nicht nur aus Angebot und Nachfrage nach dem physischen Rohstoff zusammen, sondern auch aus einer Risikoprämie: einem Aufschlag oder Abschlag dafür, wie sicher oder unsicher Lieferungen aus einer Region gelten. Ein Abkommen über künftigen Zugang zu Reserven ändert daran kurzfristig wenig – es verspricht Öl von morgen, nicht zusätzliche Fässer für den Markt von heute.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der stärkere Faktor lag woanders',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag bewegte ein anderer Faktor die Rohstoffmärkte deutlicher: die nach Warshs Rede gestiegene Erwartung einer US-Zinserhöhung. Rohstoffe werden überwiegend in Dollar gehandelt; steigende Zinserwartungen stützen tendenziell den Dollar, und ein stärkerer Dollar macht Öl für Käufer außerhalb der USA teurer – was die Nachfrage und damit den Preis in Dollar unter Druck setzen kann. Eine geopolitische Meldung und ein Zinssignal wirken damit gleichzeitig auf denselben Preis, nur in unterschiedliche Richtungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne geopolitische Schlagzeile erklärt selten den ganzen Kurs eines Rohstoffs. Wer den Ölpreis verstehen will, muss mehrere gleichzeitig wirkende Kräfte im Blick behalten – Angebot, Nachfrage, Risikoprämie und, wie an diesem Tag, auch die Zinserwartung.',
+      },
+    ],
+  },
+  {
+    slug: 'fitch-bestaetigt-frankreich-a-plus-rating',
+    title: 'Fitch bestätigt Frankreichs Rating bei A+ – was das heißt',
+    metaTitle: 'Fitch bestätigt Frankreich-Rating: Was A+ bedeutet',
+    teaser:
+      'Die Ratingagentur Fitch lässt Frankreichs Bonitätsnote unverändert bei A+ mit stabilem Ausblick. Ein Blick darauf, was Note und Ausblick tatsächlich aussagen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-29T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fitch', 'Frankreich', 'Rating', 'Staatsanleihen'],
+    relatedTopics: ['staatsanleihe'],
+    relatedSymbols: ['cac-40'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 29.8.2026, 09:09 Uhr: „Fitch bestätigt Frankreich-Rating mit A+ - Ausblick stabil“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Ratingagentur Fitch hat Frankreichs Kreditwürdigkeit laut finanzen.net-Ticker bei A+ bestätigt, mit stabilem Ausblick. Eine Begründung nennt die Ticker-Zeile nicht – warum Fitch zu diesem Zeitpunkt genau diese Note vergibt, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Note wie A+ überhaupt bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rating ist die Einschätzung einer Agentur, wie wahrscheinlich es ist, dass ein Schuldner – hier ein Staat – seine Anleihen vollständig und pünktlich bedient. A+ liegt im oberen Mittelfeld der Ratingskala: eine solide, aber nicht die bestmögliche Bonität. Je niedriger das eingeschätzte Ausfallrisiko, desto weniger Zinsen muss ein Staat seinen Gläubigern in der Regel bieten, um sich Geld zu leihen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Ausblick ist die zweite Zahl, die zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neben der Note selbst vergibt Fitch einen Ausblick: positiv, stabil oder negativ. Er beschreibt nicht die aktuelle Einschätzung, sondern die wahrscheinliche Richtung der nächsten Änderung. „Stabil“ heißt: Fitch erwartet in absehbarer Zeit weder eine Herauf- noch eine Herabstufung. Genau das unterscheidet eine bestätigte Note mit stabilem Ausblick von einer, die zwar gleich bleibt, aber unter Beobachtung für eine mögliche Herabstufung steht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine bestätigte Note ist zunächst vor allem eines: keine Überraschung. Für Anlegerinnen und Anleger in Staatsanleihen zählt trotzdem der Ausblick mit, weil er eine grobe Richtung vorgibt, in die sich die Konditionen eines Staates in den kommenden Jahren bewegen könnten – ohne dass daraus eine Kauf- oder Verkaufsempfehlung für einzelne Anleihen folgt.',
+      },
+    ],
+  },
+  {
+    slug: 'deutschland-groesster-glaeubiger-der-welt',
+    title: 'Deutschland ist der größte Gläubiger der Welt – warum eigentlich?',
+    metaTitle: 'Deutschland: Größter Gläubiger der Welt – die Gründe',
+    teaser:
+      '3,9 Billionen Euro deutschen Kapitals arbeiten im Ausland, während zu Hause Investitionslücken bestehen. Ein Blick auf das Muster hinter dieser Zahl.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-29T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Auslandsvermögen', 'Leistungsbilanz', 'Sparquote', 'Kapitalexport'],
+    relatedTopics: ['geldsystem', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['dax', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachricht vom 28.8.2026: „Größter Gläubiger der Welt: 3,9 Billionen im Ausland: Deutschlands gigantisches Geld-Dilemma“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Rubrik „Private Finanzen“, Abruf 29.8.2026, 09:11 Uhr: „Deutschland ist größter Gläubiger der Welt. Während zu Hause Milliarden für Infrastruktur und Wachstum fehlen, arbeitet deutsches Kapital im Ausland.“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '3,9 Billionen Euro deutschen Kapitals stecken laut wallstreet-online im Ausland – genug, um Deutschland zum größten Gläubiger der Welt zu machen. Zugleich fehlen laut demselben Bericht zu Hause Milliarden für Infrastruktur und Wachstum. Warum das so ist, beantwortet keine der beiden Quellen; beide stellen die Frage, ohne sie zu beantworten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie ein Land überhaupt zum Gläubiger wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Land wird zum Nettogläubiger, wenn seine Bürger, Unternehmen und der Staat zusammen mehr sparen, als im Inland investiert wird. Der Überschuss fließt zwangsläufig ins Ausland – als Kauf ausländischer Aktien, Anleihen, Unternehmensbeteiligungen oder als Kredite an ausländische Schuldner. Diese Position wächst über Jahre und Jahrzehnte an; die genannten 3,9 Billionen Euro sind das Ergebnis vieler solcher Jahre, nicht eines einzelnen.“',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das Kapital nicht einfach zu Hause bleibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Allgemein erklären Ökonomen ein solches Muster meist mit der erwarteten Rendite: Kapital fließt dorthin, wo Anleger die beste Verzinsung für ihr Risiko erwarten. Reicht die erwartete Rendite heimischer Investitionen nicht aus, um heimisches Sparkapital zu binden, wandert es ab – unabhängig davon, ob im Inland eigentlich Investitionsbedarf bestünde. Ob das im konkreten deutschen Fall die Erklärung ist, lässt sich aus den vorliegenden Meldungen nicht ablesen; sie benennen das Muster, nicht die Ursache.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für die eigene Geldanlage bedeutet ein solcher Kapitalexport zunächst nichts Bedrohliches – Auslandsvermögen ist ein Vermögenswert wie jeder andere. Es lohnt aber, die eigene Sparquote danach zu befragen, ob sie tatsächlich dort landet, wo die Rendite am besten zum eigenen Risiko passt, statt automatisch im Heimatmarkt.',
+      },
+    ],
+  },
+  {
+    slug: 'nemetschek-zahlen-schlagen-ki-zweifel',
+    title: 'Nemetschek entkräftet die Angst vor der KI-Konkurrenz',
+    teaser:
+      'Der TecDAX-Wert Nemetschek legt Zahlen vor, die laut Marktbericht die Zweifel der Anleger übertreffen. Details zu den Kennzahlen selbst nennt die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-08-29T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nemetschek', 'TecDAX', 'KI', 'Erwartungen'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['tecdax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten vom 29.8.2026, 07:00 Uhr: „Doch keine KI-pocalypse: Bausoftware-Riese Nemetschek: Zahlen schlagen Zweifel“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '„Doch keine KI-pocalypse“ – so betitelt wallstreet-online seinen Bericht über die jüngsten Zahlen des Bausoftware-Konzerns Nemetschek. Der Kern der Meldung: Die vorgelegten Zahlen hätten die Zweifel der Anleger übertroffen. Welche Kennzahlen konkret gemeint sind – Umsatz, Auftragseingang oder etwas anderes – nennt die Meldung nicht, ebenso wenig genaue Werte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wovor Anleger bei Nemetschek offenbar Angst hatten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Titel „KI-pocalypse“ deutet auf eine Sorge hin, die Software-Aktien seit einiger Zeit begleitet: Könnten KI-Werkzeuge einen Teil dessen übernehmen, wofür Kunden bislang Lizenzen von Anbietern wie Nemetschek kaufen? Diese Sorge lässt sich – wenn sie unter Anlegern verbreitet ist – bereits im Kurs einer Aktie ablesen, lange bevor ein Unternehmen überhaupt Zahlen vorlegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum „besser als befürchtet“ eine eigene Kategorie ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kurs reagiert nicht auf die absolute Höhe einer Kennzahl, sondern auf den Unterschied zur eingepreisten Erwartung. Waren Anleger zuvor besonders skeptisch, kann schon ein Ergebnis, das nur die Talsohle vermeidet, als Erleichterung gelten – unabhängig davon, ob es objektiv stark oder schwach ausfällt. Ohne die genauen Zahlen aus dieser Meldung lässt sich nicht sagen, wie groß dieser Erleichterungseffekt bei Nemetschek war, nur dass er laut Bericht stattgefunden hat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur liest, dass „Zahlen Zweifel schlagen“, kennt noch nicht das Unternehmen dahinter – nur die Richtung der Überraschung. Für ein vollständiges Bild braucht es die tatsächlichen Kennzahlen und den Vergleich zur Vorperiode, nicht nur die Schlagzeile.',
+      },
+    ],
+  },
+  {
     slug: 'dax-und-euro-stoxx-50-laufen-auseinander',
     title: 'DAX legt zu, Euro Stoxx 50 verliert – am selben Morgen',
     teaser:
