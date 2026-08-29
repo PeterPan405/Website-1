@@ -2,26 +2,41 @@ name: Instagram-Beitrag
 
 # Veröffentlicht das Karussell der Tagesausgabe bei @im_invests.
 #
-# ## Warum er von Hand läuft – vorerst
+# ## Wo er in der Kette hängt – und warum nicht früher
 #
-# Ein Beitrag bei Instagram ist nicht zurückzunehmen, nur zu löschen, und
-# gesehen haben ihn dann schon welche. Solange niemand einen fertigen Beitrag
-# beurteilt hat, gehört der Lauf nicht an die Kette.
+# Angestoßen vom **letzten Schritt in `paket-bauen.yml`**, nachdem das Paket
+# übertragen und von außen nachgeprüft wurde.
 #
-# Wenn er ein paar Tage lang das Richtige tut, kann er an `nachrichten.yml`
-# gehängt werden – dorthin, wo auch der Podcast angestoßen wird. **Nicht an
-# einen eigenen Cron:** Geplante Läufe werden hier regelmäßig verworfen, und
-# ein Beitrag, der an manchen Tagen fehlt, ist schlechter als keiner.
+# Der Kopf dieser Datei nannte bis zum 29. August 2026 `nachrichten.yml` als
+# Ziel – dorthin, wo auch der Podcast hängt. Das wäre zu früh gewesen, und
+# zwar auf die unangenehme Art:
 #
-# ## Warum nicht gebaut, sondern die Website gefragt wird
+# Meta holt die Bilder **selbst** von `iminvests.de/instagram/1.png`. Diese
+# Adresse antwortet jeden Tag, auch bevor der neue Stand übertragen ist – dann
+# eben mit der Kachel von gestern. `nachrichten.yml` endet, während der
+# Paketbau noch läuft. Ein Anstoß von dort hätte an vielen Tagen die
+# Schlagzeilen von gestern gepostet, ohne dass ein Lauf rot geworden wäre.
 #
-# Meta holt die Bilder **selbst** von einer öffentlichen Adresse. Sie müssen
-# also schon draußen liegen, bevor dieser Lauf startet – frisch gebaute
-# Dateien im Arbeitsordner des Läufers nützen nichts.
+# Der Podcast darf früher hängen, weil er die Ausgabe aus dem Repository liest.
+# Dieser Lauf liest sie vom Webspace. Das ist der ganze Unterschied.
 #
-# Deshalb prüft der Lauf zuerst, ob die Kacheln unter `iminvests.de` wirklich
-# abrufbar sind, statt sie selbst zu erzeugen. Wer das dreht, schickt Meta auf
-# Adressen, die es noch nicht gibt.
+# **Kein eigener Cron als Regelweg:** Geplante Läufe werden hier regelmäßig
+# verworfen. Der Rückfalltermin unten ist genau das – ein Rückfall –, und beide
+# Wege dürfen sich überschneiden, dafür gibt es die Riegel.
+#
+# ## Zwei Riegel im Skript, keiner davon in diesem Workflow
+#
+# `scripts/instagram-veroeffentlichen.ts` prüft vor dem ersten Behälter:
+#
+#   1. Trägt die Beschriftung auf der Website den heutigen Tag? Wenn nicht,
+#      ist die Übertragung noch nicht durch – Ende, ohne roten Lauf.
+#   2. Steht im Kanal schon ein Beitrag von heute? Gefragt wird **Instagram
+#      selbst**, nicht eine Datei im Repository. Ein Riegel ist so gut wie die
+#      Quelle, die er fragt.
+#
+# Beide enden mit Code 0. Ein Beitrag, der ausbleibt, weil er schon draußen
+# ist, ist kein Fehlschlag – und eine Mail an jedem richtigen Tag liest nach
+# zwei Wochen niemand mehr.
 
 on:
   workflow_dispatch:
@@ -30,6 +45,23 @@ on:
         description: 'Wirklich veröffentlichen? (leer = nur Trockenlauf)'
         type: boolean
         default: false
+
+  # Der Rückfall, falls der Anstoß aus dem Paketbau ausbleibt: 04:52 deutscher
+  # Zeit. Krumme Minute, weil runde am dichtesten belegt sind.
+  #
+  # Spät genug, dass die Übertragung durch ist (der Paketbau der Nacht endet
+  # gegen 03:30 UTC), früh genug für den Morgen. Greift der Anstoß wie
+  # vorgesehen, findet dieser Lauf den Beitrag von heute bereits im Kanal und
+  # hört nach ein paar Sekunden auf.
+  schedule:
+    - cron: '52 2 * * *'
+
+# Anstoß und Rückfalltermin können sich am selben Tag treffen. Der laufende
+# wird **nicht** abgebrochen: Er ist womöglich schon beim Hochladen, und ein
+# halb angelegtes Karussell kostet Kontingent, ohne etwas zu zeigen.
+concurrency:
+  group: instagram
+  cancel-in-progress: false
 
 jobs:
   beitrag:
@@ -86,15 +118,40 @@ jobs:
         env:
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
 
-      # `VEROEFFENTLICHEN` steht nur dann auf `ja`, wenn der Haken gesetzt
-      # wurde. Ohne ihn zaehlt das Skript die Kacheln auf und hoert auf.
+      # Solange die beiden Zugangsdaten fehlen, kann dieser Lauf nichts tun.
+      # Das ist kein Fehlschlag, sondern der Zustand vor der Einrichtung –
+      # aber es gehoert sichtbar gemacht, sonst sieht ein uebersprungener
+      # Beitrag genauso aus wie ein gelungener.
+      - name: Zugangsdaten prüfen
+        id: zugang
+        run: |
+          if [ -z "${{ secrets.IG_ACCESS_TOKEN }}" ] || [ -z "${{ secrets.IG_USER_ID }}" ]; then
+            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
+            echo "::warning::IG_ACCESS_TOKEN oder IG_USER_ID fehlt – es geht nichts hinaus."
+            echo "  Der Weg zu beiden steht in EINRICHTUNG.md, Abschnitt 3.4 und 3.5."
+          else
+            echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Wann wird wirklich veroeffentlicht?
+      #
+      #   workflow_dispatch  nur mit gesetztem Haken – von Hand wird geprueft,
+      #                      nicht gepostet, solange niemand es ausdruecklich will
+      #   schedule           ja; der Rueckfalltermin ist der Ernstfall
+      #   Anstoss aus dem Paketbau  ja, per `-f veroeffentlichen=true`
+      #
+      # Ohne Zugangsdaten bleibt es beim Trockenlauf – das Skript zaehlt dann
+      # die Kacheln auf und hoert vor dem ersten Behaelter auf.
       - name: Veröffentlichen
         run: npm run instagram
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
-          VEROEFFENTLICHEN: ${{ inputs.veroeffentlichen && 'ja' || 'nein' }}
+          VEROEFFENTLICHEN: >-
+            ${{ (steps.zugang.outputs.vorhanden == 'ja'
+                 && (github.event_name == 'schedule' || inputs.veroeffentlichen))
+                && 'ja' || 'nein' }}
 
       - name: Was hinausgegangen wäre
         if: always()
@@ -104,8 +161,15 @@ jobs:
             echo ""
             echo "Kacheln: ${{ steps.holen.outputs.kacheln }}"
             echo ""
-            if [ "${{ inputs.veroeffentlichen }}" = "true" ]; then
-              echo "Veröffentlicht."
+            if [ "${{ steps.zugang.outputs.vorhanden }}" != "ja" ]; then
+              echo "**Keine Zugangsdaten** – IG_ACCESS_TOKEN oder IG_USER_ID fehlt."
+              echo "Es ist nichts hinausgegangen. Siehe EINRICHTUNG.md, 3.4 und 3.5."
+            elif [ "${{ github.event_name }}" = "schedule" ] \
+              || [ "${{ inputs.veroeffentlichen }}" = "true" ]; then
+              echo "Scharf gestellt. Ob der Beitrag hinausging, sagt das Protokoll"
+              echo "des Schrittes Veroeffentlichen - die beiden Riegel dort koennen"
+              echo "ihn zurueckgehalten haben: Website noch von gestern, oder der"
+              echo "Beitrag von heute steht schon im Kanal."
             else
               echo "**Trockenlauf** – es ist nichts hinausgegangen."
               echo "Zum Veröffentlichen den Haken setzen."

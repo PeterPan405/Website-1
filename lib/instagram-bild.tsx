@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
 
 import type { DailyEdition, EditionItem } from '@/data/editions/types'
+import { datumLang } from '@/lib/datum-lang'
 
 /**
  * Die Kachel, die täglich zu Instagram geht.
@@ -78,27 +79,18 @@ export function aufsBild(zeile: string, grenze = 95): string {
   return `${(letzteLuecke > grenze * 0.6 ? schnitt.slice(0, letzteLuecke) : schnitt).trimEnd()} …`
 }
 
-/** `2026-08-09` → `9. August 2026`. Ohne `new Date`, siehe `tagVon()`. */
-export function datumLang(iso: string): string {
-  const monate = [
-    'Januar',
-    'Februar',
-    'März',
-    'April',
-    'Mai',
-    'Juni',
-    'Juli',
-    'August',
-    'September',
-    'Oktober',
-    'November',
-    'Dezember',
-  ]
-  const [jahr, monat, tag] = iso.split('-')
-  const name = monate[Number(monat) - 1]
-  if (!jahr || !name || !tag) return iso
-  return `${Number(tag)}. ${name} ${jahr}`
-}
+/*
+  `datumLang` steht seit dem 29. August 2026 in `lib/datum-lang.ts` und wird
+  hier nur weitergereicht – die bisherigen Importeure ändern sich nicht.
+
+  Der Grund für den Umzug: Diese Datei enthält JSX, und Node lädt sie nicht.
+  `scripts/instagram-veroeffentlichen.ts` liest die erste Zeile der
+  Beschriftung, um zu prüfen, ob die Website schon die Ausgabe des Tages
+  zeigt – und braucht dafür genau dieselbe Schreibweise, in der sie
+  geschrieben wurde. Zwei Fassungen hätten genau dort auseinanderlaufen
+  können, wo es niemandem aufgefallen wäre.
+*/
+export { datumLang } from '@/lib/datum-lang'
 
 /** Die Meldungen, die aufs Bild kommen – oberste zuerst. */
 export function bildmeldungen(edition: DailyEdition): EditionItem[] {
