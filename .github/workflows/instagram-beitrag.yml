@@ -125,12 +125,17 @@ jobs:
       - name: Zugangsdaten prüfen
         id: zugang
         run: |
-          if [ -z "${{ secrets.IG_ACCESS_TOKEN }}" ] || [ -z "${{ secrets.IG_USER_ID }}" ]; then
-            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
-            echo "::warning::IG_ACCESS_TOKEN oder IG_USER_ID fehlt – es geht nichts hinaus."
-            echo "  Der Weg zu beiden steht in EINRICHTUNG.md, Abschnitt 3.4 und 3.5."
-          else
+          if [ -n "${{ secrets.IG_ACCESS_TOKEN }}" ] && [ -n "${{ secrets.IG_USER_ID }}" ]; then
             echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
+            echo "Eigenes Token – der Beitrag geht direkt an die Graph-Schnittstelle."
+          elif [ -n "${{ secrets.MAKE_WEBHOOK_URL }}" ]; then
+            echo "vorhanden=ja" >> "$GITHUB_OUTPUT"
+            echo "Kein eigenes Token, aber ein Haken beim Dienst – der Beitrag geht dort hinaus."
+            echo "::notice::Der Doppelriegel liegt in diesem Fall im Szenario beim Dienst."
+          else
+            echo "vorhanden=nein" >> "$GITHUB_OUTPUT"
+            echo "::warning::Weder IG_ACCESS_TOKEN/IG_USER_ID noch MAKE_WEBHOOK_URL – es geht nichts hinaus."
+            echo "  Der eine Weg steht in EINRICHTUNG.md 3.4 und 3.5, der andere in 3.11."
           fi
 
       # Wann wird wirklich veroeffentlicht?
@@ -147,6 +152,7 @@ jobs:
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
           VEROEFFENTLICHEN: >-
             ${{ (steps.zugang.outputs.vorhanden == 'ja'
