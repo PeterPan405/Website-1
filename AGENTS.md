@@ -14,9 +14,8 @@ denselben Überschriften, auf die hier verwiesen wird.
 
 **Lies dort nach, bevor du eine Regel änderst oder für überflüssig hältst.**
 Fast jede ist die Antwort auf einen Fehler, der eine Folge, einen Tag oder
-Geld gekostet hat, und ohne ihre Vorgeschichte sieht fast jede nach einer
-willkürlichen Einschränkung aus. Der naheliegende Umbau ist hier oft der, der
-schon einmal danebenging.
+Geld gekostet hat. Der naheliegende Umbau ist hier oft der, der schon einmal
+danebenging.
 
 ## Wie berichtet wird
 
@@ -24,8 +23,7 @@ schon einmal danebenging.
 2026 verlangt: **zwei bis drei Zeilen**, so kurz wie möglich.
 
 Das gilt für den Text im Chat – nicht für Commits, Pull Requests und
-Kommentare. Die bleiben ausführlich: Sie sind das Gedächtnis des Projekts, und
-zwischen zwei Sitzungen trägt nichts anderes.
+Kommentare. Die bleiben ausführlich: Sie sind das Gedächtnis des Projekts.
 
 Was in die drei Zeilen gehört: was getan ist, was gefunden wurde, was der
 Betreiber entscheiden muss. Tabellen und Aufzählungen nur, wenn sie kürzer
@@ -34,8 +32,8 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
 ## Arbeitsweise
 
 - **Ist etwas offen, wird es abgearbeitet** – ohne Rückfrage, ob. Anordnung
-  des Betreibers vom 29. August 2026. Gilt für rote Läufe, gemeldete Befunde,
-  offene Issues und alles, was eine Sitzung als „bleibt offen" hinterließ.
+  vom 29. August 2026. Gilt für rote Läufe, gemeldete Befunde, offene Issues
+  und alles, was eine Sitzung als „bleibt offen" hinterließ.
 - **Selbst mergen, ohne zu fragen.** Pull Request anlegen, Prüfung abwarten
   (vier bis fünf Minuten), Ergebnis ansehen, mergen. Anordnung des Betreibers
   vom 8. August 2026.
@@ -58,9 +56,8 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
 ## Diese Umgebung erreicht nur GitHub
 
 `WebFetch` und `curl` scheitern an **jeder** Adresse außer GitHub und npm
-(`CONNECT tunnel failed, response 403`) – auch an `iminvests.de` selbst. Das
-ist eine Regel der Umgebung, kein Fehler; prüfbar mit
-`curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
+(`CONNECT tunnel failed, response 403`) – auch an `iminvests.de` selbst.
+Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 
 **Der Ausweg: ein Läufer holt es.** GitHub-Läufer haben vollen Netzzugang.
 
@@ -109,13 +106,12 @@ drei:
 2. Modell über die Anthropic-Schnittstelle (~0,20 $, braucht `ANTHROPIC_API_KEY`)
 
 **Liefert keiner, wird nichts geschrieben und der Lauf bricht rot ab.** Der
-Notbehelf aus dem Kursbestand ist seit dem 11. August 2026 abgeschafft –
-besser keine Nachrichten als eigene Kurszahlen, die wie Nachrichten aussehen.
+Notbehelf aus dem Kursbestand ist seit dem 11. August 2026 abgeschafft.
 
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
-voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt den Quelltext
-der Meldungen **und** den Schlüssel; deshalb nur `https://`, deshalb warnt der
-Lauf. Wer Prompts kürzt, kürzt an Zahlen, Namen und Uhrzeiten.
+voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt Meldungen
+**und** Schlüssel; deshalb nur `https://`, deshalb warnt der Lauf. Wer Prompts
+kürzt, kürzt an Zahlen, Namen und Uhrzeiten.
 
 **Ohne Modell keine Ausgabe – und ohne Ausgabe keine Folge** (`npm run folge`
 bricht ab). Alles andere läuft weiter: Kurse, Bau, Übertragung, Lernseiten.
@@ -129,22 +125,24 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
 
-| Deutsche Zeit | UTC   | Was                                                          |
-| ------------- | ----- | ------------------------------------------------------------ |
-| 02:03         | 00:03 | `quellen-pruefen.yml` – welcher Kanal ist heute offen?       |
-| 02:09 / 02:29 | 00:09 | `quellen-sammeln.yml` – `quellen-heute`, weckt den Agenten   |
-| **02:33**     | 00:33 | `nachrichten-agent.yml` – der Agent schreibt den **Entwurf** |
-| **↳ sofort**  | –     | der Agent **stößt den Nachrichtenlauf an**                   |
-| 03:03 / 03:33 | 01:03 | zweiter und dritter Anlauf des Agenten                       |
-| **↳ ~03:00**  | 01:00 | `nachrichten.yml` – prüfen, bauen, senden → live ab ~03:20   |
-| **↳ sofort**  | –     | der Nachrichtenlauf **stößt den Podcast an**                 |
-| **~04:00**    | 02:00 | **die Folge ist online**                                     |
-| 03:13 … 04:47 | 01:13 | `nachrichten.yml` als Cron – vier Rückfalltermine            |
-| 03:53 / 04:33 | 01:53 | `podcast-erzeugen.yml` als Cron – zwei Rückfalltermine       |
-| ab 03:00      | 01:00 | `kurse.yml` stößt an, was fehlt – alle 5 Minuten geplant     |
-| 05:11         | 03:11 | `ausgabe-waechter.yml` – der Alarm kommt **vor** der Frist   |
-| 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau                       |
-| 07:51         | 05:51 | `betriebsuebersicht.yml` – steht alles?                      |
+| Deutsche Zeit | UTC   | Was                                                        |
+| ------------- | ----- | ---------------------------------------------------------- |
+| 02:03         | 00:03 | `quellen-pruefen.yml` – welcher Kanal ist heute offen?     |
+| 02:09 / 02:29 | 00:09 | `quellen-sammeln.yml` – `quellen-heute`, weckt den Agenten |
+| **02:33**     | 00:33 | `nachrichten-agent.yml` – der **Entwurf** entsteht         |
+| **↳ sofort**  | –     | der Agent **stößt den Nachrichtenlauf an**                 |
+| 03:03 / 03:33 | 01:03 | zweiter und dritter Anlauf des Agenten                     |
+| **↳ ~03:00**  | 01:00 | `nachrichten.yml` – prüfen, bauen, senden → live ab ~03:20 |
+| **↳ sofort**  | –     | der Nachrichtenlauf **stößt den Podcast an**               |
+| **↳ ~03:20**  | 01:20 | `paket-bauen.yml` **stößt den Instagram-Beitrag an**       |
+| **~04:00**    | 02:00 | **die Folge ist online**                                   |
+| 03:13 … 04:47 | 01:13 | `nachrichten.yml` als Cron – vier Rückfalltermine          |
+| 03:53 / 04:33 | 01:53 | `podcast-erzeugen.yml` als Cron – zwei Rückfalltermine     |
+| 04:52         | 02:52 | `instagram-beitrag.yml` als Cron – der Rückfall            |
+| ab 03:00      | 01:00 | `kurse.yml` stößt an, was fehlt – alle 5 Minuten geplant   |
+| 05:11         | 03:11 | `ausgabe-waechter.yml` – der Alarm kommt **vor** der Frist |
+| 07:41         | 05:41 | `paket-bauen.yml` – der nächtliche Bau                     |
+| 07:51         | 05:51 | `betriebsuebersicht.yml` – steht alles?                    |
 
 - **Die Kette hängt aneinander, nicht an der Uhr.** Jedes Glied stößt das
   nächste an, die Crons sind Rückfall. Wer hier etwas ändert, lässt die
@@ -152,6 +150,8 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 - **Wer eine Zeit ändert, ändert alle.** Die Routine „Zeitumstellung" zieht
   sie zweimal im Jahr gemeinsam nach.
 - Der Podcast **muss nach** der Nachrichtenausgabe laufen – er vertont sie.
+- Der **Instagram-Beitrag muss nach der Übertragung** laufen: Meta holt die
+  Bilder von der Website, und die Adresse antwortet auch mit gestern.
 - Die Folge erscheint **täglich**, sieben Tage die Woche.
 - `folgennummer()` in `lib/sprechfassung.ts` zählt zweiteilig, mit einer Naht
   am 9. August 2026. Eine Folgennummer darf keine Lücke bekommen.

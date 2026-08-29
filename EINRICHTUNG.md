@@ -9,7 +9,7 @@ brauchen trotzdem Zugangsdaten, weil sie nach außen wirken:
 | Quartalstermine außerhalb der USA | `TWELVEDATA_API_KEY`                                            | Es bleibt bei 158 von 1.029 Aktien – nur die SEC-Melder   |
 | Unternehmenszahlen aus Korea      | `DART_API_KEY`                                                  | Die 15 koreanischen Titel bleiben ohne Kennzahlen         |
 | Unternehmenszahlen aus Japan      | `EDINET_API_KEY`                                                | Die Abfrage, ob sich der Weg lohnt, unterbleibt           |
-| Instagram-Beitrag des Tages       | `IG_ACCESS_TOKEN`, `IG_USER_ID`, `PEXELS_API_KEY`               | Die Kacheln entstehen, werden aber nicht veröffentlicht   |
+| Instagram-Beitrag des Tages       | `MAKE_WEBHOOK_URL` **oder** `IG_ACCESS_TOKEN` + `IG_USER_ID`    | Die Kacheln entstehen, werden aber nicht veröffentlicht   |
 
 Dazu kommt eine Sache, die **kein** Secret braucht, sondern nur einen Eintrag
 im Quelltext: die Anmeldung bei der Google Search Console (Abschnitt 4). Ohne
@@ -767,30 +767,54 @@ Bedingungen, und alle drei sind hier erfüllt:
 | Instagram als **Business**-Konto               | ja – Creator wird nicht unterstützt |
 | Bilder unter öffentlicher Adresse              | ja, `iminvests.de/instagram/1.jpg`  |
 
-#### a) Das Szenario anlegen
+#### a) Das Szenario – am 29. August 2026 angelegt
 
-1. Bei `make.com` anmelden, neues Szenario.
-2. Erstes Modul: **Webhooks → Custom webhook**. Make zeigt eine Adresse an –
-   die kommt gleich nach GitHub.
-3. Zweites Modul: **Instagram for Business → List posts**. Verbindung
-   anlegen, dabei die Seite `IM Invests` auswählen.
-4. **Filter dahinter:** weiter nur, wenn unter den Beiträgen **keiner vom
-   heutigen Tag** ist.
-5. Drittes Modul: **Instagram for Business → Create a carousel post**. Die
-   Bildadressen und die Beschriftung kommen aus dem Webhook (`bilder`,
-   `beschriftung`).
+Es heißt **„IM Invests Tagesbeitrag"** und besteht aus drei Modulen:
 
-> **Schritt 4 ist nicht optional.** Der Riegel gegen den doppelten Beitrag
+```
+Webhooks · Custom webhook          ← „IM Invests Tagesbeitrag", sofort
+        ↓
+Instagram for Business · List posts   Seite IM Invests, Limit 1
+        ↓  Filter: {{4.timestamp}} enthält nicht {{2.stichtag}}
+Instagram for Business · Create a carousel post
+        files[1..4] = {{2.bilder[1..4]}}, media_type IMAGE
+        caption     = {{2.beschriftung}}
+```
+
+**Drei Einstellungen, an denen es hängt:**
+
+- **Limit 1** bei _List posts_. Instagram gibt die Beiträge neueste zuerst;
+  der eine, der zurückkommt, ist der jüngste. Steht dort das heutige Datum,
+  ist der Beitrag schon draußen.
+- **Der Filter** lässt nur durch, wenn der Zeitstempel dieses jüngsten
+  Beitrags den Stichtag **nicht** enthält.
+- **Auslöser auf „Immediately as data arrives"**, nicht auf ein Intervall.
+  Ein Import über die Vorlage stellt das auf „alle 15 Minuten" zurück – nach
+  jedem Import nachsehen.
+
+> **Der Filter ist nicht optional.** Der Riegel gegen den doppelten Beitrag
 > liegt bei diesem Weg **im Szenario**, nicht im Repository: Ohne eigenes
 > Token kann der Lauf hier den Kanal nicht fragen. `paket-bauen.yml` läuft
 > mehrmals täglich und stößt jedes Mal an – ohne Filter bekommen Sie an einem
 > Tag so viele Beiträge, wie gebaut wurde.
 
+> **Zum Nachbauen oder Reparieren:** Das Szenario lässt sich als Text
+> bearbeiten – Menü oben rechts, **Copy blueprint to clipboard** und **Paste
+> blueprint from clipboard**. Das ist der verlässlichere Weg als das Formular;
+> die Felder heißen dort `files[].media_type`, `files[].image_url` und
+> `caption`. Vorsicht: Ein `Escape` im Formular verwirft alles Ungespeicherte,
+> und Make speichert das Karussell-Modul erst, wenn **zwei** Bilder drin sind.
+
 #### b) Den Haken hinterlegen
 
-Die Webhook-Adresse aus a) 2 nach **Settings → Secrets and variables →
+Die Adresse des Webhook-Moduls nach **Settings → Secrets and variables →
 Actions** als `MAKE_WEBHOOK_URL`. Nur `https://` – über die Adresse gehen
 Beschriftung und Bildadressen hinaus, und das Skript weist alles andere ab.
+
+**Ist am 29. August 2026 hinterlegt.** Wer sie neu erzeugt, überschreibt das
+Secret; wer sie nur ansieht, lässt es stehen. Die Adresse ist ein Schlüssel:
+Wer sie hat, kann das Szenario auslösen – also nicht in Chats, Commits oder
+Screenshots.
 
 Mehr ist nicht nötig: `instagram-beitrag.yml` nimmt den Haken, sobald kein
 eigenes Token da ist. Was hinausgeht, ist dasselbe wie beim direkten Weg.
