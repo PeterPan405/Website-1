@@ -165,10 +165,20 @@ export default async function LearnOverviewPage() {
         </section>
 
         {/* ------------------------------------------- Bearbeitungsstand */}
-        <section
-          aria-labelledby="stand"
-          className="rounded-card border-border bg-surface-muted mt-12 border p-6 sm:p-8"
-        >
+        {/*
+          Ohne Kasten, seit dem 29. August 2026.
+
+          Dieser Abschnitt ist Auskunft über die Redaktion, nicht über den
+          Lernstoff – er gehört ans Ende und braucht dort kein eigenes Gehäuse.
+          Auf dem Weg zu den 34 Themen standen bis dahin fünf gerahmte Blöcke
+          untereinander; dieser war der vierte. Eine Linie über der Überschrift
+          sagt „hier fängt etwas Neues an" genauso gut.
+
+          Der Pfade-Kasten darüber behält Rahmen **und** Platz: Dass er vor den
+          Themen steht, ist eine ausdrückliche Entscheidung mit Begründung im
+          Kommentar dort, und die wird hier nicht nebenbei zurückgenommen.
+        */}
+        <section aria-labelledby="stand" className="border-border mt-12 border-t pt-8">
           <h2 id="stand" className="text-fg text-lg font-semibold">
             Bearbeitungsstand der Inhalte
           </h2>
