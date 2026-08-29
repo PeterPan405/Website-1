@@ -211,9 +211,68 @@ if (!SCHARF) {
   process.exit(0)
 }
 
+/*
+  Der zweite Weg: über einen Dienst, der eine genehmigte Meta-App mitbringt.
+
+  ## Warum es ihn gibt
+
+  Der direkte Weg braucht ein Meta-Entwicklerkonto. Am 29. August 2026 ließ
+  sich keines anlegen: Die Registrierung hängt an einer SMS-Bestätigung, und
+  Meta verweigerte sie – auf mehreren Geräten, mit dem Hinweis, das Gerät
+  werde normalerweise nicht benutzt. Gegen diese Sperre hilft kein Code.
+
+  Dienste wie Make bringen ihre eigene, von Meta genehmigte App mit; eigene
+  Zugangsdaten sind dort ausdrücklich optional. Übergeben wird ein Haken
+  (`MAKE_WEBHOOK_URL`), an dem die fertigen Adressen und die Beschriftung
+  hängen – veröffentlicht wird dort.
+
+  ## Was dieser Weg nicht kann
+
+  **Riegel 2 fehlt hier.** Ohne Token lässt sich der Kanal von hier aus nicht
+  fragen, ob der Beitrag von heute schon steht. Diese Prüfung gehört deshalb
+  in das Szenario beim Dienst – dort liegt die Verbindung, die den Kanal lesen
+  darf. Wer das Szenario ohne sie baut, bekommt an jedem Tag so viele
+  Beiträge, wie der Paketbau läuft.
+
+  Der Riegel 1 oben greift auch hier: Er hängt an der Website, nicht am Token.
+*/
+const HAKEN = process.env.MAKE_WEBHOOK_URL?.trim() ?? ''
+
 if (!TOKEN || !KONTO) {
-  melde('IG_ACCESS_TOKEN oder IG_USER_ID fehlt – siehe EINRICHTUNG.md, Abschnitt 3.7.')
-  process.exit(1)
+  if (!HAKEN) {
+    melde('Weder IG_ACCESS_TOKEN/IG_USER_ID noch MAKE_WEBHOOK_URL gesetzt.')
+    melde('Der eine Weg steht in EINRICHTUNG.md 3.4/3.5, der andere in 3.11.')
+    process.exit(1)
+  }
+
+  if (!HAKEN.startsWith('https://')) {
+    // Der Haken bekommt die Beschriftung und die Adressen. Über `http://`
+    // ginge beides im Klartext durch fremde Netze – dieselbe Vorsicht wie bei
+    // `ANTHROPIC_BASE_URL`.
+    melde('MAKE_WEBHOOK_URL ist nicht https:// – abgebrochen.')
+    process.exit(1)
+  }
+
+  melde('')
+  melde('Kein eigenes Token – der Beitrag geht über den Haken beim Dienst.')
+
+  const antwort = await fetch(HAKEN, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ stichtag: STICHTAG, beschriftung, bilder: adressen }),
+  })
+  const rumpf = (await antwort.text()).trim()
+
+  if (!antwort.ok) {
+    melde(`Der Dienst antwortet mit ${antwort.status}: ${rumpf.slice(0, 200)}`)
+    process.exit(1)
+  }
+
+  melde(`Übergeben (${antwort.status}): ${rumpf.slice(0, 200) || '(leere Antwort)'}`)
+  melde('')
+  melde('Ob daraus ein Beitrag wurde, sagt das Protokoll beim Dienst –')
+  melde('von hier aus ist nur die Übergabe belegt, nicht die Veröffentlichung.')
+  process.exit(0)
 }
 
 /*

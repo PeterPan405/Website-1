@@ -746,6 +746,73 @@ erzeugt wurde, gilt bis zum **8. Oktober**.
 
 ---
 
+### 3.11 Der zweite Weg: über einen Dienst, wenn Meta kein Entwicklerkonto gibt
+
+**Wann dieser Abschnitt gilt:** Wenn 3.3 a nicht durchgeht. Am 29. August 2026
+war genau das der Fall – die Registrierung hängt an einer SMS, Meta schickte
+sie nicht und meldete stattdessen, das Gerät werde normalerweise nicht
+benutzt. Auf einem zweiten Gerät ebenso. Gegen diese Sperre hilft kein Code
+und kein weiterer Versuch.
+
+**Der Ausweg:** Dienste wie Make bringen eine **eigene, von Meta genehmigte
+App** mit. Eigene Zugangsdaten sind dort ausdrücklich optional – Sie
+verbinden Instagram per Klick, ohne selbst Entwickler zu sein.
+
+**Vorher prüfen, sonst ist die halbe Stunde verloren.** Makes Doku nennt drei
+Bedingungen, und alle drei sind hier erfüllt:
+
+| Bedingung                                      | Stand                               |
+| ---------------------------------------------- | ----------------------------------- |
+| Facebook-Konto mit Admin-Rechten auf der Seite | ja, Igor Maier auf `IM Invests`     |
+| Instagram als **Business**-Konto               | ja – Creator wird nicht unterstützt |
+| Bilder unter öffentlicher Adresse              | ja, `iminvests.de/instagram/1.png`  |
+
+#### a) Das Szenario anlegen
+
+1. Bei `make.com` anmelden, neues Szenario.
+2. Erstes Modul: **Webhooks → Custom webhook**. Make zeigt eine Adresse an –
+   die kommt gleich nach GitHub.
+3. Zweites Modul: **Instagram for Business → List posts**. Verbindung
+   anlegen, dabei die Seite `IM Invests` auswählen.
+4. **Filter dahinter:** weiter nur, wenn unter den Beiträgen **keiner vom
+   heutigen Tag** ist.
+5. Drittes Modul: **Instagram for Business → Create a carousel post**. Die
+   Bildadressen und die Beschriftung kommen aus dem Webhook (`bilder`,
+   `beschriftung`).
+
+> **Schritt 4 ist nicht optional.** Der Riegel gegen den doppelten Beitrag
+> liegt bei diesem Weg **im Szenario**, nicht im Repository: Ohne eigenes
+> Token kann der Lauf hier den Kanal nicht fragen. `paket-bauen.yml` läuft
+> mehrmals täglich und stößt jedes Mal an – ohne Filter bekommen Sie an einem
+> Tag so viele Beiträge, wie gebaut wurde.
+
+#### b) Den Haken hinterlegen
+
+Die Webhook-Adresse aus a) 2 nach **Settings → Secrets and variables →
+Actions** als `MAKE_WEBHOOK_URL`. Nur `https://` – über die Adresse gehen
+Beschriftung und Bildadressen hinaus, und das Skript weist alles andere ab.
+
+Mehr ist nicht nötig: `instagram-beitrag.yml` nimmt den Haken, sobald kein
+eigenes Token da ist. Was hinausgeht, ist dasselbe wie beim direkten Weg.
+
+#### c) Was dieser Weg kostet
+
+Ihre Kacheln und Ihre Texte laufen über einen Dritten, und der Dienst kostet
+Geld, sobald das Freikontingent nicht reicht. Ein Beitrag am Tag sind wenige
+Operationen – rechnen Sie trotzdem nach, bevor Sie sich darauf verlassen.
+
+**Und eine Bremse aus Makes Doku:** Seiten, für die Meta eine _Page Publishing
+Authorization_ verlangt, können erst nach deren Abschluss veröffentlichen.
+Kommt die Meldung, führt kein Weg daran vorbei.
+
+> **Der direkte Weg bleibt der bessere.** Klappt das Entwicklerkonto später
+> doch – etwa über ein zweites Facebook-Konto mit Admin-Rechten auf der Seite
+> –, tragen Sie `IG_ACCESS_TOKEN` und `IG_USER_ID` ein. Der Lauf nimmt dann
+> von selbst wieder den direkten Weg, und der Doppelriegel liegt wieder dort,
+> wo er hingehört: im Repository, mit dem Kanal als Quelle.
+
+---
+
 ## 4 · Google Search Console
 
 Damit Google alle 1.766 Seiten kennt statt nur der, die es zufällig findet.
