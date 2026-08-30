@@ -101,6 +101,302 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'paypal-uebernahme-abgelehnt-aktie-faellt',
+    title: 'PayPal lehnt Übernahmeangebot ab – die Aktie fällt trotzdem',
+    teaser:
+      'Ein Konsortium um Stripe und Advent bietet gut 53 Milliarden Dollar für PayPal. Der Vorstand lehnt ab – die Aktie verliert trotzdem rund 13 Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-08-30T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['PayPal', 'Übernahme', 'Aktienkurs', 'Übernahmeprämie'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['paypal'],
+    sources: [
+      {
+        label:
+          'onvista, Nachricht vom 28.8.2026: „PayPal im Fokus nach Berichten über ein Ende der Übernahmegespräche“',
+        url: 'https://www.onvista.de/news/2026/08-28-paypal-im-fokus-nach-berichten-ueber-ein-ende-der-uebernahmegespraeche-0-12-26547473',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste „Heute im Fokus“, Abruf 30.8.2026, 00:13 Uhr: „Nach Warsh-Rede in Jackson Hole: DAX geht mit Rekord ins Wochenende ... PayPal-Übernahmepläne platzen wohl ...“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Konsortium aus dem Zahlungsdienstleister Stripe und der Beteiligungsgesellschaft Advent International wollte PayPal übernehmen. Laut onvista bot es dafür „gut 53 Milliarden US-Dollar“ – der PayPal-Vorstand lehnte ab, weil er das Angebot als zu niedrig ansah. Noch vor US-Börsenstart am Freitag verlor die PayPal-Aktie laut derselben Quelle rund 13 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ablehnung, die eigentlich eine gute Nachricht ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass ein Vorstand ein Angebot als „zu niedrig“ zurückweist, ist zunächst eine Aussage über den eigenen Optimismus: Er hält das Unternehmen für mehr wert, als die Käufer zahlen wollten. Für sich genommen wäre das kein Grund für einen Kurseinbruch – im Gegenteil, es signalisiert Vertrauen in die eigenen Zukunftsaussichten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Kurs trotzdem fällt: die eingepreiste Übernahmeprämie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Sobald Übernahmegerüchte kursieren, kaufen Anleger die Aktie in Erwartung eines Aufschlags, den ein Käufer typischerweise zahlen muss – diese Übernahmeprämie steckt damit schon vor jedem Vertragsabschluss im Kurs. Platzt der Deal, verschwindet diese eingepreiste Erwartung mit einem Schlag, unabhängig davon, ob der Vorstand das ursprüngliche Angebot für fair oder für zu niedrig hielt. Der Kurs fällt dann nicht, weil sich am operativen Geschäft etwas geändert hätte, sondern weil eine zuvor eingepreiste Wahrscheinlichkeit auf null sinkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursrückgang nach einer geplatzten Übernahme sagt zunächst nichts über den Wert eines Unternehmens selbst aus – er zeigt vor allem, wie viel bloße Erwartung bereits im Kurs steckte. Wer aus der Ablehnung des Angebots auf eine Unterbewertung schließt, blendet aus, dass der Markt zwischen dem, was ein Vorstand für fair hält, und dem, wofür er tatsächlich einen Käufer findet, nicht automatisch vermittelt.',
+      },
+    ],
+  },
+  {
+    slug: 'iran-beansprucht-strasse-von-hormus-oelpreis-ruhig',
+    title: 'Iran beansprucht die Straße von Hormus – der Ölpreis zuckt kaum',
+    teaser:
+      'Irans Revolutionsgarden erklären die Straße von Hormus für vollständig kontrolliert, rund 400 Schiffe stecken fest – der Ölpreis bewegt sich kaum.',
+    category: 'Märkte',
+    publishedAt: '2026-08-30T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Iran', 'Straße von Hormus', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Rubrik „Aktuelle News zu Rohstoffen“, Abruf 30.8.2026: „29.08.26 Irans Revolutionsgarden erklären: Straße von Hormus vollständig unter Kontrolle“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, 29.8.2026, dpa-AFX: „Rund 400 Schiffe stecken noch im Persischen Golf fest“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Abruf 30.8.2026, 00:13 Uhr GMT: Öl 89,31 US-Dollar (-0,4 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Abruf 30.8.2026, 00:13 Uhr GMT: Öl (Brent) 88,27 US-Dollar (+0,01 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach eigenen Angaben haben die iranischen Revolutionsgarden „vollständige Kontrolle“ über die Straße von Hormus. Zeitgleich melden Agenturen, dass laut Schätzungen rund 400 Schiffe im Persischen Golf feststecken. Der Ölpreis reagierte darauf kaum: Zum Sonntagmorgen notierte Öl laut finanzen.net bei 89,31 US-Dollar, ein Minus von 0,4 Prozent, während wallstreet-online für Brent ein Plus von 0,01 Prozent auf 88,27 US-Dollar auswies.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Machtanspruch ist keine überprüfte Störung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass eine Konfliktpartei erklärt, eine Wasserstraße vollständig zu kontrollieren, ist zunächst eine Behauptung dieser Partei – keine unabhängig bestätigte Sperrung. Die parallel gemeldete Zahl von rund 400 wartenden Schiffen lässt sich dagegen über Schiffsbewegungen nachvollziehen und wiegt als Beobachtung schwerer als eine einseitige Erklärung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ölpreis auf beides kaum reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Ölpreis reagiert nicht auf Schlagzeilen, sondern auf die daraus abgeleitete Wahrscheinlichkeit, dass tatsächlich weniger Öl den Markt erreicht. Schiffe, die aufgelaufen sind, aber nicht dauerhaft blockiert werden, verzögern Lieferungen, stoppen sie aber nicht. Ein Kontrollanspruch, der an der bisherigen Durchfahrt nichts ändert, verschiebt diese Wahrscheinlichkeit kaum – und genau das zeigt der praktisch unveränderte Ölpreis am Sonntagmorgen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Ölpreis als Fieberthermometer für Krisen liest, sollte ihn auch so lesen, wenn er still bleibt. Ein ruhiger Ölpreis bei einer dramatisch klingenden Schlagzeile ist selbst eine Information – sie sagt, dass der Markt der Behauptung bislang keine reale Lieferunterbrechung zutraut, solange, bis Tankerdaten oder Preise etwas anderes zeigen.',
+      },
+    ],
+  },
+  {
+    slug: 'spanien-inflation-4-5-prozent-deutschland-wartet',
+    title: 'Spaniens Inflation springt auf 4,5 Prozent, Deutschland wartet noch',
+    metaTitle: 'Spanien: Inflation springt auf 4,5 Prozent',
+    teaser:
+      'Spaniens Inflation klettert auf 4,5 Prozent, den höchsten Stand seit 2023. Deutschland veröffentlicht seine eigene, deutlich niedrigere Zahl erst Montag.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-30T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'Spanien', 'Deutschland', 'EZB'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Meldung vom 29.8.2026: „Inflation in Spanien steigt auf 4,5 Prozent“ (Datenquelle: Trading Economics)',
+        url: 'https://www.goldreporter.de/inflation-spanien-august-2026/hot-links/261368/',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender, Abruf 30.8.2026, 00:13 Uhr: 31.8. Harmonized Index of Consumer Prices (YoY) Prognose 3 % (vorherig 2,8 %), Consumer Price Index (YoY) Prognose 2,9 % (vorherig 2,8 %); DEU Brandenburg/Sachsen VPI (MoM) je 0,7 %, Baden-Württemberg 0,8 %, Nordrhein-Westfalen 0,9 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Während in Spanien die Inflationsrate im August laut dem Datenanbieter Trading Economics auf 4,5 Prozent kletterte – den höchsten Stand seit 2023 –, meldet Deutschland seine eigene Zahl erst am Montag. Die Prognosen für die deutsche Jahresrate liegen bei 2,9 bis 3,0 Prozent, nach 2,8 Prozent im Juli.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Währung, zwei Geschwindigkeiten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Spanien und Deutschland teilen sich dieselbe Währung und denselben EZB-Leitzins – und trotzdem liegt die spanische Inflationsrate mehr als doppelt so hoch wie das Zwei-Prozent-Ziel der EZB, während die deutsche Prognose gerade erst in diese Richtung klettert. Als Grund für den spanischen Anstieg nennt die Quelle vor allem höhere Energiepreise infolge des anhaltenden Nahost-Konflikts – dieselbe Konfliktregion, die auch den Ölmarkt beschäftigt, wirkt hier über einen anderen Kanal auf die Verbraucherpreise.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Länderdaten aus Deutschland zuerst kommen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bevor am Montag die bundesweite deutsche Inflationsrate feststeht, veröffentlichen mehrere Bundesländer – darunter Brandenburg, Sachsen, Baden-Württemberg und Nordrhein-Westfalen – laut Wirtschaftskalender ihre eigenen vorläufigen Verbraucherpreise. Diese Länderwerte fließen in die Bundesrechnung ein und liefern deshalb schon Stunden vorher erste Hinweise auf die spätere bundesweite Zahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne europäische Inflationsrate erzählt nie die ganze Geschichte der Eurozone. Für die EZB bedeutet eine Rate wie die spanische ein Dilemma: Ein Leitzins, der für ein Land mit 4,5 Prozent Inflation richtig wäre, kann für ein Land mit einer deutlich niedrigeren Rate zu hoch ausfallen – und umgekehrt.',
+      },
+    ],
+  },
+  {
+    slug: 'norwegen-oel-gas-warnung-ab-2030',
+    title: 'Norwegen warnt: Öl und Gas könnten ab 2030 knapper werden',
+    teaser:
+      'Norwegen deckt 44 Prozent des deutschen Erdgases. Die eigene Offshore-Behörde warnt jedoch, dass neue Funde die Förderung nicht mehr ersetzen.',
+    category: 'Märkte',
+    publishedAt: '2026-08-30T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Erdgas', 'Öl', 'Norwegen', 'Energieversorgung'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'erdgas'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachricht vom 28.8.2026: „Öl- und Gas-Schock ab 2030: Deutschlands Top-Lieferant gehen Öl und Gas aus“',
+        url: 'https://www.wallstreet-online.de/nachricht/21302038-oel-gas-schock-2030-deutschlands-top-lieferant-oel-gas',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Norwegen deckt laut einem Bericht von wallstreet-online 44 Prozent der deutschen Erdgasimporte und rund 16,6 Prozent der deutschen Rohölimporte – nach dem Ende russischer Pipeline-Lieferungen ist das Land zu Deutschlands wichtigstem Energielieferanten geworden. Die norwegische Offshore-Behörde warnt jedoch: Auf dem Kontinentalschelf wird schneller gefördert, als neue Vorkommen hinzukommen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn die Förderung die Funde überholt',
+      },
+      {
+        type: 'paragraph',
+        text: 'In den vergangenen zehn Jahren kamen laut Bericht im Schnitt nur rund 50 Millionen Standardkubikmeter neue Öl- und Gasfunde pro Jahr hinzu – gefördert wurden im selben Zeitraum durchschnittlich 233 Millionen Standardkubikmeter jährlich, mehr als das Vierfache. Das ähnelt dem Muster eines Unternehmens, dessen Auftragseingang seinen Umsatz nicht mehr deckt: Was heute verkauft wird, kommt nicht im gleichen Tempo als neuer Auftrag zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Spanne statt einer Zahl für die Zukunft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Zeit bis 2050 nennt die norwegische Behörde laut Bericht kein festes Ergebnis, sondern zwei Szenarien: Im optimistischen Fall liegt die Fördermenge noch bei rund 65 Prozent des heutigen Niveaus, im pessimistischen Fall nur noch bei etwa 5 Prozent. Diese Spanne selbst ist die eigentliche Information – sie zeigt, wie unsicher eine Prognose über 25 Jahre Rohstoffförderung zwangsläufig bleibt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Deutschlands Energieversorgung hängt heute stärker an einem einzigen Lieferanten als vor dem Ende der russischen Pipeline-Importe – und dieser Lieferant benennt selbst ein Datum, ab dem seine Fördermenge absehbar sinken könnte. Das ist kein Grund für Alarmismus, aber ein Argument dafür, Lieferantenkonzentration als eigenes Risiko zu betrachten, unabhängig vom Preis, der heute an Tankstelle oder Gasrechnung steht.',
+      },
+    ],
+  },
+  {
+    slug: 'siemens-busch-warnt-vor-ki-regulierung',
+    title: 'Siemens-Chef Busch warnt vor zu viel KI-Regulierung',
+    teaser:
+      'Siemens-Chef Roland Busch kritisiert im Interview, die EU bremse mit ihrer KI-Regulierung eine Technologie, die sich viel schneller entwickelt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-30T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Siemens', 'Künstliche Intelligenz', 'Regulierung', 'Aktie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['siemens'],
+    sources: [
+      {
+        label:
+          'heise online, Meldung vom 29.8.2026: „Siemens-Chef warnt vor zu viel Regulierung bei KI“ (Interview mit der „Welt am Sonntag“)',
+        url: 'https://www.heise.de/news/Siemens-Chef-warnt-vor-zu-viel-Regulierung-bei-KI-11434313.html',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste „Aktuelle News“, Abruf 30.8.2026: „29.08.26 Zu viel Regulierung bei KI? Siemens-Chef äussert Bedenken - Aktie im Fokus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Siemens-Chef Roland Busch hat der „Welt am Sonntag“ gesagt, die EU dürfe „das Entwicklungstempo der KI-Technologie nicht durch Regulierung bremsen“. Sein Argument: Vom Entwurf eines Gesetzes wie dem AI Act oder dem Data Act bis zu dessen Inkrafttreten vergehen nach seiner Einschätzung rund zwei Jahre – in dieser Zeit habe sich die betroffene KI-Technologie oft schon „sechs- oder achtmal weiterentwickelt“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Meinung des Vorstandschefs ist keine Gesetzesänderung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was Busch beschreibt, ist zunächst seine persönliche Einschätzung als Vorstandsvorsitzender eines Konzerns, der selbst stark in KI investiert – keine angekündigte Änderung an EU-Regeln. AI Act und Data Act gelten unverändert weiter, solange kein Gesetzgebungsverfahren etwas anderes beschließt. Wer aus einer CEO-Aussage eine bevorstehende Deregulierung folgert, verwechselt eine Forderung mit ihrer Umsetzung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das Regulierungstempo für Aktionäre trotzdem zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unabhängig davon, ob Busch am Ende recht bekommt, benennt er ein reales Risiko für Unternehmen mit hohem KI-Anteil: Wenn sich Vorschriften langsamer ändern als die zugrunde liegende Technologie, kann eine Regel, die beim Entwurf sinnvoll war, bei Inkrafttreten bereits an der falschen Stelle ansetzen. Das ist ein eigenständiges Risiko neben Umsatz- und Margenzahlen – regulatorische Unsicherheit lässt sich nicht aus einer Bilanz ablesen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer in Unternehmen mit hohem KI-Anteil investiert, sollte regulatorisches Risiko als eigenen Faktor neben Wachstum und Marge im Blick behalten – unabhängig davon, ob man Buschs Kritik an der EU-Gesetzgebung teilt oder nicht.',
+      },
+    ],
+  },
+  {
     slug: 'warsh-rede-dax-rekord-nasdaq-verliert',
     title: 'Warsh warnt vor Inflation – der DAX jubelt trotzdem',
     teaser:
