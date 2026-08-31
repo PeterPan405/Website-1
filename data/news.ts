@@ -101,6 +101,288 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-rekord-nasdaq-bremst-warsh-rede',
+    title: 'DAX auf Rekordkurs, Nasdaq bremst: eine Rede, zwei Reaktionen',
+    metaTitle: 'DAX-Rekord, Nasdaq-Bremse: eine Rede, zwei Reaktionen',
+    teaser:
+      'Nach der Rede von Fed-Chef Kevin Warsh in Jackson Hole lief es in Frankfurt und New York gegensätzlich: Rekord hier, Bremsspur dort.',
+    category: 'Märkte',
+    publishedAt: '2026-08-31T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['dax', 'nasdaq', 'fed', 'zinsen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'aktie'],
+    relatedSymbols: ['dax', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Nachricht vom 28.8.2026, 16:01 Uhr (dpa-AFX): „ROUNDUP/Aktien Frankfurt Schluss: Fed-Chef Warsh hievt Dax auf weitere Bestmarke“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Nachricht vom 28.8.2026, 20:22 Uhr (dpa-AFX): „Aktien New York Schluss: Signale für US-Zinserhöhung belasten Nasdaq“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Abruf 31.8.2026, 00:14 Uhr: DAX 26.570 Punkte',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Freitag hielt US-Notenbankchef Kevin Warsh in Jackson Hole eine Rede – und die Börsen reagierten, als hätten sie zwei verschiedene Reden gehört.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Frankfurt kletterte der DAX auf ein neues Rekordhoch von rund 26.570 Punkten. dpa-AFX beschrieb es so: Warsh habe den Index „auf weitere Bestmarke“ gehievt, auch der Euro Stoxx 50 baute sein Tagesplus im Verlauf noch aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nur wenige Stunden später drehte das Bild in New York: Der Dow Jones schloss laut den gelesenen Übersichten weitgehend stabil, doch die technologielastige Nasdaq gab nach. Als Grund nannten die Agenturmeldungen Signale für eine mögliche US-Zinserhöhung, die vor allem Technologiewerte belastet hätten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum dieselbe Rede zwei Richtungen auslösen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist stark von Industrie-, Finanz- und Konsumwerten geprägt, deren Gewinne kurzfristig schwanken, aber nicht in erster Linie von künftigen Zinsen abhängen. Die Nasdaq dagegen wird von Wachstumsunternehmen dominiert, deren Wert sich zu einem großen Teil aus weit in der Zukunft liegenden Gewinnen speist. Steigen die erwarteten Zinsen, sinkt der heutige Wert dieser künftigen Gewinne stärker – Ökonomen nennen diesen Effekt Abzinsung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig ist außerdem der Zeitpunkt: In Frankfurt setzte sich die positive Lesart schon am Nachmittag durch, in New York wurde dieselbe Rede erst am Abend zur Belastung. Märkte reagieren offenbar nicht auf das, was gesagt wurde, sondern darauf, was verschiedene Anlegergruppen daraus für die eigene Position ableiten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur auf den Indexstand schaut, übersieht, dass ein und dieselbe Nachricht in unterschiedlich zusammengesetzten Indizes unterschiedlich stark wirkt. Ob sich die Zinserwartung, die am Freitag den Ausschlag gab, tatsächlich bestätigt, ist damit noch nicht entschieden – die gelesenen Quellen selbst benennen keinen neuen Fed-Beschluss, nur eine Erwartungsverschiebung.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-silber-rueckschlag-nach-warsh-rede',
+    title: 'Nach der Rekordrally: Gold und Silber geraten ins Straucheln',
+    teaser:
+      'Der Goldpreis stieg im August zeitweise um 15 Prozent – bis eine Fed-Rede am Freitag Gold und Silber scharf zurückwarf.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-31T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['gold', 'silber', 'fed', 'edelmetalle'],
+    relatedTopics: ['notenbanken-geldpolitik', 'rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Analyse vom 29.8.2026: „Spekulative Exzesse am Goldmarkt vor dem Freitags-Einbruch“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Nachricht vom 29.8.2026: „Gold: Kracht es jetzt richtig?: Goldpreis: Fed-Chef Warsh zieht Rallye den Stecker – Gold stürzt vorerst ab“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Nachricht vom 30.8.2026: „Silber: Alarm nach Abverkauf: Silberpreis unter Druck: Ist die Rallye nach dem Warsh-Hammer jetzt beendet?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis war im August zeitweise um 15 Prozent gestiegen, wie es in einer Analyse von Goldreporter.de heißt – ein ungewöhnlich starker Lauf in einem Jahr, das für das Edelmetall ohnehin schon viele Rekorde gebracht hat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig sei laut derselben Analyse viel spekulatives Kapital in den Markt geflossen. Am Freitag kam dann, so heißt es dort, „ein scharfer Rücksetzer“ – ausgelöst durch die Rede von Fed-Chef Kevin Warsh in Jackson Hole.',
+      },
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online beschrieb es drastischer: Warsh habe der Rally „den Stecker gezogen“. Auch Silber sei „massiv unter Druck“ geraten, unter Anlegern herrsche laut Artikel „Alarmstimmung“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede den Goldpreis bewegt, obwohl sich am Zins nichts geändert hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt keine Zinsen und keine Dividende. Sein Reiz hängt deshalb stark davon ab, wie hoch die Realzinsen sind, die Anleger stattdessen mit Anleihen oder Tagesgeld bekommen könnten. Signalisiert ein Notenbankchef, dass die Zinsen eher steigen als sinken, wird das Halten von Gold im Vergleich unattraktiver – der Kurs reagiert auf die neue Erwartung, nicht auf eine bereits vollzogene Zinsentscheidung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Silber reagierte nach den gelesenen Übersichten noch heftiger als Gold. Das passt zu einem bekannten Muster: Neben seiner Rolle als Wertspeicher wird Silber auch industriell nachgefragt, etwa in der Solar- und Elektronikfertigung, was seinen Kurs tendenziell schwankungsanfälliger macht als den von Gold.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Redaktionsschluss dieser Ausgabe notierte Gold bei rund 4.457 US-Dollar je Feinunze, nur noch minimal im Plus, Silber bei rund 66,78 Dollar – beide damit bereits wieder etwas von ihren Tiefständen nach dem Freitag entfernt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssturz nach einer Rede ist kein Beleg dafür, dass sich an den langfristigen Gründen für einen Goldbesitz – etwa als Absicherung gegen Inflation oder Währungsrisiken – etwas geändert hätte. Er zeigt vor allem, wie viel von der vorherigen Rally auf kurzfristig gehandelten Erwartungen beruhte, und wie schnell sich solche Erwartungen wieder drehen können.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-faellt-trotz-eskalation-hormus',
+    title: 'Öl fällt trotz neuer Zwischenfälle in der Straße von Hormus',
+    teaser:
+      'Tankerangriffe, ein US-Militärschlag im Iran und mehr US-Ölreserven in Venezuela – trotzdem gab der Ölpreis in der Nacht zum Montag nach.',
+    category: 'Märkte',
+    publishedAt: '2026-08-31T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['oel', 'brent', 'rohstoffe', 'geopolitik'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachricht vom 30.8.2026 (dpa-AFX): „ROUNDUP/US-Medien: US-Militär greift iranische Raketenwerfer an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Nachricht vom 30.8.2026: „Erneut Tanker in Straße von Hormus angegriffen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Nachricht vom 30.8.2026: „ROUNDUP 3/Trump: USA sichern sich riesige Ölvorkommen in Venezuela“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Abruf 31.8.2026, 00:14 Uhr: Öl (Brent) 87,47 US-Dollar, -0,91 Prozent',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Das Wochenende brachte gleich mehrere Meldungen, die eigentlich für steigende Ölpreise sprechen würden: Laut US-Medien griff das US-Militär iranische Raketenwerfer an, in der Straße von Hormus wurden erneut Tanker angegriffen, und Berichten zufolge sicherte sich die US-Regierung unter Präsident Trump zusätzlich große Ölvorkommen in Venezuela.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotzdem gab der Ölpreis nach: Die Sorte Brent notierte in der Nacht zum Montag laut wallstreet-online bei 87,47 US-Dollar je Barrel, ein Minus von 0,91 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn Risiko nicht automatisch teurer macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Straße von Hormus gilt als eine der wichtigsten Öl-Transportrouten der Welt, und militärische Zwischenfälle dort gehören zu den klassischen Auslösern für einen Risikoaufschlag im Ölpreis. Warum der Preis in dieser Nacht trotzdem fiel, erklärt keine der gelesenen Quellen ausdrücklich. Ein Zusammenhang mit den zusätzlichen US-Ölvorkommen in Venezuela liegt nahe, weil mehr erschlossene Reserven das Angebot langfristig vergrößern können – die Übersichten selbst stellen diese Verbindung aber nicht her.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig ist auch der Vergleich zu Gold: Während der Ölpreis nachgab, bewegte sich Gold zur selben Zeit kaum, mit plus 0,02 Prozent – üblicherweise ein Rohstoff, der bei geopolitischen Spannungen als „sicherer Hafen“ gilt. Auch das nennen die Quellen nicht als Reaktion auf die Ereignisse im Nahen Osten; die Ruhe bei Gold lässt sich ebenso gut mit der Zinserwartung nach der Warsh-Rede erklären, die in dieser Ausgabe an anderer Stelle beschrieben wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Ölpreise allein aus der Nachrichtenlage vorhersagen will, unterschätzt regelmäßig, wie viele Faktoren gleichzeitig wirken – Angebot, Nachfrage, Lagerbestände und Zinserwartungen zählen mit dazu, nicht nur die jeweils aktuellste Schlagzeile.',
+      },
+    ],
+  },
+  {
+    slug: 'inflation-bundeslaender-verbraucherpreise-heute',
+    title: 'Inflationstag: Erst die Länder, dann der Bund',
+    teaser:
+      'Vier Bundesländer melden heute um 10 Uhr ihre Verbraucherpreise, am Nachmittag folgt eine erste bundesweite Schätzung – was das bedeutet.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-08-31T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['inflation', 'verbraucherpreise', 'ezb', 'deutschland'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine“, Abruf 31.8.2026, 00:14 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer heute auf die Inflation in Deutschland schaut, bekommt die Zahl nicht auf einen Schlag. Der Wirtschaftskalender von wallstreet-online listet für 10 Uhr gleich vier Bundesländer, die ihre vorläufigen Verbraucherpreise für August melden: Brandenburg, Sachsen, Baden-Württemberg und Nordrhein-Westfalen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Länder vor dem Bund melden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist kein Zufall, sondern das übliche Verfahren: Die statistischen Landesämter veröffentlichen ihre eigenen, vorläufigen Zahlen im Laufe des Vormittags, bevor daraus im Tagesverlauf die bundesweite Schätzung zusammengeführt wird. Im Vormonat lagen die vier hier genannten Länder laut Kalender bei plus 0,7 Prozent (Brandenburg), plus 0,7 Prozent (Sachsen), plus 0,8 Prozent (Baden-Württemberg) und plus 0,9 Prozent (Nordrhein-Westfalen) gegenüber dem jeweiligen Vormonat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den Nachmittag, 14 Uhr, führt derselbe Kalender zusätzlich eine EU-harmonisierte Jahresteuerungsrate mit einer Prognose von 3,0 Prozent nach zuvor 2,8 Prozent, ohne dass der Eintrag selbst ein Land benennt. In der gestrigen Ausgabe dieser Redaktion war für den heutigen Montag eine deutsche Vorabschätzung von 2,9 bis 3,0 Prozent angekündigt worden, nach 2,8 Prozent im Juli. Die Übereinstimmung der Werte legt nahe, dass es sich um dieselbe Veröffentlichung handelt – sicher lässt sich das aus den heutigen Quellen allein aber nicht sagen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verbraucherpreise gehören zu den Zahlen, an denen sich die Europäische Zentralbank bei ihrer Zinsentscheidung orientiert. Eine Jahresrate von 3 Prozent läge weiterhin über dem Inflationsziel der EZB von 2 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Monatszahl ändert selten sofort die Geldpolitik. Wer die Reihe der Bundesländer-Werte über mehrere Monate verfolgt, bekommt trotzdem ein früheres Bild der Preisentwicklung als jemand, der nur auf die eine bundesweite Meldung am Monatsende wartet.',
+      },
+    ],
+  },
+  {
+    slug: 'vici-properties-hohe-dividendenrendite-reit',
+    title: 'Über 7 Prozent Rendite: Was hinter der hohen Dividende steckt',
+    teaser:
+      'Eine kaum bekannte Aktie bietet laut wallstreet-online die höchste Dividendenrendite im S&P 500 – ein Blick darauf, was das erklärt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-08-31T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['dividende', 'reit', 'aktien', 'geldanlage'],
+    relatedTopics: ['risiko-und-rendite', 'portfolio-aufbau'],
+    relatedSymbols: ['sp500', 'realty-income'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Dividenden-Radar vom 30.8.2026: „Vici bietet die höchste Rendite im S&P 500, doch kaum jemand kennt die Aktie“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mehr als 7 Prozent Dividendenrendite – das ist im S&P 500 selten. Laut einem Beitrag von wallstreet-online bietet ausgerechnet eine wenig bekannte Aktie genau das: VICI Properties, ein US-Immobilienunternehmen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Beitrag nennt drei Eckdaten: eine Rendite von über 7 Prozent, Dividendenerhöhungen seit dem Börsengang des Unternehmens und Mietverträge, die laut Artikel bis zum Jahr 2100 laufen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was einen Reit von einer gewöhnlichen Dividendenaktie unterscheidet',
+      },
+      {
+        type: 'paragraph',
+        text: 'VICI Properties ist ein sogenannter Reit, ein Real Estate Investment Trust – eine Rechtsform für Immobiliengesellschaften, die in den USA gesetzlich verpflichtet sind, den überwiegenden Teil ihrer steuerpflichtigen Gewinne als Dividende auszuschütten. Das erklärt, warum Reits als Aktiengattung tendenziell höhere Ausschüttungen zeigen als der Marktdurchschnitt, unabhängig davon, wie es um das jeweilige Unternehmen im Einzelnen steht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders lang laufende Mietverträge wie die im Artikel genannten bis 2100 sollen für planbare Einnahmen sorgen: VICI vermietet vor allem Grundstücke und Gebäude an Casino- und Freizeitbetreiber, die selbst für den laufenden Betrieb verantwortlich bleiben. Über welche konkreten Objekte oder Mieter es sich handelt, geht aus der gelesenen Quelle nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Rendite von über 7 Prozent ist kein Selbstzweck – sie kann ebenso gut ein faires Angebot für ein solides Geschäftsmodell sein wie ein Hinweis darauf, dass der Markt dem Unternehmen Risiken zutraut, die im Kurs schon eingepreist sind. Wer eine hohe Dividendenrendite bewertet, kommt nicht daran vorbei, auch Ausschüttungsquote, Verschuldung und die Abhängigkeit von einzelnen Mietern zu prüfen.',
+      },
+    ],
+  },
+  {
     slug: 'paypal-uebernahme-abgelehnt-aktie-faellt',
     title: 'PayPal lehnt Übernahmeangebot ab – die Aktie fällt trotzdem',
     teaser:
