@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-31T11:42:54.376Z",
+  "abgerufenAm": "2026-09-01T10:16:47.058Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-07-03",
       "bis": "2026-09-17",
       "zeilen": 3213,
-      "kommendGesamt": 225,
+      "kommendGesamt": 220,
       "spalten": [
         "６月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in June 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月20日 現在 As of 2026/8/20 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -3593,12 +3593,6 @@
         "2024-09-03": "16:07"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-09-01",
-          "basis": "2025-09-02",
-          "streuungTage": 0,
-          "newYorkerZeit": "16:06"
-        },
         {
           "erwartet": "2026-11-24",
           "basis": "2025-11-25",
@@ -12860,39 +12854,39 @@
         "2024-10-29"
       ],
       "bisherZeiten": {
-        "2026-07-28": "03:03",
-        "2026-04-28": "03:02",
-        "2026-01-28": "02:05",
-        "2025-10-28": "03:05",
-        "2025-07-29": "03:02",
-        "2025-04-29": "03:11",
-        "2025-01-29": "02:12",
-        "2024-10-29": "03:13"
+        "2026-07-28": "07:03",
+        "2026-04-28": "07:02",
+        "2026-01-28": "07:05",
+        "2025-10-28": "07:05",
+        "2025-07-29": "07:02",
+        "2025-04-29": "07:11",
+        "2025-01-29": "07:12",
+        "2024-10-29": "07:13"
       },
       "vorhersagen": [
         {
           "erwartet": "2026-10-27",
           "basis": "2025-10-28",
           "streuungTage": 0,
-          "newYorkerZeit": "03:05"
+          "newYorkerZeit": "07:05"
         },
         {
           "erwartet": "2027-01-27",
           "basis": "2026-01-28",
           "streuungTage": 0,
-          "newYorkerZeit": "02:05"
+          "newYorkerZeit": "07:05"
         },
         {
           "erwartet": "2027-04-27",
           "basis": "2026-04-28",
           "streuungTage": 0,
-          "newYorkerZeit": "03:02"
+          "newYorkerZeit": "07:02"
         },
         {
           "erwartet": "2027-07-27",
           "basis": "2026-07-28",
           "streuungTage": 0,
-          "newYorkerZeit": "03:03"
+          "newYorkerZeit": "07:03"
         }
       ]
     },
@@ -17579,7 +17573,7 @@
     "L.TO": "2026-08-29",
     "LDO.MI": "2026-08-30",
     "LEG.DE": "2026-08-31",
-    "LGEN.L": "2026-08-18",
+    "LGEN.L": "2026-09-01",
     "LHA.DE": "2026-08-18",
     "LI.PA": "2026-08-18",
     "LIGHT.AS": "2026-08-18",
