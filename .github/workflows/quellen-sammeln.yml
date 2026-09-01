@@ -81,6 +81,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # Siehe `quellen-holen.yml`: Der Rückfall auf IPv4 greift auf einem
+      # Läufer ohne IPv6 bei jeder Quelle mit AAAA, und ein kaputter sähe
+      # aus wie eine Quelle, die nicht antwortet.
+      - name: Abrufweg selbst prüfen
+        run: python3 scripts/netz.py --selbsttest
+
       - name: Übersichten abrufen
         env:
           # Die gepflegte Liste steht in `data/nachrichtenquellen.ts`; hier
@@ -106,8 +112,16 @@ jobs:
           import html
           import os
           import re
+          import sys
           import urllib.error
           import urllib.request
+
+          # Das Skript kommt über die Standardeingabe; damit steht `scripts/`
+          # nicht von selbst im Suchpfad. `netz.oeffnen` bringt den zweiten
+          # Anlauf über IPv4 mit – ohne den erklärt ein Läufer ohne IPv6
+          # jede Quelle mit AAAA für unerreichbar. Begründung dort.
+          sys.path.insert(0, "scripts")
+          import netz
 
           grenze = int(os.environ["ZEICHEN"])
           adressen = [a for a in os.environ["ADRESSEN"].split() if a.startswith("http")]
@@ -197,7 +211,7 @@ jobs:
               print("=" * 78)
               try:
                   anfrage = urllib.request.Request(adresse, headers=KOPF)
-                  with urllib.request.urlopen(anfrage, timeout=45) as antwort:
+                  with netz.oeffnen(anfrage) as antwort:
                       roh = antwort.read()
                       zeichensatz = antwort.headers.get_content_charset() or "utf-8"
                       print(f"STATUS: {antwort.status}")
