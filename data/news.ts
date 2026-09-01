@@ -101,6 +101,363 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-faellt-nach-rekordlauf-tagestermine',
+    title: 'DAX fällt nach Rekordlauf zurück – das steht heute an',
+    metaTitle: 'DAX nach Rekordlauf tiefer – die Termine des Tages',
+    teaser:
+      'Der DAX ist am Montag von seinem Rekordhoch abgerutscht. Heute liefern Einzelhandel, Einkaufsmanager und G20 neue Zahlen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-01T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Konjunktur', 'Wirtschaftskalender'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 31.8.2026: „Höhere Zinssignale und steigende Ölpreise bremsen: DAX fällt nach Rekordlauf zurück“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste auf der Startseite, Datenstand beim Abruf 1.9.2026, 00:59 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine“, Abruf 1.9.2026, 00:59 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Wirtschaftskalender-Widget „Wichtige Termine“, Abruf 1.9.2026, 00:59 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX hat seinen Rekordlauf erst einmal unterbrochen. Nach dem Allzeithoch vom Freitag schloss der Index am Montag laut finanzen.net-Ticker schwächer – als Bremsen nennt die Meldung steigende Zinssignale und höhere Ölpreise. Beim Abruf in der Nacht zum Dienstag stand der DAX in der Kursleiste von finanzen.net bei 26.258 Punkten, ein Minus von 1,2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 2:00 Uhr trafen sich laut Wirtschaftskalender von wallstreet-online die Finanzminister und Notenbankchefs der G20-Staaten. Um 8:00 Uhr folgen die deutschen Einzelhandelsumsätze: Der Kalender nennt für den Monatsvergleich eine Prognose von plus 0,4 Prozent, nach minus 1,1 Prozent im Vormonat; für die Jahresrate stand zuletzt ein Minus von 0,2 Prozent zu Buche.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dazu listet das Wirtschaftskalender-Widget von finanzen.net gleich drei Einkaufsmanagerindizes der Industrie (HCOB) für 9:15, 9:45 und 9:55 Uhr, mit Prognosen von 50,4, 51,6 und 54,1 Punkten – welche Länder die drei Werte im Einzelnen betreffen, benennt diese Quelle nicht ausdrücklich.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner roter Handelstag nach einem Rekordhoch ist für sich genommen keine Trendwende – erst im Zusammenspiel mit den heutigen Konjunkturdaten zeigt sich, ob die Zinssignale, die den DAX gebremst haben, sich bestätigen oder wieder abschwächen.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-springt-gold-gibt-nach',
+    title: 'Öl springt über 90 Dollar, Gold gibt nach',
+    teaser:
+      'Nach neuen Angriffen im Iran-Konflikt steigt der Ölpreis kräftig. Gold zieht nicht mit – steigende Anleiherenditen drücken den Kurs.',
+    category: 'Märkte',
+    publishedAt: '2026-09-01T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Gold', 'Rohstoffe', 'Geopolitik'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 31.8.2026 (dpa-AFX): „Ölpreise steigen deutlich - Militärschläge im Iran-Krieg verschärfen Spannungen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoff-Teaser vom 31.8.2026: „Über 90 US-Dollar: Ölpreis schießt nach erstem US-Angriff seit Ende Juli hoch“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Preiswidget „Aktuelle Rohstoffpreise“, Datenstand 02:57 Uhr, Abruf 1.9.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'goldreporter.de, Top-News, Abruf 1.9.2026: „Goldpreis fällt am Montag weiter – Öl steigt nach Iran-Angriffen“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'goldreporter.de, Analyse vom 31.8.2026: „Steigende Marktzinsen setzen Gold weiter unter Druck“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist deutlich gestiegen. Laut dpa-AFX-Meldung auf wallstreet-online verschärfen Militärschläge im Iran-Krieg die Spannungen; ein weiterer Teaser derselben Quelle spricht vom „ersten US-Angriff seit Ende Juli“. Im Preiswidget von wallstreet-online notierte Brent-Öl beim Abruf in der Nacht zum Dienstag bei 90,74 US-Dollar, ein Plus von 3,74 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gold bewegt sich in die andere Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zog nicht mit. Goldreporter.de fasst es in einer Top-Meldung so zusammen: „Goldpreis fällt am Montag weiter – Öl steigt nach Iran-Angriffen.“ Im selben Preiswidget von wallstreet-online stand Gold bei 4.454,25 US-Dollar, nur noch ein Mini-Plus von 0,12 Prozent gegenüber dem Vortag.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Erklärung liefert die Analyse von goldreporter.de vom 31. August: Die Renditen von US-Staatsanleihen und Bundesanleihen zögen wieder an, gleichzeitig sei der Goldpreis unter seinen 200-Tage-Schnitt gefallen. Der Blick richte sich nun auf die kommenden US-Arbeitsmarktdaten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold gilt als sicherer Hafen bei geopolitischen Krisen – hier zeigt sich aber, dass steigende Zinsen als Gegenkraft wirken können, weil zinslos gehaltenes Gold im Vergleich zu verzinsten Anleihen unattraktiver wird. Beide Kräfte lassen sich nicht gegeneinander aufrechnen, ohne die jeweiligen Zahlen zu kennen.',
+      },
+    ],
+  },
+  {
+    slug: 'mercedes-benz-rueckkaufprogramm-startet',
+    title: 'Mercedes-Benz startet heute sein Rückkaufprogramm',
+    teaser:
+      'Der Autobauer beginnt am Dienstag mit einem milliardenschweren Aktienrückkauf. Ob das den Kurs stützt, ist unter Analysten umstritten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-01T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Aktienrückkauf', 'Mercedes-Benz', 'DAX'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['mercedes-benz', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 31.8.2026: „Mercedes-Benz-Aktie in Grün: Startschuss für Milliarden-Rückkaufprogramm am Dienstag“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Aktien-Analysen vom 31.8.2026, 15:29 Uhr: „Mercedes: Warum der Rückkauf die Aktie kaum stützt“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mercedes-Benz beginnt heute mit seinem Aktienrückkaufprogramm. Laut finanzen.net-Ticker vom Montag stand die Aktie bereits im Grünen, als der „Startschuss für Milliarden-Rückkaufprogramm am Dienstag“ vermeldet wurde. Wie viel Geld das Programm insgesamt umfasst, nennt diese Meldung nicht – nur die Größenordnung „Milliarden“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Rückkauf technisch bewirkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einem Aktienrückkauf kauft das Unternehmen eigene Aktien am Markt zurück und zieht sie meist anschließend ein. Die Zahl der ausstehenden Aktien sinkt, wodurch sich Kennzahlen wie der Gewinn je Aktie rechnerisch verbessern können – anders als bei einer Dividende fließt dabei aber kein Geld direkt an alle Aktionäre, sondern nur an jene, die tatsächlich verkaufen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Analyse von onvista trägt den Titel „Mercedes: Warum der Rückkauf die Aktie kaum stützt“ – die uns vorliegende Übersicht zeigt nur diese Überschrift, nicht die Begründung dahinter. Festhalten lässt sich damit nur die Einschätzung selbst, nicht das Argument.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein angekündigtes Rückkaufvolumen ist kein Versprechen auf einen steigenden Kurs. Ob und wie stark ein Rückkauf wirkt, hängt unter anderem davon ab, wie viel vom Volumen tatsächlich zeitnah umgesetzt wird und wie das Unternehmen sonst dasteht.',
+      },
+    ],
+  },
+  {
+    slug: 'siemens-energy-faellt-trotz-kaufempfehlung',
+    title: 'Siemens Energy fällt trotz Kaufempfehlung',
+    teaser:
+      'Eine geplante Abspaltung drückt den Kurs von Siemens Energy, während Jefferies die Aktie mit Kursziel 215 Euro auf Kaufen belässt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-01T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Siemens Energy', 'Abspaltung', 'Analysten'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['siemens-energy', 'siemens'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Meldungen im Überblick vom 31.8.2026: „Es geht weiter abwärts: Siemens Energy: Geplante Abspaltung lässt die Kurse purzeln“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          "onvista, Analyse-Flash vom 31.8.2026 (dpa-AFX): „Jefferies belässt Siemens Energy auf 'Buy' - Ziel 215 Euro“",
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Aktie von Siemens Energy gibt weiter nach. Laut wallstreet-online belastet eine geplante Abspaltung den Kurs: „Es geht weiter abwärts: Siemens Energy: Geplante Abspaltung lässt die Kurse purzeln“, heißt es in der Überschrift vom 31. August – Details zum genauen Zuschnitt der Abspaltung nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Abspaltung für Aktionäre bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einer Abspaltung (Spin-off) bekommen bestehende Aktionäre in der Regel Anteile an einer neuen, eigenständigen Gesellschaft, während die verbleibende Muttergesellschaft kleiner wird. Rechnerisch ändert sich am Gesamtvermögen der Aktionäre dadurch zunächst nichts – der Markt kann die beiden Teile aber neu und unterschiedlich bewerten, was sich in schwankenden Kursen der Muttergesellschaft zeigen kann.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag bestätigte die Bank Jefferies laut einem Analyse-Flash auf onvista ihre Einstufung „Buy“ für Siemens Energy, mit einem Kursziel von 215 Euro. Ein fallender Kurs und ein unverändertes Kaufrating schließen sich nicht aus: Ein Kursziel bezieht sich meist auf einen Zeithorizont von rund zwölf Monaten, nicht auf die Kursbewegung eines einzelnen Handelstags.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Aktie wegen einer Kaufempfehlung hält, sollte den Zeithorizont dieser Empfehlung im Blick behalten – ein zwölfmonatiges Kursziel sagt nichts darüber, wie sich der Kurs in den Wochen rund um eine Unternehmensmeldung wie eine Abspaltung verhält.',
+      },
+    ],
+  },
+  {
+    slug: 'allianz-aktie-faellt-uebernahme-gruecht',
+    title: 'Allianz-Aktie fällt auf Übernahme-Gerücht',
+    teaser:
+      'Berichte über eine mögliche Milliarden-Übernahme in Großbritannien belasten die Allianz-Aktie – bestätigt ist der Deal bislang nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-01T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Allianz', 'Übernahme', 'Versicherer'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['allianz', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 31.8.2026: „Allianz-Aktie tiefer: Versicherer erwägt offenbar Milliarden-Übernahme in Großbritannien“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, „Heute im Fokus“ vom 31.8.2026: „DAX schließt tiefer -- US-Börsen letztlich leichter -- Mercedes-Benz vor Aktienrückkauf -- Allianz erwägt Milliarden-Übernahme -- Amazon, NVIDIA, Rheinmetall, GameStop, Siemens Energy, SpaceX im Fokus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Allianz-Aktie ist am Montag gefallen. Laut finanzen.net-Ticker erwägt der Versicherer „offenbar“ eine milliardenschwere Übernahme in Großbritannien – das Wort „offenbar“ zeigt an, dass die Meldung selbst nicht als bestätigte Tatsache, sondern als Bericht formuliert ist. Auch in der Rubrik „Heute im Fokus“ derselben Quelle taucht die Allianz mit diesem Übernahme-Thema auf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Übernahme-Pläne den Käufer oft belasten',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Börse fällt die Aktie des Käufers bei Übernahmegerüchten häufiger als sie steigt – ein bekanntes Muster, das mit Unsicherheit über den Kaufpreis, mit möglichem zusätzlichem Kapitalbedarf und mit dem Risiko einer schwierigen Integration zusammenhängt. Ob genau das im Fall Allianz die Rolle spielt, geht aus der vorliegenden Meldung nicht hervor – sie nennt nur den Kursrückgang und das Gerücht, keine Begründung der Anleger.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wichtig ist der Unterschied zwischen einer Absichtserklärung und einem abgeschlossenen Geschäft: Solange ein Deal als „erwogen“ und „offenbar“ beschrieben wird, ist weder Kaufpreis noch Zeitpunkt festgelegt, geschweige denn behördlich genehmigt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursrückgang auf ein Übernahmegerücht ist ein Signal, dass der Markt eine mögliche Transaktion vorsichtig einpreist – keine Aussage darüber, ob die Übernahme am Ende zustande kommt oder sich für die Allianz lohnt.',
+      },
+    ],
+  },
+  {
+    slug: 'amazon-faellt-ans-dow-ende-ftc-klage',
+    title: 'Amazon fällt ans Dow-Ende – FTC droht mit Klage',
+    teaser:
+      'Laut einem Bericht des Wall Street Journal erwägt die US-Handelsaufsicht FTC eine Klage gegen Amazon wegen manipulierter Werbepreise.',
+    category: 'Märkte',
+    publishedAt: '2026-09-01T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Amazon', 'FTC', 'Regulierung', 'Dow Jones'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['amazon', 'dow-jones'],
+    sources: [
+      {
+        label:
+          "wallstreet-online, Unternehmensmeldungen vom 31.8.2026 (dpa-AFX): „AKTIE IM FOKUS: Amazon rutschen ans Dow-Ende - 'WSJ': FTC will Klage einreichen“",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News vom 31.8.2026, 22:35 Uhr (dpa-AFX): „Unfaire Preise für Werbung? Klage gegen Amazon in den USA“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Amazon war am Montag der schwächste Wert im Dow Jones. Laut einer dpa-AFX-Meldung auf wallstreet-online berichtete das Wall Street Journal, die US-Handelsaufsicht FTC wolle Klage gegen Amazon einreichen; onvista fasst das Thema unter der Frage „Unfaire Preise für Werbung? Klage gegen Amazon in den USA“ zusammen. Es geht demnach um den Vorwurf manipulierter Werbepreise.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Klageandrohung ist kein Urteil',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Meldungen beschreiben eine mögliche, berichtete Klage – nicht ein abgeschlossenes Verfahren oder gar eine Entscheidung. Zwischen der Ankündigung, eine Klage zu prüfen oder einzureichen, und einem rechtskräftigen Urteil können Jahre liegen, und der Ausgang ist zu diesem frühen Zeitpunkt offen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Amazon „ans Dow-Ende“ rutschte, heißt: Unter den 30 Werten des Dow Jones war die Aktie an diesem Tag die mit dem größten Kursverlust. Eine genaue Prozentzahl nennt die vorliegende Übersicht nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Regulatorische Risiken wie eine drohende Klage wirken oft sofort auf den Kurs, obwohl der eigentliche rechtliche Prozess erst am Anfang steht. Wer solche Meldungen liest, sollte Ankündigung und Ergebnis auseinanderhalten.',
+      },
+    ],
+  },
+  {
+    slug: 'shein-ipo-hongkong-boersengang',
+    title: 'SHEIN geht heute in Hongkong an die Börse',
+    teaser:
+      'Der chinesische Online-Modehändler SHEIN wagt laut finanzen.net heute den Sprung aufs Parkett – mit einem Börsengang in Hongkong.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-01T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['IPO', 'SHEIN', 'Hongkong', 'Börsengang'],
+    relatedTopics: ['boerse', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['hang-seng'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Top News, Abruf 1.9.2026: „SHEIN-Aktie wagt den Sprung an die Börse: IPO in Hongkong am 1. September“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der chinesische Online-Modehändler SHEIN plant laut finanzen.net heute seinen Börsengang in Hongkong. Zu Ausgabepreis, Bewertung oder Zahl der platzierten Aktien macht die Quelle keine Angabe – festhalten lässt sich nur Zeitpunkt und Handelsplatz.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was bei einem Börsengang passiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einem Initial Public Offering (IPO) bietet ein Unternehmen erstmals Aktien einem breiten Anlegerkreis an. Der Ausgabepreis wird meist im sogenannten Bookbuilding-Verfahren ermittelt, bei dem Investoren im Vorfeld Gebote abgeben; bisherige Eigentümer behalten häufig einen Teil ihrer Anteile, oft mit einer vertraglichen Sperrfrist für den Verkauf.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hongkong ist einer der wichtigsten Handelsplätze für Börsengänge chinesischer Unternehmen. Ob und warum sich SHEIN konkret für diesen Standort statt für eine andere Börse entschieden hat, geht aus der vorliegenden Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der erste Handelstag einer neu notierten Aktie ist erfahrungsgemäß volatiler als spätere Handelstage, weil noch wenig Kurshistorie und oft nur ein Teil der Aktien frei handelbar ist. Das gilt unabhängig davon, wie ein einzelner Börsengang am Ende ausgeht.',
+      },
+    ],
+  },
+  {
     slug: 'dax-rekord-nasdaq-bremst-warsh-rede',
     title: 'DAX auf Rekordkurs, Nasdaq bremst: eine Rede, zwei Reaktionen',
     metaTitle: 'DAX-Rekord, Nasdaq-Bremse: eine Rede, zwei Reaktionen',
