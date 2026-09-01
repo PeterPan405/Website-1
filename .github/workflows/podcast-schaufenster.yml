@@ -91,6 +91,35 @@ jobs:
           echo "— Folgen im Feed —"
           grep -c '<item>' podcast-folge/feed.xml
 
+      # Und die Gegenfrage: Was hat Spotify daraus gemacht?
+      #
+      # ## Warum das hier steht
+      #
+      # Bis zum 1. September 2026 gab es **keinen** Weg, das zu erfragen,
+      # ohne eine Folge zu erzeugen: `npm run spotifylinks` lief nur in
+      # `podcast-erzeugen.yml`. An dem Tag meldete der Betreiber „Podcast
+      # bei Spotify nicht online", und die Kette konnte alles belegen bis
+      # zur eigenen Haustür – Feed von außen mit 200, jüngste Folge darin –
+      # und über die Haustür hinaus nichts.
+      #
+      # Der Lauf ändert dabei nichts: `--nur-zeigen` schreibt keine Datei
+      # und committet nicht. Er liest, was Spotify sagt.
+      #
+      # Ohne `SPOTIFY_CLIENT_ID`/`SPOTIFY_CLIENT_SECRET` sagt das Skript,
+      # dass es nichts zu tun gibt, und endet mit 0 – eine fehlende
+      # Einstellung ist ein Zustand, kein Fehler. Der Weg dorthin steht in
+      # EINRICHTUNG.md, Abschnitt 5.
+      #
+      # `|| true`: Diese Auskunft darf den Feed nicht aufhalten. Antwortet
+      # Spotify nicht, ist das eine Frage weniger beantwortet – und keine
+      # Sendungsbeschreibung, die deshalb alt bleibt.
+      - name: Was kennt Spotify?
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_SHOW_ID: ${{ vars.SPOTIFY_SHOW_ID }}
+        run: npm run spotifylinks -- --nur-zeigen || true
+
       - name: Übertragen
         if: inputs.nur_zeigen != true
         env:

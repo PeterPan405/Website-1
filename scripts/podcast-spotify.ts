@@ -31,6 +31,7 @@
  * Folgen trägt.
  *
  * Aufruf: npm run spotifylinks
+ *         npm run spotifylinks -- --nur-zeigen   (fragt, schreibt nicht)
  */
 
 import { writeFileSync } from 'node:fs'
@@ -41,6 +42,22 @@ const SHOW_ID = process.env.SPOTIFY_SHOW_ID?.trim()
 const SUCHNAME = process.env.SPOTIFY_SHOW_NAME?.trim() || 'Börse am Morgen - IM Invests'
 
 const ZIEL = 'data/podcast-spotify.json'
+
+/**
+ * `--nur-zeigen` fragt und schreibt nichts.
+ *
+ * Der Anlass: Am 1. September 2026 meldete der Betreiber „Podcast bei
+ * Spotify nicht online". Belegen ließ sich alles bis zur eigenen Haustür –
+ * Folge erzeugt, hochgeladen, `feed.xml` von außen mit 200 und der jüngsten
+ * Folge darin. Was **Spotify** daraus gemacht hat, konnte niemand sagen:
+ * Dieses Skript lief nur innerhalb von `podcast-erzeugen.yml`, also einmal
+ * am Morgen und nur zusammen mit einer neuen Folge.
+ *
+ * Mit dem Schalter fragt `podcast-schaufenster.yml` dieselbe Frage, wann
+ * immer sie jemand stellt – ohne eine Folge zu erzeugen und ohne den
+ * Bestand anzufassen.
+ */
+const NUR_ZEIGEN = process.argv.includes('--nur-zeigen')
 
 if (!CLIENT_ID || !CLIENT_SECRET) {
   console.log(
@@ -137,15 +154,26 @@ for (const episode of episoden) {
   }
 }
 
-writeFileSync(
-  ZIEL,
-  JSON.stringify(
-    { abgerufenAm: new Date().toISOString(), showId: show, folgen: nachTag },
-    null,
-    2
-  ) + '\n'
-)
+const tage = Object.keys(nachTag).sort()
 
-console.log(
-  `[spotify] ${Object.keys(nachTag).length} von ${episoden.length} Folgen mit Adresse nach ${ZIEL}.`
-)
+if (NUR_ZEIGEN) {
+  console.log(
+    `[spotify] ${tage.length} von ${episoden.length} Folgen mit Adresse.\n` +
+      `          jüngste: ${tage.at(-1) ?? '(keine)'}` +
+      (tage.length ? ` – ${nachTag[tage.at(-1)!].titel}` : '') +
+      `\n          älteste: ${tage[0] ?? '(keine)'}\n` +
+      `          Nur gezeigt – ${ZIEL} bleibt unverändert.`
+  )
+} else {
+  writeFileSync(
+    ZIEL,
+    JSON.stringify(
+      { abgerufenAm: new Date().toISOString(), showId: show, folgen: nachTag },
+      null,
+      2
+    ) + '\n'
+  )
+  console.log(
+    `[spotify] ${tage.length} von ${episoden.length} Folgen mit Adresse nach ${ZIEL}.`
+  )
+}
