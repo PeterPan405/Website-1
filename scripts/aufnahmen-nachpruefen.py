@@ -46,6 +46,7 @@ import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import netz  # noqa: E402
 import sprechstimme  # noqa: E402
 
 VERZEICHNIS = "data/lese-audio.json"
@@ -75,8 +76,12 @@ def als_rohdaten(pfad: str):
 
 
 def hole(url: str, ziel: str) -> bool:
+    # `netz.oeffnen` statt `urlopen`: Auf einem Läufer ohne IPv6 scheitert
+    # der erste Anlauf an jeder Adresse mit AAAA – und `iminvests.de` hat
+    # eine. Die Meldung „nicht erreichbar" stand dann unter **jeder**
+    # Aufnahme, ohne dass je eine gefehlt hätte. Begründung in scripts/netz.py.
     try:
-        with urllib.request.urlopen(url, timeout=60) as antwort, open(ziel, "wb") as datei:
+        with netz.oeffnen(url, timeout=60) as antwort, open(ziel, "wb") as datei:
             datei.write(antwort.read())
         return True
     except Exception as fehler:  # noqa: BLE001

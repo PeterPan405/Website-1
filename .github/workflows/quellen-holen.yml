@@ -98,6 +98,12 @@ jobs:
       - name: PDF-Leser bereitstellen
         run: sudo apt-get install -qq -y poppler-utils
 
+      # Der Rückfall auf IPv4 greift auf diesem Läufer bei jeder Quelle mit
+      # AAAA – und nirgends sonst. Wäre er kaputt, sähe das aus wie „die
+      # Quelle antwortet nicht". Millisekunden, ohne Netz.
+      - name: Abrufweg selbst prüfen
+        run: python3 scripts/netz.py --selbsttest
+
       - name: Abrufen und lesbar machen
         env:
           URLS: ${{ inputs.urls }}
@@ -110,11 +116,17 @@ jobs:
           import os
           import re
           import subprocess
+          import sys
           import tempfile
           import zipfile
           import urllib.error
           import urllib.parse
           import urllib.request
+
+          # Das Skript kommt über die Standardeingabe; damit steht `scripts/`
+          # nicht von selbst im Suchpfad.
+          sys.path.insert(0, "scripts")
+          import netz
 
           grenze = int(os.environ.get("ZEICHEN") or "12000")
           adressen = [a for a in os.environ["URLS"].split() if a.startswith("http")]
@@ -152,6 +164,12 @@ jobs:
               ),
               "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
           }
+
+          # Der Abruf selbst steht in `scripts/netz.py` – samt dem zweiten
+          # Anlauf über IPv4, ohne den ein Läufer ohne IPv6 jede Quelle mit
+          # AAAA für tot erklärt. Der Fall und seine Begründung stehen dort.
+          def abrufen(adresse: str):
+              return netz.oeffnen(urllib.request.Request(adresse, headers=KOPF))
 
           def pdf_zu_text(roh: bytes) -> str:
               """Holt den Text aus einem PDF – über `pdftotext`, sonst nichts.
@@ -261,8 +279,7 @@ jobs:
               print(f"QUELLE: {adresse}")
               print("=" * 78)
               try:
-                  anfrage = urllib.request.Request(adresse, headers=KOPF)
-                  with urllib.request.urlopen(anfrage, timeout=45) as antwort:
+                  with abrufen(adresse) as antwort:
                       roh = antwort.read()
                       typ = antwort.headers.get("Content-Type", "?")
                       zeichensatz = antwort.headers.get_content_charset() or "utf-8"
