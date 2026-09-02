@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-01T10:16:47.058Z",
+  "abgerufenAm": "2026-09-02T09:46:02.743Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-07-03",
       "bis": "2026-09-17",
       "zeilen": 3213,
-      "kommendGesamt": 220,
+      "kommendGesamt": 217,
       "spalten": [
         "６月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in June 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月20日 現在 As of 2026/8/20 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -3481,24 +3481,24 @@
     "PANW": {
       "name": "Palo Alto Networks Inc",
       "bisher": [
+        "2026-09-01",
         "2026-06-02",
         "2026-02-17",
         "2025-11-19",
         "2025-08-18",
         "2025-05-20",
         "2025-02-13",
-        "2024-11-20",
-        "2024-08-19"
+        "2024-11-20"
       ],
       "bisherZeiten": {
+        "2026-09-01": "16:32",
         "2026-06-02": "16:08",
         "2026-02-17": "16:14",
         "2025-11-19": "16:16",
         "2025-08-18": "16:13",
         "2025-05-20": "16:06",
         "2025-02-13": "16:09",
-        "2024-11-20": "16:13",
-        "2024-08-19": "16:08"
+        "2024-11-20": "16:13"
       },
       "vorhersagen": [
         {
@@ -3518,6 +3518,12 @@
           "basis": "2026-06-02",
           "streuungTage": 14,
           "newYorkerZeit": "16:08"
+        },
+        {
+          "erwartet": "2027-08-31",
+          "basis": "2026-09-01",
+          "streuungTage": 15,
+          "newYorkerZeit": "16:32"
         }
       ]
     },
@@ -5125,24 +5131,24 @@
     "MDT": {
       "name": "Medtronic plc",
       "bisher": [
+        "2026-09-01",
         "2026-06-03",
         "2026-02-17",
         "2025-11-18",
         "2025-08-19",
         "2025-05-21",
         "2025-02-18",
-        "2024-11-19",
-        "2024-08-20"
+        "2024-11-19"
       ],
       "bisherZeiten": {
+        "2026-09-01": "06:47",
         "2026-06-03": "06:47",
         "2026-02-17": "06:48",
         "2025-11-18": "06:47",
         "2025-08-19": "06:49",
         "2025-05-21": "06:47",
         "2025-02-18": "06:46",
-        "2024-11-19": "06:46",
-        "2024-08-20": "06:46"
+        "2024-11-19": "06:46"
       },
       "vorhersagen": [
         {
@@ -5160,6 +5166,12 @@
         {
           "erwartet": "2027-06-02",
           "basis": "2026-06-03",
+          "streuungTage": 14,
+          "newYorkerZeit": "06:47"
+        },
+        {
+          "erwartet": "2027-08-31",
+          "basis": "2026-09-01",
           "streuungTage": 14,
           "newYorkerZeit": "06:47"
         }
@@ -13040,24 +13052,24 @@
     "DELL": {
       "name": "Dell Technologies Inc.",
       "bisher": [
+        "2026-09-01",
         "2026-05-28",
         "2026-02-26",
         "2025-11-25",
         "2025-08-28",
         "2025-05-29",
         "2025-02-27",
-        "2024-11-26",
-        "2024-08-29"
+        "2024-11-26"
       ],
       "bisherZeiten": {
+        "2026-09-01": "16:10",
         "2026-05-28": "16:15",
         "2026-02-26": "16:08",
         "2025-11-25": "16:10",
         "2025-08-28": "16:09",
         "2025-05-29": "16:07",
         "2025-02-27": "16:07",
-        "2024-11-26": "16:12",
-        "2024-08-29": "16:14"
+        "2024-11-26": "16:12"
       },
       "vorhersagen": [
         {
@@ -13077,6 +13089,12 @@
           "basis": "2026-05-28",
           "streuungTage": 0,
           "newYorkerZeit": "16:15"
+        },
+        {
+          "erwartet": "2027-08-31",
+          "basis": "2026-09-01",
+          "streuungTage": 5,
+          "newYorkerZeit": "16:10"
         }
       ]
     },
@@ -14680,39 +14698,39 @@
         "2024-10-23"
       ],
       "bisherZeiten": {
-        "2026-07-29": "02:01",
-        "2026-04-22": "02:00",
-        "2026-02-11": "01:00",
-        "2025-10-22": "02:01",
-        "2025-07-30": "02:03",
-        "2025-04-23": "02:01",
-        "2025-02-12": "01:06",
-        "2024-10-23": "02:01"
+        "2026-07-29": "06:01",
+        "2026-04-22": "06:00",
+        "2026-02-11": "06:00",
+        "2025-10-22": "06:01",
+        "2025-07-30": "06:03",
+        "2025-04-23": "06:01",
+        "2025-02-12": "06:06",
+        "2024-10-23": "06:01"
       },
       "vorhersagen": [
         {
           "erwartet": "2026-10-21",
           "basis": "2025-10-22",
           "streuungTage": 0,
-          "newYorkerZeit": "02:01"
+          "newYorkerZeit": "06:01"
         },
         {
           "erwartet": "2027-02-10",
           "basis": "2026-02-11",
           "streuungTage": 0,
-          "newYorkerZeit": "01:00"
+          "newYorkerZeit": "06:00"
         },
         {
           "erwartet": "2027-04-21",
           "basis": "2026-04-22",
           "streuungTage": 0,
-          "newYorkerZeit": "02:00"
+          "newYorkerZeit": "06:00"
         },
         {
           "erwartet": "2027-07-28",
           "basis": "2026-07-29",
           "streuungTage": 0,
-          "newYorkerZeit": "02:01"
+          "newYorkerZeit": "06:01"
         }
       ]
     },
@@ -17574,7 +17592,7 @@
     "LDO.MI": "2026-08-30",
     "LEG.DE": "2026-08-31",
     "LGEN.L": "2026-09-01",
-    "LHA.DE": "2026-08-18",
+    "LHA.DE": "2026-09-02",
     "LI.PA": "2026-08-18",
     "LIGHT.AS": "2026-08-18",
     "LLOY.L": "2026-08-18",
