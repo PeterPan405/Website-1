@@ -101,6 +101,407 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dax-unter-26000-punkten-adp-und-boc-heute-im-fokus',
+    title: 'DAX unter 26.000 Punkten – ADP und BoC heute im Fokus',
+    teaser:
+      'Der DAX schloss am Dienstag unter 26.000 Punkten, Wall Street ging schwächer aus dem Handel. Heute liefern ADP-Daten und die BoC neue Signale.',
+    category: 'Märkte',
+    publishedAt: '2026-09-02T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Wall Street', 'Inflation', 'Notenbanken'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'finanzen.net, „Heute im Fokus" vom 1.9.2026: „DAX schließt unter 26.000-Punkten -- Wall Street letztlich tiefer"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen vom 1.9.2026 (dpa-AFX), 20:35 Uhr: „ROUNDUP/Aktien New York Schluss: Inflationssorgen belasten vor allem Tech-Werte"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine", Abruf 2.9.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der zweite Handelstag im September begann so, wie der erste geendet hatte: nach unten. Laut finanzen.net schloss der DAX am Dienstag unter der Marke von 26.000 Punkten, und auch an der Wall Street ging es zum Handelsende bergab.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen Grund liefert dpa-AFX mit: Inflationssorgen hätten vor allem Technologiewerte belastet, heißt es in einer Meldung der Agentur; eine weitere Meldung derselben Agentur nennt zusätzlich den steigenden Ölpreis und Zinssorgen als Bremsen. Wie stark jeder einzelne Faktor wog, sagt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute für Bewegung sorgen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 14:15 Uhr veröffentlichen die USA den ADP-Bericht zur privaten Beschäftigung; erwartet wird laut wallstreet-online ein Plus von 48.000 Stellen nach 44.000 im Vormonat. Um 15:45 Uhr entscheidet die kanadische Notenbank BoC über ihren Leitzins, erwartet wird eine unveränderte Rate von 2,25 Prozent, um 16:30 Uhr folgt die Pressekonferenz. Um 16:00 Uhr stehen zudem die US-Auftragseingänge der Industrie an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Frühindikator zählt, obwohl er nicht der echte Bericht ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der ADP-Bericht misst nur die Beschäftigung in der Privatwirtschaft und stammt von einem Lohnabrechnungsdienstleister, nicht vom US-Arbeitsministerium. Er gilt trotzdem als Vorbote, weil er wenige Tage vor dem offiziellen US-Arbeitsmarktbericht erscheint – einer der Zahlen, an denen sich Zinserwartungen für die kommenden Monate neu ausrichten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein einzelner schwacher Handelstag ist noch kein Trend, und ein einzelner Frühindikator noch keine Gewissheit über den großen Bericht am Freitag. Wer beobachtet, wie beide zusammenspielen, bekommt trotzdem ein besseres Bild davon, warum sich Kurse an einem Tag wie diesem so schnell bewegen können.',
+      },
+    ],
+  },
+  {
+    slug: 'volkswagen-verlaesst-euro-stoxx-50-engie-nokia',
+    title: 'Volkswagen verlässt den Euro Stoxx 50 – Engie und Nokia rücken nach',
+    metaTitle: 'VW raus aus dem Euro Stoxx 50 – Engie, Nokia rein',
+    teaser:
+      'Zum 21. September tauscht Stoxx Volkswagen und Wolters Kluwer gegen Engie und Nokia im Euro Stoxx 50 aus. Eine Begründung für den VW-Rauswurf fehlt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-02T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Euro Stoxx 50', 'Volkswagen', 'Index', 'Autoindustrie'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['volkswagen', 'euro-stoxx-50', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Meldung vom 1.9.2026: „INDEXÄNDERUNG/Engie und Nokia ersetzen VW und Prosus im Euro-Stoxx-50"',
+        url: 'https://www.finanzen.net/nachricht/aktien/indexaenderung-engie-und-nokia-ersetzen-vw-und-prosus-im-euro-stoxx-50-15913151',
+      },
+      {
+        label:
+          'onvista, Neueste Marktberichte vom 1.9.2026 (dpa-AFX): „INDEX-MONITOR/Krisenfolge: Volkswagen (VW) muss EuroStoxx 50 verlassen"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, wO TV vom 1.9.2026: Video zur Aufsichtsratssitzung bei Volkswagen am Freitag',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Indexbetreiber Stoxx hat am Dienstag Änderungen im Euro Stoxx 50 verkündet: Volkswagen und Wolters Kluwer verlassen den Index, Engie und Nokia rücken nach. Wirksam wird der Wechsel zum Handelsbeginn am 21. September.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine eigene Begründung für den Rauswurf von Volkswagen liefert die Meldung nicht. Eine Ticker-Zeile von onvista trägt zwar den Zusatz „Krisenfolge" im Titel, nennt aber selbst keine Einzelheiten – dieser Zusammenhang bleibt an dieser Stelle daher unbelegt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie ein Index seine Mitglieder auswählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Euro Stoxx 50 bildet die 50 größten Unternehmen der Eurozone nach Streubesitz-Marktkapitalisierung ab und wird mehrmals im Jahr überprüft. Rutscht ein Unternehmen im Ranking weit genug ab, während ein anderes aufsteigt, tauscht der Betreiber die Mitglieder aus – unabhängig davon, was im Einzelfall den Kursverlust ausgelöst hat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kursindex, kein Performanceindex',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anders als der DAX, der Dividenden automatisch wieder anlegt und deshalb ein Performanceindex ist, rechnet der Euro Stoxx 50 in seiner Standardversion nur mit den nackten Kursen. Ausschüttungen der enthaltenen Unternehmen tauchen im Indexstand selbst nicht auf – ein Grund, warum ein Vergleich beider Indizes über lange Zeiträume in die Irre führen kann.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Zeitpunkt fällt in eine ohnehin dichte Woche für Volkswagen: Laut wallstreet-online kommt am Freitag der Aufsichtsrat zu einer Sitzung zusammen, bei der drei unterschiedliche Sanierungspläne aufeinandertreffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rauswurf aus einem Index sagt für sich genommen nichts darüber, ob eine Aktie unter- oder überbewertet ist – er spiegelt nur die Marktkapitalisierung zu einem Stichtag. Für Anleger in Indexfonds bedeutet der Wechsel trotzdem etwas Konkretes: ETFs auf den Euro Stoxx 50 müssen die neue Zusammensetzung zum 21. September nachbilden.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-lambda-nvidia-cloud-deal-35-milliarden',
+    title:
+      'Anthropic mietet Cloud-Kapazität für 35 Milliarden Dollar – Nvidia mittendrin',
+    metaTitle: 'Anthropics 35-Milliarden-Deal mit Lambda und Nvidia',
+    teaser:
+      'Anthropic sichert sich einen Cloud-Vertrag über 35 Milliarden Dollar mit Lambda. Nvidia liefert die Chips dahinter und ist zugleich an Lambda selbst beteiligt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-02T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Nvidia', 'Anthropic', 'KI-Infrastruktur', 'Cloud'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 1.9.2026: „NVIDIA-Aktie im Fokus: Milliarden-Deal von Anthropic mit NVIDIA-Investment Lambda"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Reuters/Investing.com, Meldung vom 31.8.2026: „Anthropic signs $35 billion cloud deal with Nvidia-backed Lambda, source says"',
+        url: 'https://www.investing.com/news/stock-market-news/anthropic-signs-35-billion-cloud-deal-with-nvidiabacked-lambda-source-says-4883414',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der KI-Anbieter Anthropic hat sich laut Reuters einen Cloud-Rechenvertrag über 35 Milliarden US-Dollar mit dem Anbieter Lambda gesichert. Lambda liefert dabei Rechenkapazität auf Basis von Nvidia-Chips; an Lambda selbst ist Nvidia beteiligt. Auch finanzen.net führt die Nvidia-Aktie deshalb unter den Werten „im Fokus".',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Zweck des Deals hält sich die Meldung an einen Satz: Er soll laut Reuters zusätzliche Nvidia-Rechenkapazität für die wachsende Nachfrage nach Anthropics KI-Modell Claude bereitstellen. Details zur Vertragslaufzeit oder zur genauen Struktur der Nvidia-Beteiligung an Lambda nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kunde, Lieferant und Investor in einer Lieferkette',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nvidia tritt hier gleich in mehreren Rollen auf: als Chip-Hersteller, dessen Prozessoren Lambda einsetzt, und als Geldgeber, der an Lambda beteiligt ist. Wenn ein Unternehmen sowohl an Zulieferern als auch an deren Kunden beteiligt ist, spricht man von einem Kreislaufgeschäft – ein Muster, das in der aktuellen KI-Infrastruktur häufiger auftaucht, weil wenige Anbieter gleichzeitig Kapital, Chips und Rechenzentren stellen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für Anleger ein Konzentrationsrisiko ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigt der Umsatz von Lambda, weil Anthropic dort einkauft, wirkt sich das auch auf Nvidias Beteiligung aus – einen Teil der Nachfrage nach Nvidia-Chips erzeugt Nvidia damit indirekt selbst mit. Das macht die gemeldeten Wachstumszahlen nicht falsch, es bedeutet nur, dass ein Teil der Nachfragekette enger miteinander verflochten ist, als ein einzelner Deal auf den ersten Blick zeigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Einordnung einzelner KI-Werte lohnt sich der Blick darauf, wie viele der großen Verträge zwischen denselben paar Unternehmen hin- und herlaufen. Das ersetzt keine eigene Einschätzung der Technologie, zeigt aber, wo ein Rückgang bei einem Partner mehrere Bilanzen gleichzeitig träfe.',
+      },
+    ],
+  },
+  {
+    slug: 'nio-verlust-schrumpft-aktie-faellt-trotzdem',
+    title: 'NIO liefert Rekord ab, der Verlust schrumpft – die Aktie fällt trotzdem',
+    metaTitle: 'NIO: Rekordzahlen, Aktie fällt trotzdem',
+    teaser:
+      'NIO steigert Auslieferungen um 49 Prozent und verkleinert seinen Verlust drastisch. Die Aktie reagierte trotzdem mit einem Kursrückgang von über vier Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-09-02T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['NIO', 'Elektroautos', 'Quartalszahlen', 'Erwartungen'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 1.9.2026: „NIO-Aktie im Fokus: Auslieferungen springen um 49 Prozent an, Verlust schrumpft deutlich"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Meldung vom 1.9.2026: „Auslieferungen ziehen an: NIO-Aktie im Fokus"',
+        url: 'https://www.finanzen.net/nachricht/aktien/auslieferungen-ziehen-an-nio-aktie-im-fokus-auslieferungen-springen-um-49-prozent-an-verlust-schrumpft-deutlich-00-15911596',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der chinesische Elektroautobauer NIO hat im zweiten Quartal 2026 107.658 Fahrzeuge ausgeliefert, ein Plus von 49,4 Prozent gegenüber dem Vorjahresquartal. Der Umsatz stieg auf 32,14 Milliarden Yuan, umgerechnet rund 4,74 Milliarden US-Dollar – ein Anstieg von 69,1 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Noch deutlicher fiel die Verbesserung bei den Verlusten aus: Der operative Verlust schrumpfte von 4,91 Milliarden Yuan im Vorjahresquartal auf 347,2 Millionen Yuan, der Nettoverlust sank von 4,99 Milliarden auf 528,0 Millionen Yuan. Bereinigt erzielte NIO sogar ein operatives Ergebnis von 206,9 Millionen Yuan im Plus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und trotzdem: die Aktie fiel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz dieser Zahlen gab die NIO-Aktie am Tag der Veröffentlichung um 4,14 Prozent auf 4,06 US-Dollar nach. Was genau Anleger an den Zahlen enttäuschte, geht aus den vorliegenden Quellen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn Wachstum nicht reicht, weil es erwartet war',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kurs reagiert nicht auf eine Zahl allein, sondern auf den Unterschied zwischen dieser Zahl und dem, was der Markt vorher schon eingepreist hatte. Ein Unternehmen kann sich gegenüber dem Vorjahr massiv verbessern und trotzdem hinter den – oft nicht öffentlich bekannten – Erwartungen von Analysten zurückbleiben; der Kurs bewegt sich dann an der Erwartungslücke, nicht an der reinen Verbesserung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer nur die Schlagzeile „Verlust schrumpft deutlich" liest, bekommt die halbe Geschichte. Die andere Hälfte – was der Markt erwartet hatte – lässt sich aus einer einzelnen Kursreaktion nie vollständig ablesen, sie ist aber der Grund, warum gute Nachrichten und fallende Kurse sich nicht ausschließen.',
+      },
+    ],
+  },
+  {
+    slug: 'hugo-boss-stoppt-aktienrueckkauf-frasers',
+    title: 'Hugo Boss stoppt Aktienrückkauf, nachdem Frasers auf über 50 Prozent will',
+    metaTitle: 'Hugo Boss stoppt Rückkauf wegen Frasers-Vorstoß',
+    teaser:
+      'Nach nicht einmal einer Woche beendet Hugo Boss seinen Aktienrückkauf. Auslöser ist der Plan von Frasers, den Anteil auf über 50 Prozent aufzustocken.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-02T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Hugo Boss', 'Aktienrückkauf', 'Übernahme', 'Frasers'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Nachrichten vom 1.9.2026: „Hugo Boss beendet Aktienrückkaufprogramm – das steckt dahinter"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, EQS-Adhoc vom 1.9.2026: „HUGO BOSS AG: HUGO BOSS TERMINATES SHARE BUYBACK PROGRAM"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Meldung vom 1.9.2026: „Abbruch des Aktienrückkaufs – Reaktion auf den Einstieg von Frasers"',
+        url: 'https://www.finanzen.net/nachricht/aktien/wertschoepfungspotenzial-hugo-boss-aktie-abbruch-des-aktienrueckkaufs-reaktion-auf-den-einstieg-von-frasers-15913064',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Erst am 24. August gestartet, schon am 1. September wieder gestoppt: Hugo Boss hat sein Aktienrückkaufprogramm nach nicht einmal einer Woche beendet. Rund 5 Millionen Euro waren laut finanzen.net bis dahin für Rückkäufe ausgegeben.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser war laut derselben Quelle die Ankündigung des britischen Großaktionärs Frasers Group, seinen Anteil auf über 50 Prozent aufzustocken – aktuell hält Frasers demnach 47,89 Prozent. Zusätzlich kündigte Frasers an, seine Unterstützung für Aufsichtsratschef Stephan Sturm zu überprüfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum sich ein Rückkauf und eine Übernahme in die Quere kommen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Aktienrückkauf verringert die Zahl der ausstehenden Aktien und erhöht damit rechnerisch den prozentualen Anteil aller verbliebenen Aktionäre – auch den von Frasers. Ob genau das der Grund für den Stopp war, sagt die Meldung nicht ausdrücklich; Hugo Boss selbst begründet den Schritt laut finanzen.net mit der „Reaktion auf den Einstieg von Frasers", ohne den Mechanismus näher zu erläutern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Unternehmen hält an seiner Linie fest',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hugo Boss erklärte laut finanzen.net, weiterhin von der eigenen Strategie und ihrem langfristigen Wertschöpfungspotenzial überzeugt zu sein, und werde die Wiederaufnahme eines Rückkaufprogramms „zu gegebener Zeit" prüfen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein gestopptes Rückkaufprogramm ist keine Gewinnwarnung, sondern in diesem Fall eine Reaktion auf einen laufenden Machtkampf um die Kontrolle des Unternehmens. Für Anleger zeigt der Fall, dass Rückkaufankündigungen – anders als etwa Dividenden – jederzeit widerrufbar sind, wenn sich die Lage ändert.',
+      },
+    ],
+  },
+  {
+    slug: 'oel-steigt-gold-kaum-silber-faellt-nach-iran-eskalation',
+    title: 'Öl steigt, Gold zuckt kaum, Silber fällt – nach neuer Iran-Eskalation',
+    metaTitle: 'Öl, Gold und Silber reagieren verschieden auf Iran-Eskalation',
+    teaser:
+      'Nach neuen Angriffen zwischen den USA und dem Iran springt Brent-Öl um fast fünf Prozent. Gold bewegt sich kaum, Silber gibt deutlich stärker nach.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-02T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Gold', 'Silber', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'gold', 'silber'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News vom 1.9.2026 (dpa-AFX), 21:11 Uhr: „GESAMT-ROUNDUP: USA und Iran verkünden neue gegenseitige Angriffe"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 1.9.2026: „Ölpreis steigt wieder: Straße von Hormus: Tanker unter Beschuss"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'wallstreet-online, Aktuelle Rohstoffpreise, Abruf 2.9.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach einem Beschuss in der Straße von Hormus hat sich die Lage zwischen den USA und dem Iran laut onvista weiter zugespitzt: Ein GESAMT-ROUNDUP der Nachrichtenagentur dpa-AFX vom Montagabend meldet neue gegenseitige Angriffe zwischen beiden Seiten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rohstoffmärkte reagierten sehr unterschiedlich. Beim Abruf der wallstreet-online-Kursliste in der Nacht zu Mittwoch stand Öl der Sorte Brent 4,92 Prozent im Plus, Heizöl sogar 6,28 Prozent höher. Gold bewegte sich dagegen kaum – minus 0,11 Prozent –, und Silber gab um 3,62 Prozent nach.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum nicht jeder sichere Hafen gleich reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Öl reagiert auf diese Meldung direkt: Ein Konflikt an einer Meerenge, durch die ein großer Teil der weltweiten Öltransporte läuft, ist ein unmittelbares Angebotsrisiko. Gold gilt zwar ebenfalls als Krisenwährung, wird aber zugleich stark von der Zinserwartung bestimmt – begehrt ist ein Vermögenswert ohne Zinskupon besonders dann, wenn Zinsen fallen oder fallen sollen. Solange diese Erwartung nicht mit der geopolitischen Lage mitzieht, bleibt der Effekt auf Gold gedämpft.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Silber ist auch ein Industriemetall',
+      },
+      {
+        type: 'paragraph',
+        text: 'Silber wird anders als Gold zu einem erheblichen Teil in der Industrie verbraucht, etwa in Elektronik und Solarzellen. Ein Konflikt, der über höhere Energiepreise auch die Industrieproduktion bremsen könnte, wirkt auf die Nachfrageseite von Silber deshalb anders als auf Gold, das kaum industriell verbraucht wird. Die vorliegenden Quellen nennen diesen Zusammenhang nicht ausdrücklich – er folgt aus der unterschiedlichen Verwendung beider Metalle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vier Rohstoffe, eine Nachrichtenlage, vier unterschiedliche Bewegungen: Das zeigt, wie wenig der Sammelbegriff „sichere Häfen" im Alltag hilft. Wer Rohstoffe zur Risikostreuung hält, sollte wissen, dass sie sich in ein und derselben Krise durchaus in verschiedene Richtungen bewegen können.',
+      },
+    ],
+  },
+  {
     slug: 'dax-faellt-nach-rekordlauf-tagestermine',
     title: 'DAX fällt nach Rekordlauf zurück – das steht heute an',
     metaTitle: 'DAX nach Rekordlauf tiefer – die Termine des Tages',
