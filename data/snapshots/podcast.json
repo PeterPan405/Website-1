@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-09-01T08:54:52.698Z",
+  "abgerufenAm": "2026-09-02T00:53:25.280Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "dax-faellt-zum-zweiten-tag-in-folge-nio-verbessert-sich-massiv-und-nvidia-steckt",
+      "titel": "DAX fällt zum zweiten Tag in Folge, NIO verbessert sich massiv und Nvidia steckt mittendrin",
+      "beschreibung": "DAX startet schwach in den September, NIO überzeugt und die Aktie fällt trotzdem – hinter Anthropics 35-Milliarden-Dollar-Deal steckt Nvidia gleich zweifach. Der DAX schloss laut finanzen.net am Dienstag unter der Marke von 26.000 Punkten, an der Wall Street ging es laut dpa-AFX zum Handelsende ebenfalls bergab – als Grund werden vor allem Inflationssorgen bei Technologiewerten genannt.\n\nWir sprechen über Nvidia steckt mittendrin, Volkswagen fliegt aus dem Euro Stoxx 50, Hugo Boss stoppt Aktienrückkauf mitten im Machtkampf, Nach neuer Iran-Eskalation. Kompakt in rund fünf Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:34) DAX fällt zum zweiten Tag in Folge\n(1:13) NIO verbessert sich massiv\n(1:53) Nvidia steckt mittendrin\n(2:25) Volkswagen fliegt aus dem Euro Stoxx 50\n(3:04) Hugo Boss stoppt Aktienrückkauf mitten\n(3:40) Nach neuer Iran-Eskalation\n(4:17) Fazit\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-09-02",
+      "dauerSekunden": 346,
+      "url": "https://iminvests.de/podcast-audio/2026-09-02.mp3",
+      "youtubeId": "7LP9RpYTOP8"
+    },
     {
       "slug": "dax-faellt-nach-rekordlauf-zurueck-und-oel-springt-ueber-90-dollar-nach-iran-ang",
       "titel": "DAX fällt nach Rekordlauf zurück und Öl springt über 90 Dollar nach Iran-Angriffen",
