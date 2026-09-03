@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-02T09:46:02.743Z",
+  "abgerufenAm": "2026-09-03T09:59:00.259Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-07-03",
       "bis": "2026-09-17",
       "zeilen": 3213,
-      "kommendGesamt": 217,
+      "kommendGesamt": 216,
       "spalten": [
         "６月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in June 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月20日 現在 As of 2026/8/20 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -372,32 +372,26 @@
     "AVGO": {
       "name": "Broadcom Inc.",
       "bisher": [
+        "2026-09-02",
         "2026-06-03",
         "2026-03-04",
         "2025-12-11",
         "2025-09-04",
         "2025-06-05",
         "2025-03-06",
-        "2024-12-12",
-        "2024-09-05"
+        "2024-12-12"
       ],
       "bisherZeiten": {
+        "2026-09-02": "16:26",
         "2026-06-03": "16:21",
         "2026-03-04": "16:16",
         "2025-12-11": "16:17",
         "2025-09-04": "16:19",
         "2025-06-05": "16:27",
         "2025-03-06": "16:19",
-        "2024-12-12": "16:23",
-        "2024-09-05": "16:21"
+        "2024-12-12": "16:23"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-09-03",
-          "basis": "2025-09-04",
-          "streuungTage": 0,
-          "newYorkerZeit": "16:19"
-        },
         {
           "erwartet": "2026-12-10",
           "basis": "2025-12-11",
@@ -415,6 +409,12 @@
           "basis": "2026-06-03",
           "streuungTage": 1,
           "newYorkerZeit": "16:21"
+        },
+        {
+          "erwartet": "2027-09-01",
+          "basis": "2026-09-02",
+          "streuungTage": 1,
+          "newYorkerZeit": "16:26"
         }
       ]
     },
@@ -3340,24 +3340,24 @@
     "SNOW": {
       "name": "Snowflake Inc.",
       "bisher": [
+        "2026-09-02",
         "2026-05-27",
         "2026-02-25",
         "2025-12-03",
         "2025-08-27",
         "2025-05-21",
         "2025-02-26",
-        "2024-11-20",
-        "2024-08-21"
+        "2024-11-20"
       ],
       "bisherZeiten": {
+        "2026-09-02": "16:08",
         "2026-05-27": "16:07",
         "2026-02-25": "16:07",
         "2025-12-03": "16:06",
         "2025-08-27": "16:06",
         "2025-05-21": "16:06",
         "2025-02-26": "16:07",
-        "2024-11-20": "16:07",
-        "2024-08-21": "16:07"
+        "2024-11-20": "16:07"
       },
       "vorhersagen": [
         {
@@ -3377,6 +3377,12 @@
           "basis": "2026-05-27",
           "streuungTage": 7,
           "newYorkerZeit": "16:07"
+        },
+        {
+          "erwartet": "2027-09-01",
+          "basis": "2026-09-02",
+          "streuungTage": 7,
+          "newYorkerZeit": "16:08"
         }
       ]
     },
@@ -13812,12 +13818,6 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-09-03",
-          "basis": "2025-09-04",
-          "streuungTage": 7,
-          "newYorkerZeit": "16:10"
-        },
-        {
           "erwartet": "2026-12-10",
           "basis": "2025-12-11",
           "streuungTage": 7,
@@ -17593,7 +17593,7 @@
     "LEG.DE": "2026-08-31",
     "LGEN.L": "2026-09-01",
     "LHA.DE": "2026-09-02",
-    "LI.PA": "2026-08-18",
+    "LI.PA": "2026-09-03",
     "LIGHT.AS": "2026-08-18",
     "LLOY.L": "2026-08-18",
     "LONN.SW": "2026-08-18",
