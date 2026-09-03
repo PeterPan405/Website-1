@@ -101,6 +101,385 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'dell-glaenzt-broadcom-faellt-trotz-ki-boom',
+    title: 'Dell glänzt mit KI-Boom, Broadcom fällt trotz Rekordumsatz',
+    teaser:
+      'Zwei Server- und Chipkonzerne, ein Quartal, zwei Kursrichtungen: Dell steigt nach Rekordumsatz, Broadcom fällt trotz besserer Zahlen als erwartet.',
+    category: 'Märkte',
+    publishedAt: '2026-09-03T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dell', 'Broadcom', 'KI-Boom', 'Quartalszahlen'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dell', 'broadcom'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 2.9.2026: „Dell-Aktie zieht kräftig an: Rekordumsatz und angehobene Prognose durch KI-Server-Boom"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Nachrichten vom 2.9.2026: „Dell schon 238 Prozent im Plus – Analysten zünden den nächsten Kurs-Hammer"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Top-News, Abruf 3.9.2026, 00:17 Uhr: „Broadcom-Aktie sackt ab: Umsatz verdreifacht, Erwartungen übertroffen - Ausblick belastet"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News vom 2.9.2026, 20:47 Uhr (dpa-AFX): „Broadcom wächst dank hoher KI-Nachfrage weiter rasant - Ausblick enttäuscht"',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Firmen, die beide am KI-Boom verdienen – und zwei völlig unterschiedliche Kursreaktionen. Dell zieht laut finanzen.net nach einem Rekordumsatz und einer angehobenen Prognose kräftig an. Die Broadcom-Aktie fällt, obwohl der Umsatz laut Quellenlage kräftig gewachsen ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dell: Ist-Zahlen und Ausblick ziehen am selben Strang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dell hat sich laut wallstreet-online im bisherigen Jahresverlauf 2026 um 238 Prozent verteuert, finanzen.net beschreibt es als „mehr als verdreifacht". Nach den aktuellen Zahlen haben Citi und Bank of America ihre Kursziele laut finanzen.net auf 600 US-Dollar angehoben. Als Treiber nennt die Meldung nur den KI-Server-Boom, ohne das weiter auszuführen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Broadcom: gute Zahlen, ein Ausblick, der bremst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei Broadcom melden mehrere Quellen übereinstimmend Wachstum und einen laut finanzen.net „verdreifachten" Umsatz, der die Erwartungen übertroffen habe. Belastet habe stattdessen der Ausblick, berichtet dpa-AFX über onvista. Eine einzelne Ticker-Zeile in den Übersichten beschreibt dasselbe Quartal anders und spricht von verpassten Erwartungen – die Mehrheit der gelesenen Meldungen widerspricht dem aber.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das zeigt, wie wenig eine einzelne Schlagzeile manchmal trägt: Wer nur eine Meldung liest, bekäme hier ein anderes Bild vom selben Quartal.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurs reagiert nicht auf das, was ein Unternehmen bereits verdient hat, sondern auf das, was Anleger für die kommenden Monate erwartet hatten. Bei Dell trafen Zahlen und Ausblick die Erwartung, bei Broadcom offenbar nur die Zahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'elliott-attackiert-die-telekom-fusionsplaene',
+    title: 'Elliott greift bei der Telekom ein – gegen die T-Mobile-Fusion',
+    teaser:
+      'Der aktivistische Investor Elliott soll laut Kreisen bei der Deutschen Telekom eingestiegen sein, um eine Fusion mit der US-Tochter T-Mobile US zu verhindern.',
+    category: 'Märkte',
+    publishedAt: '2026-09-03T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Deutsche Telekom', 'T-Mobile US', 'Elliott', 'Aktivistischer Investor'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['deutsche-telekom', 't-mobile-us'],
+    sources: [
+      {
+        label:
+          'onvista, Unternehmensmeldungen vom 2.9.2026 (dpa-AFX): „Kreise: Elliott steigt bei der Telekom ein - Ziel: keine Fusion mit T-Mobile US"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Top-News, Abruf 3.9.2026, 00:17 Uhr: „Elliott greift bei Deutsche Telekom-Aktie zu: Fusion mit T-Mobile US soll verhindert werden"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der aktivistische Investor Elliott soll laut einem Bericht, der sich auf Kreise beruft, bei der Deutschen Telekom eingestiegen sein. Ziel sei es, eine Fusion mit der US-Tochter T-Mobile US zu verhindern. Bestätigt ist das nicht – „Kreise" bedeutet, dass sich die Meldung auf nicht namentlich genannte Quellen stützt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein aktivistischer Investor überhaupt tut',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein aktivistischer Investor kauft sich in ein Unternehmen ein, um öffentlich Druck auf dessen Strategie auszuüben – anders als ein klassischer Anleger, der Kursgewinne meist still abwartet. Das ist allgemeines Hintergrundwissen und steht so nicht in der gelesenen Meldung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offen lässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Weder die Höhe der Beteiligung noch die genaue Begründung gehen aus der Meldung hervor. Warum Elliott eine Fusion mit T-Mobile US ablehnt, wird nicht erklärt – ein Punkt, an dem sich in den kommenden Tagen weitere Meldungen anschließen dürften.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Großaktionär kann Pläne eines Konzerns öffentlich infrage stellen, auch wenn Vorstand und Aufsichtsrat eine andere Richtung verfolgen. Ob sich Elliott durchsetzt, bleibt offen.',
+      },
+    ],
+  },
+  {
+    slug: 'delivery-hero-vorstand-stuetzt-uber-angebot',
+    title: 'Delivery Hero: Vorstand empfiehlt das Uber-Angebot',
+    teaser:
+      'Aufsichtsrat und Vorstand von Delivery Hero unterstützen laut finanzen.net das Übernahmeangebot von Uber, zu Preis oder Bedingungen schweigt die Meldung.',
+    category: 'Märkte',
+    publishedAt: '2026-09-03T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Delivery Hero', 'Uber', 'Übernahme', 'M&A'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['delivery-hero', 'uber'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 2.9.2026: „Delivery Hero-Aktie: Aufsichtsrat und Vorstand unterstützen Übernahmeangebot von Uber"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Aufsichtsrat und Vorstand von Delivery Hero stellen sich laut finanzen.net hinter das Übernahmeangebot von Uber. Zahlen zum gebotenen Preis oder zu den Bedingungen des Angebots nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Empfehlung des Vorstands zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei einer Übernahme entscheiden am Ende die Aktionäre, ob sie ihre Anteile andienen. Empfehlen Vorstand und Aufsichtsrat das Angebot öffentlich, gilt eine Übernahme als „freundlich" – im Unterschied zu einem feindlichen Angebot, gegen das sich die Führung des Zielunternehmens stemmt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kontrast zum selben Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Morgen meldet dpa-AFX über onvista, dass der Investor Elliott bei der Deutschen Telekom gegen eine geplante Fusion mit T-Mobile US vorgehen soll. Zwei deutsche Unternehmen, zwei entgegengesetzte Reaktionen auf einen möglichen Zusammenschluss – einmal Zustimmung des Vorstands, einmal Widerstand eines Großaktionärs.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Empfehlung des Vorstands ist kein Kaufsignal, sondern eine Verfahrensfrage – sie sagt, wie leicht oder schwer ein Zusammenschluss durchzusetzen sein dürfte, nicht, ob der gebotene Preis angemessen ist.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-haelt-4300-dollar-silber-zieht-staerker-an',
+    title: 'Gold hält 4.300 Dollar, Silber zieht deutlich stärker an',
+    teaser:
+      'Der Goldpreis pendelt seit Tagen um 4.300 US-Dollar, während Silber laut finanzen.net an einem einzigen Morgen fast zwei Prozent zulegt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-03T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Edelmetalle', 'Notenbanken'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label: 'finanzen.net, Aktuelle Rohstoffpreise, Abruf 3.9.2026, 00:17 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'goldreporter.de, Marktbericht vom 2. September 2026: „Goldpreis bleibt über 4.300 USD. Steigende US-Renditen belasten, während das durchschnittliche Krügerrand-Aufgeld nach dem Kursrückgang auf 4,3 Prozent steigt."',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'finanzen.net, Rohstoffnachrichten vom 2.9.2026 (dpa-AFX): „Niederlande ziehen Teil von Goldreserve aus den USA ab"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zum Abruf um 00:17 Uhr notierte Gold laut finanzen.net bei 4.385,50 US-Dollar, ein Minus von 0,04 Prozent. Silber legte zur selben Zeit um 1,87 Prozent auf 65,32 US-Dollar zu – eine deutlich größere Bewegung am selben Morgen, an derselben Stelle gemessen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gold pendelt, seit Tagen um dieselbe Marke',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter beschreibt den Goldpreis in seinem Marktbericht vom 2. September als über 4.300 US-Dollar gehalten, gebremst von steigenden US-Renditen. Das durchschnittliche Aufgeld auf Krügerrand-Münzen sei nach dem jüngsten Kursrückgang auf 4,3 Prozent gestiegen – ein Hinweis darauf, dass Käufer trotz schwankendem Kurs weiter zugreifen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Silber stärker schwankt, sagt die Quelle nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die gelesenen Quellen erklären nicht, warum Silber an diesem Morgen so viel stärker zulegte als Gold. Ein Grund, den Fachleute für Silber allgemein nennen, ist der höhere Anteil industrieller Nachfrage – das ist aber allgemeines Hintergrundwissen und keine Aussage der gelesenen Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Notenbank zieht in die Gegenrichtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel dazu meldet dpa-AFX, dass die Niederlande einen Teil ihrer Goldreserve aus den USA abziehen. Wie viel genau, nennt die Meldung nicht. Das zeigt einen anderen Blickwinkel auf Gold: Notenbanken lagern es aus strategischen Gründen, private Käufer aus Sorge um den Kurs – zwei verschiedene Motive für dasselbe Metall.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Edelmetalle, die oft in einem Atemzug genannt werden, können sich am selben Morgen unterschiedlich stark bewegen. Wer nur den Goldpreis verfolgt, übersieht die größere Schwankung nebenan.',
+      },
+    ],
+  },
+  {
+    slug: 'japans-nullzins-aera-ist-vorbei',
+    title: 'Japans Nullzins-Ära ist vorbei – was das bedeutet',
+    teaser:
+      'Finanzen.net meldet das Ende von Japans Nullzins-Ära, der Yen legte am Morgen deutlich zum Dollar zu – für Sparer und Unternehmen beginnt ein neues Kapitel.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-03T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Japan', 'Notenbank', 'Zinsen', 'Yen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['eur-jpy'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Startseite, Abruf 3.9.2026, 00:17 Uhr: „Zins so hoch wie lange nicht: Japans Nullzins-Ära ist vorbei: Was heißt das für Sparer und Unternehmen?"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Devisennachrichten vom 2.9.2026 (Markt Bote): „USD/JPY: USD/JPY stürzt ab -0,83 % auf 158,83800 JPY"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Finanzen.net meldet auf der Startseite unter der Überschrift „Zins so hoch wie lange nicht", dass Japans Nullzins-Ära vorbei sei. Details zur genauen Zinshöhe oder zum Entscheidungszeitpunkt liefert die Teaser-Zeile nicht – nur die Frage, was das für Sparer und Unternehmen bedeutet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Yen bewegt sich bereits',
+      },
+      {
+        type: 'paragraph',
+        text: 'Passend dazu meldet Markt Bote über finanzen.net, dass USD/JPY um 0,83 Prozent auf 158,838 Yen gefallen ist – der Dollar wurde also günstiger, der Yen stärker. Einen ausdrücklichen Zusammenhang mit der Zinsmeldung stellt die Quelle nicht her, die zeitliche Nähe legt ihn aber nahe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Ende der Nullzinsphase für Sparer und Unternehmen ändert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Allgemein gilt: Steigen die Leitzinsen einer Notenbank von nahe null, werden Spareinlagen in dieser Währung wieder verzinst, während Kredite für Unternehmen teurer werden. Ob und wie stark das in Japan konkret eintritt, sagt die gelesene Meldung nicht – das ist eingeordnetes Grundwissen, keine Zahl aus der Quelle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine jahrzehntelange Nullzinsphase zu beenden, verändert die Rechnung für alle, die in Yen sparen oder sich in Yen verschulden. Wie schnell sich das auf DAX-Anleger auswirkt, hängt davon ab, wie stark der sogenannte Yen-Carry-Trade betroffen ist – ein Thema, zu dem die heutigen Quellen keine weiteren Zahlen liefern.',
+      },
+    ],
+  },
+  {
+    slug: 'anleihen-unter-druck-das-steht-heute-an',
+    title: 'Anleiherenditen steigen – das steht heute auf dem Kalender',
+    teaser:
+      'Weltweit ziehen die Anleiherenditen an, und der Donnerstag bringt gleich mehrere Konjunkturdaten – von Einkaufsmanagerindizes bis zu Erzeugerpreisen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-03T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Anleihen', 'Renditen', 'Konjunkturdaten', 'Wirtschaftskalender'],
+    relatedTopics: ['staatsanleihe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Startseite, Abruf 3.9.2026, 00:17 Uhr: „Staatsanleihen: Globale Anleihen stehen unter Druck: Renditen schießen nach oben"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Wirtschaftskalender „Kommende Termine", Abruf 3.9.2026, 00:17 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Weltweit stehen Staatsanleihen laut wallstreet-online unter Druck, die Renditen schießen nach oben – eine Begründung liefert die Teaser-Zeile nicht. Der Donnerstag selbst bringt gleich mehrere Termine, die zeigen könnten, wohin sich das weiterentwickelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Vormittag gehört den Einkaufsmanagerindizes',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 09:15 Uhr steht laut Wirtschaftskalender der spanische HCOB Services PMI an, Prognose 59 Punkte nach zuvor 58,3. Um 09:45 Uhr folgt der italienische Services-Wert (Prognose 53,3, zuvor 52,5), um 09:50 Uhr der französische Services- und Composite-PMI (jeweils Prognose 48,4 beziehungsweise 48,8, unverändert zum Vormonat). Um 09:55 Uhr meldet Deutschland seinen HCOB Composite PMI, Prognose 51 Punkte – exakt der Wert des Vormonats.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Um 11 Uhr folgen die Erzeugerpreise',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 11:00 Uhr steht laut Kalender der Erzeugerpreisindex im Monatsvergleich an, Prognose plus 1,2 Prozent nach zuvor minus 0,3 Prozent. Zur Jahresrate liegt keine Prognose vor, der Vormonatswert lag bei 4,6 Prozent. Erzeugerpreise gelten als Frühindikator für die spätere Verbraucherinflation, weil Unternehmen gestiegene Einkaufspreise oft erst mit Verzögerung weitergeben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für Anleihen zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Steigende Erzeugerpreise nähren Sorgen vor mehr Inflation, und mehr erwartete Inflation drückt auf die Kurse bestehender Anleihen mit fester Verzinsung – ihre Rendite steigt dadurch automatisch. Ob genau das hinter der heutigen Bewegung steckt, sagen die Quellen nicht ausdrücklich, der zeitliche Zusammenhang mit dem Kalender liegt aber nahe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was daraus folgt',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Frühindikator wie ein Einkaufsmanagerindex bewegt selten allein den Markt. Erst im Zusammenspiel mehrerer Zahlen an einem Vormittag entsteht das Bild, auf das Anleihehändler reagieren.',
+      },
+    ],
+  },
+  {
     slug: 'dax-unter-26000-punkten-adp-und-boc-heute-im-fokus',
     title: 'DAX unter 26.000 Punkten – ADP und BoC heute im Fokus',
     teaser:
