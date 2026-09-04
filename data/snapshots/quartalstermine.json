@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-03T09:59:00.259Z",
+  "abgerufenAm": "2026-09-04T09:47:03.083Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -7,27 +7,27 @@
   },
   "herkunft": {
     "tokio": {
-      "stand": "2026-08-06",
-      "von": "2026-07-03",
-      "bis": "2026-09-17",
-      "zeilen": 3213,
-      "kommendGesamt": 216,
+      "stand": "2026-09-03",
+      "von": "2026-08-25",
+      "bis": "2026-10-23",
+      "zeilen": 656,
+      "kommendGesamt": 643,
       "spalten": [
-        "６月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in June 2026年8月6日 現在 As of 2026/8/6 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
-        "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年8月20日 現在 As of 2026/8/20 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
+        "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
+        "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
-      "inListe": 67,
-      "kommend": 0,
-      "abgeleitet": 67,
+      "inListe": 3,
+      "kommend": 3,
+      "abgeleitet": 0,
       "abstandJeStelle": {
-        "1": 38,
-        "2": 41,
-        "3": 41,
+        "1": 42,
+        "2": 43,
+        "3": 42,
         "4": 44
       },
       "streuungJeStelle": {
-        "1": 7,
-        "2": 6,
+        "1": 8,
+        "2": 5,
         "3": 5,
         "4": 4
       }
@@ -3585,24 +3585,24 @@
     "ZS": {
       "name": "Zscaler, Inc.",
       "bisher": [
+        "2026-09-03",
         "2026-05-26",
         "2026-02-26",
         "2025-11-25",
         "2025-09-02",
         "2025-05-29",
         "2025-03-05",
-        "2024-12-02",
-        "2024-09-03"
+        "2024-12-02"
       ],
       "bisherZeiten": {
+        "2026-09-03": "16:08",
         "2026-05-26": "16:08",
         "2026-02-26": "16:07",
         "2025-11-25": "16:07",
         "2025-09-02": "16:06",
         "2025-05-29": "16:08",
         "2025-03-05": "16:06",
-        "2024-12-02": "16:08",
-        "2024-09-03": "16:07"
+        "2024-12-02": "16:08"
       },
       "vorhersagen": [
         {
@@ -3620,6 +3620,12 @@
         {
           "erwartet": "2027-05-25",
           "basis": "2026-05-26",
+          "streuungTage": 2,
+          "newYorkerZeit": "16:08"
+        },
+        {
+          "erwartet": "2027-09-02",
+          "basis": "2026-09-03",
           "streuungTage": 2,
           "newYorkerZeit": "16:08"
         }
@@ -5471,39 +5477,39 @@
         "2024-10-28"
       ],
       "bisherZeiten": {
-        "2026-07-28": "12:07",
-        "2026-04-29": "12:12",
-        "2026-02-10": "11:08",
-        "2025-10-23": "12:08",
-        "2025-07-30": "12:08",
-        "2025-05-05": "12:07",
-        "2025-02-05": "11:09",
-        "2024-10-28": "12:07"
+        "2026-07-28": "16:07",
+        "2026-04-29": "16:12",
+        "2026-02-10": "16:08",
+        "2025-10-23": "16:08",
+        "2025-07-30": "16:08",
+        "2025-05-05": "16:07",
+        "2025-02-05": "16:09",
+        "2024-10-28": "16:07"
       },
       "vorhersagen": [
         {
           "erwartet": "2026-10-22",
           "basis": "2025-10-23",
           "streuungTage": 4,
-          "newYorkerZeit": "12:08"
+          "newYorkerZeit": "16:08"
         },
         {
           "erwartet": "2027-02-09",
           "basis": "2026-02-10",
           "streuungTage": 6,
-          "newYorkerZeit": "11:08"
+          "newYorkerZeit": "16:08"
         },
         {
           "erwartet": "2027-04-28",
           "basis": "2026-04-29",
           "streuungTage": 5,
-          "newYorkerZeit": "12:12"
+          "newYorkerZeit": "16:12"
         },
         {
           "erwartet": "2027-07-27",
           "basis": "2026-07-28",
           "streuungTage": 1,
-          "newYorkerZeit": "12:07"
+          "newYorkerZeit": "16:07"
         }
       ]
     },
@@ -13797,24 +13803,24 @@
     "LULU": {
       "name": "lululemon athletica inc.",
       "bisher": [
+        "2026-09-03",
         "2026-06-04",
         "2026-03-17",
         "2025-12-11",
         "2025-09-04",
         "2025-06-05",
         "2025-03-27",
-        "2024-12-05",
-        "2024-08-29"
+        "2024-12-05"
       ],
       "bisherZeiten": {
+        "2026-09-03": "16:07",
         "2026-06-04": "16:09",
         "2026-03-17": "16:12",
         "2025-12-11": "16:08",
         "2025-09-04": "16:10",
         "2025-06-05": "16:10",
         "2025-03-27": "16:10",
-        "2024-12-05": "16:11",
-        "2024-08-29": "16:13"
+        "2024-12-05": "16:11"
       },
       "vorhersagen": [
         {
@@ -13834,6 +13840,12 @@
           "basis": "2026-06-04",
           "streuungTage": 0,
           "newYorkerZeit": "16:09"
+        },
+        {
+          "erwartet": "2027-09-02",
+          "basis": "2026-09-03",
+          "streuungTage": 0,
+          "newYorkerZeit": "16:07"
         }
       ]
     },
@@ -17174,6 +17186,45 @@
           "herkunft": "jpx"
         }
       ]
+    },
+    "9983.T": {
+      "name": "FAST RETAILING CO.,LTD.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-08",
+          "basis": "2026-08-31",
+          "streuungTage": 0,
+          "angekuendigt": true,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "3382.T": {
+      "name": "Seven & i Holdings Co.,Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-08",
+          "basis": "2027-02-28",
+          "streuungTage": 0,
+          "angekuendigt": true,
+          "herkunft": "jpx"
+        }
+      ]
+    },
+    "6506.T": {
+      "name": "YASKAWA Electric Corporation",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-10-09",
+          "basis": "2027-02-28",
+          "streuungTage": 0,
+          "angekuendigt": true,
+          "herkunft": "jpx"
+        }
+      ]
     }
   },
   "zuletztVersucht": {
@@ -17594,7 +17645,7 @@
     "LGEN.L": "2026-09-01",
     "LHA.DE": "2026-09-02",
     "LI.PA": "2026-09-03",
-    "LIGHT.AS": "2026-08-18",
+    "LIGHT.AS": "2026-09-04",
     "LLOY.L": "2026-08-18",
     "LONN.SW": "2026-08-18",
     "LOTB.BR": "2026-08-18",
