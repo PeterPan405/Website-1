@@ -136,3 +136,91 @@ export function sollWecken(lage: Weckerlage): Weckentscheidung {
     grund: 'die Ausgabe des Tages fehlt auf main, und die Kette läuft nicht',
   }
 }
+
+/* ------------------------------------------------------------ Der Alarm */
+
+/**
+ * Die Minute, ab der eine fehlende Ausgabe gemeldet wird: 03:11 UTC.
+ *
+ * Dieselbe Uhrzeit, die `ausgabe-waechter.yml` als Cron trägt, und aus
+ * demselben Grund: 5:11 Uhr deutscher Sommerzeit liegt **vor** der Zusage von
+ * 6:00. Ein Alarm danach meldete, dass sie schon gebrochen ist.
+ */
+export const ALARM_MINUTE = 191
+
+/**
+ * Soll der Ausgabe-Wächter jetzt angestoßen werden?
+ *
+ * ## Warum das hier noch dazukommt
+ *
+ * Am 4. September 2026 fehlten Nachrichten und Folge, und **der Wächter, der
+ * genau das melden soll, ist nicht gelaufen** – sein letzter Lauf war am Tag
+ * davor. Er hängt an `schedule`, und GitHub verwirft geplante Läufe.
+ *
+ * Gemerkt hat es der Betreiber auf der Website. Damit ist genau der Fall
+ * eingetreten, gegen den dieser Workflow gebaut wurde: der stille Fehler.
+ *
+ * **Ein Alarm, der an derselben Mechanik hängt wie das, was er überwacht, ist
+ * keiner.** Der Wecker oben hängt seit dem 28. August am Dauerlauf; der Alarm
+ * gehört aus demselben Grund dorthin. Der Cron im Wächter bleibt stehen – zwei
+ * Wege sind hier richtig, und ein doppelter Lauf kostet vierzig Sekunden.
+ *
+ * ## Warum eine eigene Angabe statt `ausgabeSteht`
+ *
+ * Weil hier die **Umkehrung** von `ausgabeSteht` nicht taugt. Der Aufrufer
+ * kennt drei Antworten – steht, fehlt, unklar –, und `sollWecken` bekommt die
+ * dritte gar nicht erst zu sehen: `scripts/tagesausgabe-wecken.ts` weist sie
+ * vorher ab. Wer hier `!ausgabeSteht` schriebe, müsste sich auf dieselbe
+ * Vorprüfung verlassen, und ein Alarm darf sich nicht darauf verlassen, dass
+ * jemand anders vorher aufgeräumt hat: Ein überflüssiger Anstoß ist billig,
+ * eine überflüssige Mail nicht. Ein Alarm, der gelegentlich grundlos kommt,
+ * wird nach der dritten Mail nicht mehr gelesen.
+ */
+export interface Alarmlage {
+  /** Minuten seit Mitternacht UTC. */
+  minuteUtc: number
+  /**
+   * Steht **sicher** fest, dass die Ausgabe fehlt?
+   *
+   * Nur bei einer gelesenen `404`. Eine Antwort, die niemand deuten kann,
+   * ist kein Befund – siehe oben.
+   */
+  ausgabeFehltSicher: boolean
+  /** Wurde in diesem Dauerlauf schon alarmiert? */
+  schonAlarmiert: boolean
+}
+
+export interface Alarmentscheidung {
+  alarmieren: boolean
+  grund: string
+}
+
+export function sollAlarmieren(lage: Alarmlage): Alarmentscheidung {
+  if (lage.minuteUtc < ALARM_MINUTE) {
+    return {
+      alarmieren: false,
+      grund: `noch vor der Alarmminute (${ALARM_MINUTE} nach Mitternacht UTC)`,
+    }
+  }
+  /*
+    Nach oben offen bis zum Ende des Dauerlaufs.
+
+    Der Wecker hört um 05:00 UTC auf, weil ein Anstoß danach nur noch der
+    Kette in die Quere käme. Der Alarm hört dort **nicht** auf: Dass die
+    Zusage gerissen ist, bleibt meldenswert, auch wenn es zum Nachziehen zu
+    spät ist. Der Betreiber soll es von hier erfahren und nicht vom Telefon.
+  */
+  if (!lage.ausgabeFehltSicher) {
+    return {
+      alarmieren: false,
+      grund: 'die Ausgabe steht, oder die Antwort war nicht zu deuten',
+    }
+  }
+  if (lage.schonAlarmiert) {
+    return { alarmieren: false, grund: 'in diesem Lauf ist der Alarm schon gestellt' }
+  }
+  return {
+    alarmieren: true,
+    grund: 'die Frist ist da und die Ausgabe fehlt – der Wächter wird angestoßen',
+  }
+}
