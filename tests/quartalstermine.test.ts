@@ -293,9 +293,51 @@ console.log('')
   Tag ab, und ein Test an der Systemuhr prüft an zwei Wochen im Jahr etwas
   anderes als sonst. Echt, weil eine Lücke nur aus dem entsteht, was
   tatsächlich da ist.
+
+  ## Warum der Stichtag aus dem Bestand kommt und nicht aus dem Kalender
+
+  Hier stand bis zum 4. September 2026 `const STICHTAG = '2026-08-20'`. Am
+  Morgen des 4. September ist der Test gescheitert und hat die Tagesausgabe
+  **und** die Podcastfolge mitgenommen – `nachrichten.yml` prüft, bevor es
+  schreibt, und eine rote Prüfung heißt: es wird nichts geschrieben.
+
+  Die Ursache ist kein Fehler im Code, sondern eine Wette, die abgelaufen ist:
+
+  - Der Bestand führt **nur künftige** Termine. Was vorbei ist, fällt heraus.
+  - Der Stichtag stand still, der Bestand lief davon. Am 3. September war der
+    früheste Termin darin der **8. September** – neunzehn Tage nach dem
+    Stichtag, und damit außerhalb der zwei Wochen, die „bald" heißen.
+  - Damit war die Gegenprobe „einige Titel melden bald" nicht bloß an diesem
+    Tag rot, sondern **von da an jeden Tag**, ohne dass sich an der Sache
+    etwas geändert hätte.
+
+  Ein fester Tag gegen einen wandernden Bestand ist genau die Grenze, die den
+  guten Tag gerade eben trägt. Reproduzierbar muss der Stichtag sein, nicht
+  unveränderlich – deshalb kommt er jetzt aus dem Bestand selbst: der früheste
+  Termin, den er kennt. Derselbe Commit ergibt denselben Stichtag; ein neuer
+  Bestand zieht ihn mit.
 */
 const aktien = marketDefinitions.filter((eintrag) => eintrag.kind === 'stock')
-const STICHTAG = '2026-08-20'
+
+/*
+  Ein Stichtag vor allem, was im Bestand steht: So liefert der Befund jedes
+  Unternehmens dessen **frühesten** Termin, und das Minimum darüber ist der
+  früheste Termin überhaupt.
+*/
+const fruehesteTermine = aktien
+  .map((eintrag) => getQuartalsterminbefund(eintrag.symbol, '1970-01-01'))
+  .filter((befund) => befund !== null)
+  .map((befund) => befund!.erwartet)
+  .sort()
+
+const STICHTAG = fruehesteTermine[0]
+
+pruefen(
+  'Der Bestand kennt überhaupt einen Termin',
+  Boolean(STICHTAG),
+  `${fruehesteTermine.length} Unternehmen mit einem künftigen Termin`
+)
+console.log(`     (Stichtag aus dem Bestand: ${STICHTAG})`)
 
 const befunde = aktien
   .map((eintrag) => ({
@@ -345,13 +387,11 @@ pruefen(
   Die Gegenprobe: Das Zeichen muss auch anschlagen können.
 
   Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe – und ein Symbol, das
-  bei keiner einzigen Aktie erscheint, wäre schlicht toter Code. Bei 318
-  Unternehmen mit vier Quartalen im Jahr müsste an jedem beliebigen Stichtag
-  etwa ein Achtel in den nächsten zwei Wochen melden.
+  bei keiner einzigen Aktie erscheint, wäre schlicht toter Code.
 */
 const bald = befunde.filter((eintrag) => eintrag.befund!.bald)
 pruefen(
-  'An einem beliebigen Stichtag melden einige Titel bald',
+  'Am Stichtag melden einige Titel bald',
   bald.length > 0,
   `${bald.length} von ${befunde.length} – wäre es keiner, wäre das Zeichen toter Code.`
 )
@@ -360,6 +400,49 @@ pruefen(
   'Aber nicht alle – sonst prüfte die Grenze nichts',
   bald.length < befunde.length,
   `${bald.length} von ${befunde.length}`
+)
+
+/*
+  Und die Grenze selbst, an einem einzelnen Titel.
+
+  Die Prüfung darüber – `bald === inTagen <= BALD_TAGE` – bildet die
+  Implementierung Zeile für Zeile nach und kann deshalb nicht scheitern,
+  solange beide dieselbe Zeile sind. Sie prüft die Übereinstimmung, nicht die
+  Grenze.
+
+  Hier steht deshalb die Grenze selbst: derselbe Titel, zwei Stichtage, die
+  einen Tag auseinanderliegen. Vierzehn Tage vorher ist „bald", fünfzehn Tage
+  vorher nicht. Wer `<=` zu `<` macht, bekommt hier Rot – und nur hier.
+
+  Die Stichtage werden aus einem echten Termin **zurückgerechnet**; damit
+  altert auch diese Prüfung nicht.
+*/
+const probeSymbol = befunde[0]!.symbol
+const probeTermin = befunde[0]!.befund!.erwartet
+const tagVersetzt = (datum: string, tage: number) =>
+  new Date(Date.parse(`${datum}T00:00:00Z`) + tage * 86_400_000)
+    .toISOString()
+    .slice(0, 10)
+
+const anDerGrenze = getQuartalsterminbefund(
+  probeSymbol,
+  tagVersetzt(probeTermin, -BALD_TAGE)
+)
+const einenTagFrueher = getQuartalsterminbefund(
+  probeSymbol,
+  tagVersetzt(probeTermin, -BALD_TAGE - 1)
+)
+
+pruefen(
+  `Genau ${BALD_TAGE} Tage vorher ist „bald“`,
+  anDerGrenze?.bald === true,
+  `${probeSymbol} am ${tagVersetzt(probeTermin, -BALD_TAGE)}: inTagen ${anDerGrenze?.inTagen}`
+)
+
+pruefen(
+  `Einen Tag früher nicht mehr`,
+  einenTagFrueher?.bald === false,
+  `${probeSymbol} am ${tagVersetzt(probeTermin, -BALD_TAGE - 1)}: inTagen ${einenTagFrueher?.inTagen}`
 )
 
 /* -------------------------------------------------------- Die Lücke */
