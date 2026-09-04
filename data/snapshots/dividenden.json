@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-03T23:33:54.284Z",
+  "abgerufenAm": "2026-09-04T23:22:44.000Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -4461,6 +4461,10 @@
       {
         "date": "2026-06-11",
         "amount": 0.18
+      },
+      {
+        "date": "2026-09-03",
+        "amount": 0.18
       }
     ],
     "old-dominion": [
@@ -5194,6 +5198,10 @@
       },
       {
         "date": "2026-05-27",
+        "amount": 0.26
+      },
+      {
+        "date": "2026-09-03",
         "amount": 0.26
       }
     ],
@@ -14311,6 +14319,10 @@
       {
         "date": "2026-05-28",
         "amount": 1.4408
+      },
+      {
+        "date": "2026-09-04",
+        "amount": 0.539
       }
     ],
     "hkex": [
@@ -24954,6 +24966,10 @@
       },
       {
         "date": "2026-06-03",
+        "amount": 0.17
+      },
+      {
+        "date": "2026-09-02",
         "amount": 0.17
       }
     ],
