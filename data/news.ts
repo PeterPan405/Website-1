@@ -101,6 +101,295 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'vw-sparpaket-durch-aktie-springt',
+    title: 'VW-Aufsichtsrat billigt Sparpaket – Vorzugsaktie springt um 7,47 Prozent',
+    metaTitle: 'VW-Sparpaket: Aktie springt um 7,47 Prozent',
+    teaser:
+      'Der VW-Aufsichtsrat hat den Sparpaket-Plan mit rund 50.000 wegfallenden Stellen gebilligt – die Vorzugsaktie legte am Donnerstag 7,47 Prozent zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-04T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'Sparpaket', 'Aktienkurs', 'Restrukturierung'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Meldungen vom 3.9.2026 (EQS Group AG): „EQS-Adhoc: Porsche Automobil Holding SE: Zustimmung des Aufsichtsrats der Volkswagen AG zu umfassendem Zukunftsplan für den Volkswagen-Konzern"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News vom 3.9.2026, 20:39 Uhr (dpa-AFX): „Keine weitere Sitzung des Aufsichtsrats bei VW am Freitag"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursbewegungen vom 3.9.2026 (Markt Bote): „Besonders beachtet!: Volkswagen (VW) Vz Aktie legt weiter zu - +7,47 % - 03.09.2026"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Aufsichtsrat von Volkswagen hat am Donnerstag einen umfassenden **Zukunftsplan** für den Konzern gebilligt. Das bestätigte die Muttergesellschaft Porsche Automobil Holding SE in einer Pflichtmitteilung – auf Deutsch und Englisch, wie es die Börsenregeln für kursrelevante Nachrichten verlangen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkret sollen laut mehreren Tickermeldungen rund 50.000 Stellen im Konzern wegfallen, für vier Werke ist die Zukunft offen. Eine weitere Sitzung des Aufsichtsrats war für Freitag nicht mehr angesetzt – ein Hinweis darauf, dass die Entscheidung aus Sicht des Konzerns bereits gefallen ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Aktie bei einer Hiobsbotschaft steigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Vorzugsaktie von Volkswagen legte am Donnerstag um 7,47 Prozent zu, auch die Aktie der Holding Porsche SE zog nachbörslich an. Auf den ersten Blick wirkt das paradox: Ein Konzern kündigt Zehntausende Stellenstreichungen an, und die Börse reagiert mit einem der stärksten Tagesgewinne des Jahres.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Blick in die Tickerzeilen liefert nur einen Teil der Erklärung: „Sparpaket kommt gut an", heißt es dort – mehr zur Begründung steht in den Quellen nicht. Wie genau der Sparplan die Kosten senken oder die Marge verbessern soll, wird nicht beziffert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssprung nach einer Sparankündigung ist kein Urteil darüber, ob der Plan gut für die Beschäftigten oder gar für das Unternehmen langfristig ist – er zeigt nur, dass Anleger an diesem Tag mit weniger Kosten und mehr künftigem Gewinn rechnen. Ob diese Erwartung eintrifft, entscheidet sich erst in den kommenden Quartalen.',
+      },
+    ],
+  },
+  {
+    slug: 'commerzbank-aktienrueckkauf-1-2-milliarden',
+    title: 'Commerzbank beschließt Aktienrückkauf über 1,2 Milliarden Euro',
+    teaser:
+      'Commerzbank hat einen Aktienrückkauf mit einem Volumen von bis zu 1,2 Milliarden Euro beschlossen – bestätigt per Pflichtmitteilung am Donnerstagabend.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-04T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Commerzbank', 'Aktienrückkauf', 'Ausschüttung', 'Bank'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['commerzbank'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Meldungen vom 3.9.2026 (EQS Group AG): „EQS-Adhoc: Commerzbank beschließt die Durchführung eines Aktienrückkaufprogramms im Volumen von bis zu 1,2 Milliarden Euro"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, wO Newsflash vom 3.9.2026: „Commerzbank beschließt Aktienrückkauf über bis zu 1,2 Mrd. Euro"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Commerzbank hat am Donnerstag ein Aktienrückkaufprogramm mit einem Volumen von bis zu **1,2 Milliarden Euro** beschlossen. Die Bank bestätigte den Schritt in einer zweisprachigen Pflichtmitteilung, wie es für kursrelevante Ereignisse vorgeschrieben ist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu Laufzeit, Starttermin oder dem genauen Ablauf des Rückkaufs äußert sich die Meldung nicht – auch nicht dazu, wie das Programm neben der laufenden Dividendenpolitik der Bank steht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Rückkauf und Dividende tun Ähnliches – aber nicht dasselbe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Wege geben Geld an Aktionäre zurück, doch sie wirken unterschiedlich. Eine Dividende zahlt einen festen Betrag pro Aktie aus und ist beim Empfänger sofort steuerpflichtig. Ein Rückkauf zieht dagegen Aktien vom Markt, senkt damit die Zahl der ausstehenden Anteile – und erhöht rechnerisch den Gewinn je verbleibender Aktie, ohne dass der Gesamtgewinn steigen muss.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für ein Unternehmen ist ein Rückkauf zudem flexibler als eine Dividende: Er lässt sich pausieren oder verlangsamen, ohne dass Anleger das sofort als Bruch eines verlässlichen Versprechens werten – anders als bei einer gesenkten Dividende.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur auf die Dividendenrendite schaut, sieht möglicherweise nicht die ganze Ausschüttung. Ein Rückkaufprogramm dieser Größenordnung verändert die Eigentümerstruktur genauso wie eine Ausschüttung – nur kommt am Konto der Aktionäre nicht sofort etwas an.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-etf-siebte-woche-in-folge-bitcoin-ueber-81000',
+    title: 'Gold-ETF wächst siebte Woche in Folge, Bitcoin springt über 81.000 Dollar',
+    metaTitle: 'Gold-Zuflüsse und Bitcoin-Sprung am selben Tag',
+    teaser:
+      'Der größte Gold-ETF verzeichnete die siebte Zuflusswoche in Folge, der Goldpreis stieg fast drei Prozent – am selben Tag kletterte Bitcoin über 81.000 Dollar.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-04T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Bitcoin', 'ETF', 'Rohstoffe', 'Kryptowährung'],
+    relatedTopics: ['rohstoffe', 'bitcoin-krypto'],
+    relatedSymbols: ['gold', 'bitcoin'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Meldungen & Analysen vom 3.9.2026: „Größter Gold-ETF baut Bestände siebte Woche in Folge aus"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'goldreporter.de, Marktberichte vom 3.9.2026: „Der Goldpreis steigt am Donnerstag wieder über 4.400 USD. Silber legt ebenfalls zu."',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'onvista, Dax Tagesrückblick vom 3.9.2026, 15:52 Uhr: „Dax übersteigt 26.000 Punkte - Gold steigt fast drei Prozent"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 3.9.2026: „Bitcoin überspringt Marke von 81.000 US-Dollar - Strategy-Aktie hebt ab"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der weltweit größte Gold-ETF hat seine Bestände laut Goldreporter am Donnerstag um weitere 11 Tonnen aufgestockt – die **siebte Woche in Folge** mit Zuflüssen. Der Goldpreis selbst kletterte um fast drei Prozent auf über 4.400 US-Dollar je Feinunze.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch Silber legte am selben Tag zu, während laut Goldreporter US-Anleiherenditen und der Ölpreis nachgaben. Warum Anleger ausgerechnet an diesem Donnerstag verstärkt in den Gold-ETF flossen, nennt keine der Quellen – die Zahl steht für sich.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag meldete wallstreet-online, dass Bitcoin vorübergehend die Marke von 81.000 US-Dollar überschritten hat – ebenfalls ohne genannten Auslöser.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sicherer Hafen und Risikoanlage im Gleichschritt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold gilt traditionell als sicherer Hafen, der vor allem in Zeiten von Unsicherheit gefragt ist. Bitcoin wird an den Märkten meist umgekehrt gelesen: als Risikoanlage, die eher steigt, wenn Anleger zuversichtlich sind. Steigen beide am selben Tag deutlich, widerspricht das der einfachen Erzählung von „Angst kauft Gold, Zuversicht kauft Bitcoin" – zumindest für diesen einen Donnerstag.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Korrelation an einem einzelnen Tag ist kein Beweis für einen dauerhaften Zusammenhang. Wer daraus eine Strategie ableiten wollte – etwa beide Anlagen gemeinsam als Absicherung zu nutzen –, bräuchte dafür deutlich mehr als einen einzigen gemeinsamen Aufwärtstag.',
+      },
+    ],
+  },
+  {
+    slug: 'zurich-insurance-us-depot-amd-eli-lilly',
+    title: 'Zurich Insurance baut US-Depot um: mehr AMD und Eli Lilly, weniger Microsoft',
+    metaTitle: 'Zurich Insurance: Portfolioumbau in den USA',
+    teaser:
+      'Der Versicherer Zurich Insurance hat sein US-Aktienportfolio umgeschichtet: mehr Chip-Konzern AMD und Pharmawert Eli Lilly, weniger Microsoft – Details fehlen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-04T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Zurich Insurance', 'Portfolio', 'AMD', 'Eli Lilly', 'Microsoft'],
+    relatedTopics: ['portfolio-aufbau', 'anlegerpsychologie'],
+    relatedSymbols: ['amd', 'eli-lilly', 'microsoft'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Top News, Abruf 4.9.2026, 02:11 Uhr: „Zurich Insurance baut US-Depot um: Mehr AMD und Eli Lilly, weniger Microsoft"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 3.9.2026: „Zurich Insurance baut US-Depot um: Mehr AMD und Eli Lilly, weniger Microsoft"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Schweizer Versicherer Zurich Insurance hat sein US-Aktienportfolio umgeschichtet. Übereinstimmend berichten finanzen.net und wallstreet-online: mehr Anteile am Chiphersteller **AMD** und am Pharmakonzern **Eli Lilly**, weniger an **Microsoft**.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um wie viel sich die jeweiligen Positionen verändert haben, wie groß sie vorher und nachher waren oder welche Überlegung dahintersteckt, geht aus den Meldungen nicht hervor. Beide Quellen nennen nur die Richtung der Umschichtung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei völlig verschiedene Wetten in einem Satz',
+      },
+      {
+        type: 'paragraph',
+        text: 'AMD ist ein Halbleiterhersteller, dessen Geschäft stark am Ausbau von Rechenzentren hängt. Eli Lilly stellt Medikamente her, unter anderem gegen Diabetes und Übergewicht. Microsoft wiederum ist ein breit aufgestellter Software- und Cloud-Konzern. Die drei Werte folgen unterschiedlichen Geschäftszyklen – eine gemeinsame Story lässt sich aus der Meldung allein nicht ableiten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Institutionelle Anleger wie Versicherungen veröffentlichen ihre US-Positionen turnusmäßig. Solche Meldungen zeigen, was sich verändert hat – selten, warum. Wer daraus ein Signal für die eigene Anlage ableitet, überträgt oft mehr Bedeutung auf eine Einzelentscheidung, als die Quelle hergibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Portfolioumbau bei einem einzelnen institutionellen Anleger ist eine Beobachtung, keine Empfehlung. Ohne Kenntnis der Positionsgrößen und der Begründung lässt sich nicht sagen, ob es sich um eine große strategische Wende oder eine kleine Randkorrektur handelt.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-ueber-26000-nfp-heute-im-fokus',
+    title: 'DAX schließt über 26.000 Punkten – heute steht der US-Arbeitsmarkt im Fokus',
+    metaTitle: 'DAX über 26.000 – heute zählt der US-Arbeitsmarkt',
+    teaser:
+      'Der DAX hat die Marke von 26.000 Punkten am Donnerstag verteidigt, die Wall Street schloss im Plus – am Freitag richtet sich der Blick auf US-Arbeitsmarktdaten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-04T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DAX', 'Wirtschaftskalender', 'Notenbanken', 'Arbeitsmarkt'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Heute im Fokus vom 3.9.2026: „DAX schließt über 26.000er-Marke -- Wall Street schließt in Grün"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News vom 3.9.2026, 20:35 Uhr (dpa-AFX): „ROUNDUP/Aktien New York Schluss: Zinshoffnungen bescheren deutliche Gewinne"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kommende Termine (Wirtschaftskalender), Abruf 4.9.2026, 02:11 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Termin-Highlights, Abruf 4.9.2026, 02:11 Uhr: „US-Arbeitsmarktdaten (NFP) im Fokus"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX hat den Donnerstag über der Marke von 26.000 Punkten beendet, wie finanzen.net unter „Heute im Fokus" meldet. Zwei Kursleisten zeigen dabei leicht unterschiedliche Stände – 26.003 Punkte bei finanzen.net, 26.044 Punkte bei wallstreet-online –, eine Erinnerung daran, dass „der DAX-Stand" je nach Anbieter und Erfassungszeitpunkt geringfügig variiert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street ging es laut onvista (dpa-AFX) ebenfalls deutlich nach oben: „Zinshoffnungen bescheren deutliche Gewinne", heißt es in der Schlussmeldung vom Donnerstagabend. Genauere Prozentzahlen oder eine Erklärung, worauf sich diese Zinshoffnung konkret stützt, liefert die Ticker-Zeile nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kalender für Freitag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den heutigen Freitag listet der Wirtschaftskalender von finanzen.net unter anderem: 08:00 Uhr den deutschen Auftragseingang (Prognose plus 0,3 Prozent im Monatsvergleich, nach plus 3,1 Prozent im Vormonat), 08:45 Uhr die französische Industrieproduktion, 10:00 Uhr die italienischen Einzelhandelsumsätze, 10:30 Uhr den britischen Einkaufsmanagerindex für die Bauwirtschaft (Prognose 45,9 Punkte) und 10:50 Uhr eine Rede von Bank-of-England-Gouverneur Andrew Bailey. Um 11:00 Uhr folgen die Einzelhandelsumsätze der Eurozone.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Nachmittag richtet sich der Blick zusätzlich auf die USA: wallstreet-online kündigt für 14:15 Uhr eine Live-Analyse zu den US-Arbeitsmarktdaten (NFP) an – ein Hinweis darauf, dass der Bericht an diesem Freitag ansteht, auch wenn die genaue Uhrzeit der Veröffentlichung selbst in den Quellen nicht genannt wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Index-Stand oder eine einzelne Prognose ist kein Urteil über den Tag. Erst der Vergleich zwischen der hier genannten Prognose und dem tatsächlichen Wert am Nachmittag zeigt, ob die Daten die erwartete Richtung bestätigen oder überraschen – und genau diese Abweichung bewegt danach in der Regel die Kurse.',
+      },
+    ],
+  },
+  {
     slug: 'dell-glaenzt-broadcom-faellt-trotz-ki-boom',
     title: 'Dell glänzt mit KI-Boom, Broadcom fällt trotz Rekordumsatz',
     teaser:
