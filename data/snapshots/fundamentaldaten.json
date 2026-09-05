@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-29T12:50:00.816Z",
+  "abgerufenAm": "2026-09-05T10:40:34.680Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -56,7 +56,7 @@
     "2317.TW": {
       "waehrung": "TWD",
       "eigenkapital": 2119587584000,
-      "aktien": 14028648626
+      "aktien": 14075746497
     },
     "2330.TW": {
       "waehrung": "TWD",
@@ -76,7 +76,7 @@
     "2454.TW": {
       "waehrung": "TWD",
       "eigenkapital": 432641700000,
-      "aktien": 1603895407
+      "aktien": 1604952613
     },
     "4502.T": {
       "umsatz": 4581551000000,
@@ -150,7 +150,7 @@
       "umsatz": 6948000000,
       "gewinn": 1303000000,
       "cashflow": 1559000000,
-      "eigenkapital": 7122000000,
+      "eigenkapital": 7363000000,
       "aktien": 282431944
     },
     "AA": {
@@ -685,11 +685,11 @@
     },
     "BKG.L": {
       "waehrung": "GBP",
-      "umsatz": 2486500000,
-      "gewinn": 382000000,
-      "cashflow": 193100000,
-      "eigenkapital": 3559800000,
-      "aktien": 102743410
+      "umsatz": 2383300000,
+      "gewinn": 318300000,
+      "cashflow": 260300000,
+      "eigenkapital": 3640200000,
+      "aktien": 95989144
     },
     "BKNG": {
       "umsatz": 26917000000,
@@ -1079,7 +1079,7 @@
       "umsatz": 56654000000,
       "gewinn": 10180000000,
       "cashflow": 14193000000,
-      "eigenkapital": 48861000000,
+      "eigenkapital": 50285000000,
       "aktien": 3941434665
     },
     "CSX": {
@@ -2015,7 +2015,7 @@
       "umsatz": 5375000000,
       "gewinn": 850000000,
       "cashflow": 1409000000,
-      "eigenkapital": 6331000000,
+      "eigenkapital": 6571000000,
       "aktien": 170895368
     },
     "KHC": {
@@ -2235,7 +2235,7 @@
       "umsatz": 11102600000,
       "gewinn": 1579183000,
       "cashflow": 1602477000,
-      "eigenkapital": 4825601000,
+      "eigenkapital": 4791174000,
       "aktien": 108437957
     },
     "LUV": {
@@ -2305,7 +2305,7 @@
       "umsatz": 36364000000,
       "gewinn": 4801,
       "cashflow": 7330000000,
-      "eigenkapital": 49463000000,
+      "eigenkapital": 50232000000,
       "aktien": 1280045190
     },
     "MET": {
@@ -2745,7 +2745,7 @@
     },
     "PAYX": {
       "umsatz": 6301100000,
-      "gewinn": 1760100000,
+      "gewinn": 1760000000,
       "cashflow": 2556700000,
       "eigenkapital": 3735100000,
       "aktien": 355682860
@@ -3090,11 +3090,11 @@
     },
     "S32.AX": {
       "waehrung": "USD",
-      "umsatz": 5780000000,
-      "gewinn": 213000000,
-      "cashflow": 1335000000,
-      "eigenkapital": 8857000000,
-      "aktien": 4531914894
+      "umsatz": 5816000000,
+      "gewinn": 1087000000,
+      "cashflow": 1634000000,
+      "eigenkapital": 9714000000,
+      "aktien": 4491735537
     },
     "SAF.PA": {
       "waehrung": "EUR",
@@ -3179,13 +3179,6 @@
       "eigenkapital": 4456400000,
       "aktien": 1582991202
     },
-    "SE": {
-      "umsatz": 19625021000,
-      "gewinn": 1578149000,
-      "cashflow": 5024523000,
-      "eigenkapital": 12526503000,
-      "aktien": 595023879
-    },
     "SGE.L": {
       "waehrung": "GBP",
       "umsatz": 2513000000,
@@ -3249,8 +3242,8 @@
       "umsatz": 21972042000,
       "gewinn": 1048854000,
       "cashflow": 1659524000,
-      "eigenkapital": 7575430000,
-      "aktien": 601418482
+      "eigenkapital": 14479452000,
+      "aktien": 656965384
     },
     "SMIN.L": {
       "waehrung": "GBP",
@@ -4081,7 +4074,7 @@
       "umsatz": 2673115000,
       "gewinn": -41478000,
       "cashflow": 972453000,
-      "eigenkapital": 2366595000,
+      "eigenkapital": 2598261000,
       "aktien": 161709525
     },
     "ZTS": {
