@@ -58,6 +58,30 @@
  * Der nächste Versuch braucht eine amtliche Quelle, die einem Läufer
  * antwortet – oder einen Menschen mit einem Browser.
  *
+ * ## Nachgeprüft am 5. September 2026
+ *
+ * Zwei Dinge, die den Stand von oben schärfen.
+ *
+ * **Die Sperre ist keine Werkzeugsache.** Am 1. September stellte sich
+ * heraus, dass `quellen-holen.yml` an jeder Adresse mit AAAA-Eintrag
+ * scheiterte, weil GitHub-Läufer kein IPv6 haben (`scripts/netz.py`). Das war
+ * ein naheliegender Verdacht für die Zeitüberschreitungen hier. Er ist
+ * **falsch**: Mit repariertem Abrufweg, vier Adressen, derselbe Befund –
+ * `urlopen error timed out`. Die Schranke steht und wird nicht umgangen.
+ *
+ * **`recht.bund.de` antwortet.** Seit dem 1.1.2023 ist das die amtliche
+ * Verkündungsplattform; sie liefert einem Läufer 200 und lesbaren Text
+ * (`bgbl.de` daneben trägt nur noch das Archiv bis 2022). Sie löst das
+ * Problem trotzdem **nicht**: Verkündet wird dort das Bundesgesetzblatt, also
+ * das Gesetz in seiner ursprünglichen Fassung und jedes Änderungsgesetz
+ * einzeln. Den heute geltenden Satz bekäme man nur, indem man die
+ * Konsolidierung selbst nachvollzieht – und ein selbst zusammengerechneter
+ * Gesetzesstand ist keine Quelle, sondern eine Behauptung.
+ *
+ * Konsolidiertes Bundesrecht gibt es amtlich nur bei
+ * `gesetze-im-internet.de`, und genau die antwortet nicht. Damit bleibt es
+ * beim Menschen mit einem Browser; eine dritte Adresse zu suchen lohnt nicht.
+ *
  * Und: **Bewusste Annahmen gehören auch nicht hierher.** Die 2,5 Prozent
  * Inflation im Lernthema sind keine veraltete Zahl, sondern eine gerundete
  * Annahme über dreißig Jahre; das steht in `lib/inflations-beispiele.ts` so

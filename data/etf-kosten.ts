@@ -76,6 +76,25 @@
  * Menschen, der die acht Dokumente einmal im Browser öffnet und die Werte
  * hier einträgt. Das ist Arbeit von zwanzig Minuten und danach zwei Jahre
  * lang erledigt.
+ *
+ * ## Nachgetragen am 5. September 2026: wo der nächste Versuch anfängt
+ *
+ * Nicht bei fondsweb. **justETF antwortet einem Läufer** (200, ohne
+ * JavaScript lesbar) und beschriftet die Zahl ausdrücklich mit „TER" – für
+ * `IE00B4L5Y983` steht dort `TER 0,20% p.a.`. Das ist der Unterschied zu
+ * fondsweb, dessen „Summe laufende Kosten" oben in sechs von sechs Fällen
+ * daneben lag: Dort war die **Beschriftung** das Problem, nicht die Seite.
+ *
+ * Eingetragen ist trotzdem **nichts**, und zwar nicht aus Vorsicht, sondern
+ * weil es die Angabe nicht vollständig macht: Schritt 3 oben verlangt Wert,
+ * **Datum des Dokuments** und dessen Adresse. Ein Aggregator nennt kein
+ * Dokument. Wer von dort abschreibt, hat eine Zahl ohne Stand – und
+ * `npm run frische` kann sie dann nie als veraltet melden, weil sie nie ein
+ * Alter hatte.
+ *
+ * justETF taugt damit als **Gegenprobe**, nicht als Quelle: Wer die acht
+ * Blätter im Browser öffnet, kann die abgelesenen Werte dort gegenlesen und
+ * merkt einen Tippfehler sofort.
  */
 
 export interface EtfKosten {
