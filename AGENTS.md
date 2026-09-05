@@ -19,8 +19,8 @@ danebenging.
 
 ## Wie berichtet wird
 
-**Ausführlich arbeiten, kurz berichten.** Der Betreiber hat das am 16. August
-2026 verlangt: **zwei bis drei Zeilen**, so kurz wie möglich.
+**Ausführlich arbeiten, kurz berichten.** Verlangt sind **zwei bis drei
+Zeilen**, so kurz wie möglich.
 
 Das gilt für den Text im Chat – nicht für Commits, Pull Requests und
 Kommentare. Die bleiben ausführlich: Sie sind das Gedächtnis des Projekts.
@@ -32,11 +32,10 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
 ## Arbeitsweise
 
 - **Ist etwas offen, wird es abgearbeitet** – ohne Rückfrage, ob. Anordnung
-  vom 29. August 2026. Gilt für rote Läufe, gemeldete Befunde, offene Issues
-  und alles, was eine Sitzung als „bleibt offen" hinterließ.
+  des Betreibers. Gilt für rote Läufe, gemeldete Befunde, offene Issues und
+  alles, was eine Sitzung als „bleibt offen" hinterließ.
 - **Selbst mergen, ohne zu fragen.** Pull Request anlegen, Prüfung abwarten
-  (vier bis fünf Minuten), Ergebnis ansehen, mergen. Anordnung des Betreibers
-  vom 8. August 2026.
+  (vier bis fünf Minuten), Ergebnis ansehen, mergen. Anordnung des Betreibers.
 - **Nur bei grüner Prüfung**, und nichts, was du selbst für kaputt hältst –
   ein Merge geht auf eine öffentliche Website. Ungutes Gefühl gehört in den
   Pull Request, als Frage zur Sache.
@@ -53,10 +52,15 @@ sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
 
 → `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
 
-## Diese Umgebung erreicht nur GitHub
+## Diese Umgebung erreicht nur GitHub – **erst nachsehen, ob das stimmt**
 
-`WebFetch` und `curl` scheitern an **jeder** Adresse außer GitHub und npm
-(`CONNECT tunnel failed, response 403`) – auch an `iminvests.de` selbst.
+Die Sitzung auf dem Rechner des Betreibers hat vollen Zugang; dann gilt hier
+nichts. Ein `curl` auf eine beliebige Adresse klärt es in einer Sekunde.
+„Von hier nicht erreichbar" ist eine Aussage über die **Umgebung**, nicht über
+die Quelle – solche Notizen brauchen Datum und Ort.
+
+Sonst scheitern `WebFetch` und `curl` an **jeder** Adresse außer GitHub und
+npm (`CONNECT tunnel failed, response 403`) – auch an `iminvests.de` selbst.
 Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 
 **Der Ausweg: ein Läufer holt es.** GitHub-Läufer haben vollen Netzzugang.
@@ -106,7 +110,7 @@ drei:
 2. Modell über die Anthropic-Schnittstelle (~0,20 $, braucht `ANTHROPIC_API_KEY`)
 
 **Liefert keiner, wird nichts geschrieben und der Lauf bricht rot ab.** Der
-Notbehelf aus dem Kursbestand ist seit dem 11. August 2026 abgeschafft.
+Notbehelf aus dem Kursbestand ist abgeschafft.
 
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
 voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt Meldungen
@@ -164,11 +168,10 @@ GitHub verwirft `schedule`-Läufe ohne Meldung, und zwar **regelmäßig**, nicht
 gelegentlich. Daraus folgt:
 
 - **Was zu einer bestimmten Zeit passiert sein muss, darf nicht an `schedule`
-  hängen** – am 28. August 2026 lieferte GitHub von `kurse.yml` (alle fünf
-  Minuten) zwischen 00:00 und 04:20 UTC **einen** Lauf. Der Einstieg in den Tag
-  hängt deshalb am Dauerlauf: `kurse-dauerlauf.yml` fragt alle zehn Minuten, ob
-  die Ausgabe auf `main` steht, und weckt sonst `quellen-sammeln.yml`
-  (`lib/tageswecker.ts`). Ein laufender Prozess lässt sich nicht verwerfen.
+  hängen.** Der Einstieg in den Tag hängt deshalb am Dauerlauf:
+  `kurse-dauerlauf.yml` fragt alle zehn Minuten, ob die Ausgabe auf `main`
+  steht, und weckt sonst `quellen-sammeln.yml` (`lib/tageswecker.ts`). Ein
+  laufender Prozess lässt sich nicht verwerfen.
 - **Krumme Minuten.** Wer einen neuen Workflow anlegt, sucht sich eine Minute,
   die noch keiner hat – runde Minuten sind am dichtesten belegt.
 - **Ein Commit vom Bot löst nichts aus.** Ein Push mit dem `GITHUB_TOKEN`
@@ -247,8 +250,7 @@ ist keiner"
   `angekuendigt` – sonst zitiert ein abgeleiteter Tokio-Termin die SEC. Wer eine
   vierte Quelle anschließt, trägt sie **dort** ein.
 - **Der Sammelkalender führt, was in New York notiert** – auch die
-  Hinterlegungsscheine ausländischer Emittenten, und damit Alibaba. Von 41
-  europäischen und asiatischen Standardwerten waren drei enthalten. Wer keinen
+  Hinterlegungsscheine ausländischer Emittenten, und damit Alibaba. Wer keinen
   Termin hat, bekommt den Satz warum (`quartalsterminLuecke()`) – eine
   Leerstelle erklärt sich nicht selbst, und der Satz hängt am Handelsplatz:
   „fehlt in der Quelle" und „fehlt in ihrem Zeitfenster" sind zweierlei.
@@ -258,9 +260,9 @@ ist keiner"
 - **Die JPX-Adresse wird gesucht, nicht eingetragen.** Der Dateiname trägt ein
   Datum (`kessan06_0807.xlsx`), es sind zwei Dateien, und gelesen wird die
   **japanische** Übersichtsseite – die englische trägt null Verweise.
-- **Der Weg über Twelve Data ist tarifgesperrt** und hat noch nie etwas
-  geliefert. Er bricht seit dem 20. August 2026 nach der ersten Absage ab
-  (`TarifSperre`). Nicht „reparieren": Es fehlt ein bezahlter Tarif, nicht Code.
+- **Der Weg über Twelve Data ist tarifgesperrt** und hat nie etwas geliefert.
+  Er bricht nach der ersten Absage ab (`TarifSperre`). Nicht „reparieren": Es
+  fehlt ein bezahlter Tarif, nicht Code.
 - **Beide Anbieter antworten auf eine Absage mit Statuscode 200.** Geprüft wird
   der Inhalt, nicht der Code – sonst landet eine Absage als leere Liste im
   Bestand, und der Lauf bleibt grün.
@@ -277,9 +279,8 @@ ist keiner"
   Nichts.
 
 **„Geprüft und nichts gefunden" ist ein Zwischenstand, kein Ergebnis.** Er
-gehört mit Datum und Liste hingeschrieben – nicht als Beweis gelesen, dass es
-nichts gibt. Der Sammelkalender wurde erst gefunden, als jemand statt nach
-Terminen je Unternehmen nach einer Sammelstelle fragte.
+gehört mit Datum, Ort und Liste hingeschrieben – nicht als Beweis gelesen,
+dass es nichts gibt.
 
 → `ENTSCHEIDUNGEN.md`: „Ein Weg, der nie etwas geliefert hat", „Zwischen New
 York und Berlin liegen nicht immer sechs Stunden", „Der Betreiber hatte recht"
@@ -299,11 +300,11 @@ Zusage: höchstens sechs Minuten.
   Job, fünfeinhalb Stunden, alle zwei Minuten der volle Bestand. **Zwei
   Bremsen dürfen nicht wegfallen:** kein Nachfolger unter zehn Minuten
   Laufzeit, und der Wächter in `kurse.yml` wartet nach einem Fehlschlag eine
-  Stunde. An ihm hängt seit dem 28. August auch der Wecker der Tagesausgabe.
+  Stunde. An ihm hängt auch der Wecker der Tagesausgabe.
 - **Ihn von Hand anzustoßen tötet den laufenden** (`cancel-in-progress`).
-  Kommt der neue nicht hoch – der SSH-Port flattert –, stehen die Kurse, bis
-  der Wächter greift: eine Stunde statt sechs Minuten. Am 28. August 2026 so
-  passiert. Nur anstoßen, wenn keiner läuft oder der laufende kaputt ist.
+  Kommt der neue nicht hoch – der SSH-Port flattert –, stehen die Kurse eine
+  Stunde statt sechs Minuten. Nur anstoßen, wenn keiner läuft oder der
+  laufende kaputt ist.
 - Wer `ABSTAND_MS` anfasst, fasst den Dauerbetrieb bei Yahoo mit an.
 - **Eine Ausnahme gehört an die Bedingung, die sie meint** – nicht an die
   nächstgelegene. Die EZB-Sonderbehandlung greift nur im Fünf-Minuten-Lauf
@@ -340,10 +341,9 @@ Zusage: höchstens sechs Minuten.
   ersten Meldung: erst der KI-Hinweis, dann der Rechtshinweis – eine Stelle,
   nicht zwei. Nicht davor (drei Sekunden halten den Hörer), nicht am Ende.
   Beides Nutzerwunsch.
-- **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Die Prüfung sah
-  bis zum 20. August 2026 nur „rau" und war für jeden gehaltenen Ton unter
-  2.600 Hz blind. Erkannt wird jetzt auch, dass die Energie in **einer**
-  Frequenz sitzt (`TONANTEIL_GRENZE`) – wer daran etwas ändert, misst nach.
+- **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Erkannt wird
+  deshalb auch, dass die Energie in **einer** Frequenz sitzt
+  (`TONANTEIL_GRENZE`) – wer daran etwas ändert, misst nach.
 - **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()`. Wer eine weitere
   Stelle baut, an der Text gesprochen wird, führt ihn durch dieselbe.
 - **Eine ausgetauschte Datei erreicht keinen Hörer.** Spotify holt eine Folge
@@ -403,8 +403,7 @@ wiederholen. Die Fälle dazu stehen in `ENTSCHEIDUNGEN.md`.
 
 - **Der teuerste Fehler ist nicht der rote Lauf, sondern der stille.**
 - **`npm run pruefen` liest `out/`, nicht deine Änderung.** Ohne vorheriges
-  `npm run build` prüft es den letzten Bau und meldet grün – am 23. August 2026
-  vier Überschriftensprünge glatt durchgelassen, die CI dann fand.
+  `npm run build` prüft es den letzten Bau und meldet grün.
 - **Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe.** Wer eine baut,
   legt ihr etwas vor, das sie beanstanden **muss**.
 - **Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist
