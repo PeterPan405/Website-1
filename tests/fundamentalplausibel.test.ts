@@ -354,6 +354,7 @@ function plusTageIso(tag: string, tage: number): string {
     .slice(0, 10)
 }
 const auffaelligeRendite: string[] = []
+const renditeWerte: number[] = []
 let geprueftRendite = 0
 
 for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
@@ -363,6 +364,7 @@ for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
   if (!befund || befund.renditeProzent === null) continue
 
   geprueftRendite += 1
+  renditeWerte.push(befund.renditeProzent)
   if (befund.renditeProzent > RENDITE_MAX) {
     auffaelligeRendite.push(
       `${symbol}: ${befund.renditeProzent.toFixed(1)} % aus ` +
@@ -372,6 +374,35 @@ for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
 }
 
 pruefe(`es wurden Renditen gerechnet (${geprueftRendite})`, geprueftRendite > 50)
+
+/*
+  Wie nah die Grenze am echten Höchstwert liegt – ausgegeben, nicht geprüft.
+
+  Am 5. September 2026 nachgemessen: Der höchste echte Wert war
+  `johnson-matthey` mit 25,8 Prozent, die Grenze steht bei 35. Das ist **Faktor
+  1,35** – deutlich enger als bei der Sprungprüfung unten, wo derselbe Abstand
+  „fast das Doppelte" beträgt und ausdrücklich als ausreichend begründet ist.
+
+  Die Grenze ist trotzdem richtig gesetzt: Sie ist aus dem Faktor 100
+  hergeleitet, den sie fangen soll. Sie anzuheben hieße, den Einheitenfehler
+  bei mehr Titeln durchzulassen.
+
+  Aber eine Dividendenrendite ist Dividende **durch Kurs**. Fällt ein Kurs um
+  ein Viertel, steigt sie um ein Drittel – und dieser Test hält den
+  Nachrichtenlauf an, weil `npm test` vor dem Veröffentlichen läuft. Ein
+  Kurssturz bei einem einzigen Titel könnte also die Tagesausgabe kosten,
+  ohne dass ein Datenfehler vorliegt.
+
+  Deshalb steht die Zahl hier. Wer sie über 30 steigen sieht, entscheidet
+  **vorher**, was dann gelten soll – statt es an einem Morgen um vier Uhr zu
+  entscheiden, an dem der Lauf schon rot ist.
+*/
+const hoechsteRendite = Math.max(0, ...renditeWerte)
+console.log(
+  `       (höchste echte Rendite ${hoechsteRendite.toFixed(1)} %, Grenze ${RENDITE_MAX} – ` +
+    `Abstand Faktor ${(RENDITE_MAX / Math.max(hoechsteRendite, 0.01)).toFixed(2)})`
+)
+
 pruefe(
   `jede Dividendenrendite liegt unter ${RENDITE_MAX} Prozent`,
   auffaelligeRendite.length === 0,
@@ -414,6 +445,7 @@ const SPRUNG_MAX = 30
 
 const vorJahren = (n: number) => plusTageIso(heute, -365 * n)
 const auffaelligerSprung: string[] = []
+const sprungWerte: number[] = []
 let geprueftSprung = 0
 
 for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
@@ -429,6 +461,7 @@ for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
 
   geprueftSprung += 1
   const faktor = diesesJahr / schnitt
+  sprungWerte.push(faktor)
   if (faktor > SPRUNG_MAX) {
     auffaelligerSprung.push(
       `${symbol}: Faktor ${faktor.toFixed(1)} – ${diesesJahr.toFixed(2)} in zwölf ` +
@@ -438,6 +471,18 @@ for (const [symbol, zahlungen] of Object.entries(dividenden.titel)) {
 }
 
 pruefe(`es wurden Sprünge geprüft (${geprueftSprung})`, geprueftSprung > 100)
+
+/*
+  Auch hier der laufend gemessene Abstand statt der Tabelle von oben. Sie
+  stammt vom 19. August 2026 und altert – eine Zahl, die bei jedem Lauf neu
+  entsteht, tut das nicht.
+*/
+const hoechsterSprung = Math.max(0, ...sprungWerte)
+console.log(
+  `       (höchster echter Sprung Faktor ${hoechsterSprung.toFixed(1)}, Grenze ${SPRUNG_MAX} – ` +
+    `Abstand Faktor ${(SPRUNG_MAX / Math.max(hoechsterSprung, 0.01)).toFixed(2)})`
+)
+
 pruefe(
   `keine Zwölfmonatssumme über dem ${SPRUNG_MAX}-fachen des eigenen Schnitts`,
   auffaelligerSprung.length === 0,
