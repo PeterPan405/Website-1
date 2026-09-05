@@ -584,10 +584,56 @@ pruefen(
   'Ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.'
 )
 
+/*
+  Hier stand bis zum 5. September 2026 eine dritte Prüfung:
+
+      'Jeder Termin ist als geschätzt gekennzeichnet',
+      termine.every((termin) => termin.geschaetzt !== undefined)
+
+  Sie ist der **Widerspruch** zu der zwei Absätze weiter oben. Ein
+  angekündigter Termin trägt kein `geschaetzt` – genau das verlangt die eine
+  und verbietet die andere.
+
+  Aufgefallen ist es an dem Morgen, an dem zum ersten Mal ein angekündigter
+  Termin im Bestand stand: drei aus Tokio, zum 8. und 9. Oktober. Bis dahin
+  war die Menge leer, und über einer leeren Menge sind beide Sätze wahr. Die
+  ältere Prüfung stammt aus der Zeit vor dem Begriff „angekündigt"; als er
+  eingeführt wurde, blieb sie stehen, weil nichts sie stören konnte.
+
+  Der Satz dazu steht in `AGENTS.md` und in dieser Datei vierzig Zeilen
+  weiter unten: *Eine Fallunterscheidung über Merkmale, die der Stoff nicht
+  hat, ist keine.* Er galt auch für die Prüfungen selbst.
+
+  **Was an ihre Stelle tritt**, ist nicht nichts. Die beiden Prüfungen oben
+  decken zusammen alles ab – aber nur, solange es bei zwei Sorten bleibt.
+  Käme eine dritte hinzu, fiele sie durch beide hindurch und wäre von keiner
+  erfasst. Also wird genau das geprüft: dass die Teilung aufgeht.
+*/
+const hochgerechnet = termine.filter((t) => !t.titel.includes('angekündigt'))
 pruefen(
-  'Jeder Termin ist als geschätzt gekennzeichnet',
-  termine.every((termin) => termin.geschaetzt !== undefined),
-  'Ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.'
+  'Angekündigt und hochgerechnet decken zusammen jeden Termin ab',
+  angekuendigteTermine.length + hochgerechnet.length === termine.length,
+  `${angekuendigteTermine.length} + ${hochgerechnet.length} ≠ ${termine.length}`
+)
+
+/*
+  Und die Umkehrung, an der die eigentliche Zusage hängt: Kein Termin steht
+  ohne Kennzeichnung da. Entweder er trägt `geschaetzt`, oder er heißt
+  „angekündigt" – ein Termin, der weder das eine noch das andere sagt, sähe
+  aus wie eine Tatsache, für die niemand geradesteht.
+*/
+const ungekennzeichnet = termine.filter(
+  (t) => t.geschaetzt === undefined && !t.titel.includes('angekündigt')
+)
+pruefen(
+  'Kein Termin steht ohne Kennzeichnung da',
+  ungekennzeichnet.length === 0,
+  `${ungekennzeichnet.length}, z. B. ${ungekennzeichnet
+    .slice(0, 3)
+    .map((t) => t.titel)
+    .join(
+      ', '
+    )} – ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.`
 )
 
 /* ------------------------------------------- Die Uhrzeit im Kalender */
