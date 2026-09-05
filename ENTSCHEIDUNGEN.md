@@ -130,6 +130,43 @@ Nachrichtenportal, sogar `example.com` und `iminvests.de` selbst.
 Das ist eine Regel der Umgebung, kein Fehler. Prüfen lässt sie sich mit
 `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 
+## Aber: es gilt nicht für jede Sitzung — erst nachsehen
+
+**Am 5. September 2026 lief eine Sitzung auf dem MacBook des Betreibers, und
+die hatte vollen Netzzugang.** In einer Stunde erledigte sie zwei Durchsichten,
+die vier Wochen lang als „von hier nicht möglich" notiert waren:
+
+- **Die Steuersätze.** `gesetze-im-internet.de` antwortete auf alle vier
+  Adressen mit **200** – dieselben vier, an denen der Läufer am 28. August
+  zweimal ins `urlopen error timed out` lief. § 32d EStG, § 4 SolzG, § 20 EStG
+  und § 20 InvStG waren in zehn Minuten wörtlich belegt.
+- **Die acht ETF-Kostenquoten.** Vier Wochen lang stand die Liste leer, weil
+  das Basisinformationsblatt „nicht durchkommt". Zwei Anbieter geben es sehr
+  wohl heraus (Vanguard, DWS), und für die übrigen sechs liefern vier bis
+  sieben Portale übereinstimmend dieselbe Zahl.
+
+**Die Lehre ist nicht „der Proxy ist weg".** Er ist da, wo er war. Die Lehre
+ist, dass die Notiz „aus dieser Umgebung nicht erreichbar" eine Aussage über
+**die Umgebung** war und als Aussage über **die Quelle** gelesen wurde. Wer
+sie so liest, sucht beim nächsten Mal gar nicht erst — und das kostete hier
+vier Wochen an einer Arbeit von einer Stunde.
+
+Deshalb gehört in eine solche Notiz immer beides: **das Datum und der Ort.**
+Und vor den Umweg gehört die eine Zeile, die klärt, ob es ihn überhaupt
+braucht:
+
+```
+curl -sS -o /dev/null -w "%{http_code}\n" --max-time 12 https://example.org/
+```
+
+**Was auch mit vollem Zugang nicht geht** – gesetzte Schranken, die nicht
+umgangen werden: `ishares.com` und `blackrock.com` antworten mit 403 vor jedem
+Inhalt (auch auf die PDFs, und ohne die Anlegertyp-Abfrage, die man dort
+vermutet); ebenso `fondsweb.com`, `finanzen.net`, `morningstar.com`. Die
+BMF-Seiten stehen hinter einem Bot-Schutz (302 auf `validate.perfdrive.com`).
+`boerse-frankfurt.de` leitet auf eine Seite um, die ihre Zahlen per JavaScript
+nachlädt – für einen Abruf ohne Browser also leer.
+
 ## Der Ausweg: ein Läufer holt es
 
 **GitHub-Läufer haben vollen Netzzugang.** Darauf beruht das halbe Projekt schon

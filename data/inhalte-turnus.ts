@@ -71,7 +71,23 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Abgeltungsteuer, Solidaritätszuschlag, Sparerpauschbetrag, Teilfreistellungen ' +
       'und den Basiszins der Vorabpauschale gegen den amtlichen Stand halten.',
     taktTage: 14,
-    zuletztGeprueft: '2026-08-09',
+    /*
+      05.09.2026: erstmals alle fünf Werte gegen die Primärquelle gehalten –
+      aus einer Umgebung mit Netzzugang, die `gesetze-im-internet.de` erreicht
+      (viermal HTTP 200, wo der Läufer am 28. August zweimal ins Timeout lief).
+
+        25 %          § 32d Absatz 1 EStG, wörtlich
+        5,5 %         § 4 SolzG 1995 – und dessen Satz 3 nimmt die
+                      Abgeltungsteuer von der Freigrenzen-Rückführung aus,
+                      genau so, wie `kapitalertragsteuer.ts` rechnet
+        1.000/2.000 € § 20 Absatz 9 EStG
+        30/15/60/80 % § 20 InvStG, Absätze 1 bis 3
+        3,20 %        BMF 13.01.2026, GZ IV C 1 - S 1980/00230/012/001
+
+      Nichts zu ändern. Der Zwischenstand in `data/stichtagswerte.ts` ist
+      damit ein Ergebnis geworden.
+    */
+    zuletztGeprueft: '2026-09-05',
     dateien: ['lib/kapitalertragsteuer.ts', 'data/stichtagswerte.ts'],
     quelle: 'https://www.bundesfinanzministerium.de/',
   },
@@ -81,7 +97,19 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Laufende Kosten (TER) der acht Katalog-ETFs. Am 9. August 2026 war ' +
       'keine einzige hinterlegt – ein Kostenrechner ohne Kosten.',
     taktTage: 14,
-    zuletztGeprueft: '2026-08-09',
+    /*
+      05.09.2026: alle acht eingetragen. Zwei aus dem Basisinformationsblatt
+      des Anbieters (Vanguard, DWS), sechs aus je vier bis sieben
+      übereinstimmenden Portalangaben – iShares antwortet auf jede Adresse mit
+      403, auch auf die PDFs.
+
+      Beim nächsten Mal ist die Frage nicht „stehen Zahlen da?“, sondern:
+      Hat ein Anbieter gesenkt? Vanguard hat es zwischen Oktober 2025 und
+      Juli 2026 zweimal getan (0,22 → 0,19 → 0,14). Die sechs mit `art:
+      'anbieterangabe'` gehören zuerst angesehen – sie tragen den Tag der
+      Durchsicht, nicht das Datum eines Dokuments.
+    */
+    zuletztGeprueft: '2026-09-05',
     dateien: ['data/etf-kosten.ts'],
     quelle: 'Factsheets der Anbieter, ISIN steht je Eintrag',
   },

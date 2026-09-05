@@ -238,6 +238,71 @@ if (!SCHARF) {
 */
 const HAKEN = process.env.MAKE_WEBHOOK_URL?.trim() ?? ''
 
+/**
+ * Was der Betreiber tun muss, wenn der Dienst den Beitrag abweist.
+ *
+ * ## Warum das hier steht und nicht in der Anleitung
+ *
+ * Weil eine Fehlermeldung, die den Grund nennt und nicht die Abhilfe, den
+ * Leser an derselben Stelle stehen lässt wie gar keine. Am 5. September 2026
+ * antwortete Make achtmal hintereinander mit `400: Queue is full` – acht rote
+ * Läufe, in denen dieselbe Zeile stand und niemandem sagte, dass die Abhilfe
+ * zwei Klicks im Browser sind und **nicht** ein weiterer Anstoß.
+ *
+ * Schlimmer noch: Jeder weitere Anstoß füllt die Warteschlange zusätzlich.
+ * Wer die Meldung nicht versteht, macht es dadurch schlechter.
+ *
+ * Die Sätze sind bewusst kurz und nennen den Ort, nicht den Klickweg – Make
+ * benennt seine Menüs um, die Begriffe „Szenario“ und „Queue“ bleiben.
+ */
+function ratschlag(rumpf: string): string[] {
+  const text = rumpf.toLowerCase()
+
+  if (text.includes('queue is full')) {
+    return [
+      '',
+      'Die Warteschlange des Szenarios ist voll – der Dienst nimmt nichts mehr an.',
+      'Das heißt fast immer: Das Szenario ist AUS. Make schaltet es nach',
+      'wiederholten Fehlern selbst ab, und danach laufen die Aufrufe auf.',
+      '',
+      'Zu tun, im Browser bei Make:',
+      '  1. Szenario „IM Invests Tagesbeitrag“ öffnen – steht es auf AUS?',
+      '  2. Die Warteschlange (Queue) leeren.',
+      '  3. Erst dann wieder einschalten.',
+      '',
+      'Nicht noch einmal anstoßen, bevor das erledigt ist: Jeder Anstoß legt',
+      'einen weiteren Eintrag in dieselbe volle Warteschlange.',
+      '',
+      'Warum es überhaupt abschaltet, steht im Protokoll des Szenarios – oft',
+      'ist das Freikontingent des Monats aufgebraucht (EINRICHTUNG.md 3.11 c).',
+    ]
+  }
+
+  if (text.includes('not found') || text.includes('no scenario')) {
+    return [
+      '',
+      'Den Haken gibt es nicht mehr. Entweder wurde das Szenario gelöscht oder',
+      'die Adresse neu erzeugt – dann muss `MAKE_WEBHOOK_URL` neu hinterlegt',
+      'werden (EINRICHTUNG.md 3.11 b).',
+    ]
+  }
+
+  if (text.includes('limit') || text.includes('operations')) {
+    return [
+      '',
+      'Sieht nach dem Kontingent des Dienstes aus. Ein Beitrag am Tag sind',
+      'wenige Operationen – prüfen Sie, ob ein anderes Szenario mitläuft.',
+      'EINRICHTUNG.md 3.11 c nennt die Bremsen.',
+    ]
+  }
+
+  return [
+    '',
+    'Was der Dienst damit meint, steht in seinem eigenen Protokoll. Der Weg',
+    'dorthin und die bekannten Bremsen stehen in EINRICHTUNG.md 3.11.',
+  ]
+}
+
 if (!TOKEN || !KONTO) {
   if (!HAKEN) {
     melde('Weder IG_ACCESS_TOKEN/IG_USER_ID noch MAKE_WEBHOOK_URL gesetzt.')
@@ -265,6 +330,7 @@ if (!TOKEN || !KONTO) {
 
   if (!antwort.ok) {
     melde(`Der Dienst antwortet mit ${antwort.status}: ${rumpf.slice(0, 200)}`)
+    for (const zeile of ratschlag(rumpf)) melde(`  ${zeile}`)
     process.exit(1)
   }
 

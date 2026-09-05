@@ -18,6 +18,21 @@ import { formatDate, formatPercent } from '@/lib/format'
  * Auskunft und obendrein die rechtlich maßgebliche – verbindlich ist ohnehin
  * das Dokument des Anbieters und nicht seine Wiedergabe auf einer fremden
  * Website.
+ *
+ * **Seit dem 5. September 2026 stehen alle acht da** – der Zweig für die
+ * Lücke bleibt trotzdem. Ein Anbieter kann einen Fonds schließen, ein neuer
+ * kann in den Katalog kommen, und `npm run frische` meldet jeden Eintrag, der
+ * älter als zwei Jahre ist. Die Lücke ist der Normalfall für alles, was noch
+ * niemand nachgeschlagen hat.
+ *
+ * ## Und warum darunter zweierlei stehen kann
+ *
+ * Weil zwei der acht Werte aus dem Pflichtdokument des Anbieters stammen und
+ * sechs aus übereinstimmenden Portalangaben – iShares liefert seine Dokumente
+ * nicht aus. Beides ist brauchbar, beides ist nachprüfbar, aber es ist nicht
+ * dasselbe. Welcher Satz erscheint, entscheidet `art` am Eintrag; unter jeden
+ * Wert „laut Basisinformationsblatt“ zu schreiben wäre für sechs von acht
+ * eine Behauptung, die das Dokument nicht deckt.
  */
 export function Fondstafel({
   symbol,
@@ -68,17 +83,46 @@ export function Fondstafel({
       </dl>
 
       {kosten ? (
+        /*
+          Die Herkunft wird benannt, nicht geglättet.
+
+          Hier stand für jeden Wert „laut Basisinformationsblatt“. Das konnten
+          nur zwei der acht Einträge halten: iShares liefert seine Dokumente
+          nicht aus (403), und für diese sechs Fonds steht die
+          übereinstimmende Angabe mehrerer Datenportale. Beides ist brauchbar
+          – aber es ist nicht dasselbe, und der Leser entscheidet selbst, was
+          ihm eine Zahl wert ist. Siehe `art` in `data/etf-kosten.ts`.
+        */
         <p className="text-fg-subtle mt-3 text-sm leading-relaxed">
-          Laufende Kosten laut Basisinformationsblatt vom {formatDate(kosten.stand)}.{' '}
-          <a
-            href={kosten.quelle}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2"
-          >
-            Zum Dokument des Anbieters
-          </a>{' '}
-          – maßgeblich ist dieses, nicht seine Wiedergabe hier.
+          {kosten.art === 'basisinformationsblatt' ? (
+            <>
+              Laufende Kosten laut Basisinformationsblatt vom {formatDate(kosten.stand)}.{' '}
+              <a
+                href={kosten.quelle}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2"
+              >
+                Zum Dokument des Anbieters
+              </a>{' '}
+              – maßgeblich ist dieses, nicht seine Wiedergabe hier.
+            </>
+          ) : (
+            <>
+              Laufende Kosten nach Angabe des Anbieters, nachgesehen am{' '}
+              {formatDate(kosten.stand)}.{' '}
+              <a
+                href={kosten.quelle}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2"
+              >
+                Zur Fondsübersicht
+              </a>{' '}
+              – maßgeblich ist das Basisinformationsblatt des Anbieters, das er unter
+              dieser Kennnummer selbst herausgibt.
+            </>
+          )}
         </p>
       ) : (
         <Callout
