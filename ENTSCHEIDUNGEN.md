@@ -1053,6 +1053,52 @@ betrifft dann aber die Website mit, nicht nur die Folge, und die strenge
 Quellenangabe ist Absicht. Deshalb wurde es hier **nicht** mitgemacht,
 sondern liegengelassen, bis der Betreiber die Wirkung des Takts gehört hat.
 
+#### Derselbe Satz gilt für die Prüfungen selbst
+
+Am 5. September 2026 hat er zum zweiten Mal in zwei Tagen eine Tagesausgabe
+gekostet – diesmal, weil er auf `tests/quartalstermine.test.ts` angewandt
+gehört hätte und niemand ihn dort gelesen hat.
+
+Drei Prüfungen standen nebeneinander:
+
+    Ein angekündigter Termin trägt kein „geschätzt"    angekündigt → kein geschaetzt
+    Und ein hochgerechneter trägt es                   hochgerechnet → geschaetzt
+    Jeder Termin ist als geschätzt gekennzeichnet      ALLE → geschaetzt
+
+Die erste und die dritte **widersprechen einander**. Nicht subtil, sondern
+unmittelbar: Was die eine verlangt, verbietet die andere. Trotzdem standen
+sie wochenlang grün nebeneinander, weil es keinen einzigen angekündigten
+Termin gab. Über einer leeren Menge sind beide wahr.
+
+Die dritte stammt aus der Zeit vor dem Begriff „angekündigt". Als er im
+August eingeführt wurde, blieb sie stehen – nichts konnte sie stören. In der
+Nacht auf den 5. September lieferte die Tokioter Börse zum ersten Mal drei
+angekündigte Termine, und `nachrichten.yml` schrieb nichts mehr.
+
+**Was daraus folgt, über den Fall hinaus:**
+
+- Ein neuer Begriff macht die Prüfungen, die es vorher gab, nicht ungültig –
+  aber er kann sie **falsch** machen, und zwar lautlos, solange er kein
+  Material hat. Wer einen einführt, liest die vorhandenen Prüfungen daneben
+  noch einmal und fragt: Welche davon sprechen über „alle", und stimmt das
+  noch?
+- Zwei Prüfungen, die sich widersprechen, sind kein Problem der Prüfungen,
+  sondern eine offene Frage über die Sache. Hier lautete sie: _Trägt jeder
+  Termin eine Kennzeichnung, oder trägt jeder Termin dieselbe?_ Die Antwort
+  war seit August die erste, und eine Zeile Code sagte weiter die zweite.
+- **Der Ersatz für eine gestrichene Prüfung ist nicht nichts.** An ihre
+  Stelle kamen zwei: dass angekündigt und hochgerechnet zusammen jeden Termin
+  abdecken (eine dritte Sorte fiele sonst durch beide hindurch), und dass
+  kein Termin ohne Kennzeichnung dasteht – die eigentliche Zusage, jetzt so
+  formuliert, dass sie beide Sorten meint.
+
+Nachgesucht wurde anschließend im ganzen Testbestand nach derselben Gestalt:
+sechzehn Stellen, an denen `.every()` über eine gefilterte Menge läuft. Alle
+sechzehn tragen eine Wache – eine Nichtleer-Prüfung, einen Abgleich der
+Anzahl oder eine benachbarte Prüfung, die die Menge besetzt hält. Der Fall
+oben war der einzige, und sein Merkmal war nicht die leere Menge allein,
+sondern **der Widerspruch daneben**, den die leere Menge verdeckt hat.
+
 ### Geprüft wird, was gesendet wird – nicht sein Vorprodukt
 
 Am 11. August 2026 hat die neue Prüfung nachweislich gearbeitet: Im Protokoll
