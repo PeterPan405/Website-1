@@ -101,6 +101,415 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'vw-zweiter-bombentag-dax-spitze',
+    title: 'VW legt den zweiten Bombentag in Folge hin – und führt den DAX an',
+    metaTitle: 'VW: Zweiter Bombentag in Folge, DAX-Spitzenreiter',
+    teaser:
+      'Nach der Zustimmung zum Sparplan am Donnerstag legte die VW-Aktie laut dpa-AFX auch am Freitag zu und stand an der Spitze des DAX.',
+    category: 'Märkte',
+    publishedAt: '2026-09-05T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'DAX', 'Sparprogramm', 'Aktienkurs'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['volkswagen', 'dax'],
+    sources: [
+      {
+        label:
+          'onvista, Marktberichte vom 4.9.2026, 16:49 Uhr (dpa-AFX): „AKTIE IM FOKUS 2: Einigung auf Sparplan treibt Volkswagen an die Dax-Spitze“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Dax Tagesrückblick vom 4.9.2026, 15:50 Uhr: „Dax hält sich über 26.000 Punkten - VW mit bestem Tag seit Monaten“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Meldungen vom 3.9.2026 (EQS Group AG): „EQS-Adhoc: Porsche Automobil Holding SE: Zustimmung des Aufsichtsrats der Volkswagen AG zu umfassendem Zukunftsplan für den Volkswagen-Konzern“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag hatte der Aufsichtsrat von Volkswagen laut offizieller Ad-hoc-Mitteilung einen umfassenden Zukunftsplan gebilligt. Am Freitag ging es weiter: Die Vorzugsaktie legte laut dpa-AFX erneut zu und führte am Ende des Handelstages den DAX an.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Onvista beschreibt es als **„besten Tag seit Monaten“** für VW. Eine genaue Prozentzahl für den Freitag nennen die vorliegenden Tickermeldungen nicht – anders als für den Donnerstag, an dem die Aktie bereits kräftig gestiegen war.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Sparprogramm die Aktie treibt, nicht drückt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das mag zunächst widersprüchlich klingen: Ein Plan, der laut Tickermeldungen tausende Stellen kosten soll, lässt den Kurs steigen statt fallen. Der Grund liegt darin, dass eine Aktie den **erwarteten künftigen Gewinn** einpreist, nicht die aktuelle Belegschaftsgröße. Sinken die Kosten dauerhaft, steigt rechnerisch der Gewinn je Aktie – und genau darauf reagiert der Kurs.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was noch unklar bleibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die vorliegenden Meldungen sprechen von „tausenden“ wegfallenden Stellen, ohne eine genaue Zahl zu nennen, und sie erklären nicht, über welchen Zeitraum der Plan umgesetzt werden soll. Wer hier eine feste Zahl sucht, findet in den Übersichten vom Freitagmorgen keine.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein zweiter starker Handelstag in Folge zeigt, dass der Markt die Ankündigung nicht als einmaligen Ausreißer, sondern als andauernde Neubewertung behandelt. Ob sich das hält, sobald die ersten Details zur Umsetzung bekannt werden, ist eine offene Frage – keine, die sich heute beantworten lässt.',
+      },
+    ],
+  },
+  {
+    slug: 'us-jobbericht-dax-wall-street-wien',
+    title: 'Ein Jobbericht, drei Börsen, drei Richtungen',
+    metaTitle: 'US-Jobbericht: Dow fällt, DAX hält, Wien steigt',
+    teaser:
+      'Starke US-Arbeitsmarktdaten ließen Dow und S&P 500 am Freitag fallen – der DAX hielt sich über 26.000 Punkten, Wiens Leitindex legte sogar zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-05T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['US-Arbeitsmarkt', 'DAX', 'Dow Jones', 'Nasdaq'],
+    relatedTopics: ['aktie', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 4.9.2026: „162.000 neue Jobs im August: Wall Street startet nach US-Job-Hammer im Minus“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News vom 4.9.2026, 20:31 Uhr (dpa-AFX): „ROUNDUP/Aktien New York Schluss: Dow gibt nach - Jobbericht weckt Zinssorgen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Unternehmens-Meldungen News-Ticker vom 4.9.2026: „Zuversicht in New York: NASDAQ 100 zum Ende des Freitagshandels mit Gewinnen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Marktberichte vom 4.9.2026, 16:03 Uhr (dpa-AFX): „ROUNDUP/Aktien Frankfurt Schluss: Dax trotzt starken US-Jobdaten“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Marktberichte vom 4.9.2026, 16:29 Uhr (dpa-AFX): „Aktien Wien Schluss: ATX legt zu - US-Arbeitsmarktdaten beflügeln“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: '162.000 neue Stellen im August – deutlich mehr, als am Markt erwartet worden war. Für die Wall Street war das am Freitag zunächst eine schlechte Nachricht: Ein robuster Arbeitsmarkt macht baldige Zinssenkungen der US-Notenbank unwahrscheinlicher, und genau darauf hatten viele Anleger gesetzt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dow Jones, S&P 500 und der breite Nasdaq Composite schlossen den Handelstag laut dpa-AFX im Minus. Die Begründung „Jobbericht weckt Zinssorgen“ steht so in der Meldung – mehr Detail zur genauen Höhe der Verluste nennen die vorliegenden Ticker nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Nasdaq, der trotzdem zulegte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verwirrend wird es beim Nasdaq: Während der breite Nasdaq Composite fiel, schloss der enger gefasste **Nasdaq-100** – die 100 größten Nicht-Finanzwerte der Börse – den Tag laut finanzen.net mit Gewinnen ab. „Der Nasdaq“ ist eben nicht ein einziger Index, sondern mehrere mit unterschiedlicher Zusammensetzung, und an einem Tag mit gegensätzlichen Kräften können sie unterschiedliche Vorzeichen zeigen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Frankfurt hält, Wien steigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Europa fiel die Reaktion nochmal anders aus. Der DAX schloss laut dpa-AFX **trotz** der starken US-Daten über 26.000 Punkten – ein Wort, das die Agentur selbst so wählt und das auf die stützende Wirkung der VW-Rally an diesem Tag hindeutet. Der Wiener Leitindex ATX legte sogar zu, ausdrücklich **„beflügelt“** von genau denselben Arbeitsmarktdaten, die den Dow belastet hatten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dieselbe Kennzahl kann an unterschiedlichen Handelsplätzen unterschiedlich wirken, je nachdem, welche anderen Kräfte an diesem Tag dort gerade zusätzlich am Werk sind. Eine einzelne Schlagzeile über „die Reaktion der Börse“ auf eine Nachricht blendet aus, dass es diese eine Reaktion selten gibt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-bricht-ein-oel-bleibt-fest',
+    title: 'Starke Jobdaten drücken Gold – der Ölpreis bleibt stabil',
+    teaser:
+      'Der überraschend robuste US-Arbeitsmarktbericht ließ den Goldpreis laut Goldreporter einbrechen. Öl bewegte sich in die andere Richtung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-05T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Öl', 'Zinserwartungen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold', 'brent'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Top-News vom 4.9.2026: „US-Arbeitsmarkt im August deutlich stärker als erwartet – Goldpreis bricht ein“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste (Abruf 5.9.2026, 02:13 Uhr): Gold 4.429 US-Dollar (-1,0 %), Öl 96,28 US-Dollar (+0,8 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Société Générale über onvista, Rohstoff-Analysen vom 4.9.2026, 11:25 Uhr: „Ölproduktion Russlands dürfte auf 17-Jahrestief fallen“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Während VW und die europäischen Indizes den starken US-Jobbericht gut wegsteckten, traf er den Goldpreis direkt: Goldreporter titelte am Freitag „Goldpreis bricht ein“ und schreibt dazu wörtlich: „Der Goldpreis gibt nach, während die Zinserwartungen steigen.“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf der Kursleiste von finanzen.net stand Gold am Samstagmorgen bei 4.429 US-Dollar, ein Minus von 1,0 Prozent gegenüber dem Referenzwert. Öl (Brent) bewegte sich zur gleichen Zeit mit 96,28 US-Dollar um 0,8 Prozent nach oben – also in die entgegengesetzte Richtung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Rohstoffe, zwei Logiken',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt keine Zinsen. Steigen die Zinserwartungen – etwa weil ein robuster Arbeitsmarkt Zinssenkungen unwahrscheinlicher macht –, wird eine verzinste Anlage im Vergleich attraktiver, und Gold verliert relativ an Reiz. Öl folgt einer anderen Logik: Hier zählen in erster Linie Angebot und Nachfrage, nicht die Zinserwartung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Meldung, die dazupasst – aber nicht verknüpft ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Passend dazu kursierte am Freitag eine weitere Meldung: Russlands Ölproduktion dürfte laut einer Analyse von Société Générale auf ein 17-Jahres-Tief fallen. Ob das etwas mit der Preisbewegung an diesem konkreten Tag zu tun hat, sagt die Meldung nicht – sie steht für sich, als möglicher Hintergrund für ein knapperes Angebot, nicht als Erklärung für den Freitag.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Gold und Öl in einen Topf wirft, weil beide „Rohstoffe“ heißen, übersieht, dass sie auf ganz unterschiedliche Nachrichten reagieren. Ein Blick auf eine einzelne Ein-Tages-Bewegung sagt zudem wenig darüber, wohin sich ein Preis über Wochen entwickelt.',
+      },
+    ],
+  },
+  {
+    slug: 'telekom-elliott-hebel-t-mobile',
+    title: 'Elliott setzt bei T-Mobile an – was ein Ankeraktionär bedeuten kann',
+    metaTitle: 'Elliott bei T-Mobile: Was ein Aktivist bedeuten kann',
+    teaser:
+      'Der aktivistische Investor Elliott hat sich laut onvista bei T-Mobile US engagiert. Details zu den Forderungen nennt die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-05T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Deutsche Telekom', 'T-Mobile', 'Aktivistischer Investor'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['deutsche-telekom'],
+    sources: [
+      {
+        label:
+          'onvista, Dax-Aktie mit Aktivist vom 3.9.2026, 15:30 Uhr: „Deutsche Telekom: Elliott setzt den Hebel bei T-Mobile an“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der aktivistische Investor Elliott Management hat sich laut onvista bei T-Mobile US engagiert, der mehrheitlich der Deutschen Telekom gehörenden amerikanischen Tochtergesellschaft. Die Überschrift spricht davon, dass Elliott „den Hebel ansetzt“.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was genau Elliott fordert, wie groß die aufgebaute Position ist oder seit wann sie besteht – dazu liefert die vorliegende Meldung keine Angaben. Das gehört an dieser Stelle ausdrücklich gesagt, statt es zu erraten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein aktivistischer Investor überhaupt tut',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein aktivistischer Investor kauft sich in ein Unternehmen ein und versucht anschließend öffentlich oder hinter verschlossenen Türen, Veränderungen durchzusetzen – etwa einen Aktienrückkauf, eine Abspaltung von Unternehmensteilen oder einen Wechsel im Management. Welche dieser Stellschrauben Elliott bei T-Mobile im Blick hat, ist aus der vorliegenden Quelle nicht ersichtlich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mutterkonzern und US-Tochter sind zwei verschiedene Kurse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Deutsche Telekom notiert in Frankfurt, T-Mobile US separat an der US-Börse. Eine Kampagne bei der US-Tochter muss sich nicht eins zu eins auf den Kurs der deutschen Mutteraktie übertragen – beide Kurse hängen zusammen, aber sie sind nicht dieselbe Zahl.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Solange keine konkreten Forderungen bekannt sind, bleibt es bei der Beobachtung, dass ein bekannter Name eingestiegen ist. Was das für den Kurs am Ende bedeutet, hängt davon ab, was Elliott fordert – und ob das Management darauf eingeht.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-ermittlung-cybercab-vorfall',
+    title: 'US-Behörde ermittelt bei Tesla nach einem Cybercab-Vorfall',
+    teaser:
+      'Nach einem Vorfall mit dem Robotaxi Cybercab hat eine US-Verkehrsbehörde laut finanzen.net eine Untersuchung eingeleitet. Die Aktie gab nach.',
+    category: 'Märkte',
+    publishedAt: '2026-09-05T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tesla', 'Cybercab', 'Regulierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Unternehmens-Meldungen News-Ticker vom 4.9.2026: „Tesla-Aktie im Rückwärtsgang: US-Verkehrsbehörde startet Untersuchung nach Cybercab-Event“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine US-Verkehrsbehörde hat laut finanzen.net eine Untersuchung eingeleitet, nachdem es bei Teslas Robotaxi Cybercab zu einem Vorfall gekommen war. Die Tesla-Aktie gab daraufhin nach.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was bei diesem „Cybercab-Event“ konkret passiert ist – ob ein Unfall, eine technische Störung oder etwas anderes –, geht aus der vorliegenden Ticker-Zeile nicht hervor. Auch zu möglichen Verletzten oder Sachschäden macht die Meldung keine Angabe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Untersuchung ist kein Urteil',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine eröffnete Untersuchung ist zunächst ein routinemäßiger erster Schritt einer Aufsichtsbehörde, keine Feststellung eines Fehlverhaltens. Solche Verfahren können nach Monaten folgenlos enden, in Auflagen münden oder – am anderen Ende der Skala – zu einem Rückruf führen. Welcher dieser Wege es wird, lässt sich am Tag der Eröffnung nicht sagen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Aktie trotzdem sofort reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Markt preist Unsicherheit sofort ein, nicht erst das Ergebnis. Allein die Möglichkeit, dass am Ende Kosten, Auflagen oder ein Imageschaden stehen, reicht für eine erste Kursreaktion – unabhängig davon, wie die Untersuchung tatsächlich ausgeht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer aus einer einzelnen Meldung über eine eröffnete Untersuchung bereits ein Ergebnis ableitet, geht über das hinaus, was die Quelle hergibt. Der eigentliche Ausgang steht noch aus.',
+      },
+    ],
+  },
+  {
+    slug: 'woche-voraus-konjunkturdaten-ezb-debatte',
+    title: 'Die neue Woche startet mit deutschen Industriedaten und einer EZB-Debatte',
+    metaTitle: 'Wochenausblick: Industriedaten, BIP, EZB-Debatte',
+    teaser:
+      'Am Montag stehen deutsche Industrieproduktion und BIP-Zahlen für die Eurozone an. Ob die EZB die Zinsen anhebt, ist laut Marktbeobachtern offen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-05T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wirtschaftskalender', 'EZB', 'Konjunkturdaten'],
+    relatedTopics: ['notenbanken-geldpolitik', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Wirtschaftskalender (Kommende Termine), Abruf 5.9.2026, 02:13 Uhr: Termine für den 7.9.2026',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreetONLINE Redaktion über onvista, Rohstoffnachrichten vom 4.9.2026: „Kommen mehr EZB-Erhöhungen?: Der Markt erwartet viel härtere Schritte als die Experten“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Börsen haben am Wochenende geschlossen, doch der Wirtschaftskalender für die neue Handelswoche steht bereits. Für Montag, den 7. September, listet er unter anderem die deutsche Industrieproduktion (Prognose +0,3 Prozent zum Vormonat, zuvor +0,2 Prozent), das Sentix-Investorenvertrauen (zuletzt 0,9 Punkte, ohne Prognosewert) sowie für die Eurozone das Bruttoinlandsprodukt (Prognose +0,4 Prozent zum Vorquartal und +1 Prozent zum Vorjahr, beides wie zuvor) und die Beschäftigungsveränderung (Prognose +0,1 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Wert, der Erwartung gegen Wirklichkeit stellt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Wirtschaftskalender listet immer drei Spalten: den zuletzt gemessenen Wert, die Prognose der Volkswirte und – sobald verfügbar – den tatsächlichen Wert. Für die Kursreaktion am Erscheinungstag zählt fast nie die absolute Höhe, sondern die **Abweichung von der Prognose**. Ein Wert, der exakt der Erwartung entspricht, bewegt selten etwas – überrascht er nach oben oder unten, kann das spürbare Folgen haben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die EZB-Frage bleibt offen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Daneben kursiert laut wallstreetONLINE eine Debatte über die Europäische Zentralbank: Der Markt preise demnach härtere Zinsschritte ein, als Volkswirte im Schnitt erwarten. Ein genaues Datum für eine Zinsentscheidung nennt die vorliegende Quelle nicht – nur, dass die Frage in der kommenden Woche im Raum steht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die neue Woche verfolgen will, achtet weniger auf die reine Zahl als auf den Abstand zur Prognose – und darauf, ob sich Markterwartung und Einschätzung der Volkswirte bei der EZB am Ende annähern oder auseinanderlaufen.',
+      },
+    ],
+  },
+  {
+    slug: 'nvidia-burry-short-wette-rekordquartal',
+    title: 'Burry hält an seiner Nvidia-Wette fest – trotz Rekordquartal',
+    teaser:
+      'Nvidia hat laut Tickermeldungen ein Rekordquartal vorgelegt. „Big Short“-Investor Michael Burry hedgt seine Short-Position trotzdem weiter.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-05T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nvidia', 'Michael Burry', 'Leerverkauf'],
+    relatedTopics: ['anlegerpsychologie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia'],
+    sources: [
+      {
+        label:
+          "finanzen.net, Unternehmens-Meldungen News-Ticker vom 4.9.2026: „NVIDIA-Aktie: 'Big-Short'-Investor Burry hedgt Short-Wette trotz Rekordquartal und bleibt skeptisch“",
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nvidia hat laut Tickermeldungen ein Rekordquartal vorgelegt. Trotzdem hält der als „Big Short“ bekannte Investor Michael Burry laut finanzen.net an seiner Short-Position fest und hedgt sie weiter – er bleibt demnach skeptisch.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Konkrete Zahlen zum Rekordquartal oder zur Größe von Burrys Position nennt die vorliegende Meldung nicht. Beides bleibt an dieser Stelle offen, statt geschätzt zu werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rekordquartal und ein Short-Seller schließen sich nicht aus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Short-Position ist eine Wette auf den **künftigen** Kurs, nicht ein Urteil über vergangene Geschäftszahlen. Wer „hedgt“, reduziert dabei das Risiko einer bestehenden Position, ohne sie vollständig aufzulösen – zum Beispiel durch ein Gegengeschäft, das Verluste begrenzt, falls der Kurs entgegen der eigenen Erwartung weiter steigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine berühmte Wette ist keine Prognose für alle',
+      },
+      {
+        type: 'paragraph',
+        text: 'Burry wurde durch seine frühe Wette gegen den US-Immobilienmarkt vor der Finanzkrise bekannt. Das macht seine aktuelle Position lesenswert, aber nicht automatisch zutreffend – ein einzelner, wenn auch prominenter Investor ist kein Ersatz für eine eigene Einschätzung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rekordquartal und eine offene Short-Wette gegen dieselbe Aktie sind kein Widerspruch, sondern zwei unterschiedliche Zeithorizonte – der eine blickt zurück, der andere nach vorn.',
+      },
+    ],
+  },
+  {
     slug: 'vw-sparpaket-durch-aktie-springt',
     title: 'VW-Aufsichtsrat billigt Sparpaket – Vorzugsaktie springt um 7,47 Prozent',
     metaTitle: 'VW-Sparpaket: Aktie springt um 7,47 Prozent',
