@@ -523,10 +523,18 @@ if TEILE > 0:
     melde(f"Teil {TEIL} fertig – {len(meine)} Dateien.")
     sys.exit(0)
 
+"""Die Rampe gegen Schnittklicks steht in `sprechstimme.py`, wie die Pausen.
+
+Hart aneinandergesetzte Stücke knacken an der Naht: Das vorige endet in
+Stille, das nächste beginnt mit dem ersten Abtastwert der Stimme – und der
+ist nicht null. Begründung und Maß stehen bei `sprechstimme.nahtlos`.
+"""
+import sprechstimme as _stimme
+
 teile = []
 for index in range(len(alle_stuecke)):
     stueck_audio, rate = sf.read(f"podcast-folge/stueck-{index:03d}.wav")
-    teile.append(stueck_audio)
+    teile.append(_stimme.nahtlos(stueck_audio, rate))
 audio = np.concatenate(teile)
 dauer = len(audio) / rate
 

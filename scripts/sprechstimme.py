@@ -565,6 +565,68 @@ def stellen_daempfen(audio, rate: int, stellen: list[tuple[float, float, str]]):
     return ton
 
 
+#: Wie lang die Rampe an jedem Stückende ist, in Millisekunden.
+#:
+#: Acht Millisekunden sind rund ein Drittel einer Sprachperiode bei tiefer
+#: Männerstimme – kurz genug, dass kein Laut angeschnitten klingt, lang genug,
+#: dass der Sprung verschwindet. Wer daran dreht, hört gegen: Zu kurz knackt
+#: weiter, zu lang frisst den Anlaut.
+NAHT_MS = 8.0
+
+
+def nahtlos(stueck, rate: int, ms: float = NAHT_MS):
+    """Legt eine kurze Rampe an beide Enden eines Stücks – gegen Schnittklicks.
+
+    ## Warum es das braucht
+
+    Die Folge entsteht aus fünfundzwanzig einzeln gesprochenen Stücken, die
+    `np.concatenate` hart aneinandersetzt. Jedes Stück **endet** in Stille –
+    die Pause wird angehängt –, aber es **beginnt** mit dem ersten Abtastwert
+    der Stimme. Der ist nicht null.
+
+    Genau dort entsteht der Klick: ein Sprung von der Stille des vorigen
+    Stücks auf den ersten Wert des nächsten, innerhalb eines einzigen
+    Abtastschritts. Das Ohr hört einen Knacks; die Wellenform zeigt eine
+    senkrechte Kante.
+
+    ## Warum ihn keine der beiden Prüfungen fand
+
+    Weil beide über Fenster mitteln. `auffaellige_stellen` misst Rauheit und
+    Tonanteil über Stücke von Millisekunden – ein Sprung, der **einen**
+    Abtastwert breit ist, verschwindet darin restlos. Das ist die Lehre aus
+    `AGENTS.md` in ihrer wörtlichsten Form: *Ein Mittelwert kann nichts
+    finden, was er verdünnt.*
+
+    Deshalb wird hier nicht erkannt, sondern vermieden. Eine Rampe kostet
+    nichts und kann nicht danebenliegen.
+
+    ## Warum an beiden Enden
+
+    Das Ende trägt zwar Stille, aber nicht jedes Stück: Wird ein Anlauf nach
+    drei Versuchen als „schief" durchgewinkt, kann die Aufnahme abrupt
+    abbrechen. Die Rampe am Ende kostet dieselben acht Millisekunden Stille,
+    die dort ohnehin liegen.
+
+    `numpy` wird lokal geholt, wie überall in dieser Datei: Das Modul muss
+    sich auch ohne es laden lassen – `pause_fuer` braucht nur Text.
+    """
+    import numpy as np
+
+    n = max(1, int(rate * ms / 1000.0))
+    if len(stueck) < 2 * n:
+        return stueck
+
+    gerampt = np.array(stueck, copy=True)
+    rampe = np.linspace(0.0, 1.0, n, dtype=np.float64)
+    if gerampt.ndim == 1:
+        gerampt[:n] *= rampe
+        gerampt[-n:] *= rampe[::-1]
+    else:
+        gerampt[:n] *= rampe[:, None]
+        gerampt[-n:] *= rampe[::-1, None]
+    return gerampt
+
+
 def nachbessern(audio, rate: int, melde=print):
     """Sieht die **fertige** Aufnahme durch und dämpft, was noch stört.
 
@@ -883,6 +945,7 @@ def selbsttest(melde=print) -> int:
     melde(f"Selbsttest der Tonprüfung: {gesamt} von {gesamt} richtig.")
 
     schief += _selbsttest_pausen(melde)
+    schief += _selbsttest_naht(melde)
     return 1 if schief else 0
 
 
@@ -909,6 +972,71 @@ einem Minus von rund einem Prozent. Das zeigt, dass der Markt gerade andere \
 Faktoren stärker gewichtet als dieses eine Risiko.
 
 Bis morgen früh und viel Erfolg."""
+
+
+def _selbsttest_naht(melde=print) -> int:
+    """Legt der Rampe genau den Sprung vor, für den sie gebaut ist.
+
+    Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe. Also bekommt sie
+    hier ein Stück, das **hart** bei voller Auslenkung anfängt – der Fall, der
+    in der fertigen Folge knackt – und muss ihn glattziehen, ohne die Mitte
+    anzufassen.
+    """
+    import numpy as np
+
+    schief = 0
+    rate = 24_000
+
+    melde("")
+    melde("Selbsttest der Schnittkanten:")
+
+    # Ein Stück, das ohne Vorwarnung bei 0,9 beginnt und dort endet.
+    hart = np.full(rate, 0.9, dtype=np.float64)
+    weich = nahtlos(hart, rate)
+
+    # 1. Der erste Wert muss praktisch null sein – sonst bleibt der Sprung.
+    if abs(weich[0]) > 0.01:
+        melde(f"FEHL Der Anfang springt weiter auf {weich[0]:.3f}.")
+        schief += 1
+    else:
+        melde("OK   Der Anfang steigt aus der Stille an")
+
+    if abs(weich[-1]) > 0.01:
+        melde(f"FEHL Das Ende bricht weiter bei {weich[-1]:.3f} ab.")
+        schief += 1
+    else:
+        melde("OK   Das Ende läuft in die Stille aus")
+
+    # 2. Die Mitte bleibt unberührt – die Rampe darf keine Lautstärke kosten.
+    mitte = weich[rate // 2]
+    if abs(mitte - 0.9) > 1e-9:
+        melde(f"FEHL Die Mitte wurde verändert: {mitte:.6f} statt 0,900.")
+        schief += 1
+    else:
+        melde("OK   Die Mitte bleibt unangetastet")
+
+    # 3. Der größte Sprung von einem Wert zum nächsten muss klein sein.
+    #    Ohne Rampe ist er 0,9 – eine senkrechte Kante, und genau die knackt.
+    sprung_vorher = float(np.max(np.abs(np.diff(np.concatenate([[0.0], hart])))))
+    sprung_nachher = float(np.max(np.abs(np.diff(np.concatenate([[0.0], weich])))))
+    if sprung_nachher >= sprung_vorher:
+        melde(f"FEHL Der Sprung blieb: {sprung_nachher:.3f} gegen {sprung_vorher:.3f}.")
+        schief += 1
+    else:
+        melde(
+            f"OK   Die Kante ist weg – größter Schritt {sprung_nachher:.4f} "
+            f"statt {sprung_vorher:.3f}"
+        )
+
+    # 4. Ein Stück, das kürzer ist als zwei Rampen, bleibt unverändert.
+    winzig = np.full(4, 0.5, dtype=np.float64)
+    if not np.array_equal(nahtlos(winzig, rate), winzig):
+        melde("FEHL Ein zu kurzes Stück wurde angefasst.")
+        schief += 1
+    else:
+        melde("OK   Ein zu kurzes Stück bleibt, wie es ist")
+
+    return schief
 
 
 def _selbsttest_pausen(melde=print) -> int:
