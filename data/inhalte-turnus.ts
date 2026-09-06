@@ -153,7 +153,7 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Je Rechner ein Beispiel von Hand nachrechnen und die Formel im Code ' +
       'gegen die auf der Seite angegebene Methodik halten.',
     taktTage: 28,
-    zuletztGeprueft: '2026-08-09',
+    zuletztGeprueft: '2026-09-06',
     dateien: ['lib/kapitalertragsteuer.ts', 'lib/kosten.ts', 'lib/kredit.ts'],
   },
   {
