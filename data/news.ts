@@ -101,6 +101,280 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'zinswette-dreht-sich-zweimal-jobbericht',
+    title:
+      'Ein Fed-Satz, ein Jobbericht: Die Zinswette dreht sich zweimal in einer Woche',
+    metaTitle: 'Fed-Signal und Jobbericht drehen die Zinswette',
+    teaser:
+      'Erst dämpfte Fed-Gouverneur Waller die Zinserwartung, dann drehte sie der US-Jobbericht zurück – Anleiherenditen und Gold reagierten sofort.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-06T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Zinserwartung', 'Anleiherenditen', 'Gold'],
+    relatedTopics: ['notenbanken-geldpolitik', 'staatsanleihe'],
+    relatedSymbols: ['gold', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'goldreporter.de, Top-News vom 5.9.2026: „US-Arbeitsmarkt im August deutlich stärker als erwartet – Goldpreis bricht ein“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'ad-hoc-news.de, Unternehmensnachrichten vom 3.9.2026: „Gold: Waller bremst Zinssorgen“',
+        url: 'https://www.ad-hoc-news.de/boerse/news/unternehmensnachrichten/gold-waller-bremst-zinssorgen/70052191',
+      },
+      {
+        label:
+          'U.S. Bureau of Labor Statistics, Employment Situation Summary, August 2026',
+        url: 'https://www.bls.gov/news.release/empsit.nr0.htm',
+      },
+      {
+        label:
+          'kapitalmarktexperten.de, 4.9.2026: „Gold: 162.000 US-Stellen drücken auf 4.421 Dollar“',
+        url: 'https://www.kapitalmarktexperten.de/gold-162-000-us-stellen-druecken-auf-4-421-dollar/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag signalisierte Fed-Gouverneur Christopher Waller laut ad-hoc-news, dass er bei der Sitzung am 15. und 16. September für stabile Zinsen stimmen könnte, sollten sich die Inflationsdaten weiter beruhigen. Die am Markt eingepreiste Wahrscheinlichkeit einer Zinserhöhung fiel daraufhin von rund 70 auf etwa 50 Prozent, der Goldpreis stieg bis auf 4.473 Dollar je Feinunze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Freitag drehte die Erwartung zurück',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der US-Arbeitsmarktbericht vom Freitag fiel deutlich stärker aus als erwartet: 162.000 neue Stellen außerhalb der Landwirtschaft, wie das US-Arbeitsministerium mitteilte – gegenüber einer Markterwartung von rund 55.000. Die Arbeitslosenquote blieb bei 4,1 Prozent, und die Beschäftigungszahlen der beiden Vormonate wurden zusammen um 55.000 Stellen nach oben korrigiert. Die eingepreiste Wahrscheinlichkeit einer Zinserhöhung im September stieg daraufhin laut kapitalmarktexperten.de von rund 50 auf etwa 65 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was an den Anleihemärkten passierte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zweijähriger US-Staatsanleihen zog um 7,6 Basispunkte auf 4,41 Prozent an, die zehnjähriger Anleihen um 3,2 Basispunkte auf 4,792 Prozent; dreißigjährige Anleihen erreichten laut derselben Quelle bis zu 5,23 Prozent. Der Goldpreis gab von seinem Donnerstagsschluss aus um 1,1 Prozent auf rund 4.422 Dollar nach.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Innerhalb von zwei Handelstagen hat sich die eingepreiste Wahrscheinlichkeit für dieselbe Fed-Entscheidung erst nach unten und dann wieder nach oben verschoben. Das zeigt, wie wenig eine solche Prozentzahl über den tatsächlichen Ausgang aussagt – sie ist eine Momentaufnahme der Markterwartung, keine Vorhersage. Am Montag folgen mit dem Sentix-Investorenvertrauen für die Eurozone und der deutschen Industrieproduktion die nächsten Konjunkturdaten, die diese Erwartung erneut verschieben können.',
+      },
+    ],
+  },
+  {
+    slug: 'netapp-rekordzahlen-cashflow-bricht-ein',
+    title: 'NetApp übertrifft alle Prognosen – der Kurs fällt trotzdem um acht Prozent',
+    metaTitle: 'NetApp: Top-Zahlen, Kurs fällt trotzdem',
+    teaser:
+      'NetApp hat Umsatz, Gewinn und Ausblick laut onvista klar über den Erwartungen gemeldet – trotzdem fiel die Aktie um rund acht Prozent.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-06T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['NetApp', 'Quartalszahlen', 'Cashflow', 'Aktienkurs'],
+    relatedTopics: ['risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          'onvista, News vom 3.9.2026, 15:18 Uhr: „Warum NetApp trotz starker Zahlen so deutlich fällt“',
+        url: 'https://www.onvista.de/news/2026/09-03-warum-netapp-trotz-starker-zahlen-so-deutlich-faellt-40338625-19-26549606',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'NetApp legte Zahlen vor, die auf dem Papier nach nichts als guten Nachrichten aussehen: Umsatz von über 2 Milliarden Dollar, ein Plus von rund 30 Prozent zum Vorjahr und fast 200 Millionen Dollar mehr, als Analysten erwartet hatten. Der Gewinn je Aktie lag bei 2,58 Dollar – der Markt hatte mit 2,12 Dollar gerechnet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch der Ausblick lag über der Erwartung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das laufende Quartal stellt NetApp einen Umsatz zwischen 2,02 und 2,175 Milliarden Dollar in Aussicht – der bisherige Konsens lag bei rund 1,85 Milliarden Dollar. Für das Gesamtjahr rechnet das Unternehmen mit mehr als acht Milliarden Dollar Umsatz und einem Gewinn zwischen 9,70 und etwas über 10 Dollar je Aktie, beides ebenfalls über den bisherigen Markterwartungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trotzdem ging es abwärts',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie fiel laut onvista dennoch um rund acht Prozent. Grund war nicht die Umsatz- oder Gewinnzahl, sondern der freie Cashflow: Er sank um rund 35 Prozent, von 620 auf etwa 400 Millionen Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Umsatz und Gewinn sind nicht die einzigen Zahlen, die eine Bilanz enthält. Der freie Cashflow zeigt, wie viel Geld nach allen Investitionen tatsächlich im Unternehmen bleibt – und genau der ging bei NetApp deutlich zurück, obwohl jede andere Kennzahl nach oben zeigte.',
+      },
+    ],
+  },
+  {
+    slug: 'sp500-tauscht-bloom-energy-molson-coors',
+    title:
+      'S&P 500 wechselt drei Mitglieder aus – Bloom Energy steigt allein durch die Aufnahme',
+    metaTitle: 'S&P 500: Bloom Energy rein, Molson Coors raus',
+    teaser:
+      'Bloom Energy, Everpure und Illumina rücken zum 21. September in den S&P 500 auf, Molson Coors und zwei weitere Werte müssen in den SmallCap 600.',
+    category: 'Märkte',
+    publishedAt: '2026-09-06T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['S&P 500', 'Indexwechsel', 'Bloom Energy', 'ETF'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'etf'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten vom 5.9.2026: „Bloom Energy-Aktie steigt in den S&P 500 auf und ersetzt Molson Coors - Kursfeuerwerk“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'StockTitan, 4.9.2026: „Bloom Energy, Illumina, and Everpure Set to Join S&P 500“',
+        url: 'https://www.stocktitan.net/news/BE/bloom-energy-illumina-and-everpure-set-to-join-s-p-500-others-to-a0i4hthbnifg.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Indexanbieter S&P Dow Jones Indices tauscht zum 21. September drei Mitglieder im S&P 500 aus: Neu dabei sind Bloom Energy, Everpure und Illumina. Den Platz räumen müssen Molson Coors, The Trade Desk und Builders FirstSource – alle drei wechseln in den kleineren S&P SmallCap 600.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Indexwechsel den Kurs bewegt, ohne dass sich am Geschäft etwas ändert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fonds und ETFs, die einen Index eins zu eins nachbilden, müssen zum Stichtag genau die Aktien kaufen, die neu aufgenommen werden – unabhängig davon, ob sie den Kurs gerade für günstig oder teuer halten. Allein diese erzwungene Nachfrage kann einen Kurs bewegen, wie es bei Bloom Energy nach der Ankündigung laut wallstreet-online zu beobachten war.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer den Index verlässt, verschwindet nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Molson Coors, The Trade Desk und Builders FirstSource bleiben börsennotiert, zählen ab dem Stichtag aber zum S&P SmallCap 600 statt zum S&P 500. Für ETFs, die den großen Index abbilden, bedeutet das schlicht: verkaufen statt halten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursausschlag nach einer Indexaufnahme sagt nichts über die Qualität des Geschäfts aus – er entsteht durch die Mechanik der Indexnachbildung, nicht durch neue Informationen über das Unternehmen selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'norwegens-staatsfonds-us-anleihen-abbau',
+    title:
+      'Norwegens Staatsfonds schlägt vor: weniger US-Staatsanleihen, mehr Unternehmensanleihen',
+    metaTitle: 'Norwegens Staatsfonds baut US-Anleihen um',
+    teaser:
+      'Norwegens 2,3-Billionen-Dollar-Staatsfonds will laut Handelsblatt den Anteil von US-Staatsanleihen in seinem Referenzindex von 70 auf 50 Prozent senken.',
+    category: 'Vorsorge',
+    publishedAt: '2026-09-06T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Staatsfonds', 'Staatsanleihen', 'Norwegen', 'Portfolio'],
+    relatedTopics: ['staatsanleihe', 'risiko-und-rendite', 'rente'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten vom 4.9.2026: „Staatsanleihen raus: Norwegischer Staatsfonds will US-Anleihen über Bord kippen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Handelsblatt, 4.9.2026: „Umschichtung: Norwegens Staatsfonds plant massiven Abbau von US-Staatsanleihen“',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/umschichtung-norwegens-staatsfonds-plant-massiven-abbau-von-us-staatsanleihen/100252100.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der norwegische Staatsfonds NBIM verwaltet umgerechnet 2,3 Billionen Dollar – und seine Verwaltung schlägt laut Handelsblatt eine deutliche Umschichtung vor: Der Anteil von Staatsanleihen im eigenen Referenzindex soll von 70 auf 50 Prozent sinken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das in Dollar bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ende Juni hielt der Fonds rund 215 Milliarden Dollar an US-Staatsanleihen. Die neue Zielquote entspräche laut Berechnungen im Artikel einem Abbau von fast 80 Milliarden Dollar. Konkret soll der Anteil reiner US-Staatsanleihen am US-Portfolio von 34,1 auf 21,9 Prozent sinken, während nichtstaatliche US-Anleihen, etwa Unternehmensanleihen, von 16,2 auf 27,6 Prozent steigen sollen. Der gesamte Dollar-Anteil des Fonds bleibt dabei mit rund 52,5 statt 52,9 Prozent nahezu unverändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Vorschlag, kein Beschluss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Umschichtung soll laut Handelsblatt schrittweise erfolgen und ist bislang ein Vorschlag der Fondsverwaltung, kein gefasster Beschluss.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Staatsanleihen gegen Unternehmensanleihen tauscht, tauscht in der Regel etwas Sicherheit gegen etwas mehr erwartete Rendite – Unternehmensanleihen tragen ein Ausfallrisiko, das US-Staatsanleihen in dieser Form nicht haben. Dass der Dollar-Anteil insgesamt gleich bleibt, zeigt: Es geht dem Fonds nicht darum, aus dem Dollar auszusteigen, sondern darum, innerhalb des Dollar-Portfolios anders zu gewichten.',
+      },
+    ],
+  },
+  {
+    slug: 'perth-mint-absatz-faellt-umsatz-haelt',
+    title:
+      'Perth Mint: Absatz bricht ein, der Umsatz kaum – der Goldpreis erklärt den Unterschied',
+    metaTitle: 'Perth Mint: Absatz fällt, Umsatz hält',
+    teaser:
+      'Die Perth Mint verkaufte im August laut Goldreporter 22,5 Prozent weniger Gold als im Juli – bei stabilem Umsatz, weil der Preis deutlich stieg.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-06T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Silber', 'Perth Mint', 'Edelmetalle'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, 5.9.2026: „Perth Mint: Gold- und Silberabsatz fällt im August deutlich“',
+        url: 'https://www.goldreporter.de/perth-mint-gold-silber-absatz-august-2026/australien/261573/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Perth Mint, eine der großen Prägeanstalten für Anlagegold und -silber, verkaufte im August 23.932 Unzen Gold – 22,5 Prozent weniger als im Juli mit 30.871 Unzen und rund 20,6 Prozent weniger als im August 2025. Beim Silber fiel der Rückgang mit 31,3 Prozent zum Vormonat noch deutlicher aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Preis gleicht die Menge aus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der durchschnittliche Goldpreis stieg im selben Zeitraum von 4.067 auf 4.411 Dollar je Unze, ein Plus von rund 8 Prozent. Silber verteuerte sich von 58,49 auf 65,22 Dollar. Wer weniger Unzen verkauft, aber zu einem deutlich höheren Preis, kann trotzdem einen ähnlichen Umsatz erzielen – laut Goldreporter blieben die Erlöse im Jahresvergleich stabil bis leicht positiv.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Das Jahr sieht anders aus als der einzelne Monat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Von Januar bis August 2026 verkaufte die Perth Mint 290.077 Unzen Gold, 20,3 Prozent mehr als im Vorjahreszeitraum; beim Silber liegt das Plus sogar bei 58,1 Prozent auf 6.597.896 Unzen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Monatswert kann in die Irre führen, wenn man ihn ohne den Jahresverlauf liest. Der August-Rückgang ist real, ändert aber wenig an einem Jahr, in dem deutlich mehr physisches Gold und Silber verkauft wurde als 2025.',
+      },
+    ],
+  },
+  {
     slug: 'vw-zweiter-bombentag-dax-spitze',
     title: 'VW legt den zweiten Bombentag in Folge hin – und führt den DAX an',
     metaTitle: 'VW: Zweiter Bombentag in Folge, DAX-Spitzenreiter',
