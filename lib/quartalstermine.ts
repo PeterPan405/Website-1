@@ -98,7 +98,7 @@ interface Vorhersage {
    * beisteuert, wäre diese Angabe bei 72 Titeln schlicht falsch – und eine
    * falsche Quellenangabe ist schlimmer als keine.
    */
-  herkunft?: 'kalender' | 'jpx'
+  herkunft?: 'kalender' | 'jpx' | 'nasdaq'
   /** Die vom Anbieter genannte Lage zur US-Sitzung, ohne Minutenangabe. */
   lage?: 'vorboerse' | 'nachboerse'
 }
@@ -145,6 +145,10 @@ export const TERMINQUELLEN = {
   jpx: {
     label: 'Japan Exchange Group – geplante Meldetermine der gelisteten Unternehmen',
     url: 'https://www.jpx.co.jp/listing/event-schedules/financial-announcement/index.html',
+  },
+  nasdaq: {
+    label: 'Nasdaq – veröffentlichter Terminplan der Quartalsmeldungen',
+    url: 'https://www.nasdaq.com/market-activity/earnings',
   },
 } as const
 
@@ -243,6 +247,23 @@ export function getQuartalstermine(): Termin[] {
         plant, plant richtig, und die Warnung nähme ihm die Sicherheit, die
         die Quelle hergibt.
       */
+      /*
+        Drei Arten von Termin, und sie dürfen nicht gleich aussehen.
+
+        Seit dem 7. September 2026 gibt es neben „angekündigt" und
+        „hochgerechnet" einen dritten Fall: den **veröffentlichten
+        Terminplan** der Nasdaq. Er ist keine Hochrechnung – der Satz über das
+        Meldemuster wäre dort schlicht falsch, und `geschaetzt.basis` trüge
+        statt eines Vorjahrestags ein Quartalsende wie `Aug/2026`, das die
+        ICS-Ausgabe als „im Vorjahr am Aug/2026" ausgäbe.
+
+        Er ist aber auch keine Ankündigung: Die Quelle sagt nicht, ob das
+        Unternehmen den Tag bestätigt hat. Nur wo sie die Sitzungslage kennt,
+        gilt er als angekündigt – warum, steht in
+        `lib/providers/nasdaq-termine.ts`.
+      */
+      const ausTerminplan = vorhersage.herkunft === 'nasdaq' && !vorhersage.angekuendigt
+
       ergebnis.push({
         datum: vorhersage.erwartet,
         titel: vorhersage.angekuendigt
@@ -253,13 +274,18 @@ export function getQuartalstermine(): Termin[] {
         bedeutung: vorhersage.angekuendigt
           ? `Das Unternehmen hat diesen Tag selbst angekündigt. ` +
             `Für den Kurs zählt nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`
-          : `Abgeleitet aus dem bisherigen Meldemuster – im Vorjahr meldete das Unternehmen am ` +
-            `${aufDeutsch(vorhersage.basis)}. ${streuungssatz(vorhersage.streuungTage)}` +
-            `Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
-            `Für den Kurs zählt ohnehin nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`,
+          : ausTerminplan
+            ? `So steht der Tag im veröffentlichten Terminplan der Nasdaq. Ob das ` +
+              `Unternehmen ihn selbst bestätigt hat, gibt die Quelle nicht her – ` +
+              `hochgerechnet ist er aber nicht. ` +
+              `Für den Kurs zählt ohnehin nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`
+            : `Abgeleitet aus dem bisherigen Meldemuster – im Vorjahr meldete das Unternehmen am ` +
+              `${aufDeutsch(vorhersage.basis)}. ${streuungssatz(vorhersage.streuungTage)}` +
+              `Der genaue Tag wird wenige Wochen vorher bekannt gegeben. ` +
+              `Für den Kurs zählt ohnehin nicht die Zahl selbst, sondern ihre Abweichung von der Erwartung.`,
         themen: ['aktie', 'wie-funktioniert-der-markt'],
         symbole: [katalog.symbol],
-        ...(vorhersage.angekuendigt
+        ...(vorhersage.angekuendigt || ausTerminplan
           ? {}
           : {
               geschaetzt: {

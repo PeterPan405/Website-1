@@ -73,6 +73,7 @@ import {
   abstandJeStelle,
   streuungJeStelle,
 } from '../lib/providers/jpx-termine.ts'
+import { holeNasdaqTermine } from '../lib/providers/nasdaq-termine.ts'
 
 const KOPFZEILEN: Record<string, string> = {
   'User-Agent': 'IM-Invests Datenabruf pm252543@gmail.com',
@@ -222,8 +223,13 @@ interface Vorhersage {
    * `true` darüber. Seit die Tokioter Börse ihre eigenen Termine beisteuert,
    * stünde unter 72 Titeln die falsche Quelle – und eine falsche
    * Quellenangabe ist schlimmer als keine.
+   *
+   * `nasdaq` steht auch an Terminen **ohne** `angekuendigt`: Der
+   * veröffentlichte Terminplan ist keine Hochrechnung, aber auch keine Zusage
+   * des Unternehmens. Die Anzeige unterscheidet das; siehe
+   * `lib/quartalstermine.ts`.
    */
-  herkunft?: 'kalender' | 'jpx'
+  herkunft?: 'kalender' | 'jpx' | 'nasdaq'
   /**
    * Die angekündigte Lage zur US-Handelssitzung, wenn die Quelle sie nennt.
    *
@@ -1035,6 +1041,137 @@ async function main(): Promise<void> {
   }
 
   /*
+    ------------------------------- Der veröffentlichte Terminplan der Nasdaq
+
+    Warum das **nach** dem SEC-Durchgang steht und nicht davor: Die SEC liefert
+    die Historie und daraus die vier Quartale. Die Nasdaq liefert nur die
+    nächsten rund acht Wochen. Liefe sie vorher und spränge der SEC-Durchgang
+    für diese Titel ab, verlöre die Seite die drei Quartale danach – der
+    Betreiber hat am 7. September 2026 ausdrücklich vier verlangt.
+
+    Also beides: Die Hochrechnung bleibt, und der nächstgelegene Termin wird
+    durch den veröffentlichten ersetzt. Ersetzt, nicht danebengestellt – zwei
+    Tage für dasselbe Quartal wären schlimmer als ein falscher.
+
+    Warum überhaupt: Am 7. September 2026 stand hier für Oracle der 8., die
+    Nasdaq nannte den 10., und Oracle meldete am 10. Nachgemessen an 186
+    Titeln stimmten 122, 58 nicht, davon 25 um mehr als zwei Wochen. Tesla
+    stand 155 Tage daneben. Die Begründung steht in
+    `lib/providers/nasdaq-termine.ts`.
+  */
+  const ausNasdaq: string[] = []
+  const nasdaqErsetzt: string[] = []
+  let nasdaqBericht: {
+    tageAbgefragt?: number
+    tageMitZeilen?: number
+    letzterTag?: string | null
+    zeilen?: number
+    imKatalog?: number
+    mitLage?: number
+    beigetragen?: number
+    fehler?: string
+  } | null = null
+
+  try {
+    const nasdaq = await holeNasdaqTermine(heute)
+
+    /*
+      Je Kürzel der nächste kommende Tag. Der Kalender führt bei manchen
+      Titeln zwei Meldetage im Zeitraum; der spätere gehört nicht auf die
+      Aktienseite, solange der frühere aussteht – dieselbe Regel wie beim
+      Sammelkalender.
+    */
+    const jeKuerzel = new Map<string, (typeof nasdaq.termine)[number]>()
+    for (const termin of nasdaq.termine) {
+      if (!gefuehrt.has(termin.symbol)) continue
+      const vorhanden = jeKuerzel.get(termin.symbol)
+      if (!vorhanden || termin.termin < vorhanden.termin) {
+        jeKuerzel.set(termin.symbol, termin)
+      }
+    }
+
+    /*
+      Wie weit ein vorhandener Termin vom veröffentlichten entfernt sein darf,
+      um noch als **dasselbe Quartal** zu gelten.
+
+      45 Tage sind der halbe Quartalsabstand. Enger gefasst bliebe bei einer
+      groben Fehlschätzung – Tesla lag 155 Tage daneben – die falsche
+      Hochrechnung neben dem richtigen Tag stehen. Weiter gefasst schlucke ich
+      das Nachbarquartal.
+
+      Bei Abständen über 45 Tagen wird die Hochrechnung deshalb nicht
+      angefasst, sondern der veröffentlichte Tag kommt hinzu und die Liste
+      wird sortiert. Der Leser sieht dann den richtigen nächsten Termin, und
+      die späteren Quartale bleiben, wie sie waren.
+    */
+    const QUARTALSFENSTER = 45
+
+    for (const [kuerzel, termin] of jeKuerzel) {
+      const bestehend = unternehmen[kuerzel]
+      const neue = {
+        erwartet: termin.termin,
+        basis: termin.quartalsende || termin.termin,
+        streuungTage: 0,
+        herkunft: 'nasdaq' as const,
+        ...(termin.lage ? { angekuendigt: true as const, lage: termin.lage } : {}),
+      }
+
+      const abstand = (a: string, b: string) =>
+        Math.abs(
+          Math.round(
+            (Date.parse(`${a}T00:00:00Z`) - Date.parse(`${b}T00:00:00Z`)) / 86_400_000
+          )
+        )
+
+      const uebrige = (bestehend?.vorhersagen ?? []).filter(
+        (v) => abstand(v.erwartet, termin.termin) > QUARTALSFENSTER
+      )
+      if ((bestehend?.vorhersagen.length ?? 0) !== uebrige.length) {
+        nasdaqErsetzt.push(kuerzel)
+      }
+
+      unternehmen[kuerzel] = {
+        name: bestehend?.name || termin.name || kuerzel,
+        bisher: bestehend?.bisher ?? [],
+        bisherZeiten: bestehend?.bisherZeiten,
+        vorhersagen: [neue, ...uebrige].sort((a, b) =>
+          a.erwartet.localeCompare(b.erwartet)
+        ),
+      }
+      ausNasdaq.push(kuerzel)
+    }
+
+    nasdaqBericht = {
+      tageAbgefragt: nasdaq.tageAbgefragt,
+      tageMitZeilen: nasdaq.tageMitZeilen,
+      letzterTag: nasdaq.letzterTag,
+      zeilen: nasdaq.termine.length,
+      imKatalog: jeKuerzel.size,
+      mitLage: [...jeKuerzel.values()].filter((t) => t.lage).length,
+      beigetragen: ausNasdaq.length,
+    }
+
+    console.log(
+      `\nNasdaq-Kalender: ${nasdaq.termine.length} Zeilen über ` +
+        `${nasdaq.tageAbgefragt} Handelstage, Zeilen an ${nasdaq.tageMitZeilen} davon, ` +
+        `letzter Tag ${nasdaq.letzterTag ?? 'ohne'}.`
+    )
+    console.log(
+      `  ${jeKuerzel.size} geführte Titel getroffen, ` +
+        `${nasdaqBericht.mitLage} davon mit Sitzungslage (= angekündigt), ` +
+        `${nasdaqErsetzt.length} Hochrechnungen ersetzt.`
+    )
+  } catch (fehler) {
+    const grund = (fehler as Error).message
+    nasdaqBericht = { fehler: grund }
+    console.warn(
+      `\n::warning::Der Nasdaq-Kalender ist nicht lesbar:\n` +
+        `  ${grund}\n` +
+        '  Es bleibt bei der Hochrechnung aus dem Meldemuster.'
+    )
+  }
+
+  /*
     ------------------------------------------ Zweiter Weg: Twelve Data
 
     Die SEC deckt nur US-Emittenten ab. Wer hier noch keine Vorhersage hat,
@@ -1188,6 +1325,7 @@ async function main(): Promise<void> {
         kuerzelMitTermin: angekuendigt.size,
         beigetragen: ausKalender.length,
       },
+      nasdaq: nasdaqBericht,
     },
     unternehmen,
     zuletztVersucht,
