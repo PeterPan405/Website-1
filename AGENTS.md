@@ -239,30 +239,31 @@ ist keiner"
 
 ## Quartalstermine
 
-- **Drei Quellen, und die angekündigte gewinnt.** Der Sammelkalender
-  (`ALPHAVANTAGE_API_KEY`, ein Abruf für alle) und die Tokioter Börse nennen
-  Tage, die die Unternehmen **selbst angekündigt** haben; die SEC-Ableitung
-  rechnet hoch. Wo mehrere etwas wissen, gilt der angekündigte Tag – er trägt
-  kein `geschaetzt`, heißt auf der Seite „angekündigt" und nennt seine eigene
-  Quelle.
+- **Vier Quellen, und der veröffentlichte Tag schlägt den gerechneten.**
+  Sammelkalender (`ALPHAVANTAGE_API_KEY`), Tokioter Börse und
+  Nasdaq-Terminplan nennen veröffentlichte Tage; die SEC-Ableitung rechnet
+  hoch. **Drei Zustände, nicht zwei:** angekündigt (Unternehmen selbst, trägt
+  kein `geschaetzt`), veröffentlichter Plan (Nasdaq ohne Sitzungslage – auch
+  kein `geschaetzt`, aber „erwartet"), hochgerechnet (mit `geschaetzt`).
+- **Die Nasdaq läuft nach dem SEC-Durchgang und ersetzt nur das nächste
+  Quartal** (Fenster 45 Tage). Davor gestellt verlöre die Seite die drei
+  Quartale danach – die SEC liefert die Historie, die Nasdaq nur acht Wochen.
 - **Die Herkunft hängt am Termin, nicht am Code.** `herkunft` in der Vorhersage,
   aufgelöst über `TERMINQUELLEN` in `herkunftVon()`, und **vor** der Frage nach
   `angekuendigt` – sonst zitiert ein abgeleiteter Tokio-Termin die SEC. Wer eine
   vierte Quelle anschließt, trägt sie **dort** ein.
 - **Der Sammelkalender führt, was in New York notiert** – auch die
-  Hinterlegungsscheine ausländischer Emittenten, und damit Alibaba. Wer keinen
-  Termin hat, bekommt den Satz warum (`quartalsterminLuecke()`) – eine
-  Leerstelle erklärt sich nicht selbst, und der Satz hängt am Handelsplatz:
-  „fehlt in der Quelle" und „fehlt in ihrem Zeitfenster" sind zweierlei.
-- **Tokio liefert den Tag, nie die Uhrzeit.** Die Liste hat keine Spalte dafür.
-  Dass dort fast alles nach Handelsschluss um 15:00 Uhr Ortszeit gemeldet wird,
-  ist eine Faustregel und keine Angabe – nicht „ergänzen".
+  Hinterlegungsscheine ausländischer Emittenten. Wer keinen Termin hat,
+  bekommt den Satz warum (`quartalsterminLuecke()`) – und der Satz hängt am
+  Handelsplatz: „fehlt in der Quelle" und „fehlt in ihrem Zeitfenster" sind
+  zweierlei.
+- **Tokio und die Nasdaq liefern den Tag, nie die Minute.** Keine der beiden
+  Listen hat eine Spalte dafür; eine gerechnete Minute wäre erfunden.
 - **Die JPX-Adresse wird gesucht, nicht eingetragen.** Der Dateiname trägt ein
   Datum (`kessan06_0807.xlsx`), es sind zwei Dateien, und gelesen wird die
   **japanische** Übersichtsseite – die englische trägt null Verweise.
-- **Der Weg über Twelve Data ist tarifgesperrt** und hat nie etwas geliefert.
-  Er bricht nach der ersten Absage ab (`TarifSperre`). Nicht „reparieren": Es
-  fehlt ein bezahlter Tarif, nicht Code.
+- **Der Weg über Twelve Data ist tarifgesperrt** und hat nie etwas geliefert
+  (`TarifSperre`). Nicht „reparieren": Es fehlt ein Tarif, nicht Code.
 - **Beide Anbieter antworten auf eine Absage mit Statuscode 200.** Geprüft wird
   der Inhalt, nicht der Code – sonst landet eine Absage als leere Liste im
   Bestand, und der Lauf bleibt grün.

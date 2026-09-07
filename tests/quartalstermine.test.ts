@@ -287,7 +287,7 @@ pruefen('Und sie steht nie nackt da', (satz ?? '').includes('im Vorjahr'), Strin
 console.log('')
 
 /*
-  Geprüft wird am echten Bestand und mit einem festen Stichtag.
+  Geprüft wird am echten Bestand und mit einem Stichtag, der aus ihm kommt.
 
   Fest, weil sonst nichts zu prüfen wäre: Ob ein Termin „bald" ist, hängt vom
   Tag ab, und ein Test an der Systemuhr prüft an zwei Wochen im Jahr etwas
@@ -578,9 +578,29 @@ pruefen(
     .join(', ')
 )
 
+/*
+  Seit dem 7. September 2026 gibt es drei Arten, nicht zwei – hier steht,
+  warum die alte Zweiteilung nicht mehr trägt.
+
+  „Nicht angekündigt" hieß bis dahin „hochgerechnet", und daran hing die
+  Prüfung: Wer kein „angekündigt" im Titel trägt, muss ein `geschaetzt`
+  haben. Der veröffentlichte Terminplan der Nasdaq ist beides nicht – keine
+  Zusage des Unternehmens, aber auch keine Hochrechnung –, und ein
+  `geschaetzt` mit einem Quartalsende als Vorjahrestag stünde in der
+  ICS-Ausgabe als „im Vorjahr am Aug/2026".
+
+  Geprüft wird deshalb, was wirklich gemeint war: **Kein Termin steht
+  unmarkiert da.** Jeder ist entweder angekündigt, oder aus dem
+  veröffentlichten Plan, oder als geschätzt gekennzeichnet.
+*/
+const ausTerminplan = (t: (typeof termine)[number]) =>
+  t.quelle.label.includes('Nasdaq') && !t.titel.includes('angekündigt')
+
 pruefen(
   'Und ein hochgerechneter trägt es',
-  termine.filter((t) => !t.titel.includes('angekündigt')).every((t) => t.geschaetzt),
+  termine
+    .filter((t) => !t.titel.includes('angekündigt') && !ausTerminplan(t))
+    .every((t) => t.geschaetzt),
   'Ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.'
 )
 
@@ -608,29 +628,44 @@ pruefen(
   decken zusammen alles ab – aber nur, solange es bei zwei Sorten bleibt.
   Käme eine dritte hinzu, fiele sie durch beide hindurch und wäre von keiner
   erfasst. Also wird genau das geprüft: dass die Teilung aufgeht.
+
+  Die dritte kam am 7. September 2026, keine zwei Wochen nach diesem Satz:
+  der veröffentlichte Terminplan der Nasdaq. Die Prüfung hat sie erwischt.
 */
-const hochgerechnet = termine.filter((t) => !t.titel.includes('angekündigt'))
+const ausPlan = termine.filter(ausTerminplan)
+const hochgerechnetOhnePlan = termine.filter(
+  (t) => !t.titel.includes('angekündigt') && !ausTerminplan(t)
+)
 pruefen(
-  'Angekündigt und hochgerechnet decken zusammen jeden Termin ab',
-  angekuendigteTermine.length + hochgerechnet.length === termine.length,
-  `${angekuendigteTermine.length} + ${hochgerechnet.length} ≠ ${termine.length}`
+  'Angekündigt, Terminplan und hochgerechnet decken zusammen jeden Termin ab',
+  angekuendigteTermine.length + ausPlan.length + hochgerechnetOhnePlan.length ===
+    termine.length,
+  `${angekuendigteTermine.length} + ${ausPlan.length} + ${hochgerechnetOhnePlan.length}` +
+    ` ≠ ${termine.length}`
 )
 
 /*
   Und die Umkehrung, an der die eigentliche Zusage hängt: Kein Termin steht
   ohne Kennzeichnung da. Entweder er trägt `geschaetzt`, oder er heißt
-  „angekündigt" – ein Termin, der weder das eine noch das andere sagt, sähe
-  aus wie eine Tatsache, für die niemand geradesteht.
+  „angekündigt", oder er kommt aus dem veröffentlichten Terminplan – ein
+  Termin, der nichts davon sagt, sähe aus wie eine Tatsache, für die niemand
+  geradesteht.
+
+  Der dritte Fall ist seit dem 7. September 2026 dazugekommen und ist der
+  heikelste: Der Nasdaq-Plan ist keine Hochrechnung, also darf er kein
+  `geschaetzt` tragen; er ist aber auch keine Zusage des Unternehmens, also
+  darf er nicht „angekündigt" heißen.
 */
 const ungekennzeichnet = termine.filter(
-  (t) => t.geschaetzt === undefined && !t.titel.includes('angekündigt')
+  (t) =>
+    t.geschaetzt === undefined && !t.titel.includes('angekündigt') && !ausTerminplan(t)
 )
 pruefen(
   'Kein Termin steht ohne Kennzeichnung da',
   ungekennzeichnet.length === 0,
   `${ungekennzeichnet.length}, z. B. ${ungekennzeichnet
     .slice(0, 3)
-    .map((t) => t.titel)
+    .map((t) => `${t.titel} (${t.quelle.label})`)
     .join(
       ', '
     )} – ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.`
@@ -663,6 +698,24 @@ function traegtKuerzel(text: string): boolean {
   return /\b(MEZ|MESZ)\b/.test(text)
 }
 
+/*
+  Eine Uhrzeit-Zeile ohne Minute – und das ist kein Mangel.
+
+  Ein angekündigter Termin nennt die Lage zur Sitzung und sonst nichts:
+  „nach dem US-Schluss". Weder der Sammelkalender noch der Nasdaq-Terminplan
+  geben eine Minute her, und `lib/quartalstermine.ts` rechnet ausdrücklich
+  keine aus.
+
+  Bis zum 7. September 2026 war dieser Fall im Bestand nie eingetreten – der
+  Sammelkalender hat mangels Schlüssel nie eine Zeile geliefert. Die Prüfung
+  darunter forderte deshalb von **jeder** Uhrzeit ein Zeitkürzel und war
+  richtig, solange es nur abgeleitete gab. Mit der Nasdaq gibt es beide, und
+  die Forderung gilt nur noch für die, die eine Minute nennen.
+*/
+function nurSitzungslage(text: string): boolean {
+  return text === 'nach dem US-Schluss' || text === 'vor der US-Eröffnung'
+}
+
 function abendsInDeutschland(text: string): boolean {
   if (!text.startsWith('nach dem US-Schluss')) return true
   const stunde = Number(/(\d{2}):\d{2} Uhr/.exec(text)?.[1] ?? '-1')
@@ -690,11 +743,28 @@ pruefen(
     traegtKuerzel('vor der US-Eröffnung – im Vorjahr 12:29 Uhr MESZ')
 )
 
+const mitMinute = mitUhrzeit.filter((termin) => !nurSitzungslage(termin.uhrzeit ?? ''))
 pruefen(
-  'Jede Uhrzeit im Bestand trägt ein Zeitkürzel',
-  mitUhrzeit.every((termin) => traegtKuerzel(termin.uhrzeit ?? '')),
-  mitUhrzeit
+  'Jede Uhrzeit mit Minute trägt ein Zeitkürzel',
+  mitMinute.every((termin) => traegtKuerzel(termin.uhrzeit ?? '')),
+  mitMinute
     .filter((termin) => !traegtKuerzel(termin.uhrzeit ?? ''))
+    .slice(0, 3)
+    .map((termin) => termin.uhrzeit)
+    .join(' | ')
+)
+
+/*
+  Und die Gegenrichtung, damit die Ausnahme oben keine Hintertür wird: Eine
+  Zeile, die nur die Lage nennt, darf **keine** Ziffern enthalten. Stünde dort
+  eine halbe Uhrzeit ohne Kürzel, fiele sie durch beide Prüfungen.
+*/
+const nurLage = mitUhrzeit.filter((termin) => nurSitzungslage(termin.uhrzeit ?? ''))
+pruefen(
+  'Eine Zeile ohne Minute nennt auch keine Ziffer',
+  nurLage.every((termin) => !/\d/.test(termin.uhrzeit ?? '')),
+  nurLage
+    .filter((termin) => /\d/.test(termin.uhrzeit ?? ''))
     .slice(0, 3)
     .map((termin) => termin.uhrzeit)
     .join(' | ')
@@ -750,11 +820,30 @@ pruefen(
   Gezählt wird deshalb dort, wo eine Uhrzeit überhaupt möglich ist: außerhalb
   Tokios. Und für Tokio gilt die umgekehrte Prüfung – dort darf keine stehen.
   Stünde dort eine, hätte sie jemand erfunden.
+
+  ## Warum seit dem 7. September auch die Nasdaq herausfällt
+
+  Aus demselben Grund, und die Zahl ist dieselbe Geschichte: An diesem Tag kam
+  der veröffentlichte Terminplan der Nasdaq dazu und ersetzte 156
+  Hochrechnungen. Die trugen eine Minute, weil sie aus einem Zeitstempel der
+  SEC gerechnet waren; der Terminplan nennt nur die Sitzungslage. Der Anteil
+  über den ganzen Bestand fiel damit von 92 auf 69 Prozent.
+
+  Das ist kein Ausfall, sondern ein Tausch, und er ist richtig herum: ein
+  richtiger Tag ohne Minute statt eines falschen Tages mit Minute. Oracle stand
+  vorher auf dem 8. September mit „22:13 Uhr" – die Minute war präzise und der
+  Tag zwei Tage daneben.
+
+  Die Grenze bleibt deshalb bei 80 Prozent und wird nicht gesenkt. Gezählt wird
+  weiterhin nur, wo eine Minute überhaupt herkommen kann.
 */
 const ausTokio = (termin: (typeof termine)[number]): boolean =>
   termin.quelle.url.includes('jpx.co.jp')
 
-const mitZeitmoeglichkeit = termine.filter((termin) => !ausTokio(termin))
+const ohneMinutenquelle = (termin: (typeof termine)[number]): boolean =>
+  ausTokio(termin) || termin.quelle.label.includes('Nasdaq')
+
+const mitZeitmoeglichkeit = termine.filter((termin) => !ohneMinutenquelle(termin))
 const tokioter = termine.filter(ausTokio)
 
 const anteil =
@@ -789,6 +878,22 @@ pruefen(
   'Kein Tokioter Termin behauptet eine Uhrzeit',
   tokioter.every((termin) => !termin.uhrzeit),
   'Die JPX-Liste hat keine Spalte dafür – eine Uhrzeit dort wäre erfunden.'
+)
+
+/*
+  Und dasselbe für die Nasdaq: Der Terminplan nennt `time-after-hours` oder
+  `time-pre-market` und sonst nichts. Stünde unter einem dieser Termine eine
+  Minute, wäre sie gerechnet oder geraten – beides verboten.
+*/
+const ausNasdaqQuelle = termine.filter((termin) => termin.quelle.label.includes('Nasdaq'))
+pruefen(
+  'Kein Nasdaq-Termin behauptet eine Minute',
+  ausNasdaqQuelle.every((termin) => !/\d{2}:\d{2}/.test(termin.uhrzeit ?? '')),
+  ausNasdaqQuelle
+    .filter((termin) => /\d{2}:\d{2}/.test(termin.uhrzeit ?? ''))
+    .slice(0, 3)
+    .map((termin) => `${termin.titel}: ${termin.uhrzeit}`)
+    .join(' | ')
 )
 
 /* ------------------------------------------ Die Quelle unter dem Termin */
@@ -832,6 +937,98 @@ pruefen(
   toyota.length > 0 && toyota.every((termin) => ausTokio(termin)),
   `${toyota.length} Toyota-Termine, Quellen: ` +
     [...new Set(toyota.map((termin) => termin.quelle.label))].join(' | ')
+)
+
+/* ------------------------------------ Der veröffentlichte Terminplan (Nasdaq) */
+
+/*
+  Seit dem 7. September 2026 gibt es drei Arten von Termin, und die dritte ist
+  die heikle: der veröffentlichte Terminplan der Nasdaq. Er ist keine
+  Hochrechnung und keine Ankündigung.
+
+  Was hier schiefgehen kann, ist beides gleichzeitig:
+
+  1. **Er sagt „abgeleitet aus dem Meldemuster".** Dann behauptet die Seite
+     eine Herkunft, die es nicht gibt – und `geschaetzt.basis` trüge statt
+     eines Vorjahrestags ein Quartalsende wie `Aug/2026`, das die ICS-Ausgabe
+     als „im Vorjahr am Aug/2026" ausgibt.
+  2. **Er sagt „angekündigt", obwohl niemand etwas angekündigt hat.** Das ist
+     die teurere Richtung: Nach einem angekündigten Termin darf jemand eine
+     Order legen.
+*/
+const ausNasdaq = (termin: (typeof termine)[number]) =>
+  termin.quelle.label.includes('Nasdaq')
+
+const nasdaqTermine = termine.filter(ausNasdaq)
+
+pruefen(
+  'Der Nasdaq-Terminplan trägt überhaupt etwas bei',
+  nasdaqTermine.length > 0,
+  'Ohne einen einzigen Treffer sind die Prüfungen darunter über eine leere Menge wahr – ' +
+    'und genau so sähe es aus, wenn die Adresse still nichts mehr liefert.'
+)
+
+pruefen(
+  'Kein Nasdaq-Termin behauptet, aus dem Meldemuster abgeleitet zu sein',
+  nasdaqTermine.every((termin) => !termin.bedeutung.includes('bisherigen Meldemuster')),
+  nasdaqTermine
+    .filter((termin) => termin.bedeutung.includes('bisherigen Meldemuster'))
+    .slice(0, 3)
+    .map((termin) => termin.titel)
+    .join(' | ')
+)
+
+pruefen(
+  'Und keiner trägt ein `geschaetzt` mit einem Quartalsende als Vorjahrestag',
+  nasdaqTermine.every((termin) => !termin.geschaetzt),
+  nasdaqTermine
+    .filter((termin) => termin.geschaetzt)
+    .slice(0, 3)
+    .map((termin) => `${termin.titel}: basis=${termin.geschaetzt?.basis}`)
+    .join(' | ')
+)
+
+/*
+  Die Gegenprobe in die andere Richtung: Ein hochgerechneter Termin **muss**
+  ein `geschaetzt` tragen und die SEC nennen. Ohne diese Zeile bliebe die
+  Prüfung darüber auch dann wahr, wenn `geschaetzt` versehentlich überall
+  entfällt – und dann verschwände die Warnung „erwartet, nicht bestätigt" von
+  jedem einzelnen Termin dieser Website.
+*/
+const hochgerechnet = termine.filter(
+  (termin) => !ausNasdaq(termin) && !ausTokio(termin) && !termin.uhrzeit?.includes('an')
+)
+pruefen(
+  'Ein hochgerechneter Termin trägt weiterhin `geschaetzt` und nennt die SEC',
+  hochgerechnet.length > 0 &&
+    hochgerechnet.every(
+      (termin) => termin.geschaetzt !== undefined && termin.quelle.label.includes('SEC')
+    ),
+  `${hochgerechnet.length} hochgerechnete Termine, davon ohne geschaetzt: ` +
+    hochgerechnet.filter((termin) => !termin.geschaetzt).length
+)
+
+/*
+  Und die Zusage, um derentwillen die Quelle überhaupt dazugekommen ist: Am
+  7. September 2026 stand hier für Oracle der 8. September, die Nasdaq nannte
+  den 10., und Oracle meldete am 10. Ein Termin, den der veröffentlichte Plan
+  kennt, darf nicht neben einer Hochrechnung für dasselbe Quartal stehen.
+*/
+const jeSymbolUndQuartal = new Map<string, number>()
+for (const termin of termine) {
+  const symbol = termin.symbole?.[0]
+  if (!symbol) continue
+  const quartal = `${symbol}|${termin.datum.slice(0, 7)}`
+  jeSymbolUndQuartal.set(quartal, (jeSymbolUndQuartal.get(quartal) ?? 0) + 1)
+}
+const doppelt = [...jeSymbolUndQuartal.entries()].filter(([, anzahl]) => anzahl > 1)
+pruefen(
+  'Kein Titel hat zwei Meldetermine in demselben Monat',
+  doppelt.length === 0,
+  doppelt
+    .slice(0, 5)
+    .map(([schluessel, anzahl]) => `${schluessel}: ${anzahl}`)
+    .join(' | ')
 )
 
 console.log(
