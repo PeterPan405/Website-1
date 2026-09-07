@@ -101,6 +101,322 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ezb-zinserhoehung-donnerstag-dax-rekordnaehe',
+    title: 'EZB vor Zinserhöhung: Der Markt traut ihr mehr zu als die Ökonomen',
+    metaTitle: 'EZB: Markt traut ihr mehr zu als die Ökonomen',
+    teaser:
+      'Die EZB entscheidet am Donnerstag über die Zinsen. Ökonomen erwarten einen Schritt, die Marktpreise deuten auf drei weitere bis Mitte 2027.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-07T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['EZB', 'Zinsen', 'Wirtschaftskalender', 'DAX'],
+    relatedTopics: ['notenbanken-geldpolitik', 'staatsanleihe'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, Nachricht vom 4.9.2026: „Mehr EZB-Erhöhungen erwartet: Der Markt erwartet viel härtere EZB-Schritte als die Experten“',
+        url: 'https://www.wallstreet-online.de/nachricht/21335740-ezb-erhoehungen-erwartet-markt-erwartet-haertere-ezb-schritte-experten',
+      },
+      {
+        label:
+          'dpa-AFX über finanzen.at, WOCHENAUSBLICK vom 4.9.2026: „Dax muss sich auf hohem Niveau behaupten – Geldpolitik im Fokus“',
+        url: 'https://www.finanzen.at/nachrichten/aktien/wochenausblick-dax-muss-sich-auf-hohem-niveau-behaupten-geldpolitik-im-fokus-1036523293',
+      },
+      {
+        label:
+          'wallstreet-online.de, Wirtschaftskalender (Kommende Termine), Abruf 7.9.2026, 00:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist mit Schwung in die neue Woche gestartet: Am Freitag schloss er bei 26.046 Punkten, ein Plus von 0,17 Prozent. Bis zum Rekordhoch von Ende August bei 26.618 Punkten fehlen damit noch gut zwei Prozent. Die Woche hat es allerdings in sich – mit Konjunkturdaten am Montag und einer Zinsentscheidung am Donnerstag, bei der Ökonomen und Marktpreise weit auseinanderliegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute schon feststeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut dem Wirtschaftskalender von wallstreet-online stehen für heute drei Termine an: um 8 Uhr die deutsche Industrieproduktion (Prognose +0,3 Prozent zum Vormonat, zuvor +0,2 Prozent), um 10:30 Uhr der Sentix-Index für das Investorenvertrauen in der Eurozone (zuletzt 0,9 Punkte) und um 11 Uhr das Bruttoinlandsprodukt der Eurozone (Prognose +0,4 Prozent zum Vorquartal, +1 Prozent zum Vorjahr).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Donnerstag: die eigentliche Entscheidung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Größer ist der Termin am Donnerstag: die Zinsentscheidung der EZB. Ökonomen erwarten laut wallstreet-online mehrheitlich einen Schritt um 25 Basispunkte auf einen Einlagensatz von 2,5 Prozent – und danach eine Zinspause bis 2027. Die an den Terminmärkten eingepreiste Erwartung geht deutlich weiter: Sie deutet auf rund drei weitere Erhöhungen bis Mitte kommenden Jahres hin, was den Einlagensatz auf 3,0 Prozent triebe.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eingepreist heißt nicht sicher',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Zahlen entstehen auf unterschiedliche Weise. Der Ökonomen-Wert stammt aus Umfragen unter Volkswirten, die ihre Einschätzung der wirtschaftlichen Lage abgeben. Die eingepreiste Markterwartung wird dagegen aus den Kursen von Zins-Terminkontrakten abgeleitet – sie zeigt, wie Investoren tatsächlich Geld auf einen Ausgang setzen, nicht, was Experten für am wahrscheinlichsten halten. Beide können falschliegen, und eine ungewöhnlich große Lücke zwischen beiden ist selbst schon eine Aussage: Sie zeigt, wie unsicher der Ausgang gerade eingeschätzt wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Trifft die EZB am Donnerstag den von Ökonomen erwarteten kleinen Schritt, lag die aggressivere Markterwartung falsch – das allein sagt aber nichts darüber, welche der beiden Gruppen im Durchschnitt öfter richtiger liegt. Wer die Entscheidung verfolgt, lernt am ehesten etwas über den Unterschied zwischen einer Prognose und einer Wette.',
+      },
+    ],
+  },
+  {
+    slug: 'opec-plus-haelt-oktober-foerderziele-konstant',
+    title: 'OPEC+ bricht die Serie: keine höhere Förderquote für Oktober',
+    teaser:
+      'Sieben Kernstaaten um Saudi-Arabien und Russland heben ihre Ölquote für Oktober erstmals seit Herbst nicht an. Die reale Förderung hinkt ohnehin hinterher.',
+    category: 'Märkte',
+    publishedAt: '2026-09-07T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'OPEC+', 'Rohstoffe', 'Angebot'],
+    relatedTopics: ['rohstoffe', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über finanzen.at, Meldung vom 6.9.2026: „Ölkartell verzichtet auf Anhebung der Produktionsziele“',
+        url: 'https://www.finanzen.at/nachrichten/aktien/oelkartell-verzichtet-auf-anhebung-der-produktionsziele-1036524912',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Kerngruppe aus sieben OPEC+-Staaten, angeführt von Saudi-Arabien und Russland, hat nach einer Online-Sitzung beschlossen, die Förderquote für Oktober nicht weiter anzuheben. Seit dem vergangenen Herbst hatten diese Länder ihre Ziele in monatlichen Schritten erhöht, um eine 2023 vereinbarte Kürzung schrittweise zurückzunehmen. Mit Oktober pausiert diese Serie erstmals.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Quote, die zuletzt kaum noch die Realität beschrieb',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung liefert auch den Grund für die Pause mit: Die tatsächliche Förderung war zuletzt hinter den vereinbarten Mengen zurückgeblieben – laut der Quelle wegen des Iran-Kriegs und einer Blockade der Öltransportroute durch die Straße von Hormus. Eine weitere Erhöhung der Quote hätte damit vor allem auf dem Papier stattgefunden, ohne dass mehr Öl den Markt erreicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Quote ist ein Versprechen, keine Messung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger, die Ölmeldungen verfolgen, lohnt sich deshalb eine Unterscheidung: Eine OPEC+-Quote ist eine **Zielgröße**, auf die sich Mitgliedsstaaten verständigen – keine Messung dessen, was tatsächlich aus dem Boden kommt. Weicht die reale Förderung dauerhaft von der Quote ab, verliert die Zahl an Aussagekraft für das tatsächliche Angebot, selbst wenn sie in Schlagzeilen weiter die Hauptrolle spielt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Ölpreisentwicklung einordnen will, sollte OPEC+-Beschlüsse als Absichtserklärung lesen und nicht automatisch mit einer entsprechenden Mengenänderung am Markt gleichsetzen – zwischen beiden kann, wie hier, ein geopolitisch bedingter Graben liegen.',
+      },
+    ],
+  },
+  {
+    slug: 'hpe-rekordzahlen-kurs-faellt-trotzdem',
+    title: 'HPE übertrifft alle Erwartungen – die Aktie fällt trotzdem',
+    teaser:
+      'Umsatz, Gewinn und Prognose liegen bei HPE über den Schätzungen. Die Aktie gab trotzdem um 3,3 Prozent nach – ein Lehrstück über Erwartungen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-07T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['HPE', 'Quartalszahlen', 'Guidance', 'US-Aktien'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          'onvista, Aktien-Analysen vom 3.9.2026, 15:22 Uhr: „HPE: Warum der Rücksetzer nach Rekordzahlen reizt“',
+        url: 'https://www.onvista.de/news/2026/09-03-hpe-warum-der-ruecksetzer-nach-rekordzahlen-reizt-40338625-19-26549607',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Hewlett Packard Enterprise hat nach eigenen Zahlen ein Rekordquartal hingelegt: Der Umsatz erreichte 12,2 Milliarden Dollar, ein Wachstum von 33 Prozent und mehr als 200 Millionen Dollar über den Erwartungen. Der Gewinn je Aktie stieg im Non-GAAP-Ausweis erstmals über einen Dollar auf 1,11 Dollar – erwartet waren 94 Cent, ein Beat von fast 20 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch die Sparten liefen stark: Der Serverumsatz kletterte um 35 Prozent auf knapp sieben Milliarden Dollar, das Networking-Geschäft wuchs um rund 75 Prozent auf knapp 2,9 Milliarden Dollar. Für das laufende Quartal stellt HPE 13,9 bis 14,8 Milliarden Dollar Umsatz in Aussicht, für das Gesamtjahr wurde die Gewinnspanne von 3,35–3,45 auf 3,75–3,85 Dollar angehoben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und trotzdem: minus 3,3 Prozent',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie fiel nach diesen Zahlen dennoch um rund 3,3 Prozent. Warum der Markt trotz eines Rekordquartals und einer angehobenen Prognose verkaufte, benennt die Quelle nicht ausdrücklich – festzuhalten ist nur, dass ein Kursrückgang nach guten Zahlen keine Ausnahme ist, sondern regelmäßig vorkommt, wenn ein Kurs vor der Meldung bereits viel Zuversicht eingepreist hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Kennzahl für „teuer oder günstig trotz Wachstum“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Quelle nennt nach dem Rücksetzer ein Kurs-Gewinn-Verhältnis von rund 12,8 und ein PEG-Verhältnis von etwa 0,5. Das PEG-Verhältnis setzt das KGV ins Verhältnis zur erwarteten Gewinnwachstumsrate; ein Wert unter 1 gilt als Hinweis darauf, dass der Markt für das Wachstum vergleichsweise wenig bezahlt – ein KGV allein sagt darüber nichts, weil es die Wachstumsgeschwindigkeit nicht berücksichtigt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Besser als erwartet“ ist relativ zu einer Schätzung, nicht zu einem absoluten Maßstab – und die Kursreaktion hängt oft mehr davon ab, was vor der Meldung schon im Kurs steckte, als von der Meldung selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'international-seaways-dividende-plus-556-prozent',
+    title: 'International Seaways erhöht die Dividende um 556 Prozent',
+    metaTitle: 'International Seaways: 556 % mehr Dividende',
+    teaser:
+      'Die Quartalsdividende des Reeders stieg von 0,77 auf 5,05 Dollar. Der Grund ist eine variable Ausschüttung, die von Rekordgewinnen abhängt.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-07T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dividende', 'Ausschüttungsquote', 'Reederei'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, Dividenden-Radar vom 6.9.2026: „International Seaways glänzt mit 20 % Rendite – wie nachhaltig ist das?“',
+        url: 'https://www.wallstreet-online.de/nachricht/21341525-dividenden-radar-international-seaways-glaenzt-20-rendite-nachhaltig-das',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Öltanker-Reeder International Seaways hat seine Quartalsdividende binnen eines Jahres von 0,77 auf 5,05 Dollar je Aktie erhöht – ein Plus von rund 556 Prozent. Von diesen 5,05 Dollar entfallen laut Quelle nur 0,12 Dollar auf die reguläre Basisdividende, der große Rest ist eine variable Sonderausschüttung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woher das Geld kommt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Seit Anfang 2026 schüttet das Unternehmen mindestens 85 Prozent des bereinigten Nettogewinns aus, zusätzlich einen Ermessensanteil, wenn es die Marktlage zulässt. Im zweiten Quartal 2026 erzielte International Seaways einen Rekordgewinn von 295 Millionen Dollar bei einem EBITDA von 345 Millionen Dollar – die Erlöse aus der Schiffsvercharterung stiegen im Jahresvergleich um rund 130 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '20 Prozent Rendite – aber gemessen woran?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Unternehmen selbst beziffert die Rendite auf rund 21 Prozent. Diese Zahl entsteht, wenn man die zuletzt gezahlte, besonders hohe Quartalsdividende auf ein ganzes Jahr hochrechnet und durch den aktuellen Aktienkurs teilt – ein anderer Wert als die tatsächlich in den vergangenen zwölf Monaten gezahlten 12,61 Dollar je Aktie. Beide Rechnungen sind korrekt, beantworten aber unterschiedliche Fragen: Die eine zeigt, was zuletzt gezahlt wurde, die andere, was passieren würde, bliebe die Ausschüttung auf diesem hohen Niveau.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine variable Sonderdividende, die an Rekordgewinne eines zyklischen Geschäfts gekoppelt ist, ist kein Versprechen für die nächsten Quartale. Wer eine hohe Renditeangabe liest, sollte fragen, welcher Anteil der Ausschüttung fest zugesagt ist und welcher von einer Gewinnlage abhängt, die sich – wie hier durch veränderte Öltransportwege – schnell wieder ändern kann.',
+      },
+    ],
+  },
+  {
+    slug: 'silberpreis-gold-silber-ratio-67',
+    title:
+      'Silber vor einer entscheidenden Woche: Die Ratio zu Gold verrät mehr als der Kurs',
+    metaTitle: 'Silber: Gold-Silber-Ratio bei 67 statt 60',
+    teaser:
+      'Silber kostet rund 66 Dollar, die Gold-Silber-Ratio liegt bei 67 statt im Schnitt 60. Am 11. und 16. September entscheiden US-Daten über die Richtung.',
+    category: 'Märkte',
+    publishedAt: '2026-09-07T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Silber', 'Gold-Silber-Ratio', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['silber', 'gold'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, Silberpreis-Prognose vom 6.9.2026: „Anleger bangen um Silberrallye: Warum dieser Freitag für Silber alles ändern könnte“',
+        url: 'https://www.wallstreet-online.de/nachricht/21340495-anleger-bangen-silberrallye-silberpreis-prognose-freitag-silber-aendern',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Silber notiert bei rund 66 Dollar je Feinunze und steht laut wallstreet-online unter Druck: Der überraschend starke US-Arbeitsmarktbericht vom Freitag trieb die Rendite zehnjähriger US-Anleihen unter 4,8 Prozent und die zweijähriger unter 4,4 Prozent, dazu zog der Dollar an – beides typischerweise ungünstig für ein Edelmetall, das keine Zinsen zahlt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Termine, die die Woche entscheiden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Quelle nennt zwei Termine als richtungsweisend: die US-Verbraucherpreise am 11. September und die Zinssitzung der Fed am 15. und 16. September. Weil die Inflationsdaten wenige Tage vor der Zinsentscheidung liegen, wiegt eine Abweichung von der Prognose in dieser Woche schwerer als sonst – sie fließt direkt in die letzten Erwartungen vor der Sitzung ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Ratio zeigt – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Gold-Silber-Ratio gibt an, wie viele Feinunzen Silber dem Preis einer Feinunze Gold entsprechen. Sie liegt aktuell laut Quelle bei rund 67, während der langfristige Durchschnitt bei etwa 60 liegt – Silber ist damit im historischen Vergleich zu Gold relativ günstig bewertet. Eine Ratio ist jedoch ein **Vergleichsmaßstab**, kein Kurssignal: Sie sagt, wie sich zwei Preise zueinander verhalten, nicht, in welche Richtung sich einer von beiden als Nächstes bewegt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Ratio kann einordnen, ob ein Preis im Vergleich zu einem verwandten Wert historisch hoch oder niedrig steht – sie ersetzt aber nicht die Beobachtung der Daten, die in dieser Woche tatsächlich über die Richtung entscheiden dürften.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-cot-daten-spekulanten-anteil-64-prozent',
+    title: 'Gold-Futures: Der Spekulanten-Anteil bleibt nahe einem Rekord',
+    metaTitle: 'Gold: Spekulanten-Anteil bei 64 Prozent',
+    teaser:
+      'Am US-Terminmarkt für Gold liegt der Spekulanten-Anteil laut CoT-Daten bei 64 Prozent, kaum unter dem Rekord der Vorwoche. Das sagt nichts über die Richtung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-07T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'CoT-Daten', 'Open Interest', 'Terminmarkt'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, CoT-Analyse vom 5.9.2026: „Goldpreis bleibt volatil – Spekulanten-Anteil im US-Goldhandel weiter hoch“',
+        url: 'https://www.goldreporter.de/goldpreis-bleibt-volatil-spekulanten-anteil-im-us-goldhandel-weiter-hoch/cot/261599/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die wöchentlichen CoT-Daten (Commitments of Traders) der US-Terminmarktaufsicht zeigen: Der Anteil spekulativer Positionen am gesamten Open Interest im Gold-Future ist von einem Rekordwert der Vorwoche von 65 Prozent nur leicht auf rund 64 Prozent gesunken. Im Optionshandel kommen laut Goldreporter zudem 250 Kauf- auf 100 Verkaufsoptionen – ein deutliches Übergewicht auf der optimistischen Seite.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was CoT-Daten überhaupt messen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Bericht listet wöchentlich auf, wie sich die offenen Positionen großer Marktteilnehmer am Terminmarkt zusammensetzen – aufgeteilt unter anderem in Produzenten und Absicherer auf der einen sowie Spekulanten auf der anderen Seite. Das Open Interest selbst, die Zahl aller offenen Kontrakte, fiel laut Goldreporter zum 1. September um 3 Prozent auf 415.196 Kontrakte, ein Rückgang von 2,2 Prozent binnen einer Woche.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein hoher Anteil ist ein Risikomaß, keine Prognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel dazu meldet Goldreporter für den Lagerbestand der Terminbörse COMEX ein Plus von 250.000 Unzen auf 27,38 Millionen Unzen, davon 15,11 Millionen Unzen in unmittelbar lieferbaren „Registered“-Beständen. Die tatsächlichen Lieferansprüche fielen dagegen auf 7,9 Tonnen – gegenüber 63 Tonnen im Vormonat und 127 Tonnen im Juni. Ein hoher Spekulanten-Anteil sagt dabei nichts über die künftige Kursrichtung: Er zeigt lediglich, wie einseitig ein Markt positioniert ist – und ein einseitig positionierter Markt reagiert auf eine überraschende Nachricht tendenziell heftiger, weil viele Positionen gleichzeitig ins Wanken geraten können.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer aus CoT-Daten eine Kursprognose ableiten will, verwechselt ein Maß für Positionierung mit einem Maß für Richtung. Nützlich sind die Zahlen eher als Warnsignal für mögliche Schwankungsbreite als als Kaufs- oder Verkaufssignal.',
+      },
+    ],
+  },
+  {
     slug: 'zinswette-dreht-sich-zweimal-jobbericht',
     title:
       'Ein Fed-Satz, ein Jobbericht: Die Zinswette dreht sich zweimal in einer Woche',
