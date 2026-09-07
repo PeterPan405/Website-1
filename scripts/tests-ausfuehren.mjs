@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process'
 import { readdirSync } from 'node:fs'
 import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 /**
  * Findet und startet alle Tests – statt einer Liste, die jemand pflegen muss.
@@ -59,8 +60,20 @@ for (const datei of dateien) {
         Module laden wie die Anwendung; die vorhandenen Umwege dürfen bleiben,
         wo sie für sich Sinn ergeben.
       */
+      /*
+        Als `file://`-Adresse, nicht als Pfad.
+
+        `--import` geht durch den ESM-Lader, und der nimmt unter Windows keinen
+        absoluten Pfad: Aus `C:\\…\\alias-hook.mjs` liest er das Schema `c:` und
+        wirft `ERR_UNSUPPORTED_ESM_URL_SCHEME`. Unter Linux fiel das nie auf –
+        dort ist `/…/alias-hook.mjs` ein gültiger Pfad, und CI blieb grün,
+        während **jede** Testdatei auf dem Rechner des Betreibers scheiterte.
+        Ein halbes Jahr lang sah das aus wie „die Tests laufen hier eben nicht".
+
+        `pathToFileURL` erzeugt die Form, die beide akzeptieren.
+      */
       '--import',
-      join(import.meta.dirname, 'alias-hook.mjs'),
+      pathToFileURL(join(import.meta.dirname, 'alias-hook.mjs')).href,
       join(ordner, datei),
     ],
     { stdio: 'inherit' }

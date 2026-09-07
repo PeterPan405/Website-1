@@ -1,3 +1,6 @@
+import { learnTopics } from '@/data/learn'
+import { marketDefinitions } from '@/data/markets'
+
 import type { Termin } from '@/data/kalender/typen'
 
 /**
@@ -32,12 +35,44 @@ function wochentag(datum: string): number {
   return tag === 0 ? 7 : tag
 }
 
+/*
+  Themen- und Kurs-Slugs werden zu Links.
+
+  `KalenderAnsicht` baut aus jedem Eintrag in `themen` ein `/lernen/<slug>`
+  und aus jedem in `symbole` ein `/maerkte/<symbol>`. Ein Tippfehler ergibt
+  also keinen Fehler, sondern einen toten Link – und der fällt erst auf, wenn
+  jemand darauf klickt.
+
+  Am 7. September 2026 stand beim Nachtragen der Notenbanktermine 2027
+  „anleihen“ in einem Eintrag; das Lernthema heißt „staatsanleihe“. Gefunden
+  hat es niemand beim Lesen, sondern ein Abgleich gegen die Slug-Liste –
+  dieselbe Prüfung, die `lib/news-validate.ts` seit jeher für die Nachrichten
+  macht. Sie steht jetzt auch hier.
+*/
+const THEMEN_SLUGS = new Set(learnTopics.map((thema) => thema.slug))
+const KURS_SLUGS = new Set(marketDefinitions.map((markt) => markt.symbol))
+
 export function validateTermine(eintraege: readonly Termin[]): string[] {
   const probleme: string[] = []
   const gesehen = new Set<string>()
 
   for (const termin of eintraege) {
     const wo = `Termin „${termin.titel}“ (${termin.datum})`
+
+    for (const slug of termin.themen ?? []) {
+      if (!THEMEN_SLUGS.has(slug)) {
+        probleme.push(
+          `${wo}: Lernthema „${slug}“ existiert nicht – der Link liefe ins Leere.`
+        )
+      }
+    }
+    for (const symbol of termin.symbole ?? []) {
+      if (!KURS_SLUGS.has(symbol)) {
+        probleme.push(
+          `${wo}: Kurs „${symbol}“ existiert nicht – der Link liefe ins Leere.`
+        )
+      }
+    }
 
     if (!DATUM.test(termin.datum) || Number.isNaN(Date.parse(termin.datum))) {
       probleme.push(`${wo}: Das Datum ist nicht im Format JJJJ-MM-TT oder ungültig.`)
