@@ -14,8 +14,11 @@
  *
  * Die MP3s liegen auf dem Server unter `~/podcast-audio/`, **außerhalb**
  * des Ordners, den der Paketbau bei jedem Deploy austauscht – sonst wären
- * sie nach dem nächsten Bau weg. In den Webpfad kommt der Ordner über
- * einen Symlink, den der Paketbau nach jedem Umhängen neu setzt.
+ * sie nach dem nächsten Bau weg. In den Webpfad legt der Paketbau nach
+ * jedem Umhängen eine **Kopie** – bis zum 8. August 2026 stand dort ein
+ * Symlink, dem der Server nicht folgte: `version.txt` antwortete mit 200,
+ * `podcast-audio/feed.xml` daneben mit 404. Die Begründung steht im Schritt
+ * „Übertragen und umhängen" von `paket-bauen.yml`.
  *
  * ## Zwei Betriebsarten
  *

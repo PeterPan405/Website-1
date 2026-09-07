@@ -27,12 +27,22 @@
  *
  *     WECKEN=1
  *     GRUND=die Ausgabe des Tages fehlt auf main, und die Kette läuft nicht
+ *     ALARM=0
+ *     ALARMGRUND=noch vor der Alarmminute (191 nach Mitternacht UTC)
+ *
+ * Zwei Fragen in einem Aufruf, weil beide dieselbe teuer besorgte Tatsache
+ * brauchen: Steht die Ausgabe? Der Dauerlauf soll sie nicht zweimal holen.
+ *
+ * **Wecken und Alarmieren sind aber nicht dasselbe.** Der Weckruf stößt die
+ * Kette an und darf im Zweifel einmal zu oft kommen. Der Alarm schickt eine
+ * Mail und darf das nicht – deshalb hat er eine eigene Entscheidung mit einer
+ * eigenen Angabe, und `unklar` alarmiert nie.
  *
  * Der Rückgabewert ist immer 0. Ein Wecker, der den Dauerlauf abbricht, hätte
  * die Kurse angehalten, um die Nachrichten zu retten – der schlechtere Tausch.
  */
 
-import { sollWecken } from '@/lib/tageswecker'
+import { sollAlarmieren, sollWecken } from '@/lib/tageswecker'
 
 function zahl(wert: string | undefined, ersatz: number): number {
   const n = Number(wert)
@@ -42,6 +52,11 @@ function zahl(wert: string | undefined, ersatz: number): number {
 function antworte(wecken: boolean, grund: string): void {
   console.log(wecken ? 'WECKEN=1' : 'WECKEN=0')
   console.log(`GRUND=${grund}`)
+}
+
+function alarmAntwort(alarmieren: boolean, grund: string): void {
+  console.log(alarmieren ? 'ALARM=1' : 'ALARM=0')
+  console.log(`ALARMGRUND=${grund}`)
 }
 
 const jetzt = new Date()
@@ -71,3 +86,16 @@ if (gemeldet !== '0' && gemeldet !== '1') {
   })
   antworte(entscheidung.wecken, entscheidung.grund)
 }
+
+/*
+  Der Alarm hängt nicht am `else` darüber: Eine unklare Antwort weckt nicht,
+  und sie alarmiert auch nicht – aber sie soll beide Zeilen trotzdem
+  bekommen. Eine Shell, die `ALARM=` nicht findet, liest den Wert der
+  vorigen Runde weiter.
+*/
+const alarm = sollAlarmieren({
+  minuteUtc,
+  ausgabeFehltSicher: gemeldet === '0',
+  schonAlarmiert: process.env.WECK_SCHON_ALARMIERT === '1',
+})
+alarmAntwort(alarm.alarmieren, alarm.grund)

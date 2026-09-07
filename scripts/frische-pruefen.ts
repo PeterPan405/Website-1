@@ -112,6 +112,46 @@ interface Wahrheit {
  */
 const NAHE_GENUG = 0.15
 
+/**
+ * Stellen, an denen eine Zahl bewusst nicht die heutige ist.
+ *
+ * Es gibt einen Satz, den diese Prüfung nicht von einer veralteten Angabe
+ * unterscheiden kann: die **Rückschau**. „Das stimmte, als es rund 120
+ * Instrumente waren“ ist richtig, gerade weil es über die Vergangenheit
+ * spricht. Die Prüfung liest davon nur „120 Instrumente“ und hält es gegen
+ * heute – und meldet damit ausgerechnet den Kommentar als Fehler, der das
+ * Wachstum erklärt.
+ *
+ * Das ist keine kleine Unschönheit. Diese eine Meldung stand vom 31. Juli bis
+ * zum 29. August 2026 in jedem wöchentlichen Bericht, und weil sie nicht
+ * abzustellen war, hat sie dort niemanden mehr erreicht. Eine Prüfung, die
+ * dauerhaft etwas Richtiges beanstandet, erzieht zum Wegsehen – und der
+ * nächste echte Fund geht mit unter.
+ *
+ * **Die Ausnahme muss selbst geprüft werden.** Verschwindet der Text, muss
+ * der Eintrag mit ihm verschwinden; sonst sammelt sich hier eine Liste, die
+ * nichts mehr ausnimmt, und der Nächste traut ihr nicht. Deshalb meldet der
+ * Lauf jeden Eintrag, der nicht gegriffen hat. Eine Ausnahme, die nie
+ * anschlägt, ist derselbe Fehler wie eine Absicherung, die nie anschlägt.
+ */
+interface Rueckschau {
+  datei: string
+  /** Der Treffer, wortgleich – nicht die Zeilennummer, die verschiebt sich. */
+  stelle: string
+  warum: string
+}
+
+const RUECKSCHAU: readonly Rueckschau[] = [
+  {
+    datei: 'scripts/kurse-abrufen.ts',
+    stelle: '120 Instrumente',
+    warum:
+      'Rückschau auf den Stand vor dem Umbau vom 31. Juli 2026. Der Satz sagt ' +
+      'selbst, dass die Zahl seither auf das Neunfache gewachsen ist – er ist ' +
+      'die Begründung für den heutigen Takt, nicht eine Angabe über heute.',
+  },
+]
+
 async function wahrheiten(): Promise<Map<string, Wahrheit>> {
   const { marketDefinitions } = await import('../data/markets.ts')
   const { figureMeta } = await import('../data/figures.ts')
@@ -184,8 +224,13 @@ function alsZahl(text: string): number {
   return Number(text.replace(/[.\s]/g, ''))
 }
 
-function pruefeTexte(soll: Map<string, Wahrheit>): Beanstandung[] {
+function pruefeTexte(soll: Map<string, Wahrheit>): {
+  beanstandet: Beanstandung[]
+  /** Rückschau-Einträge, die auf nichts mehr passten. */
+  totgelaufen: Rueckschau[]
+} {
   const beanstandet: Beanstandung[] = []
+  const gegriffen = new Set<Rueckschau>()
   const alle = [...DURCHSUCHEN.flatMap(dateien), ...EINZELDATEIEN]
 
   for (const datei of alle) {
@@ -222,6 +267,18 @@ function pruefeTexte(soll: Map<string, Wahrheit>): Beanstandung[] {
               liegt – siehe die Begründung an `Wahrheit.mehrdeutig`.
             */
             if (mehrdeutig && Math.abs(gefunden - anzahl) / anzahl > NAHE_GENUG) continue
+            /*
+              Eine bewusst stehengelassene Rückschau. Sie wird vermerkt und
+              nicht gemeldet – und weil sie vermerkt ist, fällt unten auf,
+              wenn sie eines Tages auf nichts mehr passt.
+            */
+            const rueckschau = RUECKSCHAU.find(
+              (eintrag) => eintrag.datei === datei && eintrag.stelle === treffer[0].trim()
+            )
+            if (rueckschau) {
+              gegriffen.add(rueckschau)
+              continue
+            }
             beanstandet.push({
               datei,
               zeile: index + 1,
@@ -234,7 +291,10 @@ function pruefeTexte(soll: Map<string, Wahrheit>): Beanstandung[] {
       }
     }
   }
-  return beanstandet
+  return {
+    beanstandet,
+    totgelaufen: RUECKSCHAU.filter((eintrag) => !gegriffen.has(eintrag)),
+  }
 }
 
 /** Wie alt die Momentaufnahmen sind. */
@@ -271,7 +331,7 @@ async function main(): Promise<void> {
     console.log(`  ${name.padEnd(14)} ${String(anzahl).padStart(5)}`)
   }
 
-  const beanstandet = pruefeTexte(soll)
+  const { beanstandet, totgelaufen } = pruefeTexte(soll)
   if (beanstandet.length === 0) {
     console.log('\n  Keine abweichende Zahl gefunden.')
   } else {
@@ -280,6 +340,22 @@ async function main(): Promise<void> {
       console.log(
         `  ${fund.datei}:${fund.zeile}\n` +
           `    steht „${fund.gefunden}“, tatsächlich sind es ${fund.erwartet}`
+      )
+    }
+  }
+
+  /*
+    Ausnahmen, die auf nichts mehr passen. Kein Mangel an den Inhalten – der
+    Text ist ja weg –, aber einer an dieser Prüfung: Ein Eintrag, der nichts
+    mehr ausnimmt, macht die Liste unglaubwürdig. Deshalb steht er hier und
+    wird gelöscht, nicht stillschweigend mitgeschleppt.
+  */
+  if (totgelaufen.length > 0) {
+    console.log(`\n  ${totgelaufen.length} Ausnahme(n) greifen ins Leere:\n`)
+    for (const eintrag of totgelaufen) {
+      console.log(
+        `  ${eintrag.datei}\n` +
+          `    „${eintrag.stelle}“ steht dort nicht mehr – RUECKSCHAU-Eintrag entfernen.`
       )
     }
   }
@@ -391,8 +467,15 @@ async function main(): Promise<void> {
     liegen – beides gehört gemeldet, aber keines ist ein Fehler im Bestand.
     Eine Reihe, die ihr Höchstalter überschreitet, ist einer: Dann steht auf der
     Website eine Zahl, die niemand mehr pflegt.
+
+    Und eine Ausnahme, die ins Leere greift, ebenfalls – nicht weil ein Inhalt
+    falsch wäre, sondern weil sie diese Prüfung aushöhlt. Sie ist in zwei
+    Minuten gelöscht; bleibt sie stehen, ist die Liste beim nächsten Mal nicht
+    mehr zu glauben, und dann wird die nächste Ausnahme großzügiger gesetzt.
   */
-  if (beanstandet.length > 0 || veraltet.length > 0) process.exitCode = 1
+  if (beanstandet.length > 0 || veraltet.length > 0 || totgelaufen.length > 0) {
+    process.exitCode = 1
+  }
 }
 
 await main()

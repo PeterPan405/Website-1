@@ -254,6 +254,11 @@ jobs:
           weckversuche=0
           letzterweckruf=-1
           weckgrund='noch nicht gefragt'
+          # Ob der Ausgabe-Wächter in diesem Lauf schon angestoßen wurde.
+          # Einmal je Dauerlauf genügt: Die Mail eines roten Laufs ist da,
+          # und eine zweite macht sie nicht dringender.
+          alarmgestellt=0
+          alarmantwort=0
 
           while [ $((SECONDS - beginn)) -lt "$LAUFZEIT" ]; do
             rundenbeginn=$SECONDS
@@ -336,6 +341,7 @@ jobs:
               stand=$(node -e "process.stdout.write(String(JSON.parse(require('fs').readFileSync('public/kurse-live.json','utf8')).fetchedAt))" 2>/dev/null || echo '?')
               echo "[$(date -u +%H:%M:%S)] Runde $runde – $uebertragen übertragen, $fehler abgebrochen, $aktualisiert Instrumente, Takt ${takt}s, zuletzt $stand."
               echo "  Wecker: $weckgrund"
+              echo "  Wächter: $([ "$alarmgestellt" = 1 ] && echo 'in diesem Lauf angestoßen' || echo 'nicht angestoßen')"
             fi
 
             # ## Der Wecker für die Tagesausgabe
@@ -392,12 +398,14 @@ jobs:
               weckspruch=$(WECK_AUSGABE_STEHT="$weck_steht" \
                            WECK_VERSUCHE="$weckversuche" \
                            WECK_ABSTAND_S="$abstand" \
+                           WECK_SCHON_ALARMIERT="$alarmgestellt" \
                            node --experimental-strip-types \
                                 --import ./scripts/alias-hook.mjs \
                                 scripts/tagesausgabe-wecken.ts 2>/dev/null || true)
               weckantwort=$(printf '%s\n' "$weckspruch" | sed -n 's/^WECKEN=//p')
               weckgrund=$(printf '%s\n' "$weckspruch" | sed -n 's/^GRUND=//p')
               [ -n "$weckgrund" ] || weckgrund='der Wecker hat nicht geantwortet'
+              alarmantwort=$(printf '%s\n' "$weckspruch" | sed -n 's/^ALARM=//p')
 
               if [ "$weckantwort" = "1" ]; then
                 echo "::warning::Runde $runde: $weckgrund – die Kette wird geweckt."
@@ -411,6 +419,33 @@ jobs:
                 fi
                 weckversuche=$((weckversuche + 1))
                 letzterweckruf=$SECONDS
+              fi
+
+              # ## Und der Alarm, falls die Frist da ist und nichts steht
+              #
+              # Am 4. September 2026 fehlten Nachrichten und Folge – und
+              # `ausgabe-waechter.yml`, der genau das melden soll, ist an dem
+              # Tag **gar nicht gelaufen**; sein letzter Lauf war der Vortag.
+              # Er hängt an `schedule`, und geplante Läufe sind eine Bitte.
+              #
+              # Gemerkt hat es der Betreiber auf der Website. Damit ist genau
+              # der stille Fehler eingetreten, gegen den der Wächter gebaut
+              # wurde – *ein Alarm, der an derselben Mechanik hängt wie das,
+              # was er überwacht, ist keiner.*
+              #
+              # Sein Cron bleibt stehen: Zwei Wege sind hier richtig, und ein
+              # doppelter Lauf kostet vierzig Sekunden. `concurrency` im
+              # Wächter reiht sie hintereinander.
+              if [ "$alarmantwort" = "1" ]; then
+                if gh workflow run ausgabe-waechter.yml \
+                     --repo "$GITHUB_REPOSITORY" --ref main; then
+                  echo "::warning::Runde $runde: Frist erreicht, Ausgabe fehlt – der Wächter ist angestoßen."
+                  # Nur bei Erfolg gesetzt. Ein gescheiterter Anstoß darf den
+                  # Alarm nicht für den Rest des Laufs verbrauchen.
+                  alarmgestellt=1
+                else
+                  echo "::warning::Runde $runde: Der Wächter ließ sich nicht anstoßen – nächster Versuch in zehn Minuten."
+                fi
               fi
             fi
 

@@ -10,6 +10,7 @@ brauchen trotzdem Zugangsdaten, weil sie nach außen wirken:
 | Unternehmenszahlen aus Korea      | `DART_API_KEY`                                                  | Die 15 koreanischen Titel bleiben ohne Kennzahlen         |
 | Unternehmenszahlen aus Japan      | `EDINET_API_KEY`                                                | Die Abfrage, ob sich der Weg lohnt, unterbleibt           |
 | Instagram-Beitrag des Tages       | `MAKE_WEBHOOK_URL` **oder** `IG_ACCESS_TOKEN` + `IG_USER_ID`    | Die Kacheln entstehen, werden aber nicht veröffentlicht   |
+| Adressen der Folgen bei Spotify   | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` (Abschnitt 5)      | Die Website verweist auf die Sendung statt auf die Folge  |
 
 Dazu kommt eine Sache, die **kein** Secret braucht, sondern nur einen Eintrag
 im Quelltext: die Anmeldung bei der Google Search Console (Abschnitt 4). Ohne
@@ -936,6 +937,132 @@ Der Schlüssel ist kein Geheimnis – er steht anschließend im Quelltext jeder
 Seite und ist für jeden lesbar. Er beweist nur, dass jemand mit Zugriff auf
 die Website ihn dort platziert hat. Deshalb gehört er in `lib/site.ts` und
 nicht zu den Secrets.
+
+---
+
+## 5 · Spotify: die Adressen der Folgen
+
+**Rechnen Sie mit fünf Minuten.** Keine Prüfung durch Spotify, keine
+Freischaltung, kein Geld – eine Anwendung anlegen, zwei Zeichenketten
+abholen, hinterlegen.
+
+### 5.0 Was das bringt – und was daran heute fehlt
+
+Auf `/podcast` steht unter jeder Folge ein Verweis. Ohne diese beiden
+Zugangsdaten führt er auf die **Sendung**; ein Hörer landet oben in der
+Liste und sucht die Folge selbst. Mit ihnen führt er auf die **Folge**.
+
+Die Adresse `open.spotify.com/episode/…` steht in keinem Feed. Spotify
+vergibt sie beim Einlesen; sie lässt sich nicht ausrechnen und nicht
+erraten – nur erfragen. Das tut `scripts/podcast-spotify.ts` nach jeder
+Folge und schreibt sie nach `data/podcast-spotify.json`.
+
+**Der zweite Grund ist der wichtigere, und er ist am 1. September 2026
+teuer geworden.** Der Betreiber meldete „Podcast bei Spotify nicht online".
+Nachweisbar war an dem Tag alles bis zur eigenen Haustür: die Folge erzeugt,
+hochgeladen, im Register, `feed.xml` von außen mit 200 und der jüngsten
+Folge darin. Was **Spotify** daraus gemacht hat, konnte niemand sagen –
+denn `data/podcast-spotify.json` steht seit jeher auf
+
+```json
+{ "abgerufenAm": null, "showId": null, "folgen": {} }
+```
+
+Der Lauf sagt es bei jeder Folge, und es hat nie jemand gelesen:
+
+```
+[spotify] Keine Zugangsdaten hinterlegt – nichts zu tun.
+```
+
+Beantwortet wurde die Frage schließlich über Spotifys oEmbed-Auskunft, und
+zwar zugunsten Spotifys: Als Titel der Sendung stand dort der Titel der
+Folge vom selben Tag – Spotify hatte den Feed also gelesen. Das war Glück,
+kein Werkzeug. Mit den Zugangsdaten steht dieselbe Antwort nach jeder Folge
+im Protokoll, und die Website weiß, welche Folgen dort angekommen sind.
+
+### 5.1 Die Anwendung anlegen
+
+1. `developer.spotify.com/dashboard`, mit dem gewöhnlichen Spotify-Konto
+   anmelden. Es muss **nicht** das Konto sein, dem die Sendung gehört –
+   gelesen werden nur öffentliche Angaben.
+2. **Create app**. Name und Beschreibung sind frei („IM Invests
+   Folgenadressen" genügt). Als **Redirect URI** irgendetwas Gültiges
+   eintragen, etwa `https://iminvests.de/` – benutzt wird sie nie.
+3. Bei **Which API/SDKs are you planning to use?** genügt _Web API_.
+4. Speichern, dann **Settings**. Dort stehen **Client ID** und, hinter _View
+   client secret_, das **Client secret**.
+
+> **Warum keine Nutzeranmeldung nötig ist:** Das Skript meldet sich mit
+> _Client Credentials_ selbst an – das Programm als Programm, ohne Konto
+> dahinter. Damit kommt es an alle öffentlichen Angaben, und mehr braucht
+> es nicht. Ein Token, das an einem Nutzerkonto hängt, wäre hier zusätzlich
+> zu verwalten und liefe ab.
+
+### 5.2 Hinterlegen
+
+Beides als **Secrets** (nicht Variables – das Secret ist ein Schlüssel):
+
+```
+SPOTIFY_CLIENT_ID
+SPOTIFY_CLIENT_SECRET
+```
+
+Optional als **Variable** dazu:
+
+```
+SPOTIFY_SHOW_ID = 033YxQviNJXETJpW2ezG3y
+```
+
+Ohne sie sucht das Skript die Sendung selbst über ihren Namen. Das geht,
+ist aber die schwächere Zuordnung – ein Name kann doppelt vorkommen, eine
+Kennung nicht.
+
+### 5.3 Gegenprobe
+
+`podcast-erzeugen.yml` fragt nach jeder Folge von selbst ab. Wer nicht bis
+zum nächsten Morgen warten will, stößt `podcast-schaufenster.yml` an und
+sieht im Protokoll nach: Statt „Keine Zugangsdaten hinterlegt" muss dort
+eine Zahl gefundener Folgen stehen, und `data/podcast-spotify.json` bekommt
+ein `abgerufenAm`.
+
+**Findet das Skript null Folgen, obwohl es sich anmelden konnte, ist das ein
+Befund und kein Fehler** – dann kennt Spotify die Sendung unter dieser
+Kennung nicht. Diese Antwort war bis heute nicht zu bekommen.
+
+### 5.4 Zum Kopieren: der Auftrag für den lokalen Chat
+
+```text
+Ich lege bei Spotify eine Anwendung an, damit die Website auf die einzelne
+Folge verweisen kann statt nur auf die Sendung – und damit wir sehen, welche
+Folgen bei Spotify angekommen sind.
+
+So gehst du vor:
+
+1. Lies EINRICHTUNG.md, Abschnitt 5. Dort steht, warum es die beiden
+   Zugangsdaten braucht und warum keine Nutzeranmeldung nötig ist.
+2. Führe mich durch 5.1 – developer.spotify.com/dashboard, Create app. Sag
+   mir zu jedem Feld, was hineingehört. Die Redirect URI wird nie benutzt,
+   muss aber ausgefüllt sein.
+3. Wenn ich dir Client ID und Client secret gebe, hinterlege sie:
+     gh secret set SPOTIFY_CLIENT_ID
+     gh secret set SPOTIFY_CLIENT_SECRET
+   Nicht in eine Datei schreiben, nicht committen. Das Secret ist ein
+   Schlüssel. Setz außerdem die Variable:
+     gh variable set SPOTIFY_SHOW_ID --body 033YxQviNJXETJpW2ezG3y
+4. Gegenprobe nach 5.3: podcast-schaufenster.yml anstoßen und mir aus dem
+   Protokoll vorlesen, was [spotify] meldet.
+5. Sag mir das Ergebnis in einem Satz: Wie viele Folgen kennt Spotify, und
+   welches ist die jüngste?
+
+Wichtig:
+– Steht dort weiter „Keine Zugangsdaten hinterlegt", sind die Secrets nicht
+  angekommen. Dann noch einmal setzen, nicht am Skript herumbasteln.
+– Meldet die Anmeldung „invalid_client", ist eine der beiden Zeichenketten
+  falsch kopiert – meistens das Secret, weil es hinter „View client secret"
+  liegt und leicht mit der ID verwechselt wird.
+– Findet es sich an, aber null Folgen: Das ist ein Ergebnis, kein Fehler.
+  Schreib es mir genau so.
+```
 
 ---
 

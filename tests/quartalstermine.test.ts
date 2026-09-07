@@ -289,26 +289,55 @@ console.log('')
 /*
   Geprüft wird am echten Bestand und mit einem Stichtag, der aus ihm kommt.
 
-  Nicht an der Systemuhr: Ob ein Termin „bald" ist, hängt vom Tag ab, und ein
-  Test an der Uhr prüft an zwei Wochen im Jahr etwas anderes als sonst.
+  Fest, weil sonst nichts zu prüfen wäre: Ob ein Termin „bald" ist, hängt vom
+  Tag ab, und ein Test an der Systemuhr prüft an zwei Wochen im Jahr etwas
+  anderes als sonst. Echt, weil eine Lücke nur aus dem entsteht, was
+  tatsächlich da ist.
 
-  Aber auch nicht mehr an einem hingeschriebenen Datum. Bis zum 7. September
-  2026 stand hier `2026-08-20`, und das war der Tag, an dem die Zeile
-  entstand. Der Bestand wandert wöchentlich weiter, der Stichtag nicht – und
-  als der Abruf im September durchlief, lag kein einziger Termin mehr in den
-  vierzehn Tagen nach dem 20. August. Die Prüfung „einige Titel melden bald"
-  stand danach auf `0 von 394`, ohne dass an der Sache etwas kaputt war.
+  ## Warum der Stichtag aus dem Bestand kommt und nicht aus dem Kalender
 
-  Genommen wird deshalb der **früheste Termin im Bestand**. Er ist aus
-  denselben Daten hergeleitet, also bei gleichem Bestand immer derselbe – und
-  an ihm ist per Konstruktion mindestens ein Titel „bald". Ein Stichtag, an
-  dem die Prüfung nichts finden kann, prüft nichts.
+  Hier stand bis zum 4. September 2026 `const STICHTAG = '2026-08-20'`. Am
+  Morgen des 4. September ist der Test gescheitert und hat die Tagesausgabe
+  **und** die Podcastfolge mitgenommen – `nachrichten.yml` prüft, bevor es
+  schreibt, und eine rote Prüfung heißt: es wird nichts geschrieben.
+
+  Die Ursache ist kein Fehler im Code, sondern eine Wette, die abgelaufen ist:
+
+  - Der Bestand führt **nur künftige** Termine. Was vorbei ist, fällt heraus.
+  - Der Stichtag stand still, der Bestand lief davon. Am 3. September war der
+    früheste Termin darin der **8. September** – neunzehn Tage nach dem
+    Stichtag, und damit außerhalb der zwei Wochen, die „bald" heißen.
+  - Damit war die Gegenprobe „einige Titel melden bald" nicht bloß an diesem
+    Tag rot, sondern **von da an jeden Tag**, ohne dass sich an der Sache
+    etwas geändert hätte.
+
+  Ein fester Tag gegen einen wandernden Bestand ist genau die Grenze, die den
+  guten Tag gerade eben trägt. Reproduzierbar muss der Stichtag sein, nicht
+  unveränderlich – deshalb kommt er jetzt aus dem Bestand selbst: der früheste
+  Termin, den er kennt. Derselbe Commit ergibt denselben Stichtag; ein neuer
+  Bestand zieht ihn mit.
 */
 const aktien = marketDefinitions.filter((eintrag) => eintrag.kind === 'stock')
-const STICHTAG =
-  getQuartalstermine()
-    .map((termin) => termin.datum)
-    .sort()[0] ?? '2026-08-20'
+
+/*
+  Ein Stichtag vor allem, was im Bestand steht: So liefert der Befund jedes
+  Unternehmens dessen **frühesten** Termin, und das Minimum darüber ist der
+  früheste Termin überhaupt.
+*/
+const fruehesteTermine = aktien
+  .map((eintrag) => getQuartalsterminbefund(eintrag.symbol, '1970-01-01'))
+  .filter((befund) => befund !== null)
+  .map((befund) => befund!.erwartet)
+  .sort()
+
+const STICHTAG = fruehesteTermine[0]
+
+pruefen(
+  'Der Bestand kennt überhaupt einen Termin',
+  Boolean(STICHTAG),
+  `${fruehesteTermine.length} Unternehmen mit einem künftigen Termin`
+)
+console.log(`     (Stichtag aus dem Bestand: ${STICHTAG})`)
 
 const befunde = aktien
   .map((eintrag) => ({
@@ -358,13 +387,11 @@ pruefen(
   Die Gegenprobe: Das Zeichen muss auch anschlagen können.
 
   Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe – und ein Symbol, das
-  bei keiner einzigen Aktie erscheint, wäre schlicht toter Code. Bei 318
-  Unternehmen mit vier Quartalen im Jahr müsste an jedem beliebigen Stichtag
-  etwa ein Achtel in den nächsten zwei Wochen melden.
+  bei keiner einzigen Aktie erscheint, wäre schlicht toter Code.
 */
 const bald = befunde.filter((eintrag) => eintrag.befund!.bald)
 pruefen(
-  'An einem beliebigen Stichtag melden einige Titel bald',
+  'Am Stichtag melden einige Titel bald',
   bald.length > 0,
   `${bald.length} von ${befunde.length} – wäre es keiner, wäre das Zeichen toter Code.`
 )
@@ -373,6 +400,49 @@ pruefen(
   'Aber nicht alle – sonst prüfte die Grenze nichts',
   bald.length < befunde.length,
   `${bald.length} von ${befunde.length}`
+)
+
+/*
+  Und die Grenze selbst, an einem einzelnen Titel.
+
+  Die Prüfung darüber – `bald === inTagen <= BALD_TAGE` – bildet die
+  Implementierung Zeile für Zeile nach und kann deshalb nicht scheitern,
+  solange beide dieselbe Zeile sind. Sie prüft die Übereinstimmung, nicht die
+  Grenze.
+
+  Hier steht deshalb die Grenze selbst: derselbe Titel, zwei Stichtage, die
+  einen Tag auseinanderliegen. Vierzehn Tage vorher ist „bald", fünfzehn Tage
+  vorher nicht. Wer `<=` zu `<` macht, bekommt hier Rot – und nur hier.
+
+  Die Stichtage werden aus einem echten Termin **zurückgerechnet**; damit
+  altert auch diese Prüfung nicht.
+*/
+const probeSymbol = befunde[0]!.symbol
+const probeTermin = befunde[0]!.befund!.erwartet
+const tagVersetzt = (datum: string, tage: number) =>
+  new Date(Date.parse(`${datum}T00:00:00Z`) + tage * 86_400_000)
+    .toISOString()
+    .slice(0, 10)
+
+const anDerGrenze = getQuartalsterminbefund(
+  probeSymbol,
+  tagVersetzt(probeTermin, -BALD_TAGE)
+)
+const einenTagFrueher = getQuartalsterminbefund(
+  probeSymbol,
+  tagVersetzt(probeTermin, -BALD_TAGE - 1)
+)
+
+pruefen(
+  `Genau ${BALD_TAGE} Tage vorher ist „bald“`,
+  anDerGrenze?.bald === true,
+  `${probeSymbol} am ${tagVersetzt(probeTermin, -BALD_TAGE)}: inTagen ${anDerGrenze?.inTagen}`
+)
+
+pruefen(
+  `Einen Tag früher nicht mehr`,
+  einenTagFrueher?.bald === false,
+  `${probeSymbol} am ${tagVersetzt(probeTermin, -BALD_TAGE - 1)}: inTagen ${einenTagFrueher?.inTagen}`
 )
 
 /* -------------------------------------------------------- Die Lücke */
@@ -534,19 +604,71 @@ pruefen(
   'Ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.'
 )
 
+/*
+  Hier stand bis zum 5. September 2026 eine dritte Prüfung:
+
+      'Jeder Termin ist als geschätzt gekennzeichnet',
+      termine.every((termin) => termin.geschaetzt !== undefined)
+
+  Sie ist der **Widerspruch** zu der zwei Absätze weiter oben. Ein
+  angekündigter Termin trägt kein `geschaetzt` – genau das verlangt die eine
+  und verbietet die andere.
+
+  Aufgefallen ist es an dem Morgen, an dem zum ersten Mal ein angekündigter
+  Termin im Bestand stand: drei aus Tokio, zum 8. und 9. Oktober. Bis dahin
+  war die Menge leer, und über einer leeren Menge sind beide Sätze wahr. Die
+  ältere Prüfung stammt aus der Zeit vor dem Begriff „angekündigt"; als er
+  eingeführt wurde, blieb sie stehen, weil nichts sie stören konnte.
+
+  Der Satz dazu steht in `AGENTS.md` und in dieser Datei vierzig Zeilen
+  weiter unten: *Eine Fallunterscheidung über Merkmale, die der Stoff nicht
+  hat, ist keine.* Er galt auch für die Prüfungen selbst.
+
+  **Was an ihre Stelle tritt**, ist nicht nichts. Die beiden Prüfungen oben
+  decken zusammen alles ab – aber nur, solange es bei zwei Sorten bleibt.
+  Käme eine dritte hinzu, fiele sie durch beide hindurch und wäre von keiner
+  erfasst. Also wird genau das geprüft: dass die Teilung aufgeht.
+
+  Die dritte kam am 7. September 2026, keine zwei Wochen nach diesem Satz:
+  der veröffentlichte Terminplan der Nasdaq. Die Prüfung hat sie erwischt.
+*/
+const ausPlan = termine.filter(ausTerminplan)
+const hochgerechnetOhnePlan = termine.filter(
+  (t) => !t.titel.includes('angekündigt') && !ausTerminplan(t)
+)
+pruefen(
+  'Angekündigt, Terminplan und hochgerechnet decken zusammen jeden Termin ab',
+  angekuendigteTermine.length + ausPlan.length + hochgerechnetOhnePlan.length ===
+    termine.length,
+  `${angekuendigteTermine.length} + ${ausPlan.length} + ${hochgerechnetOhnePlan.length}` +
+    ` ≠ ${termine.length}`
+)
+
+/*
+  Und die Umkehrung, an der die eigentliche Zusage hängt: Kein Termin steht
+  ohne Kennzeichnung da. Entweder er trägt `geschaetzt`, oder er heißt
+  „angekündigt", oder er kommt aus dem veröffentlichten Terminplan – ein
+  Termin, der nichts davon sagt, sähe aus wie eine Tatsache, für die niemand
+  geradesteht.
+
+  Der dritte Fall ist seit dem 7. September 2026 dazugekommen und ist der
+  heikelste: Der Nasdaq-Plan ist keine Hochrechnung, also darf er kein
+  `geschaetzt` tragen; er ist aber auch keine Zusage des Unternehmens, also
+  darf er nicht „angekündigt" heißen.
+*/
+const ungekennzeichnet = termine.filter(
+  (t) =>
+    t.geschaetzt === undefined && !t.titel.includes('angekündigt') && !ausTerminplan(t)
+)
 pruefen(
   'Kein Termin steht ohne Kennzeichnung da',
-  termine.every(
-    (termin) =>
-      termin.geschaetzt !== undefined ||
-      termin.titel.includes('angekündigt') ||
-      ausTerminplan(termin)
-  ),
-  termine
-    .filter((t) => !t.geschaetzt && !t.titel.includes('angekündigt') && !ausTerminplan(t))
+  ungekennzeichnet.length === 0,
+  `${ungekennzeichnet.length}, z. B. ${ungekennzeichnet
     .slice(0, 3)
     .map((t) => `${t.titel} (${t.quelle.label})`)
-    .join(' | ')
+    .join(
+      ', '
+    )} – ein geschätzter Termin, der aussieht wie ein feststehender, ist schlechter als gar keiner.`
 )
 
 /* ------------------------------------------- Die Uhrzeit im Kalender */

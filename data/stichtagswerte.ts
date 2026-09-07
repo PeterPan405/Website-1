@@ -58,6 +58,63 @@
  * Der nächste Versuch braucht eine amtliche Quelle, die einem Läufer
  * antwortet – oder einen Menschen mit einem Browser.
  *
+ * ## Nachgeprüft am 5. September 2026
+ *
+ * Zwei Dinge, die den Stand von oben schärfen.
+ *
+ * **Die Sperre ist keine Werkzeugsache.** Am 1. September stellte sich
+ * heraus, dass `quellen-holen.yml` an jeder Adresse mit AAAA-Eintrag
+ * scheiterte, weil GitHub-Läufer kein IPv6 haben (`scripts/netz.py`). Das war
+ * ein naheliegender Verdacht für die Zeitüberschreitungen hier. Er ist
+ * **falsch**: Mit repariertem Abrufweg, vier Adressen, derselbe Befund –
+ * `urlopen error timed out`. Die Schranke steht und wird nicht umgangen.
+ *
+ * **`recht.bund.de` antwortet.** Seit dem 1.1.2023 ist das die amtliche
+ * Verkündungsplattform; sie liefert einem Läufer 200 und lesbaren Text
+ * (`bgbl.de` daneben trägt nur noch das Archiv bis 2022). Sie löst das
+ * Problem trotzdem **nicht**: Verkündet wird dort das Bundesgesetzblatt, also
+ * das Gesetz in seiner ursprünglichen Fassung und jedes Änderungsgesetz
+ * einzeln. Den heute geltenden Satz bekäme man nur, indem man die
+ * Konsolidierung selbst nachvollzieht – und ein selbst zusammengerechneter
+ * Gesetzesstand ist keine Quelle, sondern eine Behauptung.
+ *
+ * Konsolidiertes Bundesrecht gibt es amtlich nur bei
+ * `gesetze-im-internet.de`, und genau die antwortet nicht. Damit bleibt es
+ * beim Menschen mit einem Browser; eine dritte Adresse zu suchen lohnt nicht.
+ *
+ * ## Und am selben Tag: der Mensch mit dem Browser war da
+ *
+ * Der Absatz darüber endet mit der richtigen Schlussfolgerung – hier ist ihre
+ * Einlösung. Eine Sitzung lief am 5. September auf dem **Rechner des
+ * Betreibers** statt im Läufer und hatte vollen Netzzugang.
+ * `gesetze-im-internet.de` antwortete auf alle vier Adressen mit **200**.
+ *
+ *     25 %            § 32d Absatz 1 EStG: „Die Einkommensteuer für Einkünfte
+ *                     aus Kapitalvermögen … beträgt 25 Prozent.“
+ *     5,5 %           § 4 SolzG 1995: „Der Solidaritätszuschlag beträgt
+ *                     5,5 Prozent der Bemessungsgrundlage.“
+ *     1.000/2.000 €   § 20 Absatz 9 EStG
+ *     30/15/60/80 %   § 20 InvStG, Absätze 1 bis 3
+ *
+ * **Ein Fund am Rande, der die Rechnung bestätigt:** § 4 Satz 3 SolzG nimmt
+ * die Abgeltungsteuer von der Freigrenzen-Rückführung ausdrücklich aus – dort
+ * gilt einheitlich 5,5 Prozent. `lib/kapitalertragsteuer.ts` rechnet genau so
+ * (`kapitalertragsteuer * SOLIDARITAETSZUSCHLAG`, ohne Freigrenze). Was wie
+ * eine Vereinfachung aussah, ist der Gesetzestext.
+ *
+ * Der Basiszins wurde gegengeprüft und stimmt bis aufs Geschäftszeichen. Die
+ * BMF-Seite selbst steht inzwischen hinter einem Bot-Schutz (Radware, 302 auf
+ * `validate.perfdrive.com`); belegt ist er über die Fachpresse, die Schreiben,
+ * Datum und Geschäftszeichen zitiert.
+ *
+ * **Die beiden Abschnitte widersprechen sich nicht – sie ergänzen sich.** Für
+ * den Läufer bleibt alles, wie es oben steht: Die Schranke ist real, und die
+ * Suche nach einer dritten Adresse lohnt weiterhin nicht. Neu ist nur, wer
+ * fragt. „Aus dieser Umgebung nicht erreichbar“ ist eine Aussage über die
+ * **Umgebung**; wer sie als Eigenschaft der **Quelle** notiert, sucht beim
+ * nächsten Mal gar nicht erst. Deshalb gehört in jede solche Notiz beides:
+ * das Datum und der Ort.
+ *
  * Und: **Bewusste Annahmen gehören auch nicht hierher.** Die 2,5 Prozent
  * Inflation im Lernthema sind keine veraltete Zahl, sondern eine gerundete
  * Annahme über dreißig Jahre; das steht in `lib/inflations-beispiele.ts` so

@@ -1054,3 +1054,74 @@ jobs:
             echo "::warning::Der Instagram-Lauf ließ sich nicht anstoßen."
             echo "  Der Rückfalltermin um 04:52 deutscher Zeit greift."
           fi
+
+      # ------------------------------------------------------------------
+      # Der Podcast-Feed – die Datei, die Spotify liest.
+      #
+      # ## Warum diese Frage bisher niemand gestellt hat
+      #
+      # `podcast-audio/feed.xml` liegt **außerhalb** des getauschten
+      # Webordners. Geschrieben wird sie von `podcast-erzeugen.yml` und
+      # `podcast-schaufenster.yml`, nach jedem Tausch von diesem Lauf hier
+      # neu eingelegt. Alle drei melden „übertragen", sobald `scp`
+      # zurückkommt – **keiner von ihnen hat die Datei je von außen
+      # abgerufen.** Ein Riegel ist so gut wie die Quelle, die er fragt, und
+      # diese drei fragten ihren eigenen Arbeitsordner.
+      #
+      # Genau daran hing schon einmal der ganze Podcast: Bis zum 8. August
+      # 2026 stand im Schritt oben ein Symlink, dem der Server nicht folgte.
+      # `version.txt` kam mit 200, der Feed mit 404. Gemerkt hat es niemand –
+      # ein Hörer sieht keinen Fehler, er sieht nur keine neue Folge.
+      #
+      # ## Zwei Fragen statt einer
+      #
+      # Kommt die Datei? Und steht die Folge darin, die im Register die
+      # jüngste ist? Die zweite ist die wichtigere: Eine Datei von gestern
+      # antwortet mit 200 und sieht in jedem Protokoll gesund aus.
+      #
+      # Der Vergleich ist rennfrei, weil hochgeladen wird, **bevor** ins
+      # Register eingetragen wird (`podcast-erzeugen.yml`, Schritt „Feed und
+      # Audio auf den Server"): Was auf dem Server liegt, kann neuer sein als
+      # dieser Checkout, nie älter.
+      #
+      # ## Warum als eigener Schritt, hinter Instagram
+      #
+      # Weil er rot werden darf, ohne den Beitrag des Tages mitzunehmen. Die
+      # Website steht zu diesem Zeitpunkt bereits; was hier scheitert,
+      # betrifft die Hörer, nicht die Besucher.
+      - name: Podcast-Feed von außen prüfen
+        if: steps.ssh.outputs.bereit == 'ja'
+        run: |
+          URL="${{ vars.SITE_URL }}"
+          if [ -z "$URL" ]; then URL="https://iminvests.de"; fi
+          UA="Mozilla/5.0 (compatible; IMInvestsDeploy/1.0)"
+
+          juengste=$(python3 -c "import json;print(max(f['datum'] for f in json.load(open('data/podcast-eigener-feed.json'))['folgen']))")
+          code=$(curl -sS -A "$UA" -o /tmp/podcastfeed.xml -w '%{http_code}' \
+            "$URL/podcast-audio/feed.xml" || echo 000)
+
+          case "$code" in
+            000)
+              # Kein gelesener Code heißt: Es kam gar keine Antwort. Das ist
+              # der Hoster, und dagegen hilft kein Neubau.
+              echo "::warning::Der Podcast-Feed antwortet gar nicht (000)."
+              echo "  Das ist der Hoster, nicht unser Webordner – der nächste Lauf fragt erneut."
+              ;;
+            200)
+              if grep -q "/podcast-audio/$juengste.mp3" /tmp/podcastfeed.xml; then
+                echo "Podcast-Feed abrufbar und aktuell (jüngste Folge $juengste)."
+              else
+                echo "::error::Der Podcast-Feed steht, kennt die Folge vom $juengste aber nicht."
+                echo "  Im Register steht sie, im ausgelieferten Feed fehlt sie – für jeden"
+                echo "  Hörer bei Spotify und Apple gibt es sie damit nicht."
+                echo "  Nachzuholen mit podcast-schaufenster.yml."
+                exit 1
+              fi
+              ;;
+            *)
+              echo "::error::Der Podcast-Feed antwortet mit $code statt 200."
+              echo "  Der Server läuft und findet die Datei nicht – das ist unser Webordner."
+              echo "  Bei $code bekommt Spotify keine Folge mehr, auch keine alte."
+              exit 1
+              ;;
+          esac

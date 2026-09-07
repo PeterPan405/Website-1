@@ -130,6 +130,43 @@ Nachrichtenportal, sogar `example.com` und `iminvests.de` selbst.
 Das ist eine Regel der Umgebung, kein Fehler. Prüfen lässt sie sich mit
 `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 
+## Aber: es gilt nicht für jede Sitzung — erst nachsehen
+
+**Am 5. September 2026 lief eine Sitzung auf dem MacBook des Betreibers, und
+die hatte vollen Netzzugang.** In einer Stunde erledigte sie zwei Durchsichten,
+die vier Wochen lang als „von hier nicht möglich" notiert waren:
+
+- **Die Steuersätze.** `gesetze-im-internet.de` antwortete auf alle vier
+  Adressen mit **200** – dieselben vier, an denen der Läufer am 28. August
+  zweimal ins `urlopen error timed out` lief. § 32d EStG, § 4 SolzG, § 20 EStG
+  und § 20 InvStG waren in zehn Minuten wörtlich belegt.
+- **Die acht ETF-Kostenquoten.** Vier Wochen lang stand die Liste leer, weil
+  das Basisinformationsblatt „nicht durchkommt". Zwei Anbieter geben es sehr
+  wohl heraus (Vanguard, DWS), und für die übrigen sechs liefern vier bis
+  sieben Portale übereinstimmend dieselbe Zahl.
+
+**Die Lehre ist nicht „der Proxy ist weg".** Er ist da, wo er war. Die Lehre
+ist, dass die Notiz „aus dieser Umgebung nicht erreichbar" eine Aussage über
+**die Umgebung** war und als Aussage über **die Quelle** gelesen wurde. Wer
+sie so liest, sucht beim nächsten Mal gar nicht erst — und das kostete hier
+vier Wochen an einer Arbeit von einer Stunde.
+
+Deshalb gehört in eine solche Notiz immer beides: **das Datum und der Ort.**
+Und vor den Umweg gehört die eine Zeile, die klärt, ob es ihn überhaupt
+braucht:
+
+```
+curl -sS -o /dev/null -w "%{http_code}\n" --max-time 12 https://example.org/
+```
+
+**Was auch mit vollem Zugang nicht geht** – gesetzte Schranken, die nicht
+umgangen werden: `ishares.com` und `blackrock.com` antworten mit 403 vor jedem
+Inhalt (auch auf die PDFs, und ohne die Anlegertyp-Abfrage, die man dort
+vermutet); ebenso `fondsweb.com`, `finanzen.net`, `morningstar.com`. Die
+BMF-Seiten stehen hinter einem Bot-Schutz (302 auf `validate.perfdrive.com`).
+`boerse-frankfurt.de` leitet auf eine Seite um, die ihre Zahlen per JavaScript
+nachlädt – für einen Abruf ohne Browser also leer.
+
 ## Der Ausweg: ein Läufer holt es
 
 **GitHub-Läufer haben vollen Netzzugang.** Darauf beruht das halbe Projekt schon
@@ -1052,6 +1089,52 @@ Das ließe sich ändern – im Agentenprompt, der die Meldungen schreibt. Es
 betrifft dann aber die Website mit, nicht nur die Folge, und die strenge
 Quellenangabe ist Absicht. Deshalb wurde es hier **nicht** mitgemacht,
 sondern liegengelassen, bis der Betreiber die Wirkung des Takts gehört hat.
+
+#### Derselbe Satz gilt für die Prüfungen selbst
+
+Am 5. September 2026 hat er zum zweiten Mal in zwei Tagen eine Tagesausgabe
+gekostet – diesmal, weil er auf `tests/quartalstermine.test.ts` angewandt
+gehört hätte und niemand ihn dort gelesen hat.
+
+Drei Prüfungen standen nebeneinander:
+
+    Ein angekündigter Termin trägt kein „geschätzt"    angekündigt → kein geschaetzt
+    Und ein hochgerechneter trägt es                   hochgerechnet → geschaetzt
+    Jeder Termin ist als geschätzt gekennzeichnet      ALLE → geschaetzt
+
+Die erste und die dritte **widersprechen einander**. Nicht subtil, sondern
+unmittelbar: Was die eine verlangt, verbietet die andere. Trotzdem standen
+sie wochenlang grün nebeneinander, weil es keinen einzigen angekündigten
+Termin gab. Über einer leeren Menge sind beide wahr.
+
+Die dritte stammt aus der Zeit vor dem Begriff „angekündigt". Als er im
+August eingeführt wurde, blieb sie stehen – nichts konnte sie stören. In der
+Nacht auf den 5. September lieferte die Tokioter Börse zum ersten Mal drei
+angekündigte Termine, und `nachrichten.yml` schrieb nichts mehr.
+
+**Was daraus folgt, über den Fall hinaus:**
+
+- Ein neuer Begriff macht die Prüfungen, die es vorher gab, nicht ungültig –
+  aber er kann sie **falsch** machen, und zwar lautlos, solange er kein
+  Material hat. Wer einen einführt, liest die vorhandenen Prüfungen daneben
+  noch einmal und fragt: Welche davon sprechen über „alle", und stimmt das
+  noch?
+- Zwei Prüfungen, die sich widersprechen, sind kein Problem der Prüfungen,
+  sondern eine offene Frage über die Sache. Hier lautete sie: _Trägt jeder
+  Termin eine Kennzeichnung, oder trägt jeder Termin dieselbe?_ Die Antwort
+  war seit August die erste, und eine Zeile Code sagte weiter die zweite.
+- **Der Ersatz für eine gestrichene Prüfung ist nicht nichts.** An ihre
+  Stelle kamen zwei: dass angekündigt und hochgerechnet zusammen jeden Termin
+  abdecken (eine dritte Sorte fiele sonst durch beide hindurch), und dass
+  kein Termin ohne Kennzeichnung dasteht – die eigentliche Zusage, jetzt so
+  formuliert, dass sie beide Sorten meint.
+
+Nachgesucht wurde anschließend im ganzen Testbestand nach derselben Gestalt:
+sechzehn Stellen, an denen `.every()` über eine gefilterte Menge läuft. Alle
+sechzehn tragen eine Wache – eine Nichtleer-Prüfung, einen Abgleich der
+Anzahl oder eine benachbarte Prüfung, die die Menge besetzt hält. Der Fall
+oben war der einzige, und sein Merkmal war nicht die leere Menge allein,
+sondern **der Widerspruch daneben**, den die leere Menge verdeckt hat.
 
 ### Geprüft wird, was gesendet wird – nicht sein Vorprodukt
 
@@ -3685,3 +3768,54 @@ schuldet ihr einen Blick.
 
 Und: **Ein Datum in einem Test ist eine Zusage über die Zukunft.** Wer eines
 hinschreibt, schreibt einen Ablauftermin dazu, den niemand notiert hat.
+
+Nachtrag vom selben Tag: Der Stichtag im Test war zu diesem Zeitpunkt bereits
+behoben – am 4. September, und dort steht auch, was er angerichtet hat. Zwei
+Sitzungen haben denselben Fehler unabhängig gefunden; beim Zusammenführen hat
+die frühere, gründlichere Fassung gewonnen.
+
+# AGENTS.md war wieder voll – 5. September 2026
+
+Die Datei stand bei **23.978 von 24.000 Zeichen**. Zweiundzwanzig Zeichen
+Luft; das nächste dort ergänzte Wort hätte `tests/agents-md.test.ts` rot
+gemacht – und weil `nachrichten.yml` vor dem Veröffentlichen `npm test` laufen
+lässt, hätte es die **Tagesausgabe** aufgehalten. Genau so ist die
+Sechs-Uhr-Zusage am 4. und 5. September gerissen, damals wegen
+`tests/quartalstermine.test.ts`.
+
+Aufgefallen ist es beim Versuch, eine einzige Regel zu ergänzen: dass diese
+Umgebung nicht immer eingesperrt ist. Der Test wies sie ab, mit genau der
+richtigen Frage – „gehört die Ergänzung in die Regeln, oder ist sie eine
+Begründung?"
+
+## Was entfernt wurde, und wohin
+
+Der Test hatte recht: Nach der Trennung im August lag `AGENTS.md` bei gut
+16.000 Zeichen. Der Zuwachs auf 23.978 war nicht neue Regel, sondern
+zurückgekehrte Begründung – jeder Vorfall bringt den Wunsch mit, die
+Vorgeschichte gleich danebenzuschreiben.
+
+Entfernt wurden acht Vorfallsbelege, deren Regel ohne sie vollständig bleibt
+und deren Inhalt hier bereits steht: die 41 Standardwerte im Sammelkalender,
+das Datum der `TarifSperre`, der Fund des Sammelkalenders, die 2.600 Hz der
+Störgeräuschprüfung, die zwei Anordnungsdaten des Betreibers, der eine
+`kurse.yml`-Lauf zwischen 00:00 und 04:20 UTC, der 28. August beim
+Dauerlauf-Wächter und das Abschaffungsdatum des Notbehelfs.
+
+**Ein Beleg stand hier noch nicht** und wird deshalb nachgetragen: Am 23. August 2026 ließ `npm run pruefen` **vier Überschriftensprünge** glatt
+durch und meldete grün, weil es `out/` liest – also den letzten Bau und nicht
+die Änderung. Die CI fand sie danach. Das ist der Fall zur Lehre
+„`npm run pruefen` liest `out/`, nicht deine Änderung".
+
+## Was daraus folgt
+
+**Die Datumsangaben in `AGENTS.md` sind der häufigste Zuwachs.** Ein Datum in
+einer Regel beantwortet die Frage „seit wann gilt das?" – aber die stellt beim
+Arbeiten niemand, und für „warum gilt das?" gibt es diese Datei. Wer eine
+Regel notiert, lässt das Datum hier; wer eines in `AGENTS.md` findet, darf es
+streichen, sobald der Fall hier steht.
+
+Die Datei hat nach dem Aufräumen wieder rund 400 Zeichen Luft. Das ist kein
+Polster für ein Jahr – es ist Platz für zwei, drei Regeln. Wer mehr braucht,
+räumt weiter auf, statt die Grenze anzuheben: Sie ist nicht der Gegner,
+sondern das Einzige, was die Trennung am Leben hält.

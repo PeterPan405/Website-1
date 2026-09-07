@@ -16,9 +16,12 @@
 
 import {
   ABKUEHLUNG_S,
+  ALARM_MINUTE,
   FENSTER_BIS,
   FENSTER_VON,
   HOECHSTENS_VERSUCHE,
+  type Alarmlage,
+  sollAlarmieren,
   sollWecken,
   type Weckerlage,
 } from '../lib/tageswecker.ts'
@@ -155,6 +158,93 @@ check(
     'Fensters'
   ),
   true
+)
+
+/* ============================================================ Der Alarm */
+
+/**
+ * Am 4. September 2026 fehlten Nachrichten und Folge – und der Wächter, der
+ * genau das melden soll, ist nicht gelaufen. Er hängt an `schedule`.
+ *
+ * Deshalb dieselbe Behandlung wie beim Wecker: zu jeder Bedingung ein Fall,
+ * den sie abweisen muss, und einer, den sie durchlassen muss. Ein Alarm, der
+ * stumm bleibt, ist von einem, der nichts zu melden hat, sonst nicht zu
+ * unterscheiden – und das war ja gerade das Problem.
+ */
+const alarmlage: Alarmlage = {
+  minuteUtc: ALARM_MINUTE,
+  ausgabeFehltSicher: true,
+  schonAlarmiert: false,
+}
+
+check('genau zur Alarmminute wird gemeldet', sollAlarmieren(alarmlage).alarmieren, true)
+check(
+  'eine Minute davor noch nicht',
+  sollAlarmieren({ ...alarmlage, minuteUtc: ALARM_MINUTE - 1 }).alarmieren,
+  false
+)
+
+/*
+  Nach oben offen: Der Wecker hört um FENSTER_BIS auf, der Alarm nicht. Dass
+  die Zusage gerissen ist, bleibt meldenswert, auch wenn es zum Nachziehen zu
+  spät ist – sonst erführe es der Betreiber wieder vom Telefon.
+*/
+check(
+  'auch lange nach dem Weckfenster wird noch gemeldet',
+  sollAlarmieren({ ...alarmlage, minuteUtc: FENSTER_BIS + 120 }).alarmieren,
+  true
+)
+
+/*
+  Der teure Fall. Eine unklare Antwort weckt lieber einmal zu viel, aber sie
+  darf keine Mail auslösen: Ein Alarm, der gelegentlich grundlos kommt, wird
+  nach der dritten Mail nicht mehr gelesen.
+*/
+check(
+  'steht die Ausgabe, gibt es keinen Alarm',
+  sollAlarmieren({ ...alarmlage, ausgabeFehltSicher: false }).alarmieren,
+  false
+)
+check(
+  'und ohne sicheren Befund ebenfalls nicht',
+  sollAlarmieren({ ...alarmlage, ausgabeFehltSicher: false }).grund.includes('deuten'),
+  true
+)
+
+check(
+  'zweimal im selben Lauf wird nicht gemeldet',
+  sollAlarmieren({ ...alarmlage, schonAlarmiert: true }).alarmieren,
+  false
+)
+
+/*
+  Die Reihenfolge, wie oben beim Wecker: Vor der Alarmminute entscheidet die
+  Uhrzeit, nicht der Befund. Ein Alarm, dessen Minute falsch gesetzt ist, soll
+  im Protokoll erkennbar an der Uhrzeit schweigen.
+*/
+check(
+  'vor der Alarmminute entscheidet die Uhrzeit, nicht der Befund',
+  sollAlarmieren({
+    minuteUtc: 0,
+    ausgabeFehltSicher: true,
+    schonAlarmiert: true,
+  }).grund.includes('Alarmminute'),
+  true
+)
+
+/*
+  Und die beiden dürfen nicht dasselbe sein. Es gibt eine Lage, in der geweckt
+  wird und nicht alarmiert: früh am Morgen, die Ausgabe fehlt, aber die Frist
+  ist noch nicht da. Wäre der Alarm nur ein zweiter Name für den Weckruf,
+  fiele diese Prüfung.
+*/
+check(
+  'früh am Morgen wird geweckt, aber nicht alarmiert',
+  [
+    sollWecken({ ...notlage, minuteUtc: ALARM_MINUTE - 60 }).wecken,
+    sollAlarmieren({ ...alarmlage, minuteUtc: ALARM_MINUTE - 60 }).alarmieren,
+  ],
+  [true, false]
 )
 
 console.log(

@@ -191,6 +191,38 @@ export interface Vorabergebnis {
  *    gibt es keine Vorabpauschale.
  * 3. Ausschüttungen werden **abgezogen**. Wer genug ausgeschüttet bekommen hat,
  *    zahlt keine.
+ *
+ * ## Offen seit dem 6. September 2026: zählt die Ausschüttung in den Deckel?
+ *
+ * Aufgefallen bei der Turnus-Durchsicht `rechner`, beim Nachrechnen von Hand.
+ * Regel 2 und Regel 3 greifen ineinander, und es gibt zwei Lesarten:
+ *
+ *     A (so rechnet der Code)   Deckel = Wertende − Wertbeginn
+ *     B                         Deckel = Wertende − Wertbeginn + Ausschüttungen
+ *
+ * Für einen **thesaurierenden** Fonds sind beide gleich – ohne Ausschüttung
+ * gibt es keinen Unterschied, und das ist der Fall, für den dieser Rechner
+ * meistens benutzt wird.
+ *
+ * Für einen **ausschüttenden** trennen sie sich, und zwar messbar. Wert
+ * 10.000 → 10.050, Ausschüttung 20 €, Basiszins 3,20 %:
+ *
+ *     Basisertrag              224,00 €   (10.000 × 3,20 % × 0,7)
+ *     Deckel nach A                50,00 €  →  Vorabpauschale  30,00 €
+ *     Deckel nach B                70,00 €  →  Vorabpauschale  50,00 €
+ *
+ * Lesart A gibt die **niedrigere** Vorabpauschale aus. Ein Rechner, der zu
+ * wenig Steuer ausweist, ist die unangenehmere Richtung des Irrtums.
+ *
+ * **Entschieden wird das nicht hier, sondern am Gesetzestext** – § 18 Absatz 1
+ * InvStG, der Satz zur Begrenzung des Basisertrags. Aus dieser Umgebung ist
+ * `gesetze-im-internet.de` nicht erreichbar (siehe `data/stichtagswerte.ts`);
+ * vom Rechner des Betreibers aus war es das am 5. September sehr wohl. Wer
+ * dort das nächste Mal nachsieht, klärt bitte diesen einen Satz mit.
+ *
+ * Bis dahin bleibt der Code, wie er ist: Die Durchsicht vom 6. September hat
+ * die Rechnung gegen die **hier angegebene** Methodik geprüft, und die stimmt
+ * mit ihr überein. Geändert wird eine Formel nicht auf eine Erinnerung hin.
  */
 export function berechneVorabpauschale(annahmen: Vorabannahmen): Vorabergebnis {
   const wertBeginn = Math.max(annahmen.wertJahresbeginn, 0)
