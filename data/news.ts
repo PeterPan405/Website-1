@@ -101,6 +101,446 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'strasse-von-hormus-schiffsverkehr-oelpreis',
+    title: 'Durch die Straße von Hormus fahren nur noch zehn Schiffe am Tag',
+    teaser:
+      'Nach neuen Angriffen auf Tanker ist der Schiffsverkehr durch die Straße von Hormus auf den niedrigsten Stand seit Mai gefallen – der Ölpreis reagiert.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Straße von Hormus', 'Geopolitik', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 7.9.2026, 20:30 Uhr: „Ölpreis geht durch die Decke: Straße von Hormus: Hier geht nichts mehr durch!“',
+        url: 'https://www.wallstreet-online.de/nachricht/21344735-oelpreis-decke-strasse-hormus-durch',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Durch eine der wichtigsten Öltransportrouten der Welt fahren derzeit so wenige Schiffe wie seit Monaten nicht mehr. Nach neuen Angriffen auf Tanker am Wochenende hat sich der Verkehr durch die Straße von Hormus binnen weniger Tage spürbar ausgedünnt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zehn Schiffe statt fünfzehn',
+      },
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online berichtete am Montagabend, dass in den vergangenen zehn Tagen durchschnittlich nur noch zehn Frachtschiffe pro Tag die Meerenge durchquerten – der niedrigste Wert seit Mai. Am Freitag waren es laut derselben Quelle noch mehr als 15, am Samstag knapp 13. Am Samstag selbst passierten nur zwei Schiffe die Straße, am Sonntag sechs, die meisten davon über die iranische Route.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Besonders auffällig: Seit Mittwoch hat laut der Meldung kein einziger sehr großer Rohöltanker (VLCC) die Straße verlassen. Diese Schiffsklasse transportiert die größten Mengen Rohöl auf einmal – bleibt sie aus, wirkt sich das stärker auf das Angebot aus, als der reine Rückgang der Schiffszahl vermuten lässt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Ölpreis daraus macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rückgang folgt auf neue gegenseitige Angriffe zwischen den USA und iranischen Revolutionsgarden am Wochenende, bei denen nach US-Angaben drei iranische Öltanker getroffen und einer davon versenkt wurde. Brent-Öl kostete laut wallstreet-online am Montagabend 97,31 US-Dollar, ein Plus von 1,64 Prozent, WTI legte um 1,87 Prozent auf 92,70 Dollar zu.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Nadelöhr wie die Straße von Hormus zeigt, wie ein geografisch enger Punkt einen globalen Preis bewegen kann, ohne dass sich an der weltweiten Fördermenge etwas ändert. Ob der Rückgang beim Schiffsverkehr anhält oder sich nach den jüngsten Angriffen wieder normalisiert, lässt sich aus den Quellen an diesem Abend nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'china-goldreserven-august-2026',
+    title: 'China kauft so viel Gold wie seit fast drei Jahren nicht mehr',
+    teaser:
+      'Chinas Zentralbank erhöhte ihre Goldreserven im August um 20,2 Tonnen auf 76,73 Millionen Unzen – ihr Wert stieg binnen eines Monats um 43,7 Milliarden Dollar.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-08T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'China', 'Notenbanken', 'Währungsreserven'],
+    relatedTopics: ['notenbanken-geldpolitik', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldung vom 7.9.2026: „China kauft weiter kräftig Gold – Reserven steigen auf 76,73 Millionen Unzen“',
+        url: 'https://www.goldreporter.de/china-goldreserven-august-2026/china/261647/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wenn eine Zentralbank über Jahre hinweg kauft statt verkauft, sagt das mehr über ihr Vertrauen in eine Anlageklasse als jede Rede. China gehört seit Ende 2022 durchgehend zu den Käufern von Gold – im August hat sich das Tempo noch einmal beschleunigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '20 Tonnen in einem Monat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Goldreporter erhöhte die chinesische Zentralbank ihre offiziellen Goldreserven im August um rund 20,2 Tonnen beziehungsweise 650.000 Feinunzen. Der Gesamtbestand stieg damit auf 76,73 Millionen Unzen, umgerechnet etwa 2.386,6 Tonnen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum ausgewiesenen Wert von 350,08 Milliarden US-Dollar trug neben der zusätzlichen Menge auch der gestiegene Goldpreis bei: Der Wert der chinesischen Reserven legte binnen eines Monats um rund 43,7 Milliarden Dollar zu. Seit der Wiederaufnahme der offiziellen Käufe im November 2022 kauft China nach Angaben der Quelle ununterbrochen zu, in den vergangenen vier Monaten sogar in beschleunigtem Tempo.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reserve, nicht Spekulation',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Zentralbank kauft Gold nicht, um es kurzfristig wieder zu verkaufen, sondern als Teil ihrer Währungsreserven – neben Dollar, Euro und anderen Anlagen. Ein wachsender Goldanteil verringert die Abhängigkeit von einer einzelnen Reservewährung, ändert aber nichts an der kurzfristigen Kursbildung am Goldmarkt, die von ganz anderen Akteuren getrieben wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende Zentralbank-Reserven sind ein Hinweis auf eine langfristige Nachfragequelle für Gold, keine Kursprognose für die nächste Woche. Ob und wie stark sich das auf den Tagespreis auswirkt, hängt von Faktoren ab, die mit dieser einen Meldung nichts zu tun haben.',
+      },
+    ],
+  },
+  {
+    slug: 'kevin-warsh-zins-dilemma-goldpreis',
+    title: 'Warsh steckt zwischen Inflationsbekämpfung und Schuldenberg',
+    teaser:
+      'Warsh will die Inflation bremsen – doch höhere Zinsen verteuern den Dienst auf mehr als 40 Billionen Dollar US-Schulden. Eine Analyse zeigt das Dilemma.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-08T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Kevin Warsh', 'US-Schulden', 'Gold'],
+    relatedTopics: ['notenbanken-geldpolitik', 'schulden-und-kredit'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Analyse vom 7.9.2026: „Kevin Warsh steckt im Zins-Dilemma – was das für den Goldpreis bedeutet“',
+        url: 'https://www.goldreporter.de/kevin-warsh-zins-dilemma-goldpreis-fed-goldreserven/geldpolitik/261614/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Zentralbankchef, der die Inflation bekämpfen will, tut das normalerweise mit höheren Zinsen. Bei US-Notenbankchef Kevin Warsh hat dieser Weg einen Haken, den eine Analyse von Goldreporter anhand von Zahlen sichtbar macht: Höhere Zinsen verteuern gleichzeitig den Schuldendienst eines Staates, der ohnehin schon tief in der Kreide steht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Über 40 Billionen Dollar Schulden, 1,17 Billionen Zinskosten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut der Analyse lagen die US-Staatsschulden Ende August bei mehr als 40,1 Billionen Dollar. Allein die Zinszahlungen summierten sich im laufenden Haushaltsjahr bis Juli auf 1,17 Billionen Dollar. Die Bilanzsumme der Fed liegt demnach bei 6,7 Billionen Dollar, darunter 4,4 Billionen Dollar an Staatsanleihen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Präsident Trump erwartet laut der Quelle niedrigere Zinsen, Warsh stellt nach ihrer Darstellung stattdessen die Preisstabilität und damit die Glaubwürdigkeit der Notenbank in den Vordergrund. Beide Ziele – Inflation drücken und Schuldendienst erleichtern – lassen sich mit demselben Instrument nicht gleichzeitig erreichen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was das für Gold bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Analyse beschreibt einen Mechanismus in zwei Richtungen: Höhere Zinsen belasten den Goldpreis kurzfristig, weil zinslos gehaltenes Gold im Vergleich zu verzinsten Anlagen unattraktiver wird. Hält die Fed die Zinsen dagegen trotz anhaltender Inflation niedrig, könnte das Gold eher stützen. Als weiteren Punkt nennt die Quelle eine mögliche Neubewertung der offiziellen US-Goldreserven, die aktuell mit einem historischen Gesetzespreis von 42,22 Dollar je Feinunze und damit weit unter dem Marktwert in den Büchern stehen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Dilemma zwischen zwei Zielen bedeutet nicht, dass beide gleichermaßen unerreichbar sind – es bedeutet, dass eine Entscheidung immer auf Kosten des jeweils anderen Ziels geht. Welchen Weg die Fed einschlägt und wie stark sich das auf den Goldpreis auswirkt, lässt sich aus dieser Analyse allein nicht ableiten.',
+      },
+    ],
+  },
+  {
+    slug: 'hornbach-quartalszahlen-q2-2026-27',
+    title: 'Hornbach verdient mehr, Prognose bleibt unverändert',
+    teaser:
+      'Hornbach steigerte Umsatz im zweiten Quartal um 7,3 und das bereinigte Ergebnis um 12,8 Prozent – die Jahresprognose blieb davon unberührt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Hornbach', 'Quartalszahlen', 'Prognose', 'Einzelhandel'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['sdax'],
+    sources: [
+      {
+        label:
+          'EQS-Adhoc über finanzen.net, Meldung vom 7.9.2026, 19:19 Uhr: „HORNBACH Holding AG & Co. KGaA: Umsatz und bereinigtes EBIT in Q2 2026/27 über Vorjahresniveau – Prognose für das Gesamtjahr bestätigt“',
+        url: 'https://www.finanzen.net/nachricht/aktien/eqs-adhoc-hornbach-holding-ag-co-kgaa-umsatz-und-bereinigtes-ebit-in-q2-2026-27-ber-vorjahresniveau-prognose-f-r-das-gesamtjahr-best-tigt-15922253',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Unternehmen, das im Quartal deutlich mehr verdient als im Vorjahr, könnte seine Jahresprognose eigentlich anheben. Hornbach tut das nicht – und genau darin liegt die interessantere Geschichte hinter den Zahlen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zweistelliges Ergebnisplus im zweiten Quartal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut der Ad-hoc-Mitteilung vom Montagabend stieg der Umsatz der Hornbach Holding im zweiten Geschäftsquartal (Juni bis August) um 7,3 Prozent auf 1.813,7 Millionen Euro, das bereinigte Ergebnis vor Zinsen und Steuern (EBIT) legte um 12,8 Prozent auf 124,6 Millionen Euro zu. Im ersten Halbjahr des Geschäftsjahres wuchs der Umsatz um 6,0 Prozent auf 3.816,2 Millionen Euro, das bereinigte EBIT um 4,9 Prozent auf 285,6 Millionen Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Prognose bleibt, wo sie war',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das Gesamtjahr 2026/27 erwartet Hornbach laut der Mitteilung einen Umsatz auf oder leicht über dem Vorjahresniveau von 6.433,9 Millionen Euro sowie ein bereinigtes EBIT auf der Höhe des Vorjahreswerts von 264,7 Millionen Euro – unverändert gegenüber der bisherigen Prognose. Als Grund nennt das Unternehmen anhaltende geopolitische Risiken, die sich auf Verbraucherstimmung, Einkaufspreise und Logistikkosten auswirken könnten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau dieser Abstand zwischen starkem Quartal und unveränderter Jahresprognose ist lehrreich: Ein einzelnes gutes Quartal sagt wenig darüber, wie belastbar die restlichen Monate des Geschäftsjahres sind. Ein Unternehmen, das seine Prognose trotz guter Zahlen nicht anhebt, rechnet entweder mit einem schwächeren zweiten Halbjahr oder sichert sich bewusst Spielraum, um spätere Überraschungen zu vermeiden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer eine Prognose liest, liest damit auch, wie viel Vorsicht ein Unternehmen für die verbleibenden Monate einpreist. Die endgültigen Zahlen zum Geschäftsjahr will Hornbach nach eigenen Angaben am 29. September veröffentlichen.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-wochenauftakt-26000-ezb-us-inflation',
+    title: 'DAX verteidigt die 26.000, während Wall Street noch fehlt',
+    teaser:
+      'Der DAX gab am Montag leicht nach, weil US-Börsen feiertagsbedingt geschlossen blieben – die Woche bringt jetzt die EZB-Sitzung und US-Inflationsdaten.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DAX', 'EZB', 'Wirtschaftskalender', 'Konjunktur'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über investing.com, Meldung vom 7.9.2026: „ROUNDUP/Aktien Frankfurt Schluss: Dax gibt wieder leicht nach“',
+        url: 'https://de.investing.com/news/stock-market-news/roundupaktien-frankfurt-schluss-dax-gibt-wieder-leicht-nach-3651976',
+      },
+      {
+        label:
+          'dpa-AFX über finanzen.at, Meldung vom 7.9.2026: „Aktien Europa Schluss: Träger Wochenstart vor EZB-Zinsentscheid und US-Inflation“',
+        url: 'https://www.finanzen.at/nachrichten/aktien/aktien-europa-schluss-trager-wochenstart-vor-ezb-zinsentscheid-und-us-inflation-1036526631',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender-Widget „Kommende Termine“, Abruf 8.9.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Wochenstart ohne die Wall Street ist ein Wochenstart ohne den größten Impulsgeber – das war am Montag in Frankfurt zu spüren, noch bevor die eigentliche Woche mit ihren Terminen überhaupt begonnen hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ruhiger Montag ohne US-Handel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX schloss laut dpa-AFX am Montag mit einem Minus von 0,15 Prozent bei 26.006,53 Punkten – knapp über der vielbeachteten 26.000er-Marke. Grund für die geringen Impulse: Die US-Börsen blieben feiertagsbedingt geschlossen, der reguläre Handel dort begann laut derselben Quelle erst am Dienstag wieder. Belastend wirkten daneben weiterhin die hohen Ölpreise.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf europäischer Ebene beschrieb dpa-AFX den Handelstag als „trägen Wochenstart vor EZB-Zinsentscheid und US-Inflation“: Der EuroStoxx 50 legte, gestützt von Tech- und KI-Werten, um 0,17 Prozent auf 6.403,99 Punkte zu, während der Schweizer SMI um 0,81 Prozent auf 14.279,38 Punkte nachgab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute schon feststeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aus dem Wirtschaftskalender von wallstreet-online geht hervor, welche Daten in der Nacht zum Dienstag bereits vorlagen und welche noch anstehen: Japans Bruttoinlandsprodukt für das zweite Quartal wurde um 1:50 Uhr wie erwartet mit einem Plus von 0,4 Prozent bestätigt. Um 6:30 Uhr steht die niederländische Verbraucherpreisrate an (Prognose 3,3 Prozent, zuvor 3,2 Prozent), um 7:00 Uhr folgt die japanische Eco-Watchers-Umfrage zur Konsumentenstimmung (Prognose 46,3 Punkte, zuvor 45,7).',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die eigentlich großen Termine der Woche liegen laut dpa-AFX noch vor den Anlegern: der Zinsentscheid der Europäischen Zentralbank sowie – am Freitag – die US-Inflationsdaten, denen die Agentur „wegweisenden Charakter für die US-Geldpolitik“ zuschreibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein ruhiger Handelstag ist nicht automatisch ein bedeutungsloser – er kann auch einfach die Ruhe vor mehreren Terminen sein, die in den nächsten Tagen gebündelt anstehen. Welche Richtung DAX und EuroStoxx nach EZB-Entscheid und US-Inflationsdaten einschlagen, lässt sich daraus nicht vorwegnehmen.',
+      },
+    ],
+  },
+  {
+    slug: 'jpmorgan-ki-investitionen-prognose-2030',
+    title: 'JPMorgan traut den KI-Investitionen mehr zu als noch im Frühjahr',
+    teaser:
+      'JPMorgan hebt die Prognose für weltweite KI-Investitionen bis 2030 auf 5,5 Billionen Dollar an – gut ein Drittel soll über neue Schulden finanziert werden.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-08T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Künstliche Intelligenz', 'JPMorgan', 'Rechenzentren', 'Investitionen'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['amazon', 'alphabet', 'microsoft'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Meldung vom 7.9.2026, 21:35 Uhr: „KI-Aktien im Blick: Warum JPMorgan die Billionen-Investitionen für tragfähig hält“',
+        url: 'https://www.finanzen.net/nachricht/aktien/rechenzentren-ki-aktien-im-blick-warum-jpmorgan-die-billionen-investitionen-fuer-tragfaehig-haelt-00-15910055',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wenn eine Großbank ihre eigene Prognose für ein Milliardenthema nach oben korrigiert, sagt das etwas darüber, wie wenig überzeugt sie von der eigenen Vorgängerschätzung noch war. JPMorgan hat genau das mit den weltweiten Investitionen in Künstliche Intelligenz getan.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Von 5,1 auf 5,5 Billionen Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut finanzen.net erhöhte JPMorgan seine Schätzung für die weltweiten KI-Investitionsausgaben bis zum Jahr 2030 von zuvor 5,1 auf nun 5,5 Billionen Dollar. Allein die fünf größten US-Hyperscaler sollen 2026 rund 697 Milliarden Dollar investieren, die gesamten Ausgaben großer Cloud- und Technologiekonzerne sollen laut der Meldung bis 2027 auf mehr als 1,1 Billionen Dollar steigen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein gutes Drittel läuft über Schulden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Neu an der Prognose ist vor allem die Finanzierungsseite: JPMorgan geht davon aus, dass rund 4,1 Billionen Dollar der weltweiten KI-Investitionen fremdfinanziert werden, mit höheren Beleihungsquoten der einzelnen Projekte als bisher angenommen. Über einen Zeitraum von fünf Jahren rechnet die Bank laut der Meldung mit mehr als 2,1 Billionen Dollar an Investment-Grade-Unternehmensanleihen zur Finanzierung von Rechenzentren, davon allein 150 Milliarden Dollar an Anleiheemissionen von US-Hyperscalern im Jahr 2026.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als zentrale Treiber der Investitionswelle nennt die Meldung Amazon, Alphabet und Microsoft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine höhere Investitionsprognose ist noch keine Aussage darüber, wann sich diese Investitionen auszahlen – und eine stärker fremdfinanzierte Ausbauwelle reagiert empfindlicher auf steigende Zinsen als eine aus eigenen Mitteln finanzierte. Ob und wann sich die Rechnung für die beteiligten Konzerne aufgeht, lässt sich aus dieser Prognose allein nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-kursprognose-coinbase-ceo-400000-dollar',
+    title: 'Bitcoin bis 400.000 Dollar? Die Prognose des Coinbase-Chefs',
+    teaser:
+      'Coinbase-Chef Brian Armstrong hält 300.000 bis 400.000 Dollar je Bitcoin bis 2030 für wahrscheinlich – der Kurs schwankte heute Nacht um fast zwei Prozent.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-08T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Coinbase', 'Kursprognose', 'Krypto'],
+    relatedTopics: ['bitcoin-krypto', 'anlegerpsychologie'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Meldung vom 7.9.2026: „Coinbase-CEO: Bitcoin-Kurs könnte bis zu diesem Zeitpunkt auf bis zu 400.000 US-Dollar steigen“',
+        url: 'https://www.finanzen.net/nachricht/devisen/mega-kursprognose-coinbase-ceo-bitcoin-kurs-koennte-bis-zu-diesem-zeitpunkt-auf-bis-zu-400-000-us-dollar-steigen-00-15911477',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste (Abruf 8.9.2026, 02:19 Uhr): Bitcoin 68.085 US-Dollar (-1,8 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine Kursprognose bis ins Jahr 2030 klingt beeindruckend – und sagt wenig darüber, wie sich ein Kurs in der Nacht davor bewegt. Beides lässt sich bei Bitcoin gerade gut nebeneinanderlegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '300.000 bis 400.000 Dollar bis 2030',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut finanzen.net nannte Coinbase-Chef Brian Armstrong in einem Fox-Business-Interview Ende August einen Bitcoin-Kurs von 300.000 bis 400.000 US-Dollar bis zum Jahr 2030 als aus seiner Sicht wahrscheinliches Ziel. In einem separaten CNBC-Interview sprach er von einem möglichen Beginn eines neuen Bullenzyklus und nannte als mögliche Auslöser die anstehende Senatsabstimmung zum Digital Asset Market CLARITY Act sowie die aus seiner Sicht historisch starke Kursentwicklung der vergangenen Monate.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer die Prognose macht, ist Teil der Prognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Armstrong ist nicht irgendein Marktbeobachter, sondern Chef der Kryptobörse Coinbase – eines Unternehmens, dessen Geschäft direkt von steigenden Kryptokursen und mehr Handelsvolumen profitiert. Das macht seine Einschätzung nicht automatisch falsch, aber es lohnt sich, bei der Prognose eines Marktteilnehmers mit eigenem Interesse am Ausgang genauer hinzuschauen als bei einer neutralen Quelle.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur gleichen Stunde zeigte die Kursleiste von finanzen.net beim Abruf in der Nacht zum Dienstag ein anderes Bild: Bitcoin notierte bei 68.085 US-Dollar, ein Minus von 1,8 Prozent – ein Wert, der mit einer Prognose für das Jahr 2030 wenig zu tun hat, aber daran erinnert, wie viel ein Kurs auch kurzfristig schwankt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose über mehrere Jahre und eine Kursbewegung über eine einzelne Nacht beantworten unterschiedliche Fragen. Wer beides vermischt, hält am Ende weder die eine noch die andere Aussage für das, was sie tatsächlich ist.',
+      },
+    ],
+  },
+  {
+    slug: 'yen-boj-zinsen-japanische-staatsanleihen',
+    title: 'Japans Anleihen werden nach Jahrzehnten wieder attraktiv',
+    teaser:
+      'Höhere Zinsen der Bank of Japan stützen den Yen und machen japanische Anleihen attraktiver – das könnte Kapital aus US-Staatsanleihen zurück nach Tokio ziehen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-08T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Yen', 'Bank of Japan', 'Staatsanleihen', 'US-Treasuries'],
+    relatedTopics: ['waehrungen-wechselkurse', 'staatsanleihe'],
+    relatedSymbols: ['eur-jpy'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion über finanznachrichten.de, Meldung vom 7.9.2026, 19:23 Uhr: „Geld fließt aus US-Treasuries: Japan wird ernsthafte Konkurrenz zu den USA“',
+        url: 'https://www.finanznachrichten.de/nachrichten-2026-09/69513463-geld-fliesst-aus-us-treasuries-japan-wird-ernsthafte-konkurrenz-zu-den-usa-049.htm',
+      },
+      {
+        label:
+          'wallstreet-online, Devisenpreise (Abruf 8.9.2026, 02:18 Uhr): EUR/JPY 178,65250 (-0,43 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein stärkerer Yen und weniger Kapital in US-Staatsanleihen können dieselbe Ursache haben – wenn diese Ursache höhere Zinsen in Japan sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Höhere BoJ-Zinsen wirken auf zwei Märkte gleichzeitig',
+      },
+      {
+        type: 'paragraph',
+        text: 'wallstreet-online berichtete am Montagabend, dass höhere Leitzinsen der Bank of Japan (BoJ) den Yen stützen und gleichzeitig japanische Staatsanleihen rentabler machen. Die Kernthese der Meldung: Das könnte Kapital aus US-Treasuries zurück nach Tokio ziehen und Japan damit zu einer „ernsthaften Konkurrenz zu den USA“ um internationales Anlagekapital machen. Konkrete Renditezahlen nennt die Meldung selbst nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Märkte, eine Konkurrenz um Kapital',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Mechanismus dahinter: Wer als Anleger zwischen japanischen und amerikanischen Staatsanleihen wählt, vergleicht Rendite und Währungsrisiko gegeneinander. Werden japanische Anleihen nach Jahrzehnten niedriger Zinsen wieder attraktiver verzinst, verliert die US-Anleihe im Vergleich etwas von ihrem Vorteil – unabhängig davon, ob sich an deren eigener Verzinsung etwas ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur selben Stunde notierte EUR/JPY laut der Devisenkursleiste von wallstreet-online bei 178,65250 Yen, ein Minus von 0,43 Prozent – der Euro gab also gegenüber dem Yen nach, was zur These eines stärkeren Yen passt, ohne sie zu beweisen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Zinswende in Japan verändert eine jahrzehntealte Rechnung, nach der internationales Kapital fast automatisch in höher verzinste US-Anleihen floss. Wie stark und wie schnell sich das auf die Kapitalströme tatsächlich auswirkt, lässt sich aus einer einzelnen Meldung nicht ablesen.',
+      },
+    ],
+  },
+  {
     slug: 'ezb-zinserhoehung-donnerstag-dax-rekordnaehe',
     title: 'EZB vor Zinserhöhung: Der Markt traut ihr mehr zu als die Ökonomen',
     metaTitle: 'EZB: Markt traut ihr mehr zu als die Ökonomen',
