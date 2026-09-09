@@ -101,6 +101,382 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelpreis-steigt-nach-angriffen-gold-bleibt-ruhig',
+    title: 'Öl springt nach Angriffen im Nahen Osten – Gold rührt sich kaum',
+    metaTitle: 'Ölpreis steigt nach Angriffen – Gold reagiert kaum',
+    teaser:
+      'Nach Tankerangriffen und Huthi-Attacken auf Saudi-Arabien steigt der Ölpreis deutlich. Der Goldpreis, sonst ein Krisengewinner, bewegt sich kaum.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Gold', 'Geopolitik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'gold'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 20:57 Uhr: „ROUNDUP/Iranische Medien: Mehrere Öltanker angegriffen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 08.09.2026: „USA-Verbündeter: Iran-Krieg: Huthi-Rebellen attackieren Saudi-Arabien“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Goldman Sachs hebt Ölpreisprognose an - bis zu 120 US-Dollar möglich“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (Öl 98,7 USD, +1,8 %; Gold 4.403 USD, -0,0 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (Öl (Brent) 99,32 USD, +2,06 %; Gold 4.348,03 USD, -0,17 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Mittwoch meldeten iranische Medien mehrere Angriffe auf Öltanker, und schon am Dienstag hatten die vom Iran unterstützten Huthi-Rebellen laut wallstreet-online vier Städte im Süden Saudi-Arabiens angegriffen. Der Ölpreis reagierte, wie er das in solchen Phasen oft tut: Er stieg.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie deutlich, hängt davon ab, wo man nachsieht. Heute früh gegen 2:17 Uhr zeigte finanzen.net Öl bei 98,7 Dollar, ein Plus von 1,8 Prozent. Wallstreet-online notierte zur selben Minute Brent bei 99,32 Dollar, ein Plus von 2,06 Prozent. Beide Portale zeigen dieselbe Richtung, aber unterschiedliche Prozentwerte – ein Hinweis darauf, dass „der Ölpreis“ je nach Referenzkurs und Berechnungszeitpunkt leicht variiert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Widerspruch bei Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'In früheren Krisenphasen zog Gold als sicherer Hafen oft mit an, wenn der Ölpreis wegen Nahost-Spannungen sprang. Diesmal nicht: Dieselben Kursleisten zeigen Gold nahezu unverändert bis leicht im Minus (finanzen.net -0,0 Prozent, wallstreet-online -0,17 Prozent). Warum der Goldpreis auf dieselbe Nachrichtenlage nicht reagiert, sagen die Quellen nicht – und das steht hier bewusst offen, statt eine Erklärung zu erfinden.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verschärft wird das Bild durch eine zweite Meldung: Laut einer Ticker-Zeile hat Goldman Sachs seine Ölpreisprognose angehoben und hält einen Anstieg bis auf 120 US-Dollar für möglich. Die kurze Meldung nennt weder einen Zeitrahmen noch die zugrunde liegenden Annahmen dafür.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelnes geopolitisches Ereignis bewegt nicht automatisch alle Rohstoffe in dieselbe Richtung. Wer aus einem steigenden Ölpreis automatisch auf einen steigenden Goldpreis schließt, überträgt eine Faustregel auf einen Tag, an dem sie laut den vorliegenden Daten nicht gilt.',
+      },
+    ],
+  },
+  {
+    slug: 'chipaktien-qualcomm-springt-infineon-faellt',
+    title: 'Ein Tag, zwei Richtungen: Qualcomm springt, Infineon fällt',
+    teaser:
+      'Qualcomm gewinnt nach einem KI-Chip-Deal mit Amazon, Infineon verliert nach einem Analystenvotum. Beide gelten als Chipwerte – und laufen entgegengesetzt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Chipaktien', 'Halbleiter', 'Qualcomm'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['qualcomm', 'infineon', 'intel'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „QUALCOMM-Aktie mit Kurssprung nach KI-Chip-Deal mit Amazon für Rechenzentren“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Infineon-Aktie deutlich schwächer - Analystenvotum belastet Chipwerte deutlich“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Intel-Aktie springt hoch: Werden die Preise für Chips bald noch weiter erhöht?“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „D-Wave Quantum-Aktie zieht kräftig an: Millionen-Regen durch CHIPS-Act - US-Regierung sichert sich Anteile“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 10:58 Uhr: „Märkte heute: Infineon unter Druck, ASML mit Rückenwind, Robinhood wird Banker“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Für Chipwerte gab es am Dienstag keine gemeinsame Richtung. Qualcomm sprang laut Ticker-Meldung nach einem KI-Chip-Deal mit Amazon für Rechenzentren, während Infineon deutlich nachgab – belastet von einem Analystenvotum, das laut derselben Quelle „Chipwerte deutlich“ traf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Aktien, vier eigene Gründe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch Intel und D-Wave Quantum bewegten sich am selben Tag – aber aus jeweils eigenem Anlass. Intel stieg laut Ticker auf Spekulationen, dass die Preise für Chips bald weiter steigen könnten. D-Wave Quantum legte zu, nachdem sich die US-Regierung im Rahmen des CHIPS Act eine Beteiligung gesichert hatte; wie hoch diese ausfällt, nennt die kurze Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Keine der vier Ticker-Zeilen nennt eine konkrete Kursveränderung in Prozent – nur die Richtung und den genannten Anlass. Genauere Zahlen dazu liegen aus diesen Quellen nicht vor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das Etikett „Chipwerte“ wenig aussagt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Lizenzdeal für Chipdesign, eine Analystenherabstufung wegen der Nachfrage nach Leistungshalbleitern, Spekulation über zyklische Preiserhöhungen und eine staatliche Kapitalbeteiligung sind vier völlig verschiedene Geschichten. Der gemeinsame Sektor-Begriff verdeckt, dass jede Aktie an diesem Tag aus einem eigenen Grund lief.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Sammelerzählung wie „KI-Boom bei Chips“ kann leicht überdecken, dass einzelne Aktien am selben Tag aus ganz unterschiedlichen, unternehmensspezifischen Gründen steigen oder fallen. Vor einer Einordnung lohnt der Blick auf die jeweils eigene Meldung.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-keynote-9-september-faltbares-iphone',
+    title: 'Apple hält heute wohl seine wichtigste Keynote seit dem iPhone X',
+    metaTitle: 'Apple-Keynote heute: wichtigster Auftritt seit dem iPhone X',
+    teaser:
+      'Am 9. September stellt Apple neue Produkte vor, Berichten zufolge erstmals auch ein faltbares iPhone. Die Aktie notiert bereits nahe ihrem Rekordhoch.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Apple', 'Produktevent', 'Technologie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 08.09.2026: „Aktie nah am Rekordhoch: Teurer, faltbar, historisch: Was Apple am 9. September plant“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 08.09.2026: „Apple-Aktie vor Wendepunkt? Analysten erwarten die wichtigste Keynote seit dem iPhone X“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute, am 9. September, hält Apple sein herbstliches Produktevent. Laut einer Ticker-Meldung erwarten Analysten dabei „die wichtigste Keynote seit dem iPhone X“ – jenem Modell, mit dem Apple 2017 sein Design grundlegend änderte.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Berichten zufolge soll es unter anderem um ein faltbares iPhone gehen – in den Schlagzeilen als „teuer, faltbar, historisch“ beschrieben. Konkrete Preise, Maße oder technische Daten nennen die Quellen nicht; das bleibt hier deshalb offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Aktie schon vor der Ankündigung reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Apple-Aktie handelt laut wallstreet-online bereits nahe ihrem Rekordhoch – noch bevor überhaupt etwas offiziell vorgestellt wurde. Das ist ein Beispiel für eine eingepreiste Erwartung: Anleger positionieren sich schon im Vorfeld, wenn sie mit einer guten Nachricht rechnen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das Risiko dabei: Bestätigt die Keynote nur, was ohnehin erwartet wurde, bewegt sich der Kurs am Ereignistag selbst oft kaum – manchmal fällt er sogar, wenn Details hinter den hochgeschraubten Erwartungen zurückbleiben. Ob das heute so kommt, lässt sich vor der Veranstaltung nicht sagen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Schlagzeilen wie „historisch“ vor einem Produktevent sind zunächst Erwartung, keine Tatsache. Es lohnt sich, auf die tatsächlich vorgestellten Produkte und Zahlen zu warten, statt aus der Ankündigungsstimmung bereits eine Kursrichtung abzuleiten.',
+      },
+    ],
+  },
+  {
+    slug: 'gamestop-rekordgewinn-ebay-wette',
+    title: 'GameStop verdient dank einer Wette auf eBay so viel wie nie',
+    teaser:
+      'GameStop meldet für das zweite Quartal einen Rekordgewinn und hebt die Jahresprognose kräftig an – begünstigt durch eine Beteiligung an eBay.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['GameStop', 'Quartalszahlen', 'Guidance'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, News-Ticker vom 08.09.2026: „Rekordgewinn statt Umsatzflaute: GameStop überrascht mit eBay-Coup“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'GameStop hat laut wallstreet-online für das zweite Quartal einen Gewinn gemeldet, „so hoch wie nie zuvor“ – und das dank einer milliardenschweren Wette auf den Online-Marktplatz eBay.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut derselben Meldung schraubt das Unternehmen deshalb seine Jahresprognose „deutlich nach oben“. Konkrete Prozent- oder Dollarwerte nennt der kurze Text nicht – sie bleiben deshalb hier offen, statt geschätzt zu werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Geschichten in einer Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bemerkenswert ist ein zweiter Satz der Meldung: „Auch abseits der Börsengewinne“ laufe es operativ so gut „wie noch nie“. Das deutet darauf hin, dass sowohl das Kerngeschäft als auch der Wert der eBay-Beteiligung zum Ergebnis beigetragen haben – wie viel jeweils, trennt die Quelle allerdings nicht auf.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau das ist bei einem gemeldeten Rekordgewinn oft die entscheidende Frage: Ohne Aufschlüsselung lässt sich nicht beurteilen, wie viel davon aus dem laufenden Geschäft stammt und wie viel aus einer einmaligen Wertänderung einer Finanzbeteiligung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile wie „Rekordgewinn“ kann operative Verbesserung und Bewertungsgewinne aus einer Kapitalbeteiligung vermischen. Vor einer Einordnung lohnt sich der Blick darauf, welcher Anteil vom eigentlichen Geschäft kommt und welcher von einer einmaligen Position.',
+      },
+    ],
+  },
+  {
+    slug: 'china-gold-reserven-shanghai-preisabschlag',
+    title: 'China kauft weiter Gold – und zahlt dafür weniger als der Westen',
+    metaTitle: 'China kauft Gold – Preis in Shanghai unter Weltniveau',
+    teaser:
+      'Russisches Gold fließt in Rekordmengen nach Hongkong, Chinas Reserven wachsen weiter. Trotzdem notiert Gold in Shanghai unter dem westlichen Preis.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-09T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Zentralbanken', 'China'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, 8. September 2026: „Russisches Gold strömt in Rekordmengen nach Hongkong“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 7. September 2026: „China kauft weiter kräftig Gold – Reserven steigen auf 76,73 Millionen Unzen“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 8. September 2026: „Goldmarkt: China-Spread fällt auf minus 38 US-Dollar“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwischen Januar und Juli sind laut Goldreporter fast 100 Tonnen russisches Gold nach Hongkong geflossen – knapp dreimal so viel wie im gleichen Zeitraum des Vorjahres. Zeitgleich meldet Goldreporter, dass Chinas offizielle Goldreserven weiter gewachsen sind, zuletzt auf 76,73 Millionen Feinunzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mehr Nachfrage, niedrigerer Preis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer daraus auf einen höheren Goldpreis in China schließt, liegt laut den Daten falsch: Goldreporter beziffert den sogenannten China-Spread auf minus 38 US-Dollar – der Goldpreis in Shanghai notiert damit unter dem Preis im Westen. Zusätzlich soll der Preis dort zuletzt stärker gefallen sein als im Westen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum sich die anhaltenden offiziellen Käufe nicht in einem Preisaufschlag niederschlagen, sagt die Meldung nicht. Das bleibt hier bewusst offen, statt eine plausible, aber unbelegte Erklärung nachzuliefern.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Fall zeigt zudem, dass Gold nicht überall zum selben Preis gehandelt wird: Shanghai, London und New York können zur gleichen Zeit unterschiedliche Preise zeigen. Solche Differenzen – „Spreads“ – werden von Marktbeobachtern selbst dann verfolgt, wenn die Ursache im Einzelfall nicht klar benannt ist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Anhaltende Käufe einer Zentralbank oder ein wachsender Warenstrom bedeuten nicht automatisch einen höheren lokalen Preis. Wer eine einzelne Marktnotiz liest, sollte im Kopf behalten, dass es bei einem global gehandelten Rohstoff mehrere Preise gleichzeitig geben kann.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-stagniert-oelpreis-steigt-termine-heute',
+    title: 'DAX tritt auf der Stelle, während der Ölpreis weiter steigt',
+    metaTitle: 'DAX stagniert trotz steigendem Ölpreis – Termine heute',
+    teaser:
+      'Der DAX bewegte sich am Dienstag kaum, obwohl Öl deutlich teurer wurde. Heute stehen US-Jobdaten und eine Rede von EZB-Chefin Lagarde an.',
+    category: 'Märkte',
+    publishedAt: '2026-09-09T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Marktüberblick', 'Konjunkturkalender'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 15:55 Uhr: „Dax Tagesrückblick 08.09.2026 – Dax stagniert bei steigendem Ölpreis – Fresenius stark“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 16:07 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax tritt auf der Stelle - Ölpreise legen zu“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, News-Ticker vom 08.09.2026, 20:36 Uhr: „ROUNDUP/Aktien New York Schluss: Dow mit schwachem Wochenauftakt - Nasdaq besser“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (DAX 25.969 Punkte, -0,1 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste vom 09.09.2026, gegen 2:17 Uhr (DAX 25.874,54 Punkte, -0,50 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender vom 09.09.2026: ADP Employment Change (4-week average), 14:15 Uhr, Vorwert 11,75 Tsd.; EZB-Präsidentin Lagarde spricht, 19:00 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist laut onvista am Dienstag „auf der Stelle getreten“, obwohl der Ölpreis im Tagesverlauf weiter zulegte. Fresenius zählte derselben Quelle zufolge zu den stärkeren Werten des Tages.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In New York verlief der Handel uneinheitlich: Der Dow schloss laut Ticker-Meldung mit einem „schwachen Wochenauftakt“ schwächer, während sich der Nasdaq besser hielt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kursleisten, zwei Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute früh gegen 2:17 Uhr zeigte finanzen.net den DAX bei 25.969 Punkten, ein Minus von 0,1 Prozent. Wallstreet-online notierte zur selben Minute 25.874,54 Punkte, ein Minus von 0,50 Prozent. Beide Portale beziehen sich auf denselben Index zur selben Zeit – und kommen wegen unterschiedlicher Referenzwerte auf unterschiedliche Prozentangaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 14:15 Uhr veröffentlichen die USA den ADP-Bericht zur privaten Beschäftigung als Vierwochendurchschnitt; der Vorwert lag laut Wirtschaftskalender bei 11.750, eine Prognose nennt die Quelle nicht. Um 19:00 Uhr spricht EZB-Präsidentin Christine Lagarde – für den Termin selbst ist keine neue geldpolitische Entscheidung angekündigt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein ruhiger Indextag sagt wenig darüber, was als Nächstes passiert, wenn am selben Tag noch Arbeitsmarktdaten und eine Rede einer Notenbankpräsidentin anstehen. Beides kann die Richtung ändern – in welche, lässt sich vorab nicht sagen.',
+      },
+    ],
+  },
+  {
     slug: 'strasse-von-hormus-schiffsverkehr-oelpreis',
     title: 'Durch die Straße von Hormus fahren nur noch zehn Schiffe am Tag',
     teaser:
