@@ -101,6 +101,391 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ezb-zinsentscheid-10-september-hoeherer-leitzins',
+    title: 'Die EZB entscheidet heute – und der Kalender zeigt nach oben',
+    metaTitle: 'EZB-Entscheidung heute: Kalender zeigt nach oben',
+    teaser:
+      'Um 14:15 Uhr verkündet die EZB ihre Zinsentscheidung. Der Wirtschaftskalender nennt Prognosen, die auf einen höheren statt einen niedrigeren Leitzins deuten.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-10T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Zinsen', 'Wirtschaftskalender', 'Inflation'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender (Wichtige Termine), Abruf 10.09.2026, 00:20 Uhr: 14:15 Uhr ECB Main Refinancing Operations Rate (Prognose 2,65 %, vorher 2,4 %); 14:15 Uhr ECB Rate On Deposit Facility (Prognose 2,5 %, vorher 2,25 %); 08:00 Uhr Harmonized Index of Consumer Prices (YoY, Prognose 2,9 %, vorher 2,9 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'European Central Bank, ecb.europa.eu, Abruf 10.09.2026: „Latest monetary policy press conference — 10 September 2026“',
+        url: 'https://www.ecb.europa.eu/press/html/index.en.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute um 14:15 Uhr verkündet die Europäische Zentralbank ihre Zinsentscheidung. Das bestätigt auch die EZB selbst: Ihre eigene Website führt die heutige Pressekonferenz als aktuellste geldpolitische Sitzung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kalender zeigt nach oben, nicht nach unten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für 14:15 Uhr zwei Werte: den Hauptrefinanzierungssatz, für den Analysten 2,65 Prozent erwarten – bisher lag er bei 2,4 Prozent –, und den Einlagesatz, der von 2,25 auf 2,5 Prozent steigen soll. Beides wäre eine Erhöhung, keine Senkung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Erst die Inflation, dann der Zins',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits um 8 Uhr liefert derselbe Kalender einen möglichen Hintergrund: Die deutsche Inflationsrate wird für August sowohl beim harmonisierten als auch beim nationalen Verbraucherpreisindex mit 2,9 Prozent zum Vorjahr erwartet – genau der Wert des Vormonats, und weiterhin über der Zielmarke von 2 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Zahlen nicht verraten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kalender nennt nur die Prognosen der Analysten, keine Begründung dafür. Warum die EZB nach Jahren sinkender Zinsen nun offenbar den umgekehrten Weg einschlägt, geht aus den vorliegenden Quellen nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognose im Kalender ist keine Garantie – sie zeigt nur, worauf Analysten ihre Erwartung setzen. Ob die EZB tatsächlich erhöht und wie deutlich, zeigt sich erst am Nachmittag.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-groesster-tagesverlust-seit-juli-oelpreis',
+    title: 'DAX erleidet größten Tagesverlust seit Anfang Juli',
+    teaser:
+      'Der Ölpreis kletterte über 100 Dollar, der DAX reagierte mit dem stärksten Rückgang seit Monaten. Zwei Kursleisten nennen leicht unterschiedliche Prozentwerte.',
+    category: 'Märkte',
+    publishedAt: '2026-09-10T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Ölpreis', 'Brent', 'Aktienmarkt'],
+    relatedTopics: ['rohstoffe', 'boerse'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label:
+          'onvista, Dax Tagesrückblick vom 09.09.2026, 15:55 Uhr: „Teures Öl brockt Dax größten Tagesverlust seit Anfang Juli ein“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, dpa-AFX-Meldung vom 09.09.2026, 16:05 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Deutliche Verluste - Ölpreis über 100 Dollar belastet“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Abruf 10.09.2026, 00:20 Uhr (DAX 25.576 Punkte, -1,7 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Abruf 10.09.2026, 00:20 Uhr (DAX 25.512,81 Punkte, -1,40 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX hat einen schlechten Mittwoch hinter sich: Laut onvista brachte der teure Ölpreis dem deutschen Leitindex am 9. September seinen größten Tagesverlust seit Anfang Juli ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ölpreis über 100 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auslöser war laut einer dpa-AFX-Meldung ein Brent-Ölpreis über 100 Dollar je Barrel. Auch die europäischen Börsen insgesamt schlossen im Minus – „Kursverluste - Ölpreisanstieg belastet Börsen“, wie es in einer ROUNDUP-Meldung vom selben Tag heißt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kursleisten, zwei Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie groß der Rückgang genau war, hängt davon ab, welche Kursleiste man liest: Bei finanzen.net stand der DAX zuletzt bei einem Minus von 1,7 Prozent, bei wallstreet-online bei 1,40 Prozent. Beide Werte stammen aus derselben Nacht, aber nicht zwingend derselben Sekunde – ein Grund, eine einzelne Prozentzahl aus einer Kursleiste nicht auf die Nachkommastelle genau zu nehmen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Öl den DAX bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein steigender Ölpreis verteuert Energie für energieintensive Unternehmen und nährt Inflationssorgen bei Notenbanken – zwei Kanäle, über die ein einzelner Rohstoffpreis einen ganzen Aktienindex bewegen kann. Was genau den Ölpreis am Mittwoch nach oben trieb, nennen die vorliegenden Quellen nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Tagesverlust wirkt dramatischer, wenn man ihn isoliert betrachtet. Erst der Vergleich mit der vorherigen Entwicklung – hier: der stärkste Rückgang seit Anfang Juli – ordnet ihn ein, ohne dass daraus schon eine Kauf- oder Verkaufsentscheidung folgt.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-oelpreis-belastet-meta-rallye',
+    title: 'Ölpreis bremst die Wall Street – nur Meta läuft dagegen',
+    teaser:
+      'An der Wall Street drückte der hohe Ölpreis auf Dow und S&P 500. Ausgerechnet Meta legte laut mehreren Ticker-Meldungen am selben Tag an der Nasdaq deutlich zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-10T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wall Street', 'Meta', 'Nasdaq', 'Ölpreis'],
+    relatedTopics: ['aktie', 'boerse'],
+    relatedSymbols: ['meta', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'onvista, dpa-AFX-Meldung vom 09.09.2026, 20:16 Uhr: „Aktien New York Schluss: Ölpreis belastet weiter - Meta-Rally an Nasdaq“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Dow Jones-Handel aktuell: Dow Jones zum Handelsende in Rot“ und „Schwacher Handel: S&P 500 zum Ende des Mittwochshandels schwächer“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Minuszeichen in New York: NASDAQ Composite sackt schlussendlich ab“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street ging es am Mittwoch überwiegend abwärts: Der Dow Jones schloss laut dpa-AFX „zum Handelsende in Rot“, der S&P 500 „schlussendlich schwächer“, und auch der NASDAQ Composite „sackte schlussendlich ab“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grund war laut einer ROUNDUP-Meldung erneut der hohe Ölpreis. Dieselbe Meldung nennt für denselben Handelstag zugleich eine „Meta-Rally an Nasdaq“ – ausgerechnet im Tech-Sektor, der eigentlich empfindlich auf Zinssorgen reagiert, gab es mit einem einzelnen Wert einen Lichtblick.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das kein Widerspruch sein muss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Index ist ein Durchschnitt vieler Einzelwerte. Steigt der Ölpreis, trifft das energieintensive und zinssensible Branchen ähnlich – ein einzelnes Unternehmen kann trotzdem aus eigenen, unternehmensspezifischen Gründen gegen den Trend laufen. Was genau die Meta-Aktie am Mittwoch trieb, nennt die Ticker-Zeile nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht jeder Index bewegt sich gleich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bezeichnend ist, dass Dow Jones, S&P 500 und NASDAQ Composite fielen, während ein einzelner Nasdaq-Wert wie Meta zulegte. Ein breiter Rückgang und ein einzelner Höhenflug können am selben Tag gleichzeitig wahr sein, ohne dass sich die beiden Meldungen widersprechen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Index-Schlagzeile liest, verpasst, dass einzelne Aktien am selben Tag das Gegenteil tun können. Ein Blick auf die Einzelwerte hinter einem Index verrät oft mehr als der Indexstand allein.',
+      },
+    ],
+  },
+  {
+    slug: 'gaspreis-80-euro-erstmals-seit-2022',
+    title: 'Europäischer Gaspreis springt erstmals seit Ende 2022 über 80 Euro',
+    metaTitle: 'Gaspreis erstmals seit 2022 über 80 Euro',
+    teaser:
+      'Während alle auf den Ölpreis schauten, kostet europäisches Erdgas laut dpa-AFX erstmals seit Ende 2022 wieder mehr als 80 Euro.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-10T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Erdgas', 'Energiepreise', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['erdgas'],
+    sources: [
+      {
+        label:
+          'onvista, dpa-AFX-Meldung vom 09.09.2026, 15:34 Uhr: „Europäischer Gaspreis steigt erstmals seit Ende 2022 über 80 Euro“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Société Générale, 01.09.2026, 11:25 Uhr: „Gas: Europäischer Gaspreis übersteigt 70 EUR-Marke“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Während die Schlagzeilen des Tages über den Ölpreis über 100 Dollar sprachen, bewegte sich am selben Mittwoch ein zweiter Energiepreis fast unbemerkt: Der europäische Gaspreis stieg laut dpa-AFX erstmals seit Ende 2022 wieder über 80 Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Sprünge in wenigen Tagen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erst Anfang September hatte dieselbe Quellenlage gemeldet, dass der Gaspreis die 70-Euro-Marke überschritten hatte. Innerhalb weniger Tage kam demnach ein weiterer Anstieg um rund zehn Euro hinzu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Gas nicht wie Öl funktioniert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Öl und Gas werden oft in einem Atemzug genannt, sind aber unterschiedliche Märkte mit unterschiedlicher Infrastruktur: Öl lässt sich per Schiff fast überallhin transportieren, Gas hängt stärker an Pipelines und Flüssiggas-Terminals. Einen Grund für den aktuellen Anstieg nennen die vorliegenden Meldungen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Erinnerung an 2022',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Marke von 80 Euro ist bemerkenswert, weil sie an die Energiekrise von 2022 erinnert. Ob der aktuelle Anstieg dieselben Ursachen hat, geht aus der Quelle nicht hervor – sie nennt nur den Preis und den Vergleichszeitraum.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Rohstoffpreis, der eine psychologisch wichtige Marke aus einer Krisenzeit erneut erreicht, verdient Aufmerksamkeit – unabhängig davon, ob sich die Umstände von damals wiederholen oder nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-erstes-faltbares-iphone-vorgestellt',
+    title: 'Apple hat sein erstes faltbares iPhone vorgestellt',
+    teaser:
+      'Nach wochenlangen Gerüchten ist es laut mehreren Ticker-Meldungen so weit: Apple hat sein erstes auffaltbares iPhone-Modell offiziell angekündigt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-10T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Apple', 'iPhone', 'Produktankündigung'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, dpa-AFX-Meldung vom 09.09.2026: „ROUNDUP: Apple bringt erstes auffaltbares iPhone heraus“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Apple-Aktie leicht im Minus: Präsentation von erstem auffaltbaren iPhone erwartet“ und „Apple-Aktie im Blick: Erstes Falt-iPhone enthüllt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach wochenlangen Spekulationen ist es laut mehreren dpa-AFX-Meldungen amtlich: Apple hat sein erstes faltbares iPhone-Modell vorgestellt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vor der Vorstellung: eine Aktie im Minus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kurz vor der Ankündigung notierte die Apple-Aktie laut einer Ticker-Meldung „leicht im Minus“ – ein Hinweis darauf, dass ein erwartetes Ereignis nicht automatisch zu steigenden Kursen führt, selbst wenn es sich um ein historisch erstes Produkt handelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eingepreiste Erwartung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Grund dafür kann sein, dass die Ankündigung längst erwartet wurde: Schon Tage zuvor kündigten Marktberichte das Ereignis an. Ist eine Nachricht bereits allgemein bekannt, bevor sie offiziell eintritt, spricht man davon, dass sie „eingepreist“ ist – der Kurs hat die Erwartung schon vorweggenommen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Quellen offenlassen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wie der Markt auf die eigentliche Vorstellung reagiert hat, geht aus den vorliegenden Ticker-Meldungen nicht hervor – sie melden die Produktankündigung selbst, aber keinen Kurs danach.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein neues Produkt wird erst dann zur Kursüberraschung, wenn es besser oder schlechter ausfällt als das, was der Markt bereits erwartet hat. Die Ankündigung allein sagt darüber noch nichts.',
+      },
+    ],
+  },
+  {
+    slug: 'booking-niederlage-gericht-etraveli-uebernahme',
+    title: 'Booking verliert vor Gericht den Streit um die eTraveli-Übernahme',
+    metaTitle: 'Booking verliert Gerichtsstreit um eTraveli',
+    teaser:
+      'Booking Holdings hat laut Ticker-Meldung eine Gerichtsniederlage im Streit um die Übernahme von eTraveli kassiert – die Aktie reagierte deutlich leichter.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-10T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Booking', 'Übernahme', 'Kartellrecht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 09.09.2026: „Booking-Aktie deutlich leichter: Niederlage vor Gericht im Streit um eTraveli-Übernahme“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Booking Holdings hat laut einer Ticker-Meldung vom 9. September vor Gericht eine Niederlage im Streit um die Übernahme des Flugticket-Anbieters eTraveli erlitten. Die Aktie notierte danach laut derselben Quelle „deutlich leichter“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um welches Gericht es sich handelt, was genau entschieden wurde und wie es nun mit der Übernahme weitergeht, nennt die kurze Ticker-Zeile nicht. Das ist keine Ungenauigkeit dieses Artikels, sondern der Informationsstand der Quelle selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Übernahmen vor Gericht landen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Größere Firmenübernahmen werden in der EU und anderen Rechtsräumen von Wettbewerbsbehörden geprüft, bevor sie vollzogen werden dürfen. Ein Gerichtsverfahren rund um eine Übernahme deutet meist darauf hin, dass diese Prüfung oder ihr Ergebnis von einer der Parteien angefochten wurde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs reagiert schneller als die Erklärung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass die Aktie „deutlich leichter“ notierte, zeigt, wie schnell ein Markt auf eine Gerichtsentscheidung reagieren kann – oft schon, bevor die Hintergründe öffentlich aufgearbeitet sind.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Gerichtsbeschluss kann eine ganze Übernahme in Frage stellen. Wer die Aktie hält, bekommt mit dieser Meldung eher eine Warnung als eine Erklärung – Details müssten aus weiteren Quellen nachgereicht werden.',
+      },
+    ],
+  },
+  {
     slug: 'oelpreis-steigt-nach-angriffen-gold-bleibt-ruhig',
     title: 'Öl springt nach Angriffen im Nahen Osten – Gold rührt sich kaum',
     metaTitle: 'Ölpreis steigt nach Angriffen – Gold reagiert kaum',
