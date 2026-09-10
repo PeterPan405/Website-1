@@ -35,7 +35,7 @@
  * wartet, ist kein seltener Fehler, sondern ein fälliger.
  */
 
-import { entwerte, metaAngaben } from '../scripts/paket-pruefen.ts'
+import { entwerte, metaAngaben, metaBefunde } from '../scripts/paket-pruefen.ts'
 
 let failed = 0
 function pruefen(was: string, bedingung: boolean, hinweis = ''): void {
@@ -154,6 +154,60 @@ pruefen(
   metaAngaben('<html></html>').titel === undefined &&
     metaAngaben('<html></html>').beschreibung === undefined
 )
+
+/* ------------------------------------------- Fehler oder nur Warnung? */
+
+/*
+  Seit dem 10. September 2026 hält eine **zu lange** Angabe die Auslieferung
+  nicht mehr auf – ein Besucher sähe nichts davon –, eine **fehlende** schon.
+  Beide Seiten der Grenze, damit keine davon stillschweigend kippen kann.
+*/
+{
+  const b = metaBefunde('/x/', 'Titel', ECHT)
+  pruefen(
+    'zulässige Angaben: weder Fehler noch Warnung',
+    b.fehler.length === 0 && b.warnungen.length === 0
+  )
+}
+
+{
+  const b = metaBefunde('/x/', 'Titel', IM_HTML)
+  pruefen(
+    'der Fall vom 10.9. mit der falschen Zahl 164 wäre heute eine Warnung, kein Fehler',
+    b.fehler.length === 0 && b.warnungen.length === 1 && b.warnungen[0].includes('164'),
+    JSON.stringify(b)
+  )
+}
+
+{
+  const b = metaBefunde('/x/', 'T'.repeat(66), 'B'.repeat(161))
+  pruefen(
+    'zu langer Titel und zu lange Beschreibung: zwei Warnungen, kein Fehler',
+    b.fehler.length === 0 && b.warnungen.length === 2,
+    JSON.stringify(b)
+  )
+  pruefen(
+    '… mit der Grenze im Wortlaut',
+    b.warnungen[0].includes('erlaubt 65') && b.warnungen[1].includes('erlaubt 160')
+  )
+}
+
+{
+  const b = metaBefunde('/x/', undefined, undefined)
+  pruefen(
+    'fehlender Titel und fehlende Beschreibung: zwei Fehler, keine Warnung',
+    b.fehler.length === 2 && b.warnungen.length === 0,
+    JSON.stringify(b)
+  )
+}
+
+{
+  const b = metaBefunde('/x/', '', 'B')
+  pruefen(
+    'ein leerer Titel zählt als fehlend',
+    b.fehler.length === 1 && b.fehler[0].includes('<title>')
+  )
+}
 
 console.log(
   failed === 0 ? '\nAlle Prüfungen bestanden.' : `\n${failed} Prüfung(en) fehlgeschlagen.`
