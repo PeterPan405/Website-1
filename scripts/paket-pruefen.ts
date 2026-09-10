@@ -29,6 +29,7 @@
 
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 /*
   Über den relativen Pfad und nicht über `@/lib/site`: Dieses Skript läuft
@@ -123,6 +124,59 @@ function adresse(datei: string): string {
 }
 
 /**
+ * Die fünf HTML-Entitäten, die React beim Rendern setzt, zurückübersetzen.
+ *
+ * `&amp;` steht **zuletzt**, und das ist kein Stil: Wer es zuerst auflöst,
+ * macht aus `&amp;lt;` erst `&lt;` und dann `<` – aus einem geschriebenen
+ * Zeichen wird Markup.
+ *
+ * ## Wofür das außer den Grafiken noch gilt
+ *
+ * Für jede Stelle, die **Länge misst**. Am 10. September 2026 hat das eine
+ * Tagesausgabe gekostet: Der Teaser war exakt 160 Zeichen lang, also
+ * zulässig, und enthielt „S&P 500". Im HTML steht dort `&amp;`, und die
+ * Prüfung unten zählte 164:
+ *
+ *     /news/wall-street-oelpreis-belastet-meta-rallye/:
+ *     Meta-Description ist 164 Zeichen lang (erlaubt 160)
+ *
+ * Gezählt gehört, was ein Leser und eine Suchmaschine sehen – „S&P 500" sind
+ * sieben Zeichen, nicht elf. Die Entität ist eine Eigenschaft der
+ * Übertragung, nicht des Textes.
+ */
+export function entwerte(text: string): string {
+  return text
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#x27;', "'")
+    .replaceAll('&amp;', '&')
+}
+
+/**
+ * Titel und Beschreibung einer Seite, so wie ein Leser sie sieht.
+ *
+ * Herausgelöst und ausgeführt, damit die **Messung** prüfbar ist und nicht
+ * nur der Entwerter darunter. Ein Test, der `entwerte()` allein prüft, bliebe
+ * grün, wenn jemand den Aufruf hier entfernt – und genau das ist die
+ * Absicherung, die aussieht wie Ruhe.
+ *
+ * `tests/paket-pruefen-meta.test.ts` ruft deshalb diese Funktion auf, nicht
+ * den Entwerter.
+ */
+export function metaAngaben(html: string): {
+  titel: string | undefined
+  beschreibung: string | undefined
+} {
+  const titelRoh = html.match(/<title>([^<]*)<\/title>/)?.[1]
+  const beschreibungRoh = html.match(/<meta name="description" content="([^"]*)"/)?.[1]
+  return {
+    titel: titelRoh === undefined ? undefined : entwerte(titelRoh),
+    beschreibung: beschreibungRoh === undefined ? undefined : entwerte(beschreibungRoh),
+  }
+}
+
+/**
  * Prüft die Lerngrafiken auf Geometrie, die aus dem Bild läuft.
  *
  * ## Warum das eine eigene Prüfung braucht
@@ -156,16 +210,6 @@ function adresse(datei: string): string {
  * Dieselbe Grafik steht auf vielen Seiten. Ohne die Sammlung stünde ein
  * einziger Fehler hundertfach in der Ausgabe und verdeckte alles andere.
  */
-/** Die fünf HTML-Entitäten, die React beim Rendern setzt, zurückübersetzen. */
-function entwerte(text: string): string {
-  return text
-    .replaceAll('&lt;', '<')
-    .replaceAll('&gt;', '>')
-    .replaceAll('&quot;', '"')
-    .replaceAll('&#x27;', "'")
-    .replaceAll('&amp;', '&')
-}
-
 function grafikenPruefen(html: string, gemeldet: Set<string>): string[] {
   const fehler: string[] = []
 
@@ -327,8 +371,16 @@ function pruefen(): string[] {
     if (/<meta name="robots" content="[^"]*noindex/.test(html)) {
       nichtIndexiert.add(pfad)
     }
-    const t = html.match(/<title>([^<]*)<\/title>/)?.[1]
-    const d = html.match(/<meta name="description" content="([^"]*)"/)?.[1]
+    /*
+      Entwertet, **bevor** gemessen wird.
+
+      Sonst zählt die Prüfung Entitäten statt Zeichen und bestraft jeden Text,
+      der ein `&` enthält, mit vier Zeichen – siehe die Begründung bei
+      `entwerte()`. Der Vergleich auf doppelte Titel weiter unten gewinnt
+      dasselbe: Zwei Seiten mit gleichem Titel, aber unterschiedlicher
+      Schreibweise im Quelltext, fielen vorher nicht als Dublette auf.
+    */
+    const { titel: t, beschreibung: d } = metaAngaben(html)
 
     if (!t) fehler.push(`${pfad}: kein <title>`)
     else {
@@ -578,24 +630,39 @@ function pruefen(): string[] {
   return fehler
 }
 
-const gefunden = pruefen()
-const seitenzahl = alleDateien(PAKET, '.html').length
+/*
+  Nur auf der Kommandozeile prüfen, nicht beim Laden.
 
-if (gefunden.length === 0) {
-  console.log(`Paket geprüft: ${seitenzahl} Seiten, keine Beanstandung.`)
-  console.log(`Stylesheets:   ${alleDateien(join(PAKET, '_next'), '.css').length}`)
-  console.log(`Dateien:       ${alleDateien(PAKET, '').length}`)
-  process.exit(0)
+  `tests/paket-pruefen-meta.test.ts` lädt `entwerte()` aus dieser Datei.
+  Ohne diesen Riegel liefe dabei die vollständige Paketprüfung über `out/` –
+  im Testlauf gibt es das Verzeichnis meist gar nicht, und der Test meldete
+  einen Fehler, der nichts mit ihm zu tun hat. Dieselbe Falle wie bei
+  `scripts/search-console.ts`.
+*/
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+  kommandozeile()
 }
 
-console.error(
-  `Paket fehlerhaft – ${gefunden.length} Beanstandung(en) bei ${seitenzahl} Seiten:\n`
-)
-/*
+function kommandozeile(): void {
+  const gefunden = pruefen()
+  const seitenzahl = alleDateien(PAKET, '.html').length
+
+  if (gefunden.length === 0) {
+    console.log(`Paket geprüft: ${seitenzahl} Seiten, keine Beanstandung.`)
+    console.log(`Stylesheets:   ${alleDateien(join(PAKET, '_next'), '.css').length}`)
+    console.log(`Dateien:       ${alleDateien(PAKET, '').length}`)
+    process.exit(0)
+  }
+
+  console.error(
+    `Paket fehlerhaft – ${gefunden.length} Beanstandung(en) bei ${seitenzahl} Seiten:\n`
+  )
+  /*
   Gleichartige Fehler treten oft hundertfach auf – ein Link im Fußbereich
   steht auf jeder Seite. Die Ausgabe wird gekürzt, damit der wesentliche
   Befund nicht in der Wiederholung untergeht.
 */
-for (const zeile of gefunden.slice(0, 40)) console.error(`  – ${zeile}`)
-if (gefunden.length > 40) console.error(`  … und ${gefunden.length - 40} weitere`)
-process.exit(1)
+  for (const zeile of gefunden.slice(0, 40)) console.error(`  – ${zeile}`)
+  if (gefunden.length > 40) console.error(`  … und ${gefunden.length - 40} weitere`)
+  process.exit(1)
+}
