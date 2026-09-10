@@ -259,6 +259,11 @@ jobs:
       # Der Umzug ins Skript hat einen zweiten Grund: So lässt sich dieselbe
       # Prüfung mit `npm run pruefen` auch lokal ausführen, bevor überhaupt
       # ein Commit entsteht.
+      #
+      # Seit dem 10. September 2026 unterscheidet sie Fehler von Warnungen:
+      # Zu lange oder doppelte Meta-Angaben erscheinen gelb und lassen den
+      # Lauf grün – ein Besucher sähe nichts davon. Warum, steht dort bei
+      # `metaBefunde()`.
       # Bei reinen Kurs-Commits übersprungen – aus demselben Grund wie Lint
       # und Tests, und mit einer zweiten Absicherung dahinter.
       #

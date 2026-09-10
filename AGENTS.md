@@ -112,6 +112,11 @@ drei:
 **Liefert keiner, wird nichts geschrieben und der Lauf bricht rot ab.** Der
 Notbehelf aus dem Kursbestand ist abgeschafft.
 
+**Der Riegel fragt „Hat die Ausgabe etwas kaputt gemacht?"**, nicht „ist
+irgendwo etwas rot?": Prüfkette vor und nach dem Schreiben, Befund für Befund
+verglichen. Vorbestehendes hält nicht auf, macht den Lauf danach rot. Nur der
+Bau blockiert immer.
+
 **Wohin die Anfrage geht, ist einstellbar** – `ANTHROPIC_BASE_URL` als Secret,
 voreingestellt `api.anthropic.com`. Ein Zwischendienst bekommt Meldungen
 **und** Schlüssel; deshalb nur `https://`, deshalb warnt der Lauf. Wer Prompts
@@ -125,7 +130,8 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 ändert, ändert sie dort mit.**
 
 → `ENTSCHEIDUNGEN.md`: „heißt der jüngste Erscheinungstag", „Der Agent
-schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gibt"
+schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gibt",
+„Hat die Ausgabe etwas kaputt gemacht"
 
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
 

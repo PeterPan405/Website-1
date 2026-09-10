@@ -24,6 +24,15 @@
  * steht, findet die Fehlerklassen, die ohne Ausführung sichtbar sind, und
  * läuft dafür in Sekunden.
  *
+ * ## Fehler und Warnungen
+ *
+ * Seit dem 10. September 2026 gibt es zwei Klassen, getrennt nach der Frage
+ * *sieht ein Besucher deshalb etwas anderes?* Was er sähe – toter Link,
+ * fehlende Überschrift, fehlendes Stylesheet – ist ein Fehler und macht den
+ * Lauf rot. Was nur die Suchmaschine merkt – ein zu langer Titel, eine
+ * doppelte Beschreibung – ist eine Warnung: gemeldet, aber kein Grund, eine
+ * Tagesausgabe zurückzuhalten. Die Begründung steht bei `metaBefunde()`.
+ *
  * Aufruf: `npm run pruefen`
  */
 
@@ -176,6 +185,63 @@ export function metaAngaben(html: string): {
   }
 }
 
+/** Was eine Prüfung meldet: Was den Lauf stoppt, und was nur gesagt wird. */
+export interface Befunde {
+  /** Ein Besucher bekäme etwas anderes – das hält die Auslieferung auf. */
+  fehler: string[]
+  /** Ein Besucher merkt nichts davon – wird gemeldet, hält nicht auf. */
+  warnungen: string[]
+}
+
+/**
+ * Titel und Beschreibung einer Seite beurteilen: fehlend oder nur zu lang?
+ *
+ * ## Warum das zweierlei ist
+ *
+ * Bis zum 10. September 2026 war beides ein Fehler, und ein Fehler hier hieß:
+ * keine Auslieferung, keine Tagesausgabe, keine Folge. An diesem Morgen hing
+ * die Ausgabe an einer Meta-Description, die im HTML 164 Zeichen maß und im
+ * Text 160 – ein Zählfehler, der inzwischen behoben ist. Aber die Frage
+ * dahinter blieb: **Was hätte ein Besucher gesehen, wäre sie durchgegangen?**
+ *
+ * Nichts. Eine Beschreibung von 164 Zeichen kürzt Google im Suchergebnis um
+ * vier Zeichen. Ein Titel von 70 Zeichen wird mit „…" abgeschnitten. Beides
+ * ist unschön, beides gehört behoben, und keines von beidem rechtfertigt, dass
+ * die Website an diesem Tag keine Nachrichten hat.
+ *
+ * Eine **fehlende** Angabe ist etwas anderes: Ohne `<title>` steht im Reiter
+ * die Adresse, ohne Beschreibung schreibt die Suchmaschine sich selbst eine
+ * aus dem Fließtext. Das sieht ein Besucher, und deshalb bleibt es ein Fehler.
+ *
+ * Herausgelöst wie `metaAngaben()`, damit die Grenze zwischen Fehler und
+ * Warnung prüfbar ist – `tests/paket-pruefen-meta.test.ts` legt ihr beide
+ * Seiten vor.
+ */
+export function metaBefunde(
+  pfad: string,
+  titel: string | undefined,
+  beschreibung: string | undefined
+): Befunde {
+  const fehler: string[] = []
+  const warnungen: string[] = []
+
+  if (!titel) fehler.push(`${pfad}: kein <title>`)
+  else if (titel.length > TITEL_MAX) {
+    warnungen.push(
+      `${pfad}: <title> ist ${titel.length} Zeichen lang (erlaubt ${TITEL_MAX})`
+    )
+  }
+
+  if (!beschreibung) fehler.push(`${pfad}: keine Meta-Description`)
+  else if (beschreibung.length > BESCHREIBUNG_MAX) {
+    warnungen.push(
+      `${pfad}: Meta-Description ist ${beschreibung.length} Zeichen lang (erlaubt ${BESCHREIBUNG_MAX})`
+    )
+  }
+
+  return { fehler, warnungen }
+}
+
 /**
  * Prüft die Lerngrafiken auf Geometrie, die aus dem Bild läuft.
  *
@@ -307,8 +373,9 @@ function nurText(html: string): string {
     .replace(/<[^>]+>/g, ' ')
 }
 
-function pruefen(): string[] {
+function pruefen(): Befunde {
   const fehler: string[] = []
+  const warnungen: string[] = []
 
   for (const datei of PFLICHTDATEIEN) {
     try {
@@ -324,7 +391,7 @@ function pruefen(): string[] {
 
   const seiten = alleDateien(PAKET, '.html')
   if (seiten.length === 0) {
-    return ['Keine einzige HTML-Seite im Paket.']
+    return { fehler: ['Keine einzige HTML-Seite im Paket.'], warnungen }
   }
   if (seiten.length < MINDESTSEITEN) {
     fehler.push(
@@ -381,31 +448,17 @@ function pruefen(): string[] {
       Schreibweise im Quelltext, fielen vorher nicht als Dublette auf.
     */
     const { titel: t, beschreibung: d } = metaAngaben(html)
+    const meta = metaBefunde(pfad, t, d)
+    fehler.push(...meta.fehler)
+    warnungen.push(...meta.warnungen)
 
-    if (!t) fehler.push(`${pfad}: kein <title>`)
-    else {
-      if (t.length > TITEL_MAX) {
-        fehler.push(
-          `${pfad}: <title> ist ${t.length} Zeichen lang (erlaubt ${TITEL_MAX})`
-        )
-      }
-      if (!FEHLERSEITEN.test(pfad)) {
-        if (!titel.has(t)) titel.set(t, [])
-        titel.get(t)!.push(pfad)
-      }
+    if (t && !FEHLERSEITEN.test(pfad)) {
+      if (!titel.has(t)) titel.set(t, [])
+      titel.get(t)!.push(pfad)
     }
-
-    if (!d) fehler.push(`${pfad}: keine Meta-Description`)
-    else {
-      if (d.length > BESCHREIBUNG_MAX) {
-        fehler.push(
-          `${pfad}: Meta-Description ist ${d.length} Zeichen lang (erlaubt ${BESCHREIBUNG_MAX})`
-        )
-      }
-      if (!FEHLERSEITEN.test(pfad)) {
-        if (!beschreibungen.has(d)) beschreibungen.set(d, [])
-        beschreibungen.get(d)!.push(pfad)
-      }
+    if (d && !FEHLERSEITEN.test(pfad)) {
+      if (!beschreibungen.has(d)) beschreibungen.set(d, [])
+      beschreibungen.get(d)!.push(pfad)
     }
 
     // ------------------------------------------------------------- Gliederung
@@ -515,16 +568,22 @@ function pruefen(): string[] {
     }
   }
 
+  /*
+    Dubletten sind Warnungen, keine Fehler – aus demselben Grund wie die
+    Längen in `metaBefunde()`: Zwei Seiten mit gleichem Titel sind für die
+    Suchmaschine unschön und für den Besucher unsichtbar. Sie halten die
+    Auslieferung nicht auf.
+  */
   for (const [wert, pfade] of titel) {
     if (pfade.length > 1) {
-      fehler.push(
+      warnungen.push(
         `Titel „${wert}“ steht auf ${pfade.length} Seiten: ${pfade.slice(0, 4).join(', ')}`
       )
     }
   }
   for (const [, pfade] of beschreibungen) {
     if (pfade.length > 1) {
-      fehler.push(
+      warnungen.push(
         `Gleiche Meta-Description auf ${pfade.length} Seiten: ${pfade.slice(0, 4).join(', ')}`
       )
     }
@@ -627,13 +686,14 @@ function pruefen(): string[] {
     }
   }
 
-  return fehler
+  return { fehler, warnungen }
 }
 
 /*
   Nur auf der Kommandozeile prüfen, nicht beim Laden.
 
-  `tests/paket-pruefen-meta.test.ts` lädt `entwerte()` aus dieser Datei.
+  `tests/paket-pruefen-meta.test.ts` lädt `entwerte()`, `metaAngaben()` und
+  `metaBefunde()` aus dieser Datei.
   Ohne diesen Riegel liefe dabei die vollständige Paketprüfung über `out/` –
   im Testlauf gibt es das Verzeichnis meist gar nicht, und der Test meldete
   einen Fehler, der nichts mit ihm zu tun hat. Dieselbe Falle wie bei
@@ -644,11 +704,23 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
 }
 
 function kommandozeile(): void {
-  const gefunden = pruefen()
+  const { fehler: gefunden, warnungen } = pruefen()
   const seitenzahl = alleDateien(PAKET, '.html').length
 
+  /*
+    Warnungen zuerst, als `::warning::`-Zeilen: Auf GitHub erscheinen sie
+    gelb im Protokoll und in der Zusammenfassung des Laufs, ohne ihn rot zu
+    machen. Lokal sind es gewöhnliche Zeilen. Der Rückgabewert hängt allein
+    an den Fehlern – das ist die Trennung, um die es geht.
+  */
+  for (const zeile of warnungen) console.log(`::warning::${zeile}`)
+  if (warnungen.length > 0) console.log('')
+
   if (gefunden.length === 0) {
-    console.log(`Paket geprüft: ${seitenzahl} Seiten, keine Beanstandung.`)
+    console.log(
+      `Paket geprüft: ${seitenzahl} Seiten, keine Beanstandung` +
+        (warnungen.length > 0 ? ` – ${warnungen.length} Warnung(en) oben.` : '.')
+    )
     console.log(`Stylesheets:   ${alleDateien(join(PAKET, '_next'), '.css').length}`)
     console.log(`Dateien:       ${alleDateien(PAKET, '').length}`)
     process.exit(0)

@@ -595,6 +595,102 @@ Paketbau gegen denselben Server durchlief.
 kein Abwägen, sondern Wegsehen – und dann ist der Abschnitt darüber wieder
 dran.
 
+## Hat die Ausgabe etwas kaputt gemacht? – die Frage, die der Riegel stellt
+
+Zwischen dem 4. und dem 10. September 2026 stand an drei Morgen keine
+Tagesausgabe auf der Website, und damit auch keine Folge. Nachgezählt, woran
+es jeweils hing:
+
+    04.09.  ein Test mit festem Stichtag, aus dem Bestand herausgealtert
+    05.09.  zwei Prüfungen in derselben Testdatei, die sich widersprachen –
+            aufgedeckt vom ersten angekündigten Quartalstermin
+    10.09.  die Paketprüfung zählte `&amp;` als vier Zeichen und wies einen
+            Teaser von exakt 160 Zeichen mit 164 ab
+
+Drei verschiedene Fehler, jeder in einer Stunde behoben, jeder mit einem
+Pull Request und einer Gegenprobe. Und trotzdem derselbe Ausgang, weil alle
+drei denselben Riegel trafen: `nachrichten.yml` ließ vor dem Veröffentlichen
+die vollständige Prüfkette laufen – `tsc`, `lint`, 126 Testdateien, Bau,
+Paketprüfung, Formatierung – und brach beim ersten Rot ab. Die Frage, die der
+Riegel stellte, war: **Ist irgendwo etwas rot?**
+
+Das ist die falsche Frage. Zwei der drei Befunde standen schon rot, **bevor**
+die Ausgabe geschrieben wurde; sie hätten an jedem beliebigen Tag angeschlagen
+und hatten mit den Nachrichten nichts zu tun. Der dritte betraf zwar die neue
+Artikelseite – aber auf eine Weise, die kein Besucher je gesehen hätte. Ein
+Riegel, der bei jedem Rot im Bestand die Tagesausgabe zurückhält, macht aus
+jedem gealterten Test einen Tag ohne Nachrichten. Und gealterte Tests gibt es
+in einem Bestand von 126 Dateien mit Stichtagen, Kalendern und Fristen nicht
+gelegentlich, sondern regelmäßig.
+
+Der Betreiber hat am 10. September entschieden: _Es darf nicht mehr
+vorkommen._
+
+### Die Frage ändern, nicht die Prüfung abschaffen
+
+Der naheliegende Umbau wäre, die Prüfkette vor dem Veröffentlichen zu
+streichen oder auf den Bau zu kürzen. Das wäre die Absicherung abgeschafft,
+die am 9. August eine Ausgabe mit doppeltem Datum vom Build ferngehalten hat.
+
+Stattdessen stellt der Riegel seit dem 10. September eine andere Frage:
+**Hat die Ausgabe etwas kaputt gemacht?** Dafür läuft dieselbe Kette zweimal –
+einmal auf dem unberührten Stand von `main`, einmal nach dem Schreiben – und
+`lib/pruefvergleich.ts` vergleicht Befund für Befund:
+
+- Ein Befund, der erst mit der Ausgabe rot geworden ist, hält sie auf.
+  Nichts wird gepusht, der Lauf ist rot.
+- Ein Befund, der wortgleich schon vorher da war, hält sie **nicht** auf. Sie
+  wird veröffentlicht, Paketbau und Folge werden angestoßen – und der Lauf
+  endet **trotzdem rot**, als letzter Schritt. Ein grüner Lauf mit einer
+  Warnung darin wäre der stille Fehler; ein roter Lauf ohne Ausgabe der teure.
+  Ein roter Lauf **mit** Ausgabe ist beides nicht.
+- Der Bau blockiert immer, gleich seit wann er rot ist. Ein Stand, der nicht
+  baut, kann nicht ausgeliefert werden – ihn nach `main` zu schieben nützte
+  nichts und schadete dem nächsten, der bauen will.
+- Fehlt der Vorbefund, gilt alles als neu. Im Zweifel streng.
+
+Verglichen wird am Wortlaut: bei `npm test` die gescheiterten Dateien, bei
+`npm run pruefen` die einzelnen Beanstandungen. `tsc`, `lint` und die
+Formatierung nennen nichts Vergleichbares – dort entscheidet allein, ob sie
+schon vorher rot waren.
+
+### Was ein Besucher sieht, und was nicht
+
+Der Fall vom 10. September hätte auch mit dem Vergleich blockiert: Die neue
+Artikelseite gab es im Vorbefund nicht, ihr Befund war zwangsläufig neu. Die
+zweite Änderung gilt deshalb der Paketprüfung selbst, und sie folgt der
+Trennlinie aus dem Abschnitt darüber – _sieht ein Besucher deshalb etwas
+anderes?_
+
+Eine Meta-Description von 164 Zeichen kürzt die Suchmaschine um vier Zeichen.
+Ein Titel von 70 Zeichen bekommt drei Punkte. Zwei Seiten mit demselben Titel
+sind für die Suchmaschine unschön. Nichts davon sieht ein Besucher, nichts
+davon rechtfertigt einen Tag ohne Nachrichten. Diese vier Befunde sind seither
+**Warnungen**: `npm run pruefen` schreibt sie als `::warning::`-Zeilen und
+bleibt grün. Eine **fehlende** Angabe bleibt ein Fehler – ohne `<title>` steht
+im Reiter die Adresse, das sieht jeder.
+
+Der Nutzen des Vergleichs ist damit nicht abgeschafft. Er war es, der die
+Fälle vom 4. und 5. September getragen hätte; die Warnung trägt den vom 10.
+
+### Was das kostet und was es nicht löst
+
+Ein zweiter Bau, rund vier Minuten je Lauf. Der Regelweg – Anstoß durch den
+Agenten gegen 00:35 UTC – hat drei Stunden Luft bis zur Zusage. Der letzte
+Rückfalltermin um 02:47 UTC wird knapp; das war er vorher auch.
+
+Nicht gelöst ist, dass die gealterten Tests weiter altern. Der Vergleich sorgt
+dafür, dass sie die Ausgabe nicht mehr kosten – nicht dafür, dass sie behoben
+werden. Dafür ist der rote Schritt am Ende da: Er schickt die Mail, die vorher
+auch kam, nur steht jetzt eine Ausgabe auf der Website, während sie gelesen
+wird.
+
+**Die Gegenprobe:** `tests/pruefvergleich.test.ts` legt dem Vergleich die drei
+Morgen vor, jeden so, wie er war, und zu jedem den Zwilling, bei dem der
+Befund erst mit der Ausgabe entstanden ist. Ließe er beide durch, wäre der
+Riegel nicht verbessert, sondern weg. `tests/paket-pruefen-meta.test.ts`
+prüft die Grenze zwischen Fehler und Warnung von beiden Seiten.
+
 # Ein Kurs ist so alt wie die Stelle, die ihn anzeigt
 
 Nicht so alt wie der Abruf. Das klingt selbstverständlich und war es nicht:
