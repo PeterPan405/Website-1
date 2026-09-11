@@ -1,10 +1,10 @@
 {
-  "fetchedAt": "2026-09-11T12:48:54.396Z",
+  "fetchedAt": "2026-09-11T17:44:35.389Z",
   "instruments": {
     "eur-usd": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
-      "asOf": "2026-09-10",
+      "asOf": "2026-09-11",
       "points": [
         {"d":"2021-09-13","c":1.178},
         {"d":"2021-09-20","c":1.1711},
@@ -489,13 +489,14 @@
         {"d":"2026-09-07","c":1.1622},
         {"d":"2026-09-08","c":1.1614},
         {"d":"2026-09-09","c":1.1652},
-        {"d":"2026-09-10","c":1.1616}
+        {"d":"2026-09-10","c":1.1616},
+        {"d":"2026-09-11","c":1.1592}
       ]
     },
     "eur-cny": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
-      "asOf": "2026-09-10",
+      "asOf": "2026-09-11",
       "points": [
         {"d":"2021-09-13","c":7.6059},
         {"d":"2021-09-20","c":7.5726},
@@ -980,13 +981,14 @@
         {"d":"2026-09-07","c":7.7995},
         {"d":"2026-09-08","c":7.7936},
         {"d":"2026-09-09","c":7.8159},
-        {"d":"2026-09-10","c":7.79}
+        {"d":"2026-09-10","c":7.79},
+        {"d":"2026-09-11","c":7.7762}
       ]
     },
     "eur-chf": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
-      "asOf": "2026-09-10",
+      "asOf": "2026-09-11",
       "points": [
         {"d":"2021-09-13","c":1.0873},
         {"d":"2021-09-20","c":1.0883},
@@ -1471,13 +1473,14 @@
         {"d":"2026-09-07","c":0.9405},
         {"d":"2026-09-08","c":0.9425},
         {"d":"2026-09-09","c":0.9404},
-        {"d":"2026-09-10","c":0.9432}
+        {"d":"2026-09-10","c":0.9432},
+        {"d":"2026-09-11","c":0.9451}
       ]
     },
     "eur-gbp": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
-      "asOf": "2026-09-10",
+      "asOf": "2026-09-11",
       "points": [
         {"d":"2021-09-13","c":0.8512},
         {"d":"2021-09-20","c":0.8571},
@@ -1962,13 +1965,14 @@
         {"d":"2026-09-07","c":0.8589},
         {"d":"2026-09-08","c":0.8574},
         {"d":"2026-09-09","c":0.859},
-        {"d":"2026-09-10","c":0.8592}
+        {"d":"2026-09-10","c":0.8592},
+        {"d":"2026-09-11","c":0.8582}
       ]
     },
     "eur-jpy": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
-      "asOf": "2026-09-10",
+      "asOf": "2026-09-11",
       "points": [
         {"d":"2021-09-13","c":129.62},
         {"d":"2021-09-20","c":128.18},
@@ -2453,7 +2457,8 @@
         {"d":"2026-09-07","c":179.85},
         {"d":"2026-09-08","c":179.2},
         {"d":"2026-09-09","c":178.59},
-        {"d":"2026-09-10","c":179.09}
+        {"d":"2026-09-10","c":179.09},
+        {"d":"2026-09-11","c":178.56}
       ]
     },
     "dax": {
