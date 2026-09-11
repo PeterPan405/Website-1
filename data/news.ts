@@ -101,6 +101,359 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oracle-cloud-boom-adobe-bremst-erwartungen',
+    title: 'Oracle wächst im KI-Boom, Adobe bremst die eigene Prognose',
+    teaser:
+      'Oracle steigert den Quartalsumsatz um rund 30 Prozent, während Adobe kurz danach eine vorsichtigere Umsatzprognose für das Schlussquartal vorlegt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-11T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Oracle', 'Adobe', 'Cloud', 'Künstliche Intelligenz'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['oracle', 'adobe'],
+    sources: [
+      {
+        label:
+          'Oracle Investor Relations, Pressemitteilung zum 1. Quartal des Geschäftsjahrs 2027, 10.09.2026',
+        url: 'https://www.prnewswire.com/news-releases/oracle-announces-q1-results-driven-by-triple-digit-growth-in-cloud-infrastructure-revenues-302875728.html',
+      },
+      {
+        label:
+          'finanzen.net, dpa-AFX-Meldung vom 10.09.2026, 21:09 Uhr: „Softwarehersteller Adobe mit vorsichtigem Umsatzausblick"',
+        url: 'https://www.finanzen.net/nachricht/aktien/softwarehersteller-adobe-mit-vorsichtigem-umsatzausblick-15928707',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Oracle hat im ersten Quartal seines Geschäftsjahrs 2027 einen Umsatz von 19,3 Milliarden Dollar gemeldet – ein Plus von rund 30 Prozent zum Vorjahresquartal. Getrieben hat das vor allem eine Sparte: die Cloud-Infrastruktur.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Sparte, in der Oracle Rechenleistung für Kundenprojekte rund um Künstliche Intelligenz vermietet, wuchs um 121 Prozent auf 7,4 Milliarden Dollar. Der Auftragsbestand – Verträge, deren Umsatz erst in den kommenden Jahren verbucht wird – stieg um 209 Milliarden auf 664 Milliarden Dollar, mehr als 30 Milliarden davon allein aus neuen KI-Cloud-Verträgen des Quartals.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn die Prognose zählt, nicht die Vergangenheit',
+      },
+      {
+        type: 'paragraph',
+        text: 'Adobe legte tags darauf eigene Zahlen vor – und die fielen für das abgelaufene Quartal ebenfalls stark aus: Der Umsatz wuchs um 13 Prozent auf 6,76 Milliarden Dollar, der bereinigte Gewinn je Aktie lag mit 6,13 Dollar über der Analystenschätzung von 6,08 Dollar. An der Börse zählte trotzdem etwas anderes.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für das laufende, am 30. November endende Quartal stellte Adobe einen Umsatz von 6,80 bis 6,85 Milliarden Dollar in Aussicht – der Mittelwert dieser Spanne liegt unter der durchschnittlichen Analystenschätzung von 6,85 Milliarden Dollar. Die Aktie gab im nachbörslichen Handel um weniger als ein Prozent nach und blieb damit auf einem Jahresverlust von rund 29 Prozent sitzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Firmen, ein Streitpunkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was beide Werte verbindet, ist ausgerechnet das Thema, das bei Oracle für Rückenwind sorgt: Künstliche Intelligenz. Während Oracle als Vermieter von Rechenleistung von jedem neuen KI-Modell profitiert, das irgendwo trainiert werden muss, sehen Beobachter bei Adobe eine andere Seite derselben Entwicklung – dass generative KI-Werkzeuge die Erstellung von Bildern und Videos vereinfachen und damit an Adobes klassischem Software-Geschäft rütteln könnten. Ob das die tatsächliche Ursache für die vorsichtige Prognose ist, geht aus der Mitteilung selbst nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Guidance ist eine Prognose des eigenen Managements, keine Tatsache – und der Markt gewichtet sie oft stärker als die tatsächlich erzielten Zahlen desselben Quartals. Wer nur auf die Ist-Werte schaut, hätte bei Adobe ein rundum solides Quartal gesehen. Wer auf die Prognose schaut, sieht ein Unternehmen, dem die eigene Führung selbst nicht zutraut, das laufende Tempo zu halten.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-erhoeht-leitzins-auf-25-prozent',
+    title: 'EZB erhöht den Leitzins auf 2,5 Prozent – heute folgt die US-Inflation',
+    metaTitle: 'EZB erhöht Leitzins auf 2,5 Prozent',
+    teaser:
+      'Die EZB hebt die Leitzinsen erneut an, der DAX fällt auf ein Sechs-Wochen-Tief, und heute Nachmittag folgen die US-Verbraucherpreise als nächster Test.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-11T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['EZB', 'Leitzins', 'Inflation', 'US-Verbraucherpreise', 'DAX'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label: 'Handelsblatt, Bericht zur EZB-Zinsentscheidung vom 10.09.2026',
+        url: 'https://www.handelsblatt.com/finanzen/geldpolitik/ezb-zinsentscheid-leitzins-im-euro-raum-steigt-auf-25-prozent/100252594.html',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 10.09.2026: „EZB erhöht die Zinsen: DAX bricht 25.500 – Nasdaq vor 29.000!"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Abruf 11.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'Board of Governors of the Federal Reserve System, FOMC-Sitzungskalender',
+        url: 'https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Europäische Zentralbank hat am Donnerstag ihren Hauptrefinanzierungssatz um einen viertel Prozentpunkt auf 2,5 Prozent angehoben – die zweite Erhöhung in diesem Jahr. EZB-Präsidentin Christine Lagarde begründete den Schritt damit, dass die Inflation „hartnäckiger als angenommen“ sei und die Risiken für die Preisentwicklung nach oben zeigten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX reagierte mit einem deutlichen Rückgang: Der Index fiel unter die Marke von 25.500 Punkten, mehrere Ticker-Meldungen sprachen von einem Sechs-Wochen-Tief. Auch am Anleihemarkt ging es abwärts – die Kurse fielen, die Renditen stiegen entsprechend.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein höherer Ölpreis mitspielt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zeitgleich verteuerte sich Rohöl der Sorte Brent auf rund 108 US-Dollar je Barrel und damit auf den höchsten Stand seit Wochen – ein zweiter Faktor, der laut mehreren Meldungen zu den Inflationssorgen beitrug, die den Aktienmarkt belasteten. Warum der Ölpreis gerade jetzt anzieht, benennen die Ticker-Zeilen nicht; sie melden nur die Bewegung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Termin des Tages: 14:30 Uhr',
+      },
+      {
+        type: 'paragraph',
+        text: 'Heute um 14:30 Uhr veröffentlicht die US-Statistikbehörde die Verbraucherpreise für August. Der Wirtschaftskalender nennt eine Prognose von 3,4 Prozent zum Vorjahr – genau der Wert, der bereits im Juli gemessen wurde. Bei der Kernrate ohne Lebensmittel und Energie liegt die Prognose für den Monatsvergleich bei 0,2 Prozent, ebenfalls unverändert zum Vormonat. Es ist die letzte Verbraucherpreiszahl vor der nächsten Sitzung der US-Notenbank am 15. und 16. September.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits um 8 Uhr stehen zudem Konjunkturdaten an, die laut Kalender von der britischen Statistikbehörde ONS stammen dürften – unter anderem zur Industrieproduktion und zum verarbeitenden Gewerbe, jeweils für den Vormonat. Der Kalender nennt hier eine Prognose von minus 0,2 Prozent bei der Industrieproduktion.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Zinserhöhung und eine anstehende Inflationszahl hängen trotzdem an verschiedenen Fäden – die EZB entscheidet für den Euroraum, die US-Daten wirken vor allem auf die Erwartungen an die Fed. Wer beide Ereignisse nur als eine gemeinsame „Zinssorge“ zusammenfasst, verwischt, dass es sich um zwei unabhängige Notenbanken mit unterschiedlichen Zeitplänen handelt, die zufällig in dieselbe Woche fallen.',
+      },
+    ],
+  },
+  {
+    slug: 'adidas-rekordumsatz-schrumpfende-marge',
+    title: 'adidas meldet Rekordumsatz – und trotzdem sinkt die Marge',
+    teaser:
+      'adidas verbucht den höchsten Quartalsumsatz der Firmengeschichte, doch die operative Marge schrumpft – die Aktie fällt trotzdem deutlich.',
+    category: 'Märkte',
+    publishedAt: '2026-09-11T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['adidas', 'Marge', 'Umsatz', 'DAX'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['adidas'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Bericht vom 10.09.2026: „adidas-Aktie unter den schwächsten DAX-Werten: Das steckt hinter dem Kursrückgang"',
+        url: 'https://www.finanzen.net/nachricht/aktien/margendruck-adidas-aktie-unter-den-schwaechsten-dax-werten-das-steckt-hinter-dem-kursrueckgang-00-15927426',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'adidas hat im jüngsten Quartal so viel umgesetzt wie nie zuvor in der Firmengeschichte: 6,74 Milliarden Euro. Trotzdem gehörte die Aktie am Mittwoch zu den schwächsten Werten im DAX und schloss 2,56 Prozent leichter bei 142,70 Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Umsatz stimmt, die Marge nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Grund liegt nicht in der obersten Zeile der Bilanz, sondern in einer darunter: Die operative Marge fiel von 9,2 auf 8,5 Prozent. Ein Unternehmen kann also mehr verkaufen und trotzdem einen kleineren Anteil davon als Gewinn behalten – etwa, wenn Rabatte, höhere Beschaffungskosten oder Währungseffekte den zusätzlichen Umsatz auffressen. Was in diesem Fall konkret hinter dem Rückgang steckt, benennt die Quelle nicht im Detail.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Bank UBS hatte die Aktie bereits Anfang August von „Kaufen“ auf „Hold“ zurückgestuft und genau diese Anfälligkeit bei der Marge als Grund genannt – trotz eines zu dem Zeitpunkt stabilen Umsatzwachstums.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die ganze Branche steht unter Beobachtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verschärft wurde die Stimmung durch die Branche insgesamt: Der US-Konkurrent Lululemon hatte kurz zuvor einen Kurseinbruch von rund 18 Prozent erlitten, nachdem das Unternehmen ein schrumpfendes US-Geschäft und ein enttäuschendes China-Geschäft gemeldet hatte. Mehrere Analysten bezeichneten China seither als die zentrale Enttäuschung des Quartals für Sportartikelhersteller insgesamt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nicht alle Einschätzungen fielen negativ aus: RBC Capital Markets bestätigte trotz der Branchensorgen ein Kursziel von 200 Euro für adidas und verwies auf lokale Geschäftsaktivitäten und positive Modetrends, von denen das Unternehmen anders als einige Wettbewerber profitiere.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Umsatz und Marge erzählen zwei unterschiedliche Geschichten über dasselbe Quartal. Ein Rekordumsatz sagt, wie viel ein Unternehmen verkauft hat – die Marge sagt, wie viel davon am Ende hängen bleibt. Wer nur die erste Zahl liest, hätte den Kursrückgang bei adidas nicht erwartet.',
+      },
+    ],
+  },
+  {
+    slug: 'bayer-fda-zulassung-aktie-im-minus',
+    title:
+      'Bayer bekommt grünes Licht von der US-Arzneimittelbehörde – die Aktie fällt trotzdem',
+    metaTitle: 'Bayer: FDA-Zulassung, Aktie dennoch im Minus',
+    teaser:
+      'Die FDA erweitert die Zulassung von Bayers Krebsmittel Sevabertinib auf unbehandelte Patienten – am selben Tag rutscht die Bayer-Aktie trotzdem ins Minus.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-11T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bayer', 'FDA', 'Pharma', 'Aktienkurs'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['bayer'],
+    sources: [
+      {
+        label: 'U.S. Food and Drug Administration, Zulassungsmitteilung vom 09.09.2026',
+        url: 'https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-sevabertinib-locally-advanced-or-metastatic-non-squamous-non-small',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 10.09.2026: „Bayer-Aktie rot: FDA-Zulassung für Krebsmittel Sevabertinib erhalten"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Arzneimittelbehörde FDA hat am 9. September die Zulassung für Bayers Krebsmedikament Sevabertinib (Handelsname Hyrnuo) erweitert. Es darf jetzt auch bei Patienten eingesetzt werden, die noch keine andere Therapie erhalten haben – bislang war es nur für Patienten zugelassen, deren Krebs bereits mit anderen Mitteln behandelt worden war.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grundlage war eine Studie mit 69 zuvor unbehandelten Patienten mit einer bestimmten Genmutation (HER2) bei nicht-kleinzelligem Lungenkrebs. 75 Prozent von ihnen sprachen auf die Behandlung an, bei 38 Prozent hielt dieses Ansprechen mindestens ein Jahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Und trotzdem: die Aktie im Minus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer daraus eine steigende Bayer-Aktie erwartet hätte, hätte sich getäuscht: Laut Ticker-Meldung notierte die Aktie am Tag der Meldung im Minus. Eine Begründung dafür nennt die Quelle nicht – sie hält lediglich die gegenläufige Bewegung fest.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein naheliegender Erklärungsansatz liegt außerhalb der Meldung selbst: Am selben Tag erhöhte die EZB ihre Leitzinsen, und der DAX gab insgesamt nach – auch die Bayer-Aktie ist Teil dieses Index. Ob das der tatsächliche Grund war oder ob unternehmensspezifische Faktoren mitspielten, lässt sich aus den vorliegenden Quellen nicht sicher sagen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zulassung ist nicht gleich Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine erweiterte Zulassung öffnet einem Medikament einen größeren Kreis möglicher Patienten – sie sagt aber noch nichts darüber, wie viele Ärzte es tatsächlich verschreiben, wie die Erstattung durch Krankenversicherungen ausfällt oder wie stark die Konkurrenz in genau diesem Marktsegment ist. Zwischen einer Zulassungsmeldung und einem spürbaren Umsatzbeitrag liegt für ein Unternehmen wie Bayer oft mehr als ein Quartal.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine positive Unternehmensmeldung und ein fallender Kurs schließen sich nicht aus – der Gesamtmarkt, die Branche oder ganz andere Nachrichten desselben Tages können stärker wiegen als eine einzelne gute Nachricht. Wer aus einer Kursbewegung automatisch auf die zugehörige Schlagzeile schließt, unterstellt einen Zusammenhang, den die Quellen an diesem Tag nicht hergeben.',
+      },
+    ],
+  },
+  {
+    slug: 'groesster-gold-etf-verliert-anleger-goldpreis-haelt',
+    title: 'Größter Gold-ETF verliert erstmals seit sieben Wochen Anleger',
+    teaser:
+      'Der größte Gold-ETF der Welt meldet erstmals seit sieben Wochen sinkende Bestände, während sich der Goldpreis über 4.350 Dollar je Feinunze hält.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-11T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'ETF', 'Edelmetalle', 'Kapitalflüsse'],
+    relatedTopics: ['etf', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldung vom 10.09.2026: „Größter Gold-ETF meldet erstmals seit sieben Wochen Abflüsse"',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der weltweit größte Gold-ETF hat laut Goldreporter innerhalb einer Woche 849 Millionen US-Dollar an Anlegergeld verloren – die erste Abflusswoche nach sieben Wochen ununterbrochenen Wachstums. Der Goldpreis selbst blieb davon zunächst unbeeindruckt und stabilisierte sich über der Marke von 4.350 Dollar je Feinunze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, die nicht dasselbe messen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Preis eines Rohstoffs und die Bestände des größten ETF darauf sind zwei unterschiedliche Messgrößen. Der Preis bildet sich aus Angebot und Nachfrage über alle Handelsplätze und Anlageformen hinweg – physisches Gold, Terminkontrakte, Zentralbankkäufe, Schmuck und eben auch ETFs. Ein einzelner ETF kann deshalb Anteile verlieren, ohne dass der Preis mitzieht, solange andere Käufer die freiwerdenden Anteile aufnehmen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach mehreren Wochen mit Zuflüssen ist ein Rückgang außerdem noch keine Trendwende – die Quelle nennt für diese eine Woche 849 Millionen Dollar Abfluss, ordnet sie aber nicht in eine längere Entwicklung ein.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Blick auf den Markt drumherum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis bewegt sich seit Tagen in unmittelbarer Nähe der Marke von 4.400 Dollar. Am heutigen Morgen zeigten mehrere Kursleisten Gold bei rund 4.320 Dollar – Investoren gelten als sensibel dafür, wie sich die heutigen US-Inflationsdaten auf die weiteren Zinserwartungen auswirken könnten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Goldmarkt allein über die Mittelflüsse eines einzelnen ETF verfolgt, verwechselt leicht einen Ausschnitt mit dem Ganzen. Ein sinkender ETF-Bestand bei gleichzeitig stabilem Preis zeigt, dass sich Kapital innerhalb eines Marktes verschieben kann, ohne dass sich der Marktpreis in dieselbe Richtung bewegt.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-aktie-steigt-nach-erstem-falt-iphone',
+    title: 'Nach drei Verlusttagen: Apple-Aktie steigt nach dem ersten Falt-iPhone',
+    metaTitle: 'Apple-Aktie steigt nach dem ersten Falt-iPhone',
+    teaser:
+      'Nach drei Verlusttagen in Folge dreht die Apple-Aktie: Einen Tag nach der Vorstellung des ersten faltbaren iPhones legt der Kurs um mehr als 3 Prozent zu.',
+    category: 'Märkte',
+    publishedAt: '2026-09-11T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Apple', 'iPhone', 'Produktankündigung', 'Aktienkurs'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'finanzen.net, dpa-AFX-Meldung vom 10.09.2026: „Apple-Aktie am Tag nach iPhone-Duo-Präsentation mit Kursplus"',
+        url: 'https://www.finanzen.net/nachricht/aktien/produktneuheit-apple-aktie-am-tag-nach-iphone-duo-praesentation-mit-kursplus-15928640',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Drei Handelstage in Folge war die Apple-Aktie gefallen. Am Donnerstag drehte der Kurs: Ein Tag nach der Vorstellung des ersten faltbaren iPhones stieg die Aktie um 3,56 Prozent und schloss bei 326,57 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Ereignis, das schon lange erwartet wurde',
+      },
+      {
+        type: 'paragraph',
+        text: 'Apple hatte das neue Modell – intern als iPhone Duo bezeichnet – bereits am Vortag im Rahmen einer großen Produktvorstellung gezeigt. Beobachter sprachen von einer der dichtesten Produktpaletten in der Firmengeschichte, gemeinsam mit weiteren neuen Modellen der bestehenden iPhone-Reihe.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Analyst Amit Daryanani von Evercore ISI äußerte sich nach eigenen Tests des Geräts positiv über die technische Umsetzung der Falttechnik und rechnete zugleich mit Lieferengpässen – ein Hinweis auf erwartete hohe Nachfrage, aus Sicht eines einzelnen Analysten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Reaktion erst am Folgetag kam',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass der Kurssprung nicht während der Präsentation selbst, sondern erst am Tag danach zu sehen war, passt zu einem wiederkehrenden Muster bei Produktankündigungen: Ein Ereignis, das lange im Voraus angekündigt ist, bewegt den Kurs oft weniger im Moment der Vorstellung als in den Tagen danach, wenn erste Reaktionen von Analysten und Nutzern einlaufen und sich zu einem Bild verdichten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner guter Handelstag nach drei schwächeren macht aus einer Aktie noch keinen neuen Trend. Er zeigt aber, wie unmittelbar Anleger auf zusätzliche, über die reine Ankündigung hinausgehende Informationen reagieren können – in diesem Fall auf erste positive Praxis-Eindrücke eines Analysten.',
+      },
+    ],
+  },
+  {
     slug: 'ezb-zinsentscheid-10-september-hoeherer-leitzins',
     title: 'Die EZB entscheidet heute – und der Kalender zeigt nach oben',
     metaTitle: 'EZB-Entscheidung heute: Kalender zeigt nach oben',
