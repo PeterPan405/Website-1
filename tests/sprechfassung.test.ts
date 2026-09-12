@@ -15,6 +15,7 @@ import {
   baueFolge,
   folgennummer,
   ordnungszahl,
+  RECHTSHINWEIS_GESPROCHEN,
   sprechbar,
   verdaechtigeAnglizismen,
   WORTZIEL_MAX,
@@ -329,7 +330,19 @@ pruefe(
    wirklich nennt, und dass er unmittelbar hinter dem KI-Hinweis steht.
 ------------------------------------------------------------------- */
 
-const rechtAb = folge.sprechtext.indexOf('Und noch eins:')
+/*
+  Gesucht wird die **Konstante**, nicht ihr Wortlaut.
+
+  Bis zum 6. September 2026 stand hier `indexOf('Und noch eins:')`. Als der
+  Betreiber den Satz umformulieren ließ – er klang nach Nachtrag statt nach
+  Redaktion –, brachen vier Prüfungen auf einmal, obwohl inhaltlich nichts
+  fehlte. Ein Test, der an der Wortwahl hängt, verbietet das Feilen am Ton.
+
+  Was hier zählt, ist die **Stellung** des Hinweises und sein **Inhalt**.
+  Beides bleibt prüfbar, wenn der Satz sich ändert; der genaue Wortlaut steht
+  in der Konstante und braucht keine zweite Fassung im Test.
+*/
+const rechtAb = folge.sprechtext.indexOf(RECHTSHINWEIS_GESPROCHEN)
 
 pruefe('Sprechtext trägt den Rechtshinweis', rechtAb >= 0, true)
 
@@ -352,9 +365,15 @@ pruefe(
   /keine Anlageberatung/.test(folge.sprechtext),
   true
 )
+/*
+  Die Haftung, in beiden gebräuchlichen Wendungen. „haften wir nicht" und
+  „übernehmen wir keine Haftung" sagen dasselbe; welche dasteht, ist eine
+  Frage des Tons und keine der Aussage. Was der Test verhindern soll, ist der
+  Satz **ohne** den Punkt – nicht der Satz mit anderer Wortstellung.
+*/
 pruefe(
   'Er nennt: keine Haftung',
-  /übernehmen wir keine Haftung/.test(folge.sprechtext),
+  /(haften wir nicht|übernehmen wir keine Haftung|keine Haftung)/.test(folge.sprechtext),
   true
 )
 

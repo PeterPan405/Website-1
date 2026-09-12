@@ -362,6 +362,13 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
     Zeichen für ein hartes /st/ an dieser Stelle. Zusammenschreiben hilft nur,
     wenn ein Wort davorsteht – bei „Wall Street" ging es, hier nicht.
   */
+  /*
+    Der Nachrichtendienst, nicht die Straße – und deshalb vor „Wall Street".
+    Er steht in den Ausgaben als ein Wort mit Bindestrich („wallstreet-online")
+    und traf damit kein einziges Muster: In vierzehn Ausgaben zwölfmal
+    deutsch gesprochen, mit /v/ am Anfang.
+  */
+  [/\bwallstreet[- ]?online\b/gi, 'Uallstriet onlein'],
   [/\bWall Street\b/g, 'Uallstriet'],
   [/\bEuro[ -]?Sto(?:xx|cks)\b/gi, 'Eurostocks'],
   [/\bSto(?:xx|cks) Europe\b/gi, 'Stocks Juropp'],
@@ -393,7 +400,24 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bOracle\b/g, 'Orakl'],
   [/\bPalantir\b/g, 'Pallantihr'],
   [/\bGitHub\b/g, 'Gitthabb'],
-  [/\bBig Tech\b/g, 'Bigg Teck'],
+  /* Auch mit Bindestrich – „Big-Tech-Werte" ist die häufigere Schreibung in
+     den Meldungen und traf das Muster mit Leerzeichen nie. */
+  [/\bBig[- ]Tech\b/g, 'Bigg Teck'],
+  /*
+    Namen, die am 6. September 2026 in den Ausgaben der letzten zwei Wochen
+    standen und unverändert durchgingen. Alle nach denselben drei Regeln:
+    „u" für englisches /w/, „sch" für /ʃ/, „dd" für stimmhaftes /ð/.
+  */
+  [/\bPayPal\b/g, 'Pejpäll'],
+  [/\bTether\b/g, 'Tedder'],
+  [/\bWarsh\b/g, 'Uorsch'],
+  [/\bGreenlight\b/g, 'Griehnleit'],
+  [/\bHugging Face\b/g, 'Hagging Fejs'],
+  /* Bank of England, buchstabiert – „BoE" las die Stimme als Silbe. */
+  [/\bBoE\b/g, 'Bie Ou Ie'],
+  /* Zusammensetzungen mit „Rating": Das `\b` vor dem Wort verhinderte den
+     Treffer, und „Kaufrating" blieb deutsch neben umgeschriebenem „Rating". */
+  [/\b(Kauf|Verkaufs|Bonitäts)rating(s?)\b/g, '$1rejting$2'],
   [/\bFear[- ]and[- ]Greed\b/g, 'Fier and Griedd'],
   [/\bUnderperform\b/g, 'Anderperform'],
   [/\bOutperform\b/g, 'Autperform'],
@@ -482,10 +506,55 @@ const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bIPO\b/g, 'Ei Pie Ou'],
 ]
 
+/**
+ * Dasselbe Muster, aber mit angehängtem Genitiv-s.
+ *
+ * ## Die Lücke, die das schließt
+ *
+ * Am 6. September 2026 an vierzehn Ausgaben nachgemessen: „Nvidia" wurde
+ * umgeschrieben, **„Nvidias" nicht.** Ebenso „Teslas", „Apples",
+ * „Anthropics". Das `\b` am Ende jedes Musters schließt genau dort, wo der
+ * Genitiv anfängt.
+ *
+ * Das ist die unangenehmste Sorte Fehler in einer Aufnahme: Derselbe Name
+ * klingt in einem Satz englisch und im nächsten deutsch. Ein durchgehend
+ * falscher Name wäre weniger auffällig als einer, der springt.
+ *
+ * ## Warum als Umbau und nicht als sechzig neue Zeilen
+ *
+ * Man könnte jedem Eintrag ein `(s?)` anhängen. Das wären sechzig
+ * Gelegenheiten, eines zu vergessen – und die Tabelle wächst weiter. Hier
+ * geschieht es einmal, für alle, und der nächste Eintrag bekommt es
+ * geschenkt.
+ *
+ * Wo ein Genitiv unsinnig wäre („CEOs" ist ein Plural, kein Genitiv), schadet
+ * die Regel nicht: Die Umschrift hängt das `s` unverändert an, und
+ * „Sieh Ie Ous" ist genau das, was gesprochen werden soll.
+ */
+function mitGenitiv([muster, laut]: [RegExp, string]): [RegExp, string] {
+  if (!muster.source.endsWith('\\b')) return [muster, laut]
+  /*
+    Die neue Klammer bekommt die **nächste freie** Nummer, nicht die eins.
+    Ein Muster mit eigener Gruppe – `\b(Kauf|Verkaufs)rating\b` – benutzt `$1`
+    bereits; ein blindes `$1` hinten hängte dort den Wortanfang ein zweites
+    Mal an und machte aus „Kaufrating" ein „KaufrejtingKauf".
+
+    Gezählt wird, indem das Muster gegen den leeren String läuft: Die Länge
+    des Ergebnisses ist die Zahl der Gruppen plus eins.
+  */
+  const gruppen = new RegExp(`${muster.source}|`).exec('')!.length - 1
+  return [
+    new RegExp(muster.source.replace(/\\b$/, '(s?)\\b'), muster.flags),
+    `${laut}$${gruppen + 1}`,
+  ]
+}
+
+const ENGLISCHE_NAMEN_MIT_GENITIV = ENGLISCHE_NAMEN.map(mitGenitiv)
+
 /** Setzt die Umschrift der englischen Namen ein – siehe `ENGLISCHE_NAMEN`. */
 export function englischeNamenSprechbar(text: string): string {
   let s = text
-  for (const [muster, laut] of ENGLISCHE_NAMEN) s = s.replaceAll(muster, laut)
+  for (const [muster, laut] of ENGLISCHE_NAMEN_MIT_GENITIV) s = s.replaceAll(muster, laut)
   return s
 }
 
@@ -1000,10 +1069,43 @@ export const KI_HINWEIS_GESPROCHEN =
  *
  * Das Vollständige steht weiterhin unter jeder Folge, im Impressum und in der
  * Fußzeile jeder Seite – dort ist Platz für den ganzen Satz.
+ *
+ * ## Die Fassung vom 6. September 2026 – der Ton
+ *
+ * Der Betreiber hat den Satz erneut beanstandet: Er klinge nicht
+ * professionell. Er hatte recht, und zwar an drei Stellen:
+ *
+ * > Und noch eins: Das ist keine Anlageberatung, und für
+ * > Anlageentscheidungen übernehmen wir keine Haftung.
+ *
+ * 1. **„Und noch eins"** ist Plauderton. Es kündigt einen Nachtrag an, als
+ *    wäre der Hinweis dem Sprecher gerade noch eingefallen – und es ist die
+ *    **zweite** Ankündigung in Folge, direkt hinter „Bevor es losgeht, ein
+ *    Hinweis". Zweimal ankündigen, einmal sagen.
+ * 2. **„Das ist"** – was ist „das"? Ein Rechtshinweis, der sein eigenes
+ *    Bezugswort offenlässt, klingt hingeworfen.
+ * 3. **„für Anlageentscheidungen übernehmen wir keine Haftung"** ist
+ *    umständlich und schief dazu: Für die Entscheidung eines anderen haftet
+ *    ohnehin niemand. Gemeint ist, dass aus dieser Folge keine Ansprüche
+ *    folgen.
+ *
+ * Jetzt:
+ *
+ * > Dazu der rechtliche Hinweis: Diese Folge ist Information, keine
+ * > Anlageberatung – und für deine Entscheidungen haften wir nicht.
+ *
+ * „Dazu der rechtliche Hinweis" benennt, was kommt, statt es anzukündigen –
+ * derselbe Ton, in dem Nachrichtensendungen ihre Pflichtangaben sprechen.
+ * „Diese Folge" hat ein Bezugswort. Der Gedankenstrich bindet den zweiten
+ * Punkt an den ersten, statt ihn als eigenen Satz nachzuschieben.
+ *
+ * **Was nicht geändert wurde:** die zwei Punkte und ihre Reihenfolge. Die
+ * Aufzählung „kaufen oder verkaufen" bleibt draußen, aus den Gründen zwei
+ * Absätze weiter oben.
  */
 export const RECHTSHINWEIS_GESPROCHEN =
-  'Und noch eins: Das ist keine Anlageberatung, und für Anlageentscheidungen ' +
-  'übernehmen wir keine Haftung.'
+  'Dazu der rechtliche Hinweis: Diese Folge ist Information, keine ' +
+  'Anlageberatung – und für deine Entscheidungen haften wir nicht.'
 
 function wortzahl(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
