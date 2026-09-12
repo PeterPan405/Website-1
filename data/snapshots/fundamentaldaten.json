@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-05T10:40:34.680Z",
+  "abgerufenAm": "2026-09-12T10:51:17.559Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC, XBRL-Pflichtmeldungen",
     "url": "https://www.sec.gov/edgar/sec-api-documentation",
@@ -557,7 +557,7 @@
       "umsatz": 63887000000,
       "gewinn": 5895000000,
       "cashflow": 27537000000,
-      "eigenkapital": 87691000000,
+      "eigenkapital": 99690000000,
       "aktien": 4757580198
     },
     "AWK": {
@@ -915,8 +915,8 @@
       "umsatz": 12601500000,
       "gewinn": 222800000,
       "cashflow": 691600000,
-      "eigenkapital": 424200000,
-      "aktien": 413800000
+      "eigenkapital": 370500000,
+      "aktien": 410100000
     },
     "CI": {
       "umsatz": 274900000000,
@@ -1178,8 +1178,8 @@
       "umsatz": 113538000000,
       "gewinn": 5936000000,
       "cashflow": 11185000000,
-      "eigenkapital": -1404000000,
-      "aktien": 649000000
+      "eigenkapital": -1427000000,
+      "aktien": 640000000
     },
     "DEMANT.CO": {
       "waehrung": "DKK",
@@ -1891,7 +1891,7 @@
       "umsatz": 18831000000,
       "gewinn": 3869000000,
       "cashflow": 6207000000,
-      "eigenkapital": 20629000000,
+      "eigenkapital": 18992000000,
       "aktien": 276550000
     },
     "INVE-B.ST": {
@@ -2737,10 +2737,10 @@
       "aktien": 999637371
     },
     "PANW": {
-      "umsatz": 9221500000,
-      "gewinn": 1133900000,
+      "umsatz": 9221000000,
+      "gewinn": 1134000000,
       "cashflow": 3716000000,
-      "eigenkapital": 27668000000,
+      "eigenkapital": 27492000000,
       "aktien": 815000000
     },
     "PAYX": {
@@ -3178,6 +3178,13 @@
       "cashflow": 914400000,
       "eigenkapital": 4456400000,
       "aktien": 1582991202
+    },
+    "SE": {
+      "umsatz": 19625021000,
+      "gewinn": 1578149000,
+      "cashflow": 5024523000,
+      "eigenkapital": 12526503000,
+      "aktien": 595023879
     },
     "SGE.L": {
       "waehrung": "GBP",
