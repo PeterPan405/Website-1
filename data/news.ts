@@ -101,6 +101,277 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelpreis-faellt-trotz-pipeline-abschaltung',
+    title: 'Saudi-Arabien schaltet eine Pipeline ab – der Ölpreis fällt trotzdem',
+    metaTitle: 'Pipeline-Abschaltung in Saudi-Arabien: Ölpreis fällt trotzdem',
+    teaser:
+      'Nach Angriffen legt Saudi-Arabien eine Pipeline still. Der Ölpreis fiel trotzdem, und zwei Kursleisten nennen für denselben Preis unterschiedliche Prozente.',
+    category: 'Märkte',
+    publishedAt: '2026-09-12T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Rohstoffe', 'Saudi-Arabien', 'Marktdaten'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label: 'wallstreet-online, Rohstoffnachrichten vom 11.09.2026, dpa-AFX-Meldung',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste vom 12.09.2026, 06:45 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Saudi-Arabien hat nach Angriffen eine wichtige Pipeline abgeschaltet, meldete die Nachrichtenagentur dpa-AFX am Freitag. Wer daraufhin einen steigenden Ölpreis erwartet hätte, läge falsch.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Samstagmorgen zeigte die Kursleiste von finanzen.net den Ölpreis bei 104,6 Dollar je Barrel – ein Minus von 2,8 Prozent. Wallstreet-online notierte zur selben Minute 104,50 Dollar für Brentöl, allerdings mit einem Minus von 4,06 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, zwei Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Portale meinen fast denselben Preis – die Differenz liegt bei zehn Cent. Trotzdem weicht die Prozentangabe um mehr als einen Punkt voneinander ab. Der Grund liegt selten im aktuellen Kurs selbst, sondern im Bezugspunkt: Je nachdem, welchen Vortageswert ein Anbieter ansetzt und wie aktuell dieser ist, fällt dieselbe Bewegung unterschiedlich groß aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Für Leser heißt das:** Eine Prozentzahl allein ist kein verlässliches Signal. Wer einen Kurs einordnen will, schaut auf den absoluten Wert – und im Zweifel auf mehr als eine Quelle.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum der Ölpreis trotz der abgeschalteten Pipeline fiel, sagt die Meldung nicht. Das bleibt an dieser Stelle offen, denn die Quelle nennt dazu keinen Grund.',
+      },
+    ],
+  },
+  {
+    slug: 'us-inflation-bleibt-hoch-maerkte-atmen-auf',
+    title: 'Die US-Inflation blieb hoch – die Märkte atmeten trotzdem auf',
+    teaser:
+      'Die US-Inflationsrate blieb im August stabil. Die niedrigere Kernrate sorgte für Erleichterung, und ein fallender Ölpreis half Aktien und Gold zusätzlich.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-12T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Inflation', 'USA', 'Gold', 'Wall Street'],
+    relatedTopics: ['inflation'],
+    relatedSymbols: ['gold', 'dow-jones'],
+    sources: [
+      {
+        label: 'Goldreporter, Meldung vom 11.09.2026',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'onvista, dpa-AFX-Meldung vom 11.09.2026, 20:26 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Inflationsrate blieb im August stabil, meldete Goldreporter am Freitag. Trotzdem war an den Märkten von Enttäuschung nichts zu spüren – im Gegenteil.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vor allem die niedrigere Kernrate, die schwankungsanfällige Posten wie Energie und Lebensmittel herausrechnet, sorgte laut Goldreporter für Erleichterung und stützte den Goldpreis.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Zahlen, eine Schlagzeile',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist die Pointe an Inflationsdaten: Die Gesamtrate und die Kernrate können unterschiedliche Signale senden. Bleibt die Gesamtrate hoch, weil zum Beispiel Energiepreise durchschlagen, die Kernrate aber verhält sich ruhiger, lesen Marktteilnehmer oft die zweite Zahl als die aussagekräftigere – weil sie eher zeigt, wohin sich die Inflation ohne Sondereffekte entwickelt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street kam laut dpa-AFX-Meldung von onvista noch ein zweiter Effekt hinzu: Ein nachgebender Ölpreis half den Indizes zusätzlich, obwohl die Inflation insgesamt hoch blieb. Dow Jones, S&P 500 und Nasdaq schlossen den Handelstag im Plus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gold bleibt über 4.300 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Samstagmorgen notierte Gold laut finanzen.net und wallstreet-online übereinstimmend bei rund 4.348 Dollar je Feinunze – ein Niveau, das die Erleichterung vom Vortag hielt.',
+      },
+    ],
+  },
+  {
+    slug: 'us-hypothekenzinsen-ueber-sieben-prozent',
+    title: 'US-Hypothekenzinsen springen über sieben Prozent',
+    teaser:
+      'Käufer werden aus dem US-Immobilienmarkt gedrängt: Die Hypothekenzinsen liegen wieder über sieben Prozent, und Bau- sowie Bankaktien geraten unter Druck.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-12T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Immobilien', 'USA', 'Anleihen', 'Zinsen'],
+    relatedTopics: ['immobilien', 'staatsanleihe'],
+    relatedSymbols: ['dr-horton', 'lennar', 'wells-fargo'],
+    sources: [
+      {
+        label: 'wallstreet-online, Private Finanzen, Meldung vom 11.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer sich in den USA gerade ein Haus kaufen will, zahlt wieder deutlich mehr dafür: Die Hypothekenzinsen sind über die Marke von sieben Prozent gestiegen, meldete wallstreet-online am Freitag. Käufer werden dadurch aus dem Markt gedrängt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung nennt konkrete Betroffene: Die Baukonzerne D.R. Horton und Lennar sowie die Banken Wells Fargo und Bank of America gerieten unter Druck – zusammen mit Immobilienaktien insgesamt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Anleihen und Hypotheken zusammenhängen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Hypothekenzinsen orientieren sich in den USA typischerweise an der Rendite langlaufender Staatsanleihen, nicht am Leitzins der Notenbank direkt. Steigt die Rendite dieser Anleihen, ziehen Hypothekenzinsen meist nach – mit einigem zeitlichen Abstand, aber spürbar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Genau das beschreibt eine zweite Meldung derselben Quelle vom selben Tag: Ein hoher Ölpreis treibe die Staatsanleihen vor sich her, fragt wallstreet-online, ob sich damit eine Stagflation ankündigt – also eine Mischung aus schwachem Wachstum und hartnäckiger Inflation.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Frage, keine Antwort',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Quelle formuliert die Stagflationssorge selbst als Frage, nicht als Feststellung. Belastbare Zahlen zum Ausmaß nennt sie nicht, und auch dieser Artikel bleibt deshalb bei der Frage stehen, statt sie zu beantworten.',
+      },
+    ],
+  },
+  {
+    slug: 'bundesbank-leistungsbilanz-rentenmarkt-juli',
+    title: 'Deutschlands Leistungsbilanzüberschuss wuchs im Juli',
+    teaser:
+      'Die Bundesbank meldet für Juli einen höheren Leistungsbilanzüberschuss und mehr Emissionen am Rentenmarkt – eine Zahl davon bleibt allerdings unvollständig.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-12T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bundesbank', 'Leistungsbilanz', 'Rentenmarkt', 'Deutschland'],
+    relatedTopics: ['staatsanleihe', 'schuldverschreibung'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label: 'Deutsche Bundesbank, Pressemitteilung vom 11.09.2026',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutschland hat im Juli mehr im Außenhandel verdient als im Vormonat: Die Leistungsbilanz verzeichnete laut Bundesbank einen Überschuss von 21,2 Milliarden Euro – 2,3 Milliarden Euro mehr als im Juni.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ausschlaggebend war laut Bundesbank ein höherer Überschuss im Warenhandel. Dagegen verminderte sich das Plus bei den „unsichtbaren" Leistungstransaktionen, zu denen neben Dienstleistungen auch Primär- und Sekundäreinkommen zählen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch der Rentenmarkt legte zu',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag veröffentlichte die Bundesbank eine zweite Meldung, betitelt „Hoher Nettoabsatz am deutschen Rentenmarkt im Juli 2026". Konkret beziffert wird darin allerdings nur der Bruttoabsatz: Er lag im Juli bei 144,2 Milliarden Euro und damit über dem Vormonatswert von 135,9 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Brutto ist nicht Netto',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Bruttoabsatz zählt alle neu ausgegebenen Anleihen und Schuldverschreibungen eines Zeitraums. Der Nettoabsatz zieht davon ab, was in derselben Zeit an Papieren fällig wurde und zurückgezahlt wurde – erst er zeigt, ob der Umlauf tatsächlich wächst oder nur ersetzt wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Die konkrete Nettozahl für Juli nennt der ausgewertete Quellenauszug nicht.** Wer die Überschrift der Bundesbank-Meldung wörtlich nimmt, sollte sich bewusst sein, dass die belegte Zahl in dieser Auswertung nur die Bruttoseite betrifft.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbanken-kaufen-gold-norwegen-verkauft-anleihen',
+    title:
+      'Polen und die Brics-Staaten kaufen Gold – Norwegen will Dollar-Anleihen loswerden',
+    metaTitle: 'Notenbanken kaufen Gold, Norwegen verkauft Dollar-Anleihen',
+    teaser:
+      'Polens Notenbank baut ihre Goldreserven weiter aus, auch China und andere Brics-Staaten kaufen zu. Norwegens Staatsfonds will dagegen US-Anleihen abstoßen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-12T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Notenbanken', 'Staatsanleihen', 'Reserven'],
+    relatedTopics: ['rohstoffe', 'staatsanleihe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 11.09.2026, wallstreetONLINE Redaktion',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'Goldreporter, Top-News, Stand 12.09.2026, 04:45 Uhr',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Polens Notenbank kauft weiter Gold: Sie peile inzwischen 700 Tonnen in ihren Reserven an, meldete Goldreporter auf seiner Startseite. Auch China und andere Brics-Staaten stockten ihre Goldbestände zuletzt massiv auf, berichtete wallstreet-online am Freitag unter Berufung auf eigene Recherche.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auf der anderen Seite der Bilanz steht eine Meldung, die zur selben Zeit auf Goldreporter zu lesen war: Norwegens Staatsfonds wolle US-Anleihen im Wert von fast 80 Milliarden Dollar verkaufen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Wege, Reserven zu halten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Bewegungen betreffen dieselbe Grundfrage: Wie verteilt ein staatlicher Akteur seine Reserven zwischen Gold und verzinsten Dollar-Anleihen? Gold zahlt keine Zinsen, gilt aber als unabhängig von der Kreditwürdigkeit eines einzelnen Schuldners. Staatsanleihen werfen Zinsen ab, hängen aber am Vertrauen in den Aussteller und an dessen Währung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Notenbanken wie die polnische seit Jahren Gold zukaufen, während ein Staatsfonds wie der norwegische zeitgleich einen großen Anleihenposten verkleinern will, zeigt vor allem, dass es hier keine einheitliche Antwort gibt – unterschiedliche Institutionen mit unterschiedlichen Aufgaben treffen unterschiedliche Entscheidungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der neuen Woche ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Wochenausklang lohnt ein Blick voraus: Am Montag, den 14. September, spricht laut Wirtschaftskalender von wallstreet-online EZB-Direktoriumsmitglied Isabel Schnabel – eine Uhrzeit nennt der Kalender dafür nicht.',
+      },
+    ],
+  },
+  {
     slug: 'oracle-cloud-boom-adobe-bremst-erwartungen',
     title: 'Oracle wächst im KI-Boom, Adobe bremst die eigene Prognose',
     teaser:
