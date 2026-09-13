@@ -1,10 +1,19 @@
 {
-  "abgerufenAm": "2026-09-12T08:07:58.688Z",
+  "abgerufenAm": "2026-09-13T00:50:46.563Z",
   "feed": "https://iminvests.de/podcast-audio/feed.xml",
   "titel": "Börse am Morgen - IM Invests",
   "beschreibung": "Dein tägliches Marktupdate von IM Investments. Werktäglich am Morgen fassen wir kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken, Konjunktur und die Themen, die den Handelstag bewegen. Klar, verständlich und auf den Punkt, damit du bestens informiert in den Tag startest. Weitere Informationen auf: iminvests.de Hinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
   "youtubeKanalId": "UCxLlGlfWWX0fP9pnWC7VtNA",
   "folgen": [
+    {
+      "slug": "gold-haelt-unterstuetzung-dax-bleibt-im-wochenminus-und-openai-verschiebt-den-bo",
+      "titel": "Gold hält Unterstützung, DAX bleibt im Wochenminus und OpenAI verschiebt den Börsengang",
+      "beschreibung": "DAX und Wien laufen zum Wochenschluss auseinander, zwei KI-Chefs treten auf die Bremse, und Gold hält seine Marke vor der Fed-Entscheidung. Der Goldpreis schloss die Woche laut Goldreporter an der Unterstützung von 4.350 Dollar, während große Spekulanten ihre Netto-Long-Positionen weiter ausbauten.\n\nWir sprechen über OpenAI verschiebt den Börsengang, Hapag-Lloyd verfolgt ZIM-Übernahme trotz israelischem Veto, Schweden vergibt Großauftrag an Lockheed Martin statt. Kompakt in rund fünf Minuten.\n\n(0:00) Begrüßung und Überblick\n(0:39) Gold hält Unterstützung\n(1:11) DAX bleibt im Wochenminus\n(1:42) OpenAI verschiebt den Börsengang\n(2:14) Hapag-Lloyd verfolgt ZIM-Übernahme trotz\n(2:52) Schweden vergibt Großauftrag an Lockheed\n(3:23) Fazit\n\nWebsite: iminvests.de\n\nHinweis: Text und Vertonung dieser Folge entstehen automatisiert mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim Betreiber.\n\nHinweis: Dieser Podcast dient ausschließlich der Information und Finanzbildung. Er stellt keine Anlageberatung und keine Kauf- oder Verkaufsempfehlung dar. Alle Angaben ohne Gewähr.",
+      "datum": "2026-09-13",
+      "dauerSekunden": 225,
+      "url": "https://iminvests.de/podcast-audio/2026-09-13.mp3",
+      "youtubeId": "IKruw5T54Go"
+    },
     {
       "slug": "us-hypothekenzinsen-springen-ueber-sieben-prozent-us-inflation-blieb-hoch-und-sa",
       "titel": "US-Hypothekenzinsen springen über sieben Prozent, US-Inflation blieb hoch und Saudi-Arabien schaltet Pipeline ab",
