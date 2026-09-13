@@ -101,6 +101,312 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'gold-haelt-marke-vor-fed-entscheidung',
+    title: 'Gold hält seine Marke, bevor die Fed über die Zinsen entscheidet',
+    teaser:
+      'Der Goldpreis schloss die Woche an einer wichtigen Unterstützung. Spekulanten bauten ihre Wetten aus – kurz bevor die Fed am Mittwoch entscheidet.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-13T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Fed', 'Zinsen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, CoT-Daten Gold, Meldung vom 12.09.2026: „Der Goldpreis schloss die Woche an der wichtigen Unterstützung von 4.350 USD“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Meldung vom 12.09.2026: „Goldpreis: Beendet die Fed am Mittwoch die Goldrallye mit einem Paukenschlag?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis hat die vergangene Handelswoche an einer Marke beendet, die Chartbeobachter genau im Blick haben: 4.350 US-Dollar je Feinunze. Das meldet Goldreporter unter Berufung auf die aktuellen CoT-Daten – die wöchentliche Statistik darüber, wie Terminmarkt-Händler positioniert sind.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auffällig dabei: Große Spekulanten haben ihre Netto-Long-Positionen laut dieser Auswertung wieder ausgebaut, setzen also verstärkt auf weiter steigende Kurse. Die Quelle selbst nennt keine Begründung dafür – nur die Zahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ausgerechnet der Mittwoch zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Überschrift bei wallstreet-online bringt den Grund für die Nervosität auf den Punkt, ohne selbst eine Antwort zu liefern: „Beendet die Fed am Mittwoch die Goldrallye mit einem Paukenschlag?“ Vom Stichtag aus gerechnet ist das der 16. September – die US-Notenbank tagt an diesem Mittwoch.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch hier bleibt die Quelle bei der Frage stehen, ohne sie zu beantworten. Was die Fed tatsächlich beschließt und wie sie es begründet, lässt sich vorab nicht aus einer Ticker-Überschrift ablesen – so plausibel die Frage auch klingt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine eingepreiste Erwartung ist keine Garantie',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass Spekulanten schon vor einer Zinsentscheidung auf steigende Kurse setzen, heißt nicht, dass der Markt die Entscheidung schon kennt. Es bedeutet nur, dass ein Teil der Erwartung – etwa eine Zinspause – bereits im aktuellen Kurs von rund 4.348 Dollar steckt, wie ihn die Kursleiste von finanzen.net am Sonntagmorgen zeigte. Weicht die Fed davon ab, kann sich das stärker im Kurs zeigen als die reine Entscheidung selbst.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Unterstützungsmarke und aufgebaute Long-Positionen beschreiben eine Momentaufnahme der Positionierung, keine Prognose. Ob die Marke von 4.350 Dollar hält, entscheidet sich erst an dem Termin, auf den beide Meldungen ohne weitere Erklärung verweisen.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-wochenminus-wien-rekordhoch',
+    title: 'DAX erholt sich am Freitag, doch die Woche bleibt rot',
+    teaser:
+      'Der DAX stabilisierte sich zum Wochenschluss, verbuchte aber auf Wochensicht ein Minus. Die Wiener Börse schaffte im selben Umfeld ein Rekordhoch.',
+    category: 'Märkte',
+    publishedAt: '2026-09-13T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DAX', 'ATX', 'Ölpreis', 'Wochenrückblick'],
+    relatedTopics: ['aktien-laender-branchen', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'brent'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, Index-Analysen, Meldung vom 11.09.2026, 15:54 Uhr: „Aktien Frankfurt Schluss: Dax stabilisiert sich - Auf Wochensicht im Minus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, Index-Analysen, Meldung vom 11.09.2026, 16:23 Uhr: „Aktien Wien Schluss: ATX trotzt hohen Ölpreisen mit Rekordhoch“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender, Kommende Termine, Stand 13.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei dpa-AFX-Meldungen vom Freitagnachmittag beschreiben denselben Handelstag mit demselben Wort: Der DAX „stabilisiert sich“. Auf Wochensicht blieb trotzdem ein Minus stehen, wie die Agentur ausdrücklich festhält – die Erholung am Freitag reichte nicht, um die Verluste der Woche auszugleichen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Sonntagmorgen zeigte die Kursleiste von finanzen.net den DAX bei 25.569 Punkten mit einem Tagesplus von 0,8 Prozent, wallstreet-online nannte 25.544,39 Punkte und ein Plus von 0,86 Prozent – zwei Portale, ein Index, zwei leicht unterschiedliche Zahlen für denselben Schlussstand.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wien schlägt eine andere Richtung ein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ganz anders die Wiener Börse: „ATX trotzt hohen Ölpreisen mit Rekordhoch“, meldete dpa-AFX zur selben Handelsschluss-Runde am Freitag. Ein hoher Ölpreis gilt sonst eher als Belastung für Aktienmärkte – in Wien war er an diesem Tag offenbar kein Hindernis für einen neuen Höchststand. Warum genau, sagt die Meldung nicht; sie hält nur das Ergebnis fest.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die neue Woche startet mit Notenbank-Reden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für Montag, den 14. September, gleich zwei Auftritte aus dem EZB-Direktorium: Isabel Schnabel und Piero Cipollone sind als Redner eingetragen, eine Uhrzeit dazu nennt der Kalender nicht. Dazu kommen japanische Industrieproduktionsdaten sowie Verbraucherpreise aus Finnland und Kanada.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Derselbe Ölpreis, dieselbe Woche, zwei entgegengesetzte Ergebnisse an zwei Börsen – das zeigt, dass ein makroökonomischer Faktor wie der Ölpreis nicht überall gleich wirkt. Wie stark ein Index auf ihn reagiert, hängt auch davon ab, welche Unternehmen in ihm stecken, nicht nur davon, was am Ölmarkt passiert.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-chefs-bremse-nasdaq-rekordnaehe',
+    title: 'Zwei KI-Chefs treten auf die Bremse – der Nasdaq bleibt nah am Rekord',
+    metaTitle: 'KI-Chefs bremsen, Nasdaq bleibt nah am Rekord',
+    teaser:
+      'OpenAI verschiebt den Börsengang, Anthropics Chef wirbt für langsamere Entwicklung. Der Nasdaq zeigte sich davon am selben Tag unbeeindruckt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-13T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['KI-Aktien', 'Nasdaq', 'OpenAI', 'Anthropic'],
+    relatedTopics: ['aktie', 'boerse'],
+    relatedSymbols: ['nasdaq-100'],
+    sources: [
+      {
+        label:
+          'dpa-AFX über onvista, Aktuelle News, Meldung vom 12.09.2026, 20:21 Uhr: „OpenAI-Chef: Börsengang nicht mehr in diesem Jahr“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'dpa-AFX über onvista, Aktuelle News, Meldung vom 12.09.2026, 17:24 Uhr: „Chef von KI-Firma Anthropic für verlangsamte Entwicklung“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 13.09.2026, 02:14 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Innerhalb weniger Stunden meldete dpa-AFX am Samstag zwei Sätze, die beide nach Zurückhaltung klingen: Um 17:24 Uhr, dass der Chef der KI-Firma Anthropic sich für eine „verlangsamte Entwicklung“ ausspricht. Um 20:21 Uhr, dass der Chef von OpenAI einen Börsengang in diesem Jahr ausschließt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Male bleibt es bei der reinen Aussage. Warum Anthropics Chef zu mehr Tempo-Zurückhaltung rät und was OpenAI dazu bewogen hat, den Börsengang zu verschieben, geht aus den beiden Ticker-Zeilen nicht hervor – das sagen die Quellen selbst nicht, also steht es hier auch nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Nasdaq sieht davon wenig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Von dieser Zurückhaltung an der Spitze zeigte sich der breite Technologiemarkt unbeeindruckt: Die Kursleiste von finanzen.net wies den Nasdaq am Sonntagmorgen mit 26.333 Punkten und einem Tagesplus von 1,0 Prozent aus – nahe an seinen jüngsten Höchstständen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei verschiedene Arten von Bremse',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die beiden Meldungen lassen sich leicht zu einer einzigen „KI-Sorge“ zusammenfassen – dabei beschreiben sie zwei unterschiedliche Dinge. Ein verschobener Börsengang ist eine Entscheidung über den Zeitpunkt, zu dem außenstehende Anleger überhaupt erst Anteile kaufen könnten. Eine Forderung nach langsamerer Entwicklung ist eine Aussage zum Tempo der Arbeit selbst, unabhängig davon, ob das Unternehmen börsennotiert ist.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Weder Anthropic noch OpenAI sind an der Börse handelbar – wer auf die KI-Erzählung setzen will, kauft heute zwangsläufig andere, bereits gelistete Werte. Ob Aussagen wie diese die Stimmung rund um solche Werte auf Dauer dämpfen, lässt sich an einem einzelnen Wochenende nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'hapag-lloyd-zim-uebernahme-trotz-veto',
+    title: 'Hapag-Lloyd hält trotz israelischem Veto an ZIM-Übernahme fest',
+    teaser:
+      'Ein Veto aus Israel hat Hapag-Lloyds Vorhaben, den Konkurrenten ZIM zu übernehmen, nicht gestoppt. Das Unternehmen verfolgt den Plan weiter.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-13T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Hapag-Lloyd', 'Übernahme', 'Regulierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 12.09.2026: „Hapag-Lloyd-Aktie: Trotz israelischem Veto wird weiterhin ZIM-Übernahme angestrebt“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Eine einzelne Ticker-Zeile von finanzen.net hält einen bemerkenswerten Vorgang fest: Die Reederei Hapag-Lloyd will die Übernahme des israelischen Konkurrenten ZIM weiter vorantreiben – obwohl es dagegen ein Veto aus Israel gibt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mehr gibt die Meldung nicht her. Weder die Begründung für das Veto noch die finanziellen Eckdaten der geplanten Übernahme gehen aus der vorliegenden Quelle hervor. Beides wäre an dieser Stelle Spekulation – deshalb bleibt es offen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Staat bei einer Übernahme mitreden kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unabhängig vom konkreten Fall gilt allgemein: Viele Staaten behalten sich bei Übernahmen in als strategisch eingestuften Branchen ein Mitspracherecht vor – Reedereien und Häfen gehören dazu, weil über sie ein großer Teil des Warenverkehrs läuft. Ein solches Veto kann eine Übernahme verzögern oder ganz verhindern, selbst wenn sich Käufer und Verkäufer längst einig sind.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Risiko außerhalb der Bilanz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Anleger zeigt der Fall eine Risikokategorie, die sich nicht aus Umsatz- oder Gewinnzahlen ablesen lässt: das politische oder regulatorische Risiko. Ein Übernahmeplan kann betriebswirtschaftlich noch so sinnvoll sein – scheitert er an einer staatlichen Entscheidung, zählt am Ende trotzdem nur das Ergebnis.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass ein Unternehmen an einem Vorhaben festhält, ist keine Garantie dafür, dass es am Ende auch zustande kommt. Ob das Veto Bestand hat oder überwunden wird, entscheidet sich an anderer Stelle als am Verhandlungstisch der beiden Reedereien.',
+      },
+    ],
+  },
+  {
+    slug: 'schweden-ruestungsauftrag-rheinmetall-leer-aus',
+    title: 'Schweden vergibt Rüstungsauftrag – Rheinmetall geht leer aus',
+    teaser:
+      'Schweden hat einen großen Rüstungsauftrag vergeben – profitiert hat laut Bericht Lockheed Martin. Rheinmetall bleibt zugleich unter Beobachtung.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-13T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Lockheed Martin', 'Rüstungsaktien', 'Auftrag'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['rheinmetall', 'lockheed'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, Gefragte Nachrichten, Meldung vom 10.09.2026: „Rheinmetall geht leer aus: Schweden vergibt gewaltigen Rüstungsauftrag – dieses Unternehmen profitiert!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Markt Bote über wallstreet-online, Neueste Marktberichte, Meldung vom 12.09.2026: „Rheinmetall unter Druck: Diese Risiken treiben Anleger um“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Rüstungsbranche gilt seit Jahren als eine der verlässlichsten Wachstumsgeschichten an der Börse – umso mehr fällt eine Meldung von wallstreetONLINE auf: Schweden hat einen „gewaltigen Rüstungsauftrag“ vergeben, doch Rheinmetall geht dabei nach diesem Bericht leer aus. Profitieren soll stattdessen Lockheed Martin.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Volumen der Auftrag hat und um welches Produkt es konkret geht, nennt die ausgewertete Überschrift nicht. Auch das bleibt deshalb an dieser Stelle offen, statt geschätzt zu werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Boom hebt nicht jede Aktie gleich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Passend dazu berichtete Markt Bote am Freitag unter der Überschrift „Rheinmetall unter Druck: Diese Risiken treiben Anleger um“ – ohne die angekündigten Risiken im verfügbaren Text tatsächlich zu benennen. Eine Überschrift, die eine Erklärung verspricht, liefert sie damit nicht automatisch mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Sektor-Story gegen Einzeltitel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Meldungen zusammen zeigen einen Unterschied, der in der Berichterstattung über „die Rüstungsbranche“ oft verschwimmt: Dass ein Sektor insgesamt von höheren Verteidigungsausgaben profitiert, heißt nicht, dass jedes einzelne Unternehmen darin jeden einzelnen Auftrag gewinnt. Wer in einen Trend investiert, investiert damit nicht automatisch in jeden Gewinner dieses Trends.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein verlorener Auftrag und eine unbelegte Risiko-Überschrift sind zwei verschiedene Dinge – das eine ein Fakt ohne Zahl, das andere eine Überschrift ohne Fakt. Beide verdienen es, auseinandergehalten zu werden, bevor man sie zu einem Gesamturteil über die Aktie verdichtet.',
+      },
+    ],
+  },
+  {
     slug: 'oelpreis-faellt-trotz-pipeline-abschaltung',
     title: 'Saudi-Arabien schaltet eine Pipeline ab – der Ölpreis fällt trotzdem',
     metaTitle: 'Pipeline-Abschaltung in Saudi-Arabien: Ölpreis fällt trotzdem',
