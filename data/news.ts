@@ -101,6 +101,275 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'evonik-schliesst-bitterfeld-hamburg',
+    title: 'Evonik schließt seine Werke in Bitterfeld und Hamburg',
+    teaser:
+      'Evonik macht zwei Standorte dicht – 40 Stellen in Bitterfeld, 50 in Hamburg. Als Grund nennt der Konzern zu stark zersplitterte Strukturen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-14T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Evonik', 'Chemieindustrie', 'Stellenabbau', 'Restrukturierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['evonik'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Evonik-Aktie: Standort in Bitterfeld wird geschlossen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Handelsblatt, 11.09.2026: „Chemieindustrie: Evonik schließt Standorte in Hamburg und Bitterfeld“',
+        url: 'https://www.handelsblatt.com/unternehmen/industrie/chemieindustrie-evonik-schliesst-standorte-in-hamburg-und-bitterfeld/100253946.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Evonik schließt zwei seiner Werke: eines in Bitterfeld, eines in Hamburg. Angekündigt wurde das laut Handelsblatt am Freitag, den 11. September – schließen sollen beide Standorte im Jahr 2027.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Bitterfeld sind 40 Beschäftigte betroffen, die dort Chlorsilane herstellen. In Hamburg trifft es 50 Beschäftigte in der Fertigung von Kosmetik- und Pflegeprodukten – macht zusammen rund 90 Arbeitsplätze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Begründung: Struktur, nicht Nachfrage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Interim-Konzernchef Claus Rettig begründete den Schritt laut Handelsblatt damit, dass Produktions-, Verwaltungs- und Laborstrukturen „in einigen Bereichen zu stark fragmentiert“ seien – das treibe unnötige Kosten und schwäche die Wettbewerbsfähigkeit. Die betroffenen Geschäfte sollen an größeren Evonik-Standorten gebündelt werden; wohin genau, nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Standorte sind nicht der ganze Konzern',
+      },
+      {
+        type: 'paragraph',
+        text: '90 Stellen an zwei von vielen Evonik-Werken sagen wenig über die Auslastung des gesamten Konzerns – sie beschreiben eine Entscheidung über zwei konkrete Standorte, keinen Nachfrageeinbruch für Evonik insgesamt. Eine Zahl zu den erwarteten Einsparungen oder zu Restrukturierungskosten nennt die ausgewertete Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Standortschließung ist zunächst eine Aussage über einzelne Werke und ihre Auslastung – nicht automatisch über die Ertragslage des ganzen Unternehmens. Wer den Konzern beurteilen will, braucht mehr als diese eine Meldung, etwa die nächsten Quartalszahlen.',
+      },
+    ],
+  },
+  {
+    slug: 'ezb-reden-und-kanadas-inflation-14-september',
+    title: 'Zwei EZB-Direktoren sprechen, dann kommt Kanadas Inflation',
+    teaser:
+      'Heute treten zwei EZB-Direktoriumsmitglieder auf, am Nachmittag folgen Kanadas Verbraucherpreise – vier Tage nach der jüngsten EZB-Zinsentscheidung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-14T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Notenbank', 'Kanada', 'Verbraucherpreise'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label: 'wallstreet-online, Kommende Termine, Stand 14.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Wichtige Termine, Stand 14.09.2026, 00:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Europäische Zentralbank, Übersicht Publikationen: letzte geldpolitische Pressekonferenz am 10. September 2026',
+        url: 'https://www.ecb.europa.eu/press/html/index.en.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Auf dem Kalender für heute stehen laut wallstreet-online zwei Auftritte aus dem EZB-Direktorium: Isabel Schnabel spricht um 11:15 Uhr, Piero Cipollone um 15:00 Uhr. Beide Termine sind reine Reden, keine Sitzungen mit Beschluss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vier Tage nach der letzten Entscheidung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die EZB hatte laut eigener Übersicht am 10. September ihre jüngste geldpolitische Pressekonferenz abgehalten. Beide heutigen Reden folgen also kurz danach – was Schnabel und Cipollone konkret sagen werden, geht aus dem Kalendereintrag naturgemäß nicht hervor, bekannt sind nur Zeit und Person.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am selben Nachmittag: Zahlen aus einem anderen Währungsraum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 14:30 Uhr veröffentlicht Kanada seine Verbraucherpreise für August – Gesamtrate und die von der Notenbank beachtete Kernrate. Bei der Kernrate im Monatsvergleich lag der Vormonatswert laut wallstreet-online bei 0,2 Prozent, bei der Gesamtrate im Monatsvergleich bei 0,5 Prozent; eine Prognose nennt die Quelle nur für die Kernrate, ebenfalls 0,2 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diese Daten haben mit der Eurozone nichts zu tun – sie fallen nur zufällig auf dieselbe Uhrzeit wie Cipollones Auftritt. Der Unterschied zwischen beidem ist trotzdem lehrreich: Eine Rede ist eine Meinungsäußerung ohne festen Zahlenwert, eine Verbraucherpreisstatistik ein Datenpunkt, der veröffentlicht wird, ob er gefällt oder nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die Uhrzeiten kennt, weiß, wann er womit rechnen kann – nicht, was am Ende gesagt oder gemessen wird. Eine Rede kann die Markterwartung verschieben, ohne dass sich an der Zinslage etwas geändert hat; das lässt sich erst im Nachhinein auseinanderhalten.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-e-polo-30000-bestellungen',
+    title: 'VW meldet mehr als 30.000 Bestellungen für den E-Polo',
+    teaser:
+      'Volkswagen zählt über 30.000 Bestellungen für den elektrischen E-Polo – mehr als erwartet. Ausgeliefert ist davon bislang nur ein Teil.',
+    category: 'Märkte',
+    publishedAt: '2026-09-14T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'E-Polo', 'Elektroauto', 'Auftragseingang'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Starke Nachfrage: VW-Aktie: Mehr als 30.000 Bestellungen für E-Polo“',
+        url: 'https://www.finanzen.net/nachricht/aktien/starke-nachfrage-vw-aktie-mehr-als-30-000-bestellungen-fuer-e-polo-15931522',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen hat für den neuen elektrischen Kleinwagen E-Polo mehr als 30.000 Bestellungen gezählt. Zusammen mit den technisch verwandten Modellen ID. Cross, Škoda Epiq und Cupra Raval kommt der Konzern laut finanzen.net auf mehr als 100.000 Vorbestellungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bestellt ist noch nicht ausgeliefert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der E-Polo ist seit Ende April 2026 bestellbar und erst seit wenigen Tagen tatsächlich in den Verkaufsräumen zu sehen. Wegen der hohen Nachfrage entstehen laut der Meldung längere Wartezeiten; Volkswagen arbeitet an einer schrittweisen Steigerung der Produktion.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Bestellung ist damit noch kein ausgeliefertes und bezahltes Auto – zwischen beidem liegen Produktionskapazität und die Zeit bis zur Übergabe. Wie viele der 30.000 Bestellungen bereits ausgeliefert wurden, nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Preisstufen, ein Konzernurteil',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Basisversion kostet knapp unter 25.000 Euro, besser ausgestattete Varianten deutlich über 30.000 Euro. VW-Markenchef Thomas Schäfer wertet die Nachfrage laut finanzen.net als Zeichen, dass die Fahrzeugfamilie „die Erwartungen vieler Kundinnen und Kunden“ treffe – eine Einschätzung des Unternehmens selbst, keine unabhängig geprüfte Zahl.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein hoher Auftragseingang ist ein Nachfragesignal, kein Umsatz. Ob daraus tatsächlich Umsatz und Marge werden, entscheidet sich erst an der Auslieferung – und die hängt an einer Produktion, die laut eigener Aussage noch hochgefahren wird.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-roadster-fuenfter-termin-2026',
+    title: 'Tesla nennt für den Roadster bereits den fünften Termin',
+    teaser:
+      'Tesla will den Roadster nun am 1. Oktober zeigen – laut Berichten der fünfte genannte Termin allein in diesem Jahr, seit 2017 mindestens der achte.',
+    category: 'Märkte',
+    publishedAt: '2026-09-14T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tesla', 'Roadster', 'Produktankündigung'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Tesla-Aktie im Fokus: Nach langer Wartezeit endlich neuer Roadster-Termin angekündigt“',
+        url: 'https://www.finanzen.net/nachricht/aktien/roadster-termin-fixiert-tesla-aktie-im-fokus-nach-langer-wartezeit-endlich-neuer-roadster-termin-angekuendigt-00-15931635',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Tesla hat für den seit Jahren verschobenen Roadster einen neuen Termin genannt: den 1. Oktober 2026. Auf der Produktseite läuft dazu ein Countdown, und Elon Musk bestätigte die Enthüllung über einen kurzen Beitrag mit den Worten „New Tesla Roadster Unveil 10.01“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nicht der erste Termin – und nicht der zweite',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut finanzen.net ist der 1. Oktober bereits das fünfte Datum, das Tesla allein in diesem Jahr für die Roadster-Enthüllung genannt hat – nach dem 1. April, Ende April, „in etwa einem Monat“ und August. Seit der ersten Ankündigung des Modells 2017 sei der Termin insgesamt mindestens acht Mal verschoben worden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Enthüllung ist kein Verkaufsstart',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zu Preis oder Serienstart des Fahrzeugs macht die Meldung keine Angabe – angekündigt ist ausschließlich ein Termin, an dem das Auto gezeigt werden soll. Ob dieser Termin diesmal hält, lässt sich aus der Ankündigung selbst nicht ablesen; das lehrt vor allem die Liste der vorherigen Termine.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine wiederholt verschobene Ankündigung ist etwas anderes als eine bestätigte Zahl zu Produktion oder Umsatz. Wer aus einem neuen Datum bereits ein Ergebnis ableitet, überspringt genau den Schritt, an dem die vorherigen vier Termine dieses Jahres gescheitert sind.',
+      },
+    ],
+  },
+  {
+    slug: 'audi-formel-1-team-anteile-interesse',
+    title: 'Audi-Chef: Großes Interesse an Anteilen des F1-Teams',
+    teaser:
+      'Audi-Chef Döllner spricht von großem Interesse an Anteilen des konzerneigenen Formel-1-Teams – verkaufen will er trotzdem nichts überstürzen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-14T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Audi', 'Formel 1', 'Beteiligung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 13.09.2026: „Audi-Boss über das Interesse an Anteilen am Formel-1-Team“',
+        url: 'https://www.finanzen.net/nachricht/aktien/audi-boss-ueber-das-interesse-an-anteilen-am-formel-1-team-15931668',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Audi-Chef Gernot Döllner hat sich laut finanzen.net zum Interesse an Anteilen des konzerneigenen Formel-1-Teams geäußert: „Das Interesse ist sehr groß, das kann ich sagen.“ Verkaufen will er deshalb noch lange nichts.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Großes Interesse heißt nicht: Anteile stehen zum Verkauf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Döllner betonte, es bestehe „im Moment keine Notwendigkeit“, überhastet zu handeln. Ein zusätzlicher Anteilseigner würde einem „sehr, sehr strukturierten Verfahren“ unterliegen, und eine Minderheitsposition für Audi selbst sei „unvorstellbar“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was schon feststeht – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Audi hatte den Schweizer Traditionsrennstall Sauber übernommen und ist heute Mehrheitseigner des Teams; ein katarischer Staatsfonds hält bereits eine nach eigenen Angaben „bedeutende Minderheitsbeteiligung“. Eine genaue Prozentzahl dazu nennt die Meldung nicht – ebenso wenig einen Preis oder eine Bewertung für das Team.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Damit bleibt offen, wie groß ein möglicher weiterer Anteil überhaupt wäre und was er kosten würde. Die Aussage beschreibt Nachfrage, nicht einen Preis – und Nachfrage allein ist keine Bewertung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** „Großes Interesse“ ist eine Aussage über Nachfrage, keine über den Wert eines Anteils. Erst ein tatsächliches Angebot mit einem Preis würde zeigen, wie hoch dieser Wert aus Sicht eines Käufers wirklich liegt.',
+      },
+    ],
+  },
+  {
     slug: 'gold-haelt-marke-vor-fed-entscheidung',
     title: 'Gold hält seine Marke, bevor die Fed über die Zinsen entscheidet',
     teaser:
