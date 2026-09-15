@@ -101,6 +101,357 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'tanker-explosion-hormus-oelpreis-zwei-zahlen',
+    title:
+      'Tanker explodiert in der Straße von Hormus – zwei Portale, zwei Ölpreis-Prozentzahlen',
+    metaTitle: 'Tanker-Explosion in Hormus: Ölpreis uneinheitlich',
+    teaser:
+      'In der Straße von Hormus ist ein Öltanker explodiert. Der Ölpreis reagiert – nur nennen zwei Finanzportale zur gleichen Minute zwei verschiedene Prozentzahlen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-15T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Nahost-Konflikt', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'onvista, Agentur-Meldungen vom 14.09.2026, 20:33 Uhr (dpa-AFX): „ROUNDUP/Revolutionsgarden: Öltanker in Straße von Hormus explodiert“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Nachrichtenübersicht vom 14.09.2026, Rubrik „Private Finanzen“: „Energiepreis-Explosion: 860 US-Dollar mehr pro Haushalt – der Iran-Krieg frisst Amerikas Ersparnisse“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 15.09.2026, 00:19 Uhr (Öl 106,5 USD, +0,7 %) und wallstreet-online, Kursleiste, Stand 15.09.2026, 00:19 Uhr (Öl (Brent) 106,19 USD, +1,96 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Straße von Hormus, der schmalen Meerenge, durch die ein großer Teil des weltweiten Öltransports läuft, ist laut Nachrichtenagentur dpa-AFX ein Öltanker explodiert. Die Meldung bringt das Ereignis mit den iranischen Revolutionsgarden in Verbindung – Details zum Hergang nennt die ausgewertete Übersicht nicht, und ohne sie lässt sich der genaue Ablauf hier nicht rekonstruieren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, zwei Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kurz nach Mitternacht zeigten zwei deutsche Finanzportale die Nordsee-Sorte Brent fast auf denselben Dollar genau – 106,50 bei finanzen.net, 106,19 bei wallstreet-online –, aber mit sehr unterschiedlichen Tagesveränderungen: +0,7 Prozent dort, +1,96 Prozent hier. Beide Zahlen können gleichzeitig richtig sein, wenn sie sich auf unterschiedliche Vergleichspunkte beziehen – etwa den gestrigen Xetra-Schluss gegenüber einem rollierenden 24-Stunden-Fenster im außerbörslichen Handel. Welchen Bezugspunkt welches Portal konkret verwendet, steht in keiner der beiden Übersichten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: "Was der Aufschlag laut Moody's kostet",
+      },
+      {
+        type: 'paragraph',
+        text: "Greifbarer wird die Lage über eine Zahl, die wallstreet-online aus einer Moody's-Einschätzung zitiert: Allein der Energie-Schock aus dem Iran-Konflikt koste US-Verbraucher rund 115 Milliarden Dollar, umgerechnet etwa 860 Dollar je Haushalt. Eine Erklärung, wie genau sich dieser Betrag zusammensetzt, liefert die Übersicht nicht mit.",
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Prozentzahl aus einer Kursleiste ist nur mit ihrem Bezugspunkt aussagekräftig – wer zwei Quellen vergleicht, sollte zuerst prüfen, wogegen jede von ihnen misst, bevor er aus der Differenz etwas Inhaltliches ableitet.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-faellt-trotz-nahost-eskalation',
+    title: 'Gold fällt zum Wochenstart – obwohl der Nahost-Konflikt eskaliert',
+    metaTitle: 'Gold fällt trotz eskalierendem Nahost-Konflikt',
+    teaser:
+      'Steigende Ölpreise wegen des Nahost-Konflikts gelten als Grund für höhere Goldpreise. Am Montag war es umgekehrt – der Goldpreis gab nach.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-15T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Nahost-Konflikt', 'Zinsen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'brent'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News und Marktbericht vom 14.09.2026: „Goldpreis fällt zum Wochenstart – Nahost-Spannungen treiben den Ölpreis“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Top-News/Analyse vom 14.09.2026: „Marktzinsen steigen deutlich – US-Renditen nahe 20-Jahres-Hoch“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Meldung vom 14.09.2026 (Rubrik China): „Goldmarkt: Chinas Schmucknachfrage bricht ein, Anlagegold stärker gefragt“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter am Montag schwächer in die Woche gestartet, während der Ölpreis wegen der Nahost-Spannungen über 107 Dollar geklettert ist. Das ist bemerkenswert, weil geopolitische Krisen Gold sonst eher als „sicheren Hafen“ stützen – diesmal lief die Bewegung gegenläufig.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Erklärung, die die Quelle nicht ausdrücklich liefert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Warum Gold ausgerechnet an diesem Tag nachgab, sagt die ausgewertete Meldung nicht direkt. Sie nennt aber im selben Atemzug eine zweite Schlagzeile: „Marktzinsen steigen deutlich – US-Renditen nahe 20-Jahres-Hoch“. Allgemein gilt: Gold zahlt keine Zinsen, während Anleihen das tun – steigen die Anleiherenditen, wird das Halten von Gold gegenüber verzinsten Anlagen rechnerisch teurer. Ob genau dieser Mechanismus die Bewegung vom Montag erklärt, lässt sich aus der Quelle allein nicht belegen; es ist ein allgemeiner Zusammenhang, keine bestätigte Ursache für diesen einen Tag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Goldmärkte in China, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine weitere Meldung vom selben Tag zeigt, dass „die Goldnachfrage“ selbst keine einheitliche Größe ist: In China ist laut Goldreporter die Schmucknachfrage eingebrochen, während Goldbarren und -münzen als Anlageform deutlich stärker gefragt sind. Derselbe Rohstoff wird also je nach Verwendungszweck – Schmuck oder Geldanlage – von unterschiedlichen Kräften bewegt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Kursausschlag widerlegt keine Faustregel wie „Krisen treiben den Goldpreis“ – er zeigt nur, dass an einem konkreten Tag andere Kräfte überwogen haben. Wer daraus eine Handelsentscheidung ableiten will, braucht mehr als eine Tagesbewegung und eine Schlagzeile.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-aktien-schwaecheln-cybersecurity-legt-zu',
+    title: 'KI-Aktien geben nach, Cybersicherheits-Aktien legen zu',
+    metaTitle: 'KI-Aktien schwach, Cybersecurity-Titel stark',
+    teaser:
+      'Nvidia, AMD und Infineon fielen am Montag unter KI-Sorgen. CrowdStrike und Palo Alto legten am selben Tag zu – ein Etikett, zwei Richtungen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-15T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['KI-Aktien', 'Halbleiter', 'Cybersecurity', 'Nasdaq'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['nvidia', 'amd', 'infineon'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Tech-Aktien stürzen ab: Warum die NVIDIA-Aktie jetzt den entscheidenden Vorteil haben könnte“ und „KI-Aktien wie AMD, Super Micro und Micron stürzen ab: Reißleine ziehen oder Rücksetzer nutzen?“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Aktien von CrowdStrike, Palo Alto & Co. im Höhenflug: Darum trotzen Cybersicherheits-Titel den KI-Sorgen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Infineon-Aktie wegen KI-Sorgen kräftig im Minus - Milliardenprojekt mit TSMC erreicht wichtigen Meilenstein“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Montag gaben laut finanzen.net-Ticker mehrere Halbleiter- und KI-nahe Aktien nach: Nvidia, AMD, Super Micro Computer und Micron werden dort im Zusammenhang mit „KI-Sorgen“ genannt. Was genau diese Sorgen an diesem Tag ausgelöst hat, benennt keine der ausgewerteten Schlagzeilen konkret – der Begriff „KI-Sorgen“ bleibt in den Überschriften unspezifisch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dieselbe Woche, ein Gegenbeispiel',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag meldete finanzen.net unter der Überschrift „Aktien von CrowdStrike, Palo Alto & Co. im Höhenflug“, dass Cybersicherheits-Titel den KI-Sorgen „trotzen“ würden. Cybersicherheitsfirmen verkaufen überwiegend Software-Abonnements und sind vom selben Investitionszyklus in KI-Rechenzentren und -Chips deutlich weniger unmittelbar abhängig als Hersteller von Grafikprozessoren oder Speicherchips.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Gegenbeispiel innerhalb der Chipbranche selbst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass gute Unternehmensnachrichten an einem schwachen Tag nicht automatisch den Kurs stützen, zeigt Infineon: Die Aktie fiel laut finanzen.net „wegen KI-Sorgen kräftig im Minus“ – im selben Satz vermeldet die Überschrift, dass ein „Milliardenprojekt“ mit TSMC „einen wichtigen Meilenstein“ erreicht habe. Details zu diesem Meilenstein oder seinem Umfang in Euro nennt die Übersicht nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Sammelbezeichnung „KI-Aktien“ fasst Unternehmen mit sehr unterschiedlichen Geschäftsmodellen zusammen. Ein gemeinsames Etikett bedeutet nicht, dass die Kurse bei jeder Nachricht in dieselbe Richtung laufen – wer ein Unternehmen beurteilen will, kommt an dessen konkretem Geschäft nicht vorbei.',
+      },
+    ],
+  },
+  {
+    slug: 'rheinmetall-grossauftrag-1000-euro-marke',
+    title:
+      'Rheinmetall holt einen neuen Großauftrag – und hält die 1.000-Euro-Marke trotzdem nicht',
+    metaTitle: 'Rheinmetall: Großauftrag, Aktie unter 1.000 Euro',
+    teaser:
+      'Rheinmetall meldet einen neuen Großauftrag für das Munitionsgeschäft. Die Aktie fiel am selben Tag trotzdem unter die runde 1.000-Euro-Marke.',
+    category: 'Märkte',
+    publishedAt: '2026-09-15T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Rüstungsaktien', 'Auftragseingang'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['rheinmetall', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „Rheinmetall-Aktie hält 1.000-Euro-Marke nicht: Neuer Millionenauftrag treibt Munitionsgeschäft“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Redaktionsbeitrag vom 14.09.2026: „Munition stark gefragt: Rheinmetall rüstet auf: Neuer Großauftrag sorgt für Rückenwind“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „US-Zinsentscheid als wichtiger Entscheidungsfaktor: DAX startet Woche auf rotem Terrain“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Rheinmetall hat laut finanzen.net einen neuen Auftrag für sein Munitionsgeschäft erhalten – die Überschrift spricht von einem „Millionenauftrag“, wallstreet-online von einem „Großauftrag“. Eine konkrete Summe in Euro oder Dollar nennt keine der beiden ausgewerteten Schlagzeilen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Guter Auftrag, schwacher Gesamtmarkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Montag stand laut finanzen.net der gesamte DAX unter Druck: „US-Zinsentscheid als wichtiger Entscheidungsfaktor: DAX startet Woche auf rotem Terrain“ – dazu kamen die oben beschriebenen Sorgen um Ölpreis und KI-Aktien. Ein einzelner Auftrag für Rheinmetall trat damit gegen einen Tag an, an dem der breite Markt ohnehin nachgab.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein guter Auftrag nicht automatisch den Kurs hebt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rüstungsaufträge werden in der Regel über Monate verhandelt, bevor sie öffentlich gemeldet werden. Rechnen Marktteilnehmer mit einem Auftrag dieser Größenordnung bereits, ist die Erwartung möglicherweise schon im Kurs enthalten – dann bewegt die Meldung selbst wenig, selbst wenn das zugrunde liegende Geschäft weiterhin wächst. Ob das hier zutrifft, lässt sich aus den ausgewerteten Schlagzeilen nicht ablesen; sie beschreiben Auftrag und Kursverlauf, nicht die Erwartungshaltung davor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Auftragseingang und Kursreaktion sind zwei getrennte Dinge. Eine Meldung über einen neuen Großauftrag beschreibt das operative Geschäft – ob und wie stark der Kurs darauf reagiert, hängt zusätzlich davon ab, was der Markt vorher schon erwartet hatte und wie der Gesamtmarkt an diesem Tag gerade läuft.',
+      },
+    ],
+  },
+  {
+    slug: 'washtec-guidance-cewe-aktienrueckkauf',
+    title:
+      'Ein Tag, zwei Kapitalmeldungen: WashTec ändert die Prognose, CEWE kauft eigene Aktien zurück',
+    metaTitle: 'WashTec-Prognose und CEWE-Aktienrückkauf im Vergleich',
+    teaser:
+      'WashTec meldet per Ad-hoc eine geänderte Ergebniserwartung, CEWE beschließt am selben Tag einen Aktienrückkauf – zwei sehr unterschiedliche Nachrichten.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-15T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Ad-hoc-Meldung', 'Aktienrückkauf', 'Guidance', 'WashTec', 'CEWE'],
+    relatedTopics: ['aktie', 'kosten-und-gebuehren'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, wO Newsflash vom 14.09.2026: „WashTec Akt: Neue Ergebniserwartung für 2026“ und EQS-Adhoc vom 14.09.2026: „WashTec AG: Anpassung der Ergebniserwartung für 2026“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 14.09.2026: „EQS-News: WashTec beschleunigt Transformation zum Lösungs- und Serviceanbieter und verschlankt Führungsstruktur“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, wO Newsflash vom 14.09.2026: „CEWE Stiftung beschließt Aktienrückkauf – das müssen Anleger wissen“ und EQS-Adhoc vom 14.09.2026: „CEWE Stiftung & Co. KGaA: CEWE decides to buy back own company shares“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'WashTec hat laut wallstreet-online per Ad-hoc-Mitteilung eine „Anpassung der Ergebniserwartung für 2026“ veröffentlicht, konkret eine geänderte EBIT-Prognose. Ob die neue Erwartung höher oder niedriger liegt als die bisherige, geht aus der ausgewerteten Schlagzeile nicht hervor – nur, dass sich etwas geändert hat. Am selben Tag meldete das Unternehmen laut finanzen.net zusätzlich, seine Transformation „zum Lösungs- und Serviceanbieter“ zu beschleunigen und die Führungsstruktur zu verschlanken.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Prognoseänderung überhaupt gemeldet wird',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsennotierte Unternehmen müssen Informationen, die den Kurs erheblich bewegen könnten, unverzüglich als Ad-hoc-Mitteilung veröffentlichen – unabhängig davon, ob die Nachricht positiv oder negativ ausfällt. Allein die Existenz einer solchen Meldung sagt deshalb noch nichts über die Richtung der Änderung aus; das lässt sich nur der eigentlichen Prognosezahl entnehmen, die die ausgewertete Übersicht hier nicht wiedergibt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'CEWE macht das Gegenteil: Geld zurück an die Aktionäre',
+      },
+      {
+        type: 'paragraph',
+        text: 'CEWE Stiftung & Co. KGaA hat laut wallstreet-online per Ad-hoc beschlossen, eigene Aktien zurückzukaufen. Ein Rückkauf verringert die Zahl der ausstehenden Aktien und lässt damit rechnerisch den Gewinn je verbleibender Aktie steigen, ohne dass sich am Gesamtgewinn etwas ändern muss – anders als eine Dividende, bei der Geld direkt und für alle Aktionäre gleich in bar ausgezahlt wird. Wie viele Aktien CEWE zurückkaufen will oder mit welchem Volumen, nennt die ausgewertete Schlagzeile nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Ad-hoc-Meldung zeigt nur, dass etwas Wesentliches passiert ist – nicht automatisch, ob es sich um eine gute oder eine schlechte Nachricht handelt. Wer eine Prognoseänderung oder einen Rückkauf bewerten will, braucht die konkreten Zahlen dahinter, nicht nur die Überschrift.',
+      },
+    ],
+  },
+  {
+    slug: 'wirtschaftstermine-15-september-grosshandelspreise-arbeitsmarkt',
+    title:
+      'Was heute ansteht: deutsche Großhandelspreise, britischer Arbeitsmarkt, Frankreichs Inflation',
+    metaTitle: 'Termine heute: Großhandelspreise, Arbeitsmarkt, Inflation',
+    teaser:
+      'Heute kommen deutsche Großhandelspreise, britische Arbeitsmarktdaten und Frankreichs finale Inflationsrate – ein Tag vor der Fed-Zinsentscheidung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-15T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Konjunkturdaten', 'Arbeitsmarkt', 'Inflation', 'Wirtschaftskalender'],
+    relatedTopics: ['inflation', 'notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-gbp', 'eur-usd'],
+    sources: [
+      {
+        label: 'wallstreet-online, Kommende Termine, Stand 15.09.2026, 00:19 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online zeigt für heute mehrere Termine: um 6:30 Uhr Japans Tertiärindustrie-Index im Monatsvergleich (Prognose +0,3 Prozent, Vormonat -0,2 Prozent), um 8:00 Uhr den deutschen Großhandelspreisindex sowie ein Bündel britischer Arbeitsmarktdaten, um 8:45 Uhr Frankreichs Verbraucherpreisindex nach EU-Norm.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Deutschland: zwei Zeitfenster, ein Index',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den deutschen Großhandelspreisindex nennt der Kalender zwei Werte: im Jahresvergleich lag der Vormonatswert bei 5,3 Prozent, eine Prognose dafür fehlt. Im Monatsvergleich lautet die Prognose +0,1 Prozent, nach zuvor +0,2 Prozent. Der Großhandelspreisindex gilt als früher Hinweis auf Preisdruck, der über die Lieferkette später bei den Verbraucherpreisen ankommen kann – muss aber nicht in vollem Umfang.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'London: mehr offene Fragen als eine einzelne Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die britischen Arbeitsmarktdaten um 8:00 Uhr bestehen laut Kalender aus mehreren Teilen: Die Zahl der Anspruchsberechtigten auf Arbeitslosenunterstützung (Claimant Count Change) soll von zuvor -11.000 auf eine Prognose von +8.300 drehen, die Löhne inklusive Bonus sollen von 4,1 auf 3,9 Prozent im Jahresvergleich abkühlen, und die ILO-Arbeitslosenquote wird mit 5,0 Prozent nach zuvor 4,9 Prozent erwartet. Für die Erwerbstätigenveränderung (Employment Change) und die einfache Arbeitslosenquote nennt der Kalender keine Prognose, nur die Vorwerte von 83.000 beziehungsweise 4,3 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Frankreichs finale Verbraucherpreise um 8:45 Uhr sollen laut Prognose bei 2,7 Prozent liegen – exakt auf dem Niveau des Vormonats. Eine finale Veröffentlichung bestätigt in der Regel eine frühere Schnellschätzung, ohne dass sich der Wert noch wesentlich ändert; genau das würde eine unveränderte Prognose gegenüber dem Vormonat hier nahelegen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Diese Daten liegen einen Tag vor der Zinsentscheidung der US-Notenbank, die laut wallstreet-online für Mittwoch erwartet wird. Sie betreffen die Fed nicht unmittelbar, zeigen aber, worauf andere Notenbanken – etwa die Bank of England – in denselben Wochen blicken. Wer nur auf die Fed schaut, übersieht leicht, dass an mehreren Orten gleichzeitig Zahlen fällig werden.',
+      },
+    ],
+  },
+  {
     slug: 'evonik-schliesst-bitterfeld-hamburg',
     title: 'Evonik schließt seine Werke in Bitterfeld und Hamburg',
     teaser:
