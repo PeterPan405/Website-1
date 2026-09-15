@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-14T10:50:43.544Z",
+  "abgerufenAm": "2026-09-15T10:13:45.373Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-08-25",
       "bis": "2026-10-23",
       "zeilen": 656,
-      "kommendGesamt": 503,
+      "kommendGesamt": 426,
       "spalten": [
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -39,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 38,
-      "letzterTag": "2026-11-05",
-      "zeilen": 3005,
-      "imKatalog": 287,
-      "mitLage": 33,
-      "beigetragen": 287
+      "letzterTag": "2026-11-06",
+      "zeilen": 3111,
+      "imKatalog": 289,
+      "mitLage": 35,
+      "beigetragen": 289
     }
   },
   "unternehmen": {
@@ -7519,9 +7519,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-11-06",
-          "basis": "2025-11-07",
-          "streuungTage": 4,
-          "newYorkerZeit": "07:00"
+          "basis": "Sep/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-23",
@@ -7710,12 +7710,6 @@
         "2025-01-29": "07:00"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-11-04",
-          "basis": "Sep/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq"
-        },
         {
           "erwartet": "2027-01-27",
           "basis": "2026-01-28",
@@ -12126,10 +12120,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-27",
+          "erwartet": "2026-10-29",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-19",
@@ -12508,9 +12504,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-10-27",
-          "basis": "2025-10-28",
+          "basis": "Sep/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "16:43"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-22",
@@ -14608,10 +14604,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-05",
+          "erwartet": "2026-10-06",
           "basis": "Aug/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-01-06",
@@ -17719,6 +17717,18 @@
           "herkunft": "nasdaq"
         }
       ]
+    },
+    "YPF": {
+      "name": "YPF Sociedad Anonima",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-06",
+          "basis": "Sep/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
+        }
+      ]
     }
   },
   "zuletztVersucht": {
@@ -18141,7 +18151,7 @@
     "LI.PA": "2026-09-12",
     "LIGHT.AS": "2026-09-13",
     "LLOY.L": "2026-09-14",
-    "LONN.SW": "2026-08-18",
+    "LONN.SW": "2026-09-15",
     "LOTB.BR": "2026-08-18",
     "LPP.WA": "2026-08-18",
     "LR.PA": "2026-08-18",
