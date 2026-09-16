@@ -1503,6 +1503,118 @@ an, wenn Notbehelf + frischer Entwurf + noch kein Podcast zusammenkommen.
 Ein Notbehelf hat damit den ganzen Vormittag Gelegenheiten, ersetzt zu
 werden – bis 04:53 deutscher Zeit, wenn der Podcast ihn festschreibt.
 
+## Die Folge ist eine Nachrichtensendung, kein Lehrstück
+
+Am 16. September 2026 hat der Betreiber vier Dinge auf einmal beanstandet:
+
+> im podcast gibt es noch immer viele sprachfehler und es soll dort nichts
+> erklärt werden sondern nur die daily news kommen wirtschaft und politik du
+> brauchst auch nicht so sehr auf einzelne titel eingehen wenn dann nur auf
+> die big titel wenn es etwas sehr wichtiges gibt ansonsten halt auch wichtig
+> events zb fed zinsentscheide usw oder jetzt wo russland die ukraine nage der
+> polnischen grenze angriff aber alles objektiv ohne positionierung oder
+> meinung
+
+### Was in der Folge wirklich stand
+
+Nachgesehen wurde nicht im Kopf, sondern am erzeugten Sprechtext. Die Folge
+zum 30. Juli, 669 Wörter, enthielt unter anderem:
+
+    „der Ess und Pie fünfhundert"            → stand da als „S und P"
+    „der Nässdackminus einhundert"           → aus „Nasdaq-100"
+    „der USminus dreißig"                    → aus „US-30"
+    „Ein neun-zuminus drei-Stillhalten"      → aus „9-zu-3"
+    „WTI", „Bank of England", „Warsh"        → gar nicht umgeschrieben
+
+**Der Fehler mit dem Minus war eine einzige Zeile.** Die Vorzeichenregel in
+`sprechbar()` fasste jeden Bindestrich vor einer Ziffer. Ein Bindestrich in
+einem zusammengesetzten Wort ist kein Minuszeichen; unterscheiden lassen sich
+die beiden an dem, was links davon steht. Das ist wieder der Satz aus den
+Lehren: **Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist
+keine.** „Strich vor Ziffer" ist kein Merkmal eines Vorzeichens.
+
+### Warum die Aussprachetabelle trotz Prüfung weiter driftete
+
+`tests/sprechfassung-aussprache.test.ts` prüfte die Regeln seit dem 20. August
+2026 maschinell – **an einer handgepflegten Liste von siebzehn Wörtern.** Die
+Tabelle hatte zu diesem Zeitpunkt über hundert Einträge.
+
+Das ist eine Stichprobe, die wie eine Zusicherung aussieht. Wer einen Namen
+einträgt, denkt nicht daran, ihn zusätzlich in eine Testdatei zu schreiben; die
+Prüfung bleibt grün und sagt nichts darüber, was sie nicht angesehen hat.
+
+Seither läuft die Regel über **jeden** Eintrag. Das Probewort entsteht aus dem
+Muster selbst, und lässt es sich nicht ablesen, fällt der Eintrag durch, statt
+übersprungen zu werden – eine Prüfung, die still auslässt, was sie nicht
+versteht, ist wieder eine Stichprobe.
+
+**Beim ersten Lauf fand sie sofort einen Fehler:** „Private Equity" stand als
+„Preiwet Ekwiti" da. Deutsches „kw" ist /kv/, gesprochen wurde also „Ekwiti".
+Dieselbe Falle wie bei „Squeeze" → „Skwies", das ein Mensch beim Zuhören
+gefunden hatte. Die alte Regel konnte beide nicht sehen: Sie suchte ein „w" im
+**englischen** Wort, und in „Squeeze" und „Equity" steht keins – das /w/ steckt
+im „qu".
+
+### Nichts erklären heißt: das Feld weglassen, nicht kürzen
+
+Die Folge trug bis dahin zweimal Erklärung: `whyItMatters` hing an jedem
+Themenabsatz, und das „Fazit" am Schluss trug den Satz der wichtigsten Meldung
+ein zweites Mal vor. Beides ist weg.
+
+**Das Feld bleibt in den Daten und auf der Website.** Es ist dort der erklärte
+Zweck der Rubrik, und der Abschluss der Folge verweist genau darauf: „Alle
+Themen ausführlich und mit Einordnung findest du auf iminvests.de." Der
+Unterschied ist nicht der Umfang, sondern die Gattung – wer morgens
+Nachrichten hört, will wissen, was passiert ist.
+
+Dieselbe Ausgabe ergibt damit 472 statt 669 Wörter. Die Beschreibung sagt
+seither nicht mehr „rund fünf Minuten", sondern rechnet die Spieldauer aus dem
+Sprechtext: Eine Angabe, die einmal gestimmt hat und seither mitgeschleppt
+wird, ist genau der stille Fehler.
+
+### Warum die Mischung nicht im Code entschieden wird
+
+Der naheliegende Schritt wäre ein Riegel in `baueFolge()`: Einzeltitel
+erkennen und nach hinten sortieren. Nachgezählt an allen 291 Meldungen aus 47
+Ausgaben, ob sich das überhaupt entscheiden lässt – das Ergebnis war **nein**.
+Das beste verfügbare Merkmal, „genau ein `relatedSymbol`", trifft 137 von 291
+und steht gleichermaßen unter „Apple stellt faltbares iPhone vor" und unter
+„Gaspreis steigt erstmals seit 2022 über 80 Euro".
+
+Ein Klassifikator auf Merkmalen, die der Stoff nicht trägt, hätte sortiert und
+dabei geraten. Also steht die Mischung dort, wo der Text entsteht: im Prompt,
+in `scripts/nachrichten-erzeugen.ts` **und** `nachrichten-agent.yml`. Die
+Rangfolge unter `top` ist die Rangfolge der Folge.
+
+### Objektivität: Prompt plus Grenze
+
+Eine Anweisung an ein Modell ist eine Bitte, keine Zusage – derselbe Satz wie
+bei den geplanten Läufen. Deshalb prüft `positionierungen()` in
+`lib/editions-validate.ts` zusätzlich, und `scripts/nachrichten-erzeugen.ts`
+holt dieselbe Funktion, statt die Liste abzuschreiben.
+
+Geprüft wird **nur `summary`** – der Text, der gesprochen wird – und nur, was
+sich mechanisch entscheiden lässt: Anlageempfehlung und eigene Meinung.
+Urteilende Adjektive stehen bewusst nicht in der Liste: In einem Zitat mit
+Zuschreibung sind sie richtig, und eine Wortliste, die das nicht unterscheiden
+kann, beanstandet irgendwann eine korrekte Meldung und wird dann abgeschaltet
+statt befolgt.
+
+Über alle 47 Ausgaben findet die Regel keinen Treffer. Dass sie trotzdem
+arbeitet, zeigt `tests/editions-objektiv.test.ts` an neun Sätzen, die sie
+beanstanden **muss**, und sieben, die durchgehen müssen – darunter die heiklen
+„Der Bericht sollte um 14:30 Uhr erscheinen" und „Die Fed dürfte den Leitzins
+halten".
+
+### Der Nebenbefund: Kapitelnamen aus Dezimalkommas
+
+Beim Nachsehen fiel auf, dass `kernDerUeberschrift()` an `[:–—,]` trennte –
+also auch am **Dezimalkomma**. In einem Börsentext steht in fast jeder
+Überschrift eines. Herausgekommen ist „Öl springt 7" als Kapitelname, und in
+jeder Folgenbeschreibung stand „Wir sprechen über Öl springt 7, Microsoft
+springt, Heute." Dazu kam der Stummel: „Heute:" und „Wall Street:" sind
+Rubriken, kein Kern.
+
 ## Die Lernseiten sprechen mit derselben Stimme wie der Podcast
 
 Seit dem 10. August 2026. Vorher las die Leiste über `speechSynthesis` mit der

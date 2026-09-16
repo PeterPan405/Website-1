@@ -338,21 +338,22 @@ Zusage: höchstens sechs Minuten.
   `lib/sprechfassung.ts`, zuerst angewandt, zusammengesetzte Ausdrücke vor
   ihren Bestandteilen. Nicht hinein gehört, was im Deutschen deutsch
   gesprochen wird („ETF", „KI", „Broker", „Bond", „Trend").
-- **Drei Fallen der deutschen Rechtschreibung, und die Tabelle hat sie schon
-  neunmal übersehen:** „st"/„sp" am Wortanfang sind /scht/ und /schp/; „w" ist
-  **immer** /v/, für englisches /w/ steht **„u"**; „v" am Wortende ist /f/,
-  dort steht ebenfalls „w". `tests/sprechfassung-aussprache.test.ts` prüft die
-  letzten beiden maschinell – steht im englischen Wort ein „w" vor einem
-  Vokal, muss in der Umschrift ein „u" stehen, und ein „v" verlangt ein „w".
-- **Kleingedrucktes steht hinter der Begrüßung**, als zweiter Absatz, vor der
-  ersten Meldung: erst der KI-Hinweis, dann der Rechtshinweis – eine Stelle,
-  nicht zwei. Nicht davor (drei Sekunden halten den Hörer), nicht am Ende.
-  Beides Nutzerwunsch.
+- **Drei Fallen der deutschen Rechtschreibung:** „st"/„sp" am Wortanfang sind
+  /scht/ und /schp/; „w" ist **immer** /v/, für englisches /w/ – auch das in
+  „qu" – steht **„u"**; „v" am Wortende ist /f/, dort steht ebenfalls „w".
+  `tests/sprechfassung-aussprache.test.ts` prüft **jeden** Tabelleneintrag,
+  nicht eine Handliste.
+- **In der Folge wird nichts erklärt** – nur Nachrichten, Wirtschaft und
+  Politik, objektiv. Einzeltitel nur, wenn groß **und** erheblich. `whyItMatters` bleibt auf der Website; Grenze:
+  `positionierungen()` in `lib/editions-validate.ts`.
+- **Kleingedrucktes steht hinter der Begrüßung**, vor der ersten Meldung: erst
+  KI-Hinweis, dann Rechtshinweis – eine Stelle, nicht zwei. Nicht davor (drei
+  Sekunden halten den Hörer), nicht am Ende. Nutzerwunsch.
 - **Ein Störgeräusch ist häufiger ein Ton als ein Rauschen.** Erkannt wird
-  deshalb auch, dass die Energie in **einer** Frequenz sitzt
-  (`TONANTEIL_GRENZE`) – wer daran etwas ändert, misst nach.
+  auch Energie in **einer** Frequenz (`TONANTEIL_GRENZE`) – wer das ändert,
+  misst nach.
 - **Gesprochen wird gebeugt:** `ordnungszahlenSprechbar()`. Wer eine weitere
-  Stelle baut, an der Text gesprochen wird, führt ihn durch dieselbe.
+  Sprechstelle baut, führt sie durch dieselbe.
 - **Eine ausgetauschte Datei erreicht keinen Hörer.** Spotify holt eine Folge
   einmal, erkannt an ihrer Kennung. Eine zweite Fassung braucht eine erhöhte
   `fassung` – sparsam, sie erzeugt bei jedem Hörer eine „neue Folge".
@@ -363,8 +364,7 @@ Zusage: höchstens sechs Minuten.
   fehlen 70 gerechnete Beschreibungen. Der Fingerabdruck hängt an ihnen.
   Reihenfolge Beginner → Akademie → Fortgeschritten → Profi. Ohne Aufnahme
   spricht das Gerät – kein Fehler.
-- `lese-stimme.yml` läuft nach Zeitplan (23:19 UTC); 12 von 172 Seiten sind
-  gesprochen.
+- `lese-stimme.yml` läuft 23:19 UTC; 12 von 172 Seiten sind gesprochen.
 
 → `ENTSCHEIDUNGEN.md`: „Eine Fallunterscheidung über Merkmale, die der Stoff
 nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
