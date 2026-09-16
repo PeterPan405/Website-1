@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-15T10:13:45.373Z",
+  "abgerufenAm": "2026-09-16T10:06:56.432Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -11,7 +11,7 @@
       "von": "2026-08-25",
       "bis": "2026-10-23",
       "zeilen": 656,
-      "kommendGesamt": 426,
+      "kommendGesamt": 424,
       "spalten": [
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
         "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
@@ -39,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 38,
-      "letzterTag": "2026-11-06",
-      "zeilen": 3111,
-      "imKatalog": 289,
-      "mitLage": 35,
-      "beigetragen": 289
+      "letzterTag": "2026-11-09",
+      "zeilen": 3309,
+      "imKatalog": 292,
+      "mitLage": 39,
+      "beigetragen": 292
     }
   },
   "unternehmen": {
@@ -952,7 +952,9 @@
           "erwartet": "2026-10-20",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-01-19",
@@ -4133,7 +4135,9 @@
           "erwartet": "2026-10-15",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-19",
@@ -10361,10 +10365,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-15",
+          "erwartet": "2026-10-16",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-20",
@@ -12221,6 +12227,12 @@
         "2025-10-10": "07:15"
       },
       "vorhersagen": [
+        {
+          "erwartet": "2026-11-09",
+          "basis": "Sep/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
+        },
         {
           "erwartet": "2027-05-04",
           "basis": "2026-05-05",
@@ -14507,9 +14519,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-11-09",
-          "basis": "2025-11-10",
-          "streuungTage": 1,
-          "newYorkerZeit": "07:32"
+          "basis": "Sep/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-01",
@@ -17711,10 +17723,12 @@
       "bisher": [],
       "vorhersagen": [
         {
-          "erwartet": "2026-11-04",
+          "erwartet": "2026-10-28",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         }
       ]
     },
@@ -17724,6 +17738,18 @@
       "vorhersagen": [
         {
           "erwartet": "2026-11-06",
+          "basis": "Sep/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
+        }
+      ]
+    },
+    "MNDY": {
+      "name": "monday.com Ltd.",
+      "bisher": [],
+      "vorhersagen": [
+        {
+          "erwartet": "2026-11-09",
           "basis": "Sep/2026",
           "streuungTage": 0,
           "herkunft": "nasdaq"
@@ -18152,7 +18178,7 @@
     "LIGHT.AS": "2026-09-13",
     "LLOY.L": "2026-09-14",
     "LONN.SW": "2026-09-15",
-    "LOTB.BR": "2026-08-18",
+    "LOTB.BR": "2026-09-16",
     "LPP.WA": "2026-08-18",
     "LR.PA": "2026-08-18",
     "LREN3.SA": "2026-08-18",
