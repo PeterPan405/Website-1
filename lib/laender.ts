@@ -85,6 +85,7 @@ export interface Land {
   bipProKopfKKP?: Kennwert
   arbeitslosenquote?: Kennwert
   inflation?: Kennwert
+  wohneigentumsquote?: Kennwert
 
   indizes: Landeskurs[]
   aktien: Landeskurs[]
@@ -102,6 +103,7 @@ export type MetrikId =
   | 'bipProKopfKKP'
   | 'arbeitslosenquote'
   | 'inflation'
+  | 'wohneigentumsquote'
   | 'kurse'
 
 export interface Metrik {
@@ -226,6 +228,35 @@ export const metriken: Metrik[] = [
     hoherWertIstGross: true,
   },
   {
+    id: 'wohneigentumsquote',
+    label: 'Wohneigentum',
+    /*
+      Drei Dinge müssen in der Erklärung stehen, weil die Zahl sonst falsch
+      gelesen wird.
+
+      **Personen, nicht Haushalte.** Eurostat misst „Distribution of
+      population by tenure status" – gezählt werden Menschen, die in einer
+      Eigentumswohnung oder einem eigenen Haus leben, einschließlich Kindern.
+      Die Quote je Haushalt liegt regelmäßig niedriger, weil Eigentümer-
+      haushalte im Schnitt größer sind. Wer die beiden verwechselt, hält den
+      Unterschied für einen Fehler.
+
+      **Mit laufendem Kredit zählt als Eigentum.** Wer sein Haus abbezahlt,
+      ist hier Eigentümer – das ist die übliche Abgrenzung und trotzdem nicht
+      selbstverständlich.
+
+      **Hoch ist nicht gut.** Bei jeder anderen Kennzahl dieser Seite steht
+      oben, wer vorn liegt. Hier nicht: Rumänien (93 Prozent) und die Schweiz
+      (unter 50) sagen über Wohlstand nichts aus. Hohe Quoten entstehen oft
+      durch Privatisierung von Staatswohnungen, niedrige durch einen großen,
+      gut geschützten Mietmarkt.
+    */
+    erklaerung:
+      'Anteil der Menschen, die in einer Wohnung oder einem Haus im Eigentum ihres Haushalts leben – mit laufendem Kredit oder abbezahlt. Gezählt werden Personen, nicht Haushalte; die Quote je Haushalt liegt niedriger, weil Eigentümerhaushalte im Schnitt größer sind. Eine hohe Quote ist kein Wohlstandszeichen: Rumänien liegt über 90 Prozent, die Schweiz und Deutschland darunter. Hohe Werte stammen oft aus der Privatisierung von Staatswohnungen, niedrige aus einem großen, gut geschützten Mietmarkt.',
+    einheit: 'Prozent der Bevölkerung',
+    hoherWertIstGross: true,
+  },
+  {
     id: 'kurse',
     label: 'Kurse auf dieser Seite',
     erklaerung:
@@ -273,6 +304,7 @@ type Momentaufnahme = {
       bipProKopfKKP?: { wert: number; jahr: number }
       arbeitslosenquote?: { wert: number; jahr: number }
       inflation?: { wert: number; jahr: number }
+      wohneigentumsquote?: { wert: number; jahr: number }
     }
   >
   schuldenQuelle?: { label: string; url: string; abgrenzung: string }
@@ -281,6 +313,7 @@ type Momentaufnahme = {
   einkommenQuelle?: { label: string; url: string; abgrenzung: string }
   arbeitslosenQuelle?: { label: string; url: string; abgrenzung: string }
   inflationQuelle?: { label: string; url: string; abgrenzung: string }
+  wohneigentumQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -647,6 +680,26 @@ function baueLaender(): Land[] {
             },
           }
         : {}),
+      /*
+        Wohneigentumsquote: gemessen oder gar nicht – und hier ist das keine
+        Vorsichtsmaßnahme, sondern zwingend.
+
+        Bei Lohn und Vermögen füllt eine Regression aus der Kaufkraft die
+        Lücken, weil beide mit ihr steigen. Beim Wohneigentum ist es
+        **umgekehrt**, und zwar deutlich: Deutschland liegt bei 47 Prozent,
+        Rumänien bei 93, die Schweiz noch unter Deutschland. Reich heißt hier
+        eher zur Miete. Eine aus dem Wohlstand geschätzte Quote wäre nicht
+        ungenau, sondern seitenverkehrt.
+      */
+      ...(basis?.wohneigentumsquote
+        ? {
+            wohneigentumsquote: {
+              wert: basis.wohneigentumsquote.wert,
+              zeitraum: String(basis.wohneigentumsquote.jahr),
+              quelle: 'eurostat-wohneigentum',
+            },
+          }
+        : {}),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
     }
@@ -684,6 +737,7 @@ assertLaenderValid({
     'weltbank-einkommen',
     'weltbank-arbeitslosigkeit',
     'weltbank-inflation',
+    'eurostat-wohneigentum',
     'geschaetzt-kaufkraft',
     'geschaetzt-vermoegen',
     'geschaetzt-reihe',
@@ -734,6 +788,8 @@ export function wertFuer(land: Land, metrik: MetrikId): number | null {
       return land.arbeitslosenquote?.wert ?? null
     case 'inflation':
       return land.inflation?.wert ?? null
+    case 'wohneigentumsquote':
+      return land.wohneigentumsquote?.wert ?? null
     case 'kurse': {
       const anzahl = land.indizes.length + land.aktien.length
       // Null Kurse ist eine Aussage, kein fehlender Wert – deshalb 0 und nicht

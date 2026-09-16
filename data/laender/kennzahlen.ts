@@ -204,6 +204,12 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
     abgrenzung:
       'Verbraucherpreise, Veränderung gegenüber dem Vorjahr in Prozent (FP.CPI.TOTL.ZG). Der Durchschnitt eines abgeschlossenen Jahres, nicht die Rate von heute. Der Warenkorb wird je Land national festgelegt und ist zwischen Ländern nicht deckungsgleich. Wird von scripts/laender-abrufen.ts geholt.',
   },
+  'eurostat-wohneigentum': {
+    label: 'Eurostat, EU-SILC – Bevölkerung nach Wohnstatus (ilc_lvho02)',
+    url: 'https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02/default/table',
+    abgrenzung:
+      'Anteil der Bevölkerung, die in einer Wohnung im Eigentum ihres Haushalts lebt – mit laufendem Kredit und ohne (tenure = OWN), über alle Haushaltsformen und Einkommensgruppen. Gezählt werden Personen, nicht Haushalte. Erhoben in der Gemeinschaftsstatistik über Einkommen und Lebensbedingungen; die Reihe deckt die EU, EFTA- und Beitrittsländer ab, nicht die übrige Welt. Wird von scripts/laender-abrufen.ts geholt.',
+  },
 }
 
 /**

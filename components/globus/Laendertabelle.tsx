@@ -40,6 +40,7 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
               'Medianvermögen (US-$)',
               'Arbeitslos (%)',
               'Inflation (%)',
+              'Wohneigentum (%)',
               'Kurse',
             ].map((spalte, index) => (
               <th
@@ -101,6 +102,18 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
                 <Zelle
                   wert={
                     land.inflation ? formatNumberSigned(land.inflation.wert, 1) : null
+                  }
+                />
+                {/*
+                  Ohne Vorzeichen und mit einer Nachkommastelle wie die
+                  übrigen Quoten. Negative Werte gibt es hier nicht: Eine
+                  Eigentumsquote liegt zwischen 0 und 100.
+                */}
+                <Zelle
+                  wert={
+                    land.wohneigentumsquote
+                      ? formatNumber(land.wohneigentumsquote.wert, 1)
+                      : null
                   }
                 />
                 <Zelle wert={kurse > 0 ? String(kurse) : null} />

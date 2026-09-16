@@ -388,6 +388,10 @@
       "inflation": {
         "wert": 3.5,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 54.2,
+        "jahr": 2025
       }
     },
     "AZE": {
@@ -598,6 +602,10 @@
       },
       "inflation": {
         "wert": 2.5,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 70.9,
         "jahr": 2025
       }
     },
@@ -903,6 +911,10 @@
       },
       "inflation": {
         "wert": 4.6,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 86.1,
         "jahr": 2025
       }
     },
@@ -1454,6 +1466,10 @@
       "inflation": {
         "wert": 3.7,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 91.4,
+        "jahr": 2025
       }
     },
     "CUB": {
@@ -1519,6 +1535,10 @@
       "inflation": {
         "wert": 0.1,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 69.2,
+        "jahr": 2025
       }
     },
     "CZE": {
@@ -1555,6 +1575,10 @@
       },
       "inflation": {
         "wert": 2.5,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 75.1,
         "jahr": 2025
       }
     },
@@ -1629,6 +1653,10 @@
       },
       "inflation": {
         "wert": 1.9,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 58.4,
         "jahr": 2025
       }
     },
@@ -1882,6 +1910,10 @@
       "inflation": {
         "wert": 4.8,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 79.7,
+        "jahr": 2025
       }
     },
     "SWZ": {
@@ -2029,6 +2061,10 @@
       "inflation": {
         "wert": 0.3,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 66.9,
+        "jahr": 2025
       }
     },
     "FRA": {
@@ -2065,6 +2101,10 @@
       },
       "inflation": {
         "wert": 0.9,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 61.4,
         "jahr": 2025
       }
     },
@@ -2220,6 +2260,10 @@
       "inflation": {
         "wert": 2.2,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 47.2,
+        "jahr": 2025
       }
     },
     "GHA": {
@@ -2293,6 +2337,10 @@
       },
       "inflation": {
         "wert": 2.5,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 69.4,
         "jahr": 2025
       }
     },
@@ -2582,6 +2630,10 @@
       "inflation": {
         "wert": 4.4,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 89.8,
+        "jahr": 2025
       }
     },
     "ISL": {
@@ -2768,6 +2820,10 @@
       "inflation": {
         "wert": 2.2,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 70.9,
+        "jahr": 2025
       }
     },
     "IMN": {
@@ -2849,6 +2905,10 @@
       },
       "inflation": {
         "wert": 1.5,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 77.1,
         "jahr": 2025
       }
     },
@@ -3188,6 +3248,10 @@
       "inflation": {
         "wert": 3.7,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 82.2,
+        "jahr": 2025
       }
     },
     "LBN": {
@@ -3348,6 +3412,10 @@
       "inflation": {
         "wert": 3.8,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 86.5,
+        "jahr": 2025
       }
     },
     "LUX": {
@@ -3384,6 +3452,10 @@
       },
       "inflation": {
         "wert": 2.3,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 64.1,
         "jahr": 2025
       }
     },
@@ -3558,6 +3630,10 @@
       },
       "inflation": {
         "wert": 2.4,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 70.9,
         "jahr": 2025
       }
     },
@@ -3986,6 +4062,10 @@
       "inflation": {
         "wert": 3.3,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 68.8,
+        "jahr": 2025
       }
     },
     "NCL": {
@@ -4213,6 +4293,10 @@
       },
       "inflation": {
         "wert": 3.1,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 80,
         "jahr": 2025
       }
     },
@@ -4486,6 +4570,10 @@
       "inflation": {
         "wert": 3.8,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 87.2,
+        "jahr": 2025
       }
     },
     "PRT": {
@@ -4522,6 +4610,10 @@
       },
       "inflation": {
         "wert": 2.3,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 71.2,
         "jahr": 2025
       }
     },
@@ -4677,6 +4769,10 @@
       },
       "inflation": {
         "wert": 7.2,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 93.2,
         "jahr": 2025
       }
     },
@@ -5017,6 +5113,10 @@
       "inflation": {
         "wert": 3.9,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 88.9,
+        "jahr": 2025
       }
     },
     "SYC": {
@@ -5154,6 +5254,10 @@
       "inflation": {
         "wert": 4,
         "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 93.8,
+        "jahr": 2025
       }
     },
     "SVN": {
@@ -5190,6 +5294,10 @@
       },
       "inflation": {
         "wert": 2.4,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 74.2,
         "jahr": 2025
       }
     },
@@ -5333,6 +5441,10 @@
       },
       "inflation": {
         "wert": 2.7,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 73.6,
         "jahr": 2025
       }
     },
@@ -5485,6 +5597,10 @@
       },
       "inflation": {
         "wert": 0.7,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 64.6,
         "jahr": 2025
       }
     },
@@ -5795,6 +5911,10 @@
       },
       "inflation": {
         "wert": 34.9,
+        "jahr": 2025
+      },
+      "wohneigentumsquote": {
+        "wert": 56.9,
         "jahr": 2025
       }
     },
@@ -6298,5 +6418,10 @@
         "jahr": 2022
       }
     }
+  },
+  "wohneigentumQuelle": {
+    "label": "Eurostat, EU-SILC – Bevoelkerung nach Wohnstatus (ilc_lvho02)",
+    "url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02/default/table",
+    "abgrenzung": "Anteil der Bevoelkerung, der in einer Wohnung im Eigentum des eigenen Haushalts lebt – mit laufendem Kredit und ohne (tenure = OWN), ueber alle Einkommensgruppen und Haushaltsformen. Gezaehlt werden Personen, nicht Haushalte; die Quote je Haushalt liegt niedriger, weil Eigentuemerhaushalte im Schnitt groesser sind. Die Reihe deckt EU, EFTA und Beitrittslaender ab, nicht die uebrige Welt."
   }
 }
