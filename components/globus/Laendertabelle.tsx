@@ -23,7 +23,7 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
 
   return (
     <div className="rounded-card border-border relative mt-6 overflow-x-auto border">
-      <table className="w-full min-w-[52rem] border-collapse text-sm">
+      <table className="w-full min-w-[68rem] border-collapse text-sm">
         <caption className="border-border bg-surface-muted text-fg-muted border-b px-4 py-2.5 text-left text-xs font-medium">
           Alle {laender.length} Länder der Karte. Leere Zellen bedeuten „keine Angabe
           hinterlegt“ – nicht null.
@@ -38,10 +38,12 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
               'Schulden (% BIP)',
               'Gehalt (US-$/Jahr)',
               'Medianvermögen (US-$)',
+              'Einkommen je Kopf (US-$)',
+              'Kaufkraft je Kopf (US-$)',
               'Arbeitslos (%)',
               'Inflation (%)',
               'Wohneigentum (%)',
-              'Kinder je Frau',
+              'Geburtenrate (Kinder je Frau)',
               'Kurse',
             ].map((spalte, index) => (
               <th
@@ -85,6 +87,18 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
                   wert={
                     land.medianvermoegen ? formatNumber(land.medianvermoegen.wert) : null
                   }
+                />
+                {/*
+                  Diese beiden Spalten fehlten bis zum 16. September 2026 –
+                  dieselbe Lücke wie in der Landtafel und in der Einfärbung
+                  der Karte. Die Tabelle ist die barrierefreie Fassung der
+                  Karte; was dort auswählbar ist, gehört hierher.
+                */}
+                <Zelle
+                  wert={land.bneProKopf ? formatNumber(land.bneProKopf.wert) : null}
+                />
+                <Zelle
+                  wert={land.bipProKopfKKP ? formatNumber(land.bipProKopfKKP.wert) : null}
                 />
                 <Zelle
                   wert={

@@ -7,6 +7,7 @@ import { Globus, type GlobusLand } from '@/components/globus/Globus'
 import { cn } from '@/lib/cn'
 import { quantilsgrenzen, stufeFuer } from '@/lib/globus-geometrie'
 import { formatNumber, formatNumberSigned } from '@/lib/format'
+import type { MetrikId } from '@/lib/laender'
 
 /**
  * Der Globus mit allem, was ihn bedienbar macht.
@@ -33,6 +34,8 @@ export interface AnsichtLand {
   schuldenquote?: { wert: number; zeitraum: string; quelle: string }
   durchschnittsgehalt?: { wert: number; zeitraum: string; quelle: string }
   medianvermoegen?: { wert: number; zeitraum: string; quelle: string }
+  bneProKopf?: { wert: number; zeitraum: string; quelle: string }
+  bipProKopfKKP?: { wert: number; zeitraum: string; quelle: string }
   arbeitslosenquote?: { wert: number; zeitraum: string; quelle: string }
   inflation?: { wert: number; zeitraum: string; quelle: string }
   wohneigentumsquote?: { wert: number; zeitraum: string; quelle: string }
@@ -51,7 +54,7 @@ interface Kurs {
 }
 
 export interface AnsichtMetrik {
-  id: string
+  id: MetrikId
   label: string
   erklaerung: string
   einheit: string
@@ -126,6 +129,21 @@ export function GlobusAnsicht({
           return land.einwohner ?? null
         case 'bipProKopf':
           return land.bipProKopfUsd ?? null
+        /*
+          Diese beiden fehlten bis zum 16. September 2026.
+
+          Sie standen in `metriken`, waren also auswählbar, und trafen hier
+          auf keinen Fall – `default: return null` färbte die Karte für je
+          203 Länder vollständig grau. Von aussen sah das aus wie eine
+          Kennzahl ohne Daten, nicht wie ein fehlender Zweig.
+
+          Gefunden hat es `tests/globus-kennzahlen.test.ts` beim ersten Lauf,
+          gebaut wegen eines ganz anderen Falls.
+        */
+        case 'bneProKopf':
+          return land.bneProKopf?.wert ?? null
+        case 'bipProKopfKKP':
+          return land.bipProKopfKKP?.wert ?? null
         case 'schuldenquote':
           return land.schuldenquote?.wert ?? null
         case 'durchschnittsgehalt':
@@ -142,8 +160,6 @@ export function GlobusAnsicht({
           return land.geburtenziffer?.wert ?? null
         case 'kurse':
           return land.indizes.length + land.aktien.length
-        default:
-          return null
       }
     }
   }, [metrikId])
@@ -541,6 +557,22 @@ function Landtafel({
         : undefined,
     },
     {
+      label: 'Einkommen je Kopf',
+      wert: land.bneProKopf ? `${formatNumber(land.bneProKopf.wert)} US-$` : null,
+      fussnote: land.bneProKopf
+        ? `${quellen[land.bneProKopf.quelle]?.label ?? ''}, ${land.bneProKopf.zeitraum}`
+        : undefined,
+    },
+    {
+      label: 'Kaufkraft je Kopf',
+      wert: land.bipProKopfKKP
+        ? `${formatNumber(land.bipProKopfKKP.wert)} US-$ kaufkraftbereinigt`
+        : null,
+      fussnote: land.bipProKopfKKP
+        ? `${quellen[land.bipProKopfKKP.quelle]?.label ?? ''}, ${land.bipProKopfKKP.zeitraum}`
+        : undefined,
+    },
+    {
       label: 'Arbeitslosenquote',
       wert: land.arbeitslosenquote
         ? `${formatNumber(land.arbeitslosenquote.wert, 1)} % der Erwerbspersonen`
@@ -564,6 +596,32 @@ function Landtafel({
         : null,
       fussnote: land.inflation
         ? `${quellen[land.inflation.quelle]?.label ?? ''}, ${land.inflation.zeitraum}`
+        : undefined,
+    },
+    {
+      label: 'Wohneigentum',
+      wert: land.wohneigentumsquote
+        ? `${formatNumber(land.wohneigentumsquote.wert, 1)} % der Bevölkerung`
+        : null,
+      fussnote: land.wohneigentumsquote
+        ? `${quellen[land.wohneigentumsquote.quelle]?.label ?? ''}, ${land.wohneigentumsquote.zeitraum}`
+        : undefined,
+    },
+    {
+      /*
+        Zwei Nachkommastellen, und die Einheit ausgeschrieben.
+
+        „Geburtenrate 1,36" allein lädt zur Verwechslung mit der rohen
+        Geburtenziffer ein – Geburten je tausend Einwohner, für Deutschland
+        rund acht. Mit „Kinder je Frau" dahinter ist die Zahl nicht mehr
+        misszuverstehen.
+      */
+      label: 'Geburtenrate',
+      wert: land.geburtenziffer
+        ? `${formatNumber(land.geburtenziffer.wert, 2)} Kinder je Frau`
+        : null,
+      fussnote: land.geburtenziffer
+        ? `${quellen[land.geburtenziffer.quelle]?.label ?? ''}, ${land.geburtenziffer.zeitraum}`
         : undefined,
     },
   ]
