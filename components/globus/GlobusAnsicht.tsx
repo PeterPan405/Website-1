@@ -35,6 +35,7 @@ export interface AnsichtLand {
   medianvermoegen?: { wert: number; zeitraum: string; quelle: string }
   arbeitslosenquote?: { wert: number; zeitraum: string; quelle: string }
   inflation?: { wert: number; zeitraum: string; quelle: string }
+  wohneigentumsquote?: { wert: number; zeitraum: string; quelle: string }
   indizes: Kurs[]
   aktien: Kurs[]
 }
@@ -134,6 +135,8 @@ export function GlobusAnsicht({
           return land.arbeitslosenquote?.wert ?? null
         case 'inflation':
           return land.inflation?.wert ?? null
+        case 'wohneigentumsquote':
+          return land.wohneigentumsquote?.wert ?? null
         case 'kurse':
           return land.indizes.length + land.aktien.length
         default:
@@ -391,7 +394,12 @@ export function GlobusAnsicht({
  * dieselbe Grenze. Bei Beträgen in Dollar oder Personen spielt die Stelle
  * keine Rolle, hier ist sie der Unterschied.
  */
-const RATENMETRIKEN = new Set(['arbeitslosenquote', 'inflation', 'schuldenquote'])
+const RATENMETRIKEN = new Set([
+  'arbeitslosenquote',
+  'inflation',
+  'schuldenquote',
+  'wohneigentumsquote',
+])
 
 function grenzenbeschriftung(wert: number, metrikId: string): string {
   if (RATENMETRIKEN.has(metrikId)) return formatNumber(wert, 1)

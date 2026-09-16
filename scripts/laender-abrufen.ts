@@ -30,6 +30,7 @@
  */
 
 import { ECB_HISTORY_FULL_URL, parseEcbEnvelope } from '../lib/providers/ecb.ts'
+import { wohneigentumAusJsonStat } from '../lib/wohneigentum.ts'
 
 const GDP_URL = 'https://raw.githubusercontent.com/datasets/gdp/main/data/gdp.csv'
 const POP_URL =
@@ -123,6 +124,38 @@ const RATENREIHEN = [
  * eine Warnung – siehe `ladeSchuldenquoten`.
  */
 const IWF_SCHULDEN_URL = 'https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP'
+
+/**
+ * Wohneigentumsquote aus der Gemeinschaftsstatistik EU-SILC (Eurostat).
+ *
+ * `ilc_lvho02` ist „Distribution of population by tenure status" – der Anteil
+ * der **Bevoelkerung**, der in einer Wohnung im Eigentum des eigenen Haushalts
+ * lebt. `tenure=OWN` fasst „mit laufendem Kredit" und „abbezahlt" zusammen;
+ * `rskpovth=TOTAL` und `hhcomp=TOTAL` nehmen alle Einkommensgruppen und alle
+ * Haushaltsformen, `lastTimePeriod=1` das juengste vorhandene Jahr.
+ *
+ * ## Warum diese Quelle und keine mit mehr Laendern
+ *
+ * Weil es keine gibt. Am 16. September 2026 wurden vom Laeufer aus geprueft:
+ *
+ *     Weltbank WDI            keine Reihe zum Wohneigentum
+ *     OECD SDMX (ELS.HD)      200, aber das ist die Gesundheitsabteilung
+ *     Eurostat ilc_lvho02     200, 30 Laender, Stand 2025
+ *
+ * Die OECD fuehrt die Zahlen in ihrer Affordable Housing Database und damit
+ * ausserhalb der SDMX-Schnittstelle, die dieses Skript sonst benutzt. Wer sie
+ * anschliesst, holt USA, Japan, Korea, Kanada und Australien dazu – bis dahin
+ * bleibt die Karte ausserhalb Europas grau, und das ist die ehrliche Antwort.
+ *
+ * **Geschaetzt wird hier nichts.** Lohn und Vermoegen lassen sich aus der
+ * Kaufkraft hochrechnen, weil sie mit ihr steigen. Beim Wohneigentum ist der
+ * Zusammenhang umgekehrt und stark: Rumaenien liegt ueber 90 Prozent,
+ * Deutschland bei 47. Eine aus dem Wohlstand geschaetzte Quote waere nicht
+ * ungenau, sondern seitenverkehrt.
+ */
+const EUROSTAT_WOHNEIGENTUM_URL =
+  'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_lvho02' +
+  '?format=JSON&lang=EN&lastTimePeriod=1&freq=A&rskpovth=TOTAL&hhcomp=TOTAL&tenure=OWN&unit=PC'
 
 /**
  * Durchschnittliche Jahresloehne aus der SDMX-Schnittstelle der OECD.
@@ -787,6 +820,61 @@ async function ladeLoehne(): Promise<Map<string, { wert: number; jahr: number }>
   }
 }
 
+/**
+ * Die Wohneigentumsquoten holen – Schluessel ist der **Alpha-2-Code**.
+ *
+ * Eurostat liefert JSON-stat: `value` ist eine flache Liste, und welche Zelle
+ * zu welchem Land gehoert, ergibt sich aus `id`, `size` und dem Index der
+ * Auspraegung. Weil die Abfrage alle Dimensionen ausser `geo` und `time` auf
+ * einen einzigen Wert festlegt, ist die Rechnung einfach – **aber nur, solange
+ * das stimmt.** Deshalb wird es geprueft und nicht angenommen: Kaeme eine
+ * Dimension mit mehreren Auspraegungen zurueck, laesen wir ohne diese Pruefung
+ * stillschweigend die falschen Zellen und schrieben plausible Zahlen an die
+ * falschen Laender.
+ *
+ * Aggregate wie `EU27_2020` oder `EA20` sind keine Laender und fliegen raus.
+ */
+async function ladeWohneigentum(): Promise<Map<
+  string,
+  { wert: number; jahr: number }
+> | null> {
+  try {
+    const antwort = await fetch(EUROSTAT_WOHNEIGENTUM_URL)
+    if (!antwort.ok) {
+      console.log(
+        `::warning::Eurostat antwortete mit ${antwort.status}${await fehlerauszug(antwort)} – Wohneigentum bleibt unveraendert.`
+      )
+      return null
+    }
+
+    /*
+      Ausgewertet wird in `lib/wohneigentum.ts`, nicht hier.
+
+      Diese Datei ruft beim Laden sofort `main()` auf – wer sie importiert,
+      startet einen vollstaendigen Abruf. Die Auswertung waere damit nur ueber
+      das Netz pruefbar, und diese Umgebung erreicht ausser GitHub nichts.
+      Getrennt bekommt sie in `tests/wohneigentum.test.ts` die echte Antwort
+      vorgelegt.
+    */
+    const { werte, beanstandung } = wohneigentumAusJsonStat(await antwort.json())
+    if (beanstandung) {
+      console.log(
+        `::warning::Eurostat: ${beanstandung} Wohneigentum bleibt unveraendert.`
+      )
+      return null
+    }
+
+    const jahr = [...werte.values()][0]?.jahr
+    console.log(`Wohneigentumsquoten fuer ${werte.size} Laender geholt (Stand ${jahr}).`)
+    return werte
+  } catch (fehler) {
+    console.log(
+      `::warning::Eurostat nicht erreichbar (${fehler instanceof Error ? fehler.message : fehler}) – vorheriger Stand bleibt.`
+    )
+    return null
+  }
+}
+
 /** Der vorherige Stand, damit ein fehlgeschlagener Abruf nichts loescht. */
 async function ladeVorherigenStand(): Promise<Record<string, unknown> | null> {
   try {
@@ -843,6 +931,7 @@ async function main() {
   */
   // Braucht die Kurse und laeuft deshalb nach dem Buendel, nicht darin.
   const vermoegen = await ladeVermoegen(kurse)
+  const wohneigentum = await ladeWohneigentum()
 
   const jahr = Math.min(juengstesVollesJahr(gdp), juengstesVollesJahr(pop))
   console.log(`Gemeinsames Bezugsjahr: ${jahr}`)
@@ -880,6 +969,7 @@ async function main() {
       bipProKopfKKP?: { wert: number; jahr: number }
       arbeitslosenquote?: { wert: number; jahr: number }
       inflation?: { wert: number; jahr: number }
+      wohneigentumsquote?: { wert: number; jahr: number }
     }
   > = {}
 
@@ -894,6 +984,7 @@ async function main() {
         bipProKopfKKP?: { wert: number; jahr: number }
         arbeitslosenquote?: { wert: number; jahr: number }
         inflation?: { wert: number; jahr: number }
+        wohneigentumsquote?: { wert: number; jahr: number }
       }
     >) ?? {}
 
@@ -953,6 +1044,13 @@ async function main() {
         const alt = vorherigeLaender[code.alpha3]?.inflation
         const gewaehlt = neu ?? alt
         return gewaehlt ? { inflation: gewaehlt } : {}
+      })(),
+      /* Eurostat schluesselt nach Alpha-2, alles andere hier nach Alpha-3. */
+      ...(() => {
+        const neu = wohneigentum?.get(code.alpha2)
+        const alt = vorherigeLaender[code.alpha3]?.wohneigentumsquote
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { wohneigentumsquote: gewaehlt } : {}
       })(),
     }
   }
@@ -1022,6 +1120,12 @@ async function main() {
       url: 'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS',
       abgrenzung:
         'Arbeitslose in Prozent der Erwerbspersonen, Modellschaetzung der ILO. Keine nationale Meldung: Die Laender zaehlen nach verschiedenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Deshalb weicht der Wert von der Zahl ab, die im jeweiligen Land veroeffentlicht wird – das ist der Preis der Vergleichbarkeit, kein Fehler.',
+    },
+    wohneigentumQuelle: {
+      label: 'Eurostat, EU-SILC – Bevoelkerung nach Wohnstatus (ilc_lvho02)',
+      url: 'https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02/default/table',
+      abgrenzung:
+        'Anteil der Bevoelkerung, der in einer Wohnung im Eigentum des eigenen Haushalts lebt – mit laufendem Kredit und ohne (tenure = OWN), ueber alle Einkommensgruppen und Haushaltsformen. Gezaehlt werden Personen, nicht Haushalte; die Quote je Haushalt liegt niedriger, weil Eigentuemerhaushalte im Schnitt groesser sind. Die Reihe deckt EU, EFTA und Beitrittslaender ab, nicht die uebrige Welt.',
     },
     inflationQuelle: {
       label: 'Weltbank, World Development Indicators (FP.CPI.TOTL.ZG)',
