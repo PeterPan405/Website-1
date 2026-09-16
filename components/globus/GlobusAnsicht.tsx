@@ -36,6 +36,7 @@ export interface AnsichtLand {
   arbeitslosenquote?: { wert: number; zeitraum: string; quelle: string }
   inflation?: { wert: number; zeitraum: string; quelle: string }
   wohneigentumsquote?: { wert: number; zeitraum: string; quelle: string }
+  geburtenziffer?: { wert: number; zeitraum: string; quelle: string }
   indizes: Kurs[]
   aktien: Kurs[]
 }
@@ -137,6 +138,8 @@ export function GlobusAnsicht({
           return land.inflation?.wert ?? null
         case 'wohneigentumsquote':
           return land.wohneigentumsquote?.wert ?? null
+        case 'geburtenziffer':
+          return land.geburtenziffer?.wert ?? null
         case 'kurse':
           return land.indizes.length + land.aktien.length
         default:
@@ -401,7 +404,18 @@ const RATENMETRIKEN = new Set([
   'wohneigentumsquote',
 ])
 
+/**
+ * Kennzahlen, bei denen eine Nachkommastelle zu wenig ist.
+ *
+ * Die Geburtenziffer läuft von 0,75 (Korea) bis 6,9 (Niger), und die Hälfte
+ * aller Länder liegt zwischen 1,2 und 2,1. Auf eine Stelle gerundet fielen
+ * dort mehrere Klassengrenzen zusammen – und der Unterschied zwischen 1,36 und
+ * 1,44, über den jede Debatte zur Bevölkerungsentwicklung geht, verschwände.
+ */
+const FEINE_METRIKEN = new Set(['geburtenziffer'])
+
 function grenzenbeschriftung(wert: number, metrikId: string): string {
+  if (FEINE_METRIKEN.has(metrikId)) return formatNumber(wert, 2)
   if (RATENMETRIKEN.has(metrikId)) return formatNumber(wert, 1)
   if (metrikId !== 'bip') return formatNumber(wert)
   // Unterhalb einer Milliarde bliebe von „0,3 Mrd.“ nach dem Runden nichts.

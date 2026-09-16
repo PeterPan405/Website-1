@@ -86,6 +86,7 @@ export interface Land {
   arbeitslosenquote?: Kennwert
   inflation?: Kennwert
   wohneigentumsquote?: Kennwert
+  geburtenziffer?: Kennwert
 
   indizes: Landeskurs[]
   aktien: Landeskurs[]
@@ -104,6 +105,7 @@ export type MetrikId =
   | 'arbeitslosenquote'
   | 'inflation'
   | 'wohneigentumsquote'
+  | 'geburtenziffer'
   | 'kurse'
 
 export interface Metrik {
@@ -257,6 +259,27 @@ export const metriken: Metrik[] = [
     hoherWertIstGross: true,
   },
   {
+    id: 'geburtenziffer',
+    /*
+      „Kinder je Frau" und nicht „Geburtenrate".
+
+      Beides wird umgangssprachlich gleichgesetzt und ist statistisch
+      zweierlei. Die **Geburtenrate** im engeren Sinn ist die rohe
+      Geburtenziffer: Geburten je tausend Einwohner, für Deutschland rund
+      acht. Was hier steht, ist die **zusammengefasste Geburtenziffer**:
+      Kinder je Frau, für Deutschland rund 1,4.
+
+      Wer „Geburtenrate" liest und 1,4 sieht, hält die Zahl für falsch – oder,
+      schlimmer, rechnet mit ihr weiter. Der Name sagt deshalb, was gemessen
+      wird, statt den gebräuchlichen Begriff zu übernehmen.
+    */
+    label: 'Kinder je Frau',
+    erklaerung:
+      'Wie viele Kinder eine Frau im Lauf ihres Lebens bekäme, wenn sie durchgehend so viele bekäme wie die Frauen jeden Alters in diesem einen Jahr. Ein Modellwert über einen Jahrgang, den es so nie gab – und trotzdem die übliche Vergleichsgrösse. Nicht zu verwechseln mit der Geburtenrate im engeren Sinn, den Geburten je tausend Einwohner. Bei rund 2,1 bleibt eine Bevölkerung ohne Zuwanderung langfristig gleich gross; darunter schrumpft sie, mit Verzögerung von Jahrzehnten. Hoch ist hier so wenig gut wie niedrig: Beides sagt etwas über Lebensverhältnisse, nichts über Wohlstand.',
+    einheit: 'Kinder je Frau',
+    hoherWertIstGross: true,
+  },
+  {
     id: 'kurse',
     label: 'Kurse auf dieser Seite',
     erklaerung:
@@ -305,6 +328,7 @@ type Momentaufnahme = {
       arbeitslosenquote?: { wert: number; jahr: number }
       inflation?: { wert: number; jahr: number }
       wohneigentumsquote?: { wert: number; jahr: number }
+      geburtenziffer?: { wert: number; jahr: number }
     }
   >
   schuldenQuelle?: { label: string; url: string; abgrenzung: string }
@@ -314,6 +338,7 @@ type Momentaufnahme = {
   arbeitslosenQuelle?: { label: string; url: string; abgrenzung: string }
   inflationQuelle?: { label: string; url: string; abgrenzung: string }
   wohneigentumQuelle?: { label: string; url: string; abgrenzung: string }
+  geburtenQuelle?: { label: string; url: string; abgrenzung: string }
 }
 
 const daten = momentaufnahme as Momentaufnahme
@@ -700,6 +725,27 @@ function baueLaender(): Land[] {
             },
           }
         : {}),
+      /*
+        Die Geburtenziffer ist die einzige Kennzahl hier, die **nicht** aus
+        der Gegenwart stammt: Sie sagt, wie viele Kinder eine Frau bekäme,
+        wenn sie ihr Leben lang die Geburtenhäufigkeit dieses einen Jahres
+        erlebte. Ein Modell über einen Jahrgang, der so nie existiert hat.
+
+        Geschätzt wird auch hier nichts. Der Zusammenhang mit dem Wohlstand
+        ist zwar stark – arme Länder haben mehr Kinder –, aber die Ausnahmen
+        sind genau die interessanten Fälle: Südkorea liegt bei 0,75 und ist
+        reich, Israel bei fast 3 und ebenso. Eine Regression würde beide
+        glattbügeln.
+      */
+      ...(basis?.geburtenziffer
+        ? {
+            geburtenziffer: {
+              wert: basis.geburtenziffer.wert,
+              zeitraum: String(basis.geburtenziffer.jahr),
+              quelle: 'weltbank-geburtenziffer',
+            },
+          }
+        : {}),
       indizes: kurse.filter((kurs) => kurs.kind === 'index'),
       aktien: kurse.filter((kurs) => kurs.kind === 'stock'),
     }
@@ -738,6 +784,7 @@ assertLaenderValid({
     'weltbank-arbeitslosigkeit',
     'weltbank-inflation',
     'eurostat-wohneigentum',
+    'weltbank-geburtenziffer',
     'geschaetzt-kaufkraft',
     'geschaetzt-vermoegen',
     'geschaetzt-reihe',
@@ -790,6 +837,8 @@ export function wertFuer(land: Land, metrik: MetrikId): number | null {
       return land.inflation?.wert ?? null
     case 'wohneigentumsquote':
       return land.wohneigentumsquote?.wert ?? null
+    case 'geburtenziffer':
+      return land.geburtenziffer?.wert ?? null
     case 'kurse': {
       const anzahl = land.indizes.length + land.aktien.length
       // Null Kurse ist eine Aussage, kein fehlender Wert – deshalb 0 und nicht

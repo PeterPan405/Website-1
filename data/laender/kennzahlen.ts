@@ -204,6 +204,12 @@ export const kennzahlenQuellen: Record<string, Quellenangabe> = {
     abgrenzung:
       'Verbraucherpreise, Veränderung gegenüber dem Vorjahr in Prozent (FP.CPI.TOTL.ZG). Der Durchschnitt eines abgeschlossenen Jahres, nicht die Rate von heute. Der Warenkorb wird je Land national festgelegt und ist zwischen Ländern nicht deckungsgleich. Wird von scripts/laender-abrufen.ts geholt.',
   },
+  'weltbank-geburtenziffer': {
+    label: 'Weltbank, World Development Indicators (SP.DYN.TFRT.IN)',
+    url: 'https://data.worldbank.org/indicator/SP.DYN.TFRT.IN',
+    abgrenzung:
+      'Zusammengefasste Geburtenziffer: Kinder, die eine Frau im Lauf ihres Lebens bekäme, wenn für sie durchgehend die altersspezifischen Geburtenhäufigkeiten des jeweiligen Jahres gälten. Ein Modellwert über einen Jahrgang, den es so nie gab – nicht die tatsächliche Kinderzahl einer Generation und nicht die Geburtenrate im engeren Sinn (Geburten je tausend Einwohner). Zusammengetragen aus den Bevölkerungsvorausberechnungen der Vereinten Nationen, den nationalen Statistikämtern und Eurostat. Wird von scripts/laender-abrufen.ts geholt.',
+  },
   'eurostat-wohneigentum': {
     label: 'Eurostat, EU-SILC – Bevölkerung nach Wohnstatus (ilc_lvho02)',
     url: 'https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02/default/table',
