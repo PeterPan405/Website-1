@@ -101,6 +101,379 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelpreis-vor-fed-entscheid-merz-reiche',
+    title:
+      'Öl zieht vor der Fed-Entscheidung an – und Berlin streitet über die Zapfsäule',
+    metaTitle: 'Öl zieht vor der Fed-Entscheidung an – Berlin streitet über Sprit',
+    teaser:
+      'Der Ölpreis legt kurz vor der US-Zinsentscheidung zu, während die Bundesregierung uneins ist, wie schnell sie hohe Spritpreise lindern will.',
+    category: 'Märkte',
+    publishedAt: '2026-09-16T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ölpreis', 'Rohstoffe', 'Politik', 'Spritpreise'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste und Rohstoffpreise, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 15.09.2026 (dpa-AFX): „Hohe Spritpreise: Reiche lehnt zentrale SPD-Forderungen ab“ und „Merz kündigt schnelle Entlastung bei Spritpreisen an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Wer heute an die Tankstelle fährt, zahlt für einen Rohstoff, der gerade wieder teurer wird. Brent-Rohöl legte über Nacht laut wallstreet-online um 2,18 Prozent auf 108,50 US-Dollar je Barrel zu.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Fast zeitgleich zeigte finanzen.net für denselben Rohstoff ein Minus von 0,4 Prozent bei praktisch demselben Preis von 108,4 Dollar. Beide Zahlen können stimmen – sie vergleichen nur mit einem unterschiedlichen Bezugspunkt, etwa einem anderen Vortagesschluss.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ölpreis gerade nervös ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mehrere Übersichten verknüpfen den Anstieg mit dem Iran-Konflikt und mit der Zurückhaltung der Anleger vor der heutigen US-Zinsentscheidung. Einen einzelnen, eindeutig benannten Auslöser für die Bewegung der letzten Stunden nennt keine der Quellen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deutlicher wird es bei Chevron: Firmenchef Mike Wirth widersprach laut wallstreet-online einer Ankündigung von Donald Trump und sagte, bei 120 US-Dollar pro Barrel sei „keine Entspannung in Sicht“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Berlin reagiert nicht aus einem Guss',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bundeskanzler Merz kündigte laut dpa-AFX eine schnelle Entlastung bei den Spritpreisen an. Wirtschaftsministerin Reiche lehnte am selben Tag zentrale Forderungen der SPD dazu ab. Ob beide Positionen zusammenpassen oder worin genau die Entlastung bestehen soll, geht aus den Übersichten nicht hervor – das wird hier bewusst offengelassen statt vermutet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein höherer Ölpreis wirkt über zwei Kanäle gleichzeitig – an der Zapfsäule und in den Kursen ölabhängiger Unternehmen. Wer beide Wirkungen für sich behält, statt sie in einer einzigen Prozentzahl zu vermischen, liest die nächsten Tage genauer.',
+      },
+    ],
+  },
+  {
+    slug: 'fed-entscheidet-heute-kevin-warsh-us-renditen',
+    title: 'Fed entscheidet heute: Kevin Warshs erster großer Test',
+    teaser:
+      'Die US-Notenbank trifft heute unter ihrem noch neuen Vorsitzenden Kevin Warsh eine Zinsentscheidung, während die Anleiherenditen bereits steigen.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-16T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Leitzins', 'USA', 'Anleihen', 'Notenbanken'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['sp500', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Politik, Wirtschaft & Konjunktur, Stand 16.09.2026, 02:15 Uhr: „Warshs erster großer Test – S&P 500: Fed-Zinsentscheid könnte 10 % kosten“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Stand 16.09.2026, 02:15 Uhr: „Ausverkauf vor Fed-Entscheid: US-Rendite so hoch wie seit 2007 nicht – jetzt droht der Zinsschock!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'wallstreet-online, Wichtige Termine, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, Hintergrund vom 7. September 2026: „Kevin Warsh steckt im Zins-Dilemma – was das für den Goldpreis bedeutet“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Heute, an einem Mittwoch, entscheidet die US-Notenbank Fed unter ihrem noch neuen Vorsitzenden Kevin Warsh über die Leitzinsen. Eine Übersicht von wallstreet-online nennt es Warshs „ersten großen Test“.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Einschätzungen dazu gehen auseinander: Morgan Stanley rechnet laut derselben Übersicht mit gleich zwei Zinserhöhungen, ein Analyst warnt vor einem Kursrutsch wie 2018 – ein anderer Ökonom hält beide Einschätzungen für übertrieben. Namen nennt die Übersicht dafür nicht, nur die Positionen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Woran sich die Nervosität schon vorher ablesen lässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rendite zehnjähriger US-Staatsanleihen erreichte laut wallstreet-online den höchsten Stand seit 2007. Steigende Renditen bedeuten: Der Staat muss für neue Schulden mehr Zinsen zahlen, und festverzinsliche Anlagen werden im Vergleich zu Aktien wieder attraktiver.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Schlagzeile derselben Übersicht beziffert das mögliche Risiko für Aktien konkret: „S&P 500: Fed-Zinsentscheid könnte 10 % kosten“. Wie diese Zahl berechnet wurde, steht dort nicht – sie ist als Einschätzung zu lesen, nicht als Vorhersage.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch aus Großbritannien kommen heute Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 8 Uhr veröffentlicht Großbritannien laut wallstreet-online seine Verbraucherpreise für das Jahr, erwartet werden 3,1 Prozent nach zuvor 2,9 Prozent. Parallel dazu steht die britische Erzeugerpreis-Kernrate an, deren Prognose die Übersicht offenlässt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Schon am 7. September beschrieb Goldreporter Warshs Lage als „Zins-Dilemma“: Er setze auf Inflationsbekämpfung, doch hohe US-Schulden und eine große Fed-Bilanz begrenzten seinen Spielraum – mit Folgen für den Goldpreis, so die Analyse.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Zinsentscheidung wirkt selten isoliert – sie trifft auf bereits gestiegene Anleiherenditen und auf einen Ölpreis, der die Inflation von der anderen Seite unter Druck setzt. Wer diese Zusammenhänge kennt, versteht heute Abend besser, warum Märkte auf dieselbe Entscheidung unterschiedlich reagieren können.',
+      },
+    ],
+  },
+  {
+    slug: 'rheinmetall-ruestungsabkommen-usa-1000-euro-marke',
+    title:
+      'Rheinmetall über 1.000 Euro: Ein Rüstungsabkommen mit den USA treibt den Kurs',
+    metaTitle: 'Rheinmetall über 1.000 Euro nach Rüstungsabkommen mit den USA',
+    teaser:
+      'Ein neues deutsch-amerikanisches Rüstungsabkommen und ein Großauftrag trieben die Rheinmetall-Aktie über die runde 1.000-Euro-Marke.',
+    category: 'Märkte',
+    publishedAt: '2026-09-16T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Rüstung', 'DAX', 'Aktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['rheinmetall', 'hensoldt', 'renk'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 15.09.2026: „Rheinmetall-Aktie über 1.000-Euro-Marke: Großauftrag wirkt nach – so reagieren HENSOLDT, RENK und TKMS“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 15.09.2026 (dpa-AFX): „Pistorius unterzeichnet Rüstungsvereinbarung mit den USA“ und „Rheinmetall-Aktie springt an: Deutschland und USA bauen Zusammenarbeit bei Rüstungsprojekten aus“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, 14.09.2026: „Munition stark gefragt: Rheinmetall rüstet auf: Neuer Großauftrag sorgt für Rückenwind“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Stand 16.09.2026, 02:15 Uhr: „Hält die 1.000-Euro-Marke? Rheinmetall-Aktie: Das sieht schon wieder ziemlich übel aus!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Verteidigungsminister Pistorius unterzeichnete laut dpa-AFX eine Rüstungsvereinbarung mit den USA. Eine zweite Meldung beschreibt es so: Deutschland und die USA bauen ihre Zusammenarbeit bei Rüstungsprojekten aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Rheinmetall-Aktie reagierte darauf und stieg laut finanzen.net über die runde 1.000-Euro-Marke. Als zusätzlichen Treiber nennt die Übersicht einen neuen Großauftrag, ohne dessen Volumen zu beziffern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch andere Rüstungswerte reagierten',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die finanzen.net-Schlagzeile nennt neben Rheinmetall auch HENSOLDT, RENK und TKMS als Unternehmen, die reagierten. In welche Richtung, sagt die Übersicht nicht – das wird hier bewusst offengelassen, statt eine plausible Richtung zu unterstellen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Hält die runde Marke?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zur gleichen Zeit fragte eine zweite Übersicht von wallstreet-online, ob Rheinmetall die 1.000-Euro-Marke überhaupt hält, und schätzte den Kurs skeptisch ein. Derselbe Tag, dieselbe Aktie, zwei gegensätzliche Einordnungen – ein Beleg dafür, dass eine runde Kursmarke allein noch keine Richtung vorgibt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein politisches Abkommen und ein einzelner Auftrag können einen Kurs kurzfristig über eine runde Marke tragen. Ob das Niveau bleibt, hängt von mehr ab als von einer einzelnen guten Nachricht – etwa davon, wie belastbar der Auftragsbestand insgesamt ist.',
+      },
+    ],
+  },
+  {
+    slug: 'commerzbank-klingbeil-bedingungen-oder-bitten',
+    title: 'Commerzbank: Klingbeils „Bedingungen“ sind im Text eigentlich Bitten',
+    metaTitle: 'Commerzbank: Klingbeils „Bedingungen“ waren wohl nur Bitten',
+    teaser:
+      'Eine Schlagzeile spricht von Bedingungen, der Fließtext derselben Meldung nur von Bitten – ein Beispiel dafür, wie Überschriften Eindrücke verschieben.',
+    category: 'Märkte',
+    publishedAt: '2026-09-16T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Commerzbank', 'UniCredit', 'Übernahme', 'Banken'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['commerzbank', 'unicredit'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 16.09.2026, 02:15 Uhr: „Übernahme durch UniCredit – Commerzbank: Das fordert Klingbeil jetzt von Orcel!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 15.09.2026: „Klingbeil stellt Bedingungen für Commerzbank-Übernahme – Aktie schwächer“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Schlagzeilen, ein Ereignis: Bundesfinanzminister Lars Klingbeil traf sich laut wallstreet-online am Montag mit UniCredit-Chef Andrea Orcel. Thema war die mögliche Übernahme der Commerzbank durch die italienische Bank.',
+      },
+      {
+        type: 'paragraph',
+        text: 'finanzen.net titelt „Klingbeil stellt Bedingungen für Commerzbank-Übernahme“. Im Fließtext von wallstreet-online zur selben Begegnung heißt es dagegen, Klingbeil habe gegenüber Orcel „lediglich Bitten ... vorbringen“ können.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Unterschied zwischen Bedingung und Bitte zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Bedingung ist bindend, eine Bitte nicht. Ob und wie eine ausländische Bank ein Unternehmen übernimmt, entscheiden am Ende deren Eigentümer und Aufsichtsbehörden – ein Finanzminister kann öffentlich Erwartungen formulieren, aber nicht allein festlegen, was am Ende geschieht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welche konkreten Forderungen Klingbeil genau vorgebracht hat, geht aus den beiden Übersichten nicht hervor. Klar ist nur die Reaktion am Aktienmarkt: Die Commerzbank-Aktie zeigte sich laut finanzen.net schwächer.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Überschrift liest, überschätzt hier leicht, wie viel Einfluss der Bund auf eine ausländische Übernahmeentscheidung tatsächlich hat. Der Fließtext lohnt sich – gerade bei politisch aufgeladenen Themen wie einer Bankenübernahme.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-preisabschlag-shanghai-schrumpft-woche',
+    title: 'Warum sich der Gold-Preisabschlag in Shanghai gerade verkleinert',
+    metaTitle: 'Gold-Preisabschlag in Shanghai schrumpft binnen einer Woche',
+    teaser:
+      'Gold ist in Shanghai traditionell günstiger als im Westen – doch dieser Abstand ist laut Goldreporter binnen einer Woche deutlich geschrumpft.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-16T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'China', 'Rohstoffe', 'Preisunterschiede'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldungen & Analysen vom 15. September 2026: „Goldmarkt: Goldpreis fällt im Westen stärker als in China“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label: 'wallstreet-online, Aktuelle Rohstoffpreise, Stand 16.09.2026, 02:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Gold kostet in Shanghai schon länger weniger als in Europa oder den USA – ein sogenannter Preisabschlag. Ungewöhnlich ist, dass dieser Abstand gerade kleiner statt größer wird.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut Goldreporter verringerte sich der Preisabschlag in Shanghai innerhalb einer Woche von 38 auf 22 US-Dollar je Feinunze. Grund dafür ist demnach, dass der Goldpreis in Europa zuletzt stärker fiel als in China – nicht, dass in China plötzlich mehr bezahlt worden wäre.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Preisabschlag überhaupt zeigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold wird zwar weltweit gehandelt, aber regional unterschiedlich besteuert, nachgefragt und über verschiedene Börsen gepreist. Ein Preisabschlag oder -aufschlag zwischen zwei Handelsplätzen zeigt deshalb, wie unterschiedlich Angebot und Nachfrage vor Ort gerade ausfallen – nicht, dass ein Markt den anderen betrügt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum aktuellen Preisniveau: Gold notierte laut wallstreet-online zuletzt bei 4.282,45 US-Dollar je Feinunze, ein Minus von 0,27 Prozent. Einen absoluten Preis für Shanghai nennt keine der beiden Übersichten – nur die Differenz.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur den westlichen Goldpreis verfolgt, übersieht, dass derselbe Rohstoff andernorts zeitweise günstiger oder teurer gehandelt wird. Die Größe dieses Abstands – nicht nur seine Richtung – verrät etwas über die relative Stärke der Nachfrage in den jeweiligen Regionen.',
+      },
+    ],
+  },
+  {
+    slug: 'bijou-brigitte-prognose-deutz-kapitalerhoehung',
+    title: 'Ein Unternehmen hebt die Prognose an, das andere holt sich frisches Kapital',
+    metaTitle: 'Bijou Brigitte hebt Prognose an, Deutz erhöht Kapital',
+    teaser:
+      'Zwei Ad-hoc-Meldungen am selben Abend zeigen zwei verschiedene Wege, wie Unternehmen mit Erwartungen und mit Kapitalbedarf umgehen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-16T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Ad-hoc', 'Guidance', 'Kapitalerhöhung', 'Unternehmen'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Nachrichten, Stand 16.09.2026, 02:15 Uhr: „EQS-Adhoc: Bijou Brigitte modische Accessoires AG: Bijou Brigitte passt Prognose für das Konzernergebnis vor Ertragssteuern im Geschäftsjahr 2026 nach oben an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Nachrichten, Stand 16.09.2026, 02:15 Uhr: „EQS-Adhoc: DEUTZ AG schließt Kapitalerhöhung gegen Bareinlagen im Wege eines Accelerated Bookbuilding erfolgreich ab“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Zwei Ad-hoc-Meldungen desselben Abends, zwei völlig unterschiedliche Unternehmensentscheidungen. Beide betreffen deutsche Nebenwerte, keine der beiden Meldungen nennt eine konkrete Zahl.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bijou Brigitte passte laut EQS-Adhoc die Prognose für das Konzernergebnis vor Ertragssteuern im Geschäftsjahr 2026 nach oben an. Um welchen Betrag oder welche Prozentzahl es geht, steht in der Meldung nicht – nur die Richtung: nach oben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Guidance ist ein Versprechen, kein Ergebnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine angehobene Prognose ändert zunächst nur die Erwartung an das Jahresende – nicht das tatsächliche Ergebnis. Erst der spätere Geschäftsbericht zeigt, ob das Unternehmen die neue, höhere Messlatte auch erreicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Deutz beschafft sich frisches Geld',
+      },
+      {
+        type: 'paragraph',
+        text: 'Deutz schloss laut einer zweiten Ad-hoc-Meldung eine Kapitalerhöhung gegen Bareinlagen im Wege eines Accelerated Bookbuilding erfolgreich ab. Dabei platziert ein Unternehmen neue Aktien innerhalb weniger Stunden bei institutionellen Investoren gegen Bargeld – anders als ein Aktienrückkauf erhöht das die Zahl der Aktien, statt sie zu verringern.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Prognoseanhebung und eine Kapitalerhöhung klingen beide nach guten Nachrichten, bedeuten aber Gegensätzliches für die Aktienzahl: Die eine ändert nur Erwartungen, die andere verändert sofort, wie viele Anteile ein Unternehmen hat – und wie viel jeder einzelne davon wert ist.',
+      },
+    ],
+  },
+  {
     slug: 'tanker-explosion-hormus-oelpreis-zwei-zahlen',
     title:
       'Tanker explodiert in der Straße von Hormus – zwei Portale, zwei Ölpreis-Prozentzahlen',
