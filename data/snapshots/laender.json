@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-16T09:01:14.435Z",
+  "abgerufenAm": "2026-09-16T09:32:57.053Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -38,6 +38,11 @@
     "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS",
     "abgrenzung": "Arbeitslose in Prozent der Erwerbspersonen, Modellschaetzung der ILO. Keine nationale Meldung: Die Laender zaehlen nach verschiedenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Deshalb weicht der Wert von der Zahl ab, die im jeweiligen Land veroeffentlicht wird – das ist der Preis der Vergleichbarkeit, kein Fehler."
   },
+  "geburtenQuelle": {
+    "label": "Weltbank, World Development Indicators (SP.DYN.TFRT.IN)",
+    "url": "https://data.worldbank.org/indicator/SP.DYN.TFRT.IN",
+    "abgrenzung": "Zusammengefasste Geburtenziffer: Kinder, die eine Frau im Lauf ihres Lebens bekaeme, wenn fuer sie durchgehend die altersspezifischen Geburtenhaeufigkeiten des jeweiligen Jahres gaelten. Ein Modellwert ueber einen Jahrgang, den es so nie gab – nicht die tatsaechliche Kinderzahl einer Generation und nicht die Geburtenrate im engeren Sinn (Geburten je tausend Einwohner). Zusammengetragen aus den Bevoelkerungsvorausberechnungen der Vereinten Nationen, den nationalen Statistikaemtern und Eurostat."
+  },
   "wohneigentumQuelle": {
     "label": "Eurostat, EU-SILC – Bevoelkerung nach Wohnstatus (ilc_lvho02)",
     "url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02/default/table",
@@ -75,6 +80,10 @@
       "inflation": {
         "wert": -6.6,
         "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 4.76,
+        "jahr": 2024
       }
     },
     "ALA": {
@@ -111,6 +120,10 @@
       "inflation": {
         "wert": 2.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.34,
+        "jahr": 2024
       }
     },
     "DZA": {
@@ -140,6 +153,10 @@
       "inflation": {
         "wert": 1.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.72,
+        "jahr": 2024
       }
     },
     "ASM": {
@@ -148,7 +165,11 @@
       "region": "Oceania",
       "subregion": "Polynesia",
       "waehrung": "USD",
-      "einwohner": 47521
+      "einwohner": 47521,
+      "geburtenziffer": {
+        "wert": 2.27,
+        "jahr": 2024
+      }
     },
     "AND": {
       "alpha2": "AD",
@@ -169,6 +190,10 @@
       "bipProKopfKKP": {
         "wert": 79567,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.09,
+        "jahr": 2024
       }
     },
     "AGO": {
@@ -198,6 +223,10 @@
       "inflation": {
         "wert": 20.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 5.05,
+        "jahr": 2024
       }
     },
     "AIA": {
@@ -237,6 +266,10 @@
       "inflation": {
         "wert": 1.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.58,
+        "jahr": 2024
       }
     },
     "ARG": {
@@ -265,6 +298,10 @@
       },
       "inflation": {
         "wert": 219.9,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.5,
         "jahr": 2024
       }
     },
@@ -295,6 +332,10 @@
       "inflation": {
         "wert": 3.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.7,
+        "jahr": 2024
       }
     },
     "ABW": {
@@ -319,6 +360,10 @@
       "inflation": {
         "wert": 4.3,
         "jahr": 2019
+      },
+      "geburtenziffer": {
+        "wert": 1.61,
+        "jahr": 2024
       }
     },
     "AUS": {
@@ -356,6 +401,10 @@
       "inflation": {
         "wert": 2.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.48,
+        "jahr": 2024
       }
     },
     "AUT": {
@@ -397,6 +446,10 @@
       "wohneigentumsquote": {
         "wert": 54.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.31,
+        "jahr": 2024
       }
     },
     "AZE": {
@@ -426,6 +479,10 @@
       "inflation": {
         "wert": 5.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.43,
+        "jahr": 2024
       }
     },
     "BHS": {
@@ -454,6 +511,10 @@
       },
       "inflation": {
         "wert": 0.4,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.37,
         "jahr": 2024
       }
     },
@@ -484,6 +545,10 @@
       "inflation": {
         "wert": -0.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.81,
+        "jahr": 2024
       }
     },
     "BGD": {
@@ -513,6 +578,10 @@
       "inflation": {
         "wert": 8.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.14,
+        "jahr": 2024
       }
     },
     "BRB": {
@@ -542,6 +611,10 @@
       "inflation": {
         "wert": 0.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.71,
+        "jahr": 2024
       }
     },
     "BLR": {
@@ -571,6 +644,10 @@
       "inflation": {
         "wert": 6.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.22,
+        "jahr": 2024
       }
     },
     "BEL": {
@@ -612,6 +689,10 @@
       "wohneigentumsquote": {
         "wert": 70.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.44,
+        "jahr": 2024
       }
     },
     "BLZ": {
@@ -641,6 +722,10 @@
       "inflation": {
         "wert": 1.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.02,
+        "jahr": 2024
       }
     },
     "BEN": {
@@ -670,6 +755,10 @@
       "inflation": {
         "wert": 1.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.48,
+        "jahr": 2024
       }
     },
     "BMU": {
@@ -685,6 +774,10 @@
       },
       "bipProKopfKKP": {
         "wert": 118728,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.41,
         "jahr": 2024
       }
     },
@@ -714,6 +807,10 @@
       "inflation": {
         "wert": 3.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.45,
+        "jahr": 2024
       }
     },
     "BOL": {
@@ -743,6 +840,10 @@
       "inflation": {
         "wert": 19.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.52,
+        "jahr": 2024
       }
     },
     "BES": {
@@ -779,6 +880,10 @@
       "inflation": {
         "wert": 6.1,
         "jahr": 2023
+      },
+      "geburtenziffer": {
+        "wert": 1.49,
+        "jahr": 2024
       }
     },
     "BWA": {
@@ -808,6 +913,10 @@
       "inflation": {
         "wert": 2.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.7,
+        "jahr": 2024
       }
     },
     "BVT": {
@@ -844,6 +953,10 @@
       "inflation": {
         "wert": 5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.61,
+        "jahr": 2024
       }
     },
     "IOT": {
@@ -859,7 +972,11 @@
       "region": "Americas",
       "subregion": "Latin America and the Caribbean",
       "waehrung": "USD",
-      "einwohner": 38985
+      "einwohner": 38985,
+      "geburtenziffer": {
+        "wert": 1.05,
+        "jahr": 2024
+      }
     },
     "BRN": {
       "alpha2": "BN",
@@ -888,6 +1005,10 @@
       "inflation": {
         "wert": -0.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.73,
+        "jahr": 2024
       }
     },
     "BGR": {
@@ -921,6 +1042,10 @@
       "wohneigentumsquote": {
         "wert": 86.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.72,
+        "jahr": 2024
       }
     },
     "BFA": {
@@ -950,6 +1075,10 @@
       "inflation": {
         "wert": -0.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.11,
+        "jahr": 2024
       }
     },
     "BDI": {
@@ -979,6 +1108,10 @@
       "inflation": {
         "wert": 34.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.79,
+        "jahr": 2024
       }
     },
     "CPV": {
@@ -1008,6 +1141,10 @@
       "inflation": {
         "wert": 2.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.51,
+        "jahr": 2024
       }
     },
     "KHM": {
@@ -1037,6 +1174,10 @@
       "inflation": {
         "wert": 2.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.55,
+        "jahr": 2024
       }
     },
     "CMR": {
@@ -1066,6 +1207,10 @@
       "inflation": {
         "wert": 3.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.26,
+        "jahr": 2024
       }
     },
     "CAN": {
@@ -1103,6 +1248,10 @@
       "inflation": {
         "wert": 2.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.25,
+        "jahr": 2024
       }
     },
     "CYM": {
@@ -1118,6 +1267,10 @@
       },
       "bipProKopfKKP": {
         "wert": 92201,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.53,
         "jahr": 2024
       }
     },
@@ -1148,6 +1301,10 @@
       "inflation": {
         "wert": 1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 5.95,
+        "jahr": 2024
       }
     },
     "TCD": {
@@ -1177,6 +1334,10 @@
       "inflation": {
         "wert": -3.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 6.03,
+        "jahr": 2024
       }
     },
     "CHL": {
@@ -1210,6 +1371,10 @@
       "inflation": {
         "wert": 4.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.14,
+        "jahr": 2024
       }
     },
     "CHN": {
@@ -1239,6 +1404,10 @@
       "inflation": {
         "wert": 0.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.01,
+        "jahr": 2024
       }
     },
     "HKG": {
@@ -1268,6 +1437,10 @@
       "inflation": {
         "wert": 1.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 0.84,
+        "jahr": 2024
       }
     },
     "MAC": {
@@ -1293,6 +1466,10 @@
       "inflation": {
         "wert": 0.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 0.58,
+        "jahr": 2024
       }
     },
     "CXR": {
@@ -1340,6 +1517,10 @@
       "inflation": {
         "wert": 5.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.63,
+        "jahr": 2024
       }
     },
     "COM": {
@@ -1369,6 +1550,10 @@
       "inflation": {
         "wert": 3.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.82,
+        "jahr": 2024
       }
     },
     "COG": {
@@ -1398,6 +1583,10 @@
       "inflation": {
         "wert": 2.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.11,
+        "jahr": 2024
       }
     },
     "COK": {
@@ -1438,6 +1627,10 @@
       "inflation": {
         "wert": -0.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.32,
+        "jahr": 2024
       }
     },
     "HRV": {
@@ -1475,6 +1668,10 @@
       "wohneigentumsquote": {
         "wert": 91.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.46,
+        "jahr": 2024
       }
     },
     "CUB": {
@@ -1491,6 +1688,10 @@
       "arbeitslosenquote": {
         "wert": 1.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.45,
+        "jahr": 2024
       }
     },
     "CUW": {
@@ -1511,6 +1712,10 @@
       "inflation": {
         "wert": 2.6,
         "jahr": 2019
+      },
+      "geburtenziffer": {
+        "wert": 1.4,
+        "jahr": 2024
       }
     },
     "CYP": {
@@ -1544,6 +1749,10 @@
       "wohneigentumsquote": {
         "wert": 69.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.38,
+        "jahr": 2024
       }
     },
     "CZE": {
@@ -1585,6 +1794,10 @@
       "wohneigentumsquote": {
         "wert": 75.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.36,
+        "jahr": 2024
       }
     },
     "PRK": {
@@ -1597,6 +1810,10 @@
       "arbeitslosenquote": {
         "wert": 3.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.78,
+        "jahr": 2024
       }
     },
     "COD": {
@@ -1622,6 +1839,10 @@
       "arbeitslosenquote": {
         "wert": 4.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 5.98,
+        "jahr": 2024
       }
     },
     "DNK": {
@@ -1663,6 +1884,10 @@
       "wohneigentumsquote": {
         "wert": 58.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.47,
+        "jahr": 2024
       }
     },
     "DJI": {
@@ -1692,6 +1917,10 @@
       "inflation": {
         "wert": -0.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.62,
+        "jahr": 2024
       }
     },
     "DMA": {
@@ -1717,6 +1946,10 @@
       "inflation": {
         "wert": 2.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.48,
+        "jahr": 2024
       }
     },
     "DOM": {
@@ -1746,6 +1979,10 @@
       "inflation": {
         "wert": 3.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.22,
+        "jahr": 2024
       }
     },
     "ECU": {
@@ -1775,6 +2012,10 @@
       "inflation": {
         "wert": 0.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.81,
+        "jahr": 2024
       }
     },
     "EGY": {
@@ -1804,6 +2045,10 @@
       "inflation": {
         "wert": 14.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.74,
+        "jahr": 2024
       }
     },
     "SLV": {
@@ -1833,6 +2078,10 @@
       "inflation": {
         "wert": 0.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.77,
+        "jahr": 2024
       }
     },
     "GNQ": {
@@ -1862,6 +2111,10 @@
       "inflation": {
         "wert": 2.9,
         "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 4.12,
+        "jahr": 2024
       }
     },
     "ERI": {
@@ -1878,6 +2131,10 @@
       "arbeitslosenquote": {
         "wert": 6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.68,
+        "jahr": 2024
       }
     },
     "EST": {
@@ -1919,6 +2176,10 @@
       "wohneigentumsquote": {
         "wert": 79.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.18,
+        "jahr": 2024
       }
     },
     "SWZ": {
@@ -1948,6 +2209,10 @@
       "inflation": {
         "wert": 2.6,
         "jahr": 2019
+      },
+      "geburtenziffer": {
+        "wert": 2.72,
+        "jahr": 2024
       }
     },
     "ETH": {
@@ -1977,6 +2242,10 @@
       "inflation": {
         "wert": 13.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.91,
+        "jahr": 2024
       }
     },
     "FLK": {
@@ -1999,6 +2268,10 @@
       },
       "bipProKopfKKP": {
         "wert": 82089,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.91,
         "jahr": 2024
       }
     },
@@ -2029,6 +2302,10 @@
       "inflation": {
         "wert": -1.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.27,
+        "jahr": 2024
       }
     },
     "FIN": {
@@ -2070,6 +2347,10 @@
       "wohneigentumsquote": {
         "wert": 66.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.25,
+        "jahr": 2024
       }
     },
     "FRA": {
@@ -2111,6 +2392,10 @@
       "wohneigentumsquote": {
         "wert": 61.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.61,
+        "jahr": 2024
       }
     },
     "GUF": {
@@ -2134,6 +2419,10 @@
       "arbeitslosenquote": {
         "wert": 11.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.49,
+        "jahr": 2024
       }
     },
     "ATF": {
@@ -2170,6 +2459,10 @@
       "inflation": {
         "wert": 1.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.59,
+        "jahr": 2024
       }
     },
     "GMB": {
@@ -2198,6 +2491,10 @@
       },
       "inflation": {
         "wert": 11.6,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 3.91,
         "jahr": 2024
       }
     },
@@ -2228,6 +2525,10 @@
       "inflation": {
         "wert": 3.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.8,
+        "jahr": 2024
       }
     },
     "DEU": {
@@ -2269,6 +2570,10 @@
       "wohneigentumsquote": {
         "wert": 47.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.36,
+        "jahr": 2024
       }
     },
     "GHA": {
@@ -2298,6 +2603,10 @@
       "inflation": {
         "wert": 14.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.34,
+        "jahr": 2024
       }
     },
     "GIB": {
@@ -2306,7 +2615,11 @@
       "region": "Europe",
       "subregion": "Southern Europe",
       "waehrung": "GIP",
-      "einwohner": 38471
+      "einwohner": 38471,
+      "geburtenziffer": {
+        "wert": 1.89,
+        "jahr": 2024
+      }
     },
     "GRC": {
       "alpha2": "GR",
@@ -2347,6 +2660,10 @@
       "wohneigentumsquote": {
         "wert": 69.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.24,
+        "jahr": 2024
       }
     },
     "GRL": {
@@ -2359,6 +2676,10 @@
       "bipProKopfKKP": {
         "wert": 78906,
         "jahr": 2023
+      },
+      "geburtenziffer": {
+        "wert": 1.71,
+        "jahr": 2024
       }
     },
     "GRD": {
@@ -2384,6 +2705,10 @@
       "inflation": {
         "wert": 0.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.47,
+        "jahr": 2024
       }
     },
     "GLP": {
@@ -2403,6 +2728,10 @@
       "arbeitslosenquote": {
         "wert": 5.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.75,
+        "jahr": 2024
       }
     },
     "GTM": {
@@ -2432,6 +2761,10 @@
       "inflation": {
         "wert": 1.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.29,
+        "jahr": 2024
       }
     },
     "GGY": {
@@ -2468,6 +2801,10 @@
       "inflation": {
         "wert": 3.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.13,
+        "jahr": 2024
       }
     },
     "GNB": {
@@ -2497,6 +2834,10 @@
       "inflation": {
         "wert": 0.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.76,
+        "jahr": 2024
       }
     },
     "GUY": {
@@ -2526,6 +2867,10 @@
       "inflation": {
         "wert": 3.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.4,
+        "jahr": 2024
       }
     },
     "HTI": {
@@ -2555,6 +2900,10 @@
       "inflation": {
         "wert": 28.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.63,
+        "jahr": 2024
       }
     },
     "HMD": {
@@ -2598,6 +2947,10 @@
       "inflation": {
         "wert": 4.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.48,
+        "jahr": 2024
       }
     },
     "HUN": {
@@ -2639,6 +2992,10 @@
       "wohneigentumsquote": {
         "wert": 89.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.41,
+        "jahr": 2024
       }
     },
     "ISL": {
@@ -2672,6 +3029,10 @@
       "inflation": {
         "wert": 4.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.56,
+        "jahr": 2024
       }
     },
     "IND": {
@@ -2701,6 +3062,10 @@
       "inflation": {
         "wert": 2.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.96,
+        "jahr": 2024
       }
     },
     "IDN": {
@@ -2730,6 +3095,10 @@
       "inflation": {
         "wert": 1.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.12,
+        "jahr": 2024
       }
     },
     "IRN": {
@@ -2759,6 +3128,10 @@
       "inflation": {
         "wert": 42.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.68,
+        "jahr": 2024
       }
     },
     "IRQ": {
@@ -2788,6 +3161,10 @@
       "inflation": {
         "wert": 0.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.22,
+        "jahr": 2024
       }
     },
     "IRL": {
@@ -2829,6 +3206,10 @@
       "wohneigentumsquote": {
         "wert": 70.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.47,
+        "jahr": 2024
       }
     },
     "IMN": {
@@ -2841,6 +3222,10 @@
       "bneProKopf": {
         "wert": 87030,
         "jahr": 2023
+      },
+      "geburtenziffer": {
+        "wert": 1.54,
+        "jahr": 2024
       }
     },
     "ISR": {
@@ -2874,6 +3259,10 @@
       "inflation": {
         "wert": 3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.87,
+        "jahr": 2024
       }
     },
     "ITA": {
@@ -2915,6 +3304,10 @@
       "wohneigentumsquote": {
         "wert": 77.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.18,
+        "jahr": 2024
       }
     },
     "CIV": {
@@ -2944,6 +3337,10 @@
       "inflation": {
         "wert": 0.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.23,
+        "jahr": 2024
       }
     },
     "JAM": {
@@ -2973,6 +3370,10 @@
       "inflation": {
         "wert": 4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.35,
+        "jahr": 2024
       }
     },
     "JPN": {
@@ -3010,6 +3411,10 @@
       "inflation": {
         "wert": 3.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.15,
+        "jahr": 2024
       }
     },
     "JEY": {
@@ -3046,6 +3451,10 @@
       "inflation": {
         "wert": 1.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.6,
+        "jahr": 2024
       }
     },
     "KAZ": {
@@ -3075,6 +3484,10 @@
       "inflation": {
         "wert": 11.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.98,
+        "jahr": 2024
       }
     },
     "KEN": {
@@ -3104,6 +3517,10 @@
       "inflation": {
         "wert": 4.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.17,
+        "jahr": 2024
       }
     },
     "KIR": {
@@ -3128,6 +3545,10 @@
       },
       "inflation": {
         "wert": 2.5,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 3.12,
         "jahr": 2024
       }
     },
@@ -3158,6 +3579,10 @@
       "inflation": {
         "wert": 2.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.56,
+        "jahr": 2024
       }
     },
     "KGZ": {
@@ -3187,6 +3612,10 @@
       "inflation": {
         "wert": 8.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.6,
+        "jahr": 2024
       }
     },
     "LAO": {
@@ -3216,6 +3645,10 @@
       "inflation": {
         "wert": 7.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.4,
+        "jahr": 2024
       }
     },
     "LVA": {
@@ -3257,6 +3690,10 @@
       "wohneigentumsquote": {
         "wert": 82.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.24,
+        "jahr": 2024
       }
     },
     "LBN": {
@@ -3285,6 +3722,10 @@
       "inflation": {
         "wert": 14.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.23,
+        "jahr": 2024
       }
     },
     "LSO": {
@@ -3314,6 +3755,10 @@
       "inflation": {
         "wert": 4.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.66,
+        "jahr": 2024
       }
     },
     "LBR": {
@@ -3343,6 +3788,10 @@
       "inflation": {
         "wert": 8.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.86,
+        "jahr": 2024
       }
     },
     "LBY": {
@@ -3368,6 +3817,10 @@
       "inflation": {
         "wert": 1.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.3,
+        "jahr": 2024
       }
     },
     "LIE": {
@@ -3380,6 +3833,10 @@
       "schuldenquote": {
         "wert": 0.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.37,
+        "jahr": 2024
       }
     },
     "LTU": {
@@ -3421,6 +3878,10 @@
       "wohneigentumsquote": {
         "wert": 86.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.11,
+        "jahr": 2024
       }
     },
     "LUX": {
@@ -3462,6 +3923,10 @@
       "wohneigentumsquote": {
         "wert": 64.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.25,
+        "jahr": 2024
       }
     },
     "MDG": {
@@ -3491,6 +3956,10 @@
       "inflation": {
         "wert": 8.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.91,
+        "jahr": 2024
       }
     },
     "MWI": {
@@ -3520,6 +3989,10 @@
       "inflation": {
         "wert": 28.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.59,
+        "jahr": 2024
       }
     },
     "MYS": {
@@ -3549,6 +4022,10 @@
       "inflation": {
         "wert": 1.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.54,
+        "jahr": 2024
       }
     },
     "MDV": {
@@ -3578,6 +4055,10 @@
       "inflation": {
         "wert": 4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.56,
+        "jahr": 2024
       }
     },
     "MLI": {
@@ -3607,6 +4088,10 @@
       "inflation": {
         "wert": 3.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 5.51,
+        "jahr": 2024
       }
     },
     "MLT": {
@@ -3640,6 +4125,10 @@
       "wohneigentumsquote": {
         "wert": 70.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.01,
+        "jahr": 2024
       }
     },
     "MHL": {
@@ -3661,6 +4150,10 @@
       "bipProKopfKKP": {
         "wert": 8964,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.86,
+        "jahr": 2024
       }
     },
     "MTQ": {
@@ -3697,6 +4190,10 @@
       "inflation": {
         "wert": 1.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.63,
+        "jahr": 2024
       }
     },
     "MUS": {
@@ -3726,6 +4223,10 @@
       "inflation": {
         "wert": 3.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.44,
+        "jahr": 2024
       }
     },
     "MYT": {
@@ -3766,6 +4267,10 @@
       "inflation": {
         "wert": 3.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.89,
+        "jahr": 2024
       }
     },
     "FSM": {
@@ -3791,6 +4296,10 @@
       "inflation": {
         "wert": 5.4,
         "jahr": 2022
+      },
+      "geburtenziffer": {
+        "wert": 2.74,
+        "jahr": 2024
       }
     },
     "MCO": {
@@ -3799,7 +4308,11 @@
       "region": "Europe",
       "subregion": "Western Europe",
       "waehrung": "EUR",
-      "einwohner": 38956
+      "einwohner": 38956,
+      "geburtenziffer": {
+        "wert": 2.1,
+        "jahr": 2024
+      }
     },
     "MNG": {
       "alpha2": "MN",
@@ -3828,6 +4341,10 @@
       "inflation": {
         "wert": 8.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.5,
+        "jahr": 2024
       }
     },
     "MNE": {
@@ -3857,6 +4374,10 @@
       "inflation": {
         "wert": 3.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.8,
+        "jahr": 2024
       }
     },
     "MSR": {
@@ -3893,6 +4414,10 @@
       "inflation": {
         "wert": 0.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.21,
+        "jahr": 2024
       }
     },
     "MOZ": {
@@ -3922,6 +4447,10 @@
       "inflation": {
         "wert": 4.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.69,
+        "jahr": 2024
       }
     },
     "MMR": {
@@ -3951,6 +4480,10 @@
       "inflation": {
         "wert": 8.8,
         "jahr": 2019
+      },
+      "geburtenziffer": {
+        "wert": 2.1,
+        "jahr": 2024
       }
     },
     "NAM": {
@@ -3980,6 +4513,10 @@
       "inflation": {
         "wert": 3.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.21,
+        "jahr": 2024
       }
     },
     "NRU": {
@@ -4001,6 +4538,10 @@
       "bipProKopfKKP": {
         "wert": 14200,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.29,
+        "jahr": 2024
       }
     },
     "NPL": {
@@ -4030,6 +4571,10 @@
       "inflation": {
         "wert": 2.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.96,
+        "jahr": 2024
       }
     },
     "NLD": {
@@ -4071,6 +4616,10 @@
       "wohneigentumsquote": {
         "wert": 68.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.43,
+        "jahr": 2024
       }
     },
     "NCL": {
@@ -4087,6 +4636,10 @@
       "arbeitslosenquote": {
         "wert": 11.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.96,
+        "jahr": 2024
       }
     },
     "NZL": {
@@ -4124,6 +4677,10 @@
       "inflation": {
         "wert": 2.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.57,
+        "jahr": 2024
       }
     },
     "NIC": {
@@ -4153,6 +4710,10 @@
       "inflation": {
         "wert": 2.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.21,
+        "jahr": 2024
       }
     },
     "NER": {
@@ -4182,6 +4743,10 @@
       "inflation": {
         "wert": -4.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 5.94,
+        "jahr": 2024
       }
     },
     "NGA": {
@@ -4211,6 +4776,10 @@
       "inflation": {
         "wert": 23,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.38,
+        "jahr": 2024
       }
     },
     "NIU": {
@@ -4233,7 +4802,11 @@
       "region": "Oceania",
       "subregion": "Micronesia",
       "waehrung": "USD",
-      "einwohner": 45143
+      "einwohner": 45143,
+      "geburtenziffer": {
+        "wert": 2.32,
+        "jahr": 2024
+      }
     },
     "MKD": {
       "alpha2": "MK",
@@ -4262,6 +4835,10 @@
       "inflation": {
         "wert": 4.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.4,
+        "jahr": 2024
       }
     },
     "NOR": {
@@ -4303,6 +4880,10 @@
       "wohneigentumsquote": {
         "wert": 80,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.45,
+        "jahr": 2024
       }
     },
     "OMN": {
@@ -4332,6 +4913,10 @@
       "inflation": {
         "wert": 1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.51,
+        "jahr": 2024
       }
     },
     "PAK": {
@@ -4361,6 +4946,10 @@
       "inflation": {
         "wert": 3.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.55,
+        "jahr": 2024
       }
     },
     "PLW": {
@@ -4386,6 +4975,10 @@
       "inflation": {
         "wert": -0.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.88,
+        "jahr": 2024
       }
     },
     "PAN": {
@@ -4415,6 +5008,10 @@
       "inflation": {
         "wert": -0.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.11,
+        "jahr": 2024
       }
     },
     "PNG": {
@@ -4444,6 +5041,10 @@
       "inflation": {
         "wert": 4.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.07,
+        "jahr": 2024
       }
     },
     "PRY": {
@@ -4473,6 +5074,10 @@
       "inflation": {
         "wert": 4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.42,
+        "jahr": 2024
       }
     },
     "PER": {
@@ -4502,6 +5107,10 @@
       "inflation": {
         "wert": 1.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.97,
+        "jahr": 2024
       }
     },
     "PHL": {
@@ -4531,6 +5140,10 @@
       "inflation": {
         "wert": 1.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.89,
+        "jahr": 2024
       }
     },
     "PCN": {
@@ -4579,6 +5192,10 @@
       "wohneigentumsquote": {
         "wert": 87.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.14,
+        "jahr": 2024
       }
     },
     "PRT": {
@@ -4620,6 +5237,10 @@
       "wohneigentumsquote": {
         "wert": 71.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.41,
+        "jahr": 2024
       }
     },
     "PRI": {
@@ -4645,6 +5266,10 @@
       "arbeitslosenquote": {
         "wert": 6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 0.92,
+        "jahr": 2024
       }
     },
     "QAT": {
@@ -4672,6 +5297,10 @@
       },
       "inflation": {
         "wert": 1.3,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.72,
         "jahr": 2024
       }
     },
@@ -4710,6 +5339,10 @@
       "inflation": {
         "wert": 2.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 0.75,
+        "jahr": 2024
       }
     },
     "MDA": {
@@ -4739,6 +5372,10 @@
       "inflation": {
         "wert": 7.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.73,
+        "jahr": 2024
       }
     },
     "REU": {
@@ -4779,6 +5416,10 @@
       "wohneigentumsquote": {
         "wert": 93.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.39,
+        "jahr": 2024
       }
     },
     "RUS": {
@@ -4808,6 +5449,10 @@
       "inflation": {
         "wert": 8.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.42,
+        "jahr": 2024
       }
     },
     "RWA": {
@@ -4837,6 +5482,10 @@
       "inflation": {
         "wert": 5.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.65,
+        "jahr": 2024
       }
     },
     "BLM": {
@@ -4876,6 +5525,10 @@
       "inflation": {
         "wert": 3.6,
         "jahr": 2023
+      },
+      "geburtenziffer": {
+        "wert": 1.53,
+        "jahr": 2024
       }
     },
     "LCA": {
@@ -4905,6 +5558,10 @@
       "inflation": {
         "wert": 2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.39,
+        "jahr": 2024
       }
     },
     "MAF": {
@@ -4913,7 +5570,11 @@
       "region": "Americas",
       "subregion": "Latin America and the Caribbean",
       "waehrung": "EUR",
-      "einwohner": 27515
+      "einwohner": 27515,
+      "geburtenziffer": {
+        "wert": 2.67,
+        "jahr": 2024
+      }
     },
     "SPM": {
       "alpha2": "PM",
@@ -4949,6 +5610,10 @@
       "inflation": {
         "wert": 0.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.76,
+        "jahr": 2024
       }
     },
     "WSM": {
@@ -4978,6 +5643,10 @@
       "inflation": {
         "wert": 2.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.8,
+        "jahr": 2024
       }
     },
     "SMR": {
@@ -5002,6 +5671,10 @@
       "inflation": {
         "wert": 2.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.16,
+        "jahr": 2024
       }
     },
     "STP": {
@@ -5031,6 +5704,10 @@
       "inflation": {
         "wert": 11,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.6,
+        "jahr": 2024
       }
     },
     "SAU": {
@@ -5060,6 +5737,10 @@
       "inflation": {
         "wert": 2.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.31,
+        "jahr": 2024
       }
     },
     "SEN": {
@@ -5089,6 +5770,10 @@
       "inflation": {
         "wert": 1.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.77,
+        "jahr": 2024
       }
     },
     "SRB": {
@@ -5122,6 +5807,10 @@
       "wohneigentumsquote": {
         "wert": 88.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.64,
+        "jahr": 2024
       }
     },
     "SYC": {
@@ -5147,6 +5836,10 @@
       "inflation": {
         "wert": 0.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.85,
+        "jahr": 2024
       }
     },
     "SLE": {
@@ -5176,6 +5869,10 @@
       "inflation": {
         "wert": 7.5,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.7,
+        "jahr": 2024
       }
     },
     "SGP": {
@@ -5205,6 +5902,10 @@
       "inflation": {
         "wert": 0.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 0.97,
+        "jahr": 2024
       }
     },
     "SXM": {
@@ -5222,6 +5923,10 @@
       "bipProKopfKKP": {
         "wert": 56491,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.44,
+        "jahr": 2024
       }
     },
     "SVK": {
@@ -5263,6 +5968,10 @@
       "wohneigentumsquote": {
         "wert": 93.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.46,
+        "jahr": 2024
       }
     },
     "SVN": {
@@ -5304,6 +6013,10 @@
       "wohneigentumsquote": {
         "wert": 74.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.52,
+        "jahr": 2024
       }
     },
     "SLB": {
@@ -5333,6 +6046,10 @@
       "inflation": {
         "wert": 3.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.51,
+        "jahr": 2024
       }
     },
     "SOM": {
@@ -5354,6 +6071,10 @@
       "arbeitslosenquote": {
         "wert": 18.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 6.01,
+        "jahr": 2024
       }
     },
     "ZAF": {
@@ -5383,6 +6104,10 @@
       "inflation": {
         "wert": 3.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.21,
+        "jahr": 2024
       }
     },
     "SGS": {
@@ -5409,6 +6134,10 @@
       },
       "inflation": {
         "wert": 91.4,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 3.79,
         "jahr": 2024
       }
     },
@@ -5451,6 +6180,10 @@
       "wohneigentumsquote": {
         "wert": 73.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.1,
+        "jahr": 2024
       }
     },
     "LKA": {
@@ -5480,6 +6213,10 @@
       "inflation": {
         "wert": -4.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.95,
+        "jahr": 2024
       }
     },
     "PSE": {
@@ -5505,6 +6242,10 @@
       "inflation": {
         "wert": 9.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.25,
+        "jahr": 2024
       }
     },
     "SDN": {
@@ -5534,6 +6275,10 @@
       "inflation": {
         "wert": 138.8,
         "jahr": 2022
+      },
+      "geburtenziffer": {
+        "wert": 4.26,
+        "jahr": 2024
       }
     },
     "SUR": {
@@ -5563,6 +6308,10 @@
       "inflation": {
         "wert": 9.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.23,
+        "jahr": 2024
       }
     },
     "SJM": {
@@ -5607,6 +6356,10 @@
       "wohneigentumsquote": {
         "wert": 64.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.43,
+        "jahr": 2024
       }
     },
     "CHE": {
@@ -5640,6 +6393,10 @@
       "inflation": {
         "wert": 0.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.29,
+        "jahr": 2024
       }
     },
     "SYR": {
@@ -5668,6 +6425,10 @@
       "inflation": {
         "wert": 13.4,
         "jahr": 2019
+      },
+      "geburtenziffer": {
+        "wert": 2.7,
+        "jahr": 2024
       }
     },
     "TWN": {
@@ -5704,6 +6465,10 @@
       "arbeitslosenquote": {
         "wert": 6.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.04,
+        "jahr": 2024
       }
     },
     "THA": {
@@ -5733,6 +6498,10 @@
       "inflation": {
         "wert": -0.1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.2,
+        "jahr": 2024
       }
     },
     "TLS": {
@@ -5762,6 +6531,10 @@
       "inflation": {
         "wert": 0.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.63,
+        "jahr": 2024
       }
     },
     "TGO": {
@@ -5791,6 +6564,10 @@
       "inflation": {
         "wert": 0.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.12,
+        "jahr": 2024
       }
     },
     "TKL": {
@@ -5826,6 +6603,10 @@
       "inflation": {
         "wert": 5.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.1,
+        "jahr": 2024
       }
     },
     "TTO": {
@@ -5855,6 +6636,10 @@
       "inflation": {
         "wert": 1,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.54,
+        "jahr": 2024
       }
     },
     "TUN": {
@@ -5884,6 +6669,10 @@
       "inflation": {
         "wert": 5.2,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.82,
+        "jahr": 2024
       }
     },
     "TUR": {
@@ -5921,6 +6710,10 @@
       "wohneigentumsquote": {
         "wert": 56.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.48,
+        "jahr": 2024
       }
     },
     "TKM": {
@@ -5946,6 +6739,10 @@
       "arbeitslosenquote": {
         "wert": 4.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.66,
+        "jahr": 2024
       }
     },
     "TCA": {
@@ -5962,6 +6759,10 @@
       },
       "bipProKopfKKP": {
         "wert": 38010,
+        "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.45,
         "jahr": 2024
       }
     },
@@ -5984,6 +6785,10 @@
       "bipProKopfKKP": {
         "wert": 6759,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.17,
+        "jahr": 2024
       }
     },
     "UGA": {
@@ -6013,6 +6818,10 @@
       "inflation": {
         "wert": 3.6,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.17,
+        "jahr": 2024
       }
     },
     "UKR": {
@@ -6042,6 +6851,10 @@
       "inflation": {
         "wert": 12.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 0.99,
+        "jahr": 2024
       }
     },
     "ARE": {
@@ -6071,6 +6884,10 @@
       "inflation": {
         "wert": 1.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.21,
+        "jahr": 2024
       }
     },
     "GBR": {
@@ -6108,6 +6925,10 @@
       "inflation": {
         "wert": 3.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.55,
+        "jahr": 2024
       }
     },
     "TZA": {
@@ -6137,6 +6958,10 @@
       "inflation": {
         "wert": 3.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.54,
+        "jahr": 2024
       }
     },
     "UMI": {
@@ -6181,6 +7006,10 @@
       "inflation": {
         "wert": 2.9,
         "jahr": 2024
+      },
+      "geburtenziffer": {
+        "wert": 1.63,
+        "jahr": 2024
       }
     },
     "VIR": {
@@ -6197,6 +7026,10 @@
       "arbeitslosenquote": {
         "wert": 11.4,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.97,
+        "jahr": 2024
       }
     },
     "URY": {
@@ -6226,6 +7059,10 @@
       "inflation": {
         "wert": 4.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.4,
+        "jahr": 2024
       }
     },
     "UZB": {
@@ -6255,6 +7092,10 @@
       "inflation": {
         "wert": 8.8,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.49,
+        "jahr": 2024
       }
     },
     "VUT": {
@@ -6284,6 +7125,10 @@
       "inflation": {
         "wert": 0.7,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 3.57,
+        "jahr": 2024
       }
     },
     "VEN": {
@@ -6304,6 +7149,10 @@
       "arbeitslosenquote": {
         "wert": 5.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 2.08,
+        "jahr": 2024
       }
     },
     "VNM": {
@@ -6333,6 +7182,10 @@
       "inflation": {
         "wert": 3.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 1.9,
+        "jahr": 2024
       }
     },
     "WLF": {
@@ -6363,6 +7216,10 @@
       "arbeitslosenquote": {
         "wert": 17.3,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.5,
+        "jahr": 2024
       }
     },
     "ZMB": {
@@ -6392,6 +7249,10 @@
       "inflation": {
         "wert": 13.9,
         "jahr": 2025
+      },
+      "geburtenziffer": {
+        "wert": 4.04,
+        "jahr": 2024
       }
     },
     "ZWE": {
@@ -6421,6 +7282,10 @@
       "inflation": {
         "wert": 104.7,
         "jahr": 2022
+      },
+      "geburtenziffer": {
+        "wert": 3.67,
+        "jahr": 2024
       }
     }
   }
