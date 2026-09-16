@@ -14,6 +14,7 @@ import type { DailyEdition } from '../data/editions/types.ts'
 import {
   baueFolge,
   folgennummer,
+  kernDerUeberschrift,
   ordnungszahl,
   sprechbar,
   verdaechtigeAnglizismen,
@@ -68,7 +69,43 @@ pruefe(
   sprechbar('26.068,45 Punkte'),
   'sechsundzwanzigtausendachtundsechzig Komma vier fünf Punkte'
 )
-pruefe('S&P 500', sprechbar('Der S&P 500 stieg.'), 'Der S und P fünfhundert stieg.')
+pruefe('S&P 500', sprechbar('Der S&P 500 stieg.'), 'Der Ess und Pie fünfhundert stieg.')
+pruefe('S&P ohne Zahl', sprechbar('Der S&P gab nach.'), 'Der Ess und Pie gab nach.')
+
+/*
+  Der Bindestrich, der kein Minuszeichen ist.
+
+  Bis zum 16. September 2026 fasste die Vorzeichenregel jeden Strich vor einer
+  Ziffer. Im Bestand traf das fünf Stellen; gesprochen wurde daraus
+  „Nässdackminus einhundert". Gemeldet hat es der Betreiber als einen von
+  mehreren Sprachfehlern in der Folge.
+*/
+pruefe(
+  'Bindestrich im Namen wird nicht zum Minus',
+  sprechbar('der Nasdaq-100 bei 29.224'),
+  'der Nässdack-einhundert bei neunundzwanzigtausendzweihundertvierundzwanzig'
+)
+pruefe('US-30 bleibt US-30', sprechbar('der US-30 stieg'), 'der US-dreißig stieg')
+pruefe(
+  'zusammengesetzte Zahl im Wort bleibt heil',
+  sprechbar('Ein 9-zu-3-Stillhalten'),
+  'Ein neun-zu-drei-Stillhalten'
+)
+/* Die Gegenprobe: Ein echtes Vorzeichen muss weiterhin gesprochen werden. */
+pruefe(
+  'echtes Minus bleibt Minus',
+  sprechbar('Das Ergebnis lag bei -3,2 %.'),
+  'Das Ergebnis lag bei minus drei Komma zwei Prozent.'
+)
+pruefe(
+  'echtes Plus bleibt Plus',
+  sprechbar('Das Ergebnis lag bei +1,5 %.'),
+  'Das Ergebnis lag bei plus eins Komma fünf Prozent.'
+)
+
+/* Namen, die bis zum 16. September 2026 unübersetzt durchliefen. */
+pruefe('Bank of England', sprechbar('die Bank of England'), 'die Bänk of Ingland')
+pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh Teh Ih stieg')
 /*
   Die eigene Adresse ist der eigene Name plus Endung, und beides wird
   englisch gesprochen. „iminvests punkt de" las die Stimme als ein einziges
@@ -191,6 +228,53 @@ pruefe(
   false
 )
 
+/* ------------------------------------------- Kapitelnamen aus Überschriften */
+
+/*
+  Die drei Fälle, an denen es am 16. September 2026 aufgefallen ist – wörtlich
+  die Überschriften der Ausgabe vom 30. Juli. In den Kapitelmarken und in
+  jeder Folgenbeschreibung stand daraus: „Öl springt 7", „Heute", „Wall
+  Street".
+
+  Feste Sätze statt der jüngsten Ausgabe: Die wechselt täglich, und eine
+  Prüfung, die morgen einen anderen Stoff bekommt, prüft nicht diesen Fehler.
+*/
+pruefe(
+  'Dezimalkomma trennt nicht',
+  kernDerUeberschrift(
+    'Öl springt 7,9 Prozent auf 90,74 Dollar – nach 16 Prozent Verlust'
+  ),
+  'Öl springt 7,9 Prozent auf 90,74 Dollar'
+)
+pruefe(
+  'eine Rubrik vor dem Doppelpunkt ist kein Kern',
+  kernDerUeberschrift('Heute: Bank of England, BIP-Schnellmeldungen und Apple'),
+  'Heute: Bank of England, BIP-Schnellmeldungen'
+)
+pruefe(
+  'ein Ort vor dem Doppelpunkt ebenso wenig',
+  kernDerUeberschrift('Wall Street: schwerster Tag seit April 2025, Renditen hoch'),
+  'Wall Street: schwerster Tag seit April 2025'
+)
+/* Die Gegenprobe: Wo der Teil vor dem Trenner trägt, bleibt es dabei. */
+pruefe(
+  'ein tragender Kern wird weiter abgetrennt',
+  kernDerUeberschrift('Fed hält die Zinsen mit 9 zu 3 – drei Stimmen für eine Erhöhung'),
+  'Fed hält die Zinsen mit 9 zu 3'
+)
+pruefe(
+  'Satzkomma trennt weiterhin',
+  kernDerUeberschrift('Microsoft springt, Meta fällt – zwei Berichte, ein Abend'),
+  'Microsoft springt'
+)
+pruefe(
+  'kein Satzzeichen am Ende',
+  /[,;:–—-]$/.test(
+    kernDerUeberschrift('Heute: Bank of England, BIP-Schnellmeldungen und Apple')
+  ),
+  false
+)
+
 /* ----------------------------------------------------------- Die Folge */
 
 pruefe('30.07. ist Folge 1', folgennummer('2026-07-30'), 1)
@@ -267,7 +351,27 @@ pruefe(
   /IM Investments/.test(folge.sprechtext),
   false
 )
-pruefe('Fazit-Absatz vorhanden', folge.sprechtext.includes('Bleibt das Fazit.'), true)
+/*
+  Kein Fazit, keine Einordnung – seit dem 16. September 2026.
+
+  Der Betreiber hat verlangt, dass in der Folge **nichts erklärt** wird,
+  sondern nur die Nachrichten des Tages kommen. Damit fiel beides weg: der
+  `whyItMatters`-Satz aus jedem Absatz und das Fazit, das ihn für die
+  wichtigste Meldung ein zweites Mal vortrug.
+
+  Beide Prüfungen stehen hier als Paar. Die erste allein ließe sich dadurch
+  erfüllen, dass jemand nur die Überschrift „Bleibt das Fazit" streicht und
+  den Satz stehen lässt.
+*/
+pruefe('kein Fazit-Absatz mehr', folge.sprechtext.includes('Bleibt das Fazit'), false)
+pruefe(
+  'keine Einordnung im Sprechtext',
+  [...edition.top, ...edition.further].some((item) =>
+    folge.sprechtext.includes(sprechbar(item.whyItMatters))
+  ),
+  false
+)
+pruefe('kein Kapitel „Fazit"', folge.kapitel.includes('Fazit'), false)
 pruefe('keine Ziffern im Sprechtext', /\d/.test(folge.sprechtext), false)
 pruefe('keine Klammern im Sprechtext', /[()]/.test(folge.sprechtext), false)
 pruefe('kein Prozentzeichen im Sprechtext', folge.sprechtext.includes('%'), false)

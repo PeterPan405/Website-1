@@ -32,7 +32,7 @@
  * beanstandet, wird abgeschaltet statt befolgt.
  */
 
-import { englischeNamenSprechbar } from '@/lib/sprechfassung'
+import { ENGLISCHE_NAMEN, englischeNamenSprechbar } from '@/lib/sprechfassung'
 
 let failed = 0
 
@@ -138,6 +138,98 @@ for (const [wort, alteUmschrift] of ALT) {
     (wVorVokal > 0 && us < wVorVokal) || hatV,
     'Wenn das hier durchgeht, prüft der Test nichts.'
   )
+}
+
+/* ======================================================================
+   Und jetzt die ganze Tabelle, nicht nur die Liste oben.
+   ====================================================================== */
+
+/*
+  ## Warum das die eigentliche Prüfung ist
+
+  Die Liste `WOERTER` ist von Hand gepflegt. Sie hat die neun Verstöße vom
+  20. August 2026 gefunden – und jeden Eintrag ungeprüft gelassen, der danach
+  dazukam. Wer einen Namen in die Tabelle schreibt, denkt nicht daran, ihn
+  zusätzlich hierher zu schreiben.
+
+  So ist „Skwies" für „Squeeze" stehen geblieben: Die Regel sucht ein „w" im
+  **englischen** Wort, und in „Squeeze" steht keins – das /w/ steckt im „qu".
+  Gefunden hat es am 16. September 2026 ein Mensch beim Zuhören.
+
+  Deshalb läuft die Regel jetzt über **jeden** Eintrag. Das Probewort entsteht
+  aus dem Muster selbst; lässt es sich nicht ablesen, fällt der Eintrag durch,
+  statt übersprungen zu werden. Eine Prüfung, die still auslässt, was sie
+  nicht versteht, ist wieder eine Stichprobe.
+*/
+
+/** Aus einem Muster ein Wort machen, das es trifft. */
+function probewort(muster: RegExp): string {
+  return muster.source
+    .replaceAll('\\b', '')
+    .replaceAll(/\(\?:([^)|]+)\|[^)]*\)/g, '$1') // (?:xx|cks) → xx
+    .replaceAll(/\[([^\]])[^\]]*\]\??/g, '$1') // [ -]? → Leerzeichen
+    .replaceAll(/(.)\?/g, '$1') // Sell-?off → Sell-off
+}
+
+pruefen(
+  `Die Tabelle hat Einträge (${ENGLISCHE_NAMEN.length})`,
+  ENGLISCHE_NAMEN.length > 50,
+  'Ohne Einträge prüft alles Folgende die leere Menge.'
+)
+
+for (const [muster, umschrift] of ENGLISCHE_NAMEN) {
+  const wort = probewort(muster)
+
+  /* Zuerst: Trifft das abgelesene Wort sein eigenes Muster? Wenn nicht, ist
+     das Muster zu verwickelt für diese Prüfung – und dann wird es gemeldet,
+     nicht stillschweigend ausgelassen. */
+  if (!new RegExp(muster.source, muster.flags.replace('g', '')).test(wort)) {
+    pruefen(
+      `/${muster.source}/: Probewort ablesbar`,
+      false,
+      `Aus dem Muster wurde „${wort}" – das trifft es nicht. Entweder das ` +
+        `Muster vereinfachen oder probewort() erweitern. Übersprungen wird nicht.`
+    )
+    continue
+  }
+
+  /* Regel 2: englisches „w" vor Vokal → „u" in der Umschrift. */
+  const wVorVokal = [...wort.toLowerCase().matchAll(/w(.)/g)].filter(([, next]) =>
+    VOKALE.includes(next)
+  ).length
+  if (wVorVokal > 0) {
+    const us = (umschrift.toLowerCase().match(/u/g) ?? []).length
+    pruefen(
+      `„${wort}" → „${umschrift}": /w/ steht als „u"`,
+      us >= wVorVokal,
+      'Mit „w" gesprochen ergäbe das ein /v/.'
+    )
+  }
+
+  /* Regel 3: englisches „v" → „w", nie „v". */
+  if (wort.toLowerCase().includes('v')) {
+    pruefen(
+      `„${wort}" → „${umschrift}": das /v/ steht als „w"`,
+      !umschrift.toLowerCase().includes('v'),
+      '„v" ist im Deutschen /f/.'
+    )
+  }
+
+  /*
+    Regel 2, zweite Gestalt: das „qu".
+
+    Englisches „qu" ist /kw/. Ein „kw" in der Umschrift wäre im Deutschen
+    /kv/ – dieselbe Falle wie beim „w", nur dass die Regel oben sie nicht
+    sieht, weil im englischen Wort kein „w" steht. Genau daran ist „Squeeze"
+    vorbeigekommen.
+  */
+  if (/qu/i.test(wort)) {
+    pruefen(
+      `„${wort}" → „${umschrift}": das /kw/ aus „qu" steht als „ku"`,
+      !/kw/i.test(umschrift),
+      '„kw" ist im Deutschen /kv/ – gebraucht wird „ku".'
+    )
+  }
 }
 
 /*

@@ -34,6 +34,8 @@
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
+import { positionierungen } from '../lib/editions-validate.ts'
+
 // ---------------------------------------------------------------- Regelwerk
 
 /** Aus `lib/news-validate.ts` – hier gespiegelt, damit der Bruch früh kommt. */
@@ -371,7 +373,31 @@ Ton: sachlich, erklärend, per Du zum Leser nur wo es passt, keine Ausrufezeiche
 
 Fünf bis neun Artikel aus **mehreren Quellen zu mehreren Themen**. Lieber fünf belegte als neun mit einem geratenen. Eine einzelne Quelle, aus der fünf Artikel stammen und alle dasselbe Thema haben, erfüllt die Zahl und verfehlt die Sache.
 
-Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`. \`whyItMatters\` ist der eigentliche Zweck der Rubrik – ein Satz darüber, was der Leser damit anfängt.
+Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`.
+
+# Die Tagesausgabe ist zugleich der Podcast
+
+\`summary\` wird **wörtlich gesprochen**. Die Folge am nächsten Morgen besteht aus nichts anderem als diesen Absätzen, der Reihe nach. Daraus folgen drei Dinge:
+
+**1. \`summary\` und \`whyItMatters\` werden nicht vermischt.**
+
+- \`summary\` ist die **Nachricht**: was geschehen ist, mit Zahlen, Namen und Uhrzeiten. Keine Erklärung, keine Herleitung, keine Lehre.
+- \`whyItMatters\` ist die **Einordnung** – ein Satz darüber, was der Leser damit anfängt. Er steht auf der Website und kommt **nicht** in die Folge.
+
+Ein Satz wie „Steigende Renditen drücken Aktienbewertungen über die Abzinsung künftiger Gewinne" gehört nach \`whyItMatters\`. In \`summary\` gehört: „Die Rendite zehnjähriger US-Anleihen stieg über 4,67 Prozent."
+
+**2. Die Folge handelt von Wirtschaft und Politik.** Die Rangfolge unter \`top\` ist die Rangfolge der Folge; oben steht, was den Tag bestimmt:
+
+- **Notenbanken und Konjunktur** – Zinsentscheide, Inflations- und Arbeitsmarktdaten, Protokolle, Reden mit Marktrelevanz.
+- **Politik mit Marktwirkung** – Handelskonflikte, Zölle, Sanktionen, Haushalte, Wahlen, militärische Eskalation.
+- **Der Markt im Ganzen** – Indizes, Renditen, Rohstoffe, Wechselkurse.
+
+**Einzelne Aktien tragen die Folge nicht.** Ein einzelnes Unternehmen kommt hinein, wenn es ein großer, allgemein bekannter Name ist **und** die Meldung darüber hinaus erheblich ist – eine Übernahme, ein Ausfall, eine Zahl, die einen Index bewegt. Quartalszahlen eines Einzelwerts sind kein Aufmacher. Zwei Nachkommastellen beim Gewinn je Aktie gehören in den Artikel, nicht in die gesprochene Meldung.
+
+**3. Objektiv, ohne Position.** Berichtet wird, was geschehen ist und wer was gesagt hat – mit Zuschreibung. Keine eigene Bewertung, keine Parteinahme, keine Vermutung über Absichten, keine urteilenden Adjektive. Das gilt besonders für politische und militärische Ereignisse.
+
+- Richtig: „Russland griff Ziele in der Westukraine nahe der polnischen Grenze an. Polen meldete eine Verletzung seines Luftraums und berief sich auf Artikel 4 des Nato-Vertrags."
+- Falsch: „Russlands rücksichtsloser Angriff …" · „Der Markt hat überreagiert." · „Anleger sollten jetzt …"
 
 # Was heute ansteht, gehört hinein
 
@@ -613,6 +639,20 @@ function pruefe(
     }
     if (!m.summary.length || m.summary.some((s) => s.trim().length < SUMMARY_MIN)) {
       f(`${wo}: jeder summary-Absatz braucht mindestens ${SUMMARY_MIN} Zeichen.`)
+    }
+    /*
+      Objektiv, ohne Position – dieselbe Prüfung wie im Build.
+
+      `summary` wird wörtlich zur Podcastfolge. Die Wortliste steht in
+      `lib/editions-validate.ts` und wird von dort geholt, nicht abgeschrieben:
+      `AGENTS.md` verlangt, dass diese Prüfung den Build spiegelt, und zwei
+      Listen mit demselben Zweck gehen auseinander.
+
+      Hier zu scheitern ist billig – der Entwurf wird verworfen, bevor er eine
+      Ausgabe wird, und der Lauf sagt im Protokoll, welcher Satz es war.
+    */
+    for (const { art, fund } of positionierungen(m.summary.join(' '))) {
+      f(`${wo}: „${fund}" in summary – ${art}. Das gehört in whyItMatters.`)
     }
     for (const t of m.relatedTopics)
       if (!themen.has(t)) f(`${wo}: Lernthema „${t}" gibt es nicht.`)
