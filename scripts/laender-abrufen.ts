@@ -109,6 +109,22 @@ const EINKOMMENSREIHEN = [
 const RATENREIHEN = [
   { feld: 'arbeitslosenquote' as const, indikator: 'SL.UEM.TOTL.ZS' },
   { feld: 'inflation' as const, indikator: 'FP.CPI.TOTL.ZG' },
+  /*
+    `SP.DYN.TFRT.IN` – die zusammengefasste Geburtenziffer, Kinder je Frau.
+
+    Anders als beim Wohneigentum gibt es hier eine weltweite Reihe: Die
+    Weltbank traegt sie aus den Bevoelkerungsvorausberechnungen der Vereinten
+    Nationen, den nationalen Statistikaemtern und Eurostat zusammen. Geprueft
+    am 16. September 2026 vom Laeufer aus: Deutschland 1,36 · Frankreich 1,61 ·
+    Suedkorea 0,748 · Nigeria 4,382, alle fuer 2024.
+
+    **Zwei Nachkommastellen, nicht eine.** Die Haelfte aller Laender liegt
+    zwischen 1,2 und 2,1; auf eine Stelle gerundet faellt der Unterschied
+    zwischen 1,36 und 1,44 weg, und genau um den geht jede Debatte zur
+    Bevoelkerungsentwicklung. Bei Arbeitslosigkeit und Inflation waere die
+    zweite Stelle Scheingenauigkeit, hier ist die erste zu grob.
+  */
+  { feld: 'geburtenziffer' as const, indikator: 'SP.DYN.TFRT.IN' },
 ]
 
 /**
@@ -898,6 +914,7 @@ async function main() {
     bipKkp,
     arbeitslos,
     inflation,
+    geburten,
     vorher,
   ] = await Promise.all([
     ladeCsv(GDP_URL),
@@ -915,6 +932,8 @@ async function main() {
       stellen: 1,
       auchNichtPositiv: true,
     }),
+    // Zwei Stellen – siehe die Begruendung bei RATENREIHEN.
+    ladeWeltbankreihe(RATENREIHEN[2].indikator, { stellen: 2 }),
     ladeVorherigenStand(),
   ])
 
@@ -970,6 +989,7 @@ async function main() {
       arbeitslosenquote?: { wert: number; jahr: number }
       inflation?: { wert: number; jahr: number }
       wohneigentumsquote?: { wert: number; jahr: number }
+      geburtenziffer?: { wert: number; jahr: number }
     }
   > = {}
 
@@ -985,6 +1005,7 @@ async function main() {
         arbeitslosenquote?: { wert: number; jahr: number }
         inflation?: { wert: number; jahr: number }
         wohneigentumsquote?: { wert: number; jahr: number }
+        geburtenziffer?: { wert: number; jahr: number }
       }
     >) ?? {}
 
@@ -1052,6 +1073,12 @@ async function main() {
         const gewaehlt = neu ?? alt
         return gewaehlt ? { wohneigentumsquote: gewaehlt } : {}
       })(),
+      ...(() => {
+        const neu = geburten?.get(code.alpha3)
+        const alt = vorherigeLaender[code.alpha3]?.geburtenziffer
+        const gewaehlt = neu ?? alt
+        return gewaehlt ? { geburtenziffer: gewaehlt } : {}
+      })(),
     }
   }
 
@@ -1080,8 +1107,9 @@ async function main() {
   const mitWohneigentum = Object.values(laender).filter(
     (land) => land.wohneigentumsquote
   ).length
+  const mitGeburten = Object.values(laender).filter((land) => land.geburtenziffer).length
   console.log(
-    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn, ${mitVermoegen} mit Medianvermoegen, ${mitBne} mit Einkommen je Kopf, ${mitKkp} mit Kaufkraft je Kopf, ${mitArbeitslos} mit Arbeitslosenquote, ${mitInflation} mit Inflation und ${mitWohneigentum} mit Wohneigentumsquote.`
+    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn, ${mitVermoegen} mit Medianvermoegen, ${mitBne} mit Einkommen je Kopf, ${mitKkp} mit Kaufkraft je Kopf, ${mitArbeitslos} mit Arbeitslosenquote, ${mitInflation} mit Inflation, ${mitWohneigentum} mit Wohneigentumsquote und ${mitGeburten} mit Geburtenziffer.`
   )
 
   if (mitBip < 150) {
@@ -1132,6 +1160,12 @@ async function main() {
       url: 'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS',
       abgrenzung:
         'Arbeitslose in Prozent der Erwerbspersonen, Modellschaetzung der ILO. Keine nationale Meldung: Die Laender zaehlen nach verschiedenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Deshalb weicht der Wert von der Zahl ab, die im jeweiligen Land veroeffentlicht wird – das ist der Preis der Vergleichbarkeit, kein Fehler.',
+    },
+    geburtenQuelle: {
+      label: 'Weltbank, World Development Indicators (SP.DYN.TFRT.IN)',
+      url: 'https://data.worldbank.org/indicator/SP.DYN.TFRT.IN',
+      abgrenzung:
+        'Zusammengefasste Geburtenziffer: Kinder, die eine Frau im Lauf ihres Lebens bekaeme, wenn fuer sie durchgehend die altersspezifischen Geburtenhaeufigkeiten des jeweiligen Jahres gaelten. Ein Modellwert ueber einen Jahrgang, den es so nie gab – nicht die tatsaechliche Kinderzahl einer Generation und nicht die Geburtenrate im engeren Sinn (Geburten je tausend Einwohner). Zusammengetragen aus den Bevoelkerungsvorausberechnungen der Vereinten Nationen, den nationalen Statistikaemtern und Eurostat.',
     },
     wohneigentumQuelle: {
       label: 'Eurostat, EU-SILC – Bevoelkerung nach Wohnstatus (ilc_lvho02)',

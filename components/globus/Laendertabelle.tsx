@@ -41,6 +41,7 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
               'Arbeitslos (%)',
               'Inflation (%)',
               'Wohneigentum (%)',
+              'Kinder je Frau',
               'Kurse',
             ].map((spalte, index) => (
               <th
@@ -114,6 +115,16 @@ export function Laendertabelle({ laender }: { laender: readonly Land[] }) {
                     land.wohneigentumsquote
                       ? formatNumber(land.wohneigentumsquote.wert, 1)
                       : null
+                  }
+                />
+                {/*
+                  Zwei Nachkommastellen, anders als die Quoten daneben. Die
+                  Hälfte aller Länder liegt zwischen 1,2 und 2,1 – auf eine
+                  Stelle gerundet stünde in der halben Spalte dasselbe.
+                */}
+                <Zelle
+                  wert={
+                    land.geburtenziffer ? formatNumber(land.geburtenziffer.wert, 2) : null
                   }
                 />
                 <Zelle wert={kurse > 0 ? String(kurse) : null} />
