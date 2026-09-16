@@ -116,11 +116,38 @@ export interface Metrik {
   einheit: string
   /** Für die Sortierung der Rangliste: Ist ein hoher Wert „mehr“? */
   hoherWertIstGross: boolean
+  /**
+   * Das Feld auf `Land`, das den Wert trägt – für `tests/globus-kennzahlen.test.ts`.
+   *
+   * ## Warum das hier steht
+   *
+   * Eine Kennzahl muss an **drei** Stellen auftauchen, damit sie vollständig
+   * ist: in der Einfärbung der Karte (`wertVon`), in der Tafel zum
+   * angeklickten Land (`Landtafel`) und in der Ländertabelle. Drei Listen,
+   * von Hand gepflegt.
+   *
+   * Am 16. September 2026 hat der Betreiber gemeldet, dass die
+   * Eigentumsquote in der Landtafel fehlt – sie stand in zweien der drei
+   * Listen und war auf der Karte zu sehen. Genau der Fall, vor dem
+   * `AGENTS.md` warnt: *Eine Doppelung mit guter Begründung altert
+   * trotzdem.* Es fiel niemandem auf, weil ein Land ohne Zeile aussieht wie
+   * ein Land ohne Angabe.
+   *
+   * Zusammenführen liesse sich das nur mit einem Umbau der Tafel, die je
+   * Kennzahl eine eigene Schreibweise braucht („% des BIP", „US-$ je
+   * Erwachsenem", „Kinder je Frau"). Statt dessen trägt jede Kennzahl den
+   * Namen ihres Feldes, und ein Test hält die drei Listen gegeneinander.
+   *
+   * Leer bei `kurse`: Die Zahl wird aus `indizes` und `aktien` gerechnet und
+   * steht in einem eigenen Abschnitt, nicht in der Kennzahlenliste.
+   */
+  feld?: keyof Land
 }
 
 export const metriken: Metrik[] = [
   {
     id: 'bip',
+    feld: 'bipUsd',
     label: 'Bruttoinlandsprodukt',
     erklaerung:
       'Der Wert aller Waren und Dienstleistungen, die ein Land in einem Jahr herstellt. Eine Größenangabe – kein Wohlstandsmaß.',
@@ -129,6 +156,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'bipProKopf',
+    feld: 'bipProKopfUsd',
     label: 'BIP pro Kopf',
     erklaerung:
       'Wirtschaftsleistung geteilt durch Einwohner. Sagt nichts darüber, wie sie verteilt ist.',
@@ -137,6 +165,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'einwohner',
+    feld: 'einwohner',
     label: 'Einwohner',
     erklaerung: 'Bevölkerung des Landes.',
     einheit: 'Personen',
@@ -144,6 +173,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'schuldenquote',
+    feld: 'schuldenquote',
     label: 'Staatsverschuldung',
     erklaerung:
       'Schulden des Staates im Verhältnis zur jährlichen Wirtschaftsleistung. Über 100 Prozent heißt: mehr Schulden als ein Jahr Wirtschaftsleistung.',
@@ -152,6 +182,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'durchschnittsgehalt',
+    feld: 'durchschnittsgehalt',
     label: 'Durchschnittsgehalt',
     erklaerung:
       'Jahreslohn einer vollzeitbeschäftigten Person, kaufkraftbereinigt. Brutto, vor Steuern und Abgaben. Erhoben wird er nur für die 38 OECD-Mitglieder; bei den übrigen ist er aus der Wirtschaftsleistung je Kopf geschätzt und liegt typischerweise um ein Achtel daneben.',
@@ -160,6 +191,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'medianvermoegen',
+    feld: 'medianvermoegen',
     label: 'Medianvermögen',
     /*
       Die Angabe „je Haushalt“ gehört in die Erklärung, nicht nur in die
@@ -176,6 +208,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'bneProKopf',
+    feld: 'bneProKopf',
     label: 'Einkommen je Kopf',
     /*
       Der Name ist mit Bedacht nicht „Durchschnittsgehalt“.
@@ -193,6 +226,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'bipProKopfKKP',
+    feld: 'bipProKopfKKP',
     label: 'Kaufkraft je Kopf',
     erklaerung:
       'Wirtschaftsleistung je Einwohner, umgerechnet nach dem, was man vor Ort dafür bekommt. Ein Friseurbesuch kostet in Kairo weniger als in Kopenhagen; wer nur zum Wechselkurs umrechnet, unterschätzt ärmere Länder deshalb systematisch. Diese Zahl gleicht das aus.',
@@ -201,6 +235,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'arbeitslosenquote',
+    feld: 'arbeitslosenquote',
     label: 'Arbeitslosenquote',
     /*
       Der Hinweis auf die Modellschätzung gehört in die Erklärung, nicht ins
@@ -218,6 +253,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'inflation',
+    feld: 'inflation',
     label: 'Inflation',
     /*
       Zwei Missverständnisse sind vorprogrammiert, und beide stehen deshalb im
@@ -231,6 +267,7 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'wohneigentumsquote',
+    feld: 'wohneigentumsquote',
     label: 'Wohneigentum',
     /*
       Drei Dinge müssen in der Erklärung stehen, weil die Zahl sonst falsch
@@ -260,22 +297,28 @@ export const metriken: Metrik[] = [
   },
   {
     id: 'geburtenziffer',
+    feld: 'geburtenziffer',
     /*
-      „Kinder je Frau" und nicht „Geburtenrate".
+      „Geburtenrate", auf Wunsch des Betreibers vom 16. September 2026.
 
-      Beides wird umgangssprachlich gleichgesetzt und ist statistisch
-      zweierlei. Die **Geburtenrate** im engeren Sinn ist die rohe
-      Geburtenziffer: Geburten je tausend Einwohner, für Deutschland rund
-      acht. Was hier steht, ist die **zusammengefasste Geburtenziffer**:
-      Kinder je Frau, für Deutschland rund 1,4.
+      Zuerst stand hier „Kinder je Frau", und zwar mit Grund: **Geburtenrate**
+      bezeichnet statistisch die rohe Geburtenziffer – Geburten je tausend
+      Einwohner, für Deutschland rund acht. Was hier steht, ist die
+      zusammengefasste Geburtenziffer, für Deutschland 1,36.
 
-      Wer „Geburtenrate" liest und 1,4 sieht, hält die Zahl für falsch – oder,
-      schlimmer, rechnet mit ihr weiter. Der Name sagt deshalb, was gemessen
-      wird, statt den gebräuchlichen Begriff zu übernehmen.
+      Der Betreiber hat den geläufigen Namen verlangt, nachdem der Einwand
+      vorlag. Das ist seine Entscheidung, und sie ist vertretbar: Kaum jemand
+      sucht auf einer Karte nach „Kinder je Frau".
+
+      **Die Genauigkeit wandert deshalb in die Einheit**, und die steht
+      überall dort, wo die Zahl steht: in der Legende („Angaben in Kinder je
+      Frau"), in der Landtafel („1,36 Kinder je Frau") und im ersten Satz der
+      Erklärung. Der Name ist geläufig, die Zahl bleibt eindeutig – was
+      verloren ginge, wäre die Verwechslung mit den acht.
     */
-    label: 'Kinder je Frau',
+    label: 'Geburtenrate',
     erklaerung:
-      'Wie viele Kinder eine Frau im Lauf ihres Lebens bekäme, wenn sie durchgehend so viele bekäme wie die Frauen jeden Alters in diesem einen Jahr. Ein Modellwert über einen Jahrgang, den es so nie gab – und trotzdem die übliche Vergleichsgrösse. Nicht zu verwechseln mit der Geburtenrate im engeren Sinn, den Geburten je tausend Einwohner. Bei rund 2,1 bleibt eine Bevölkerung ohne Zuwanderung langfristig gleich gross; darunter schrumpft sie, mit Verzögerung von Jahrzehnten. Hoch ist hier so wenig gut wie niedrig: Beides sagt etwas über Lebensverhältnisse, nichts über Wohlstand.',
+      'Gemessen als Kinder je Frau: wie viele sie im Lauf ihres Lebens bekäme, wenn sie durchgehend so viele bekäme wie die Frauen jeden Alters in diesem einen Jahr. Ein Modellwert über einen Jahrgang, den es so nie gab – und trotzdem die übliche Vergleichsgrösse. Gemeint ist nicht die andere Zahl, die ebenfalls Geburtenrate heisst: Geburten je tausend Einwohner, für Deutschland rund acht. Bei rund 2,1 Kindern je Frau bleibt eine Bevölkerung ohne Zuwanderung langfristig gleich gross; darunter schrumpft sie, mit Verzögerung von Jahrzehnten. Hoch ist hier so wenig gut wie niedrig: Beides sagt etwas über Lebensverhältnisse, nichts über Wohlstand.',
     einheit: 'Kinder je Frau',
     hoherWertIstGross: true,
   },
