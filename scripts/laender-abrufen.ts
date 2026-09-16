@@ -1068,8 +1068,20 @@ async function main() {
     (land) => land.arbeitslosenquote
   ).length
   const mitInflation = Object.values(laender).filter((land) => land.inflation).length
+  /*
+    Auch die neue Kennzahl gehoert in diese Zeile.
+
+    Sie ist die einzige Stelle, an der ein Rueckgang auffaellt: Antwortet
+    Eurostat eines Tages nicht mehr, behaelt die Momentaufnahme die alten Werte
+    (so ist es gebaut), und der Lauf bliebe gruen. Ohne die Zahl hier waere das
+    genau der stille Fehler – eine Kennzahl, die aufhoert zu wachsen, und
+    niemand sieht es.
+  */
+  const mitWohneigentum = Object.values(laender).filter(
+    (land) => land.wohneigentumsquote
+  ).length
   console.log(
-    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn, ${mitVermoegen} mit Medianvermoegen, ${mitBne} mit Einkommen je Kopf, ${mitKkp} mit Kaufkraft je Kopf, ${mitArbeitslos} mit Arbeitslosenquote und ${mitInflation} mit Inflation.`
+    `${Object.keys(laender).length} Länder, davon ${mitBip} mit BIP, ${mitEinwohnern} mit Einwohnerzahl, ${mitSchulden} mit Schuldenquote, ${mitLohn} mit Durchschnittslohn, ${mitVermoegen} mit Medianvermoegen, ${mitBne} mit Einkommen je Kopf, ${mitKkp} mit Kaufkraft je Kopf, ${mitArbeitslos} mit Arbeitslosenquote, ${mitInflation} mit Inflation und ${mitWohneigentum} mit Wohneigentumsquote.`
   )
 
   if (mitBip < 150) {
