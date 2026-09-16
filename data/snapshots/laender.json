@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-08-06T14:35:25.927Z",
+  "abgerufenAm": "2026-09-16T09:01:14.435Z",
   "bezugsjahr": 2023,
   "quelle": {
     "label": "Weltbank (NY.GDP.MKTP.CD, SP.POP.TOTL) über die offenen CSV-Spiegel",
@@ -37,6 +37,11 @@
     "label": "Weltbank, World Development Indicators (SL.UEM.TOTL.ZS)",
     "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS",
     "abgrenzung": "Arbeitslose in Prozent der Erwerbspersonen, Modellschaetzung der ILO. Keine nationale Meldung: Die Laender zaehlen nach verschiedenen Regeln, die ILO rechnet sie auf eine gemeinsame Abgrenzung um. Deshalb weicht der Wert von der Zahl ab, die im jeweiligen Land veroeffentlicht wird – das ist der Preis der Vergleichbarkeit, kein Fehler."
+  },
+  "wohneigentumQuelle": {
+    "label": "Eurostat, EU-SILC – Bevoelkerung nach Wohnstatus (ilc_lvho02)",
+    "url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02/default/table",
+    "abgrenzung": "Anteil der Bevoelkerung, der in einer Wohnung im Eigentum des eigenen Haushalts lebt – mit laufendem Kredit und ohne (tenure = OWN), ueber alle Einkommensgruppen und Haushaltsformen. Gezaehlt werden Personen, nicht Haushalte; die Quote je Haushalt liegt niedriger, weil Eigentuemerhaushalte im Schnitt groesser sind. Die Reihe deckt EU, EFTA und Beitrittslaender ab, nicht die uebrige Welt."
   },
   "inflationQuelle": {
     "label": "Weltbank, World Development Indicators (FP.CPI.TOTL.ZG)",
@@ -6418,10 +6423,5 @@
         "jahr": 2022
       }
     }
-  },
-  "wohneigentumQuelle": {
-    "label": "Eurostat, EU-SILC – Bevoelkerung nach Wohnstatus (ilc_lvho02)",
-    "url": "https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho02/default/table",
-    "abgrenzung": "Anteil der Bevoelkerung, der in einer Wohnung im Eigentum des eigenen Haushalts lebt – mit laufendem Kredit und ohne (tenure = OWN), ueber alle Einkommensgruppen und Haushaltsformen. Gezaehlt werden Personen, nicht Haushalte; die Quote je Haushalt liegt niedriger, weil Eigentuemerhaushalte im Schnitt groesser sind. Die Reihe deckt EU, EFTA und Beitrittslaender ab, nicht die uebrige Welt."
   }
 }
