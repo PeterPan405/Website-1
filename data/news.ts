@@ -101,6 +101,285 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-notenbank-hebt-leitzins-25-basispunkte-warsh',
+    title: 'Fed erhöht Leitzins trotz Trump-Drucks um 25 Basispunkte',
+    teaser:
+      'Die US-Notenbank hat ihren Leitzins erstmals seit Juli 2023 wieder angehoben – einstimmig, obwohl Präsident Trump zuvor auf eine Senkung gedrängt hatte.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-17T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Leitzins', 'Notenbank', 'Kevin Warsh'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dow-jones', 'gold'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, 16.09.2026, 21:20 Uhr: „ROUNDUP 3: US-Notenbank erhöht erstmals seit Juli 2023 wieder Leitzins“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'Goldreporter, Meldungen & Analysen vom 16. September 2026: „Fed hebt Leitzins an – weiterer Zinsschritt 2026 signalisiert“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten vom 16.09.2026: „Dow Jones fällt um 600 Punkte!: Fed hebt Leitzins an und sendet einstimmiges Signal an Trump“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 16.09.2026: „Trotz Trump-Druck: US-Notenbank Fed beschließt Leitzinserhöhung“ und „US-Notenbank rechnet mit höherer Inflation 2026“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank hat am Mittwoch ihren Leitzins um 25 Basispunkte angehoben – die erste Erhöhung seit Juli 2023. Die Entscheidung unter Fed-Chef Kevin Warsh fiel laut wallstreet-online einstimmig, und das, obwohl Präsident Trump zuvor öffentlich auf eine Zinssenkung gedrängt hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein höherer Zins gegen eine höhere Inflationsprognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Fed rechnet für 2026 laut finanzen.net nun mit einer höheren Inflation als bisher angenommen. Der neue „Dot Plot“ – die anonymisierte Zinserwartung der einzelnen Notenbanker – signalisiert laut Goldreporter zudem einen weiteren Zinsschritt noch in diesem Jahr.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldungen offenlassen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Worin genau die höhere Inflationserwartung begründet liegt, geht aus den vorliegenden Übersichten nicht hervor – nur, dass sie gestiegen ist. Bemerkenswert ist vor allem die Einstimmigkeit der Abstimmung: Sie zeigt einen geschlossenen Ausschuss, unabhängig vom politischen Druck aus dem Weißen Haus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein höherer Leitzins verteuert Kredite und erhöht tendenziell die Attraktivität des Dollars gegenüber anderen Währungen. Wie stark, zeigt sich erst in den kommenden Wochen, wenn Anleihemärkte und Wechselkurse das neue Zinsniveau vollständig eingepreist haben.',
+      },
+    ],
+  },
+  {
+    slug: 'hvpi-boe-ezb-lane-termine-17-september',
+    title: 'Diese Termine bestimmen den Donnerstag an den Märkten',
+    teaser:
+      'EZB-Chefvolkswirt Lane spricht um 9 Uhr, die Euroraum-Kerninflation kommt um 11 Uhr, die Bank of England veröffentlicht um 13 Uhr ihre Abstimmung.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-17T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Wirtschaftskalender', 'EZB', 'Inflation', 'Bank of England'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['euro-stoxx-50'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 17.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Donnerstag beginnt für Anleger nicht mit einer Unternehmensmeldung, sondern mit dem Kalender: Um 9 Uhr spricht EZB-Chefvolkswirt Philip Lane, wie der Wirtschaftskalender von wallstreet-online zeigt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '11 Uhr: Die Kernrate für den Euroraum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 11 Uhr wird die endgültige Kernrate der Verbraucherpreise (HVPI) für den Euroraum veröffentlicht. Für die Jahresrate zeigt der Kalender unverändert 2,4 Prozent als Vorgabe, für die Monatsrate ein Plus von 0,4 Prozent – nach zuvor ebenfalls 0,4 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '13 Uhr: Wie die Bank of England abgestimmt hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 13 Uhr folgt die Abstimmung des geldpolitischen Ausschusses der Bank of England. Als Vorgabe stehen im Kalender drei Mitglieder für eine Zinserhöhung und keines für eine Senkung – wie die tatsächliche Abstimmung ausgefallen ist, veröffentlicht die Notenbank erst zu diesem Zeitpunkt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Kernrate blendet Energie und Lebensmittel aus und gilt Notenbanken deshalb als verlässlicherer Hinweis auf den zugrunde liegenden Preisdruck als die Gesamtinflation. Sie wirkt auf die nächste EZB-Entscheidung stärker als eine einzelne Schlagzeile.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-gold-oel-euro-nach-fed-entscheid',
+    title: 'Dow sinkt, Gold pendelt: Wie der Markt auf die Fed reagierte',
+    teaser:
+      'Dow Jones und Ölpreis fielen nach der Zinserhöhung, der Nasdaq blieb fast unverändert, und zwei Übersichten zeigen beim Goldpreis unterschiedliche Vorzeichen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-17T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Dow Jones', 'Gold', 'Ölpreis', 'Euro-Dollar'],
+    relatedTopics: ['aktie', 'rohstoffe', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['dow-jones', 'gold', 'brent', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Kursleiste und Rohstoffpreise, Stand 17.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 16.09.2026, 20:34 Uhr: „ROUNDUP/Aktien New York Schluss: Dow und S&P 500 im Minus nach Zinsentscheid“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten vom 16.09.2026: „Goldpreis fällt nach Fed-Zinserhöhung auf tiefsten Stand seit Anfang August“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Devisennachrichten vom 16.09.2026: „Devisen: Euro fällt nach US-Zinserhöhung kräftig“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach der Fed-Entscheidung vom Mittwoch schloss der Dow Jones laut onvista im Minus. Die von wallstreet-online in der Nacht auf Donnerstag erfasste Kursleiste zeigt den Index bei 51.478,28 Punkten – ein Minus von 1,16 Prozent, rund 600 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Derselbe Zinsschritt, verschiedene Reaktionen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der technologielastige US Tech 100 gab in derselben Übersicht dagegen nur 0,01 Prozent nach, blieb also praktisch unverändert. Brent-Rohöl fiel um 2,67 Prozent auf 105,60 US-Dollar, und der Euro gab gegenüber dem Dollar nach – wallstreet-online schrieb von einem „kräftigen“ Rückgang, ohne dafür eine Prozentzahl zu nennen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Goldpreis: zwei Momentaufnahmen, zwei Vorzeichen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Direkt nach der Zinsentscheidung meldete wallstreet-online, der Goldpreis sei auf den tiefsten Stand seit Anfang August gefallen. Die Kursleiste derselben Seite zeigte in der Nacht auf Donnerstag dagegen ein Plus von 0,48 Prozent auf 4.284,15 US-Dollar. Welchen Vergleichszeitpunkt die jeweilige Angabe zugrunde legt, geht aus den Übersichten nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine einzelne Prozentzahl zu einem Kurs sagt wenig, ohne den Vergleichszeitpunkt zu kennen. Wer zwei Angaben zum selben Wert vergleicht und sie widersprüchlich findet, hat meist keinen Fehler entdeckt, sondern zwei verschiedene Referenzpunkte.',
+      },
+    ],
+  },
+  {
+    slug: 'bilfinger-streicht-stellen-nahost-krieg',
+    title: 'Bilfinger streicht wegen Nahost-Kriegs bis zu 1.500 Stellen',
+    teaser:
+      'Der Industriedienstleister senkt seine Prognose für 2026 und will bis zu 1.500 Arbeitsplätze abbauen – als Grund nennt die Meldung den Krieg im Nahen Osten.',
+    category: 'Märkte',
+    publishedAt: '2026-09-17T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bilfinger', 'Stellenabbau', 'Prognose', 'Nahost-Krieg'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, 16.09.2026, 21:23 Uhr: „Krieg im Nahen Osten: Bilfinger senkt Prognose und streicht bis zu 1.500 Stellen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc-Nachrichten vom 16.09.2026: „Bilfinger justiert 2026-Prognose und startet Programm „Agile““',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Industriedienstleister Bilfinger hat laut onvista am Mittwochabend seine Prognose für 2026 nach unten angepasst und will bis zu 1.500 Stellen streichen. Als Grund nennt die Meldung den Krieg im Nahen Osten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ad-hoc-Meldung ohne konkrete Zahl',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der zugehörigen Ad-hoc-Mitteilung ist laut wallstreet-online von einer angepassten Prognose und dem Start eines Programms namens „Agile“ die Rede – eine neue Gewinn- oder Umsatzzahl für 2026 nennen die vorliegenden Übersichten nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose und Stellenabbau sind zwei verschiedene Ankündigungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gesenkte Prognose beschreibt, was das Unternehmen für die Zukunft erwartet; ein Stellenabbau ist eine konkrete Maßnahme, mit der es darauf reagiert. Beide zusammen in einer Meldung bedeuten nicht zwangsläufig, dass ein Euro-Betrag für die Einsparung schon feststeht – dazu äußern sich die Übersichten nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer nur die Schlagzeile „Krieg drückt auf Prognose“ liest, verwechselt leicht Ursache und Ausmaß. Wie stark der Nahost-Konflikt konkret zu den bis zu 1.500 möglichen Stellen beigetragen hat, lässt sich aus einer Ad-hoc-Meldung allein nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'boeing-tief-777x-verzoegerung',
+    title: 'Boeing auf Jahrestief: 777X-Tests verzögern sich erneut',
+    teaser:
+      'Die Boeing-Aktie fiel auf den tiefsten Stand seit Ende März, nachdem sich die Tests des Langstreckenjets 777X laut Ticker-Meldung erneut verschoben haben.',
+    category: 'Märkte',
+    publishedAt: '2026-09-17T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Boeing', 'Luftfahrt', 'Flugzeugbau', 'Aktienkurs'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['boeing'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen vom 16.09.2026: „AKTIE IM FOKUS: Boeing auf Tief seit Ende März - 777X-Tests verschieben sich“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Marktberichte vom 16.09.2026: „Besonders beachtet!: Boeing Aktie heute unter Druck - Kurs gibt deutlich nach“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Boeing-Aktie fiel am Mittwoch laut wallstreet-online auf den tiefsten Stand seit Ende März. Grund waren laut derselben Meldung weitere Verzögerungen bei den Tests des Langstreckenjets 777X.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Testflugzeug ist kein ausgeliefertes Flugzeug',
+      },
+      {
+        type: 'paragraph',
+        text: 'Verzögerungen bei Flugzeugtests verschieben in aller Regel auch die Auslieferung an die Fluggesellschaften – und damit den Zeitpunkt, an dem Boeing dafür Zahlungen verbuchen kann. Um wie viele Wochen oder Monate sich das Programm diesmal verschiebt, geht aus den vorliegenden Meldungen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Kurs reagiert auf eine Ankündigung, nicht auf eine Bilanz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine zweite Übersicht beschrieb den Kursrückgang zusätzlich als „deutlich“ – eine Einschätzung, die sich nicht mit einer eigenen Prozentzahl belegen lässt. Die Bewegung fand vor der Vorlage neuer Geschäftszahlen statt, allein auf Basis der gemeldeten Testverzögerung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelnes Datum in einem mehrjährigen Entwicklungsprogramm kann einen Kurs kurzfristig bewegen, auch wenn sich am eigentlichen Auftragsbestand oder an der Nachfrage nichts geändert hat.',
+      },
+    ],
+  },
+  {
     slug: 'oelpreis-vor-fed-entscheid-merz-reiche',
     title:
       'Öl zieht vor der Fed-Entscheidung an – und Berlin streitet über die Zapfsäule',
