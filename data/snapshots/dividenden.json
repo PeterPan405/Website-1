@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-17T23:43:52.757Z",
+  "abgerufenAm": "2026-09-18T23:37:32.110Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -20395,6 +20395,10 @@
       {
         "date": "2026-06-03",
         "amount": 1.5
+      },
+      {
+        "date": "2026-09-17",
+        "amount": 1.5
       }
     ],
     "carnival": [
@@ -40590,6 +40594,10 @@
       },
       {
         "date": "2026-06-11",
+        "amount": 0.44
+      },
+      {
+        "date": "2026-09-17",
         "amount": 0.44
       }
     ],
