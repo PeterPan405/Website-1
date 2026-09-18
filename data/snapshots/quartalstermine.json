@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-17T10:10:13.646Z",
+  "abgerufenAm": "2026-09-18T09:56:11.443Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -10,11 +10,11 @@
       "stand": "2026-09-03",
       "von": "2026-08-25",
       "bis": "2026-10-23",
-      "zeilen": 656,
-      "kommendGesamt": 423,
+      "zeilen": 680,
+      "kommendGesamt": 442,
       "spalten": [
         "７月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in July 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment",
-        "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年9月3日 現在 As of 2026/9/3 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
+        "８月に四半期末又は期末を迎えた決算発表予定会社の一覧 List of companies scheduled to announce earnings whose end of quarters or fiscal years in August 2026年9月17日 現在 As of 2026/9/17 決算発表予定日\r\nScheduled Dates for Earnings Announcements | コード\r\nCode | 会社名 | Issue Name | 決算期末\r\nFiscal Year-end | 業種名 | Industry | 種別 | Fiscal Year/Quarter | 市場区分 | Market Segment"
       ],
       "inListe": 3,
       "kommend": 3,
@@ -39,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 38,
-      "letzterTag": "2026-11-10",
-      "zeilen": 3362,
-      "imKatalog": 293,
-      "mitLage": 43,
-      "beigetragen": 293
+      "letzterTag": "2026-11-11",
+      "zeilen": 3671,
+      "imKatalog": 296,
+      "mitLage": 45,
+      "beigetragen": 296
     }
   },
   "unternehmen": {
@@ -801,9 +801,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-11-11",
-          "basis": "2025-11-12",
+          "basis": "Oct/2026",
           "streuungTage": 0,
-          "newYorkerZeit": "16:15"
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-10",
@@ -1349,10 +1349,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-27",
+          "erwartet": "2026-10-13",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-26",
@@ -6226,6 +6228,12 @@
       },
       "vorhersagen": [
         {
+          "erwartet": "2026-11-11",
+          "basis": "Sep/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
+        },
+        {
           "erwartet": "2027-02-02",
           "basis": "2026-02-03",
           "streuungTage": 0,
@@ -7672,9 +7680,9 @@
       "vorhersagen": [
         {
           "erwartet": "2026-11-11",
-          "basis": "2025-11-12",
-          "streuungTage": 1,
-          "newYorkerZeit": "16:08"
+          "basis": "Sep/2026",
+          "streuungTage": 0,
+          "herkunft": "nasdaq"
         },
         {
           "erwartet": "2027-02-25",
@@ -12435,7 +12443,9 @@
           "erwartet": "2026-10-20",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-20",
@@ -18205,7 +18215,7 @@
     "LONN.SW": "2026-09-15",
     "LOTB.BR": "2026-09-16",
     "LPP.WA": "2026-09-17",
-    "LR.PA": "2026-08-18",
+    "LR.PA": "2026-09-18",
     "LREN3.SA": "2026-08-18",
     "LSEG.L": "2026-08-18",
     "LT.NS": "2026-08-18",
