@@ -101,6 +101,314 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'zwei-kursleisten-ein-morgen',
+    title: 'Zwei Kursleisten, ein Morgen: Warum der DAX nicht überall gleich steht',
+    metaTitle: 'Zwei Kursleisten, ein Morgen: DAX-Stände im Vergleich',
+    teaser:
+      'Zwei Portale zeigten am selben Morgen unterschiedliche DAX-Stände und Ölpreise – ein Blick darauf, warum ein Kurs nur eine Momentaufnahme eines Anbieters ist.',
+    category: 'Märkte',
+    publishedAt: '2026-09-18T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['DAX', 'Wall Street', 'Ölpreis', 'Kursdaten'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'aktie'],
+    relatedSymbols: ['dax', 'brent', 'dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label: 'onvista, Aktuelle News, 17.09.2026, 20:34 Uhr und 15:55 Uhr',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste im Kopfbereich, Stand 18.09.2026, 02:17 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 18.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Donnerstag lief an den Börsen rund: Laut dpa-AFX-Meldungen auf onvista schlossen Dow Jones, S&P 500 und Nasdaq Composite im Plus, während der Brent-Ölpreis weiter nachgab. Der Dax knüpfte an das Plus vom Vortag an – begünstigt auch von Übernahmespekulationen rund um Qiagen, wie onvista um 15:55 Uhr berichtete. dpa-AFX betitelte den Frankfurter Schlussbericht mit „Anleger zuversichtlich nach US-Zinserhöhung".',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Nacht zu Freitag zeigten zwei Finanzportale zur fast selben Minute unterschiedliche Werte. Finanzen.net wies um 02:17 Uhr einen Dax von 25.717 Punkten (+0,7 Prozent) und einen Brent-Ölpreis von 104,0 US-Dollar (-0,8 Prozent) aus. Wallstreet-online zeigte, ebenfalls um 02:17 Uhr, einen Dax von 25.651,11 Punkten (+0,61 Prozent) und einen Brent-Preis von 104,13 US-Dollar (-1,39 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum zwei Portale nicht denselben Wert zeigen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Zahlen stammen von unterschiedlichen Datenlieferanten mit eigener Aktualisierungsfrequenz und eigenem Referenzzeitpunkt für die Prozentangabe. Ein „Kurs" ist deshalb nie ein absoluter, überall gültiger Wert, sondern immer die Momentaufnahme eines bestimmten Anbieters zu einem bestimmten Zeitpunkt – sichtbar wird das erst, wenn man zwei Anbieter nebeneinanderlegt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch in Wien zeigte sich ein uneinheitliches Bild innerhalb desselben Handelstages: Der ATX erholte sich laut dpa-AFX weiter, obwohl die Aktie der Raiffeisen Bank International deutlich im Minus notierte. Ein Index kann also steigen, während einzelne seiner Mitglieder in die entgegengesetzte Richtung laufen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer Kurse über mehrere Quellen vergleicht, sollte immer auf Zeitstempel und Quelle achten, bevor er aus einer Abweichung eine Bewegung liest, die es gar nicht gibt.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-attackiert-fed-chef-warsh',
+    title: 'Trump attackiert Fed-Chef Warsh nach der Zinserhöhung',
+    teaser:
+      'Nach der Zinserhöhung fordert Trump laut wallstreetONLINE rund 1 Prozent Leitzins. Goldreporter fragt, ob Fed-Chef Kevin Warsh sein Amt verlieren könnte.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-18T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'Notenbank', 'Kevin Warsh', 'Zinspolitik'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreetONLINE Redaktion, 17.09.2026: „Trump fordert 1% Zinsen!: Fed erhöht Zinsen, Börsen atmen auf, Ölpreis fällt"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, 17. September 2026: „Trump attackiert Fed nach Zinserhöhung – Warsh in Gefahr?" und „Fed hebt Leitzins an – weiterer Zinsschritt 2026 signalisiert"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'onvista, Analysen, Société Générale, 17.09.2026, 10:30 Uhr: „USD: Fed erhöht die Zinsen … und dem US-Präsidenten gefällt das gar nicht"',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Notenbank hat ihren Leitzins in dieser Woche angehoben. Nach der Entscheidung signalisierte die Fed laut einer Überschrift von Goldreporter vom 17. September bereits einen weiteren Zinsschritt noch in diesem Jahr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Präsident Trump reagierte umgehend: Laut wallstreetONLINE forderte er nach der Erhöhung einen Leitzins von rund 1 Prozent. Auch eine Analyse von Société Générale, veröffentlicht auf onvista, brachte es in der Überschrift auf den Punkt: Die Zinserhöhung gefalle dem US-Präsidenten „gar nicht".',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Steht Fed-Chef Warsh vor dem Aus?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Goldreporter warf in einer Überschrift vom selben Tag die Frage auf, ob Trump versuchen könnte, Fed-Chef Kevin Warsh erneut aus dem Amt zu entfernen. Die Quelle beantwortet diese Frage nicht und nennt auch keine rechtliche Grundlage oder einen konkreten Schritt dazu – sie stellt die Frage lediglich in den Raum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Unabhängigkeit einen Preis hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ökonomen sehen die Unabhängigkeit einer Notenbank von tagespolitischem Druck grundsätzlich als Voraussetzung dafür, dass ihre Zinsentscheidungen als glaubwürdig gelten. Wird eine Notenbank als politisch gelenkt wahrgenommen, kann das die Erwartungen an künftige Inflation und damit die langfristigen Anleiherenditen beeinflussen – unabhängig davon, welche Entscheidung sie im Einzelfall trifft.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich der Konflikt zwischen Weißem Haus und Notenbank in den Markterwartungen niederschlägt, lässt sich aus den vorliegenden Quellen noch nicht ablesen – dafür fehlt bislang eine belegte Kursreaktion auf genau diese Frage.',
+      },
+    ],
+  },
+  {
+    slug: 'boj-vor-der-zinsentscheidung',
+    title: 'Bank of Japan vor der Entscheidung: Zwei Kernraten, zwei Richtungen',
+    metaTitle: 'Bank of Japan vor der Entscheidung: Inflation im Blick',
+    teaser:
+      'Japans Kerninflation stieg auf 2,0 Prozent, eine engere Kernrate fiel auf 1,7 Prozent – die Bank of Japan entscheidet heute über einen möglichen Zinsschritt.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-18T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bank of Japan', 'Inflation', 'Notenbank', 'Japan'],
+    relatedTopics: ['notenbanken-geldpolitik', 'inflation'],
+    relatedSymbols: ['nikkei-225', 'eur-jpy'],
+    sources: [
+      {
+        label: 'wallstreet-online, Wirtschaftskalender, Stand 18.09.2026, 02:17 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Japan hat heute früh neue Verbraucherpreisdaten veröffentlicht. Laut dem Wirtschaftskalender von wallstreet-online blieb die allgemeine Jahresteuerung bei 1,9 Prozent unverändert. Die um frische Lebensmittel bereinigte Kernrate stieg dagegen von 1,8 auf 2,0 Prozent und übertraf damit die Prognose von 1,8 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kerninflationen, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine dritte, engere Kennziffer – die Rate ohne Lebensmittel und Energie – bewegte sich in die andere Richtung: Sie fiel von 1,8 auf 1,7 Prozent. Innerhalb derselben Veröffentlichung zeigen zwei Kernraten damit gegenläufige Trends, je nachdem, ob frische Lebensmittel oder Energie herausgerechnet werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Zinsentscheid am Vormittag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 5 Uhr steht laut demselben Kalender die geldpolitische Erklärung der Bank of Japan samt Zinsentscheidung an. Als Markterwartung nennt der Kalender 1,25 Prozent gegenüber aktuell 1 Prozent – eine Prognose der Datenquelle, keine feststehende Entscheidung.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ebenfalls auf der heutigen Terminliste steht laut demselben Kalender ein Treffen der Eurogruppe um 8 Uhr. Eine Tagesordnung dazu nennt die Quelle nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wenn zwei Kernraten am selben Morgen in unterschiedliche Richtungen laufen, zeigt das, wie sehr die Wahl der Kennziffer das Bild der Inflation verändern kann – noch bevor eine Notenbank überhaupt entschieden hat.',
+      },
+    ],
+  },
+  {
+    slug: 'grosser-optionsverfall-wall-street',
+    title: 'Optionsverfall an der Wall Street: Was 6,2 Billionen Dollar bedeuten',
+    metaTitle: 'Optionsverfall: Was 6,2 Billionen Dollar bedeuten',
+    teaser:
+      'Am Freitag verfallen an der Wall Street Optionen im Nominalwert von 6,2 Billionen Dollar. Was diese Zahl bedeutet – und warum sie größer klingt, als sie ist.',
+    category: 'Märkte',
+    publishedAt: '2026-09-18T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Optionen', 'Derivate', 'Wall Street', 'Volatilität'],
+    relatedTopics: ['option', 'wie-funktioniert-der-markt'],
+    relatedSymbols: ['sp500', 'nasdaq-100', 'dow-jones'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, 17.09.2026: „Großer Optionsverfall: Wall Street vor dem 6,2-Billionen-Dollar-Showdown"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am heutigen Freitag verfallen an der Wall Street laut wallstreet-online Optionen mit einem Nominalwert von 6,2 Billionen US-Dollar, die sich unter anderem auf den S&P 500, den Nasdaq 100 und den Dow Jones beziehen. Die Quelle beschreibt den Tag als potenziell turbulent, ohne die Einschätzung näher zu begründen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was an einem großen Verfalltag passiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'An einem solchen Termin laufen gleichzeitig mehrere Arten von Terminkontrakten und Optionen auf Indizes und Einzelaktien aus. Händler müssen ihre Absicherungspositionen rund um diese Kontrakte neu ordnen, was kurzfristig zu höheren Handelsvolumina und teils sprunghaften Kursbewegungen führen kann – unabhängig davon, ob sich an den wirtschaftlichen Rahmendaten etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der genannte Nominalwert von 6,2 Billionen Dollar ist dabei nicht gleichzusetzen mit einer Summe, die tatsächlich den Besitzer wechselt: Ein Großteil der Optionen verfällt wertlos oder wird glattgestellt, statt tatsächlich ausgeübt zu werden. Der reale Geldfluss an einem Verfalltag liegt deshalb regelmäßig weit unter der genannten Nominalsumme.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kurzfristige Unruhe, kein neues Signal',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Kursausschläge rund um einen Verfalltag entstehen aus der technischen Positionierung der Marktteilnehmer, nicht aus neuen Informationen über die Wirtschaft. Erfahrungsgemäß klingt die zusätzliche Bewegung nach Handelsschluss rasch wieder ab.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Verfalltag mit auffälligen Kursausschlägen ist für sich genommen keine neue Nachricht über die wirtschaftliche Lage – ein Grund, ihn von echten fundamentalen Ereignissen zu unterscheiden.',
+      },
+    ],
+  },
+  {
+    slug: 'tesla-cybercab-untersuchung',
+    title: 'Tesla trotzt der Cybercab-Untersuchung',
+    teaser:
+      'Eine US-Behörde eröffnete eine Untersuchung zum Tesla Cybercab – die Aktie stieg trotzdem. Was das über Nachricht und Kursreaktion verrät.',
+    category: 'Märkte',
+    publishedAt: '2026-09-18T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Tesla', 'Aktie', 'Regulierung'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['tesla'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 17.09.2026: „Tesla-Aktie dennoch fester: US-Aufsichtsbehörde leitet Untersuchung zum Cybercab ein"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Laut einer Meldung von finanzen.net vom 17. September hat eine US-Aufsichtsbehörde eine Untersuchung zum Tesla Cybercab eingeleitet. Die Aktie legte am selben Tag dennoch zu, wie die Überschrift derselben Meldung festhält. Welche Behörde die Untersuchung führt, was genau geprüft wird und wie lange sie dauern soll, nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wenn eine Nachricht den Kurs nicht drückt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Kurs reagiert nicht auf ein Ereignis an sich, sondern auf den Abstand zwischen diesem Ereignis und dem, was der Markt bereits erwartet hatte. Eine Aktie kann deshalb trotz einer negativ klingenden Meldung steigen, wenn andere Nachrichten desselben Tages von den Marktteilnehmern als wichtiger eingestuft werden oder wenn mit der Untersuchung bereits gerechnet wurde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wichtig ist außerdem die Unterscheidung: Die Eröffnung einer Untersuchung ist keine Feststellung eines Fehlverhaltens und kein Rückruf. Aufsichtsbehörden prüfen neue Fahrzeugtechnik routinemäßig, und aus der bloßen Tatsache einer eingeleiteten Prüfung lässt sich weder ihr Ausgang noch ihr Zeitrahmen ablesen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile über einen einzelnen Handelstag sagt, was passiert ist – nicht, warum der Kurs so reagiert hat, wie er reagiert hat. Beides auseinanderzuhalten ist eine nützliche Gewohnheit beim Lesen von Börsennachrichten.',
+      },
+    ],
+  },
+  {
+    slug: 'generac-springt-18-prozent',
+    title: 'Generac springt 18 Prozent nach einem einzigen Deal',
+    teaser:
+      'Generac schoss nach einem Milliardendeal mit Amazon um 18 Prozent. Warum dieselbe Nachricht einen kleineren Konzern stärker bewegt als einen sehr viel größeren.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-18T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Generac', 'Amazon', 'Einzelaktien', 'Diversifikation'],
+    relatedTopics: ['risiko-und-rendite', 'portfolio-aufbau'],
+    relatedSymbols: ['amazon'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 17.09.2026: „Generac-Aktie +18 Prozent nach Milliardendeal mit Amazon – Signalwirkung für Anleger"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Aktie von Generac ist am 17. September laut finanzen.net um 18 Prozent gestiegen, nachdem der Hersteller von Notstromaggregaten nach eigenen Angaben der Quelle einen Deal im Milliardenbereich mit Amazon abgeschlossen hat. Zu Vertragslaufzeit, genauem Volumen oder Inhalt des Deals macht die Meldung keine weiteren Angaben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Deal einen kleineren Konzern stärker bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Auftrag in ähnlicher Größenordnung wirkt sich auf den Kurs eines Unternehmens umso stärker aus, je kleiner dessen bestehender Umsatz im Vergleich zum Auftragswert ist. Bei einem Indexschwergewicht mit einem um ein Vielfaches höheren Jahresumsatz würde eine vergleichbare Zusatzbestellung selten eine zweistellige Kursbewegung auslösen, weil sie einen viel kleineren Anteil am Gesamtgeschäft ausmacht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Formulierung „Signalwirkung für Anleger" stammt aus der Überschrift der Quelle selbst. Ein einzelner Auftrag ist zunächst ein Hinweis auf den Auftragseingang, keine Garantie für künftigen Umsatz – und Kursreaktionen auf solche Meldungen können sich in den Folgetagen auch wieder umkehren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Je kleiner ein Unternehmen, desto stärker kann eine einzelne Nachricht seinen Kurs bewegen. Das ist ein Argument dafür, sich vor einer Einzelwette bewusst zu machen, wie groß der Anteil einer einzigen Position am eigenen Depot ist.',
+      },
+    ],
+  },
+  {
     slug: 'us-notenbank-hebt-leitzins-25-basispunkte-warsh',
     title: 'Fed erhöht Leitzins trotz Trump-Drucks um 25 Basispunkte',
     teaser:
