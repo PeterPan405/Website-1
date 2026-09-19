@@ -386,6 +386,90 @@ def _tonanteil(stuecke):
     return np.sum(spektrum * umgebung, axis=1) / np.maximum(gesamt, 1e-20)
 
 
+#: Obergrenze des „tiefen Bandes" in Hertz.
+#:
+#: Die menschliche Sprechstimme hat ihre Grundfrequenz zwischen 85 Hz (tiefe
+#: Männerstimme) und 255 Hz (hohe Frauenstimme), trägt ihre Verständlichkeit
+#: aber in den Formanten darüber – zwischen 300 und 3.500 Hz. Unterhalb von
+#: 200 Hz sitzt bei gesprochener Sprache deshalb nur ein Teil der Energie,
+#: nie der grösste.
+#:
+#: Poltern, Rumpeln, ein verschobener Stuhl: Genau dort sitzt fast alles.
+TIEFBAND_HZ = 200
+
+
+def merkmale(audio, rate: int):
+    """Misst jedes Fenster – ohne zu urteilen.
+
+    Gibt die Messwerte je Fenster zurück, aus denen `auffaellige_stellen`
+    sein Urteil bildet. `None`, wenn der Ton kürzer ist als ein Fenster.
+
+    ## Warum das getrennt ist
+
+    Am 19. September 2026 meldete der Betreiber ein Störgeräusch bei 2:56 –
+    „irgendwas zwischen Stuhl verschieben und flatulieren". Die Prüfung hatte
+    nichts gefunden, und es gab keine Möglichkeit nachzusehen, **was** sie an
+    dieser Stelle gemessen hatte: Die Zahlen entstanden in einer Funktion, die
+    nur ihr Urteil zurückgab.
+
+    Eine Erkennung, die man nur fragen kann „findest du etwas?", lässt sich
+    nicht verbessern. Man braucht die Messwerte an der Stelle, von der ein
+    Mensch sagt, dass dort etwas ist – sonst bleibt nur Raten an Schwellen.
+
+    `scripts/aufnahmen-nachpruefen.py --stelle` gibt sie aus.
+    """
+    import numpy as np
+
+    ton = np.asarray(audio, dtype=np.float32).reshape(-1)
+    fenster = max(1, int(FENSTER_S * rate))
+    vorschub = max(1, int(VORSCHUB_S * rate))
+    if len(ton) < fenster:
+        return None
+
+    anfaenge = range(0, len(ton) - fenster + 1, vorschub)
+    stuecke = np.stack([ton[i : i + fenster] for i in anfaenge])
+
+    effektiv = np.sqrt(np.mean(stuecke**2, axis=1))
+    # Nulldurchgänge je Abtastwert.
+    rauheit = np.mean(np.abs(np.diff(np.signbit(stuecke), axis=1)), axis=1)
+    anschlag = np.mean(np.abs(stuecke) >= 0.98, axis=1)
+
+    schwelle = float(np.percentile(effektiv, 90)) * LAUT_ANTEIL
+    laut = effektiv >= max(schwelle, 1e-4)
+
+    return {
+        "fenster": fenster,
+        "vorschub": vorschub,
+        "zeit": np.array([i / rate for i in anfaenge], dtype=np.float32),
+        "effektiv": effektiv,
+        "rauheit": rauheit,
+        "anschlag": anschlag,
+        "tonanteil": _tonanteil(stuecke),
+        "tiefenanteil": _tiefenanteil(stuecke, rate),
+        "laut": laut,
+        "lautgrenze": max(schwelle, 1e-4),
+    }
+
+
+def _tiefenanteil(stuecke, rate: int):
+    """Je Fenster: welcher Anteil der Energie unter `TIEFBAND_HZ` sitzt.
+
+    Gemessen, noch nicht beurteilt. Ob und ab wann ein hoher Wert eine
+    Störung anzeigt, entscheidet sich an echtem Material und nicht hier.
+    """
+    import numpy as np
+
+    laenge = min(FFT_LAENGE, stuecke.shape[1])
+    ausschnitt = stuecke[:, :laenge] * np.hanning(laenge).astype(np.float32)
+    spektrum = np.abs(np.fft.rfft(ausschnitt, axis=1)) ** 2
+
+    frequenzen = np.fft.rfftfreq(laenge, 1 / rate)
+    tief = frequenzen < TIEFBAND_HZ
+
+    gesamt = np.sum(spektrum, axis=1)
+    return np.sum(spektrum[:, tief], axis=1) / np.maximum(gesamt, 1e-20)
+
+
 def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     """Findet Stellen im Ton, die nicht wie gesprochene Sprache aussehen.
 
@@ -464,26 +548,19 @@ def auffaellige_stellen(audio, rate: int) -> list[tuple[float, float, str]]:
     Fehler hat, und nicht jeden denkbaren. Die Antwort darauf bleibt deshalb
     ein neuer Versuch, kein Abbruch.
     """
-    import numpy as np
-
-    ton = np.asarray(audio, dtype=np.float32).reshape(-1)
-    fenster = max(1, int(FENSTER_S * rate))
-    vorschub = max(1, int(VORSCHUB_S * rate))
-    if len(ton) < fenster:
+    gemessen = merkmale(audio, rate)
+    if gemessen is None:
         return []
 
-    anfaenge = range(0, len(ton) - fenster + 1, vorschub)
-    stuecke = np.stack([ton[i : i + fenster] for i in anfaenge])
+    import numpy as np
 
-    effektiv = np.sqrt(np.mean(stuecke**2, axis=1))
-    # Nulldurchgänge je Abtastwert.
-    rauheit = np.mean(np.abs(np.diff(np.signbit(stuecke), axis=1)), axis=1)
-    anschlag = np.mean(np.abs(stuecke) >= 0.98, axis=1)
-
-    schwelle = float(np.percentile(effektiv, 90)) * LAUT_ANTEIL
-    laut = effektiv >= max(schwelle, 1e-4)
-
-    tonanteil = _tonanteil(stuecke)
+    vorschub = gemessen["vorschub"]
+    fenster = gemessen["fenster"]
+    effektiv = gemessen["effektiv"]
+    rauheit = gemessen["rauheit"]
+    anschlag = gemessen["anschlag"]
+    tonanteil = gemessen["tonanteil"]
+    laut = gemessen["laut"]
 
     verdaechtig = laut & (
         (rauheit >= ZISCHGRENZE)
