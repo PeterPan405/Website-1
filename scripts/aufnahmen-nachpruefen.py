@@ -145,6 +145,73 @@ def zeige_stelle(ton, rate: int, sekunde: float, umfeld: float = 2.0) -> None:
             f"{'ja' if gemessen['laut'][i] else 'nein'}"
         )
 
+    verteilung(gemessen)
+
+
+def verteilung(gemessen) -> None:
+    """Was der Tiefenanteil in **dieser** Aufnahme sonst so tut.
+
+    ## Warum das neben den Einzelwerten stehen muss
+
+    Eine Grenze, die nur an der gemeldeten Stelle gemessen wurde, ist geraten.
+    Die Grundfrequenz einer männlichen Sprechstimme liegt zwischen 85 und
+    180 Hz – also **unter** den 200 Hz, die hier als „tief" zählen. Gesprochene
+    Vokale tragen dort zwangsläufig Energie, und eine Schwelle, die das nicht
+    berücksichtigt, beanstandet die halbe Folge.
+
+    Deshalb hier die Verteilung über alle lauten Fenster und, für jede
+    Kandidatenschwelle, was sie in dieser Aufnahme kosten würde: wie viele
+    zusammenhängende Stellen von mindestens `STOERUNG_MINDESTENS_S` sie
+    fände. Das ist die Gegenprobe zur Schwelle, bevor es sie gibt.
+    """
+    import numpy as np
+
+    laut = gemessen["laut"]
+    anzahl = int(np.sum(laut))
+    if anzahl == 0:
+        print("    (kein lautes Fenster – keine Verteilung)")
+        return
+
+    werte = gemessen["tiefenanteil"][laut]
+    stufen = [10, 25, 50, 75, 90, 95, 99]
+    print(f"\n    Tiefenanteil über alle {anzahl} lauten Fenster:")
+    print("      Perzentil  " + "".join(f"{s:>8}" for s in stufen))
+    print(
+        "      Wert       "
+        + "".join(f"{float(np.percentile(werte, s)):8.3f}" for s in stufen)
+    )
+
+    print("\n    Was eine Grenze in dieser Aufnahme fände:")
+    print("      Grenze  Fenster  Stellen ab 0,4 s")
+    for grenze in (0.70, 0.80, 0.85, 0.90, 0.95):
+        treffer = laut & (gemessen["tiefenanteil"] >= grenze)
+        print(
+            f"      {grenze:6.2f}  {int(np.sum(treffer)):7d}  "
+            f"{_laeufe(treffer, gemessen):16d}"
+        )
+
+
+def _laeufe(flaggen, gemessen) -> int:
+    """Wie viele zusammenhängende Stellen von mindestens 0,4 s dabei wären."""
+    import numpy as np
+
+    vorschub = gemessen["vorschub"]
+    fenster = gemessen["fenster"]
+    rate = fenster / sprechstimme.FENSTER_S
+
+    anzahl = 0
+    beginn = None
+    for i, flagge in enumerate([*np.asarray(flaggen), False]):
+        if flagge and beginn is None:
+            beginn = i
+        elif not flagge and beginn is not None:
+            von = beginn * vorschub / rate
+            bis = ((i - 1) * vorschub + fenster) / rate
+            if bis - von >= sprechstimme.STOERUNG_MINDESTENS_S:
+                anzahl += 1
+            beginn = None
+    return anzahl
+
 
 def pruefe(pfad: str, name: str, stelle: float | None = None) -> int:
     """Meldet die auffälligen Stellen einer Datei. Gibt ihre Anzahl zurück."""
