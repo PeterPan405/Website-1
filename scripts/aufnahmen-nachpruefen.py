@@ -75,13 +75,31 @@ def als_rohdaten(pfad: str):
     return np.frombuffer(ergebnis.stdout, dtype=np.float32), 24000
 
 
+#: Womit sich dieses Skript beim Server meldet.
+#:
+#: ## Warum das nötig ist
+#:
+#: Am 19. September 2026 antwortete `podcast-audio/2026-09-19.mp3` auf einen
+#: Abruf mit `urllib` durchgehend mit **404**, während derselbe Läufer wenige
+#: Minuten zuvor dieselbe Adresse mit `curl` und Statuscode 200 geholt hatte.
+#: Der Unterschied war die Kennung: `urllib` schickt „Python-urllib/3.12", und
+#: der Hoster weist die pauschal ab.
+#:
+#: Das ist keine Schranke, die jemand gegen uns gesetzt hat – es ist unser
+#: eigener Server, und die Regel richtet sich gegen Skripte im Allgemeinen.
+#: Eine schlichte Kennung zu schicken ist erlaubt; was nicht erlaubt wäre,
+#: sind Anmeldedaten oder Browser-Merkmale, die eine Sperre gezielt umgehen.
+KENNUNG = "iminvests-tonpruefung/1.0 (+https://iminvests.de)"
+
+
 def hole(url: str, ziel: str) -> bool:
     # `netz.oeffnen` statt `urlopen`: Auf einem Läufer ohne IPv6 scheitert
     # der erste Anlauf an jeder Adresse mit AAAA – und `iminvests.de` hat
     # eine. Die Meldung „nicht erreichbar" stand dann unter **jeder**
     # Aufnahme, ohne dass je eine gefehlt hätte. Begründung in scripts/netz.py.
+    anfrage = urllib.request.Request(url, headers={"User-Agent": KENNUNG})
     try:
-        with netz.oeffnen(url, timeout=60) as antwort, open(ziel, "wb") as datei:
+        with netz.oeffnen(anfrage, timeout=60) as antwort, open(ziel, "wb") as datei:
             datei.write(antwort.read())
         return True
     except Exception as fehler:  # noqa: BLE001
@@ -93,11 +111,50 @@ def als_uhrzeit(sekunden: float) -> str:
     return f"{int(sekunden) // 60}:{int(sekunden) % 60:02d}"
 
 
-def pruefe(pfad: str, name: str) -> int:
+def zeige_stelle(ton, rate: int, sekunde: float, umfeld: float = 2.0) -> None:
+    """Gibt die Messwerte rund um eine Sekunde aus – ohne Urteil.
+
+    Für den Fall, dass ein Mensch eine Stelle meldet und die Prüfung dort
+    nichts findet. Ohne diese Ausgabe bliebe nur Raten an Schwellen; mit ihr
+    steht da, was gemessen wurde.
+    """
+    gemessen = sprechstimme.merkmale(ton, rate)
+    if gemessen is None:
+        print("    (zu kurz für eine Messung)")
+        return
+
+    zeit = gemessen["zeit"]
+    von, bis = sekunde - umfeld, sekunde + umfeld
+    auswahl = [i for i, t in enumerate(zeit) if von <= t <= bis]
+    if not auswahl:
+        print(f"    (bei {sekunde:.0f} s liegt kein Fenster – Aufnahme zu kurz?)")
+        return
+
+    print(
+        f"    Messwerte {von:.1f}–{bis:.1f} s "
+        f"(laut ab Effektivwert {gemessen['lautgrenze']:.4f}):"
+    )
+    print("      Sekunde  Effektiv  Nulldurchg.  Anschlag  Tonanteil  Tiefenanteil  laut")
+    for i in auswahl:
+        print(
+            f"      {float(zeit[i]):7.2f}  {float(gemessen['effektiv'][i]):8.4f}  "
+            f"{float(gemessen['rauheit'][i]):11.3f}  "
+            f"{float(gemessen['anschlag'][i]):8.3f}  "
+            f"{float(gemessen['tonanteil'][i]):9.3f}  "
+            f"{float(gemessen['tiefenanteil'][i]):12.3f}  "
+            f"{'ja' if gemessen['laut'][i] else 'nein'}"
+        )
+
+
+def pruefe(pfad: str, name: str, stelle: float | None = None) -> int:
     """Meldet die auffälligen Stellen einer Datei. Gibt ihre Anzahl zurück."""
     ton, rate = als_rohdaten(pfad)
     funde = sprechstimme.auffaellige_stellen(ton, rate)
     dauer = len(ton) / rate
+
+    if stelle is not None:
+        print(f"  {name}: Messwerte um {als_uhrzeit(stelle)}")
+        zeige_stelle(ton, rate, stelle)
 
     if not funde:
         print(f"  {name}: {als_uhrzeit(dauer)} lang, nichts Auffälliges.")
@@ -115,8 +172,22 @@ def main() -> int:
         print(__doc__)
         return 1
 
+    #: Sekunde, deren Messwerte ausgegeben werden sollen – `--stelle 176`.
+    stelle: float | None = None
+    if "--stelle" in argumente:
+        i = argumente.index("--stelle")
+        stelle = float(argumente[i + 1])
+        argumente = argumente[:i] + argumente[i + 2 :]
+
     gesamt = 0
     betroffen: list[str] = []
+    #: Wie viele Aufnahmen wirklich gelesen werden konnten.
+    #:
+    #: Ohne diese Zahl meldete der Lauf am 19. September 2026 „Keine Aufnahme
+    #: mit auffälligen Stellen" und wurde grün – obwohl er keine einzige Datei
+    #: heruntergeladen hatte. Ein Lauf, der nichts prüfen konnte, hat nicht
+    #: „nichts gefunden".
+    gelesen = 0
 
     with tempfile.TemporaryDirectory() as ordner:
         if argumente[0] == "--verzeichnis":
@@ -131,7 +202,8 @@ def main() -> int:
                 print(f"{url}")
                 if not hole(url, ziel):
                     continue
-                anzahl = pruefe(ziel, schluessel)
+                gelesen += 1
+                anzahl = pruefe(ziel, schluessel, stelle)
                 gesamt += anzahl
                 if anzahl:
                     betroffen.append(schluessel)
@@ -144,12 +216,22 @@ def main() -> int:
                         continue
                 else:
                     ziel = url
-                anzahl = pruefe(ziel, os.path.basename(url))
+                gelesen += 1
+                anzahl = pruefe(ziel, os.path.basename(url), stelle)
                 gesamt += anzahl
                 if anzahl:
                     betroffen.append(url)
 
     print()
+    if gelesen == 0:
+        # Der stille Fehler vom 19. September 2026: Der Lauf holte nichts und
+        # meldete „keine auffälligen Stellen" – grün, und ohne eine einzige
+        # Sekunde Ton angesehen zu haben.
+        print("::error::Keine einzige Aufnahme konnte gelesen werden.")
+        print("  Geprüft wurde damit nichts. Das ist kein Ergebnis, sondern")
+        print("  ein Ausfall – oben steht je Adresse, woran es lag.")
+        return 1
+
     if betroffen:
         print(f"::warning::{len(betroffen)} Aufnahme(n) mit auffälligen Stellen:")
         for eintrag in betroffen:

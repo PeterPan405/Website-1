@@ -38,6 +38,10 @@ on:
         description: 'Woher die Aufnahmen kommen'
         type: string
         default: 'https://iminvests.de'
+      stelle:
+        description: 'Sekunde, deren Messwerte ausgegeben werden (leer = keine)'
+        type: string
+        default: ''
 
 jobs:
   pruefen:
@@ -64,10 +68,17 @@ jobs:
       - name: Tonprüfung selbst prüfen
         run: python scripts/sprechstimme.py --selbsttest
 
+      # `--stelle` gibt die Messwerte rund um eine Sekunde aus. Gebraucht
+      # wird das, wenn ein Mensch eine Störung meldet und die Prüfung dort
+      # nichts findet: Ohne die Zahlen bliebe nur Raten an Schwellen.
       - name: Aufnahmen durchsehen
         run: |
+          stelle=""
+          if [ -n "${{ inputs.stelle }}" ]; then
+            stelle="--stelle ${{ inputs.stelle }}"
+          fi
           if [ -n "${{ inputs.adresse }}" ]; then
-            python scripts/aufnahmen-nachpruefen.py "${{ inputs.adresse }}"
+            python scripts/aufnahmen-nachpruefen.py $stelle "${{ inputs.adresse }}"
           else
-            python scripts/aufnahmen-nachpruefen.py --verzeichnis "${{ inputs.basis }}"
+            python scripts/aufnahmen-nachpruefen.py $stelle --verzeichnis "${{ inputs.basis }}"
           fi
