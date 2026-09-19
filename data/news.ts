@@ -101,6 +101,359 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'gold-steigt-nach-fed-zinserhoehung',
+    title: 'Fed erhöht den Leitzins – Gold steigt auf 4.380 Dollar',
+    teaser:
+      'Nach der jüngsten Zinserhöhung der Fed klettert der Goldpreis auf 4.380 Dollar. Zugleich kaufen Zentralbanken und der größte Gold-ETF weiter zu.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-19T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Fed', 'Gold', 'Notenbanken', 'Zinsen'],
+    relatedTopics: ['notenbanken-geldpolitik', 'rohstoffe'],
+    relatedSymbols: ['gold', 'eur-usd'],
+    sources: [
+      {
+        label: 'finanzen.net, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'Goldreporter, 16. September 2026: „Fed hebt Leitzins an – weiterer Zinsschritt 2026 signalisiert"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 17. September 2026: „Trump attackiert Fed nach Zinserhöhung – Warsh in Gefahr?"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 17. September 2026, Top-News: „Größter Gold-ETF baut Bestände wieder leicht aus"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreetONLINE Redaktion, 17.09.2026: „Reserven aufgestockt: China und andere Brics-Staaten kaufen massiv Gold nach!"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis steht laut der Kursleiste von finanzen.net zum Stand Samstagfrüh, 19. September, 02:20 Uhr bei 4.380 Dollar je Feinunze, ein Plus von 0,9 Prozent. Das kommt wenige Tage, nachdem die US-Notenbank Fed ihren Leitzins angehoben hat – Goldreporter berichtete am 16. September, die Fed habe dabei zugleich einen weiteren Zinsschritt für dieses Jahr signalisiert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am 17. September schrieb Goldreporter, dass der Konflikt zwischen Präsident Trump und der Notenbank seit der Erhöhung weiter wachse: Trump fordere deutlich niedrigere Zinsen, und die Quelle warf die Frage auf, ob er versuchen könnte, Fed-Chef Kevin Warsh erneut aus dem Amt zu entfernen. Eine Antwort darauf nannte die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer kauft eigentlich noch Gold?',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine höhere Notenbankzinsen gelten normalerweise als Gegenwind für Gold, weil das Metall selbst keine Zinsen zahlt und verzinste Anlagen dadurch attraktiver werden. Dass der Goldpreis trotzdem steigt, lässt sich mit zwei weiteren Meldungen erklären: wallstreetONLINE berichtete am 17. September, China und andere Brics-Staaten hätten ihre Goldreserven massiv aufgestockt. Und Goldreporter meldete am selben Tag, der weltweit größte Gold-ETF habe seine Bestände erneut leicht ausgebaut.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Käufergruppen folgen keiner Zinslogik im engeren Sinn: Notenbanken kaufen Gold auch aus Gründen der Reservediversifikation, ETF-Anleger reagieren oft auf allgemeine Unsicherheit. **Ein einzelner Zinsschritt erklärt damit nur einen Teil der Preisbewegung, nicht die ganze.**',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der kommenden Woche ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für Montag, den 21. September, nennt der Wirtschaftskalender von wallstreet-online mehrere Termine mit Bezug zur Geldpolitik: den Monatsbericht der Deutschen Bundesbank, eine Rede von EZB-Präsidentin Christine Lagarde und einen Auftritt von Fed-Mitglied Austan Goolsbee. Konkrete Uhrzeiten dazu nennt der Kalender nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer den Goldpreis allein aus der Zinsentscheidung erklären will, übersieht die zweite Nachfrageseite. Wie stabil das Zusammenspiel aus Zentralbankkäufen und Zinserwartung bleibt, zeigt sich frühestens an den Terminen der kommenden Woche.',
+      },
+    ],
+  },
+  {
+    slug: 'bund-laender-neuer-tankrabatt',
+    title: 'Bund und Länder einigen sich auf neuen Tankrabatt',
+    teaser:
+      'Bund und Länder einigen sich grundsätzlich auf einen neuen Tankrabatt samt Spritpreisdeckel. Politiker Lies fordert danach eine Übergewinnsteuer für Ölkonzerne.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-19T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Tankrabatt', 'Steuern', 'Energiepreise', 'Politik'],
+    relatedTopics: ['inflation', 'schulden-und-kredit'],
+    relatedSymbols: ['brent', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „ROUNDUP 3: Bund und Länder einigen sich auf neuen Tankrabatt"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „WDH/ROUNDUP/Kreise: Grundsätzliche Einigung auf Tankrabatt und Spritpreisdeckel"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026, 20:03 Uhr: „Lies fordert Übergewinnsteuer für Ölkonzerne nach Tankrabatt"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bund und Länder haben sich laut mehreren Ticker-Meldungen von finanzen.net am 18. September grundsätzlich auf einen neuen Tankrabatt und einen Spritpreisdeckel geeinigt. Zu welchem Betrag oder ab welcher Preisschwelle der Deckel greifen soll, nennt keine der Meldungen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 20:03 Uhr meldete dpa-AFX über finanzen.net, der Politiker Lies habe im Anschluss eine Übergewinnsteuer für Ölkonzerne gefordert. Eine Begründung oder einen konkreten Steuersatz dazu gibt die Meldung nicht wieder.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rabatt ist kein Geschenk – ihn zahlt jemand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein staatlich finanzierter Tankrabatt senkt den Preis an der Zapfsäule, aber nicht die Kosten der Herstellung – die Differenz übernimmt der Staatshaushalt. Eine Übergewinnsteuer ist der Versuch, einen Teil davon direkt bei den Unternehmen zu holen, die von hohen Energiepreisen zusätzlich profitieren, statt die Lücke allein über neue Schulden oder andere Steuern zu schließen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Inflationsstatistik macht das einen Unterschied: Ein Rabatt an der Zapfsäule senkt kurzfristig die gemessene Teuerung, weil Kraftstoff direkt im Warenkorb steckt. Läuft der Rabatt aus, kann der Preis – und mit ihm die gemessene Inflationsrate – wieder steigen, ohne dass sich am zugrunde liegenden Ölpreis etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Solange weder Betrag noch Laufzeit des Rabatts feststehen, lässt sich nicht beziffern, wie stark er den Haushalt oder die Inflationsrate am Ende bewegt. Das dürfte sich erst mit der endgültigen Einigung zeigen.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-verfallstag-vw-gewinnprognose',
+    title: 'DAX fällt am großen Verfallstag – VW kappt die Gewinnprognose',
+    metaTitle: 'DAX fällt am Verfallstag – VW kappt Gewinnprognose',
+    teaser:
+      'Am großen Verfallstag rutscht der DAX ab, während Volkswagen die Gewinnprognose deutlich senkt. Zwei Portale nennen dafür unterschiedliche Prozentzahlen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['DAX', 'Volkswagen', 'Verfallstag', 'Aktien'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'boerse'],
+    relatedSymbols: ['dax', 'volkswagen', 'porsche-ag', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, 18.09.2026, 16:11 Uhr: „ROUNDUP/Aktien Frankfurt Schluss: Dax sackt am großen Verfallstag ab"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 18.09.2026, 15:55 Uhr: „Dax rutscht ab - VW schockt mit Prognose-Senkung"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Aktien von VW und Porsche knicken ein: Volkswagen senkt Gewinnprognose deutlich"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX ist am Freitag, dem großen Verfallstag, deutlich gefallen. Laut onvista meldete dpa-AFX um 16:11 Uhr „Dax sackt am großen Verfallstag ab“, bereits um 15:55 Uhr hatte onvista getitelt: „Dax rutscht ab - VW schockt mit Prognose-Senkung“. Volkswagen und Porsche senkten am selben Tag ihre Gewinnprognose deutlich, wie ein Ticker von finanzen.net festhielt – beide Aktien gaben daraufhin nach.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Stand Samstagfrüh, 19. September, 02:20 Uhr zeigt die Kursleiste von finanzen.net den DAX bei 25.304 Punkten, ein Minus von 1,6 Prozent. Die Kursleiste von wallstreet-online nennt zur selben Zeit 25.308,88 Punkte, aber ein Minus von 1,33 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fast derselbe Punktestand, zwei verschiedene Prozentzahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Angaben beziehen sich auf einen fast identischen Indexstand – die Differenz von rund 5 Punkten liegt im Rahmen normaler Kursschwankungen zwischen zwei Datenquellen. Trotzdem weichen die gemeldeten Prozentangaben spürbar voneinander ab. **Eine Prozentangabe ist immer ein Vergleich mit einem Bezugspunkt**, meist dem letzten Schlusskurs – und wenn zwei Portale diesen Bezugspunkt unterschiedlich erfassen oder zu leicht unterschiedlichen Zeitpunkten aktualisieren, entstehen zwei plausible, aber nicht identische Prozentzahlen für praktisch denselben Kurs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch der Euro Stoxx 50 gab laut finanzen.net nach, um 1,4 Prozent auf 6.236 Punkte. Ein „großer Verfallstag“ ist der Termin, an dem Optionen und Futures auf Indizes und Einzelwerte gleichzeitig auslaufen; das kann den Handel zeitweise volatiler machen, ohne dass sich an den wirtschaftlichen Rahmendaten der betroffenen Unternehmen etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kursrückgang an einem Verfallstag lässt sich nicht ohne Weiteres von der unternehmensspezifischen Nachricht – hier der Gewinnwarnung von VW – trennen. Wer die Ursache eines Tagesverlusts sucht, findet an einem solchen Tag meist mehr als eine.',
+      },
+    ],
+  },
+  {
+    slug: 'erster-deutscher-f35-rheinmetall',
+    title: 'Erster deutscher F-35 ausgeliefert – Rheinmetall-Aktie gibt nach',
+    teaser:
+      'Am Tag, an dem der erste deutsche F-35-Kampfjet ausgeliefert wurde, ist die Rheinmetall-Aktie gefallen. Einen Zusammenhang nennt die Quelle nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Rheinmetall', 'Rüstung', 'Aktien', 'Luftwaffe'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['rheinmetall', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Rheinmetall-Aktie im Minus: Erster deutscher F-35-Kampfjet ausgeliefert"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          "finanzen.net, News-Ticker, 18.09.2026: „ROUNDUP 2: 'Neue Ära' für die Luftwaffe: F-35 soll abschrecken\"",
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die deutsche Luftwaffe hat laut einer dpa-AFX-Meldung auf finanzen.net vom 18. September den ersten F-35-Kampfjet erhalten – in der Überschrift der Agentur eine „neue Ära“, der Jet solle abschrecken. Am selben Tag notierte die Rheinmetall-Aktie laut einem weiteren Ticker der Quelle im Minus. Eine genaue Kursveränderung oder eine Erklärung für den Rückgang nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Meldungen, ein Tag – nicht zwingend ein Zusammenhang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der F-35 ist ein Kampfjet des US-Herstellers Lockheed Martin und kein Rheinmetall-Produkt. Dass beide Meldungen am selben Tag erschienen, bedeutet nicht automatisch, dass die eine die andere erklärt – dafür müsste die Quelle einen Zusammenhang nennen, was sie nicht tut.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Rüstungsaktien wie Rheinmetall bewegen sich oft im Gleichlauf mit politischen Erwartungen an künftige Verteidigungsbudgets. Ein einzelner Liefertermin für ein Fremdprodukt sagt darüber für sich genommen wenig aus.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer aus zwei gleichzeitigen Schlagzeilen einen Kausalzusammenhang liest, sollte prüfen, ob die Quelle diesen Zusammenhang tatsächlich herstellt – oder ob es sich um zwei unabhängige Ereignisse an einem gemeinsamen Tag handelt.',
+      },
+    ],
+  },
+  {
+    slug: 'infineon-hochgestuft-nach-kursverlust',
+    title: 'Infineon nach 40 Prozent Verlust hochgestuft – zieht Chipwerte mit',
+    metaTitle: 'Infineon nach 40 Prozent Verlust hochgestuft',
+    teaser:
+      'Nach rund 40 Prozent Kursverlust wird die Infineon-Aktie hochgestuft. Der Titel legt zu und zieht laut Ticker auch Aixtron und weitere Chipwerte mit nach oben.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Infineon', 'Halbleiter', 'Analysten', 'Aktien'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['infineon', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026, 10:59 Uhr: „Infineon mit Upgrade, CoreWeave braucht Milliarden, Nvidia verdoppelt Chips"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „40 Prozent verloren – jetzt wird die Infineon-Aktie hochgestuft - Titel reagiert und zieht AIXTRON & Co. mit"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Infineon-Aktie ist laut einem Ticker von finanzen.net vom 18. September hochgestuft worden, nachdem der Titel zuvor rund 40 Prozent an Wert verloren hatte. Welches Analysehaus die Hochstufung vorgenommen hat und auf welches Kursziel, nennt die Meldung nicht. Der Kurs reagierte demnach positiv und zog auch die Aktie von Aixtron sowie weitere Chipwerte mit nach oben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Einzelmeinung einen ganzen Sektor bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Hochstufung ist zunächst nichts weiter als die geänderte Einschätzung eines einzelnen Analysehauses. Dass sie trotzdem mehrere Aktien gleichzeitig bewegt, liegt an der Branchenlogik: Halbleiterhersteller hängen an denselben Zulieferketten und denselben Endmärkten, etwa der Autoindustrie und der Chipnachfrage für Rechenzentren. Eine positivere Einschätzung für ein Unternehmen wird von Anlegern oft als Signal für die ganze Branche gelesen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Das ist zugleich eine Grenze der Meldung: Ohne Namen des Analysehauses, ohne neues Kursziel und ohne Begründung lässt sich nicht einordnen, wie belastbar die Hochstufung ist – nur, dass der Markt an diesem Tag so reagiert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssprung nach einer Hochstufung sagt zunächst etwas über die Erwartung eines einzelnen Analysehauses, noch nicht über die Geschäftszahlen selbst. Die folgen erst mit dem nächsten Quartalsbericht.',
+      },
+    ],
+  },
+  {
+    slug: 'us-boersen-uneinheitlich-dow-nasdaq',
+    title: 'US-Börsen zum Wochenschluss uneinheitlich: Dow im Minus, Nasdaq im Plus',
+    metaTitle: 'US-Börsen uneinheitlich: Dow im Minus, Nasdaq im Plus',
+    teaser:
+      'Der Dow Jones schließt den Freitagshandel im Minus, während Nasdaq Composite und S&P 500 zulegen. Ein Beispiel dafür, warum Indizes nicht gleich Indizes sind.',
+    category: 'Märkte',
+    publishedAt: '2026-09-19T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dow Jones', 'Nasdaq', 'S&P 500', 'USA'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'boerse'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Schwacher Handel: Dow Jones notiert letztendlich im Minus"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Börse New York in Grün: S&P 500 legt zum Ende des Freitagshandels zu"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, 18.09.2026: „Handel in New York: NASDAQ Composite schließt in der Gewinnzone"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 19.09.2026, 02:20 Uhr MESZ',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Freitagshandel an der Wall Street endete laut mehreren Tickern von finanzen.net uneinheitlich: Der Dow Jones schloss im Minus, während der S&P 500 „zum Ende des Freitagshandels“ zulegte und der Nasdaq Composite „in der Gewinnzone“ schloss. Die Kursleiste von wallstreet-online zeigt zum Stand Samstagfrüh, 02:20 Uhr, den Dow Jones (US 30) bei minus 0,23 Prozent und den technologielastigen US Tech 100 bei plus 0,56 Prozent.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Indizes, ein Tag, zwei Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones fasst 30 große US-Industriewerte zusammen und gewichtet sie nach ihrem Aktienkurs, nicht nach der Größe des Unternehmens. Der Nasdaq Composite und der S&P 500 sind dagegen nach Marktkapitalisierung gewichtet und enthalten deutlich mehr Technologiewerte. Bewegen sich große Technologieaktien anders als der Rest des Marktes, laufen die Indizes auseinander – wie am Freitag geschehen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX beschrieb die Lage laut onvista knapper: „Wenig Bewegung nach starkem Vortag“. Die Ausschläge blieben demnach insgesamt klein, auch wenn sich Dow und Nasdaq in entgegengesetzte Richtungen bewegten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Schlagzeile „Die Börse ist gefallen“ oder „Die Börse ist gestiegen“ existiert an einem solchen Tag streng genommen nicht – es kommt darauf an, welcher der drei großen US-Indizes gemeint ist.',
+      },
+    ],
+  },
+  {
     slug: 'zwei-kursleisten-ein-morgen',
     title: 'Zwei Kursleisten, ein Morgen: Warum der DAX nicht überall gleich steht',
     metaTitle: 'Zwei Kursleisten, ein Morgen: DAX-Stände im Vergleich',
