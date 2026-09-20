@@ -122,7 +122,20 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
     // 28.08.2026: `npm run frische` durchgesehen, alles innerhalb seiner
     // Grenzen. Ältester Wert war `laender.json` mit 21 Tagen (ohne Grenze),
     // die drei Kurs- und Marktwerte 0 bis 1 Tag.
-    zuletztGeprueft: '2026-08-28',
+    //
+    // 20.09.2026: wieder durchgesehen, wieder alles innerhalb der Grenzen –
+    // und diesmal mit den Zahlen dabei, damit der nächste sieht, wie viel
+    // Luft war und nicht nur, dass jemand hingesehen hat:
+    //
+    //     Leitzins der EZB              4 von 10 Tagen
+    //     Inflation Euroraum / DE      19 von 75 Tagen
+    //     Aktienkurse                   0 von  5 Tagen
+    //     Kursverläufe, Marktbreite     2 von  6 Tagen
+    //
+    // Abrufe 0 bis 4 Tage alt, keine abweichende Zahl im Fließtext, alle
+    // acht ETF-Kosten hinterlegt. Ob die hinterlegten Kosten noch den
+    // Factsheets entsprechen, sagt das nicht – das ist `etf-kosten`.
+    zuletztGeprueft: '2026-09-20',
     dateien: ['data/snapshots/', 'data/stichtagswerte.ts'],
   },
 
@@ -162,7 +175,24 @@ export const inhalteTurnus: readonly Turnuseintrag[] = [
       'Impressum, Datenschutz, Haftungsausschluss, KI-Hinweise. Ändert sich ' +
       'selten, kostet im Fehlerfall am meisten.',
     taktTage: 28,
-    zuletztGeprueft: '2026-08-09',
+    // 20.09.2026: Durchsicht mit **einem** Befund, und zwar dem teuersten,
+    // den dieser Bereich haben kann – einer Zusage, die nicht zutraf.
+    //
+    // Im Impressum stand „Jeder Inhalt wird vor der Veröffentlichung von
+    // einem Menschen inhaltlich geprüft und freigegeben". Derselbe Satz war
+    // am 17.08. aus der Kanalbeschreibung des Podcasts und aus dem KI-Hinweis
+    // unter jeder Folge gestrichen worden, beide Male mit der Begründung, die
+    // Kette veröffentliche ohne Halt. Berichtigt wurde damals die Stelle, an
+    // der es auffiel, nicht die Aussage.
+    //
+    // `tests/ki-hinweis-zusage.test.ts` hält die Aussage jetzt an allen
+    // Stellen zugleich fest – und fand beim ersten Lauf gleich eine zweite
+    // im selben Abschnitt.
+    //
+    // Nicht geprüft, weil von hier aus nicht erreichbar: ob die Angaben zu
+    // Anbieter und Hoster noch stimmen und ob sich an § 5 DDG oder der
+    // DSGVO-Auslegung etwas geändert hat. Das braucht einen Blick von aussen.
+    zuletztGeprueft: '2026-09-20',
     dateien: [
       'app/impressum/page.tsx',
       'app/datenschutz/page.tsx',
