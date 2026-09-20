@@ -87,12 +87,37 @@ function melde(text: string): void {
 /**
  * Wo die Marke liegt, die einen zweiten Versuch am selben Tag verbietet.
  *
- * Der Workflow holt sie vor dem Lauf vom wurzellosen Zweig `instagram-sperre`
- * und legt sie danach wieder dorthin, falls dieser Lauf sie geschrieben hat.
+ * Der Workflow holt sie vor dem Lauf vom wurzellosen Zweig `instagram-sperre`.
  * Fehlt die Datei, ist nichts gesperrt – die Begründung steht in
  * `lib/instagram-sperre.ts`.
  */
 const SPERRE = 'out/instagram/sperre.txt'
+
+/**
+ * Und wohin eine **neu entstandene** Marke geschrieben wird.
+ *
+ * ## Warum zwei Dateien und nicht eine
+ *
+ * Weil der Workflow sonst nicht unterscheiden kann, ob die Marke von diesem
+ * Lauf stammt oder eben erst vom Zweig geholt wurde. Genau daran ist der
+ * erste Anlauf vorbeigelaufen: Der Schritt „Sperre auf den Zweig legen"
+ * fragte `grep "^$(date -u +%F)" sperre.txt` – und das trifft auch auf die
+ * geholte Marke zu.
+ *
+ * Gesehen am 20. September 2026 um 16:05. Der Riegel hielt, der Lauf schickte
+ * nichts, und trotzdem schob er dieselbe Marke noch einmal auf den Zweig:
+ *
+ *     + a2b5b48...dd3cc06 instagram-sperre -> instagram-sperre (forced update)
+ *
+ * Folgenlos, weil der Zweig wurzellos ist und immer genau einen Commit hat.
+ * Aber der Kommentar daneben behauptete, genau das finde nicht statt, und ein
+ * Kommentar, der nicht stimmt, ist schlimmer als keiner: Der nächste liest
+ * ihn und glaubt ihm.
+ *
+ * Eine eigene Datei kann nicht falsch verstanden werden. Sie entsteht nur,
+ * wenn dieser Lauf die Sperre gesetzt hat.
+ */
+const SPERRE_NEU = 'out/instagram/sperre-neu.txt'
 
 function sperreVomZweig(): string | null {
   try {
@@ -388,11 +413,11 @@ if (!TOKEN || !KONTO) {
     */
     if (rumpf.toLowerCase().includes('queue is full')) {
       writeFileSync(
-        SPERRE,
+        SPERRE_NEU,
         sperreSchreiben(STICHTAG, `${antwort.status}: ${rumpf.slice(0, 200)}`)
       )
       melde('')
-      melde(`Für heute gesperrt – vermerkt in ${SPERRE}.`)
+      melde(`Für heute gesperrt – vermerkt in ${SPERRE_NEU}.`)
       melde('Der nächste Lauf von heute schickt nichts mehr; morgen läuft es an.')
     }
     process.exit(1)
