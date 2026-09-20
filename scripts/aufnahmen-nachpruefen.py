@@ -145,11 +145,11 @@ def zeige_stelle(ton, rate: int, sekunde: float, umfeld: float = 2.0) -> None:
             f"{'ja' if gemessen['laut'][i] else 'nein'}"
         )
 
-    verteilung(gemessen)
+    verteilung(gemessen, sekunde)
 
 
-def verteilung(gemessen) -> None:
-    """Was der Tiefenanteil in **dieser** Aufnahme sonst so tut.
+def verteilung(gemessen, gemeldet: float | None = None) -> None:
+    """Was Tiefenanteil und Nulldurchgänge in **dieser** Aufnahme sonst tun.
 
     ## Warum das neben den Einzelwerten stehen muss
 
@@ -159,10 +159,21 @@ def verteilung(gemessen) -> None:
     Vokale tragen dort zwangsläufig Energie, und eine Schwelle, die das nicht
     berücksichtigt, beanstandet die halbe Folge.
 
-    Deshalb hier die Verteilung über alle lauten Fenster und, für jede
-    Kandidatenschwelle, was sie in dieser Aufnahme kosten würde: wie viele
-    zusammenhängende Stellen von mindestens `STOERUNG_MINDESTENS_S` sie
-    fände. Das ist die Gegenprobe zur Schwelle, bevor es sie gibt.
+    Am 20. September 2026 nachgemessen, und deutlicher als erwartet: Über die
+    1238 lauten Fenster der Folge vom 19. September liegt der Median des
+    Tiefenanteils bei 0,52, das 90. Perzentil bei 0,86. **Der Tiefenanteil
+    allein trennt nichts** – er ist bei dieser Stimme der Normalfall.
+
+    Deshalb misst diese Ausgabe jetzt das Paar: tiefe Energie **und** wenig
+    Nulldurchgänge. Sprache trägt ihre Verständlichkeit in den Formanten
+    zwischen 300 und 3.500 Hz und erzeugt damit zwangsläufig Nulldurchgänge;
+    ein Rumpeln hat keine. Zu jeder Kombination steht hier, wie viele Fenster
+    und wie viele zusammenhängende Stellen ab `STOERUNG_MINDESTENS_S` sie in
+    dieser Aufnahme fände – und ob die **gemeldete** Stelle darunter ist.
+
+    Das ist die Gegenprobe zur Schwelle, bevor es sie gibt: Eine Absicherung,
+    die nie anschlägt, sieht aus wie Ruhe; eine, die überall anschlägt, wird
+    abgeschaltet.
     """
     import numpy as np
 
@@ -172,45 +183,68 @@ def verteilung(gemessen) -> None:
         print("    (kein lautes Fenster – keine Verteilung)")
         return
 
-    werte = gemessen["tiefenanteil"][laut]
     stufen = [10, 25, 50, 75, 90, 95, 99]
-    print(f"\n    Tiefenanteil über alle {anzahl} lauten Fenster:")
-    print("      Perzentil  " + "".join(f"{s:>8}" for s in stufen))
-    print(
-        "      Wert       "
-        + "".join(f"{float(np.percentile(werte, s)):8.3f}" for s in stufen)
-    )
-
-    print("\n    Was eine Grenze in dieser Aufnahme fände:")
-    print("      Grenze  Fenster  Stellen ab 0,4 s")
-    for grenze in (0.70, 0.80, 0.85, 0.90, 0.95):
-        treffer = laut & (gemessen["tiefenanteil"] >= grenze)
+    print(f"\n    Verteilung über alle {anzahl} lauten Fenster:")
+    print("      Perzentil     " + "".join(f"{s:>8}" for s in stufen))
+    for name, schluessel in (("Tiefenanteil", "tiefenanteil"), ("Nulldurchg.", "rauheit")):
+        werte = gemessen[schluessel][laut]
         print(
-            f"      {grenze:6.2f}  {int(np.sum(treffer)):7d}  "
-            f"{_laeufe(treffer, gemessen):16d}"
+            f"      {name:<13} "
+            + "".join(f"{float(np.percentile(werte, s)):8.3f}" for s in stufen)
         )
 
+    rate = int(gemessen["fenster"] / sprechstimme.FENSTER_S)
+    urspruenglich = (sprechstimme.RUMPELGRENZE, sprechstimme.RUMPELN_TIEF)
+    print("\n    Was ein Paar aus Grenzen in dieser Aufnahme fände:")
+    print("      still bis  tief ab  Stellen  gemeldete dabei")
+    try:
+        for still in (0.015, 0.020, 0.025, 0.030, 0.040):
+            for tief in (0.50, 0.70, 0.80, 0.90):
+                stellen = _mit_grenzen(gemessen, rate, still, tief)
+                dabei = (
+                    "–"
+                    if gemeldet is None
+                    else ("ja" if _trifft(stellen, gemeldet) else "nein")
+                )
+                print(
+                    f"      {still:9.3f}  {tief:7.2f}  {len(stellen):7d}  {dabei:>15}"
+                )
 
-def _laeufe(flaggen, gemessen) -> int:
-    """Wie viele zusammenhängende Stellen von mindestens 0,4 s dabei wären."""
-    import numpy as np
+        # Eine Zahl sagt nicht, was sie beanstandet. Eine Grenze zu setzen,
+        # ohne ihre Fehlalarme angesehen zu haben, heisst später eine Aufnahme
+        # zu dämpfen, die in Ordnung war – `nachbessern()` meldet nicht nur,
+        # es greift ein.
+        for still, tief in ((0.020, 0.80), (0.025, 0.80), (0.030, 0.90)):
+            stellen = _mit_grenzen(gemessen, rate, still, tief)
+            print(f"\n    Die Stellen bei still ≤ {still:.3f} und tief ≥ {tief:.2f}:")
+            print("      Beginn         Dauer  tief (Median)  still (Median)  lauteste")
+            for von, bis, a, b in stellen:
+                bereich = slice(a, b + 1)
+                print(
+                    f"      {als_uhrzeit(von):>5} {von:7.2f} s  {bis - von:5.2f} s  "
+                    f"{float(np.median(gemessen['tiefenanteil'][bereich])):13.3f}  "
+                    f"{float(np.median(gemessen['rauheit'][bereich])):14.3f}  "
+                    f"{float(np.max(gemessen['effektiv'][bereich])):8.4f}"
+                )
+    finally:
+        sprechstimme.RUMPELGRENZE, sprechstimme.RUMPELN_TIEF = urspruenglich
 
-    vorschub = gemessen["vorschub"]
-    fenster = gemessen["fenster"]
-    rate = fenster / sprechstimme.FENSTER_S
 
-    anzahl = 0
-    beginn = None
-    for i, flagge in enumerate([*np.asarray(flaggen), False]):
-        if flagge and beginn is None:
-            beginn = i
-        elif not flagge and beginn is not None:
-            von = beginn * vorschub / rate
-            bis = ((i - 1) * vorschub + fenster) / rate
-            if bis - von >= sprechstimme.STOERUNG_MINDESTENS_S:
-                anzahl += 1
-            beginn = None
-    return anzahl
+def _mit_grenzen(gemessen, rate: int, still: float, tief: float):
+    """Was `_rumpelstellen` mit einem anderen Grenzenpaar fände.
+
+    Gerechnet wird mit **der** Funktion, die später auch urteilt, nicht mit
+    einer nachgebauten Kopie davon. Eine Gegenprobe, die etwas anderes rechnet
+    als die Sache, die sie prüft, prüft nichts.
+    """
+    sprechstimme.RUMPELGRENZE = still
+    sprechstimme.RUMPELN_TIEF = tief
+    return sprechstimme._rumpelstellen(gemessen, rate)
+
+
+def _trifft(stellen, sekunde: float, spiel: float = 1.0) -> bool:
+    """Liegt die gemeldete Sekunde in einer der gefundenen Stellen?"""
+    return any(von - spiel <= sekunde <= bis + spiel for von, bis, _, _ in stellen)
 
 
 def pruefe(pfad: str, name: str, stelle: float | None = None) -> int:

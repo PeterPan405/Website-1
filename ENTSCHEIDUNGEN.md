@@ -3414,6 +3414,109 @@ Ein gehaltener Ton bei 900 Hz und ein Brummen bei 180 Hz, beide weit unter dem
 Anschlag und weit unter der Zischgrenze. Beide werden jetzt gefunden und
 gedämpft, und beide standen vorher als „nichts zu beanstanden" da.
 
+### Und manchmal ist es keins von beidem – der 19. September 2026
+
+Der Betreiber meldete in der Folge vom 19. September bei 2:56 ein Geräusch
+„zwischen Stuhl verschieben und flatulieren". Gemessen sah es so aus:
+
+    Sekunde  Effektiv  Nulldurchg.  Anschlag  Tonanteil  Tiefenanteil
+     175.50    0.1667        0.067     0.000      0.529         0.943
+     175.62    0.3390        0.020     0.000      0.400         0.019
+     175.75    0.3499        0.006     0.000      0.715         0.963
+     175.88    0.1887        0.006     0.000      0.657         0.998
+
+Alle drei Merkmale sahen daran vorbei, und nicht knapp: 0,006 gegen eine
+Zischgrenze von 0,22, nichts am Anschlag, 0,72 gegen einen Tonanteil von 0,90.
+Dabei sind das die **lautesten** Fenster ihrer Umgebung.
+
+Der Grund ist eine Lücke in der Form der Prüfung, nicht in einer Zahl:
+`ZISCHGRENZE` fragt nach **zu vielen** Nulldurchgängen. Nach unten stand
+keine Grenze. Ein Poltern ist aber genau das – tiefe Energie ohne Formanten.
+
+#### Der Tiefenanteil allein trennt nichts
+
+Der erste Versuch maß den Anteil der Energie unter 200 Hz und ging davon aus,
+dass dort bei Sprache „nur ein Teil, nie der größte" sitzt. Über die 1238
+lauten Fenster derselben Folge nachgemessen:
+
+    Perzentil        10      25      50      75      90      95      99
+    Tiefenanteil  0.099   0.288   0.524   0.736   0.860   0.922   0.993
+
+Der Median liegt bei 0,52. Die Grundfrequenz dieser Stimme liegt unter 200 Hz
+und trägt mehr Energie als alle Formanten zusammen. Eine Grenze auf den
+Tiefenanteil allein wäre bei 0,90 wirkungslos gewesen (null Funde, auch der
+gemeldete nicht) und bei 0,70 verheerend (vierzehn Stellen, allesamt Sprache).
+
+#### Zwei falsche Formen, bevor die richtige stand
+
+**Und je Fenster.** Beide Merkmale für jedes Viertelsekundenfenster zu
+verlangen, fand die Stelle in _keiner_ Kombination von Grenzen. Jedes der
+vier Fenster verfehlt mindestens eine Bedingung; übrig blieben zwei, 0,375 s,
+und damit scheiterte es um 25 Millisekunden an `STOERUNG_MINDESTENS_S`. Ein
+Poltern ist kein gleichförmiger Ton – es schlägt an, rollt aus und schwankt
+dabei. Wieder eine Fallunterscheidung über ein Merkmal, das der Stoff nicht
+hergibt.
+
+**Lauf, dann Median.** Also erst einen Lauf aus allen stillen Fenstern bilden
+und ihn als Ganzes beurteilen. Das fand die echte Stelle – und fiel im
+Selbsttest durch, bevor es in einen Lauf kam: `_probeton` liegt durchgehend
+bei 0,009 Nulldurchgängen, der Lauf wuchs über das eingebaute Poltern hinaus
+auf Sekunden an, und sein Median sank auf den Wert des Probetons. **Ein
+Mittelwert kann nichts finden, was er verdünnt** – derselbe Fehler wie beim
+Prüfen ganzer Stücke, nur eine Ebene tiefer.
+
+Was steht, ist ein **fester Abschnitt**: drei Fenster am Stück, das kleinste,
+das 0,4 s erreicht. Er kann nicht wachsen und deshalb nichts verdünnen, und
+sein Median überhört genau einen Ausreißer – einer ist da, bei 175,62.
+
+#### Wie die Grenze gewählt wurde
+
+An der Aufnahme, mit der gemeldeten Stelle als Prüfstein, gerechnet mit
+derselben Funktion, die später urteilt:
+
+    Nulldurchg. bis   Tiefe ab   Stellen   die gemeldete dabei
+              0,015       0,80         2   ja
+              0,015       0,90         2   ja
+              0,020       0,80         7   ja
+              0,020       0,90         3   ja
+              0,030       0,90         4   ja
+
+Bei 0,015/0,90 bleiben in 232 Sekunden genau zwei Stellen, und beide tragen
+dieselbe Handschrift:
+
+    2:09  0,50 s  Tiefe 0,998  Nulldurchg. 0,006
+    2:55  0,50 s  Tiefe 0,963  Nulldurchg. 0,006   ← die gemeldete
+
+Dass 2:09 mitkommt, ohne gemeldet worden zu sein, ist kein Fehlalarm: 99,8
+Prozent der Energie unter 200 Hz über eine halbe Sekunde kann keine Sprache
+sein – dann bliebe nichts, woran ein Laut zu erkennen wäre.
+
+Die fünf, die bei 0,020/0,80 dazukommen, liegen bei einer Tiefe von 0,81 bis
+0,86 und 0,016 bis 0,023 Nulldurchgängen: eine andere Sorte, und zwar
+gesprochene. Das ist kein Feilschen um Kommastellen. `nachbessern()` meldet
+nicht nur, es **dämpft** – fünf Fehlalarme je Folge wären fünf gedämpfte
+Stellen gesprochener Sprache.
+
+#### Die Gegenprobe an den anderen Folgen
+
+Eine Grenze, die an einer einzigen Aufnahme gewählt wurde, ist an einem
+Einzelfall gewählt. Gegen sechs weitere Folgen laufen gelassen: kein einziger
+Fund am 20. und am 18. September, einer am 16. September (2:35, Tiefe 0,90,
+Nulldurchgänge 0,012) – in der Folge, über die der Betreiber vier Tage zuvor
+geklagt hatte. Die übrigen Funde dort sind „rau" und damit älter als diese
+Änderung.
+
+#### Was im Selbsttest dazukam
+
+Ein nachgestelltes Poltern aus drei tiefen Teiltönen mit Anschlag und
+Ausrollen – ein einzelner Sinus wäre der falsche Prüfstein, den fände schon
+der Tonanteil. Geprüft wird zusätzlich, dass es als **Rumpeln** gefunden wird
+und nicht als Ton oder Rauschen: Fände es ein altes Merkmal mit, wäre die neue
+Grenze eine Doppelung, die beim nächsten Umbau niemand vermisst, und der
+gemeldete Fall bliebe trotzdem offen. Dazu sieben saubere Probetöne, die
+unbeanstandet bleiben müssen, und die Nachbesserung, die das Poltern danach
+nicht mehr finden darf.
+
 ## Eine Regel im Kommentar ist keine Regel
 
 Am selben Tag beanstandete der Betreiber die Aussprache englischer Wörter.
