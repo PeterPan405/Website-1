@@ -206,10 +206,16 @@ jobs:
       - name: Sperre auf den Zweig legen
         if: always()
         run: |
-          # Nur schreiben, wenn dieser Lauf sie eben gesetzt hat – die geholte
-          # Marke wieder hinaufzuschieben wäre eine Schleife ohne Zweck.
-          grep -q "^$(date -u +%F)" out/instagram/sperre.txt 2>/dev/null || {
-            echo "Keine neue Sperre von heute – nichts zu schreiben."
+          # Nur schreiben, wenn dieser Lauf sie eben gesetzt hat. Das Skript
+          # legt sie dafür in eine **eigene** Datei; `sperre.txt` ist die vom
+          # Zweig geholte, und die wieder hinaufzuschieben wäre eine Schleife
+          # ohne Zweck.
+          #
+          # Der erste Anlauf fragte `sperre.txt` ab und traf damit auch die
+          # geholte Marke: Am 20.09.2026 um 16:05 hielt der Riegel, der Lauf
+          # schickte nichts – und schob die Marke trotzdem noch einmal hoch.
+          [ -f out/instagram/sperre-neu.txt ] || {
+            echo "Keine neue Sperre aus diesem Lauf – nichts zu schreiben."
             exit 0
           }
 
@@ -217,7 +223,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           inhalt=$(mktemp)
-          cp out/instagram/sperre.txt "$inhalt"
+          cp out/instagram/sperre-neu.txt "$inhalt"
 
           git checkout --orphan instagram-sperre
           git rm -rf --cached . > /dev/null
