@@ -198,12 +198,7 @@ def verteilung(gemessen, gemeldet: float | None = None) -> None:
     for still in (0.015, 0.020, 0.025, 0.030, 0.040):
         laeufe = _laeufe(laut & (gemessen["rauheit"] <= still), gemessen)
         for tief in (0.50, 0.70, 0.80, 0.90):
-            behalten = [
-                lauf
-                for lauf in laeufe
-                if float(np.median(gemessen["tiefenanteil"][lauf[2] : lauf[3] + 1]))
-                >= tief
-            ]
+            behalten = _mit_tiefe(laeufe, gemessen, tief)
             dabei = (
                 "–"
                 if gemeldet is None
@@ -212,6 +207,35 @@ def verteilung(gemessen, gemeldet: float | None = None) -> None:
             print(
                 f"      {still:9.3f}  {tief:7.2f}  {len(behalten):16d}  {dabei:>15}"
             )
+
+    # Eine Zahl sagt nicht, was sie beanstandet. Eine Grenze zu setzen, ohne
+    # ihre Fehlalarme angesehen zu haben, heisst später eine Aufnahme dämpfen,
+    # die in Ordnung war – `nachbessern()` meldet nicht nur, es greift ein.
+    for still, tief in ((0.020, 0.80), (0.025, 0.80), (0.030, 0.90)):
+        laeufe = _mit_tiefe(
+            _laeufe(laut & (gemessen["rauheit"] <= still), gemessen), gemessen, tief
+        )
+        print(f"\n    Die Stellen bei still ≤ {still:.3f} und tief ≥ {tief:.2f}:")
+        print("      von      bis      Dauer  tief (Median)  still (Median)  lauteste")
+        for von, bis, a, b in laeufe:
+            bereich = slice(a, b + 1)
+            print(
+                f"      {als_uhrzeit(von)} {von % 60:5.2f}  {bis - von:5.2f} s  "
+                f"{float(np.median(gemessen['tiefenanteil'][bereich])):13.3f}  "
+                f"{float(np.median(gemessen['rauheit'][bereich])):14.3f}  "
+                f"{float(np.max(gemessen['effektiv'][bereich])):8.4f}"
+            )
+
+
+def _mit_tiefe(laeufe, gemessen, grenze: float):
+    """Die Läufe, deren Tiefenanteil im Median über der Grenze liegt."""
+    import numpy as np
+
+    return [
+        lauf
+        for lauf in laeufe
+        if float(np.median(gemessen["tiefenanteil"][lauf[2] : lauf[3] + 1])) >= grenze
+    ]
 
 
 def _trifft(stellen, sekunde: float, spiel: float = 1.0) -> bool:
