@@ -162,13 +162,21 @@ for (const [wort, alteUmschrift] of ALT) {
   nicht versteht, ist wieder eine Stichprobe.
 */
 
-/** Aus einem Muster ein Wort machen, das es trifft. */
+/**
+ * Aus einem Muster ein Wort machen, das es trifft.
+ *
+ * Fangende Klammern kommen seit `mitGenitiv()` vor: Das Muster bekommt ein
+ * `(s?)` angehängt, die Umschrift ein `$2`. Das Probewort nimmt das `s` mit
+ * und prüft damit gleich die Form, um derentwillen es die Erweiterung gibt –
+ * den Genitiv.
+ */
 function probewort(muster: RegExp): string {
   return muster.source
     .replaceAll('\\b', '')
-    .replaceAll(/\(\?:([^)|]+)\|[^)]*\)/g, '$1') // (?:xx|cks) → xx
+    .replaceAll(/\((?:\?:)?([^)|]+)\|[^)]*\)/g, '$1') // (?:xx|cks), (a|b) → xx
+    .replaceAll(/\(([^)]*)\)/g, '$1') // (s?) → s?
     .replaceAll(/\[([^\]])[^\]]*\]\??/g, '$1') // [ -]? → Leerzeichen
-    .replaceAll(/(.)\?/g, '$1') // Sell-?off → Sell-off
+    .replaceAll(/(.)\?/g, '$1') // Sell-?off → Sell-off, s? → s
 }
 
 pruefen(
