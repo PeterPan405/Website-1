@@ -150,17 +150,30 @@ if (modus === 'eintragen') {
 }
 
 /* Der Feed – in beiden Betriebsarten neu geschrieben. */
+/*
+  Was hier steht, liest ein Hörer **vor** dem Abonnieren. Es ist deshalb eine
+  Zusage, und Zusagen werden hier zweimal nachgezogen:
+
+  Am 17. August 2026 stand hier „von einem Menschen inhaltlich geprüft". Die
+  Kette veröffentlicht ohne Halt; die Zusage traf nicht zu. Seither steht
+  stattdessen, dass Text und Stimme erzeugt sind.
+
+  Am 20. September 2026 fielen zwei weitere auf, die seit dem 16. September
+  nicht mehr zutrafen:
+
+  - „in rund fünf Minuten" – die letzten vierzehn Folgen dauern im Mittel
+    4:10, die kürzeste 2:51. Jetzt „in wenigen Minuten": keine Zahl, die bei
+    der nächsten Kürzung wieder falsch wird.
+  - „immer mit Einordnung, was das für Privatanleger bedeutet" – genau die
+    ist am 16. September aus der Folge genommen worden. `whyItMatters` bleibt
+    auf der Website; gesprochen werden Nachrichten, ohne Positionierung. Die
+    Grenze zieht `positionierungen()` in `lib/editions-validate.ts`.
+*/
 const kopfBeschreibung =
   'Dein tägliches Marktupdate von IM Invests. Jeden Morgen fassen wir ' +
-  'kompakt in rund fünf Minuten die wichtigsten Entwicklungen an den Finanzmärkten ' +
-  'zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken – immer mit Einordnung, was ' +
-  /*
-    Am 17. August 2026 korrigiert – hier stand „von einem Menschen inhaltlich
-    geprüft". Die Kette veröffentlicht ohne Halt; die Zusage traf nicht zu.
-    Neu ist außerdem die Stimme: Sie ist erzeugt, nicht aufgenommen, und das
-    gehört in die Kanalbeschreibung, wo ein Hörer es vor dem Abonnieren liest.
-  */
-  'das für Privatanleger bedeutet. Text und Vertonung entstehen automatisiert ' +
+  'in wenigen Minuten die wichtigsten Entwicklungen an den Finanzmärkten ' +
+  'zusammen: Aktien, Anleihen, Rohstoffe, Notenbanken – sachlich und ohne ' +
+  'Bewertung. Text und Vertonung entstehen automatisiert ' +
   'mit KI-Werkzeugen; auch die Sprecherstimme ist künstlich erzeugt und nicht ' +
   'die Aufnahme eines Menschen. Die redaktionelle Verantwortung liegt beim ' +
   'Betreiber. Keine Anlageberatung.'
