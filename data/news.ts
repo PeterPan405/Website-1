@@ -101,6 +101,398 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'tankrabatt-kritik-planwirtschaft-uebergewinnsteuer',
+    title:
+      'Tankrabatt-Streit: Kubicki spricht von Planwirtschaft, SPD-Länder wollen mehr',
+    metaTitle: 'Streit um den Tankrabatt: Planwirtschaft-Vorwurf, Ruf nach EU-Steuer',
+    teaser:
+      'Kaum ist der Tankrabatt vereinbart, gehen die Meinungen auseinander: Kritik von der FDP, zusätzliche Forderungen aus zwei SPD-geführten Ländern.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-20T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Tankrabatt', 'Übergewinnsteuer', 'Spritpreise', 'Politik'],
+    relatedTopics: ['inflation', 'schulden-und-kredit'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          "finanzen.net, News-Ticker vom 19.09.2026: „Kubicki kritisiert Spritpreisdeckel als 'Planwirtschaft'\"",
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Sachsens SPD lobt Tankrabatt - fordert aber Übergewinnsteuer"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Übergewinnsteuer: Niedersachsens Wirtschaftsminister für europäisches Vorgehen"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 19.09.2026, 12:05 Uhr, dpa-AFX: „ROUNDUP 2: Entlastung bei Spritpreisen - wie geht es jetzt weiter?"',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kaum stand die grundsätzliche Einigung auf einen Tankrabatt und einen Spritpreisdeckel, meldeten sich am 19. September gleich mehrere Stimmen zu Wort – mit ganz unterschiedlichen Anliegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kritik von der FDP',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der FDP-Politiker Kubicki bezeichnete den Spritpreisdeckel laut finanzen.net als „Planwirtschaft". Eine ausführlichere Begründung nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'SPD-Länder wollen eine Übergewinnsteuer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die sächsische SPD lobte den Tankrabatt, forderte aber zusätzlich eine Übergewinnsteuer für Ölkonzerne. Niedersachsens Wirtschaftsminister ging laut derselben Quelle noch einen Schritt weiter und sprach sich für ein europäisches, also EU-weites Vorgehen bei einer solchen Steuer aus. Welche Konzerne betroffen wären oder wie hoch der Satz ausfallen soll, steht in keiner der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Offen bleibt, wie es weitergeht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Nachrichtenagentur dpa-AFX veröffentlichte am selben Tag um 12:05 Uhr laut onvista einen Bericht mit dem Titel „Entlastung bei Spritpreisen – wie geht es jetzt weiter?". Der Titel allein zeigt schon: Auch fünf Tage nach der ersten Einigung ist die Umsetzung offenbar noch nicht abschließend geklärt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein staatlicher Rabatt an der Zapfsäule und eine Übergewinnsteuer sind zwei verschiedene Hebel an zwei verschiedenen Enden derselben Kette – der eine entlastet Autofahrer, der andere würde bei den Anbietern ansetzen. Dass beide gleichzeitig diskutiert werden, ohne dass Höhe oder Zeitpunkt feststehen, zeigt vor allem eines: Die politische Debatte ist an diesem Punkt weiter als die konkrete Umsetzung.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-woche-goolsbee-lagarde-nagel',
+    title: 'Diese Notenbanker sprechen in der neuen Woche',
+    teaser:
+      'Nach der jüngsten Fed-Zinserhöhung tritt in den kommenden Tagen gleich reihenweise die Geldpolitik ans Mikrofon – von Chicago über Frankfurt bis Ottawa.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-20T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Fed', 'EZB', 'Notenbanken', 'Zinsen'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Wichtige Termine", Stand 20.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Erst hat die US-Notenbank Fed in der vergangenen Woche ihren Leitzins angehoben. Jetzt kommt die Rede-Runde: Der Wirtschaftskalender von wallstreet-online listet für die kommenden Tage gleich fünf Auftritte von Notenbankern.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Montag: vier Termine an einem Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den 21. September nennt der Kalender das Fed-Mitglied Goolsbee, EZB-Präsidentin Lagarde, EZB-Mitglied Cipollone und den Gouverneur der kanadischen Notenbank, Macklem. Am selben Tag veröffentlicht die Deutsche Bundesbank zudem ihren monatlichen Bericht. Uhrzeiten nennt der Kalender zu keinem der Termine.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Dienstag: ein fünfter Name',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am 22. September folgt laut derselben Quelle ein Auftritt von EZB-Mitglied Nagel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede keine Zinsentscheidung ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen den festen Sitzungsterminen der Notenbanken liegen oft Wochen ohne offizielle Entscheidung. Reden einzelner Mitglieder sind trotzdem keine Randnotiz: Wer öffentlich spricht, ordnet meist die zuletzt getroffene Entscheidung ein oder deutet an, wie die Diskussion für die nächste Sitzung steht – und genau das kann Kurse bewegen, ohne dass sich am Leitzins selbst etwas ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Woche mit fünf Notenbank-Terminen ist kein Ersatz für eine Woche mit fünf Entscheidungen. Wer die Termine verfolgt, sollte deshalb weniger auf eine einzelne Schlagzeile achten als darauf, ob sich der Ton mehrerer Sprecher in dieselbe Richtung bewegt.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-naehert-sich-4400-dollar-jpmorgan-oel',
+    title: 'Gold kratzt an 4.400 Dollar, JPMorgan gibt die Ölprognose auf',
+    teaser:
+      'Der Goldpreis verpasst die Marke von 4.400 Dollar nur knapp, während eine der größten Banken der Welt beim Ölpreis offen zugibt, keine Prognose zu wagen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-20T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Öl', 'Rohstoffe', 'Prognosen'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['gold', 'brent'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Devisen & Rohstoffe, Stand 20.09.2026: „Der Goldpreis stürmte ins Wochenende, verpasste dabei den Sprung über die 4.400 US-Dollar nur knapp"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          "wallstreet-online, wallstreetONLINE Redaktion, 19.09.2026: „'Wir wissen es einfach nicht': JPMorgan kapituliert vor Trumps Öl-Chaos\"",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 20.09.2026, 02:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut wallstreet-online zum Wochenende kräftig gestiegen und hat die Marke von 4.400 US-Dollar je Feinunze nur knapp verpasst. Zum Stand Sonntagfrüh nennt finanzen.net für Gold 4.380 Dollar, ein Plus von 0,9 Prozent gegenüber dem Vortag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Bank gibt auf',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beim Ölpreis dagegen ist von Klarheit wenig zu sehen: Die US-Bank JPMorgan hat laut wallstreet-online ihre Prognose für den Ölpreis aufgegeben. Als Zitat nennt die Quelle den Satz „Wir wissen es einfach nicht" – als Begründung wird die als unberechenbar beschriebene Ölpolitik von US-Präsident Trump genannt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Kursleiste zeigt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum selben Zeitpunkt notiert Brent-Rohöl laut finanzen.net bei 103,9 Dollar je Barrel, ein Minus von 0,9 Prozent. Silber legte laut wallstreet-online zuletzt um 1,59 Prozent zu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Prognose gegen Eingeständnis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Banken veröffentlichen für gewöhnlich Kursziele, auch wenn sie sich später als falsch erweisen – ein Kursziel ist eine Wahrscheinlichkeitsaussage, keine Garantie. Eine Bank, die stattdessen offen sagt, sie könne keine Prognose abgeben, trifft damit ebenfalls eine Aussage: dass die Bandbreite möglicher Entwicklungen ihr selbst zu groß erscheint, um eine einzelne Zahl zu nennen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Gold gilt traditionell als Anlage für unsichere Zeiten, Öl reagiert dagegen direkt auf Angebot und Nachfrage. Dass ausgerechnet jetzt eine Großbank beim Öl passt und Gold zulegt, passt zu dieser groben Faustregel – ein Beweis für einen Zusammenhang ist das allein noch nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-gold-korrelation-so-eng-wie-nie',
+    title: 'Bitcoin und Gold laufen so eng wie nie im Gleichschritt',
+    teaser:
+      'Bitcoin und der Goldpreis bewegen sich laut einer Meldung so eng wie nie zuvor – doch schon am selben Morgen zeigen die Kurse etwas anderes.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-20T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Bitcoin', 'Gold', 'Korrelation', 'Diversifikation'],
+    relatedTopics: ['bitcoin-krypto', 'risiko-und-rendite'],
+    relatedSymbols: ['bitcoin', 'gold'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Bitcoin-Kurs und Goldpreis so eng wie nie: Was die Korrelation wirklich bedeutet - Chance für Anleger?"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 20.09.2026, 02:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin und Goldpreis bewegen sich laut finanzen.net derzeit so eng miteinander wie nie zuvor. Eine Begründung, wie die Kennzahl berechnet wurde oder über welchen Zeitraum, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine Korrelation misst',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Korrelation beschreibt, wie stark sich zwei Werte über einen bestimmten Zeitraum in dieselbe oder in die entgegengesetzte Richtung bewegt haben. Sie ist eine rückblickende Kennzahl – sie sagt nichts darüber, warum das so war, und nichts darüber, ob es so bleibt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Gegenbeispiel vom selben Morgen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Stand Sonntagfrüh nennt finanzen.net für Bitcoin 70.722 Dollar, ein Minus von 0,1 Prozent, und für Gold 4.380 Dollar, ein Plus von 0,9 Prozent. An diesem einen Zeitpunkt liefen die beiden Kurse also in unterschiedliche Richtungen – ein einzelner Schnappschuss widerlegt eine Korrelation über einen längeren Zeitraum nicht, zeigt aber, dass „eng korreliert" nicht „bewegt sich immer gleich" bedeutet.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für ein Depot zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer zwei Anlagen hält, weil sie sich in der Vergangenheit unterschiedlich verhalten haben, verlässt sich auf genau diesen Unterschied als Puffer gegen Verluste. Steigt die Korrelation zwischen beiden, schrumpft dieser Puffer – unabhängig davon, ob die Kurse gerade steigen oder fallen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Schlagzeile über eine „so enge Korrelation wie nie" lohnt einen zweiten Blick auf den Berechnungszeitraum, bevor sie das eigene Bild von zwei Anlageklassen verändert.',
+      },
+    ],
+  },
+  {
+    slug: 'ki-bewertungen-milliarden-teuer-kaum-umsatz',
+    title: 'Hohe Bewertungen, wenig Umsatz: Die Sorge vor der KI-Blase',
+    teaser:
+      'Chinesische KI-Modelle werden beliebter, ihr Umsatz aber nicht – und auch beim Börsengang von Anthropic bleibt eine zentrale Frage offen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-20T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Künstliche Intelligenz', 'OpenAI', 'Anthropic', 'Bewertung'],
+    relatedTopics: ['risiko-und-rendite', 'aktie'],
+    relatedSymbols: ['alibaba'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 20.09.2026: „Chinas KI-Modelle werden immer beliebter. Doch beim Umsatz liegen sie weit zurück."',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, 19.09.2026: „OpenAI und Anthropic im Fokus: Milliarden-Bewertungen, aber kaum Umsatz: Das steckt hinter dem KI-Hype"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Warten auf Anthropic-Aktie: Börsengang verzögert sich offenbar - was Anleger daraus ableiten können"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 19.09.2026, 18:28 Uhr, dpa-AFX: „Trump setzt stärker auf KI trotz Warnungen vor Gefahren"',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Chinesische KI-Modelle werden einer Meldung von wallstreet-online zufolge immer beliebter. Beim Umsatz liegen sie demnach jedoch weit zurück – als Beispiele nennt die Quelle Alibaba und MiniMax. Für einige Start-ups wirken die Bewertungen dadurch bereits extrem hoch, so die Meldung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bewertung gegen Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine hohe Bewertung stützt sich auf die Erwartung künftigen Wachstums, ein Umsatz zeigt dagegen, was ein Unternehmen bereits heute verkauft. Klaffen beide weit auseinander, hängt der gesamte Wert eines Unternehmens an einer Prognose statt an einer bereits eingetretenen Zahl.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch der Börsengang von Anthropic wartet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Passend dazu meldete finanzen.net am 19. September, der Börsengang von Anthropic verzögere sich offenbar – laut anderer Ticker-Meldungen der Quelle auf November. Eine Begründung für die Verzögerung nennt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Trump setzt weiter auf KI',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dpa-AFX meldete am selben Tag um 18:28 Uhr laut onvista, US-Präsident Trump setze trotz Warnungen vor Gefahren stärker auf Künstliche Intelligenz. Worin diese Warnungen genau bestehen, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Branche kann gleichzeitig politisch gefördert, technologisch gefeiert und finanziell überteuert sein – die drei Dinge widersprechen sich nicht. Wer Bewertungen in diesem Sektor einordnen will, kommt an der Umsatzzahl nicht vorbei, egal wie groß die Erwartungen sonst formuliert werden.',
+      },
+    ],
+  },
+  {
+    slug: 'google-ki-hacking-huawei-chippreise',
+    title: 'Google meldet KI-Hacking, Huawei erhöht die Preise für KI-Chips',
+    teaser:
+      'Zwei große Tech-Namen, zwei verschiedene KI-Meldungen: Google macht Hacking-Vorfälle publik, während Huawei seine Chips teurer macht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-20T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Alphabet', 'Huawei', 'Cybersicherheit', 'Halbleiter'],
+    relatedTopics: ['aktie', 'risiko-und-rendite'],
+    relatedSymbols: ['alphabet', 'nvidia'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Alphabet-Aktie im Visier: Google-KI Gemini außer Kontrolle? Tech-Riese macht KI-Hacking-Vorfälle publik"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker vom 19.09.2026: „Huawei-Aktie: Warum die Preiserhöhung bei KI-Chips Chinas Plan gegen NVIDIA gefährdet"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Google hat laut finanzen.net am 19. September Vorfälle bekanntgegeben, bei denen nach Angaben der Meldung Künstliche Intelligenz für Hackerangriffe eingesetzt wurde. Weitere Einzelheiten – etwa Umfang oder Betroffene – nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein zweiter, ganz anderer KI-Vorgang',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag berichtete finanzen.net über Huawei: Das Unternehmen hat demnach die Preise für seine KI-Chips angehoben. Die Meldung ordnet diesen Schritt als Risiko für Chinas Plan ein, sich mit eigener Chip-Technik unabhängiger vom US-Anbieter Nvidia zu machen – warum eine Preiserhöhung genau das gefährdet, führt sie nicht weiter aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Seiten desselben KI-Wettlaufs',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die eine Meldung handelt von Sicherheit, die andere von Preisen – gemeinsam ist beiden, dass sie zeigen, wie viele unterschiedliche Fronten der KI-Wettlauf inzwischen hat: Software-Risiken auf der einen, Hardware-Kosten auf der anderen Seite.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was offen bleibt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Beide Meldungen bestehen im Kern aus einer Schlagzeile mit wenig Hintergrund. Für ein abschließendes Urteil – etwa darüber, wie schwer der Hacking-Vorfall wiegt oder wie stark die Huawei-Preise tatsächlich steigen – fehlen an dieser Stelle die Zahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Schlagzeilen am selben Tag über denselben Themenkomplex sind noch keine vollständige Geschichte. Wer beide Vorgänge einordnen will, muss auf weitere Berichterstattung warten, bevor sich sagen lässt, welcher der beiden mehr Gewicht hat.',
+      },
+    ],
+  },
+  {
     slug: 'gold-steigt-nach-fed-zinserhoehung',
     title: 'Fed erhöht den Leitzins – Gold steigt auf 4.380 Dollar',
     teaser:
