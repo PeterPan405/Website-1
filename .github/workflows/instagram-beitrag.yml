@@ -37,6 +37,25 @@ name: Instagram-Beitrag
 # Beide enden mit Code 0. Ein Beitrag, der ausbleibt, weil er schon draußen
 # ist, ist kein Fehlschlag – und eine Mail an jedem richtigen Tag liest nach
 # zwei Wochen niemand mehr.
+#
+# ## Der dritte Riegel: die Sperre des Tages
+#
+# Am 20. September 2026 lief dieser Workflow fünfmal – 00:58, 04:52, 07:55,
+# 08:55, 09:42 – und bekam jedes Mal `400: Queue is full`. Im Protokoll stand
+# jedes Mal der Satz „Nicht noch einmal anstoßen: Jeder Anstoß legt einen
+# weiteren Eintrag in dieselbe volle Warteschlange." Er stand da und band
+# niemanden, weil er an einen Menschen gerichtet war.
+#
+# Ein Satz im Protokoll ist keine Regel. Deshalb hinterlässt ein Lauf, dem der
+# Dienst die volle Warteschlange meldet, jetzt eine Marke auf dem wurzellosen
+# Zweig `instagram-sperre`, und jeder weitere Lauf desselben Tages sieht sie
+# und schickt nichts. Am nächsten Tag läuft es ohne Zutun wieder an.
+#
+# **Nur diese eine Sorte Fehler sperrt.** Alles andere trägt der nächste Lauf
+# nach; das ist die Regel des Hauses. Die volle Warteschlange ist die
+# Ausnahme, weil der nächste Versuch dort nicht folgenlos ist, sondern
+# schadet. Die Entscheidung selbst liegt in `lib/instagram-sperre.ts`, damit
+# sie ohne Netz und ohne Dienst prüfbar ist.
 
 on:
   workflow_dispatch:
@@ -68,6 +87,10 @@ jobs:
     name: Karussell veröffentlichen
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
+    permissions:
+      # Zum Schreiben des wurzellosen Zweiges `instagram-sperre`.
+      contents: write
 
     steps:
       - uses: actions/checkout@v5
@@ -147,6 +170,21 @@ jobs:
       #
       # Ohne Zugangsdaten bleibt es beim Trockenlauf – das Skript zaehlt dann
       # die Kacheln auf und hoert vor dem ersten Behaelter auf.
+      # Die Marke des Tages, falls es eine gibt. Gefragt wird der Zweig von
+      # **jetzt**, nicht der Checkout: Der ist eine Momentaufnahme vom
+      # Auslösen, und zwischen Auslösen und Laufen kann genau der Lauf
+      # gescheitert sein, dessen Marke hier zählt.
+      - name: Sperre des Tages holen
+        run: |
+          mkdir -p out/instagram
+          if git fetch --depth 1 origin instagram-sperre 2>/dev/null; then
+            git show FETCH_HEAD:sperre.txt > out/instagram/sperre.txt 2>/dev/null || true
+            echo "Marke vom Zweig:"
+            sed 's/^/  /' out/instagram/sperre.txt 2>/dev/null || echo "  (keine)"
+          else
+            echo "Kein Zweig instagram-sperre – nichts gesperrt."
+          fi
+
       - name: Veröffentlichen
         run: npm run instagram
         env:
@@ -158,6 +196,39 @@ jobs:
             ${{ (steps.zugang.outputs.vorhanden == 'ja'
                  && (github.event_name == 'schedule' || inputs.veroeffentlichen))
                 && 'ja' || 'nein' }}
+
+      # Hat der Lauf eben eine Sperre gesetzt, kommt sie auf den Zweig – sonst
+      # wüsste der nächste Lauf nichts davon. `if: always()`, weil der Schritt
+      # davor in genau diesem Fall rot geworden ist.
+      #
+      # Der Zweig ist wurzellos und hat immer genau einen Commit: Es gibt
+      # nichts zu sammeln, die Marke gilt einen Tag.
+      - name: Sperre auf den Zweig legen
+        if: always()
+        run: |
+          # Nur schreiben, wenn dieser Lauf sie eben gesetzt hat – die geholte
+          # Marke wieder hinaufzuschieben wäre eine Schleife ohne Zweck.
+          grep -q "^$(date -u +%F)" out/instagram/sperre.txt 2>/dev/null || {
+            echo "Keine neue Sperre von heute – nichts zu schreiben."
+            exit 0
+          }
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          inhalt=$(mktemp)
+          cp out/instagram/sperre.txt "$inhalt"
+
+          git checkout --orphan instagram-sperre
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" sperre.txt
+
+          git add sperre.txt
+          git commit -m "Instagram für $(date -u +%F) gesperrt – Warteschlange voll"
+          git push --force origin instagram-sperre
+
+          echo "::notice::Instagram ist für heute gesperrt. Warteschlange bei Make leeren."
 
       - name: Was hinausgegangen wäre
         if: always()
