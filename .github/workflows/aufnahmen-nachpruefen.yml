@@ -31,7 +31,7 @@ on:
   workflow_dispatch:
     inputs:
       adresse:
-        description: 'Eine einzelne Tondatei prüfen (leer = alle aus data/lese-audio.json)'
+        description: 'Tondateien prüfen, mit Leerzeichen getrennt (leer = alle aus data/lese-audio.json)'
         type: string
         default: ''
       basis:
@@ -78,7 +78,12 @@ jobs:
             stelle="--stelle ${{ inputs.stelle }}"
           fi
           if [ -n "${{ inputs.adresse }}" ]; then
-            python scripts/aufnahmen-nachpruefen.py $stelle "${{ inputs.adresse }}"
+            # Bewusst ohne Anführungszeichen: Mehrere Adressen, mit
+            # Leerzeichen getrennt, sollen zu mehreren Argumenten werden.
+            # Eine Grenze an einer einzigen Aufnahme zu wählen, heisst sie an
+            # einem Einzelfall zu wählen – die Frage ist immer auch, was sie
+            # in den anderen Folgen anrichtet.
+            python scripts/aufnahmen-nachpruefen.py $stelle ${{ inputs.adresse }}
           else
             python scripts/aufnahmen-nachpruefen.py $stelle --verzeichnis "${{ inputs.basis }}"
           fi
