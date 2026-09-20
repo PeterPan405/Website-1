@@ -390,11 +390,16 @@ def _tonanteil(stuecke):
 #:
 #: Die menschliche Sprechstimme hat ihre Grundfrequenz zwischen 85 Hz (tiefe
 #: Männerstimme) und 255 Hz (hohe Frauenstimme), trägt ihre Verständlichkeit
-#: aber in den Formanten darüber – zwischen 300 und 3.500 Hz. Unterhalb von
-#: 200 Hz sitzt bei gesprochener Sprache deshalb nur ein Teil der Energie,
-#: nie der grösste.
+#: aber in den Formanten darüber – zwischen 300 und 3.500 Hz.
 #:
-#: Poltern, Rumpeln, ein verschobener Stuhl: Genau dort sitzt fast alles.
+#: **Daraus folgt nicht, dass hier wenig Energie sitzt.** Beim ersten Anlauf
+#: stand an dieser Stelle „nur ein Teil der Energie, nie der grösste". Am
+#: 20. September 2026 nachgemessen, über die 1238 lauten Fenster der Folge vom
+#: 19. September: Median 0,52, 90. Perzentil 0,86. Die Grundfrequenz dieser
+#: Stimme liegt unter 200 Hz und trägt mehr Energie als alle Formanten
+#: zusammen – der Tiefenanteil **allein** trennt deshalb nichts.
+#:
+#: Was trennt, ist das Paar mit der Nulldurchgangsrate: siehe `RUMPELN_TIEF`.
 TIEFBAND_HZ = 200
 
 

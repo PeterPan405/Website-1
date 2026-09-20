@@ -145,11 +145,11 @@ def zeige_stelle(ton, rate: int, sekunde: float, umfeld: float = 2.0) -> None:
             f"{'ja' if gemessen['laut'][i] else 'nein'}"
         )
 
-    verteilung(gemessen)
+    verteilung(gemessen, sekunde)
 
 
-def verteilung(gemessen) -> None:
-    """Was der Tiefenanteil in **dieser** Aufnahme sonst so tut.
+def verteilung(gemessen, gemeldet: float | None = None) -> None:
+    """Was Tiefenanteil und Nulldurchgänge in **dieser** Aufnahme sonst tun.
 
     ## Warum das neben den Einzelwerten stehen muss
 
@@ -159,10 +159,21 @@ def verteilung(gemessen) -> None:
     Vokale tragen dort zwangsläufig Energie, und eine Schwelle, die das nicht
     berücksichtigt, beanstandet die halbe Folge.
 
-    Deshalb hier die Verteilung über alle lauten Fenster und, für jede
-    Kandidatenschwelle, was sie in dieser Aufnahme kosten würde: wie viele
-    zusammenhängende Stellen von mindestens `STOERUNG_MINDESTENS_S` sie
-    fände. Das ist die Gegenprobe zur Schwelle, bevor es sie gibt.
+    Am 20. September 2026 nachgemessen, und deutlicher als erwartet: Über die
+    1238 lauten Fenster der Folge vom 19. September liegt der Median des
+    Tiefenanteils bei 0,52, das 90. Perzentil bei 0,86. **Der Tiefenanteil
+    allein trennt nichts** – er ist bei dieser Stimme der Normalfall.
+
+    Deshalb misst diese Ausgabe jetzt das Paar: tiefe Energie **und** wenig
+    Nulldurchgänge. Sprache trägt ihre Verständlichkeit in den Formanten
+    zwischen 300 und 3.500 Hz und erzeugt damit zwangsläufig Nulldurchgänge;
+    ein Rumpeln hat keine. Zu jeder Kombination steht hier, wie viele Fenster
+    und wie viele zusammenhängende Stellen ab `STOERUNG_MINDESTENS_S` sie in
+    dieser Aufnahme fände – und ob die **gemeldete** Stelle darunter ist.
+
+    Das ist die Gegenprobe zur Schwelle, bevor es sie gibt: Eine Absicherung,
+    die nie anschlägt, sieht aus wie Ruhe; eine, die überall anschlägt, wird
+    abgeschaltet.
     """
     import numpy as np
 
@@ -172,45 +183,78 @@ def verteilung(gemessen) -> None:
         print("    (kein lautes Fenster – keine Verteilung)")
         return
 
-    werte = gemessen["tiefenanteil"][laut]
     stufen = [10, 25, 50, 75, 90, 95, 99]
-    print(f"\n    Tiefenanteil über alle {anzahl} lauten Fenster:")
-    print("      Perzentil  " + "".join(f"{s:>8}" for s in stufen))
-    print(
-        "      Wert       "
-        + "".join(f"{float(np.percentile(werte, s)):8.3f}" for s in stufen)
-    )
-
-    print("\n    Was eine Grenze in dieser Aufnahme fände:")
-    print("      Grenze  Fenster  Stellen ab 0,4 s")
-    for grenze in (0.70, 0.80, 0.85, 0.90, 0.95):
-        treffer = laut & (gemessen["tiefenanteil"] >= grenze)
+    print(f"\n    Verteilung über alle {anzahl} lauten Fenster:")
+    print("      Perzentil     " + "".join(f"{s:>8}" for s in stufen))
+    for name, schluessel in (("Tiefenanteil", "tiefenanteil"), ("Nulldurchg.", "rauheit")):
+        werte = gemessen[schluessel][laut]
         print(
-            f"      {grenze:6.2f}  {int(np.sum(treffer)):7d}  "
-            f"{_laeufe(treffer, gemessen):16d}"
+            f"      {name:<13} "
+            + "".join(f"{float(np.percentile(werte, s)):8.3f}" for s in stufen)
         )
 
+    print("\n    Was ein Paar aus Grenzen in dieser Aufnahme fände:")
+    print("      tief ab  Nulldurchg. bis  Fenster  Stellen ab 0,4 s  gemeldete dabei")
+    for tief in (0.85, 0.90, 0.95):
+        for ruhig in (0.015, 0.025, 0.040):
+            treffer = (
+                laut
+                & (gemessen["tiefenanteil"] >= tief)
+                & (gemessen["rauheit"] <= ruhig)
+            )
+            stellen = _laeufe(treffer, gemessen)
+            dabei = (
+                "–"
+                if gemeldet is None
+                else ("ja" if _trifft(stellen, gemeldet) else "nein")
+            )
+            print(
+                f"      {tief:7.2f}  {ruhig:15.3f}  {int(np.sum(treffer)):7d}  "
+                f"{len(stellen):16d}  {dabei:>15}"
+            )
 
-def _laeufe(flaggen, gemessen) -> int:
-    """Wie viele zusammenhängende Stellen von mindestens 0,4 s dabei wären."""
+
+def _trifft(stellen, sekunde: float, spiel: float = 1.0) -> bool:
+    """Liegt die gemeldete Sekunde in einer der gefundenen Stellen?"""
+    return any(von - spiel <= sekunde <= bis + spiel for von, bis in stellen)
+
+
+def _laeufe(flaggen, gemessen, luecke: int = 1) -> list[tuple[float, float]]:
+    """Die zusammenhängenden Stellen von mindestens 0,4 s.
+
+    `luecke` schliesst Einbrüche von bis zu so vielen Fenstern. Gemessen am
+    19. September: Das Störgeräusch läuft von 175,50 bis 175,88 s, aber bei
+    175,62 fällt der Tiefenanteil auf 0,019 – ein Fenster mitten darin, in dem
+    das Geräusch kurz höher liegt. Ohne Schliessen zerfällt eine halbe Sekunde
+    Poltern in zwei Stücke von je 0,375 s, und beide bleiben unter der Grenze.
+    """
     import numpy as np
 
     vorschub = gemessen["vorschub"]
     fenster = gemessen["fenster"]
     rate = fenster / sprechstimme.FENSTER_S
 
-    anzahl = 0
+    gesetzt = np.asarray(flaggen).astype(bool)
+    if luecke > 0 and gesetzt.any():
+        geschlossen = gesetzt.copy()
+        (orte,) = np.nonzero(gesetzt)
+        for a, b in zip(orte[:-1], orte[1:]):
+            if 1 < b - a <= luecke + 1:
+                geschlossen[a:b] = True
+        gesetzt = geschlossen
+
+    stellen: list[tuple[float, float]] = []
     beginn = None
-    for i, flagge in enumerate([*np.asarray(flaggen), False]):
+    for i, flagge in enumerate([*gesetzt, False]):
         if flagge and beginn is None:
             beginn = i
         elif not flagge and beginn is not None:
             von = beginn * vorschub / rate
             bis = ((i - 1) * vorschub + fenster) / rate
             if bis - von >= sprechstimme.STOERUNG_MINDESTENS_S:
-                anzahl += 1
+                stellen.append((von, bis))
             beginn = None
-    return anzahl
+    return stellen
 
 
 def pruefe(pfad: str, name: str, stelle: float | None = None) -> int:
