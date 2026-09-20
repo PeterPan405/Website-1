@@ -408,39 +408,48 @@ TIEFBAND_HZ = 200
 #: Das Gegenstück zu `ZISCHGRENZE`, und bis zum 20. September 2026 fehlte es.
 #: Die Prüfung kannte nur „zu viele Nulldurchgänge"; nach unten war sie offen.
 #:
-#: 0,020 sind bei 24 kHz rund 240 Durchgänge je Sekunde. Gesprochene Sprache
+#: 0,015 sind bei 24 kHz rund 180 Durchgänge je Sekunde. Gesprochene Sprache
 #: trägt ihre Verständlichkeit in den Formanten zwischen 300 und 3.500 Hz und
 #: erzeugt dort zwangsläufig Durchgänge; über die 1238 lauten Fenster der
-#: Folge vom 19. September liegt das 10. Perzentil bei 0,023. Ein Poltern hat
-#: keine Formanten und kommt auf 0,006.
-RUMPELGRENZE = 0.020
+#: Folge vom 19. September liegt schon das 10. Perzentil bei 0,023. Ein
+#: Poltern hat keine Formanten und kommt auf 0,006.
+RUMPELGRENZE = 0.015
 
 #: Wie tief eine rumpelnde Stelle im Mittel liegen muss, damit sie zählt.
 #:
-#: Beurteilt wird der **Median über die ganze Stelle**, nicht jedes Fenster
-#: für sich – warum, steht bei `auffaellige_stellen` unter „Warum das Urteil
-#: an die Stelle gehört".
+#: Beurteilt wird der **Median über einen Abschnitt**, nicht jedes Fenster für
+#: sich – warum, steht bei `auffaellige_stellen` unter „Warum das Urteil am
+#: Abschnitt hängt" und bei `RUMPELN_FENSTER`.
 #:
-#: Am 20. September 2026 an der Folge vom 19. gemessen, mit der gemeldeten
-#: Stelle als Prüfstein:
+#: ## Wie das Paar gewählt wurde
 #:
-#:     Nulldurchg. bis   Tiefe ab   Stellen ab 0,4 s   die gemeldete dabei
-#:               0,015       0,90                  1   nein
-#:               0,020       0,80                  2   ja
-#:               0,025       0,80                  5   ja
-#:               0,030       0,90                  4   ja
+#: Am 20. September 2026 an der Folge vom 19. durchgerechnet, mit der
+#: gemeldeten Stelle als Prüfstein – nicht geschätzt:
 #:
-#: Bei 0,020/0,80 bleiben genau zwei Stellen übrig, und beide haben im Median
-#: 0,006 Nulldurchgänge:
+#:     Nulldurchg. bis   Tiefe ab   Stellen   die gemeldete dabei
+#:               0,015       0,80         2   ja
+#:               0,015       0,90         2   ja
+#:               0,020       0,80         7   ja
+#:               0,020       0,90         3   ja
+#:               0,025       0,90         3   ja
+#:               0,030       0,90         4   ja
+#:
+#: Bei 0,015/0,90 bleiben in 232 Sekunden genau zwei Stellen übrig, und beide
+#: tragen dieselbe Handschrift:
 #:
 #:     2:09  0,50 s  Tiefe 0,998  Nulldurchg. 0,006
-#:     2:55  0,50 s  Tiefe 0,963  Nulldurchg. 0,006   ← die gemeldete
+#:     2:55  0,62 s  Tiefe 0,953  Nulldurchg. 0,013   ← die gemeldete
 #:
-#: Die drei, die bei 0,025 dazukommen, liegen im Median bei 0,017 bis 0,021 –
-#: eine andere Sorte, und zwar gesprochene. 99,8 % der Energie unter 200 Hz
-#: über eine halbe Sekunde kann keine Sprache sein: Dann bliebe nichts, woran
-#: ein Laut zu erkennen wäre.
-RUMPELN_TIEF = 0.80
+#: Dass 2:09 mitkommt, ohne gemeldet worden zu sein, ist kein Fehlalarm: 99,8
+#: Prozent der Energie unter 200 Hz über eine halbe Sekunde kann keine Sprache
+#: sein – dann bliebe nichts, woran ein Laut zu erkennen wäre.
+#:
+#: Die fünf, die bei 0,020/0,80 dazukommen, liegen bei einer Tiefe von 0,81
+#: bis 0,86 und 0,016 bis 0,023 Nulldurchgängen: eine andere Sorte, und zwar
+#: gesprochene. Das ist der Grund für beide Grenzen an dieser Stelle und nicht
+#: eine weiter unten – `nachbessern()` meldet nicht nur, es **dämpft**. Fünf
+#: Fehlalarme je Folge heissen fünf gedämpfte Stellen gesprochener Sprache.
+RUMPELN_TIEF = 0.90
 
 #: Über wie viele Fenster am Stück beide Mediane gebildet werden.
 #:
