@@ -193,105 +193,58 @@ def verteilung(gemessen, gemeldet: float | None = None) -> None:
             + "".join(f"{float(np.percentile(werte, s)):8.3f}" for s in stufen)
         )
 
+    rate = int(gemessen["fenster"] / sprechstimme.FENSTER_S)
+    urspruenglich = (sprechstimme.RUMPELGRENZE, sprechstimme.RUMPELN_TIEF)
     print("\n    Was ein Paar aus Grenzen in dieser Aufnahme fände:")
-    print("      still bis  tief ab  Stellen ab 0,4 s  gemeldete dabei")
-    for still in (0.015, 0.020, 0.025, 0.030, 0.040):
-        laeufe = _laeufe(laut & (gemessen["rauheit"] <= still), gemessen)
-        for tief in (0.50, 0.70, 0.80, 0.90):
-            behalten = _mit_tiefe(laeufe, gemessen, tief)
-            dabei = (
-                "–"
-                if gemeldet is None
-                else ("ja" if _trifft(behalten, gemeldet) else "nein")
-            )
-            print(
-                f"      {still:9.3f}  {tief:7.2f}  {len(behalten):16d}  {dabei:>15}"
-            )
+    print("      still bis  tief ab  Stellen  gemeldete dabei")
+    try:
+        for still in (0.015, 0.020, 0.025, 0.030, 0.040):
+            for tief in (0.50, 0.70, 0.80, 0.90):
+                stellen = _mit_grenzen(gemessen, rate, still, tief)
+                dabei = (
+                    "–"
+                    if gemeldet is None
+                    else ("ja" if _trifft(stellen, gemeldet) else "nein")
+                )
+                print(
+                    f"      {still:9.3f}  {tief:7.2f}  {len(stellen):7d}  {dabei:>15}"
+                )
 
-    # Eine Zahl sagt nicht, was sie beanstandet. Eine Grenze zu setzen, ohne
-    # ihre Fehlalarme angesehen zu haben, heisst später eine Aufnahme dämpfen,
-    # die in Ordnung war – `nachbessern()` meldet nicht nur, es greift ein.
-    for still, tief in ((0.020, 0.80), (0.025, 0.80), (0.030, 0.90)):
-        laeufe = _mit_tiefe(
-            _laeufe(laut & (gemessen["rauheit"] <= still), gemessen), gemessen, tief
-        )
-        print(f"\n    Die Stellen bei still ≤ {still:.3f} und tief ≥ {tief:.2f}:")
-        print("      von      bis      Dauer  tief (Median)  still (Median)  lauteste")
-        for von, bis, a, b in laeufe:
-            bereich = slice(a, b + 1)
-            print(
-                f"      {als_uhrzeit(von)} {von % 60:5.2f}  {bis - von:5.2f} s  "
-                f"{float(np.median(gemessen['tiefenanteil'][bereich])):13.3f}  "
-                f"{float(np.median(gemessen['rauheit'][bereich])):14.3f}  "
-                f"{float(np.max(gemessen['effektiv'][bereich])):8.4f}"
-            )
+        # Eine Zahl sagt nicht, was sie beanstandet. Eine Grenze zu setzen,
+        # ohne ihre Fehlalarme angesehen zu haben, heisst später eine Aufnahme
+        # zu dämpfen, die in Ordnung war – `nachbessern()` meldet nicht nur,
+        # es greift ein.
+        for still, tief in ((0.020, 0.80), (0.025, 0.80), (0.030, 0.90)):
+            stellen = _mit_grenzen(gemessen, rate, still, tief)
+            print(f"\n    Die Stellen bei still ≤ {still:.3f} und tief ≥ {tief:.2f}:")
+            print("      Beginn         Dauer  tief (Median)  still (Median)  lauteste")
+            for von, bis, a, b in stellen:
+                bereich = slice(a, b + 1)
+                print(
+                    f"      {als_uhrzeit(von):>5} {von:7.2f} s  {bis - von:5.2f} s  "
+                    f"{float(np.median(gemessen['tiefenanteil'][bereich])):13.3f}  "
+                    f"{float(np.median(gemessen['rauheit'][bereich])):14.3f}  "
+                    f"{float(np.max(gemessen['effektiv'][bereich])):8.4f}"
+                )
+    finally:
+        sprechstimme.RUMPELGRENZE, sprechstimme.RUMPELN_TIEF = urspruenglich
 
 
-def _mit_tiefe(laeufe, gemessen, grenze: float):
-    """Die Läufe, deren Tiefenanteil im Median über der Grenze liegt."""
-    import numpy as np
+def _mit_grenzen(gemessen, rate: int, still: float, tief: float):
+    """Was `_rumpelstellen` mit einem anderen Grenzenpaar fände.
 
-    return [
-        lauf
-        for lauf in laeufe
-        if float(np.median(gemessen["tiefenanteil"][lauf[2] : lauf[3] + 1])) >= grenze
-    ]
+    Gerechnet wird mit **der** Funktion, die später auch urteilt, nicht mit
+    einer nachgebauten Kopie davon. Eine Gegenprobe, die etwas anderes rechnet
+    als die Sache, die sie prüft, prüft nichts.
+    """
+    sprechstimme.RUMPELGRENZE = still
+    sprechstimme.RUMPELN_TIEF = tief
+    return sprechstimme._rumpelstellen(gemessen, rate)
 
 
 def _trifft(stellen, sekunde: float, spiel: float = 1.0) -> bool:
     """Liegt die gemeldete Sekunde in einer der gefundenen Stellen?"""
-    return any(lauf[0] - spiel <= sekunde <= lauf[1] + spiel for lauf in stellen)
-
-
-def _laeufe(flaggen, gemessen, luecke: int = 1) -> list[tuple[float, float, int, int]]:
-    """Die zusammenhängenden Stellen von mindestens 0,4 s, mit ihren Fenstern.
-
-    Gibt je Stelle Anfang und Ende in Sekunden und die Fensterindizes zurück –
-    letztere, damit ein Aufrufer die Stelle **als Ganzes** beurteilen kann
-    statt Fenster für Fenster.
-
-    ## Warum das Urteil an den Lauf gehört und nicht ans einzelne Fenster
-
-    Gemessen am 19. September: Das Störgeräusch läuft von 175,50 bis 175,88 s.
-    Von seinen vier Fenstern verfehlt jedes mindestens eine Grenze – 175,50
-    hat 0,067 Nulldurchgänge, bei 175,62 fällt der Tiefenanteil auf 0,019.
-    Eine Und-Verknüpfung je Fenster lässt zwei übrig, das sind 0,375 s, und
-    damit scheitert sie um 25 Millisekunden an `STOERUNG_MINDESTENS_S`.
-
-    Ein Poltern ist aber kein gleichförmiger Ton: Es schlägt an, rollt aus und
-    schwankt dabei. Wer von jedem Viertelsekundenfenster verlangt, dass es
-    allen Merkmalen genügt, hat eine Fallunterscheidung über ein Merkmal
-    gebaut, das der Stoff nicht hat.
-
-    `luecke` schliesst zusätzlich Einbrüche von bis zu so vielen Fenstern.
-    """
-    import numpy as np
-
-    vorschub = gemessen["vorschub"]
-    fenster = gemessen["fenster"]
-    rate = fenster / sprechstimme.FENSTER_S
-
-    gesetzt = np.asarray(flaggen).astype(bool)
-    if luecke > 0 and gesetzt.any():
-        geschlossen = gesetzt.copy()
-        (orte,) = np.nonzero(gesetzt)
-        for a, b in zip(orte[:-1], orte[1:]):
-            if 1 < b - a <= luecke + 1:
-                geschlossen[a:b] = True
-        gesetzt = geschlossen
-
-    stellen: list[tuple[float, float, int, int]] = []
-    beginn = None
-    for i, flagge in enumerate([*gesetzt, False]):
-        if flagge and beginn is None:
-            beginn = i
-        elif not flagge and beginn is not None:
-            von = beginn * vorschub / rate
-            bis = ((i - 1) * vorschub + fenster) / rate
-            if bis - von >= sprechstimme.STOERUNG_MINDESTENS_S:
-                stellen.append((von, bis, beginn, i - 1))
-            beginn = None
-    return stellen
+    return any(von - spiel <= sekunde <= bis + spiel for von, bis, _, _ in stellen)
 
 
 def pruefe(pfad: str, name: str, stelle: float | None = None) -> int:
