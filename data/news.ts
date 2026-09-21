@@ -101,6 +101,354 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'berlin-mv-wahlen-cdu-faellt-linke-staerkste-kraft',
+    title:
+      'Landtagswahlen: CDU fällt in MV aus dem Landtag, Linke stärkste Kraft in Berlin',
+    metaTitle: 'Landtagswahlen: CDU raus aus MV-Landtag, Linke vorn in Berlin',
+    teaser:
+      'Die CDU verpasst in Mecklenburg-Vorpommern erstmals den Einzug in den Landtag, in Berlin wird die Linke stärkste Kraft – und der Bund spürt die Wahl sofort.',
+    category: 'Märkte',
+    publishedAt: '2026-09-21T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Wahlen', 'Politik', 'Koalition', 'Berlin'],
+    relatedTopics: ['risiko-und-rendite'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          "onvista, Aktuelle News, 20.09.2026, 21:20 Uhr, dpa-AFX: „Pressestimme/'The Times': Kanzler Merz ist schwer angeschlagen\"",
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, 20.09.2026, 21:35 Uhr, dpa-AFX: „ROUNDUP: Schwarz-rote Koalition ringt nach Wahl um Reformkurs"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „GESAMT-ROUNDUP 6: CDU im Nordosten unter fünf Prozent - Linke siegt in Berlin"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „ROUNDUP 4: Linke will Berlin regieren - Streit um Enteignungen"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „ARD-Hochrechnung: BSW nicht im Berliner Abgeordnetenhaus"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Sonntag wählten Berlin und Mecklenburg-Vorpommern neue Landtage. In beiden Ländern verschob sich die Kräfteverteilung deutlich, wie mehrere ARD-Hochrechnungen und übereinstimmende Meldungen der Nachrichtenagentur dpa-AFX zeigten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Mecklenburg-Vorpommern: Die CDU verlässt den Landtag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einer ARD-Hochrechnung zufolge fiel die CDU in Mecklenburg-Vorpommern unter fünf Prozent und verpasste damit erstmals den Einzug in den Landtag des Bundeslandes. Die AfD lag im Nordosten derselben Hochrechnung zufolge vor der SPD. Ministerpräsidentin Manuela Schwesig sagte laut dpa-AFX, der Westen solle die Kraft der AfD nicht unterschätzen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Berlin: Die Linke wird stärkste Kraft, das BSW verpasst den Einzug',
+      },
+      {
+        type: 'paragraph',
+        text: 'In Berlin wurde die Linke laut mehreren ROUNDUP-Meldungen von dpa-AFX stärkste Kraft und signalisierte im Anschluss den Anspruch, die Stadt zu regieren; laut derselben Quelle kam dabei bereits Streit über mögliche Enteignungen auf. Das Bündnis Sahra Wagenknecht verpasste einer Hochrechnung zufolge den Einzug ins Abgeordnetenhaus. Bei den Direktmandaten verlor CDU-Spitzenkandidat Evers seinen Wahlkreis, SPD-Spitzenkandidat Krach verfehlte seines, und die SPD-Politikerin Franziska Giffey ist nach dieser Wahl nicht mehr im Abgeordnetenhaus vertreten. Der amtierende Regierende Bürgermeister Kai Wegner (CDU) gewann dagegen sein Direktmandat in Spandau.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reaktionen aus Berlin und London',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits um 21:20 Uhr verbreitete dpa-AFX eine Pressestimme der britischen Zeitung „The Times", wonach Bundeskanzler Friedrich Merz „schwer angeschlagen" sei. Um 21:35 Uhr meldete die Agentur, die schwarz-rote Koalition im Bund ringe nach der Wahl um ihren Reformkurs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wahlergebnisse in zwei Bundesländern ändern zunächst nichts an den Mehrheiten im Bundestag. Ob die Koalition ihren Kurs deshalb anpasst oder unverändert fortsetzt, entscheidet sich erst in den kommenden Wochen – bis dahin bleibt offen, mit welcher wirtschaftspolitischen Richtung Anleger rechnen können.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-tag-lagarde-goolsbee-cipollone-macklem',
+    title: 'Fünf Termine mit Notenbank-Bezug an einem einzigen Tag',
+    teaser:
+      'Bundesbank-Bericht, zwei EZB-Auftritte, ein Fed-Redner und der Chef der kanadischen Notenbank: Der 21. September bündelt viele geldpolitische Termine.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-21T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Geldpolitik', 'EZB', 'Fed', 'Bundesbank'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Wichtige Termine", Stand 21.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am 21. September bündeln sich laut dem Wirtschaftskalender von wallstreet-online mehrere Termine mit Bezug zur Geldpolitik – ungewöhnlich viele für einen einzelnen Tag.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Termine im Überblick',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 12:00 Uhr veröffentlicht die Deutsche Bundesbank ihren monatlichen Bericht. Um 12:30 Uhr spricht Fed-Mitglied Goolsbee, um 14:30 Uhr steht der Chicago Fed National Activity Index an, der zuletzt bei minus 0,08 Punkten lag. Um 17:00 Uhr treten EZB-Präsidentin Lagarde und der Gouverneur der kanadischen Notenbank, Macklem, auf, um 17:10 Uhr folgt EZB-Mitglied Cipollone. Für den 22. September kündigt dieselbe Quelle zudem einen Auftritt von EZB-Mitglied Nagel an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Reden sind keine Entscheidungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Termine folgen auf die Zinserhöhung der US-Notenbank Fed in der vergangenen Woche. Reden einzelner Notenbank-Vertreter sind keine geldpolitischen Beschlüsse; sie können aber Hinweise auf die künftige Richtung der Geldpolitik geben und Kurse an Anleihe- und Devisenmärkten bewegen, weil Marktteilnehmer aus einzelnen Formulierungen auf künftige Zinsschritte schließen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Wer aus einer einzelnen Rede eine Kursreaktion ableiten will, prüft am besten zunächst, ob überhaupt eine neue Aussage gefallen ist – oft wiederholen Notenbanker an solchen Tagen nur, was sie zuvor bereits gesagt haben.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-vorzugsaktie-minus-7-7-prozent-autobauer-unter-druck',
+    title: 'VW-Vorzüge verlieren 7,7 Prozent, deutsche Autobauer unter Druck',
+    teaser:
+      'Die deutschen Autobauer verlieren laut dpa-AFX weiter an Boden, VW-Vorzüge fallen 7,7 Prozent – und der Konzern verliert den Skoda-Chef an Volvo Cars.',
+    category: 'Märkte',
+    publishedAt: '2026-09-21T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Volkswagen', 'Automobilindustrie', 'Aktien', 'Management'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Marktberichte, Markt Bote, Meldung vom 20.09.2026: „Die Bären übernehmen: Volkswagen (VW) Vz verliert 7,7 Prozent: Anleger suchen jetzt den Boden"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Neueste Marktberichte, 20.09.2026, dpa-AFX: „ROUNDUP 2/Analyse: Deutsche Autobauer verlieren weiter an Boden"',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 20.09.2026: „VW-Konzern verliert wichtigen Manager: Skoda-Chef wechselt zu Volvo Cars"',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Deutsche Autobauer-Aktien gerieten am 20. September laut einer Analyse von dpa-AFX weiter unter Druck.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Volkswagen-Vorzüge minus 7,7 Prozent',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Vorzugsaktie von Volkswagen verlor laut einer Meldung von Markt Bote 7,7 Prozent. Über welchen Zeitraum sich der Rückgang erstreckt, nennt die Meldung nicht – die Zahl steht damit für sich allein, ohne dass sich daraus ableiten lässt, ob es sich um die Reaktion eines einzelnen Handelstages oder mehrerer Tage handelt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Wechsel an der Spitze von Skoda',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag berichtete dpa-AFX, der Chef der VW-Tochter Skoda wechsle zu Volvo Cars; die Meldung bezeichnete dies als Verlust eines wichtigen Managers für den VW-Konzern. Eine Begründung für den Wechsel nennt die Quelle nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Nach der gesenkten Gewinnprognose',
+      },
+      {
+        type: 'paragraph',
+        text: 'Volkswagen und Porsche hatten bereits am Freitag zuvor ihre Gewinnprognose für das laufende Jahr gesenkt. Der Wechsel an der Spitze von Skoda und der beschriebene Kursrückgang fallen damit in dieselbe Woche.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine Prozentzahl ohne Zeitraum lässt sich nicht einordnen – wer eine Kursbewegung bewerten will, braucht dafür immer auch den Vergleichszeitpunkt, nicht nur die Differenz.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-4350-dollar-terminmarkt-positionierung-silber',
+    title: 'Gold über 4.350 Dollar: Was die Terminmarkt-Positionierung zeigt',
+    teaser:
+      'Der Goldpreis hält sich über 4.350 Dollar, die Positionierung großer Spekulanten am Terminmarkt bleibt stabil, und Silber legt kräftiger zu als Gold.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-21T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Silber', 'Rohstoffe', 'Terminmarkt'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News, Meldung vom 20.09.2026: „Goldmarkt: Goldpreis erholt, US-Terminmarkt-Positionierung bleibt stabil"',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, 18. September 2026: „Goldpreis heute: Erholung setzt sich fort – Silber steigt um 2,3 Prozent"',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis notierte laut Goldreporter zuletzt wieder über 4.350 US-Dollar je Feinunze.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was CoT-Daten zeigen – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die aktuellen CoT-Daten (Commitments of Traders) zeigen laut Goldreporter, dass die Positionierung großer Spekulanten an der Terminbörse Comex stabil ist; ihr Anteil am Gold-Futures-Handel bleibt der Quelle zufolge aber hoch. CoT-Daten bilden ab, wie verschiedene Händlergruppen an einer Terminbörse positioniert sind – sie sagen für sich genommen nichts darüber, in welche Richtung sich ein Preis als Nächstes bewegt, sondern nur, wie konzentriert der aktuelle Handel auf wenige große Adressen ist.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Silber legt stärker zu als Gold',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Silberpreis stieg laut einer weiteren Meldung von Goldreporter vom 18. September um 2,3 Prozent, während sich die Erholung beim Gold laut derselben Quelle fortsetzte. Steigen zwei Edelmetalle gleichzeitig, aber unterschiedlich stark, spricht man von einer positiven, aber nicht perfekten Korrelation zwischen beiden Preisen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine stabile Positionierung am Terminmarkt ist kein Signal für die nächste Kursbewegung – sie beschreibt nur den aktuellen Zustand des Handels, nicht seine Richtung.',
+      },
+    ],
+  },
+  {
+    slug: 'ucits-etf-rekordzufluss-43-milliarden-august',
+    title: '43 Milliarden Euro in einem Monat: Rekordzuflüsse bei ETFs',
+    teaser:
+      'Europäische UCITS-ETFs sammelten im August laut wallstreet-online 43 Milliarden Euro ein – ein Wert, der die Frage nach einem Rekordjahr aufwirft.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-21T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['ETF', 'Geldanlage', 'Fondsbranche'],
+    relatedTopics: ['etf'],
+    relatedSymbols: ['etf-msci-world'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 21.09.2026: „Rekordzuflüsse bei UCITS-ETFs: 43 Milliarden Euro allein im August: Steht ein ETF-Rekordjahr bevor?"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In europäische UCITS-ETFs flossen laut wallstreet-online allein im August 43 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Mittelzufluss zeigt – und was nicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Meldung wirft die Frage auf, ob damit ein Rekordjahr für die Fondsgattung bevorsteht, nennt zu Herkunft oder Zielrichtung der Mittel aber keine weiteren Angaben. Ein Mittelzufluss zeigt, wie viel neues Geld Anleger in eine Anlageklasse stecken – er ist aber kein Renditemaß: Ein ETF kann hohe Zuflüsse verzeichnen und trotzdem im selben Zeitraum an Wert verlieren, wenn die zugrunde liegenden Kurse fallen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kursindex und Zufluss sind zwei verschiedene Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wert eines ETF-Anteils hängt vom Kurs der enthaltenen Wertpapiere ab, die Zuflusssumme dagegen davon, wie viel Geld Anleger zusätzlich einzahlen. Beide Zahlen können sich unabhängig voneinander entwickeln.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Eine hohe Zuflusssumme allein sagt nichts über die Wertentwicklung eines Fonds – wer beide Zahlen gemeinsam liest, bekommt ein vollständigeres Bild als aus einer der beiden allein.',
+      },
+    ],
+  },
+  {
+    slug: 'enapter-einmalaufwand-h1-2026-us-vertrieb',
+    title: 'Enapter meldet 17 Millionen Euro Einmalaufwand im ersten Halbjahr',
+    teaser:
+      'Der Wasserstoff-Spezialist Enapter ordnet seinen US-Vertrieb neu und weist dafür einen Einmalaufwand von 17 Millionen Euro aus.',
+    category: 'Märkte',
+    publishedAt: '2026-09-21T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Enapter', 'Halbjahreszahlen', 'Wasserstoff', 'Bilanz'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax'],
+    sources: [
+      {
+        label:
+          'EQS Group AG, EQS-Adhoc, 18.09.2026: „Enapter AG gibt vorläufige, ungeprüfte Zahlen für das erste Halbjahr 2026 bekannt und ordnet den Vertrieb in den USA neu - Einmalaufwand von EUR 17 Mio."',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, wO Newsflash, 18.09.2026: „Enapter: 17 Mio. Euro Einmalaufwand – US-Vertrieb wird neu geordnet"',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Wasserstoff-Spezialist Enapter hat laut einer EQS-Ad-hoc-Mitteilung vom 18. September vorläufige, ungeprüfte Zahlen für das erste Halbjahr 2026 veröffentlicht und ordnet zugleich seinen Vertrieb in den USA neu.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: '17 Millionen Euro Einmalaufwand',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Neuordnung des US-Vertriebs weist Enapter laut der Mitteilung einen Einmalaufwand von 17 Millionen Euro aus. Eine weitere Aufschlüsselung, etwa nach operativem Ergebnis ohne diesen Posten, nennt die Mitteilung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Einmalaufwendungen beim Lesen von Halbjahreszahlen zählen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Einmalaufwand fällt, anders als laufende Kosten, nur einmalig an und sagt deshalb wenig über die künftige Ertragskraft eines Unternehmens aus. Wer ein Halbjahresergebnis bewerten will, das einen solchen Posten enthält, trennt ihn gedanklich vom operativen Geschäft, um beide Größen nicht zu vermischen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Was daraus folgt: Ein hoher Einmalaufwand allein sagt noch nichts darüber, ob sich die zugrunde liegende Neuordnung des Vertriebs künftig auszahlt – das zeigt sich erst in den Ergebnissen der folgenden Quartale.',
+      },
+    ],
+  },
+  {
     slug: 'tankrabatt-kritik-planwirtschaft-uebergewinnsteuer',
     title:
       'Tankrabatt-Streit: Kubicki spricht von Planwirtschaft, SPD-Länder wollen mehr',
