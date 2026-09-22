@@ -101,6 +101,453 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelpreis-faellt-unter-100-dollar',
+    title: 'Ölpreis fällt unter 100 Dollar – Europas Börsen schließen im Plus',
+    teaser:
+      'Brent-Öl rutschte am Montag um über drei Prozent unter die 100-Dollar-Marke. Europas Börsen schlossen im Plus, die Chevron-Aktie gab nach.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'DAX', 'Rohstoffe', 'Energiewerte'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'dax', 'chevron'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 21.09.2026: „Ölpreise weiter unter Druck - Preis für Brent-Öl fällt unter 100 US-Dollar“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, dpa-AFX, Meldung vom 21.09.2026, 16:36 Uhr: „ROUNDUP/Aktien Europa Schluss: Klare Gewinne nach Ölpreisrückgang“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Marktberichte, Markt Bote, Meldung vom 21.09.2026: „Besonders beachtet!: Chevron Corporation Aktie fällt am 21.09.2026 um -4,17 % – Gründe, Kursentwicklung und Ausblick“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Preis für ein Barrel Brent-Rohöl fiel am Montag laut wallstreet-online um 3,24 Prozent auf 100,08 US-Dollar und rutschte damit unter die Marke von 100 Dollar. Bei finanzen.net stand derselbe Rohstoff zur gleichen Stunde dagegen fast unverändert bei 100,4 Dollar – ein Beleg dafür, wie unterschiedlich zwei Portale ihre Tagesveränderung berechnen. Welche Vergleichsbasis jeweils zugrunde liegt, geht aus den Quellen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Rückgang mit direkter Wirkung auf Energiewerte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie des US-Ölkonzerns Chevron fiel laut Markt Bote am selben Tag um 4,17 Prozent. Die Meldung nennt keinen gesonderten Unternehmensgrund – der Kursrückgang fällt zeitlich mit dem fallenden Ölpreis zusammen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Europas Börsen im Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'dpa-AFX berichtete von klaren Gewinnen an den europäischen Börsen zum Handelsschluss und führte sie auf den sinkenden Ölpreis zurück. Auch die Wiener Börse habe laut derselben Agentur kräftig zugelegt, ebenfalls mit sinkenden Ölpreisen begründet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein fallender Ölpreis wirkt wie eine Kostensenkung für Unternehmen, die viel Energie verbrauchen, während er die Erträge von Förderkonzernen wie Chevron unmittelbar schmälert – ein und dieselbe Bewegung wirkt also je nach Branche gegensätzlich. Wer nur auf einen Gesamtindex blickt, sieht diesen Gegensatz zwischen den Branchen nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-nasdaq-dreimonatshoch',
+    title: 'Wall Street verlängert Rally: Nasdaq 100 auf Dreimonatshoch',
+    teaser:
+      'Tech-Werte trieben den Nasdaq 100 am Montagabend auf ein Dreimonatshoch. Auch Dow Jones und S&P 500 schlossen im Plus.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Nasdaq', 'Wall Street', 'Technologiewerte', 'USA'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['nasdaq-100', 'dow-jones', 'sp500'],
+    sources: [
+      {
+        label:
+          'onvista, Index-Analysen, dpa-AFX, Meldung vom 21.09.2026, 18:24 Uhr: „Aktien New York: Erholung dank Ölpreisrückgang - Nasdaq 100 auf Dreimonatshoch“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen, dpa-AFX, Meldung vom 21.09.2026, 20:43 Uhr: „ROUNDUP/Aktien New York: Deutliche Gewinne - Tech-Werte stark dank KI-Fantasie“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste, Stand 22.09.2026: US 30 52.079,12 (+0,75 %), US Tech 100 30.486,92 (+2,93 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street setzten sich die Kursgewinne am Montag bis in den Abend fort. Laut dpa-AFX stieg der Nasdaq 100 zunächst dank sinkender Ölpreise, im späteren Handel kamen laut derselben Agentur starke Technologiewerte hinzu, angetrieben von dem, was dpa-AFX „KI-Fantasie“ nannte. Der Index erreichte damit ein Dreimonatshoch.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch Dow Jones und S&P 500 im Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dow Jones („US 30“) schloss laut wallstreet-online 0,75 Prozent höher bei 52.079,12 Punkten, der Nasdaq-Auswahlindex „US Tech 100“ legte um 2,93 Prozent auf 30.486,92 Punkte zu. dpa-AFX berichtete zudem von Gewinnen beim S&P 500 und beim Nasdaq Composite zum Handelsende.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Dreimonatshoch über Erwartungen verrät',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Indexstand, der den höchsten Wert von drei Monaten markiert, zeigt, dass die Kursbewegungen der enthaltenen Werte einen früheren Stand übertreffen. Er sagt für sich genommen nichts darüber, ob sich die damit verbundene Erwartung in künftigen Quartalszahlen bestätigt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Mehrmonatshoch bei einem stark technologielastigen Index wie dem Nasdaq 100 spiegelt vor allem, wie viel künftiges Gewinnwachstum Anleger bereits einpreisen. Bleibt dieses Wachstum aus, kann derselbe Optimismus den Index ebenso schnell wieder drücken.',
+      },
+    ],
+  },
+  {
+    slug: 'berlin-wahl-vonovia-dax-verlierer',
+    title: 'DAX klettert trotz Rückschlag für die Union bei der Berlin-Wahl',
+    teaser:
+      'Der DAX legte am Montag zu, obwohl die Union bei der Berlin-Wahl laut den Quellen verlor. Die Vonovia-Aktie zählte dennoch zu den größten Verlierern.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['DAX', 'Vonovia', 'Wahlen', 'Immobilien'],
+    relatedTopics: ['aktie', 'immobilien'],
+    relatedSymbols: ['dax', 'vonovia'],
+    sources: [
+      {
+        label:
+          'onvista, Marktberichte, Meldung vom 21.09.2026, 15:55 Uhr, onvista-Redaktion: „Dax Tagesrückblick 21.09.2026: Dax steigt kräftig - Vonovia schwächeln nach Berlin-Wahl“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, dpa-AFX, Meldung vom 21.09.2026, 16:24 Uhr: „AKTIE IM FOKUS 3: Vonovia-Titel nach Berlin-Wahl unter größten Dax-Verlierern“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 22.09.2026: DAX 25.635,96 (+1,29 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der DAX legte am Montag laut onvista kräftig zu, während die Union bei der Wahl in Berlin nach Angaben von wallstreet-online eine Niederlage erlitt. Genaue Ergebniszahlen zur Wahl nennen die ausgewerteten Quellen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Vonovia unter den größten Verlierern',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Aktie des Immobilienkonzerns Vonovia gehörte laut dpa-AFX im Zuge der Berlin-Wahl zu den größten Verlierern im DAX. Warum genau das Wahlergebnis den Kurs belastete, geht aus der Meldung nicht hervor – sie nennt weder eine konkrete Kurszahl noch eine Begründung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Index, viele Richtungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der DAX stand nach dieser Kurserholung laut wallstreet-online bei 25.635,96 Punkten, ein Plus von 1,29 Prozent. Die Vonovia-Schwäche blieb davon unberührt – ein einzelner Wert mit geringerem Indexgewicht kann einen breiten Zuwachs kaum aufhalten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass ein Index insgesamt steigt, heißt nicht, dass alle enthaltenen Werte profitieren. Ein politisches Ereignis mit lokalem Bezug wie eine Landeswahl kann einzelne Branchen wie Wohnimmobilien treffen, ohne den Gesamtmarkt zu bewegen.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-termine-dienstag-nagel-lagarde',
+    title: 'Nagel und Lagarde sprechen am Dienstag, dazu US-Konjunkturdaten',
+    teaser:
+      'Am Dienstag treten mehrere Notenbanker auf, und in den USA stehen Konjunkturdaten an. Ein Grönland-Abkommen soll laut einem US-Beamten unterzeichnet werden.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-22T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['EZB', 'Bundesbank', 'Fed', 'Konjunkturdaten'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['eur-usd'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Wichtige Termine“ und „Kommende Termine“, Stand 22.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 21.09.2026: „US-Beamter: Unterzeichnung von Grönland-Abkommen am Dienstag“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag spricht laut wallstreet-online um 10:30 Uhr Bundesbank-Präsident und EZB-Ratsmitglied Joachim Nagel, um 14:00 Uhr folgt EZB-Präsidentin Christine Lagarde.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'US-Daten am Nachmittag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 14:15 Uhr veröffentlichen die USA den ADP-Beschäftigungsbericht als Vierwochendurchschnitt, der zuletzt bei 16,25 Tsd. lag; eine Prognose nennt die Quelle nicht. Um 16:00 Uhr folgen das Verbrauchervertrauen der Eurozone (Prognose -16,5 Punkte nach zuvor -15,5) und der Richmond-Fed-Index für die US-Industrie (Prognose 5 Punkte nach zuvor 4).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei weitere Fed-Vertreter',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 16:05 Uhr spricht laut wallstreet-online der Präsident der Federal Reserve Bank of New York, John Williams, um 16:20 Uhr Fed-Vizechef Philip Jefferson.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Abkommen zu Grönland',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Meldung von finanzen.net kündigte ein US-Beamter für Dienstag die Unterzeichnung eines Grönland-Abkommens an. Weitere Einzelheiten dazu – etwa Inhalt oder beteiligte Parteien – nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Reden einzelner Notenbanker sind keine Zinsentscheidungen, geben aber Hinweise auf den künftigen geldpolitischen Kurs; in Kombination mit mehreren Konjunkturdaten an einem Tag kann das die Schwankungsbreite an den Märkten erhöhen.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-anleiherenditen-china-gipfel',
+    title: 'Anleiherenditen fallen leicht, Blick auf ein Treffen zwischen USA und China',
+    metaTitle: 'Anleiherenditen fallen leicht vor USA-China-Treffen',
+    teaser:
+      'Die Renditen von US- und Bundesanleihen gaben leicht nach. Der Goldpreis hielt sich bei rund 4.366 Dollar vor einem Treffen zwischen USA und China.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-22T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Anleihen', 'Geldpolitik', 'USA-China'],
+    relatedTopics: ['staatsanleihe', 'rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News, Meldung vom 22.09.2026: „Marktzinsen sinken leicht – Blicke auf USA-China-Gipfel gerichtet“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 22.09.2026: Gold 4.366,48 USD (+0,53 %)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 22.09.2026: Gold 4.375 (+0,7 %)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Renditen von US-Staatsanleihen und Bundesanleihen gaben laut Goldreporter leicht nach. Als Grund nennt die Quelle die Aufmerksamkeit der Märkte für ein bevorstehendes Treffen zwischen den USA und China; ein genaues Datum für das Treffen nennt sie nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Goldpreis hält sich über wichtigen Marken',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis notierte laut wallstreet-online zuletzt bei 4.366,48 US-Dollar je Feinunze, ein Plus von 0,53 Prozent. Bei finanzen.net stand der Preis zur gleichen Stunde bei 4.375 Dollar, ein Plus von 0,7 Prozent – wieder ein Beispiel dafür, wie unterschiedlich zwei Portale denselben Kurs prozentual einordnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Treffen mit möglicher Signalwirkung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen weiteren Hinweis auf das bevorstehende Treffen liefert wallstreet-online: Dort ist von „leisen Tönen“ des US-Präsidenten vor einem Treffen mit dem chinesischen Staatschef Xi Jinping die Rede, ohne dass Zeitpunkt oder Inhalt des Treffens genannt werden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Sinkende Anleiherenditen machen zinslose Anlagen wie Gold tendenziell attraktiver, weil die Opportunitätskosten des Goldbesitzes sinken. Gleichzeitig zeigt der Blick auf ein einzelnes politisches Treffen, wie stark kurzfristige Markterwartungen von öffentlich angekündigten Terminen abhängen können.',
+      },
+    ],
+  },
+  {
+    slug: 'meta-aktie-elfmonatshoch-ki-assistent-muse',
+    title: 'Meta-Aktie auf Elfmonatshoch nach Start des KI-Assistenten Muse',
+    teaser:
+      'Meta legte am Montag zweistellig zu und erreichte ein Elfmonatshoch. Auslöser war laut dpa-AFX der Start des KI-Assistenten Muse.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Meta', 'Künstliche Intelligenz', 'Technologiewerte'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['meta'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 21.09.2026: „Meta-Aktie legt zweistellig zu - KI-Assistent Muse sorgt für Rückenwind“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen, dpa-AFX, Meldung vom 21.09.2026: „AKTIE IM FOKUS: Meta auf Elfmonatshoch - Starker Start für KI-Agent Muse“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Meta-Aktie legte am Montag laut finanzen.net zweistellig zu und erreichte laut dpa-AFX ein Elfmonatshoch. Als Auslöser nennen beide Quellen den Start des KI-Assistenten „Muse“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldungen offenlassen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine genaue Prozentzahl für den Kursgewinn oder Angaben zu Nutzerzahlen von Muse enthalten die ausgewerteten Kurzmeldungen nicht. Auch zu den Funktionen des KI-Assistenten äußern sich die Quellen nicht im Detail.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine einzelne Ankündigung, ein deutlicher Kursausschlag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein zweistelliger Kurssprung an einem einzigen Handelstag ist für einen Konzern von der Größe Metas ungewöhnlich groß. Solche Ausschläge zeigen, wie stark Ankündigungen rund um künstliche Intelligenz derzeit einzelne Technologiewerte bewegen können.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Kurssprung an einem Tag beruht auf der Erwartung künftiger Erträge aus einem neuen Produkt. Ob sich diese Erwartung erfüllt, zeigt sich erst in kommenden Quartalszahlen, nicht am Ankündigungstag selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'paramount-warner-deal-aktie-sinkt',
+    title: 'Paramount kommt Warner-Kauf näher, die Aktie sinkt trotzdem',
+    teaser:
+      'Paramount kam einem Zukauf von Warner Bros nach einem Deal mit US-Bundesstaaten näher. Die Aktie fiel trotzdem um mehr als acht Prozent.',
+    category: 'Märkte',
+    publishedAt: '2026-09-22T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Paramount', 'Warner Bros', 'Übernahme', 'Medien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['sp500'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen, dpa-AFX, Meldung vom 21.09.2026: „ROUNDUP 2: Paramount auf Weg zu Warner-Kauf nach Deal mit Bundesstaaten“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Marktberichte, Markt Bote, Meldung vom 21.09.2026: „Besonders beachtet!: Paramount Skydance Corporations Registered (B) Aktie sinkt rapide - -8,12 % - 21.09.2026“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Paramount kam laut dpa-AFX einem Kauf von Warner Bros einen Schritt näher, nachdem ein Deal mit mehreren US-Bundesstaaten zustande kam. Details zu diesem Deal oder zum Kaufpreis nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Aktie reagierte gegenläufig',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trotz dieses Fortschritts fiel die Paramount-Skydance-Aktie laut Markt Bote am selben Tag um 8,12 Prozent. Die Meldung nennt keinen zusätzlichen Grund für den Kursrückgang.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fortschritt bei einem Deal ist kein Kursgarant',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass eine Übernahme dem Abschluss näherkommt, muss den Kurs des übernehmenden Unternehmens nicht stützen. Anleger können stattdessen auf die Kosten des Zukaufs oder auf die Bedingungen des Deals mit den Bundesstaaten blicken, über die die Quellen nichts Näheres mitteilen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Kurs eines übernehmenden Unternehmens spiegelt nicht nur den Fortschritt eines Deals, sondern auch dessen Kosten und Bedingungen. Ohne diese Details bleibt offen, ob der Rückgang eine Reaktion auf den Deal selbst ist oder andere Ursachen hat.',
+      },
+    ],
+  },
+  {
+    slug: 'bitcoin-erholung-krypto-aktien',
+    title: 'Bitcoin erholt sich über 86.000 Dollar, Krypto-Aktien ziehen mit',
+    teaser:
+      'Bitcoin stieg laut einer Meldung vom Montag wieder über 86.000 US-Dollar. Aktien von Strategy, Coinbase und Robinhood zogen im Anschluss mit.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-22T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Bitcoin', 'Krypto-Aktien', 'Coinbase', 'Robinhood'],
+    relatedTopics: ['bitcoin-krypto'],
+    relatedSymbols: ['bitcoin'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 21.09.2026: „Bitcoin-Erholung über 86.000 USD schiebt Aktien von Strategy, Coinbase & Robinhood an - was Anleger wissen sollten“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Bitcoin erholte sich laut einer Meldung von finanzen.net vom Montag wieder auf über 86.000 US-Dollar. Im Anschluss zogen die Aktien der bitcoinnahen Unternehmen Strategy, Coinbase und Robinhood laut derselben Quelle mit.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was die Meldung offenlässt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine genaue Kurszahl für die drei genannten Aktien oder den Zeitpunkt der Bitcoin-Erholung nennt die Meldung nicht, ebenso wenig einen Auslöser für die Bewegung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein enger Gleichlauf mit Einschränkungen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aktien von Unternehmen, die selbst Bitcoin halten oder mit dem Handel von Kryptowährungen Geld verdienen, folgen dem Bitcoin-Kurs häufig enger als der Gesamtmarkt. Sie tragen aber zusätzlich ein eigenes Unternehmensrisiko, das ein direkter Bitcoin-Kauf nicht hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer über eine Aktie wie Coinbase oder Strategy indirekt auf den Bitcoin-Kurs setzt, ist zusätzlich dem operativen Geschäft und der Bilanz des jeweiligen Unternehmens ausgesetzt. Die Kursbewegung ist deshalb kein reiner Spiegel des Bitcoin-Preises.',
+      },
+    ],
+  },
+  {
     slug: 'berlin-mv-wahlen-cdu-faellt-linke-staerkste-kraft',
     title:
       'Landtagswahlen: CDU fällt in MV aus dem Landtag, Linke stärkste Kraft in Berlin',
