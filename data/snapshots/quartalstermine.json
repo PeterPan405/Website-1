@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-21T10:53:53.424Z",
+  "abgerufenAm": "2026-09-22T10:08:30.516Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -39,10 +39,10 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 38,
-      "letzterTag": "2026-11-12",
-      "zeilen": 3974,
+      "letzterTag": "2026-11-13",
+      "zeilen": 4201,
       "imKatalog": 301,
-      "mitLage": 50,
+      "mitLage": 53,
       "beigetragen": 301
     }
   },
@@ -6422,10 +6422,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-08",
+          "erwartet": "2026-10-09",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-12",
@@ -7010,7 +7012,9 @@
           "erwartet": "2026-10-26",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "nachboerse"
         },
         {
           "erwartet": "2027-01-25",
@@ -12198,7 +12202,7 @@
         "2024-12-18"
       ],
       "bisherZeiten": {
-        "2026-09-16": "12:42",
+        "2026-09-16": "16:42",
         "2026-06-11": "16:48",
         "2026-03-12": "16:34",
         "2025-12-16": "16:33",
@@ -12229,7 +12233,8 @@
         {
           "erwartet": "2027-09-15",
           "basis": "2026-09-16",
-          "streuungTage": 2
+          "streuungTage": 2,
+          "newYorkerZeit": "16:42"
         }
       ]
     },
@@ -12303,7 +12308,9 @@
           "erwartet": "2026-11-03",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-02",
@@ -18265,7 +18272,7 @@
     "LREN3.SA": "2026-09-19",
     "LSEG.L": "2026-09-20",
     "LT.NS": "2026-09-21",
-    "LXS.DE": "2026-08-18",
+    "LXS.DE": "2026-09-22",
     "M&M.NS": "2026-08-18",
     "MARUTI.NS": "2026-08-18",
     "MBG.DE": "2026-08-18",
