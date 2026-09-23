@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-09-22T23:52:45.827Z",
+  "fetchedAt": "2026-09-23T13:36:50.197Z",
   "instruments": {
     "eur-usd": {
       "sourceLabel": "Europäische Zentralbank",
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-09-22",
       "points": [
-        {"d":"2021-09-22","c":1.1729},
+        {"d":"2021-09-23","c":1.1715},
         {"d":"2021-09-27","c":1.1698},
         {"d":"2021-10-04","c":1.1636},
         {"d":"2021-10-11","c":1.1574},
@@ -498,7 +498,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-09-22",
       "points": [
-        {"d":"2021-09-22","c":7.585},
+        {"d":"2021-09-23","c":7.5643},
         {"d":"2021-09-27","c":7.5609},
         {"d":"2021-10-04","c":7.5013},
         {"d":"2021-10-11","c":7.4644},
@@ -990,7 +990,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-09-22",
       "points": [
-        {"d":"2021-09-22","c":1.082},
+        {"d":"2021-09-23","c":1.0831},
         {"d":"2021-09-27","c":1.085},
         {"d":"2021-10-04","c":1.0768},
         {"d":"2021-10-11","c":1.0722},
@@ -1482,7 +1482,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-09-22",
       "points": [
-        {"d":"2021-09-22","c":0.86},
+        {"d":"2021-09-23","c":0.855},
         {"d":"2021-09-27","c":0.8542},
         {"d":"2021-10-04","c":0.8553},
         {"d":"2021-10-11","c":0.8488},
@@ -1974,7 +1974,7 @@
       "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
       "asOf": "2026-09-22",
       "points": [
-        {"d":"2021-09-22","c":128.5},
+        {"d":"2021-09-23","c":128.88},
         {"d":"2021-09-27","c":129.74},
         {"d":"2021-10-04","c":129.21},
         {"d":"2021-10-11","c":130.7},
