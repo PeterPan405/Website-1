@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-22T10:08:30.516Z",
+  "abgerufenAm": "2026-09-23T10:09:40.726Z",
   "quelle": {
     "label": "US-Börsenaufsicht SEC – Formular 8-K, Punkt 2.02",
     "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany",
@@ -39,11 +39,11 @@
     "nasdaq": {
       "tageAbgefragt": 50,
       "tageMitZeilen": 38,
-      "letzterTag": "2026-11-13",
-      "zeilen": 4201,
-      "imKatalog": 301,
-      "mitLage": 53,
-      "beigetragen": 301
+      "letzterTag": "2026-11-16",
+      "zeilen": 4227,
+      "imKatalog": 300,
+      "mitLage": 58,
+      "beigetragen": 300
     }
   },
   "unternehmen": {
@@ -1940,10 +1940,12 @@
       },
       "vorhersagen": [
         {
-          "erwartet": "2026-10-23",
+          "erwartet": "2026-10-22",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-21",
@@ -2387,7 +2389,9 @@
           "erwartet": "2026-10-20",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-21",
@@ -5601,7 +5605,9 @@
           "erwartet": "2026-10-20",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-26",
@@ -6865,7 +6871,9 @@
           "erwartet": "2026-10-22",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-01-28",
@@ -8186,7 +8194,9 @@
           "erwartet": "2026-10-20",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         },
         {
           "erwartet": "2027-02-05",
@@ -8944,34 +8954,26 @@
     "AZO": {
       "name": "AUTOZONE INC",
       "bisher": [
+        "2026-09-22",
         "2026-05-26",
         "2026-03-03",
         "2025-12-09",
         "2025-09-23",
         "2025-05-27",
         "2025-03-04",
-        "2024-12-10",
-        "2024-09-24"
+        "2024-12-10"
       ],
       "bisherZeiten": {
+        "2026-09-22": "06:55",
         "2026-05-26": "06:55",
         "2026-03-03": "06:55",
         "2025-12-09": "06:55",
         "2025-09-23": "06:55",
         "2025-05-27": "06:55",
         "2025-03-04": "06:55",
-        "2024-12-10": "07:00",
-        "2024-09-24": "06:55"
+        "2024-12-10": "07:00"
       },
       "vorhersagen": [
-        {
-          "erwartet": "2026-09-22",
-          "basis": "Aug/2026",
-          "streuungTage": 0,
-          "herkunft": "nasdaq",
-          "angekuendigt": true,
-          "lage": "vorboerse"
-        },
         {
           "erwartet": "2026-12-08",
           "basis": "2025-12-09",
@@ -8987,6 +8989,12 @@
         {
           "erwartet": "2027-05-25",
           "basis": "2026-05-26",
+          "streuungTage": 0,
+          "newYorkerZeit": "06:55"
+        },
+        {
+          "erwartet": "2027-09-21",
+          "basis": "2026-09-22",
           "streuungTage": 0,
           "newYorkerZeit": "06:55"
         }
@@ -13866,14 +13874,14 @@
         "2024-11-06"
       ],
       "bisherZeiten": {
-        "2026-08-07": "03:37",
-        "2026-05-21": "12:08",
-        "2026-02-03": "11:14",
-        "2025-11-06": "11:13",
-        "2025-08-07": "12:24",
-        "2025-05-15": "12:09",
-        "2025-02-06": "11:11",
-        "2024-11-06": "11:15"
+        "2026-08-07": "07:37",
+        "2026-05-21": "16:08",
+        "2026-02-03": "16:14",
+        "2025-11-06": "16:13",
+        "2025-08-07": "16:24",
+        "2025-05-15": "16:09",
+        "2025-02-06": "16:11",
+        "2024-11-06": "16:15"
       },
       "vorhersagen": [
         {
@@ -13886,13 +13894,13 @@
           "erwartet": "2027-02-02",
           "basis": "2026-02-03",
           "streuungTage": 2,
-          "newYorkerZeit": "11:14"
+          "newYorkerZeit": "16:14"
         },
         {
           "erwartet": "2027-05-20",
           "basis": "2026-05-21",
           "streuungTage": 7,
-          "newYorkerZeit": "12:08"
+          "newYorkerZeit": "16:08"
         },
         {
           "erwartet": "2027-08-06",
@@ -17694,7 +17702,9 @@
           "erwartet": "2026-11-02",
           "basis": "Sep/2026",
           "streuungTage": 0,
-          "herkunft": "nasdaq"
+          "herkunft": "nasdaq",
+          "angekuendigt": true,
+          "lage": "vorboerse"
         }
       ]
     },
@@ -18273,7 +18283,7 @@
     "LSEG.L": "2026-09-20",
     "LT.NS": "2026-09-21",
     "LXS.DE": "2026-09-22",
-    "M&M.NS": "2026-08-18",
+    "M&M.NS": "2026-09-23",
     "MARUTI.NS": "2026-08-18",
     "MBG.DE": "2026-08-18",
     "MC.PA": "2026-08-18",
