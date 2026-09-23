@@ -101,6 +101,447 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'usa-iran-gespraeche-un-generalversammlung',
+    title: 'USA und Iran sprechen erstmals seit Kriegsbeginn direkt miteinander',
+    metaTitle: 'USA und Iran sprechen erstmals direkt miteinander',
+    teaser:
+      'Am Rande der UN-Generalversammlung trafen sich US- und iranische Vertreter drei Stunden lang – der erste direkte Kontakt seit Kriegsbeginn im Februar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'USA', 'Diplomatie', 'Öl'],
+    relatedTopics: ['rohstoffe', 'risiko-und-rendite'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          't-online, Meldung vom 22.09.2026: „Trump: Vertreter der USA und des Irans haben sich getroffen“',
+        url: 'https://www.t-online.de/nachrichten/ausland/id_101447804/trump-vertreter-der-usa-und-des-irans-haben-sich-getroffen.html',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, dpa-AFX, Meldung vom 22.09.2026: „ROUNDUP 3/Trump: Vertreter der USA und des Irans haben sich getroffen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Dienstag trafen sich laut US-Präsident Donald Trump Vertreter der Vereinigten Staaten und des Iran am Rande der UN-Generalversammlung in New York. Auf amerikanischer Seite nahmen laut übereinstimmenden Berichten Chefunterhändler Steve Witkoff und Trumps Schwiegersohn Jared Kushner teil, auf iranischer Seite laut *New York Times* Außenminister Abbas Araghtschi. Vermittelt wurde das Treffen von Pakistan und Katar. Trump bezeichnete das rund dreistündige Gespräch als „sehr gut“ und stellte ein weiteres Treffen in Aussicht. Es war der erste bestätigte direkte Kontakt zwischen beiden Seiten, seit der Krieg im Februar begonnen hatte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Optionen, ein Ultimatum',
+      },
+      {
+        type: 'paragraph',
+        text: 'In seiner Rede vor der UN-Generalversammlung stellte Trump dem Iran zwei Alternativen in Aussicht: ein Abkommen zur wirtschaftlichen Öffnung oder, in seinen Worten, die „Vernichtung der Islamischen Republik“. Zusätzlich drohte er mit möglichen Angriffen auf die iranische Atomanlage „Pickaxe Mountain“. Zugleich äußerte er die Erwartung, der Konflikt könne „direkt nach den Zwischenwahlen im November“ enden. Was ein Abkommen konkret beinhalten müsste, ging aus seinen Aussagen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ölpreis auf einen Gesprächstermin reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Rohölpreis reagiert nicht nur auf tatsächlich geförderte oder ausgefallene Barrel, sondern auf die Erwartung künftiger Lieferausfälle rund um die Straße von Hormus, durch die ein großer Teil der Weltölproduktion verschifft wird. Eine Meldung über direkte Gespräche verändert diese Erwartung, ohne dass sich am selben Tag eine einzige Lieferung ändert – dieser Erwartungsanteil im Preis wird als Risikoaufschlag bezeichnet.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gesprächstermin ist kein Ergebnis. Ob aus dem dreistündigen Treffen eine Vereinbarung wird, die den seit Februar andauernden Konflikt beendet, lässt sich aus den bisherigen Aussagen nicht ablesen – Trumps eigene Ankündigung eines möglichen Angriffsziels am selben Tag zeigt, wie weit beide möglichen Wege noch auseinanderliegen.',
+      },
+    ],
+  },
+  {
+    slug: 'selenskyj-teilwaffenruhe-kreml-ablehnung',
+    title: 'Selenskyj bietet Teil-Waffenruhe an, der Kreml lehnt sofort ab',
+    teaser:
+      'Nach einem Treffen mit Trump bot Selenskyj einen Verzicht auf Angriffe gegen Energieanlagen an. Der Kreml wies den Vorschlag noch am selben Tag zurück.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ukraine', 'Russland', 'Energie', 'Diplomatie'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'investing.com, dpa-AFX, Meldung vom 22.09.2026: „Selenskyj: Ukraine bereit zu begrenzter Waffenruhe“',
+        url: 'https://de.investing.com/news/world-news/selenskyj-ukraine-bereit-zu-begrenzter-waffenruhe-3673295',
+      },
+      {
+        label:
+          'onvista, Politik Nachrichten, dpa-AFX, Meldung vom 22.09.2026, 20:49 Uhr: „Selenskyj: Ukraine bereit zu begrenzter Waffenruhe“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach einem Treffen mit US-Präsident Donald Trump am Rande der UN-Generaldebatte in New York bot der ukrainische Präsident Wolodymyr Selenskyj laut dpa-AFX eine teilweise Waffenruhe an: „Das heißt, wir werden keine Angriffe auf Energieanlagen durchführen“ – gemeint war der gesamte russische Energiesektor. Die Ukraine wäre demnach zu diesem Schritt bereit, wenn im Gegenzug ihre eigene Energieinfrastruktur, weitere kritische Infrastruktur und ihre Lebensmittelexporte nicht länger Ziel russischer Angriffe wären. Der Vorschlag sollte von den USA an Russland weitergeleitet werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kreml: keine Waffenruhe, sondern ein umfassender Frieden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Kremlsprecher Dmitri Peskow lehnte den Vorschlag noch am selben Tag ab. Präsident Wladimir Putin habe stets betont, dass Russland „einer dauerhaften Friedensregelung verpflichtet ist, nicht einer Waffenruhe, die grundsätzlich nichts bringt“, so Peskow laut dpa-AFX. Selenskyj betonte seinerseits, Trump habe ihn nicht darum gebeten, auf Angriffe gegen die russische Ölindustrie zu verzichten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Patriot-Flugabwehr im Gespräch, aber ohne Zusage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei dem Treffen sei laut dpa-AFX auch über zusätzliche US-Flugabwehrraketen vom Typ Patriot gesprochen worden. Eine konkrete Zusage aus Washington gab es dazu nach dieser Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Waffenruhe und ein Friedensvertrag sind zwei unterschiedliche Dinge – eine Waffenruhe legt Kampfhandlungen bei fortbestehendem Konflikt vorübergehend still, ein Friedensvertrag würde ihn rechtlich beenden. Dass der Kreml ausdrücklich das eine ablehnt und das andere fordert, zeigt, wie weit beide Seiten in dieser Frage noch auseinanderliegen.',
+      },
+    ],
+  },
+  {
+    slug: 'dow-nasdaq-rekord-ki-sorgen-banken',
+    title: 'Dow fällt, Nasdaq erreicht Rekord – ausgelöst von derselben KI-Sorge',
+    metaTitle: 'Dow fällt, Nasdaq erreicht Rekord dank KI-Sorge',
+    teaser:
+      'Der Dow Jones verlor am Dienstag, der Nasdaq 100 stieg auf ein Rekordhoch. Grund für beides: die Furcht vor KI-Tools wie Metas neuem Assistenten Muse.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Wall Street', 'Nasdaq', 'Dow Jones', 'Künstliche Intelligenz'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'risiko-und-rendite'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'finanzen.net, Meldung vom 22.09.2026: „ROUNDUP/Aktien New York Schluss: Dow schwächelt - Nasdaq mit Rekord“',
+        url: 'https://www.finanzen.net/nachricht/aktien/roundup-aktien-new-york-schluss-dow-schwaechelt-nasdaq-mit-rekord-15947516',
+      },
+      {
+        label:
+          'onvista, Index-Analysen, dpa-AFX, Meldung vom 22.09.2026: „ROUNDUP/Aktien New York Schluss: Dow schwächelt - Nasdaq mit Rekord“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Börsen schlossen den Dienstag uneinheitlich: Der Dow Jones Industrial verlor laut dpa-AFX 0,36 Prozent auf 51.863,69 Punkte, der S&P 500 schloss mit 7.764,64 Zählern praktisch unverändert. Der Nasdaq 100 dagegen legte um 0,82 Prozent auf 30.732,40 Punkte zu und markierte im Handelsverlauf mit 30.770 Punkten ein Rekordhoch. Der breitere Nasdaq Composite gewann 0,45 Prozent auf 27.244,28 Punkte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Bankaktien fallen, Tech-Aktien steigen – am selben Tag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bankaktien wie JPMorgan, Morgan Stanley und Wells Fargo verloren laut dpa-AFX bis zu 4 Prozent, auch Versicherer und Reiseveranstalter gaben nach. Als Grund nennt die Meldung die Sorge, KI-Werkzeuge wie Metas neuer Assistent „Muse“ könnten Geschäftsmodelle beeinträchtigen, die auf Verbraucherträgheit beruhen – also darauf, dass Kunden selten den Anbieter wechseln. Dieselbe Sorge, die Bankaktien belastete, trieb an anderer Stelle offenbar Technologiewerte.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Einzelne Gewinner: Amgen, Shopify, Grab',
+      },
+      {
+        type: 'paragraph',
+        text: 'Amgen stieg laut dpa-AFX um 4,3 Prozent nach positiven Studienergebnissen, Shopify legte um 7,1 Prozent zu, die südostasiatische Plattform Grab gewann 8,6 Prozent. Als unterstützenden Hintergrund nennt die Meldung zudem die am selben Tag bekannt gewordenen Gespräche zwischen US- und iranischen Vertretern am Rande der UN-Generalversammlung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Gesamtindex zeigt nur den Mittelwert seiner Mitglieder. Dass der Dow fiel, während der Nasdaq 100 am selben Tag ein Rekordhoch erreichte, zeigt, wie dieselbe Nachricht – hier die Furcht vor disruptiven KI-Anwendungen – je nach Branche gegensätzlich wirken kann: belastend für Geschäftsmodelle, die sie bedroht, treibend für die Aktien der Anbieter dahinter.',
+      },
+    ],
+  },
+  {
+    slug: 'saudi-pipeline-brent-unter-100-dollar',
+    title: 'Saudi-Arabien nimmt Pipeline wieder in Betrieb, Brent fällt unter 100 Dollar',
+    metaTitle: 'Saudi-Pipeline zurück, Brent fällt unter 100 Dollar',
+    teaser:
+      'Nach einem Drohnenangriff stand die saudische Ost-West-Pipeline neun Tage still. Mit ihrer Wiederinbetriebnahme rutschte der Brent-Preis unter 100 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Saudi-Arabien', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'The National, Meldung vom 22.09.2026: „Saudi Arabia restarts East-West pipeline for crude exports“',
+        url: 'https://www.thenationalnews.com/business/energy/2026/09/22/saudi-arabia-restarts-east-west-pipeline-for-crude-exports/',
+      },
+      {
+        label:
+          'onvista, Rohstoff-Analysen, Société Générale, Meldung vom 22.09.2026, 11:25 Uhr: „Öl: Saudi-Arabien exportiert mehr Rohöl über den Persischen Golf“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 23.09.2026, 02:56 Uhr: Öl (Brent) 98,63 US-Dollar',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Saudi-Arabien hat am Dienstag seine 1.200 Kilometer lange Ost-West-Pipeline wieder in Betrieb genommen, nachdem ein Drohnenangriff sie am 13. September zur Abschaltung gezwungen hatte. Die Ölexporte über den Rotmeerhafen Yanbu liefen laut The National zunächst mit reduzierter Kapazität wieder an.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ausweichroute durch die Straße von Hormus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Während der Abschaltung verlagerte der staatliche Ölkonzern Saudi Aramco seine Exporte auf die Straße von Hormus. Über das Wochenende vor der Wiederinbetriebnahme luden sieben Supertanker am Golf zusammen 14 Millionen Barrel – die höchste Menge seit mindestens Juni, wie The National unter Berufung auf Marktbeobachtungen berichtete.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Brent erstmals seit Wochen unter 100 Dollar',
+      },
+      {
+        type: 'paragraph',
+        text: 'Mit der Wiederinbetriebnahme und den zusätzlichen Verladungen am Golf fiel der Brent-Preis laut The National auf 97,81 US-Dollar (-2,52 Prozent), der amerikanische Ölpreis WTI auf 89,50 US-Dollar (-3,11 Prozent) – der erste Stand unter 100 Dollar seit mehreren Wochen. In der Nacht auf Mittwoch notierte Brent laut finanzen.net bei 98,63 US-Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Der Preis reagierte nicht nur auf die reparierte Pipeline, sondern darauf, dass in derselben Woche zwei Lieferwege gleichzeitig zur Verfügung standen – die alte Route über Yanbu und die während der Störung aufgebaute Ausweichroute über den Golf. Ein Angebotsausfall, dessen Ersatzlösung sich als tragfähig erweist, kann den Preis stärker drücken als der ursprüngliche Ausfall ihn angehoben hatte.',
+      },
+    ],
+  },
+  {
+    slug: 'trump-xi-gipfel-washington-zollwaffenstillstand',
+    title:
+      'Trump empfängt Xi am Donnerstag – der Zollwaffenstillstand steht im Mittelpunkt',
+    metaTitle: 'Trump empfängt Xi: Zollwaffenstillstand im Mittelpunkt',
+    teaser:
+      'Am Donnerstag trifft Xi Jinping in Washington auf Trump. Im Zentrum steht, ob der am 10. November auslaufende Zollwaffenstillstand verlängert wird.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['USA', 'China', 'Zölle', 'Handel'],
+    relatedTopics: ['aktien-laender-branchen'],
+    relatedSymbols: ['dax', 'nasdaq-100', 'alibaba'],
+    sources: [
+      {
+        label:
+          'Yahoo Finance, Meldung vom 22.09.2026: „Gipfeltreffen zwischen Trump und Xi: Diese Themen stehen auf der Agenda“',
+        url: 'https://de.finance.yahoo.com/nachrichten/gipfeltreffen-zwischen-trump-xi-diese-092720683.html',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Donnerstag empfängt US-Präsident Donald Trump Chinas Staats- und Parteichef Xi Jinping in Washington. Im Mittelpunkt der Gespräche steht laut Yahoo Finance, ob der am 10. November auslaufende Zollwaffenstillstand zwischen den USA und China verlängert wird – die Märkte blicken dieser Entscheidung mit Spannung entgegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Boeing, Agrargüter und Seltene Erden',
+      },
+      {
+        type: 'paragraph',
+        text: 'Washington drängt China laut dem Bericht zu umfangreichen Käufen amerikanischer Produkte, insbesondere Boeing-Flugzeuge und Agrargüter. Im Gegenzug fordert Peking eine Lockerung amerikanischer Exportrestriktionen, während Washington seinerseits auf eine Erleichterung chinesischer Ausfuhren von Seltenen Erden drängt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Taiwan und ein möglicher KI-Dialog',
+      },
+      {
+        type: 'paragraph',
+        text: 'Peking möchte laut Yahoo Finance, dass sich Trump gegen eine Unabhängigkeit Taiwans ausspricht – ein Abrücken von bisheriger US-Politik. Daneben sieht der Bericht Raum für eine mögliche Zusammenarbeit bei gemeinsamen Risiken künstlicher Intelligenz. Auch der Iran-Konflikt und der Zustrom von Fentanyl-Vorläufersubstanzen in die USA stehen auf der Agenda.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Solange offen ist, ob der Zollwaffenstillstand verlängert wird, preisen die Märkte eine Wahrscheinlichkeit dafür ein, keine Gewissheit. Das Treffen am Donnerstag liefert eine von zwei möglichen Antworten – und je nachdem, welche es wird, kann sich diese eingepreiste Erwartung in die eine oder andere Richtung auflösen.',
+      },
+    ],
+  },
+  {
+    slug: 'siemens-milliardenauftraege-vietnam-oesterreich',
+    title:
+      'Siemens erhält an einem Tag zwei Milliardenaufträge – aus Vietnam und Österreich',
+    metaTitle: 'Siemens: zwei Milliardenaufträge an einem Tag',
+    teaser:
+      'Siemens Mobility liefert Hochgeschwindigkeitszüge nach Vietnam, dazu kommt ein Signaltechnik-Auftrag der ÖBB. Zusammen sind es rund 2,3 Milliarden Euro.',
+    category: 'Märkte',
+    publishedAt: '2026-09-23T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Siemens', 'DAX', 'Auftragseingang', 'Bahntechnik'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['siemens', 'dax'],
+    sources: [
+      {
+        label:
+          'finanzen.at, Meldung vom 22.09.2026: „Siemens-Aktie im Plus: Bauauftrag eines Hochgeschwindigkeitsnetzes in Vietnam – Großauftrag auch aus Österreich“',
+        url: 'https://www.finanzen.at/nachrichten/aktien/siemens-aktie-im-plus-bauauftrag-eines-hochgeschwindigkeitsnetzes-in-vietnam-grossauftrag-auch-aus-oesterreich-1036563188',
+      },
+      {
+        label:
+          'ariva.de, Meldung vom 22.09.2026: „Milliardenauftrag aus Österreich für Siemens-Bahnsparte“',
+        url: 'https://www.ariva.de/aktien/siemens-aktie/news/milliardenauftrag-aus-oesterreich-fuer-siemens-bahnsparte-12144788',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 22.09.2026: „Milliarden-Coup für Siemens: Siemens schlägt zu: Milliardenauftrag aus Asien entfacht neue Hoffnung“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Siemens Mobility hat laut finanzen.at einen Turnkey-Vertrag mit der Vingroup-Tochter Vinspeed für zwei Hochgeschwindigkeitsstrecken in Vietnam unterschrieben, Hanoi–Quang Ninh und Ben Thanh–Can Gio. Der Auftrag hat ein Volumen von bis zu einer Milliarde Euro. Siemens liefert zehn Züge des Typs Velaro Novo sowie Kommunikations- und Elektrifizierungssysteme; Vinspeed übernimmt Projektentwicklung, Gleisbau und die übrigen Bauarbeiten. Der Vertrag baut auf einer Technologietransfer-Vereinbarung vom Dezember des Vorjahres auf.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Am selben Tag: 1,3 Milliarden Euro aus Österreich',
+      },
+      {
+        type: 'paragraph',
+        text: 'Parallel dazu beauftragte die ÖBB-Infrastruktur AG Siemens laut ariva.de mit digitaler Stellwerkstechnik im Volumen von 1,3 Milliarden Euro. Bei der Technologie „Signaling X“ wandert die Stellwerkslogik in zentrale Rechenzentren; die digitalen Stellwerke sollen ab 2030 schrittweise eingeführt werden. Zur Kursreaktion der Siemens-Aktie nennen die beiden Quellen an diesem Tag unterschiedliche Werte – finanzen.at berichtet von zeitweise 276,25 Euro (+1,01 Prozent), ariva.de von 273,85 Euro (+0,13 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auftragseingang ist nicht dasselbe wie Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zusammengerechnet stehen an diesem Tag rund 2,3 Milliarden Euro neuer Aufträge zu Buche. Verbucht wird ein solcher Auftragseingang jedoch, sobald der Vertrag unterschrieben ist – Umsatz und Gewinn daraus entstehen erst, wenn die Züge geliefert und die Stellwerke gebaut sind, im Fall Österreichs beginnend erst 2030. Eine Milliardenschlagzeile am Tag der Unterschrift sagt deshalb noch nichts darüber, wann sich der Auftrag in den Quartalszahlen niederschlägt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Milliardenaufträge an einem Tag sind ein Signal für die Nachfrage nach Siemens-Technik, keine Vorwegnahme künftiger Bilanzen. Wer die Meldung liest, sollte Auftragseingang und Umsatzausweis als zwei verschiedene Zeitpunkte im selben Projekt verstehen, nicht als denselben Vorgang.',
+      },
+    ],
+  },
+  {
+    slug: 'schweizer-goldexporte-81-prozent-anstieg',
+    title: 'Schweizer Goldexporte steigen im August um 81 Prozent',
+    teaser:
+      'Die Schweiz exportierte im August 156,5 Tonnen Gold, vor allem nach Großbritannien und China. Der Goldpreis selbst bewegte sich kaum vom Fleck.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-23T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Gold', 'Schweiz', 'Edelmetalle', 'Zinsen'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Meldung vom 22.09.2026: „Internationale Gold-Lieferungen der Schweiz steigen um 80 Prozent“',
+        url: 'https://www.goldreporter.de/schweizer-goldexporte-august-2026/news/262042/',
+      },
+      {
+        label:
+          'Goldreporter, Meldung vom 21.09.2026: „Marktzinsen sinken leicht – Blicke auf USA-China-Gipfel gerichtet“',
+        url: 'https://www.goldreporter.de/marktzinsen-sinken-usa-china-gipfel-goldpreis/zinsen/262021/',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 23.09.2026, 02:56 Uhr: Gold 4.359 US-Dollar (+0,1 Prozent)',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Schweiz hat im August laut Goldreporter 156,5 Tonnen Gold im Wert von rund 18,8 Milliarden Euro exportiert – ein Anstieg um 81 Prozent gegenüber dem Juli-Wert. Größter Abnehmer war mit 102 Tonnen Großbritannien, gefolgt von China mit 26 Tonnen, den USA mit 10 Tonnen und Indien mit 3,5 Tonnen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Schweiz importiert, veredelt, exportiert wieder',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig stiegen auch die Einfuhren: 205 Tonnen im Wert von 20,3 Milliarden Euro, ein Plus von 47 Prozent. Den größten Anteil lieferten mit 74,7 Tonnen die Vereinigten Arabischen Emirate über den Goldhandelsplatz Dubai, dazu kamen 28 Tonnen aus den USA, 7 Tonnen aus Italien und 4,6 Tonnen aus Deutschland – deutlich weniger als die 28 Tonnen, die Deutschland allein zwischen Januar und März geliefert hatte. Die Schweizer Raffinerien nehmen Rohgold aus aller Welt auf, veredeln es zu Barren und exportieren es weiter.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Goldpreis selbst bewegte sich kaum',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis war laut Goldreporter am Dienstag zeitweise unter die Marke von 4.350 US-Dollar gefallen, belastet von hohen US-Anleiherenditen – die Rendite zehnjähriger US-Staatsanleihen lag am Montagnachmittag bei 4,97 Prozent, nachdem sie zwischenzeitlich über 5 Prozent gestiegen war. In der Nacht auf Mittwoch notierte Gold laut finanzen.net wieder bei 4.359 US-Dollar, ein Plus von 0,1 Prozent.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Auf den Goldpreis wirken hohe Anleiherenditen und geopolitische Risiken in entgegengesetzte Richtungen: Hohe Zinsen machen das zinslose Gold im Vergleich zu Anleihen weniger attraktiv, während Unsicherheit die Nachfrage nach einem als sicher geltenden Vermögenswert erhöht. Dass der Preis trotz beider Bewegungen kaum von der Stelle kam, deutet darauf hin, dass sich diese beiden Kräfte an diesem Tag ungefähr die Waage hielten.',
+      },
+    ],
+  },
+  {
+    slug: 'pmi-deutschland-frankreich-eurozone-heute',
+    title:
+      'Das steht heute an: Einkaufsmanagerindizes für Deutschland, Frankreich und die Eurozone',
+    metaTitle: 'Heute: PMI für Deutschland, Frankreich, Eurozone',
+    teaser:
+      'Um 9:15 und 9:30 Uhr erscheinen die Einkaufsmanagerindizes für Frankreich und Deutschland, um 10 Uhr der für die Eurozone. Die Vorwerte gehen auseinander.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-23T07:15:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['PMI', 'Konjunktur', 'Deutschland', 'Frankreich'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label: 'wallstreet-online, Kommende Termine, Stand 23.09.2026, 00:56 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Wichtige Termine, Stand 23.09.2026, 00:56 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Einkaufsmanagerindex fragt Einkaufsleiter in Unternehmen, ob sich Neuaufträge, Produktion und Beschäftigung gegenüber dem Vormonat verbessert oder verschlechtert haben. Ein Wert über 50 Punkten zeigt Wachstum an, ein Wert darunter Schrumpfung. Heute erscheinen laut wallstreet-online und finanzen.net gleich mehrere Ausgaben dieses Indikators für den Euroraum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Terminplan des Vormittags',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 9:00 Uhr spricht EZB-Ratsmitglied Boris Vujcic. Um 9:15 Uhr folgen die vorläufigen Einkaufsmanagerindizes für Frankreich: Für die Industrie liegt die Prognose bei 50,9 nach zuvor 51,1 Punkten, für den Dienstleistungssektor bei 48,5 nach 48,0 Punkten, für den Gesamtindex lag der Vorwert bei 48,5 Punkten. Um 9:30 Uhr erscheinen die deutschen Werte: Für die Industrie wird 54,5 nach zuvor 54,3 Punkten erwartet, für Dienstleistungen 50,0 nach 49,7 Punkten, der Gesamtindex lag zuvor bei 51,8 Punkten. Um 10:00 Uhr folgt der Industrie-Einkaufsmanagerindex für die gesamte Eurozone, mit einer Prognose von 52,7 Punkten – unverändert zum Vormonat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Währungsraum, zwei unterschiedliche Signale',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Vorwerte zeichnen für Deutschland und Frankreich unterschiedliche Bilder: Der deutsche Industrieindex liegt bereits über der Wachstumsschwelle von 50 Punkten und soll laut Prognose weiter steigen, während der französische Gesamtindex mit zuletzt 48,5 Punkten unterhalb dieser Schwelle liegt. Beide Länder teilen sich dieselbe Währung und dieselbe Notenbank, zeigen der Prognose nach an diesem Vormittag aber gegenläufige Konjunktursignale. Zusätzlich veröffentlichte die niederländische Statistikbehörde bereits um 6:30 Uhr die endgültigen Zahlen zum Bruttoinlandsprodukt des zweiten Quartals, unrevidiert bei 1,3 Prozent im Jahresvergleich und 0,4 Prozent zum Vorquartal.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Prognosewert ist keine Meldung, sondern eine Erwartung, die sich noch bestätigen oder verfehlen kann – erst die tatsächlichen Werte am Vormittag zeigen, ob sich die Industrie in Deutschland und Frankreich tatsächlich so entwickelt hat. Notenbanken lesen aus solchen Indizes Hinweise auf die Konjunktur, ohne dass ein einzelner Wert bereits eine Zinsentscheidung vorwegnimmt.',
+      },
+    ],
+  },
+  {
     slug: 'oelpreis-faellt-unter-100-dollar',
     title: 'Ölpreis fällt unter 100 Dollar – Europas Börsen schließen im Plus',
     teaser:
