@@ -101,6 +101,360 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'ifo-geschaeftsklima-fed-ezb-termine-heute',
+    title: 'Ifo-Geschäftsklima und Reden von Fed und EZB stehen heute an',
+    teaser:
+      'Um 10 Uhr veröffentlicht das ifo-Institut sein Geschäftsklima, davor und danach sprechen Notenbanker von EZB und Fed – ein dichter Terminvormittag.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-24T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Ifo', 'EZB', 'Fed', 'Konjunktur'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: ['dax', 'euro-stoxx-50'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wichtige Termine / Kommende Termine, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Um 10 Uhr veröffentlicht das ifo-Institut das Geschäftsklima für die deutsche Wirtschaft. Laut den Terminübersichten von wallstreet-online erwarten Analysten einen Anstieg auf 89 Punkte, nach zuvor 88,8 Punkten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zeitgleich erscheinen die beiden Teilindizes: Die aktuelle Geschäftslage wird bei 89 Punkten erwartet, nach zuvor 88,5; die Geschäftserwartungen bei 89,3 Punkten, nach zuvor 89,1.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Drei Notenbanker an einem Vormittag',
+      },
+      {
+        type: 'paragraph',
+        text: 'Vor den ifo-Zahlen spricht um 9:15 Uhr EZB-Direktoriumsmitglied Isabel Schnabel. Um 10:10 Uhr, kurz nach der ifo-Veröffentlichung, äußert sich Fed-Präsident John C. Williams von der Federal Reserve Bank of New York. Um 11 Uhr folgt EZB-Chefvolkswirt Philip Lane.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Stimmungsindex zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der ifo-Index misst keine amtliche Wirtschaftsleistung, sondern die Einschätzung mehrerer tausend befragter Unternehmen zu Lage und Erwartungen – deshalb liegt er meist Wochen vor amtlichen Wachstumszahlen vor und gilt als früher Hinweis auf die Konjunkturentwicklung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein Stimmungsindex ist eine Erwartung, keine abgeschlossene Messung. Ob die tatsächliche Wirtschaftsleistung der optimistischeren Stimmung folgt, zeigt sich erst in späteren amtlichen Daten – nicht am Tag der Veröffentlichung selbst.',
+      },
+    ],
+  },
+  {
+    slug: 'frachtschiff-hormus-oelpreis-ueber-100-dollar',
+    title: 'Frachtschiff brennt vor Hormus – Ölpreis schnellt über 100 Dollar',
+    teaser:
+      'Ein Frachtschiff steht in der Straße von Hormus in Flammen, Deutschlands Außenminister fordert ein Ende der Blockade, und Brent klettert wieder über 100 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-24T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Hormus', 'Iran', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Wirtschaftsnachrichten, Stand 24.09.2026, 00:15 Uhr: „Behörde: Frachtschiff in der Straße von Hormus in Flammen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 23.09.2026, wallstreetONLINE Redaktion: „Dieselvorräte am Limit: USA liefert kein Diesel mehr: Brent bricht wieder über 100 Dollar aus!“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Rohstoffnachrichten, Meldung vom 23.09.2026, dpa-AFX: „Ölpreise bauen Gewinne aus - Brent-Preis legt bis zu viereinhalb Prozent zu“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Straße von Hormus steht laut einer Behördenmeldung, die wallstreet-online in der Nacht auf Donnerstag veröffentlichte, ein Frachtschiff in Flammen. Die Meldung nennt weder die Ursache des Feuers noch den Namen des Schiffs.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bundesaußenminister Wadephul forderte den Iran auf, die Blockade der Straße von Hormus zu beenden. Der Iran wiederum wehrte sich laut einer weiteren Meldung vor den Vereinten Nationen gegen Drohungen von US-Präsident Donald Trump; ein Treffen zwischen Trump und dem iranischen Präsidenten Peseschkian gilt laut wallstreet-online als möglich.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Donnerstag notierte die Nordseesorte Brent laut wallstreet-online bei 103,43 US-Dollar, ein Plus von 4,87 Prozent gegenüber dem Vortag. Nach Angaben von finanzen.net legte der Preis im Verlauf des Handels bis zu viereinhalb Prozent zu. Nach fünf Tagen mit fallenden Notierungen kletterte Brent damit wieder über die Marke von 100 Dollar.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Diesel als möglicher Auslöser',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund für den Anstieg nennt eine Überschrift von wallstreet-online sinkende US-Dieselvorräte – die Meldung selbst liefert dazu keine weiteren Zahlen oder Belege. Wie das Feuer auf dem Frachtschiff und die Diesel-Lage zusammenhängen, geht aus den Quellen ebenfalls nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Feuer im Golf den Ölpreis weltweit bewegt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus wird ein großer Teil der weltweiten Ölexporte verschifft. Der Preis reagiert deshalb nicht nur auf tatsächlich ausgefallene Lieferungen, sondern schon auf die Möglichkeit einer Blockade – dieser Erwartungsanteil wird als Risikoaufschlag bezeichnet und kann sich auflösen, sobald sich die Lage beruhigt, ohne dass sich an den geförderten Mengen etwas geändert hat.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die Blockade tatsächlich anhält oder sich – wie schon in den Tagen zuvor – wieder auflöst, lässt sich aus einer einzelnen Nachtmeldung nicht ablesen. Wer den Ölpreis an diesem Morgen betrachtet, sieht damit auch, wie stark ein einzelnes ungeklärtes Ereignis am Golf den Preis kurzfristig bewegen kann.',
+      },
+    ],
+  },
+  {
+    slug: 'usa-schieben-zusatzzoelle-gegen-china-auf',
+    title: 'USA schieben neue Sonderzölle gegen China erneut auf',
+    teaser:
+      'Die US-Regierung hat laut einer dpa-AFX-Meldung zusätzliche Zölle gegen China erneut aufgeschoben – Details zu Umfang und neuer Frist bleiben offen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-24T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Zölle', 'USA', 'China', 'Handelspolitik'],
+    relatedTopics: ['wie-funktioniert-der-markt'],
+    relatedSymbols: ['dax', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 23.09.2026, 23:24 Uhr, dpa-AFX: „US-Regierung: Zusatzzölle gegen China erneut aufgeschoben“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Regierung hat zusätzliche Zölle gegen China einer Meldung von dpa-AFX zufolge erneut aufgeschoben. Um welche Zölle es sich handelt, auf welchen Termin sie verschoben wurden und was die Entscheidung ausgelöst hat, geht aus der kurzen Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ankündigung ohne viele Details',
+      },
+      {
+        type: 'paragraph',
+        text: 'Damit bleibt offen, ob es sich um eine kurzfristige Verschiebung oder eine länger angelegte Aussetzung handelt. Für eine Einordnung fehlen zentrale Angaben: um welche Produkte es geht, wie hoch die betroffenen Zölle ausfallen sollten und bis wann die neue Frist reicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was der Markt aus einer Verschiebung macht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsen bilden nicht nur ein, was tatsächlich passiert, sondern auch, was Marktteilnehmer erwarten. Wird eine angekündigte Maßnahme aufgeschoben, verändert das die eingepreiste Wahrscheinlichkeit, dass sie überhaupt in Kraft tritt – selbst wenn sich am eigentlichen Zollsatz nichts ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Selbst ein Zoll, der am Ende nie in Kraft tritt, kann Investitionsentscheidungen beeinflussen, solange Unternehmen mit ihm rechnen müssen. Eine wiederholte Verschiebung verlängert diese Unsicherheit, statt sie aufzulösen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine wiederholt aufgeschobene Maßnahme ist weder eine endgültige Absage noch eine Bestätigung, dass sie kommt. Wer daraus eine klare Richtung für einzelne Branchen ableiten will, braucht mehr als eine Schlagzeile ohne Details.',
+      },
+    ],
+  },
+  {
+    slug: 'wall-street-dax-schwaecher-euro-vier-monats-tief',
+    title:
+      'Steigende Ölpreise drücken Wall Street und Dax, der Euro fällt auf ein Vier-Monats-Tief',
+    metaTitle: 'Ölpreise drücken Wall Street, Dax und den Euro',
+    teaser:
+      'Wall Street und Dax schlossen am Mittwoch schwächer, während der Euro laut dpa-AFX auf den tiefsten Stand seit Ende Juli fiel – wegen steigender Ölpreise.',
+    category: 'Märkte',
+    publishedAt: '2026-09-24T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Dax', 'Wall Street', 'Euro', 'Ölpreis'],
+    relatedTopics: ['wie-funktioniert-der-markt', 'waehrungen-wechselkurse'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100', 'eur-usd'],
+    sources: [
+      {
+        label:
+          'onvista, Index-Analysen, Meldung vom 23.09.2026, dpa-AFX: „ROUNDUP/Aktien New York Schluss: Schwächer - Steigende Ölpreise verunsichern“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Index-Analysen, Meldung vom 23.09.2026, dpa-AFX: „ROUNDUP/Aktien Frankfurt Schluss: Verluste - Dax weiter von Ölpreisen bewegt“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Devisennachrichten, Meldung vom 23.09.2026, dpa-AFX: „Devisen: Eurokurs fällt unter 1,14 US-Dollar auf tiefsten Stand seit Ende Juli“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label: 'finanzen.net, Kursleiste, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label: 'wallstreet-online, Kursleiste, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Börsen schlossen am Mittwoch schwächer: Laut Kurzmeldungen von dpa-AFX gaben Dow Jones, S&P 500, Nasdaq Composite und Nasdaq 100 zum Handelsende nach; als Grund nennen die Meldungen steigende Ölpreise, die Anleger verunsichern. Konkrete Punkt- oder Prozentangaben liefern die Kurzmeldungen nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Auch in Frankfurt ging es abwärts: Der Dax schloss laut dpa-AFX mit Verlusten, ebenfalls von den steigenden Ölpreisen bewegt; der Wiener ATX gab nach seinem jüngsten Rekordhoch leicht nach.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Kursleisten, zwei Zahlen',
+      },
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Donnerstag zeigte die Kursleiste von finanzen.net den Dax bei 25.411 Punkten, ein Minus von 0,7 Prozent. Wallstreet-online wies zur selben Zeit einen Stand von 25.356,67 Punkten aus, ein Minus von 1,31 Prozent. Beide Angaben stammen aus fortlaufenden Kursen außerhalb der offiziellen Handelszeiten der Frankfurter Börse und beziehen sich deshalb nicht zwangsläufig auf denselben Vergleichszeitpunkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der Euro auf dem tiefsten Stand seit Ende Juli',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Euro fiel laut dpa-AFX unter 1,14 US-Dollar und damit auf den tiefsten Stand seit Ende Juli. Eine Begründung für den Rückgang nennt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Anbieter können für denselben Index zur selben Nacht unterschiedliche Prozentzahlen zeigen, wenn sie zu unterschiedlichen Zeitpunkten oder auf Basis unterschiedlicher Handelsplätze rechnen. Wer eine einzelne Prozentangabe zitiert, sollte wissen, auf welchen Zeitpunkt sie sich bezieht.',
+      },
+    ],
+  },
+  {
+    slug: 'gold-silber-auseinander-in-derselben-nacht',
+    title: 'Gold hält sich, Silber bricht in derselben Nacht deutlich ein',
+    teaser:
+      'Während Gold in der Nacht auf Donnerstag kaum bewegt blieb, fiel Silber laut wallstreet-online um fast vier Prozent – zwei Edelmetalle, zwei Richtungen.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-24T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Gold', 'Silber', 'Rohstoffe', 'Edelmetalle'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffpreise / Kursleiste, Stand 24.09.2026, 00:15 Uhr',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, Marktberichte, Meldung vom 23.09.2026: „Der Goldpreis startet am Mittwoch erneut schwächer. Brent fällt unter 100 USD. Im Fokus stehen US-Zinsen, Iran-Gespräche und das Treffen Trump–Xi.“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'onvista, Aktien-Analysen, Meldung vom 23.09.2026, 15:55 Uhr: „Dax Tagesrückblick 23.09.2026 – Ölpreise belasten den Dax – Silber gibt deutlich nach“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'In der Nacht auf Donnerstag notierte Gold laut der Kursleiste von wallstreet-online bei 4.289 US-Dollar, ein Plus von 0,03 Prozent. Silber dagegen fiel im selben Zeitraum um 3,86 Prozent auf 64,49 US-Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dass sich die beiden Edelmetalle in dieser Nacht auseinanderbewegten, deutete sich schon während des Mittwochshandels an: Ein Dax-Tagesrückblick von onvista trug am 23.09.2026 den Titel „Ölpreise belasten den Dax – Silber gibt deutlich nach“.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Gold zwischen Zinsen und Nahost-Sorgen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einem Marktbericht von Goldreporter war der Goldpreis bereits am Mittwoch unter 4.350 US-Dollar gefallen; die Redaktion nannte als Themen im Blick der Märkte US-Zinsen, Gespräche mit dem Iran und ein Treffen zwischen Trump und Xi. Als Unterstützung gilt laut Goldreporter die 50-Tage-Linie.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Edelmetalle, zwei Nachfragequellen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold und Silber gelten beide als Edelmetalle, doch Silber wird zu einem erheblichen Teil industriell verarbeitet, etwa in der Elektronik- und Solarbranche, während Gold überwiegend als Wertanlage und Reserve gehalten wird. Ein Grund, warum Silber in dieser Nacht deutlich stärker nachgab als Gold, geht aus den vorliegenden Quellen nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Rohstoffe, die oft gemeinsam als „Edelmetalle“ gehandelt werden, können sich in derselben Nacht in entgegengesetzte Richtungen bewegen. Wer von einem gemeinsamen Trend ausgeht, übersieht leicht, dass hinter Gold und Silber unterschiedliche Angebots- und Nachfragestrukturen stehen.',
+      },
+    ],
+  },
+  {
+    slug: 'berkshire-beteiligung-immobilienentwickler-miami',
+    title:
+      'Berkshire baut Beteiligung an Immobilienentwickler trotz Kursverlust von 32 Prozent aus',
+    metaTitle: 'Berkshire steigt bei Immobilienentwickler Lennar ein',
+    teaser:
+      'Berkshire Hathaway hat eine fast zehnprozentige Beteiligung an einem Immobilienentwickler aufgebaut, dessen Aktie binnen eines Jahres rund 32 Prozent verlor.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-24T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Berkshire Hathaway', 'Lennar', 'Aktien', 'Immobilien'],
+    relatedTopics: ['aktie', 'anlegerpsychologie'],
+    relatedSymbols: ['berkshire', 'lennar'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 24.09.2026, 00:15 Uhr: „Buffett-Nachfolger am Ruder: Berkshire kauft diese Absturz-Aktie nach“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Berkshire Hathaway hat laut wallstreet-online eine fast zehnprozentige Beteiligung am Immobilienentwickler Lennar mit Sitz in Miami aufgebaut. Die Aktie von Lennar hat nach Angaben von wallstreet-online innerhalb eines Jahres rund 32 Prozent an Wert verloren.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kaufen, wenn andere verkaufen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Berkshire Hathaway ist dafür bekannt, Beteiligungen häufig dann aufzubauen, wenn ein Aktienkurs bereits deutlich gefallen ist, statt auf steigende Kurse zu warten. Warum genau Lennar für Berkshire jetzt interessant wurde, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was eine große Beteiligung nicht bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gemeldete Beteiligung ist eine Tatsache zu einem Stichtag, keine Prognose. Sie sagt nichts darüber aus, ob der Kurs von Lennar seinen Rückgang der vergangenen zwölf Monate fortsetzt oder sich erholt – und auch nichts darüber, wie lange Berkshire die Position halten wird.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass ein bekannter Großinvestor eine fallende Aktie aufstockt, ist für sich genommen weder ein Kauf- noch ein Verkaufssignal für andere. Es zeigt lediglich, wie ein einzelner Marktteilnehmer eine Bewertung zu einem bestimmten Zeitpunkt einschätzt.',
+      },
+    ],
+  },
+  {
     slug: 'usa-iran-gespraeche-un-generalversammlung',
     title: 'USA und Iran sprechen erstmals seit Kriegsbeginn direkt miteinander',
     metaTitle: 'USA und Iran sprechen erstmals direkt miteinander',
