@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-24T00:00:01.674Z",
+  "abgerufenAm": "2026-09-25T00:02:34.774Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -2780,10 +2780,6 @@
       }
     ],
     "medtronic": [
-      {
-        "date": "2021-09-23",
-        "amount": 0.63
-      },
       {
         "date": "2021-12-21",
         "amount": 0.63
@@ -6103,10 +6099,6 @@
     ],
     "sempra": [
       {
-        "date": "2021-09-23",
-        "amount": 0.55
-      },
-      {
         "date": "2021-12-22",
         "amount": 0.55
       },
@@ -7097,6 +7089,10 @@
       {
         "date": "2026-05-18",
         "amount": 2.57
+      },
+      {
+        "date": "2026-09-24",
+        "amount": 3.23
       }
     ],
     "societe-generale": [
@@ -8758,7 +8754,7 @@
       },
       {
         "date": "2026-06-04",
-        "amount": 2.0228198
+        "amount": 2.0339706
       }
     ],
     "compass-group": [
@@ -16143,10 +16139,6 @@
     ],
     "canadian-pacific": [
       {
-        "date": "2021-09-23",
-        "amount": 0.19
-      },
-      {
         "date": "2021-12-30",
         "amount": 0.19
       },
@@ -16814,10 +16806,6 @@
       }
     ],
     "vale": [
-      {
-        "date": "2021-09-23",
-        "amount": 8.197239
-      },
       {
         "date": "2022-03-09",
         "amount": 3.719256
@@ -30785,10 +30773,6 @@
     ],
     "smurfit-westrock": [
       {
-        "date": "2021-09-23",
-        "amount": 0.343
-      },
-      {
         "date": "2022-04-07",
         "amount": 1.048
       },
@@ -31249,6 +31233,10 @@
       {
         "date": "2026-03-25",
         "amount": 0.13
+      },
+      {
+        "date": "2026-09-24",
+        "amount": 0.12
       }
     ],
     "wartsila": [
@@ -33567,6 +33555,10 @@
       {
         "date": "2026-06-12",
         "amount": 0.36
+      },
+      {
+        "date": "2026-09-24",
+        "amount": 0.249
       }
     ],
     "byd-electronic": [
@@ -36311,10 +36303,6 @@
     ],
     "cochlear": [
       {
-        "date": "2021-09-23",
-        "amount": 1.4
-      },
-      {
         "date": "2022-03-28",
         "amount": 1.55
       },
@@ -36984,10 +36972,6 @@
       }
     ],
     "pembina": [
-      {
-        "date": "2021-09-23",
-        "amount": 0.21
-      },
       {
         "date": "2021-10-22",
         "amount": 0.21
