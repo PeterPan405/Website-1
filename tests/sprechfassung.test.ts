@@ -19,6 +19,7 @@ import {
   RECHTSHINWEIS_GESPROCHEN,
   sprechbar,
   verdaechtigeAnglizismen,
+  WORTZAHL_KAPUTT,
   WORTZIEL_MAX,
   WORTZIEL_MIN,
   zahlwort,
@@ -579,10 +580,36 @@ if (folge.wortzahl < WORTZIEL_MIN) {
 /*
   Die harte Untergrenze, an der etwas kaputt wäre.
 
-  Unter 300 Wörtern ist es keine Folge mehr, sondern eine Meldung – dann hat
-  die Kürzungsschleife zu viel weggenommen oder die Ausgabe ist leer.
+  Unter `WORTZAHL_KAPUTT` ist es keine Folge mehr, sondern eine Meldung – dann
+  hat die Kürzungsschleife zu viel weggenommen oder die Ausgabe ist leer.
+
+  Die Zahl stand bis zum 25. September 2026 als `300` genau hier, als einzige
+  der vier Grenzen ohne Namen. Am 16. September wurde die Folge kürzer
+  (Einordnung raus, Nutzerwunsch), am 25. fiel eine ganz normale Ausgabe mit
+  295 Wörtern durch, und die Tagesausgabe blieb liegen. Die Begründung für
+  die neue Zahl steht bei `WORTZAHL_KAPUTT`; hier steht nur noch der Name.
 */
-pruefe('Wortzahl gemeldet und plausibel', folge.wortzahl > 300, true)
+pruefe(
+  `Wortzahl über der harten Untergrenze (${WORTZAHL_KAPUTT})`,
+  folge.wortzahl > WORTZAHL_KAPUTT,
+  true
+)
+
+/*
+  Und die Gegenprobe: Die Grenze muss die kaputte Folge auch wirklich fangen.
+
+  Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe. Vorgelegt wird
+  deshalb dieselbe Ausgabe ohne eine einzige Meldung – übrig bleiben
+  Begrüßung, Hinweise und Abschied. Das ist der Fall, für den die Zahl da ist.
+*/
+{
+  const leer = baueFolge({ ...edition, top: [], further: [] })
+  pruefe(
+    `Eine Folge ohne Meldungen fällt durch (${leer.wortzahl} Wörter)`,
+    leer.wortzahl <= WORTZAHL_KAPUTT,
+    true
+  )
+}
 
 /* ------------------------------------------------------------------
    Die Wortgrenzen stehen an einer Stelle – geprüft, nicht gehofft.
@@ -598,13 +625,25 @@ pruefe('Wortzahl gemeldet und plausibel', folge.wortzahl > 300, true)
 ------------------------------------------------------------------- */
 
 {
+  /*
+    Die Zahlen kommen aus den Konstanten, nicht aus dieser Datei.
+
+    Bis zum 25. September 2026 stand hier `/\b(710|740)\b/` – die Prüfung
+    gegen die Doppelung war selbst eine. Als `WORTZIEL_MIN` auf 320 wechselte,
+    suchte sie nach einer 710, die es nirgends mehr gibt, und hätte eine neu
+    eingetippte 320 im Skript anstandslos durchgelassen. Genau der Fall, den
+    sie verhindern soll.
+  */
   const skript = readFileSync('scripts/podcast-folge-erzeugen.ts', 'utf8')
   const ohneKommentare = skript.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '')
 
+  const zahlen = [WORTZIEL_MIN, WORTZIEL_MAX, WORTZAHL_KAPUTT]
+  const doppelt = zahlen.filter((n) => new RegExp(`\\b${n}\\b`).test(ohneKommentare))
+
   pruefe(
-    'Das Erzeugungsskript nennt die Grenzen nicht als eigene Zahlen',
-    /\b(710|740)\b/.test(ohneKommentare),
-    false
+    `Das Erzeugungsskript nennt die Grenzen nicht als eigene Zahlen (${zahlen.join(', ')})`,
+    doppelt,
+    []
   )
   pruefe(
     'Es bezieht sie aus lib/sprechfassung.ts',
@@ -612,6 +651,11 @@ pruefe('Wortzahl gemeldet und plausibel', folge.wortzahl > 300, true)
     true
   )
   pruefe('Das Fenster ist nicht leer', WORTZIEL_MIN < WORTZIEL_MAX, true)
+  pruefe(
+    'Die harte Untergrenze liegt unter dem Zielfenster',
+    WORTZAHL_KAPUTT < WORTZIEL_MIN,
+    true
+  )
 }
 
 console.log(

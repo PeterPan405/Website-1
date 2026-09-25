@@ -1034,10 +1034,6 @@ export interface Podcastfolge {
 /**
  * Das Zielfenster der Folge, in Wörtern – **die eine Quelle dafür.**
  *
- * Rund fünf Minuten bei ruhigem Sprechtempo. Die Beschreibung jeder Folge
- * sagt „Kompakt in rund fünf Minuten"; diese beiden Zahlen sind das, was
- * dahintersteht.
- *
  * ## Warum sie seit dem 17. August 2026 exportiert werden
  *
  * Weil sie an drei Stellen standen und nur an einer als Konstante:
@@ -1055,14 +1051,69 @@ export interface Podcastfolge {
  * Dieselbe Bauart hat am 16. August 2026 eine Tagesausgabe gekostet – zwei
  * Grenzen für dieselbe Zeichenkette, 165 gegen 160.
  *
+ * ## Am 25. September 2026 nachgemessen, und beide Zahlen waren falsch
+ *
+ * Am 16. September ist die Einordnung aus der gesprochenen Folge genommen
+ * worden – Nutzerwunsch: nur Nachrichten, keine Erklärung. `themenAbsatz()`
+ * spricht seither nur noch `summary`. Damit fiel jede Folge um ein knappes
+ * Drittel kürzer aus, und **niemand hat die Grenzen nachgezogen**.
+ *
+ * Die zehn Folgen seit dem 16. September, in Wörtern:
+ *
+ *     295  319  384  415  429  432  441  453  456  686
+ *
+ * Keine einzige hat `WORTZIEL_MIN` von 710 erreicht; die längste blieb 24
+ * Wörter unter der Obergrenze. Das Fenster war nicht eng, es war **leer** –
+ * eine Untergrenze, die jeden Tag meldet, meldet nichts. Sie hat neun Tage
+ * lang denselben Hinweis gedruckt, und am zehnten hat ihn niemand mehr
+ * gelesen.
+ *
+ * Neu gesetzt an dem, was das Format hergibt: Median 432, Spanne 295 bis 686.
+ * `WORTZIEL_MIN` steht deshalb bei 320 – damit trennt der Hinweis wieder,
+ * statt immer zu gelten. Die Obergrenze bleibt bei 740: Sie treibt die
+ * Kürzungsschleife, 686 kam vor und war in Ordnung, und eine engere Grenze
+ * würde Meldungen wegschneiden, die jemand geschrieben hat.
+ *
  * ## Warum die Untergrenze nur meldet und nicht erzwingt
  *
  * Gekürzt wird durch Weglassen, verlängert würde durch Erfinden. Reicht der
  * Stoff nicht, kommt die Folge kürzer heraus und sagt es – eine kurze
  * ehrliche Folge schlägt eine gestreckte.
  */
-export const WORTZIEL_MIN = 710
+export const WORTZIEL_MIN = 320
 export const WORTZIEL_MAX = 740
+
+/**
+ * Wie kurz eine Folge sein darf, bevor sie keine mehr ist.
+ *
+ * ## Warum diese Zahl einen Namen braucht
+ *
+ * Weil sie keinen hatte. Sie stand als `folge.wortzahl > 300` mitten in
+ * `tests/sprechfassung.test.ts` – die einzige der vier Grenzen, die beim
+ * Export am 17. August 2026 nicht mitgekommen ist. Genau daran ist sie dann
+ * hängengeblieben, als die Folge am 16. September kürzer wurde.
+ *
+ * **Am 25. September 2026 hat sie die Tagesausgabe gekostet.** Die Folge kam
+ * auf 295 Wörter, der Riegel sah einen neuen Befund, und die Ausgabe blieb
+ * liegen. Der Riegel hatte recht – gemessen an einer Zahl, die niemand mehr
+ * meinte.
+ *
+ * ## Woran die neue Zahl gewählt ist
+ *
+ * Nicht an den 295, die gerade durchfallen sollten. An dem, was eine **kaputte**
+ * Folge wirklich ergibt, nachgerechnet an der Ausgabe vom 25. September:
+ *
+ *     keine einzige Meldung   104 Wörter   ← Begrüßung, Hinweise, Abschied
+ *     eine Meldung            143
+ *     zwei Meldungen          192
+ *     drei Meldungen          233   ← das Minimum, das der Validator zulässt
+ *
+ * Eine Ausgabe mit drei Meldungen ist gültig und ergibt 233 Wörter. Die
+ * Grenze muss also darunter liegen, sonst verwirft sie Erlaubtes – und über
+ * 104, sonst findet sie die leere Folge nicht. 180 liegt zwischen „eine
+ * Meldung" und „zwei" und damit dort, wo wirklich etwas fehlt.
+ */
+export const WORTZAHL_KAPUTT = 180
 
 /**
  * Der KI-Hinweis, wie er unter jeder Folge steht.
