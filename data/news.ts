@@ -101,6 +101,365 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'us-anleiherenditen-mehrjahreshoch-fed-williams-spricht',
+    title: 'US-Anleiherenditen auf Mehrjahreshoch – heute spricht die Fed',
+    teaser:
+      'Die Renditen US-amerikanischer Staatsanleihen kletterten am Donnerstag auf das höchste Niveau seit Jahren. Am Freitag spricht Fed-Vertreter John Williams.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-25T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Anleihen', 'Fed', 'Zinsen', 'Staatsschulden'],
+    relatedTopics: ['staatsanleihe', 'notenbanken-geldpolitik', 'schulden-und-kredit'],
+    relatedSymbols: ['dow-jones', 'nasdaq-100'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Stand 25.09.2026, 00:11 Uhr (GMT): „Die Renditen von US-Staatsanleihen sind am Donnerstag auf ein seit Jahren nicht mehr gesehenes Niveau gestiegen.“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 24.09.2026: „Pulverfass Staatsschulden: Anleiherenditen explodieren!“ und „365 Billionen auf Pump: Die Welt hat sich billig verschuldet – jetzt kommt die brutale Rechnung“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Wirtschaftskalender „Kommende Termine“, Stand 25.09.2026, 00:11 Uhr (GMT)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Renditen US-amerikanischer Staatsanleihen sind laut wallstreet-online am Donnerstag auf das höchste Niveau seit Jahren gestiegen. Die Übersicht nennt weder einen genauen Zahlenwert noch eine einzelne Laufzeit – als betroffene Wertpapiere werden der T-Bond-Future und der ICE US 10 Year Treasury Futures Index genannt.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag titelte die Redaktion: „Pulverfass Staatsschulden: Anleiherenditen explodieren!“ Auch das bleibt eine Überschrift ohne begleitende Zahlen. Eine weitere Meldung sprach von 365 Billionen US-Dollar, mit denen sich die Welt in der Vergangenheit günstig verschuldet habe – eine Rechnung, die nun teurer werde. Ob beide Meldungen inhaltlich zusammenhängen, geht aus den Übersichten nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was heute noch ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Wirtschaftskalender von wallstreet-online nennt für Freitag mehrere Termine: Um 11:15 Uhr spricht Fed-Mitglied John C. Williams, um 14:30 Uhr veröffentlichen die USA die Auftragseingänge langlebiger Güter (Durable Goods Orders) samt der Kennzahl ohne Transportsektor. Aus Deutschland kommt um 8 Uhr die GfK-Konsumklimastudie, aus Spanien um 9 Uhr das Bruttoinlandsprodukt, aus dem Euroraum um 10 Uhr die Geldmenge M3 und die Kreditvergabe an den Privatsektor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rendite steigt, wenn ein Kurs fällt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Anleiherenditen und Anleihekurse bewegen sich gegenläufig: Wer eine Anleihe mit fester Verzinsung günstiger kauft, weil ihr Kurs gefallen ist, erzielt bei gleichbleibendem Kupon eine höhere Rendite. Steigende Renditen sind deshalb zugleich Ausdruck fallender Kurse – ausgelöst etwa durch die Erwartung höherer künftiger Zinsen oder durch Sorgen um die Fähigkeit eines Schuldners, seine Anleihen zurückzuzahlen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob der Anstieg der Renditen an diesem Donnerstag mit den Schuldensorgen aus der zweiten Meldung zusammenhängt, geht aus den Übersichten nicht hervor – beide stehen dort unabhängig nebeneinander. Die Auftragsdaten und die Fed-Rede am Freitag liefern zusätzliche Anhaltspunkte dafür, in welche Richtung sich die Zinserwartungen als Nächstes verschieben könnten.',
+      },
+    ],
+  },
+  {
+    slug: 'oelpreis-hormus-drohkulisse-saudi-angebot',
+    title: 'Ölpreis zwischen Hormus-Drohkulisse und saudischem Angebot',
+    teaser:
+      'Der Ölpreis baute seinen Anstieg seit Dienstagabend bis Donnerstag auf zehn Prozent aus. Iran und Saudi-Arabien hatten die Notierung zuvor mehrfach gedreht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-25T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 5,
+    tags: ['Öl', 'Iran', 'Saudi-Arabien', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 24.09.2026, dpa-AFX: „Ölpreise bauen Anstieg seit Dienstagabend auf zehn Prozent aus“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Meldung vom 23.09.2026, wallstreetONLINE Redaktion: „Iran nennt seinen Preis für Hormus – Brent fällt unter 99 US-Dollar“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Unsere Redaktion empfiehlt, Meldung vom 21.09.2026: „Ölpreis fällt deutlich: Saudi-Arabien dreht den Ölhahn auf“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Gefragte Nachrichten, Meldung vom 22.09.2026: „Ölpreis dreht brutal: Iran stellt Hormus-Öffnung binnen sieben Tagen in Aussicht“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis hat seinen Anstieg seit Dienstagabend bis Donnerstag laut einer dpa-AFX-Meldung auf zehn Prozent ausgebaut. Auf welchem Dollar-Niveau die Notierung damit steht, nennt die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die Tage zuvor hatte sich der Preis laut wallstreet-online mehrfach gedreht: Am Montag drehte Saudi-Arabien nach eigenen Angaben den Ölhahn auf, der Preis fiel danach deutlich. Am Dienstag stellte der Iran eine Öffnung der Straße von Hormus binnen sieben Tagen in Aussicht. Am Mittwoch nannte der Iran „seinen Preis“ für Hormus, woraufhin die Nordseesorte Brent unter 99 US-Dollar fiel.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, der auf Ankündigungen reagiert, nicht nur auf Fässer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Keine der vier Meldungen erklärt, welche Liefermengen sich durch die genannten Ereignisse tatsächlich geändert haben. Zwischen einer Ankündigung, mehr zu fördern, und der Menge, die Wochen später tatsächlich verschifft wird, liegt eine Lücke – der Preis reagiert oft schon auf die Ankündigung selbst.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Risikoprämie statt Angebot und Nachfrage',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ökonomen bezeichnen den Teil eines Rohstoffpreises, der sich nicht aus tatsächlich gelieferten oder nachgefragten Mengen erklärt, sondern aus der Möglichkeit einer Störung, als Risikoprämie. Sie kann sich auflösen, sobald sich die Lage beruhigt, ohne dass sich an den geförderten Barrel etwas ändert – was die Schwankungen dieser Woche erklären könnte, ohne dass es eine der Meldungen ausdrücklich so sagt.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Wer die vier Meldungen dieser Woche nebeneinanderlegt, sieht ein Muster aus Drohung, Entspannungssignal und Gegenreaktion. Welches der beiden Signale sich am Ende als dauerhafter erweist, lässt sich aus den bisherigen Übersichten nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'netanjahu-un-rede-atomanlagen-iran',
+    title: 'Netanjahu verteidigt bei UN-Rede Angriffe auf iranische Atomanlagen',
+    metaTitle: 'Netanjahu verteidigt bei UN Angriffe auf Atomanlagen',
+    teaser:
+      'Bei seiner Rede vor der UN-Vollversammlung verteidigte Netanjahu die Angriffe auf iranische Atomanlagen; mehrere Delegationen verließen den Saal.',
+    category: 'Märkte',
+    publishedAt: '2026-09-25T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'Israel', 'UN', 'Nahost'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 24.09.2026, 20:47 Uhr, dpa-AFX: „ROUNDUP 2/Konfrontiert mit Protest: Netanjahu verteidigt Kriege bei UN“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Politik Nachrichten, Meldung vom 24.09.2026, dpa-AFX: „Netanjahu verteidigt Angriffe auf iranische Atomanlagen“ und „Netanjahu-Rede bei UN - Etliche Delegationen verlassen Raum“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Stand 25.09.2026, 00:11 Uhr (GMT): „80 Staaten verurteilen Angriffe des Irans und der Huthi“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Israels Ministerpräsident Benjamin Netanjahu hat am Donnerstag vor der UN-Generalversammlung in New York seine Kriegsführung verteidigt. Laut einer dpa-AFX-Meldung von 20:47 Uhr geschah dies unter Protest; laut einer weiteren Überschrift verließen mehrere Delegationen während seiner Rede den Saal.',
+      },
+      {
+        type: 'paragraph',
+        text: 'In seiner Rede verteidigte Netanjahu nach Angaben von wallstreet-online die israelischen Angriffe auf iranische Atomanlagen und sagte, „das iranische Volk wird frei sein“. Zudem griff er den New Yorker Bürgermeister Mamdani an. Eine Begründung für die Angriffe oder weitere Einzelheiten zu den Aussagen gehen aus den vorliegenden Überschriften nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine separate Meldung zu 80 Staaten',
+      },
+      {
+        type: 'paragraph',
+        text: 'In den Rohstoffnachrichten von wallstreet-online findet sich zusätzlich die Überschrift „80 Staaten verurteilen Angriffe des Irans und der Huthi“. Ob diese Verurteilung im Zusammenhang mit der UN-Rede steht oder ein eigenständiges Ereignis beschreibt, lässt sich aus der Übersicht nicht erschließen – sie nennt weder die beteiligten Staaten noch ein Datum.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede in New York den Ölpreis bewegen kann',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nahost-Ereignisse wirken auf den Ölpreis über die erwartete Versorgungssicherheit: Ein großer Teil der weltweiten Ölexporte verläuft durch die Region, allen voran durch die Straße von Hormus. Reden und diplomatische Zwischenfälle liefern deshalb selbst dann Kursimpulse, wenn sich an den geförderten oder verschifften Mengen nichts ändert.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Übersichten belegen die Rede und den Protest dagegen, nicht aber, wie sich die Lage in den kommenden Tagen entwickelt. Wer den Ölpreis in den nächsten Tagen beobachtet, sieht darin auch eine Reaktion auf Ereignisse wie dieses – unabhängig davon, ob sich die tatsächliche Liefersituation ändert.',
+      },
+    ],
+  },
+  {
+    slug: 'bafin-bundesbank-stresstest-banken-sparkassen-robust',
+    title: 'Stresstest: Kleine und mittlere Banken zeigen sich robust',
+    teaser:
+      'Ein gemeinsamer Stresstest von BaFin und Bundesbank bescheinigt kleinen und mittelgroßen Banken sowie Sparkassen in Deutschland ein robustes Kapitalpolster.',
+    category: 'Vorsorge',
+    publishedAt: '2026-09-25T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Banken', 'Einlagensicherung', 'Bundesbank', 'BaFin'],
+    relatedTopics: ['einlagensicherung'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'Deutsche Bundesbank, Pressemitteilungen, Meldung vom 24.09.2026: „LSI-Stresstest 2026: Banken und Sparkassen mit robustem Kapitalpolster“',
+        url: 'https://www.bundesbank.de/de/presse/pressenotizen',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Kleine und mittelgroße Banken sowie Sparkassen in Deutschland zeigen sich laut einer Pressemitteilung der Bundesbank vom Donnerstag robust – trotz wirtschaftlicher Herausforderungen, geopolitischer Unsicherheiten und Belastungen im Unternehmens- und Gewerbeimmobiliengeschäft.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Grundlage ist der aktuelle Stresstest der „Less Significant Institutions“ (LSI) – also jener Institute, die nicht direkt von der Europäischen Zentralbank, sondern von nationalen Aufsehern beaufsichtigt werden. Vorgestellt wurden die Ergebnisse laut Bundesbank von Bafin-Exekutivdirektor Nikolas Speer und Bundesbank-Vorstandsmitglied Michael Theurer.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Stresstest überhaupt prüft',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Stresstest simuliert, wie sich das Eigenkapital einer Bank in einem angenommenen Krisenszenario entwickeln würde – etwa bei fallenden Immobilienpreisen oder steigenden Kreditausfällen. Er misst damit keine Gewissheit über die Zukunft, sondern die Widerstandsfähigkeit gegen ein vorab festgelegtes Szenario.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum das für Sparerinnen und Sparer zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wer Geld auf einem Giro- oder Tagesgeldkonto bei einer kleinen Bank oder Sparkasse hält, verlässt sich auf zwei Sicherungen: das Eigenkapital der Bank selbst, das ein Stresstest wie dieser prüft, und die gesetzliche Einlagensicherung, die im Fall einer Insolvenz zusätzlich greift.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Die Pressemitteilung nennt keine Prozentzahlen zum Kapitalpolster und keine Institute, die im Test schlechter abschnitten. Wer die Ergebnisse im Detail nachvollziehen möchte, findet sie nicht in dieser Kurzmeldung, sondern erst im vollständigen Bericht von BaFin und Bundesbank.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-50-tage-linie-gold-etf-zufluss',
+    title: 'Goldpreis fällt auf 50-Tage-Linie, doch Gold-ETFs füllen sich wieder',
+    metaTitle: 'Goldpreis fällt auf 50-Tage-Linie, ETFs füllen sich',
+    teaser:
+      'Der Goldpreis fiel laut Goldreporter auf seine 50-Tage-Linie, weil die US-Renditen steigen. Der größte Gold-ETF GLD baute seine Bestände zuletzt trotzdem aus.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-25T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'ETF', 'Anleiherenditen', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold', 'silber'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News / ETF, Meldung vom 24.09.2026: „Goldpreis fällt auf 50-Tage-Linie – US-Renditen steigen“ und „Große Gold- und Silber-ETFs ziehen wieder Kapital an“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter auf seine 50-Tage-Linie gefallen – als Grund nennt die Redaktion steigende US-Renditen. Eine konkrete Notierung in Dollar nennt die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gleichzeitig meldet Goldreporter, dass der weltweit größte Gold-ETF, der SPDR Gold Shares (GLD), seine Bestände wieder leicht ausgebaut hat: Er hält demnach knapp 1.052 Tonnen Gold. Beim Silber-ETF SLV gingen die Bestände dagegen kurzfristig zurück.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zwei Bewegungen, die sich nicht widersprechen müssen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein fallender Preis und gleichzeitig steigende ETF-Bestände klingen zunächst gegenläufig. Sie schließen sich aber nicht aus: Die Bestände eines ETF wie GLD ändern sich, wenn Anleger neue Anteile kaufen oder zurückgeben – der Preis der zugrunde liegenden Unze Gold bildet sich unabhängig davon am Terminmarkt.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die 50-Tage-Linie als Prüfstein',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die 50-Tage-Linie ist der gleitende Durchschnitt der Schlusskurse der vergangenen 50 Handelstage – ein häufig beobachtetes technisches Signal. Fällt ein Kurs darunter, werten das manche Marktteilnehmer als Hinweis auf eine Schwächephase; ein Beleg dafür, wie sich der Preis als Nächstes entwickelt, ist das für sich genommen nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Steigende US-Renditen erhöhen die Opportunitätskosten des zinslosen Golds – wer stattdessen eine verzinste Anleihe hält, verzichtet bei hohen Zinsen auf weniger. Ob die ETF-Zuflüsse diesen Effekt in den kommenden Tagen ausgleichen, lässt sich aus den Zahlen von Goldreporter allein nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'hellofresh-gewinnwarnung-drittes-quartal',
+    title: 'HelloFresh kappt Umsatz- und Gewinnziel nach schwachem Quartal',
+    teaser:
+      'HelloFresh erwartet laut einer Ad-hoc-Mitteilung einen Q3-Umsatz unter den Markterwartungen und senkt sein Jahresziel für 2026.',
+    category: 'Märkte',
+    publishedAt: '2026-09-25T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['HelloFresh', 'Gewinnwarnung', 'SDAX', 'Aktien'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['hellofresh'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc, Meldung vom 24.09.2026, EQS Group AG: „EQS-Adhoc: HelloFresh SE erwartet Umsatz für das dritte Quartal 2026 unter der Markterwartung und passt Prognose für das Geschäftsjahr 2026 an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Aktuelle Nachrichten, Meldung vom 24.09.2026, dpa-AFX: „AKTIE IM FOKUS: Hellofresh auf Tradegate sehr schwach - Senkt Jahresziele“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, Aktuelle Nachrichten, Meldung vom 24.09.2026, dpa-AFX: „Hellofresh kappt Umsatz- und Gewinnziel - schwaches drittes Quartal“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Kochbox-Versender HelloFresh teilte laut einer Ad-hoc-Mitteilung vom Donnerstag mit, dass der Umsatz im dritten Quartal 2026 unter der Markterwartung liegen wird. Zugleich passte das Unternehmen seine Prognose für das Gesamtjahr 2026 an.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Nach Angaben von dpa-AFX kappte HelloFresh damit sowohl sein Umsatz- als auch sein Gewinnziel für das laufende Jahr. Um welchen Betrag oder welche Prozentzahl die neue Prognose von der alten abweicht, nennt keine der vorliegenden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Ad-hoc-Meldung ist Pflicht, keine Kür',
+      },
+      {
+        type: 'paragraph',
+        text: 'Börsennotierte Unternehmen müssen Informationen mit Kursbeeinflussungspotenzial unverzüglich veröffentlichen – als sogenannte Ad-hoc-Mitteilung. Eine Gewinnwarnung wie diese fällt darunter: Sie informiert den Markt, bevor die vollständigen Quartalszahlen mit allen Details vorliegen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Die Reaktion am Markt ging der offiziellen Meldung voraus',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut einer Überschrift von dpa-AFX zeigte sich die Aktie bereits im nachbörslichen Handel auf der Handelsplattform Tradegate „sehr schwach“. Ein solcher nachbörslicher Handel läuft außerhalb der regulären Xetra-Handelszeiten und reagiert oft schneller auf Nachrichten als die reguläre Börsensitzung am nächsten Morgen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Gewinnwarnung ohne begleitende Zahlen lässt offen, wie stark das Ergebnis tatsächlich vom bisherigen Ziel abweicht. Anleger erfahren das Ausmaß in der Regel erst mit der vollständigen Quartalsmitteilung – bis dahin bewegt sich der Kurs auf Basis der Erwartung, die allein die Ad-hoc-Meldung weckt.',
+      },
+    ],
+  },
+  {
     slug: 'ifo-geschaeftsklima-fed-ezb-termine-heute',
     title: 'Ifo-Geschäftsklima und Reden von Fed und EZB stehen heute an',
     teaser:
