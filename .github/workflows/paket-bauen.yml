@@ -749,22 +749,49 @@ jobs:
             # Eine Kopie kostet auf dem Server einen Augenblick und dreißig
             # Megabyte. Eine Verlinkung, der niemand folgt, kostet den
             # ganzen Podcast.
+            # ## Warum hier **nicht** vorher gelöscht wird
+            #
+            # Bis zum 25. September 2026 stand vor jedem `cp` ein `rm -rf`.
+            # In der Nacht davor ist genau das aufgegangen:
+            #
+            #     bash: line 104: 2431510 Killed   cp -a "$HOME/lese-audio/." …
+            #     ##[error]Process completed with exit code 137
+            #
+            # Der Läufer hatte kurz zuvor die letzten Lernseiten vertont –
+            # „Vorlesestimme: 172 Seiten gesprochen". Aus zwölf Aufnahmen
+            # wurden 172, und der geteilte Webspace hat das Kopieren nach
+            # einigen Minuten abgeschossen.
+            #
+            # Zwischen `rm -rf` und einem gelungenen `cp` hat die Website
+            # **keine** Aufnahmen. Wird der Kopiervorgang dazwischen
+            # abgebrochen, bleibt ein halb getauschtes Verzeichnis stehen –
+            # und das ist nach den Regeln dieses Hauses kein „Vorrat", den
+            # der nächste Lauf nachträgt, sondern ein roter Lauf mit einer
+            # kaputten Website dazwischen.
+            #
+            # Kopiert wird deshalb **ergänzend** (`-u`: nur Fehlendes und
+            # Neueres). Der erste Lauf danach trägt nach, was fehlt; jeder
+            # weitere fasst fast nichts mehr an und ist in Sekunden durch.
+            #
+            # Der Preis: Eine Aufnahme, die oben verschwindet, bleibt hier
+            # liegen. Das ist folgenlos – die Website verweist über
+            # `data/lese-audio.json` bzw. das Folgenregister auf einzelne
+            # Dateien, eine unverwiesene stört niemanden. Verschwundene
+            # Aufnahmen stören sehr wohl.
             if [ -d "$HOME/podcast-audio" ]; then
-              rm -rf "$ZIEL/podcast-audio"
               mkdir -p "$ZIEL/podcast-audio"
-              cp -a "$HOME/podcast-audio/." "$ZIEL/podcast-audio/"
+              cp -au "$HOME/podcast-audio/." "$ZIEL/podcast-audio/"
               echo "Podcast eingelegt: $(ls -1 "$ZIEL/podcast-audio" | wc -l) Dateien."
             fi
 
             # Dasselbe für die gesprochenen Lernseiten. Sie entstehen in
             # `lese-stimme.yml`, liegen wie der Podcast außerhalb des
-            # Webordners und überleben damit jeden Tausch – 280 Megabyte in
-            # jedem Paket wären zwanzig Minuten Übertragung für Dateien, die
-            # sich fast nie ändern.
+            # Webordners und überleben damit jeden Tausch – sie in jedes
+            # Paket zu legen wäre bei inzwischen 172 Aufnahmen eine halbe
+            # Stunde Übertragung für Dateien, die sich fast nie ändern.
             if [ -d "$HOME/lese-audio" ]; then
-              rm -rf "$ZIEL/lese-audio"
               mkdir -p "$ZIEL/lese-audio"
-              cp -a "$HOME/lese-audio/." "$ZIEL/lese-audio/"
+              cp -au "$HOME/lese-audio/." "$ZIEL/lese-audio/"
               echo "Vorlesestimme eingelegt: $(find "$ZIEL/lese-audio" -name '*.m4a' | wc -l) Aufnahmen."
             fi
 
