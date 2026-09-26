@@ -27,6 +27,32 @@ name: Quellen holen
 # ihm. Fremde Texte gehören nicht in dieses Repository, und die Anleitung sagt
 # aus demselben Grund: zusammenfassen, nie spiegeln.
 #
+# ## Welche Adresse von einem Läufer aus durchkommt
+#
+# Nicht jede. Zweimal nachgemessen, am 28. August und am 26. September 2026,
+# beide Male von einem GitHub-Läufer:
+#
+#   gesetze-im-internet.de   Timeout, fünf von fünf Adressen
+#   buzer.de                 403
+#   dejure.org               200, vier von vier – **der Weg zum Gesetzestext**
+#   justetf.com              200, acht von acht – der Weg zur Kostenquote
+#   bundesfinanzministerium  200, auch die PDFs
+#   iShares (Anbieter)       403 auf jede Adresse, auch auf die PDFs
+#
+# Das ist eine Aussage über heute und über den Läufer, nicht über die Quelle.
+# Wer sie nachprüft, schreibt Datum und Ort dazu – so wie hier.
+#
+# ## Ein Suchmuster findet nur, was darin steht
+#
+# `suche` ist bequem und gefährlich. Am 26. September 2026 hat die Suche nach
+# Zahlen („30 Prozent", „15 Prozent") die Teilfreistellung für Mischfonds
+# zweimal nicht gefunden – § 20 Absatz 2 InvStG nennt keine Zahl, sondern „die
+# Hälfte der für Aktienfonds geltenden Aktienteilfreistellung". Erst der Abruf
+# **ohne** Muster brachte den Satz.
+#
+# „Nicht gefunden" hiess also „falsch gesucht". Wer eine Zahl sucht, die es
+# als Zahl vielleicht nicht gibt, ruft ohne `suche` ab und liest selbst.
+#
 # Je Seite werden höchstens `zeichen` Zeichen ausgegeben. Das reicht für
 # Kennzahlen, Überschriften und die ersten Absätze – also für das, was geprüft
 # werden muss – und bleibt weit von einer Vervielfältigung entfernt.
