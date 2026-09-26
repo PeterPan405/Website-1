@@ -239,7 +239,7 @@ export const etfKosten: Readonly<Record<string, EtfKosten>> = {
     // erreichbar nur über einen Fremdspiegel und dort ein Altbestand.
     // dasinvestment weist 0,00 % Transaktionskosten aus: Summe = TER.
     laufendeKostenProzent: 0.2,
-    stand: '2026-09-05',
+    stand: '2026-09-26',
     quelle: 'https://www.justetf.com/de/etf-profile.html?isin=IE00B4L5Y983',
     art: 'anbieterangabe',
   },
@@ -248,7 +248,7 @@ export const etfKosten: Readonly<Record<string, EtfKosten>> = {
     // Anbieter-Factsheet über FactsheetsLIVE („laufende Kosten nach KID“).
     // Transaktionskosten 0,00 % – Summe und TER fallen zusammen.
     laufendeKostenProzent: 0.07,
-    stand: '2026-09-05',
+    stand: '2026-09-26',
     quelle: 'https://www.justetf.com/de/etf-profile.html?isin=IE00B5BMR087',
     art: 'anbieterangabe',
   },
@@ -257,7 +257,7 @@ export const etfKosten: Readonly<Record<string, EtfKosten>> = {
     // fondsweb nennt 0,22 % – das sind 0,18 + 0,04 Transaktionskosten,
     // von dasinvestment aus dem Blatt vom 09.04.2026 aufgeschlüsselt.
     laufendeKostenProzent: 0.18,
-    stand: '2026-09-05',
+    stand: '2026-09-26',
     quelle: 'https://www.justetf.com/de/etf-profile.html?isin=IE00BKM4GZ66',
     art: 'anbieterangabe',
   },
@@ -265,7 +265,7 @@ export const etfKosten: Readonly<Record<string, EtfKosten>> = {
     // 0,16 %: justETF, extraETF, finanzfluss, dasinvestment.
     // fondsweb nennt 0,17 % = 0,16 + 0,01 Transaktionskosten.
     laufendeKostenProzent: 0.16,
-    stand: '2026-09-05',
+    stand: '2026-09-26',
     quelle: 'https://www.justetf.com/de/etf-profile.html?isin=DE0005933931',
     art: 'anbieterangabe',
   },
@@ -273,7 +273,7 @@ export const etfKosten: Readonly<Record<string, EtfKosten>> = {
     // 0,20 %: justETF, extraETF, dasinvestment, trackingdifferences,
     // finanzfluss. fondsweb nennt 0,21 % = 0,20 + 0,01 Transaktionskosten.
     laufendeKostenProzent: 0.2,
-    stand: '2026-09-05',
+    stand: '2026-09-26',
     quelle: 'https://www.justetf.com/de/etf-profile.html?isin=DE0002635307',
     art: 'anbieterangabe',
   },
@@ -281,7 +281,7 @@ export const etfKosten: Readonly<Record<string, EtfKosten>> = {
     // 0,35 %: justETF, extraETF, dasinvestment, finanzfluss,
     // trackingdifferences. fondsweb nennt 0,36 % = 0,35 + 0,01.
     laufendeKostenProzent: 0.35,
-    stand: '2026-09-05',
+    stand: '2026-09-26',
     quelle: 'https://www.justetf.com/de/etf-profile.html?isin=IE00BF4RFH31',
     art: 'anbieterangabe',
   },
