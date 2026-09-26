@@ -101,6 +101,461 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'oelpreis-faellt-nahost-hoffnung-iran-hormus-plan',
+    title: 'Ölpreis fällt zum Wochenschluss auf Nahost-Hoffnung und Irans Hormus-Plan',
+    metaTitle: 'Ölpreis fällt auf Nahost-Hoffnung und Irans Hormus-Plan',
+    teaser:
+      'Brent fiel am Freitag auf 97,47 Dollar. Nahost-Hoffnungen und ein Fahrplan des Iran für die Straße von Hormus drücken den Ölpreis wieder unter 100 Dollar.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Öl', 'Brent', 'Nahost', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 26.09.2026, 00:44 Uhr (GMT): Öl (Brent) 97,47 USD, -3,01 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Neueste Marktberichte, Meldung vom 25.09.2026, dpa-AFX: „Aktien New York: Gewinne - Ölpreise fallen wegen Nahost-Hoffnungen“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 25.09.2026: „Nahostkonflikt im Blick: Iran bietet USA wohl Fahrplan für Straße von Hormus an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'Goldreporter, Top-News, Stand 26.09.2026, 00:44 Uhr (GMT): „Goldpreis rutscht unter 50-Tage-Linie – Hohe Marktzinsen belasten“',
+        url: 'https://www.goldreporter.de/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Ölpreis ist zum Ende der Handelswoche deutlich gefallen. Die Nordseesorte Brent notierte laut wallstreet-online am Samstagmorgen bei 97,47 US-Dollar je Fass, ein Minus von 3,01 Prozent gegenüber dem Vortag – und damit wieder unter der Marke von 100 Dollar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund nennt dpa-AFX über onvista Hoffnungen auf eine Lösung im Nahost-Konflikt: „Aktien New York: Gewinne - Ölpreise fallen wegen Nahost-Hoffnungen“, so die Meldung vom Freitag. Welche konkreten Fortschritte gemeint sind, geht aus der Überschrift nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Einen möglichen Baustein liefert eine weitere Meldung von wallstreet-online vom selben Tag: Der Iran habe den USA einen Fahrplan für die Straße von Hormus angeboten – jene Meerenge, durch die laut mehreren Quellen ein großer Teil der weltweiten Ölexporte verschifft wird. Details des Angebots nennt die Übersicht nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Ankündigung reicht, um den Preis zu bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen einem diplomatischen Angebot und einer tatsächlich veränderten Liefermenge liegt eine Lücke – verschifft wird dadurch noch kein einziges zusätzliches Fass. Der Ölpreis reagiert trotzdem, weil er neben Angebot und Nachfrage auch eine sogenannte Risikoprämie enthält: einen Aufschlag für die Möglichkeit einer Lieferstörung. Sinkt diese Möglichkeit, kann die Prämie fallen, ohne dass sich an der geförderten Menge etwas ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein zweiter Rohstoff bewegt sich in dieselbe statt in die entgegengesetzte Richtung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold, das in Krisenzeiten oft als sicherer Hafen gilt, wurde durch die Entspannung nicht teurer. Laut Goldreporter rutschte der Goldpreis im selben Zeitraum unter seine 50-Tage-Linie. Als Grund nennt die Quelle nicht den Ölpreis, sondern gestiegene US-Marktzinsen – ein Hinweis darauf, dass die beiden Rohstoffe derzeit auf unterschiedliche Treiber reagieren.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die Entspannung von Dauer ist, hängt an einem Angebot, dessen Inhalt aus den bisherigen Übersichten nicht hervorgeht. Für den Ölpreis zählt in den kommenden Tagen weniger, was am Freitag angekündigt wurde, als das, was tatsächlich verhandelt wird.',
+      },
+    ],
+  },
+  {
+    slug: 'diesel-exportstopp-trump-oelkonzerne-widerstand',
+    title: 'Trumps möglicher Diesel-Exportstopp bringt US-Ölkonzerne gegen sich auf',
+    metaTitle: 'Trumps möglicher Diesel-Exportstopp gegen US-Ölkonzerne',
+    teaser:
+      'Trump erwägt einen Exportstopp für US-Diesel. Die Ölindustrie protestiert, und eine Analyse von Société Générale hält das Verbot für wenig attraktiv.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Diesel', 'Öl', 'USA', 'Handelspolitik'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 25.09.2026, wallstreetONLINE Redaktion: „Dieselexporte: US-Ölkonzerne wettern gegen möglichen Diesel-Export-Stopp“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'onvista, Rohstoff- & Rohstoffaktien-Analysen, Meldung vom 25.09.2026, 11:30 Uhr, Société Générale: „Diesel: Exportverbot für US-Diesel selbst für die USA nur begrenzt attraktiv“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'US-Präsident Donald Trump erwägt laut wallstreet-online einen Exportstopp für Diesel aus amerikanischer Produktion. Die US-Ölindustrie wehrt sich dagegen – die Meldung vom Freitag trägt den Titel „US-Ölkonzerne wettern gegen möglichen Diesel-Export-Stopp“, nennt aber weder eine Begründung Trumps noch eine Frist.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Analyse von Société Générale, veröffentlicht am selben Tag auf onvista, kommt zu einem nüchternen Schluss: Ein Exportverbot für US-Diesel wäre demnach „selbst für die USA nur begrenzt attraktiv“. Warum, führt die Überschrift allein nicht aus.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wer exportiert, verdient am Weltmarktpreis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Exportverbot soll üblicherweise das Inlandsangebot erhöhen und damit die heimischen Preise dämpfen. Es kostet aber die Anbieter Erlöse, wenn sie ihre Ware nicht mehr zum meist höheren Weltmarktpreis verkaufen dürfen, sondern nur noch im Inland absetzen können. Genau diesen Zielkonflikt zwischen niedrigeren Verbraucherpreisen und den Interessen der Exporteure beschreibt der Widerstand der Ölkonzerne.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Markt, der längst über Grenzen hinweg verflochten ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Diesel wird weltweit gehandelt, und die USA importieren und exportieren gleichzeitig unterschiedliche Qualitäten. Ein einseitiger Exportstopp verändert deshalb nicht nur das eigene Angebot, sondern auch die Preise bei den bisherigen Abnehmern – mit Rückwirkungen, die sich nicht auf einen einzigen Markt begrenzen lassen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Trump den Exportstopp tatsächlich verhängt, ist aus den vorliegenden Meldungen nicht ersichtlich. Schon die Ankündigung zeigt aber, dass Handelspolitik bei Rohstoffen zwei Preise gleichzeitig bewegen kann – den heimischen und den am Weltmarkt.',
+      },
+    ],
+  },
+  {
+    slug: 'dax-wall-street-wochenschluss-nahost-hoffnung',
+    title: 'Dax beendet Verlustserie, Wall Street schließt fester auf Nahost-Hoffnung',
+    metaTitle: 'Dax beendet Verlustserie, Wall Street schließt fester',
+    teaser:
+      'Der Dax beendet die Woche im Plus, auch Dow und Nasdaq schließen fester. Zwei Kursanbieter zeigen dabei leicht unterschiedliche Prozentwerte.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 6,
+    tags: ['Dax', 'Dow Jones', 'Nasdaq', 'Aktienmärkte'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['dax', 'dow-jones', 'nasdaq-100', 'sp500'],
+    sources: [
+      {
+        label:
+          'onvista, Dax Tagesrückblick, Meldung vom 25.09.2026, 15:59 Uhr, onvista: „Verlustserie beendet: Dax erzielt kleines Wochenplus“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 25.09.2026, 16:27 Uhr, dpa-AFX: „ROUNDUP/Aktien Frankfurt Schluss: Dax beendet durchwachsene Woche freundlich“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'onvista, Neueste Marktberichte, Meldung vom 25.09.2026, 20:37 Uhr, dpa-AFX: „ROUNDUP/Aktien New York Schluss: Dow erholt sich - Hoffnung auf Nahost-Lösung“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'wallstreet-online, Kursleiste und Wichtige Termine, Stand 26.09.2026, 00:44 Uhr (GMT)',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 26.09.2026, 00:44 Uhr (GMT): DAX 25.409 Punkte, +0,6 %',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Dax hat seine Verlustserie beendet und die Woche laut onvista mit einem kleinen Plus abgeschlossen. Um 16:27 Uhr meldete dpa-AFX: „Dax beendet durchwachsene Woche freundlich.“',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwei Datenanbieter zeigen dabei zum Zeitpunkt der Abfrage am Samstagmorgen leicht unterschiedliche Werte: finanzen.net notiert den Dax bei 25.409 Punkten (+0,6 Prozent), wallstreet-online bei 25.553,14 Punkten (+0,65 Prozent). Beide Angaben beziehen sich auf denselben Schlussstand vom Freitag – die Abweichung zeigt, wie unterschiedlich Anbieter runden und welchen Vergleichszeitpunkt sie für die Prozentangabe wählen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auch New York schließt im Plus',
+      },
+      {
+        type: 'paragraph',
+        text: 'An der Wall Street zogen laut dpa-AFX alle wichtigen Indizes am Freitag an. Um 20:37 Uhr meldete die Agentur: „Dow erholt sich - Hoffnung auf Nahost-Lösung.“ Weitere Ticker-Meldungen von finanzen.net vermerkten für denselben Handelstag Gewinne bei S&P 500, Nasdaq Composite und Nasdaq 100. Nach Angaben von wallstreet-online lag der Future auf den Dow Jones („US 30“) zuletzt bei 51.822,60 Punkten (+0,89 Prozent), der auf den Nasdaq 100 („US Tech 100“) bei 30.617,77 Punkten (+0,44 Prozent).',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Kursindex zeigt nicht automatisch dieselbe Größe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Dax rechnet ausgeschüttete Dividenden seiner Mitgliedsunternehmen in seinen Stand ein und gilt deshalb als Performanceindex. Der Dow Jones dagegen wird traditionell als reiner Kursindex ohne Dividenden berechnet. Ein direkter Vergleich der Prozentwerte beider Indizes vergleicht deshalb nicht genau dieselbe Größe, auch wenn beide an diesem Freitag in dieselbe Richtung liefen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was in der neuen Handelswoche ansteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die kommende Woche listen die Wirtschaftskalender von wallstreet-online und onvista unter anderem: am Montag, den 28.09., das Protokoll der jüngsten Notenbanksitzung der Bank of Japan, eine Rede des Bank-of-England-Vertreters Dave Ramsden sowie den Dallas Fed Manufacturing Business Index aus den USA. Für Dienstag, den 29.09., stehen die Jahresrate der Verbraucherpreise (HVPI) für die Eurozone sowie der EU-Geschäftsklimaindex und das Verbrauchervertrauen an. Uhrzeiten nennen die Kalender dazu nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein kleines Wochenplus nach vorherigen Verlusten ist noch keine Trendwende. Ob die am Montag und Dienstag anstehenden Daten die Nahost-getriebene Erholung stützen oder bremsen, lässt sich vorab nicht ablesen – sie liefern aber die nächsten konkreten Anhaltspunkte.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-rutscht-unter-50-tage-linie-hohe-zinsen',
+    title:
+      'Goldpreis rutscht unter 50-Tage-Linie – hohe Zinsen bremsen trotz fallendem Ölpreis',
+    metaTitle: 'Goldpreis rutscht unter 50-Tage-Linie – hohe Zinsen bremsen',
+    teaser:
+      'Der Goldpreis ist laut Goldreporter unter seine 50-Tage-Linie gefallen. Hohe Marktzinsen belasten trotz sinkendem Ölpreis am selben Tag.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-26T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Zinsen', 'Rohstoffe', 'Geldanlage'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Top-News, Stand 26.09.2026, 00:44 Uhr (GMT): „Goldpreis rutscht unter 50-Tage-Linie – Hohe Marktzinsen belasten“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 26.09.2026, 00:44 Uhr (GMT): Gold 4.286,15 USD, 0,00 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, Kursleiste, Stand 26.09.2026, 00:44 Uhr (GMT): Gold 4.286 USD, +0,2 %',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter unter seine 50-Tage-Linie gerutscht. Die Top-News der Seite trägt die Überschrift „Goldpreis rutscht unter 50-Tage-Linie – Hohe Marktzinsen belasten“ – eine Begründung über die genannten hohen Marktzinsen hinaus liefert die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Zeitpunkt der Abfrage am frühen Samstagmorgen notierte Gold laut wallstreet-online bei 4.286,15 US-Dollar je Feinunze, unverändert zum Vortag (0,00 Prozent). Finanzen.net zeigt für denselben Nominalpreis von 4.286 US-Dollar dagegen ein Plus von 0,2 Prozent – ein Beispiel dafür, dass zwei Anbieter beim selben Kurs je nach gewähltem Vergleichszeitpunkt zu unterschiedlichen Prozentwerten kommen können.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Zinslos in einer Welt hoher Zinsen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Gold zahlt weder Zinsen noch Dividende. Wer es hält, verzichtet auf die Verzinsung, die eine Anleihe oder ein Tagesgeldkonto in dieser Zeit bringen würde – die sogenannten Opportunitätskosten des Goldbesitzes. Je höher die Zinsen am Anleihemarkt, desto teurer wird es relativ gesehen, Gold statt einer verzinsten Anlage zu halten.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kein Gleichlauf mit dem Ölpreis',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag fiel auch der Ölpreis nach Angaben von wallstreet-online deutlich, auf 97,47 US-Dollar je Fass Brent (-3,01 Prozent). Ein niedrigerer Ölpreis dämpft tendenziell die Inflationserwartung und könnte Zinssenkungen wahrscheinlicher machen – was Gold eigentlich stützen würde. Dass der Goldpreis trotzdem nachgab, zeigt, dass er in dieser Woche offenbar stärker auf die bereits hohen Zinsen reagierte als auf die Ölpreisbewegung.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ein einzelner Kurswert wie die 50-Tage-Linie ist kein Naturgesetz, sondern eine von vielen Marktbeobachtungen. Ob der Rückgang unter diese Linie weitere Verkäufe auslöst oder ob sich das Bild beim nächsten Zinsschritt schon wieder dreht, lässt sich aus den bisherigen Meldungen nicht ablesen.',
+      },
+    ],
+  },
+  {
+    slug: 'basf-evonik-uebernahmeangebot-unverbindliche-ansprache',
+    title: 'BASF bestätigt unverbindliche Ansprache für mögliche Übernahme von Evonik',
+    metaTitle: 'BASF bestätigt Ansprache für mögliche Evonik-Übernahme',
+    teaser:
+      'Evonik bestätigt eine unverbindliche Ansprache der BASF SE zu einer möglichen Übernahme. Auch der Ankeraktionär RAG-Stiftung meldet sich per Ad-hoc-Mitteilung.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['BASF', 'Evonik', 'Übernahme', 'Chemie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['basf', 'evonik'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Ad-hoc, Meldung vom 25.09.2026, EQS Group AG: „EQS-Adhoc: Evonik Industries AG bestätigt unverbindliche Ansprache durch die BASF SE zu einem möglichen Übernahmeangebot“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Ad-hoc, Meldung vom 25.09.2026, EQS Group AG: „EQS-Adhoc: RAG-Stiftung: RAG-Stiftung zu einer möglichen Übernahme der Evonik durch BASF“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Chemiekonzern Evonik hat am Freitag per Ad-hoc-Mitteilung bestätigt, von der BASF SE unverbindlich wegen eines möglichen Übernahmeangebots angesprochen worden zu sein. Das geht aus einer EQS-Adhoc-Meldung vom 25.09.2026 hervor, die wallstreet-online veröffentlicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag gab auch die RAG-Stiftung eine eigene Ad-hoc-Mitteilung zu einer möglichen Übernahme der Evonik durch BASF heraus. Welchen Inhalt diese Mitteilung im Einzelnen hat, welchen Preis BASF genannt haben könnte oder ob es überhaupt zu einem verbindlichen Angebot kommt, geht aus den vorliegenden Überschriften nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Unverbindlich heißt: noch kein Angebot',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine „unverbindliche Ansprache“ ist noch kein Übernahmeangebot im rechtlichen Sinn. Sie markiert lediglich den Beginn möglicher Gespräche – ob daraus ein konkretes, mit Preis und Bedingungen versehenes Angebot wird, ist zu diesem Zeitpunkt offen. Genau deshalb behandeln börsennotierte Unternehmen selbst diesen frühen Stand bereits als kursrelevant und veröffentlichen ihn verpflichtend als Ad-hoc-Mitteilung.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Ankeraktionär eine eigene Meldung veröffentlicht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die RAG-Stiftung, die traditionell einen bedeutenden Anteil an Evonik hält, veröffentlichte zu demselben Vorgang eine eigene Ad-hoc-Mitteilung – ein Hinweis darauf, dass ihre Zustimmung für den Ausgang eines möglichen Angebots wichtig sein dürfte. Auch sie nennt laut Überschrift keine Bedingungen oder einen Zeitplan.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Ad-hoc-Mitteilungen an einem Tag zeigen, dass beide Seiten den Vorgang für kursrelevant halten. Ob daraus ein Übernahmeangebot mit einer Prämie auf den zuletzt gehandelten Kurs wird, wie das bei Übernahmen üblich ist, bleibt vorerst offen.',
+      },
+    ],
+  },
+  {
+    slug: 'xi-trump-treffen-november-china-zollwaffenstillstand',
+    title:
+      'Nach Washington nun Peking: Xi und Trump wollen sich im November in China treffen',
+    metaTitle: 'Xi und Trump wollen sich im November in China treffen',
+    teaser:
+      'Nach ihrem Treffen in Washington wollen sich Trump und Xi im November in China wiedersehen. Der Zollwaffenstillstand bleibt vorerst ungeklärt.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['USA', 'China', 'Handelspolitik', 'Xi Jinping'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 25.09.2026: „ROUNDUP: Xi und Trump wollen sich im November in China treffen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Devisennachrichten, Meldung vom 25.09.2026: „Xi Jinping lädt Trump zu nächstem Treffen nach China ein“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Meldung vom 25.09.2026: „Trump & Xi in Washington“ / „Nothing Burger Xi-Besuch: Harte Kritik aus eigenen Reihen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nach ihrem Treffen am Donnerstag in Washington wollen sich US-Präsident Donald Trump und Chinas Staats- und Parteichef Xi Jinping laut einer ROUNDUP-Meldung von finanzen.net im November erneut treffen – diesmal in China.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Wallstreet-online berichtet ergänzend, Xi Jinping habe Trump zu diesem nächsten Treffen nach China eingeladen. Ein genaues Datum, ein Ort innerhalb Chinas oder eine Tagesordnung gehen aus den vorliegenden Meldungen nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Kritik am ersten Treffen aus den eigenen Reihen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zum Treffen am Donnerstag in Washington findet sich bei wallstreet-online zudem eine Überschrift, die von einem „Nothing Burger“-Besuch spricht und „harte Kritik aus eigenen Reihen“ ankündigt. Worin diese Kritik im Einzelnen besteht oder von wem sie stammt, geht aus der Überschrift nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Ankündigungen wie diese Devisen und Aktien bewegen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Handelspolitische Signale zwischen den beiden größten Volkswirtschaften der Welt wirken häufig über zwei Kanäle: direkt auf Aktien von Unternehmen mit China-Geschäft und indirekt über den Wechselkurs, weil Anleger politische Entspannung tendenziell mit einer stabileren Handelsbeziehung gleichsetzen. Welcher der beiden Kanäle diesmal stärker reagiert, lässt sich aus einer bloßen Ankündigung eines weiteren Treffens noch nicht ablesen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine Einladung zu einem weiteren Treffen ist ein Terminplan, kein Ergebnis. Ob der im November auslaufende Zollwaffenstillstand zwischen den USA und China verlängert wird, bleibt bis zum tatsächlichen Treffen in China offen.',
+      },
+    ],
+  },
+  {
+    slug: 'anthropic-akamai-deal-chip-aktien-rally',
+    title: 'Milliarden-Deal von Akamai mit Anthropic zieht Chip-Aktien mit',
+    teaser:
+      'Akamai steigt nach einem Milliarden-Deal mit Anthropic kräftig. Auch ASML, AMD und Intel ziehen mit – ein Auftrag bewegt eine ganze Lieferkette.',
+    category: 'Märkte',
+    publishedAt: '2026-09-26T07:20:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Künstliche Intelligenz', 'Akamai', 'Chip-Aktien', 'Anthropic'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['amd', 'intel', 'asml'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 25.09.2026: „Akamai-Aktie schießt nach Milliarden-Deal mit Anthropic kräftig hoch“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 25.09.2026: „Aktien von ASML, AMD, Intel & Co.: Diese KI-Werte ziehen nach dem Anthropic-Deal mit“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Aktie von Akamai Technologies ist am Freitag laut finanzen.net nach einem Milliarden-Deal mit dem KI-Unternehmen Anthropic kräftig gestiegen. Um welchen genauen Betrag es in dem Deal geht oder welche Leistung Akamai konkret liefert, nennt die Überschrift nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Kursgewinn blieb laut einer weiteren Meldung von finanzen.net nicht auf Akamai beschränkt: Auch Aktien von ASML, AMD und Intel zogen demnach im Sog der Nachricht an. Welche konkreten Kursbewegungen dabei gemeint sind, geht aus der Überschrift ebenfalls nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Deal, viele Zulieferer',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein einzelner Auftrag für Rechenkapazität kann mehrere Aktien gleichzeitig bewegen, weil an der Bereitstellung von KI-Infrastruktur eine ganze Kette von Unternehmen beteiligt ist: Netzwerk- und Rechenzentrumsanbieter wie Akamai auf der einen Seite, Hersteller von Chips und Fertigungsanlagen wie ASML, AMD und Intel auf der anderen. Ein großer Auftrag für einen Teil der Kette lässt Anleger offenbar auch auf Folgeaufträge für die übrigen Glieder hoffen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Auftragseingang ist keine Garantie für Umsatz',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine angekündigte Vereinbarung ist ein Auftragseingang, kein bereits verbuchter Umsatz. Zwischen der Unterschrift unter einen mehrjährigen Vertrag und dem tatsächlichen Zahlungseingang können Jahre liegen, und Verträge dieser Art enthalten häufig Bedingungen, unter denen sich der tatsächliche Umfang noch ändern kann – Angaben dazu liefert die vorliegende Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Dass gleich mehrere Zulieferer-Aktien auf die Meldung eines einzelnen Kunden reagieren, zeigt, wie stark der Markt Wachstum bei Künstlicher Intelligenz derzeit als ein gemeinsames Thema für ganze Lieferketten statt für einzelne Unternehmen einpreist.',
+      },
+    ],
+  },
+  {
     slug: 'us-anleiherenditen-mehrjahreshoch-fed-williams-spricht',
     title: 'US-Anleiherenditen auf Mehrjahreshoch – heute spricht die Fed',
     teaser:
