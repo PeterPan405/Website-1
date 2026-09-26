@@ -1,5 +1,5 @@
 {
-  "abgerufenAm": "2026-09-25T00:02:34.774Z",
+  "abgerufenAm": "2026-09-26T00:11:30.803Z",
   "quelle": {
     "label": "Yahoo Finance: Dividendenereignisse der Kurshistorie",
     "url": "https://finance.yahoo.com/"
@@ -6173,6 +6173,10 @@
       {
         "date": "2026-06-25",
         "amount": 0.658
+      },
+      {
+        "date": "2026-09-24",
+        "amount": 0.658
       }
     ],
     "constellation-energy": [
@@ -9476,10 +9480,6 @@
       }
     ],
     "randstad": [
-      {
-        "date": "2021-09-24",
-        "amount": 1.62
-      },
       {
         "date": "2022-03-31",
         "amount": 2.19
@@ -25969,6 +25969,10 @@
       {
         "date": "2026-06-24",
         "amount": 0.74
+      },
+      {
+        "date": "2026-09-24",
+        "amount": 0.74
       }
     ],
     "corning": [
@@ -30613,10 +30617,6 @@
     ],
     "johnson-controls": [
       {
-        "date": "2021-09-24",
-        "amount": 0.27
-      },
-      {
         "date": "2021-12-17",
         "amount": 0.34
       },
@@ -34605,6 +34605,10 @@
       {
         "date": "2026-02-09",
         "amount": 3.25
+      },
+      {
+        "date": "2026-08-13",
+        "amount": 1.25
       }
     ],
     "coal-india": [
@@ -38802,10 +38806,6 @@
       }
     ],
     "falabella": [
-      {
-        "date": "2021-09-24",
-        "amount": 30
-      },
       {
         "date": "2022-04-25",
         "amount": 65
@@ -43110,10 +43110,6 @@
       }
     ],
     "ge-aerospace": [
-      {
-        "date": "2021-09-24",
-        "amount": 0.049841
-      },
       {
         "date": "2021-12-20",
         "amount": 0.049841
