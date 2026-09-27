@@ -101,6 +101,354 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'huthi-drohnenangriff-riad-iran-hormus-usa-am-zug',
+    title: 'Huthi-Miliz beschießt Riad, Iran sieht USA am Zug bei Hormus',
+    teaser:
+      'Der UN-Sicherheitsrat verurteilt Huthi-Drohnenangriffe auf Riad. Zugleich erklärt der Iran laut zwei Portalen, die USA seien für eine Hormus-Öffnung am Zug.',
+    category: 'Märkte',
+    publishedAt: '2026-09-27T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'Huthi', 'Hormus', 'Nahost', 'Öl'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026, dpa-AFX: „ROUNDUP/Militär: Huthi-Miliz greift saudische Hauptstadt Riad mit Drohnen an“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026: „Sicherheitsrat verurteilt Huthi-Angriffe gegen Saudi-Arabien“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026: „ROUNDUP 2: Iran sieht USA bei Öffnung der Straße von Hormus am Zug“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026, 06:57 Uhr: „Straße von Hormus: Iran schiebt den Ball bei Öffnung den USA zu“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Aktuelle Rohstoffpreise, Stand 27.09.2026, 05:28 Uhr (GMT): Öl (Brent) 97,47 USD, ±0,00 %',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die Huthi-Miliz hat nach einer Meldung von dpa-AFX über wallstreet-online am Samstag die saudi-arabische Hauptstadt Riad mit Drohnen angegriffen. Der UN-Sicherheitsrat verurteilte die Angriffe auf Saudi-Arabien.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am selben Tag berichtete wallstreet-online, der Iran sehe nun die USA am Zug, wenn es um eine Öffnung der Straße von Hormus gehe. Am Sonntagmorgen meldete finanzen.net eine inhaltlich ähnliche Formulierung: Der Iran schiebe den Ball bei der Öffnung den USA zu. Welche konkrete Gegenleistung Teheran von Washington erwartet, nennt keine der beiden Meldungen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum die Meerenge für den Ölpreis so viel Gewicht hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus verschiffen die Golfstaaten einen großen Teil ihres Rohöls Richtung Asien und Europa. Jede Ankündigung über eine mögliche Blockade oder Öffnung verändert deshalb die im Ölpreis enthaltene Risikoprämie – unabhängig davon, ob sich an der tatsächlich geförderten oder verschifften Menge etwas ändert.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ein Preis, der am Wochenende stillsteht',
+      },
+      {
+        type: 'paragraph',
+        text: 'Am Sonntagmorgen notierte die Nordseesorte Brent laut wallstreet-online unverändert bei 97,47 US-Dollar je Fass. Der Handel ruht am Wochenende, weshalb weder der Drohnenangriff noch die neue Erklärung Irans bislang einen Kurswert bewegt haben.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Konfliktlinien bleiben über das Wochenende ungelöst nebeneinander bestehen – die Huthi-Angriffe auf Saudi-Arabien und der Streit darüber, wer bei der Straße von Hormus zuerst handeln muss. Ob der Ölpreis darauf reagiert, zeigt sich erst, wenn am Montag wieder gehandelt wird.',
+      },
+    ],
+  },
+  {
+    slug: 'us-autobauer-schraenken-rabatte-neuwagen-ein',
+    title: 'US-Autobauer schränken Rabatte bei Neuwagen ein',
+    teaser:
+      'Stellantis, General Motors, Toyota, Tesla und Rivian kappen laut wallstreet-online ihre Rabatte. Das erschwert Käufern den Preisvergleich bei Neuwagen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-27T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Autoindustrie', 'Neuwagen', 'USA', 'Elektroautos'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['tesla', 'toyota'],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Nachrichten: Aktien & Indizes, Meldung vom 26.09.2026: „Keine Schnäppchen mehr? Darum drehen US-Autobauer beim Autokauf die Regeln um“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mehrere US-Autobauer schränken laut wallstreet-online ihre Rabatte beim Neuwagenkauf ein. Genannt werden Stellantis, General Motors, Toyota, Tesla und Rivian.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Begründung dafür nennt die Quelle nicht. Festgehalten wird lediglich, dass der Preisvergleich für Käufer dadurch schwieriger wird.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum weniger Rabatt den Blick auf Gebrauchte lenkt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Laut derselben Quelle könnten Gebrauchtwagen und Elektroautos für Käufer dadurch attraktiver werden. Wird der Preisabstand zwischen Neu- und Gebrauchtwagen kleiner, verschiebt sich die Kaufentscheidung erfahrungsgemäß in Richtung Gebrauchtmarkt – umgekehrt zu dem, was hohe Rabatte auf Neuwagen in den vergangenen Jahren bewirkt haben.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Fünf Hersteller, zwei unterschiedliche Antriebe',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unter den genannten Herstellern sind mit Tesla und Rivian zwei reine Elektroauto-Anbieter neben den etablierten, überwiegend auf Verbrenner setzenden Herstellern Stellantis, General Motors und Toyota. Dass die Meldung alle fünf in einem Atemzug nennt, spricht dafür, dass die Zurückhaltung bei Rabatten die gesamte Branche betrifft und nicht nur ein einzelnes Antriebskonzept.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob Käufer tatsächlich stärker zum Gebrauchtwagen greifen, hängt von der Höhe der eingesparten Rabatte ab – eine Zahl dazu liefert die Meldung nicht.',
+      },
+    ],
+  },
+  {
+    slug: 'goldpreis-faellt-4283-dollar-terminverfall',
+    title: 'Goldpreis fällt auf 4.283 Dollar vor dem Terminverfall',
+    teaser:
+      'Der Goldpreis ist laut Goldreporter auf 4.283 Dollar gefallen. Das Managed Money reduziert seine Long-Positionen vor dem September-Terminverfall.',
+    category: 'Geldanlage',
+    publishedAt: '2026-09-27T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Gold', 'Terminmarkt', 'Rohstoffe'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['gold'],
+    sources: [
+      {
+        label:
+          'Goldreporter, Analyse, Meldung vom 26.09.2026: „Der Goldpreis ist auf 4.283 USD zurückgefallen. Am US-Terminmarkt reduzierte das Managed Money seine Long-Positionen. Jetzt steht der September-Verfall bevor.“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'Goldreporter, Top-News, Stand 27.09.2026: „Goldmarkt: Spekulantenanteil bleibt hoch – Futures-Verfall steht an“',
+        url: 'https://www.goldreporter.de/',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 26.09.2026, wallstreetONLINE Redaktion: „Goldpreis-Prognose: Lösen die PCE-Daten am 30. September ein großes Beben aus?“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Der Goldpreis ist laut Goldreporter auf 4.283 US-Dollar je Feinunze zurückgefallen. Am US-Terminmarkt hat das sogenannte Managed Money – große, meist spekulativ ausgerichtete Investoren – seine Long-Positionen reduziert.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Als Grund für den Zeitpunkt nennt Goldreporter den bevorstehenden September-Verfall am Terminmarkt: Kontrakte, die in diesem Monat auslaufen, müssen jetzt geschlossen oder in den nächsten Termin gerollt werden.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Terminverfall mit dem Kurs zu tun hat',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Future ist eine Verpflichtung, Gold zu einem festen Termin zu liefern oder abzunehmen. Läuft dieser Termin aus, müssen offene Positionen glattgestellt werden. Das kann kurzfristig zusätzliche Käufe oder Verkäufe auslösen, unabhängig davon, ob sich an der langfristigen Markteinschätzung etwas geändert hat.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Der nächste Termin, der den Kurs bewegen könnte',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für den 30. September stellt wallstreet-online die Frage, ob die dann anstehenden US-Konsumausgabendaten (PCE) den Goldpreis stärker bewegen könnten. Eine Antwort darauf liefert die Meldung nicht, sie benennt lediglich den Termin.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob der Rückgang von Dauer ist, hängt auch davon ab, wie sich die Positionen rund um den September-Verfall auflösen – dazu liefert keine der Meldungen eine Prognose.',
+      },
+    ],
+  },
+  {
+    slug: 'apple-patenturteil-5-7-milliarden-dollar',
+    title: 'Gericht verurteilt Apple zu Zahlung von 5,7 Milliarden Dollar',
+    metaTitle: 'Apple soll 5,7 Milliarden Dollar in Patentstreit zahlen',
+    teaser:
+      'Apple soll laut dpa-AFX 5,7 Milliarden Dollar nach einem Patentgerichtsurteil zahlen. Kläger, Patent und Rechtskraft des Urteils nennt die Meldung nicht.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-27T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Apple', 'Patentstreit', 'Recht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['apple'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 26.09.2026, 23:36 Uhr, dpa-AFX: „Patent-Urteil: Apple soll 5,7 Milliarden Dollar zahlen“',
+        url: 'https://www.onvista.de/news/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Apple soll nach einem Patentgerichtsurteil 5,7 Milliarden US-Dollar zahlen, meldete dpa-AFX am Samstagabend über onvista.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Gericht geurteilt hat, wer gegen Apple geklagt hat und um welches Patent es geht, nennt die Meldung nicht. Auch ob es sich um ein rechtskräftiges Urteil oder um einen Spruch handelt, der noch angefochten werden kann, geht aus der Überschrift nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum ein Urteil noch keine Überweisung ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Zwischen einem erstinstanzlichen Urteil und einer tatsächlichen Zahlung liegen in amerikanischen Patentverfahren oft Jahre. Die unterlegene Partei kann Rechtsmittel einlegen, wodurch sich die Summe noch ändern oder ganz entfallen kann.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Wie Konzerne mit offenen Prozessrisiken bilanzieren',
+      },
+      {
+        type: 'paragraph',
+        text: 'Unternehmen bilden für laufende Rechtsstreitigkeiten üblicherweise Rückstellungen, sobald eine Zahlung wahrscheinlich und der Betrag schätzbar ist. Wie hoch eine mögliche Rückstellung bei Apple ausfällt oder ob der Konzern das Urteil anficht, geht aus der vorliegenden Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** 5,7 Milliarden Dollar sind eine ungewöhnlich hohe Summe für ein einzelnes Patentverfahren. Ob der Betrag Bestand hat, entscheidet sich erst in einer möglichen nächsten Instanz – darüber sagt die Meldung nichts.',
+      },
+    ],
+  },
+  {
+    slug: 'vw-rueckruf-zwei-werkstattbesuche',
+    title: 'VW-Rückruf zwingt Fahrer zu zwei Werkstatt-Besuchen',
+    teaser:
+      'Volkswagen ruft laut dpa-AFX erneut Fahrzeuge zurück. Betroffene müssen zweimal in die Werkstatt; Modell und Ursache nennt die Meldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-27T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Volkswagen', 'Rückruf', 'Autoindustrie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['volkswagen'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026, 06:53 Uhr: „VW-Aktie: Neuer Rückruf zwingt Fahrer zu zwei Werkstatt-Besuchen“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+      {
+        label:
+          'wallstreet-online, Unternehmensmeldungen, Meldung vom 26.09.2026, dpa-AFX: „Warum VW-Fahrer nach Rückruf zweimal in die Werkstatt müssen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Volkswagen ruft laut dpa-AFX erneut Fahrzeuge zurück. Betroffene Fahrerinnen und Fahrer müssen dafür zweimal in die Werkstatt, wie sowohl finanzen.net als auch wallstreet-online berichteten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Modell und welcher technische Mangel betroffen sind und warum zwei statt eines Werkstattbesuchs nötig sind, nennen beide Meldungen nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum manche Rückrufe zwei Termine brauchen',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Rückruf kann zwei Termine erfordern, wenn zum Beispiel zunächst eine Diagnose oder ein Software-Update ansteht und ein benötigtes Ersatzteil erst danach bestellt und eingebaut wird. Ob das hier der Grund ist, bleibt offen – die Meldung nennt keinen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was ein Rückruf für die Bilanz bedeutet',
+      },
+      {
+        type: 'paragraph',
+        text: 'Autohersteller bilden für angekündigte Rückrufe in der Regel Rückstellungen, sobald sich die Kosten schätzen lassen. Wie viele Fahrzeuge diesmal betroffen sind und welche Kosten Volkswagen dafür einplant, geht aus den vorliegenden Meldungen nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Für betroffene Halter bedeutet der doppelte Werkstattbesuch vor allem Zeitaufwand. Welche Modelle betroffen sind, dürfte sich erst zeigen, wenn Volkswagen oder das Kraftfahrt-Bundesamt Details veröffentlichen.',
+      },
+    ],
+  },
+  {
+    slug: 'meta-cambridge-analytica-einwaende-abgewiesen',
+    title: 'Meta: Gericht weist Einwände im Cambridge-Analytica-Fall ab',
+    teaser:
+      'Ein Gericht hat laut finanzen.net Einwände im Cambridge-Analytica-Fall gegen Meta abgewiesen. Welches Gericht und wessen Einwände, bleibt offen.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-27T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Meta', 'Cambridge Analytica', 'Datenschutz', 'Recht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['meta'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026, 06:45 Uhr: „Meta-Aktie: Gericht weist Einwände im Cambridge-Analytica-Fall ab“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Gericht hat Einwände im Cambridge-Analytica-Fall gegen Meta abgewiesen, meldete finanzen.net am Sonntagmorgen um 06:45 Uhr.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Gericht entschieden hat, von wem die Einwände stammten und wogegen sie sich richteten, nennt die Meldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Worum es im Fall Cambridge Analytica ursprünglich ging',
+      },
+      {
+        type: 'paragraph',
+        text: 'Der Name geht auf einen Datenskandal aus dem Jahr 2018 zurück: Daten von Facebook-Nutzern waren ohne ihr Wissen an die Analysefirma Cambridge Analytica gelangt und für politische Wahlkampagnen genutzt worden. Der Fall zog jahrelange behördliche und zivilrechtliche Verfahren gegen Meta nach sich.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum Gerichte über Einwände gegen eine Einigung entscheiden müssen',
+      },
+      {
+        type: 'paragraph',
+        text: 'In US-Sammelklagen muss ein Gericht eine ausgehandelte Einigung erst genehmigen. Betroffene können dagegen Einwände erheben, etwa zur Höhe der Entschädigung oder zu den Anwaltskosten. Weist ein Gericht solche Einwände ab, rückt eine Einigung dem Abschluss näher – ob das auch hier der Fall ist, sagt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Eine abgewiesene Einwendung ist ein Verfahrensschritt, kein Endergebnis. Ob und wann der Fall damit abgeschlossen ist, geht aus der kurzen Meldung nicht hervor.',
+      },
+    ],
+  },
+  {
     slug: 'oelpreis-faellt-nahost-hoffnung-iran-hormus-plan',
     title: 'Ölpreis fällt zum Wochenschluss auf Nahost-Hoffnung und Irans Hormus-Plan',
     metaTitle: 'Ölpreis fällt auf Nahost-Hoffnung und Irans Hormus-Plan',
