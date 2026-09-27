@@ -42,7 +42,7 @@
  * die Kurse angehalten, um die Nachrichten zu retten – der schlechtere Tausch.
  */
 
-import { sollAlarmieren, sollWecken } from '@/lib/tageswecker'
+import { kontingentZurueck, sollAlarmieren, sollWecken } from '@/lib/tageswecker'
 
 function zahl(wert: string | undefined, ersatz: number): number {
   const n = Number(wert)
@@ -70,6 +70,19 @@ const minuteUtc = zahl(
 const versuche = zahl(process.env.WECK_VERSUCHE, 0)
 const sekundenSeitWeckruf = zahl(process.env.WECK_ABSTAND_S, -1)
 
+/*
+  Wann kommt ein aufgebrauchtes Kontingent zurück?
+
+  Der Dauerlauf legt die Meldung des Agenten in `WECK_KONTINGENT_MELDUNG` –
+  gelesen vom wurzellosen Zweig `nachrichten-kontingent`, den
+  `nachrichten-agent.yml` bei einem 429 schreibt. Steht dort nichts oder
+  nichts Deutbares, ist es `null`, und dann gilt allein das Fenster.
+
+  Die Uhrzeit wird **hier** aus dem Text gelesen und nicht in der Shell: Die
+  Regel dafür steht in `lib/tageswecker.ts` und ist dort geprüft.
+*/
+const kontingentZurueckMinute = kontingentZurueck(process.env.WECK_KONTINGENT_MELDUNG)
+
 // `1` steht, `0` fehlt, alles andere heißt: Die Nachfrage hat keine brauchbare
 // Antwort gebracht. Bei einer unklaren Antwort wird **nicht** geweckt. Ein
 // Weckruf ins Blaue startet die ganze Kette; eine ausgefallene Nachfrage ist
@@ -83,6 +96,7 @@ if (gemeldet !== '0' && gemeldet !== '1') {
     ausgabeSteht: gemeldet === '1',
     versuche,
     sekundenSeitWeckruf,
+    kontingentZurueckMinute,
   })
   antworte(entscheidung.wecken, entscheidung.grund)
 }

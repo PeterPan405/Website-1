@@ -58,6 +58,28 @@ export interface Weckerlage {
    * Negativ, wenn es noch keinen gab.
    */
   sekundenSeitWeckruf: number
+  /**
+   * Minute (UTC), zu der ein aufgebrauchtes Kontingent zurückkommt.
+   *
+   * Steht nur da, wenn der Agent ein `429` mit genannter Uhrzeit gemeldet
+   * hat – siehe `NACH_KONTINGENT_MIN`. Fehlt sie, gilt allein das Fenster.
+   */
+  kontingentZurueckMinute?: number | null
+}
+
+/**
+ * Liegt die Minute im Nachfenster eines zurückgekehrten Kontingents?
+ *
+ * Getrennt von `sollWecken`, damit sie für sich prüfbar ist – und weil die
+ * Begründung im Protokoll eine andere ist als „im Fenster".
+ */
+export function nachKontingent(
+  minuteUtc: number,
+  zurueck: number | null | undefined
+): boolean {
+  if (zurueck === null || zurueck === undefined) return false
+  const von = zurueck + NACH_KONTINGENT_MIN
+  return minuteUtc >= von && minuteUtc < von + KONTINGENT_FENSTER_MIN
 }
 
 /**
@@ -96,6 +118,55 @@ export const HOECHSTENS_VERSUCHE = 3
  */
 export const ABKUEHLUNG_S = 1800
 
+/**
+ * Bis wann ein bekanntes Kontingentende das Fenster offen hält.
+ *
+ * ## Der Fall vom 27. September 2026
+ *
+ * Es gab keine Nachrichten, und zwar aus einem Grund, gegen den keine der
+ * bestehenden Bremsen etwas kann: Das Wochenkontingent des Abonnements war
+ * aufgebraucht. Der Agent antwortete dreimal mit
+ *
+ *     Statuscode  429
+ *     Meldung     You've hit your weekly limit · resets 1pm (UTC)
+ *
+ * und `ANTHROPIC_API_KEY` ist nicht hinterlegt – Weg 2 der Rangfolge gibt es
+ * also nicht. Damit war die Kette am Ende, wie vorgesehen: „Liefert keiner,
+ * wird nichts geschrieben."
+ *
+ * **Nur war sie es nicht.** Das Kontingent kam um 13:00 UTC zurück. Der
+ * Wecker hatte um 05:00 aufgehört (`FENSTER_BIS`), acht Stunden davor, und
+ * danach hat niemand mehr gefragt. Gemerkt hat es der Betreiber auf der
+ * Website.
+ *
+ * Bei `FENSTER_BIS` stand als Begründung, ein Weckruf mitten am Tag käme „der
+ * Kette in die Quere, die dann längst von Hand angestoßen ist". Genau diese
+ * Annahme ist der Fehler: Von Hand angestoßen hat niemand, und wer es täte,
+ * wäre der Betreiber – der die Ausgabe gerade nicht hat.
+ *
+ * ## Warum das kein einfaches „Fenster länger" ist
+ *
+ * Weil den ganzen Tag alle zehn Minuten zu fragen die Bremse wäre, die es
+ * nicht gibt: Solange das Kontingent leer ist, ändert kein Weckruf etwas, und
+ * drei nutzlose Anläufe verbrauchen die drei, die `HOECHSTENS_VERSUCHE`
+ * zulässt.
+ *
+ * **Ein 429 mit genannter Uhrzeit ist keine Absage, sondern ein Termin.** Der
+ * Agent schreibt diese Uhrzeit auf, und der Wecker wartet bis dahin – dann
+ * genau einmal, mit dieser Toleranz obendrauf, damit eine Minute Ungenauigkeit
+ * beim Zurücksetzen nicht in eine weitere leere Anfrage läuft.
+ */
+export const NACH_KONTINGENT_MIN = 5
+
+/**
+ * Wie lange nach dem Kontingentende noch geweckt werden darf.
+ *
+ * Zwei Stunden. Danach ist der Tag so weit herum, dass eine Ausgabe von heute
+ * Abend niemandem mehr etwas bringt – und wenn es in zwei Stunden nicht
+ * geklappt hat, liegt es nicht am Kontingent.
+ */
+export const KONTINGENT_FENSTER_MIN = 120
+
 /** Das Ergebnis der Entscheidung, mitsamt Begründung fürs Protokoll. */
 export interface Weckentscheidung {
   wecken: boolean
@@ -110,10 +181,18 @@ export interface Weckentscheidung {
  * die der Aufrufer teuer besorgen musste, dann die eigenen Bremsen.
  */
 export function sollWecken(lage: Weckerlage): Weckentscheidung {
-  if (lage.minuteUtc < FENSTER_VON || lage.minuteUtc >= FENSTER_BIS) {
+  const imFenster = lage.minuteUtc >= FENSTER_VON && lage.minuteUtc < FENSTER_BIS
+  const nachher = nachKontingent(lage.minuteUtc, lage.kontingentZurueckMinute)
+
+  if (!imFenster && !nachher) {
     return {
       wecken: false,
-      grund: `außerhalb des Fensters (${FENSTER_VON}–${FENSTER_BIS} Minuten nach Mitternacht UTC)`,
+      grund:
+        lage.kontingentZurueckMinute === null ||
+        lage.kontingentZurueckMinute === undefined
+          ? `außerhalb des Fensters (${FENSTER_VON}–${FENSTER_BIS} Minuten nach Mitternacht UTC)`
+          : `außerhalb des Fensters und nicht im Nachfenster des Kontingents ` +
+            `(zurück um Minute ${lage.kontingentZurueckMinute})`,
     }
   }
   if (lage.ausgabeSteht) {
@@ -133,7 +212,10 @@ export function sollWecken(lage: Weckerlage): Weckentscheidung {
   }
   return {
     wecken: true,
-    grund: 'die Ausgabe des Tages fehlt auf main, und die Kette läuft nicht',
+    grund: nachher
+      ? `das Kontingent ist seit Minute ${lage.kontingentZurueckMinute} zurück, ` +
+        'und die Ausgabe des Tages fehlt weiter'
+      : 'die Ausgabe des Tages fehlt auf main, und die Kette läuft nicht',
   }
 }
 
@@ -223,4 +305,49 @@ export function sollAlarmieren(lage: Alarmlage): Alarmentscheidung {
     alarmieren: true,
     grund: 'die Frist ist da und die Ausgabe fehlt – der Wächter wird angestoßen',
   }
+}
+
+/* ------------------------------------------- Das Kontingent und seine Uhr */
+
+/**
+ * Liest aus der Absage der Schnittstelle, wann das Kontingent zurückkommt.
+ *
+ * ## Warum aus dem Text und nicht aus einem Feld
+ *
+ * Weil die Uhrzeit nur im Text steht. Das Protokoll der Action nennt
+ * `api_error_status: 429`; die Stunde steht allein in `result`, so wie am
+ * 27. September 2026 wörtlich:
+ *
+ *     You've hit your weekly limit · resets 1pm (UTC)
+ *
+ * Gelesen wird deshalb genau diese Form – eine Stunde mit `am`/`pm` und
+ * ausdrücklich `UTC` daneben. **Ohne das `UTC` wird nichts gelesen:** Eine
+ * Stunde ohne Zeitzone in eine Minute nach Mitternacht UTC umzurechnen wäre
+ * geraten, und ein geratener Termin weckt zur falschen Zeit.
+ *
+ * Gibt `null` zurück, wenn nichts Verlässliches dasteht. Das ist der
+ * Regelfall bei jeder anderen Störung, und dann gilt allein das Fenster.
+ */
+export function kontingentZurueck(meldung: string | null | undefined): number | null {
+  if (!meldung) return null
+  if (!/\bUTC\b/i.test(meldung)) return null
+
+  const treffer = /\bresets?\b[^0-9]{0,20}(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i.exec(
+    meldung
+  )
+  if (!treffer) return null
+
+  const stunde = Number(treffer[1])
+  const minute = treffer[2] ? Number(treffer[2]) : 0
+  const halb = treffer[3]?.toLowerCase()
+
+  if (minute > 59) return null
+  if (halb && (stunde < 1 || stunde > 12)) return null
+  if (!halb && stunde > 23) return null
+
+  let volleStunde = stunde
+  if (halb === 'pm' && stunde !== 12) volleStunde += 12
+  if (halb === 'am' && stunde === 12) volleStunde = 0
+
+  return volleStunde * 60 + minute
 }
