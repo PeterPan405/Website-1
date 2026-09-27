@@ -474,6 +474,35 @@ jobs:
               kein „Kurssturz", wenn es 1,2 Prozent waren. Übertreibung ist
               die andere Art, den Leser nicht ernst zu nehmen.
 
+            ## Der Rhythmus trägt die Folge – und er wird gemessen
+
+            Am 27. September 2026 hat der Betreiber gemeldet, der Podcast
+            klinge langweilig und monoton. Nachgemessen an den zehn Folgen
+            davor, 125 gesprochene Sätze:
+
+                Wörter je Satz   Median 24 · p75 34 · max 58
+                Sätze <=  8 Wörter    4 %
+                Sätze >= 25 Wörter   49 %
+                mit Semikolon        42 von 125
+
+            „Kurze Hauptsätze" stand oben schon seit sieben Wochen. Ein
+            Adjektiv ohne Zahl bindet nicht, also hier die Zahlen:
+
+            - **Jeder Absatz beginnt mit einem Satz unter zwölf Wörtern.** Er
+              nennt den Vorgang. Die Zahlen kommen danach.
+            - **Kein Satz über 25 Wörter.** Gesprochen sind das elf Sekunden
+              in einem Atem; ein Hörer kann nicht zurückspringen.
+            - **Mindestens jeder vierte Satz hat höchstens acht Wörter.**
+              Kurze Sätze sind kein Stilmittel, sie sind die Luft dazwischen.
+            - **Kein Semikolon.** Es klebt zwei Hauptsätze zusammen, die
+              gesprochen zwei sein müssen. Mach zwei Sätze draus.
+
+            Das ist nicht Geschmack. Die Sprechstimme bemisst ihre **Pausen an
+            der Satzlänge** – kurzer Satz, längere Pause. Sind alle Sätze
+            gleich lang, sind alle Pausen gleich lang, und dann klingt es
+            monoton, egal wie gut die Stimme ist. Der Lauf misst das nach und
+            warnt (`satzrhythmus` in `lib/sprechfassung.ts`).
+
             Ohne Auswirkung auf die Sorgfalt: Der Ton lockert die Sprache,
             nie die Belege. Eine hübsche Formulierung, die eine Begründung
             unterstellt, die in der Meldung nicht steht, ist schlechter als

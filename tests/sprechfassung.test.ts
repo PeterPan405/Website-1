@@ -18,6 +18,9 @@ import {
   ordnungszahl,
   RECHTSHINWEIS_GESPROCHEN,
   sprechbar,
+  SATZ_KURZ,
+  SATZ_LANG,
+  satzrhythmus,
   verdaechtigeAnglizismen,
   WORTZAHL_KAPUTT,
   WORTZIEL_MAX,
@@ -87,7 +90,23 @@ pruefe(
   sprechbar('der Nasdaq-100 bei 29.224'),
   'der Nässdack-einhundert bei neunundzwanzigtausendzweihundertvierundzwanzig'
 )
-pruefe('US-30 bleibt US-30', sprechbar('der US-30 stieg'), 'der US-dreißig stieg')
+/*
+  Dasselbe an einem Namen, der mit einem Kürzel beginnt.
+
+  Geprüft wird hier der **Bindestrich**, nicht das Kürzel. Bis zum
+  27. September 2026 stand als Erwartung „der US-dreißig stieg" – und trug
+  damit nebenbei fest, dass „US" gar nicht umgeschrieben wird. Das war keine
+  Absicht, sondern der damalige Zustand: „US" fiel in vierzehn Folgen 51 Mal
+  und kam jedes Mal als Silbe heraus.
+
+  Seit „US" eine Umschrift hat, lautet die Erwartung „Uh Ess-dreißig" – und
+  die Aussage dieser Prüfung ist unverändert: Aus dem Strich wird kein Minus.
+*/
+pruefe(
+  'Bindestrich hinter einem Kürzel wird nicht zum Minus',
+  sprechbar('der US-30 stieg'),
+  'der Uh Ess-dreißig stieg'
+)
 pruefe(
   'zusammengesetzte Zahl im Wort bleibt heil',
   sprechbar('Ein 9-zu-3-Stillhalten'),
@@ -657,6 +676,97 @@ pruefe(
     true
   )
 }
+
+/* ------------------------------------------------------- Der Satzrhythmus */
+
+/*
+  Der Fall vom 27. September 2026: „langweilig, monoton". Gemessen war es
+  nicht die Stimme, sondern der Text – und zwar so deutlich, dass es niemandem
+  hätte entgehen dürfen. Diese Prüfungen halten beide Richtungen fest.
+
+  Das Gerüst wird nicht mitgezählt: `satzrhythmus` überspringt Begrüßung,
+  Hinweise und Abschied. Sonst schönte das feste Vorspann-Deutsch den
+  Rhythmus, den der Agent tatsächlich schreibt.
+*/
+const geruest = (meldungen: string) =>
+  ['Guten Morgen.', 'Ein Hinweis.', meldungen, 'Bis morgen.'].join('\n\n')
+
+{
+  /* So klang es: ein Satz von 30 Wörtern, mit Semikolon, kein kurzer dabei. */
+  const lang =
+    'Die Huthi-Miliz griff nach Angaben der Agentur am Samstag die ' +
+    'saudi-arabische Hauptstadt Riad mit mehreren Drohnen an und traf dabei ' +
+    'auch Anlagen im Umland; der Sicherheitsrat verurteilte die Angriffe.'
+  const r = satzrhythmus(geruest(lang))
+  pruefe('ein einziger langer Satz zählt als lang', r.langeAnteil, 1)
+  pruefe('und als nicht kurz', r.kurzeAnteil, 0)
+  pruefe('das Semikolon wird gezählt', r.geklebt, 1)
+  pruefe('das Gerüst zählt nicht mit', r.anzahl, 1)
+}
+
+{
+  /* Und so soll es klingen: derselbe Inhalt, in Sätzen mit Luft dazwischen. */
+  const rhythmisch =
+    'Drohnen trafen Riad. Die Huthi-Miliz griff die saudi-arabische ' +
+    'Hauptstadt am Samstag an, nach Angaben der Agentur mit mehreren ' +
+    'Flugkörpern. Der Sicherheitsrat verurteilte die Angriffe.'
+  const r = satzrhythmus(geruest(rhythmisch))
+  pruefe('drei Sätze statt einem', r.anzahl, 3)
+  pruefe('ein Drittel davon ist kurz', r.kurzeAnteil > 0.3, true)
+  pruefe('keiner ist zu lang', r.langeAnteil, 0)
+  pruefe('und kein Semikolon mehr', r.geklebt, 0)
+}
+
+/*
+  Die Gegenprobe an der Wirklichkeit. Ohne sie wäre nur bewiesen, dass die
+  Messung an ausgedachten Sätzen rechnet – nicht, dass sie den gemeldeten Fall
+  gefunden hätte.
+
+  Genommen wird die jüngste Ausgabe im Bestand. Die Behauptung ist nicht „sie
+  ist schlecht", sondern: Die Messung liefert überhaupt Zahlen, und die
+  Schwellen liegen dort, wo sie etwas unterscheiden.
+*/
+{
+  const r = satzrhythmus(folge.sprechtext)
+  pruefe('die echte Folge ergibt Sätze', r.anzahl > 3, true)
+  pruefe('und einen Median über null', r.median > 0, true)
+  pruefe(
+    'die Grenzen liegen sinnvoll',
+    [SATZ_KURZ < SATZ_LANG, SATZ_KURZ > 0],
+    [true, true]
+  )
+}
+
+/* Ein leerer Text darf nicht werfen und nichts behaupten. */
+pruefe('ein Text ohne Meldungen ergibt null Sätze', satzrhythmus('').anzahl, 0)
+pruefe(
+  'und teilt nicht durch null',
+  satzrhythmus('').kurzeAnteil + satzrhythmus('').langeAnteil,
+  0
+)
+
+/* --------------------------------------------- Die Kürzel im Sprechtext */
+
+/*
+  Der zweite Teil derselben Meldung: „viele Aussprachefehler". In der Folge des
+  Tages standen fünf, und `verdaechtigeAnglizismen` fand keinen einzigen.
+  Diese Prüfung hält fest, dass sie die Klasse jetzt sieht.
+*/
+pruefe(
+  'Kürzel ohne Umschrift werden gemeldet',
+  verdaechtigeAnglizismen('laut dpa-AFX die Daten, PCE, und ASML'),
+  ['AFX', 'ASML', 'PCE']
+)
+pruefe(
+  'bekannte deutsche Kürzel nicht',
+  verdaechtigeAnglizismen('Der DAX, die EZB, ein ETF und KI in der USA'),
+  []
+)
+pruefe(
+  'und was eine Umschrift hat, taucht nicht mehr auf',
+  verdaechtigeAnglizismen(sprechbar('laut dpa-AFX die US-Daten, PCE, und ASML')),
+  []
+)
 
 console.log(
   gescheitert === 0

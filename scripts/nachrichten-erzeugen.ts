@@ -394,6 +394,26 @@ Ein Satz wie „Steigende Renditen drücken Aktienbewertungen über die Abzinsun
 
 **Einzelne Aktien tragen die Folge nicht.** Ein einzelnes Unternehmen kommt hinein, wenn es ein großer, allgemein bekannter Name ist **und** die Meldung darüber hinaus erheblich ist – eine Übernahme, ein Ausfall, eine Zahl, die einen Index bewegt. Quartalszahlen eines Einzelwerts sind kein Aufmacher. Zwei Nachkommastellen beim Gewinn je Aktie gehören in den Artikel, nicht in die gesprochene Meldung.
 
+**4. Der Rhythmus trägt die Folge – und er wird gemessen.**
+
+Am 27. September 2026 hat der Betreiber gemeldet, der Podcast klinge langweilig und monoton. Nachgemessen an den zehn Folgen davor, 125 gesprochene Sätze:
+
+\`\`\`
+Wörter je Satz   Median 24 · p75 34 · max 58
+Sätze <=  8 Wörter    4 %
+Sätze >= 25 Wörter   49 %
+mit Semikolon        42 von 125
+\`\`\`
+
+„Kurze Hauptsätze" stand da schon seit sieben Wochen. Ein Adjektiv ohne Zahl bindet nicht, also hier die Zahlen:
+
+- **Jeder Absatz beginnt mit einem Satz unter zwölf Wörtern.** Er nennt den Vorgang. Die Zahlen kommen danach.
+- **Kein Satz über 25 Wörter.** Gesprochen sind das elf Sekunden in einem Atem; ein Hörer kann nicht zurückspringen.
+- **Mindestens jeder vierte Satz hat höchstens acht Wörter.** Kurze Sätze sind kein Stilmittel, sie sind die Luft dazwischen.
+- **Kein Semikolon.** Es klebt zwei Hauptsätze zusammen, die gesprochen zwei sein müssen. Mach zwei Sätze draus.
+
+Das ist nicht Geschmack. Die Sprechstimme bemisst ihre **Pausen an der Satzlänge** – kurzer Satz, längere Pause. Sind alle Sätze gleich lang, sind alle Pausen gleich lang, und dann klingt es monoton, egal wie gut die Stimme ist.
+
 **3. Objektiv, ohne Position.** Berichtet wird, was geschehen ist und wer was gesagt hat – mit Zuschreibung. Keine eigene Bewertung, keine Parteinahme, keine Vermutung über Absichten, keine urteilenden Adjektive. Das gilt besonders für politische und militärische Ereignisse.
 
 - Richtig: „Russland griff Ziele in der Westukraine nahe der polnischen Grenze an. Polen meldete eine Verletzung seines Luftraums und berief sich auf Artikel 4 des Nato-Vertrags."

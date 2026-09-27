@@ -21,6 +21,9 @@ import { pathToFileURL } from 'node:url'
 import type { DailyEdition } from '../data/editions/types.ts'
 import {
   baueFolge,
+  SATZ_KURZ,
+  SATZ_LANG,
+  satzrhythmus,
   verdaechtigeAnglizismen,
   WORTZIEL_MAX,
   WORTZIEL_MIN,
@@ -72,6 +75,35 @@ if (folge.wortzahl < WORTZIEL_MIN || folge.wortzahl > WORTZIEL_MAX) {
   Sie bricht nichts ab: Ob ein Wort englisch gesprochen gehört, entscheidet
   ein Ohr, nicht ein Muster. Siehe `verdaechtigeAnglizismen`.
 */
+/*
+  Und der Satzrhythmus – aus demselben Grund und mit demselben Gewicht.
+
+  Am 27. September 2026 hat der Betreiber gemeldet, der Podcast klinge
+  „langweilig, monoton". Nachgemessen war es nicht die Stimme, sondern der
+  Text: Median 24 Wörter je Satz, die Hälfte über 25, fast nie ein kurzer.
+  Warum das die Pausen mitnimmt, steht bei `satzrhythmus`.
+
+  Eine Warnung, kein Abbruch. Ob ein Absatz einen langen Satz braucht,
+  entscheidet der Stoff; eine Folge wegen Prosa zurückzuhalten wäre der
+  Tausch, den dieses Projekt nicht macht.
+*/
+const rhythmus = satzrhythmus(folge.sprechtext)
+if (rhythmus.anzahl > 0) {
+  console.log(
+    `[folge] Satzrhythmus: ${rhythmus.anzahl} Sätze, Median ${rhythmus.median} Wörter, ` +
+      `${Math.round(rhythmus.kurzeAnteil * 100)} % kurz (<=${SATZ_KURZ}), ` +
+      `${Math.round(rhythmus.langeAnteil * 100)} % lang (>=${SATZ_LANG}), ` +
+      `${rhythmus.geklebt} mit Semikolon`
+  )
+  if (rhythmus.langeAnteil > 0.5 || rhythmus.kurzeAnteil < 0.1) {
+    console.log(
+      `::warning::[folge] Der Rhythmus ist gleichmäßig – so klingt die Folge monoton.`
+    )
+    console.log(`        Gebraucht werden kurze Sätze zwischen den langen: An ihnen`)
+    console.log(`        hängt die Pausenlänge in scripts/sprechstimme.py.`)
+  }
+}
+
 const verdaechtig = verdaechtigeAnglizismen(folge.sprechtext)
 if (verdaechtig.length) {
   console.log(

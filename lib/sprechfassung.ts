@@ -349,6 +349,49 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bBank of England\b/g, 'Bänk of Ingland'],
   [/\bBank of Japan\b/g, 'Bänk of Dschäpän'],
   [/\bWTI\b/g, 'Weh Teh Ih'],
+
+  /*
+    Die Kürzel, die in jeder Folge fielen und jedes Mal als Silbe herauskamen.
+
+    Am 27. September 2026 beanstandete der Betreiber die Aussprache erneut.
+    Nachgezählt über vierzehn Folgen: „US" 51 Mal, „AFX" 25 Mal. Das sind
+    nicht zwei Ausrutscher, das ist jede Folge mehrfach – „US-Dollar",
+    „US-Autobauer", „laut dpa-AFX".
+
+    `\bUS\b` trifft auch das erste Glied von „US-Dollar", weil der Bindestrich
+    eine Wortgrenze ist. Deshalb genügt der eine Eintrag für alle
+    Zusammensetzungen.
+  */
+  [/\bUS\b/g, 'Uh Ess'],
+  [/\bdpa-AFX\b/g, 'deh peh ah Ah Eff Ix'],
+  [/\bAFX\b/g, 'Ah Eff Ix'],
+  [/\bPCE\b/g, 'Peh Zeh Eh'],
+  [/\bASML\b/g, 'Ah Ess Emm Ell'],
+  [/\bAMD\b/g, 'Ah Emm Deh'],
+  [/\bGLD\b/g, 'Geh Ell Deh'],
+  /*
+    Und hier schlägt Falle 3 der deutschen Rechtschreibung auf die
+    Buchstabennamen selbst durch: Das **V** heisst „Vau" und wird /faʊ/
+    gesprochen, das **W** heisst „Weh" /veː/. Wer „Wau" schreibt, sagt /vaʊ/
+    und buchstabiert damit ein W.
+
+    Im ersten Entwurf stand hier „Ess Ell Wau" und „Weh Weh" – aus „VW" wäre
+    „W-W" geworden. Gemerkt beim Nachlesen der eigenen Regel in `AGENTS.md`,
+    nicht beim Hören.
+  */
+  [/\bSLV\b/g, 'Ess Ell Fau'],
+  [/\bVW\b/g, 'Fau Weh'],
+
+  /*
+    Und die gewöhnlich geschriebenen englischen Wörter aus derselben Folge.
+    Für sie gibt es kein Muster – siehe `verdaechtigeAnglizismen` –, sie
+    kommen nur durch Zuhören in die Tabelle.
+
+    „Rivian" ist der teuerste der drei: Das „v" wird im Deutschen /f/, aus dem
+    Autobauer wird also „Rifian".
+  */
+  [/\bRivian\b/g, 'Riwien'],
+  [/\bManaged Money\b/g, 'Männedschd Mannie'],
   /*
     Drei Fallen, die die deutsche Rechtschreibung stellt. Die ersten beiden
     sind dem Betreiber am 11. August 2026 im Ohr aufgefallen, die dritte kam
@@ -609,8 +652,64 @@ export function englischeNamenSprechbar(text: string): string {
 const ENDUNG = {
   de: 'punkt Deh Eh',
   com: 'punkt Zeh Oh Emm',
-  net: 'punkt Enn Eh Teh',
+  /*
+    „net" wird **gesprochen**, nicht buchstabiert – anders als „de".
+
+    Bis zum 27. September 2026 stand hier „punkt Enn Eh Teh", und in der Folge
+    dieses Tages kam heraus: „finanzen punkt Enn Eh Teh". So sagt es niemand.
+
+    Der Unterschied zu „de" liegt am Wort, nicht an der Regel: „de" ist im
+    Deutschen keine Silbe, die man lesen kann – genau darum hat der Betreiber
+    am 11. August das Buchstabieren verlangt. „net" ist eine, und zwar eine,
+    die jeder kennt. Geschrieben als „nett", damit das Modell /nɛt/ sagt und
+    nicht /neːt/.
+  */
+  net: 'punkt nett',
 } as const
+
+/*
+  Kürzel, die die Stimme von selbst richtig sagt – oder die ausdrücklich
+  deutsch gesprochen gehören.
+
+  ## Warum es diese Liste braucht
+
+  Ein Kürzel aus Großbuchstaben hat im Deutschen keine Aussprache, die man
+  ablesen könnte: „EZB" wird buchstabiert, „DAX" als Wort gesprochen, und
+  welches von beidem gilt, steht nicht in der Schreibweise. Ein Melder, der
+  jedes Kürzel anzeigt, zeigt in jeder Folge zwanzig an und wird überlesen.
+
+  Hier stehen deshalb die, bei denen nichts zu tun ist. Alles andere meldet
+  `verdaechtigeAnglizismen`. Die Begründung, warum „ETF" und „KI" nicht
+  umgeschrieben werden, steht in `AGENTS.md`: Was im Deutschen deutsch
+  gesprochen wird, gehört nicht in die Tabelle.
+*/
+const KUERZEL_IN_ORDNUNG = new Set([
+  // Als Wort gesprochen, und zwar richtig.
+  'DAX',
+  'MDAX',
+  'SDAX',
+  'BASF',
+  'RAG',
+  'UN',
+  'OPEC',
+  'NATO',
+  // Buchstabiert, und die Stimme trifft es.
+  'EZB',
+  'USA',
+  'SPD',
+  'CDU',
+  'CSU',
+  'FDP',
+  'BIP',
+  'EU',
+  // Ausdrücklich deutsch – siehe AGENTS.md.
+  'ETF',
+  'ETFs',
+  'KI',
+  'AG',
+  'SE',
+  'GmbH',
+])
 
 /*
   Formen, die im Deutschen praktisch nur bei englischen Wörtern vorkommen.
@@ -666,6 +765,35 @@ const KEINE_ANGLIZISMEN = new Set([
  * ist; sie kennt nur ein paar Schreibweisen, die es im Deutschen kaum gibt.
  * Deshalb wird nichts abgebrochen und nichts von selbst ersetzt – die
  * Entscheidung, ob ein Wort in die Tabelle gehört, trifft ein Ohr.
+ *
+ * ## Was sie am 27. September 2026 dazugelernt hat
+ *
+ * Der Betreiber hat die Aussprache erneut beanstandet. In der Folge dieses
+ * Tages standen fünf Fehler – und dieser Melder fand **keinen einzigen**:
+ *
+ *     finanzen punkt Enn Eh Teh   „.net" buchstabiert statt gesprochen
+ *     Managed Money               gar nicht umgeschrieben
+ *     Rivian                      gar nicht umgeschrieben, „v" wird /f/
+ *     PCE                         als Silbe gelesen statt buchstabiert
+ *     dpa-AFX                     dasselbe
+ *
+ * Nachgezählt, woran es liegt: Die Muster oben fangen **auffällige**
+ * Schreibweisen – „tch", „-ing", „-sh", Konsonant plus „y". „Rivian" und
+ * „Managed" sind ganz gewöhnlich geschrieben, und ein Kürzel aus
+ * Großbuchstaben trifft kein einziges Muster.
+ *
+ * Für die gewöhnlich geschriebenen Wörter gibt es kein Muster, das trägt: Ein
+ * Versuch über „enthält v oder w" wurde an vierzehn Folgen gemessen und
+ * verworfen – er hätte „Bevor" (14×), „Hinweis" (29×), „Mittwoch" und
+ * „November" gemeldet. Eine Fallunterscheidung über ein Merkmal, das der
+ * Stoff nicht hergibt, ist keine.
+ *
+ * Die **Kürzel** dagegen sind eine saubere Klasse: zwei oder mehr
+ * Großbuchstaben am Stück. In denselben vierzehn Folgen waren es 26
+ * verschiedene, angeführt von „US" (51 Mal) und „AFX" (25 Mal) – zwei
+ * Kürzel, die in jeder Folge mehrfach fielen und jedes Mal als Silbe
+ * herauskamen. Die, bei denen nichts zu tun ist, stehen in
+ * `KUERZEL_IN_ORDNUNG`; alles andere wird gemeldet.
  */
 export function verdaechtigeAnglizismen(sprechtext: string): string[] {
   const gefunden = new Set<string>()
@@ -673,7 +801,16 @@ export function verdaechtigeAnglizismen(sprechtext: string): string[] {
     if (KEINE_ANGLIZISMEN.has(wort)) continue
     /* Zusammensetzungen am Bindestrich einzeln ansehen: „News-Ticker". */
     for (const teil of wort.split('-')) {
-      if (teil.length < 3 || KEINE_ANGLIZISMEN.has(teil)) continue
+      if (teil.length < 2 || KEINE_ANGLIZISMEN.has(teil)) continue
+      /*
+        Zuerst die Kürzel. Sie sind kürzer als drei Zeichen erlaubt – „US" ist
+        zwei –, und für sie gelten die Muster unten nicht.
+      */
+      if (/^[A-ZÄÖÜ]{2,}$/.test(teil)) {
+        if (!KUERZEL_IN_ORDNUNG.has(teil)) gefunden.add(teil)
+        continue
+      }
+      if (teil.length < 3) continue
       if (ENGLISCH_VERDAECHTIG.some((muster) => muster.test(teil))) gefunden.add(teil)
     }
   }
@@ -1524,5 +1661,101 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     kapitel,
     beschreibung,
     hashtags,
+  }
+}
+
+/* ------------------------------------------------------- Der Satzrhythmus */
+
+/**
+ * Wie lang ein Satz höchstens sein soll, damit er gesprochen noch trägt.
+ *
+ * Bei rund 134 Wörtern je Minute sind 25 Wörter elf Sekunden in einem Atem.
+ * Darüber verliert ein Hörer den Anfang, bevor das Ende kommt – anders als ein
+ * Leser, der zurückspringen kann.
+ */
+export const SATZ_LANG = 25
+
+/**
+ * Wie kurz ein Satz sein muss, um als kurz zu zählen.
+ *
+ * Acht Wörter sind rund dreieinhalb Sekunden. Ein solcher Satz setzt einen
+ * Punkt, hinter dem die Stimme Luft holt – und genau daran hängt die
+ * Pausenlänge in `scripts/sprechstimme.py`.
+ */
+export const SATZ_KURZ = 8
+
+/** Was der Rhythmus einer Folge hergibt. */
+export interface Satzrhythmus {
+  anzahl: number
+  median: number
+  kurzeAnteil: number
+  langeAnteil: number
+  /** Sätze, die zwei Hauptsätze mit einem Semikolon zusammenkleben. */
+  geklebt: number
+}
+
+/**
+ * Misst den Satzrhythmus des Sprechtexts.
+ *
+ * ## Warum das gemessen wird und nicht beschrieben
+ *
+ * Am 27. September 2026 hat der Betreiber gemeldet, der Podcast klinge
+ * „langweilig, monoton". Im Prompt stand zu diesem Zeitpunkt seit sieben
+ * Wochen „Kurze Hauptsätze, keine Schachtelsätze". Nachgemessen an den zehn
+ * Folgen davor, nur die Meldungsabsätze, 125 Sätze:
+ *
+ *     Wörter je Satz   min 6 · p25 17 · Median 24 · p75 34 · max 58
+ *     Sätze <= 8 Wörter    5 von 125   (4 %)
+ *     Sätze >= 25 Wörter  61 von 125   (49 %)
+ *     mit Semikolon       42 von 125
+ *
+ * Die Anweisung stand da und band nichts – ein Adjektiv ohne Zahl bindet
+ * nicht, dieselbe Lehre wie „Ein Satz im Protokoll ist keine Regel". Bei
+ * `intro` wirkt die Vorgabe, weil dort eine Zahl steht (110 bis 160 Zeichen)
+ * und ein Prüfer sie liest.
+ *
+ * ## Warum das die Monotonie erklärt
+ *
+ * Nicht nur, weil lange Sätze schwer zu hören sind. Sondern weil
+ * `scripts/sprechstimme.py` die **Pause an die Satzlänge** hängt: kurzer Satz,
+ * längere Pause. Bei einem Text, dessen Sätze alle zwischen 17 und 34 Wörtern
+ * liegen, bekommen alle Pausen fast dieselbe Länge – die Sprechstimme kann die
+ * Abwechslung, für die sie gebaut ist, gar nicht herstellen.
+ *
+ * **Eine Fallunterscheidung über ein Merkmal, das der Stoff nicht hat, ist
+ * keine.** Der Stoff gab die Satzlänge nicht her, also gab er die Pause nicht
+ * her, also klang es gleichmäßig. Die Stimme war nie das Problem.
+ *
+ * Gemessen wird deshalb hier, gemeldet in `scripts/podcast-folge-erzeugen.ts`
+ * – als Warnung, nicht als Abbruch. Ob ein Absatz einen langen Satz braucht,
+ * entscheidet der Stoff, und eine Ausgabe wegen Prosa zurückzuhalten wäre der
+ * Tausch, den dieses Projekt nicht macht.
+ */
+export function satzrhythmus(sprechtext: string): Satzrhythmus {
+  /*
+    Nur die Meldungsabsätze. Begrüßung, Hinweise und Abschied sind festes
+    Gerüst – sie mitzuzählen würde den Rhythmus schönen, den der Agent
+    tatsächlich schreibt.
+  */
+  const absaetze = sprechtext.split(/\n\n+/).slice(2, -1)
+  const saetze = absaetze
+    .flatMap((a) => a.split(/(?<=[.!?])\s+/))
+    .map((s) => s.trim())
+    .filter(Boolean)
+
+  const laengen = saetze
+    .map((s) => s.split(/\s+/).filter(Boolean).length)
+    .sort((a, b) => a - b)
+  const anzahl = laengen.length
+  if (anzahl === 0) {
+    return { anzahl: 0, median: 0, kurzeAnteil: 0, langeAnteil: 0, geklebt: 0 }
+  }
+
+  return {
+    anzahl,
+    median: laengen[Math.floor(anzahl / 2)],
+    kurzeAnteil: laengen.filter((n) => n <= SATZ_KURZ).length / anzahl,
+    langeAnteil: laengen.filter((n) => n >= SATZ_LANG).length / anzahl,
+    geklebt: saetze.filter((s) => s.includes(';')).length,
   }
 }
