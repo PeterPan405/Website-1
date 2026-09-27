@@ -388,6 +388,26 @@ jobs:
                 abstand=-1
               fi
 
+              # Hat der Agent heute ein aufgebrauchtes Kontingent gemeldet?
+              #
+              # Am 27. September 2026 war es aufgebraucht und die Antwort nannte
+              # die Uhrzeit der Rückkehr („resets 1pm (UTC)"). Der Wecker hörte
+              # um 05:00 auf, das Kontingent kam um 13:00 – und dazwischen hat
+              # niemand mehr gefragt. Die Meldung liegt auf dem wurzellosen
+              # Zweig `nachrichten-kontingent`, erste Zeile der Tag.
+              #
+              # **Nur eine Meldung von heute zählt.** Eine von gestern würde
+              # jeden Tag zur selben Stunde wecken, ohne dass etwas vorliegt.
+              # Der Abruf darf nichts kosten, wenn es den Zweig nicht gibt:
+              # `|| true` überall, dieselbe Vorsicht wie beim Wecker selbst.
+              kontingent=''
+              if git fetch --depth 1 origin nachrichten-kontingent -q 2>/dev/null; then
+                kmeldung=$(git show FETCH_HEAD:kontingent.txt 2>/dev/null || true)
+                if [ "$(printf '%s\n' "$kmeldung" | sed -n 1p)" = "$tag" ]; then
+                  kontingent=$(printf '%s\n' "$kmeldung" | sed -n '2,$p')
+                fi
+              fi
+
               # `|| true` ist hier nicht Kosmetik. Der Schritt läuft unter
               # `bash -e`; ein Aufruf, der ungleich null zurückkommt, bricht
               # ihn ab – und das ist die Kursschleife. Ein kaputter Wecker
@@ -399,6 +419,7 @@ jobs:
                            WECK_VERSUCHE="$weckversuche" \
                            WECK_ABSTAND_S="$abstand" \
                            WECK_SCHON_ALARMIERT="$alarmgestellt" \
+                           WECK_KONTINGENT_MELDUNG="$kontingent" \
                            node --experimental-strip-types \
                                 --import ./scripts/alias-hook.mjs \
                                 scripts/tagesausgabe-wecken.ts 2>/dev/null || true)

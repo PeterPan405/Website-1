@@ -598,7 +598,57 @@ jobs:
               console.log("  im Abonnement enthalten) oder einen gültigen ANTHROPIC_API_KEY")
               console.log("  hinterlegen. Beides unter Settings > Secrets and variables > Actions.")
             }
+
+            /*
+              Ein 429 ist keine Absage, sondern ein Termin.
+
+              Am 27. September 2026 war das Wochenkontingent aufgebraucht, und
+              die Antwort nannte die Uhrzeit: „resets 1pm (UTC)". Das Kontingent
+              kam um 13:00 zurück – der Wecker hatte um 05:00 aufgehört, acht
+              Stunden davor, und danach hat niemand mehr gefragt.
+
+              Die Meldung wird deshalb in eine Datei geschrieben; der nächste
+              Schritt legt sie auf den Zweig, und `lib/tageswecker.ts` liest die
+              Uhrzeit daraus. Hier wird **nicht** geparst: Die Regel dafür ist
+              dort geprüft, und zwei Leser derselben Zeichenkette laufen
+              irgendwann auseinander.
+            */
+            if (status === 429 && ergebnis.is_error) {
+              require("fs").writeFileSync("kontingent.txt", String(ergebnis.result ?? "") + "\n")
+              console.log("")
+              console.log("  Das Kontingent ist aufgebraucht. Nennt die Meldung eine Uhrzeit,")
+              console.log("  weckt der Dauerlauf die Kette danach noch einmal.")
+            }
           ' "$protokoll"
+
+      # Die Meldung des Kontingents auf den wurzellosen Zweig – sonst weiß der
+      # Dauerlauf nichts davon. `if: always()`, weil der Schritt davor in genau
+      # diesem Fall rot geworden ist.
+      - name: Kontingent-Meldung auf den Zweig legen
+        if: always()
+        run: |
+          [ -s kontingent.txt ] || {
+            echo "Keine Kontingent-Meldung aus diesem Lauf – nichts zu schreiben."
+            exit 0
+          }
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          inhalt=$(mktemp)
+          # Der Tag davor, damit eine Meldung von gestern nicht heute weckt.
+          { date -u +%F; cat kontingent.txt; } > "$inhalt"
+
+          git checkout --orphan nachrichten-kontingent
+          git rm -rf --cached . > /dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp "$inhalt" kontingent.txt
+
+          git add kontingent.txt
+          git commit -m "Kontingent aufgebraucht am $(date -u +%F)"
+          git push --force origin nachrichten-kontingent
+
+          echo "::notice::$(tail -1 kontingent.txt)"
 
       # Erst hier wird der Entwurf abgelegt – und nur, wenn er die Probe
       # besteht. Ein Entwurf, den niemand geprüft hat, wäre gefährlicher als
