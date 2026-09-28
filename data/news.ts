@@ -101,6 +101,312 @@ export interface NewsArticle {
 
 export const newsArticles: NewsArticle[] = [
   {
+    slug: 'hormus-usa-weisen-irans-angebot-zurueck',
+    title: 'USA weisen Irans Angebot zur Straße von Hormus zurück',
+    teaser:
+      'Die US-Regierung nennt Irans Hormus-Angebot überzogen, Iran warnt Schiffe vor unautorisierten Routen, und Trump erwartet weitere Gespräche mit Teheran.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:50:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Iran', 'USA', 'Hormus', 'Öl'],
+    relatedTopics: ['rohstoffe'],
+    relatedSymbols: ['brent', 'wti'],
+    sources: [
+      {
+        label:
+          "wallstreet-online, Rohstoffnachrichten, Meldung vom 27.09.2026: „'Verlangten alles im Voraus': USA über Irans Hormus-Angebot“",
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 27.09.2026: „Unautorisierte Routen: Iran warnt Schiffe vor Konsequenzen“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'wallstreet-online, Rohstoffnachrichten, Meldung vom 27.09.2026: „Trump: Erwarte weitere Gespräche mit dem Iran“',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Straße von Hormus: Iran schiebt den Ball bei Öffnung den USA zu - Trump legt Angebot ab“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Die US-Regierung hat Irans Angebot zur Straße von Hormus zurückgewiesen. Nach eigenen Angaben habe Teheran laut wallstreet-online alle Zugeständnisse im Voraus verlangt, bevor über eine Öffnung der Meerenge weiter verhandelt werde.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Iran warnte zugleich Schiffe vor unautorisierten Routen. Welche Routen genau gemeint sind und welche Konsequenzen drohen, nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Trump äußerte sich ebenfalls zu dem Konflikt. Er erwarte weitere Gespräche mit dem Iran, meldete wallstreet-online, ohne einen Termin zu nennen.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum der Ölpreis schon auf Ankündigungen reagiert',
+      },
+      {
+        type: 'paragraph',
+        text: 'Durch die Straße von Hormus verläuft ein großer Teil der weltweiten Ölexporte. Ein Preis wie der von Brent enthält deshalb eine Risikoprämie für mögliche Störungen. Diese Prämie kann sich schon durch neue Wortmeldungen verändern, ganz ohne dass sich an der tatsächlich verschifften Menge etwas ändert. Am Montagmorgen notierte Brent laut wallstreet-online bei 98,47 US-Dollar je Fass, ein Plus von 1,03 Prozent (Stand 02:55 Uhr).',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob sich an der Blockadefrage etwas ändert, hängt an der nächsten Gesprächsrunde, die laut Trump noch aussteht. Bis dahin bleibt die Risikoprämie im Ölpreis eine Wette auf Ankündigungen, nicht auf tatsächliche Lieferausfälle.',
+      },
+    ],
+  },
+  {
+    slug: 'notenbank-kalender-montag-ramsden-dallas-fed',
+    title: 'Diese Notenbank-Termine stehen am Montag an',
+    teaser:
+      'Am Montag spricht BoE-Vize Dave Ramsden, die Dallas Fed veröffentlicht ihren Industrieindex, dazu Konjunkturdaten aus Japan, Finnland und Italien.',
+    category: 'Geldpolitik',
+    publishedAt: '2026-09-28T07:45:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 4,
+    tags: ['Notenbanken', 'Konjunkturkalender', 'Bank of England', 'Fed'],
+    relatedTopics: ['notenbanken-geldpolitik'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'wallstreet-online, Startseite Nachrichten, Wirtschaftskalender „Kommende Termine“, Stand 28.09.2026',
+        url: 'https://www.wallstreet-online.de/nachrichten',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Am Montag richten sich mehrere Notenbank-Termine an die Märkte. Um 12:00 Uhr spricht der stellvertretende Bank-of-England-Gouverneur Dave Ramsden, meldet der Wirtschaftskalender von wallstreet-online.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Um 16:30 Uhr veröffentlicht die Dallas Fed ihren Manufacturing Business Index für die USA. Im Vormonat lag der Wert laut Kalender bei 11,6 Punkten.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bereits am frühen Morgen war laut Kalender um 01:50 Uhr das Protokoll der jüngsten Sitzung der Bank of Japan erschienen. Zugleich meldete Japan seinen Unternehmens-Dienstleistungspreisindex mit 3,7 Prozent im Jahresvergleich, nach 3,6 Prozent im Vormonat.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Aus Finnland stehen um 07:00 Uhr das Verbraucher- und das Industrievertrauen an. Österreich meldet um 10:00 Uhr den UniCredit-Bank-Einkaufsmanagerindex für die Industrie, zuletzt 54,4 Punkte, Italien zur selben Zeit seine Handelsbilanz außerhalb der EU, im Vormonat ein Überschuss von 2,55 Milliarden Euro.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Rede ohne Zinsentscheid trotzdem zählt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Dave Ramsden entscheidet an diesem Termin nicht über den Leitzins. Seine Einschätzung zur Konjunktur kann Markterwartungen an die nächste Zinsentscheidung der Bank of England trotzdem verschieben, weil Anleger aus einzelnen Sätzen auf die künftige Abstimmung im Gremium schließen.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ob die heutigen Daten die Woche prägen, entscheidet sich erst im Vergleich mit den Prognosen der Marktteilnehmer. Der Kalender selbst nennt für die meisten dieser Termine keine Erwartungswerte.',
+      },
+    ],
+  },
+  {
+    slug: 'mercedes-benz-drosselt-produktion-sindelfingen',
+    title: 'Mercedes-Benz drosselt Produktion in Sindelfingen',
+    teaser:
+      'Mercedes-Benz hat laut finanzen.net die Produktion im Werk Sindelfingen gedrosselt. Die Ursache nennt die Kurzmeldung nicht, Dauer und Baureihen bleiben offen.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:40:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Mercedes-Benz', 'Produktion', 'Automobilindustrie'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['mercedes-benz'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Mercedes-Benz: Werk Sindelfingen musste Produktion herunterfahren“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Mercedes-Benz hat die Produktion im Werk Sindelfingen gedrosselt. Das meldete finanzen.net am Sonntag in seinem News-Ticker vom 27.09.2026.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Begründung nennt die Meldung nicht. Weder die Dauer der Drosselung noch die betroffenen Baureihen gehen aus der Kurzmeldung hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Ausfall ist nicht gleich Ausfall',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine gedrosselte Fertigung kann viele Ursachen haben: fehlende Teile von Zulieferern, eine technische Störung an der Linie oder eine bewusste Anpassung an die Nachfrage. Jede dieser Ursachen wirkt sich unterschiedlich auf kommende Quartalszahlen aus.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Lieferkettenproblem ist in aller Regel vorübergehend und wird oft in den folgenden Wochen nachgeholt. Eine Drosselung wegen schwacher Nachfrage zeigt sich dagegen häufig erst in den Auftragseingangszahlen des nächsten Quartals.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ohne genannten Grund lässt sich nicht sagen, welcher der beiden Fälle hier vorliegt. Die nächsten Quartalszahlen von Mercedes-Benz dürften mehr Aufschluss geben.',
+      },
+    ],
+  },
+  {
+    slug: 'passagierklagen-gegen-fluglinien-53000',
+    title: '53.000 Klagen von Passagieren gegen Fluglinien',
+    teaser:
+      'Laut finanzen.net reichten Passagiere binnen eines halben Jahres rund 53.000 Klagen gegen Fluglinien ein. Land, Zeitraum und Fluglinien nennt die Meldung nicht.',
+    category: 'Steuern & Recht',
+    publishedAt: '2026-09-28T07:35:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Fluggastrechte', 'Fluglinien', 'Recht'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: [],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „53.000 Klagen von Passagieren gegen Fluglinien im Halbjahr“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Passagiere haben binnen eines halben Jahres rund 53.000 Klagen gegen Fluglinien eingereicht. Das meldete finanzen.net am 27.09.2026 in seiner Nachrichtenübersicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Welches Land, welcher genaue Zeitraum und welche Fluglinien betroffen sind, nennt die Kurzmeldung nicht.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Was hinter einer Fluggastklage steckt',
+      },
+      {
+        type: 'paragraph',
+        text: 'Die meisten Klagen gegen Fluglinien in Europa drehen sich um Ausgleichszahlungen nach der EU-Fluggastrechteverordnung, etwa bei langen Verspätungen oder Annullierungen. Ob die gemeldeten 53.000 Fälle diese Verordnung betreffen, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Eine Klage ist zudem nicht dasselbe wie eine erfolgreiche Klage. Fluglinien wenden häufig außergewöhnliche Umstände wie Wetter oder Streiks ein, die eine Zahlungspflicht ausschließen können.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ohne Angaben zu Land und Ausgang der Verfahren lässt sich die Zahl 53.000 nur schwer einordnen. Sie zeigt aber, wie oft Passagiere ihre Rechte inzwischen einklagen.',
+      },
+    ],
+  },
+  {
+    slug: 'boeing-737-max-neue-software-panne',
+    title: 'Boeing meldet neue Software-Panne bei der 737 Max',
+    teaser:
+      'Boeing hat laut finanzen.net eine neue Software-Panne bei der 737 Max eingeräumt. Details zur Art des Fehlers nennt die Kurzmeldung nicht.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:30:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Boeing', '737 Max', 'Luftfahrt'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['boeing'],
+    sources: [
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Boeing-Aktie: Neue Software-Panne bei der 737 Max“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Boeing hat laut finanzen.net eine neue Software-Panne bei der 737 Max eingeräumt. Die Meldung vom 27.09.2026 nennt weder die Art des Fehlers noch, welche Systeme betroffen sind.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ob Flugzeuge deshalb am Boden bleiben müssen oder Fluggesellschaften informiert wurden, geht aus der Kurzmeldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Eine Schlagzeile ist noch keine Einordnung',
+      },
+      {
+        type: 'paragraph',
+        text: 'Bei der 737 Max hat es in der Vergangenheit mehrfach technische und softwareseitige Nachbesserungen gegeben. Wie schwer ein einzelner Fall wiegt, entscheidet sich meist erst, wenn Luftfahrtbehörden oder Boeing selbst weitere Details veröffentlichen.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Erst vor wenigen Wochen war die Boeing-Aktie wegen verzögerter Tests am Langstreckenjet 777X unter Druck geraten, einem anderen Modellprogramm mit einer anderen Ursache. Beide Fälle zusammen zeigen vor allem, wie oft bei Boeing derzeit einzelne Programme Verzögerungen melden.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Ohne weitere Angaben lässt sich nicht sagen, ob die neue Software-Panne die Auslieferung von Maschinen verzögert. Das dürfte sich erst zeigen, wenn Boeing oder die Aufsichtsbehörden mehr mitteilen.',
+      },
+    ],
+  },
+  {
+    slug: 'lufthansa-flugstoerungen-powerbank-geruch',
+    title: 'Lufthansa meldet zwei Flugstörungen an einem Tag',
+    teaser:
+      'Ein Lufthansa-Flug wurde laut onvista wegen einer brennenden Powerbank umgeleitet, ein zweiter meldete Geruchsbelästigung an Bord, beide am selben Sonntag.',
+    category: 'Märkte',
+    publishedAt: '2026-09-28T07:25:00+02:00',
+    author: 'Redaktion IM Invests',
+    readingMinutes: 3,
+    tags: ['Lufthansa', 'Flugsicherheit', 'Luftfahrt'],
+    relatedTopics: ['aktie'],
+    relatedSymbols: ['lufthansa'],
+    sources: [
+      {
+        label:
+          'onvista, Aktuelle News, Meldung vom 27.09.2026, 17:20 Uhr, dpa-AFX: „Lufthansa-Flug wegen brennender Powerbank umgeleitet“',
+        url: 'https://www.onvista.de/news/',
+      },
+      {
+        label:
+          'finanzen.net, News-Ticker, Meldung vom 27.09.2026: „Lufthansa-Aktie: Mehrere Flugstörungen durch Powerbank-Feuer und Geruchsbelästigung“',
+        url: 'https://www.finanzen.net/nachrichten/',
+      },
+    ],
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ein Lufthansa-Flug wurde laut onvista und dpa-AFX am Sonntag um 17:20 Uhr wegen einer brennenden Powerbank an Bord umgeleitet. Details zur Landung nennt die Meldung nicht.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Daneben berichtete finanzen.net von einem zweiten Vorfall am selben Tag: einer Geruchsbelästigung an Bord eines weiteren Lufthansa-Flugs. Ob dieser Flug ebenfalls umgeleitet wurde, geht aus der Meldung nicht hervor.',
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: 'Warum eine Vorsichtsmaßnahme nicht gleich ein großer Zwischenfall ist',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ein Brand durch eine Lithium-Batterie an Bord gilt in der Luftfahrt als besonders riskant, weil er sich schnell ausbreiten kann. Crews reagieren deshalb standardmäßig mit einer Umleitung, unabhängig davon, wie groß das Feuer tatsächlich war.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Für die Fluggesellschaft bedeutet das zunächst nur Zusatzkosten für die außerplanmäßige Landung. Ein Zusammenhang zur Finanzlage von Lufthansa lässt sich aus einem einzelnen Vorfall nicht ableiten.',
+      },
+      {
+        type: 'paragraph',
+        text: '**Was daraus folgt:** Zwei Vorfälle an einem Tag sind ungewöhnlich, sagen aber allein nichts über die Ursache aus. Ob es Zufall ist oder ein wiederkehrendes Muster, zeigt sich erst über mehrere Wochen.',
+      },
+    ],
+  },
+  {
     slug: 'huthi-drohnenangriff-riad-iran-hormus-usa-am-zug',
     title: 'Huthi-Miliz beschießt Riad, Iran sieht USA am Zug bei Hormus',
     teaser:
