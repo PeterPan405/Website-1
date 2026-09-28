@@ -66,6 +66,80 @@ const WARUM_MIN = 40
 const TOP_MAX = 6
 const MELDUNGEN_MAX = 12
 
+/**
+ * Wie viele Meldungen die Tagesausgabe mindestens trägt.
+ *
+ * ## Warum hier fünf steht und in `lib/editions-validate.ts` drei
+ *
+ * Weil die beiden Zahlen verschiedene Fragen beantworten. `ITEMS_MIN = 3`
+ * dort fragt: „Ist diese Ausgabe noch eine Ausgabe?" – das ist die Grenze,
+ * unter der die Website bricht, und sie muss niedrig bleiben, weil fünf
+ * Ausgaben im Bestand darunter liegen. Diese Zahl hier fragt: „Hat das
+ * Modell geliefert, was bestellt war?" – und bestellt sind laut `AGENTS.md`
+ * fünf bis zehn Artikel und laut Prompt dieselben Meldungen in der Ausgabe.
+ *
+ * ## Der Anlass
+ *
+ * Die Folge vom 28. September 2026. Der Betreiber: „viel zu kurz, das Intro
+ * und die Aufklärung danach gehen genauso lange wie der Podcast." Sie hatte
+ * 86 Wörter Nachricht gegen 103 Wörter Gerüst.
+ *
+ * Die Ausgabe hatte **vier** Meldungen – und der Tag **sechs** Artikel. Das
+ * Material lag vor, es kam nur nicht in die Ausgabe. Im Prompt steht seit
+ * jeher „Die Tagesausgabe fasst dieselben Meldungen zusammen"; geprüft hat
+ * das niemand. Geprüft wurde `artikel.length < 5` – die Zahl, die auf der
+ * Website landet – und `< 3` für die Meldungen, die gesprochen werden.
+ *
+ * **Ein Satz im Prompt ist keine Regel, solange ihn kein Prüfer liest.**
+ * Dieselbe Lehre wie beim Satzrhythmus am Tag davor.
+ *
+ * ## Woran die Zahl gewählt ist, und was sie sonst fände
+ *
+ * An den 65 Ausgaben seit dem 25. Juli 2026. Meldungen je Ausgabe:
+ *
+ *     unter fünf:  5 Tage   28.09. (4) · 27.09. (4) · 17.09. (3) ·
+ *                           13.08. (4) · 02.08. (4)
+ *     fünf:       18 Tage
+ *     sechs+:     42 Tage
+ *
+ * An vier dieser fünf Tage standen **mehr Artikel als Meldungen** bereit;
+ * die Grenze hätte also einen zweiten Anlauf verlangt und nicht einen Tag
+ * gekostet. Der fünfte (02.08.) hatte selbst nur vier Artikel und wäre
+ * schon an `artikel.length < 5` gescheitert – die neue Grenze verwirft
+ * damit keinen Tag, den die alte durchgelassen hätte.
+ *
+ * ## Warum ein Abbruch hier vertretbar ist und in der Folge nicht
+ *
+ * Weil noch nichts geschrieben ist. `nachrichten-agent.yml` läuft um 02:33,
+ * 03:03 und 03:33; danach greift das Modell über die Schnittstelle. Ein
+ * verworfener Entwurf kostet eine halbe Stunde, keine Ausgabe.
+ */
+const MELDUNGEN_MIN = 5
+
+/**
+ * Das feste Gerüst der Folge in Wörtern – und damit die Untergrenze für alles,
+ * was gesprochen wird.
+ *
+ * Begrüßung, KI-Hinweis, Rechtshinweis und Abschied stehen wörtlich in
+ * `lib/sprechfassung.ts` und wachsen nicht mit. Nachgemessen an allen 65
+ * Folgen seit dem 25. Juli 2026: zwischen 103 und 116 Wörtern, Median 109.
+ *
+ * Die Grenze ist der Satz des Betreibers vom 28. September 2026, in eine Zahl
+ * übersetzt: Die Meldungen müssen mehr wiegen als das Kleingedruckte. Die
+ * `summary`-Absätze aller 65 Ausgaben, aufsteigend:
+ *
+ *     79 · 130 · 159 · 159 · 162 · 162 · 167 · 178 · 184 · 188 · …
+ *     Median 246, Höchstwert 529
+ *
+ * Genau eine Ausgabe liegt darunter – die gemeldete. Zur zweitdünnsten sind
+ * es 51 Wörter Abstand; das ist keine Grenze, die den guten Tag gerade eben
+ * trägt.
+ *
+ * Gezählt wird nur `summary`: `whyItMatters` steht seit dem 16. September
+ * 2026 nicht mehr in der Folge, sondern nur noch auf der Website.
+ */
+const GERUEST_WOERTER = 110
+
 const KATEGORIEN = [
   'Geldpolitik',
   'Märkte',
@@ -373,7 +447,11 @@ Ton: sachlich, erklärend, per Du zum Leser nur wo es passt, keine Ausrufezeiche
 
 Fünf bis neun Artikel aus **mehreren Quellen zu mehreren Themen**. Lieber fünf belegte als neun mit einem geratenen. Eine einzelne Quelle, aus der fünf Artikel stammen und alle dasselbe Thema haben, erfüllt die Zahl und verfehlt die Sache.
 
-Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`.
+Die Tagesausgabe fasst dieselben Meldungen zusammen: ein bis drei unter \`top\`, der Rest unter \`further\`. **Jeder Artikel bekommt seine Meldung** – die Ausgabe wählt nicht aus, sie ordnet. Weniger als ${MELDUNGEN_MIN} Meldungen werden zurückgewiesen.
+
+Die Folge am nächsten Morgen besteht aus diesen \`summary\`-Absätzen und sonst nichts. Begrüßung, KI-Hinweis, Rechtshinweis und Abschied sind zusammen rund ${GERUEST_WOERTER} Wörter – festes Gerüst, das nicht mitwächst. Bei vier knappen Meldungen ist die Hälfte der Folge Kleingedrucktes, und genau das hat der Betreiber am 28. September 2026 beanstandet.
+
+**Alle \`summary\`-Absätze zusammen müssen deshalb mehr als ${GERUEST_WOERTER} Wörter ergeben** – sonst wird die Ausgabe zurückgewiesen. Der Mittelwert der letzten zwei Monate liegt bei 246; 40 bis 70 Wörter je Meldung treffen ihn.
 
 # Die Tagesausgabe ist zugleich der Podcast
 
@@ -577,8 +655,36 @@ function pruefe(
       `${ergebnis.top.length + ergebnis.further.length} Meldungen, erlaubt sind höchstens ${MELDUNGEN_MAX}.`
     )
   }
-  if (ergebnis.top.length + ergebnis.further.length < 3) {
-    f('Die Tagesausgabe braucht mindestens drei Meldungen insgesamt.')
+  const meldungen = ergebnis.top.length + ergebnis.further.length
+  if (meldungen < MELDUNGEN_MIN) {
+    f(
+      `Nur ${meldungen} Meldungen in der Tagesausgabe – mindestens ${MELDUNGEN_MIN}. ` +
+        `Es liegen ${ergebnis.artikel.length} Artikel vor; die Ausgabe fasst dieselben ` +
+        `Meldungen zusammen, sie wählt nicht aus.`
+    )
+  }
+
+  /*
+    Und die Meldungen müssen mehr wiegen als das Kleingedruckte davor.
+
+    Vier Meldungen zu je zwanzig Wörtern erfüllen jede Einzelgrenze – 40
+    Zeichen je Absatz, drei Meldungen insgesamt – und ergeben trotzdem eine
+    Folge, die zur Hälfte aus Begrüßung und Hinweisen besteht. Die Grenzen
+    darunter messen das Stück; diese misst die Summe. Siehe `GERUEST_WOERTER`.
+  */
+  const summaryWoerter = [...ergebnis.top, ...ergebnis.further].reduce(
+    (summe, m) =>
+      summe +
+      m.summary.reduce((s, p) => s + p.trim().split(/\s+/).filter(Boolean).length, 0),
+    0
+  )
+  if (summaryWoerter <= GERUEST_WOERTER) {
+    f(
+      `Die summary-Absätze ergeben zusammen nur ${summaryWoerter} Wörter – das ist ` +
+        `weniger als das feste Gerüst der Folge (${GERUEST_WOERTER} Wörter aus ` +
+        `Begrüßung, Hinweisen und Abschied). Die Folge bestünde zur Hälfte aus ` +
+        `Kleingedrucktem.`
+    )
   }
 
   /*

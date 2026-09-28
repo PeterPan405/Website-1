@@ -1759,3 +1759,73 @@ export function satzrhythmus(sprechtext: string): Satzrhythmus {
     geklebt: saetze.filter((s) => s.includes(';')).length,
   }
 }
+
+/* ------------------------------------------------ Gerüst gegen Meldungen */
+
+/** Wie sich eine Folge auf festes Gerüst und tatsächliche Nachricht verteilt. */
+export interface Folgengewicht {
+  /** Begrüßung, Hinweise und Abschied – in jeder Folge fast gleich lang. */
+  geruest: number
+  /** Die Meldungsabsätze, also das, wofür jemand einschaltet. */
+  meldungen: number
+  /** Anteil des Gerüsts an der ganzen Folge, zwischen 0 und 1. */
+  anteil: number
+}
+
+/**
+ * Misst, wie viel einer Folge Nachricht ist und wie viel Rahmen.
+ *
+ * ## Der Anlass
+ *
+ * Am 28. September 2026 hat der Betreiber gemeldet, die Folge sei „viel zu
+ * kurz", und dazu einen Satz gesagt, der sich nachrechnen lässt: „Das Intro
+ * und die Aufklärung danach gehen genauso lange wie der Podcast." Er hatte
+ * recht, und zwar genau:
+ *
+ *     Gerüst     103 Wörter   (Begrüßung 35 · Hinweise 39 · Abschied 29)
+ *     Meldungen   86 Wörter   (vier Meldungen)
+ *     Anteil Gerüst  54 %
+ *
+ * ## Warum das Gerüst der falsche Hebel ist
+ *
+ * Weil es nicht wächst. Nachgemessen an allen 65 Folgen seit dem 25. Juli
+ * 2026 liegt es zwischen 103 und 116 Wörtern, Median 109 – der KI-Hinweis,
+ * der Rechtshinweis, Gruß und Abschied sind fester Text. Es war am
+ * 28. September keine Zeile länger als am Tag mit dem höchsten Anteil von
+ * 15 %.
+ *
+ * Gewachsen ist nichts, geschrumpft ist die Nachricht. Kürzt man am Gerüst,
+ * verliert die Folge Pflichtangaben und bleibt trotzdem kurz.
+ *
+ * ## Woran die Grenze gewählt ist
+ *
+ * An dem Satz des Betreibers, nicht an einer runden Zahl: Das Gerüst darf
+ * nicht so viel wiegen wie die Meldungen. Die Verteilung über 65 Folgen:
+ *
+ *     Median 29 %  ·  min 15 %  ·  max 54 %
+ *     über 50 %:  einmal   (28. September 2026 – der gemeldete Fall)
+ *     40 bis 43 %: dreimal  (26. und 23. August, 6. August)
+ *
+ * Die Grenze fängt damit den gemeldeten Fall und sonst keinen. Das ist
+ * Absicht: Sie ist der Melder für „heute ist fast nichts drin", nicht für
+ * „heute ist wenig drin". Dafür gibt es `WORTZIEL_MIN`, das in neun von 65
+ * Folgen anschlägt.
+ *
+ * Gemeldet wird in `scripts/podcast-folge-erzeugen.ts`, als Warnung. Ein
+ * Abbruch wäre hier zu spät und am falschen Ort: Die Ausgabe ist zu diesem
+ * Zeitpunkt geschrieben, und eine dünne Folge schlägt keine. Der Riegel, der
+ * wirklich etwas ändern kann, sitzt in `scripts/nachrichten-erzeugen.ts` –
+ * dort ist der Entwurf noch nicht geschrieben und ein zweiter Anlauf möglich.
+ */
+export function folgengewicht(sprechtext: string): Folgengewicht {
+  const absaetze = sprechtext.split(/\n\n+/)
+  /* Dieselbe Aufteilung wie in `satzrhythmus`: die ersten beiden Absätze sind
+     Begrüßung und Hinweise, der letzte ist der Abschied. */
+  const meldungen = wortzahl(absaetze.slice(2, -1).join(' '))
+  const gesamt = wortzahl(sprechtext)
+  return {
+    geruest: gesamt - meldungen,
+    meldungen,
+    anteil: gesamt === 0 ? 0 : (gesamt - meldungen) / gesamt,
+  }
+}

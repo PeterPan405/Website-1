@@ -19,15 +19,13 @@ danebenging.
 
 ## Wie berichtet wird
 
-**Ausführlich arbeiten, kurz berichten.** Verlangt sind **zwei bis drei
-Zeilen**, so kurz wie möglich.
+**Ausführlich arbeiten, kurz berichten.** Im Chat **zwei bis drei Zeilen**, so
+kurz wie möglich: was getan ist, was gefunden wurde, was der Betreiber
+entscheiden muss. Kein Nacherzählen des Wegs; Tabellen und Aufzählungen nur,
+wenn sie kürzer sind als der Satz, den sie ersetzen.
 
-Das gilt für den Text im Chat – nicht für Commits, Pull Requests und
-Kommentare. Die bleiben ausführlich: Sie sind das Gedächtnis des Projekts.
-
-Was in die drei Zeilen gehört: was getan ist, was gefunden wurde, was der
-Betreiber entscheiden muss. Tabellen und Aufzählungen nur, wenn sie kürzer
-sind als der Satz, den sie ersetzen. Kein Nacherzählen des Wegs.
+Commits, Pull Requests und Kommentare bleiben ausführlich – sie sind das
+Gedächtnis des Projekts.
 
 ## Arbeitsweise
 
@@ -96,7 +94,10 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   Quartalszahlen der großen Werte, mit Uhrzeit, wo sie in den Quellen steht.
   Nur was dort steht. Die Anweisung steht in `nachrichten-erzeugen.ts` **und**
   `nachrichten-agent.yml`; wer eine ändert, beide. Gilt auch für den Rhythmus.
-- **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen.
+- **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen,
+  **jeder mit seiner Meldung in der Ausgabe**. Alle `summary` zusammen über
+  110 Wörter – so viel wiegt das feste Gerüst der Folge.
+  `nachrichten-erzeugen.ts` weist beides zurück.
 - **Keine erfundenen Meldungen, Zahlen oder Quellen, die niemand gesehen
   hat.** Steht in der Meldung kein Warum, schreibst du kein Warum – und sagst
   das ausdrücklich.
@@ -163,8 +164,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 - Der **Instagram-Beitrag muss nach der Übertragung** laufen: Meta holt die
   Bilder von der Website, und die Adresse antwortet auch mit gestern.
 - Die Folge erscheint **täglich**, sieben Tage die Woche.
-- `folgennummer()` in `lib/sprechfassung.ts` zählt zweiteilig, mit einer Naht
-  am 9. August 2026. Eine Folgennummer darf keine Lücke bekommen.
+- `folgennummer()` zählt zweiteilig, Naht am 9. August 2026 – keine Lücke.
 
 → `ENTSCHEIDUNGEN.md`: „Wann die Nachrichten entstehen – und wann der Podcast"
 
@@ -216,10 +216,9 @@ prüft jeden Lauf den Bauzeitpunkt aus `version.txt`: ab 10 Stunden Warnung und
 ein Bau, ab 18 Stunden rot.
 
 **`000` ist der Hoster, `404` sind wir.** Antwortet auf Port 443 niemand, ist
-der Host weg, und dagegen hilft kein Neubau → **Warnung**, rot erst, wenn
-schon der vorige Lauf rot war. Antwortet der Server mit einem gelesenen Code
-außer 200, läuft er und findet nichts – unser Webordner → **roter Lauf** und
-Neubau.
+der Host weg; kein Neubau hilft → **Warnung**, rot erst nach einem schon roten
+Vorlauf. Ein gelesener Code außer 200 heißt: Er läuft und findet nichts –
+unser Webordner → **roter Lauf** und Neubau.
 
 → `ENTSCHEIDUNGEN.md`: „Ein roter Lauf ist ein Vorrat", „`000` ist der Hoster,
 `404` sind wir"
