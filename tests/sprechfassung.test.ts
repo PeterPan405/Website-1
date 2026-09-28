@@ -100,13 +100,13 @@ pruefe(
   Absicht, sondern der damalige Zustand: „US" fiel in vierzehn Folgen 51 Mal
   und kam jedes Mal als Silbe heraus.
 
-  Seit „US" eine Umschrift hat, lautet die Erwartung „Uh Ess-dreißig" – und
+  Seit „US" eine Umschrift hat, lautet die Erwartung „Juh-Ess-dreißig" – und
   die Aussage dieser Prüfung ist unverändert: Aus dem Strich wird kein Minus.
 */
 pruefe(
   'Bindestrich hinter einem Kürzel wird nicht zum Minus',
   sprechbar('der US-30 stieg'),
-  'der Uh Ess-dreißig stieg'
+  'der Juh-Ess-dreißig stieg'
 )
 pruefe(
   'zusammengesetzte Zahl im Wort bleibt heil',
@@ -127,7 +127,7 @@ pruefe(
 
 /* Namen, die bis zum 16. September 2026 unübersetzt durchliefen. */
 pruefe('Bank of England', sprechbar('die Bank of England'), 'die Bänk of Ingland')
-pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh Teh Ih stieg')
+pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh-Teh-Ih stieg')
 /*
   Die eigene Adresse ist der eigene Name plus Endung, und beides wird
   englisch gesprochen. „iminvests punkt de" las die Stimme als ein einziges
@@ -137,12 +137,12 @@ pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh Teh Ih stieg')
 pruefe(
   'Webadresse – die Endung wird buchstabiert',
   sprechbar('auf iminvests.de'),
-  'auf Ei Emm Inwests punkt Deh Eh'
+  'auf Ei-Emm Inwests punkt Deh-Eh'
 )
 pruefe(
   'Fremde Adressen genauso',
   sprechbar('Quelle: reuters.com'),
-  'Quelle: reuters punkt Zeh Oh Emm'
+  'Quelle: reuters punkt Zeh-Oh-Emm'
 )
 /*
   Zwei Fallen der deutschen Rechtschreibung, beide am 11. August 2026 vom
@@ -162,7 +162,7 @@ pruefe(
 pruefe(
   'Der eigene Name wird englisch gesprochen',
   sprechbar('Das Marktupdate von IM Invests.'),
-  'Das Markt-Appdejt von Ei Emm Inwests.'
+  'Das Markt-Appdejt von Ei-Emm Inwests.'
 )
 /*
   Und die Umschrift darf kein deutsches „im" anfassen. Ein `\bIM\b` ohne
@@ -330,7 +330,7 @@ const folge = baueFolge(edition)
 pruefe(
   'Sprechtext beginnt mit der Begrüßung',
   folge.sprechtext.startsWith(
-    'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei Emm Inwests.'
+    'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei-Emm Inwests.'
   ),
   true
 )

@@ -325,12 +325,12 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
     „IM" ist im Deutschen ein Wort. Die Stimme las „das Marktupdate von IM
     Invests" also als „vom im Invests" – zwei Buchstaben, die eine Marke
     tragen sollen, verschluckt zu einer Präposition. Gesprochen wird die
-    Marke englisch, Buchstabe für Buchstabe: „Ei Emm Inwests".
+    Marke englisch, Buchstabe für Buchstabe: „Ei-Emm Inwests".
 
     Deshalb steht das Muster **gross** und ohne `i`-Schalter: Ein
     unempfindliches `\bIM\b` träfe jedes deutsche „im".
   */
-  [/\bIM Invests\b/g, 'Ei Emm Inwests'],
+  [/\bIM Invests\b/g, 'Ei-Emm Inwests'],
   [/\bAlphabet\b/g, 'Ällfabett'],
   /* Wie bei Berkshire steht die Kurzform hinter der langen: Erst „Goldman
      Sachs", dann das allein stehende „Goldman" – so, wie es der Nachrichten-
@@ -348,7 +348,7 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
      England" las die Stimme deutsch, „WTI" als Wort statt als Kürzel. */
   [/\bBank of England\b/g, 'Bänk of Ingland'],
   [/\bBank of Japan\b/g, 'Bänk of Dschäpän'],
-  [/\bWTI\b/g, 'Weh Teh Ih'],
+  [/\bWTI\b/g, 'Weh-Teh-Ih'],
 
   /*
     Die Kürzel, die in jeder Folge fielen und jedes Mal als Silbe herauskamen.
@@ -361,14 +361,45 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
     `\bUS\b` trifft auch das erste Glied von „US-Dollar", weil der Bindestrich
     eine Wortgrenze ist. Deshalb genügt der eine Eintrag für alle
     Zusammensetzungen.
+
+    ## Am 28. September 2026 nachgebessert – zweimal am selben Eintrag
+
+    Der Betreiber hörte die Folge und meldete: „US Notenbank spricht er
+    ,U     S Notenbank' aus, mit einer sehr langen Pause. US soll es aber auch
+    nicht heißen – das englische U und S, die Buchstaben einzeln, aber schnell
+    nacheinander."
+
+    **Erstens: ein Leerzeichen zerlegt die Zusammensetzung.** „Uh Ess" hat aus
+    `US-Notenbank` den Text `Uh Ess-Notenbank` gemacht – drei Zeichenketten,
+    wo zwei standen, und der Bindestrich klebt am **zweiten** Buchstaben statt
+    am Kürzel. Das Modell liest, was dasteht: „Uh", Wortgrenze, „Ess-Notenbank".
+    Genau die Pause, die gemeldet wurde.
+
+    Nachgezählt an allen 65 Ausgaben: 176 solche Stellen, davon 72 Mal
+    „US-Dollar". Das ist kein Sonderfall, das ist die Regel – deutsche
+    Nachrichten schreiben Kürzel als erstes Glied einer Zusammensetzung.
+
+    Deshalb gilt jetzt: **Eine Umschrift ist genauso viele Wörter wie ihr
+    Muster.** Buchstabennamen werden mit Bindestrichen verbunden, nie mit
+    Leerzeichen – so, wie „JPMorgan" es seit jeher vormacht (`Dschej-Pi-Morgen`).
+    `tests/sprechfassung.test.ts` prüft das für jeden Eintrag; 19 der 131
+    verstießen dagegen, alle 19 sind zusammengezogen.
+
+    **Zweitens: die Buchstaben sind englisch.** „Uh Ess" waren die deutschen
+    Namen (/uː/, /ɛs/). Verlangt sind die englischen: U = /juː/, geschrieben
+    „Juh" – das deutsche „J" ist /j/, und genau den Laut braucht es.
+
+    „USA" bleibt davon unberührt: Es steht in `KUERZEL_IN_ORDNUNG` und wird
+    deutsch buchstabiert, weil es im Deutschen so heißt. Der Betreiber hat
+    „US" gemeint, nicht jedes Kürzel mit einem U darin.
   */
-  [/\bUS\b/g, 'Uh Ess'],
-  [/\bdpa-AFX\b/g, 'deh peh ah Ah Eff Ix'],
-  [/\bAFX\b/g, 'Ah Eff Ix'],
-  [/\bPCE\b/g, 'Peh Zeh Eh'],
-  [/\bASML\b/g, 'Ah Ess Emm Ell'],
-  [/\bAMD\b/g, 'Ah Emm Deh'],
-  [/\bGLD\b/g, 'Geh Ell Deh'],
+  [/\bUS\b/g, 'Juh-Ess'],
+  [/\bdpa-AFX\b/g, 'deh-peh-ah-Ah-Eff-Ix'],
+  [/\bAFX\b/g, 'Ah-Eff-Ix'],
+  [/\bPCE\b/g, 'Peh-Zeh-Eh'],
+  [/\bASML\b/g, 'Ah-Ess-Emm-Ell'],
+  [/\bAMD\b/g, 'Ah-Emm-Deh'],
+  [/\bGLD\b/g, 'Geh-Ell-Deh'],
   /*
     Und hier schlägt Falle 3 der deutschen Rechtschreibung auf die
     Buchstabennamen selbst durch: Das **V** heisst „Vau" und wird /faʊ/
@@ -379,8 +410,8 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
     „W-W" geworden. Gemerkt beim Nachlesen der eigenen Regel in `AGENTS.md`,
     nicht beim Hören.
   */
-  [/\bSLV\b/g, 'Ess Ell Fau'],
-  [/\bVW\b/g, 'Fau Weh'],
+  [/\bSLV\b/g, 'Ess-Ell-Fau'],
+  [/\bVW\b/g, 'Fau-Weh'],
 
   /*
     Und die gewöhnlich geschriebenen englischen Wörter aus derselben Folge.
@@ -392,6 +423,58 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   */
   [/\bRivian\b/g, 'Riwien'],
   [/\bManaged Money\b/g, 'Männedschd Mannie'],
+
+  /*
+    Die englischen Wörter aus dem Durchgang vom 28. September 2026.
+
+    ## Warum diese und nicht die anderen 60
+
+    `verdaechtigeAnglizismen` hat über alle 65 Folgen **78 verschiedene**
+    Wörter gemeldet, und keines davon ist je entschieden worden. Die Meldung
+    lief seit dem 11. August, die Liste wuchs, gelesen hat sie niemand – eine
+    Warnung ohne Entscheidung ist ein Zettel, kein Riegel.
+
+    Aufgeteilt wird sie danach, **was sich ohne Ohr entscheiden lässt**:
+
+    - **Englische Wörter.** Dass „Energy" nicht deutsch gesprochen gehört,
+      steht in `AGENTS.md` („Was englisch ist, wird englisch gesprochen") und
+      braucht niemanden, der es sich anhört. Die stehen hier.
+    - **Kürzel aus Großbuchstaben** – SAP, UBS, IBM, ADP, EQS, ATX, FDA, CME,
+      PMI, ISM und dreißig weitere. Ob die Stimme sie buchstabiert oder als
+      Silbe liest, **steht nicht in der Schreibweise**: „EZB" buchstabiert sie
+      von selbst richtig, deshalb steht es in `KUERZEL_IN_ORDNUNG`. Welches
+      Kürzel zu welcher Gruppe gehört, entscheidet ein Ohr. Sie bleiben
+      draußen, bis jemand sie gehört hat – eine erfundene Umschrift ist
+      schlimmer als eine fehlende, weil sie die Meldung zum Schweigen bringt.
+
+    Die Zahl in Klammern ist, wie oft das Wort in den 65 Folgen vorkam.
+  */
+  [/\bEnergy\b/g, 'Ennerdschi'], // 5×
+  [/\bIndustry\b/g, 'Inndastri'], // 2×
+  /* „Manufacturing" und „Country" kommen aus den Namen der
+     Einkaufsmanagerindizes („ISM Manufacturing", „Country PMI"). */
+  [/\bManufacturing\b/g, 'Männjufäktscharing'],
+  [/\bCountry\b/g, 'Kanntri'],
+  [/\bActivity\b/g, 'Äcktiwwiti'],
+  [/\bMobility\b/g, 'Mobbilliti'],
+  [/\bDelivery\b/g, 'Deliwweri'],
+  [/\bShopify\b/g, 'Schoppifei'],
+  [/\bBookbuilding\b/g, 'Buckbilding'],
+  [/\bNewsflash\b/g, 'Njuusfläsch'],
+  /* Klein geschrieben, wie es im Text steht – die Umschrift ebenso, sonst
+     stünde mitten im Satz ein Großbuchstabe. */
+  [/\bbullish\b/g, 'bullisch'],
+  [/\bCarry\b/g, 'Kärri'],
+  [/\bFitch\b/g, 'Fitsch'],
+  [/\bBarclays\b/g, 'Barklis'],
+  [/\beBay\b/g, 'Ieh-Bej'],
+  /* Falle 2: Das „W" in „FedWatch" ist ein englisches /w/ und steht deshalb
+     als „u". Mit „W" käme „Fedd-Votsch" heraus. */
+  [/\bFedWatch\b/g, 'Fedd-Uotsch'],
+  /* „AI" steht in den Ausgaben englisch da („AI-Boom"); „KI" bleibt deutsch
+     und gehört ausdrücklich nicht hierher. */
+  [/\bAI\b/g, 'Ej-Ei'],
+
   /*
     Drei Fallen, die die deutsche Rechtschreibung stellt. Die ersten beiden
     sind dem Betreiber am 11. August 2026 im Ohr aufgefallen, die dritte kam
@@ -440,7 +523,7 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
     und traf damit kein einziges Muster: In vierzehn Ausgaben zwölfmal
     deutsch gesprochen, mit /v/ am Anfang.
   */
-  [/\bwallstreet[- ]?online\b/gi, 'Uallstriet onlein'],
+  [/\bwallstreet[- ]?online\b/gi, 'Uallstriet-onlein'],
   [/\bWall Street\b/g, 'Uallstriet'],
   [/\bEuro[ -]?Sto(?:xx|cks)\b/gi, 'Eurostocks'],
   [/\bSto(?:xx|cks) Europe\b/gi, 'Stocks Juropp'],
@@ -451,7 +534,7 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bGoogle\b/g, 'Guhgl'],
   [/\bNetflix\b/g, 'Nettflix'],
   [/\bBoeing\b/g, 'Bo-ing'],
-  [/\bCoca-Cola\b/g, 'Koka Kohla'],
+  [/\bCoca-Cola\b/g, 'Koka-Kohla'],
   [/\bJohnson & Johnson\b/g, 'Dschonson und Dschonson'],
   [/\bGeneral Motors\b/g, 'Dschennerel Motors'],
   [/\bHome Depot\b/g, 'Hohm Diepoh'],
@@ -465,8 +548,8 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bNasdaq\b/gi, 'Nässdack'],
   [/\bFederal Reserve\b/g, 'Fedderel Riserw'],
   [/\bTreasury\b/g, 'Treschery'],
-  [/\bBofA\b/g, 'Bänk of Amerika'],
-  [/\bOpenAI\b/g, 'Ohpen Ej Ei'],
+  [/\bBofA\b/g, 'Bänk-of-Amerika'],
+  [/\bOpenAI\b/g, 'Ohpen-Ej-Ei'],
   [/\bAnthropic\b/g, 'Änthropick'],
   [/\bMicrosoft\b/g, 'Meikrosoft'],
   [/\bOracle\b/g, 'Orakl'],
@@ -474,7 +557,7 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bGitHub\b/g, 'Gitthabb'],
   /* Auch mit Bindestrich – „Big-Tech-Werte" ist die häufigere Schreibung in
      den Meldungen und traf das Muster mit Leerzeichen nie. */
-  [/\bBig[- ]Tech\b/g, 'Bigg Teck'],
+  [/\bBig[- ]Tech\b/g, 'Bigg-Teck'],
   /*
     Namen, die am 6. September 2026 in den Ausgaben der letzten zwei Wochen
     standen und unverändert durchgingen. Alle nach denselben drei Regeln:
@@ -486,11 +569,11 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bGreenlight\b/g, 'Griehnleit'],
   [/\bHugging Face\b/g, 'Hagging Fejs'],
   /* Bank of England, buchstabiert – „BoE" las die Stimme als Silbe. */
-  [/\bBoE\b/g, 'Bie Ou Ie'],
+  [/\bBoE\b/g, 'Bie-Ou-Ie'],
   /* Zusammensetzungen mit „Rating": Das `\b` vor dem Wort verhinderte den
      Treffer, und „Kaufrating" blieb deutsch neben umgeschriebenem „Rating". */
   [/\b(Kauf|Verkaufs|Bonitäts)rating(s?)\b/g, '$1rejting$2'],
-  [/\bFear[- ]and[- ]Greed\b/g, 'Fier and Griedd'],
+  [/\bFear[- ]and[- ]Greed\b/g, 'Fier-and-Griedd'],
   [/\bUnderperform\b/g, 'Anderperform'],
   [/\bOutperform\b/g, 'Autperform'],
   [/\bValue\b/g, 'Wällju'],
@@ -501,7 +584,7 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   [/\bStrategy\b/g, 'Strättedschi'],
   [/\bMicroStrategy\b/g, 'Meikrosträttedschi'],
   [/\bCoinbase\b/g, 'Koinbejs'],
-  [/\bBlackRock\b/g, 'Bläck Rock'],
+  [/\bBlackRock\b/g, 'Bläck-Rock'],
   [/\bVanguard\b/g, 'Wängguard'],
   [/\bHold\b/g, 'Hohld'],
   [/\bBuy\b/g, 'Bai'],
@@ -582,9 +665,9 @@ export const ENGLISCHE_NAMEN: [RegExp, string][] = [
   /* Abkürzungen, die deutsch buchstabiert falsch klingen. „ETF" und „KI"
      gehören ausdrücklich **nicht** dazu – die spricht man hierzulande
      deutsch, und alles andere wäre die Karikatur aus dem Kopf der Datei. */
-  [/\bCEO\b/g, 'Sieh Ie Ou'],
-  [/\bCFO\b/g, 'Sieh Eff Ou'],
-  [/\bIPO\b/g, 'Ei Pie Ou'],
+  [/\bCEO\b/g, 'Sieh-Ie-Ou'],
+  [/\bCFO\b/g, 'Sieh-Eff-Ou'],
+  [/\bIPO\b/g, 'Ei-Pie-Ou'],
 ]
 
 /**
@@ -650,8 +733,8 @@ export function englischeNamenSprechbar(text: string): string {
   Modell als zwei Laute; ein „DE" läse es als Wort.
 */
 const ENDUNG = {
-  de: 'punkt Deh Eh',
-  com: 'punkt Zeh Oh Emm',
+  de: 'punkt Deh-Eh',
+  com: 'punkt Zeh-Oh-Emm',
   /*
     „net" wird **gesprochen**, nicht buchstabiert – anders als „de".
 
@@ -852,7 +935,7 @@ export function sprechbar(text: string): string {
   s = s.replaceAll(/\bS&P\b/g, 'Ess und Pie')
   /* Die eigene Adresse ist die Marke plus Endung – siehe `ENGLISCHE_NAMEN`.
      „iminvests punkt de" las die Stimme als ein einziges deutsches Wort. */
-  s = s.replaceAll(/\biminvests\.de\b/gi, `Ei Emm Inwests ${ENDUNG.de}`)
+  s = s.replaceAll(/\biminvests\.de\b/gi, `Ei-Emm Inwests ${ENDUNG.de}`)
   s = s.replaceAll(
     /\b(?:www\.)?([a-z0-9-]+)\.(de|com|net)\b/gi,
     (_, name: string, endung: string) =>
@@ -1573,7 +1656,7 @@ export function baueFolge(edition: DailyEdition): Podcastfolge {
     die nicht eintrifft: Am Samstag früh steht die nächste da.
   */
   /* Die Adresse steht hier als Adresse und nicht als fertige Lautschrift –
-     `sprechbar` macht daraus „Ei Emm Inwests punkt Deh Eh". Sonst stünde die
+     `sprechbar` macht daraus „Ei-Emm Inwests punkt Deh-Eh". Sonst stünde die
      Aussprache an zwei Stellen und ginge beim nächsten Mal auseinander. */
   const abschluss = sprechbar(
     'Das war das Marktupdate von IM Invests. Alle Themen ausführlich und mit Einordnung findest du auf iminvests.de. Bis morgen früh und viel Erfolg.'

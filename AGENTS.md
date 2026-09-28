@@ -54,9 +54,9 @@ Gedächtnis des Projekts.
 ## Diese Umgebung erreicht nur GitHub – **erst nachsehen, ob das stimmt**
 
 Die Sitzung auf dem Rechner des Betreibers hat vollen Zugang; dann gilt hier
-nichts. Ein `curl` auf eine beliebige Adresse klärt es in einer Sekunde.
-„Von hier nicht erreichbar" ist eine Aussage über die **Umgebung**, nicht die
-Quelle – solche Notizen brauchen Datum und Ort.
+nichts. Ein `curl` klärt es in einer Sekunde. „Von hier nicht erreichbar"
+ist eine Aussage über die **Umgebung**, nicht die Quelle – solche Notizen
+brauchen Datum und Ort.
 
 Sonst scheitern `WebFetch` und `curl` an **jeder** Adresse außer GitHub und
 npm (`CONNECT tunnel failed, response 403`) – auch an `iminvests.de` selbst.
@@ -163,7 +163,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 - Der Podcast **muss nach** der Nachrichtenausgabe laufen – er vertont sie.
 - Der **Instagram-Beitrag muss nach der Übertragung** laufen: Meta holt die
   Bilder von der Website, und die Adresse antwortet auch mit gestern.
-- Die Folge erscheint **täglich**, sieben Tage die Woche.
+- Die Folge erscheint **täglich**.
 - `folgennummer()` zählt zweiteilig, Naht am 9. August 2026 – keine Lücke.
 
 → `ENTSCHEIDUNGEN.md`: „Wann die Nachrichten entstehen – und wann der Podcast"
@@ -179,16 +179,16 @@ gelegentlich. Daraus folgt:
   `quellen-sammeln.yml` (`lib/tageswecker.ts`). Ein laufender Prozess lässt
   sich nicht verwerfen; ein `429` mit genannter Uhrzeit hält das Weckfenster
   bis nach dem Zurücksetzen offen.
-- **Krumme Minuten.** Ein neuer Workflow bekommt eine freie Minute – runde
-  sind am dichtesten belegt.
+- **Krumme Minuten** – ein neuer Workflow bekommt eine freie; runde sind am
+  dichtesten belegt.
 - **Ein Commit vom Bot löst nichts aus.** Ein Push mit dem `GITHUB_TOKEN`
   startet keinen weiteren Workflow. Wer nach `main` committet, stößt den
   Neubau selbst an (`gh workflow run`, dafür `permissions: actions: write`).
 - **Zu jedem Lauf nach außen gehört die Frage: Steht das Ergebnis des Tages
   schon?** Gefragt wird `origin/main` von **jetzt** (`git fetch` + `git show`),
   nicht der Checkout – eine Momentaufnahme vom Auslösen.
-- **Ein Riegel ist so gut wie die Quelle, die er fragt:** Der Upload fragt den
-  YouTube-Kanal, nicht das Register.
+- Der Upload fragt den **YouTube-Kanal**, nicht das Register – siehe die
+  Lehren unten.
 - **Ein Push, der nach der Veröffentlichung scheitert, ist rot** – sonst
   laufen zwei Wahrheiten auseinander. Eine Schleife um `git pull --rebase`
   räumt zwischen den Runden mit `git rebase --abort` auf.
@@ -227,7 +227,7 @@ unser Webordner → **roter Lauf** und Neubau.
 
 `lib/website-zahlen.ts` zählt beim Bauen, wie viel hier steht; `/zahlen` zeigt
 es. Der Zweck ist der stille Datenausfall: **Diese Zahlen fallen nicht von
-selbst.** Fällt eine, hat sich ein Bestand geleert – und alles andere bleibt
+selbst.** Fällt eine, hat sich ein Bestand geleert, und alles andere bleibt
 grün.
 
 - **Der Stand wird fortgeschrieben, sonst wird der Wächter stumpf** – im
@@ -250,8 +250,8 @@ ist keiner"
   (Nasdaq ohne Sitzungslage – auch ohne `geschaetzt`, aber „erwartet"),
   hochgerechnet (mit `geschaetzt`).
 - **Die Nasdaq läuft nach dem SEC-Durchgang und ersetzt nur das nächste
-  Quartal** (Fenster 45 Tage). Davor gestellt verlöre die Seite die drei
-  danach – die SEC liefert die Historie, die Nasdaq acht Wochen.
+  Quartal** (Fenster 45 Tage) – davor gestellt verlöre die Seite die drei
+  danach: Die SEC liefert die Historie, die Nasdaq acht Wochen.
 - **Die Herkunft hängt am Termin, nicht am Code.** `herkunft` in der
   Vorhersage, aufgelöst über `TERMINQUELLEN` in `herkunftVon()`, und **vor**
   der Frage nach `angekuendigt` – sonst zitiert ein abgeleiteter Tokio-Termin
@@ -272,8 +272,7 @@ ist keiner"
   im Bestand, bei grünem Lauf.
 - **Die Uhrzeit ist die New Yorker Wanduhr**, in der Momentaufnahme; die
   deutsche entsteht erst in der Anzeige aus dem erwarteten Tag. Sechs Stunden
-  zu addieren ist an drei Wochen im Jahr falsch – genau in der Berichtssaison
-  des ersten Quartals.
+  zu addieren ist an drei Wochen im Jahr falsch – in der Q1-Berichtssaison.
 - **Eine Zeit entsteht nur bei zwei Jahren in derselben Sitzungslage**;
   „während des US-Handels" wird nie angezeigt: Dort misst der Zeitstempel das
   nachgereichte Formular, nicht die Meldung.
@@ -298,16 +297,15 @@ Zusage: höchstens sechs Minuten.
   stündlich ändert, liest sie aus `lib/kurse-live-speicher.ts`, nicht aus
   eigenem `fetch`. Drei Stellen: `Kachelzahlen.tsx`, `Zeilenzahlen.tsx`,
   `KursLive.tsx`.
-- `lib/leitwerte.ts` bestimmt, was der Fünf-Minuten-Lauf holt: alle 46
-  Kacheln der Übersicht.
+- `lib/leitwerte.ts` bestimmt, was der Fünf-Minuten-Lauf holt: alle 46 Kacheln.
 - `kurse-dauerlauf.yml` bringt seine Uhr selbst mit: ein Job, fünfeinhalb
   Stunden, alle zwei Minuten der volle Bestand. **Zwei Bremsen dürfen nicht
   wegfallen:** kein Nachfolger unter zehn Minuten Laufzeit, und der Wächter in
   `kurse.yml` wartet nach einem Fehlschlag eine Stunde. An ihm hängt auch der
   Wecker der Tagesausgabe.
-- **Ihn von Hand anzustoßen tötet den laufenden** (`cancel-in-progress`).
-  Kommt der neue nicht hoch – der SSH-Port flattert –, stehen die Kurse eine
-  Stunde statt sechs Minuten. Nur bei keinem oder einem kaputten Lauf.
+- **Ihn von Hand anzustoßen tötet den laufenden** (`cancel-in-progress`);
+  kommt der neue nicht hoch, stehen die Kurse eine Stunde statt sechs
+  Minuten. Nur bei keinem oder einem kaputten Lauf.
 - Wer `ABSTAND_MS` anfasst, fasst Yahoos Dauerbetrieb mit an.
 - **Eine Ausnahme gehört an die Bedingung, die sie meint**, nicht an die
   nächstgelegene: Die EZB-Sonderbehandlung greift nur im Fünf-Minuten-Lauf
@@ -330,7 +328,10 @@ Zusage: höchstens sechs Minuten.
   Pausen, Stücklänge oder Frist etwas ändert, ändert beide Stellen.**
 - **Was englisch ist, wird englisch gesprochen** – `ENGLISCHE_NAMEN`, zuerst
   angewandt, zusammengesetzte Ausdrücke vor ihren Bestandteilen. Nicht hinein
-  gehört, was im Deutschen deutsch klingt („ETF", „KI", „Broker", „Trend").
+  gehört, was deutsch klingt („ETF", „KI", „Broker").
+- **Eine Umschrift hat so viele Wörter wie ihr Muster** – Buchstaben mit
+  Bindestrich, nie mit Leerzeichen. „Uh Ess" machte aus `US-Notenbank` ein
+  „Uh Ess-Notenbank". „US" ist englisch.
 - **Drei Fallen der deutschen Rechtschreibung:** „st"/„sp" am Wortanfang sind
   /scht/ und /schp/; „w" ist **immer** /v/, für englisches /w/ – auch das in
   „qu" – steht **„u"**; „v" am Wortende ist /f/, dort steht ebenfalls „w".
