@@ -122,7 +122,12 @@ const MELDUNGEN_MIN = 5
  *
  * Begrüßung, KI-Hinweis, Rechtshinweis und Abschied stehen wörtlich in
  * `lib/sprechfassung.ts` und wachsen nicht mit. Nachgemessen an allen 65
- * Folgen seit dem 25. Juli 2026: zwischen 103 und 116 Wörtern, Median 109.
+ * Folgen seit dem 25. Juli 2026: zwischen 99 und 110 Wörtern, Median 104.
+ * (Vor dem Zusammenziehen der Umschriften am selben Tag waren es 103 bis
+ * 116 – „Uh Ess“ zählte als zwei Wörter, „Juh-Ess“ zählt als eins.)
+ *
+ * 110 ist der **Höchstwert** dieser Spanne, nicht ihr Mittel: Die Meldungen
+ * sollen mehr wiegen als das Gerüst an seinem längsten Tag.
  *
  * Die Grenze ist der Satz des Betreibers vom 28. September 2026, in eine Zahl
  * übersetzt: Die Meldungen müssen mehr wiegen als das Kleingedruckte. Die

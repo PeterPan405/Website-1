@@ -4372,6 +4372,12 @@ zeigen. Über alle 65 Folgen seit dem 25. Juli 2026 gemessen:
     Gerüst      min 103 · Median 109 · max 116 Wörter
     Anteil      min 15 % · Median 29 % · max 54 %
 
+(Gemessen vor dem Zusammenziehen der Umschriften, das am selben Tag
+dazukam – „Uh Ess“ zählte als zwei Wörter, „Juh-Ess“ zählt als eins.
+Danach sind es 99 bis 110, Median 104. Die Grenze `GERUEST_WOERTER = 110`
+ist der Höchstwert dieser Spanne: Die Meldungen sollen mehr wiegen als
+das Gerüst an seinem längsten Tag.)
+
 Das Gerüst ist fester Text – Gruß, Datum, `intro`, KI-Hinweis,
 Rechtshinweis, Abschied – und war am schlechtesten Tag keine Zeile länger als
 am besten. Gewachsen ist nichts; geschrumpft ist die Nachricht. Wer hier
@@ -4426,8 +4432,8 @@ durchgelassen hätte.
 
 Genau eine Ausgabe liegt darunter – die gemeldete. Zur zweitdünnsten sind es
 51 Wörter Abstand. Die Zahl ist nicht gerundet, sondern abgelesen: So viel
-wiegt das Gerüst, und mehr müssen die Meldungen wiegen. Das ist der Satz des
-Betreibers, in eine Zahl übersetzt.
+wiegt das Gerüst an seinem längsten Tag, und mehr müssen die Meldungen
+wiegen. Das ist der Satz des Betreibers, in eine Zahl übersetzt.
 
 ## Warum der Riegel vorn sitzt und die Warnung hinten
 

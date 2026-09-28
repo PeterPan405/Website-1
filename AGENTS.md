@@ -96,7 +96,7 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
   `nachrichten-agent.yml`; wer eine ändert, beide. Gilt auch für den Rhythmus.
 - **Umfang:** fünf bis zehn Artikel aus mehreren Quellen zu mehreren Themen,
   **jeder mit seiner Meldung in der Ausgabe**. Alle `summary` zusammen über
-  110 Wörter – so viel wiegt das feste Gerüst der Folge.
+  110 Wörter – so viel wiegt das Gerüst an seinem längsten Tag.
   `nachrichten-erzeugen.ts` weist beides zurück.
 - **Keine erfundenen Meldungen, Zahlen oder Quellen, die niemand gesehen
   hat.** Steht in der Meldung kein Warum, schreibst du kein Warum – und sagst

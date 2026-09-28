@@ -85,7 +85,7 @@ if (gewicht.geruest >= gewicht.meldungen) {
     `::warning::[folge] Das Gerüst wiegt so viel wie die Meldungen – Begrüßung und ` +
       `Hinweise sind so lang wie die Nachrichten.`
   )
-  console.log(`        Das Gerüst ist fester Text und war noch nie länger als 116`)
+  console.log(`        Das Gerüst ist fester Text und war noch nie länger als 110`)
   console.log(`        Wörter. Zu kurz ist die Ausgabe, nicht zu lang der Rahmen.`)
 }
 

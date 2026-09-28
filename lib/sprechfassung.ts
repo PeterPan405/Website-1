@@ -1872,7 +1872,7 @@ export interface Folgengewicht {
  * ## Warum das Gerüst der falsche Hebel ist
  *
  * Weil es nicht wächst. Nachgemessen an allen 65 Folgen seit dem 25. Juli
- * 2026 liegt es zwischen 103 und 116 Wörtern, Median 109 – der KI-Hinweis,
+ * 2026 liegt es zwischen 99 und 110 Wörtern, Median 104 – der KI-Hinweis,
  * der Rechtshinweis, Gruß und Abschied sind fester Text. Es war am
  * 28. September keine Zeile länger als am Tag mit dem höchsten Anteil von
  * 15 %.
