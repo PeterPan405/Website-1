@@ -377,6 +377,24 @@ jobs:
             Marge, Rückkauf gegen Dividende, Performanceindex gegen Kursindex,
             nachbörslicher Handel, Abzinsung, Korrelation gegen Gegenläufigkeit.
 
+            **Jeder Artikel bekommt seine Meldung in der Tagesausgabe** –
+            `top` und `further` zusammen also mindestens fünf. Die Ausgabe
+            ordnet, sie wählt nicht aus. Am 28. September 2026 standen sechs
+            Artikel und nur vier Meldungen da; gesprochen wurde, was in der
+            Ausgabe steht, und die Folge geriet halb so lang wie sonst.
+
+            **Alle `summary`-Absätze zusammen ergeben mehr als 110 Wörter.**
+            Begrüßung, KI-Hinweis, Rechtshinweis und Abschied sind zusammen
+            rund 110 Wörter festes Gerüst, das nicht mitwächst. Bleiben die
+            Meldungen darunter, besteht die Folge zur Hälfte aus
+            Kleingedrucktem – genau das hat der Betreiber beanstandet. Der
+            Mittelwert der letzten zwei Monate liegt bei 246 Wörtern; 40 bis
+            70 Wörter je Meldung treffen ihn.
+
+            Beide Zahlen prüft `scripts/nachrichten-erzeugen.ts` und weist
+            den Entwurf sonst zurück – der Lauf wäre rot, bevor irgendetwas
+            geschrieben ist.
+
             ## Die Tagesausgabe ist zugleich der Podcast
 
             `summary` wird **wörtlich gesprochen**. Die Folge am nächsten

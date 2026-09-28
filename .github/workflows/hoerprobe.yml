@@ -88,6 +88,45 @@ jobs:
           pip install --force-reinstall \
             --index-url https://download.pytorch.org/whl/cpu torch torchaudio
 
+      # ffmpeg, und zwar **vor** dem Sprechen.
+      #
+      # ## Warum dieser Schritt am 28. September 2026 dazukam
+      #
+      # Weil die Klangkette unten seit ihrem ersten Tag nie gelaufen ist:
+      #
+      #     FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+      #
+      # Dieselbe Falle wie am 8. August 2026 im Podcastlauf – ffmpeg liegt
+      # seither nicht mehr auf dem Ubuntu-Abbild. Dort wurde sie behoben, hier
+      # nicht: Die Klangkette kam am 9. August dazu, mit einem Kommentar
+      # darüber, warum sie unverzichtbar ist, und mit `if: always()`. Das
+      # `always()` hat den Fehlschlag jedes Mal überlebt, der Lauf blieb grün
+      # bis auf diesen einen roten Schritt, und die WAV lag daneben.
+      #
+      # **Ein Schritt, der nie gelaufen ist, sieht aus wie ein Schritt.** Wer
+      # die Hörprobe abspielen wollte, bekam die Rohaufnahme des Modells statt
+      # dessen, was auf Spotify landet – also die falsche Antwort auf die
+      # Frage, für die es den Lauf gibt.
+      #
+      # Vor dem Sprechen, nicht danach: Sechs Minuten rechnen und dann an
+      # einer fehlenden Paketinstallation scheitern wäre die teure Reihenfolge.
+      #
+      # `apt-get update` darf scheitern – auf dem Läufer stehen fremde
+      # Paketquellen, und eine davon antwortet gelegentlich mit 403. Ob es
+      # geklappt hat, entscheidet `ffmpeg -version`, nicht diese Zeile.
+      - name: ffmpeg einrichten
+        run: |
+          if command -v ffmpeg >/dev/null 2>&1; then
+            echo "ffmpeg liegt schon bereit."
+            ffmpeg -version | head -1
+            exit 0
+          fi
+
+          sudo apt-get update -qq \
+            || echo "::warning::apt-get update meldet Fehler (fremde Paketquelle) – die Installation wird trotzdem versucht."
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+
       - name: Sprechen
         env:
           PROBETEXT: ${{ inputs.text }}

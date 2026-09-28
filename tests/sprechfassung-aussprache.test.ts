@@ -241,6 +241,64 @@ for (const [muster, umschrift] of ENGLISCHE_NAMEN) {
 }
 
 /*
+  Regel 4: **Eine Umschrift ist genauso viele Wörter wie ihr Muster.**
+
+  Die Regel, die am 28. September 2026 dazukam, und die einzige hier, die
+  nichts mit Lauten zu tun hat, sondern mit Wortgrenzen.
+
+  Der Fall: `[/\bUS\b/g, 'Uh Ess']` machte aus `US-Notenbank` den Text
+  `Uh Ess-Notenbank`. Aus einem Wort wurden zwei, und der Bindestrich klebte
+  am zweiten Buchstaben statt am Kürzel. Das Modell liest das so, wie es
+  dasteht: „Uh", Wortgrenze, „Ess-Notenbank" – gemeldet hat der Betreiber es
+  als „U     S Notenbank, mit einer sehr langen Pause".
+
+  Deutsche Nachrichten schreiben Kürzel fast immer als erstes Glied einer
+  Zusammensetzung. Nachgezählt an allen 65 Ausgaben: 176 solche Stellen,
+  72 Mal allein „US-Dollar". Der Fehler war also nicht selten, er war täglich.
+
+  Buchstabennamen werden deshalb mit **Bindestrichen** verbunden – so wie
+  `JPMorgan → Dschej-Pi-Morgen` es seit jeher vormacht. Ein Leerzeichen in
+  der Umschrift ist nur dort erlaubt, wo das Muster selbst eines hat.
+
+  Gezählt wird großzügig: Das Muster darf mehr Wörter haben als die Umschrift
+  („Bank of England" → „Bänk of Ingland" hat gleich viele, „Wall Street" →
+  „Uall-Striet" hätte weniger). Verboten ist nur das Wachsen.
+*/
+for (const [muster, umschrift] of ENGLISCHE_NAMEN) {
+  const wort = probewort(muster)
+  const musterWoerter = wort.split(/\s+/).filter(Boolean).length
+  const umschriftWoerter = umschrift.split(/\s+/).filter(Boolean).length
+  if (umschriftWoerter > musterWoerter) {
+    pruefen(
+      `„${wort}" → „${umschrift}": keine zusätzliche Wortgrenze`,
+      false,
+      `${musterWoerter} Wort/Wörter werden zu ${umschriftWoerter}. In einer ` +
+        `Zusammensetzung („${wort}-Dollar") landet der Bindestrich damit am ` +
+        `falschen Glied. Buchstabennamen mit Bindestrich verbinden.`
+    )
+  }
+}
+pruefen(
+  'Keine Umschrift wächst um ein Wort',
+  ENGLISCHE_NAMEN.every(
+    ([m, u]) =>
+      u.split(/\s+/).filter(Boolean).length <=
+      probewort(m).split(/\s+/).filter(Boolean).length
+  ),
+  'Siehe die Meldungen darüber.'
+)
+
+/*
+  Und die Gegenprobe zu Regel 4: Sie muss anschlagen, wenn man ihr den alten
+  Zustand vorlegt. Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe.
+*/
+pruefen(
+  'Regel 4 findet den Fall vom 28. September 2026',
+  'Uh Ess'.split(/\s+/).length > probewort(/\bUS\b/g).split(/\s+/).length,
+  'Die Zählung findet „US" → „Uh Ess" nicht – dann prüft sie nichts.'
+)
+
+/*
   Und die Regel darf nicht zu scharf sein: Wörter ohne englisches /w/ und
   ohne „v" dürfen ruhig ein „w" tragen – es ist dann der richtige Laut.
 */

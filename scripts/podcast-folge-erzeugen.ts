@@ -21,6 +21,7 @@ import { pathToFileURL } from 'node:url'
 import type { DailyEdition } from '../data/editions/types.ts'
 import {
   baueFolge,
+  folgengewicht,
   SATZ_KURZ,
   SATZ_LANG,
   satzrhythmus,
@@ -61,6 +62,31 @@ if (folge.wortzahl < WORTZIEL_MIN || folge.wortzahl > WORTZIEL_MAX) {
       `Gekürzt wird nie durch\n        Erfinden – eine ` +
       `${folge.wortzahl < WORTZIEL_MIN ? 'kürzere' : 'längere'} ehrliche Folge ist gewollt.`
   )
+}
+
+/*
+  Wiegt das Gerüst so viel wie die Nachricht?
+
+  Am 28. September 2026 gemeldet: „Das Intro und die Aufklärung danach gehen
+  genauso lange wie der Podcast." Nachgerechnet stimmte das auf das Wort –
+  103 Wörter Gerüst gegen 86 Wörter Meldung. Warum die Grenze bei der Hälfte
+  liegt und nicht woanders, steht bei `folgengewicht`.
+
+  Eine Warnung, kein Abbruch: Hier ist die Ausgabe schon geschrieben. Der
+  Riegel, der etwas ändern kann, sitzt in `scripts/nachrichten-erzeugen.ts`.
+*/
+const gewicht = folgengewicht(folge.sprechtext)
+console.log(
+  `[folge] Gerüst ${gewicht.geruest} Wörter, Meldungen ${gewicht.meldungen} Wörter ` +
+    `(Gerüst ${Math.round(gewicht.anteil * 100)} %).`
+)
+if (gewicht.geruest >= gewicht.meldungen) {
+  console.log(
+    `::warning::[folge] Das Gerüst wiegt so viel wie die Meldungen – Begrüßung und ` +
+      `Hinweise sind so lang wie die Nachrichten.`
+  )
+  console.log(`        Das Gerüst ist fester Text und war noch nie länger als 110`)
+  console.log(`        Wörter. Zu kurz ist die Ausgabe, nicht zu lang der Rahmen.`)
 }
 
 /*

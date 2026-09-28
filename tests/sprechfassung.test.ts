@@ -13,6 +13,7 @@ import { pathToFileURL } from 'node:url'
 import type { DailyEdition } from '../data/editions/types.ts'
 import {
   baueFolge,
+  folgengewicht,
   folgennummer,
   kernDerUeberschrift,
   ordnungszahl,
@@ -99,13 +100,13 @@ pruefe(
   Absicht, sondern der damalige Zustand: „US" fiel in vierzehn Folgen 51 Mal
   und kam jedes Mal als Silbe heraus.
 
-  Seit „US" eine Umschrift hat, lautet die Erwartung „Uh Ess-dreißig" – und
+  Seit „US" eine Umschrift hat, lautet die Erwartung „Juh-Ess-dreißig" – und
   die Aussage dieser Prüfung ist unverändert: Aus dem Strich wird kein Minus.
 */
 pruefe(
   'Bindestrich hinter einem Kürzel wird nicht zum Minus',
   sprechbar('der US-30 stieg'),
-  'der Uh Ess-dreißig stieg'
+  'der Juh-Ess-dreißig stieg'
 )
 pruefe(
   'zusammengesetzte Zahl im Wort bleibt heil',
@@ -126,7 +127,7 @@ pruefe(
 
 /* Namen, die bis zum 16. September 2026 unübersetzt durchliefen. */
 pruefe('Bank of England', sprechbar('die Bank of England'), 'die Bänk of Ingland')
-pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh Teh Ih stieg')
+pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh-Teh-Ih stieg')
 /*
   Die eigene Adresse ist der eigene Name plus Endung, und beides wird
   englisch gesprochen. „iminvests punkt de" las die Stimme als ein einziges
@@ -136,12 +137,12 @@ pruefe('WTI wird buchstabiert', sprechbar('WTI stieg'), 'Weh Teh Ih stieg')
 pruefe(
   'Webadresse – die Endung wird buchstabiert',
   sprechbar('auf iminvests.de'),
-  'auf Ei Emm Inwests punkt Deh Eh'
+  'auf Ei-Emm Inwests punkt Deh-Eh'
 )
 pruefe(
   'Fremde Adressen genauso',
   sprechbar('Quelle: reuters.com'),
-  'Quelle: reuters punkt Zeh Oh Emm'
+  'Quelle: reuters punkt Zeh-Oh-Emm'
 )
 /*
   Zwei Fallen der deutschen Rechtschreibung, beide am 11. August 2026 vom
@@ -161,7 +162,7 @@ pruefe(
 pruefe(
   'Der eigene Name wird englisch gesprochen',
   sprechbar('Das Marktupdate von IM Invests.'),
-  'Das Markt-Appdejt von Ei Emm Inwests.'
+  'Das Markt-Appdejt von Ei-Emm Inwests.'
 )
 /*
   Und die Umschrift darf kein deutsches „im" anfassen. Ein `\bIM\b` ohne
@@ -329,7 +330,7 @@ const folge = baueFolge(edition)
 pruefe(
   'Sprechtext beginnt mit der Begrüßung',
   folge.sprechtext.startsWith(
-    'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei Emm Inwests.'
+    'Guten Morgen und herzlich willkommen zum Markt-Appdejt von Ei-Emm Inwests.'
   ),
   true
 )
@@ -744,6 +745,74 @@ pruefe(
   satzrhythmus('').kurzeAnteil + satzrhythmus('').langeAnteil,
   0
 )
+
+/* ------------------------------------------------ Gerüst gegen Meldungen */
+
+/*
+  Der Fall vom 28. September 2026: „viel zu kurz, das Intro und die Aufklärung
+  danach gehen genauso lange wie der Podcast."
+
+  **Eine Absicherung, die nie anschlägt, sieht aus wie Ruhe.** Deshalb steht
+  hier zuerst der Text, den sie beanstanden *muss* – nachgebaut aus der
+  Ausgabe des Tages: vier Meldungen zu rund zwanzig Wörtern.
+*/
+{
+  const duenn = [
+    /* 35 Wörter Begrüßung, 39 Hinweise – die echten Längen. */
+    'Guten Morgen und herzlich willkommen zum Marktupdate. Heute ist Montag. ' +
+      'Die USA weisen Irans Angebot zurück, am Montag sprechen Notenbanker, ' +
+      'und Mercedes drosselt die Produktion in Sindelfingen an diesem Morgen.',
+    'Diese Folge wurde mit Hilfe künstlicher Intelligenz erzeugt und vor der ' +
+      'Veröffentlichung nicht von einem Menschen freigegeben. Sie dient der ' +
+      'Information und Finanzbildung, sie ist keine Anlageberatung und keine ' +
+      'Empfehlung, irgendetwas zu kaufen oder zu verkaufen.',
+    'Die USA weisen Irans Angebot zurück. Teheran habe alle Zugeständnisse im ' +
+      'Voraus verlangt.',
+    'Am Montag stehen Notenbank-Termine an. Um zwölf Uhr spricht Ramsden, um ' +
+      'halb fünf kommt der Index der Dallas Fed.',
+    'Mercedes hat die Produktion in Sindelfingen gedrosselt. Die Ursache nennt ' +
+      'die Meldung nicht.',
+    'Passagiere reichten rund dreiundfünfzigtausend Klagen gegen Fluglinien ' +
+      'ein. Welches Land gemeint ist, nennt die Meldung nicht.',
+    'Das war das Marktupdate. Alle Themen findest du auf der Website. Bis ' +
+      'morgen früh und viel Erfolg.',
+  ].join('\n\n')
+  const g = folgengewicht(duenn)
+  pruefe('die dünne Folge wird gefunden', g.geruest >= g.meldungen, true)
+  pruefe('und der Anteil liegt über der Hälfte', g.anteil > 0.5, true)
+}
+
+/*
+  Die Gegenprobe: dieselbe Messung an der jüngsten Ausgabe im Bestand.
+
+  Die Behauptung ist nicht „sie ist gut", sondern dass die Aufteilung
+  aufgeht – Gerüst und Meldungen ergeben zusammen die ganze Folge, und das
+  Gerüst bleibt in der Spanne, die über 65 Folgen gemessen wurde (103 bis
+  116 Wörter). Wächst es doch einmal, ist die Grenze in
+  `scripts/nachrichten-erzeugen.ts` falsch geworden und muss es erfahren.
+*/
+{
+  const g = folgengewicht(folge.sprechtext)
+  pruefe(
+    'Gerüst und Meldungen ergeben die ganze Folge',
+    g.geruest + g.meldungen,
+    folge.wortzahl
+  )
+  pruefe(
+    'das Gerüst bleibt bei rund 110 Wörtern',
+    g.geruest >= 95 && g.geruest <= 125,
+    true
+  )
+  pruefe(
+    'und der Anteil passt dazu',
+    Math.abs(g.anteil - g.geruest / folge.wortzahl) < 1e-9,
+    true
+  )
+}
+
+/* Ein leerer Text darf auch hier nicht werfen. */
+pruefe('ohne Text keine Meldungen', folgengewicht('').meldungen, 0)
+pruefe('und kein Anteil', folgengewicht('').anteil, 0)
 
 /* --------------------------------------------- Die Kürzel im Sprechtext */
 
