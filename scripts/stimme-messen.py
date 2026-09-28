@@ -28,6 +28,7 @@ Aufruf:  python scripts/stimme-messen.py  [referenz.wav]  [modellgroesse]
 
 import os
 import sys
+import tempfile
 import time
 import wave
 
@@ -70,31 +71,10 @@ if not os.path.exists(REFERENZ):
 
 import numpy as np  # noqa: E402
 import soundfile as sf  # noqa: E402
-import torch  # noqa: E402
-
-torch.set_num_threads(os.cpu_count() or 2)
 
 with wave.open(REFERENZ) as datei:
     referenzdauer = datei.getnframes() / datei.getframerate()
 melde(f"Referenz: {referenzdauer:.1f} s, Modell {REPO}, {os.cpu_count()} Kerne.")
-
-t0 = time.time()
-from qwen_tts import Qwen3TTSModel  # noqa: E402
-
-"""
-Genau so lädt Voicebox das Modell auf einem Rechner ohne Grafikkarte –
-abgeschrieben aus `backend/backends/pytorch_backend.py`. Der erste
-Versuch benutzte `device=` und `dtype=`; beides kennt die Klasse nicht:
-
-    TypeError: __init__() got an unexpected keyword argument 'device'
-"""
-modell = Qwen3TTSModel.from_pretrained(
-    REPO,
-    torch_dtype=torch.float32,
-    low_cpu_mem_usage=False,
-)
-ladezeit = time.time() - t0
-melde(f"Modell geladen in {ladezeit:.0f} s.")
 
 """
 Der Wortlaut steht neben der Aufnahme im Repository, nicht in einer
@@ -103,7 +83,13 @@ die Aufnahme austauscht, sieht den Text daneben liegen und zieht ihn mit.
 """
 WORTLAUT = REFERENZ.rsplit(".", 1)[0] + ".txt"
 referenztext = os.environ.get("REFERENZTEXT", "").strip()
-if not referenztext and os.path.exists(WORTLAUT):
+if referenztext:
+    # `Sprecher` liest den Wortlaut aus einer Datei. Damit `REFERENZTEXT`
+    # weiter gilt, wandert er in eine temporäre.
+    WORTLAUT = os.path.join(tempfile.gettempdir(), "stimme-wortlaut.txt")
+    with open(WORTLAUT, "w", encoding="utf-8") as datei:
+        datei.write(referenztext)
+elif os.path.exists(WORTLAUT):
     with open(WORTLAUT, encoding="utf-8") as datei:
         referenztext = datei.read().strip()
 if not referenztext:
@@ -112,14 +98,8 @@ if not referenztext:
     sys.exit(78)
 melde(f"Wortlaut: {len(referenztext.split())} Wörter.")
 
-t0 = time.time()
-prompt = modell.create_voice_clone_prompt(
-    ref_audio=REFERENZ,
-    ref_text=referenztext,
-    x_vector_only_mode=False,
-)
-promptzeit = time.time() - t0
-melde(f"Stimmprofil erstellt in {promptzeit:.0f} s.")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import sprechstimme  # noqa: E402
 
 """
 Gesprochen wird in **Stücken mit Pausen dazwischen** – so wie die Folge.
@@ -133,14 +113,40 @@ denen unterschiedlich lange Pausen stehen, und genau dieser Rhythmus ist
 das, was der Betreiber am 9. August „sehr monoton" genannt hat.
 
 Eine Hörprobe, die den Rhythmus nicht enthält, kann zu ihm nichts sagen.
-Sie sah nach einer Antwort aus und war keine – dieselbe Sorte Fehler wie
-die Pausenlogik, die an Satzzeichen hing, die im Text nie vorkommen.
 
 Die Messung bleibt davon unberührt: Gemessen wird die reine Rechenzeit für
 die gesprochenen Stücke, die eingefügte Stille zählt nicht mit.
+
+## Und gesprochen wird seit dem 28. September 2026 über `Sprecher`
+
+Hier stand das Modell zweimal da: einmal in `sprechstimme.Sprecher` mit
+Frist, Teilung und Wiederholung, und einmal hier als nackter Aufruf von
+`generate_voice_clone`. Die Doppelung hatte beim Anlegen einen Grund – das
+Skript war zuerst da – und ist genau so gealtert, wie `AGENTS.md` es
+beschreibt.
+
+**Am 28. September 2026 hat sie eine Hörprobe gekostet.** Das sechste von
+acht Stücken („Der ATX fiel, der PMI von ISM stieg.") hing dreizehneinhalb
+Minuten, bis die Frist des Jobs den ganzen Lauf abräumte:
+
+    Stück 1/8 … 38 s      Stück 4/8 … 29 s
+    Stück 2/8 … 31 s      Stück 5/8 … 27 s
+    Stück 3/8 … 28 s      Stück 6/8 … ##[error]The operation was canceled.
+
+Das ist das bekannte `open-end generation`: Das Modell erzeugt Ton, bis es
+ein Schlusszeichen setzt, und manchmal setzt es keines. `Sprecher.sprich()`
+kennt den Fall seit dem 10. August – Frist nach Stücklänge, dann teilen,
+dann wiederholen. Dieses Skript kannte ihn nicht, und die sechzehn Minuten
+brauchbares Audio davor waren verloren: Geschrieben wurde nichts.
+
+**Ein übersprungenes Stück kostet hier den Satz, nicht die Probe** – dieselbe
+Abwägung wie bei den Lernseiten und aus demselben Grund: Die Hörprobe ist
+Arbeitsmaterial zum Beurteilen, keine veröffentlichte Folge. Eine Aufnahme
+mit einer Lücke schlägt keine Aufnahme.
 """
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import sprechstimme  # noqa: E402
+t0 = time.time()
+sprecher = sprechstimme.Sprecher(REFERENZ, WORTLAUT, REPO, melde)
+ruestzeit = time.time() - t0
 
 stuecke = sprechstimme.in_stuecke(PROBE)
 melde(f"Probetext: {len(PROBE)} Zeichen in {len(stuecke)} Stück(en).")
@@ -148,15 +154,29 @@ melde(f"Probetext: {len(PROBE)} Zeichen in {len(stuecke)} Stück(en).")
 t0 = time.time()
 teile = []
 rate = 24000
+gesprochene_proben = 0
+uebersprungen = 0
 for nummer, (stueck, pause) in enumerate(stuecke, start=1):
-    wavs, rate = modell.generate_voice_clone(
-        text=stueck, voice_clone_prompt=prompt, language="German"
-    )
-    teile.append(np.asarray(wavs[0]))
+    try:
+        wavs, rate = sprecher.sprich(stueck)
+    except RuntimeError as fehler:
+        uebersprungen += 1
+        melde(f"  Stück {nummer}/{len(stuecke)} übersprungen: {fehler}")
+        continue
+    ton = np.asarray(wavs[0])
+    gesprochene_proben += len(ton)
+    teile.append(ton)
     if nummer < len(stuecke):
         teile.append(np.zeros(int(pause * rate), dtype=np.float32))
     melde(f"  Stück {nummer}/{len(stuecke)}: {pause:.2f} s Pause danach.")
-rechenzeit = time.time() - t0
+rechenzeit = max(time.time() - t0, 1e-6)
+
+if not teile:
+    melde("")
+    melde("Kein einziges Stück gesprochen – es entsteht keine Aufnahme.")
+    sys.exit(1)
+if uebersprungen:
+    melde(f"::warning::{uebersprungen} von {len(stuecke)} Stücken fehlen in der Aufnahme.")
 
 audio = np.concatenate(teile) if len(teile) > 1 else teile[0]
 
@@ -166,7 +186,7 @@ audio = np.concatenate(teile) if len(teile) > 1 else teile[0]
 # den Zähler: Sonst sähe die Stimme umso schneller aus, je mehr Pausen man
 # einbaut. Genau das wäre eine Kennzahl, die sich selbst verbessert, ohne
 # dass irgendetwas besser geworden ist.
-gesprochen = sum(len(t) for t in teile[::2]) / rate
+gesprochen = gesprochene_proben / rate
 gesamt = len(audio) / rate
 faktor = gesprochen / rechenzeit
 
@@ -193,10 +213,10 @@ melde("")
 allein = 300 / faktor
 melde(f"Ein Läufer allein bräuchte für fünf Minuten Folge {allein / 60:.0f} Minuten.")
 
-geteilt = allein / LAEUFER + ladezeit
+geteilt = allein / LAEUFER + ruestzeit
 melde(
     f"Auf {LAEUFER} Läufer verteilt sind es {geteilt / 60:.0f} Minuten je Läufer, "
-    f"Modellladen eingerechnet."
+    f"Modell und Stimmprofil eingerechnet."
 )
 melde("Der Sprechlauf hat 45 Minuten Zeit (podcast-erzeugen.yml, Job „sprechen“).")
 

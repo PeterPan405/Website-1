@@ -56,10 +56,20 @@ jobs:
     name: Wie klingt sie?
     runs-on: ubuntu-latest
     # Die Messung vom 9. August: 133 s Rechnen für 32 s Audio, dazu 9 s
-    # Modellladen und rund 3 Minuten für die Bibliotheken. Zwanzig Minuten
-    # sind reichlich – und eine Frist, die greift, statt den Läufer bei einem
-    # Aufhänger eine Stunde blockieren zu lassen.
-    timeout-minutes: 20
+    # Modellladen und rund 3 Minuten für die Bibliotheken. Eine Frist, die
+    # greift, statt den Läufer bei einem Aufhänger eine Stunde zu blockieren.
+    #
+    # **30 statt 20 Minuten seit dem 28. September 2026.** An diesem Tag hat
+    # die Frist des Jobs eine Probe abgeräumt: Das sechste von acht Stücken
+    # hing dreizehneinhalb Minuten, und weil `stimme-messen.py` damals keine
+    # Frist je Stück kannte, war auch das gute Audio davor verloren.
+    #
+    # Die eigentliche Abhilfe steht dort – das Skript spricht jetzt über
+    # `sprechstimme.Sprecher`, mit Frist, Teilung und Wiederholung. Nur
+    # kostet dieses Sich-Berappeln Zeit: bis zu acht Anläufe zu je sechzig
+    # Sekunden für ein kurzes Stück. Zwanzig Minuten wären danach die
+    # Grenze, die den guten Tag gerade eben trägt.
+    timeout-minutes: 30
     permissions:
       contents: write
 
