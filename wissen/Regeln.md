@@ -1,3 +1,15 @@
+---
+titel: Regeln Website-1
+quelle: AGENTS.md
+tags:
+  - projektgedaechtnis
+  - website-1
+  - regeln
+---
+> [!info] Abbild – nicht hier bearbeiten
+> Diese Notiz wird aus `AGENTS.md` im Repository `Website-1` erzeugt
+> (`ANWENDEN=1 npm run wissen`). Änderungen hier überschreibt der nächste Lauf.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
@@ -53,7 +65,7 @@ lokale Sitzung (`werkzeuge/wissen-in-vault.ps1`).
   eine Anstoßdatei; Vorbild: `.github/sonde-anstoss.txt` in
   `quellen-probe.yml`.
 
-→ `ENTSCHEIDUNGEN.md`: „Selbst mergen, ohne zu fragen"
+→ `ENTSCHEIDUNGEN.md`: [[Selbst mergen, ohne zu fragen]]
 
 ## Diese Umgebung erreicht nur GitHub – **erst nachsehen, ob das stimmt**
 
@@ -78,7 +90,7 @@ Prüfbar mit `curl -sS "$HTTPS_PROXY/__agentproxy/status"`.
 **Suchergebnisse sind kein Ersatz für eine gelesene Quelle.** Vom Läufer kommen
 `dejure.org` und `justetf.com` durch, `gesetze-im-internet.de` nicht.
 
-→ `ENTSCHEIDUNGEN.md`: „Diese Umgebung erreicht nur GitHub"
+→ `ENTSCHEIDUNGEN.md`: [[Diese Umgebung erreicht nur GitHub]]
 
 ## Nachrichten
 
@@ -134,9 +146,8 @@ Die Prüfung in `scripts/nachrichten-erzeugen.ts` spiegelt `lib/news-validate.ts
 `lib/editions-validate.ts` und `npm run pruefen`. **Wer eine Regel im Build
 ändert, ändert sie dort mit.**
 
-→ `ENTSCHEIDUNGEN.md`: „heißt der jüngste Erscheinungstag", „Der Agent
-schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gibt",
-„Hat die Ausgabe etwas kaputt gemacht"
+→ `ENTSCHEIDUNGEN.md`: [[Nachrichten Aktuell heißt der jüngste Erscheinungstag|heißt der jüngste Erscheinungstag]], [[Diese Umgebung erreicht nur GitHub#Der Agent schreibt, der Läufer veröffentlicht|Der Agent schreibt, der Läufer veröffentlicht]], [[Diese Umgebung erreicht nur GitHub#Warum es Auffangnetz und Wächter gibt|Warum es Auffangnetz und Wächter gibt]],
+[[Diese Umgebung erreicht nur GitHub#Hat die Ausgabe etwas kaputt gemacht? – die Frage, die der Riegel stellt|Hat die Ausgabe etwas kaputt gemacht]]
 
 ## Der Fahrplan – Zusage ist 6:00 Uhr deutscher Zeit, für Nachrichten und Folge
 
@@ -170,7 +181,7 @@ schreibt, der Läufer veröffentlicht", „Warum es Auffangnetz und Wächter gib
 - Die Folge erscheint **täglich**.
 - `folgennummer()` zählt zweiteilig, Naht am 9. August 2026 – keine Lücke.
 
-→ `ENTSCHEIDUNGEN.md`: „Wann die Nachrichten entstehen – und wann der Podcast"
+→ `ENTSCHEIDUNGEN.md`: [[Diese Umgebung erreicht nur GitHub#Wann die Nachrichten entstehen – und wann der Podcast|Wann die Nachrichten entstehen – und wann der Podcast]]
 
 ## Geplante Läufe sind eine Bitte, keine Zusage
 
@@ -200,8 +211,8 @@ gelegentlich. Daraus folgt:
   `NUR_PREIS`). Ein geänderter Cron ohne angepassten Vergleich schaltet
   stillschweigend den vollen Abruf ein.
 
-→ `ENTSCHEIDUNGEN.md`: „Geplante Läufe sind eine Bitte, keine Zusage",
-„Ein Commit vom Bot löst nichts aus"
+→ `ENTSCHEIDUNGEN.md`: [[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Geplante Läufe sind eine Bitte, keine Zusage|Geplante Läufe sind eine Bitte, keine Zusage]],
+[[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Ein Commit vom Bot löst nichts aus|Ein Commit vom Bot löst nichts aus]]
 
 ## Ein roter Lauf ist ein Vorrat
 
@@ -224,8 +235,7 @@ der Host weg; kein Neubau hilft → **Warnung**, rot erst nach einem schon roten
 Vorlauf. Ein gelesener Code außer 200 heißt: Er läuft und findet nichts –
 unser Webordner → **roter Lauf** und Neubau.
 
-→ `ENTSCHEIDUNGEN.md`: „Ein roter Lauf ist ein Vorrat", „`000` ist der Hoster,
-`404` sind wir"
+→ `ENTSCHEIDUNGEN.md`: [[Diese Umgebung erreicht nur GitHub#Ein roter Lauf ist ein Vorrat, und er lässt sich aufbrauchen|Ein roter Lauf ist ein Vorrat]], [[Der Google-Bewertungslink raus und am selben Tag zurück#`000` ist der Hoster, `404` sind wir|`000` ist der Hoster, `404` sind wir]]
 
 ## Der Zahlenwächter
 
@@ -242,8 +252,7 @@ grün.
 - **Ein `id` wird nie umbenannt** – der Abgleich hängt daran. Ein neuer
   Schlüssel meldet einen Sturz auf null, ohne Vorgeschichte.
 
-→ `ENTSCHEIDUNGEN.md`: „Ein Wächter, der seinen eigenen Alarm fortschreibt,
-ist keiner"
+→ `ENTSCHEIDUNGEN.md`: [[Selbst mergen, ohne zu fragen#Ein Wächter, der seinen eigenen Alarm fortschreibt, ist keiner|Ein Wächter, der seinen eigenen Alarm fortschreibt, ist keiner]]
 
 ## Quartalstermine
 
@@ -289,8 +298,7 @@ ist keiner"
 gehört mit Datum, Ort und Liste hingeschrieben – nicht als Beweis gelesen,
 dass es nichts gibt.
 
-→ `ENTSCHEIDUNGEN.md`: „Ein Weg, der nie etwas geliefert hat", „Zwischen New
-York und Berlin liegen nicht immer sechs Stunden", „Der Betreiber hatte recht"
+→ `ENTSCHEIDUNGEN.md`: [[Selbst mergen, ohne zu fragen#Ein Weg, der nie etwas geliefert hat, sieht aus wie ein Weg|Ein Weg, der nie etwas geliefert hat]], [[Der Google-Bewertungslink raus und am selben Tag zurück#Zwischen New York und Berlin liegen nicht immer sechs Stunden|Zwischen New York und Berlin liegen nicht immer sechs Stunden]], [[Der Google-Bewertungslink raus und am selben Tag zurück#Der Betreiber hatte recht: es gab noch eine Quelle|Der Betreiber hatte recht]]
 
 ## Kurse
 
@@ -316,7 +324,7 @@ Zusage: höchstens sechs Minuten.
 - Rohstoffe kommen bei Yahoo verzögert. Die Stand-Zeile nennt den Zeitstempel
   der **Quelle**, nicht des Abrufs.
 
-→ `ENTSCHEIDUNGEN.md`: „Ein Kurs ist so alt wie die Stelle, die ihn anzeigt"
+→ `ENTSCHEIDUNGEN.md`: [[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt]]
 
 ## Stimme, Podcast und Vorlesefassungen
 
@@ -367,9 +375,8 @@ Zusage: höchstens sechs Minuten.
   Beginner → Akademie → Fortgeschritten → Profi. Ohne Aufnahme spricht das Gerät.
 - `lese-stimme.yml` läuft 23:19 UTC; 12 von 172 Seiten sind gesprochen.
 
-→ `ENTSCHEIDUNGEN.md`: „Eine Fallunterscheidung über Merkmale, die der Stoff
-nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
-„Die Lernseiten sprechen mit derselben Stimme wie der Podcast"
+→ `ENTSCHEIDUNGEN.md`: [[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist keine|Eine Fallunterscheidung über Merkmale, die der Stoff nicht hat, ist keine]], [[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Was englisch ist, wird englisch gesprochen – auch Anglizismen|Was englisch ist, wird englisch gesprochen]],
+[[Ein Kurs ist so alt wie die Stelle, die ihn anzeigt#Die Lernseiten sprechen mit derselben Stimme wie der Podcast|Die Lernseiten sprechen mit derselben Stimme wie der Podcast]]
 
 ## Farbschema
 
@@ -393,7 +400,7 @@ nicht hat, ist keine", „Was englisch ist, wird englisch gesprochen",
 - Am `--c-canvas` des hellen Schemas hängen `LEISTENFARBE` in `lib/theme.ts`
   **und** das App-Icon (`python scripts/app-icon-faerben.py`).
 
-→ `ENTSCHEIDUNGEN.md`: „Der erste Besuch ist weiß"
+→ `ENTSCHEIDUNGEN.md`: [[Der erste Besuch ist weiß]]
 
 ## Der Alias `@/` gilt auch außerhalb des Bündlers
 
