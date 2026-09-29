@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Spiegelt den Ordner `wissen/` aus dem Repository in den Obsidian-Vault.
 
@@ -81,6 +81,11 @@ if ($Notizen.Count -eq 0) {
 function Find-Vault {
     $Kandidaten = @(
         $env:OBSIDIAN_VAULT
+        # Der Ort, an dem der Vault auf diesem Rechner wirklich liegt
+        # (nachgesehen am 29.09.2026): ein Ordner direkt auf C:, nicht unter
+        # 'Dokumente'. Die Liste hatte ihn nicht, und das Skript brach mit
+        # 'Kein Vault gefunden' ab - obwohl der Vault da war.
+        'C:\Obsidian'
         (Join-Path $env:USERPROFILE 'Documents\Obsidian')
         (Join-Path $env:USERPROFILE 'Obsidian')
         (Join-Path $env:USERPROFILE 'Documents')
@@ -106,7 +111,7 @@ if (-not $Vault) { $Vault = Find-Vault }
 if (-not $Vault) {
     Write-Host 'Kein Vault gefunden.' -ForegroundColor Yellow
     Write-Host 'Gesucht wurde nach einem Ordner mit einem Unterordner .obsidian, unter:'
-    Write-Host '  %OBSIDIAN_VAULT%, Dokumente\Obsidian, Obsidian, Dokumente, OneDrive, Benutzerordner'
+    Write-Host '  %OBSIDIAN_VAULT%, C:\Obsidian, Dokumente\Obsidian, Obsidian, Dokumente, OneDrive, Benutzerordner'
     Write-Host ''
     Write-Host 'Pfad selbst angeben:'
     Write-Host '  .\werkzeuge\wissen-in-vault.ps1 -Vault "C:\Pfad\zum\Vault"'
